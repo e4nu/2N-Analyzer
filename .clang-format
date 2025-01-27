@@ -3,7 +3,7 @@ BreakBeforeBraces: Attach
 IndentWidth: 4
 TabWidth: 4
 UseTab: Never
-ColumnLimit: 180
+ColumnLimit: 190
 AllowShortIfStatementsOnASingleLine: true
 AllowShortLoopsOnASingleLine: true
 AllowShortBlocksOnASingleLine: true

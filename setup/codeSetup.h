@@ -7,17 +7,16 @@
 #define FullAnalyser true
 #define IndependentCanvasPDF false
 
-#include "../source/constants.h"
-#include "../source/includes/CanvasPDF/CanvasPDF.h"
 #include "../source/classes/Debugger/Debugger.cpp"
 #include "../source/classes/Directories/Directories.cpp"
 #include "../source/classes/ExperimentParameters/ExperimentParameters.cpp"
+#include "../source/constants.h"
 #include "../source/functions/GeneralFunctions.h"
 #include "../source/functions/HistogramPlottingFunctions.h"
 #include "../source/functions/quit.h"
-
-#include "samples/Uniform_samples.h"
+#include "../source/includes/CanvasPDF/CanvasPDF.h"
 #include "samples/Q2_testing_samples.h"
+#include "samples/Uniform_samples.h"
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                         Code version                                                                                //
@@ -89,8 +88,7 @@ std::string file_name = "general_file";
 
 // HIPO files for Q2 study ----------------------------------------------------------------------------------------------------------------------------------------------
 
-void ConfigSampleChain()
-{
+void ConfigSampleChain() {
     // ==================================================================================================================================================================
     // Data runs
     // ==================================================================================================================================================================
@@ -544,4 +542,4 @@ double P_L_hist_upper_lim, P_L_hist_lower_lim, P_R_hist_upper_lim, P_R_hist_lowe
 
 //</editor-fold>
 
-#endif // ANALYSER_CODESETUP_H
+#endif  // ANALYSER_CODESETUP_H
