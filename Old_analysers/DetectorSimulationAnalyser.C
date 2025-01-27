@@ -178,7 +178,7 @@ void EventAnalyser(const string &AnalyseFilePath, const string &AnalyseFileSampl
     /* Settings that allow to disable/enable every cut individually */
 
     // clas12ana cuts ---------------------------------------------------------------------------------------------------------------------------------------------------
-    bool apply_cuts = true;                  // master ON/OFF switch for applying cuts
+    bool apply_cuts = true;                   // master ON/OFF switch for applying cuts
     bool clas12ana_particles = true;          // TODO: move form here!
     bool only_preselection_cuts = false;      // keep as false for regular runs!
     bool only_electron_quality_cuts = false;  // keep as false for regular runs!
@@ -10264,9 +10264,10 @@ void EventAnalyser(const string &AnalyseFilePath, const string &AnalyseFileSampl
                                 hTheta_n_AC_truth_1n.hFill(Particle_TL_Theta, Weight);
                                 hPhi_n_AC_truth_1n.hFill(Particle_TL_Phi, Weight);
 
-                                if (  //
-                                      // (TL_NeutronsFD_mom_ind.size() == 1) &&  // FOR nFD eff test!
-                                    n_inFD && (!Calc_1n_n_eff_with_smaller_theta || (Particle_TL_Theta <= 35.)) && (!Eff_calc_with_one_reco_electron || (electrons.size() == 1))) {
+                                if (                                        //
+                                    // (TL_NeutronsFD_mom_ind.size() == 1) &&  // FOR nFD eff test!
+                                    n_inFD && (!Calc_1n_n_eff_with_smaller_theta || (Particle_TL_Theta <= 35.)) && (!Eff_calc_with_one_reco_electron || (electrons.size() == 1))  //
+                                ) {
                                     // 1n efficiency plots (LnFD)
                                     if (ES_by_leading_FDneutron) {
                                         if ((TL_IDed_Leading_nFD_ind != -1) && (i == TL_IDed_Leading_nFD_ind)) {
@@ -11060,8 +11061,8 @@ void EventAnalyser(const string &AnalyseFilePath, const string &AnalyseFileSampl
             }  // end of for loop over TL particles
 
             // Fill leading FD neutron acceptance maps
-            // if (
-            if ((TL_NeutronsFD_mom_ind.size() == 1) &&  // FOR nFD eff test!
+            if (
+            // if ((TL_NeutronsFD_mom_ind.size() == 1) &&  // FOR nFD eff test!
                 Generate_Nucleon_AMaps && TL_Event_Selection_1e_cut_AMaps && (!AMaps_calc_with_one_reco_electron || (electrons.size() == 1)) && ES_by_leading_FDneutron &&
                 ((TL_IDed_Leading_nFD_ind != -1) && (TL_IDed_Leading_nFD_momentum > 0))) {
                 /* Fill leading TL FD neutron acceptance maps */
@@ -12325,8 +12326,8 @@ void EventAnalyser(const string &AnalyseFilePath, const string &AnalyseFileSampl
             }
 
             // Filling neurton reco. Acceptance maps
-            // if (
-            if (NeutronsFD_ind.size() == 1 &&  // FOR nFD eff test!
+            if (
+            // if (NeutronsFD_ind.size() == 1 &&  // FOR nFD eff test!
                 ES_by_leading_FDneutron) {
                 if (NeutronsFD_ind_mom_max != -1) {
                     // if NeutronsFD_ind_mom_max == -1, there are no neutrons above momentum th. in the event
@@ -12358,8 +12359,8 @@ void EventAnalyser(const string &AnalyseFilePath, const string &AnalyseFileSampl
                             bool GoodTLMatch_AMaps = ((fabs(TL_nFD_theta - Theta_neut_1e_cut) < 2.) && (fabs(CalcdPhi(TL_nFD_phi - Phi_neut_1e_cut)) < 5.));  // FOR nFD eff test!
 
                             // if neutron passes ECAL veto:
-                            // if (NeutronPassVeto_1e_cut)
-                            if (NeutronPassVeto_1e_cut && GoodTLMatch_AMaps)  // FOR nFD eff test!
+                            if (NeutronPassVeto_1e_cut)
+                            // if (NeutronPassVeto_1e_cut && GoodTLMatch_AMaps)  // FOR nFD eff test!
                             {
                                 hReco_P_nFD_AMaps.hFill(Mom_neut_1e_cut, Weight);
                                 hNeutronAMapBC.hFill(Phi_neut_1e_cut, Theta_neut_1e_cut, Weight);
@@ -13006,7 +13007,7 @@ void EventAnalyser(const string &AnalyseFilePath, const string &AnalyseFileSampl
         bool apply_TL_1n_ES = (!Rec_wTL_ES || TL_Event_Selection_1n);
 
         if (  // FOR nFD eff test!
-              // if ((NeutronsFD_ind.size() == 1) && /F FOR nFD eff test!
+              // if ((NeutronsFD_ind.size() == 1) && // FFOR nFD eff test!
             calculate_1n && event_selection_1n && apply_TL_1n_ES) {
             // for 1n calculations (with any number of neutrals)
             ++num_of_events_1n_inFD;  // 1n event count after momentum and theta_n cuts
