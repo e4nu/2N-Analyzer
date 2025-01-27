@@ -12327,7 +12327,7 @@ void EventAnalyser(const string &AnalyseFilePath, const string &AnalyseFileSampl
 
             // Filling neurton reco. Acceptance maps
             if (
-            // if (NeutronsFD_ind.size() == 1 &&  // FOR nFD eff test!
+                // if (NeutronsFD_ind.size() == 1 &&  // FOR nFD eff test!
                 ES_by_leading_FDneutron) {
                 if (NeutronsFD_ind_mom_max != -1) {
                     // if NeutronsFD_ind_mom_max == -1, there are no neutrons above momentum th. in the event
