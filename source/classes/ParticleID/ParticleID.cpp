@@ -342,22 +342,22 @@ void ParticleID::FDNeutralParticle(vector<region_part_ptr> allParticles, vector<
             bool ParticleInECIN = (allParticles[i]->cal(clas12::ECIN)->getDetector() == 7);                              // ECIN hit
             bool ParticleInECOUT = (allParticles[i]->cal(clas12::ECOUT)->getDetector() == 7);                            // ECOUT hit
 
-            // if ((ParticlePDG == 2112) || (ParticlePDG == 22)) {  // FOR nFD eff test!
-            //     if (ParticlePDG == 2112) {
-            //         ID_Neutrons_FD.push_back(i);
-            //     } else if (ParticlePDG == 22) {
-            //         ID_Photons_FD.push_back(i);
-            //     }
-            // }  // end of clas12root neutron or 'photon' if
-            if ((ParticlePDG == 2112) || (ParticlePDG == 22)) {
-                if (ParticleInPCAL) {
-                    // if there's a 'photon' with a PCAL hit -> photon:
-                    if (ParticlePDG == 22) { ID_Photons_FD.push_back(i); }
-                } else if (!ParticleInPCAL) {  // if there is a neutron or a 'photon' without a PCAL hit
-                    // if there is either a ECIN or ECOUT hit -> neutron:
-                    if (ParticleInECIN || ParticleInECOUT) { ID_Neutrons_FD.push_back(i); }
+            if ((ParticlePDG == 2112) || (ParticlePDG == 22)) {  // FOR nFD eff test!
+                if (ParticlePDG == 2112) {
+                    ID_Neutrons_FD.push_back(i);
+                } else if (ParticlePDG == 22) {
+                    ID_Photons_FD.push_back(i);
                 }
             }  // end of clas12root neutron or 'photon' if
+            // if ((ParticlePDG == 2112) || (ParticlePDG == 22)) {
+            //     if (ParticleInPCAL) {
+            //         // if there's a 'photon' with a PCAL hit -> photon:
+            //         if (ParticlePDG == 22) { ID_Photons_FD.push_back(i); }
+            //     } else if (!ParticleInPCAL) {  // if there is a neutron or a 'photon' without a PCAL hit
+            //         // if there is either a ECIN or ECOUT hit -> neutron:
+            //         if (ParticleInECIN || ParticleInECOUT) { ID_Neutrons_FD.push_back(i); }
+            //     }
+            // }  // end of clas12root neutron or 'photon' if
         }  // end of neutral and in the FD if
     }  // end of loop over allParticles vector
 }
