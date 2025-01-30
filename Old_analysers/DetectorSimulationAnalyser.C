@@ -9727,7 +9727,7 @@ void EventAnalyser(const string &AnalyseFilePath, const string &AnalyseFileSampl
         // FD neutrons and photons to be set by definition - before momentum th. & any cuts:
         vector<int> ReDef_neutrons_FD, ReDef_photons_FD;
         // Get FD neutrons and photons, according to the definitions (ORIGINAL!):
-        pid.FDNeutralParticle(allParticles, ReDef_neutrons_FD, ReDef_photons_FD);
+        pid.ReDefFDNeutrals(allParticles, ReDef_neutrons_FD, ReDef_photons_FD);
         // FD neutron with maximal momentum:
         int NeutronsFD_ind_max = pid.GetLnFDIndex(allParticles, ReDef_neutrons_FD, apply_nucleon_cuts);
 

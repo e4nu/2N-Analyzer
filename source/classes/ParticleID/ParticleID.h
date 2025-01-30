@@ -118,7 +118,7 @@ public:
 
 // FDNeutralParticle function --------------------------------------------------------------------------------------------------------------------
 
-    void FDNeutralParticle(vector <region_part_ptr> allParticles, vector<int> &ID_Neutrons_FD, vector<int> &ID_Photons_FD);
+    void ReDefFDNeutrals(vector <region_part_ptr> allParticles, vector<int> &ID_Neutrons_FD, vector<int> &ID_Photons_FD);
 
 // FDNeutralParticleID function ------------------------------------------------------------------------------------------------------------------
 

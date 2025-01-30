@@ -25,7 +25,7 @@ using namespace std;
  * Photon = a neutral particle (i.e., neutron or photon) in the FD with a PCal hit. */
 
 /* FDNeutralParticle without ECAL veto */
-void FDNeutralParticle(vector <region_part_ptr> allParticles, vector<int> &ID_Neutrons_FD, vector<int> &ID_Photons_FD) {
+void ReDefFDNeutrals(vector <region_part_ptr> allParticles, vector<int> &ID_Neutrons_FD, vector<int> &ID_Photons_FD) {
     for (int i = 0; i < allParticles.size(); i++) {
         int ParticlePDG = allParticles[i]->par()->getPid();
 
@@ -48,7 +48,7 @@ void FDNeutralParticle(vector <region_part_ptr> allParticles, vector<int> &ID_Ne
 }
 
 /* FDNeutralParticle with ECAL veto */
-void FDNeutralParticle(vector <region_part_ptr> allParticles, vector <region_part_ptr> electrons,
+void ReDefFDNeutrals(vector <region_part_ptr> allParticles, vector <region_part_ptr> electrons,
                        vector<int> &ID_Neutrons_FD, vector<int> &ID_Photons_FD,
                        DSCuts &Neutron_veto_cut, const double &beamE) {
     for (int i = 0; i < allParticles.size(); i++) {

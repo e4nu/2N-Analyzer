@@ -131,11 +131,11 @@ void ParticleID::FDNeutralParticleID(vector<region_part_ptr> allParticles, vecto
         bool Neutron_with_ECOUT_hit = (allParticles[i]->cal(clas12::ECOUT)->getDetector() == 7);  // ECOUT hit
         auto Neutron_ECAL_detlayer = Neutron_with_ECIN_hit ? clas12::ECIN : clas12::ECOUT;        // find first layer of hit
 
-        //<editor-fold desc="Safety checks">
-        if (!((NeutralPDG == 22) || (NeutralPDG == 2112))) { cout << "\n\nFDNeutralParticleID (Neutrons): neutron PDG is not 2112 or 22 (" << NeutralPDG << "). Exiting...\n\n", exit(0); }
+        // //<editor-fold desc="Safety checks">
+        // if (!((NeutralPDG == 22) || (NeutralPDG == 2112))) { cout << "\n\nFDNeutralParticleID (Neutrons): neutron PDG is not 2112 or 22 (" << NeutralPDG << "). Exiting...\n\n", exit(0); }
 
-        if (Neutron_with_PCAL_hit) { cout << "\n\nFDNeutralParticleID (Neutrons): redefined neutron is in the PCAL!! Exiting...\n\n", exit(0); }
-        //</editor-fold>
+        // if (Neutron_with_PCAL_hit) { cout << "\n\nFDNeutralParticleID (Neutrons): redefined neutron is in the PCAL!! Exiting...\n\n", exit(0); }
+        // //</editor-fold>
 
         bool Neutron_pass_momentum_th = (Momentum >= Neutron_momentum_th.GetLowerCutConst() && Momentum <= Neutron_momentum_th.GetUpperCutConst());
         bool Neutron_pass_ECAL_veto, Neutron_pass_ECAL_edge_cuts;
@@ -333,7 +333,7 @@ int ParticleID::GetCorrLnFDIndex(MomentumResolution &nRes, vector<region_part_pt
  * Photon = a neutral particle (i.e., neutron or photon) in the FD with a PCal hit. */
 
 /* FDNeutralParticle without ECAL veto */
-void ParticleID::FDNeutralParticle(vector<region_part_ptr> allParticles, vector<int> &ID_Neutrons_FD, vector<int> &ID_Photons_FD) {
+void ParticleID::ReDefFDNeutrals(vector<region_part_ptr> allParticles, vector<int> &ID_Neutrons_FD, vector<int> &ID_Photons_FD) {
     for (int i = 0; i < allParticles.size(); i++) {
         int ParticlePDG = allParticles[i]->par()->getPid();
 

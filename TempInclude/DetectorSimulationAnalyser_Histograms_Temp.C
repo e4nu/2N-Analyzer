@@ -8686,8 +8686,8 @@ void EventAnalyser() {
         //<editor-fold desc="Neutral particles' identification (FD only)">
         /* Get FD neutrons and photons, according to the definitions: */
         vector<int> ReDef_neutrons_FD, ReDef_photons_FD;                                                          // FD neutrons and photons to be set by definition
-        FDNeutralParticle(allParticles, ReDef_neutrons_FD, FD_Photons);                              // Get FD neutrons and photons, according to the definitions (ORIGINAL!)
-//        FDNeutralParticle(allParticles, electrons, ReDef_neutrons_FD, FD_Photons, Neutron_veto_cut, beamE);      // Get FD neutrons and photons, according to the definitions
+        ReDefFDNeutrals(allParticles, ReDef_neutrons_FD, FD_Photons);                              // Get FD neutrons and photons, according to the definitions (ORIGINAL!)
+//        ReDefFDNeutrals(allParticles, electrons, ReDef_neutrons_FD, FD_Photons, Neutron_veto_cut, beamE);      // Get FD neutrons and photons, according to the definitions
 
         /* Get FD neutrons and photons above momentum threshold: */
         vector<int> IDed_neutrons_FD, PhotonsFD_ind;                                                    // FD neutrons and photons by definition - within momentum th.
