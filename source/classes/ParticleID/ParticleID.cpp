@@ -131,11 +131,11 @@ void ParticleID::FDNeutralParticleID(vector<region_part_ptr> allParticles, vecto
         bool Neutron_with_ECOUT_hit = (allParticles[i]->cal(clas12::ECOUT)->getDetector() == 7);  // ECOUT hit
         auto Neutron_ECAL_detlayer = Neutron_with_ECIN_hit ? clas12::ECIN : clas12::ECOUT;        // find first layer of hit
 
-        // //<editor-fold desc="Safety checks">
-        // if (!((NeutralPDG == 22) || (NeutralPDG == 2112))) { cout << "\n\nFDNeutralParticleID (Neutrons): neutron PDG is not 2112 or 22 (" << NeutralPDG << "). Exiting...\n\n", exit(0); }
+        //<editor-fold desc="Safety checks">
+        if (!((NeutralPDG == 22) || (NeutralPDG == 2112))) { cout << "\n\nFDNeutralParticleID (Neutrons): neutron PDG is not 2112 or 22 (" << NeutralPDG << "). Exiting...\n\n", exit(0); }
 
-        // if (Neutron_with_PCAL_hit) { cout << "\n\nFDNeutralParticleID (Neutrons): redefined neutron is in the PCAL!! Exiting...\n\n", exit(0); }
-        // //</editor-fold>
+        if (Neutron_with_PCAL_hit) { cout << "\n\nFDNeutralParticleID (Neutrons): redefined neutron is in the PCAL!! Exiting...\n\n", exit(0); }
+        //</editor-fold>
 
         bool Neutron_pass_momentum_th = (Momentum >= Neutron_momentum_th.GetLowerCutConst() && Momentum <= Neutron_momentum_th.GetUpperCutConst());
         bool Neutron_pass_ECAL_veto, Neutron_pass_ECAL_edge_cuts;
@@ -342,22 +342,22 @@ void ParticleID::ReDefFDNeutrals(vector<region_part_ptr> allParticles, vector<in
             bool ParticleInECIN = (allParticles[i]->cal(clas12::ECIN)->getDetector() == 7);                              // ECIN hit
             bool ParticleInECOUT = (allParticles[i]->cal(clas12::ECOUT)->getDetector() == 7);                            // ECOUT hit
 
-            if ((ParticlePDG == 2112) || (ParticlePDG == 22)) {  // FOR nFD eff test!
-                if (ParticlePDG == 2112) {
-                    ID_Neutrons_FD.push_back(i);
-                } else if (ParticlePDG == 22) {
-                    ID_Photons_FD.push_back(i);
-                }
-            }  // end of clas12root neutron or 'photon' if
-            // if ((ParticlePDG == 2112) || (ParticlePDG == 22)) {
-            //     if (ParticleInPCAL) {
-            //         // if there's a 'photon' with a PCAL hit -> photon:
-            //         if (ParticlePDG == 22) { ID_Photons_FD.push_back(i); }
-            //     } else if (!ParticleInPCAL) {  // if there is a neutron or a 'photon' without a PCAL hit
-            //         // if there is either a ECIN or ECOUT hit -> neutron:
-            //         if (ParticleInECIN || ParticleInECOUT) { ID_Neutrons_FD.push_back(i); }
+            // if ((ParticlePDG == 2112) || (ParticlePDG == 22)) {  // FOR nFD eff test!
+            //     if (ParticlePDG == 2112) {
+            //         ID_Neutrons_FD.push_back(i);
+            //     } else if (ParticlePDG == 22) {
+            //         ID_Photons_FD.push_back(i);
             //     }
             // }  // end of clas12root neutron or 'photon' if
+            if ((ParticlePDG == 2112) || (ParticlePDG == 22)) {
+                if (ParticleInPCAL) {
+                    // if there's a 'photon' with a PCAL hit -> photon:
+                    if (ParticlePDG == 22) { ID_Photons_FD.push_back(i); }
+                } else if (!ParticleInPCAL) {  // if there is a neutron or a 'photon' without a PCAL hit
+                    // if there is either a ECIN or ECOUT hit -> neutron:
+                    if (ParticleInECIN || ParticleInECOUT) { ID_Neutrons_FD.push_back(i); }
+                }
+            }  // end of clas12root neutron or 'photon' if
         }  // end of neutral and in the FD if
     }  // end of loop over allParticles vector
 }

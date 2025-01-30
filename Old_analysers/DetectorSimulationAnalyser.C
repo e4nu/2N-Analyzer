@@ -107,7 +107,7 @@ void EventAnalyser(const string &AnalyseFilePath, const string &AnalyseFileSampl
     bool calculate_truth_level = true;  // TL master ON/OFF switch
     bool TL_plots_only_for_NC = false;  // TL plots only AFTER beta fit
     bool fill_TL_plots = true;
-    bool ZoomIn_On_mom_th_plots = true;           // momentum th. efficiencies with zoomin
+    bool ZoomIn_On_mom_th_plots = false;           // momentum th. efficiencies with zoomin
     bool Eff_calc_with_one_reco_electron = true;  // keep as true in normal runs
     bool Calc_inc_eff_with_varying_theta = false;
     bool Calc_1n_n_eff_with_smaller_theta = false;
