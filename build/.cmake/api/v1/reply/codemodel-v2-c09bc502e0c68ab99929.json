@@ -27,7 +27,7 @@
 					[
 						0
 					],
-					"name" : "project",
+					"name" : "2N_Analyser",
 					"targetIndexes" : 
 					[
 						0
@@ -39,7 +39,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "project::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-project-Debug-9cab80bbf90dc65f4bb5.json",
+					"jsonFile" : "target-project-Debug-5be8d31fe4a97e2f43bb.json",
 					"name" : "project",
 					"projectIndex" : 0
 				}

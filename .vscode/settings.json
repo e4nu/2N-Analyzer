@@ -74,6 +74,21 @@
         "print": "cpp",
         "process_events.C": "cpp",
         "dataanalyser.h": "c",
-        "format": "cpp"
+        "format": "cpp",
+        "numbers": "cpp",
+        "atomic": "cpp",
+        "bit": "cpp",
+        "*.tcc": "cpp",
+        "chrono": "cpp",
+        "compare": "cpp",
+        "concepts": "cpp",
+        "exception": "cpp",
+        "functional": "cpp",
+        "iterator": "cpp",
+        "memory_resource": "cpp",
+        "random": "cpp",
+        "type_traits": "cpp",
+        "utility": "cpp",
+        "cinttypes": "cpp"
     }
 }

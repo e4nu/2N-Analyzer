@@ -112,7 +112,7 @@ void EventAnalyser(const string &AnalyseFilePath, const string &AnalyseFileSampl
     bool Calc_inc_eff_with_varying_theta = false;
     bool Calc_1n_n_eff_with_smaller_theta = false;
     bool Calc_eff_overlapping_FC = true;  // keep as true in normal runs
-    bool Rec_wTL_ES = true;              // Calculate efficiency - force TL event selection on reco. plots
+    bool Rec_wTL_ES = false;              // Calculate efficiency - force TL event selection on reco. plots
 
     const bool limless_mom_eff_plots = false;
 
@@ -605,7 +605,7 @@ void EventAnalyser(const string &AnalyseFilePath, const string &AnalyseFileSampl
     /* Final state ratio plots */
     bool FSR_1D_plots, FSR_2D_plots;  // FSR_2D_plots is disabled below if HipoChainLength is 2 or lower
 
-    bool TestRun = false;  // set as false for a full run
+    bool TestRun = true;  // set as false for a full run
 
     // Set enabled plots
     if (!TestRun) {
@@ -675,8 +675,8 @@ void EventAnalyser(const string &AnalyseFilePath, const string &AnalyseFileSampl
         // Nphe_plots = true, Chi2_plots = true, Vertex_plots = true, SF_plots = true, fiducial_plots = true;
         Nphe_plots = false, Chi2_plots = false, Vertex_plots = false, SF_plots = false, fiducial_plots = false;
 
-        // Momentum_plots = true;
-        Momentum_plots = false;
+        Momentum_plots = true;
+        // Momentum_plots = false;
 
         /* W plots */
         //     W_plots = true;
@@ -695,8 +695,8 @@ void EventAnalyser(const string &AnalyseFilePath, const string &AnalyseFileSampl
         Theta_e_plots = false, Phi_e_plots = false;
 
         /* Momentum transfer plots */
-        Momentum_transfer_plots = true;
-        // Momentum_transfer_plots = false;
+        // Momentum_transfer_plots = true;
+        Momentum_transfer_plots = false;
 
         /* E_e plots */
         //     E_e_plots = true;
@@ -720,10 +720,10 @@ void EventAnalyser(const string &AnalyseFilePath, const string &AnalyseFileSampl
         ToF_plots = false;
 
         /* Efficiency plots */
-        // Efficiency_plots = true;
-        Efficiency_plots = false;
-        // TL_after_Acceptance_Maps_plots = true;
-        TL_after_Acceptance_Maps_plots = false;
+        Efficiency_plots = true;
+        // Efficiency_plots = false;
+        TL_after_Acceptance_Maps_plots = true;
+        // TL_after_Acceptance_Maps_plots = false;
 
         /* Resolution plots */
         //        AMaps_plots = true;
@@ -10264,8 +10264,8 @@ void EventAnalyser(const string &AnalyseFilePath, const string &AnalyseFileSampl
                                 hTheta_n_AC_truth_1n.hFill(Particle_TL_Theta, Weight);
                                 hPhi_n_AC_truth_1n.hFill(Particle_TL_Phi, Weight);
 
-                                if (                                        //
-                                    // (TL_NeutronsFD_mom_ind.size() == 1) &&  // FOR nFD eff test!
+                                if (  //
+                                      // (TL_NeutronsFD_mom_ind.size() == 1) &&  // FOR nFD eff test!
                                     n_inFD && (!Calc_1n_n_eff_with_smaller_theta || (Particle_TL_Theta <= 35.)) && (!Eff_calc_with_one_reco_electron || (electrons.size() == 1))  //
                                 ) {
                                     // 1n efficiency plots (LnFD)
@@ -11062,7 +11062,7 @@ void EventAnalyser(const string &AnalyseFilePath, const string &AnalyseFileSampl
 
             // Fill leading FD neutron acceptance maps
             if (
-            // if ((TL_NeutronsFD_mom_ind.size() == 1) &&  // FOR nFD eff test!
+                // if ((TL_NeutronsFD_mom_ind.size() == 1) &&  // FOR nFD eff test!
                 Generate_Nucleon_AMaps && TL_Event_Selection_1e_cut_AMaps && (!AMaps_calc_with_one_reco_electron || (electrons.size() == 1)) && ES_by_leading_FDneutron &&
                 ((TL_IDed_Leading_nFD_ind != -1) && (TL_IDed_Leading_nFD_momentum > 0))) {
                 /* Fill leading TL FD neutron acceptance maps */
@@ -11295,6 +11295,8 @@ void EventAnalyser(const string &AnalyseFilePath, const string &AnalyseFileSampl
         // Applying 1e cuts
         /* Applying rough 1e cut */
         if (Ne != 1) { continue; }  // the rough 1e cut
+
+        if (num_of_events > 100000) { break; }    // FOR nFD eff test!
 
         // Safety checks (1e cut)
         CodeDebugger.SafetyCheck_one_good_electron(__FILE__, __LINE__, electrons);
@@ -12327,7 +12329,7 @@ void EventAnalyser(const string &AnalyseFilePath, const string &AnalyseFileSampl
 
             // Filling neurton reco. Acceptance maps
             if (
-            // if ((NeutronsFD_ind.size() == 1) &&  // FOR nFD eff test!
+                // if ((NeutronsFD_ind.size() == 1) &&  // FOR nFD eff test!
                 ES_by_leading_FDneutron) {
                 if (NeutronsFD_ind_mom_max != -1) {
                     // if NeutronsFD_ind_mom_max == -1, there are no neutrons above momentum th. in the event
@@ -13007,7 +13009,7 @@ void EventAnalyser(const string &AnalyseFilePath, const string &AnalyseFileSampl
         bool apply_TL_1n_ES = (!Rec_wTL_ES || TL_Event_Selection_1n);
 
         if (  // FOR nFD eff test!
-        // if ((NeutronsFD_ind.size() == 1) &&  // FFOR nFD eff test!
+              // if ((NeutronsFD_ind.size() == 1) &&  // FFOR nFD eff test!
             calculate_1n && event_selection_1n && apply_TL_1n_ES) {
             // for 1n calculations (with any number of neutrals)
             ++num_of_events_1n_inFD;  // 1n event count after momentum and theta_n cuts

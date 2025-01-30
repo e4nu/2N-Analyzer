@@ -2,6 +2,42 @@
 	"entries" : 
 	[
 		{
+			"name" : "2N_Analyser_BINARY_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "/Users/alon/Projects/2N-Analyser/build"
+		},
+		{
+			"name" : "2N_Analyser_IS_TOP_LEVEL",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "ON"
+		},
+		{
+			"name" : "2N_Analyser_SOURCE_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "/Users/alon/Projects/2N-Analyser"
+		},
+		{
 			"name" : "CMAKE_ADDR2LINE",
 			"properties" : 
 			[
@@ -91,7 +127,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "0"
+			"value" : "5"
 		},
 		{
 			"name" : "CMAKE_COMMAND",
@@ -835,7 +871,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "project"
+			"value" : "2N_Analyser"
 		},
 		{
 			"name" : "CMAKE_RANLIB",
@@ -1143,7 +1179,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "[/opt/homebrew/Cellar/root/6.32.06/include/root][/opt/homebrew/Cellar/root/6.32.06/lib/root/libvdt.dylib][v0.4()]"
+			"value" : "[/opt/homebrew/Cellar/root/6.32.08/include/root][/opt/homebrew/Cellar/root/6.32.08/lib/root/libvdt.dylib][v0.4()]"
 		},
 		{
 			"name" : "FIND_PACKAGE_MESSAGE_DETAILS_nlohmann_json",
@@ -1171,7 +1207,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/opt/homebrew/Cellar/root/6.32.06/lib/root/libCore.so"
+			"value" : "/opt/homebrew/Cellar/root/6.32.08/lib/root/libCore.so"
 		},
 		{
 			"name" : "ROOT_DIR",
@@ -1199,7 +1235,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/opt/homebrew/Cellar/root/6.32.06/lib/root/libGpad.so"
+			"value" : "/opt/homebrew/Cellar/root/6.32.08/lib/root/libGpad.so"
 		},
 		{
 			"name" : "ROOT_Graf3d_LIBRARY",
@@ -1215,7 +1251,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/opt/homebrew/Cellar/root/6.32.06/lib/root/libGraf3d.so"
+			"value" : "/opt/homebrew/Cellar/root/6.32.08/lib/root/libGraf3d.so"
 		},
 		{
 			"name" : "ROOT_Graf_LIBRARY",
@@ -1231,7 +1267,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/opt/homebrew/Cellar/root/6.32.06/lib/root/libGraf.so"
+			"value" : "/opt/homebrew/Cellar/root/6.32.08/lib/root/libGraf.so"
 		},
 		{
 			"name" : "ROOT_Hist_LIBRARY",
@@ -1247,7 +1283,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/opt/homebrew/Cellar/root/6.32.06/lib/root/libHist.so"
+			"value" : "/opt/homebrew/Cellar/root/6.32.08/lib/root/libHist.so"
 		},
 		{
 			"name" : "ROOT_Imt_LIBRARY",
@@ -1263,7 +1299,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/opt/homebrew/Cellar/root/6.32.06/lib/root/libImt.so"
+			"value" : "/opt/homebrew/Cellar/root/6.32.08/lib/root/libImt.so"
 		},
 		{
 			"name" : "ROOT_MathCore_LIBRARY",
@@ -1279,7 +1315,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/opt/homebrew/Cellar/root/6.32.06/lib/root/libMathCore.so"
+			"value" : "/opt/homebrew/Cellar/root/6.32.08/lib/root/libMathCore.so"
 		},
 		{
 			"name" : "ROOT_Matrix_LIBRARY",
@@ -1295,7 +1331,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/opt/homebrew/Cellar/root/6.32.06/lib/root/libMatrix.so"
+			"value" : "/opt/homebrew/Cellar/root/6.32.08/lib/root/libMatrix.so"
 		},
 		{
 			"name" : "ROOT_MultiProc_LIBRARY",
@@ -1311,7 +1347,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/opt/homebrew/Cellar/root/6.32.06/lib/root/libMultiProc.so"
+			"value" : "/opt/homebrew/Cellar/root/6.32.08/lib/root/libMultiProc.so"
 		},
 		{
 			"name" : "ROOT_Net_LIBRARY",
@@ -1327,7 +1363,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/opt/homebrew/Cellar/root/6.32.06/lib/root/libNet.so"
+			"value" : "/opt/homebrew/Cellar/root/6.32.08/lib/root/libNet.so"
 		},
 		{
 			"name" : "ROOT_Physics_LIBRARY",
@@ -1343,7 +1379,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/opt/homebrew/Cellar/root/6.32.06/lib/root/libPhysics.so"
+			"value" : "/opt/homebrew/Cellar/root/6.32.08/lib/root/libPhysics.so"
 		},
 		{
 			"name" : "ROOT_Postscript_LIBRARY",
@@ -1359,7 +1395,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/opt/homebrew/Cellar/root/6.32.06/lib/root/libPostscript.so"
+			"value" : "/opt/homebrew/Cellar/root/6.32.08/lib/root/libPostscript.so"
 		},
 		{
 			"name" : "ROOT_RIO_LIBRARY",
@@ -1375,7 +1411,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/opt/homebrew/Cellar/root/6.32.06/lib/root/libRIO.so"
+			"value" : "/opt/homebrew/Cellar/root/6.32.08/lib/root/libRIO.so"
 		},
 		{
 			"name" : "ROOT_ROOTDataFrame_LIBRARY",
@@ -1391,7 +1427,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/opt/homebrew/Cellar/root/6.32.06/lib/root/libROOTDataFrame.so"
+			"value" : "/opt/homebrew/Cellar/root/6.32.08/lib/root/libROOTDataFrame.so"
 		},
 		{
 			"name" : "ROOT_ROOTVecOps_LIBRARY",
@@ -1407,7 +1443,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/opt/homebrew/Cellar/root/6.32.06/lib/root/libROOTVecOps.so"
+			"value" : "/opt/homebrew/Cellar/root/6.32.08/lib/root/libROOTVecOps.so"
 		},
 		{
 			"name" : "ROOT_Rint_LIBRARY",
@@ -1423,7 +1459,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/opt/homebrew/Cellar/root/6.32.06/lib/root/libRint.so"
+			"value" : "/opt/homebrew/Cellar/root/6.32.08/lib/root/libRint.so"
 		},
 		{
 			"name" : "ROOT_Thread_LIBRARY",
@@ -1439,7 +1475,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/opt/homebrew/Cellar/root/6.32.06/lib/root/libThread.so"
+			"value" : "/opt/homebrew/Cellar/root/6.32.08/lib/root/libThread.so"
 		},
 		{
 			"name" : "ROOT_TreePlayer_LIBRARY",
@@ -1455,7 +1491,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/opt/homebrew/Cellar/root/6.32.06/lib/root/libTreePlayer.so"
+			"value" : "/opt/homebrew/Cellar/root/6.32.08/lib/root/libTreePlayer.so"
 		},
 		{
 			"name" : "ROOT_Tree_LIBRARY",
@@ -1471,7 +1507,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/opt/homebrew/Cellar/root/6.32.06/lib/root/libTree.so"
+			"value" : "/opt/homebrew/Cellar/root/6.32.08/lib/root/libTree.so"
 		},
 		{
 			"name" : "ROOT_genmap_CMD",
@@ -1687,7 +1723,7 @@
 				}
 			],
 			"type" : "PATH",
-			"value" : "/opt/homebrew/Cellar/root/6.32.06/include/root"
+			"value" : "/opt/homebrew/Cellar/root/6.32.08/include/root"
 		},
 		{
 			"name" : "VDT_LIBRARY",
@@ -1703,7 +1739,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/opt/homebrew/Cellar/root/6.32.06/lib/root/libvdt.dylib"
+			"value" : "/opt/homebrew/Cellar/root/6.32.08/lib/root/libvdt.dylib"
 		},
 		{
 			"name" : "nlohmann_json_DIR",
