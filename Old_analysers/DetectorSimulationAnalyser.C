@@ -522,7 +522,7 @@ void EventAnalyser(const string &AnalyseFilePath, const string &AnalyseFileSampl
 
     Directories directories = Directories(Plots_Folder, Clear_Old_Directories);
 
-    bool Save_Plots_folder_to_zip_files = false;
+    bool Save_Plots_folder_to_zip_files = true;
     cout << "\033[33m done.\n\n\033[0m";
 
     // TList definition -----------------------------------------------------------------------------------------------------------------------------------------------------
