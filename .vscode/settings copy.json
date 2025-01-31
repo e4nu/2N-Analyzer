@@ -91,14 +91,5 @@
         "utility": "cpp",
         "cinttypes": "cpp",
         "ranges": "cpp"
-    },
-    "[jsonc]": {
-        "editor.defaultFormatter": "vscode.json-language-features"
-    },
-    "editor.wordWrapColumn": 200,
-    "editor.wordWrap": "wordWrapColumn",
-    "betterFolding.foldClosingBrackets": true,
-    "betterFolding.showFoldedBrackets": true
-    // "betterFolding.showFoldedBodyLinesCount": false,
-    // "betterFolding.showFoldedBrackets": true
+    }
 }

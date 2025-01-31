@@ -235,7 +235,8 @@ add_executable(project ${CLAS12ROOT_SOURCES} ${CLAS12BANKS_SOURCES} ${HIPO4_SOUR
         source/classes/AMaps/CustomSliceLimits.h
         macros/zoomed_in_histogram.cpp
         source/classes/DataAnalyser/DataAnalyser.cpp
-        source/classes/DataAnalyser/DataAnalyser.h)
+        source/classes/DataAnalyser/DataAnalyser.h
+        testers/nFD_eff_test.cpp)
 
 ## Link against ROOT and CLAS12ROOT libraries
 #target_link_libraries(project ${ROOT_LIBRARIES})

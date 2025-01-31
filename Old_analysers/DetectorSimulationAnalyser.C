@@ -22714,5 +22714,6 @@ void EventAnalyser(const string &AnalyseFilePath, const string &AnalyseFileSampl
     if (Save_Plots_folder_to_zip_files) {
         // TODO: this saves the plots folder in multiple folders in the save path - fix!
         system(("zip -r " + run_plots_path + "/" + settings.GetRun_dir_name() + ".zip " + run_plots_path).c_str());
+        system(("mv -r " + run_plots_path + "/" + settings.GetRun_dir_name() + "/" + settings.GetRun_dir_name() + ".zip " + run_plots_path).c_str());
     }
 }
