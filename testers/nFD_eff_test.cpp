@@ -362,6 +362,8 @@ void nFD_eff_test() {
             double starttime = c12->event()->getStartTime();
             double ToF_temp = allParticles[i]->getTime() - starttime;
 
+            cout << "\n\nToF_temp = " << ToF_temp << endl;
+
             if ((allParticles[i]->par()->getCharge() == 0) && (allParticles[i]->getRegion() == FD) && (pid_temp != 0) &&
                 !(ToF_temp < 0 || ToF_temp > 20.)) {  // If particle is neutral and in the FD
 
