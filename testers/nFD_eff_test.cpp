@@ -252,9 +252,9 @@ void nFD_eff_test() {
 
                 if ((pid_temp == 2112) || (pid_temp == 22)) {
                     if (ParticleInPCAL) {
-                        if (pid_temp == 22) { photons_FD_redef.push_back(i); }
+                        if (pid_temp == 22) { photons_FD_redef.push_back(allParticles[i]); }
                     } else if (!ParticleInPCAL) {  // if there is a neutron or a 'photon' without a PCAL hit
-                        if (ParticleInECIN || ParticleInECOUT) { neutrons_FD_redef.push_back(i); }
+                        if (ParticleInECIN || ParticleInECOUT) { neutrons_FD_redef.push_back(allParticles[i]); }
                     }
                 }  // end of clas12root neutron or 'photon' if
             }  // end of neutral and in the FD if
