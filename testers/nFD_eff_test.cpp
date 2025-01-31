@@ -242,9 +242,6 @@ void nFD_eff_test() {
     int pixelx = 1980;
     int pixely = 1530;
     TCanvas* myCanvas = new TCanvas("myPage", "myPage", pixelx, pixely);
-    myCanvas->SetGrid();
-    myCanvas->SetBottomMargin(0.14), myCanvas->SetLeftMargin(0.16), myCanvas->SetRightMargin(0.12);
-
     TCanvas* myText = new TCanvas("myText", "myText", pixelx, pixely);
     TLatex text;
     text.SetTextSize(0.05);
@@ -270,16 +267,19 @@ void nFD_eff_test() {
     for (int i = 0; i < HistoList.size(); i++) {
         myCanvas->cd(1);
 
+        myCanvas->cd(1)->SetGrid();
+        myCanvas->cd(1)->SetBottomMargin(0.14), myCanvas->cd(1)->SetLeftMargin(0.2), myCanvas->cd(1)->SetRightMargin(0.12);
+
         if (HistoList[i]->InheritsFrom("TH1D")) {
             HistoList[i]->Draw();
         } else if (HistoList[i]->InheritsFrom("TH1D")) {
             HistoList[i]->Draw("colz");
 
-            gPad->Update();
-            TPaletteAxis* palette = (TPaletteAxis*)HistoList[i]->GetListOfFunctions()->FindObject("palette");
-            palette->SetY2NDC(0.55);
-            gPad->Modified();
-            gPad->Update();
+            // gPad->Update();
+            // TPaletteAxis* palette = (TPaletteAxis*)HistoList[i]->GetListOfFunctions()->FindObject("palette");
+            // palette->SetY2NDC(0.55);
+            // gPad->Modified();
+            // gPad->Update();
         }
 
         myCanvas->Print(fileName, "pdf");
