@@ -1,4 +1,4 @@
-// git pull && clas12root -b -q nFD_eff_test.cpp
+// git pull && clas12root -b -q testers/nFD_eff_test.cpp
 
 #define PBSTR "||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||"
 #define PBWIDTH 60
@@ -28,14 +28,14 @@ using namespace clas12;
 
 void nFD_eff_test() {
     cout << "\n\nInitiating nFD_eff_test.cpp\n";
-    
+
     double Ebeam = 4.02962;
 
     int Limiter = 100000;
 
     const string OutputDir = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/nFD_eff_test";
-    system("rm -rf " + OutputDir);
-    system("mkdir -p " + OutputDir);
+    system(("rm -rf " + OutputDir).c_str());
+    system(("mkdir -p " + OutputDir).c_str());
 
     TFile* outFile = new TFile("/lustre24/expphy/volatile/clas12/asportes/Analysis_output/nFD_eff_test/nFD_eff_test.root", "RECREATE");
 
@@ -100,7 +100,7 @@ void nFD_eff_test() {
 
     int counter = 0;
 
-    while ((chain.Next() == true) || (couter <= Limiter)) {
+    while ((chain.Next() == true) || (counter <= Limiter)) {
         // Display completed
         counter++;
         if ((counter % 1000000) == 0) { cerr << "\n" << counter / 1000000 << " million completed"; }
@@ -118,8 +118,8 @@ void nFD_eff_test() {
         for (int i = 0; i < allParticles.size(); i++) {
             int pid_temp = allParticles[i]->par()->getPid();
 
-            if (pid == 2112) { neutrons.push_back(allParticles[i]); }
-            if (pid == 22) { photons.push_back(allParticles[i]); }
+            if (pid_temp == 2112) { neutrons.push_back(allParticles[i]); }
+            if (pid_temp == 22) { photons.push_back(allParticles[i]); }
         }
 
         double weight = 1;
@@ -145,7 +145,7 @@ void nFD_eff_test() {
         h_reco_theta_e_VS_reco_phi_e_1e_cut->Fill(reco_P_e.Phi() * 180 / M_PI, reco_P_e.Theta() * 180 / M_PI, weight);
 
         for (int i = 0; i < neutrons.size(); i++) {
-            TVector3 P_n;
+            TVector3 reco_P_n;
             reco_P_n.SetMagThetaPhi(neutrons[i]->getP(), neutrons[i]->getTheta(), neutrons[i]->getPhi());
 
             h_reco_P_n_1e_cut->Fill(reco_P_n.Mag(), weight);
@@ -162,13 +162,13 @@ void nFD_eff_test() {
         for (Int_t i = 0; i < Ngen; i++) {
             mcpbank->setEntry(i);
 
-            auto pid = mcpbank->getPid();
+            auto pid_temp = mcpbank->getPid();
 
             auto px = mcpbank->getPx();
             auto py = mcpbank->getPy();
             auto pz = mcpbank->getPz();
 
-            if (pid == 11) {
+            if (pid_temp == 11) {
                 TVector3 truth_P_e;
                 truth_P_e.SetXYZ(px, py, pz);
 
@@ -176,7 +176,7 @@ void nFD_eff_test() {
                 h_truth_theta_e_1e_cut->Fill(truth_P_e.Theta() * 180 / M_PI, weight);
                 h_truth_phi_e_1e_cut->Fill(truth_P_e.Phi() * 180 / M_PI, weight);
                 h_truth_theta_e_VS_truth_phi_e_1e_cut->Fill(truth_P_e.Phi() * 180 / M_PI, truth_P_e.Theta() * 180 / M_PI, weight);
-            } else if (pid == 2112) {
+            } else if (pid_temp == 2112) {
                 TVector3 truth_P_n;
                 truth_P_n.SetXYZ(px, py, pz);
 
@@ -224,9 +224,9 @@ void nFD_eff_test() {
     myText->Clear();
 
     myCanvas->Divide(1, 1);
-    for (int i = 0; i < hist_list_1.size(); i++) {
+    for (int i = 0; i < HistoList.size(); i++) {
         myCanvas->cd(1);
-        hist_list_1[i]->Draw();
+        HistoList[i]->Draw();
         myCanvas->Print(fileName, "pdf");
         myCanvas->Clear();
     }
