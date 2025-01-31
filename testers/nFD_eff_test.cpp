@@ -373,6 +373,10 @@ void nFD_eff_test() {
             int pid_temp = allParticles[i]->par()->getPid();
 
             if ((allParticles[i]->par()->getCharge() == 0) && (allParticles[i]->getRegion() == FD) && (pid_temp != 0)) {  // If particle is neutral and in the FD
+                bool ParticleInPCAL = (allParticles[i]->cal(clas12::PCAL)->getDetector() == 7);                           // PCAL hit
+                bool ParticleInECIN = (allParticles[i]->cal(clas12::ECIN)->getDetector() == 7);                           // ECIN hit
+                bool ParticleInECOUT = (allParticles[i]->cal(clas12::ECOUT)->getDetector() == 7);                         // ECOUT hit
+
                 if ((pid_temp == 2112) || (pid_temp == 22)) {
                     if (ParticleInPCAL) {
                         if (pid_temp == 22) { photons_FD_redef.push_back(allParticles[i]); }
