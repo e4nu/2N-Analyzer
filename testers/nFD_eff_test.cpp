@@ -392,7 +392,7 @@ void nFD_eff_test() {
         }
 
         for (int i = 0; i < neutrons_FD_ECALveto.size(); i++) {
-            double Beta_ph = Neutron->par()->getBeta();
+            double Beta_ph = neutrons_FD_ECALveto->par()->getBeta();
             double Gamma_ph = 1 / sqrt(1 - (Beta_ph * Beta_ph));
             double Momentum = m_n * Beta_ph * Gamma_ph;
 
