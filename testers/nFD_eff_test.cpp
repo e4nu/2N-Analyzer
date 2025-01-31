@@ -102,7 +102,7 @@ void nFD_eff_test() {
 
     while ((chain.Next() == true) || (counter <= Limiter)) {
         // Display completed
-        counter++;
+        ++counter;
         if ((counter % 1000000) == 0) { cerr << "\n" << counter / 1000000 << " million completed"; }
         if ((counter % 100000) == 0) { cerr << "."; }
 
