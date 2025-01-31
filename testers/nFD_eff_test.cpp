@@ -278,7 +278,9 @@ void nFD_eff_test() {
         myCanvas->cd(1);
 
         myCanvas->cd(1)->SetGrid();
-        myCanvas->cd(1)->SetBottomMargin(0.14), myCanvas->cd(1)->SetLeftMargin(0.2), myCanvas->cd(1)->SetRightMargin(0.12);
+        myCanvas->cd(1)->SetBottomMargin(0.14), myCanvas->cd(1)->SetLeftMargin(0.16), myCanvas->cd(1)->SetRightMargin(0.12);
+
+        HistoList[i]->GetYaxis()->SetLabelOffset(0.1);
 
         if (HistoList[i]->InheritsFrom("TH1D")) {
             HistoList[i]->Draw();
