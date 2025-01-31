@@ -362,7 +362,7 @@ void nFD_eff_test() {
 
             if ((allParticles[i]->par()->getCharge() == 0) && (allParticles[i]->getRegion() == FD) && (pid_temp != 0)) {  // If particle is neutral and in the FD
                 double starttime = c12->event()->getStartTime();
-                double ToF_temp = AllParticles[i]->getTime() - starttime;
+                double ToF_temp = allParticles[i]->getTime() - starttime;
                 if (ToF_temp < 0 || ToF_temp > 20.) { continue; }
 
                 bool ParticleInPCAL = (allParticles[i]->cal(clas12::PCAL)->getDetector() == 7);    // PCAL hit
@@ -404,7 +404,7 @@ void nFD_eff_test() {
 
             if ((allParticles[i]->par()->getCharge() == 0) && (allParticles[i]->getRegion() == FD) && (pid_temp != 0)) {  // If particle is neutral and in the FD
                 double starttime = c12->event()->getStartTime();
-                double ToF_temp = AllParticles[i]->getTime() - starttime;
+                double ToF_temp = allParticles[i]->getTime() - starttime;
                 if (ToF_temp < 0 || ToF_temp > 20.) { continue; }
 
                 bool ParticleInPCAL = (allParticles[i]->cal(clas12::PCAL)->getDetector() == 7);    // PCAL hit
