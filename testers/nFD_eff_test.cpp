@@ -100,11 +100,13 @@ void nFD_eff_test() {
 
     int counter = 0;
 
-    while ((chain.Next() == true) || (counter <= Limiter)) {
+    while (chain.Next() == true) {
         // Display completed
         ++counter;
         if ((counter % 1000000) == 0) { cerr << "\n" << counter / 1000000 << " million completed"; }
         if ((counter % 100000) == 0) { cerr << "."; }
+
+        if (counter > Limiter) { break; }
 
         // get particles by type
         auto allParticles = c12->getDetParticles();
