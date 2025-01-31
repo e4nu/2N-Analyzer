@@ -194,7 +194,7 @@ void nFD_eff_test() {
                  -180., 180., 100, 0, 50.);
     HistoList.push_back(h_truth_theta_nFD_clas12_VS_truth_phi_nFD_clas12_1e_cut);
     TH2D* h_reco_P_e_VS_P_nFD_clas12_1e_cut =
-        new TH2D("reco_P_e_VS_P_nFD_clas12_1e_cut", "reco P_{e} vs. reco P_{nFD} in 1e cut (clas12reco);P_{e} [GeV/c];P_{nFD} [GeV/c]", 100, 0., Ebeam * 1.1, 100, 0., Ebeam * 1.1);
+        new TH2D("reco_P_e_VS_P_nFD_clas12_1e_cut", "reco P_{e} vs. reco P_{nFD} in 1e cut (clas12reco);P_{e} [GeV/c];P_{nFD} [GeV/c]", 100, 0., Ebeam * 1.1, 100, 0., Ebeam * 3.);
     HistoList.push_back(h_reco_P_e_VS_P_nFD_clas12_1e_cut);
 
     TH1D* h_reco_P_nFD_redef_1e_cut = new TH1D("reco_P_nFD_redef_1e_cut", "reco P_{nFD} in 1e cut (redef);P_{nFD} [GeV/c];Counts", 50, 0, Ebeam * 1.1);
@@ -218,7 +218,7 @@ void nFD_eff_test() {
                  100, 0, 50.);
     HistoList.push_back(h_truth_theta_nFD_redef_VS_truth_phi_nFD_redef_1e_cut);
     TH2D* h_reco_P_e_VS_P_nFD_redef_1e_cut =
-        new TH2D("reco_P_e_VS_P_nFD_redef_1e_cut", "reco P_{e} vs. reco P_{nFD} in 1e cut (redef);P_{e} [GeV/c];P_{nFD} [GeV/c]", 100, 0., Ebeam * 1.1, 100, 0., Ebeam * 1.1);
+        new TH2D("reco_P_e_VS_P_nFD_redef_1e_cut", "reco P_{e} vs. reco P_{nFD} in 1e cut (redef);P_{e} [GeV/c];P_{nFD} [GeV/c]", 100, 0., Ebeam * 1.1, 100, 0., Ebeam * 3.);
     HistoList.push_back(h_reco_P_e_VS_P_nFD_redef_1e_cut);
 
     TH1D* h_reco_P_nFD_ECALveto_1e_cut = new TH1D("reco_P_nFD_ECALveto_1e_cut", "reco P_{nFD} in 1e cut (ECALveto);P_{nFD} [GeV/c];Counts", 50, 0, Ebeam * 1.1);
@@ -242,7 +242,7 @@ void nFD_eff_test() {
                  -180., 180., 100, 0, 50.);
     HistoList.push_back(h_truth_theta_nFD_ECALveto_VS_truth_phi_nFD_ECALveto_1e_cut);
     TH2D* h_reco_P_e_VS_P_nFD_ECALveto_1e_cut =
-        new TH2D("reco_P_e_VS_P_nFD_ECALveto_1e_cut", "reco P_{e} vs. reco P_{nFD} in 1e cut (ECALveto);P_{e} [GeV/c];P_{nFD} [GeV/c]", 100, 0., Ebeam * 1.1, 100, 0., Ebeam * 1.1);
+        new TH2D("reco_P_e_VS_P_nFD_ECALveto_1e_cut", "reco P_{e} vs. reco P_{nFD} in 1e cut (ECALveto);P_{e} [GeV/c];P_{nFD} [GeV/c]", 100, 0., Ebeam * 1.1, 100, 0., Ebeam * 3.);
     HistoList.push_back(h_reco_P_e_VS_P_nFD_ECALveto_1e_cut);
 
     int counter = 0;
