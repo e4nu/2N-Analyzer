@@ -356,6 +356,10 @@ void nFD_eff_test() {
         }
 
         for (int i = 0; i < neutrons_FD_redef.size(); i++) {
+            double Beta_ph = neutrons_FD_redef[i]->par()->getBeta();
+            double Gamma_ph = 1 / sqrt(1 - (Beta_ph * Beta_ph));
+            double Momentum = m_n * Beta_ph * Gamma_ph;
+
             TVector3 reco_P_nFD;
             reco_P_nFD.SetMagThetaPhi(neutrons_FD_redef[i]->getP(), neutrons_FD_redef[i]->getTheta(), neutrons_FD_redef[i]->getPhi());
 
