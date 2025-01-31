@@ -307,11 +307,11 @@ void nFD_eff_test() {
         } else if (HistoList[i]->InheritsFrom("TH2D")) {
             HistoList[i]->Draw("colz");
 
-            gPad->Update();
-            TPaletteAxis* palette = (TPaletteAxis*)HistoList[i]->GetListOfFunctions()->FindObject("palette");
-            palette->SetY2NDC(0.55);
-            gPad->Modified();
-            gPad->Update();
+            // gPad->Update();
+            // TPaletteAxis* palette = (TPaletteAxis*)HistoList[i]->GetListOfFunctions()->FindObject("palette");
+            // palette->SetY2NDC(0.55);
+            // gPad->Modified();
+            // gPad->Update();
         }
 
         myCanvas->Print(fileName, "pdf");
