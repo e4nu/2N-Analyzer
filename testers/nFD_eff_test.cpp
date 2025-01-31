@@ -185,6 +185,16 @@ void nFD_eff_test() {
             h_reco_theta_n_VS_reco_phi_n_1e_cut->Fill(reco_P_n.Phi() * 180 / M_PI, reco_P_n.Theta() * 180 / M_PI, weight);
         }
 
+        for (int i = 0; i < neutrons_FD.size(); i++) {
+            TVector3 reco_P_nFD;
+            reco_P_nFD.SetMagThetaPhi(neutrons_FD[i]->getP(), neutrons_FD[i]->getTheta(), neutrons_FD[i]->getPhi());
+
+            h_reco_P_nFD_1e_cut->Fill(reco_P_nFD.Mag(), weight);
+            h_reco_theta_nFD_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI, weight);
+            h_reco_phi_nFD_1e_cut->Fill(reco_P_nFD.Phi() * 180 / M_PI, weight);
+            h_reco_theta_nFD_VS_reco_phi_nFD_1e_cut->Fill(reco_P_nFD.Phi() * 180 / M_PI, reco_P_nFD.Theta() * 180 / M_PI, weight);
+        }
+
         auto c12 = chain.GetC12Reader();
         auto mceve = c12->mcevent();
         auto mcpbank = c12->mcparts();
@@ -272,14 +282,14 @@ void nFD_eff_test() {
 
         if (HistoList[i]->InheritsFrom("TH1D")) {
             HistoList[i]->Draw();
-        } else if (HistoList[i]->InheritsFrom("TH1D")) {
+        } else if (HistoList[i]->InheritsFrom("TH2D")) {
             HistoList[i]->Draw("colz");
 
-            // gPad->Update();
-            // TPaletteAxis* palette = (TPaletteAxis*)HistoList[i]->GetListOfFunctions()->FindObject("palette");
-            // palette->SetY2NDC(0.55);
-            // gPad->Modified();
-            // gPad->Update();
+            gPad->Update();
+            TPaletteAxis* palette = (TPaletteAxis*)HistoList[i]->GetListOfFunctions()->FindObject("palette");
+            palette->SetY2NDC(0.55);
+            gPad->Modified();
+            gPad->Update();
         }
 
         myCanvas->Print(fileName, "pdf");
