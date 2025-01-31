@@ -27,6 +27,8 @@ using namespace std;
 using namespace clas12;
 
 void nFD_eff_test() {
+    cout << "\n\nInitiating nFD_eff_test.cpp\n";
+    
     double Ebeam = 4.02962;
 
     int Limiter = 100000;
