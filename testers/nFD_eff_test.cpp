@@ -299,7 +299,7 @@ void nFD_eff_test() {
             int pid_temp = allParticles[i]->par()->getPid();
 
             if ((allParticles[i]->par()->getCharge() == 0) && (allParticles[i]->getRegion() == FD) && (pid_temp != 0)) {  // If particle is neutral and in the FD
-                bool passVeto = pid.NeutronECAL_Cut_Veto(allParticles, electrons, Ebeam, i, 100);
+                bool passVeto = PID.NeutronECAL_Cut_Veto(allParticles, electrons, Ebeam, i, 100);
 
                 if (passVeto) { neutrons_FD_ECALveto.push_back(allParticles[i]); }  // end of clas12root neutron or 'photon' if
             }  // end of neutral and in the FD if
