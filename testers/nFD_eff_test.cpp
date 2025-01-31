@@ -373,9 +373,17 @@ void nFD_eff_test() {
             int pid_temp = allParticles[i]->par()->getPid();
 
             if ((allParticles[i]->par()->getCharge() == 0) && (allParticles[i]->getRegion() == FD) && (pid_temp != 0)) {  // If particle is neutral and in the FD
-                bool passVeto = NeutronECAL_Cut_Veto(allParticles, electrons, Ebeam, i, 100);
+                if ((pid_temp == 2112) || (pid_temp == 22)) {
+                    if (ParticleInPCAL) {
+                        if (pid_temp == 22) { photons_FD_redef.push_back(allParticles[i]); }
+                    } else if (!ParticleInPCAL) {  // if there is a neutron or a 'photon' without a PCAL hit
+                        if (ParticleInECIN || ParticleInECOUT) {
+                            bool passVeto = NeutronECAL_Cut_Veto(allParticles, electrons, Ebeam, i, 100);
 
-                if (passVeto) { neutrons_FD_ECALveto.push_back(allParticles[i]); }  // end of clas12root neutron or 'photon' if
+                            if (passVeto) { neutrons_FD_ECALveto.push_back(allParticles[i]); }  // end of clas12root neutron or 'photon' if
+                        }
+                    }
+                }  // end of clas12root neutron or 'photon' if
             }  // end of neutral and in the FD if
         }
 
