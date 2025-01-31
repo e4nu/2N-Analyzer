@@ -158,7 +158,7 @@ void nFD_eff_test() {
         //  Electron PID cuts -----------------------------------------------------------------------------------------------------------------------------------------------------
 
         if (electrons[0]->che(clas12::HTCC)->getNphe() <= 2) { continue; }
-        if (EoP_e >= 0.2 || EoP_e <= 0.28) { continue; }
+        if (EoP_e < 0.2 || EoP_e > 0.28) { continue; }
         if (electrons[0]->cal(clas12::PCAL)->getLv() < 14. || electrons[0]->cal(clas12::PCAL)->getLw() < 14.) { continue; }
         if (electrons[0]->par()->getVz() < -6. || electrons[0]->par()->getVz() > 0.) { continue; }
 
