@@ -300,18 +300,18 @@ void nFD_eff_test() {
         myCanvas->cd(1)->SetGrid();
         myCanvas->cd(1)->SetBottomMargin(0.14), myCanvas->cd(1)->SetLeftMargin(0.16), myCanvas->cd(1)->SetRightMargin(0.12);
 
-        HistoList[i]->GetYaxis()->SetLabelOffset(0.1);
+        HistoList[i]->GetYaxis()->SetLabelOffset(-0.1);
 
         if (HistoList[i]->InheritsFrom("TH1D")) {
             HistoList[i]->Draw();
         } else if (HistoList[i]->InheritsFrom("TH2D")) {
             HistoList[i]->Draw("colz");
 
-            // gPad->Update();
-            // TPaletteAxis* palette = (TPaletteAxis*)HistoList[i]->GetListOfFunctions()->FindObject("palette");
-            // palette->SetY2NDC(0.55);
-            // gPad->Modified();
-            // gPad->Update();
+            gPad->Update();
+            TPaletteAxis* palette = (TPaletteAxis*)HistoList[i]->GetListOfFunctions()->FindObject("palette");
+            palette->SetY2NDC(0.55);
+            gPad->Modified();
+            gPad->Update();
         }
 
         myCanvas->Print(fileName, "pdf");
