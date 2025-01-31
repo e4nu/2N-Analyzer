@@ -149,7 +149,7 @@ void nFD_eff_test() {
         double xB = QSq / (2 * m_n * nu);
         double WSq = (m_n * m_n) - QSq + (2 * nu * m_n);
         double theta_e = reco_P_e.Theta() * 180 / M_PI;
-        double EoP_e = (electrons[0]->cal(clas12::PCAL)->getEnergy() + electrons[0]->cal(ECIN)->getEnergy() + electrons[0]->cal(ECOUT)->getEnergy()) / P_e_1e_cut;
+        double EoP_e = (electrons[0]->cal(clas12::PCAL)->getEnergy() + electrons[0]->cal(ECIN)->getEnergy() + electrons[0]->cal(ECOUT)->getEnergy()) / reco_P_e.Mag();
 
         //  =======================================================================================================================================================================
         //  1e cut (reco)
