@@ -672,6 +672,11 @@ void nFD_eff_test() {
     myText->Clear();
 
     myCanvas->Divide(1, 1);
+
+    bool First_clas12reco = true;
+    bool First_redef = true;
+    bool First_ECALveto = true;
+    bool First_matched = true;
     for (int i = 0; i < HistoList.size(); i++) {
         myCanvas->cd(1);
 
@@ -681,34 +686,38 @@ void nFD_eff_test() {
         HistoList[i]->GetYaxis()->SetTitleOffset(1.5);
         HistoList[i]->GetXaxis()->SetTitleOffset(1.1);
 
-        if (findSubstring(HistoList[i]->GetTitle(), "clas12reco")) {
+        if (First_clas12reco && findSubstring(HistoList[i]->GetTitle(), "clas12reco")) {
             myText->cd();
             text.DrawLatex(0.2, 0.9, "clas12reco");
             myText->Print(fileName, "pdf");
             myText->Clear();
 
             myCanvas->cd(1);
-        } else if (findSubstring(HistoList[i]->GetTitle(), "redef")) {
+            First_clas12reco = false;
+        } else if (First_redef && findSubstring(HistoList[i]->GetTitle(), "redef")) {
             myText->cd();
             text.DrawLatex(0.2, 0.9, "redef");
             myText->Print(fileName, "pdf");
             myText->Clear();
 
             myCanvas->cd(1);
-        } else if (findSubstring(HistoList[i]->GetTitle(), "ECALveto")) {
+            First_redef = false;
+        } else if (First_ECALveto && findSubstring(HistoList[i]->GetTitle(), "ECALveto")) {
             myText->cd();
             text.DrawLatex(0.2, 0.9, "ECALveto");
             myText->Print(fileName, "pdf");
             myText->Clear();
 
             myCanvas->cd(1);
-        } else if (findSubstring(HistoList[i]->GetTitle(), "matched")) {
+            First_ECALveto = false;
+        } else if (First_matched && findSubstring(HistoList[i]->GetTitle(), "matched")) {
             myText->cd();
             text.DrawLatex(0.2, 0.9, "matched");
             myText->Print(fileName, "pdf");
             myText->Clear();
 
             myCanvas->cd(1);
+            First_matched = false;
         }
 
         if (HistoList[i]->InheritsFrom("TH1D")) {
