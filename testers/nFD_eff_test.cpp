@@ -28,7 +28,7 @@ using namespace std;
 using namespace clas12;
 
 double CalcPnFD(region_part_ptr NeutronFD) {
-    double Beta_ph = NeutronFD[i]->par()->getBeta();
+    double Beta_ph = NeutronFD->par()->getBeta();
     double Gamma_ph = 1 / sqrt(1 - (Beta_ph * Beta_ph));
     double Momentum = m_n * Beta_ph * Gamma_ph;
 
