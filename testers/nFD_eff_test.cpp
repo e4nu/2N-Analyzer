@@ -647,9 +647,13 @@ void nFD_eff_test() {
     cout << counter << endl;
 
     for (int i = 0; i < HistoList.size(); i++) {
-        if (HistoList[i]->InheritsFrom("TH1D")) { HistoList[i]->Sumw2(); }
+        if (HistoList[i]->InheritsFrom("TH1D")) {
+            HistoList[i]->Sumw2();
+            HistoList[i]->SetMinimum(0);
+            HistoList[i]->SetLineWidth(1);
+            HistoList[i]->SetLineColor(kRed);
+        }
 
-        HistoList[i]->Sumw2();
         HistoList[i]->GetXaxis()->CenterTitle();
         HistoList[i]->GetYaxis()->CenterTitle();
     }
