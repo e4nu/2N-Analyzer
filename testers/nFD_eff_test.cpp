@@ -650,7 +650,7 @@ void nFD_eff_test() {
         if (HistoList[i]->InheritsFrom("TH1D")) {
             HistoList[i]->Sumw2();
             HistoList[i]->SetMinimum(0);
-            HistoList[i]->SetLineWidth(1);
+            HistoList[i]->SetLineWidth(2);
             HistoList[i]->SetLineColor(kRed);
         }
 
