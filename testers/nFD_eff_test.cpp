@@ -705,13 +705,16 @@ void nFD_eff_test() {
         HistoList[i]->GetYaxis()->SetTitleOffset(1.5);
         HistoList[i]->GetXaxis()->SetTitleOffset(1.1);
 
-        // Set the PDF title and header for the bookmark
-        string Title = HistoList[i]->GetTitle();
-        gStyle->SetTitlePS(Title.c_str());  // This sets the title in metadata
-                                            // gStyle->SetHeaderPS(("[ /Title " + Title + " /DOCVIEW pdfmark").c_str());  // Adds a PDF title
-        gStyle->SetHeaderPS(("[ /Page " + to_string(i + 1) + " /View [/Fit] /Title (myTitle) ] /OUT pdfmark").c_str());
-        
+        // // Set the PDF title and header for the bookmark
+        // string Title = HistoList[i]->GetTitle();
+        // gStyle->SetTitlePS(Title.c_str());  // This sets the title in metadata
+        //                                     // gStyle->SetHeaderPS(("[ /Title " + Title + " /DOCVIEW pdfmark").c_str());  // Adds a PDF title
+        // gStyle->SetHeaderPS(("[ /Page " + to_string(i + 1) + " /View [/Fit] /Title (myTitle) ] /OUT pdfmark").c_str());
+
         if (HistoList[i]->InheritsFrom("TH1D")) {
+            HistoList[i]->SetLineColor(kRed);
+            HistoList[i]->SetLineSize(2);
+
             HistoList[i]->Draw();
         } else if (HistoList[i]->InheritsFrom("TH2D")) {
             HistoList[i]->Draw("colz");
