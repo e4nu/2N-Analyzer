@@ -687,7 +687,7 @@ void nFD_eff_test() {
         for (int j = 0; j < HistSubjects.size(); j++) {
             if (FirstPrint.at(j) && findSubstring(HistoList[i]->GetTitle(), HistSubjects.at(j))) {
                 myText->cd();
-                titles.DrawLatex(0.4, 0.5, HistSubjects.at(j).c_str());
+                titles.DrawLatex(0.3, 0.5, HistSubjects.at(j).c_str());
                 myText->Print(fileName, "pdf");
                 myText->Clear();
 
