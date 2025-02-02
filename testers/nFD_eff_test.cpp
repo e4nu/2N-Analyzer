@@ -587,32 +587,32 @@ void nFD_eff_test() {
         }
 
         for (int i = 0; i < neutrons_FD_matched.size(); i++) {
-            bool ParticleInPCAL = (neutrons_FD_matched[i]->cal(clas12::PCAL)->getDetector() == 7);    // PCAL hit
-            bool ParticleInECIN = (neutrons_FD_matched[i]->cal(clas12::ECIN)->getDetector() == 7);    // ECIN hit
-            bool ParticleInECOUT = (neutrons_FD_matched[i]->cal(clas12::ECOUT)->getDetector() == 7);  // ECOUT hit
+            // bool ParticleInPCAL = (neutrons_FD_matched[i]->cal(clas12::PCAL)->getDetector() == 7);    // PCAL hit
+            // bool ParticleInECIN = (neutrons_FD_matched[i]->cal(clas12::ECIN)->getDetector() == 7);    // ECIN hit
+            // bool ParticleInECOUT = (neutrons_FD_matched[i]->cal(clas12::ECOUT)->getDetector() == 7);  // ECOUT hit
 
-            // double Beta_ph = tl_Beta;
-            double Path_ph = neutrons_FD_matched[i]->getPath();
-            double starttime = c12->event()->getStartTime();
-            double ToF;
+            // // double Beta_ph = tl_Beta;
+            // double Path_ph = neutrons_FD_matched[i]->getPath();
+            // double starttime = c12->event()->getStartTime();
+            // double ToF;
 
-            if (ParticleInECIN) {
-                ToF = neutrons_FD_matched[i]->cal(clas12::ECIN)->getTime() - starttime;
-            } else if (ParticleInECOUT) {
-                ToF = neutrons_FD_matched[i]->cal(clas12::ECOUT)->getTime() - starttime;
-            }
+            // if (ParticleInECIN) {
+            //     ToF = neutrons_FD_matched[i]->cal(clas12::ECIN)->getTime() - starttime;
+            // } else if (ParticleInECOUT) {
+            //     ToF = neutrons_FD_matched[i]->cal(clas12::ECOUT)->getTime() - starttime;
+            // }
 
-            double Beta_ph = Path_ph/(ToF*c);
-            // double Beta_ph = neutrons_FD_matched[i]->par()->getBeta();
+            // double Beta_ph = Path_ph/(ToF*c);
+            double Beta_ph = neutrons_FD_matched[i]->par()->getBeta();
             double Gamma_ph = 1 / sqrt(1 - (Beta_ph * Beta_ph));
             double Momentum = m_n * Beta_ph * Gamma_ph;
 
-            cout << "\n\n\n";
-            cout << "Path_ph = " << Path_ph << "\n";
-            cout << "ToF = " << ToF << "\n";
-            cout << "neutrons_FD_matched[i]->sci(clas12::ECIN)->getTime() = " << neutrons_FD_matched[i]->sci(clas12::ECIN)->getTime() << "\n";
-            cout << "neutrons_FD_matched[i]->sci(clas12::ECOUT)->getTime() = " << neutrons_FD_matched[i]->sci(clas12::ECOUT)->getTime() << "\n";
-            cout << "\n\n\n";
+            // cout << "\n\n\n";
+            // cout << "Path_ph = " << Path_ph << "\n";
+            // cout << "ToF = " << ToF << "\n";
+            // cout << "neutrons_FD_matched[i]->cal(clas12::ECIN)->getTime() = " << neutrons_FD_matched[i]->cal(clas12::ECIN)->getTime() << "\n";
+            // cout << "neutrons_FD_matched[i]->cal(clas12::ECOUT)->getTime() = " << neutrons_FD_matched[i]->cal(clas12::ECOUT)->getTime() << "\n";
+            // cout << "\n\n\n";
 
             TVector3 reco_P_nFD;
             reco_P_nFD.SetMagThetaPhi(Momentum, neutrons_FD_matched[i]->getTheta(), neutrons_FD_matched[i]->getPhi());
