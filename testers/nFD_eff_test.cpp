@@ -689,15 +689,16 @@ void nFD_eff_test() {
     bool First_matched = true;
 
     for (int i = 0; i < HistoList.size(); i++) {
-        for (int i = 0; i < HistSubjects.size(); i++) {
-            if (FirstPrint.at(i) && findSubstring(HistoList[i]->GetTitle(), HistSubjects.at(i))) {
+        for (int j = 0; j < HistSubjects.size(); j++) {
+            if (FirstPrint.at(j) && findSubstring(HistoList[i]->GetTitle(), HistSubjects.at(j))) {
                 myText->cd();
-                text.DrawLatex(0.2, 0.9, HistSubjects.at(i).c_str());
+                text.DrawLatex(0.2, 0.9, HistSubjects.at(j).c_str());
                 myText->Print(fileName, "pdf");
                 myText->Clear();
 
                 myCanvas->cd(1);
-                FirstPrint.at(i) = false;
+                FirstPrint.at(j) = false;
+                break;
             }
         }
 
