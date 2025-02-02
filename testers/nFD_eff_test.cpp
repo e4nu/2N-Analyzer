@@ -281,10 +281,10 @@ void nFD_eff_test() {
     TH2D* h_reco_theta_nFD_ECALveto_VS_P_nFD_ECALveto_1e_cut = new TH2D(
         "reco_theta_nFD_ECALveto_VS_P_nFD_ECALveto_1e_cut", "reco #theta_{nFD} vs. reco P_{nFD} in 1e cut (ECALveto);#theta_{nFD} [circ];P_{nFD} [GeV/c]", 100, 0., 50., 100, 0., Ebeam * 3.);
     HistoList.push_back(h_reco_theta_nFD_ECALveto_VS_P_nFD_ECALveto_1e_cut);
-    TH1D* h_reco_nFD_multi_ECALveto_1e_cut = new TH1D("reco_nFD_multi_ECALveto_1e_cut", "reco nFD multiplicity in 1e cut (ECALveto);nFD multiplicity;Counts", 10, 0, 10);
+    TH1D* h_reco_nFD_multi_ECALveto_1e_cut = new TH1D("reco_nFD_multi_ECALveto_1e_cut", "reco nFD multiplicity in 1e cut (ECALveto);nFD multiplicity;Counts", 10, 1, 10);
     HistoList.push_back(h_reco_nFD_multi_ECALveto_1e_cut);
     TH2D* h_reco_nFD_multi_VS_recp_P_nFD_ECALveto_1e_cut = new TH2D(
-        "reco_nFD_multi_VS_recp_P_nFD_ECALveto_1e_cut", "reco nFD multiplicity vs. P_{nFD} in 1e cut (ECALveto);P_{nFD} [GeV/c];nFD multiplicity", 50, 0., Ebeam * 3., 10, 0, 10);
+        "reco_nFD_multi_VS_recp_P_nFD_ECALveto_1e_cut", "reco nFD multiplicity vs. P_{nFD} in 1e cut (ECALveto);P_{nFD} [GeV/c];nFD multiplicity", 50, 0., Ebeam * 3., 10, 1, 10);
     HistoList.push_back(h_reco_nFD_multi_VS_recp_P_nFD_ECALveto_1e_cut);
 
     HistSubjects.push_back("matched");
@@ -316,10 +316,10 @@ void nFD_eff_test() {
     TH2D* h_reco_theta_nFD_matched_VS_P_nFD_matched_1e_cut = new TH2D(
         "reco_theta_nFD_matched_VS_P_nFD_matched_1e_cut", "reco #theta_{nFD} vs. reco P_{nFD} in 1e cut (matched);#theta_{nFD} [circ];P_{nFD} [GeV/c]", 100, 0., 50., 100, 0., Ebeam * 3.);
     HistoList.push_back(h_reco_theta_nFD_matched_VS_P_nFD_matched_1e_cut);
-    TH1D* h_reco_nFD_multi_matched_1e_cut = new TH1D("reco_nFD_multi_matched_1e_cut", "reco nFD multiplicity in 1e cut (matched);nFD multiplicity;Counts", 10, 0, 10);
+    TH1D* h_reco_nFD_multi_matched_1e_cut = new TH1D("reco_nFD_multi_matched_1e_cut", "reco nFD multiplicity in 1e cut (matched);nFD multiplicity;Counts", 10, 1, 10);
     HistoList.push_back(h_reco_nFD_multi_matched_1e_cut);
     TH2D* h_reco_nFD_multi_VS_recp_P_nFD_matched_1e_cut = new TH2D(
-        "reco_nFD_multi_VS_recp_P_nFD_matched_1e_cut", "reco nFD multiplicity vs. P_{nFD} in 1e cut (matched);P_{nFD} [GeV/c];nFD multiplicity", 50, 0., Ebeam * 3., 10, 0, 10);
+        "reco_nFD_multi_VS_recp_P_nFD_matched_1e_cut", "reco nFD multiplicity vs. P_{nFD} in 1e cut (matched);P_{nFD} [GeV/c];nFD multiplicity", 50, 0., Ebeam * 3., 10, 1, 10);
     HistoList.push_back(h_reco_nFD_multi_VS_recp_P_nFD_matched_1e_cut);
 
     int counter = 0;
