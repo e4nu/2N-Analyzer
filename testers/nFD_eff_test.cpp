@@ -691,6 +691,10 @@ void nFD_eff_test() {
                 myText->Print(fileName, "pdf");
                 myText->Clear();
 
+                // Set the PDF title and header for the bookmark
+                gStyle->SetTitlePS(HistSubjects.at(j).c_str());                                         // This sets the title in metadata
+                gStyle->SetHeaderPS(("[ /Title " + HistSubjects.at(j) + " /DOCVIEW pdfmark").c_str());  // Adds a PDF title
+
                 myCanvas->cd(1);
                 FirstPrint.at(j) = false;
                 break;
