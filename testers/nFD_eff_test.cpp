@@ -27,6 +27,14 @@
 using namespace std;
 using namespace clas12;
 
+bool findSubstring(string string1, string string2) {
+    if (string1.find(string2) != string::npos) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 bool NeutronECAL_Cut_Veto(vector<region_part_ptr>& allParticles, vector<region_part_ptr>& electrons, const double& beamE, const int& index, const double& veto_cut) {
     TVector3 p_b(0, 0, beamE); /* beam energy */
 
@@ -672,6 +680,36 @@ void nFD_eff_test() {
 
         HistoList[i]->GetYaxis()->SetTitleOffset(1.5);
         HistoList[i]->GetXaxis()->SetTitleOffset(1.1);
+
+        if (findSubstring(HistoList[i]->getTitle(), "clas12reco")) {
+            myText->cd();
+            text.DrawLatex(0.2, 0.9, "clas12reco");
+            myText->Print(fileName, "pdf");
+            myText->Clear();
+
+            myCanvas->cd(1);
+        } else if (findSubstring(HistoList[i]->getTitle(), "redef")) {
+            myText->cd();
+            text.DrawLatex(0.2, 0.9, "redef");
+            myText->Print(fileName, "pdf");
+            myText->Clear();
+
+            myCanvas->cd(1);
+        } else if (findSubstring(HistoList[i]->getTitle(), "ECALveto")) {
+            myText->cd();
+            text.DrawLatex(0.2, 0.9, "ECALveto");
+            myText->Print(fileName, "pdf");
+            myText->Clear();
+
+            myCanvas->cd(1);
+        } else if (findSubstring(HistoList[i]->getTitle(), "matched")) {
+            myText->cd();
+            text.DrawLatex(0.2, 0.9, "matched");
+            myText->Print(fileName, "pdf");
+            myText->Clear();
+
+            myCanvas->cd(1);
+        }
 
         if (HistoList[i]->InheritsFrom("TH1D")) {
             HistoList[i]->Draw();
