@@ -681,7 +681,7 @@ void nFD_eff_test() {
     myText->Print(fileName, "pdf");
     myText->Clear();
 
-    myCanvas->Divide(1, 1);
+    // myCanvas->Divide(1, 1);
 
     bool First_clas12reco = true;
     bool First_redef = true;
@@ -692,7 +692,7 @@ void nFD_eff_test() {
         for (int j = 0; j < HistSubjects.size(); j++) {
             if (FirstPrint.at(j) && findSubstring(HistoList[i]->GetTitle(), HistSubjects.at(j))) {
                 myText->cd();
-                text.DrawLatex(0.2, 0.9, HistSubjects.at(j).c_str());
+                text.DrawLatex(0.5, 0.5, HistSubjects.at(j).c_str());
                 myText->Print(fileName, "pdf");
                 myText->Clear();
 
@@ -736,10 +736,14 @@ void nFD_eff_test() {
         //     First_matched = false;
         // }
 
-        myCanvas->cd(1);
+        myCanvas->cd();
 
-        myCanvas->cd(1)->SetGrid();
-        myCanvas->cd(1)->SetBottomMargin(0.14), myCanvas->cd(1)->SetLeftMargin(0.16), myCanvas->cd(1)->SetRightMargin(0.12);
+        myCanvas->cd()->SetGrid();
+        myCanvas->cd()->SetBottomMargin(0.14), myCanvas->cd()->SetLeftMargin(0.16), myCanvas->cd()->SetRightMargin(0.12);
+        // myCanvas->cd(1);
+
+        // myCanvas->cd(1)->SetGrid();
+        // myCanvas->cd(1)->SetBottomMargin(0.14), myCanvas->cd(1)->SetLeftMargin(0.16), myCanvas->cd(1)->SetRightMargin(0.12);
 
         HistoList[i]->GetYaxis()->SetTitleOffset(1.5);
         HistoList[i]->GetXaxis()->SetTitleOffset(1.1);
