@@ -133,6 +133,8 @@ void nFD_eff_test() {
     // Prepare histograms
     /////////////////////////////////////
     vector<TH1*> HistoList;
+    vector<string> HistSubjects;
+    vector<bool> FirstPrint;
 
     gStyle->SetTitleXSize(0.05);
     gStyle->SetTitleYSize(0.05);
@@ -181,6 +183,8 @@ void nFD_eff_test() {
         new TH2D("truth_theta_n_VS_truth_phi_n_1e_cut", "truth #theta_{n} vs. truth #phi_{n} in 1e cut;#phi_{n} [#circ];#theta_{n} [#circ]", 100, -180., 180., 100, 0, 50.);
     HistoList.push_back(h_truth_theta_n_VS_truth_phi_n_1e_cut);
 
+    HistSubjects.push_back("clas12reco");
+    FirstPrint.push_back(true);
     TH1D* h_reco_P_nFD_clas12_1e_cut = new TH1D("reco_P_nFD_clas12_1e_cut", "reco P_{nFD} in 1e cut (clas12reco);P_{nFD} [GeV/c];Counts", 50, 0, Ebeam * 1.1);
     HistoList.push_back(h_reco_P_nFD_clas12_1e_cut);
     TH1D* h_truth_P_nFD_clas12_1e_cut = new TH1D("truth_P_nFD_clas12_1e_cut", "truth P_{nFD} in 1e cut (clas12reco);P_{nFD} [GeV/c];Counts", 50, 0, Ebeam * 1.1);
@@ -208,6 +212,8 @@ void nFD_eff_test() {
         "reco_theta_nFD_clas12_VS_P_nFD_clas12_1e_cut", "reco #theta_{nFD} vs. reco P_{nFD} in 1e cut (clas12reco);#theta_{nFD} [circ];P_{nFD} [GeV/c]", 100, 0., 50., 100, 0., Ebeam * 3.);
     HistoList.push_back(h_reco_theta_nFD_clas12_VS_P_nFD_clas12_1e_cut);
 
+    HistSubjects.push_back("redef");
+    FirstPrint.push_back(true);
     TH1D* h_reco_P_nFD_redef_1e_cut = new TH1D("reco_P_nFD_redef_1e_cut", "reco P_{nFD} in 1e cut (redef);P_{nFD} [GeV/c];Counts", 50, 0, Ebeam * 1.1);
     HistoList.push_back(h_reco_P_nFD_redef_1e_cut);
     TH1D* h_truth_P_nFD_redef_1e_cut = new TH1D("truth_P_nFD_redef_1e_cut", "truth P_{nFD} in 1e cut (redef);P_{nFD} [GeV/c];Counts", 50, 0, Ebeam * 1.1);
@@ -235,6 +241,8 @@ void nFD_eff_test() {
         new TH2D("reco_theta_nFD_redef_VS_P_nFD_redef_1e_cut", "reco #theta_{nFD} vs. reco P_{nFD} in 1e cut (redef);#theta_{nFD} [circ];P_{nFD} [GeV/c]", 100, 0., 50., 100, 0., Ebeam * 3.);
     HistoList.push_back(h_reco_theta_nFD_redef_VS_P_nFD_redef_1e_cut);
 
+    HistSubjects.push_back("ECALveto");
+    FirstPrint.push_back(true);
     TH1D* h_reco_P_nFD_ECALveto_1e_cut = new TH1D("reco_P_nFD_ECALveto_1e_cut", "reco P_{nFD} in 1e cut (ECALveto);P_{nFD} [GeV/c];Counts", 50, 0, Ebeam * 1.1);
     HistoList.push_back(h_reco_P_nFD_ECALveto_1e_cut);
     TH1D* h_truth_P_nFD_ECALveto_1e_cut = new TH1D("truth_P_nFD_ECALveto_1e_cut", "truth P_{nFD} in 1e cut (ECALveto);P_{nFD} [GeV/c];Counts", 50, 0, Ebeam * 1.1);
@@ -262,6 +270,8 @@ void nFD_eff_test() {
         "reco_theta_nFD_ECALveto_VS_P_nFD_ECALveto_1e_cut", "reco #theta_{nFD} vs. reco P_{nFD} in 1e cut (ECALveto);#theta_{nFD} [circ];P_{nFD} [GeV/c]", 100, 0., 50., 100, 0., Ebeam * 3.);
     HistoList.push_back(h_reco_theta_nFD_ECALveto_VS_P_nFD_ECALveto_1e_cut);
 
+    HistSubjects.push_back("matched");
+    FirstPrint.push_back(true);
     TH1D* h_reco_P_nFD_matched_1e_cut = new TH1D("reco_P_nFD_matched_1e_cut", "reco P_{nFD} in 1e cut (matched);P_{nFD} [GeV/c];Counts", 50, 0, Ebeam * 1.1);
     HistoList.push_back(h_reco_P_nFD_matched_1e_cut);
     TH1D* h_truth_P_nFD_matched_1e_cut = new TH1D("truth_P_nFD_matched_1e_cut", "truth P_{nFD} in 1e cut (matched);P_{nFD} [GeV/c];Counts", 50, 0, Ebeam * 1.1);
@@ -677,40 +687,53 @@ void nFD_eff_test() {
     bool First_redef = true;
     bool First_ECALveto = true;
     bool First_matched = true;
+
     for (int i = 0; i < HistoList.size(); i++) {
-        if (First_clas12reco && findSubstring(HistoList[i]->GetTitle(), "clas12reco")) {
-            myText->cd();
-            text.DrawLatex(0.2, 0.9, "clas12reco");
-            myText->Print(fileName, "pdf");
-            myText->Clear();
+        for (int i = 0; i < HistSubjects.size(); i++) {
+            if (FirstPrint.at(i) && findSubstring(HistoList[i]->GetTitle(), HistSubjects.at(i))) {
+                myText->cd();
+                text.DrawLatex(0.2, 0.9, HistSubjects.at(i));
+                myText->Print(fileName, "pdf");
+                myText->Clear();
 
-            myCanvas->cd(1);
-            First_clas12reco = false;
-        } else if (First_redef && findSubstring(HistoList[i]->GetTitle(), "redef")) {
-            myText->cd();
-            text.DrawLatex(0.2, 0.9, "redef");
-            myText->Print(fileName, "pdf");
-            myText->Clear();
-
-            myCanvas->cd(1);
-            First_redef = false;
-        } else if (First_ECALveto && findSubstring(HistoList[i]->GetTitle(), "ECALveto")) {
-            myText->cd();
-            text.DrawLatex(0.2, 0.9, "ECALveto");
-            myText->Print(fileName, "pdf");
-            myText->Clear();
-
-            myCanvas->cd(1);
-            First_ECALveto = false;
-        } else if (First_matched && findSubstring(HistoList[i]->GetTitle(), "matched")) {
-            myText->cd();
-            text.DrawLatex(0.2, 0.9, "matched");
-            myText->Print(fileName, "pdf");
-            myText->Clear();
-
-            myCanvas->cd(1);
-            First_matched = false;
+                myCanvas->cd(1);
+                FirstPrint.at(i) = false;
+            }
         }
+
+        // if (First_clas12reco && findSubstring(HistoList[i]->GetTitle(), "clas12reco")) {
+        //     myText->cd();
+        //     text.DrawLatex(0.2, 0.9, "clas12reco");
+        //     myText->Print(fileName, "pdf");
+        //     myText->Clear();
+
+        //     myCanvas->cd(1);
+        //     First_clas12reco = false;
+        // } else if (First_redef && findSubstring(HistoList[i]->GetTitle(), "redef")) {
+        //     myText->cd();
+        //     text.DrawLatex(0.2, 0.9, "redef");
+        //     myText->Print(fileName, "pdf");
+        //     myText->Clear();
+
+        //     myCanvas->cd(1);
+        //     First_redef = false;
+        // } else if (First_ECALveto && findSubstring(HistoList[i]->GetTitle(), "ECALveto")) {
+        //     myText->cd();
+        //     text.DrawLatex(0.2, 0.9, "ECALveto");
+        //     myText->Print(fileName, "pdf");
+        //     myText->Clear();
+
+        //     myCanvas->cd(1);
+        //     First_ECALveto = false;
+        // } else if (First_matched && findSubstring(HistoList[i]->GetTitle(), "matched")) {
+        //     myText->cd();
+        //     text.DrawLatex(0.2, 0.9, "matched");
+        //     myText->Print(fileName, "pdf");
+        //     myText->Clear();
+
+        //     myCanvas->cd(1);
+        //     First_matched = false;
+        // }
 
         myCanvas->cd(1);
 
