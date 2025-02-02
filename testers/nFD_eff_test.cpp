@@ -142,6 +142,7 @@ void nFD_eff_test() {
     /////////////////////////////////////
     vector<TH1*> HistoList;
     vector<string> HistSubjects;
+    vector<string> HistSubjects2;
     vector<bool> FirstPrint;
 
     gStyle->SetTitleXSize(0.05);
@@ -192,6 +193,7 @@ void nFD_eff_test() {
     HistoList.push_back(h_truth_theta_n_VS_truth_phi_n_1e_cut);
 
     HistSubjects.push_back("clas12reco");
+    HistSubjects2.push_back("#splitline{FD neutron from}{clas12reco}");
     FirstPrint.push_back(true);
     TH1D* h_reco_P_nFD_clas12_1e_cut = new TH1D("reco_P_nFD_clas12_1e_cut", "reco P_{nFD} in 1e cut (clas12reco);P_{nFD} [GeV/c];Counts", 50, 0, Ebeam * 1.1);
     HistoList.push_back(h_reco_P_nFD_clas12_1e_cut);
@@ -221,6 +223,7 @@ void nFD_eff_test() {
     HistoList.push_back(h_reco_theta_nFD_clas12_VS_P_nFD_clas12_1e_cut);
 
     HistSubjects.push_back("redef");
+    HistSubjects2.push_back("redef");
     FirstPrint.push_back(true);
     TH1D* h_reco_P_nFD_redef_1e_cut = new TH1D("reco_P_nFD_redef_1e_cut", "reco P_{nFD} in 1e cut (redef);P_{nFD} [GeV/c];Counts", 50, 0, Ebeam * 1.1);
     HistoList.push_back(h_reco_P_nFD_redef_1e_cut);
@@ -249,8 +252,8 @@ void nFD_eff_test() {
         new TH2D("reco_theta_nFD_redef_VS_P_nFD_redef_1e_cut", "reco #theta_{nFD} vs. reco P_{nFD} in 1e cut (redef);#theta_{nFD} [circ];P_{nFD} [GeV/c]", 100, 0., 50., 100, 0., Ebeam * 3.);
     HistoList.push_back(h_reco_theta_nFD_redef_VS_P_nFD_redef_1e_cut);
 
-    HistSubjects.push_back("#splitline{ECALveto}{and P_{nFD} thresholds}");
-    // HistSubjects.push_back("ECALveto");
+    HistSubjects.push_back("ECALveto");
+    HistSubjects2.push_back("#splitline{ECALveto}{and P_{nFD} thresholds}");
     FirstPrint.push_back(true);
     TH1D* h_reco_P_nFD_ECALveto_1e_cut = new TH1D("reco_P_nFD_ECALveto_1e_cut", "reco P_{nFD} in 1e cut (ECALveto);P_{nFD} [GeV/c];Counts", 50, 0, Ebeam * 1.1);
     HistoList.push_back(h_reco_P_nFD_ECALveto_1e_cut);
@@ -280,6 +283,7 @@ void nFD_eff_test() {
     HistoList.push_back(h_reco_theta_nFD_ECALveto_VS_P_nFD_ECALveto_1e_cut);
 
     HistSubjects.push_back("matched");
+    HistSubjects2.push_back("matched");
     FirstPrint.push_back(true);
     TH1D* h_reco_P_nFD_matched_1e_cut = new TH1D("reco_P_nFD_matched_1e_cut", "reco P_{nFD} in 1e cut (matched);P_{nFD} [GeV/c];Counts", 50, 0, Ebeam * 1.1);
     HistoList.push_back(h_reco_P_nFD_matched_1e_cut);
@@ -683,7 +687,7 @@ void nFD_eff_test() {
         for (int j = 0; j < HistSubjects.size(); j++) {
             if (FirstPrint.at(j) && findSubstring(HistoList[i]->GetTitle(), HistSubjects.at(j))) {
                 myText->cd();
-                titles.DrawLatex(0.3, 0.5, HistSubjects.at(j).c_str());
+                titles.DrawLatex(0.3, 0.5, HistSubjects2.at(j).c_str());
                 myText->Print(fileName, "pdf");
                 myText->Clear();
 
