@@ -709,6 +709,10 @@ void nFD_eff_test() {
         HistoList[i]->GetYaxis()->SetTitleOffset(1.5);
         HistoList[i]->GetXaxis()->SetTitleOffset(1.1);
 
+        // Set the PDF title and header for the bookmark
+        gStyle->SetTitlePS(HistoList[i]->GetTitle());                                         // This sets the title in metadata
+        gStyle->SetHeaderPS(("[ /Title " + HistoList[i]->GetTitle() + " /DOCVIEW pdfmark").c_str());  // Adds a PDF title
+
         if (HistoList[i]->InheritsFrom("TH1D")) {
             HistoList[i]->Draw();
         } else if (HistoList[i]->InheritsFrom("TH2D")) {
