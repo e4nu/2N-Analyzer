@@ -597,9 +597,9 @@ void nFD_eff_test() {
             double ToF;
 
             if (ParticleInECIN) {
-                ToF = neutrons_FD_matched[i]->sci(clas12::ECIN)->getTime() - starttime;
+                ToF = neutrons_FD_matched[i]->cal(clas12::ECIN)->getTime() - starttime;
             } else if (ParticleInECOUT) {
-                ToF = neutrons_FD_matched[i]->sci(clas12::ECOUT)->getTime() - starttime;
+                ToF = neutrons_FD_matched[i]->cal(clas12::ECOUT)->getTime() - starttime;
             }
 
             double Beta_ph = Path_ph/(ToF*c);
