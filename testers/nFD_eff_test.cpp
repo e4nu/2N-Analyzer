@@ -447,8 +447,9 @@ void nFD_eff_test() {
             double starttime = c12->event()->getStartTime();
             double ToF_temp = allParticles[i]->getTime() - starttime;
 
-            if ((allParticles[i]->par()->getCharge() == 0) && (allParticles[i]->getRegion() == FD) && (pid_temp != 0) &&
-                !(ToF_temp < 0 || ToF_temp > 40.)) {  // If particle is neutral and in the FD
+            if ((allParticles[i]->par()->getCharge() == 0) && (allParticles[i]->getRegion() == FD) && (pid_temp != 0)
+                //  && !(ToF_temp < 0 || ToF_temp > 40.)
+            ) {  // If particle is neutral and in the FD
 
                 bool ParticleInPCAL = (allParticles[i]->cal(clas12::PCAL)->getDetector() == 7);    // PCAL hit
                 bool ParticleInECIN = (allParticles[i]->cal(clas12::ECIN)->getDetector() == 7);    // ECIN hit
@@ -489,8 +490,9 @@ void nFD_eff_test() {
             double starttime = c12->event()->getStartTime();
             double ToF_temp = allParticles[i]->getTime() - starttime;
 
-            if ((allParticles[i]->par()->getCharge() == 0) && (allParticles[i]->getRegion() == FD) && (pid_temp != 0) &&
-                !(ToF_temp < 0 || ToF_temp > 40.)) {                                               // If particle is neutral and in the FD
+            if ((allParticles[i]->par()->getCharge() == 0) && (allParticles[i]->getRegion() == FD) && (pid_temp != 0)
+                //  && !(ToF_temp < 0 || ToF_temp > 40.)
+            ) {                                                                                    // If particle is neutral and in the FD
                 bool ParticleInPCAL = (allParticles[i]->cal(clas12::PCAL)->getDetector() == 7);    // PCAL hit
                 bool ParticleInECIN = (allParticles[i]->cal(clas12::ECIN)->getDetector() == 7);    // ECIN hit
                 bool ParticleInECOUT = (allParticles[i]->cal(clas12::ECOUT)->getDetector() == 7);  // ECOUT hit
@@ -529,13 +531,16 @@ void nFD_eff_test() {
 
         vector<region_part_ptr> neutrons_FD_matched;
 
+        double tl_Beta;
+
         for (int i = 0; i < allParticles.size(); i++) {
             int pid_temp = allParticles[i]->par()->getPid();
             double starttime = c12->event()->getStartTime();
             double ToF_temp = allParticles[i]->getTime() - starttime;
 
-            if ((allParticles[i]->par()->getCharge() == 0) && (allParticles[i]->getRegion() == FD) && (pid_temp != 0) &&
-                !(ToF_temp < 0 || ToF_temp > 40.)) {                                               // If particle is neutral and in the FD
+            if ((allParticles[i]->par()->getCharge() == 0) && (allParticles[i]->getRegion() == FD) && (pid_temp != 0)
+                // && !(ToF_temp < 0 || ToF_temp > 40.)
+            ) {                                                                                    // If particle is neutral and in the FD
                 bool ParticleInPCAL = (allParticles[i]->cal(clas12::PCAL)->getDetector() == 7);    // PCAL hit
                 bool ParticleInECIN = (allParticles[i]->cal(clas12::ECIN)->getDetector() == 7);    // ECIN hit
                 bool ParticleInECOUT = (allParticles[i]->cal(clas12::ECOUT)->getDetector() == 7);  // ECOUT hit
@@ -561,8 +566,12 @@ void nFD_eff_test() {
                                     bool thetaCut = (fabs(tl_Theta - reco_Theta) <= 2.);
                                     bool phiCut = (fabs(tl_Phi - reco_Phi) <= 5.);
 
+                                    double tl_E_nFD = sqrt(m_n * m_n + tl_P * tl_P);
+
                                     if (thetaCut && phiCut) {
                                         neutrons_FD_matched.push_back(allParticles[i]);
+
+                                        tl_Beta = tl_P / tl_E_nFD;
 
                                         h_truth_P_nFD_matched_1e_cut->Fill(tl_P, weight);
                                         h_truth_theta_nFD_matched_1e_cut->Fill(tl_Theta, weight);
@@ -578,7 +587,8 @@ void nFD_eff_test() {
         }
 
         for (int i = 0; i < neutrons_FD_matched.size(); i++) {
-            double Beta_ph = neutrons_FD_matched[i]->par()->getBeta();
+            double Beta_ph = tl_Beta;
+            // double Beta_ph = neutrons_FD_matched[i]->par()->getBeta();
             double Gamma_ph = 1 / sqrt(1 - (Beta_ph * Beta_ph));
             double Momentum = m_n * Beta_ph * Gamma_ph;
 
