@@ -716,9 +716,6 @@ void nFD_eff_test() {
         // gStyle->SetHeaderPS(("[ /Page " + to_string(i + 1) + " /View [/Fit] /Title (myTitle) ] /OUT pdfmark").c_str());
 
         if (HistoList[i]->InheritsFrom("TH1D")) {
-            HistoList[i]->SetLineColor(kRed);
-            HistoList[i]->SetLineSize(2);
-
             HistoList[i]->Draw();
         } else if (HistoList[i]->InheritsFrom("TH2D")) {
             HistoList[i]->Draw("colz");
