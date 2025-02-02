@@ -678,14 +678,6 @@ void nFD_eff_test() {
     bool First_ECALveto = true;
     bool First_matched = true;
     for (int i = 0; i < HistoList.size(); i++) {
-        myCanvas->cd(1);
-
-        myCanvas->cd(1)->SetGrid();
-        myCanvas->cd(1)->SetBottomMargin(0.14), myCanvas->cd(1)->SetLeftMargin(0.16), myCanvas->cd(1)->SetRightMargin(0.12);
-
-        HistoList[i]->GetYaxis()->SetTitleOffset(1.5);
-        HistoList[i]->GetXaxis()->SetTitleOffset(1.1);
-
         if (First_clas12reco && findSubstring(HistoList[i]->GetTitle(), "clas12reco")) {
             myText->cd();
             text.DrawLatex(0.2, 0.9, "clas12reco");
@@ -719,6 +711,14 @@ void nFD_eff_test() {
             myCanvas->cd(1);
             First_matched = false;
         }
+
+        myCanvas->cd(1);
+
+        myCanvas->cd(1)->SetGrid();
+        myCanvas->cd(1)->SetBottomMargin(0.14), myCanvas->cd(1)->SetLeftMargin(0.16), myCanvas->cd(1)->SetRightMargin(0.12);
+
+        HistoList[i]->GetYaxis()->SetTitleOffset(1.5);
+        HistoList[i]->GetXaxis()->SetTitleOffset(1.1);
 
         if (HistoList[i]->InheritsFrom("TH1D")) {
             HistoList[i]->Draw();
