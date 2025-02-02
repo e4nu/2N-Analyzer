@@ -27,6 +27,14 @@
 using namespace std;
 using namespace clas12;
 
+double CalcPnFD(region_part_ptr NeutronFD) {
+    double Beta_ph = NeutronFD[i]->par()->getBeta();
+    double Gamma_ph = 1 / sqrt(1 - (Beta_ph * Beta_ph));
+    double Momentum = m_n * Beta_ph * Gamma_ph;
+
+    return Momentum;
+}
+
 bool findSubstring(string string1, string string2) {
     if (string1.find(string2) != string::npos) {
         return true;
@@ -241,7 +249,8 @@ void nFD_eff_test() {
         new TH2D("reco_theta_nFD_redef_VS_P_nFD_redef_1e_cut", "reco #theta_{nFD} vs. reco P_{nFD} in 1e cut (redef);#theta_{nFD} [circ];P_{nFD} [GeV/c]", 100, 0., 50., 100, 0., Ebeam * 3.);
     HistoList.push_back(h_reco_theta_nFD_redef_VS_P_nFD_redef_1e_cut);
 
-    HistSubjects.push_back("ECALveto");
+    HistSubjects.push_back("#splitline{ECALveto}{and P_{nFD} thresholds}");
+    // HistSubjects.push_back("ECALveto");
     FirstPrint.push_back(true);
     TH1D* h_reco_P_nFD_ECALveto_1e_cut = new TH1D("reco_P_nFD_ECALveto_1e_cut", "reco P_{nFD} in 1e cut (ECALveto);P_{nFD} [GeV/c];Counts", 50, 0, Ebeam * 1.1);
     HistoList.push_back(h_reco_P_nFD_ECALveto_1e_cut);
@@ -351,9 +360,12 @@ void nFD_eff_test() {
 
             auto pid_temp = mcpbank->getPid();
 
+            auto p = mcpbank->getP();
             auto px = mcpbank->getPx();
             auto py = mcpbank->getPy();
             auto pz = mcpbank->getPz();
+
+            bool PassMomth = (p >= 0.4);
 
             if (pid_temp == 11) {
                 TVector3 truth_P_e;
@@ -385,10 +397,12 @@ void nFD_eff_test() {
                     h_truth_phi_nFD_redef_1e_cut->Fill(truth_P_n.Phi() * 180 / M_PI, weight);
                     h_truth_theta_nFD_redef_VS_truth_phi_nFD_redef_1e_cut->Fill(truth_P_n.Phi() * 180 / M_PI, truth_P_n.Theta() * 180 / M_PI, weight);
 
-                    h_truth_P_nFD_ECALveto_1e_cut->Fill(truth_P_n.Mag(), weight);
-                    h_truth_theta_nFD_ECALveto_1e_cut->Fill(truth_P_n.Theta() * 180 / M_PI, weight);
-                    h_truth_phi_nFD_ECALveto_1e_cut->Fill(truth_P_n.Phi() * 180 / M_PI, weight);
-                    h_truth_theta_nFD_ECALveto_VS_truth_phi_nFD_ECALveto_1e_cut->Fill(truth_P_n.Phi() * 180 / M_PI, truth_P_n.Theta() * 180 / M_PI, weight);
+                    if (PassMomth) {
+                        h_truth_P_nFD_ECALveto_1e_cut->Fill(truth_P_n.Mag(), weight);
+                        h_truth_theta_nFD_ECALveto_1e_cut->Fill(truth_P_n.Theta() * 180 / M_PI, weight);
+                        h_truth_phi_nFD_ECALveto_1e_cut->Fill(truth_P_n.Phi() * 180 / M_PI, weight);
+                        h_truth_theta_nFD_ECALveto_VS_truth_phi_nFD_ECALveto_1e_cut->Fill(truth_P_n.Phi() * 180 / M_PI, truth_P_n.Theta() * 180 / M_PI, weight);
+                    }
                 }
             }
         }
@@ -510,7 +524,10 @@ void nFD_eff_test() {
 
             if ((allParticles[i]->par()->getCharge() == 0) && (allParticles[i]->getRegion() == FD) && (pid_temp != 0)
                 //  && !(ToF_temp < 0 || ToF_temp > 40.)
-            ) {                                                                                    // If particle is neutral and in the FD
+            ) {
+                double Momentum = CalcPnFD(allParticles[i]);
+                bool PassMomth = (Momentum >= 0.4);
+                // If particle is neutral and in the FD
                 bool ParticleInPCAL = (allParticles[i]->cal(clas12::PCAL)->getDetector() == 7);    // PCAL hit
                 bool ParticleInECIN = (allParticles[i]->cal(clas12::ECIN)->getDetector() == 7);    // ECIN hit
                 bool ParticleInECOUT = (allParticles[i]->cal(clas12::ECOUT)->getDetector() == 7);  // ECOUT hit
@@ -522,7 +539,7 @@ void nFD_eff_test() {
                         if (ParticleInECIN || ParticleInECOUT) {
                             bool passVeto = NeutronECAL_Cut_Veto(allParticles, electrons, Ebeam, i, 100);
 
-                            if (passVeto) { neutrons_FD_ECALveto.push_back(allParticles[i]); }  // end of clas12root neutron or 'photon' if
+                            if (passVeto && PassMomth) { neutrons_FD_ECALveto.push_back(allParticles[i]); }  // end of clas12root neutron or 'photon' if
                         }
                     }
                 }  // end of clas12root neutron or 'photon' if
@@ -530,12 +547,8 @@ void nFD_eff_test() {
         }
 
         for (int i = 0; i < neutrons_FD_ECALveto.size(); i++) {
-            double Beta_ph = neutrons_FD_ECALveto[i]->par()->getBeta();
-            double Gamma_ph = 1 / sqrt(1 - (Beta_ph * Beta_ph));
-            double Momentum = m_n * Beta_ph * Gamma_ph;
-
             TVector3 reco_P_nFD;
-            reco_P_nFD.SetMagThetaPhi(Momentum, neutrons_FD_ECALveto[i]->getTheta(), neutrons_FD_ECALveto[i]->getPhi());
+            reco_P_nFD.SetMagThetaPhi(CalcPnFD(neutrons_FD_ECALveto[i]), neutrons_FD_ECALveto[i]->getTheta(), neutrons_FD_ECALveto[i]->getPhi());
 
             h_reco_P_nFD_ECALveto_1e_cut->Fill(reco_P_nFD.Mag(), weight);
             h_reco_theta_nFD_ECALveto_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI, weight);
@@ -568,9 +581,12 @@ void nFD_eff_test() {
                         if (pid_temp == 22) { photons_FD_redef.push_back(allParticles[i]); }
                     } else if (!ParticleInPCAL) {  // if there is a neutron or a 'photon' without a PCAL hit
                         if (ParticleInECIN || ParticleInECOUT) {
+                            double Momentum = CalcPnFD(allParticles[i]);
+                            bool PassMomth = (Momentum >= 0.4);
+
                             bool passVeto = NeutronECAL_Cut_Veto(allParticles, electrons, Ebeam, i, 100);
 
-                            if (passVeto) {
+                            if (passVeto && PassMomth) {
                                 for (int j = 0; j < truth_NeutronsFD.size(); j++) {
                                     mcpbank->setEntry(truth_NeutronsFD.at(j));
 
@@ -605,35 +621,8 @@ void nFD_eff_test() {
         }
 
         for (int i = 0; i < neutrons_FD_matched.size(); i++) {
-            // bool ParticleInPCAL = (neutrons_FD_matched[i]->cal(clas12::PCAL)->getDetector() == 7);    // PCAL hit
-            // bool ParticleInECIN = (neutrons_FD_matched[i]->cal(clas12::ECIN)->getDetector() == 7);    // ECIN hit
-            // bool ParticleInECOUT = (neutrons_FD_matched[i]->cal(clas12::ECOUT)->getDetector() == 7);  // ECOUT hit
-
-            // // double Beta_ph = tl_Beta;
-            // double Path_ph = neutrons_FD_matched[i]->getPath();
-            // double starttime = c12->event()->getStartTime();
-            // double ToF;
-
-            // if (ParticleInECIN) {
-            //     ToF = neutrons_FD_matched[i]->cal(clas12::ECIN)->getTime() - starttime;
-            // } else if (ParticleInECOUT) {
-            //     ToF = neutrons_FD_matched[i]->cal(clas12::ECOUT)->getTime() - starttime;
-            // }
-
-            // double Beta_ph = Path_ph/(ToF*c);
-            double Beta_ph = neutrons_FD_matched[i]->par()->getBeta();
-            double Gamma_ph = 1 / sqrt(1 - (Beta_ph * Beta_ph));
-            double Momentum = m_n * Beta_ph * Gamma_ph;
-
-            // cout << "\n\n\n";
-            // cout << "Path_ph = " << Path_ph << "\n";
-            // cout << "ToF = " << ToF << "\n";
-            // cout << "neutrons_FD_matched[i]->cal(clas12::ECIN)->getTime() = " << neutrons_FD_matched[i]->cal(clas12::ECIN)->getTime() << "\n";
-            // cout << "neutrons_FD_matched[i]->cal(clas12::ECOUT)->getTime() = " << neutrons_FD_matched[i]->cal(clas12::ECOUT)->getTime() << "\n";
-            // cout << "\n\n\n";
-
             TVector3 reco_P_nFD;
-            reco_P_nFD.SetMagThetaPhi(Momentum, neutrons_FD_matched[i]->getTheta(), neutrons_FD_matched[i]->getPhi());
+            reco_P_nFD.SetMagThetaPhi(CalcPnFD(neutrons_FD_matched[i]), neutrons_FD_matched[i]->getTheta(), neutrons_FD_matched[i]->getPhi());
 
             h_reco_P_nFD_matched_1e_cut->Fill(reco_P_nFD.Mag(), weight);
             h_reco_theta_nFD_matched_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI, weight);
@@ -644,6 +633,9 @@ void nFD_eff_test() {
         }
     }
 
+    /////////////////////////////////////////////////////
+    // Organize histograms
+    /////////////////////////////////////////////////////
     cout << counter << endl;
 
     for (int i = 0; i < HistoList.size(); i++) {
