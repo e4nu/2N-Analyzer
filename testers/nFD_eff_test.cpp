@@ -681,28 +681,28 @@ void nFD_eff_test() {
         HistoList[i]->GetYaxis()->SetTitleOffset(1.5);
         HistoList[i]->GetXaxis()->SetTitleOffset(1.1);
 
-        if (findSubstring(HistoList[i]->getTitle(), "clas12reco")) {
+        if (findSubstring(HistoList[i]->GetTitle(), "clas12reco")) {
             myText->cd();
             text.DrawLatex(0.2, 0.9, "clas12reco");
             myText->Print(fileName, "pdf");
             myText->Clear();
 
             myCanvas->cd(1);
-        } else if (findSubstring(HistoList[i]->getTitle(), "redef")) {
+        } else if (findSubstring(HistoList[i]->GetTitle(), "redef")) {
             myText->cd();
             text.DrawLatex(0.2, 0.9, "redef");
             myText->Print(fileName, "pdf");
             myText->Clear();
 
             myCanvas->cd(1);
-        } else if (findSubstring(HistoList[i]->getTitle(), "ECALveto")) {
+        } else if (findSubstring(HistoList[i]->GetTitle(), "ECALveto")) {
             myText->cd();
             text.DrawLatex(0.2, 0.9, "ECALveto");
             myText->Print(fileName, "pdf");
             myText->Clear();
 
             myCanvas->cd(1);
-        } else if (findSubstring(HistoList[i]->getTitle(), "matched")) {
+        } else if (findSubstring(HistoList[i]->GetTitle(), "matched")) {
             myText->cd();
             text.DrawLatex(0.2, 0.9, "matched");
             myText->Print(fileName, "pdf");
