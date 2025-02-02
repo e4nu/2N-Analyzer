@@ -683,13 +683,6 @@ void nFD_eff_test() {
     myText->Print(fileName, "pdf");
     myText->Clear();
 
-    // myCanvas->Divide(1, 1);
-
-    bool First_clas12reco = true;
-    bool First_redef = true;
-    bool First_ECALveto = true;
-    bool First_matched = true;
-
     for (int i = 0; i < HistoList.size(); i++) {
         for (int j = 0; j < HistSubjects.size(); j++) {
             if (FirstPrint.at(j) && findSubstring(HistoList[i]->GetTitle(), HistSubjects.at(j))) {
@@ -708,10 +701,6 @@ void nFD_eff_test() {
 
         myCanvas->cd()->SetGrid();
         myCanvas->cd()->SetBottomMargin(0.14), myCanvas->cd()->SetLeftMargin(0.16), myCanvas->cd()->SetRightMargin(0.12);
-        // myCanvas->cd(1);
-
-        // myCanvas->cd(1)->SetGrid();
-        // myCanvas->cd(1)->SetBottomMargin(0.14), myCanvas->cd(1)->SetLeftMargin(0.16), myCanvas->cd(1)->SetRightMargin(0.12);
 
         HistoList[i]->GetYaxis()->SetTitleOffset(1.5);
         HistoList[i]->GetXaxis()->SetTitleOffset(1.1);
