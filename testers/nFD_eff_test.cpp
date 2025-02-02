@@ -326,7 +326,7 @@ void nFD_eff_test() {
         auto mcpbank = c12->mcparts();
         const Int_t Ngen = mcpbank->getRows();
 
-        const vector<int> truth_NeutronsFD;
+        vector<int> truth_NeutronsFD;
 
         for (Int_t i = 0; i < Ngen; i++) {
             mcpbank->setEntry(i);
