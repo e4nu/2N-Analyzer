@@ -661,7 +661,9 @@ void nFD_eff_test() {
     int pixely = 1530;
     TCanvas* myCanvas = new TCanvas("myPage", "myPage", pixelx, pixely);
     TCanvas* myText = new TCanvas("myText", "myText", pixelx, pixely);
+    TLatex titles;
     TLatex text;
+    titles.SetTextSize(0.1);
     text.SetTextSize(0.05);
 
     gStyle->SetOptStat("ourmen");
@@ -692,7 +694,7 @@ void nFD_eff_test() {
         for (int j = 0; j < HistSubjects.size(); j++) {
             if (FirstPrint.at(j) && findSubstring(HistoList[i]->GetTitle(), HistSubjects.at(j))) {
                 myText->cd();
-                text.DrawLatex(0.5, 0.5, HistSubjects.at(j).c_str());
+                titles.DrawLatex(0.4, 0.5, HistSubjects.at(j).c_str());
                 myText->Print(fileName, "pdf");
                 myText->Clear();
 
@@ -701,40 +703,6 @@ void nFD_eff_test() {
                 break;
             }
         }
-
-        // if (First_clas12reco && findSubstring(HistoList[i]->GetTitle(), "clas12reco")) {
-        //     myText->cd();
-        //     text.DrawLatex(0.2, 0.9, "clas12reco");
-        //     myText->Print(fileName, "pdf");
-        //     myText->Clear();
-
-        //     myCanvas->cd(1);
-        //     First_clas12reco = false;
-        // } else if (First_redef && findSubstring(HistoList[i]->GetTitle(), "redef")) {
-        //     myText->cd();
-        //     text.DrawLatex(0.2, 0.9, "redef");
-        //     myText->Print(fileName, "pdf");
-        //     myText->Clear();
-
-        //     myCanvas->cd(1);
-        //     First_redef = false;
-        // } else if (First_ECALveto && findSubstring(HistoList[i]->GetTitle(), "ECALveto")) {
-        //     myText->cd();
-        //     text.DrawLatex(0.2, 0.9, "ECALveto");
-        //     myText->Print(fileName, "pdf");
-        //     myText->Clear();
-
-        //     myCanvas->cd(1);
-        //     First_ECALveto = false;
-        // } else if (First_matched && findSubstring(HistoList[i]->GetTitle(), "matched")) {
-        //     myText->cd();
-        //     text.DrawLatex(0.2, 0.9, "matched");
-        //     myText->Print(fileName, "pdf");
-        //     myText->Clear();
-
-        //     myCanvas->cd(1);
-        //     First_matched = false;
-        // }
 
         myCanvas->cd();
 
