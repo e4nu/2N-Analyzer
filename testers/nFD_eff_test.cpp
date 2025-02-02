@@ -609,7 +609,10 @@ void nFD_eff_test() {
 
             cout << "\n\n\n";
             cout << "Path_ph = " << Path_ph << "\n";
-            cout << "Beta_ph = " << Beta_ph << "\n\n\n";
+            cout << "ToF = " << ToF << "\n";
+            cout << "neutrons_FD_matched[i]->sci(clas12::ECIN)->getTime() = " << neutrons_FD_matched[i]->sci(clas12::ECIN)->getTime() << "\n";
+            cout << "neutrons_FD_matched[i]->sci(clas12::ECOUT)->getTime() = " << neutrons_FD_matched[i]->sci(clas12::ECOUT)->getTime() << "\n";
+            cout << "\n\n\n";
 
             TVector3 reco_P_nFD;
             reco_P_nFD.SetMagThetaPhi(Momentum, neutrons_FD_matched[i]->getTheta(), neutrons_FD_matched[i]->getPhi());
