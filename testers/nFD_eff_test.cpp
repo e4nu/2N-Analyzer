@@ -602,12 +602,13 @@ void nFD_eff_test() {
                 ToF = neutrons_FD_matched[i]->sci(clas12::ECOUT)->getTime() - starttime;
             }
 
-            cout << "\n\nPath_ph = " << Path_ph << "\n";
-
             double Beta_ph = Path_ph/(ToF*c);
             // double Beta_ph = neutrons_FD_matched[i]->par()->getBeta();
             double Gamma_ph = 1 / sqrt(1 - (Beta_ph * Beta_ph));
             double Momentum = m_n * Beta_ph * Gamma_ph;
+
+            cout << "\n\nPath_ph = " << Path_ph << "\n";
+            cout << "\n\nBeta_ph = " << Beta_ph << "\n";
 
             TVector3 reco_P_nFD;
             reco_P_nFD.SetMagThetaPhi(Momentum, neutrons_FD_matched[i]->getTheta(), neutrons_FD_matched[i]->getPhi());
