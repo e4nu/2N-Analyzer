@@ -607,8 +607,9 @@ void nFD_eff_test() {
             double Gamma_ph = 1 / sqrt(1 - (Beta_ph * Beta_ph));
             double Momentum = m_n * Beta_ph * Gamma_ph;
 
-            cout << "\n\nPath_ph = " << Path_ph << "\n";
-            cout << "\n\nBeta_ph = " << Beta_ph << "\n";
+            cout << "\n\n\n";
+            cout << "Path_ph = " << Path_ph << "\n";
+            cout << "Beta_ph = " << Beta_ph << "\n\n\n";
 
             TVector3 reco_P_nFD;
             reco_P_nFD.SetMagThetaPhi(Momentum, neutrons_FD_matched[i]->getTheta(), neutrons_FD_matched[i]->getPhi());
