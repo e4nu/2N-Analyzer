@@ -899,6 +899,8 @@ void nFD_eff_test() {
         HistoList[i]->GetYaxis()->SetTitleOffset(1.5);
         HistoList[i]->GetXaxis()->SetTitleOffset(1.1);
 
+        gPad->SetRightMargin(0.225);
+
         // // Set the PDF title and header for the bookmark
         // string Title = HistoList[i]->GetTitle();
         // gStyle->SetTitlePS(Title.c_str());  // This sets the title in metadata
@@ -908,11 +910,11 @@ void nFD_eff_test() {
         if (HistoList[i]->InheritsFrom("TH1D")) {
             HistoList[i]->Draw();
         } else if (HistoList[i]->InheritsFrom("TH2D")) {
-            if (findSubstring(HistoList[i]->GetTitle(), "#Delta#theta_{nFD,e} vs. #Delta#phi_{nFD,e} in 1e cut")) {
-                gPad->SetRightMargin(0.25);
-            } else {
-                gPad->SetRightMargin(0.05);
-            }
+            // if (findSubstring(HistoList[i]->GetTitle(), "#Delta#theta_{nFD,e} vs. #Delta#phi_{nFD,e} in 1e cut")) {
+            //     gPad->SetRightMargin(0.225);
+            // } else {
+            //     gPad->SetRightMargin(0.05);
+            // }
 
             HistoList[i]->Draw("colz");
 
