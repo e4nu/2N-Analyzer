@@ -32,16 +32,18 @@ double CalcPnFD(region_part_ptr NeutronFD) {
 
     double Momentum;
 
-    // if (ParticlePDG == 2112) {
-    //     Momentum = NeutronFD->par()->getP();
-    // } else if (ParticlePDG == 22) {
-    //     double Beta_ph = NeutronFD->par()->getBeta();
-    //     double Gamma_ph = 1 / sqrt(1 - (Beta_ph * Beta_ph));
-    //     Momentum = m_n * Beta_ph * Gamma_ph;
-    // } else {
-    //     cout << "\n\nError! Particle PDG is not 22 or 2112! Aborting...\n\n", exit(0);
-    // }
-    Momentum = NeutronFD->par()->getP();
+    if (ParticlePDG == 2112) {
+        Momentum = NeutronFD->par()->getP();
+    } else if (ParticlePDG == 22) {
+        cout << "\n\nThis is a photon! Aborting...\n\n", exit(0);
+
+        double Beta_ph = NeutronFD->par()->getBeta();
+        double Gamma_ph = 1 / sqrt(1 - (Beta_ph * Beta_ph));
+        Momentum = m_n * Beta_ph * Gamma_ph;
+    } else {
+        cout << "\n\nError! Particle PDG is not 22 or 2112! Aborting...\n\n", exit(0);
+    }
+    // Momentum = NeutronFD->par()->getP();
     return Momentum;
 }
 
