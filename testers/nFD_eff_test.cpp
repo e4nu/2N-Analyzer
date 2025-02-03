@@ -370,6 +370,10 @@ void nFD_eff_test() {
         "#Delta#theta_{nFD,e} vs. #Delta#phi_{nFD,e} in 1e cut (ECALveto);#Delta#phi_{nFD,e} = |#phi_{nFD} - #phi_{e}| [#circ];#Delta#theta_{nFD,e} = #theta_{nFD} - #theta_{e} [#circ]", 100,
         -180., 180., 100, -25., 10.);
     HistoList.push_back(h_reco_theta_nFD_minus_reco_theta_e_VS_reco_phi_nFD_minus_reco_phi_e_ECALveto_1e_cut);
+    TH2D* h_reco_P_nFD_VS_reco_phi_nFD_minus_reco_phi_e_ECALveto_1e_cut =
+        new TH2D("reco_P_nFD_VS_reco_phi_nFD_minus_reco_phi_e_ECALveto_1e_cut",
+                 "recp P_{nFD} vs. #Delta#phi_{nFD,e} in 1e cut (ECALveto);#Delta#phi_{nFD,e} = |#phi_{nFD} - #phi_{e}| [#circ];P_{nFD} [GeV/c]", 100, -180., 180., 100, 0., Ebeam * 3.);
+    HistoList.push_back(h_reco_P_nFD_VS_reco_phi_nFD_minus_reco_phi_e_ECALveto_1e_cut);
 
 #pragma endregion
 
@@ -445,6 +449,10 @@ void nFD_eff_test() {
         "#Delta#theta_{nFD,e} vs. #Delta#phi_{nFD,e} in 1e cut (matched);#Delta#phi_{nFD,e} = |#phi_{nFD} - #phi_{e}| [#circ];#Delta#theta_{nFD,e} = #theta_{nFD} - #theta_{e} [#circ]", 100,
         -180., 180., 100, -25., 10.);
     HistoList.push_back(h_reco_theta_nFD_minus_reco_theta_e_VS_reco_phi_nFD_minus_reco_phi_e_matched_1e_cut);
+    TH2D* h_reco_P_nFD_VS_reco_phi_nFD_minus_reco_phi_e_matched_1e_cut =
+        new TH2D("reco_P_nFD_VS_reco_phi_nFD_minus_reco_phi_e_matched_1e_cut",
+                 "recp P_{nFD} vs. #Delta#phi_{nFD,e} in 1e cut (matched);#Delta#phi_{nFD,e} = |#phi_{nFD} - #phi_{e}| [#circ];P_{nFD} [GeV/c]", 100, -180., 180., 100, 0., Ebeam * 3.);
+    HistoList.push_back(h_reco_P_nFD_VS_reco_phi_nFD_minus_reco_phi_e_matched_1e_cut);
 
 #pragma endregion
 
@@ -740,6 +748,7 @@ void nFD_eff_test() {
             h_reco_phi_nFD_minus_reco_phi_e_ECALveto_1e_cut->Fill(CalcdPhi(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI), weight);
             h_reco_theta_nFD_minus_reco_theta_e_VS_reco_phi_nFD_minus_reco_phi_e_ECALveto_1e_cut->Fill(CalcdPhi(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI),
                                                                                                        reco_P_nFD.Theta() * 180 / M_PI - reco_P_e.Theta() * 180 / M_PI, weight);
+            h_reco_P_nFD_VS_reco_phi_nFD_minus_reco_phi_e_ECALveto_1e_cut->Fill(CalcdPhi(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI), reco_P_nFD.Mag(), weight);
         }
 
         h_reco_nFD_multi_ECALveto_1e_cut->Fill(neutrons_FD_ECALveto.size(), weight);
@@ -834,6 +843,7 @@ void nFD_eff_test() {
             h_reco_phi_nFD_minus_reco_phi_e_matched_1e_cut->Fill(CalcdPhi(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI), weight);
             h_reco_theta_nFD_minus_reco_theta_e_VS_reco_phi_nFD_minus_reco_phi_e_matched_1e_cut->Fill(CalcdPhi(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI),
                                                                                                       reco_P_nFD.Theta() * 180 / M_PI - reco_P_e.Theta() * 180 / M_PI, weight);
+            h_reco_P_nFD_VS_reco_phi_nFD_minus_reco_phi_e_matched_1e_cut->Fill(CalcdPhi(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI), reco_P_nFD.Mag(), weight);
         }
 
         h_reco_nFD_multi_matched_1e_cut->Fill(neutrons_FD_matched.size(), weight);
