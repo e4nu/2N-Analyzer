@@ -361,8 +361,8 @@ void nFD_eff_test() {
     TH1D* h_reco_theta_nFD_minus_reco_theta_e_ECALveto_1e_cut = new TH1D(
         "reco_theta_nFD_minus_reco_theta_e_ECALveto_1e_cut", "reco #Delta#theta_{nFD,e} in 1e cut (ECALveto);#Delta#theta_{nFD,e} = #theta_{nFD} - #theta_{e} [#circ];Counts", 50, -10., 20.);
     HistoList.push_back(h_reco_theta_nFD_minus_reco_theta_e_ECALveto_1e_cut);
-    TH1D* h_reco_phi_nFD_minus_reco_phi_e_ECALveto_1e_cut =
-        new TH1D("reco_phi_nFD_minus_reco_phi_e_ECALveto_1e_cut", "reco #Delta#phi_{nFD,e} in 1e cut (ECALveto);#Delta#phi_{nFD,e} = |#phi_{nFD} - #phi_{e}| [#circ];Counts", 50, -180., 180.);
+    TH1D* h_reco_phi_nFD_minus_reco_phi_e_ECALveto_1e_cut = new TH1D(
+        "reco_phi_nFD_minus_reco_phi_e_ECALveto_1e_cut", "reco #Delta#phi_{nFD,e} in 1e cut (ECALveto);#Delta#phi_{nFD,e} = |#phi_{nFD} - #phi_{e}| [#circ];Counts", 50, -180., 180.);
     HistoList.push_back(h_reco_phi_nFD_minus_reco_phi_e_ECALveto_1e_cut);
     TH2D* h_reco_theta_nFD_minus_reco_theta_e_VS_reco_phi_nFD_minus_reco_phi_e_ECALveto_1e_cut = new TH2D(
         "reco_theta_nFD_minus_reco_theta_e_VS_reco_phi_nFD_minus_reco_phi_e_ECALveto_1e_cut",
@@ -908,6 +908,12 @@ void nFD_eff_test() {
         if (HistoList[i]->InheritsFrom("TH1D")) {
             HistoList[i]->Draw();
         } else if (HistoList[i]->InheritsFrom("TH2D")) {
+            if (findSubstring(HistoList[i]->GetTitle(), "#Delta#theta_{nFD,e} vs. #Delta#phi_{nFD,e} in 1e cut")) {
+                myCanvas->cd()->SetRightMargin(0.2);
+            } else {
+                myCanvas->cd()->SetRightMargin(0.05);
+            }
+
             HistoList[i]->Draw("colz");
 
             if (HistoList[i]->GetEntries() != 0) {
