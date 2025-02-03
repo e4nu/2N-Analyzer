@@ -899,7 +899,7 @@ void nFD_eff_test() {
         HistoList[i]->GetYaxis()->SetTitleOffset(1.5);
         HistoList[i]->GetXaxis()->SetTitleOffset(1.1);
 
-        gPad->SetRightMargin(0.225);
+        gPad->SetRightMargin(0.23);
 
         // // Set the PDF title and header for the bookmark
         // string Title = HistoList[i]->GetTitle();
