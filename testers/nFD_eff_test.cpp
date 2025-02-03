@@ -158,8 +158,9 @@ void nFD_eff_test() {
 
     double Ebeam = 4.02962;
 
+    int Limiter = 10000000;
     // int Limiter = 1000000;
-    int Limiter = 100000;
+    // int Limiter = 100000;
 
     const string OutputDir = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/nFD_eff_test";
     system(("rm -rf " + OutputDir).c_str());
@@ -467,6 +468,11 @@ void nFD_eff_test() {
 #pragma endregion
 
     int counter = 0;
+
+    int counter_ECALveto_ECINorECOUT_FDneutrons = 0;
+    int counter_ECALveto_ECINorECOUT_FDphotons = 0;
+    int counter_matched_ECINorECOUT_FDneutrons = 0;
+    int counter_matched_ECINorECOUT_FDphotons = 0;
 
     // ParticleID PID;
 
