@@ -299,36 +299,36 @@ void nFD_eff_test() {
         new TH2D("reco_P_e_VS_P_nFD_ECALveto_1e_cut", "reco P_{e} vs. reco P_{nFD} in 1e cut (ECALveto);P_{e} [GeV/c];P_{nFD} [GeV/c]", 100, 0., Ebeam * 2., 100, 0., Ebeam * 3.);
     HistoList.push_back(h_reco_P_e_VS_P_nFD_ECALveto_1e_cut);
     TH2D* h_reco_theta_e_VS_P_nFD_ECALveto_1e_cut =
-        new TH2D("reco_theta_e_VS_P_nFD_ECALveto_1e_cut", "reco #theta_{e} vs. reco P_{nFD} in 1e cut (ECALveto);#theta_{e} [#circ];P_{nFD} [GeV/c]", 50, 0, 45., 100, 0., Ebeam * 3.);
+        new TH2D("reco_theta_e_VS_P_nFD_ECALveto_1e_cut", "reco #theta_{e} vs. reco P_{nFD} in 1e cut (ECALveto);#theta_{e} [#circ];P_{nFD} [GeV/c]", 100, 0, 45., 100, 0., Ebeam * 3.);
     HistoList.push_back(h_reco_theta_e_VS_P_nFD_ECALveto_1e_cut);
     TH2D* h_reco_phi_e_VS_P_nFD_ECALveto_1e_cut =
-        new TH2D("reco_phi_e_VS_P_nFD_ECALveto_1e_cut", "reco #phi_{e} vs. reco P_{nFD} in 1e cut (ECALveto);#phi_{e} [#circ];P_{nFD} [GeV/c]", 50, -180., 180., 100, 0., Ebeam * 3.);
+        new TH2D("reco_phi_e_VS_P_nFD_ECALveto_1e_cut", "reco #phi_{e} vs. reco P_{nFD} in 1e cut (ECALveto);#phi_{e} [#circ];P_{nFD} [GeV/c]", 100, -180., 180., 100, 0., Ebeam * 3.);
     HistoList.push_back(h_reco_phi_e_VS_P_nFD_ECALveto_1e_cut);
     TH2D* h_reco_P_e_VS_theta_nFD_ECALveto_1e_cut =
-        new TH2D("reco_P_e_VS_theta_nFD_ECALveto_1e_cut", "reco P_{e} vs. reco #theta_{nFD} in 1e cut (ECALveto);P_{e} [GeV/c];#theta_{nFD} [#circ]", 100, 0., Ebeam * 1.1, 50, 0, 45.);
+        new TH2D("reco_P_e_VS_theta_nFD_ECALveto_1e_cut", "reco P_{e} vs. reco #theta_{nFD} in 1e cut (ECALveto);P_{e} [GeV/c];#theta_{nFD} [#circ]", 100, 0., Ebeam * 1.1, 100, 0, 45.);
     HistoList.push_back(h_reco_P_e_VS_theta_nFD_ECALveto_1e_cut);
     TH2D* h_reco_theta_e_VS_theta_nFD_ECALveto_1e_cut =
-        new TH2D("reco_theta_e_VS_theta_nFD_ECALveto_1e_cut", "reco #theta_{e} vs. reco #theta_{nFD} in 1e cut (ECALveto);#theta_{e} [#circ];#theta_{nFD} [#circ]", 50, 0, 45., 50, 0, 45.);
+        new TH2D("reco_theta_e_VS_theta_nFD_ECALveto_1e_cut", "reco #theta_{e} vs. reco #theta_{nFD} in 1e cut (ECALveto);#theta_{e} [#circ];#theta_{nFD} [#circ]", 100, 0, 45., 100, 0, 45.);
     HistoList.push_back(h_reco_theta_e_VS_theta_nFD_ECALveto_1e_cut);
     TH2D* h_reco_phi_e_VS_theta_nFD_ECALveto_1e_cut =
-        new TH2D("reco_phi_e_VS_theta_nFD_ECALveto_1e_cut", "reco #phi_{e} vs. reco #theta_{nFD} in 1e cut (ECALveto);#phi_{e} [#circ];#theta_{nFD} [#circ]", 50, -180., 180., 50, 0, 45.);
+        new TH2D("reco_phi_e_VS_theta_nFD_ECALveto_1e_cut", "reco #phi_{e} vs. reco #theta_{nFD} in 1e cut (ECALveto);#phi_{e} [#circ];#theta_{nFD} [#circ]", 100, -180., 180., 100, 0, 45.);
     HistoList.push_back(h_reco_phi_e_VS_theta_nFD_ECALveto_1e_cut);
     TH2D* h_reco_P_e_VS_phi_nFD_ECALveto_1e_cut =
-        new TH2D("reco_P_e_VS_phi_nFD_ECALveto_1e_cut", "reco P_{e} vs. reco #phi_{nFD} in 1e cut (ECALveto);P_{e} [GeV/c];#phi_{nFD} [#circ]", 100, 0., Ebeam * 1.1, 50, -180., 180.);
+        new TH2D("reco_P_e_VS_phi_nFD_ECALveto_1e_cut", "reco P_{e} vs. reco #phi_{nFD} in 1e cut (ECALveto);P_{e} [GeV/c];#phi_{nFD} [#circ]", 100, 0., Ebeam * 1.1, 100, -180., 180.);
     HistoList.push_back(h_reco_P_e_VS_phi_nFD_ECALveto_1e_cut);
     TH2D* h_reco_theta_e_VS_phi_nFD_ECALveto_1e_cut =
-        new TH2D("reco_phi_e_VS_phi_nFD_ECALveto_1e_cut", "reco #theta_{e} vs. reco #phi_{nFD} in 1e cut (ECALveto);#theta_{e} [#circ];#phi_{nFD} [#circ]", 50, 0, 45., 50, -180., 180.);
+        new TH2D("reco_phi_e_VS_phi_nFD_ECALveto_1e_cut", "reco #theta_{e} vs. reco #phi_{nFD} in 1e cut (ECALveto);#theta_{e} [#circ];#phi_{nFD} [#circ]", 100, 0, 45., 100, -180., 180.);
     HistoList.push_back(h_reco_theta_e_VS_phi_nFD_ECALveto_1e_cut);
     TH2D* h_reco_phi_e_VS_phi_nFD_ECALveto_1e_cut =
-        new TH2D("reco_phi_e_VS_phi_nFD_ECALveto_1e_cut", "reco #phi_{e} vs. reco #phi_{nFD} in 1e cut (ECALveto);#phi_{e} [#circ];#phi_{nFD} [#circ]", 50, -180., 180., 50, -180., 180.);
+        new TH2D("reco_phi_e_VS_phi_nFD_ECALveto_1e_cut", "reco #phi_{e} vs. reco #phi_{nFD} in 1e cut (ECALveto);#phi_{e} [#circ];#phi_{nFD} [#circ]", 100, -180., 180., 100, -180., 180.);
     HistoList.push_back(h_reco_phi_e_VS_phi_nFD_ECALveto_1e_cut);
     TH2D* h_reco_theta_nFD_ECALveto_VS_P_nFD_ECALveto_1e_cut = new TH2D(
-        "reco_theta_nFD_ECALveto_VS_P_nFD_ECALveto_1e_cut", "reco #theta_{nFD} vs. reco P_{nFD} in 1e cut (ECALveto);#theta_{nFD} [circ];P_{nFD} [GeV/c]", 100, 0., 50., 100, 0., Ebeam * 3.);
+        "reco_theta_nFD_ECALveto_VS_P_nFD_ECALveto_1e_cut", "reco #theta_{nFD} vs. reco P_{nFD} in 1e cut (ECALveto);#theta_{nFD} [circ];P_{nFD} [GeV/c]", 100, 0., 100., 100, 0., Ebeam * 3.);
     HistoList.push_back(h_reco_theta_nFD_ECALveto_VS_P_nFD_ECALveto_1e_cut);
     TH1D* h_reco_nFD_multi_ECALveto_1e_cut = new TH1D("reco_nFD_multi_ECALveto_1e_cut", "reco nFD multiplicity in 1e cut (ECALveto);nFD multiplicity;Counts", 9, 1, 10);
     HistoList.push_back(h_reco_nFD_multi_ECALveto_1e_cut);
     TH2D* h_reco_nFD_multi_VS_recp_P_nFD_ECALveto_1e_cut =
-        new TH2D("reco_nFD_multi_VS_recp_P_nFD_ECALveto_1e_cut", "reco nFD multiplicity vs. P_{nFD} in 1e cut (ECALveto);P_{nFD} [GeV/c];nFD multiplicity", 50, 0., Ebeam * 3., 9, 1, 10);
+        new TH2D("reco_nFD_multi_VS_recp_P_nFD_ECALveto_1e_cut", "reco nFD multiplicity vs. P_{nFD} in 1e cut (ECALveto);P_{nFD} [GeV/c];nFD multiplicity", 100, 0., Ebeam * 3., 9, 1, 10);
     HistoList.push_back(h_reco_nFD_multi_VS_recp_P_nFD_ECALveto_1e_cut);
 #pragma endregion
 
@@ -361,36 +361,36 @@ void nFD_eff_test() {
         new TH2D("reco_P_e_VS_P_nFD_matched_1e_cut", "reco P_{e} vs. reco P_{nFD} in 1e cut (matched);P_{e} [GeV/c];P_{nFD} [GeV/c]", 100, 0., Ebeam * 2., 100, 0., Ebeam * 3.);
     HistoList.push_back(h_reco_P_e_VS_P_nFD_matched_1e_cut);
     TH2D* h_reco_theta_e_VS_P_nFD_matched_1e_cut =
-        new TH2D("reco_theta_e_VS_P_nFD_matched_1e_cut", "reco #theta_{e} vs. reco P_{nFD} in 1e cut (matched);#theta_{e} [#circ];P_{nFD} [GeV/c]", 50, 0, 45., 100, 0., Ebeam * 3.);
+        new TH2D("reco_theta_e_VS_P_nFD_matched_1e_cut", "reco #theta_{e} vs. reco P_{nFD} in 1e cut (matched);#theta_{e} [#circ];P_{nFD} [GeV/c]", 100, 0, 45., 100, 0., Ebeam * 3.);
     HistoList.push_back(h_reco_theta_e_VS_P_nFD_matched_1e_cut);
     TH2D* h_reco_phi_e_VS_P_nFD_matched_1e_cut =
-        new TH2D("reco_phi_e_VS_P_nFD_matched_1e_cut", "reco #phi_{e} vs. reco P_{nFD} in 1e cut (matched);#phi_{e} [#circ];P_{nFD} [GeV/c]", 50, -180., 180., 100, 0., Ebeam * 3.);
+        new TH2D("reco_phi_e_VS_P_nFD_matched_1e_cut", "reco #phi_{e} vs. reco P_{nFD} in 1e cut (matched);#phi_{e} [#circ];P_{nFD} [GeV/c]", 100, -180., 180., 100, 0., Ebeam * 3.);
     HistoList.push_back(h_reco_phi_e_VS_P_nFD_matched_1e_cut);
     TH2D* h_reco_P_e_VS_theta_nFD_matched_1e_cut =
-        new TH2D("reco_P_e_VS_theta_nFD_matched_1e_cut", "reco P_{e} vs. reco #theta_{nFD} in 1e cut (matched);P_{e} [GeV/c];#theta_{nFD} [#circ]", 100, 0., Ebeam * 1.1, 50, 0, 45.);
+        new TH2D("reco_P_e_VS_theta_nFD_matched_1e_cut", "reco P_{e} vs. reco #theta_{nFD} in 1e cut (matched);P_{e} [GeV/c];#theta_{nFD} [#circ]", 100, 0., Ebeam * 1.1, 100, 0, 45.);
     HistoList.push_back(h_reco_P_e_VS_theta_nFD_matched_1e_cut);
     TH2D* h_reco_theta_e_VS_theta_nFD_matched_1e_cut =
-        new TH2D("reco_theta_e_VS_theta_nFD_matched_1e_cut", "reco #theta_{e} vs. reco #theta_{nFD} in 1e cut (matched);#theta_{e} [#circ];#theta_{nFD} [#circ]", 50, 0, 45., 50, 0, 45.);
+        new TH2D("reco_theta_e_VS_theta_nFD_matched_1e_cut", "reco #theta_{e} vs. reco #theta_{nFD} in 1e cut (matched);#theta_{e} [#circ];#theta_{nFD} [#circ]", 100, 0, 45., 100, 0, 45.);
     HistoList.push_back(h_reco_theta_e_VS_theta_nFD_matched_1e_cut);
     TH2D* h_reco_phi_e_VS_theta_nFD_matched_1e_cut =
-        new TH2D("reco_phi_e_VS_theta_nFD_matched_1e_cut", "reco #phi_{e} vs. reco #theta_{nFD} in 1e cut (matched);#phi_{e} [#circ];#theta_{nFD} [#circ]", 50, -180., 180., 50, 0, 45.);
+        new TH2D("reco_phi_e_VS_theta_nFD_matched_1e_cut", "reco #phi_{e} vs. reco #theta_{nFD} in 1e cut (matched);#phi_{e} [#circ];#theta_{nFD} [#circ]", 100, -180., 180., 100, 0, 45.);
     HistoList.push_back(h_reco_phi_e_VS_theta_nFD_matched_1e_cut);
     TH2D* h_reco_P_e_VS_phi_nFD_matched_1e_cut =
-        new TH2D("reco_P_e_VS_phi_nFD_matched_1e_cut", "reco P_{e} vs. reco #phi_{nFD} in 1e cut (matched);P_{e} [GeV/c];#phi_{nFD} [#circ]", 100, 0., Ebeam * 1.1, 50, -180., 180.);
+        new TH2D("reco_P_e_VS_phi_nFD_matched_1e_cut", "reco P_{e} vs. reco #phi_{nFD} in 1e cut (matched);P_{e} [GeV/c];#phi_{nFD} [#circ]", 100, 0., Ebeam * 1.1, 100, -180., 180.);
     HistoList.push_back(h_reco_P_e_VS_phi_nFD_matched_1e_cut);
     TH2D* h_reco_theta_e_VS_phi_nFD_matched_1e_cut =
-        new TH2D("reco_phi_e_VS_phi_nFD_matched_1e_cut", "reco #theta_{e} vs. reco #phi_{nFD} in 1e cut (matched);#theta_{e} [#circ];#phi_{nFD} [#circ]", 50, 0, 45., 50, -180., 180.);
+        new TH2D("reco_phi_e_VS_phi_nFD_matched_1e_cut", "reco #theta_{e} vs. reco #phi_{nFD} in 1e cut (matched);#theta_{e} [#circ];#phi_{nFD} [#circ]", 100, 0, 45., 100, -180., 180.);
     HistoList.push_back(h_reco_theta_e_VS_phi_nFD_matched_1e_cut);
     TH2D* h_reco_phi_e_VS_phi_nFD_matched_1e_cut =
-        new TH2D("reco_phi_e_VS_phi_nFD_matched_1e_cut", "reco #phi_{e} vs. reco #phi_{nFD} in 1e cut (matched);#phi_{e} [#circ];#phi_{nFD} [#circ]", 50, -180., 180., 50, -180., 180.);
+        new TH2D("reco_phi_e_VS_phi_nFD_matched_1e_cut", "reco #phi_{e} vs. reco #phi_{nFD} in 1e cut (matched);#phi_{e} [#circ];#phi_{nFD} [#circ]", 100, -180., 180., 100, -180., 180.);
     HistoList.push_back(h_reco_phi_e_VS_phi_nFD_matched_1e_cut);
     TH2D* h_reco_theta_nFD_matched_VS_P_nFD_matched_1e_cut = new TH2D(
-        "reco_theta_nFD_matched_VS_P_nFD_matched_1e_cut", "reco #theta_{nFD} vs. reco P_{nFD} in 1e cut (matched);#theta_{nFD} [circ];P_{nFD} [GeV/c]", 100, 0., 50., 100, 0., Ebeam * 3.);
+        "reco_theta_nFD_matched_VS_P_nFD_matched_1e_cut", "reco #theta_{nFD} vs. reco P_{nFD} in 1e cut (matched);#theta_{nFD} [circ];P_{nFD} [GeV/c]", 100, 0., 100., 100, 0., Ebeam * 3.);
     HistoList.push_back(h_reco_theta_nFD_matched_VS_P_nFD_matched_1e_cut);
     TH1D* h_reco_nFD_multi_matched_1e_cut = new TH1D("reco_nFD_multi_matched_1e_cut", "reco nFD multiplicity in 1e cut (matched);nFD multiplicity;Counts", 9, 1, 10);
     HistoList.push_back(h_reco_nFD_multi_matched_1e_cut);
     TH2D* h_reco_nFD_multi_VS_recp_P_nFD_matched_1e_cut =
-        new TH2D("reco_nFD_multi_VS_recp_P_nFD_matched_1e_cut", "reco nFD multiplicity vs. P_{nFD} in 1e cut (matched);P_{nFD} [GeV/c];nFD multiplicity", 50, 0., Ebeam * 3., 9, 1, 10);
+        new TH2D("reco_nFD_multi_VS_recp_P_nFD_matched_1e_cut", "reco nFD multiplicity vs. P_{nFD} in 1e cut (matched);P_{nFD} [GeV/c];nFD multiplicity", 100, 0., Ebeam * 3., 9, 1, 10);
     HistoList.push_back(h_reco_nFD_multi_VS_recp_P_nFD_matched_1e_cut);
 #pragma endregion
 
