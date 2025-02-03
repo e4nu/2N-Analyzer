@@ -638,6 +638,7 @@ void nFD_eff_test() {
                 bool ParticleInPCAL = (allParticles[i]->cal(clas12::PCAL)->getDetector() == 7);    // PCAL hit
                 bool ParticleInECIN = (allParticles[i]->cal(clas12::ECIN)->getDetector() == 7);    // ECIN hit
                 bool ParticleInECOUT = (allParticles[i]->cal(clas12::ECOUT)->getDetector() == 7);  // ECOUT hit
+                auto Neutron_ECAL_detlayer = ParticleInECIN ? clas12::ECIN : clas12::ECOUT;        // find first layer of hit
 
                 if ((pid_temp == 2112) || (pid_temp == 22)) {
                     if (ParticleInPCAL) {
@@ -680,20 +681,22 @@ void nFD_eff_test() {
                 //  && !(ToF_temp < 0 || ToF_temp > 40.)
             ) {
                 double Momentum = CalcPnFD(allParticles[i]);
-                bool PassMomth = (Momentum >= 0.4);
                 // If particle is neutral and in the FD
                 bool ParticleInPCAL = (allParticles[i]->cal(clas12::PCAL)->getDetector() == 7);    // PCAL hit
                 bool ParticleInECIN = (allParticles[i]->cal(clas12::ECIN)->getDetector() == 7);    // ECIN hit
                 bool ParticleInECOUT = (allParticles[i]->cal(clas12::ECOUT)->getDetector() == 7);  // ECOUT hit
+                auto Neutron_ECAL_detlayer = ParticleInECIN ? clas12::ECIN : clas12::ECOUT;        // find first layer of hit
 
                 if ((pid_temp == 2112) || (pid_temp == 22)) {
                     if (ParticleInPCAL) {
                         if (pid_temp == 22) { photons_FD_redef.push_back(allParticles[i]); }
                     } else if (!ParticleInPCAL) {  // if there is a neutron or a 'photon' without a PCAL hit
                         if (ParticleInECIN || ParticleInECOUT) {
+                            bool PassMomth = (Momentum >= 0.4);
+                            bool passECALeadgeCuts = (allParticles[i]->cal(Neutron_ECAL_detlayer)->getLv() > 14. && allParticles[i]->cal(Neutron_ECAL_detlayer)->getLw() > 14.);
                             bool passVeto = NeutronECAL_Cut_Veto(allParticles, electrons, Ebeam, i, 100);
 
-                            if (passVeto && PassMomth) { neutrons_FD_ECALveto.push_back(allParticles[i]); }  // end of clas12root neutron or 'photon' if
+                            if (PassMomth && passECALeadgeCuts && passVeto) { neutrons_FD_ECALveto.push_back(allParticles[i]); }  // end of clas12root neutron or 'photon' if
                         }
                     }
                 }  // end of clas12root neutron or 'photon' if
@@ -748,6 +751,7 @@ void nFD_eff_test() {
                 bool ParticleInPCAL = (allParticles[i]->cal(clas12::PCAL)->getDetector() == 7);    // PCAL hit
                 bool ParticleInECIN = (allParticles[i]->cal(clas12::ECIN)->getDetector() == 7);    // ECIN hit
                 bool ParticleInECOUT = (allParticles[i]->cal(clas12::ECOUT)->getDetector() == 7);  // ECOUT hit
+                auto Neutron_ECAL_detlayer = ParticleInECIN ? clas12::ECIN : clas12::ECOUT;        // find first layer of hit
 
                 if ((pid_temp == 2112) || (pid_temp == 22)) {
                     if (ParticleInPCAL) {
@@ -755,11 +759,12 @@ void nFD_eff_test() {
                     } else if (!ParticleInPCAL) {  // if there is a neutron or a 'photon' without a PCAL hit
                         if (ParticleInECIN || ParticleInECOUT) {
                             double Momentum = CalcPnFD(allParticles[i]);
-                            bool PassMomth = (Momentum >= 0.4);
 
+                            bool PassMomth = (Momentum >= 0.4);
+                            bool passECALeadgeCuts = (allParticles[i]->cal(Neutron_ECAL_detlayer)->getLv() > 14. && allParticles[i]->cal(Neutron_ECAL_detlayer)->getLw() > 14.);
                             bool passVeto = NeutronECAL_Cut_Veto(allParticles, electrons, Ebeam, i, 100);
 
-                            if (passVeto && PassMomth) {
+                            if (PassMomth && passECALeadgeCuts && passVeto) {
                                 for (int j = 0; j < truth_NeutronsFD.size(); j++) {
                                     mcpbank->setEntry(truth_NeutronsFD.at(j));
 
