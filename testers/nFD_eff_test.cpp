@@ -909,9 +909,9 @@ void nFD_eff_test() {
             HistoList[i]->Draw();
         } else if (HistoList[i]->InheritsFrom("TH2D")) {
             if (findSubstring(HistoList[i]->GetTitle(), "#Delta#theta_{nFD,e} vs. #Delta#phi_{nFD,e} in 1e cut")) {
-                myCanvas->cd()->SetRightMargin(0.2);
+                gPad->SetRightMargin(0.25);
             } else {
-                myCanvas->cd()->SetRightMargin(0.05);
+                gPad->SetRightMargin(0.05);
             }
 
             HistoList[i]->Draw("colz");
