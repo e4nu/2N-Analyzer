@@ -691,12 +691,12 @@ void nFD_eff_test() {
                 if ((pid_temp == 2112)) {
                     if (!ParticleInPCAL) {  // if there is a neutron or a 'photon' without a PCAL hit
                         if (ParticleInECIN || ParticleInECOUT) {
-                            // bool PassMomth = (Momentum >= 0.4);
+                            bool PassMomth = (Momentum >= 0.4);
                             bool passECALeadgeCuts = (allParticles[i]->cal(Neutron_ECAL_detlayer)->getLv() > 14. && allParticles[i]->cal(Neutron_ECAL_detlayer)->getLw() > 14.);
                             bool passVeto = NeutronECAL_Cut_Veto(allParticles, electrons, Ebeam, i, 100);
 
-                            if (passECALeadgeCuts && passVeto) { neutrons_FD_ECALveto.push_back(allParticles[i]); }  // end of clas12root neutron or 'photon' if
-                            // if (PassMomth && passECALeadgeCuts && passVeto) { neutrons_FD_ECALveto.push_back(allParticles[i]); }  // end of clas12root neutron or 'photon' if
+                            // if (passECALeadgeCuts && passVeto) { neutrons_FD_ECALveto.push_back(allParticles[i]); }  // end of clas12root neutron or 'photon' if
+                            if (PassMomth && passECALeadgeCuts && passVeto) { neutrons_FD_ECALveto.push_back(allParticles[i]); }  // end of clas12root neutron or 'photon' if
                         }
                     }
                 }  // end of clas12root neutron or 'photon' if
