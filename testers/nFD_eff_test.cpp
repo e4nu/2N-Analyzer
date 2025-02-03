@@ -32,16 +32,16 @@ double CalcPnFD(region_part_ptr NeutronFD) {
 
     double Momentum;
 
-    if (ParticlePDG == 2112) {
-        Momentum = NeutronFD->par()->getP();
-    } else if (ParticlePDG == 22) {
-        double Beta_ph = NeutronFD->par()->getBeta();
-        double Gamma_ph = 1 / sqrt(1 - (Beta_ph * Beta_ph));
-        Momentum = m_n * Beta_ph * Gamma_ph;
-    } else {
-        cout << "\n\nError! Particle PDG is not 22 or 2112! Aborting...\n\n", exit(0);
-    }
-
+    // if (ParticlePDG == 2112) {
+    //     Momentum = NeutronFD->par()->getP();
+    // } else if (ParticlePDG == 22) {
+    //     double Beta_ph = NeutronFD->par()->getBeta();
+    //     double Gamma_ph = 1 / sqrt(1 - (Beta_ph * Beta_ph));
+    //     Momentum = m_n * Beta_ph * Gamma_ph;
+    // } else {
+    //     cout << "\n\nError! Particle PDG is not 22 or 2112! Aborting...\n\n", exit(0);
+    // }
+    Momentum = NeutronFD->par()->getP();
     return Momentum;
 }
 
@@ -360,7 +360,7 @@ void nFD_eff_test() {
     HistoList.push_back(h_reco_nFD_multi_VS_recp_P_nFD_ECALveto_1e_cut);
 
     TH1D* h_reco_theta_nFD_minus_reco_theta_e_ECALveto_1e_cut = new TH1D(
-        "reco_theta_nFD_minus_reco_theta_e_ECALveto_1e_cut", "reco #Delta#theta_{nFD,e} in 1e cut (ECALveto);#Delta#theta_{nFD,e} = #theta_{nFD} - #theta_{e} [#circ];Counts", 50, -20., 10.);
+        "reco_theta_nFD_minus_reco_theta_e_ECALveto_1e_cut", "reco #Delta#theta_{nFD,e} in 1e cut (ECALveto);#Delta#theta_{nFD,e} = #theta_{nFD} - #theta_{e} [#circ];Counts", 50, -25., 10.);
     HistoList.push_back(h_reco_theta_nFD_minus_reco_theta_e_ECALveto_1e_cut);
     TH1D* h_reco_phi_nFD_minus_reco_phi_e_ECALveto_1e_cut = new TH1D(
         "reco_phi_nFD_minus_reco_phi_e_ECALveto_1e_cut", "reco #Delta#phi_{nFD,e} in 1e cut (ECALveto);#Delta#phi_{nFD,e} = |#phi_{nFD} - #phi_{e}| [#circ];Counts", 50, -180., 180.);
@@ -368,7 +368,7 @@ void nFD_eff_test() {
     TH2D* h_reco_theta_nFD_minus_reco_theta_e_VS_reco_phi_nFD_minus_reco_phi_e_ECALveto_1e_cut = new TH2D(
         "reco_theta_nFD_minus_reco_theta_e_VS_reco_phi_nFD_minus_reco_phi_e_ECALveto_1e_cut",
         "#Delta#theta_{nFD,e} vs. #Delta#phi_{nFD,e} in 1e cut (ECALveto);#Delta#phi_{nFD,e} = |#phi_{nFD} - #phi_{e}| [#circ];#Delta#theta_{nFD,e} = #theta_{nFD} - #theta_{e} [#circ]", 100,
-        -180., 180., 100, -20., 10.);
+        -180., 180., 100, -25., 10.);
     HistoList.push_back(h_reco_theta_nFD_minus_reco_theta_e_VS_reco_phi_nFD_minus_reco_phi_e_ECALveto_1e_cut);
 
 #pragma endregion
@@ -435,7 +435,7 @@ void nFD_eff_test() {
     HistoList.push_back(h_reco_nFD_multi_VS_recp_P_nFD_matched_1e_cut);
 
     TH1D* h_reco_theta_nFD_minus_reco_theta_e_matched_1e_cut = new TH1D(
-        "reco_theta_nFD_minus_reco_theta_e_matched_1e_cut", "reco #Delta#theta_{nFD,e} in 1e cut (matched);#Delta#theta_{nFD,e} = #theta_{nFD} - #theta_{e} [#circ];Counts", 50, -20., 10.);
+        "reco_theta_nFD_minus_reco_theta_e_matched_1e_cut", "reco #Delta#theta_{nFD,e} in 1e cut (matched);#Delta#theta_{nFD,e} = #theta_{nFD} - #theta_{e} [#circ];Counts", 50, -25., 10.);
     HistoList.push_back(h_reco_theta_nFD_minus_reco_theta_e_matched_1e_cut);
     TH1D* h_reco_phi_nFD_minus_reco_phi_e_matched_1e_cut =
         new TH1D("reco_phi_nFD_minus_reco_phi_e_matched_1e_cut", "reco #Delta#phi_{nFD,e} in 1e cut (matched);#Delta#phi_{nFD,e} = |#phi_{nFD} - #phi_{e}| [#circ];Counts", 50, -180., 180.);
@@ -443,7 +443,7 @@ void nFD_eff_test() {
     TH2D* h_reco_theta_nFD_minus_reco_theta_e_VS_reco_phi_nFD_minus_reco_phi_e_matched_1e_cut = new TH2D(
         "reco_theta_nFD_minus_reco_theta_e_VS_reco_phi_nFD_minus_reco_phi_e_matched_1e_cut",
         "#Delta#theta_{nFD,e} vs. #Delta#phi_{nFD,e} in 1e cut (matched);#Delta#phi_{nFD,e} = |#phi_{nFD} - #phi_{e}| [#circ];#Delta#theta_{nFD,e} = #theta_{nFD} - #theta_{e} [#circ]", 100,
-        -180., 180., 100, -20., 10.);
+        -180., 180., 100, -25., 10.);
     HistoList.push_back(h_reco_theta_nFD_minus_reco_theta_e_VS_reco_phi_nFD_minus_reco_phi_e_matched_1e_cut);
 
 #pragma endregion
