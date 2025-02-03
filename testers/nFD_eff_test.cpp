@@ -28,9 +28,19 @@ using namespace std;
 using namespace clas12;
 
 double CalcPnFD(region_part_ptr NeutronFD) {
-    double Beta_ph = NeutronFD->par()->getBeta();
-    double Gamma_ph = 1 / sqrt(1 - (Beta_ph * Beta_ph));
-    double Momentum = m_n * Beta_ph * Gamma_ph;
+    int ParticlePDG = Neutron->par()->getPid();
+
+    double Momentum;
+
+    if (ParticlePDG == 2112) {
+        Momentum = Neutron->par()->getP();
+    } else if (ParticlePDG == 22) {
+        double Beta_ph = NeutronFD->par()->getBeta();
+        double Gamma_ph = 1 / sqrt(1 - (Beta_ph * Beta_ph));
+        Momentum = m_n * Beta_ph * Gamma_ph;
+    } else {
+        cout << "\n\nError! Particle PDG is not 22 or 2112! Aborting...\n\n", exit(0);
+    }
 
     return Momentum;
 }
@@ -137,6 +147,7 @@ void nFD_eff_test() {
     auto config_c12 = chain.GetC12Reader();
     const std::unique_ptr<clas12::clas12reader>& c12 = chain.C12ref();
 
+#pragma region /* Prepare histograms */
     /////////////////////////////////////
     // Prepare histograms
     /////////////////////////////////////
@@ -154,6 +165,7 @@ void nFD_eff_test() {
     char temp_name[100];
     char temp_title[100];
 
+#pragma region /* RAW */
     TH1D* h_reco_P_e_1e_cut = new TH1D("reco_P_e_1e_cut", "reco P_{e} in 1e cut;P_{e} [GeV/c];Counts", 50, 0, Ebeam * 1.1);
     HistoList.push_back(h_reco_P_e_1e_cut);
     TH1D* h_truth_P_e_1e_cut = new TH1D("truth_P_e_1e_cut", "truth P_{e} in 1e cut;P_{e} [GeV/c];Counts", 50, 0, Ebeam * 1.1);
@@ -191,7 +203,9 @@ void nFD_eff_test() {
     TH2D* h_truth_theta_n_VS_truth_phi_n_1e_cut =
         new TH2D("truth_theta_n_VS_truth_phi_n_1e_cut", "truth #theta_{n} vs. truth #phi_{n} in 1e cut;#phi_{n} [#circ];#theta_{n} [#circ]", 100, -180., 180., 100, 0, 50.);
     HistoList.push_back(h_truth_theta_n_VS_truth_phi_n_1e_cut);
+#pragma endregion
 
+#pragma region /* clas12reco */
     HistSubjects.push_back("clas12reco");
     HistSubjects2.push_back("#splitline{FD neutron from}{clas12reco}");
     FirstPrint.push_back(true);
@@ -221,7 +235,9 @@ void nFD_eff_test() {
     TH2D* h_reco_theta_nFD_clas12_VS_P_nFD_clas12_1e_cut = new TH2D(
         "reco_theta_nFD_clas12_VS_P_nFD_clas12_1e_cut", "reco #theta_{nFD} vs. reco P_{nFD} in 1e cut (clas12reco);#theta_{nFD} [circ];P_{nFD} [GeV/c]", 100, 0., 50., 100, 0., Ebeam * 3.);
     HistoList.push_back(h_reco_theta_nFD_clas12_VS_P_nFD_clas12_1e_cut);
+#pragma endregion
 
+#pragma region /* redef */
     HistSubjects.push_back("redef");
     HistSubjects2.push_back("redef");
     FirstPrint.push_back(true);
@@ -251,7 +267,9 @@ void nFD_eff_test() {
     TH2D* h_reco_theta_nFD_redef_VS_P_nFD_redef_1e_cut =
         new TH2D("reco_theta_nFD_redef_VS_P_nFD_redef_1e_cut", "reco #theta_{nFD} vs. reco P_{nFD} in 1e cut (redef);#theta_{nFD} [circ];P_{nFD} [GeV/c]", 100, 0., 50., 100, 0., Ebeam * 3.);
     HistoList.push_back(h_reco_theta_nFD_redef_VS_P_nFD_redef_1e_cut);
+#pragma endregion
 
+#pragma region
     HistSubjects.push_back("ECALveto");
     HistSubjects2.push_back("#splitline{ECALveto}{and P_{nFD} thresholds}");
     FirstPrint.push_back(true);
@@ -292,7 +310,9 @@ void nFD_eff_test() {
     TH2D* h_reco_nFD_multi_VS_recp_P_nFD_ECALveto_1e_cut =
         new TH2D("reco_nFD_multi_VS_recp_P_nFD_ECALveto_1e_cut", "reco nFD multiplicity vs. P_{nFD} in 1e cut (ECALveto);P_{nFD} [GeV/c];nFD multiplicity", 50, 0., Ebeam * 3., 9, 1, 10);
     HistoList.push_back(h_reco_nFD_multi_VS_recp_P_nFD_ECALveto_1e_cut);
+#pragma endregion
 
+#pragma region /* matched */
     HistSubjects.push_back("matched");
     HistSubjects2.push_back("matched");
     FirstPrint.push_back(true);
@@ -333,6 +353,9 @@ void nFD_eff_test() {
     TH2D* h_reco_nFD_multi_VS_recp_P_nFD_matched_1e_cut =
         new TH2D("reco_nFD_multi_VS_recp_P_nFD_matched_1e_cut", "reco nFD multiplicity vs. P_{nFD} in 1e cut (matched);P_{nFD} [GeV/c];nFD multiplicity", 50, 0., Ebeam * 3., 9, 1, 10);
     HistoList.push_back(h_reco_nFD_multi_VS_recp_P_nFD_matched_1e_cut);
+#pragma endregion
+
+#pragma endregion
 
     int counter = 0;
 
@@ -374,6 +397,7 @@ void nFD_eff_test() {
         //  1e cut (truth)
         //  =======================================================================================================================================================================
 
+#pragma region /* 1e cut (truth) */
         auto c12 = chain.GetC12Reader();
         auto mceve = c12->mcevent();
         auto mcpbank = c12->mcparts();
@@ -432,13 +456,17 @@ void nFD_eff_test() {
                 }
             }
         }
+#pragma endregion
 
         //  =======================================================================================================================================================================
         //  1e cut (reco)
         //  =======================================================================================================================================================================
 
+#pragma region /* 1e cut (reco) */
+
         //  Electron PID cuts -----------------------------------------------------------------------------------------------------------------------------------------------------
 
+#pragma region /* Electron PID cuts */
         if (electrons[0]->che(clas12::HTCC)->getNphe() <= 2) { continue; }
         if (EoP_e < 0.2 || EoP_e > 0.28) { continue; }
         if (electrons[0]->cal(clas12::PCAL)->getLv() < 14. || electrons[0]->cal(clas12::PCAL)->getLw() < 14.) { continue; }
@@ -448,9 +476,11 @@ void nFD_eff_test() {
         h_reco_theta_e_1e_cut->Fill(reco_P_e.Theta() * 180 / M_PI, weight);
         h_reco_phi_e_1e_cut->Fill(reco_P_e.Phi() * 180 / M_PI, weight);
         h_reco_theta_e_VS_reco_phi_e_1e_cut->Fill(reco_P_e.Phi() * 180 / M_PI, reco_P_e.Theta() * 180 / M_PI, weight);
+#pragma endregion
 
         //  Setting up neutrals ---------------------------------------------------------------------------------------------------------------------------------------------------
 
+#pragma region /* Setting up neutrals (RAW) */
         vector<region_part_ptr> neutrons;
         vector<region_part_ptr> photons;
 
@@ -470,9 +500,11 @@ void nFD_eff_test() {
             h_reco_phi_n_1e_cut->Fill(reco_P_n.Phi() * 180 / M_PI, weight);
             h_reco_theta_n_VS_reco_phi_n_1e_cut->Fill(reco_P_n.Phi() * 180 / M_PI, reco_P_n.Theta() * 180 / M_PI, weight);
         }
+#pragma endregion
 
         //  Setting up FD neutrals (clas12reco) -----------------------------------------------------------------------------------------------------------------------------------
 
+#pragma region /* Setting up FD neutrals (clas12reco) */
         vector<region_part_ptr> neutrons_FD_clas12;
         vector<region_part_ptr> photons_FD_clas12;
 
@@ -494,9 +526,11 @@ void nFD_eff_test() {
             h_reco_P_e_VS_P_nFD_clas12_1e_cut->Fill(reco_P_e.Mag(), reco_P_nFD.Mag(), weight);
             h_reco_theta_nFD_clas12_VS_P_nFD_clas12_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI, reco_P_nFD.Mag(), weight);
         }
+#pragma endregion
 
         //  Setting up FD neutrals (redef) ----------------------------------------------------------------------------------------------------------------------------------------
 
+#pragma region /* Setting up FD neutrals (redef) */
         vector<region_part_ptr> neutrons_FD_redef;
         vector<region_part_ptr> photons_FD_redef;
 
@@ -538,9 +572,11 @@ void nFD_eff_test() {
             h_reco_P_e_VS_P_nFD_redef_1e_cut->Fill(reco_P_e.Mag(), reco_P_nFD.Mag(), weight);
             h_reco_theta_nFD_redef_VS_P_nFD_redef_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI, reco_P_nFD.Mag(), weight);
         }
+#pragma endregion
 
         //  Setting up FD neutrals (ECALveto) ----------------------------------------------------------------------------------------------------------------------------------------
 
+#pragma region /* Setting up FD neutrals (ECALveto) */
         vector<region_part_ptr> neutrons_FD_ECALveto;
 
         for (int i = 0; i < allParticles.size(); i++) {
@@ -589,9 +625,11 @@ void nFD_eff_test() {
         }
 
         h_reco_nFD_multi_ECALveto_1e_cut->Fill(neutrons_FD_ECALveto.size(), weight);
+#pragma endregion
 
         //  Setting up FD neutrals (matched) -----------------------------------------------------------------------------------------------------------------------------------------
 
+#pragma region /* Setting up FD neutrals (matched) */
         vector<region_part_ptr> neutrons_FD_matched;
 
         double tl_Beta;
@@ -668,6 +706,9 @@ void nFD_eff_test() {
         }
 
         h_reco_nFD_multi_matched_1e_cut->Fill(neutrons_FD_ECALveto.size(), weight);
+#pragma endregion
+
+#pragma endregion
     }
 
     /////////////////////////////////////////////////////
