@@ -359,7 +359,7 @@ void nFD_eff_test() {
     HistoList.push_back(h_reco_nFD_multi_VS_recp_P_nFD_ECALveto_1e_cut);
 
     TH1D* h_reco_theta_nFD_minus_reco_theta_e_ECALveto_1e_cut = new TH1D(
-        "reco_theta_nFD_minus_reco_theta_e_ECALveto_1e_cut", "reco #Delta#theta_{nFD,e} in 1e cut (ECALveto);#Delta#theta_{nFD,e} = #theta_{nFD} - #theta_{e} [#circ];Counts", 50, -10., 20.);
+        "reco_theta_nFD_minus_reco_theta_e_ECALveto_1e_cut", "reco #Delta#theta_{nFD,e} in 1e cut (ECALveto);#Delta#theta_{nFD,e} = #theta_{nFD} - #theta_{e} [#circ];Counts", 50, -20., 10.);
     HistoList.push_back(h_reco_theta_nFD_minus_reco_theta_e_ECALveto_1e_cut);
     TH1D* h_reco_phi_nFD_minus_reco_phi_e_ECALveto_1e_cut = new TH1D(
         "reco_phi_nFD_minus_reco_phi_e_ECALveto_1e_cut", "reco #Delta#phi_{nFD,e} in 1e cut (ECALveto);#Delta#phi_{nFD,e} = |#phi_{nFD} - #phi_{e}| [#circ];Counts", 50, -180., 180.);
@@ -434,7 +434,7 @@ void nFD_eff_test() {
     HistoList.push_back(h_reco_nFD_multi_VS_recp_P_nFD_matched_1e_cut);
 
     TH1D* h_reco_theta_nFD_minus_reco_theta_e_matched_1e_cut = new TH1D(
-        "reco_theta_nFD_minus_reco_theta_e_matched_1e_cut", "reco #Delta#theta_{nFD,e} in 1e cut (matched);#Delta#theta_{nFD,e} = #theta_{nFD} - #theta_{e} [#circ];Counts", 50, -10., 20.);
+        "reco_theta_nFD_minus_reco_theta_e_matched_1e_cut", "reco #Delta#theta_{nFD,e} in 1e cut (matched);#Delta#theta_{nFD,e} = #theta_{nFD} - #theta_{e} [#circ];Counts", 50, -20., 10.);
     HistoList.push_back(h_reco_theta_nFD_minus_reco_theta_e_matched_1e_cut);
     TH1D* h_reco_phi_nFD_minus_reco_phi_e_matched_1e_cut =
         new TH1D("reco_phi_nFD_minus_reco_phi_e_matched_1e_cut", "reco #Delta#phi_{nFD,e} in 1e cut (matched);#Delta#phi_{nFD,e} = |#phi_{nFD} - #phi_{e}| [#circ];Counts", 50, -180., 180.);
