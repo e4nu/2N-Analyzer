@@ -28,12 +28,12 @@ using namespace std;
 using namespace clas12;
 
 double CalcPnFD(region_part_ptr NeutronFD) {
-    int ParticlePDG = Neutron->par()->getPid();
+    int ParticlePDG = NeutronFD->par()->getPid();
 
     double Momentum;
 
     if (ParticlePDG == 2112) {
-        Momentum = Neutron->par()->getP();
+        Momentum = NeutronFD->par()->getP();
     } else if (ParticlePDG == 22) {
         double Beta_ph = NeutronFD->par()->getBeta();
         double Gamma_ph = 1 / sqrt(1 - (Beta_ph * Beta_ph));
