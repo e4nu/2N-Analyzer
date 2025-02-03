@@ -688,7 +688,7 @@ void nFD_eff_test() {
                 bool ParticleInECOUT = (allParticles[i]->cal(clas12::ECOUT)->getDetector() == 7);  // ECOUT hit
                 auto Neutron_ECAL_detlayer = ParticleInECIN ? clas12::ECIN : clas12::ECOUT;        // find first layer of hit
 
-                if ((pid_temp == 2112)) {
+                if (pid_temp == 2112) {
                     if (!ParticleInPCAL) {  // if there is a neutron or a 'photon' without a PCAL hit
                         if (ParticleInECIN || ParticleInECOUT) {
                             bool PassMomth = (Momentum >= 0.4);
