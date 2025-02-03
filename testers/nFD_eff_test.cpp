@@ -158,8 +158,8 @@ void nFD_eff_test() {
 
     double Ebeam = 4.02962;
 
-    int Limiter = 1000000;
-    // int Limiter = 100000;
+    // int Limiter = 1000000;
+    int Limiter = 100000;
 
     const string OutputDir = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/nFD_eff_test";
     system(("rm -rf " + OutputDir).c_str());
@@ -704,18 +704,6 @@ void nFD_eff_test() {
                 bool ParticleInECOUT = (allParticles[i]->cal(clas12::ECOUT)->getDetector() == 7);  // ECOUT hit
                 auto Neutron_ECAL_detlayer = ParticleInECIN ? clas12::ECIN : clas12::ECOUT;        // find first layer of hit
 
-                // if (pid_temp == 2112) {
-                //     if (!ParticleInPCAL) {  // if there is a neutron or a 'photon' without a PCAL hit
-                //         if (ParticleInECIN || ParticleInECOUT) {
-                //             bool PassMomth = (Momentum >= 0.4);
-                //             bool passECALeadgeCuts = (allParticles[i]->cal(Neutron_ECAL_detlayer)->getLv() > 14. && allParticles[i]->cal(Neutron_ECAL_detlayer)->getLw() > 14.);
-                //             bool passVeto = NeutronECAL_Cut_Veto(allParticles, electrons, Ebeam, i, 100);
-
-                //             // if (passECALeadgeCuts && passVeto) { neutrons_FD_ECALveto.push_back(allParticles[i]); }  // end of clas12root neutron or 'photon' if
-                //             if (PassMomth && passECALeadgeCuts && passVeto) { neutrons_FD_ECALveto.push_back(allParticles[i]); }  // end of clas12root neutron or 'photon' if
-                //         }
-                //     }
-                // }  // end of clas12root neutron or 'photon' if
                 if ((pid_temp == 2112) || (pid_temp == 22)) {
                     if (ParticleInPCAL) {
                         if (pid_temp == 22) { photons_FD_redef.push_back(allParticles[i]); }
