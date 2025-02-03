@@ -366,7 +366,7 @@ void nFD_eff_test() {
     HistoList.push_back(h_reco_phi_e_minus_reco_phi_nFD_ECALveto_1e_cut);
     TH2D* h_reco_theta_e_minus_reco_theta_nFD_VS_reco_phi_e_minus_reco_phi_nFD_ECALveto_1e_cut =
         new TH2D("reco_theta_e_minus_reco_theta_nFD_VS_reco_phi_e_minus_reco_phi_nFD_ECALveto_1e_cut",
-                 "#theta_{e}-#theta_{nFD} vs. |#phi_{e}-#phi_{nFD}| in 1e cut (ECALveto);|#phi_{e}-#phi_{nFD}| [#circ];#theta_{e}-#theta_{nFD} [#circ]", 100, 0., Ebeam * 3., 9, 1, 10);
+                 "#theta_{e}-#theta_{nFD} vs. |#phi_{e}-#phi_{nFD}| in 1e cut (ECALveto);|#phi_{e}-#phi_{nFD}| [#circ];#theta_{e}-#theta_{nFD} [#circ]", 100, -180., 180., 100, -40., 40.);
     HistoList.push_back(h_reco_theta_e_minus_reco_theta_nFD_VS_reco_phi_e_minus_reco_phi_nFD_ECALveto_1e_cut);
 
 #pragma endregion
@@ -440,7 +440,7 @@ void nFD_eff_test() {
     HistoList.push_back(h_reco_phi_e_minus_reco_phi_nFD_matched_1e_cut);
     TH2D* h_reco_theta_e_minus_reco_theta_nFD_VS_reco_phi_e_minus_reco_phi_nFD_matched_1e_cut =
         new TH2D("reco_theta_e_minus_reco_theta_nFD_VS_reco_phi_e_minus_reco_phi_nFD_matched_1e_cut",
-                 "#theta_{e}-#theta_{nFD} vs. |#phi_{e}-#phi_{nFD}| in 1e cut (matched);|#phi_{e}-#phi_{nFD}| [#circ];#theta_{e}-#theta_{nFD} [#circ]", 100, 0., Ebeam * 3., 9, 1, 10);
+                 "#theta_{e}-#theta_{nFD} vs. |#phi_{e}-#phi_{nFD}| in 1e cut (matched);|#phi_{e}-#phi_{nFD}| [#circ];#theta_{e}-#theta_{nFD} [#circ]", 100, -180., 180., 100, -40., 40.);
     HistoList.push_back(h_reco_theta_e_minus_reco_theta_nFD_VS_reco_phi_e_minus_reco_phi_nFD_matched_1e_cut);
 
 #pragma endregion
