@@ -98,7 +98,8 @@
     "editor.wordWrapColumn": 200,
     "editor.wordWrap": "wordWrapColumn",
     "betterFolding.foldClosingBrackets": true,
-    "betterFolding.showFoldedBrackets": true
+    "betterFolding.showFoldedBrackets": true,
+    "workbench.tree.indent": 20
     // "betterFolding.showFoldedBodyLinesCount": false,
     // "betterFolding.showFoldedBrackets": true
 }

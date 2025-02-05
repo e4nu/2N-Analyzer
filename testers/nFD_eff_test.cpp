@@ -156,11 +156,12 @@ bool NeutronECAL_Cut_Veto(vector<region_part_ptr>& allParticles, vector<region_p
 void nFD_eff_test() {
     cout << "\n\nInitiating nFD_eff_test.cpp\n";
 
-    double Ebeam = 4.02962;
+    // double Ebeam = 4.02962;
+    double Ebeam = 5.98636;
 
-    int Limiter = 10000000;
+    // int Limiter = 10000000;
     // int Limiter = 1000000;
-    // int Limiter = 100000;
+    int Limiter = 100000;
 
     const string OutputDir = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/nFD_eff_test";
     system(("rm -rf " + OutputDir).c_str());
@@ -169,7 +170,14 @@ void nFD_eff_test() {
     TFile* outFile = new TFile("/lustre24/expphy/volatile/clas12/asportes/Analysis_output/nFD_eff_test/nFD_eff_test.root", "RECREATE");
 
     clas12root::HipoChain chain;
-    string InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/4029MeV/OutPut_en/reconhipo/*.hipo";
+    string InputFiles;
+
+    if (Ebeam = 4.02962) {
+        InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/4029MeV/OutPut_en/reconhipo/*.hipo";
+    } else if (Ebeam == 5.98636) {
+        InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/5986MeV/OutPut_en/reconhipo/*.hipo";
+    }
+
     chain.Add(InputFiles);
     chain.SetReaderTags({0});
     chain.db()->turnOffQADB();
