@@ -156,8 +156,9 @@ bool NeutronECAL_Cut_Veto(vector<region_part_ptr>& allParticles, vector<region_p
 void nFD_eff_test() {
     cout << "\n\nInitiating nFD_eff_test.cpp\n";
 
-    // double Ebeam = 4.02962;
-    double Ebeam = 5.98636;
+    bool Is2GeV = false, Is4GeV = false, Is6GeV = false;
+    // double Ebeam = 4.02962, Is4GeV = true;
+    double Ebeam = 5.98636, Is6GeV = true;
 
     // int Limiter = 10000000;
     // int Limiter = 1000000;
@@ -172,9 +173,9 @@ void nFD_eff_test() {
     clas12root::HipoChain chain;
     string InputFiles;
 
-    if (Ebeam = 4.02962) {
+    if (Is4GeV) {
         InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/4029MeV/OutPut_en/reconhipo/*.hipo";
-    } else if (Ebeam == 5.98636) {
+    } else if (Is6GeV) {
         InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/5986MeV/OutPut_en/reconhipo/*.hipo";
     }
 
