@@ -174,9 +174,9 @@ void nFD_eff_test() {
     double Ebeam = 5.98636;
     Is6GeV = true;
 
-    int Limiter = 10000000;
+    // int Limiter = 10000000;
     // int Limiter = 1000000;
-    // int Limiter = 100000;
+    int Limiter = 100000;
 
     const string OutputDir = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/nFD_eff_test";
     system(("rm -rf " + OutputDir).c_str());
@@ -563,7 +563,10 @@ void nFD_eff_test() {
 
             bool PassMomth = (p >= 0.4);
 
-            if (pid_temp == 2112 && p > 4.) { TLpassCuts = false; }
+            if (pid_temp == 2112 && p > 4.) {
+                TLpassCuts = false;
+                continue;
+            }
 
             if (pid_temp == 11) {
                 TVector3 truth_P_e;
@@ -605,7 +608,7 @@ void nFD_eff_test() {
             }
         }
 
-        if (!TLpassCuts) { continue; }
+        // if (!TLpassCuts) { continue; }
 #pragma endregion
 
         //  =======================================================================================================================================================================
