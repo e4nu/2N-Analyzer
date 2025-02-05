@@ -32,9 +32,14 @@ double CalcPnFD(region_part_ptr NeutronFD) {
 
     double Momentum;
 
-    double Beta_ph = NeutronFD->par()->getBeta();
+    double Beta_ph = Neutron->par()->getBeta();
+    double Time_ph_from_Beta_ph = Path_ph / (c * Beta_ph);
     double Gamma_ph = 1 / sqrt(1 - (Beta_ph * Beta_ph));
     Momentum = m_n * Beta_ph * Gamma_ph;
+
+    // double Beta_ph = NeutronFD->par()->getBeta();
+    // double Gamma_ph = 1 / sqrt(1 - (Beta_ph * Beta_ph));
+    // Momentum = m_n * Beta_ph * Gamma_ph;
 
     // if (ParticlePDG == 2112) {
     //     Momentum = NeutronFD->par()->getP();
@@ -528,6 +533,8 @@ void nFD_eff_test() {
         //  =======================================================================================================================================================================
 
 #pragma region /* 1e cut (truth) */
+        bool TLpassCuts = true;
+
         auto c12 = chain.GetC12Reader();
         auto mceve = c12->mcevent();
         auto mcpbank = c12->mcparts();
@@ -546,6 +553,8 @@ void nFD_eff_test() {
             auto pz = mcpbank->getPz();
 
             bool PassMomth = (p >= 0.4);
+
+            if (p > 2.) { TLpassCuts = false; }
 
             if (pid_temp == 11) {
                 TVector3 truth_P_e;
@@ -586,6 +595,8 @@ void nFD_eff_test() {
                 }
             }
         }
+
+        if (!TLpassCuts) { continue; }
 #pragma endregion
 
         //  =======================================================================================================================================================================
