@@ -27,30 +27,33 @@
 using namespace std;
 using namespace clas12;
 
-double CalcPnFD(region_part_ptr NeutronFD) {
+double CalcPnFD(region_part_ptr NeutronFD, double starttime = 9999) {
     int ParticlePDG = NeutronFD->par()->getPid();
 
     double Momentum;
 
-    double Beta_ph = Neutron->par()->getBeta();
-    double Time_ph_from_Beta_ph = Path_ph / (c * Beta_ph);
-    double Gamma_ph = 1 / sqrt(1 - (Beta_ph * Beta_ph));
-    Momentum = m_n * Beta_ph * Gamma_ph;
+    // double Beta_ph = NeutronFD->par()->getBeta();
+    // double Path_ph = NeutronFD->getPath();
+    // double Time_ph_from_Beta_ph = Path_ph / (c * Beta_ph);
+    // double Gamma_ph = 1 / sqrt(1 - (Beta_ph * Beta_ph));
+    // Momentum = m_n * Beta_ph * Gamma_ph;
 
     // double Beta_ph = NeutronFD->par()->getBeta();
     // double Gamma_ph = 1 / sqrt(1 - (Beta_ph * Beta_ph));
     // Momentum = m_n * Beta_ph * Gamma_ph;
 
-    // if (ParticlePDG == 2112) {
-    //     Momentum = NeutronFD->par()->getP();
-    // } else if (ParticlePDG == 22) {
-    //     double Beta_ph = NeutronFD->par()->getBeta();
-    //     double Gamma_ph = 1 / sqrt(1 - (Beta_ph * Beta_ph));
-    //     Momentum = m_n * Beta_ph * Gamma_ph;
-    // } else {
-    //     cout << "\n\nError! Particle PDG is not 22 or 2112! Aborting...\n\n", exit(0);
-    // }
-    // // Momentum = NeutronFD->par()->getP();
+    if (ParticlePDG == 2112) {
+        Momentum = NeutronFD->par()->getP();
+    } else if (ParticlePDG == 22) {
+        double Beta_ph = NeutronFD->par()->getBeta();
+        double Gamma_ph = 1 / sqrt(1 - (Beta_ph * Beta_ph));
+        Momentum = m_n * Beta_ph * Gamma_ph;
+    } else {
+        cout << "\n\nError! Particle PDG is not 22 or 2112! Aborting...\n\n", exit(0);
+    }
+
+    // Momentum = NeutronFD->par()->getP();
+
     return Momentum;
 }
 
@@ -322,6 +325,8 @@ void nFD_eff_test() {
     HistSubjects.push_back("ECALveto");
     HistSubjects2.push_back("#splitline{ECALveto}{and P_{nFD} thresholds}");
     FirstPrint.push_back(true);
+
+#pragma region /* Base histograms (ECALveto) */
     TH1D* h_reco_P_nFD_ECALveto_1e_cut = new TH1D("reco_P_nFD_ECALveto_1e_cut", "reco P_{nFD} in 1e cut (ECALveto);P_{nFD} [GeV/c];Counts", 50, 0, Ebeam * 1.1);
     HistoList.push_back(h_reco_P_nFD_ECALveto_1e_cut);
     TH1D* h_truth_P_nFD_ECALveto_1e_cut = new TH1D("truth_P_nFD_ECALveto_1e_cut", "truth P_{nFD} in 1e cut (ECALveto);P_{nFD} [GeV/c];Counts", 50, 0, Ebeam * 1.1);
@@ -379,6 +384,7 @@ void nFD_eff_test() {
     TH2D* h_reco_nFD_multi_VS_recp_P_nFD_ECALveto_1e_cut =
         new TH2D("reco_nFD_multi_VS_recp_P_nFD_ECALveto_1e_cut", "reco nFD multiplicity vs. P_{nFD} in 1e cut (ECALveto);P_{nFD} [GeV/c];nFD multiplicity", 100, 0., Ebeam * 3., 9, 1, 10);
     HistoList.push_back(h_reco_nFD_multi_VS_recp_P_nFD_ECALveto_1e_cut);
+#pragma endregion
 
     TH1D* h_reco_theta_nFD_minus_reco_theta_e_ECALveto_1e_cut = new TH1D(
         "reco_theta_nFD_minus_reco_theta_e_ECALveto_1e_cut", "reco #Delta#theta_{nFD,e} in 1e cut (ECALveto);#Delta#theta_{nFD,e} = #theta_{nFD} - #theta_{e} [#circ];Counts", 50, -25., 10.);
@@ -406,6 +412,8 @@ void nFD_eff_test() {
     HistSubjects.push_back("matched");
     HistSubjects2.push_back("matched");
     FirstPrint.push_back(true);
+
+#pragma region /* Base histograms (matched) */
     TH1D* h_reco_P_nFD_matched_1e_cut = new TH1D("reco_P_nFD_matched_1e_cut", "reco P_{nFD} in 1e cut (matched);P_{nFD} [GeV/c];Counts", 50, 0, Ebeam * 1.1);
     HistoList.push_back(h_reco_P_nFD_matched_1e_cut);
     TH1D* h_truth_P_nFD_matched_1e_cut = new TH1D("truth_P_nFD_matched_1e_cut", "truth P_{nFD} in 1e cut (matched);P_{nFD} [GeV/c];Counts", 50, 0, Ebeam * 1.1);
@@ -462,6 +470,7 @@ void nFD_eff_test() {
     TH2D* h_reco_nFD_multi_VS_recp_P_nFD_matched_1e_cut =
         new TH2D("reco_nFD_multi_VS_recp_P_nFD_matched_1e_cut", "reco nFD multiplicity vs. P_{nFD} in 1e cut (matched);P_{nFD} [GeV/c];nFD multiplicity", 100, 0., Ebeam * 3., 9, 1, 10);
     HistoList.push_back(h_reco_nFD_multi_VS_recp_P_nFD_matched_1e_cut);
+#pragma endregion
 
     TH1D* h_reco_theta_nFD_minus_reco_theta_e_matched_1e_cut = new TH1D(
         "reco_theta_nFD_minus_reco_theta_e_matched_1e_cut", "reco #Delta#theta_{nFD,e} in 1e cut (matched);#Delta#theta_{nFD,e} = #theta_{nFD} - #theta_{e} [#circ];Counts", 50, -25., 10.);
