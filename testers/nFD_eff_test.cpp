@@ -563,7 +563,7 @@ void nFD_eff_test() {
 
             bool PassMomth = (p >= 0.4);
 
-            if (pid_temp == 2112 && p > 3.) {
+            if (pid_temp == 2112 && p > 2.) {
                 TLpassCuts = false;
                 continue;
             }
