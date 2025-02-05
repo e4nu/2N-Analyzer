@@ -157,8 +157,10 @@ void nFD_eff_test() {
     cout << "\n\nInitiating nFD_eff_test.cpp\n";
 
     bool Is2GeV = false, Is4GeV = false, Is6GeV = false;
-    // double Ebeam = 4.02962, Is4GeV = true;
-    double Ebeam = 5.98636, Is6GeV = true;
+    // double Ebeam = 4.02962;
+    //  Is4GeV = true;
+    double Ebeam = 5.98636;
+    Is6GeV = true;
 
     // int Limiter = 10000000;
     // int Limiter = 1000000;
