@@ -43,6 +43,7 @@ double CalcPnFD(region_part_ptr NeutronFD, double starttime = 9999) {
     double reco_Gamma_nFD = 1 / sqrt(1 - (reco_Beta_nFD * reco_Beta_nFD));
     Momentum = m_n * reco_Beta_nFD * reco_Gamma_nFD;
 
+    if (ParticleInPCAL) { cout << "\n\nError! Neutron is in the PCAL! Aborting...\n\n", exit(0); }
     // double Beta_ph = NeutronFD->par()->getBeta();
     // double Path_ph = NeutronFD->getPath();
     // double Time_ph_from_Beta_ph = Path_ph / (c * Beta_ph);
@@ -1035,19 +1036,19 @@ void nFD_eff_test() {
         for (int i = 0; i < allParticles.size(); i++) {
             int pid_temp = allParticles[i]->par()->getPid();
 
-            if ((allParticles[i]->par()->getCharge() == 0) && (allParticles[i]->getRegion() == FD) && (pid_temp != 0)) {
-                double Momentum = CalcPnFD(allParticles[i], starttime);
-                // If particle is neutral and in the FD
-                bool ParticleInPCAL = (allParticles[i]->cal(clas12::PCAL)->getDetector() == 7);    // PCAL hit
-                bool ParticleInECIN = (allParticles[i]->cal(clas12::ECIN)->getDetector() == 7);    // ECIN hit
-                bool ParticleInECOUT = (allParticles[i]->cal(clas12::ECOUT)->getDetector() == 7);  // ECOUT hit
-                auto Neutron_ECAL_detlayer = ParticleInECIN ? clas12::ECIN : clas12::ECOUT;        // find first layer of hit
+            if ((allParticles[i]->par()->getCharge() == 0) && (allParticles[i]->getRegion() == FD) && (pid_temp != 0)) {  // If particle is neutral and in the FD
+                bool ParticleInPCAL = (allParticles[i]->cal(clas12::PCAL)->getDetector() == 7);                           // PCAL hit
+                bool ParticleInECIN = (allParticles[i]->cal(clas12::ECIN)->getDetector() == 7);                           // ECIN hit
+                bool ParticleInECOUT = (allParticles[i]->cal(clas12::ECOUT)->getDetector() == 7);                         // ECOUT hit
+                auto Neutron_ECAL_detlayer = ParticleInECIN ? clas12::ECIN : clas12::ECOUT;                               // find first layer of hit
 
                 if ((pid_temp == 2112) || (pid_temp == 22)) {
                     if (ParticleInPCAL) {
                         if (pid_temp == 22) { photons_FD_redef.push_back(allParticles[i]); }
                     } else if (!ParticleInPCAL) {  // if there is a neutron or a 'photon' without a PCAL hit
                         if (ParticleInECIN || ParticleInECOUT) {
+                            double Momentum = CalcPnFD(allParticles[i], starttime);
+
                             bool PassMomth = (Momentum >= 0.4);
                             bool passECALeadgeCuts = (allParticles[i]->cal(Neutron_ECAL_detlayer)->getLv() > 14. && allParticles[i]->cal(Neutron_ECAL_detlayer)->getLw() > 14.);
                             bool passVeto = NeutronECAL_Cut_Veto(allParticles, electrons, Ebeam, i, 100);
