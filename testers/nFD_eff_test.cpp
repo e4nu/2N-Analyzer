@@ -225,7 +225,7 @@ void nFD_eff_test() {
     double Ebeam = 5.98636;
     Is6GeV = true;
 
-    bool ConstrainTLmom = false;
+    bool ConstrainTLmom = true;
 
     double P_upperLim;
     if (ConstrainTLmom) {
