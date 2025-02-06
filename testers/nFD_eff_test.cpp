@@ -1028,8 +1028,7 @@ void nFD_eff_test() {
         for (int i = 0; i < allParticles.size(); i++) {
             int pid_temp = allParticles[i]->par()->getPid();
 
-            if ((allParticles[i]->par()->getCharge() == 0) && (allParticles[i]->getRegion() == FD) && (pid_temp != 0)
-            ) {  // If particle is neutral and in the FD
+            if ((allParticles[i]->par()->getCharge() == 0) && (allParticles[i]->getRegion() == FD) && (pid_temp != 0)) {  // If particle is neutral and in the FD
 
                 bool ParticleInPCAL = (allParticles[i]->cal(clas12::PCAL)->getDetector() == 7);    // PCAL hit
                 bool ParticleInECIN = (allParticles[i]->cal(clas12::ECIN)->getDetector() == 7);    // ECIN hit
@@ -1089,11 +1088,15 @@ void nFD_eff_test() {
                         if (ParticleInECIN || ParticleInECOUT) {
                             double Momentum = CalcPnFD(allParticles[i], starttime);
 
+                            double Path_nFD = neutrons_FD_ECALveto[i]->getPath();
+                            double reco_ToF_nFD = neutrons_FD_ECALveto[i]->cal(detlayer)->getTime() - starttime;
+
                             bool PassMomth = (Momentum >= 0.4);
                             bool passECALeadgeCuts = (allParticles[i]->cal(Neutron_ECAL_detlayer)->getLv() > 14. && allParticles[i]->cal(Neutron_ECAL_detlayer)->getLw() > 14.);
                             bool passVeto = NeutronECAL_Cut_Veto(allParticles, electrons, Ebeam, i, 100.);
+                            bool goodBeta = (fabs(allParticles[i]->par()->getBeta() - Path_nFD / (c * reco_ToF_nFD)) < 0.01);
 
-                            if (PassMomth && passECALeadgeCuts && passVeto) { neutrons_FD_ECALveto.push_back(allParticles[i]); }  // end of clas12root neutron or 'photon' if
+                            if (PassMomth && passECALeadgeCuts && passVeto && goodBeta) { neutrons_FD_ECALveto.push_back(allParticles[i]); }  // end of clas12root neutron or 'photon' if
                         }
                     }
                 }  // end of clas12root neutron or 'photon' if
