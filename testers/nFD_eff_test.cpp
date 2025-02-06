@@ -132,7 +132,7 @@ bool NeutronECAL_Cut_Veto(vector<region_part_ptr>& allParticles, vector<region_p
     double theta_q = p_q.Theta() * 180 / pi;
     double theta_nq = p_n_Angles.Angle(p_q) * 180 / pi;
 
-    // if (beta < 0) { return false; }
+    if (beta < 0) { return false; }
     //    if (beta > 1.1) { return false; }
     //    // physics cuts, to be ignored according to Larry.
     //    if (theta_nq > 25) { return false; }
@@ -167,7 +167,7 @@ bool NeutronECAL_Cut_Veto(vector<region_part_ptr>& allParticles, vector<region_p
                                      allParticles[j]->traj(clas12::ECAL, trajlayer)->getZ());
                 TVector3 v_dist = v_nhit - v_charged_hit;
 
-                if (v_dist.Mag() < 0. * veto_cut) { Veto = true; }
+                if (v_dist.Mag() < veto_cut) { Veto = true; }
             }
         } else {
             TVector3 v_neutral_hit; /* v_neutral_hit = location of neutral particle hit */
@@ -177,7 +177,7 @@ bool NeutronECAL_Cut_Veto(vector<region_part_ptr>& allParticles, vector<region_p
                 v_neutral_hit.SetXYZ(allParticles[j]->cal(clas12::PCAL)->getX(), allParticles[j]->cal(clas12::PCAL)->getY(), allParticles[j]->cal(clas12::PCAL)->getZ());
                 TVector3 v_dist = v_nhit - v_neutral_hit;
 
-                if (v_dist.Mag() < 0. * veto_cut) { Veto = true; }
+                if (v_dist.Mag() < veto_cut) { Veto = true; }
             }
         }
 
@@ -1091,7 +1091,7 @@ void nFD_eff_test() {
 
                             bool PassMomth = (Momentum >= 0.4);
                             bool passECALeadgeCuts = (allParticles[i]->cal(Neutron_ECAL_detlayer)->getLv() > 14. && allParticles[i]->cal(Neutron_ECAL_detlayer)->getLw() > 14.);
-                            bool passVeto = NeutronECAL_Cut_Veto(allParticles, electrons, Ebeam, i, 100);
+                            bool passVeto = NeutronECAL_Cut_Veto(allParticles, electrons, Ebeam, i, 0.);
 
                             if (PassMomth && passECALeadgeCuts && passVeto) { neutrons_FD_ECALveto.push_back(allParticles[i]); }  // end of clas12root neutron or 'photon' if
                         }
