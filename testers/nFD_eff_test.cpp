@@ -132,12 +132,12 @@ bool NeutronECAL_Cut_Veto(vector<region_part_ptr>& allParticles, vector<region_p
     double theta_q = p_q.Theta() * 180 / pi;
     double theta_nq = p_n_Angles.Angle(p_q) * 180 / pi;
 
-    if (beta < 0) { return false; }
+    // if (beta < 0) { return false; }
     //    if (beta > 1.1) { return false; }
     //    // physics cuts, to be ignored according to Larry.
     //    if (theta_nq > 25) { return false; }
     //    if (theta_q > 40) { return false; }
-    // if (theta_n < 1) { return false; } /* to avoid events with theta_n = 0 (the "1" is in deg) */
+    if (theta_n < 1) { return false; } /* to avoid events with theta_n = 0 (the "1" is in deg) */
     if (!(IC || OC)) { return false; } /* hit only one of these layers */
     if (PC) { return false; }          /* to veto out the gammas (photons) */
 
