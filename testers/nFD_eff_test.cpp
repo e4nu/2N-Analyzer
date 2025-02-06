@@ -967,7 +967,8 @@ void nFD_eff_test() {
 
         for (int i = 0; i < neutrons_FD_clas12.size(); i++) {
             TVector3 reco_P_nFD;
-            reco_P_nFD.SetMagThetaPhi(neutrons_FD_clas12[i]->getP(), neutrons_FD_clas12[i]->getTheta(), neutrons_FD_clas12[i]->getPhi());
+            reco_P_nFD.SetMagThetaPhi(CalcPnFD(neutrons_FD_redef[i], starttime), neutrons_FD_clas12[i]->getTheta(), neutrons_FD_clas12[i]->getPhi());
+            // reco_P_nFD.SetMagThetaPhi(neutrons_FD_clas12[i]->getP(), neutrons_FD_clas12[i]->getTheta(), neutrons_FD_clas12[i]->getPhi());
 
             h_reco_P_nFD_clas12_1e_cut->Fill(reco_P_nFD.Mag(), weight);
             h_reco_theta_nFD_clas12_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI, weight);
@@ -1014,7 +1015,8 @@ void nFD_eff_test() {
             double Momentum = m_n * Beta_ph * Gamma_ph;
 
             TVector3 reco_P_nFD;
-            reco_P_nFD.SetMagThetaPhi(neutrons_FD_redef[i]->getP(), neutrons_FD_redef[i]->getTheta(), neutrons_FD_redef[i]->getPhi());
+            reco_P_nFD.SetMagThetaPhi(CalcPnFD(neutrons_FD_redef[i], starttime), neutrons_FD_redef[i]->getTheta(), neutrons_FD_redef[i]->getPhi());
+            // reco_P_nFD.SetMagThetaPhi(neutrons_FD_redef[i]->getP(), neutrons_FD_redef[i]->getTheta(), neutrons_FD_redef[i]->getPhi());
 
             h_reco_P_nFD_redef_1e_cut->Fill(reco_P_nFD.Mag(), weight);
             h_reco_theta_nFD_redef_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI, weight);
@@ -1046,7 +1048,7 @@ void nFD_eff_test() {
                     bool passECALeadgeCuts = (allParticles[i]->cal(Neutron_ECAL_detlayer)->getLv() > 14. && allParticles[i]->cal(Neutron_ECAL_detlayer)->getLw() > 14.);
                     bool passVeto = NeutronECAL_Cut_Veto(allParticles, electrons, Ebeam, i, 100);
 
-                    if (PassMomth && true && passVeto) { neutrons_FD_ECALveto.push_back(allParticles[i]); }  // end of clas12root neutron or 'photon' if
+                    if (PassMomth && passECALeadgeCuts && passVeto) { neutrons_FD_ECALveto.push_back(allParticles[i]); }  // end of clas12root neutron or 'photon' if
                 }  // end of clas12root neutron or 'photon' if
                 // if ((pid_temp == 2112) || (pid_temp == 22)) {
                 //     if (ParticleInPCAL) {
