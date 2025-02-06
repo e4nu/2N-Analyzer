@@ -701,14 +701,14 @@ void nFD_eff_test() {
                 bool ParticleInECOUT = (allParticles[i]->cal(clas12::ECOUT)->getDetector() == 7);  // ECOUT hit
                 auto Neutron_ECAL_detlayer = ParticleInECIN ? clas12::ECIN : clas12::ECOUT;        // find first layer of hit
 
-                if (pid_temp == 2112) {
+                if (ParticleInECIN || ParticleInECOUT) { neutrons_FD_redef.push_back(allParticles[i]); }
                 // if ((pid_temp == 2112) || (pid_temp == 22)) {
-                    if (ParticleInPCAL) {
-                        if (pid_temp == 22) { photons_FD_redef.push_back(allParticles[i]); }
-                    } else if (!ParticleInPCAL) {  // if there is a neutron or a 'photon' without a PCAL hit
-                        if (ParticleInECIN || ParticleInECOUT) { neutrons_FD_redef.push_back(allParticles[i]); }
-                    }
-                }  // end of clas12root neutron or 'photon' if
+                //     if (ParticleInPCAL) {
+                //         if (pid_temp == 22) { photons_FD_redef.push_back(allParticles[i]); }
+                //     } else if (!ParticleInPCAL) {  // if there is a neutron or a 'photon' without a PCAL hit
+                //         if (ParticleInECIN || ParticleInECOUT) { neutrons_FD_redef.push_back(allParticles[i]); }
+                //     }
+                // }  // end of clas12root neutron or 'photon' if
                 // if (pid_temp == 2112) { neutrons_FD_redef.push_back(allParticles[i]); }
 
             }  // end of neutral and in the FD if
