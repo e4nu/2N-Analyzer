@@ -708,7 +708,8 @@ void nFD_eff_test() {
                 //         if (ParticleInECIN || ParticleInECOUT) { neutrons_FD_redef.push_back(allParticles[i]); }
                 //     }
                 // }  // end of clas12root neutron or 'photon' if
-                neutrons_FD_redef.push_back(allParticles[i]);
+                if (pid_temp == 2112) { neutrons_FD_redef.push_back(allParticles[i]); }
+
             }  // end of neutral and in the FD if
         }
 
