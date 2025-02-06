@@ -1167,7 +1167,7 @@ void nFD_eff_test() {
             h_reco_P_nFD_VS_reco_phi_nFD_minus_reco_phi_e_ECALveto_1e_cut->Fill(CalcdPhi(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI), reco_P_nFD.Mag(), weight);
         }
 
-        h_reco_nFD_multi_ECALveto_1e_cut->Fill(neutrons_FD_ECALveto.size(), weight);
+        if (neutrons_FD_ECALveto.size() != 0) { h_reco_nFD_multi_ECALveto_1e_cut->Fill(neutrons_FD_ECALveto.size(), weight); }
 #pragma endregion
 
         //  Setting up FD neutrals (matched) -----------------------------------------------------------------------------------------------------------------------------------------
@@ -1297,7 +1297,7 @@ void nFD_eff_test() {
             h_reco_P_nFD_VS_reco_phi_nFD_minus_reco_phi_e_matched_1e_cut->Fill(CalcdPhi(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI), reco_P_nFD.Mag(), weight);
         }
 
-        h_reco_nFD_multi_matched_1e_cut->Fill(neutrons_FD_matched.size(), weight);
+        if (neutrons_FD_matched.size() != 0) { h_reco_nFD_multi_matched_1e_cut->Fill(neutrons_FD_matched.size(), weight); }
 #pragma endregion
 
 #pragma endregion
