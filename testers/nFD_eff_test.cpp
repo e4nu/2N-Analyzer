@@ -43,7 +43,6 @@ double CalcPnFD(region_part_ptr NeutronFD, double starttime = 9999) {
     double reco_Gamma_nFD = 1 / sqrt(1 - (reco_Beta_nFD * reco_Beta_nFD));
     Momentum = m_n * reco_Beta_nFD * reco_Gamma_nFD;
 
-    if (ParticleInPCAL) { cout << "\n\nError! Neutron is in the PCAL! Aborting...\n\n", exit(0); }
     // double Beta_ph = NeutronFD->par()->getBeta();
     // double Path_ph = NeutronFD->getPath();
     // double Time_ph_from_Beta_ph = Path_ph / (c * Beta_ph);
@@ -1011,13 +1010,17 @@ void nFD_eff_test() {
         }
 
         for (int i = 0; i < neutrons_FD_redef.size(); i++) {
+            bool ParticleInPCAL = (neutrons_FD_redef[i]->cal(clas12::PCAL)->getDetector() == 7);    // PCAL hit
+            bool ParticleInECIN = (neutrons_FD_redef[i]->cal(clas12::ECIN)->getDetector() == 7);    // ECIN hit
+            bool ParticleInECOUT = (neutrons_FD_redef[i]->cal(clas12::ECOUT)->getDetector() == 7);  // ECOUT hit
+            if (ParticleInPCAL) { cout << "\n\nError! neutrons_FD_redef is in the PCAL! Aborting...\n\n", exit(0); }
+
             double Beta_ph = neutrons_FD_redef[i]->par()->getBeta();
             double Gamma_ph = 1 / sqrt(1 - (Beta_ph * Beta_ph));
             double Momentum = m_n * Beta_ph * Gamma_ph;
 
             TVector3 reco_P_nFD;
             reco_P_nFD.SetMagThetaPhi(CalcPnFD(neutrons_FD_redef[i], starttime), neutrons_FD_redef[i]->getTheta(), neutrons_FD_redef[i]->getPhi());
-            // reco_P_nFD.SetMagThetaPhi(neutrons_FD_redef[i]->getP(), neutrons_FD_redef[i]->getTheta(), neutrons_FD_redef[i]->getPhi());
 
             h_reco_P_nFD_redef_1e_cut->Fill(reco_P_nFD.Mag(), weight);
             h_reco_theta_nFD_redef_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI, weight);
@@ -1061,19 +1064,18 @@ void nFD_eff_test() {
         }
 
         for (int i = 0; i < neutrons_FD_ECALveto.size(); i++) {
-            TVector3 reco_P_nFD;
-            reco_P_nFD.SetMagThetaPhi(CalcPnFD(neutrons_FD_ECALveto[i], starttime), neutrons_FD_ECALveto[i]->getTheta(), neutrons_FD_ECALveto[i]->getPhi());
-
             bool ParticleInPCAL = (neutrons_FD_ECALveto[i]->cal(clas12::PCAL)->getDetector() == 7);         // PCAL hit
             bool ParticleInECIN = (neutrons_FD_ECALveto[i]->cal(clas12::ECIN)->getDetector() == 7);         // ECIN hit
             bool ParticleInECOUT = (neutrons_FD_ECALveto[i]->cal(clas12::ECOUT)->getDetector() == 7);       // ECOUT hit
             auto detlayer = ParticleInPCAL ? clas12::PCAL : ParticleInECIN ? clas12::ECIN : clas12::ECOUT;  // determine the earliest layer of the neutral hit
+            if (ParticleInPCAL) { cout << "\n\nError! neutrons_FD_ECALveto is in the PCAL! Aborting...\n\n", exit(0); }
 
             double Path_nFD = neutrons_FD_ECALveto[i]->getPath();
             double eff_path_nFD = c * Truth_beta;
-            double reco_ToF_nFD =
-                neutrons_FD_ECALveto[i]->cal(detlayer)->getTime() - starttime;  // NOTE: neutrons_FD_ECALveto[i]->cal(detlayer)->getTime() = neutrons_FD_ECALveto[i]->getTime()
-            // double reco_ToF_nFD = neutrons_FD_matched[i]->getTime();  // NOTE: neutrons_FD_ECALveto[i]->cal(detlayer)->getTime() = neutrons_FD_ECALveto[i]->getTime()
+            double reco_ToF_nFD = neutrons_FD_ECALveto[i]->cal(detlayer)->getTime() - starttime;
+
+            TVector3 reco_P_nFD;
+            reco_P_nFD.SetMagThetaPhi(CalcPnFD(neutrons_FD_ECALveto[i], starttime), neutrons_FD_ECALveto[i]->getTheta(), neutrons_FD_ECALveto[i]->getPhi());
 
             h_reco_P_nFD_ECALveto_1e_cut->Fill(reco_P_nFD.Mag(), weight);
             h_reco_theta_nFD_ECALveto_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI, weight);
@@ -1191,18 +1193,19 @@ void nFD_eff_test() {
         }
 
         for (int i = 0; i < neutrons_FD_matched.size(); i++) {
-            TVector3 reco_P_nFD;
-            reco_P_nFD.SetMagThetaPhi(CalcPnFD(neutrons_FD_matched[i], starttime), neutrons_FD_matched[i]->getTheta(), neutrons_FD_matched[i]->getPhi());
-
-            bool ParticleInPCAL = (neutrons_FD_matched[i]->cal(clas12::PCAL)->getDetector() == 7);          // PCAL hit
-            bool ParticleInECIN = (neutrons_FD_matched[i]->cal(clas12::ECIN)->getDetector() == 7);          // ECIN hit
-            bool ParticleInECOUT = (neutrons_FD_matched[i]->cal(clas12::ECOUT)->getDetector() == 7);        // ECOUT hit
+            bool ParticleInPCAL = (neutrons_FD_matched[i]->cal(clas12::PCAL)->getDetector() == 7);    // PCAL hit
+            bool ParticleInECIN = (neutrons_FD_matched[i]->cal(clas12::ECIN)->getDetector() == 7);    // ECIN hit
+            bool ParticleInECOUT = (neutrons_FD_matched[i]->cal(clas12::ECOUT)->getDetector() == 7);  // ECOUT hit
+            if (ParticleInPCAL) { cout << "\n\nError! neutrons_FD_matched is in the PCAL! Aborting...\n\n", exit(0); }
             auto detlayer = ParticleInPCAL ? clas12::PCAL : ParticleInECIN ? clas12::ECIN : clas12::ECOUT;  // determine the earliest layer of the neutral hit
 
             double Path_nFD = neutrons_FD_matched[i]->getPath();
             double eff_path_nFD = c * Truth_beta;
             double reco_ToF_nFD = neutrons_FD_matched[i]->cal(detlayer)->getTime() - starttime;  // NOTE: neutrons_FD_matched[i]->cal(detlayer)->getTime() = neutrons_FD_matched[i]->getTime()
             // double reco_ToF_nFD = neutrons_FD_matched[i]->getTime();  // NOTE: neutrons_FD_matched[i]->cal(detlayer)->getTime() = neutrons_FD_matched[i]->getTime()
+
+            TVector3 reco_P_nFD;
+            reco_P_nFD.SetMagThetaPhi(CalcPnFD(neutrons_FD_matched[i], starttime), neutrons_FD_matched[i]->getTheta(), neutrons_FD_matched[i]->getPhi());
 
             h_reco_P_nFD_matched_1e_cut->Fill(reco_P_nFD.Mag(), weight);
             h_reco_theta_nFD_matched_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI, weight);
