@@ -1048,7 +1048,7 @@ void nFD_eff_test() {
                     bool passECALeadgeCuts = (allParticles[i]->cal(Neutron_ECAL_detlayer)->getLv() > 14. && allParticles[i]->cal(Neutron_ECAL_detlayer)->getLw() > 14.);
                     bool passVeto = NeutronECAL_Cut_Veto(allParticles, electrons, Ebeam, i, 100);
 
-                    if (PassMomth && passECALeadgeCuts && passVeto) { neutrons_FD_ECALveto.push_back(allParticles[i]); }  // end of clas12root neutron or 'photon' if
+                    if (PassMomth && true && true) { neutrons_FD_ECALveto.push_back(allParticles[i]); }  // end of clas12root neutron or 'photon' if
                 }  // end of clas12root neutron or 'photon' if
                 // if ((pid_temp == 2112) || (pid_temp == 22)) {
                 //     if (ParticleInPCAL) {
