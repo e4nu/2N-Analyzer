@@ -798,6 +798,8 @@ void nFD_eff_test() {
 
         double weight = 1;
 
+        double starttime = c12->event()->getStartTime();
+
         TVector3 P_b(0, 0, Ebeam);
 
         TVector3 reco_P_e;
@@ -1059,7 +1061,8 @@ void nFD_eff_test() {
 
             double Path_nFD = neutrons_FD_ECALveto[i]->getPath();
             double eff_path_nFD = c * Truth_beta;
-            double reco_ToF_nFD = neutrons_FD_ECALveto[i]->getTime();  // NOTE: Neutron->cal(detlayer)->getTime() = Neutron->getTime()
+            double reco_ToF_nFD = Neutron->cal(detlayer)->getTime() - starttime;  // NOTE: Neutron->cal(detlayer)->getTime() = Neutron->getTime()
+            // double reco_ToF_nFD = neutrons_FD_matched[i]->getTime();  // NOTE: Neutron->cal(detlayer)->getTime() = Neutron->getTime()
 
             h_reco_P_nFD_ECALveto_1e_cut->Fill(reco_P_nFD.Mag(), weight);
             h_reco_theta_nFD_ECALveto_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI, weight);
@@ -1184,14 +1187,15 @@ void nFD_eff_test() {
             TVector3 reco_P_nFD;
             reco_P_nFD.SetMagThetaPhi(CalcPnFD(neutrons_FD_matched[i]), neutrons_FD_matched[i]->getTheta(), neutrons_FD_matched[i]->getPhi());
 
-            bool ParticleInPCAL = (neutrons_FD_matched[i]->cal(clas12::PCAL)->getDetector() == 7);         // PCAL hit
-            bool ParticleInECIN = (neutrons_FD_matched[i]->cal(clas12::ECIN)->getDetector() == 7);         // ECIN hit
-            bool ParticleInECOUT = (neutrons_FD_matched[i]->cal(clas12::ECOUT)->getDetector() == 7);       // ECOUT hit
+            bool ParticleInPCAL = (neutrons_FD_matched[i]->cal(clas12::PCAL)->getDetector() == 7);          // PCAL hit
+            bool ParticleInECIN = (neutrons_FD_matched[i]->cal(clas12::ECIN)->getDetector() == 7);          // ECIN hit
+            bool ParticleInECOUT = (neutrons_FD_matched[i]->cal(clas12::ECOUT)->getDetector() == 7);        // ECOUT hit
             auto detlayer = ParticleInPCAL ? clas12::PCAL : ParticleInECIN ? clas12::ECIN : clas12::ECOUT;  // determine the earliest layer of the neutral hit
 
             double Path_nFD = neutrons_FD_matched[i]->getPath();
             double eff_path_nFD = c * Truth_beta;
-            double reco_ToF_nFD = neutrons_FD_matched[i]->getTime();  // NOTE: Neutron->cal(detlayer)->getTime() = Neutron->getTime()
+            double reco_ToF_nFD = Neutron->cal(detlayer)->getTime() - starttime;  // NOTE: Neutron->cal(detlayer)->getTime() = Neutron->getTime()
+            // double reco_ToF_nFD = neutrons_FD_matched[i]->getTime();  // NOTE: Neutron->cal(detlayer)->getTime() = Neutron->getTime()
 
             h_reco_P_nFD_matched_1e_cut->Fill(reco_P_nFD.Mag(), weight);
             h_reco_theta_nFD_matched_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI, weight);
@@ -1239,7 +1243,7 @@ void nFD_eff_test() {
             h_reco_theta_nFD_minus_reco_theta_e_matched_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI - reco_P_e.Theta() * 180 / M_PI, weight);
             h_reco_phi_nFD_minus_reco_phi_e_matched_1e_cut->Fill(CalcdPhi(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI), weight);
             h_reco_theta_nFD_minus_reco_theta_e_VS_reco_phi_nFD_minus_reco_phi_e_matched_1e_cut->Fill(CalcdPhi(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI),
-                                                                                                       reco_P_nFD.Theta() * 180 / M_PI - reco_P_e.Theta() * 180 / M_PI, weight);
+                                                                                                      reco_P_nFD.Theta() * 180 / M_PI - reco_P_e.Theta() * 180 / M_PI, weight);
             h_reco_P_nFD_VS_reco_theta_nFD_minus_reco_theta_e_matched_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI - reco_P_e.Theta() * 180 / M_PI, reco_P_nFD.Mag(), weight);
             h_reco_P_nFD_VS_reco_phi_nFD_minus_reco_phi_e_matched_1e_cut->Fill(CalcdPhi(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI), reco_P_nFD.Mag(), weight);
         }
