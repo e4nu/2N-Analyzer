@@ -419,7 +419,7 @@ void nFD_eff_test() {
 
     TH2D* h_reco_P_nFD_VS_reco_L_ECAL_ECALveto_1e_cut =
         new TH2D("reco_P_nFD_VS_reco_L_ECAL_ECALveto_1e_cut", "P^{reco}_{nFD} vs. L^{reco}_{nFD,ECAL} in 1e cut (ECALveto);L^{reco}_{nFD,ECAL} [cm];P^{reco}_{nFD} [#circ]", 100, 700., 850.,
-                 100, 0., P_upperLim);
+                 100, 0., Ebeam * 3.);
     HistoList.push_back(h_reco_P_nFD_VS_reco_L_ECAL_ECALveto_1e_cut);
     TH2D* h_reco_theta_nFD_VS_reco_L_ECAL_ECALveto_1e_cut =
         new TH2D("reco_theta_nFD_VS_reco_L_ECAL_ECALveto_1e_cut", "#theta^{reco}_{nFD} vs. L^{reco}_{nFD,ECAL} in 1e cut (ECALveto);L^{reco}_{nFD,ECAL} [cm];#theta^{reco}_{nFD} [#circ]",
@@ -444,7 +444,7 @@ void nFD_eff_test() {
     // TH2D* h_reco_P_nFD_VS_eff_L_ECAL_ECALveto_1e_cut =
     //     new TH2D("reco_P_nFD_VS_eff_L_ECAL_ECALveto_1e_cut",
     //              "P^{reco}_{nFD} vs. L^{eff}_{nFD,ECAL} in 1e cut (ECALveto);L^{eff}_{nFD,ECAL} = c#beta^{truth}t^{#beta^{reco}_{nFD}}_{ToF} [cm];P^{reco}_{nFD} [#circ]", 100, 700., 850.,
-    //              100, 0., P_upperLim);
+    //              100, 0., Ebeam * 3.);
     // HistoList.push_back(h_reco_P_nFD_VS_eff_L_ECAL_ECALveto_1e_cut);
     // TH2D* h_reco_theta_nFD_VS_eff_L_ECAL_ECALveto_1e_cut =
     //     new TH2D("reco_theta_nFD_VS_eff_L_ECAL_ECALveto_1e_cut",
@@ -459,7 +459,7 @@ void nFD_eff_test() {
 
     TH2D* h_reco_P_nFD_VS_reco_L_ECIN_ECALveto_1e_cut =
         new TH2D("reco_P_nFD_VS_reco_L_ECIN_ECALveto_1e_cut", "P^{reco}_{nFD} vs. L^{reco}_{nFD,ECIN} in 1e cut (ECALveto);L^{reco}_{nFD,ECIN} [cm];P^{reco}_{nFD} [#circ]", 100, 700., 850.,
-                 100, 0., P_upperLim);
+                 100, 0., Ebeam * 3.);
     HistoList.push_back(h_reco_P_nFD_VS_reco_L_ECIN_ECALveto_1e_cut);
     TH2D* h_reco_theta_nFD_VS_reco_L_ECIN_ECALveto_1e_cut =
         new TH2D("reco_theta_nFD_VS_reco_L_ECIN_ECALveto_1e_cut", "#theta^{reco}_{nFD} vs. L^{reco}_{nFD,ECIN} in 1e cut (ECALveto);L^{reco}_{nFD,ECIN} [cm];#theta^{reco}_{nFD} [#circ]",
@@ -484,7 +484,7 @@ void nFD_eff_test() {
     // TH2D* h_reco_P_nFD_VS_eff_L_ECIN_ECALveto_1e_cut =
     //     new TH2D("reco_P_nFD_VS_eff_L_ECIN_ECALveto_1e_cut",
     //              "P^{reco}_{nFD} vs. L^{eff}_{nFD,ECIN} in 1e cut (ECALveto);L^{eff}_{nFD,ECIN} = c#beta^{truth}t^{#beta^{reco}_{nFD}}_{ToF} [cm];P^{reco}_{nFD} [#circ]", 100, 700., 850.,
-    //              100, 0., P_upperLim);
+    //              100, 0., Ebeam * 3.);
     // HistoList.push_back(h_reco_P_nFD_VS_eff_L_ECIN_ECALveto_1e_cut);
     // TH2D* h_reco_theta_nFD_VS_eff_L_ECIN_ECALveto_1e_cut =
     //     new TH2D("reco_theta_nFD_VS_eff_L_ECIN_ECALveto_1e_cut",
@@ -499,7 +499,7 @@ void nFD_eff_test() {
 
     TH2D* h_reco_P_nFD_VS_reco_L_ECOUT_ECALveto_1e_cut =
         new TH2D("reco_P_nFD_VS_reco_L_ECOUT_ECALveto_1e_cut", "P^{reco}_{nFD} vs. L^{reco}_{nFD,ECOUT} in 1e cut (ECALveto);L^{reco}_{nFD,ECOUT} [cm];P^{reco}_{nFD} [#circ]", 100, 700.,
-                 850., 100, 0., P_upperLim);
+                 850., 100, 0., Ebeam * 3.);
     HistoList.push_back(h_reco_P_nFD_VS_reco_L_ECOUT_ECALveto_1e_cut);
     TH2D* h_reco_theta_nFD_VS_reco_L_ECOUT_ECALveto_1e_cut =
         new TH2D("reco_theta_nFD_VS_reco_L_ECOUT_ECALveto_1e_cut", "#theta^{reco}_{nFD} vs. L^{reco}_{nFD,ECOUT} in 1e cut (ECALveto);L^{reco}_{nFD,ECOUT} [cm];#theta^{reco}_{nFD} [#circ]",
@@ -524,7 +524,7 @@ void nFD_eff_test() {
     // TH2D* h_reco_P_nFD_VS_eff_L_ECOUT_ECALveto_1e_cut =
     //     new TH2D("reco_P_nFD_VS_eff_L_ECOUT_ECALveto_1e_cut",
     //              "P^{reco}_{nFD} vs. L^{eff}_{nFD,ECOUT} in 1e cut (ECALveto);L^{eff}_{nFD,ECOUT} = c#beta^{truth}t^{#beta^{reco}_{nFD}}_{ToF} [cm];P^{reco}_{nFD} [#circ]", 100, 700.,
-    //              850., 100, 0., P_upperLim);
+    //              850., 100, 0., Ebeam * 3.);
     // HistoList.push_back(h_reco_P_nFD_VS_eff_L_ECOUT_ECALveto_1e_cut);
     // TH2D* h_reco_theta_nFD_VS_eff_L_ECOUT_ECALveto_1e_cut =
     //     new TH2D("reco_theta_nFD_VS_eff_L_ECOUT_ECALveto_1e_cut",
@@ -637,7 +637,7 @@ void nFD_eff_test() {
 
     TH2D* h_reco_P_nFD_VS_reco_L_ECAL_matched_1e_cut =
         new TH2D("reco_P_nFD_VS_reco_L_ECAL_matched_1e_cut", "P^{reco}_{nFD} vs. L^{reco}_{nFD,ECAL} in 1e cut (matched);L^{reco}_{nFD,ECAL} [cm];P^{reco}_{nFD} [#circ]", 100, 700., 850.,
-                 100, 0., P_upperLim);
+                 100, 0., Ebeam * 3.);
     HistoList.push_back(h_reco_P_nFD_VS_reco_L_ECAL_matched_1e_cut);
     TH2D* h_reco_theta_nFD_VS_reco_L_ECAL_matched_1e_cut =
         new TH2D("reco_theta_nFD_VS_reco_L_ECAL_matched_1e_cut", "#theta^{reco}_{nFD} vs. L^{reco}_{nFD,ECAL} in 1e cut (matched);L^{reco}_{nFD,ECAL} [cm];#theta^{reco}_{nFD} [#circ]", 100,
@@ -662,7 +662,7 @@ void nFD_eff_test() {
     // TH2D* h_reco_P_nFD_VS_eff_L_ECAL_matched_1e_cut =
     //     new TH2D("reco_P_nFD_VS_eff_L_ECAL_matched_1e_cut",
     //              "P^{reco}_{nFD} vs. L^{eff}_{nFD,ECAL} in 1e cut (matched);L^{eff}_{nFD,ECAL} = c#beta^{truth}t^{#beta^{reco}_{nFD}}_{ToF} [cm];P^{reco}_{nFD} [#circ]", 100, 700., 850.,
-    //              100, 0., P_upperLim);
+    //              100, 0., Ebeam * 3.);
     // HistoList.push_back(h_reco_P_nFD_VS_eff_L_ECAL_matched_1e_cut);
     // TH2D* h_reco_theta_nFD_VS_eff_L_ECAL_matched_1e_cut =
     //     new TH2D("reco_theta_nFD_VS_eff_L_ECAL_matched_1e_cut",
@@ -677,7 +677,7 @@ void nFD_eff_test() {
 
     TH2D* h_reco_P_nFD_VS_reco_L_ECIN_matched_1e_cut =
         new TH2D("reco_P_nFD_VS_reco_L_ECIN_matched_1e_cut", "P^{reco}_{nFD} vs. L^{reco}_{nFD,ECIN} in 1e cut (matched);L^{reco}_{nFD,ECIN} [cm];P^{reco}_{nFD} [#circ]", 100, 700., 850.,
-                 100, 0., P_upperLim);
+                 100, 0., Ebeam * 3.);
     HistoList.push_back(h_reco_P_nFD_VS_reco_L_ECIN_matched_1e_cut);
     TH2D* h_reco_theta_nFD_VS_reco_L_ECIN_matched_1e_cut =
         new TH2D("reco_theta_nFD_VS_reco_L_ECIN_matched_1e_cut", "#theta^{reco}_{nFD} vs. L^{reco}_{nFD,ECIN} in 1e cut (matched);L^{reco}_{nFD,ECIN} [cm];#theta^{reco}_{nFD} [#circ]", 100,
@@ -702,7 +702,7 @@ void nFD_eff_test() {
     // TH2D* h_reco_P_nFD_VS_eff_L_ECIN_matched_1e_cut =
     //     new TH2D("reco_P_nFD_VS_eff_L_ECIN_matched_1e_cut",
     //              "P^{reco}_{nFD} vs. L^{eff}_{nFD,ECIN} in 1e cut (matched);L^{eff}_{nFD,ECIN} = c#beta^{truth}t^{#beta^{reco}_{nFD}}_{ToF} [cm];P^{reco}_{nFD} [#circ]", 100, 700., 850.,
-    //              100, 0., P_upperLim);
+    //              100, 0., Ebeam * 3.);
     // HistoList.push_back(h_reco_P_nFD_VS_eff_L_ECIN_matched_1e_cut);
     // TH2D* h_reco_theta_nFD_VS_eff_L_ECIN_matched_1e_cut =
     //     new TH2D("reco_theta_nFD_VS_eff_L_ECIN_matched_1e_cut",
@@ -717,7 +717,7 @@ void nFD_eff_test() {
 
     TH2D* h_reco_P_nFD_VS_reco_L_ECOUT_matched_1e_cut =
         new TH2D("reco_P_nFD_VS_reco_L_ECOUT_matched_1e_cut", "P^{reco}_{nFD} vs. L^{reco}_{nFD,ECOUT} in 1e cut (matched);L^{reco}_{nFD,ECOUT} [cm];P^{reco}_{nFD} [#circ]", 100, 700., 850.,
-                 100, 0., P_upperLim);
+                 100, 0., Ebeam * 3.);
     HistoList.push_back(h_reco_P_nFD_VS_reco_L_ECOUT_matched_1e_cut);
     TH2D* h_reco_theta_nFD_VS_reco_L_ECOUT_matched_1e_cut =
         new TH2D("reco_theta_nFD_VS_reco_L_ECOUT_matched_1e_cut", "#theta^{reco}_{nFD} vs. L^{reco}_{nFD,ECOUT} in 1e cut (matched);L^{reco}_{nFD,ECOUT} [cm];#theta^{reco}_{nFD} [#circ]",
@@ -742,7 +742,7 @@ void nFD_eff_test() {
     // TH2D* h_reco_P_nFD_VS_eff_L_ECOUT_matched_1e_cut =
     //     new TH2D("reco_P_nFD_VS_eff_L_ECOUT_matched_1e_cut",
     //              "P^{reco}_{nFD} vs. L^{eff}_{nFD,ECOUT} in 1e cut (matched);L^{eff}_{nFD,ECOUT} = c#beta^{truth}t^{#beta^{reco}_{nFD}}_{ToF} [cm];P^{reco}_{nFD} [#circ]", 100, 700.,
-    //              850., 100, 0., P_upperLim);
+    //              850., 100, 0., Ebeam * 3.);
     // HistoList.push_back(h_reco_P_nFD_VS_eff_L_ECOUT_matched_1e_cut);
     // TH2D* h_reco_theta_nFD_VS_eff_L_ECOUT_matched_1e_cut =
     //     new TH2D("reco_theta_nFD_VS_eff_L_ECOUT_matched_1e_cut",
@@ -1032,12 +1032,8 @@ void nFD_eff_test() {
 
         for (int i = 0; i < allParticles.size(); i++) {
             int pid_temp = allParticles[i]->par()->getPid();
-            double starttime = c12->event()->getStartTime();
-            double ToF_temp = allParticles[i]->getTime() - starttime;
 
-            if ((allParticles[i]->par()->getCharge() == 0) && (allParticles[i]->getRegion() == FD) && (pid_temp != 0)
-                //  && !(ToF_temp < 0 || ToF_temp > 40.)
-            ) {
+            if ((allParticles[i]->par()->getCharge() == 0) && (allParticles[i]->getRegion() == FD) && (pid_temp != 0)) {
                 double Momentum = CalcPnFD(allParticles[i], starttime);
                 // If particle is neutral and in the FD
                 bool ParticleInPCAL = (allParticles[i]->cal(clas12::PCAL)->getDetector() == 7);    // PCAL hit
@@ -1139,16 +1135,12 @@ void nFD_eff_test() {
 
         for (int i = 0; i < allParticles.size(); i++) {
             int pid_temp = allParticles[i]->par()->getPid();
-            double starttime = c12->event()->getStartTime();
-            double ToF_temp = allParticles[i]->getTime() - starttime;
 
-            if ((allParticles[i]->par()->getCharge() == 0) && (allParticles[i]->getRegion() == FD) && (pid_temp != 0)
-                // && !(ToF_temp < 0 || ToF_temp > 40.)
-            ) {                                                                                    // If particle is neutral and in the FD
-                bool ParticleInPCAL = (allParticles[i]->cal(clas12::PCAL)->getDetector() == 7);    // PCAL hit
-                bool ParticleInECIN = (allParticles[i]->cal(clas12::ECIN)->getDetector() == 7);    // ECIN hit
-                bool ParticleInECOUT = (allParticles[i]->cal(clas12::ECOUT)->getDetector() == 7);  // ECOUT hit
-                auto Neutron_ECAL_detlayer = ParticleInECIN ? clas12::ECIN : clas12::ECOUT;        // find first layer of hit
+            if ((allParticles[i]->par()->getCharge() == 0) && (allParticles[i]->getRegion() == FD) && (pid_temp != 0)) {  // If particle is neutral and in the FD
+                bool ParticleInPCAL = (allParticles[i]->cal(clas12::PCAL)->getDetector() == 7);                           // PCAL hit
+                bool ParticleInECIN = (allParticles[i]->cal(clas12::ECIN)->getDetector() == 7);                           // ECIN hit
+                bool ParticleInECOUT = (allParticles[i]->cal(clas12::ECOUT)->getDetector() == 7);                         // ECOUT hit
+                auto Neutron_ECAL_detlayer = ParticleInECIN ? clas12::ECIN : clas12::ECOUT;                               // find first layer of hit
 
                 if ((pid_temp == 2112) || (pid_temp == 22)) {
                     if (ParticleInPCAL) {
