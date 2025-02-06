@@ -172,7 +172,7 @@ bool NeutronECAL_Cut_Veto(vector<region_part_ptr>& allParticles, vector<region_p
         } else {
             TVector3 v_neutral_hit; /* v_neutral_hit = location of neutral particle hit */
 
-            if ((detlayer == clas12::PCAL) && (allParticles[j]->cal(clas12::PCAL)->getZ() != 0)) {
+            if ((detlayer == clas12::PCAL) /* && (allParticles[j]->cal(clas12::PCAL)->getZ() != 0) */) {
                 /* if other neutral hit the PCAL, use use it to determine v_neutral_hit */
                 v_neutral_hit.SetXYZ(allParticles[j]->cal(clas12::PCAL)->getX(), allParticles[j]->cal(clas12::PCAL)->getY(), allParticles[j]->cal(clas12::PCAL)->getZ());
                 TVector3 v_dist = v_nhit - v_neutral_hit;
