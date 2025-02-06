@@ -1059,7 +1059,7 @@ void nFD_eff_test() {
 
             double Path_nFD = neutrons_FD_ECALveto[i]->getPath();
             double eff_path_nFD = c * Truth_beta;
-            double reco_ToF_nFD = neutrons_FD_ECALveto->getTime();  // NOTE: Neutron->cal(detlayer)->getTime() = Neutron->getTime()
+            double reco_ToF_nFD = neutrons_FD_ECALveto[i]->getTime();  // NOTE: Neutron->cal(detlayer)->getTime() = Neutron->getTime()
 
             h_reco_P_nFD_ECALveto_1e_cut->Fill(reco_P_nFD.Mag(), weight);
             h_reco_theta_nFD_ECALveto_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI, weight);
@@ -1191,7 +1191,7 @@ void nFD_eff_test() {
 
             double Path_nFD = neutrons_FD_matched[i]->getPath();
             double eff_path_nFD = c * Truth_beta;
-            double reco_ToF_nFD = neutrons_FD_matched->getTime();  // NOTE: Neutron->cal(detlayer)->getTime() = Neutron->getTime()
+            double reco_ToF_nFD = neutrons_FD_matched[i]->getTime();  // NOTE: Neutron->cal(detlayer)->getTime() = Neutron->getTime()
 
             h_reco_P_nFD_matched_1e_cut->Fill(reco_P_nFD.Mag(), weight);
             h_reco_theta_nFD_matched_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI, weight);
