@@ -1027,11 +1027,8 @@ void nFD_eff_test() {
 
         for (int i = 0; i < allParticles.size(); i++) {
             int pid_temp = allParticles[i]->par()->getPid();
-            double starttime = c12->event()->getStartTime();
-            double ToF_temp = allParticles[i]->getTime() - starttime;
 
             if ((allParticles[i]->par()->getCharge() == 0) && (allParticles[i]->getRegion() == FD) && (pid_temp != 0)
-                //  && !(ToF_temp < 0 || ToF_temp > 40.)
             ) {  // If particle is neutral and in the FD
 
                 bool ParticleInPCAL = (allParticles[i]->cal(clas12::PCAL)->getDetector() == 7);    // PCAL hit
