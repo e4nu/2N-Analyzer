@@ -168,6 +168,8 @@ bool NeutronECAL_Cut_Veto(vector<region_part_ptr>& allParticles, vector<region_p
 void nFD_eff_test() {
     cout << "\n\nInitiating nFD_eff_test.cpp\n";
 
+    bool ConstrainTLmom = true;
+
     bool Is2GeV = false, Is4GeV = false, Is6GeV = false;
     // double Ebeam = 4.02962;
     //  Is4GeV = true;
@@ -536,6 +538,7 @@ void nFD_eff_test() {
         double WSq = (m_n * m_n) - QSq + (2 * nu * m_n);
         double theta_e = reco_P_e.Theta() * 180 / M_PI;
         double EoP_e = (electrons[0]->cal(clas12::PCAL)->getEnergy() + electrons[0]->cal(ECIN)->getEnergy() + electrons[0]->cal(ECOUT)->getEnergy()) / reco_P_e.Mag();
+        double Edep_PCAL = electrons[0]->cal(clas12::PCAL)->getEnergy();
 
         //  =======================================================================================================================================================================
         //  1e cut (truth)
@@ -563,7 +566,7 @@ void nFD_eff_test() {
 
             bool PassMomth = (p >= 0.4);
 
-            if (pid_temp == 2112 && p > 2.) {
+            if (ConstrainTLmom && (pid_temp == 2112 && p > 2.)) {
                 TLpassCuts = false;
                 continue;
             }
@@ -608,7 +611,7 @@ void nFD_eff_test() {
             }
         }
 
-        if (!TLpassCuts) { continue; }
+        if (ConstrainTLmom && !TLpassCuts) { continue; }
 #pragma endregion
 
         //  =======================================================================================================================================================================
@@ -621,6 +624,7 @@ void nFD_eff_test() {
 
 #pragma region /* Electron PID cuts */
         if (electrons[0]->che(clas12::HTCC)->getNphe() <= 2) { continue; }
+        if (Edep_PCAL <= 0.06) { continue; }
         if (EoP_e < 0.2 || EoP_e > 0.28) { continue; }
         if (electrons[0]->cal(clas12::PCAL)->getLv() < 14. || electrons[0]->cal(clas12::PCAL)->getLw() < 14.) { continue; }
         if (electrons[0]->par()->getVz() < -6. || electrons[0]->par()->getVz() > 0.) { continue; }
@@ -701,16 +705,13 @@ void nFD_eff_test() {
                 bool ParticleInECOUT = (allParticles[i]->cal(clas12::ECOUT)->getDetector() == 7);  // ECOUT hit
                 auto Neutron_ECAL_detlayer = ParticleInECIN ? clas12::ECIN : clas12::ECOUT;        // find first layer of hit
 
-                if ((pid_temp == 2112) && ParticleInPCAL) { neutrons_FD_redef.push_back(allParticles[i]); }
-                // if ((pid_temp == 2112) || (pid_temp == 22)) {
-                //     if (ParticleInPCAL) {
-                //         if (pid_temp == 22) { photons_FD_redef.push_back(allParticles[i]); }
-                //     } else if (!ParticleInPCAL) {  // if there is a neutron or a 'photon' without a PCAL hit
-                //         if (ParticleInECIN || ParticleInECOUT) { neutrons_FD_redef.push_back(allParticles[i]); }
-                //     }
-                // }  // end of clas12root neutron or 'photon' if
-                // if (pid_temp == 2112) { neutrons_FD_redef.push_back(allParticles[i]); }
-
+                if ((pid_temp == 2112) || (pid_temp == 22)) {
+                    if (ParticleInPCAL) {
+                        if (pid_temp == 22) { photons_FD_redef.push_back(allParticles[i]); }
+                    } else if (!ParticleInPCAL) {  // if there is a neutron or a 'photon' without a PCAL hit
+                        if (ParticleInECIN || ParticleInECOUT) { neutrons_FD_redef.push_back(allParticles[i]); }
+                    }
+                }  // end of clas12root neutron or 'photon' if
             }  // end of neutral and in the FD if
         }
 
