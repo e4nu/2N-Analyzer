@@ -179,7 +179,7 @@ bool NeutronECAL_Cut_Veto(vector<region_part_ptr>& allParticles, vector<region_p
                 v_neutral_hit.SetXYZ(allParticles[j]->cal(clas12::PCAL)->getX(), allParticles[j]->cal(clas12::PCAL)->getY(), allParticles[j]->cal(clas12::PCAL)->getZ());
                 TVector3 v_dist = v_nhit - v_neutral_hit;
 
-                if (v_dist.Mag() < 100. * veto_cut) { Veto = true; }
+                if (v_dist.Mag() < 10000. * veto_cut) { Veto = true; }
             }
         }
 
