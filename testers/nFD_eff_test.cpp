@@ -967,7 +967,7 @@ void nFD_eff_test() {
 
         for (int i = 0; i < neutrons_FD_clas12.size(); i++) {
             TVector3 reco_P_nFD;
-            reco_P_nFD.SetMagThetaPhi(CalcPnFD(neutrons_FD_redef[i], starttime), neutrons_FD_clas12[i]->getTheta(), neutrons_FD_clas12[i]->getPhi());
+            reco_P_nFD.SetMagThetaPhi(CalcPnFD(neutrons_FD_clas12[i], starttime), neutrons_FD_clas12[i]->getTheta(), neutrons_FD_clas12[i]->getPhi());
             // reco_P_nFD.SetMagThetaPhi(neutrons_FD_clas12[i]->getP(), neutrons_FD_clas12[i]->getTheta(), neutrons_FD_clas12[i]->getPhi());
 
             h_reco_P_nFD_clas12_1e_cut->Fill(reco_P_nFD.Mag(), weight);
