@@ -167,7 +167,7 @@ bool NeutronECAL_Cut_Veto(vector<region_part_ptr>& allParticles, vector<region_p
                                      allParticles[j]->traj(clas12::ECAL, trajlayer)->getZ());
                 TVector3 v_dist = v_nhit - v_charged_hit;
 
-                if (v_dist.Mag() < 1000 * veto_cut) { Veto = true; }
+                if (v_dist.Mag() < 100000 * veto_cut) { Veto = true; }
             }
         } else {
             TVector3 v_neutral_hit; /* v_neutral_hit = location of neutral particle hit */
