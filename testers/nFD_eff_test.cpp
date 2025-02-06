@@ -32,6 +32,17 @@ double CalcPnFD(region_part_ptr NeutronFD, double starttime = 9999) {
 
     double Momentum;
 
+    bool ParticleInPCAL = (NeutronFD->cal(clas12::PCAL)->getDetector() == 7);                       // PCAL hit
+    bool ParticleInECIN = (NeutronFD->cal(clas12::ECIN)->getDetector() == 7);                       // ECIN hit
+    bool ParticleInECOUT = (NeutronFD->cal(clas12::ECOUT)->getDetector() == 7);                     // ECOUT hit
+    auto detlayer = ParticleInPCAL ? clas12::PCAL : ParticleInECIN ? clas12::ECIN : clas12::ECOUT;  // determine the earliest layer of the neutral hit
+
+    double reco_Path_nFD = NeutronFD->getPath();
+    double reco_ToF_nFD = NeutronFD->cal(detlayer)->getTime() - starttime;
+    double reco_Beta_nFD = reco_Path_nFD / (reco_ToF_nFD * c);
+    double reco_Gamma_nFD = 1 / sqrt(1 - (reco_Beta_nFD * reco_Beta_nFD));
+    Momentum = m_n * reco_Beta_nFD * reco_Gamma_nFD;
+
     // double Beta_ph = NeutronFD->par()->getBeta();
     // double Path_ph = NeutronFD->getPath();
     // double Time_ph_from_Beta_ph = Path_ph / (c * Beta_ph);
@@ -42,15 +53,15 @@ double CalcPnFD(region_part_ptr NeutronFD, double starttime = 9999) {
     // double Gamma_ph = 1 / sqrt(1 - (Beta_ph * Beta_ph));
     // Momentum = m_n * Beta_ph * Gamma_ph;
 
-    if (ParticlePDG == 2112) {
-        Momentum = NeutronFD->par()->getP();
-    } else if (ParticlePDG == 22) {
-        double Beta_ph = NeutronFD->par()->getBeta();
-        double Gamma_ph = 1 / sqrt(1 - (Beta_ph * Beta_ph));
-        Momentum = m_n * Beta_ph * Gamma_ph;
-    } else {
-        cout << "\n\nError! Particle PDG is not 22 or 2112! Aborting...\n\n", exit(0);
-    }
+    // if (ParticlePDG == 2112) {
+    //     Momentum = NeutronFD->par()->getP();
+    // } else if (ParticlePDG == 22) {
+    //     double Beta_ph = NeutronFD->par()->getBeta();
+    //     double Gamma_ph = 1 / sqrt(1 - (Beta_ph * Beta_ph));
+    //     Momentum = m_n * Beta_ph * Gamma_ph;
+    // } else {
+    //     cout << "\n\nError! Particle PDG is not 22 or 2112! Aborting...\n\n", exit(0);
+    // }
 
     // Momentum = NeutronFD->par()->getP();
 
@@ -1027,7 +1038,7 @@ void nFD_eff_test() {
             if ((allParticles[i]->par()->getCharge() == 0) && (allParticles[i]->getRegion() == FD) && (pid_temp != 0)
                 //  && !(ToF_temp < 0 || ToF_temp > 40.)
             ) {
-                double Momentum = CalcPnFD(allParticles[i]);
+                double Momentum = CalcPnFD(allParticles[i], starttime);
                 // If particle is neutral and in the FD
                 bool ParticleInPCAL = (allParticles[i]->cal(clas12::PCAL)->getDetector() == 7);    // PCAL hit
                 bool ParticleInECIN = (allParticles[i]->cal(clas12::ECIN)->getDetector() == 7);    // ECIN hit
@@ -1052,7 +1063,7 @@ void nFD_eff_test() {
 
         for (int i = 0; i < neutrons_FD_ECALveto.size(); i++) {
             TVector3 reco_P_nFD;
-            reco_P_nFD.SetMagThetaPhi(CalcPnFD(neutrons_FD_ECALveto[i]), neutrons_FD_ECALveto[i]->getTheta(), neutrons_FD_ECALveto[i]->getPhi());
+            reco_P_nFD.SetMagThetaPhi(CalcPnFD(neutrons_FD_ECALveto[i], starttime), neutrons_FD_ECALveto[i]->getTheta(), neutrons_FD_ECALveto[i]->getPhi());
 
             bool ParticleInPCAL = (neutrons_FD_ECALveto[i]->cal(clas12::PCAL)->getDetector() == 7);         // PCAL hit
             bool ParticleInECIN = (neutrons_FD_ECALveto[i]->cal(clas12::ECIN)->getDetector() == 7);         // ECIN hit
@@ -1144,7 +1155,7 @@ void nFD_eff_test() {
                         if (pid_temp == 22) { photons_FD_redef.push_back(allParticles[i]); }
                     } else if (!ParticleInPCAL) {  // if there is a neutron or a 'photon' without a PCAL hit
                         if (ParticleInECIN || ParticleInECOUT) {
-                            double Momentum = CalcPnFD(allParticles[i]);
+                            double Momentum = CalcPnFD(allParticles[i], starttime);
 
                             bool PassMomth = (Momentum >= 0.4);
                             bool passECALeadgeCuts = (allParticles[i]->cal(Neutron_ECAL_detlayer)->getLv() > 14. && allParticles[i]->cal(Neutron_ECAL_detlayer)->getLw() > 14.);
@@ -1186,7 +1197,7 @@ void nFD_eff_test() {
 
         for (int i = 0; i < neutrons_FD_matched.size(); i++) {
             TVector3 reco_P_nFD;
-            reco_P_nFD.SetMagThetaPhi(CalcPnFD(neutrons_FD_matched[i]), neutrons_FD_matched[i]->getTheta(), neutrons_FD_matched[i]->getPhi());
+            reco_P_nFD.SetMagThetaPhi(CalcPnFD(neutrons_FD_matched[i], starttime), neutrons_FD_matched[i]->getTheta(), neutrons_FD_matched[i]->getPhi());
 
             bool ParticleInPCAL = (neutrons_FD_matched[i]->cal(clas12::PCAL)->getDetector() == 7);          // PCAL hit
             bool ParticleInECIN = (neutrons_FD_matched[i]->cal(clas12::ECIN)->getDetector() == 7);          // ECIN hit
