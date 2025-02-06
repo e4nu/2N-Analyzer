@@ -1082,14 +1082,20 @@ void nFD_eff_test() {
                 bool ParticleInECOUT = (allParticles[i]->cal(clas12::ECOUT)->getDetector() == 7);                         // ECOUT hit
                 auto Neutron_ECAL_detlayer = ParticleInECIN ? clas12::ECIN : clas12::ECOUT;                               // find first layer of hit
 
-                if (pid_temp == 2112) {
-                    double Momentum = CalcPnFD(allParticles[i], starttime);
+                if ((pid_temp == 2112) || (pid_temp == 22)) {
+                    if (ParticleInPCAL) {
+                        if (pid_temp == 22) { photons_FD_redef.push_back(allParticles[i]); }
+                    } else if (!ParticleInPCAL) {  // if there is a neutron or a 'photon' without a PCAL hit
+                        if (ParticleInECIN || ParticleInECOUT) {
+                            double Momentum = CalcPnFD(allParticles[i], starttime);
 
-                    bool PassMomth = (Momentum >= 0.4);
-                    bool passECALeadgeCuts = (allParticles[i]->cal(Neutron_ECAL_detlayer)->getLv() > 14. && allParticles[i]->cal(Neutron_ECAL_detlayer)->getLw() > 14.);
-                    bool passVeto = NeutronECAL_Cut_Veto(allParticles, electrons, Ebeam, i, 100);
+                            bool PassMomth = (Momentum >= 0.4);
+                            bool passECALeadgeCuts = (allParticles[i]->cal(Neutron_ECAL_detlayer)->getLv() > 14. && allParticles[i]->cal(Neutron_ECAL_detlayer)->getLw() > 14.);
+                            bool passVeto = NeutronECAL_Cut_Veto(allParticles, electrons, Ebeam, i, 100);
 
-                    if (PassMomth && passECALeadgeCuts && true) { neutrons_FD_ECALveto.push_back(allParticles[i]); }  // end of clas12root neutron or 'photon' if
+                            if (PassMomth && passECALeadgeCuts && true) { neutrons_FD_ECALveto.push_back(allParticles[i]); }  // end of clas12root neutron or 'photon' if
+                        }
+                    }
                 }  // end of clas12root neutron or 'photon' if
             }  // end of neutral and in the FD if
         }
@@ -1099,7 +1105,7 @@ void nFD_eff_test() {
             bool ParticleInECIN = (neutrons_FD_ECALveto[i]->cal(clas12::ECIN)->getDetector() == 7);         // ECIN hit
             bool ParticleInECOUT = (neutrons_FD_ECALveto[i]->cal(clas12::ECOUT)->getDetector() == 7);       // ECOUT hit
             auto detlayer = ParticleInPCAL ? clas12::PCAL : ParticleInECIN ? clas12::ECIN : clas12::ECOUT;  // determine the earliest layer of the neutral hit
-            // if (ParticleInPCAL) { cout << "\n\nError! neutrons_FD_ECALveto is in the PCAL! Aborting...\n\n", exit(0); }
+            if (ParticleInPCAL) { cout << "\n\nError! neutrons_FD_ECALveto is in the PCAL! Aborting...\n\n", exit(0); }
 
             double Path_nFD = neutrons_FD_ECALveto[i]->getPath();
             double eff_path_nFD = c * Truth_beta;
