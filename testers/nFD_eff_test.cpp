@@ -896,6 +896,11 @@ void nFD_eff_test() {
 
             bool PassMomth = (p >= 0.4);
 
+            if (ConstrainTLmom && (pid_temp == 2112 && p > 2.)) {
+                TLpassCuts = false;
+                continue;
+            }
+
             if (pid_temp == 11) {
                 TVector3 truth_P_e;
                 truth_P_e.SetXYZ(px, py, pz);
@@ -936,17 +941,12 @@ void nFD_eff_test() {
                         h_truth_theta_nFD_ECALveto_VS_truth_phi_nFD_ECALveto_1e_cut->Fill(truth_P_n.Phi() * 180 / M_PI, truth_P_n.Theta() * 180 / M_PI, weight);
                     }
                 }
-
-                if (ConstrainTLmom && (pid_temp == 2112 && p > 2.)) {
-                    TLpassCuts = false;
-                    continue;
-                }
             }
         }
 
-        if (truth_NeutronsFD.size() != 1) { cout << "\n\nError! truth_NeutronsFD is not 1! Aborting...\n\n", exit(0); }
-
         if (ConstrainTLmom && !TLpassCuts) { continue; }
+
+        if (truth_NeutronsFD.size() != 1) { cout << "\n\nError! truth_NeutronsFD is not 1! Aborting...\n\n", exit(0); }
 #pragma endregion
 
         //  =======================================================================================================================================================================
