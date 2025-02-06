@@ -1096,7 +1096,7 @@ void nFD_eff_test() {
                             bool PassMomth = (Momentum >= 0.4);
                             bool passECALeadgeCuts = (allParticles[i]->cal(Neutron_ECAL_detlayer)->getLv() > 14. && allParticles[i]->cal(Neutron_ECAL_detlayer)->getLw() > 14.);
                             bool passVeto = NeutronECAL_Cut_Veto(allParticles, electrons, Ebeam, i, 100.);
-                            bool goodBeta = ((Path_nFD / (c * reco_ToF_nFD) - Truth_beta) < 0.01);
+                            bool goodBeta = ((Path_nFD / (c * reco_ToF_nFD) - Truth_beta) < 0.001);
                             // bool goodBeta = (fabs(allParticles[i]->par()->getBeta() - Path_nFD / (c * reco_ToF_nFD)) < 0.01);
 
                             if (PassMomth && passECALeadgeCuts && passVeto && goodBeta) { neutrons_FD_ECALveto.push_back(allParticles[i]); }  // end of clas12root neutron or 'photon' if
