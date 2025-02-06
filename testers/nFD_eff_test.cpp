@@ -225,7 +225,7 @@ void nFD_eff_test() {
     double Ebeam = 5.98636;
     Is6GeV = true;
 
-    bool ConstrainTLmom = true;
+    bool ConstrainTLmom = false;
 
     double P_upperLim;
     if (ConstrainTLmom) {
@@ -234,9 +234,9 @@ void nFD_eff_test() {
         P_upperLim = Ebeam * 1.1;
     }
 
-    // int Limiter = 10000000;
+    int Limiter = 10000000;
     // int Limiter = 1000000;
-    int Limiter = 100000;
+    // int Limiter = 100000;
 
     const string OutputDir = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/nFD_eff_test";
     system(("rm -rf " + OutputDir).c_str());
