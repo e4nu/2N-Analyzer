@@ -170,7 +170,10 @@ bool NeutronECAL_Cut_Veto(vector<region_part_ptr>& allParticles, vector<region_p
                 if (v_dist.Mag() < veto_cut) { Veto = true; }
             }
         } else {
+            if (j == index) {continue;}
+            
             bool neutral_hit_PCAL = (allParticles[j]->cal(clas12::PCAL)->getDetector() == 7);
+            bool same_sector = (allParticles[j]->cal(clas12::PCAL)->getSector() == allParticles[index]->cal(detlayer)->getSector());
 
             TVector3 v_neutral_hit; /* v_neutral_hit = location of neutral particle hit */
 
