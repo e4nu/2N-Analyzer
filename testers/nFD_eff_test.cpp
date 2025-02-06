@@ -1088,8 +1088,8 @@ void nFD_eff_test() {
                         if (ParticleInECIN || ParticleInECOUT) {
                             double Momentum = CalcPnFD(allParticles[i], starttime);
 
-                            double Path_nFD = neutrons_FD_ECALveto[i]->getPath();
-                            double reco_ToF_nFD = neutrons_FD_ECALveto[i]->cal(Neutron_ECAL_detlayer)->getTime() - starttime;
+                            // double Path_nFD = allParticles[i]->getPath();
+                            // double reco_ToF_nFD = allParticles[i]->cal(Neutron_ECAL_detlayer)->getTime() - starttime;
 
                             bool PassMomth = (Momentum >= 0.4);
                             bool passECALeadgeCuts = (allParticles[i]->cal(Neutron_ECAL_detlayer)->getLv() > 14. && allParticles[i]->cal(Neutron_ECAL_detlayer)->getLw() > 14.);
