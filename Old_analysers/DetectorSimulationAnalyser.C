@@ -672,8 +672,8 @@ void EventAnalyser(const string &AnalyseFilePath, const string &AnalyseFileSampl
         Plot_selector_master = true;  // Master plot selector for analysis
 
         /* Cut variable plots */
-        // Cut_plots_master = true;
-        Cut_plots_master = false;  // Master cut plots selector
+        Cut_plots_master = true;
+        // Cut_plots_master = false;  // Master cut plots selector
         // Nphe_plots = true, Chi2_plots = true, Vertex_plots = true, SF_plots = true, fiducial_plots = true;
         Nphe_plots = false, Chi2_plots = false, Vertex_plots = false, SF_plots = false, fiducial_plots = false;
 
