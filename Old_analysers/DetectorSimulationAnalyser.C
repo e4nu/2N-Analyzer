@@ -11371,7 +11371,7 @@ void EventAnalyser(const string &AnalyseFilePath, const string &AnalyseFileSampl
         /* Applying rough 1e cut */
         if (Ne != 1) { continue; }  // the rough 1e cut
 
-        if (ApplyLimiter && (num_of_events > Limiter)) { break; }  // FOR nFD eff test!
+        // if (ApplyLimiter && (num_of_events > Limiter)) { break; }  // FOR nFD eff test!
 
         // Safety checks (1e cut)
         CodeDebugger.SafetyCheck_one_good_electron(__FILE__, __LINE__, electrons);
