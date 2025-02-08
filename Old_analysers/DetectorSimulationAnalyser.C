@@ -13733,12 +13733,12 @@ void EventAnalyser(const string &AnalyseFilePath, const string &AnalyseFileSampl
                 hP_nFD_APIDandNS_1n.hFill(P_n_1n_3v.Mag(), Weight_1n);          // Leading FD neutron after shifting (1n)
                 hP_nFD_APIDandNS_1n_ZOOMOUT.hFill(P_n_1n_3v.Mag(), Weight_1n);  // Leading FD neutron after shifting (1n)
                 hP_nFD_APIDandNS_VS_W_1n->Fill(W_1n, P_n_1n_3v.Mag(), Weight_1n);
-                hP_nFD_vs_P_e_1n.hFill(P_nFD_1n_3v.Mag(), P_e_1n_3v.Mag(), Weight_1n);
-                hP_nFD_vs_P_e_ZoomOut_1n.hFill(P_nFD_1n_3v.Mag(), P_e_1n_3v.Mag(), Weight_1n);
-                hP_nFD_vs_theta_e_1n.hFill(P_nFD_1n_3v.Mag(), Theta_e_1n, Weight_1n);
-                hP_nFD_vs_theta_e_ZoomOut_1n.hFill(P_nFD_1n_3v.Mag(), Theta_e_1n, Weight_1n);
-                hP_nFD_vs_phi_e_1n.hFill(P_nFD_1n_3v.Mag(), Phi_e_1n, Weight_1n);
-                hP_nFD_vs_phi_e_ZoomOut_1n.hFill(P_nFD_1n_3v.Mag(), Phi_e_1n, Weight_1n);
+                hP_nFD_vs_P_e_1n.hFill(P_n_1n_3v.Mag(), P_e_1n_3v.Mag(), Weight_1n);
+                hP_nFD_vs_P_e_ZoomOut_1n.hFill(P_n_1n_3v.Mag(), P_e_1n_3v.Mag(), Weight_1n);
+                hP_nFD_vs_theta_e_1n.hFill(P_n_1n_3v.Mag(), Theta_e_1n, Weight_1n);
+                hP_nFD_vs_theta_e_ZoomOut_1n.hFill(P_n_1n_3v.Mag(), Theta_e_1n, Weight_1n);
+                hP_nFD_vs_phi_e_1n.hFill(P_n_1n_3v.Mag(), Phi_e_1n, Weight_1n);
+                hP_nFD_vs_phi_e_ZoomOut_1n.hFill(P_n_1n_3v.Mag(), Phi_e_1n, Weight_1n);
                 htheta_nFD_vs_P_e_1n.hFill(Theta_n_1n, P_e_1n_3v.Mag(), Weight_1n);
                 htheta_nFD_vs_theta_e_1n.hFill(Theta_n_1n, Theta_e_1n, Weight_1n);
                 htheta_nFD_vs_phi_e_1n.hFill(Theta_n_1n, Phi_e_1n, Weight_1n);
