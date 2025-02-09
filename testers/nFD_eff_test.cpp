@@ -41,6 +41,7 @@ double CalcPnFD(region_part_ptr NeutronFD, double starttime = 9999) {
     double reco_ToF_nFD = NeutronFD->cal(detlayer)->getTime() - starttime;
     double reco_Beta_nFD = reco_Path_nFD / (reco_ToF_nFD * c);
     double reco_Gamma_nFD = 1 / sqrt(1 - (reco_Beta_nFD * reco_Beta_nFD));
+    
     Momentum = m_n * reco_Beta_nFD * reco_Gamma_nFD;
 
     // double Beta_ph = NeutronFD->par()->getBeta();
@@ -234,9 +235,9 @@ void nFD_eff_test() {
         P_upperLim = Ebeam * 1.1;
     }
 
-    // int Limiter = 10000000;
+    int Limiter = 10000000;
     // int Limiter = 1000000;
-    int Limiter = 100000;
+    // int Limiter = 100000;
 
     const string OutputDir = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/nFD_eff_test";
     system(("rm -rf " + OutputDir).c_str());
@@ -248,11 +249,11 @@ void nFD_eff_test() {
     string InputFiles;
 
     if (Is4GeV) {
-        InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/4029MeV_ConstPn/OutPut_en/reconhipo/*.hipo";
-        // InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/4029MeV/OutPut_en/reconhipo/*.hipo";
+        // InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/4029MeV_ConstPn/OutPut_en/reconhipo/*.hipo";
+        InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/4029MeV/OutPut_en/reconhipo/*.hipo";
     } else if (Is6GeV) {
-        InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/5986MeV_ConstPn/OutPut_en/reconhipo/*.hipo";
-        // InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/5986MeV/OutPut_en/reconhipo/*.hipo";
+        // InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/5986MeV_ConstPn/OutPut_en/reconhipo/*.hipo";
+        InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/5986MeV/OutPut_en/reconhipo/*.hipo";
     }
 
     chain.Add(InputFiles);
@@ -1352,11 +1353,11 @@ void nFD_eff_test() {
     myText->cd();
     text.DrawLatex(0.2, 0.9, "Uniform sample of (e,e'n) events (truth-level)");
     if (findSubstring(InputFiles, "2070MeV")) {
-        text.DrawLatex(0.2, 0.7, "Beam eneergy: 2070MeV");
+        text.DrawLatex(0.2, 0.7, "Beam energy: 2070MeV");
     } else if (findSubstring(InputFiles, "4029MeV")) {
-        text.DrawLatex(0.2, 0.7, "Beam eneergy: 4029MeV");
+        text.DrawLatex(0.2, 0.7, "Beam energy: 4029MeV");
     } else if (findSubstring(InputFiles, "5986MeV")) {
-        text.DrawLatex(0.2, 0.7, "Beam eneergy: 5986MeV");
+        text.DrawLatex(0.2, 0.7, "Beam energy: 5986MeV");
     }
     myText->Print(fileName, "pdf");
     myText->Clear();
