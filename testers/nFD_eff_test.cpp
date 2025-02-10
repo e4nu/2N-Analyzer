@@ -51,7 +51,7 @@ double CalcPnFD(region_part_ptr NeutronFD, double starttime = 9999) {
     double reco_Beta_nFD = reco_Path_nFD / (reco_ToF_nFD * c);
     double reco_Gamma_nFD = 1 / sqrt(1 - (reco_Beta_nFD * reco_Beta_nFD));
 
-    Momentum = m_n * reco_Beta_nFD * reco_Gamma_nFD;
+    // Momentum = m_n * reco_Beta_nFD * reco_Gamma_nFD;
 
     /*
      if (ParticlePDG == 2112) {
@@ -1123,7 +1123,7 @@ void nFD_eff_test() {
             double reco_ToF_nFD = neutrons_FD_ECALveto[i]->cal(detlayer)->getTime() - starttime;
 
             TVector3 reco_P_nFD;
-            reco_P_nFD.SetMagThetaPhi(CalcPnFD(neutrons_FD_ECALveto[i], starttime) * 0.001, neutrons_FD_ECALveto[i]->getTheta(), neutrons_FD_ECALveto[i]->getPhi());
+            reco_P_nFD.SetMagThetaPhi(CalcPnFD(neutrons_FD_ECALveto[i], starttime), neutrons_FD_ECALveto[i]->getTheta(), neutrons_FD_ECALveto[i]->getPhi());
 
             h_reco_P_nFD_ECALveto_1e_cut->Fill(reco_P_nFD.Mag(), weight);
             h_reco_theta_nFD_ECALveto_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI, weight);
