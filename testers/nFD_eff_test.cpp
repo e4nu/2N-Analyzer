@@ -37,11 +37,20 @@ double CalcPnFD(region_part_ptr NeutronFD, double starttime = 9999) {
     bool ParticleInECOUT = (NeutronFD->cal(clas12::ECOUT)->getDetector() == 7);                     // ECOUT hit
     auto detlayer = ParticleInPCAL ? clas12::PCAL : ParticleInECIN ? clas12::ECIN : clas12::ECOUT;  // determine the earliest layer of the neutral hit
 
-    double reco_Path_nFD = NeutronFD->getPath();
+    TVector3 v_nvtx_3v;  // Neutron's vertex location
+    v_nvtx_3v.SetXYZ(NeutronFD->par()->getVx(), NeutronFD->par()->getVy(), NeutronFD->par()->getVz());
+
+    TVector3 v_hit_3v;  // Neutron's hit location in CND
+    v_hit_3v.SetXYZ(NeutronFD->cal(detlayer)->getX(), NeutronFD->cal(detlayer)->getY(), NeutronFD->cal(detlayer)->getZ());
+
+    TVector3 v_path_3v = v_hit_3v - v_nvtx_3v;  // Direct calculation of neutron's path (in vector form)
+
+    double reco_Path_nFD = v_path_3v.Mag();
+    // double reco_Path_nFD = NeutronFD->getPath();
     double reco_ToF_nFD = NeutronFD->cal(detlayer)->getTime() - starttime;
     double reco_Beta_nFD = reco_Path_nFD / (reco_ToF_nFD * c);
     double reco_Gamma_nFD = 1 / sqrt(1 - (reco_Beta_nFD * reco_Beta_nFD));
-    
+
     Momentum = m_n * reco_Beta_nFD * reco_Gamma_nFD;
 
     // double Beta_ph = NeutronFD->par()->getBeta();
@@ -235,9 +244,9 @@ void nFD_eff_test() {
         P_upperLim = Ebeam * 1.1;
     }
 
-    int Limiter = 10000000;
+    // int Limiter = 10000000;
     // int Limiter = 1000000;
-    // int Limiter = 100000;
+    int Limiter = 100000;
 
     const string OutputDir = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/nFD_eff_test";
     system(("rm -rf " + OutputDir).c_str());
