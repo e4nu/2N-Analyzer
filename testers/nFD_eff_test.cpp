@@ -83,6 +83,24 @@ double CalcPnFD(region_part_ptr NeutronFD, double starttime = 9999) {
     return Momentum;
 }
 
+bool checkEcalDiagCuts(region_part_ptr electrons) {
+    double ecal_diag_cut = 0.2;  // diagonal cut on SF
+
+    double mom = p->par()->getP();
+    // true if inside cut
+    if (p->par()->getPid() == 11) {
+        if ((p->cal(clas12::PCAL)->getEnergy() + p->cal(clas12::ECIN)->getEnergy()) / mom > ecal_diag_cut && mom > 4.5)
+            return true;
+        else if (mom <= 4.5)
+            return true;
+        else
+            return false;
+    }
+
+    else
+        return true;
+}
+
 double CalcdTheta(double dThetaTemp) {
     double dTheta;
 
@@ -980,6 +998,7 @@ void nFD_eff_test() {
         if (EoP_e < 0.2 || EoP_e > 0.28) { continue; }
         if (electrons[0]->cal(clas12::PCAL)->getLv() < 14. || electrons[0]->cal(clas12::PCAL)->getLw() < 14.) { continue; }
         if (electrons[0]->par()->getVz() < -6. || electrons[0]->par()->getVz() > 0.) { continue; }
+        if (!checkEcalDiagCuts(electrons[0])) { continue; }
 
         h_reco_P_e_1e_cut->Fill(reco_P_e.Mag(), weight);
         h_reco_theta_e_1e_cut->Fill(reco_P_e.Theta() * 180 / M_PI, weight);
@@ -1112,8 +1131,7 @@ void nFD_eff_test() {
                             double reco_ToF_nFD = CalcToFnFD(allParticles[i], starttime);
                             // double reco_ToF_nFD = allParticles[i]->cal(Neutron_ECAL_detlayer)->getTime() - starttime;
 
-                            bool PassMomth = true;
-                            // bool PassMomth = (Momentum >= 0.4);
+                            bool PassMomth = (Momentum >= 0.4);
                             bool passECALeadgeCuts = (allParticles[i]->cal(Neutron_ECAL_detlayer)->getLv() > 14. && allParticles[i]->cal(Neutron_ECAL_detlayer)->getLw() > 14.);
                             bool passVeto = NeutronECAL_Cut_Veto(allParticles, electrons, Ebeam, i, 100.);
                             // bool goodBeta = ((Path_nFD / (c * reco_ToF_nFD) - Truth_beta) < 0.001);
