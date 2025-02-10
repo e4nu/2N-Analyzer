@@ -86,10 +86,10 @@ double CalcPnFD(region_part_ptr NeutronFD, double starttime = 9999) {
 bool checkEcalDiagCuts(region_part_ptr electrons) {
     double ecal_diag_cut = 0.2;  // diagonal cut on SF
 
-    double mom = p->par()->getP();
+    double mom = electrons->par()->getP();
     // true if inside cut
-    if (p->par()->getPid() == 11) {
-        if ((p->cal(clas12::PCAL)->getEnergy() + p->cal(clas12::ECIN)->getEnergy()) / mom > ecal_diag_cut && mom > 4.5)
+    if (electrons->par()->getPid() == 11) {
+        if ((electrons->cal(clas12::PCAL)->getEnergy() + p->cal(clas12::ECIN)->getEnergy()) / mom > ecal_diag_cut && mom > 4.5)
             return true;
         else if (mom <= 4.5)
             return true;
@@ -98,6 +98,34 @@ bool checkEcalDiagCuts(region_part_ptr electrons) {
     }
 
     else
+        return true;
+}
+
+bool DCEdgeCuts(region_part_ptr& p) {
+    std::vector<double> dc_edge_cut_el = {4.5, 3.5, 7.5};  // units cm; {region1, region2, region3} cuts for electrons INBENDING
+    std::vector<double> dc_edge_cut_ptr = {2.5, 3, 10.5};  // units cm; {region1, region2, region3} cuts for protons  OUTBENDING
+
+    // true if inside cut
+    // cut all charged particles
+    if (p->par()->getCharge() != 0) {
+        auto traj_index_1 = p->traj(DC, 6)->getIndex();   // layer 1
+        auto traj_index_2 = p->traj(DC, 18)->getIndex();  // layer 2
+        auto traj_index_3 = p->traj(DC, 36)->getIndex();  // layer 3
+
+        auto traj_edge_1 = p->traj(DC, 6)->getFloat("edge", traj_index_1);
+        auto traj_edge_2 = p->traj(DC, 18)->getFloat("edge", traj_index_2);
+        auto traj_edge_3 = p->traj(DC, 36)->getFloat("edge", traj_index_3);
+
+        // PUT DC EDGE CUTS IN PARAMETER FILE
+
+        // electron DC cuts
+        if (p->par()->getCharge() < 0 && (dc_edge_cut_el.size() == 3 && traj_edge_1 > dc_edge_cut_el[0] && traj_edge_2 > dc_edge_cut_el[1] && traj_edge_3 > dc_edge_cut_el[2])) return true;
+        // proton DC cuts
+        else if (p->par()->getCharge() > 0 && (dc_edge_cut_ptr.size() == 3 && traj_edge_1 > dc_edge_cut_ptr[0] && traj_edge_2 > dc_edge_cut_ptr[1] && traj_edge_3 > dc_edge_cut_ptr[2]))
+            return true;
+        else
+            return false;
+    } else
         return true;
 }
 
@@ -999,6 +1027,7 @@ void nFD_eff_test() {
         if (electrons[0]->cal(clas12::PCAL)->getLv() < 14. || electrons[0]->cal(clas12::PCAL)->getLw() < 14.) { continue; }
         if (electrons[0]->par()->getVz() < -6. || electrons[0]->par()->getVz() > 0.) { continue; }
         if (!checkEcalDiagCuts(electrons[0])) { continue; }
+        // if (!DCEdgeCuts(electrons[0])) { continue; }
 
         h_reco_P_e_1e_cut->Fill(reco_P_e.Mag(), weight);
         h_reco_theta_e_1e_cut->Fill(reco_P_e.Theta() * 180 / M_PI, weight);
