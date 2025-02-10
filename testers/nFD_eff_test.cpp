@@ -51,7 +51,7 @@ double CalcPnFD(region_part_ptr NeutronFD, double starttime = 9999) {
     double reco_Beta_nFD = reco_Path_nFD / (reco_ToF_nFD * c);
     double reco_Gamma_nFD = 1 / sqrt(1 - (reco_Beta_nFD * reco_Beta_nFD));
 
-    // Momentum = m_n * reco_Beta_nFD * reco_Gamma_nFD;
+    Momentum = m_n * reco_Beta_nFD * reco_Gamma_nFD;
 
     /*
      if (ParticlePDG == 2112) {
@@ -65,7 +65,7 @@ double CalcPnFD(region_part_ptr NeutronFD, double starttime = 9999) {
     }
     */
 
-    Momentum = NeutronFD->par()->getP();
+    // Momentum = NeutronFD->par()->getP();
 
     return Momentum;
 }
