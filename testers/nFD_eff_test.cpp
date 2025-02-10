@@ -1165,7 +1165,8 @@ void nFD_eff_test() {
                             double reco_ToF_nFD = CalcToFnFD(allParticles[i], starttime);
                             // double reco_ToF_nFD = allParticles[i]->cal(Neutron_ECAL_detlayer)->getTime() - starttime;
 
-                            bool PassMomth = (Momentum >= 0.4);
+                            bool PassMomth = true;
+                            // bool PassMomth = (Momentum >= 0.4);
                             bool passECALeadgeCuts = (allParticles[i]->cal(Neutron_ECAL_detlayer)->getLv() > 14. && allParticles[i]->cal(Neutron_ECAL_detlayer)->getLw() > 14.);
                             bool passVeto = NeutronECAL_Cut_Veto(allParticles, electrons, Ebeam, i, 100.);
                             // bool goodBeta = ((Path_nFD / (c * reco_ToF_nFD) - Truth_beta) < 0.001);
