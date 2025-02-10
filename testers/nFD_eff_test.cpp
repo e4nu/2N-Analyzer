@@ -53,27 +53,19 @@ double CalcPnFD(region_part_ptr NeutronFD, double starttime = 9999) {
 
     Momentum = m_n * reco_Beta_nFD * reco_Gamma_nFD;
 
-    // double Beta_ph = NeutronFD->par()->getBeta();
-    // double Path_ph = NeutronFD->getPath();
-    // double Time_ph_from_Beta_ph = Path_ph / (c * Beta_ph);
-    // double Gamma_ph = 1 / sqrt(1 - (Beta_ph * Beta_ph));
-    // Momentum = m_n * Beta_ph * Gamma_ph;
-
-    // double Beta_ph = NeutronFD->par()->getBeta();
-    // double Gamma_ph = 1 / sqrt(1 - (Beta_ph * Beta_ph));
-    // Momentum = m_n * Beta_ph * Gamma_ph;
-
-    // if (ParticlePDG == 2112) {
-    //     Momentum = NeutronFD->par()->getP();
-    // } else if (ParticlePDG == 22) {
-    //     double Beta_ph = NeutronFD->par()->getBeta();
-    //     double Gamma_ph = 1 / sqrt(1 - (Beta_ph * Beta_ph));
-    //     Momentum = m_n * Beta_ph * Gamma_ph;
-    // } else {
-    //     cout << "\n\nError! Particle PDG is not 22 or 2112! Aborting...\n\n", exit(0);
-    // }
-
-    // Momentum = NeutronFD->par()->getP();
+    /*
+     if (ParticlePDG == 2112) {
+        Momentum = NeutronFD->par()->getP();
+    } else if (ParticlePDG == 22) {
+        double Beta_ph = NeutronFD->par()->getBeta();
+        double Gamma_ph = 1 / sqrt(1 - (Beta_ph * Beta_ph));
+        Momentum = m_n * Beta_ph * Gamma_ph;
+    } else {
+        cout << "\n\nError! Particle PDG is not 22 or 2112! Aborting...\n\n", exit(0);
+    }
+    */
+    
+    Momentum = NeutronFD->par()->getP();
 
     return Momentum;
 }
