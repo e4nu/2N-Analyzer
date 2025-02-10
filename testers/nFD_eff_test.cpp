@@ -33,7 +33,7 @@ double CalcToFnFD(region_part_ptr NeutronFD, double starttime = 9999) {
     bool ParticleInECOUT = (NeutronFD->cal(clas12::ECOUT)->getDetector() == 7);                     // ECOUT hit
     auto detlayer = ParticleInPCAL ? clas12::PCAL : ParticleInECIN ? clas12::ECIN : clas12::ECOUT;  // determine the earliest layer of the neutral hit
 
-    double reco_ToF_nFD = NeutronFD->par()->getTime();
+    double reco_ToF_nFD = NeutronFD->getTime();
     // double reco_ToF_nFD = NeutronFD->cal(detlayer)->getTime() - starttime;
 
     return reco_ToF_nFD;
