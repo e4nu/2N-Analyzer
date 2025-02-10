@@ -64,7 +64,7 @@ double CalcPnFD(region_part_ptr NeutronFD, double starttime = 9999) {
         cout << "\n\nError! Particle PDG is not 22 or 2112! Aborting...\n\n", exit(0);
     }
     */
-    
+
     Momentum = NeutronFD->par()->getP();
 
     return Momentum;
@@ -1123,7 +1123,7 @@ void nFD_eff_test() {
             double reco_ToF_nFD = neutrons_FD_ECALveto[i]->cal(detlayer)->getTime() - starttime;
 
             TVector3 reco_P_nFD;
-            reco_P_nFD.SetMagThetaPhi(CalcPnFD(neutrons_FD_ECALveto[i], starttime), neutrons_FD_ECALveto[i]->getTheta(), neutrons_FD_ECALveto[i]->getPhi());
+            reco_P_nFD.SetMagThetaPhi(CalcPnFD(neutrons_FD_ECALveto[i], starttime) * 0.001, neutrons_FD_ECALveto[i]->getTheta(), neutrons_FD_ECALveto[i]->getPhi());
 
             h_reco_P_nFD_ECALveto_1e_cut->Fill(reco_P_nFD.Mag(), weight);
             h_reco_theta_nFD_ECALveto_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI, weight);
