@@ -89,16 +89,16 @@ bool checkEcalDiagCuts(region_part_ptr electrons) {
     double mom = electrons->par()->getP();
     // true if inside cut
     if (electrons->par()->getPid() == 11) {
-        if ((electrons->cal(clas12::PCAL)->getEnergy() + p->cal(clas12::ECIN)->getEnergy()) / mom > ecal_diag_cut && mom > 4.5)
+        if ((electrons->cal(clas12::PCAL)->getEnergy() + electrons->cal(clas12::ECIN)->getEnergy()) / mom > ecal_diag_cut && mom > 4.5) {
             return true;
-        else if (mom <= 4.5)
+        } else if (mom <= 4.5) {
             return true;
-        else
+        } else {
             return false;
-    }
-
-    else
+        }
+    } else {
         return true;
+    }
 }
 
 bool DCEdgeCuts(region_part_ptr& p) {
