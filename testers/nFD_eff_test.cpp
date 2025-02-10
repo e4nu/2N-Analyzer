@@ -1030,7 +1030,7 @@ void nFD_eff_test() {
         if (EoP_e < 0.2 || EoP_e > 0.28) { continue; }
         if (electrons[0]->cal(clas12::PCAL)->getLv() < 14. || electrons[0]->cal(clas12::PCAL)->getLw() < 14.) { continue; }
         if (electrons[0]->par()->getVz() < -6. || electrons[0]->par()->getVz() > 0.) { continue; }
-        if (checkEcalDiagCuts(electrons[0])) { continue; }
+        if (!checkEcalDiagCuts(electrons[0])) { continue; }
         if (!DCEdgeCuts(electrons[0])) { continue; }
 
         h_reco_P_e_1e_cut->Fill(reco_P_e.Mag(), weight);
