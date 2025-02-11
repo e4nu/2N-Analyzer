@@ -369,10 +369,10 @@ void nFD_eff_test() {
 
     // DC hit maps
     for (int i = 1; i <= 3; i++) {
-        h_dc_electron_hit_map_BC_1e_cut[i] = new TH2D(Form("dc_electron_hit_map_BC%d", i), Form("DC hitmap in region %d (before cuts);x [cm];y [cm]", i), 600, -300, 300, 600, -300, 300);
+        h_dc_electron_hit_map_BC_1e_cut[i] = new TH2D(Form("dc_electron_hit_map_BC_%d", i), Form("DC hitmap in region %d (before cuts);x [cm];y [cm]", i), 600, -300, 300, 600, -300, 300);
         HistoList_electron_cuts.push_back(h_dc_electron_hit_map_BC_1e_cut[i]);
-        h_dc_electron_hit_map_AC_1e_cut[i] = new TH2D(Form("dc_electron_hit_map_AC%d", i), Form("DC hitmap in region %d (after cuts);x [cm];y [cm]", i), 600, -300, 300, 600, -300, 300);
-        HistoList_electron_cuts.push_back(h_dc_electron_hit_map_BC_1e_cut[i]);
+        h_dc_electron_hit_map_AC_1e_cut[i] = new TH2D(Form("dc_electron_hit_map_AC_%d", i), Form("DC hitmap in region %d (after cuts);x [cm];y [cm]", i), 600, -300, 300, 600, -300, 300);
+        HistoList_electron_cuts.push_back(h_dc_electron_hit_map_AC_1e_cut[i]);
     }
 
     // TH1D* h_Vz_e_AallC_1e_cut = new TH1D("Vz_e_AallC_1e_cut", "V_{z}^{e} in 1e cut (after cut);V_{z}^{e} [cm];Counts", 50, -8, 8);
@@ -389,9 +389,9 @@ void nFD_eff_test() {
 #pragma endregion
 
 #pragma region /* Electron PID */
-    TH1D* h_nphe_BC_1e_cut = new TH1D("nphe_BC_1e_cut", "Number of photo-electrons in HTCC in 1e cut (before cut);Number of photo-electrons;Counts", 10, 0, 10);
+    TH1D* h_nphe_BC_1e_cut = new TH1D("nphe_BC_1e_cut", "Number of photo-electrons in HTCC in 1e cut (before cut);Number of photo-electrons;Counts", 20, 0, 20);
     HistoList_electron_cuts.push_back(h_nphe_BC_1e_cut);
-    TH1D* h_nphe_AC_1e_cut = new TH1D("nphe_AC_1e_cut", "Number of photo-electrons in HTCC in 1e cut (after cut);Number of photo-electrons;Counts", 10, 0, 10);
+    TH1D* h_nphe_AC_1e_cut = new TH1D("nphe_AC_1e_cut", "Number of photo-electrons in HTCC in 1e cut (after cut);Number of photo-electrons;Counts", 20, 0, 20);
     HistoList_electron_cuts.push_back(h_nphe_AC_1e_cut);
 
     TH2D* h_Edep_PCAL_VS_EC_BC_1e_cut =
@@ -1150,7 +1150,7 @@ void nFD_eff_test() {
 
         h_E_PCALoP_e_VS_E_PCALoP_e_BC_1e_cut->Fill(E_PCALoP_e, E_ECINoP_e, weight);
         bool bad_diag_CutCond = (!checkEcalDiagCuts(electrons[0]));
-        if (!bad_diag_CutCond) { h_E_PCALoP_e_VS_E_PCALoP_e_BC_1e_cut->Fill(E_PCALoP_e, E_ECINoP_e, weight); }
+        if (!bad_diag_CutCond) { E_PCALoP_e_VS_E_PCALoP_e_AC->Fill(E_PCALoP_e, E_ECINoP_e, weight); }
 
         if (bad_Vz_e_CutCond) { continue; }
         if (bad_DC_edge_CutCond) { continue; }
