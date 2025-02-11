@@ -1150,7 +1150,7 @@ void nFD_eff_test() {
 
         h_E_PCALoP_e_VS_E_PCALoP_e_BC_1e_cut->Fill(E_PCALoP_e, E_ECINoP_e, weight);
         bool bad_diag_CutCond = (!checkEcalDiagCuts(electrons[0]));
-        if (!bad_diag_CutCond) { E_PCALoP_e_VS_E_PCALoP_e_AC->Fill(E_PCALoP_e, E_ECINoP_e, weight); }
+        if (!bad_diag_CutCond) { h_E_PCALoP_e_VS_E_PCALoP_e_AC->Fill(E_PCALoP_e, E_ECINoP_e, weight); }
 
         if (bad_Vz_e_CutCond) { continue; }
         if (bad_DC_edge_CutCond) { continue; }
