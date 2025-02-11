@@ -410,13 +410,6 @@ void nFD_eff_test() {
         new TH2D("SF_VS_P_e_AC_1e_cut", "Electron sampling fraction vs. P_{e} in 1e cut (after cut);P_{e} [GeV/c];Electron sampling fraction", 100, 0, Ebeam * 1.1, 100, 0.16, 0.3);
     HistoList_electron_cuts.push_back(h_SF_VS_P_e_AC_1e_cut);
 
-    TH2D* h_SF_VS_P_e_BC_1e_cut =
-        new TH2D("SF_VS_P_e_BC_1e_cut", "Electron sampling fraction vs. P_{e} in 1e cut (before cut);P_{e} [GeV/c];Electron sampling fraction", 100, 0, Ebeam * 1.1, 100, 0.16, 0.3);
-    HistoList_electron_cuts.push_back(h_SF_VS_P_e_BC_1e_cut);
-    TH2D* h_SF_VS_P_e_AC_1e_cut =
-        new TH2D("SF_VS_P_e_AC_1e_cut", "Electron sampling fraction vs. P_{e} in 1e cut (after cut);P_{e} [GeV/c];Electron sampling fraction", 100, 0, Ebeam * 1.1, 100, 0.16, 0.3);
-    HistoList_electron_cuts.push_back(h_SF_VS_P_e_AC_1e_cut);
-
     TH2D* h_SF_VS_Lv_BC_1e_cut = new TH2D("SF_VS_Lv_BC_1e_cut", "Electron SF vs. PCAL V coor. in 1e cut (before cut);PCAL V coor. [cm];Electron SF", 100, 0, 60., 100, 0.16, 0.3);
     HistoList_electron_cuts.push_back(h_SF_VS_Lv_BC_1e_cut);
     TH2D* h_SF_VS_Lv_AC_1e_cut = new TH2D("SF_VS_Lv_AC_1e_cut", "Electron SF vs. PCAL V coor. in 1e cut (after cut);PCAL V coor. [cm];Electron SF", 100, 0, 60., 100, 0.16, 0.3);
