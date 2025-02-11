@@ -1577,9 +1577,9 @@ void nFD_eff_test() {
     myText->Print(fileName_electron_cuts, "pdf");
     myText->Clear();
 
-    for (int i = 0; i < HistoList.size(); i++) {
+    for (int i = 0; i < HistoList_electron_cuts.size(); i++) {
         for (int j = 0; j < HistSubjects.size(); j++) {
-            if (FirstPrint.at(j) && findSubstring(HistoList[i]->GetTitle(), HistSubjects.at(j))) {
+            if (FirstPrint.at(j) && findSubstring(HistoList_electron_cuts[i]->GetTitle(), HistSubjects.at(j))) {
                 myText->cd();
                 titles.DrawLatex(0.3, 0.5, HistSubjects2.at(j).c_str());
                 myText->Print(fileName_electron_cuts, "pdf");
@@ -1596,31 +1596,31 @@ void nFD_eff_test() {
         myCanvas_electron_cuts->cd()->SetGrid();
         myCanvas_electron_cuts->cd()->SetBottomMargin(0.14), myCanvas_electron_cuts->cd()->SetLeftMargin(0.16), myCanvas_electron_cuts->cd()->SetRightMargin(0.12);
 
-        HistoList[i]->GetYaxis()->SetTitleOffset(1.5);
-        HistoList[i]->GetXaxis()->SetTitleOffset(1.1);
+        HistoList_electron_cuts[i]->GetYaxis()->SetTitleOffset(1.5);
+        HistoList_electron_cuts[i]->GetXaxis()->SetTitleOffset(1.1);
 
         gPad->SetRightMargin(0.23);
 
         // // Set the PDF title and header for the bookmark
-        // string Title = HistoList[i]->GetTitle();
+        // string Title = HistoList_electron_cuts[i]->GetTitle();
         // gStyle->SetTitlePS(Title.c_str());  // This sets the title in metadata
         //                                     // gStyle->SetHeaderPS(("[ /Title " + Title + " /DOCVIEW pdfmark").c_str());  // Adds a PDF title
         // gStyle->SetHeaderPS(("[ /Page " + to_string(i + 1) + " /View [/Fit] /Title (myTitle) ] /OUT pdfmark").c_str());
 
-        if (HistoList[i]->InheritsFrom("TH1D")) {
-            HistoList[i]->Draw();
-        } else if (HistoList[i]->InheritsFrom("TH2D")) {
-            // if (findSubstring(HistoList[i]->GetTitle(), "#Delta#theta_{nFD,e} vs. #Delta#phi_{nFD,e} in 1e cut")) {
+        if (HistoList_electron_cuts[i]->InheritsFrom("TH1D")) {
+            HistoList_electron_cuts[i]->Draw();
+        } else if (HistoList_electron_cuts[i]->InheritsFrom("TH2D")) {
+            // if (findSubstring(HistoList_electron_cuts[i]->GetTitle(), "#Delta#theta_{nFD,e} vs. #Delta#phi_{nFD,e} in 1e cut")) {
             //     gPad->SetRightMargin(0.225);
             // } else {
             //     gPad->SetRightMargin(0.05);
             // }
 
-            HistoList[i]->Draw("colz");
+            HistoList_electron_cuts[i]->Draw("colz");
 
-            if (HistoList[i]->GetEntries() != 0) {
+            if (HistoList_electron_cuts[i]->GetEntries() != 0) {
                 gPad->Update();
-                TPaletteAxis* palette = (TPaletteAxis*)HistoList[i]->GetListOfFunctions()->FindObject("palette");
+                TPaletteAxis* palette = (TPaletteAxis*)HistoList_electron_cuts[i]->GetListOfFunctions()->FindObject("palette");
                 palette->SetY2NDC(0.55);
                 gPad->Modified();
                 gPad->Update();
