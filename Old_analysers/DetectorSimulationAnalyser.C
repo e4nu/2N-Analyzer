@@ -2132,7 +2132,7 @@ void EventAnalyser(const string &AnalyseFilePath, const string &AnalyseFileSampl
                                                    Theta_lboundary_FD, Theta_uboundary_FD, numTH2Dbins_Mom_Plots, numTH2Dbins_Mom_Plots);
     hPlot2D hP_nFD_vs_phi_e_1n =
         hPlot2D("1n", "", "P_{nFD} vs. #phi_{e}", "P_{nFD} vs. #phi_{e}", "P_{nFD} [GeV/c]", "#phi_{e} [#circ]", directories.Momentum_Directory_map["Analysis_plots_momentum_1n_Directory"],
-                "05ca_P_nFD_vs_phi_e", Theta_lboundary_FD, Theta_uboundary_FD, Phi_lboundary, Phi_uboundary, numTH2Dbins_Mom_Plots, numTH2Dbins_Mom_Plots);
+                "05ca_P_nFD_vs_phi_e", P_nucFD_lboundary, P_nucFD_uboundary, Phi_lboundary, Phi_uboundary, numTH2Dbins_Mom_Plots, numTH2Dbins_Mom_Plots);
     hPlot2D hP_nFD_vs_phi_e_ZoomOut_1n = hPlot2D("1n", "", "P_{nFD} vs. #phi_{e} - ZoomOut", "P_{nFD} vs. #phi_{e} - ZoomOut", "P_{nFD} [GeV/c]", "#phi_{e} [#circ]",
                                                  directories.Momentum_Directory_map["Analysis_plots_momentum_1n_Directory"], "05cb_P_nFD_vs_phi_e_ZoomOut", P_nucFD_lboundary, beamE * 3.,
                                                  Phi_lboundary, Phi_uboundary, numTH2Dbins_Mom_Plots, numTH2Dbins_Mom_Plots);
@@ -2140,16 +2140,16 @@ void EventAnalyser(const string &AnalyseFilePath, const string &AnalyseFileSampl
                                            directories.Momentum_Directory_map["Analysis_plots_momentum_1n_Directory"], "05d_theta_nFD_vs_P_e", Theta_lboundary_FD, Theta_uboundary_FD,
                                            Momentum_lboundary, Momentum_uboundary, numTH2Dbins_Mom_Plots, numTH2Dbins_Mom_Plots);
     hPlot2D htheta_nFD_vs_theta_e_1n = hPlot2D("1n", "", "#theta_{nFD} vs. #theta_{e}", "#theta_{nFD} vs. #theta_{e}", "#theta_{nFD} [#circ]", "#theta_{e} [#circ]",
-                                               directories.Momentum_Directory_map["Analysis_plots_momentum_1n_Directory"], "05e_theta_nFD_vs_theta_e", P_nucFD_lboundary, P_nucFD_uboundary,
+                                               directories.Momentum_Directory_map["Analysis_plots_momentum_1n_Directory"], "05e_theta_nFD_vs_theta_e", Theta_lboundary_FD, Theta_uboundary_FD,
                                                Theta_lboundary_FD, Theta_uboundary_FD, numTH2Dbins_Mom_Plots, numTH2Dbins_Mom_Plots);
     hPlot2D htheta_nFD_vs_phi_e_1n = hPlot2D("1n", "", "#theta_{nFD} vs. #phi_{e}", "#theta_{nFD} vs. #phi_{e}", "#theta_{nFD} [#circ]", "#phi_{e} [#circ]",
                                              directories.Momentum_Directory_map["Analysis_plots_momentum_1n_Directory"], "05f_theta_nFD_vs_phi_e", Theta_lboundary_FD, Theta_uboundary_FD,
                                              Phi_lboundary, Phi_uboundary, numTH2Dbins_Mom_Plots, numTH2Dbins_Mom_Plots);
     hPlot2D hphi_nFD_vs_P_e_1n =
         hPlot2D("1n", "", "#phi_{nFD} vs. P_{e}", "#phi_{nFD} vs. P_{e}", "#phi_{nFD} [#circ]", "P_{e} [GeV/c]", directories.Momentum_Directory_map["Analysis_plots_momentum_1n_Directory"],
-                "05g_phi_nFD_vs_P_e", Theta_lboundary_FD, Theta_uboundary_FD, Momentum_lboundary, Momentum_uboundary, numTH2Dbins_Mom_Plots, numTH2Dbins_Mom_Plots);
+                "05g_phi_nFD_vs_P_e", Phi_lboundary, Phi_uboundary, Momentum_lboundary, Momentum_uboundary, numTH2Dbins_Mom_Plots, numTH2Dbins_Mom_Plots);
     hPlot2D hphi_nFD_vs_theta_e_1n = hPlot2D("1n", "", "#phi_{nFD} vs. #theta_{e}", "#phi_{nFD} vs. #theta_{e}", "#phi_{nFD} [#circ]", "#theta_{e} [#circ]",
-                                             directories.Momentum_Directory_map["Analysis_plots_momentum_1n_Directory"], "05h_phi_nFD_vs_theta_e", P_nucFD_lboundary, P_nucFD_uboundary,
+                                             directories.Momentum_Directory_map["Analysis_plots_momentum_1n_Directory"], "05h_phi_nFD_vs_theta_e", Phi_lboundary, Phi_uboundary,
                                              Theta_lboundary_FD, Theta_uboundary_FD, numTH2Dbins_Mom_Plots, numTH2Dbins_Mom_Plots);
     hPlot2D hphi_nFD_vs_phi_e_1n = hPlot2D("1n", "", "#phi_{nFD} vs. #phi_{e}", "#phi_{nFD} vs. #phi_{e}", "#phi_{nFD} [#circ]", "#phi_{e} [#circ]",
                                            directories.Momentum_Directory_map["Analysis_plots_momentum_1n_Directory"], "05i_phi_nFD_vs_phi_e", Phi_lboundary, Phi_uboundary, Phi_lboundary,
@@ -2432,7 +2432,10 @@ void EventAnalyser(const string &AnalyseFilePath, const string &AnalyseFileSampl
     // nFD and pCD momentum plots (nFDpCD)
     hPlot1D hP_nFD_nFDpCD =
         hPlot1D("nFDpCD", "", "FD neutron momentum", "FD neutron momentum P_{nFD}", "P_{nFD} [GeV/c]", directories.Momentum_Directory_map["Analysis_plots_momentum_nFDpCD_Directory"],
-                "01a_P_nFD_nFDpCD", FDMomentum_lboundary, FDMomentum_uboundary, numTH1Dbins);
+                "01aa_P_nFD_nFDpCD", FDMomentum_lboundary, FDMomentum_uboundary, numTH1Dbins);
+    hPlot1D hP_nFD_nFDpCD_ZoomOut =
+        hPlot1D("nFDpCD", "", "FD neutron momentum - ZoomOut", "FD neutron momentum P_{nFD} - ZoomOut", "P_{nFD} [GeV/c]",
+                directories.Momentum_Directory_map["Analysis_plots_momentum_nFDpCD_Directory"], "01ab_P_nFD_nFDpCD_ZoomOut", FDMomentum_lboundary, beamE * 3., numTH1Dbins);
     hPlot1D hP_pCD_nFDpCD =
         hPlot1D("nFDpCD", "", "CD proton momentum", "CD proton momentum P_{pCD}", "P_{pCD} [GeV/c]", directories.Momentum_Directory_map["Analysis_plots_momentum_nFDpCD_Directory"],
                 "01b_P_pCD_nFDpCD", CDMomentum_lboundary, CDMomentum_uboundary, numTH1Dbins);
@@ -2452,7 +2455,7 @@ void EventAnalyser(const string &AnalyseFilePath, const string &AnalyseFileSampl
                                                        directories.Momentum_Directory_map["Analysis_plots_momentum_nFDpCD_Directory"], "05bb_P_nFD_vs_theta_e_ZoomOut", P_nucFD_lboundary,
                                                        beamE * 3., Theta_lboundary_FD, Theta_uboundary_FD, numTH2Dbins_Mom_Plots, numTH2Dbins_Mom_Plots);
     hPlot2D hP_nFD_vs_phi_e_nFDpCD = hPlot2D("nFDpCD", "", "P_{nFD} vs. #phi_{e}", "P_{nFD} vs. #phi_{e}", "P_{nFD} [GeV/c]", "#phi_{e} [#circ]",
-                                             directories.Momentum_Directory_map["Analysis_plots_momentum_nFDpCD_Directory"], "05ca_P_nFD_vs_phi_e", Theta_lboundary_FD, Theta_uboundary_FD,
+                                             directories.Momentum_Directory_map["Analysis_plots_momentum_nFDpCD_Directory"], "05ca_P_nFD_vs_phi_e", P_nucFD_lboundary, P_nucFD_uboundary,
                                              Phi_lboundary, Phi_uboundary, numTH2Dbins_Mom_Plots, numTH2Dbins_Mom_Plots);
     hPlot2D hP_nFD_vs_phi_e_ZoomOut_nFDpCD = hPlot2D("nFDpCD", "", "P_{nFD} vs. #phi_{e} - ZoomOut", "P_{nFD} vs. #phi_{e} - ZoomOut", "P_{nFD} [GeV/c]", "#phi_{e} [#circ]",
                                                      directories.Momentum_Directory_map["Analysis_plots_momentum_nFDpCD_Directory"], "05cb_P_nFD_vs_phi_e_ZoomOut", P_nucFD_lboundary,
@@ -2461,17 +2464,17 @@ void EventAnalyser(const string &AnalyseFilePath, const string &AnalyseFileSampl
                                                directories.Momentum_Directory_map["Analysis_plots_momentum_nFDpCD_Directory"], "05d_theta_nFD_vs_P_e", Theta_lboundary_FD, Theta_uboundary_FD,
                                                Momentum_lboundary, Momentum_uboundary, numTH2Dbins_Mom_Plots, numTH2Dbins_Mom_Plots);
     hPlot2D htheta_nFD_vs_theta_e_nFDpCD = hPlot2D("nFDpCD", "", "#theta_{nFD} vs. #theta_{e}", "#theta_{nFD} vs. #theta_{e}", "#theta_{nFD} [#circ]", "#theta_{e} [#circ]",
-                                                   directories.Momentum_Directory_map["Analysis_plots_momentum_nFDpCD_Directory"], "05e_theta_nFD_vs_theta_e", P_nucFD_lboundary,
-                                                   P_nucFD_uboundary, Theta_lboundary_FD, Theta_uboundary_FD, numTH2Dbins_Mom_Plots, numTH2Dbins_Mom_Plots);
+                                                   directories.Momentum_Directory_map["Analysis_plots_momentum_nFDpCD_Directory"], "05e_theta_nFD_vs_theta_e", Theta_lboundary_FD,
+                                                   Theta_uboundary_FD, Theta_lboundary_FD, Theta_uboundary_FD, numTH2Dbins_Mom_Plots, numTH2Dbins_Mom_Plots);
     hPlot2D htheta_nFD_vs_phi_e_nFDpCD = hPlot2D("nFDpCD", "", "#theta_{nFD} vs. #phi_{e}", "#theta_{nFD} vs. #phi_{e}", "#theta_{nFD} [#circ]", "#phi_{e} [#circ]",
                                                  directories.Momentum_Directory_map["Analysis_plots_momentum_nFDpCD_Directory"], "05f_theta_nFD_vs_phi_e", Theta_lboundary_FD,
                                                  Theta_uboundary_FD, Phi_lboundary, Phi_uboundary, numTH2Dbins_Mom_Plots, numTH2Dbins_Mom_Plots);
     hPlot2D hphi_nFD_vs_P_e_nFDpCD = hPlot2D("nFDpCD", "", "#phi_{nFD} vs. P_{e}", "#phi_{nFD} vs. P_{e}", "#phi_{nFD} [#circ]", "P_{e} [GeV/c]",
-                                             directories.Momentum_Directory_map["Analysis_plots_momentum_nFDpCD_Directory"], "05g_phi_nFD_vs_P_e", Theta_lboundary_FD, Theta_uboundary_FD,
+                                             directories.Momentum_Directory_map["Analysis_plots_momentum_nFDpCD_Directory"], "05g_phi_nFD_vs_P_e", Phi_lboundary, Phi_uboundary,
                                              Momentum_lboundary, Momentum_uboundary, numTH2Dbins_Mom_Plots, numTH2Dbins_Mom_Plots);
     hPlot2D hphi_nFD_vs_theta_e_nFDpCD = hPlot2D("nFDpCD", "", "#phi_{nFD} vs. #theta_{e}", "#phi_{nFD} vs. #theta_{e}", "#phi_{nFD} [#circ]", "#theta_{e} [#circ]",
-                                                 directories.Momentum_Directory_map["Analysis_plots_momentum_nFDpCD_Directory"], "05h_phi_nFD_vs_theta_e", P_nucFD_lboundary,
-                                                 P_nucFD_uboundary, Theta_lboundary_FD, Theta_uboundary_FD, numTH2Dbins_Mom_Plots, numTH2Dbins_Mom_Plots);
+                                                 directories.Momentum_Directory_map["Analysis_plots_momentum_nFDpCD_Directory"], "05h_phi_nFD_vs_theta_e", Phi_lboundary, Phi_uboundary,
+                                                 Theta_lboundary_FD, Theta_uboundary_FD, numTH2Dbins_Mom_Plots, numTH2Dbins_Mom_Plots);
     hPlot2D hphi_nFD_vs_phi_e_nFDpCD = hPlot2D("nFDpCD", "", "#phi_{nFD} vs. #phi_{e}", "#phi_{nFD} vs. #phi_{e}", "#phi_{nFD} [#circ]", "#phi_{e} [#circ]",
                                                directories.Momentum_Directory_map["Analysis_plots_momentum_nFDpCD_Directory"], "05i_phi_nFD_vs_phi_e", Phi_lboundary, Phi_uboundary,
                                                Phi_lboundary, Phi_uboundary, numTH2Dbins_Mom_Plots, numTH2Dbins_Mom_Plots);
@@ -15980,10 +15983,11 @@ void EventAnalyser(const string &AnalyseFilePath, const string &AnalyseFileSampl
                 hP_tot_minus_q_vs_P_tot_nFDpCD.hFill(P_tot_nFDpCD_3v.Mag(), P_tot_minus_q_nFDpCD_v3.Mag(), Weight_nFDpCD);
                 hP_tot_minus_q_vs_q_nFDpCD.hFill(q_nFDpCD_3v.Mag(), P_tot_minus_q_nFDpCD_v3.Mag(), Weight_nFDpCD);
 
-                hP_nFD_nFDpCD.hFill(P_nFD_nFDpCD_3v.Mag(), Weight_nFDpCD);  // nFD momentum (nFDpCD)
-                hP_pCD_nFDpCD.hFill(P_pCD_nFDpCD_3v.Mag(), Weight_nFDpCD);  // pCD momentum (nFDpCD)
-                hP_nL_nFDpCD.hFill(P_nL_nFDpCD_3v.Mag(), Weight_nFDpCD);    // Leading nucleon (nFDpCD)
-                hP_nR_nFDpCD.hFill(P_nR_nFDpCD_3v.Mag(), Weight_nFDpCD);    // Recoil nucleon (nFDpCD)
+                hP_nFD_nFDpCD.hFill(P_nFD_nFDpCD_3v.Mag(), Weight_nFDpCD);          // nFD momentum (nFDpCD)
+                hP_nFD_nFDpCD_ZoomOut.hFill(P_nFD_nFDpCD_3v.Mag(), Weight_nFDpCD);  // nFD momentum (nFDpCD)
+                hP_pCD_nFDpCD.hFill(P_pCD_nFDpCD_3v.Mag(), Weight_nFDpCD);          // pCD momentum (nFDpCD)
+                hP_nL_nFDpCD.hFill(P_nL_nFDpCD_3v.Mag(), Weight_nFDpCD);            // Leading nucleon (nFDpCD)
+                hP_nR_nFDpCD.hFill(P_nR_nFDpCD_3v.Mag(), Weight_nFDpCD);            // Recoil nucleon (nFDpCD)
 
                 hP_nFD_VS_W_nFDpCD->Fill(W_nFDpCD, P_nFD_nFDpCD_3v.Mag(), Weight_nFDpCD);
                 hP_pCD_VS_W_nFDpCD->Fill(W_nFDpCD, P_pCD_nFDpCD_3v.Mag(), Weight_nFDpCD);
@@ -17091,10 +17095,13 @@ void EventAnalyser(const string &AnalyseFilePath, const string &AnalyseFileSampl
         // Leading and recoil momentum plots (nFDpCD)
         if (!apply_kinematical_cuts) {
             hP_nFD_nFDpCD.hDrawAndSave(SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., n_mom_th.GetLowerCut(), n_mom_th.GetUpperCut(), 0, false);
+            hP_nFD_nFDpCD_ZoomOut.hDrawAndSave(SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., n_mom_th.GetLowerCut(), n_mom_th.GetUpperCut(), 0, false);
             hP_nL_nFDpCD.hDrawAndSave(SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., n_mom_th.GetLowerCut(), n_mom_th.GetUpperCut(), 0, false);
         } else {
             hP_nFD_nFDpCD.hDrawAndSave(SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., FD_nucleon_momentum_cut.GetLowerCut(), FD_nucleon_momentum_cut.GetUpperCut(),
                                        0, false);
+            hP_nFD_nFDpCD_ZoomOut.hDrawAndSave(SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., FD_nucleon_momentum_cut.GetLowerCut(),
+                                               FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
             hP_nL_nFDpCD.hDrawAndSave(SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., FD_nucleon_momentum_cut.GetLowerCut(), FD_nucleon_momentum_cut.GetUpperCut(), 0,
                                       false);
         }
