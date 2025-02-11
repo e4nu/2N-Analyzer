@@ -134,6 +134,15 @@ bool DCEdgeCuts(region_part_ptr p) {
     }
 }
 
+void fillDCdebug(region_part_ptr p, TH2D** h, double weight) {
+    //  if(p->par()->getPid() == 11)
+    //    {
+    h[1]->Fill(p->traj(DC, 6)->getX(), p->traj(DC, 6)->getY(), weight);
+    h[2]->Fill(p->traj(DC, 18)->getX(), p->traj(DC, 18)->getY(), weight);
+    h[3]->Fill(p->traj(DC, 36)->getX(), p->traj(DC, 36)->getY(), weight);
+    //    }
+}
+
 double CalcdTheta(double dThetaTemp) {
     double dTheta;
 
@@ -331,6 +340,8 @@ void nFD_eff_test() {
     /////////////////////////////////////
     // Prepare histograms
     /////////////////////////////////////
+    vector<TH1*> HistoList_electron_cuts;
+
     vector<TH1*> HistoList;
     vector<string> HistSubjects;
     vector<string> HistSubjects2;
@@ -346,6 +357,90 @@ void nFD_eff_test() {
     char temp_title[100];
 
 #pragma region /* RAW */
+
+#pragma region /* Electron pre-selection */
+    TH1D* h_Vz_e_BC_1e_cut = new TH1D("Vz_e_BC_1e_cut", "V_{z}^{e} in 1e cut (before cut);V_{z}^{e} [cm];Counts", 50, -8, 8);
+    HistoList_electron_cuts.push_back(h_Vz_e_BC_1e_cut);
+    TH1D* h_Vz_e_AC_1e_cut = new TH1D("Vz_e_AC_1e_cut", "V_{z}^{e} in 1e cut (after cut);V_{z}^{e} [cm];Counts", 50, -8, 8);
+    HistoList_electron_cuts.push_back(h_Vz_e_AC_1e_cut);
+
+    TH2D* h_dc_electron_hit_map_BC_1e_cut[4];  // 3 regions
+    TH2D* h_dc_electron_hit_map_AC_1e_cut[4];  // 3 regions
+
+    // DC hit maps
+    for (int i = 1; i <= 3; i++) {
+        h_dc_electron_hit_map_BC_1e_cut[i] = new TH2D(Form("dc_electron_hit_map_BC%d", i), Form("DC hitmap in region %d (before cuts);x [cm];y [cm]", i), 600, -300, 300, 600, -300, 300);
+        HistoList_electron_cuts.push_back(h_dc_electron_hit_map_BC_1e_cut[i]);
+        h_dc_electron_hit_map_AC_1e_cut[i] = new TH2D(Form("dc_electron_hit_map_AC%d", i), Form("DC hitmap in region %d (after cuts);x [cm];y [cm]", i), 600, -300, 300, 600, -300, 300);
+        HistoList_electron_cuts.push_back(h_dc_electron_hit_map_BC_1e_cut[i]);
+    }
+
+    // TH1D* h_Vz_e_AallC_1e_cut = new TH1D("Vz_e_AallC_1e_cut", "V_{z}^{e} in 1e cut (after cut);V_{z}^{e} [cm];Counts", 50, -8, 8);
+    // HistoList.push_back(h_Vz_e_AallC_1e_cut);
+
+    // TH2D* h_dc_electron_hit_map_AallC_1e_cut[4];  // 3 regions
+
+    // // DC hit maps
+    // for (int i = 1; i <= 3; i++) {
+    //     h_dc_electron_hit_map_AallC_1e_cut[i] = new TH2D(Form("dc_electron_hit_map_AallC%d", i), Form("DC hitmap in region %d (before cuts);x [cm];y [cm]", i), 600, -300, 300, 600, -300,
+    //     300);
+    // }
+
+#pragma endregion
+
+#pragma region /* Electron PID */
+    TH1D* h_nphe_BC_1e_cut = new TH1D("nphe_BC_1e_cut", "Number of photo-electrons in HTCC in 1e cut (before cut);Number of photo-electrons;Counts", 10, 0, 10);
+    HistoList_electron_cuts.push_back(h_nphe_BC_1e_cut);
+    TH1D* h_nphe_AC_1e_cut = new TH1D("nphe_AC_1e_cut", "Number of photo-electrons in HTCC in 1e cut (after cut);Number of photo-electrons;Counts", 10, 0, 10);
+    HistoList_electron_cuts.push_back(h_nphe_AC_1e_cut);
+
+    TH2D* h_Edep_PCAL_VS_EC_BC_1e_cut =
+        new TH2D("Edep_PCAL_VS_EC_BC_1e_cut", "E_{dep}^{PCAL} vs. E_{dep}^{EC} in 1e cut (before cut);E_{dep}^{PCAL} [GeV];E_{dep}^{EC} = E_{dep}^{ECIN} + E_{dep}^{ECOUT} [GeV]", 100, 0,
+                 0.2, 100, 0, 0.3);
+    HistoList_electron_cuts.push_back(h_Edep_PCAL_VS_EC_BC_1e_cut);
+    TH2D* h_Edep_PCAL_VS_EC_AC_1e_cut =
+        new TH2D("Edep_PCAL_VS_EC_AC_1e_cut", "E_{dep}^{PCAL} vs. E_{dep}^{EC} in 1e cut (after cut);E_{dep}^{PCAL} [GeV];E_{dep}^{EC} = E_{dep}^{ECIN} + E_{dep}^{ECOUT} [GeV]", 100, 0, 0.2,
+                 100, 0, 0.3);
+    HistoList_electron_cuts.push_back(h_Edep_PCAL_VS_EC_AC_1e_cut);
+
+    TH2D* h_SF_VS_P_e_BC_1e_cut =
+        new TH2D("SF_VS_P_e_BC_1e_cut", "Electron sampling fraction vs. P_{e} in 1e cut (before cut);P_{e} [GeV/c];Electron sampling fraction", 100, 0, Ebeam * 1.1, 100, 0.16, 0.3);
+    HistoList_electron_cuts.push_back(h_SF_VS_P_e_BC_1e_cut);
+    TH2D* h_SF_VS_P_e_AC_1e_cut =
+        new TH2D("SF_VS_P_e_AC_1e_cut", "Electron sampling fraction vs. P_{e} in 1e cut (after cut);P_{e} [GeV/c];Electron sampling fraction", 100, 0, Ebeam * 1.1, 100, 0.16, 0.3);
+    HistoList_electron_cuts.push_back(h_SF_VS_P_e_AC_1e_cut);
+
+    TH2D* h_SF_VS_P_e_BC_1e_cut =
+        new TH2D("SF_VS_P_e_BC_1e_cut", "Electron sampling fraction vs. P_{e} in 1e cut (before cut);P_{e} [GeV/c];Electron sampling fraction", 100, 0, Ebeam * 1.1, 100, 0.16, 0.3);
+    HistoList_electron_cuts.push_back(h_SF_VS_P_e_BC_1e_cut);
+    TH2D* h_SF_VS_P_e_AC_1e_cut =
+        new TH2D("SF_VS_P_e_AC_1e_cut", "Electron sampling fraction vs. P_{e} in 1e cut (after cut);P_{e} [GeV/c];Electron sampling fraction", 100, 0, Ebeam * 1.1, 100, 0.16, 0.3);
+    HistoList_electron_cuts.push_back(h_SF_VS_P_e_AC_1e_cut);
+
+    TH2D* h_SF_VS_Lv_BC_1e_cut = new TH2D("SF_VS_Lv_BC_1e_cut", "Electron SF vs. PCAL V coor. in 1e cut (before cut);PCAL V coor. [cm];Electron SF", 100, 0, 60., 100, 0.16, 0.3);
+    HistoList_electron_cuts.push_back(h_SF_VS_Lv_BC_1e_cut);
+    TH2D* h_SF_VS_Lv_AC_1e_cut = new TH2D("SF_VS_Lv_AC_1e_cut", "Electron SF vs. PCAL V coor. in 1e cut (after cut);PCAL V coor. [cm];Electron SF", 100, 0, 60., 100, 0.16, 0.3);
+    HistoList_electron_cuts.push_back(h_SF_VS_Lv_AC_1e_cut);
+
+    TH2D* h_SF_VS_Lw_BC_1e_cut = new TH2D("SF_VS_Lw_BC_1e_cut", "Electron SF vs. PCAL W coor. in 1e cut (before cut);PCAL W coor. [cm];Electron SF", 100, 0, 60., 100, 0.16, 0.3);
+    HistoList_electron_cuts.push_back(h_SF_VS_Lw_BC_1e_cut);
+    TH2D* h_SF_VS_Lw_AC_1e_cut = new TH2D("SF_VS_Lw_AC_1e_cut", "Electron SF vs. PCAL W coor. in 1e cut (after cut);PCAL W coor. [cm];Electron SF", 100, 0, 60., 100, 0.16, 0.3);
+    HistoList_electron_cuts.push_back(h_SF_VS_Lw_AC_1e_cut);
+
+    TH2D* h_SF_VS_Lu_BC_1e_cut = new TH2D("SF_VS_Lu_BC_1e_cut", "Electron SF vs. PCAL U coor. in 1e cut (before cut);PCAL U coor. [cm];Electron SF", 100, 0, 60., 100, 0.16, 0.3);
+    HistoList_electron_cuts.push_back(h_SF_VS_Lu_BC_1e_cut);
+    TH2D* h_SF_VS_Lu_AC_1e_cut = new TH2D("SF_VS_Lu_AC_1e_cut", "Electron SF vs. PCAL U coor. in 1e cut (after cut);PCAL U coor. [cm];Electron SF", 100, 0, 60., 100, 0.16, 0.3);
+    HistoList_electron_cuts.push_back(h_SF_VS_Lu_AC_1e_cut);
+
+    TH2D* h_E_PCALoP_e_VS_E_PCALoP_e_BC_1e_cut =
+        new TH2D("E_PCALoP_e_VS_E_PCALoP_e_BC", "E_{dep}^{PCAL}/P_{e} vs. E_{dep}^{ECIN}/P_{e} in 1e cut (before cut);E_{dep}^{PCAL}/P_{e};E_{dep}^{ECIN}/P_{e}", 100, 0, 0.3, 100, 0, 0.35);
+    HistoList_electron_cuts.push_back(h_E_PCALoP_e_VS_E_PCALoP_e_BC_1e_cut);
+    TH2D* h_E_PCALoP_e_VS_E_PCALoP_e_AC_1e_cut =
+        new TH2D("E_PCALoP_e_VS_E_PCALoP_e_AC", "E_{dep}^{PCAL}/P_{e} vs. E_{dep}^{ECIN}/P_{e} in 1e cut (after cut);E_{dep}^{PCAL}/P_{e};E_{dep}^{ECIN}/P_{e}", 100, 0, 0.3, 100, 0, 0.35);
+    HistoList_electron_cuts.push_back(h_E_PCALoP_e_VS_E_PCALoP_e_AC_1e_cut);
+
+#pragma endregion
+
     TH1D* h_reco_P_e_1e_cut = new TH1D("reco_P_e_1e_cut", "P^{reco}_{e} in 1e cut;P^{reco}_{e} [GeV/c];Counts", 50, 0, P_upperLim);
     HistoList.push_back(h_reco_P_e_1e_cut);
     TH1D* h_truth_P_e_1e_cut = new TH1D("truth_P_e_1e_cut", "P^{truth}_{e} in 1e cut;P^{truth}_{e} [GeV/c];Counts", 50, 0, P_upperLim);
@@ -934,7 +1029,10 @@ void nFD_eff_test() {
         double WSq = (m_n * m_n) - QSq + (2 * nu * m_n);
         double theta_e = reco_P_e.Theta() * 180 / M_PI;
         double EoP_e = (electrons[0]->cal(clas12::PCAL)->getEnergy() + electrons[0]->cal(ECIN)->getEnergy() + electrons[0]->cal(ECOUT)->getEnergy()) / reco_P_e.Mag();
+        double E_PCALoP_e = electrons[0]->cal(clas12::PCAL)->getEnergy() / reco_P_e.Mag();
+        double E_ECINoP_e = electrons[0]->cal(clas12::ECIN)->getEnergy() / reco_P_e.Mag();
         double Edep_PCAL = electrons[0]->cal(clas12::PCAL)->getEnergy();
+        double Edep_EC = electrons[0]->cal(clas12::ECIN)->getEnergy() + electrons[0]->cal(clas12::ECOUT)->getEnergy();
 
         //  =======================================================================================================================================================================
         //  1e cut (truth)
@@ -1026,13 +1124,49 @@ void nFD_eff_test() {
         //  Electron PID cuts -----------------------------------------------------------------------------------------------------------------------------------------------------
 
 #pragma region /* Electron PID cuts */
-        if (electrons[0]->che(clas12::HTCC)->getNphe() <= 2) { continue; }
-        if (Edep_PCAL <= 0.06) { continue; }
-        if (EoP_e < 0.2 || EoP_e > 0.28) { continue; }
-        if (electrons[0]->cal(clas12::PCAL)->getLv() < 14. || electrons[0]->cal(clas12::PCAL)->getLw() < 14.) { continue; }
-        if (electrons[0]->par()->getVz() < -6. || electrons[0]->par()->getVz() > 0.) { continue; }
-        if (!checkEcalDiagCuts(electrons[0])) { continue; }
-        if (!DCEdgeCuts(electrons[0])) { continue; }
+
+        h_Vz_e_BC_1e_cut->Fill(electrons[0]->par()->getVz(), weight);
+        bool bad_Vz_e_CutCond = (electrons[0]->par()->getVz() < -6. || electrons[0]->par()->getVz() > 0.);
+        if (!bad_Vz_e_CutCond) { h_Vz_e_AC_1e_cut->Fill(electrons[0]->par()->getVz(), weight); }
+
+        fillDCdebug(electrons[0], h_dc_electron_hit_map_BC_1e_cut, weight);
+        bool bad_DC_edge_CutCond = (!DCEdgeCuts(electrons[0]));
+        if (!bad_DC_edge_CutCond) { fillDCdebug(electrons[0], h_dc_electron_hit_map_AC_1e_cut, weight); }
+
+        h_nphe_BC_1e_cut->Fill(electrons[0]->che(clas12::HTCC)->getNphe(), weight);
+        bool bad_nphe_CutCond = (electrons[0]->che(clas12::HTCC)->getNphe() <= 2);
+        if (!bad_nphe_CutCond) { h_nphe_AC_1e_cut->Fill(electrons[0]->che(clas12::HTCC)->getNphe(), weight); }
+
+        h_Edep_PCAL_VS_EC_BC_1e_cut->Fill(Edep_PCAL, Edep_EC, weight);
+        bool bad_Edep_PCAL_CutCond = (Edep_PCAL <= 0.06);
+        if (!bad_Edep_PCAL_CutCond) { h_Edep_PCAL_VS_EC_AC_1e_cut->Fill(Edep_PCAL, Edep_EC, weight); }
+
+        h_SF_VS_P_e_BC_1e_cut->Fill(reco_P_e.Mag(), EoP_e, weight);
+        bool bad_SF_CutCond = (EoP_e < 0.2 || EoP_e > 0.28);
+        if (!bad_SF_CutCond) { h_SF_VS_P_e_AC_1e_cut->Fill(reco_P_e.Mag(), EoP_e, weight); }
+
+        h_SF_VS_Lv_BC_1e_cut->Fill(electrons[0]->cal(clas12::PCAL)->getLv(), EoP_e, weight);
+        h_SF_VS_Lw_BC_1e_cut->Fill(electrons[0]->cal(clas12::PCAL)->getLw(), EoP_e, weight);
+        h_SF_VS_Lu_BC_1e_cut->Fill(electrons[0]->cal(clas12::PCAL)->getLu(), EoP_e, weight);
+        bool bad_PCAL_edge_CutCond = (electrons[0]->cal(clas12::PCAL)->getLv() < 14. || electrons[0]->cal(clas12::PCAL)->getLw() < 14.);
+        if (!bad_PCAL_edge_CutCond) {
+            h_SF_VS_Lv_AC_1e_cut->Fill(electrons[0]->cal(clas12::PCAL)->getLv(), EoP_e, weight);
+            h_SF_VS_Lw_AC_1e_cut->Fill(electrons[0]->cal(clas12::PCAL)->getLw(), EoP_e, weight);
+            h_SF_VS_Lu_AC_1e_cut->Fill(electrons[0]->cal(clas12::PCAL)->getLu(), EoP_e, weight);
+        }
+
+        h_E_PCALoP_e_VS_E_PCALoP_e_BC_1e_cut->Fill(E_PCALoP_e, E_ECINoP_e, weight);
+        bool bad_diag_CutCond = (!checkEcalDiagCuts(electrons[0]));
+        if (!bad_diag_CutCond) { h_E_PCALoP_e_VS_E_PCALoP_e_BC_1e_cut->Fill(E_PCALoP_e, E_ECINoP_e, weight); }
+
+        if (bad_Vz_e_CutCond) { continue; }
+        if (bad_DC_edge_CutCond) { continue; }
+
+        if (bad_nphe_CutCond) { continue; }
+        if (bad_Edep_PCAL_CutCond) { continue; }
+        if (bad_SF_CutCond) { continue; }
+        if (bad_PCAL_edge_CutCond) { continue; }
+        if (bad_diag_CutCond) { continue; }
         if (reco_P_e.Mag() < Ebeam - 0.2 || reco_P_e.Mag() > Ebeam + 0.2) { continue; }
 
         h_reco_P_e_1e_cut->Fill(reco_P_e.Mag(), weight);
@@ -1388,6 +1522,18 @@ void nFD_eff_test() {
     /////////////////////////////////////////////////////
     cout << counter << endl;
 
+    for (int i = 0; i < HistoList_electron_cuts.size(); i++) {
+        if (HistoList_electron_cuts[i]->InheritsFrom("TH1D")) {
+            HistoList_electron_cuts[i]->Sumw2();
+            HistoList_electron_cuts[i]->SetMinimum(0);
+            HistoList_electron_cuts[i]->SetLineWidth(2);
+            HistoList_electron_cuts[i]->SetLineColor(kRed);
+        }
+
+        HistoList_electron_cuts[i]->GetXaxis()->CenterTitle();
+        HistoList_electron_cuts[i]->GetYaxis()->CenterTitle();
+    }
+
     for (int i = 0; i < HistoList.size(); i++) {
         if (HistoList[i]->InheritsFrom("TH1D")) {
             HistoList[i]->Sumw2();
@@ -1414,6 +1560,90 @@ void nFD_eff_test() {
 
     gStyle->SetOptStat("ourmen");
 
+#pragma region /* Print electron cuts plots */
+    TCanvas* myCanvas_electron_cuts = new TCanvas("myPage_electron_cuts", "myPage_electron_cuts", pixelx, pixely);
+    // TCanvas* myCanvas_electron_cuts = new TCanvas("myPage_electron_cuts", "myPage_electron_cuts", pixelx * 2, pixely);
+
+    char fileName_electron_cuts[100];
+    sprintf(fileName_electron_cuts, "%s[", "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/nFD_eff_test/electron_cuts.pdf");
+    myText->SaveAs(fileName_electron_cuts);
+    sprintf(fileName_electron_cuts, "%s", "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/nFD_eff_test/electron_cuts.pdf");
+
+    /////////////////////////////////////
+    // CND Neutron Information
+    /////////////////////////////////////
+    myText->cd();
+    text.DrawLatex(0.2, 0.9, "Uniform sample of (e,e'n) events (truth-level)");
+    if (findSubstring(InputFiles, "2070MeV")) {
+        text.DrawLatex(0.2, 0.7, "Beam energy: 2070MeV");
+    } else if (findSubstring(InputFiles, "4029MeV")) {
+        text.DrawLatex(0.2, 0.7, "Beam energy: 4029MeV");
+    } else if (findSubstring(InputFiles, "5986MeV")) {
+        text.DrawLatex(0.2, 0.7, "Beam energy: 5986MeV");
+    }
+    myText->Print(fileName_electron_cuts, "pdf");
+    myText->Clear();
+
+    for (int i = 0; i < HistoList.size(); i++) {
+        for (int j = 0; j < HistSubjects.size(); j++) {
+            if (FirstPrint.at(j) && findSubstring(HistoList[i]->GetTitle(), HistSubjects.at(j))) {
+                myText->cd();
+                titles.DrawLatex(0.3, 0.5, HistSubjects2.at(j).c_str());
+                myText->Print(fileName_electron_cuts, "pdf");
+                myText->Clear();
+
+                myCanvas_electron_cuts->cd(1);
+                FirstPrint.at(j) = false;
+                break;
+            }
+        }
+
+        myCanvas_electron_cuts->cd();
+
+        myCanvas_electron_cuts->cd()->SetGrid();
+        myCanvas_electron_cuts->cd()->SetBottomMargin(0.14), myCanvas_electron_cuts->cd()->SetLeftMargin(0.16), myCanvas_electron_cuts->cd()->SetRightMargin(0.12);
+
+        HistoList[i]->GetYaxis()->SetTitleOffset(1.5);
+        HistoList[i]->GetXaxis()->SetTitleOffset(1.1);
+
+        gPad->SetRightMargin(0.23);
+
+        // // Set the PDF title and header for the bookmark
+        // string Title = HistoList[i]->GetTitle();
+        // gStyle->SetTitlePS(Title.c_str());  // This sets the title in metadata
+        //                                     // gStyle->SetHeaderPS(("[ /Title " + Title + " /DOCVIEW pdfmark").c_str());  // Adds a PDF title
+        // gStyle->SetHeaderPS(("[ /Page " + to_string(i + 1) + " /View [/Fit] /Title (myTitle) ] /OUT pdfmark").c_str());
+
+        if (HistoList[i]->InheritsFrom("TH1D")) {
+            HistoList[i]->Draw();
+        } else if (HistoList[i]->InheritsFrom("TH2D")) {
+            // if (findSubstring(HistoList[i]->GetTitle(), "#Delta#theta_{nFD,e} vs. #Delta#phi_{nFD,e} in 1e cut")) {
+            //     gPad->SetRightMargin(0.225);
+            // } else {
+            //     gPad->SetRightMargin(0.05);
+            // }
+
+            HistoList[i]->Draw("colz");
+
+            if (HistoList[i]->GetEntries() != 0) {
+                gPad->Update();
+                TPaletteAxis* palette = (TPaletteAxis*)HistoList[i]->GetListOfFunctions()->FindObject("palette");
+                palette->SetY2NDC(0.55);
+                gPad->Modified();
+                gPad->Update();
+            }
+        }
+
+        myCanvas_electron_cuts->Print(fileName_electron_cuts, "pdf");
+        myCanvas_electron_cuts->Clear();
+    }
+
+    sprintf(fileName_electron_cuts, "%s]", "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/nFD_eff_test/electron_cuts.pdf");
+    myCanvas_electron_cuts->Print(fileName_electron_cuts, "pdf");
+
+#pragma endregion
+
+    // myText->cd();
     char fileName[100];
     sprintf(fileName, "%s[", "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/nFD_eff_test/nFD_eff_test.pdf");
     myText->SaveAs(fileName);
