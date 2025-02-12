@@ -1802,18 +1802,18 @@ void nFD_eff_test() {
     myText->Clear();
 
     for (int i = 0; i < HistoList_eff_plots.size(); i++) {
-        for (int j = 0; j < HistSubjects.size(); j++) {
-            if (FirstPrint.at(j) && findSubstring(HistoList_eff_plots[i]->GetTitle(), HistSubjects.at(j))) {
-                myText->cd();
-                titles.DrawLatex(0.3, 0.5, HistSubjects2.at(j).c_str());
-                myText->Print(fileName_eff_plots, "pdf");
-                myText->Clear();
+        // for (int j = 0; j < HistSubjects.size(); j++) {
+        //     if (FirstPrint.at(j) && findSubstring(HistoList_eff_plots[i]->GetTitle(), HistSubjects.at(j))) {
+        //         myText->cd();
+        //         titles.DrawLatex(0.3, 0.5, HistSubjects2.at(j).c_str());
+        //         myText->Print(fileName_eff_plots, "pdf");
+        //         myText->Clear();
 
-                myCanvas_eff_plots->cd(1);
-                FirstPrint.at(j) = false;
-                break;
-            }
-        }
+        //         myCanvas_eff_plots->cd(1);
+        //         FirstPrint.at(j) = false;
+        //         break;
+        //     }
+        // }
 
         myCanvas_eff_plots->Divide(3, 1);
 
