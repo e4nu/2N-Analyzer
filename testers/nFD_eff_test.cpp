@@ -1561,9 +1561,9 @@ void nFD_eff_test() {
     // TCanvas* myCanvas_electron_cuts = new TCanvas("myPage_electron_cuts", "myPage_electron_cuts", pixelx * 2, pixely);
 
     char fileName_electron_cuts[100];
-    sprintf(fileName_electron_cuts, "%s[", ("/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/electron_cuts.pdf").c_srt());
+    sprintf(fileName_electron_cuts, "%s[", ("/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/electron_cuts.pdf").c_str());
     myText->SaveAs(fileName_electron_cuts);
-    sprintf(fileName_electron_cuts, "%s", ("/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/electron_cuts.pdf").c_srt());
+    sprintf(fileName_electron_cuts, "%s", ("/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/electron_cuts.pdf").c_str());
 
     /////////////////////////////////////
     // CND Neutron Information
@@ -1634,7 +1634,7 @@ void nFD_eff_test() {
         myCanvas_electron_cuts->Clear();
     }
 
-    sprintf(fileName_electron_cuts, "%s]", ("/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/electron_cuts.pdf").c_srt());
+    sprintf(fileName_electron_cuts, "%s]", ("/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/electron_cuts.pdf").c_str());
     myCanvas_electron_cuts->Print(fileName_electron_cuts, "pdf");
 
 #pragma endregion
