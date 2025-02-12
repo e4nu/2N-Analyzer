@@ -1759,10 +1759,12 @@ void nFD_eff_test() {
         myCanvas->Clear();
     }
 
-    sprintf(fileName, "%s]", ("/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/nFD_eff_test.pdf").c_str());
-    myCanvas->Print(fileName, "pdf");
+    sprintf(fileName, "%s]", "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/nFD_eff_test.pdf");
+    myCanvas->Print(fileName.c_str(), "pdf");
+    // sprintf(fileName, "%s]", ("/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/nFD_eff_test.pdf").c_str());
+    // myCanvas->Print(fileName, "pdf");
 
-    // outFile->cd();
-    // for (int i = 0; i < HistoList.size(); i++) { HistoList[i]->Write(); }
-    // outFile->Close();
+    outFile->cd();
+    for (int i = 0; i < HistoList.size(); i++) { HistoList[i]->Write(); }
+    outFile->Close();
 }
