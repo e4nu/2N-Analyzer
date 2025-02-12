@@ -1416,7 +1416,7 @@ void nFD_eff_test() {
                     for (int j = 0; j < truth_NeutronsFD.size(); j++) {
                         mcpbank->setEntry(truth_NeutronsFD.at(j));
 
-                        tl_P = mcpbank->getP();
+                        double tl__P = mcpbank->getP();
                         double tl_Theta = mcpbank->getTheta() * 180 / M_PI;
                         double tl_Phi = mcpbank->getPhi() * 180 / M_PI;
 
@@ -1429,6 +1429,7 @@ void nFD_eff_test() {
                         double tl_E_nFD = sqrt(m_n * m_n + tl_P * tl_P);
 
                         if (thetaCut && phiCut) {
+                            tl_P = tl__P;
                             neutrons_FD_matched.push_back(allParticles[i]);
 
                             tl_Beta = tl_P / tl_E_nFD;
