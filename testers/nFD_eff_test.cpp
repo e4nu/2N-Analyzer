@@ -296,8 +296,9 @@ void nFD_eff_test() {
     cout << "\n\nInitiating nFD_eff_test.cpp\n";
 
     bool Is2GeV = false, Is4GeV = false, Is6GeV = false;
+
     double Ebeam = 4.02962;
-     Is4GeV = true;
+    Is4GeV = true;
     // double Ebeam = 5.98636;
     // Is6GeV = true;
 
@@ -1085,7 +1086,8 @@ void nFD_eff_test() {
                 h_truth_phi_n_1e_cut->Fill(truth_P_n.Phi() * 180 / M_PI, weight);
                 h_truth_theta_n_VS_truth_phi_n_1e_cut->Fill(truth_P_n.Phi() * 180 / M_PI, truth_P_n.Theta() * 180 / M_PI, weight);
 
-                if (truth_P_n.Theta() * 180 / M_PI >= 5. && truth_P_n.Theta() * 180 / M_PI <= 40.) {
+                if (truth_P_n.Theta() * 180 / M_PI <= 40.) {
+                // if (truth_P_n.Theta() * 180 / M_PI >= 5. && truth_P_n.Theta() * 180 / M_PI <= 40.) {
                     double truth_E_nFD = sqrt(m_n * m_n + truth_P_n.Mag2());
                     Truth_beta = truth_P_n.Mag() / truth_E_nFD;
 
@@ -1113,9 +1115,9 @@ void nFD_eff_test() {
 
         if (ConstrainTLmom && !TLpassCuts) { continue; }
 
-        if (truth_NeutronsFD.size() != 1) { 
-            cout << "\n\nError! truth_NeutronsFD size is not 1! Aborting...\n"; 
-            cout << "truth_NeutronsFD.size() = " << truth_NeutronsFD.size() << "\nAborting...\n\n", exit(0); 
+        if (truth_NeutronsFD.size() != 1) {
+            cout << "\n\nError! truth_NeutronsFD size is not 1! Aborting...\n";
+            cout << "truth_NeutronsFD.size() = " << truth_NeutronsFD.size() << "\nAborting...\n\n", exit(0);
         }
 #pragma endregion
 
@@ -1400,11 +1402,11 @@ void nFD_eff_test() {
             int pid_temp = allParticles[i]->par()->getPid();
 
             if (pid_temp == 2112 && allParticles[i]->getRegion() == FD) {
-                bool ParticleInPCAL = (allParticles[i]->cal(clas12::PCAL)->getDetector() == 7);                           // PCAL hit
-                bool ParticleInECIN = (allParticles[i]->cal(clas12::ECIN)->getDetector() == 7);                           // ECIN hit
-                bool ParticleInECOUT = (allParticles[i]->cal(clas12::ECOUT)->getDetector() == 7);                         // ECOUT hit
-                auto Neutron_ECAL_detlayer = ParticleInECIN ? clas12::ECIN : clas12::ECOUT;                               // find first layer of hit
-                
+                bool ParticleInPCAL = (allParticles[i]->cal(clas12::PCAL)->getDetector() == 7);    // PCAL hit
+                bool ParticleInECIN = (allParticles[i]->cal(clas12::ECIN)->getDetector() == 7);    // ECIN hit
+                bool ParticleInECOUT = (allParticles[i]->cal(clas12::ECOUT)->getDetector() == 7);  // ECOUT hit
+                auto Neutron_ECAL_detlayer = ParticleInECIN ? clas12::ECIN : clas12::ECOUT;        // find first layer of hit
+
                 // double Momentum = allParticles[i]->par()->getP();
                 double Momentum = CalcPnFD(allParticles[i], electrons[0], starttime);
 
