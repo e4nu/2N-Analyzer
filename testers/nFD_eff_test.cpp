@@ -1397,6 +1397,11 @@ void nFD_eff_test() {
             int pid_temp = allParticles[i]->par()->getPid();
 
             if (pid_temp == 2112 && allParticles[i]->getRegion() == FD) {
+                bool ParticleInPCAL = (allParticles[i]->cal(clas12::PCAL)->getDetector() == 7);                           // PCAL hit
+                bool ParticleInECIN = (allParticles[i]->cal(clas12::ECIN)->getDetector() == 7);                           // ECIN hit
+                bool ParticleInECOUT = (allParticles[i]->cal(clas12::ECOUT)->getDetector() == 7);                         // ECOUT hit
+                auto Neutron_ECAL_detlayer = ParticleInECIN ? clas12::ECIN : clas12::ECOUT;                               // find first layer of hit
+                
                 // double Momentum = allParticles[i]->par()->getP();
                 double Momentum = CalcPnFD(allParticles[i], electrons[0], starttime);
 
