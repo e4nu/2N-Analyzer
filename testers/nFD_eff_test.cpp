@@ -1687,9 +1687,9 @@ void nFD_eff_test() {
     // myText->cd();
     string fileName_string_temp = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/nFD_eff_test.pdf";
     char fileName[500];
-    sprintf(fileName, "%s[", fileName_string_temp);
+    sprintf(fileName, "%s[", fileName_string_temp.c_str());
     myText->SaveAs(fileName);
-    sprintf(fileName, "%s", fileName_string_temp);
+    sprintf(fileName, "%s", fileName_string_temp.c_str());
 
     /////////////////////////////////////
     // CND Neutron Information
@@ -1760,7 +1760,7 @@ void nFD_eff_test() {
         myCanvas->Clear();
     }
 
-    sprintf(fileName, "%s]", fileName_string_temp);
+    sprintf(fileName, "%s]", fileName_string_temp.c_str());
     myCanvas->Print(fileName, "pdf");
 
     outFile->cd();
