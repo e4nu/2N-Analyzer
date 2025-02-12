@@ -310,9 +310,9 @@ void nFD_eff_test() {
         P_upperLim = Ebeam * 1.1;
     }
 
-    int Limiter = 10000000;
+    // int Limiter = 10000000;
     // int Limiter = 1000000;
-    // int Limiter = 100000;
+    int Limiter = 100000;
 
     // string OutFolderName = "nFD_eff_test_reg";
     string OutFolderName = "nFD_eff_test_CLAS12_neutrons_w_TL_mom";
@@ -1401,7 +1401,8 @@ void nFD_eff_test() {
                 bool PassMomth = (Momentum >= 0.4);
                 bool passECALeadgeCuts = true;
                 // bool passECALeadgeCuts = (allParticles[i]->cal(Neutron_ECAL_detlayer)->getLv() > 14. && allParticles[i]->cal(Neutron_ECAL_detlayer)->getLw() > 14.);
-                bool passVeto = NeutronECAL_Cut_Veto(allParticles, electrons, Ebeam, i, 100);
+                bool passVeto = true;
+                // bool passVeto = NeutronECAL_Cut_Veto(allParticles, electrons, Ebeam, i, 100);
 
                 if (PassMomth && passECALeadgeCuts && passVeto) {
                     for (int j = 0; j < truth_NeutronsFD.size(); j++) {
