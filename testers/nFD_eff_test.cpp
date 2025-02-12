@@ -1060,7 +1060,7 @@ void nFD_eff_test() {
             auto py = mcpbank->getPy();
             auto pz = mcpbank->getPz();
 
-            bool PassMomth = (p >= 0.4);
+            // bool PassMomth = (p >= 0.4);
 
             if (ConstrainTLmom && (pid_temp == 2112 && p > 2.)) {
                 TLpassCuts = false;
@@ -1084,7 +1084,7 @@ void nFD_eff_test() {
                 h_truth_phi_n_1e_cut->Fill(truth_P_n.Phi() * 180 / M_PI, weight);
                 h_truth_theta_n_VS_truth_phi_n_1e_cut->Fill(truth_P_n.Phi() * 180 / M_PI, truth_P_n.Theta() * 180 / M_PI, weight);
 
-                if (truth_P_n.Theta() * 180 / M_PI <= 40.) {
+                if (truth_P_n.Theta() * 180 / M_PI >= 5. && truth_P_n.Theta() * 180 / M_PI <= 40.) {
                     double truth_E_nFD = sqrt(m_n * m_n + truth_P_n.Mag2());
                     Truth_beta = truth_P_n.Mag() / truth_E_nFD;
 
@@ -1396,6 +1396,7 @@ void nFD_eff_test() {
             int pid_temp = allParticles[i]->par()->getPid();
 
             if (pid_temp == 2112 && allParticles[i]->getRegion() == FD) {
+                // double Momentum = allParticles[i]->par()->getP();
                 double Momentum = CalcPnFD(allParticles[i], electrons[0], starttime);
 
                 bool PassMomth = true;
