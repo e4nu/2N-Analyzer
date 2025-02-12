@@ -320,7 +320,7 @@ void nFD_eff_test() {
     system(("rm -rf " + OutputDir).c_str());
     system(("mkdir -p " + OutputDir).c_str());
 
-    TFile* outFile = new TFile("/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/" + OutFolderName + ".root", "RECREATE");
+    TFile* outFile = new TFile(("/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/" + OutFolderName + ".root").c_str(), "RECREATE");
 
     clas12root::HipoChain chain;
     string InputFiles;
@@ -1561,9 +1561,9 @@ void nFD_eff_test() {
     // TCanvas* myCanvas_electron_cuts = new TCanvas("myPage_electron_cuts", "myPage_electron_cuts", pixelx * 2, pixely);
 
     char fileName_electron_cuts[100];
-    sprintf(fileName_electron_cuts, "%s[", "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/electron_cuts.pdf");
+    sprintf(fileName_electron_cuts, "%s[", ("/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/electron_cuts.pdf").c_srt());
     myText->SaveAs(fileName_electron_cuts);
-    sprintf(fileName_electron_cuts, "%s", "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/electron_cuts.pdf");
+    sprintf(fileName_electron_cuts, "%s", ("/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/electron_cuts.pdf").c_srt());
 
     /////////////////////////////////////
     // CND Neutron Information
@@ -1634,16 +1634,16 @@ void nFD_eff_test() {
         myCanvas_electron_cuts->Clear();
     }
 
-    sprintf(fileName_electron_cuts, "%s]", "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/electron_cuts.pdf");
+    sprintf(fileName_electron_cuts, "%s]", ("/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/electron_cuts.pdf").c_srt());
     myCanvas_electron_cuts->Print(fileName_electron_cuts, "pdf");
 
 #pragma endregion
 
     // myText->cd();
     char fileName[100];
-    sprintf(fileName, "%s[", "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/nFD_eff_test.pdf");
+    sprintf(fileName, "%s[", ("/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/nFD_eff_test.pdf").c_str());
     myText->SaveAs(fileName);
-    sprintf(fileName, "%s", "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/nFD_eff_test.pdf");
+    sprintf(fileName, "%s", ("/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/nFD_eff_test.pdf").c_str());
 
     /////////////////////////////////////
     // CND Neutron Information
@@ -1714,7 +1714,7 @@ void nFD_eff_test() {
         myCanvas->Clear();
     }
 
-    sprintf(fileName, "%s]", "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/nFD_eff_test.pdf");
+    sprintf(fileName, "%s]", ("/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/nFD_eff_test.pdf").c_str());
     myCanvas->Print(fileName, "pdf");
 
     outFile->cd();
