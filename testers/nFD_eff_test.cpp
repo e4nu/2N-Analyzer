@@ -1402,8 +1402,8 @@ void nFD_eff_test() {
                 // bool PassMomth = (Momentum >= 0.4);
                 bool passECALeadgeCuts = true;
                 // bool passECALeadgeCuts = (allParticles[i]->cal(Neutron_ECAL_detlayer)->getLv() > 14. && allParticles[i]->cal(Neutron_ECAL_detlayer)->getLw() > 14.);
-                bool passVeto = true;
-                // bool passVeto = NeutronECAL_Cut_Veto(allParticles, electrons, Ebeam, i, 100);
+                // bool passVeto = true;
+                bool passVeto = NeutronECAL_Cut_Veto(allParticles, electrons, Ebeam, i, 100);
 
                 if (PassMomth && passECALeadgeCuts && passVeto) {
                     for (int j = 0; j < truth_NeutronsFD.size(); j++) {
