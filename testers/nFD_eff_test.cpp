@@ -33,20 +33,21 @@ double CalcToFnFD(region_part_ptr NeutronFD, double starttime = 9999) {
     bool ParticleInECOUT = (NeutronFD->cal(clas12::ECOUT)->getDetector() == 7);                     // ECOUT hit
     auto detlayer = ParticleInPCAL ? clas12::PCAL : ParticleInECIN ? clas12::ECIN : clas12::ECOUT;  // determine the earliest layer of the neutral hit
 
-    double reco_ToF_nFD = NeutronFD->getTime() - starttime;
-    // double reco_ToF_nFD = NeutronFD->cal(detlayer)->getTime() - starttime;
+    // double reco_ToF_nFD = NeutronFD->getTime() - starttime;
+    double reco_ToF_nFD = NeutronFD->cal(detlayer)->getTime() - starttime;
 
     return reco_ToF_nFD;
 }
 
-double CalcPathnFD(region_part_ptr NeutronFD) {
+double CalcPathnFD(region_part_ptr NeutronFD, region_part_ptr electron) {
     bool ParticleInPCAL = (NeutronFD->cal(clas12::PCAL)->getDetector() == 7);                       // PCAL hit
     bool ParticleInECIN = (NeutronFD->cal(clas12::ECIN)->getDetector() == 7);                       // ECIN hit
     bool ParticleInECOUT = (NeutronFD->cal(clas12::ECOUT)->getDetector() == 7);                     // ECOUT hit
     auto detlayer = ParticleInPCAL ? clas12::PCAL : ParticleInECIN ? clas12::ECIN : clas12::ECOUT;  // determine the earliest layer of the neutral hit
 
     TVector3 v_nvtx_3v;  // Neutron's vertex location
-    v_nvtx_3v.SetXYZ(NeutronFD->par()->getVx(), NeutronFD->par()->getVy(), NeutronFD->par()->getVz());
+    v_nvtx_3v.SetXYZ(electron->par()->getVx(), electron->par()->getVy(), electron->par()->getVz());
+    // v_nvtx_3v.SetXYZ(NeutronFD->par()->getVx(), NeutronFD->par()->getVy(), NeutronFD->par()->getVz());
 
     TVector3 v_hit_3v;  // Neutron's hit location in CND
     v_hit_3v.SetXYZ(NeutronFD->cal(detlayer)->getX(), NeutronFD->cal(detlayer)->getY(), NeutronFD->cal(detlayer)->getZ());
@@ -58,8 +59,8 @@ double CalcPathnFD(region_part_ptr NeutronFD) {
     return reco_Path_nFD;
 }
 
-double CalcPnFD(region_part_ptr NeutronFD, double starttime = 9999) {
-    double reco_Path_nFD = CalcPathnFD(NeutronFD);
+double CalcPnFD(region_part_ptr NeutronFD, region_part_ptr electron, double starttime = 9999) {
+    double reco_Path_nFD = CalcPathnFD(NeutronFD, electron);
     // double reco_Path_nFD = NeutronFD->getPath();
     double reco_ToF_nFD = CalcToFnFD(NeutronFD, starttime);
     double reco_Beta_nFD = reco_Path_nFD / (reco_ToF_nFD * c);
@@ -309,15 +310,15 @@ void nFD_eff_test() {
         P_upperLim = Ebeam * 1.1;
     }
 
-    // int Limiter = 10000000;
-    int Limiter = 1000000;
+    int Limiter = 10000000;
+    // int Limiter = 1000000;
     // int Limiter = 100000;
 
-    const string OutputDir = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/nFD_eff_test";
+    const string OutputDir = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/nFD_eff_test_newVtx";
     system(("rm -rf " + OutputDir).c_str());
     system(("mkdir -p " + OutputDir).c_str());
 
-    TFile* outFile = new TFile("/lustre24/expphy/volatile/clas12/asportes/Analysis_output/nFD_eff_test/nFD_eff_test.root", "RECREATE");
+    TFile* outFile = new TFile("/lustre24/expphy/volatile/clas12/asportes/Analysis_output/nFD_eff_test_newVtx/nFD_eff_test.root", "RECREATE");
 
     clas12root::HipoChain chain;
     string InputFiles;
@@ -1207,7 +1208,7 @@ void nFD_eff_test() {
 
         for (int i = 0; i < neutrons_FD_clas12.size(); i++) {
             TVector3 reco_P_nFD;
-            reco_P_nFD.SetMagThetaPhi(CalcPnFD(neutrons_FD_clas12[i], starttime), neutrons_FD_clas12[i]->getTheta(), neutrons_FD_clas12[i]->getPhi());
+            reco_P_nFD.SetMagThetaPhi(CalcPnFD(neutrons_FD_clas12[i], electrons[0], starttime), neutrons_FD_clas12[i]->getTheta(), neutrons_FD_clas12[i]->getPhi());
             // reco_P_nFD.SetMagThetaPhi(neutrons_FD_clas12[i]->getP(), neutrons_FD_clas12[i]->getTheta(), neutrons_FD_clas12[i]->getPhi());
 
             h_reco_P_nFD_clas12_1e_cut->Fill(reco_P_nFD.Mag(), weight);
@@ -1256,7 +1257,7 @@ void nFD_eff_test() {
             double Momentum = m_n * Beta_ph * Gamma_ph;
 
             TVector3 reco_P_nFD;
-            reco_P_nFD.SetMagThetaPhi(CalcPnFD(neutrons_FD_redef[i], starttime), neutrons_FD_redef[i]->getTheta(), neutrons_FD_redef[i]->getPhi());
+            reco_P_nFD.SetMagThetaPhi(CalcPnFD(neutrons_FD_redef[i], electrons[0], starttime), neutrons_FD_redef[i]->getTheta(), neutrons_FD_redef[i]->getPhi());
 
             h_reco_P_nFD_redef_1e_cut->Fill(reco_P_nFD.Mag(), weight);
             h_reco_theta_nFD_redef_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI, weight);
@@ -1286,9 +1287,9 @@ void nFD_eff_test() {
                         if (pid_temp == 22) { photons_FD_redef.push_back(allParticles[i]); }
                     } else if (!ParticleInPCAL) {  // if there is a neutron or a 'photon' without a PCAL hit
                         if (ParticleInECIN || ParticleInECOUT) {
-                            double Momentum = CalcPnFD(allParticles[i], starttime);
+                            double Momentum = CalcPnFD(allParticles[i], electrons[0], starttime);
 
-                            double Path_nFD = CalcPathnFD(allParticles[i]);
+                            double Path_nFD = CalcPathnFD(allParticles[i], electrons[0]);
                             // double Path_nFD = allParticles[i]->getPath();
                             double reco_ToF_nFD = CalcToFnFD(allParticles[i], starttime);
                             // double reco_ToF_nFD = allParticles[i]->cal(Neutron_ECAL_detlayer)->getTime() - starttime;
@@ -1315,13 +1316,13 @@ void nFD_eff_test() {
             auto detlayer = ParticleInPCAL ? clas12::PCAL : ParticleInECIN ? clas12::ECIN : clas12::ECOUT;  // determine the earliest layer of the neutral hit
             if (ParticleInPCAL) { cout << "\n\nError! neutrons_FD_ECALveto is in the PCAL! Aborting...\n\n", exit(0); }
 
-            double Path_nFD = CalcPathnFD(neutrons_FD_ECALveto[i]);
+            double Path_nFD = CalcPathnFD(neutrons_FD_ECALveto[i], electrons[0]);
             // double Path_nFD = neutrons_FD_ECALveto[i]->getPath();
             double reco_ToF_nFD = CalcToFnFD(neutrons_FD_ECALveto[i], starttime);
             // double reco_ToF_nFD = neutrons_FD_ECALveto[i]->cal(detlayer)->getTime() - starttime;
 
             TVector3 reco_P_nFD;
-            reco_P_nFD.SetMagThetaPhi(CalcPnFD(neutrons_FD_ECALveto[i], starttime), neutrons_FD_ECALveto[i]->getTheta(), neutrons_FD_ECALveto[i]->getPhi());
+            reco_P_nFD.SetMagThetaPhi(CalcPnFD(neutrons_FD_ECALveto[i], electrons[0], starttime), neutrons_FD_ECALveto[i]->getTheta(), neutrons_FD_ECALveto[i]->getPhi());
 
             h_reco_P_nFD_ECALveto_1e_cut->Fill(reco_P_nFD.Mag(), weight);
             h_reco_theta_nFD_ECALveto_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI, weight);
@@ -1398,7 +1399,7 @@ void nFD_eff_test() {
                         if (pid_temp == 22) { photons_FD_redef.push_back(allParticles[i]); }
                     } else if (!ParticleInPCAL) {  // if there is a neutron or a 'photon' without a PCAL hit
                         if (ParticleInECIN || ParticleInECOUT) {
-                            double Momentum = CalcPnFD(allParticles[i], starttime);
+                            double Momentum = CalcPnFD(allParticles[i], electrons[0], starttime);
 
                             bool PassMomth = (Momentum >= 0.4);
                             bool passECALeadgeCuts = (allParticles[i]->cal(Neutron_ECAL_detlayer)->getLv() > 14. && allParticles[i]->cal(Neutron_ECAL_detlayer)->getLw() > 14.);
@@ -1445,13 +1446,13 @@ void nFD_eff_test() {
             if (ParticleInPCAL) { cout << "\n\nError! neutrons_FD_matched is in the PCAL! Aborting...\n\n", exit(0); }
             auto detlayer = ParticleInPCAL ? clas12::PCAL : ParticleInECIN ? clas12::ECIN : clas12::ECOUT;  // determine the earliest layer of the neutral hit
 
-            double Path_nFD = CalcPathnFD(neutrons_FD_matched[i]);
+            double Path_nFD = CalcPathnFD(neutrons_FD_matched[i], electrons[0]);
             // double Path_nFD = neutrons_FD_ECALveto[i]->getPath();
             double reco_ToF_nFD = CalcToFnFD(neutrons_FD_matched[i], starttime);
             // double reco_ToF_nFD = neutrons_FD_ECALveto[i]->cal(detlayer)->getTime() - starttime;
 
             TVector3 reco_P_nFD;
-            reco_P_nFD.SetMagThetaPhi(CalcPnFD(neutrons_FD_matched[i], starttime), neutrons_FD_matched[i]->getTheta(), neutrons_FD_matched[i]->getPhi());
+            reco_P_nFD.SetMagThetaPhi(CalcPnFD(neutrons_FD_matched[i], electrons[0], starttime), neutrons_FD_matched[i]->getTheta(), neutrons_FD_matched[i]->getPhi());
 
             h_reco_P_nFD_matched_1e_cut->Fill(reco_P_nFD.Mag(), weight);
             h_reco_theta_nFD_matched_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI, weight);
@@ -1558,9 +1559,9 @@ void nFD_eff_test() {
     // TCanvas* myCanvas_electron_cuts = new TCanvas("myPage_electron_cuts", "myPage_electron_cuts", pixelx * 2, pixely);
 
     char fileName_electron_cuts[100];
-    sprintf(fileName_electron_cuts, "%s[", "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/nFD_eff_test/electron_cuts.pdf");
+    sprintf(fileName_electron_cuts, "%s[", "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/nFD_eff_test_newVtx/electron_cuts.pdf");
     myText->SaveAs(fileName_electron_cuts);
-    sprintf(fileName_electron_cuts, "%s", "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/nFD_eff_test/electron_cuts.pdf");
+    sprintf(fileName_electron_cuts, "%s", "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/nFD_eff_test_newVtx/electron_cuts.pdf");
 
     /////////////////////////////////////
     // CND Neutron Information
@@ -1631,16 +1632,16 @@ void nFD_eff_test() {
         myCanvas_electron_cuts->Clear();
     }
 
-    sprintf(fileName_electron_cuts, "%s]", "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/nFD_eff_test/electron_cuts.pdf");
+    sprintf(fileName_electron_cuts, "%s]", "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/nFD_eff_test_newVtx/electron_cuts.pdf");
     myCanvas_electron_cuts->Print(fileName_electron_cuts, "pdf");
 
 #pragma endregion
 
     // myText->cd();
     char fileName[100];
-    sprintf(fileName, "%s[", "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/nFD_eff_test/nFD_eff_test.pdf");
+    sprintf(fileName, "%s[", "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/nFD_eff_test_newVtx/nFD_eff_test.pdf");
     myText->SaveAs(fileName);
-    sprintf(fileName, "%s", "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/nFD_eff_test/nFD_eff_test.pdf");
+    sprintf(fileName, "%s", "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/nFD_eff_test_newVtx/nFD_eff_test.pdf");
 
     /////////////////////////////////////
     // CND Neutron Information
@@ -1711,7 +1712,7 @@ void nFD_eff_test() {
         myCanvas->Clear();
     }
 
-    sprintf(fileName, "%s]", "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/nFD_eff_test/nFD_eff_test.pdf");
+    sprintf(fileName, "%s]", "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/nFD_eff_test_newVtx/nFD_eff_test.pdf");
     myCanvas->Print(fileName, "pdf");
 
     outFile->cd();
