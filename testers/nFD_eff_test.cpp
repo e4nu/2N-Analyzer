@@ -480,35 +480,35 @@ void nFD_eff_test() {
     HistoList.push_back(h_truth_theta_n_VS_truth_phi_n_1e_cut);
 #pragma endregion
 
-#pragma region /* clas12reco */
-    HistSubjects.push_back("clas12reco");
-    HistSubjects2.push_back("#splitline{FD neutron from}{clas12reco}");
+#pragma region /* c_str */
+    HistSubjects.push_back("c_str");
+    HistSubjects2.push_back("#splitline{FD neutron from}{c_str}");
     FirstPrint.push_back(true);
-    TH1D* h_reco_P_nFD_clas12_1e_cut = new TH1D("reco_P_nFD_clas12_1e_cut", "P^{reco}_{nFD} in 1e cut (clas12reco);P^{reco}_{nFD} [GeV/c];Counts", 50, 0, P_upperLim);
+    TH1D* h_reco_P_nFD_clas12_1e_cut = new TH1D("reco_P_nFD_clas12_1e_cut", "P^{reco}_{nFD} in 1e cut (c_str);P^{reco}_{nFD} [GeV/c];Counts", 50, 0, P_upperLim);
     HistoList.push_back(h_reco_P_nFD_clas12_1e_cut);
-    TH1D* h_truth_P_nFD_clas12_1e_cut = new TH1D("truth_P_nFD_clas12_1e_cut", "P^{truth}_{nFD} in 1e cut (clas12reco);P^{truth}_{nFD} [GeV/c];Counts", 50, 0, P_upperLim);
+    TH1D* h_truth_P_nFD_clas12_1e_cut = new TH1D("truth_P_nFD_clas12_1e_cut", "P^{truth}_{nFD} in 1e cut (c_str);P^{truth}_{nFD} [GeV/c];Counts", 50, 0, P_upperLim);
     HistoList.push_back(h_truth_P_nFD_clas12_1e_cut);
-    TH1D* h_reco_theta_nFD_clas12_1e_cut = new TH1D("reco_theta_nFD_clas12_1e_cut", "#theta^{reco}_{nFD} in 1e cut (clas12reco);#theta^{reco}_{nFD} [#circ];Counts", 50, 0, 45.);
+    TH1D* h_reco_theta_nFD_clas12_1e_cut = new TH1D("reco_theta_nFD_clas12_1e_cut", "#theta^{reco}_{nFD} in 1e cut (c_str);#theta^{reco}_{nFD} [#circ];Counts", 50, 0, 45.);
     HistoList.push_back(h_reco_theta_nFD_clas12_1e_cut);
-    TH1D* h_truth_theta_nFD_clas12_1e_cut = new TH1D("truth_theta_nFD_clas12_1e_cut", "#theta^{truth}_{nFD} in 1e cut (clas12reco);#theta^{truth}_{nFD} [#circ];Counts", 50, 0, 45.);
+    TH1D* h_truth_theta_nFD_clas12_1e_cut = new TH1D("truth_theta_nFD_clas12_1e_cut", "#theta^{truth}_{nFD} in 1e cut (c_str);#theta^{truth}_{nFD} [#circ];Counts", 50, 0, 45.);
     HistoList.push_back(h_truth_theta_nFD_clas12_1e_cut);
-    TH1D* h_reco_phi_nFD_clas12_1e_cut = new TH1D("reco_phi_nFD_clas12_1e_cut", "#phi^{reco}_{nFD} in 1e cut (clas12reco);#phi^{reco}_{nFD} [#circ];Counts", 50, -180, 180.);
+    TH1D* h_reco_phi_nFD_clas12_1e_cut = new TH1D("reco_phi_nFD_clas12_1e_cut", "#phi^{reco}_{nFD} in 1e cut (c_str);#phi^{reco}_{nFD} [#circ];Counts", 50, -180, 180.);
     HistoList.push_back(h_reco_phi_nFD_clas12_1e_cut);
-    TH1D* h_truth_phi_nFD_clas12_1e_cut = new TH1D("truth_phi_nFD_clas12_1e_cut", "#phi^{truth}_{nFD} in 1e cut (clas12reco);#phi^{truth}_{nFD} [#circ];Counts", 50, -180, 180.);
+    TH1D* h_truth_phi_nFD_clas12_1e_cut = new TH1D("truth_phi_nFD_clas12_1e_cut", "#phi^{truth}_{nFD} in 1e cut (c_str);#phi^{truth}_{nFD} [#circ];Counts", 50, -180, 180.);
     HistoList.push_back(h_truth_phi_nFD_clas12_1e_cut);
     TH2D* h_reco_theta_nFD_clas12_VS_reco_phi_nFD_clas12_1e_cut =
         new TH2D("reco_theta_nFD_clas12_VS_reco_phi_nFD_clas12_1e_cut",
-                 "#theta^{reco}_{nFD} vs. #phi^{reco}_{nFD} in 1e cut (clas12reco);#phi^{reco}_{nFD} [#circ];#theta^{reco}_{nFD} [#circ]", 100, -180., 180., 100, 0, 50.);
+                 "#theta^{reco}_{nFD} vs. #phi^{reco}_{nFD} in 1e cut (c_str);#phi^{reco}_{nFD} [#circ];#theta^{reco}_{nFD} [#circ]", 100, -180., 180., 100, 0, 50.);
     HistoList.push_back(h_reco_theta_nFD_clas12_VS_reco_phi_nFD_clas12_1e_cut);
     TH2D* h_truth_theta_nFD_clas12_VS_truth_phi_nFD_clas12_1e_cut =
         new TH2D("truth_theta_nFD_clas12_VS_truth_phi_nFD_clas12_1e_cut",
-                 "#theta^{truth}_{nFD} vs. #phi^{truth}_{nFD} in 1e cut (clas12reco);#phi^{truth}_{nFD} [#circ];#theta^{truth}_{nFD} [#circ]", 100, -180., 180., 100, 0, 50.);
+                 "#theta^{truth}_{nFD} vs. #phi^{truth}_{nFD} in 1e cut (c_str);#phi^{truth}_{nFD} [#circ];#theta^{truth}_{nFD} [#circ]", 100, -180., 180., 100, 0, 50.);
     HistoList.push_back(h_truth_theta_nFD_clas12_VS_truth_phi_nFD_clas12_1e_cut);
     TH2D* h_reco_P_e_VS_P_nFD_clas12_1e_cut = new TH2D(
-        "reco_P_e_VS_P_nFD_clas12_1e_cut", "P^{reco}_{e} vs. P^{reco}_{nFD} in 1e cut (clas12reco);P^{reco}_{e} [GeV/c];P^{reco}_{nFD} [GeV/c]", 100, 0., Ebeam * 2., 100, 0., Ebeam * 3.);
+        "reco_P_e_VS_P_nFD_clas12_1e_cut", "P^{reco}_{e} vs. P^{reco}_{nFD} in 1e cut (c_str);P^{reco}_{e} [GeV/c];P^{reco}_{nFD} [GeV/c]", 100, 0., Ebeam * 2., 100, 0., Ebeam * 3.);
     HistoList.push_back(h_reco_P_e_VS_P_nFD_clas12_1e_cut);
     TH2D* h_reco_theta_nFD_clas12_VS_P_nFD_clas12_1e_cut =
-        new TH2D("reco_theta_nFD_clas12_VS_P_nFD_clas12_1e_cut", "#theta^{reco}_{nFD} vs. P^{reco}_{nFD} in 1e cut (clas12reco);#theta^{reco}_{nFD} [#circ];P^{reco}_{nFD} [GeV/c]", 100, 0.,
+        new TH2D("reco_theta_nFD_clas12_VS_P_nFD_clas12_1e_cut", "#theta^{reco}_{nFD} vs. P^{reco}_{nFD} in 1e cut (c_str);#theta^{reco}_{nFD} [#circ];P^{reco}_{nFD} [GeV/c]", 100, 0.,
                  50., 100, 0., Ebeam * 3.);
     HistoList.push_back(h_reco_theta_nFD_clas12_VS_P_nFD_clas12_1e_cut);
 #pragma endregion
@@ -1199,9 +1199,9 @@ void nFD_eff_test() {
         }
 #pragma endregion
 
-        //  Setting up FD neutrals (clas12reco) -----------------------------------------------------------------------------------------------------------------------------------
+        //  Setting up FD neutrals (c_str) -----------------------------------------------------------------------------------------------------------------------------------
 
-#pragma region /* Setting up FD neutrals (clas12reco) */
+#pragma region /* Setting up FD neutrals (c_str) */
         vector<region_part_ptr> neutrons_FD_clas12;
         vector<region_part_ptr> photons_FD_clas12;
 
@@ -1399,7 +1399,8 @@ void nFD_eff_test() {
                 double Momentum = CalcPnFD(allParticles[i], electrons[0], starttime);
 
                 bool PassMomth = (Momentum >= 0.4);
-                bool passECALeadgeCuts = (allParticles[i]->cal(Neutron_ECAL_detlayer)->getLv() > 14. && allParticles[i]->cal(Neutron_ECAL_detlayer)->getLw() > 14.);
+                bool passECALeadgeCuts = true;
+                // bool passECALeadgeCuts = (allParticles[i]->cal(Neutron_ECAL_detlayer)->getLv() > 14. && allParticles[i]->cal(Neutron_ECAL_detlayer)->getLw() > 14.);
                 bool passVeto = NeutronECAL_Cut_Veto(allParticles, electrons, Ebeam, i, 100);
 
                 if (PassMomth && passECALeadgeCuts && passVeto) {
