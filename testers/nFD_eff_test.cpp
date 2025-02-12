@@ -1086,8 +1086,8 @@ void nFD_eff_test() {
                 h_truth_phi_n_1e_cut->Fill(truth_P_n.Phi() * 180 / M_PI, weight);
                 h_truth_theta_n_VS_truth_phi_n_1e_cut->Fill(truth_P_n.Phi() * 180 / M_PI, truth_P_n.Theta() * 180 / M_PI, weight);
 
-                if (truth_P_n.Theta() * 180 / M_PI <= 40.) {
-                // if (truth_P_n.Theta() * 180 / M_PI >= 5. && truth_P_n.Theta() * 180 / M_PI <= 40.) {
+                // if (truth_P_n.Theta() * 180 / M_PI <= 40.) {
+                if (truth_P_n.Theta() * 180 / M_PI >= 5. && truth_P_n.Theta() * 180 / M_PI <= 40.) {
                     double truth_E_nFD = sqrt(m_n * m_n + truth_P_n.Mag2());
                     Truth_beta = truth_P_n.Mag() / truth_E_nFD;
 
