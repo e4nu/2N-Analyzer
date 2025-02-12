@@ -1605,7 +1605,7 @@ void nFD_eff_test() {
 //     TCanvas* myCanvas_electron_cuts = new TCanvas("myPage_electron_cuts", "myPage_electron_cuts", pixelx, pixely);
 //     // TCanvas* myCanvas_electron_cuts = new TCanvas("myPage_electron_cuts", "myPage_electron_cuts", pixelx * 2, pixely);
 
-//     char fileName_electron_cuts[100];
+//     char fileName_electron_cuts[500];
 //     sprintf(fileName_electron_cuts, "%s[", ("/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/electron_cuts.pdf").c_str());
 //     myText->SaveAs(fileName_electron_cuts);
 //     sprintf(fileName_electron_cuts, "%s", ("/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/electron_cuts.pdf").c_str());
@@ -1685,10 +1685,11 @@ void nFD_eff_test() {
 // #pragma endregion
 
     // myText->cd();
-    char fileName[100];
-    sprintf(fileName, "%s[", ("/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/nFD_eff_test.pdf").c_str());
+    string fileName_string_temp = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/nFD_eff_test.pdf";
+    char fileName[500];
+    sprintf(fileName, "%s[", fileName_string_temp);
     myText->SaveAs(fileName);
-    sprintf(fileName, "%s", ("/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/nFD_eff_test.pdf").c_str());
+    sprintf(fileName, "%s", fileName_string_temp);
 
     /////////////////////////////////////
     // CND Neutron Information
@@ -1759,10 +1760,8 @@ void nFD_eff_test() {
         myCanvas->Clear();
     }
 
-    sprintf(fileName, "%s]", "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/nFD_eff_test.pdf");
-    myCanvas->Print(fileName.c_str(), "pdf");
-    // sprintf(fileName, "%s]", ("/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/nFD_eff_test.pdf").c_str());
-    // myCanvas->Print(fileName, "pdf");
+    sprintf(fileName, "%s]", fileName_string_temp);
+    myCanvas->Print(fileName, "pdf");
 
     outFile->cd();
     for (int i = 0; i < HistoList.size(); i++) { HistoList[i]->Write(); }
