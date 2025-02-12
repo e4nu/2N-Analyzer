@@ -1601,88 +1601,85 @@ void nFD_eff_test() {
 
     gStyle->SetOptStat("ourmen");
 
-// #pragma region /* Print electron cuts plots */
-//     TCanvas* myCanvas_electron_cuts = new TCanvas("myPage_electron_cuts", "myPage_electron_cuts", pixelx, pixely);
-//     // TCanvas* myCanvas_electron_cuts = new TCanvas("myPage_electron_cuts", "myPage_electron_cuts", pixelx * 2, pixely);
+#pragma region /* Print electron cuts plots */
+    // TCanvas* myCanvas_electron_cuts = new TCanvas("myPage_electron_cuts", "myPage_electron_cuts", pixelx, pixely);
+    TCanvas* myCanvas_electron_cuts = new TCanvas("myPage_electron_cuts", "myPage_electron_cuts", pixelx * 2, pixely);
 
-//     char fileName_electron_cuts[500];
-//     sprintf(fileName_electron_cuts, "%s[", ("/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/electron_cuts.pdf").c_str());
-//     myText->SaveAs(fileName_electron_cuts);
-//     sprintf(fileName_electron_cuts, "%s", ("/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/electron_cuts.pdf").c_str());
+    string electron_cuts_PDF_fileName = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/electron_cuts.pdf";
+    char fileName_electron_cuts[electron_cuts_PDF_fileName.length()];
+    sprintf(fileName_electron_cuts, "%s[", electron_cuts_PDF_fileName.c_str());
+    myText->SaveAs(fileName_electron_cuts);
+    sprintf(fileName_electron_cuts, "%s", electron_cuts_PDF_fileName.c_str());
 
-//     /////////////////////////////////////
-//     // CND Neutron Information
-//     /////////////////////////////////////
-//     myText->cd();
-//     text.DrawLatex(0.2, 0.9, "Uniform sample of (e,e'n) events (truth-level)");
-//     if (findSubstring(InputFiles, "2070MeV")) {
-//         text.DrawLatex(0.2, 0.7, "Beam energy: 2070MeV");
-//     } else if (findSubstring(InputFiles, "4029MeV")) {
-//         text.DrawLatex(0.2, 0.7, "Beam energy: 4029MeV");
-//     } else if (findSubstring(InputFiles, "5986MeV")) {
-//         text.DrawLatex(0.2, 0.7, "Beam energy: 5986MeV");
-//     }
-//     myText->Print(fileName_electron_cuts, "pdf");
-//     myText->Clear();
+    /////////////////////////////////////
+    // CND Neutron Information
+    /////////////////////////////////////
+    myText->cd();
+    text.DrawLatex(0.2, 0.9, "Uniform sample of (e,e'n) events (truth-level)");
+    if (findSubstring(InputFiles, "2070MeV")) {
+        text.DrawLatex(0.2, 0.7, "Beam energy: 2070MeV");
+    } else if (findSubstring(InputFiles, "4029MeV")) {
+        text.DrawLatex(0.2, 0.7, "Beam energy: 4029MeV");
+    } else if (findSubstring(InputFiles, "5986MeV")) {
+        text.DrawLatex(0.2, 0.7, "Beam energy: 5986MeV");
+    }
+    myText->Print(fileName_electron_cuts, "pdf");
+    myText->Clear();
 
-//     for (int i = 0; i < HistoList_electron_cuts.size(); i++) {
-//         for (int j = 0; j < HistSubjects.size(); j++) {
-//             if (FirstPrint.at(j) && findSubstring(HistoList_electron_cuts[i]->GetTitle(), HistSubjects.at(j))) {
-//                 myText->cd();
-//                 titles.DrawLatex(0.3, 0.5, HistSubjects2.at(j).c_str());
-//                 myText->Print(fileName_electron_cuts, "pdf");
-//                 myText->Clear();
+    for (int i = 0; i < HistoList_electron_cuts.size(); i++) {
+        for (int j = 0; j < HistSubjects.size(); j++) {
+            if (FirstPrint.at(j) && findSubstring(HistoList_electron_cuts[i]->GetTitle(), HistSubjects.at(j))) {
+                myText->cd();
+                titles.DrawLatex(0.3, 0.5, HistSubjects2.at(j).c_str());
+                myText->Print(fileName_electron_cuts, "pdf");
+                myText->Clear();
 
-//                 myCanvas_electron_cuts->cd(1);
-//                 FirstPrint.at(j) = false;
-//                 break;
-//             }
-//         }
+                myCanvas_electron_cuts->cd(1);
+                FirstPrint.at(j) = false;
+                break;
+            }
+        }
 
-//         myCanvas_electron_cuts->cd();
+        // electron_cuts_PDF_fileName->Divide(2,1);
 
-//         myCanvas_electron_cuts->cd()->SetGrid();
-//         myCanvas_electron_cuts->cd()->SetBottomMargin(0.14), myCanvas_electron_cuts->cd()->SetLeftMargin(0.16), myCanvas_electron_cuts->cd()->SetRightMargin(0.12);
+        myCanvas_electron_cuts->cd();
 
-//         HistoList_electron_cuts[i]->GetYaxis()->SetTitleOffset(1.5);
-//         HistoList_electron_cuts[i]->GetXaxis()->SetTitleOffset(1.1);
+        myCanvas_electron_cuts->cd()->SetGrid();
+        myCanvas_electron_cuts->cd()->SetBottomMargin(0.14), myCanvas_electron_cuts->cd()->SetLeftMargin(0.16), myCanvas_electron_cuts->cd()->SetRightMargin(0.12);
 
-//         gPad->SetRightMargin(0.23);
+        HistoList_electron_cuts[i]->GetYaxis()->SetTitleOffset(1.5);
+        HistoList_electron_cuts[i]->GetXaxis()->SetTitleOffset(1.1);
 
-//         // // Set the PDF title and header for the bookmark
-//         // string Title = HistoList_electron_cuts[i]->GetTitle();
-//         // gStyle->SetTitlePS(Title.c_str());  // This sets the title in metadata
-//         //                                     // gStyle->SetHeaderPS(("[ /Title " + Title + " /DOCVIEW pdfmark").c_str());  // Adds a PDF title
-//         // gStyle->SetHeaderPS(("[ /Page " + to_string(i + 1) + " /View [/Fit] /Title (myTitle) ] /OUT pdfmark").c_str());
+        gPad->SetRightMargin(0.23);
 
-//         if (HistoList_electron_cuts[i]->InheritsFrom("TH1D")) {
-//             HistoList_electron_cuts[i]->Draw();
-//         } else if (HistoList_electron_cuts[i]->InheritsFrom("TH2D")) {
-//             // if (findSubstring(HistoList_electron_cuts[i]->GetTitle(), "#Delta#theta_{nFD,e} vs. #Delta#phi_{nFD,e} in 1e cut")) {
-//             //     gPad->SetRightMargin(0.225);
-//             // } else {
-//             //     gPad->SetRightMargin(0.05);
-//             // }
+        // // Set the PDF title and header for the bookmark
+        // string Title = HistoList_electron_cuts[i]->GetTitle();
+        // gStyle->SetTitlePS(Title.c_str());  // This sets the title in metadata
+        //                                     // gStyle->SetHeaderPS(("[ /Title " + Title + " /DOCVIEW pdfmark").c_str());  // Adds a PDF title
+        // gStyle->SetHeaderPS(("[ /Page " + to_string(i + 1) + " /View [/Fit] /Title (myTitle) ] /OUT pdfmark").c_str());
 
-//             HistoList_electron_cuts[i]->Draw("colz");
+        if (HistoList_electron_cuts[i]->InheritsFrom("TH1D")) {
+            HistoList_electron_cuts[i]->Draw();
+        } else if (HistoList_electron_cuts[i]->InheritsFrom("TH2D")) {
+            HistoList_electron_cuts[i]->Draw("colz");
 
-//             if (HistoList_electron_cuts[i]->GetEntries() != 0) {
-//                 gPad->Update();
-//                 TPaletteAxis* palette = (TPaletteAxis*)HistoList_electron_cuts[i]->GetListOfFunctions()->FindObject("palette");
-//                 palette->SetY2NDC(0.55);
-//                 gPad->Modified();
-//                 gPad->Update();
-//             }
-//         }
+            if (HistoList_electron_cuts[i]->GetEntries() != 0) {
+                gPad->Update();
+                TPaletteAxis* palette = (TPaletteAxis*)HistoList_electron_cuts[i]->GetListOfFunctions()->FindObject("palette");
+                palette->SetY2NDC(0.55);
+                gPad->Modified();
+                gPad->Update();
+            }
+        }
 
-//         myCanvas_electron_cuts->Print(fileName_electron_cuts, "pdf");
-//         myCanvas_electron_cuts->Clear();
-//     }
+        myCanvas_electron_cuts->Print(fileName_electron_cuts, "pdf");
+        myCanvas_electron_cuts->Clear();
+    }
 
-//     sprintf(fileName_electron_cuts, "%s]", ("/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/electron_cuts.pdf").c_str());
-//     myCanvas_electron_cuts->Print(fileName_electron_cuts, "pdf");
+    sprintf(fileName_electron_cuts, "%s]", electron_cuts_PDF_fileName.c_str());
+    myCanvas_electron_cuts->Print(fileName_electron_cuts, "pdf");
 
-// #pragma endregion
+#pragma endregion
 
     // myText->cd();
     string nFD_eff_test_PDF_fileName = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/nFD_eff_test.pdf";
