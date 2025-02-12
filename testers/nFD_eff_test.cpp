@@ -1398,7 +1398,8 @@ void nFD_eff_test() {
             if (pid_temp == 2112 && allParticles[i]->getRegion() == FD) {
                 double Momentum = CalcPnFD(allParticles[i], electrons[0], starttime);
 
-                bool PassMomth = (Momentum >= 0.4);
+                bool PassMomth = true;
+                // bool PassMomth = (Momentum >= 0.4);
                 bool passECALeadgeCuts = true;
                 // bool passECALeadgeCuts = (allParticles[i]->cal(Neutron_ECAL_detlayer)->getLv() > 14. && allParticles[i]->cal(Neutron_ECAL_detlayer)->getLw() > 14.);
                 bool passVeto = true;
