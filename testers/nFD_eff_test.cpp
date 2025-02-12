@@ -1062,8 +1062,8 @@ void nFD_eff_test() {
             auto py = mcpbank->getPy();
             auto pz = mcpbank->getPz();
 
-            // bool PassMomth = true;
-            bool PassMomth = (p >= 0.4);
+            bool PassMomth = true;
+            // bool PassMomth = (p >= 0.4);
 
             if (ConstrainTLmom && (pid_temp == 2112 && p > 2.)) {
                 TLpassCuts = false;
@@ -1415,8 +1415,8 @@ void nFD_eff_test() {
                 // double Momentum = allParticles[i]->par()->getP();
                 double Momentum = CalcPnFD(allParticles[i], electrons[0], starttime);
 
-                // bool PassMomth = true;
-                bool PassMomth = (Momentum >= 0.4);
+                bool PassMomth = true;
+                // bool PassMomth = (Momentum >= 0.4);
                 // bool passECALeadgeCuts = true;
                 bool passECALeadgeCuts = (allParticles[i]->cal(Neutron_ECAL_detlayer)->getLv() > 14. && allParticles[i]->cal(Neutron_ECAL_detlayer)->getLw() > 14.);
                 // bool passVeto = true;
