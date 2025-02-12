@@ -1113,7 +1113,10 @@ void nFD_eff_test() {
 
         if (ConstrainTLmom && !TLpassCuts) { continue; }
 
-        if (truth_NeutronsFD.size() != 1) { cout << "\n\nError! truth_NeutronsFD is not 1! Aborting...\n\n", exit(0); }
+        if (truth_NeutronsFD.size() != 1) { 
+            cout << "\n\nError! truth_NeutronsFD size is not 1! Aborting...\n"; 
+            cout << "truth_NeutronsFD.size() = " << truth_NeutronsFD.size() << "\nAborting...\n\n", exit(0); 
+        }
 #pragma endregion
 
         //  =======================================================================================================================================================================
