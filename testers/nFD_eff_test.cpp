@@ -1797,7 +1797,7 @@ void nFD_eff_test() {
     HistoList_eff_plots.push_back({h_eff_P_nFD_matched_1e_cut_numerator, h_eff_P_nFD_1e_cut_demominator, h_eff_P_nFD_matched_1e_cut});
 
     // TCanvas* myCanvas_eff_plots = new TCanvas("myPage_eff_plots", "myPage_eff_plots", pixelx, pixely);
-    TCanvas* myCanvas_eff_plots = new TCanvas("myPage_eff_plots", "myPage_eff_plots", pixelx * 3, pixely);
+    TCanvas* myCanvas_eff_plots = new TCanvas("myPage_eff_plots", "myPage_eff_plots", pixelx * 3 * 2, pixely * 2);
 
     string eff_plots_PDF_fileName = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/eff_plots.pdf";
     char fileName_eff_plots[eff_plots_PDF_fileName.length()];
@@ -1808,20 +1808,20 @@ void nFD_eff_test() {
     /////////////////////////////////////
     // CND Neutron Information
     /////////////////////////////////////
-    myCanvas_eff_plots->cd();
-    // myText->cd();
-    text.DrawLatex(0.2, 0.9, "Uniform sample of (e,e'n) events (truth-level)");
-    if (findSubstring(InputFiles, "2070MeV")) {
-        text.DrawLatex(0.2, 0.7, "Beam energy: 2070MeV");
-    } else if (findSubstring(InputFiles, "4029MeV")) {
-        text.DrawLatex(0.2, 0.7, "Beam energy: 4029MeV");
-    } else if (findSubstring(InputFiles, "5986MeV")) {
-        text.DrawLatex(0.2, 0.7, "Beam energy: 5986MeV");
-    }
-    myCanvas_eff_plots->Print(fileName_eff_plots, "pdf");
-    myCanvas_eff_plots->Clear();
-    // myText->Print(fileName_eff_plots, "pdf");
-    // myText->Clear();
+    // myCanvas_eff_plots->cd();
+    // // myText->cd();
+    // text.DrawLatex(0.2, 0.9, "Uniform sample of (e,e'n) events (truth-level)");
+    // if (findSubstring(InputFiles, "2070MeV")) {
+    //     text.DrawLatex(0.2, 0.7, "Beam energy: 2070MeV");
+    // } else if (findSubstring(InputFiles, "4029MeV")) {
+    //     text.DrawLatex(0.2, 0.7, "Beam energy: 4029MeV");
+    // } else if (findSubstring(InputFiles, "5986MeV")) {
+    //     text.DrawLatex(0.2, 0.7, "Beam energy: 5986MeV");
+    // }
+    // myCanvas_eff_plots->Print(fileName_eff_plots, "pdf");
+    // myCanvas_eff_plots->Clear();
+    // // myText->Print(fileName_eff_plots, "pdf");
+    // // myText->Clear();
 
     for (int i = 0; i < HistoList_eff_plots.size(); i++) {
         // for (int j = 0; j < HistSubjects.size(); j++) {
