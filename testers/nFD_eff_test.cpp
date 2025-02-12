@@ -1118,11 +1118,12 @@ void nFD_eff_test() {
 
         if (ConstrainTLmom && !TLpassCuts) { continue; }
 
-        if (truth_NeutronsFD.size() != 1) {
-            cout << "\n\nError! truth_NeutronsFD size is not 1! Aborting...\n";
-            cout << "truth_NeutronsFD.size() = " << truth_NeutronsFD.size() << "\n";
-            cout << "Truth_theta = " << Truth_theta << "\nAborting...\n\n", exit(0);
-        }
+        // if (truth_NeutronsFD.size() != 1) {
+        //     cout << "\n\nError! truth_NeutronsFD size is not 1! Aborting...\n";
+        //     cout << "truth_NeutronsFD.size() = " << truth_NeutronsFD.size() << "\n";
+        //     cout << "Truth_theta = " << Truth_theta << "\nAborting...\n\n", exit(0);
+        // }
+        if (truth_NeutronsFD.size() != 1) { continue; }
 #pragma endregion
 
         //  =======================================================================================================================================================================
