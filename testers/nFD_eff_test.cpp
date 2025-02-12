@@ -1041,6 +1041,7 @@ void nFD_eff_test() {
 
 #pragma region /* 1e cut (truth) */
         double Truth_beta;
+        double Truth_theta;
 
         bool TLpassCuts = true;
 
@@ -1086,9 +1087,10 @@ void nFD_eff_test() {
                 h_truth_phi_n_1e_cut->Fill(truth_P_n.Phi() * 180 / M_PI, weight);
                 h_truth_theta_n_VS_truth_phi_n_1e_cut->Fill(truth_P_n.Phi() * 180 / M_PI, truth_P_n.Theta() * 180 / M_PI, weight);
 
-                if (true) {
+                Truth_theta = truth_P_n.Theta() * 180 / M_PI;
+                // if (true) {
                 // if (truth_P_n.Theta() * 180 / M_PI <= 40.) {
-                // if (truth_P_n.Theta() * 180 / M_PI >= 5. && truth_P_n.Theta() * 180 / M_PI <= 35.) {
+                if ((Truth_theta >= 5.) && (Truth_theta <= 35.)) {
                     double truth_E_nFD = sqrt(m_n * m_n + truth_P_n.Mag2());
                     Truth_beta = truth_P_n.Mag() / truth_E_nFD;
 
@@ -1118,7 +1120,8 @@ void nFD_eff_test() {
 
         if (truth_NeutronsFD.size() != 1) {
             cout << "\n\nError! truth_NeutronsFD size is not 1! Aborting...\n";
-            cout << "truth_NeutronsFD.size() = " << truth_NeutronsFD.size() << "\nAborting...\n\n", exit(0);
+            cout << "truth_NeutronsFD.size() = " << truth_NeutronsFD.size() << "\n";
+            cout << "Truth_theta = " << Truth_theta << "\nAborting...\n\n", exit(0);
         }
 #pragma endregion
 
