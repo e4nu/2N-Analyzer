@@ -1817,14 +1817,14 @@ void nFD_eff_test() {
 
         myCanvas_eff_plots->Divide(3, 1);
 
-        for (int j = 0; j < HistoList_eff_plots.at(i); j++) {
+        for (int j = 0; j < HistoList_eff_plots[i].size(); j++) {
             myCanvas_eff_plots->cd(j + 1);
 
             myCanvas_eff_plots->cd(j + 1)->SetGrid();
             myCanvas_eff_plots->cd(j + 1)->SetBottomMargin(0.14), myCanvas_eff_plots->cd(j + 1)->SetLeftMargin(0.16), myCanvas_eff_plots->cd(j + 1)->SetRightMargin(0.12);
 
-            HistoList_eff_plots[i][j]->GetYaxis(j + 1)->SetTitleOffset(1.5);
-            HistoList_eff_plots[i][j]->GetXaxis(j + 1)->SetTitleOffset(1.1);
+            HistoList_eff_plots[i][j]->GetYaxis()->SetTitleOffset(1.5);
+            HistoList_eff_plots[i][j]->GetXaxis()->SetTitleOffset(1.1);
 
             gPad->SetRightMargin(0.23);
 
