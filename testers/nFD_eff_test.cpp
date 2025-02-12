@@ -1808,20 +1808,21 @@ void nFD_eff_test() {
     /////////////////////////////////////
     // CND Neutron Information
     /////////////////////////////////////
-    // myCanvas_eff_plots->cd();
-    // // myText->cd();
-    // text.DrawLatex(0.2, 0.9, "Uniform sample of (e,e'n) events (truth-level)");
-    // if (findSubstring(InputFiles, "2070MeV")) {
-    //     text.DrawLatex(0.2, 0.7, "Beam energy: 2070MeV");
-    // } else if (findSubstring(InputFiles, "4029MeV")) {
-    //     text.DrawLatex(0.2, 0.7, "Beam energy: 4029MeV");
-    // } else if (findSubstring(InputFiles, "5986MeV")) {
-    //     text.DrawLatex(0.2, 0.7, "Beam energy: 5986MeV");
-    // }
-    // myCanvas_eff_plots->Print(fileName_eff_plots, "pdf");
-    // myCanvas_eff_plots->Clear();
-    // // myText->Print(fileName_eff_plots, "pdf");
-    // // myText->Clear();
+    myCanvas_eff_plots->cd();
+    gPad->Update();
+    // myText->cd();
+    text.DrawLatex(0.2, 0.9, "Uniform sample of (e,e'n) events (truth-level)");
+    if (findSubstring(InputFiles, "2070MeV")) {
+        text.DrawLatex(0.2, 0.7, "Beam energy: 2070MeV");
+    } else if (findSubstring(InputFiles, "4029MeV")) {
+        text.DrawLatex(0.2, 0.7, "Beam energy: 4029MeV");
+    } else if (findSubstring(InputFiles, "5986MeV")) {
+        text.DrawLatex(0.2, 0.7, "Beam energy: 5986MeV");
+    }
+    myCanvas_eff_plots->Print(fileName_eff_plots, "pdf");
+    myCanvas_eff_plots->Clear();
+    // myText->Print(fileName_eff_plots, "pdf");
+    // myText->Clear();
 
     for (int i = 0; i < HistoList_eff_plots.size(); i++) {
         // for (int j = 0; j < HistSubjects.size(); j++) {
