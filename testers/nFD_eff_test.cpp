@@ -1060,6 +1060,7 @@ void nFD_eff_test() {
             auto py = mcpbank->getPy();
             auto pz = mcpbank->getPz();
 
+            bool PassMomth = true;
             // bool PassMomth = (p >= 0.4);
 
             if (ConstrainTLmom && (pid_temp == 2112 && p > 2.)) {
