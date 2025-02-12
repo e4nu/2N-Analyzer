@@ -312,8 +312,8 @@ void nFD_eff_test() {
     }
 
     // int Limiter = 10000000;
-    // int Limiter = 1000000;
-    int Limiter = 100000;
+    int Limiter = 1000000;
+    // int Limiter = 100000;
 
     // string OutFolderName = "nFD_eff_test_reg";
     string OutFolderName = "nFD_eff_test_CLAS12_neutrons_w_TL_mom";
