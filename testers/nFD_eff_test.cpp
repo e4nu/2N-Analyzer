@@ -296,10 +296,10 @@ void nFD_eff_test() {
     cout << "\n\nInitiating nFD_eff_test.cpp\n";
 
     bool Is2GeV = false, Is4GeV = false, Is6GeV = false;
-    // double Ebeam = 4.02962;
-    //  Is4GeV = true;
-    double Ebeam = 5.98636;
-    Is6GeV = true;
+    double Ebeam = 4.02962;
+     Is4GeV = true;
+    // double Ebeam = 5.98636;
+    // Is6GeV = true;
 
     bool ConstrainTLmom = false;
 
@@ -1168,7 +1168,7 @@ void nFD_eff_test() {
         if (bad_SF_CutCond) { continue; }
         if (bad_PCAL_edge_CutCond) { continue; }
         if (bad_diag_CutCond) { continue; }
-        // if (reco_P_e.Mag() < Ebeam - 0.2 || reco_P_e.Mag() > Ebeam + 0.2) { continue; }
+        if (reco_P_e.Mag() < Ebeam - 0.2 || reco_P_e.Mag() > Ebeam + 0.2) { continue; }
 
         h_reco_P_e_1e_cut->Fill(reco_P_e.Mag(), weight);
         h_reco_theta_e_1e_cut->Fill(reco_P_e.Theta() * 180 / M_PI, weight);
