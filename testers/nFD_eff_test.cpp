@@ -1099,7 +1099,7 @@ void nFD_eff_test() {
         //  1e cut (truth)
         //  =======================================================================================================================================================================
 
-        #pragma region /* 1e cut (truth) */
+#pragma region /* 1e cut (truth) */
         double Truth_beta;
         double Truth_theta;
 
@@ -1400,13 +1400,12 @@ void nFD_eff_test() {
 #pragma region /* Setting up FD neutrals (matched) */
         vector<region_part_ptr> neutrons_FD_matched;
 
-        double tl_P, tl_Beta;
-        // double tl_Beta;
+        double tl_P;
 
         for (int i = 0; i < allParticles.size(); i++) {
             int pid_temp = allParticles[i]->par()->getPid();
 
-            /*             
+            /*
             if (pid_temp == 2112 && allParticles[i]->getRegion() == FD) {
                 bool ParticleInPCAL = (allParticles[i]->cal(clas12::PCAL)->getDetector() == 7);    // PCAL hit
                 bool ParticleInECIN = (allParticles[i]->cal(clas12::ECIN)->getDetector() == 7);    // ECIN hit
@@ -1443,8 +1442,6 @@ void nFD_eff_test() {
                             tl_P = tl__P;
                             neutrons_FD_matched.push_back(allParticles[i]);
 
-                            tl_Beta = tl_P / tl_E_nFD;
-
                             h_truth_P_nFD_matched_1e_cut->Fill(tl_P, weight);
                             h_truth_theta_nFD_matched_1e_cut->Fill(tl_Theta, weight);
                             h_truth_phi_nFD_matched_1e_cut->Fill(tl_Phi, weight);
@@ -1462,13 +1459,15 @@ void nFD_eff_test() {
                 auto Neutron_ECAL_detlayer = ParticleInECIN ? clas12::ECIN : clas12::ECOUT;                               // find first layer of hit
 
                 if ((pid_temp == 2112) || (pid_temp == 22)) {
-                    if (ParticleInPCAL) {
-                        if (pid_temp == 22) { photons_FD_redef.push_back(allParticles[i]); }
-                    } else if (!ParticleInPCAL) {  // if there is a neutron or a 'photon' without a PCAL hit
+                    // if (ParticleInPCAL) {
+                    //     if (pid_temp == 22) { photons_FD_redef.push_back(allParticles[i]); }
+                    // } else
+                    if (!ParticleInPCAL) {  // if there is a neutron or a 'photon' without a PCAL hit
                         if (ParticleInECIN || ParticleInECOUT) {
                             double Momentum = CalcPnFD(allParticles[i], electrons[0], starttime);
 
-                            bool PassMomth = (Momentum >= 0.4);
+                            bool PassMomth = true;
+                            // bool PassMomth = (Momentum >= 0.4);
                             bool passECALeadgeCuts = (allParticles[i]->cal(Neutron_ECAL_detlayer)->getLv() > 14. && allParticles[i]->cal(Neutron_ECAL_detlayer)->getLw() > 14.);
                             bool passVeto = NeutronECAL_Cut_Veto(allParticles, electrons, Ebeam, i, 100);
 
@@ -1476,7 +1475,7 @@ void nFD_eff_test() {
                                 for (int j = 0; j < truth_NeutronsFD.size(); j++) {
                                     mcpbank->setEntry(truth_NeutronsFD.at(j));
 
-                                    tl_P = mcpbank->getP();
+                                    double tl__P = mcpbank->getP();
                                     double tl_Theta = mcpbank->getTheta() * 180 / M_PI;
                                     double tl_Phi = mcpbank->getPhi() * 180 / M_PI;
 
@@ -1489,9 +1488,8 @@ void nFD_eff_test() {
                                     double tl_E_nFD = sqrt(m_n * m_n + tl_P * tl_P);
 
                                     if (thetaCut && phiCut) {
+                                        tl_P = tl__P;
                                         neutrons_FD_matched.push_back(allParticles[i]);
-
-                                        tl_Beta = tl_P / tl_E_nFD;
 
                                         h_truth_P_nFD_matched_1e_cut->Fill(tl_P, weight);
                                         h_truth_theta_nFD_matched_1e_cut->Fill(tl_Theta, weight);
