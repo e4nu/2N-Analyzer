@@ -1778,7 +1778,7 @@ void nFD_eff_test() {
     HistoList_eff_plots.push_back({h_eff_P_nFD_matched_1e_cut_numerator, h_eff_P_nFD_1e_cut_demominator, h_eff_P_nFD_matched_1e_cut});
 
     // TCanvas* myCanvas_eff_plots = new TCanvas("myPage_eff_plots", "myPage_eff_plots", pixelx, pixely);
-    TCanvas* myCanvas_eff_plots = new TCanvas("myPage_eff_plots", "myPage_eff_plots", pixelx * 2, pixely);
+    TCanvas* myCanvas_eff_plots = new TCanvas("myPage_eff_plots", "myPage_eff_plots", pixelx * 3, pixely);
 
     string eff_plots_PDF_fileName = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/eff_plots.pdf";
     char fileName_eff_plots[eff_plots_PDF_fileName.length()];
