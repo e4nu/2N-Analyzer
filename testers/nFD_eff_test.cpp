@@ -314,18 +314,22 @@ void nFD_eff_test() {
     // int Limiter = 1000000;
     int Limiter = 100000;
 
-    string OutFolderName = "nFD_eff_test_TEST";
+    string OutFolderName = "nFD_eff_test_reg";
+    // string OutFolderName = "nFD_eff_test_CLAS12_neutrons_w_TL_mom";
 
     const string OutputDir = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName;
     system(("rm -rf " + OutputDir).c_str());
     system(("mkdir -p " + OutputDir).c_str());
 
-    TFile* outFile = new TFile(("/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/" + OutFolderName + ".root").c_str(), "RECREATE");
+    TFile* outFile = new TFile(("/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/nFD_eff_test.root").c_str(), "RECREATE");
 
     clas12root::HipoChain chain;
     string InputFiles;
 
-    if (Is4GeV) {
+    if (Is2GeV) {
+        // InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/2070MeV_ConstPn/OutPut_en/reconhipo/*.hipo";
+        InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/2070MeV/OutPut_en/reconhipo/*.hipo";
+    } else if (Is4GeV) {
         // InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/4029MeV_ConstPn/OutPut_en/reconhipo/*.hipo";
         InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/4029MeV/OutPut_en/reconhipo/*.hipo";
     } else if (Is6GeV) {
@@ -1650,11 +1654,11 @@ void nFD_eff_test() {
     /////////////////////////////////////
     myText->cd();
     text.DrawLatex(0.2, 0.9, "Uniform sample of (e,e'n) events (truth-level)");
-    if (findSubstring(InputFiles, "2070MeV")) {
+    if (Is2GeV) {
         text.DrawLatex(0.2, 0.7, "Beam energy: 2070MeV");
-    } else if (findSubstring(InputFiles, "4029MeV")) {
+    } else if (Is4GeV) {
         text.DrawLatex(0.2, 0.7, "Beam energy: 4029MeV");
-    } else if (findSubstring(InputFiles, "5986MeV")) {
+    } else if (Is6GeV) {
         text.DrawLatex(0.2, 0.7, "Beam energy: 5986MeV");
     }
     myText->Print(fileName, "pdf");
