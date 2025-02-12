@@ -314,8 +314,8 @@ void nFD_eff_test() {
     // int Limiter = 1000000;
     int Limiter = 100000;
 
-    string OutFolderName = "nFD_eff_test_reg";
-    // string OutFolderName = "nFD_eff_test_CLAS12_neutrons_w_TL_mom";
+    // string OutFolderName = "nFD_eff_test_reg";
+    string OutFolderName = "nFD_eff_test_CLAS12_neutrons_w_TL_mom";
 
     const string OutputDir = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName;
     system(("rm -rf " + OutputDir).c_str());
@@ -1389,11 +1389,50 @@ void nFD_eff_test() {
 #pragma region /* Setting up FD neutrals (matched) */
         vector<region_part_ptr> neutrons_FD_matched;
 
-        double tl_Beta;
+        double tl_P, tl_Beta;
+        // double tl_Beta;
 
         for (int i = 0; i < allParticles.size(); i++) {
             int pid_temp = allParticles[i]->par()->getPid();
 
+            if (pid_temp == 2112 && allParticles[i]->getRegion() == FD) {
+                double Momentum = CalcPnFD(allParticles[i], electrons[0], starttime);
+
+                bool PassMomth = (Momentum >= 0.4);
+                bool passECALeadgeCuts = (allParticles[i]->cal(Neutron_ECAL_detlayer)->getLv() > 14. && allParticles[i]->cal(Neutron_ECAL_detlayer)->getLw() > 14.);
+                bool passVeto = NeutronECAL_Cut_Veto(allParticles, electrons, Ebeam, i, 100);
+
+                if (PassMomth && passECALeadgeCuts && passVeto) {
+                    for (int j = 0; j < truth_NeutronsFD.size(); j++) {
+                        mcpbank->setEntry(truth_NeutronsFD.at(j));
+
+                        tl_P = mcpbank->getP();
+                        double tl_Theta = mcpbank->getTheta() * 180 / M_PI;
+                        double tl_Phi = mcpbank->getPhi() * 180 / M_PI;
+
+                        double reco_Theta = allParticles[i]->getTheta() * 180 / M_PI;
+                        double reco_Phi = allParticles[i]->getPhi() * 180 / M_PI;
+
+                        bool thetaCut = (fabs(tl_Theta - reco_Theta) <= 2.);
+                        bool phiCut = (fabs(tl_Phi - reco_Phi) <= 5.);
+
+                        double tl_E_nFD = sqrt(m_n * m_n + tl_P * tl_P);
+
+                        if (thetaCut && phiCut) {
+                            neutrons_FD_matched.push_back(allParticles[i]);
+
+                            tl_Beta = tl_P / tl_E_nFD;
+
+                            h_truth_P_nFD_matched_1e_cut->Fill(tl_P, weight);
+                            h_truth_theta_nFD_matched_1e_cut->Fill(tl_Theta, weight);
+                            h_truth_phi_nFD_matched_1e_cut->Fill(tl_Phi, weight);
+                            h_truth_theta_nFD_matched_VS_truth_phi_nFD_matched_1e_cut->Fill(tl_Phi, tl_Theta, weight);
+                        }
+                    }
+                }  // end of clas12root neutron or 'photon' if
+            }  // end of clas12root neutron or 'photon' if
+
+            /*
             if ((allParticles[i]->par()->getCharge() == 0) && (allParticles[i]->getRegion() == FD) && (pid_temp != 0)) {  // If particle is neutral and in the FD
                 bool ParticleInPCAL = (allParticles[i]->cal(clas12::PCAL)->getDetector() == 7);                           // PCAL hit
                 bool ParticleInECIN = (allParticles[i]->cal(clas12::ECIN)->getDetector() == 7);                           // ECIN hit
@@ -1415,7 +1454,7 @@ void nFD_eff_test() {
                                 for (int j = 0; j < truth_NeutronsFD.size(); j++) {
                                     mcpbank->setEntry(truth_NeutronsFD.at(j));
 
-                                    double tl_P = mcpbank->getP();
+                                    tl_P = mcpbank->getP();
                                     double tl_Theta = mcpbank->getTheta() * 180 / M_PI;
                                     double tl_Phi = mcpbank->getPhi() * 180 / M_PI;
 
@@ -1443,6 +1482,7 @@ void nFD_eff_test() {
                     }
                 }  // end of clas12root neutron or 'photon' if
             }  // end of neutral and in the FD if
+            */
         }
 
         for (int i = 0; i < neutrons_FD_matched.size(); i++) {
