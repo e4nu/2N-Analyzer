@@ -1406,6 +1406,7 @@ void nFD_eff_test() {
         for (int i = 0; i < allParticles.size(); i++) {
             int pid_temp = allParticles[i]->par()->getPid();
 
+            /*             
             if (pid_temp == 2112 && allParticles[i]->getRegion() == FD) {
                 bool ParticleInPCAL = (allParticles[i]->cal(clas12::PCAL)->getDetector() == 7);    // PCAL hit
                 bool ParticleInECIN = (allParticles[i]->cal(clas12::ECIN)->getDetector() == 7);    // ECIN hit
@@ -1452,8 +1453,8 @@ void nFD_eff_test() {
                     }
                 }  // end of clas12root neutron or 'photon' if
             }  // end of clas12root neutron or 'photon' if
+            */
 
-            /*
             if ((allParticles[i]->par()->getCharge() == 0) && (allParticles[i]->getRegion() == FD) && (pid_temp != 0)) {  // If particle is neutral and in the FD
                 bool ParticleInPCAL = (allParticles[i]->cal(clas12::PCAL)->getDetector() == 7);                           // PCAL hit
                 bool ParticleInECIN = (allParticles[i]->cal(clas12::ECIN)->getDetector() == 7);                           // ECIN hit
@@ -1503,7 +1504,6 @@ void nFD_eff_test() {
                     }
                 }  // end of clas12root neutron or 'photon' if
             }  // end of neutral and in the FD if
-            */
         }
 
         for (int i = 0; i < neutrons_FD_matched.size(); i++) {
