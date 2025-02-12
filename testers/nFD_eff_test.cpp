@@ -1590,7 +1590,6 @@ void nFD_eff_test() {
     /////////////////////////////////////////////////////
     int pixelx = 1980;
     int pixely = 1530;
-    TCanvas* myCanvas = new TCanvas("myPage", "myPage", pixelx, pixely);
     TCanvas* myText = new TCanvas("myText", "myText", pixelx, pixely);
     TLatex titles;
     TLatex text;
@@ -1679,7 +1678,9 @@ void nFD_eff_test() {
 
 #pragma endregion
 
-    // myText->cd();
+#pragma region /* Print neutron plots */
+    TCanvas* myCanvas = new TCanvas("myPage", "myPage", pixelx, pixely);
+
     string nFD_eff_test_PDF_fileName = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/nFD_eff_test.pdf";
     char fileName[nFD_eff_test_PDF_fileName.length()];
     sprintf(fileName, "%s[", nFD_eff_test_PDF_fileName.c_str());
@@ -1757,6 +1758,99 @@ void nFD_eff_test() {
 
     sprintf(fileName, "%s]", nFD_eff_test_PDF_fileName.c_str());
     myCanvas->Print(fileName, "pdf");
+#pragma endregion
+
+#pragma region /* Print eff plots */
+    vector<vector<TH1*>> HistoList_eff_plots;
+
+    TH1D* h_eff_P_nFD_1e_cut_demominator = (TH1D*)h_truth_P_n_1e_cut->Clone((h_truth_P_n_1e_cut->GetName() + "_demominator").c_str());
+
+    TH1D* h_eff_P_nFD_ECALveto_1e_cut_numerator = (TH1D*)h_reco_P_nFD_ECALveto_1e_cut->Clone((h_reco_P_nFD_ECALveto_1e_cut->GetName() + "_numerator").c_str());
+    TH1D* h_eff_P_nFD_ECALveto_1e_cut = (TH1D*)h_eff_P_nFD_ECALveto_1e_cut_numerator->Clone("eff_P_nFD_ECALveto_1e_cut");
+    h_eff_P_nFD_ECALveto_1e_cut->Divide(h_eff_P_nFD_1e_cut_demominator);
+    h_eff_P_nFD_ECALveto_1e_cut->SetTitle(h_eff_P_nFD_ECALveto_1e_cut->GetName());
+    HistoList_eff_plots.push_back({h_eff_P_nFD_ECALveto_1e_cut_numerator, h_eff_P_nFD_1e_cut_demominator, h_eff_P_nFD_ECALveto_1e_cut});
+
+    TH1D* h_eff_P_nFD_matched_1e_cut_numerator = (TH1D*)h_reco_P_nFD_matched_1e_cut->Clone((h_reco_P_nFD_matched_1e_cut->GetName() + "_numerator").c_str());
+    TH1D* h_eff_P_nFD_matched_1e_cut = (TH1D*)h_eff_P_nFD_matched_1e_cut_numerator->Clone("eff_P_nFD_matched_1e_cut");
+    h_eff_P_nFD_matched_1e_cut->Divide(h_eff_P_nFD_1e_cut_demominator);
+    h_eff_P_nFD_matched_1e_cut->SetTitle(h_eff_P_nFD_matched_1e_cut->GetName());
+    HistoList_eff_plots.push_back({h_eff_P_nFD_matched_1e_cut_numerator, h_eff_P_nFD_1e_cut_demominator, h_eff_P_nFD_matched_1e_cut});
+
+    // TCanvas* myCanvas_eff_plots = new TCanvas("myPage_eff_plots", "myPage_eff_plots", pixelx, pixely);
+    TCanvas* myCanvas_eff_plots = new TCanvas("myPage_eff_plots", "myPage_eff_plots", pixelx * 2, pixely);
+
+    string eff_plots_PDF_fileName = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/eff_plots.pdf";
+    char fileName_eff_plots[eff_plots_PDF_fileName.length()];
+    sprintf(fileName_eff_plots, "%s[", eff_plots_PDF_fileName.c_str());
+    myText->SaveAs(fileName_eff_plots);
+    sprintf(fileName_eff_plots, "%s", eff_plots_PDF_fileName.c_str());
+
+    /////////////////////////////////////
+    // CND Neutron Information
+    /////////////////////////////////////
+    myText->cd();
+    text.DrawLatex(0.2, 0.9, "Uniform sample of (e,e'n) events (truth-level)");
+    if (findSubstring(InputFiles, "2070MeV")) {
+        text.DrawLatex(0.2, 0.7, "Beam energy: 2070MeV");
+    } else if (findSubstring(InputFiles, "4029MeV")) {
+        text.DrawLatex(0.2, 0.7, "Beam energy: 4029MeV");
+    } else if (findSubstring(InputFiles, "5986MeV")) {
+        text.DrawLatex(0.2, 0.7, "Beam energy: 5986MeV");
+    }
+    myText->Print(fileName_eff_plots, "pdf");
+    myText->Clear();
+
+    for (int i = 0; i < HistoList_eff_plots.size(); i++) {
+        for (int j = 0; j < HistSubjects.size(); j++) {
+            if (FirstPrint.at(j) && findSubstring(HistoList_eff_plots[i]->GetTitle(), HistSubjects.at(j))) {
+                myText->cd();
+                titles.DrawLatex(0.3, 0.5, HistSubjects2.at(j).c_str());
+                myText->Print(fileName_eff_plots, "pdf");
+                myText->Clear();
+
+                myCanvas_eff_plots->cd(1);
+                FirstPrint.at(j) = false;
+                break;
+            }
+        }
+
+        myCanvas_eff_plots->Divide(3, 1);
+
+        for (int j = 0; j < HistoList_eff_plots.at(i); j++) {
+            myCanvas_eff_plots->cd(j + 1);
+
+            myCanvas_eff_plots->cd(j + 1)->SetGrid();
+            myCanvas_eff_plots->cd(j + 1)->SetBottomMargin(0.14), myCanvas_eff_plots->cd(j + 1)->SetLeftMargin(0.16), myCanvas_eff_plots->cd(j + 1)->SetRightMargin(0.12);
+
+            HistoList_eff_plots[i][j]->GetYaxis(j + 1)->SetTitleOffset(1.5);
+            HistoList_eff_plots[i][j]->GetXaxis(j + 1)->SetTitleOffset(1.1);
+
+            gPad->SetRightMargin(0.23);
+
+            if (HistoList_eff_plots[i][j]->InheritsFrom("TH1D")) {
+                HistoList_eff_plots[i][j]->Draw();
+            } else if (HistoList_eff_plots[i][j]->InheritsFrom("TH2D")) {
+                HistoList_eff_plots[i][j]->Draw("colz");
+
+                if (HistoList_eff_plots[i][j]->GetEntries() != 0) {
+                    gPad->Update();
+                    TPaletteAxis* palette = (TPaletteAxis*)HistoList_eff_plots[i][j]->GetListOfFunctions()->FindObject("palette");
+                    palette->SetY2NDC(0.55);
+                    gPad->Modified();
+                    gPad->Update();
+                }
+            }
+        }
+
+        myCanvas_eff_plots->Print(fileName_eff_plots, "pdf");
+        myCanvas_eff_plots->Clear();
+    }
+
+    sprintf(fileName_eff_plots, "%s]", eff_plots_PDF_fileName.c_str());
+    myCanvas_eff_plots->Print(fileName_eff_plots, "pdf");
+
+#pragma endregion
 
     outFile->cd();
     for (int i = 0; i < HistoList.size(); i++) { HistoList[i]->Write(); }
