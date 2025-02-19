@@ -316,7 +316,7 @@ void nFD_eff_test() {
     // int Limiter = 100000;
 
     // string OutFolderName = "nFD_eff_test_reg";
-    string OutFolderName = "nFD_eff_test_CLAS12_neutrons_w_TL_mom";
+    string OutFolderName = "nFD_eff_test_v2_nFD_w_TL_mom";
 
     const string OutputDir = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName;
     system(("rm -rf " + OutputDir).c_str());
@@ -328,8 +328,8 @@ void nFD_eff_test() {
     string InputFiles;
 
     if (Is2GeV) {
-        // InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/2070MeV_ConstPn/OutPut_en/reconhipo/*.hipo";
-        InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/2070MeV/OutPut_en/reconhipo/*.hipo";
+        InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/2070MeV_ConstPn/OutPut_en/reconhipo/*.hipo";
+        // InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/2070MeV/OutPut_en/reconhipo/*.hipo";
     } else if (Is4GeV) {
         // InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/4029MeV_ConstPn/OutPut_en/reconhipo/*.hipo";
         InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/4029MeV/OutPut_en/reconhipo/*.hipo";
