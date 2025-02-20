@@ -127,7 +127,7 @@ void EventAnalyser(const string &AnalyseFilePath, const string &AnalyseFileSampl
     /* Acceptance maps setup */
     bool Generate_Electron_AMaps = false;  // Generate electron acceptance maps
     bool Generate_Nucleon_AMaps = true;    // Generate nucleon acceptance maps
-    bool Generate_WMaps = false;            // Generate efficiency maps
+    bool Generate_WMaps = false;           // Generate efficiency maps
     bool AMaps_calc_with_one_reco_electron = true;
     const string P_e_bin_profile = "uniform_P_e_bins";      // {reformat_e_bins , varying_P_e_bins , uniform_P_e_bins, equi_inverted_P_e}
     const string P_nuc_bin_profile = "uniform_P_nuc_bins";  // {equi_inverted_P_nuc , varying_P_nuc_bins , uniform_P_nuc_bins}
@@ -777,9 +777,9 @@ void EventAnalyser(const string &AnalyseFilePath, const string &AnalyseFileSampl
     if (!apply_nucleon_cuts || (Electron_single_slice_test || Nucleon_single_slice_test)) { FSR_1D_plots = FSR_2D_plots = false; }
 
     if (TestRun || ApplyLimiter) {
-        if (TestRun) { cout << "\033[31m\n\nNOTE: running code in testing mode![0m\n\n"; }
+        if (TestRun) { cout << "\033[31m\n\nNOTE: running code in testing mode!\n\033[0m"; }
 
-        if (ApplyLimiter) { cout << "\033[31m\n\nNOTE: running code with a limiter on number of events![0m\n\n"; }
+        if (ApplyLimiter) { cout << "\033[31m\n\nNOTE: running code with a limiter on number of events!\n\n\033[0m"; }
     }
 
     // Normalization setup -----------------------------------------------------------------------------------------------------------------------------------------------
@@ -22847,9 +22847,9 @@ void EventAnalyser(const string &AnalyseFilePath, const string &AnalyseFileSampl
     cout << "\033[33mOperation finished (AnalyserVersion = " << AnalyserVersion << ")." << "\n\n\033[0m";
 
     if (TestRun || ApplyLimiter) {
-        if (TestRun) { cout << "\033[31m\n\nNOTE: running code in testing mode![0m\n\n"; }
+        if (TestRun) { cout << "\033[31m\n\nNOTE: running code in testing mode!\n\033[0m"; }
 
-        if (ApplyLimiter) { cout << "\033[31m\n\nNOTE: running code with a limiter on number of events![0m\n\n"; }
+        if (ApplyLimiter) { cout << "\033[31m\n\nNOTE: running code with a limiter on number of events!\n\n\033[0m"; }
     }
 
     if (Save_Plots_folder_to_zip_files) {
