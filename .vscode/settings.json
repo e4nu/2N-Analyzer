@@ -96,7 +96,7 @@
         "editor.defaultFormatter": "vscode.json-language-features"
     },
     "editor.wordWrapColumn": 200,
-    "editor.wordWrap": "wordWrapColumn",
+    "editor.wordWrap": "on",
     "betterFolding.foldClosingBrackets": true,
     "betterFolding.showFoldedBrackets": true,
     "workbench.tree.indent": 20
