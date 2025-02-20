@@ -1532,6 +1532,8 @@ void AMaps::SaveHitMaps(const string &SampleName, const string &AcceptanceMapsDi
 
 //<editor-fold desc="DrawAndSaveHitMaps function">
 void AMaps::DrawAndSaveHitMaps(const string &SampleName, TCanvas *h1DCanvas, const string &AcceptanceMapsDirectory) {
+    cout << "\n\nProcessing maps...\n";
+
     string SampleNameTemp = SampleName;
     const char *AcceptanceMapsBC_OutFile = AcceptanceMapsBC_OutFile0.c_str();
     const char *TLAMaps_OutFile = TLAMaps_OutFile0.c_str();
@@ -1540,14 +1542,18 @@ void AMaps::DrawAndSaveHitMaps(const string &SampleName, TCanvas *h1DCanvas, con
     const char *Charged_particle_Sep_AMaps_OutFile = Charged_particle_Sep_AMaps_OutFile0.c_str();
     const char *AcceptanceMaps_OutFile = AcceptanceMaps_OutFile0.c_str();
 
+    cout << "\n\nGenerating maps directories...\n";
     system(("mkdir -p " + AcceptanceMapsDirectory + SampleName).c_str());
 
+    cout << "\n\nCalculating efficiencies...\n";
     CalcAMapsRatio(calc_Electron_RecoToTL_Ratio, calc_Proton_RecoToTL_Ratio, calc_Neutron_RecoToTL_Ratio);
 
+    cout << "\n\nGenerating filtered maps...\n";
     GenerateCPartAMaps(Charged_particle_min_Ratio);
     GenerateNPartAMaps(Neutral_particle_min_Ratio);
     GenerateNucleonAMap();
 
+    cout << "\n\nSaving maps...\n";
     SaveHitMaps(SampleName, AcceptanceMapsDirectory);
 
     h1DCanvas->Print(Form("%s[", AcceptanceMapsBC_OutFile));            // Open the PDF file
