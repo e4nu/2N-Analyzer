@@ -823,6 +823,8 @@ void AMaps::hFillHitMaps(const string &SampleType, const string &particle, doubl
                 }
             }
         } else if (is_n) {  // neutrons are neutral -> same fill all slices!
+            NeutronTLAMap.hFill(Phi, Theta, Weight);
+
             for (int i = 0; i < NucleonMomSliceLimits.size(); i++) {
                 if ((Momentum >= NucleonMomSliceLimits.at(i).at(0)) && (Momentum < NucleonMomSliceLimits.at(i).at(1))) {
                     NeutronTLAMapsBySlice.at(i).hFill(Phi, Theta, Weight);
@@ -997,6 +999,7 @@ void AMaps::CalcAMapsRatio(bool ElectronRecoToTLDiv, bool ProtonRecoToTLDiv, boo
 
 //<editor-fold desc="GenerateSeparateCPartAMaps function">
 void AMaps::GenerateSeparateCPartAMaps(double cP_minR) {
+    // Generate electron map matrices
     for (int bin = 0; bin < ElectronMomSliceLimits.size(); bin++) {
         for (int i = 0; i < (HistElectronSliceNumOfXBins + 1); i++) {
             for (int j = 0; j < (HistElectronSliceNumOfYBins + 1); j++) {
@@ -1004,10 +1007,8 @@ void AMaps::GenerateSeparateCPartAMaps(double cP_minR) {
             }
         }
 
-        if (AMaps_Mode == "AMaps") {
-            // TODO: move from here
-            ElectronRecoToTLRatioBySlice.at(bin).ApplyZMaxLim(1.2);
-        }
+        // TODO: move from here
+        if (AMaps_Mode == "AMaps") { ElectronRecoToTLRatioBySlice.at(bin).ApplyZMaxLim(1.2); }
 
         //<editor-fold desc="Fill e_AMap_Slices">
         vector<vector<int>> e_AMap_slice;
@@ -1036,6 +1037,7 @@ void AMaps::GenerateSeparateCPartAMaps(double cP_minR) {
         //</editor-fold>
     }
 
+    // Generate proton map matrices
     for (int bin = 0; bin < NucleonMomSliceLimits.size(); bin++) {
         for (int i = 0; i < (HistNucSliceNumOfXBins + 1); i++) {
             for (int j = 0; j < (HistNucSliceNumOfYBins + 1); j++) {
@@ -1043,10 +1045,8 @@ void AMaps::GenerateSeparateCPartAMaps(double cP_minR) {
             }
         }
 
-        if (AMaps_Mode == "AMaps") {
-            // TODO: move from here
-            ProtonRecoToTLRatioBySlice.at(bin).ApplyZMaxLim(1.2);
-        }
+        // TODO: move from here
+        if (AMaps_Mode == "AMaps") { ProtonRecoToTLRatioBySlice.at(bin).ApplyZMaxLim(1.2); }
 
         //<editor-fold desc="Fill p_AMap_Slices">
         vector<vector<int>> p_AMap_slice;
@@ -1083,8 +1083,10 @@ void AMaps::GenerateSeparateCPartAMaps(double cP_minR) {
 void AMaps::GenerateCPartAMaps(double cP_minR) {
     GenerateSeparateCPartAMaps(cP_minR);
 
+    // Fill electron finalized maps
     for (int bin = 0; bin < ElectronMomSliceLimits.size(); bin++) { ElectronAMap.hAdd(ElectronAMapsBySlice.at(bin).GetHistogram2D()); }
 
+    // Fill proton finalized maps
     for (int bin = 0; bin < NucleonMomSliceLimits.size(); bin++) { ProtonAMap.hAdd(ProtonAMapsBySlice.at(bin).GetHistogram2D()); }
 
     for (int i = 0; i < HistElectronSliceNumOfYBins; i++) {
@@ -1178,6 +1180,10 @@ void AMaps::GenerateNPartAMaps(double nP_minR) {
         n_AMap.push_back(n_AMap_col);
         n_WMap.push_back(n_WMap_col);
     }
+
+    // Fill finalized neutron maps
+    // TODO: recheck if NeutronAMap should be here
+    for (int bin = 0; bin < NucleonMomSliceLimits.size(); bin++) { NeutronAMapsBySlice.push_back(NeutronAMap); }
 
     /*
     for (int i = 0; i < (HistNucSliceNumOfXBins + 1); i++) {
@@ -1284,7 +1290,6 @@ void AMaps::GenerateNucleonAMap() {
 
 void AMaps::SaveHitMaps(const string &SampleName, const string &AcceptanceMapsDirectory) {
     int testNumber = 0;
-
 
     string AMapSliceElectronSavePath = AcceptanceMapsDirectory + SampleName + "/e_AMap_by_slice/";
     system(("mkdir -p " + AMapSliceElectronSavePath).c_str());
