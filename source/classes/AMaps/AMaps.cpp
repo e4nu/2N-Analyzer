@@ -1490,12 +1490,18 @@ void AMaps::SaveHitMaps(const string &SampleName, const string &AcceptanceMapsDi
 
         for (int j = 0; j < HistNucSliceNumOfXBins; j++) {
             if (j != HistNucSliceNumOfXBins - 1) {
+                cout << "\n\np_AMap_file << p_AMap.at(i).at(j) <<\n";
                 p_AMap_file << p_AMap.at(i).at(j) << ":";
+                cout << "\n\nn_AMap_file << n_AMap.at(i).at(j) <<\n";
                 n_AMap_file << n_AMap.at(i).at(j) << ":";
+                cout << "\n\nnuc_AMap_file << nuc_AMap.at(i).at(j) <<\n";
                 nuc_AMap_file << nuc_AMap.at(i).at(j) << ":";
             } else {
+                cout << "\n\np_AMap_file << p_AMap.at(i).at(j) <<\n";
                 p_AMap_file << p_AMap.at(i).at(j);
+                cout << "\n\nn_AMap_file << n_AMap.at(i).at(j) <<\n";
                 n_AMap_file << n_AMap.at(i).at(j);
+                cout << "\n\nnuc_AMap_file << nuc_AMap.at(i).at(j) <<\n";
                 nuc_AMap_file << nuc_AMap.at(i).at(j);
             }
         }
