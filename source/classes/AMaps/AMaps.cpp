@@ -1160,6 +1160,25 @@ void AMaps::GenerateNPartAMaps(double nP_minR) {
         //</editor-fold>
     }
 
+    // TODO: recheck if need n_AMap and n_WMap if we're moving to neutron maps by momentum slices
+    for (int i = 0; i < HistNucSliceNumOfYBins; i++) {
+        vector<int> n_AMap_col;
+        vector<double> n_WMap_col;
+
+        for (int j = 0; j < HistNucSliceNumOfXBins; j++) {
+            if (NeutronRecoToTLRatio.GetHistogram2D()->GetBinContent(j + 1, i + 1) >= nP_minR) {
+                n_AMap_col.push_back(1);
+                n_WMap_col.push_back(NeutronRecoToTLRatio.GetHistogram2D()->GetBinContent(j + 1, i + 1));
+            } else {
+                n_AMap_col.push_back(0);
+                n_WMap_col.push_back(0);
+            }
+        }
+
+        n_AMap.push_back(n_AMap_col);
+        n_WMap.push_back(n_WMap_col);
+    }
+
     /*
     for (int i = 0; i < (HistNucSliceNumOfXBins + 1); i++) {
         for (int j = 0; j < (HistNucSliceNumOfYBins + 1); j++) {
@@ -1194,13 +1213,13 @@ void AMaps::GenerateNPartAMaps(double nP_minR) {
         n_AMap.push_back(n_AMap_col);
         n_WMap.push_back(n_WMap_col);
     }
-    */
 
     for (int bin = 0; bin < NucleonMomSliceLimits.size(); bin++) {
         NeutronAMapsBySlice.push_back(NeutronAMap);
         n_AMap_Slices.push_back(n_AMap);
         n_WMap_Slices.push_back(n_WMap);
     }
+    */
 }
 //</editor-fold>
 

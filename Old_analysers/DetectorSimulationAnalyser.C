@@ -722,16 +722,16 @@ void EventAnalyser(const string &AnalyseFilePath, const string &AnalyseFileSampl
         ToF_plots = false;
 
         /* Efficiency plots */
-        Efficiency_plots = true;
-        // Efficiency_plots = false;
-        TL_after_Acceptance_Maps_plots = true;
-        // TL_after_Acceptance_Maps_plots = false;
+        // Efficiency_plots = true;
+        Efficiency_plots = false;
+        // TL_after_Acceptance_Maps_plots = true;
+        TL_after_Acceptance_Maps_plots = false;
 
         /* Resolution plots */
         AMaps_plots = true;
         // AMaps_plots = false;
-        WMaps_plots = true;
-        // WMaps_plots = false;
+        // WMaps_plots = true;
+        WMaps_plots = false;
 
         /* Resolution plots */
         // Resolution_plots = true;
