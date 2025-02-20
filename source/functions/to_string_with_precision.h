@@ -10,7 +10,7 @@
 //<editor-fold desc="to_string_with_precision function">
 /* Usage: convert a number to string with n figures after the decimal point in the plotting functions */
 
-template<typename T>
+template <typename T>
 string to_string_with_precision(const T a_value, const int n = 2) {
     std::ostringstream out;
     out.precision(n);
@@ -19,4 +19,4 @@ string to_string_with_precision(const T a_value, const int n = 2) {
 }
 //</editor-fold>
 
-#endif //DATA_ANALYSER_TO_STRING_WITH_PRECISION_H
+#endif  // DATA_ANALYSER_TO_STRING_WITH_PRECISION_H
