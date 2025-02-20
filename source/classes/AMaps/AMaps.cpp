@@ -1264,6 +1264,9 @@ void AMaps::GenerateNucleonAMap() {
 // TODO: separate into AMaps and WMaps
 
 void AMaps::SaveHitMaps(const string &SampleName, const string &AcceptanceMapsDirectory) {
+    int testNumber = 0;
+
+
     string AMapSliceElectronSavePath = AcceptanceMapsDirectory + SampleName + "/e_AMap_by_slice/";
     system(("mkdir -p " + AMapSliceElectronSavePath).c_str());
     string WMapSliceElectronSavePath = AcceptanceMapsDirectory + SampleName + "/e_WMap_by_slice/";
@@ -1299,6 +1302,9 @@ void AMaps::SaveHitMaps(const string &SampleName, const string &AcceptanceMapsDi
     system(("mkdir -p " + AMapSliceNucleonSavePathCopy).c_str());
     string WMapSliceNucleonSavePathCopy = AMapCopySavePath + "/nuc_WMap_by_slice/";
     system(("mkdir -p " + WMapSliceNucleonSavePathCopy).c_str());
+
+    ++testNumber;
+    cout << "\n\n\nTEST " << testNumber << "\n";
 
     //<editor-fold desc="Save electron slices">
     for (int Slice = 0; Slice < ElectronMomSliceLimits.size(); Slice++) {
@@ -1341,6 +1347,9 @@ void AMaps::SaveHitMaps(const string &SampleName, const string &AcceptanceMapsDi
         system(("cp " + WMapSliceElectronSavePath + WMapTempFileName + " " + WMapSliceElectronSavePathCopy + WMapTempFileName).c_str());
     }
     //</editor-fold>
+
+    ++testNumber;
+    cout << "\n\n\nTEST " << testNumber << "\n";
 
     //<editor-fold desc="Save proton, neutron & nucleon slices">
     for (int Slice = 0; Slice < NucleonMomSliceLimits.size(); Slice++) {
@@ -1426,6 +1435,9 @@ void AMaps::SaveHitMaps(const string &SampleName, const string &AcceptanceMapsDi
     }
     //</editor-fold>
 
+    ++testNumber;
+    cout << "\n\n\nTEST " << testNumber << "\n";
+
     //<editor-fold desc="Save combined maps">
     // TODO: figure out rather or not to keep these combind maps!
     ofstream e_AMap_file, p_AMap_file, n_AMap_file, nuc_AMap_file;
@@ -1435,15 +1447,24 @@ void AMaps::SaveHitMaps(const string &SampleName, const string &AcceptanceMapsDi
     n_AMap_file.open(AcceptanceMapsDirectory + SampleName + "/n_AMap_file.par");
     nuc_AMap_file.open(AcceptanceMapsDirectory + SampleName + "/nuc_AMap_file.par");
 
+    ++testNumber;
+    cout << "\n\n\nTEST " << testNumber << "\n";
+
     for (int Slice = 0; Slice < ElectronMomSliceLimits.size(); Slice++) {
         e_AMap_file << "e_slice_" << (Slice + 1) << "\t" << ElectronMomSliceLimits.at(Slice).at(0) << ":" << ElectronMomSliceLimits.at(Slice).at(1) << "\n";
     }
+
+    ++testNumber;
+    cout << "\n\n\nTEST " << testNumber << "\n";
 
     for (int Slice = 0; Slice < NucleonMomSliceLimits.size(); Slice++) {
         p_AMap_file << "p_slice_" << (Slice + 1) << "\t" << NucleonMomSliceLimits.at(Slice).at(0) << ":" << NucleonMomSliceLimits.at(Slice).at(1) << "\n";
         n_AMap_file << "n_slice_" << (Slice + 1) << "\t" << NucleonMomSliceLimits.at(Slice).at(0) << ":" << NucleonMomSliceLimits.at(Slice).at(1) << "\n";
         nuc_AMap_file << "nuc_slice_" << (Slice + 1) << "\t" << NucleonMomSliceLimits.at(Slice).at(0) << ":" << NucleonMomSliceLimits.at(Slice).at(1) << "\n";
     }
+
+    ++testNumber;
+    cout << "\n\n\nTEST " << testNumber << "\n";
 
     for (int i = 0; i < HistElectronSliceNumOfYBins; i++) {
         e_AMap_file << "Line\t";
@@ -1458,6 +1479,9 @@ void AMaps::SaveHitMaps(const string &SampleName, const string &AcceptanceMapsDi
 
         e_AMap_file << "\n";
     }
+
+    ++testNumber;
+    cout << "\n\n\nTEST " << testNumber << "\n";
 
     for (int i = 0; i < HistNucSliceNumOfYBins; i++) {
         p_AMap_file << "Line\t";
@@ -1481,6 +1505,9 @@ void AMaps::SaveHitMaps(const string &SampleName, const string &AcceptanceMapsDi
         nuc_AMap_file << "\n";
     }
 
+    ++testNumber;
+    cout << "\n\n\nTEST " << testNumber << "\n";
+
     e_AMap_file.close();
     p_AMap_file.close();
     n_AMap_file.close();
@@ -1500,9 +1527,15 @@ void AMaps::SaveHitMaps(const string &SampleName, const string &AcceptanceMapsDi
     n_slice_limits.open(AMapSliceNeutronSavePath + "n_slice_limits.par");
     nuc_slice_limits.open(AMapSliceNucleonSavePath + "nuc_slice_limits.par");
 
+    ++testNumber;
+    cout << "\n\n\nTEST " << testNumber << "\n";
+
     for (int Slice = 0; Slice < ElectronMomSliceLimits.size(); Slice++) {
         e_slice_limits << "e_slice_" << (Slice + 1) << "\t" << ElectronMomSliceLimits.at(Slice).at(0) << ":" << ElectronMomSliceLimits.at(Slice).at(1) << "\n";
     }
+
+    ++testNumber;
+    cout << "\n\n\nTEST " << testNumber << "\n";
 
     for (int Slice = 0; Slice < NucleonMomSliceLimits.size(); Slice++) {
         p_slice_limits << "p_slice_" << (Slice + 1) << "\t" << NucleonMomSliceLimits.at(Slice).at(0) << ":" << NucleonMomSliceLimits.at(Slice).at(1) << "\n";
