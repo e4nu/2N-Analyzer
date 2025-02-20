@@ -753,7 +753,8 @@ void AMaps::hFillHitMaps(const string &SampleType, const string &particle, doubl
     bool is_e = isElectron(particle), is_p = isProton(particle), is_n = isNeutron(particle);
     bool is_TL = isTL(SampleType), is_Reco = isReco(SampleType);
 
-    bool TL_e_PrintOut = false, TL_p_PrintOut = false, Reco_e_PrintOut = false, Reco_p_PrintOut = false, Reco_n_PrintOut = false;
+    bool TL_e_PrintOut = false, TL_p_PrintOut = false, TL_n_PrintOut = false;
+    bool Reco_e_PrintOut = false, Reco_p_PrintOut = false, Reco_n_PrintOut = false;
 
     //<editor-fold desc="Safety checks (AMaps::hFillHitMaps)">
     if (is_e && is_p && is_n) { cout << "\n\nAMaps::hFillHitMaps: particle can't all particles! Exiting...\n", exit(0); }
@@ -1193,8 +1194,8 @@ void AMaps::GenerateNPartAMaps(double nP_minR) {
         n_AMap.push_back(n_AMap_col);
         n_WMap.push_back(n_WMap_col);
     }
-    */    
-    
+    */
+
     for (int bin = 0; bin < NucleonMomSliceLimits.size(); bin++) {
         NeutronAMapsBySlice.push_back(NeutronAMap);
         n_AMap_Slices.push_back(n_AMap);
