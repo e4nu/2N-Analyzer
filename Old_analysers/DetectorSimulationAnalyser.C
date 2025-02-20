@@ -605,8 +605,8 @@ void EventAnalyser(const string &AnalyseFilePath, const string &AnalyseFileSampl
     /* Final state ratio plots */
     bool FSR_1D_plots, FSR_2D_plots;  // FSR_2D_plots is disabled below if HipoChainLength is 2 or lower
 
-    bool TestRun = false;       // set as false for a full run
-    bool ApplyLimiter = false;  // set as false for a full run
+    bool TestRun = true;       // set as false for a full run
+    bool ApplyLimiter = true;  // set as false for a full run
     int Limiter = 1000000;
 
     // Set enabled plots
@@ -728,22 +728,22 @@ void EventAnalyser(const string &AnalyseFilePath, const string &AnalyseFileSampl
         // TL_after_Acceptance_Maps_plots = false;
 
         /* Resolution plots */
-        //        AMaps_plots = true;
-        AMaps_plots = false;
-        //        WMaps_plots = true;
-        WMaps_plots = false;
+        AMaps_plots = true;
+        // AMaps_plots = false;
+        WMaps_plots = true;
+        // WMaps_plots = false;
 
         /* Resolution plots */
         // Resolution_plots = true;
         Resolution_plots = false;
 
         /* Multiplicity plots */
-        //        Multiplicity_plots = true;
-        Multiplicity_plots = false;
+        Multiplicity_plots = true;
+        // Multiplicity_plots = false;
 
         /* Final state ratio plots */
-        //        FSR_1D_plots = true;
-        //        FSR_2D_plots = true; // disabled below if HipoChainLength is 2 or lower
+        // FSR_1D_plots = true;
+        // FSR_2D_plots = true;  // disabled below if HipoChainLength is 2 or lower
         FSR_1D_plots = false;
         FSR_2D_plots = false;  // disabled below if HipoChainLength is 2 or lower
     }
@@ -776,7 +776,11 @@ void EventAnalyser(const string &AnalyseFilePath, const string &AnalyseFileSampl
 
     if (!apply_nucleon_cuts || (Electron_single_slice_test || Nucleon_single_slice_test)) { FSR_1D_plots = FSR_2D_plots = false; }
 
-    //    if (!plot_and_fit_MomRes) { Resolution_plots = false; }
+    if (TestRun || ApplyLimiter) {
+        if (TestRun) { cout << "\033[31m\n\nNOTE: running code in testing mode![0m\n\n"; }
+
+        if (ApplyLimiter) { cout << "\033[31m\n\nNOTE: running code with a limiter on number of events![0m\n\n"; }
+    }
 
     // Normalization setup -----------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -22841,6 +22845,12 @@ void EventAnalyser(const string &AnalyseFilePath, const string &AnalyseFileSampl
     cout << "\033[33mTarget:\t\t\t" << Target << " (PDG: " << TargetPDG << ")\n\n\033[0m";
 
     cout << "\033[33mOperation finished (AnalyserVersion = " << AnalyserVersion << ")." << "\n\n\033[0m";
+
+    if (TestRun || ApplyLimiter) {
+        if (TestRun) { cout << "\033[31m\n\nNOTE: running code in testing mode![0m\n\n"; }
+
+        if (ApplyLimiter) { cout << "\033[31m\n\nNOTE: running code with a limiter on number of events![0m\n\n"; }
+    }
 
     if (Save_Plots_folder_to_zip_files) {
         // TODO: this saves the plots folder in multiple folders in the save path - fix!
