@@ -299,10 +299,10 @@ void nFD_eff_test() {
 
     // double Ebeam = 2.07052;
     // Is2GeV = true;
-    // double Ebeam = 4.02962;
-    // Is4GeV = true;
-    double Ebeam = 5.98636;
-    Is6GeV = true;
+    double Ebeam = 4.02962;
+    Is4GeV = true;
+    // double Ebeam = 5.98636;
+    // Is6GeV = true;
 
     bool ConstrainTLmom = false;
 
@@ -336,8 +336,8 @@ void nFD_eff_test() {
         InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/4029MeV_ConstPn/OutPut_en/reconhipo/*.hipo";
         // InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/4029MeV/OutPut_en/reconhipo/*.hipo";
     } else if (Is6GeV) {
-        InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/5986MeV_ConstPn/OutPut_en/reconhipo/*.hipo";
-        // InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/5986MeV/OutPut_en/reconhipo/*.hipo";
+        // InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/5986MeV_ConstPn/OutPut_en/reconhipo/*.hipo";
+        InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/5986MeV/OutPut_en/reconhipo/*.hipo";
     }
 
     chain.Add(InputFiles);
