@@ -9,20 +9,16 @@
 
 using namespace std;
 
-class Settings: public CustomPlotsDirectory {
-private:
-
-public:
-
-// Default constructor ---------------------------------------------------------------------------------------------------------------------------------------------
+class Settings : public CustomPlotsDirectory {
+   private:
+   public:
+    // Default constructor ---------------------------------------------------------------------------------------------------------------------------------------------
 
     Settings() = default;
 
-// AutoDisableVariables constructor --------------------------------------------------------------------------------------------------------------------------------
+    // AutoDisableVariables constructor --------------------------------------------------------------------------------------------------------------------------------
 
     void AutoDisableVariables();
-
 };
 
-
-#endif //SETTINGS_H
+#endif  // SETTINGS_H

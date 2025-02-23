@@ -605,8 +605,8 @@ void EventAnalyser(const string &AnalyseFilePath, const string &AnalyseFileSampl
     /* Final state ratio plots */
     bool FSR_1D_plots, FSR_2D_plots;  // FSR_2D_plots is disabled below if HipoChainLength is 2 or lower
 
-    bool TestRun = true;       // set as false for a full run
-    bool ApplyLimiter = true;  // set as false for a full run
+    bool TestRun = false;       // set as false for a full run
+    bool ApplyLimiter = false;  // set as false for a full run
     int Limiter = 1000000;
 
     // Set enabled plots
