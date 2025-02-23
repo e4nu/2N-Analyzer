@@ -75,7 +75,8 @@ void Config_Uniform_en_2GeV_samples(std::vector<std::string> &AnalyseFilePath_v,
                                     std::vector<std::string> &AnalyseFileDir_v, std::vector<std::string> &AnalyseFile_v,
                                     std::string &AnalyseFilePath, std::string &AnalyseFileSample, std::string &AnalyseFileDir, std::string &AnalyseFile)
 {
-    std::string AnalyseFilePath0 = "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/2070MeV/OutPut_en";
+    std::string AnalyseFilePath0 = "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/2070MeV_ConstPn/OutPut_en";
+    // std::string AnalyseFilePath0 = "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/2070MeV/OutPut_en";
     std::string AnalyseFileSample0 = "reconhipo";
     std::string AnalyseFileDir0 = "/" + AnalyseFilePath0 + "/" + AnalyseFileSample0 + "/";
     std::string AnalyseFile0 = AnalyseFileDir0 + "*.hipo"; // all files

@@ -522,7 +522,7 @@ void EventAnalyser(const string &AnalyseFilePath, const string &AnalyseFileSampl
 
     Directories directories = Directories(Plots_Folder, Clear_Old_Directories);
 
-    bool Save_Plots_folder_to_zip_files = true;
+    bool Save_Plots_folder_to_zip_files = false;
     cout << "\033[33m done.\n\n\033[0m";
 
     // TList definition -----------------------------------------------------------------------------------------------------------------------------------------------------
@@ -22855,9 +22855,9 @@ void EventAnalyser(const string &AnalyseFilePath, const string &AnalyseFileSampl
     if (Save_Plots_folder_to_zip_files) {
         // TODO: this saves the plots folder in multiple folders in the save path - fix!
 
-        cout << "\n\nrun_plots_path: " << run_plots_path << "\n";
-        cout << "settings.GetRun_dir_name(): " << settings.GetRun_dir_name() << "\n";
-        exit(0);
+        // cout << "\n\nrun_plots_path: " << run_plots_path << "\n";
+        // cout << "settings.GetRun_dir_name(): " << settings.GetRun_dir_name() << "\n";
+        // exit(0);
         system(("zip -r " + run_plots_path + "/" + settings.GetRun_dir_name() + ".zip " + run_plots_path).c_str());
         system(("mv -r " + run_plots_path + "/" + settings.GetRun_dir_name() + "/" + settings.GetRun_dir_name() + ".zip " + run_plots_path).c_str());
     }
