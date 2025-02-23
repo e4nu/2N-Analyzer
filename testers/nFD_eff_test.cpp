@@ -299,10 +299,10 @@ void nFD_eff_test() {
 
     // double Ebeam = 2.07052;
     // Is2GeV = true;
-    // double Ebeam = 4.02962;
-    // Is4GeV = true;
-    double Ebeam = 5.98636;
-    Is6GeV = true;
+    double Ebeam = 4.02962;
+    Is4GeV = true;
+    // double Ebeam = 5.98636;
+    // Is6GeV = true;
 
     bool ConstrainTLmom = false;
 
