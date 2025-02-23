@@ -22858,7 +22858,16 @@ void EventAnalyser(const string &AnalyseFilePath, const string &AnalyseFileSampl
         // cout << "\n\nrun_plots_path: " << run_plots_path << "\n";
         // cout << "settings.GetRun_dir_name(): " << settings.GetRun_dir_name() << "\n";
         // exit(0);
-        system(("zip -r " + run_plots_path + "/" + settings.GetRun_dir_name() + ".zip " + run_plots_path).c_str());
-        system(("mv -r " + run_plots_path + "/" + settings.GetRun_dir_name() + "/" + settings.GetRun_dir_name() + ".zip " + run_plots_path).c_str());
+        string zip_filename = settings.GetRun_dir_name() + ".zip";
+        string zip_input_path = run_plots_path;
+        string zip_input = run_plots_path + "/" + zip_filename;
+        string zip_output_path = run_plots_path;
+        cout << "\n\nMaking zip file...\n";
+        cout << "zip_filename: " << zip_filename << "\n";
+        cout << "zip_input_path: " << zip_input_path << "\n";
+        cout << "zip_input: " << zip_input << "\n";
+        cout << "zip_output_path: " << zip_output_path << "\n";
+        system(("zip -r " + zip_input + " " + zip_output_path).c_str());
+        // system(("mv -r " + run_plots_path + "/" + settings.GetRun_dir_name() + "/" + settings.GetRun_dir_name() + ".zip " + run_plots_path).c_str());
     }
 }
