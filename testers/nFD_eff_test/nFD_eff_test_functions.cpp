@@ -28,7 +28,7 @@
 using namespace std;
 using namespace clas12;
 
-#define IndependentEffTester 0  // Use 0 instead of false
+#define IndependentEffTester 1  // Use 0 instead of false
 
 // #if (!IndependentEffTester)
 // #include "../../source/classes/AMaps/AMaps.cpp"
