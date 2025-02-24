@@ -28,8 +28,9 @@ void nFD_eff_test() {
     }
 
     // int Limiter = 10000000;
-    // int Limiter = 1000000;
-    int Limiter = 100000;
+    int Limiter = 1000000;
+    // int Limiter = 100000;
+    // int Limiter = 10000;
 
     // string OutFolderName = "nFD_eff_test_reg";
     string OutFolderName = "nFD_eff_test_v2_nFD_w_TL_mom";
