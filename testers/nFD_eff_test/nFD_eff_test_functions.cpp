@@ -21,6 +21,7 @@
 #include <vector>
 
 // #include "../source/classes/ParticleID/ParticleID.cpp"
+#include "../../source/namespaces/utilities/utilities.cpp"
 #include "../../source/constants.h"
 #include "HipoChain.h"
 #include "clas12reader.h"
