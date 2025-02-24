@@ -23,18 +23,12 @@
 // #include "../source/classes/ParticleID/ParticleID.cpp"
 #include "../../source/namespaces/utilities/utilities.cpp"
 #include "../../source/constants.h"
-#include "HipoChain.h"
+// #include "HipoChain.h"
 // #include "clas12reader.h"
 
 using namespace std;
 using namespace clas12;
 using namespace utilities;
-
-#define IndependentEffTester 0  // Use 0 for false
-
-// #if (!IndependentEffTester)
-// #include "../../source/classes/AMaps/AMaps.cpp"
-// #endif
 
 #include "../../source/classes/AMaps/AMaps.cpp"
 
@@ -180,25 +174,6 @@ double CalcdPhi(double dPhiTemp) {
 
     return dPhi;
 }
-
-// bool findSubstring(string string1, string string2) {
-//     if (string1.find(string2) != string::npos) {
-//         return true;
-//     } else {
-//         return false;
-//     }
-// }
-// // #if IndependentEffTester
-// // bool findSubstring(string string1, string string2) {
-// //     if (string1.find(string2) != string::npos) {
-// //         return true;
-// //     } else {
-// //         return false;
-// //     }
-// // }
-// // #else
-// // #include "../../source/classes/AMaps/AMaps.cpp"
-// // #endif
 
 bool NeutronECAL_Cut_Veto(vector<region_part_ptr>& allParticles, vector<region_part_ptr>& electrons, const double& beamE, const int& index, const double& veto_cut) {
     TVector3 p_b(0, 0, beamE); /* beam energy */
