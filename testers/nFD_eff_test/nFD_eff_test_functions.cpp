@@ -171,6 +171,7 @@ double CalcdPhi(double dPhiTemp) {
     return dPhi;
 }
 
+#if IndependentEffTester
 bool findSubstring(string string1, string string2) {
     if (string1.find(string2) != string::npos) {
         return true;
@@ -178,6 +179,7 @@ bool findSubstring(string string1, string string2) {
         return false;
     }
 }
+#endif
 
 bool NeutronECAL_Cut_Veto(vector<region_part_ptr>& allParticles, vector<region_part_ptr>& electrons, const double& beamE, const int& index, const double& veto_cut) {
     TVector3 p_b(0, 0, beamE); /* beam energy */
