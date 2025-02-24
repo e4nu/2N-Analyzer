@@ -986,9 +986,9 @@ void AMaps::CalcAMapsRatio() {
         cout << "\n\nCalculating neutron acceptance efficiency...";
         NeutronRecoToTLRatio.hDivision(NeutronTLAMap.GetHistogram2D());
 
-        for (int i = 0; i < NucleonMomSliceLimits.size(); i++) {
-            if (calc_Neutron_RecoToTL_Ratio) { NeutronRecoToTLRatioBySlice.at(i).hDivision(NeutronTLAMapsBySlice.at(i).GetHistogram2D()); }
-        }
+        // for (int i = 0; i < NucleonMomSliceLimits.size(); i++) {
+        //     if (calc_Neutron_RecoToTL_Ratio) { NeutronRecoToTLRatioBySlice.at(i).hDivision(NeutronTLAMapsBySlice.at(i).GetHistogram2D()); }
+        // }
         cout << " done!\n";
     }
 }
