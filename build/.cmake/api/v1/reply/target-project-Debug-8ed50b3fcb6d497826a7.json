@@ -1734,7 +1734,7 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "testers/nFD_eff_test.cpp",
+			"path" : "testers/nFD_eff_test/nFD_eff_test.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],
