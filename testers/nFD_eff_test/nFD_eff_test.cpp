@@ -41,17 +41,20 @@ void nFD_eff_test() {
     TFile* outFile = new TFile(("/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/nFD_eff_test.root").c_str(), "RECREATE");
 
     clas12root::HipoChain chain;
-    string InputFiles;
+    string InputFiles, SampleName;
 
     if (Is2GeV) {
         // InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/2070MeV_ConstPn/OutPut_en/reconhipo/*.hipo";
         InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/2070MeV/OutPut_en/reconhipo/*.hipo";
+        SampleName = "Uniform_en_sample_2070MeV";
     } else if (Is4GeV) {
         // InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/4029MeV_ConstPn/OutPut_en/reconhipo/*.hipo";
         InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/4029MeV/OutPut_en/reconhipo/*.hipo";
+        SampleName = "Uniform_en_sample_4029MeV";
     } else if (Is6GeV) {
         // InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/5986MeV_ConstPn/OutPut_en/reconhipo/*.hipo";
         InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/5986MeV/OutPut_en/reconhipo/*.hipo";
+        SampleName = "Uniform_en_sample_5986MeV";
     }
 
     chain.Add(InputFiles);
@@ -701,6 +704,24 @@ void nFD_eff_test() {
     HistoList.push_back(h_reco_P_nFD_VS_reco_phi_nFD_minus_reco_phi_e_matched_1e_cut);
 
 #pragma endregion
+
+#pragma endregion
+
+#pragma region /* Prepare AMaps */
+
+    const string OutputDirAMaps = OutputDir + "/AMaps";
+
+    const string P_e_bin_profile = "uniform_P_e_bins";      // {reformat_e_bins , varying_P_e_bins , uniform_P_e_bins, equi_inverted_P_e}
+    const string P_nuc_bin_profile = "uniform_P_nuc_bins";  // {equi_inverted_P_nuc , varying_P_nuc_bins , uniform_P_nuc_bins}
+
+    double beamE = Ebeam;
+
+    int NumberNucOfMomSlices = 15, NumberElecOfMomSlices = 15, HistElectronSliceNumOfXBins = 100, HistNucSliceNumOfXBins = 100;
+
+    AMaps aMaps_master;
+
+    aMaps_master = AMaps(SampleName, P_e_bin_profile, P_nuc_bin_profile, beamE, "AMaps", OutputDir, NumberNucOfMomSlices,
+                         NumberElecOfMomSlices, HistNucSliceNumOfXBins, HistNucSliceNumOfXBins, HistElectronSliceNumOfXBins, HistElectronSliceNumOfXBins);
 
 #pragma endregion
 
