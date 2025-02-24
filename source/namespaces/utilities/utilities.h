@@ -31,6 +31,13 @@ bool FindSubstring(string string1, string string2) {
     }
 }
 
+// RadCalc function -----------------------------------------------------------------------------------------------------------------------------------------------------
+
+double RadCalc(double x, double y, double z) {
+    double r = sqrt(x * x + y * y + z * z);
+    return r;
+}
+
 }  // namespace utilities
 
 #endif  // UTILITIES_H

@@ -709,7 +709,13 @@ void nFD_eff_test() {
 
 #pragma region /* Prepare AMaps */
 
-    const string OutputDirAMaps = OutputDir + "/AMaps";
+    const string OutputDirAMapsPlots = OutputDir + "/01_AMaps_Plots";
+    system(("rm -rf " + OutputDirAMapsPlots).c_str());
+    system(("mkdir -p " + OutputDirAMapsPlots).c_str());
+
+    const string OutputDirAMapsMaps = OutputDir + "/02_AMaps_Maps";
+    system(("rm -rf " + OutputDirAMapsMaps).c_str());
+    system(("mkdir -p " + OutputDirAMapsMaps).c_str());
 
     const string P_e_bin_profile = "uniform_P_e_bins";      // {reformat_e_bins , varying_P_e_bins , uniform_P_e_bins, equi_inverted_P_e}
     const string P_nuc_bin_profile = "uniform_P_nuc_bins";  // {equi_inverted_P_nuc , varying_P_nuc_bins , uniform_P_nuc_bins}
@@ -720,8 +726,8 @@ void nFD_eff_test() {
 
     AMaps aMaps_master;
 
-    aMaps_master = AMaps(SampleName, P_e_bin_profile, P_nuc_bin_profile, beamE, "AMaps", OutputDir, NumberNucOfMomSlices,
-                         NumberElecOfMomSlices, HistNucSliceNumOfXBins, HistNucSliceNumOfXBins, HistElectronSliceNumOfXBins, HistElectronSliceNumOfXBins);
+    aMaps_master = AMaps(SampleName, P_e_bin_profile, P_nuc_bin_profile, beamE, "AMaps", OutputDirAMapsPlots, NumberNucOfMomSlices, NumberElecOfMomSlices, HistNucSliceNumOfXBins,
+                         HistNucSliceNumOfXBins, HistElectronSliceNumOfXBins, HistElectronSliceNumOfXBins);
 
 #pragma endregion
 
@@ -838,6 +844,10 @@ void nFD_eff_test() {
         //  =======================================================================================================================================================================
 
 #pragma region /* 1e cut (truth) */
+
+        double TL_IDed_Leading_nFD_momentum = -1;  // Leading nFD with momentum thresholds
+        int TL_IDed_Leading_nFD_ind = -1;          // Leading nFD with momentum thresholds
+
         double Truth_beta;
         double Truth_theta;
 
@@ -860,8 +870,8 @@ void nFD_eff_test() {
             auto py = mcpbank->getPy();
             auto pz = mcpbank->getPz();
 
-            bool PassMomth = true;
-            // bool PassMomth = (p >= 0.4);
+            // bool PassMomth = true;
+            bool PassMomth = (p >= 0.4);
 
             if (ConstrainTLmom && (pid_temp == 2112 && p > 2.)) {
                 TLpassCuts = false;
@@ -889,6 +899,11 @@ void nFD_eff_test() {
                 // if (true) {
                 // if (truth_P_n.Theta() * 180 / M_PI <= 40.) {
                 if ((Truth_theta >= 5.) && (Truth_theta <= 35.)) {
+                    if (truth_P_n.Mag() >= TL_IDed_Leading_nFD_momentum) {
+                        TL_IDed_Leading_nFD_momentum = truth_P_n.Mag();
+                        TL_IDed_Leading_nFD_ind = i;
+                    }
+
                     double truth_E_nFD = sqrt(m_n * m_n + truth_P_n.Mag2());
                     Truth_beta = truth_P_n.Mag() / truth_E_nFD;
 
@@ -922,6 +937,40 @@ void nFD_eff_test() {
         //     cout << "Truth_theta = " << Truth_theta << "\nAborting...\n\n", exit(0);
         // }
         if (truth_NeutronsFD.size() != 1) { continue; }
+
+        // Fill leading FD neutron acceptance maps
+        if ((TL_IDed_Leading_nFD_ind != -1) && (TL_IDed_Leading_nFD_momentum > 0)) {
+            mcpbank->setEntry(TL_IDed_Leading_nFD_ind);
+
+            int particlePDGtmp = mcpbank->getPid();
+
+            double Particle_TL_Momentum = RadCalc(mcpbank->getPx(), mcpbank->getPy(), mcpbank->getPz());
+            double Particle_TL_Theta = acos((mcpbank->getPz()) / RadCalc(mcpbank->getPx(), mcpbank->getPy(), mcpbank->getPz())) * 180.0 / pi;
+            double Particle_TL_Phi = atan2(mcpbank->getPy(), mcpbank->getPx()) * 180.0 / pi;
+
+            // bool inFD = ((Particle_TL_Theta >= ThetaFD.GetLowerCut()) && (Particle_TL_Theta <= ThetaFD.GetUpperCut()));
+            // bool inCD = ((Particle_TL_Theta > ThetaCD.GetLowerCut()) && (Particle_TL_Theta <= ThetaCD.GetUpperCut()));
+
+            bool PassMomth = (Particle_TL_Momentum >= 0.4);
+
+            if (PassMomth) {
+                // if id. TL leading neutron
+
+                // // Safety checks for TL neutrons (AMaps & WMaps)
+                // CodeDebugger.SafetyCheck_AMaps_Truth_neutrons(__FILE__, __LINE__, particlePDGtmp, inFD);
+
+                // TL_nFD_theta = Particle_TL_Theta;  // FOR nFD eff test!
+                // TL_nFD_phi = Particle_TL_Phi;      // FOR nFD eff test!
+
+                // hTL_P_nFD_AMaps.hFill(Particle_TL_Momentum, Weight);
+                // hTL_P_nFD_vs_TL_Theta_nFD_AMap.hFill(Particle_TL_Momentum, Particle_TL_Theta, Weight);
+                // hTL_P_nFD_vs_TL_Phi_nFD_AMap.hFill(Particle_TL_Momentum, Particle_TL_Phi, Weight);
+                // hTL_P_nFD_vs_TL_P_e_AMap.hFill(Particle_TL_Momentum, Electron_TL_Momentum, Weight);
+                // hTL_P_nFD_vs_TL_Theta_e_AMap.hFill(Particle_TL_Momentum, Electron_TL_Theta, Weight);
+                // hTL_P_nFD_vs_TL_Phi_e_AMap.hFill(Particle_TL_Momentum, Electron_TL_Phi, Weight);
+                aMaps_master.hFillHitMaps("TL", "Neutron", Particle_TL_Momentum, Particle_TL_Theta, Particle_TL_Phi, weight);
+            }  // end of if id. TL leading neutron
+        }
 #pragma endregion
 
         //  Setting up neutrals ---------------------------------------------------------------------------------------------------------------------------------------------------
@@ -973,6 +1022,7 @@ void nFD_eff_test() {
             h_reco_P_e_VS_P_nFD_clas12_1e_cut->Fill(reco_P_e.Mag(), reco_P_nFD.Mag(), weight);
             h_reco_theta_nFD_clas12_VS_P_nFD_clas12_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI, reco_P_nFD.Mag(), weight);
         }
+
 #pragma endregion
 
         //  Setting up FD neutrals (redef) ----------------------------------------------------------------------------------------------------------------------------------------
@@ -1026,6 +1076,9 @@ void nFD_eff_test() {
         //  Setting up FD neutrals (ECALveto) ----------------------------------------------------------------------------------------------------------------------------------------
 
 #pragma region /* Setting up FD neutrals (ECALveto) */
+        double P_max = -1;
+        int NeutronsFD_ind_mom_max = -1;
+
         vector<region_part_ptr> neutrons_FD_ECALveto;
 
         for (int i = 0; i < allParticles.size(); i++) {
@@ -1056,12 +1109,69 @@ void nFD_eff_test() {
                             // bool goodBeta = ((Path_nFD / (c * reco_ToF_nFD) - Truth_beta) < 0.001);
                             // bool goodBeta = (fabs(allParticles[i]->par()->getBeta() - Path_nFD / (c * reco_ToF_nFD)) < 0.0001);
 
-                            if (PassMomth && passECALeadgeCuts && passVeto && true) { neutrons_FD_ECALveto.push_back(allParticles[i]); }  // end of clas12root neutron or 'photon' if
+                            if (PassMomth && passECALeadgeCuts && passVeto && true) {
+                                if (Momentum >= P_max) {
+                                    P_max = Momentum;
+                                    NeutronsFD_ind_mom_max = i;
+                                }
+
+                                neutrons_FD_ECALveto.push_back(allParticles[i]);
+                            }  // end of clas12root neutron or 'photon' if
                             // if (PassMomth && passECALeadgeCuts && passVeto && goodBeta) { neutrons_FD_ECALveto.push_back(allParticles[i]); }  // end of clas12root neutron or 'photon' if
                         }
                     }
                 }  // end of clas12root neutron or 'photon' if
             }  // end of neutral and in the FD if
+        }
+
+        if (NeutronsFD_ind_mom_max != -1) {
+            // // if NeutronsFD_ind_mom_max == -1, there are no neutrons above momentum th. in the event
+            // /* Fill leading reco FD neutron acceptance maps */
+            // bool hitPCAL_1e_cut = (allParticles[NeutronsFD_ind_mom_max]->cal(clas12::PCAL)->getDetector() == 7);    // PCAL hit
+            // bool hitECIN_1e_cut = (allParticles[NeutronsFD_ind_mom_max]->cal(clas12::ECIN)->getDetector() == 7);    // ECIN hit
+            // bool hitECOUT_1e_cut = (allParticles[NeutronsFD_ind_mom_max]->cal(clas12::ECOUT)->getDetector() == 7);  // ECOUT hit
+            // auto n_detlayer_1e_cut = hitECIN_1e_cut ? clas12::ECIN : clas12::ECOUT;                                 // find first layer of hit
+
+            // // Safety checks that leading nFD is neutron by definition (AMaps & WMaps)
+            // CodeDebugger.SafetyCheck_AMaps_Reco_leading_neutrons(__FILE__, __LINE__, allParticles, NeutronsFD_ind_mom_max, hitPCAL_1e_cut, hitECIN_1e_cut, hitECOUT_1e_cut);
+
+            // if (true) {
+            //     // if (allParticles[NeutronsFD_ind_mom_max]->cal(n_detlayer_1e_cut)->getLv() > clasAna.getEcalEdgeCuts() &&
+            //     //     allParticles[NeutronsFD_ind_mom_max]->cal(n_detlayer_1e_cut)->getLw() > clasAna.getEcalEdgeCuts()) {
+            //     // if neutron is within fiducial cuts
+
+            bool NeutronPassVeto_1e_cut = NeutronECAL_Cut_Veto(allParticles, electrons, beamE, NeutronsFD_ind_mom_max, 100.);
+            // bool NeutronPassVeto_1e_cut = pid.NeutronECAL_Cut_Veto(allParticles, electrons, beamE, NeutronsFD_ind_mom_max, Neutron_veto_cut.GetLowerCut());
+
+            // double Mom_neut_1e_cut = pid.GetFDNeutronP(allParticles[NeutronsFD_ind_mom_max], true);  // if neutron is within fiducial cuts
+            double Mom_neut_1e_cut = CalcPnFD(allParticles[NeutronsFD_ind_mom_max], electrons[0], starttime);
+            double Theta_neut_1e_cut = allParticles[NeutronsFD_ind_mom_max]->getTheta() * 180.0 / pi;
+            double Phi_neut_1e_cut = allParticles[NeutronsFD_ind_mom_max]->getPhi() * 180.0 / pi;
+
+            bool PassMomth = (Mom_neut_1e_cut >= 0.4);
+
+            if (PassMomth && NeutronPassVeto_1e_cut)  // FOR nFD eff test!
+            // if ((Mom_neut_1e_cut <= n_mom_th.GetUpperCut()) && (Mom_neut_1e_cut >= n_mom_th.GetLowerCut()))
+            {
+                // // if id. reco leading neutron
+
+                // bool GoodTLMatch_AMaps = ((fabs(TL_nFD_theta - Theta_neut_1e_cut) < 2.) && (fabs(CalcdPhi(TL_nFD_phi - Phi_neut_1e_cut)) < 5.));  // FOR nFD eff test!
+
+                // // if neutron passes ECAL veto:
+                // if (NeutronPassVeto_1e_cut)
+                // // if (NeutronPassVeto_1e_cut && GoodTLMatch_AMaps)  // FOR nFD eff test!
+                // {
+                //     hReco_P_nFD_AMaps.hFill(Mom_neut_1e_cut, Weight);
+                //     hNeutronAMapBC.hFill(Phi_neut_1e_cut, Theta_neut_1e_cut, Weight);
+                //     hReco_P_nFD_vs_Reco_Theta_nFD_AMap.hFill(Mom_neut_1e_cut, Theta_neut_1e_cut, Weight);
+                //     hReco_P_nFD_vs_Reco_Phi_nFD_AMap.hFill(Mom_neut_1e_cut, Phi_neut_1e_cut, Weight);
+                //     hReco_P_nFD_vs_Reco_P_e_AMap.hFill(Mom_neut_1e_cut, P_e_1e_cut, Weight);
+                //     hReco_P_nFD_vs_Reco_Theta_e_AMap.hFill(Mom_neut_1e_cut, Theta_e, Weight);
+                //     hReco_P_nFD_vs_Reco_Phi_e_AMap.hFill(Mom_neut_1e_cut, Phi_e, Weight);
+                aMaps_master.hFillHitMaps("Reco", "Neutron", Mom_neut_1e_cut, Theta_neut_1e_cut, Phi_neut_1e_cut, weight);
+                // }  // end of if pass neutron ECAL veto
+            }  // end of if id. reco leading neutron
+            // }  // end of if neutron is within fiducial cuts
         }
 
         for (int i = 0; i < neutrons_FD_ECALveto.size(); i++) {
@@ -1312,6 +1422,8 @@ void nFD_eff_test() {
 #pragma endregion
     }
 
+#pragma region /* Organize histograms */
+
     /////////////////////////////////////////////////////
     // Organize histograms
     /////////////////////////////////////////////////////
@@ -1353,6 +1465,8 @@ void nFD_eff_test() {
     text.SetTextSize(0.05);
 
     gStyle->SetOptStat("ourmen");
+
+#pragma region /* General histograms */
 
 #pragma region /* Print electron cuts plots */
     // TCanvas* myCanvas_electron_cuts = new TCanvas("myPage_electron_cuts", "myPage_electron_cuts", pixelx, pixely);
@@ -1617,4 +1731,14 @@ void nFD_eff_test() {
     outFile->cd();
     for (int i = 0; i < HistoList.size(); i++) { HistoList[i]->Write(); }
     outFile->Close();
+
+#pragma endregion
+
+#pragma region /* Acceptance maps */
+    TCanvas* myCanvas_aMaps = new TCanvas("myCanvas_aMaps", "myCanvas_aMaps", pixelx, pixely);
+
+    aMaps_master.DrawAndSaveHitMaps(SampleName, myCanvas_aMaps, OutputDirAMapsMaps);
+#pragma endregion
+
+#pragma endregion
 }
