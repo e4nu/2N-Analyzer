@@ -1467,6 +1467,15 @@ void nFD_eff_test() {
 
     gStyle->SetOptStat("ourmen");
 
+#pragma region /* Acceptance maps */
+    TCanvas* myCanvas_aMaps = new TCanvas("myCanvas_aMaps", "myCanvas_aMaps", pixelx, pixely);
+
+    myCanvas_aMaps->cd();
+    myCanvas_aMaps->SetBottomMargin(0.14), myCanvas_aMaps->SetLeftMargin(0.16), myCanvas_aMaps->SetRightMargin(0.12);
+
+    aMaps_master.DrawAndSaveHitMaps(SampleName, myCanvas_aMaps, OutputDirAMapsMaps);
+#pragma endregion
+
 #pragma region /* General histograms */
 
 #pragma region /* Print electron cuts plots */
@@ -1733,15 +1742,6 @@ void nFD_eff_test() {
     for (int i = 0; i < HistoList.size(); i++) { HistoList[i]->Write(); }
     outFile->Close();
 
-#pragma endregion
-
-#pragma region /* Acceptance maps */
-    TCanvas* myCanvas_aMaps = new TCanvas("myCanvas_aMaps", "myCanvas_aMaps", pixelx, pixely);
-
-    myCanvas_aMaps->cd();
-    myCanvas_aMaps->SetBottomMargin(0.14), myCanvas_aMaps->SetLeftMargin(0.16), myCanvas_aMaps->SetRightMargin(0.12);
-
-    aMaps_master.DrawAndSaveHitMaps(SampleName, myCanvas_aMaps, OutputDirAMapsMaps);
 #pragma endregion
 
 #pragma endregion
