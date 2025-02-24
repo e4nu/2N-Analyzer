@@ -27,6 +27,7 @@
 
 using namespace std;
 using namespace clas12;
+using namespace utilities;
 
 #define IndependentEffTester 0  // Use 0 for false
 
@@ -179,7 +180,7 @@ double CalcdPhi(double dPhiTemp) {
     return dPhi;
 }
 
-bool FindSubstring(string string1, string string2) {
+bool findSubstring(string string1, string string2) {
     if (string1.find(string2) != string::npos) {
         return true;
     } else {

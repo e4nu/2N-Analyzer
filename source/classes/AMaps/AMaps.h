@@ -35,11 +35,13 @@
 // #include "../../functions/GeneralFunctions.h"
 // #endif
 // #include "../../functions/GeneralFunctions.h"
+#include "../../namespaces/utilities/utilities.cpp"
 #include "../DSCuts/DSCuts.h"
 #include "../hPlots/hPlot2D.h"
 #include "clas12reader.h"
 
 using namespace std;
+using namespace utilities;
 
 class AMaps {
    private:
@@ -177,26 +179,6 @@ class AMaps {
 
     // AMaps loading constructor:
     AMaps(const string &AcceptanceMapsDirectory, const string &SampleName, const bool &Electron_single_slice_test, const bool &Nucleon_single_slice_test, const vector<int> &TestSlices);
-
-    // to_string_with_precision function ------------------------------------------------------------------------------------------------------------------------------------
-
-    template <typename T>
-    string to_string_with_precision(const T a_value, const int n = 2) {
-        std::ostringstream out;
-        out.precision(n);
-        out << std::fixed << a_value;
-        return out.str();
-    }
-
-    // findSubstring function -----------------------------------------------------------------------------------------------------------------------------------------------
-
-    bool findSubstring(string string1, string string2) {
-        if (string1.find(string2) != string::npos) {
-            return true;
-        } else {
-            return false;
-        }
-    }
 
     // SetBins functions ----------------------------------------------------------------------------------------------------------------------------------------------------
 

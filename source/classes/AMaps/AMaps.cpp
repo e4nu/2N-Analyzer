@@ -128,11 +128,11 @@ AMaps::AMaps(const string &SampleName, const string &P_e_bin_profile, const stri
 
         //<editor-fold desc="Electron TL hit map">
         string hStatsTitleTLElectron =
-            "TL P_{e} bin for " + to_string_with_precision(BinLowerLim, 2) + "#leqP^{truth}_{e}#leq" + to_string_with_precision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c]";
+            "TL P_{e} bin for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{e}#leq" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c]";
         string hTitleTLElectron =
-            "TL P_{e} bin for " + to_string_with_precision(BinLowerLim, 2) + "#leqP^{truth}_{e}#leq" + to_string_with_precision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c]" + BinDensity;
+            "TL P_{e} bin for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{e}#leq" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c]" + BinDensity;
         string hSaveNameTLElectron =
-            to_string(i + 1) + "_TL_P_bin_for_P_from_" + to_string_with_precision(BinLowerLim, 2) + "_to_" + to_string_with_precision(BinUpperLim, BinUpperLimPrecision);
+            to_string(i + 1) + "_TL_P_bin_for_P_from_" + ToStringWithPrecision(BinLowerLim, 2) + "_to_" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision);
         hPlot2D hPBinTLElectron = hPlot2D(AMapsMode_TitleAddition, "", hStatsTitleTLElectron, hTitleTLElectron, "#phi_{e} [Deg]", "#theta_{e} [Deg]", AMapSavePathTLElectron,
                                           hSaveNameTLElectron, hBinLowerXLim, hBinUpperXLim, hBinLowerYLim, hBinUpperYLim, HistElectronSliceNumOfXBins, HistElectronSliceNumOfYBins);
         ElectronTLAMapsBySlice.push_back(hPBinTLElectron);
@@ -140,11 +140,11 @@ AMaps::AMaps(const string &SampleName, const string &P_e_bin_profile, const stri
 
         //<editor-fold desc="Electron Reco. Acceptance maps">
         string hStatsTitleRecoElectron =
-            "Reco P_{e} bin for " + to_string_with_precision(BinLowerLim, 2) + "#leqP^{truth}_{e}#leq" + to_string_with_precision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c]";
-        string hTitleRecoElectron = "Reco P_{e} bin for " + to_string_with_precision(BinLowerLim, 2) + "#leqP^{truth}_{e}#leq" + to_string_with_precision(BinUpperLim, BinUpperLimPrecision) +
+            "Reco P_{e} bin for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{e}#leq" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c]";
+        string hTitleRecoElectron = "Reco P_{e} bin for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{e}#leq" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) +
                                     " [GeV/c]" + BinDensity;
         string hSaveNameRecoElectron =
-            to_string(i + 1) + "_Reco_P_bin_for_P_from_" + to_string_with_precision(BinLowerLim, 2) + "_to_" + to_string_with_precision(BinUpperLim, BinUpperLimPrecision);
+            to_string(i + 1) + "_Reco_P_bin_for_P_from_" + ToStringWithPrecision(BinLowerLim, 2) + "_to_" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision);
         hPlot2D hPBinRecoElectron = hPlot2D(AMapsMode_TitleAddition, "", hStatsTitleRecoElectron, hTitleRecoElectron, "#phi_{e} [Deg]", "#theta_{e} [Deg]", AMapSavePathRecoElectron,
                                             hSaveNameRecoElectron, hBinLowerXLim, hBinUpperXLim, hBinLowerYLim, hBinUpperYLim, HistElectronSliceNumOfXBins, HistElectronSliceNumOfYBins);
         ElectronRecoAMapsBySlice.push_back(hPBinRecoElectron);
@@ -152,11 +152,11 @@ AMaps::AMaps(const string &SampleName, const string &P_e_bin_profile, const stri
 
         //<editor-fold desc="Electron Reco./TL Ratio">
         string hStatsTitleRecoToTLRatioElectron =
-            "Electron Reco/TL ratio for " + to_string_with_precision(BinLowerLim, 2) + "#leqP^{truth}_{e}#leq" + to_string_with_precision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c]";
-        string hTitleRecoToTLRatioElectron = "Electron Reco/TL ratio for " + to_string_with_precision(BinLowerLim, 2) + "#leqP^{truth}_{e}#leq" +
-                                             to_string_with_precision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c]" + BinDensity;
+            "Electron Reco/TL ratio for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{e}#leq" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c]";
+        string hTitleRecoToTLRatioElectron = "Electron Reco/TL ratio for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{e}#leq" +
+                                             ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c]" + BinDensity;
         string hSaveNameRecoToTLRatioElectron =
-            to_string(i + 1) + "_e_Ratio_for_P_from_" + to_string_with_precision(BinLowerLim, 2) + "_to_" + to_string_with_precision(BinUpperLim, BinUpperLimPrecision);
+            to_string(i + 1) + "_e_Ratio_for_P_from_" + ToStringWithPrecision(BinLowerLim, 2) + "_to_" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision);
         hPlot2D hPBinRecoToTLRatioElectron =
             hPlot2D(AMapsMode_TitleAddition, "", hStatsTitleRecoToTLRatioElectron, hTitleRecoToTLRatioElectron, "#phi_{e} [Deg]", "#theta_{e} [Deg]", AMapSavePathRecoToTLElectron,
                     hSaveNameRecoToTLRatioElectron, hBinLowerXLim, hBinUpperXLim, hBinLowerYLim, hBinUpperYLim, HistElectronSliceNumOfXBins, HistElectronSliceNumOfYBins);
@@ -164,13 +164,13 @@ AMaps::AMaps(const string &SampleName, const string &P_e_bin_profile, const stri
         //</editor-fold>
 
         //<editor-fold desc="Electron separate AMaps">
-        string hStatsTitleSepAMapsElectron = "Electron AMap for " + to_string_with_precision(BinLowerLim, 2) + "#leqP^{truth}_{e}#leq" +
-                                             to_string_with_precision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c] and (Reco./TL)#geq" +
-                                             to_string_with_precision(Charged_particle_min_Ratio, 2);
-        string hTitleSepAMapsElectron = "Electron AMap for " + to_string_with_precision(BinLowerLim, 2) + "#leqP^{truth}_{e}#leq" +
-                                        to_string_with_precision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c] and (Reco./TL)#geq" + to_string_with_precision(Charged_particle_min_Ratio, 2);
+        string hStatsTitleSepAMapsElectron = "Electron AMap for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{e}#leq" +
+                                             ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c] and (Reco./TL)#geq" +
+                                             ToStringWithPrecision(Charged_particle_min_Ratio, 2);
+        string hTitleSepAMapsElectron = "Electron AMap for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{e}#leq" +
+                                        ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c] and (Reco./TL)#geq" + ToStringWithPrecision(Charged_particle_min_Ratio, 2);
         string hSaveNameSepAMapsElectron =
-            to_string(i + 1) + "_e_SepAMap_for_P_from_" + to_string_with_precision(BinLowerLim, 2) + "_to_" + to_string_with_precision(BinUpperLim, BinUpperLimPrecision);
+            to_string(i + 1) + "_e_SepAMap_for_P_from_" + ToStringWithPrecision(BinLowerLim, 2) + "_to_" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision);
         hPlot2D hPBinSepAMapsElectron =
             hPlot2D(AMapsMode_TitleAddition, "", hStatsTitleSepAMapsElectron, hTitleSepAMapsElectron, "#phi_{e} [Deg]", "#theta_{e} [Deg]", AMapSavePathSepAMapsElectron,
                     hSaveNameSepAMapsElectron, hBinLowerXLim, hBinUpperXLim, hBinLowerYLim, hBinUpperYLim, HistElectronSliceNumOfXBins, HistElectronSliceNumOfYBins);
@@ -200,11 +200,11 @@ AMaps::AMaps(const string &SampleName, const string &P_e_bin_profile, const stri
 
         //<editor-fold desc="Proton TL Acceptance maps">
         string hStatsTitleTLProton =
-            "TL P_{p} bin for " + to_string_with_precision(BinLowerLim, 2) + "#leqP^{truth}_{p}#leq" + to_string_with_precision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c]";
+            "TL P_{p} bin for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{p}#leq" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c]";
         string hTitleTLProton =
-            "TL P_{p} bin for " + to_string_with_precision(BinLowerLim, 2) + "#leqP^{truth}_{p}#leq" + to_string_with_precision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c]" + BinDensity;
+            "TL P_{p} bin for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{p}#leq" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c]" + BinDensity;
         string hSaveNameTLProton =
-            to_string(i + 1) + "_TL_P_bin_for_P_from_" + to_string_with_precision(BinLowerLim, 2) + "_to_" + to_string_with_precision(BinUpperLim, BinUpperLimPrecision);
+            to_string(i + 1) + "_TL_P_bin_for_P_from_" + ToStringWithPrecision(BinLowerLim, 2) + "_to_" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision);
         hPlot2D hPBinTLProton = hPlot2D(AMapsMode_TitleAddition, "", hStatsTitleTLProton, hTitleTLProton, "#phi_{p} [Deg]", "#theta_{p} [Deg]", AMapSavePathTLProton, hSaveNameTLProton,
                                         hBinLowerXLim, hBinUpperXLim, hBinLowerYLim, hBinUpperYLim, HistNucSliceNumOfXBins, HistNucSliceNumOfYBins);
         ProtonTLAMapsBySlice.push_back(hPBinTLProton);
@@ -212,11 +212,11 @@ AMaps::AMaps(const string &SampleName, const string &P_e_bin_profile, const stri
 
         //<editor-fold desc="Proton Reco. Acceptance maps">
         string hStatsTitleRecoProton =
-            "Reco P_{p} bin for " + to_string_with_precision(BinLowerLim, 2) + "#leqP^{truth}_{p}#leq" + to_string_with_precision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c]";
-        string hTitleRecoProton = "Reco P_{p} bin for " + to_string_with_precision(BinLowerLim, 2) + "#leqP^{truth}_{p}#leq" + to_string_with_precision(BinUpperLim, BinUpperLimPrecision) +
+            "Reco P_{p} bin for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{p}#leq" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c]";
+        string hTitleRecoProton = "Reco P_{p} bin for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{p}#leq" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) +
                                   " [GeV/c]" + BinDensity;
         string hSaveNameRecoProton =
-            to_string(i + 1) + "_Reco_P_bin_for_P_from_" + to_string_with_precision(BinLowerLim, 2) + "_to_" + to_string_with_precision(BinUpperLim, BinUpperLimPrecision);
+            to_string(i + 1) + "_Reco_P_bin_for_P_from_" + ToStringWithPrecision(BinLowerLim, 2) + "_to_" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision);
         hPlot2D hPBinRecoProton = hPlot2D(AMapsMode_TitleAddition, "", hStatsTitleRecoProton, hTitleRecoProton, "#phi_{p} [Deg]", "#theta_{p} [Deg]", AMapSavePathRecoProton,
                                           hSaveNameRecoProton, hBinLowerXLim, hBinUpperXLim, hBinLowerYLim, hBinUpperYLim, HistNucSliceNumOfXBins, HistNucSliceNumOfYBins);
         ProtonRecoAMapsBySlice.push_back(hPBinRecoProton);
@@ -224,11 +224,11 @@ AMaps::AMaps(const string &SampleName, const string &P_e_bin_profile, const stri
 
         //<editor-fold desc="Proton Reco./TL Ratio">
         string hStatsTitleRecoToTLRatioProton =
-            "Proton Reco/TL ratio for " + to_string_with_precision(BinLowerLim, 2) + "#leqP^{truth}_{p}#leq" + to_string_with_precision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c]";
-        string hTitleRecoToTLRatioProton = "Proton Reco/TL ratio for " + to_string_with_precision(BinLowerLim, 2) + "#leqP^{truth}_{p}#leq" +
-                                           to_string_with_precision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c]" + BinDensity;
+            "Proton Reco/TL ratio for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{p}#leq" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c]";
+        string hTitleRecoToTLRatioProton = "Proton Reco/TL ratio for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{p}#leq" +
+                                           ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c]" + BinDensity;
         string hSaveNameRecoToTLRatioProton =
-            to_string(i + 1) + "_p_Ratio_for_P_from_" + to_string_with_precision(BinLowerLim, 2) + "_to_" + to_string_with_precision(BinUpperLim, BinUpperLimPrecision);
+            to_string(i + 1) + "_p_Ratio_for_P_from_" + ToStringWithPrecision(BinLowerLim, 2) + "_to_" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision);
         hPlot2D hPBinRecoToTLRatioProton =
             hPlot2D(AMapsMode_TitleAddition, "", hStatsTitleRecoToTLRatioProton, hTitleRecoToTLRatioProton, "#phi_{p} [Deg]", "#theta_{p} [Deg]", AMapSavePathRecoToTLProton,
                     hSaveNameRecoToTLRatioProton, hBinLowerXLim, hBinUpperXLim, hBinLowerYLim, hBinUpperYLim, HistNucSliceNumOfXBins, HistNucSliceNumOfYBins);
@@ -236,13 +236,13 @@ AMaps::AMaps(const string &SampleName, const string &P_e_bin_profile, const stri
         //</editor-fold>
 
         //<editor-fold desc="Proton separate AMaps">
-        string hStatsTitleSepAMapsProton = "Proton AMap for " + to_string_with_precision(BinLowerLim, 2) + "#leqP^{truth}_{p}#leq" +
-                                           to_string_with_precision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c] and (Reco./TL)#geq" +
-                                           to_string_with_precision(Charged_particle_min_Ratio, 2);
-        string hTitleSepAMapsProton = "Proton AMap for " + to_string_with_precision(BinLowerLim, 2) + "#leqP^{truth}_{p}#leq" + to_string_with_precision(BinUpperLim, BinUpperLimPrecision) +
-                                      " [GeV/c] and (Reco./TL)#geq" + to_string_with_precision(Charged_particle_min_Ratio, 2);
+        string hStatsTitleSepAMapsProton = "Proton AMap for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{p}#leq" +
+                                           ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c] and (Reco./TL)#geq" +
+                                           ToStringWithPrecision(Charged_particle_min_Ratio, 2);
+        string hTitleSepAMapsProton = "Proton AMap for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{p}#leq" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) +
+                                      " [GeV/c] and (Reco./TL)#geq" + ToStringWithPrecision(Charged_particle_min_Ratio, 2);
         string hSaveNameSepAMapsProton =
-            to_string(i + 1) + "_p_SepAMap_for_P_from_" + to_string_with_precision(BinLowerLim, 2) + "_to_" + to_string_with_precision(BinUpperLim, BinUpperLimPrecision);
+            to_string(i + 1) + "_p_SepAMap_for_P_from_" + ToStringWithPrecision(BinLowerLim, 2) + "_to_" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision);
         hPlot2D hPBinSepAMapsProton = hPlot2D(AMapsMode_TitleAddition, "", hStatsTitleSepAMapsProton, hTitleSepAMapsProton, "#phi_{p} [Deg]", "#theta_{p} [Deg]", AMapSavePathSepAMapsProton,
                                               hSaveNameSepAMapsProton, hBinLowerXLim, hBinUpperXLim, hBinLowerYLim, hBinUpperYLim, HistNucSliceNumOfXBins, HistNucSliceNumOfYBins);
         ProtonAMapsBySlice.push_back(hPBinSepAMapsProton);
@@ -254,11 +254,11 @@ AMaps::AMaps(const string &SampleName, const string &P_e_bin_profile, const stri
 
         //<editor-fold desc="Neutron TL Acceptance maps">
         string hStatsTitleTLNeutron =
-            "TL P_{n} bin for " + to_string_with_precision(BinLowerLim, 2) + "#leqP^{truth}_{n}#leq" + to_string_with_precision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c]";
+            "TL P_{n} bin for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{n}#leq" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c]";
         string hTitleTLNeutron =
-            "TL P_{n} bin for " + to_string_with_precision(BinLowerLim, 2) + "#leqP^{truth}_{n}#leq" + to_string_with_precision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c]" + BinDensity;
+            "TL P_{n} bin for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{n}#leq" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c]" + BinDensity;
         string hSaveNameTLNeutron =
-            to_string(i + 1) + "_TL_P_bin_for_P_from_" + to_string_with_precision(BinLowerLim, 2) + "_to_" + to_string_with_precision(BinUpperLim, BinUpperLimPrecision);
+            to_string(i + 1) + "_TL_P_bin_for_P_from_" + ToStringWithPrecision(BinLowerLim, 2) + "_to_" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision);
         hPlot2D hPBinTLNeutron = hPlot2D(AMapsMode_TitleAddition, "", hStatsTitleTLNeutron, hTitleTLNeutron, "#phi_{n} [Deg]", "#theta_{n} [Deg]", AMapSavePathTLNeutron, hSaveNameTLNeutron,
                                          hBinLowerXLim, hBinUpperXLim, hBinLowerYLim, hBinUpperYLim, HistNucSliceNumOfXBins, HistNucSliceNumOfYBins);
         NeutronTLAMapsBySlice.push_back(hPBinTLNeutron);
@@ -266,11 +266,11 @@ AMaps::AMaps(const string &SampleName, const string &P_e_bin_profile, const stri
 
         //<editor-fold desc="Neutron Reco. Acceptance maps">
         string hStatsTitleRecoNeutron =
-            "Reco P_{n} bin for " + to_string_with_precision(BinLowerLim, 2) + "#leqP^{truth}_{n}#leq" + to_string_with_precision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c]";
-        string hTitleRecoNeutron = "Reco P_{n} bin for " + to_string_with_precision(BinLowerLim, 2) + "#leqP^{truth}_{n}#leq" + to_string_with_precision(BinUpperLim, BinUpperLimPrecision) +
+            "Reco P_{n} bin for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{n}#leq" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c]";
+        string hTitleRecoNeutron = "Reco P_{n} bin for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{n}#leq" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) +
                                    " [GeV/c]" + BinDensity;
         string hSaveNameRecoNeutron =
-            to_string(i + 1) + "_Reco_P_bin_for_P_from_" + to_string_with_precision(BinLowerLim, 2) + "_to_" + to_string_with_precision(BinUpperLim, BinUpperLimPrecision);
+            to_string(i + 1) + "_Reco_P_bin_for_P_from_" + ToStringWithPrecision(BinLowerLim, 2) + "_to_" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision);
         hPlot2D hPBinRecoNeutron = hPlot2D(AMapsMode_TitleAddition, "", hStatsTitleRecoNeutron, hTitleRecoNeutron, "#phi_{n} [Deg]", "#theta_{n} [Deg]", AMapSavePathRecoNeutron,
                                            hSaveNameRecoNeutron, hBinLowerXLim, hBinUpperXLim, hBinLowerYLim, hBinUpperYLim, HistNucSliceNumOfXBins, HistNucSliceNumOfYBins);
         NeutronRecoAMapsBySlice.push_back(hPBinRecoNeutron);
@@ -278,11 +278,11 @@ AMaps::AMaps(const string &SampleName, const string &P_e_bin_profile, const stri
 
         //<editor-fold desc="Neutron Reco./TL Ratio">
         string hStatsTitleRecoToTLRatioNeutron =
-            "Neutron Reco/TL ratio for " + to_string_with_precision(BinLowerLim, 2) + "#leqP^{truth}_{n}#leq" + to_string_with_precision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c]";
-        string hTitleRecoToTLRatioNeutron = "Neutron Reco/TL ratio for " + to_string_with_precision(BinLowerLim, 2) + "#leqP^{truth}_{n}#leq" +
-                                            to_string_with_precision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c]" + BinDensity;
+            "Neutron Reco/TL ratio for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{n}#leq" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c]";
+        string hTitleRecoToTLRatioNeutron = "Neutron Reco/TL ratio for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{n}#leq" +
+                                            ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c]" + BinDensity;
         string hSaveNameRecoToTLRatioNeutron =
-            to_string(i + 1) + "_p_Ratio_for_P_from_" + to_string_with_precision(BinLowerLim, 2) + "_to_" + to_string_with_precision(BinUpperLim, BinUpperLimPrecision);
+            to_string(i + 1) + "_p_Ratio_for_P_from_" + ToStringWithPrecision(BinLowerLim, 2) + "_to_" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision);
         hPlot2D hPBinRecoToTLRatioNeutron =
             hPlot2D(AMapsMode_TitleAddition, "", hStatsTitleRecoToTLRatioNeutron, hTitleRecoToTLRatioNeutron, "#phi_{n} [Deg]", "#theta_{n} [Deg]", AMapSavePathRecoToTLNeutron,
                     hSaveNameRecoToTLRatioNeutron, hBinLowerXLim, hBinUpperXLim, hBinLowerYLim, hBinUpperYLim, HistNucSliceNumOfXBins, HistNucSliceNumOfYBins);
@@ -290,13 +290,13 @@ AMaps::AMaps(const string &SampleName, const string &P_e_bin_profile, const stri
         //</editor-fold>
 
         //<editor-fold desc="Neutron separate AMaps">
-        string hStatsTitleSepAMapsNeutron = "Neutron AMap for " + to_string_with_precision(BinLowerLim, 2) + "#leqP^{truth}_{n}#leq" +
-                                            to_string_with_precision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c] and (Reco./TL)#geq" +
-                                            to_string_with_precision(Neutral_particle_min_Ratio, 2);
-        string hTitleSepAMapsNeutron = "Neutron AMap for " + to_string_with_precision(BinLowerLim, 2) + "#leqP^{truth}_{n}#leq" +
-                                       to_string_with_precision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c] and (Reco./TL)#geq" + to_string_with_precision(Neutral_particle_min_Ratio, 2);
+        string hStatsTitleSepAMapsNeutron = "Neutron AMap for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{n}#leq" +
+                                            ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c] and (Reco./TL)#geq" +
+                                            ToStringWithPrecision(Neutral_particle_min_Ratio, 2);
+        string hTitleSepAMapsNeutron = "Neutron AMap for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{n}#leq" +
+                                       ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c] and (Reco./TL)#geq" + ToStringWithPrecision(Neutral_particle_min_Ratio, 2);
         string hSaveNameSepAMapsNeutron =
-            to_string(i + 1) + "_n_SepAMap_for_P_from_" + to_string_with_precision(BinLowerLim, 2) + "_to_" + to_string_with_precision(BinUpperLim, BinUpperLimPrecision);
+            to_string(i + 1) + "_n_SepAMap_for_P_from_" + ToStringWithPrecision(BinLowerLim, 2) + "_to_" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision);
         hPlot2D hPBinSepAMapsNeutron =
             hPlot2D(AMapsMode_TitleAddition, "", hStatsTitleSepAMapsNeutron, hTitleSepAMapsNeutron, "#phi_{n} [Deg]", "#theta_{n} [Deg]", AMapSavePathSepAMapsNeutron,
                     hSaveNameSepAMapsNeutron, hBinLowerXLim, hBinUpperXLim, hBinLowerYLim, hBinUpperYLim, HistNucSliceNumOfXBins, HistNucSliceNumOfYBins);
@@ -333,26 +333,26 @@ AMaps::AMaps(const string &SampleName, const string &P_e_bin_profile, const stri
 
     //<editor-fold desc="Finalized acceptance maps">
     string hStatsTitleAMapElectron = "Electron_AMap";
-    string hTitleAMapElectron = "Electron AMap for (Reco./TL)#geq" + to_string_with_precision(Charged_particle_min_Ratio, 2);
+    string hTitleAMapElectron = "Electron AMap for (Reco./TL)#geq" + ToStringWithPrecision(Charged_particle_min_Ratio, 2);
     string hSaveNameAMapElectron = "01_e_AMap";
     ElectronAMap = hPlot2D(AMapsMode_TitleAddition, "", hStatsTitleAMapElectron, hTitleAMapElectron, "#phi_{e} [Deg]", "#theta_{e} [Deg]", AMapSavePathAMap, hSaveNameAMapElectron,
                            hBinLowerXLim, hBinUpperXLim, hBinLowerYLim, hBinUpperYLim, HistElectronSliceNumOfXBins, HistElectronSliceNumOfYBins);
 
     string hStatsTitleAMapProton = "Proton_AMap";
-    string hTitleAMapProton = "Proton AMap for (Reco./TL)#geq" + to_string_with_precision(Charged_particle_min_Ratio, 2);
+    string hTitleAMapProton = "Proton AMap for (Reco./TL)#geq" + ToStringWithPrecision(Charged_particle_min_Ratio, 2);
     string hSaveNameAMapProton = "02_p_AMap";
     ProtonAMap = hPlot2D(AMapsMode_TitleAddition, "", hStatsTitleAMapProton, hTitleAMapProton, "#phi_{p} [Deg]", "#theta_{p} [Deg]", AMapSavePathAMap, hSaveNameAMapProton, hBinLowerXLim,
                          hBinUpperXLim, hBinLowerYLim, hBinUpperYLim, HistNucSliceNumOfXBins, HistNucSliceNumOfYBins);
 
     string hStatsTitleAMapNeutron = "Neutron_AMap";
-    string hTitleAMapNeutron = "Neutron AMap for (Reco./TL)#geq" + to_string_with_precision(Neutral_particle_min_Ratio, 2);
+    string hTitleAMapNeutron = "Neutron AMap for (Reco./TL)#geq" + ToStringWithPrecision(Neutral_particle_min_Ratio, 2);
     string hSaveNameAMapNeutron = "03_n_AMap";
     NeutronAMap = hPlot2D(AMapsMode_TitleAddition, "", hStatsTitleAMapNeutron, hTitleAMapNeutron, "#phi_{n} [Deg]", "#theta_{n} [Deg]", AMapSavePathAMap, hSaveNameAMapNeutron, hBinLowerXLim,
                           hBinUpperXLim, hBinLowerYLim, hBinUpperYLim, HistNucSliceNumOfXBins, HistNucSliceNumOfYBins);
 
     string hStatsTitleAMapNucleon = "Nucleon_AMap";
     string hTitleAMapNucleon =
-        "Nucleon AMap for (Reco./TL)_{n}#geq" + to_string_with_precision(Neutral_particle_min_Ratio, 2) + " and (Reco./TL)_{c}#geq" + to_string_with_precision(Charged_particle_min_Ratio, 2);
+        "Nucleon AMap for (Reco./TL)_{n}#geq" + ToStringWithPrecision(Neutral_particle_min_Ratio, 2) + " and (Reco./TL)_{c}#geq" + ToStringWithPrecision(Charged_particle_min_Ratio, 2);
     string hSaveNameAMapNucleon = "04_nuc_AMap";
     NucleonAMap = hPlot2D(AMapsMode_TitleAddition, "", hStatsTitleAMapNucleon, hTitleAMapNucleon, "#phi_{nuc} [Deg]", "#theta_{nuc} [Deg]", AMapSavePathAMap, hSaveNameAMapNucleon,
                           hBinLowerXLim, hBinUpperXLim, hBinLowerYLim, hBinUpperYLim, HistNucSliceNumOfXBins, HistNucSliceNumOfYBins);
@@ -561,7 +561,7 @@ void AMaps::SetElectronBins(const string &P_e_bin_profile, double beamE) {
 
         if (RegPrintOut) { exit(0); }
     } else if (P_e_bin_profile == "varying_P_e_bins") {
-        if (findSubstring(SName, "C12_simulation_6GeV_T5")) {  // Old sample
+        if (FindSubstring(SName, "C12_simulation_6GeV_T5")) {  // Old sample
             ElectronMomSliceLimits = CustomElectronMomSliceLimits_C12_simulation_6GeV_T5;
         } else {  // New sample (24M; 1-foil & 4-foil)
             ElectronMomSliceLimits = CustomElectronMomSliceLimits_C12x4_simulation_G18_Q204_6GeV;
@@ -1335,9 +1335,9 @@ void AMaps::SaveHitMaps(const string &SampleName, const string &AcceptanceMapsDi
         ofstream e_AMap_TempFile, e_WMap_TempFile;
 
         string AMapTempFileName =
-            "e_AMap_file_from_" + to_string_with_precision(ElectronMomSliceLimits.at(Slice).at(0), 2) + "_to_" + to_string_with_precision(ElectronMomSliceLimits.at(Slice).at(1), 2) + ".par";
+            "e_AMap_file_from_" + ToStringWithPrecision(ElectronMomSliceLimits.at(Slice).at(0), 2) + "_to_" + ToStringWithPrecision(ElectronMomSliceLimits.at(Slice).at(1), 2) + ".par";
         string WMapTempFileName =
-            "e_WMap_file_from_" + to_string_with_precision(ElectronMomSliceLimits.at(Slice).at(0), 2) + "_to_" + to_string_with_precision(ElectronMomSliceLimits.at(Slice).at(1), 2) + ".par";
+            "e_WMap_file_from_" + ToStringWithPrecision(ElectronMomSliceLimits.at(Slice).at(0), 2) + "_to_" + ToStringWithPrecision(ElectronMomSliceLimits.at(Slice).at(1), 2) + ".par";
 
         e_AMap_TempFile.open(AMapSliceElectronSavePath + AMapTempFileName);
         e_WMap_TempFile.open(WMapSliceElectronSavePath + WMapTempFileName);
@@ -1380,17 +1380,17 @@ void AMaps::SaveHitMaps(const string &SampleName, const string &AcceptanceMapsDi
         ofstream p_AMap_TempFile, p_WMap_TempFile, n_AMap_TempFile, n_WMap_TempFile, nuc_AMap_TempFile, nuc_WMap_TempFile;
 
         string ProtonAMapTempFileName =
-            "p_AMap_file_from_" + to_string_with_precision(NucleonMomSliceLimits.at(Slice).at(0), 2) + "_to_" + to_string_with_precision(NucleonMomSliceLimits.at(Slice).at(1), 2) + ".par";
+            "p_AMap_file_from_" + ToStringWithPrecision(NucleonMomSliceLimits.at(Slice).at(0), 2) + "_to_" + ToStringWithPrecision(NucleonMomSliceLimits.at(Slice).at(1), 2) + ".par";
         string ProtonWMapTempFileName =
-            "p_WMap_file_from_" + to_string_with_precision(NucleonMomSliceLimits.at(Slice).at(0), 2) + "_to_" + to_string_with_precision(NucleonMomSliceLimits.at(Slice).at(1), 2) + ".par";
+            "p_WMap_file_from_" + ToStringWithPrecision(NucleonMomSliceLimits.at(Slice).at(0), 2) + "_to_" + ToStringWithPrecision(NucleonMomSliceLimits.at(Slice).at(1), 2) + ".par";
         string NeutronAMapTempFileName =
-            "n_AMap_file_from_" + to_string_with_precision(NucleonMomSliceLimits.at(Slice).at(0), 2) + "_to_" + to_string_with_precision(NucleonMomSliceLimits.at(Slice).at(1), 2) + ".par";
+            "n_AMap_file_from_" + ToStringWithPrecision(NucleonMomSliceLimits.at(Slice).at(0), 2) + "_to_" + ToStringWithPrecision(NucleonMomSliceLimits.at(Slice).at(1), 2) + ".par";
         string NeutronWMapTempFileName =
-            "n_WMap_file_from_" + to_string_with_precision(NucleonMomSliceLimits.at(Slice).at(0), 2) + "_to_" + to_string_with_precision(NucleonMomSliceLimits.at(Slice).at(1), 2) + ".par";
+            "n_WMap_file_from_" + ToStringWithPrecision(NucleonMomSliceLimits.at(Slice).at(0), 2) + "_to_" + ToStringWithPrecision(NucleonMomSliceLimits.at(Slice).at(1), 2) + ".par";
         string NucleonAMapTempFileName =
-            "nuc_AMap_file_from_" + to_string_with_precision(NucleonMomSliceLimits.at(Slice).at(0), 2) + "_to_" + to_string_with_precision(NucleonMomSliceLimits.at(Slice).at(1), 2) + ".par";
+            "nuc_AMap_file_from_" + ToStringWithPrecision(NucleonMomSliceLimits.at(Slice).at(0), 2) + "_to_" + ToStringWithPrecision(NucleonMomSliceLimits.at(Slice).at(1), 2) + ".par";
         string NucleonWMapTempFileName =
-            "nuc_WMap_file_from_" + to_string_with_precision(NucleonMomSliceLimits.at(Slice).at(0), 2) + "_to_" + to_string_with_precision(NucleonMomSliceLimits.at(Slice).at(1), 2) + ".par";
+            "nuc_WMap_file_from_" + ToStringWithPrecision(NucleonMomSliceLimits.at(Slice).at(0), 2) + "_to_" + ToStringWithPrecision(NucleonMomSliceLimits.at(Slice).at(1), 2) + ".par";
 
         p_AMap_TempFile.open(AMapSliceProtonSavePath + ProtonAMapTempFileName);
         p_WMap_TempFile.open(WMapSliceProtonSavePath + ProtonWMapTempFileName);
@@ -1956,13 +1956,13 @@ void AMaps::ReadHitMaps(const string &AcceptanceMapsDirectory, const string &Sam
 
         TH2D *TempHist = (TH2D *)keyAsObj;
 
-        if (findSubstring(TempHist->GetTitle(), "Electron") || findSubstring(TempHist->GetTitle(), "electron")) {
+        if (FindSubstring(TempHist->GetTitle(), "Electron") || FindSubstring(TempHist->GetTitle(), "electron")) {
             ElectronAMapBC.SetHistogram2D(TempHist);
-        } else if (findSubstring(TempHist->GetTitle(), "Proton") || findSubstring(TempHist->GetTitle(), "proton")) {
+        } else if (FindSubstring(TempHist->GetTitle(), "Proton") || FindSubstring(TempHist->GetTitle(), "proton")) {
             ProtonAMapBC.SetHistogram2D(TempHist);
-        } else if (findSubstring(TempHist->GetTitle(), "Neutron") || findSubstring(TempHist->GetTitle(), "neutron")) {
+        } else if (FindSubstring(TempHist->GetTitle(), "Neutron") || FindSubstring(TempHist->GetTitle(), "neutron")) {
             NeutronAMapBC.SetHistogram2D(TempHist);
-        } else if (findSubstring(TempHist->GetTitle(), "Nucleon") || findSubstring(TempHist->GetTitle(), "nucleon")) {
+        } else if (FindSubstring(TempHist->GetTitle(), "Nucleon") || FindSubstring(TempHist->GetTitle(), "nucleon")) {
             NucleonAMapBC.SetHistogram2D(TempHist);
         }
     }
@@ -1986,12 +1986,12 @@ void AMaps::ReadHitMaps(const string &AcceptanceMapsDirectory, const string &Sam
 
         if (counter == 0) { SetHistBinsFromHistTitle(TempHist); }
 
-        if (findSubstring(TempHist->GetTitle(), "{e}")) {
+        if (FindSubstring(TempHist->GetTitle(), "{e}")) {
             ElectronTLAMapsBySlice.push_back(Temp2DHist);
             SetSlicesFromHistTitle(TempHist, NucleonMomSliceLimits);
-        } else if (findSubstring(TempHist->GetTitle(), "{p}")) {
+        } else if (FindSubstring(TempHist->GetTitle(), "{p}")) {
             ProtonTLAMapsBySlice.push_back(Temp2DHist);
-        } else if (findSubstring(TempHist->GetTitle(), "{n}")) {
+        } else if (FindSubstring(TempHist->GetTitle(), "{n}")) {
             NeutronTLAMap.SetHistogram2D(TempHist);
         }
 
@@ -2013,11 +2013,11 @@ void AMaps::ReadHitMaps(const string &AcceptanceMapsDirectory, const string &Sam
         hPlot2D Temp2DHist;
         Temp2DHist.SetHistogram2D(TempHist);
 
-        if (findSubstring(TempHist->GetTitle(), "{e}")) {
+        if (FindSubstring(TempHist->GetTitle(), "{e}")) {
             ElectronRecoAMapsBySlice.push_back(Temp2DHist);
-        } else if (findSubstring(TempHist->GetTitle(), "{p}")) {
+        } else if (FindSubstring(TempHist->GetTitle(), "{p}")) {
             ProtonRecoAMapsBySlice.push_back(Temp2DHist);
-        } else if (findSubstring(TempHist->GetTitle(), "{n}")) {
+        } else if (FindSubstring(TempHist->GetTitle(), "{n}")) {
             NeutronRecoAMap.SetHistogram2D(TempHist);
         }
     }
@@ -2037,11 +2037,11 @@ void AMaps::ReadHitMaps(const string &AcceptanceMapsDirectory, const string &Sam
         hPlot2D Temp2DHist;
         Temp2DHist.SetHistogram2D(TempHist);
 
-        if (findSubstring(TempHist->GetTitle(), "{e}")) {
+        if (FindSubstring(TempHist->GetTitle(), "{e}")) {
             ElectronRecoToTLRatioBySlice.push_back(Temp2DHist);
-        } else if (findSubstring(TempHist->GetTitle(), "{p}")) {
+        } else if (FindSubstring(TempHist->GetTitle(), "{p}")) {
             ProtonRecoToTLRatioBySlice.push_back(Temp2DHist);
-        } else if (findSubstring(TempHist->GetTitle(), "{n}")) {
+        } else if (FindSubstring(TempHist->GetTitle(), "{n}")) {
             NeutronRecoToTLRatio.SetHistogram2D(TempHist);
         }
     }
@@ -2061,9 +2061,9 @@ void AMaps::ReadHitMaps(const string &AcceptanceMapsDirectory, const string &Sam
         hPlot2D Temp2DHist;
         Temp2DHist.SetHistogram2D(TempHist);
 
-        if (findSubstring(TempHist->GetTitle(), "Electron") || findSubstring(TempHist->GetTitle(), "electron")) {
+        if (FindSubstring(TempHist->GetTitle(), "Electron") || FindSubstring(TempHist->GetTitle(), "electron")) {
             ElectronAMapsBySlice.push_back(Temp2DHist);
-        } else if (findSubstring(TempHist->GetTitle(), "Proton") || findSubstring(TempHist->GetTitle(), "proton")) {
+        } else if (FindSubstring(TempHist->GetTitle(), "Proton") || FindSubstring(TempHist->GetTitle(), "proton")) {
             ProtonAMapsBySlice.push_back(Temp2DHist);
         }
     }
@@ -2107,7 +2107,7 @@ void AMaps::ReadAMapLimits(const char *filename, vector<vector<double>> &Loaded_
             string parameter, parameter2;
             ss >> parameter;  // get cut identifier
 
-            if (findSubstring(parameter, "_slice_")) {
+            if (FindSubstring(parameter, "_slice_")) {
                 // get cut values
                 ss >> parameter2;
                 stringstream ss2(parameter2);
@@ -2152,8 +2152,8 @@ void AMaps::ReadAMapSlices(const string &SampleName, const string &AcceptanceMap
          Slice++) {
         vector<vector<int>> Loaded_Particle_AMap_TempSlice;
 
-        string TempFileName = ParticleShort + "_AMap_by_slice/" + ParticleShort + "_AMap_file_from_" + to_string_with_precision(Loaded_particle_limits.at(Slice).at(0), 2) + "_to_" +
-                              to_string_with_precision(Loaded_particle_limits.at(Slice).at(1), 2) + ".par";
+        string TempFileName = ParticleShort + "_AMap_by_slice/" + ParticleShort + "_AMap_file_from_" + ToStringWithPrecision(Loaded_particle_limits.at(Slice).at(0), 2) + "_to_" +
+                              ToStringWithPrecision(Loaded_particle_limits.at(Slice).at(1), 2) + ".par";
 
         ReadAMap((AcceptanceMapsDirectory + SampleName + "/" + TempFileName)
                      .
@@ -2194,8 +2194,8 @@ void AMaps::ReadWMapSlices(const string &SampleName, const string &AcceptanceMap
          Slice++) {
         vector<vector<double>> Loaded_Particle_WMap_TempSlice;
 
-        string TempFileName = ParticleShort + "_WMap_by_slice/" + ParticleShort + "_WMap_file_from_" + to_string_with_precision(Loaded_particle_limits.at(Slice).at(0), 2) + "_to_" +
-                              to_string_with_precision(Loaded_particle_limits.at(Slice).at(1), 2) + ".par";
+        string TempFileName = ParticleShort + "_WMap_by_slice/" + ParticleShort + "_WMap_file_from_" + ToStringWithPrecision(Loaded_particle_limits.at(Slice).at(0), 2) + "_to_" +
+                              ToStringWithPrecision(Loaded_particle_limits.at(Slice).at(1), 2) + ".par";
 
         ReadWMap((AcceptanceMapsDirectory + SampleName + "/" + TempFileName)
                      .
@@ -2228,7 +2228,7 @@ void AMaps::ReadAMap(const char *filename, vector<vector<int>> &Loaded_particle_
             string parameter, parameter2;
             ss >> parameter;  // get cut identifier
 
-            if (findSubstring(parameter, "Line")) {
+            if (FindSubstring(parameter, "Line")) {
                 // get cut values
                 ss >> parameter2;
                 stringstream ss2(parameter2);
@@ -2265,7 +2265,7 @@ void AMaps::ReadWMap(const char *filename, vector<vector<double>> &Loaded_partic
             string parameter, parameter2;
             ss >> parameter;  // get cut identifier
 
-            if (findSubstring(parameter, "Weight")) {
+            if (FindSubstring(parameter, "Weight")) {
                 // get cut values
                 ss >> parameter2;
                 stringstream ss2(parameter2);
