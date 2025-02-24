@@ -306,8 +306,6 @@ AMaps::AMaps(const string &SampleName, const string &P_e_bin_profile, const stri
     string hStatsTitleTLNeutron = "TL Neutron Hit Map", hTitleTLNeutron = "TL Neutron Hit Map", hSaveNameTLNeutron = "TL_n_AMap";
     NeutronTLAMap = hPlot2D(AMapsMode_TitleAddition, "", hStatsTitleTLNeutron, hTitleTLNeutron, "#phi_{n} [Deg]", "#theta_{n} [Deg]", AMapSavePathTLNeutron, hSaveNameTLNeutron,
                             hBinLowerXLim, hBinUpperXLim, hBinLowerYLim, hBinUpperYLim, HistNucSliceNumOfXBins, HistNucSliceNumOfYBins);
-    cout << "\n\n\nNeutronTLAMap.GetHistogram2D()->GetName() = " << NeutronTLAMap.GetHistogram2D()->GetName() << "\n";
-
     //</editor-fold>
 
     //<editor-fold desc="Neutron Reco. Acceptance maps">
@@ -747,6 +745,8 @@ bool AMaps::isReco(const string &SampleType) {
 void AMaps::hFillHitMaps(const string &SampleType, const string &particle, double Momentum, double Theta, double Phi, double Weight) {
     bool is_e = isElectron(particle), is_p = isProton(particle), is_n = isNeutron(particle);
     bool is_TL = isTL(SampleType), is_Reco = isReco(SampleType);
+
+    cout << "\n\n\nNeutronTLAMap.GetHistogram2D()->GetName() = " << NeutronTLAMap.GetHistogram2D()->GetName() << "\n";
 
     bool TL_e_PrintOut = false, TL_p_PrintOut = false, TL_n_PrintOut = false;
     bool Reco_e_PrintOut = false, Reco_p_PrintOut = false, Reco_n_PrintOut = false;
