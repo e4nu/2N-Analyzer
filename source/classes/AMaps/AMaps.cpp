@@ -306,6 +306,8 @@ AMaps::AMaps(const string &SampleName, const string &P_e_bin_profile, const stri
     string hStatsTitleTLNeutron = "TL Neutron Hit Map", hTitleTLNeutron = "TL Neutron Hit Map", hSaveNameTLNeutron = "TL_n_AMap";
     NeutronTLAMap = hPlot2D(AMapsMode_TitleAddition, "", hStatsTitleTLNeutron, hTitleTLNeutron, "#phi_{n} [Deg]", "#theta_{n} [Deg]", AMapSavePathTLNeutron, hSaveNameTLNeutron,
                             hBinLowerXLim, hBinUpperXLim, hBinLowerYLim, hBinUpperYLim, HistNucSliceNumOfXBins, HistNucSliceNumOfYBins);
+    cout << "\n\n\nNeutronTLAMap.GetHistogram2D()->GetName() = " << NeutronTLAMap.GetHistogram2D()->GetName() << "\n";
+
     //</editor-fold>
 
     //<editor-fold desc="Neutron Reco. Acceptance maps">
