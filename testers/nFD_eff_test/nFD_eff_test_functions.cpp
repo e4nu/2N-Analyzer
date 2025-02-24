@@ -23,14 +23,14 @@
 // #include "../source/classes/ParticleID/ParticleID.cpp"
 #include "../../source/constants.h"
 #include "../../source/namespaces/utilities/utilities.cpp"
-// #include "HipoChain.h"
-// #include "clas12reader.h"
+#include "HipoChain.h"
+#include "clas12reader.h"
 
 using namespace std;
-// using namespace clas12;
+using namespace clas12;
 using namespace utilities;
 
-#include "../../source/classes/AMaps/AMaps.cpp"
+// #include "../../source/classes/AMaps/AMaps.cpp"
 
 double CalcToFnFD(region_part_ptr NeutronFD, double starttime = 9999) {
     bool ParticleInPCAL = (NeutronFD->cal(clas12::PCAL)->getDetector() == 7);                       // PCAL hit
