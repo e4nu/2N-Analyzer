@@ -186,6 +186,14 @@ class AMaps {
         return out.str();
     }
 
+    bool findSubstring(string string1, string string2) {
+        if (string1.find(string2) != string::npos) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     // SetBins functions ----------------------------------------------------------------------------------------------------------------------------------------------------
 
     void SetBins(const string &P_nuc_bin_profile, double beamE);
