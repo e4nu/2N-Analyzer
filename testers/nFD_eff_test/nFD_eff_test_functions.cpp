@@ -30,9 +30,9 @@ using namespace clas12;
 
 #define IndependentEffTester 0  // Use 0 instead of false
 
-#if (!IndependentEffTester)
-#include "../../source/classes/AMaps/AMaps.cpp"
-#endif
+// #if (!IndependentEffTester)
+// #include "../../source/classes/AMaps/AMaps.cpp"
+// #endif
 
 double CalcToFnFD(region_part_ptr NeutronFD, double starttime = 9999) {
     bool ParticleInPCAL = (NeutronFD->cal(clas12::PCAL)->getDetector() == 7);                       // PCAL hit
@@ -185,6 +185,8 @@ bool findSubstring(string string1, string string2) {
         return false;
     }
 }
+#else
+#include "../../source/classes/AMaps/AMaps.cpp"
 #endif
 
 bool NeutronECAL_Cut_Veto(vector<region_part_ptr>& allParticles, vector<region_part_ptr>& electrons, const double& beamE, const int& index, const double& veto_cut) {
