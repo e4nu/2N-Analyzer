@@ -4,20 +4,20 @@
 
 #include "AMaps.h"
 
-#include <TApplication.h>
-#include <TCanvas.h>
-#include <TChain.h>
-#include <TDatabasePDG.h>
-#include <TFile.h>
-#include <TH1.h>
-#include <TH2.h>
-#include <TLatex.h>
-#include <TLorentzVector.h>
-#include <TROOT.h>
-#include <TStyle.h>
-#include <TTree.h>
+// #include <TApplication.h>
+// #include <TCanvas.h>
+// #include <TChain.h>
+// #include <TDatabasePDG.h>
+// #include <TFile.h>
+// #include <TH1.h>
+// #include <TH2.h>
+// #include <TLatex.h>
+// #include <TLorentzVector.h>
+// #include <TROOT.h>
+// #include <TStyle.h>
+// #include <TTree.h>
 
-#include "CustomSliceLimits.h"
+// #include "CustomSliceLimits.h"
 
 // AMaps constructors ---------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -131,8 +131,7 @@ AMaps::AMaps(const string &SampleName, const string &P_e_bin_profile, const stri
             "TL P_{e} bin for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{e}#leq" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c]";
         string hTitleTLElectron =
             "TL P_{e} bin for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{e}#leq" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c]" + BinDensity;
-        string hSaveNameTLElectron =
-            to_string(i + 1) + "_TL_P_bin_for_P_from_" + ToStringWithPrecision(BinLowerLim, 2) + "_to_" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision);
+        string hSaveNameTLElectron = to_string(i + 1) + "_TL_P_bin_for_P_from_" + ToStringWithPrecision(BinLowerLim, 2) + "_to_" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision);
         hPlot2D hPBinTLElectron = hPlot2D(AMapsMode_TitleAddition, "", hStatsTitleTLElectron, hTitleTLElectron, "#phi_{e} [Deg]", "#theta_{e} [Deg]", AMapSavePathTLElectron,
                                           hSaveNameTLElectron, hBinLowerXLim, hBinUpperXLim, hBinLowerYLim, hBinUpperYLim, HistElectronSliceNumOfXBins, HistElectronSliceNumOfYBins);
         ElectronTLAMapsBySlice.push_back(hPBinTLElectron);
@@ -141,8 +140,8 @@ AMaps::AMaps(const string &SampleName, const string &P_e_bin_profile, const stri
         //<editor-fold desc="Electron Reco. Acceptance maps">
         string hStatsTitleRecoElectron =
             "Reco P_{e} bin for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{e}#leq" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c]";
-        string hTitleRecoElectron = "Reco P_{e} bin for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{e}#leq" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) +
-                                    " [GeV/c]" + BinDensity;
+        string hTitleRecoElectron =
+            "Reco P_{e} bin for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{e}#leq" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c]" + BinDensity;
         string hSaveNameRecoElectron =
             to_string(i + 1) + "_Reco_P_bin_for_P_from_" + ToStringWithPrecision(BinLowerLim, 2) + "_to_" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision);
         hPlot2D hPBinRecoElectron = hPlot2D(AMapsMode_TitleAddition, "", hStatsTitleRecoElectron, hTitleRecoElectron, "#phi_{e} [Deg]", "#theta_{e} [Deg]", AMapSavePathRecoElectron,
@@ -165,10 +164,9 @@ AMaps::AMaps(const string &SampleName, const string &P_e_bin_profile, const stri
 
         //<editor-fold desc="Electron separate AMaps">
         string hStatsTitleSepAMapsElectron = "Electron AMap for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{e}#leq" +
-                                             ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c] and (Reco./TL)#geq" +
-                                             ToStringWithPrecision(Charged_particle_min_Ratio, 2);
-        string hTitleSepAMapsElectron = "Electron AMap for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{e}#leq" +
-                                        ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c] and (Reco./TL)#geq" + ToStringWithPrecision(Charged_particle_min_Ratio, 2);
+                                             ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c] and (Reco./TL)#geq" + ToStringWithPrecision(Charged_particle_min_Ratio, 2);
+        string hTitleSepAMapsElectron = "Electron AMap for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{e}#leq" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) +
+                                        " [GeV/c] and (Reco./TL)#geq" + ToStringWithPrecision(Charged_particle_min_Ratio, 2);
         string hSaveNameSepAMapsElectron =
             to_string(i + 1) + "_e_SepAMap_for_P_from_" + ToStringWithPrecision(BinLowerLim, 2) + "_to_" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision);
         hPlot2D hPBinSepAMapsElectron =
@@ -203,8 +201,7 @@ AMaps::AMaps(const string &SampleName, const string &P_e_bin_profile, const stri
             "TL P_{p} bin for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{p}#leq" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c]";
         string hTitleTLProton =
             "TL P_{p} bin for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{p}#leq" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c]" + BinDensity;
-        string hSaveNameTLProton =
-            to_string(i + 1) + "_TL_P_bin_for_P_from_" + ToStringWithPrecision(BinLowerLim, 2) + "_to_" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision);
+        string hSaveNameTLProton = to_string(i + 1) + "_TL_P_bin_for_P_from_" + ToStringWithPrecision(BinLowerLim, 2) + "_to_" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision);
         hPlot2D hPBinTLProton = hPlot2D(AMapsMode_TitleAddition, "", hStatsTitleTLProton, hTitleTLProton, "#phi_{p} [Deg]", "#theta_{p} [Deg]", AMapSavePathTLProton, hSaveNameTLProton,
                                         hBinLowerXLim, hBinUpperXLim, hBinLowerYLim, hBinUpperYLim, HistNucSliceNumOfXBins, HistNucSliceNumOfYBins);
         ProtonTLAMapsBySlice.push_back(hPBinTLProton);
@@ -213,10 +210,9 @@ AMaps::AMaps(const string &SampleName, const string &P_e_bin_profile, const stri
         //<editor-fold desc="Proton Reco. Acceptance maps">
         string hStatsTitleRecoProton =
             "Reco P_{p} bin for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{p}#leq" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c]";
-        string hTitleRecoProton = "Reco P_{p} bin for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{p}#leq" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) +
-                                  " [GeV/c]" + BinDensity;
-        string hSaveNameRecoProton =
-            to_string(i + 1) + "_Reco_P_bin_for_P_from_" + ToStringWithPrecision(BinLowerLim, 2) + "_to_" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision);
+        string hTitleRecoProton =
+            "Reco P_{p} bin for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{p}#leq" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c]" + BinDensity;
+        string hSaveNameRecoProton = to_string(i + 1) + "_Reco_P_bin_for_P_from_" + ToStringWithPrecision(BinLowerLim, 2) + "_to_" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision);
         hPlot2D hPBinRecoProton = hPlot2D(AMapsMode_TitleAddition, "", hStatsTitleRecoProton, hTitleRecoProton, "#phi_{p} [Deg]", "#theta_{p} [Deg]", AMapSavePathRecoProton,
                                           hSaveNameRecoProton, hBinLowerXLim, hBinUpperXLim, hBinLowerYLim, hBinUpperYLim, HistNucSliceNumOfXBins, HistNucSliceNumOfYBins);
         ProtonRecoAMapsBySlice.push_back(hPBinRecoProton);
@@ -236,9 +232,8 @@ AMaps::AMaps(const string &SampleName, const string &P_e_bin_profile, const stri
         //</editor-fold>
 
         //<editor-fold desc="Proton separate AMaps">
-        string hStatsTitleSepAMapsProton = "Proton AMap for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{p}#leq" +
-                                           ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c] and (Reco./TL)#geq" +
-                                           ToStringWithPrecision(Charged_particle_min_Ratio, 2);
+        string hStatsTitleSepAMapsProton = "Proton AMap for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{p}#leq" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) +
+                                           " [GeV/c] and (Reco./TL)#geq" + ToStringWithPrecision(Charged_particle_min_Ratio, 2);
         string hTitleSepAMapsProton = "Proton AMap for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{p}#leq" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) +
                                       " [GeV/c] and (Reco./TL)#geq" + ToStringWithPrecision(Charged_particle_min_Ratio, 2);
         string hSaveNameSepAMapsProton =
@@ -257,8 +252,7 @@ AMaps::AMaps(const string &SampleName, const string &P_e_bin_profile, const stri
             "TL P_{n} bin for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{n}#leq" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c]";
         string hTitleTLNeutron =
             "TL P_{n} bin for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{n}#leq" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c]" + BinDensity;
-        string hSaveNameTLNeutron =
-            to_string(i + 1) + "_TL_P_bin_for_P_from_" + ToStringWithPrecision(BinLowerLim, 2) + "_to_" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision);
+        string hSaveNameTLNeutron = to_string(i + 1) + "_TL_P_bin_for_P_from_" + ToStringWithPrecision(BinLowerLim, 2) + "_to_" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision);
         hPlot2D hPBinTLNeutron = hPlot2D(AMapsMode_TitleAddition, "", hStatsTitleTLNeutron, hTitleTLNeutron, "#phi_{n} [Deg]", "#theta_{n} [Deg]", AMapSavePathTLNeutron, hSaveNameTLNeutron,
                                          hBinLowerXLim, hBinUpperXLim, hBinLowerYLim, hBinUpperYLim, HistNucSliceNumOfXBins, HistNucSliceNumOfYBins);
         NeutronTLAMapsBySlice.push_back(hPBinTLNeutron);
@@ -267,8 +261,8 @@ AMaps::AMaps(const string &SampleName, const string &P_e_bin_profile, const stri
         //<editor-fold desc="Neutron Reco. Acceptance maps">
         string hStatsTitleRecoNeutron =
             "Reco P_{n} bin for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{n}#leq" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c]";
-        string hTitleRecoNeutron = "Reco P_{n} bin for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{n}#leq" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) +
-                                   " [GeV/c]" + BinDensity;
+        string hTitleRecoNeutron =
+            "Reco P_{n} bin for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{n}#leq" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c]" + BinDensity;
         string hSaveNameRecoNeutron =
             to_string(i + 1) + "_Reco_P_bin_for_P_from_" + ToStringWithPrecision(BinLowerLim, 2) + "_to_" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision);
         hPlot2D hPBinRecoNeutron = hPlot2D(AMapsMode_TitleAddition, "", hStatsTitleRecoNeutron, hTitleRecoNeutron, "#phi_{n} [Deg]", "#theta_{n} [Deg]", AMapSavePathRecoNeutron,
@@ -290,11 +284,10 @@ AMaps::AMaps(const string &SampleName, const string &P_e_bin_profile, const stri
         //</editor-fold>
 
         //<editor-fold desc="Neutron separate AMaps">
-        string hStatsTitleSepAMapsNeutron = "Neutron AMap for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{n}#leq" +
-                                            ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c] and (Reco./TL)#geq" +
-                                            ToStringWithPrecision(Neutral_particle_min_Ratio, 2);
-        string hTitleSepAMapsNeutron = "Neutron AMap for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{n}#leq" +
-                                       ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c] and (Reco./TL)#geq" + ToStringWithPrecision(Neutral_particle_min_Ratio, 2);
+        string hStatsTitleSepAMapsNeutron = "Neutron AMap for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{n}#leq" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) +
+                                            " [GeV/c] and (Reco./TL)#geq" + ToStringWithPrecision(Neutral_particle_min_Ratio, 2);
+        string hTitleSepAMapsNeutron = "Neutron AMap for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{n}#leq" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) +
+                                       " [GeV/c] and (Reco./TL)#geq" + ToStringWithPrecision(Neutral_particle_min_Ratio, 2);
         string hSaveNameSepAMapsNeutron =
             to_string(i + 1) + "_n_SepAMap_for_P_from_" + ToStringWithPrecision(BinLowerLim, 2) + "_to_" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision);
         hPlot2D hPBinSepAMapsNeutron =
