@@ -36,7 +36,7 @@ using namespace utilities;
 // #include "../../source/classes/AMaps/AMaps.cpp"
 // #endif
 
-// #include "../../source/classes/AMaps/AMaps.cpp"
+#include "../../source/classes/AMaps/AMaps.cpp"
 
 double CalcToFnFD(region_part_ptr NeutronFD, double starttime = 9999) {
     bool ParticleInPCAL = (NeutronFD->cal(clas12::PCAL)->getDetector() == 7);                       // PCAL hit
@@ -181,14 +181,6 @@ double CalcdPhi(double dPhiTemp) {
     return dPhi;
 }
 
-bool findSubstring(string string1, string string2) {
-    if (string1.find(string2) != string::npos) {
-        return true;
-    } else {
-        return false;
-    }
-}
-// #if IndependentEffTester
 // bool findSubstring(string string1, string string2) {
 //     if (string1.find(string2) != string::npos) {
 //         return true;
@@ -196,9 +188,17 @@ bool findSubstring(string string1, string string2) {
 //         return false;
 //     }
 // }
-// #else
-// #include "../../source/classes/AMaps/AMaps.cpp"
-// #endif
+// // #if IndependentEffTester
+// // bool findSubstring(string string1, string string2) {
+// //     if (string1.find(string2) != string::npos) {
+// //         return true;
+// //     } else {
+// //         return false;
+// //     }
+// // }
+// // #else
+// // #include "../../source/classes/AMaps/AMaps.cpp"
+// // #endif
 
 bool NeutronECAL_Cut_Veto(vector<region_part_ptr>& allParticles, vector<region_part_ptr>& electrons, const double& beamE, const int& index, const double& veto_cut) {
     TVector3 p_b(0, 0, beamE); /* beam energy */
