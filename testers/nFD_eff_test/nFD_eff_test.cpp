@@ -27,13 +27,14 @@ void nFD_eff_test() {
         P_upperLim = Ebeam * 1.1;
     }
 
+    int Limiter = 25000000; // 2500 files
     // int Limiter = 10000000; // 1000 files
-    int Limiter = 1000000;  // 100 files
+    // int Limiter = 1000000;  // 100 files
     // int Limiter = 100000; // 10 files
     // int Limiter = 10000; // 1 file
 
     // string OutFolderName = "nFD_eff_test_reg";
-    string OutFolderName = "nFD_eff_test_v2_nFD_w_TL_mom";
+    string OutFolderName = "nFD_eff_test_v3_NoPCALnVeto";
 
     const string OutputDir = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName;
     system(("rm -rf " + OutputDir).c_str());
