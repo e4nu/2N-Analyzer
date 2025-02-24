@@ -297,10 +297,10 @@ void nFD_eff_test() {
 
     bool Is2GeV = false, Is4GeV = false, Is6GeV = false;
 
-    // double Ebeam = 2.07052;
-    // Is2GeV = true;
-    double Ebeam = 4.02962;
-    Is4GeV = true;
+    double Ebeam = 2.07052;
+    Is2GeV = true;
+    // double Ebeam = 4.02962;
+    // Is4GeV = true;
     // double Ebeam = 5.98636;
     // Is6GeV = true;
 
@@ -1048,7 +1048,8 @@ void nFD_eff_test() {
 #pragma region /* Electron PID cuts */
 
         h_Vz_e_BC_1e_cut->Fill(electrons[0]->par()->getVz(), weight);
-        bool bad_Vz_e_CutCond = (electrons[0]->par()->getVz() < -6. || electrons[0]->par()->getVz() > 0.);
+        bool bad_Vz_e_CutCond = (electrons[0]->par()->getVz() < -4. || electrons[0]->par()->getVz() > -2.);
+        // bool bad_Vz_e_CutCond = (electrons[0]->par()->getVz() < -6. || electrons[0]->par()->getVz() > 0.);
         if (!bad_Vz_e_CutCond) { h_Vz_e_AC_1e_cut->Fill(electrons[0]->par()->getVz(), weight); }
 
         fillDCdebug(electrons[0], h_dc_electron_hit_map_BC_1e_cut, weight);
