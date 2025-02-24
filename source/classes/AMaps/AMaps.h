@@ -31,7 +31,10 @@
 #include <typeinfo>
 #include <vector>
 
-#include "../../functions/GeneralFunctions.h"
+// #if (!IndependentEffTester)
+// #include "../../functions/GeneralFunctions.h"
+// #endif
+// #include "../../functions/GeneralFunctions.h"
 #include "../DSCuts/DSCuts.h"
 #include "../hPlots/hPlot2D.h"
 #include "clas12reader.h"
