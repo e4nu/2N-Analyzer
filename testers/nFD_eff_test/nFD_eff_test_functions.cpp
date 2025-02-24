@@ -1,7 +1,7 @@
 // source nFD_eff_tester_run.sh
 // git pull && clas12root -b -q testers/nFD_eff_test.cpp
 
-#define NFD_EFF_TEST_FUNCTIONS
+#ifndef NFD_EFF_TEST_FUNCTIONS
 #define NFD_EFF_TEST_FUNCTIONS
 
 #include <TCanvas.h>
