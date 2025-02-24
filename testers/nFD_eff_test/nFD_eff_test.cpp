@@ -709,11 +709,11 @@ void nFD_eff_test() {
 
 #pragma region /* Prepare AMaps */
 
-    const string OutputDirAMapsPlots = OutputDir + "/01_AMaps_Plots";
+    const string OutputDirAMapsPlots = OutputDir + "/01_AMaps_Plots/";
     system(("rm -rf " + OutputDirAMapsPlots).c_str());
     system(("mkdir -p " + OutputDirAMapsPlots).c_str());
 
-    const string OutputDirAMapsMaps = OutputDir + "/02_AMaps_Maps";
+    const string OutputDirAMapsMaps = OutputDir + "/02_AMaps_Maps/";
     system(("rm -rf " + OutputDirAMapsMaps).c_str());
     system(("mkdir -p " + OutputDirAMapsMaps).c_str());
 
