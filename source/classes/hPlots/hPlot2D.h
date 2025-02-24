@@ -7,9 +7,7 @@
 
 #include "../../namespaces/utilities/utilities.cpp"
 
-#if IndependentCanvasPDF
-#include "../../includes/CanvasPDF/CanvasPDF.h"
-#else
+#if !defined(IndependentCanvasPDF) || !IndependentCanvasPDF
 #include <TApplication.h>
 #include <TCanvas.h>
 #include <TChain.h>
@@ -33,6 +31,8 @@
 #include <sstream>
 #include <typeinfo>
 #include <vector>
+#else
+#include "../../includes/CanvasPDF/CanvasPDF.h"
 #endif
 
 using namespace std;

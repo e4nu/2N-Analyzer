@@ -20,7 +20,7 @@
 #include <typeinfo>
 #include <vector>
 
-#define IndependentCanvasPDF false
+// #define IndependentCanvasPDF false
 
 // #include "../source/classes/ParticleID/ParticleID.cpp"
 #include "../../source/constants.h"
