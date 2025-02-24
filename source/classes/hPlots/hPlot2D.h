@@ -5,6 +5,8 @@
 #ifndef HPLOT2D_H
 #define HPLOT2D_H
 
+#include "../../namespaces/utilities/utilities.cpp"
+
 #if IndependentCanvasPDF
 #include "../../includes/CanvasPDF/CanvasPDF.h"
 #else
@@ -32,6 +34,9 @@
 #include <typeinfo>
 #include <vector>
 #endif
+
+using namespace std;
+using namespace utilities;
 
 class hPlot2D {
    protected:
