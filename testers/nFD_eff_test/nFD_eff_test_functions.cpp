@@ -179,7 +179,7 @@ double CalcdPhi(double dPhiTemp) {
     return dPhi;
 }
 
-bool findSubstring(string string1, string string2) {
+bool FindSubstring(string string1, string string2) {
     if (string1.find(string2) != string::npos) {
         return true;
     } else {

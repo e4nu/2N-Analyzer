@@ -1348,11 +1348,11 @@ void nFD_eff_test() {
     /////////////////////////////////////
     myText->cd();
     text.DrawLatex(0.2, 0.9, "Uniform sample of (e,e'n) events (truth-level)");
-    if (findSubstring(InputFiles, "2070MeV")) {
+    if (FindSubstring(InputFiles, "2070MeV")) {
         text.DrawLatex(0.2, 0.7, "Beam energy: 2070MeV");
-    } else if (findSubstring(InputFiles, "4029MeV")) {
+    } else if (FindSubstring(InputFiles, "4029MeV")) {
         text.DrawLatex(0.2, 0.7, "Beam energy: 4029MeV");
-    } else if (findSubstring(InputFiles, "5986MeV")) {
+    } else if (FindSubstring(InputFiles, "5986MeV")) {
         text.DrawLatex(0.2, 0.7, "Beam energy: 5986MeV");
     }
     myText->Print(fileName_electron_cuts, "pdf");
@@ -1360,7 +1360,7 @@ void nFD_eff_test() {
 
     for (int i = 0; i < HistoList_electron_cuts.size(); i++) {
         for (int j = 0; j < HistSubjects.size(); j++) {
-            if (FirstPrint.at(j) && findSubstring(HistoList_electron_cuts[i]->GetTitle(), HistSubjects.at(j))) {
+            if (FirstPrint.at(j) && FindSubstring(HistoList_electron_cuts[i]->GetTitle(), HistSubjects.at(j))) {
                 myText->cd();
                 titles.DrawLatex(0.3, 0.5, HistSubjects2.at(j).c_str());
                 myText->Print(fileName_electron_cuts, "pdf");
@@ -1439,7 +1439,7 @@ void nFD_eff_test() {
 
     for (int i = 0; i < HistoList.size(); i++) {
         for (int j = 0; j < HistSubjects.size(); j++) {
-            if (FirstPrint.at(j) && findSubstring(HistoList[i]->GetTitle(), HistSubjects.at(j))) {
+            if (FirstPrint.at(j) && FindSubstring(HistoList[i]->GetTitle(), HistSubjects.at(j))) {
                 myText->cd();
                 titles.DrawLatex(0.3, 0.5, HistSubjects2.at(j).c_str());
                 myText->Print(fileName, "pdf");
@@ -1470,7 +1470,7 @@ void nFD_eff_test() {
         if (HistoList[i]->InheritsFrom("TH1D")) {
             HistoList[i]->Draw();
         } else if (HistoList[i]->InheritsFrom("TH2D")) {
-            // if (findSubstring(HistoList[i]->GetTitle(), "#Delta#theta_{nFD,e} vs. #Delta#phi_{nFD,e} in 1e cut")) {
+            // if (FindSubstring(HistoList[i]->GetTitle(), "#Delta#theta_{nFD,e} vs. #Delta#phi_{nFD,e} in 1e cut")) {
             //     gPad->SetRightMargin(0.225);
             // } else {
             //     gPad->SetRightMargin(0.05);
@@ -1530,11 +1530,11 @@ void nFD_eff_test() {
     gPad->Update();
     // myText->cd();
     text.DrawLatex(0.2, 0.9, "Uniform sample of (e,e'n) events (truth-level)");
-    if (findSubstring(InputFiles, "2070MeV")) {
+    if (FindSubstring(InputFiles, "2070MeV")) {
         text.DrawLatex(0.2, 0.7, "Beam energy: 2070MeV");
-    } else if (findSubstring(InputFiles, "4029MeV")) {
+    } else if (FindSubstring(InputFiles, "4029MeV")) {
         text.DrawLatex(0.2, 0.7, "Beam energy: 4029MeV");
-    } else if (findSubstring(InputFiles, "5986MeV")) {
+    } else if (FindSubstring(InputFiles, "5986MeV")) {
         text.DrawLatex(0.2, 0.7, "Beam energy: 5986MeV");
     }
     myCanvas_eff_plots->Print(fileName_eff_plots, "pdf");
@@ -1544,7 +1544,7 @@ void nFD_eff_test() {
 
     for (int i = 0; i < HistoList_eff_plots.size(); i++) {
         // for (int j = 0; j < HistSubjects.size(); j++) {
-        //     if (FirstPrint.at(j) && findSubstring(HistoList_eff_plots[i]->GetTitle(), HistSubjects.at(j))) {
+        //     if (FirstPrint.at(j) && FindSubstring(HistoList_eff_plots[i]->GetTitle(), HistSubjects.at(j))) {
         //         myText->cd();
         //         titles.DrawLatex(0.3, 0.5, HistSubjects2.at(j).c_str());
         //         myText->Print(fileName_eff_plots, "pdf");
