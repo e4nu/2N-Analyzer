@@ -1,27 +1,26 @@
-#include <iostream>
-#include <vector>
+#include <TApplication.h>
+#include <TCanvas.h>
+#include <TChain.h>
+#include <TDatabasePDG.h>
 #include <TF1.h>
-#include <math.h>
-#include <map>
-
-#include <cstdlib>
-#include <iomanip>
-#include <chrono>
-#include <typeinfo>
-#include <sstream>
-
 #include <TFile.h>
-#include <TTree.h>
-#include <TLorentzVector.h>
 #include <TH1.h>
 #include <TH2.h>
 #include <TLatex.h>
-#include <TChain.h>
-#include <TCanvas.h>
-#include <TStyle.h>
-#include <TDatabasePDG.h>
-#include <TApplication.h>
+#include <TLorentzVector.h>
 #include <TROOT.h>
+#include <TStyle.h>
+#include <TTree.h>
+#include <math.h>
+
+#include <chrono>
+#include <cstdlib>
+#include <iomanip>
+#include <iostream>
+#include <map>
+#include <sstream>
+#include <typeinfo>
+#include <vector>
 
 // ======================================================================================================================================================================
 // PDF file canvas
@@ -34,14 +33,12 @@ int num_of_hist_per_col = 3;
 
 int CanvasPDF_ind = 1;
 
-TCanvas *CanvasPDF = new TCanvas("CanvasPDF", "CanvasPDF", 1000 * num_of_hist_per_row, 750 * num_of_hist_per_col); // normal res
+TCanvas* CanvasPDF = new TCanvas("CanvasPDF", "CanvasPDF", 1000 * num_of_hist_per_row, 750 * num_of_hist_per_col);  // normal res
 
 // Canvas functions -----------------------------------------------------------------------------------------------------------------------------------------------------
 
-void ConfigCanvasPDF()
-{
-    for (int i = 1; i < num_of_hist_per_row * num_of_hist_per_col + 1; i++)
-    {
+void ConfigCanvasPDF() {
+    for (int i = 1; i < num_of_hist_per_row * num_of_hist_per_col + 1; i++) {
         CanvasPDF->cd(i)->SetGrid();
         CanvasPDF->cd(i)->SetBottomMargin(0.14);
         CanvasPDF->cd(i)->SetLeftMargin(0.16);
@@ -49,14 +46,10 @@ void ConfigCanvasPDF()
     }
 }
 
-void SetCanvasPDFind(int &CanvasPDFind)
-{
-    if (CanvasPDFind <= 0)
-    {
+void SetCanvasPDFind(int& CanvasPDFind) {
+    if (CanvasPDFind <= 0) {
         CanvasPDFind = 1;
-    }
-    else if (CanvasPDFind > num_of_hist_per_row * num_of_hist_per_col)
-    {
+    } else if (CanvasPDFind > num_of_hist_per_row * num_of_hist_per_col) {
         CanvasPDFind = CanvasPDFind - num_of_hist_per_row * num_of_hist_per_col;
     } else {
         CanvasPDFind = CanvasPDFind + 1;
@@ -87,7 +80,7 @@ void CopyPadContent(TPad* sourcePad, TPad* targetPad) {
 
         targetPad->cd();
         if (obj->InheritsFrom("TAttDrawable")) {  // Ensure the object is drawable
-            obj->DrawClone();  // Draw a clone of each primitive in the target pad
+            obj->DrawClone();                     // Draw a clone of each primitive in the target pad
         }
         // else {
         //     std::cerr << "Warning: Object is not drawable. Skipping." << std::endl;

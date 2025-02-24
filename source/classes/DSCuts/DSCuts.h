@@ -6,7 +6,7 @@
 #define DSCUTS_H
 
 class DSCuts {
-public:
+   public:
     /* Constructors */
     // Default constructor:
     DSCuts(std::string cv = "", std::string r = "", std::string p = "", std::string ac = "", double mean = 0, double llim = -9999, double ulim = 9999);
@@ -76,17 +76,17 @@ public:
     double GetSliceLowerb() { return SliceLowerb; }
 
     double MeanFromHistogram, MeanFromFit, FitStdFactor, FitStd;
-    vector<double> Cuts = {0, -9999, 9999}; // {mean, lower cut, upper cut}
-//    vector<double> Cuts = {0, -1, -1}; // {mean, lower cut, upper cut}
-private:
+    vector<double> Cuts = {0, -9999, 9999};  // {mean, lower cut, upper cut}
+    //    vector<double> Cuts = {0, -1, -1}; // {mean, lower cut, upper cut}
+   private:
     std::string CutVariable, Region, Particle, AppliedCuts;
 
     int particlePDG, SliceNumber;
 
-    double SliceUpperb, SliceLowerb; // To be used in neutron resolution fit only!
+    double SliceUpperb, SliceLowerb;  // To be used in neutron resolution fit only!
 };
 
-DSCuts::DSCuts(std::string cv, std::string r, std::string p, std::string ac, double mean, double llim, double ulim) { // Default constructor
+DSCuts::DSCuts(std::string cv, std::string r, std::string p, std::string ac, double mean, double llim, double ulim) {  // Default constructor
     CutVariable = cv, Particle = p, AppliedCuts = ac;
     Cuts.at(0) = mean, Cuts.at(1) = llim, Cuts.at(2) = ulim;
 
@@ -97,9 +97,9 @@ DSCuts::DSCuts(std::string cv, std::string r, std::string p, std::string ac, dou
     }
 
     if (r == "CD") {
-        FitStdFactor = 3; // sigma factor for CD cuts
+        FitStdFactor = 3;  // sigma factor for CD cuts
     } else if (r == "FD") {
-        FitStdFactor = 3; // sigma factor for FD cuts
+        FitStdFactor = 3;  // sigma factor for FD cuts
     } else {
         FitStdFactor = 1;
     }
@@ -123,4 +123,4 @@ DSCuts::DSCuts(std::string cv, std::string r, std::string p, std::string ac, dou
     }
 }
 
-#endif //DSCUTS_H
+#endif  // DSCUTS_H

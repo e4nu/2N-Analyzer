@@ -7,47 +7,69 @@
 
 #if IndependentCanvasPDF
 #include "../../includes/CanvasPDF/CanvasPDF.h"
+#else
+#include <TApplication.h>
+#include <TCanvas.h>
+#include <TChain.h>
+#include <TDatabasePDG.h>
+#include <TF1.h>
+#include <TFile.h>
+#include <TH1.h>
+#include <TH2.h>
+#include <TLatex.h>
+#include <TLorentzVector.h>
+#include <TROOT.h>
+#include <TStyle.h>
+#include <TTree.h>
+#include <math.h>
+
+#include <chrono>
+#include <cstdlib>
+#include <iomanip>
+#include <iostream>
+#include <map>
+#include <sstream>
+#include <typeinfo>
+#include <vector>
 #endif
 
 class hPlot2D {
-protected:
+   protected:
     /* 2D histogram declaration */
     TH2D *Histogram2D;
 
     /* Histogram titles & labels.
      * contains HistogramStatTitle, HistogramTitle, XaxisTitle, YaxisTitle, Histogram2DTitleReactions, FinalState and DetectorRegion. */
-    map <std::string, std::string> Histogram2DTitles{{"FinalState",                ""},
-                                                     {"DetectorRegion",            ""},
-                                                     {"Histogram2DTitleReactions", ""}};
+    map<std::string, std::string> Histogram2DTitles{{"FinalState", ""}, {"DetectorRegion", ""}, {"Histogram2DTitleReactions", ""}};
     std::string HistogramStatsTitle;
 
     bool Title2 = false;
 
     /* Histogram xAxis limits and #bins */
-    int HistogramNumberOfXBins; // default #bins for 2D histogram is 250 (see constructor)
-    int HistogramNumberOfYBins; // default #bins for 2D histogram is 250 (see constructor)
+    int HistogramNumberOfXBins;           // default #bins for 2D histogram is 250 (see constructor)
+    int HistogramNumberOfYBins;           // default #bins for 2D histogram is 250 (see constructor)
     vector<double> HistogramXAxisLimits;  // {LowerXlim, UpperXlim}
     vector<double> HistogramYAxisLimits;  // {LowerYlim, UpperYlim}
 
-//    /* Histogram normalization setup */
-//    bool NormalizeHistogram;
-//    bool CustomNormalization;
-//    double CustomNormalizationFactor;
+    //    /* Histogram normalization setup */
+    //    bool NormalizeHistogram;
+    //    bool CustomNormalization;
+    //    double CustomNormalizationFactor;
 
     /* Histogram appearance setup */
     int LineColor = 1;
     int LineWidth = 2;
-    vector<double> Histogram2DTitleSizes = {0.06, 0.0425, 0.0425, 0.0425}; // {TitleSize, LabelSizex, LabelSizey, LabelSizez}
+    vector<double> Histogram2DTitleSizes = {0.06, 0.0425, 0.0425, 0.0425};  // {TitleSize, LabelSizex, LabelSizey, LabelSizez}
     bool CenterTitle = true;
     bool ShowStats = true;
 
     /* Histogram stack stuff */
-//    THStack *Histogram2DStack;
+    //    THStack *Histogram2DStack;
     bool AddToStack = false;
 
     /* Histogram cuts setup */
     bool ShowPlotCuts = false;
-    //vector<double> - for cuts
+    // vector<double> - for cuts
     double PlotCuts = 0;
     double PlotXmax = 0;
     bool PlotHistogramMax = true;
@@ -57,26 +79,25 @@ protected:
     bool ZLinearScalePlot = true;
 
     /* Histogram save name and path */
-    std::string Histogram2DSaveName = "Histogram2D"; // default Histogram2DSaveName
-    std::string Histogram2DSaveNamePath = "./"; // default Histogram2DSaveNamePath
-public:
+    std::string Histogram2DSaveName = "Histogram2D";  // default Histogram2DSaveName
+    std::string Histogram2DSaveNamePath = "./";       // default Histogram2DSaveNamePath
+   public:
     // Constructor declaration ------------------------------------------------------------------------------------------------------------------------------------------
-    hPlot2D() {} // Default constructor
+    hPlot2D() {}  // Default constructor
 
-    hPlot2D(std::string h2DtReactions, std::string fState, std::string dRegion, std::string hst, std::string ht, std::string xat, std::string yat, double LowerXlim,
-            double UpperXlim, double LowerYlim, double UpperYlim, int hnoXb = 250, int hnoYb = 250);
-
-    hPlot2D(std::string h2DtReactions, std::string fState, std::string dRegion, std::string hst, std::string ht, std::string xat, std::string yat,
-            std::string sPath, std::string sName, double LowerXlim, double UpperXlim, double LowerYlim, double UpperYlim, int hnoXb = 250, int hnoYb = 250);
-
-    hPlot2D(std::string fState, std::string dRegion, std::string hst, std::string ht, std::string xat, std::string yat, double LowerXlim, double UpperXlim,
+    hPlot2D(std::string h2DtReactions, std::string fState, std::string dRegion, std::string hst, std::string ht, std::string xat, std::string yat, double LowerXlim, double UpperXlim,
             double LowerYlim, double UpperYlim, int hnoXb = 250, int hnoYb = 250);
 
-    hPlot2D(std::string fState, std::string dRegion, std::string hst, std::string ht, std::string xat, std::string yat, std::string sPath, std::string sName,
+    hPlot2D(std::string h2DtReactions, std::string fState, std::string dRegion, std::string hst, std::string ht, std::string xat, std::string yat, std::string sPath, std::string sName,
             double LowerXlim, double UpperXlim, double LowerYlim, double UpperYlim, int hnoXb = 250, int hnoYb = 250);
 
-    hPlot2D(std::string hst, std::string ht, std::string xat, std::string yat, double LowerXlim, double UpperXlim, double LowerYlim, double UpperYlim, int hnoXb = 250,
-            int hnoYb = 250);
+    hPlot2D(std::string fState, std::string dRegion, std::string hst, std::string ht, std::string xat, std::string yat, double LowerXlim, double UpperXlim, double LowerYlim,
+            double UpperYlim, int hnoXb = 250, int hnoYb = 250);
+
+    hPlot2D(std::string fState, std::string dRegion, std::string hst, std::string ht, std::string xat, std::string yat, std::string sPath, std::string sName, double LowerXlim,
+            double UpperXlim, double LowerYlim, double UpperYlim, int hnoXb = 250, int hnoYb = 250);
+
+    hPlot2D(std::string hst, std::string ht, std::string xat, std::string yat, double LowerXlim, double UpperXlim, double LowerYlim, double UpperYlim, int hnoXb = 250, int hnoYb = 250);
 
     // histPlotter2D function -------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -92,8 +113,8 @@ public:
     //<editor-fold desc="histPlotter2D function (Beta vs. P plots, all particles)">
     /* histPlotter2D function (Beta vs. P plots, all particles) */
     void histPlotter2D(const std::string &SampleName, TCanvas *HistogramCanvas, TH2D *Histogram2D, TList *Histogram_list, const char *Histogram_OutPDF, std::string Histogram2DSaveNameDir,
-                       std::string Histogram2DSaveName, TF1 *Beta_function1, TF1 *Beta_function2, TF1 *Beta_function3, TF1 *Beta_function4, TF1 *Beta_function5,
-                       TF1 *Beta_function6, TF1 *Beta_function7, TF1 *Beta_function8, TF1 *Beta_function9, bool showStats = true);
+                       std::string Histogram2DSaveName, TF1 *Beta_function1, TF1 *Beta_function2, TF1 *Beta_function3, TF1 *Beta_function4, TF1 *Beta_function5, TF1 *Beta_function6,
+                       TF1 *Beta_function7, TF1 *Beta_function8, TF1 *Beta_function9, bool showStats = true);
 
     /* Corresponding hDrawAndSave function (Beta vs. P plots, all particles) */
     void hDrawAndSave(const std::string &SampleName, TCanvas *h2DCanvas, TList *hList, const char *Histogram_OutPDF, TF1 *Beta_function1, TF1 *Beta_function2, TF1 *Beta_function3,
@@ -106,15 +127,15 @@ public:
                        std::string Histogram2DSaveName, TF1 *Beta_function1, std::string particle1, bool showStats = true, bool plot_legend = true);
 
     /* Corresponding hDrawAndSave function (Beta vs. P plots, single particle) */
-    void
-    hDrawAndSave(const std::string &SampleName, TCanvas *h2DCanvas, TList *hList, const char *Histogram_OutPDF, TF1 *Beta_function1, std::string particle1, bool showStats, bool plot_legend = true);
+    void hDrawAndSave(const std::string &SampleName, TCanvas *h2DCanvas, TList *hList, const char *Histogram_OutPDF, TF1 *Beta_function1, std::string particle1, bool showStats,
+                      bool plot_legend = true);
     //</editor-fold>
 
     //<editor-fold desc="histPlotter2D function (Beta vs. P plots, 3 particles (by charge))">
     /* histPlotter2D function (Beta vs. P plots, 3 particles (by charge)) */
     void histPlotter2D(const std::string &SampleName, TCanvas *HistogramCanvas, TH2D *Histogram2D, TList *Histogram_list, const char *Histogram_OutPDF, std::string Histogram2DSaveNameDir,
-                       std::string Histogram2DSaveName, TF1 *Beta_function1, std::string particle1, TF1 *Beta_function2, std::string particle2, TF1 *Beta_function3,
-                       std::string particle3, bool showStats = true, bool plot_legend = true);
+                       std::string Histogram2DSaveName, TF1 *Beta_function1, std::string particle1, TF1 *Beta_function2, std::string particle2, TF1 *Beta_function3, std::string particle3,
+                       bool showStats = true, bool plot_legend = true);
 
     /* Corresponding hDrawAndSave function (Beta vs. P plots, 3 particles (by charge)) */
     void hDrawAndSave(const std::string &SampleName, TCanvas *h2DCanvas, TList *hList, const char *Histogram_OutPDF, TF1 *Beta_function1, std::string particle1, TF1 *Beta_function2,
@@ -127,7 +148,7 @@ public:
 
     void hDivision(TH2D *hDenominator, bool SetLogZLimits = true, double MaxZLim = 1.25);
 
-// Other histogram methods:
+    // Other histogram methods:
     void ApplyZMaxLim(double ZMaxLim) { Histogram2D->SetMaximum(ZMaxLim); }
 
     void ApplyZMinLim(double ZMinLim) { Histogram2D->SetMinimum(ZMinLim); }
@@ -153,9 +174,7 @@ public:
 
     void SetYaxisTitle(std::string yTitle) { Histogram2DTitles["YaxisTitle"] = yTitle; }
 
-    void SetHistogramHeadTitles(std::string hTitle, std::string sTitle) {
-        Histogram2DTitles["HistogramTitle"] = hTitle, Histogram2DTitles["HistogramStatTitle"] = sTitle;
-    }
+    void SetHistogramHeadTitles(std::string hTitle, std::string sTitle) { Histogram2DTitles["HistogramTitle"] = hTitle, Histogram2DTitles["HistogramStatTitle"] = sTitle; }
 
     void SetHistogramTitles(std::string hTitle, std::string sTitle, std::string xTitle, std::string yTitle) {
         Histogram2DTitles["HistogramTitle"] = hTitle;
@@ -191,11 +210,11 @@ public:
         HistogramYAxisLimits.at(1) = uYlim, HistogramYAxisLimits.at(0) = lYlim;
     }
 
-//    void SetNormalizeHistogram(bool nHistogram) { NormalizeHistogram = nHistogram; }
+    //    void SetNormalizeHistogram(bool nHistogram) { NormalizeHistogram = nHistogram; }
 
-//    void SetCustomNormalization(bool cNormalization) { CustomNormalization = cNormalization; }
+    //    void SetCustomNormalization(bool cNormalization) { CustomNormalization = cNormalization; }
 
-//    void SetCustomNormalizationFactor(bool cnFactor) { CustomNormalizationFactor = cnFactor; }
+    //    void SetCustomNormalizationFactor(bool cnFactor) { CustomNormalizationFactor = cnFactor; }
 
     void SetHistogram2DTitleReactions(std::string h2DrReactions) { Histogram2DTitles["Histogram2DTitleReactions"] = h2DrReactions; }
 
@@ -237,10 +256,10 @@ public:
 
     void SetPlotHistogramMax(bool phMax = true) { PlotHistogramMax = phMax; }
 
-//  Get methods:
-    TH2D *GetHistogram2D() { return Histogram2D; } // used in AMaps class
+    //  Get methods:
+    TH2D *GetHistogram2D() { return Histogram2D; }  // used in AMaps class
 
-    TH2D *GetHistogram() const { return Histogram2D; } // used in final state ratio (FSR) plots
+    TH2D *GetHistogram() const { return Histogram2D; }  // used in final state ratio (FSR) plots
 
     TH2D *GetHistogram2DConst() const { return Histogram2D; }
 
@@ -250,7 +269,7 @@ public:
 
     std::string GetHistogramStatTitle() const { return HistogramStatsTitle; }
 
-    std::string GetHistogramName() { return Histogram2D->GetName(); } // GetHistogramStatTitle (the ROOT version)
+    std::string GetHistogramName() { return Histogram2D->GetName(); }  // GetHistogramStatTitle (the ROOT version)
 
     std::string GetXaxisTitle() { return Histogram2DTitles["XaxisTitle"]; }
 
@@ -272,11 +291,11 @@ public:
 
     double GetYBinCenter(int yBin) { return Histogram2D->GetYaxis()->GetBinCenter(yBin); }
 
-//    bool GetNormalizeHistogram() { return NormalizeHistogram; }
+    //    bool GetNormalizeHistogram() { return NormalizeHistogram; }
 
-//    bool GetCustomNormalization() { return CustomNormalization; }
+    //    bool GetCustomNormalization() { return CustomNormalization; }
 
-//    bool GetCustomNormalizationFactor() { return CustomNormalizationFactor; }
+    //    bool GetCustomNormalizationFactor() { return CustomNormalizationFactor; }
 
     std::string GetHistogram2DTitleReactions() { return Histogram2DTitles["Histogram2DTitleReactions"]; }
 
@@ -319,4 +338,4 @@ public:
     bool GetPlotHistogramMax() { return PlotHistogramMax; }
 };
 
-#endif //HPLOT2D_H
+#endif  // HPLOT2D_H
