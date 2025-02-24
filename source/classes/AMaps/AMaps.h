@@ -212,7 +212,7 @@ class AMaps {
 
     // CalcAMapsRatio function --------------------------------------------------------------------------------------------------------------------------------------------
 
-    void CalcAMapsRatio(bool ElectronRecoToTLDiv = true, bool PotonRecoToTLDiv = true, bool NeutronRecoToTLDiv = true);
+    void CalcAMapsRatio();
 
     // GenerateSeparateCPartAMaps function ----------------------------------------------------------------------------------------------------------------------------------
 

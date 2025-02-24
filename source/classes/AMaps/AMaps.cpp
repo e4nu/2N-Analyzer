@@ -965,29 +965,29 @@ void AMaps::hFillHitMaps(const string &SampleType, const string &particle, doubl
 // CalcAMapsRatio function --------------------------------------------------------------------------------------------------------------------------------------------
 
 //<editor-fold desc="CalcAMapsRatio function">
-void AMaps::CalcAMapsRatio(bool ElectronRecoToTLDiv, bool ProtonRecoToTLDiv, bool NeutronRecoToTLDiv) {
-    if (ElectronRecoToTLDiv) {
+void AMaps::CalcAMapsRatio() {
+    if (calc_Electron_RecoToTL_Ratio) {
         cout << "\n\nCalculating electron acceptance efficiency...";
         for (int i = 0; i < ElectronMomSliceLimits.size(); i++) {
-            if (ElectronRecoToTLDiv) { ElectronRecoToTLRatioBySlice.at(i).hDivision(ElectronTLAMapsBySlice.at(i).GetHistogram2D()); }
+            if (calc_Electron_RecoToTL_Ratio) { ElectronRecoToTLRatioBySlice.at(i).hDivision(ElectronTLAMapsBySlice.at(i).GetHistogram2D()); }
         }
         cout << " done!\n";
     }
 
-    if (ProtonRecoToTLDiv) {
+    if (calc_Proton_RecoToTL_Ratio) {
         cout << "\n\nCalculating proton acceptance efficiency...";
         for (int i = 0; i < NucleonMomSliceLimits.size(); i++) {
-            if (ProtonRecoToTLDiv) { ProtonRecoToTLRatioBySlice.at(i).hDivision(ProtonTLAMapsBySlice.at(i).GetHistogram2D()); }
+            if (calc_Proton_RecoToTL_Ratio) { ProtonRecoToTLRatioBySlice.at(i).hDivision(ProtonTLAMapsBySlice.at(i).GetHistogram2D()); }
         }
         cout << " done!\n";
     }
 
-    if (NeutronRecoToTLDiv) {
+    if (calc_Neutron_RecoToTL_Ratio) {
         cout << "\n\nCalculating neutron acceptance efficiency...";
         NeutronRecoToTLRatio.hDivision(NeutronTLAMap.GetHistogram2D());
 
         for (int i = 0; i < NucleonMomSliceLimits.size(); i++) {
-            if (NeutronRecoToTLDiv) { NeutronRecoToTLRatioBySlice.at(i).hDivision(NeutronTLAMapsBySlice.at(i).GetHistogram2D()); }
+            if (calc_Neutron_RecoToTL_Ratio) { NeutronRecoToTLRatioBySlice.at(i).hDivision(NeutronTLAMapsBySlice.at(i).GetHistogram2D()); }
         }
         cout << " done!\n";
     }
@@ -1608,7 +1608,21 @@ void AMaps::DrawAndSaveHitMaps(const string &SampleName, TCanvas *h1DCanvas, con
     system(("mkdir -p " + AcceptanceMapsDirectory + SampleName).c_str());
 
     cout << "\n\nCalculating efficiencies...\n";
-    CalcAMapsRatio(calc_Electron_RecoToTL_Ratio, calc_Proton_RecoToTL_Ratio, calc_Neutron_RecoToTL_Ratio);
+    if (FindSubstring(SampleName, "1e")) {
+        calc_Electron_RecoToTL_Ratio = true;
+        calc_Neutron_RecoToTL_Ratio = false;
+        calc_Proton_RecoToTL_Ratio = false;
+    } else if (FindSubstring(SampleName, "en")) {
+        calc_Electron_RecoToTL_Ratio = false;
+        calc_Neutron_RecoToTL_Ratio = true;
+        calc_Proton_RecoToTL_Ratio = false;
+    } else if (FindSubstring(SampleName, "ep")) {
+        calc_Electron_RecoToTL_Ratio = false;
+        calc_Neutron_RecoToTL_Ratio = false;
+        calc_Proton_RecoToTL_Ratio = true;
+    }
+
+    CalcAMapsRatio();
 
     cout << "\n\nGenerating filtered maps...\n";
     GenerateCPartAMaps(Charged_particle_min_Ratio);
