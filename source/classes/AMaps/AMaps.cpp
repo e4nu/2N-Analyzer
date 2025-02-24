@@ -970,12 +970,14 @@ void AMaps::CalcAMapsRatio(bool ElectronRecoToTLDiv, bool ProtonRecoToTLDiv, boo
         for (int i = 0; i < ElectronMomSliceLimits.size(); i++) {
             if (ElectronRecoToTLDiv) { ElectronRecoToTLRatioBySlice.at(i).hDivision(ElectronTLAMapsBySlice.at(i).GetHistogram2D()); }
         }
+        cout << "\n\nFinished electron efficiency calculation...\n";
     }
 
     if (ProtonRecoToTLDiv) {
         for (int i = 0; i < NucleonMomSliceLimits.size(); i++) {
             if (ProtonRecoToTLDiv) { ProtonRecoToTLRatioBySlice.at(i).hDivision(ProtonTLAMapsBySlice.at(i).GetHistogram2D()); }
         }
+        cout << "\n\nFinished proton efficiency calculation...\n";
     }
 
     if (NeutronRecoToTLDiv) {
@@ -984,6 +986,7 @@ void AMaps::CalcAMapsRatio(bool ElectronRecoToTLDiv, bool ProtonRecoToTLDiv, boo
         for (int i = 0; i < NucleonMomSliceLimits.size(); i++) {
             if (NeutronRecoToTLDiv) { NeutronRecoToTLRatioBySlice.at(i).hDivision(NeutronTLAMapsBySlice.at(i).GetHistogram2D()); }
         }
+        cout << "\n\nFinished neutron efficiency calculation...\n";
     }
 }
 //</editor-fold>
