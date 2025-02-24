@@ -1738,6 +1738,9 @@ void nFD_eff_test() {
 #pragma region /* Acceptance maps */
     TCanvas* myCanvas_aMaps = new TCanvas("myCanvas_aMaps", "myCanvas_aMaps", pixelx, pixely);
 
+    myCanvas_aMaps->cd();
+    myCanvas_aMaps->SetBottomMargin(0.14), myCanvas_aMaps->SetLeftMargin(0.16), myCanvas_aMaps->SetRightMargin(0.12);
+
     aMaps_master.DrawAndSaveHitMaps(SampleName, myCanvas_aMaps, OutputDirAMapsMaps);
 #pragma endregion
 
