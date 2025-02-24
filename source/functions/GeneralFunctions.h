@@ -5,7 +5,7 @@
 #ifndef GENERALFUNCTIONS_H
 #define GENERALFUNCTIONS_H
 
-//TODO: recheck which of these #include-s are needed and which aren't
+// TODO: recheck which of these #include-s are needed and which aren't
 
 /*
 #include <stdio.h>
@@ -83,7 +83,7 @@ bool findSubstring(string string1, string string2) {
 //<editor-fold desc="to_string_with_precision function">
 /* Usage: convert a number to string with n figures after the decimal point in the plotting functions */
 
-template<typename T>
+template <typename T>
 string to_string_with_precision(const T a_value, const int n = 2) {
     std::ostringstream out;
     out.precision(n);
@@ -162,7 +162,7 @@ inline const char *const BoolToString(bool b) { return b ? "true" : "false"; }
 ////<editor-fold desc="testPrint functions">
 ///* Usage: general functions used to print variables. */
 //
-//Double_t FitFunction(Double_t *v, Double_t *par) {
+// Double_t FitFunction(Double_t *v, Double_t *par) {
 //    Double_t arg = 0;
 //    if (par[2] != 0) arg = (v[0] - par[1]) / par[2];
 //
@@ -170,7 +170,7 @@ inline const char *const BoolToString(bool b) { return b ? "true" : "false"; }
 //    return fitval;
 //}
 //
-//void fitexample() {
+// void fitexample() {
 //    TFile *f = new TFile("hsimple.root");
 //
 //    TH1F *hpx = (TH1F *) f->Get("hpx");
@@ -183,4 +183,4 @@ inline const char *const BoolToString(bool b) { return b ? "true" : "false"; }
 //}
 ////</editor-fold>
 
-#endif //GENERALFUNCTIONS_H
+#endif  // GENERALFUNCTIONS_H

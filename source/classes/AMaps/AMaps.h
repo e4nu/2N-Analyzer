@@ -178,6 +178,14 @@ class AMaps {
     // AMaps loading constructor:
     AMaps(const string &AcceptanceMapsDirectory, const string &SampleName, const bool &Electron_single_slice_test, const bool &Nucleon_single_slice_test, const vector<int> &TestSlices);
 
+    template <typename T>
+    string to_string_with_precision(const T a_value, const int n = 2) {
+        std::ostringstream out;
+        out.precision(n);
+        out << std::fixed << a_value;
+        return out.str();
+    }
+
     // SetBins functions ----------------------------------------------------------------------------------------------------------------------------------------------------
 
     void SetBins(const string &P_nuc_bin_profile, double beamE);
