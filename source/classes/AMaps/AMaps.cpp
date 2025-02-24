@@ -1329,8 +1329,7 @@ void AMaps::SaveHitMaps(const string &SampleName, const string &AcceptanceMapsDi
     string WMapSliceNucleonSavePathCopy = AMapCopySavePath + "/nuc_WMap_by_slice/";
     system(("mkdir -p " + WMapSliceNucleonSavePathCopy).c_str());
 
-    ++testNumber;
-    cout << "\n\n\nTEST " << testNumber << "\n";
+    if (PrintOut) { ++testNumber, cout << "\n\n\nTEST " << testNumber << "\n"; }
 
     //<editor-fold desc="Save electron slices">
     for (int Slice = 0; Slice < ElectronMomSliceLimits.size(); Slice++) {
@@ -1374,8 +1373,7 @@ void AMaps::SaveHitMaps(const string &SampleName, const string &AcceptanceMapsDi
     }
     //</editor-fold>
 
-    ++testNumber;
-    cout << "\n\n\nTEST " << testNumber << "\n";
+    if (PrintOut) { ++testNumber, cout << "\n\n\nTEST " << testNumber << "\n"; }
 
     //<editor-fold desc="Save proton, neutron & nucleon slices">
     for (int Slice = 0; Slice < NucleonMomSliceLimits.size(); Slice++) {
@@ -1461,8 +1459,7 @@ void AMaps::SaveHitMaps(const string &SampleName, const string &AcceptanceMapsDi
     }
     //</editor-fold>
 
-    ++testNumber;
-    cout << "\n\n\nTEST " << testNumber << "\n";
+    if (PrintOut) { ++testNumber, cout << "\n\n\nTEST " << testNumber << "\n"; }
 
     //<editor-fold desc="Save combined maps">
     // TODO: figure out rather or not to keep these combind maps!
@@ -1473,15 +1470,13 @@ void AMaps::SaveHitMaps(const string &SampleName, const string &AcceptanceMapsDi
     n_AMap_file.open(AcceptanceMapsDirectory + SampleName + "/n_AMap_file.par");
     nuc_AMap_file.open(AcceptanceMapsDirectory + SampleName + "/nuc_AMap_file.par");
 
-    ++testNumber;
-    cout << "\n\n\nTEST " << testNumber << "\n";
+    if (PrintOut) { ++testNumber, cout << "\n\n\nTEST " << testNumber << "\n"; }
 
     for (int Slice = 0; Slice < ElectronMomSliceLimits.size(); Slice++) {
         e_AMap_file << "e_slice_" << (Slice + 1) << "\t" << ElectronMomSliceLimits.at(Slice).at(0) << ":" << ElectronMomSliceLimits.at(Slice).at(1) << "\n";
     }
 
-    ++testNumber;
-    cout << "\n\n\nTEST " << testNumber << "\n";
+    if (PrintOut) { ++testNumber, cout << "\n\n\nTEST " << testNumber << "\n"; }
 
     for (int Slice = 0; Slice < NucleonMomSliceLimits.size(); Slice++) {
         p_AMap_file << "p_slice_" << (Slice + 1) << "\t" << NucleonMomSliceLimits.at(Slice).at(0) << ":" << NucleonMomSliceLimits.at(Slice).at(1) << "\n";
@@ -1489,8 +1484,7 @@ void AMaps::SaveHitMaps(const string &SampleName, const string &AcceptanceMapsDi
         nuc_AMap_file << "nuc_slice_" << (Slice + 1) << "\t" << NucleonMomSliceLimits.at(Slice).at(0) << ":" << NucleonMomSliceLimits.at(Slice).at(1) << "\n";
     }
 
-    ++testNumber;
-    cout << "\n\n\nTEST " << testNumber << "\n";
+    if (PrintOut) { ++testNumber, cout << "\n\n\nTEST " << testNumber << "\n"; }
 
     for (int i = 0; i < HistElectronSliceNumOfYBins; i++) {
         e_AMap_file << "Line\t";
@@ -1506,8 +1500,7 @@ void AMaps::SaveHitMaps(const string &SampleName, const string &AcceptanceMapsDi
         e_AMap_file << "\n";
     }
 
-    ++testNumber;
-    cout << "\n\n\nTEST " << testNumber << "\n";
+    if (PrintOut) { ++testNumber, cout << "\n\n\nTEST " << testNumber << "\n"; }
 
     for (int i = 0; i < HistNucSliceNumOfYBins; i++) {
         p_AMap_file << "Line\t";
@@ -1537,8 +1530,7 @@ void AMaps::SaveHitMaps(const string &SampleName, const string &AcceptanceMapsDi
         nuc_AMap_file << "\n";
     }
 
-    ++testNumber;
-    cout << "\n\n\nTEST " << testNumber << "\n";
+    if (PrintOut) { ++testNumber, cout << "\n\n\nTEST " << testNumber << "\n"; }
 
     e_AMap_file.close();
     p_AMap_file.close();
@@ -1559,15 +1551,13 @@ void AMaps::SaveHitMaps(const string &SampleName, const string &AcceptanceMapsDi
     n_slice_limits.open(AMapSliceNeutronSavePath + "n_slice_limits.par");
     nuc_slice_limits.open(AMapSliceNucleonSavePath + "nuc_slice_limits.par");
 
-    ++testNumber;
-    cout << "\n\n\nTEST " << testNumber << "\n";
+    if (PrintOut) { ++testNumber, cout << "\n\n\nTEST " << testNumber << "\n"; }
 
     for (int Slice = 0; Slice < ElectronMomSliceLimits.size(); Slice++) {
         e_slice_limits << "e_slice_" << (Slice + 1) << "\t" << ElectronMomSliceLimits.at(Slice).at(0) << ":" << ElectronMomSliceLimits.at(Slice).at(1) << "\n";
     }
 
-    ++testNumber;
-    cout << "\n\n\nTEST " << testNumber << "\n";
+    if (PrintOut) { ++testNumber, cout << "\n\n\nTEST " << testNumber << "\n"; }
 
     for (int Slice = 0; Slice < NucleonMomSliceLimits.size(); Slice++) {
         p_slice_limits << "p_slice_" << (Slice + 1) << "\t" << NucleonMomSliceLimits.at(Slice).at(0) << ":" << NucleonMomSliceLimits.at(Slice).at(1) << "\n";
@@ -1787,7 +1777,7 @@ void AMaps::DrawAndSaveHitMaps(const string &SampleName, TCanvas *h1DCanvas, con
     AMaps_plots_path_fout->Close();
     //</editor-fold>
 
-    //<editor-fold desc="Save TL Acceptance maps to refrence Acceptance maps directory">
+    //<editor-fold desc="Save TL Acceptance maps to reference Acceptance maps directory">
     /* Acceptance maps BC */
     TFile *AMapsBC_ref_AMaps_fout = new TFile((AcceptanceMapsDirectory + SampleName + "/" + AMapsBC_prefix + SampleName + ".root").c_str(), "recreate");
     AMapsBC_ref_AMaps_fout->cd();
@@ -2161,23 +2151,13 @@ void AMaps::ReadAMapSlices(const string &SampleName, const string &AcceptanceMap
         ParticleShort = "nuc";
     }
 
-    for (int Slice = 0; Slice < Loaded_particle_limits.
-
-                                size();
-
-         Slice++) {
+    for (int Slice = 0; Slice < Loaded_particle_limits.size(); Slice++) {
         vector<vector<int>> Loaded_Particle_AMap_TempSlice;
 
         string TempFileName = ParticleShort + "_AMap_by_slice/" + ParticleShort + "_AMap_file_from_" + ToStringWithPrecision(Loaded_particle_limits.at(Slice).at(0), 2) + "_to_" +
                               ToStringWithPrecision(Loaded_particle_limits.at(Slice).at(1), 2) + ".par";
 
-        ReadAMap((AcceptanceMapsDirectory + SampleName + "/" + TempFileName)
-                     .
-
-                 c_str(),
-                 Loaded_Particle_AMap_TempSlice
-
-        );
+        ReadAMap((AcceptanceMapsDirectory + SampleName + "/" + TempFileName).c_str(), Loaded_Particle_AMap_TempSlice);
 
         Loaded_Particle_AMap_Slices.push_back(Loaded_Particle_AMap_TempSlice);
     }
@@ -2188,9 +2168,7 @@ void AMaps::ReadAMapSlices(const string &SampleName, const string &AcceptanceMap
 
 //<editor-fold desc="ReadWMapSlices function (WMaps)">
 void AMaps::ReadWMapSlices(const string &SampleName, const string &AcceptanceMapsDirectory, const string &Particle, const vector<vector<double>> &Loaded_particle_limits,
-                           vector<vector<vector<double>>
-
-                                  > &Loaded_Particle_WMap_Slices) {
+                           vector<vector<vector<double>>> &Loaded_Particle_WMap_Slices) {
     string ParticleShort;
 
     if (isElectron(Particle)) {
@@ -2203,23 +2181,13 @@ void AMaps::ReadWMapSlices(const string &SampleName, const string &AcceptanceMap
         ParticleShort = "nuc";
     }
 
-    for (int Slice = 0; Slice < Loaded_particle_limits.
-
-                                size();
-
-         Slice++) {
+    for (int Slice = 0; Slice < Loaded_particle_limits.size(); Slice++) {
         vector<vector<double>> Loaded_Particle_WMap_TempSlice;
 
         string TempFileName = ParticleShort + "_WMap_by_slice/" + ParticleShort + "_WMap_file_from_" + ToStringWithPrecision(Loaded_particle_limits.at(Slice).at(0), 2) + "_to_" +
                               ToStringWithPrecision(Loaded_particle_limits.at(Slice).at(1), 2) + ".par";
 
-        ReadWMap((AcceptanceMapsDirectory + SampleName + "/" + TempFileName)
-                     .
-
-                 c_str(),
-                 Loaded_Particle_WMap_TempSlice
-
-        );
+        ReadWMap((AcceptanceMapsDirectory + SampleName + "/" + TempFileName).c_str(), Loaded_Particle_WMap_TempSlice);
 
         Loaded_Particle_WMap_Slices.push_back(Loaded_Particle_WMap_TempSlice);
     }

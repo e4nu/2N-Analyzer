@@ -263,16 +263,12 @@ class AMaps {
     // ReadAMapSlices function ----------------------------------------------------------------------------------------------------------------------------------------------------
 
     void ReadAMapSlices(const string &SampleName, const string &AcceptanceMapsDirectory, const string &Particle, const vector<vector<double>> &Loaded_particle_limits,
-                        vector<vector<vector<int>>
-
-                               > &Loaded_Particle_AMap_Slices);
+                        vector<vector<vector<int>>> &Loaded_Particle_AMap_Slices);
 
     // ReadAMapSlices function ----------------------------------------------------------------------------------------------------------------------------------------------------
 
     void ReadWMapSlices(const string &SampleName, const string &AcceptanceMapsDirectory, const string &Particle, const vector<vector<double>> &Loaded_particle_limits,
-                        vector<vector<vector<double>>
-
-                               > &Loaded_Particle_WMap_Slices);
+                        vector<vector<vector<double>>> &Loaded_Particle_WMap_Slices);
 
     // ReadAMap function ----------------------------------------------------------------------------------------------------------------------------------------------------
 

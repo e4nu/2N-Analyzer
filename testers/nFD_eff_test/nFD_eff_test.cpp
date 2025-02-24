@@ -27,10 +27,10 @@ void nFD_eff_test() {
         P_upperLim = Ebeam * 1.1;
     }
 
-    // int Limiter = 10000000;
-    // int Limiter = 1000000;
-    int Limiter = 100000;
-    // int Limiter = 10000;
+    // int Limiter = 10000000; // 1000 files
+    int Limiter = 1000000;  // 100 files
+    // int Limiter = 100000; // 10 files
+    // int Limiter = 10000; // 1 file
 
     // string OutFolderName = "nFD_eff_test_reg";
     string OutFolderName = "nFD_eff_test_v2_nFD_w_TL_mom";
