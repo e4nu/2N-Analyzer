@@ -1625,9 +1625,9 @@ void AMaps::DrawAndSaveHitMaps(const string &SampleName, TCanvas *h1DCanvas, con
     CalcAMapsRatio();
 
     cout << "\n\nGenerating filtered maps...\n";
-    GenerateCPartAMaps(Charged_particle_min_Ratio);
+    // GenerateCPartAMaps(Charged_particle_min_Ratio);
     GenerateNPartAMaps(Neutral_particle_min_Ratio);
-    GenerateNucleonAMap();
+    // GenerateNucleonAMap();
 
     cout << "\n\nSaving maps...\n";
     SaveHitMaps(SampleName, AcceptanceMapsDirectory);
