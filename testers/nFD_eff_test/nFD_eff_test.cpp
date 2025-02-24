@@ -5,6 +5,7 @@
 #define PBWIDTH 60
 
 #include "nFD_eff_test_functions.cpp"
+#include "../../source/classes/AMaps/AMaps.cpp"
 
 void nFD_eff_test() {
     cout << "\n\nInitiating nFD_eff_test.cpp\n";
