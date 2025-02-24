@@ -12431,7 +12431,8 @@ void EventAnalyser(const string &AnalyseFilePath, const string &AnalyseFileSampl
 
                         bool NeutronPassVeto_1e_cut = pid.NeutronECAL_Cut_Veto(allParticles, electrons, beamE, NeutronsFD_ind_mom_max, Neutron_veto_cut.GetLowerCut());
 
-                        double Mom_neut_1e_cut = pid.GetFDNeutronP(allParticles[NeutronsFD_ind_mom_max], apply_nucleon_cuts);
+                        double Mom_neut_1e_cut = pid.GetFDNeutronP(allParticles[NeutronsFD_ind_mom_max], true);  // if neutron is within fiducial cuts
+                        // double Mom_neut_1e_cut = pid.GetFDNeutronP(allParticles[NeutronsFD_ind_mom_max], apply_nucleon_cuts);
                         double Theta_neut_1e_cut = allParticles[NeutronsFD_ind_mom_max]->getTheta() * 180.0 / pi;
                         double Phi_neut_1e_cut = allParticles[NeutronsFD_ind_mom_max]->getPhi() * 180.0 / pi;
 
