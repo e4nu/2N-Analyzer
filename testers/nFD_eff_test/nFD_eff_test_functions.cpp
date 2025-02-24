@@ -36,7 +36,7 @@ using namespace utilities;
 // #include "../../source/classes/AMaps/AMaps.cpp"
 // #endif
 
-#include "../../source/classes/AMaps/AMaps.cpp"
+// #include "../../source/classes/AMaps/AMaps.cpp"
 
 double CalcToFnFD(region_part_ptr NeutronFD, double starttime = 9999) {
     bool ParticleInPCAL = (NeutronFD->cal(clas12::PCAL)->getDetector() == 7);                       // PCAL hit
