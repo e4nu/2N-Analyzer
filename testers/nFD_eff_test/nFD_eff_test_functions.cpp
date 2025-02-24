@@ -28,6 +28,12 @@
 using namespace std;
 using namespace clas12;
 
+#define IndependentEffTester 0  // Use 0 instead of false
+
+#if (!IndependentEffTester)
+#include "../../source/classes/AMaps/AMaps.cpp"
+#endif
+
 double CalcToFnFD(region_part_ptr NeutronFD, double starttime = 9999) {
     bool ParticleInPCAL = (NeutronFD->cal(clas12::PCAL)->getDetector() == 7);                       // PCAL hit
     bool ParticleInECIN = (NeutronFD->cal(clas12::ECIN)->getDetector() == 7);                       // ECIN hit
