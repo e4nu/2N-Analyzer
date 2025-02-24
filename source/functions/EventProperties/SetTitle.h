@@ -5,11 +5,11 @@
 #ifndef SETTITLE_H
 #define SETTITLE_H
 
+#include <chrono>
 #include <cstdlib>
 #include <iomanip>
-#include <chrono>
-#include <typeinfo>
 #include <sstream>
+#include <typeinfo>
 
 #include "GetParticleName.h"
 #include "GetParticleNameShort.h"
@@ -57,4 +57,4 @@ string SetTitle(const string &RecTitle, const string &PlotsT, const string &DReg
     return Title;
 }
 
-#endif //SETTITLE_H
+#endif  // SETTITLE_H

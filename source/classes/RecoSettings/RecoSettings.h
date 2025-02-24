@@ -5,33 +5,31 @@
 #ifndef RECOSETTINGS_H
 #define RECOSETTINGS_H
 
-
 class RecoSettings {
-private:
-
+   private:
     //<editor-fold desc="Code setup">
 
-// ======================================================================================================================================================================
-// Input processing
-// ======================================================================================================================================================================
+    // ======================================================================================================================================================================
+    // Input processing
+    // ======================================================================================================================================================================
 
     //<editor-fold desc="Input processing">
     /* Initial input processing of loaded files (given by AnalyseFile) */
 
     /* Determine file path and name */
-    const string LoadedInput = AnalyseFile; // AnalyseFile is taken from codeSetup.h
+    const string LoadedInput = AnalyseFile;  // AnalyseFile is taken from codeSetup.h
     const string filePath = LoadedInput.substr(0, LoadedInput.find_last_of('/') + 1);
     const string fileInput = LoadedInput.substr(LoadedInput.find_last_of('/') + 1);
     const string plotsInput = fileInput.substr(0, fileInput.find_last_of(".hipo") - 4);
 
     /* Configure and get run parameters */
     ExperimentParameters Experiment(AnalyseFilePath, AnalyseFileSample);
-    const string SampleName = Experiment.ConfigureSampleName(AnalyseFilePath, AnalyseFileSample); // Configure SampleName from input
-    //TODO: change VaryingSampleName to simulation of a 4-foil!
-    const string VaryingSampleName = Experiment.GetVaryingSampleName();                             // Get VaryingSampleName (configured from SampleName) - for data runs!
-    const double beamE = Experiment.GetBeanEnergy();                                              // Configure beam energy from SampleName
-    const string Target = Experiment.GetTargetElement();                                          // Configure target (element) from SampleName
-    const int TargetPDG = Experiment.GetTargetElementPDG();                                       // Configure target PDG from SampleName
+    const string SampleName = Experiment.ConfigureSampleName(AnalyseFilePath, AnalyseFileSample);  // Configure SampleName from input
+    // TODO: change VaryingSampleName to simulation of a 4-foil!
+    const string VaryingSampleName = Experiment.GetVaryingSampleName();  // Get VaryingSampleName (configured from SampleName) - for data runs!
+    const double beamE = Experiment.GetBeanEnergy();                     // Configure beam energy from SampleName
+    const string Target = Experiment.GetTargetElement();                 // Configure target (element) from SampleName
+    const int TargetPDG = Experiment.GetTargetElementPDG();              // Configure target PDG from SampleName
     const bool isLocal = Experiment.SLocal();
     const bool isMC = Experiment.SSample();
     const bool isData = Experiment.DSample();
@@ -40,9 +38,9 @@ private:
     const bool is6GeVSample = Experiment.IsBeamAt6GeV();
     //</editor-fold>
 
-// ======================================================================================================================================================================
-// Event selection setup
-// ======================================================================================================================================================================
+    // ======================================================================================================================================================================
+    // Event selection setup
+    // ======================================================================================================================================================================
 
     //<editor-fold desc="Event selection setup">
     /* Settings to enable/disable specific FS plot calculations (Rec only): */
@@ -57,29 +55,29 @@ private:
     const bool calculate_nFDpCD = true;
 
     /* Truth level calculation setup */
-    bool calculate_truth_level = true; // TL master ON/OFF switch
+    bool calculate_truth_level = true;  // TL master ON/OFF switch
     bool fill_TL_plots = true;
-    bool ZoomIn_On_mom_th_plots = false; // Force TL event selection on reco. plots
-    bool Rec_wTL_ES = false; // Force TL event selection on reco. plots
+    bool ZoomIn_On_mom_th_plots = false;  // Force TL event selection on reco. plots
+    bool Rec_wTL_ES = false;              // Force TL event selection on reco. plots
 
     const bool limless_mom_eff_plots = false;
 
     /* FD neutrals settings */
-    const bool Enable_FD_photons = false; // keep as false to decrease RES & DIS
-    const bool Enable_FD_neutrons = true; // keep as false to increse eff. plots
+    const bool Enable_FD_photons = false;  // keep as false to decrease RES & DIS
+    const bool Enable_FD_neutrons = true;  // keep as false to increse eff. plots
     const bool Count_FD_neurton_and_photon_hits = true;
 
-    //TODO: add this switch to event selection variables!
+    // TODO: add this switch to event selection variables!
     const bool ES_by_leading_FDneutron = true;
 
     /* Acceptance maps setup */
-    bool Generate_AMaps = true;             // Generate acceptance maps
+    bool Generate_AMaps = true;  // Generate acceptance maps
     bool TL_with_one_reco_electron = true;
     bool reformat_e_bins = false;
     bool varying_P_e_bins = false;
-    bool Electron_single_slice_test = false; // keep as false for normal runs!
-    bool Nucleon_single_slice_test = false;  // keep as false for normal runs!
-    vector<int> TestSlices = {1, 1, 1};      // {ElectronTestSlice, ProtonTestSlice, NeutronTestSlice}
+    bool Electron_single_slice_test = false;  // keep as false for normal runs!
+    bool Nucleon_single_slice_test = false;   // keep as false for normal runs!
+    vector<int> TestSlices = {1, 1, 1};       // {ElectronTestSlice, ProtonTestSlice, NeutronTestSlice}
 
     /* Neutron resolution setup */
     /* Run order:
@@ -88,27 +86,27 @@ private:
         3. momResS2 calculation:    VaryingDelta = false , plot_and_fit_MomRes = true  , Calculate_momResS2 = true  , Run_in_momResS2 = false
         4. momResS2 run:            VaryingDelta = false , plot_and_fit_MomRes = false , Calculate_momResS2 = false , Run_in_momResS2 = true
     */
-    bool plot_and_fit_MomRes = false;    // Generate nRes plots
-    bool Calculate_momResS2 = false;     // Calculate momResS2 variables
+    bool plot_and_fit_MomRes = false;  // Generate nRes plots
+    bool Calculate_momResS2 = false;   // Calculate momResS2 variables
     const double DeltaSlices = 0.05;
-    const bool VaryingDelta = true;      // 1st momResS1 w/ VaryingDelta = false
+    const bool VaryingDelta = true;  // 1st momResS1 w/ VaryingDelta = false
     const string SmearMode = "pol1_wKC";
     const string CorrMode = "pol1_wKC";
-    bool nRes_test = false;              // false by default
-    bool Run_in_momResS2 = true;         // Smear w/ momResS2 & correct w/ momResS1
+    bool nRes_test = false;       // false by default
+    bool Run_in_momResS2 = true;  // Smear w/ momResS2 & correct w/ momResS1
     //</editor-fold>
 
-// ======================================================================================================================================================================
-// Cut setup
-// ======================================================================================================================================================================
+    // ======================================================================================================================================================================
+    // Cut setup
+    // ======================================================================================================================================================================
 
-// Cut setup ---------------------------------------------------------------------------------------------------------------------------------------------------------
+    // Cut setup ---------------------------------------------------------------------------------------------------------------------------------------------------------
 
     //<editor-fold desc="Cuts setup">
     /* Settings that allow to disable/enable every cut individually */
 
     // clas12ana cuts ---------------------------------------------------------------------------------------------------------------------------------------------------
-    const bool apply_cuts = true; // master ON/OFF switch for applying cuts
+    const bool apply_cuts = true;  // master ON/OFF switch for applying cuts
 
     /* HTCC cut */
     bool apply_Nphe_cut = true;
@@ -134,19 +132,19 @@ private:
     bool apply_Electron_beta_cut = true;
 
     /* Nucleon cuts */
-    bool apply_nucleon_cuts = true; // set as true to get good protons and calculate upper neutron momentum th.
+    bool apply_nucleon_cuts = true;  // set as true to get good protons and calculate upper neutron momentum th.
 
     /* Physical cuts */
-    bool apply_nucleon_physical_cuts = true; // nucleon physical cuts master
-    //TODO: automate adding upper mom. th. to nuclon cuts (for nRes calc)
-    bool apply_nBeta_fit_cuts = true; // apply neutron upper mom. th.
+    bool apply_nucleon_physical_cuts = true;  // nucleon physical cuts master
+    // TODO: automate adding upper mom. th. to nuclon cuts (for nRes calc)
+    bool apply_nBeta_fit_cuts = true;  // apply neutron upper mom. th.
     bool apply_fiducial_cuts = false;
     bool apply_kinematical_cuts = false;
     bool apply_kinematical_weights = false;
     bool apply_nucleon_SmearAndCorr = false;
 
     //<editor-fold desc="Auto-disable variables">
-    if (isData) { // no TL calculation, AMap,WMap generation nor nRes calculation when running on data
+    if (isData) {  // no TL calculation, AMap,WMap generation nor nRes calculation when running on data
         calculate_truth_level = Generate_AMaps = plot_and_fit_MomRes = nRes_test = false;
     }
 
@@ -162,8 +160,8 @@ private:
 
     if (!plot_and_fit_MomRes) { Calculate_momResS2 = false; }
 
-    if ((Calculate_momResS2 && Run_in_momResS2) // Don't run calculate momResS2 and run on it at the same time
-    || (Calculate_momResS2 && !VaryingDelta) // Don't run calculate momResS2 and small momentum slices at the same time
+    if ((Calculate_momResS2 && Run_in_momResS2)   // Don't run calculate momResS2 and run on it at the same time
+        || (Calculate_momResS2 && !VaryingDelta)  // Don't run calculate momResS2 and small momentum slices at the same time
     ) {
         cout << "\n\nmomRes order error! Exiting...\n\n", exit(0);
     }
@@ -199,7 +197,6 @@ private:
     string Nucleon_Cuts_Status, FD_photons_Status, PSmearing_Status, FiducialCuts_Status, KinCuts_Status, KinWei_Status, Additional_Status, Efficiency_Status;
 
     if (custom_cuts_naming) {
-
         //<editor-fold desc="Status additions">
         if (apply_nucleon_cuts) {
             Nucleon_Cuts_Status = "NC_";
@@ -261,20 +258,20 @@ private:
                             if (!Run_in_momResS2) {
                                 Additional_Status = "nResS1_";
                             } else {
-                                Additional_Status = "nResS2R_"; // R for Run
+                                Additional_Status = "nResS2R_";  // R for Run
                             }
                         } else {
                             if (!Run_in_momResS2) {
                                 Additional_Status = "nResS1T_";
                             } else {
-                                Additional_Status = "nResS2RT_"; // R for Run; T for Test
+                                Additional_Status = "nResS2RT_";  // R for Run; T for Test
                             }
                         }
                     } else {
                         if (!nRes_test) {
                             Additional_Status = "nResS2_";
                         } else {
-                            Additional_Status = "nResS2T_"; // T for Test
+                            Additional_Status = "nResS2T_";  // T for Test
                         }
                     }
                 }
@@ -324,18 +321,17 @@ private:
         }
         //</editor-fold>
 
-        if (!apply_cuts) { // Stage 0 - no cuts
+        if (!apply_cuts) {  // Stage 0 - no cuts
             plots_path = WorkingDirectory + SampleName + "_S00_NO_CUTS";
             plots_log_save_Directory = plots_path + "/" + "Run_log_" + SampleName + "_S00_NO_CUTS.txt";
         } else {
-            string added_names = Nucleon_Cuts_Status + FD_photons_Status + PSmearing_Status + FiducialCuts_Status + KinCuts_Status + KinWei_Status + Additional_Status
-                                 + Efficiency_Status;
+            string added_names = Nucleon_Cuts_Status + FD_photons_Status + PSmearing_Status + FiducialCuts_Status + KinCuts_Status + KinWei_Status + Additional_Status + Efficiency_Status;
 
-            if (!apply_chi2_cuts_1e_cut) { // Stage 1 - with cuts except PID (chi2) cuts
+            if (!apply_chi2_cuts_1e_cut) {  // Stage 1 - with cuts except PID (chi2) cuts
                 plots_path = WorkingDirectory + SampleName + "_S01ACwoChi2";
                 plots_log_save_Directory = plots_path + "/" + "Run_log_" + SampleName + "_S01ACwoChi2.txt";
             } else if (apply_chi2_cuts_1e_cut) {
-                if (!apply_nucleon_cuts) { // Stage 2 - set nucleon cuts (neutron beta fit & proton double detection cuts)
+                if (!apply_nucleon_cuts) {  // Stage 2 - set nucleon cuts (neutron beta fit & proton double detection cuts)
                     plots_path = WorkingDirectory + SampleName + "_S02AC" + added_names;
                     plots_log_save_Directory = plots_path + "/" + "Run_log_" + SampleName + "_S02AC" + added_names + ".txt";
                 } else {
@@ -399,7 +395,7 @@ private:
 
     //</editor-fold>
 
-// Cut declarations -----------------------------------------------------------------------------------------------------------------------------------------------------
+    // Cut declarations -----------------------------------------------------------------------------------------------------------------------------------------------------
 
     //<editor-fold desc="Cuts declarations">
     /* Log cut values to be used later when applying them. */
@@ -445,7 +441,7 @@ private:
 
     /* Sampling Fraction (SF) cuts (electrons only, FD) */
     DSCuts SF_cuts;
-//    DSCuts P_cuts;
+    //    DSCuts P_cuts;
 
     /* PCAL edge cuts (fiducial cuts ,electrons only, FD) */
     DSCuts PCAL_edge_cuts;
@@ -485,13 +481,14 @@ private:
     DSCuts Beta_max_cut_ABF_FD_n_from_ph, Beta_max_cut_ABF_FD_n_from_ph_apprax;
 
     /* Neutron momentum cuts (1n & nFDpCD, FD only) */
-    DSCuts n_momentum_cuts_ABF_FD_n_from_ph; // ABF = After Beta Fit. These are momentum cuts to logged to the fitted cuts file.
-    DSCuts n_momentum_cuts_ABF_FD_n_from_ph_apprax; // Appraximated max. momentum, obtained by taking Beta=1, such that deltaBeta/Beta=deltaBeta.
+    DSCuts n_momentum_cuts_ABF_FD_n_from_ph;         // ABF = After Beta Fit. These are momentum cuts to logged to the fitted cuts file.
+    DSCuts n_momentum_cuts_ABF_FD_n_from_ph_apprax;  // Appraximated max. momentum, obtained by taking Beta=1, such that deltaBeta/Beta=deltaBeta.
 
     /* Truth-level momentum cuts */
-    //TODO: remove pion mom. th. separation by CD and FD. It's useless (according to Adi)
+    // TODO: remove pion mom. th. separation by CD and FD. It's useless (according to Adi)
     DSCuts TL_e_mom_cuts = DSCuts("Momentum", "", "Electron", "", 0, e_mom_th.GetLowerCut(), e_mom_th.GetUpperCut());
-    DSCuts TL_n_mom_cuts = DSCuts("Momentum", "", "Neutrons", "", 0, n_mom_th.GetLowerCut(), n_mom_th.GetUpperCut());;
+    DSCuts TL_n_mom_cuts = DSCuts("Momentum", "", "Neutrons", "", 0, n_mom_th.GetLowerCut(), n_mom_th.GetUpperCut());
+    ;
     DSCuts TL_p_mom_cuts = DSCuts("Momentum", "", "Proton", "", 0, p_mom_th.GetLowerCut(), p_mom_th.GetUpperCut());
     DSCuts TL_pFD_mom_cuts = DSCuts("Momentum", "FD", "Proton", "", 0, p_mom_th.GetLowerCut(), p_mom_th.GetUpperCut());
     DSCuts TL_pCD_mom_cuts = DSCuts("Momentum", "CD", "Proton", "", 0, p_mom_th.GetLowerCut(), p_mom_th.GetUpperCut());
@@ -534,16 +531,16 @@ private:
     /* reco. kinematic cuts (based on nucleons' efficiency) */
     DSCuts FD_nucleon_theta_cut = DSCuts("FD Nucleon theta cut", "FD", "", "", 0, 0, 32.);
     DSCuts Nucleon_momentum_cut = DSCuts("Nucleon momentum cut", "FD", "", "", 0, n_mom_th.GetLowerCut(), n_mom_th.GetUpperCut());
-    DSCuts FD_nucleon_momentum_cut = DSCuts("FD nucleon momentum cut", "FD", "", "pFDpCD & nFDpCD", 0, 1., 3.); // new upper cut, following Larry meeting (10/08/23)
+    DSCuts FD_nucleon_momentum_cut = DSCuts("FD nucleon momentum cut", "FD", "", "pFDpCD & nFDpCD", 0, 1., 3.);  // new upper cut, following Larry meeting (10/08/23)
     //</editor-fold>
 
     //</editor-fold>
 
-// ======================================================================================================================================================================
-// Other setup
-// ======================================================================================================================================================================
+    // ======================================================================================================================================================================
+    // Other setup
+    // ======================================================================================================================================================================
 
-// TList definition -----------------------------------------------------------------------------------------------------------------------------------------------------
+    // TList definition -----------------------------------------------------------------------------------------------------------------------------------------------------
 
     //<editor-fold desc="TList definition">
     /* Definition of plots TLists used to save all plots to .root file. */
@@ -554,7 +551,7 @@ private:
     const char *TListName = listName.c_str();
     //</editor-fold>
 
-//  Creating directories ------------------------------------------------------------------------------------------------------------------------------------------------
+    //  Creating directories ------------------------------------------------------------------------------------------------------------------------------------------------
 
     //<editor-fold desc="Creating directories">
     /* Code for creating directories.
@@ -569,7 +566,7 @@ private:
     cout << " done.\n\n";
     //</editor-fold>
 
-// Plot selector --------------------------------------------------------------------------------------------------------------------------------------------------------
+    // Plot selector --------------------------------------------------------------------------------------------------------------------------------------------------------
 
     //<editor-fold desc="Plot selector">
     /* Here are boolean variables used to turn ON/OFF the different plots of the code.
@@ -577,10 +574,10 @@ private:
 
     //<editor-fold desc="Plot selector variable declarations">
     /* Master plots variable */
-    bool Plot_selector_master; // Master plot selector for analysis
+    bool Plot_selector_master;  // Master plot selector for analysis
 
     /* Cut variable plots */
-    bool Cut_plots_master; // Master cut plots selector
+    bool Cut_plots_master;  // Master cut plots selector
     bool Nphe_plots, Chi2_plots, Vertex_plots, SF_plots, fiducial_plots, Momentum_plots;
 
     /* Beta plots */
@@ -591,7 +588,7 @@ private:
     bool Beta_vs_P_plots;
 
     /* Angle plots */
-    bool Angle_plots_master; // Master angle plots selector
+    bool Angle_plots_master;  // Master angle plots selector
     bool Theta_e_plots, Phi_e_plots;
 
     /* Momentum transfer plots */
@@ -601,7 +598,7 @@ private:
     bool E_e_plots;
 
     /* ET plots */
-    bool ETrans_plots_master; // Master ET plots selector
+    bool ETrans_plots_master;  // Master ET plots selector
     bool ETrans_all_plots, ETrans_All_Int_plots, ETrans_QEL_plots, ETrans_MEC_plots, ETrans_RES_plots, ETrans_DIS_plots;
 
     /* Ecal plots */
@@ -625,19 +622,18 @@ private:
 
     /* Final state ratio plots */
     bool FSR_1D_plots;
-    bool FSR_2D_plots; // disabled below if HipoChainLength is 2 or lower
+    bool FSR_2D_plots;  // disabled below if HipoChainLength is 2 or lower
     //</editor-fold>
 
-    bool TestRun = false; // set as false for a full run
+    bool TestRun = false;  // set as false for a full run
 
     if (!TestRun) {
-
         //<editor-fold desc="Plot everything (full run)">
         /* Master plots variable */
-        Plot_selector_master = true; // Master plot selector for analysis
+        Plot_selector_master = true;  // Master plot selector for analysis
 
         /* Cut variable plots */
-        Cut_plots_master = true; // Master cut plots selector
+        Cut_plots_master = true;  // Master cut plots selector
         Nphe_plots = true, Chi2_plots = true, Vertex_plots = true, SF_plots = true, fiducial_plots = true, Momentum_plots = true;
 
         /* Beta plots */
@@ -648,7 +644,7 @@ private:
         Beta_vs_P_plots = true;
 
         /* Angle plots */
-        Angle_plots_master = true; // Master angle plots selector
+        Angle_plots_master = true;  // Master angle plots selector
         Theta_e_plots = true, Phi_e_plots = true;
 
         /* Momentum transfer plots */
@@ -658,7 +654,7 @@ private:
         E_e_plots = true;
 
         /* ET plots */
-        ETrans_plots_master = true; // Master ET plots selector
+        ETrans_plots_master = true;  // Master ET plots selector
         ETrans_all_plots = true, ETrans_All_Int_plots = true, ETrans_QEL_plots = true, ETrans_MEC_plots = true, ETrans_RES_plots = true, ETrans_DIS_plots = true;
 
         /* Ecal plots */
@@ -682,89 +678,87 @@ private:
 
         /* Final state ratio plots */
         FSR_1D_plots = true;
-        FSR_2D_plots = true; // disabled below if HipoChainLength is 2 or lower
+        FSR_2D_plots = true;  // disabled below if HipoChainLength is 2 or lower
         //</editor-fold>
 
     } else {
-
         //<editor-fold desc="Selected plots (test run)">
         /* Master plots variable */
-        Plot_selector_master = true; // Master plot selector for analysis
+        Plot_selector_master = true;  // Master plot selector for analysis
 
         /* Cut variable plots */
-        Cut_plots_master = true; // Master cut plots selector
-//     Nphe_plots = true, Chi2_plots = true, Vertex_plots = true, SF_plots = true, fiducial_plots = true;
+        Cut_plots_master = true;  // Master cut plots selector
+                                  //     Nphe_plots = true, Chi2_plots = true, Vertex_plots = true, SF_plots = true, fiducial_plots = true;
         Nphe_plots = false, Chi2_plots = false, Vertex_plots = false, SF_plots = false, fiducial_plots = false;
-//
-//     Momentum_plots = true;
+        //
+        //     Momentum_plots = true;
         Momentum_plots = false;
-//
+        //
 
         /* Beta plots */
-//     W_plots = true;
+        //     W_plots = true;
         W_plots = false;
 
         /* Beta plots */
-//     Beta_plots = true;
+        //     Beta_plots = true;
         Beta_plots = false;
-//     Beta_vs_P_plots = true;
+        //     Beta_vs_P_plots = true;
         Beta_vs_P_plots = false;
 
         /* Angle plots */
-        Angle_plots_master = true; // Master angle plots selector
+        Angle_plots_master = true;  // Master angle plots selector
         Theta_e_plots = true, Phi_e_plots = true;
-//        Angle_plots_master = false; // Master angle plots selector
-//        Theta_e_plots = false, Phi_e_plots = false;
+        //        Angle_plots_master = false; // Master angle plots selector
+        //        Theta_e_plots = false, Phi_e_plots = false;
 
         /* Momentum transfer plots */
-//     Momentum_transfer_plots = true;
+        //     Momentum_transfer_plots = true;
         Momentum_transfer_plots = false;
 
         /* E_e plots */
-//     E_e_plots = true;
+        //     E_e_plots = true;
         E_e_plots = false;
 
         /* ET plots */
-//     ETrans_plots_master = true; // Master ET plots selector
-        ETrans_plots_master = false; // Master ET plots selector
+        //     ETrans_plots_master = true; // Master ET plots selector
+        ETrans_plots_master = false;  // Master ET plots selector
         ETrans_all_plots = true, ETrans_All_Int_plots = true, ETrans_QEL_plots = true, ETrans_MEC_plots = true, ETrans_RES_plots = true, ETrans_DIS_plots = true;
 
         /* Ecal plots */
-//     Ecal_plots = true;
+        //     Ecal_plots = true;
         Ecal_plots = false;
 
         /* Transverse variables plots */
-//     TKI_plots = true;
+        //     TKI_plots = true;
         TKI_plots = false;
 
         /* ToF plots */
-//     ToF_plots = true;
+        //     ToF_plots = true;
         ToF_plots = false;
 
         /* Efficiency plots */
-//        Efficiency_plots = true;
+        //        Efficiency_plots = true;
         Efficiency_plots = false;
-//        TL_after_Acceptance_Maps_plots = true;
+        //        TL_after_Acceptance_Maps_plots = true;
         TL_after_Acceptance_Maps_plots = false;
 
         /* Resolution plots */
-//        AMaps_plots = true;
+        //        AMaps_plots = true;
         AMaps_plots = false;
 
         /* Resolution plots */
-//        Resolution_plots = true;
+        //        Resolution_plots = true;
         Resolution_plots = false;
 
         /* Final state ratio plots */
         FSR_1D_plots = false;
-        FSR_2D_plots = false; // disabled below if HipoChainLength is 2 or lower
+        FSR_2D_plots = false;  // disabled below if HipoChainLength is 2 or lower
         //</editor-fold>/
-
     }
 
     /* Other setup variables */
     bool wider_margin = true;
-    bool debug_plots = false; // Print out clas12ana debugging plots
+    bool debug_plots = false;  // Print out clas12ana debugging plots
 
     bool Log_scale_Vx_plots = false, Log_scale_Vy_plots = false;
     bool Log_scale_Vz_plots = true;
@@ -790,12 +784,12 @@ private:
 
     if (!apply_nucleon_cuts || (Electron_single_slice_test || Nucleon_single_slice_test)) { FSR_1D_plots = FSR_2D_plots = false; }
 
-//    if (!plot_and_fit_MomRes) { Resolution_plots = false; }
+    //    if (!plot_and_fit_MomRes) { Resolution_plots = false; }
     //</editor-fold>
 
     //</editor-fold>
 
-// Normalization setup -----------------------------------------------------------------------------------------------------------------------------------------------
+    // Normalization setup -----------------------------------------------------------------------------------------------------------------------------------------------
 
     //<editor-fold desc="Normalization setup">
     /* Here are boolean variables used to turn ON/OFF the different plot normalizations of the code.
@@ -809,7 +803,7 @@ private:
     bool norm_Ecal_plots = false, norm_TKI_plots = false;
 
     //<editor-fold desc="Auto-disable plot normalization variables">
-    if (!normalize_master) { // Disable all normalizations if normalize_master == false
+    if (!normalize_master) {  // Disable all normalizations if normalize_master == false
         norm_Nphe_plots = norm_Chi2_plots = norm_Vertex_plots = norm_SF_plots = norm_Fiducial_plots = norm_Momentum_plots = false;
         norm_Angle_plots_master = norm_Momentum_transfer_plots = norm_E_e_plots = norm_ET_plots = norm_Ecal_plots = norm_TKI_plots = false;
     }
@@ -817,7 +811,7 @@ private:
 
     //</editor-fold>
 
-// Delete setup ------------------------------------------------------------------------------------------------------------------------------------------------------
+    // Delete setup ------------------------------------------------------------------------------------------------------------------------------------------------------
 
     //<editor-fold desc="Delete setup">
     /* Clear files from previous runs (to prevent mix fo plots from different codes). */
@@ -830,16 +824,16 @@ private:
     //<editor-fold desc="Deleting files by cases">
     if (delete_png_files && !delete_root_files) {
         cout << "\nClearing old plots...";
-        system(("find " + plots_path + " -type f -iname '*.png' -delete").c_str()); // Delete existing .png files
+        system(("find " + plots_path + " -type f -iname '*.png' -delete").c_str());  // Delete existing .png files
         cout << " done.\n\n";
     } else if (!delete_png_files && delete_root_files) {
         cout << "\nClearing old root files...";
-        system(("find " + plots_path + " -type f -iname '*.root' -delete").c_str()); // Delete existing .root files
+        system(("find " + plots_path + " -type f -iname '*.root' -delete").c_str());  // Delete existing .root files
         cout << " done.\n\n";
     } else if (delete_png_files && delete_root_files) {
         cout << "\nClearing old plots & root files...";
-        system(("find " + plots_path + " -type f -iname '*.png' -delete").c_str()); // Delete existing .png files
-        system(("find " + plots_path + " -type f -iname '*.root' -delete").c_str()); // Delete existing .root files
+        system(("find " + plots_path + " -type f -iname '*.png' -delete").c_str());   // Delete existing .png files
+        system(("find " + plots_path + " -type f -iname '*.root' -delete").c_str());  // Delete existing .root files
         cout << " done.\n\n";
     } else {
         cout << "\nNo files were cleared.\n\n";
@@ -848,7 +842,7 @@ private:
 
     //</editor-fold>
 
-// Histogram setup ---------------------------------------------------------------------------------------------------------------------------------------------------
+    // Histogram setup ---------------------------------------------------------------------------------------------------------------------------------------------------
 
     //<editor-fold desc="Histogram setup">
     /* Histogram boundary variables. Used to unify histograms to the same boundaries. */
@@ -859,7 +853,7 @@ private:
     int numTH2Dbins = 65;
 
     /* Momentum plots */
-    int numTH2Dbins_Mom_Plots = 65; // To be changed if apply_kinematical_cuts = true
+    int numTH2Dbins_Mom_Plots = 65;  // To be changed if apply_kinematical_cuts = true
 
     /* Beta plots */
     int numTH1Dbins_Beta_Plots = 65;
@@ -919,7 +913,7 @@ private:
 
     /* Chi2 boundries */
     double Chi2_boundary = 20;
-//    double Chi2_boundary = 30;
+    //    double Chi2_boundary = 30;
 
     if (apply_cuts) { Chi2_boundary = 9; }
 
@@ -952,18 +946,18 @@ private:
     const double SF_uboundary = 0.31, SF_lboundary = 0.16;
 
     /* Momentum boundries */
-    const double Momentum_lboundary = 0., Momentum_uboundary = beamE * 1.1;   // Default
-    const double CDMomentum_lboundary = 0., CDMomentum_uboundary = beamE / 2; // CD nucleons (pFDpCD & nFDpCD)
-    double P_nucFD_lboundary = 0., P_nucFD_uboundary = beamE * 1.1;           // Default
-    double P_nucCD_lboundary = 0., P_nucCD_uboundary = beamE / 2;             // CD nucleons (pFDpCD & nFDpCD)
+    const double Momentum_lboundary = 0., Momentum_uboundary = beamE * 1.1;    // Default
+    const double CDMomentum_lboundary = 0., CDMomentum_uboundary = beamE / 2;  // CD nucleons (pFDpCD & nFDpCD)
+    double P_nucFD_lboundary = 0., P_nucFD_uboundary = beamE * 1.1;            // Default
+    double P_nucCD_lboundary = 0., P_nucCD_uboundary = beamE / 2;              // CD nucleons (pFDpCD & nFDpCD)
 
     if (apply_kinematical_cuts) {
         P_nucFD_lboundary = FD_nucleon_momentum_cut.GetLowerCut(), P_nucFD_uboundary = FD_nucleon_momentum_cut.GetUpperCut() * 1.1;
-        P_nucCD_lboundary = 0.4, P_nucCD_uboundary = 2.5; // CD nucleons (pFDpCD & nFDpCD)
+        P_nucCD_lboundary = 0.4, P_nucCD_uboundary = 2.5;  // CD nucleons (pFDpCD & nFDpCD)
     }
 
     /* W boundries */
-    const double W_lboundary = 0.5, W_uboundary = (beamE * 1.1) / 2; // Default
+    const double W_lboundary = 0.5, W_uboundary = (beamE * 1.1) / 2;  // Default
 
     /* Beta boundries */
     const double dBeta_sigma_boundary = 0.1;
@@ -993,7 +987,7 @@ private:
 
     //</editor-fold>
 
-// Acceptance maps generation -------------------------------------------------------------------------------------------------------------------------------------------
+    // Acceptance maps generation -------------------------------------------------------------------------------------------------------------------------------------------
 
     //<editor-fold desc="Acceptance maps generation">
     /* Acceptance maps are handled completely by the AMaps class */
@@ -1005,7 +999,7 @@ private:
 
     /* Set Bins by case */
     int NumberNucOfMomSlices, NumberElecOfMomSlices, HistElectronSliceNumOfXBins = 150, HistNucSliceNumOfXBins = 75;
-//    int NumberNucOfMomSlices, NumberElecOfMomSlices, HistElectronSliceNumOfXBins = numTH2Dbins_Electron_Ang_Plots, HistNucSliceNumOfXBins = numTH2Dbins_Nucleon_Ang_Plots;
+    //    int NumberNucOfMomSlices, NumberElecOfMomSlices, HistElectronSliceNumOfXBins = numTH2Dbins_Electron_Ang_Plots, HistNucSliceNumOfXBins = numTH2Dbins_Nucleon_Ang_Plots;
 
     //<editor-fold desc="Determine NumberNucOfMomSlices by sample">
     if (VaryingSampleName == "C12_simulation_G18_Q204_6GeV" || VaryingSampleName == "C12x4_simulation_G18_Q204_6GeV") {
@@ -1018,10 +1012,10 @@ private:
     AMaps aMaps, wMaps;
 
     if (Generate_AMaps) {
-        aMaps = AMaps(SampleName, reformat_e_bins, varying_P_e_bins, beamE, "AMaps", directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], NumberNucOfMomSlices,
-                      NumberElecOfMomSlices, HistNucSliceNumOfXBins, HistNucSliceNumOfXBins, HistElectronSliceNumOfXBins, HistElectronSliceNumOfXBins);
-        wMaps = AMaps(SampleName, reformat_e_bins, varying_P_e_bins, beamE, "WMaps", directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], NumberNucOfMomSlices,
-                      NumberElecOfMomSlices, HistNucSliceNumOfXBins, HistNucSliceNumOfXBins, HistElectronSliceNumOfXBins, HistElectronSliceNumOfXBins);
+        aMaps = AMaps(SampleName, reformat_e_bins, varying_P_e_bins, beamE, "AMaps", directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], NumberNucOfMomSlices, NumberElecOfMomSlices,
+                      HistNucSliceNumOfXBins, HistNucSliceNumOfXBins, HistElectronSliceNumOfXBins, HistElectronSliceNumOfXBins);
+        wMaps = AMaps(SampleName, reformat_e_bins, varying_P_e_bins, beamE, "WMaps", directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], NumberNucOfMomSlices, NumberElecOfMomSlices,
+                      HistNucSliceNumOfXBins, HistNucSliceNumOfXBins, HistElectronSliceNumOfXBins, HistElectronSliceNumOfXBins);
     } else {
         aMaps = AMaps(AcceptanceMapsDirectory, VaryingSampleName, Electron_single_slice_test, Nucleon_single_slice_test, TestSlices);
         wMaps = AMaps(AcceptanceWeightsDirectory, VaryingSampleName, Electron_single_slice_test, Nucleon_single_slice_test, TestSlices);
@@ -1030,7 +1024,7 @@ private:
     cout << " done.\n\n";
     //</editor-fold>
 
-// Acceptance correction data -------------------------------------------------------------------------------------------------------------------------------------------
+    // Acceptance correction data -------------------------------------------------------------------------------------------------------------------------------------------
 
     //<editor-fold desc="Acceptance correction">
     /* Neutron resolution fits is handled completely by the MomentumResolution class */
@@ -1050,69 +1044,61 @@ private:
     cout << " done.\n\n";
     //</editor-fold>
 
-// Neutron resolution & proton smearing ---------------------------------------------------------------------------------------------------------------------------------
+    // Neutron resolution & proton smearing ---------------------------------------------------------------------------------------------------------------------------------
 
     //<editor-fold desc="Neutron resolution">
     /* Neutron resolution fits is handled completely by the MomentumResolution class */
     cout << "\nSetting neutron resolution data...";
 
-    if (!calculate_truth_level) { plot_and_fit_MomRes = false; } // Disable resolution-realted operations if not calculating TL plots
+    if (!calculate_truth_level) { plot_and_fit_MomRes = false; }  // Disable resolution-realted operations if not calculating TL plots
 
     if (!plot_and_fit_MomRes) { Calculate_momResS2 = false; }
 
     /* Comment to test smearing and shift */
-//    if (apply_nucleon_SmearAndCorr) { plot_and_fit_MomRes = false; }  // Disable resolution-realted operations when applying proton smearing
+    //    if (apply_nucleon_SmearAndCorr) { plot_and_fit_MomRes = false; }  // Disable resolution-realted operations when applying proton smearing
 
     //<editor-fold desc="Neutron resolution class declaration & definition">
     MomentumResolution nRes, pRes;
 
     if (plot_and_fit_MomRes) {
         nRes = MomentumResolution(SampleName, NucleonCutsDirectory, "Neutron", beamE, FD_nucleon_momentum_cut, n_mom_th.GetLowerCut(), Calculate_momResS2, Run_in_momResS2,
-                                 MomentumResolutionDirectory, directories.Resolution_Directory_map["nRes_plots_1n_Directory"], DeltaSlices, VaryingDelta, SmearMode,
-                                 CorrMode, nRes_test);
+                                  MomentumResolutionDirectory, directories.Resolution_Directory_map["nRes_plots_1n_Directory"], DeltaSlices, VaryingDelta, SmearMode, CorrMode, nRes_test);
         pRes = MomentumResolution(SampleName, NucleonCutsDirectory, "Proton", beamE, FD_nucleon_momentum_cut, p_mom_th.GetLowerCut(), Calculate_momResS2, Run_in_momResS2,
-                                 MomentumResolutionDirectory, directories.Resolution_Directory_map["pRes_plots_1p_Directory"], DeltaSlices, VaryingDelta, SmearMode,
-                                 CorrMode, nRes_test);
+                                  MomentumResolutionDirectory, directories.Resolution_Directory_map["pRes_plots_1p_Directory"], DeltaSlices, VaryingDelta, SmearMode, CorrMode, nRes_test);
 
         if (nRes_test) {
-            if (Calculate_momResS2) { // if Calculate_momResS2 = true => load everything from momResS1 files
+            if (Calculate_momResS2) {  // if Calculate_momResS2 = true => load everything from momResS1 files
                 /* Load neutron correction fit parameters */
-                nRes.ReadResDataParam(
-                        (MomentumResolutionDirectory + "Res_data_-_" + VaryingSampleName + "/Neutron_momResS1_fit_param_-_" + VaryingSampleName + ".par").c_str(),
-                        Calculate_momResS2, VaryingSampleName, NucleonCutsDirectory, true, false);
+                nRes.ReadResDataParam((MomentumResolutionDirectory + "Res_data_-_" + VaryingSampleName + "/Neutron_momResS1_fit_param_-_" + VaryingSampleName + ".par").c_str(),
+                                      Calculate_momResS2, VaryingSampleName, NucleonCutsDirectory, true, false);
 
                 /* Load proton smearing fit parameters */
-                nRes.ReadResDataParam(
-                        (MomentumResolutionDirectory + "Res_data_-_" + VaryingSampleName + "/Neutron_momResS1_fit_param_-_" + VaryingSampleName + ".par").c_str(),
-                        Calculate_momResS2, VaryingSampleName, NucleonCutsDirectory, false, true);
-            } else { // if Calculate_momResS2 = false => load everything from either momResS1 or momResS2
-                if (Run_in_momResS2) { // if Calculate_momResS2 = false and Run_in_momResS2 = true => load everything correction from momResS1 and smearing from momResS2
+                nRes.ReadResDataParam((MomentumResolutionDirectory + "Res_data_-_" + VaryingSampleName + "/Neutron_momResS1_fit_param_-_" + VaryingSampleName + ".par").c_str(),
+                                      Calculate_momResS2, VaryingSampleName, NucleonCutsDirectory, false, true);
+            } else {                    // if Calculate_momResS2 = false => load everything from either momResS1 or momResS2
+                if (Run_in_momResS2) {  // if Calculate_momResS2 = false and Run_in_momResS2 = true => load everything correction from momResS1 and smearing from momResS2
                     /* Load neutron correction fit parameters */
-                    nRes.ReadResDataParam(
-                            (MomentumResolutionDirectory + "Res_data_-_" + VaryingSampleName + "/Neutron_momResS1_fit_param_-_" + VaryingSampleName + ".par").c_str(),
-                            Calculate_momResS2, VaryingSampleName, NucleonCutsDirectory, true, false);
+                    nRes.ReadResDataParam((MomentumResolutionDirectory + "Res_data_-_" + VaryingSampleName + "/Neutron_momResS1_fit_param_-_" + VaryingSampleName + ".par").c_str(),
+                                          Calculate_momResS2, VaryingSampleName, NucleonCutsDirectory, true, false);
 
                     /* Load proton smearing fit parameters */
-                    nRes.ReadResDataParam(
-                            (MomentumResolutionDirectory + "Res_data_-_" + VaryingSampleName + "/Neutron_momResS2_fit_param_-_" + VaryingSampleName + ".par").c_str(),
-                            Calculate_momResS2, VaryingSampleName, NucleonCutsDirectory, false, true);
-                } else { // if Calculate_momResS2 = false and Run_in_momResS2 = false => load both correction and smearing from momResS1
+                    nRes.ReadResDataParam((MomentumResolutionDirectory + "Res_data_-_" + VaryingSampleName + "/Neutron_momResS2_fit_param_-_" + VaryingSampleName + ".par").c_str(),
+                                          Calculate_momResS2, VaryingSampleName, NucleonCutsDirectory, false, true);
+                } else {  // if Calculate_momResS2 = false and Run_in_momResS2 = false => load both correction and smearing from momResS1
                     /* Load neutron correction fit parameters */
-                    nRes.ReadResDataParam(
-                            (MomentumResolutionDirectory + "Res_data_-_" + VaryingSampleName + "/Neutron_momResS1_fit_param_-_" + VaryingSampleName + ".par").c_str(),
-                            Calculate_momResS2, VaryingSampleName, NucleonCutsDirectory, true, false);
+                    nRes.ReadResDataParam((MomentumResolutionDirectory + "Res_data_-_" + VaryingSampleName + "/Neutron_momResS1_fit_param_-_" + VaryingSampleName + ".par").c_str(),
+                                          Calculate_momResS2, VaryingSampleName, NucleonCutsDirectory, true, false);
 
                     /* Load proton smearing fit parameters */
-                    nRes.ReadResDataParam(
-                            (MomentumResolutionDirectory + "Res_data_-_" + VaryingSampleName + "/Neutron_momResS1_fit_param_-_" + VaryingSampleName + ".par").c_str(),
-                            Calculate_momResS2, VaryingSampleName, NucleonCutsDirectory, false, true);
+                    nRes.ReadResDataParam((MomentumResolutionDirectory + "Res_data_-_" + VaryingSampleName + "/Neutron_momResS1_fit_param_-_" + VaryingSampleName + ".par").c_str(),
+                                          Calculate_momResS2, VaryingSampleName, NucleonCutsDirectory, false, true);
                 }
             }
         }
-    } else { // if plot_and_fit_MomRes = false => Calculate_momResS2 = false !!!
+    } else {  // if plot_and_fit_MomRes = false => Calculate_momResS2 = false !!!
         nRes.SetSmearAndCorrModes(SmearMode, CorrMode);
 
-        if (Run_in_momResS2) { // if Run_in_momResS2 = true => load everything correction from momResS1 and smearing from momResS2
+        if (Run_in_momResS2) {  // if Run_in_momResS2 = true => load everything correction from momResS1 and smearing from momResS2
             /* Load neutron correction fit parameters */
             nRes.ReadResDataParam((MomentumResolutionDirectory + "Res_data_-_" + VaryingSampleName + "/Neutron_momResS1_fit_param_-_" + VaryingSampleName + ".par").c_str(),
                                   Calculate_momResS2, VaryingSampleName, NucleonCutsDirectory, true, false);
@@ -1120,7 +1106,7 @@ private:
             /* Load proton smearing fit parameters */
             nRes.ReadResDataParam((MomentumResolutionDirectory + "Res_data_-_" + VaryingSampleName + "/Neutron_momResS2_fit_param_-_" + VaryingSampleName + ".par").c_str(),
                                   Calculate_momResS2, VaryingSampleName, NucleonCutsDirectory, false, true);
-        } else { // if Calculate_momResS2 = false and Run_in_momResS2 = false => load both correction and smearing from momResS1
+        } else {  // if Calculate_momResS2 = false and Run_in_momResS2 = false => load both correction and smearing from momResS1
             /* Load neutron correction fit parameters */
             nRes.ReadResDataParam((MomentumResolutionDirectory + "Res_data_-_" + VaryingSampleName + "/Neutron_momResS1_fit_param_-_" + VaryingSampleName + ".par").c_str(),
                                   Calculate_momResS2, VaryingSampleName, NucleonCutsDirectory, true, false);
@@ -1135,7 +1121,7 @@ private:
     cout << "\ndone.\n\n";
     //</editor-fold>
 
-// Debugging setup ---------------------------------------------------------------------------------------------------------------------------------------------------
+    // Debugging setup ---------------------------------------------------------------------------------------------------------------------------------------------------
 
     //<editor-fold desc="Debugging setup">
     /* Saving a printout of the number of particles in nEvents2print events. Used for clas12ana debugging. */
@@ -1143,7 +1129,7 @@ private:
     const bool GoodProtonsMonitorPlots = true;
 
     SetGPMonitoringPlots(GoodProtonsMonitorPlots, directories.Angle_Directory_map["CToF_hits_monitoring_2p_Directory"],
-    directories.Angle_Directory_map["Double_detection_monitoring_2p_Directory"]);
+                         directories.Angle_Directory_map["Double_detection_monitoring_2p_Directory"]);
 
     const bool PrintEvents = false;
     const int Ne_in_event = 1, Nf_in_event = 2, nEvents2print = 10000;
@@ -1179,35 +1165,33 @@ private:
 
     //</editor-fold>
 
-public:
-
-// constructor ----------------------------------------------------------------------------------------------------------------------------------------------------------
+   public:
+    // constructor ----------------------------------------------------------------------------------------------------------------------------------------------------------
 
     RecoSettings() {
-
         //<editor-fold desc="Code setup">
 
-// ======================================================================================================================================================================
-// Input processing
-// ======================================================================================================================================================================
+        // ======================================================================================================================================================================
+        // Input processing
+        // ======================================================================================================================================================================
 
         //<editor-fold desc="Input processing">
         /* Initial input processing of loaded files (given by AnalyseFile) */
 
         /* Determine file path and name */
-        const string LoadedInput = AnalyseFile; // AnalyseFile is taken from codeSetup.h
+        const string LoadedInput = AnalyseFile;  // AnalyseFile is taken from codeSetup.h
         const string filePath = LoadedInput.substr(0, LoadedInput.find_last_of('/') + 1);
         const string fileInput = LoadedInput.substr(LoadedInput.find_last_of('/') + 1);
         const string plotsInput = fileInput.substr(0, fileInput.find_last_of(".hipo") - 4);
 
         /* Configure and get run parameters */
         ExperimentParameters Experiment(AnalyseFilePath, AnalyseFileSample);
-        const string SampleName = Experiment.ConfigureSampleName(AnalyseFilePath, AnalyseFileSample); // Configure SampleName from input
-        //TODO: change VaryingSampleName to simulation of a 4-foil!
-        const string VaryingSampleName = Experiment.GetVaryingSampleName();                             // Get VaryingSampleName (configured from SampleName) - for data runs!
-        const double beamE = Experiment.GetBeanEnergy();                                              // Configure beam energy from SampleName
-        const string Target = Experiment.GetTargetElement();                                          // Configure target (element) from SampleName
-        const int TargetPDG = Experiment.GetTargetElementPDG();                                       // Configure target PDG from SampleName
+        const string SampleName = Experiment.ConfigureSampleName(AnalyseFilePath, AnalyseFileSample);  // Configure SampleName from input
+        // TODO: change VaryingSampleName to simulation of a 4-foil!
+        const string VaryingSampleName = Experiment.GetVaryingSampleName();  // Get VaryingSampleName (configured from SampleName) - for data runs!
+        const double beamE = Experiment.GetBeanEnergy();                     // Configure beam energy from SampleName
+        const string Target = Experiment.GetTargetElement();                 // Configure target (element) from SampleName
+        const int TargetPDG = Experiment.GetTargetElementPDG();              // Configure target PDG from SampleName
         const bool isLocal = Experiment.SLocal();
         const bool isMC = Experiment.SSample();
         const bool isData = Experiment.DSample();
@@ -1216,9 +1200,9 @@ public:
         const bool is6GeVSample = Experiment.IsBeamAt6GeV();
         //</editor-fold>
 
-// ======================================================================================================================================================================
-// Event selection setup
-// ======================================================================================================================================================================
+        // ======================================================================================================================================================================
+        // Event selection setup
+        // ======================================================================================================================================================================
 
         //<editor-fold desc="Event selection setup">
         /* Settings to enable/disable specific FS plot calculations (Rec only): */
@@ -1233,29 +1217,29 @@ public:
         const bool calculate_nFDpCD = true;
 
         /* Truth level calculation setup */
-        bool calculate_truth_level = true; // TL master ON/OFF switch
+        bool calculate_truth_level = true;  // TL master ON/OFF switch
         bool fill_TL_plots = true;
-        bool ZoomIn_On_mom_th_plots = false; // Force TL event selection on reco. plots
-        bool Rec_wTL_ES = false; // Force TL event selection on reco. plots
+        bool ZoomIn_On_mom_th_plots = false;  // Force TL event selection on reco. plots
+        bool Rec_wTL_ES = false;              // Force TL event selection on reco. plots
 
         const bool limless_mom_eff_plots = false;
 
         /* FD neutrals settings */
-        const bool Enable_FD_photons = false; // keep as false to decrease RES & DIS
-        const bool Enable_FD_neutrons = true; // keep as false to increse eff. plots
+        const bool Enable_FD_photons = false;  // keep as false to decrease RES & DIS
+        const bool Enable_FD_neutrons = true;  // keep as false to increse eff. plots
         const bool Count_FD_neurton_and_photon_hits = true;
 
-        //TODO: add this switch to event selection variables!
+        // TODO: add this switch to event selection variables!
         const bool ES_by_leading_FDneutron = true;
 
         /* Acceptance maps setup */
-        bool Generate_AMaps = true;             // Generate acceptance maps
+        bool Generate_AMaps = true;  // Generate acceptance maps
         bool TL_with_one_reco_electron = true;
         bool reformat_e_bins = false;
         bool varying_P_e_bins = false;
-        bool Electron_single_slice_test = false; // keep as false for normal runs!
-        bool Nucleon_single_slice_test = false;  // keep as false for normal runs!
-        vector<int> TestSlices = {1, 1, 1};      // {ElectronTestSlice, ProtonTestSlice, NeutronTestSlice}
+        bool Electron_single_slice_test = false;  // keep as false for normal runs!
+        bool Nucleon_single_slice_test = false;   // keep as false for normal runs!
+        vector<int> TestSlices = {1, 1, 1};       // {ElectronTestSlice, ProtonTestSlice, NeutronTestSlice}
 
         /* Neutron resolution setup */
         /* Run order:
@@ -1264,27 +1248,27 @@ public:
             3. momResS2 calculation:    VaryingDelta = false , plot_and_fit_MomRes = true  , Calculate_momResS2 = true  , Run_in_momResS2 = false
             4. momResS2 run:            VaryingDelta = false , plot_and_fit_MomRes = false , Calculate_momResS2 = false , Run_in_momResS2 = true
         */
-        bool plot_and_fit_MomRes = false;    // Generate nRes plots
-        bool Calculate_momResS2 = false;     // Calculate momResS2 variables
+        bool plot_and_fit_MomRes = false;  // Generate nRes plots
+        bool Calculate_momResS2 = false;   // Calculate momResS2 variables
         const double DeltaSlices = 0.05;
-        const bool VaryingDelta = true;      // 1st momResS1 w/ VaryingDelta = false
+        const bool VaryingDelta = true;  // 1st momResS1 w/ VaryingDelta = false
         const string SmearMode = "pol1_wKC";
         const string CorrMode = "pol1_wKC";
-        bool nRes_test = false;              // false by default
-        bool Run_in_momResS2 = true;         // Smear w/ momResS2 & correct w/ momResS1
+        bool nRes_test = false;       // false by default
+        bool Run_in_momResS2 = true;  // Smear w/ momResS2 & correct w/ momResS1
         //</editor-fold>
 
-// ======================================================================================================================================================================
-// Cut setup
-// ======================================================================================================================================================================
+        // ======================================================================================================================================================================
+        // Cut setup
+        // ======================================================================================================================================================================
 
-// Cut setup ---------------------------------------------------------------------------------------------------------------------------------------------------------
+        // Cut setup ---------------------------------------------------------------------------------------------------------------------------------------------------------
 
         //<editor-fold desc="Cuts setup">
         /* Settings that allow to disable/enable every cut individually */
 
         // clas12ana cuts ---------------------------------------------------------------------------------------------------------------------------------------------------
-        const bool apply_cuts = true; // master ON/OFF switch for applying cuts
+        const bool apply_cuts = true;  // master ON/OFF switch for applying cuts
 
         /* HTCC cut */
         bool apply_Nphe_cut = true;
@@ -1310,19 +1294,19 @@ public:
         bool apply_Electron_beta_cut = true;
 
         /* Nucleon cuts */
-        bool apply_nucleon_cuts = true; // set as true to get good protons and calculate upper neutron momentum th.
+        bool apply_nucleon_cuts = true;  // set as true to get good protons and calculate upper neutron momentum th.
 
         /* Physical cuts */
-        bool apply_nucleon_physical_cuts = true; // nucleon physical cuts master
-        //TODO: automate adding upper mom. th. to nuclon cuts (for nRes calc)
-        bool apply_nBeta_fit_cuts = true; // apply neutron upper mom. th.
+        bool apply_nucleon_physical_cuts = true;  // nucleon physical cuts master
+        // TODO: automate adding upper mom. th. to nuclon cuts (for nRes calc)
+        bool apply_nBeta_fit_cuts = true;  // apply neutron upper mom. th.
         bool apply_fiducial_cuts = false;
         bool apply_kinematical_cuts = false;
         bool apply_kinematical_weights = false;
         bool apply_nucleon_SmearAndCorr = false;
 
         //<editor-fold desc="Auto-disable variables">
-        if (isData) { // no TL calculation, AMap,WMap generation nor nRes calculation when running on data
+        if (isData) {  // no TL calculation, AMap,WMap generation nor nRes calculation when running on data
             calculate_truth_level = Generate_AMaps = plot_and_fit_MomRes = nRes_test = false;
         }
 
@@ -1338,9 +1322,9 @@ public:
 
         if (!plot_and_fit_MomRes) { Calculate_momResS2 = false; }
 
-        if ((Calculate_momResS2 && Run_in_momResS2) // Don't run calculate momResS2 and run on it at the same time
-            || (Calculate_momResS2 && !VaryingDelta) // Don't run calculate momResS2 and small momentum slices at the same time
-                ) {
+        if ((Calculate_momResS2 && Run_in_momResS2)   // Don't run calculate momResS2 and run on it at the same time
+            || (Calculate_momResS2 && !VaryingDelta)  // Don't run calculate momResS2 and small momentum slices at the same time
+        ) {
             cout << "\n\nmomRes order error! Exiting...\n\n", exit(0);
         }
         //</editor-fold>
@@ -1375,7 +1359,6 @@ public:
         string Nucleon_Cuts_Status, FD_photons_Status, PSmearing_Status, FiducialCuts_Status, KinCuts_Status, KinWei_Status, Additional_Status, Efficiency_Status;
 
         if (custom_cuts_naming) {
-
             //<editor-fold desc="Status additions">
             if (apply_nucleon_cuts) {
                 Nucleon_Cuts_Status = "NC_";
@@ -1437,20 +1420,20 @@ public:
                                 if (!Run_in_momResS2) {
                                     Additional_Status = "nResS1_";
                                 } else {
-                                    Additional_Status = "nResS2R_"; // R for Run
+                                    Additional_Status = "nResS2R_";  // R for Run
                                 }
                             } else {
                                 if (!Run_in_momResS2) {
                                     Additional_Status = "nResS1T_";
                                 } else {
-                                    Additional_Status = "nResS2RT_"; // R for Run; T for Test
+                                    Additional_Status = "nResS2RT_";  // R for Run; T for Test
                                 }
                             }
                         } else {
                             if (!nRes_test) {
                                 Additional_Status = "nResS2_";
                             } else {
-                                Additional_Status = "nResS2T_"; // T for Test
+                                Additional_Status = "nResS2T_";  // T for Test
                             }
                         }
                     }
@@ -1500,18 +1483,18 @@ public:
             }
             //</editor-fold>
 
-            if (!apply_cuts) { // Stage 0 - no cuts
+            if (!apply_cuts) {  // Stage 0 - no cuts
                 plots_path = WorkingDirectory + SampleName + "_S00_NO_CUTS";
                 plots_log_save_Directory = plots_path + "/" + "Run_log_" + SampleName + "_S00_NO_CUTS.txt";
             } else {
-                string added_names = Nucleon_Cuts_Status + FD_photons_Status + PSmearing_Status + FiducialCuts_Status + KinCuts_Status + KinWei_Status + Additional_Status
-                                     + Efficiency_Status;
+                string added_names =
+                    Nucleon_Cuts_Status + FD_photons_Status + PSmearing_Status + FiducialCuts_Status + KinCuts_Status + KinWei_Status + Additional_Status + Efficiency_Status;
 
-                if (!apply_chi2_cuts_1e_cut) { // Stage 1 - with cuts except PID (chi2) cuts
+                if (!apply_chi2_cuts_1e_cut) {  // Stage 1 - with cuts except PID (chi2) cuts
                     plots_path = WorkingDirectory + SampleName + "_S01ACwoChi2";
                     plots_log_save_Directory = plots_path + "/" + "Run_log_" + SampleName + "_S01ACwoChi2.txt";
                 } else if (apply_chi2_cuts_1e_cut) {
-                    if (!apply_nucleon_cuts) { // Stage 2 - set nucleon cuts (neutron beta fit & proton double detection cuts)
+                    if (!apply_nucleon_cuts) {  // Stage 2 - set nucleon cuts (neutron beta fit & proton double detection cuts)
                         plots_path = WorkingDirectory + SampleName + "_S02AC" + added_names;
                         plots_log_save_Directory = plots_path + "/" + "Run_log_" + SampleName + "_S02AC" + added_names + ".txt";
                     } else {
@@ -1575,7 +1558,7 @@ public:
 
         //</editor-fold>
 
-// Cut declarations -----------------------------------------------------------------------------------------------------------------------------------------------------
+        // Cut declarations -----------------------------------------------------------------------------------------------------------------------------------------------------
 
         //<editor-fold desc="Cuts declarations">
         /* Log cut values to be used later when applying them. */
@@ -1621,7 +1604,7 @@ public:
 
         /* Sampling Fraction (SF) cuts (electrons only, FD) */
         DSCuts SF_cuts;
-//    DSCuts P_cuts;
+        //    DSCuts P_cuts;
 
         /* PCAL edge cuts (fiducial cuts ,electrons only, FD) */
         DSCuts PCAL_edge_cuts;
@@ -1661,13 +1644,14 @@ public:
         DSCuts Beta_max_cut_ABF_FD_n_from_ph, Beta_max_cut_ABF_FD_n_from_ph_apprax;
 
         /* Neutron momentum cuts (1n & nFDpCD, FD only) */
-        DSCuts n_momentum_cuts_ABF_FD_n_from_ph; // ABF = After Beta Fit. These are momentum cuts to logged to the fitted cuts file.
-        DSCuts n_momentum_cuts_ABF_FD_n_from_ph_apprax; // Appraximated max. momentum, obtained by taking Beta=1, such that deltaBeta/Beta=deltaBeta.
+        DSCuts n_momentum_cuts_ABF_FD_n_from_ph;         // ABF = After Beta Fit. These are momentum cuts to logged to the fitted cuts file.
+        DSCuts n_momentum_cuts_ABF_FD_n_from_ph_apprax;  // Appraximated max. momentum, obtained by taking Beta=1, such that deltaBeta/Beta=deltaBeta.
 
         /* Truth-level momentum cuts */
-        //TODO: remove pion mom. th. separation by CD and FD. It's useless (according to Adi)
+        // TODO: remove pion mom. th. separation by CD and FD. It's useless (according to Adi)
         DSCuts TL_e_mom_cuts = DSCuts("Momentum", "", "Electron", "", 0, e_mom_th.GetLowerCut(), e_mom_th.GetUpperCut());
-        DSCuts TL_n_mom_cuts = DSCuts("Momentum", "", "Neutrons", "", 0, n_mom_th.GetLowerCut(), n_mom_th.GetUpperCut());;
+        DSCuts TL_n_mom_cuts = DSCuts("Momentum", "", "Neutrons", "", 0, n_mom_th.GetLowerCut(), n_mom_th.GetUpperCut());
+        ;
         DSCuts TL_p_mom_cuts = DSCuts("Momentum", "", "Proton", "", 0, p_mom_th.GetLowerCut(), p_mom_th.GetUpperCut());
         DSCuts TL_pFD_mom_cuts = DSCuts("Momentum", "FD", "Proton", "", 0, p_mom_th.GetLowerCut(), p_mom_th.GetUpperCut());
         DSCuts TL_pCD_mom_cuts = DSCuts("Momentum", "CD", "Proton", "", 0, p_mom_th.GetLowerCut(), p_mom_th.GetUpperCut());
@@ -1710,16 +1694,16 @@ public:
         /* reco. kinematic cuts (based on nucleons' efficiency) */
         DSCuts FD_nucleon_theta_cut = DSCuts("FD Nucleon theta cut", "FD", "", "", 0, 0, 32.);
         DSCuts Nucleon_momentum_cut = DSCuts("Nucleon momentum cut", "FD", "", "", 0, n_mom_th.GetLowerCut(), n_mom_th.GetUpperCut());
-        DSCuts FD_nucleon_momentum_cut = DSCuts("FD nucleon momentum cut", "FD", "", "pFDpCD & nFDpCD", 0, 1., 3.); // new upper cut, following Larry meeting (10/08/23)
+        DSCuts FD_nucleon_momentum_cut = DSCuts("FD nucleon momentum cut", "FD", "", "pFDpCD & nFDpCD", 0, 1., 3.);  // new upper cut, following Larry meeting (10/08/23)
         //</editor-fold>
 
         //</editor-fold>
 
-// ======================================================================================================================================================================
-// Other setup
-// ======================================================================================================================================================================
+        // ======================================================================================================================================================================
+        // Other setup
+        // ======================================================================================================================================================================
 
-// TList definition -----------------------------------------------------------------------------------------------------------------------------------------------------
+        // TList definition -----------------------------------------------------------------------------------------------------------------------------------------------------
 
         //<editor-fold desc="TList definition">
         /* Definition of plots TLists used to save all plots to .root file. */
@@ -1730,7 +1714,7 @@ public:
         const char *TListName = listName.c_str();
         //</editor-fold>
 
-//  Creating directories ------------------------------------------------------------------------------------------------------------------------------------------------
+        //  Creating directories ------------------------------------------------------------------------------------------------------------------------------------------------
 
         //<editor-fold desc="Creating directories">
         /* Code for creating directories.
@@ -1745,7 +1729,7 @@ public:
         cout << " done.\n\n";
         //</editor-fold>
 
-// Plot selector --------------------------------------------------------------------------------------------------------------------------------------------------------
+        // Plot selector --------------------------------------------------------------------------------------------------------------------------------------------------------
 
         //<editor-fold desc="Plot selector">
         /* Here are boolean variables used to turn ON/OFF the different plots of the code.
@@ -1753,10 +1737,10 @@ public:
 
         //<editor-fold desc="Plot selector variable declarations">
         /* Master plots variable */
-        bool Plot_selector_master; // Master plot selector for analysis
+        bool Plot_selector_master;  // Master plot selector for analysis
 
         /* Cut variable plots */
-        bool Cut_plots_master; // Master cut plots selector
+        bool Cut_plots_master;  // Master cut plots selector
         bool Nphe_plots, Chi2_plots, Vertex_plots, SF_plots, fiducial_plots, Momentum_plots;
 
         /* Beta plots */
@@ -1767,7 +1751,7 @@ public:
         bool Beta_vs_P_plots;
 
         /* Angle plots */
-        bool Angle_plots_master; // Master angle plots selector
+        bool Angle_plots_master;  // Master angle plots selector
         bool Theta_e_plots, Phi_e_plots;
 
         /* Momentum transfer plots */
@@ -1777,7 +1761,7 @@ public:
         bool E_e_plots;
 
         /* ET plots */
-        bool ETrans_plots_master; // Master ET plots selector
+        bool ETrans_plots_master;  // Master ET plots selector
         bool ETrans_all_plots, ETrans_All_Int_plots, ETrans_QEL_plots, ETrans_MEC_plots, ETrans_RES_plots, ETrans_DIS_plots;
 
         /* Ecal plots */
@@ -1801,19 +1785,18 @@ public:
 
         /* Final state ratio plots */
         bool FSR_1D_plots;
-        bool FSR_2D_plots; // disabled below if HipoChainLength is 2 or lower
+        bool FSR_2D_plots;  // disabled below if HipoChainLength is 2 or lower
         //</editor-fold>
 
-        bool TestRun = false; // set as false for a full run
+        bool TestRun = false;  // set as false for a full run
 
         if (!TestRun) {
-
             //<editor-fold desc="Plot everything (full run)">
             /* Master plots variable */
-            Plot_selector_master = true; // Master plot selector for analysis
+            Plot_selector_master = true;  // Master plot selector for analysis
 
             /* Cut variable plots */
-            Cut_plots_master = true; // Master cut plots selector
+            Cut_plots_master = true;  // Master cut plots selector
             Nphe_plots = true, Chi2_plots = true, Vertex_plots = true, SF_plots = true, fiducial_plots = true, Momentum_plots = true;
 
             /* Beta plots */
@@ -1824,7 +1807,7 @@ public:
             Beta_vs_P_plots = true;
 
             /* Angle plots */
-            Angle_plots_master = true; // Master angle plots selector
+            Angle_plots_master = true;  // Master angle plots selector
             Theta_e_plots = true, Phi_e_plots = true;
 
             /* Momentum transfer plots */
@@ -1834,7 +1817,7 @@ public:
             E_e_plots = true;
 
             /* ET plots */
-            ETrans_plots_master = true; // Master ET plots selector
+            ETrans_plots_master = true;  // Master ET plots selector
             ETrans_all_plots = true, ETrans_All_Int_plots = true, ETrans_QEL_plots = true, ETrans_MEC_plots = true, ETrans_RES_plots = true, ETrans_DIS_plots = true;
 
             /* Ecal plots */
@@ -1858,89 +1841,87 @@ public:
 
             /* Final state ratio plots */
             FSR_1D_plots = true;
-            FSR_2D_plots = true; // disabled below if HipoChainLength is 2 or lower
+            FSR_2D_plots = true;  // disabled below if HipoChainLength is 2 or lower
             //</editor-fold>
 
         } else {
-
             //<editor-fold desc="Selected plots (test run)">
             /* Master plots variable */
-            Plot_selector_master = true; // Master plot selector for analysis
+            Plot_selector_master = true;  // Master plot selector for analysis
 
             /* Cut variable plots */
-            Cut_plots_master = true; // Master cut plots selector
-//     Nphe_plots = true, Chi2_plots = true, Vertex_plots = true, SF_plots = true, fiducial_plots = true;
+            Cut_plots_master = true;  // Master cut plots selector
+                                      //     Nphe_plots = true, Chi2_plots = true, Vertex_plots = true, SF_plots = true, fiducial_plots = true;
             Nphe_plots = false, Chi2_plots = false, Vertex_plots = false, SF_plots = false, fiducial_plots = false;
-//
-//     Momentum_plots = true;
+            //
+            //     Momentum_plots = true;
             Momentum_plots = false;
-//
+            //
 
             /* Beta plots */
-//     W_plots = true;
+            //     W_plots = true;
             W_plots = false;
 
             /* Beta plots */
-//     Beta_plots = true;
+            //     Beta_plots = true;
             Beta_plots = false;
-//     Beta_vs_P_plots = true;
+            //     Beta_vs_P_plots = true;
             Beta_vs_P_plots = false;
 
             /* Angle plots */
-            Angle_plots_master = true; // Master angle plots selector
+            Angle_plots_master = true;  // Master angle plots selector
             Theta_e_plots = true, Phi_e_plots = true;
-//        Angle_plots_master = false; // Master angle plots selector
-//        Theta_e_plots = false, Phi_e_plots = false;
+            //        Angle_plots_master = false; // Master angle plots selector
+            //        Theta_e_plots = false, Phi_e_plots = false;
 
             /* Momentum transfer plots */
-//     Momentum_transfer_plots = true;
+            //     Momentum_transfer_plots = true;
             Momentum_transfer_plots = false;
 
             /* E_e plots */
-//     E_e_plots = true;
+            //     E_e_plots = true;
             E_e_plots = false;
 
             /* ET plots */
-//     ETrans_plots_master = true; // Master ET plots selector
-            ETrans_plots_master = false; // Master ET plots selector
+            //     ETrans_plots_master = true; // Master ET plots selector
+            ETrans_plots_master = false;  // Master ET plots selector
             ETrans_all_plots = true, ETrans_All_Int_plots = true, ETrans_QEL_plots = true, ETrans_MEC_plots = true, ETrans_RES_plots = true, ETrans_DIS_plots = true;
 
             /* Ecal plots */
-//     Ecal_plots = true;
+            //     Ecal_plots = true;
             Ecal_plots = false;
 
             /* Transverse variables plots */
-//     TKI_plots = true;
+            //     TKI_plots = true;
             TKI_plots = false;
 
             /* ToF plots */
-//     ToF_plots = true;
+            //     ToF_plots = true;
             ToF_plots = false;
 
             /* Efficiency plots */
-//        Efficiency_plots = true;
+            //        Efficiency_plots = true;
             Efficiency_plots = false;
-//        TL_after_Acceptance_Maps_plots = true;
+            //        TL_after_Acceptance_Maps_plots = true;
             TL_after_Acceptance_Maps_plots = false;
 
             /* Resolution plots */
-//        AMaps_plots = true;
+            //        AMaps_plots = true;
             AMaps_plots = false;
 
             /* Resolution plots */
-//        Resolution_plots = true;
+            //        Resolution_plots = true;
             Resolution_plots = false;
 
             /* Final state ratio plots */
             FSR_1D_plots = false;
-            FSR_2D_plots = false; // disabled below if HipoChainLength is 2 or lower
+            FSR_2D_plots = false;  // disabled below if HipoChainLength is 2 or lower
             //</editor-fold>/
-
         }
 
         /* Other setup variables */
         bool wider_margin = true;
-        bool debug_plots = false; // Print out clas12ana debugging plots
+        bool debug_plots = false;  // Print out clas12ana debugging plots
 
         bool Log_scale_Vx_plots = false, Log_scale_Vy_plots = false;
         bool Log_scale_Vz_plots = true;
@@ -1966,12 +1947,12 @@ public:
 
         if (!apply_nucleon_cuts || (Electron_single_slice_test || Nucleon_single_slice_test)) { FSR_1D_plots = FSR_2D_plots = false; }
 
-//    if (!plot_and_fit_MomRes) { Resolution_plots = false; }
+        //    if (!plot_and_fit_MomRes) { Resolution_plots = false; }
         //</editor-fold>
 
         //</editor-fold>
 
-// Normalization setup -----------------------------------------------------------------------------------------------------------------------------------------------
+        // Normalization setup -----------------------------------------------------------------------------------------------------------------------------------------------
 
         //<editor-fold desc="Normalization setup">
         /* Here are boolean variables used to turn ON/OFF the different plot normalizations of the code.
@@ -1985,7 +1966,7 @@ public:
         bool norm_Ecal_plots = false, norm_TKI_plots = false;
 
         //<editor-fold desc="Auto-disable plot normalization variables">
-        if (!normalize_master) { // Disable all normalizations if normalize_master == false
+        if (!normalize_master) {  // Disable all normalizations if normalize_master == false
             norm_Nphe_plots = norm_Chi2_plots = norm_Vertex_plots = norm_SF_plots = norm_Fiducial_plots = norm_Momentum_plots = false;
             norm_Angle_plots_master = norm_Momentum_transfer_plots = norm_E_e_plots = norm_ET_plots = norm_Ecal_plots = norm_TKI_plots = false;
         }
@@ -1993,7 +1974,7 @@ public:
 
         //</editor-fold>
 
-// Delete setup ------------------------------------------------------------------------------------------------------------------------------------------------------
+        // Delete setup ------------------------------------------------------------------------------------------------------------------------------------------------------
 
         //<editor-fold desc="Delete setup">
         /* Clear files from previous runs (to prevent mix fo plots from different codes). */
@@ -2006,16 +1987,16 @@ public:
         //<editor-fold desc="Deleting files by cases">
         if (delete_png_files && !delete_root_files) {
             cout << "\nClearing old plots...";
-            system(("find " + plots_path + " -type f -iname '*.png' -delete").c_str()); // Delete existing .png files
+            system(("find " + plots_path + " -type f -iname '*.png' -delete").c_str());  // Delete existing .png files
             cout << " done.\n\n";
         } else if (!delete_png_files && delete_root_files) {
             cout << "\nClearing old root files...";
-            system(("find " + plots_path + " -type f -iname '*.root' -delete").c_str()); // Delete existing .root files
+            system(("find " + plots_path + " -type f -iname '*.root' -delete").c_str());  // Delete existing .root files
             cout << " done.\n\n";
         } else if (delete_png_files && delete_root_files) {
             cout << "\nClearing old plots & root files...";
-            system(("find " + plots_path + " -type f -iname '*.png' -delete").c_str()); // Delete existing .png files
-            system(("find " + plots_path + " -type f -iname '*.root' -delete").c_str()); // Delete existing .root files
+            system(("find " + plots_path + " -type f -iname '*.png' -delete").c_str());   // Delete existing .png files
+            system(("find " + plots_path + " -type f -iname '*.root' -delete").c_str());  // Delete existing .root files
             cout << " done.\n\n";
         } else {
             cout << "\nNo files were cleared.\n\n";
@@ -2024,7 +2005,7 @@ public:
 
         //</editor-fold>
 
-// Histogram setup ---------------------------------------------------------------------------------------------------------------------------------------------------
+        // Histogram setup ---------------------------------------------------------------------------------------------------------------------------------------------------
 
         //<editor-fold desc="Histogram setup">
         /* Histogram boundary variables. Used to unify histograms to the same boundaries. */
@@ -2035,7 +2016,7 @@ public:
         int numTH2Dbins = 65;
 
         /* Momentum plots */
-        int numTH2Dbins_Mom_Plots = 65; // To be changed if apply_kinematical_cuts = true
+        int numTH2Dbins_Mom_Plots = 65;  // To be changed if apply_kinematical_cuts = true
 
         /* Beta plots */
         int numTH1Dbins_Beta_Plots = 65;
@@ -2095,7 +2076,7 @@ public:
 
         /* Chi2 boundries */
         double Chi2_boundary = 20;
-//    double Chi2_boundary = 30;
+        //    double Chi2_boundary = 30;
 
         if (apply_cuts) { Chi2_boundary = 9; }
 
@@ -2128,18 +2109,18 @@ public:
         const double SF_uboundary = 0.31, SF_lboundary = 0.16;
 
         /* Momentum boundries */
-        const double Momentum_lboundary = 0., Momentum_uboundary = beamE * 1.1;   // Default
-        const double CDMomentum_lboundary = 0., CDMomentum_uboundary = beamE / 2; // CD nucleons (pFDpCD & nFDpCD)
-        double P_nucFD_lboundary = 0., P_nucFD_uboundary = beamE * 1.1;           // Default
-        double P_nucCD_lboundary = 0., P_nucCD_uboundary = beamE / 2;             // CD nucleons (pFDpCD & nFDpCD)
+        const double Momentum_lboundary = 0., Momentum_uboundary = beamE * 1.1;    // Default
+        const double CDMomentum_lboundary = 0., CDMomentum_uboundary = beamE / 2;  // CD nucleons (pFDpCD & nFDpCD)
+        double P_nucFD_lboundary = 0., P_nucFD_uboundary = beamE * 1.1;            // Default
+        double P_nucCD_lboundary = 0., P_nucCD_uboundary = beamE / 2;              // CD nucleons (pFDpCD & nFDpCD)
 
         if (apply_kinematical_cuts) {
             P_nucFD_lboundary = FD_nucleon_momentum_cut.GetLowerCut(), P_nucFD_uboundary = FD_nucleon_momentum_cut.GetUpperCut() * 1.1;
-            P_nucCD_lboundary = 0.4, P_nucCD_uboundary = 2.5; // CD nucleons (pFDpCD & nFDpCD)
+            P_nucCD_lboundary = 0.4, P_nucCD_uboundary = 2.5;  // CD nucleons (pFDpCD & nFDpCD)
         }
 
         /* W boundries */
-        const double W_lboundary = 0.5, W_uboundary = (beamE * 1.1) / 2; // Default
+        const double W_lboundary = 0.5, W_uboundary = (beamE * 1.1) / 2;  // Default
 
         /* Beta boundries */
         const double dBeta_sigma_boundary = 0.1;
@@ -2169,7 +2150,7 @@ public:
 
         //</editor-fold>
 
-// Acceptance maps generation -------------------------------------------------------------------------------------------------------------------------------------------
+        // Acceptance maps generation -------------------------------------------------------------------------------------------------------------------------------------------
 
         //<editor-fold desc="Acceptance maps generation">
         /* Acceptance maps are handled completely by the AMaps class */
@@ -2181,7 +2162,7 @@ public:
 
         /* Set Bins by case */
         int NumberNucOfMomSlices, NumberElecOfMomSlices, HistElectronSliceNumOfXBins = 150, HistNucSliceNumOfXBins = 75;
-//    int NumberNucOfMomSlices, NumberElecOfMomSlices, HistElectronSliceNumOfXBins = numTH2Dbins_Electron_Ang_Plots, HistNucSliceNumOfXBins = numTH2Dbins_Nucleon_Ang_Plots;
+        //    int NumberNucOfMomSlices, NumberElecOfMomSlices, HistElectronSliceNumOfXBins = numTH2Dbins_Electron_Ang_Plots, HistNucSliceNumOfXBins = numTH2Dbins_Nucleon_Ang_Plots;
 
         //<editor-fold desc="Determine NumberNucOfMomSlices by sample">
         if (VaryingSampleName == "C12_simulation_G18_Q204_6GeV" || VaryingSampleName == "C12x4_simulation_G18_Q204_6GeV") {
@@ -2206,7 +2187,7 @@ public:
         cout << " done.\n\n";
         //</editor-fold>
 
-// Acceptance correction data -------------------------------------------------------------------------------------------------------------------------------------------
+        // Acceptance correction data -------------------------------------------------------------------------------------------------------------------------------------------
 
         //<editor-fold desc="Acceptance correction">
         /* Neutron resolution fits is handled completely by the MomentumResolution class */
@@ -2226,69 +2207,63 @@ public:
         cout << " done.\n\n";
         //</editor-fold>
 
-// Neutron resolution & proton smearing ---------------------------------------------------------------------------------------------------------------------------------
+        // Neutron resolution & proton smearing ---------------------------------------------------------------------------------------------------------------------------------
 
         //<editor-fold desc="Neutron resolution">
         /* Neutron resolution fits is handled completely by the MomentumResolution class */
         cout << "\nSetting neutron resolution data...";
 
-        if (!calculate_truth_level) { plot_and_fit_MomRes = false; } // Disable resolution-realted operations if not calculating TL plots
+        if (!calculate_truth_level) { plot_and_fit_MomRes = false; }  // Disable resolution-realted operations if not calculating TL plots
 
         if (!plot_and_fit_MomRes) { Calculate_momResS2 = false; }
 
         /* Comment to test smearing and shift */
-//    if (apply_nucleon_SmearAndCorr) { plot_and_fit_MomRes = false; }  // Disable resolution-realted operations when applying proton smearing
+        //    if (apply_nucleon_SmearAndCorr) { plot_and_fit_MomRes = false; }  // Disable resolution-realted operations when applying proton smearing
 
         //<editor-fold desc="Neutron resolution class declaration & definition">
         MomentumResolution nRes, pRes;
 
         if (plot_and_fit_MomRes) {
-            nRes = MomentumResolution(SampleName, NucleonCutsDirectory, "Neutron", beamE, FD_nucleon_momentum_cut, n_mom_th.GetLowerCut(), Calculate_momResS2, Run_in_momResS2,
-                                     MomentumResolutionDirectory, directories.Resolution_Directory_map["nRes_plots_1n_Directory"], DeltaSlices, VaryingDelta, SmearMode,
-                                     CorrMode, nRes_test);
-            pRes = MomentumResolution(SampleName, NucleonCutsDirectory, "Proton", beamE, FD_nucleon_momentum_cut, p_mom_th.GetLowerCut(), Calculate_momResS2, Run_in_momResS2,
-                                     MomentumResolutionDirectory, directories.Resolution_Directory_map["pRes_plots_1p_Directory"], DeltaSlices, VaryingDelta, SmearMode,
-                                     CorrMode, nRes_test);
+            nRes =
+                MomentumResolution(SampleName, NucleonCutsDirectory, "Neutron", beamE, FD_nucleon_momentum_cut, n_mom_th.GetLowerCut(), Calculate_momResS2, Run_in_momResS2,
+                                   MomentumResolutionDirectory, directories.Resolution_Directory_map["nRes_plots_1n_Directory"], DeltaSlices, VaryingDelta, SmearMode, CorrMode, nRes_test);
+            pRes =
+                MomentumResolution(SampleName, NucleonCutsDirectory, "Proton", beamE, FD_nucleon_momentum_cut, p_mom_th.GetLowerCut(), Calculate_momResS2, Run_in_momResS2,
+                                   MomentumResolutionDirectory, directories.Resolution_Directory_map["pRes_plots_1p_Directory"], DeltaSlices, VaryingDelta, SmearMode, CorrMode, nRes_test);
 
             if (nRes_test) {
-                if (Calculate_momResS2) { // if Calculate_momResS2 = true => load everything from momResS1 files
+                if (Calculate_momResS2) {  // if Calculate_momResS2 = true => load everything from momResS1 files
                     /* Load neutron correction fit parameters */
-                    nRes.ReadResDataParam(
-                            (MomentumResolutionDirectory + "Res_data_-_" + VaryingSampleName + "/Neutron_momResS1_fit_param_-_" + VaryingSampleName + ".par").c_str(),
-                            Calculate_momResS2, VaryingSampleName, NucleonCutsDirectory, true, false);
+                    nRes.ReadResDataParam((MomentumResolutionDirectory + "Res_data_-_" + VaryingSampleName + "/Neutron_momResS1_fit_param_-_" + VaryingSampleName + ".par").c_str(),
+                                          Calculate_momResS2, VaryingSampleName, NucleonCutsDirectory, true, false);
 
                     /* Load proton smearing fit parameters */
-                    nRes.ReadResDataParam(
-                            (MomentumResolutionDirectory + "Res_data_-_" + VaryingSampleName + "/Neutron_momResS1_fit_param_-_" + VaryingSampleName + ".par").c_str(),
-                            Calculate_momResS2, VaryingSampleName, NucleonCutsDirectory, false, true);
-                } else { // if Calculate_momResS2 = false => load everything from either momResS1 or momResS2
-                    if (Run_in_momResS2) { // if Calculate_momResS2 = false and Run_in_momResS2 = true => load everything correction from momResS1 and smearing from momResS2
+                    nRes.ReadResDataParam((MomentumResolutionDirectory + "Res_data_-_" + VaryingSampleName + "/Neutron_momResS1_fit_param_-_" + VaryingSampleName + ".par").c_str(),
+                                          Calculate_momResS2, VaryingSampleName, NucleonCutsDirectory, false, true);
+                } else {                    // if Calculate_momResS2 = false => load everything from either momResS1 or momResS2
+                    if (Run_in_momResS2) {  // if Calculate_momResS2 = false and Run_in_momResS2 = true => load everything correction from momResS1 and smearing from momResS2
                         /* Load neutron correction fit parameters */
-                        nRes.ReadResDataParam(
-                                (MomentumResolutionDirectory + "Res_data_-_" + VaryingSampleName + "/Neutron_momResS1_fit_param_-_" + VaryingSampleName + ".par").c_str(),
-                                Calculate_momResS2, VaryingSampleName, NucleonCutsDirectory, true, false);
+                        nRes.ReadResDataParam((MomentumResolutionDirectory + "Res_data_-_" + VaryingSampleName + "/Neutron_momResS1_fit_param_-_" + VaryingSampleName + ".par").c_str(),
+                                              Calculate_momResS2, VaryingSampleName, NucleonCutsDirectory, true, false);
 
                         /* Load proton smearing fit parameters */
-                        nRes.ReadResDataParam(
-                                (MomentumResolutionDirectory + "Res_data_-_" + VaryingSampleName + "/Neutron_momResS2_fit_param_-_" + VaryingSampleName + ".par").c_str(),
-                                Calculate_momResS2, VaryingSampleName, NucleonCutsDirectory, false, true);
-                    } else { // if Calculate_momResS2 = false and Run_in_momResS2 = false => load both correction and smearing from momResS1
+                        nRes.ReadResDataParam((MomentumResolutionDirectory + "Res_data_-_" + VaryingSampleName + "/Neutron_momResS2_fit_param_-_" + VaryingSampleName + ".par").c_str(),
+                                              Calculate_momResS2, VaryingSampleName, NucleonCutsDirectory, false, true);
+                    } else {  // if Calculate_momResS2 = false and Run_in_momResS2 = false => load both correction and smearing from momResS1
                         /* Load neutron correction fit parameters */
-                        nRes.ReadResDataParam(
-                                (MomentumResolutionDirectory + "Res_data_-_" + VaryingSampleName + "/Neutron_momResS1_fit_param_-_" + VaryingSampleName + ".par").c_str(),
-                                Calculate_momResS2, VaryingSampleName, NucleonCutsDirectory, true, false);
+                        nRes.ReadResDataParam((MomentumResolutionDirectory + "Res_data_-_" + VaryingSampleName + "/Neutron_momResS1_fit_param_-_" + VaryingSampleName + ".par").c_str(),
+                                              Calculate_momResS2, VaryingSampleName, NucleonCutsDirectory, true, false);
 
                         /* Load proton smearing fit parameters */
-                        nRes.ReadResDataParam(
-                                (MomentumResolutionDirectory + "Res_data_-_" + VaryingSampleName + "/Neutron_momResS1_fit_param_-_" + VaryingSampleName + ".par").c_str(),
-                                Calculate_momResS2, VaryingSampleName, NucleonCutsDirectory, false, true);
+                        nRes.ReadResDataParam((MomentumResolutionDirectory + "Res_data_-_" + VaryingSampleName + "/Neutron_momResS1_fit_param_-_" + VaryingSampleName + ".par").c_str(),
+                                              Calculate_momResS2, VaryingSampleName, NucleonCutsDirectory, false, true);
                     }
                 }
             }
-        } else { // if plot_and_fit_MomRes = false => Calculate_momResS2 = false !!!
+        } else {  // if plot_and_fit_MomRes = false => Calculate_momResS2 = false !!!
             nRes.SetSmearAndCorrModes(SmearMode, CorrMode);
 
-            if (Run_in_momResS2) { // if Run_in_momResS2 = true => load everything correction from momResS1 and smearing from momResS2
+            if (Run_in_momResS2) {  // if Run_in_momResS2 = true => load everything correction from momResS1 and smearing from momResS2
                 /* Load neutron correction fit parameters */
                 nRes.ReadResDataParam((MomentumResolutionDirectory + "Res_data_-_" + VaryingSampleName + "/Neutron_momResS1_fit_param_-_" + VaryingSampleName + ".par").c_str(),
                                       Calculate_momResS2, VaryingSampleName, NucleonCutsDirectory, true, false);
@@ -2296,7 +2271,7 @@ public:
                 /* Load proton smearing fit parameters */
                 nRes.ReadResDataParam((MomentumResolutionDirectory + "Res_data_-_" + VaryingSampleName + "/Neutron_momResS2_fit_param_-_" + VaryingSampleName + ".par").c_str(),
                                       Calculate_momResS2, VaryingSampleName, NucleonCutsDirectory, false, true);
-            } else { // if Calculate_momResS2 = false and Run_in_momResS2 = false => load both correction and smearing from momResS1
+            } else {  // if Calculate_momResS2 = false and Run_in_momResS2 = false => load both correction and smearing from momResS1
                 /* Load neutron correction fit parameters */
                 nRes.ReadResDataParam((MomentumResolutionDirectory + "Res_data_-_" + VaryingSampleName + "/Neutron_momResS1_fit_param_-_" + VaryingSampleName + ".par").c_str(),
                                       Calculate_momResS2, VaryingSampleName, NucleonCutsDirectory, true, false);
@@ -2311,7 +2286,7 @@ public:
         cout << "\ndone.\n\n";
         //</editor-fold>
 
-// Debugging setup ---------------------------------------------------------------------------------------------------------------------------------------------------
+        // Debugging setup ---------------------------------------------------------------------------------------------------------------------------------------------------
 
         //<editor-fold desc="Debugging setup">
         /* Saving a printout of the number of particles in nEvents2print events. Used for clas12ana debugging. */
@@ -2354,8 +2329,7 @@ public:
         //</editor-fold>
 
         //</editor-fold>
-
     }
 };
 
-#endif //RECOSETTINGS_H
+#endif  // RECOSETTINGS_H

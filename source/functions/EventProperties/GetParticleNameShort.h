@@ -5,22 +5,21 @@
 #ifndef GETPARTICLENAMESHORT_H
 #define GETPARTICLENAMESHORT_H
 
+#include <chrono>
 #include <cstdlib>
 #include <iomanip>
-#include <chrono>
-#include <typeinfo>
 #include <sstream>
+#include <typeinfo>
 
 #include "../GeneralFunctions.h"
-//#include "../findSubstring.h"
+// #include "../findSubstring.h"
 
 using namespace std;
 
 string GetParticleNameShort(string Source) {
     string ParticleNameShort;
 
-    if (findSubstring(Source, "neutrals") || findSubstring(Source, "Neutrals")
-        || findSubstring(Source, "neut.") || findSubstring(Source, "Neut.")) {
+    if (findSubstring(Source, "neutrals") || findSubstring(Source, "Neutrals") || findSubstring(Source, "neut.") || findSubstring(Source, "Neut.")) {
         ParticleNameShort = "neut";
     } else if (findSubstring(Source, "Electron") || findSubstring(Source, "electron")) {
         ParticleNameShort = "e";
@@ -36,8 +35,7 @@ string GetParticleNameShort(string Source) {
         ParticleNameShort = "K^{+}";
     } else if (findSubstring(Source, "#K^{-}")) {
         ParticleNameShort = "K^{-}";
-    } else if (findSubstring(Source, "#gamma") || findSubstring(Source, "photon")
-               || findSubstring(Source, "Photon")) {
+    } else if (findSubstring(Source, "#gamma") || findSubstring(Source, "photon") || findSubstring(Source, "Photon")) {
         ParticleNameShort = "Photon";
     } else {
         ParticleNameShort = "unknown";
@@ -46,4 +44,4 @@ string GetParticleNameShort(string Source) {
     return ParticleNameShort;
 }
 
-#endif //GETPARTICLENAMESHORT_H
+#endif  // GETPARTICLENAMESHORT_H

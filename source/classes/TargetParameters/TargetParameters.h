@@ -3,10 +3,10 @@
 #define TARGETPARAMETERS_H
 
 class TargetParameters {
-protected:
+   protected:
     std::string TargetElement;
-    int TargetElementPDG; // Target PDG used in GENIE
-    int ProbePDG; // Incident lepton PDG
+    int TargetElementPDG;  // Target PDG used in GENIE
+    int ProbePDG;          // Incident lepton PDG
 
     double BindingEnergyToNucleus;
 
@@ -15,10 +15,10 @@ protected:
     int TotalChargeNumber_Z;
     int StrangeQuarksNumber_L;
     int IsomerNumber_I;
-//    10LZZZAAAI
-//    1000080160
+    //    10LZZZAAAI
+    //    1000080160
 
-public:
+   public:
     void SetTargetElement(std::string TargetElementName) { TargetElement = TargetElementName; }
 
     void SetTargetElementPDG(int TargetElementPDGNumber) { TargetElementPDG = TargetElementPDGNumber; }
@@ -36,4 +36,4 @@ public:
     double GetBindingEnergyToNucleus() { return BindingEnergyToNucleus; }
 };
 
-#endif //TARGETPARAMETERS_H
+#endif  // TARGETPARAMETERS_H

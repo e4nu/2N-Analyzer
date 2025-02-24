@@ -5,35 +5,31 @@
 #ifndef FILLBYINT_H
 #define FILLBYINT_H
 
-#include <iostream>
-#include <vector>
+#include <TApplication.h>
+#include <TCanvas.h>
+#include <TChain.h>
+#include <TDatabasePDG.h>
 #include <TF1.h>
-#include <math.h>
-#include <map>
-
-#include <cstdlib>
-#include <iomanip>
-#include <chrono>
-#include <typeinfo>
-#include <sstream>
-
 #include <TFile.h>
-#include <TTree.h>
-#include <TLorentzVector.h>
 #include <TH1.h>
 #include <TH2.h>
 #include <TLatex.h>
-#include <TChain.h>
-#include <TCanvas.h>
-#include <TStyle.h>
-#include <TDatabasePDG.h>
-#include <TApplication.h>
+#include <TLorentzVector.h>
 #include <TROOT.h>
+#include <TStyle.h>
+#include <TTree.h>
+#include <math.h>
 
-void FillByInt(TH1D *H1D_All_Int,
-               TH1D *H1D_QEL, TH1D *H1D_MEC, TH1D *H1D_RES, TH1D *H1D_DIS,
-               bool qel, bool mec, bool res, bool dis,
-               double Variable, double Weight) {
+#include <chrono>
+#include <cstdlib>
+#include <iomanip>
+#include <iostream>
+#include <map>
+#include <sstream>
+#include <typeinfo>
+#include <vector>
+
+void FillByInt(TH1D *H1D_All_Int, TH1D *H1D_QEL, TH1D *H1D_MEC, TH1D *H1D_RES, TH1D *H1D_DIS, bool qel, bool mec, bool res, bool dis, double Variable, double Weight) {
     H1D_All_Int->Fill(Variable, Weight);
 
     if (qel) {
@@ -47,4 +43,4 @@ void FillByInt(TH1D *H1D_All_Int,
     }
 }
 
-#endif //FILLBYINT_H
+#endif  // FILLBYINT_H

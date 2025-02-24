@@ -5,16 +5,16 @@
 #ifndef SETYAXISTITLE_H
 #define SETYAXISTITLE_H
 
+#include <chrono>
 #include <cstdlib>
 #include <iomanip>
-#include <chrono>
-#include <typeinfo>
 #include <sstream>
+#include <typeinfo>
 
+#include "../GeneralFunctions.h"
 #include "GetParticleName.h"
 #include "GetParticleNameShort.h"
-#include "../GeneralFunctions.h"
-//#include "../findSubstring.h"
+// #include "../findSubstring.h"
 
 using namespace std;
 
@@ -26,8 +26,7 @@ string SetYAxisTitle(const string &PlotT, const string &FinalState, const string
 
     if (PlotT == "efficiency" || PlotT == "Efficiency" || PlotT == "eff" || PlotT == "Eff") {
         YAxisTitle = "#epsilon_{eff} = " + xLabelNum + "^{rec}" + "/" + xLabelDem;
-    } else if (PlotT == "acceptance correction" || PlotT == "Acceptance Correction" || PlotT == "acorrection" || PlotT == "ACorrection" ||
-               PlotT == "acorr" || PlotT == "ACorr") {
+    } else if (PlotT == "acceptance correction" || PlotT == "Acceptance Correction" || PlotT == "acorrection" || PlotT == "ACorrection" || PlotT == "acorr" || PlotT == "ACorr") {
         YAxisTitle = string("#alpha = ") + "#frac{1}{#epsilon_{eff}} = " + xLabelNum + "/" + xLabelDem + "^{rec}";
     } else if (PlotT == "FSRatio") {
         if (!findSubstring(Title, "vs") && !findSubstring(Title, "vs.") && !findSubstring(Title, "VS") && !findSubstring(Title, "VS.")) {
@@ -79,17 +78,13 @@ string SetYAxisTitle(const string &PlotT, const string &FinalState, const string
                 YAxisTitle = "#theta_{#vec{P}_{e},#vec{P}_{tot}} [Deg]";
             } else if (findSubstring(Title, "#theta_{#vec{q},#vec{P}_{tot}} vs. W")) {
                 YAxisTitle = "#theta_{#vec{q},#vec{P}_{tot}} [Deg]";
-            } else if (findSubstring(Title, "#theta_{#vec{q},#vec{P}_{pL}} vs. W") ||
-            findSubstring(Title, "#theta_{#vec{q},#vec{P}_{nL}} vs. W")) {
+            } else if (findSubstring(Title, "#theta_{#vec{q},#vec{P}_{pL}} vs. W") || findSubstring(Title, "#theta_{#vec{q},#vec{P}_{nL}} vs. W")) {
                 YAxisTitle = "#theta_{#vec{q},#vec{P}_{nucL}} [Deg]";
-            } else if (findSubstring(Title, "#theta_{#vec{q},#vec{P}_{pR}} vs. W") ||
-            findSubstring(Title, "#theta_{#vec{q},#vec{P}_{nR}} vs. W")) {
+            } else if (findSubstring(Title, "#theta_{#vec{q},#vec{P}_{pR}} vs. W") || findSubstring(Title, "#theta_{#vec{q},#vec{P}_{nR}} vs. W")) {
                 YAxisTitle = "#theta_{#vec{q},#vec{P}_{nucR}} [Deg]";
-            } else if (findSubstring(Title, "#theta_{#vec{q},#vec{P}_{pFD}} vs. W") ||
-            findSubstring(Title, "#theta_{#vec{q},#vec{P}_{nFD}} vs. W")) {
+            } else if (findSubstring(Title, "#theta_{#vec{q},#vec{P}_{pFD}} vs. W") || findSubstring(Title, "#theta_{#vec{q},#vec{P}_{nFD}} vs. W")) {
                 YAxisTitle = "#theta_{#vec{q},#vec{P}_{nucFD}} [Deg]";
-            } else if (findSubstring(Title, "#theta_{#vec{q},#vec{P}_{pCD}} vs. W") ||
-            findSubstring(Title, "#theta_{#vec{q},#vec{P}_{nCD}} vs. W")) {
+            } else if (findSubstring(Title, "#theta_{#vec{q},#vec{P}_{pCD}} vs. W") || findSubstring(Title, "#theta_{#vec{q},#vec{P}_{nCD}} vs. W")) {
                 YAxisTitle = "#theta_{#vec{q},#vec{P}_{nucCD}} [Deg]";
             } else if (findSubstring(Title, "#theta_{#vec{q},#vec{P}_{pL}} vs. r_{pL}=|#vec{P}_{pL}|/|#vec{q}|") ||
                        findSubstring(Title, "#theta_{#vec{q},#vec{P}_{nL}} vs. r_{nL}=|#vec{P}_{nL}|/|#vec{q}|")) {
@@ -135,4 +130,4 @@ string SetYAxisTitle(const string &PlotT, const string &FinalState, const string
     return YAxisTitle;
 }
 
-#endif //SETYAXISTITLE_H
+#endif  // SETYAXISTITLE_H

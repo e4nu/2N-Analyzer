@@ -29,8 +29,8 @@ void nFD_eff_test() {
 
     // int Limiter = 10000000;
     // int Limiter = 1000000;
-    // int Limiter = 100000;
-    int Limiter = 10000;
+    int Limiter = 100000;
+    // int Limiter = 10000;
 
     // string OutFolderName = "nFD_eff_test_reg";
     string OutFolderName = "nFD_eff_test_v2_nFD_w_TL_mom";
@@ -45,16 +45,16 @@ void nFD_eff_test() {
     string InputFiles, SampleName;
 
     if (Is2GeV) {
-        // InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/2070MeV_ConstPn/OutPut_en/reconhipo/*.hipo";
-        InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/2070MeV/OutPut_en/reconhipo/*.hipo";
+        InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/2070MeV_ConstPn/OutPut_en/reconhipo/*.hipo";
+        // InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/2070MeV/OutPut_en/reconhipo/*.hipo";
         SampleName = "Uniform_en_sample_2070MeV";
     } else if (Is4GeV) {
-        // InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/4029MeV_ConstPn/OutPut_en/reconhipo/*.hipo";
-        InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/4029MeV/OutPut_en/reconhipo/*.hipo";
+        InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/4029MeV_ConstPn/OutPut_en/reconhipo/*.hipo";
+        // InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/4029MeV/OutPut_en/reconhipo/*.hipo";
         SampleName = "Uniform_en_sample_4029MeV";
     } else if (Is6GeV) {
-        // InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/5986MeV_ConstPn/OutPut_en/reconhipo/*.hipo";
-        InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/5986MeV/OutPut_en/reconhipo/*.hipo";
+        InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/5986MeV_ConstPn/OutPut_en/reconhipo/*.hipo";
+        // InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/5986MeV/OutPut_en/reconhipo/*.hipo";
         SampleName = "Uniform_en_sample_5986MeV";
     }
 

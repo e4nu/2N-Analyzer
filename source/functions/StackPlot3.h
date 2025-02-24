@@ -5,43 +5,40 @@
 #ifndef STACKPLOT3_H
 #define STACKPLOT3_H
 
-#include <iostream>
-#include <vector>
+#include <TApplication.h>
+#include <TCanvas.h>
+#include <TChain.h>
+#include <TDatabasePDG.h>
 #include <TF1.h>
-#include <math.h>
-#include <map>
-
-#include <cstdlib>
-#include <iomanip>
-#include <chrono>
-#include <typeinfo>
-#include <sstream>
-
 #include <TFile.h>
-#include <TTree.h>
-#include <TLorentzVector.h>
 #include <TH1.h>
 #include <TH2.h>
 #include <TLatex.h>
-#include <TChain.h>
-#include <TCanvas.h>
-#include <TStyle.h>
-#include <TDatabasePDG.h>
-#include <TApplication.h>
+#include <TLorentzVector.h>
 #include <TROOT.h>
+#include <TStyle.h>
+#include <TTree.h>
+#include <math.h>
 
-#include "GeneralFunctions.h"
+#include <chrono>
+#include <cstdlib>
+#include <iomanip>
+#include <iostream>
+#include <map>
+#include <sstream>
+#include <typeinfo>
+#include <vector>
+
 #include "../classes/hPlots/hPlot1D.h"
+#include "GeneralFunctions.h"
 
 using namespace std;
 
-void StackPlot3(string &SampleName, TList *Histogram_list,
-                hPlot1D const &Hist1, const string &Hist1_legened, hPlot1D const &Hist2, const string &Hist2_legened,
-                hPlot1D const &Hist3, const string &Hist3_legened) {
-
+void StackPlot3(string &SampleName, TList *Histogram_list, hPlot1D const &Hist1, const string &Hist1_legened, hPlot1D const &Hist2, const string &Hist2_legened, hPlot1D const &Hist3,
+                const string &Hist3_legened) {
     //<editor-fold desc="Canvas definitions">
-//    TCanvas *StackPlot4Canvas = new TCanvas("StackPlot4Canvas", "StackPlot4Canvas", 1000, 750); // normal res
-    TCanvas *StackPlot4Canvas = new TCanvas("StackPlot4Canvas", "StackPlot4Canvas", 1000 * 2, 750 * 2); // double res
+    //    TCanvas *StackPlot4Canvas = new TCanvas("StackPlot4Canvas", "StackPlot4Canvas", 1000, 750); // normal res
+    TCanvas *StackPlot4Canvas = new TCanvas("StackPlot4Canvas", "StackPlot4Canvas", 1000 * 2, 750 * 2);  // double res
 
     StackPlot4Canvas->SetBottomMargin(0.14);
     StackPlot4Canvas->SetLeftMargin(0.17);
@@ -55,23 +52,23 @@ void StackPlot3(string &SampleName, TList *Histogram_list,
     THStack *HistogramStack = new THStack((Hist1.GetHistogramStatTitle()).c_str(), (Hist1.GetHistogramTitle() + ";" + Hist1.GetXaxisTitle() + ";").c_str());
 
     TH1D *Histogram1 = Hist1.GetHistogram();
-    TH1D *Histogram1_Clone = (TH1D *) Histogram1->Clone((Hist1.GetHistogramStatTitle() + " - cloned").c_str());
+    TH1D *Histogram1_Clone = (TH1D *)Histogram1->Clone((Hist1.GetHistogramStatTitle() + " - cloned").c_str());
     Histogram1_Clone->SetStats(0);
     Histogram1_Clone->Draw("hist err");
     HistogramStack->Add(Histogram1_Clone);
 
     TH1D *Histogram2 = Hist2.GetHistogram();
-    TH1D *Histogram2_Clone = (TH1D *) Histogram2->Clone((Hist2.GetHistogramStatTitle() + " - cloned").c_str());
+    TH1D *Histogram2_Clone = (TH1D *)Histogram2->Clone((Hist2.GetHistogramStatTitle() + " - cloned").c_str());
     Histogram2_Clone->SetStats(0);
     Histogram2_Clone->Draw("hist err");
-//    Histogram2_Clone->Draw("hist err same");
+    //    Histogram2_Clone->Draw("hist err same");
     HistogramStack->Add(Histogram2_Clone);
 
     TH1D *Histogram3 = Hist3.GetHistogram();
-    TH1D *Histogram3_Clone = (TH1D *) Histogram3->Clone((Hist3.GetHistogramStatTitle() + " - cloned").c_str());
+    TH1D *Histogram3_Clone = (TH1D *)Histogram3->Clone((Hist3.GetHistogramStatTitle() + " - cloned").c_str());
     Histogram3_Clone->SetStats(0);
     Histogram3_Clone->Draw("hist err");
-//    Histogram3_Clone->Draw("hist err same");
+    //    Histogram3_Clone->Draw("hist err same");
     HistogramStack->Add(Histogram3_Clone);
 
     //<editor-fold desc="setting sNameFlag">
@@ -84,7 +81,7 @@ void StackPlot3(string &SampleName, TList *Histogram_list,
     }
     //</editor-fold>
 
-    double Histogram1D_integral; // To be calculated only if normalize_Histogram
+    double Histogram1D_integral;  // To be calculated only if normalize_Histogram
 
     double x_1_Cut_legend = gStyle->GetStatX(), y_1_Cut_legend = gStyle->GetStatY() - 0.2 + 0.1;
     double x_2_Cut_legend = gStyle->GetStatX() - 0.2, y_2_Cut_legend = gStyle->GetStatY() - 0.3 + 0.1;
@@ -123,7 +120,7 @@ void StackPlot3(string &SampleName, TList *Histogram_list,
     if (normalize_Histogram) {
         string title;
 
-        if (findSubstring(Detector,"FD-S")) {
+        if (findSubstring(Detector, "FD-S")) {
             if (Histogram1DTitleReactions != "") {
                 if (finalState == "") {
                     title = Histogram1DTitle + " (" + Histogram1DTitleReactions + ", " + Detector + ")" + " - Normalized";
@@ -170,7 +167,7 @@ void StackPlot3(string &SampleName, TList *Histogram_list,
     } else {
         string title;
 
-        if (findSubstring(Detector,"FD-S")) {
+        if (findSubstring(Detector, "FD-S")) {
             if (Histogram1DTitleReactions != "") {
                 if (finalState == "") {
                     title = Histogram1DTitle + " (" + Histogram1DTitleReactions + ", " + Detector + ")";
@@ -231,14 +228,13 @@ void StackPlot3(string &SampleName, TList *Histogram_list,
 
     if (finalState.empty()) {
         StackPlot4Canvas->SaveAs((HistogramStackSaveNamePath + HistogramStackSaveName + ".png").c_str());
-//        StackPlot4Canvas->SaveAs((HistogramStackSaveNamePath + HistogramStackSaveName + "_" + Histogram1DTitleReactions + ".png").c_str());
+        //        StackPlot4Canvas->SaveAs((HistogramStackSaveNamePath + HistogramStackSaveName + "_" + Histogram1DTitleReactions + ".png").c_str());
     } else {
         StackPlot4Canvas->SaveAs((HistogramStackSaveNamePath + HistogramStackSaveName + ".png").c_str());
-//        StackPlot4Canvas->SaveAs((HistogramStackSaveNamePath + HistogramStackSaveName + "_" + Histogram1DTitleReactions + "_" + finalState + ".png").c_str());
+        //        StackPlot4Canvas->SaveAs((HistogramStackSaveNamePath + HistogramStackSaveName + "_" + Histogram1DTitleReactions + "_" + finalState + ".png").c_str());
     }
 
     StackPlot4Canvas->Clear();
 }
 
-
-#endif //STACKPLOT3_H
+#endif  // STACKPLOT3_H

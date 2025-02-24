@@ -10,8 +10,7 @@
 string hData::GetParticleName(const string &Source, const bool &PluralParticles) {
     string ParticleName, FS = GetFS(Source);
 
-    if (findSubstring(Source, "neutrals") || findSubstring(Source, "Neutrals")
-        || findSubstring(Source, "neut.") || findSubstring(Source, "Neut.")) {
+    if (findSubstring(Source, "neutrals") || findSubstring(Source, "Neutrals") || findSubstring(Source, "neut.") || findSubstring(Source, "Neut.")) {
         if (PluralParticles) {
             ParticleName = "Neut";
         } else {
@@ -49,8 +48,7 @@ string hData::GetParticleName(const string &Source, const bool &PluralParticles)
         } else {
             ParticleName = "Deuteron";
         }
-    } else if (findSubstring(Source, "#gamma") || findSubstring(Source, "photon")
-               || findSubstring(Source, "Photon")) {
+    } else if (findSubstring(Source, "#gamma") || findSubstring(Source, "photon") || findSubstring(Source, "Photon")) {
         if (PluralParticles) {
             ParticleName = "Photons";
         } else {
@@ -70,8 +68,7 @@ string hData::GetParticleName(const string &Source, const bool &PluralParticles)
 string hData::GetParticleName1(const string &Source, const bool &PluralParticles) {
     string ParticleName, FS = GetFS(Source);
 
-    if (findSubstring(Source, "neutrals") || findSubstring(Source, "Neutrals")
-        || findSubstring(Source, "neut.") || findSubstring(Source, "Neut.")) {
+    if (findSubstring(Source, "neutrals") || findSubstring(Source, "Neutrals") || findSubstring(Source, "neut.") || findSubstring(Source, "Neut.")) {
         if (PluralParticles) {
             ParticleName = "Neut";
         } else {
@@ -129,8 +126,7 @@ string hData::GetParticleNameFromSubscript(const string &Source, const bool &Plu
         } else {
             ParticleName = "Electron";
         }
-    } else if (findSubstring(Source, "{p}") ||
-               findSubstring(Source, "{pFD}") || findSubstring(Source, "{pCD}")) {
+    } else if (findSubstring(Source, "{p}") || findSubstring(Source, "{pFD}") || findSubstring(Source, "{pCD}")) {
         if (PluralParticles) {
             ParticleName = "Protons";
         } else {
@@ -192,8 +188,7 @@ string hData::GetParticleNameFromSubscript(const string &Source, const bool &Plu
 string hData::GetParticleNameLC(const string &Source, const bool &PluralParticles) {
     string ParticleName;
 
-    if (findSubstring(Source, "neutrals") || findSubstring(Source, "Neutrals")
-        || findSubstring(Source, "neut.") || findSubstring(Source, "Neut.")) {
+    if (findSubstring(Source, "neutrals") || findSubstring(Source, "Neutrals") || findSubstring(Source, "neut.") || findSubstring(Source, "Neut.")) {
         if (PluralParticles) {
             ParticleName = "neut";
         } else {
@@ -231,8 +226,7 @@ string hData::GetParticleNameLC(const string &Source, const bool &PluralParticle
         } else {
             ParticleName = "deuteron";
         }
-    } else if (findSubstring(Source, "#gamma") || findSubstring(Source, "photon")
-               || findSubstring(Source, "Photon")) {
+    } else if (findSubstring(Source, "#gamma") || findSubstring(Source, "photon") || findSubstring(Source, "Photon")) {
         if (PluralParticles) {
             ParticleName = "photons";
         } else {
@@ -258,8 +252,7 @@ string hData::GetParticleNameLCFromSubscript(const string &Source, const bool &P
         } else {
             ParticleName = "electron";
         }
-    } else if (findSubstring(Source, "{p}") ||
-               findSubstring(Source, "{pFD}") || findSubstring(Source, "{pCD}")) {
+    } else if (findSubstring(Source, "{p}") || findSubstring(Source, "{pFD}") || findSubstring(Source, "{pCD}")) {
         if (PluralParticles) {
             ParticleName = "protons";
         } else {
@@ -321,8 +314,7 @@ string hData::GetParticleNameLCFromSubscript(const string &Source, const bool &P
 string hData::GetParticleNameShort(const string &Source) {
     string ParticleNameShort;
 
-    if (findSubstring(Source, "neutrals") || findSubstring(Source, "Neutrals")
-        || findSubstring(Source, "neut.") || findSubstring(Source, "Neut.")) {
+    if (findSubstring(Source, "neutrals") || findSubstring(Source, "Neutrals") || findSubstring(Source, "neut.") || findSubstring(Source, "Neut.")) {
         ParticleNameShort = "neut";
     } else if (findSubstring(Source, "Electron") || findSubstring(Source, "electron")) {
         ParticleNameShort = "e";
@@ -340,8 +332,7 @@ string hData::GetParticleNameShort(const string &Source) {
         ParticleNameShort = "K^{-}";
     } else if (findSubstring(Source, "D")) {
         ParticleNameShort = "D";
-    } else if (findSubstring(Source, "#gamma") || findSubstring(Source, "photon")
-               || findSubstring(Source, "Photon")) {
+    } else if (findSubstring(Source, "#gamma") || findSubstring(Source, "photon") || findSubstring(Source, "Photon")) {
         ParticleNameShort = "Photon";
     } else {
         ParticleNameShort = "";
@@ -389,8 +380,7 @@ string hData::GetParticleNameShortFromSubscript(const string &Source) {
 string hData::GetFS(const string &Source) {
     string FinalState;
 
-    if (findSubstring(Source, "1e_cut") || findSubstring(Source, "1e cut") || findSubstring(Source, "1e Cut") ||
-        findSubstring(Source, "(e,e')")) {
+    if (findSubstring(Source, "1e_cut") || findSubstring(Source, "1e cut") || findSubstring(Source, "1e Cut") || findSubstring(Source, "(e,e')")) {
         FinalState = "1e cut";
     } else if (findSubstring(Source, "1pFD")) {
         FinalState = "1pFD";
@@ -414,9 +404,9 @@ string hData::GetFS(const string &Source) {
         FinalState = "nFDpCD";
     }
 
-//    //<editor-fold desc="Safety check">
-//    if (FinalState == "") { cout << "hData::GetFS: finale state is not found (Source = " << Source << ")! Exiting...\n\n", exit(0); }
-//    //</editor-fold>
+    //    //<editor-fold desc="Safety check">
+    //    if (FinalState == "") { cout << "hData::GetFS: finale state is not found (Source = " << Source << ")! Exiting...\n\n", exit(0); }
+    //    //</editor-fold>
 
     return FinalState;
 }
@@ -428,17 +418,15 @@ string hData::GetFS(const string &Source) {
 string hData::GetTopology(const string &Source) {
     string Topology;
 
-    if (findSubstring(Source, "1n") || findSubstring(Source, "1p") ||
-        findSubstring(Source, "1nFD") || findSubstring(Source, "1pFD")) {
+    if (findSubstring(Source, "1n") || findSubstring(Source, "1p") || findSubstring(Source, "1nFD") || findSubstring(Source, "1pFD")) {
         Topology = "1N";
-    } else if (findSubstring(Source, "1n1p") || findSubstring(Source, "2p") ||
-               findSubstring(Source, "nFDpCD") || findSubstring(Source, "pFDpCD")) {
+    } else if (findSubstring(Source, "1n1p") || findSubstring(Source, "2p") || findSubstring(Source, "nFDpCD") || findSubstring(Source, "pFDpCD")) {
         Topology = "2N";
     }
 
-//    //<editor-fold desc="Safety check">
-//    if (Topology == "") { cout << "hData::GetTopology: topology is not found (Source = " << Source << ")! Exiting...\n\n", exit(0); }
-//    //</editor-fold>
+    //    //<editor-fold desc="Safety check">
+    //    if (Topology == "") { cout << "hData::GetTopology: topology is not found (Source = " << Source << ")! Exiting...\n\n", exit(0); }
+    //    //</editor-fold>
 
     return Topology;
 }
@@ -450,10 +438,8 @@ string hData::GetTopology(const string &Source) {
 string hData::GetType(const string &Source) {
     string Type;
 
-    if (!findSubstring(Source, "vs") && !findSubstring(Source, "vs.")
-        && !findSubstring(Source, "VS") && !findSubstring(Source, "VS.")) {
-        if (findSubstring(Source, "momentum") && !findSubstring(Source, "-momentum") &&
-            !findSubstring(Source, "Total") && !findSubstring(Source, "Relative") &&
+    if (!findSubstring(Source, "vs") && !findSubstring(Source, "vs.") && !findSubstring(Source, "VS") && !findSubstring(Source, "VS.")) {
+        if (findSubstring(Source, "momentum") && !findSubstring(Source, "-momentum") && !findSubstring(Source, "Total") && !findSubstring(Source, "Relative") &&
             !findSubstring(Source, "Leading") && !findSubstring(Source, "Recoil")) {
             Type = "momentum";
         } else if (findSubstring(Source, "momentum") && findSubstring(Source, "Leading")) {
@@ -492,13 +478,10 @@ string hData::GetType(const string &Source) {
             Type = "deltaPhi_T_tot";
         } else if (findSubstring(Source, "#delta#phi_{T,L}")) {
             Type = "deltaPhi_T_L";
-        } else if (findSubstring(Source, "#theta") &&
-                   !findSubstring(Source, "#theta_{#vec{") &&
-                   !(findSubstring(Source, "#theta_{pFD,pCD}") || findSubstring(Source, "#theta_{nFD,pCD}")) &&
+        } else if (findSubstring(Source, "#theta") && !findSubstring(Source, "#theta_{#vec{") && !(findSubstring(Source, "#theta_{pFD,pCD}") || findSubstring(Source, "#theta_{nFD,pCD}")) &&
                    !(findSubstring(Source, "#theta_{tot}") || findSubstring(Source, "#theta_{rel}"))) {
             Type = "theta";
-        } else if (findSubstring(Source, "#phi") &&
-                   !(findSubstring(Source, "#phi_{tot}") || findSubstring(Source, "#phi_{rel}"))) {
+        } else if (findSubstring(Source, "#phi") && !(findSubstring(Source, "#phi_{tot}") || findSubstring(Source, "#phi_{rel}"))) {
             Type = "phi";
         } else if (findSubstring(Source, "#theta_{tot}")) {
             Type = "theta_tot";
@@ -532,7 +515,6 @@ string hData::GetType(const string &Source) {
             Type = "Total_nucleon_4momentum";
         }
     } else {
-
         if (findSubstring(Source, "P_{pL} vs. P_{pR}") || findSubstring(Source, "P_{nL} vs. P_{nR}")) {
             Type = "P_nucL_vs_P_nucR";
         } else if (findSubstring(Source, "P_{pFD} vs. P_{pCD}") || findSubstring(Source, "P_{nFD} vs. P_{pCD}")) {
@@ -649,15 +631,13 @@ string hData::GetType(const string &Source) {
 string hData::GetDRegion(const string &Source, const bool &ReturnGoingRegion) {
     string DRegion, Type = GetType(Source), Particle = GetParticleName(Source), ParticleLC = GetParticleNameLC(Source);
 
-    if (findSubstring(Source, ", FD)") || findSubstring(Type, "FD " + Particle) ||
-        findSubstring(Source, "FD " + ParticleLC)) {
+    if (findSubstring(Source, ", FD)") || findSubstring(Type, "FD " + Particle) || findSubstring(Source, "FD " + ParticleLC)) {
         if (ReturnGoingRegion) {
             DRegion = "forward-going";
         } else {
             DRegion = "FD";
         }
-    } else if (findSubstring(Source, ", CD)") || findSubstring(Type, "CD " + Particle) ||
-               findSubstring(Source, "CD " + ParticleLC)) {
+    } else if (findSubstring(Source, ", CD)") || findSubstring(Type, "CD " + Particle) || findSubstring(Source, "CD " + ParticleLC)) {
         if (ReturnGoingRegion) {
             DRegion = "central-going";
         } else {
@@ -702,12 +682,11 @@ string hData::GetFSRTitle(const string &Source, const string &PlotsT) {
     string Particle = GetParticleName(Source), ParticleShort = GetParticleNameShort(Source), Type = GetType(Source), DRegion = GetDRegion(Source);
 
     if (PlotsT == "FSRatio") {
-        if (!findSubstring(Source, "vs") && !findSubstring(Source, "vs.") &&
-            !findSubstring(Source, "VS") && !findSubstring(Source, "VS.")) {
-            if (Type == "W" || Type == "Q2" || Type == "E_e" || Type == "omega" || Type == "Ecal" || Type == "deltaP_T_tot" || Type == "deltaP_T_L" ||
-                Type == "deltaAlpha_T_tot" || Type == "deltaAlpha_T_L" || Type == "deltaPhi_T_tot" || Type == "deltaPhi_T_L" ||
-                Type == "Opening_ang_P_e_P_tot" || Type == "Opening_ang_q_P_tot" || Type == "Opening_ang_q_P_nucFD" || Type == "Opening_ang_q_P_nucCD" ||
-                Type == "Opening_ang_q_P_nucL" || Type == "Opening_ang_q_P_nucR" || Type == "Opening_ang_P_nucFD_P_nucCD") {
+        if (!findSubstring(Source, "vs") && !findSubstring(Source, "vs.") && !findSubstring(Source, "VS") && !findSubstring(Source, "VS.")) {
+            if (Type == "W" || Type == "Q2" || Type == "E_e" || Type == "omega" || Type == "Ecal" || Type == "deltaP_T_tot" || Type == "deltaP_T_L" || Type == "deltaAlpha_T_tot" ||
+                Type == "deltaAlpha_T_L" || Type == "deltaPhi_T_tot" || Type == "deltaPhi_T_L" || Type == "Opening_ang_P_e_P_tot" || Type == "Opening_ang_q_P_tot" ||
+                Type == "Opening_ang_q_P_nucFD" || Type == "Opening_ang_q_P_nucCD" || Type == "Opening_ang_q_P_nucL" || Type == "Opening_ang_q_P_nucR" ||
+                Type == "Opening_ang_P_nucFD_P_nucCD") {
                 if (Type == "Q2") {
                     FSRTitle = "Q^{2} ratio - ";
                 } else if (Type == "E_e") {
@@ -835,17 +814,13 @@ string hData::GetFSRTitle(const string &Source, const string &PlotsT) {
                 FSRTitle = "#theta_{#vec{P}_{e},#vec{P}_{tot}} vs. W ratio - ";
             } else if (findSubstring(Source, "#theta_{#vec{q},#vec{P}_{tot}} vs. W")) {
                 FSRTitle = "#theta_{#vec{q},#vec{P}_{tot}} vs. W ratio - ";
-            } else if (findSubstring(Source, "#theta_{#vec{q},#vec{P}_{pL}} vs. W") ||
-                       findSubstring(Source, "#theta_{#vec{q},#vec{P}_{nL}} vs. W")) {
+            } else if (findSubstring(Source, "#theta_{#vec{q},#vec{P}_{pL}} vs. W") || findSubstring(Source, "#theta_{#vec{q},#vec{P}_{nL}} vs. W")) {
                 FSRTitle = "#theta_{#vec{q},#vec{P}_{nucL}} vs. W ratio - ";
-            } else if (findSubstring(Source, "#theta_{#vec{q},#vec{P}_{pR}} vs. W") ||
-                       findSubstring(Source, "#theta_{#vec{q},#vec{P}_{nR}} vs. W")) {
+            } else if (findSubstring(Source, "#theta_{#vec{q},#vec{P}_{pR}} vs. W") || findSubstring(Source, "#theta_{#vec{q},#vec{P}_{nR}} vs. W")) {
                 FSRTitle = "#theta_{#vec{q},#vec{P}_{nucR}} vs. W ratio - ";
-            } else if (findSubstring(Source, "#theta_{#vec{q},#vec{P}_{pFD}} vs. W") ||
-                       findSubstring(Source, "#theta_{#vec{q},#vec{P}_{nFD}} vs. W")) {
+            } else if (findSubstring(Source, "#theta_{#vec{q},#vec{P}_{pFD}} vs. W") || findSubstring(Source, "#theta_{#vec{q},#vec{P}_{nFD}} vs. W")) {
                 FSRTitle = "#theta_{#vec{q},#vec{P}_{nucFD}} vs. W ratio - ";
-            } else if (findSubstring(Source, "#theta_{#vec{q},#vec{P}_{pCD}} vs. W") ||
-                       findSubstring(Source, "#theta_{#vec{q},#vec{P}_{nCD}} vs. W")) {
+            } else if (findSubstring(Source, "#theta_{#vec{q},#vec{P}_{pCD}} vs. W") || findSubstring(Source, "#theta_{#vec{q},#vec{P}_{nCD}} vs. W")) {
                 FSRTitle = "#theta_{#vec{q},#vec{P}_{nucCD}} vs. W ratio - ";
             } else if (findSubstring(Source, "#theta_{#vec{q},#vec{P}_{pL}} vs. r_{pL}=|#vec{P}_{pL}|/|#vec{q}|") ||
                        findSubstring(Source, "#theta_{#vec{q},#vec{P}_{nL}} vs. r_{nL}=|#vec{P}_{nL}|/|#vec{q}|")) {
@@ -922,9 +897,9 @@ string hData::GetStatsTitle(const string &Source) {
 
     string FS = GetFS(Source), Type = GetType(Source), ParticleShort = GetParticleNameShort(Source);
 
-    if (findSubstring(Source, "#theta")) { // for momentum ACorrection plots
+    if (findSubstring(Source, "#theta")) {  // for momentum ACorrection plots
         StatsType = "#theta_{" + ParticleShort + "}";
-    } else if (findSubstring(Source, "#phi")) { // for momentum ACorrection plots
+    } else if (findSubstring(Source, "#phi")) {  // for momentum ACorrection plots
         StatsType = "#phi_{" + ParticleShort + "}";
     }
 

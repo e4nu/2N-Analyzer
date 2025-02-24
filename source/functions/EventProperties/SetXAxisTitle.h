@@ -5,16 +5,16 @@
 #ifndef SETXAXISTITLE_H
 #define SETXAXISTITLE_H
 
+#include <chrono>
 #include <cstdlib>
 #include <iomanip>
-#include <chrono>
-#include <typeinfo>
 #include <sstream>
+#include <typeinfo>
 
+#include "../GeneralFunctions.h"
 #include "GetParticleName.h"
 #include "GetParticleNameShort.h"
-#include "../GeneralFunctions.h"
-//#include "../findSubstring.h"
+// #include "../findSubstring.h"
 
 using namespace std;
 
@@ -24,17 +24,12 @@ string SetXAxisTitle(const string &RecTitle) {
     string Particle = GetParticleName(RecTitle);
     string ParticleShort = GetParticleNameShort(RecTitle);
 
-    if (!findSubstring(RecTitle, "vs") && !findSubstring(RecTitle, "vs.") &&
-        !findSubstring(RecTitle, "VS") && !findSubstring(RecTitle, "VS.")) {
-        if (findSubstring(RecTitle, "momentum") &&
-            !findSubstring(RecTitle, "-momentum") &&
-            !findSubstring(RecTitle, "Total") && !findSubstring(RecTitle, "Relative") &&
-            !findSubstring(RecTitle, "Leading") && !findSubstring(RecTitle, "Recoil") &&
-            !findSubstring(RecTitle, "FD proton") && !findSubstring(RecTitle, "FD neutron") &&
+    if (!findSubstring(RecTitle, "vs") && !findSubstring(RecTitle, "vs.") && !findSubstring(RecTitle, "VS") && !findSubstring(RecTitle, "VS.")) {
+        if (findSubstring(RecTitle, "momentum") && !findSubstring(RecTitle, "-momentum") && !findSubstring(RecTitle, "Total") && !findSubstring(RecTitle, "Relative") &&
+            !findSubstring(RecTitle, "Leading") && !findSubstring(RecTitle, "Recoil") && !findSubstring(RecTitle, "FD proton") && !findSubstring(RecTitle, "FD neutron") &&
             !findSubstring(RecTitle, "CD proton")) {
             XAxisTitle = "Momentum [GeV/c]";
-        } else if (findSubstring(RecTitle, "momentum") &&
-                   (findSubstring(RecTitle, "FD proton") || findSubstring(RecTitle, "FD neutron"))) {
+        } else if (findSubstring(RecTitle, "momentum") && (findSubstring(RecTitle, "FD proton") || findSubstring(RecTitle, "FD neutron"))) {
             XAxisTitle = "P_{nucFD} [GeV/c]";
         } else if (findSubstring(RecTitle, "momentum") && findSubstring(RecTitle, "CD proton")) {
             XAxisTitle = "P_{nucCD} [GeV/c]";
@@ -78,8 +73,7 @@ string SetXAxisTitle(const string &RecTitle) {
                    !(findSubstring(RecTitle, "#theta_{pFD,pCD}") || findSubstring(RecTitle, "#theta_{nFD,pCD}")) &&
                    !(findSubstring(RecTitle, "#theta_{tot}") || findSubstring(RecTitle, "#theta_{rel}"))) {
             XAxisTitle = "#theta [Deg]";
-        } else if (findSubstring(RecTitle, "#phi") &&
-                   !(findSubstring(RecTitle, "#phi_{tot}") || findSubstring(RecTitle, "#phi_{rel}"))) {
+        } else if (findSubstring(RecTitle, "#phi") && !(findSubstring(RecTitle, "#phi_{tot}") || findSubstring(RecTitle, "#phi_{rel}"))) {
             XAxisTitle = "#phi [Deg]";
         } else if (findSubstring(RecTitle, "#theta_{tot}")) {
             XAxisTitle = "#theta_{tot} [Deg]";
@@ -149,14 +143,11 @@ string SetXAxisTitle(const string &RecTitle) {
             XAxisTitle = "W = #sqrt{(#omega + m_{nuc})^{2} - #vec{q}^{2}}  [GeV]";
         } else if (findSubstring(RecTitle, "#theta_{#vec{q},#vec{P}_{tot}} vs. W")) {
             XAxisTitle = "W = #sqrt{(#omega + m_{nuc})^{2} - #vec{q}^{2}}  [GeV]";
-        } else if (findSubstring(RecTitle, "#theta_{#vec{q},#vec{P}_{pL}} vs. W") ||
-                   findSubstring(RecTitle, "#theta_{#vec{q},#vec{P}_{nL}} vs. W")) {
+        } else if (findSubstring(RecTitle, "#theta_{#vec{q},#vec{P}_{pL}} vs. W") || findSubstring(RecTitle, "#theta_{#vec{q},#vec{P}_{nL}} vs. W")) {
             XAxisTitle = "W = #sqrt{(#omega + m_{nuc})^{2} - #vec{q}^{2}}  [GeV]";
-        } else if (findSubstring(RecTitle, "#theta_{#vec{q},#vec{P}_{pR}} vs. W") ||
-                   findSubstring(RecTitle, "#theta_{#vec{q},#vec{P}_{nR}} vs. W")) {
+        } else if (findSubstring(RecTitle, "#theta_{#vec{q},#vec{P}_{pR}} vs. W") || findSubstring(RecTitle, "#theta_{#vec{q},#vec{P}_{nR}} vs. W")) {
             XAxisTitle = "W = #sqrt{(#omega + m_{nuc})^{2} - #vec{q}^{2}}  [GeV]";
-        } else if (findSubstring(RecTitle, "#theta_{#vec{q},#vec{P}_{pFD}} vs. W") ||
-                   findSubstring(RecTitle, "#theta_{#vec{q},#vec{P}_{nFD}} vs. W")) {
+        } else if (findSubstring(RecTitle, "#theta_{#vec{q},#vec{P}_{pFD}} vs. W") || findSubstring(RecTitle, "#theta_{#vec{q},#vec{P}_{nFD}} vs. W")) {
             XAxisTitle = "W = #sqrt{(#omega + m_{nuc})^{2} - #vec{q}^{2}}  [GeV]";
         } else if (findSubstring(RecTitle, "#theta_{#vec{q},#vec{P}_{pCD}} vs. W")) {
             XAxisTitle = "W = #sqrt{(#omega + m_{nuc})^{2} - #vec{q}^{2}}  [GeV]";
@@ -203,4 +194,4 @@ string SetXAxisTitle(const string &RecTitle) {
     return XAxisTitle;
 }
 
-#endif //SETXAXISTITLE_H
+#endif  // SETXAXISTITLE_H

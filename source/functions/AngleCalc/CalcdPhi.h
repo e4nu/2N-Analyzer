@@ -5,16 +5,16 @@
 #ifndef CALCDPHI_H
 #define CALCDPHI_H
 
-#include <iostream>
-#include <vector>
 #include <TF1.h>
 #include <math.h>
-#include <map>
 
-#include "clas12reader.h"
-#include "region_particle.h"
+#include <iostream>
+#include <map>
+#include <vector>
 
 #include "../../constants.h"
+#include "clas12reader.h"
+#include "region_particle.h"
 
 using namespace std;
 
@@ -48,4 +48,4 @@ double CalcdPhi(region_part_ptr proton1, region_part_ptr proton2) {
     return dPhi;
 }
 
-#endif //CALCDPHI_H
+#endif  // CALCDPHI_H

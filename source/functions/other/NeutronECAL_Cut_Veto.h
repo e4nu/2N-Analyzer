@@ -5,18 +5,17 @@
 #ifndef NEUTRONECAL_CUT_VETO_H
 #define NEUTRONECAL_CUT_VETO_H
 
-#include <iostream>
-#include <vector>
 #include <TF1.h>
 #include <math.h>
-#include <map>
 
-#include "clas12reader.h"
+#include <iostream>
+#include <map>
+#include <vector>
 
 #include "../constants.h"
+#include "clas12reader.h"
 
 /* This my original veto code as copied from Andrew. */
-
 
 /* NOTE: this code is valid for a single neutral only. */
 
@@ -36,7 +35,7 @@ bool NeutronECAL_Cut_Veto(const std::unique_ptr<clas12::clas12reader> &c12, doub
 
     if (allParticles[index]->par()->getCharge() != 0) { return false; } /* determine if the particle is neutral or not */
 
-    //Check which layers of the ECAL have been hit
+    // Check which layers of the ECAL have been hit
     TVector3 p_n_Angles;
     p_n_Angles.SetMagThetaPhi(1, allParticles[index]->getTheta(), allParticles[index]->getPhi()); /* calculate the angles of the neutral particle */
 
@@ -59,20 +58,20 @@ bool NeutronECAL_Cut_Veto(const std::unique_ptr<clas12::clas12reader> &c12, doub
 
     if (beta < 0) { return false; }
     if (beta > 1.1) { return false; }
-/*
-    // physics cuts, to be ignored according to Larry.
-    if (theta_nq > 25) { return false; }
-    if (theta_q > 40) { return false; }
-*/
+    /*
+        // physics cuts, to be ignored according to Larry.
+        if (theta_nq > 25) { return false; }
+        if (theta_q > 40) { return false; }
+    */
     if (theta_n < 1) { return false; } /* to avoid events with theta_n = 0 (the "1" is in deg) */
     if (!(IC || OC)) { return false; } /* hit only one of these layers */
-    if (PC) { return false; } /* to veto out the gammas (photons) */
+    if (PC) { return false; }          /* to veto out the gammas (photons) */
 
-    //Now let's put a charge particle veto
+    // Now let's put a charge particle veto
     bool Veto = false;
     for (int j = 0; j < allParticles.size(); j++) {
         if (allParticles[j]->par()->getCharge() == 0) { continue; } /* looking on charged particles only */
-        TVector3 v_chit; /* v_chit = location of charged particle hit */
+        TVector3 v_chit;                                            /* v_chit = location of charged particle hit */
 
         if ((detlayer == clas12::ECIN) && (allParticles[j]->cal(clas12::ECIN)->getZ() != 0)) {
             /* if both particles hit the inner calorimeter, use the inner calorimeter to determine v_chit */
@@ -103,4 +102,4 @@ bool NeutronECAL_Cut_Veto(const std::unique_ptr<clas12::clas12reader> &c12, doub
     return true; /* we survived up to this point, we do have a neutral particle */
 }
 
-#endif //NEUTRONECAL_CUT_VETO_H
+#endif  // NEUTRONECAL_CUT_VETO_H

@@ -11,4 +11,4 @@ using namespace std;
 
 void quit() { exit(0); }
 
-#endif //QUIT_H
+#endif  // QUIT_H

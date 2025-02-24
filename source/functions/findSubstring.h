@@ -19,4 +19,4 @@ bool findSubstring(string string1, string string2) {
 }
 //</editor-fold>
 
-#endif //DATA_ANALYSER_FINDSUBSTRING_H
+#endif  // DATA_ANALYSER_FINDSUBSTRING_H

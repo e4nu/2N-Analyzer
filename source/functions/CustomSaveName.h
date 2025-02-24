@@ -21,4 +21,4 @@ double GetPi0MomTh(DSCuts &ph_mom_th) {
     }
 }
 
-#endif //GETPI0MOMTH_H
+#endif  // GETPI0MOMTH_H

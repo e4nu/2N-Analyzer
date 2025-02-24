@@ -5,11 +5,11 @@
 #ifndef SETSTATSTITLE_H
 #define SETSTATSTITLE_H
 
+#include <chrono>
 #include <cstdlib>
 #include <iomanip>
-#include <chrono>
-#include <typeinfo>
 #include <sstream>
+#include <typeinfo>
 
 #include "GetParticleNameShort.h"
 
@@ -22,7 +22,7 @@ string SetStatsTitle(const string &RecTitle) {
 
     if (findSubstring(RecTitle, "momentum")) {
         StatsTitle = "P_{" + ParticleShort + "}";
-    }else if (findSubstring(RecTitle, "#theta")) {
+    } else if (findSubstring(RecTitle, "#theta")) {
         StatsTitle = "#theta_{" + ParticleShort + "}";
     } else if (findSubstring(RecTitle, "#phi")) {
         StatsTitle = "#phi_{" + ParticleShort + "}";
@@ -31,4 +31,4 @@ string SetStatsTitle(const string &RecTitle) {
     return StatsTitle;
 }
 
-#endif //SETSTATSTITLE_H
+#endif  // SETSTATSTITLE_H

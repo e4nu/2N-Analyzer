@@ -5,11 +5,11 @@
 #ifndef SETTYPE_H
 #define SETTYPE_H
 
+#include <chrono>
 #include <cstdlib>
 #include <iomanip>
-#include <chrono>
-#include <typeinfo>
 #include <sstream>
+#include <typeinfo>
 
 #include "../GeneralFunctions.h"
 
@@ -29,4 +29,4 @@ string SetType(const string &Title) {
     return Type;
 }
 
-#endif //SETTYPE_H
+#endif  // SETTYPE_H

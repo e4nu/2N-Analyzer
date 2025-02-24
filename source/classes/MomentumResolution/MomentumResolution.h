@@ -5,31 +5,30 @@
 #ifndef MOMENTUMRESOLUTION_H
 #define MOMENTUMRESOLUTION_H
 
-#include <iostream>
-#include <fstream>
-#include <vector>
+#include <TApplication.h>
+#include <TCanvas.h>
+#include <TChain.h>
+#include <TDatabasePDG.h>
 #include <TF1.h>
-#include <math.h>
-#include <map>
-
-#include <cstdlib>
-#include <iomanip>
-#include <chrono>
-#include <typeinfo>
-#include <sstream>
-
 #include <TFile.h>
-#include <TTree.h>
-#include <TLorentzVector.h>
 #include <TH1.h>
 #include <TH2.h>
 #include <TLatex.h>
-#include <TChain.h>
-#include <TCanvas.h>
-#include <TStyle.h>
-#include <TDatabasePDG.h>
-#include <TApplication.h>
+#include <TLorentzVector.h>
 #include <TROOT.h>
+#include <TStyle.h>
+#include <TTree.h>
+#include <math.h>
+
+#include <chrono>
+#include <cstdlib>
+#include <fstream>
+#include <iomanip>
+#include <iostream>
+#include <map>
+#include <sstream>
+#include <typeinfo>
+#include <vector>
 
 #include "clas12reader.h"
 
@@ -42,14 +41,13 @@
 
 #endif
 
-#include "../DSCuts/DSCuts.h"
 #include "../../functions/GeneralFunctions.h"
+#include "../DSCuts/DSCuts.h"
 
 using namespace std;
 
-class MomentumResolution
-{
-private:
+class MomentumResolution {
+   private:
     bool isNeutron = false, isProton = false;
     string MomResParticle = "";
 
@@ -72,9 +70,9 @@ private:
     vector<DSCuts> Loaded_Res_Slices_HistVar;
     vector<int> FittedTLMomSlices, FittedRecoMomSlices;
 
-    double SliceUpperMomLim;                                   // upper lim for momentum slices - loaded from file
-    double SliceUpperMomLimKC_mu, SliceLowerMomLimKC_mu;       // lower lim for momentum slices - set by constructor
-    double SliceUpperMomLimKC_sigma, SliceLowerMomLimKC_sigma; // lower lim for momentum slices - set by constructor
+    double SliceUpperMomLim;                                    // upper lim for momentum slices - loaded from file
+    double SliceUpperMomLimKC_mu, SliceLowerMomLimKC_mu;        // lower lim for momentum slices - set by constructor
+    double SliceUpperMomLimKC_sigma, SliceLowerMomLimKC_sigma;  // lower lim for momentum slices - set by constructor
 
     double hSliceUpperLim = 1.1;
     double hSliceLowerLim = -1.1;
@@ -97,7 +95,7 @@ private:
     string ResSlicePlots_OutFile0;
 
     //<editor-fold desc="Random number generators">
-    string RandomNumGenerator = "TRandom3"; // TRandom3 by default
+    string RandomNumGenerator = "TRandom3";  // TRandom3 by default
 
     TRandom1 *Rand1 = new TRandom1();
     TRandom2 *Rand2 = new TRandom2();
@@ -156,13 +154,13 @@ private:
 
     //</editor-fold>
 
-    double Neutron_Momentum_cut = 9999.; // from clas12ana
+    double Neutron_Momentum_cut = 9999.;  // from clas12ana
     string SName;
 
     string SlicesSavePath;
     string SlicesSaveNamePrefix;
 
-public:
+   public:
     // Default constructor --------------------------------------------------------------------------------------------------------------------------------------------------
 
     MomentumResolution() = default;
@@ -173,26 +171,23 @@ public:
 
     // MomResInit function --------------------------------------------------------------------------------------------------------------------------------------------------
 
-    void MomResInit(const bool &plot_and_fit_MomRes, const bool &Calculate_momResS2, const bool &Run_with_momResS2, const string &SampleName,
-                    const string &NucleonCutsDirectory, const double &beamE, const DSCuts &MomRes_mu_cuts, const DSCuts &MomRes_sigma_cuts, const double &ParticleMomTh,
-                    const string &MomentumResolutionDirectory, const string &SavePath = "./", const double &DeltaSlices = 0.2, const bool &VaryingDelta = false,
-                    const string &SmearM = "pol1", const string &CorrM = "pol1", const bool &momRes_test = false, const bool &ForceSmallpResLimits = false,
-                    const bool &FitDebugging = false);
+    void MomResInit(const bool &plot_and_fit_MomRes, const bool &Calculate_momResS2, const bool &Run_with_momResS2, const string &SampleName, const string &NucleonCutsDirectory,
+                    const double &beamE, const DSCuts &MomRes_mu_cuts, const DSCuts &MomRes_sigma_cuts, const double &ParticleMomTh, const string &MomentumResolutionDirectory,
+                    const string &SavePath = "./", const double &DeltaSlices = 0.2, const bool &VaryingDelta = false, const string &SmearM = "pol1", const string &CorrM = "pol1",
+                    const bool &momRes_test = false, const bool &ForceSmallpResLimits = false, const bool &FitDebugging = false);
 
-    void SetMomResCalculations(const string &SampleName, const string &NucleonCutsDirectory, const double &beamE, const DSCuts &MomRes_mu_cuts,
-                               const DSCuts &MomRes_sigma_cuts, const double &ParticleMomTh, bool const &Calculate_momResS2, bool const &Run_in_momResS2,
-                               const string &MomentumResolutionDirectory, const string &SavePath = "./", const double &DeltaSlices = 0.2, const bool &VaryingDelta = false,
-                               const string &SmearM = "pol1", const string &CorrM = "pol1", const bool momRes_test = false, const bool ForceSmallpResLimits = false,
-                               const bool &FitDebugging = false);
+    void SetMomResCalculations(const string &SampleName, const string &NucleonCutsDirectory, const double &beamE, const DSCuts &MomRes_mu_cuts, const DSCuts &MomRes_sigma_cuts,
+                               const double &ParticleMomTh, bool const &Calculate_momResS2, bool const &Run_in_momResS2, const string &MomentumResolutionDirectory,
+                               const string &SavePath = "./", const double &DeltaSlices = 0.2, const bool &VaryingDelta = false, const string &SmearM = "pol1", const string &CorrM = "pol1",
+                               const bool momRes_test = false, const bool ForceSmallpResLimits = false, const bool &FitDebugging = false);
 
     void SetMomResSlicesByType(const string &SampleName, const string &NucleonCutsDirectory, const double &beamE, const double &ParticleMomTh, const string &MomentumType,
                                const string &SavePath = "./", const bool &VaryingDelta = false, const bool &momRes_test = false, const bool &ForceSmallpResLimits = false,
                                const bool &FitDebugging = false);
 
-    void SetMomResSlices(const string &SampleName, const string &NucleonCutsDirectory, const double &beamE, const double &ParticleMomTh, const string &MomentumType,
-                         const string &SavePath, const bool &VaryingDelta, const bool &momRes_test, const bool &ForceSmallpResLimits, vector<hPlot1D> &ResSlices0,
-                         vector<vector<double>> &ResSlicesLimits0, vector<DSCuts> &ResSlicesFitVar0, vector<DSCuts> &ResSlicesHistVar0, int &NumberOfSlices0,
-                         const bool &FitDebugging = false);
+    void SetMomResSlices(const string &SampleName, const string &NucleonCutsDirectory, const double &beamE, const double &ParticleMomTh, const string &MomentumType, const string &SavePath,
+                         const bool &VaryingDelta, const bool &momRes_test, const bool &ForceSmallpResLimits, vector<hPlot1D> &ResSlices0, vector<vector<double>> &ResSlicesLimits0,
+                         vector<DSCuts> &ResSlicesFitVar0, vector<DSCuts> &ResSlicesHistVar0, int &NumberOfSlices0, const bool &FitDebugging = false);
 
     void SetUpperMomCut(const string &SampleName, const string &NucleonCutsDirectory, const bool &FitDebugging = false);
 
@@ -206,16 +201,14 @@ public:
 
     void hFillResPlotsByType(const double &MomentumTL, const double &MomentumReco, const double &Resolution, const double &Weight);
 
-    void hFillResPlots(const double &Momentum, const double &Resolution, const double &Weight, vector<hPlot1D> &ResSlices0, vector<vector<double>> &ResSlicesLimits0,
-                       int &NumberOfSlices0);
+    void hFillResPlots(const double &Momentum, const double &Resolution, const double &Weight, vector<hPlot1D> &ResSlices0, vector<vector<double>> &ResSlicesLimits0, int &NumberOfSlices0);
 
     // SliceFitDrawAndSaveByType function -----------------------------------------------------------------------------------------------------------------------------------
 
     void SliceFitDrawAndSaveByType(const string &SampleName, const double &beamE);
 
-    void SliceFitDrawAndSave(const string &SampleName, const double &beamE, const string &MomentumType, vector<hPlot1D> &ResSlices0,
-                             vector<vector<double>> &ResSlicesLimits0, vector<DSCuts> &ResSlicesFitVar0, vector<DSCuts> &ResSlicesHistVar0, vector<int> &FittedSlices0,
-                             int &NumberOfSlices0);
+    void SliceFitDrawAndSave(const string &SampleName, const double &beamE, const string &MomentumType, vector<hPlot1D> &ResSlices0, vector<vector<double>> &ResSlicesLimits0,
+                             vector<DSCuts> &ResSlicesFitVar0, vector<DSCuts> &ResSlicesHistVar0, vector<int> &FittedSlices0, int &NumberOfSlices0);
 
     void PolyFitter(const string &MomentumType, const int &PolynomialDegree, const string &FitType, const string &MomentumFitRange, vector<vector<double>> &FitParam);
 
@@ -231,8 +224,8 @@ public:
 
     void LogFitDataToFile(const string &SampleName, const string &plots_path, const string &MomentumResolutionDirectory);
 
-    void AutoLogger(const string &SampleName, const string &plots_path, const string &MomentumResolutionDirectory, const string &LogHeader,
-                    const vector<vector<double>> &Vector2Log, ofstream &Neutron_res_fit_param);
+    void AutoLogger(const string &SampleName, const string &plots_path, const string &MomentumResolutionDirectory, const string &LogHeader, const vector<vector<double>> &Vector2Log,
+                    ofstream &Neutron_res_fit_param);
 
     // LogHistDataToFile function -------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -271,20 +264,12 @@ public:
 
     void SetForceSmallpResLimits(const bool &fsprl) { ForceSmallProtonResLimits = fsprl; };
 
-    void OverwriteResRecoMomSlices(vector<TH1D *> ResSlices0)
-    {
-        for (int i = 0; i < ResRecoMomSlices.size(); i++)
-        {
-            ResRecoMomSlices.at(i).SetHistogram1D(ResSlices0.at(i));
-        }
+    void OverwriteResRecoMomSlices(vector<TH1D *> ResSlices0) {
+        for (int i = 0; i < ResRecoMomSlices.size(); i++) { ResRecoMomSlices.at(i).SetHistogram1D(ResSlices0.at(i)); }
     }
 
-    void OverwriteResTLMomSlices(vector<TH1D *> ResSlices0)
-    {
-        for (int i = 0; i < ResTLMomSlices.size(); i++)
-        {
-            ResTLMomSlices.at(i).SetHistogram1D(ResSlices0.at(i));
-        }
+    void OverwriteResTLMomSlices(vector<TH1D *> ResSlices0) {
+        for (int i = 0; i < ResTLMomSlices.size(); i++) { ResTLMomSlices.at(i).SetHistogram1D(ResSlices0.at(i)); }
     }
 
     void SetResRecoMomSlicesLimits(vector<vector<double>> ResSlicesLimits0) { ResRecoMomSlicesLimits = ResSlicesLimits0; };
@@ -341,4 +326,4 @@ public:
     string GetRandNumGenerator() { return RandomNumGenerator; };
 };
 
-#endif // MOMENTUMRESOLUTION_H
+#endif  // MOMENTUMRESOLUTION_H

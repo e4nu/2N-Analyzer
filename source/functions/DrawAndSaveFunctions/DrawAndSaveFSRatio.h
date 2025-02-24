@@ -17,47 +17,46 @@ SetYAxisTitle
 #ifndef DRAWANDSAVEFSRATIO_H
 #define DRAWANDSAVEFSRATIO_H
 
-#include <iostream>
-#include <vector>
+#include <TApplication.h>
+#include <TCanvas.h>
+#include <TChain.h>
+#include <TDatabasePDG.h>
 #include <TF1.h>
-#include <math.h>
-#include <map>
-
-#include <cstdlib>
-#include <iomanip>
-#include <chrono>
-#include <typeinfo>
-#include <sstream>
-
 #include <TFile.h>
-#include <TTree.h>
-#include <TLorentzVector.h>
 #include <TH1.h>
 #include <TH2.h>
 #include <TLatex.h>
-#include <TChain.h>
-#include <TCanvas.h>
-#include <TStyle.h>
-#include <TDatabasePDG.h>
-#include <TApplication.h>
+#include <TLorentzVector.h>
 #include <TROOT.h>
+#include <TStyle.h>
+#include <TTree.h>
+#include <math.h>
 
-#include "../GeneralFunctions.h"
+#include <chrono>
+#include <cstdlib>
+#include <iomanip>
+#include <iostream>
+#include <map>
+#include <sstream>
+#include <typeinfo>
+#include <vector>
+
+#include "../../classes/hData/hData.h"
+#include "../../classes/hPlots/hPlot1D.h"
 #include "../EventProperties/SetFSRatioSaveDir.h"
 #include "../EventProperties/SetStatsTitle.h"
-#include "../EventProperties/SettingSaveNames.h"
 #include "../EventProperties/SetTitle.h"
 #include "../EventProperties/SetType.h"
 #include "../EventProperties/SetXAxisTitle.h"
 #include "../EventProperties/SetYAxisTitle.h"
-#include "../../classes/hData/hData.h"
-#include "../../classes/hPlots/hPlot1D.h"
+#include "../EventProperties/SettingSaveNames.h"
+#include "../GeneralFunctions.h"
 
 using namespace std;
 
-//TODO: move this into a class with the proper functions
+// TODO: move this into a class with the proper functions
 
-//TODO: finish debugging TFolder addition!
+// TODO: finish debugging TFolder addition!
 
 const bool Equi_z_2D = true;
 
@@ -70,18 +69,18 @@ void DrawAndSaveFSRatio(const string &SampleName, const hPlot1D &pFDpCD_Plot, co
     bool rebin_plots = false;
 
     //<editor-fold desc="Canvas definitions">
-    TCanvas *Canvas = new TCanvas("Canvas", "Canvas", 1000, 750); // normal res
+    TCanvas *Canvas = new TCanvas("Canvas", "Canvas", 1000, 750);  // normal res
     Canvas->SetGrid();
 
     Canvas->SetBottomMargin(0.14);
     Canvas->SetLeftMargin(0.16);
     Canvas->SetRightMargin(0.12);
 
-//    Canvas->cd();
+    //    Canvas->cd();
 
     TCanvas *CanvasMulti = new TCanvas("CanvasMulti", "CanvasMulti", 6000, 1500);
-//    TCanvas *CanvasMulti = new TCanvas("CanvasMulti", "CanvasMulti", 4000, 1000);
-//    TCanvas *CanvasMulti = new TCanvas("CanvasMulti", "CanvasMulti", 1000*3, 750);
+    //    TCanvas *CanvasMulti = new TCanvas("CanvasMulti", "CanvasMulti", 4000, 1000);
+    //    TCanvas *CanvasMulti = new TCanvas("CanvasMulti", "CanvasMulti", 1000*3, 750);
     CanvasMulti->Divide(3, 1);
     CanvasMulti->cd(1)->SetGrid();
     CanvasMulti->cd(2)->SetGrid();
@@ -104,21 +103,21 @@ void DrawAndSaveFSRatio(const string &SampleName, const hPlot1D &pFDpCD_Plot, co
     TH1D *Histogram1D_nFDpCD = nFDpCD_Plot.GetHistogram();
     string FSRatioFSNumerator = Propeties.GetFS(Histogram1D_nFDpCD->GetTitle());
     string nFDpCD_Plot_Clone_StatsTitle = "FSR " + nFDpCD_Plot.GetHistogramStatTitle() + " - cloned (" + FSRatioFSNumerator + ")";
-    TH1D *nFDpCD_Plot_Clone = (TH1D *) Histogram1D_nFDpCD->Clone((nFDpCD_Plot_Clone_StatsTitle).c_str());
+    TH1D *nFDpCD_Plot_Clone = (TH1D *)Histogram1D_nFDpCD->Clone((nFDpCD_Plot_Clone_StatsTitle).c_str());
     string nFDpCD_Plot_Clone_test_StatsTitle = "FSR " + nFDpCD_Plot.GetHistogramStatTitle() + " - cloned test (" + FSRatioFSNumerator + ")";
-    TH1D *nFDpCD_Plot_Clone_test = (TH1D *) Histogram1D_nFDpCD->Clone((nFDpCD_Plot_Clone_test_StatsTitle).c_str());
+    TH1D *nFDpCD_Plot_Clone_test = (TH1D *)Histogram1D_nFDpCD->Clone((nFDpCD_Plot_Clone_test_StatsTitle).c_str());
     string nFDpCD_Plot_Clone_test_rebined_StatsTitle = "FSR " + nFDpCD_Plot.GetHistogramStatTitle() + " - cloned test rebined (" + FSRatioFSNumerator + ")";
-    TH1D *nFDpCD_Plot_Clone_test_rebined = (TH1D *) Histogram1D_nFDpCD->Clone((nFDpCD_Plot_Clone_test_rebined_StatsTitle).c_str());
+    TH1D *nFDpCD_Plot_Clone_test_rebined = (TH1D *)Histogram1D_nFDpCD->Clone((nFDpCD_Plot_Clone_test_rebined_StatsTitle).c_str());
     if (rebin_plots) { nFDpCD_Plot_Clone_test_rebined->Rebin(2); }
 
     TH1D *Histogram1D_pFDpCD = pFDpCD_Plot.GetHistogram();
     string FSRatioFSDenominator = Propeties.GetFS(Histogram1D_pFDpCD->GetTitle());
     string pFDpCD_Plot_Clone_StatsTitle = "FSR " + pFDpCD_Plot.GetHistogramStatTitle() + " - cloned (" + FSRatioFSDenominator + ")";
-    TH1D *pFDpCD_Plot_Clone = (TH1D *) Histogram1D_pFDpCD->Clone((pFDpCD_Plot_Clone_StatsTitle).c_str());
+    TH1D *pFDpCD_Plot_Clone = (TH1D *)Histogram1D_pFDpCD->Clone((pFDpCD_Plot_Clone_StatsTitle).c_str());
     string pFDpCD_Plot_Clone_test_StatsTitle = "FSR " + pFDpCD_Plot.GetHistogramStatTitle() + " - cloned test (" + FSRatioFSDenominator + ")";
-    TH1D *pFDpCD_Plot_Clone_test = (TH1D *) Histogram1D_pFDpCD->Clone((pFDpCD_Plot_Clone_test_StatsTitle).c_str());
+    TH1D *pFDpCD_Plot_Clone_test = (TH1D *)Histogram1D_pFDpCD->Clone((pFDpCD_Plot_Clone_test_StatsTitle).c_str());
     string pFDpCD_Plot_Clone_test_rebined_StatsTitle = "FSR " + pFDpCD_Plot.GetHistogramStatTitle() + " - cloned test rebined (" + FSRatioFSDenominator + ")";
-    TH1D *pFDpCD_Plot_Clone_test_rebined = (TH1D *) Histogram1D_pFDpCD->Clone((pFDpCD_Plot_Clone_test_rebined_StatsTitle).c_str());
+    TH1D *pFDpCD_Plot_Clone_test_rebined = (TH1D *)Histogram1D_pFDpCD->Clone((pFDpCD_Plot_Clone_test_rebined_StatsTitle).c_str());
     if (rebin_plots) { pFDpCD_Plot_Clone_test_rebined->Rebin(2); }
     //</editor-fold>
 
@@ -140,20 +139,19 @@ void DrawAndSaveFSRatio(const string &SampleName, const hPlot1D &pFDpCD_Plot, co
     string FSRatioYLabel = SetYAxisTitle("FSRatio", FSRatioFS, nFDpCD_Plot_Clone->GetXaxis()->GetTitle(), pFDpCD_Plot_Clone->GetXaxis()->GetTitle());
 
     string FSRatioSaveDir, FSRatioTestSaveDir;
-    SetFSRatioSaveDir(FSRatioSaveDir, FSRatioTestSaveDir, FSRatioRecTitle, FSRatioFS, pFDpCD_Plot.GetHistogram1DSaveNamePath(), FSRatioPlotsT, FSRatioDRegion,
-                      FSRatioParticle, FSRatioParticleLC, FSRatioParticleShort, FSRatioType);
+    SetFSRatioSaveDir(FSRatioSaveDir, FSRatioTestSaveDir, FSRatioRecTitle, FSRatioFS, pFDpCD_Plot.GetHistogram1DSaveNamePath(), FSRatioPlotsT, FSRatioDRegion, FSRatioParticle,
+                      FSRatioParticleLC, FSRatioParticleShort, FSRatioType);
 
     string nFDpCD_Plot_Clone_SaveName, nFDpCD_Plot_Clone_test_SaveName, nFDpCD_Plot_Clone_test_rebined_SaveName;
     string pFDpCD_Plot_Clone_SaveName, pFDpCD_Plot_Clone_test_SaveName, pFDpCD_Plot_Clone_test_rebined_SaveName;
     string sNameFlag, FSRatio_plot_1D_SaveName;
 
-    SettingSaveNames(SampleName, FSRatioType, FSRatioParticle, FSRatioSaveDir, FSRatioTestSaveDir, FSRatioPlotsT,
-                     nFDpCD_Plot_Clone_SaveName, nFDpCD_Plot_Clone_test_SaveName, nFDpCD_Plot_Clone_test_rebined_SaveName,
-                     pFDpCD_Plot_Clone_SaveName, pFDpCD_Plot_Clone_test_SaveName, pFDpCD_Plot_Clone_test_rebined_SaveName,
-                     sNameFlag, FSRatio_plot_1D_SaveName, FSRatioDRegion, FSRatioFS);
+    SettingSaveNames(SampleName, FSRatioType, FSRatioParticle, FSRatioSaveDir, FSRatioTestSaveDir, FSRatioPlotsT, nFDpCD_Plot_Clone_SaveName, nFDpCD_Plot_Clone_test_SaveName,
+                     nFDpCD_Plot_Clone_test_rebined_SaveName, pFDpCD_Plot_Clone_SaveName, pFDpCD_Plot_Clone_test_SaveName, pFDpCD_Plot_Clone_test_rebined_SaveName, sNameFlag,
+                     FSRatio_plot_1D_SaveName, FSRatioDRegion, FSRatioFS);
     //</editor-fold>
 
-    TH1D *FSRatio_plot_1D = (TH1D *) nFDpCD_Plot_Clone->Clone((FSRatioParticle + " " + FSRatioType + " FSRatio (" + FSTopology + ")").c_str());
+    TH1D *FSRatio_plot_1D = (TH1D *)nFDpCD_Plot_Clone->Clone((FSRatioParticle + " " + FSRatioType + " FSRatio (" + FSTopology + ")").c_str());
 
     string FSRatio_plot_1D_Name = FSRatio_plot_1D->GetName();
     string TFolder_Name = FSRatio_plot_1D_Name + " folder";
@@ -175,7 +173,7 @@ void DrawAndSaveFSRatio(const string &SampleName, const hPlot1D &pFDpCD_Plot, co
     nFDpCD_Plot_Clone_test->Draw();
     nFDpCD_Plot_Clone_test->SetStats(1);
     FSRatio_plot_1D_TFolder->Add(nFDpCD_Plot_Clone_test);
-//    Histogram_list->Add(nFDpCD_Plot_Clone_test);
+    //    Histogram_list->Add(nFDpCD_Plot_Clone_test);
 
     Canvas->SaveAs((nFDpCD_Plot_Clone_test_SaveName).c_str());
     Canvas->Clear();
@@ -187,7 +185,7 @@ void DrawAndSaveFSRatio(const string &SampleName, const hPlot1D &pFDpCD_Plot, co
     pFDpCD_Plot_Clone_test->Draw();
     pFDpCD_Plot_Clone_test->SetStats(1);
     FSRatio_plot_1D_TFolder->Add(pFDpCD_Plot_Clone_test);
-//    Histogram_list->Add(pFDpCD_Plot_Clone_test);
+    //    Histogram_list->Add(pFDpCD_Plot_Clone_test);
 
     Canvas->SaveAs((pFDpCD_Plot_Clone_test_SaveName).c_str());
     Canvas->Clear();
@@ -199,7 +197,7 @@ void DrawAndSaveFSRatio(const string &SampleName, const hPlot1D &pFDpCD_Plot, co
     nFDpCD_Plot_Clone_test_rebined->Draw();
     nFDpCD_Plot_Clone_test_rebined->SetStats(1);
     FSRatio_plot_1D_TFolder->Add(nFDpCD_Plot_Clone_test_rebined);
-//    Histogram_list->Add(nFDpCD_Plot_Clone_test_rebined);
+    //    Histogram_list->Add(nFDpCD_Plot_Clone_test_rebined);
 
     Canvas->SaveAs((nFDpCD_Plot_Clone_test_rebined_SaveName).c_str());
     Canvas->Clear();
@@ -211,7 +209,7 @@ void DrawAndSaveFSRatio(const string &SampleName, const hPlot1D &pFDpCD_Plot, co
     pFDpCD_Plot_Clone_test_rebined->Draw();
     pFDpCD_Plot_Clone_test_rebined->SetStats(1);
     FSRatio_plot_1D_TFolder->Add(pFDpCD_Plot_Clone_test_rebined);
-//    Histogram_list->Add(pFDpCD_Plot_Clone_test_rebined);
+    //    Histogram_list->Add(pFDpCD_Plot_Clone_test_rebined);
 
     Canvas->SaveAs((pFDpCD_Plot_Clone_test_rebined_SaveName).c_str());
     Canvas->Clear();
@@ -227,7 +225,7 @@ void DrawAndSaveFSRatio(const string &SampleName, const hPlot1D &pFDpCD_Plot, co
     nFDpCD_Plot_Clone->Draw();
     nFDpCD_Plot_Clone->SetStats(1);
     FSRatio_plot_1D_TFolder->Add(nFDpCD_Plot_Clone);
-//    Histogram_list->Add(nFDpCD_Plot_Clone);
+    //    Histogram_list->Add(nFDpCD_Plot_Clone);
 
     Canvas->SaveAs((nFDpCD_Plot_Clone_SaveName).c_str());
     Canvas->Clear();
@@ -249,7 +247,7 @@ void DrawAndSaveFSRatio(const string &SampleName, const hPlot1D &pFDpCD_Plot, co
     pFDpCD_Plot_Clone->Draw();
     pFDpCD_Plot_Clone->SetStats(1);
     FSRatio_plot_1D_TFolder->Add(pFDpCD_Plot_Clone);
-//    Histogram_list->Add(pFDpCD_Plot_Clone);
+    //    Histogram_list->Add(pFDpCD_Plot_Clone);
 
     Canvas->SaveAs((pFDpCD_Plot_Clone_SaveName).c_str());
     Canvas->Clear();
@@ -285,7 +283,7 @@ void DrawAndSaveFSRatio(const string &SampleName, const hPlot1D &pFDpCD_Plot, co
     Canvas->SetLogy(0);
 
     auto ListOfFunctions = FSRatio_plot_1D->GetListOfFunctions();
-    ListOfFunctions->Add((TLine *) EquiLine);
+    ListOfFunctions->Add((TLine *)EquiLine);
 
     Histogram_list->Add(FSRatio_plot_1D_TFolder);
     Histogram_list->Add(FSRatio_plot_1D);
@@ -310,8 +308,8 @@ void DrawAndSaveFSRatio(const string &SampleName, const hPlot1D &pFDpCD_Plot, co
     FSRatio_plot_1D->Draw();
     EquiLine->SetLineWidth(3);
     EquiLine->Draw("same");
-//    Histogram_list->Add(FSRatio_plot_1D);
-    //TODO: RegularM is useless - move or delete!
+    //    Histogram_list->Add(FSRatio_plot_1D);
+    // TODO: RegularM is useless - move or delete!
     CanvasMulti->SaveAs((FSRatio_plot_1D_SaveName.substr(0, FSRatio_plot_1D_SaveName.find_last_of(".png") - 3) + "_RegularM.png").c_str());
     FSRatio_plot_1D->GetYaxis()->SetRangeUser(0, 5);
     CanvasMulti->SaveAs((FSRatio_plot_1D_SaveName.substr(0, FSRatio_plot_1D_SaveName.find_last_of(".png") - 3) + "_Range5M.png").c_str());
@@ -322,12 +320,11 @@ void DrawAndSaveFSRatio(const string &SampleName, const hPlot1D &pFDpCD_Plot, co
     FSRatio_plot_1D->GetYaxis()->SetRangeUser(0, 2);
     CanvasMulti->SaveAs((FSRatio_plot_1D_SaveName.substr(0, FSRatio_plot_1D_SaveName.find_last_of(".png") - 3) + "_Range2M.png").c_str());
 
-
     CanvasMulti->Clear();
 
-//    cout << "\n\n\nFSRatioType = " << FSRatioType << "\n\n\n";
-//    cout << "\n\n\nFSRatioRecTitle = " << FSRatioRecTitle << "\n\n\n";
-//    cout << "\n\n\nFSRatio_plot_1D_SaveName = " << FSRatio_plot_1D_SaveName << "\n\n\n";
+    //    cout << "\n\n\nFSRatioType = " << FSRatioType << "\n\n\n";
+    //    cout << "\n\n\nFSRatioRecTitle = " << FSRatioRecTitle << "\n\n\n";
+    //    cout << "\n\n\nFSRatio_plot_1D_SaveName = " << FSRatio_plot_1D_SaveName << "\n\n\n";
     //</editor-fold>
 
     delete Canvas;
@@ -341,9 +338,9 @@ void DrawAndSaveFSRatio(const string &SampleName, const hPlot1D &pFDpCD_Plot, TH
     bool rebin_plots = false;
 
     //<editor-fold desc="Canvas definitions">
-    TCanvas *Canvas = new TCanvas("Canvas", "Canvas", 1000, 750); // normal res
-//    TCanvas *Canvas = new TCanvas("canvas", "canvas", 2000, 1500); // high res
-//    TCanvas *Canvas = new TCanvas("canvas", "canvas", 1650, 1150);
+    TCanvas *Canvas = new TCanvas("Canvas", "Canvas", 1000, 750);  // normal res
+                                                                   //    TCanvas *Canvas = new TCanvas("canvas", "canvas", 2000, 1500); // high res
+                                                                   //    TCanvas *Canvas = new TCanvas("canvas", "canvas", 1650, 1150);
     Canvas->SetGrid();
     Canvas->SetBottomMargin(0.14);
 
@@ -352,11 +349,11 @@ void DrawAndSaveFSRatio(const string &SampleName, const hPlot1D &pFDpCD_Plot, TH
 
     float DefStatX = gStyle->GetStatX(), DefStatY = gStyle->GetStatY();
 
-//    Canvas->cd();
+    //    Canvas->cd();
 
     TCanvas *CanvasMulti = new TCanvas("CanvasMulti", "CanvasMulti", 6000, 1500);
-//    TCanvas *CanvasMulti = new TCanvas("CanvasMulti", "CanvasMulti", 4000, 1000);
-//    TCanvas *CanvasMulti = new TCanvas("CanvasMulti", "CanvasMulti", 1000*3, 750);
+    //    TCanvas *CanvasMulti = new TCanvas("CanvasMulti", "CanvasMulti", 4000, 1000);
+    //    TCanvas *CanvasMulti = new TCanvas("CanvasMulti", "CanvasMulti", 1000*3, 750);
     CanvasMulti->Divide(3, 1);
     CanvasMulti->cd(1)->SetGrid();
     CanvasMulti->cd(2)->SetGrid();
@@ -390,21 +387,21 @@ void DrawAndSaveFSRatio(const string &SampleName, const hPlot1D &pFDpCD_Plot, TH
     //<editor-fold desc="Cloning histograms">
     string FSRatioFSNumerator = Propeties.GetFS(nFDpCD_Plot->GetTitle());
     string nFDpCD_Plot_Clone_StatsTitle = "FSR " + FSRatioStatsTitle + " - cloned (" + FSRatioFSNumerator + ")";
-    TH1D *nFDpCD_Plot_Clone = (TH1D *) nFDpCD_Plot->Clone((nFDpCD_Plot_Clone_StatsTitle).c_str());
+    TH1D *nFDpCD_Plot_Clone = (TH1D *)nFDpCD_Plot->Clone((nFDpCD_Plot_Clone_StatsTitle).c_str());
     string nFDpCD_Plot_Clone_test_StatsTitle = "FSR " + FSRatioStatsTitle + " - cloned test (" + FSRatioFSNumerator + ")";
-    TH1D *nFDpCD_Plot_Clone_test = (TH1D *) nFDpCD_Plot->Clone((nFDpCD_Plot_Clone_test_StatsTitle).c_str());
+    TH1D *nFDpCD_Plot_Clone_test = (TH1D *)nFDpCD_Plot->Clone((nFDpCD_Plot_Clone_test_StatsTitle).c_str());
     string nFDpCD_Plot_Clone_test_rebined_StatsTitle = "FSR " + FSRatioStatsTitle + " - cloned test rebined (" + FSRatioFSNumerator + ")";
-    TH1D *nFDpCD_Plot_Clone_test_rebined = (TH1D *) nFDpCD_Plot->Clone((nFDpCD_Plot_Clone_test_rebined_StatsTitle).c_str());
+    TH1D *nFDpCD_Plot_Clone_test_rebined = (TH1D *)nFDpCD_Plot->Clone((nFDpCD_Plot_Clone_test_rebined_StatsTitle).c_str());
     if (rebin_plots) { nFDpCD_Plot_Clone_test_rebined->Rebin(2); }
 
     TH1D *Histogram1D_pFDpCD = pFDpCD_Plot.GetHistogram();
     string FSRatioFSDenominator = Propeties.GetFS(Histogram1D_pFDpCD->GetTitle());
     string pFDpCD_Plot_Clone_StatsTitle = "FSR " + FSRatioStatsTitle + " - cloned (" + FSRatioFSDenominator + ")";
-    TH1D *pFDpCD_Plot_Clone = (TH1D *) Histogram1D_pFDpCD->Clone((pFDpCD_Plot_Clone_StatsTitle).c_str());
+    TH1D *pFDpCD_Plot_Clone = (TH1D *)Histogram1D_pFDpCD->Clone((pFDpCD_Plot_Clone_StatsTitle).c_str());
     string pFDpCD_Plot_Clone_test_StatsTitle = "FSR " + FSRatioStatsTitle + " - cloned test (" + FSRatioFSDenominator + ")";
-    TH1D *pFDpCD_Plot_Clone_test = (TH1D *) Histogram1D_pFDpCD->Clone((pFDpCD_Plot_Clone_test_StatsTitle).c_str());
+    TH1D *pFDpCD_Plot_Clone_test = (TH1D *)Histogram1D_pFDpCD->Clone((pFDpCD_Plot_Clone_test_StatsTitle).c_str());
     string pFDpCD_Plot_Clone_test_rebined_StatsTitle = "FSR " + pFDpCD_Plot.GetHistogramStatTitle() + " - cloned test rebined (" + FSRatioFSDenominator + ")";
-    TH1D *pFDpCD_Plot_Clone_test_rebined = (TH1D *) Histogram1D_pFDpCD->Clone((pFDpCD_Plot_Clone_test_rebined_StatsTitle).c_str());
+    TH1D *pFDpCD_Plot_Clone_test_rebined = (TH1D *)Histogram1D_pFDpCD->Clone((pFDpCD_Plot_Clone_test_rebined_StatsTitle).c_str());
     if (rebin_plots) { pFDpCD_Plot_Clone_test_rebined->Rebin(2); }
     //</editor-fold>
 
@@ -427,8 +424,8 @@ void DrawAndSaveFSRatio(const string &SampleName, const hPlot1D &pFDpCD_Plot, TH
 
     //<editor-fold desc="Setting save directory">
     string FSRatioSaveDir, FSRatioTestSaveDir;
-    SetFSRatioSaveDir(FSRatioSaveDir, FSRatioTestSaveDir, FSRatioRecTitle, FSRatioFS, pFDpCD_Plot.GetHistogram1DSaveNamePath(), FSRatioPlotsT, FSRatioDRegion,
-                      FSRatioParticle, FSRatioParticleLC, FSRatioParticleShort, FSRatioType);
+    SetFSRatioSaveDir(FSRatioSaveDir, FSRatioTestSaveDir, FSRatioRecTitle, FSRatioFS, pFDpCD_Plot.GetHistogram1DSaveNamePath(), FSRatioPlotsT, FSRatioDRegion, FSRatioParticle,
+                      FSRatioParticleLC, FSRatioParticleShort, FSRatioType);
 
     //</editor-fold>
 
@@ -437,13 +434,12 @@ void DrawAndSaveFSRatio(const string &SampleName, const hPlot1D &pFDpCD_Plot, TH
     string pFDpCD_Plot_Clone_SaveName, pFDpCD_Plot_Clone_test_SaveName, pFDpCD_Plot_Clone_test_rebined_SaveName;
     string sNameFlag, FSRatio_plot_1D_SaveName;
 
-    SettingSaveNames(SampleName, FSRatioType, FSRatioParticle, FSRatioSaveDir, FSRatioTestSaveDir, FSRatioPlotsT,
-                     nFDpCD_Plot_Clone_SaveName, nFDpCD_Plot_Clone_test_SaveName, nFDpCD_Plot_Clone_test_rebined_SaveName,
-                     pFDpCD_Plot_Clone_SaveName, pFDpCD_Plot_Clone_test_SaveName, pFDpCD_Plot_Clone_test_rebined_SaveName,
-                     sNameFlag, FSRatio_plot_1D_SaveName, FSRatioDRegion, FSRatioFS);
+    SettingSaveNames(SampleName, FSRatioType, FSRatioParticle, FSRatioSaveDir, FSRatioTestSaveDir, FSRatioPlotsT, nFDpCD_Plot_Clone_SaveName, nFDpCD_Plot_Clone_test_SaveName,
+                     nFDpCD_Plot_Clone_test_rebined_SaveName, pFDpCD_Plot_Clone_SaveName, pFDpCD_Plot_Clone_test_SaveName, pFDpCD_Plot_Clone_test_rebined_SaveName, sNameFlag,
+                     FSRatio_plot_1D_SaveName, FSRatioDRegion, FSRatioFS);
     //</editor-fold>
 
-    TH1D *FSRatio_plot_1D = (TH1D *) nFDpCD_Plot_Clone->Clone((FSRatioParticle + " " + FSRatioType + " FSRatio (" + FSTopology + ")").c_str());
+    TH1D *FSRatio_plot_1D = (TH1D *)nFDpCD_Plot_Clone->Clone((FSRatioParticle + " " + FSRatioType + " FSRatio (" + FSTopology + ")").c_str());
     FSRatio_plot_1D->SetTitle((FSRatioTitle + " nFDpCD/pFDpCD").c_str());
     FSRatio_plot_1D->GetYaxis()->SetTitle((FSRatioYLabel).c_str());
     FSRatio_plot_1D->GetXaxis()->SetTitle((FSRatioXLabel).c_str());
@@ -468,7 +464,7 @@ void DrawAndSaveFSRatio(const string &SampleName, const hPlot1D &pFDpCD_Plot, TH
     nFDpCD_Plot_Clone_test->Draw();
     nFDpCD_Plot_Clone_test->SetStats(1);
     FSRatio_plot_1D_TFolder->Add(nFDpCD_Plot_Clone_test);
-//    Histogram_list->Add(nFDpCD_Plot_Clone_test);
+    //    Histogram_list->Add(nFDpCD_Plot_Clone_test);
 
     Canvas->SaveAs((nFDpCD_Plot_Clone_test_SaveName).c_str());
     Canvas->Clear();
@@ -480,7 +476,7 @@ void DrawAndSaveFSRatio(const string &SampleName, const hPlot1D &pFDpCD_Plot, TH
     pFDpCD_Plot_Clone_test->Draw();
     pFDpCD_Plot_Clone_test->SetStats(1);
     FSRatio_plot_1D_TFolder->Add(pFDpCD_Plot_Clone_test);
-//    Histogram_list->Add(pFDpCD_Plot_Clone_test);
+    //    Histogram_list->Add(pFDpCD_Plot_Clone_test);
 
     Canvas->SaveAs((pFDpCD_Plot_Clone_test_SaveName).c_str());
     Canvas->Clear();
@@ -501,7 +497,7 @@ void DrawAndSaveFSRatio(const string &SampleName, const hPlot1D &pFDpCD_Plot, TH
     nFDpCD_Plot_Clone_test_rebined->Draw();
     nFDpCD_Plot_Clone_test_rebined->SetStats(1);
     FSRatio_plot_1D_TFolder->Add(nFDpCD_Plot_Clone_test_rebined);
-//    Histogram_list->Add(nFDpCD_Plot_Clone_test_rebined);
+    //    Histogram_list->Add(nFDpCD_Plot_Clone_test_rebined);
 
     Canvas->SaveAs((nFDpCD_Plot_Clone_test_rebined_SaveName).c_str());
     Canvas->Clear();
@@ -513,7 +509,7 @@ void DrawAndSaveFSRatio(const string &SampleName, const hPlot1D &pFDpCD_Plot, TH
     pFDpCD_Plot_Clone_test_rebined->Draw();
     pFDpCD_Plot_Clone_test_rebined->SetStats(1);
     FSRatio_plot_1D_TFolder->Add(pFDpCD_Plot_Clone_test_rebined);
-//    Histogram_list->Add(pFDpCD_Plot_Clone_test_rebined);
+    //    Histogram_list->Add(pFDpCD_Plot_Clone_test_rebined);
 
     Canvas->SaveAs((pFDpCD_Plot_Clone_test_rebined_SaveName).c_str());
     Canvas->Clear();
@@ -539,7 +535,7 @@ void DrawAndSaveFSRatio(const string &SampleName, const hPlot1D &pFDpCD_Plot, TH
     nFDpCD_Plot_Clone->Draw();
     nFDpCD_Plot_Clone->SetStats(1);
     FSRatio_plot_1D_TFolder->Add(nFDpCD_Plot_Clone);
-//    Histogram_list->Add(nFDpCD_Plot_Clone);
+    //    Histogram_list->Add(nFDpCD_Plot_Clone);
 
     Canvas->SaveAs((nFDpCD_Plot_Clone_SaveName).c_str());
     Canvas->Clear();
@@ -561,7 +557,7 @@ void DrawAndSaveFSRatio(const string &SampleName, const hPlot1D &pFDpCD_Plot, TH
     pFDpCD_Plot_Clone->Draw();
     pFDpCD_Plot_Clone->SetStats(1);
     FSRatio_plot_1D_TFolder->Add(pFDpCD_Plot_Clone);
-//    Histogram_list->Add(pFDpCD_Plot_Clone);
+    //    Histogram_list->Add(pFDpCD_Plot_Clone);
 
     Canvas->SaveAs((pFDpCD_Plot_Clone_SaveName).c_str());
     Canvas->Clear();
@@ -605,7 +601,7 @@ void DrawAndSaveFSRatio(const string &SampleName, const hPlot1D &pFDpCD_Plot, TH
     Canvas->SetLogy(0);
 
     auto ListOfFunctions = FSRatio_plot_1D->GetListOfFunctions();
-    ListOfFunctions->Add((TLine *) EquiLine);
+    ListOfFunctions->Add((TLine *)EquiLine);
 
     Histogram_list->Add(FSRatio_plot_1D_TFolder);
     Histogram_list->Add(FSRatio_plot_1D);
@@ -630,8 +626,8 @@ void DrawAndSaveFSRatio(const string &SampleName, const hPlot1D &pFDpCD_Plot, TH
     FSRatio_plot_1D->Draw();
     EquiLine->SetLineWidth(3);
     EquiLine->Draw("same");
-//    Histogram_list->Add(FSRatio_plot_1D);
-    //TODO: RegularM is useless - move or delete!
+    //    Histogram_list->Add(FSRatio_plot_1D);
+    // TODO: RegularM is useless - move or delete!
     CanvasMulti->SaveAs((FSRatio_plot_1D_SaveName.substr(0, FSRatio_plot_1D_SaveName.find_last_of(".png") - 3) + "_RegularM.png").c_str());
     FSRatio_plot_1D->GetYaxis()->SetRangeUser(0, 5);
     CanvasMulti->SaveAs((FSRatio_plot_1D_SaveName.substr(0, FSRatio_plot_1D_SaveName.find_last_of(".png") - 3) + "_Range5M.png").c_str());
@@ -644,9 +640,9 @@ void DrawAndSaveFSRatio(const string &SampleName, const hPlot1D &pFDpCD_Plot, TH
 
     CanvasMulti->Clear();
 
-//    cout << "\n\n\nFSRatioType = " << FSRatioType << "\n\n\n";
-//    cout << "\n\n\nFSRatioRecTitle = " << FSRatioRecTitle << "\n\n\n";
-//    cout << "\n\n\nFSRatio_plot_1D_SaveName = " << FSRatio_plot_1D_SaveName << "\n\n\n";
+    //    cout << "\n\n\nFSRatioType = " << FSRatioType << "\n\n\n";
+    //    cout << "\n\n\nFSRatioRecTitle = " << FSRatioRecTitle << "\n\n\n";
+    //    cout << "\n\n\nFSRatio_plot_1D_SaveName = " << FSRatio_plot_1D_SaveName << "\n\n\n";
     // </editor-fold>
 
     delete Canvas;
@@ -660,9 +656,9 @@ void DrawAndSaveFSRatio(const string &SampleName, TH1D *pFDpCD_Plot, const strin
     bool rebin_plots = false;
 
     //<editor-fold desc="Canvas definitions">
-    TCanvas *Canvas = new TCanvas("Canvas", "Canvas", 1000, 750); // normal res
-//    TCanvas *Canvas = new TCanvas("canvas", "canvas", 2000, 1500); // high res
-//    TCanvas *Canvas = new TCanvas("canvas", "canvas", 1650, 1150);
+    TCanvas *Canvas = new TCanvas("Canvas", "Canvas", 1000, 750);  // normal res
+                                                                   //    TCanvas *Canvas = new TCanvas("canvas", "canvas", 2000, 1500); // high res
+                                                                   //    TCanvas *Canvas = new TCanvas("canvas", "canvas", 1650, 1150);
     Canvas->SetGrid();
     Canvas->SetBottomMargin(0.14);
 
@@ -671,11 +667,11 @@ void DrawAndSaveFSRatio(const string &SampleName, TH1D *pFDpCD_Plot, const strin
 
     float DefStatX = gStyle->GetStatX(), DefStatY = gStyle->GetStatY();
 
-//    Canvas->cd();
+    //    Canvas->cd();
 
     TCanvas *CanvasMulti = new TCanvas("CanvasMulti", "CanvasMulti", 6000, 1500);
-//    TCanvas *CanvasMulti = new TCanvas("CanvasMulti", "CanvasMulti", 4000, 1000);
-//    TCanvas *CanvasMulti = new TCanvas("CanvasMulti", "CanvasMulti", 1000*3, 750);
+    //    TCanvas *CanvasMulti = new TCanvas("CanvasMulti", "CanvasMulti", 4000, 1000);
+    //    TCanvas *CanvasMulti = new TCanvas("CanvasMulti", "CanvasMulti", 1000*3, 750);
     CanvasMulti->Divide(3, 1);
     CanvasMulti->cd(1)->SetGrid();
     CanvasMulti->cd(2)->SetGrid();
@@ -711,20 +707,20 @@ void DrawAndSaveFSRatio(const string &SampleName, TH1D *pFDpCD_Plot, const strin
     //<editor-fold desc="Cloning histograms">
     string FSRatioFSNumerator = Propeties.GetFS(nFDpCD_Plot->GetTitle());
     string nFDpCD_Plot_Clone_StatsTitle = "FSR " + FSRatioStatsTitle + " " + FSTopology + " - cloned (" + FSRatioFSNumerator + ")";
-    TH1D *nFDpCD_Plot_Clone = (TH1D *) nFDpCD_Plot->Clone((nFDpCD_Plot_Clone_StatsTitle).c_str());
+    TH1D *nFDpCD_Plot_Clone = (TH1D *)nFDpCD_Plot->Clone((nFDpCD_Plot_Clone_StatsTitle).c_str());
     string nFDpCD_Plot_Clone_test_StatsTitle = "FSR " + FSRatioStatsTitle + " " + FSTopology + " - cloned test (" + FSRatioFSNumerator + ")";
-    TH1D *nFDpCD_Plot_Clone_test = (TH1D *) nFDpCD_Plot->Clone((nFDpCD_Plot_Clone_test_StatsTitle).c_str());
+    TH1D *nFDpCD_Plot_Clone_test = (TH1D *)nFDpCD_Plot->Clone((nFDpCD_Plot_Clone_test_StatsTitle).c_str());
     string nFDpCD_Plot_Clone_test_rebined_StatsTitle = "FSR " + FSRatioStatsTitle + " " + FSTopology + " - cloned test rebined (" + FSRatioFSNumerator + ")";
-    TH1D *nFDpCD_Plot_Clone_test_rebined = (TH1D *) nFDpCD_Plot->Clone((nFDpCD_Plot_Clone_test_rebined_StatsTitle).c_str());
+    TH1D *nFDpCD_Plot_Clone_test_rebined = (TH1D *)nFDpCD_Plot->Clone((nFDpCD_Plot_Clone_test_rebined_StatsTitle).c_str());
     if (rebin_plots) { nFDpCD_Plot_Clone_test_rebined->Rebin(2); }
 
     string FSRatioFSDenominator = Propeties.GetFS(pFDpCD_Plot->GetTitle());
     string pFDpCD_Plot_Clone_StatsTitle = "FSR " + FSRatioStatsTitle + " " + FSTopology + " - cloned (" + FSRatioFSDenominator + ")";
-    TH1D *pFDpCD_Plot_Clone = (TH1D *) pFDpCD_Plot->Clone((pFDpCD_Plot_Clone_StatsTitle).c_str());
+    TH1D *pFDpCD_Plot_Clone = (TH1D *)pFDpCD_Plot->Clone((pFDpCD_Plot_Clone_StatsTitle).c_str());
     string pFDpCD_Plot_Clone_test_StatsTitle = "FSR " + FSRatioStatsTitle + " " + FSTopology + " - cloned test (" + FSRatioFSDenominator + ")";
-    TH1D *pFDpCD_Plot_Clone_test = (TH1D *) pFDpCD_Plot->Clone((pFDpCD_Plot_Clone_test_StatsTitle).c_str());
+    TH1D *pFDpCD_Plot_Clone_test = (TH1D *)pFDpCD_Plot->Clone((pFDpCD_Plot_Clone_test_StatsTitle).c_str());
     string pFDpCD_Plot_Clone_test_rebined_StatsTitle = "FSR " + FSRatioStatsTitle + " " + FSTopology + " - cloned test rebined (" + FSRatioFSDenominator + ")";
-    TH1D *pFDpCD_Plot_Clone_test_rebined = (TH1D *) pFDpCD_Plot->Clone((pFDpCD_Plot_Clone_test_rebined_StatsTitle).c_str());
+    TH1D *pFDpCD_Plot_Clone_test_rebined = (TH1D *)pFDpCD_Plot->Clone((pFDpCD_Plot_Clone_test_rebined_StatsTitle).c_str());
     if (rebin_plots) { pFDpCD_Plot_Clone_test_rebined->Rebin(2); }
     //</editor-fold>
 
@@ -745,8 +741,8 @@ void DrawAndSaveFSRatio(const string &SampleName, TH1D *pFDpCD_Plot, const strin
 
     //<editor-fold desc="Setting save directory">
     string FSRatioSaveDir, FSRatioTestSaveDir;
-    SetFSRatioSaveDir(FSRatioSaveDir, FSRatioTestSaveDir, FSRatioRecTitle, FSRatioFS, pFDpCD_PlotSaveNamePath, FSRatioPlotsT, FSRatioDRegion,
-                      FSRatioParticle, FSRatioParticleLC, FSRatioParticleShort, FSRatioType);
+    SetFSRatioSaveDir(FSRatioSaveDir, FSRatioTestSaveDir, FSRatioRecTitle, FSRatioFS, pFDpCD_PlotSaveNamePath, FSRatioPlotsT, FSRatioDRegion, FSRatioParticle, FSRatioParticleLC,
+                      FSRatioParticleShort, FSRatioType);
     //</editor-fold>
 
     //<editor-fold desc="Setting save name">
@@ -754,13 +750,12 @@ void DrawAndSaveFSRatio(const string &SampleName, TH1D *pFDpCD_Plot, const strin
     string pFDpCD_Plot_Clone_SaveName, pFDpCD_Plot_Clone_test_SaveName, pFDpCD_Plot_Clone_test_rebined_SaveName;
     string sNameFlag, FSRatio_plot_1D_SaveName;
 
-    SettingSaveNames(SampleName, FSRatioType, FSRatioParticle, FSRatioSaveDir, FSRatioTestSaveDir, FSRatioPlotsT,
-                     nFDpCD_Plot_Clone_SaveName, nFDpCD_Plot_Clone_test_SaveName, nFDpCD_Plot_Clone_test_rebined_SaveName,
-                     pFDpCD_Plot_Clone_SaveName, pFDpCD_Plot_Clone_test_SaveName, pFDpCD_Plot_Clone_test_rebined_SaveName,
-                     sNameFlag, FSRatio_plot_1D_SaveName, FSRatioDRegion, FSRatioFS);
+    SettingSaveNames(SampleName, FSRatioType, FSRatioParticle, FSRatioSaveDir, FSRatioTestSaveDir, FSRatioPlotsT, nFDpCD_Plot_Clone_SaveName, nFDpCD_Plot_Clone_test_SaveName,
+                     nFDpCD_Plot_Clone_test_rebined_SaveName, pFDpCD_Plot_Clone_SaveName, pFDpCD_Plot_Clone_test_SaveName, pFDpCD_Plot_Clone_test_rebined_SaveName, sNameFlag,
+                     FSRatio_plot_1D_SaveName, FSRatioDRegion, FSRatioFS);
     //</editor-fold>
 
-    TH1D *FSRatio_plot_1D = (TH1D *) nFDpCD_Plot_Clone->Clone((FSRatioParticle + " " + FSRatioType + " FSRatio (" + FSTopology + ")").c_str());
+    TH1D *FSRatio_plot_1D = (TH1D *)nFDpCD_Plot_Clone->Clone((FSRatioParticle + " " + FSRatioType + " FSRatio (" + FSTopology + ")").c_str());
     FSRatio_plot_1D->SetTitle((FSRatioTitle + " nFDpCD/pFDpCD").c_str());
     FSRatio_plot_1D->GetYaxis()->SetTitle((FSRatioYLabel).c_str());
     FSRatio_plot_1D->GetXaxis()->SetTitle((FSRatioXLabel).c_str());
@@ -770,14 +765,14 @@ void DrawAndSaveFSRatio(const string &SampleName, TH1D *pFDpCD_Plot, const strin
     if (FSTopology == "2N") { TFolder_Name = TFolder_Name + " (" + FSRatioDRegion + ")"; }
     TFolder *FSRatio_plot_1D_TFolder = new TFolder(TFolder_Name.c_str(), TFolder_Name.c_str());
 
-//    if (Histogram_list->FindObject(TFolder_Name.c_str())) {
-//        cout << "\n\nTFolder_Name is in TList!\n\n";
-//        cout << "\n\nFSRatioFSNumerator = " << FSRatioFSNumerator << "\n\n";
-//        cout << "\n\nFSRatioFSDenominator = " << FSRatioFSDenominator << "\n\n";
-//        cout << "\n\nFSRatioDRegion = " << FSRatioDRegion << "\n\n";
-//        cout << "\n\nFSTopology = " << FSTopology << "\n\n";
-//        cout << "\n\nExiting...\n\n", exit(0);
-//    }
+    //    if (Histogram_list->FindObject(TFolder_Name.c_str())) {
+    //        cout << "\n\nTFolder_Name is in TList!\n\n";
+    //        cout << "\n\nFSRatioFSNumerator = " << FSRatioFSNumerator << "\n\n";
+    //        cout << "\n\nFSRatioFSDenominator = " << FSRatioFSDenominator << "\n\n";
+    //        cout << "\n\nFSRatioDRegion = " << FSRatioDRegion << "\n\n";
+    //        cout << "\n\nFSTopology = " << FSTopology << "\n\n";
+    //        cout << "\n\nExiting...\n\n", exit(0);
+    //    }
 
     //<editor-fold desc="Plotting and saving nFDpCD_Plot_Clone_test">
     nFDpCD_Plot_Clone_test->SetLineStyle(1);
@@ -794,7 +789,7 @@ void DrawAndSaveFSRatio(const string &SampleName, TH1D *pFDpCD_Plot, const strin
     nFDpCD_Plot_Clone_test->Draw();
     nFDpCD_Plot_Clone_test->SetStats(1);
     FSRatio_plot_1D_TFolder->Add(nFDpCD_Plot_Clone_test);
-//    Histogram_list->Add(nFDpCD_Plot_Clone_test);
+    //    Histogram_list->Add(nFDpCD_Plot_Clone_test);
 
     Canvas->SaveAs((nFDpCD_Plot_Clone_test_SaveName).c_str());
     Canvas->Clear();
@@ -806,7 +801,7 @@ void DrawAndSaveFSRatio(const string &SampleName, TH1D *pFDpCD_Plot, const strin
     pFDpCD_Plot_Clone_test->Draw();
     pFDpCD_Plot_Clone_test->SetStats(1);
     FSRatio_plot_1D_TFolder->Add(pFDpCD_Plot_Clone_test);
-//    Histogram_list->Add(pFDpCD_Plot_Clone_test);
+    //    Histogram_list->Add(pFDpCD_Plot_Clone_test);
 
     Canvas->SaveAs((pFDpCD_Plot_Clone_test_SaveName).c_str());
     Canvas->Clear();
@@ -827,7 +822,7 @@ void DrawAndSaveFSRatio(const string &SampleName, TH1D *pFDpCD_Plot, const strin
     nFDpCD_Plot_Clone_test_rebined->Draw();
     nFDpCD_Plot_Clone_test_rebined->SetStats(1);
     FSRatio_plot_1D_TFolder->Add(nFDpCD_Plot_Clone_test_rebined);
-//    Histogram_list->Add(nFDpCD_Plot_Clone_test_rebined);
+    //    Histogram_list->Add(nFDpCD_Plot_Clone_test_rebined);
 
     Canvas->SaveAs((nFDpCD_Plot_Clone_test_rebined_SaveName).c_str());
     Canvas->Clear();
@@ -839,7 +834,7 @@ void DrawAndSaveFSRatio(const string &SampleName, TH1D *pFDpCD_Plot, const strin
     pFDpCD_Plot_Clone_test_rebined->Draw();
     pFDpCD_Plot_Clone_test_rebined->SetStats(1);
     FSRatio_plot_1D_TFolder->Add(pFDpCD_Plot_Clone_test_rebined);
-//    Histogram_list->Add(pFDpCD_Plot_Clone_test_rebined);
+    //    Histogram_list->Add(pFDpCD_Plot_Clone_test_rebined);
 
     Canvas->SaveAs((pFDpCD_Plot_Clone_test_rebined_SaveName).c_str());
     Canvas->Clear();
@@ -865,7 +860,7 @@ void DrawAndSaveFSRatio(const string &SampleName, TH1D *pFDpCD_Plot, const strin
     nFDpCD_Plot_Clone->Draw();
     nFDpCD_Plot_Clone->SetStats(1);
     FSRatio_plot_1D_TFolder->Add(nFDpCD_Plot_Clone);
-//    Histogram_list->Add(nFDpCD_Plot_Clone);
+    //    Histogram_list->Add(nFDpCD_Plot_Clone);
 
     Canvas->SaveAs((nFDpCD_Plot_Clone_SaveName).c_str());
     Canvas->Clear();
@@ -888,7 +883,7 @@ void DrawAndSaveFSRatio(const string &SampleName, TH1D *pFDpCD_Plot, const strin
     pFDpCD_Plot_Clone->Draw();
     pFDpCD_Plot_Clone->SetStats(1);
     FSRatio_plot_1D_TFolder->Add(pFDpCD_Plot_Clone);
-//    Histogram_list->Add(pFDpCD_Plot_Clone);
+    //    Histogram_list->Add(pFDpCD_Plot_Clone);
 
     Canvas->SaveAs((pFDpCD_Plot_Clone_SaveName).c_str());
     Canvas->Clear();
@@ -932,7 +927,7 @@ void DrawAndSaveFSRatio(const string &SampleName, TH1D *pFDpCD_Plot, const strin
     Canvas->SetLogy(0);
 
     auto ListOfFunctions = FSRatio_plot_1D->GetListOfFunctions();
-    ListOfFunctions->Add((TLine *) EquiLine);
+    ListOfFunctions->Add((TLine *)EquiLine);
 
     Histogram_list->Add(FSRatio_plot_1D_TFolder);
     Histogram_list->Add(FSRatio_plot_1D);
@@ -957,8 +952,8 @@ void DrawAndSaveFSRatio(const string &SampleName, TH1D *pFDpCD_Plot, const strin
     FSRatio_plot_1D->Draw();
     EquiLine->SetLineWidth(3);
     EquiLine->Draw("same");
-//    Histogram_list->Add(FSRatio_plot_1D);
-    //TODO: RegularM is useless - move or delete!
+    //    Histogram_list->Add(FSRatio_plot_1D);
+    // TODO: RegularM is useless - move or delete!
     CanvasMulti->SaveAs((FSRatio_plot_1D_SaveName.substr(0, FSRatio_plot_1D_SaveName.find_last_of(".png") - 3) + "_RegularM.png").c_str());
     FSRatio_plot_1D->GetYaxis()->SetRangeUser(0, 5);
     CanvasMulti->SaveAs((FSRatio_plot_1D_SaveName.substr(0, FSRatio_plot_1D_SaveName.find_last_of(".png") - 3) + "_Range5M.png").c_str());
@@ -971,9 +966,9 @@ void DrawAndSaveFSRatio(const string &SampleName, TH1D *pFDpCD_Plot, const strin
 
     CanvasMulti->Clear();
 
-//    cout << "\n\n\nFSRatioType = " << FSRatioType << "\n\n\n";
-//    cout << "\n\n\nFSRatioRecTitle = " << FSRatioRecTitle << "\n\n\n";
-//    cout << "\n\n\nFSRatio_plot_1D_SaveName = " << FSRatio_plot_1D_SaveName << "\n\n\n";
+    //    cout << "\n\n\nFSRatioType = " << FSRatioType << "\n\n\n";
+    //    cout << "\n\n\nFSRatioRecTitle = " << FSRatioRecTitle << "\n\n\n";
+    //    cout << "\n\n\nFSRatio_plot_1D_SaveName = " << FSRatio_plot_1D_SaveName << "\n\n\n";
     //</editor-fold>
 
     delete Canvas;
@@ -988,18 +983,18 @@ void DrawAndSaveFSRatio(const string &SampleName, const hPlot2D &pFDpCD_Plot, co
     bool plot_errorbars = true;
 
     //<editor-fold desc="Canvas definitions">
-    TCanvas *Canvas = new TCanvas("Canvas", "Canvas", 1000, 750); // normal res
+    TCanvas *Canvas = new TCanvas("Canvas", "Canvas", 1000, 750);  // normal res
     Canvas->SetGrid();
 
     Canvas->SetBottomMargin(0.14);
     Canvas->SetLeftMargin(0.16);
     Canvas->SetRightMargin(0.12);
 
-//    Canvas->cd();
+    //    Canvas->cd();
 
     TCanvas *CanvasMulti = new TCanvas("CanvasMulti", "CanvasMulti", 6000, 1500);
-//    TCanvas *CanvasMulti = new TCanvas("CanvasMulti", "CanvasMulti", 4000, 1000);
-//    TCanvas *CanvasMulti = new TCanvas("CanvasMulti", "CanvasMulti", 1000*3, 750);
+    //    TCanvas *CanvasMulti = new TCanvas("CanvasMulti", "CanvasMulti", 4000, 1000);
+    //    TCanvas *CanvasMulti = new TCanvas("CanvasMulti", "CanvasMulti", 1000*3, 750);
     CanvasMulti->Divide(3, 1);
     CanvasMulti->cd(1)->SetGrid();
     CanvasMulti->cd(2)->SetGrid();
@@ -1023,22 +1018,22 @@ void DrawAndSaveFSRatio(const string &SampleName, const hPlot2D &pFDpCD_Plot, co
     string FSRatioFSNumerator = Propeties.GetFS(Histogram2D_nFDpCD->GetTitle());
 
     string nFDpCD_Plot_Clone_StatsTitle = "FSR " + nFDpCD_Plot.GetHistogramStatTitle() + " - cloned (" + FSRatioFSNumerator + ")";
-    TH2D *nFDpCD_Plot_Clone = (TH2D *) Histogram2D_nFDpCD->Clone((nFDpCD_Plot_Clone_StatsTitle).c_str());
+    TH2D *nFDpCD_Plot_Clone = (TH2D *)Histogram2D_nFDpCD->Clone((nFDpCD_Plot_Clone_StatsTitle).c_str());
     string nFDpCD_Plot_Clone_test_StatsTitle = "FSR " + nFDpCD_Plot.GetHistogramStatTitle() + " - cloned test (" + FSRatioFSNumerator + ")";
-    TH2D *nFDpCD_Plot_Clone_test = (TH2D *) Histogram2D_nFDpCD->Clone((nFDpCD_Plot_Clone_test_StatsTitle).c_str());
+    TH2D *nFDpCD_Plot_Clone_test = (TH2D *)Histogram2D_nFDpCD->Clone((nFDpCD_Plot_Clone_test_StatsTitle).c_str());
     string nFDpCD_Plot_Clone_test_rebined_StatsTitle = "FSR " + nFDpCD_Plot.GetHistogramStatTitle() + " - cloned test rebined (" + FSRatioFSNumerator + ")";
-    TH2D *nFDpCD_Plot_Clone_test_rebined = (TH2D *) Histogram2D_nFDpCD->Clone((nFDpCD_Plot_Clone_test_rebined_StatsTitle).c_str());
-//    nFDpCD_Plot_Clone_test_rebined->Rebin(2);
+    TH2D *nFDpCD_Plot_Clone_test_rebined = (TH2D *)Histogram2D_nFDpCD->Clone((nFDpCD_Plot_Clone_test_rebined_StatsTitle).c_str());
+    //    nFDpCD_Plot_Clone_test_rebined->Rebin(2);
 
     TH2D *Histogram2D_pFDpCD = pFDpCD_Plot.GetHistogram();
     string FSRatioFSDenominator = Propeties.GetFS(Histogram2D_pFDpCD->GetTitle());
     string pFDpCD_Plot_Clone_StatsTitle = "FSR " + pFDpCD_Plot.GetHistogramStatTitle() + " - cloned (" + FSRatioFSDenominator + ")";
-    TH2D *pFDpCD_Plot_Clone = (TH2D *) Histogram2D_pFDpCD->Clone((pFDpCD_Plot_Clone_StatsTitle).c_str());
+    TH2D *pFDpCD_Plot_Clone = (TH2D *)Histogram2D_pFDpCD->Clone((pFDpCD_Plot_Clone_StatsTitle).c_str());
     string pFDpCD_Plot_Clone_test_StatsTitle = "FSR " + pFDpCD_Plot.GetHistogramStatTitle() + " - cloned test (" + FSRatioFSDenominator + ")";
-    TH2D *pFDpCD_Plot_Clone_test = (TH2D *) Histogram2D_pFDpCD->Clone((pFDpCD_Plot_Clone_test_StatsTitle).c_str());
+    TH2D *pFDpCD_Plot_Clone_test = (TH2D *)Histogram2D_pFDpCD->Clone((pFDpCD_Plot_Clone_test_StatsTitle).c_str());
     string pFDpCD_Plot_Clone_test_rebined_StatsTitle = "FSR " + pFDpCD_Plot.GetHistogramStatTitle() + " - cloned test rebined (" + FSRatioFSDenominator + ")";
-    TH2D *pFDpCD_Plot_Clone_test_rebined = (TH2D *) Histogram2D_pFDpCD->Clone((pFDpCD_Plot_Clone_test_rebined_StatsTitle).c_str());
-//    pFDpCD_Plot_Clone_test_rebined->Rebin(2);
+    TH2D *pFDpCD_Plot_Clone_test_rebined = (TH2D *)Histogram2D_pFDpCD->Clone((pFDpCD_Plot_Clone_test_rebined_StatsTitle).c_str());
+    //    pFDpCD_Plot_Clone_test_rebined->Rebin(2);
 
     double Zmax = 1.1 * max(pFDpCD_Plot_Clone->GetMaximum(), nFDpCD_Plot_Clone->GetMaximum());
 
@@ -1066,20 +1061,19 @@ void DrawAndSaveFSRatio(const string &SampleName, const hPlot2D &pFDpCD_Plot, co
     string FSRatioYLabel = SetYAxisTitle("FSRatio", FSRatioFS, nFDpCD_Plot_Clone->GetXaxis()->GetTitle(), pFDpCD_Plot_Clone->GetXaxis()->GetTitle(), FSRatioRecTitle);
 
     string FSRatioSaveDir, FSRatioTestSaveDir;
-    SetFSRatioSaveDir(FSRatioSaveDir, FSRatioTestSaveDir, FSRatioRecTitle, FSRatioFS, pFDpCD_Plot.GetHistogram2DSaveNamePath(), FSRatioPlotsT, FSRatioDRegion,
-                      FSRatioParticle, FSRatioParticleLC, FSRatioParticleShort, FSRatioType);
+    SetFSRatioSaveDir(FSRatioSaveDir, FSRatioTestSaveDir, FSRatioRecTitle, FSRatioFS, pFDpCD_Plot.GetHistogram2DSaveNamePath(), FSRatioPlotsT, FSRatioDRegion, FSRatioParticle,
+                      FSRatioParticleLC, FSRatioParticleShort, FSRatioType);
 
     string nFDpCD_Plot_Clone_SaveName, nFDpCD_Plot_Clone_test_SaveName, nFDpCD_Plot_Clone_test_rebined_SaveName;
     string pFDpCD_Plot_Clone_SaveName, pFDpCD_Plot_Clone_test_SaveName, pFDpCD_Plot_Clone_test_rebined_SaveName;
     string sNameFlag, FSRatio_plot_2D_SaveName;
 
-    SettingSaveNames(SampleName, FSRatioType, FSRatioParticle, FSRatioSaveDir, FSRatioTestSaveDir, FSRatioPlotsT,
-                     nFDpCD_Plot_Clone_SaveName, nFDpCD_Plot_Clone_test_SaveName, nFDpCD_Plot_Clone_test_rebined_SaveName,
-                     pFDpCD_Plot_Clone_SaveName, pFDpCD_Plot_Clone_test_SaveName, pFDpCD_Plot_Clone_test_rebined_SaveName,
-                     sNameFlag, FSRatio_plot_2D_SaveName, FSRatioDRegion, FSRatioFS);
+    SettingSaveNames(SampleName, FSRatioType, FSRatioParticle, FSRatioSaveDir, FSRatioTestSaveDir, FSRatioPlotsT, nFDpCD_Plot_Clone_SaveName, nFDpCD_Plot_Clone_test_SaveName,
+                     nFDpCD_Plot_Clone_test_rebined_SaveName, pFDpCD_Plot_Clone_SaveName, pFDpCD_Plot_Clone_test_SaveName, pFDpCD_Plot_Clone_test_rebined_SaveName, sNameFlag,
+                     FSRatio_plot_2D_SaveName, FSRatioDRegion, FSRatioFS);
     //</editor-fold>
 
-    TH2D *FSRatio_plot_2D = (TH2D *) nFDpCD_Plot_Clone->Clone((FSRatioParticle + " " + FSRatioType + " FSRatio (" + FSTopology + ")").c_str());
+    TH2D *FSRatio_plot_2D = (TH2D *)nFDpCD_Plot_Clone->Clone((FSRatioParticle + " " + FSRatioType + " FSRatio (" + FSTopology + ")").c_str());
     FSRatio_plot_2D->SetTitle((FSRatioTitle + " nFDpCD/pFDpCD").c_str());
     FSRatio_plot_2D->GetYaxis()->SetTitle((FSRatioYLabel).c_str());
     FSRatio_plot_2D->GetXaxis()->SetTitle((FSRatioXLabel).c_str());
@@ -1100,7 +1094,7 @@ void DrawAndSaveFSRatio(const string &SampleName, const hPlot2D &pFDpCD_Plot, co
     nFDpCD_Plot_Clone_test->Draw("colz");
     nFDpCD_Plot_Clone_test->SetStats(1);
     FSRatio_plot_2D_TFolder->Add(nFDpCD_Plot_Clone_test);
-//    Histogram_list->Add(nFDpCD_Plot_Clone_test);
+    //    Histogram_list->Add(nFDpCD_Plot_Clone_test);
 
     Canvas->SaveAs((nFDpCD_Plot_Clone_test_SaveName).c_str());
     Canvas->Clear();
@@ -1110,7 +1104,7 @@ void DrawAndSaveFSRatio(const string &SampleName, const hPlot2D &pFDpCD_Plot, co
     pFDpCD_Plot_Clone_test->Draw("colz");
     pFDpCD_Plot_Clone_test->SetStats(1);
     FSRatio_plot_2D_TFolder->Add(pFDpCD_Plot_Clone_test);
-//    Histogram_list->Add(pFDpCD_Plot_Clone_test);
+    //    Histogram_list->Add(pFDpCD_Plot_Clone_test);
 
     Canvas->SaveAs((pFDpCD_Plot_Clone_test_SaveName).c_str());
     Canvas->Clear();
@@ -1120,7 +1114,7 @@ void DrawAndSaveFSRatio(const string &SampleName, const hPlot2D &pFDpCD_Plot, co
     nFDpCD_Plot_Clone_test_rebined->Draw("colz");
     nFDpCD_Plot_Clone_test_rebined->SetStats(1);
     FSRatio_plot_2D_TFolder->Add(nFDpCD_Plot_Clone_test_rebined);
-//    Histogram_list->Add(nFDpCD_Plot_Clone_test_rebined);
+    //    Histogram_list->Add(nFDpCD_Plot_Clone_test_rebined);
 
     Canvas->SaveAs((nFDpCD_Plot_Clone_test_rebined_SaveName).c_str());
     Canvas->Clear();
@@ -1130,7 +1124,7 @@ void DrawAndSaveFSRatio(const string &SampleName, const hPlot2D &pFDpCD_Plot, co
     pFDpCD_Plot_Clone_test_rebined->Draw("colz");
     pFDpCD_Plot_Clone_test_rebined->SetStats(1);
     FSRatio_plot_2D_TFolder->Add(pFDpCD_Plot_Clone_test_rebined);
-//    Histogram_list->Add(pFDpCD_Plot_Clone_test_rebined);
+    //    Histogram_list->Add(pFDpCD_Plot_Clone_test_rebined);
 
     Canvas->SaveAs((pFDpCD_Plot_Clone_test_rebined_SaveName).c_str());
     Canvas->Clear();
@@ -1153,14 +1147,14 @@ void DrawAndSaveFSRatio(const string &SampleName, const hPlot2D &pFDpCD_Plot, co
         nFDpCD_Plot_Clone_legend->Draw("same");
 
         auto ListOfFunctions_nFDpCD = nFDpCD_Plot_Clone->GetListOfFunctions();
-        ListOfFunctions_nFDpCD->Add((TLine *) EquiLine2D_nFDpCD);
-        ListOfFunctions_nFDpCD->Add((TLegend *) nFDpCD_Plot_Clone_legend);
+        ListOfFunctions_nFDpCD->Add((TLine *)EquiLine2D_nFDpCD);
+        ListOfFunctions_nFDpCD->Add((TLegend *)nFDpCD_Plot_Clone_legend);
     }
 
     nFDpCD_Plot_Clone->SetStats(1);
 
     FSRatio_plot_2D_TFolder->Add(nFDpCD_Plot_Clone);
-//    Histogram_list->Add(nFDpCD_Plot_Clone);
+    //    Histogram_list->Add(nFDpCD_Plot_Clone);
 
     Canvas->SaveAs((nFDpCD_Plot_Clone_SaveName).c_str());
     Canvas->Clear();
@@ -1182,8 +1176,8 @@ void DrawAndSaveFSRatio(const string &SampleName, const hPlot2D &pFDpCD_Plot, co
         nFDpCD_Plot_Clone_legend->Draw("same");
 
         auto ListOfFunctions_nFDpCD = nFDpCD_Plot_Clone->GetListOfFunctions();
-        ListOfFunctions_nFDpCD->Add((TLine *) EquiLine2D_nFDpCD);
-        ListOfFunctions_nFDpCD->Add((TLegend *) nFDpCD_Plot_Clone_legend);
+        ListOfFunctions_nFDpCD->Add((TLine *)EquiLine2D_nFDpCD);
+        ListOfFunctions_nFDpCD->Add((TLegend *)nFDpCD_Plot_Clone_legend);
     }
 
     nFDpCD_Plot_Clone->SetStats(1);
@@ -1207,14 +1201,14 @@ void DrawAndSaveFSRatio(const string &SampleName, const hPlot2D &pFDpCD_Plot, co
         pFDpCD_Plot_Clone_legend->Draw("same");
 
         auto ListOfFunctions_pFDpCD = pFDpCD_Plot_Clone->GetListOfFunctions();
-        ListOfFunctions_pFDpCD->Add((TLine *) EquiLine2D_pFDpCD);
-        ListOfFunctions_pFDpCD->Add((TLegend *) pFDpCD_Plot_Clone_legend);
+        ListOfFunctions_pFDpCD->Add((TLine *)EquiLine2D_pFDpCD);
+        ListOfFunctions_pFDpCD->Add((TLegend *)pFDpCD_Plot_Clone_legend);
     }
 
     pFDpCD_Plot_Clone->SetStats(1);
 
     FSRatio_plot_2D_TFolder->Add(pFDpCD_Plot_Clone);
-//    Histogram_list->Add(pFDpCD_Plot_Clone);
+    //    Histogram_list->Add(pFDpCD_Plot_Clone);
 
     Canvas->SaveAs((pFDpCD_Plot_Clone_SaveName).c_str());
     Canvas->Clear();
@@ -1236,8 +1230,8 @@ void DrawAndSaveFSRatio(const string &SampleName, const hPlot2D &pFDpCD_Plot, co
         pFDpCD_Plot_Clone_legend->Draw("same");
 
         auto ListOfFunctions_pFDpCD = pFDpCD_Plot_Clone->GetListOfFunctions();
-        ListOfFunctions_pFDpCD->Add((TLine *) EquiLine2D_pFDpCD);
-        ListOfFunctions_pFDpCD->Add((TLegend *) pFDpCD_Plot_Clone_legend);
+        ListOfFunctions_pFDpCD->Add((TLine *)EquiLine2D_pFDpCD);
+        ListOfFunctions_pFDpCD->Add((TLegend *)pFDpCD_Plot_Clone_legend);
     }
 
     pFDpCD_Plot_Clone->SetStats(1);
@@ -1265,8 +1259,8 @@ void DrawAndSaveFSRatio(const string &SampleName, const hPlot2D &pFDpCD_Plot, co
         FSRatio_plot_2D_Clone_legend->Draw("same");
 
         auto ListOfFunctions_FSRatio = FSRatio_plot_2D->GetListOfFunctions();
-        ListOfFunctions_FSRatio->Add((TLine *) EquiLine2D_FSRatio);
-        ListOfFunctions_FSRatio->Add((TLegend *) FSRatio_plot_2D_Clone_legend);
+        ListOfFunctions_FSRatio->Add((TLine *)EquiLine2D_FSRatio);
+        ListOfFunctions_FSRatio->Add((TLegend *)FSRatio_plot_2D_Clone_legend);
     }
 
     Canvas->SetLogz(1);
@@ -1301,9 +1295,9 @@ void DrawAndSaveFSRatio(const string &SampleName, const hPlot2D &pFDpCD_Plot, co
     CanvasMulti->Clear();
     //</editor-fold>
 
-//    cout << "\n\n\nFSRatioType = " << FSRatioType << "\n\n\n";
-//    cout << "\n\n\nFSRatioRecTitle = " << FSRatioRecTitle << "\n\n\n";
-//    cout << "\n\n\nFSRatio_plot_2D_SaveName = " << FSRatio_plot_2D_SaveName << "\n\n\n";
+    //    cout << "\n\n\nFSRatioType = " << FSRatioType << "\n\n\n";
+    //    cout << "\n\n\nFSRatioRecTitle = " << FSRatioRecTitle << "\n\n\n";
+    //    cout << "\n\n\nFSRatio_plot_2D_SaveName = " << FSRatio_plot_2D_SaveName << "\n\n\n";
 
     delete Canvas;
     delete CanvasMulti;
@@ -1316,9 +1310,9 @@ void DrawAndSaveFSRatio(const string &SampleName, const hPlot2D &pFDpCD_Plot, TH
     bool rebin_plots = false;
 
     //<editor-fold desc="Canvas definitions">
-    TCanvas *Canvas = new TCanvas("Canvas", "Canvas", 1000, 750); // normal res
-//    TCanvas *Canvas = new TCanvas("canvas", "canvas", 2000, 1500); // high res
-//    TCanvas *Canvas = new TCanvas("canvas", "canvas", 1650, 1150);
+    TCanvas *Canvas = new TCanvas("Canvas", "Canvas", 1000, 750);  // normal res
+                                                                   //    TCanvas *Canvas = new TCanvas("canvas", "canvas", 2000, 1500); // high res
+                                                                   //    TCanvas *Canvas = new TCanvas("canvas", "canvas", 1650, 1150);
     Canvas->SetGrid();
     Canvas->SetBottomMargin(0.14);
 
@@ -1327,11 +1321,11 @@ void DrawAndSaveFSRatio(const string &SampleName, const hPlot2D &pFDpCD_Plot, TH
 
     float DefStatX = gStyle->GetStatX(), DefStatY = gStyle->GetStatY();
 
-//    Canvas->cd();
+    //    Canvas->cd();
 
     TCanvas *CanvasMulti = new TCanvas("CanvasMulti", "CanvasMulti", 6000, 1500);
-//    TCanvas *CanvasMulti = new TCanvas("CanvasMulti", "CanvasMulti", 4000, 1000);
-//    TCanvas *CanvasMulti = new TCanvas("CanvasMulti", "CanvasMulti", 1000*3, 750);
+    //    TCanvas *CanvasMulti = new TCanvas("CanvasMulti", "CanvasMulti", 4000, 1000);
+    //    TCanvas *CanvasMulti = new TCanvas("CanvasMulti", "CanvasMulti", 1000*3, 750);
     CanvasMulti->Divide(3, 1);
     CanvasMulti->cd(1)->SetGrid();
     CanvasMulti->cd(2)->SetGrid();
@@ -1365,21 +1359,21 @@ void DrawAndSaveFSRatio(const string &SampleName, const hPlot2D &pFDpCD_Plot, TH
     //<editor-fold desc="Cloning histograms">
     string FSRatioFSNumerator = Propeties.GetFS(nFDpCD_Plot->GetTitle());
     string nFDpCD_Plot_Clone_StatsTitle = "FSR " + FSRatioStatsTitle + " - cloned (" + FSRatioFSNumerator + ")";
-    TH2D *nFDpCD_Plot_Clone = (TH2D *) nFDpCD_Plot->Clone((nFDpCD_Plot_Clone_StatsTitle).c_str());
+    TH2D *nFDpCD_Plot_Clone = (TH2D *)nFDpCD_Plot->Clone((nFDpCD_Plot_Clone_StatsTitle).c_str());
     string nFDpCD_Plot_Clone_test_StatsTitle = "FSR " + FSRatioStatsTitle + " - cloned test (" + FSRatioFSNumerator + ")";
-    TH2D *nFDpCD_Plot_Clone_test = (TH2D *) nFDpCD_Plot->Clone((nFDpCD_Plot_Clone_test_StatsTitle).c_str());
+    TH2D *nFDpCD_Plot_Clone_test = (TH2D *)nFDpCD_Plot->Clone((nFDpCD_Plot_Clone_test_StatsTitle).c_str());
     string nFDpCD_Plot_Clone_test_rebined_StatsTitle = "FSR " + FSRatioStatsTitle + " - cloned test rebined (" + FSRatioFSNumerator + ")";
-    TH2D *nFDpCD_Plot_Clone_test_rebined = (TH2D *) nFDpCD_Plot->Clone((nFDpCD_Plot_Clone_test_rebined_StatsTitle).c_str());
+    TH2D *nFDpCD_Plot_Clone_test_rebined = (TH2D *)nFDpCD_Plot->Clone((nFDpCD_Plot_Clone_test_rebined_StatsTitle).c_str());
     if (rebin_plots) { nFDpCD_Plot_Clone_test_rebined->Rebin(2); }
 
     TH2D *Histogram2D_pFDpCD = pFDpCD_Plot.GetHistogram();
     string FSRatioFSDenominator = Propeties.GetFS(Histogram2D_pFDpCD->GetTitle());
     string pFDpCD_Plot_Clone_StatsTitle = "FSR " + FSRatioStatsTitle + " - cloned (" + FSRatioFSDenominator + ")";
-    TH2D *pFDpCD_Plot_Clone = (TH2D *) Histogram2D_pFDpCD->Clone((pFDpCD_Plot_Clone_StatsTitle).c_str());
+    TH2D *pFDpCD_Plot_Clone = (TH2D *)Histogram2D_pFDpCD->Clone((pFDpCD_Plot_Clone_StatsTitle).c_str());
     string pFDpCD_Plot_Clone_test_StatsTitle = "FSR " + FSRatioStatsTitle + " - cloned test (" + FSRatioFSDenominator + ")";
-    TH2D *pFDpCD_Plot_Clone_test = (TH2D *) Histogram2D_pFDpCD->Clone((pFDpCD_Plot_Clone_test_StatsTitle).c_str());
+    TH2D *pFDpCD_Plot_Clone_test = (TH2D *)Histogram2D_pFDpCD->Clone((pFDpCD_Plot_Clone_test_StatsTitle).c_str());
     string pFDpCD_Plot_Clone_test_rebined_StatsTitle = "FSR " + pFDpCD_Plot.GetHistogramStatTitle() + " - cloned test rebined (" + FSRatioFSDenominator + ")";
-    TH2D *pFDpCD_Plot_Clone_test_rebined = (TH2D *) Histogram2D_pFDpCD->Clone((pFDpCD_Plot_Clone_test_rebined_StatsTitle).c_str());
+    TH2D *pFDpCD_Plot_Clone_test_rebined = (TH2D *)Histogram2D_pFDpCD->Clone((pFDpCD_Plot_Clone_test_rebined_StatsTitle).c_str());
     if (rebin_plots) { pFDpCD_Plot_Clone_test_rebined->Rebin(2); }
 
     double Zmax = 1.1 * max(pFDpCD_Plot_Clone->GetMaximum(), nFDpCD_Plot_Clone->GetMaximum());
@@ -1409,8 +1403,8 @@ void DrawAndSaveFSRatio(const string &SampleName, const hPlot2D &pFDpCD_Plot, TH
 
     //<editor-fold desc="Setting save directory">
     string FSRatioSaveDir, FSRatioTestSaveDir;
-    SetFSRatioSaveDir(FSRatioSaveDir, FSRatioTestSaveDir, FSRatioRecTitle, FSRatioFS, pFDpCD_Plot.GetHistogram2DSaveNamePath(), FSRatioPlotsT, FSRatioDRegion,
-                      FSRatioParticle, FSRatioParticleLC, FSRatioParticleShort, FSRatioType);
+    SetFSRatioSaveDir(FSRatioSaveDir, FSRatioTestSaveDir, FSRatioRecTitle, FSRatioFS, pFDpCD_Plot.GetHistogram2DSaveNamePath(), FSRatioPlotsT, FSRatioDRegion, FSRatioParticle,
+                      FSRatioParticleLC, FSRatioParticleShort, FSRatioType);
     //</editor-fold>
 
     //<editor-fold desc="Setting save name">
@@ -1418,13 +1412,12 @@ void DrawAndSaveFSRatio(const string &SampleName, const hPlot2D &pFDpCD_Plot, TH
     string pFDpCD_Plot_Clone_SaveName, pFDpCD_Plot_Clone_test_SaveName, pFDpCD_Plot_Clone_test_rebined_SaveName;
     string sNameFlag, FSRatio_plot_2D_SaveName;
 
-    SettingSaveNames(SampleName, FSRatioType, FSRatioParticle, FSRatioSaveDir, FSRatioTestSaveDir, FSRatioPlotsT,
-                     nFDpCD_Plot_Clone_SaveName, nFDpCD_Plot_Clone_test_SaveName, nFDpCD_Plot_Clone_test_rebined_SaveName,
-                     pFDpCD_Plot_Clone_SaveName, pFDpCD_Plot_Clone_test_SaveName, pFDpCD_Plot_Clone_test_rebined_SaveName,
-                     sNameFlag, FSRatio_plot_2D_SaveName, FSRatioDRegion, FSRatioFS);
+    SettingSaveNames(SampleName, FSRatioType, FSRatioParticle, FSRatioSaveDir, FSRatioTestSaveDir, FSRatioPlotsT, nFDpCD_Plot_Clone_SaveName, nFDpCD_Plot_Clone_test_SaveName,
+                     nFDpCD_Plot_Clone_test_rebined_SaveName, pFDpCD_Plot_Clone_SaveName, pFDpCD_Plot_Clone_test_SaveName, pFDpCD_Plot_Clone_test_rebined_SaveName, sNameFlag,
+                     FSRatio_plot_2D_SaveName, FSRatioDRegion, FSRatioFS);
     //</editor-fold>
 
-    TH2D *FSRatio_plot_2D = (TH2D *) nFDpCD_Plot_Clone->Clone((FSRatioParticle + " " + FSRatioType + " FSRatio (" + FSTopology + ")").c_str());
+    TH2D *FSRatio_plot_2D = (TH2D *)nFDpCD_Plot_Clone->Clone((FSRatioParticle + " " + FSRatioType + " FSRatio (" + FSTopology + ")").c_str());
     FSRatio_plot_2D->SetTitle((FSRatioTitle + " nFDpCD/pFDpCD").c_str());
     FSRatio_plot_2D->GetYaxis()->SetTitle((FSRatioYLabel).c_str());
     FSRatio_plot_2D->GetXaxis()->SetTitle((FSRatioXLabel).c_str());
@@ -1444,7 +1437,7 @@ void DrawAndSaveFSRatio(const string &SampleName, const hPlot2D &pFDpCD_Plot, TH
     nFDpCD_Plot_Clone_test->Draw("colz");
     nFDpCD_Plot_Clone_test->SetStats(1);
     FSRatio_plot_2D_TFolder->Add(nFDpCD_Plot_Clone_test);
-//    Histogram_list->Add(nFDpCD_Plot_Clone_test);
+    //    Histogram_list->Add(nFDpCD_Plot_Clone_test);
 
     Canvas->SaveAs((nFDpCD_Plot_Clone_test_SaveName).c_str());
     Canvas->Clear();
@@ -1454,7 +1447,7 @@ void DrawAndSaveFSRatio(const string &SampleName, const hPlot2D &pFDpCD_Plot, TH
     pFDpCD_Plot_Clone_test->Draw("colz");
     pFDpCD_Plot_Clone_test->SetStats(1);
     FSRatio_plot_2D_TFolder->Add(pFDpCD_Plot_Clone_test);
-//    Histogram_list->Add(pFDpCD_Plot_Clone_test);
+    //    Histogram_list->Add(pFDpCD_Plot_Clone_test);
 
     Canvas->SaveAs((pFDpCD_Plot_Clone_test_SaveName).c_str());
     Canvas->Clear();
@@ -1470,7 +1463,7 @@ void DrawAndSaveFSRatio(const string &SampleName, const hPlot2D &pFDpCD_Plot, TH
     nFDpCD_Plot_Clone_test_rebined->Draw("colz");
     nFDpCD_Plot_Clone_test_rebined->SetStats(1);
     FSRatio_plot_2D_TFolder->Add(nFDpCD_Plot_Clone_test_rebined);
-//    Histogram_list->Add(nFDpCD_Plot_Clone_test_rebined);
+    //    Histogram_list->Add(nFDpCD_Plot_Clone_test_rebined);
 
     Canvas->SaveAs((nFDpCD_Plot_Clone_test_rebined_SaveName).c_str());
     Canvas->Clear();
@@ -1480,7 +1473,7 @@ void DrawAndSaveFSRatio(const string &SampleName, const hPlot2D &pFDpCD_Plot, TH
     pFDpCD_Plot_Clone_test_rebined->Draw("colz");
     pFDpCD_Plot_Clone_test_rebined->SetStats(1);
     FSRatio_plot_2D_TFolder->Add(pFDpCD_Plot_Clone_test_rebined);
-//    Histogram_list->Add(pFDpCD_Plot_Clone_test_rebined);
+    //    Histogram_list->Add(pFDpCD_Plot_Clone_test_rebined);
 
     Canvas->SaveAs((pFDpCD_Plot_Clone_test_rebined_SaveName).c_str());
     Canvas->Clear();
@@ -1497,7 +1490,7 @@ void DrawAndSaveFSRatio(const string &SampleName, const hPlot2D &pFDpCD_Plot, TH
     nFDpCD_Plot_Clone->Draw("colz");
     nFDpCD_Plot_Clone->SetStats(1);
     FSRatio_plot_2D_TFolder->Add(nFDpCD_Plot_Clone);
-//    Histogram_list->Add(nFDpCD_Plot_Clone);
+    //    Histogram_list->Add(nFDpCD_Plot_Clone);
 
     Canvas->SaveAs((nFDpCD_Plot_Clone_SaveName).c_str());
     Canvas->Clear();
@@ -1512,7 +1505,7 @@ void DrawAndSaveFSRatio(const string &SampleName, const hPlot2D &pFDpCD_Plot, TH
     pFDpCD_Plot_Clone->Draw("colz");
     pFDpCD_Plot_Clone->SetStats(1);
     FSRatio_plot_2D_TFolder->Add(pFDpCD_Plot_Clone);
-//    Histogram_list->Add(pFDpCD_Plot_Clone);
+    //    Histogram_list->Add(pFDpCD_Plot_Clone);
 
     Canvas->SaveAs((pFDpCD_Plot_Clone_SaveName).c_str());
     Canvas->Clear();
@@ -1553,9 +1546,9 @@ void DrawAndSaveFSRatio(const string &SampleName, const hPlot2D &pFDpCD_Plot, TH
     CanvasMulti->Clear();
     //</editor-fold>
 
-//    cout << "\n\n\nFSRatioType = " << FSRatioType << "\n\n\n";
-//    cout << "\n\n\nFSRatioRecTitle = " << FSRatioRecTitle << "\n\n\n";
-//    cout << "\n\n\nFSRatio_plot_2D_SaveName = " << FSRatio_plot_2D_SaveName << "\n\n\n";
+    //    cout << "\n\n\nFSRatioType = " << FSRatioType << "\n\n\n";
+    //    cout << "\n\n\nFSRatioRecTitle = " << FSRatioRecTitle << "\n\n\n";
+    //    cout << "\n\n\nFSRatio_plot_2D_SaveName = " << FSRatio_plot_2D_SaveName << "\n\n\n";
 
     delete Canvas;
     delete CanvasMulti;
@@ -1568,9 +1561,9 @@ void DrawAndSaveFSRatio(const string &SampleName, TH2D *pFDpCD_Plot, const strin
     bool rebin_plots = false;
 
     //<editor-fold desc="Canvas definitions">
-    TCanvas *Canvas = new TCanvas("Canvas", "Canvas", 1000, 750); // normal res
-//    TCanvas *Canvas = new TCanvas("canvas", "canvas", 2000, 1500); // high res
-//    TCanvas *Canvas = new TCanvas("canvas", "canvas", 1650, 1150);
+    TCanvas *Canvas = new TCanvas("Canvas", "Canvas", 1000, 750);  // normal res
+                                                                   //    TCanvas *Canvas = new TCanvas("canvas", "canvas", 2000, 1500); // high res
+                                                                   //    TCanvas *Canvas = new TCanvas("canvas", "canvas", 1650, 1150);
     Canvas->SetGrid();
     Canvas->SetBottomMargin(0.14);
 
@@ -1579,11 +1572,11 @@ void DrawAndSaveFSRatio(const string &SampleName, TH2D *pFDpCD_Plot, const strin
 
     float DefStatX = gStyle->GetStatX(), DefStatY = gStyle->GetStatY();
 
-//    Canvas->cd();
+    //    Canvas->cd();
 
     TCanvas *CanvasMulti = new TCanvas("CanvasMulti", "CanvasMulti", 6000, 1500);
-//    TCanvas *CanvasMulti = new TCanvas("CanvasMulti", "CanvasMulti", 4000, 1000);
-//    TCanvas *CanvasMulti = new TCanvas("CanvasMulti", "CanvasMulti", 1000*3, 750);
+    //    TCanvas *CanvasMulti = new TCanvas("CanvasMulti", "CanvasMulti", 4000, 1000);
+    //    TCanvas *CanvasMulti = new TCanvas("CanvasMulti", "CanvasMulti", 1000*3, 750);
     CanvasMulti->Divide(3, 1);
     CanvasMulti->cd(1)->SetGrid();
     CanvasMulti->cd(2)->SetGrid();
@@ -1615,21 +1608,21 @@ void DrawAndSaveFSRatio(const string &SampleName, TH2D *pFDpCD_Plot, const strin
     //<editor-fold desc="Cloning histograms">
     string FSRatioFSNumerator = Propeties.GetFS(nFDpCD_Plot->GetTitle());
     string nFDpCD_Plot_Clone_StatsTitle = "FSR " + FSRatioStatsTitle + " - cloned (" + FSRatioFSNumerator + ")";
-    TH2D *nFDpCD_Plot_Clone = (TH2D *) nFDpCD_Plot->Clone((nFDpCD_Plot_Clone_StatsTitle).c_str());
+    TH2D *nFDpCD_Plot_Clone = (TH2D *)nFDpCD_Plot->Clone((nFDpCD_Plot_Clone_StatsTitle).c_str());
     string nFDpCD_Plot_Clone_test_StatsTitle = "FSR " + FSRatioStatsTitle + " - cloned test (" + FSRatioFSNumerator + ")";
-    TH2D *nFDpCD_Plot_Clone_test = (TH2D *) nFDpCD_Plot->Clone((nFDpCD_Plot_Clone_test_StatsTitle).c_str());
+    TH2D *nFDpCD_Plot_Clone_test = (TH2D *)nFDpCD_Plot->Clone((nFDpCD_Plot_Clone_test_StatsTitle).c_str());
     string nFDpCD_Plot_Clone_test_rebined_StatsTitle = "FSR " + FSRatioStatsTitle + " - cloned test rebined (" + FSRatioFSNumerator + ")";
-    TH2D *nFDpCD_Plot_Clone_test_rebined = (TH2D *) nFDpCD_Plot->Clone((nFDpCD_Plot_Clone_test_rebined_StatsTitle).c_str());
-//    if (rebin_plots) { nFDpCD_Plot_Clone_test_rebined->Rebin(2); }
+    TH2D *nFDpCD_Plot_Clone_test_rebined = (TH2D *)nFDpCD_Plot->Clone((nFDpCD_Plot_Clone_test_rebined_StatsTitle).c_str());
+    //    if (rebin_plots) { nFDpCD_Plot_Clone_test_rebined->Rebin(2); }
 
     string FSRatioFSDenominator = Propeties.GetFS(pFDpCD_Plot->GetTitle());
     string pFDpCD_Plot_Clone_StatsTitle = "FSR " + FSRatioStatsTitle + " - cloned (" + FSRatioFSDenominator + ")";
-    TH2D *pFDpCD_Plot_Clone = (TH2D *) pFDpCD_Plot->Clone((pFDpCD_Plot_Clone_StatsTitle).c_str());
+    TH2D *pFDpCD_Plot_Clone = (TH2D *)pFDpCD_Plot->Clone((pFDpCD_Plot_Clone_StatsTitle).c_str());
     string pFDpCD_Plot_Clone_test_StatsTitle = "FSR " + FSRatioStatsTitle + " - cloned test (" + FSRatioFSDenominator + ")";
-    TH2D *pFDpCD_Plot_Clone_test = (TH2D *) pFDpCD_Plot->Clone((pFDpCD_Plot_Clone_test_StatsTitle).c_str());
+    TH2D *pFDpCD_Plot_Clone_test = (TH2D *)pFDpCD_Plot->Clone((pFDpCD_Plot_Clone_test_StatsTitle).c_str());
     string pFDpCD_Plot_Clone_test_rebined_StatsTitle = "FSR " + FSRatioStatsTitle + " - cloned test rebined (" + FSRatioFSDenominator + ")";
-    TH2D *pFDpCD_Plot_Clone_test_rebined = (TH2D *) pFDpCD_Plot->Clone((pFDpCD_Plot_Clone_test_rebined_StatsTitle).c_str());
-//    if (rebin_plots) { pFDpCD_Plot_Clone_test_rebined->Rebin(2); }
+    TH2D *pFDpCD_Plot_Clone_test_rebined = (TH2D *)pFDpCD_Plot->Clone((pFDpCD_Plot_Clone_test_rebined_StatsTitle).c_str());
+    //    if (rebin_plots) { pFDpCD_Plot_Clone_test_rebined->Rebin(2); }
 
     double Zmax = 1.1 * max(pFDpCD_Plot_Clone->GetMaximum(), nFDpCD_Plot_Clone->GetMaximum());
 
@@ -1657,8 +1650,8 @@ void DrawAndSaveFSRatio(const string &SampleName, TH2D *pFDpCD_Plot, const strin
 
     //<editor-fold desc="Setting save directory">
     string FSRatioSaveDir, FSRatioTestSaveDir;
-    SetFSRatioSaveDir(FSRatioSaveDir, FSRatioTestSaveDir, FSRatioRecTitle, FSRatioFS, pFDpCD_PlotSaveNamePath, FSRatioPlotsT, FSRatioDRegion,
-                      FSRatioParticle, FSRatioParticleLC, FSRatioParticleShort, FSRatioType);
+    SetFSRatioSaveDir(FSRatioSaveDir, FSRatioTestSaveDir, FSRatioRecTitle, FSRatioFS, pFDpCD_PlotSaveNamePath, FSRatioPlotsT, FSRatioDRegion, FSRatioParticle, FSRatioParticleLC,
+                      FSRatioParticleShort, FSRatioType);
     //</editor-fold>
 
     //<editor-fold desc="Setting save name">
@@ -1666,13 +1659,12 @@ void DrawAndSaveFSRatio(const string &SampleName, TH2D *pFDpCD_Plot, const strin
     string pFDpCD_Plot_Clone_SaveName, pFDpCD_Plot_Clone_test_SaveName, pFDpCD_Plot_Clone_test_rebined_SaveName;
     string sNameFlag, FSRatio_plot_2D_SaveName;
 
-    SettingSaveNames(SampleName, FSRatioType, FSRatioParticle, FSRatioSaveDir, FSRatioTestSaveDir, FSRatioPlotsT,
-                     nFDpCD_Plot_Clone_SaveName, nFDpCD_Plot_Clone_test_SaveName, nFDpCD_Plot_Clone_test_rebined_SaveName,
-                     pFDpCD_Plot_Clone_SaveName, pFDpCD_Plot_Clone_test_SaveName, pFDpCD_Plot_Clone_test_rebined_SaveName,
-                     sNameFlag, FSRatio_plot_2D_SaveName, FSRatioDRegion, FSRatioFS);
+    SettingSaveNames(SampleName, FSRatioType, FSRatioParticle, FSRatioSaveDir, FSRatioTestSaveDir, FSRatioPlotsT, nFDpCD_Plot_Clone_SaveName, nFDpCD_Plot_Clone_test_SaveName,
+                     nFDpCD_Plot_Clone_test_rebined_SaveName, pFDpCD_Plot_Clone_SaveName, pFDpCD_Plot_Clone_test_SaveName, pFDpCD_Plot_Clone_test_rebined_SaveName, sNameFlag,
+                     FSRatio_plot_2D_SaveName, FSRatioDRegion, FSRatioFS);
     //</editor-fold>
 
-    TH2D *FSRatio_plot_2D = (TH2D *) nFDpCD_Plot_Clone->Clone((FSRatioParticle + " " + FSRatioType + " FSRatio (" + FSTopology + ")").c_str());
+    TH2D *FSRatio_plot_2D = (TH2D *)nFDpCD_Plot_Clone->Clone((FSRatioParticle + " " + FSRatioType + " FSRatio (" + FSTopology + ")").c_str());
     FSRatio_plot_2D->SetTitle((FSRatioTitle + " nFDpCD/pFDpCD").c_str());
     FSRatio_plot_2D->GetYaxis()->SetTitle((FSRatioYLabel).c_str());
     FSRatio_plot_2D->GetXaxis()->SetTitle((FSRatioXLabel).c_str());
@@ -1692,7 +1684,7 @@ void DrawAndSaveFSRatio(const string &SampleName, TH2D *pFDpCD_Plot, const strin
     nFDpCD_Plot_Clone_test->Draw("colz");
     nFDpCD_Plot_Clone_test->SetStats(1);
     FSRatio_plot_2D_TFolder->Add(nFDpCD_Plot_Clone_test);
-//    Histogram_list->Add(nFDpCD_Plot_Clone_test);
+    //    Histogram_list->Add(nFDpCD_Plot_Clone_test);
 
     Canvas->SaveAs((nFDpCD_Plot_Clone_test_SaveName).c_str());
     Canvas->Clear();
@@ -1702,7 +1694,7 @@ void DrawAndSaveFSRatio(const string &SampleName, TH2D *pFDpCD_Plot, const strin
     pFDpCD_Plot_Clone_test->Draw("colz");
     pFDpCD_Plot_Clone_test->SetStats(1);
     FSRatio_plot_2D_TFolder->Add(pFDpCD_Plot_Clone_test);
-//    Histogram_list->Add(pFDpCD_Plot_Clone_test);
+    //    Histogram_list->Add(pFDpCD_Plot_Clone_test);
 
     Canvas->SaveAs((pFDpCD_Plot_Clone_test_SaveName).c_str());
     Canvas->Clear();
@@ -1719,7 +1711,7 @@ void DrawAndSaveFSRatio(const string &SampleName, TH2D *pFDpCD_Plot, const strin
     nFDpCD_Plot_Clone_test_rebined->Draw("colz");
     nFDpCD_Plot_Clone_test_rebined->SetStats(1);
     FSRatio_plot_2D_TFolder->Add(nFDpCD_Plot_Clone_test_rebined);
-//    Histogram_list->Add(nFDpCD_Plot_Clone_test_rebined);
+    //    Histogram_list->Add(nFDpCD_Plot_Clone_test_rebined);
 
     Canvas->SaveAs((nFDpCD_Plot_Clone_test_rebined_SaveName).c_str());
     Canvas->Clear();
@@ -1729,7 +1721,7 @@ void DrawAndSaveFSRatio(const string &SampleName, TH2D *pFDpCD_Plot, const strin
     pFDpCD_Plot_Clone_test_rebined->Draw("colz");
     pFDpCD_Plot_Clone_test_rebined->SetStats(1);
     FSRatio_plot_2D_TFolder->Add(pFDpCD_Plot_Clone_test_rebined);
-//    Histogram_list->Add(pFDpCD_Plot_Clone_test_rebined);
+    //    Histogram_list->Add(pFDpCD_Plot_Clone_test_rebined);
 
     Canvas->SaveAs((pFDpCD_Plot_Clone_test_rebined_SaveName).c_str());
     Canvas->Clear();
@@ -1748,7 +1740,7 @@ void DrawAndSaveFSRatio(const string &SampleName, TH2D *pFDpCD_Plot, const strin
     nFDpCD_Plot_Clone->Draw("colz");
     nFDpCD_Plot_Clone->SetStats(1);
     FSRatio_plot_2D_TFolder->Add(nFDpCD_Plot_Clone);
-//    Histogram_list->Add(nFDpCD_Plot_Clone);
+    //    Histogram_list->Add(nFDpCD_Plot_Clone);
 
     Canvas->SaveAs((nFDpCD_Plot_Clone_SaveName).c_str());
     Canvas->Clear();
@@ -1763,7 +1755,7 @@ void DrawAndSaveFSRatio(const string &SampleName, TH2D *pFDpCD_Plot, const strin
     pFDpCD_Plot_Clone->Draw("colz");
     pFDpCD_Plot_Clone->SetStats(1);
     FSRatio_plot_2D_TFolder->Add(pFDpCD_Plot_Clone);
-//    Histogram_list->Add(pFDpCD_Plot_Clone);
+    //    Histogram_list->Add(pFDpCD_Plot_Clone);
 
     Canvas->SaveAs((pFDpCD_Plot_Clone_SaveName).c_str());
     Canvas->Clear();
@@ -1804,12 +1796,12 @@ void DrawAndSaveFSRatio(const string &SampleName, TH2D *pFDpCD_Plot, const strin
     CanvasMulti->Clear();
     //</editor-fold>
 
-//    cout << "\n\n\nFSRatioType = " << FSRatioType << "\n\n\n";
-//    cout << "\n\n\nFSRatioRecTitle = " << FSRatioRecTitle << "\n\n\n";
-//    cout << "\n\n\nFSRatio_plot_2D_SaveName = " << FSRatio_plot_2D_SaveName << "\n\n\n";
+    //    cout << "\n\n\nFSRatioType = " << FSRatioType << "\n\n\n";
+    //    cout << "\n\n\nFSRatioRecTitle = " << FSRatioRecTitle << "\n\n\n";
+    //    cout << "\n\n\nFSRatio_plot_2D_SaveName = " << FSRatio_plot_2D_SaveName << "\n\n\n";
 
     delete Canvas;
     delete CanvasMulti;
 }
 
-#endif //DRAWANDSAVEFSRATIO_H
+#endif  // DRAWANDSAVEFSRATIO_H

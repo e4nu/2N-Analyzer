@@ -5,106 +5,104 @@
 #ifndef HDATA_H
 #define HDATA_H
 
-#include <iostream>
-#include <vector>
+#include <TApplication.h>
+#include <TCanvas.h>
+#include <TChain.h>
+#include <TDatabasePDG.h>
 #include <TF1.h>
-#include <math.h>
-#include <map>
-
-#include <cstdlib>
-#include <iomanip>
-#include <chrono>
-#include <typeinfo>
-#include <sstream>
-
 #include <TFile.h>
-#include <TTree.h>
-#include <TLorentzVector.h>
 #include <TH1.h>
 #include <TH2.h>
 #include <TLatex.h>
-#include <TChain.h>
-#include <TCanvas.h>
-#include <TStyle.h>
-#include <TDatabasePDG.h>
-#include <TApplication.h>
+#include <TLorentzVector.h>
 #include <TROOT.h>
+#include <TStyle.h>
+#include <TTree.h>
+#include <math.h>
+
+#include <chrono>
+#include <cstdlib>
+#include <iomanip>
+#include <iostream>
+#include <map>
+#include <sstream>
+#include <typeinfo>
+#include <vector>
 
 #include "../../functions/GeneralFunctions.h"
 
 using namespace std;
 
 class hData {
-private:
+   private:
     int StandardCanvasWidth = 1000, StandardCanvasHeight = 750;
     double BottomMargin = 0.14, LeftMargin = 0.16, RightMargin = 0.16, TopMargin = 0.12;
 
-public:
+   public:
+    // constructors ---------------------------------------------------------------------------------------------------------------------------------------------------------
 
-// constructors ---------------------------------------------------------------------------------------------------------------------------------------------------------
-
-// Default constructor:
+    // Default constructor:
     hData() = default;
 
-// GetParticleName function ---------------------------------------------------------------------------------------------------------------------------------------------
+    // GetParticleName function ---------------------------------------------------------------------------------------------------------------------------------------------
 
     string GetParticleName(const string &Source, const bool &PluralParticles = false);
 
     string GetParticleName1(const string &Source, const bool &PluralParticles = false);
 
-// GetParticleNameFromSubscript function --------------------------------------------------------------------------------------------------------------------------------
+    // GetParticleNameFromSubscript function --------------------------------------------------------------------------------------------------------------------------------
 
     string GetParticleNameFromSubscript(const string &Source, const bool &PluralParticles = false);
 
-// GetParticleNameLC function -------------------------------------------------------------------------------------------------------------------------------------------
+    // GetParticleNameLC function -------------------------------------------------------------------------------------------------------------------------------------------
 
     string GetParticleNameLC(const string &Source, const bool &PluralParticles = false);
 
-// GetParticleNameLCFromSubscript function ------------------------------------------------------------------------------------------------------------------------------
+    // GetParticleNameLCFromSubscript function ------------------------------------------------------------------------------------------------------------------------------
 
     string GetParticleNameLCFromSubscript(const string &Source, const bool &PluralParticles = false);
 
-// GetParticleNameShort function ----------------------------------------------------------------------------------------------------------------------------------------
+    // GetParticleNameShort function ----------------------------------------------------------------------------------------------------------------------------------------
 
     string GetParticleNameShort(const string &Source);
 
-// GetParticleNameShortFromSubscript function ---------------------------------------------------------------------------------------------------------------------------
+    // GetParticleNameShortFromSubscript function ---------------------------------------------------------------------------------------------------------------------------
 
     string GetParticleNameShortFromSubscript(const string &Source);
 
-// GetType function -----------------------------------------------------------------------------------------------------------------------------------------------------
+    // GetType function -----------------------------------------------------------------------------------------------------------------------------------------------------
 
     string GetType(const string &Source);
 
-// GetDRegion function --------------------------------------------------------------------------------------------------------------------------------------------------
+    // GetDRegion function --------------------------------------------------------------------------------------------------------------------------------------------------
 
     string GetDRegionExplicit(const string &Source, const bool &ReturnGoingRegion = false);
 
-// GetDRegion function --------------------------------------------------------------------------------------------------------------------------------------------------
+    // GetDRegion function --------------------------------------------------------------------------------------------------------------------------------------------------
 
     string GetDRegion(const string &Source, const bool &ReturnGoingRegion = false);
 
-// GetFSRTitle function -------------------------------------------------------------------------------------------------------------------------------------------------
+    // GetFSRTitle function -------------------------------------------------------------------------------------------------------------------------------------------------
 
     string GetFSRTitle(const string &Source, const string &PlotsT);
 
-// GetTitle function ----------------------------------------------------------------------------------------------------------------------------------------------------
+    // GetTitle function ----------------------------------------------------------------------------------------------------------------------------------------------------
 
     string GetTitle(const string &Source);
 
-// GetStatsTitle function -----------------------------------------------------------------------------------------------------------------------------------------------
+    // GetStatsTitle function -----------------------------------------------------------------------------------------------------------------------------------------------
 
     string GetStatsTitle(const string &Source);
 
-// GetFS function -------------------------------------------------------------------------------------------------------------------------------------------------------
+    // GetFS function -------------------------------------------------------------------------------------------------------------------------------------------------------
 
     string GetFS(const string &Source);
 
-// GetTopology function -------------------------------------------------------------------------------------------------------------------------------------------------
+    // GetTopology function -------------------------------------------------------------------------------------------------------------------------------------------------
 
     string GetTopology(const string &Source);
 
-// Other get function ---------------------------------------------------------------------------------------------------------------------------------------------------
+    // Other get function ---------------------------------------------------------------------------------------------------------------------------------------------------
 
     int GetStandardCanvasWidth() { return StandardCanvasWidth; }
 
@@ -118,18 +116,17 @@ public:
 
     int GetTopMargin() { return TopMargin; }
 
-// SetXLabel function ---------------------------------------------------------------------------------------------------------------------------------------------------
+    // SetXLabel function ---------------------------------------------------------------------------------------------------------------------------------------------------
 
     string SetXLabel(const string &Source);
 
-// SetSaveDir function --------------------------------------------------------------------------------------------------------------------------------------------------
+    // SetSaveDir function --------------------------------------------------------------------------------------------------------------------------------------------------
 
     string SetSaveDir(const string &Source, const string &BaseSaveDir, const string &Mod = "");
 
-// ReplaceSubStr function -----------------------------------------------------------------------------------------------------------------------------------------------
+    // ReplaceSubStr function -----------------------------------------------------------------------------------------------------------------------------------------------
 
     void ReplaceSubStr(string &str, const string &subStr, const string &replacement);
-
 };
 
-#endif //HDATA_H
+#endif  // HDATA_H

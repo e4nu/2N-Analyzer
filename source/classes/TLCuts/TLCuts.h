@@ -5,43 +5,40 @@
 #ifndef TLCUTS_H
 #define TLCUTS_H
 
-#include <iostream>
-#include <vector>
+#include <TApplication.h>
+#include <TCanvas.h>
+#include <TChain.h>
+#include <TDatabasePDG.h>
 #include <TF1.h>
-#include <math.h>
-#include <map>
-
-#include <cstdlib>
-#include <iomanip>
-#include <chrono>
-#include <typeinfo>
-#include <sstream>
-
 #include <TFile.h>
-#include <TTree.h>
-#include <TLorentzVector.h>
 #include <TH1.h>
 #include <TH2.h>
 #include <TLatex.h>
-#include <TChain.h>
-#include <TCanvas.h>
-#include <TStyle.h>
-#include <TDatabasePDG.h>
-#include <TApplication.h>
+#include <TLorentzVector.h>
 #include <TROOT.h>
+#include <TStyle.h>
+#include <TTree.h>
+#include <math.h>
 
-#include "../../functions/GeneralFunctions.h"
-#include "../../functions/AngleCalc/GetBinFromAng.h"
-#include "../DSCuts/DSCuts.h"
+#include <chrono>
+#include <cstdlib>
+#include <iomanip>
+#include <iostream>
+#include <map>
+#include <sstream>
+#include <typeinfo>
+#include <vector>
+
 #include "../../constants.h"
-
+#include "../../functions/AngleCalc/GetBinFromAng.h"
+#include "../../functions/GeneralFunctions.h"
+#include "../DSCuts/DSCuts.h"
 #include "clas12reader.h"
 
 using namespace std;
 
 class TLCuts {
-private:
-
+   private:
     //<editor-fold desc="Particle vectors">
     /* Particle index vectors */
     vector<int> TL_Electron_ind, TL_Neutrons_ind, TL_Protons_ind, TL_piplus_ind, TL_piminus_ind, TL_pizero_ind, TL_Photons_ind, TL_OtherPart_ind;
@@ -87,13 +84,11 @@ private:
     bool TL_Event_Selection_nFDpCD;
     //</editor-fold>
 
-public:
-    TLCuts(const string &SampleName, bool calculate_truth_level, bool Enable_photons_FD, bool apply_nucleon_cuts, TH2D *Electron_AMap, TH2D *Proton_AMap,
-           TH2D *Neutron_AMap, const DSCuts &ThetaFD, double Theta_uboundary_FD, double Theta_lboundary_FD, const DSCuts &ThetaCD, double Theta_uboundary_CD,
-           double Theta_lboundary_CD, double Phi_lboundary, double Phi_uboundary, const DSCuts &TL_e_mom_cuts, const DSCuts &TL_n_mom_cuts, const DSCuts &TL_p_mom_cuts,
-           const DSCuts &TL_pip_mom_cuts, const DSCuts &TL_pim_mom_cuts, const DSCuts &TL_pi0_mom_cuts, const DSCuts &TL_ph_mom_cuts,
-           const std::unique_ptr<clas12::clas12reader> &c12);
+   public:
+    TLCuts(const string &SampleName, bool calculate_truth_level, bool Enable_photons_FD, bool apply_nucleon_cuts, TH2D *Electron_AMap, TH2D *Proton_AMap, TH2D *Neutron_AMap,
+           const DSCuts &ThetaFD, double Theta_uboundary_FD, double Theta_lboundary_FD, const DSCuts &ThetaCD, double Theta_uboundary_CD, double Theta_lboundary_CD, double Phi_lboundary,
+           double Phi_uboundary, const DSCuts &TL_e_mom_cuts, const DSCuts &TL_n_mom_cuts, const DSCuts &TL_p_mom_cuts, const DSCuts &TL_pip_mom_cuts, const DSCuts &TL_pim_mom_cuts,
+           const DSCuts &TL_pi0_mom_cuts, const DSCuts &TL_ph_mom_cuts, const std::unique_ptr<clas12::clas12reader> &c12);
 };
 
-
-#endif //TLCUTS_H
+#endif  // TLCUTS_H

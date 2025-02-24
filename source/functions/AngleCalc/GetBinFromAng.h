@@ -9,7 +9,7 @@ using namespace std;
 
 int GetBinFromAng(double Angle, double AngleBins, double AngleMin, double AngleMax, bool printOut = false, const string &AngleType = "") {
     int Bin = 0;
-//    int Bin = -1;
+    //    int Bin = -1;
 
     double Delta = (AngleMax - AngleMin) / AngleBins, min, max;
 
@@ -32,9 +32,9 @@ int GetBinFromAng(double Angle, double AngleBins, double AngleMin, double AngleM
             Bin = i;
             break;
         }
-    } // end of loop over electrons vector
+    }  // end of loop over electrons vector
 
     return Bin;
 }
 
-#endif //GETBINFROMANG_H
+#endif  // GETBINFROMANG_H
