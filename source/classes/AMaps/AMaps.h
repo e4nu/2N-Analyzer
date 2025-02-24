@@ -178,6 +178,8 @@ class AMaps {
     // AMaps loading constructor:
     AMaps(const string &AcceptanceMapsDirectory, const string &SampleName, const bool &Electron_single_slice_test, const bool &Nucleon_single_slice_test, const vector<int> &TestSlices);
 
+    // to_string_with_precision function ------------------------------------------------------------------------------------------------------------------------------------
+
     template <typename T>
     string to_string_with_precision(const T a_value, const int n = 2) {
         std::ostringstream out;
@@ -185,6 +187,8 @@ class AMaps {
         out << std::fixed << a_value;
         return out.str();
     }
+
+    // findSubstring function -----------------------------------------------------------------------------------------------------------------------------------------------
 
     bool findSubstring(string string1, string string2) {
         if (string1.find(string2) != string::npos) {
