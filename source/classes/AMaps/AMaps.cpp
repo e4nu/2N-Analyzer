@@ -966,26 +966,26 @@ void AMaps::hFillHitMaps(const string &SampleType, const string &particle, doubl
 
 //<editor-fold desc="CalcAMapsRatio function">
 void AMaps::CalcAMapsRatio() {
-    if (calc_Electron_RecoToTL_Ratio) {
-        cout << "\n\nCalculating electron acceptance efficiency...";
-        for (int i = 0; i < ElectronMomSliceLimits.size(); i++) {
-            if (calc_Electron_RecoToTL_Ratio) { 
-                cout << "\n\n\nElectronTLAMapsBySlice.at(i).GetHistogram2D()->GetName() = " << ElectronTLAMapsBySlice.at(i).GetHistogram2D()->GetName() << "\n";
-                ElectronRecoToTLRatioBySlice.at(i).hDivision(ElectronTLAMapsBySlice.at(i).GetHistogram2D()); }
-        }
-        cout << " done!\n";
-    }
+    // if (calc_Electron_RecoToTL_Ratio) {
+    //     cout << "\n\nCalculating electron acceptance efficiency...";
+    //     for (int i = 0; i < ElectronMomSliceLimits.size(); i++) {
+    //         if (calc_Electron_RecoToTL_Ratio) { ElectronRecoToTLRatioBySlice.at(i).hDivision(ElectronTLAMapsBySlice.at(i).GetHistogram2D()); }
+    //     }
+    //     cout << " done!\n";
+    // }
 
-    if (calc_Proton_RecoToTL_Ratio) {
-        cout << "\n\nCalculating proton acceptance efficiency...";
-        for (int i = 0; i < NucleonMomSliceLimits.size(); i++) {
-            if (calc_Proton_RecoToTL_Ratio) { ProtonRecoToTLRatioBySlice.at(i).hDivision(ProtonTLAMapsBySlice.at(i).GetHistogram2D()); }
-        }
-        cout << " done!\n";
-    }
+    // if (calc_Proton_RecoToTL_Ratio) {
+    //     cout << "\n\nCalculating proton acceptance efficiency...";
+    //     for (int i = 0; i < NucleonMomSliceLimits.size(); i++) {
+    //         if (calc_Proton_RecoToTL_Ratio) { ProtonRecoToTLRatioBySlice.at(i).hDivision(ProtonTLAMapsBySlice.at(i).GetHistogram2D()); }
+    //     }
+    //     cout << " done!\n";
+    // }
 
     if (calc_Neutron_RecoToTL_Ratio) {
         cout << "\n\nCalculating neutron acceptance efficiency...";
+        cout << "\n\n\nNeutronTLAMap.GetHistogram2D()->GetName() = " << NeutronTLAMap.GetHistogram2D()->GetName() << "\n";
+
         NeutronRecoToTLRatio.hDivision(NeutronTLAMap.GetHistogram2D());
 
         for (int i = 0; i < NucleonMomSliceLimits.size(); i++) {
