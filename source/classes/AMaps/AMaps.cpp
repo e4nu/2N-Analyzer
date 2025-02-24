@@ -967,26 +967,26 @@ void AMaps::hFillHitMaps(const string &SampleType, const string &particle, doubl
 //<editor-fold desc="CalcAMapsRatio function">
 void AMaps::CalcAMapsRatio(bool ElectronRecoToTLDiv, bool ProtonRecoToTLDiv, bool NeutronRecoToTLDiv) {
     if (ElectronRecoToTLDiv) {
+        cout << "\n\nFinished electron efficiency calculation...\n";
         for (int i = 0; i < ElectronMomSliceLimits.size(); i++) {
             if (ElectronRecoToTLDiv) { ElectronRecoToTLRatioBySlice.at(i).hDivision(ElectronTLAMapsBySlice.at(i).GetHistogram2D()); }
         }
-        cout << "\n\nFinished electron efficiency calculation...\n";
     }
 
     if (ProtonRecoToTLDiv) {
+        cout << "\n\nFinished proton efficiency calculation...\n";
         for (int i = 0; i < NucleonMomSliceLimits.size(); i++) {
             if (ProtonRecoToTLDiv) { ProtonRecoToTLRatioBySlice.at(i).hDivision(ProtonTLAMapsBySlice.at(i).GetHistogram2D()); }
         }
-        cout << "\n\nFinished proton efficiency calculation...\n";
     }
 
     if (NeutronRecoToTLDiv) {
+        cout << "\n\nFinished neutron efficiency calculation...\n";
         NeutronRecoToTLRatio.hDivision(NeutronTLAMap.GetHistogram2D());
 
         for (int i = 0; i < NucleonMomSliceLimits.size(); i++) {
             if (NeutronRecoToTLDiv) { NeutronRecoToTLRatioBySlice.at(i).hDivision(NeutronTLAMapsBySlice.at(i).GetHistogram2D()); }
         }
-        cout << "\n\nFinished neutron efficiency calculation...\n";
     }
 }
 //</editor-fold>
