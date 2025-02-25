@@ -20,6 +20,8 @@ void nFD_eff_test() {
 
     bool ConstrainTLmom = false;
 
+    double ECALvetoCut = 100.;
+
     double P_upperLim;
     if (ConstrainTLmom) {
         P_upperLim = Ebeam * 0.5;
@@ -34,8 +36,7 @@ void nFD_eff_test() {
     // int Limiter = 10000; // 1 file
 
     // string OutFolderName = "nFD_eff_test_reg";
-    string OutFolderName = "nFD_eff_test_v3_WithPCALnVeto";
-    // string OutFolderName = "nFD_eff_test_v3_NoPCALnVeto";
+    string OutFolderName = "nFD_eff_test_v3_WithPCALnVeto_r200";
 
     const string OutputDir = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName;
     system(("rm -rf " + OutputDir).c_str());
@@ -1108,7 +1109,7 @@ void nFD_eff_test() {
                             // bool PassMomth = true;
                             bool PassMomth = (Momentum >= 0.4);
                             bool passECALeadgeCuts = (allParticles[i]->cal(Neutron_ECAL_detlayer)->getLv() > 14. && allParticles[i]->cal(Neutron_ECAL_detlayer)->getLw() > 14.);
-                            bool passVeto = NeutronECAL_Cut_Veto(allParticles, electrons, Ebeam, i, 100.);
+                            bool passVeto = NeutronECAL_Cut_Veto(allParticles, electrons, Ebeam, i, ECALvetoCut);
                             // bool goodBeta = ((Path_nFD / (c * reco_ToF_nFD) - Truth_beta) < 0.001);
                             // bool goodBeta = (fabs(allParticles[i]->par()->getBeta() - Path_nFD / (c * reco_ToF_nFD)) < 0.0001);
 
@@ -1143,7 +1144,7 @@ void nFD_eff_test() {
             //     //     allParticles[NeutronsFD_ind_mom_max]->cal(n_detlayer_1e_cut)->getLw() > clasAna.getEcalEdgeCuts()) {
             //     // if neutron is within fiducial cuts
 
-            bool NeutronPassVeto_1e_cut = NeutronECAL_Cut_Veto(allParticles, electrons, beamE, NeutronsFD_ind_mom_max, 100.);
+            bool NeutronPassVeto_1e_cut = NeutronECAL_Cut_Veto(allParticles, electrons, beamE, NeutronsFD_ind_mom_max, ECALvetoCut);
             // bool NeutronPassVeto_1e_cut = pid.NeutronECAL_Cut_Veto(allParticles, electrons, beamE, NeutronsFD_ind_mom_max, Neutron_veto_cut.GetLowerCut());
 
             // double Mom_neut_1e_cut = pid.GetFDNeutronP(allParticles[NeutronsFD_ind_mom_max], true);  // if neutron is within fiducial cuts
@@ -1320,7 +1321,7 @@ void nFD_eff_test() {
                             bool PassMomth = true;
                             // bool PassMomth = (Momentum >= 0.4);
                             bool passECALeadgeCuts = (allParticles[i]->cal(Neutron_ECAL_detlayer)->getLv() > 14. && allParticles[i]->cal(Neutron_ECAL_detlayer)->getLw() > 14.);
-                            bool passVeto = NeutronECAL_Cut_Veto(allParticles, electrons, Ebeam, i, 100);
+                            bool passVeto = NeutronECAL_Cut_Veto(allParticles, electrons, Ebeam, i, ECALvetoCut);
 
                             if (PassMomth && passECALeadgeCuts && passVeto) {
                                 for (int j = 0; j < truth_NeutronsFD.size(); j++) {

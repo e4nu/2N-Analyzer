@@ -178,7 +178,8 @@ double CalcdPhi(double dPhiTemp) {
     return dPhi;
 }
 
-bool NeutronECAL_Cut_Veto(vector<region_part_ptr>& allParticles, vector<region_part_ptr>& electrons, const double& beamE, const int& index, const double& veto_cut) {
+bool NeutronECAL_Cut_Veto(vector<region_part_ptr>& allParticles, vector<region_part_ptr>& electrons, const double& beamE, const int& index, const double& veto_cut,
+                          bool apply_PCAL_neutral_veto = true) {
     TVector3 p_b(0, 0, beamE); /* beam energy */
 
     TVector3 p_e; /* our electron */
@@ -220,71 +221,73 @@ bool NeutronECAL_Cut_Veto(vector<region_part_ptr>& allParticles, vector<region_p
     // Now let's put a charge particle veto
     bool Veto = false;
     for (int j = 0; j < allParticles.size(); j++) {
-        if (allParticles[j]->par()->getCharge() != 0) { /* looking on charged particles */
-            TVector3 v_charged_hit;                     /* v_charged_hit = location of charged particle hit */
+        if (apply_PCAL_neutral_veto) {
+            if (allParticles[j]->par()->getCharge() != 0) { /* looking on charged particles */
+                TVector3 v_charged_hit;                     /* v_charged_hit = location of charged particle hit */
+
+                if ((detlayer == clas12::ECIN) && (allParticles[j]->cal(clas12::ECIN)->getZ() != 0)) {
+                    /* if both particles hit the inner calorimeter, use the inner calorimeter to determine v_charged_hit */
+                    v_charged_hit.SetXYZ(allParticles[j]->cal(clas12::ECIN)->getX(), allParticles[j]->cal(clas12::ECIN)->getY(), allParticles[j]->cal(clas12::ECIN)->getZ());
+                    TVector3 v_dist = v_nhit - v_charged_hit;
+
+                    if (v_dist.Mag() < veto_cut) { Veto = true; }
+                } else if ((detlayer == clas12::ECOUT) && (allParticles[j]->cal(clas12::ECOUT)->getZ() != 0)) {
+                    /* if both particles hit the outer calorimeter, use the outer calorimeter to determine v_charged_hit */
+                    v_charged_hit.SetXYZ(allParticles[j]->cal(clas12::ECOUT)->getX(), allParticles[j]->cal(clas12::ECOUT)->getY(), allParticles[j]->cal(clas12::ECOUT)->getZ());
+                    TVector3 v_dist = v_nhit - v_charged_hit;
+
+                    if (v_dist.Mag() < veto_cut) { Veto = true; }
+                } else {
+                    /* the neutral has to hit either the ECIN or ECOUT.
+                       If the charged particle hit the other calorimeter, then look at where the charged particle was expected to be according to the trajectory. */
+                    int trajlayer = (detlayer == clas12::ECIN) ? 4 : 7;
+                    v_charged_hit.SetXYZ(allParticles[j]->traj(clas12::ECAL, trajlayer)->getX(), allParticles[j]->traj(clas12::ECAL, trajlayer)->getY(),
+                                         allParticles[j]->traj(clas12::ECAL, trajlayer)->getZ());
+                    TVector3 v_dist = v_nhit - v_charged_hit;
+
+                    if (v_dist.Mag() < veto_cut) { Veto = true; }
+                }
+            } else {
+                bool neutral_hit_PCAL = (allParticles[j]->cal(clas12::PCAL)->getDetector() == 7);
+                bool same_sector = (allParticles[j]->cal(clas12::PCAL)->getSector() == allParticles[index]->cal(detlayer)->getSector());
+
+                TVector3 v_neutral_hit; /* v_neutral_hit = location of neutral particle hit */
+
+                if (neutral_hit_PCAL /* && same_sector  */ && (allParticles[j]->cal(clas12::PCAL)->getZ() != 0)) {
+                    /* if other neutral hit the PCAL, use use it to determine v_neutral_hit */
+                    v_neutral_hit.SetXYZ(allParticles[j]->cal(clas12::PCAL)->getX(), allParticles[j]->cal(clas12::PCAL)->getY(), allParticles[j]->cal(clas12::PCAL)->getZ());
+                    TVector3 v_dist = v_nhit - v_neutral_hit;
+
+                    if (v_dist.Mag() < veto_cut) { Veto = true; }
+                }
+            }
+        } else {
+            if (allParticles[j]->par()->getCharge() == 0) { continue; } /* looking on charged particles only */
+            TVector3 v_chit;                                            /* v_chit = location of charged particle hit */
 
             if ((detlayer == clas12::ECIN) && (allParticles[j]->cal(clas12::ECIN)->getZ() != 0)) {
-                /* if both particles hit the inner calorimeter, use the inner calorimeter to determine v_charged_hit */
-                v_charged_hit.SetXYZ(allParticles[j]->cal(clas12::ECIN)->getX(), allParticles[j]->cal(clas12::ECIN)->getY(), allParticles[j]->cal(clas12::ECIN)->getZ());
-                TVector3 v_dist = v_nhit - v_charged_hit;
+                /* if both particles hit the inner calorimeter, use the inner calorimeter to determine v_chit */
+                v_chit.SetXYZ(allParticles[j]->cal(clas12::ECIN)->getX(), allParticles[j]->cal(clas12::ECIN)->getY(), allParticles[j]->cal(clas12::ECIN)->getZ());
+                TVector3 v_dist = v_nhit - v_chit;
 
                 if (v_dist.Mag() < veto_cut) { Veto = true; }
             } else if ((detlayer == clas12::ECOUT) && (allParticles[j]->cal(clas12::ECOUT)->getZ() != 0)) {
-                /* if both particles hit the outer calorimeter, use the outer calorimeter to determine v_charged_hit */
-                v_charged_hit.SetXYZ(allParticles[j]->cal(clas12::ECOUT)->getX(), allParticles[j]->cal(clas12::ECOUT)->getY(), allParticles[j]->cal(clas12::ECOUT)->getZ());
-                TVector3 v_dist = v_nhit - v_charged_hit;
+                /* if both particles hit the outer calorimeter, use the outer calorimeter to determine v_chit */
+                v_chit.SetXYZ(allParticles[j]->cal(clas12::ECOUT)->getX(), allParticles[j]->cal(clas12::ECOUT)->getY(), allParticles[j]->cal(clas12::ECOUT)->getZ());
+                TVector3 v_dist = v_nhit - v_chit;
 
                 if (v_dist.Mag() < veto_cut) { Veto = true; }
             } else {
                 /* the neutral has to hit either the ECIN or ECOUT.
                    If the charged particle hit the other calorimeter, then look at where the charged particle was expected to be according to the trajectory. */
                 int trajlayer = (detlayer == clas12::ECIN) ? 4 : 7;
-                v_charged_hit.SetXYZ(allParticles[j]->traj(clas12::ECAL, trajlayer)->getX(), allParticles[j]->traj(clas12::ECAL, trajlayer)->getY(),
-                                     allParticles[j]->traj(clas12::ECAL, trajlayer)->getZ());
-                TVector3 v_dist = v_nhit - v_charged_hit;
+                v_chit.SetXYZ(allParticles[j]->traj(clas12::ECAL, trajlayer)->getX(), allParticles[j]->traj(clas12::ECAL, trajlayer)->getY(),
+                              allParticles[j]->traj(clas12::ECAL, trajlayer)->getZ());
+                TVector3 v_dist = v_nhit - v_chit;
 
-                if (v_dist.Mag() < veto_cut) { Veto = true; }
-            }
-        } else {
-            bool neutral_hit_PCAL = (allParticles[j]->cal(clas12::PCAL)->getDetector() == 7);
-            bool same_sector = (allParticles[j]->cal(clas12::PCAL)->getSector() == allParticles[index]->cal(detlayer)->getSector());
-
-            TVector3 v_neutral_hit; /* v_neutral_hit = location of neutral particle hit */
-
-            if (neutral_hit_PCAL /* && same_sector  */ && (allParticles[j]->cal(clas12::PCAL)->getZ() != 0)) {
-                /* if other neutral hit the PCAL, use use it to determine v_neutral_hit */
-                v_neutral_hit.SetXYZ(allParticles[j]->cal(clas12::PCAL)->getX(), allParticles[j]->cal(clas12::PCAL)->getY(), allParticles[j]->cal(clas12::PCAL)->getZ());
-                TVector3 v_dist = v_nhit - v_neutral_hit;
-
-                if (v_dist.Mag() < veto_cut) { Veto = true; }
+                if (v_dist.Mag() < 2 * veto_cut) { Veto = true; }
             }
         }
-
-        // if (allParticles[j]->par()->getCharge() == 0) { continue; } /* looking on charged particles only */
-        // TVector3 v_chit;                                            /* v_chit = location of charged particle hit */
-
-        // if ((detlayer == clas12::ECIN) && (allParticles[j]->cal(clas12::ECIN)->getZ() != 0)) {
-        //     /* if both particles hit the inner calorimeter, use the inner calorimeter to determine v_chit */
-        //     v_chit.SetXYZ(allParticles[j]->cal(clas12::ECIN)->getX(), allParticles[j]->cal(clas12::ECIN)->getY(), allParticles[j]->cal(clas12::ECIN)->getZ());
-        //     TVector3 v_dist = v_nhit - v_chit;
-
-        //     if (v_dist.Mag() < veto_cut) { Veto = true; }
-        // } else if ((detlayer == clas12::ECOUT) && (allParticles[j]->cal(clas12::ECOUT)->getZ() != 0)) {
-        //     /* if both particles hit the outer calorimeter, use the outer calorimeter to determine v_chit */
-        //     v_chit.SetXYZ(allParticles[j]->cal(clas12::ECOUT)->getX(), allParticles[j]->cal(clas12::ECOUT)->getY(), allParticles[j]->cal(clas12::ECOUT)->getZ());
-        //     TVector3 v_dist = v_nhit - v_chit;
-
-        //     if (v_dist.Mag() < veto_cut) { Veto = true; }
-        // } else {
-        //     /* the neutral has to hit either the ECIN or ECOUT.
-        //        If the charged particle hit the other calorimeter, then look at where the charged particle was expected to be according to the trajectory. */
-        //     int trajlayer = (detlayer == clas12::ECIN) ? 4 : 7;
-        //     v_chit.SetXYZ(allParticles[j]->traj(clas12::ECAL, trajlayer)->getX(), allParticles[j]->traj(clas12::ECAL, trajlayer)->getY(),
-        //                   allParticles[j]->traj(clas12::ECAL, trajlayer)->getZ());
-        //     TVector3 v_dist = v_nhit - v_chit;
-
-        //     if (v_dist.Mag() < veto_cut) { Veto = true; }
-        // }
     }
 
     if (Veto) { return false; } /* if any of the vetoes are true, return false */
