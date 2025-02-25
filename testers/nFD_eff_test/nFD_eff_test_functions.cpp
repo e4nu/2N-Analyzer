@@ -285,7 +285,7 @@ bool NeutronECAL_Cut_Veto(vector<region_part_ptr>& allParticles, vector<region_p
                               allParticles[j]->traj(clas12::ECAL, trajlayer)->getZ());
                 TVector3 v_dist = v_nhit - v_chit;
 
-                if (v_dist.Mag() < 5 * veto_cut) { Veto = true; }
+                if (v_dist.Mag() < 7 * veto_cut) { Veto = true; }
             }
         }
     }
