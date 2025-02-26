@@ -155,7 +155,7 @@ class AMaps {
     TH2D *LoadedElectronAMaps0;
     TH2D *LoadedProtonAMap;
     TH2D *LoadedNeutronAMap;
-    TH2D *Loadedfiltered_reco_theta_nuc_VS_phi_nuc;
+    TH2D *LoadedNucleonAMap;
 
     string SName;
 
@@ -226,10 +226,10 @@ class AMaps {
 
     void GenerateNPartAMaps(double nP_minR);
 
-    // Generatefiltered_reco_theta_nuc_VS_phi_nuc function
+    // GenerateNucleonAMap function
     // -----------------------------------------------------------------------------------------------------------------------------------------
 
-    void Generatefiltered_reco_theta_nuc_VS_phi_nuc();
+    void GenerateNucleonAMap();
 
     // SaveHitMaps function -------------------------------------------------------------------------------------------------------------------------------------------------
 
