@@ -29,14 +29,15 @@ void nFD_eff_test() {
         P_upperLim = Ebeam * 1.1;
     }
 
-    // int Limiter = 25000000; // 2500 files
+    int Limiter = 25000000; // 2500 files
     // int Limiter = 10000000; // 1000 files
     // int Limiter = 1000000;  // 100 files
-    int Limiter = 100000;  // 10 files
+    // int Limiter = 100000;  // 10 files
     // int Limiter = 10000; // 1 file
 
     // string OutFolderName = "nFD_eff_test_reg";
-    string OutFolderName = "nFD_eff_test_v3_WithPCALnVeto_pdftest2_r100";
+    string OutFolderName = "nFD_eff_test_v3_NoECALveto";
+    // string OutFolderName = "nFD_eff_test_v3_WithPCALnVeto_pdftest2_r100";
 
     const string OutputDir = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName;
     system(("rm -rf " + OutputDir).c_str());
@@ -488,8 +489,19 @@ void nFD_eff_test() {
                  "P^{reco}_{nFD} vs. #Delta#phi^{reco}_{nFD,e} in 1e cut (ECALveto);#Delta#phi^{reco}_{nFD,e} = |#phi^{reco}_{nFD} - #phi^{reco}_{e}| [#circ];P^{reco}_{nFD} [GeV/c]", 100,
                  -180., 180., 100, 0., Ebeam * 3.);
     HistoList.push_back(h_reco_P_nFD_VS_reco_phi_nFD_minus_reco_phi_e_ECALveto_1e_cut);
+
     TH1D* h_v_dist_ECALveto_1e_cut = new TH1D("v_dist_ECALveto_1e_cut", "v_dist in 1e cut (ECALveto);v_dist [cm];Counts", 50, 0., 1000.);
     HistoList.push_back(h_v_dist_ECALveto_1e_cut);
+    TH2D* h_v_dist_VS_reco_P_nFD_ECALveto_1e_cut =
+        new TH2D("v_dist_VS_reco_P_nFD_ECALveto_1e_cut", "v_dist vs. P^{reco}_{nFD} in 1e cut (ECALveto);v_dist [cm];P^{reco}_{nFD} [GeV/c]", 100, 0., 1000., 100, 0., Ebeam * 3.);
+    HistoList.push_back(h_v_dist_VS_reco_P_nFD_ECALveto_1e_cut);
+    TH2D* h_v_dist_VS_reco_P_e_ECALveto_1e_cut =
+        new TH2D("v_dist_VS_reco_P_e_ECALveto_1e_cut", "v_dist vs. P^{reco}_{e} in 1e cut (ECALveto);v_dist [cm];P^{e}_{nFD} [GeV/c]", 100, 0., 1000., 100, 0., Ebeam);
+    HistoList.push_back(h_v_dist_VS_reco_P_e_ECALveto_1e_cut);
+    TH2D* h_v_dist_VS_reco_phi_nFD_minus_reco_phi_e_ECALveto_1e_cut = new TH2D(
+        "v_dist_VS_reco_phi_nFD_minus_reco_phi_e_ECALveto_1e_cut",
+        "v_dist vs. #Delta#phi^{reco}_{nFD,e} in 1e cut (ECALveto);v_dist [cm];#Delta#phi^{reco}_{nFD,e} = |#phi^{reco}_{nFD} - #phi^{reco}_{e}| [#circ]", 100, 0., 1000.,100, -180., 180.);
+    HistoList.push_back(h_v_dist_VS_reco_phi_nFD_minus_reco_phi_e_ECALveto_1e_cut);
 
 #pragma endregion
 
@@ -708,8 +720,19 @@ void nFD_eff_test() {
                  "P^{reco}_{nFD} vs. #Delta#phi^{reco}_{nFD,e} in 1e cut (matched);#Delta#phi^{reco}_{nFD,e} = |#phi^{reco}_{nFD} - #phi^{reco}_{e}| [#circ];P^{reco}_{nFD} [GeV/c]", 100,
                  -180., 180., 100, 0., Ebeam * 3.);
     HistoList.push_back(h_reco_P_nFD_VS_reco_phi_nFD_minus_reco_phi_e_matched_1e_cut);
+
     TH1D* h_v_dist_matched_1e_cut = new TH1D("v_dist_matched_1e_cut", "v_dist in 1e cut (matched);v_dist [cm];Counts", 50, 0., 1000.);
     HistoList.push_back(h_v_dist_matched_1e_cut);
+    TH2D* h_v_dist_VS_reco_P_nFD_matched_1e_cut =
+        new TH2D("v_dist_VS_reco_P_nFD_matched_1e_cut", "v_dist vs. P^{reco}_{nFD} in 1e cut (matched);v_dist [cm];P^{reco}_{nFD} [GeV/c]", 100, 0., 1000., 100, 0., Ebeam * 3.);
+    HistoList.push_back(h_v_dist_VS_reco_P_nFD_matched_1e_cut);
+    TH2D* h_v_dist_VS_reco_P_e_matched_1e_cut =
+        new TH2D("v_dist_VS_reco_P_e_matched_1e_cut", "v_dist vs. P^{reco}_{e} in 1e cut (matched);v_dist [cm];P^{e}_{nFD} [GeV/c]", 100, 0., 1000., 100, 0., Ebeam);
+    HistoList.push_back(h_v_dist_VS_reco_P_e_matched_1e_cut);
+    TH2D* h_v_dist_VS_reco_phi_nFD_minus_reco_phi_e_matched_1e_cut = new TH2D(
+        "v_dist_VS_reco_phi_nFD_minus_reco_phi_e_matched_1e_cut",
+        "v_dist vs. #Delta#phi^{reco}_{nFD,e} in 1e cut (matched);v_dist [cm];#Delta#phi^{reco}_{nFD,e} = |#phi^{reco}_{nFD} - #phi^{reco}_{e}| [#circ]", 100, 0., 1000.,100, -180., 180.);
+    HistoList.push_back(h_v_dist_VS_reco_phi_nFD_minus_reco_phi_e_matched_1e_cut);
 
 #pragma endregion
 
@@ -1260,6 +1283,9 @@ void nFD_eff_test() {
                         TVector3 v_dist = v_nhit - v_neutral_hit;
 
                         h_v_dist_ECALveto_1e_cut->Fill(v_dist.Mag(), weight);
+                        h_v_dist_VS_reco_P_nFD_ECALveto_1e_cut->Fill(v_dist.Mag(), reco_P_nFD.Mag(), weight);
+                        h_v_dist_VS_reco_P_e_ECALveto_1e_cut->Fill(v_dist.Mag(), reco_P_e.Mag(), weight);
+                        h_v_dist_VS_reco_phi_nFD_minus_reco_phi_e_ECALveto_1e_cut->Fill(v_dist.Mag(), CalcdPhi(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI), weight);
                     }
                 }
             }
@@ -1453,6 +1479,9 @@ void nFD_eff_test() {
                         TVector3 v_dist = v_nhit - v_neutral_hit;
 
                         h_v_dist_matched_1e_cut->Fill(v_dist.Mag(), weight);
+                        h_v_dist_VS_reco_P_nFD_matched_1e_cut->Fill(v_dist.Mag(), reco_P_nFD.Mag(), weight);
+                        h_v_dist_VS_reco_P_e_matched_1e_cut->Fill(v_dist.Mag(), reco_P_e.Mag(), weight);
+                        h_v_dist_VS_reco_phi_nFD_minus_reco_phi_e_matched_1e_cut->Fill(v_dist.Mag(), CalcdPhi(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI), weight);
                     }
                 }
             }

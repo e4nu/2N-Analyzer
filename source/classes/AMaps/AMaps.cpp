@@ -1602,8 +1602,6 @@ void AMaps::DrawAndSaveHitMapsPDFs(vector<TH1 *> HistoList, const string &PDFfil
     TCanvas *myText_temp = new TCanvas("myText_temp", "myText_temp", pixelx, pixely);
     TCanvas *myCanvas_temp = new TCanvas("myCanvas_temp", "myCanvas_temp", pixelx, pixely);
 
-    // gStyle->SetOptStat("ourmen");
-
     char fileName[PDFfileName.length()];
     sprintf(fileName, "%s[", PDFfileName.c_str());
     myText_temp->SaveAs(fileName);
@@ -1624,14 +1622,6 @@ void AMaps::DrawAndSaveHitMapsPDFs(vector<TH1 *> HistoList, const string &PDFfil
         gPad->Modified();
         gPad->Update();
 
-        // if (HistoList[i]->GetEntries() != 0) {
-        //     gPad->Update();
-        //     TPaletteAxis *palette = (TPaletteAxis *)HistoList[i]->GetListOfFunctions()->FindObject("palette");
-        //     palette->SetY2NDC(0.55);
-        //     gPad->Modified();
-        //     gPad->Update();
-        // }
-
         myCanvas_temp->Print(fileName, "pdf");
         myCanvas_temp->Clear();
     }
@@ -1639,7 +1629,6 @@ void AMaps::DrawAndSaveHitMapsPDFs(vector<TH1 *> HistoList, const string &PDFfil
     sprintf(fileName, "%s]", PDFfileName.c_str());
     myCanvas_temp->Print(fileName, "pdf");
 
-    // myCanvas_temp->Clear();
     delete myText_temp;
     delete myCanvas_temp;
 }
