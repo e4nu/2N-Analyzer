@@ -1618,6 +1618,9 @@ void AMaps::DrawAndSaveHitMapsPDFs(vector<TH1 *> HistoList, const string &PDFfil
         // HistoList[i]->GetYaxis()->SetTitleOffset(1.5);
         // HistoList[i]->GetXaxis()->SetTitleOffset(1.1);
 
+
+        HistoList[i]->Draw("colz");
+
         gPad->SetRightMargin(0.23);
 
         HistoList[i]->SetStats(1);
@@ -1626,8 +1629,6 @@ void AMaps::DrawAndSaveHitMapsPDFs(vector<TH1 *> HistoList, const string &PDFfil
         gStyle->SetStatX(0.98);
         gStyle->SetStatY(0.935);
         gPad->Update();
-
-        HistoList[i]->Draw("colz");
 
         if (HistoList[i]->GetEntries() != 0) {
             gPad->Update();
