@@ -21,6 +21,9 @@ void nFD_eff_test() {
     bool ConstrainTLmom = false;
     bool ConstrainedE = false;
 
+    bool apply_PCAL_veto = false;
+    bool apply_ECAL_veto = false;
+
     double ECALvetoCut = 100.;
 
     double P_upperLim;
@@ -30,13 +33,14 @@ void nFD_eff_test() {
         P_upperLim = Ebeam * 1.1;
     }
 
-    int Limiter = 25000000; // 2500 files
+    int Limiter = 25000000;  // 2500 files
     // int Limiter = 10000000; // 1000 files
     // int Limiter = 1000000;  // 100 files
     // int Limiter = 100000;  // 10 files
     // int Limiter = 10000; // 1 file
 
-    string OutFolderName = "nFD_eff_test_v4_wPCALnVeto_rc100_rn200";
+    // string OutFolderName = "nFD_eff_test_v4_wPCALnVeto_rc100_rn200";
+    string OutFolderName = "nFD_eff_test_v4_NoECALVeto";
 
     const string OutputDir = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName;
     system(("rm -rf " + OutputDir).c_str());
@@ -1122,37 +1126,60 @@ void nFD_eff_test() {
                 bool ParticleInECOUT = (allParticles[i]->cal(clas12::ECOUT)->getDetector() == 7);                         // ECOUT hit
                 auto Neutron_ECAL_detlayer = ParticleInECIN ? clas12::ECIN : clas12::ECOUT;                               // find first layer of hit
 
-                if ((pid_temp == 2112) || (pid_temp == 22)) {
-                    if (ParticleInPCAL) {
-                        if (pid_temp == 22) { photons_FD_redef.push_back(allParticles[i]); }
-                    } else if (!ParticleInPCAL) {  // if there is a neutron or a 'photon' without a PCAL hit
-                        if (ParticleInECIN || ParticleInECOUT) {
-                            double Momentum = CalcPnFD(allParticles[i], electrons[0], starttime);
+                if (apply_PCAL_veto) {
+                    if ((pid_temp == 2112) || (pid_temp == 22)) {
+                        if (ParticleInPCAL) {
+                            if (pid_temp == 22) { photons_FD_redef.push_back(allParticles[i]); }
+                        } else if (!ParticleInPCAL) {  // if there is a neutron or a 'photon' without a PCAL hit
+                            if (ParticleInECIN || ParticleInECOUT) {
+                                double Momentum = CalcPnFD(allParticles[i], electrons[0], starttime);
 
-                            double Path_nFD = CalcPathnFD(allParticles[i], electrons[0]);
-                            // double Path_nFD = allParticles[i]->getPath();
-                            double reco_ToF_nFD = CalcToFnFD(allParticles[i], starttime);
-                            // double reco_ToF_nFD = allParticles[i]->cal(Neutron_ECAL_detlayer)->getTime() - starttime;
+                                double Path_nFD = CalcPathnFD(allParticles[i], electrons[0]);
+                                // double Path_nFD = allParticles[i]->getPath();
+                                double reco_ToF_nFD = CalcToFnFD(allParticles[i], starttime);
+                                // double reco_ToF_nFD = allParticles[i]->cal(Neutron_ECAL_detlayer)->getTime() - starttime;
 
-                            // bool PassMomth = true;
-                            bool PassMomth = (Momentum >= 0.4);
-                            bool passECALeadgeCuts = (allParticles[i]->cal(Neutron_ECAL_detlayer)->getLv() > 14. && allParticles[i]->cal(Neutron_ECAL_detlayer)->getLw() > 14.);
-                            bool passVeto = NeutronECAL_Cut_Veto(allParticles, electrons, Ebeam, i, ECALvetoCut);
-                            // bool goodBeta = ((Path_nFD / (c * reco_ToF_nFD) - Truth_beta) < 0.001);
-                            // bool goodBeta = (fabs(allParticles[i]->par()->getBeta() - Path_nFD / (c * reco_ToF_nFD)) < 0.0001);
+                                // bool PassMomth = true;
+                                bool PassMomth = (Momentum >= 0.4);
+                                bool passECALeadgeCuts = (allParticles[i]->cal(Neutron_ECAL_detlayer)->getLv() > 14. && allParticles[i]->cal(Neutron_ECAL_detlayer)->getLw() > 14.);
+                                bool passVeto = NeutronECAL_Cut_Veto(allParticles, electrons, Ebeam, i, ECALvetoCut);
+                                // bool goodBeta = ((Path_nFD / (c * reco_ToF_nFD) - Truth_beta) < 0.001);
+                                // bool goodBeta = (fabs(allParticles[i]->par()->getBeta() - Path_nFD / (c * reco_ToF_nFD)) < 0.0001);
 
-                            if (PassMomth && passECALeadgeCuts && passVeto && true) {
-                                if (Momentum >= P_max) {
-                                    P_max = Momentum;
-                                    NeutronsFD_ind_mom_max = i;
-                                }
+                                if (PassMomth && passECALeadgeCuts && (!apply_ECAL_veto || (!apply_ECAL_veto || passVeto)) && true) {
+                                    if (Momentum >= P_max) {
+                                        P_max = Momentum;
+                                        NeutronsFD_ind_mom_max = i;
+                                    }
 
-                                neutrons_FD_ECALveto.push_back(allParticles[i]);
-                            }  // end of clas12root neutron or 'photon' if
-                            // if (PassMomth && passECALeadgeCuts && passVeto && goodBeta) { neutrons_FD_ECALveto.push_back(allParticles[i]); }  // end of clas12root neutron or 'photon' if
+                                    neutrons_FD_ECALveto.push_back(allParticles[i]);
+                                }  // end of clas12root neutron or 'photon' if
+                                // if (PassMomth && passECALeadgeCuts && passVeto && goodBeta) { neutrons_FD_ECALveto.push_back(allParticles[i]); }  // end of clas12root neutron or 'photon'
+                                // if
+                            }
                         }
+                    }  // end of clas12root neutron or 'photon' if
+                } else {
+                    if (pid_temp == 2112) {
+                        double Momentum = CalcPnFD(allParticles[i], electrons[0], starttime);
+
+                        double Path_nFD = CalcPathnFD(allParticles[i], electrons[0]);
+                        double reco_ToF_nFD = CalcToFnFD(allParticles[i], starttime);
+
+                        // bool PassMomth = true;
+                        bool PassMomth = (Momentum >= 0.4);
+                        bool passECALeadgeCuts = (allParticles[i]->cal(Neutron_ECAL_detlayer)->getLv() > 14. && allParticles[i]->cal(Neutron_ECAL_detlayer)->getLw() > 14.);
+
+                        if (PassMomth && passECALeadgeCuts) {
+                            if (Momentum >= P_max) {
+                                P_max = Momentum;
+                                NeutronsFD_ind_mom_max = i;
+                            }
+
+                            neutrons_FD_ECALveto.push_back(allParticles[i]);
+                        }  // end of clas12root neutron or 'photon' if
                     }
-                }  // end of clas12root neutron or 'photon' if
+                }
             }  // end of neutral and in the FD if
         }
 
@@ -1358,49 +1385,82 @@ void nFD_eff_test() {
                 bool ParticleInECOUT = (allParticles[i]->cal(clas12::ECOUT)->getDetector() == 7);                         // ECOUT hit
                 auto Neutron_ECAL_detlayer = ParticleInECIN ? clas12::ECIN : clas12::ECOUT;                               // find first layer of hit
 
-                if ((pid_temp == 2112) || (pid_temp == 22)) {
-                    // if (ParticleInPCAL) {
-                    //     if (pid_temp == 22) { photons_FD_redef.push_back(allParticles[i]); }
-                    // } else
-                    if (!ParticleInPCAL) {  // if there is a neutron or a 'photon' without a PCAL hit
-                        if (ParticleInECIN || ParticleInECOUT) {
-                            double Momentum = CalcPnFD(allParticles[i], electrons[0], starttime);
+                if (apply_PCAL_veto) {
+                    if ((pid_temp == 2112) || (pid_temp == 22)) {
+                        if (!ParticleInPCAL) {  // if there is a neutron or a 'photon' without a PCAL hit
+                            if (ParticleInECIN || ParticleInECOUT) {
+                                double Momentum = CalcPnFD(allParticles[i], electrons[0], starttime);
 
-                            bool PassMomth = true;
-                            // bool PassMomth = (Momentum >= 0.4);
-                            bool passECALeadgeCuts = (allParticles[i]->cal(Neutron_ECAL_detlayer)->getLv() > 14. && allParticles[i]->cal(Neutron_ECAL_detlayer)->getLw() > 14.);
-                            bool passVeto = NeutronECAL_Cut_Veto(allParticles, electrons, Ebeam, i, ECALvetoCut);
+                                bool PassMomth = (Momentum >= 0.4);
+                                bool passECALeadgeCuts = (allParticles[i]->cal(Neutron_ECAL_detlayer)->getLv() > 14. && allParticles[i]->cal(Neutron_ECAL_detlayer)->getLw() > 14.);
+                                bool passVeto = NeutronECAL_Cut_Veto(allParticles, electrons, Ebeam, i, ECALvetoCut);
 
-                            if (PassMomth && passECALeadgeCuts && passVeto) {
-                                for (int j = 0; j < truth_NeutronsFD.size(); j++) {
-                                    mcpbank->setEntry(truth_NeutronsFD.at(j));
+                                if (PassMomth && passECALeadgeCuts && (!apply_ECAL_veto || passVeto)) {
+                                    for (int j = 0; j < truth_NeutronsFD.size(); j++) {
+                                        mcpbank->setEntry(truth_NeutronsFD.at(j));
 
-                                    double tl__P = mcpbank->getP();
-                                    double tl_Theta = mcpbank->getTheta() * 180 / M_PI;
-                                    double tl_Phi = mcpbank->getPhi() * 180 / M_PI;
+                                        double tl__P = mcpbank->getP();
+                                        double tl_Theta = mcpbank->getTheta() * 180 / M_PI;
+                                        double tl_Phi = mcpbank->getPhi() * 180 / M_PI;
 
-                                    double reco_Theta = allParticles[i]->getTheta() * 180 / M_PI;
-                                    double reco_Phi = allParticles[i]->getPhi() * 180 / M_PI;
+                                        double reco_Theta = allParticles[i]->getTheta() * 180 / M_PI;
+                                        double reco_Phi = allParticles[i]->getPhi() * 180 / M_PI;
 
-                                    bool thetaCut = (fabs(tl_Theta - reco_Theta) <= 2.);
-                                    bool phiCut = (fabs(tl_Phi - reco_Phi) <= 5.);
+                                        bool thetaCut = (fabs(tl_Theta - reco_Theta) <= 2.);
+                                        bool phiCut = (fabs(tl_Phi - reco_Phi) <= 5.);
 
-                                    double tl_E_nFD = sqrt(m_n * m_n + tl_P * tl_P);
+                                        double tl_E_nFD = sqrt(m_n * m_n + tl_P * tl_P);
 
-                                    if (thetaCut && phiCut) {
-                                        tl_P = tl__P;
-                                        neutrons_FD_matched.push_back(allParticles[i]);
+                                        if (thetaCut && phiCut) {
+                                            tl_P = tl__P;
+                                            neutrons_FD_matched.push_back(allParticles[i]);
 
-                                        h_truth_P_nFD_matched_1e_cut->Fill(tl_P, weight);
-                                        h_truth_theta_nFD_matched_1e_cut->Fill(tl_Theta, weight);
-                                        h_truth_phi_nFD_matched_1e_cut->Fill(tl_Phi, weight);
-                                        h_truth_theta_nFD_matched_VS_truth_phi_nFD_matched_1e_cut->Fill(tl_Phi, tl_Theta, weight);
+                                            h_truth_P_nFD_matched_1e_cut->Fill(tl_P, weight);
+                                            h_truth_theta_nFD_matched_1e_cut->Fill(tl_Theta, weight);
+                                            h_truth_phi_nFD_matched_1e_cut->Fill(tl_Phi, weight);
+                                            h_truth_theta_nFD_matched_VS_truth_phi_nFD_matched_1e_cut->Fill(tl_Phi, tl_Theta, weight);
+                                        }
                                     }
-                                }
-                            }  // end of clas12root neutron or 'photon' if
+                                }  // end of clas12root neutron or 'photon' if
+                            }
                         }
+                    }  // end of clas12root neutron or 'photon' if
+                } else {
+                    if (pid_temp == 2112) {
+                        double Momentum = CalcPnFD(allParticles[i], electrons[0], starttime);
+
+                        bool PassMomth = (Momentum >= 0.4);
+                        bool passECALeadgeCuts = (allParticles[i]->cal(Neutron_ECAL_detlayer)->getLv() > 14. && allParticles[i]->cal(Neutron_ECAL_detlayer)->getLw() > 14.);
+
+                        if (PassMomth && passECALeadgeCuts) {
+                            for (int j = 0; j < truth_NeutronsFD.size(); j++) {
+                                mcpbank->setEntry(truth_NeutronsFD.at(j));
+
+                                double tl__P = mcpbank->getP();
+                                double tl_Theta = mcpbank->getTheta() * 180 / M_PI;
+                                double tl_Phi = mcpbank->getPhi() * 180 / M_PI;
+
+                                double reco_Theta = allParticles[i]->getTheta() * 180 / M_PI;
+                                double reco_Phi = allParticles[i]->getPhi() * 180 / M_PI;
+
+                                bool thetaCut = (fabs(tl_Theta - reco_Theta) <= 2.);
+                                bool phiCut = (fabs(tl_Phi - reco_Phi) <= 5.);
+
+                                double tl_E_nFD = sqrt(m_n * m_n + tl_P * tl_P);
+
+                                if (thetaCut && phiCut) {
+                                    tl_P = tl__P;
+                                    neutrons_FD_matched.push_back(allParticles[i]);
+
+                                    h_truth_P_nFD_matched_1e_cut->Fill(tl_P, weight);
+                                    h_truth_theta_nFD_matched_1e_cut->Fill(tl_Theta, weight);
+                                    h_truth_phi_nFD_matched_1e_cut->Fill(tl_Phi, weight);
+                                    h_truth_theta_nFD_matched_VS_truth_phi_nFD_matched_1e_cut->Fill(tl_Phi, tl_Theta, weight);
+                                }
+                            }
+                        }  // end of clas12root neutron or 'photon' if
                     }
-                }  // end of clas12root neutron or 'photon' if
+                }
             }  // end of neutral and in the FD if
         }
 
@@ -1576,7 +1636,7 @@ void nFD_eff_test() {
     } else if (FindSubstring(InputFiles, "5986MeV")) {
         text.DrawLatex(0.2, 0.7, "Beam energy: 5986MeV");
     }
-    
+
     myText->Print(fileName_electron_cuts, "pdf");
     myText->Clear();
 
