@@ -180,7 +180,7 @@ double CalcdPhi(double dPhiTemp) {
 
 bool NeutronECAL_Cut_Veto(vector<region_part_ptr>& allParticles, vector<region_part_ptr>& electrons, const double& beamE, const int& index, const double& veto_cut,
                           bool apply_PCAL_neutral_veto = true) {
-    double rc_factor = 2.;
+    double rc_factor = 1.;
     double rn_factor = 2.;
 
     TVector3 p_b(0, 0, beamE); /* beam energy */
