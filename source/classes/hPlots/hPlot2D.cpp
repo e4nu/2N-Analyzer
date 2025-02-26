@@ -185,7 +185,7 @@ void hPlot2D::histPlotter2D(const std::string &SampleName, TCanvas *HistogramCan
         // HistogramCanvas->Print(Form("%s[", Histogram_OutPDF));  // Open the PDF file
         // HistogramCanvas->Print(Histogram_OutPDF);
         // HistogramCanvas->Print(Form("%s]", Histogram_OutPDF));  // Close the PDF file
-                                                                // ++CanvasPDF_ind;
+        // ++CanvasPDF_ind;
     }
 
     if (ZLinearScalePlot) {
@@ -202,15 +202,11 @@ void hPlot2D::histPlotter2D(const std::string &SampleName, TCanvas *HistogramCan
         // HistogramCanvas->Print(Form("%s[", Histogram_OutPDF));  // Open the PDF file
         // HistogramCanvas->Print(Histogram_OutPDF);
         // HistogramCanvas->Print(Form("%s]", Histogram_OutPDF));  // Close the PDF file
-                                                                // ++CanvasPDF_ind;
+        // ++CanvasPDF_ind;
     }
 
     gStyle->SetStatX(DefStatX);
     gStyle->SetStatY(DefStatY);
-
-    cout << "\n\nDefStatX = " << DefStatX << "\n";
-    cout << "\n\nDefStatY = " << DefStatY << "\n";
-    exit(0);
 
     HistogramCanvas->cd();
     HistogramCanvas->Clear();
@@ -304,7 +300,7 @@ void hPlot2D::histPlotter2D(const std::string &SampleName, TCanvas *HistogramCan
         // HistogramCanvas->Print(Form("%s[", Histogram_OutPDF));  // Open the PDF file
         // HistogramCanvas->Print(Histogram_OutPDF);
         // HistogramCanvas->Print(Form("%s]", Histogram_OutPDF));  // Close the PDF file
-                                                                // ++CanvasPDF_ind;
+        // ++CanvasPDF_ind;
     }
 
     if (ZLinearScalePlot) {
@@ -319,7 +315,7 @@ void hPlot2D::histPlotter2D(const std::string &SampleName, TCanvas *HistogramCan
         // HistogramCanvas->Print(Form("%s[", Histogram_OutPDF));  // Open the PDF file
         // HistogramCanvas->Print(Histogram_OutPDF);
         // HistogramCanvas->Print(Form("%s]", Histogram_OutPDF));  // Close the PDF file
-                                                                // ++CanvasPDF_ind;
+        // ++CanvasPDF_ind;
     }
 
     gStyle->SetStatX(DefStatX);
@@ -405,7 +401,7 @@ void hPlot2D::histPlotter2D(const std::string &SampleName, TCanvas *HistogramCan
         // HistogramCanvas->Print(Form("%s[", Histogram_OutPDF));  // Open the PDF file
         // HistogramCanvas->Print(Histogram_OutPDF);
         // HistogramCanvas->Print(Form("%s]", Histogram_OutPDF));  // Close the PDF file
-                                                                // ++CanvasPDF_ind;
+        // ++CanvasPDF_ind;
     }
 
     if (ZLinearScalePlot) {
@@ -420,7 +416,7 @@ void hPlot2D::histPlotter2D(const std::string &SampleName, TCanvas *HistogramCan
         // HistogramCanvas->Print(Form("%s[", Histogram_OutPDF));  // Open the PDF file
         // HistogramCanvas->Print(Histogram_OutPDF);
         // HistogramCanvas->Print(Form("%s]", Histogram_OutPDF));  // Close the PDF file
-                                                                // ++CanvasPDF_ind;
+        // ++CanvasPDF_ind;
     }
 
     gStyle->SetStatX(DefStatX);
@@ -512,7 +508,7 @@ void hPlot2D::histPlotter2D(const std::string &SampleName, TCanvas *HistogramCan
         // HistogramCanvas->Print(Form("%s[", Histogram_OutPDF));  // Open the PDF file
         // HistogramCanvas->Print(Histogram_OutPDF);
         // HistogramCanvas->Print(Form("%s]", Histogram_OutPDF));  // Close the PDF file
-                                                                // ++CanvasPDF_ind;
+        // ++CanvasPDF_ind;
     }
 
     if (ZLinearScalePlot) {
@@ -527,7 +523,7 @@ void hPlot2D::histPlotter2D(const std::string &SampleName, TCanvas *HistogramCan
         // HistogramCanvas->Print(Form("%s[", Histogram_OutPDF));  // Open the PDF file
         // HistogramCanvas->Print(Histogram_OutPDF);
         // HistogramCanvas->Print(Form("%s]", Histogram_OutPDF));  // Close the PDF file
-                                                                // ++CanvasPDF_ind;
+        // ++CanvasPDF_ind;
     }
 
     gStyle->SetStatX(DefStatX);
