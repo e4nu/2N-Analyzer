@@ -1135,16 +1135,11 @@ void nFD_eff_test() {
                                 double Momentum = CalcPnFD(allParticles[i], electrons[0], starttime);
 
                                 double Path_nFD = CalcPathnFD(allParticles[i], electrons[0]);
-                                // double Path_nFD = allParticles[i]->getPath();
                                 double reco_ToF_nFD = CalcToFnFD(allParticles[i], starttime);
-                                // double reco_ToF_nFD = allParticles[i]->cal(Neutron_ECAL_detlayer)->getTime() - starttime;
 
-                                // bool PassMomth = true;
                                 bool PassMomth = (Momentum >= 0.4);
                                 bool passECALeadgeCuts = (allParticles[i]->cal(Neutron_ECAL_detlayer)->getLv() > 14. && allParticles[i]->cal(Neutron_ECAL_detlayer)->getLw() > 14.);
                                 bool passVeto = NeutronECAL_Cut_Veto(allParticles, electrons, Ebeam, i, ECALvetoCut);
-                                // bool goodBeta = ((Path_nFD / (c * reco_ToF_nFD) - Truth_beta) < 0.001);
-                                // bool goodBeta = (fabs(allParticles[i]->par()->getBeta() - Path_nFD / (c * reco_ToF_nFD)) < 0.0001);
 
                                 if (PassMomth && passECALeadgeCuts && (!apply_ECAL_veto || (!apply_ECAL_veto || passVeto)) && true) {
                                     if (Momentum >= P_max) {
@@ -1154,8 +1149,6 @@ void nFD_eff_test() {
 
                                     neutrons_FD_ECALveto.push_back(allParticles[i]);
                                 }  // end of clas12root neutron or 'photon' if
-                                // if (PassMomth && passECALeadgeCuts && passVeto && goodBeta) { neutrons_FD_ECALveto.push_back(allParticles[i]); }  // end of clas12root neutron or 'photon'
-                                // if
                             }
                         }
                     }  // end of clas12root neutron or 'photon' if
@@ -1166,7 +1159,6 @@ void nFD_eff_test() {
                         double Path_nFD = CalcPathnFD(allParticles[i], electrons[0]);
                         double reco_ToF_nFD = CalcToFnFD(allParticles[i], starttime);
 
-                        // bool PassMomth = true;
                         bool PassMomth = (Momentum >= 0.4);
                         bool passECALeadgeCuts = (allParticles[i]->cal(Neutron_ECAL_detlayer)->getLv() > 14. && allParticles[i]->cal(Neutron_ECAL_detlayer)->getLw() > 14.);
 
