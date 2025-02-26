@@ -46,7 +46,7 @@ class AMaps {
     string AMaps_Mode = "AMaps";
 
     /* Acceptance maps from class and before cuts (to be compared with one generated with the file) */
-    hPlot2D ElectronAMapBC, ProtonAMapBC, NeutronAMapBC, NucleonAMapBC;
+    hPlot2D reco_theta_e_VS_phi_e_BC, reco_theta_p_VS_phi_p_BC, reco_theta_n_VS_phi_n_BC, reco_theta_nuc_VS_phi_nuc_BC;
 
     vector<vector<double>> InvertedElectronMomSliceLimits, ElectronMomSliceLimits;
     vector<vector<double>> InvertedNucleonMomSliceLimits, NucleonMomSliceLimits;
@@ -64,26 +64,26 @@ class AMaps {
     double Nucleon_Momentum_Slice_Th = 0.4;
     double Electron_Momentum_Slice_Th = 0.8;  // Not th! but distance from beamE of last mom bin!
 
-    /* TL Acceptance maps */
-    vector<hPlot2D> ElectronTLAMapsBySlice, ProtonTLAMapsBySlice, NeutronTLAMapsBySlice;
-    hPlot2D NeutronTLAMap;
+    /* Truth-level theta VS phi */
+    vector<hPlot2D> truth_theta_e_VS_phi_e_BySlice, truth_theta_p_VS_phi_p_BySlice, truth_theta_n_VS_phi_n_BySlice;
+    hPlot2D truth_theta_n_VS_phi_n;
 
     /* Reco. Acceptance maps */
-    vector<hPlot2D> ElectronRecoAMapsBySlice, ProtonRecoAMapsBySlice, NeutronRecoAMapsBySlice;
-    hPlot2D NeutronRecoAMap;
+    vector<hPlot2D> reco_theta_e_VS_phi_e_BySlice, reco_theta_p_VS_phi_p_BySlice, reco_theta_n_VS_phi_n_BySlice;
+    hPlot2D reco_theta_n_VS_phi_n;
 
     /* Reco./TL ratio maps */
-    vector<hPlot2D> ElectronRecoToTLRatioBySlice, ProtonRecoToTLRatioBySlice, NeutronRecoToTLRatioBySlice;
-    hPlot2D NeutronRecoToTLRatio;
+    vector<hPlot2D> acceptance_eff_e_BySlice, acceptance_eff_p_BySlice, acceptance_eff_n_BySlice;
+    hPlot2D acceptance_eff_n;
 
     /* Separated acceptance & weight maps (= reco. above ratio th.) */
-    vector<hPlot2D> ElectronAMapsBySlice, ProtonAMapsBySlice, NeutronAMapsBySlice;  // separated AMaps for each slice
+    vector<hPlot2D> filtered_reco_theta_e_VS_phi_e_BySlice, filtered_reco_theta_p_VS_phi_p_BySlice, filtered_reco_theta_n_VS_phi_n_BySlice;  // separated AMaps for each slice
 
     /* Acceptance maps (= reco. above ratio th.) */
-    hPlot2D ElectronAMap;  // combined electron AMap
-    hPlot2D ProtonAMap;    // combined proton AMap
-    hPlot2D NeutronAMap;
-    hPlot2D NucleonAMap;
+    hPlot2D filtered_reco_theta_e_VS_phi_e;  // combined electron AMap
+    hPlot2D filtered_reco_theta_p_VS_phi_p;  // combined proton AMap
+    hPlot2D filtered_reco_theta_n_VS_phi_n;
+    hPlot2D filtered_reco_theta_nuc_VS_phi_nuc;
 
     /* Acceptance maps */
     vector<vector<int>> e_AMap;
@@ -155,7 +155,7 @@ class AMaps {
     TH2D *LoadedElectronAMaps0;
     TH2D *LoadedProtonAMap;
     TH2D *LoadedNeutronAMap;
-    TH2D *LoadedNucleonAMap;
+    TH2D *Loadedfiltered_reco_theta_nuc_VS_phi_nuc;
 
     string SName;
 
@@ -226,9 +226,10 @@ class AMaps {
 
     void GenerateNPartAMaps(double nP_minR);
 
-    // GenerateNucleonAMap function -----------------------------------------------------------------------------------------------------------------------------------------
+    // Generatefiltered_reco_theta_nuc_VS_phi_nuc function
+    // -----------------------------------------------------------------------------------------------------------------------------------------
 
-    void GenerateNucleonAMap();
+    void Generatefiltered_reco_theta_nuc_VS_phi_nuc();
 
     // SaveHitMaps function -------------------------------------------------------------------------------------------------------------------------------------------------
 

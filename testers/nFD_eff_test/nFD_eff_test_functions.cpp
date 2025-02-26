@@ -251,15 +251,17 @@ bool NeutronECAL_Cut_Veto(vector<region_part_ptr>& allParticles, vector<region_p
                 bool neutral_hit_PCAL = (allParticles[j]->cal(clas12::PCAL)->getDetector() == 7);
                 bool same_sector = (allParticles[j]->cal(clas12::PCAL)->getSector() == allParticles[index]->cal(detlayer)->getSector());
 
-                TVector3 v_neutral_hit; /* v_neutral_hit = location of neutral particle hit */
+                if (neutral_hit_PCAL && same_sector) { Veto = true; }
 
-                if (neutral_hit_PCAL /* && same_sector  */ && (allParticles[j]->cal(clas12::PCAL)->getZ() != 0)) {
-                    /* if other neutral hit the PCAL, use use it to determine v_neutral_hit */
-                    v_neutral_hit.SetXYZ(allParticles[j]->cal(clas12::PCAL)->getX(), allParticles[j]->cal(clas12::PCAL)->getY(), allParticles[j]->cal(clas12::PCAL)->getZ());
-                    TVector3 v_dist = v_nhit - v_neutral_hit;
+                // TVector3 v_neutral_hit; /* v_neutral_hit = location of neutral particle hit */
 
-                    if (v_dist.Mag() < 100 * veto_cut) { Veto = true; }
-                }
+                // if (neutral_hit_PCAL /* && same_sector  */ && (allParticles[j]->cal(clas12::PCAL)->getZ() != 0)) {
+                //     /* if other neutral hit the PCAL, use use it to determine v_neutral_hit */
+                //     v_neutral_hit.SetXYZ(allParticles[j]->cal(clas12::PCAL)->getX(), allParticles[j]->cal(clas12::PCAL)->getY(), allParticles[j]->cal(clas12::PCAL)->getZ());
+                //     TVector3 v_dist = v_nhit - v_neutral_hit;
+
+                //     if (v_dist.Mag() < veto_cut) { Veto = true; }
+                // }
             }
         } else {
             if (allParticles[j]->par()->getCharge() == 0) { continue; } /* looking on charged particles only */
