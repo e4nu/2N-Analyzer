@@ -1599,21 +1599,21 @@ void AMaps::SaveHitMaps(const string &SampleName, const string &AcceptanceMapsDi
 
 //<editor-fold desc="DrawAndSaveHitMapsPDFs function">
 void AMaps::DrawAndSaveHitMapsPDFs(vector<TH1 *> HistoList, const string &PDFfileName) {
-    TCanvas *myText = new TCanvas("myText", "myText", pixelx, pixely);
-    TCanvas *myCanvas = new TCanvas("myPage", "myPage", pixelx, pixely);
+    TCanvas *myText_temp = new TCanvas("myText_temp", "myText_temp", pixelx, pixely);
+    TCanvas *myCanvas_temp = new TCanvas("myCanvas_temp", "myCanvas_temp", pixelx, pixely);
 
     gStyle->SetOptStat("ourmen");
 
     char fileName[PDFfileName.length()];
     sprintf(fileName, "%s[", PDFfileName.c_str());
-    myText->SaveAs(fileName);
+    myText_temp->SaveAs(fileName);
     sprintf(fileName, "%s", PDFfileName.c_str());
 
     for (int i = 0; i < HistoList.size(); i++) {
-        myCanvas->cd();
+        myCanvas_temp->cd();
 
-        myCanvas->cd()->SetGrid();
-        myCanvas->cd()->SetBottomMargin(0.14), myCanvas->cd()->SetLeftMargin(0.16), myCanvas->cd()->SetRightMargin(0.12);
+        myCanvas_temp->cd()->SetGrid();
+        myCanvas_temp->cd()->SetBottomMargin(0.14), myCanvas_temp->cd()->SetLeftMargin(0.16), myCanvas_temp->cd()->SetRightMargin(0.12);
 
         HistoList[i]->GetYaxis()->SetTitleOffset(1.5);
         HistoList[i]->GetXaxis()->SetTitleOffset(1.1);
@@ -1630,16 +1630,16 @@ void AMaps::DrawAndSaveHitMapsPDFs(vector<TH1 *> HistoList, const string &PDFfil
             gPad->Update();
         }
 
-        myCanvas->Print(fileName, "pdf");
-        myCanvas->Clear();
+        myCanvas_temp->Print(fileName, "pdf");
+        myCanvas_temp->Clear();
     }
 
     sprintf(fileName, "%s]", PDFfileName.c_str());
-    myCanvas->Print(fileName, "pdf");
+    myCanvas_temp->Print(fileName, "pdf");
 
-    // myCanvas->Clear();
-    delete myText;
-    delete myCanvas;
+    // myCanvas_temp->Clear();
+    delete myText_temp;
+    delete myCanvas_temp;
 }
 //</editor-fold>
 
