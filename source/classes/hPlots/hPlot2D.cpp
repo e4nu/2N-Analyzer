@@ -208,6 +208,10 @@ void hPlot2D::histPlotter2D(const std::string &SampleName, TCanvas *HistogramCan
     gStyle->SetStatX(DefStatX);
     gStyle->SetStatY(DefStatY);
 
+    cout << "\n\nDefStatX = " << DefStatX << "\n";
+    cout << "\n\nDefStatY = " << DefStatY << "\n";
+    exit(0);
+
     HistogramCanvas->cd();
     HistogramCanvas->Clear();
     //    if (ZLogScalePlot) { HistogramCanvas->SetLogz(1); }
