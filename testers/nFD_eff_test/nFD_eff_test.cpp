@@ -35,7 +35,8 @@ void nFD_eff_test() {
     // int Limiter = 100000;  // 10 files
     // int Limiter = 10000; // 1 file
 
-    string OutFolderName = "nFD_eff_test_v3_wPCALnVeto_rc100_rn100";
+    string OutFolderName = "nFD_eff_test_v3_wPCALnVeto_rc200_rn100";
+    // string OutFolderName = "nFD_eff_test_v3_wPCALnVeto_rc100_rn100";
     // string OutFolderName = "nFD_eff_test_v3_NoPCALnVeto_rc100";
     // string OutFolderName = "nFD_eff_test_v3_NoECALveto";
 
