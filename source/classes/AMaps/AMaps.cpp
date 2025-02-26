@@ -1599,11 +1599,14 @@ void AMaps::SaveHitMaps(const string &SampleName, const string &AcceptanceMapsDi
 
 //<editor-fold desc="DrawAndSaveHitMapsPDFs function">
 void AMaps::DrawAndSaveHitMapsPDFs(vector<TH1 *> HistoList, const string &PDFfileName) {
+    TCanvas *myText = new TCanvas("myText", "myText", pixelx, pixely);
     TCanvas *myCanvas = new TCanvas("myPage", "myPage", pixelx, pixely);
+
+    gStyle->SetOptStat("ourmen");
 
     char fileName[PDFfileName.length()];
     sprintf(fileName, "%s[", PDFfileName.c_str());
-    // myText->SaveAs(fileName);
+    myText->SaveAs(fileName);
     sprintf(fileName, "%s", PDFfileName.c_str());
 
     for (int i = 0; i < HistoList.size(); i++) {
@@ -1634,7 +1637,8 @@ void AMaps::DrawAndSaveHitMapsPDFs(vector<TH1 *> HistoList, const string &PDFfil
     sprintf(fileName, "%s]", PDFfileName.c_str());
     myCanvas->Print(fileName, "pdf");
 
-    myCanvas->Clear();
+    // myCanvas->Clear();
+    delete myText;
     delete myCanvas;
 }
 //</editor-fold>
@@ -1789,15 +1793,10 @@ void AMaps::DrawAndSaveHitMaps(const string &SampleName, TCanvas *h1DCanvas, con
     // h1DCanvas->Print(Form("%s]", Charged_particle_Sep_AMaps_OutFile));  // Close the PDF file
     // h1DCanvas->Print(Form("%s]", AcceptanceMaps_OutFile));              // Close the PDF file
 
-
-
     DrawAndSaveHitMapsPDFs(truth_n_BySlice, TLAMaps_OutFile0);
     DrawAndSaveHitMapsPDFs(reco_n_BySlice, RecoAMaps_OutFile0);
     DrawAndSaveHitMapsPDFs(acc_eff_n_BySlice, AMapsRatio_OutFile0);
     DrawAndSaveHitMapsPDFs(filtered_reco_n_BySlice, Charged_particle_Sep_AMaps_OutFile0);
-
-
-
 
     //<editor-fold desc="Save TL Acceptance maps to plots directory">
     /* Acceptance maps BC */

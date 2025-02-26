@@ -32,7 +32,7 @@ void nFD_eff_test() {
     // int Limiter = 25000000; // 2500 files
     // int Limiter = 10000000; // 1000 files
     // int Limiter = 1000000;  // 100 files
-    int Limiter = 100000; // 10 files
+    int Limiter = 100000;  // 10 files
     // int Limiter = 10000; // 1 file
 
     // string OutFolderName = "nFD_eff_test_reg";
