@@ -1798,9 +1798,6 @@ void AMaps::DrawAndSaveHitMaps(const string &SampleName, TCanvas *h1DCanvas, con
     DrawAndSaveHitMapsPDFs(acc_eff_n_BySlice, AMapsRatio_OutFile0);
     DrawAndSaveHitMapsPDFs(filtered_reco_n_BySlice, Charged_particle_Sep_AMaps_OutFile0);
 
-
-    cout << "\n\n\ntest 1\n\n\n";
-
     //<editor-fold desc="Save TL Acceptance maps to plots directory">
     /* Acceptance maps BC */
     TFile *AMapsBC_plots_path_fout = new TFile((AMapSavePath + "/" + AMapsBC_prefix + SampleName + ".root").c_str(), "recreate");
@@ -1844,8 +1841,6 @@ void AMaps::DrawAndSaveHitMaps(const string &SampleName, TCanvas *h1DCanvas, con
     AMaps_plots_path_fout->Write();
     AMaps_plots_path_fout->Close();
     //</editor-fold>
-
-    cout << "\n\n\ntest 2\n\n\n";
 
     //<editor-fold desc="Save TL Acceptance maps to reference Acceptance maps directory">
     /* Acceptance maps BC */
@@ -1896,9 +1891,6 @@ void AMaps::DrawAndSaveHitMaps(const string &SampleName, TCanvas *h1DCanvas, con
     AMaps_ref_AMaps_fout->Close();
     system(("cp " + AMapSavePath + "/" + AMaps_prefix + SampleName + ".root" + " " + AMapCopySavePath).c_str());
     //</editor-fold>
-
-    cout << "\n\n\ntest 3\n\n\n";
-
 }
 //</editor-fold>
 

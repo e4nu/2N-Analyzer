@@ -1523,6 +1523,11 @@ void nFD_eff_test() {
     // TCanvas* myCanvas_electron_cuts = new TCanvas("myPage_electron_cuts", "myPage_electron_cuts", pixelx, pixely);
     TCanvas* myCanvas_electron_cuts = new TCanvas("myPage_electron_cuts", "myPage_electron_cuts", pixelx, pixely);
 
+
+    cout << "\n\n\ntest 1\n\n\n";
+
+
+
     string electron_cuts_PDF_fileName = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/electron_cuts.pdf";
     char fileName_electron_cuts[electron_cuts_PDF_fileName.length()];
     sprintf(fileName_electron_cuts, "%s[", electron_cuts_PDF_fileName.c_str());
@@ -1543,6 +1548,10 @@ void nFD_eff_test() {
     }
     myText->Print(fileName_electron_cuts, "pdf");
     myText->Clear();
+
+
+    cout << "\n\n\ntest 2\n\n\n";
+
 
     for (int i = 0; i < HistoList_electron_cuts.size(); i++) {
         for (int j = 0; j < HistSubjects.size(); j++) {
@@ -1594,8 +1603,18 @@ void nFD_eff_test() {
         myCanvas_electron_cuts->Clear();
     }
 
+
+    cout << "\n\n\ntest 3\n\n\n";
+
+
+
     sprintf(fileName_electron_cuts, "%s]", electron_cuts_PDF_fileName.c_str());
     myCanvas_electron_cuts->Print(fileName_electron_cuts, "pdf");
+
+
+    cout << "\n\n\ntest 4\n\n\n";
+
+
 
 #pragma endregion
 
