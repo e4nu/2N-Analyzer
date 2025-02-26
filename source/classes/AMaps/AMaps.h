@@ -67,17 +67,21 @@ class AMaps {
     /* Truth-level theta VS phi */
     vector<hPlot2D> truth_theta_e_VS_phi_e_BySlice, truth_theta_p_VS_phi_p_BySlice, truth_theta_n_VS_phi_n_BySlice;
     hPlot2D truth_theta_n_VS_phi_n;
+    vector<TH1 *> truth_e_BySlice, truth_p_BySlice, truth_n_BySlice;
 
     /* Reco. Acceptance maps */
     vector<hPlot2D> reco_theta_e_VS_phi_e_BySlice, reco_theta_p_VS_phi_p_BySlice, reco_theta_n_VS_phi_n_BySlice;
     hPlot2D reco_theta_n_VS_phi_n;
+    vector<TH1 *> reco_e_BySlice, reco_p_BySlice, reco_n_BySlice;
 
     /* Reco./TL ratio maps */
     vector<hPlot2D> acceptance_eff_e_BySlice, acceptance_eff_p_BySlice, acceptance_eff_n_BySlice;
     hPlot2D acceptance_eff_n;
+    vector<TH1 *> acc_eff_e_BySlice, acc_eff_p_BySlice, acc_eff_n_BySlice;
 
     /* Separated acceptance & weight maps (= reco. above ratio th.) */
     vector<hPlot2D> filtered_reco_theta_e_VS_phi_e_BySlice, filtered_reco_theta_p_VS_phi_p_BySlice, filtered_reco_theta_n_VS_phi_n_BySlice;  // separated AMaps for each slice
+    vector<TH1 *> filtered_reco_e_BySlice, filtered_reco_p_BySlice, filtered_reco_n_BySlice;
 
     /* Acceptance maps (= reco. above ratio th.) */
     hPlot2D filtered_reco_theta_e_VS_phi_e;  // combined electron AMap
@@ -113,6 +117,8 @@ class AMaps {
     TList *AMapsRatio = new TList();
     TList *Charged_particle_Sep_AMaps = new TList();
     TList *AcceptanceMaps = new TList();
+
+    int pixelx = 1980, pixely = 1530;
 
     string AcceptanceMapsBC_OutFile0;
     string TLAMaps_OutFile0;
@@ -234,6 +240,10 @@ class AMaps {
     // SaveHitMaps function -------------------------------------------------------------------------------------------------------------------------------------------------
 
     void SaveHitMaps(const string &SampleName, const string &AcceptanceMapsDirectory);
+
+    // DrawAndSaveHitMaps function ------------------------------------------------------------------------------------------------------------------------------------------
+
+    void DrawAndSaveHitMapsPDFs(vector<TH1 *> HistoList, const string &PDFfileName);
 
     // DrawAndSaveHitMaps function ------------------------------------------------------------------------------------------------------------------------------------------
 

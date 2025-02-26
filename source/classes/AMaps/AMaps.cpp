@@ -135,6 +135,7 @@ AMaps::AMaps(const string &SampleName, const string &P_e_bin_profile, const stri
         hPlot2D hPBinTLElectron = hPlot2D(AMapsMode_TitleAddition, "", hStatsTitleTLElectron, hTitleTLElectron, "#phi_{e} [#circ]", "#theta_{e} [#circ]", AMapSavePathTLElectron,
                                           hSaveNameTLElectron, hBinLowerXLim, hBinUpperXLim, hBinLowerYLim, hBinUpperYLim, HistElectronSliceNumOfXBins, HistElectronSliceNumOfYBins);
         truth_theta_e_VS_phi_e_BySlice.push_back(hPBinTLElectron);
+        truth_e_BySlice.push_back(hPBinTLElectron.GetHistogram2D());
         //</editor-fold>
 
         //<editor-fold desc="Electron Reco. Acceptance maps">
@@ -147,6 +148,7 @@ AMaps::AMaps(const string &SampleName, const string &P_e_bin_profile, const stri
         hPlot2D hPBinRecoElectron = hPlot2D(AMapsMode_TitleAddition, "", hStatsTitleRecoElectron, hTitleRecoElectron, "#phi_{e} [#circ]", "#theta_{e} [#circ]", AMapSavePathRecoElectron,
                                             hSaveNameRecoElectron, hBinLowerXLim, hBinUpperXLim, hBinLowerYLim, hBinUpperYLim, HistElectronSliceNumOfXBins, HistElectronSliceNumOfYBins);
         reco_theta_e_VS_phi_e_BySlice.push_back(hPBinRecoElectron);
+        reco_e_BySlice.push_back(hPBinRecoElectron.GetHistogram2D());
         //</editor-fold>
 
         //<editor-fold desc="Electron Reco./TL Ratio">
@@ -160,6 +162,7 @@ AMaps::AMaps(const string &SampleName, const string &P_e_bin_profile, const stri
             hPlot2D(AMapsMode_TitleAddition, "", hStatsTitleRecoToTLRatioElectron, hTitleRecoToTLRatioElectron, "#phi_{e} [#circ]", "#theta_{e} [#circ]", AMapSavePathRecoToTLElectron,
                     hSaveNameRecoToTLRatioElectron, hBinLowerXLim, hBinUpperXLim, hBinLowerYLim, hBinUpperYLim, HistElectronSliceNumOfXBins, HistElectronSliceNumOfYBins);
         acceptance_eff_e_BySlice.push_back(hPBinRecoToTLRatioElectron);
+        acc_eff_e_BySlice.push_back(hPBinRecoToTLRatioElectron.GetHistogram2D());
         //</editor-fold>
 
         //<editor-fold desc="Electron separate AMaps">
@@ -173,6 +176,7 @@ AMaps::AMaps(const string &SampleName, const string &P_e_bin_profile, const stri
             hPlot2D(AMapsMode_TitleAddition, "", hStatsTitleSepAMapsElectron, hTitleSepAMapsElectron, "#phi_{e} [#circ]", "#theta_{e} [#circ]", AMapSavePathSepAMapsElectron,
                     hSaveNameSepAMapsElectron, hBinLowerXLim, hBinUpperXLim, hBinLowerYLim, hBinUpperYLim, HistElectronSliceNumOfXBins, HistElectronSliceNumOfYBins);
         filtered_reco_theta_e_VS_phi_e_BySlice.push_back(hPBinSepAMapsElectron);
+        filtered_reco_e_BySlice.push_back(hPBinSepAMapsElectron.GetHistogram2D());
         //</editor-fold>
 
         //</editor-fold>
@@ -205,6 +209,7 @@ AMaps::AMaps(const string &SampleName, const string &P_e_bin_profile, const stri
         hPlot2D hPBinTLProton = hPlot2D(AMapsMode_TitleAddition, "", hStatsTitleTLProton, hTitleTLProton, "#phi_{p} [#circ]", "#theta_{p} [#circ]", AMapSavePathTLProton, hSaveNameTLProton,
                                         hBinLowerXLim, hBinUpperXLim, hBinLowerYLim, hBinUpperYLim, HistNucSliceNumOfXBins, HistNucSliceNumOfYBins);
         truth_theta_p_VS_phi_p_BySlice.push_back(hPBinTLProton);
+        truth_p_BySlice.push_back(hPBinTLProton.GetHistogram2D());
         //</editor-fold>
 
         //<editor-fold desc="Proton Reco. Acceptance maps">
@@ -216,6 +221,7 @@ AMaps::AMaps(const string &SampleName, const string &P_e_bin_profile, const stri
         hPlot2D hPBinRecoProton = hPlot2D(AMapsMode_TitleAddition, "", hStatsTitleRecoProton, hTitleRecoProton, "#phi_{p} [#circ]", "#theta_{p} [#circ]", AMapSavePathRecoProton,
                                           hSaveNameRecoProton, hBinLowerXLim, hBinUpperXLim, hBinLowerYLim, hBinUpperYLim, HistNucSliceNumOfXBins, HistNucSliceNumOfYBins);
         reco_theta_p_VS_phi_p_BySlice.push_back(hPBinRecoProton);
+        reco_p_BySlice.push_back(hPBinRecoProton.GetHistogram2D());
         //</editor-fold>
 
         //<editor-fold desc="Proton Reco./TL Ratio">
@@ -229,6 +235,7 @@ AMaps::AMaps(const string &SampleName, const string &P_e_bin_profile, const stri
             hPlot2D(AMapsMode_TitleAddition, "", hStatsTitleRecoToTLRatioProton, hTitleRecoToTLRatioProton, "#phi_{p} [#circ]", "#theta_{p} [#circ]", AMapSavePathRecoToTLProton,
                     hSaveNameRecoToTLRatioProton, hBinLowerXLim, hBinUpperXLim, hBinLowerYLim, hBinUpperYLim, HistNucSliceNumOfXBins, HistNucSliceNumOfYBins);
         acceptance_eff_p_BySlice.push_back(hPBinRecoToTLRatioProton);
+        acc_eff_p_BySlice.push_back(hPBinRecoToTLRatioProton.GetHistogram2D());
         //</editor-fold>
 
         //<editor-fold desc="Proton separate AMaps">
@@ -242,6 +249,7 @@ AMaps::AMaps(const string &SampleName, const string &P_e_bin_profile, const stri
             hPlot2D(AMapsMode_TitleAddition, "", hStatsTitleSepAMapsProton, hTitleSepAMapsProton, "#phi_{p} [#circ]", "#theta_{p} [#circ]", AMapSavePathSepAMapsProton,
                     hSaveNameSepAMapsProton, hBinLowerXLim, hBinUpperXLim, hBinLowerYLim, hBinUpperYLim, HistNucSliceNumOfXBins, HistNucSliceNumOfYBins);
         filtered_reco_theta_p_VS_phi_p_BySlice.push_back(hPBinSepAMapsProton);
+        filtered_reco_p_BySlice.push_back(hPBinSepAMapsProton.GetHistogram2D());
         //</editor-fold>
 
         //</editor-fold>
@@ -257,6 +265,7 @@ AMaps::AMaps(const string &SampleName, const string &P_e_bin_profile, const stri
         hPlot2D hPBinTLNeutron = hPlot2D(AMapsMode_TitleAddition, "", hStatsTitleTLNeutron, hTitleTLNeutron, "#phi_{n} [#circ]", "#theta_{n} [#circ]", AMapSavePathTLNeutron,
                                          hSaveNameTLNeutron, hBinLowerXLim, hBinUpperXLim, hBinLowerYLim, hBinUpperYLim, HistNucSliceNumOfXBins, HistNucSliceNumOfYBins);
         truth_theta_n_VS_phi_n_BySlice.push_back(hPBinTLNeutron);
+        truth_n_BySlice.push_back(hPBinTLNeutron.GetHistogram2D());
         //</editor-fold>
 
         //<editor-fold desc="Neutron Reco. Acceptance maps">
@@ -269,6 +278,7 @@ AMaps::AMaps(const string &SampleName, const string &P_e_bin_profile, const stri
         hPlot2D hPBinRecoNeutron = hPlot2D(AMapsMode_TitleAddition, "", hStatsTitleRecoNeutron, hTitleRecoNeutron, "#phi_{n} [#circ]", "#theta_{n} [#circ]", AMapSavePathRecoNeutron,
                                            hSaveNameRecoNeutron, hBinLowerXLim, hBinUpperXLim, hBinLowerYLim, hBinUpperYLim, HistNucSliceNumOfXBins, HistNucSliceNumOfYBins);
         reco_theta_n_VS_phi_n_BySlice.push_back(hPBinRecoNeutron);
+        reco_n_BySlice.push_back(hPBinRecoNeutron.GetHistogram2D());
         //</editor-fold>
 
         //<editor-fold desc="Neutron Reco./TL Ratio">
@@ -282,6 +292,7 @@ AMaps::AMaps(const string &SampleName, const string &P_e_bin_profile, const stri
             hPlot2D(AMapsMode_TitleAddition, "", hStatsTitleRecoToTLRatioNeutron, hTitleRecoToTLRatioNeutron, "#phi_{n} [#circ]", "#theta_{n} [#circ]", AMapSavePathRecoToTLNeutron,
                     hSaveNameRecoToTLRatioNeutron, hBinLowerXLim, hBinUpperXLim, hBinLowerYLim, hBinUpperYLim, HistNucSliceNumOfXBins, HistNucSliceNumOfYBins);
         acceptance_eff_n_BySlice.push_back(hPBinRecoToTLRatioNeutron);
+        reco_n_BySlice.push_back(acc_eff_n_BySlice.GetHistogram2D());
         //</editor-fold>
 
         //<editor-fold desc="Neutron separate AMaps">
@@ -295,6 +306,7 @@ AMaps::AMaps(const string &SampleName, const string &P_e_bin_profile, const stri
             hPlot2D(AMapsMode_TitleAddition, "", hStatsTitleSepAMapsNeutron, hTitleSepAMapsNeutron, "#phi_{n} [#circ]", "#theta_{n} [#circ]", AMapSavePathSepAMapsNeutron,
                     hSaveNameSepAMapsNeutron, hBinLowerXLim, hBinUpperXLim, hBinLowerYLim, hBinUpperYLim, HistNucSliceNumOfXBins, HistNucSliceNumOfYBins);
         filtered_reco_theta_n_VS_phi_n_BySlice.push_back(hPBinSepAMapsNeutron);
+        filtered_reco_n_BySlice.push_back(hPBinSepAMapsNeutron.GetHistogram2D());
         //</editor-fold>
 
         //</editor-fold>
@@ -1583,6 +1595,50 @@ void AMaps::SaveHitMaps(const string &SampleName, const string &AcceptanceMapsDi
 }
 //</editor-fold>
 
+// DrawAndSaveHitMapsPDFs function ------------------------------------------------------------------------------------------------------------------------------------------
+
+//<editor-fold desc="DrawAndSaveHitMapsPDFs function">
+void AMaps::DrawAndSaveHitMapsPDFs(vector<TH1 *> HistoList, const string &PDFfileName) {
+    TCanvas *myCanvas = new TCanvas("myPage", "myPage", pixelx, pixely);
+
+    char fileName[PDFfileName.length()];
+    sprintf(fileName, "%s[", PDFfileName.c_str());
+    myText->SaveAs(fileName);
+    sprintf(fileName, "%s", PDFfileName.c_str());
+
+    for (int i = 0; i < HistoList.size(); i++) {
+        myCanvas->cd();
+
+        myCanvas->cd()->SetGrid();
+        myCanvas->cd()->SetBottomMargin(0.14), myCanvas->cd()->SetLeftMargin(0.16), myCanvas->cd()->SetRightMargin(0.12);
+
+        HistoList[i]->GetYaxis()->SetTitleOffset(1.5);
+        HistoList[i]->GetXaxis()->SetTitleOffset(1.1);
+
+        gPad->SetRightMargin(0.23);
+
+        HistoList[i]->Draw("colz");
+
+        if (HistoList[i]->GetEntries() != 0) {
+            gPad->Update();
+            TPaletteAxis *palette = (TPaletteAxis *)HistoList[i]->GetListOfFunctions()->FindObject("palette");
+            palette->SetY2NDC(0.55);
+            gPad->Modified();
+            gPad->Update();
+        }
+
+        myCanvas->Print(fileName, "pdf");
+        myCanvas->Clear();
+    }
+
+    sprintf(fileName, "%s]", PDFfileName.c_str());
+    myCanvas->Print(fileName, "pdf");
+
+    myCanvas->Clear();
+    delete myCanvas;
+}
+//</editor-fold>
+
 // DrawAndSaveHitMaps function ------------------------------------------------------------------------------------------------------------------------------------------
 
 //<editor-fold desc="DrawAndSaveHitMaps function">
@@ -1732,6 +1788,16 @@ void AMaps::DrawAndSaveHitMaps(const string &SampleName, TCanvas *h1DCanvas, con
     h1DCanvas->Print(Form("%s]", AMapsRatio_OutFile));                  // Close the PDF file
     h1DCanvas->Print(Form("%s]", Charged_particle_Sep_AMaps_OutFile));  // Close the PDF file
     h1DCanvas->Print(Form("%s]", AcceptanceMaps_OutFile));              // Close the PDF file
+
+
+
+    DrawAndSaveHitMapsPDFs(truth_theta_n_VS_phi_n_BySlice, TLAMaps_OutFile0);
+    DrawAndSaveHitMapsPDFs(reco_theta_n_VS_phi_n_BySlice, RecoAMaps_OutFile0);
+    DrawAndSaveHitMapsPDFs(acceptance_eff_n_BySlice, AMapsRatio_OutFile0);
+    DrawAndSaveHitMapsPDFs(filtered_reco_theta_n_VS_phi_n_BySlice, Charged_particle_Sep_AMaps_OutFile0);
+
+
+
 
     //<editor-fold desc="Save TL Acceptance maps to plots directory">
     /* Acceptance maps BC */
