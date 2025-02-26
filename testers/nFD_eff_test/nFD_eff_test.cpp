@@ -19,6 +19,7 @@ void nFD_eff_test() {
     // Is6GeV = true;
 
     bool ConstrainTLmom = false;
+    bool ConstrainedE = false;
 
     double ECALvetoCut = 100.;
 
@@ -35,18 +36,7 @@ void nFD_eff_test() {
     // int Limiter = 100000;  // 10 files
     // int Limiter = 10000; // 1 file
 
-    // string OutFolderName = "nFD_eff_test_v3_wPCALnVeto_rc200_rn200_constrainedE";
-    // string OutFolderName = "nFD_eff_test_v3_wPCALnVeto_rc100_rn200_constrainedE";
-    // string OutFolderName = "nFD_eff_test_v3_wPCALnVeto_rc200_rn100_constrainedE";
-    // string OutFolderName = "nFD_eff_test_v3_wPCALnVeto_rc100_rn100_constrainedE";
-    // string OutFolderName = "nFD_eff_test_v3_NoPCALnVeto_rc100_constrainedE";
-    string OutFolderName = "nFD_eff_test_v3_NoECALveto_constrainedE";
-    // string OutFolderName = "nFD_eff_test_v3_wPCALnVeto_rc200_rn200";
-    // string OutFolderName = "nFD_eff_test_v3_wPCALnVeto_rc100_rn200";
-    // string OutFolderName = "nFD_eff_test_v3_wPCALnVeto_rc200_rn100";
-    // string OutFolderName = "nFD_eff_test_v3_wPCALnVeto_rc100_rn100";
-    // string OutFolderName = "nFD_eff_test_v3_NoPCALnVeto_rc100";
-    // string OutFolderName = "nFD_eff_test_v3_NoECALveto";
+    string OutFolderName = "nFD_eff_test_v4_NoPCALnVeto_rc100";
 
     const string OutputDir = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName;
     system(("rm -rf " + OutputDir).c_str());
@@ -58,16 +48,16 @@ void nFD_eff_test() {
     string InputFiles, SampleName;
 
     if (Is2GeV) {
-        InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/2070MeV_ConstPn/OutPut_en/reconhipo/*.hipo";
-        // InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/2070MeV/OutPut_en/reconhipo/*.hipo";
+        // InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/2070MeV_ConstPn/OutPut_en/reconhipo/*.hipo";
+        InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/2070MeV/OutPut_en/reconhipo/*.hipo";
         SampleName = "Uniform_en_sample_2070MeV";
     } else if (Is4GeV) {
-        InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/4029MeV_ConstPn/OutPut_en/reconhipo/*.hipo";
-        // InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/4029MeV/OutPut_en/reconhipo/*.hipo";
+        // InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/4029MeV_ConstPn/OutPut_en/reconhipo/*.hipo";
+        InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/4029MeV/OutPut_en/reconhipo/*.hipo";
         SampleName = "Uniform_en_sample_4029MeV";
     } else if (Is6GeV) {
-        InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/5986MeV_ConstPn/OutPut_en/reconhipo/*.hipo";
-        // InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/5986MeV/OutPut_en/reconhipo/*.hipo";
+        // InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/5986MeV_ConstPn/OutPut_en/reconhipo/*.hipo";
+        InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/5986MeV/OutPut_en/reconhipo/*.hipo";
         SampleName = "Uniform_en_sample_5986MeV";
     }
 
@@ -505,11 +495,11 @@ void nFD_eff_test() {
         new TH2D("v_dist_VS_reco_P_nFD_ECALveto_1e_cut", "v_dist vs. P^{reco}_{nFD} in 1e cut (ECALveto);v_dist [cm];P^{reco}_{nFD} [GeV/c]", 100, 0., 1000., 100, 0., Ebeam * 3.);
     HistoList.push_back(h_v_dist_VS_reco_P_nFD_ECALveto_1e_cut);
     TH2D* h_v_dist_VS_reco_P_e_ECALveto_1e_cut =
-        new TH2D("v_dist_VS_reco_P_e_ECALveto_1e_cut", "v_dist vs. P^{reco}_{e} in 1e cut (ECALveto);v_dist [cm];P^{e}_{nFD} [GeV/c]", 100, 0., 1000., 100, 0., Ebeam);
+        new TH2D("v_dist_VS_reco_P_e_ECALveto_1e_cut", "v_dist vs. P^{reco}_{e} in 1e cut (ECALveto);v_dist [cm];P^{reco}_{e} [GeV/c]", 100, 0., 1000., 100, 0., Ebeam);
     HistoList.push_back(h_v_dist_VS_reco_P_e_ECALveto_1e_cut);
     TH2D* h_v_dist_VS_reco_phi_nFD_minus_reco_phi_e_ECALveto_1e_cut = new TH2D(
         "v_dist_VS_reco_phi_nFD_minus_reco_phi_e_ECALveto_1e_cut",
-        "v_dist vs. #Delta#phi^{reco}_{nFD,e} in 1e cut (ECALveto);v_dist [cm];#Delta#phi^{reco}_{nFD,e} = |#phi^{reco}_{nFD} - #phi^{reco}_{e}| [#circ]", 100, 0., 1000.,100, -180., 180.);
+        "v_dist vs. #Delta#phi^{reco}_{nFD,e} in 1e cut (ECALveto);v_dist [cm];#Delta#phi^{reco}_{nFD,e} = |#phi^{reco}_{nFD} - #phi^{reco}_{e}| [#circ]", 100, 0., 1000., 100, -180., 180.);
     HistoList.push_back(h_v_dist_VS_reco_phi_nFD_minus_reco_phi_e_ECALveto_1e_cut);
 
 #pragma endregion
@@ -736,11 +726,11 @@ void nFD_eff_test() {
         new TH2D("v_dist_VS_reco_P_nFD_matched_1e_cut", "v_dist vs. P^{reco}_{nFD} in 1e cut (matched);v_dist [cm];P^{reco}_{nFD} [GeV/c]", 100, 0., 1000., 100, 0., Ebeam * 3.);
     HistoList.push_back(h_v_dist_VS_reco_P_nFD_matched_1e_cut);
     TH2D* h_v_dist_VS_reco_P_e_matched_1e_cut =
-        new TH2D("v_dist_VS_reco_P_e_matched_1e_cut", "v_dist vs. P^{reco}_{e} in 1e cut (matched);v_dist [cm];P^{e}_{nFD} [GeV/c]", 100, 0., 1000., 100, 0., Ebeam);
+        new TH2D("v_dist_VS_reco_P_e_matched_1e_cut", "v_dist vs. P^{reco}_{e} in 1e cut (matched);v_dist [cm];P^{reco}_{e} [GeV/c]", 100, 0., 1000., 100, 0., Ebeam);
     HistoList.push_back(h_v_dist_VS_reco_P_e_matched_1e_cut);
     TH2D* h_v_dist_VS_reco_phi_nFD_minus_reco_phi_e_matched_1e_cut = new TH2D(
         "v_dist_VS_reco_phi_nFD_minus_reco_phi_e_matched_1e_cut",
-        "v_dist vs. #Delta#phi^{reco}_{nFD,e} in 1e cut (matched);v_dist [cm];#Delta#phi^{reco}_{nFD,e} = |#phi^{reco}_{nFD} - #phi^{reco}_{e}| [#circ]", 100, 0., 1000.,100, -180., 180.);
+        "v_dist vs. #Delta#phi^{reco}_{nFD,e} in 1e cut (matched);v_dist [cm];#Delta#phi^{reco}_{nFD,e} = |#phi^{reco}_{nFD} - #phi^{reco}_{e}| [#circ]", 100, 0., 1000., 100, -180., 180.);
     HistoList.push_back(h_v_dist_VS_reco_phi_nFD_minus_reco_phi_e_matched_1e_cut);
 
 #pragma endregion
@@ -872,8 +862,8 @@ void nFD_eff_test() {
         if (bad_PCAL_edge_CutCond) { continue; }
         if (bad_diag_CutCond) { continue; }
 
-        if (reco_P_e.Mag() < Ebeam - 0.2 || reco_P_e.Mag() > Ebeam + 0.2) { continue; }
-        if (fabs((reco_P_e.Theta() * 180 / M_PI) - 25.) > 3.) { continue; }
+        if (ConstrainedE && (reco_P_e.Mag() < Ebeam - 0.2 || reco_P_e.Mag() > Ebeam + 0.2)) { continue; }
+        if (ConstrainedE && (fabs((reco_P_e.Theta() * 180 / M_PI) - 25.) > 2.)) { continue; }
 
         h_reco_P_e_1e_cut->Fill(reco_P_e.Mag(), weight);
         h_reco_theta_e_1e_cut->Fill(reco_P_e.Theta() * 180 / M_PI, weight);
@@ -1573,7 +1563,12 @@ void nFD_eff_test() {
     // CND Neutron Information
     /////////////////////////////////////
     myText->cd();
-    text.DrawLatex(0.2, 0.9, "Uniform sample of (e,e'n) events (truth-level)");
+    if (ConstrainedE) {
+        text.DrawLatex(0.2, 0.9, "Uniform sample of (e,e'n) events (truth-level) - ConstrainedE");
+    } else {
+        text.DrawLatex(0.2, 0.9, "Uniform sample of (e,e'n) events (truth-level)");
+    }
+
     if (FindSubstring(InputFiles, "2070MeV")) {
         text.DrawLatex(0.2, 0.7, "Beam energy: 2070MeV");
     } else if (FindSubstring(InputFiles, "4029MeV")) {
@@ -1581,6 +1576,7 @@ void nFD_eff_test() {
     } else if (FindSubstring(InputFiles, "5986MeV")) {
         text.DrawLatex(0.2, 0.7, "Beam energy: 5986MeV");
     }
+    
     myText->Print(fileName_electron_cuts, "pdf");
     myText->Clear();
 
