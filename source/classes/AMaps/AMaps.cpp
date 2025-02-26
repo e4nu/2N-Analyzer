@@ -1681,36 +1681,36 @@ void AMaps::DrawAndSaveHitMaps(const string &SampleName, TCanvas *h1DCanvas, con
     cout << "\n\nSaving maps...\n";
     SaveHitMaps(SampleName, AcceptanceMapsDirectory);
 
-    h1DCanvas->Print(Form("%s[", AcceptanceMapsBC_OutFile));            // Open the PDF file
-    h1DCanvas->Print(Form("%s[", TLAMaps_OutFile));                     // Open the PDF file
-    h1DCanvas->Print(Form("%s[", RecoAMaps_OutFile));                   // Open the PDF file
-    h1DCanvas->Print(Form("%s[", AMapsRatio_OutFile));                  // Open the PDF file
-    h1DCanvas->Print(Form("%s[", Charged_particle_Sep_AMaps_OutFile));  // Open the PDF file
-    h1DCanvas->Print(Form("%s[", AcceptanceMaps_OutFile));              // Open the PDF file
+    // h1DCanvas->Print(Form("%s[", AcceptanceMapsBC_OutFile));            // Open the PDF file
+    // h1DCanvas->Print(Form("%s[", TLAMaps_OutFile));                     // Open the PDF file
+    // h1DCanvas->Print(Form("%s[", RecoAMaps_OutFile));                   // Open the PDF file
+    // h1DCanvas->Print(Form("%s[", AMapsRatio_OutFile));                  // Open the PDF file
+    // h1DCanvas->Print(Form("%s[", Charged_particle_Sep_AMaps_OutFile));  // Open the PDF file
+    // h1DCanvas->Print(Form("%s[", AcceptanceMaps_OutFile));              // Open the PDF file
 
-    /* Acceptance maps BC */
-    TLatex Text_AMapBC;
-    Text_AMapBC.SetTextAlign(22);
-    Text_AMapBC.SetTextSize(0.05);
-    Text_AMapBC.DrawLatexNDC(0.5, 0.5, "Acceptance maps BC");
-    h1DCanvas->Update();
-    h1DCanvas->Print(AcceptanceMapsBC_OutFile);  // Save the current canvas (histogram) to the PDF
+    // /* Acceptance maps BC */
+    // TLatex Text_AMapBC;
+    // Text_AMapBC.SetTextAlign(22);
+    // Text_AMapBC.SetTextSize(0.05);
+    // Text_AMapBC.DrawLatexNDC(0.5, 0.5, "Acceptance maps BC");
+    // h1DCanvas->Update();
+    // h1DCanvas->Print(AcceptanceMapsBC_OutFile);  // Save the current canvas (histogram) to the PDF
 
     reco_theta_e_VS_phi_e_BC.hDrawAndSave(SampleNameTemp, h1DCanvas, AcceptanceMapsBC, AcceptanceMapsBC_OutFile, true);
     reco_theta_p_VS_phi_p_BC.hDrawAndSave(SampleNameTemp, h1DCanvas, AcceptanceMapsBC, AcceptanceMapsBC_OutFile, true);
     reco_theta_n_VS_phi_n_BC.hDrawAndSave(SampleNameTemp, h1DCanvas, AcceptanceMapsBC, AcceptanceMapsBC_OutFile, true);
     reco_theta_nuc_VS_phi_nuc_BC.hDrawAndSave(SampleNameTemp, h1DCanvas, AcceptanceMapsBC, AcceptanceMapsBC_OutFile, true);
 
-    /* Electron maps */
-    TLatex Text_ElectronAMaps;
-    Text_ElectronAMaps.SetTextAlign(22);
-    Text_ElectronAMaps.SetTextSize(0.05);
-    Text_ElectronAMaps.DrawLatexNDC(0.5, 0.5, "Electron maps");
-    h1DCanvas->Update();
-    h1DCanvas->Print(TLAMaps_OutFile);                     // Save the current canvas (histogram) to the PDF
-    h1DCanvas->Print(RecoAMaps_OutFile);                   // Save the current canvas (histogram) to the PDF
-    h1DCanvas->Print(AMapsRatio_OutFile);                  // Save the current canvas (histogram) to the PDF
-    h1DCanvas->Print(Charged_particle_Sep_AMaps_OutFile);  // Save the current canvas (histogram) to the PDF
+    // /* Electron maps */
+    // TLatex Text_ElectronAMaps;
+    // Text_ElectronAMaps.SetTextAlign(22);
+    // Text_ElectronAMaps.SetTextSize(0.05);
+    // Text_ElectronAMaps.DrawLatexNDC(0.5, 0.5, "Electron maps");
+    // h1DCanvas->Update();
+    // h1DCanvas->Print(TLAMaps_OutFile);                     // Save the current canvas (histogram) to the PDF
+    // h1DCanvas->Print(RecoAMaps_OutFile);                   // Save the current canvas (histogram) to the PDF
+    // h1DCanvas->Print(AMapsRatio_OutFile);                  // Save the current canvas (histogram) to the PDF
+    // h1DCanvas->Print(Charged_particle_Sep_AMaps_OutFile);  // Save the current canvas (histogram) to the PDF
 
     for (int i = 0; i < ElectronMomSliceLimits.size(); i++) {
         truth_theta_e_VS_phi_e_BySlice.at(i).hDrawAndSave(SampleNameTemp, h1DCanvas, TLAMaps, TLAMaps_OutFile, true);
@@ -1719,16 +1719,16 @@ void AMaps::DrawAndSaveHitMaps(const string &SampleName, TCanvas *h1DCanvas, con
         filtered_reco_theta_e_VS_phi_e_BySlice.at(i).hDrawAndSave(SampleNameTemp, h1DCanvas, Charged_particle_Sep_AMaps, Charged_particle_Sep_AMaps_OutFile, true);
     }
 
-    /* Proton maps */
-    TLatex Text_ProtonAMaps;
-    Text_ProtonAMaps.SetTextAlign(22);
-    Text_ProtonAMaps.SetTextSize(0.05);
-    Text_ProtonAMaps.DrawLatexNDC(0.5, 0.5, "Proton maps");
-    h1DCanvas->Update();
-    h1DCanvas->Print(TLAMaps_OutFile);                     // Save the current canvas (histogram) to the PDF
-    h1DCanvas->Print(RecoAMaps_OutFile);                   // Save the current canvas (histogram) to the PDF
-    h1DCanvas->Print(AMapsRatio_OutFile);                  // Save the current canvas (histogram) to the PDF
-    h1DCanvas->Print(Charged_particle_Sep_AMaps_OutFile);  // Save the current canvas (histogram) to the PDF
+    // /* Proton maps */
+    // TLatex Text_ProtonAMaps;
+    // Text_ProtonAMaps.SetTextAlign(22);
+    // Text_ProtonAMaps.SetTextSize(0.05);
+    // Text_ProtonAMaps.DrawLatexNDC(0.5, 0.5, "Proton maps");
+    // h1DCanvas->Update();
+    // h1DCanvas->Print(TLAMaps_OutFile);                     // Save the current canvas (histogram) to the PDF
+    // h1DCanvas->Print(RecoAMaps_OutFile);                   // Save the current canvas (histogram) to the PDF
+    // h1DCanvas->Print(AMapsRatio_OutFile);                  // Save the current canvas (histogram) to the PDF
+    // h1DCanvas->Print(Charged_particle_Sep_AMaps_OutFile);  // Save the current canvas (histogram) to the PDF
 
     for (int i = 0; i < NucleonMomSliceLimits.size(); i++) {
         truth_theta_p_VS_phi_p_BySlice.at(i).hDrawAndSave(SampleNameTemp, h1DCanvas, TLAMaps, TLAMaps_OutFile, true);
@@ -1737,16 +1737,16 @@ void AMaps::DrawAndSaveHitMaps(const string &SampleName, TCanvas *h1DCanvas, con
         filtered_reco_theta_p_VS_phi_p_BySlice.at(i).hDrawAndSave(SampleNameTemp, h1DCanvas, Charged_particle_Sep_AMaps, Charged_particle_Sep_AMaps_OutFile, true);
     }
 
-    /* Neutron maps (by momentum slice) */
-    TLatex Text_filtered_reco_theta_n_VS_phi_n_BySlice;
-    Text_filtered_reco_theta_n_VS_phi_n_BySlice.SetTextAlign(22);
-    Text_filtered_reco_theta_n_VS_phi_n_BySlice.SetTextSize(0.05);
-    Text_filtered_reco_theta_n_VS_phi_n_BySlice.DrawLatexNDC(0.5, 0.5, "Neutron maps (by momentum slice)");
-    h1DCanvas->Update();
-    h1DCanvas->Print(TLAMaps_OutFile);                     // Save the current canvas (histogram) to the PDF
-    h1DCanvas->Print(RecoAMaps_OutFile);                   // Save the current canvas (histogram) to the PDF
-    h1DCanvas->Print(AMapsRatio_OutFile);                  // Save the current canvas (histogram) to the PDF
-    h1DCanvas->Print(Charged_particle_Sep_AMaps_OutFile);  // Save the current canvas (histogram) to the PDF
+    // /* Neutron maps (by momentum slice) */
+    // TLatex Text_filtered_reco_theta_n_VS_phi_n_BySlice;
+    // Text_filtered_reco_theta_n_VS_phi_n_BySlice.SetTextAlign(22);
+    // Text_filtered_reco_theta_n_VS_phi_n_BySlice.SetTextSize(0.05);
+    // Text_filtered_reco_theta_n_VS_phi_n_BySlice.DrawLatexNDC(0.5, 0.5, "Neutron maps (by momentum slice)");
+    // h1DCanvas->Update();
+    // h1DCanvas->Print(TLAMaps_OutFile);                     // Save the current canvas (histogram) to the PDF
+    // h1DCanvas->Print(RecoAMaps_OutFile);                   // Save the current canvas (histogram) to the PDF
+    // h1DCanvas->Print(AMapsRatio_OutFile);                  // Save the current canvas (histogram) to the PDF
+    // h1DCanvas->Print(Charged_particle_Sep_AMaps_OutFile);  // Save the current canvas (histogram) to the PDF
 
     for (int i = 0; i < NucleonMomSliceLimits.size(); i++) {
         truth_theta_n_VS_phi_n_BySlice.at(i).hDrawAndSave(SampleNameTemp, h1DCanvas, TLAMaps, TLAMaps_OutFile, true);
@@ -1755,39 +1755,39 @@ void AMaps::DrawAndSaveHitMaps(const string &SampleName, TCanvas *h1DCanvas, con
         filtered_reco_theta_n_VS_phi_n_BySlice.at(i).hDrawAndSave(SampleNameTemp, h1DCanvas, Charged_particle_Sep_AMaps, Charged_particle_Sep_AMaps_OutFile, true);
     }
 
-    /* Neutron maps */
-    TLatex Text_NeutronAMaps;
-    Text_NeutronAMaps.SetTextAlign(22);
-    Text_NeutronAMaps.SetTextSize(0.05);
-    Text_NeutronAMaps.DrawLatexNDC(0.5, 0.5, "Neutron maps");
-    h1DCanvas->Update();
-    h1DCanvas->Print(TLAMaps_OutFile);     // Save the current canvas (histogram) to the PDF
-    h1DCanvas->Print(RecoAMaps_OutFile);   // Save the current canvas (histogram) to the PDF
-    h1DCanvas->Print(AMapsRatio_OutFile);  // Save the current canvas (histogram) to the PDF
+    // /* Neutron maps */
+    // TLatex Text_NeutronAMaps;
+    // Text_NeutronAMaps.SetTextAlign(22);
+    // Text_NeutronAMaps.SetTextSize(0.05);
+    // Text_NeutronAMaps.DrawLatexNDC(0.5, 0.5, "Neutron maps");
+    // h1DCanvas->Update();
+    // h1DCanvas->Print(TLAMaps_OutFile);     // Save the current canvas (histogram) to the PDF
+    // h1DCanvas->Print(RecoAMaps_OutFile);   // Save the current canvas (histogram) to the PDF
+    // h1DCanvas->Print(AMapsRatio_OutFile);  // Save the current canvas (histogram) to the PDF
 
     truth_theta_n_VS_phi_n.hDrawAndSave(SampleNameTemp, h1DCanvas, TLAMaps, TLAMaps_OutFile, true);
     reco_theta_n_VS_phi_n.hDrawAndSave(SampleNameTemp, h1DCanvas, RecoAMaps, RecoAMaps_OutFile, true);
     acceptance_eff_n.hDrawAndSave(SampleNameTemp, h1DCanvas, AMapsRatio, AMapsRatio_OutFile, true);
 
-    /* Finalized acceptance maps */
-    TLatex Text_FinalizedAMaps;
-    Text_FinalizedAMaps.SetTextAlign(22);
-    Text_FinalizedAMaps.SetTextSize(0.05);
-    Text_FinalizedAMaps.DrawLatexNDC(0.5, 0.5, "Finalized acceptance maps");
-    h1DCanvas->Update();
-    h1DCanvas->Print(AcceptanceMaps_OutFile);  // Save the current canvas (histogram) to the PDF
+    // /* Finalized acceptance maps */
+    // TLatex Text_FinalizedAMaps;
+    // Text_FinalizedAMaps.SetTextAlign(22);
+    // Text_FinalizedAMaps.SetTextSize(0.05);
+    // Text_FinalizedAMaps.DrawLatexNDC(0.5, 0.5, "Finalized acceptance maps");
+    // h1DCanvas->Update();
+    // h1DCanvas->Print(AcceptanceMaps_OutFile);  // Save the current canvas (histogram) to the PDF
 
     filtered_reco_theta_e_VS_phi_e.hDrawAndSave(SampleNameTemp, h1DCanvas, AcceptanceMaps, AcceptanceMaps_OutFile, true);
     filtered_reco_theta_p_VS_phi_p.hDrawAndSave(SampleNameTemp, h1DCanvas, AcceptanceMaps, AcceptanceMaps_OutFile, true);
     filtered_reco_theta_n_VS_phi_n.hDrawAndSave(SampleNameTemp, h1DCanvas, AcceptanceMaps, AcceptanceMaps_OutFile, true);
     filtered_reco_theta_nuc_VS_phi_nuc.hDrawAndSave(SampleNameTemp, h1DCanvas, AcceptanceMaps, AcceptanceMaps_OutFile, true);
 
-    h1DCanvas->Print(Form("%s]", AcceptanceMapsBC_OutFile));            // Close the PDF file
-    h1DCanvas->Print(Form("%s]", TLAMaps_OutFile));                     // Close the PDF file
-    h1DCanvas->Print(Form("%s]", RecoAMaps_OutFile));                   // Close the PDF file
-    h1DCanvas->Print(Form("%s]", AMapsRatio_OutFile));                  // Close the PDF file
-    h1DCanvas->Print(Form("%s]", Charged_particle_Sep_AMaps_OutFile));  // Close the PDF file
-    h1DCanvas->Print(Form("%s]", AcceptanceMaps_OutFile));              // Close the PDF file
+    // h1DCanvas->Print(Form("%s]", AcceptanceMapsBC_OutFile));            // Close the PDF file
+    // h1DCanvas->Print(Form("%s]", TLAMaps_OutFile));                     // Close the PDF file
+    // h1DCanvas->Print(Form("%s]", RecoAMaps_OutFile));                   // Close the PDF file
+    // h1DCanvas->Print(Form("%s]", AMapsRatio_OutFile));                  // Close the PDF file
+    // h1DCanvas->Print(Form("%s]", Charged_particle_Sep_AMaps_OutFile));  // Close the PDF file
+    // h1DCanvas->Print(Form("%s]", AcceptanceMaps_OutFile));              // Close the PDF file
 
 
 
