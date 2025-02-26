@@ -36,7 +36,7 @@ void nFD_eff_test() {
     // int Limiter = 10000; // 1 file
 
     // string OutFolderName = "nFD_eff_test_reg";
-    string OutFolderName = "nFD_eff_test_v3_WithPCALnVeto_pdftest_r100";
+    string OutFolderName = "nFD_eff_test_v3_WithPCALnVeto_pdftest2_r100";
 
     const string OutputDir = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName;
     system(("rm -rf " + OutputDir).c_str());
@@ -488,6 +488,8 @@ void nFD_eff_test() {
                  "P^{reco}_{nFD} vs. #Delta#phi^{reco}_{nFD,e} in 1e cut (ECALveto);#Delta#phi^{reco}_{nFD,e} = |#phi^{reco}_{nFD} - #phi^{reco}_{e}| [#circ];P^{reco}_{nFD} [GeV/c]", 100,
                  -180., 180., 100, 0., Ebeam * 3.);
     HistoList.push_back(h_reco_P_nFD_VS_reco_phi_nFD_minus_reco_phi_e_ECALveto_1e_cut);
+    TH1D* h_v_dist_ECALveto_1e_cut = new TH1D("v_dist_ECALveto_1e_cut", "v_dist in 1e cut (ECALveto);v_dist [cm];Counts", 50, -500., 500.);
+    HistoList.push_back(h_v_dist_ECALveto_1e_cut);
 
 #pragma endregion
 
@@ -706,6 +708,8 @@ void nFD_eff_test() {
                  "P^{reco}_{nFD} vs. #Delta#phi^{reco}_{nFD,e} in 1e cut (matched);#Delta#phi^{reco}_{nFD,e} = |#phi^{reco}_{nFD} - #phi^{reco}_{e}| [#circ];P^{reco}_{nFD} [GeV/c]", 100,
                  -180., 180., 100, 0., Ebeam * 3.);
     HistoList.push_back(h_reco_P_nFD_VS_reco_phi_nFD_minus_reco_phi_e_matched_1e_cut);
+    TH1D* h_v_dist_matched_1e_cut = new TH1D("v_dist_matched_1e_cut", "v_dist in 1e cut (matched);v_dist [cm];Counts", 50, -500., 500.);
+    HistoList.push_back(h_v_dist_matched_1e_cut);
 
 #pragma endregion
 
@@ -1242,6 +1246,23 @@ void nFD_eff_test() {
                                                                                                        reco_P_nFD.Theta() * 180 / M_PI - reco_P_e.Theta() * 180 / M_PI, weight);
             h_reco_P_nFD_VS_reco_theta_nFD_minus_reco_theta_e_ECALveto_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI - reco_P_e.Theta() * 180 / M_PI, reco_P_nFD.Mag(), weight);
             h_reco_P_nFD_VS_reco_phi_nFD_minus_reco_phi_e_ECALveto_1e_cut->Fill(CalcdPhi(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI), reco_P_nFD.Mag(), weight);
+
+            TVector3 v_nhit(neutrons_FD_ECALveto[i]->cal(detlayer)->getX(), neutrons_FD_ECALveto[i]->cal(detlayer)->getY(), neutrons_FD_ECALveto[i]->cal(detlayer)->getZ());
+
+            for (int j = 0; j < allParticles.size(); j++) {
+                if (allParticles[j]->par()->getCharge() == 0) {
+                    bool neutral_hit_PCAL = (allParticles[j]->cal(clas12::PCAL)->getDetector() == 7);
+
+                    TVector3 v_neutral_hit;  // v_neutral_hit = location of neutral particle hit
+
+                    if (neutral_hit_PCAL && (allParticles[j]->cal(clas12::PCAL)->getZ() != 0)) {
+                        v_neutral_hit.SetXYZ(allParticles[j]->cal(clas12::PCAL)->getX(), allParticles[j]->cal(clas12::PCAL)->getY(), allParticles[j]->cal(clas12::PCAL)->getZ());
+                        TVector3 v_dist = v_nhit - v_neutral_hit;
+
+                        h_v_dist_ECALveto_1e_cut->Fill(v_dist.Mag(), weight);
+                    }
+                }
+            }
         }
 
         if (neutrons_FD_ECALveto.size() != 0) { h_reco_nFD_multi_ECALveto_1e_cut->Fill(neutrons_FD_ECALveto.size(), weight); }
@@ -1418,6 +1439,23 @@ void nFD_eff_test() {
                                                                                                       reco_P_nFD.Theta() * 180 / M_PI - reco_P_e.Theta() * 180 / M_PI, weight);
             h_reco_P_nFD_VS_reco_theta_nFD_minus_reco_theta_e_matched_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI - reco_P_e.Theta() * 180 / M_PI, reco_P_nFD.Mag(), weight);
             h_reco_P_nFD_VS_reco_phi_nFD_minus_reco_phi_e_matched_1e_cut->Fill(CalcdPhi(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI), reco_P_nFD.Mag(), weight);
+
+            TVector3 v_nhit(neutrons_FD_matched[i]->cal(detlayer)->getX(), neutrons_FD_matched[i]->cal(detlayer)->getY(), neutrons_FD_matched[i]->cal(detlayer)->getZ());
+
+            for (int j = 0; j < allParticles.size(); j++) {
+                if (allParticles[j]->par()->getCharge() == 0) {
+                    bool neutral_hit_PCAL = (allParticles[j]->cal(clas12::PCAL)->getDetector() == 7);
+
+                    TVector3 v_neutral_hit;  // v_neutral_hit = location of neutral particle hit
+
+                    if (neutral_hit_PCAL && (allParticles[j]->cal(clas12::PCAL)->getZ() != 0)) {
+                        v_neutral_hit.SetXYZ(allParticles[j]->cal(clas12::PCAL)->getX(), allParticles[j]->cal(clas12::PCAL)->getY(), allParticles[j]->cal(clas12::PCAL)->getZ());
+                        TVector3 v_dist = v_nhit - v_neutral_hit;
+
+                        h_v_dist_matched_1e_cut->Fill(v_dist.Mag(), weight);
+                    }
+                }
+            }
         }
 
         if (neutrons_FD_matched.size() != 0) { h_reco_nFD_multi_matched_1e_cut->Fill(neutrons_FD_matched.size(), weight); }
