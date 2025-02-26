@@ -488,7 +488,7 @@ void nFD_eff_test() {
                  "P^{reco}_{nFD} vs. #Delta#phi^{reco}_{nFD,e} in 1e cut (ECALveto);#Delta#phi^{reco}_{nFD,e} = |#phi^{reco}_{nFD} - #phi^{reco}_{e}| [#circ];P^{reco}_{nFD} [GeV/c]", 100,
                  -180., 180., 100, 0., Ebeam * 3.);
     HistoList.push_back(h_reco_P_nFD_VS_reco_phi_nFD_minus_reco_phi_e_ECALveto_1e_cut);
-    TH1D* h_v_dist_ECALveto_1e_cut = new TH1D("v_dist_ECALveto_1e_cut", "v_dist in 1e cut (ECALveto);v_dist [cm];Counts", 50, -500., 500.);
+    TH1D* h_v_dist_ECALveto_1e_cut = new TH1D("v_dist_ECALveto_1e_cut", "v_dist in 1e cut (ECALveto);v_dist [cm];Counts", 50, 0., 1000.);
     HistoList.push_back(h_v_dist_ECALveto_1e_cut);
 
 #pragma endregion
@@ -708,7 +708,7 @@ void nFD_eff_test() {
                  "P^{reco}_{nFD} vs. #Delta#phi^{reco}_{nFD,e} in 1e cut (matched);#Delta#phi^{reco}_{nFD,e} = |#phi^{reco}_{nFD} - #phi^{reco}_{e}| [#circ];P^{reco}_{nFD} [GeV/c]", 100,
                  -180., 180., 100, 0., Ebeam * 3.);
     HistoList.push_back(h_reco_P_nFD_VS_reco_phi_nFD_minus_reco_phi_e_matched_1e_cut);
-    TH1D* h_v_dist_matched_1e_cut = new TH1D("v_dist_matched_1e_cut", "v_dist in 1e cut (matched);v_dist [cm];Counts", 50, -500., 500.);
+    TH1D* h_v_dist_matched_1e_cut = new TH1D("v_dist_matched_1e_cut", "v_dist in 1e cut (matched);v_dist [cm];Counts", 50, 0., 1000.);
     HistoList.push_back(h_v_dist_matched_1e_cut);
 
 #pragma endregion
@@ -1523,11 +1523,6 @@ void nFD_eff_test() {
     // TCanvas* myCanvas_electron_cuts = new TCanvas("myPage_electron_cuts", "myPage_electron_cuts", pixelx, pixely);
     TCanvas* myCanvas_electron_cuts = new TCanvas("myPage_electron_cuts", "myPage_electron_cuts", pixelx, pixely);
 
-
-    cout << "\n\n\ntest 1\n\n\n";
-
-
-
     string electron_cuts_PDF_fileName = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/electron_cuts.pdf";
     char fileName_electron_cuts[electron_cuts_PDF_fileName.length()];
     sprintf(fileName_electron_cuts, "%s[", electron_cuts_PDF_fileName.c_str());
@@ -1548,10 +1543,6 @@ void nFD_eff_test() {
     }
     myText->Print(fileName_electron_cuts, "pdf");
     myText->Clear();
-
-
-    cout << "\n\n\ntest 2\n\n\n";
-
 
     for (int i = 0; i < HistoList_electron_cuts.size(); i++) {
         for (int j = 0; j < HistSubjects.size(); j++) {
@@ -1603,18 +1594,8 @@ void nFD_eff_test() {
         myCanvas_electron_cuts->Clear();
     }
 
-
-    cout << "\n\n\ntest 3\n\n\n";
-
-
-
     sprintf(fileName_electron_cuts, "%s]", electron_cuts_PDF_fileName.c_str());
     myCanvas_electron_cuts->Print(fileName_electron_cuts, "pdf");
-
-
-    cout << "\n\n\ntest 4\n\n\n";
-
-
 
 #pragma endregion
 
