@@ -35,10 +35,9 @@ void nFD_eff_test() {
     // int Limiter = 100000;  // 10 files
     // int Limiter = 10000; // 1 file
 
-    // string OutFolderName = "nFD_eff_test_reg";
-    string OutFolderName = "nFD_eff_test_v3_NoPCALnVeto_rc100";
+    string OutFolderName = "nFD_eff_test_v3_wPCALnVeto_rc100_rn100";
+    // string OutFolderName = "nFD_eff_test_v3_NoPCALnVeto_rc100";
     // string OutFolderName = "nFD_eff_test_v3_NoECALveto";
-    // string OutFolderName = "nFD_eff_test_v3_WithPCALnVeto_pdftest2_r100";
 
     const string OutputDir = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName;
     system(("rm -rf " + OutputDir).c_str());
