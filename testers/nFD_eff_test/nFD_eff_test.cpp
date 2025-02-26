@@ -35,7 +35,8 @@ void nFD_eff_test() {
     // int Limiter = 100000;  // 10 files
     // int Limiter = 10000; // 1 file
 
-    string OutFolderName = "nFD_eff_test_v3_wPCALnVeto_rc200_rn200";
+    string OutFolderName = "nFD_eff_test_v3_wPCALnVeto_rc200_rn200_constrainedE";
+    // string OutFolderName = "nFD_eff_test_v3_wPCALnVeto_rc200_rn200";
     // string OutFolderName = "nFD_eff_test_v3_wPCALnVeto_rc100_rn200";
     // string OutFolderName = "nFD_eff_test_v3_wPCALnVeto_rc200_rn100";
     // string OutFolderName = "nFD_eff_test_v3_wPCALnVeto_rc100_rn100";
@@ -865,7 +866,9 @@ void nFD_eff_test() {
         if (bad_SF_CutCond) { continue; }
         if (bad_PCAL_edge_CutCond) { continue; }
         if (bad_diag_CutCond) { continue; }
-        // if (reco_P_e.Mag() < Ebeam - 0.2 || reco_P_e.Mag() > Ebeam + 0.2) { continue; }
+
+        if (reco_P_e.Mag() < Ebeam - 0.2 || reco_P_e.Mag() > Ebeam + 0.2) { continue; }
+        if (fabs((reco_P_e.Theta() * 180 / M_PI) - 25.) > 3.) { continue; }
 
         h_reco_P_e_1e_cut->Fill(reco_P_e.Mag(), weight);
         h_reco_theta_e_1e_cut->Fill(reco_P_e.Theta() * 180 / M_PI, weight);
