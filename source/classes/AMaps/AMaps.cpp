@@ -292,7 +292,7 @@ AMaps::AMaps(const string &SampleName, const string &P_e_bin_profile, const stri
             hPlot2D(AMapsMode_TitleAddition, "", hStatsTitleRecoToTLRatioNeutron, hTitleRecoToTLRatioNeutron, "#phi_{n} [#circ]", "#theta_{n} [#circ]", AMapSavePathRecoToTLNeutron,
                     hSaveNameRecoToTLRatioNeutron, hBinLowerXLim, hBinUpperXLim, hBinLowerYLim, hBinUpperYLim, HistNucSliceNumOfXBins, HistNucSliceNumOfYBins);
         acceptance_eff_n_BySlice.push_back(hPBinRecoToTLRatioNeutron);
-        reco_n_BySlice.push_back(acc_eff_n_BySlice.GetHistogram2D());
+        acc_eff_n_BySlice.push_back(hPBinRecoToTLRatioNeutron.GetHistogram2D());
         //</editor-fold>
 
         //<editor-fold desc="Neutron separate AMaps">
