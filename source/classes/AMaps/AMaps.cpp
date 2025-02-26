@@ -1603,7 +1603,7 @@ void AMaps::DrawAndSaveHitMapsPDFs(vector<TH1 *> HistoList, const string &PDFfil
 
     char fileName[PDFfileName.length()];
     sprintf(fileName, "%s[", PDFfileName.c_str());
-    myText->SaveAs(fileName);
+    // myText->SaveAs(fileName);
     sprintf(fileName, "%s", PDFfileName.c_str());
 
     for (int i = 0; i < HistoList.size(); i++) {
@@ -1791,10 +1791,10 @@ void AMaps::DrawAndSaveHitMaps(const string &SampleName, TCanvas *h1DCanvas, con
 
 
 
-    DrawAndSaveHitMapsPDFs(truth_theta_n_VS_phi_n_BySlice, TLAMaps_OutFile0);
-    DrawAndSaveHitMapsPDFs(reco_theta_n_VS_phi_n_BySlice, RecoAMaps_OutFile0);
-    DrawAndSaveHitMapsPDFs(acceptance_eff_n_BySlice, AMapsRatio_OutFile0);
-    DrawAndSaveHitMapsPDFs(filtered_reco_theta_n_VS_phi_n_BySlice, Charged_particle_Sep_AMaps_OutFile0);
+    DrawAndSaveHitMapsPDFs(truth_n_BySlice, TLAMaps_OutFile0);
+    DrawAndSaveHitMapsPDFs(reco_n_BySlice, RecoAMaps_OutFile0);
+    DrawAndSaveHitMapsPDFs(acc_eff_n_BySlice, AMapsRatio_OutFile0);
+    DrawAndSaveHitMapsPDFs(filtered_reco_n_BySlice, Charged_particle_Sep_AMaps_OutFile0);
 
 
 
