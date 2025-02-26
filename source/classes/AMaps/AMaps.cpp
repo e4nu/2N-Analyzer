@@ -1622,12 +1622,15 @@ void AMaps::DrawAndSaveHitMapsPDFs(vector<TH1 *> HistoList, const string &PDFfil
         HistoList[i]->Draw("colz");
 
         gPad->SetRightMargin(0.23);
+        gPad->Modified();
+        gPad->Update();
 
         HistoList[i]->SetStats(1);
         gStyle->SetOptStat("ourmen");
 
         gStyle->SetStatX(0.98);
         gStyle->SetStatY(0.935);
+        gPad->Modified();
         gPad->Update();
 
         if (HistoList[i]->GetEntries() != 0) {
