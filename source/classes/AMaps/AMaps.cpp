@@ -1793,12 +1793,23 @@ void AMaps::DrawAndSaveHitMaps(const string &SampleName, TCanvas *h1DCanvas, con
     // h1DCanvas->Print(Form("%s]", Charged_particle_Sep_AMaps_OutFile));  // Close the PDF file
     // h1DCanvas->Print(Form("%s]", AcceptanceMaps_OutFile));              // Close the PDF file
 
-    DrawAndSaveHitMapsPDFs(truth_n_BySlice, TLAMaps_OutFile0);
-    DrawAndSaveHitMapsPDFs(reco_n_BySlice, RecoAMaps_OutFile0);
-    DrawAndSaveHitMapsPDFs(acc_eff_n_BySlice, AMapsRatio_OutFile0);
-    DrawAndSaveHitMapsPDFs(filtered_reco_n_BySlice, Charged_particle_Sep_AMaps_OutFile0);
+    DrawAndSaveHitMapsPDFs(truth_e_BySlice, truth_theta_e_VS_phi_e_BySlice[0].GetHistogram2DSaveNamePath() + "truth_theta_e_VS_phi_e_BySlice.pdf");
+    DrawAndSaveHitMapsPDFs(reco_e_BySlice, reco_theta_e_VS_phi_e_BySlice[0].GetHistogram2DSaveNamePath() + "reco_theta_e_VS_phi_e_BySlice.pdf");
+    DrawAndSaveHitMapsPDFs(acc_eff_e_BySlice, acceptance_eff_e_BySlice[0].GetHistogram2DSaveNamePath() + "acceptance_eff_e_BySlice.pdf");
+    DrawAndSaveHitMapsPDFs(filtered_reco_e_BySlice, filtered_reco_theta_e_VS_phi_e_BySlice[0].GetHistogram2DSaveNamePath() + "filtered_reco_theta_e_VS_phi_e_BySlice.pdf");
+
+    DrawAndSaveHitMapsPDFs(truth_p_BySlice, truth_theta_p_VS_phi_p_BySlice[0].GetHistogram2DSaveNamePath() + "truth_theta_p_VS_phi_p_BySlice.pdf");
+    DrawAndSaveHitMapsPDFs(reco_p_BySlice, reco_theta_p_VS_phi_p_BySlice[0].GetHistogram2DSaveNamePath() + "reco_theta_p_VS_phi_p_BySlice.pdf");
+    DrawAndSaveHitMapsPDFs(acc_eff_p_BySlice, acceptance_eff_p_BySlice[0].GetHistogram2DSaveNamePath() + "acceptance_eff_p_BySlice.pdf");
+    DrawAndSaveHitMapsPDFs(filtered_reco_p_BySlice, filtered_reco_theta_p_VS_phi_p_BySlice[0].GetHistogram2DSaveNamePath() + "filtered_reco_theta_p_VS_phi_p_BySlice.pdf");
+
+    DrawAndSaveHitMapsPDFs(truth_n_BySlice, truth_theta_n_VS_phi_n_BySlice[0].GetHistogram2DSaveNamePath() + "truth_theta_n_VS_phi_n_BySlice.pdf");
+    DrawAndSaveHitMapsPDFs(reco_n_BySlice, reco_theta_n_VS_phi_n_BySlice[0].GetHistogram2DSaveNamePath() + "reco_theta_n_VS_phi_n_BySlice.pdf");
+    DrawAndSaveHitMapsPDFs(acc_eff_n_BySlice, acceptance_eff_n_BySlice[0].GetHistogram2DSaveNamePath() + "acceptance_eff_n_BySlice.pdf");
+    DrawAndSaveHitMapsPDFs(filtered_reco_n_BySlice, filtered_reco_theta_n_VS_phi_n_BySlice[0].GetHistogram2DSaveNamePath() + "filtered_reco_theta_n_VS_phi_n_BySlice.pdf");
 
     //<editor-fold desc="Save TL Acceptance maps to plots directory">
+    cout << "\n\nAcceptance maps to plots directory...";
     /* Acceptance maps BC */
     TFile *AMapsBC_plots_path_fout = new TFile((AMapSavePath + "/" + AMapsBC_prefix + SampleName + ".root").c_str(), "recreate");
     AMapsBC_plots_path_fout->cd();
@@ -1842,7 +1853,11 @@ void AMaps::DrawAndSaveHitMaps(const string &SampleName, TCanvas *h1DCanvas, con
     AMaps_plots_path_fout->Close();
     //</editor-fold>
 
+    cout << "done!\n";
+
     //<editor-fold desc="Save TL Acceptance maps to reference Acceptance maps directory">
+    cout << "\n\nAcceptance maps to reference Acceptance maps directory...";
+
     /* Acceptance maps BC */
     TFile *AMapsBC_ref_AMaps_fout = new TFile((AcceptanceMapsDirectory + SampleName + "/" + AMapsBC_prefix + SampleName + ".root").c_str(), "recreate");
     AMapsBC_ref_AMaps_fout->cd();
@@ -1891,6 +1906,8 @@ void AMaps::DrawAndSaveHitMaps(const string &SampleName, TCanvas *h1DCanvas, con
     AMaps_ref_AMaps_fout->Close();
     system(("cp " + AMapSavePath + "/" + AMaps_prefix + SampleName + ".root" + " " + AMapCopySavePath).c_str());
     //</editor-fold>
+
+    cout << "done!\n";
 }
 //</editor-fold>
 
