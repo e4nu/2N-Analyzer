@@ -38,7 +38,8 @@ void nFD_eff_test() {
     // string OutFolderName = "nFD_eff_test_v3_wPCALnVeto_rc200_rn200_constrainedE";
     // string OutFolderName = "nFD_eff_test_v3_wPCALnVeto_rc100_rn200_constrainedE";
     // string OutFolderName = "nFD_eff_test_v3_wPCALnVeto_rc200_rn100_constrainedE";
-    string OutFolderName = "nFD_eff_test_v3_wPCALnVeto_rc100_rn100_constrainedE";
+    // string OutFolderName = "nFD_eff_test_v3_wPCALnVeto_rc100_rn100_constrainedE";
+    string OutFolderName = "nFD_eff_test_v3_NoPCALnVeto_rc100_constrainedE";
     // string OutFolderName = "nFD_eff_test_v3_wPCALnVeto_rc200_rn200";
     // string OutFolderName = "nFD_eff_test_v3_wPCALnVeto_rc100_rn200";
     // string OutFolderName = "nFD_eff_test_v3_wPCALnVeto_rc200_rn100";
