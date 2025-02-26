@@ -1617,7 +1617,7 @@ void AMaps::DrawAndSaveHitMapsPDFs(vector<TH1 *> HistoList, const string &PDFfil
 
         HistoList[i]->Draw("colz");
 
-        // HistoList[i]->SetStats(1);
+        HistoList[i]->SetStats(1);
         gStyle->SetOptStat("ourmen");
         gStyle->SetStatX(0.87);
         gStyle->SetStatY(0.875);
