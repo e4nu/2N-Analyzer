@@ -11,10 +11,10 @@ void nFD_eff_test() {
 
     bool Is2GeV = false, Is4GeV = false, Is6GeV = false;
 
-    double Ebeam = 2.07052;
-    Is2GeV = true;
-    // double Ebeam = 4.02962;
-    // Is4GeV = true;
+    // double Ebeam = 2.07052;
+    // Is2GeV = true;
+    double Ebeam = 4.02962;
+    Is4GeV = true;
     // double Ebeam = 5.98636;
     // Is6GeV = true;
 
@@ -41,7 +41,7 @@ void nFD_eff_test() {
     // int Limiter = 10000; // 1 file
 
     // string OutFolderName = "nFD_eff_test_v4_wPCALnVeto_rc100_rn200";
-    string OutFolderName = "nFD_eff_test_v5_AMaps_ConstPn_NoPCALnVeto_2GeV";
+    string OutFolderName = "nFD_eff_test_v5_AMaps_ConstPn_NoPCALnVeto_4GeV";
 
     const string OutputDir = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName;
     system(("rm -rf " + OutputDir).c_str());
