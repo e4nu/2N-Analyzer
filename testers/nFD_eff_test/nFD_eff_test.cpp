@@ -11,22 +11,23 @@ void nFD_eff_test() {
 
     bool Is2GeV = false, Is4GeV = false, Is6GeV = false;
 
-    // double Ebeam = 2.07052;
-    // Is2GeV = true;
-    double Ebeam = 4.02962;
-    Is4GeV = true;
+    double Ebeam = 2.07052;
+    Is2GeV = true;
+    // double Ebeam = 4.02962;
+    // Is4GeV = true;
     // double Ebeam = 5.98636;
     // Is6GeV = true;
 
     bool ConstrainTLmom = false;
     bool ConstrainedE = false;
 
-    bool apply_PCAL_veto = false;
-    bool apply_ECAL_veto = false;
+    bool apply_PCAL_veto = true;
+    bool apply_ECAL_veto = true;
 
     double ECALvetoCut = 100.;
 
     double P_upperLim;
+
     if (ConstrainTLmom) {
         P_upperLim = Ebeam * 0.5;
     } else {
@@ -40,7 +41,7 @@ void nFD_eff_test() {
     // int Limiter = 10000; // 1 file
 
     // string OutFolderName = "nFD_eff_test_v4_wPCALnVeto_rc100_rn200";
-    string OutFolderName = "nFD_eff_test_v4_NoECALVeto";
+    string OutFolderName = "nFD_eff_test_v5_AMaps_ConstPn_NoPCALnVeto_2GeV";
 
     const string OutputDir = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName;
     system(("rm -rf " + OutputDir).c_str());
@@ -52,16 +53,16 @@ void nFD_eff_test() {
     string InputFiles, SampleName;
 
     if (Is2GeV) {
-        // InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/2070MeV_ConstPn/OutPut_en/reconhipo/*.hipo";
-        InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/2070MeV/OutPut_en/reconhipo/*.hipo";
+        InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/2070MeV_ConstPn/OutPut_en/reconhipo/*.hipo";
+        // InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/2070MeV/OutPut_en/reconhipo/*.hipo";
         SampleName = "Uniform_en_sample_2070MeV";
     } else if (Is4GeV) {
-        // InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/4029MeV_ConstPn/OutPut_en/reconhipo/*.hipo";
-        InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/4029MeV/OutPut_en/reconhipo/*.hipo";
+        InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/4029MeV_ConstPn/OutPut_en/reconhipo/*.hipo";
+        // InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/4029MeV/OutPut_en/reconhipo/*.hipo";
         SampleName = "Uniform_en_sample_4029MeV";
     } else if (Is6GeV) {
-        // InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/5986MeV_ConstPn/OutPut_en/reconhipo/*.hipo";
-        InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/5986MeV/OutPut_en/reconhipo/*.hipo";
+        InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/5986MeV_ConstPn/OutPut_en/reconhipo/*.hipo";
+        // InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/5986MeV/OutPut_en/reconhipo/*.hipo";
         SampleName = "Uniform_en_sample_5986MeV";
     }
 
@@ -932,8 +933,7 @@ void nFD_eff_test() {
                 h_truth_theta_n_VS_truth_phi_n_1e_cut->Fill(truth_P_n.Phi() * 180 / M_PI, truth_P_n.Theta() * 180 / M_PI, weight);
 
                 Truth_theta = truth_P_n.Theta() * 180 / M_PI;
-                // if (true) {
-                // if (truth_P_n.Theta() * 180 / M_PI <= 40.) {
+
                 if ((Truth_theta >= 5.) && (Truth_theta <= 35.)) {
                     if (truth_P_n.Mag() >= TL_IDed_Leading_nFD_momentum) {
                         TL_IDed_Leading_nFD_momentum = truth_P_n.Mag();
@@ -942,8 +942,6 @@ void nFD_eff_test() {
 
                     double truth_E_nFD = sqrt(m_n * m_n + truth_P_n.Mag2());
                     Truth_beta = truth_P_n.Mag() / truth_E_nFD;
-
-                    truth_NeutronsFD.push_back(i);
 
                     h_truth_P_nFD_clas12_1e_cut->Fill(truth_P_n.Mag(), weight);
                     h_truth_theta_nFD_clas12_1e_cut->Fill(truth_P_n.Theta() * 180 / M_PI, weight);
@@ -956,6 +954,8 @@ void nFD_eff_test() {
                     h_truth_theta_nFD_redef_VS_truth_phi_nFD_redef_1e_cut->Fill(truth_P_n.Phi() * 180 / M_PI, truth_P_n.Theta() * 180 / M_PI, weight);
 
                     if (PassMomth) {
+                        truth_NeutronsFD.push_back(i);
+
                         h_truth_P_nFD_ECALveto_1e_cut->Fill(truth_P_n.Mag(), weight);
                         h_truth_theta_nFD_ECALveto_1e_cut->Fill(truth_P_n.Theta() * 180 / M_PI, weight);
                         h_truth_phi_nFD_ECALveto_1e_cut->Fill(truth_P_n.Phi() * 180 / M_PI, weight);
@@ -984,28 +984,10 @@ void nFD_eff_test() {
             double Particle_TL_Theta = acos((mcpbank->getPz()) / RadCalc(mcpbank->getPx(), mcpbank->getPy(), mcpbank->getPz())) * 180.0 / pi;
             double Particle_TL_Phi = atan2(mcpbank->getPy(), mcpbank->getPx()) * 180.0 / pi;
 
-            // bool inFD = ((Particle_TL_Theta >= ThetaFD.GetLowerCut()) && (Particle_TL_Theta <= ThetaFD.GetUpperCut()));
-            // bool inCD = ((Particle_TL_Theta > ThetaCD.GetLowerCut()) && (Particle_TL_Theta <= ThetaCD.GetUpperCut()));
-
+            // bool PassMomth = true;
             bool PassMomth = (Particle_TL_Momentum >= 0.4);
 
-            if (PassMomth) {
-                // if id. TL leading neutron
-
-                // // Safety checks for TL neutrons (AMaps & WMaps)
-                // CodeDebugger.SafetyCheck_AMaps_Truth_neutrons(__FILE__, __LINE__, particlePDGtmp, inFD);
-
-                // TL_nFD_theta = Particle_TL_Theta;  // FOR nFD eff test!
-                // TL_nFD_phi = Particle_TL_Phi;      // FOR nFD eff test!
-
-                // hTL_P_nFD_AMaps.hFill(Particle_TL_Momentum, Weight);
-                // hTL_P_nFD_vs_TL_Theta_nFD_AMap.hFill(Particle_TL_Momentum, Particle_TL_Theta, Weight);
-                // hTL_P_nFD_vs_TL_Phi_nFD_AMap.hFill(Particle_TL_Momentum, Particle_TL_Phi, Weight);
-                // hTL_P_nFD_vs_TL_P_e_AMap.hFill(Particle_TL_Momentum, Electron_TL_Momentum, Weight);
-                // hTL_P_nFD_vs_TL_Theta_e_AMap.hFill(Particle_TL_Momentum, Electron_TL_Theta, Weight);
-                // hTL_P_nFD_vs_TL_Phi_e_AMap.hFill(Particle_TL_Momentum, Electron_TL_Phi, Weight);
-                aMaps_master.hFillHitMaps("TL", "Neutron", Particle_TL_Momentum, Particle_TL_Theta, Particle_TL_Phi, weight);
-            }  // end of if id. TL leading neutron
+            if (PassMomth) { aMaps_master.hFillHitMaps("TL", "Neutron", Particle_TL_Momentum, Particle_TL_Theta, Particle_TL_Phi, weight); }  // end of if id. TL leading neutron
         }
 #pragma endregion
 
@@ -1137,11 +1119,12 @@ void nFD_eff_test() {
                                 double Path_nFD = CalcPathnFD(allParticles[i], electrons[0]);
                                 double reco_ToF_nFD = CalcToFnFD(allParticles[i], starttime);
 
+                                // bool PassMomth = true;
                                 bool PassMomth = (Momentum >= 0.4);
                                 bool passECALeadgeCuts = (allParticles[i]->cal(Neutron_ECAL_detlayer)->getLv() > 14. && allParticles[i]->cal(Neutron_ECAL_detlayer)->getLw() > 14.);
                                 bool passVeto = NeutronECAL_Cut_Veto(allParticles, electrons, Ebeam, i, ECALvetoCut);
 
-                                if (PassMomth && passECALeadgeCuts && (!apply_ECAL_veto || (!apply_ECAL_veto || passVeto)) && true) {
+                                if (PassMomth && passECALeadgeCuts && (!apply_ECAL_veto || passVeto) && true) {
                                     if (Momentum >= P_max) {
                                         P_max = Momentum;
                                         NeutronsFD_ind_mom_max = i;
@@ -1159,6 +1142,7 @@ void nFD_eff_test() {
                         double Path_nFD = CalcPathnFD(allParticles[i], electrons[0]);
                         double reco_ToF_nFD = CalcToFnFD(allParticles[i], starttime);
 
+                        // bool PassMomth = true;
                         bool PassMomth = (Momentum >= 0.4);
                         bool passECALeadgeCuts = (allParticles[i]->cal(Neutron_ECAL_detlayer)->getLv() > 14. && allParticles[i]->cal(Neutron_ECAL_detlayer)->getLw() > 14.);
 
@@ -1182,6 +1166,7 @@ void nFD_eff_test() {
             double Theta_neut_1e_cut = allParticles[NeutronsFD_ind_mom_max]->getTheta() * 180.0 / pi;
             double Phi_neut_1e_cut = allParticles[NeutronsFD_ind_mom_max]->getPhi() * 180.0 / pi;
 
+            // bool PassMomth = true;
             bool PassMomth = (Mom_neut_1e_cut >= 0.4);
 
             if (PassMomth && NeutronPassVeto_1e_cut)  // FOR nFD eff test!
@@ -1346,6 +1331,7 @@ void nFD_eff_test() {
                             if (ParticleInECIN || ParticleInECOUT) {
                                 double Momentum = CalcPnFD(allParticles[i], electrons[0], starttime);
 
+                                // bool PassMomth = true;
                                 bool PassMomth = (Momentum >= 0.4);
                                 bool passECALeadgeCuts = (allParticles[i]->cal(Neutron_ECAL_detlayer)->getLv() > 14. && allParticles[i]->cal(Neutron_ECAL_detlayer)->getLw() > 14.);
                                 bool passVeto = NeutronECAL_Cut_Veto(allParticles, electrons, Ebeam, i, ECALvetoCut);
@@ -1384,6 +1370,7 @@ void nFD_eff_test() {
                     if (pid_temp == 2112) {
                         double Momentum = CalcPnFD(allParticles[i], electrons[0], starttime);
 
+                        // bool PassMomth = true;
                         bool PassMomth = (Momentum >= 0.4);
                         bool passECALeadgeCuts = (allParticles[i]->cal(Neutron_ECAL_detlayer)->getLv() > 14. && allParticles[i]->cal(Neutron_ECAL_detlayer)->getLw() > 14.);
 
