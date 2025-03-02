@@ -872,6 +872,8 @@ void nFD_eff_test() {
             auto Truth_theta_temp = mcpbank->getTheta();
             auto Truth_phi_temp = mcpbank->getPhi();
 
+            cout << "\n\nTruth_theta_temp = " << Truth_theta_temp << "\n\n";
+
             if (pid_temp == 11) {
                 Truth_theta_e = Truth_theta_temp, Truth_phi_e = Truth_phi_temp;
             } else if (pid_temp == 2112) {
@@ -934,7 +936,7 @@ void nFD_eff_test() {
         if (bad_diag_CutCond) { continue; }
 
         if (ConstrainedE && (reco_P_e.Mag() < Ebeam - 0.2 || reco_P_e.Mag() > Ebeam + 0.2)) { continue; }
-        // if (ConstrainedE && (fabs((reco_P_e.Theta() * 180 / M_PI) - Truth_theta_e) > 2.)) { continue; }
+        if (ConstrainedE && (fabs((reco_P_e.Theta() * 180 / M_PI) - Truth_theta_e) > 2.)) { continue; }
         // if (ConstrainedE && (fabs((reco_P_e.Theta() * 180 / M_PI) - 25.) > 2.)) { continue; }
         // if (ConstrainedE && (fabs((reco_P_e.Phi() * 180 / M_PI) - Truth_phi_e) > 5.)) { continue; }
         // if (ConstrainedE && (fabs(getPhi_e(TString(InputFiles), Truth_phi_nFD) - reco_P_e.Phi() * 180 / M_PI) > 5.)) { continue; }
