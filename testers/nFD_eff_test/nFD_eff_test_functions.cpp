@@ -218,11 +218,11 @@ double getPhi_e(TString OutPutFolder, double phi_N) {
 
     string OutPutFolder0(OutPutFolder.Data());
 
-    if (findSubstring(OutPutFolder0, "2070MeV")) {
+    if (FindSubstring(OutPutFolder0, "2070MeV")) {
         phi_e_offset = 16.;
-    } else if (findSubstring(OutPutFolder0, "4029MeV")) {
+    } else if (FindSubstring(OutPutFolder0, "4029MeV")) {
         phi_e_offset = 7.;
-    } else if (findSubstring(OutPutFolder0, "5986MeV")) {
+    } else if (FindSubstring(OutPutFolder0, "5986MeV")) {
         phi_e_offset = 5.;
     }
 
