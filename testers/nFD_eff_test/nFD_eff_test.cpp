@@ -32,6 +32,9 @@ void nFD_eff_test() {
             double Ebeam = Ebeam_v.at(j);
             bool Is2GeV = Ebeam_bool_v.at(j).at(0), Is4GeV = Ebeam_bool_v.at(j).at(1), Is6GeV = Ebeam_bool_v.at(j).at(2);
 
+
+            cout << "\n\nTEST 11\n\n";
+
             //
 
             bool ConstrainTLmom = false;
@@ -50,6 +53,8 @@ void nFD_eff_test() {
             double rn_factor = 1.;
 
             bool ConstrainedE = true;
+
+            cout << "\n\nTEST 12\n\n";
 
             //
 
