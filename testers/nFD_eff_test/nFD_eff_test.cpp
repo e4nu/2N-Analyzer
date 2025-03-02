@@ -18,8 +18,8 @@ void nFD_eff_test() {
     // double Ebeam = 5.98636;
     // Is6GeV = true;
 
-    vector<double> rc_factor_v = {100, 200, 300};
-    // vector<double> rc_factor_v = {100, 200, 300, 400, 500, 600, 700, 800, 900, 1000};
+    // vector<double> rc_factor_v = {100, 200, 300};
+    vector<double> rc_factor_v = {100, 200, 300, 400, 500, 600, 700, 800, 900, 1000};
 
     vector<double> Ebeam_v = {2.07052, 4.02962, 5.98636};
     vector<vector<bool>> Ebeam_bool_v = {{true, false, false}, {false, true, false}, {false, false, true}};
@@ -50,7 +50,7 @@ void nFD_eff_test() {
 
             //
 
-            bool plot_AMaps = false;
+            bool plot_AMaps = true;
 
             //
 
@@ -963,8 +963,8 @@ void nFD_eff_test() {
                 if (bad_PCAL_edge_CutCond) { continue; }
                 if (bad_diag_CutCond) { continue; }
 
-                // if (ConstrainedE && (reco_P_e.Mag() < Ebeam - 0.2 || reco_P_e.Mag() > Ebeam + 0.2)) { continue; }
-                if (ConstrainedE && (fabs((reco_P_e.Theta() * 180 / M_PI) - Truth_theta_e) > 2.)) { continue; }
+                if (ConstrainedE && (reco_P_e.Mag() < Ebeam - 0.2 || reco_P_e.Mag() > Ebeam + 0.2)) { continue; }
+                // if (ConstrainedE && (fabs((reco_P_e.Theta() * 180 / M_PI) - Truth_theta_e) > 2.)) { continue; }
                 // if (ConstrainedE && (fabs((reco_P_e.Phi() * 180 / M_PI) - Truth_phi_e) > 5.)) { continue; }
                 // if (ConstrainedE && (fabs(getPhi_e(TString(InputFiles), Truth_phi_nFD) - reco_P_e.Phi() * 180 / M_PI) > 5.)) { continue; }
 
