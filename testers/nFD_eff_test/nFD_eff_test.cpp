@@ -34,7 +34,7 @@ void nFD_eff_test() {
     double rc_factor = 1.;
     double rn_factor = 1.;
 
-    bool ConstrainedE = false;
+    bool ConstrainedE = true;
 
     //
 
@@ -58,8 +58,8 @@ void nFD_eff_test() {
     string neutFD_redef_status = apply_neutFD_redef ? "_ReDefed" : "_clas12neut";
     string ECAL_veto_status = apply_ECAL_veto ? "_wECALveto" : "_NoECALveto";
     string PCAL_neutral_veto_status = apply_PCAL_neutral_veto ? "_wPCALneutVeto" : "_NoPCALneutVeto";
-    string rc_factor_status = apply_ECAL_veto ? "_rc" + ToStringWithPrecision(rc_factor * ECALvetoCut) : "";
-    string rn_factor_status = apply_PCAL_neutral_veto ? "_rn" + ToStringWithPrecision(rn_factor * ECALvetoCut) : "";
+    string rc_factor_status = apply_ECAL_veto ? "_rc" + ToStringWithPrecision(rc_factor * ECALvetoCut, 0) : "";
+    string rn_factor_status = apply_PCAL_neutral_veto ? "_rn" + ToStringWithPrecision(rn_factor * ECALvetoCut, 0) : "";
     string ConstrainedE_status = ConstrainedE ? "_ConstrainedE" : "";
 
     // string OutFolderName = "nFD_eff_test_v4_wPCALnVeto_rc100_rn200";
