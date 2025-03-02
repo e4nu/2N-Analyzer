@@ -26,6 +26,9 @@ void nFD_eff_test() {
 
     for (int i = 0; i <= rc_factor_v.size(); i++) {
         for (int j = 0; j <= Ebeam_v.size(); j++) {
+            cout << "\n\nTEST 1\n\n";
+
+
             double Ebeam = Ebeam_v.at(j);
             bool Is2GeV = Ebeam_bool_v.at(j).at(0), Is4GeV = Ebeam_bool_v.at(j).at(1), Is6GeV = Ebeam_bool_v.at(j).at(2);
 
@@ -126,6 +129,8 @@ void nFD_eff_test() {
             chain.db()->turnOffQADB();
             auto config_c12 = chain.GetC12Reader();
             const std::unique_ptr<clas12::clas12reader>& c12 = chain.C12ref();
+
+            cout << "\n\nTEST 2\n\n";
 
 #pragma region /* Prepare histograms */
             /////////////////////////////////////
