@@ -38,13 +38,11 @@ void nFD_eff_test() {
 
     //
 
-    double P_upperLim;
+    bool plot_AMaps = true;
 
-    if (ConstrainTLmom) {
-        P_upperLim = Ebeam * 0.5;
-    } else {
-        P_upperLim = Ebeam * 1.1;
-    }
+    //
+
+    double P_upperLim;
 
     // int Limiter = 25000000;  // 2500 files
     // int Limiter = 10000000; // 1000 files
@@ -66,6 +64,12 @@ void nFD_eff_test() {
     string OutFolderName = OutFolderName_prefix + OutFolderName_ver_status + samples_status + neutFD_redef_status + ECAL_veto_status + PCAL_neutral_veto_status + rc_factor_status +
                            rn_factor_status + ConstrainedE_status;
     // string OutFolderName = "nFD_eff_test_v5_AMaps_ConstPn_wPCALnVeto_rn100_6GeV_3";
+
+    if (ConstrainTLmom) {
+        P_upperLim = Ebeam * 0.5;
+    } else {
+        P_upperLim = Ebeam * 1.1;
+    }
 
     const string OutputDir = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName;
     system(("rm -rf " + OutputDir).c_str());
@@ -933,7 +937,7 @@ void nFD_eff_test() {
         if (ConstrainedE && (fabs((reco_P_e.Theta() * 180 / M_PI) - Truth_theta_e) > 2.)) { continue; }
         if (ConstrainedE && (fabs((reco_P_e.Phi() * 180 / M_PI) - Truth_phi_e) > 5.)) { continue; }
         // if (ConstrainedE && (fabs((reco_P_e.Theta() * 180 / M_PI) - 25.) > 2.)) { continue; }
-        if (ConstrainedE && (fabs(getPhi_e(TString(InputFiles), Truth_phi_nFD) - reco_P_e.Phi() * 180 / M_PI) > 5.)) { continue; }
+        // if (ConstrainedE && (fabs(getPhi_e(TString(InputFiles), Truth_phi_nFD) - reco_P_e.Phi() * 180 / M_PI) > 5.)) { continue; }
 
         h_reco_P_e_1e_cut->Fill(reco_P_e.Mag(), weight);
         h_reco_theta_e_1e_cut->Fill(reco_P_e.Theta() * 180 / M_PI, weight);
@@ -1601,12 +1605,16 @@ void nFD_eff_test() {
     gStyle->SetOptStat("ourmen");
 
 #pragma region /* Acceptance maps */
-    TCanvas* myCanvas_aMaps = new TCanvas("myCanvas_aMaps", "myCanvas_aMaps", pixelx, pixely);
 
-    myCanvas_aMaps->cd();
-    myCanvas_aMaps->SetBottomMargin(0.14), myCanvas_aMaps->SetLeftMargin(0.16), myCanvas_aMaps->SetRightMargin(0.12);
+    if (plot_AMaps) {
+        TCanvas* myCanvas_aMaps = new TCanvas("myCanvas_aMaps", "myCanvas_aMaps", pixelx, pixely);
 
-    aMaps_master.DrawAndSaveHitMaps(SampleName, myCanvas_aMaps, OutputDirAMapsMaps);
+        myCanvas_aMaps->cd();
+        myCanvas_aMaps->SetBottomMargin(0.14), myCanvas_aMaps->SetLeftMargin(0.16), myCanvas_aMaps->SetRightMargin(0.12);
+
+        aMaps_master.DrawAndSaveHitMaps(SampleName, myCanvas_aMaps, OutputDirAMapsMaps);
+    }
+
 #pragma endregion
 
 #pragma region /* General histograms */
