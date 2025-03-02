@@ -64,7 +64,7 @@ void nFD_eff_test() {
 
             string OutFolderName_prefix = "nFD_eff_test";
             string OutFolderName_ver_status = "_v6";
-            string Ebeam_status = Is2GeV ? "_2GeV" : Is4GeV ? "_4GeV" : Is6GeV ? "_6GeV";
+            string Ebeam_status = Is2GeV ? "_2GeV" : Is4GeV ? "_4GeV" : Is6GeV ? "_6GeV" : "_Unknown";
             string samples_status = use_ConstPn_samples ? "_ConstPn" : "";
             string neutFD_redef_status = apply_neutFD_redef ? "_ReDefed" : "_clas12neut";
             string ECAL_veto_status = apply_ECAL_veto ? "_wECALveto" : "_NoECALveto";
