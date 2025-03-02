@@ -1922,7 +1922,8 @@ void nFD_eff_test() {
 #pragma endregion
 
             // Delete all ROOT objects whose class names start with TH (to prevent a memory leak)
-            if (rc_factor_v.size() > 1) { gDirectory->Clear(); }
+            if (Ebeam_v.size() > 1) { gDirectory->Clear(); }
+            // if (rc_factor_v.size() > 1) { gDirectory->Clear(); }
         }
     }
 }
