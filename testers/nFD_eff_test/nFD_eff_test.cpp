@@ -24,8 +24,8 @@ void nFD_eff_test() {
     vector<double> Ebeam_v = {2.07052, 4.02962, 5.98636};
     vector<vector<bool>> Ebeam_bool_v = {{true, false, false}, {false, true, false}, {false, false, true}};
 
-    for (int i = 0; i <= rc_factor_v.size(); i++) {
-        for (int j = 0; j <= Ebeam_v.size(); j++) {
+    for (int i = 0; i < rc_factor_v.size(); i++) {
+        for (int j = 0; j < Ebeam_v.size(); j++) {
             cout << "\n\nTEST 1\n\n";
 
 
