@@ -26,14 +26,8 @@ void nFD_eff_test() {
 
     for (int i = 0; i < rc_factor_v.size(); i++) {
         for (int j = 0; j < Ebeam_v.size(); j++) {
-            cout << "\n\nTEST 1\n\n";
-
-
             double Ebeam = Ebeam_v.at(j);
             bool Is2GeV = Ebeam_bool_v.at(j).at(0), Is4GeV = Ebeam_bool_v.at(j).at(1), Is6GeV = Ebeam_bool_v.at(j).at(2);
-
-
-            cout << "\n\nTEST 11\n\n";
 
             //
 
@@ -53,8 +47,6 @@ void nFD_eff_test() {
             double rn_factor = 1.;
 
             bool ConstrainedE = true;
-
-            cout << "\n\nTEST 12\n\n";
 
             //
 
@@ -134,8 +126,6 @@ void nFD_eff_test() {
             chain.db()->turnOffQADB();
             auto config_c12 = chain.GetC12Reader();
             const std::unique_ptr<clas12::clas12reader>& c12 = chain.C12ref();
-
-            cout << "\n\nTEST 2\n\n";
 
 #pragma region /* Prepare histograms */
             /////////////////////////////////////
@@ -973,8 +963,8 @@ void nFD_eff_test() {
                 if (bad_PCAL_edge_CutCond) { continue; }
                 if (bad_diag_CutCond) { continue; }
 
-                if (ConstrainedE && (reco_P_e.Mag() < Ebeam - 0.2 || reco_P_e.Mag() > Ebeam + 0.2)) { continue; }
-                // if (ConstrainedE && (fabs((reco_P_e.Theta() * 180 / M_PI) - Truth_theta_e) > 2.)) { continue; }
+                // if (ConstrainedE && (reco_P_e.Mag() < Ebeam - 0.2 || reco_P_e.Mag() > Ebeam + 0.2)) { continue; }
+                if (ConstrainedE && (fabs((reco_P_e.Theta() * 180 / M_PI) - Truth_theta_e) > 2.)) { continue; }
                 // if (ConstrainedE && (fabs((reco_P_e.Phi() * 180 / M_PI) - Truth_phi_e) > 5.)) { continue; }
                 // if (ConstrainedE && (fabs(getPhi_e(TString(InputFiles), Truth_phi_nFD) - reco_P_e.Phi() * 180 / M_PI) > 5.)) { continue; }
 
