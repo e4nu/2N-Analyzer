@@ -69,6 +69,7 @@ void nFD_eff_test() {
         string OutFolderName = OutFolderName_prefix + OutFolderName_ver_status + samples_status + neutFD_redef_status + ECAL_veto_status + PCAL_neutral_veto_status + rc_factor_status +
                                rn_factor_status + ConstrainedE_status + General_status;
         // string OutFolderName = "nFD_eff_test_v5_AMaps_ConstPn_wPCALnVeto_rn100_6GeV_3";
+        string OutFileName = OutFolderName;
 
         if (ConstrainTLmom) {
             P_upperLim = Ebeam * 0.5;
@@ -80,7 +81,7 @@ void nFD_eff_test() {
         system(("rm -rf " + OutputDir).c_str());
         system(("mkdir -p " + OutputDir).c_str());
 
-        TFile* outFile = new TFile(("/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/nFD_eff_test.root").c_str(), "RECREATE");
+        TFile* outFile = new TFile(("/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/" + OutFileName + ".root").c_str(), "RECREATE");
 
         clas12root::HipoChain chain;
         string InputFiles, SampleName;
@@ -1722,7 +1723,7 @@ void nFD_eff_test() {
 #pragma region /* Print neutron plots */
         TCanvas* myCanvas = new TCanvas("myPage", "myPage", pixelx, pixely);
 
-        string nFD_eff_test_PDF_fileName = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/nFD_eff_test.pdf";
+        string nFD_eff_test_PDF_fileName = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/" + OutFileName + ".pdf";
         char fileName[nFD_eff_test_PDF_fileName.length()];
         sprintf(fileName, "%s[", nFD_eff_test_PDF_fileName.c_str());
         myText->SaveAs(fileName);
