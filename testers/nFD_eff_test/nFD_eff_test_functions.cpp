@@ -35,6 +35,8 @@ using namespace utilities;
 
 #include "../../source/classes/AMaps/AMaps.cpp"
 
+#pragma region /* CalcToFnFD function */
+
 double CalcToFnFD(region_part_ptr NeutronFD, double starttime = 9999) {
     bool ParticleInPCAL = (NeutronFD->cal(clas12::PCAL)->getDetector() == 7);                       // PCAL hit
     bool ParticleInECIN = (NeutronFD->cal(clas12::ECIN)->getDetector() == 7);                       // ECIN hit
@@ -46,6 +48,10 @@ double CalcToFnFD(region_part_ptr NeutronFD, double starttime = 9999) {
 
     return reco_ToF_nFD;
 }
+
+#pragma endregion
+
+#pragma region /* CalcPathnFD function */
 
 double CalcPathnFD(region_part_ptr NeutronFD, region_part_ptr electron) {
     bool ParticleInPCAL = (NeutronFD->cal(clas12::PCAL)->getDetector() == 7);                       // PCAL hit
@@ -66,6 +72,10 @@ double CalcPathnFD(region_part_ptr NeutronFD, region_part_ptr electron) {
 
     return reco_Path_nFD;
 }
+
+#pragma endregion
+
+#pragma region /* CalcPnFD function */
 
 double CalcPnFD(region_part_ptr NeutronFD, region_part_ptr electron, double starttime = 9999) {
     double reco_Path_nFD = CalcPathnFD(NeutronFD, electron);
@@ -93,6 +103,10 @@ double CalcPnFD(region_part_ptr NeutronFD, region_part_ptr electron, double star
     return Momentum;
 }
 
+#pragma endregion
+
+#pragma region /* checkEcalDiagCuts function */
+
 bool checkEcalDiagCuts(region_part_ptr electrons) {
     double ecal_diag_cut = 0.2;  // diagonal cut on SF
 
@@ -110,6 +124,10 @@ bool checkEcalDiagCuts(region_part_ptr electrons) {
         return true;
     }
 }
+
+#pragma endregion
+
+#pragma region /* DCEdgeCuts function */
 
 bool DCEdgeCuts(region_part_ptr p) {
     std::vector<double> dc_edge_cut_el = {4.5, 3.5, 7.5};  // units cm; {region1, region2, region3} cuts for electrons INBENDING
@@ -143,6 +161,10 @@ bool DCEdgeCuts(region_part_ptr p) {
     }
 }
 
+#pragma endregion
+
+#pragma region /* fillDCdebug function */
+
 void fillDCdebug(region_part_ptr p, TH2D** h, double weight) {
     //  if(p->par()->getPid() == 11)
     //    {
@@ -151,6 +173,10 @@ void fillDCdebug(region_part_ptr p, TH2D** h, double weight) {
     h[3]->Fill(p->traj(DC, 36)->getX(), p->traj(DC, 36)->getY(), weight);
     //    }
 }
+
+#pragma endregion
+
+#pragma region /* CalcdTheta function */
 
 double CalcdTheta(double dThetaTemp) {
     double dTheta;
@@ -163,6 +189,10 @@ double CalcdTheta(double dThetaTemp) {
 
     return dTheta;
 }
+
+#pragma endregion
+
+#pragma region /* CalcdPhi function */
 
 double CalcdPhi(double dPhiTemp) {
     double dPhi;
@@ -178,10 +208,53 @@ double CalcdPhi(double dPhiTemp) {
     return dPhi;
 }
 
+#pragma endregion
+
+#pragma region /* getPhi_e function */
+
+// Function to find the angle closest to 180 degrees away from phi_N
+double getPhi_e(TString OutPutFolder, double phi_N) {
+    double phi_e_offset = 0.;  // Electron phi_e offset due to the solenoid field
+
+    string OutPutFolder0(OutPutFolder.Data());
+
+    if (findSubstring(OutPutFolder0, "2070MeV")) {
+        phi_e_offset = 16.;
+    } else if (findSubstring(OutPutFolder0, "4029MeV")) {
+        phi_e_offset = 7.;
+    } else if (findSubstring(OutPutFolder0, "5986MeV")) {
+        phi_e_offset = 5.;
+    }
+
+    std::vector<double> possible_angles = {-120, -60, 0, 60, 120, 180};
+
+    // Calculate the target angle (180 degrees away from phi_N)
+    double target_angle = CalcdPhi(phi_N + 180);
+
+    // Find the closest possible angle
+    double closest_angle = possible_angles[0];
+    double min_diff = std::abs(CalcdPhi(target_angle - closest_angle));
+
+    for (double angle : possible_angles) {
+        double diff = std::abs(CalcdPhi(target_angle - angle));
+        if (diff < min_diff) {
+            min_diff = diff;
+            closest_angle = angle;
+        }
+    }
+
+    return closest_angle + phi_e_offset;
+    // return closest_angle;
+}
+
+#pragma endregion
+
+#pragma region /* NeutronECAL_Cut_Veto function */
+
 bool NeutronECAL_Cut_Veto(vector<region_part_ptr>& allParticles, vector<region_part_ptr>& electrons, const double& beamE, const int& index, const double& veto_cut,
-                          bool apply_PCAL_neutral_veto = true) {
-    double rc_factor = 1.;
-    double rn_factor = 1.;
+                          bool apply_PCAL_neutral_veto = true, double rc_factor = 1., double rn_factor = 1.) {
+    // double rc_factor = 1.;
+    // double rn_factor = 1.;
 
     TVector3 p_b(0, 0, beamE); /* beam energy */
 
@@ -315,5 +388,7 @@ bool NeutronECAL_Cut_Veto(vector<region_part_ptr>& allParticles, vector<region_p
 
     return true; /* we survived up to this point, we do have a neutral particle */
 }
+
+#pragma endregion
 
 #endif  // NFD_EFF_TEST_FUNCTIONS
