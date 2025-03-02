@@ -18,7 +18,8 @@ void nFD_eff_test() {
     // double Ebeam = 5.98636;
     // Is6GeV = true;
 
-    vector<double> rc_factor_v = {100, 200, 300, 400, 500, 600, 700, 800, 900, 1000};
+    vector<double> rc_factor_v = {100, 200, 300};
+    // vector<double> rc_factor_v = {100, 200, 300, 400, 500, 600, 700, 800, 900, 1000};
 
     vector<double> Ebeam_v = {2.07052, 4.02962, 5.98636};
     vector<vector<bool>> Ebeam_bool_v = {{true, false, false}, {false, true, false}, {false, false, true}};
