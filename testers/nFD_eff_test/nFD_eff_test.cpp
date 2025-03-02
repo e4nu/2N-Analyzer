@@ -869,15 +869,15 @@ void nFD_eff_test() {
 
             auto pid_temp = mcpbank->getPid();
 
-            auto Truth_theta_temp = mcpbank->getTheta();
-            auto Truth_phi_temp = mcpbank->getPhi();
+            auto Truth_theta_temp = mcpbank->getTheta() * 180 / M_PI;
+            auto Truth_phi_temp = mcpbank->getPhi() * 180 / M_PI;
 
             // cout << "\n\nTruth_theta_temp = " << Truth_theta_temp << "\n\n";
 
             if (pid_temp == 11) {
-                Truth_theta_e = Truth_theta_temp * 180 / M_PI, Truth_phi_e = Truth_phi_temp * 180 / M_PI;
+                Truth_theta_e = Truth_theta_temp, Truth_phi_e = Truth_phi_temp;
             } else if (pid_temp == 2112) {
-                Truth_phi_nFD = Truth_phi_temp * 180 / M_PI;
+                Truth_phi_nFD = Truth_phi_temp;
             }
         }
 
