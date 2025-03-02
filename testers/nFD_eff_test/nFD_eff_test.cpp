@@ -72,7 +72,7 @@ void nFD_eff_test() {
             string rc_factor_status = apply_ECAL_veto ? "_rc" + ToStringWithPrecision(rc_factor * ECALvetoCut, 0) : "";
             string rn_factor_status = apply_PCAL_neutral_veto ? "_rn" + ToStringWithPrecision(rn_factor * ECALvetoCut, 0) : "";
             string ConstrainedE_status = ConstrainedE ? "_ConstrainedE" : "";
-            string General_status = "_OnlyTruth_phi_nFDCuts";
+            string General_status = "_OnlyAllCuts";
 
             // string OutFolderName = "nFD_eff_test_v4_wPCALnVeto_rc100_rn200";
             string OutFolderName = OutFolderName_prefix + OutFolderName_ver_status + Ebeam_status + samples_status + neutFD_redef_status + ECAL_veto_status + PCAL_neutral_veto_status +
@@ -963,9 +963,9 @@ void nFD_eff_test() {
                 if (bad_PCAL_edge_CutCond) { continue; }
                 if (bad_diag_CutCond) { continue; }
 
-                // if (ConstrainedE && (reco_P_e.Mag() < Ebeam - 0.2 || reco_P_e.Mag() > Ebeam + 0.2)) { continue; }
-                // if (ConstrainedE && (fabs((reco_P_e.Theta() * 180 / M_PI) - Truth_theta_e) > 2.)) { continue; }
-                // if (ConstrainedE && (fabs((reco_P_e.Phi() * 180 / M_PI) - Truth_phi_e) > 5.)) { continue; }
+                if (ConstrainedE && (reco_P_e.Mag() < Ebeam - 0.2 || reco_P_e.Mag() > Ebeam + 0.2)) { continue; }
+                if (ConstrainedE && (fabs((reco_P_e.Theta() * 180 / M_PI) - Truth_theta_e) > 2.)) { continue; }
+                if (ConstrainedE && (fabs((reco_P_e.Phi() * 180 / M_PI) - Truth_phi_e) > 5.)) { continue; }
                 if (ConstrainedE && (fabs(getPhi_e(TString(InputFiles), Truth_phi_nFD) - reco_P_e.Phi() * 180 / M_PI) > 5.)) { continue; }
 
                 h_reco_P_e_1e_cut->Fill(reco_P_e.Mag(), weight);
