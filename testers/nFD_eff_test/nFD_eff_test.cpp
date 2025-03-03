@@ -30,15 +30,16 @@ void nFD_eff_test() {
 
     // int Limiter = 25000000;  // 2500 files
     // int Limiter = 10000000; // 1000 files
-    // int Limiter = 1000000;  // 100 files
-    int Limiter = 100000;  // 10 files
+    int Limiter = 1000000;  // 100 files
+    // int Limiter = 100000;  // 10 files
     // int Limiter = 10000; // 1 file
 
     string OutFolderName_prefix = "A_test";
     string OutFolderName_ver_status = "_v6";
     // string General_status = "_Only_Truth_phi_nFDCuts";
     // string General_status = "_NO_Truth_phi_nFDCuts";
-    string General_status = "_AllCuts";
+    string General_status = "_AllCuts_OnlyBad_nFD";
+    // string General_status = "_AllCuts";
     // string General_status = "_OnlyAllCuts";
 
     bool ConstrainedE = true;
@@ -989,7 +990,8 @@ void nFD_eff_test() {
                 if (bad_PCAL_edge_CutCond) { continue; }
                 if (bad_diag_CutCond) { continue; }
 
-                if (ConstrainedE && (reco_P_e.Mag() < Ebeam - 0.2 || reco_P_e.Mag() > Ebeam + 0.2)) { continue; }
+                if (ConstrainedE && (fabs(reco_P_e.Mag() - Ebeam) > 0.2)) { continue; }
+                // if (ConstrainedE && (reco_P_e.Mag() < Ebeam - 0.2 || reco_P_e.Mag() > Ebeam + 0.2)) { continue; }
                 if (ConstrainedE && (fabs((reco_P_e.Theta() * 180 / M_PI) - Truth_theta_e) > 2.)) { continue; }
                 if (ConstrainedE && (fabs((reco_P_e.Phi() * 180 / M_PI) - Truth_phi_e) > 5.)) { continue; }
                 if (ConstrainedE && (CalcdPhi(fabs(getPhi_e(Beam_energy_TString, Truth_phi_nFD) - (reco_P_e.Phi() * 180 / M_PI))) > 5.)) { continue; }
@@ -1254,8 +1256,11 @@ void nFD_eff_test() {
                                         bool PassMomTh = (Momentum >= 0.4);
                                         bool PassECALeadgeCuts = (allParticles[i]->cal(Neutron_ECAL_detlayer)->getLv() > 14. && allParticles[i]->cal(Neutron_ECAL_detlayer)->getLw() > 14.);
                                         bool PassVeto = NeutronECAL_Cut_Veto(allParticles, electrons, Ebeam, i, ECALvetoCut, apply_PCAL_neutral_veto, rc_factor, rn_factor);
-                                        bool PassPhi_nFDCuts = (abs(allParticles[i]->cal(Neutron_ECAL_detlayer)->getSector() - electrons[0]->cal(Electron_ECAL_detlayer)->getSector()) == 3);
-                                        // bool PassPhi_nFDCuts = (CalcdPhi(fabs(getPhi_e(Beam_energy_TString, (allParticles[i]->getPhi() * 180 / M_PI)) - (reco_P_e.Phi() * 180 / M_PI)))
+                                        // bool PassPhi_nFDCuts = true;
+                                        bool PassPhi_nFDCuts = !(abs(allParticles[i]->cal(Neutron_ECAL_detlayer)->getSector() - electrons[0]->cal(Electron_ECAL_detlayer)->getSector()) ==
+                                                                 3);  // Only bad neutrons!
+                                        // bool PassPhi_nFDCuts = (abs(allParticles[i]->cal(Neutron_ECAL_detlayer)->getSector() - electrons[0]->cal(Electron_ECAL_detlayer)->getSector()) ==
+                                        // 3); bool PassPhi_nFDCuts = (CalcdPhi(fabs(getPhi_e(Beam_energy_TString, (allParticles[i]->getPhi() * 180 / M_PI)) - (reco_P_e.Phi() * 180 / M_PI)))
                                         // > 5.);
 
                                         if (PassMomTh && PassECALeadgeCuts && (!apply_ECAL_veto || PassVeto) && PassPhi_nFDCuts) {
@@ -1307,7 +1312,10 @@ void nFD_eff_test() {
                     bool PassMomTh = (Mom_neut_1e_cut >= 0.4);
                     bool PassECALeadgeCuts = (allParticles[i]->cal(Neutron_ECAL_detlayer)->getLv() > 14. && allParticles[i]->cal(Neutron_ECAL_detlayer)->getLw() > 14.);
                     bool NeutronPassVeto_1e_cut = NeutronECAL_Cut_Veto(allParticles, electrons, beamE, NeutronsFD_ind_mom_max, ECALvetoCut, apply_PCAL_neutral_veto, rc_factor, rn_factor);
-                    bool PassPhi_nFDCuts = (abs(allParticles[i]->cal(Neutron_ECAL_detlayer)->getSector() - electrons[0]->cal(Electron_ECAL_detlayer)->getSector()) == 3);
+                    // bool PassPhi_nFDCuts = true;
+                    bool PassPhi_nFDCuts =
+                        !(abs(allParticles[i]->cal(Neutron_ECAL_detlayer)->getSector() - electrons[0]->cal(Electron_ECAL_detlayer)->getSector()) == 3);  // Only bad neutrons!
+                    // bool PassPhi_nFDCuts = (abs(allParticles[i]->cal(Neutron_ECAL_detlayer)->getSector() - electrons[0]->cal(Electron_ECAL_detlayer)->getSector()) == 3);
                     // bool PassPhi_nFDCuts = (CalcdPhi(fabs(getPhi_e(Beam_energy_TString, (allParticles[i]->getPhi() * 180 / M_PI)) - (reco_P_e.Phi() * 180 / M_PI))) > 5.);
 
                     if (PassMomTh && PassECALeadgeCuts && NeutronPassVeto_1e_cut && PassPhi_nFDCuts)  // FOR nFD eff test!
@@ -1476,8 +1484,11 @@ void nFD_eff_test() {
                                         bool PassMomTh = (Momentum >= 0.4);
                                         bool PassECALeadgeCuts = (allParticles[i]->cal(Neutron_ECAL_detlayer)->getLv() > 14. && allParticles[i]->cal(Neutron_ECAL_detlayer)->getLw() > 14.);
                                         bool PassVeto = NeutronECAL_Cut_Veto(allParticles, electrons, Ebeam, i, ECALvetoCut, apply_PCAL_neutral_veto, rc_factor, rn_factor);
-                                        bool PassPhi_nFDCuts = (abs(allParticles[i]->cal(Neutron_ECAL_detlayer)->getSector() - electrons[0]->cal(Electron_ECAL_detlayer)->getSector()) == 3);
-                                        // bool PassPhi_nFDCuts = (CalcdPhi(fabs(getPhi_e(Beam_energy_TString, (allParticles[i]->getPhi() * 180 / M_PI)) - (reco_P_e.Phi() * 180 / M_PI)))
+                                        // bool PassPhi_nFDCuts = true;
+                                        bool PassPhi_nFDCuts = !(abs(allParticles[i]->cal(Neutron_ECAL_detlayer)->getSector() - electrons[0]->cal(Electron_ECAL_detlayer)->getSector()) ==
+                                                                 3);  // Only bad neutrons!
+                                        // bool PassPhi_nFDCuts = (abs(allParticles[i]->cal(Neutron_ECAL_detlayer)->getSector() - electrons[0]->cal(Electron_ECAL_detlayer)->getSector()) ==
+                                        // 3); bool PassPhi_nFDCuts = (CalcdPhi(fabs(getPhi_e(Beam_energy_TString, (allParticles[i]->getPhi() * 180 / M_PI)) - (reco_P_e.Phi() * 180 / M_PI)))
                                         // > 5.);
 
                                         if (PassMomTh && PassECALeadgeCuts && (!apply_ECAL_veto || PassVeto) && PassPhi_nFDCuts) {
