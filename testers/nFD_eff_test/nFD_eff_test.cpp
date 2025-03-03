@@ -982,7 +982,7 @@ void nFD_eff_test() {
                 // if (ConstrainedE && (reco_P_e.Mag() < Ebeam - 0.2 || reco_P_e.Mag() > Ebeam + 0.2)) { continue; }
                 // if (ConstrainedE && (fabs((reco_P_e.Theta() * 180 / M_PI) - Truth_theta_e) > 2.)) { continue; }
                 // if (ConstrainedE && (fabs((reco_P_e.Phi() * 180 / M_PI) - Truth_phi_e) > 5.)) { continue; }
-                if (ConstrainedE && (CalcdPhi(fabs(getPhi_e(TString(InputFiles), Truth_phi_nFD) - reco_P_e.Phi() * 180 / M_PI)) > 5.)) { continue; }
+                if (ConstrainedE && (CalcdPhi(fabs(getPhi_e(TString(InputFiles), Truth_phi_nFD) - (reco_P_e.Phi() * 180 / M_PI))) > 5.)) { continue; }
 
                 // if (fabs(Truth_phi_nFD) < 30.) {
                 //     cout << "\n\n==========================================================\n";
@@ -1028,8 +1028,8 @@ void nFD_eff_test() {
                     auto py = mcpbank->getPy();
                     auto pz = mcpbank->getPz();
 
-                    // bool PassMomth = true;
-                    bool PassMomth = (p >= 0.4);
+                    // bool PassMomTh = true;
+                    bool PassMomTh = (p >= 0.4);
 
                     if (ConstrainTLmom && (pid_temp == 2112 && p > 2.)) {
                         TLpassCuts = false;
@@ -1074,7 +1074,7 @@ void nFD_eff_test() {
                             h_truth_phi_nFD_redef_1e_cut->Fill(truth_P_n.Phi() * 180 / M_PI, weight);
                             h_truth_theta_nFD_redef_VS_truth_phi_nFD_redef_1e_cut->Fill(truth_P_n.Phi() * 180 / M_PI, truth_P_n.Theta() * 180 / M_PI, weight);
 
-                            if (PassMomth) {
+                            if (PassMomTh) {
                                 truth_NeutronsFD.push_back(i);
 
                                 h_truth_P_nFD_ECALveto_1e_cut->Fill(truth_P_n.Mag(), weight);
@@ -1105,10 +1105,10 @@ void nFD_eff_test() {
                     double Particle_TL_Theta = acos((mcpbank->getPz()) / RadCalc(mcpbank->getPx(), mcpbank->getPy(), mcpbank->getPz())) * 180.0 / pi;
                     double Particle_TL_Phi = atan2(mcpbank->getPy(), mcpbank->getPx()) * 180.0 / pi;
 
-                    // bool PassMomth = true;
-                    bool PassMomth = (Particle_TL_Momentum >= 0.4);
+                    // bool PassMomTh = true;
+                    bool PassMomTh = (Particle_TL_Momentum >= 0.4);
 
-                    if (PassMomth) { aMaps_master.hFillHitMaps("TL", "Neutron", Particle_TL_Momentum, Particle_TL_Theta, Particle_TL_Phi, weight); }  // end of if id. TL leading neutron
+                    if (PassMomTh) { aMaps_master.hFillHitMaps("TL", "Neutron", Particle_TL_Momentum, Particle_TL_Theta, Particle_TL_Phi, weight); }  // end of if id. TL leading neutron
                 }
 #pragma endregion
 
@@ -1240,12 +1240,13 @@ void nFD_eff_test() {
                                         double Path_nFD = CalcPathnFD(allParticles[i], electrons[0]);
                                         double reco_ToF_nFD = CalcToFnFD(allParticles[i], starttime);
 
-                                        // bool PassMomth = true;
-                                        bool PassMomth = (Momentum >= 0.4);
-                                        bool passECALeadgeCuts = (allParticles[i]->cal(Neutron_ECAL_detlayer)->getLv() > 14. && allParticles[i]->cal(Neutron_ECAL_detlayer)->getLw() > 14.);
-                                        bool passVeto = NeutronECAL_Cut_Veto(allParticles, electrons, Ebeam, i, ECALvetoCut, apply_PCAL_neutral_veto, rc_factor, rn_factor);
+                                        // bool PassMomTh = true;
+                                        bool PassMomTh = (Momentum >= 0.4);
+                                        bool PassECALeadgeCuts = (allParticles[i]->cal(Neutron_ECAL_detlayer)->getLv() > 14. && allParticles[i]->cal(Neutron_ECAL_detlayer)->getLw() > 14.);
+                                        bool PassVeto = NeutronECAL_Cut_Veto(allParticles, electrons, Ebeam, i, ECALvetoCut, apply_PCAL_neutral_veto, rc_factor, rn_factor);
+                                        bool PassPhi_nFDCuts = (CalcdPhi(fabs(getPhi_e(TString(InputFiles), (allParticles[i]->getPhi() * 180 / M_PI)) - (reco_P_e.Phi() * 180 / M_PI))) > 5.);
 
-                                        if (PassMomth && passECALeadgeCuts && (!apply_ECAL_veto || passVeto) && true) {
+                                        if (PassMomTh && PassECALeadgeCuts && (!apply_ECAL_veto || PassVeto) && PassPhi_nFDCuts) {
                                             if (Momentum >= P_max) {
                                                 P_max = Momentum;
                                                 NeutronsFD_ind_mom_max = i;
@@ -1263,11 +1264,11 @@ void nFD_eff_test() {
                                 double Path_nFD = CalcPathnFD(allParticles[i], electrons[0]);
                                 double reco_ToF_nFD = CalcToFnFD(allParticles[i], starttime);
 
-                                // bool PassMomth = true;
-                                bool PassMomth = (Momentum >= 0.4);
-                                bool passECALeadgeCuts = (allParticles[i]->cal(Neutron_ECAL_detlayer)->getLv() > 14. && allParticles[i]->cal(Neutron_ECAL_detlayer)->getLw() > 14.);
+                                // bool PassMomTh = true;
+                                bool PassMomTh = (Momentum >= 0.4);
+                                bool PassECALeadgeCuts = (allParticles[i]->cal(Neutron_ECAL_detlayer)->getLv() > 14. && allParticles[i]->cal(Neutron_ECAL_detlayer)->getLw() > 14.);
 
-                                if (PassMomth && passECALeadgeCuts) {
+                                if (PassMomTh && PassECALeadgeCuts) {
                                     if (Momentum >= P_max) {
                                         P_max = Momentum;
                                         NeutronsFD_ind_mom_max = i;
@@ -1281,16 +1282,17 @@ void nFD_eff_test() {
                 }
 
                 if (NeutronsFD_ind_mom_max != -1) {
-                    bool NeutronPassVeto_1e_cut = NeutronECAL_Cut_Veto(allParticles, electrons, beamE, NeutronsFD_ind_mom_max, ECALvetoCut, apply_PCAL_neutral_veto, rc_factor, rn_factor);
-
                     double Mom_neut_1e_cut = CalcPnFD(allParticles[NeutronsFD_ind_mom_max], electrons[0], starttime);
                     double Theta_neut_1e_cut = allParticles[NeutronsFD_ind_mom_max]->getTheta() * 180.0 / pi;
                     double Phi_neut_1e_cut = allParticles[NeutronsFD_ind_mom_max]->getPhi() * 180.0 / pi;
 
-                    // bool PassMomth = true;
-                    bool PassMomth = (Mom_neut_1e_cut >= 0.4);
+                    // bool PassMomTh = true;
+                    bool PassMomTh = (Mom_neut_1e_cut >= 0.4);
+                    bool PassECALeadgeCuts = (allParticles[i]->cal(Neutron_ECAL_detlayer)->getLv() > 14. && allParticles[i]->cal(Neutron_ECAL_detlayer)->getLw() > 14.);
+                    bool NeutronPassVeto_1e_cut = NeutronECAL_Cut_Veto(allParticles, electrons, beamE, NeutronsFD_ind_mom_max, ECALvetoCut, apply_PCAL_neutral_veto, rc_factor, rn_factor);
+                    bool PassPhi_nFDCuts = (CalcdPhi(fabs(getPhi_e(TString(InputFiles), (allParticles[i]->getPhi() * 180 / M_PI)) - (reco_P_e.Phi() * 180 / M_PI))) > 5.);
 
-                    if (PassMomth && NeutronPassVeto_1e_cut)  // FOR nFD eff test!
+                    if (PassMomTh && PassECALeadgeCuts && NeutronPassVeto_1e_cut && PassPhi_nFDCuts)  // FOR nFD eff test!
                     {
                         aMaps_master.hFillHitMaps("Reco", "Neutron", Mom_neut_1e_cut, Theta_neut_1e_cut, Phi_neut_1e_cut, weight);
                     }  // end of if id. reco leading neutron
@@ -1403,14 +1405,14 @@ void nFD_eff_test() {
                         // double Momentum = allParticles[i]->par()->getP();
                         double Momentum = CalcPnFD(allParticles[i], electrons[0], starttime);
 
-                        bool PassMomth = true;
-                        // bool PassMomth = (Momentum >= 0.4);
-                        // bool passECALeadgeCuts = true;
-                        bool passECALeadgeCuts = (allParticles[i]->cal(Neutron_ECAL_detlayer)->getLv() > 14. && allParticles[i]->cal(Neutron_ECAL_detlayer)->getLw() > 14.);
-                        // bool passVeto = true;
-                        bool passVeto = NeutronECAL_Cut_Veto(allParticles, electrons, Ebeam, i, 100,apply_PCAL_neutral_veto, rc_factor ,rn_factor);
+                        bool PassMomTh = true;
+                        // bool PassMomTh = (Momentum >= 0.4);
+                        // bool PassECALeadgeCuts = true;
+                        bool PassECALeadgeCuts = (allParticles[i]->cal(Neutron_ECAL_detlayer)->getLv() > 14. && allParticles[i]->cal(Neutron_ECAL_detlayer)->getLw() > 14.);
+                        // bool PassVeto = true;
+                        bool PassVeto = NeutronECAL_Cut_Veto(allParticles, electrons, Ebeam, i, 100,apply_PCAL_neutral_veto, rc_factor ,rn_factor);
 
-                        if (PassMomth && passECALeadgeCuts && passVeto) {
+                        if (PassMomTh && PassECALeadgeCuts && PassVeto) {
                             for (int j = 0; j < truth_NeutronsFD.size(); j++) {
                                 mcpbank->setEntry(truth_NeutronsFD.at(j));
 
@@ -1452,12 +1454,13 @@ void nFD_eff_test() {
                                     if (ParticleInECIN || ParticleInECOUT) {
                                         double Momentum = CalcPnFD(allParticles[i], electrons[0], starttime);
 
-                                        // bool PassMomth = true;
-                                        bool PassMomth = (Momentum >= 0.4);
-                                        bool passECALeadgeCuts = (allParticles[i]->cal(Neutron_ECAL_detlayer)->getLv() > 14. && allParticles[i]->cal(Neutron_ECAL_detlayer)->getLw() > 14.);
-                                        bool passVeto = NeutronECAL_Cut_Veto(allParticles, electrons, Ebeam, i, ECALvetoCut, apply_PCAL_neutral_veto, rc_factor, rn_factor);
+                                        // bool PassMomTh = true;
+                                        bool PassMomTh = (Momentum >= 0.4);
+                                        bool PassECALeadgeCuts = (allParticles[i]->cal(Neutron_ECAL_detlayer)->getLv() > 14. && allParticles[i]->cal(Neutron_ECAL_detlayer)->getLw() > 14.);
+                                        bool PassVeto = NeutronECAL_Cut_Veto(allParticles, electrons, Ebeam, i, ECALvetoCut, apply_PCAL_neutral_veto, rc_factor, rn_factor);
+                                        bool PassPhi_nFDCuts = (CalcdPhi(fabs(getPhi_e(TString(InputFiles), (allParticles[i]->getPhi() * 180 / M_PI)) - (reco_P_e.Phi() * 180 / M_PI))) > 5.);
 
-                                        if (PassMomth && passECALeadgeCuts && (!apply_ECAL_veto || passVeto)) {
+                                        if (PassMomTh && PassECALeadgeCuts && (!apply_ECAL_veto || PassVeto) && PassPhi_nFDCuts) {
                                             for (int j = 0; j < truth_NeutronsFD.size(); j++) {
                                                 mcpbank->setEntry(truth_NeutronsFD.at(j));
 
@@ -1491,11 +1494,11 @@ void nFD_eff_test() {
                             if (pid_temp == 2112) {
                                 double Momentum = CalcPnFD(allParticles[i], electrons[0], starttime);
 
-                                // bool PassMomth = true;
-                                bool PassMomth = (Momentum >= 0.4);
-                                bool passECALeadgeCuts = (allParticles[i]->cal(Neutron_ECAL_detlayer)->getLv() > 14. && allParticles[i]->cal(Neutron_ECAL_detlayer)->getLw() > 14.);
+                                // bool PassMomTh = true;
+                                bool PassMomTh = (Momentum >= 0.4);
+                                bool PassECALeadgeCuts = (allParticles[i]->cal(Neutron_ECAL_detlayer)->getLv() > 14. && allParticles[i]->cal(Neutron_ECAL_detlayer)->getLw() > 14.);
 
-                                if (PassMomth && passECALeadgeCuts) {
+                                if (PassMomTh && PassECALeadgeCuts) {
                                     for (int j = 0; j < truth_NeutronsFD.size(); j++) {
                                         mcpbank->setEntry(truth_NeutronsFD.at(j));
 
