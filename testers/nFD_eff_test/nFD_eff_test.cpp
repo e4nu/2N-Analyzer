@@ -18,7 +18,9 @@ void nFD_eff_test() {
     // Is4GeV = true;
     double Ebeam = 5.98636;
     Is6GeV = true;
-*/
+    */
+
+    bool use_ConstPn_samples = false;
 
     // vector<double> rc_factor_v = {100};
     vector<double> rc_factor_v = {100, 200, 300, 400, 500, 600, 700, 800, 900, 1000};
@@ -59,7 +61,7 @@ void nFD_eff_test() {
 
             //
 
-            bool use_ConstPn_samples = true;
+            // bool use_ConstPn_samples = true;
 
             bool apply_neutFD_redef = true;
             bool apply_ECAL_veto = true;
