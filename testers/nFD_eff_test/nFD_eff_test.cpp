@@ -18,11 +18,13 @@ void nFD_eff_test() {
     // double Ebeam = 5.98636;
     // Is6GeV = true;
 
-    // vector<double> rc_factor_v = {100, 200, 300};
-    vector<double> rc_factor_v = {100, 200, 300, 400, 500, 600, 700, 800, 900, 1000};
+    vector<double> rc_factor_v = {100};
+    // vector<double> rc_factor_v = {100, 200, 300, 400, 500, 600, 700, 800, 900, 1000};
 
-    vector<double> Ebeam_v = {2.07052, 4.02962, 5.98636};
-    vector<vector<bool>> Ebeam_bool_v = {{true, false, false}, {false, true, false}, {false, false, true}};
+    vector<double> Ebeam_v = {2.07052};
+    vector<vector<bool>> Ebeam_bool_v = {{true, false, false}};
+    // vector<double> Ebeam_v = {2.07052, 4.02962, 5.98636};
+    // vector<vector<bool>> Ebeam_bool_v = {{true, false, false}, {false, true, false}, {false, false, true}};
 
     for (int i = 0; i < rc_factor_v.size(); i++) {
         for (int j = 0; j < Ebeam_v.size(); j++) {
@@ -56,10 +58,10 @@ void nFD_eff_test() {
 
             double P_upperLim;
 
-            int Limiter = 25000000;  // 2500 files
+            // int Limiter = 25000000;  // 2500 files
             // int Limiter = 10000000; // 1000 files
             // int Limiter = 1000000;  // 100 files
-            // int Limiter = 100000;  // 10 files
+            int Limiter = 100000;  // 10 files
             // int Limiter = 10000; // 1 file
 
             string OutFolderName_prefix = "nFD_eff_test";
@@ -72,7 +74,7 @@ void nFD_eff_test() {
             string rc_factor_status = apply_ECAL_veto ? "_rc" + ToStringWithPrecision(rc_factor * ECALvetoCut, 0) : "";
             string rn_factor_status = apply_PCAL_neutral_veto ? "_rn" + ToStringWithPrecision(rn_factor * ECALvetoCut, 0) : "";
             string ConstrainedE_status = ConstrainedE ? "_ConstrainedE" : "";
-            string General_status = "_OnlyAllCuts";
+            string General_status = "_test";
 
             // string OutFolderName = "nFD_eff_test_v4_wPCALnVeto_rc100_rn200";
             string OutFolderName = OutFolderName_prefix + OutFolderName_ver_status + Ebeam_status + samples_status + neutFD_redef_status + ECAL_veto_status + PCAL_neutral_veto_status +
@@ -966,7 +968,14 @@ void nFD_eff_test() {
                 if (ConstrainedE && (reco_P_e.Mag() < Ebeam - 0.2 || reco_P_e.Mag() > Ebeam + 0.2)) { continue; }
                 if (ConstrainedE && (fabs((reco_P_e.Theta() * 180 / M_PI) - Truth_theta_e) > 2.)) { continue; }
                 if (ConstrainedE && (fabs((reco_P_e.Phi() * 180 / M_PI) - Truth_phi_e) > 5.)) { continue; }
-                if (ConstrainedE && (fabs(getPhi_e(TString(InputFiles), Truth_phi_nFD) - reco_P_e.Phi() * 180 / M_PI) > 5.)) { continue; }
+                // if (ConstrainedE && (fabs(getPhi_e(TString(InputFiles), Truth_phi_nFD) - reco_P_e.Phi() * 180 / M_PI) > 5.)) { continue; }
+
+                cout << "\n\n==========================================================\n";
+                cout << "Truth_phi_nFD = " << Truth_phi_nFD << "\n";
+                cout << "Truth_phi_e = " << Truth_phi_e << "\n";
+                cout << "getPhi_e(TString(InputFiles), Truth_phi_nFD) = " << getPhi_e(TString(InputFiles), Truth_phi_nFD) << "\n";
+                cout << "reco_P_e.Phi() * 180 / M_PI = " << reco_P_e.Phi() * 180 / M_PI << "\n";
+                cout << "fabs((reco_P_e.Phi() * 180 / M_PI) - Truth_phi_e) = " << fabs((reco_P_e.Phi() * 180 / M_PI) - Truth_phi_e) << "\n\n";
 
                 h_reco_P_e_1e_cut->Fill(reco_P_e.Mag(), weight);
                 h_reco_theta_e_1e_cut->Fill(reco_P_e.Theta() * 180 / M_PI, weight);
