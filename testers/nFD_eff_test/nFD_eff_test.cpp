@@ -39,6 +39,9 @@ void nFD_eff_test() {
     string General_status = "_NO_Truth_phi_nFDCuts";
     // string General_status = "_OnlyAllCuts";
 
+    bool plot_AMaps = false;
+    // bool plot_AMaps = true;
+
     for (int i = 0; i < rc_factor_v.size(); i++) {
         for (int j = 0; j < Ebeam_v.size(); j++) {
             double Ebeam = Ebeam_v.at(j);
@@ -65,7 +68,7 @@ void nFD_eff_test() {
 
             //
 
-            bool plot_AMaps = true;
+            // bool plot_AMaps = true;
 
             //
 
