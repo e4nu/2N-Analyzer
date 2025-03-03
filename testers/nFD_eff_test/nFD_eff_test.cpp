@@ -9,28 +9,35 @@
 void nFD_eff_test() {
     cout << "\n\nInitiating nFD_eff_test.cpp\n";
 
-    // bool Is2GeV = false, Is4GeV = false, Is6GeV = false;
+    /*
+    bool Is2GeV = false, Is4GeV = false, Is6GeV = false;
 
-    // // double Ebeam = 2.07052;
-    // // Is2GeV = true;
-    // // double Ebeam = 4.02962;
-    // // Is4GeV = true;
-    // double Ebeam = 5.98636;
-    // Is6GeV = true;
+    // double Ebeam = 2.07052;
+    // Is2GeV = true;
+    // double Ebeam = 4.02962;
+    // Is4GeV = true;
+    double Ebeam = 5.98636;
+    Is6GeV = true;
+*/
 
-    // vector<double> rc_factor_v = {100};
-    vector<double> rc_factor_v = {100, 200, 300, 400, 500, 600, 700, 800, 900, 1000};
+    vector<double> rc_factor_v = {100};
+    // vector<double> rc_factor_v = {100, 200, 300, 400, 500, 600, 700, 800, 900, 1000};
 
-    // vector<double> Ebeam_v = {2.07052};
-    // vector<vector<bool>> Ebeam_bool_v = {{true, false, false}};
-    vector<double> Ebeam_v = {2.07052, 4.02962, 5.98636};
-    vector<vector<bool>> Ebeam_bool_v = {{true, false, false}, {false, true, false}, {false, false, true}};
+    vector<double> Ebeam_v = {2.07052};
+    vector<vector<bool>> Ebeam_bool_v = {{true, false, false}};
+    // vector<double> Ebeam_v = {2.07052, 4.02962, 5.98636};
+    // vector<vector<bool>> Ebeam_bool_v = {{true, false, false}, {false, true, false}, {false, false, true}};
 
-    int Limiter = 25000000;  // 2500 files
+    // int Limiter = 25000000;  // 2500 files
     // int Limiter = 10000000; // 1000 files
     // int Limiter = 1000000;  // 100 files
-    // int Limiter = 100000;  // 10 files
+    int Limiter = 100000;  // 10 files
     // int Limiter = 10000; // 1 file
+
+    string OutFolderName_prefix = "A_test";
+    string OutFolderName_ver_status = "_v6";
+    string General_status = "_NO_Truth_phi_nFDCuts";
+    // string General_status = "_OnlyAllCuts";
 
     for (int i = 0; i < rc_factor_v.size(); i++) {
         for (int j = 0; j < Ebeam_v.size(); j++) {
@@ -64,8 +71,8 @@ void nFD_eff_test() {
 
             double P_upperLim;
 
-            string OutFolderName_prefix = "nFD_eff_test";
-            string OutFolderName_ver_status = "_v6";
+            // string OutFolderName_prefix = "nFD_eff_test";
+            // string OutFolderName_ver_status = "_v6";
             string Ebeam_status = Is2GeV ? "_2GeV" : Is4GeV ? "_4GeV" : Is6GeV ? "_6GeV" : "_Unknown";
             string samples_status = use_ConstPn_samples ? "_ConstPn" : "";
             string neutFD_redef_status = apply_neutFD_redef ? "_ReDefed" : "_clas12neut";
@@ -74,7 +81,7 @@ void nFD_eff_test() {
             string rc_factor_status = apply_ECAL_veto ? "_rc" + ToStringWithPrecision(rc_factor * ECALvetoCut, 0) : "";
             string rn_factor_status = apply_PCAL_neutral_veto ? "_rn" + ToStringWithPrecision(rn_factor * ECALvetoCut, 0) : "";
             string ConstrainedE_status = ConstrainedE ? "_ConstrainedE" : "";
-            string General_status = "_OnlyAllCuts";
+            // string General_status = "_OnlyAllCuts";
 
             // string OutFolderName = "nFD_eff_test_v4_wPCALnVeto_rc100_rn200";
             string OutFolderName = OutFolderName_prefix + OutFolderName_ver_status + Ebeam_status + samples_status + neutFD_redef_status + ECAL_veto_status + PCAL_neutral_veto_status +
