@@ -26,6 +26,12 @@ void nFD_eff_test() {
     vector<double> Ebeam_v = {2.07052, 4.02962, 5.98636};
     vector<vector<bool>> Ebeam_bool_v = {{true, false, false}, {false, true, false}, {false, false, true}};
 
+    int Limiter = 25000000;  // 2500 files
+    // int Limiter = 10000000; // 1000 files
+    // int Limiter = 1000000;  // 100 files
+    // int Limiter = 100000;  // 10 files
+    // int Limiter = 10000; // 1 file
+
     for (int i = 0; i < rc_factor_v.size(); i++) {
         for (int j = 0; j < Ebeam_v.size(); j++) {
             double Ebeam = Ebeam_v.at(j);
@@ -57,12 +63,6 @@ void nFD_eff_test() {
             //
 
             double P_upperLim;
-
-            // int Limiter = 25000000;  // 2500 files
-            // int Limiter = 10000000; // 1000 files
-            // int Limiter = 1000000;  // 100 files
-            int Limiter = 100000;  // 10 files
-            // int Limiter = 10000; // 1 file
 
             string OutFolderName_prefix = "nFD_eff_test";
             string OutFolderName_ver_status = "_v6";
