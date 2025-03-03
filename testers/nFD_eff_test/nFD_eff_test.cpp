@@ -20,17 +20,17 @@ void nFD_eff_test() {
     Is6GeV = true;
 */
 
-    vector<double> rc_factor_v = {100};
-    // vector<double> rc_factor_v = {100, 200, 300, 400, 500, 600, 700, 800, 900, 1000};
+    // vector<double> rc_factor_v = {100};
+    vector<double> rc_factor_v = {100, 200, 300, 400, 500, 600, 700, 800, 900, 1000};
 
-    vector<double> Ebeam_v = {2.07052};
-    vector<vector<bool>> Ebeam_bool_v = {{true, false, false}};
-    // vector<double> Ebeam_v = {2.07052, 4.02962, 5.98636};
-    // vector<vector<bool>> Ebeam_bool_v = {{true, false, false}, {false, true, false}, {false, false, true}};
+    // vector<double> Ebeam_v = {2.07052};
+    // vector<vector<bool>> Ebeam_bool_v = {{true, false, false}};
+    vector<double> Ebeam_v = {2.07052, 4.02962, 5.98636};
+    vector<vector<bool>> Ebeam_bool_v = {{true, false, false}, {false, true, false}, {false, false, true}};
 
-    // int Limiter = 25000000;  // 2500 files
+    int Limiter = 25000000;  // 2500 files
     // int Limiter = 10000000; // 1000 files
-    int Limiter = 1000000;  // 100 files
+    // int Limiter = 1000000;  // 100 files
     // int Limiter = 100000;  // 10 files
     // int Limiter = 10000; // 1 file
 
@@ -42,11 +42,11 @@ void nFD_eff_test() {
     // string General_status = "_AllCuts";
     // string General_status = "_OnlyAllCuts";
 
+    // bool ConstrainedE = false;
     bool ConstrainedE = true;
-    // bool ConstrainedE = true;
 
-    bool plot_AMaps = false;
-    // bool plot_AMaps = true;
+    // bool plot_AMaps = false;
+    bool plot_AMaps = true;
 
     for (int i = 0; i < rc_factor_v.size(); i++) {
         for (int j = 0; j < Ebeam_v.size(); j++) {
