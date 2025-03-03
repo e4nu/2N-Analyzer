@@ -902,9 +902,9 @@ void nFD_eff_test() {
                 double Edep_PCAL = electrons[0]->cal(clas12::PCAL)->getEnergy();
                 double Edep_EC = electrons[0]->cal(clas12::ECIN)->getEnergy() + electrons[0]->cal(clas12::ECOUT)->getEnergy();
 
-                bool ElectronInPCAL = (allElectrons[i]->cal(clas12::PCAL)->getDetector() == 7);                               // PCAL hit
-                bool ElectronInECIN = (allElectrons[i]->cal(clas12::ECIN)->getDetector() == 7);                               // ECIN hit
-                bool ElectronInECOUT = (allElectrons[i]->cal(clas12::ECOUT)->getDetector() == 7);                             // ECOUT hit
+                bool ElectronInPCAL = (electrons[0]->cal(clas12::PCAL)->getDetector() == 7);                               // PCAL hit
+                bool ElectronInECIN = (electrons[0]->cal(clas12::ECIN)->getDetector() == 7);                               // ECIN hit
+                bool ElectronInECOUT = (electrons[0]->cal(clas12::ECOUT)->getDetector() == 7);                             // ECOUT hit
                 auto Electron_ECAL_detlayer = ElectronInPCAL ? clas12::PCAL : ElectronInECIN ? clas12::ECIN : clas12::ECOUT;  // find first layer of hit
 
                 //  =======================================================================================================================================================================
