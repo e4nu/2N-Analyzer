@@ -975,7 +975,8 @@ void nFD_eff_test() {
                 cout << "Truth_phi_e = " << Truth_phi_e << "\n";
                 cout << "getPhi_e(TString(InputFiles), Truth_phi_nFD) = " << getPhi_e(TString(InputFiles), Truth_phi_nFD) << "\n";
                 cout << "reco_P_e.Phi() * 180 / M_PI = " << reco_P_e.Phi() * 180 / M_PI << "\n";
-                cout << "fabs((reco_P_e.Phi() * 180 / M_PI) - Truth_phi_e) = " << fabs((reco_P_e.Phi() * 180 / M_PI) - Truth_phi_e) << "\n\n";
+                cout << "fabs(getPhi_e(TString(InputFiles), Truth_phi_nFD) - reco_P_e.Phi() * 180 / M_PI) = "
+                     << fabs(getPhi_e(TString(InputFiles), Truth_phi_nFD) - reco_P_e.Phi() * 180 / M_PI) << "\n\n";
 
                 h_reco_P_e_1e_cut->Fill(reco_P_e.Mag(), weight);
                 h_reco_theta_e_1e_cut->Fill(reco_P_e.Theta() * 180 / M_PI, weight);
