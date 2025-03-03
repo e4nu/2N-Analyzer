@@ -36,8 +36,9 @@ void nFD_eff_test() {
 
     string OutFolderName_prefix = "A_test";
     string OutFolderName_ver_status = "_v6";
-    string General_status = "_Only_Truth_phi_nFDCuts";
+    // string General_status = "_Only_Truth_phi_nFDCuts";
     // string General_status = "_NO_Truth_phi_nFDCuts";
+    string General_status = "_AllCuts";
     // string General_status = "_OnlyAllCuts";
 
     bool ConstrainedE = true;
