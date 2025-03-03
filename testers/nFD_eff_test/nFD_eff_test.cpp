@@ -36,7 +36,7 @@ void nFD_eff_test() {
 
     string OutFolderName_prefix = "A_test";
     string OutFolderName_ver_status = "_v6";
-    string General_status = "_AllCuts";
+    string General_status = "_AllCuts_NO_Truth_phi_nFDCuts";
     // string General_status = "_NO_Truth_phi_nFDCuts";
     // string General_status = "_OnlyAllCuts";
 
@@ -982,7 +982,7 @@ void nFD_eff_test() {
                 if (ConstrainedE && (reco_P_e.Mag() < Ebeam - 0.2 || reco_P_e.Mag() > Ebeam + 0.2)) { continue; }
                 if (ConstrainedE && (fabs((reco_P_e.Theta() * 180 / M_PI) - Truth_theta_e) > 2.)) { continue; }
                 if (ConstrainedE && (fabs((reco_P_e.Phi() * 180 / M_PI) - Truth_phi_e) > 5.)) { continue; }
-                if (ConstrainedE && (CalcdPhi(fabs(getPhi_e(TString(InputFiles), Truth_phi_nFD) - reco_P_e.Phi() * 180 / M_PI)) > 5.)) { continue; }
+                // if (ConstrainedE && (CalcdPhi(fabs(getPhi_e(TString(InputFiles), Truth_phi_nFD) - reco_P_e.Phi() * 180 / M_PI)) > 5.)) { continue; }
 
                 // if (fabs(Truth_phi_nFD) < 30.) {
                 //     cout << "\n\n==========================================================\n";
