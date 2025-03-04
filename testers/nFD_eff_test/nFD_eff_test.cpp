@@ -32,8 +32,8 @@ void nFD_eff_test() {
     // vector<vector<bool>> Ebeam_bool_v = {{true, false, false}, {false, true, false}, {false, false, true}};
 
     // int Limiter = 25000000;  // 2500 files
-    // int Limiter = 10000000; // 1000 files
-    int Limiter = 1000000;  // 100 files
+    int Limiter = 10000000;  // 1000 files
+    // int Limiter = 1000000;  // 100 files
     // int Limiter = 100000;  // 10 files
     // int Limiter = 10000; // 1 file
 
@@ -672,6 +672,14 @@ void nFD_eff_test() {
                 new TH2D("truth_theta_nFD_matched_VS_truth_phi_nFD_matched_1e_cut",
                          "#theta^{truth}_{nFD} vs. #phi^{truth}_{nFD} in 1e cut (matched);#phi^{truth}_{nFD} [#circ];#theta^{truth}_{nFD} [#circ]", 100, -180., 180., 100, 0, 50.);
             HistoList.push_back(h_truth_theta_nFD_matched_VS_truth_phi_nFD_matched_1e_cut);
+
+            TH1D* h_Edep_ECAL_matched_1e_cut = new TH1D("Edep_ECAL_matched_1e_cut", "E^{ECAL}_{dep} in 1e cut (matched);E^{ECAL}_{dep} [GeV];Counts", 50, 0, 1.);
+            HistoList.push_back(h_Edep_ECAL_matched_1e_cut);
+            TH1D* h_beta_n_matched_1e_cut = new TH1D("beta_n_matched_1e_cut", "#beta_{nFD} in 1e cut (matched);#beta_{nFD};Counts", 50, 0, 1.1);
+            HistoList.push_back(h_beta_n_matched_1e_cut);
+            TH2D* h_Edep_ECAL_VS_beta_n_matched_1e_cut =
+                new TH2D("Edep_ECAL_VS_beta_n_matched_1e_cut", "E^{ECAL}_{dep} vs. #beta_{nFD} in 1e cut (matched);#beta_{nFD};E^{ECAL}_{dep} [GeV]", 100, 0, 1.1, 100, 0, 1.);
+            HistoList.push_back(h_Edep_ECAL_VS_beta_n_matched_1e_cut);
 
             TH2D* h_reco_P_e_VS_P_nFD_matched_1e_cut =
                 new TH2D("reco_P_e_VS_P_nFD_matched_1e_cut", "P^{reco}_{e} vs. P^{reco}_{nFD} in 1e cut (matched);P^{reco}_{e} [GeV/c];P^{reco}_{nFD} [GeV/c]", 100, 0., Ebeam * 2., 100, 0.,
