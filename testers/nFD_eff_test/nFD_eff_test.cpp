@@ -85,6 +85,8 @@ void nFD_eff_test() {
 
             //
 
+            if (OnlyGood_nFD == OnlyBad_nFD) { OnlyGood_nFD = OnlyBad_nFD = false; }
+
             double P_upperLim;
 
             // string OutFolderName_prefix = "nFD_eff_test";
@@ -1401,7 +1403,7 @@ void nFD_eff_test() {
                     bool NeutronPassVeto_1e_cut = NeutronECAL_Cut_Veto(allParticles, electrons, beamE, NeutronsFD_ind_mom_max, ECALvetoCut, apply_PCAL_neutral_veto, rc_factor, rn_factor);
 
                     bool PassPhi_nFDCuts = true;
-                    int nFD_nSector = allParticles[i]->cal(Neutron_ECAL_detlayer)->getSector();
+                    int nFD_nSector = allParticles[NeutronsFD_ind_mom_max]->cal(Neutron_ECAL_detlayer)->getSector();
                     int e_nSector = electrons[0]->cal(Electron_ECAL_detlayer)->getSector();
                     if (OnlyGood_nFD) { PassPhi_nFDCuts = (abs(nFD_nSector - e_nSector) == 3); }
                     if (OnlyBad_nFD) { PassPhi_nFDCuts = !(abs(nFD_nSector - e_nSector) == 3); }
