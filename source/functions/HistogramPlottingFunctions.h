@@ -2229,7 +2229,7 @@ void histPlotter2D(TCanvas *HistogramCanvas, TH2D *Histogram2D, double titleSize
 
     if (!ShowStats) { Histogram2D->SetStats(0); }
 
-    gStyle->SetStatX(0.87);
+    gStyle->SetStatX(0.98); // gStyle->SetStatX(0.87);
     gStyle->SetStatY(0.875);
     HistogramCanvas->SaveAs((Histogram1DSaveNameDir + Histogram1DSaveName + ".png").c_str());
     gStyle->SetStatX(DefStatX);
@@ -2291,8 +2291,8 @@ void histPlotter2D(TCanvas *HistogramCanvas, TH2D *Histogram2D, double titleSize
 
     if (zLogScalePlot) { HistogramCanvas->SetLogz(1); }
 
-    gStyle->SetStatX(0.87);
-    gStyle->SetStatY(0.4);
+    gStyle->SetStatX(0.98); // gStyle->SetStatX(0.87);
+    gStyle->SetStatY(0.935); // gStyle->SetStatY(0.4);
     HistogramCanvas->SaveAs((Histogram1DSaveNameDir + Histogram1DSaveName).c_str());
     gStyle->SetStatX(DefStatX);
     gStyle->SetStatY(DefStatY);
@@ -2354,8 +2354,8 @@ void histPlotter2D(TCanvas *HistogramCanvas, TH2D *Histogram2D, double titleSize
 
     if (zLogScalePlot) { HistogramCanvas->SetLogz(1); }
 
-    gStyle->SetStatX(0.87);
-    gStyle->SetStatY(0.4);
+    gStyle->SetStatX(0.98); // gStyle->SetStatX(0.87);
+    gStyle->SetStatY(0.935); // gStyle->SetStatY(0.4);
     HistogramCanvas->SaveAs((Histogram1DSaveNameDir + Histogram1DSaveName).c_str());
     gStyle->SetStatX(DefStatX);
     gStyle->SetStatY(DefStatY);
@@ -2424,8 +2424,8 @@ void histPlotter2D(TCanvas *HistogramCanvas, TH2D *Histogram2D, double titleSize
 
     if (zLogScalePlot) { HistogramCanvas->SetLogz(1); }
 
-    gStyle->SetStatX(0.87);
-    gStyle->SetStatY(0.4);
+    gStyle->SetStatX(0.98); // gStyle->SetStatX(0.87);
+    gStyle->SetStatY(0.935); // gStyle->SetStatY(0.4);
     HistogramCanvas->SaveAs((Histogram1DSaveNameDir + Histogram1DSaveName).c_str());
     gStyle->SetStatX(DefStatX);
     gStyle->SetStatY(DefStatY);

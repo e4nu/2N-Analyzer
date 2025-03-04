@@ -604,8 +604,8 @@ void HistPlotter2D(TCanvas *HistogramCanvas, TList *MScThesisPlotsList, const ch
         }
     }
 
-    gStyle->SetStatX(0.87);
-    gStyle->SetStatY(0.4);
+    gStyle->SetStatX(0.98); // gStyle->SetStatX(0.87);
+    gStyle->SetStatY(0.935); // gStyle->SetStatY(0.4);
 
     if (!ShowStats || Histogram2D->Integral() == 0.) { Histogram2D->SetStats(0); }
 

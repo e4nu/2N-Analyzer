@@ -166,7 +166,7 @@ void hPlot2D::histPlotter2D(const std::string &SampleName, TCanvas *HistogramCan
         Histogram2D->Draw("colz");
     }
 
-    gStyle->SetStatX(0.87);
+    gStyle->SetStatX(0.98);  // gStyle->SetStatX(0.87);
     gStyle->SetStatY(0.875);
 
     if (!showStats) { Histogram2D->SetStats(0); }
@@ -214,7 +214,7 @@ void hPlot2D::histPlotter2D(const std::string &SampleName, TCanvas *HistogramCan
     //
     //    if (!ShowStats) { Histogram2D->SetStats(0); }
     //
-    //    gStyle->SetStatX(0.87);
+    //    gStyle->SetStatX(0.98); // gStyle->SetStatX(0.87);
     //    gStyle->SetStatY(0.875);
     //    HistogramCanvas->SaveAs((Histogram2DSaveNameDir + sNameFlag + Histogram2DSaveName + ".png").c_str());
     //    gStyle->SetStatX(DefStatX);
@@ -284,8 +284,8 @@ void hPlot2D::histPlotter2D(const std::string &SampleName, TCanvas *HistogramCan
         Beta_function9->Draw("same");
     }
 
-    gStyle->SetStatX(0.87);
-    gStyle->SetStatY(0.4);
+    gStyle->SetStatX(0.98);   // gStyle->SetStatX(0.87);
+    gStyle->SetStatY(0.935);  // gStyle->SetStatY(0.4);
 
     if (!ShowStats || Histogram2D->Integral() == 0.) { Histogram2D->SetStats(0); }
 
@@ -385,8 +385,8 @@ void hPlot2D::histPlotter2D(const std::string &SampleName, TCanvas *HistogramCan
         Beta_vs_P_legend->Draw("same");
     }
 
-    gStyle->SetStatX(0.87);
-    gStyle->SetStatY(0.4);
+    gStyle->SetStatX(0.98);   // gStyle->SetStatX(0.87);
+    gStyle->SetStatY(0.935);  // gStyle->SetStatY(0.4);
 
     if (!ShowStats || Histogram2D->Integral() == 0.) { Histogram2D->SetStats(0); }
 
@@ -492,8 +492,8 @@ void hPlot2D::histPlotter2D(const std::string &SampleName, TCanvas *HistogramCan
         Beta_vs_P_legend->Draw("same");
     }
 
-    gStyle->SetStatX(0.87);
-    gStyle->SetStatY(0.4);
+    gStyle->SetStatX(0.98);   // gStyle->SetStatX(0.87);
+    gStyle->SetStatY(0.935);  // gStyle->SetStatY(0.4);
 
     if (!ShowStats || Histogram2D->Integral() == 0.) { Histogram2D->SetStats(0); }
 

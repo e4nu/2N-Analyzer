@@ -22,28 +22,28 @@ void nFD_eff_test() {
 
     bool use_ConstPn_samples = true;
 
-    // vector<double> rc_factor_v = {100};
-    vector<double> rc_factor_v = {100, 200, 300, 400, 500, 600, 700, 800, 900, 1000};
+    vector<double> rc_factor_v = {100};
+    // vector<double> rc_factor_v = {100, 200, 300, 400, 500, 600, 700, 800, 900, 1000};
 
-    // vector<double> Ebeam_v = {2.07052};
-    // vector<vector<bool>> Ebeam_bool_v = {{true, false, false}};
-    vector<double> Ebeam_v = {2.07052, 4.02962, 5.98636};
-    vector<vector<bool>> Ebeam_bool_v = {{true, false, false}, {false, true, false}, {false, false, true}};
+    vector<double> Ebeam_v = {2.07052};
+    vector<vector<bool>> Ebeam_bool_v = {{true, false, false}};
+    // vector<double> Ebeam_v = {2.07052, 4.02962, 5.98636};
+    // vector<vector<bool>> Ebeam_bool_v = {{true, false, false}, {false, true, false}, {false, false, true}};
 
-    int Limiter = 25000000;  // 2500 files
+    // int Limiter = 25000000;  // 2500 files
     // int Limiter = 10000000; // 1000 files
     // int Limiter = 1000000;  // 100 files
-    // int Limiter = 100000;  // 10 files
+    int Limiter = 100000;  // 10 files
     // int Limiter = 10000; // 1 file
 
-    string OutFolderName_prefix = "A_test";
-    string OutFolderName_ver_status = "_v6";
+    string OutFolderName_prefix = "B_test";
+    string OutFolderName_ver_status = "_v7";
     // string General_status = "_Only_Truth_phi_nFDCuts";
     // string General_status = "_NO_Truth_phi_nFDCuts";
-    string General_status = "_AllCuts_OnlyBad_nFD";
+    // string General_status = "_AllCuts_OnlyBad_nFD";
     // string General_status = "_AllCuts_OnlyGood_nFD";
     // string General_status = "_AllCuts";
-    // string General_status = "_OnlyAllCuts";
+    string General_status = "_Only_e_AllCuts";
 
     // bool ConstrainedE = false;
     bool ConstrainedE = true;
@@ -158,6 +158,12 @@ void nFD_eff_test() {
             /////////////////////////////////////
             vector<TH1*> HistoList_electron_cuts;
 
+            vector<TH1*> HistoList_raw;
+
+            vector<TH1*> HistoList_clas12reco;
+
+            vector<TH1*> HistoList_redef;
+
             vector<TH1*> HistoList;
             vector<string> HistSubjects;
             vector<string> HistSubjects2;
@@ -253,44 +259,44 @@ void nFD_eff_test() {
 #pragma endregion
 
             TH1D* h_reco_P_e_1e_cut = new TH1D("reco_P_e_1e_cut", "P^{reco}_{e} in 1e cut;P^{reco}_{e} [GeV/c];Counts", 50, 0, P_upperLim);
-            HistoList.push_back(h_reco_P_e_1e_cut);
+            HistoList_raw.push_back(h_reco_P_e_1e_cut);
             TH1D* h_truth_P_e_1e_cut = new TH1D("truth_P_e_1e_cut", "P^{truth}_{e} in 1e cut;P^{truth}_{e} [GeV/c];Counts", 50, 0, P_upperLim);
-            HistoList.push_back(h_truth_P_e_1e_cut);
+            HistoList_raw.push_back(h_truth_P_e_1e_cut);
             TH1D* h_reco_theta_e_1e_cut = new TH1D("reco_theta_e_1e_cut", "#theta^{reco}_{e} in 1e cut;#theta^{reco}_{e} [#circ];Counts", 50, 0, 45.);
-            HistoList.push_back(h_reco_theta_e_1e_cut);
+            HistoList_raw.push_back(h_reco_theta_e_1e_cut);
             TH1D* h_truth_theta_e_1e_cut = new TH1D("truth_theta_e_1e_cut", "#theta^{truth}_{e} in 1e cut;#theta^{truth}_{e} [#circ];Counts", 50, 0, 45.);
-            HistoList.push_back(h_truth_theta_e_1e_cut);
+            HistoList_raw.push_back(h_truth_theta_e_1e_cut);
             TH1D* h_reco_phi_e_1e_cut = new TH1D("reco_phi_e_1e_cut", "#phi^{reco}_{e} in 1e cut;#phi^{reco}_{e} [#circ];Counts", 50, -180, 180.);
-            HistoList.push_back(h_reco_phi_e_1e_cut);
+            HistoList_raw.push_back(h_reco_phi_e_1e_cut);
             TH1D* h_truth_phi_e_1e_cut = new TH1D("truth_phi_e_1e_cut", "#phi^{truth}_{e} in 1e cut;#phi^{truth}_{e} [#circ];Counts", 50, -180, 180.);
-            HistoList.push_back(h_truth_phi_e_1e_cut);
+            HistoList_raw.push_back(h_truth_phi_e_1e_cut);
             TH2D* h_reco_theta_e_VS_reco_phi_e_1e_cut = new TH2D(
                 "reco_theta_e_VS_reco_phi_e_1e_cut", "#theta^{reco}_{e} vs. #phi^{reco}_{e} in 1e cut;#phi^{reco}_{e} [#circ];#theta^{reco}_{e} [#circ]", 100, -180., 180., 100, 0, 50.);
-            HistoList.push_back(h_reco_theta_e_VS_reco_phi_e_1e_cut);
+            HistoList_raw.push_back(h_reco_theta_e_VS_reco_phi_e_1e_cut);
             TH2D* h_truth_theta_e_VS_truth_phi_e_1e_cut =
                 new TH2D("truth_theta_e_VS_truth_phi_e_1e_cut", "#theta^{truth}_{e} vs. #phi^{truth}_{e} in 1e cut;#phi^{truth}_{e} [#circ];#theta^{truth}_{e} [#circ]", 100, -180., 180.,
                          100, 0, 50.);
-            HistoList.push_back(h_truth_theta_e_VS_truth_phi_e_1e_cut);
+            HistoList_raw.push_back(h_truth_theta_e_VS_truth_phi_e_1e_cut);
 
             TH1D* h_reco_P_n_1e_cut = new TH1D("reco_P_n_1e_cut", "P^{reco}_{n} in 1e cut;P^{reco}_{n} [GeV/c];Counts", 50, 0, P_upperLim);
-            HistoList.push_back(h_reco_P_n_1e_cut);
+            HistoList_raw.push_back(h_reco_P_n_1e_cut);
             TH1D* h_truth_P_n_1e_cut = new TH1D("truth_P_n_1e_cut", "P^{truth}_{n} in 1e cut;P^{truth}_{n} [GeV/c];Counts", 50, 0, P_upperLim);
-            HistoList.push_back(h_truth_P_n_1e_cut);
+            HistoList_raw.push_back(h_truth_P_n_1e_cut);
             TH1D* h_reco_theta_n_1e_cut = new TH1D("reco_theta_n_1e_cut", "#theta^{reco}_{n} in 1e cut;#theta^{reco}_{n} [#circ];Counts", 50, 0, 45.);
-            HistoList.push_back(h_reco_theta_n_1e_cut);
+            HistoList_raw.push_back(h_reco_theta_n_1e_cut);
             TH1D* h_truth_theta_n_1e_cut = new TH1D("truth_theta_n_1e_cut", "#theta^{truth}_{n} in 1e cut;#theta^{truth}_{n} [#circ];Counts", 50, 0, 45.);
-            HistoList.push_back(h_truth_theta_n_1e_cut);
+            HistoList_raw.push_back(h_truth_theta_n_1e_cut);
             TH1D* h_reco_phi_n_1e_cut = new TH1D("reco_phi_n_1e_cut", "#phi^{reco}_{n} in 1e cut;#phi^{reco}_{n} [#circ];Counts", 50, -180, 180.);
-            HistoList.push_back(h_reco_phi_n_1e_cut);
+            HistoList_raw.push_back(h_reco_phi_n_1e_cut);
             TH1D* h_truth_phi_n_1e_cut = new TH1D("truth_phi_n_1e_cut", "#phi^{truth}_{n} in 1e cut;#phi^{truth}_{n} [#circ];Counts", 50, -180, 180.);
-            HistoList.push_back(h_truth_phi_n_1e_cut);
+            HistoList_raw.push_back(h_truth_phi_n_1e_cut);
             TH2D* h_reco_theta_n_VS_reco_phi_n_1e_cut = new TH2D(
                 "reco_theta_n_VS_reco_phi_n_1e_cut", "#theta^{reco}_{n} vs. #phi^{reco}_{n} in 1e cut;#phi^{reco}_{n} [#circ];#theta^{reco}_{n} [#circ]", 100, -180., 180., 100, 0, 50.);
-            HistoList.push_back(h_reco_theta_n_VS_reco_phi_n_1e_cut);
+            HistoList_raw.push_back(h_reco_theta_n_VS_reco_phi_n_1e_cut);
             TH2D* h_truth_theta_n_VS_truth_phi_n_1e_cut =
                 new TH2D("truth_theta_n_VS_truth_phi_n_1e_cut", "#theta^{truth}_{n} vs. #phi^{truth}_{n} in 1e cut;#phi^{truth}_{n} [#circ];#theta^{truth}_{n} [#circ]", 100, -180., 180.,
                          100, 0, 50.);
-            HistoList.push_back(h_truth_theta_n_VS_truth_phi_n_1e_cut);
+            HistoList_raw.push_back(h_truth_theta_n_VS_truth_phi_n_1e_cut);
 #pragma endregion
 
 #pragma region /* clas12reco */
@@ -298,33 +304,33 @@ void nFD_eff_test() {
             HistSubjects2.push_back("#splitline{FD neutron from}{clas12reco}");
             FirstPrint.push_back(true);
             TH1D* h_reco_P_nFD_clas12_1e_cut = new TH1D("reco_P_nFD_clas12_1e_cut", "P^{reco}_{nFD} in 1e cut (clas12reco);P^{reco}_{nFD} [GeV/c];Counts", 50, 0, P_upperLim);
-            HistoList.push_back(h_reco_P_nFD_clas12_1e_cut);
+            HistoList_clas12reco.push_back(h_reco_P_nFD_clas12_1e_cut);
             TH1D* h_truth_P_nFD_clas12_1e_cut = new TH1D("truth_P_nFD_clas12_1e_cut", "P^{truth}_{nFD} in 1e cut (clas12reco);P^{truth}_{nFD} [GeV/c];Counts", 50, 0, P_upperLim);
-            HistoList.push_back(h_truth_P_nFD_clas12_1e_cut);
+            HistoList_clas12reco.push_back(h_truth_P_nFD_clas12_1e_cut);
             TH1D* h_reco_theta_nFD_clas12_1e_cut = new TH1D("reco_theta_nFD_clas12_1e_cut", "#theta^{reco}_{nFD} in 1e cut (clas12reco);#theta^{reco}_{nFD} [#circ];Counts", 50, 0, 45.);
-            HistoList.push_back(h_reco_theta_nFD_clas12_1e_cut);
+            HistoList_clas12reco.push_back(h_reco_theta_nFD_clas12_1e_cut);
             TH1D* h_truth_theta_nFD_clas12_1e_cut = new TH1D("truth_theta_nFD_clas12_1e_cut", "#theta^{truth}_{nFD} in 1e cut (clas12reco);#theta^{truth}_{nFD} [#circ];Counts", 50, 0, 45.);
-            HistoList.push_back(h_truth_theta_nFD_clas12_1e_cut);
+            HistoList_clas12reco.push_back(h_truth_theta_nFD_clas12_1e_cut);
             TH1D* h_reco_phi_nFD_clas12_1e_cut = new TH1D("reco_phi_nFD_clas12_1e_cut", "#phi^{reco}_{nFD} in 1e cut (clas12reco);#phi^{reco}_{nFD} [#circ];Counts", 50, -180, 180.);
-            HistoList.push_back(h_reco_phi_nFD_clas12_1e_cut);
+            HistoList_clas12reco.push_back(h_reco_phi_nFD_clas12_1e_cut);
             TH1D* h_truth_phi_nFD_clas12_1e_cut = new TH1D("truth_phi_nFD_clas12_1e_cut", "#phi^{truth}_{nFD} in 1e cut (clas12reco);#phi^{truth}_{nFD} [#circ];Counts", 50, -180, 180.);
-            HistoList.push_back(h_truth_phi_nFD_clas12_1e_cut);
+            HistoList_clas12reco.push_back(h_truth_phi_nFD_clas12_1e_cut);
             TH2D* h_reco_theta_nFD_clas12_VS_reco_phi_nFD_clas12_1e_cut =
                 new TH2D("reco_theta_nFD_clas12_VS_reco_phi_nFD_clas12_1e_cut",
                          "#theta^{reco}_{nFD} vs. #phi^{reco}_{nFD} in 1e cut (clas12reco);#phi^{reco}_{nFD} [#circ];#theta^{reco}_{nFD} [#circ]", 100, -180., 180., 100, 0, 50.);
-            HistoList.push_back(h_reco_theta_nFD_clas12_VS_reco_phi_nFD_clas12_1e_cut);
+            HistoList_clas12reco.push_back(h_reco_theta_nFD_clas12_VS_reco_phi_nFD_clas12_1e_cut);
             TH2D* h_truth_theta_nFD_clas12_VS_truth_phi_nFD_clas12_1e_cut =
                 new TH2D("truth_theta_nFD_clas12_VS_truth_phi_nFD_clas12_1e_cut",
                          "#theta^{truth}_{nFD} vs. #phi^{truth}_{nFD} in 1e cut (clas12reco);#phi^{truth}_{nFD} [#circ];#theta^{truth}_{nFD} [#circ]", 100, -180., 180., 100, 0, 50.);
-            HistoList.push_back(h_truth_theta_nFD_clas12_VS_truth_phi_nFD_clas12_1e_cut);
+            HistoList_clas12reco.push_back(h_truth_theta_nFD_clas12_VS_truth_phi_nFD_clas12_1e_cut);
             TH2D* h_reco_P_e_VS_P_nFD_clas12_1e_cut =
                 new TH2D("reco_P_e_VS_P_nFD_clas12_1e_cut", "P^{reco}_{e} vs. P^{reco}_{nFD} in 1e cut (clas12reco);P^{reco}_{e} [GeV/c];P^{reco}_{nFD} [GeV/c]", 100, 0., Ebeam * 2., 100,
                          0., Ebeam * 3.);
-            HistoList.push_back(h_reco_P_e_VS_P_nFD_clas12_1e_cut);
+            HistoList_clas12reco.push_back(h_reco_P_e_VS_P_nFD_clas12_1e_cut);
             TH2D* h_reco_theta_nFD_clas12_VS_P_nFD_clas12_1e_cut =
                 new TH2D("reco_theta_nFD_clas12_VS_P_nFD_clas12_1e_cut", "#theta^{reco}_{nFD} vs. P^{reco}_{nFD} in 1e cut (clas12reco);#theta^{reco}_{nFD} [#circ];P^{reco}_{nFD} [GeV/c]",
                          100, 0., 50., 100, 0., Ebeam * 3.);
-            HistoList.push_back(h_reco_theta_nFD_clas12_VS_P_nFD_clas12_1e_cut);
+            HistoList_clas12reco.push_back(h_reco_theta_nFD_clas12_VS_P_nFD_clas12_1e_cut);
 #pragma endregion
 
 #pragma region /* redef */
@@ -332,32 +338,32 @@ void nFD_eff_test() {
             HistSubjects2.push_back("redef");
             FirstPrint.push_back(true);
             TH1D* h_reco_P_nFD_redef_1e_cut = new TH1D("reco_P_nFD_redef_1e_cut", "P^{reco}_{nFD} in 1e cut (redef);P^{reco}_{nFD} [GeV/c];Counts", 50, 0, P_upperLim);
-            HistoList.push_back(h_reco_P_nFD_redef_1e_cut);
+            HistoList_redef.push_back(h_reco_P_nFD_redef_1e_cut);
             TH1D* h_truth_P_nFD_redef_1e_cut = new TH1D("truth_P_nFD_redef_1e_cut", "P^{truth}_{nFD} in 1e cut (redef);P^{truth}_{nFD} [GeV/c];Counts", 50, 0, P_upperLim);
-            HistoList.push_back(h_truth_P_nFD_redef_1e_cut);
+            HistoList_redef.push_back(h_truth_P_nFD_redef_1e_cut);
             TH1D* h_reco_theta_nFD_redef_1e_cut = new TH1D("reco_theta_nFD_redef_1e_cut", "#theta^{reco}_{nFD} in 1e cut (redef);#theta^{reco}_{nFD} [#circ];Counts", 50, 0, 45.);
-            HistoList.push_back(h_reco_theta_nFD_redef_1e_cut);
+            HistoList_redef.push_back(h_reco_theta_nFD_redef_1e_cut);
             TH1D* h_truth_theta_nFD_redef_1e_cut = new TH1D("truth_theta_nFD_redef_1e_cut", "#theta^{truth}_{nFD} in 1e cut (redef);#theta^{truth}_{nFD} [#circ];Counts", 50, 0, 45.);
-            HistoList.push_back(h_truth_theta_nFD_redef_1e_cut);
+            HistoList_redef.push_back(h_truth_theta_nFD_redef_1e_cut);
             TH1D* h_reco_phi_nFD_redef_1e_cut = new TH1D("reco_phi_nFD_redef_1e_cut", "#phi^{reco}_{nFD} in 1e cut (redef);#phi^{reco}_{nFD} [#circ];Counts", 50, -180, 180.);
-            HistoList.push_back(h_reco_phi_nFD_redef_1e_cut);
+            HistoList_redef.push_back(h_reco_phi_nFD_redef_1e_cut);
             TH1D* h_truth_phi_nFD_redef_1e_cut = new TH1D("truth_phi_nFD_redef_1e_cut", "#phi^{truth}_{nFD} in 1e cut (redef);#phi^{truth}_{nFD} [#circ];Counts", 50, -180, 180.);
-            HistoList.push_back(h_truth_phi_nFD_redef_1e_cut);
+            HistoList_redef.push_back(h_truth_phi_nFD_redef_1e_cut);
             TH2D* h_reco_theta_nFD_redef_VS_reco_phi_nFD_redef_1e_cut =
                 new TH2D("reco_theta_nFD_redef_VS_reco_phi_nFD_redef_1e_cut",
                          "#theta^{reco}_{nFD} vs. #phi^{reco}_{nFD} in 1e cut (redef);#phi^{reco}_{nFD} [#circ];#theta^{reco}_{nFD} [#circ]", 100, -180., 180., 100, 0, 50.);
-            HistoList.push_back(h_reco_theta_nFD_redef_VS_reco_phi_nFD_redef_1e_cut);
+            HistoList_redef.push_back(h_reco_theta_nFD_redef_VS_reco_phi_nFD_redef_1e_cut);
             TH2D* h_truth_theta_nFD_redef_VS_truth_phi_nFD_redef_1e_cut =
                 new TH2D("truth_theta_nFD_redef_VS_truth_phi_nFD_redef_1e_cut",
                          "#theta^{truth}_{nFD} vs. #phi^{truth}_{nFD} in 1e cut (redef);#phi^{truth}_{nFD} [#circ];#theta^{truth}_{nFD} [#circ]", 100, -180., 180., 100, 0, 50.);
-            HistoList.push_back(h_truth_theta_nFD_redef_VS_truth_phi_nFD_redef_1e_cut);
+            HistoList_redef.push_back(h_truth_theta_nFD_redef_VS_truth_phi_nFD_redef_1e_cut);
             TH2D* h_reco_P_e_VS_P_nFD_redef_1e_cut = new TH2D(
                 "reco_P_e_VS_P_nFD_redef_1e_cut", "P^{reco}_{e} vs. P^{reco}_{nFD} in 1e cut (redef);P^{reco}_{e} [GeV/c];P^{reco}_{nFD} [GeV/c]", 100, 0., Ebeam * 2., 100, 0., Ebeam * 3.);
-            HistoList.push_back(h_reco_P_e_VS_P_nFD_redef_1e_cut);
+            HistoList_redef.push_back(h_reco_P_e_VS_P_nFD_redef_1e_cut);
             TH2D* h_reco_theta_nFD_redef_VS_P_nFD_redef_1e_cut =
                 new TH2D("reco_theta_nFD_redef_VS_P_nFD_redef_1e_cut", "#theta^{reco}_{nFD} vs. P^{reco}_{nFD} in 1e cut (redef);#theta^{reco}_{nFD} [#circ];P^{reco}_{nFD} [GeV/c]", 100, 0.,
                          50., 100, 0., Ebeam * 3.);
-            HistoList.push_back(h_reco_theta_nFD_redef_VS_P_nFD_redef_1e_cut);
+            HistoList_redef.push_back(h_reco_theta_nFD_redef_VS_P_nFD_redef_1e_cut);
 #pragma endregion
 
 #pragma region /* ECALveto */
@@ -436,125 +442,130 @@ void nFD_eff_test() {
             HistoList.push_back(h_reco_nFD_multi_VS_reco_P_nFD_ECALveto_1e_cut);
 #pragma endregion
 
-            TH2D* h_reco_P_nFD_VS_reco_L_ECAL_ECALveto_1e_cut =
-                new TH2D("reco_P_nFD_VS_reco_L_ECAL_ECALveto_1e_cut", "P^{reco}_{nFD} vs. L^{reco}_{nFD,ECAL} in 1e cut (ECALveto);L^{reco}_{nFD,ECAL} [cm];P^{reco}_{nFD} [#circ]", 100,
-                         700., 850., 100, 0., Ebeam * 3.);
-            HistoList.push_back(h_reco_P_nFD_VS_reco_L_ECAL_ECALveto_1e_cut);
-            TH2D* h_reco_theta_nFD_VS_reco_L_ECAL_ECALveto_1e_cut =
-                new TH2D("reco_theta_nFD_VS_reco_L_ECAL_ECALveto_1e_cut",
-                         "#theta^{reco}_{nFD} vs. L^{reco}_{nFD,ECAL} in 1e cut (ECALveto);L^{reco}_{nFD,ECAL} [cm];#theta^{reco}_{nFD} [#circ]", 100, 700., 850., 100, 0., 45.);
-            HistoList.push_back(h_reco_theta_nFD_VS_reco_L_ECAL_ECALveto_1e_cut);
-            TH2D* h_reco_phi_nFD_VS_reco_L_ECAL_ECALveto_1e_cut =
-                new TH2D("reco_phi_nFD_VS_reco_L_ECAL_ECALveto_1e_cut", "#phi^{reco}_{nFD} vs. L^{reco}_{nFD,ECAL} in 1e cut (ECALveto);L^{reco}_{nFD,ECAL} [cm];#phi^{reco}_{nFD} [#circ]",
-                         100, 700., 850., 100, -180., 180.);
-            HistoList.push_back(h_reco_phi_nFD_VS_reco_L_ECAL_ECALveto_1e_cut);
-            TH2D* h_reco_P_nFD_VS_ToF_nFD_fromFile_ECAL_ECALveto_1e_cut =
-                new TH2D("reco_P_nFD_VS_ToF_nFD_fromFile_ECAL_ECALveto_1e_cut",
-                         "P^{reco}_{nFD} vs. t^{reco}_{ToF,nFD,ECAL} in 1e cut (ECALveto);t^{reco}_{ToF,nFD,ECAL} [ns];P^{reco}_{nFD} [#circ]", 100, 15., 75., 100, 0., Ebeam * 3.);
-            HistoList.push_back(h_reco_P_nFD_VS_ToF_nFD_fromFile_ECAL_ECALveto_1e_cut);
-            TH2D* h_reco_theta_nFD_VS_ToF_nFD_fromFile_ECAL_ECALveto_1e_cut =
-                new TH2D("reco_theta_nFD_VS_ToF_nFD_fromFile_ECAL_ECALveto_1e_cut",
-                         "#theta^{reco}_{nFD} vs. t^{reco}_{ToF,nFD,ECAL} in 1e cut (ECALveto);t^{reco}_{ToF,nFD,ECAL} [ns];#theta^{reco}_{nFD} [#circ]", 100, 15., 75., 100, 0., 45.);
-            HistoList.push_back(h_reco_theta_nFD_VS_ToF_nFD_fromFile_ECAL_ECALveto_1e_cut);
-            TH2D* h_reco_phi_nFD_VS_ToF_nFD_fromFile_ECAL_ECALveto_1e_cut =
-                new TH2D("reco_phi_nFD_VS_ToF_nFD_fromFile_ECAL_ECALveto_1e_cut",
-                         "#phi^{reco}_{nFD} vs. t^{reco}_{ToF,nFD,ECAL} in 1e cut (ECALveto);t^{reco}_{ToF,nFD,ECAL} [ns];#phi^{reco}_{nFD} [#circ]", 100, 15., 75., 100, -180., 180.);
-            HistoList.push_back(h_reco_phi_nFD_VS_ToF_nFD_fromFile_ECAL_ECALveto_1e_cut);
-            // TH2D* h_reco_P_nFD_VS_eff_L_ECAL_ECALveto_1e_cut =
-            //     new TH2D("reco_P_nFD_VS_eff_L_ECAL_ECALveto_1e_cut",
-            //              "P^{reco}_{nFD} vs. L^{eff}_{nFD,ECAL} in 1e cut (ECALveto);L^{eff}_{nFD,ECAL} = c#beta^{truth}t^{#beta^{reco}_{nFD}}_{ToF} [cm];P^{reco}_{nFD} [#circ]", 100,
+            // TH2D* h_reco_P_nFD_VS_reco_L_ECAL_ECALveto_1e_cut =
+            //     new TH2D("reco_P_nFD_VS_reco_L_ECAL_ECALveto_1e_cut", "P^{reco}_{nFD} vs. L^{reco}_{nFD,ECAL} in 1e cut (ECALveto);L^{reco}_{nFD,ECAL} [cm];P^{reco}_{nFD} [#circ]", 100,
             //              700., 850., 100, 0., Ebeam * 3.);
-            // HistoList.push_back(h_reco_P_nFD_VS_eff_L_ECAL_ECALveto_1e_cut);
-            // TH2D* h_reco_theta_nFD_VS_eff_L_ECAL_ECALveto_1e_cut =
-            //     new TH2D("reco_theta_nFD_VS_eff_L_ECAL_ECALveto_1e_cut",
-            //              "#theta^{reco}_{nFD} vs. L^{eff}_{nFD,ECAL} in 1e cut (ECALveto);L^{eff}_{nFD,ECAL} = c#beta^{truth}t^{#beta^{reco}_{nFD}}_{ToF} [cm];#theta^{reco}_{nFD}
-            //              [#circ]", 100, 700., 850., 100, 0., 45.);
-            // HistoList.push_back(h_reco_theta_nFD_VS_eff_L_ECAL_ECALveto_1e_cut);
-            // TH2D* h_reco_phi_nFD_VS_eff_L_ECAL_ECALveto_1e_cut =
-            //     new TH2D("reco_phi_nFD_VS_eff_L_ECAL_ECALveto_1e_cut",
-            //              "#phi^{reco}_{nFD} vs. L^{eff}_{nFD,ECAL} in 1e cut (ECALveto);L^{eff}_{nFD,ECAL} = c#beta^{truth}t^{#beta^{reco}_{nFD}}_{ToF} [cm];#phi^{reco}_{nFD} [#circ]",
+            // HistoList.push_back(h_reco_P_nFD_VS_reco_L_ECAL_ECALveto_1e_cut);
+            // TH2D* h_reco_theta_nFD_VS_reco_L_ECAL_ECALveto_1e_cut =
+            //     new TH2D("reco_theta_nFD_VS_reco_L_ECAL_ECALveto_1e_cut",
+            //              "#theta^{reco}_{nFD} vs. L^{reco}_{nFD,ECAL} in 1e cut (ECALveto);L^{reco}_{nFD,ECAL} [cm];#theta^{reco}_{nFD} [#circ]", 100, 700., 850., 100, 0., 45.);
+            // HistoList.push_back(h_reco_theta_nFD_VS_reco_L_ECAL_ECALveto_1e_cut);
+            // TH2D* h_reco_phi_nFD_VS_reco_L_ECAL_ECALveto_1e_cut =
+            //     new TH2D("reco_phi_nFD_VS_reco_L_ECAL_ECALveto_1e_cut", "#phi^{reco}_{nFD} vs. L^{reco}_{nFD,ECAL} in 1e cut (ECALveto);L^{reco}_{nFD,ECAL} [cm];#phi^{reco}_{nFD}
+            //     [#circ]",
             //              100, 700., 850., 100, -180., 180.);
-            // HistoList.push_back(h_reco_phi_nFD_VS_eff_L_ECAL_ECALveto_1e_cut);
+            // HistoList.push_back(h_reco_phi_nFD_VS_reco_L_ECAL_ECALveto_1e_cut);
+            // TH2D* h_reco_P_nFD_VS_ToF_nFD_fromFile_ECAL_ECALveto_1e_cut =
+            //     new TH2D("reco_P_nFD_VS_ToF_nFD_fromFile_ECAL_ECALveto_1e_cut",
+            //              "P^{reco}_{nFD} vs. t^{reco}_{ToF,nFD,ECAL} in 1e cut (ECALveto);t^{reco}_{ToF,nFD,ECAL} [ns];P^{reco}_{nFD} [#circ]", 100, 15., 75., 100, 0., Ebeam * 3.);
+            // HistoList.push_back(h_reco_P_nFD_VS_ToF_nFD_fromFile_ECAL_ECALveto_1e_cut);
+            // TH2D* h_reco_theta_nFD_VS_ToF_nFD_fromFile_ECAL_ECALveto_1e_cut =
+            //     new TH2D("reco_theta_nFD_VS_ToF_nFD_fromFile_ECAL_ECALveto_1e_cut",
+            //              "#theta^{reco}_{nFD} vs. t^{reco}_{ToF,nFD,ECAL} in 1e cut (ECALveto);t^{reco}_{ToF,nFD,ECAL} [ns];#theta^{reco}_{nFD} [#circ]", 100, 15., 75., 100, 0., 45.);
+            // HistoList.push_back(h_reco_theta_nFD_VS_ToF_nFD_fromFile_ECAL_ECALveto_1e_cut);
+            // TH2D* h_reco_phi_nFD_VS_ToF_nFD_fromFile_ECAL_ECALveto_1e_cut =
+            //     new TH2D("reco_phi_nFD_VS_ToF_nFD_fromFile_ECAL_ECALveto_1e_cut",
+            //              "#phi^{reco}_{nFD} vs. t^{reco}_{ToF,nFD,ECAL} in 1e cut (ECALveto);t^{reco}_{ToF,nFD,ECAL} [ns];#phi^{reco}_{nFD} [#circ]", 100, 15., 75., 100, -180., 180.);
+            // HistoList.push_back(h_reco_phi_nFD_VS_ToF_nFD_fromFile_ECAL_ECALveto_1e_cut);
+            // // TH2D* h_reco_P_nFD_VS_eff_L_ECAL_ECALveto_1e_cut =
+            // //     new TH2D("reco_P_nFD_VS_eff_L_ECAL_ECALveto_1e_cut",
+            // //              "P^{reco}_{nFD} vs. L^{eff}_{nFD,ECAL} in 1e cut (ECALveto);L^{eff}_{nFD,ECAL} = c#beta^{truth}t^{#beta^{reco}_{nFD}}_{ToF} [cm];P^{reco}_{nFD} [#circ]", 100,
+            // //              700., 850., 100, 0., Ebeam * 3.);
+            // // HistoList.push_back(h_reco_P_nFD_VS_eff_L_ECAL_ECALveto_1e_cut);
+            // // TH2D* h_reco_theta_nFD_VS_eff_L_ECAL_ECALveto_1e_cut =
+            // //     new TH2D("reco_theta_nFD_VS_eff_L_ECAL_ECALveto_1e_cut",
+            // //              "#theta^{reco}_{nFD} vs. L^{eff}_{nFD,ECAL} in 1e cut (ECALveto);L^{eff}_{nFD,ECAL} = c#beta^{truth}t^{#beta^{reco}_{nFD}}_{ToF} [cm];#theta^{reco}_{nFD}
+            // //              [#circ]", 100, 700., 850., 100, 0., 45.);
+            // // HistoList.push_back(h_reco_theta_nFD_VS_eff_L_ECAL_ECALveto_1e_cut);
+            // // TH2D* h_reco_phi_nFD_VS_eff_L_ECAL_ECALveto_1e_cut =
+            // //     new TH2D("reco_phi_nFD_VS_eff_L_ECAL_ECALveto_1e_cut",
+            // //              "#phi^{reco}_{nFD} vs. L^{eff}_{nFD,ECAL} in 1e cut (ECALveto);L^{eff}_{nFD,ECAL} = c#beta^{truth}t^{#beta^{reco}_{nFD}}_{ToF} [cm];#phi^{reco}_{nFD} [#circ]",
+            // //              100, 700., 850., 100, -180., 180.);
+            // // HistoList.push_back(h_reco_phi_nFD_VS_eff_L_ECAL_ECALveto_1e_cut);
 
-            TH2D* h_reco_P_nFD_VS_reco_L_ECIN_ECALveto_1e_cut =
-                new TH2D("reco_P_nFD_VS_reco_L_ECIN_ECALveto_1e_cut", "P^{reco}_{nFD} vs. L^{reco}_{nFD,ECIN} in 1e cut (ECALveto);L^{reco}_{nFD,ECIN} [cm];P^{reco}_{nFD} [#circ]", 100,
-                         700., 850., 100, 0., Ebeam * 3.);
-            HistoList.push_back(h_reco_P_nFD_VS_reco_L_ECIN_ECALveto_1e_cut);
-            TH2D* h_reco_theta_nFD_VS_reco_L_ECIN_ECALveto_1e_cut =
-                new TH2D("reco_theta_nFD_VS_reco_L_ECIN_ECALveto_1e_cut",
-                         "#theta^{reco}_{nFD} vs. L^{reco}_{nFD,ECIN} in 1e cut (ECALveto);L^{reco}_{nFD,ECIN} [cm];#theta^{reco}_{nFD} [#circ]", 100, 700., 850., 100, 0., 45.);
-            HistoList.push_back(h_reco_theta_nFD_VS_reco_L_ECIN_ECALveto_1e_cut);
-            TH2D* h_reco_phi_nFD_VS_reco_L_ECIN_ECALveto_1e_cut =
-                new TH2D("reco_phi_nFD_VS_reco_L_ECIN_ECALveto_1e_cut", "#phi^{reco}_{nFD} vs. L^{reco}_{nFD,ECIN} in 1e cut (ECALveto);L^{reco}_{nFD,ECIN} [cm];#phi^{reco}_{nFD} [#circ]",
-                         100, 700., 850., 100, -180., 180.);
-            HistoList.push_back(h_reco_phi_nFD_VS_reco_L_ECIN_ECALveto_1e_cut);
-            TH2D* h_reco_P_nFD_VS_ToF_nFD_fromFile_ECIN_ECALveto_1e_cut =
-                new TH2D("reco_P_nFD_VS_ToF_nFD_fromFile_ECIN_ECALveto_1e_cut",
-                         "P^{reco}_{nFD} vs. t^{reco}_{ToF,nFD,ECIN} in 1e cut (ECALveto);t^{reco}_{ToF,nFD,ECIN} [ns];P^{reco}_{nFD} [#circ]", 100, 15., 75., 100, 0., Ebeam * 3.);
-            HistoList.push_back(h_reco_P_nFD_VS_ToF_nFD_fromFile_ECIN_ECALveto_1e_cut);
-            TH2D* h_reco_theta_nFD_VS_ToF_nFD_fromFile_ECIN_ECALveto_1e_cut =
-                new TH2D("reco_theta_nFD_VS_ToF_nFD_fromFile_ECIN_ECALveto_1e_cut",
-                         "#theta^{reco}_{nFD} vs. t^{reco}_{ToF,nFD,ECIN} in 1e cut (ECALveto);t^{reco}_{ToF,nFD,ECIN} [ns];#theta^{reco}_{nFD} [#circ]", 100, 15., 75., 100, 0., 45.);
-            HistoList.push_back(h_reco_theta_nFD_VS_ToF_nFD_fromFile_ECIN_ECALveto_1e_cut);
-            TH2D* h_reco_phi_nFD_VS_ToF_nFD_fromFile_ECIN_ECALveto_1e_cut =
-                new TH2D("reco_phi_nFD_VS_ToF_nFD_fromFile_ECIN_ECALveto_1e_cut",
-                         "#phi^{reco}_{nFD} vs. t^{reco}_{ToF,nFD,ECIN} in 1e cut (ECALveto);t^{reco}_{ToF,nFD,ECIN} [ns];#phi^{reco}_{nFD} [#circ]", 100, 15., 75., 100, -180., 180.);
-            HistoList.push_back(h_reco_phi_nFD_VS_ToF_nFD_fromFile_ECIN_ECALveto_1e_cut);
-            // TH2D* h_reco_P_nFD_VS_eff_L_ECIN_ECALveto_1e_cut =
-            //     new TH2D("reco_P_nFD_VS_eff_L_ECIN_ECALveto_1e_cut",
-            //              "P^{reco}_{nFD} vs. L^{eff}_{nFD,ECIN} in 1e cut (ECALveto);L^{eff}_{nFD,ECIN} = c#beta^{truth}t^{#beta^{reco}_{nFD}}_{ToF} [cm];P^{reco}_{nFD} [#circ]", 100,
+            // TH2D* h_reco_P_nFD_VS_reco_L_ECIN_ECALveto_1e_cut =
+            //     new TH2D("reco_P_nFD_VS_reco_L_ECIN_ECALveto_1e_cut", "P^{reco}_{nFD} vs. L^{reco}_{nFD,ECIN} in 1e cut (ECALveto);L^{reco}_{nFD,ECIN} [cm];P^{reco}_{nFD} [#circ]", 100,
             //              700., 850., 100, 0., Ebeam * 3.);
-            // HistoList.push_back(h_reco_P_nFD_VS_eff_L_ECIN_ECALveto_1e_cut);
-            // TH2D* h_reco_theta_nFD_VS_eff_L_ECIN_ECALveto_1e_cut =
-            //     new TH2D("reco_theta_nFD_VS_eff_L_ECIN_ECALveto_1e_cut",
-            //              "#theta^{reco}_{nFD} vs. L^{eff}_{nFD,ECIN} in 1e cut (ECALveto);L^{eff}_{nFD,ECIN} = c#beta^{truth}t^{#beta^{reco}_{nFD}}_{ToF} [cm];#theta^{reco}_{nFD}
-            //              [#circ]", 100, 700., 850., 100, 0., 45.);
-            // HistoList.push_back(h_reco_theta_nFD_VS_eff_L_ECIN_ECALveto_1e_cut);
-            // TH2D* h_reco_phi_nFD_VS_eff_L_ECIN_ECALveto_1e_cut =
-            //     new TH2D("reco_phi_nFD_VS_eff_L_ECIN_ECALveto_1e_cut",
-            //              "#phi^{reco}_{nFD} vs. L^{eff}_{nFD,ECIN} in 1e cut (ECALveto);L^{eff}_{nFD,ECIN} = c#beta^{truth}t^{#beta^{reco}_{nFD}}_{ToF} [cm];#phi^{reco}_{nFD} [#circ]",
+            // HistoList.push_back(h_reco_P_nFD_VS_reco_L_ECIN_ECALveto_1e_cut);
+            // TH2D* h_reco_theta_nFD_VS_reco_L_ECIN_ECALveto_1e_cut =
+            //     new TH2D("reco_theta_nFD_VS_reco_L_ECIN_ECALveto_1e_cut",
+            //              "#theta^{reco}_{nFD} vs. L^{reco}_{nFD,ECIN} in 1e cut (ECALveto);L^{reco}_{nFD,ECIN} [cm];#theta^{reco}_{nFD} [#circ]", 100, 700., 850., 100, 0., 45.);
+            // HistoList.push_back(h_reco_theta_nFD_VS_reco_L_ECIN_ECALveto_1e_cut);
+            // TH2D* h_reco_phi_nFD_VS_reco_L_ECIN_ECALveto_1e_cut =
+            //     new TH2D("reco_phi_nFD_VS_reco_L_ECIN_ECALveto_1e_cut", "#phi^{reco}_{nFD} vs. L^{reco}_{nFD,ECIN} in 1e cut (ECALveto);L^{reco}_{nFD,ECIN} [cm];#phi^{reco}_{nFD}
+            //     [#circ]",
             //              100, 700., 850., 100, -180., 180.);
-            // HistoList.push_back(h_reco_phi_nFD_VS_eff_L_ECIN_ECALveto_1e_cut);
+            // HistoList.push_back(h_reco_phi_nFD_VS_reco_L_ECIN_ECALveto_1e_cut);
+            // TH2D* h_reco_P_nFD_VS_ToF_nFD_fromFile_ECIN_ECALveto_1e_cut =
+            //     new TH2D("reco_P_nFD_VS_ToF_nFD_fromFile_ECIN_ECALveto_1e_cut",
+            //              "P^{reco}_{nFD} vs. t^{reco}_{ToF,nFD,ECIN} in 1e cut (ECALveto);t^{reco}_{ToF,nFD,ECIN} [ns];P^{reco}_{nFD} [#circ]", 100, 15., 75., 100, 0., Ebeam * 3.);
+            // HistoList.push_back(h_reco_P_nFD_VS_ToF_nFD_fromFile_ECIN_ECALveto_1e_cut);
+            // TH2D* h_reco_theta_nFD_VS_ToF_nFD_fromFile_ECIN_ECALveto_1e_cut =
+            //     new TH2D("reco_theta_nFD_VS_ToF_nFD_fromFile_ECIN_ECALveto_1e_cut",
+            //              "#theta^{reco}_{nFD} vs. t^{reco}_{ToF,nFD,ECIN} in 1e cut (ECALveto);t^{reco}_{ToF,nFD,ECIN} [ns];#theta^{reco}_{nFD} [#circ]", 100, 15., 75., 100, 0., 45.);
+            // HistoList.push_back(h_reco_theta_nFD_VS_ToF_nFD_fromFile_ECIN_ECALveto_1e_cut);
+            // TH2D* h_reco_phi_nFD_VS_ToF_nFD_fromFile_ECIN_ECALveto_1e_cut =
+            //     new TH2D("reco_phi_nFD_VS_ToF_nFD_fromFile_ECIN_ECALveto_1e_cut",
+            //              "#phi^{reco}_{nFD} vs. t^{reco}_{ToF,nFD,ECIN} in 1e cut (ECALveto);t^{reco}_{ToF,nFD,ECIN} [ns];#phi^{reco}_{nFD} [#circ]", 100, 15., 75., 100, -180., 180.);
+            // HistoList.push_back(h_reco_phi_nFD_VS_ToF_nFD_fromFile_ECIN_ECALveto_1e_cut);
+            // // TH2D* h_reco_P_nFD_VS_eff_L_ECIN_ECALveto_1e_cut =
+            // //     new TH2D("reco_P_nFD_VS_eff_L_ECIN_ECALveto_1e_cut",
+            // //              "P^{reco}_{nFD} vs. L^{eff}_{nFD,ECIN} in 1e cut (ECALveto);L^{eff}_{nFD,ECIN} = c#beta^{truth}t^{#beta^{reco}_{nFD}}_{ToF} [cm];P^{reco}_{nFD} [#circ]", 100,
+            // //              700., 850., 100, 0., Ebeam * 3.);
+            // // HistoList.push_back(h_reco_P_nFD_VS_eff_L_ECIN_ECALveto_1e_cut);
+            // // TH2D* h_reco_theta_nFD_VS_eff_L_ECIN_ECALveto_1e_cut =
+            // //     new TH2D("reco_theta_nFD_VS_eff_L_ECIN_ECALveto_1e_cut",
+            // //              "#theta^{reco}_{nFD} vs. L^{eff}_{nFD,ECIN} in 1e cut (ECALveto);L^{eff}_{nFD,ECIN} = c#beta^{truth}t^{#beta^{reco}_{nFD}}_{ToF} [cm];#theta^{reco}_{nFD}
+            // //              [#circ]", 100, 700., 850., 100, 0., 45.);
+            // // HistoList.push_back(h_reco_theta_nFD_VS_eff_L_ECIN_ECALveto_1e_cut);
+            // // TH2D* h_reco_phi_nFD_VS_eff_L_ECIN_ECALveto_1e_cut =
+            // //     new TH2D("reco_phi_nFD_VS_eff_L_ECIN_ECALveto_1e_cut",
+            // //              "#phi^{reco}_{nFD} vs. L^{eff}_{nFD,ECIN} in 1e cut (ECALveto);L^{eff}_{nFD,ECIN} = c#beta^{truth}t^{#beta^{reco}_{nFD}}_{ToF} [cm];#phi^{reco}_{nFD} [#circ]",
+            // //              100, 700., 850., 100, -180., 180.);
+            // // HistoList.push_back(h_reco_phi_nFD_VS_eff_L_ECIN_ECALveto_1e_cut);
 
-            TH2D* h_reco_P_nFD_VS_reco_L_ECOUT_ECALveto_1e_cut =
-                new TH2D("reco_P_nFD_VS_reco_L_ECOUT_ECALveto_1e_cut", "P^{reco}_{nFD} vs. L^{reco}_{nFD,ECOUT} in 1e cut (ECALveto);L^{reco}_{nFD,ECOUT} [cm];P^{reco}_{nFD} [#circ]", 100,
-                         700., 850., 100, 0., Ebeam * 3.);
-            HistoList.push_back(h_reco_P_nFD_VS_reco_L_ECOUT_ECALveto_1e_cut);
-            TH2D* h_reco_theta_nFD_VS_reco_L_ECOUT_ECALveto_1e_cut =
-                new TH2D("reco_theta_nFD_VS_reco_L_ECOUT_ECALveto_1e_cut",
-                         "#theta^{reco}_{nFD} vs. L^{reco}_{nFD,ECOUT} in 1e cut (ECALveto);L^{reco}_{nFD,ECOUT} [cm];#theta^{reco}_{nFD} [#circ]", 100, 700., 850., 100, 0., 45.);
-            HistoList.push_back(h_reco_theta_nFD_VS_reco_L_ECOUT_ECALveto_1e_cut);
-            TH2D* h_reco_phi_nFD_VS_reco_L_ECOUT_ECALveto_1e_cut =
-                new TH2D("reco_phi_nFD_VS_reco_L_ECOUT_ECALveto_1e_cut",
-                         "#phi^{reco}_{nFD} vs. L^{reco}_{nFD,ECOUT} in 1e cut (ECALveto);L^{reco}_{nFD,ECOUT} [cm];#phi^{reco}_{nFD} [#circ]", 100, 700., 850., 100, -180., 180.);
-            HistoList.push_back(h_reco_phi_nFD_VS_reco_L_ECOUT_ECALveto_1e_cut);
-            TH2D* h_reco_P_nFD_VS_ToF_nFD_fromFile_ECOUT_ECALveto_1e_cut =
-                new TH2D("reco_P_nFD_VS_ToF_nFD_fromFile_ECOUT_ECALveto_1e_cut",
-                         "P^{reco}_{nFD} vs. t^{reco}_{ToF,nFD,ECOUT} in 1e cut (ECALveto);t^{reco}_{ToF,nFD,ECOUT} [ns];P^{reco}_{nFD} [#circ]", 100, 15., 75., 100, 0., Ebeam * 3.);
-            HistoList.push_back(h_reco_P_nFD_VS_ToF_nFD_fromFile_ECOUT_ECALveto_1e_cut);
-            TH2D* h_reco_theta_nFD_VS_ToF_nFD_fromFile_ECOUT_ECALveto_1e_cut =
-                new TH2D("reco_theta_nFD_VS_ToF_nFD_fromFile_ECOUT_ECALveto_1e_cut",
-                         "#theta^{reco}_{nFD} vs. t^{reco}_{ToF,nFD,ECOUT} in 1e cut (ECALveto);t^{reco}_{ToF,nFD,ECOUT} [ns];#theta^{reco}_{nFD} [#circ]", 100, 15., 75., 100, 0., 45.);
-            HistoList.push_back(h_reco_theta_nFD_VS_ToF_nFD_fromFile_ECOUT_ECALveto_1e_cut);
-            TH2D* h_reco_phi_nFD_VS_ToF_nFD_fromFile_ECOUT_ECALveto_1e_cut =
-                new TH2D("reco_phi_nFD_VS_ToF_nFD_fromFile_ECOUT_ECALveto_1e_cut",
-                         "#phi^{reco}_{nFD} vs. t^{reco}_{ToF,nFD,ECOUT} in 1e cut (ECALveto);t^{reco}_{ToF,nFD,ECOUT} [ns];#phi^{reco}_{nFD} [#circ]", 100, 15., 75., 100, -180., 180.);
-            HistoList.push_back(h_reco_phi_nFD_VS_ToF_nFD_fromFile_ECOUT_ECALveto_1e_cut);
-            // TH2D* h_reco_P_nFD_VS_eff_L_ECOUT_ECALveto_1e_cut =
-            //     new TH2D("reco_P_nFD_VS_eff_L_ECOUT_ECALveto_1e_cut",
-            //              "P^{reco}_{nFD} vs. L^{eff}_{nFD,ECOUT} in 1e cut (ECALveto);L^{eff}_{nFD,ECOUT} = c#beta^{truth}t^{#beta^{reco}_{nFD}}_{ToF} [cm];P^{reco}_{nFD} [#circ]", 100,
+            // TH2D* h_reco_P_nFD_VS_reco_L_ECOUT_ECALveto_1e_cut =
+            //     new TH2D("reco_P_nFD_VS_reco_L_ECOUT_ECALveto_1e_cut", "P^{reco}_{nFD} vs. L^{reco}_{nFD,ECOUT} in 1e cut (ECALveto);L^{reco}_{nFD,ECOUT} [cm];P^{reco}_{nFD} [#circ]",
+            //     100,
             //              700., 850., 100, 0., Ebeam * 3.);
-            // HistoList.push_back(h_reco_P_nFD_VS_eff_L_ECOUT_ECALveto_1e_cut);
-            // TH2D* h_reco_theta_nFD_VS_eff_L_ECOUT_ECALveto_1e_cut =
-            //     new TH2D("reco_theta_nFD_VS_eff_L_ECOUT_ECALveto_1e_cut",
-            //              "#theta^{reco}_{nFD} vs. L^{eff}_{nFD,ECOUT} in 1e cut (ECALveto);L^{eff}_{nFD,ECOUT} = c#beta^{truth}t^{#beta^{reco}_{nFD}}_{ToF} [cm];#theta^{reco}_{nFD}
-            //              [#circ]", 100, 700., 850., 100, 0., 45.);
-            // HistoList.push_back(h_reco_theta_nFD_VS_eff_L_ECOUT_ECALveto_1e_cut);
-            // TH2D* h_reco_phi_nFD_VS_eff_L_ECOUT_ECALveto_1e_cut =
-            //     new TH2D("reco_phi_nFD_VS_eff_L_ECOUT_ECALveto_1e_cut",
-            //              "#phi^{reco}_{nFD} vs. L^{eff}_{nFD,ECOUT} in 1e cut (ECALveto);L^{eff}_{nFD,ECOUT} = c#beta^{truth}t^{#beta^{reco}_{nFD}}_{ToF} [cm];#phi^{reco}_{nFD} [#circ]",
-            //              100, 700., 850., 100, -180., 180.);
-            // HistoList.push_back(h_reco_phi_nFD_VS_eff_L_ECOUT_ECALveto_1e_cut);
+            // HistoList.push_back(h_reco_P_nFD_VS_reco_L_ECOUT_ECALveto_1e_cut);
+            // TH2D* h_reco_theta_nFD_VS_reco_L_ECOUT_ECALveto_1e_cut =
+            //     new TH2D("reco_theta_nFD_VS_reco_L_ECOUT_ECALveto_1e_cut",
+            //              "#theta^{reco}_{nFD} vs. L^{reco}_{nFD,ECOUT} in 1e cut (ECALveto);L^{reco}_{nFD,ECOUT} [cm];#theta^{reco}_{nFD} [#circ]", 100, 700., 850., 100, 0., 45.);
+            // HistoList.push_back(h_reco_theta_nFD_VS_reco_L_ECOUT_ECALveto_1e_cut);
+            // TH2D* h_reco_phi_nFD_VS_reco_L_ECOUT_ECALveto_1e_cut =
+            //     new TH2D("reco_phi_nFD_VS_reco_L_ECOUT_ECALveto_1e_cut",
+            //              "#phi^{reco}_{nFD} vs. L^{reco}_{nFD,ECOUT} in 1e cut (ECALveto);L^{reco}_{nFD,ECOUT} [cm];#phi^{reco}_{nFD} [#circ]", 100, 700., 850., 100, -180., 180.);
+            // HistoList.push_back(h_reco_phi_nFD_VS_reco_L_ECOUT_ECALveto_1e_cut);
+            // TH2D* h_reco_P_nFD_VS_ToF_nFD_fromFile_ECOUT_ECALveto_1e_cut =
+            //     new TH2D("reco_P_nFD_VS_ToF_nFD_fromFile_ECOUT_ECALveto_1e_cut",
+            //              "P^{reco}_{nFD} vs. t^{reco}_{ToF,nFD,ECOUT} in 1e cut (ECALveto);t^{reco}_{ToF,nFD,ECOUT} [ns];P^{reco}_{nFD} [#circ]", 100, 15., 75., 100, 0., Ebeam * 3.);
+            // HistoList.push_back(h_reco_P_nFD_VS_ToF_nFD_fromFile_ECOUT_ECALveto_1e_cut);
+            // TH2D* h_reco_theta_nFD_VS_ToF_nFD_fromFile_ECOUT_ECALveto_1e_cut =
+            //     new TH2D("reco_theta_nFD_VS_ToF_nFD_fromFile_ECOUT_ECALveto_1e_cut",
+            //              "#theta^{reco}_{nFD} vs. t^{reco}_{ToF,nFD,ECOUT} in 1e cut (ECALveto);t^{reco}_{ToF,nFD,ECOUT} [ns];#theta^{reco}_{nFD} [#circ]", 100, 15., 75., 100, 0., 45.);
+            // HistoList.push_back(h_reco_theta_nFD_VS_ToF_nFD_fromFile_ECOUT_ECALveto_1e_cut);
+            // TH2D* h_reco_phi_nFD_VS_ToF_nFD_fromFile_ECOUT_ECALveto_1e_cut =
+            //     new TH2D("reco_phi_nFD_VS_ToF_nFD_fromFile_ECOUT_ECALveto_1e_cut",
+            //              "#phi^{reco}_{nFD} vs. t^{reco}_{ToF,nFD,ECOUT} in 1e cut (ECALveto);t^{reco}_{ToF,nFD,ECOUT} [ns];#phi^{reco}_{nFD} [#circ]", 100, 15., 75., 100, -180., 180.);
+            // HistoList.push_back(h_reco_phi_nFD_VS_ToF_nFD_fromFile_ECOUT_ECALveto_1e_cut);
+            // // TH2D* h_reco_P_nFD_VS_eff_L_ECOUT_ECALveto_1e_cut =
+            // //     new TH2D("reco_P_nFD_VS_eff_L_ECOUT_ECALveto_1e_cut",
+            // //              "P^{reco}_{nFD} vs. L^{eff}_{nFD,ECOUT} in 1e cut (ECALveto);L^{eff}_{nFD,ECOUT} = c#beta^{truth}t^{#beta^{reco}_{nFD}}_{ToF} [cm];P^{reco}_{nFD} [#circ]",
+            // 100,
+            // //              700., 850., 100, 0., Ebeam * 3.);
+            // // HistoList.push_back(h_reco_P_nFD_VS_eff_L_ECOUT_ECALveto_1e_cut);
+            // // TH2D* h_reco_theta_nFD_VS_eff_L_ECOUT_ECALveto_1e_cut =
+            // //     new TH2D("reco_theta_nFD_VS_eff_L_ECOUT_ECALveto_1e_cut",
+            // //              "#theta^{reco}_{nFD} vs. L^{eff}_{nFD,ECOUT} in 1e cut (ECALveto);L^{eff}_{nFD,ECOUT} = c#beta^{truth}t^{#beta^{reco}_{nFD}}_{ToF} [cm];#theta^{reco}_{nFD}
+            // //              [#circ]", 100, 700., 850., 100, 0., 45.);
+            // // HistoList.push_back(h_reco_theta_nFD_VS_eff_L_ECOUT_ECALveto_1e_cut);
+            // // TH2D* h_reco_phi_nFD_VS_eff_L_ECOUT_ECALveto_1e_cut =
+            // //     new TH2D("reco_phi_nFD_VS_eff_L_ECOUT_ECALveto_1e_cut",
+            // //              "#phi^{reco}_{nFD} vs. L^{eff}_{nFD,ECOUT} in 1e cut (ECALveto);L^{eff}_{nFD,ECOUT} = c#beta^{truth}t^{#beta^{reco}_{nFD}}_{ToF} [cm];#phi^{reco}_{nFD}
+            // [#circ]",
+            // //              100, 700., 850., 100, -180., 180.);
+            // // HistoList.push_back(h_reco_phi_nFD_VS_eff_L_ECOUT_ECALveto_1e_cut);
 
             TH1D* h_reco_theta_nFD_minus_reco_theta_e_ECALveto_1e_cut =
                 new TH1D("reco_theta_nFD_minus_reco_theta_e_ECALveto_1e_cut",
@@ -672,125 +683,131 @@ void nFD_eff_test() {
             HistoList.push_back(h_reco_nFD_multi_VS_reco_P_nFD_matched_1e_cut);
 #pragma endregion
 
-            TH2D* h_reco_P_nFD_VS_reco_L_ECAL_matched_1e_cut =
-                new TH2D("reco_P_nFD_VS_reco_L_ECAL_matched_1e_cut", "P^{reco}_{nFD} vs. L^{reco}_{nFD,ECAL} in 1e cut (matched);L^{reco}_{nFD,ECAL} [cm];P^{reco}_{nFD} [#circ]", 100, 700.,
-                         850., 100, 0., Ebeam * 3.);
-            HistoList.push_back(h_reco_P_nFD_VS_reco_L_ECAL_matched_1e_cut);
-            TH2D* h_reco_theta_nFD_VS_reco_L_ECAL_matched_1e_cut =
-                new TH2D("reco_theta_nFD_VS_reco_L_ECAL_matched_1e_cut",
-                         "#theta^{reco}_{nFD} vs. L^{reco}_{nFD,ECAL} in 1e cut (matched);L^{reco}_{nFD,ECAL} [cm];#theta^{reco}_{nFD} [#circ]", 100, 700., 850., 100, 0., 45.);
-            HistoList.push_back(h_reco_theta_nFD_VS_reco_L_ECAL_matched_1e_cut);
-            TH2D* h_reco_phi_nFD_VS_reco_L_ECAL_matched_1e_cut =
-                new TH2D("reco_phi_nFD_VS_reco_L_ECAL_matched_1e_cut", "#phi^{reco}_{nFD} vs. L^{reco}_{nFD,ECAL} in 1e cut (matched);L^{reco}_{nFD,ECAL} [cm];#phi^{reco}_{nFD} [#circ]",
-                         100, 700., 850., 100, -180., 180.);
-            HistoList.push_back(h_reco_phi_nFD_VS_reco_L_ECAL_matched_1e_cut);
-            TH2D* h_reco_P_nFD_VS_ToF_nFD_fromFile_ECAL_matched_1e_cut =
-                new TH2D("reco_P_nFD_VS_ToF_nFD_fromFile_ECAL_matched_1e_cut",
-                         "P^{reco}_{nFD} vs. t^{reco}_{ToF,nFD,ECAL} in 1e cut (matched);t^{reco}_{ToF,nFD,ECAL} [ns];P^{reco}_{nFD} [#circ]", 100, 15., 75., 100, 0., Ebeam * 3.);
-            HistoList.push_back(h_reco_P_nFD_VS_ToF_nFD_fromFile_ECAL_matched_1e_cut);
-            TH2D* h_reco_theta_nFD_VS_ToF_nFD_fromFile_ECAL_matched_1e_cut =
-                new TH2D("reco_theta_nFD_VS_ToF_nFD_fromFile_ECAL_matched_1e_cut",
-                         "#theta^{reco}_{nFD} vs. t^{reco}_{ToF,nFD,ECAL} in 1e cut (matched);t^{reco}_{ToF,nFD,ECAL} [ns];#theta^{reco}_{nFD} [#circ]", 100, 15., 75., 100, 0., 45.);
-            HistoList.push_back(h_reco_theta_nFD_VS_ToF_nFD_fromFile_ECAL_matched_1e_cut);
-            TH2D* h_reco_phi_nFD_VS_ToF_nFD_fromFile_ECAL_matched_1e_cut =
-                new TH2D("reco_phi_nFD_VS_ToF_nFD_fromFile_ECAL_matched_1e_cut",
-                         "#phi^{reco}_{nFD} vs. t^{reco}_{ToF,nFD,ECAL} in 1e cut (matched);t^{reco}_{ToF,nFD,ECAL} [ns];#phi^{reco}_{nFD} [#circ]", 100, 15., 75., 100, -180., 180.);
-            HistoList.push_back(h_reco_phi_nFD_VS_ToF_nFD_fromFile_ECAL_matched_1e_cut);
-            // TH2D* h_reco_P_nFD_VS_eff_L_ECAL_matched_1e_cut =
-            //     new TH2D("reco_P_nFD_VS_eff_L_ECAL_matched_1e_cut",
-            //              "P^{reco}_{nFD} vs. L^{eff}_{nFD,ECAL} in 1e cut (matched);L^{eff}_{nFD,ECAL} = c#beta^{truth}t^{#beta^{reco}_{nFD}}_{ToF} [cm];P^{reco}_{nFD} [#circ]", 100,
-            //              700., 850., 100, 0., Ebeam * 3.);
-            // HistoList.push_back(h_reco_P_nFD_VS_eff_L_ECAL_matched_1e_cut);
-            // TH2D* h_reco_theta_nFD_VS_eff_L_ECAL_matched_1e_cut =
-            //     new TH2D("reco_theta_nFD_VS_eff_L_ECAL_matched_1e_cut",
-            //              "#theta^{reco}_{nFD} vs. L^{eff}_{nFD,ECAL} in 1e cut (matched);L^{eff}_{nFD,ECAL} = c#beta^{truth}t^{#beta^{reco}_{nFD}}_{ToF} [cm];#theta^{reco}_{nFD} [#circ]",
-            //              100, 700., 850., 100, 0., 45.);
-            // HistoList.push_back(h_reco_theta_nFD_VS_eff_L_ECAL_matched_1e_cut);
-            // TH2D* h_reco_phi_nFD_VS_eff_L_ECAL_matched_1e_cut =
-            //     new TH2D("reco_phi_nFD_VS_eff_L_ECAL_matched_1e_cut",
-            //              "#phi^{reco}_{nFD} vs. L^{eff}_{nFD,ECAL} in 1e cut (matched);L^{eff}_{nFD,ECAL} = c#beta^{truth}t^{#beta^{reco}_{nFD}}_{ToF} [cm];#phi^{reco}_{nFD} [#circ]",
+            // TH2D* h_reco_P_nFD_VS_reco_L_ECAL_matched_1e_cut =
+            //     new TH2D("reco_P_nFD_VS_reco_L_ECAL_matched_1e_cut", "P^{reco}_{nFD} vs. L^{reco}_{nFD,ECAL} in 1e cut (matched);L^{reco}_{nFD,ECAL} [cm];P^{reco}_{nFD} [#circ]", 100,
+            //     700.,
+            //              850., 100, 0., Ebeam * 3.);
+            // HistoList.push_back(h_reco_P_nFD_VS_reco_L_ECAL_matched_1e_cut);
+            // TH2D* h_reco_theta_nFD_VS_reco_L_ECAL_matched_1e_cut =
+            //     new TH2D("reco_theta_nFD_VS_reco_L_ECAL_matched_1e_cut",
+            //              "#theta^{reco}_{nFD} vs. L^{reco}_{nFD,ECAL} in 1e cut (matched);L^{reco}_{nFD,ECAL} [cm];#theta^{reco}_{nFD} [#circ]", 100, 700., 850., 100, 0., 45.);
+            // HistoList.push_back(h_reco_theta_nFD_VS_reco_L_ECAL_matched_1e_cut);
+            // TH2D* h_reco_phi_nFD_VS_reco_L_ECAL_matched_1e_cut =
+            //     new TH2D("reco_phi_nFD_VS_reco_L_ECAL_matched_1e_cut", "#phi^{reco}_{nFD} vs. L^{reco}_{nFD,ECAL} in 1e cut (matched);L^{reco}_{nFD,ECAL} [cm];#phi^{reco}_{nFD} [#circ]",
             //              100, 700., 850., 100, -180., 180.);
-            // HistoList.push_back(h_reco_phi_nFD_VS_eff_L_ECAL_matched_1e_cut);
+            // HistoList.push_back(h_reco_phi_nFD_VS_reco_L_ECAL_matched_1e_cut);
+            // TH2D* h_reco_P_nFD_VS_ToF_nFD_fromFile_ECAL_matched_1e_cut =
+            //     new TH2D("reco_P_nFD_VS_ToF_nFD_fromFile_ECAL_matched_1e_cut",
+            //              "P^{reco}_{nFD} vs. t^{reco}_{ToF,nFD,ECAL} in 1e cut (matched);t^{reco}_{ToF,nFD,ECAL} [ns];P^{reco}_{nFD} [#circ]", 100, 15., 75., 100, 0., Ebeam * 3.);
+            // HistoList.push_back(h_reco_P_nFD_VS_ToF_nFD_fromFile_ECAL_matched_1e_cut);
+            // TH2D* h_reco_theta_nFD_VS_ToF_nFD_fromFile_ECAL_matched_1e_cut =
+            //     new TH2D("reco_theta_nFD_VS_ToF_nFD_fromFile_ECAL_matched_1e_cut",
+            //              "#theta^{reco}_{nFD} vs. t^{reco}_{ToF,nFD,ECAL} in 1e cut (matched);t^{reco}_{ToF,nFD,ECAL} [ns];#theta^{reco}_{nFD} [#circ]", 100, 15., 75., 100, 0., 45.);
+            // HistoList.push_back(h_reco_theta_nFD_VS_ToF_nFD_fromFile_ECAL_matched_1e_cut);
+            // TH2D* h_reco_phi_nFD_VS_ToF_nFD_fromFile_ECAL_matched_1e_cut =
+            //     new TH2D("reco_phi_nFD_VS_ToF_nFD_fromFile_ECAL_matched_1e_cut",
+            //              "#phi^{reco}_{nFD} vs. t^{reco}_{ToF,nFD,ECAL} in 1e cut (matched);t^{reco}_{ToF,nFD,ECAL} [ns];#phi^{reco}_{nFD} [#circ]", 100, 15., 75., 100, -180., 180.);
+            // HistoList.push_back(h_reco_phi_nFD_VS_ToF_nFD_fromFile_ECAL_matched_1e_cut);
+            // // TH2D* h_reco_P_nFD_VS_eff_L_ECAL_matched_1e_cut =
+            // //     new TH2D("reco_P_nFD_VS_eff_L_ECAL_matched_1e_cut",
+            // //              "P^{reco}_{nFD} vs. L^{eff}_{nFD,ECAL} in 1e cut (matched);L^{eff}_{nFD,ECAL} = c#beta^{truth}t^{#beta^{reco}_{nFD}}_{ToF} [cm];P^{reco}_{nFD} [#circ]", 100,
+            // //              700., 850., 100, 0., Ebeam * 3.);
+            // // HistoList.push_back(h_reco_P_nFD_VS_eff_L_ECAL_matched_1e_cut);
+            // // TH2D* h_reco_theta_nFD_VS_eff_L_ECAL_matched_1e_cut =
+            // //     new TH2D("reco_theta_nFD_VS_eff_L_ECAL_matched_1e_cut",
+            // //              "#theta^{reco}_{nFD} vs. L^{eff}_{nFD,ECAL} in 1e cut (matched);L^{eff}_{nFD,ECAL} = c#beta^{truth}t^{#beta^{reco}_{nFD}}_{ToF} [cm];#theta^{reco}_{nFD}
+            // [#circ]",
+            // //              100, 700., 850., 100, 0., 45.);
+            // // HistoList.push_back(h_reco_theta_nFD_VS_eff_L_ECAL_matched_1e_cut);
+            // // TH2D* h_reco_phi_nFD_VS_eff_L_ECAL_matched_1e_cut =
+            // //     new TH2D("reco_phi_nFD_VS_eff_L_ECAL_matched_1e_cut",
+            // //              "#phi^{reco}_{nFD} vs. L^{eff}_{nFD,ECAL} in 1e cut (matched);L^{eff}_{nFD,ECAL} = c#beta^{truth}t^{#beta^{reco}_{nFD}}_{ToF} [cm];#phi^{reco}_{nFD} [#circ]",
+            // //              100, 700., 850., 100, -180., 180.);
+            // // HistoList.push_back(h_reco_phi_nFD_VS_eff_L_ECAL_matched_1e_cut);
 
-            TH2D* h_reco_P_nFD_VS_reco_L_ECIN_matched_1e_cut =
-                new TH2D("reco_P_nFD_VS_reco_L_ECIN_matched_1e_cut", "P^{reco}_{nFD} vs. L^{reco}_{nFD,ECIN} in 1e cut (matched);L^{reco}_{nFD,ECIN} [cm];P^{reco}_{nFD} [#circ]", 100, 700.,
-                         850., 100, 0., Ebeam * 3.);
-            HistoList.push_back(h_reco_P_nFD_VS_reco_L_ECIN_matched_1e_cut);
-            TH2D* h_reco_theta_nFD_VS_reco_L_ECIN_matched_1e_cut =
-                new TH2D("reco_theta_nFD_VS_reco_L_ECIN_matched_1e_cut",
-                         "#theta^{reco}_{nFD} vs. L^{reco}_{nFD,ECIN} in 1e cut (matched);L^{reco}_{nFD,ECIN} [cm];#theta^{reco}_{nFD} [#circ]", 100, 700., 850., 100, 0., 45.);
-            HistoList.push_back(h_reco_theta_nFD_VS_reco_L_ECIN_matched_1e_cut);
-            TH2D* h_reco_phi_nFD_VS_reco_L_ECIN_matched_1e_cut =
-                new TH2D("reco_phi_nFD_VS_reco_L_ECIN_matched_1e_cut", "#phi^{reco}_{nFD} vs. L^{reco}_{nFD,ECIN} in 1e cut (matched);L^{reco}_{nFD,ECIN} [cm];#phi^{reco}_{nFD} [#circ]",
-                         100, 700., 850., 100, -180., 180.);
-            HistoList.push_back(h_reco_phi_nFD_VS_reco_L_ECIN_matched_1e_cut);
-            TH2D* h_reco_P_nFD_VS_ToF_nFD_fromFile_ECIN_matched_1e_cut =
-                new TH2D("reco_P_nFD_VS_ToF_nFD_fromFile_ECIN_matched_1e_cut",
-                         "P^{reco}_{nFD} vs. t^{reco}_{ToF,nFD,ECIN} in 1e cut (matched);t^{reco}_{ToF,nFD,ECIN} [ns];P^{reco}_{nFD} [#circ]", 100, 15., 75., 100, 0., Ebeam * 3.);
-            HistoList.push_back(h_reco_P_nFD_VS_ToF_nFD_fromFile_ECIN_matched_1e_cut);
-            TH2D* h_reco_theta_nFD_VS_ToF_nFD_fromFile_ECIN_matched_1e_cut =
-                new TH2D("reco_theta_nFD_VS_ToF_nFD_fromFile_ECIN_matched_1e_cut",
-                         "#theta^{reco}_{nFD} vs. t^{reco}_{ToF,nFD,ECIN} in 1e cut (matched);t^{reco}_{ToF,nFD,ECIN} [ns];#theta^{reco}_{nFD} [#circ]", 100, 15., 75., 100, 0., 45.);
-            HistoList.push_back(h_reco_theta_nFD_VS_ToF_nFD_fromFile_ECIN_matched_1e_cut);
-            TH2D* h_reco_phi_nFD_VS_ToF_nFD_fromFile_ECIN_matched_1e_cut =
-                new TH2D("reco_phi_nFD_VS_ToF_nFD_fromFile_ECIN_matched_1e_cut",
-                         "#phi^{reco}_{nFD} vs. t^{reco}_{ToF,nFD,ECIN} in 1e cut (matched);t^{reco}_{ToF,nFD,ECIN} [ns];#phi^{reco}_{nFD} [#circ]", 100, 15., 75., 100, -180., 180.);
-            HistoList.push_back(h_reco_phi_nFD_VS_ToF_nFD_fromFile_ECIN_matched_1e_cut);
-            // TH2D* h_reco_P_nFD_VS_eff_L_ECIN_matched_1e_cut =
-            //     new TH2D("reco_P_nFD_VS_eff_L_ECIN_matched_1e_cut",
-            //              "P^{reco}_{nFD} vs. L^{eff}_{nFD,ECIN} in 1e cut (matched);L^{eff}_{nFD,ECIN} = c#beta^{truth}t^{#beta^{reco}_{nFD}}_{ToF} [cm];P^{reco}_{nFD} [#circ]", 100,
-            //              700., 850., 100, 0., Ebeam * 3.);
-            // HistoList.push_back(h_reco_P_nFD_VS_eff_L_ECIN_matched_1e_cut);
-            // TH2D* h_reco_theta_nFD_VS_eff_L_ECIN_matched_1e_cut =
-            //     new TH2D("reco_theta_nFD_VS_eff_L_ECIN_matched_1e_cut",
-            //              "#theta^{reco}_{nFD} vs. L^{eff}_{nFD,ECIN} in 1e cut (matched);L^{eff}_{nFD,ECIN} = c#beta^{truth}t^{#beta^{reco}_{nFD}}_{ToF} [cm];#theta^{reco}_{nFD} [#circ]",
-            //              100, 700., 850., 100, 0., 45.);
-            // HistoList.push_back(h_reco_theta_nFD_VS_eff_L_ECIN_matched_1e_cut);
-            // TH2D* h_reco_phi_nFD_VS_eff_L_ECIN_matched_1e_cut =
-            //     new TH2D("reco_phi_nFD_VS_eff_L_ECIN_matched_1e_cut",
-            //              "#phi^{reco}_{nFD} vs. L^{eff}_{nFD,ECIN} in 1e cut (matched);L^{eff}_{nFD,ECIN} = c#beta^{truth}t^{#beta^{reco}_{nFD}}_{ToF} [cm];#phi^{reco}_{nFD} [#circ]",
+            // TH2D* h_reco_P_nFD_VS_reco_L_ECIN_matched_1e_cut =
+            //     new TH2D("reco_P_nFD_VS_reco_L_ECIN_matched_1e_cut", "P^{reco}_{nFD} vs. L^{reco}_{nFD,ECIN} in 1e cut (matched);L^{reco}_{nFD,ECIN} [cm];P^{reco}_{nFD} [#circ]", 100,
+            //     700.,
+            //              850., 100, 0., Ebeam * 3.);
+            // HistoList.push_back(h_reco_P_nFD_VS_reco_L_ECIN_matched_1e_cut);
+            // TH2D* h_reco_theta_nFD_VS_reco_L_ECIN_matched_1e_cut =
+            //     new TH2D("reco_theta_nFD_VS_reco_L_ECIN_matched_1e_cut",
+            //              "#theta^{reco}_{nFD} vs. L^{reco}_{nFD,ECIN} in 1e cut (matched);L^{reco}_{nFD,ECIN} [cm];#theta^{reco}_{nFD} [#circ]", 100, 700., 850., 100, 0., 45.);
+            // HistoList.push_back(h_reco_theta_nFD_VS_reco_L_ECIN_matched_1e_cut);
+            // TH2D* h_reco_phi_nFD_VS_reco_L_ECIN_matched_1e_cut =
+            //     new TH2D("reco_phi_nFD_VS_reco_L_ECIN_matched_1e_cut", "#phi^{reco}_{nFD} vs. L^{reco}_{nFD,ECIN} in 1e cut (matched);L^{reco}_{nFD,ECIN} [cm];#phi^{reco}_{nFD} [#circ]",
             //              100, 700., 850., 100, -180., 180.);
-            // HistoList.push_back(h_reco_phi_nFD_VS_eff_L_ECIN_matched_1e_cut);
+            // HistoList.push_back(h_reco_phi_nFD_VS_reco_L_ECIN_matched_1e_cut);
+            // TH2D* h_reco_P_nFD_VS_ToF_nFD_fromFile_ECIN_matched_1e_cut =
+            //     new TH2D("reco_P_nFD_VS_ToF_nFD_fromFile_ECIN_matched_1e_cut",
+            //              "P^{reco}_{nFD} vs. t^{reco}_{ToF,nFD,ECIN} in 1e cut (matched);t^{reco}_{ToF,nFD,ECIN} [ns];P^{reco}_{nFD} [#circ]", 100, 15., 75., 100, 0., Ebeam * 3.);
+            // HistoList.push_back(h_reco_P_nFD_VS_ToF_nFD_fromFile_ECIN_matched_1e_cut);
+            // TH2D* h_reco_theta_nFD_VS_ToF_nFD_fromFile_ECIN_matched_1e_cut =
+            //     new TH2D("reco_theta_nFD_VS_ToF_nFD_fromFile_ECIN_matched_1e_cut",
+            //              "#theta^{reco}_{nFD} vs. t^{reco}_{ToF,nFD,ECIN} in 1e cut (matched);t^{reco}_{ToF,nFD,ECIN} [ns];#theta^{reco}_{nFD} [#circ]", 100, 15., 75., 100, 0., 45.);
+            // HistoList.push_back(h_reco_theta_nFD_VS_ToF_nFD_fromFile_ECIN_matched_1e_cut);
+            // TH2D* h_reco_phi_nFD_VS_ToF_nFD_fromFile_ECIN_matched_1e_cut =
+            //     new TH2D("reco_phi_nFD_VS_ToF_nFD_fromFile_ECIN_matched_1e_cut",
+            //              "#phi^{reco}_{nFD} vs. t^{reco}_{ToF,nFD,ECIN} in 1e cut (matched);t^{reco}_{ToF,nFD,ECIN} [ns];#phi^{reco}_{nFD} [#circ]", 100, 15., 75., 100, -180., 180.);
+            // HistoList.push_back(h_reco_phi_nFD_VS_ToF_nFD_fromFile_ECIN_matched_1e_cut);
+            // // TH2D* h_reco_P_nFD_VS_eff_L_ECIN_matched_1e_cut =
+            // //     new TH2D("reco_P_nFD_VS_eff_L_ECIN_matched_1e_cut",
+            // //              "P^{reco}_{nFD} vs. L^{eff}_{nFD,ECIN} in 1e cut (matched);L^{eff}_{nFD,ECIN} = c#beta^{truth}t^{#beta^{reco}_{nFD}}_{ToF} [cm];P^{reco}_{nFD} [#circ]", 100,
+            // //              700., 850., 100, 0., Ebeam * 3.);
+            // // HistoList.push_back(h_reco_P_nFD_VS_eff_L_ECIN_matched_1e_cut);
+            // // TH2D* h_reco_theta_nFD_VS_eff_L_ECIN_matched_1e_cut =
+            // //     new TH2D("reco_theta_nFD_VS_eff_L_ECIN_matched_1e_cut",
+            // //              "#theta^{reco}_{nFD} vs. L^{eff}_{nFD,ECIN} in 1e cut (matched);L^{eff}_{nFD,ECIN} = c#beta^{truth}t^{#beta^{reco}_{nFD}}_{ToF} [cm];#theta^{reco}_{nFD}
+            // [#circ]",
+            // //              100, 700., 850., 100, 0., 45.);
+            // // HistoList.push_back(h_reco_theta_nFD_VS_eff_L_ECIN_matched_1e_cut);
+            // // TH2D* h_reco_phi_nFD_VS_eff_L_ECIN_matched_1e_cut =
+            // //     new TH2D("reco_phi_nFD_VS_eff_L_ECIN_matched_1e_cut",
+            // //              "#phi^{reco}_{nFD} vs. L^{eff}_{nFD,ECIN} in 1e cut (matched);L^{eff}_{nFD,ECIN} = c#beta^{truth}t^{#beta^{reco}_{nFD}}_{ToF} [cm];#phi^{reco}_{nFD} [#circ]",
+            // //              100, 700., 850., 100, -180., 180.);
+            // // HistoList.push_back(h_reco_phi_nFD_VS_eff_L_ECIN_matched_1e_cut);
 
-            TH2D* h_reco_P_nFD_VS_reco_L_ECOUT_matched_1e_cut =
-                new TH2D("reco_P_nFD_VS_reco_L_ECOUT_matched_1e_cut", "P^{reco}_{nFD} vs. L^{reco}_{nFD,ECOUT} in 1e cut (matched);L^{reco}_{nFD,ECOUT} [cm];P^{reco}_{nFD} [#circ]", 100,
-                         700., 850., 100, 0., Ebeam * 3.);
-            HistoList.push_back(h_reco_P_nFD_VS_reco_L_ECOUT_matched_1e_cut);
-            TH2D* h_reco_theta_nFD_VS_reco_L_ECOUT_matched_1e_cut =
-                new TH2D("reco_theta_nFD_VS_reco_L_ECOUT_matched_1e_cut",
-                         "#theta^{reco}_{nFD} vs. L^{reco}_{nFD,ECOUT} in 1e cut (matched);L^{reco}_{nFD,ECOUT} [cm];#theta^{reco}_{nFD} [#circ]", 100, 700., 850., 100, 0., 45.);
-            HistoList.push_back(h_reco_theta_nFD_VS_reco_L_ECOUT_matched_1e_cut);
-            TH2D* h_reco_phi_nFD_VS_reco_L_ECOUT_matched_1e_cut =
-                new TH2D("reco_phi_nFD_VS_reco_L_ECOUT_matched_1e_cut", "#phi^{reco}_{nFD} vs. L^{reco}_{nFD,ECOUT} in 1e cut (matched);L^{reco}_{nFD,ECOUT} [cm];#phi^{reco}_{nFD} [#circ]",
-                         100, 700., 850., 100, -180., 180.);
-            HistoList.push_back(h_reco_phi_nFD_VS_reco_L_ECOUT_matched_1e_cut);
-            TH2D* h_reco_P_nFD_VS_ToF_nFD_fromFile_ECOUT_matched_1e_cut =
-                new TH2D("reco_P_nFD_VS_ToF_nFD_fromFile_ECOUT_matched_1e_cut",
-                         "P^{reco}_{nFD} vs. t^{reco}_{ToF,nFD,ECOUT} in 1e cut (matched);t^{reco}_{ToF,nFD,ECOUT} [ns];P^{reco}_{nFD} [#circ]", 100, 15., 75., 100, 0., Ebeam * 3.);
-            HistoList.push_back(h_reco_P_nFD_VS_ToF_nFD_fromFile_ECOUT_matched_1e_cut);
-            TH2D* h_reco_theta_nFD_VS_ToF_nFD_fromFile_ECOUT_matched_1e_cut =
-                new TH2D("reco_theta_nFD_VS_ToF_nFD_fromFile_ECOUT_matched_1e_cut",
-                         "#theta^{reco}_{nFD} vs. t^{reco}_{ToF,nFD,ECOUT} in 1e cut (matched);t^{reco}_{ToF,nFD,ECOUT} [ns];#theta^{reco}_{nFD} [#circ]", 100, 15., 75., 100, 0., 45.);
-            HistoList.push_back(h_reco_theta_nFD_VS_ToF_nFD_fromFile_ECOUT_matched_1e_cut);
-            TH2D* h_reco_phi_nFD_VS_ToF_nFD_fromFile_ECOUT_matched_1e_cut =
-                new TH2D("reco_phi_nFD_VS_ToF_nFD_fromFile_ECOUT_matched_1e_cut",
-                         "#phi^{reco}_{nFD} vs. t^{reco}_{ToF,nFD,ECOUT} in 1e cut (matched);t^{reco}_{ToF,nFD,ECOUT} [ns];#phi^{reco}_{nFD} [#circ]", 100, 15., 75., 100, -180., 180.);
-            HistoList.push_back(h_reco_phi_nFD_VS_ToF_nFD_fromFile_ECOUT_matched_1e_cut);
-            // TH2D* h_reco_P_nFD_VS_eff_L_ECOUT_matched_1e_cut =
-            //     new TH2D("reco_P_nFD_VS_eff_L_ECOUT_matched_1e_cut",
-            //              "P^{reco}_{nFD} vs. L^{eff}_{nFD,ECOUT} in 1e cut (matched);L^{eff}_{nFD,ECOUT} = c#beta^{truth}t^{#beta^{reco}_{nFD}}_{ToF} [cm];P^{reco}_{nFD} [#circ]", 100,
+            // TH2D* h_reco_P_nFD_VS_reco_L_ECOUT_matched_1e_cut =
+            //     new TH2D("reco_P_nFD_VS_reco_L_ECOUT_matched_1e_cut", "P^{reco}_{nFD} vs. L^{reco}_{nFD,ECOUT} in 1e cut (matched);L^{reco}_{nFD,ECOUT} [cm];P^{reco}_{nFD} [#circ]", 100,
             //              700., 850., 100, 0., Ebeam * 3.);
-            // HistoList.push_back(h_reco_P_nFD_VS_eff_L_ECOUT_matched_1e_cut);
-            // TH2D* h_reco_theta_nFD_VS_eff_L_ECOUT_matched_1e_cut =
-            //     new TH2D("reco_theta_nFD_VS_eff_L_ECOUT_matched_1e_cut",
-            //              "#theta^{reco}_{nFD} vs. L^{eff}_{nFD,ECOUT} in 1e cut (matched);L^{eff}_{nFD,ECOUT} = c#beta^{truth}t^{#beta^{reco}_{nFD}}_{ToF} [cm];#theta^{reco}_{nFD}
-            //              [#circ]", 100, 700., 850., 100, 0., 45.);
-            // HistoList.push_back(h_reco_theta_nFD_VS_eff_L_ECOUT_matched_1e_cut);
-            // TH2D* h_reco_phi_nFD_VS_eff_L_ECOUT_matched_1e_cut =
-            //     new TH2D("reco_phi_nFD_VS_eff_L_ECOUT_matched_1e_cut",
-            //              "#phi^{reco}_{nFD} vs. L^{eff}_{nFD,ECOUT} in 1e cut (matched);L^{eff}_{nFD,ECOUT} = c#beta^{truth}t^{#beta^{reco}_{nFD}}_{ToF} [cm];#phi^{reco}_{nFD} [#circ]",
+            // HistoList.push_back(h_reco_P_nFD_VS_reco_L_ECOUT_matched_1e_cut);
+            // TH2D* h_reco_theta_nFD_VS_reco_L_ECOUT_matched_1e_cut =
+            //     new TH2D("reco_theta_nFD_VS_reco_L_ECOUT_matched_1e_cut",
+            //              "#theta^{reco}_{nFD} vs. L^{reco}_{nFD,ECOUT} in 1e cut (matched);L^{reco}_{nFD,ECOUT} [cm];#theta^{reco}_{nFD} [#circ]", 100, 700., 850., 100, 0., 45.);
+            // HistoList.push_back(h_reco_theta_nFD_VS_reco_L_ECOUT_matched_1e_cut);
+            // TH2D* h_reco_phi_nFD_VS_reco_L_ECOUT_matched_1e_cut =
+            //     new TH2D("reco_phi_nFD_VS_reco_L_ECOUT_matched_1e_cut", "#phi^{reco}_{nFD} vs. L^{reco}_{nFD,ECOUT} in 1e cut (matched);L^{reco}_{nFD,ECOUT} [cm];#phi^{reco}_{nFD}
+            //     [#circ]",
             //              100, 700., 850., 100, -180., 180.);
-            // HistoList.push_back(h_reco_phi_nFD_VS_eff_L_ECOUT_matched_1e_cut);
+            // HistoList.push_back(h_reco_phi_nFD_VS_reco_L_ECOUT_matched_1e_cut);
+            // TH2D* h_reco_P_nFD_VS_ToF_nFD_fromFile_ECOUT_matched_1e_cut =
+            //     new TH2D("reco_P_nFD_VS_ToF_nFD_fromFile_ECOUT_matched_1e_cut",
+            //              "P^{reco}_{nFD} vs. t^{reco}_{ToF,nFD,ECOUT} in 1e cut (matched);t^{reco}_{ToF,nFD,ECOUT} [ns];P^{reco}_{nFD} [#circ]", 100, 15., 75., 100, 0., Ebeam * 3.);
+            // HistoList.push_back(h_reco_P_nFD_VS_ToF_nFD_fromFile_ECOUT_matched_1e_cut);
+            // TH2D* h_reco_theta_nFD_VS_ToF_nFD_fromFile_ECOUT_matched_1e_cut =
+            //     new TH2D("reco_theta_nFD_VS_ToF_nFD_fromFile_ECOUT_matched_1e_cut",
+            //              "#theta^{reco}_{nFD} vs. t^{reco}_{ToF,nFD,ECOUT} in 1e cut (matched);t^{reco}_{ToF,nFD,ECOUT} [ns];#theta^{reco}_{nFD} [#circ]", 100, 15., 75., 100, 0., 45.);
+            // HistoList.push_back(h_reco_theta_nFD_VS_ToF_nFD_fromFile_ECOUT_matched_1e_cut);
+            // TH2D* h_reco_phi_nFD_VS_ToF_nFD_fromFile_ECOUT_matched_1e_cut =
+            //     new TH2D("reco_phi_nFD_VS_ToF_nFD_fromFile_ECOUT_matched_1e_cut",
+            //              "#phi^{reco}_{nFD} vs. t^{reco}_{ToF,nFD,ECOUT} in 1e cut (matched);t^{reco}_{ToF,nFD,ECOUT} [ns];#phi^{reco}_{nFD} [#circ]", 100, 15., 75., 100, -180., 180.);
+            // HistoList.push_back(h_reco_phi_nFD_VS_ToF_nFD_fromFile_ECOUT_matched_1e_cut);
+            // // TH2D* h_reco_P_nFD_VS_eff_L_ECOUT_matched_1e_cut =
+            // //     new TH2D("reco_P_nFD_VS_eff_L_ECOUT_matched_1e_cut",
+            // //              "P^{reco}_{nFD} vs. L^{eff}_{nFD,ECOUT} in 1e cut (matched);L^{eff}_{nFD,ECOUT} = c#beta^{truth}t^{#beta^{reco}_{nFD}}_{ToF} [cm];P^{reco}_{nFD} [#circ]", 100,
+            // //              700., 850., 100, 0., Ebeam * 3.);
+            // // HistoList.push_back(h_reco_P_nFD_VS_eff_L_ECOUT_matched_1e_cut);
+            // // TH2D* h_reco_theta_nFD_VS_eff_L_ECOUT_matched_1e_cut =
+            // //     new TH2D("reco_theta_nFD_VS_eff_L_ECOUT_matched_1e_cut",
+            // //              "#theta^{reco}_{nFD} vs. L^{eff}_{nFD,ECOUT} in 1e cut (matched);L^{eff}_{nFD,ECOUT} = c#beta^{truth}t^{#beta^{reco}_{nFD}}_{ToF} [cm];#theta^{reco}_{nFD}
+            // //              [#circ]", 100, 700., 850., 100, 0., 45.);
+            // // HistoList.push_back(h_reco_theta_nFD_VS_eff_L_ECOUT_matched_1e_cut);
+            // // TH2D* h_reco_phi_nFD_VS_eff_L_ECOUT_matched_1e_cut =
+            // //     new TH2D("reco_phi_nFD_VS_eff_L_ECOUT_matched_1e_cut",
+            // //              "#phi^{reco}_{nFD} vs. L^{eff}_{nFD,ECOUT} in 1e cut (matched);L^{eff}_{nFD,ECOUT} = c#beta^{truth}t^{#beta^{reco}_{nFD}}_{ToF} [cm];#phi^{reco}_{nFD}
+            // [#circ]",
+            // //              100, 700., 850., 100, -180., 180.);
+            // // HistoList.push_back(h_reco_phi_nFD_VS_eff_L_ECOUT_matched_1e_cut);
 
             TH1D* h_reco_theta_nFD_minus_reco_theta_e_matched_1e_cut =
                 new TH1D("reco_theta_nFD_minus_reco_theta_e_matched_1e_cut",
@@ -993,8 +1010,9 @@ void nFD_eff_test() {
                 if (bad_PCAL_edge_CutCond) { continue; }
                 if (bad_diag_CutCond) { continue; }
 
-                if (ConstrainedE && (fabs(reco_P_e.Mag() - Ebeam) > 0.2)) { continue; }
-                // if (ConstrainedE && (reco_P_e.Mag() < Ebeam - 0.2 || reco_P_e.Mag() > Ebeam + 0.2)) { continue; }
+                // Force the electron to be in the expected region of phase space:
+                if (ConstrainedE && (fabs(reco_P_e.Mag() - Ebeam) > 0.01 * Ebeam * 2)) { continue; } // The resolution (sigma/P) is less than 1%, so I take twice that
+                // if (ConstrainedE && (fabs(reco_P_e.Mag() - Ebeam) > 0.2)) { continue; }
                 if (ConstrainedE && (fabs((reco_P_e.Theta() * 180 / M_PI) - Truth_theta_e) > 2.)) { continue; }
                 if (ConstrainedE && (fabs((reco_P_e.Phi() * 180 / M_PI) - Truth_phi_e) > 5.)) { continue; }
                 if (ConstrainedE && (CalcdPhi(fabs(getPhi_e(Beam_energy_TString, Truth_phi_nFD) - (reco_P_e.Phi() * 180 / M_PI))) > 5.)) { continue; }
@@ -1259,11 +1277,11 @@ void nFD_eff_test() {
                                         bool PassMomTh = (Momentum >= 0.4);
                                         bool PassECALeadgeCuts = (allParticles[i]->cal(Neutron_ECAL_detlayer)->getLv() > 14. && allParticles[i]->cal(Neutron_ECAL_detlayer)->getLw() > 14.);
                                         bool PassVeto = NeutronECAL_Cut_Veto(allParticles, electrons, Ebeam, i, ECALvetoCut, apply_PCAL_neutral_veto, rc_factor, rn_factor);
-                                        // bool PassPhi_nFDCuts = true;
+                                        bool PassPhi_nFDCuts = true;
                                         // bool PassPhi_nFDCuts = (abs(allParticles[i]->cal(Neutron_ECAL_detlayer)->getSector() - electrons[0]->cal(Electron_ECAL_detlayer)->getSector()) ==
                                         //                         3);  // Only good neutrons!
-                                        bool PassPhi_nFDCuts = !(abs(allParticles[i]->cal(Neutron_ECAL_detlayer)->getSector() - electrons[0]->cal(Electron_ECAL_detlayer)->getSector()) ==
-                                                                 3);  // Only bad neutrons!
+                                        // bool PassPhi_nFDCuts = !(abs(allParticles[i]->cal(Neutron_ECAL_detlayer)->getSector() - electrons[0]->cal(Electron_ECAL_detlayer)->getSector()) ==
+                                                                //  3);  // Only bad neutrons!
                                         // bool PassPhi_nFDCuts = (abs(allParticles[i]->cal(Neutron_ECAL_detlayer)->getSector() - electrons[0]->cal(Electron_ECAL_detlayer)->getSector()) ==
                                         // 3); bool PassPhi_nFDCuts = (CalcdPhi(fabs(getPhi_e(Beam_energy_TString, (allParticles[i]->getPhi() * 180 / M_PI)) - (reco_P_e.Phi() * 180 / M_PI)))
                                         // > 5.);
@@ -1318,11 +1336,11 @@ void nFD_eff_test() {
                     bool PassECALeadgeCuts =
                         (allParticles[NeutronsFD_ind_mom_max]->cal(Neutron_ECAL_detlayer)->getLv() > 14. && allParticles[NeutronsFD_ind_mom_max]->cal(Neutron_ECAL_detlayer)->getLw() > 14.);
                     bool NeutronPassVeto_1e_cut = NeutronECAL_Cut_Veto(allParticles, electrons, beamE, NeutronsFD_ind_mom_max, ECALvetoCut, apply_PCAL_neutral_veto, rc_factor, rn_factor);
-                    // bool PassPhi_nFDCuts = true;
+                    bool PassPhi_nFDCuts = true;
                     // bool PassPhi_nFDCuts = (abs(allParticles[NeutronsFD_ind_mom_max]->cal(Neutron_ECAL_detlayer)->getSector() - electrons[0]->cal(Electron_ECAL_detlayer)->getSector()) ==
                     //                         3);  // Only good neutrons!
-                    bool PassPhi_nFDCuts = !(abs(allParticles[NeutronsFD_ind_mom_max]->cal(Neutron_ECAL_detlayer)->getSector() - electrons[0]->cal(Electron_ECAL_detlayer)->getSector()) ==
-                                             3);  // Only bad neutrons!
+                    // bool PassPhi_nFDCuts = !(abs(allParticles[NeutronsFD_ind_mom_max]->cal(Neutron_ECAL_detlayer)->getSector() - electrons[0]->cal(Electron_ECAL_detlayer)->getSector()) ==
+                    //                          3);  // Only bad neutrons!
                     // bool PassPhi_nFDCuts = (abs(allParticles[NeutronsFD_ind_mom_max]->cal(Neutron_ECAL_detlayer)->getSector() - electrons[0]->cal(Electron_ECAL_detlayer)->getSector()) ==
                     // 3); bool PassPhi_nFDCuts = (CalcdPhi(fabs(getPhi_e(Beam_energy_TString, (allParticles[NeutronsFD_ind_mom_max]->getPhi() * 180 / M_PI)) - (reco_P_e.Phi() * 180 /
                     // M_PI))) > 5.);
@@ -1362,32 +1380,32 @@ void nFD_eff_test() {
                     h_reco_theta_nFD_ECALveto_VS_P_nFD_ECALveto_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI, reco_P_nFD.Mag(), weight);
                     h_reco_nFD_multi_VS_reco_P_nFD_ECALveto_1e_cut->Fill(reco_P_nFD.Mag(), neutrons_FD_ECALveto.size(), weight);
 
-                    if (ParticleInECIN || ParticleInECOUT) {
-                        h_reco_P_nFD_VS_reco_L_ECAL_ECALveto_1e_cut->Fill(Path_nFD, reco_P_nFD.Mag(), weight);
-                        h_reco_theta_nFD_VS_reco_L_ECAL_ECALveto_1e_cut->Fill(Path_nFD, reco_P_nFD.Theta() * 180 / M_PI, weight);
-                        h_reco_phi_nFD_VS_reco_L_ECAL_ECALveto_1e_cut->Fill(Path_nFD, reco_P_nFD.Phi() * 180 / M_PI, weight);
-                        h_reco_P_nFD_VS_ToF_nFD_fromFile_ECAL_ECALveto_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Mag(), weight);
-                        h_reco_theta_nFD_VS_ToF_nFD_fromFile_ECAL_ECALveto_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Theta() * 180 / M_PI, weight);
-                        h_reco_phi_nFD_VS_ToF_nFD_fromFile_ECAL_ECALveto_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Phi() * 180 / M_PI, weight);
+                    // if (ParticleInECIN || ParticleInECOUT) {
+                    //     h_reco_P_nFD_VS_reco_L_ECAL_ECALveto_1e_cut->Fill(Path_nFD, reco_P_nFD.Mag(), weight);
+                    //     h_reco_theta_nFD_VS_reco_L_ECAL_ECALveto_1e_cut->Fill(Path_nFD, reco_P_nFD.Theta() * 180 / M_PI, weight);
+                    //     h_reco_phi_nFD_VS_reco_L_ECAL_ECALveto_1e_cut->Fill(Path_nFD, reco_P_nFD.Phi() * 180 / M_PI, weight);
+                    //     h_reco_P_nFD_VS_ToF_nFD_fromFile_ECAL_ECALveto_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Mag(), weight);
+                    //     h_reco_theta_nFD_VS_ToF_nFD_fromFile_ECAL_ECALveto_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Theta() * 180 / M_PI, weight);
+                    //     h_reco_phi_nFD_VS_ToF_nFD_fromFile_ECAL_ECALveto_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Phi() * 180 / M_PI, weight);
 
-                        if (ParticleInECIN) {
-                            h_reco_P_nFD_VS_reco_L_ECIN_ECALveto_1e_cut->Fill(Path_nFD, reco_P_nFD.Mag(), weight);
-                            h_reco_theta_nFD_VS_reco_L_ECIN_ECALveto_1e_cut->Fill(Path_nFD, reco_P_nFD.Theta() * 180 / M_PI, weight);
-                            h_reco_phi_nFD_VS_reco_L_ECIN_ECALveto_1e_cut->Fill(Path_nFD, reco_P_nFD.Phi() * 180 / M_PI, weight);
-                            h_reco_P_nFD_VS_ToF_nFD_fromFile_ECIN_ECALveto_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Mag(), weight);
-                            h_reco_theta_nFD_VS_ToF_nFD_fromFile_ECIN_ECALveto_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Theta() * 180 / M_PI, weight);
-                            h_reco_phi_nFD_VS_ToF_nFD_fromFile_ECIN_ECALveto_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Phi() * 180 / M_PI, weight);
-                        }
+                    //     if (ParticleInECIN) {
+                    //         h_reco_P_nFD_VS_reco_L_ECIN_ECALveto_1e_cut->Fill(Path_nFD, reco_P_nFD.Mag(), weight);
+                    //         h_reco_theta_nFD_VS_reco_L_ECIN_ECALveto_1e_cut->Fill(Path_nFD, reco_P_nFD.Theta() * 180 / M_PI, weight);
+                    //         h_reco_phi_nFD_VS_reco_L_ECIN_ECALveto_1e_cut->Fill(Path_nFD, reco_P_nFD.Phi() * 180 / M_PI, weight);
+                    //         h_reco_P_nFD_VS_ToF_nFD_fromFile_ECIN_ECALveto_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Mag(), weight);
+                    //         h_reco_theta_nFD_VS_ToF_nFD_fromFile_ECIN_ECALveto_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Theta() * 180 / M_PI, weight);
+                    //         h_reco_phi_nFD_VS_ToF_nFD_fromFile_ECIN_ECALveto_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Phi() * 180 / M_PI, weight);
+                    //     }
 
-                        if (ParticleInECOUT) {
-                            h_reco_P_nFD_VS_reco_L_ECOUT_ECALveto_1e_cut->Fill(Path_nFD, reco_P_nFD.Mag(), weight);
-                            h_reco_theta_nFD_VS_reco_L_ECOUT_ECALveto_1e_cut->Fill(Path_nFD, reco_P_nFD.Theta() * 180 / M_PI, weight);
-                            h_reco_phi_nFD_VS_reco_L_ECOUT_ECALveto_1e_cut->Fill(Path_nFD, reco_P_nFD.Phi() * 180 / M_PI, weight);
-                            h_reco_P_nFD_VS_ToF_nFD_fromFile_ECOUT_ECALveto_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Mag(), weight);
-                            h_reco_theta_nFD_VS_ToF_nFD_fromFile_ECOUT_ECALveto_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Theta() * 180 / M_PI, weight);
-                            h_reco_phi_nFD_VS_ToF_nFD_fromFile_ECOUT_ECALveto_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Phi() * 180 / M_PI, weight);
-                        }
-                    }
+                    //     if (ParticleInECOUT) {
+                    //         h_reco_P_nFD_VS_reco_L_ECOUT_ECALveto_1e_cut->Fill(Path_nFD, reco_P_nFD.Mag(), weight);
+                    //         h_reco_theta_nFD_VS_reco_L_ECOUT_ECALveto_1e_cut->Fill(Path_nFD, reco_P_nFD.Theta() * 180 / M_PI, weight);
+                    //         h_reco_phi_nFD_VS_reco_L_ECOUT_ECALveto_1e_cut->Fill(Path_nFD, reco_P_nFD.Phi() * 180 / M_PI, weight);
+                    //         h_reco_P_nFD_VS_ToF_nFD_fromFile_ECOUT_ECALveto_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Mag(), weight);
+                    //         h_reco_theta_nFD_VS_ToF_nFD_fromFile_ECOUT_ECALveto_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Theta() * 180 / M_PI, weight);
+                    //         h_reco_phi_nFD_VS_ToF_nFD_fromFile_ECOUT_ECALveto_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Phi() * 180 / M_PI, weight);
+                    //     }
+                    // }
 
                     h_reco_theta_nFD_minus_reco_theta_e_ECALveto_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI - reco_P_e.Theta() * 180 / M_PI, weight);
                     h_reco_phi_nFD_minus_reco_phi_e_ECALveto_1e_cut->Fill(CalcdPhi(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI), weight);
@@ -1493,11 +1511,11 @@ void nFD_eff_test() {
                                         bool PassMomTh = (Momentum >= 0.4);
                                         bool PassECALeadgeCuts = (allParticles[i]->cal(Neutron_ECAL_detlayer)->getLv() > 14. && allParticles[i]->cal(Neutron_ECAL_detlayer)->getLw() > 14.);
                                         bool PassVeto = NeutronECAL_Cut_Veto(allParticles, electrons, Ebeam, i, ECALvetoCut, apply_PCAL_neutral_veto, rc_factor, rn_factor);
-                                        // bool PassPhi_nFDCuts = true;
+                                        bool PassPhi_nFDCuts = true;
                                         // bool PassPhi_nFDCuts = (abs(allParticles[i]->cal(Neutron_ECAL_detlayer)->getSector() - electrons[0]->cal(Electron_ECAL_detlayer)->getSector()) ==
                                         //                         3);  // Only good neutrons!
-                                        bool PassPhi_nFDCuts = !(abs(allParticles[i]->cal(Neutron_ECAL_detlayer)->getSector() - electrons[0]->cal(Electron_ECAL_detlayer)->getSector()) ==
-                                                                3);  // Only bad neutrons!
+                                        // bool PassPhi_nFDCuts = !(abs(allParticles[i]->cal(Neutron_ECAL_detlayer)->getSector() - electrons[0]->cal(Electron_ECAL_detlayer)->getSector()) ==
+                                                                //  3);  // Only bad neutrons!
                                         // bool PassPhi_nFDCuts = (abs(allParticles[i]->cal(Neutron_ECAL_detlayer)->getSector() - electrons[0]->cal(Electron_ECAL_detlayer)->getSector()) ==
                                         // 3); bool PassPhi_nFDCuts = (CalcdPhi(fabs(getPhi_e(Beam_energy_TString, (allParticles[i]->getPhi() * 180 / M_PI)) - (reco_P_e.Phi() * 180 / M_PI)))
                                         // > 5.);
@@ -1601,32 +1619,32 @@ void nFD_eff_test() {
                     h_reco_theta_nFD_matched_VS_P_nFD_matched_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI, reco_P_nFD.Mag(), weight);
                     h_reco_nFD_multi_VS_reco_P_nFD_matched_1e_cut->Fill(reco_P_nFD.Mag(), neutrons_FD_matched.size(), weight);
 
-                    if (ParticleInECIN || ParticleInECOUT) {
-                        h_reco_P_nFD_VS_reco_L_ECAL_matched_1e_cut->Fill(Path_nFD, reco_P_nFD.Mag(), weight);
-                        h_reco_theta_nFD_VS_reco_L_ECAL_matched_1e_cut->Fill(Path_nFD, reco_P_nFD.Theta() * 180 / M_PI, weight);
-                        h_reco_phi_nFD_VS_reco_L_ECAL_matched_1e_cut->Fill(Path_nFD, reco_P_nFD.Phi() * 180 / M_PI, weight);
-                        h_reco_P_nFD_VS_ToF_nFD_fromFile_ECAL_matched_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Mag(), weight);
-                        h_reco_theta_nFD_VS_ToF_nFD_fromFile_ECAL_matched_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Theta() * 180 / M_PI, weight);
-                        h_reco_phi_nFD_VS_ToF_nFD_fromFile_ECAL_matched_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Phi() * 180 / M_PI, weight);
+                    // if (ParticleInECIN || ParticleInECOUT) {
+                    //     h_reco_P_nFD_VS_reco_L_ECAL_matched_1e_cut->Fill(Path_nFD, reco_P_nFD.Mag(), weight);
+                    //     h_reco_theta_nFD_VS_reco_L_ECAL_matched_1e_cut->Fill(Path_nFD, reco_P_nFD.Theta() * 180 / M_PI, weight);
+                    //     h_reco_phi_nFD_VS_reco_L_ECAL_matched_1e_cut->Fill(Path_nFD, reco_P_nFD.Phi() * 180 / M_PI, weight);
+                    //     h_reco_P_nFD_VS_ToF_nFD_fromFile_ECAL_matched_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Mag(), weight);
+                    //     h_reco_theta_nFD_VS_ToF_nFD_fromFile_ECAL_matched_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Theta() * 180 / M_PI, weight);
+                    //     h_reco_phi_nFD_VS_ToF_nFD_fromFile_ECAL_matched_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Phi() * 180 / M_PI, weight);
 
-                        if (ParticleInECIN) {
-                            h_reco_P_nFD_VS_reco_L_ECIN_matched_1e_cut->Fill(Path_nFD, reco_P_nFD.Mag(), weight);
-                            h_reco_theta_nFD_VS_reco_L_ECIN_matched_1e_cut->Fill(Path_nFD, reco_P_nFD.Theta() * 180 / M_PI, weight);
-                            h_reco_phi_nFD_VS_reco_L_ECIN_matched_1e_cut->Fill(Path_nFD, reco_P_nFD.Phi() * 180 / M_PI, weight);
-                            h_reco_P_nFD_VS_ToF_nFD_fromFile_ECIN_matched_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Mag(), weight);
-                            h_reco_theta_nFD_VS_ToF_nFD_fromFile_ECIN_matched_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Theta() * 180 / M_PI, weight);
-                            h_reco_phi_nFD_VS_ToF_nFD_fromFile_ECIN_matched_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Phi() * 180 / M_PI, weight);
-                        }
+                    //     if (ParticleInECIN) {
+                    //         h_reco_P_nFD_VS_reco_L_ECIN_matched_1e_cut->Fill(Path_nFD, reco_P_nFD.Mag(), weight);
+                    //         h_reco_theta_nFD_VS_reco_L_ECIN_matched_1e_cut->Fill(Path_nFD, reco_P_nFD.Theta() * 180 / M_PI, weight);
+                    //         h_reco_phi_nFD_VS_reco_L_ECIN_matched_1e_cut->Fill(Path_nFD, reco_P_nFD.Phi() * 180 / M_PI, weight);
+                    //         h_reco_P_nFD_VS_ToF_nFD_fromFile_ECIN_matched_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Mag(), weight);
+                    //         h_reco_theta_nFD_VS_ToF_nFD_fromFile_ECIN_matched_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Theta() * 180 / M_PI, weight);
+                    //         h_reco_phi_nFD_VS_ToF_nFD_fromFile_ECIN_matched_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Phi() * 180 / M_PI, weight);
+                    //     }
 
-                        if (ParticleInECOUT) {
-                            h_reco_P_nFD_VS_reco_L_ECOUT_matched_1e_cut->Fill(Path_nFD, reco_P_nFD.Mag(), weight);
-                            h_reco_theta_nFD_VS_reco_L_ECOUT_matched_1e_cut->Fill(Path_nFD, reco_P_nFD.Theta() * 180 / M_PI, weight);
-                            h_reco_phi_nFD_VS_reco_L_ECOUT_matched_1e_cut->Fill(Path_nFD, reco_P_nFD.Phi() * 180 / M_PI, weight);
-                            h_reco_P_nFD_VS_ToF_nFD_fromFile_ECOUT_matched_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Mag(), weight);
-                            h_reco_theta_nFD_VS_ToF_nFD_fromFile_ECOUT_matched_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Theta() * 180 / M_PI, weight);
-                            h_reco_phi_nFD_VS_ToF_nFD_fromFile_ECOUT_matched_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Phi() * 180 / M_PI, weight);
-                        }
-                    }
+                    //     if (ParticleInECOUT) {
+                    //         h_reco_P_nFD_VS_reco_L_ECOUT_matched_1e_cut->Fill(Path_nFD, reco_P_nFD.Mag(), weight);
+                    //         h_reco_theta_nFD_VS_reco_L_ECOUT_matched_1e_cut->Fill(Path_nFD, reco_P_nFD.Theta() * 180 / M_PI, weight);
+                    //         h_reco_phi_nFD_VS_reco_L_ECOUT_matched_1e_cut->Fill(Path_nFD, reco_P_nFD.Phi() * 180 / M_PI, weight);
+                    //         h_reco_P_nFD_VS_ToF_nFD_fromFile_ECOUT_matched_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Mag(), weight);
+                    //         h_reco_theta_nFD_VS_ToF_nFD_fromFile_ECOUT_matched_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Theta() * 180 / M_PI, weight);
+                    //         h_reco_phi_nFD_VS_ToF_nFD_fromFile_ECOUT_matched_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Phi() * 180 / M_PI, weight);
+                    //     }
+                    // }
 
                     h_reco_theta_nFD_minus_reco_theta_e_matched_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI - reco_P_e.Theta() * 180 / M_PI, weight);
                     h_reco_phi_nFD_minus_reco_phi_e_matched_1e_cut->Fill(CalcdPhi(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI), weight);
@@ -1679,6 +1697,42 @@ void nFD_eff_test() {
 
                 HistoList_electron_cuts[i]->GetXaxis()->CenterTitle();
                 HistoList_electron_cuts[i]->GetYaxis()->CenterTitle();
+            }
+
+            for (int i = 0; i < HistoList_raw.size(); i++) {
+                if (HistoList_raw[i]->InheritsFrom("TH1D")) {
+                    HistoList_raw[i]->Sumw2();
+                    HistoList_raw[i]->SetMinimum(0);
+                    HistoList_raw[i]->SetLineWidth(2);
+                    HistoList_raw[i]->SetLineColor(kRed);
+                }
+
+                HistoList_raw[i]->GetXaxis()->CenterTitle();
+                HistoList_raw[i]->GetYaxis()->CenterTitle();
+            }
+
+            for (int i = 0; i < HistoList_clas12reco.size(); i++) {
+                if (HistoList_clas12reco[i]->InheritsFrom("TH1D")) {
+                    HistoList_clas12reco[i]->Sumw2();
+                    HistoList_clas12reco[i]->SetMinimum(0);
+                    HistoList_clas12reco[i]->SetLineWidth(2);
+                    HistoList_clas12reco[i]->SetLineColor(kRed);
+                }
+
+                HistoList_clas12reco[i]->GetXaxis()->CenterTitle();
+                HistoList_clas12reco[i]->GetYaxis()->CenterTitle();
+            }
+
+            for (int i = 0; i < HistoList_redef.size(); i++) {
+                if (HistoList_redef[i]->InheritsFrom("TH1D")) {
+                    HistoList_redef[i]->Sumw2();
+                    HistoList_redef[i]->SetMinimum(0);
+                    HistoList_redef[i]->SetLineWidth(2);
+                    HistoList_redef[i]->SetLineColor(kRed);
+                }
+
+                HistoList_redef[i]->GetXaxis()->CenterTitle();
+                HistoList_redef[i]->GetYaxis()->CenterTitle();
             }
 
             for (int i = 0; i < HistoList.size(); i++) {
@@ -1804,6 +1858,264 @@ void nFD_eff_test() {
 
             sprintf(fileName_electron_cuts, "%s]", electron_cuts_PDF_fileName.c_str());
             myCanvas_electron_cuts->Print(fileName_electron_cuts, "pdf");
+
+#pragma endregion
+
+#pragma region /* Print raw plots */
+            // TCanvas* myCanvas_raw = new TCanvas("myPage_raw", "myPage_raw", pixelx, pixely);
+            TCanvas* myCanvas_raw = new TCanvas("myPage_raw", "myPage_raw", pixelx, pixely);
+
+            string raw_PDF_fileName = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/raw_nFD_plots.pdf";
+            char fileName_raw[raw_PDF_fileName.length()];
+            sprintf(fileName_raw, "%s[", raw_PDF_fileName.c_str());
+            myText->SaveAs(fileName_raw);
+            sprintf(fileName_raw, "%s", raw_PDF_fileName.c_str());
+
+            /////////////////////////////////////
+            // CND Neutron Information
+            /////////////////////////////////////
+            myText->cd();
+            if (ConstrainedE) {
+                text.DrawLatex(0.2, 0.9, "Uniform sample of (e,e'n) events (truth-level) - ConstrainedE");
+            } else {
+                text.DrawLatex(0.2, 0.9, "Uniform sample of (e,e'n) events (truth-level)");
+            }
+
+            if (FindSubstring(InputFiles, "2070MeV")) {
+                text.DrawLatex(0.2, 0.7, "Beam energy: 2070MeV");
+            } else if (FindSubstring(InputFiles, "4029MeV")) {
+                text.DrawLatex(0.2, 0.7, "Beam energy: 4029MeV");
+            } else if (FindSubstring(InputFiles, "5986MeV")) {
+                text.DrawLatex(0.2, 0.7, "Beam energy: 5986MeV");
+            }
+
+            myText->Print(fileName_raw, "pdf");
+            myText->Clear();
+
+            for (int i = 0; i < HistoList_raw.size(); i++) {
+                for (int j = 0; j < HistSubjects.size(); j++) {
+                    if (FirstPrint.at(j) && FindSubstring(HistoList_raw[i]->GetTitle(), HistSubjects.at(j))) {
+                        myText->cd();
+                        titles.DrawLatex(0.3, 0.5, HistSubjects2.at(j).c_str());
+                        myText->Print(fileName_raw, "pdf");
+                        myText->Clear();
+
+                        myCanvas_raw->cd(1);
+                        FirstPrint.at(j) = false;
+                        break;
+                    }
+                }
+
+                // raw_PDF_fileName->Divide(2,1);
+
+                myCanvas_raw->cd();
+
+                myCanvas_raw->cd()->SetGrid();
+                myCanvas_raw->cd()->SetBottomMargin(0.14), myCanvas_raw->cd()->SetLeftMargin(0.16), myCanvas_raw->cd()->SetRightMargin(0.12);
+
+                HistoList_raw[i]->GetYaxis()->SetTitleOffset(1.5);
+                HistoList_raw[i]->GetXaxis()->SetTitleOffset(1.1);
+
+                gPad->SetRightMargin(0.23);
+
+                // // Set the PDF title and header for the bookmark
+                // string Title = HistoList_raw[i]->GetTitle();
+                // gStyle->SetTitlePS(Title.c_str());  // This sets the title in metadata
+                //                                     // gStyle->SetHeaderPS(("[ /Title " + Title + " /DOCVIEW pdfmark").c_str());  // Adds a PDF title
+                // gStyle->SetHeaderPS(("[ /Page " + to_string(i + 1) + " /View [/Fit] /Title (myTitle) ] /OUT pdfmark").c_str());
+
+                if (HistoList_raw[i]->InheritsFrom("TH1D")) {
+                    HistoList_raw[i]->Draw();
+                } else if (HistoList_raw[i]->InheritsFrom("TH2D")) {
+                    HistoList_raw[i]->Draw("colz");
+
+                    if (HistoList_raw[i]->GetEntries() != 0) {
+                        gPad->Update();
+                        TPaletteAxis* palette = (TPaletteAxis*)HistoList_raw[i]->GetListOfFunctions()->FindObject("palette");
+                        palette->SetY2NDC(0.55);
+                        gPad->Modified();
+                        gPad->Update();
+                    }
+                }
+
+                myCanvas_raw->Print(fileName_raw, "pdf");
+                myCanvas_raw->Clear();
+            }
+
+            sprintf(fileName_raw, "%s]", raw_PDF_fileName.c_str());
+            myCanvas_raw->Print(fileName_raw, "pdf");
+
+#pragma endregion
+
+#pragma region /* Print clas12reco plots */
+            // TCanvas* myCanvas_clas12reco = new TCanvas("myPage_clas12reco", "myPage_clas12reco", pixelx, pixely);
+            TCanvas* myCanvas_clas12reco = new TCanvas("myPage_clas12reco", "myPage_clas12reco", pixelx, pixely);
+
+            string clas12reco_PDF_fileName = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/clas12reco_nFD_plots.pdf";
+            char fileName_clas12reco[clas12reco_PDF_fileName.length()];
+            sprintf(fileName_clas12reco, "%s[", clas12reco_PDF_fileName.c_str());
+            myText->SaveAs(fileName_clas12reco);
+            sprintf(fileName_clas12reco, "%s", clas12reco_PDF_fileName.c_str());
+
+            /////////////////////////////////////
+            // CND Neutron Information
+            /////////////////////////////////////
+            myText->cd();
+            if (ConstrainedE) {
+                text.DrawLatex(0.2, 0.9, "Uniform sample of (e,e'n) events (truth-level) - ConstrainedE");
+            } else {
+                text.DrawLatex(0.2, 0.9, "Uniform sample of (e,e'n) events (truth-level)");
+            }
+
+            if (FindSubstring(InputFiles, "2070MeV")) {
+                text.DrawLatex(0.2, 0.7, "Beam energy: 2070MeV");
+            } else if (FindSubstring(InputFiles, "4029MeV")) {
+                text.DrawLatex(0.2, 0.7, "Beam energy: 4029MeV");
+            } else if (FindSubstring(InputFiles, "5986MeV")) {
+                text.DrawLatex(0.2, 0.7, "Beam energy: 5986MeV");
+            }
+
+            myText->Print(fileName_clas12reco, "pdf");
+            myText->Clear();
+
+            for (int i = 0; i < HistoList_clas12reco.size(); i++) {
+                for (int j = 0; j < HistSubjects.size(); j++) {
+                    if (FirstPrint.at(j) && FindSubstring(HistoList_clas12reco[i]->GetTitle(), HistSubjects.at(j))) {
+                        myText->cd();
+                        titles.DrawLatex(0.3, 0.5, HistSubjects2.at(j).c_str());
+                        myText->Print(fileName_clas12reco, "pdf");
+                        myText->Clear();
+
+                        myCanvas_clas12reco->cd(1);
+                        FirstPrint.at(j) = false;
+                        break;
+                    }
+                }
+
+                // clas12reco_PDF_fileName->Divide(2,1);
+
+                myCanvas_clas12reco->cd();
+
+                myCanvas_clas12reco->cd()->SetGrid();
+                myCanvas_clas12reco->cd()->SetBottomMargin(0.14), myCanvas_clas12reco->cd()->SetLeftMargin(0.16), myCanvas_clas12reco->cd()->SetRightMargin(0.12);
+
+                HistoList_clas12reco[i]->GetYaxis()->SetTitleOffset(1.5);
+                HistoList_clas12reco[i]->GetXaxis()->SetTitleOffset(1.1);
+
+                gPad->SetRightMargin(0.23);
+
+                // // Set the PDF title and header for the bookmark
+                // string Title = HistoList_clas12reco[i]->GetTitle();
+                // gStyle->SetTitlePS(Title.c_str());  // This sets the title in metadata
+                //                                     // gStyle->SetHeaderPS(("[ /Title " + Title + " /DOCVIEW pdfmark").c_str());  // Adds a PDF title
+                // gStyle->SetHeaderPS(("[ /Page " + to_string(i + 1) + " /View [/Fit] /Title (myTitle) ] /OUT pdfmark").c_str());
+
+                if (HistoList_clas12reco[i]->InheritsFrom("TH1D")) {
+                    HistoList_clas12reco[i]->Draw();
+                } else if (HistoList_clas12reco[i]->InheritsFrom("TH2D")) {
+                    HistoList_clas12reco[i]->Draw("colz");
+
+                    if (HistoList_clas12reco[i]->GetEntries() != 0) {
+                        gPad->Update();
+                        TPaletteAxis* palette = (TPaletteAxis*)HistoList_clas12reco[i]->GetListOfFunctions()->FindObject("palette");
+                        palette->SetY2NDC(0.55);
+                        gPad->Modified();
+                        gPad->Update();
+                    }
+                }
+
+                myCanvas_clas12reco->Print(fileName_clas12reco, "pdf");
+                myCanvas_clas12reco->Clear();
+            }
+
+            sprintf(fileName_clas12reco, "%s]", clas12reco_PDF_fileName.c_str());
+            myCanvas_clas12reco->Print(fileName_clas12reco, "pdf");
+
+#pragma endregion
+
+#pragma region /* Print redef plots */
+            // TCanvas* myCanvas_redef = new TCanvas("myPage_redef", "myPage_redef", pixelx, pixely);
+            TCanvas* myCanvas_redef = new TCanvas("myPage_redef", "myPage_redef", pixelx, pixely);
+
+            string redef_PDF_fileName = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/redef_nFD_plots.pdf";
+            char fileName_redef[redef_PDF_fileName.length()];
+            sprintf(fileName_redef, "%s[", redef_PDF_fileName.c_str());
+            myText->SaveAs(fileName_redef);
+            sprintf(fileName_redef, "%s", redef_PDF_fileName.c_str());
+
+            /////////////////////////////////////
+            // CND Neutron Information
+            /////////////////////////////////////
+            myText->cd();
+            if (ConstrainedE) {
+                text.DrawLatex(0.2, 0.9, "Uniform sample of (e,e'n) events (truth-level) - ConstrainedE");
+            } else {
+                text.DrawLatex(0.2, 0.9, "Uniform sample of (e,e'n) events (truth-level)");
+            }
+
+            if (FindSubstring(InputFiles, "2070MeV")) {
+                text.DrawLatex(0.2, 0.7, "Beam energy: 2070MeV");
+            } else if (FindSubstring(InputFiles, "4029MeV")) {
+                text.DrawLatex(0.2, 0.7, "Beam energy: 4029MeV");
+            } else if (FindSubstring(InputFiles, "5986MeV")) {
+                text.DrawLatex(0.2, 0.7, "Beam energy: 5986MeV");
+            }
+
+            myText->Print(fileName_redef, "pdf");
+            myText->Clear();
+
+            for (int i = 0; i < HistoList_redef.size(); i++) {
+                for (int j = 0; j < HistSubjects.size(); j++) {
+                    if (FirstPrint.at(j) && FindSubstring(HistoList_redef[i]->GetTitle(), HistSubjects.at(j))) {
+                        myText->cd();
+                        titles.DrawLatex(0.3, 0.5, HistSubjects2.at(j).c_str());
+                        myText->Print(fileName_redef, "pdf");
+                        myText->Clear();
+
+                        myCanvas_redef->cd(1);
+                        FirstPrint.at(j) = false;
+                        break;
+                    }
+                }
+
+                // redef_PDF_fileName->Divide(2,1);
+
+                myCanvas_redef->cd();
+
+                myCanvas_redef->cd()->SetGrid();
+                myCanvas_redef->cd()->SetBottomMargin(0.14), myCanvas_redef->cd()->SetLeftMargin(0.16), myCanvas_redef->cd()->SetRightMargin(0.12);
+
+                HistoList_redef[i]->GetYaxis()->SetTitleOffset(1.5);
+                HistoList_redef[i]->GetXaxis()->SetTitleOffset(1.1);
+
+                gPad->SetRightMargin(0.23);
+
+                // // Set the PDF title and header for the bookmark
+                // string Title = HistoList_redef[i]->GetTitle();
+                // gStyle->SetTitlePS(Title.c_str());  // This sets the title in metadata
+                //                                     // gStyle->SetHeaderPS(("[ /Title " + Title + " /DOCVIEW pdfmark").c_str());  // Adds a PDF title
+                // gStyle->SetHeaderPS(("[ /Page " + to_string(i + 1) + " /View [/Fit] /Title (myTitle) ] /OUT pdfmark").c_str());
+
+                if (HistoList_redef[i]->InheritsFrom("TH1D")) {
+                    HistoList_redef[i]->Draw();
+                } else if (HistoList_redef[i]->InheritsFrom("TH2D")) {
+                    HistoList_redef[i]->Draw("colz");
+
+                    if (HistoList_redef[i]->GetEntries() != 0) {
+                        gPad->Update();
+                        TPaletteAxis* palette = (TPaletteAxis*)HistoList_redef[i]->GetListOfFunctions()->FindObject("palette");
+                        palette->SetY2NDC(0.55);
+                        gPad->Modified();
+                        gPad->Update();
+                    }
+                }
+
+                myCanvas_redef->Print(fileName_redef, "pdf");
+                myCanvas_redef->Clear();
+            }
+
+            sprintf(fileName_redef, "%s]", redef_PDF_fileName.c_str());
+            myCanvas_redef->Print(fileName_redef, "pdf");
 
 #pragma endregion
 
