@@ -53,7 +53,7 @@ void nFD_eff_test() {
     // bool ConstrainedE = false;
     bool ConstrainedE = false;
 
-    bool OnlyGood_nFD = false;
+    bool OnlyGood_nFD = true;
     bool OnlyBad_nFD = false;
 
     // bool plot_AMaps = false;
