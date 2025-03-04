@@ -31,8 +31,8 @@ void nFD_eff_test() {
     // vector<double> Ebeam_v = {2.07052, 4.02962, 5.98636};
     // vector<vector<bool>> Ebeam_bool_v = {{true, false, false}, {false, true, false}, {false, false, true}};
 
-    // int Limiter = 25000000;  // 2500 files
-    int Limiter = 10000000;  // 1000 files
+    int Limiter = 25000000;  // 2500 files
+    // int Limiter = 10000000;  // 1000 files
     // int Limiter = 1000000;  // 100 files
     // int Limiter = 100000;  // 10 files
     // int Limiter = 10000; // 1 file
