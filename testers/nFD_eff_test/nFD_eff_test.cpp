@@ -26,8 +26,12 @@ void nFD_eff_test() {
     vector<double> rc_factor_v = {100, 200, 300};
     // vector<double> rc_factor_v = {100, 200, 300, 400, 500, 600, 700, 800, 900, 1000};
 
-    vector<double> Ebeam_v = {2.07052};
-    vector<vector<bool>> Ebeam_bool_v = {{true, false, false}};
+    // vector<double> Ebeam_v = {2.07052};
+    // vector<vector<bool>> Ebeam_bool_v = {{true, false, false}};
+    // vector<double> Ebeam_v = {4.02962};
+    // vector<vector<bool>> Ebeam_bool_v = {{false, true, false}};
+    vector<double> Ebeam_v = {5.98636};
+    vector<vector<bool>> Ebeam_bool_v = {{false, false, true}};
     // vector<double> Ebeam_v = {2.07052, 4.02962, 5.98636};
     // vector<vector<bool>> Ebeam_bool_v = {{true, false, false}, {false, true, false}, {false, false, true}};
 
@@ -47,7 +51,7 @@ void nFD_eff_test() {
     string General_status = "_All_e_Cuts";
 
     // bool ConstrainedE = false;
-    bool ConstrainedE = false;
+    bool ConstrainedE = true;
 
     bool OnlyGood_nFD = false;
     bool OnlyBad_nFD = false;
