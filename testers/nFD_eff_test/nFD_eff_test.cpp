@@ -51,10 +51,10 @@ void nFD_eff_test() {
     string General_status = "_All_e_Cuts";
 
     // bool ConstrainedE = false;
-    bool ConstrainedE = true;
+    bool ConstrainedE = false;
 
     bool OnlyGood_nFD = false;
-    bool OnlyBad_nFD = true;
+    bool OnlyBad_nFD = false;
 
     // bool plot_AMaps = false;
     bool plot_AMaps = true;
