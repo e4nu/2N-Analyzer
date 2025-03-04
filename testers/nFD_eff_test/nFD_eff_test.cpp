@@ -20,7 +20,7 @@ void nFD_eff_test() {
     Is6GeV = true;
     */
 
-    bool use_ConstPn_samples = true;
+    bool use_ConstPn_samples = false;
 
     // vector<double> rc_factor_v = {100};
     vector<double> rc_factor_v = {100, 200, 300, 400, 500, 600, 700, 800, 900, 1000};
