@@ -13,10 +13,15 @@ using namespace std;
 
 namespace utilities {
 
+// BoolToChar function --------------------------------------------------------------------------------------------------------------------------------------------------
+
+/* Usage: convert bool variables to char */
+inline const char *const BoolToChar(bool b) { return b ? "true" : "false"; }
+
 // BoolToString function ------------------------------------------------------------------------------------------------------------------------------------------------
 
-/* Usage: convert bool variables to string. Used to log setup to file. */
-inline const char *const BoolToString(bool b) { return b ? "true" : "false"; }
+/* Usage: convert bool variables to string */
+string BoolToString(bool b) { return b ? "true" : "false"; }
 
 // ToStringWithPrecision function ---------------------------------------------------------------------------------------------------------------------------------------
 
