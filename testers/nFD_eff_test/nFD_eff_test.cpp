@@ -22,7 +22,8 @@ void nFD_eff_test() {
 
     bool use_ConstPn_samples = true;
 
-    vector<double> rc_factor_v = {100};
+    // vector<double> rc_factor_v = {100};
+    vector<double> rc_factor_v = {100, 200, 300, 400, 500};
     // vector<double> rc_factor_v = {100, 200, 300, 400, 500, 600, 700, 800, 900, 1000};
 
     vector<double> Ebeam_v = {2.07052};
@@ -32,18 +33,18 @@ void nFD_eff_test() {
 
     // int Limiter = 25000000;  // 2500 files
     // int Limiter = 10000000; // 1000 files
-    // int Limiter = 1000000;  // 100 files
-    int Limiter = 100000;  // 10 files
+    int Limiter = 1000000;  // 100 files
+    // int Limiter = 100000;  // 10 files
     // int Limiter = 10000; // 1 file
 
     string OutFolderName_prefix = "B_test";
-    string OutFolderName_ver_status = "_v7";
+    string OutFolderName_ver_status = "_v8";
     // string General_status = "_Only_Truth_phi_nFDCuts";
     // string General_status = "_NO_Truth_phi_nFDCuts";
     // string General_status = "_AllCuts_OnlyBad_nFD";
     // string General_status = "_AllCuts_OnlyGood_nFD";
     // string General_status = "_AllCuts";
-    string General_status = "_Only_e_AllCuts";
+    string General_status = "_All_e_Cuts";
 
     // bool ConstrainedE = false;
     bool ConstrainedE = true;
@@ -86,13 +87,18 @@ void nFD_eff_test() {
             // string OutFolderName_prefix = "nFD_eff_test";
             // string OutFolderName_ver_status = "_v6";
             string Ebeam_status = Is2GeV ? "_2GeV" : Is4GeV ? "_4GeV" : Is6GeV ? "_6GeV" : "_Unknown";
-            string samples_status = use_ConstPn_samples ? "_ConstPn" : "";
-            string neutFD_redef_status = apply_neutFD_redef ? "_ReDefed" : "_clas12neut";
-            string ECAL_veto_status = apply_ECAL_veto ? "_wECALveto" : "_NoECALveto";
-            string PCAL_neutral_veto_status = apply_PCAL_neutral_veto ? "_wPCALneutVeto" : "_NoPCALneutVeto";
+            string samples_status = use_ConstPn_samples ? "_CPn" : "";
+            // string samples_status = use_ConstPn_samples ? "_ConstPn" : "";
+            string neutFD_redef_status = apply_neutFD_redef ? "_RDed" : "_c12n";
+            // string neutFD_redef_status = apply_neutFD_redef ? "_ReDefed" : "_clas12neut";
+            string ECAL_veto_status = apply_ECAL_veto ? "_wEV" : "_woEV";
+            // string ECAL_veto_status = apply_ECAL_veto ? "_wECALveto" : "_NoECALveto";
+            string PCAL_neutral_veto_status = apply_PCAL_neutral_veto ? "_wPnV" : "_woPnV";
+            // string PCAL_neutral_veto_status = apply_PCAL_neutral_veto ? "_wPCALneutVeto" : "_NoPCALneutVeto";
             string rc_factor_status = apply_ECAL_veto ? "_rc" + ToStringWithPrecision(rc_factor * ECALvetoCut, 0) : "";
             string rn_factor_status = apply_PCAL_neutral_veto ? "_rn" + ToStringWithPrecision(rn_factor * ECALvetoCut, 0) : "";
-            string ConstrainedE_status = ConstrainedE ? "_ConstrainedE" : "";
+            string ConstrainedE_status = ConstrainedE ? "_CE" : "";
+            // string ConstrainedE_status = ConstrainedE ? "_ConstrainedE" : "";
             // string General_status = "_OnlyAllCuts";
 
             // string OutFolderName = "nFD_eff_test_v4_wPCALnVeto_rc100_rn200";
@@ -1011,7 +1017,7 @@ void nFD_eff_test() {
                 if (bad_diag_CutCond) { continue; }
 
                 // Force the electron to be in the expected region of phase space:
-                if (ConstrainedE && (fabs(reco_P_e.Mag() - Ebeam) > 0.01 * Ebeam * 2)) { continue; } // The resolution (sigma/P) is less than 1%, so I take twice that
+                if (ConstrainedE && (fabs(reco_P_e.Mag() - Ebeam) > 0.01 * Ebeam * 2)) { continue; }  // The resolution (sigma/P) is less than 1%, so I take twice that
                 // if (ConstrainedE && (fabs(reco_P_e.Mag() - Ebeam) > 0.2)) { continue; }
                 if (ConstrainedE && (fabs((reco_P_e.Theta() * 180 / M_PI) - Truth_theta_e) > 2.)) { continue; }
                 if (ConstrainedE && (fabs((reco_P_e.Phi() * 180 / M_PI) - Truth_phi_e) > 5.)) { continue; }
@@ -1281,7 +1287,7 @@ void nFD_eff_test() {
                                         // bool PassPhi_nFDCuts = (abs(allParticles[i]->cal(Neutron_ECAL_detlayer)->getSector() - electrons[0]->cal(Electron_ECAL_detlayer)->getSector()) ==
                                         //                         3);  // Only good neutrons!
                                         // bool PassPhi_nFDCuts = !(abs(allParticles[i]->cal(Neutron_ECAL_detlayer)->getSector() - electrons[0]->cal(Electron_ECAL_detlayer)->getSector()) ==
-                                                                //  3);  // Only bad neutrons!
+                                        //  3);  // Only bad neutrons!
                                         // bool PassPhi_nFDCuts = (abs(allParticles[i]->cal(Neutron_ECAL_detlayer)->getSector() - electrons[0]->cal(Electron_ECAL_detlayer)->getSector()) ==
                                         // 3); bool PassPhi_nFDCuts = (CalcdPhi(fabs(getPhi_e(Beam_energy_TString, (allParticles[i]->getPhi() * 180 / M_PI)) - (reco_P_e.Phi() * 180 / M_PI)))
                                         // > 5.);
@@ -1515,7 +1521,7 @@ void nFD_eff_test() {
                                         // bool PassPhi_nFDCuts = (abs(allParticles[i]->cal(Neutron_ECAL_detlayer)->getSector() - electrons[0]->cal(Electron_ECAL_detlayer)->getSector()) ==
                                         //                         3);  // Only good neutrons!
                                         // bool PassPhi_nFDCuts = !(abs(allParticles[i]->cal(Neutron_ECAL_detlayer)->getSector() - electrons[0]->cal(Electron_ECAL_detlayer)->getSector()) ==
-                                                                //  3);  // Only bad neutrons!
+                                        //  3);  // Only bad neutrons!
                                         // bool PassPhi_nFDCuts = (abs(allParticles[i]->cal(Neutron_ECAL_detlayer)->getSector() - electrons[0]->cal(Electron_ECAL_detlayer)->getSector()) ==
                                         // 3); bool PassPhi_nFDCuts = (CalcdPhi(fabs(getPhi_e(Beam_energy_TString, (allParticles[i]->getPhi() * 180 / M_PI)) - (reco_P_e.Phi() * 180 / M_PI)))
                                         // > 5.);
@@ -1789,19 +1795,28 @@ void nFD_eff_test() {
             // CND Neutron Information
             /////////////////////////////////////
             myText->cd();
-            if (ConstrainedE) {
-                text.DrawLatex(0.2, 0.9, "Uniform sample of (e,e'n) events (truth-level) - ConstrainedE");
-            } else {
-                text.DrawLatex(0.2, 0.9, "Uniform sample of (e,e'n) events (truth-level)");
-            }
+
+            text.DrawLatex(0.05, 0.9, "Uniform sample of (e,e'n) events (truth-level)");
 
             if (FindSubstring(InputFiles, "2070MeV")) {
-                text.DrawLatex(0.2, 0.7, "Beam energy: 2070MeV");
+                text.DrawLatex(0.2, 0.8, "Beam energy: 2070MeV");
             } else if (FindSubstring(InputFiles, "4029MeV")) {
-                text.DrawLatex(0.2, 0.7, "Beam energy: 4029MeV");
+                text.DrawLatex(0.2, 0.8, "Beam energy: 4029MeV");
             } else if (FindSubstring(InputFiles, "5986MeV")) {
-                text.DrawLatex(0.2, 0.7, "Beam energy: 5986MeV");
+                text.DrawLatex(0.2, 0.8, "Beam energy: 5986MeV");
             }
+
+            if (ConstrainedE) {
+                text.DrawLatex(0.05, 0.7, "ConstrainedE = yes");
+            } else {
+                text.DrawLatex(0.05, 0.7, "ConstrainedE = no");
+            }
+
+            text.DrawLatex(0.05, 0.6, ("ECALvetoCut = " + ToStringWithPrecision(ECALvetoCut, 0)).c_str());
+            text.DrawLatex(0.05, 0.55, ("rc_factor = " + ToStringWithPrecision(rc_factor, 2)).c_str());
+
+            text.DrawLatex(0.05, 0.45, ("apply_PCAL_neutral_veto = " + BoolToString(apply_PCAL_neutral_veto)).c_str());
+            text.DrawLatex(0.05, 0.4, ("rn_factor = " + ToStringWithPrecision(rn_factor, 2)).c_str());
 
             myText->Print(fileName_electron_cuts, "pdf");
             myText->Clear();
@@ -1875,19 +1890,28 @@ void nFD_eff_test() {
             // CND Neutron Information
             /////////////////////////////////////
             myText->cd();
-            if (ConstrainedE) {
-                text.DrawLatex(0.2, 0.9, "Uniform sample of (e,e'n) events (truth-level) - ConstrainedE");
-            } else {
-                text.DrawLatex(0.2, 0.9, "Uniform sample of (e,e'n) events (truth-level)");
-            }
+
+            text.DrawLatex(0.05, 0.9, "Uniform sample of (e,e'n) events (truth-level)");
 
             if (FindSubstring(InputFiles, "2070MeV")) {
-                text.DrawLatex(0.2, 0.7, "Beam energy: 2070MeV");
+                text.DrawLatex(0.2, 0.8, "Beam energy: 2070MeV");
             } else if (FindSubstring(InputFiles, "4029MeV")) {
-                text.DrawLatex(0.2, 0.7, "Beam energy: 4029MeV");
+                text.DrawLatex(0.2, 0.8, "Beam energy: 4029MeV");
             } else if (FindSubstring(InputFiles, "5986MeV")) {
-                text.DrawLatex(0.2, 0.7, "Beam energy: 5986MeV");
+                text.DrawLatex(0.2, 0.8, "Beam energy: 5986MeV");
             }
+
+            if (ConstrainedE) {
+                text.DrawLatex(0.05, 0.7, "ConstrainedE = yes");
+            } else {
+                text.DrawLatex(0.05, 0.7, "ConstrainedE = no");
+            }
+
+            text.DrawLatex(0.05, 0.6, ("ECALvetoCut = " + ToStringWithPrecision(ECALvetoCut, 0)).c_str());
+            text.DrawLatex(0.05, 0.55, ("rc_factor = " + ToStringWithPrecision(rc_factor, 2)).c_str());
+
+            text.DrawLatex(0.05, 0.45, ("apply_PCAL_neutral_veto = " + BoolToString(apply_PCAL_neutral_veto)).c_str());
+            text.DrawLatex(0.05, 0.4, ("rn_factor = " + ToStringWithPrecision(rn_factor, 2)).c_str());
 
             myText->Print(fileName_raw, "pdf");
             myText->Clear();
@@ -1961,19 +1985,28 @@ void nFD_eff_test() {
             // CND Neutron Information
             /////////////////////////////////////
             myText->cd();
-            if (ConstrainedE) {
-                text.DrawLatex(0.2, 0.9, "Uniform sample of (e,e'n) events (truth-level) - ConstrainedE");
-            } else {
-                text.DrawLatex(0.2, 0.9, "Uniform sample of (e,e'n) events (truth-level)");
-            }
+
+            text.DrawLatex(0.05, 0.9, "Uniform sample of (e,e'n) events (truth-level)");
 
             if (FindSubstring(InputFiles, "2070MeV")) {
-                text.DrawLatex(0.2, 0.7, "Beam energy: 2070MeV");
+                text.DrawLatex(0.2, 0.8, "Beam energy: 2070MeV");
             } else if (FindSubstring(InputFiles, "4029MeV")) {
-                text.DrawLatex(0.2, 0.7, "Beam energy: 4029MeV");
+                text.DrawLatex(0.2, 0.8, "Beam energy: 4029MeV");
             } else if (FindSubstring(InputFiles, "5986MeV")) {
-                text.DrawLatex(0.2, 0.7, "Beam energy: 5986MeV");
+                text.DrawLatex(0.2, 0.8, "Beam energy: 5986MeV");
             }
+
+            if (ConstrainedE) {
+                text.DrawLatex(0.05, 0.7, "ConstrainedE = yes");
+            } else {
+                text.DrawLatex(0.05, 0.7, "ConstrainedE = no");
+            }
+
+            text.DrawLatex(0.05, 0.6, ("ECALvetoCut = " + ToStringWithPrecision(ECALvetoCut, 0)).c_str());
+            text.DrawLatex(0.05, 0.55, ("rc_factor = " + ToStringWithPrecision(rc_factor, 2)).c_str());
+
+            text.DrawLatex(0.05, 0.45, ("apply_PCAL_neutral_veto = " + BoolToString(apply_PCAL_neutral_veto)).c_str());
+            text.DrawLatex(0.05, 0.4, ("rn_factor = " + ToStringWithPrecision(rn_factor, 2)).c_str());
 
             myText->Print(fileName_clas12reco, "pdf");
             myText->Clear();
@@ -2047,19 +2080,28 @@ void nFD_eff_test() {
             // CND Neutron Information
             /////////////////////////////////////
             myText->cd();
-            if (ConstrainedE) {
-                text.DrawLatex(0.2, 0.9, "Uniform sample of (e,e'n) events (truth-level) - ConstrainedE");
-            } else {
-                text.DrawLatex(0.2, 0.9, "Uniform sample of (e,e'n) events (truth-level)");
-            }
+
+            text.DrawLatex(0.05, 0.9, "Uniform sample of (e,e'n) events (truth-level)");
 
             if (FindSubstring(InputFiles, "2070MeV")) {
-                text.DrawLatex(0.2, 0.7, "Beam energy: 2070MeV");
+                text.DrawLatex(0.2, 0.8, "Beam energy: 2070MeV");
             } else if (FindSubstring(InputFiles, "4029MeV")) {
-                text.DrawLatex(0.2, 0.7, "Beam energy: 4029MeV");
+                text.DrawLatex(0.2, 0.8, "Beam energy: 4029MeV");
             } else if (FindSubstring(InputFiles, "5986MeV")) {
-                text.DrawLatex(0.2, 0.7, "Beam energy: 5986MeV");
+                text.DrawLatex(0.2, 0.8, "Beam energy: 5986MeV");
             }
+
+            if (ConstrainedE) {
+                text.DrawLatex(0.05, 0.7, "ConstrainedE = yes");
+            } else {
+                text.DrawLatex(0.05, 0.7, "ConstrainedE = no");
+            }
+
+            text.DrawLatex(0.05, 0.6, ("ECALvetoCut = " + ToStringWithPrecision(ECALvetoCut, 0)).c_str());
+            text.DrawLatex(0.05, 0.55, ("rc_factor = " + ToStringWithPrecision(rc_factor, 2)).c_str());
+
+            text.DrawLatex(0.05, 0.45, ("apply_PCAL_neutral_veto = " + BoolToString(apply_PCAL_neutral_veto)).c_str());
+            text.DrawLatex(0.05, 0.4, ("rn_factor = " + ToStringWithPrecision(rn_factor, 2)).c_str());
 
             myText->Print(fileName_redef, "pdf");
             myText->Clear();
@@ -2132,14 +2174,29 @@ void nFD_eff_test() {
             // CND Neutron Information
             /////////////////////////////////////
             myText->cd();
-            text.DrawLatex(0.2, 0.9, "Uniform sample of (e,e'n) events (truth-level)");
-            if (Is2GeV) {
-                text.DrawLatex(0.2, 0.7, "Beam energy: 2070MeV");
-            } else if (Is4GeV) {
-                text.DrawLatex(0.2, 0.7, "Beam energy: 4029MeV");
-            } else if (Is6GeV) {
-                text.DrawLatex(0.2, 0.7, "Beam energy: 5986MeV");
+
+            text.DrawLatex(0.05, 0.9, "Uniform sample of (e,e'n) events (truth-level)");
+
+            if (FindSubstring(InputFiles, "2070MeV")) {
+                text.DrawLatex(0.2, 0.8, "Beam energy: 2070MeV");
+            } else if (FindSubstring(InputFiles, "4029MeV")) {
+                text.DrawLatex(0.2, 0.8, "Beam energy: 4029MeV");
+            } else if (FindSubstring(InputFiles, "5986MeV")) {
+                text.DrawLatex(0.2, 0.8, "Beam energy: 5986MeV");
             }
+
+            if (ConstrainedE) {
+                text.DrawLatex(0.05, 0.7, "ConstrainedE = yes");
+            } else {
+                text.DrawLatex(0.05, 0.7, "ConstrainedE = no");
+            }
+
+            text.DrawLatex(0.05, 0.6, ("ECALvetoCut = " + ToStringWithPrecision(ECALvetoCut, 0)).c_str());
+            text.DrawLatex(0.05, 0.55, ("rc_factor = " + ToStringWithPrecision(rc_factor, 2)).c_str());
+
+            text.DrawLatex(0.05, 0.45, ("apply_PCAL_neutral_veto = " + BoolToString(apply_PCAL_neutral_veto)).c_str());
+            text.DrawLatex(0.05, 0.4, ("rn_factor = " + ToStringWithPrecision(rn_factor, 2)).c_str());
+
             myText->Print(fileName, "pdf");
             myText->Clear();
 
@@ -2229,9 +2286,6 @@ void nFD_eff_test() {
             myText->SaveAs(fileName_eff_plots);
             sprintf(fileName_eff_plots, "%s", eff_plots_PDF_fileName.c_str());
 
-            /////////////////////////////////////
-            // CND Neutron Information
-            /////////////////////////////////////
             myCanvas_eff_plots->cd();
             gPad->Update();
             // myText->cd();

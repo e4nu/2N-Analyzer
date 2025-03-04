@@ -13,7 +13,12 @@ using namespace std;
 
 namespace utilities {
 
-// ToStringWithPrecision function ------------------------------------------------------------------------------------------------------------------------------------
+// BoolToString function ------------------------------------------------------------------------------------------------------------------------------------------------
+
+/* Usage: convert bool variables to string. Used to log setup to file. */
+inline const char *const BoolToString(bool b) { return b ? "true" : "false"; }
+
+// ToStringWithPrecision function ---------------------------------------------------------------------------------------------------------------------------------------
 
 template <typename T>
 std::string ToStringWithPrecision(const T a_value, const int n = 2) {
@@ -33,7 +38,7 @@ bool FindSubstring(string string1, string string2) {
     }
 }
 
-// replaceSubstring function -----------------------------------------------------------------------------------------------------------------------------------------------
+// replaceSubstring function --------------------------------------------------------------------------------------------------------------------------------------------
 
 // Function to replace one substring with another
 std::string replaceSubstring(const std::string &input, const std::string &toReplace, const std::string &replaceWith) {
