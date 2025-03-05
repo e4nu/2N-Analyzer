@@ -4,8 +4,9 @@ echo "${COLOR_START}- Setting screen commands ----------------------------------
 echo ""
 
 unset SCREEN_SCRIPT_DIR
-setenv SCREEN_SCRIPT_DIR /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/setup/scripts/screen
-# setenv SCREEN_SCRIPT_DIR ./setup/scripts/screen
+setenv SCREEN_SCRIPT_DIR ${DIR_2N_ANALYSIS_CODE}/setup/scripts/screen
+echo "${COLOR_START}SCREEN_SCRIPT_DIR:${COLOR_END} ${SCREEN_SCRIPT_DIR}"
+echo ""
 
 chmod +x $SCREEN_SCRIPT_DIR/start_screen_session.csh
 # chmod +x ./setup/scripts/screen/start_screen_session.csh
