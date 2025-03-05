@@ -42,8 +42,8 @@ void nFD_eff_test() {
     // int Limiter = 100000;  // 10 files
     // int Limiter = 10000; // 1 file
 
-    vector<vector<bool>> CutSelector = {{true, false, false}, {true, true, false}, {true, false, true}};  // ConstrainedE = true
-    // vector<vector<bool>> CutSelector = {{false, false, false}, {false, true, false}, {false, false, true}}; // ConstrainedE = false
+    // vector<vector<bool>> CutSelector = {{true, false, false}, {true, true, false}, {true, false, true}};  // ConstrainedE = true
+    vector<vector<bool>> CutSelector = {{false, false, false}, {false, true, false}, {false, false, true}}; // ConstrainedE = false
     // vector<vector<bool>> CutSelector = {{true, false, false}, {true, true, false}, {true, false, true}, {false, false, false}, {false, true, false}, {false, false, true}};
 
     bool apply_neutFD_redef = true;
