@@ -42,20 +42,20 @@ void nFD_eff_test() {
     // int Limiter = 100000;  // 10 files
     // int Limiter = 10000; // 1 file
 
-    // vector<vector<bool>> CutSelector = {{true, false, false}, {true, true, false}, {true, false, true}};  // ConstrainedE = true
-    vector<vector<bool>> CutSelector = {{false, false, false}, {false, true, false}, {false, false, true}}; // ConstrainedE = false
-    // vector<vector<bool>> CutSelector = {{true, false, false}, {true, true, false}, {true, false, true}, {false, false, false}, {false, true, false}, {false, false, true}};
-
     bool apply_neutFD_redef = true;
     bool apply_ECAL_veto = true;
-    bool apply_PCAL_neutral_veto = false;
+    bool apply_PCAL_neutral_veto = true;
+
+    vector<vector<bool>> CutSelector = {{true, false, false}, {true, true, false}, {true, false, true}};  // ConstrainedE = true
+    // vector<vector<bool>> CutSelector = {{false, false, false}, {false, true, false}, {false, false, true}}; // ConstrainedE = false
+    // vector<vector<bool>> CutSelector = {{true, false, false}, {true, true, false}, {true, false, true}, {false, false, false}, {false, true, false}, {false, false, true}};
 
     bool ConstrainTLmom = false;
 
     // bool plot_AMaps = false;
     bool plot_AMaps = true;
 
-    string OutFolderName_prefix = "03Aa_test";
+    string OutFolderName_prefix = "03Ab_test";
     string OutFolderName_ver_status = "_v10";
     // string OutFolderName_prefix = "nFD_eff_test";
     // string OutFolderName_ver_status = "_v6";
