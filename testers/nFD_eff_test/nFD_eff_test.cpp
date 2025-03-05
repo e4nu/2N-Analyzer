@@ -37,8 +37,8 @@ void nFD_eff_test() {
     // vector<vector<bool>> Ebeam_bool_v = {{true, false, false}, {false, true, false}, {false, false, true}};
 
     // int Limiter = 25000000;  // 2500 files
-    // int Limiter = 10000000;  // 1000 files
-    int Limiter = 1000000;  // 100 files
+    int Limiter = 10000000;  // 1000 files
+    // int Limiter = 1000000;  // 100 files
     // int Limiter = 100000;  // 10 files
     // int Limiter = 10000; // 1 file
 
@@ -47,8 +47,8 @@ void nFD_eff_test() {
     bool apply_PCAL_neutral_veto = false;
 
     // vector<vector<bool>> CutSelector = {{true, false, false}, {true, true, false}, {true, false, true}};  // ConstrainedE = true
-    vector<vector<bool>> CutSelector = {{false, false, false}, {false, true, false}, {false, false, true}}; // ConstrainedE = false
-    // vector<vector<bool>> CutSelector = {{true, false, false}, {true, true, false}, {true, false, true}, {false, false, false}, {false, true, false}, {false, false, true}};
+    // vector<vector<bool>> CutSelector = {{false, false, false}, {false, true, false}, {false, false, true}}; // ConstrainedE = false
+    vector<vector<bool>> CutSelector = {{true, false, false}, {true, true, false}, {true, false, true}, {false, false, false}, {false, true, false}, {false, false, true}};
 
     bool ConstrainTLmom = false;
 
@@ -56,7 +56,7 @@ void nFD_eff_test() {
     bool plot_AMaps = true;
 
     string OutFolderName_prefix = "04_test";
-    string OutFolderName_ver_status = "_v10";
+    string OutFolderName_ver_status = "_v11";
     // string OutFolderName_prefix = "nFD_eff_test";
     // string OutFolderName_ver_status = "_v6";
     string samples_status = use_ConstPn_samples ? "_CPn" : "";
