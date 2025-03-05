@@ -23,7 +23,8 @@ void nFD_eff_test() {
     bool use_ConstPn_samples = true;
 
     // vector<double> rc_factor_v = {100};
-    vector<double> rc_factor_v = {100, 200, 300};
+    // vector<double> rc_factor_v = {100, 200, 300};
+    vector<double> rc_factor_v = {100, 200, 300, 400, 500};
     // vector<double> rc_factor_v = {100, 200, 300, 400, 500, 600, 700, 800, 900, 1000};
 
     // vector<double> Ebeam_v = {2.07052};
@@ -36,8 +37,8 @@ void nFD_eff_test() {
     // vector<vector<bool>> Ebeam_bool_v = {{true, false, false}, {false, true, false}, {false, false, true}};
 
     // int Limiter = 25000000;  // 2500 files
-    int Limiter = 10000000;  // 1000 files
-    // int Limiter = 1000000;  // 100 files
+    // int Limiter = 10000000;  // 1000 files
+    int Limiter = 1000000;  // 100 files
     // int Limiter = 100000;  // 10 files
     // int Limiter = 10000; // 1 file
 
@@ -154,8 +155,8 @@ void nFD_eff_test() {
                 Beam_energy_TString = "4029MeV";
             } else if (Is6GeV) {
                 if (use_ConstPn_samples) {
-                    InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/5986MeV_ConstPn_lH2/OutPut_en/reconhipo/*.hipo";
-                    // InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/5986MeV_ConstPn/OutPut_en/reconhipo/*.hipo";
+                    // InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/5986MeV_ConstPn_lH2/OutPut_en/reconhipo/*.hipo";
+                    InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/5986MeV_ConstPn/OutPut_en/reconhipo/*.hipo";
                 } else {
                     InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/5986MeV/OutPut_en/reconhipo/*.hipo";
                 }
@@ -412,12 +413,12 @@ void nFD_eff_test() {
                          "#theta^{truth}_{nFD} vs. #phi^{truth}_{nFD} in 1e cut (ECALveto);#phi^{truth}_{nFD} [#circ];#theta^{truth}_{nFD} [#circ]", 100, -180., 180., 100, 0, 50.);
             HistoList.push_back(h_truth_theta_nFD_ECALveto_VS_truth_phi_nFD_ECALveto_1e_cut);
 
-            TH1D* h_Edep_ECAL_ECALveto_1e_cut = new TH1D("Edep_ECAL_ECALveto_1e_cut", "E^{ECAL}_{dep} in 1e cut (ECALveto);E^{ECAL}_{dep} [GeV];Counts", 50, 0, 1.);
+            TH1D* h_Edep_ECAL_ECALveto_1e_cut = new TH1D("Edep_ECAL_ECALveto_1e_cut", "E^{ECAL}_{dep} in 1e cut (ECALveto);E^{ECAL}_{dep} [GeV];Counts", 50, 0., 0.5);
             HistoList.push_back(h_Edep_ECAL_ECALveto_1e_cut);
             TH1D* h_beta_n_ECALveto_1e_cut = new TH1D("beta_n_ECALveto_1e_cut", "#beta_{nFD} in 1e cut (ECALveto);#beta_{nFD};Counts", 50, 0, 1.1);
             HistoList.push_back(h_beta_n_ECALveto_1e_cut);
             TH2D* h_Edep_ECAL_VS_beta_n_ECALveto_1e_cut =
-                new TH2D("Edep_ECAL_VS_beta_n_ECALveto_1e_cut", "E^{ECAL}_{dep} vs. #beta_{nFD} in 1e cut (ECALveto);#beta_{nFD};E^{ECAL}_{dep} [GeV]", 100, 0, 1.1, 100, 0, 1.);
+                new TH2D("Edep_ECAL_VS_beta_n_ECALveto_1e_cut", "E^{ECAL}_{dep} vs. #beta_{nFD} in 1e cut (ECALveto);#beta_{nFD};E^{ECAL}_{dep} [GeV]", 100, 0, 1.1, 100, 0., 0.5);
             HistoList.push_back(h_Edep_ECAL_VS_beta_n_ECALveto_1e_cut);
 
             TH2D* h_reco_P_e_VS_P_nFD_ECALveto_1e_cut =
@@ -634,12 +635,12 @@ void nFD_eff_test() {
 
             TH2D* h_Edep_ECAL_VS_reco_P_nFD_ECALveto_1e_cut =
                 new TH2D("Edep_ECAL_VS_reco_P_nFD_ECALveto_1e_cut", "E^{ECAL}_{dep} vs. P^{reco}_{nFD} in 1e cut (ECALveto);P^{reco}_{nFD} [GeV/c];E^{ECAL}_{dep} [GeV]", 100, 0., Ebeam * 3.,
-                         100, 0, 1.);
+                         100, 0., 0.5);
             HistoList.push_back(h_Edep_ECAL_VS_reco_P_nFD_ECALveto_1e_cut);
             TH2D* h_Edep_ECAL_VS_reco_phi_nFD_minus_reco_phi_e_ECALveto_1e_cut =
                 new TH2D("Edep_ECAL_VS_reco_phi_nFD_minus_reco_phi_e_ECALveto_1e_cut",
                          "E^{ECAL}_{dep} vs. #Delta#phi^{reco}_{nFD,e} in 1e cut (ECALveto);#Delta#phi^{reco}_{nFD,e} = |#phi^{reco}_{nFD} - #phi^{reco}_{e}| [#circ]];E^{ECAL}_{dep} [GeV]",
-                         100, -180., 180., 100, 0, 1.);
+                         100, -180., 180., 100, 0., 0.5);
             HistoList.push_back(h_Edep_ECAL_VS_reco_phi_nFD_minus_reco_phi_e_ECALveto_1e_cut);
 
             TH2D* h_beta_n_VS_reco_P_nFD_ECALveto_1e_cut =
@@ -680,12 +681,12 @@ void nFD_eff_test() {
                          "#theta^{truth}_{nFD} vs. #phi^{truth}_{nFD} in 1e cut (matched);#phi^{truth}_{nFD} [#circ];#theta^{truth}_{nFD} [#circ]", 100, -180., 180., 100, 0, 50.);
             HistoList.push_back(h_truth_theta_nFD_matched_VS_truth_phi_nFD_matched_1e_cut);
 
-            TH1D* h_Edep_ECAL_matched_1e_cut = new TH1D("Edep_ECAL_matched_1e_cut", "E^{ECAL}_{dep} in 1e cut (matched);E^{ECAL}_{dep} [GeV];Counts", 50, 0, 1.);
+            TH1D* h_Edep_ECAL_matched_1e_cut = new TH1D("Edep_ECAL_matched_1e_cut", "E^{ECAL}_{dep} in 1e cut (matched);E^{ECAL}_{dep} [GeV];Counts", 50, 0., 0.5);
             HistoList.push_back(h_Edep_ECAL_matched_1e_cut);
             TH1D* h_beta_n_matched_1e_cut = new TH1D("beta_n_matched_1e_cut", "#beta_{nFD} in 1e cut (matched);#beta_{nFD};Counts", 50, 0, 1.1);
             HistoList.push_back(h_beta_n_matched_1e_cut);
             TH2D* h_Edep_ECAL_VS_beta_n_matched_1e_cut =
-                new TH2D("Edep_ECAL_VS_beta_n_matched_1e_cut", "E^{ECAL}_{dep} vs. #beta_{nFD} in 1e cut (matched);#beta_{nFD};E^{ECAL}_{dep} [GeV]", 100, 0, 1.1, 100, 0, 1.);
+                new TH2D("Edep_ECAL_VS_beta_n_matched_1e_cut", "E^{ECAL}_{dep} vs. #beta_{nFD} in 1e cut (matched);#beta_{nFD};E^{ECAL}_{dep} [GeV]", 100, 0, 1.1, 100, 0., 0.5);
             HistoList.push_back(h_Edep_ECAL_VS_beta_n_matched_1e_cut);
 
             TH2D* h_reco_P_e_VS_P_nFD_matched_1e_cut =
@@ -903,12 +904,12 @@ void nFD_eff_test() {
 
             TH2D* h_Edep_ECAL_VS_reco_P_nFD_matched_1e_cut =
                 new TH2D("Edep_ECAL_VS_reco_P_nFD_matched_1e_cut", "E^{ECAL}_{dep} vs. P^{reco}_{nFD} in 1e cut (matched);P^{reco}_{nFD} [GeV/c];E^{ECAL}_{dep} [GeV]", 100, 0., Ebeam * 3.,
-                         100, 0, 1.);
+                         100, 0., 0.5);
             HistoList.push_back(h_Edep_ECAL_VS_reco_P_nFD_matched_1e_cut);
             TH2D* h_Edep_ECAL_VS_reco_phi_nFD_minus_reco_phi_e_matched_1e_cut =
                 new TH2D("Edep_ECAL_VS_reco_phi_nFD_minus_reco_phi_e_matched_1e_cut",
                          "E^{ECAL}_{dep} vs. #Delta#phi^{reco}_{nFD,e} in 1e cut (matched);#Delta#phi^{reco}_{nFD,e} = |#phi^{reco}_{nFD} - #phi^{reco}_{e}| [#circ]];E^{ECAL}_{dep} [GeV]",
-                         100, -180., 180., 100, 0, 1.);
+                         100, -180., 180., 100, 0., 0.5);
             HistoList.push_back(h_Edep_ECAL_VS_reco_phi_nFD_minus_reco_phi_e_matched_1e_cut);
 
             TH2D* h_beta_n_VS_reco_P_nFD_matched_1e_cut =
