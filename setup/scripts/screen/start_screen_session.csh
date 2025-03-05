@@ -15,6 +15,19 @@ set session_name = "$1"
 set command = "$2"
 set stay_open = "$3"
 
+# If session_name is empty, generate a default session name (e.g., using timestamp)
+if ("${session_name}" == "") then
+    set session_name = "session_`date +%Y%m%d%H%M%S`"
+    echo "${COLOR_START}No session name provided. Using default session name:${COLOR_END} ${session_name}"
+endif
+
+# Check if a screen session with the same name already exists
+set existing_sessions = `screen -list | grep -w "${session_name}"`
+if ("${existing_sessions}" != "") then
+    echo "${COLOR_START}Error: A screen session with the name ${COLOR_END}'${session_name}'${COLOR_START} already exists.${COLOR_END}"
+    exit 1
+endif
+
 # Start a detached screen session with the specified name and command
 if ("$stay_open" == "") then
     # If stay_open is empty, leave tcsh running
