@@ -96,7 +96,7 @@ void nFD_eff_test() {
                     if (OnlyGood_nFD == OnlyBad_nFD) { OnlyGood_nFD = OnlyBad_nFD = false; }
 
                     double P_upperLim = ConstrainTLmom ? (Ebeam * 0.5) : (Ebeam * 1.1);
-                    s const string OutputDir = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName;
+                    const string OutputDir = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName;
                     system(("rm -rf " + OutputDir).c_str());
                     system(("mkdir -p " + OutputDir).c_str());
 
