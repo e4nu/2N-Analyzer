@@ -12,5 +12,5 @@ echo ""
 # echo ""
 # git clean -f
 # echo ""
-echo "\033[35m- Lunching data-analysis code -----------------------------------------\033[0m"
-echo ""
+
+source start_screen_session.sh
