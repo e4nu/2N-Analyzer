@@ -30,3 +30,5 @@ else
     screen -dmS "$session_name" tcsh -c "source ~/.cshrc; $command; exit"
     echo "Screen session '$session_name' started with command: $command. Exiting after completion."
 endif
+
+echo ""
