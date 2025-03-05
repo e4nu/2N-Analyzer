@@ -3,6 +3,10 @@
 # Usage:
 # start_screen_session mysession "echo 'hello' && ls -l" "stay_open"
 
+echo ""
+echo "${COLOR_START}- Setting screen commands ---------------------------------------------${COLOR_END}"
+echo ""
+
 # Check if the correct number of arguments are passed
 if ($#argv < 2) then
     echo 'Usage: $SCREEN_SCRIPT_DIR/start_screen_session.csh <session_name> <command> [stay_open]'
