@@ -13,4 +13,4 @@ echo ""
 # git clean -f
 # echo ""
 
-source start_screen_session.sh
+source ./source/scripts/start_screen_session.sh
