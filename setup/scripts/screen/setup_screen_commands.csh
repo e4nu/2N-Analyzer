@@ -11,5 +11,5 @@ chmod +x $SCREEN_SCRIPT_DIR/start_screen_session.csh
 echo ""
 echo "Screen commands have been updated."
 echo "to run a screen session, use the following command:"
-echo "./$SCREEN_SCRIPT_DIR/start_screen_session.csh <session_name> <command>"
+echo "\$SCREEN_SCRIPT_DIR/start_screen_session.csh <session_name> <command>"
 echo ""
