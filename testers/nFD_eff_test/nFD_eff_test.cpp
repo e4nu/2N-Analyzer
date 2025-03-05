@@ -22,10 +22,10 @@ void nFD_eff_test() {
 
     bool use_ConstPn_samples = true;
 
-    // vector<double> rc_factor_v = {100};
-    // vector<double> rc_factor_v = {100, 125, 150};
-    vector<double> rc_factor_v = {100, 125, 150, 175, 200};
-    vector<double> nPart_veto_radius_v = {100, 125, 150, 175, 200};
+    // vector<double> cPart_veto_radii = {100};
+    // vector<double> cPart_veto_radii = {100, 125, 150};
+    vector<double> cPart_veto_radii = {100, 125, 150, 175, 200};
+    vector<double> nPart_veto_radii = {100, 125, 150, 175, 200};
 
     // vector<double> Ebeam_v = {2.07052};
     // vector<vector<bool>> Ebeam_bool_v = {{true, false, false}};
@@ -66,16 +66,16 @@ void nFD_eff_test() {
     string General_status = "_All_e_Cuts";
     // string General_status = "_CPn_lH2";
 
-    nPart_veto_radius_v = (!apply_PCAL_neutral_veto) ? vector<double>{0} : nPart_veto_radius_v;
+    nPart_veto_radii = (!apply_PCAL_neutral_veto) ? vector<double>{0} : nPart_veto_radii;
 
     for (int Selector_ind = 0; Selector_ind < CutSelector.size(); Selector_ind++) {
-        for (int rc_ind = 0; rc_ind < rc_factor_v.size(); rc_ind++) {
-            for (int rn_ind = 0; rn_ind < nPart_veto_radius_v.size(); rn_ind++) {
+        for (int rc_ind = 0; rc_ind < cPart_veto_radii.size(); rc_ind++) {
+            for (int rn_ind = 0; rn_ind < nPart_veto_radii.size(); rn_ind++) {
                 for (int Ebeam_ind = 0; Ebeam_ind < Ebeam_v.size(); Ebeam_ind++) {
                     double Ebeam = Ebeam_v.at(Ebeam_ind);
                     bool Is2GeV = Ebeam_bool_v.at(Ebeam_ind).at(0), Is4GeV = Ebeam_bool_v.at(Ebeam_ind).at(1), Is6GeV = Ebeam_bool_v.at(Ebeam_ind).at(2);
 
-                    double cPart_veto_radius = rc_factor_v.at(rc_ind), nPart_veto_radius = nPart_veto_radius_v.at(rn_ind);
+                    double cPart_veto_radius = cPart_veto_radii.at(rc_ind), nPart_veto_radius = nPart_veto_radii.at(rn_ind);
 
                     bool ConstrainedE = CutSelector.at(Selector_ind).at(0);
                     bool OnlyGood_nFD = CutSelector.at(Selector_ind).at(1);
@@ -2482,7 +2482,7 @@ void nFD_eff_test() {
 
                     // Delete all ROOT objects whose class names start with TH (to prevent a memory leak)
                     if (Ebeam_v.size() > 1) { gDirectory->Clear(); }
-                    // if (rc_factor_v.size() > 1) { gDirectory->Clear(); }
+                    // if (cPart_veto_radii.size() > 1) { gDirectory->Clear(); }
                 }
             }
         }
