@@ -46,8 +46,8 @@ void nFD_eff_test() {
     bool apply_ECAL_veto = true;
     bool apply_PCAL_neutral_veto = false;
 
-    vector<vector<bool>> CutSelector = {{true, false, false}, {true, true, false}, {true, false, true}};  // ConstrainedE = true
-    // vector<vector<bool>> CutSelector = {{false, false, false}, {false, true, false}, {false, false, true}}; // ConstrainedE = false
+    // vector<vector<bool>> CutSelector = {{true, false, false}, {true, true, false}, {true, false, true}};  // ConstrainedE = true
+    vector<vector<bool>> CutSelector = {{false, false, false}, {false, true, false}, {false, false, true}}; // ConstrainedE = false
     // vector<vector<bool>> CutSelector = {{true, false, false}, {true, true, false}, {true, false, true}, {false, false, false}, {false, true, false}, {false, false, true}};
 
     bool ConstrainTLmom = false;
