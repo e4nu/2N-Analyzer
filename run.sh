@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source /source/scripts/code_updater.sh
+source ./source/scripts/code_updater.sh
 
 echo "\033[35m- Lunching data-analysis code -----------------------------------------\033[0m"
 echo ""
