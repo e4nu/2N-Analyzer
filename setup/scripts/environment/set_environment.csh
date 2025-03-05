@@ -10,7 +10,7 @@ echo "${COLOR_START}- Updating environment -------------------------------------
 echo ""
 
 unset DIR_2N_ANALYSIS_CODE
-setenv DIR_2N_ANALYSIS_CODE $(pwd)
-# setenv DIR_2N_ANALYSIS_CODE `pwd`
+# setenv DIR_2N_ANALYSIS_CODE $(pwd)
+setenv DIR_2N_ANALYSIS_CODE `pwd`
 # setenv DIR_2N_ANALYSIS_CODE /w/hallb-scshelf2102/clas12/asportes/2N-Analyser
 echo "${COLOR_START}DIR_2N_ANALYSIS_CODE:${COLOR_END} ${DIR_2N_ANALYSIS_CODE}"
