@@ -41,7 +41,7 @@ void nFD_eff_test() {
     // int Limiter = 100000;  // 10 files
     // int Limiter = 10000; // 1 file
 
-    string OutFolderName_prefix = "00A_test";
+    string OutFolderName_prefix = "01A_test";
     string OutFolderName_ver_status = "_v9";
     // string General_status = "_Only_Truth_phi_nFDCuts";
     // string General_status = "_NO_Truth_phi_nFDCuts";
@@ -51,10 +51,10 @@ void nFD_eff_test() {
     string General_status = "_All_e_Cuts";
 
     // bool ConstrainedE = false;
-    bool ConstrainedE = false;
+    bool ConstrainedE = true;
 
     bool OnlyGood_nFD = false;
-    bool OnlyBad_nFD = true;
+    bool OnlyBad_nFD = false;
 
     // bool plot_AMaps = false;
     bool plot_AMaps = true;
@@ -154,7 +154,8 @@ void nFD_eff_test() {
                 Beam_energy_TString = "4029MeV";
             } else if (Is6GeV) {
                 if (use_ConstPn_samples) {
-                    InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/5986MeV_ConstPn/OutPut_en/reconhipo/*.hipo";
+                    InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/5986MeV_ConstPn_lH2/OutPut_en/reconhipo/*.hipo";
+                    // InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/5986MeV_ConstPn/OutPut_en/reconhipo/*.hipo";
                 } else {
                     InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/5986MeV/OutPut_en/reconhipo/*.hipo";
                 }
