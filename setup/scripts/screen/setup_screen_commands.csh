@@ -9,7 +9,7 @@ chmod +x $SCREEN_SCRIPT_DIR/start_screen_session.csh
 # source ./setup/scripts/screen/start_screen_session.csh
 
 echo ""
-echo "Screen commands have been updated."
-echo "to run a screen session, use the following command:"
+echo "${COLOR_START}Screen commands have been updated.$COLOR_END"
+echo "${COLOR_START}to run a screen session, use the following command:$COLOR_END"
 echo '$SCREEN_SCRIPT_DIR/start_screen_session.csh <session_name> <command>'
 echo ""
