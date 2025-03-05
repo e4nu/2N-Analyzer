@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ./source/scripts/code_updater.sh
+source update_only.sh
 
 echo "\033[35m- Lunching nFD efficiency test code -----------------------------------\033[0m"
 echo ""
