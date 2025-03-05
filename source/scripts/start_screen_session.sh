@@ -1,7 +1,11 @@
 #!/bin/bash
 
 # usage:
-# start_screen_session mysession "source something.sh"
+# start_screen_session mysession "echo 'hello'"
+
+echo ""
+echo "Setting start_screen_session command..."
+echo ""
 
 start_screen_session() {
     local session_name="$1"
