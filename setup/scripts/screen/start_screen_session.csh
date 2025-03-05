@@ -14,7 +14,8 @@ set session_name = "$1"
 set command = "$2"
 
 # Start a detached screen session with the specified name and command
-screen -dmS "${session_name}" tcsh -c "${command}; exec tcsh"
+screen -dmS "${session_name}" tcsh -c "source ~/.cshrc;${command}; exec tcsh"
+# screen -dmS "${session_name}" tcsh -c "${command}; exec tcsh"
 # screen -dmS "$session_name" bash -c "$command; exec bash"
 
 echo ""
