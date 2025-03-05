@@ -57,6 +57,10 @@ void nFD_eff_test() {
     bool OnlyGood_nFD = false;
     bool OnlyBad_nFD = false;
 
+    bool apply_neutFD_redef = true;
+    bool apply_ECAL_veto = true;
+    bool apply_PCAL_neutral_veto = true;
+
     // bool plot_AMaps = false;
     bool plot_AMaps = true;
 
@@ -73,9 +77,9 @@ void nFD_eff_test() {
 
             // bool use_ConstPn_samples = true;
 
-            bool apply_neutFD_redef = true;
-            bool apply_ECAL_veto = true;
-            bool apply_PCAL_neutral_veto = false;
+            // bool apply_neutFD_redef = true;
+            // bool apply_ECAL_veto = true;
+            // bool apply_PCAL_neutral_veto = false;
 
             double ECALvetoCut = rc_factor_v.at(i);
             // double ECALvetoCut = 100.;
