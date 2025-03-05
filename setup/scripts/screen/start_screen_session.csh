@@ -5,7 +5,7 @@
 
 # Check if the correct number of arguments are passed
 if ($#argv < 2) then
-echo '$SCREEN_SCRIPT_DIR/start_screen_session.csh <session_name> <command> [stay_open]'
+    echo 'Usage: $SCREEN_SCRIPT_DIR/start_screen_session.csh <session_name> <command> [stay_open]'
     # echo "Usage: start_screen_session <session_name> <command> [stay_open]"
     exit 1
 endif
