@@ -25,7 +25,7 @@ void nFD_eff_test() {
     // vector<double> rc_factor_v = {100};
     // vector<double> rc_factor_v = {100, 125, 150};
     vector<double> rc_factor_v = {100, 125, 150, 175, 200};
-    vector<double> rn_factor_v = {100, 125, 150, 175, 200};
+    vector<double> nPart_veto_radius_v = {100, 125, 150, 175, 200};
 
     // vector<double> Ebeam_v = {2.07052};
     // vector<vector<bool>> Ebeam_bool_v = {{true, false, false}};
@@ -77,25 +77,25 @@ void nFD_eff_test() {
     string General_status = "_All_e_Cuts";
     // string General_status = "_CPn_lH2";
 
-    double P_upperLim = ConstrainTLmom ? (Ebeam * 0.5) : (Ebeam * 1.1);
-
-    rn_factor_v = (!apply_PCAL_neutral_veto) ? vector<double>{0} : rn_factor_v;
+    nPart_veto_radius_v = (!apply_PCAL_neutral_veto) ? vector<double>{0} : nPart_veto_radius_v;
 
     for (int rc_ind = 0; rc_ind < rc_factor_v.size(); rc_ind++) {
-        for (int rn_ind = 0; rn_ind < rn_factor_v.size(); rn_ind++) {
+        for (int rn_ind = 0; rn_ind < nPart_veto_radius_v.size(); rn_ind++) {
             for (int Ebeam_ind = 0; Ebeam_ind < Ebeam_v.size(); Ebeam_ind++) {
                 double Ebeam = Ebeam_v.at(Ebeam_ind);
                 bool Is2GeV = Ebeam_bool_v.at(Ebeam_ind).at(0), Is4GeV = Ebeam_bool_v.at(Ebeam_ind).at(1), Is6GeV = Ebeam_bool_v.at(Ebeam_ind).at(2);
 
-                double cPart_veto_radius = rc_factor_v.at(rc_ind), nPart_veto_radius = rn_factor_v.at(rn_ind);
+                double cPart_veto_radius = rc_factor_v.at(rc_ind), nPart_veto_radius = nPart_veto_radius_v.at(rn_ind);
+
+                double P_upperLim = ConstrainTLmom ? (Ebeam * 0.5) : (Ebeam * 1.1);
 
                 string Ebeam_status = Is2GeV ? "_2GeV" : Is4GeV ? "_4GeV" : Is6GeV ? "_6GeV" : "_Unknown";
                 string rc_factor_status = apply_ECAL_veto ? "_rc" + ToStringWithPrecision(cPart_veto_radius, 0) : "";
-                string rn_factor_status = apply_PCAL_neutral_veto ? "_rn" + ToStringWithPrecision(nPart_veto_radius, 0) : "";
+                string nPart_veto_radius_status = apply_PCAL_neutral_veto ? "_rn" + ToStringWithPrecision(nPart_veto_radius, 0) : "";
 
                 // string OutFolderName = "nFD_eff_test_v4_wPCALnVeto_rc100_rn200";
                 string OutFolderName = OutFolderName_prefix + OutFolderName_ver_status + Ebeam_status + samples_status + neutFD_redef_status + ECAL_veto_status + PCAL_neutral_veto_status +
-                                       rc_factor_status + rn_factor_status + Good_nFD_status + Bad_nFD_status + ConstrainedE_status + General_status;
+                                       rc_factor_status + nPart_veto_radius_status + Good_nFD_status + Bad_nFD_status + ConstrainedE_status + General_status;
                 // string OutFolderName = "nFD_eff_test_v5_AMaps_ConstPn_wPCALnVeto_rn100_6GeV_3";
                 string OutFileName = OutFolderName;
 
@@ -1558,7 +1558,7 @@ void nFD_eff_test() {
                             // bool PassECALeadgeCuts = true;
                             bool PassECALeadgeCuts = (allParticles[i]->cal(Neutron_ECAL_detlayer)->getLv() > 14. && allParticles[i]->cal(Neutron_ECAL_detlayer)->getLw() > 14.);
                             // bool PassVeto = true;
-                            bool PassVeto = NeutronECAL_Cut_Veto(allParticles, electrons, Ebeam, i, 100,apply_PCAL_neutral_veto, rc_factor ,rn_factor);
+                            bool PassVeto = NeutronECAL_Cut_Veto(allParticles, electrons, Ebeam, i, 100,apply_PCAL_neutral_veto, rc_factor ,nPart_veto_radius);
 
                             if (PassMomTh && PassECALeadgeCuts && PassVeto) {
                                 for (int j = 0; j < truth_NeutronsFD.size(); j++) {
@@ -1912,11 +1912,12 @@ void nFD_eff_test() {
                     text.DrawLatex(0.05, 0.7, "ConstrainedE = no");
                 }
 
-                text.DrawLatex(0.05, 0.6, ("cPart_veto_radius = " + ToStringWithPrecision(cPart_veto_radius, 0)).c_str());
-                text.DrawLatex(0.05, 0.55, ("nPart_veto_radius = " + ToStringWithPrecision(nPart_veto_radius, 0)).c_str());
+
+                text.DrawLatex(0.05, 0.6, ("apply_ECAL_veto = " + BoolToString(apply_ECAL_veto)).c_str());
+                text.DrawLatex(0.05, 0.55, ("cPart_veto_radius = " + ToStringWithPrecision(cPart_veto_radius, 0)).c_str());
 
                 text.DrawLatex(0.05, 0.45, ("apply_PCAL_neutral_veto = " + BoolToString(apply_PCAL_neutral_veto)).c_str());
-                text.DrawLatex(0.05, 0.4, ("rn_factor = " + ToStringWithPrecision(rn_factor, 2)).c_str());
+                text.DrawLatex(0.05, 0.4, ("nPart_veto_radius = " + ToStringWithPrecision(nPart_veto_radius, 0)).c_str());
 
                 myText->Print(fileName_electron_cuts, "pdf");
                 myText->Clear();
@@ -2007,11 +2008,11 @@ void nFD_eff_test() {
                     text.DrawLatex(0.05, 0.7, "ConstrainedE = no");
                 }
 
-                text.DrawLatex(0.05, 0.6, ("cPart_veto_radius = " + ToStringWithPrecision(cPart_veto_radius, 0)).c_str());
-                text.DrawLatex(0.05, 0.55, ("nPart_veto_radius = " + ToStringWithPrecision(nPart_veto_radius, 0)).c_str());
+                text.DrawLatex(0.05, 0.6, ("apply_ECAL_veto = " + BoolToString(apply_ECAL_veto)).c_str());
+                text.DrawLatex(0.05, 0.55, ("cPart_veto_radius = " + ToStringWithPrecision(cPart_veto_radius, 0)).c_str());
 
                 text.DrawLatex(0.05, 0.45, ("apply_PCAL_neutral_veto = " + BoolToString(apply_PCAL_neutral_veto)).c_str());
-                text.DrawLatex(0.05, 0.4, ("rn_factor = " + ToStringWithPrecision(rn_factor, 2)).c_str());
+                text.DrawLatex(0.05, 0.4, ("nPart_veto_radius = " + ToStringWithPrecision(nPart_veto_radius, 0)).c_str());
 
                 myText->Print(fileName_raw, "pdf");
                 myText->Clear();
@@ -2102,11 +2103,11 @@ void nFD_eff_test() {
                     text.DrawLatex(0.05, 0.7, "ConstrainedE = no");
                 }
 
-                text.DrawLatex(0.05, 0.6, ("cPart_veto_radius = " + ToStringWithPrecision(cPart_veto_radius, 0)).c_str());
-                text.DrawLatex(0.05, 0.55, ("nPart_veto_radius = " + ToStringWithPrecision(nPart_veto_radius, 0)).c_str());
+                text.DrawLatex(0.05, 0.6, ("apply_ECAL_veto = " + BoolToString(apply_ECAL_veto)).c_str());
+                text.DrawLatex(0.05, 0.55, ("cPart_veto_radius = " + ToStringWithPrecision(cPart_veto_radius, 0)).c_str());
 
                 text.DrawLatex(0.05, 0.45, ("apply_PCAL_neutral_veto = " + BoolToString(apply_PCAL_neutral_veto)).c_str());
-                text.DrawLatex(0.05, 0.4, ("rn_factor = " + ToStringWithPrecision(rn_factor, 2)).c_str());
+                text.DrawLatex(0.05, 0.4, ("nPart_veto_radius = " + ToStringWithPrecision(nPart_veto_radius, 0)).c_str());
 
                 myText->Print(fileName_clas12reco, "pdf");
                 myText->Clear();
@@ -2197,11 +2198,11 @@ void nFD_eff_test() {
                     text.DrawLatex(0.05, 0.7, "ConstrainedE = no");
                 }
 
-                text.DrawLatex(0.05, 0.6, ("cPart_veto_radius = " + ToStringWithPrecision(cPart_veto_radius, 0)).c_str());
-                text.DrawLatex(0.05, 0.55, ("nPart_veto_radius = " + ToStringWithPrecision(nPart_veto_radius, 0)).c_str());
+                text.DrawLatex(0.05, 0.6, ("apply_ECAL_veto = " + BoolToString(apply_ECAL_veto)).c_str());
+                text.DrawLatex(0.05, 0.55, ("cPart_veto_radius = " + ToStringWithPrecision(cPart_veto_radius, 0)).c_str());
 
                 text.DrawLatex(0.05, 0.45, ("apply_PCAL_neutral_veto = " + BoolToString(apply_PCAL_neutral_veto)).c_str());
-                text.DrawLatex(0.05, 0.4, ("rn_factor = " + ToStringWithPrecision(rn_factor, 2)).c_str());
+                text.DrawLatex(0.05, 0.4, ("nPart_veto_radius = " + ToStringWithPrecision(nPart_veto_radius, 0)).c_str());
 
                 myText->Print(fileName_redef, "pdf");
                 myText->Clear();
@@ -2291,11 +2292,11 @@ void nFD_eff_test() {
                     text.DrawLatex(0.05, 0.7, "ConstrainedE = no");
                 }
 
-                text.DrawLatex(0.05, 0.6, ("cPart_veto_radius = " + ToStringWithPrecision(cPart_veto_radius, 0)).c_str());
-                text.DrawLatex(0.05, 0.55, ("nPart_veto_radius = " + ToStringWithPrecision(nPart_veto_radius, 0)).c_str());
+                text.DrawLatex(0.05, 0.6, ("apply_ECAL_veto = " + BoolToString(apply_ECAL_veto)).c_str());
+                text.DrawLatex(0.05, 0.55, ("cPart_veto_radius = " + ToStringWithPrecision(cPart_veto_radius, 0)).c_str());
 
                 text.DrawLatex(0.05, 0.45, ("apply_PCAL_neutral_veto = " + BoolToString(apply_PCAL_neutral_veto)).c_str());
-                text.DrawLatex(0.05, 0.4, ("rn_factor = " + ToStringWithPrecision(rn_factor, 2)).c_str());
+                text.DrawLatex(0.05, 0.4, ("nPart_veto_radius = " + ToStringWithPrecision(nPart_veto_radius, 0)).c_str());
 
                 myText->Print(fileName, "pdf");
                 myText->Clear();
