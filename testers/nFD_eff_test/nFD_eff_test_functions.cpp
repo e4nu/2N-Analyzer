@@ -324,13 +324,17 @@ bool NeutronECAL_Cut_Veto(vector<region_part_ptr>& allParticles, vector<region_p
                     if (v_dist.Mag() < rc_factor * veto_cut) { Veto = true; }
                 }
             } else {
-                bool neutral_hit_PCAL = (allParticles[j]->cal(clas12::PCAL)->getDetector() == 7);
+                bool neutral_hit_PCAL = (                                        //
+                    (allParticles[j]->par()->getCharge() == 0)                   // Neutral particle
+                    && (allParticles[j]->cal(clas12::PCAL)->getDetector() == 7)  // PCAL hit
+                );
                 bool same_sector = (allParticles[j]->cal(clas12::PCAL)->getSector() == allParticles[index]->cal(detlayer)->getSector());
 
                 /*
                 if (neutral_hit_PCAL && same_sector) { Veto = true; }
                 */
 
+                /*
                 TVector3 v_neutral_hit;  // v_neutral_hit = location of neutral particle hit
 
                 if (neutral_hit_PCAL && (allParticles[j]->cal(clas12::PCAL)->getZ() != 0)) {
@@ -339,6 +343,7 @@ bool NeutronECAL_Cut_Veto(vector<region_part_ptr>& allParticles, vector<region_p
 
                     if (v_dist.Mag() < rn_factor * veto_cut) { Veto = true; }
                 }
+                */
 
                 /*
                 bool PCALneutral = neutral_hit_PCAL;
@@ -351,9 +356,38 @@ bool NeutronECAL_Cut_Veto(vector<region_part_ptr>& allParticles, vector<region_p
                                          allParticles[j]->traj(clas12::ECAL, trajlayer)->getZ());
                     TVector3 v_dist = v_nhit - v_neutral_hit;
 
-                    if (v_dist.Mag() < veto_cut) { Veto = true; }
+                    if (v_dist.Mag() < rn_factor * veto_cut) { Veto = true; }
                 }
                 */
+
+                bool PCALneutral = neutral_hit_PCAL;
+
+                if (PCALneutral) {
+                    TVector3 v_PCALn_hit; /* v_PCALn_hit = location of PCAL neutral hit */
+
+                    if ((detlayer == clas12::ECIN) && (allParticles[j]->cal(clas12::ECIN)->getZ() != 0)) {
+                        /* if both particles hit the inner calorimeter, use the inner calorimeter to determine v_PCALn_hit */
+                        v_PCALn_hit.SetXYZ(allParticles[j]->cal(clas12::ECIN)->getX(), allParticles[j]->cal(clas12::ECIN)->getY(), allParticles[j]->cal(clas12::ECIN)->getZ());
+                        TVector3 v_dist = v_nhit - v_PCALn_hit;
+
+                        if (v_dist.Mag() < rn_factor * veto_cut) { Veto = true; }
+                    } else if ((detlayer == clas12::ECOUT) && (allParticles[j]->cal(clas12::ECOUT)->getZ() != 0)) {
+                        /* if both particles hit the outer calorimeter, use the outer calorimeter to determine v_PCALn_hit */
+                        v_PCALn_hit.SetXYZ(allParticles[j]->cal(clas12::ECOUT)->getX(), allParticles[j]->cal(clas12::ECOUT)->getY(), allParticles[j]->cal(clas12::ECOUT)->getZ());
+                        TVector3 v_dist = v_nhit - v_PCALn_hit;
+
+                        if (v_dist.Mag() < rn_factor * veto_cut) { Veto = true; }
+                    } else {
+                        /* the neutral has to hit either the ECIN or ECOUT.
+                           If the PCAL neutral hit the other calorimeter, then look at where the PCAL neutral was expected to be according to the trajectory. */
+                        int trajlayer = (detlayer == clas12::ECIN) ? 4 : 7;
+                        v_PCALn_hit.SetXYZ(allParticles[j]->traj(clas12::ECAL, trajlayer)->getX(), allParticles[j]->traj(clas12::ECAL, trajlayer)->getY(),
+                                           allParticles[j]->traj(clas12::ECAL, trajlayer)->getZ());
+                        TVector3 v_dist = v_nhit - v_PCALn_hit;
+
+                        if (v_dist.Mag() < rn_factor * veto_cut) { Veto = true; }
+                    }
+                }
             }
         } else {
             if (allParticles[j]->par()->getCharge() == 0) { continue; } /* looking on charged particles only */
