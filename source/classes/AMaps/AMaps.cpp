@@ -1622,6 +1622,12 @@ void AMaps::DrawAndSaveHitMapsPDFs(vector<TH1 *> HistoList, const string &PDFfil
         gPad->Modified();
         gPad->Update();
 
+        gPad->Update();
+        TPaletteAxis *palette = (TPaletteAxis *)HistoList[i]->GetListOfFunctions()->FindObject("palette");
+        palette->SetY2NDC(0.55);
+        gPad->Modified();
+        gPad->Update();
+
         myCanvas_temp->Print(fileName, "pdf");
         myCanvas_temp->Clear();
     }

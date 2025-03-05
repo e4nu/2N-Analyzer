@@ -23,9 +23,8 @@ void nFD_eff_test() {
     bool use_ConstPn_samples = true;
 
     // vector<double> rc_factor_v = {100};
-    // vector<double> rc_factor_v = {100, 200, 300};
-    vector<double> rc_factor_v = {100, 200, 300, 400, 500};
-    // vector<double> rc_factor_v = {100, 200, 300, 400, 500, 600, 700, 800, 900, 1000};
+    // vector<double> rc_factor_v = {100, 125, 150};
+    vector<double> rc_factor_v = {100, 125, 150, 175, 200};
 
     // vector<double> Ebeam_v = {2.07052};
     // vector<vector<bool>> Ebeam_bool_v = {{true, false, false}};
@@ -37,29 +36,30 @@ void nFD_eff_test() {
     // vector<vector<bool>> Ebeam_bool_v = {{true, false, false}, {false, true, false}, {false, false, true}};
 
     // int Limiter = 25000000;  // 2500 files
-    // int Limiter = 10000000;  // 1000 files
-    int Limiter = 1000000;  // 100 files
+    int Limiter = 10000000;  // 1000 files
+    // int Limiter = 1000000;  // 100 files
     // int Limiter = 100000;  // 10 files
     // int Limiter = 10000; // 1 file
 
-    string OutFolderName_prefix = "02A_test";
+    string OutFolderName_prefix = "04A_test";
     string OutFolderName_ver_status = "_v9";
     // string General_status = "_Only_Truth_phi_nFDCuts";
     // string General_status = "_NO_Truth_phi_nFDCuts";
     // string General_status = "_AllCuts_OnlyBad_nFD";
     // string General_status = "_AllCuts_OnlyGood_nFD";
     // string General_status = "_AllCuts";
-    string General_status = "_All_e_Cuts";
+    // string General_status = "_All_e_Cuts";
+    string General_status = "_CPn_lH2";
 
     // bool ConstrainedE = false;
     bool ConstrainedE = false;
 
     bool OnlyGood_nFD = false;
-    bool OnlyBad_nFD = true;
+    bool OnlyBad_nFD = false;
 
     bool apply_neutFD_redef = true;
     bool apply_ECAL_veto = true;
-    bool apply_PCAL_neutral_veto = true;
+    bool apply_PCAL_neutral_veto = false;
 
     // bool plot_AMaps = false;
     bool plot_AMaps = true;
@@ -159,8 +159,8 @@ void nFD_eff_test() {
                 Beam_energy_TString = "4029MeV";
             } else if (Is6GeV) {
                 if (use_ConstPn_samples) {
-                    // InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/5986MeV_ConstPn_lH2/OutPut_en/reconhipo/*.hipo";
-                    InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/5986MeV_ConstPn/OutPut_en/reconhipo/*.hipo";
+                    InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/5986MeV_ConstPn_lH2/OutPut_en/reconhipo/*.hipo";
+                    // InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/5986MeV_ConstPn/OutPut_en/reconhipo/*.hipo";
                 } else {
                     InputFiles = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/5986MeV/OutPut_en/reconhipo/*.hipo";
                 }
