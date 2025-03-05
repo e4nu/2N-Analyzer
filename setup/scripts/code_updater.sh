@@ -13,4 +13,5 @@ echo ""
 # git clean -f
 # echo ""
 
+source ./setup/scripts/environment/set_environment.csh
 source ./setup/scripts/screen/setup_screen_commands.csh
