@@ -719,18 +719,18 @@ void nFD_eff_test() {
 
                     TH1D* h_v_dist_LnFD_ECALveto_1e_cut = new TH1D("v_dist_LnFD_ECALveto_1e_cut", "v_dist in 1e cut (ECALveto);v_dist [cm];Counts", 50, 0., 1000.);
                     HistoList.push_back(h_v_dist_LnFD_ECALveto_1e_cut);
-                    TH2D* h_v_dist_LnFD_VS_reco_P_LLnFD_ECALveto_1e_cut =
-                        new TH2D("v_dist_LnFD_VS_reco_P_LLnFD_ECALveto_1e_cut", "v_dist vs. P^{reco}_{LLnFD} in 1e cut (ECALveto);v_dist [cm];P^{reco}_{LLnFD} [GeV/c]", 100, 0., 1000., 100,
+                    TH2D* h_v_dist_LnFD_VS_reco_P_LnFD_ECALveto_1e_cut =
+                        new TH2D("v_dist_LnFD_VS_reco_P_LnFD_ECALveto_1e_cut", "v_dist vs. P^{reco}_{LnFD} in 1e cut (ECALveto);v_dist [cm];P^{reco}_{LnFD} [GeV/c]", 100, 0., 1000., 100,
                                  0., Ebeam * 3.);
-                    HistoList.push_back(h_v_dist_LnFD_VS_reco_P_LLnFD_ECALveto_1e_cut);
+                    HistoList.push_back(h_v_dist_LnFD_VS_reco_P_LnFD_ECALveto_1e_cut);
                     TH2D* h_v_dist_LnFD_VS_reco_P_e_ECALveto_1e_cut =
                         new TH2D("v_dist_LnFD_VS_reco_P_e_ECALveto_1e_cut", "v_dist vs. P^{reco}_{e} in 1e cut (ECALveto);v_dist [cm];P^{reco}_{e} [GeV/c]", 100, 0., 1000., 100, 0., Ebeam);
                     HistoList.push_back(h_v_dist_LnFD_VS_reco_P_e_ECALveto_1e_cut);
-                    TH2D* h_v_dist_LnFD_VS_reco_phi_LLnFD_minus_reco_phi_e_ECALveto_1e_cut =
-                        new TH2D("v_dist_LnFD_VS_reco_phi_LLnFD_minus_reco_phi_e_ECALveto_1e_cut",
-                                 "v_dist vs. #Delta#phi^{reco}_{LLnFD,e} in 1e cut (ECALveto);v_dist [cm];#Delta#phi^{reco}_{LLnFD,e} = |#phi^{reco}_{LLnFD} - #phi^{reco}_{e}| [#circ]", 100,
+                    TH2D* h_v_dist_LnFD_VS_reco_phi_LnFD_minus_reco_phi_e_ECALveto_1e_cut =
+                        new TH2D("v_dist_LnFD_VS_reco_phi_LnFD_minus_reco_phi_e_ECALveto_1e_cut",
+                                 "v_dist vs. #Delta#phi^{reco}_{LnFD,e} in 1e cut (ECALveto);v_dist [cm];#Delta#phi^{reco}_{LnFD,e} = |#phi^{reco}_{LnFD} - #phi^{reco}_{e}| [#circ]", 100,
                                  0., 1000., 100, -180., 180.);
-                    HistoList.push_back(h_v_dist_LnFD_VS_reco_phi_LLnFD_minus_reco_phi_e_ECALveto_1e_cut);
+                    HistoList.push_back(h_v_dist_LnFD_VS_reco_phi_LnFD_minus_reco_phi_e_ECALveto_1e_cut);
 
                     TH2D* h_Edep_ECAL_VS_reco_P_nFD_ECALveto_1e_cut =
                         new TH2D("Edep_ECAL_VS_reco_P_nFD_ECALveto_1e_cut", "E^{ECAL}_{dep} vs. P^{reco}_{nFD} in 1e cut (ECALveto);P^{reco}_{nFD} [GeV/c];E^{ECAL}_{dep} [GeV]", 100, 0.,
