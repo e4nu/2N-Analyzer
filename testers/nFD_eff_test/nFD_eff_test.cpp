@@ -20,7 +20,7 @@ void nFD_eff_test() {
     Is6GeV = true;
     */
 
-    bool use_ConstPn_samples = true;
+    bool use_ConstPn_samples = false;
 
     // vector<double> cPart_veto_radii = {100};
     // vector<double> cPart_veto_radii = {100, 125, 150};
@@ -44,7 +44,7 @@ void nFD_eff_test() {
 
     bool apply_neutFD_redef = true;
     bool apply_ECAL_veto = true;
-    bool apply_PCAL_neutral_veto = true;
+    bool apply_PCAL_neutral_veto = false;
 
     // vector<vector<bool>> CutSelector = {{true, false, false}, {true, true, false}, {true, false, true}};  // ConstrainedE = true
     // vector<vector<bool>> CutSelector = {{false, false, false}, {false, true, false}, {false, false, true}}; // ConstrainedE = false
