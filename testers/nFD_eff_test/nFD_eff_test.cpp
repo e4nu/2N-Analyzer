@@ -25,7 +25,7 @@ void nFD_eff_test() {
     // vector<double> cPart_veto_radii = {100};
     // vector<double> cPart_veto_radii = {100, 125, 150};
     vector<double> cPart_veto_radii = {100, 125, 150, 175, 200};
-    vector<double> nPart_veto_radii = {100, 125, 150, 175, 200};
+    vector<double> nPart_veto_radii = {100, 125, 150, 175, 200, 250};
 
     // vector<double> Ebeam_v = {2.07052};
     // vector<vector<bool>> Ebeam_bool_v = {{true, false, false}};
