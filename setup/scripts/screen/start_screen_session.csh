@@ -14,6 +14,9 @@ set session_name = "$1"
 set command = "$2"
 
 # Start a detached screen session with the specified name and command
-screen -dmS "$session_name" bash -c "$command; exec bash"
+screen -dmS "${session_name}" tcsh -c "${command}; exec tcsh"
+# screen -dmS "$session_name" bash -c "$command; exec bash"
 
-echo "Screen session '$session_name' started with command: $command"
+echo ""
+echo "${COLOR_START}Screen session ${COLOR_END}'${session_name}'${COLOR_START} started with command: ${COLOR_END}${command}"
+echo ""
