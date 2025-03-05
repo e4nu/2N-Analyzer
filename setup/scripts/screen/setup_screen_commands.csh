@@ -1,5 +1,10 @@
 #!/bin/tcsh
 
+echo "${COLOR_START}=======================================================================${COLOR_END}"
+echo "${COLOR_START}= Setting up screen functions                                         =${COLOR_END}"
+echo "${COLOR_START}=======================================================================${COLOR_END}"
+echo ""
+
 echo "${COLOR_START}- Setting screen directory --------------------------------------------${COLOR_END}"
 echo ""
 

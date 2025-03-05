@@ -1,5 +1,10 @@
 #!/bin/tcsh
 
+echo "${COLOR_START}=======================================================================${COLOR_END}"
+echo "${COLOR_START}= Updating environment                                                =${COLOR_END}"
+echo "${COLOR_START}=======================================================================${COLOR_END}"
+echo ""
+
 unset COLOR_START
 setenv COLOR_START '\033[35m'
 
