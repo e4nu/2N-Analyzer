@@ -7,3 +7,4 @@ echo ""
 clas12root -b -q ./main.c
 echo ""
 echo "\033[35m- Operation finished --------------------------------------------------\033[0m"
+echo ""
