@@ -1619,7 +1619,12 @@ void nFD_eff_test() {
                             TVector3 reco_P_nFD;
                             reco_P_nFD.SetMagThetaPhi(CalcPnFD(neutrons_FD_ECALveto[i], electrons[0], starttime), neutrons_FD_ECALveto[i]->getTheta(), neutrons_FD_ECALveto[i]->getPhi());
 
-                            if (reco_P_nFD.Mag() > P_max) { cout << "\n\nError! P_max is is not of the leading neutron! Aborting...\n\n", exit(0); }
+                            if (reco_P_nFD.Mag() > P_max) {
+                                cout << "\n\nError! P_max is is not of the leading neutron!\n";
+                                cout << "P_max = " << P_max << "\n";
+                                cout << "reco_P_nFD.Mag() = " << reco_P_nFD.Mag() << "\n";
+                                cout << "Aborting...\n\n", exit(0);
+                            }
 
                             h_reco_P_nFD_ECALveto_1e_cut->Fill(reco_P_nFD.Mag(), weight);
                             h_reco_theta_nFD_ECALveto_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI, weight);
