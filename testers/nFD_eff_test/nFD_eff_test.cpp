@@ -20,21 +20,21 @@ void nFD_eff_test() {
     Is6GeV = true;
     */
 
-    bool use_ConstPn_samples = false;
+    bool use_ConstPn_samples = true;
 
-    // vector<double> cPart_veto_radii = {100};
+    vector<double> cPart_veto_radii = {100};
     // vector<double> cPart_veto_radii = {100, 125, 150};
-    vector<double> cPart_veto_radii = {100, 125, 150, 175, 200};
+    // vector<double> cPart_veto_radii = {100, 125, 150, 175, 200};
     vector<double> nPart_veto_radii = {100, 125, 150, 175, 200, 250};
 
-    // vector<double> Ebeam_v = {2.07052};
-    // vector<vector<bool>> Ebeam_bool_v = {{true, false, false}};
+    vector<double> Ebeam_v = {2.07052};
+    vector<vector<bool>> Ebeam_bool_v = {{true, false, false}};
     // vector<double> Ebeam_v = {4.02962};
     // vector<vector<bool>> Ebeam_bool_v = {{false, true, false}};
     // vector<double> Ebeam_v = {5.98636};
     // vector<vector<bool>> Ebeam_bool_v = {{false, false, true}};
-    vector<double> Ebeam_v = {2.07052, 4.02962, 5.98636};
-    vector<vector<bool>> Ebeam_bool_v = {{true, false, false}, {false, true, false}, {false, false, true}};
+    // vector<double> Ebeam_v = {2.07052, 4.02962, 5.98636};
+    // vector<vector<bool>> Ebeam_bool_v = {{true, false, false}, {false, true, false}, {false, false, true}};
 
     // int Limiter = 25000000;  // 2500 files
     // int Limiter = 10000000;  // 1000 files
@@ -44,13 +44,13 @@ void nFD_eff_test() {
 
     bool apply_neutFD_redef = true;
     bool apply_ECAL_veto = true;
-    bool apply_PCAL_neutral_veto = true;
+    bool apply_PCAL_neutral_veto = false;
 
     bool No_FTOF_hits = false;
 
-    // vector<vector<bool>> CutSelector = {{true, false, false}, {true, true, false}, {true, false, true}};  // ConstrainedE = true
+    vector<vector<bool>> CutSelector = {{true, false, false}, {true, true, false}, {true, false, true}};  // ConstrainedE = true
     // vector<vector<bool>> CutSelector = {{false, false, false}, {false, true, false}, {false, false, true}}; // ConstrainedE = false
-    vector<vector<bool>> CutSelector = {{true, false, false}, {true, true, false}, {true, false, true}, {false, false, false}, {false, true, false}, {false, false, true}};
+    // vector<vector<bool>> CutSelector = {{true, false, false}, {true, true, false}, {true, false, true}, {false, false, false}, {false, true, false}, {false, false, true}};
 
     bool ConstrainTLmom = false;
 
