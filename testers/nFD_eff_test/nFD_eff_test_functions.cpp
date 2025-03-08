@@ -433,8 +433,9 @@ bool NeutronECAL_Cut_Veto(vector<region_part_ptr>& allParticles, vector<region_p
 
                 bool SameFTOF1ASector = (allParticles[j]->sci(clas12::FTOF1A)->getSector() == allParticles[index]->sci(clas12::FTOF1A)->getSector());
                 bool SameFTOF1BSector = (allParticles[j]->sci(clas12::FTOF1B)->getSector() == allParticles[index]->sci(clas12::FTOF1B)->getSector());
-                bool SameFTOF2Sector = (allParticles[j]->sci(clas12::FTOF2)->getSector() == allParticles[index]->sci(clas12::FTOF2)->getSector());
+                // bool SameFTOF2Sector = (allParticles[j]->sci(clas12::FTOF2)->getSector() == allParticles[index]->sci(clas12::FTOF2)->getSector());
                 bool SameFTOFSector = (SameFTOF1ASector || SameFTOF1BSector || SameFTOF2Sector);
+                bool SameFTOFSector = (SameFTOF1ASector || SameFTOF1BSector);
                 
                 if (SameFTOFSector) { Veto = true; }
 
