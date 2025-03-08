@@ -428,14 +428,14 @@ bool NeutronECAL_Cut_Veto(vector<region_part_ptr>& allParticles, vector<region_p
             auto Neutral_FTOF_detlayer = NeutralInFTOF1A ? clas12::FTOF1A : NeutralInFTOF1B ? clas12::FTOF1B : clas12::FTOF2;  // find first layer of hit
 
             if (NeutralInFTOF) {
-
-                cout << "\nNeutralInFTOF: " << NeutralInFTOF << endl;
-
                 TVector3 v_nhit_FTOF(allParticles[index]->sci(Neutral_FTOF_detlayer)->getX(), allParticles[index]->sci(Neutral_FTOF_detlayer)->getY(),
                                      allParticles[index]->sci(Neutral_FTOF_detlayer)->getZ());
                 TVector3 v_chit_FTOF; /* v_chit_FTOF = location of charged particle hit */
 
                 if ((Neutral_FTOF_detlayer == clas12::FTOF1A) && (allParticles[j]->sci(clas12::FTOF1A)->getZ() != 0)) {
+                    cout << "(Neutral_FTOF_detlayer == clas12::FTOF1A) && (allParticles[j]->sci(clas12::FTOF1A)->getZ() != 0) = " << (Neutral_FTOF_detlayer == clas12::FTOF1A) &&
+                        (allParticles[j]->sci(clas12::FTOF1A)->getZ() != 0) << endl;
+
                     /* if both particles hit the inner sciorimeter, use the inner sciorimeter to determine v_chit_FTOF */
                     v_chit_FTOF.SetXYZ(allParticles[j]->sci(clas12::FTOF1A)->getX(), allParticles[j]->sci(clas12::FTOF1A)->getY(), allParticles[j]->sci(clas12::FTOF1A)->getZ());
                     TVector3 v_dist = v_nhit_FTOF - v_chit_FTOF;
