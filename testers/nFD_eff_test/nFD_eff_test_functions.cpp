@@ -434,7 +434,7 @@ bool NeutronECAL_Cut_Veto(vector<region_part_ptr>& allParticles, vector<region_p
 
                 if ((Neutral_FTOF_detlayer == clas12::FTOF1A) && (allParticles[j]->sci(clas12::FTOF1A)->getZ() != 0)) {
                     cout << "(Neutral_FTOF_detlayer == clas12::FTOF1A) && (allParticles[j]->sci(clas12::FTOF1A)->getZ() != 0) = " << (Neutral_FTOF_detlayer == clas12::FTOF1A) &&
-                        (allParticles[j]->sci(clas12::FTOF1A)->getZ() != 0) << endl;
+                        (allParticles[j]->sci(clas12::FTOF1A)->getZ() != 0) << "\n";
 
                     /* if both particles hit the inner sciorimeter, use the inner sciorimeter to determine v_chit_FTOF */
                     v_chit_FTOF.SetXYZ(allParticles[j]->sci(clas12::FTOF1A)->getX(), allParticles[j]->sci(clas12::FTOF1A)->getY(), allParticles[j]->sci(clas12::FTOF1A)->getZ());
