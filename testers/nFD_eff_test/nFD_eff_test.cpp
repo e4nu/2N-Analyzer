@@ -20,25 +20,25 @@ void nFD_eff_test() {
     Is6GeV = true;
     */
 
-    bool use_ConstPn_samples = true;
+    bool use_ConstPn_samples = false;
 
-    vector<double> cPart_veto_radii = {100};
+    // vector<double> cPart_veto_radii = {100};
     // vector<double> cPart_veto_radii = {100, 125, 150};
-    // vector<double> cPart_veto_radii = {100, 125, 150, 175, 200};
+    vector<double> cPart_veto_radii = {100, 125, 150, 175, 200};
     vector<double> nPart_veto_radii = {100, 125, 150, 175, 200, 250};
 
-    vector<double> Ebeam_v = {2.07052};
-    vector<vector<bool>> Ebeam_bool_v = {{true, false, false}};
+    // vector<double> Ebeam_v = {2.07052};
+    // vector<vector<bool>> Ebeam_bool_v = {{true, false, false}};
     // vector<double> Ebeam_v = {4.02962};
     // vector<vector<bool>> Ebeam_bool_v = {{false, true, false}};
     // vector<double> Ebeam_v = {5.98636};
     // vector<vector<bool>> Ebeam_bool_v = {{false, false, true}};
-    // vector<double> Ebeam_v = {2.07052, 4.02962, 5.98636};
-    // vector<vector<bool>> Ebeam_bool_v = {{true, false, false}, {false, true, false}, {false, false, true}};
+    vector<double> Ebeam_v = {2.07052, 4.02962, 5.98636};
+    vector<vector<bool>> Ebeam_bool_v = {{true, false, false}, {false, true, false}, {false, false, true}};
 
-    // int Limiter = 25000000;  // 2500 files
+    int Limiter = 25000000;  // 2500 files
     // int Limiter = 10000000;  // 1000 files
-    int Limiter = 1000000;  // 100 files
+    // int Limiter = 1000000;  // 100 files
     // int Limiter = 100000;  // 10 files
     // int Limiter = 10000; // 1 file
 
@@ -46,21 +46,17 @@ void nFD_eff_test() {
     bool apply_ECAL_veto = true;
     bool apply_PCAL_neutral_veto = true;
 
-    bool No_FTOF_hits = false;
-
-    vector<vector<bool>> CutSelector = {{true, false, false}, {true, true, false}, {true, false, true}};  // ConstrainedE = true
+    // vector<vector<bool>> CutSelector = {{true, false, false}, {true, true, false}, {true, false, true}};  // ConstrainedE = true
     // vector<vector<bool>> CutSelector = {{false, false, false}, {false, true, false}, {false, false, true}}; // ConstrainedE = false
-    // vector<vector<bool>> CutSelector = {{true, false, false}, {true, true, false}, {true, false, true}, {false, false, false}, {false, true, false}, {false, false, true}};
+    vector<vector<bool>> CutSelector = {{true, false, false}, {true, true, false}, {true, false, true}, {false, false, false}, {false, true, false}, {false, false, true}};
 
     bool ConstrainTLmom = false;
 
     // bool plot_AMaps = false;
     bool plot_AMaps = true;
 
-    string OutFolderName_prefix = "08_new_FTOF_veto_test_SAME_SECTOR_FTOF1A";
-    // string OutFolderName_prefix = "06_No_FTOF_cuts_test";
-    // string OutFolderName_prefix = "05_test";
-    string OutFolderName_ver_status = "_v18";
+    string OutFolderName_prefix = "05_test";
+    string OutFolderName_ver_status = "_v16";
     // string OutFolderName_prefix = "nFD_eff_test";
     // string OutFolderName_ver_status = "_v6";
     string samples_status = use_ConstPn_samples ? "_CPn" : "";
@@ -1522,13 +1518,6 @@ void nFD_eff_test() {
                                 bool ParticleInECOUT = (allParticles[i]->cal(clas12::ECOUT)->getDetector() == 7);                         // ECOUT hit
                                 auto Neutron_ECAL_detlayer = ParticleInECIN ? clas12::ECIN : clas12::ECOUT;                               // find first layer of hit
 
-                                bool ParticleInFTOF1A = (allParticles[i]->sci(clas12::FTOF1A)->getDetector() == 12);                                 // FTOF1A hit
-                                bool ParticleInFTOF1B = (allParticles[i]->sci(clas12::FTOF1B)->getDetector() == 12);                                 // FTOF1B hit
-                                bool ParticleInFTOF2 = (allParticles[i]->sci(clas12::FTOF2)->getDetector() == 12);                                   // FTOF2 hit
-                                // bool ParticleInFTOF = (ParticleInFTOF1A || ParticleInFTOF1B);                                     // FTOF hit
-                                bool ParticleInFTOF = (ParticleInFTOF1A || ParticleInFTOF1B || ParticleInFTOF2);                                     // FTOF hit
-                                auto Neutron_FTOF_detlayer = ParticleInFTOF1A ? clas12::FTOF1A : ParticleInFTOF1B ? clas12::FTOF1B : clas12::FTOF2;  // find first layer of hit
-
                                 if (apply_neutFD_redef) {
                                     if ((pid_temp == 2112) || (pid_temp == 22)) {
                                         if (ParticleInPCAL) {
@@ -1552,7 +1541,7 @@ void nFD_eff_test() {
                                                 if (OnlyGood_nFD) { PassPhi_nFDCuts = (abs(nFD_nSector - e_nSector) == 3); }
                                                 if (OnlyBad_nFD) { PassPhi_nFDCuts = !(abs(nFD_nSector - e_nSector) == 3); }
 
-                                                if (PassMomTh && PassECALeadgeCuts && (!apply_ECAL_veto || PassVeto) && (!No_FTOF_hits || ParticleInFTOF) && PassPhi_nFDCuts) {
+                                                if (PassMomTh && PassECALeadgeCuts && (!apply_ECAL_veto || PassVeto) && PassPhi_nFDCuts) {
                                                     if (Momentum >= P_max) {
                                                         P_max = Momentum;
                                                         NeutronsFD_ind_mom_max = i;
