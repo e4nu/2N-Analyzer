@@ -57,7 +57,7 @@ void nFD_eff_test() {
     // bool plot_AMaps = false;
     bool plot_AMaps = true;
 
-    string OutFolderName_prefix = "08_new_FTOF_veto_test_WITH_Neutral_veto";
+    string OutFolderName_prefix = "08_new_FTOF_veto_test_SAME_SECTOR";
     // string OutFolderName_prefix = "06_No_FTOF_cuts_test";
     // string OutFolderName_prefix = "05_test";
     string OutFolderName_ver_status = "_v18";
