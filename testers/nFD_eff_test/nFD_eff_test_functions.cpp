@@ -419,6 +419,75 @@ bool NeutronECAL_Cut_Veto(vector<region_part_ptr>& allParticles, vector<region_p
 
                 if (v_dist.Mag() < cPart_veto_radius) { Veto = true; }
             }
+
+            bool NeutralInFTOF1A = (allParticles[index]->sci(clas12::FTOF1A)->getDetector() == 12);  // FTOF1A hit
+            bool NeutralInFTOF1B = (allParticles[index]->sci(clas12::FTOF1B)->getDetector() == 12);  // FTOF1B hit
+            bool NeutralInFTOF2 = (allParticles[index]->sci(clas12::FTOF2)->getDetector() == 12);    // FTOF2 hit
+            // bool NeutralInFTOF = (NeutralInFTOF1A || NeutralInFTOF1B);                                     // FTOF hit
+            bool NeutralInFTOF = (NeutralInFTOF1A || NeutralInFTOF1B || NeutralInFTOF2);                                       // FTOF hit
+            auto Neutral_FTOF_detlayer = NeutralInFTOF1A ? clas12::FTOF1A : NeutralInFTOF1B ? clas12::FTOF1B : clas12::FTOF2;  // find first layer of hit
+
+            if (NeutralInFTOF) {
+                TVector3 v_nhit_FTOF(allParticles[index]->sci(Neutral_FTOF_detlayer)->getX(), allParticles[index]->sci(Neutral_FTOF_detlayer)->getY(),
+                                     allParticles[index]->sci(Neutral_FTOF_detlayer)->getZ());
+                TVector3 v_chit_FTOF; /* v_chit_FTOF = location of charged particle hit */
+
+                if ((Neutral_FTOF_detlayer == clas12::FTOF1A) && (allParticles[j]->sci(clas12::FTOF1A)->getZ() != 0)) {
+                    /* if both particles hit the inner sciorimeter, use the inner sciorimeter to determine v_chit_FTOF */
+                    v_chit_FTOF.SetXYZ(allParticles[j]->sci(clas12::FTOF1A)->getX(), allParticles[j]->sci(clas12::FTOF1A)->getY(), allParticles[j]->sci(clas12::FTOF1A)->getZ());
+                    TVector3 v_dist = v_nhit_FTOF - v_chit_FTOF;
+
+                    if (v_dist.Mag() < cPart_veto_radius) { Veto = true; }
+                } else if ((Neutral_FTOF_detlayer == clas12::FTOF1B) && (allParticles[j]->sci(clas12::FTOF1B)->getZ() != 0)) {
+                    /* if both particles hit the outer sciorimeter, use the outer sciorimeter to determine v_chit_FTOF */
+                    v_chit_FTOF.SetXYZ(allParticles[j]->sci(clas12::FTOF1B)->getX(), allParticles[j]->sci(clas12::FTOF1B)->getY(), allParticles[j]->sci(clas12::FTOF1B)->getZ());
+                    TVector3 v_dist = v_nhit_FTOF - v_chit_FTOF;
+
+                    if (v_dist.Mag() < cPart_veto_radius) { Veto = true; }
+                } else if ((Neutral_FTOF_detlayer == clas12::FTOF2) && (allParticles[j]->sci(clas12::FTOF2)->getZ() != 0)) {
+                    /* if both particles hit the outer sciorimeter, use the outer sciorimeter to determine v_chit_FTOF */
+                    v_chit_FTOF.SetXYZ(allParticles[j]->sci(clas12::FTOF2)->getX(), allParticles[j]->sci(clas12::FTOF2)->getY(), allParticles[j]->sci(clas12::FTOF2)->getZ());
+                    TVector3 v_dist = v_nhit_FTOF - v_chit_FTOF;
+
+                    if (v_dist.Mag() < cPart_veto_radius) { Veto = true; }
+                } else {
+                    /* the neutral has to hit either the ECIN or ECOUT.
+                       If the charged particle hit the other sciorimeter, then look at where the charged particle was expected to be according to the trajectory. */
+                    int trajlayer = (Neutral_FTOF_detlayer == clas12::FTOF1A) ? 1 : (Neutral_FTOF_detlayer == clas12::FTOF1B) ? 2 : 3;
+                    v_chit_FTOF.SetXYZ(allParticles[j]->traj(clas12::FTOF, trajlayer)->getX(), allParticles[j]->traj(clas12::FTOF, trajlayer)->getY(),
+                                       allParticles[j]->traj(clas12::FTOF, trajlayer)->getZ());
+                    TVector3 v_dist = v_nhit_FTOF - v_chit_FTOF;
+
+                    if (v_dist.Mag() < cPart_veto_radius) { Veto = true; }
+                }
+            }
+
+            // // Original code:
+            // if (allParticles[j]->par()->getCharge() == 0) { continue; } /* looking on charged particles only */
+            // TVector3 v_chit;                                            /* v_chit = location of charged particle hit */
+
+            // if ((detlayer == clas12::ECIN) && (allParticles[j]->cal(clas12::ECIN)->getZ() != 0)) {
+            //     /* if both particles hit the inner calorimeter, use the inner calorimeter to determine v_chit */
+            //     v_chit.SetXYZ(allParticles[j]->cal(clas12::ECIN)->getX(), allParticles[j]->cal(clas12::ECIN)->getY(), allParticles[j]->cal(clas12::ECIN)->getZ());
+            //     TVector3 v_dist = v_nhit - v_chit;
+
+            //     if (v_dist.Mag() < cPart_veto_radius) { Veto = true; }
+            // } else if ((detlayer == clas12::ECOUT) && (allParticles[j]->cal(clas12::ECOUT)->getZ() != 0)) {
+            //     /* if both particles hit the outer calorimeter, use the outer calorimeter to determine v_chit */
+            //     v_chit.SetXYZ(allParticles[j]->cal(clas12::ECOUT)->getX(), allParticles[j]->cal(clas12::ECOUT)->getY(), allParticles[j]->cal(clas12::ECOUT)->getZ());
+            //     TVector3 v_dist = v_nhit - v_chit;
+
+            //     if (v_dist.Mag() < cPart_veto_radius) { Veto = true; }
+            // } else {
+            //     /* the neutral has to hit either the ECIN or ECOUT.
+            //        If the charged particle hit the other calorimeter, then look at where the charged particle was expected to be according to the trajectory. */
+            //     int trajlayer = (detlayer == clas12::ECIN) ? 4 : 7;
+            //     v_chit.SetXYZ(allParticles[j]->traj(clas12::ECAL, trajlayer)->getX(), allParticles[j]->traj(clas12::ECAL, trajlayer)->getY(),
+            //                   allParticles[j]->traj(clas12::ECAL, trajlayer)->getZ());
+            //     TVector3 v_dist = v_nhit - v_chit;
+
+            //     if (v_dist.Mag() < cPart_veto_radius) { Veto = true; }
+            // }
         }
     }
 
