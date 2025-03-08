@@ -433,26 +433,23 @@ bool NeutronECAL_Cut_Veto(vector<region_part_ptr>& allParticles, vector<region_p
                 TVector3 v_chit_FTOF; /* v_chit_FTOF = location of charged particle hit */
 
                 if ((Neutral_FTOF_detlayer == clas12::FTOF1A) && (allParticles[j]->sci(clas12::FTOF1A)->getZ() != 0)) {
-                    cout << "(Neutral_FTOF_detlayer == clas12::FTOF1A) && (allParticles[j]->sci(clas12::FTOF1A)->getZ() != 0) = " << ((Neutral_FTOF_detlayer == clas12::FTOF1A) &&
-                        (allParticles[j]->sci(clas12::FTOF1A)->getZ() != 0)) << endl;
-
                     /* if both particles hit the inner sciorimeter, use the inner sciorimeter to determine v_chit_FTOF */
                     v_chit_FTOF.SetXYZ(allParticles[j]->sci(clas12::FTOF1A)->getX(), allParticles[j]->sci(clas12::FTOF1A)->getY(), allParticles[j]->sci(clas12::FTOF1A)->getZ());
                     TVector3 v_dist = v_nhit_FTOF - v_chit_FTOF;
 
-                    if (v_dist.Mag() < cPart_veto_radius) { Veto = true; }
+                    if (v_dist.Mag() < 0.1 * cPart_veto_radius) { Veto = true; }
                 } else if ((Neutral_FTOF_detlayer == clas12::FTOF1B) && (allParticles[j]->sci(clas12::FTOF1B)->getZ() != 0)) {
                     /* if both particles hit the outer sciorimeter, use the outer sciorimeter to determine v_chit_FTOF */
                     v_chit_FTOF.SetXYZ(allParticles[j]->sci(clas12::FTOF1B)->getX(), allParticles[j]->sci(clas12::FTOF1B)->getY(), allParticles[j]->sci(clas12::FTOF1B)->getZ());
                     TVector3 v_dist = v_nhit_FTOF - v_chit_FTOF;
 
-                    if (v_dist.Mag() < cPart_veto_radius) { Veto = true; }
+                    if (v_dist.Mag() < 0.1 * cPart_veto_radius) { Veto = true; }
                 } else if ((Neutral_FTOF_detlayer == clas12::FTOF2) && (allParticles[j]->sci(clas12::FTOF2)->getZ() != 0)) {
                     /* if both particles hit the outer sciorimeter, use the outer sciorimeter to determine v_chit_FTOF */
                     v_chit_FTOF.SetXYZ(allParticles[j]->sci(clas12::FTOF2)->getX(), allParticles[j]->sci(clas12::FTOF2)->getY(), allParticles[j]->sci(clas12::FTOF2)->getZ());
                     TVector3 v_dist = v_nhit_FTOF - v_chit_FTOF;
 
-                    if (v_dist.Mag() < cPart_veto_radius) { Veto = true; }
+                    if (v_dist.Mag() < 0.1 * cPart_veto_radius) { Veto = true; }
                 } else {
                     /* the neutral has to hit either the ECIN or ECOUT.
                        If the charged particle hit the other sciorimeter, then look at where the charged particle was expected to be according to the trajectory. */
@@ -461,7 +458,7 @@ bool NeutronECAL_Cut_Veto(vector<region_part_ptr>& allParticles, vector<region_p
                                        allParticles[j]->traj(clas12::FTOF, trajlayer)->getZ());
                     TVector3 v_dist = v_nhit_FTOF - v_chit_FTOF;
 
-                    if (v_dist.Mag() < cPart_veto_radius) { Veto = true; }
+                    if (v_dist.Mag() < 0.1 * cPart_veto_radius) { Veto = true; }
                 }
             }
 
