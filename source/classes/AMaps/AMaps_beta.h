@@ -190,7 +190,7 @@ class AMaps {
 
     void SetElectronBins(const string &P_e_bin_profile, double beamE);
 
-    void SetBins(double beamE, double NumberNucOfMomSlices);  // old
+    void SetBins(double beamE, int nOfMomBins);  // old
 
     // isElectron function --------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -237,9 +237,9 @@ class AMaps {
 
     void GenerateNucleonAMap();
 
-    // SaveHitMaps function -------------------------------------------------------------------------------------------------------------------------------------------------
+    // SaveToTXTFiles function -------------------------------------------------------------------------------------------------------------------------------------------------
 
-    void SaveHitMaps(const string &SampleName, const string &AcceptanceMapsDirectory);
+    void SaveToTXTFiles(const string &SampleName, const string &AcceptanceMapsDirectory);
 
     // DrawAndSaveHitMaps function ------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -248,6 +248,27 @@ class AMaps {
     // DrawAndSaveHitMaps function ------------------------------------------------------------------------------------------------------------------------------------------
 
     void DrawAndSaveHitMaps(const string &SampleName, TCanvas *h1DCanvas, const string &AcceptanceMapsDirectory);
+
+    // SaveToPNGFiles function ------------------------------------------------------------------------------------------------------------------------------------------
+
+    void SaveToPNGFiles(std::__1::string &SampleNameTemp, TCanvas *h1DCanvas, const char *AcceptanceMapsBC_OutFile, const char *TLAMaps_OutFile, const char *RecoAMaps_OutFile,
+                        const char *AMapsRatio_OutFile, const char *Charged_particle_Sep_AMaps_OutFile, const char *AcceptanceMaps_OutFile);
+
+    // SaveToPDFFiles function ------------------------------------------------------------------------------------------------------------------------------------------
+
+    void SaveToPDFFiles();
+
+    // SaveToRootFiles function ------------------------------------------------------------------------------------------------------------------------------------------
+
+    void SaveToRootFiles(const std::__1::string &SampleName, const std::__1::string &AcceptanceMapsDirectory);
+
+    // SaveToRefDir function ------------------------------------------------------------------------------------------------------------------------------------------
+
+    void SaveToRefDir(const std::__1::string &AcceptanceMapsDirectory, const std::__1::string &SampleName);
+
+    // SaveToPlotDir function ------------------------------------------------------------------------------------------------------------------------------------------
+
+    void SaveToPlotDir(const std::__1::string &SampleName);
 
     // HistCounter function -------------------------------------------------------------------------------------------------------------------------------------------------
 

@@ -35,6 +35,13 @@ using namespace utilities;
 
 #include "../../source/classes/AMaps/AMaps.cpp"
 
+void CheckForECALHits(bool& ParticleInPCAL, bool& ParticleInECIN, bool& ParticleInECOUT, short& Neutron_ECAL_detlayer, vector<region_part_ptr>& allParticles, const int& i) {
+    ParticleInPCAL = (allParticles[i]->cal(clas12::PCAL)->getDetector() == 7);    // PCAL hit
+    ParticleInECIN = (allParticles[i]->cal(clas12::ECIN)->getDetector() == 7);    // ECIN hit
+    ParticleInECOUT = (allParticles[i]->cal(clas12::ECOUT)->getDetector() == 7);  // ECOUT hit
+    Neutron_ECAL_detlayer = ParticleInECIN ? clas12::ECIN : clas12::ECOUT;        // find first layer of hit
+}
+
 #pragma region /* CalcToFnFD function */
 
 double CalcToFnFD(region_part_ptr NeutronFD, double starttime = 9999) {
