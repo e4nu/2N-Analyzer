@@ -46,7 +46,7 @@ void nFD_eff_test() {
     bool apply_ECAL_veto = true;
     bool apply_PCAL_neutral_veto = false;
 
-    bool No_FTOF_hits = true;
+    bool No_FTOF_hits = false;
 
     vector<vector<bool>> CutSelector = {{true, false, false}, {true, true, false}, {true, false, true}};  // ConstrainedE = true
     // vector<vector<bool>> CutSelector = {{false, false, false}, {false, true, false}, {false, false, true}}; // ConstrainedE = false
@@ -57,7 +57,7 @@ void nFD_eff_test() {
     // bool plot_AMaps = false;
     bool plot_AMaps = true;
 
-    string OutFolderName_prefix = "07_new_FTOF_veto_test_WITH_VETO";
+    string OutFolderName_prefix = "07_new_FTOF_veto_test_NO_VETO";
     // string OutFolderName_prefix = "06_No_FTOF_cuts_test";
     // string OutFolderName_prefix = "05_test";
     string OutFolderName_ver_status = "_v18";

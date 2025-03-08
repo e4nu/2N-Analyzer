@@ -428,6 +428,9 @@ bool NeutronECAL_Cut_Veto(vector<region_part_ptr>& allParticles, vector<region_p
             auto Neutral_FTOF_detlayer = NeutralInFTOF1A ? clas12::FTOF1A : NeutralInFTOF1B ? clas12::FTOF1B : clas12::FTOF2;  // find first layer of hit
 
             if (NeutralInFTOF) {
+
+                cout << "\nNeutralInFTOF: " << NeutralInFTOF << endl;
+
                 TVector3 v_nhit_FTOF(allParticles[index]->sci(Neutral_FTOF_detlayer)->getX(), allParticles[index]->sci(Neutral_FTOF_detlayer)->getY(),
                                      allParticles[index]->sci(Neutral_FTOF_detlayer)->getZ());
                 TVector3 v_chit_FTOF; /* v_chit_FTOF = location of charged particle hit */
