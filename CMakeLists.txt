@@ -241,6 +241,7 @@ add_executable(project ${CLAS12ROOT_SOURCES} ${CLAS12BANKS_SOURCES} ${HIPO4_SOUR
         source/classes/DataAnalyser/DataAnalyser.h
         testers/nFD_eff_test/nFD_eff_test_functions.cpp
         testers/nFD_eff_test/nFD_eff_test.cpp
+        macros/plotHistogramsWithLabels.cpp
 )
 
 ## Link against ROOT and CLAS12ROOT libraries

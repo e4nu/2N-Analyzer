@@ -12,6 +12,8 @@
 
 class gst {
 public :
+    int defaultLength = 250;
+
     TTree          *fChain;   //!pointer to the analyzed TTree or TChain
 //   TTree          *ffChain;   //!pointer to the analyzed TTree or TChain
     Int_t           fCurrent; //!current Tree number in a TChain
@@ -93,20 +95,20 @@ public :
     Int_t           niem;
     Int_t           niother;
     Int_t           ni;
-    Int_t           pdgi[6];   //[ni]
-    Int_t           resc[6];   //[ni]
-    Double_t        Ei[6];   //[ni]
-    Double_t        pxi[6];   //[ni]
-    Double_t        pyi[6];   //[ni]
-    Double_t        pzi[6];   //[ni]
+    Int_t           pdgi[defaultLength];
+    Int_t           resc[defaultLength];
+    Double_t        Ei[defaultLength];
+    Double_t        pxi[defaultLength];
+    Double_t        pyi[defaultLength];
+    Double_t        pzi[defaultLength];
     Int_t           nf;
-    Int_t           pdgf[15];   //[nf]
-    Double_t        Ef[15];   //[nf]
-    Double_t        pxf[15];   //[nf]
-    Double_t        pyf[15];   //[nf]
-    Double_t        pzf[15];   //[nf]
-    Double_t        pf[15];   //[nf]
-    Double_t        cthf[15];   //[nf]
+    Int_t           pdgf[defaultLength];
+    Double_t        Ef[defaultLength];
+    Double_t        pxf[defaultLength];
+    Double_t        pyf[defaultLength];
+    Double_t        pzf[defaultLength];
+    Double_t        pf[defaultLength];
+    Double_t        cthf[defaultLength];
     Double_t        vtxx;
     Double_t        vtxy;
     Double_t        vtxz;
