@@ -1264,18 +1264,18 @@ void nFD_eff_test() {
                         // if (ConstrainedE && (fabs(reco_P_e.Mag() - Ebeam) > 0.2)) { continue; }
                         if (ConstrainedE && (fabs((reco_P_e.Theta() * 180 / M_PI) - Truth_theta_e) > 2.)) { continue; }
                         if (ConstrainedE && (fabs((reco_P_e.Phi() * 180 / M_PI) - Truth_phi_e) > 5.)) { continue; }
-                        if (ConstrainedE && (CalcdPhi(fabs(getPhi_e(Beam_energy_TString, Truth_phi_nFD) - (reco_P_e.Phi() * 180 / M_PI))) > 5.)) { continue; }
+                        if (ConstrainedE && (CalcdPhi(fabs(GetPhi_e(Beam_energy_TString, Truth_phi_nFD) - (reco_P_e.Phi() * 180 / M_PI))) > 5.)) { continue; }
 
                         // if (fabs(Truth_phi_nFD) < 30.) {
                         //     cout << "\n\n==========================================================\n";
                         //     cout << "Truth_phi_nFD = " << Truth_phi_nFD << "\n";
                         //     cout << "Truth_phi_e = " << Truth_phi_e << "\n";
-                        //     cout << "getPhi_e(Beam_energy_TString, Truth_phi_nFD) = " << getPhi_e(Beam_energy_TString, Truth_phi_nFD) << "\n";
+                        //     cout << "GetPhi_e(Beam_energy_TString, Truth_phi_nFD) = " << GetPhi_e(Beam_energy_TString, Truth_phi_nFD) << "\n";
                         //     cout << "reco_P_e.Phi() * 180 / M_PI = " << reco_P_e.Phi() * 180 / M_PI << "\n";
-                        //     cout << "fabs(getPhi_e(Beam_energy_TString, Truth_phi_nFD) - reco_P_e.Phi() * 180 / M_PI) = "
-                        //          << fabs(getPhi_e(Beam_energy_TString, Truth_phi_nFD) - reco_P_e.Phi() * 180 / M_PI) << "\n\n";
-                        //     cout << "CalcdPhi(fabs(getPhi_e(Beam_energy_TString, Truth_phi_nFD) - reco_P_e.Phi() * 180 / M_PI)) = "
-                        //          << CalcdPhi(fabs(getPhi_e(Beam_energy_TString, Truth_phi_nFD) - reco_P_e.Phi() * 180 / M_PI)) << "\n\n";
+                        //     cout << "fabs(GetPhi_e(Beam_energy_TString, Truth_phi_nFD) - reco_P_e.Phi() * 180 / M_PI) = "
+                        //          << fabs(GetPhi_e(Beam_energy_TString, Truth_phi_nFD) - reco_P_e.Phi() * 180 / M_PI) << "\n\n";
+                        //     cout << "CalcdPhi(fabs(GetPhi_e(Beam_energy_TString, Truth_phi_nFD) - reco_P_e.Phi() * 180 / M_PI)) = "
+                        //          << CalcdPhi(fabs(GetPhi_e(Beam_energy_TString, Truth_phi_nFD) - reco_P_e.Phi() * 180 / M_PI)) << "\n\n";
                         // }
 
                         h_reco_P_e_1e_cut->Fill(reco_P_e.Mag(), weight);

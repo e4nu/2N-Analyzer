@@ -211,7 +211,6 @@ add_executable(project ${CLAS12ROOT_SOURCES} ${CLAS12BANKS_SOURCES} ${HIPO4_SOUR
         source/functions/StackPlot4.h
         source/functions/TLKinCutsCheck.h
         source/functions/to_string_with_precision.h
-        source/namespaces/utilities/utilities.cpp
         source/namespaces/utilities/utilities.h
 
         "source/other/fitexample - Copy.c"
@@ -242,6 +241,8 @@ add_executable(project ${CLAS12ROOT_SOURCES} ${CLAS12BANKS_SOURCES} ${HIPO4_SOUR
         testers/nFD_eff_test/nFD_eff_test_functions.cpp
         testers/nFD_eff_test/nFD_eff_test.cpp
         macros/plotHistogramsWithLabels.cpp
+        testers/reaction_cuts_test/reaction_cuts_test.cpp
+        testers/reaction_cuts_test/reaction_cuts_test_functions.cpp
 )
 
 ## Link against ROOT and CLAS12ROOT libraries

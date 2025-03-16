@@ -7,28 +7,21 @@
 // DataAnalyser constructors ----------------------------------------------------------------------------------------------------------------------------------
 
 /* Default constructor */
-DataAnalyser::DataAnalyser(const string &FileType, const string &AnalyseFilePath, const string &AnalyseFileSample, const string &AnalyseFile)
-{
+DataAnalyser::DataAnalyser(const string &FileType, const string &AnalyseFilePath, const string &AnalyseFileSample, const string &AnalyseFile) {
     string AnalyserMode = ConfigureAnalyserMode(FileType);
     RunEventAnalyser(AnalyserMode, AnalyseFilePath, AnalyseFileSample, AnalyseFile);
 }
 
 // ConfigureAnalyserMode function -----------------------------------------------------------------------------------------------------------------------------
 
-string DataAnalyser::ConfigureAnalyserMode(const string &FileType)
-{
+string DataAnalyser::ConfigureAnalyserMode(const string &FileType) {
     string AnalyserMode;
 
-    if (FileType == "root")
-    {
+    if (FileType == "root") {
         AnalyserMode = "Truth level";
-    }
-    else if (FileType == "hipo")
-    {
+    } else if (FileType == "hipo") {
         AnalyserMode = "Detector Simulation";
-    }
-    else
-    {
+    } else {
         cout << "\nCould not find file type!! Exiting...\n\n", exit(0);
     }
 
@@ -37,15 +30,13 @@ string DataAnalyser::ConfigureAnalyserMode(const string &FileType)
 
 // RunEventAnalyser functions ---------------------------------------------------------------------------------------------------------------------------------
 
-void DataAnalyser::RunEventAnalyser(const string &AnalyserMode, const string &AnalyseFilePath, const string &AnalyseFileSample, const string &AnalyseFile)
-{
-    if (AnalyserMode == "Truth level")
-    {
+void DataAnalyser::RunEventAnalyser(const string &AnalyserMode, const string &AnalyseFilePath, const string &AnalyseFileSample, const string &AnalyseFile) {
+    if (AnalyserMode == "Truth level") {
+        #define RECO_ANALYSER_RUN 0 
         gst g;
         g.Loop();
-    }
-    else if (AnalyserMode == "Detector Simulation")
-    {
+    } else if (AnalyserMode == "Detector Simulation") {
+        #define RECO_ANALYSER_RUN 1 
         EventAnalyser(AnalyseFilePath, AnalyseFileSample, AnalyseFile);
     }
 };

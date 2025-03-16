@@ -2,8 +2,8 @@
 // Created by Alon Sportes on 16/03/2025.
 //
 
-#ifndef ANALYSIS_FUNCTIONS_H
-#define ANALYSIS_FUNCTIONS_H
+#ifndef RECO_ANALYSIS_FUNCTIONS_H
+#define RECO_ANALYSIS_FUNCTIONS_H
 
 #include <TCanvas.h>
 #include <TFile.h>
@@ -29,7 +29,7 @@ using namespace std;
 using namespace clas12;
 using namespace lists;
 
-namespace analysis_functions {
+namespace reco_RECO_ANALYSIS_FUNCTIONS {
 using namespace clas12;
 
 // CheckForNeutralFDECALHits function -----------------------------------------------------------------------------------------------------------------------------------
@@ -403,6 +403,6 @@ void AddToHipoChain(HipoChain& chain, const string& sn, const string& AnalyseFil
     }
 }
 
-}  // namespace reco_analysis_functions
+}  // namespace reco_RECO_ANALYSIS_FUNCTIONS
 
-#endif  // ANALYSIS_FUNCTIONS_H
+#endif  // RECO_ANALYSIS_FUNCTIONS_H

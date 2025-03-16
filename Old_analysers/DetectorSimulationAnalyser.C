@@ -12,13 +12,13 @@ scp -r asportes@ftp.jlab.org:/w/hallb-scshelf2102/clas12/asportes/recon_c12_6gev
  */
 
 #include "../setup/codeSetup.h"
-// #include "TempInclude/DetectorSimulationAnalyser_Histograms_Temp.C" //TODO: move to a class!
 #include "../source/classes/AMaps/AMaps.cpp"
 #include "../source/classes/DEfficiency/DEfficiency.cpp"
 #include "../source/classes/DSCuts/DSCuts.h"
 #include "../source/classes/clas12ana/clas12ana.h"
 #include "../source/classes/hPlots/hPlot1D.cpp"
 #include "../source/classes/hPlots/hPlot2D.cpp"
+#include "../source/namespaces/utilities/utilities.h"
 
 #if !defined(MOMENTUMRESOLUTION_H)
 #include "../source/classes/MomentumResolution/MomentumResolution.cpp"
@@ -30,23 +30,24 @@ scp -r asportes@ftp.jlab.org:/w/hallb-scshelf2102/clas12/asportes/recon_c12_6gev
 
 #include "../source/classes/Settings/Settings.cpp"
 #include "../source/classes/TLCuts/TLCuts.cpp"
-#include "../source/functions/AngleCalc/CalcdPhi.h"
-#include "../source/functions/AngleCalc/GetBinFromAng.h"
+// #include "../source/functions/AngleCalc/CalcdPhi.h"
+// #include "../source/functions/AngleCalc/GetBinFromAng.h"
 #include "../source/functions/DrawAndSaveFunctions/DrawAndSaveACorrPlots.h"
 #include "../source/functions/DrawAndSaveFunctions/DrawAndSaveEfficiencyPlots.h"
 #include "../source/functions/DrawAndSaveFunctions/DrawAndSaveFSRatio.h"
 #include "../source/functions/FillByInt.h"
 #include "../source/functions/FitFunctions/BetaFit.h"
 #include "../source/functions/FitFunctions/BetaFitApprax.h"
-#include "../source/functions/GetPi0MomTh.h"
-#include "../source/functions/StackPlot3.h"
-#include "../source/functions/StackPlot4.h"
+// #include "../source/functions/GetPi0MomTh.h"
+// #include "../source/functions/StackPlot3.h"
+// #include "../source/functions/StackPlot4.h"
 #include "../source/functions/TLKinCutsCheck.h"
 #include "HipoChain.h"
 #include "clas12reader.h"
 
 using namespace std;
 using namespace clas12;
+using namespace utilities;
 
 void EventAnalyser(const string &AnalyseFilePath, const string &AnalyseFileSample, const string &AnalyseFile) {
     CodeDebugger.PrintStepTester(DebuggerMode);
@@ -203,10 +204,10 @@ void EventAnalyser(const string &AnalyseFilePath, const string &AnalyseFileSampl
 
     // My analysis cuts ---------------------------------------------------------------------------------------------------------------------------------------------------
     /* Nucleon cuts */
-    bool apply_nucleon_cuts = true;  // set as true to get good protons and calculate upper neutron momentum th.
+    bool apply_nucleon_cuts = false;  // set as true to get good protons and calculate upper neutron momentum th.
 
     /* Physical cuts */
-    bool apply_nucleon_physical_cuts = true;  // nucleon physical cuts master
+    bool apply_nucleon_physical_cuts = false;  // nucleon physical cuts master
     // TODO: automate adding upper mom. th. to nucleon cuts (for nRes calc)
     bool apply_nBeta_fit_cuts = true;  // apply neutron upper mom. th.
     bool apply_fiducial_cuts = false;
@@ -9661,7 +9662,7 @@ void EventAnalyser(const string &AnalyseFilePath, const string &AnalyseFileSampl
     cout << "\033[33m\n\nSetting HipoChain...\n\n\033[0m";
 
     clas12root::HipoChain chain;
-    Experiment.AddToHipoChain(chain, SampleName, AnalyseFilePath, AnalyseFileSample, AnalyseFile);
+    utilities::AddToHipoChain(chain, SampleName, AnalyseFilePath, AnalyseFileSample, AnalyseFile);
     chain.SetReaderTags({0});
     int HipoChainLength = chain.GetNFiles();
     auto config_c12 = chain.GetC12Reader();

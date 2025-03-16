@@ -24,7 +24,7 @@
 
 // #include "../source/classes/ParticleID/ParticleID.cpp"
 #include "../../source/constants.h"
-#include "../../source/namespaces/utilities/utilities.cpp"
+#include "../../source/namespaces/utilities/utilities.h"
 //
 #include "HipoChain.h"
 #include "clas12reader.h"
@@ -219,10 +219,10 @@ double CalcdPhi(double dPhiTemp) {
 
 #pragma endregion
 
-#pragma region /* getPhi_e function */
+#pragma region /* GetPhi_e function */
 
 // Function to find the angle closest to 180 degrees away from phi_N
-double getPhi_e(TString OutPutFolder, double phi_N) {
+double GetPhi_e(TString OutPutFolder, double phi_N) {
     double phi_e_offset = 0.;  // Electron phi_e offset due to the solenoid field
 
     string OutPutFolder0(OutPutFolder.Data());

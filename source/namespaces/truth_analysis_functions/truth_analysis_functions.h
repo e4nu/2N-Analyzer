@@ -2,407 +2,94 @@
 // Created by Alon Sportes on 16/03/2025.
 //
 
-#ifndef ANALYSIS_FUNCTIONS_H
-#define ANALYSIS_FUNCTIONS_H
+#ifndef TRUTH_ANALYSIS_FUNCTIONS_H
+#define TRUTH_ANALYSIS_FUNCTIONS_H
 
+#include <TApplication.h>
 #include <TCanvas.h>
+#include <TChain.h>
+#include <TDatabasePDG.h>
+#include <TF1.h>
 #include <TFile.h>
 #include <TH1.h>
 #include <TH2.h>
 #include <TLatex.h>
 #include <TLorentzVector.h>
-#include <TString.h>
+#include <TROOT.h>
 #include <TStyle.h>
 #include <TTree.h>
-#include <TVector3.h>
+#include <math.h>
 
-#include <cmath>
+#include <chrono>
+#include <cstdlib>
+#include <iomanip>
 #include <iostream>
+#include <map>
+#include <sstream>
+#include <typeinfo>
 #include <vector>
-//
-#include "HipoChain.h"
+
+#include "../classes/DSCuts/DSCuts.h"
+// #include "AngleCalc/GetBinFromAng.h"
+#include "GeneralFunctions.h"
 #include "clas12reader.h"
 //
+#include "../../source/namespaces/constants/constants.h"
+#include "../../source/namespaces/analysis_math/analysis_math.h"
 #include "../../source/namespaces/lists/lists.h"
 
 using namespace std;
 using namespace clas12;
 using namespace lists;
 
-namespace analysis_functions {
+namespace truth_analysis_functions {
 using namespace clas12;
 
-// CheckForNeutralFDECALHits function -----------------------------------------------------------------------------------------------------------------------------------
+//<editor-fold desc="Particle vectors">
+/* Particle index vectors */
+vector<int> TL_Electron_ind, TL_Neutrons_ind, TL_Protons_ind, TL_piplus_ind, TL_piminus_ind, TL_pizero_ind, TL_Photons_ind, TL_OtherPart_ind;
 
-void CheckForNeutralFDECALHits(bool& ParticleInPCAL, bool& ParticleInECIN, bool& ParticleInECOUT, short& NeutralFD_ECAL_detlayer, region_part_ptr& NeutralFD) {
-    ParticleInPCAL = (NeutralFD->cal(clas12::PCAL)->getDetector() == 7);      // PCAL hit
-    ParticleInECIN = (NeutralFD->cal(clas12::ECIN)->getDetector() == 7);      // ECIN hit
-    ParticleInECOUT = (NeutralFD->cal(clas12::ECOUT)->getDetector() == 7);    // ECOUT hit
-    NeutralFD_ECAL_detlayer = ParticleInECIN ? clas12::ECIN : clas12::ECOUT;  // find first layer of hit
-}
+/* Particle index vectors (for FD particles) */
+vector<int> TL_ElectronFD_ind, TL_IDed_neutrons_FD, TL_ProtonsFD_ind, TL_ProtonsCD_ind, TL_pi0FD_ind, TL_PhotonsFD_ind;
 
-// CheckForECALHits function --------------------------------------------------------------------------------------------------------------------------------------------
+/* Particle index vectors (for particles above momentum threshold) */
+vector<int> TL_Electron_mom_ind, TL_Neutrons_mom_ind, TL_Protons_mom_ind, TL_piplus_mom_ind, TL_piminus_mom_ind, TL_pizero_mom_ind, TL_Photons_mom_ind;
 
-void CheckForECALHits(bool& ParticleInPCAL, bool& ParticleInECIN, bool& ParticleInECOUT, short& Neutron_ECAL_detlayer, vector<region_part_ptr>& allParticles, const int& i) {
-    CheckForNeutralFDECALHits(ParticleInPCAL, ParticleInECIN, ParticleInECOUT, NeutralFD_ECAL_detlayer, allParticles[i]);
+/* Particle index vectors (for FD particles above momentum threshold) */
+vector<int> TL_ElectronFD_mom_ind, TL_NeutronsFD_mom_ind, TL_ProtonsFD_mom_ind, TL_ProtonsCD_mom_ind, TL_pi0FD_mom_ind, TL_PhotonsFD_mom_ind;
+//</editor-fold>
 
-    // ParticleInPCAL = (allParticles[i]->cal(clas12::PCAL)->getDetector() == 7);    // PCAL hit
-    // ParticleInECIN = (allParticles[i]->cal(clas12::ECIN)->getDetector() == 7);    // ECIN hit
-    // ParticleInECOUT = (allParticles[i]->cal(clas12::ECOUT)->getDetector() == 7);  // ECOUT hit
-    // Neutron_ECAL_detlayer = ParticleInECIN ? clas12::ECIN : clas12::ECOUT;        // find first layer of hit
-}
+//<editor-fold desc="Basic event selection variables">
+/* Setting up basic TL event selection */
+bool no_TL_cPions, no_TL_OtherPart, no_TL_FDpi0, no_TL_FDPhotons, TL_Event_Selection_1e_cut, TL_Basic_ES;
 
-// CalcToFnFD function --------------------------------------------------------------------------------------------------------------------------------------------------
+/* Setting up 1p TL event selection */
+bool one_FDproton_1p;
 
-double CalcToFnFD(region_part_ptr NeutronFD, double starttime = 9999) {
-    bool ParticleInPCAL;   // PCAL hit
-    bool ParticleInECIN;   // ECIN hit
-    bool ParticleInECOUT;  // ECOUT hit
-    short detlayer;        // determine the earliest layer of the neutral hit
-    CheckForNeutralFDECALHits(ParticleInPCAL, ParticleInECIN, ParticleInECOUT, detlayer, NeutronFD);
+/* Setting up 1n TL event selection */
+bool one_FDNeutron_1n, no_protons_1n;
 
-    // bool ParticleInPCAL = (NeutronFD->cal(clas12::PCAL)->getDetector() == 7);                       // PCAL hit
-    // bool ParticleInECIN = (NeutronFD->cal(clas12::ECIN)->getDetector() == 7);                       // ECIN hit
-    // bool ParticleInECOUT = (NeutronFD->cal(clas12::ECOUT)->getDetector() == 7);                     // ECOUT hit
-    // auto detlayer = ParticleInPCAL ? clas12::PCAL : ParticleInECIN ? clas12::ECIN : clas12::ECOUT;  // determine the earliest layer of the neutral hit
+/* Setting up pFDpCD TL event selection */
+bool one_FDproton_pFDpCD, one_CDproton_pFDpCD;
 
-    double reco_ToF_nFD = NeutronFD->cal(detlayer)->getTime() - starttime;
+/* Setting up nFDpCD TL event selection */
+bool one_FDNeutron_nFDpCD, one_proton_nFDpCD, no_FDproton_nFDpCD, one_CDproton_nFDpCD;
+//</editor-fold>
 
-    return reco_ToF_nFD;
-}
+//<editor-fold desc="Event selection variables">
+// 1p = one id. FD proton:
+bool TL_Event_Selection_1p;
 
-// CalcPathnFD function -------------------------------------------------------------------------------------------------------------------------------------------------
+// 1n = one id. FD neutron & no id. protons:
+bool TL_Event_Selection_1n;
 
-double CalcPathnFD(region_part_ptr NeutronFD, region_part_ptr electron) {
-    bool ParticleInPCAL;   // PCAL hit
-    bool ParticleInECIN;   // ECIN hit
-    bool ParticleInECOUT;  // ECOUT hit
-    short detlayer;        // determine the earliest layer of the neutral hit
-    CheckForNeutralFDECALHits(ParticleInPCAL, ParticleInECIN, ParticleInECOUT, detlayer, NeutronFD);
+// pFDpCD = One id. FD proton & one id. CD proton:
+bool TL_Event_Selection_pFDpCD;
 
-    // bool ParticleInPCAL = (NeutronFD->cal(clas12::PCAL)->getDetector() == 7);                       // PCAL hit
-    // bool ParticleInECIN = (NeutronFD->cal(clas12::ECIN)->getDetector() == 7);                       // ECIN hit
-    // bool ParticleInECOUT = (NeutronFD->cal(clas12::ECOUT)->getDetector() == 7);                     // ECOUT hit
-    // auto detlayer = ParticleInPCAL ? clas12::PCAL : ParticleInECIN ? clas12::ECIN : clas12::ECOUT;  // determine the earliest layer of the neutral hit
+// nFDpCD = One id. FD neutron & one id. CD proton:
+bool TL_Event_Selection_nFDpCD;
+//</editor-fold>
 
-    TVector3 v_nvtx_3v;  // Neutron's vertex location
-    v_nvtx_3v.SetXYZ(electron->par()->getVx(), electron->par()->getVy(), electron->par()->getVz());
-    // v_nvtx_3v.SetXYZ(NeutronFD->par()->getVx(), NeutronFD->par()->getVy(), NeutronFD->par()->getVz());
+}  // namespace truth_analysis_functions
 
-    TVector3 v_hit_3v;  // Neutron's hit location in CND
-    v_hit_3v.SetXYZ(NeutronFD->cal(detlayer)->getX(), NeutronFD->cal(detlayer)->getY(), NeutronFD->cal(detlayer)->getZ());
-
-    TVector3 v_path_3v = v_hit_3v - v_nvtx_3v;  // Direct calculation of neutron's path (in vector form)
-
-    double reco_Path_nFD = v_path_3v.Mag();
-
-    return reco_Path_nFD;
-}
-
-// CalcPnFD function ----------------------------------------------------------------------------------------------------------------------------------------------------
-
-double CalcPnFD(region_part_ptr NeutronFD, region_part_ptr electron, double starttime = 9999) {
-    double reco_Path_nFD = CalcPathnFD(NeutronFD, electron);
-    // double reco_Path_nFD = NeutronFD->getPath();
-    double reco_ToF_nFD = CalcToFnFD(NeutronFD, starttime);
-    double reco_Beta_nFD = reco_Path_nFD / (reco_ToF_nFD * c);
-    double reco_Gamma_nFD = 1 / sqrt(1 - (reco_Beta_nFD * reco_Beta_nFD));
-
-    double Momentum = m_n * reco_Beta_nFD * reco_Gamma_nFD;
-
-    /*
-     if (ParticlePDG == 2112) {
-        Momentum = NeutronFD->par()->getP();
-    } else if (ParticlePDG == 22) {
-        double Beta_ph = NeutronFD->par()->getBeta();
-        double Gamma_ph = 1 / sqrt(1 - (Beta_ph * Beta_ph));
-        Momentum = m_n * Beta_ph * Gamma_ph;
-    } else {
-        cout << "\n\nError! Particle PDG is not 22 or 2112! Aborting...\n\n", exit(0);
-    }
-    */
-
-    // Momentum = NeutronFD->par()->getP();
-
-    return Momentum;
-}
-
-// checkEcalDiagCuts function -------------------------------------------------------------------------------------------------------------------------------------------
-
-bool checkEcalDiagCuts(region_part_ptr electrons) {
-    double ecal_diag_cut = 0.2;  // diagonal cut on SF
-
-    double mom = electrons->par()->getP();
-    // true if inside cut
-    if (electrons->par()->getPid() == 11) {
-        if ((electrons->cal(clas12::PCAL)->getEnergy() + electrons->cal(clas12::ECIN)->getEnergy()) / mom > ecal_diag_cut && mom > 4.5) {
-            return true;
-        } else if (mom <= 4.5) {
-            return true;
-        } else {
-            return false;
-        }
-    } else {
-        return true;
-    }
-}
-
-// DCEdgeCuts function --------------------------------------------------------------------------------------------------------------------------------------------------
-
-bool DCEdgeCuts(region_part_ptr p) {
-    std::vector<double> dc_edge_cut_el = {4.5, 3.5, 7.5};  // units cm; {region1, region2, region3} cuts for electrons INBENDING
-    std::vector<double> dc_edge_cut_ptr = {2.5, 3, 10.5};  // units cm; {region1, region2, region3} cuts for protons  OUTBENDING
-
-    // true if inside cut
-    // cut all charged particles
-    if (p->par()->getCharge() != 0) {
-        auto traj_index_1 = p->traj(DC, 6)->getIndex();   // layer 1
-        auto traj_index_2 = p->traj(DC, 18)->getIndex();  // layer 2
-        auto traj_index_3 = p->traj(DC, 36)->getIndex();  // layer 3
-
-        auto traj_edge_1 = p->traj(DC, 6)->getFloat("edge", traj_index_1);
-        auto traj_edge_2 = p->traj(DC, 18)->getFloat("edge", traj_index_2);
-        auto traj_edge_3 = p->traj(DC, 36)->getFloat("edge", traj_index_3);
-
-        // PUT DC EDGE CUTS IN PARAMETER FILE
-
-        // electron DC cuts
-        if (p->par()->getCharge() < 0 && (dc_edge_cut_el.size() == 3 && traj_edge_1 > dc_edge_cut_el[0] && traj_edge_2 > dc_edge_cut_el[1] && traj_edge_3 > dc_edge_cut_el[2])) {
-            return true;
-        }
-        // proton DC cuts
-        else if (p->par()->getCharge() > 0 && (dc_edge_cut_ptr.size() == 3 && traj_edge_1 > dc_edge_cut_ptr[0] && traj_edge_2 > dc_edge_cut_ptr[1] && traj_edge_3 > dc_edge_cut_ptr[2])) {
-            return true;
-        } else {
-            return false;
-        }
-    } else {
-        return true;
-    }
-}
-
-// fillDCdebug function -------------------------------------------------------------------------------------------------------------------------------------------------
-
-void fillDCdebug(region_part_ptr p, TH2D** h, double weight) {
-    //  if(p->par()->getPid() == 11)
-    //    {
-    h[1]->Fill(p->traj(DC, 6)->getX(), p->traj(DC, 6)->getY(), weight);
-    h[2]->Fill(p->traj(DC, 18)->getX(), p->traj(DC, 18)->getY(), weight);
-    h[3]->Fill(p->traj(DC, 36)->getX(), p->traj(DC, 36)->getY(), weight);
-    //    }
-}
-
-// NeutronECAL_Cut_Veto function ----------------------------------------------------------------------------------------------------------------------------------------
-
-bool NeutronECAL_Cut_Veto(vector<region_part_ptr>& allParticles, vector<region_part_ptr>& electrons, const double& beamE, const int& index, bool apply_PCAL_neutral_veto,
-                          const double& cPart_veto_radius, const double& nPart_veto_radius) {
-    TVector3 p_b(0, 0, beamE); /* beam energy */
-
-    TVector3 p_e; /* our electron */
-    p_e.SetMagThetaPhi(electrons[0]->getP(), electrons[0]->getTheta(), electrons[0]->getPhi());
-    TVector3 p_q = p_b - p_e; /* 3-momentum transfer */
-
-    if (allParticles[index]->par()->getCharge() != 0) { return false; } /* determine if the particle is neutral or not */
-
-    // Check which layers of the ECAL have been hit
-    TVector3 p_n_Angles;
-    p_n_Angles.SetMagThetaPhi(1, allParticles[index]->getTheta(), allParticles[index]->getPhi()); /* calculate the angles of the neutral particle */
-
-    /* check where did the particle hit.
-    * no hit - we'll get 0
-    * we have a hit - we'll get a 7 (7 is the ID of the calorimeter).
-    Can also be done by checking deposited energy (double comparison), yet this method is better (int comparison) */
-    bool PC = (allParticles[index]->cal(clas12::PCAL)->getDetector() == 7);
-    bool IC = (allParticles[index]->cal(clas12::ECIN)->getDetector() == 7);
-    bool OC = (allParticles[index]->cal(clas12::ECOUT)->getDetector() == 7);
-    auto detlayer = PC ? clas12::PCAL : IC ? clas12::ECIN : clas12::ECOUT; /* determine the earliest layer that the neutral hit in */
-
-    /* v_nhit = location of neutral particle hit */
-    TVector3 v_nhit(allParticles[index]->cal(detlayer)->getX(), allParticles[index]->cal(detlayer)->getY(), allParticles[index]->cal(detlayer)->getZ());
-    double beta = allParticles[index]->par()->getBeta();
-    double gamma = 1 / sqrt(1 - (beta * beta));
-    double theta_n = p_n_Angles.Theta() * 180 / pi;
-    double theta_q = p_q.Theta() * 180 / pi;
-    double theta_nq = p_n_Angles.Angle(p_q) * 180 / pi;
-
-    if (beta < 0) { return false; }
-    //    if (beta > 1.1) { return false; }
-    //    // physics cuts, to be ignored according to Larry.
-    //    if (theta_nq > 25) { return false; }
-    //    if (theta_q > 40) { return false; }
-    if (theta_n < 1) { return false; } /* to avoid events with theta_n = 0 (the "1" is in deg) */
-    if (!(IC || OC)) { return false; } /* hit only one of these layers */
-    if (PC) { return false; }          /* to veto out the gammas (photons) */
-
-    // Now let's put a charge particle veto
-    bool Veto = false;
-    for (int j = 0; j < allParticles.size(); j++) {
-        if (apply_PCAL_neutral_veto) {
-            if (allParticles[j]->par()->getCharge() != 0) { /* looking on charged particles */
-                TVector3 v_charged_hit;                     /* v_charged_hit = location of charged particle hit */
-
-                if ((detlayer == clas12::ECIN) && (allParticles[j]->cal(clas12::ECIN)->getZ() != 0)) {
-                    /* if both particles hit the inner calorimeter, use the inner calorimeter to determine v_charged_hit */
-                    v_charged_hit.SetXYZ(allParticles[j]->cal(clas12::ECIN)->getX(), allParticles[j]->cal(clas12::ECIN)->getY(), allParticles[j]->cal(clas12::ECIN)->getZ());
-                    TVector3 v_dist = v_nhit - v_charged_hit;
-
-                    if (v_dist.Mag() < cPart_veto_radius) { Veto = true; }
-                } else if ((detlayer == clas12::ECOUT) && (allParticles[j]->cal(clas12::ECOUT)->getZ() != 0)) {
-                    /* if both particles hit the outer calorimeter, use the outer calorimeter to determine v_charged_hit */
-                    v_charged_hit.SetXYZ(allParticles[j]->cal(clas12::ECOUT)->getX(), allParticles[j]->cal(clas12::ECOUT)->getY(), allParticles[j]->cal(clas12::ECOUT)->getZ());
-                    TVector3 v_dist = v_nhit - v_charged_hit;
-
-                    if (v_dist.Mag() < cPart_veto_radius) { Veto = true; }
-                } else {
-                    /* the neutral has to hit either the ECIN or ECOUT.
-                       If the charged particle hit the other calorimeter, then look at where the charged particle was expected to be according to the trajectory. */
-                    int trajlayer = (detlayer == clas12::ECIN) ? 4 : 7;
-                    v_charged_hit.SetXYZ(allParticles[j]->traj(clas12::ECAL, trajlayer)->getX(), allParticles[j]->traj(clas12::ECAL, trajlayer)->getY(),
-                                         allParticles[j]->traj(clas12::ECAL, trajlayer)->getZ());
-                    TVector3 v_dist = v_nhit - v_charged_hit;
-
-                    if (v_dist.Mag() < cPart_veto_radius) { Veto = true; }
-                }
-            } else {
-                bool neutral_hit_PCAL = (                                        //
-                    (allParticles[j]->par()->getCharge() == 0)                   // Neutral particle
-                    && (allParticles[j]->cal(clas12::PCAL)->getDetector() == 7)  // PCAL hit
-                );
-                bool same_sector = (allParticles[j]->cal(clas12::PCAL)->getSector() == allParticles[index]->cal(detlayer)->getSector());
-
-                /*
-                if (neutral_hit_PCAL && same_sector) { Veto = true; }
-                */
-
-                /*
-                TVector3 v_neutral_hit;  // v_neutral_hit = location of neutral particle hit
-
-                if (neutral_hit_PCAL && (allParticles[j]->cal(clas12::PCAL)->getZ() != 0)) {
-                  v_neutral_hit.SetXYZ(allParticles[j]->cal(clas12::PCAL)->getX(), allParticles[j]->cal(clas12::PCAL)->getY(), allParticles[j]->cal(clas12::PCAL)->getZ());
-                  TVector3 v_dist = v_nhit - v_neutral_hit;
-
-                  if (v_dist.Mag() < nPart_veto_radius) { Veto = true; }
-                }
-                */
-
-                /*
-                bool PCALneutral = neutral_hit_PCAL;
-
-                if (PCALneutral) {
-                  TVector3 v_neutral_hit;
-
-                  int trajlayer = (detlayer == clas12::ECIN) ? 4 : 7;
-                  v_neutral_hit.SetXYZ(allParticles[j]->traj(clas12::ECAL, trajlayer)->getX(), allParticles[j]->traj(clas12::ECAL, trajlayer)->getY(),
-                                       allParticles[j]->traj(clas12::ECAL, trajlayer)->getZ());
-                  TVector3 v_dist = v_nhit - v_neutral_hit;
-
-                  if (v_dist.Mag() < nPart_veto_radius) { Veto = true; }
-                }
-                */
-
-                bool PCALneutral = neutral_hit_PCAL;
-
-                if (PCALneutral) {
-                    TVector3 v_PCALn_hit; /* v_PCALn_hit = location of PCAL neutral hit */
-
-                    if ((detlayer == clas12::ECIN) && (allParticles[j]->cal(clas12::ECIN)->getZ() != 0)) {
-                        /* if both particles hit the inner calorimeter, use the inner calorimeter to determine v_PCALn_hit */
-                        v_PCALn_hit.SetXYZ(allParticles[j]->cal(clas12::ECIN)->getX(), allParticles[j]->cal(clas12::ECIN)->getY(), allParticles[j]->cal(clas12::ECIN)->getZ());
-                        TVector3 v_dist = v_nhit - v_PCALn_hit;
-
-                        if (v_dist.Mag() < nPart_veto_radius) { Veto = true; }
-                    } else if ((detlayer == clas12::ECOUT) && (allParticles[j]->cal(clas12::ECOUT)->getZ() != 0)) {
-                        /* if both particles hit the outer calorimeter, use the outer calorimeter to determine v_PCALn_hit */
-                        v_PCALn_hit.SetXYZ(allParticles[j]->cal(clas12::ECOUT)->getX(), allParticles[j]->cal(clas12::ECOUT)->getY(), allParticles[j]->cal(clas12::ECOUT)->getZ());
-                        TVector3 v_dist = v_nhit - v_PCALn_hit;
-
-                        if (v_dist.Mag() < nPart_veto_radius) { Veto = true; }
-                    } else {
-                        /* the neutral has to hit either the ECIN or ECOUT.
-                           If the PCAL neutral hit the other calorimeter, then look at where the PCAL neutral was expected to be according to the trajectory. */
-                        int trajlayer = (detlayer == clas12::ECIN) ? 4 : 7;
-                        v_PCALn_hit.SetXYZ(allParticles[j]->traj(clas12::ECAL, trajlayer)->getX(), allParticles[j]->traj(clas12::ECAL, trajlayer)->getY(),
-                                           allParticles[j]->traj(clas12::ECAL, trajlayer)->getZ());
-                        TVector3 v_dist = v_nhit - v_PCALn_hit;
-
-                        if (v_dist.Mag() < nPart_veto_radius) { Veto = true; }
-                    }
-                }
-            }
-        } else {
-            if (allParticles[j]->par()->getCharge() == 0) { continue; } /* looking on charged particles only */
-            TVector3 v_chit;                                            /* v_chit = location of charged particle hit */
-
-            if ((detlayer == clas12::ECIN) && (allParticles[j]->cal(clas12::ECIN)->getZ() != 0)) {
-                /* if both particles hit the inner calorimeter, use the inner calorimeter to determine v_chit */
-                v_chit.SetXYZ(allParticles[j]->cal(clas12::ECIN)->getX(), allParticles[j]->cal(clas12::ECIN)->getY(), allParticles[j]->cal(clas12::ECIN)->getZ());
-                TVector3 v_dist = v_nhit - v_chit;
-
-                if (v_dist.Mag() < cPart_veto_radius) { Veto = true; }
-            } else if ((detlayer == clas12::ECOUT) && (allParticles[j]->cal(clas12::ECOUT)->getZ() != 0)) {
-                /* if both particles hit the outer calorimeter, use the outer calorimeter to determine v_chit */
-                v_chit.SetXYZ(allParticles[j]->cal(clas12::ECOUT)->getX(), allParticles[j]->cal(clas12::ECOUT)->getY(), allParticles[j]->cal(clas12::ECOUT)->getZ());
-                TVector3 v_dist = v_nhit - v_chit;
-
-                if (v_dist.Mag() < cPart_veto_radius) { Veto = true; }
-            } else {
-                /* the neutral has to hit either the ECIN or ECOUT.
-                 If the charged particle hit the other calorimeter, then look at where the charged particle was expected to be according to the trajectory. */
-                int trajlayer = (detlayer == clas12::ECIN) ? 4 : 7;
-                v_chit.SetXYZ(allParticles[j]->traj(clas12::ECAL, trajlayer)->getX(), allParticles[j]->traj(clas12::ECAL, trajlayer)->getY(),
-                              allParticles[j]->traj(clas12::ECAL, trajlayer)->getZ());
-                TVector3 v_dist = v_nhit - v_chit;
-
-                if (v_dist.Mag() < cPart_veto_radius) { Veto = true; }
-            }
-        }
-    }
-
-    if (Veto) { return false; } /* if any of the vetoes are true, return false */
-
-    return true; /* we survived up to this point, we do have a neutral particle */
-}
-
-// AddToHipoChain function ----------------------------------------------------------------------------------------------------------------------------------------------
-
-void AddToHipoChain(HipoChain& chain, const string& sn, const string& AnalyseFilePath, const string& AnalyseFileSample, const string& AnalyseFile) {
-    bool PrintOut = true;
-
-    if (DataSample) {
-        if (sn == "C12x4_data_6GeV") {
-            if (AnalyseFileSample == "") {
-                /* Data in cache/clas12/rg-m/production/pass1/6gev/Cx4/dst/recon */
-                for (int i = 0; i < C12x4_data_6GeV_runs.size(); i++) {
-                    string TempAnalyseFile = "/" + AnalyseFilePath + "/" + C12x4_data_6GeV_runs.at(i) + "/*.hipo";
-                    chain.Add(TempAnalyseFile.c_str());
-
-                    if (PrintOut) { cout << TempAnalyseFile << " directory added to HipoChain!\n"; }
-                }
-
-                if (PrintOut) { cout << "\n"; }
-            }
-        } else if (sn == "D2_data_2GeV") {
-            if (AnalyseFileSample == "") {
-                /* Data in cache/clas12/rg-m/production/pass1/2gev/D/dst/recon */
-                for (int i = 0; i < D2_data_2GeV_runs.size(); i++) {
-                    string TempAnalyseFile = "/" + AnalyseFilePath + "/" + D2_data_2GeV_runs.at(i) + "/*.hipo";
-                    chain.Add(TempAnalyseFile.c_str());
-
-                    if (PrintOut) { cout << TempAnalyseFile << " directory added to HipoChain!\n"; }
-                }
-
-                if (PrintOut) { cout << "\n"; }
-            }
-        } else {
-            chain.Add(AnalyseFile.c_str());
-        }
-    } else if (SimulationSample) {
-        chain.Add(AnalyseFile.c_str());
-
-        if (PrintOut) { cout << AnalyseFile << " directory added to HipoChain!\n\n"; }
-    }
-}
-
-}  // namespace reco_analysis_functions
-
-#endif  // ANALYSIS_FUNCTIONS_H
+#endif  // TRUTH_ANALYSIS_FUNCTIONS_H
