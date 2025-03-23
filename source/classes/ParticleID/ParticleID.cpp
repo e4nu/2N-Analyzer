@@ -546,7 +546,7 @@ vector<int> ParticleID::GetGoodProtons(const bool &apply_nucleon_cuts, vector<re
                            ((protons[IDProtons_ind.at(i)]->getRegion() == CD) && (protons[IDProtons_ind.at(j)]->getRegion() == FD))) {  // if proton pair CD and FD
                     double Theta_p_i = analysis_math::RadToDeg(protons[IDProtons_ind.at(i)]->getTheta());
                     double Theta_p_j = analysis_math::RadToDeg(protons[IDProtons_ind.at(j)]->getTheta());
-                    double dPhi = analysis_math::CalcdPhi1(protons[IDProtons_ind.at(i)], protons[IDProtons_ind.at(j)]);
+                    double dPhi = CalcdPhi2(protons[IDProtons_ind.at(i)], protons[IDProtons_ind.at(j)]);
 
                     bool p_i_around_40 = (fabs(Theta_p_i - Theta_p1_cuts_2p.GetMeanConst()) < Theta_p1_cuts_2p.GetUpperCutConst());
                     bool p_j_around_40 = (fabs(Theta_p_j - Theta_p2_cuts_2p.GetMeanConst()) < Theta_p2_cuts_2p.GetUpperCutConst());
@@ -804,7 +804,7 @@ void ParticleID::GPMonitoring(const bool &GoodProtonsMonitorPlots, vector<region
                         }
                     }
                 } else if (((proton_i_2p->getRegion() == FD) && (proton_j_2p->getRegion() == CD)) || ((proton_i_2p->getRegion() == CD) && (proton_j_2p->getRegion() == FD))) {
-                    double dPhi_ij_2p = analysis_math::CalcdPhi1(protons[IDProtons_ind.at(i)], protons[IDProtons_ind.at(j)]);  // dPhi_ij_2p in deg
+                    double dPhi_ij_2p = CalcdPhi2(protons[IDProtons_ind.at(i)], protons[IDProtons_ind.at(j)]);  // dPhi_ij_2p in deg
 
                     bool p_i_around_40 = (fabs(Theta_pi - Theta_p1_cuts_2p.GetMeanConst()) < Theta_p1_cuts_2p.GetUpperCutConst());
                     bool p_j_around_40 = (fabs(Theta_pj - Theta_p2_cuts_2p.GetMeanConst()) < Theta_p2_cuts_2p.GetUpperCutConst());
