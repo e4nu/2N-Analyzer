@@ -10,9 +10,13 @@
 #include <string>
 #include <vector>
 
+#include "../basic_tools/basic_tools.h"
+
 using namespace std;
 
 namespace analysis_math {
+using namespace basic_tools;
+
 // Mathematical constants -----------------------------------------------------------------------------------------------------------------------------------------------
 
 const double pi = M_PI;

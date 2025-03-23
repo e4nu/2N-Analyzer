@@ -16,6 +16,7 @@
 #include <tuple>
 
 #include "../analysis_math/analysis_math.h"
+#include "../basic_tools/basic_tools.h"
 #include "../constants/constants.h"
 #include "../lists/lists.h"
 // #include "../truth_analysis_functions/truth_analysis_functions.h"
@@ -27,6 +28,7 @@
 namespace utilities {
 using namespace std;
 using namespace constants;
+using namespace basic_tools;
 using namespace analysis_math;
 using namespace lists;
 
@@ -35,41 +37,6 @@ using namespace lists;
 #if defined(RECO_ANALYSER_RUN)
 using namespace reco_analysis_functions;
 #endif
-
-// GetCurrentDirectory function ------------------------------------------------------------------------------------------------------------------------------------------
-
-string GetCurrentDirectory() {
-    char pwd[PATH_MAX];
-    getcwd(pwd, sizeof(pwd));
-
-    string WorkingDirectory = pwd;
-
-    return WorkingDirectory;
-}
-
-// BoolToChar function --------------------------------------------------------------------------------------------------------------------------------------------------
-
-/* Usage: convert bool variables to char */
-inline const char *const BoolToChar(bool b) { return b ? "true" : "false"; }
-
-// BoolToString function ------------------------------------------------------------------------------------------------------------------------------------------------
-
-/* Usage: convert bool variables to string */
-string BoolToString(bool b) { return b ? "true" : "false"; }
-
-// ToStringWithPrecision function ---------------------------------------------------------------------------------------------------------------------------------------
-
-template <typename T>
-string ToStringWithPrecision(const T a_value, const int n = 2) {
-    std::ostringstream out;
-    out.precision(n);
-    out << std::fixed << a_value;
-    return out.str();
-}
-
-// FindSubstring function -----------------------------------------------------------------------------------------------------------------------------------------------
-
-inline bool FindSubstring(const string &string1, const string &string2) { return string1.find(string2) != string::npos; }
 
 // ConfigRegion function ------------------------------------------------------------------------------------------------------------------------------------------------
 
