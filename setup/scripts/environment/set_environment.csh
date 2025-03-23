@@ -36,7 +36,7 @@ echo "${COLOR_START}JLAB_TESTER:${COLOR_END} ${JLAB_TESTER}"
 echo ""
 
 # Check if the hostname contains the substring
-if ( "$ANALYSIS_HOSTNAME" =~ *"$substrJLAB_TESTERing"* ) then
+if ( "$ANALYSIS_HOSTNAME" =~ *"$JLAB_TESTER"* ) then
     echo "The hostname contains '$JLAB_TESTER'. Running the commands for this case."
     # Put the commands to run if the hostname contains the substring here
 else
