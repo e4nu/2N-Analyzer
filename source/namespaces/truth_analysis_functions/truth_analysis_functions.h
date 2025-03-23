@@ -34,9 +34,9 @@
 #include "GeneralFunctions.h"
 #include "clas12reader.h"
 //
-#include "../../source/namespaces/constants/constants.h"
-#include "../../source/namespaces/analysis_math/analysis_math.h"
-#include "../../source/namespaces/lists/lists.h"
+#include "../constants/constants.h"
+#include "../analysis_math/analysis_math.h"
+#include "../lists/lists.h"
 
 using namespace std;
 using namespace clas12;

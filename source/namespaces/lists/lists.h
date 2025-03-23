@@ -7,6 +7,8 @@
 
 #include <map>
 
+#include "../constants/constants.h"
+
 namespace lists {
 // VariableNames map ----------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -106,15 +108,15 @@ double dV_boundary_CD = dV_boundary, dV_uboundary_CD = dV_uboundary, dV_lboundar
 const double SF_uboundary = 0.31, SF_lboundary = 0.16;
 
 /* Momentum boundries */
-const double Momentum_lboundary = 0., Momentum_uboundary = beamE_def * 1.1;                       // Default
+const double Momentum_lboundary = 0., Momentum_uboundary = beamE_def * 1.1;                   // Default
 double FDMomentum_lboundary = Momentum_lboundary, FDMomentum_uboundary = Momentum_uboundary;  // FD nucleons (1nFD, 1pFD, pFDpCD and nFDpCD)
-const double CDMomentum_lboundary = 0., CDMomentum_uboundary = beamE_def / 2;                     // CD nucleons (pFDpCD & nFDpCD)
-double P_nucFD_lboundary = 0., P_nucFD_uboundary = beamE_def * 1.1;                               // Default
-double P_nucCD_lboundary = 0., P_nucCD_uboundary = beamE_def / 2;                                 // CD nucleons (pFDpCD & nFDpCD)
+const double CDMomentum_lboundary = 0., CDMomentum_uboundary = beamE_def / 2;                 // CD nucleons (pFDpCD & nFDpCD)
+double P_nucFD_lboundary = 0., P_nucFD_uboundary = beamE_def * 1.1;                           // Default
+double P_nucCD_lboundary = 0., P_nucCD_uboundary = beamE_def / 2;                             // CD nucleons (pFDpCD & nFDpCD)
 
 /* W boundries */
 const double W_lboundary = 0.35;
-const double W_uboundary = 1.1 * sqrt((beamE_def + m_p) * (beamE_def + m_p) - beamE_def * beamE_def);  // Default
+const double W_uboundary = 1.1 * sqrt((beamE_def + constants::m_p) * (beamE_def + constants::m_p) - beamE_def * beamE_def);  // Default
 
 /* Beta boundries */
 const double dBeta_sigma_boundary = 0.1;
