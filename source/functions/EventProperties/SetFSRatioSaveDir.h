@@ -11,14 +11,15 @@
 #include <sstream>
 #include <typeinfo>
 
-#include "../GeneralFunctions.h"
-#include "GetParticleName.h"
-#include "GetParticleNameLC.h"
-#include "GetParticleNameShort.h"
-#include "SetSaveDir.h"
-// #include "../findSubstring.h"
+#include "../../namespaces/utilities/utilities.h"/
+// #include "../GeneralFunctions.h"
+// #include "GetParticleName.h"
+// #include "GetParticleNameLC.h"
+// #include "GetParticleNameShort.h"
+// // #include "../findSubstring.h"
 
 using namespace std;
+using namespace utilities;
 
 void SetFSRatioSaveDir(string &SaveDir, string &TestSaveDir, const string &RecTitle, const string &FinalState, const string &Histogram1DSaveNamePathOriginal, const string &PlotsT,
                        const string &DRegion, const string &Particle, const string &ParticleLC, const string &ParticleShort, const string &Type) {

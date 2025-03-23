@@ -17,7 +17,8 @@
 using namespace std;
 
 namespace data_processor {
-using namespace utilities;
+using namespace basic_tools;
+
 // GetFS function -------------------------------------------------------------------------------------------------------------------------------------------------------
 
 string GetFS(const string &Source) {

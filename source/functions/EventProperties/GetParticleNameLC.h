@@ -11,10 +11,15 @@
 #include <sstream>
 #include <typeinfo>
 
-#include "../GeneralFunctions.h"
-// #include "../findSubstring.h"
+#include "../../namespaces/utilities/utilities.h"/
+// #include "../GeneralFunctions.h"
+// #include "GetParticleName.h"
+// #include "GetParticleNameLC.h"
+// #include "GetParticleNameShort.h"
+// // #include "../findSubstring.h"
 
 using namespace std;
+using namespace utilities;
 
 string GetParticleNameLC(string Source, bool ForDir = false) {
     string ParticleName;
