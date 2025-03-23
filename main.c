@@ -8,18 +8,15 @@ int main() {
     // Check if the current hostname matches a specific pattern
     std::string HostName = basic_tools::GetSSHHostName();
     
-    // // Set the macro IFARM_RUN based on the hostname
-    // #define IFARM_RUN 1
+    // Set the macro IFARM_RUN based on the hostname
+    #define IFARM_RUN (basic_tools::FindSubstring(HostName, "jlab.org"))
 
-    // // // Set the macro IFARM_RUN based on the hostname
-    // // #define IFARM_RUN (basic_tools::FindSubstring(HostName, "jlab.org"))
-
-    // // Now you can use the macro IFARM_RUN
-    // if (IFARM_RUN) {
-    //     std::cout << "\n\nRunning in JLab environment...\n\n";
-    // } else {
-    //     std::cout << "\n\nNot running in JLab environment...\n\n";
-    // }
+    // Now you can use the macro IFARM_RUN
+    if (IFARM_RUN) {
+        std::cout << "\n\nRunning in JLab environment...\n\n";
+    } else {
+        std::cout << "\n\nNot running in JLab environment...\n\n";
+    }
 
     // Include other files (with the macro defined before)
     #include "source/classes/DataAnalyser/DataAnalyser.cpp"

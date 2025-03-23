@@ -6,21 +6,24 @@
 #define BASIC_TOOLS_H
 
 #include <arpa/inet.h>  // for inet_ntoa
+#include <limits.h>     // for PATH_MAX
 #include <netdb.h>      // for gethostbyaddr
 #include <netinet/in.h>
 #include <sys/socket.h>
-
+#include <unistd.h>  // for getcwd
+//
 #include <cstdlib>  // for getenv
-#include <cstring>  // for strtok
+#include <cstring>  // for strtok, strcpy
 #include <iostream>
+#include <sstream>  // for std::ostringstream
 #include <string>
 
 using namespace std;
 
 namespace basic_tools {
+
 // CheckSSHConnection function ------------------------------------------------------------------------------------------------------------------------------------------
 
-// Function to check if the program is running over SSH and print connection info
 void CheckSSHConnection() {
     const char *ssh_connection = std::getenv("SSH_CONNECTION");
     if (ssh_connection) {
@@ -33,22 +36,23 @@ void CheckSSHConnection() {
 // CheckSSHConnectionAndHost function -----------------------------------------------------------------------------------------------------------------------------------
 
 void CheckSSHConnectionAndHost() {
-    // Get the SSH_CONNECTION environment variable
     const char *ssh_connection = std::getenv("SSH_CONNECTION");
     if (ssh_connection) {
         std::cout << "SSH_CONNECTION: " << ssh_connection << std::endl;
 
-        // Extract the remote IP address (first part of SSH_CONNECTION)
-        char *remote_ip = strtok(const_cast<char *>(ssh_connection), " ");
+        // Copy to a mutable buffer before using strtok
+        char ssh_conn_copy[256];
+        strncpy(ssh_conn_copy, ssh_connection, sizeof(ssh_conn_copy) - 1);
+        ssh_conn_copy[sizeof(ssh_conn_copy) - 1] = '\0';  // Ensure null termination
+
+        char *remote_ip = strtok(ssh_conn_copy, " ");
         if (remote_ip) {
             std::cout << "Remote IP Address: " << remote_ip << std::endl;
 
-            // Convert the IP address to a sockaddr_in structure
             struct sockaddr_in sa;
             sa.sin_family = AF_INET;
             inet_pton(AF_INET, remote_ip, &(sa.sin_addr));
 
-            // Use gethostbyaddr to get the host name from the IP address
             struct hostent *host = gethostbyaddr(&(sa.sin_addr), sizeof(struct in_addr), AF_INET);
             if (host) {
                 std::cout << "Remote Host Name: " << host->h_name << std::endl;
@@ -64,21 +68,20 @@ void CheckSSHConnectionAndHost() {
 // GetSSHHostName function ----------------------------------------------------------------------------------------------------------------------------------------------
 
 std::string GetSSHHostName() {
-    // Get the SSH_CONNECTION environment variable
     const char *ssh_connection = std::getenv("SSH_CONNECTION");
     if (ssh_connection) {
-        // Extract the remote IP address (first part of SSH_CONNECTION)
-        char *remote_ip = strtok(const_cast<char *>(ssh_connection), " ");
+        char ssh_conn_copy[256];
+        strncpy(ssh_conn_copy, ssh_connection, sizeof(ssh_conn_copy) - 1);
+        ssh_conn_copy[sizeof(ssh_conn_copy) - 1] = '\0';  // Ensure null termination
+
+        char *remote_ip = strtok(ssh_conn_copy, " ");
         if (remote_ip) {
-            // Convert the IP address to a sockaddr_in structure
             struct sockaddr_in sa;
             sa.sin_family = AF_INET;
             inet_pton(AF_INET, remote_ip, &(sa.sin_addr));
 
-            // Use gethostbyaddr to get the host name from the IP address
             struct hostent *host = gethostbyaddr(&(sa.sin_addr), sizeof(struct in_addr), AF_INET);
             if (host) {
-                // Return the host name as a string
                 return std::string(host->h_name);
             } else {
                 std::cerr << "Could not resolve host name from IP." << std::endl;
@@ -87,7 +90,6 @@ std::string GetSSHHostName() {
         }
     }
 
-    // If not connected via SSH, return an empty string
     std::cerr << "Not connected via SSH." << std::endl;
     return "";
 }
@@ -96,27 +98,26 @@ std::string GetSSHHostName() {
 
 string GetCurrentDirectory() {
     char pwd[PATH_MAX];
-    getcwd(pwd, sizeof(pwd));
+    if (getcwd(pwd, sizeof(pwd)) == nullptr) {
+        std::cerr << "Error getting current directory." << std::endl;
+        return "";
+    }
 
-    string WorkingDirectory = pwd;
-
-    return WorkingDirectory;
+    return string(pwd);
 }
 
 // BoolToChar function --------------------------------------------------------------------------------------------------------------------------------------------------
 
-/* Usage: convert bool variables to char */
 inline const char *const BoolToChar(bool b) { return b ? "true" : "false"; }
 
 // BoolToString function ------------------------------------------------------------------------------------------------------------------------------------------------
 
-/* Usage: convert bool variables to string */
 string BoolToString(bool b) { return b ? "true" : "false"; }
 
 // ToStringWithPrecision function ---------------------------------------------------------------------------------------------------------------------------------------
 
-template <typename T>
-string ToStringWithPrecision(const T a_value, const int n = 2) {
+template <typename A>
+string ToStringWithPrecision(const A a_value, const int n = 2) {
     std::ostringstream out;
     out.precision(n);
     out << std::fixed << a_value;
@@ -146,6 +147,6 @@ double GetBeamEnergyFromString(const string &sn) {
     return be;
 }
 
-}  // namespace basic_tools
+};  // namespace basic_tools
 
 #endif  // BASIC_TOOLS_H
