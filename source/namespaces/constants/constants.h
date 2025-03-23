@@ -32,8 +32,8 @@ constexpr int phPDG = 22;
 
 // CLAS12 constants -----------------------------------------------------------------------------------------------------------------------------------------------------
 /* FD & CD theta range */
-extern DSCuts ThetaFD;
-extern DSCuts ThetaCD;
+// extern DSCuts ThetaFD;
+// extern DSCuts ThetaCD;
 
 };  // namespace constants
 

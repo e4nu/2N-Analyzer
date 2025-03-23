@@ -26,27 +26,18 @@
 #endif
 
 using namespace std;
+
+namespace utilities {
 using namespace constants_ard;
 using namespace basic_tools;
 using namespace analysis_math;
 using namespace lists;
+
 // using namespace truth_analysis_functions;
 
 #if defined(IFARM_RUN)
 using namespace reco_analysis_functions;
 #endif
-
-namespace utilities {
-// using namespace constants_ard;
-// using namespace basic_tools;
-// using namespace analysis_math;
-// using namespace lists;
-
-// // using namespace truth_analysis_functions;
-
-// #if defined(IFARM_RUN)
-// using namespace reco_analysis_functions;
-// #endif
 
 // ConfigRegion function ------------------------------------------------------------------------------------------------------------------------------------------------
 
