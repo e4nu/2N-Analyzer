@@ -24,6 +24,7 @@
 #include "clas12reader.h"
 //
 #include "../analysis_math/analysis_math.h"
+#include "../constants/constants.h"
 #include "../lists/lists.h"
 
 using namespace std;
@@ -31,6 +32,111 @@ using namespace clas12;
 using namespace lists;
 
 namespace reco_analysis_functions {
+
+// AddToHipoChain function ----------------------------------------------------------------------------------------------------------------------------------------------
+
+void AddToHipoChain(HipoChain& chain, const string& sn, const string& AnalyseFilePath, const string& AnalyseFileSample, const string& AnalyseFile) {
+    bool PrintOut = true;
+
+    if (DataSample) {
+        if (sn == "C12x4_data_6GeV") {
+            if (AnalyseFileSample == "") {
+                /* Data in cache/clas12/rg-m/production/pass1/6gev/Cx4/dst/recon */
+                for (int i = 0; i < C12x4_data_6GeV_runs.size(); i++) {
+                    string TempAnalyseFile = "/" + AnalyseFilePath + "/" + C12x4_data_6GeV_runs.at(i) + "/*.hipo";
+                    chain.Add(TempAnalyseFile.c_str());
+
+                    if (PrintOut) { cout << TempAnalyseFile << " directory added to HipoChain!\n"; }
+                }
+
+                if (PrintOut) { cout << "\n"; }
+            }
+        } else if (sn == "D2_data_2GeV") {
+            if (AnalyseFileSample == "") {
+                /* Data in cache/clas12/rg-m/production/pass1/2gev/D/dst/recon */
+                for (int i = 0; i < D2_data_2GeV_runs.size(); i++) {
+                    string TempAnalyseFile = "/" + AnalyseFilePath + "/" + D2_data_2GeV_runs.at(i) + "/*.hipo";
+                    chain.Add(TempAnalyseFile.c_str());
+
+                    if (PrintOut) { cout << TempAnalyseFile << " directory added to HipoChain!\n"; }
+                }
+
+                if (PrintOut) { cout << "\n"; }
+            }
+        } else {
+            chain.Add(AnalyseFile.c_str());
+        }
+    } else if (SimulationSample) {
+        chain.Add(AnalyseFile.c_str());
+
+        if (PrintOut) { cout << AnalyseFile << " directory added to HipoChain!\n\n"; }
+    }
+}
+
+// GetFDNeutronP function -----------------------------------------------------------------------------------------------------------------------------------------------
+
+/* This is the old function used to calculate and obtain FD neutron momentum */
+double GetFDNeutronP(region_part_ptr &Neutron, bool apply_nucleon_cuts) {
+    double Momentum;
+
+    if (apply_nucleon_cuts) {
+        //<editor-fold desc="Get for ver. neutrons & calculate for 'photons'">
+        int ParticlePDG = Neutron->par()->getPid();
+
+        if (ParticlePDG == 2112) {
+            /* Momentum for neutrons - get from file. */
+            Momentum = Neutron->getP();
+
+            //        //<editor-fold desc="how neutron momentum is calculated in clas12">
+            //        TVector3 P_n;
+            //        P_n.SetMagThetaPhi(Neutron->getP(), Neutron->getTheta(), Neutron->getPhi());
+            //        double E_n = sqrt( constants::m_n *  constants::m_n + P_n.Mag2());
+            //        double Path_n = Neutron->getPath();
+            //
+            //        /* NOTE: Beta = Beta_from_Momentum */
+            //        double Beta_n = Neutron->par()->getBeta();
+            //        double Beta_n_from_Momentum = P_n.Mag() / E_n;
+            //
+            //        /* NOTE: Time_from_Momentum = Time_from_Beta_n */
+            //        double Time_from_Momentum = Path_n / (c * Beta_n_from_Momentum);
+            //        double Time_from_Beta_n = Path_n / (c * Beta_n);
+            //
+            //        double Velocity_n = Path_n / Time_from_Beta_n;
+            //        double Gamma_n = 1 / sqrt(1 - (Velocity_n * Velocity_n) / (constants::c * constants::c));
+            //        double Momentum_n =  constants::m_n * Beta_n * Gamma_n; // how neutron momentum is calculated in clas12
+            //        //</editor-fold>
+
+        } else if (ParticlePDG == 22) {
+            /* Momentum for "photons" - calculate. */
+
+            /* NOTE: all of these give the same path:
+             * Taking dv_nhit = (Neutron->cal(detlayer)->getX() - Neutron->par()->getVx(), X <-> Y,  X <-> Z) and dv_nhit.Mag().
+             * Neutron->cal(detlayer)->getPath().
+             * Neutron->getPath(). */
+
+            /* NOTE: Neutron->cal(detlayer)->getTime() = Neutron->getTime() */
+
+            double Path_ph = Neutron->getPath();
+            double Time_ph = Neutron->getTime();  // bad
+                                                  //        double Velocity = Path_ph / Time_ph;
+            double Beta_ph = Neutron->par()->getBeta();
+            double Time_ph_from_Beta_ph = Path_ph / (c * Beta_ph);
+            double Velocity_ph = Path_ph / Time_ph_from_Beta_ph;
+            //        double Gamma_ph = 1 / sqrt(1 - (Velocity_ph * Velocity_ph) / (constants::c * constants::c));
+            double Gamma_ph = 1 / sqrt(1 - (Beta_ph * Beta_ph));
+
+            Momentum =  constants::m_n * Beta_ph * Gamma_ph;
+        }
+        //</editor-fold>
+
+    } else {
+        //<editor-fold desc="Get momentum for both neutrons and photons from file">
+        Momentum = Neutron->par()->getP();
+        //</editor-fold>
+    }
+
+    return Momentum;
+}
 
 // CheckForNeutralFDECALHits function -----------------------------------------------------------------------------------------------------------------------------------
 
@@ -44,6 +150,10 @@ void CheckForNeutralFDECALHits(bool& ParticleInPCAL, bool& ParticleInECIN, bool&
 // CheckForECALHits function --------------------------------------------------------------------------------------------------------------------------------------------
 
 void CheckForECALHits(bool& ParticleInPCAL, bool& ParticleInECIN, bool& ParticleInECOUT, short& Neutron_ECAL_detlayer, vector<region_part_ptr>& allParticles, const int& i) {
+    bool ParticleInPCAL;            // PCAL hit
+    bool ParticleInECIN;            // ECIN hit
+    bool ParticleInECOUT;           // ECOUT hit
+    short NeutralFD_ECAL_detlayer;  // determine the earliest layer of the neutral hit
     CheckForNeutralFDECALHits(ParticleInPCAL, ParticleInECIN, ParticleInECOUT, NeutralFD_ECAL_detlayer, allParticles[i]);
 
     // ParticleInPCAL = (allParticles[i]->cal(clas12::PCAL)->getDetector() == 7);    // PCAL hit
@@ -105,10 +215,10 @@ double CalcPnFD(region_part_ptr NeutronFD, region_part_ptr electron, double star
     double reco_Path_nFD = CalcPathnFD(NeutronFD, electron);
     // double reco_Path_nFD = NeutronFD->getPath();
     double reco_ToF_nFD = CalcToFnFD(NeutronFD, starttime);
-    double reco_Beta_nFD = reco_Path_nFD / (reco_ToF_nFD * c);
+    double reco_Beta_nFD = reco_Path_nFD / (reco_ToF_nFD * constants::c);
     double reco_Gamma_nFD = 1 / sqrt(1 - (reco_Beta_nFD * reco_Beta_nFD));
 
-    double Momentum = m_n * reco_Beta_nFD * reco_Gamma_nFD;
+    double Momentum =  constants::m_n * reco_Beta_nFD * reco_Gamma_nFD;
 
     /*
      if (ParticlePDG == 2112) {
@@ -116,7 +226,7 @@ double CalcPnFD(region_part_ptr NeutronFD, region_part_ptr electron, double star
     } else if (ParticlePDG == 22) {
         double Beta_ph = NeutronFD->par()->getBeta();
         double Gamma_ph = 1 / sqrt(1 - (Beta_ph * Beta_ph));
-        Momentum = m_n * Beta_ph * Gamma_ph;
+        Momentum =  constants::m_n * Beta_ph * Gamma_ph;
     } else {
         cout << "\n\nError! Particle PDG is not 22 or 2112! Aborting...\n\n", exit(0);
     }
@@ -361,46 +471,6 @@ bool NeutronECAL_Cut_Veto(vector<region_part_ptr>& allParticles, vector<region_p
     if (Veto) { return false; } /* if any of the vetoes are true, return false */
 
     return true; /* we survived up to this point, we do have a neutral particle */
-}
-
-// AddToHipoChain function ----------------------------------------------------------------------------------------------------------------------------------------------
-
-void AddToHipoChain(HipoChain& chain, const string& sn, const string& AnalyseFilePath, const string& AnalyseFileSample, const string& AnalyseFile) {
-    bool PrintOut = true;
-
-    if (DataSample) {
-        if (sn == "C12x4_data_6GeV") {
-            if (AnalyseFileSample == "") {
-                /* Data in cache/clas12/rg-m/production/pass1/6gev/Cx4/dst/recon */
-                for (int i = 0; i < C12x4_data_6GeV_runs.size(); i++) {
-                    string TempAnalyseFile = "/" + AnalyseFilePath + "/" + C12x4_data_6GeV_runs.at(i) + "/*.hipo";
-                    chain.Add(TempAnalyseFile.c_str());
-
-                    if (PrintOut) { cout << TempAnalyseFile << " directory added to HipoChain!\n"; }
-                }
-
-                if (PrintOut) { cout << "\n"; }
-            }
-        } else if (sn == "D2_data_2GeV") {
-            if (AnalyseFileSample == "") {
-                /* Data in cache/clas12/rg-m/production/pass1/2gev/D/dst/recon */
-                for (int i = 0; i < D2_data_2GeV_runs.size(); i++) {
-                    string TempAnalyseFile = "/" + AnalyseFilePath + "/" + D2_data_2GeV_runs.at(i) + "/*.hipo";
-                    chain.Add(TempAnalyseFile.c_str());
-
-                    if (PrintOut) { cout << TempAnalyseFile << " directory added to HipoChain!\n"; }
-                }
-
-                if (PrintOut) { cout << "\n"; }
-            }
-        } else {
-            chain.Add(AnalyseFile.c_str());
-        }
-    } else if (SimulationSample) {
-        chain.Add(AnalyseFile.c_str());
-
-        if (PrintOut) { cout << AnalyseFile << " directory added to HipoChain!\n\n"; }
-    }
 }
 
 }  // namespace reco_analysis_functions

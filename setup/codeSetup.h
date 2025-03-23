@@ -10,7 +10,7 @@
 #include "../source/classes/Debugger/Debugger.cpp"
 #include "../source/classes/Directories/Directories.cpp"
 #include "../source/classes/ExperimentParameters/ExperimentParameters.cpp"
-// #include "../source/namespaces/constants/constants.h"
+#include "../source/namespaces/basic_tools/basic_tools.h"
 // #include "../source/constants.h"
 // #include "../source/functions/GeneralFunctions.h"
 #include "../source/functions/HistogramPlottingFunctions.h"
@@ -42,7 +42,7 @@ std::string Ver = "DetSim testings";
 
 //<editor-fold desc="path definitions">
 /* Histogram plots output directory */
-const std::string WorkingDirectory = GetCurrentDirectory() + "/";
+const std::string WorkingDirectory = basic_tools::GetCurrentDirectory() + "/";
 const std::string plots_path = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output";
 // const std::string plots_path = WorkingDirectory + "00_plots";
 
