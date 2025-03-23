@@ -96,7 +96,10 @@
         "basic_tools.h": "c",
         "namespace_includes.h": "c",
         "utilities.h": "c",
-        "utilities_reco_extentions.h": "c"
+        "utilities_reco_extentions.h": "c",
+        "analysis_math_reco_extentions.h": "c",
+        "reco_analysis_functions.h": "c",
+        "analysis_math.h": "c"
     },
     "[jsonc]": {
         "editor.defaultFormatter": "vscode.json-language-features"
