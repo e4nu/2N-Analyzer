@@ -31,6 +31,8 @@ string DataAnalyser::ConfigureAnalyserMode(const string &FileType) {
 // RunEventAnalyser functions ---------------------------------------------------------------------------------------------------------------------------------
 
 void DataAnalyser::RunEventAnalyser(const string &AnalyserMode, const string &AnalyseFilePath, const string &AnalyseFileSample, const string &AnalyseFile) {
+    #define RECO_ANALYSER_RUN 1
+    
     if (AnalyserMode == "Truth level") {
         #define RECO_ANALYSER_RUN 0 
         gst g;

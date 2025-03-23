@@ -2283,7 +2283,7 @@ void ExperimentParameters::AddToHipoChainFromList(HipoChain &chain, const string
 
                 if (PrintOut) { cout << "\n"; }
             }
-        } elseif (sn == "D2_data_2GeV") {
+        } else if (sn == "D2_data_2GeV") {
             if (AnalyseFileSample == "") {
                 /* Data in cache/clas12/rg-m/production/pass1/2gev/D/dst/recon */
                 for (int i = 0; i < lists::D2_data_2GeV_runs.size(); i++) {
@@ -2295,7 +2295,7 @@ void ExperimentParameters::AddToHipoChainFromList(HipoChain &chain, const string
 
                 if (PrintOut) { cout << "\n"; }
             }
-        } elseif (sn == "C12_data_2GeV") {
+        } else if (sn == "C12_data_2GeV") {
             if (AnalyseFileSample == "") {
                 /* Data in cache/clas12/rg-m/production/pass1/2gev/D/dst/recon */
                 for (int i = 0; i < lists::C12_data_2GeV_runs.size(); i++) {
@@ -2307,7 +2307,7 @@ void ExperimentParameters::AddToHipoChainFromList(HipoChain &chain, const string
 
                 if (PrintOut) { cout << "\n"; }
             }
-        } elseif (sn == "Ar40_data_2GeV") {
+        } else if (sn == "Ar40_data_2GeV") {
             if (AnalyseFileSample == "") {
                 /* Data in cache/clas12/rg-m/production/pass1/2gev/D/dst/recon */
                 for (int i = 0; i < lists::Ar40_data_2GeV_runs.size(); i++) {
@@ -2319,7 +2319,7 @@ void ExperimentParameters::AddToHipoChainFromList(HipoChain &chain, const string
 
                 if (PrintOut) { cout << "\n"; }
             }
-        } elseif (sn == "C12_data_4GeV") {
+        } else if (sn == "C12_data_4GeV") {
             if (AnalyseFileSample == "") {
                 /* Data in cache/clas12/rg-m/production/pass1/2gev/D/dst/recon */
                 for (int i = 0; i < lists::C12_data_4GeV_runs.size(); i++) {
@@ -2331,7 +2331,7 @@ void ExperimentParameters::AddToHipoChainFromList(HipoChain &chain, const string
 
                 if (PrintOut) { cout << "\n"; }
             }
-        } elseif (sn == "Ar40_data_4GeV") {
+        } else if (sn == "Ar40_data_4GeV") {
             if (AnalyseFileSample == "") {
                 /* Data in cache/clas12/rg-m/production/pass1/2gev/D/dst/recon */
                 for (int i = 0; i < lists::Ar40_data_4GeV_runs.size(); i++) {
@@ -2343,7 +2343,7 @@ void ExperimentParameters::AddToHipoChainFromList(HipoChain &chain, const string
 
                 if (PrintOut) { cout << "\n"; }
             }
-        } elseif (sn == "H1_data_6GeV") {
+        } else if (sn == "H1_data_6GeV") {
             if (AnalyseFileSample == "") {
                 /* Data in cache/clas12/rg-m/production/pass1/2gev/D/dst/recon */
                 for (int i = 0; i < lists::H1_data_6GeV_runs.size(); i++) {
@@ -2355,7 +2355,7 @@ void ExperimentParameters::AddToHipoChainFromList(HipoChain &chain, const string
 
                 if (PrintOut) { cout << "\n"; }
             }
-        } elseif (sn == "D2_data_6GeV") {
+        } else if (sn == "D2_data_6GeV") {
             if (AnalyseFileSample == "") {
                 /* Data in cache/clas12/rg-m/production/pass1/2gev/D/dst/recon */
                 for (int i = 0; i < lists::D2_data_6GeV_runs.size(); i++) {
@@ -2367,7 +2367,7 @@ void ExperimentParameters::AddToHipoChainFromList(HipoChain &chain, const string
 
                 if (PrintOut) { cout << "\n"; }
             }
-        } elseif (sn == "C12x4_data_6GeV") {
+        } else if (sn == "C12x4_data_6GeV") {
             if (AnalyseFileSample == "") {
                 /* Data in cache/clas12/rg-m/production/pass1/2gev/D/dst/recon */
                 for (int i = 0; i < lists::C12x4_data_6GeV_runs.size(); i++) {
@@ -2379,7 +2379,7 @@ void ExperimentParameters::AddToHipoChainFromList(HipoChain &chain, const string
 
                 if (PrintOut) { cout << "\n"; }
             }
-        } elseif (sn == "Ar40_data_6GeV") {
+        } else if (sn == "Ar40_data_6GeV") {
             if (AnalyseFileSample == "") {
                 /* Data in cache/clas12/rg-m/production/pass1/2gev/D/dst/recon */
                 for (int i = 0; i < lists::Ar40_data_6GeV_runs.size(); i++) {
