@@ -231,7 +231,7 @@ add_executable(project ${CLAS12ROOT_SOURCES} ${CLAS12BANKS_SOURCES} ${HIPO4_SOUR
         Old_analysers/DetectorSimulationAnalyser.C
         git_handle.sh
         main.c
-        run.sh
+        run.csh
         Old_analysers/TruthLevelAnalyser.c
         TempInclude/Classes/HistogramsTemp/HistogramsTemp.cpp
         TempInclude/Classes/HistogramsTemp/HistogramsTemp.h

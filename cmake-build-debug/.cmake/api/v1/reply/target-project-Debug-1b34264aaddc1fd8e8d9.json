@@ -1719,7 +1719,7 @@
 		},
 		{
 			"backtrace" : 1,
-			"path" : "run.sh",
+			"path" : "run.csh",
 			"sourceGroupIndex" : 1
 		},
 		{
