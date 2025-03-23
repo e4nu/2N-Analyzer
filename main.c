@@ -1,6 +1,7 @@
 #include <iostream>
 
 #include "source/namespaces/basic_tools/basic_tools.h"
+#include "source/classes/DataAnalyser/DataAnalyser.cpp"
 
 using namespace std;
 
@@ -19,7 +20,7 @@ int main() {
     }
 
     // Include other files (with the macro defined before)
-    #include "source/classes/DataAnalyser/DataAnalyser.cpp"
+    // #include "source/classes/DataAnalyser/DataAnalyser.cpp"
 
     ConfigSampleChain();
     ConfigCanvasPDF();
