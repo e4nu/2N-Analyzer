@@ -2,7 +2,7 @@
 	"entries" : 
 	[
 		{
-			"name" : "2N_Analyser_BINARY_DIR",
+			"name" : "2N_Analyser_e4nu_BINARY_DIR",
 			"properties" : 
 			[
 				{
@@ -11,10 +11,10 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/Users/alon/Projects/2N-Analyser/build"
+			"value" : "/Users/alon/Projects/2N-Analyser_e4nu/build"
 		},
 		{
-			"name" : "2N_Analyser_IS_TOP_LEVEL",
+			"name" : "2N_Analyser_e4nu_IS_TOP_LEVEL",
 			"properties" : 
 			[
 				{
@@ -26,7 +26,7 @@
 			"value" : "ON"
 		},
 		{
-			"name" : "2N_Analyser_SOURCE_DIR",
+			"name" : "2N_Analyser_e4nu_SOURCE_DIR",
 			"properties" : 
 			[
 				{
@@ -35,7 +35,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/Users/alon/Projects/2N-Analyser"
+			"value" : "/Users/alon/Projects/2N-Analyser_e4nu"
 		},
 		{
 			"name" : "CMAKE_ADDR2LINE",
@@ -91,7 +91,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/Users/alon/Projects/2N-Analyser/build"
+			"value" : "/Users/alon/Projects/2N-Analyser_e4nu/build"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -383,7 +383,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/opt/homebrew/Cellar/cmake/3.30.3/bin/ccmake"
+			"value" : "/opt/homebrew/bin/ccmake"
 		},
 		{
 			"name" : "CMAKE_EXECUTABLE_FORMAT",
@@ -527,7 +527,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/Users/alon/Projects/2N-Analyser/build/CMakeFiles/pkgRedirects"
+			"value" : "/Users/alon/Projects/2N-Analyser_e4nu/build/CMakeFiles/pkgRedirects"
 		},
 		{
 			"name" : "CMAKE_GENERATOR",
@@ -587,7 +587,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/Users/alon/Projects/2N-Analyser"
+			"value" : "/Users/alon/Projects/2N-Analyser_e4nu"
 		},
 		{
 			"name" : "CMAKE_INSTALL_NAME_TOOL",
@@ -823,7 +823,7 @@
 				}
 			],
 			"type" : "PATH",
-			"value" : "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk"
+			"value" : "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk"
 		},
 		{
 			"name" : "CMAKE_PLATFORM_INFO_INITIALIZED",
@@ -871,7 +871,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "2N_Analyser"
+			"value" : "2N_Analyser_e4nu"
 		},
 		{
 			"name" : "CMAKE_RANLIB",
@@ -1179,19 +1179,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "[/opt/homebrew/Cellar/root/6.32.08/include/root][/opt/homebrew/Cellar/root/6.32.08/lib/root/libvdt.dylib][v0.4()]"
-		},
-		{
-			"name" : "FIND_PACKAGE_MESSAGE_DETAILS_nlohmann_json",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Details about finding nlohmann_json"
-				}
-			],
-			"type" : "INTERNAL",
-			"value" : "[/opt/homebrew/share/cmake/nlohmann_json/nlohmann_jsonConfig.cmake][v3.11.3(3.11.3)]"
+			"value" : "[/opt/homebrew/Cellar/root/6.34.04/include/root][/opt/homebrew/Cellar/root/6.34.04/lib/root/libvdt.dylib][v0.4()]"
 		},
 		{
 			"name" : "ROOT_Core_LIBRARY",
@@ -1207,7 +1195,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/opt/homebrew/Cellar/root/6.32.08/lib/root/libCore.so"
+			"value" : "/opt/homebrew/Cellar/root/6.34.04/lib/root/libCore.so"
 		},
 		{
 			"name" : "ROOT_DIR",
@@ -1235,7 +1223,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/opt/homebrew/Cellar/root/6.32.08/lib/root/libGpad.so"
+			"value" : "/opt/homebrew/Cellar/root/6.34.04/lib/root/libGpad.so"
 		},
 		{
 			"name" : "ROOT_Graf3d_LIBRARY",
@@ -1251,7 +1239,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/opt/homebrew/Cellar/root/6.32.08/lib/root/libGraf3d.so"
+			"value" : "/opt/homebrew/Cellar/root/6.34.04/lib/root/libGraf3d.so"
 		},
 		{
 			"name" : "ROOT_Graf_LIBRARY",
@@ -1267,7 +1255,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/opt/homebrew/Cellar/root/6.32.08/lib/root/libGraf.so"
+			"value" : "/opt/homebrew/Cellar/root/6.34.04/lib/root/libGraf.so"
 		},
 		{
 			"name" : "ROOT_Hist_LIBRARY",
@@ -1283,7 +1271,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/opt/homebrew/Cellar/root/6.32.08/lib/root/libHist.so"
+			"value" : "/opt/homebrew/Cellar/root/6.34.04/lib/root/libHist.so"
 		},
 		{
 			"name" : "ROOT_Imt_LIBRARY",
@@ -1299,7 +1287,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/opt/homebrew/Cellar/root/6.32.08/lib/root/libImt.so"
+			"value" : "/opt/homebrew/Cellar/root/6.34.04/lib/root/libImt.so"
 		},
 		{
 			"name" : "ROOT_MathCore_LIBRARY",
@@ -1315,7 +1303,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/opt/homebrew/Cellar/root/6.32.08/lib/root/libMathCore.so"
+			"value" : "/opt/homebrew/Cellar/root/6.34.04/lib/root/libMathCore.so"
 		},
 		{
 			"name" : "ROOT_Matrix_LIBRARY",
@@ -1331,7 +1319,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/opt/homebrew/Cellar/root/6.32.08/lib/root/libMatrix.so"
+			"value" : "/opt/homebrew/Cellar/root/6.34.04/lib/root/libMatrix.so"
 		},
 		{
 			"name" : "ROOT_MultiProc_LIBRARY",
@@ -1347,7 +1335,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/opt/homebrew/Cellar/root/6.32.08/lib/root/libMultiProc.so"
+			"value" : "/opt/homebrew/Cellar/root/6.34.04/lib/root/libMultiProc.so"
 		},
 		{
 			"name" : "ROOT_Net_LIBRARY",
@@ -1363,7 +1351,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/opt/homebrew/Cellar/root/6.32.08/lib/root/libNet.so"
+			"value" : "/opt/homebrew/Cellar/root/6.34.04/lib/root/libNet.so"
 		},
 		{
 			"name" : "ROOT_Physics_LIBRARY",
@@ -1379,7 +1367,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/opt/homebrew/Cellar/root/6.32.08/lib/root/libPhysics.so"
+			"value" : "/opt/homebrew/Cellar/root/6.34.04/lib/root/libPhysics.so"
 		},
 		{
 			"name" : "ROOT_Postscript_LIBRARY",
@@ -1395,7 +1383,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/opt/homebrew/Cellar/root/6.32.08/lib/root/libPostscript.so"
+			"value" : "/opt/homebrew/Cellar/root/6.34.04/lib/root/libPostscript.so"
 		},
 		{
 			"name" : "ROOT_RIO_LIBRARY",
@@ -1411,7 +1399,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/opt/homebrew/Cellar/root/6.32.08/lib/root/libRIO.so"
+			"value" : "/opt/homebrew/Cellar/root/6.34.04/lib/root/libRIO.so"
 		},
 		{
 			"name" : "ROOT_ROOTDataFrame_LIBRARY",
@@ -1427,7 +1415,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/opt/homebrew/Cellar/root/6.32.08/lib/root/libROOTDataFrame.so"
+			"value" : "/opt/homebrew/Cellar/root/6.34.04/lib/root/libROOTDataFrame.so"
 		},
 		{
 			"name" : "ROOT_ROOTVecOps_LIBRARY",
@@ -1443,7 +1431,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/opt/homebrew/Cellar/root/6.32.08/lib/root/libROOTVecOps.so"
+			"value" : "/opt/homebrew/Cellar/root/6.34.04/lib/root/libROOTVecOps.so"
 		},
 		{
 			"name" : "ROOT_Rint_LIBRARY",
@@ -1459,7 +1447,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/opt/homebrew/Cellar/root/6.32.08/lib/root/libRint.so"
+			"value" : "/opt/homebrew/Cellar/root/6.34.04/lib/root/libRint.so"
 		},
 		{
 			"name" : "ROOT_Thread_LIBRARY",
@@ -1475,7 +1463,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/opt/homebrew/Cellar/root/6.32.08/lib/root/libThread.so"
+			"value" : "/opt/homebrew/Cellar/root/6.34.04/lib/root/libThread.so"
 		},
 		{
 			"name" : "ROOT_TreePlayer_LIBRARY",
@@ -1491,7 +1479,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/opt/homebrew/Cellar/root/6.32.08/lib/root/libTreePlayer.so"
+			"value" : "/opt/homebrew/Cellar/root/6.34.04/lib/root/libTreePlayer.so"
 		},
 		{
 			"name" : "ROOT_Tree_LIBRARY",
@@ -1507,7 +1495,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/opt/homebrew/Cellar/root/6.32.08/lib/root/libTree.so"
+			"value" : "/opt/homebrew/Cellar/root/6.34.04/lib/root/libTree.so"
 		},
 		{
 			"name" : "ROOT_genmap_CMD",
@@ -1723,7 +1711,7 @@
 				}
 			],
 			"type" : "PATH",
-			"value" : "/opt/homebrew/Cellar/root/6.32.08/include/root"
+			"value" : "/opt/homebrew/Cellar/root/6.34.04/include/root"
 		},
 		{
 			"name" : "VDT_LIBRARY",
@@ -1739,55 +1727,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/opt/homebrew/Cellar/root/6.32.08/lib/root/libvdt.dylib"
-		},
-		{
-			"name" : "nlohmann_json_DIR",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "The directory containing a CMake configuration file for nlohmann_json."
-				}
-			],
-			"type" : "PATH",
-			"value" : "/opt/homebrew/share/cmake/nlohmann_json"
-		},
-		{
-			"name" : "project_BINARY_DIR",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Value Computed by CMake"
-				}
-			],
-			"type" : "STATIC",
-			"value" : "/Users/alon/Projects/2N-Analyser/build"
-		},
-		{
-			"name" : "project_IS_TOP_LEVEL",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Value Computed by CMake"
-				}
-			],
-			"type" : "STATIC",
-			"value" : "ON"
-		},
-		{
-			"name" : "project_SOURCE_DIR",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Value Computed by CMake"
-				}
-			],
-			"type" : "STATIC",
-			"value" : "/Users/alon/Projects/2N-Analyser"
+			"value" : "/opt/homebrew/Cellar/root/6.34.04/lib/root/libvdt.dylib"
 		}
 	],
 	"kind" : "cache",

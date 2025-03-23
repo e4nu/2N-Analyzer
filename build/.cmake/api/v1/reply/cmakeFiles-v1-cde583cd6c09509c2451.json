@@ -238,29 +238,7 @@
 		},
 		{
 			"isExternal" : true,
-			"path" : "/opt/homebrew/share/cmake/nlohmann_json/nlohmann_jsonConfigVersion.cmake"
-		},
-		{
-			"isExternal" : true,
-			"path" : "/opt/homebrew/share/cmake/nlohmann_json/nlohmann_jsonConfig.cmake"
-		},
-		{
-			"isCMake" : true,
-			"isExternal" : true,
-			"path" : "/opt/homebrew/share/cmake/Modules/FindPackageHandleStandardArgs.cmake"
-		},
-		{
-			"isCMake" : true,
-			"isExternal" : true,
-			"path" : "/opt/homebrew/share/cmake/Modules/FindPackageMessage.cmake"
-		},
-		{
-			"isExternal" : true,
-			"path" : "/opt/homebrew/share/cmake/nlohmann_json/nlohmann_jsonTargets.cmake"
-		},
-		{
-			"isExternal" : true,
-			"path" : "/opt/homebrew/Cellar/root/6.32.08/share/root/cmake/modules/FindVdt.cmake"
+			"path" : "/opt/homebrew/Cellar/root/6.34.04/share/root/cmake/modules/FindVdt.cmake"
 		},
 		{
 			"isCMake" : true,
@@ -276,8 +254,8 @@
 	"kind" : "cmakeFiles",
 	"paths" : 
 	{
-		"build" : "/Users/alon/Projects/2N-Analyser/build",
-		"source" : "/Users/alon/Projects/2N-Analyser"
+		"build" : "/Users/alon/Projects/2N-Analyser_e4nu/build",
+		"source" : "/Users/alon/Projects/2N-Analyser_e4nu"
 	},
 	"version" : 
 	{
