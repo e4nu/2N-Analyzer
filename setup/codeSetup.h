@@ -7,10 +7,13 @@
 #define FullAnalyser true
 #define IndependentCanvasPDF false
 
+#include "../source/namespaces/basic_tools/basic_tools.h"
+#include "../source/namespaces/constants/constants.cpp"
+
 #include "../source/classes/Debugger/Debugger.cpp"
 #include "../source/classes/Directories/Directories.cpp"
 #include "../source/classes/ExperimentParameters/ExperimentParameters.cpp"
-#include "../source/namespaces/basic_tools/basic_tools.h"
+// #include "../source/namespaces/basic_tools/basic_tools.h"
 // #include "../source/constants.h"
 // #include "../source/functions/GeneralFunctions.h"
 #include "../source/functions/HistogramPlottingFunctions.h"

@@ -26,12 +26,21 @@
 	"objects" : 
 	[
 		{
-			"jsonFile" : "codemodel-v2-f99fe8aa2e622f7207c2.json",
+			"jsonFile" : "codemodel-v2-245c20f345bc9e4777fa.json",
 			"kind" : "codemodel",
 			"version" : 
 			{
 				"major" : 2,
 				"minor" : 7
+			}
+		},
+		{
+			"jsonFile" : "configureLog-v1-6aac9cc8e029e90b380b.json",
+			"kind" : "configureLog",
+			"version" : 
+			{
+				"major" : 1,
+				"minor" : 0
 			}
 		},
 		{
@@ -64,6 +73,113 @@
 	],
 	"reply" : 
 	{
+		"client-neocmake" : 
+		{
+			"query.json" : 
+			{
+				"requests" : 
+				[
+					{
+						"kind" : "codemodel",
+						"version" : 
+						[
+							{
+								"major" : 2,
+								"minor" : 7
+							}
+						]
+					},
+					{
+						"kind" : "configureLog",
+						"version" : 
+						[
+							{
+								"major" : 1,
+								"minor" : 0
+							}
+						]
+					},
+					{
+						"kind" : "cache",
+						"version" : 
+						[
+							{
+								"major" : 2,
+								"minor" : 0
+							}
+						]
+					},
+					{
+						"kind" : "cmakeFiles",
+						"version" : 
+						[
+							{
+								"major" : 1,
+								"minor" : 1
+							}
+						]
+					},
+					{
+						"kind" : "toolchains",
+						"version" : 
+						[
+							{
+								"major" : 1,
+								"minor" : 0
+							}
+						]
+					}
+				],
+				"responses" : 
+				[
+					{
+						"jsonFile" : "codemodel-v2-245c20f345bc9e4777fa.json",
+						"kind" : "codemodel",
+						"version" : 
+						{
+							"major" : 2,
+							"minor" : 7
+						}
+					},
+					{
+						"jsonFile" : "configureLog-v1-6aac9cc8e029e90b380b.json",
+						"kind" : "configureLog",
+						"version" : 
+						{
+							"major" : 1,
+							"minor" : 0
+						}
+					},
+					{
+						"jsonFile" : "cache-v2-b06803af77e8be965ec5.json",
+						"kind" : "cache",
+						"version" : 
+						{
+							"major" : 2,
+							"minor" : 0
+						}
+					},
+					{
+						"jsonFile" : "cmakeFiles-v1-cde583cd6c09509c2451.json",
+						"kind" : "cmakeFiles",
+						"version" : 
+						{
+							"major" : 1,
+							"minor" : 1
+						}
+					},
+					{
+						"jsonFile" : "toolchains-v1-2737d5c13fc6566233da.json",
+						"kind" : "toolchains",
+						"version" : 
+						{
+							"major" : 1,
+							"minor" : 0
+						}
+					}
+				]
+			}
+		},
 		"client-vscode" : 
 		{
 			"query.json" : 
@@ -99,7 +215,7 @@
 						}
 					},
 					{
-						"jsonFile" : "codemodel-v2-f99fe8aa2e622f7207c2.json",
+						"jsonFile" : "codemodel-v2-245c20f345bc9e4777fa.json",
 						"kind" : "codemodel",
 						"version" : 
 						{

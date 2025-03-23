@@ -247,7 +247,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-g -std=gnu++14 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk -fcolor-diagnostics"
+					"fragment" : "-g -std=gnu++14 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk"
 				}
 			],
 			"includes" : 
@@ -386,7 +386,7 @@
 				},
 				{
 					"backtrace" : 36,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/source/Structures_beta"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/source/structures"
 				}
 			],
 			"language" : "CXX",
@@ -459,7 +459,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk -fcolor-diagnostics"
+					"fragment" : "-g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk"
 				}
 			],
 			"includes" : 
@@ -598,7 +598,7 @@
 				},
 				{
 					"backtrace" : 36,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/source/Structures_beta"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/source/structures"
 				}
 			],
 			"language" : "C",
@@ -1627,12 +1627,12 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "source/Structures_beta/Histogram1D.cpp",
+			"path" : "source/structures/Histogram1D_beta/Histogram1D.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
-			"path" : "source/constants.h",
+			"path" : "source/constants_old.h",
 			"sourceGroupIndex" : 2
 		},
 		{

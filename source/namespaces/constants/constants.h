@@ -35,6 +35,6 @@ constexpr int phPDG = 22;
 extern DSCuts ThetaFD;
 extern DSCuts ThetaCD;
 
-}  // namespace constants_ard
+};  // namespace constants_ard
 
 #endif  // CONSTANTS_H

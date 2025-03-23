@@ -217,7 +217,7 @@ add_executable(project ${CLAS12ROOT_SOURCES} ${CLAS12BANKS_SOURCES} ${HIPO4_SOUR
         source/other/fitexample.c
         source/other/hPlot1D_example.cpp
         source/structures/Histogram1D_beta/Histogram1D.cpp
-        source/constants.h
+        source/constants_old.h
         macros/Other/db_script.txt
         Old_analysers/DetectorSimulationAnalyser.C
         git_handle.sh

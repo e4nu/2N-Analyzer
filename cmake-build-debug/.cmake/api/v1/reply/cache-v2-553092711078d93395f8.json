@@ -38,6 +38,42 @@
 			"value" : "/Users/alon/Projects/2N-Analyser_e4nu"
 		},
 		{
+			"name" : "2N_Analyser_e4nu_BINARY_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "/Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug"
+		},
+		{
+			"name" : "2N_Analyser_e4nu_IS_TOP_LEVEL",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "ON"
+		},
+		{
+			"name" : "2N_Analyser_e4nu_SOURCE_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "/Users/alon/Projects/2N-Analyser_e4nu"
+		},
+		{
 			"name" : "CMAKE_ADDR2LINE",
 			"properties" : 
 			[
@@ -875,7 +911,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "2N_Analyser"
+			"value" : "2N_Analyser_e4nu"
 		},
 		{
 			"name" : "CMAKE_RANLIB",

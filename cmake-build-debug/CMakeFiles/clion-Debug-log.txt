@@ -1,13 +1,5 @@
 /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "Unix Makefiles" -S /Users/alon/Projects/2N-Analyser_e4nu -B /Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug
-CMake Error at /opt/homebrew/Cellar/root/6.34.04/share/root/cmake/modules/FindVdt.cmake:48 (file):
-  file STRINGS file
-  "/opt/homebrew/Cellar/root/6.34.04/include/root/vdt/vdtMath.h" cannot be
-  read.
-Call Stack (most recent call first):
-  /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.30/Modules/CMakeFindDependencyMacro.cmake:76 (find_package)
-  /opt/homebrew/share/root/cmake/ROOTConfig.cmake:164 (find_dependency)
-  /opt/homebrew/share/root/cmake/ROOTConfig.cmake:166 (find_builtin_vdt)
-  CMakeLists.txt:7 (find_package)
-
-
--- Configuring incomplete, errors occurred!
+-- Found Vdt: /opt/homebrew/Cellar/root/6.34.04/include/root (found version "0.4")
+-- Configuring done (0.0s)
+-- Generating done (0.0s)
+-- Build files have been written to: /Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug

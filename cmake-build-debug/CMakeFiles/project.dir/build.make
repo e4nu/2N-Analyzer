@@ -643,19 +643,19 @@ CMakeFiles/project.dir/source/other/hPlot1D_example.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/project.dir/source/other/hPlot1D_example.cpp.s"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alon/Projects/2N-Analyser_e4nu/source/other/hPlot1D_example.cpp -o CMakeFiles/project.dir/source/other/hPlot1D_example.cpp.s
 
-CMakeFiles/project.dir/source/Structures_beta/Histogram1D.cpp.o: CMakeFiles/project.dir/flags.make
-CMakeFiles/project.dir/source/Structures_beta/Histogram1D.cpp.o: /Users/alon/Projects/2N-Analyser_e4nu/source/Structures_beta/Histogram1D.cpp
-CMakeFiles/project.dir/source/Structures_beta/Histogram1D.cpp.o: CMakeFiles/project.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_42) "Building CXX object CMakeFiles/project.dir/source/Structures_beta/Histogram1D.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/project.dir/source/Structures_beta/Histogram1D.cpp.o -MF CMakeFiles/project.dir/source/Structures_beta/Histogram1D.cpp.o.d -o CMakeFiles/project.dir/source/Structures_beta/Histogram1D.cpp.o -c /Users/alon/Projects/2N-Analyser_e4nu/source/Structures_beta/Histogram1D.cpp
+CMakeFiles/project.dir/source/structures/Histogram1D_beta/Histogram1D.cpp.o: CMakeFiles/project.dir/flags.make
+CMakeFiles/project.dir/source/structures/Histogram1D_beta/Histogram1D.cpp.o: /Users/alon/Projects/2N-Analyser_e4nu/source/structures/Histogram1D_beta/Histogram1D.cpp
+CMakeFiles/project.dir/source/structures/Histogram1D_beta/Histogram1D.cpp.o: CMakeFiles/project.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_42) "Building CXX object CMakeFiles/project.dir/source/structures/Histogram1D_beta/Histogram1D.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/project.dir/source/structures/Histogram1D_beta/Histogram1D.cpp.o -MF CMakeFiles/project.dir/source/structures/Histogram1D_beta/Histogram1D.cpp.o.d -o CMakeFiles/project.dir/source/structures/Histogram1D_beta/Histogram1D.cpp.o -c /Users/alon/Projects/2N-Analyser_e4nu/source/structures/Histogram1D_beta/Histogram1D.cpp
 
-CMakeFiles/project.dir/source/Structures_beta/Histogram1D.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/project.dir/source/Structures_beta/Histogram1D.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alon/Projects/2N-Analyser_e4nu/source/Structures_beta/Histogram1D.cpp > CMakeFiles/project.dir/source/Structures_beta/Histogram1D.cpp.i
+CMakeFiles/project.dir/source/structures/Histogram1D_beta/Histogram1D.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/project.dir/source/structures/Histogram1D_beta/Histogram1D.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alon/Projects/2N-Analyser_e4nu/source/structures/Histogram1D_beta/Histogram1D.cpp > CMakeFiles/project.dir/source/structures/Histogram1D_beta/Histogram1D.cpp.i
 
-CMakeFiles/project.dir/source/Structures_beta/Histogram1D.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/project.dir/source/Structures_beta/Histogram1D.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alon/Projects/2N-Analyser_e4nu/source/Structures_beta/Histogram1D.cpp -o CMakeFiles/project.dir/source/Structures_beta/Histogram1D.cpp.s
+CMakeFiles/project.dir/source/structures/Histogram1D_beta/Histogram1D.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/project.dir/source/structures/Histogram1D_beta/Histogram1D.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alon/Projects/2N-Analyser_e4nu/source/structures/Histogram1D_beta/Histogram1D.cpp -o CMakeFiles/project.dir/source/structures/Histogram1D_beta/Histogram1D.cpp.s
 
 CMakeFiles/project.dir/Old_analysers/DetectorSimulationAnalyser.C.o: CMakeFiles/project.dir/flags.make
 CMakeFiles/project.dir/Old_analysers/DetectorSimulationAnalyser.C.o: /Users/alon/Projects/2N-Analyser_e4nu/Old_analysers/DetectorSimulationAnalyser.C
@@ -910,7 +910,7 @@ project_OBJECTS = \
 "CMakeFiles/project.dir/source/other/fitexample_-_Copy.c.o" \
 "CMakeFiles/project.dir/source/other/fitexample.c.o" \
 "CMakeFiles/project.dir/source/other/hPlot1D_example.cpp.o" \
-"CMakeFiles/project.dir/source/Structures_beta/Histogram1D.cpp.o" \
+"CMakeFiles/project.dir/source/structures/Histogram1D_beta/Histogram1D.cpp.o" \
 "CMakeFiles/project.dir/Old_analysers/DetectorSimulationAnalyser.C.o" \
 "CMakeFiles/project.dir/main.c.o" \
 "CMakeFiles/project.dir/Old_analysers/TruthLevelAnalyser.c.o" \
@@ -971,7 +971,7 @@ project: CMakeFiles/project.dir/source/functions/Math_func/poly34.cpp.o
 project: CMakeFiles/project.dir/source/other/fitexample_-_Copy.c.o
 project: CMakeFiles/project.dir/source/other/fitexample.c.o
 project: CMakeFiles/project.dir/source/other/hPlot1D_example.cpp.o
-project: CMakeFiles/project.dir/source/Structures_beta/Histogram1D.cpp.o
+project: CMakeFiles/project.dir/source/structures/Histogram1D_beta/Histogram1D.cpp.o
 project: CMakeFiles/project.dir/Old_analysers/DetectorSimulationAnalyser.C.o
 project: CMakeFiles/project.dir/main.c.o
 project: CMakeFiles/project.dir/Old_analysers/TruthLevelAnalyser.c.o

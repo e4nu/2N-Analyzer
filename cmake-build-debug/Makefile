@@ -825,30 +825,6 @@ setup/CLAS12DAnalysis/CLAS12DHistograms/CLAS12DHistograms.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/setup/CLAS12DAnalysis/CLAS12DHistograms/CLAS12DHistograms.cpp.s
 .PHONY : setup/CLAS12DAnalysis/CLAS12DHistograms/CLAS12DHistograms.cpp.s
 
-source/Structures_beta/Histogram1D.o: source/Structures_beta/Histogram1D.cpp.o
-.PHONY : source/Structures_beta/Histogram1D.o
-
-# target to build an object file
-source/Structures_beta/Histogram1D.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/Structures_beta/Histogram1D.cpp.o
-.PHONY : source/Structures_beta/Histogram1D.cpp.o
-
-source/Structures_beta/Histogram1D.i: source/Structures_beta/Histogram1D.cpp.i
-.PHONY : source/Structures_beta/Histogram1D.i
-
-# target to preprocess a source file
-source/Structures_beta/Histogram1D.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/Structures_beta/Histogram1D.cpp.i
-.PHONY : source/Structures_beta/Histogram1D.cpp.i
-
-source/Structures_beta/Histogram1D.s: source/Structures_beta/Histogram1D.cpp.s
-.PHONY : source/Structures_beta/Histogram1D.s
-
-# target to generate assembly for a file
-source/Structures_beta/Histogram1D.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/Structures_beta/Histogram1D.cpp.s
-.PHONY : source/Structures_beta/Histogram1D.cpp.s
-
 source/classes/AMaps/AMaps.o: source/classes/AMaps/AMaps.cpp.o
 .PHONY : source/classes/AMaps/AMaps.o
 
@@ -1401,6 +1377,30 @@ source/other/hPlot1D_example.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/other/hPlot1D_example.cpp.s
 .PHONY : source/other/hPlot1D_example.cpp.s
 
+source/structures/Histogram1D_beta/Histogram1D.o: source/structures/Histogram1D_beta/Histogram1D.cpp.o
+.PHONY : source/structures/Histogram1D_beta/Histogram1D.o
+
+# target to build an object file
+source/structures/Histogram1D_beta/Histogram1D.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/structures/Histogram1D_beta/Histogram1D.cpp.o
+.PHONY : source/structures/Histogram1D_beta/Histogram1D.cpp.o
+
+source/structures/Histogram1D_beta/Histogram1D.i: source/structures/Histogram1D_beta/Histogram1D.cpp.i
+.PHONY : source/structures/Histogram1D_beta/Histogram1D.i
+
+# target to preprocess a source file
+source/structures/Histogram1D_beta/Histogram1D.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/structures/Histogram1D_beta/Histogram1D.cpp.i
+.PHONY : source/structures/Histogram1D_beta/Histogram1D.cpp.i
+
+source/structures/Histogram1D_beta/Histogram1D.s: source/structures/Histogram1D_beta/Histogram1D.cpp.s
+.PHONY : source/structures/Histogram1D_beta/Histogram1D.s
+
+# target to generate assembly for a file
+source/structures/Histogram1D_beta/Histogram1D.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/structures/Histogram1D_beta/Histogram1D.cpp.s
+.PHONY : source/structures/Histogram1D_beta/Histogram1D.cpp.s
+
 testers/nFD_eff_test/nFD_eff_test.o: testers/nFD_eff_test/nFD_eff_test.cpp.o
 .PHONY : testers/nFD_eff_test/nFD_eff_test.o
 
@@ -1593,9 +1593,6 @@ help:
 	@echo "... setup/CLAS12DAnalysis/CLAS12DHistograms/CLAS12DHistograms.o"
 	@echo "... setup/CLAS12DAnalysis/CLAS12DHistograms/CLAS12DHistograms.i"
 	@echo "... setup/CLAS12DAnalysis/CLAS12DHistograms/CLAS12DHistograms.s"
-	@echo "... source/Structures_beta/Histogram1D.o"
-	@echo "... source/Structures_beta/Histogram1D.i"
-	@echo "... source/Structures_beta/Histogram1D.s"
 	@echo "... source/classes/AMaps/AMaps.o"
 	@echo "... source/classes/AMaps/AMaps.i"
 	@echo "... source/classes/AMaps/AMaps.s"
@@ -1665,6 +1662,9 @@ help:
 	@echo "... source/other/hPlot1D_example.o"
 	@echo "... source/other/hPlot1D_example.i"
 	@echo "... source/other/hPlot1D_example.s"
+	@echo "... source/structures/Histogram1D_beta/Histogram1D.o"
+	@echo "... source/structures/Histogram1D_beta/Histogram1D.i"
+	@echo "... source/structures/Histogram1D_beta/Histogram1D.s"
 	@echo "... testers/nFD_eff_test/nFD_eff_test.o"
 	@echo "... testers/nFD_eff_test/nFD_eff_test.i"
 	@echo "... testers/nFD_eff_test/nFD_eff_test.s"
