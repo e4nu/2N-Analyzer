@@ -93,7 +93,10 @@
         "ranges": "cpp",
         "DetectorSimulationAnalyser copy.C": "cpp",
         "numeric": "cpp",
-        "basic_tools.h": "c"
+        "basic_tools.h": "c",
+        "namespace_includes.h": "c",
+        "utilities.h": "c",
+        "utilities_reco_extentions.h": "c"
     },
     "[jsonc]": {
         "editor.defaultFormatter": "vscode.json-language-features"

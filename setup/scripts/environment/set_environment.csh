@@ -33,19 +33,19 @@ unset JLAB_TESTER
 setenv JLAB_TESTER "jlab.org"
 # setenv DIR_2N_ANALYSIS_CODE /w/hallb-scshelf2102/clas12/asportes/2N-Analyser
 echo "${COLOR_START}JLAB_TESTER:${COLOR_END} ${JLAB_TESTER}"
-echo ""
+# echo ""
 
 unset IFARM_RUN
 
 # Check if the hostname contains the substring
 if ( "$ANALYSIS_HOSTNAME" =~ *"$JLAB_TESTER"* ) then
     echo "${COLOR_START}The hostname contains '$JLAB_TESTER'. Running the commands for this case.${COLOR_END}"
-    echo ""
+    # echo ""
     # Put the commands to run if the hostname contains the substring here
     setenv IFARM_RUN 1
 else
     echo "${COLOR_START}The hostname does not contain '$JLAB_TESTER'. Running the alternate commands.${COLOR_END}"
-    echo ""
+    # echo ""
     # Put the commands to run if the hostname does not contain the substring here
     setenv IFARM_RUN 0
 endif
