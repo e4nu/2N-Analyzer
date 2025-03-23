@@ -92,7 +92,8 @@
         "cinttypes": "cpp",
         "ranges": "cpp",
         "DetectorSimulationAnalyser copy.C": "cpp",
-        "numeric": "cpp"
+        "numeric": "cpp",
+        "basic_tools.h": "c"
     },
     "[jsonc]": {
         "editor.defaultFormatter": "vscode.json-language-features"

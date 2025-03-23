@@ -1,8 +1,14 @@
+#include <iostream>
+
+#include "source/namespaces/basic_tools/basic_tools.h"
+
 #include "source/classes/DataAnalyser/DataAnalyser.cpp"
 
 using namespace std;
 
 int main() {
+    basic_tools::checkSSHConnection();
+    
     ConfigSampleChain();
     ConfigCanvasPDF();
 

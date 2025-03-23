@@ -5,12 +5,62 @@
 #ifndef BASIC_TOOLS_H
 #define BASIC_TOOLS_H
 
+#include <arpa/inet.h>  // for inet_ntoa
+#include <netdb.h>      // for gethostbyaddr
+#include <netinet/in.h>
+#include <sys/socket.h>
+
+#include <cstdlib>  // for getenv
+#include <cstring>  // for strtok
 #include <iostream>
 #include <string>
 
 using namespace std;
 
 namespace basic_tools {
+// checkSSHConnection function ------------------------------------------------------------------------------------------------------------------------------------------
+
+// Function to check if the program is running over SSH and print connection info
+void checkSSHConnection() {
+    const char *ssh_connection = std::getenv("SSH_CONNECTION");
+    if (ssh_connection) {
+        std::cout << "Connected via SSH. SSH_CONNECTION: " << ssh_connection << std::endl;
+    } else {
+        std::cout << "Not connected via SSH." << std::endl;
+    }
+}
+
+// checkSSHConnectionAndHost function -----------------------------------------------------------------------------------------------------------------------------------
+
+void checkSSHConnectionAndHost() {
+    // Get the SSH_CONNECTION environment variable
+    const char *ssh_connection = std::getenv("SSH_CONNECTION");
+    if (ssh_connection) {
+        std::cout << "SSH_CONNECTION: " << ssh_connection << std::endl;
+
+        // Extract the remote IP address (first part of SSH_CONNECTION)
+        char *remote_ip = strtok(const_cast<char *>(ssh_connection), " ");
+        if (remote_ip) {
+            std::cout << "Remote IP Address: " << remote_ip << std::endl;
+
+            // Convert the IP address to a sockaddr_in structure
+            struct sockaddr_in sa;
+            sa.sin_family = AF_INET;
+            inet_pton(AF_INET, remote_ip, &(sa.sin_addr));
+
+            // Use gethostbyaddr to get the host name from the IP address
+            struct hostent *host = gethostbyaddr(&(sa.sin_addr), sizeof(struct in_addr), AF_INET);
+            if (host) {
+                std::cout << "Remote Host Name: " << host->h_name << std::endl;
+            } else {
+                std::cerr << "Could not resolve host name from IP." << std::endl;
+            }
+        }
+    } else {
+        std::cout << "Not connected via SSH." << std::endl;
+    }
+}
+
 // GetCurrentDirectory function ------------------------------------------------------------------------------------------------------------------------------------------
 
 string GetCurrentDirectory() {
