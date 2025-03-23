@@ -11,7 +11,8 @@
 #include <utility>
 #include <vector>
 
-#include "../utilities/utilities.h"
+#include "../basic_tools/basic_tools.h"
+// #include "../utilities/utilities.h"
 
 using namespace std;
 
@@ -25,7 +26,7 @@ string GetFS(const string &Source) {
                                                           {"1e2p", "1e2p"},     {"2p", "2p"},         {"pFDpCD", "pFDpCD"}, {"nFDpCD", "nFDpCD"}};
 
     for (const auto &pattern : patterns) {
-        if (FindSubstring(Source, pattern.first)) { return pattern.second; }
+        if (basic_tools::FindSubstring(Source, pattern.first)) { return pattern.second; }
     }
 
     return "";
@@ -51,7 +52,7 @@ string GetParticleName(const string &Source, const bool &PluralParticles = false
                                                                    {"nFDpCD|pFDpCD", "Nucleon", "Nucleon"}};
 
     for (const auto &pattern : patterns) {
-        if (FindSubstring(Source, get<0>(pattern))) {
+        if (basic_tools::FindSubstring(Source, get<0>(pattern))) {
             setParticleName(get<1>(pattern), get<2>(pattern));
             return ParticleName;
         }
@@ -75,7 +76,7 @@ string GetParticleName1(const string &Source, const bool &PluralParticles) {
                                                                    {"D", "Deuteron", "Deuterons"}};
 
     for (const auto &pattern : patterns) {
-        if (FindSubstring(Source, get<0>(pattern))) { return PluralParticles ? get<2>(pattern) : get<1>(pattern); }
+        if (basic_tools::FindSubstring(Source, get<0>(pattern))) { return PluralParticles ? get<2>(pattern) : get<1>(pattern); }
     }
 
     return "Deuteron";
@@ -89,7 +90,7 @@ string GetParticleNameFromSubscript(const string &Source, const bool &PluralPart
                                                                    {"{K^{-}}", "K^{-}", "Negative kaons"},     {"{D}", "Deuteron", "Deuterons"},           {"{#gamma}", "Photon", "Photons"}};
 
     for (const auto &pattern : patterns) {
-        if (FindSubstring(Source, get<0>(pattern))) { return PluralParticles ? get<2>(pattern) : get<1>(pattern); }
+        if (basic_tools::FindSubstring(Source, get<0>(pattern))) { return PluralParticles ? get<2>(pattern) : get<1>(pattern); }
     }
 
     return "Unknown";
@@ -110,7 +111,7 @@ string GetParticleNameLC(const string &Source, const bool &PluralParticles = fal
                                                                    {"#gamma|photon|Photon", "photon", "photons"}};
 
     for (const auto &pattern : patterns) {
-        if (FindSubstring(Source, get<0>(pattern))) { return PluralParticles ? get<2>(pattern) : get<1>(pattern); }
+        if (basic_tools::FindSubstring(Source, get<0>(pattern))) { return PluralParticles ? get<2>(pattern) : get<1>(pattern); }
     }
 
     return "unknown";
@@ -124,7 +125,7 @@ string GetParticleNameLCFromSubscript(const string &Source, const bool &PluralPa
                                                                    {"{K^{-}}", "K^{-}", "negative kaons"},     {"{D}", "deuteron", "deuterons"},           {"{#gamma}", "Photon", "Photons"}};
 
     for (const auto &pattern : patterns) {
-        if (FindSubstring(Source, get<0>(pattern))) { return PluralParticles ? get<2>(pattern) : get<1>(pattern); }
+        if (basic_tools::FindSubstring(Source, get<0>(pattern))) { return PluralParticles ? get<2>(pattern) : get<1>(pattern); }
     }
 
     return "Unknown";
@@ -145,7 +146,7 @@ string GetParticleNameShort(const string &Source) {
                                                           {"#gamma|photon|Photon", "Photon"}};
 
     for (const auto &pattern : patterns) {
-        if (FindSubstring(Source, pattern.first)) { return pattern.second; }
+        if (basic_tools::FindSubstring(Source, pattern.first)) { return pattern.second; }
     }
 
     return "";
@@ -158,7 +159,7 @@ string GetParticleNameShortFromSubscript(const string &Source) {
                                                           {"{K^{+}}", "K^{+}"}, {"{K^{-}}", "K^{-}"}, {"{D}", "D"}, {"{#gamma}", "#gamma"}};
 
     for (const auto &pattern : patterns) {
-        if (FindSubstring(Source, pattern.first)) { return pattern.second; }
+        if (basic_tools::FindSubstring(Source, pattern.first)) { return pattern.second; }
     }
 
     return "";
@@ -170,7 +171,7 @@ string GetTopology(const string &Source) {
     static const vector<pair<string, string>> patterns = {{"1n", "1N"}, {"1p", "1N"}, {"1nFD", "1N"}, {"1pFD", "1N"}, {"1n1p", "2N"}, {"2p", "2N"}, {"nFDpCD", "2N"}, {"pFDpCD", "2N"}};
 
     for (const auto &pattern : patterns) {
-        if (FindSubstring(Source, pattern.first)) { return pattern.second; }
+        if (basic_tools::FindSubstring(Source, pattern.first)) { return pattern.second; }
     }
 
     return "";
@@ -258,7 +259,7 @@ string GetType(const string &Source) {
                                                           {"#delta#alpha_{T,tot} vs. W", "dalpha_T_tot_vs_W"}};
 
     for (const auto &pattern : patterns) {
-        if (FindSubstring(Source, pattern.first)) { return pattern.second; }
+        if (basic_tools::FindSubstring(Source, pattern.first)) { return pattern.second; }
     }
 
     return "";
@@ -270,7 +271,7 @@ string GetDRegion(const string &Source, const bool &ReturnGoingRegion = false) {
     static const vector<pair<string, string>> patterns = {{", FD)", "FD"}, {"FD ", "FD"}, {"FD", "FD"}, {", CD)", "CD"}, {"CD ", "CD"}, {"CD", "CD"}};
 
     for (const auto &pattern : patterns) {
-        if (FindSubstring(Source, pattern.first)) { return ReturnGoingRegion ? (pattern.second == "FD" ? "forward-going" : "central-going") : pattern.second; }
+        if (basic_tools::FindSubstring(Source, pattern.first)) { return ReturnGoingRegion ? (pattern.second == "FD" ? "forward-going" : "central-going") : pattern.second; }
     }
 
     return "";
@@ -282,7 +283,7 @@ string GetDRegionExplicit(const string &Source, const bool &ReturnGoingRegion) {
     static const vector<pair<string, string>> patterns = {{"FD", "FD"}, {"CD", "CD"}};
 
     for (const auto &pattern : patterns) {
-        if (FindSubstring(Source, pattern.first)) { return ReturnGoingRegion ? (pattern.second == "FD" ? "forward-going" : "central-going") : pattern.second; }
+        if (basic_tools::FindSubstring(Source, pattern.first)) { return ReturnGoingRegion ? (pattern.second == "FD" ? "forward-going" : "central-going") : pattern.second; }
     }
 
     return "";
@@ -295,7 +296,7 @@ string GetFSRTitle(const string &Source, const string &PlotsT) {
     string Particle = GetParticleName(Source), ParticleShort = GetParticleNameShort(Source), Type = GetType(Source), DRegion = GetDRegion(Source);
 
     if (PlotsT == "FSRatio") {
-        if (!FindSubstring(Source, "vs")) {
+        if (!basic_tools::FindSubstring(Source, "vs")) {
             static const map<string, string> typeToTitle = {{"Q2", "Q^{2} ratio - "},
                                                             {"E_e", "E_{e} ratio - "},
                                                             {"omega", "#omega ratio - "},
@@ -415,7 +416,7 @@ string GetStatsTitle(const string &Source) {
     string FS = GetFS(Source), ParticleShort = GetParticleNameShort(Source);
 
     for (const auto &pattern : patterns) {
-        if (FindSubstring(Source, pattern.first)) {
+        if (basic_tools::FindSubstring(Source, pattern.first)) {
             StatsType = pattern.second + ParticleShort + "}";
             break;
         }
@@ -434,7 +435,7 @@ string SetXLabel(const string &Source) {
     string ParticleShort = GetParticleNameShort(Source);
 
     for (const auto &pattern : patterns) {
-        if (FindSubstring(Source, pattern.first)) { return pattern.second + ParticleShort + "} [" + (pattern.first == "momentum" ? "GeV/c" : "Deg") + "]"; }
+        if (basic_tools::FindSubstring(Source, pattern.first)) { return pattern.second + ParticleShort + "} [" + (pattern.first == "momentum" ? "GeV/c" : "Deg") + "]"; }
     }
 
     return "";
@@ -452,7 +453,7 @@ string SetSaveDir(const string &Source, const string &BaseSaveDir, const string 
                                                           {", CD)|CD " + Particle + "|CD " + ParticleLC, "/02_CD_" + Particle + "_" + Type + "_ACorrection_plots_" + FS + "/"}};
 
     for (const auto &pattern : patterns) {
-        if (FindSubstring(Source, pattern.first)) {
+        if (basic_tools::FindSubstring(Source, pattern.first)) {
             SaveDir = BaseSaveDir + pattern.second;
             TestSaveDir = SaveDir + "Cloned_hist_test/";
             break;

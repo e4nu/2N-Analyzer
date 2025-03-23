@@ -25,8 +25,9 @@
 #include "../reco_analysis_functions/reco_analysis_functions.h"
 #endif
 
-namespace utilities {
 using namespace std;
+
+namespace utilities {
 using namespace constants;
 using namespace basic_tools;
 using namespace analysis_math;

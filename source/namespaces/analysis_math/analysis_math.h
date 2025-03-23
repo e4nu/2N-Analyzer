@@ -11,11 +11,11 @@
 #include <vector>
 
 #include "../basic_tools/basic_tools.h"
+#include "../constants/constants.h"
 
 using namespace std;
 
 namespace analysis_math {
-using namespace basic_tools;
 
 // Mathematical constants -----------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -49,7 +49,7 @@ double CalcPhi_deg(const double &x, const double &y, const double &z) { return R
 
 double GetPi0MomTh(const double &ph_mom_th) {
     if (std::abs(ph_mom_th) == 9999) { return -9999; }
-    double pi0_mom_th = std::sqrt(4 * ph_mom_th * ph_mom_th - m_pizero * m_pizero);
+    double pi0_mom_th = std::sqrt(4 * ph_mom_th * ph_mom_th - constants::m_pizero * constants::m_pizero);
     return pi0_mom_th;
 }
 
@@ -106,11 +106,11 @@ double GetPhi_e(TString OutPutFolder, double phi_N) {
 
     string OutPutFolder0(OutPutFolder.Data());
 
-    if (FindSubstring(OutPutFolder0, "2070MeV")) {
+    if (basic_tools::FindSubstring(OutPutFolder0, "2070MeV")) {
         phi_e_offset = 16.;
-    } else if (FindSubstring(OutPutFolder0, "4029MeV")) {
+    } else if (basic_tools::FindSubstring(OutPutFolder0, "4029MeV")) {
         phi_e_offset = 7.;
-    } else if (FindSubstring(OutPutFolder0, "5986MeV")) {
+    } else if (basic_tools::FindSubstring(OutPutFolder0, "5986MeV")) {
         phi_e_offset = 5.;
     }
 

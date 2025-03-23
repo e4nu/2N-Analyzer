@@ -30,7 +30,6 @@ using namespace clas12;
 using namespace lists;
 
 namespace reco_RECO_ANALYSIS_FUNCTIONS {
-using namespace clas12;
 
 // CheckForNeutralFDECALHits function -----------------------------------------------------------------------------------------------------------------------------------
 
