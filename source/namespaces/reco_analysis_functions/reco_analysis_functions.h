@@ -79,7 +79,7 @@ double GetFDNeutronP(region_part_ptr &Neutron, bool apply_nucleon_cuts) {
             double Time_ph = Neutron->getTime();  // bad
                                                   //        double Velocity = Path_ph / Time_ph;
             double Beta_ph = Neutron->par()->getBeta();
-            double Time_ph_from_Beta_ph = Path_ph / (c * Beta_ph);
+            double Time_ph_from_Beta_ph = Path_ph / (constants::c * Beta_ph);
             double Velocity_ph = Path_ph / Time_ph_from_Beta_ph;
             //        double Gamma_ph = 1 / sqrt(1 - (Velocity_ph * Velocity_ph) / (constants::c * constants::c));
             double Gamma_ph = 1 / sqrt(1 - (Beta_ph * Beta_ph));
@@ -109,10 +109,6 @@ void CheckForNeutralFDECALHits(bool& ParticleInPCAL, bool& ParticleInECIN, bool&
 // CheckForECALHits function --------------------------------------------------------------------------------------------------------------------------------------------
 
 void CheckForECALHits(bool& ParticleInPCAL, bool& ParticleInECIN, bool& ParticleInECOUT, short& Neutron_ECAL_detlayer, vector<region_part_ptr>& allParticles, const int& i) {
-    bool ParticleInPCAL;            // PCAL hit
-    bool ParticleInECIN;            // ECIN hit
-    bool ParticleInECOUT;           // ECOUT hit
-    short NeutralFD_ECAL_detlayer;  // determine the earliest layer of the neutral hit
     CheckForNeutralFDECALHits(ParticleInPCAL, ParticleInECIN, ParticleInECOUT, NeutralFD_ECAL_detlayer, allParticles[i]);
 
     // ParticleInPCAL = (allParticles[i]->cal(clas12::PCAL)->getDetector() == 7);    // PCAL hit
