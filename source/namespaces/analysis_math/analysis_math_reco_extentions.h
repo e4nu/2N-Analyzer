@@ -10,10 +10,11 @@
 #include "HipoChain.h"
 #include "clas12reader.h"
 
-using namespace analysis_math;
 using namespace clas12;
 
 namespace analysis_math_reco_extentions {
+using namespace analysis_math;
+
 // CalcdPhi function (CLAS12 extention) ---------------------------------------------------------------------------------------------------------------------------------
 
 double CalcdPhi(region_part_ptr proton1, region_part_ptr proton2) {
@@ -35,6 +36,6 @@ double CalcdPhi(region_part_ptr proton1, region_part_ptr proton2) {
     return CalcdPhi(Phi_pFD_deg - Phi_pCD_deg);
 }
 
-}  // namespace analysis_math
+}  // namespace analysis_math_reco_extentions
 
 #endif  // ANALYSIS_MATH_RECO_EXTENTIONS_H

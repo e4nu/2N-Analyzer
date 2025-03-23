@@ -30,6 +30,7 @@
 
 using namespace std;
 using namespace clas12;
+using namespace analysis_math_reco_extentions;
 
 namespace reco_analysis_functions {
 
