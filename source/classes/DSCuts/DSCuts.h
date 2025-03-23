@@ -9,7 +9,42 @@ class DSCuts {
    public:
     /* Constructors */
     // Default constructor:
-    DSCuts(std::string cv = "", std::string r = "", std::string p = "", std::string ac = "", double mean = 0, double llim = -9999, double ulim = 9999);
+    DSCuts(std::string cv = "", std::string r = "", std::string p = "", std::string ac = "", double mean = 0, double llim = -9999, double ulim = 9999) {  // Default constructor
+        CutVariable = cv, Particle = p, AppliedCuts = ac;
+        Cuts.at(0) = mean, Cuts.at(1) = llim, Cuts.at(2) = ulim;
+
+        if (r == "") {
+            Region = "CD & FD";
+        } else {
+            Region = r;
+        }
+
+        if (r == "CD") {
+            FitStdFactor = 3;  // sigma factor for CD cuts
+        } else if (r == "FD") {
+            FitStdFactor = 3;  // sigma factor for FD cuts
+        } else {
+            FitStdFactor = 1;
+        }
+
+        if (p == "electron" || p == "Electron" || p == "electrons" || p == "Electrons") {
+            particlePDG = 11;
+        } else if (p == "neutron" || p == "Neutron" || p == "neutrons" || p == "Neutrons") {
+            particlePDG = 2112;
+        } else if (p == "proton" || p == "Proton" || p == "protons" || p == "Protons") {
+            particlePDG = 2212;
+        } else if (p == "kplus" || p == "Kplus" || p == "k+" || p == "K+") {
+            particlePDG = 321;
+        } else if (p == "kminus" || p == "Kminus" || p == "k-" || p == "K-") {
+            particlePDG = -321;
+        } else if (p == "piplus" || p == "Piplus" || p == "pi+" || p == "Pi+") {
+            particlePDG = 211;
+        } else if (p == "piminus" || p == "Piminus" || p == "pi-" || p == "Pi-") {
+            particlePDG = -211;
+        } else if (p == "pizero" || p == "Pizero" || p == "pi0" || p == "Pi0") {
+            particlePDG = 111;
+        }
+    }
 
     /* Set functions */
     void SetMeanHist(double mh) { MeanFromHistogram = mh; }
@@ -86,41 +121,41 @@ class DSCuts {
     double SliceUpperb, SliceLowerb;  // To be used in neutron resolution fit only!
 };
 
-DSCuts::DSCuts(std::string cv, std::string r, std::string p, std::string ac, double mean, double llim, double ulim) {  // Default constructor
-    CutVariable = cv, Particle = p, AppliedCuts = ac;
-    Cuts.at(0) = mean, Cuts.at(1) = llim, Cuts.at(2) = ulim;
+// DSCuts::DSCuts(std::string cv, std::string r, std::string p, std::string ac, double mean, double llim, double ulim) {  // Default constructor
+//     CutVariable = cv, Particle = p, AppliedCuts = ac;
+//     Cuts.at(0) = mean, Cuts.at(1) = llim, Cuts.at(2) = ulim;
 
-    if (r == "") {
-        Region = "CD & FD";
-    } else {
-        Region = r;
-    }
+//     if (r == "") {
+//         Region = "CD & FD";
+//     } else {
+//         Region = r;
+//     }
 
-    if (r == "CD") {
-        FitStdFactor = 3;  // sigma factor for CD cuts
-    } else if (r == "FD") {
-        FitStdFactor = 3;  // sigma factor for FD cuts
-    } else {
-        FitStdFactor = 1;
-    }
+//     if (r == "CD") {
+//         FitStdFactor = 3;  // sigma factor for CD cuts
+//     } else if (r == "FD") {
+//         FitStdFactor = 3;  // sigma factor for FD cuts
+//     } else {
+//         FitStdFactor = 1;
+//     }
 
-    if (p == "electron" || p == "Electron" || p == "electrons" || p == "Electrons") {
-        particlePDG = 11;
-    } else if (p == "neutron" || p == "Neutron" || p == "neutrons" || p == "Neutrons") {
-        particlePDG = 2112;
-    } else if (p == "proton" || p == "Proton" || p == "protons" || p == "Protons") {
-        particlePDG = 2212;
-    } else if (p == "kplus" || p == "Kplus" || p == "k+" || p == "K+") {
-        particlePDG = 321;
-    } else if (p == "kminus" || p == "Kminus" || p == "k-" || p == "K-") {
-        particlePDG = -321;
-    } else if (p == "piplus" || p == "Piplus" || p == "pi+" || p == "Pi+") {
-        particlePDG = 211;
-    } else if (p == "piminus" || p == "Piminus" || p == "pi-" || p == "Pi-") {
-        particlePDG = -211;
-    } else if (p == "pizero" || p == "Pizero" || p == "pi0" || p == "Pi0") {
-        particlePDG = 111;
-    }
-}
+//     if (p == "electron" || p == "Electron" || p == "electrons" || p == "Electrons") {
+//         particlePDG = 11;
+//     } else if (p == "neutron" || p == "Neutron" || p == "neutrons" || p == "Neutrons") {
+//         particlePDG = 2112;
+//     } else if (p == "proton" || p == "Proton" || p == "protons" || p == "Protons") {
+//         particlePDG = 2212;
+//     } else if (p == "kplus" || p == "Kplus" || p == "k+" || p == "K+") {
+//         particlePDG = 321;
+//     } else if (p == "kminus" || p == "Kminus" || p == "k-" || p == "K-") {
+//         particlePDG = -321;
+//     } else if (p == "piplus" || p == "Piplus" || p == "pi+" || p == "Pi+") {
+//         particlePDG = 211;
+//     } else if (p == "piminus" || p == "Piminus" || p == "pi-" || p == "Pi-") {
+//         particlePDG = -211;
+//     } else if (p == "pizero" || p == "Pizero" || p == "pi0" || p == "Pi0") {
+//         particlePDG = 111;
+//     }
+// }
 
 #endif  // DSCUTS_H
