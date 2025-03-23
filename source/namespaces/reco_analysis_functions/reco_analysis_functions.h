@@ -35,7 +35,7 @@ namespace reco_analysis_functions {
 // GetFDNeutronP function -----------------------------------------------------------------------------------------------------------------------------------------------
 
 /* This is the old function used to calculate and obtain FD neutron momentum */
-double GetFDNeutronP(region_part_ptr &Neutron, bool apply_nucleon_cuts) {
+double GetFDNeutronP(region_part_ptr& Neutron, bool apply_nucleon_cuts) {
     double Momentum;
 
     if (apply_nucleon_cuts) {
@@ -84,7 +84,7 @@ double GetFDNeutronP(region_part_ptr &Neutron, bool apply_nucleon_cuts) {
             //        double Gamma_ph = 1 / sqrt(1 - (Velocity_ph * Velocity_ph) / (constants::c * constants::c));
             double Gamma_ph = 1 / sqrt(1 - (Beta_ph * Beta_ph));
 
-            Momentum =  constants::m_n * Beta_ph * Gamma_ph;
+            Momentum = constants::m_n * Beta_ph * Gamma_ph;
         }
         //</editor-fold>
 
@@ -108,13 +108,13 @@ void CheckForNeutralFDECALHits(bool& ParticleInPCAL, bool& ParticleInECIN, bool&
 
 // CheckForECALHits function --------------------------------------------------------------------------------------------------------------------------------------------
 
-void CheckForECALHits(bool& ParticleInPCAL, bool& ParticleInECIN, bool& ParticleInECOUT, short& Neutron_ECAL_detlayer, vector<region_part_ptr>& allParticles, const int& i) {
+void CheckForECALHits(bool& ParticleInPCAL, bool& ParticleInECIN, bool& ParticleInECOUT, short& NeutralFD_ECAL_detlayer, vector<region_part_ptr>& allParticles, const int& i) {
     CheckForNeutralFDECALHits(ParticleInPCAL, ParticleInECIN, ParticleInECOUT, NeutralFD_ECAL_detlayer, allParticles[i]);
 
     // ParticleInPCAL = (allParticles[i]->cal(clas12::PCAL)->getDetector() == 7);    // PCAL hit
     // ParticleInECIN = (allParticles[i]->cal(clas12::ECIN)->getDetector() == 7);    // ECIN hit
     // ParticleInECOUT = (allParticles[i]->cal(clas12::ECOUT)->getDetector() == 7);  // ECOUT hit
-    // Neutron_ECAL_detlayer = ParticleInECIN ? clas12::ECIN : clas12::ECOUT;        // find first layer of hit
+    // NeutralFD_ECAL_detlayer = ParticleInECIN ? clas12::ECIN : clas12::ECOUT;        // find first layer of hit
 }
 
 // CalcToFnFD function --------------------------------------------------------------------------------------------------------------------------------------------------
@@ -173,7 +173,7 @@ double CalcPnFD(region_part_ptr NeutronFD, region_part_ptr electron, double star
     double reco_Beta_nFD = reco_Path_nFD / (reco_ToF_nFD * constants::c);
     double reco_Gamma_nFD = 1 / sqrt(1 - (reco_Beta_nFD * reco_Beta_nFD));
 
-    double Momentum =  constants::m_n * reco_Beta_nFD * reco_Gamma_nFD;
+    double Momentum = constants::m_n * reco_Beta_nFD * reco_Gamma_nFD;
 
     /*
      if (ParticlePDG == 2112) {
