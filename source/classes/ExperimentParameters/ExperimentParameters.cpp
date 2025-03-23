@@ -55,9 +55,9 @@ ExperimentParameters::ExperimentParameters(const string &AnalyseFilePath, const 
 string ExperimentParameters::ConfigureSampleName(const string &AnalyseFilePath, const string &AnalyseFileSample) {
     string sName = "unknown_sample_598636MeV";  // to set beamE = 5.98636 by default;
 
-    if (findSubstring(AnalyseFilePath, "Uniform_e-p-n_samples")) {  // Uniform samples
-        if (findSubstring(AnalyseFilePath, "OutPut_Tester_e_Tester_e"))
-        // if (findSubstring(AnalyseFilePath, "OutPut_Tester_e_1e"))
+    if (FindSubstring(AnalyseFilePath, "Uniform_e-p-n_samples")) {  // Uniform samples
+        if (FindSubstring(AnalyseFilePath, "OutPut_Tester_e_Tester_e"))
+        // if (FindSubstring(AnalyseFilePath, "OutPut_Tester_e_1e"))
         {  // Electron tester samples
             if (AnalyseFilePath == "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/2070MeV/OutPut_Tester_e_Tester_e")
             // if (AnalyseFilePath == "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/2070MeV/OutPut_Tester_e_1e")
@@ -82,7 +82,7 @@ string ExperimentParameters::ConfigureSampleName(const string &AnalyseFilePath, 
                 }
             }
         } else {                                                                                                                               // Uniform samples for acceptance maps
-            if (findSubstring(AnalyseFilePath, "2070MeV")) {                                                                                   /* 2GeV samples
+            if (FindSubstring(AnalyseFilePath, "2070MeV")) {                                                                                   /* 2GeV samples
                                                                                                                                                   NOTE: here '2070MeV' has to be in the sample path! */
                 if (AnalyseFilePath == "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/2070MeV/OutPut_1e") {  // Uniform 1e, simulation, 2GeV, ifarm
                     if (AnalyseFileSample == "reconhipo") {
@@ -102,7 +102,7 @@ string ExperimentParameters::ConfigureSampleName(const string &AnalyseFilePath, 
                         sName = "Uniform_en_sample_2070MeV";
                     }
                 }
-            } else if (findSubstring(AnalyseFilePath, "4029MeV")) {                                                                            /* 4GeV samples
+            } else if (FindSubstring(AnalyseFilePath, "4029MeV")) {                                                                            /* 4GeV samples
                                                                                                                                                   NOTE: here '4029MeV' has to be in the sample path! */
                 if (AnalyseFilePath == "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/4029MeV/OutPut_1e") {  // Uniform 1e, simulation, 4GeV, ifarm
                     if (AnalyseFileSample == "reconhipo") {
@@ -122,7 +122,7 @@ string ExperimentParameters::ConfigureSampleName(const string &AnalyseFilePath, 
                         sName = "Uniform_en_sample_4029MeV";
                     }
                 }
-            } else if (findSubstring(AnalyseFilePath, "5986MeV")) { /* 6GeV samples
+            } else if (FindSubstring(AnalyseFilePath, "5986MeV")) { /* 6GeV samples
                                                                        NOTE: here '5986MeV' has to be in the sample path! */
                 if (AnalyseFilePath == "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/5986MeV/OutPut_1e" ||
                     AnalyseFilePath == "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/5986MeV-BeamE-test/OutPut_1e" ||
@@ -273,9 +273,9 @@ string ExperimentParameters::ConfigureSampleName(const string &AnalyseFilePath, 
             BeamAt6GeV = DataSample = true;
             sName = "C12x4_data_6GeV";
         }
-    } else if (findSubstring(AnalyseFilePath, "Q2_th_test_samples")) {
-        if (findSubstring(AnalyseFilePath, "G18_10a_00_000")) {
-            if (findSubstring(AnalyseFilePath, "4029MeV")) {
+    } else if (FindSubstring(AnalyseFilePath, "Q2_th_test_samples")) {
+        if (FindSubstring(AnalyseFilePath, "G18_10a_00_000")) {
+            if (FindSubstring(AnalyseFilePath, "4029MeV")) {
                 if (AnalyseFilePath ==
                     "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/2N_Analysis_Reco_Samples/C12/G18_10a_00_000/Q2_th_test_samples/4029MeV/Q2_0_02") {  // C12, simulation, 4GeV,
                                                                                                                                                                    // ifarm (Q2 study;
@@ -589,7 +589,7 @@ string ExperimentParameters::ConfigureSampleName(const string &AnalyseFilePath, 
                         sName = "C12_simulation_G18_Q2_0_40_4GeV";
                     }
                 }
-            } else if (findSubstring(AnalyseFilePath, "5986MeV")) {
+            } else if (FindSubstring(AnalyseFilePath, "5986MeV")) {
                 if (AnalyseFilePath ==
                     "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/2N_Analysis_Reco_Samples/Ar40/G18_10a_00_000/Q2_th_test_samples/5986MeV/Q2_0_40") {  // Ar40, simulation, 6GeV,
                                                                                                                                                                     // ifarm (Q2 study;
@@ -960,8 +960,8 @@ string ExperimentParameters::ConfigureSampleName(const string &AnalyseFilePath, 
                     }
                 }
             }
-        } else if (findSubstring(AnalyseFilePath, "GEM21_11a_00_000")) {
-            if (findSubstring(AnalyseFilePath, "4029MeV")) {
+        } else if (FindSubstring(AnalyseFilePath, "GEM21_11a_00_000")) {
+            if (FindSubstring(AnalyseFilePath, "4029MeV")) {
                 if (AnalyseFilePath ==
                     "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/2N_Analysis_Reco_Samples/C12/GEM21_11a_00_000/Q2_th_test_samples/4029MeV/Q2_0_02") {  // C12, simulation, 4GeV,
                                                                                                                                                                      // ifarm (Q2 study;
@@ -1313,7 +1313,7 @@ string ExperimentParameters::ConfigureSampleName(const string &AnalyseFilePath, 
                         sName = "C12_simulation_SuSa_Q2_0_40_4GeV";
                     }
                 }
-            } else if (findSubstring(AnalyseFilePath, "5986MeV")) {
+            } else if (FindSubstring(AnalyseFilePath, "5986MeV")) {
                 if (AnalyseFilePath ==
                     "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/2N_Analysis_Reco_Samples/Ar40/GEM21_11a_00_000/Q2_th_test_samples/5986MeV/Q2_0_40") {  // Ar40, simulation,
                                                                                                                                                                       // 6GeV, ifarm (Q2
@@ -1787,17 +1787,17 @@ string ExperimentParameters::ConfigureSampleName(const string &AnalyseFilePath, 
 
 //<editor-fold desc="ConfigureVaryingSampleName function">
 void ExperimentParameters::ConfigureVaryingSampleName(const string &sn) {  // TODO: change this to VaryingSampleName of the appropriate data. currently the same for all data.
-    if (findSubstring(sn, "sim") || (findSubstring(sn, "Uniform") || findSubstring(sn, "iniform") || findSubstring(sn, "Isotrop") || findSubstring(sn, "isotrop"))) {  // Sample is simulation
+    if (FindSubstring(sn, "sim") || (FindSubstring(sn, "Uniform") || FindSubstring(sn, "iniform") || FindSubstring(sn, "Isotrop") || FindSubstring(sn, "isotrop"))) {  // Sample is simulation
         //        VaryingSampleName = SampleName;
         VaryingSampleName = "C12x4_simulation_G18_Q204_6GeV";
-    } else if (findSubstring(sn, "data")) {  // Sample is data
+    } else if (FindSubstring(sn, "data")) {  // Sample is data
         VaryingSampleName = "C12x4_simulation_G18_Q204_6GeV";
 
         cout << "\n====================================================================\n";
         cout << "\t\t\t\tVaryingSampleName is unifor to all samples!!!\n";
         cout << "\n====================================================================\n";
 
-        // if (findSubstring(sn, "C12") && BeamAt6GeV) {
+        // if (FindSubstring(sn, "C12") && BeamAt6GeV) {
         //     VaryingSampleName = "C12x4_simulation_G18_Q204_6GeV";
         // } else {
         //     cout << "\n\n\nExperimentParameters::GetVaryingSampleName: no corresponding simulation sample! Exiting...\n", exit(0);
@@ -1812,8 +1812,8 @@ void ExperimentParameters::ConfigureVaryingSampleName(const string &sn) {  // TO
 
 //<editor-fold desc="ConfigureVz_cuts function">
 void ExperimentParameters::ConfigureVz_cuts(const string &sn) {
-    if (findSubstring(sn, "Uniform")) {  // Sample is uniform simulation
-        if (findSubstring(sn, "2070MeV")) {
+    if (FindSubstring(sn, "Uniform")) {  // Sample is uniform simulation
+        if (FindSubstring(sn, "2070MeV")) {
             if (sn == "Uniform_1e_sample_2070MeV") {
                 Vz_cuts = DSCuts("Vertex z component", "", "", "1e cut", 0, -6., 0.);
                 Vz_cuts_FD = DSCuts("Vertex z component", "FD", "", "1e cut", 0, -6., 0.);
@@ -1836,7 +1836,7 @@ void ExperimentParameters::ConfigureVz_cuts(const string &sn) {
                 // Vz_cuts_FD = DSCuts("Vertex z component", "FD", "", "1e cut", 0, -10., 0.);
                 // Vz_cuts_CD = DSCuts("Vertex z component", "CD", "", "1e cut", 0, -5., -1.);
             }
-        } else if (findSubstring(sn, "4029MeV")) {
+        } else if (FindSubstring(sn, "4029MeV")) {
             if (sn == "Uniform_1e_sample_4029MeV") {
                 Vz_cuts = DSCuts("Vertex z component", "", "", "1e cut", 0, -5., -1.);
                 Vz_cuts_FD = DSCuts("Vertex z component", "FD", "", "1e cut", 0, -5., -1.);
@@ -1859,7 +1859,7 @@ void ExperimentParameters::ConfigureVz_cuts(const string &sn) {
                 // Vz_cuts_FD = DSCuts("Vertex z component", "FD", "", "1e cut", 0, -8., 3.);
                 // Vz_cuts_CD = DSCuts("Vertex z component", "CD", "", "1e cut", 0, -7., 2.);
             }
-        } else if (findSubstring(sn, "5986MeV")) {
+        } else if (FindSubstring(sn, "5986MeV")) {
             if (sn == "Uniform_1e_sample_5986MeV") {
                 Vz_cuts = DSCuts("Vertex z component", "", "", "1e cut", 0, -5., -1.);
                 Vz_cuts_FD = DSCuts("Vertex z component", "FD", "", "1e cut", 0, -5., -1.);
@@ -1883,7 +1883,7 @@ void ExperimentParameters::ConfigureVz_cuts(const string &sn) {
                 // Vz_cuts_CD = DSCuts("Vertex z component", "CD", "", "1e cut", 0, -7., 2.);
             }
         }
-    } else if (findSubstring(sn, "simulation")) {      // Sample is simulation
+    } else if (FindSubstring(sn, "simulation")) {      // Sample is simulation
         if (sn == "C12x4_simulation_G18_Q204_6GeV") {  // 4-foil
             Vz_cuts = DSCuts("Vertex z component", "", "", "1e cut", 0, -7., 2.);
             Vz_cuts_FD = DSCuts("Vertex z component", "FD", "", "1e cut", 0, -8., 3.);
@@ -1892,28 +1892,28 @@ void ExperimentParameters::ConfigureVz_cuts(const string &sn) {
             Vz_cuts = DSCuts("Vertex z component", "", "", "1e cut", 0, -5, 5);
             Vz_cuts_FD = DSCuts("Vertex z component", "FD", "", "1e cut", 0, -5, 5);
             Vz_cuts_CD = DSCuts("Vertex z component", "CD", "", "1e cut", 0, -2, 1);
-        } else if (findSubstring(sn, "C12_simulation_G18_Q2") && findSubstring(sn, "4GeV")) {  // 1-foil (Q2 study)
+        } else if (FindSubstring(sn, "C12_simulation_G18_Q2") && FindSubstring(sn, "4GeV")) {  // 1-foil (Q2 study)
             Vz_cuts = DSCuts("Vertex z component", "", "", "1e cut", 0, -3.5, 2.5);
             Vz_cuts_FD = DSCuts("Vertex z component", "FD", "", "1e cut", 0, -3.5, 2.5);
             Vz_cuts_CD = DSCuts("Vertex z component", "CD", "", "1e cut", 0, -1.5, 0.5);
             // Vz_cuts = DSCuts("Vertex z component", "", "", "1e cut", 0, -5, 5);
             // Vz_cuts_FD = DSCuts("Vertex z component", "FD", "", "1e cut", 0, -5, 5);
             // Vz_cuts_CD = DSCuts("Vertex z component", "CD", "", "1e cut", 0, -2, 1);
-        } else if (findSubstring(sn, "C12_simulation_SuSa_Q2") && findSubstring(sn, "4GeV")) {  // 1-foil (Q2 study)
+        } else if (FindSubstring(sn, "C12_simulation_SuSa_Q2") && FindSubstring(sn, "4GeV")) {  // 1-foil (Q2 study)
             Vz_cuts = DSCuts("Vertex z component", "", "", "1e cut", 0, -3.5, 2.5);
             Vz_cuts_FD = DSCuts("Vertex z component", "FD", "", "1e cut", 0, -3.5, 2.5);
             Vz_cuts_CD = DSCuts("Vertex z component", "CD", "", "1e cut", 0, -1.5, 0.5);
             // Vz_cuts = DSCuts("Vertex z component", "", "", "1e cut", 0, -5, 5);
             // Vz_cuts_FD = DSCuts("Vertex z component", "FD", "", "1e cut", 0, -5, 5);
             // Vz_cuts_CD = DSCuts("Vertex z component", "CD", "", "1e cut", 0, -2, 1);
-        } else if (findSubstring(sn, "Ar40_simulation_G18_Q2") && findSubstring(sn, "6GeV")) {  // argon (Q2 study)
+        } else if (FindSubstring(sn, "Ar40_simulation_G18_Q2") && FindSubstring(sn, "6GeV")) {  // argon (Q2 study)
             Vz_cuts = DSCuts("Vertex z component", "", "", "1e cut", 0, -8.5, -2.5);
             Vz_cuts_FD = DSCuts("Vertex z component", "FD", "", "1e cut", 0, -8.5, -2.5);
             Vz_cuts_CD = DSCuts("Vertex z component", "CD", "", "1e cut", 0, -6.5, -4);
             // Vz_cuts = DSCuts("Vertex z component", "", "", "1e cut", 0, -5, 5);
             // Vz_cuts_FD = DSCuts("Vertex z component", "FD", "", "1e cut", 0, -5, 5);
             // Vz_cuts_CD = DSCuts("Vertex z component", "CD", "", "1e cut", 0, -2, 1);
-        } else if (findSubstring(sn, "Ar40_simulation_SuSa_Q2") && findSubstring(sn, "6GeV")) {  // argon (Q2 study)
+        } else if (FindSubstring(sn, "Ar40_simulation_SuSa_Q2") && FindSubstring(sn, "6GeV")) {  // argon (Q2 study)
             Vz_cuts = DSCuts("Vertex z component", "", "", "1e cut", 0, -8.5, -2.5);
             Vz_cuts_FD = DSCuts("Vertex z component", "FD", "", "1e cut", 0, -8.5, -2.5);
             Vz_cuts_CD = DSCuts("Vertex z component", "CD", "", "1e cut", 0, -6.5, -4);
@@ -1921,7 +1921,7 @@ void ExperimentParameters::ConfigureVz_cuts(const string &sn) {
             // Vz_cuts_FD = DSCuts("Vertex z component", "FD", "", "1e cut", 0, -5, 5);
             // Vz_cuts_CD = DSCuts("Vertex z component", "CD", "", "1e cut", 0, -2, 1);
         }
-    } else if (findSubstring(sn, "data")) {  // Sample is data
+    } else if (FindSubstring(sn, "data")) {  // Sample is data
         if (sn == "Ar40_data_2GeV_run_015672") {
             Vz_cuts = DSCuts("Vertex z component", "", "", "1e cut", 0, -7., 2.);
             Vz_cuts_FD = DSCuts("Vertex z component", "FD", "", "1e cut", 0, -12., -3.);
@@ -1958,16 +1958,16 @@ void ExperimentParameters::ConfigureVz_cuts(const string &sn) {
             Vz_cuts = DSCuts("Vertex z component", "", "", "1e cut", 0, -7., 2.);
             Vz_cuts_FD = DSCuts("Vertex z component", "FD", "", "1e cut", 0, -7., 1.);
             Vz_cuts_CD = DSCuts("Vertex z component", "CD", "", "1e cut", 0, -7., 1.);
-        } else if (findSubstring(sn, "C12x4_data_6GeV_run_0151")) {
-            if (findSubstring(sn, "C12x4_data_6GeV_run_015186")) {  // 4-foil
+        } else if (FindSubstring(sn, "C12x4_data_6GeV_run_0151")) {
+            if (FindSubstring(sn, "C12x4_data_6GeV_run_015186")) {  // 4-foil
                 Vz_cuts = DSCuts("Vertex z component", "", "", "1e cut", 0, -7., 2.);
                 Vz_cuts_FD = DSCuts("Vertex z component", "FD", "", "1e cut", 0, -7., 2.);
                 Vz_cuts_CD = DSCuts("Vertex z component", "CD", "", "1e cut", 0, -7., 2.);
-            } else if (findSubstring(sn, "C12x4_data_6GeV_run_015187")) {  // 4-foil
+            } else if (FindSubstring(sn, "C12x4_data_6GeV_run_015187")) {  // 4-foil
                 Vz_cuts = DSCuts("Vertex z component", "", "", "1e cut", 0, -7., 2.);
                 Vz_cuts_FD = DSCuts("Vertex z component", "FD", "", "1e cut", 0, -7., 2.);
                 Vz_cuts_CD = DSCuts("Vertex z component", "CD", "", "1e cut", 0, -7., 2.);
-            } else if (findSubstring(sn, "C12x4_data_6GeV_run_015188")) {  // 4-foil
+            } else if (FindSubstring(sn, "C12x4_data_6GeV_run_015188")) {  // 4-foil
                 Vz_cuts = DSCuts("Vertex z component", "", "", "1e cut", 0, -7., 2.);
                 Vz_cuts_FD = DSCuts("Vertex z component", "FD", "", "1e cut", 0, -8., 3.);
                 //            Vz_cuts_FD = DSCuts("Vertex z component", "FD", "", "1e cut", 0, -7., 2.);
@@ -1998,8 +1998,8 @@ void ExperimentParameters::ConfigureVz_cuts(const string &sn) {
 
 //<editor-fold desc="ConfigureVz_cuts function">
 void ExperimentParameters::ConfiguredVz_cuts(const string &sn) {
-    if (findSubstring(sn, "Uniform")) {  // Sample is uniform simulation
-        if (findSubstring(sn, "2070MeV")) {
+    if (FindSubstring(sn, "Uniform")) {  // Sample is uniform simulation
+        if (FindSubstring(sn, "2070MeV")) {
             if (sn == "Uniform_1e_sample_2070MeV") {
                 dVz_cuts = DSCuts("dVz", "", "", "1e cut", 0, -9999, 9999);
                 dVz_cuts_FD = DSCuts("dVz", "FD", "", "1e cut", 0, -9999, 9999);
@@ -2022,7 +2022,7 @@ void ExperimentParameters::ConfiguredVz_cuts(const string &sn) {
                 // dVz_cuts_FD = DSCuts("dVz", "FD", "", "1e cut", 0, -9999, 9999);
                 // dVz_cuts_CD = DSCuts("dVz", "CD", "", "1e cut", 0, -9999, 9999);
             }
-        } else if (findSubstring(sn, "4029MeV")) {
+        } else if (FindSubstring(sn, "4029MeV")) {
             if (sn == "Uniform_1e_sample_4029MeV") {
                 dVz_cuts = DSCuts("dVz", "", "", "1e cut", 0, -9999, 9999);
                 dVz_cuts_FD = DSCuts("dVz", "FD", "", "1e cut", 0, -9999, 9999);
@@ -2045,7 +2045,7 @@ void ExperimentParameters::ConfiguredVz_cuts(const string &sn) {
                 // dVz_cuts_FD = DSCuts("dVz", "FD", "", "1e cut", 0, -5, 4);
                 // dVz_cuts_CD = DSCuts("dVz", "CD", "", "1e cut", 0, -5, 4);
             }
-        } else if (findSubstring(sn, "5986MeV")) {
+        } else if (FindSubstring(sn, "5986MeV")) {
             if (sn == "Uniform_1e_sample_5986MeV") {
                 dVz_cuts = DSCuts("dVz", "", "", "1e cut", 0, -9999, 9999);
                 dVz_cuts_FD = DSCuts("dVz", "FD", "", "1e cut", 0, -9999, 9999);
@@ -2069,7 +2069,7 @@ void ExperimentParameters::ConfiguredVz_cuts(const string &sn) {
                 // dVz_cuts_CD = DSCuts("dVz", "CD", "", "1e cut", 0, -5, 4);
             }
         }
-    } else if (findSubstring(sn, "simulation")) {      // Sample is simulation
+    } else if (FindSubstring(sn, "simulation")) {      // Sample is simulation
         if (sn == "C12x4_simulation_G18_Q204_6GeV") {  // 4-foil
             dVz_cuts = DSCuts("dVz", "", "", "1e cut", 0, -5, 4);
             dVz_cuts_FD = DSCuts("dVz", "FD", "", "1e cut", 0, -5, 4);
@@ -2078,28 +2078,28 @@ void ExperimentParameters::ConfiguredVz_cuts(const string &sn) {
             dVz_cuts = DSCuts("dVz", "", "", "1e cut", 0, -5, 4);
             dVz_cuts_FD = DSCuts("dVz", "FD", "", "1e cut", 0, -5, 4);
             dVz_cuts_CD = DSCuts("dVz", "CD", "", "1e cut", 0, -5, 4);
-        } else if (findSubstring(sn, "C12_simulation_G18_Q2") && findSubstring(sn, "4GeV")) {  // 1-foil (Q2 study)
+        } else if (FindSubstring(sn, "C12_simulation_G18_Q2") && FindSubstring(sn, "4GeV")) {  // 1-foil (Q2 study)
             dVz_cuts = DSCuts("dVz", "", "", "1e cut", 0, -2.5, 2.5);
             dVz_cuts_FD = DSCuts("dVz", "FD", "", "1e cut", 0, -2.5, 2.5);
             dVz_cuts_CD = DSCuts("dVz", "CD", "", "1e cut", 0, -2.5, 2.5);
             // dVz_cuts = DSCuts("dVz", "", "", "1e cut", 0, -5, 4);
             // dVz_cuts_FD = DSCuts("dVz", "FD", "", "1e cut", 0, -5, 4);
             // dVz_cuts_CD = DSCuts("dVz", "CD", "", "1e cut", 0, -5, 4);
-        } else if (findSubstring(sn, "C12_simulation_SuSa_Q2") && findSubstring(sn, "4GeV")) {  // 1-foil (Q2 study)
+        } else if (FindSubstring(sn, "C12_simulation_SuSa_Q2") && FindSubstring(sn, "4GeV")) {  // 1-foil (Q2 study)
             dVz_cuts = DSCuts("dVz", "", "", "1e cut", 0, -2.5, 2.5);
             dVz_cuts_FD = DSCuts("dVz", "FD", "", "1e cut", 0, -2.5, 2.5);
             dVz_cuts_CD = DSCuts("dVz", "CD", "", "1e cut", 0, -2.5, 2.5);
             // dVz_cuts = DSCuts("dVz", "", "", "1e cut", 0, -5, 4);
             // dVz_cuts_FD = DSCuts("dVz", "FD", "", "1e cut", 0, -5, 4);
             // dVz_cuts_CD = DSCuts("dVz", "CD", "", "1e cut", 0, -5, 4);
-        } else if (findSubstring(sn, "Ar40_simulation_G18_Q2") && findSubstring(sn, "6GeV")) {  // argon (Q2 study)
+        } else if (FindSubstring(sn, "Ar40_simulation_G18_Q2") && FindSubstring(sn, "6GeV")) {  // argon (Q2 study)
             dVz_cuts = DSCuts("dVz", "", "", "1e cut", 0, -2.5, 2.5);
             dVz_cuts_FD = DSCuts("dVz", "FD", "", "1e cut", 0, -2.5, 2.5);
             dVz_cuts_CD = DSCuts("dVz", "CD", "", "1e cut", 0, -2.5, 2.5);
             // dVz_cuts = DSCuts("dVz", "", "", "1e cut", 0, -5, 4);
             // dVz_cuts_FD = DSCuts("dVz", "FD", "", "1e cut", 0, -5, 4);
             // dVz_cuts_CD = DSCuts("dVz", "CD", "", "1e cut", 0, -5, 4);
-        } else if (findSubstring(sn, "Ar40_simulation_SuSa_Q2") && findSubstring(sn, "6GeV")) {  // argon (Q2 study)
+        } else if (FindSubstring(sn, "Ar40_simulation_SuSa_Q2") && FindSubstring(sn, "6GeV")) {  // argon (Q2 study)
             dVz_cuts = DSCuts("dVz", "", "", "1e cut", 0, -2.5, 2.5);
             dVz_cuts_FD = DSCuts("dVz", "FD", "", "1e cut", 0, -2.5, 2.5);
             dVz_cuts_CD = DSCuts("dVz", "CD", "", "1e cut", 0, -2.5, 2.5);
@@ -2107,7 +2107,7 @@ void ExperimentParameters::ConfiguredVz_cuts(const string &sn) {
             // dVz_cuts_FD = DSCuts("dVz", "FD", "", "1e cut", 0, -5, 4);
             // dVz_cuts_CD = DSCuts("dVz", "CD", "", "1e cut", 0, -5, 4);
         }
-    } else if (findSubstring(sn, "data")) {  // Sample is data
+    } else if (FindSubstring(sn, "data")) {  // Sample is data
         if (sn == "Ar40_data_2GeV_run_015672") {
             dVz_cuts = DSCuts("dVz", "", "", "1e cut", 0, -5, 4);
             dVz_cuts_FD = DSCuts("dVz", "FD", "", "1e cut", 0, -4, 8);
@@ -2144,16 +2144,16 @@ void ExperimentParameters::ConfiguredVz_cuts(const string &sn) {
             dVz_cuts = DSCuts("dVz", "", "", "1e cut", 0, -5, 4);
             dVz_cuts_FD = DSCuts("dVz", "FD", "", "1e cut", 0, -6, 2);
             dVz_cuts_CD = DSCuts("dVz", "CD", "", "1e cut", 0, -4, 2);
-        } else if (findSubstring(sn, "C12x4_data_6GeV_run_0151")) {
-            if (findSubstring(sn, "C12x4_data_6GeV_run_015186")) {  // 4-foil
+        } else if (FindSubstring(sn, "C12x4_data_6GeV_run_0151")) {
+            if (FindSubstring(sn, "C12x4_data_6GeV_run_015186")) {  // 4-foil
                 dVz_cuts = DSCuts("dVz", "", "", "1e cut", 0, -5, 4);
                 dVz_cuts_FD = DSCuts("dVz", "FD", "", "1e cut", 0, -5, 4);
                 dVz_cuts_CD = DSCuts("dVz", "CD", "", "1e cut", 0, -5, 4);
-            } else if (findSubstring(sn, "C12x4_data_6GeV_run_015187")) {  // 4-foil
+            } else if (FindSubstring(sn, "C12x4_data_6GeV_run_015187")) {  // 4-foil
                 dVz_cuts = DSCuts("dVz", "", "", "1e cut", 0, -5, 4);
                 dVz_cuts_FD = DSCuts("dVz", "FD", "", "1e cut", 0, -5, 4);
                 dVz_cuts_CD = DSCuts("dVz", "CD", "", "1e cut", 0, -5, 4);
-            } else if (findSubstring(sn, "C12x4_data_6GeV_run_015188")) {  // 4-foil
+            } else if (FindSubstring(sn, "C12x4_data_6GeV_run_015188")) {  // 4-foil
                 dVz_cuts = DSCuts("dVz", "", "", "1e cut", 0, -5, 4);
                 dVz_cuts_FD = DSCuts("dVz", "FD", "", "1e cut", 0, -5, 4);
                 dVz_cuts_CD = DSCuts("dVz", "CD", "", "1e cut", 0, -5, 4);
@@ -2187,14 +2187,14 @@ double ExperimentParameters::ConfigureBeamEnergy(const string &sn) {
 
     double be;
 
-    if (findSubstring(sn, "598636MeV") || findSubstring(sn, "598636mev") || findSubstring(sn, "598636") || findSubstring(sn, "5986MeV") || findSubstring(sn, "5986mev") ||
-        findSubstring(sn, "5986") || findSubstring(sn, "6GeV") || findSubstring(sn, "6Gev") || findSubstring(sn, "6gev")) {
+    if (FindSubstring(sn, "598636MeV") || FindSubstring(sn, "598636mev") || FindSubstring(sn, "598636") || FindSubstring(sn, "5986MeV") || FindSubstring(sn, "5986mev") ||
+        FindSubstring(sn, "5986") || FindSubstring(sn, "6GeV") || FindSubstring(sn, "6Gev") || FindSubstring(sn, "6gev")) {
         be = 5.98636;
-    } else if (findSubstring(sn, "402962MeV") || findSubstring(sn, "402962mev") || findSubstring(sn, "402962") || findSubstring(sn, "4029MeV") || findSubstring(sn, "4029mev") ||
-               findSubstring(sn, "4029") || findSubstring(sn, "4GeV") || findSubstring(sn, "4Gev") || findSubstring(sn, "4gev")) {
+    } else if (FindSubstring(sn, "402962MeV") || FindSubstring(sn, "402962mev") || FindSubstring(sn, "402962") || FindSubstring(sn, "4029MeV") || FindSubstring(sn, "4029mev") ||
+               FindSubstring(sn, "4029") || FindSubstring(sn, "4GeV") || FindSubstring(sn, "4Gev") || FindSubstring(sn, "4gev")) {
         be = 4.02962;
-    } else if (findSubstring(sn, "207052MeV") || findSubstring(sn, "207052mev") || findSubstring(sn, "207052") || findSubstring(sn, "2070MeV") || findSubstring(sn, "2070mev") ||
-               findSubstring(sn, "2070") || findSubstring(sn, "2GeV") || findSubstring(sn, "2Gev") || findSubstring(sn, "2gev")) {
+    } else if (FindSubstring(sn, "207052MeV") || FindSubstring(sn, "207052mev") || FindSubstring(sn, "207052") || FindSubstring(sn, "2070MeV") || FindSubstring(sn, "2070mev") ||
+               FindSubstring(sn, "2070") || FindSubstring(sn, "2GeV") || FindSubstring(sn, "2Gev") || FindSubstring(sn, "2gev")) {
         be = 2.07052;
     }
 

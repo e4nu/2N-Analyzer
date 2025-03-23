@@ -2,8 +2,8 @@
 // Created by Alon Sportes on 13/03/2025.
 //
 
-#ifndef DATA_FillHistogramByProcessOR_H
-#define DATA_FillHistogramByProcessOR_H
+#ifndef DATA_PROCESSOR_H
+#define DATA_PROCESSOR_H
 
 #include <map>
 #include <string>
@@ -16,7 +16,7 @@
 
 using namespace std;
 
-namespace data_FillHistogramByProcessor {
+namespace data_processor {
 using namespace utilities;
 // GetFS function -------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -474,6 +474,6 @@ string SetSaveDir(const string &Source, const string &BaseSaveDir, const string 
     }
 }
 
-}  // namespace data_FillHistogramByProcessor
+}  // namespace data_processor
 
-#endif  // DATA_FillHistogramByProcessOR_H
+#endif  // DATA_PROCESSOR_H
