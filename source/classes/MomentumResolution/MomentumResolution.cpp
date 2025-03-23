@@ -102,13 +102,13 @@ void MomentumResolution::MomResInit(const bool &plot_and_fit_MomRes, const bool 
                 ReadResDataParam(ProtonSmearingDataFile.c_str(), Calculate_momResS2, SampleName, NucleonCutsDirectory, "reco", false, true);
 
                 //<editor-fold desc="Safety checks for data files">
-                if (!findSubstring(NeutronCorrectionDataFile, "Neutron") || findSubstring(NeutronCorrectionDataFile, "Proton")) {
+                if (!FindSubstring(NeutronCorrectionDataFile, "Neutron") || FindSubstring(NeutronCorrectionDataFile, "Proton")) {
                     cout << "\n\nMomentumResolution::MomentumResolution: neutron correction variables are not being loaded from neutron data! "
                             "Exiting...\n\n",
                         exit(0);
                 }
 
-                if (!findSubstring(ProtonSmearingDataFile, "Neutron") || findSubstring(ProtonSmearingDataFile, "Proton")) {
+                if (!FindSubstring(ProtonSmearingDataFile, "Neutron") || FindSubstring(ProtonSmearingDataFile, "Proton")) {
                     cout << "\n\nMomentumResolution::MomentumResolution: proton smearing variables are not being loaded from neutron data! "
                             "Exiting...\n\n",
                         exit(0);
@@ -125,11 +125,11 @@ void MomentumResolution::MomResInit(const bool &plot_and_fit_MomRes, const bool 
                 ReadResDataParam(ProtonSmearingDataFile.c_str(), Calculate_momResS2, SampleName, NucleonCutsDirectory, "reco", false, true);
 
                 //<editor-fold desc="Safety checks for data files">
-                if (!findSubstring(NeutronCorrectionDataFile, "Neutron") || findSubstring(NeutronCorrectionDataFile, "Proton")) {
+                if (!FindSubstring(NeutronCorrectionDataFile, "Neutron") || FindSubstring(NeutronCorrectionDataFile, "Proton")) {
                     cout << "\n\nMomentumResolution::MomentumResolution: neutron correction variables are not being loaded from neutron data! Exiting...\n\n", exit(0);
                 }
 
-                if (!findSubstring(ProtonSmearingDataFile, "Neutron") || findSubstring(ProtonSmearingDataFile, "Proton")) {
+                if (!FindSubstring(ProtonSmearingDataFile, "Neutron") || FindSubstring(ProtonSmearingDataFile, "Proton")) {
                     cout << "\n\nMomentumResolution::MomentumResolution: proton smearing variables are not being loaded from neutron data! Exiting...\n\n", exit(0);
                 }
                 //</editor-fold>
@@ -258,25 +258,25 @@ void MomentumResolution::SetMomResSlices(const string &SampleName, const string 
         DSCuts ResSliceFitCuts;
 
         if (isNeutron) {
-            hStatsTitle = "n res. - " + to_string_with_precision(SliceLowerLim, 2) + "#leqP^{" + MomentumType + "}_{nFD}#leq" +
-                          to_string_with_precision(SliceUpperLim, SliceUpperLimPrecision) + " [GeV/c]";
-            hTitle = "Neutron resolution for " + to_string_with_precision(SliceLowerLim, 2) + "#leqP^{" + MomentumType + "}_{nFD}#leq" +
-                     to_string_with_precision(SliceUpperLim, SliceUpperLimPrecision) + " [GeV/c]";
-            hSaveName = to_string(SliceNumber) + "_res_plot_for_" + MomentumType + "_P_n_from_" + to_string_with_precision(SliceLowerLim, 2) + "_to_" +
-                        to_string_with_precision(SliceUpperLim, SliceUpperLimPrecision);
-            hCutName = "Slice_#" + to_string(SliceNumber) + "_from_" + to_string_with_precision(SliceLowerLim, 2) + "_to_" + to_string_with_precision(SliceUpperLim, SliceUpperLimPrecision);
+            hStatsTitle = "n res. - " + ToStringWithPrecision(SliceLowerLim, 2) + "#leqP^{" + MomentumType + "}_{nFD}#leq" +
+                          ToStringWithPrecision(SliceUpperLim, SliceUpperLimPrecision) + " [GeV/c]";
+            hTitle = "Neutron resolution for " + ToStringWithPrecision(SliceLowerLim, 2) + "#leqP^{" + MomentumType + "}_{nFD}#leq" +
+                     ToStringWithPrecision(SliceUpperLim, SliceUpperLimPrecision) + " [GeV/c]";
+            hSaveName = to_string(SliceNumber) + "_res_plot_for_" + MomentumType + "_P_n_from_" + ToStringWithPrecision(SliceLowerLim, 2) + "_to_" +
+                        ToStringWithPrecision(SliceUpperLim, SliceUpperLimPrecision);
+            hCutName = "Slice_#" + to_string(SliceNumber) + "_from_" + ToStringWithPrecision(SliceLowerLim, 2) + "_to_" + ToStringWithPrecision(SliceUpperLim, SliceUpperLimPrecision);
 
             hResolutionSlice = hPlot1D("1n", "FD", hStatsTitle, hTitle, "R_{nFD} = (P^{truth}_{nFD} - P^{reco}_{nFD})/P^{truth}_{nFD}", SlicesSavePath, hSaveName, hSliceLowerLim,
                                        hSliceUpperLim, hSliceNumOfBin);
             ResSliceFitCuts = DSCuts(("fit_" + MomentumType + "_" + hCutName), "FD", "Neutron", "1n", 0, -9999, 9999);
         } else if (isProton) {
-            hStatsTitle = "p res. - " + to_string_with_precision(SliceLowerLim, 2) + "#leqP^{" + MomentumType + "}_{pFD}#leq" +
-                          to_string_with_precision(SliceUpperLim, SliceUpperLimPrecision) + " [GeV/c]";
-            hTitle = "Proton resolution for " + to_string_with_precision(SliceLowerLim, 2) + "#leqP^{" + MomentumType + "}_{pFD}#leq" +
-                     to_string_with_precision(SliceUpperLim, SliceUpperLimPrecision) + " [GeV/c]";
-            hSaveName = to_string(SliceNumber) + "_res_plot_for_" + MomentumType + "_P_p_from_" + to_string_with_precision(SliceLowerLim, 2) + "_to_" +
-                        to_string_with_precision(SliceUpperLim, SliceUpperLimPrecision);
-            hCutName = "Slice_#" + to_string(SliceNumber) + "_from_" + to_string_with_precision(SliceLowerLim, 2) + "_to_" + to_string_with_precision(SliceUpperLim, SliceUpperLimPrecision);
+            hStatsTitle = "p res. - " + ToStringWithPrecision(SliceLowerLim, 2) + "#leqP^{" + MomentumType + "}_{pFD}#leq" +
+                          ToStringWithPrecision(SliceUpperLim, SliceUpperLimPrecision) + " [GeV/c]";
+            hTitle = "Proton resolution for " + ToStringWithPrecision(SliceLowerLim, 2) + "#leqP^{" + MomentumType + "}_{pFD}#leq" +
+                     ToStringWithPrecision(SliceUpperLim, SliceUpperLimPrecision) + " [GeV/c]";
+            hSaveName = to_string(SliceNumber) + "_res_plot_for_" + MomentumType + "_P_p_from_" + ToStringWithPrecision(SliceLowerLim, 2) + "_to_" +
+                        ToStringWithPrecision(SliceUpperLim, SliceUpperLimPrecision);
+            hCutName = "Slice_#" + to_string(SliceNumber) + "_from_" + ToStringWithPrecision(SliceLowerLim, 2) + "_to_" + ToStringWithPrecision(SliceUpperLim, SliceUpperLimPrecision);
 
             if (!momResS2CalcMode || !momResS2RunMode) {
                 if (ForceSmallpResLimits) {
@@ -436,11 +436,11 @@ void MomentumResolution::LoadFitParam(const string &SampleName, const string &Nu
             ReadResDataParam(ProtonSmearingDataFile.c_str(), Calculate_momResS2, SampleName, NucleonCutsDirectory, "reco", false, true);
 
             //<editor-fold desc="Safety checks for data files">
-            if (!findSubstring(NeutronCorrectionDataFile, "Neutron") || findSubstring(NeutronCorrectionDataFile, "Proton")) {
+            if (!FindSubstring(NeutronCorrectionDataFile, "Neutron") || FindSubstring(NeutronCorrectionDataFile, "Proton")) {
                 cout << "\n\nMomentumResolution::MomentumResolution: neutron correction variables are not being loaded from neutron data! Exiting...\n\n", exit(0);
             }
 
-            if (!findSubstring(ProtonSmearingDataFile, "Neutron") || findSubstring(ProtonSmearingDataFile, "Proton")) {
+            if (!FindSubstring(ProtonSmearingDataFile, "Neutron") || FindSubstring(ProtonSmearingDataFile, "Proton")) {
                 cout << "\n\nMomentumResolution::MomentumResolution: proton smearing variables are not being loaded from neutron data! Exiting...\n\n", exit(0);
             }
             //</editor-fold>
@@ -460,11 +460,11 @@ void MomentumResolution::LoadFitParam(const string &SampleName, const string &Nu
             ReadResDataParam(ProtonSmearingDataFile.c_str(), Calculate_momResS2, SampleName, NucleonCutsDirectory, "reco", false, true);
 
             //<editor-fold desc="Safety checks for data files">
-            if (!findSubstring(NeutronCorrectionDataFile, "Neutron") || findSubstring(NeutronCorrectionDataFile, "Proton")) {
+            if (!FindSubstring(NeutronCorrectionDataFile, "Neutron") || FindSubstring(NeutronCorrectionDataFile, "Proton")) {
                 cout << "\n\nMomentumResolution::MomentumResolution: neutron correction variables are not being loaded from neutron data! Exiting...\n\n", exit(0);
             }
 
-            if (!findSubstring(ProtonSmearingDataFile, "Neutron") || findSubstring(ProtonSmearingDataFile, "Proton")) {
+            if (!FindSubstring(ProtonSmearingDataFile, "Neutron") || FindSubstring(ProtonSmearingDataFile, "Proton")) {
                 cout << "\n\nMomentumResolution::MomentumResolution: proton smearing variables are not being loaded from neutron data! Exiting...\n\n", exit(0);
             }
             //</editor-fold>
@@ -587,9 +587,9 @@ void MomentumResolution::SliceFitDrawAndSave(const string &SampleName, const dou
         //<editor-fold desc="Setting sNameFlag">
         string sNameFlag;
 
-        if (findSubstring(SampleName, "sim")) {
+        if (FindSubstring(SampleName, "sim")) {
             sNameFlag = "s";
-        } else if (findSubstring(SampleName, "data")) {
+        } else if (FindSubstring(SampleName, "data")) {
             sNameFlag = "d";
         }
         //</editor-fold>
@@ -690,9 +690,9 @@ void MomentumResolution::SliceFitDrawAndSave(const string &SampleName, const dou
             TPaveText *FitParam = new TPaveText(x_1_FitParam, y_1_FitParam, x_2_FitParam, y_2_FitParam - 0.025, "NDC");
             FitParam->SetBorderSize(1), FitParam->SetFillColor(0);
             FitParam->SetTextAlign(12), FitParam->SetTextFont(42), FitParam->SetTextSize(0.03);
-            FitParam->AddText(("Fit amp = " + to_string_with_precision(FitAmp, 4)).c_str());
-            FitParam->AddText(("Fit #mu_{" + SliceFitterParticle + "} = " + to_string_with_precision(FitMean, 4)).c_str());
-            FitParam->AddText(("Fit #sigma_{" + SliceFitterParticle + "} = " + to_string_with_precision(FitStd, 4)).c_str());
+            FitParam->AddText(("Fit amp = " + ToStringWithPrecision(FitAmp, 4)).c_str());
+            FitParam->AddText(("Fit #mu_{" + SliceFitterParticle + "} = " + ToStringWithPrecision(FitMean, 4)).c_str());
+            FitParam->AddText(("Fit #sigma_{" + SliceFitterParticle + "} = " + ToStringWithPrecision(FitStd, 4)).c_str());
             FitParam->Draw("same");
 
             int SliceUpperLimPrecision;
@@ -1151,17 +1151,17 @@ void MomentumResolution::PolyFitter(const string &MomentumType, const int &Polyn
     FitParam->SetBorderSize(1), FitParam->SetFillColor(0), FitParam->SetTextAlign(12), FitParam->SetTextFont(42), FitParam->SetTextSize(0.03);
 
     if (PolynomialDegree == 1) {
-        FitParam->AddText(("A = " + to_string_with_precision(FitParamResults.at(0).at(0), 4) + " #pm " + to_string_with_precision(FitParamResults.at(1).at(0), 4)).c_str());
-        FitParam->AddText(("B = " + to_string_with_precision(FitParamResults.at(0).at(1), 4) + " #pm " + to_string_with_precision(FitParamResults.at(1).at(1), 4)).c_str());
+        FitParam->AddText(("A = " + ToStringWithPrecision(FitParamResults.at(0).at(0), 4) + " #pm " + ToStringWithPrecision(FitParamResults.at(1).at(0), 4)).c_str());
+        FitParam->AddText(("B = " + ToStringWithPrecision(FitParamResults.at(0).at(1), 4) + " #pm " + ToStringWithPrecision(FitParamResults.at(1).at(1), 4)).c_str());
     } else if (PolynomialDegree == 2) {
-        FitParam->AddText(("A = " + to_string_with_precision(FitParamResults.at(0).at(0), 4) + " #pm " + to_string_with_precision(FitParamResults.at(1).at(0), 4)).c_str());
-        FitParam->AddText(("B = " + to_string_with_precision(FitParamResults.at(0).at(1), 4) + " #pm " + to_string_with_precision(FitParamResults.at(1).at(1), 4)).c_str());
-        FitParam->AddText(("C = " + to_string_with_precision(FitParamResults.at(0).at(2), 4) + " #pm " + to_string_with_precision(FitParamResults.at(1).at(2), 4)).c_str());
+        FitParam->AddText(("A = " + ToStringWithPrecision(FitParamResults.at(0).at(0), 4) + " #pm " + ToStringWithPrecision(FitParamResults.at(1).at(0), 4)).c_str());
+        FitParam->AddText(("B = " + ToStringWithPrecision(FitParamResults.at(0).at(1), 4) + " #pm " + ToStringWithPrecision(FitParamResults.at(1).at(1), 4)).c_str());
+        FitParam->AddText(("C = " + ToStringWithPrecision(FitParamResults.at(0).at(2), 4) + " #pm " + ToStringWithPrecision(FitParamResults.at(1).at(2), 4)).c_str());
     } else if (PolynomialDegree == 3) {
-        FitParam->AddText(("A = " + to_string_with_precision(FitParamResults.at(0).at(0), 4) + " #pm " + to_string_with_precision(FitParamResults.at(1).at(0), 4)).c_str());
-        FitParam->AddText(("B = " + to_string_with_precision(FitParamResults.at(0).at(1), 4) + " #pm " + to_string_with_precision(FitParamResults.at(1).at(1), 4)).c_str());
-        FitParam->AddText(("C = " + to_string_with_precision(FitParamResults.at(0).at(2), 4) + " #pm " + to_string_with_precision(FitParamResults.at(1).at(2), 4)).c_str());
-        FitParam->AddText(("D = " + to_string_with_precision(FitParamResults.at(0).at(3), 4) + " #pm " + to_string_with_precision(FitParamResults.at(1).at(3), 4)).c_str());
+        FitParam->AddText(("A = " + ToStringWithPrecision(FitParamResults.at(0).at(0), 4) + " #pm " + ToStringWithPrecision(FitParamResults.at(1).at(0), 4)).c_str());
+        FitParam->AddText(("B = " + ToStringWithPrecision(FitParamResults.at(0).at(1), 4) + " #pm " + ToStringWithPrecision(FitParamResults.at(1).at(1), 4)).c_str());
+        FitParam->AddText(("C = " + ToStringWithPrecision(FitParamResults.at(0).at(2), 4) + " #pm " + ToStringWithPrecision(FitParamResults.at(1).at(2), 4)).c_str());
+        FitParam->AddText(("D = " + ToStringWithPrecision(FitParamResults.at(0).at(3), 4) + " #pm " + ToStringWithPrecision(FitParamResults.at(1).at(3), 4)).c_str());
     }
 
     FitParam->AddText(("Fit #chi^{2} = " + to_string(FitParamResults.at(2).at(0))).c_str());
@@ -1572,7 +1572,7 @@ void MomentumResolution::ReadResDataParam(const char *filename, const bool &Calc
             ss >> parameter;  // get cut identifier
 
             if (!Load_correction && !Load_smearing) {
-                if (findSubstring(parameter, "fit_" + MomentumType + "_" + "Slice_#")) {
+                if (FindSubstring(parameter, "fit_" + MomentumType + "_" + "Slice_#")) {
                     // get cut values
                     ss >> parameter2;
                     stringstream ss2(parameter2);
@@ -1605,7 +1605,7 @@ void MomentumResolution::ReadResDataParam(const char *filename, const bool &Calc
                     TempFitCut.SetSliceNumber(SliceNumberTemp);
 
                     Loaded_Res_Slices_FitVar.push_back(TempFitCut);
-                } else if (findSubstring(parameter, "hist_" + MomentumType + "_" + "Slice_#")) {
+                } else if (FindSubstring(parameter, "hist_" + MomentumType + "_" + "Slice_#")) {
                     // get cut values
                     ss >> parameter2;
                     stringstream ss2(parameter2);
@@ -1644,7 +1644,7 @@ void MomentumResolution::ReadResDataParam(const char *filename, const bool &Calc
                 stringstream ss2(parameter2);
 
                 // TODO: reorganize these into vectors!
-                if (Load_correction && findSubstring(parameter, MomentumType) && findSubstring(parameter, "Corr")) {
+                if (Load_correction && FindSubstring(parameter, MomentumType) && FindSubstring(parameter, "Corr")) {
                     Loaded_Corr_coefficients_path = filename;
 
                     //<editor-fold desc="Safety checks for loading correction variables">
@@ -1655,8 +1655,8 @@ void MomentumResolution::ReadResDataParam(const char *filename, const bool &Calc
                     }
                     //</editor-fold>
 
-                    if (findSubstring(parameter, "pol1") && findSubstring(CorrMode, "pol1")) {
-                        if (findSubstring(parameter, "pol1_wKC") && findSubstring(CorrMode, "pol1_wKC")) {
+                    if (FindSubstring(parameter, "pol1") && FindSubstring(CorrMode, "pol1")) {
+                        if (FindSubstring(parameter, "pol1_wKC") && FindSubstring(CorrMode, "pol1_wKC")) {
                             if (MomentumType == "truth") {
                                 AutoReader(MomentumType, 1, parameter, ss2, Loaded_TL_FitParam_Corr_pol1_wKC);
                                 //                                AutoReader(MomentumType, 1, parameter, ss2, Loaded_TL_FitParam_Corr_pol1_wKC, Loaded_Corr_coefficients_values,
@@ -1666,7 +1666,7 @@ void MomentumResolution::ReadResDataParam(const char *filename, const bool &Calc
                                 //                                AutoReader(MomentumType, 1, parameter, ss2, Loaded_Reco_FitParam_Corr_pol1_wKC, Loaded_Corr_coefficients_values,
                                 //                                           Loaded_Corr_coefficients_names);
                             }
-                        } else if (findSubstring(parameter, "pol1") && !findSubstring(CorrMode, "pol1_wKC")) {
+                        } else if (FindSubstring(parameter, "pol1") && !FindSubstring(CorrMode, "pol1_wKC")) {
                             if (MomentumType == "truth") {
                                 AutoReader(MomentumType, 1, parameter, ss2, Loaded_TL_FitParam_Corr_pol1);
                                 //                                AutoReader(MomentumType, 1, parameter, ss2, Loaded_TL_FitParam_Corr_pol1, Loaded_Corr_coefficients_values,
@@ -1677,8 +1677,8 @@ void MomentumResolution::ReadResDataParam(const char *filename, const bool &Calc
                                 //                                           Loaded_Corr_coefficients_names);
                             }
                         }
-                    } else if (findSubstring(parameter, "pol2") && findSubstring(CorrMode, "pol2")) {
-                        if (findSubstring(parameter, "pol2_wKC") && findSubstring(CorrMode, "pol2_wKC")) {
+                    } else if (FindSubstring(parameter, "pol2") && FindSubstring(CorrMode, "pol2")) {
+                        if (FindSubstring(parameter, "pol2_wKC") && FindSubstring(CorrMode, "pol2_wKC")) {
                             if (MomentumType == "truth") {
                                 AutoReader(MomentumType, 2, parameter, ss2, Loaded_TL_FitParam_Corr_pol2_wKC);
                                 //                                AutoReader(MomentumType, 2, parameter, ss2, Loaded_TL_FitParam_Corr_pol2_wKC, Loaded_Corr_coefficients_values,
@@ -1688,7 +1688,7 @@ void MomentumResolution::ReadResDataParam(const char *filename, const bool &Calc
                                 //                                AutoReader(MomentumType, 2, parameter, ss2, Loaded_Reco_FitParam_Corr_pol2_wKC, Loaded_Corr_coefficients_values,
                                 //                                           Loaded_Corr_coefficients_names);
                             }
-                        } else if (findSubstring(parameter, "pol2") && !findSubstring(CorrMode, "pol2_wKC")) {
+                        } else if (FindSubstring(parameter, "pol2") && !FindSubstring(CorrMode, "pol2_wKC")) {
                             if (MomentumType == "truth") {
                                 AutoReader(MomentumType, 2, parameter, ss2, Loaded_TL_FitParam_Corr_pol2);
                                 //                                AutoReader(MomentumType, 2, parameter, ss2, Loaded_TL_FitParam_Corr_pol2, Loaded_Corr_coefficients_values,
@@ -1699,8 +1699,8 @@ void MomentumResolution::ReadResDataParam(const char *filename, const bool &Calc
                                 //                                           Loaded_Corr_coefficients_names);
                             }
                         }
-                    } else if (findSubstring(parameter, "pol3") && findSubstring(CorrMode, "pol3")) {
-                        if (findSubstring(parameter, "pol3_wKC") && findSubstring(CorrMode, "pol3_wKC")) {
+                    } else if (FindSubstring(parameter, "pol3") && FindSubstring(CorrMode, "pol3")) {
+                        if (FindSubstring(parameter, "pol3_wKC") && FindSubstring(CorrMode, "pol3_wKC")) {
                             if (MomentumType == "truth") {
                                 AutoReader(MomentumType, 3, parameter, ss2, Loaded_TL_FitParam_Corr_pol3_wKC);
                                 //                                AutoReader(MomentumType, 3, parameter, ss2, Loaded_TL_FitParam_Corr_pol3_wKC, Loaded_Corr_coefficients_values,
@@ -1710,7 +1710,7 @@ void MomentumResolution::ReadResDataParam(const char *filename, const bool &Calc
                                 //                                AutoReader(MomentumType, 3, parameter, ss2, Loaded_Reco_FitParam_Corr_pol3_wKC, Loaded_Corr_coefficients_values,
                                 //                                           Loaded_Corr_coefficients_names);
                             }
-                        } else if (findSubstring(parameter, "pol3") && !findSubstring(CorrMode, "pol3_wKC")) {
+                        } else if (FindSubstring(parameter, "pol3") && !FindSubstring(CorrMode, "pol3_wKC")) {
                             if (MomentumType == "truth") {
                                 AutoReader(MomentumType, 3, parameter, ss2, Loaded_TL_FitParam_Corr_pol3);
                                 //                                AutoReader(MomentumType, 3, parameter, ss2, Loaded_TL_FitParam_Corr_pol3, Loaded_Corr_coefficients_values,
@@ -1722,7 +1722,7 @@ void MomentumResolution::ReadResDataParam(const char *filename, const bool &Calc
                             }
                         }
                     }
-                } else if (Load_smearing && findSubstring(parameter, MomentumType) && findSubstring(parameter, "Smear")) {
+                } else if (Load_smearing && FindSubstring(parameter, MomentumType) && FindSubstring(parameter, "Smear")) {
                     Loaded_Std_coefficients_path = filename;
 
                     //<editor-fold desc="Safety checks for loading smearing variables">
@@ -1733,8 +1733,8 @@ void MomentumResolution::ReadResDataParam(const char *filename, const bool &Calc
                     }
                     //</editor-fold>
 
-                    if (findSubstring(parameter, "pol1") && findSubstring(SmearMode, "pol1")) {
-                        if (findSubstring(parameter, "pol1_wKC") && findSubstring(SmearMode, "pol1_wKC")) {
+                    if (FindSubstring(parameter, "pol1") && FindSubstring(SmearMode, "pol1")) {
+                        if (FindSubstring(parameter, "pol1_wKC") && FindSubstring(SmearMode, "pol1_wKC")) {
                             if (MomentumType == "truth") {
                                 AutoReader(MomentumType, 1, parameter, ss2, Loaded_TL_FitParam_Smear_pol1_wKC);
                                 //                                AutoReader(MomentumType, 1, parameter, ss2, Loaded_TL_FitParam_Smear_pol1_wKC, Loaded_Smear_coefficients_values,
@@ -1742,7 +1742,7 @@ void MomentumResolution::ReadResDataParam(const char *filename, const bool &Calc
                             } else if (MomentumType == "reco") {
                                 AutoReader(MomentumType, 1, parameter, ss2, Loaded_Reco_FitParam_Smear_pol1_wKC);
                             }
-                        } else if (findSubstring(parameter, "pol1") && !findSubstring(SmearMode, "pol1_wKC")) {
+                        } else if (FindSubstring(parameter, "pol1") && !FindSubstring(SmearMode, "pol1_wKC")) {
                             if (MomentumType == "truth") {
                                 AutoReader(MomentumType, 1, parameter, ss2, Loaded_TL_FitParam_Smear_pol1);
                                 //                                AutoReader(MomentumType, 1, parameter, ss2, Loaded_TL_FitParam_Smear_pol1, Loaded_Smear_coefficients_values,
@@ -1753,8 +1753,8 @@ void MomentumResolution::ReadResDataParam(const char *filename, const bool &Calc
                                 //                                           Loaded_Smear_coefficients_names);
                             }
                         }
-                    } else if (findSubstring(parameter, "pol2") && findSubstring(SmearMode, "pol2")) {
-                        if (findSubstring(parameter, "pol2_wKC") && findSubstring(SmearMode, "pol2_wKC")) {
+                    } else if (FindSubstring(parameter, "pol2") && FindSubstring(SmearMode, "pol2")) {
+                        if (FindSubstring(parameter, "pol2_wKC") && FindSubstring(SmearMode, "pol2_wKC")) {
                             if (MomentumType == "truth") {
                                 AutoReader(MomentumType, 2, parameter, ss2, Loaded_TL_FitParam_Smear_pol2_wKC);
                                 //                                AutoReader(MomentumType, 2, parameter, ss2, Loaded_TL_FitParam_Smear_pol2_wKC, Loaded_Smear_coefficients_values,
@@ -1764,7 +1764,7 @@ void MomentumResolution::ReadResDataParam(const char *filename, const bool &Calc
                                 //                                AutoReader(MomentumType, 2, parameter, ss2, Loaded_Reco_FitParam_Smear_pol2_wKC, Loaded_Smear_coefficients_values,
                                 //                                           Loaded_Smear_coefficients_names);
                             }
-                        } else if (findSubstring(parameter, "pol2") && !findSubstring(SmearMode, "pol2_wKC")) {
+                        } else if (FindSubstring(parameter, "pol2") && !FindSubstring(SmearMode, "pol2_wKC")) {
                             if (MomentumType == "truth") {
                                 AutoReader(MomentumType, 2, parameter, ss2, Loaded_TL_FitParam_Smear_pol2);
                                 //                                AutoReader(MomentumType, 2, parameter, ss2, Loaded_TL_FitParam_Smear_pol2, Loaded_Smear_coefficients_values,
@@ -1775,8 +1775,8 @@ void MomentumResolution::ReadResDataParam(const char *filename, const bool &Calc
                                 //                                           Loaded_Smear_coefficients_names);
                             }
                         }
-                    } else if (findSubstring(parameter, "pol3") && findSubstring(SmearMode, "pol3")) {
-                        if (findSubstring(parameter, "pol3_wKC") && findSubstring(SmearMode, "pol3_wKC")) {
+                    } else if (FindSubstring(parameter, "pol3") && FindSubstring(SmearMode, "pol3")) {
+                        if (FindSubstring(parameter, "pol3_wKC") && FindSubstring(SmearMode, "pol3_wKC")) {
                             if (MomentumType == "truth") {
                                 AutoReader(MomentumType, 3, parameter, ss2, Loaded_TL_FitParam_Smear_pol3_wKC);
                                 //                                AutoReader(MomentumType, 3, parameter, ss2, Loaded_TL_FitParam_Smear_pol3_wKC, Loaded_Smear_coefficients_values,
@@ -1786,7 +1786,7 @@ void MomentumResolution::ReadResDataParam(const char *filename, const bool &Calc
                                 //                                AutoReader(MomentumType, 3, parameter, ss2, Loaded_Reco_FitParam_Smear_pol3_wKC, Loaded_Smear_coefficients_values,
                                 //                                           Loaded_Smear_coefficients_names);
                             }
-                        } else if (findSubstring(parameter, "pol3") && !findSubstring(SmearMode, "pol3_wKC")) {
+                        } else if (FindSubstring(parameter, "pol3") && !FindSubstring(SmearMode, "pol3_wKC")) {
                             if (MomentumType == "truth") {
                                 AutoReader(MomentumType, 3, parameter, ss2, Loaded_TL_FitParam_Smear_pol3);
                                 //                                AutoReader(MomentumType, 3, parameter, ss2, Loaded_TL_FitParam_Smear_pol3, Loaded_Smear_coefficients_values,
@@ -1820,7 +1820,7 @@ void MomentumResolution::ReadResDataParam(const char *filename, const bool &Calc
 //<editor-fold desc="AutoReader function">
 void MomentumResolution::AutoReader(const string &MomentumType, const int &PolynomialDegree, const string &parameter, basic_istream<char> &ss2, vector<vector<double>> &Loading_Dest,
                                     vector<double> &Loaded_coefficients_values, vector<string> &Loaded_coefficients_names) {
-    if (findSubstring(parameter, MomentumType)) {
+    if (FindSubstring(parameter, MomentumType)) {
         vector<string> VarNames = {"A", "B", "C", "D"};
         vector<double> Loaded_FitVarResults, Loaded_FitVarResultsErrors, Loaded_FitVarResultsGoodness;
         string Loaded_FitVar;
@@ -1828,28 +1828,28 @@ void MomentumResolution::AutoReader(const string &MomentumType, const int &Polyn
         int counter = 0;
 
         while (getline(ss2, Loaded_FitVar, ':')) {
-            if (!findSubstring(parameter, "error") && !findSubstring(parameter, "FitGoodness")) {
+            if (!FindSubstring(parameter, "error") && !FindSubstring(parameter, "FitGoodness")) {
                 Loaded_FitVarResults.push_back(stod(Loaded_FitVar));
                 Loaded_coefficients_values.push_back(stod(Loaded_FitVar));
                 Loaded_coefficients_names.push_back((VarNames.at(counter) + " (" + MomentumType + ")"));
                 ++counter;
-            } else if (findSubstring(parameter, "error") && !findSubstring(parameter, "FitGoodness")) {
+            } else if (FindSubstring(parameter, "error") && !FindSubstring(parameter, "FitGoodness")) {
                 Loaded_FitVarResultsErrors.push_back(stod(Loaded_FitVar));
-            } else if (!findSubstring(parameter, "error") && findSubstring(parameter, "FitGoodness")) {
+            } else if (!FindSubstring(parameter, "error") && FindSubstring(parameter, "FitGoodness")) {
                 Loaded_FitVarResultsGoodness.push_back(stod(Loaded_FitVar));
             }
         }
 
-        if (!findSubstring(parameter, "error") && !findSubstring(parameter, "FitGoodness")) {
+        if (!FindSubstring(parameter, "error") && !FindSubstring(parameter, "FitGoodness")) {
             Loading_Dest.push_back(Loaded_FitVarResults);
-        } else if (findSubstring(parameter, "error") && !findSubstring(parameter, "FitGoodness")) {
+        } else if (FindSubstring(parameter, "error") && !FindSubstring(parameter, "FitGoodness")) {
             Loading_Dest.push_back(Loaded_FitVarResultsErrors);
-        } else if (!findSubstring(parameter, "error") && findSubstring(parameter, "FitGoodness")) {
+        } else if (!FindSubstring(parameter, "error") && FindSubstring(parameter, "FitGoodness")) {
             Loading_Dest.push_back(Loaded_FitVarResultsGoodness);
         }
 
         //<editor-fold desc="Safety checks">
-        if (!findSubstring(parameter, "error") && !findSubstring(parameter, "FitGoodness")) {
+        if (!FindSubstring(parameter, "error") && !FindSubstring(parameter, "FitGoodness")) {
             if (Loaded_FitVarResults.size() != (PolynomialDegree + 1)) {
                 cout << "\n\nMomentumResolution::AutoReader: the parameter " << parameter << " loaded improperly!\n";
                 cout << "Loaded_FitVarResults.size() = " << Loaded_FitVarResults.size() << "\n";
@@ -1860,7 +1860,7 @@ void MomentumResolution::AutoReader(const string &MomentumType, const int &Polyn
             }
         }
 
-        if (findSubstring(parameter, "error") && !findSubstring(parameter, "FitGoodness")) {
+        if (FindSubstring(parameter, "error") && !FindSubstring(parameter, "FitGoodness")) {
             if (Loaded_FitVarResultsErrors.size() != (PolynomialDegree + 1)) {
                 cout << "\n\nMomentumResolution::AutoReader: the parameter " << parameter << " loaded improperly!\n";
                 cout << "Loaded_FitVarResultsErrors.size() = " << Loaded_FitVarResultsErrors.size() << "\n";
@@ -1871,7 +1871,7 @@ void MomentumResolution::AutoReader(const string &MomentumType, const int &Polyn
             }
         }
 
-        if (!findSubstring(parameter, "error") && findSubstring(parameter, "FitGoodness")) {
+        if (!FindSubstring(parameter, "error") && FindSubstring(parameter, "FitGoodness")) {
             if (Loaded_FitVarResultsGoodness.size() != 2) {
                 cout << "\n\nMomentumResolution::AutoReader: the parameter " << parameter << " loaded improperly!\n";
                 cout << "Loaded_FitVarResultsErrors.size() = " << Loaded_FitVarResultsGoodness.size() << "\n";
@@ -1893,7 +1893,7 @@ void MomentumResolution::AutoReader(const string &MomentumType, const int &Polyn
     int PolynomialDeg2Print = 3;
     string MomentumType2Print = "reco";
 
-    if (findSubstring(parameter, MomentumType)) {
+    if (FindSubstring(parameter, MomentumType)) {
         vector<string> VarNames = {"A", "B", "C", "D"};
         vector<double> Loaded_FitVarResults, Loaded_FitVarResultsErrors, Loaded_FitVarResultsGoodness;
         string Loaded_FitVar;
@@ -1901,29 +1901,29 @@ void MomentumResolution::AutoReader(const string &MomentumType, const int &Polyn
         if (PrintOut && (PolynomialDegree == PolynomialDeg2Print) && (MomentumType == MomentumType2Print)) { cout << "parameter = " << parameter << "\n"; }
 
         while (getline(ss2, Loaded_FitVar, ':')) {
-            if (!findSubstring(parameter, "error") && !findSubstring(parameter, "FitGoodness")) {
+            if (!FindSubstring(parameter, "error") && !FindSubstring(parameter, "FitGoodness")) {
                 Loaded_FitVarResults.push_back(stod(Loaded_FitVar));
 
                 if (PrintOut && (PolynomialDegree == PolynomialDeg2Print) && (MomentumType == MomentumType2Print)) { cout << "Loaded_FitVar = " << Loaded_FitVar << "\n"; }
-            } else if (findSubstring(parameter, "error") && !findSubstring(parameter, "FitGoodness")) {
+            } else if (FindSubstring(parameter, "error") && !FindSubstring(parameter, "FitGoodness")) {
                 Loaded_FitVarResultsErrors.push_back(stod(Loaded_FitVar));
-            } else if (!findSubstring(parameter, "error") && findSubstring(parameter, "FitGoodness")) {
+            } else if (!FindSubstring(parameter, "error") && FindSubstring(parameter, "FitGoodness")) {
                 Loaded_FitVarResultsGoodness.push_back(stod(Loaded_FitVar));
             }
         }
 
         if (PrintOutAndExit && (PolynomialDegree == PolynomialDeg2Print) && (MomentumType == MomentumType2Print)) { exit(0); }
 
-        if (!findSubstring(parameter, "error") && !findSubstring(parameter, "FitGoodness")) {
+        if (!FindSubstring(parameter, "error") && !FindSubstring(parameter, "FitGoodness")) {
             Loading_Dest.push_back(Loaded_FitVarResults);
-        } else if (findSubstring(parameter, "error") && !findSubstring(parameter, "FitGoodness")) {
+        } else if (FindSubstring(parameter, "error") && !FindSubstring(parameter, "FitGoodness")) {
             Loading_Dest.push_back(Loaded_FitVarResultsErrors);
-        } else if (!findSubstring(parameter, "error") && findSubstring(parameter, "FitGoodness")) {
+        } else if (!FindSubstring(parameter, "error") && FindSubstring(parameter, "FitGoodness")) {
             Loading_Dest.push_back(Loaded_FitVarResultsGoodness);
         }
 
         //<editor-fold desc="Safety checks">
-        if (!findSubstring(parameter, "error") && !findSubstring(parameter, "FitGoodness")) {
+        if (!FindSubstring(parameter, "error") && !FindSubstring(parameter, "FitGoodness")) {
             if (Loaded_FitVarResults.size() != (PolynomialDegree + 1)) {
                 cout << "\n\nMomentumResolution::AutoReader: the parameter " << parameter << " loaded improperly!\n";
                 cout << "Loaded_FitVarResults.size() = " << Loaded_FitVarResults.size() << "\n";
@@ -1934,7 +1934,7 @@ void MomentumResolution::AutoReader(const string &MomentumType, const int &Polyn
             }
         }
 
-        if (findSubstring(parameter, "error") && !findSubstring(parameter, "FitGoodness")) {
+        if (FindSubstring(parameter, "error") && !FindSubstring(parameter, "FitGoodness")) {
             if (Loaded_FitVarResultsErrors.size() != (PolynomialDegree + 1)) {
                 cout << "\n\nMomentumResolution::AutoReader: the parameter " << parameter << " loaded improperly!\n";
                 cout << "Loaded_FitVarResultsErrors.size() = " << Loaded_FitVarResultsErrors.size() << "\n";
@@ -1945,7 +1945,7 @@ void MomentumResolution::AutoReader(const string &MomentumType, const int &Polyn
             }
         }
 
-        if (!findSubstring(parameter, "error") && findSubstring(parameter, "FitGoodness")) {
+        if (!FindSubstring(parameter, "error") && FindSubstring(parameter, "FitGoodness")) {
             if (Loaded_FitVarResultsGoodness.size() != 2) {
                 cout << "\n\nMomentumResolution::AutoReader: the parameter " << parameter << " loaded improperly!\n";
                 cout << "Loaded_FitVarResultsErrors.size() = " << Loaded_FitVarResultsGoodness.size() << "\n";
