@@ -161,9 +161,9 @@ void EventAnalyser(const string &AnalyseFilePath, const string &AnalyseFileSampl
         cout << "\n\nGenerate AMaps: Generate_Electron_AMaps and Generate_Nucleon_AMaps can't be true at the same time! Exiting...", exit(0);
     }
 
-    if (Generate_Electron_AMaps && !findSubstring(SampleName, "Uniform_1e")) { Generate_Electron_AMaps = false; }
+    if (Generate_Electron_AMaps && !FindSubstring(SampleName, "Uniform_1e")) { Generate_Electron_AMaps = false; }
 
-    if (Generate_Nucleon_AMaps && (!findSubstring(SampleName, "Uniform_ep")) && !findSubstring(SampleName, "Uniform_en")) { Generate_Nucleon_AMaps = false; }
+    if (Generate_Nucleon_AMaps && (!FindSubstring(SampleName, "Uniform_ep")) && !FindSubstring(SampleName, "Uniform_en")) { Generate_Nucleon_AMaps = false; }
 
     if (plot_and_fit_MomRes && (Calculate_momResS2 || Run_with_momResS2)) { ForceSmallpResLimits = false; }
 
