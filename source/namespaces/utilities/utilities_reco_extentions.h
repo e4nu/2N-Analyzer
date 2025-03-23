@@ -6,12 +6,14 @@
 #define UTILITIES_RECO_EXTENTIONS_H
 
 #include "../reco_analysis_functions/reco_analysis_functions.h"
+#include "../analysis_math/analysis_math_reco_extentions.h"
 //
 #include "utilities.h"
 
 using namespace std;
 
 namespace utilities {
+using namespace analysis_math_reco_extentions;
 using namespace reco_analysis_functions;
 }  // namespace utilities
 
