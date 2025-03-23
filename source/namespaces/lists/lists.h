@@ -7,7 +7,7 @@
 
 #include <map>
 
-#include "../constants/constants.h"
+#include "../constants/constants.cpp"
 #include "../../structures/DataSample/DataSample.h"
 
 namespace lists {

@@ -34,7 +34,7 @@
 #include "GeneralFunctions.h"
 #include "clas12reader.h"
 //
-#include "../constants/constants.h"
+#include "../constants/constants.cpp"
 #include "../analysis_math/analysis_math.h"
 #include "../lists/lists.h"
 

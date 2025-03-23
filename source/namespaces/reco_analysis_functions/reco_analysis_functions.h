@@ -24,7 +24,7 @@
 #include "clas12reader.h"
 //
 #include "../analysis_math/analysis_math.h"
-#include "../constants/constants.h"
+#include "../constants/constants.cpp"
 #include "../lists/lists.h"
 
 using namespace std;
