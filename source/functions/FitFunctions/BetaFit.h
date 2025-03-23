@@ -32,6 +32,8 @@
 #include "../drawtext.h"
 #include "FitFunction.h"
 
+// TODO: move into namespace!
+
 using namespace std;
 using namespace constants;
 

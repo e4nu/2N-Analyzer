@@ -30,12 +30,15 @@
 #include <vector>
 
 #include "../classes/DSCuts/DSCuts.h"
-#include "../constants.h"
+#include "../namespaces/constants/constants.h"
 #include "AngleCalc/GetBinFromAng.h"
 #include "GeneralFunctions.h"
 #include "clas12reader.h"
 
+// TODO: move into namespace!
+
 using namespace std;
+using namespace constants;
 
 /* TLKinCutsCheck for a general vector of particles */
 bool TLKinCutsCheck(const std::unique_ptr<clas12::clas12reader> &c12, bool apply_kinematical_cuts, const vector<int> &FD_nucleon, const DSCuts &FD_nucleon_theta_cut,

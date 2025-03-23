@@ -31,7 +31,10 @@
 #include "../drawtext.h"
 #include "FitFunction.h"
 
+// TODO: move into namespace!
+
 using namespace std;
+using namespace constants;
 
 void BetaFitApprax(const string &SampleName, DSCuts &Beta_cut, DSCuts &Momentum_cuts, const hPlot1D &BetaPlot, TList *Histogram_list, const double beamE) {
     double W_yLLim = -0.1, W_yULim = 0.1, W_xLLim = 0.9, W_xULim = 1.;
