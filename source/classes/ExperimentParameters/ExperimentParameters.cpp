@@ -2184,7 +2184,7 @@ void ExperimentParameters::ConfiguredVz_cuts(const string &sn) {
 //<editor-fold desc="ConfigureBeamEnergy function">
 double ExperimentParameters::ConfigureBeamEnergy(const string &sn) {
     // return GetBeamEnergyFromString(sn);
-    
+
     double be;
 
     if (findSubstring(sn, "598636MeV") || findSubstring(sn, "598636mev") || findSubstring(sn, "598636") || findSubstring(sn, "5986MeV") || findSubstring(sn, "5986mev") ||
@@ -2211,6 +2211,7 @@ double ExperimentParameters::GetBeamEnergy() { return BeamEnergy; }
 // AddToHipoChain function ----------------------------------------------------------------------------------------------------------------------------------------
 
 //<editor-fold desc="Description">
+// This is the old function used to add runs to the HipoChain
 void ExperimentParameters::AddToHipoChain(HipoChain &chain, const string &sn, const string &AnalyseFilePath, const string &AnalyseFileSample, const string &AnalyseFile) {
     bool PrintOut = true;
 
@@ -2245,6 +2246,144 @@ void ExperimentParameters::AddToHipoChain(HipoChain &chain, const string &sn, co
 
                 for (int i = 0; i < Runs.size(); i++) {
                     string TempAnalyseFile = "/" + AnalyseFilePath + "/" + Runs.at(i) + "/*.hipo";
+                    chain.Add(TempAnalyseFile.c_str());
+
+                    if (PrintOut) { cout << TempAnalyseFile << " directory added to HipoChain!\n"; }
+                }
+
+                if (PrintOut) { cout << "\n"; }
+            }
+        } else {
+            chain.Add(AnalyseFile.c_str());
+        }
+    } else if (SimulationSample) {
+        chain.Add(AnalyseFile.c_str());
+
+        if (PrintOut) { cout << AnalyseFile << " directory added to HipoChain!\n\n"; }
+    }
+}
+//</editor-fold>
+
+// AddToHipoChainFromList function ----------------------------------------------------------------------------------------------------------------------------------------
+
+//<editor-fold desc="Description">
+void ExperimentParameters::AddToHipoChainFromList(HipoChain &chain, const string &sn, const string &AnalyseFilePath, const string &AnalyseFileSample, const string &AnalyseFile) {
+    bool PrintOut = true;
+
+    if (DataSample) {
+        if (sn == "H1_data_2GeV") {
+            if (AnalyseFileSample == "") {
+                /* Data in cache/clas12/rg-m/production/pass1/2gev/D/dst/recon */
+                for (int i = 0; i < lists::H1_data_2GeV_runs.size(); i++) {
+                    string TempAnalyseFile = "/" + AnalyseFilePath + "/" + lists::H1_data_2GeV_runs.at(i) + "/*.hipo";
+                    chain.Add(TempAnalyseFile.c_str());
+
+                    if (PrintOut) { cout << TempAnalyseFile << " directory added to HipoChain!\n"; }
+                }
+
+                if (PrintOut) { cout << "\n"; }
+            }
+        } elseif (sn == "D2_data_2GeV") {
+            if (AnalyseFileSample == "") {
+                /* Data in cache/clas12/rg-m/production/pass1/2gev/D/dst/recon */
+                for (int i = 0; i < lists::D2_data_2GeV_runs.size(); i++) {
+                    string TempAnalyseFile = "/" + AnalyseFilePath + "/" + lists::D2_data_2GeV_runs.at(i) + "/*.hipo";
+                    chain.Add(TempAnalyseFile.c_str());
+
+                    if (PrintOut) { cout << TempAnalyseFile << " directory added to HipoChain!\n"; }
+                }
+
+                if (PrintOut) { cout << "\n"; }
+            }
+        } elseif (sn == "C12_data_2GeV") {
+            if (AnalyseFileSample == "") {
+                /* Data in cache/clas12/rg-m/production/pass1/2gev/D/dst/recon */
+                for (int i = 0; i < lists::C12_data_2GeV_runs.size(); i++) {
+                    string TempAnalyseFile = "/" + AnalyseFilePath + "/" + lists::C12_data_2GeV_runs.at(i) + "/*.hipo";
+                    chain.Add(TempAnalyseFile.c_str());
+
+                    if (PrintOut) { cout << TempAnalyseFile << " directory added to HipoChain!\n"; }
+                }
+
+                if (PrintOut) { cout << "\n"; }
+            }
+        } elseif (sn == "Ar40_data_2GeV") {
+            if (AnalyseFileSample == "") {
+                /* Data in cache/clas12/rg-m/production/pass1/2gev/D/dst/recon */
+                for (int i = 0; i < lists::Ar40_data_2GeV_runs.size(); i++) {
+                    string TempAnalyseFile = "/" + AnalyseFilePath + "/" + lists::Ar40_data_2GeV_runs.at(i) + "/*.hipo";
+                    chain.Add(TempAnalyseFile.c_str());
+
+                    if (PrintOut) { cout << TempAnalyseFile << " directory added to HipoChain!\n"; }
+                }
+
+                if (PrintOut) { cout << "\n"; }
+            }
+        } elseif (sn == "C12_data_4GeV") {
+            if (AnalyseFileSample == "") {
+                /* Data in cache/clas12/rg-m/production/pass1/2gev/D/dst/recon */
+                for (int i = 0; i < lists::C12_data_4GeV_runs.size(); i++) {
+                    string TempAnalyseFile = "/" + AnalyseFilePath + "/" + lists::C12_data_4GeV_runs.at(i) + "/*.hipo";
+                    chain.Add(TempAnalyseFile.c_str());
+
+                    if (PrintOut) { cout << TempAnalyseFile << " directory added to HipoChain!\n"; }
+                }
+
+                if (PrintOut) { cout << "\n"; }
+            }
+        } elseif (sn == "Ar40_data_4GeV") {
+            if (AnalyseFileSample == "") {
+                /* Data in cache/clas12/rg-m/production/pass1/2gev/D/dst/recon */
+                for (int i = 0; i < lists::Ar40_data_4GeV_runs.size(); i++) {
+                    string TempAnalyseFile = "/" + AnalyseFilePath + "/" + lists::Ar40_data_4GeV_runs.at(i) + "/*.hipo";
+                    chain.Add(TempAnalyseFile.c_str());
+
+                    if (PrintOut) { cout << TempAnalyseFile << " directory added to HipoChain!\n"; }
+                }
+
+                if (PrintOut) { cout << "\n"; }
+            }
+        } elseif (sn == "H1_data_6GeV") {
+            if (AnalyseFileSample == "") {
+                /* Data in cache/clas12/rg-m/production/pass1/2gev/D/dst/recon */
+                for (int i = 0; i < lists::H1_data_6GeV_runs.size(); i++) {
+                    string TempAnalyseFile = "/" + AnalyseFilePath + "/" + lists::H1_data_6GeV_runs.at(i) + "/*.hipo";
+                    chain.Add(TempAnalyseFile.c_str());
+
+                    if (PrintOut) { cout << TempAnalyseFile << " directory added to HipoChain!\n"; }
+                }
+
+                if (PrintOut) { cout << "\n"; }
+            }
+        } elseif (sn == "D2_data_6GeV") {
+            if (AnalyseFileSample == "") {
+                /* Data in cache/clas12/rg-m/production/pass1/2gev/D/dst/recon */
+                for (int i = 0; i < lists::D2_data_6GeV_runs.size(); i++) {
+                    string TempAnalyseFile = "/" + AnalyseFilePath + "/" + lists::D2_data_6GeV_runs.at(i) + "/*.hipo";
+                    chain.Add(TempAnalyseFile.c_str());
+
+                    if (PrintOut) { cout << TempAnalyseFile << " directory added to HipoChain!\n"; }
+                }
+
+                if (PrintOut) { cout << "\n"; }
+            }
+        } elseif (sn == "C12x4_data_6GeV") {
+            if (AnalyseFileSample == "") {
+                /* Data in cache/clas12/rg-m/production/pass1/2gev/D/dst/recon */
+                for (int i = 0; i < lists::C12x4_data_6GeV_runs.size(); i++) {
+                    string TempAnalyseFile = "/" + AnalyseFilePath + "/" + lists::C12x4_data_6GeV_runs.at(i) + "/*.hipo";
+                    chain.Add(TempAnalyseFile.c_str());
+
+                    if (PrintOut) { cout << TempAnalyseFile << " directory added to HipoChain!\n"; }
+                }
+
+                if (PrintOut) { cout << "\n"; }
+            }
+        } elseif (sn == "Ar40_data_6GeV") {
+            if (AnalyseFileSample == "") {
+                /* Data in cache/clas12/rg-m/production/pass1/2gev/D/dst/recon */
+                for (int i = 0; i < lists::Ar40_data_6GeV_runs.size(); i++) {
+                    string TempAnalyseFile = "/" + AnalyseFilePath + "/" + lists::Ar40_data_6GeV_runs.at(i) + "/*.hipo";
                     chain.Add(TempAnalyseFile.c_str());
 
                     if (PrintOut) { cout << TempAnalyseFile << " directory added to HipoChain!\n"; }

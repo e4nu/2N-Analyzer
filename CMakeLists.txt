@@ -77,7 +77,7 @@ include_directories(source/functions/Math_func)
 include_directories(source/functions/other)
 include_directories(source/functions/PID_functions)
 include_directories(source/other)
-include_directories(source/Structures_beta)
+include_directories(source/structures)
 
 add_executable(project ${CLAS12ROOT_SOURCES} ${CLAS12BANKS_SOURCES} ${HIPO4_SOURCES}
         macros/Other/process_events.C
@@ -216,7 +216,7 @@ add_executable(project ${CLAS12ROOT_SOURCES} ${CLAS12BANKS_SOURCES} ${HIPO4_SOUR
         "source/other/fitexample - Copy.c"
         source/other/fitexample.c
         source/other/hPlot1D_example.cpp
-        source/Structures_beta/Histogram1D.cpp
+        source/structures/Histogram1D_beta/Histogram1D.cpp
         source/constants.h
         macros/Other/db_script.txt
         Old_analysers/DetectorSimulationAnalyser.C

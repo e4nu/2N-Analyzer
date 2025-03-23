@@ -29,7 +29,7 @@
 
 using namespace std;
 using namespace clas12;
-using namespace lists;
+// using namespace lists;
 
 namespace reco_analysis_functions {
 
@@ -42,8 +42,8 @@ void AddToHipoChain(HipoChain& chain, const string& sn, const string& AnalyseFil
         if (sn == "C12x4_data_6GeV") {
             if (AnalyseFileSample == "") {
                 /* Data in cache/clas12/rg-m/production/pass1/6gev/Cx4/dst/recon */
-                for (int i = 0; i < C12x4_data_6GeV_runs.size(); i++) {
-                    string TempAnalyseFile = "/" + AnalyseFilePath + "/" + C12x4_data_6GeV_runs.at(i) + "/*.hipo";
+                for (int i = 0; i < lists::C12x4_data_6GeV_runs.size(); i++) {
+                    string TempAnalyseFile = "/" + AnalyseFilePath + "/" + lists::C12x4_data_6GeV_runs.at(i) + "/*.hipo";
                     chain.Add(TempAnalyseFile.c_str());
 
                     if (PrintOut) { cout << TempAnalyseFile << " directory added to HipoChain!\n"; }
@@ -54,8 +54,8 @@ void AddToHipoChain(HipoChain& chain, const string& sn, const string& AnalyseFil
         } else if (sn == "D2_data_2GeV") {
             if (AnalyseFileSample == "") {
                 /* Data in cache/clas12/rg-m/production/pass1/2gev/D/dst/recon */
-                for (int i = 0; i < D2_data_2GeV_runs.size(); i++) {
-                    string TempAnalyseFile = "/" + AnalyseFilePath + "/" + D2_data_2GeV_runs.at(i) + "/*.hipo";
+                for (int i = 0; i < lists::D2_data_2GeV_runs.size(); i++) {
+                    string TempAnalyseFile = "/" + AnalyseFilePath + "/" + lists::D2_data_2GeV_runs.at(i) + "/*.hipo";
                     chain.Add(TempAnalyseFile.c_str());
 
                     if (PrintOut) { cout << TempAnalyseFile << " directory added to HipoChain!\n"; }

@@ -4,6 +4,7 @@
 
 #include <iostream>
 
+#include "../../namespaces/lists/lists.h"
 // #include "../../functions/GeneralFunctions.h"
 #include "../../namespaces/utilities/utilities.h"
 #include "../DSCuts/DSCuts.h"
@@ -90,7 +91,13 @@ class ExperimentParameters : public TargetParameters {
 
     // AddToHipoChain function ----------------------------------------------------------------------------------------------------------------------------------------
 
+    // This is the old function used to add runs to the HipoChain
     void AddToHipoChain(HipoChain &chain, const string &sn, const string &AnalyseFilePath, const string &AnalyseFileSample, const string &AnalyseFile);
+
+    // AddToHipoChainFromList function ----------------------------------------------------------------------------------------------------------------------------------------
+
+    // This is the old function used to add runs to the HipoChain
+    void AddToHipoChainFromList(HipoChain &chain, const string &sn, const string &AnalyseFilePath, const string &AnalyseFileSample, const string &AnalyseFile);
 
     // other functions ------------------------------------------------------------------------------------------------------------------------------------------------------
 

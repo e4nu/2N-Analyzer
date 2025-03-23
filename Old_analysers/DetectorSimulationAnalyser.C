@@ -9662,7 +9662,8 @@ void EventAnalyser(const string &AnalyseFilePath, const string &AnalyseFileSampl
     cout << "\033[33m\n\nSetting HipoChain...\n\n\033[0m";
 
     clas12root::HipoChain chain;
-    utilities::AddToHipoChain(chain, SampleName, AnalyseFilePath, AnalyseFileSample, AnalyseFile);
+    Experiment.AddToHipoChainFromList(chain, SampleName, AnalyseFilePath, AnalyseFileSample, AnalyseFile);
+    // utilities::AddToHipoChain(chain, SampleName, AnalyseFilePath, AnalyseFileSample, AnalyseFile);
     chain.SetReaderTags({0});
     int HipoChainLength = chain.GetNFiles();
     auto config_c12 = chain.GetC12Reader();
