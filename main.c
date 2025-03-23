@@ -9,7 +9,10 @@ int main() {
     std::string HostName = basic_tools::GetSSHHostName();
     
     // Set the macro IFARM_RUN based on the hostname
-    #define IFARM_RUN (basic_tools::FindSubstring(HostName, "jlab.org"))
+    #define IFARM_RUN 1
+
+    // // Set the macro IFARM_RUN based on the hostname
+    // #define IFARM_RUN (basic_tools::FindSubstring(HostName, "jlab.org"))
 
     // Now you can use the macro IFARM_RUN
     if (IFARM_RUN) {
