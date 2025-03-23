@@ -23,8 +23,8 @@
 #include "HipoChain.h"
 #include "clas12reader.h"
 //
-#include "../../source/namespaces/analysis_math/analysis_math.h"
-#include "../../source/namespaces/lists/lists.h"
+#include "../../namespaces/analysis_math/analysis_math.h"
+#include "../../namespaces/lists/lists.h"
 
 using namespace std;
 using namespace clas12;
