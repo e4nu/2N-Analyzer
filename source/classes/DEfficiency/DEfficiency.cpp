@@ -122,9 +122,9 @@ void DEfficiency::DrawACorrHistograms(bool save_ACorr_data, const string &Sample
     //<editor-fold desc="Setting save name">
     string sNameFlag;
 
-    if (findSubstring(SampleName, "sim")) {
+    if (FindSubstring(SampleName, "sim")) {
         sNameFlag = "s";
-    } else if (findSubstring(SampleName, "data")) {
+    } else if (FindSubstring(SampleName, "data")) {
         sNameFlag = "d";
     }
 
@@ -195,11 +195,11 @@ void DEfficiency::DrawACorrHistograms(bool save_ACorr_data, const string &Sample
         string ACorr_data_StatsTitle;
 
         if ((ACorrectionFS == "pFDpCD") || (ACorrectionFS == "nFDpCD")) {
-            if (findSubstring(ACorrectionRecTitle, ", FD)") || findSubstring(ACorrectionRecTitle, "FD " + ACorrectionParticle) ||
-                findSubstring(ACorrectionRecTitle, "FD " + ACorrectionParticleLC)) {
+            if (FindSubstring(ACorrectionRecTitle, ", FD)") || FindSubstring(ACorrectionRecTitle, "FD " + ACorrectionParticle) ||
+                FindSubstring(ACorrectionRecTitle, "FD " + ACorrectionParticleLC)) {
                 ACorr_data_StatsTitle = "FD_" + ACorrectionParticle + "_" + ACorrectionType + "_" + "ACorr_" + ACorrectionFS;
-            } else if (findSubstring(ACorrectionRecTitle, ", CD)") || findSubstring(ACorrectionRecTitle, "CD " + ACorrectionParticle) ||
-                       findSubstring(ACorrectionRecTitle, "CD " + ACorrectionParticleLC)) {
+            } else if (FindSubstring(ACorrectionRecTitle, ", CD)") || FindSubstring(ACorrectionRecTitle, "CD " + ACorrectionParticle) ||
+                       FindSubstring(ACorrectionRecTitle, "CD " + ACorrectionParticleLC)) {
                 ACorr_data_StatsTitle = "CD_" + ACorrectionParticle + "_" + ACorrectionType + "_" + "ACorr_" + ACorrectionFS;
             } else {
                 ACorr_data_StatsTitle = ACorrectionParticle + "_" + ACorrectionType + "_" + "ACorr_" + ACorrectionFS;

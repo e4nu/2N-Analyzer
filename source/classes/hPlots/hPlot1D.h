@@ -84,8 +84,6 @@ class hPlot1D {
     std::string Histogram1DSaveNamePath = "./";       // default Histogram1DSaveNamePath
     std::string Histogram1DSaveName = "Histogram1D";  // default Histogram1DSaveName
 
-    bool findSubstring(std::string string1, std::string string2);
-
    public:
     // TODO: add function to integrate histogram
 
