@@ -23,11 +23,11 @@ const double pi = M_PI;
 
 // RadToDeg function ----------------------------------------------------------------------------------------------------------------------------------------------------
 
-double RadToDeg(const double &rad) { return rad * 180. / M_PI; }
+double RadToDeg(const double &rad) { return rad * 180. / pi; }
 
 // DegToRad function ----------------------------------------------------------------------------------------------------------------------------------------------------
 
-double DegToRad(const double &deg) { return deg * M_PI / 180.; }
+double DegToRad(const double &deg) { return deg * pi / 180.; }
 
 // CalcTheta_rad function -----------------------------------------------------------------------------------------------------------------------------------------------
 
