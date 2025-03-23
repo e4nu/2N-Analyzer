@@ -21,7 +21,7 @@
 #include "../lists/lists.h"
 // #include "../truth_analysis_functions/truth_analysis_functions.h"
 
-#if defined(RECO_ANALYSER_RUN)
+#if defined(IFARM_RUN)
 #include "../reco_analysis_functions/reco_analysis_functions.h"
 #endif
 
@@ -35,7 +35,7 @@ using namespace lists;
 
 // using namespace truth_analysis_functions;
 
-#if defined(RECO_ANALYSER_RUN)
+#if defined(IFARM_RUN)
 using namespace reco_analysis_functions;
 #endif
 

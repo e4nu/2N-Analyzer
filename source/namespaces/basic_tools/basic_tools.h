@@ -18,10 +18,10 @@
 using namespace std;
 
 namespace basic_tools {
-// checkSSHConnection function ------------------------------------------------------------------------------------------------------------------------------------------
+// CheckSSHConnection function ------------------------------------------------------------------------------------------------------------------------------------------
 
 // Function to check if the program is running over SSH and print connection info
-void checkSSHConnection() {
+void CheckSSHConnection() {
     const char *ssh_connection = std::getenv("SSH_CONNECTION");
     if (ssh_connection) {
         std::cout << "Connected via SSH. SSH_CONNECTION: " << ssh_connection << std::endl;
@@ -30,9 +30,9 @@ void checkSSHConnection() {
     }
 }
 
-// checkSSHConnectionAndHost function -----------------------------------------------------------------------------------------------------------------------------------
+// CheckSSHConnectionAndHost function -----------------------------------------------------------------------------------------------------------------------------------
 
-void checkSSHConnectionAndHost() {
+void CheckSSHConnectionAndHost() {
     // Get the SSH_CONNECTION environment variable
     const char *ssh_connection = std::getenv("SSH_CONNECTION");
     if (ssh_connection) {
@@ -61,7 +61,38 @@ void checkSSHConnectionAndHost() {
     }
 }
 
-// GetCurrentDirectory function ------------------------------------------------------------------------------------------------------------------------------------------
+// GetSSHHostName function ----------------------------------------------------------------------------------------------------------------------------------------------
+
+std::string GetSSHHostName() {
+    // Get the SSH_CONNECTION environment variable
+    const char *ssh_connection = std::getenv("SSH_CONNECTION");
+    if (ssh_connection) {
+        // Extract the remote IP address (first part of SSH_CONNECTION)
+        char *remote_ip = strtok(const_cast<char *>(ssh_connection), " ");
+        if (remote_ip) {
+            // Convert the IP address to a sockaddr_in structure
+            struct sockaddr_in sa;
+            sa.sin_family = AF_INET;
+            inet_pton(AF_INET, remote_ip, &(sa.sin_addr));
+
+            // Use gethostbyaddr to get the host name from the IP address
+            struct hostent *host = gethostbyaddr(&(sa.sin_addr), sizeof(struct in_addr), AF_INET);
+            if (host) {
+                // Return the host name as a string
+                return std::string(host->h_name);
+            } else {
+                std::cerr << "Could not resolve host name from IP." << std::endl;
+                return "";
+            }
+        }
+    }
+
+    // If not connected via SSH, return an empty string
+    std::cerr << "Not connected via SSH." << std::endl;
+    return "";
+}
+
+// GetCurrentDirectory function -----------------------------------------------------------------------------------------------------------------------------------------
 
 string GetCurrentDirectory() {
     char pwd[PATH_MAX];

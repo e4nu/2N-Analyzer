@@ -73,7 +73,7 @@ double CalcdPhi(double dPhiTemp) {
     return dPhi;
 }
 
-#if defined(RECO_ANALYSER_RUN)
+#if defined(IFARM_RUN)
 #include "HipoChain.h"
 #include "clas12reader.h"
 
