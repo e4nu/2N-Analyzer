@@ -23,6 +23,7 @@
 #include "HipoChain.h"
 #include "clas12reader.h"
 //
+#include "../../source/namespaces/analysis_math/analysis_math.h"
 #include "../../source/namespaces/lists/lists.h"
 
 using namespace std;
@@ -193,8 +194,8 @@ void fillDCdebug(region_part_ptr p, TH2D** h, double weight) {
 
 // NeutronECAL_Cut_Veto function ----------------------------------------------------------------------------------------------------------------------------------------
 
-bool NeutronECAL_Cut_Veto(vector<region_part_ptr>& allParticles, vector<region_part_ptr>& electrons, const double& beamE, const int& index, bool apply_PCAL_neutral_veto,
-                          const double& cPart_veto_radius, const double& nPart_veto_radius) {
+bool NeutronECAL_Cut_Veto(vector<region_part_ptr>& allParticles, vector<region_part_ptr>& electrons, const double& beamE, const int& index, const double& cPart_veto_radius,
+                          bool apply_PCAL_neutral_veto = false, const double& nPart_veto_radius = 0.) {
     TVector3 p_b(0, 0, beamE); /* beam energy */
 
     TVector3 p_e; /* our electron */
@@ -220,9 +221,9 @@ bool NeutronECAL_Cut_Veto(vector<region_part_ptr>& allParticles, vector<region_p
     TVector3 v_nhit(allParticles[index]->cal(detlayer)->getX(), allParticles[index]->cal(detlayer)->getY(), allParticles[index]->cal(detlayer)->getZ());
     double beta = allParticles[index]->par()->getBeta();
     double gamma = 1 / sqrt(1 - (beta * beta));
-    double theta_n = p_n_Angles.Theta() * 180 / pi;
-    double theta_q = p_q.Theta() * 180 / pi;
-    double theta_nq = p_n_Angles.Angle(p_q) * 180 / pi;
+    double theta_n = p_n_Angles.Theta() * 180 / analysis_math::pi;
+    double theta_q = p_q.Theta() * 180 / analysis_math::pi;
+    double theta_nq = p_n_Angles.Angle(p_q) * 180 / analysis_math::pi;
 
     if (beta < 0) { return false; }
     //    if (beta > 1.1) { return false; }
