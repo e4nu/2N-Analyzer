@@ -50,7 +50,7 @@ void DetectorSimulationAnalyser::InputProcessing(const string &AnalyseFilePath, 
     this->Experiment = Experiment(AnalyseFilePath, AnalyseFileSample);
     this->SampleName = Experiment.ConfigureSampleName(AnalyseFilePath, AnalyseFileSample);  // Configure SampleName from input
     this->VaryingSampleName = Experiment.GetVaryingSampleName();                            // Get VaryingSampleName (configured from SampleName) - for data runs!
-    this->beamE = Experiment.GetBeanEnergy();                                               // Configure beam energy from SampleName
+    this->beamE = Experiment.GetBeamEnergy();                                               // Configure beam energy from SampleName
     this->Target = Experiment.GetTargetElement();                                           // Configure target (element) from SampleName
     this->TargetPDG = Experiment.GetTargetElementPDG();                                     // Configure target PDG from SampleName
     this->isLocal = Experiment.SLocal();

@@ -66,7 +66,7 @@ private:
     ExperimentParameters Experiment(AnalyseFilePath, AnalyseFileSample);
 
      string SampleName = Experiment.ConfigureSampleName(AnalyseFilePath, AnalyseFileSample); // Configure SampleName from input
-     double beamE = Experiment.GetBeanEnergy(); // Configure beam energy from SampleName
+     double beamE = Experiment.GetBeamEnergy(); // Configure beam energy from SampleName
      string Target = Experiment.GetTargetElement(); // Configure target (element) from SampleName
      int TargetPDG = Experiment.GetTargetElementPDG(); // Configure target PDG from SampleName
      bool isLocal = Experiment.SLocal();

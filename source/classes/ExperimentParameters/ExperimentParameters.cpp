@@ -1,12 +1,15 @@
 
 #include "ExperimentParameters.h"
 
+using namespace utilities;
+
 // Constructor ----------------------------------------------------------------------------------------------------------------------------------------
 
 //<editor-fold desc="Constructor">
 ExperimentParameters::ExperimentParameters(const string &AnalyseFilePath, const string &AnalyseFileSample) {
     SampleName = ConfigureSampleName(AnalyseFilePath, AnalyseFileSample);
-    BeanEnergy = ConfigureBeanEnergy(SampleName);
+    BeamEnergy = GetBeamEnergyFromString(SampleName);
+    // BeamEnergy = ConfigureBeamEnergy(SampleName);
 
     if (SampleName.find("H1") <= SampleName[SampleName.size() - 1]) {
         TargetElement = "H1";
@@ -2178,10 +2181,12 @@ void ExperimentParameters::ConfiguredVz_cuts(const string &sn) {
 }
 //</editor-fold>
 
-// ConfigureBeanEnergy function -----------------------------------------------------------------------------------------------------------------------------------------
+// ConfigureBeamEnergy function -----------------------------------------------------------------------------------------------------------------------------------------
 
-//<editor-fold desc="ConfigureBeanEnergy function">
-double ExperimentParameters::ConfigureBeanEnergy(const string &sn) {
+//<editor-fold desc="ConfigureBeamEnergy function">
+double ExperimentParameters::ConfigureBeamEnergy(const string &sn) {
+    // return GetBeamEnergyFromString(sn);
+    
     double be;
 
     if (findSubstring(sn, "598636MeV") || findSubstring(sn, "598636mev") || findSubstring(sn, "598636") || findSubstring(sn, "5986MeV") || findSubstring(sn, "5986mev") ||
@@ -2199,10 +2204,10 @@ double ExperimentParameters::ConfigureBeanEnergy(const string &sn) {
 }
 //</editor-fold>
 
-// GetBeanEnergy function -----------------------------------------------------------------------------------------------------------------------------------------
+// GetBeamEnergy function -----------------------------------------------------------------------------------------------------------------------------------------
 
-//<editor-fold desc="GetBeanEnergy function">
-double ExperimentParameters::GetBeanEnergy() { return BeanEnergy; }
+//<editor-fold desc="GetBeamEnergy function">
+double ExperimentParameters::GetBeamEnergy() { return BeamEnergy; }
 //</editor-fold>
 
 // AddToHipoChain function ----------------------------------------------------------------------------------------------------------------------------------------

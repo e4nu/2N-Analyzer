@@ -83,6 +83,10 @@ std::map<std::string, std::map<std::string, double>> HistogramLimits;
 
 // Histogram limits -----------------------------------------------------------------------------------------------------------------------------------------------------
 
+// Histogram limits for analysis plots
+// Default beam energy is 5.98636 GeV, which is changed in the analysis code
+double beamE_def = 5.98636;  // Default beam energy
+
 /* Nphe boundaries */
 const double Nphe_boundary = 40;
 
@@ -102,15 +106,15 @@ double dV_boundary_CD = dV_boundary, dV_uboundary_CD = dV_uboundary, dV_lboundar
 const double SF_uboundary = 0.31, SF_lboundary = 0.16;
 
 /* Momentum boundries */
-const double Momentum_lboundary = 0., Momentum_uboundary = beamE * 1.1;                       // Default
+const double Momentum_lboundary = 0., Momentum_uboundary = beamE_def * 1.1;                       // Default
 double FDMomentum_lboundary = Momentum_lboundary, FDMomentum_uboundary = Momentum_uboundary;  // FD nucleons (1nFD, 1pFD, pFDpCD and nFDpCD)
-const double CDMomentum_lboundary = 0., CDMomentum_uboundary = beamE / 2;                     // CD nucleons (pFDpCD & nFDpCD)
-double P_nucFD_lboundary = 0., P_nucFD_uboundary = beamE * 1.1;                               // Default
-double P_nucCD_lboundary = 0., P_nucCD_uboundary = beamE / 2;                                 // CD nucleons (pFDpCD & nFDpCD)
+const double CDMomentum_lboundary = 0., CDMomentum_uboundary = beamE_def / 2;                     // CD nucleons (pFDpCD & nFDpCD)
+double P_nucFD_lboundary = 0., P_nucFD_uboundary = beamE_def * 1.1;                               // Default
+double P_nucCD_lboundary = 0., P_nucCD_uboundary = beamE_def / 2;                                 // CD nucleons (pFDpCD & nFDpCD)
 
 /* W boundries */
 const double W_lboundary = 0.35;
-const double W_uboundary = 1.1 * sqrt((beamE + m_p) * (beamE + m_p) - beamE * beamE);  // Default
+const double W_uboundary = 1.1 * sqrt((beamE_def + m_p) * (beamE_def + m_p) - beamE_def * beamE_def);  // Default
 
 /* Beta boundries */
 const double dBeta_sigma_boundary = 0.1;
@@ -120,7 +124,7 @@ const double dBeta_sigma_ZOOMOUT_boundary = 0.1;
 const double Beta_dist_ZOOMOUT_uboundary = 1 + dBeta_sigma_ZOOMOUT_boundary;
 const double Beta_dist_ZOOMOUT_lboundary = 0.9;
 
-double Beta_boundary_const = 3., Beta_boundary = 3., P_boundary = beamE * 1.425;
+double Beta_boundary_const = 3., Beta_boundary = 3., P_boundary = beamE_def * 1.425;
 
 /* Angle boundries */
 const double Theta_lboundary_FD = 0., Theta_uboundary_FD = 50.;
@@ -130,7 +134,7 @@ const double Opening_Ang_narrow_lboundary = 0, Opening_Ang_narrow_uboundary = 10
 const double Phi_lboundary = -180., Phi_uboundary = 180.;
 
 /* Momentum transfer boundries */
-double Q2_lboundary_FD = 0., Q2_uboundary_FD = beamE * 1.1;
+double Q2_lboundary_FD = 0., Q2_uboundary_FD = beamE_def * 1.1;
 
 /* TKI boundries */
 const double dP_T_boundary = 3.;

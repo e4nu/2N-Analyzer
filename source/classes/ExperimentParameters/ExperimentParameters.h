@@ -4,7 +4,8 @@
 
 #include <iostream>
 
-#include "../../functions/GeneralFunctions.h"
+// #include "../../functions/GeneralFunctions.h"
+#include "../../namespaces/utilities/utilities.h"
 #include "../DSCuts/DSCuts.h"
 #include "../TargetParameters/TargetParameters.h"
 #include "HipoChain.h"
@@ -12,12 +13,13 @@
 
 using namespace std;
 using namespace clas12;
+using namespace utilities;
 
 class ExperimentParameters : public TargetParameters {
    protected:
     string SampleName;
     string VaryingSampleName;  // for AMaps, WMaps and nRes
-    double BeanEnergy;
+    double BeamEnergy;
 
     bool LocalSample = false;
 
@@ -54,13 +56,13 @@ class ExperimentParameters : public TargetParameters {
 
     void ConfiguredVz_cuts(const string &sn);
 
-    // ConfigureBeanEnergy function -----------------------------------------------------------------------------------------------------------------------------------------
+    // ConfigureBeamEnergy function -----------------------------------------------------------------------------------------------------------------------------------------
 
-    double ConfigureBeanEnergy(const string &sn);
+    double ConfigureBeamEnergy(const string &sn);
 
-    // GetBeanEnergy function -----------------------------------------------------------------------------------------------------------------------------------------------
+    // GetBeamEnergy function -----------------------------------------------------------------------------------------------------------------------------------------------
 
-    double GetBeanEnergy();
+    double GetBeamEnergy();
 
     // GetVz_cuts function -----------------------------------------------------------------------------------------------------------------------------------------------
 

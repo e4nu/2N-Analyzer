@@ -63,7 +63,7 @@ const string plotsInput = fileInput.substr(0, fileInput.find_last_of(".hipo") - 
 /* Configure and get run parameters */
 ExperimentParameters Experiment(AnalyseFilePath, AnalyseFileSample);
 const string SampleName = Experiment.ConfigureSampleName(AnalyseFilePath, AnalyseFileSample); // Configure SampleName from input
-const double beamE = Experiment.GetBeanEnergy(); // Configure beam energy from SampleName
+const double beamE = Experiment.GetBeamEnergy(); // Configure beam energy from SampleName
 const string Target = Experiment.GetTargetElement(); // Configure target (element) from SampleName
 const int TargetPDG = Experiment.GetTargetElementPDG(); // Configure target PDG from SampleName
 const bool isLocal = Experiment.SLocal();

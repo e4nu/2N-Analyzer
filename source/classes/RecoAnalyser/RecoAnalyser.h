@@ -69,7 +69,7 @@ class RecoAnalyser {
     const string SampleName = Experiment.ConfigureSampleName(AnalyseFilePath, AnalyseFileSample);  // Configure SampleName from input
     // TODO: change VaryingSampleName to simulation of a 4-foil!
     const string VaryingSampleName = Experiment.GetVaryingSampleName();  // Get VaryingSampleName (configured from SampleName) - for data runs!
-    const double beamE = Experiment.GetBeanEnergy();                     // Configure beam energy from SampleName
+    const double beamE = Experiment.GetBeamEnergy();                     // Configure beam energy from SampleName
     const string Target = Experiment.GetTargetElement();                 // Configure target (element) from SampleName
     const int TargetPDG = Experiment.GetTargetElementPDG();              // Configure target PDG from SampleName
     const bool isLocal = Experiment.SLocal();
