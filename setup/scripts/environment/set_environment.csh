@@ -35,11 +35,18 @@ setenv JLAB_TESTER "jlab.org"
 echo "${COLOR_START}JLAB_TESTER:${COLOR_END} ${JLAB_TESTER}"
 echo ""
 
+unset IFARM_RUN
+
 # Check if the hostname contains the substring
 if ( "$ANALYSIS_HOSTNAME" =~ *"$JLAB_TESTER"* ) then
     echo "The hostname contains '$JLAB_TESTER'. Running the commands for this case."
     # Put the commands to run if the hostname contains the substring here
+    setenv IFARM_RUN 1
 else
     echo "The hostname does not contain '$JLAB_TESTER'. Running the alternate commands."
     # Put the commands to run if the hostname does not contain the substring here
+    setenv IFARM_RUN 0
 endif
+
+echo "${COLOR_START}IFARM_RUN:${COLOR_END} ${IFARM_RUN}"
+echo ""
