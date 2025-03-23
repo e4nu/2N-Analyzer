@@ -17,9 +17,9 @@ using namespace analysis_math;
 
 // CalcdPhi function (CLAS12 extention) ---------------------------------------------------------------------------------------------------------------------------------
 
-double CalcdPhi(region_part_ptr proton1, region_part_ptr proton2) {
+double CalcdPhi2(region_part_ptr proton1, region_part_ptr proton2) {
     if (proton1->getRegion() == proton2->getRegion()) {
-        std::cerr << "\n\nCalcdPhi: protons are in the same region (" << proton1->getRegion() << " & " << proton2->getRegion() << ")! Exiting...\n";
+        std::cerr << "\n\nCalcdPhi2: protons are in the same region (" << proton1->getRegion() << " & " << proton2->getRegion() << ")! Exiting...\n";
         exit(0);
     }
 
@@ -33,7 +33,7 @@ double CalcdPhi(region_part_ptr proton1, region_part_ptr proton2) {
         Phi_pCD_deg = RadToDeg(proton1->getPhi());
     }
 
-    return CalcdPhi(Phi_pFD_deg - Phi_pCD_deg);
+    return CalcdPhi1(Phi_pFD_deg - Phi_pCD_deg);
 }
 
 }  // namespace analysis_math_reco_extentions

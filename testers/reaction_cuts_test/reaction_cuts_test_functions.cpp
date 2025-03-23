@@ -199,9 +199,9 @@ double CalcdTheta(double dThetaTemp) {
 
 #pragma endregion
 
-#pragma region /* CalcdPhi function */
+#pragma region /* CalcdPhi1 function */
 
-double CalcdPhi(double dPhiTemp) {
+double CalcdPhi1(double dPhiTemp) {
     double dPhi;
 
     if (dPhiTemp > 180.0) {
@@ -236,14 +236,14 @@ double GetPhi_e(TString OutPutFolder, double phi_N) {
     std::vector<double> possible_angles = {-120, -60, 0, 60, 120, 180};
 
     // Calculate the target angle (180 degrees away from phi_N)
-    double target_angle = CalcdPhi(phi_N + 180);
+    double target_angle = CalcdPhi1(phi_N + 180);
 
     // Find the closest possible angle
     double closest_angle = possible_angles[0];
-    double min_diff = std::abs(CalcdPhi(target_angle - closest_angle));
+    double min_diff = std::abs(CalcdPhi1(target_angle - closest_angle));
 
     for (double angle : possible_angles) {
-        double diff = std::abs(CalcdPhi(target_angle - angle));
+        double diff = std::abs(CalcdPhi1(target_angle - angle));
         if (diff < min_diff) {
             min_diff = diff;
             closest_angle = angle;

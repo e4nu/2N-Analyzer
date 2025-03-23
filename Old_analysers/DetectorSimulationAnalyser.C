@@ -12133,7 +12133,7 @@ void EventAnalyser(const string &AnalyseFilePath, const string &AnalyseFileSampl
                     double n_hit_Theta_1e_cut = n_hit_1e_cut_3v.Theta() * 180 / pi, n_hit_Phi_1e_cut = n_hit_1e_cut_3v.Phi() * 180 / pi;
 
                     // subtracting the angles between the neutron hit and electron hit to see if we have fake neutrons:
-                    hdTheta_n_e_VS_dPhi_n_e_Electrons_BV_1e_cut.hFill(CalcdPhi(n_hit_Phi_1e_cut - e_hit_Phi_1e_cut), n_hit_Theta_1e_cut - e_hit_Theta_1e_cut, Weight);
+                    hdTheta_n_e_VS_dPhi_n_e_Electrons_BV_1e_cut.hFill(CalcdPhi1(n_hit_Phi_1e_cut - e_hit_Phi_1e_cut), n_hit_Theta_1e_cut - e_hit_Theta_1e_cut, Weight);
                 }
             }  // end of ToF loop over neutrons vector
         }
@@ -12174,14 +12174,14 @@ void EventAnalyser(const string &AnalyseFilePath, const string &AnalyseFileSampl
                 //                dist_1e_cut_3v = LnFD_hit_1e_cut_3v - e_hit_1e_cut_3v;
 
                 // subtracting the angles between the neutron hit and electron hit to see if we have fake neutrons:
-                hdTheta_LnFD_e_VS_dPhi_LnFD_e_Electrons_BV_1e_cut.hFill(CalcdPhi(LnFD_hit_Phi_1e_cut - e_hit_Phi_1e_cut), LnFD_hit_Theta_1e_cut - e_hit_Theta_1e_cut, Weight);
+                hdTheta_LnFD_e_VS_dPhi_LnFD_e_Electrons_BV_1e_cut.hFill(CalcdPhi1(LnFD_hit_Phi_1e_cut - e_hit_Phi_1e_cut), LnFD_hit_Theta_1e_cut - e_hit_Theta_1e_cut, Weight);
 
                 bool NeutronPassVeto_1e_cut = pid.NeutronECAL_Cut_Veto(allParticles, electrons, beamE, NeutronsFD_ind_mom_max_noNeutCuts, Neutron_veto_cut.GetLowerCut());
 
                 if (NeutronPassVeto_1e_cut) {
-                    hdTheta_LnFD_e_VS_dPhi_LnFD_e_Electrons_AV_1e_cut.hFill(CalcdPhi(LnFD_hit_Phi_1e_cut - e_hit_Phi_1e_cut), LnFD_hit_Theta_1e_cut - e_hit_Theta_1e_cut, Weight);
+                    hdTheta_LnFD_e_VS_dPhi_LnFD_e_Electrons_AV_1e_cut.hFill(CalcdPhi1(LnFD_hit_Phi_1e_cut - e_hit_Phi_1e_cut), LnFD_hit_Theta_1e_cut - e_hit_Theta_1e_cut, Weight);
                 } else {
-                    hdTheta_LnFD_e_VS_dPhi_LnFD_e_Electrons_Vetoed_1e_cut.hFill(CalcdPhi(LnFD_hit_Phi_1e_cut - e_hit_Phi_1e_cut), LnFD_hit_Theta_1e_cut - e_hit_Theta_1e_cut, Weight);
+                    hdTheta_LnFD_e_VS_dPhi_LnFD_e_Electrons_Vetoed_1e_cut.hFill(CalcdPhi1(LnFD_hit_Phi_1e_cut - e_hit_Phi_1e_cut), LnFD_hit_Theta_1e_cut - e_hit_Theta_1e_cut, Weight);
                 }
             }
         }
@@ -12222,14 +12222,14 @@ void EventAnalyser(const string &AnalyseFilePath, const string &AnalyseFileSampl
                     //                    dist_1e_cut_3v = nFD_hit_1e_cut_3v - e_hit_1e_cut_3v;
 
                     // subtracting the angles between the neutron hit and electron hit to see if we have fake neutrons:
-                    hdTheta_nFD_e_VS_dPhi_nFD_e_Electrons_BV_1e_cut.hFill(CalcdPhi(nFD_hit_Phi_1e_cut - e_hit_Phi_1e_cut), nFD_hit_Theta_1e_cut - e_hit_Theta_1e_cut, Weight);
+                    hdTheta_nFD_e_VS_dPhi_nFD_e_Electrons_BV_1e_cut.hFill(CalcdPhi1(nFD_hit_Phi_1e_cut - e_hit_Phi_1e_cut), nFD_hit_Theta_1e_cut - e_hit_Theta_1e_cut, Weight);
 
                     bool NeutronPassVeto_1e_cut = pid.NeutronECAL_Cut_Veto(allParticles, electrons, beamE, i, Neutron_veto_cut.GetLowerCut());
 
                     if (NeutronPassVeto_1e_cut) {
-                        hdTheta_nFD_e_VS_dPhi_nFD_e_Electrons_AV_1e_cut.hFill(CalcdPhi(nFD_hit_Phi_1e_cut - e_hit_Phi_1e_cut), nFD_hit_Theta_1e_cut - e_hit_Theta_1e_cut, Weight);
+                        hdTheta_nFD_e_VS_dPhi_nFD_e_Electrons_AV_1e_cut.hFill(CalcdPhi1(nFD_hit_Phi_1e_cut - e_hit_Phi_1e_cut), nFD_hit_Theta_1e_cut - e_hit_Theta_1e_cut, Weight);
                     } else {
-                        hdTheta_nFD_e_VS_dPhi_nFD_e_Electrons_Vetoed_1e_cut.hFill(CalcdPhi(nFD_hit_Phi_1e_cut - e_hit_Phi_1e_cut), nFD_hit_Theta_1e_cut - e_hit_Theta_1e_cut, Weight);
+                        hdTheta_nFD_e_VS_dPhi_nFD_e_Electrons_Vetoed_1e_cut.hFill(CalcdPhi1(nFD_hit_Phi_1e_cut - e_hit_Phi_1e_cut), nFD_hit_Theta_1e_cut - e_hit_Theta_1e_cut, Weight);
                     }
                 }
             }
@@ -12266,7 +12266,7 @@ void EventAnalyser(const string &AnalyseFilePath, const string &AnalyseFileSampl
                         double p_hit_Theta_1e_cut = p_hit_1e_cut_3v.Theta() * 180 / pi, p_hit_Phi_1e_cut = p_hit_1e_cut_3v.Phi() * 180 / pi;
 
                         // subtracting the angles between the neutron (n) hit and proton hit to see if we have fake neutrons:
-                        hdTheta_n_p_VS_dPhi_n_p_Protons_BV_1e_cut.hFill(CalcdPhi(n_hit_Phi_1e_cut - p_hit_Phi_1e_cut), n_hit_Theta_1e_cut - p_hit_Theta_1e_cut, Weight);
+                        hdTheta_n_p_VS_dPhi_n_p_Protons_BV_1e_cut.hFill(CalcdPhi1(n_hit_Phi_1e_cut - p_hit_Phi_1e_cut), n_hit_Theta_1e_cut - p_hit_Theta_1e_cut, Weight);
                     }
                 }  // end of ToF loop over protons vector
             }
@@ -12311,14 +12311,14 @@ void EventAnalyser(const string &AnalyseFilePath, const string &AnalyseFileSampl
                         double p_hit_Theta_1e_cut = p_hit_1e_cut_3v.Theta() * 180 / pi, p_hit_Phi_1e_cut = p_hit_1e_cut_3v.Phi() * 180 / pi;
 
                         // subtracting the angles between the neutron (n) hit and proton hit to see if we have fake neutrons:
-                        hdTheta_LnFD_p_VS_dPhi_LnFD_p_Protons_BV_1e_cut.hFill(CalcdPhi(LnFD_hit_Phi_1e_cut - p_hit_Phi_1e_cut), LnFD_hit_Theta_1e_cut - p_hit_Theta_1e_cut, Weight);
+                        hdTheta_LnFD_p_VS_dPhi_LnFD_p_Protons_BV_1e_cut.hFill(CalcdPhi1(LnFD_hit_Phi_1e_cut - p_hit_Phi_1e_cut), LnFD_hit_Theta_1e_cut - p_hit_Theta_1e_cut, Weight);
 
                         bool NeutronPassVeto_1e_cut = pid.NeutronECAL_Cut_Veto(allParticles, electrons, beamE, NeutronsFD_ind_mom_max_noNeutCuts, Neutron_veto_cut.GetLowerCut());
 
                         if (NeutronPassVeto_1e_cut) {
-                            hdTheta_LnFD_p_VS_dPhi_LnFD_p_Protons_AV_1e_cut.hFill(CalcdPhi(LnFD_hit_Phi_1e_cut - p_hit_Phi_1e_cut), LnFD_hit_Theta_1e_cut - p_hit_Theta_1e_cut, Weight);
+                            hdTheta_LnFD_p_VS_dPhi_LnFD_p_Protons_AV_1e_cut.hFill(CalcdPhi1(LnFD_hit_Phi_1e_cut - p_hit_Phi_1e_cut), LnFD_hit_Theta_1e_cut - p_hit_Theta_1e_cut, Weight);
                         } else {
-                            hdTheta_LnFD_p_VS_dPhi_LnFD_p_Protons_Vetoed_1e_cut.hFill(CalcdPhi(LnFD_hit_Phi_1e_cut - p_hit_Phi_1e_cut), LnFD_hit_Theta_1e_cut - p_hit_Theta_1e_cut, Weight);
+                            hdTheta_LnFD_p_VS_dPhi_LnFD_p_Protons_Vetoed_1e_cut.hFill(CalcdPhi1(LnFD_hit_Phi_1e_cut - p_hit_Phi_1e_cut), LnFD_hit_Theta_1e_cut - p_hit_Theta_1e_cut, Weight);
                         }
                     }
                 }  // end of ToF loop over protons vector
@@ -12362,14 +12362,14 @@ void EventAnalyser(const string &AnalyseFilePath, const string &AnalyseFileSampl
                         double nFD_hit_Theta_1e_cut = nFD_hit_1e_cut_3v.Theta() * 180 / pi, nFD_hit_Phi_1e_cut = nFD_hit_1e_cut_3v.Phi() * 180 / pi;
                         double p_hit_Theta_1e_cut = p_hit_1e_cut_3v.Theta() * 180 / pi, p_hit_Phi_1e_cut = p_hit_1e_cut_3v.Phi() * 180 / pi;
 
-                        hdTheta_nFD_p_VS_dPhi_nFD_p_Protons_BV_1e_cut.hFill(CalcdPhi(nFD_hit_Phi_1e_cut - p_hit_Phi_1e_cut), nFD_hit_Theta_1e_cut - p_hit_Theta_1e_cut, Weight);
+                        hdTheta_nFD_p_VS_dPhi_nFD_p_Protons_BV_1e_cut.hFill(CalcdPhi1(nFD_hit_Phi_1e_cut - p_hit_Phi_1e_cut), nFD_hit_Theta_1e_cut - p_hit_Theta_1e_cut, Weight);
 
                         bool NeutronPassVeto_1e_cut = pid.NeutronECAL_Cut_Veto(allParticles, electrons, beamE, i, Neutron_veto_cut.GetLowerCut());
 
                         if (NeutronPassVeto_1e_cut) {
-                            hdTheta_nFD_p_VS_dPhi_nFD_p_Protons_AV_1e_cut.hFill(CalcdPhi(nFD_hit_Phi_1e_cut - p_hit_Phi_1e_cut), nFD_hit_Theta_1e_cut - p_hit_Theta_1e_cut, Weight);
+                            hdTheta_nFD_p_VS_dPhi_nFD_p_Protons_AV_1e_cut.hFill(CalcdPhi1(nFD_hit_Phi_1e_cut - p_hit_Phi_1e_cut), nFD_hit_Theta_1e_cut - p_hit_Theta_1e_cut, Weight);
                         } else {
-                            hdTheta_nFD_p_VS_dPhi_nFD_p_Protons_Vetoed_1e_cut.hFill(CalcdPhi(nFD_hit_Phi_1e_cut - p_hit_Phi_1e_cut), nFD_hit_Theta_1e_cut - p_hit_Theta_1e_cut, Weight);
+                            hdTheta_nFD_p_VS_dPhi_nFD_p_Protons_Vetoed_1e_cut.hFill(CalcdPhi1(nFD_hit_Phi_1e_cut - p_hit_Phi_1e_cut), nFD_hit_Theta_1e_cut - p_hit_Theta_1e_cut, Weight);
                         }
                     }
                 }
@@ -12443,7 +12443,7 @@ void EventAnalyser(const string &AnalyseFilePath, const string &AnalyseFileSampl
                         {
                             // if id. reco leading neutron
 
-                            bool GoodTLMatch_AMaps = ((fabs(TL_nFD_theta - Theta_neut_1e_cut) < 2.) && (fabs(CalcdPhi(TL_nFD_phi - Phi_neut_1e_cut)) < 5.));  // FOR nFD eff test!
+                            bool GoodTLMatch_AMaps = ((fabs(TL_nFD_theta - Theta_neut_1e_cut) < 2.) && (fabs(CalcdPhi1(TL_nFD_phi - Phi_neut_1e_cut)) < 5.));  // FOR nFD eff test!
 
                             // if neutron passes ECAL veto:
                             if (NeutronPassVeto_1e_cut)
@@ -12986,7 +12986,7 @@ void EventAnalyser(const string &AnalyseFilePath, const string &AnalyseFileSampl
 
                         /* TL-Reco angle difference */
                         double dProtonTheta = TLProtonTheta - RecoProtonTheta;
-                        double dProtonPhi = CalcdPhi(TLProtonPhi - RecoProtonPhi);
+                        double dProtonPhi = CalcdPhi1(TLProtonPhi - RecoProtonPhi);
 
                         int pid_pRes = mcpbank_pRes->getPid();
                         //                        auto pid = mcpbank_pRes->getPid();
@@ -13183,7 +13183,7 @@ void EventAnalyser(const string &AnalyseFilePath, const string &AnalyseFileSampl
                     e_hit_Theta_1n = e_hit_1n_3v.Theta() * 180 / pi, e_hit_Phi_1n = e_hit_1n_3v.Phi() * 180 / pi;
                 }
 
-                dPhi_hit_1n = CalcdPhi(n_hit_Phi_1n - e_hit_Phi_1n), dTheta_hit_1n = n_hit_Theta_1n - e_hit_Theta_1n;
+                dPhi_hit_1n = CalcdPhi1(n_hit_Phi_1n - e_hit_Phi_1n), dTheta_hit_1n = n_hit_Theta_1n - e_hit_Theta_1n;
 
                 // subtracting the angles between the neutron hit and electron hit to see if we have fake neutrons:
                 hdTheta_n_e_VS_dPhi_n_e_Electrons_BV_1n.hFill(dPhi_hit_1n, dTheta_hit_1n, Weight_1n);
@@ -13833,7 +13833,7 @@ void EventAnalyser(const string &AnalyseFilePath, const string &AnalyseFileSampl
 
                         /* TL-Reco angle difference */
                         double dNeutronTheta = TLNeutronTheta - RecoNeutronTheta;
-                        double dNeutronPhi = CalcdPhi(TLNeutronPhi - RecoNeutronPhi);
+                        double dNeutronPhi = CalcdPhi1(TLNeutronPhi - RecoNeutronPhi);
 
                         int pid_nRes = mcpbank_nRes->getPid();
                         //                        auto pid = mcpbank_nRes->getPid();
@@ -14472,7 +14472,7 @@ void EventAnalyser(const string &AnalyseFilePath, const string &AnalyseFileSampl
             // Filling double-detection plots (2p)
 
             // Filling double-detection plots for 2p
-            double dPhi_hit_2p = CalcdPhi(Phi_p1 - Phi_p2);
+            double dPhi_hit_2p = CalcdPhi1(Phi_p1 - Phi_p2);
 
             if (Theta_p1_p2_2p < 20.) {
                 hTheta_p1_vs_theta_p2_for_Theta_p1_p2_20_2p->Fill(Theta_p2, Theta_p1, Weight);
@@ -14491,7 +14491,7 @@ void EventAnalyser(const string &AnalyseFilePath, const string &AnalyseFileSampl
 
             // Filling double-detection plots for pFDpCD
             if ((p_first_2p->getRegion() == FD && p_second_2p->getRegion() == CD) || (p_first_2p->getRegion() == CD && p_second_2p->getRegion() == FD)) {
-                double dPhi_hit_pFDpCD_2p = CalcdPhi(p_first_2p, p_second_2p);
+                double dPhi_hit_pFDpCD_2p = CalcdPhi2(p_first_2p, p_second_2p);
 
                 double Theta_pFD, Theta_pCD;
 
@@ -14706,7 +14706,7 @@ void EventAnalyser(const string &AnalyseFilePath, const string &AnalyseFileSampl
             // Theta_L_pFDpCD, Phi_L_pFDpCD in deg
             double Theta_R_pFDpCD = P_pR_pFDpCD_3v.Theta() * 180.0 / pi, Phi_R_pFDpCD = P_pR_pFDpCD_3v.Phi() * 180.0 / pi;
             // Theta_R_pFDpCD, Phi_R_pFDpCD in deg
-            double dPhi_hit_pFDpCD = CalcdPhi(Phi_L_pFDpCD - Phi_R_pFDpCD);
+            double dPhi_hit_pFDpCD = CalcdPhi1(Phi_L_pFDpCD - Phi_R_pFDpCD);
             double Theta_pFD_pCD_pFDpCD = acos((P_pL_pFDpCD_3v.Px() * P_pR_pFDpCD_3v.Px() + P_pL_pFDpCD_3v.Py() * P_pR_pFDpCD_3v.Py() + P_pL_pFDpCD_3v.Pz() * P_pR_pFDpCD_3v.Pz()) /
                                                (P_pL_pFDpCD_3v.Mag() * P_pR_pFDpCD_3v.Mag())) *
                                           180.0 / pi;  // Theta_pFD_pCD_pFDpCD in deg
