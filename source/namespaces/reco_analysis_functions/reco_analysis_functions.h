@@ -30,7 +30,7 @@ using namespace std;
 using namespace clas12;
 using namespace lists;
 
-namespace reco_RECO_ANALYSIS_FUNCTIONS {
+namespace reco_analysis_functions {
 
 // CheckForNeutralFDECALHits function -----------------------------------------------------------------------------------------------------------------------------------
 
@@ -403,6 +403,6 @@ void AddToHipoChain(HipoChain& chain, const string& sn, const string& AnalyseFil
     }
 }
 
-}  // namespace reco_RECO_ANALYSIS_FUNCTIONS
+}  // namespace reco_analysis_functions
 
 #endif  // RECO_ANALYSIS_FUNCTIONS_H

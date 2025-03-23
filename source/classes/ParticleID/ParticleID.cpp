@@ -39,9 +39,9 @@ bool ParticleID::NeutronECAL_Cut_Veto(vector<region_part_ptr> &allParticles, vec
     TVector3 v_nhit(allParticles[index]->cal(detlayer)->getX(), allParticles[index]->cal(detlayer)->getY(), allParticles[index]->cal(detlayer)->getZ());
     double beta = allParticles[index]->par()->getBeta();
     double gamma = 1 / sqrt(1 - (beta * beta));
-    double theta_n = p_n_Angles.Theta() * 180 / pi;
-    double theta_q = p_q.Theta() * 180 / pi;
-    double theta_nq = p_n_Angles.Angle(p_q) * 180 / pi;
+    double theta_n = p_n_Angles.Theta() * 180 / analysis_math::pi;
+    double theta_q = p_q.Theta() * 180 / analysis_math::pi;
+    double theta_nq = p_n_Angles.Angle(p_q) * 180 / analysis_math::pi;
 
     if (beta < 0) { return false; }
     //    if (beta > 1.1) { return false; }
@@ -544,7 +544,7 @@ vector<int> ParticleID::GetGoodProtons(const bool &apply_nucleon_cuts, vector<re
                     }
                 } else if (((protons[IDProtons_ind.at(i)]->getRegion() == FD) && (protons[IDProtons_ind.at(j)]->getRegion() == CD)) ||
                            ((protons[IDProtons_ind.at(i)]->getRegion() == CD) && (protons[IDProtons_ind.at(j)]->getRegion() == FD))) {  // if proton pair CD and FD
-                    double Theta_p_i = protons[IDProtons_ind.at(i)]->getTheta() * 180.0 / pi, Theta_p_j = protons[IDProtons_ind.at(j)]->getTheta() * 180.0 / pi;
+                    double Theta_p_i = protons[IDProtons_ind.at(i)]->getTheta() * 180.0 / analysis_math::pi, Theta_p_j = protons[IDProtons_ind.at(j)]->getTheta() * 180.0 / analysis_math::pi;
                     double dPhi = CalcdPhi(protons[IDProtons_ind.at(i)], protons[IDProtons_ind.at(j)]);
 
                     bool p_i_around_40 = (fabs(Theta_p_i - Theta_p1_cuts_2p.GetMeanConst()) < Theta_p1_cuts_2p.GetUpperCutConst());
@@ -737,20 +737,20 @@ void ParticleID::GPMonitoring(const bool &GoodProtonsMonitorPlots, vector<region
 
             auto proton_i_2p = protons[IDProtons_ind.at(i)];
             TVector3 proton_i_2p_2p_3v;
-            proton_i_2p_2p_3v.SetMagThetaPhi(proton_i_2p->getP(), proton_i_2p->getTheta(), proton_i_2p->getPhi());  // proton i in protons vector
-            double Theta_pi = proton_i_2p->getTheta() * 180.0 / pi, Phi_pi = proton_i_2p->getPhi() * 180.0 / pi;    // Theta_pi; Phi_pi in deg
+            proton_i_2p_2p_3v.SetMagThetaPhi(proton_i_2p->getP(), proton_i_2p->getTheta(), proton_i_2p->getPhi());                              // proton i in protons vector
+            double Theta_pi = proton_i_2p->getTheta() * 180.0 / analysis_math::pi, Phi_pi = proton_i_2p->getPhi() * 180.0 / analysis_math::pi;  // Theta_pi; Phi_pi in deg
 
             for (int j = i + 1; j < IDProtons_ind.size(); j++) {
                 auto proton_j_2p = protons[IDProtons_ind.at(j)];
                 TVector3 proton_j_2p_2p_3v;
                 proton_j_2p_2p_3v.SetMagThetaPhi(proton_j_2p->getP(), proton_j_2p->getTheta(),
-                                                 proton_j_2p->getPhi());                                              // proton j in protons vector
-                double Theta_pj = proton_j_2p->getTheta() * 180.0 / pi, Phi_pj = proton_j_2p->getPhi() * 180.0 / pi;  // Theta_pi; Phi_pi in deg
+                                                 proton_j_2p->getPhi());                                                                            // proton j in protons vector
+                double Theta_pj = proton_j_2p->getTheta() * 180.0 / analysis_math::pi, Phi_pj = proton_j_2p->getPhi() * 180.0 / analysis_math::pi;  // Theta_pi; Phi_pi in deg
 
                 double Theta_pi_pj_2p =
                     acos((proton_i_2p_2p_3v.Px() * proton_j_2p_2p_3v.Px() + proton_i_2p_2p_3v.Py() * proton_j_2p_2p_3v.Py() + proton_i_2p_2p_3v.Pz() * proton_j_2p_2p_3v.Pz()) /
                          (proton_i_2p_2p_3v.Mag() * proton_j_2p_2p_3v.Mag())) *
-                    180.0 / pi;  // Theta_pi_pj_2p in deg
+                    180.0 / analysis_math::pi;  // Theta_pi_pj_2p in deg
 
                 if ((proton_i_2p->getRegion() == CD) && (proton_j_2p->getRegion() == CD)) {  // if both 2p protons are in the CD
                     TVector3 pi_hit_pos, pj_hit_pos, pos_diff_ij;
