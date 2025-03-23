@@ -3,7 +3,7 @@
 
 #include "../../classes/DSCuts/DSCuts.h"
 
-namespace constants {
+namespace constants_ard {
 // Physical constants ---------------------------------------------------------------------------------------------------------------------------------------------------
 
 // Particle masses (in GeV):

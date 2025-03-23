@@ -79,12 +79,12 @@ double GetFDNeutronP(region_part_ptr& Neutron, bool apply_nucleon_cuts) {
             double Time_ph = Neutron->getTime();  // bad
                                                   //        double Velocity = Path_ph / Time_ph;
             double Beta_ph = Neutron->par()->getBeta();
-            double Time_ph_from_Beta_ph = Path_ph / (constants::c * Beta_ph);
+            double Time_ph_from_Beta_ph = Path_ph / (constants_ard::c * Beta_ph);
             double Velocity_ph = Path_ph / Time_ph_from_Beta_ph;
             //        double Gamma_ph = 1 / sqrt(1 - (Velocity_ph * Velocity_ph) / (constants::c * constants::c));
             double Gamma_ph = 1 / sqrt(1 - (Beta_ph * Beta_ph));
 
-            Momentum = constants::m_n * Beta_ph * Gamma_ph;
+            Momentum = constants_ard::m_n * Beta_ph * Gamma_ph;
         }
         //</editor-fold>
 
@@ -170,10 +170,10 @@ double CalcPnFD(region_part_ptr NeutronFD, region_part_ptr electron, double star
     double reco_Path_nFD = CalcPathnFD(NeutronFD, electron);
     // double reco_Path_nFD = NeutronFD->getPath();
     double reco_ToF_nFD = CalcToFnFD(NeutronFD, starttime);
-    double reco_Beta_nFD = reco_Path_nFD / (reco_ToF_nFD * constants::c);
+    double reco_Beta_nFD = reco_Path_nFD / (reco_ToF_nFD * constants_ard::c);
     double reco_Gamma_nFD = 1 / sqrt(1 - (reco_Beta_nFD * reco_Beta_nFD));
 
-    double Momentum = constants::m_n * reco_Beta_nFD * reco_Gamma_nFD;
+    double Momentum = constants_ard::m_n * reco_Beta_nFD * reco_Gamma_nFD;
 
     /*
      if (ParticlePDG == 2112) {
@@ -181,7 +181,7 @@ double CalcPnFD(region_part_ptr NeutronFD, region_part_ptr electron, double star
     } else if (ParticlePDG == 22) {
         double Beta_ph = NeutronFD->par()->getBeta();
         double Gamma_ph = 1 / sqrt(1 - (Beta_ph * Beta_ph));
-        Momentum =  constants::m_n * Beta_ph * Gamma_ph;
+        Momentum =  constants_ard::m_n * Beta_ph * Gamma_ph;
     } else {
         cout << "\n\nError! Particle PDG is not 22 or 2112! Aborting...\n\n", exit(0);
     }
