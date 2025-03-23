@@ -6,7 +6,7 @@ using namespace std;
 
 int main() {
     // Check if the current hostname matches a specific pattern
-    std::string HostName = GetSSHHostName();
+    std::string HostName = basic_tools::GetSSHHostName();
     
     // Set the macro IFARM_RUN based on the hostname
     #define IFARM_RUN (basic_tools::FindSubstring(HostName, "jlab.org"))
