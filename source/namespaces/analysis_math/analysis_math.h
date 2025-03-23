@@ -11,7 +11,7 @@
 #include <vector>
 
 #include "../basic_tools/basic_tools.h"
-#include "../constants/constants.cpp"
+#include "../constants/constants.h"
 
 using namespace std;
 
@@ -49,7 +49,7 @@ double CalcPhi_deg(const double &x, const double &y, const double &z) { return R
 
 double GetPi0MomTh(const double &ph_mom_th) {
     if (std::abs(ph_mom_th) == 9999) { return -9999; }
-    double pi0_mom_th = std::sqrt(4 * ph_mom_th * ph_mom_th - constants_ard::m_pizero * constants_ard::m_pizero);
+    double pi0_mom_th = std::sqrt(4 * ph_mom_th * ph_mom_th - constants::m_pizero * constants::m_pizero);
     return pi0_mom_th;
 }
 

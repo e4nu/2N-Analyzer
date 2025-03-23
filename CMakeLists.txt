@@ -215,7 +215,6 @@ add_executable(project ${CLAS12ROOT_SOURCES} ${CLAS12BANKS_SOURCES} ${HIPO4_SOUR
         source/namespaces/analysis_math/analysis_math.h
         source/namespaces/basic_tools/basic_tools.h
         source/namespaces/constants/constants.h
-        source/namespaces/constants/constants.cpp
         source/namespaces/data_processor/data_processor.h
         source/namespaces/lists/lists.h
         source/namespaces/reco_analysis_functions/reco_analysis_functions.h

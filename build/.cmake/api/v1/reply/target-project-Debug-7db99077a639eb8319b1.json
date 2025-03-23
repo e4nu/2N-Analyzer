@@ -32,7 +32,7 @@
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 259,
+				"line" : 258,
 				"parent" : 0
 			},
 			{
@@ -247,7 +247,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-g -std=gnu++14 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk -fcolor-diagnostics"
+					"fragment" : "-g -std=gnu++14 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk"
 				}
 			],
 			"includes" : 
@@ -438,29 +438,28 @@
 				55,
 				58,
 				101,
-				134,
+				141,
 				142,
-				143,
-				146,
-				151,
-				153,
-				155,
-				157,
-				159,
+				145,
+				150,
+				152,
+				154,
+				156,
+				158,
+				161,
 				162,
-				163,
+				164,
 				165,
 				166,
 				167,
-				168,
-				169
+				168
 			]
 		},
 		{
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk -fcolor-diagnostics"
+					"fragment" : "-g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk"
 				}
 			],
 			"includes" : 
@@ -605,10 +604,10 @@
 			"language" : "C",
 			"sourceIndexes" : 
 			[
+				139,
 				140,
-				141,
-				148,
-				150
+				147,
+				149
 			]
 		}
 	],
@@ -774,26 +773,25 @@
 				55,
 				58,
 				101,
-				134,
+				139,
 				140,
 				141,
 				142,
-				143,
-				146,
-				148,
+				145,
+				147,
+				149,
 				150,
-				151,
-				153,
-				155,
-				157,
-				159,
+				152,
+				154,
+				156,
+				158,
+				161,
 				162,
-				163,
+				164,
 				165,
 				166,
 				167,
-				168,
-				169
+				168
 			]
 		},
 		{
@@ -822,9 +820,9 @@
 				78,
 				79,
 				80,
-				145,
-				147,
-				149
+				144,
+				146,
+				148
 			]
 		},
 		{
@@ -905,19 +903,19 @@
 				131,
 				132,
 				133,
+				134,
 				135,
 				136,
 				137,
 				138,
-				139,
-				144,
-				152,
-				154,
-				156,
-				158,
+				143,
+				151,
+				153,
+				155,
+				157,
+				159,
 				160,
-				161,
-				164
+				163
 			]
 		}
 	],
@@ -1630,12 +1628,6 @@
 			"backtrace" : 1,
 			"path" : "source/namespaces/constants/constants.h",
 			"sourceGroupIndex" : 2
-		},
-		{
-			"backtrace" : 1,
-			"compileGroupIndex" : 0,
-			"path" : "source/namespaces/constants/constants.cpp",
-			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,

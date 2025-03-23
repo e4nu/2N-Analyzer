@@ -8,7 +8,7 @@
 #define IndependentCanvasPDF false
 
 #include "../source/namespaces/basic_tools/basic_tools.h"
-#include "../source/namespaces/constants/constants.cpp"
+#include "../source/namespaces/constants/constants.h"
 
 #include "../source/classes/Debugger/Debugger.cpp"
 #include "../source/classes/Directories/Directories.cpp"

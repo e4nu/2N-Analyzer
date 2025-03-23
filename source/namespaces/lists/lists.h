@@ -7,7 +7,7 @@
 
 #include <map>
 
-#include "../constants/constants.cpp"
+#include "../constants/constants.h"
 #include "../../structures/DataSample/DataSample.h"
 
 namespace lists {
@@ -117,7 +117,7 @@ double P_nucCD_lboundary = 0., P_nucCD_uboundary = beamE_def / 2;               
 
 /* W boundries */
 const double W_lboundary = 0.35;
-const double W_uboundary = 1.1 * sqrt((beamE_def + constants_ard::m_p) * (beamE_def + constants_ard::m_p) - beamE_def * beamE_def);  // Default
+const double W_uboundary = 1.1 * sqrt((beamE_def + constants::m_p) * (beamE_def + constants::m_p) - beamE_def * beamE_def);  // Default
 
 /* Beta boundries */
 const double dBeta_sigma_boundary = 0.1;

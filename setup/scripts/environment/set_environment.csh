@@ -39,11 +39,13 @@ unset IFARM_RUN
 
 # Check if the hostname contains the substring
 if ( "$ANALYSIS_HOSTNAME" =~ *"$JLAB_TESTER"* ) then
-    echo "The hostname contains '$JLAB_TESTER'. Running the commands for this case."
+    echo "${COLOR_START}The hostname contains '$JLAB_TESTER'. Running the commands for this case.${COLOR_END}"
+    echo ""
     # Put the commands to run if the hostname contains the substring here
     setenv IFARM_RUN 1
 else
-    echo "The hostname does not contain '$JLAB_TESTER'. Running the alternate commands."
+    echo "${COLOR_START}The hostname does not contain '$JLAB_TESTER'. Running the alternate commands.${COLOR_END}"
+    echo ""
     # Put the commands to run if the hostname does not contain the substring here
     setenv IFARM_RUN 0
 endif

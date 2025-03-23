@@ -12,7 +12,7 @@
 #include <map>
 #include <vector>
 
-#include "../../namespaces/constants/constants.cpp"
+#include "../../namespaces/constants/constants.h"
 #include "../../namespaces/analysis_math/analysis_math.h"
 #include "../../namespaces/reco_analysis_functions/reco_analysis_functions.h"
 // #include "../../functions/NeutronECAL_Cut_Veto.h"
@@ -29,7 +29,7 @@
 
 using namespace std;
 using namespace clas12;
-using namespace constants_ard;
+using namespace constants;
 // using namespace analysis_math;
 
 class ParticleID {

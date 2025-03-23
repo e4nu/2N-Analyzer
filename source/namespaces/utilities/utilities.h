@@ -17,7 +17,7 @@
 
 #include "../analysis_math/analysis_math.h"
 #include "../basic_tools/basic_tools.h"
-#include "../constants/constants.cpp"
+#include "../constants/constants.h"
 #include "../lists/lists.h"
 // #include "../truth_analysis_functions/truth_analysis_functions.h"
 
@@ -29,7 +29,7 @@
 using namespace std;
 
 namespace utilities {
-using namespace constants_ard;
+using namespace constants;
 using namespace basic_tools;
 using namespace analysis_math;
 using namespace lists;

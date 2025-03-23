@@ -97,8 +97,6 @@ file(REMOVE_RECURSE
   "CMakeFiles/project.dir/source/classes/hPlots/hPlot2D.cpp.o.d"
   "CMakeFiles/project.dir/source/functions/Math_func/poly34.cpp.o"
   "CMakeFiles/project.dir/source/functions/Math_func/poly34.cpp.o.d"
-  "CMakeFiles/project.dir/source/namespaces/constants/constants.cpp.o"
-  "CMakeFiles/project.dir/source/namespaces/constants/constants.cpp.o.d"
   "CMakeFiles/project.dir/source/other/fitexample.c.o"
   "CMakeFiles/project.dir/source/other/fitexample.c.o.d"
   "CMakeFiles/project.dir/source/other/fitexample_-_Copy.c.o"

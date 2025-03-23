@@ -1305,30 +1305,6 @@ source/functions/Math_func/poly34.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/functions/Math_func/poly34.cpp.s
 .PHONY : source/functions/Math_func/poly34.cpp.s
 
-source/namespaces/constants/constants.o: source/namespaces/constants/constants.cpp.o
-.PHONY : source/namespaces/constants/constants.o
-
-# target to build an object file
-source/namespaces/constants/constants.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/namespaces/constants/constants.cpp.o
-.PHONY : source/namespaces/constants/constants.cpp.o
-
-source/namespaces/constants/constants.i: source/namespaces/constants/constants.cpp.i
-.PHONY : source/namespaces/constants/constants.i
-
-# target to preprocess a source file
-source/namespaces/constants/constants.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/namespaces/constants/constants.cpp.i
-.PHONY : source/namespaces/constants/constants.cpp.i
-
-source/namespaces/constants/constants.s: source/namespaces/constants/constants.cpp.s
-.PHONY : source/namespaces/constants/constants.s
-
-# target to generate assembly for a file
-source/namespaces/constants/constants.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/namespaces/constants/constants.cpp.s
-.PHONY : source/namespaces/constants/constants.cpp.s
-
 source/other/fitexample.o: source/other/fitexample.c.o
 .PHONY : source/other/fitexample.o
 
@@ -1677,9 +1653,6 @@ help:
 	@echo "... source/functions/Math_func/poly34.o"
 	@echo "... source/functions/Math_func/poly34.i"
 	@echo "... source/functions/Math_func/poly34.s"
-	@echo "... source/namespaces/constants/constants.o"
-	@echo "... source/namespaces/constants/constants.i"
-	@echo "... source/namespaces/constants/constants.s"
 	@echo "... source/other/fitexample.o"
 	@echo "... source/other/fitexample.i"
 	@echo "... source/other/fitexample.s"

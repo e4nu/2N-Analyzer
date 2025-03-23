@@ -32,7 +32,7 @@
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 251,
+				"line" : 258,
 				"parent" : 0
 			},
 			{
@@ -247,7 +247,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-g -std=gnu++14 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk"
+					"fragment" : "-g -std=gnu++14 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk -fcolor-diagnostics"
 				}
 			],
 			"includes" : 
@@ -438,28 +438,28 @@
 				55,
 				58,
 				101,
-				133,
-				134,
-				137,
+				141,
 				142,
-				144,
-				146,
-				148,
+				145,
 				150,
-				153,
+				152,
 				154,
 				156,
-				157,
 				158,
-				159,
-				160
+				161,
+				162,
+				164,
+				165,
+				166,
+				167,
+				168
 			]
 		},
 		{
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk"
+					"fragment" : "-g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk -fcolor-diagnostics"
 				}
 			],
 			"includes" : 
@@ -604,10 +604,10 @@
 			"language" : "C",
 			"sourceIndexes" : 
 			[
-				131,
-				132,
 				139,
-				141
+				140,
+				147,
+				149
 			]
 		}
 	],
@@ -773,25 +773,25 @@
 				55,
 				58,
 				101,
-				131,
-				132,
-				133,
-				134,
-				137,
 				139,
+				140,
 				141,
 				142,
-				144,
-				146,
-				148,
+				145,
+				147,
+				149,
 				150,
-				153,
+				152,
 				154,
 				156,
-				157,
 				158,
-				159,
-				160
+				161,
+				162,
+				164,
+				165,
+				166,
+				167,
+				168
 			]
 		},
 		{
@@ -820,9 +820,9 @@
 				78,
 				79,
 				80,
-				136,
-				138,
-				140
+				144,
+				146,
+				148
 			]
 		},
 		{
@@ -900,14 +900,22 @@
 				128,
 				129,
 				130,
+				131,
+				132,
+				133,
+				134,
 				135,
+				136,
+				137,
+				138,
 				143,
-				145,
-				147,
-				149,
 				151,
-				152,
-				155
+				153,
+				155,
+				157,
+				159,
+				160,
+				163
 			]
 		}
 	],
@@ -1604,6 +1612,46 @@
 		{
 			"backtrace" : 1,
 			"path" : "source/namespaces/utilities/utilities.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "source/namespaces/analysis_math/analysis_math.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "source/namespaces/basic_tools/basic_tools.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "source/namespaces/constants/constants.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "source/namespaces/data_processor/data_processor.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "source/namespaces/lists/lists.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "source/namespaces/reco_analysis_functions/reco_analysis_functions.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "source/namespaces/settings/settings.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "source/namespaces/truth_analysis_functions/truth_analysis_functions.h",
 			"sourceGroupIndex" : 2
 		},
 		{
