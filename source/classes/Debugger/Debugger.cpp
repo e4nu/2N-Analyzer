@@ -82,7 +82,7 @@ void Debugger::SafetyCheck_Truth_leading_FD_neutron(const char *FILE, const int 
                 mcpbank->setEntry(i);
 
                 double Leading_neutron_momentum = Leading_TL_FDNeutron_Momentum;
-                double Temp_neutron_momentum = rCalc(mcpbank->getPx(), mcpbank->getPy(), mcpbank->getPz());
+                double Temp_neutron_momentum = RadCalc(mcpbank->getPx(), mcpbank->getPy(), mcpbank->getPz());
                 double dMomentum = Leading_neutron_momentum - Temp_neutron_momentum;
 
                 if (dMomentum < 0) { PrintErrorMessage(FILE, LINE, "Leading TL nFD check: assigned nFD is not the leading!", ""); }

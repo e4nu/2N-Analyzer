@@ -115,10 +115,6 @@ void TitleAligner(TH1D *simHistogram, TH1D *dataHistogram, const string &originT
     updateTitle(dataHistogram);
 }
 
-// RadCalc function ------------------------------------------------------------------------------------------------------------------------------------------------------
-
-inline double RadCalc(double x, double y, double z) { return sqrt(x * x + y * y + z * z); }
-
 // GetHistogramFromVector function --------------------------------------------------------------------------------------------------------------------------------------
 
 TH1 *GetHistogramFromVector(const std::vector<TH1 *> &HistoList, const string &searchString, const string &searchStringOption = "name") {

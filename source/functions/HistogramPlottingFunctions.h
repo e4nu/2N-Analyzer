@@ -9,10 +9,10 @@
 #include "../includes/CanvasPDF/CanvasPDF.h"
 #endif
 
-#include "../../namespaces/utilities/utilities.h"
+#include "../namespaces/utilities/utilities.h"
 // #include "GeneralFunctions.h"
 
-using namespaces utilities;
+using namespace utilities;
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                   histPlotter1D function                                                                            //

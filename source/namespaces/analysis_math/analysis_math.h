@@ -45,6 +45,10 @@ double CalcPhi_rad(const double &x, const double &y) { return atan2(y, x); }
 
 double CalcPhi_deg(const double &x, const double &y, const double &z) { return RadToDeg(CalcPhi_rad(x, y)); }
 
+// RadCalc function ------------------------------------------------------------------------------------------------------------------------------------------------------
+
+inline double RadCalc(double x, double y, double z) { return sqrt(x * x + y * y + z * z); }
+
 // GetPi0MomTh function -------------------------------------------------------------------------------------------------------------------------------------------------
 
 double GetPi0MomTh(const double &ph_mom_th) {
