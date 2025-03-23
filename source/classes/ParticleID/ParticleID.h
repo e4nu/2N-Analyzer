@@ -12,7 +12,8 @@
 #include <map>
 #include <vector>
 
-#include "../../constants.h"
+#include "../../namespaces/constants/constants.h"
+// #include "../../constants.h"
 #include "../../functions/AngleCalc/CalcdPhi.h"
 #include "../../functions/NeutronECAL_Cut_Veto.h"
 #include "../../functions/PID_functions/GetFDNeutronP.h"
@@ -28,6 +29,7 @@
 
 using namespace std;
 using namespace clas12;
+using namespace constants;
 
 class ParticleID {
    public:

@@ -1,8 +1,6 @@
 
 #include "ExperimentParameters.h"
 
-using namespace utilities;
-
 // Constructor ----------------------------------------------------------------------------------------------------------------------------------------
 
 //<editor-fold desc="Constructor">
