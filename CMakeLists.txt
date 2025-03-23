@@ -213,6 +213,7 @@ add_executable(project ${CLAS12ROOT_SOURCES} ${CLAS12BANKS_SOURCES} ${HIPO4_SOUR
         source/functions/to_string_with_precision.h
         source/namespaces/utilities/utilities.h
         source/namespaces/analysis_math/analysis_math.h
+        source/namespaces/analysis_math/analysis_math_reco_extentions.h
         source/namespaces/basic_tools/basic_tools.h
         source/namespaces/constants/constants.h
         source/namespaces/data_processor/data_processor.h

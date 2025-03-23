@@ -73,33 +73,6 @@ double CalcdPhi(double dPhiTemp) {
     return dPhi;
 }
 
-#ifdef IFARM_RUN
-// #if defined(IFARM_RUN)
-#include "HipoChain.h"
-#include "clas12reader.h"
-
-using namespace clas12;
-
-double CalcdPhi(region_part_ptr proton1, region_part_ptr proton2) {
-    if (proton1->getRegion() == proton2->getRegion()) {
-        cerr << "\n\nCalcdPhi: protons are in the same region (" << proton1->getRegion() << " & " << proton2->getRegion() << ")! Exiting...\n";
-        exit(0);
-    }
-
-    double Phi_pFD_deg = 0.0, Phi_pCD_deg = 0.0;
-
-    if (proton1->getRegion() == FD && proton2->getRegion() == CD) {
-        Phi_pFD_deg = RadToDeg(proton1->getPhi());
-        Phi_pCD_deg = RadToDeg(proton2->getPhi());
-    } else if (proton1->getRegion() == CD && proton2->getRegion() == FD) {
-        Phi_pFD_deg = RadToDeg(proton2->getPhi());
-        Phi_pCD_deg = RadToDeg(proton1->getPhi());
-    }
-
-    return CalcdPhi(Phi_pFD_deg - Phi_pCD_deg);
-}
-#endif
-
 // GetPhi_e function ----------------------------------------------------------------------------------------------------------------------------------------------------
 
 double GetPhi_e(TString OutPutFolder, double phi_N) {
