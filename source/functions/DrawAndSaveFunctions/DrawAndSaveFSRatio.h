@@ -43,6 +43,7 @@ SetYAxisTitle
 
 #include "../../classes/hData/hData.h"
 #include "../../classes/hPlots/hPlot1D.h"
+#include "../../namespaces/utilities/utilities.h"
 #include "../EventProperties/SetFSRatioSaveDir.h"
 #include "../EventProperties/SetStatsTitle.h"
 #include "../EventProperties/SetTitle.h"
@@ -50,9 +51,11 @@ SetYAxisTitle
 #include "../EventProperties/SetXAxisTitle.h"
 #include "../EventProperties/SetYAxisTitle.h"
 #include "../EventProperties/SettingSaveNames.h"
-#include "../GeneralFunctions.h"
 
 using namespace std;
+using namespace utilities;
+
+// TODO: move includes here into a namespace
 
 // TODO: move this into a class with the proper functions
 

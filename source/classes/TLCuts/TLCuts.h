@@ -30,12 +30,15 @@
 #include <vector>
 
 // #include "../../constants.h"
-#include "../../functions/AngleCalc/GetBinFromAng.h"
-#include "../../functions/GeneralFunctions.h"
+// #include "../../functions/AngleCalc/GetBinFromAng.h"
+// #include "../../functions/GeneralFunctions.h"
+#include "../../namespaces/analysis_math/analysis_math.h"
 #include "../DSCuts/DSCuts.h"
+//
 #include "clas12reader.h"
 
 using namespace std;
+using namespace analysis_math;
 
 class TLCuts {
    private:

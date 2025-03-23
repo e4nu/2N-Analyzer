@@ -4,7 +4,8 @@
 
 #include "hPlot1D.h"
 
-#include "../../functions/GeneralFunctions.h"
+// #include "../../namespaces/utilities/utilities.h"
+// #include "../../functions/GeneralFunctions.h"
 
 bool hPlot1D::findSubstring(std::string string1, std::string string2) {
     if (string1.find(string2) != string::npos) {

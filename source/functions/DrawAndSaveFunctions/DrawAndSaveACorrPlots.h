@@ -30,12 +30,14 @@
 #include <vector>
 
 #include "../../classes/hPlots/hPlot1D.h"
-#include "../EventProperties/GetParticleName.h"
-#include "../EventProperties/GetParticleNameLC.h"
-#include "../EventProperties/GetParticleNameShort.h"
-#include "../GeneralFunctions.h"
+// #include "../EventProperties/GetParticleName.h"
+// #include "../EventProperties/GetParticleNameLC.h"
+// #include "../EventProperties/GetParticleNameShort.h"
+#include "../../namespaces/utilities/utilities.h"
+// #include "../GeneralFunctions.h"
 
 using namespace std;
+using namespace utilities;
 
 // DrawAndSaveACorrPlots function for momentum plots:
 void DrawAndSaveACorrPlots(bool save_ACorr_data, const string &SampleName, const hPlot1D &TLPlot, const hPlot1D &RPlot, TList *Histogram_list, TList *ACorr_data, string &ACorr_data_Dir) {

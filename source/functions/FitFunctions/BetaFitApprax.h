@@ -27,7 +27,7 @@
 #include "../../namespaces/constants/constants.h"
 #include "../EventProperties/GetParticleName.h"
 #include "../EventProperties/GetParticleNameShort.h"
-#include "../GeneralFunctions.h"
+#include "../../namespaces/utilities/utilities.h"
 #include "../drawtext.h"
 #include "FitFunction.h"
 
@@ -35,6 +35,7 @@
 
 using namespace std;
 using namespace constants;
+using namespace utilities;
 
 void BetaFitApprax(const string &SampleName, DSCuts &Beta_cut, DSCuts &Momentum_cuts, const hPlot1D &BetaPlot, TList *Histogram_list, const double beamE) {
     double W_yLLim = -0.1, W_yULim = 0.1, W_xLLim = 0.9, W_xULim = 1.;

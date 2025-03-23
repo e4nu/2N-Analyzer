@@ -18,7 +18,8 @@
 #include <TROOT.h>
 
 #if noFSRatio
-#include "../../source/functions/GeneralFunctions.h"
+#include "../../namespaces/utilities/utilities.h"
+// #include "../../source/functions/GeneralFunctions.h"
 #include "../../source/constants.h"
 #include "HistPlotter1D.cpp"
 #include "HistPlotterStack.cpp"
@@ -28,6 +29,7 @@
 #endif
 
 using namespace std;
+using namespace utilities;
 
 void FSRPlotter(hData &utilities, TCanvas *HistCanvas, TList *MScThesisPlotsList, const char *Sim_filename, const char *Data_filename, const string &SampleName,
                 const string &FSTopology, const string &DetRegion, const string &HistName_Denominator, const string &HistName_Numerator, const string &FSRHistName,

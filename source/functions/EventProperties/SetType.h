@@ -11,9 +11,10 @@
 #include <sstream>
 #include <typeinfo>
 
-#include "../GeneralFunctions.h"
+#include "../../namespaces/utilities/utilities.h"
 
 using namespace std;
+using namespace utilities;
 
 string SetType(const string &Title) {
     string Type;

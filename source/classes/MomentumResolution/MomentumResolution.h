@@ -41,10 +41,12 @@
 
 #endif
 
-#include "../../functions/GeneralFunctions.h"
+#include "../../namespaces/utilities/utilities.h"
+// #include "../../functions/GeneralFunctions.h"
 #include "../DSCuts/DSCuts.h"
 
 using namespace std;
+using namespace utilities;
 
 class MomentumResolution {
    private:

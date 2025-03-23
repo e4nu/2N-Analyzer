@@ -11,12 +11,13 @@
 #include <sstream>
 #include <typeinfo>
 
-#include "../GeneralFunctions.h"
+#include "../../namespaces/utilities/utilities.h"
 #include "GetParticleName.h"
 #include "GetParticleNameShort.h"
 // #include "../findSubstring.h"
 
 using namespace std;
+using namespace utilities;
 
 string SetYAxisTitle(const string &PlotT, const string &FinalState, const string &Numerator, const string &Denominator, const string &Title = "") {
     string YAxisTitle;

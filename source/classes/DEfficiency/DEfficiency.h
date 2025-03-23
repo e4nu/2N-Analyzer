@@ -33,12 +33,14 @@
 #include "../hData/hData.cpp"
 //#include "../hPlots/hPlot1D.cpp"
 #include "../hPlots/hPlot1D.h"
-#include "../../functions/GeneralFunctions.h"
+#include "../../namespaces/utilities/utilities.h"
+// #include "../../functions/GeneralFunctions.h"
 //#include "../../functions/EventProperties/GetParticleName.h"
 //#include "../../functions/EventProperties/GetParticleNameLC.h"
 //#include "../../functions/EventProperties/GetParticleNameShort.h"
 
 using namespace std;
+using namespace utilities;
 
 class DEfficiency : public hData {
 private:

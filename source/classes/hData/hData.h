@@ -29,9 +29,11 @@
 #include <typeinfo>
 #include <vector>
 
-#include "../../functions/GeneralFunctions.h"
+#include "../../namespaces/data_processor/data_processor.h"
+// #include "../../functions/GeneralFunctions.h"
 
 using namespace std;
+using namespace data_processor;
 
 class hData {
    private:

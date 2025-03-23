@@ -30,12 +30,14 @@
 #include <vector>
 
 #include "../hData/hData.h"
+#include "../../namespaces/utilities/utilities.h"
 
 #if IndependentCanvasPDF
 #include "../../includes/CanvasPDF/CanvasPDF.h"
 #endif
 
 using namespace std;
+using namespace utilities;
 
 class hPlot1D {
    protected:

@@ -11,8 +11,7 @@
 #include <sstream>
 #include <typeinfo>
 
-#include "../GeneralFunctions.h"
-// #include "../findSubstring.h"
+#include "../../namespaces/utilities/utilities.h"
 
 using namespace std;
 
