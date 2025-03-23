@@ -140,12 +140,12 @@ void histPlotter1D(TCanvas *HistogramCanvas,            // The canvas
                 //            lower_cut->SetLineColor(kMagenta);
             }
 
-            TLegendEntry *Cut_legend_upper_lim = Cut_legend->AddEntry(upper_cut, ("Upper cut = " + to_string_with_precision(Upper_cut, 3)).c_str(), "l");
-            TLegendEntry *Cut_legend_lower_lim = Cut_legend->AddEntry(lower_cut, ("Lower cut = " + to_string_with_precision(Lower_cut, 3)).c_str(), "l");
+            TLegendEntry *Cut_legend_upper_lim = Cut_legend->AddEntry(upper_cut, ("Upper cut = " + ToStringWithPrecision(Upper_cut, 3)).c_str(), "l");
+            TLegendEntry *Cut_legend_lower_lim = Cut_legend->AddEntry(lower_cut, ("Lower cut = " + ToStringWithPrecision(Lower_cut, 3)).c_str(), "l");
 
             if (plot_max) {
-                TLegendEntry *Cut_max_location_lim = Cut_legend->AddEntry(max_location, ("Peak location = " + to_string_with_precision(plot_xmax, 3)).c_str(), "l");
-                //            TLegendEntry *Cut_max_location_lim = Cut_legend->AddEntry(lower_cut, ("Peak location = " + to_string_with_precision(max_location)).c_str(), "l");
+                TLegendEntry *Cut_max_location_lim = Cut_legend->AddEntry(max_location, ("Peak location = " + ToStringWithPrecision(plot_xmax, 3)).c_str(), "l");
+                //            TLegendEntry *Cut_max_location_lim = Cut_legend->AddEntry(lower_cut, ("Peak location = " + ToStringWithPrecision(max_location)).c_str(), "l");
             }
 
             Cut_legend->Draw("same");
@@ -322,10 +322,10 @@ void histPlotter1D(TCanvas *HistogramCanvas,            // The canvas
                 max_location->SetLineColor(kGreen);
             }
 
-            TLegendEntry *Cut_legend_upper_lim = Cut_legend->AddEntry(upper_cut, ("Upper cut = " + to_string_with_precision(Upper_cut, 3)).c_str(), "l");
-            TLegendEntry *Cut_legend_lower_lim = Cut_legend->AddEntry(lower_cut, ("Lower cut = " + to_string_with_precision(Lower_cut, 3)).c_str(), "l");
+            TLegendEntry *Cut_legend_upper_lim = Cut_legend->AddEntry(upper_cut, ("Upper cut = " + ToStringWithPrecision(Upper_cut, 3)).c_str(), "l");
+            TLegendEntry *Cut_legend_lower_lim = Cut_legend->AddEntry(lower_cut, ("Lower cut = " + ToStringWithPrecision(Lower_cut, 3)).c_str(), "l");
 
-            if (plot_max) { TLegendEntry *Cut_max_location_lim = Cut_legend->AddEntry(max_location, ("Peak location = " + to_string_with_precision(plot_xmax, 3)).c_str(), "l"); }
+            if (plot_max) { TLegendEntry *Cut_max_location_lim = Cut_legend->AddEntry(max_location, ("Peak location = " + ToStringWithPrecision(plot_xmax, 3)).c_str(), "l"); }
 
             Cut_legend->Draw("same");
         }
@@ -506,12 +506,12 @@ void histPlotter1D(TCanvas *HistogramCanvas,            // The canvas
                 //            lower_cut->SetLineColor(kMagenta);
             }
 
-            TLegendEntry *Cut_legend_upper_lim = Cut_legend->AddEntry(upper_cut, ("Upper cut = " + to_string_with_precision(Upper_cut)).c_str(), "l");
-            TLegendEntry *Cut_legend_lower_lim = Cut_legend->AddEntry(lower_cut, ("Lower cut = " + to_string_with_precision(Lower_cut)).c_str(), "l");
+            TLegendEntry *Cut_legend_upper_lim = Cut_legend->AddEntry(upper_cut, ("Upper cut = " + ToStringWithPrecision(Upper_cut)).c_str(), "l");
+            TLegendEntry *Cut_legend_lower_lim = Cut_legend->AddEntry(lower_cut, ("Lower cut = " + ToStringWithPrecision(Lower_cut)).c_str(), "l");
 
             if (plot_max) {
-                TLegendEntry *Cut_max_location_lim = Cut_legend->AddEntry(max_location, ("Peak location = " + to_string_with_precision(plot_xmax)).c_str(), "l");
-                //            TLegendEntry *Cut_max_location_lim = Cut_legend->AddEntry(lower_cut, ("Peak location = " + to_string_with_precision(max_location)).c_str(), "l");
+                TLegendEntry *Cut_max_location_lim = Cut_legend->AddEntry(max_location, ("Peak location = " + ToStringWithPrecision(plot_xmax)).c_str(), "l");
+                //            TLegendEntry *Cut_max_location_lim = Cut_legend->AddEntry(lower_cut, ("Peak location = " + ToStringWithPrecision(max_location)).c_str(), "l");
             }
 
             Cut_legend->Draw("same");
@@ -702,10 +702,10 @@ void histPlotter1D(TCanvas *HistogramCanvas,            // The canvas
                 max_location->SetLineColor(kGreen);
             }
 
-            TLegendEntry *Cut_legend_upper_lim = Cut_legend->AddEntry(upper_cut, ("Upper cut = " + to_string_with_precision(Upper_cut)).c_str(), "l");
-            TLegendEntry *Cut_legend_lower_lim = Cut_legend->AddEntry(lower_cut, ("Lower cut = " + to_string_with_precision(Lower_cut)).c_str(), "l");
+            TLegendEntry *Cut_legend_upper_lim = Cut_legend->AddEntry(upper_cut, ("Upper cut = " + ToStringWithPrecision(Upper_cut)).c_str(), "l");
+            TLegendEntry *Cut_legend_lower_lim = Cut_legend->AddEntry(lower_cut, ("Lower cut = " + ToStringWithPrecision(Lower_cut)).c_str(), "l");
 
-            if (plot_max) { TLegendEntry *Cut_max_location_lim = Cut_legend->AddEntry(max_location, ("Peak location = " + to_string_with_precision(plot_xmax)).c_str(), "l"); }
+            if (plot_max) { TLegendEntry *Cut_max_location_lim = Cut_legend->AddEntry(max_location, ("Peak location = " + ToStringWithPrecision(plot_xmax)).c_str(), "l"); }
 
             Cut_legend->Draw("same");
         }
@@ -872,11 +872,11 @@ void histPlotter1D(TCanvas *HistogramCanvas,            // The canvas
                 //            plot_cut->SetLineColor(kMagenta);
             }
 
-            TLegendEntry *Cut_legend_lower_lim = Cut_legend->AddEntry(plot_cut, ("Lower cut = " + to_string_with_precision(Cut, 0)).c_str(), "l");
+            TLegendEntry *Cut_legend_lower_lim = Cut_legend->AddEntry(plot_cut, ("Lower cut = " + ToStringWithPrecision(Cut, 0)).c_str(), "l");
 
             if (plot_max) {
-                TLegendEntry *Cut_max_location_lim = Cut_legend->AddEntry(max_location, ("Peak location = " + to_string_with_precision(plot_xmax)).c_str(), "l");
-                //            TLegendEntry *Cut_max_location_lim = Cut_legend->AddEntry(plot_cut, ("Peak location = " + to_string_with_precision(max_location)).c_str(), "l");
+                TLegendEntry *Cut_max_location_lim = Cut_legend->AddEntry(max_location, ("Peak location = " + ToStringWithPrecision(plot_xmax)).c_str(), "l");
+                //            TLegendEntry *Cut_max_location_lim = Cut_legend->AddEntry(plot_cut, ("Peak location = " + ToStringWithPrecision(max_location)).c_str(), "l");
             }
 
             Cut_legend->Draw("same");
@@ -1071,9 +1071,9 @@ void histPlotter1D(TCanvas *HistogramCanvas,            // The canvas
                 max_location->SetLineColor(kGreen);
             }
 
-            TLegendEntry *Cut_legend_lower_lim = Cut_legend->AddEntry(plot_cut, ("Lower cut = " + to_string_with_precision(Cut, 0)).c_str(), "l");
+            TLegendEntry *Cut_legend_lower_lim = Cut_legend->AddEntry(plot_cut, ("Lower cut = " + ToStringWithPrecision(Cut, 0)).c_str(), "l");
 
-            if (plot_max) { TLegendEntry *Cut_max_location_lim = Cut_legend->AddEntry(max_location, ("Peak location = " + to_string_with_precision(plot_xmax)).c_str(), "l"); }
+            if (plot_max) { TLegendEntry *Cut_max_location_lim = Cut_legend->AddEntry(max_location, ("Peak location = " + ToStringWithPrecision(plot_xmax)).c_str(), "l"); }
 
             Cut_legend->Draw("same");
         }
@@ -1175,7 +1175,7 @@ void histPlotter1D(TCanvas *HistogramCanvas1,           // canvas c1 of other hi
     if (normalize_Histogram) {
         string title = Histogram1DTitle1 + " (" + Histogram1DTitle2 + ", " + Histogram1DTitle3 + ")" + " - Normalized";
         string HistogramTitle = "#splitline{" + title + "}{        (|#chi^{2}_{" + Particle + "," + Histogram1DTitle3 + "} - #bar{#chi^{2}}_{" + Particle + "," + Histogram1DTitle3 +
-                                "}| #leq " + to_string_with_precision(plot_cuts) + ")}";
+                                "}| #leq " + ToStringWithPrecision(plot_cuts) + ")}";
         Histogram1D->SetTitle(HistogramTitle.c_str());
         Histogram1D->GetYaxis()->SetTitle("Probability (%)");
         gStyle->SetTitleFontSize(0.04);
@@ -1205,7 +1205,7 @@ void histPlotter1D(TCanvas *HistogramCanvas1,           // canvas c1 of other hi
         }
 
         HistogramTitle = "#splitline{" + title + "}{        (|#chi^{2}_{" + Particle + "," + Histogram1DTitle3 + "} - (#chi^{2}_{" + Particle + "," + Histogram1DTitle3 + "})_{max}| #leq " +
-                         to_string_with_precision(plot_cuts) + ")}";
+                         ToStringWithPrecision(plot_cuts) + ")}";
         Histogram1D->SetTitle(HistogramTitle.c_str());
         Histogram1D->GetYaxis()->SetTitle("Number of events");
         gStyle->SetTitleFontSize(0.04);
@@ -1263,12 +1263,12 @@ void histPlotter1D(TCanvas *HistogramCanvas1,           // canvas c1 of other hi
                 //            lower_cut->SetLineColor(kMagenta);
             }
 
-            TLegendEntry *Cut_legend_upper_lim = Cut_legend->AddEntry(upper_cut, ("Upper cut = " + to_string_with_precision(Upper_cut)).c_str(), "l");
-            TLegendEntry *Cut_legend_lower_lim = Cut_legend->AddEntry(lower_cut, ("Lower cut = " + to_string_with_precision(Lower_cut)).c_str(), "l");
+            TLegendEntry *Cut_legend_upper_lim = Cut_legend->AddEntry(upper_cut, ("Upper cut = " + ToStringWithPrecision(Upper_cut)).c_str(), "l");
+            TLegendEntry *Cut_legend_lower_lim = Cut_legend->AddEntry(lower_cut, ("Lower cut = " + ToStringWithPrecision(Lower_cut)).c_str(), "l");
 
             if (plot_max) {
-                TLegendEntry *Cut_max_location_lim = Cut_legend->AddEntry(max_location, ("Peak location = " + to_string_with_precision(plot_xmax)).c_str(), "l");
-                //            TLegendEntry *Cut_max_location_lim = Cut_legend->AddEntry(lower_cut, ("Peak location = " + to_string_with_precision(max_location)).c_str(), "l");
+                TLegendEntry *Cut_max_location_lim = Cut_legend->AddEntry(max_location, ("Peak location = " + ToStringWithPrecision(plot_xmax)).c_str(), "l");
+                //            TLegendEntry *Cut_max_location_lim = Cut_legend->AddEntry(lower_cut, ("Peak location = " + ToStringWithPrecision(max_location)).c_str(), "l");
             }
 
             Cut_legend->Draw("same");
@@ -1349,7 +1349,7 @@ void histPlotter1D(TCanvas *HistogramCanvas1,           // canvas c1 of other hi
     if (normalize_Histogram) {
         string title = Histogram1DTitle1 + " (" + Histogram1DTitle2 + ", " + Histogram1DTitle3 + ")" + " - Normalized";
         string HistogramTitle = "#splitline{" + title + "}{        (|#chi^{2}_{" + Particle + "," + Histogram1DTitle3 + "} - #bar{#chi^{2}}_{" + Particle + "," + Histogram1DTitle3 +
-                                "}| #leq " + to_string_with_precision(plot_cuts) + ")}";
+                                "}| #leq " + ToStringWithPrecision(plot_cuts) + ")}";
         Histogram1D->SetTitle(HistogramTitle.c_str());
         Histogram1D->GetYaxis()->SetTitle("Probability (%)");
         gStyle->SetTitleFontSize(0.04);
@@ -1379,7 +1379,7 @@ void histPlotter1D(TCanvas *HistogramCanvas1,           // canvas c1 of other hi
         }
 
         HistogramTitle = "#splitline{" + title + "}{        (|#chi^{2}_{" + Particle + "," + Histogram1DTitle3 + "} - (#chi^{2}_{" + Particle + "," + Histogram1DTitle3 + "})_{max}| #leq " +
-                         to_string_with_precision(plot_cuts) + ")}";
+                         ToStringWithPrecision(plot_cuts) + ")}";
         Histogram1D->SetTitle(HistogramTitle.c_str());
         Histogram1D->GetYaxis()->SetTitle("Number of events");
         gStyle->SetTitleFontSize(0.04);
@@ -1434,10 +1434,10 @@ void histPlotter1D(TCanvas *HistogramCanvas1,           // canvas c1 of other hi
                 max_location->SetLineColor(kGreen);
             }
 
-            TLegendEntry *Cut_legend_upper_lim = Cut_legend->AddEntry(upper_cut, ("Upper cut = " + to_string_with_precision(Upper_cut)).c_str(), "l");
-            TLegendEntry *Cut_legend_lower_lim = Cut_legend->AddEntry(lower_cut, ("Lower cut = " + to_string_with_precision(Lower_cut)).c_str(), "l");
+            TLegendEntry *Cut_legend_upper_lim = Cut_legend->AddEntry(upper_cut, ("Upper cut = " + ToStringWithPrecision(Upper_cut)).c_str(), "l");
+            TLegendEntry *Cut_legend_lower_lim = Cut_legend->AddEntry(lower_cut, ("Lower cut = " + ToStringWithPrecision(Lower_cut)).c_str(), "l");
 
-            if (plot_max) { TLegendEntry *Cut_max_location_lim = Cut_legend->AddEntry(max_location, ("Peak location = " + to_string_with_precision(plot_xmax)).c_str(), "l"); }
+            if (plot_max) { TLegendEntry *Cut_max_location_lim = Cut_legend->AddEntry(max_location, ("Peak location = " + ToStringWithPrecision(plot_xmax)).c_str(), "l"); }
 
             Cut_legend->Draw("same");
         }
@@ -1515,24 +1515,24 @@ void histPlotter1D(TCanvas *HistogramCanvas1,           // canvas c1 of other hi
     //    PrametesrBox1->SetFillColor(0);
     ////            PrametesrBox1->SetTextAlign(12);
     //    PrametesrBox1->AddText(("|#chi^{2}_{" + Particle1 + "," + Histogram1DTitle3 + "} - ({#chi^{2}}_{" + Particle1 + "," +
-    //                           Histogram1DTitle3 + "})_{max}| #leq " + to_string_with_precision(plot_cuts1)).c_str());
+    //                           Histogram1DTitle3 + "})_{max}| #leq " + ToStringWithPrecision(plot_cuts1)).c_str());
     //    PrametesrBox1->AddText(("|#chi^{2}_{" + Particle2 + "," + Histogram1DTitle3 + "} - ({#chi^{2}}_{" + Particle2 + "," +
-    //                           Histogram1DTitle3 + "})_{max}| #leq " + to_string_with_precision(plot_cuts2)).c_str());
+    //                           Histogram1DTitle3 + "})_{max}| #leq " + ToStringWithPrecision(plot_cuts2)).c_str());
 
     //    TPaveText *PrametesrBox = new TPaveText(gStyle->GetStatX(), gStyle->GetStatY() - 0.2 - 0.4, gStyle->GetStatX() - 0.2, gStyle->GetStatY() - 0.3 - 0.05, "NDC");
     //    PrametesrBox->SetTextSize(12);
     //    PrametesrBox->SetFillColor(0);
     ////            PrametesrBox->SetTextAlign(12);
     //    PrametesrBox->AddText(("|#chi^{2}_{" + Particle1 + "," + Histogram1DTitle3 + "} - ({#chi^{2}}_{" + Particle1 + "," +
-    //                           Histogram1DTitle3 + "})_{max}| #leq " + to_string_with_precision(plot_cuts1)).c_str());
+    //                           Histogram1DTitle3 + "})_{max}| #leq " + ToStringWithPrecision(plot_cuts1)).c_str());
     //    PrametesrBox->AddText(("|#chi^{2}_{" + Particle2 + "," + Histogram1DTitle3 + "} - ({#chi^{2}}_{" + Particle2 + "," +
-    //                           Histogram1DTitle3 + "})_{max}| #leq " + to_string_with_precision(plot_cuts2)).c_str());
+    //                           Histogram1DTitle3 + "})_{max}| #leq " + ToStringWithPrecision(plot_cuts2)).c_str());
 
     if (normalize_Histogram) {
         string title = Histogram1DTitle1 + " (" + Histogram1DTitle2 + ", " + Histogram1DTitle3 + ")" + " - Normalized";
         string HistogramTitle = "#splitline{" + title + "}{" + "(|#chi^{2}_{" + Particle1 + "," + Histogram1DTitle3 + "} - (#chi^{2}_{" + Particle1 + "," + Histogram1DTitle3 +
-                                "})_{max}| #leq " + to_string_with_precision(plot_cuts1) + ", " + "|#chi^{2}_{" + Particle2 + "," + Histogram1DTitle3 + "} -(#chi^{2}_{" + Particle2 + "," +
-                                Histogram1DTitle3 + "})_{max}| #leq " + to_string_with_precision(plot_cuts2) + ")}";
+                                "})_{max}| #leq " + ToStringWithPrecision(plot_cuts1) + ", " + "|#chi^{2}_{" + Particle2 + "," + Histogram1DTitle3 + "} -(#chi^{2}_{" + Particle2 + "," +
+                                Histogram1DTitle3 + "})_{max}| #leq " + ToStringWithPrecision(plot_cuts2) + ")}";
         Histogram1D->SetTitle(HistogramTitle.c_str());
         Histogram1D->GetYaxis()->SetTitle("Probability (%)");
         gStyle->SetTitleFontSize(0.04);
@@ -1563,8 +1563,8 @@ void histPlotter1D(TCanvas *HistogramCanvas1,           // canvas c1 of other hi
         }
 
         HistogramTitle = "#splitline{" + title + "}{" + "(|#chi^{2}_{" + Particle1 + "," + Histogram1DTitle3 + "} - (#chi^{2}_{" + Particle1 + "," + Histogram1DTitle3 + "})_{max}| #leq " +
-                         to_string_with_precision(plot_cuts1) + ", " + "|#chi^{2}_{" + Particle2 + "," + Histogram1DTitle3 + "} - (#chi^{2}_{" + Particle2 + "," + Histogram1DTitle3 +
-                         "})_{max}| #leq " + to_string_with_precision(plot_cuts2) + ")}";
+                         ToStringWithPrecision(plot_cuts1) + ", " + "|#chi^{2}_{" + Particle2 + "," + Histogram1DTitle3 + "} - (#chi^{2}_{" + Particle2 + "," + Histogram1DTitle3 +
+                         "})_{max}| #leq " + ToStringWithPrecision(plot_cuts2) + ")}";
         Histogram1D->SetTitle(HistogramTitle.c_str());
         Histogram1D->GetYaxis()->SetTitle("Number of events");
         gStyle->SetTitleFontSize(0.04);
@@ -1620,10 +1620,10 @@ void histPlotter1D(TCanvas *HistogramCanvas1,           // canvas c1 of other hi
                 max_location->SetLineColor(kGreen);
             }
 
-            TLegendEntry *Cut_legend_upper_lim = Cut_legend->AddEntry(upper_cut, ("Upper cut = " + to_string_with_precision(Upper_cut)).c_str(), "l");
-            TLegendEntry *Cut_legend_lower_lim = Cut_legend->AddEntry(lower_cut, ("Lower cut = " + to_string_with_precision(Lower_cut)).c_str(), "l");
+            TLegendEntry *Cut_legend_upper_lim = Cut_legend->AddEntry(upper_cut, ("Upper cut = " + ToStringWithPrecision(Upper_cut)).c_str(), "l");
+            TLegendEntry *Cut_legend_lower_lim = Cut_legend->AddEntry(lower_cut, ("Lower cut = " + ToStringWithPrecision(Lower_cut)).c_str(), "l");
 
-            if (plot_max) { TLegendEntry *Cut_max_location_lim = Cut_legend->AddEntry(max_location, ("Peak location = " + to_string_with_precision(plot_xmax1)).c_str(), "l"); }
+            if (plot_max) { TLegendEntry *Cut_max_location_lim = Cut_legend->AddEntry(max_location, ("Peak location = " + ToStringWithPrecision(plot_xmax1)).c_str(), "l"); }
 
             Cut_legend->Draw("same");
         }
@@ -1703,8 +1703,8 @@ void histPlotter1D(TCanvas *HistogramCanvas1,           // canvas c1 of other hi
     if (normalize_Histogram) {
         string title = Histogram1DTitle1 + " (" + Histogram1DTitle2 + ", " + Histogram1DTitle3 + ")" + " - Normalized";
         string HistogramTitle = "#splitline{" + title + "}{" + "(|#chi^{2}_{" + Particle1 + "," + Histogram1DTitle3 + "} - (#chi^{2}_{" + Particle1 + "," + Histogram1DTitle3 +
-                                "})_{max}| #leq " + to_string_with_precision(plot_cuts1) + ", " + "|#chi^{2}_{" + Particle2 + "," + Histogram1DTitle3 + "} -(#chi^{2}_{" + Particle2 + "," +
-                                Histogram1DTitle3 + "})_{max}| #leq " + to_string_with_precision(plot_cuts2) + ")}";
+                                "})_{max}| #leq " + ToStringWithPrecision(plot_cuts1) + ", " + "|#chi^{2}_{" + Particle2 + "," + Histogram1DTitle3 + "} -(#chi^{2}_{" + Particle2 + "," +
+                                Histogram1DTitle3 + "})_{max}| #leq " + ToStringWithPrecision(plot_cuts2) + ")}";
         Histogram1D->SetTitle(HistogramTitle.c_str());
         Histogram1D->GetYaxis()->SetTitle("Probability (%)");
         gStyle->SetTitleFontSize(0.04);
@@ -1734,8 +1734,8 @@ void histPlotter1D(TCanvas *HistogramCanvas1,           // canvas c1 of other hi
         }
 
         HistogramTitle = "#splitline{" + title + "}{" + "(|#chi^{2}_{" + Particle1 + "," + Histogram1DTitle3 + "} - (#chi^{2}_{" + Particle1 + "," + Histogram1DTitle3 + "})_{max}| #leq " +
-                         to_string_with_precision(plot_cuts1) + ", " + "|#chi^{2}_{" + Particle2 + "," + Histogram1DTitle3 + "} - (#chi^{2}_{" + Particle2 + "," + Histogram1DTitle3 +
-                         "})_{max}| #leq " + to_string_with_precision(plot_cuts2) + ")}";
+                         ToStringWithPrecision(plot_cuts1) + ", " + "|#chi^{2}_{" + Particle2 + "," + Histogram1DTitle3 + "} - (#chi^{2}_{" + Particle2 + "," + Histogram1DTitle3 +
+                         "})_{max}| #leq " + ToStringWithPrecision(plot_cuts2) + ")}";
         Histogram1D->SetTitle(HistogramTitle.c_str());
         Histogram1D->GetYaxis()->SetTitle("Number of events");
         gStyle->SetTitleFontSize(0.04);
@@ -1790,10 +1790,10 @@ void histPlotter1D(TCanvas *HistogramCanvas1,           // canvas c1 of other hi
                 max_location->SetLineColor(kGreen);
             }
 
-            TLegendEntry *Cut_legend_upper_lim = Cut_legend->AddEntry(upper_cut, ("Upper cut = " + to_string_with_precision(Upper_cut)).c_str(), "l");
-            TLegendEntry *Cut_legend_lower_lim = Cut_legend->AddEntry(lower_cut, ("Lower cut = " + to_string_with_precision(Lower_cut)).c_str(), "l");
+            TLegendEntry *Cut_legend_upper_lim = Cut_legend->AddEntry(upper_cut, ("Upper cut = " + ToStringWithPrecision(Upper_cut)).c_str(), "l");
+            TLegendEntry *Cut_legend_lower_lim = Cut_legend->AddEntry(lower_cut, ("Lower cut = " + ToStringWithPrecision(Lower_cut)).c_str(), "l");
 
-            if (plot_max) { TLegendEntry *Cut_max_location_lim = Cut_legend->AddEntry(max_location, ("Peak location = " + to_string_with_precision(plot_xmax1)).c_str(), "l"); }
+            if (plot_max) { TLegendEntry *Cut_max_location_lim = Cut_legend->AddEntry(max_location, ("Peak location = " + ToStringWithPrecision(plot_xmax1)).c_str(), "l"); }
 
             Cut_legend->Draw("same");
         }
@@ -1996,10 +1996,10 @@ void histPlotter1DwFit(TCanvas *HistogramCanvas, TH1D *Histogram1D, bool normali
                 max_location->SetLineColor(kGreen);
             }
 
-            TLegendEntry *Cut_legend_upper_lim = Cut_legend->AddEntry(upper_cut, ("UC = " + to_string_with_precision(Upper_cut, 3)).c_str(), "l");
-            TLegendEntry *Cut_legend_lower_lim = Cut_legend->AddEntry(lower_cut, ("LC = " + to_string_with_precision(Lower_cut, 3)).c_str(), "l");
+            TLegendEntry *Cut_legend_upper_lim = Cut_legend->AddEntry(upper_cut, ("UC = " + ToStringWithPrecision(Upper_cut, 3)).c_str(), "l");
+            TLegendEntry *Cut_legend_lower_lim = Cut_legend->AddEntry(lower_cut, ("LC = " + ToStringWithPrecision(Lower_cut, 3)).c_str(), "l");
 
-            if (plot_max) { TLegendEntry *Cut_max_location_lim = Cut_legend->AddEntry(max_location, ("Mean = " + to_string_with_precision(plot_xmax, 3)).c_str(), "l"); }
+            if (plot_max) { TLegendEntry *Cut_max_location_lim = Cut_legend->AddEntry(max_location, ("Mean = " + ToStringWithPrecision(plot_xmax, 3)).c_str(), "l"); }
 
             Cut_legend->Draw("same");
 
@@ -2011,11 +2011,11 @@ void histPlotter1DwFit(TCanvas *HistogramCanvas, TH1D *Histogram1D, bool normali
             FitParam->SetTextFont(0);
             FitParam->SetFillColor(0);
             FitParam->SetTextAlign(11);
-            FitParam->AddText(("Fit amp = " + to_string_with_precision(Amp, 8)).c_str());
-            FitParam->AddText(("Fit std = " + to_string_with_precision(Std, 8)).c_str());
-            FitParam->AddText(("Fit mean = " + to_string_with_precision(Mean, 8)).c_str());
+            FitParam->AddText(("Fit amp = " + ToStringWithPrecision(Amp, 8)).c_str());
+            FitParam->AddText(("Fit std = " + ToStringWithPrecision(Std, 8)).c_str());
+            FitParam->AddText(("Fit mean = " + ToStringWithPrecision(Mean, 8)).c_str());
             ((TText *)FitParam->GetListOfLines()->Last())->SetTextColor(kRed);
-            FitParam->AddText(("Cuts = std * " + to_string_with_precision(factor, 2) + " = " + to_string_with_precision(plot_ucut, 3)).c_str());
+            FitParam->AddText(("Cuts = std * " + ToStringWithPrecision(factor, 2) + " = " + ToStringWithPrecision(plot_ucut, 3)).c_str());
             ((TText *)FitParam->GetListOfLines()->Last())->SetTextColor(kRed);
             FitParam->Draw("same");
         }
