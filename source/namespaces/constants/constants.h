@@ -3,7 +3,7 @@
 
 #include "../../classes/DSCuts/DSCuts.h"
 
-namespace constants_ard {
+namespace constants {
 // Physical constants ---------------------------------------------------------------------------------------------------------------------------------------------------
 
 // Particle masses (in GeV):
@@ -32,9 +32,9 @@ constexpr int phPDG = 22;
 
 // CLAS12 constants -----------------------------------------------------------------------------------------------------------------------------------------------------
 /* FD & CD theta range */
-// extern DSCuts ThetaFD;
-// extern DSCuts ThetaCD;
+extern DSCuts ThetaFD;
+extern DSCuts ThetaCD;
 
-};  // namespace constants
+}  // namespace constants
 
 #endif  // CONSTANTS_H
