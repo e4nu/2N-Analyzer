@@ -6,7 +6,7 @@
 
 // #include "reaction_cuts_test_functions.cpp"
 
-#define IFARM_RUN 1
+#define RECO_ANALYSIS_RUN 1
 
 #include <TCanvas.h>
 #include <TChain.h>

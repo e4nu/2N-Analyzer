@@ -15,21 +15,10 @@
 #include <map>
 #include <tuple>
 
-#ifdef IFARM_RUN
-#include "../analysis_math/analysis_math_reco_extentions.h"
-#else
-#include "../analysis_math/analysis_math.h"
-#endif
-
 #include "../basic_tools/basic_tools.h"
 #include "../constants/constants.h"
 #include "../lists/lists.h"
 // #include "../truth_analysis_functions/truth_analysis_functions.h"
-
-#ifdef IFARM_RUN
-// #if defined(IFARM_RUN)
-#include "../reco_analysis_functions/reco_analysis_functions.h"
-#endif
 
 using namespace std;
 
@@ -38,13 +27,6 @@ using namespace constants;
 using namespace basic_tools;
 using namespace analysis_math;
 using namespace lists;
-
-// using namespace truth_analysis_functions;
-
-#ifdef IFARM_RUN
-// #if defined(IFARM_RUN)
-using namespace reco_analysis_functions;
-#endif
 
 // ConfigRegion function ------------------------------------------------------------------------------------------------------------------------------------------------
 

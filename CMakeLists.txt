@@ -211,6 +211,7 @@ add_executable(project ${CLAS12ROOT_SOURCES} ${CLAS12BANKS_SOURCES} ${HIPO4_SOUR
         source/functions/StackPlot4.h
         source/functions/TLKinCutsCheck.h
         source/functions/to_string_with_precision.h
+        source/namespaces/namespace_includes.h
         source/namespaces/utilities/utilities.h
         source/namespaces/analysis_math/analysis_math.h
         source/namespaces/analysis_math/analysis_math_reco_extentions.h

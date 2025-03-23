@@ -1,5 +1,13 @@
 #include <iostream>
 
+// #ifdef WORK_DIR
+// #define RECO_ANALYSIS_RUN true
+// #else
+// #define RECO_ANALYSIS_RUN false
+// #endif
+
+#include "source/namespaces/namespace_includes.h"
+// 
 #include "source/namespaces/basic_tools/basic_tools.h"
 #include "source/classes/DataAnalyser/DataAnalyser.cpp"
 

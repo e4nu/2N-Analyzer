@@ -4,7 +4,7 @@
 #ifndef REACTION_CUTS_TEST_FUNCTIONS
 #define REACTION_CUTS_TEST_FUNCTIONS
 
-#define IFARM_RUN 1
+#define RECO_ANALYSIS_RUN 1
 
 #include <TCanvas.h>
 #include <TChain.h>
