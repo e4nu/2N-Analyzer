@@ -31,7 +31,7 @@
 #include <typeinfo>
 #include <vector>
 
-#include "../classes/DSCuts/DSCuts.h"
+#include "../../../classes/DSCuts/DSCuts.h"
 //
 #include "HipoChain.h"
 #include "clas12reader.h"
