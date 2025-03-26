@@ -6,7 +6,7 @@
 #include <TChain.h>
 #include <TFile.h>
 
-#include "../../setup/codeSetup.h"
+#include "../../../setup/codeSetup.h"
 
 // Header file for the classes stored in the TTree if any.
 
