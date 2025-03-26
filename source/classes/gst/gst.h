@@ -12,7 +12,7 @@
 
 class gst {
 public :
-    int defaultLength = 250;
+    static int defaultLength = 250;
 
     TTree          *fChain;   //!pointer to the analyzed TTree or TChain
 //   TTree          *ffChain;   //!pointer to the analyzed TTree or TChain
