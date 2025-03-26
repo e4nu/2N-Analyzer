@@ -2641,12 +2641,12 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                 directories.Beta_Directory_map["Neutron_beta_from_ph_03_1n_Directory"], "01_Beta_Neutron_from_photons_noPCAL_yesECIN_1n_ZOOMOUT", Beta_dist_ZOOMOUT_lboundary,
                 Beta_dist_ZOOMOUT_uboundary, numTH1Dbins_Beta_Plots);
 
-    hPlot1D hBeta_n_from_ph_04_1n_FD = hPlot1D("1n", "FD", "Neutron #beta from 'photons' - !PCAL & !ECIN & Estd::cout", "Neutron #beta from 'photons' w/o PCAL/ECIN & w/Estd::cout", "#beta",
-                                               directories.Beta_Directory_map["Neutron_beta_from_ph_04_1n_Directory"], "01_Beta_Neutron_from_photons_noPCAL_noECIN_yesEstd::cout_1n",
-                                               Beta_dist_lboundary, Beta_dist_uboundary, numTH1Dbins_Beta_Plots);
+    hPlot1D hBeta_n_from_ph_04_1n_FD = hPlot1D("1n", "FD", "Neutron #beta from 'photons' - !PCAL & !ECIN & E std::cout ", "Neutron #beta from 'photons' w/o PCAL/ECIN & w/E std::cout ",
+                                               "#beta", directories.Beta_Directory_map["Neutron_beta_from_ph_04_1n_Directory"],
+                                               "01_Beta_Neutron_from_photons_noPCAL_noECIN_yesE std::cout _1n", Beta_dist_lboundary, Beta_dist_uboundary, numTH1Dbins_Beta_Plots);
     hPlot1D hBeta_n_from_ph_04_1n_ZOOMOUT_FD =
-        hPlot1D("1n", "FD", "Neutron #beta from 'photons' - !PCAL & !ECIN & Estd::cout - ZOOMOUT", "Neutron #beta from 'photons' w/o PCAL/ECIN & w/Estd::cout - ZOOMOUT", "#beta",
-                directories.Beta_Directory_map["Neutron_beta_from_ph_04_1n_Directory"], "01_Beta_Neutron_from_photons_noPCAL_noECIN_yesEstd::cout_1n_ZOOMOUT", Beta_dist_ZOOMOUT_lboundary,
+        hPlot1D("1n", "FD", "Neutron #beta from 'photons' - !PCAL & !ECIN & E std::cout  - ZOOMOUT", "Neutron #beta from 'photons' w/o PCAL/ECIN & w/E std::cout  - ZOOMOUT", "#beta",
+                directories.Beta_Directory_map["Neutron_beta_from_ph_04_1n_Directory"], "01_Beta_Neutron_from_photons_noPCAL_noECIN_yesE std::cout _1n_ZOOMOUT", Beta_dist_ZOOMOUT_lboundary,
                 Beta_dist_ZOOMOUT_uboundary, numTH1Dbins_Beta_Plots);
 
     // Beta vs. P plots
@@ -9108,20 +9108,20 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                 "#font[12]{R_{nFD} = (P^{truth}_{nFD} - P^{reco}_{nFD})/P^{truth}_{nFD}}", directories.Resolution_Directory_map["Basic_var_1n_Directory"], "02d_Reco_L_VS_R_nFD_ECIN_1n", 700,
                 950, -1, 1, numTH2Dbins * 3, numTH2Dbins * 3);
 
-    hPlot1D hReco_L_Estd::cout_1n = hPlot1D("1n", "Estd::cout Only", "Reco neutron path #font[12]{L_{reco}}", "Reco neutron path #font[12]{L_{reco}}", "#font[12]{L_{reco}} [cm]",
-                                            directories.Resolution_Directory_map["Basic_var_1n_Directory"], "03a_Reco_L_Estd::cout_1n", 700, 950, numTH1Dbins);
-    hPlot2D hReco_L_VS_reco_P_nFD_Estd::cout_1n =
-        hPlot2D("1n", "Estd::cout Only", "Reco neutron path #font[12]{L_{reco}} vs. #font[12]{P^{reco}_{nFD}}", "Reco neutron path #font[12]{L_{reco}} vs. #font[12]{P^{reco}_{nFD}}",
-                "#font[12]{L_{reco}} [cm]", "#font[12]{P^{reco}_{nFD}} [GeV/c]", directories.Resolution_Directory_map["Basic_var_1n_Directory"], "03b_Reco_L_VS_reco_P_nFD_Estd::cout_1n",
+    hPlot1D hReco_L_E std::cout _1n = hPlot1D("1n", "E std::cout  Only", "Reco neutron path #font[12]{L_{reco}}", "Reco neutron path #font[12]{L_{reco}}", "#font[12]{L_{reco}} [cm]",
+                                              directories.Resolution_Directory_map["Basic_var_1n_Directory"], "03a_Reco_L_E std::cout _1n", 700, 950, numTH1Dbins);
+    hPlot2D hReco_L_VS_reco_P_nFD_E std::cout _1n =
+        hPlot2D("1n", "E std::cout  Only", "Reco neutron path #font[12]{L_{reco}} vs. #font[12]{P^{reco}_{nFD}}", "Reco neutron path #font[12]{L_{reco}} vs. #font[12]{P^{reco}_{nFD}}",
+                "#font[12]{L_{reco}} [cm]", "#font[12]{P^{reco}_{nFD}} [GeV/c]", directories.Resolution_Directory_map["Basic_var_1n_Directory"], "03b_Reco_L_VS_reco_P_nFD_E std::cout _1n",
                 700, 950, 0.4 * 0.95, beamE * 1.1, numTH2Dbins * 3, numTH2Dbins * 3);
-    hPlot2D hReco_L_VS_truth_P_nFD_Estd::cout_1n =
-        hPlot2D("1n", "Estd::cout Only", "Reco neutron path #font[12]{L_{reco}} vs. #font[12]{P^{truth}_{nFD}}", "Reco neutron path #font[12]{L_{reco}} vs. #font[12]{P^{truth}_{nFD}}",
-                "#font[12]{L_{reco}} [cm]", "#font[12]{P^{truth}_{nFD}} [GeV/c]", directories.Resolution_Directory_map["Basic_var_1n_Directory"], "03c_Reco_L_VS_truth_P_nFD_Estd::cout_1n",
+    hPlot2D hReco_L_VS_truth_P_nFD_E std::cout _1n =
+        hPlot2D("1n", "E std::cout  Only", "Reco neutron path #font[12]{L_{reco}} vs. #font[12]{P^{truth}_{nFD}}", "Reco neutron path #font[12]{L_{reco}} vs. #font[12]{P^{truth}_{nFD}}",
+                "#font[12]{L_{reco}} [cm]", "#font[12]{P^{truth}_{nFD}} [GeV/c]", directories.Resolution_Directory_map["Basic_var_1n_Directory"], "03c_Reco_L_VS_truth_P_nFD_E std::cout _1n",
                 700, 950, 0.4 * 0.95, beamE * 1.1, numTH2Dbins * 3, numTH2Dbins * 3);
-    hPlot2D hReco_L_VS_R_nFD_Estd::cout_1n =
-        hPlot2D("1n", "Estd::cout Only", "Reco neutron path #font[12]{L_{reco}} vs. #font[12]{R_{nFD}}", "Reco neutron path #font[12]{L_{reco}} vs. #font[12]{R_{nFD}}",
+    hPlot2D hReco_L_VS_R_nFD_E std::cout _1n =
+        hPlot2D("1n", "E std::cout  Only", "Reco neutron path #font[12]{L_{reco}} vs. #font[12]{R_{nFD}}", "Reco neutron path #font[12]{L_{reco}} vs. #font[12]{R_{nFD}}",
                 "#font[12]{L_{reco}} [cm]", "#font[12]{R_{nFD} = (P^{truth}_{nFD} - P^{reco}_{nFD})/P^{truth}_{nFD}}", directories.Resolution_Directory_map["Basic_var_1n_Directory"],
-                "03d_Reco_L_VS_R_nFD_Estd::cout_1n", 700, 950, -1, 1, numTH2Dbins * 3, numTH2Dbins * 3);
+                "03d_Reco_L_VS_R_nFD_E std::cout _1n", 700, 950, -1, 1, numTH2Dbins * 3, numTH2Dbins * 3);
 
     hPlot1D hReco_t_ToF_1n = hPlot1D("1n", "FD", "Reco neutron #font[12]{t_{ToF}}", "Reco neutron #font[12]{t_{ToF}}", "#font[12]{t_{ToF}} [ns]",
                                      directories.Resolution_Directory_map["Basic_var_1n_Directory"], "04a_Reco_t_ToF_1n", 135, 220, numTH1Dbins);
@@ -9703,9 +9703,9 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     /* Counting FD neurton and photon hits in the ECAL */
     // TODO: rename variable (not crucial)
     int num_of_events_with_nFD_CLA12 = 0;
-    int num_of_events_with_nFD_CLA12_PCAL = 0, num_of_events_with_nFD_CLA12_ECIN = 0, num_of_events_with_nFD_CLA12_Estd::cout = 0, num_of_events_with_nFD_CLA12_EC = 0;
+    int num_of_events_with_nFD_CLA12_PCAL = 0, num_of_events_with_nFD_CLA12_ECIN = 0, num_of_events_with_nFD_CLA12_E std::cout = 0, num_of_events_with_nFD_CLA12_EC = 0;
     int num_of_events_with_phFD_CLA12 = 0;
-    int num_of_events_with_phFD_CLA12_PCAL = 0, num_of_events_with_phFD_CLA12_ECIN = 0, num_of_events_with_phFD_CLA12_Estd::cout = 0, num_of_events_with_phFD_CLA12_EC = 0;
+    int num_of_events_with_phFD_CLA12_PCAL = 0, num_of_events_with_phFD_CLA12_ECIN = 0, num_of_events_with_phFD_CLA12_E std::cout = 0, num_of_events_with_phFD_CLA12_EC = 0;
 
     int num_of_events_1n_in_FD = 0, num_of_events_2n_in_FD = 0, num_of_events_3n_in_FD = 0, num_of_events_Xn_in_FD = 0;
 
@@ -9846,14 +9846,14 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                 std::cout << "\033[33m\n\nReDef_neutrons_FD: A neutron PDG is not 2112 or 22 (" << allParticles[i]->par()->getPid() << ")! Exiting...\n\n", exit(0);
             }
 
-            bool NeutronInPCAL_test = (allParticles[i]->cal(clas12::PCAL)->getDetector() == 7);              // PCAL hit
-            bool NeutronInECIN_test = (allParticles[i]->cal(clas12::ECIN)->getDetector() == 7);              // ECIN hit
-            bool NeutronInEstd::cout_test = (allParticles[i]->cal(clas12::Estd::cout)->getDetector() == 7);  // ECIN hit
+            bool NeutronInPCAL_test = (allParticles[i]->cal(clas12::PCAL)->getDetector() == 7);                 // PCAL hit
+            bool NeutronInECIN_test = (allParticles[i]->cal(clas12::ECIN)->getDetector() == 7);                 // ECIN hit
+            bool NeutronInE std::cout _test = (allParticles[i]->cal(clas12::E std::cout)->getDetector() == 7);  // ECIN hit
 
             if (NeutronInPCAL_test) { std::cout << "\033[33m\n\nReDef_neutrons_FD test: a neutron have been found with a PCAL hit! Exiting...\n\n", exit(0); }
 
-            if (!(NeutronInECIN_test || NeutronInEstd::cout_test)) {
-                std::cout << "\033[33m\n\nReDef_neutrons_FD test: a neutron have been found without either ECIN or Estd::cout hit! Exiting...\n\n", exit(0);
+            if (!(NeutronInECIN_test || NeutronInE std::cout _test)) {
+                std::cout << "\033[33m\n\nReDef_neutrons_FD test: a neutron have been found without either ECIN or E std::cout  hit! Exiting...\n\n", exit(0);
             }
         }
 
@@ -11588,19 +11588,19 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                 if (n->getRegion() == FD) {
                     ++num_of_events_with_nFD_CLA12;
 
-                    bool NeutronInPCAL_1e_cut = (n->cal(clas12::PCAL)->getDetector() == 7);              // PCAL hit
-                    bool NeutronInECIN_1e_cut = (n->cal(clas12::ECIN)->getDetector() == 7);              // ECIN hit
-                    bool NeutronInEstd::cout_1e_cut = (n->cal(clas12::Estd::cout)->getDetector() == 7);  // Estd::cout hit
+                    bool NeutronInPCAL_1e_cut = (n->cal(clas12::PCAL)->getDetector() == 7);                 // PCAL hit
+                    bool NeutronInECIN_1e_cut = (n->cal(clas12::ECIN)->getDetector() == 7);                 // ECIN hit
+                    bool NeutronInE std::cout _1e_cut = (n->cal(clas12::E std::cout)->getDetector() == 7);  // E std::cout  hit
 
                     if (NeutronInPCAL_1e_cut) {
                         ++num_of_events_with_nFD_CLA12_PCAL;
-                    } else if (NeutronInECIN_1e_cut || NeutronInEstd::cout_1e_cut) {
+                    } else if (NeutronInECIN_1e_cut || NeutronInE std::cout _1e_cut) {
                         ++num_of_events_with_nFD_CLA12_EC;
 
                         if (NeutronInECIN_1e_cut) {
                             ++num_of_events_with_nFD_CLA12_ECIN;
-                        } else if (NeutronInEstd::cout_1e_cut) {
-                            ++num_of_events_with_nFD_CLA12_Estd::cout;
+                        } else if (NeutronInE std::cout _1e_cut) {
+                            ++num_of_events_with_nFD_CLA12_E std::cout;
                         }
                     }
                 }
@@ -11610,19 +11610,19 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                 if ((allParticles[i]->par()->getPid() == 22) && (allParticles[i]->getRegion() == FD)) {
                     ++num_of_events_with_phFD_CLA12;
 
-                    bool PhotonInPCAL_1e_cut = (allParticles[i]->cal(clas12::PCAL)->getDetector() == 7);              // PCAL hit
-                    bool PhotonInECIN_1e_cut = (allParticles[i]->cal(clas12::ECIN)->getDetector() == 7);              // ECIN hit
-                    bool PhotonInEstd::cout_1e_cut = (allParticles[i]->cal(clas12::Estd::cout)->getDetector() == 7);  // Estd::cout hit
+                    bool PhotonInPCAL_1e_cut = (allParticles[i]->cal(clas12::PCAL)->getDetector() == 7);                 // PCAL hit
+                    bool PhotonInECIN_1e_cut = (allParticles[i]->cal(clas12::ECIN)->getDetector() == 7);                 // ECIN hit
+                    bool PhotonInE std::cout _1e_cut = (allParticles[i]->cal(clas12::E std::cout)->getDetector() == 7);  // E std::cout  hit
 
                     if (PhotonInPCAL_1e_cut) {
                         ++num_of_events_with_phFD_CLA12_PCAL;
-                    } else if (PhotonInECIN_1e_cut || PhotonInEstd::cout_1e_cut) {
+                    } else if (PhotonInECIN_1e_cut || PhotonInE std::cout _1e_cut) {
                         ++num_of_events_with_phFD_CLA12_EC;
 
                         if (PhotonInECIN_1e_cut) {
                             ++num_of_events_with_phFD_CLA12_ECIN;
-                        } else if (PhotonInEstd::cout_1e_cut) {
-                            ++num_of_events_with_phFD_CLA12_Estd::cout;
+                        } else if (PhotonInE std::cout _1e_cut) {
+                            ++num_of_events_with_phFD_CLA12_E std::cout;
                         }
                     }
                 }
@@ -11636,7 +11636,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
         // Testing cuts
         /* Testing SF cuts */
-        double EoP_e = (electrons[0]->cal(clas12::PCAL)->getEnergy() + electrons[0]->cal(ECIN)->getEnergy() + electrons[0]->cal(Estd::cout)->getEnergy()) / P_e_1e_cut;
+        double EoP_e = (electrons[0]->cal(clas12::PCAL)->getEnergy() + electrons[0]->cal(ECIN)->getEnergy() + electrons[0]->cal(E std::cout)->getEnergy()) / P_e_1e_cut;
 
         if (!apply_cuts) {
             /* SF plots before cuts */
@@ -12116,14 +12116,14 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
             for (auto &n : neutrons) {
                 // loop on every detected neutron
-                // check neutron hits in the PCAL, ECIN and Estd::cout:
+                // check neutron hits in the PCAL, ECIN and E std::cout :
                 bool n_hit_PCAL_1e_cut = (n->cal(clas12::PCAL)->getDetector() == 7);
                 bool n_hit_ECIN_1e_cut = (n->cal(clas12::ECIN)->getDetector() == 7);
-                bool n_hit_Estd::cout_1e_cut = (n->cal(clas12::Estd::cout)->getDetector() == 7);
+                bool n_hit_E std::cout _1e_cut = (n->cal(clas12::E std::cout)->getDetector() == 7);
 
-                if (!n_hit_PCAL_1e_cut && (n_hit_ECIN_1e_cut || n_hit_Estd::cout_1e_cut)) {
-                    // if neutron (n) did not hit PCAL & hit either ECIN or Estd::cout
-                    auto n_detlayer_1e_cut = n_hit_ECIN_1e_cut ? clas12::ECIN : clas12::Estd::cout;  // find first layer of hit
+                if (!n_hit_PCAL_1e_cut && (n_hit_ECIN_1e_cut || n_hit_E std::cout _1e_cut)) {
+                    // if neutron (n) did not hit PCAL & hit either ECIN or E std::cout
+                    auto n_detlayer_1e_cut = n_hit_ECIN_1e_cut ? clas12::ECIN : clas12::E std::cout;  // find first layer of hit
 
                     // neutron ECIN/ECAL hit vector and angles:
                     TVector3 n_hit_1e_cut_3v(n->cal(n_detlayer_1e_cut)->getX(), n->cal(n_detlayer_1e_cut)->getY(), n->cal(n_detlayer_1e_cut)->getZ());
@@ -12138,13 +12138,13 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
         // Redefined neutrons (leading FD neutron)
         if (NeutronsFD_ind_mom_max_noNeutCuts != -1) {
             // if there's an electron hit in the PCAL
-            // check neutron hits in the PCAL, ECIN and Estd::cout:
+            // check neutron hits in the PCAL, ECIN and E std::cout :
             bool LnFD_hit_PCAL_1e_cut = (allParticles[NeutronsFD_ind_mom_max_noNeutCuts]->cal(clas12::PCAL)->getDetector() == 7);
             bool LnFD_hit_ECIN_1e_cut = (allParticles[NeutronsFD_ind_mom_max_noNeutCuts]->cal(clas12::ECIN)->getDetector() == 7);
-            bool LnFD_hit_Estd::cout_1e_cut = (allParticles[NeutronsFD_ind_mom_max_noNeutCuts]->cal(clas12::Estd::cout)->getDetector() == 7);
+            bool LnFD_hit_E std::cout _1e_cut = (allParticles[NeutronsFD_ind_mom_max_noNeutCuts]->cal(clas12::E std::cout)->getDetector() == 7);
 
-            if (!LnFD_hit_PCAL_1e_cut && (LnFD_hit_ECIN_1e_cut || LnFD_hit_Estd::cout_1e_cut)) {
-                auto LnFD_detlayer_1e_cut = LnFD_hit_ECIN_1e_cut ? clas12::ECIN : clas12::Estd::cout;  // find first layer of hit
+            if (!LnFD_hit_PCAL_1e_cut && (LnFD_hit_ECIN_1e_cut || LnFD_hit_E std::cout _1e_cut)) {
+                auto LnFD_detlayer_1e_cut = LnFD_hit_ECIN_1e_cut ? clas12::ECIN : clas12::E std::cout;  // find first layer of hit
 
                 // neutron ECIN/ECAL hit vector and angles:
                 TVector3 LnFD_hit_1e_cut_3v(allParticles[NeutronsFD_ind_mom_max_noNeutCuts]->cal(LnFD_detlayer_1e_cut)->getX(),
@@ -12155,11 +12155,11 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                 if ((LnFD_detlayer_1e_cut == clas12::ECIN) && (electrons[0]->cal(clas12::ECIN)->getZ() != 0)) {
                     /* if both particles hit the inner calorimeter, use the inner calorimeter to determine e_hit_1e_cut_3v */
                     e_hit_1e_cut_3v.SetXYZ(electrons[0]->cal(clas12::ECIN)->getX(), electrons[0]->cal(clas12::ECIN)->getY(), electrons[0]->cal(clas12::ECIN)->getZ());
-                } else if ((LnFD_detlayer_1e_cut == clas12::Estd::cout) && (electrons[0]->cal(clas12::Estd::cout)->getZ() != 0)) {
+                } else if ((LnFD_detlayer_1e_cut == clas12::E std::cout) && (electrons[0]->cal(clas12::E std::cout)->getZ() != 0)) {
                     /* if both particles hit the outer calorimeter, use the outer calorimeter to determine e_hit_1e_cut_3v */
-                    e_hit_1e_cut_3v.SetXYZ(electrons[0]->cal(clas12::Estd::cout)->getX(), electrons[0]->cal(clas12::Estd::cout)->getY(), electrons[0]->cal(clas12::Estd::cout)->getZ());
+                    e_hit_1e_cut_3v.SetXYZ(electrons[0]->cal(clas12::E std::cout)->getX(), electrons[0]->cal(clas12::E std::cout)->getY(), electrons[0]->cal(clas12::E std::cout)->getZ());
                 } else {
-                    /* the neutral has to hit either the ECIN or Estd::cout.
+                    /* the neutral has to hit either the ECIN or E std::cout .
                        If the charged particle hit the other calorimeter, then look at where the charged particle was expected to be according to the trajectory. */
                     int trajlayer = (LnFD_detlayer_1e_cut == clas12::ECIN) ? 4 : 7;
                     e_hit_1e_cut_3v.SetXYZ(electrons[0]->traj(clas12::ECAL, trajlayer)->getX(), electrons[0]->traj(clas12::ECAL, trajlayer)->getY(),
@@ -12187,13 +12187,13 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
         if (e_hit_PCAL_1e_cut) {
             // if there's an electron hit in the PCAL
             for (auto &i : NeutronsFD_ind_noNeutCuts) {
-                // check neutron hits in the PCAL, ECIN and Estd::cout:
+                // check neutron hits in the PCAL, ECIN and E std::cout :
                 bool nFD_hit_PCAL_1e_cut = (allParticles[i]->cal(clas12::PCAL)->getDetector() == 7);
                 bool nFD_hit_ECIN_1e_cut = (allParticles[i]->cal(clas12::ECIN)->getDetector() == 7);
-                bool nFD_hit_Estd::cout_1e_cut = (allParticles[i]->cal(clas12::Estd::cout)->getDetector() == 7);
+                bool nFD_hit_E std::cout _1e_cut = (allParticles[i]->cal(clas12::E std::cout)->getDetector() == 7);
 
-                if (!nFD_hit_PCAL_1e_cut && (nFD_hit_ECIN_1e_cut || nFD_hit_Estd::cout_1e_cut)) {
-                    auto nFD_detlayer_1e_cut = nFD_hit_ECIN_1e_cut ? clas12::ECIN : clas12::Estd::cout;  // find first layer of hit
+                if (!nFD_hit_PCAL_1e_cut && (nFD_hit_ECIN_1e_cut || nFD_hit_E std::cout _1e_cut)) {
+                    auto nFD_detlayer_1e_cut = nFD_hit_ECIN_1e_cut ? clas12::ECIN : clas12::E std::cout;  // find first layer of hit
 
                     // neutron ECIN/ECAL hit vector and angles:
                     TVector3 nFD_hit_1e_cut_3v(allParticles[i]->cal(nFD_detlayer_1e_cut)->getX(), allParticles[i]->cal(nFD_detlayer_1e_cut)->getY(),
@@ -12203,11 +12203,12 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                     if ((nFD_detlayer_1e_cut == clas12::ECIN) && (electrons[0]->cal(clas12::ECIN)->getZ() != 0)) {
                         /* if both particles hit the inner calorimeter, use the inner calorimeter to determine e_hit_1e_cut_3v */
                         e_hit_1e_cut_3v.SetXYZ(electrons[0]->cal(clas12::ECIN)->getX(), electrons[0]->cal(clas12::ECIN)->getY(), electrons[0]->cal(clas12::ECIN)->getZ());
-                    } else if ((nFD_detlayer_1e_cut == clas12::Estd::cout) && (electrons[0]->cal(clas12::Estd::cout)->getZ() != 0)) {
+                    } else if ((nFD_detlayer_1e_cut == clas12::E std::cout) && (electrons[0]->cal(clas12::E std::cout)->getZ() != 0)) {
                         /* if both particles hit the outer calorimeter, use the outer calorimeter to determine e_hit_1e_cut_3v */
-                        e_hit_1e_cut_3v.SetXYZ(electrons[0]->cal(clas12::Estd::cout)->getX(), electrons[0]->cal(clas12::Estd::cout)->getY(), electrons[0]->cal(clas12::Estd::cout)->getZ());
+                        e_hit_1e_cut_3v.SetXYZ(electrons[0]->cal(clas12::E std::cout)->getX(), electrons[0]->cal(clas12::E std::cout)->getY(),
+                                               electrons[0]->cal(clas12::E std::cout)->getZ());
                     } else {
-                        /* the neutral has to hit either the ECIN or Estd::cout.
+                        /* the neutral has to hit either the ECIN or E std::cout .
                            If the charged particle hit the other calorimeter, then look at where the charged particle was expected to be according to the trajectory. */
                         int trajlayer = (nFD_detlayer_1e_cut == clas12::ECIN) ? 4 : 7;
                         e_hit_1e_cut_3v.SetXYZ(electrons[0]->traj(clas12::ECAL, trajlayer)->getX(), electrons[0]->traj(clas12::ECAL, trajlayer)->getY(),
@@ -12237,14 +12238,14 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
         // CLAS12 neutrons
         for (auto &n : neutrons) {
             // loop on every detected neutron
-            // check neutron (n) hits in the PCAL, ECIN and Estd::cout:
+            // check neutron (n) hits in the PCAL, ECIN and E std::cout :
             bool n_hit_PCAL_1e_cut = (n->cal(clas12::PCAL)->getDetector() == 7);
             bool n_hit_ECIN_1e_cut = (n->cal(clas12::ECIN)->getDetector() == 7);
-            bool n_hit_Estd::cout_1e_cut = (n->cal(clas12::Estd::cout)->getDetector() == 7);
+            bool n_hit_E std::cout _1e_cut = (n->cal(clas12::E std::cout)->getDetector() == 7);
 
-            // if neutron (n) did not hit PCAL & hit either ECIN or Estd::cout // if neutron (n) did not hit PCAL & hit either ECIN or Estd::cout:
-            if (!n_hit_PCAL_1e_cut && (n_hit_ECIN_1e_cut || n_hit_Estd::cout_1e_cut)) {
-                auto n_detlayer_1e_cut = n_hit_ECIN_1e_cut ? clas12::ECIN : clas12::Estd::cout;  // find first layer of hit
+            // if neutron (n) did not hit PCAL & hit either ECIN or E std::cout  // if neutron (n) did not hit PCAL & hit either ECIN or E std::cout :
+            if (!n_hit_PCAL_1e_cut && (n_hit_ECIN_1e_cut || n_hit_E std::cout _1e_cut)) {
+                auto n_detlayer_1e_cut = n_hit_ECIN_1e_cut ? clas12::ECIN : clas12::E std::cout;  // find first layer of hit
 
                 // neutron (n)'s ECIN/ECAL hit vector and angles:
                 TVector3 n_hit_1e_cut_3v(n->cal(n_detlayer_1e_cut)->getX(), n->cal(n_detlayer_1e_cut)->getY(), n->cal(n_detlayer_1e_cut)->getZ());
@@ -12271,14 +12272,14 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
         // Redefined neutrons (leading FD neutron)
         if (NeutronsFD_ind_mom_max_noNeutCuts != -1) {
-            // check neutron (n) hits in the PCAL, ECIN and Estd::cout:
+            // check neutron (n) hits in the PCAL, ECIN and E std::cout :
             bool LnFD_hit_PCAL_1e_cut = (allParticles[NeutronsFD_ind_mom_max_noNeutCuts]->cal(clas12::PCAL)->getDetector() == 7);
             bool LnFD_hit_ECIN_1e_cut = (allParticles[NeutronsFD_ind_mom_max_noNeutCuts]->cal(clas12::ECIN)->getDetector() == 7);
-            bool LnFD_hit_Estd::cout_1e_cut = (allParticles[NeutronsFD_ind_mom_max_noNeutCuts]->cal(clas12::Estd::cout)->getDetector() == 7);
+            bool LnFD_hit_E std::cout _1e_cut = (allParticles[NeutronsFD_ind_mom_max_noNeutCuts]->cal(clas12::E std::cout)->getDetector() == 7);
 
-            // if neutron (n) did not hit PCAL & hit either ECIN or Estd::cout // if neutron (n) did not hit PCAL & hit either ECIN or Estd::cout:
-            if (!LnFD_hit_PCAL_1e_cut && (LnFD_hit_ECIN_1e_cut || LnFD_hit_Estd::cout_1e_cut)) {
-                auto LnFD_detlayer_1e_cut = LnFD_hit_ECIN_1e_cut ? clas12::ECIN : clas12::Estd::cout;  // find first layer of hit
+            // if neutron (n) did not hit PCAL & hit either ECIN or E std::cout  // if neutron (n) did not hit PCAL & hit either ECIN or E std::cout :
+            if (!LnFD_hit_PCAL_1e_cut && (LnFD_hit_ECIN_1e_cut || LnFD_hit_E std::cout _1e_cut)) {
+                auto LnFD_detlayer_1e_cut = LnFD_hit_ECIN_1e_cut ? clas12::ECIN : clas12::E std::cout;  // find first layer of hit
 
                 // neutron (n)'s ECIN/ECAL hit vector and angles:
                 TVector3 LnFD_hit_1e_cut_3v(allParticles[NeutronsFD_ind_mom_max_noNeutCuts]->cal(LnFD_detlayer_1e_cut)->getX(),
@@ -12293,11 +12294,11 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                         if ((LnFD_detlayer_1e_cut == clas12::ECIN) && (protons[i]->cal(clas12::ECIN)->getZ() != 0)) {
                             /* if both particles hit the inner calorimeter, use the inner calorimeter to determine p_hit_1e_cut_3v */
                             p_hit_1e_cut_3v.SetXYZ(protons[i]->cal(clas12::ECIN)->getX(), protons[i]->cal(clas12::ECIN)->getY(), protons[i]->cal(clas12::ECIN)->getZ());
-                        } else if ((LnFD_detlayer_1e_cut == clas12::Estd::cout) && (protons[i]->cal(clas12::Estd::cout)->getZ() != 0)) {
+                        } else if ((LnFD_detlayer_1e_cut == clas12::E std::cout) && (protons[i]->cal(clas12::E std::cout)->getZ() != 0)) {
                             /* if both particles hit the outer calorimeter, use the outer calorimeter to determine p_hit_1e_cut_3v */
-                            p_hit_1e_cut_3v.SetXYZ(protons[i]->cal(clas12::Estd::cout)->getX(), protons[i]->cal(clas12::Estd::cout)->getY(), protons[i]->cal(clas12::Estd::cout)->getZ());
+                            p_hit_1e_cut_3v.SetXYZ(protons[i]->cal(clas12::E std::cout)->getX(), protons[i]->cal(clas12::E std::cout)->getY(), protons[i]->cal(clas12::E std::cout)->getZ());
                         } else {
-                            /* the neutral has to hit either the ECIN or Estd::cout.
+                            /* the neutral has to hit either the ECIN or E std::cout .
                                If the charged particle hit the other calorimeter, then look at where the charged particle was expected to be according to the trajectory. */
                             int trajlayer = (LnFD_detlayer_1e_cut == clas12::ECIN) ? 4 : 7;
                             p_hit_1e_cut_3v.SetXYZ(protons[i]->traj(clas12::ECAL, trajlayer)->getX(), protons[i]->traj(clas12::ECAL, trajlayer)->getY(),
@@ -12324,14 +12325,14 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
         // Redefined neutrons (all FD neutrons)
         for (auto &i : NeutronsFD_ind_noNeutCuts) {
-            // check neutron (n) hits in the PCAL, ECIN and Estd::cout:
+            // check neutron (n) hits in the PCAL, ECIN and E std::cout :
             bool nFD_hit_PCAL_1e_cut = (allParticles[i]->cal(clas12::PCAL)->getDetector() == 7);
             bool nFD_hit_ECIN_1e_cut = (allParticles[i]->cal(clas12::ECIN)->getDetector() == 7);
-            bool nFD_hit_Estd::cout_1e_cut = (allParticles[i]->cal(clas12::Estd::cout)->getDetector() == 7);
+            bool nFD_hit_E std::cout _1e_cut = (allParticles[i]->cal(clas12::E std::cout)->getDetector() == 7);
 
-            // if neutron (n) did not hit PCAL & hit either ECIN or Estd::cout // if neutron (n) did not hit PCAL & hit either ECIN or Estd::cout:
-            if (!nFD_hit_PCAL_1e_cut && (nFD_hit_ECIN_1e_cut || nFD_hit_Estd::cout_1e_cut)) {
-                auto nFD_detlayer_1e_cut = nFD_hit_ECIN_1e_cut ? clas12::ECIN : clas12::Estd::cout;  // find first layer of hit
+            // if neutron (n) did not hit PCAL & hit either ECIN or E std::cout  // if neutron (n) did not hit PCAL & hit either ECIN or E std::cout :
+            if (!nFD_hit_PCAL_1e_cut && (nFD_hit_ECIN_1e_cut || nFD_hit_E std::cout _1e_cut)) {
+                auto nFD_detlayer_1e_cut = nFD_hit_ECIN_1e_cut ? clas12::ECIN : clas12::E std::cout;  // find first layer of hit
 
                 // neutron (n)'s ECIN/ECAL hit vector and angles:
                 TVector3 nFD_hit_1e_cut_3v(allParticles[i]->cal(nFD_detlayer_1e_cut)->getX(), allParticles[i]->cal(nFD_detlayer_1e_cut)->getY(),
@@ -12345,11 +12346,11 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                         if ((nFD_detlayer_1e_cut == clas12::ECIN) && (protons[j]->cal(clas12::ECIN)->getZ() != 0)) {
                             /* if both particles hit the inner calorimeter, use the inner calorimeter to determine p_hit_1e_cut_3v */
                             p_hit_1e_cut_3v.SetXYZ(protons[j]->cal(clas12::ECIN)->getX(), protons[j]->cal(clas12::ECIN)->getY(), protons[j]->cal(clas12::ECIN)->getZ());
-                        } else if ((nFD_detlayer_1e_cut == clas12::Estd::cout) && (protons[j]->cal(clas12::Estd::cout)->getZ() != 0)) {
+                        } else if ((nFD_detlayer_1e_cut == clas12::E std::cout) && (protons[j]->cal(clas12::E std::cout)->getZ() != 0)) {
                             /* if both particles hit the outer calorimeter, use the outer calorimeter to determine p_hit_1e_cut_3v */
-                            p_hit_1e_cut_3v.SetXYZ(protons[j]->cal(clas12::Estd::cout)->getX(), protons[j]->cal(clas12::Estd::cout)->getY(), protons[j]->cal(clas12::Estd::cout)->getZ());
+                            p_hit_1e_cut_3v.SetXYZ(protons[j]->cal(clas12::E std::cout)->getX(), protons[j]->cal(clas12::E std::cout)->getY(), protons[j]->cal(clas12::E std::cout)->getZ());
                         } else {
-                            /* the neutral has to hit either the ECIN or Estd::cout.
+                            /* the neutral has to hit either the ECIN or E std::cout .
                                If the charged particle hit the other calorimeter, then look at where the charged particle was expected to be according to the trajectory. */
                             int trajlayer = (nFD_detlayer_1e_cut == clas12::ECIN) ? 4 : 7;
                             p_hit_1e_cut_3v.SetXYZ(protons[j]->traj(clas12::ECAL, trajlayer)->getX(), protons[j]->traj(clas12::ECAL, trajlayer)->getY(),
@@ -12415,13 +12416,13 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                 if (NeutronsFD_ind_mom_max != -1) {
                     // if NeutronsFD_ind_mom_max == -1, there are no neutrons above momentum th. in the event
                     /* Fill leading reco FD neutron acceptance maps */
-                    bool hitPCAL_1e_cut = (allParticles[NeutronsFD_ind_mom_max]->cal(clas12::PCAL)->getDetector() == 7);              // PCAL hit
-                    bool hitECIN_1e_cut = (allParticles[NeutronsFD_ind_mom_max]->cal(clas12::ECIN)->getDetector() == 7);              // ECIN hit
-                    bool hitEstd::cout_1e_cut = (allParticles[NeutronsFD_ind_mom_max]->cal(clas12::Estd::cout)->getDetector() == 7);  // Estd::cout hit
-                    auto n_detlayer_1e_cut = hitECIN_1e_cut ? clas12::ECIN : clas12::Estd::cout;                                      // find first layer of hit
+                    bool hitPCAL_1e_cut = (allParticles[NeutronsFD_ind_mom_max]->cal(clas12::PCAL)->getDetector() == 7);                 // PCAL hit
+                    bool hitECIN_1e_cut = (allParticles[NeutronsFD_ind_mom_max]->cal(clas12::ECIN)->getDetector() == 7);                 // ECIN hit
+                    bool hitE std::cout _1e_cut = (allParticles[NeutronsFD_ind_mom_max]->cal(clas12::E std::cout)->getDetector() == 7);  // E std::cout  hit
+                    auto n_detlayer_1e_cut = hitECIN_1e_cut ? clas12::ECIN : clas12::E std::cout;                                        // find first layer of hit
 
                     // Safety checks that leading nFD is neutron by definition (AMaps & WMaps)
-                    CodeDebugger.SafetyCheck_AMaps_Reco_leading_neutrons(__FILE__, __LINE__, allParticles, NeutronsFD_ind_mom_max, hitPCAL_1e_cut, hitECIN_1e_cut, hitEstd::cout_1e_cut);
+                    CodeDebugger.SafetyCheck_AMaps_Reco_leading_neutrons(__FILE__, __LINE__, allParticles, NeutronsFD_ind_mom_max, hitPCAL_1e_cut, hitECIN_1e_cut, hitE std::cout _1e_cut);
 
                     if (true) {
                         // if (allParticles[NeutronsFD_ind_mom_max]->cal(n_detlayer_1e_cut)->getLv() > clasAna.getEcalEdgeCuts() &&
@@ -12504,13 +12505,13 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                 if (NeutronsFD_ind_mom_max != -1) {
                     // if NeutronsFD_ind_mom_max == -1, there are no neutrons above momentum th. in the event
                     /* Fill leading reco FD neutron efficiency maps */
-                    bool hitPCAL_1e_cut = (allParticles[NeutronsFD_ind_mom_max]->cal(clas12::PCAL)->getDetector() == 7);              // PCAL hit
-                    bool hitECIN_1e_cut = (allParticles[NeutronsFD_ind_mom_max]->cal(clas12::ECIN)->getDetector() == 7);              // ECIN hit
-                    bool hitEstd::cout_1e_cut = (allParticles[NeutronsFD_ind_mom_max]->cal(clas12::Estd::cout)->getDetector() == 7);  // Estd::cout hit
-                    auto n_detlayer_1e_cut = hitECIN_1e_cut ? clas12::ECIN : clas12::Estd::cout;                                      // find first layer of hit
+                    bool hitPCAL_1e_cut = (allParticles[NeutronsFD_ind_mom_max]->cal(clas12::PCAL)->getDetector() == 7);                 // PCAL hit
+                    bool hitECIN_1e_cut = (allParticles[NeutronsFD_ind_mom_max]->cal(clas12::ECIN)->getDetector() == 7);                 // ECIN hit
+                    bool hitE std::cout _1e_cut = (allParticles[NeutronsFD_ind_mom_max]->cal(clas12::E std::cout)->getDetector() == 7);  // E std::cout  hit
+                    auto n_detlayer_1e_cut = hitECIN_1e_cut ? clas12::ECIN : clas12::E std::cout;                                        // find first layer of hit
 
                     // Safety checks that leading nFD is neutron by definition (AMaps & WMaps)
-                    CodeDebugger.SafetyCheck_AMaps_Reco_leading_neutrons(__FILE__, __LINE__, allParticles, NeutronsFD_ind_mom_max, hitPCAL_1e_cut, hitECIN_1e_cut, hitEstd::cout_1e_cut);
+                    CodeDebugger.SafetyCheck_AMaps_Reco_leading_neutrons(__FILE__, __LINE__, allParticles, NeutronsFD_ind_mom_max, hitPCAL_1e_cut, hitECIN_1e_cut, hitE std::cout _1e_cut);
 
                     if (allParticles[NeutronsFD_ind_mom_max]->cal(n_detlayer_1e_cut)->getLv() > clasAna.getEcalEdgeCuts() &&
                         allParticles[NeutronsFD_ind_mom_max]->cal(n_detlayer_1e_cut)->getLw() > clasAna.getEcalEdgeCuts()) {
@@ -12589,7 +12590,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
             double E_e_1p = sqrt(m_e * m_e + P_e_1p_3v.Mag2()), E_p_1p = sqrt(m_p * m_p + P_p_1p_3v.Mag2()), Ecal_1p, dAlpha_T_1p, dPhi_T_1p;
             double omega_1p = beamE - E_e_1p, W_1p = sqrt((omega_1p + m_p) * (omega_1p + m_p) - q_1p_3v.Mag2());
             double Theta_p_e_p_p_1p, Theta_q_p_p_1p;
-            double EoP_e_1p = (e_1p->cal(clas12::PCAL)->getEnergy() + e_1p->cal(ECIN)->getEnergy() + e_1p->cal(Estd::cout)->getEnergy()) / P_e_1p_3v.Mag();
+            double EoP_e_1p = (e_1p->cal(clas12::PCAL)->getEnergy() + e_1p->cal(ECIN)->getEnergy() + e_1p->cal(E std::cout)->getEnergy()) / P_e_1p_3v.Mag();
             double Vx_e_1p = e_1p->par()->getVx(), Vy_e_1p = e_1p->par()->getVy(), Vz_e_1p = e_1p->par()->getVz();
 
             /* Setting Q2 (1p) */
@@ -13111,15 +13112,15 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
             region_part_ptr e_1n = electrons[Electron_ind.at(0)];
             region_part_ptr n_1n = allParticles[n_ind_1n];  // neutron with the largest momentum magnitude
 
-            bool NeutronInPCAL_1n = (n_1n->cal(clas12::PCAL)->getDetector() == 7);                                        // PCAL hit
-            bool NeutronInECIN_1n = (n_1n->cal(clas12::ECIN)->getDetector() == 7);                                        // ECIN hit
-            bool NeutronInEstd::cout_1n = (n_1n->cal(clas12::Estd::cout)->getDetector() == 7);                            // Estd::cout hit
-            auto n_detlayer_1n = NeutronInPCAL_1n ? clas12::PCAL : NeutronInECIN_1n ? clas12::ECIN : clas12::Estd::cout;  // determine the earliest layer of the neutral hit
+            bool NeutronInPCAL_1n = (n_1n->cal(clas12::PCAL)->getDetector() == 7);                                         // PCAL hit
+            bool NeutronInECIN_1n = (n_1n->cal(clas12::ECIN)->getDetector() == 7);                                         // ECIN hit
+            bool NeutronInE std::cout _1n = (n_1n->cal(clas12::E std::cout)->getDetector() == 7);                          // E std::cout  hit
+            auto n_detlayer_1n = NeutronInPCAL_1n ? clas12::PCAL : NeutronInECIN_1n ? clas12::ECIN : clas12::E std::cout;  // determine the earliest layer of the neutral hit
 
             /* Safety check that we are looking at 1n */
             CodeDebugger.SafetyCheck_basic_event_selection(__FILE__, __LINE__, "1n", Kplus, Kminus, Piplus_ind, Piminus_ind, Electron_ind, deuterons);
             CodeDebugger.SafetyCheck_1n(__FILE__, __LINE__, NeutronsFD_ind, e_1n, n_1n, Enable_FD_photons, PhotonsFD_ind, ES_by_leading_FDneutron, pid, allParticles, NeutronsFD_ind_mom_max,
-                                        apply_nucleon_cuts, NeutronInPCAL_1n, NeutronInECIN_1n, NeutronInEstd::cout_1n, n_detlayer_1n);
+                                        apply_nucleon_cuts, NeutronInPCAL_1n, NeutronInECIN_1n, NeutronInE std::cout _1n, n_detlayer_1n);
 
             // Setting 1n analysis variables
             double NeutronMomBKC_1n = pid.GetFDNeutronP(n_1n, apply_nucleon_cuts);  // neutron momentum before shift for kin cuts
@@ -13136,7 +13137,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
             double E_e_1n = sqrt(m_e * m_e + P_e_1n_3v.Mag2()), E_n_1n = sqrt(m_n * m_n + P_n_1n_3v.Mag2()), Ecal_1n, dAlpha_T_1n, dPhi_T_1n;
             double omega_1n = beamE - E_e_1n, W_1n = sqrt((omega_1n + m_n) * (omega_1n + m_n) - q_1n_3v.Mag2());
             double Theta_p_e_p_n_1n, Theta_q_p_n_1n;
-            double EoP_e_1n = (e_1n->cal(clas12::PCAL)->getEnergy() + e_1n->cal(ECIN)->getEnergy() + e_1n->cal(Estd::cout)->getEnergy()) / P_e_1n_3v.Mag();
+            double EoP_e_1n = (e_1n->cal(clas12::PCAL)->getEnergy() + e_1n->cal(ECIN)->getEnergy() + e_1n->cal(E std::cout)->getEnergy()) / P_e_1n_3v.Mag();
             double Vx_e_1n = e_1n->par()->getVx(), Vy_e_1n = e_1n->par()->getVy(), Vz_e_1n = e_1n->par()->getVz();
 
             /* Setting Q2 (1n) */
@@ -13161,8 +13162,8 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
             double n_hit_Phi_1n, n_hit_Theta_1n, e_hit_Phi_1n, e_hit_Theta_1n, dPhi_hit_1n, dTheta_hit_1n;
 
-            if (!NeutronInPCAL_1n && (NeutronInECIN_1n || NeutronInEstd::cout_1n)) {
-                // if neutron did not hit PCAL, and hit either ECIN or Estd::cout
+            if (!NeutronInPCAL_1n && (NeutronInECIN_1n || NeutronInE std::cout _1n)) {
+                // if neutron did not hit PCAL, and hit either ECIN or E std::cout
 
                 // neutron ECIN/ECAL hit vector and angles:
                 n_hit_1n_3v.SetXYZ(n_1n->cal(n_detlayer_1n)->getX(), n_1n->cal(n_detlayer_1n)->getY(), n_1n->cal(n_detlayer_1n)->getZ());
@@ -13171,8 +13172,8 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                 if ((n_detlayer_1n == clas12::ECIN) && (e_1n->cal(clas12::ECIN)->getZ() != 0)) {
                     e_hit_1n_3v.SetXYZ(e_1n->cal(clas12::ECIN)->getX(), e_1n->cal(clas12::ECIN)->getY(), e_1n->cal(clas12::ECIN)->getZ());
                     e_hit_Theta_1n = e_hit_1n_3v.Theta() * 180 / pi, e_hit_Phi_1n = e_hit_1n_3v.Phi() * 180 / pi;
-                } else if ((n_detlayer_1n == clas12::Estd::cout) && (e_1n->cal(clas12::Estd::cout)->getZ() != 0)) {
-                    e_hit_1n_3v.SetXYZ(e_1n->cal(clas12::Estd::cout)->getX(), e_1n->cal(clas12::Estd::cout)->getY(), e_1n->cal(clas12::Estd::cout)->getZ());
+                } else if ((n_detlayer_1n == clas12::E std::cout) && (e_1n->cal(clas12::E std::cout)->getZ() != 0)) {
+                    e_hit_1n_3v.SetXYZ(e_1n->cal(clas12::E std::cout)->getX(), e_1n->cal(clas12::E std::cout)->getY(), e_1n->cal(clas12::E std::cout)->getZ());
                     e_hit_Theta_1n = e_hit_1n_3v.Theta() * 180 / pi, e_hit_Phi_1n = e_hit_1n_3v.Phi() * 180 / pi;
                 } else {
                     int trajlayer = (n_detlayer_1n == clas12::ECIN) ? 4 : 7;
@@ -13184,7 +13185,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
                 // subtracting the angles between the neutron hit and electron hit to see if we have fake neutrons:
                 hdTheta_n_e_VS_dPhi_n_e_Electrons_BV_1n.hFill(dPhi_hit_1n, dTheta_hit_1n, Weight_1n);
-            }  // end of if neutron did not hit PCAL & hit either ECIN or Estd::cout
+            }  // end of if neutron did not hit PCAL & hit either ECIN or E std::cout
 
             bool NeutronPassVeto_1n = pid.NeutronECAL_Cut_Veto(allParticles, electrons, beamE, n_ind_1n, Neutron_veto_cut.GetLowerCut());
 
@@ -13279,11 +13280,11 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                 // Neutron momentum - verified neutrons (1n)
                 /* Neutron mom. before th. (verified neutrons) */
                 for (int i = 0; i < neutrons.size(); i++) {
-                    bool inPCALtmp = (neutrons[i]->cal(clas12::PCAL)->getDetector() == 7);              // PCAL hit
-                    bool inECINtmp = (neutrons[i]->cal(clas12::ECIN)->getDetector() == 7);              // ECIN hit
-                    bool inEstd::couttmp = (neutrons[i]->cal(clas12::Estd::cout)->getDetector() == 7);  // Estd::cout hit
+                    bool inPCALtmp = (neutrons[i]->cal(clas12::PCAL)->getDetector() == 7);                 // PCAL hit
+                    bool inECINtmp = (neutrons[i]->cal(clas12::ECIN)->getDetector() == 7);                 // ECIN hit
+                    bool inE std::cout tmp = (neutrons[i]->cal(clas12::E std::cout)->getDetector() == 7);  // E std::cout  hit
 
-                    if ((neutrons[i]->getRegion() == FD) && (!inPCALtmp && (inECINtmp || inEstd::couttmp))) {
+                    if ((neutrons[i]->getRegion() == FD) && (!inPCALtmp && (inECINtmp || inE std::cout tmp))) {
                         hP_n_VN_BPID_1n_FD.hFill(neutrons[i]->getP(), Weight_1n);  // before mom. th.
                     }
                 }
@@ -13292,11 +13293,11 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                 for (int &i : NeutronsFD_ind) {
                     int ParticlePDGtmp = allParticles[i]->par()->getPid();
 
-                    bool inPCALtmp = (allParticles[i]->cal(clas12::PCAL)->getDetector() == 7);              // PCAL hit
-                    bool inECINtmp = (allParticles[i]->cal(clas12::ECIN)->getDetector() == 7);              // ECIN hit
-                    bool inEstd::couttmp = (allParticles[i]->cal(clas12::Estd::cout)->getDetector() == 7);  // Estd::cout hit
+                    bool inPCALtmp = (allParticles[i]->cal(clas12::PCAL)->getDetector() == 7);                 // PCAL hit
+                    bool inECINtmp = (allParticles[i]->cal(clas12::ECIN)->getDetector() == 7);                 // ECIN hit
+                    bool inE std::cout tmp = (allParticles[i]->cal(clas12::E std::cout)->getDetector() == 7);  // E std::cout  hit
 
-                    if ((allParticles[i]->getRegion() == FD) && (ParticlePDGtmp == 2112) && (!inPCALtmp && (inECINtmp || inEstd::couttmp))) {
+                    if ((allParticles[i]->getRegion() == FD) && (ParticlePDGtmp == 2112) && (!inPCALtmp && (inECINtmp || inE std::cout tmp))) {
                         hP_n_VN_APID_1n_FD.hFill(allParticles[i]->getP(), Weight_1n);  // after mom. th.
                     }
                 }
@@ -13306,12 +13307,12 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                 for (int i = 0; i < allParticles.size(); i++) {
                     int ParticlePDGtmp = allParticles[i]->par()->getPid();
 
-                    bool inPCALtmp = (allParticles[i]->cal(clas12::PCAL)->getDetector() == 7);              // PCAL hit
-                    bool inECINtmp = (allParticles[i]->cal(clas12::ECIN)->getDetector() == 7);              // ECIN hit
-                    bool inEstd::couttmp = (allParticles[i]->cal(clas12::Estd::cout)->getDetector() == 7);  // Estd::cout hit
+                    bool inPCALtmp = (allParticles[i]->cal(clas12::PCAL)->getDetector() == 7);                 // PCAL hit
+                    bool inECINtmp = (allParticles[i]->cal(clas12::ECIN)->getDetector() == 7);                 // ECIN hit
+                    bool inE std::cout tmp = (allParticles[i]->cal(clas12::E std::cout)->getDetector() == 7);  // E std::cout  hit
 
                     // 'photon' mom before cuts:
-                    if ((allParticles[i]->getRegion() == FD) && (ParticlePDGtmp == 22) && (!inPCALtmp && (inECINtmp || inEstd::couttmp))) {
+                    if ((allParticles[i]->getRegion() == FD) && (ParticlePDGtmp == 22) && (!inPCALtmp && (inECINtmp || inE std::cout tmp))) {
                         hP_n_Ph_BPID_1n_FD.hFill(pid.GetFDNeutronP(allParticles[i], apply_nucleon_cuts), Weight_1n);  // before mom. th.
                     }
                 }
@@ -13320,11 +13321,11 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                 for (int &i : NeutronsFD_ind) {
                     int ParticlePDGtmp = allParticles[i]->par()->getPid();
 
-                    bool inPCALtmp = (allParticles[i]->cal(clas12::PCAL)->getDetector() == 7);              // PCAL hit
-                    bool inECINtmp = (allParticles[i]->cal(clas12::ECIN)->getDetector() == 7);              // ECIN hit
-                    bool inEstd::couttmp = (allParticles[i]->cal(clas12::Estd::cout)->getDetector() == 7);  // Estd::cout hit
+                    bool inPCALtmp = (allParticles[i]->cal(clas12::PCAL)->getDetector() == 7);                 // PCAL hit
+                    bool inECINtmp = (allParticles[i]->cal(clas12::ECIN)->getDetector() == 7);                 // ECIN hit
+                    bool inE std::cout tmp = (allParticles[i]->cal(clas12::E std::cout)->getDetector() == 7);  // E std::cout  hit
 
-                    if ((allParticles[i]->getRegion() == FD) && (ParticlePDGtmp == 22) && (!inPCALtmp && (inECINtmp || inEstd::couttmp))) {
+                    if ((allParticles[i]->getRegion() == FD) && (ParticlePDGtmp == 22) && (!inPCALtmp && (inECINtmp || inE std::cout tmp))) {
                         hP_n_Ph_APID_1n_FD.hFill(pid.GetFDNeutronP(allParticles[i], apply_nucleon_cuts), Weight_1n);  // after mom. th.
                     }
                 }
@@ -13395,13 +13396,13 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                         int PDGtmp = allParticles[i]->par()->getPid();
                         double P_n_temp = pid.GetFDNeutronP(allParticles[i], apply_nucleon_cuts);
 
-                        bool inPCALtmp = (allParticles[i]->cal(clas12::PCAL)->getDetector() == 7);              // PCAL hit
-                        bool inECINtmp = (allParticles[i]->cal(clas12::ECIN)->getDetector() == 7);              // ECIN hit
-                        bool inEstd::couttmp = (allParticles[i]->cal(clas12::Estd::cout)->getDetector() == 7);  // Estd::cout hit
+                        bool inPCALtmp = (allParticles[i]->cal(clas12::PCAL)->getDetector() == 7);                 // PCAL hit
+                        bool inECINtmp = (allParticles[i]->cal(clas12::ECIN)->getDetector() == 7);                 // ECIN hit
+                        bool inE std::cout tmp = (allParticles[i]->cal(clas12::E std::cout)->getDetector() == 7);  // E std::cout  hit
 
                         if (PDGtmp == 22) {
                             if (!(allParticles[i]->getRegion() == FD)) { std::cout << "\033[33m\n\nBeta_n_1n: neutron is not in FD! Exiting...\n\n", exit(0); }
-                            if (!(!inPCALtmp && (inECINtmp || inEstd::couttmp))) { std::cout << "\033[33m\n\nBeta_n_1n: photon is not a neutron! Exiting...\n\n", exit(0); }
+                            if (!(!inPCALtmp && (inECINtmp || inE std::cout tmp))) { std::cout << "\033[33m\n\nBeta_n_1n: photon is not a neutron! Exiting...\n\n", exit(0); }
 
                             // Filling beta of neutrons from 'photons' - all sectors
                             hBeta_n_from_ph_01_1n_FD.hFill(allParticles[i]->par()->getBeta());
@@ -13420,8 +13421,8 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                                 hBeta_n_from_ph_03_1n_ZOOMOUT_FD.hFill(allParticles[i]->par()->getBeta());
                             }
 
-                            // Beta_n_from_ph - !PCAL && !ECIN && Estd::cout
-                            if (!inPCALtmp && !inECINtmp && inEstd::couttmp) {
+                            // Beta_n_from_ph - !PCAL && !ECIN && E std::cout
+                            if (!inPCALtmp && !inECINtmp && inE std::cout tmp) {
                                 hBeta_n_from_ph_04_1n_FD.hFill(allParticles[i]->par()->getBeta());
                                 hBeta_n_from_ph_04_1n_ZOOMOUT_FD.hFill(allParticles[i]->par()->getBeta());
                             }
@@ -13432,13 +13433,13 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                     int PDGtmp = allParticles[n_ind_1n]->par()->getPid();
                     double P_n_temp = pid.GetFDNeutronP(allParticles[n_ind_1n], apply_nucleon_cuts);
 
-                    bool inPCALtmp = (allParticles[n_ind_1n]->cal(clas12::PCAL)->getDetector() == 7);              // PCAL hit
-                    bool inECINtmp = (allParticles[n_ind_1n]->cal(clas12::ECIN)->getDetector() == 7);              // ECIN hit
-                    bool inEstd::couttmp = (allParticles[n_ind_1n]->cal(clas12::Estd::cout)->getDetector() == 7);  // Estd::cout hit
+                    bool inPCALtmp = (allParticles[n_ind_1n]->cal(clas12::PCAL)->getDetector() == 7);                 // PCAL hit
+                    bool inECINtmp = (allParticles[n_ind_1n]->cal(clas12::ECIN)->getDetector() == 7);                 // ECIN hit
+                    bool inE std::cout tmp = (allParticles[n_ind_1n]->cal(clas12::E std::cout)->getDetector() == 7);  // E std::cout  hit
 
                     if (PDGtmp == 22) {
                         if (!(allParticles[n_ind_1n]->getRegion() == FD)) { std::cout << "\033[33m\n\nBeta_n_1n: neutron is not in FD! Exiting...\n\n", exit(0); }
-                        if (!(!inPCALtmp && (inECINtmp || inEstd::couttmp))) { std::cout << "\033[33m\n\nBeta_n_1n: photon is not a neutron! Exiting...\n\n", exit(0); }
+                        if (!(!inPCALtmp && (inECINtmp || inE std::cout tmp))) { std::cout << "\033[33m\n\nBeta_n_1n: photon is not a neutron! Exiting...\n\n", exit(0); }
 
                         // Filling beta of neutrons from 'photons' - all sectors
                         hBeta_n_from_ph_01_1n_FD.hFill(allParticles[n_ind_1n]->par()->getBeta());
@@ -13457,8 +13458,8 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                             hBeta_n_from_ph_03_1n_ZOOMOUT_FD.hFill(allParticles[n_ind_1n]->par()->getBeta());
                         }
 
-                        // Beta_n_from_ph - !PCAL && !ECIN && Estd::cout
-                        if (!inPCALtmp && !inECINtmp && inEstd::couttmp) {
+                        // Beta_n_from_ph - !PCAL && !ECIN && E std::cout
+                        if (!inPCALtmp && !inECINtmp && inE std::cout tmp) {
                             hBeta_n_from_ph_04_1n_FD.hFill(allParticles[n_ind_1n]->par()->getBeta());
                             hBeta_n_from_ph_04_1n_ZOOMOUT_FD.hFill(allParticles[n_ind_1n]->par()->getBeta());
                         }
@@ -13878,9 +13879,9 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
                             if (nRes_Pass_dThetaCut && nRes_Pass_dPhiCut) {
                                 /* Basic reco variables */
-                                bool ECIN_HIT = (n_1n->cal(clas12::ECIN)->getDetector() == 7);              // ECIN hit
-                                bool Estd::cout_HIT = (n_1n->cal(clas12::Estd::cout)->getDetector() == 7);  // Estd::cout hit
-                                auto Detlayer_1n = ECIN_HIT ? clas12::ECIN : clas12::Estd::cout;            // determine the earliest layer of the neutral hit
+                                bool ECIN_HIT = (n_1n->cal(clas12::ECIN)->getDetector() == 7);                 // ECIN hit
+                                bool E std::cout _HIT = (n_1n->cal(clas12::E std::cout)->getDetector() == 7);  // E std::cout  hit
+                                auto Detlayer_1n = ECIN_HIT ? clas12::ECIN : clas12::E std::cout;              // determine the earliest layer of the neutral hit
 
                                 double t_start = c12->event()->getStartTime();  // Event start time
 
@@ -13938,18 +13939,18 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                                     hReco_L_VS_reco_theta_nFD_1n.hFill(Reco_L, RecoNeutronTheta, Weight);
                                     hReco_L_VS_reco_phi_nFD_1n.hFill(Reco_L, RecoNeutronPhi, Weight);
 
-                                    if (ECIN_HIT && !Estd::cout_HIT) {
+                                    if (ECIN_HIT && !E std::cout _HIT) {
                                         hReco_L_ECIN_1n.hFill(Reco_L, Weight);
                                         hReco_L_VS_reco_P_nFD_ECIN_1n.hFill(Reco_L, RecoNeutronP, Weight);
                                         hReco_L_VS_truth_P_nFD_ECIN_1n.hFill(Reco_L, TLNeutronP, Weight);
                                         hReco_L_VS_R_nFD_ECIN_1n.hFill(Reco_L, nResolution, Weight);
                                     }
 
-                                    if (Estd::cout_HIT && !ECIN_HIT) {
-                                        hReco_L_Estd::cout_1n.hFill(Reco_L, Weight);
-                                        hReco_L_VS_reco_P_nFD_Estd::cout_1n.hFill(Reco_L, RecoNeutronP, Weight);
-                                        hReco_L_VS_truth_P_nFD_Estd::cout_1n.hFill(Reco_L, TLNeutronP, Weight);
-                                        hReco_L_VS_R_nFD_Estd::cout_1n.hFill(Reco_L, nResolution, Weight);
+                                    if (E std::cout _HIT && !ECIN_HIT) {
+                                        hReco_L_E std::cout _1n.hFill(Reco_L, Weight);
+                                        hReco_L_VS_reco_P_nFD_E std::cout _1n.hFill(Reco_L, RecoNeutronP, Weight);
+                                        hReco_L_VS_truth_P_nFD_E std::cout _1n.hFill(Reco_L, TLNeutronP, Weight);
+                                        hReco_L_VS_R_nFD_E std::cout _1n.hFill(Reco_L, nResolution, Weight);
                                     }
 
                                     hReco_t_ToF_1n.hFill(Reco_t_nFD, Weight);
@@ -14041,7 +14042,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                         hnRes_Match_Multi_vs_Reco_Phi_nFD_1n.hFill(Neutron_match_counter, RecoNeutronPhi_Debug, Weight);
                     }
                 }  // end of resolution calculation if
-            }  // end of NeutronPassVeto_1n is true (i.e. if neutron did not hit PCAL & hit either ECIN or Estd::cout) & pass kinematical cuts (1n) if
+            }  // end of NeutronPassVeto_1n is true (i.e. if neutron did not hit PCAL & hit either ECIN or E std::cout ) & pass kinematical cuts (1n) if
         }  // end of 1n cuts if
 
         //  1e2pXy (or (e,e'pp)X) -----------------------------------------------------------------------------------------------------------------------------------------------
@@ -14672,7 +14673,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
             double E_pL_pFDpCD, E_pR_pFDpCD;
             double Theta_p_e_p_tot_pFDpCD, Theta_q_p_tot_pFDpCD, Theta_P_pL_minus_q_pR_pFDpCD, Theta_q_p_L_pFDpCD, Theta_q_p_R_pFDpCD, Theta_q_pFD_pFDpCD, Theta_q_pCD_pFDpCD;
             double dAlpha_T_L_pFDpCD, dAlpha_T_tot_pFDpCD, dPhi_T_L_pFDpCD, dPhi_T_tot_pFDpCD, Ecal_pFDpCD;
-            double EoP_e_pFDpCD = (e_pFDpCD->cal(PCAL)->getEnergy() + e_pFDpCD->cal(ECIN)->getEnergy() + e_pFDpCD->cal(Estd::cout)->getEnergy()) / P_e_pFDpCD_3v.Mag();
+            double EoP_e_pFDpCD = (e_pFDpCD->cal(PCAL)->getEnergy() + e_pFDpCD->cal(ECIN)->getEnergy() + e_pFDpCD->cal(E std::cout)->getEnergy()) / P_e_pFDpCD_3v.Mag();
             double Vx_e_pFDpCD = e_pFDpCD->par()->getVx(), Vy_e_pFDpCD = e_pFDpCD->par()->getVy(), Vz_e_pFDpCD = e_pFDpCD->par()->getVz();
 
             /* Setting Q2 */
@@ -15427,7 +15428,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
             double E_nFD_nFDpCD, E_pCD_nFDpCD, E_nL_nFDpCD, E_nR_nFDpCD;
             double Theta_p_e_p_tot_nFDpCD, Theta_q_p_tot_nFDpCD, Theta_P_nL_minus_q_nR_nFDpCD, Theta_q_p_L_nFDpCD, Theta_q_p_R_nFDpCD, Theta_q_nFD_nFDpCD, Theta_q_pCD_nFDpCD;
             double dAlpha_T_L_nFDpCD, dAlpha_T_tot_nFDpCD, dPhi_T_L_nFDpCD, dPhi_T_tot_nFDpCD, Ecal_nFDpCD;
-            double EoP_e_nFDpCD = (e_nFDpCD->cal(PCAL)->getEnergy() + e_nFDpCD->cal(ECIN)->getEnergy() + e_nFDpCD->cal(Estd::cout)->getEnergy()) / P_e_nFDpCD_3v.Mag();
+            double EoP_e_nFDpCD = (e_nFDpCD->cal(PCAL)->getEnergy() + e_nFDpCD->cal(ECIN)->getEnergy() + e_nFDpCD->cal(E std::cout)->getEnergy()) / P_e_nFDpCD_3v.Mag();
             double Vx_e_nFDpCD = e_nFDpCD->par()->getVx(), Vy_e_nFDpCD = e_nFDpCD->par()->getVy(), Vz_e_nFDpCD = e_nFDpCD->par()->getVz();
 
             /* Setting Q2 */
@@ -15492,9 +15493,9 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
             // Fake FD neutrons handling (neutron veto)
             int NeutronPDG_nFDpCD = nFD_nFDpCD->par()->getPid();
 
-            bool NeutronInPCAL_nFDpCD = (nFD_nFDpCD->cal(clas12::PCAL)->getDetector() == 7);              // PCAL hit
-            bool NeutronInECIN_nFDpCD = (nFD_nFDpCD->cal(clas12::ECIN)->getDetector() == 7);              // ECIN hit
-            bool NeutronInEstd::cout_nFDpCD = (nFD_nFDpCD->cal(clas12::Estd::cout)->getDetector() == 7);  // Estd::cout hit
+            bool NeutronInPCAL_nFDpCD = (nFD_nFDpCD->cal(clas12::PCAL)->getDetector() == 7);                 // PCAL hit
+            bool NeutronInECIN_nFDpCD = (nFD_nFDpCD->cal(clas12::ECIN)->getDetector() == 7);                 // ECIN hit
+            bool NeutronInE std::cout _nFDpCD = (nFD_nFDpCD->cal(clas12::E std::cout)->getDetector() == 7);  // E std::cout  hit
 
             // Safety check (nFDpCD)
             /* Safety check that we are looking at good neutron (BEFORE VETO!!!) */
@@ -15503,16 +15504,16 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                 std::cout << "\033[33m\n\nnFDpCD: neutral PDG is not 2112 or 22 (" << NeutronPDG_nFDpCD << ")! Exiting...\n\n", exit(0);
             }
             if (NeutronInPCAL_nFDpCD) { std::cout << "\033[33m\n\nnFDpCD: neutron hit in PCAL! Exiting...\n\n", exit(0); }
-            if (!(NeutronInECIN_nFDpCD || NeutronInEstd::cout_nFDpCD)) { std::cout << "\033[33m\n\nnFDpCD: no neutron hit in ECIN or Estd::cout! Exiting...\n\n", exit(0); }
+            if (!(NeutronInECIN_nFDpCD || NeutronInE std::cout _nFDpCD)) { std::cout << "\033[33m\n\nnFDpCD: no neutron hit in ECIN or E std::cout ! Exiting...\n\n", exit(0); }
 
             TVector3 n_hit_nFDpCD_3v, e_hit_nFDpCD_3v;
 
             double nFD_hit_Theta_nFDpCD, nFD_hit_Phi_nFDpCD;
             double e_hit_Theta_nFDpCD, e_hit_Phi_nFDpCD, dTheta_hit_e_nFD_nFDpCD, dPhi_hit_e_nFD_nFDpCD;
 
-            if (!NeutronInPCAL_nFDpCD && (NeutronInECIN_nFDpCD || NeutronInEstd::cout_nFDpCD)) {
-                // if neutron did not hit PCAL, and hit either ECIN or Estd::cout
-                auto nFD_detlayer_nFDpCD = NeutronInECIN_nFDpCD ? clas12::ECIN : clas12::Estd::cout;  // find first layer of hit
+            if (!NeutronInPCAL_nFDpCD && (NeutronInECIN_nFDpCD || NeutronInE std::cout _nFDpCD)) {
+                // if neutron did not hit PCAL, and hit either ECIN or E std::cout
+                auto nFD_detlayer_nFDpCD = NeutronInECIN_nFDpCD ? clas12::ECIN : clas12::E std::cout;  // find first layer of hit
 
                 // neutron ECIN/ECAL hit vector and angles:
                 n_hit_nFDpCD_3v.SetXYZ(nFD_nFDpCD->cal(nFD_detlayer_nFDpCD)->getX(), nFD_nFDpCD->cal(nFD_detlayer_nFDpCD)->getY(), nFD_nFDpCD->cal(nFD_detlayer_nFDpCD)->getZ());
@@ -15521,8 +15522,8 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                 if ((nFD_detlayer_nFDpCD == clas12::ECIN) && (e_nFDpCD->cal(clas12::ECIN)->getZ() != 0)) {
                     e_hit_nFDpCD_3v.SetXYZ(e_nFDpCD->cal(clas12::ECIN)->getX(), e_nFDpCD->cal(clas12::ECIN)->getY(), e_nFDpCD->cal(clas12::ECIN)->getZ());
                     e_hit_Theta_nFDpCD = e_hit_nFDpCD_3v.Theta() * 180 / pi, e_hit_Phi_nFDpCD = e_hit_nFDpCD_3v.Phi() * 180 / pi;
-                } else if ((nFD_detlayer_nFDpCD == clas12::Estd::cout) && (e_nFDpCD->cal(clas12::Estd::cout)->getZ() != 0)) {
-                    e_hit_nFDpCD_3v.SetXYZ(e_nFDpCD->cal(clas12::Estd::cout)->getX(), e_nFDpCD->cal(clas12::Estd::cout)->getY(), e_nFDpCD->cal(clas12::Estd::cout)->getZ());
+                } else if ((nFD_detlayer_nFDpCD == clas12::E std::cout) && (e_nFDpCD->cal(clas12::E std::cout)->getZ() != 0)) {
+                    e_hit_nFDpCD_3v.SetXYZ(e_nFDpCD->cal(clas12::E std::cout)->getX(), e_nFDpCD->cal(clas12::E std::cout)->getY(), e_nFDpCD->cal(clas12::E std::cout)->getZ());
                     e_hit_Theta_nFDpCD = e_hit_nFDpCD_3v.Theta() * 180 / pi, e_hit_Phi_nFDpCD = e_hit_nFDpCD_3v.Phi() * 180 / pi;
                 } else {
                     int trajlayer = (nFD_detlayer_nFDpCD == clas12::ECIN) ? 4 : 7;
@@ -15541,7 +15542,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
                 // subtracting the angles between the neutron hit and electron hit to see if we have fake neutrons:
                 hdTheta_nFD_e_VS_dPhi_nFD_e_Electrons_BV_nFDpCD.hFill(dPhi_hit_e_nFD_nFDpCD, dTheta_hit_e_nFD_nFDpCD, Weight_nFDpCD);
-            }  // end of if neutron did not hit PCAL & hit either ECIN or Estd::cout
+            }  // end of if neutron did not hit PCAL & hit either ECIN or E std::cout
 
             bool NeutronPassVeto_nFDpCD = pid.NeutronECAL_Cut_Veto(allParticles, electrons, beamE, nFD_ind_nFDpCD, Neutron_veto_cut.GetLowerCut());
 
@@ -19979,7 +19980,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                 DrawAndSaveFSRatio(SampleName, hE_e_VS_Theta_e_All_Int_pFDpCD_FD, hE_e_VS_Theta_e_All_Int_pFDpCD_FD_Dir, hE_e_VS_Theta_e_All_Int_nFDpCD_FD, plots);
             }
 
-            //            std::cout << "\033[33m\n\n\nExited after DrawAndSaveFSRatio finished for Q2!\n\n\n\033[0m";
+            //             std::cout  << "\033[33m\n\n\nExited after DrawAndSaveFSRatio finished for Q2!\n\n\n\033[0m";
             //            quit();
         }
     } else {
@@ -21495,7 +21496,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                 //                DrawAndSaveFSRatio(SampleName, hPhi_pCD_AC_truth_pFDpCD, hPhi_nFD_AC_truth_nFDpCD, plots);
             }
 
-            //            std::cout << "\033[33m\n\n\nExited after DrawAndSaveFSRatio finished for TL!\n\n\n\033[0m";
+            //             std::cout  << "\033[33m\n\n\nExited after DrawAndSaveFSRatio finished for TL!\n\n\n\033[0m";
             //            quit();
         }
     } else {
@@ -21766,10 +21767,10 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
         hReco_L_VS_truth_P_nFD_ECIN_1n.hDrawAndSave(SampleName, c1, plots, Histogram_OutPDF, true);
         hReco_L_VS_R_nFD_ECIN_1n.hDrawAndSave(SampleName, c1, plots, Histogram_OutPDF, true);
 
-        hReco_L_Estd::cout_1n.hDrawAndSave(SampleName, c1, plots, Histogram_OutPDF, norm_Angle_plots_master, true, 1., 9999, 9999, 0, false);
-        hReco_L_VS_reco_P_nFD_Estd::cout_1n.hDrawAndSave(SampleName, c1, plots, Histogram_OutPDF, true);
-        hReco_L_VS_truth_P_nFD_Estd::cout_1n.hDrawAndSave(SampleName, c1, plots, Histogram_OutPDF, true);
-        hReco_L_VS_R_nFD_Estd::cout_1n.hDrawAndSave(SampleName, c1, plots, Histogram_OutPDF, true);
+        hReco_L_E std::cout _1n.hDrawAndSave(SampleName, c1, plots, Histogram_OutPDF, norm_Angle_plots_master, true, 1., 9999, 9999, 0, false);
+        hReco_L_VS_reco_P_nFD_E std::cout _1n.hDrawAndSave(SampleName, c1, plots, Histogram_OutPDF, true);
+        hReco_L_VS_truth_P_nFD_E std::cout _1n.hDrawAndSave(SampleName, c1, plots, Histogram_OutPDF, true);
+        hReco_L_VS_R_nFD_E std::cout _1n.hDrawAndSave(SampleName, c1, plots, Histogram_OutPDF, true);
         hReco_L_VS_reco_theta_nFD_1n.hDrawAndSave(SampleName, c1, plots, Histogram_OutPDF, false);
         hReco_L_VS_reco_phi_nFD_1n.hDrawAndSave(SampleName, c1, plots, Histogram_OutPDF, false);
 
@@ -22591,14 +22592,14 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
         myLogFile << "num_of_events_with_nFD_CLA12:\t\t" << num_of_events_with_nFD_CLA12 << "\n";
         myLogFile << "num_of_events_with_nFD_CLA12_PCAL:\t" << num_of_events_with_nFD_CLA12_PCAL << "\n";
         myLogFile << "num_of_events_with_nFD_CLA12_ECIN:\t" << num_of_events_with_nFD_CLA12_ECIN << "\n";
-        myLogFile << "num_of_events_with_nFD_CLA12_Estd::cout:\t" << num_of_events_with_nFD_CLA12_Estd::cout << "\n";
+        myLogFile << "num_of_events_with_nFD_CLA12_E std::cout :\t" << num_of_events_with_nFD_CLA12_E std::cout << "\n";
         myLogFile << "num_of_events_with_nFD_CLA12_EC:\t" << num_of_events_with_nFD_CLA12_EC << "\n\n";
 
         myLogFile << "-- FD photon hit counts in ECAL -------------------------------------------\n";
         myLogFile << "num_of_events_with_phFD_CLA12:\t\t" << num_of_events_with_phFD_CLA12 << "\n";
         myLogFile << "num_of_events_with_phFD_CLA12_PCAL:\t" << num_of_events_with_phFD_CLA12_PCAL << "\n";
         myLogFile << "num_of_events_with_phFD_CLA12_ECIN:\t" << num_of_events_with_phFD_CLA12_ECIN << "\n";
-        myLogFile << "num_of_events_with_phFD_CLA12_Estd::cout:\t" << num_of_events_with_phFD_CLA12_Estd::cout << "\n";
+        myLogFile << "num_of_events_with_phFD_CLA12_E std::cout :\t" << num_of_events_with_phFD_CLA12_E std::cout << "\n";
         myLogFile << "num_of_events_with_phFD_CLA12_EC:\t" << num_of_events_with_phFD_CLA12_EC << "\n\n";
     }
 
@@ -22748,14 +22749,14 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
         std::cout << "\033[33mnum_of_events_with_nFD_CLA12:\t\t" << num_of_events_with_nFD_CLA12 << "\n\033[0m";
         std::cout << "\033[33mnum_of_events_with_nFD_CLA12_PCAL:\t" << num_of_events_with_nFD_CLA12_PCAL << "\n\033[0m";
         std::cout << "\033[33mnum_of_events_with_nFD_CLA12_ECIN:\t" << num_of_events_with_nFD_CLA12_ECIN << "\n\033[0m";
-        std::cout << "\033[33mnum_of_events_with_nFD_CLA12_Estd::cout:\t" << num_of_events_with_nFD_CLA12_Estd::cout << "\n\033[0m";
+        std::cout << "\033[33mnum_of_events_with_nFD_CLA12_E std::cout :\t" << num_of_events_with_nFD_CLA12_E std::cout << "\n\033[0m";
         std::cout << "\033[33mnum_of_events_with_nFD_CLA12_EC:\t" << num_of_events_with_nFD_CLA12_EC << "\n\n\033[0m";
 
         std::cout << "\033[33m-- FD photon hit counts in ECAL -------------------------------------------\n\033[0m";
         std::cout << "\033[33mnum_of_events_with_phFD_CLA12:\t\t" << num_of_events_with_phFD_CLA12 << "\n\033[0m";
         std::cout << "\033[33mnum_of_events_with_phFD_CLA12_PCAL:\t" << num_of_events_with_phFD_CLA12_PCAL << "\n\033[0m";
         std::cout << "\033[33mnum_of_events_with_phFD_CLA12_ECIN:\t" << num_of_events_with_phFD_CLA12_ECIN << "\n\033[0m";
-        std::cout << "\033[33mnum_of_events_with_phFD_CLA12_Estd::cout:\t" << num_of_events_with_phFD_CLA12_Estd::cout << "\n\033[0m";
+        std::cout << "\033[33mnum_of_events_with_phFD_CLA12_E std::cout :\t" << num_of_events_with_phFD_CLA12_E std::cout << "\n\033[0m";
         std::cout << "\033[33mnum_of_events_with_phFD_CLA12_EC:\t" << num_of_events_with_phFD_CLA12_EC << "\n\n\033[0m";
     }
 
@@ -22857,8 +22858,8 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     if (Save_Plots_folder_to_zip_files) {
         // TODO: this saves the plots folder in multiple folders in the save path - fix!
 
-        // std::cout << "\n\nrun_plots_path: " << run_plots_path << "\n";
-        // std::cout << "settings.GetRun_dir_name(): " << settings.GetRun_dir_name() << "\n";
+        //  std::cout  << "\n\nrun_plots_path: " << run_plots_path << "\n";
+        //  std::cout  << "settings.GetRun_dir_name(): " << settings.GetRun_dir_name() << "\n";
         // exit(0);
         std::string zip_filename = settings.GetRun_dir_name() + ".zip";
         std::string zip_input_path = run_plots_path;

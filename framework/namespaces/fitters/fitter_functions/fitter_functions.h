@@ -42,7 +42,7 @@ static int NumOfParameters = 3;  // Define it externally
 
 Double_t FitFunction(Double_t *v, Double_t *par) {
     if (NumOfParameters != 2 && NumOfParameters != 3) {
-        std::cerr << "utilities::FitFunctionCombined: invalid number of parameters! Choose 2 or 3. Aborting..." << std::endl;
+        std::cerr << "fitter_functions::FitFunction: invalid number of parameters! Choose 2 or 3. Aborting..." << std::endl;
         exit(1);
     }
 
@@ -92,7 +92,7 @@ void BetaFit(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Momentum_c
 
     if (hBeta_Clone->Integral() != 0.) {
         //<editor-fold desc="Preforming a fit">
-        TF1 *func = new TF1("fit", utilities::FitFunction, 0, 2, 3);  // create a function with 3 parameters in the range [-3,3]
+        TF1 *func = new TF1("fit", FitFunction, 0, 2, 3);  // create a function with 3 parameters in the range [-3,3]
         func->SetLineColor(kRed);
 
         double BetaMax = hBeta_Clone->GetMaximum();
@@ -416,7 +416,7 @@ void BetaFitApprax(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Mome
 
     if (hBeta_Clone->Integral() != 0.) {
         //<editor-fold desc="Preforming a fit">
-        TF1 *func = new TF1("fit", utilities::FitFunction, 0, 2, 3);  // create a function with 3 parameters in the range [-3,3]
+        TF1 *func = new TF1("fit", FitFunction, 0, 2, 3);  // create a function with 3 parameters in the range [-3,3]
         func->SetLineColor(kRed);
 
         double BetaMax = hBeta_Clone->GetMaximum();
