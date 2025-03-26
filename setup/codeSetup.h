@@ -15,7 +15,7 @@
 #include "../source/classes/ExperimentParameters/ExperimentParameters.cpp"
 // #include "../source/namespaces/basic_tools/basic_tools.h"
 #include "../source/functions/HistogramPlottingFunctions.h"
-#include "../source/functions/quit.h"
+// #include "../source/functions/quit.h"
 #include "../source/includes/CanvasPDF/CanvasPDF.h"
 #include "samples/Q2_testing_samples.h"
 #include "samples/Uniform_samples.h"
