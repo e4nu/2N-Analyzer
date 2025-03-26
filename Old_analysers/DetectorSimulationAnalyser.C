@@ -1027,7 +1027,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
         wMaps_master = AMaps(SampleName, P_e_bin_profile, P_nuc_bin_profile, beamE, "WMaps", directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], NumberNucOfMomSlices,
                              NumberElecOfMomSlices, HistNucSliceNumOfXBins, HistNucSliceNumOfXBins, HistElectronSliceNumOfXBins, HistElectronSliceNumOfXBins);
     } else {
-        wMaps_master = AMaps(AcceptanceWeightsDirectory, VaryingSampleName, Electron_single_slice_test, Nucleon_single_slice_test, TestSlices);
+        wMaps_master = AMaps(AcceptanceWeightsDirectory, VaryingSampleName, beamE, Electron_single_slice_test, Nucleon_single_slice_test, TestSlices);
     }
 
     std::cout << "\033[33m done.\n\n\033[0m";
