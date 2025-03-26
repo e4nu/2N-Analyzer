@@ -349,318 +349,248 @@ CMakeFiles/project.dir/macros/process_events.C.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/project.dir/macros/process_events.C.s"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alon/Projects/2N-Analyser_e4nu/macros/process_events.C -o CMakeFiles/project.dir/macros/process_events.C.s
 
-CMakeFiles/project.dir/setup/CLAS12DAnalysis/CLAS12DAnalyser/CLAS12DAnalyser.cpp.o: CMakeFiles/project.dir/flags.make
-CMakeFiles/project.dir/setup/CLAS12DAnalysis/CLAS12DAnalyser/CLAS12DAnalyser.cpp.o: /Users/alon/Projects/2N-Analyser_e4nu/setup/CLAS12DAnalysis/CLAS12DAnalyser/CLAS12DAnalyser.cpp
-CMakeFiles/project.dir/setup/CLAS12DAnalysis/CLAS12DAnalyser/CLAS12DAnalyser.cpp.o: CMakeFiles/project.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/project.dir/setup/CLAS12DAnalysis/CLAS12DAnalyser/CLAS12DAnalyser.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/project.dir/setup/CLAS12DAnalysis/CLAS12DAnalyser/CLAS12DAnalyser.cpp.o -MF CMakeFiles/project.dir/setup/CLAS12DAnalysis/CLAS12DAnalyser/CLAS12DAnalyser.cpp.o.d -o CMakeFiles/project.dir/setup/CLAS12DAnalysis/CLAS12DAnalyser/CLAS12DAnalyser.cpp.o -c /Users/alon/Projects/2N-Analyser_e4nu/setup/CLAS12DAnalysis/CLAS12DAnalyser/CLAS12DAnalyser.cpp
-
-CMakeFiles/project.dir/setup/CLAS12DAnalysis/CLAS12DAnalyser/CLAS12DAnalyser.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/project.dir/setup/CLAS12DAnalysis/CLAS12DAnalyser/CLAS12DAnalyser.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alon/Projects/2N-Analyser_e4nu/setup/CLAS12DAnalysis/CLAS12DAnalyser/CLAS12DAnalyser.cpp > CMakeFiles/project.dir/setup/CLAS12DAnalysis/CLAS12DAnalyser/CLAS12DAnalyser.cpp.i
-
-CMakeFiles/project.dir/setup/CLAS12DAnalysis/CLAS12DAnalyser/CLAS12DAnalyser.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/project.dir/setup/CLAS12DAnalysis/CLAS12DAnalyser/CLAS12DAnalyser.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alon/Projects/2N-Analyser_e4nu/setup/CLAS12DAnalysis/CLAS12DAnalyser/CLAS12DAnalyser.cpp -o CMakeFiles/project.dir/setup/CLAS12DAnalysis/CLAS12DAnalyser/CLAS12DAnalyser.cpp.s
-
-CMakeFiles/project.dir/setup/CLAS12DAnalysis/CLAS12DASettings/CLAS12DASettings.cpp.o: CMakeFiles/project.dir/flags.make
-CMakeFiles/project.dir/setup/CLAS12DAnalysis/CLAS12DASettings/CLAS12DASettings.cpp.o: /Users/alon/Projects/2N-Analyser_e4nu/setup/CLAS12DAnalysis/CLAS12DASettings/CLAS12DASettings.cpp
-CMakeFiles/project.dir/setup/CLAS12DAnalysis/CLAS12DASettings/CLAS12DASettings.cpp.o: CMakeFiles/project.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/project.dir/setup/CLAS12DAnalysis/CLAS12DASettings/CLAS12DASettings.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/project.dir/setup/CLAS12DAnalysis/CLAS12DASettings/CLAS12DASettings.cpp.o -MF CMakeFiles/project.dir/setup/CLAS12DAnalysis/CLAS12DASettings/CLAS12DASettings.cpp.o.d -o CMakeFiles/project.dir/setup/CLAS12DAnalysis/CLAS12DASettings/CLAS12DASettings.cpp.o -c /Users/alon/Projects/2N-Analyser_e4nu/setup/CLAS12DAnalysis/CLAS12DASettings/CLAS12DASettings.cpp
-
-CMakeFiles/project.dir/setup/CLAS12DAnalysis/CLAS12DASettings/CLAS12DASettings.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/project.dir/setup/CLAS12DAnalysis/CLAS12DASettings/CLAS12DASettings.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alon/Projects/2N-Analyser_e4nu/setup/CLAS12DAnalysis/CLAS12DASettings/CLAS12DASettings.cpp > CMakeFiles/project.dir/setup/CLAS12DAnalysis/CLAS12DASettings/CLAS12DASettings.cpp.i
-
-CMakeFiles/project.dir/setup/CLAS12DAnalysis/CLAS12DASettings/CLAS12DASettings.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/project.dir/setup/CLAS12DAnalysis/CLAS12DASettings/CLAS12DASettings.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alon/Projects/2N-Analyser_e4nu/setup/CLAS12DAnalysis/CLAS12DASettings/CLAS12DASettings.cpp -o CMakeFiles/project.dir/setup/CLAS12DAnalysis/CLAS12DASettings/CLAS12DASettings.cpp.s
-
-CMakeFiles/project.dir/setup/CLAS12DAnalysis/CLAS12DHistograms/CLAS12DHistograms.cpp.o: CMakeFiles/project.dir/flags.make
-CMakeFiles/project.dir/setup/CLAS12DAnalysis/CLAS12DHistograms/CLAS12DHistograms.cpp.o: /Users/alon/Projects/2N-Analyser_e4nu/setup/CLAS12DAnalysis/CLAS12DHistograms/CLAS12DHistograms.cpp
-CMakeFiles/project.dir/setup/CLAS12DAnalysis/CLAS12DHistograms/CLAS12DHistograms.cpp.o: CMakeFiles/project.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/project.dir/setup/CLAS12DAnalysis/CLAS12DHistograms/CLAS12DHistograms.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/project.dir/setup/CLAS12DAnalysis/CLAS12DHistograms/CLAS12DHistograms.cpp.o -MF CMakeFiles/project.dir/setup/CLAS12DAnalysis/CLAS12DHistograms/CLAS12DHistograms.cpp.o.d -o CMakeFiles/project.dir/setup/CLAS12DAnalysis/CLAS12DHistograms/CLAS12DHistograms.cpp.o -c /Users/alon/Projects/2N-Analyser_e4nu/setup/CLAS12DAnalysis/CLAS12DHistograms/CLAS12DHistograms.cpp
-
-CMakeFiles/project.dir/setup/CLAS12DAnalysis/CLAS12DHistograms/CLAS12DHistograms.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/project.dir/setup/CLAS12DAnalysis/CLAS12DHistograms/CLAS12DHistograms.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alon/Projects/2N-Analyser_e4nu/setup/CLAS12DAnalysis/CLAS12DHistograms/CLAS12DHistograms.cpp > CMakeFiles/project.dir/setup/CLAS12DAnalysis/CLAS12DHistograms/CLAS12DHistograms.cpp.i
-
-CMakeFiles/project.dir/setup/CLAS12DAnalysis/CLAS12DHistograms/CLAS12DHistograms.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/project.dir/setup/CLAS12DAnalysis/CLAS12DHistograms/CLAS12DHistograms.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alon/Projects/2N-Analyser_e4nu/setup/CLAS12DAnalysis/CLAS12DHistograms/CLAS12DHistograms.cpp -o CMakeFiles/project.dir/setup/CLAS12DAnalysis/CLAS12DHistograms/CLAS12DHistograms.cpp.s
-
-CMakeFiles/project.dir/source/classes/AMaps/AMaps.cpp.o: CMakeFiles/project.dir/flags.make
-CMakeFiles/project.dir/source/classes/AMaps/AMaps.cpp.o: /Users/alon/Projects/2N-Analyser_e4nu/source/classes/AMaps/AMaps.cpp
-CMakeFiles/project.dir/source/classes/AMaps/AMaps.cpp.o: CMakeFiles/project.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/project.dir/source/classes/AMaps/AMaps.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/project.dir/source/classes/AMaps/AMaps.cpp.o -MF CMakeFiles/project.dir/source/classes/AMaps/AMaps.cpp.o.d -o CMakeFiles/project.dir/source/classes/AMaps/AMaps.cpp.o -c /Users/alon/Projects/2N-Analyser_e4nu/source/classes/AMaps/AMaps.cpp
-
-CMakeFiles/project.dir/source/classes/AMaps/AMaps.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/project.dir/source/classes/AMaps/AMaps.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alon/Projects/2N-Analyser_e4nu/source/classes/AMaps/AMaps.cpp > CMakeFiles/project.dir/source/classes/AMaps/AMaps.cpp.i
-
-CMakeFiles/project.dir/source/classes/AMaps/AMaps.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/project.dir/source/classes/AMaps/AMaps.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alon/Projects/2N-Analyser_e4nu/source/classes/AMaps/AMaps.cpp -o CMakeFiles/project.dir/source/classes/AMaps/AMaps.cpp.s
-
-CMakeFiles/project.dir/source/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.cpp.o: CMakeFiles/project.dir/flags.make
-CMakeFiles/project.dir/source/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.cpp.o: /Users/alon/Projects/2N-Analyser_e4nu/source/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.cpp
-CMakeFiles/project.dir/source/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.cpp.o: CMakeFiles/project.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object CMakeFiles/project.dir/source/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/project.dir/source/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.cpp.o -MF CMakeFiles/project.dir/source/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.cpp.o.d -o CMakeFiles/project.dir/source/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.cpp.o -c /Users/alon/Projects/2N-Analyser_e4nu/source/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.cpp
-
-CMakeFiles/project.dir/source/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/project.dir/source/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alon/Projects/2N-Analyser_e4nu/source/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.cpp > CMakeFiles/project.dir/source/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.cpp.i
-
-CMakeFiles/project.dir/source/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/project.dir/source/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alon/Projects/2N-Analyser_e4nu/source/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.cpp -o CMakeFiles/project.dir/source/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.cpp.s
-
-CMakeFiles/project.dir/source/classes/clas12ana/example_ana_-_Copy.cpp.o: CMakeFiles/project.dir/flags.make
-CMakeFiles/project.dir/source/classes/clas12ana/example_ana_-_Copy.cpp.o: /Users/alon/Projects/2N-Analyser_e4nu/source/classes/clas12ana/example_ana\ -\ Copy.cpp
-CMakeFiles/project.dir/source/classes/clas12ana/example_ana_-_Copy.cpp.o: CMakeFiles/project.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object CMakeFiles/project.dir/source/classes/clas12ana/example_ana_-_Copy.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/project.dir/source/classes/clas12ana/example_ana_-_Copy.cpp.o -MF CMakeFiles/project.dir/source/classes/clas12ana/example_ana_-_Copy.cpp.o.d -o CMakeFiles/project.dir/source/classes/clas12ana/example_ana_-_Copy.cpp.o -c "/Users/alon/Projects/2N-Analyser_e4nu/source/classes/clas12ana/example_ana - Copy.cpp"
-
-CMakeFiles/project.dir/source/classes/clas12ana/example_ana_-_Copy.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/project.dir/source/classes/clas12ana/example_ana_-_Copy.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/alon/Projects/2N-Analyser_e4nu/source/classes/clas12ana/example_ana - Copy.cpp" > CMakeFiles/project.dir/source/classes/clas12ana/example_ana_-_Copy.cpp.i
-
-CMakeFiles/project.dir/source/classes/clas12ana/example_ana_-_Copy.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/project.dir/source/classes/clas12ana/example_ana_-_Copy.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/alon/Projects/2N-Analyser_e4nu/source/classes/clas12ana/example_ana - Copy.cpp" -o CMakeFiles/project.dir/source/classes/clas12ana/example_ana_-_Copy.cpp.s
-
-CMakeFiles/project.dir/source/classes/clas12ana/example_ana.cpp.o: CMakeFiles/project.dir/flags.make
-CMakeFiles/project.dir/source/classes/clas12ana/example_ana.cpp.o: /Users/alon/Projects/2N-Analyser_e4nu/source/classes/clas12ana/example_ana.cpp
-CMakeFiles/project.dir/source/classes/clas12ana/example_ana.cpp.o: CMakeFiles/project.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object CMakeFiles/project.dir/source/classes/clas12ana/example_ana.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/project.dir/source/classes/clas12ana/example_ana.cpp.o -MF CMakeFiles/project.dir/source/classes/clas12ana/example_ana.cpp.o.d -o CMakeFiles/project.dir/source/classes/clas12ana/example_ana.cpp.o -c /Users/alon/Projects/2N-Analyser_e4nu/source/classes/clas12ana/example_ana.cpp
-
-CMakeFiles/project.dir/source/classes/clas12ana/example_ana.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/project.dir/source/classes/clas12ana/example_ana.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alon/Projects/2N-Analyser_e4nu/source/classes/clas12ana/example_ana.cpp > CMakeFiles/project.dir/source/classes/clas12ana/example_ana.cpp.i
-
-CMakeFiles/project.dir/source/classes/clas12ana/example_ana.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/project.dir/source/classes/clas12ana/example_ana.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alon/Projects/2N-Analyser_e4nu/source/classes/clas12ana/example_ana.cpp -o CMakeFiles/project.dir/source/classes/clas12ana/example_ana.cpp.s
-
-CMakeFiles/project.dir/source/classes/clas12ana/skim_events.cpp.o: CMakeFiles/project.dir/flags.make
-CMakeFiles/project.dir/source/classes/clas12ana/skim_events.cpp.o: /Users/alon/Projects/2N-Analyser_e4nu/source/classes/clas12ana/skim_events.cpp
-CMakeFiles/project.dir/source/classes/clas12ana/skim_events.cpp.o: CMakeFiles/project.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building CXX object CMakeFiles/project.dir/source/classes/clas12ana/skim_events.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/project.dir/source/classes/clas12ana/skim_events.cpp.o -MF CMakeFiles/project.dir/source/classes/clas12ana/skim_events.cpp.o.d -o CMakeFiles/project.dir/source/classes/clas12ana/skim_events.cpp.o -c /Users/alon/Projects/2N-Analyser_e4nu/source/classes/clas12ana/skim_events.cpp
-
-CMakeFiles/project.dir/source/classes/clas12ana/skim_events.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/project.dir/source/classes/clas12ana/skim_events.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alon/Projects/2N-Analyser_e4nu/source/classes/clas12ana/skim_events.cpp > CMakeFiles/project.dir/source/classes/clas12ana/skim_events.cpp.i
-
-CMakeFiles/project.dir/source/classes/clas12ana/skim_events.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/project.dir/source/classes/clas12ana/skim_events.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alon/Projects/2N-Analyser_e4nu/source/classes/clas12ana/skim_events.cpp -o CMakeFiles/project.dir/source/classes/clas12ana/skim_events.cpp.s
-
-CMakeFiles/project.dir/source/classes/DEfficiency/DEfficiency.cpp.o: CMakeFiles/project.dir/flags.make
-CMakeFiles/project.dir/source/classes/DEfficiency/DEfficiency.cpp.o: /Users/alon/Projects/2N-Analyser_e4nu/source/classes/DEfficiency/DEfficiency.cpp
-CMakeFiles/project.dir/source/classes/DEfficiency/DEfficiency.cpp.o: CMakeFiles/project.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Building CXX object CMakeFiles/project.dir/source/classes/DEfficiency/DEfficiency.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/project.dir/source/classes/DEfficiency/DEfficiency.cpp.o -MF CMakeFiles/project.dir/source/classes/DEfficiency/DEfficiency.cpp.o.d -o CMakeFiles/project.dir/source/classes/DEfficiency/DEfficiency.cpp.o -c /Users/alon/Projects/2N-Analyser_e4nu/source/classes/DEfficiency/DEfficiency.cpp
-
-CMakeFiles/project.dir/source/classes/DEfficiency/DEfficiency.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/project.dir/source/classes/DEfficiency/DEfficiency.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alon/Projects/2N-Analyser_e4nu/source/classes/DEfficiency/DEfficiency.cpp > CMakeFiles/project.dir/source/classes/DEfficiency/DEfficiency.cpp.i
-
-CMakeFiles/project.dir/source/classes/DEfficiency/DEfficiency.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/project.dir/source/classes/DEfficiency/DEfficiency.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alon/Projects/2N-Analyser_e4nu/source/classes/DEfficiency/DEfficiency.cpp -o CMakeFiles/project.dir/source/classes/DEfficiency/DEfficiency.cpp.s
-
-CMakeFiles/project.dir/source/classes/Directories/Directories.cpp.o: CMakeFiles/project.dir/flags.make
-CMakeFiles/project.dir/source/classes/Directories/Directories.cpp.o: /Users/alon/Projects/2N-Analyser_e4nu/source/classes/Directories/Directories.cpp
-CMakeFiles/project.dir/source/classes/Directories/Directories.cpp.o: CMakeFiles/project.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_30) "Building CXX object CMakeFiles/project.dir/source/classes/Directories/Directories.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/project.dir/source/classes/Directories/Directories.cpp.o -MF CMakeFiles/project.dir/source/classes/Directories/Directories.cpp.o.d -o CMakeFiles/project.dir/source/classes/Directories/Directories.cpp.o -c /Users/alon/Projects/2N-Analyser_e4nu/source/classes/Directories/Directories.cpp
-
-CMakeFiles/project.dir/source/classes/Directories/Directories.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/project.dir/source/classes/Directories/Directories.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alon/Projects/2N-Analyser_e4nu/source/classes/Directories/Directories.cpp > CMakeFiles/project.dir/source/classes/Directories/Directories.cpp.i
-
-CMakeFiles/project.dir/source/classes/Directories/Directories.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/project.dir/source/classes/Directories/Directories.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alon/Projects/2N-Analyser_e4nu/source/classes/Directories/Directories.cpp -o CMakeFiles/project.dir/source/classes/Directories/Directories.cpp.s
-
-CMakeFiles/project.dir/source/classes/ExperimentParameters/ExperimentParameters.cpp.o: CMakeFiles/project.dir/flags.make
-CMakeFiles/project.dir/source/classes/ExperimentParameters/ExperimentParameters.cpp.o: /Users/alon/Projects/2N-Analyser_e4nu/source/classes/ExperimentParameters/ExperimentParameters.cpp
-CMakeFiles/project.dir/source/classes/ExperimentParameters/ExperimentParameters.cpp.o: CMakeFiles/project.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_31) "Building CXX object CMakeFiles/project.dir/source/classes/ExperimentParameters/ExperimentParameters.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/project.dir/source/classes/ExperimentParameters/ExperimentParameters.cpp.o -MF CMakeFiles/project.dir/source/classes/ExperimentParameters/ExperimentParameters.cpp.o.d -o CMakeFiles/project.dir/source/classes/ExperimentParameters/ExperimentParameters.cpp.o -c /Users/alon/Projects/2N-Analyser_e4nu/source/classes/ExperimentParameters/ExperimentParameters.cpp
-
-CMakeFiles/project.dir/source/classes/ExperimentParameters/ExperimentParameters.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/project.dir/source/classes/ExperimentParameters/ExperimentParameters.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alon/Projects/2N-Analyser_e4nu/source/classes/ExperimentParameters/ExperimentParameters.cpp > CMakeFiles/project.dir/source/classes/ExperimentParameters/ExperimentParameters.cpp.i
-
-CMakeFiles/project.dir/source/classes/ExperimentParameters/ExperimentParameters.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/project.dir/source/classes/ExperimentParameters/ExperimentParameters.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alon/Projects/2N-Analyser_e4nu/source/classes/ExperimentParameters/ExperimentParameters.cpp -o CMakeFiles/project.dir/source/classes/ExperimentParameters/ExperimentParameters.cpp.s
-
-CMakeFiles/project.dir/source/classes/hData/hData.cpp.o: CMakeFiles/project.dir/flags.make
-CMakeFiles/project.dir/source/classes/hData/hData.cpp.o: /Users/alon/Projects/2N-Analyser_e4nu/source/classes/hData/hData.cpp
-CMakeFiles/project.dir/source/classes/hData/hData.cpp.o: CMakeFiles/project.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_32) "Building CXX object CMakeFiles/project.dir/source/classes/hData/hData.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/project.dir/source/classes/hData/hData.cpp.o -MF CMakeFiles/project.dir/source/classes/hData/hData.cpp.o.d -o CMakeFiles/project.dir/source/classes/hData/hData.cpp.o -c /Users/alon/Projects/2N-Analyser_e4nu/source/classes/hData/hData.cpp
-
-CMakeFiles/project.dir/source/classes/hData/hData.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/project.dir/source/classes/hData/hData.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alon/Projects/2N-Analyser_e4nu/source/classes/hData/hData.cpp > CMakeFiles/project.dir/source/classes/hData/hData.cpp.i
-
-CMakeFiles/project.dir/source/classes/hData/hData.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/project.dir/source/classes/hData/hData.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alon/Projects/2N-Analyser_e4nu/source/classes/hData/hData.cpp -o CMakeFiles/project.dir/source/classes/hData/hData.cpp.s
-
-CMakeFiles/project.dir/source/classes/hPlots/hPlot1D.cpp.o: CMakeFiles/project.dir/flags.make
-CMakeFiles/project.dir/source/classes/hPlots/hPlot1D.cpp.o: /Users/alon/Projects/2N-Analyser_e4nu/source/classes/hPlots/hPlot1D.cpp
-CMakeFiles/project.dir/source/classes/hPlots/hPlot1D.cpp.o: CMakeFiles/project.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_33) "Building CXX object CMakeFiles/project.dir/source/classes/hPlots/hPlot1D.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/project.dir/source/classes/hPlots/hPlot1D.cpp.o -MF CMakeFiles/project.dir/source/classes/hPlots/hPlot1D.cpp.o.d -o CMakeFiles/project.dir/source/classes/hPlots/hPlot1D.cpp.o -c /Users/alon/Projects/2N-Analyser_e4nu/source/classes/hPlots/hPlot1D.cpp
-
-CMakeFiles/project.dir/source/classes/hPlots/hPlot1D.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/project.dir/source/classes/hPlots/hPlot1D.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alon/Projects/2N-Analyser_e4nu/source/classes/hPlots/hPlot1D.cpp > CMakeFiles/project.dir/source/classes/hPlots/hPlot1D.cpp.i
-
-CMakeFiles/project.dir/source/classes/hPlots/hPlot1D.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/project.dir/source/classes/hPlots/hPlot1D.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alon/Projects/2N-Analyser_e4nu/source/classes/hPlots/hPlot1D.cpp -o CMakeFiles/project.dir/source/classes/hPlots/hPlot1D.cpp.s
-
-CMakeFiles/project.dir/source/classes/hPlots/hPlot1DStack.cpp.o: CMakeFiles/project.dir/flags.make
-CMakeFiles/project.dir/source/classes/hPlots/hPlot1DStack.cpp.o: /Users/alon/Projects/2N-Analyser_e4nu/source/classes/hPlots/hPlot1DStack.cpp
-CMakeFiles/project.dir/source/classes/hPlots/hPlot1DStack.cpp.o: CMakeFiles/project.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_34) "Building CXX object CMakeFiles/project.dir/source/classes/hPlots/hPlot1DStack.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/project.dir/source/classes/hPlots/hPlot1DStack.cpp.o -MF CMakeFiles/project.dir/source/classes/hPlots/hPlot1DStack.cpp.o.d -o CMakeFiles/project.dir/source/classes/hPlots/hPlot1DStack.cpp.o -c /Users/alon/Projects/2N-Analyser_e4nu/source/classes/hPlots/hPlot1DStack.cpp
-
-CMakeFiles/project.dir/source/classes/hPlots/hPlot1DStack.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/project.dir/source/classes/hPlots/hPlot1DStack.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alon/Projects/2N-Analyser_e4nu/source/classes/hPlots/hPlot1DStack.cpp > CMakeFiles/project.dir/source/classes/hPlots/hPlot1DStack.cpp.i
-
-CMakeFiles/project.dir/source/classes/hPlots/hPlot1DStack.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/project.dir/source/classes/hPlots/hPlot1DStack.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alon/Projects/2N-Analyser_e4nu/source/classes/hPlots/hPlot1DStack.cpp -o CMakeFiles/project.dir/source/classes/hPlots/hPlot1DStack.cpp.s
-
-CMakeFiles/project.dir/source/classes/hPlots/hPlot2D.cpp.o: CMakeFiles/project.dir/flags.make
-CMakeFiles/project.dir/source/classes/hPlots/hPlot2D.cpp.o: /Users/alon/Projects/2N-Analyser_e4nu/source/classes/hPlots/hPlot2D.cpp
-CMakeFiles/project.dir/source/classes/hPlots/hPlot2D.cpp.o: CMakeFiles/project.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_35) "Building CXX object CMakeFiles/project.dir/source/classes/hPlots/hPlot2D.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/project.dir/source/classes/hPlots/hPlot2D.cpp.o -MF CMakeFiles/project.dir/source/classes/hPlots/hPlot2D.cpp.o.d -o CMakeFiles/project.dir/source/classes/hPlots/hPlot2D.cpp.o -c /Users/alon/Projects/2N-Analyser_e4nu/source/classes/hPlots/hPlot2D.cpp
-
-CMakeFiles/project.dir/source/classes/hPlots/hPlot2D.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/project.dir/source/classes/hPlots/hPlot2D.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alon/Projects/2N-Analyser_e4nu/source/classes/hPlots/hPlot2D.cpp > CMakeFiles/project.dir/source/classes/hPlots/hPlot2D.cpp.i
-
-CMakeFiles/project.dir/source/classes/hPlots/hPlot2D.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/project.dir/source/classes/hPlots/hPlot2D.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alon/Projects/2N-Analyser_e4nu/source/classes/hPlots/hPlot2D.cpp -o CMakeFiles/project.dir/source/classes/hPlots/hPlot2D.cpp.s
-
-CMakeFiles/project.dir/source/classes/MomentumResolution/MomentumResolution.cpp.o: CMakeFiles/project.dir/flags.make
-CMakeFiles/project.dir/source/classes/MomentumResolution/MomentumResolution.cpp.o: /Users/alon/Projects/2N-Analyser_e4nu/source/classes/MomentumResolution/MomentumResolution.cpp
-CMakeFiles/project.dir/source/classes/MomentumResolution/MomentumResolution.cpp.o: CMakeFiles/project.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_36) "Building CXX object CMakeFiles/project.dir/source/classes/MomentumResolution/MomentumResolution.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/project.dir/source/classes/MomentumResolution/MomentumResolution.cpp.o -MF CMakeFiles/project.dir/source/classes/MomentumResolution/MomentumResolution.cpp.o.d -o CMakeFiles/project.dir/source/classes/MomentumResolution/MomentumResolution.cpp.o -c /Users/alon/Projects/2N-Analyser_e4nu/source/classes/MomentumResolution/MomentumResolution.cpp
-
-CMakeFiles/project.dir/source/classes/MomentumResolution/MomentumResolution.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/project.dir/source/classes/MomentumResolution/MomentumResolution.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alon/Projects/2N-Analyser_e4nu/source/classes/MomentumResolution/MomentumResolution.cpp > CMakeFiles/project.dir/source/classes/MomentumResolution/MomentumResolution.cpp.i
-
-CMakeFiles/project.dir/source/classes/MomentumResolution/MomentumResolution.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/project.dir/source/classes/MomentumResolution/MomentumResolution.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alon/Projects/2N-Analyser_e4nu/source/classes/MomentumResolution/MomentumResolution.cpp -o CMakeFiles/project.dir/source/classes/MomentumResolution/MomentumResolution.cpp.s
-
-CMakeFiles/project.dir/source/classes/TLCuts/TLCuts.cpp.o: CMakeFiles/project.dir/flags.make
-CMakeFiles/project.dir/source/classes/TLCuts/TLCuts.cpp.o: /Users/alon/Projects/2N-Analyser_e4nu/source/classes/TLCuts/TLCuts.cpp
-CMakeFiles/project.dir/source/classes/TLCuts/TLCuts.cpp.o: CMakeFiles/project.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_37) "Building CXX object CMakeFiles/project.dir/source/classes/TLCuts/TLCuts.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/project.dir/source/classes/TLCuts/TLCuts.cpp.o -MF CMakeFiles/project.dir/source/classes/TLCuts/TLCuts.cpp.o.d -o CMakeFiles/project.dir/source/classes/TLCuts/TLCuts.cpp.o -c /Users/alon/Projects/2N-Analyser_e4nu/source/classes/TLCuts/TLCuts.cpp
-
-CMakeFiles/project.dir/source/classes/TLCuts/TLCuts.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/project.dir/source/classes/TLCuts/TLCuts.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alon/Projects/2N-Analyser_e4nu/source/classes/TLCuts/TLCuts.cpp > CMakeFiles/project.dir/source/classes/TLCuts/TLCuts.cpp.i
-
-CMakeFiles/project.dir/source/classes/TLCuts/TLCuts.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/project.dir/source/classes/TLCuts/TLCuts.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alon/Projects/2N-Analyser_e4nu/source/classes/TLCuts/TLCuts.cpp -o CMakeFiles/project.dir/source/classes/TLCuts/TLCuts.cpp.s
-
-CMakeFiles/project.dir/source/functions/Math_func/poly34.cpp.o: CMakeFiles/project.dir/flags.make
-CMakeFiles/project.dir/source/functions/Math_func/poly34.cpp.o: /Users/alon/Projects/2N-Analyser_e4nu/source/functions/Math_func/poly34.cpp
-CMakeFiles/project.dir/source/functions/Math_func/poly34.cpp.o: CMakeFiles/project.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_38) "Building CXX object CMakeFiles/project.dir/source/functions/Math_func/poly34.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/project.dir/source/functions/Math_func/poly34.cpp.o -MF CMakeFiles/project.dir/source/functions/Math_func/poly34.cpp.o.d -o CMakeFiles/project.dir/source/functions/Math_func/poly34.cpp.o -c /Users/alon/Projects/2N-Analyser_e4nu/source/functions/Math_func/poly34.cpp
-
-CMakeFiles/project.dir/source/functions/Math_func/poly34.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/project.dir/source/functions/Math_func/poly34.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alon/Projects/2N-Analyser_e4nu/source/functions/Math_func/poly34.cpp > CMakeFiles/project.dir/source/functions/Math_func/poly34.cpp.i
-
-CMakeFiles/project.dir/source/functions/Math_func/poly34.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/project.dir/source/functions/Math_func/poly34.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alon/Projects/2N-Analyser_e4nu/source/functions/Math_func/poly34.cpp -o CMakeFiles/project.dir/source/functions/Math_func/poly34.cpp.s
-
-CMakeFiles/project.dir/source/other/fitexample_-_Copy.c.o: CMakeFiles/project.dir/flags.make
-CMakeFiles/project.dir/source/other/fitexample_-_Copy.c.o: /Users/alon/Projects/2N-Analyser_e4nu/source/other/fitexample\ -\ Copy.c
-CMakeFiles/project.dir/source/other/fitexample_-_Copy.c.o: CMakeFiles/project.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_39) "Building C object CMakeFiles/project.dir/source/other/fitexample_-_Copy.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/project.dir/source/other/fitexample_-_Copy.c.o -MF CMakeFiles/project.dir/source/other/fitexample_-_Copy.c.o.d -o CMakeFiles/project.dir/source/other/fitexample_-_Copy.c.o -c "/Users/alon/Projects/2N-Analyser_e4nu/source/other/fitexample - Copy.c"
-
-CMakeFiles/project.dir/source/other/fitexample_-_Copy.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/project.dir/source/other/fitexample_-_Copy.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/Users/alon/Projects/2N-Analyser_e4nu/source/other/fitexample - Copy.c" > CMakeFiles/project.dir/source/other/fitexample_-_Copy.c.i
-
-CMakeFiles/project.dir/source/other/fitexample_-_Copy.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/project.dir/source/other/fitexample_-_Copy.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/Users/alon/Projects/2N-Analyser_e4nu/source/other/fitexample - Copy.c" -o CMakeFiles/project.dir/source/other/fitexample_-_Copy.c.s
-
-CMakeFiles/project.dir/source/other/fitexample.c.o: CMakeFiles/project.dir/flags.make
-CMakeFiles/project.dir/source/other/fitexample.c.o: /Users/alon/Projects/2N-Analyser_e4nu/source/other/fitexample.c
-CMakeFiles/project.dir/source/other/fitexample.c.o: CMakeFiles/project.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_40) "Building C object CMakeFiles/project.dir/source/other/fitexample.c.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/project.dir/source/other/fitexample.c.o -MF CMakeFiles/project.dir/source/other/fitexample.c.o.d -o CMakeFiles/project.dir/source/other/fitexample.c.o -c /Users/alon/Projects/2N-Analyser_e4nu/source/other/fitexample.c
-
-CMakeFiles/project.dir/source/other/fitexample.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/project.dir/source/other/fitexample.c.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/alon/Projects/2N-Analyser_e4nu/source/other/fitexample.c > CMakeFiles/project.dir/source/other/fitexample.c.i
-
-CMakeFiles/project.dir/source/other/fitexample.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/project.dir/source/other/fitexample.c.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/alon/Projects/2N-Analyser_e4nu/source/other/fitexample.c -o CMakeFiles/project.dir/source/other/fitexample.c.s
-
-CMakeFiles/project.dir/source/other/hPlot1D_example.cpp.o: CMakeFiles/project.dir/flags.make
-CMakeFiles/project.dir/source/other/hPlot1D_example.cpp.o: /Users/alon/Projects/2N-Analyser_e4nu/source/other/hPlot1D_example.cpp
-CMakeFiles/project.dir/source/other/hPlot1D_example.cpp.o: CMakeFiles/project.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_41) "Building CXX object CMakeFiles/project.dir/source/other/hPlot1D_example.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/project.dir/source/other/hPlot1D_example.cpp.o -MF CMakeFiles/project.dir/source/other/hPlot1D_example.cpp.o.d -o CMakeFiles/project.dir/source/other/hPlot1D_example.cpp.o -c /Users/alon/Projects/2N-Analyser_e4nu/source/other/hPlot1D_example.cpp
-
-CMakeFiles/project.dir/source/other/hPlot1D_example.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/project.dir/source/other/hPlot1D_example.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alon/Projects/2N-Analyser_e4nu/source/other/hPlot1D_example.cpp > CMakeFiles/project.dir/source/other/hPlot1D_example.cpp.i
-
-CMakeFiles/project.dir/source/other/hPlot1D_example.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/project.dir/source/other/hPlot1D_example.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alon/Projects/2N-Analyser_e4nu/source/other/hPlot1D_example.cpp -o CMakeFiles/project.dir/source/other/hPlot1D_example.cpp.s
-
-CMakeFiles/project.dir/source/structures/Histogram1D_beta/Histogram1D.cpp.o: CMakeFiles/project.dir/flags.make
-CMakeFiles/project.dir/source/structures/Histogram1D_beta/Histogram1D.cpp.o: /Users/alon/Projects/2N-Analyser_e4nu/source/structures/Histogram1D_beta/Histogram1D.cpp
-CMakeFiles/project.dir/source/structures/Histogram1D_beta/Histogram1D.cpp.o: CMakeFiles/project.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_42) "Building CXX object CMakeFiles/project.dir/source/structures/Histogram1D_beta/Histogram1D.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/project.dir/source/structures/Histogram1D_beta/Histogram1D.cpp.o -MF CMakeFiles/project.dir/source/structures/Histogram1D_beta/Histogram1D.cpp.o.d -o CMakeFiles/project.dir/source/structures/Histogram1D_beta/Histogram1D.cpp.o -c /Users/alon/Projects/2N-Analyser_e4nu/source/structures/Histogram1D_beta/Histogram1D.cpp
-
-CMakeFiles/project.dir/source/structures/Histogram1D_beta/Histogram1D.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/project.dir/source/structures/Histogram1D_beta/Histogram1D.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alon/Projects/2N-Analyser_e4nu/source/structures/Histogram1D_beta/Histogram1D.cpp > CMakeFiles/project.dir/source/structures/Histogram1D_beta/Histogram1D.cpp.i
-
-CMakeFiles/project.dir/source/structures/Histogram1D_beta/Histogram1D.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/project.dir/source/structures/Histogram1D_beta/Histogram1D.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alon/Projects/2N-Analyser_e4nu/source/structures/Histogram1D_beta/Histogram1D.cpp -o CMakeFiles/project.dir/source/structures/Histogram1D_beta/Histogram1D.cpp.s
+CMakeFiles/project.dir/framework/classes/AMaps/AMaps.cpp.o: CMakeFiles/project.dir/flags.make
+CMakeFiles/project.dir/framework/classes/AMaps/AMaps.cpp.o: /Users/alon/Projects/2N-Analyser_e4nu/framework/classes/AMaps/AMaps.cpp
+CMakeFiles/project.dir/framework/classes/AMaps/AMaps.cpp.o: CMakeFiles/project.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/project.dir/framework/classes/AMaps/AMaps.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/project.dir/framework/classes/AMaps/AMaps.cpp.o -MF CMakeFiles/project.dir/framework/classes/AMaps/AMaps.cpp.o.d -o CMakeFiles/project.dir/framework/classes/AMaps/AMaps.cpp.o -c /Users/alon/Projects/2N-Analyser_e4nu/framework/classes/AMaps/AMaps.cpp
+
+CMakeFiles/project.dir/framework/classes/AMaps/AMaps.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/project.dir/framework/classes/AMaps/AMaps.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alon/Projects/2N-Analyser_e4nu/framework/classes/AMaps/AMaps.cpp > CMakeFiles/project.dir/framework/classes/AMaps/AMaps.cpp.i
+
+CMakeFiles/project.dir/framework/classes/AMaps/AMaps.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/project.dir/framework/classes/AMaps/AMaps.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alon/Projects/2N-Analyser_e4nu/framework/classes/AMaps/AMaps.cpp -o CMakeFiles/project.dir/framework/classes/AMaps/AMaps.cpp.s
+
+CMakeFiles/project.dir/framework/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.cpp.o: CMakeFiles/project.dir/flags.make
+CMakeFiles/project.dir/framework/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.cpp.o: /Users/alon/Projects/2N-Analyser_e4nu/framework/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.cpp
+CMakeFiles/project.dir/framework/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.cpp.o: CMakeFiles/project.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/project.dir/framework/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/project.dir/framework/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.cpp.o -MF CMakeFiles/project.dir/framework/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.cpp.o.d -o CMakeFiles/project.dir/framework/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.cpp.o -c /Users/alon/Projects/2N-Analyser_e4nu/framework/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.cpp
+
+CMakeFiles/project.dir/framework/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/project.dir/framework/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alon/Projects/2N-Analyser_e4nu/framework/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.cpp > CMakeFiles/project.dir/framework/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.cpp.i
+
+CMakeFiles/project.dir/framework/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/project.dir/framework/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alon/Projects/2N-Analyser_e4nu/framework/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.cpp -o CMakeFiles/project.dir/framework/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.cpp.s
+
+CMakeFiles/project.dir/framework/classes/clas12ana/example_ana_-_Copy.cpp.o: CMakeFiles/project.dir/flags.make
+CMakeFiles/project.dir/framework/classes/clas12ana/example_ana_-_Copy.cpp.o: /Users/alon/Projects/2N-Analyser_e4nu/framework/classes/clas12ana/example_ana\ -\ Copy.cpp
+CMakeFiles/project.dir/framework/classes/clas12ana/example_ana_-_Copy.cpp.o: CMakeFiles/project.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/project.dir/framework/classes/clas12ana/example_ana_-_Copy.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/project.dir/framework/classes/clas12ana/example_ana_-_Copy.cpp.o -MF CMakeFiles/project.dir/framework/classes/clas12ana/example_ana_-_Copy.cpp.o.d -o CMakeFiles/project.dir/framework/classes/clas12ana/example_ana_-_Copy.cpp.o -c "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/clas12ana/example_ana - Copy.cpp"
+
+CMakeFiles/project.dir/framework/classes/clas12ana/example_ana_-_Copy.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/project.dir/framework/classes/clas12ana/example_ana_-_Copy.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/clas12ana/example_ana - Copy.cpp" > CMakeFiles/project.dir/framework/classes/clas12ana/example_ana_-_Copy.cpp.i
+
+CMakeFiles/project.dir/framework/classes/clas12ana/example_ana_-_Copy.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/project.dir/framework/classes/clas12ana/example_ana_-_Copy.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/clas12ana/example_ana - Copy.cpp" -o CMakeFiles/project.dir/framework/classes/clas12ana/example_ana_-_Copy.cpp.s
+
+CMakeFiles/project.dir/framework/classes/clas12ana/example_ana.cpp.o: CMakeFiles/project.dir/flags.make
+CMakeFiles/project.dir/framework/classes/clas12ana/example_ana.cpp.o: /Users/alon/Projects/2N-Analyser_e4nu/framework/classes/clas12ana/example_ana.cpp
+CMakeFiles/project.dir/framework/classes/clas12ana/example_ana.cpp.o: CMakeFiles/project.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/project.dir/framework/classes/clas12ana/example_ana.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/project.dir/framework/classes/clas12ana/example_ana.cpp.o -MF CMakeFiles/project.dir/framework/classes/clas12ana/example_ana.cpp.o.d -o CMakeFiles/project.dir/framework/classes/clas12ana/example_ana.cpp.o -c /Users/alon/Projects/2N-Analyser_e4nu/framework/classes/clas12ana/example_ana.cpp
+
+CMakeFiles/project.dir/framework/classes/clas12ana/example_ana.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/project.dir/framework/classes/clas12ana/example_ana.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alon/Projects/2N-Analyser_e4nu/framework/classes/clas12ana/example_ana.cpp > CMakeFiles/project.dir/framework/classes/clas12ana/example_ana.cpp.i
+
+CMakeFiles/project.dir/framework/classes/clas12ana/example_ana.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/project.dir/framework/classes/clas12ana/example_ana.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alon/Projects/2N-Analyser_e4nu/framework/classes/clas12ana/example_ana.cpp -o CMakeFiles/project.dir/framework/classes/clas12ana/example_ana.cpp.s
+
+CMakeFiles/project.dir/framework/classes/clas12ana/skim_events.cpp.o: CMakeFiles/project.dir/flags.make
+CMakeFiles/project.dir/framework/classes/clas12ana/skim_events.cpp.o: /Users/alon/Projects/2N-Analyser_e4nu/framework/classes/clas12ana/skim_events.cpp
+CMakeFiles/project.dir/framework/classes/clas12ana/skim_events.cpp.o: CMakeFiles/project.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object CMakeFiles/project.dir/framework/classes/clas12ana/skim_events.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/project.dir/framework/classes/clas12ana/skim_events.cpp.o -MF CMakeFiles/project.dir/framework/classes/clas12ana/skim_events.cpp.o.d -o CMakeFiles/project.dir/framework/classes/clas12ana/skim_events.cpp.o -c /Users/alon/Projects/2N-Analyser_e4nu/framework/classes/clas12ana/skim_events.cpp
+
+CMakeFiles/project.dir/framework/classes/clas12ana/skim_events.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/project.dir/framework/classes/clas12ana/skim_events.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alon/Projects/2N-Analyser_e4nu/framework/classes/clas12ana/skim_events.cpp > CMakeFiles/project.dir/framework/classes/clas12ana/skim_events.cpp.i
+
+CMakeFiles/project.dir/framework/classes/clas12ana/skim_events.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/project.dir/framework/classes/clas12ana/skim_events.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alon/Projects/2N-Analyser_e4nu/framework/classes/clas12ana/skim_events.cpp -o CMakeFiles/project.dir/framework/classes/clas12ana/skim_events.cpp.s
+
+CMakeFiles/project.dir/framework/classes/DEfficiency/DEfficiency.cpp.o: CMakeFiles/project.dir/flags.make
+CMakeFiles/project.dir/framework/classes/DEfficiency/DEfficiency.cpp.o: /Users/alon/Projects/2N-Analyser_e4nu/framework/classes/DEfficiency/DEfficiency.cpp
+CMakeFiles/project.dir/framework/classes/DEfficiency/DEfficiency.cpp.o: CMakeFiles/project.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object CMakeFiles/project.dir/framework/classes/DEfficiency/DEfficiency.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/project.dir/framework/classes/DEfficiency/DEfficiency.cpp.o -MF CMakeFiles/project.dir/framework/classes/DEfficiency/DEfficiency.cpp.o.d -o CMakeFiles/project.dir/framework/classes/DEfficiency/DEfficiency.cpp.o -c /Users/alon/Projects/2N-Analyser_e4nu/framework/classes/DEfficiency/DEfficiency.cpp
+
+CMakeFiles/project.dir/framework/classes/DEfficiency/DEfficiency.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/project.dir/framework/classes/DEfficiency/DEfficiency.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alon/Projects/2N-Analyser_e4nu/framework/classes/DEfficiency/DEfficiency.cpp > CMakeFiles/project.dir/framework/classes/DEfficiency/DEfficiency.cpp.i
+
+CMakeFiles/project.dir/framework/classes/DEfficiency/DEfficiency.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/project.dir/framework/classes/DEfficiency/DEfficiency.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alon/Projects/2N-Analyser_e4nu/framework/classes/DEfficiency/DEfficiency.cpp -o CMakeFiles/project.dir/framework/classes/DEfficiency/DEfficiency.cpp.s
+
+CMakeFiles/project.dir/framework/classes/Directories/Directories.cpp.o: CMakeFiles/project.dir/flags.make
+CMakeFiles/project.dir/framework/classes/Directories/Directories.cpp.o: /Users/alon/Projects/2N-Analyser_e4nu/framework/classes/Directories/Directories.cpp
+CMakeFiles/project.dir/framework/classes/Directories/Directories.cpp.o: CMakeFiles/project.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object CMakeFiles/project.dir/framework/classes/Directories/Directories.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/project.dir/framework/classes/Directories/Directories.cpp.o -MF CMakeFiles/project.dir/framework/classes/Directories/Directories.cpp.o.d -o CMakeFiles/project.dir/framework/classes/Directories/Directories.cpp.o -c /Users/alon/Projects/2N-Analyser_e4nu/framework/classes/Directories/Directories.cpp
+
+CMakeFiles/project.dir/framework/classes/Directories/Directories.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/project.dir/framework/classes/Directories/Directories.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alon/Projects/2N-Analyser_e4nu/framework/classes/Directories/Directories.cpp > CMakeFiles/project.dir/framework/classes/Directories/Directories.cpp.i
+
+CMakeFiles/project.dir/framework/classes/Directories/Directories.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/project.dir/framework/classes/Directories/Directories.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alon/Projects/2N-Analyser_e4nu/framework/classes/Directories/Directories.cpp -o CMakeFiles/project.dir/framework/classes/Directories/Directories.cpp.s
+
+CMakeFiles/project.dir/framework/classes/ExperimentParameters/ExperimentParameters.cpp.o: CMakeFiles/project.dir/flags.make
+CMakeFiles/project.dir/framework/classes/ExperimentParameters/ExperimentParameters.cpp.o: /Users/alon/Projects/2N-Analyser_e4nu/framework/classes/ExperimentParameters/ExperimentParameters.cpp
+CMakeFiles/project.dir/framework/classes/ExperimentParameters/ExperimentParameters.cpp.o: CMakeFiles/project.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building CXX object CMakeFiles/project.dir/framework/classes/ExperimentParameters/ExperimentParameters.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/project.dir/framework/classes/ExperimentParameters/ExperimentParameters.cpp.o -MF CMakeFiles/project.dir/framework/classes/ExperimentParameters/ExperimentParameters.cpp.o.d -o CMakeFiles/project.dir/framework/classes/ExperimentParameters/ExperimentParameters.cpp.o -c /Users/alon/Projects/2N-Analyser_e4nu/framework/classes/ExperimentParameters/ExperimentParameters.cpp
+
+CMakeFiles/project.dir/framework/classes/ExperimentParameters/ExperimentParameters.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/project.dir/framework/classes/ExperimentParameters/ExperimentParameters.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alon/Projects/2N-Analyser_e4nu/framework/classes/ExperimentParameters/ExperimentParameters.cpp > CMakeFiles/project.dir/framework/classes/ExperimentParameters/ExperimentParameters.cpp.i
+
+CMakeFiles/project.dir/framework/classes/ExperimentParameters/ExperimentParameters.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/project.dir/framework/classes/ExperimentParameters/ExperimentParameters.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alon/Projects/2N-Analyser_e4nu/framework/classes/ExperimentParameters/ExperimentParameters.cpp -o CMakeFiles/project.dir/framework/classes/ExperimentParameters/ExperimentParameters.cpp.s
+
+CMakeFiles/project.dir/framework/classes/hPlots/hPlot1D.cpp.o: CMakeFiles/project.dir/flags.make
+CMakeFiles/project.dir/framework/classes/hPlots/hPlot1D.cpp.o: /Users/alon/Projects/2N-Analyser_e4nu/framework/classes/hPlots/hPlot1D.cpp
+CMakeFiles/project.dir/framework/classes/hPlots/hPlot1D.cpp.o: CMakeFiles/project.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Building CXX object CMakeFiles/project.dir/framework/classes/hPlots/hPlot1D.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/project.dir/framework/classes/hPlots/hPlot1D.cpp.o -MF CMakeFiles/project.dir/framework/classes/hPlots/hPlot1D.cpp.o.d -o CMakeFiles/project.dir/framework/classes/hPlots/hPlot1D.cpp.o -c /Users/alon/Projects/2N-Analyser_e4nu/framework/classes/hPlots/hPlot1D.cpp
+
+CMakeFiles/project.dir/framework/classes/hPlots/hPlot1D.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/project.dir/framework/classes/hPlots/hPlot1D.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alon/Projects/2N-Analyser_e4nu/framework/classes/hPlots/hPlot1D.cpp > CMakeFiles/project.dir/framework/classes/hPlots/hPlot1D.cpp.i
+
+CMakeFiles/project.dir/framework/classes/hPlots/hPlot1D.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/project.dir/framework/classes/hPlots/hPlot1D.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alon/Projects/2N-Analyser_e4nu/framework/classes/hPlots/hPlot1D.cpp -o CMakeFiles/project.dir/framework/classes/hPlots/hPlot1D.cpp.s
+
+CMakeFiles/project.dir/framework/classes/hPlots/hPlot1DStack.cpp.o: CMakeFiles/project.dir/flags.make
+CMakeFiles/project.dir/framework/classes/hPlots/hPlot1DStack.cpp.o: /Users/alon/Projects/2N-Analyser_e4nu/framework/classes/hPlots/hPlot1DStack.cpp
+CMakeFiles/project.dir/framework/classes/hPlots/hPlot1DStack.cpp.o: CMakeFiles/project.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_30) "Building CXX object CMakeFiles/project.dir/framework/classes/hPlots/hPlot1DStack.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/project.dir/framework/classes/hPlots/hPlot1DStack.cpp.o -MF CMakeFiles/project.dir/framework/classes/hPlots/hPlot1DStack.cpp.o.d -o CMakeFiles/project.dir/framework/classes/hPlots/hPlot1DStack.cpp.o -c /Users/alon/Projects/2N-Analyser_e4nu/framework/classes/hPlots/hPlot1DStack.cpp
+
+CMakeFiles/project.dir/framework/classes/hPlots/hPlot1DStack.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/project.dir/framework/classes/hPlots/hPlot1DStack.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alon/Projects/2N-Analyser_e4nu/framework/classes/hPlots/hPlot1DStack.cpp > CMakeFiles/project.dir/framework/classes/hPlots/hPlot1DStack.cpp.i
+
+CMakeFiles/project.dir/framework/classes/hPlots/hPlot1DStack.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/project.dir/framework/classes/hPlots/hPlot1DStack.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alon/Projects/2N-Analyser_e4nu/framework/classes/hPlots/hPlot1DStack.cpp -o CMakeFiles/project.dir/framework/classes/hPlots/hPlot1DStack.cpp.s
+
+CMakeFiles/project.dir/framework/classes/hPlots/hPlot2D.cpp.o: CMakeFiles/project.dir/flags.make
+CMakeFiles/project.dir/framework/classes/hPlots/hPlot2D.cpp.o: /Users/alon/Projects/2N-Analyser_e4nu/framework/classes/hPlots/hPlot2D.cpp
+CMakeFiles/project.dir/framework/classes/hPlots/hPlot2D.cpp.o: CMakeFiles/project.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_31) "Building CXX object CMakeFiles/project.dir/framework/classes/hPlots/hPlot2D.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/project.dir/framework/classes/hPlots/hPlot2D.cpp.o -MF CMakeFiles/project.dir/framework/classes/hPlots/hPlot2D.cpp.o.d -o CMakeFiles/project.dir/framework/classes/hPlots/hPlot2D.cpp.o -c /Users/alon/Projects/2N-Analyser_e4nu/framework/classes/hPlots/hPlot2D.cpp
+
+CMakeFiles/project.dir/framework/classes/hPlots/hPlot2D.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/project.dir/framework/classes/hPlots/hPlot2D.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alon/Projects/2N-Analyser_e4nu/framework/classes/hPlots/hPlot2D.cpp > CMakeFiles/project.dir/framework/classes/hPlots/hPlot2D.cpp.i
+
+CMakeFiles/project.dir/framework/classes/hPlots/hPlot2D.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/project.dir/framework/classes/hPlots/hPlot2D.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alon/Projects/2N-Analyser_e4nu/framework/classes/hPlots/hPlot2D.cpp -o CMakeFiles/project.dir/framework/classes/hPlots/hPlot2D.cpp.s
+
+CMakeFiles/project.dir/framework/classes/MomentumResolution/MomentumResolution.cpp.o: CMakeFiles/project.dir/flags.make
+CMakeFiles/project.dir/framework/classes/MomentumResolution/MomentumResolution.cpp.o: /Users/alon/Projects/2N-Analyser_e4nu/framework/classes/MomentumResolution/MomentumResolution.cpp
+CMakeFiles/project.dir/framework/classes/MomentumResolution/MomentumResolution.cpp.o: CMakeFiles/project.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_32) "Building CXX object CMakeFiles/project.dir/framework/classes/MomentumResolution/MomentumResolution.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/project.dir/framework/classes/MomentumResolution/MomentumResolution.cpp.o -MF CMakeFiles/project.dir/framework/classes/MomentumResolution/MomentumResolution.cpp.o.d -o CMakeFiles/project.dir/framework/classes/MomentumResolution/MomentumResolution.cpp.o -c /Users/alon/Projects/2N-Analyser_e4nu/framework/classes/MomentumResolution/MomentumResolution.cpp
+
+CMakeFiles/project.dir/framework/classes/MomentumResolution/MomentumResolution.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/project.dir/framework/classes/MomentumResolution/MomentumResolution.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alon/Projects/2N-Analyser_e4nu/framework/classes/MomentumResolution/MomentumResolution.cpp > CMakeFiles/project.dir/framework/classes/MomentumResolution/MomentumResolution.cpp.i
+
+CMakeFiles/project.dir/framework/classes/MomentumResolution/MomentumResolution.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/project.dir/framework/classes/MomentumResolution/MomentumResolution.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alon/Projects/2N-Analyser_e4nu/framework/classes/MomentumResolution/MomentumResolution.cpp -o CMakeFiles/project.dir/framework/classes/MomentumResolution/MomentumResolution.cpp.s
+
+CMakeFiles/project.dir/framework/classes/TLCuts/TLCuts.cpp.o: CMakeFiles/project.dir/flags.make
+CMakeFiles/project.dir/framework/classes/TLCuts/TLCuts.cpp.o: /Users/alon/Projects/2N-Analyser_e4nu/framework/classes/TLCuts/TLCuts.cpp
+CMakeFiles/project.dir/framework/classes/TLCuts/TLCuts.cpp.o: CMakeFiles/project.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_33) "Building CXX object CMakeFiles/project.dir/framework/classes/TLCuts/TLCuts.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/project.dir/framework/classes/TLCuts/TLCuts.cpp.o -MF CMakeFiles/project.dir/framework/classes/TLCuts/TLCuts.cpp.o.d -o CMakeFiles/project.dir/framework/classes/TLCuts/TLCuts.cpp.o -c /Users/alon/Projects/2N-Analyser_e4nu/framework/classes/TLCuts/TLCuts.cpp
+
+CMakeFiles/project.dir/framework/classes/TLCuts/TLCuts.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/project.dir/framework/classes/TLCuts/TLCuts.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alon/Projects/2N-Analyser_e4nu/framework/classes/TLCuts/TLCuts.cpp > CMakeFiles/project.dir/framework/classes/TLCuts/TLCuts.cpp.i
+
+CMakeFiles/project.dir/framework/classes/TLCuts/TLCuts.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/project.dir/framework/classes/TLCuts/TLCuts.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alon/Projects/2N-Analyser_e4nu/framework/classes/TLCuts/TLCuts.cpp -o CMakeFiles/project.dir/framework/classes/TLCuts/TLCuts.cpp.s
+
+CMakeFiles/project.dir/framework/other/fitexample_-_Copy.c.o: CMakeFiles/project.dir/flags.make
+CMakeFiles/project.dir/framework/other/fitexample_-_Copy.c.o: /Users/alon/Projects/2N-Analyser_e4nu/framework/other/fitexample\ -\ Copy.c
+CMakeFiles/project.dir/framework/other/fitexample_-_Copy.c.o: CMakeFiles/project.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_34) "Building C object CMakeFiles/project.dir/framework/other/fitexample_-_Copy.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/project.dir/framework/other/fitexample_-_Copy.c.o -MF CMakeFiles/project.dir/framework/other/fitexample_-_Copy.c.o.d -o CMakeFiles/project.dir/framework/other/fitexample_-_Copy.c.o -c "/Users/alon/Projects/2N-Analyser_e4nu/framework/other/fitexample - Copy.c"
+
+CMakeFiles/project.dir/framework/other/fitexample_-_Copy.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/project.dir/framework/other/fitexample_-_Copy.c.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "/Users/alon/Projects/2N-Analyser_e4nu/framework/other/fitexample - Copy.c" > CMakeFiles/project.dir/framework/other/fitexample_-_Copy.c.i
+
+CMakeFiles/project.dir/framework/other/fitexample_-_Copy.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/project.dir/framework/other/fitexample_-_Copy.c.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "/Users/alon/Projects/2N-Analyser_e4nu/framework/other/fitexample - Copy.c" -o CMakeFiles/project.dir/framework/other/fitexample_-_Copy.c.s
+
+CMakeFiles/project.dir/framework/other/fitexample.c.o: CMakeFiles/project.dir/flags.make
+CMakeFiles/project.dir/framework/other/fitexample.c.o: /Users/alon/Projects/2N-Analyser_e4nu/framework/other/fitexample.c
+CMakeFiles/project.dir/framework/other/fitexample.c.o: CMakeFiles/project.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_35) "Building C object CMakeFiles/project.dir/framework/other/fitexample.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/project.dir/framework/other/fitexample.c.o -MF CMakeFiles/project.dir/framework/other/fitexample.c.o.d -o CMakeFiles/project.dir/framework/other/fitexample.c.o -c /Users/alon/Projects/2N-Analyser_e4nu/framework/other/fitexample.c
+
+CMakeFiles/project.dir/framework/other/fitexample.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/project.dir/framework/other/fitexample.c.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/alon/Projects/2N-Analyser_e4nu/framework/other/fitexample.c > CMakeFiles/project.dir/framework/other/fitexample.c.i
+
+CMakeFiles/project.dir/framework/other/fitexample.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/project.dir/framework/other/fitexample.c.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/alon/Projects/2N-Analyser_e4nu/framework/other/fitexample.c -o CMakeFiles/project.dir/framework/other/fitexample.c.s
+
+CMakeFiles/project.dir/framework/other/hPlot1D_example.cpp.o: CMakeFiles/project.dir/flags.make
+CMakeFiles/project.dir/framework/other/hPlot1D_example.cpp.o: /Users/alon/Projects/2N-Analyser_e4nu/framework/other/hPlot1D_example.cpp
+CMakeFiles/project.dir/framework/other/hPlot1D_example.cpp.o: CMakeFiles/project.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_36) "Building CXX object CMakeFiles/project.dir/framework/other/hPlot1D_example.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/project.dir/framework/other/hPlot1D_example.cpp.o -MF CMakeFiles/project.dir/framework/other/hPlot1D_example.cpp.o.d -o CMakeFiles/project.dir/framework/other/hPlot1D_example.cpp.o -c /Users/alon/Projects/2N-Analyser_e4nu/framework/other/hPlot1D_example.cpp
+
+CMakeFiles/project.dir/framework/other/hPlot1D_example.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/project.dir/framework/other/hPlot1D_example.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alon/Projects/2N-Analyser_e4nu/framework/other/hPlot1D_example.cpp > CMakeFiles/project.dir/framework/other/hPlot1D_example.cpp.i
+
+CMakeFiles/project.dir/framework/other/hPlot1D_example.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/project.dir/framework/other/hPlot1D_example.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alon/Projects/2N-Analyser_e4nu/framework/other/hPlot1D_example.cpp -o CMakeFiles/project.dir/framework/other/hPlot1D_example.cpp.s
+
+CMakeFiles/project.dir/framework/structures/Histogram1D_beta/Histogram1D.cpp.o: CMakeFiles/project.dir/flags.make
+CMakeFiles/project.dir/framework/structures/Histogram1D_beta/Histogram1D.cpp.o: /Users/alon/Projects/2N-Analyser_e4nu/framework/structures/Histogram1D_beta/Histogram1D.cpp
+CMakeFiles/project.dir/framework/structures/Histogram1D_beta/Histogram1D.cpp.o: CMakeFiles/project.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_37) "Building CXX object CMakeFiles/project.dir/framework/structures/Histogram1D_beta/Histogram1D.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/project.dir/framework/structures/Histogram1D_beta/Histogram1D.cpp.o -MF CMakeFiles/project.dir/framework/structures/Histogram1D_beta/Histogram1D.cpp.o.d -o CMakeFiles/project.dir/framework/structures/Histogram1D_beta/Histogram1D.cpp.o -c /Users/alon/Projects/2N-Analyser_e4nu/framework/structures/Histogram1D_beta/Histogram1D.cpp
+
+CMakeFiles/project.dir/framework/structures/Histogram1D_beta/Histogram1D.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/project.dir/framework/structures/Histogram1D_beta/Histogram1D.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alon/Projects/2N-Analyser_e4nu/framework/structures/Histogram1D_beta/Histogram1D.cpp > CMakeFiles/project.dir/framework/structures/Histogram1D_beta/Histogram1D.cpp.i
+
+CMakeFiles/project.dir/framework/structures/Histogram1D_beta/Histogram1D.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/project.dir/framework/structures/Histogram1D_beta/Histogram1D.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alon/Projects/2N-Analyser_e4nu/framework/structures/Histogram1D_beta/Histogram1D.cpp -o CMakeFiles/project.dir/framework/structures/Histogram1D_beta/Histogram1D.cpp.s
 
 CMakeFiles/project.dir/Old_analysers/DetectorSimulationAnalyser.C.o: CMakeFiles/project.dir/flags.make
 CMakeFiles/project.dir/Old_analysers/DetectorSimulationAnalyser.C.o: /Users/alon/Projects/2N-Analyser_e4nu/Old_analysers/DetectorSimulationAnalyser.C
 CMakeFiles/project.dir/Old_analysers/DetectorSimulationAnalyser.C.o: CMakeFiles/project.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_43) "Building CXX object CMakeFiles/project.dir/Old_analysers/DetectorSimulationAnalyser.C.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_38) "Building CXX object CMakeFiles/project.dir/Old_analysers/DetectorSimulationAnalyser.C.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/project.dir/Old_analysers/DetectorSimulationAnalyser.C.o -MF CMakeFiles/project.dir/Old_analysers/DetectorSimulationAnalyser.C.o.d -o CMakeFiles/project.dir/Old_analysers/DetectorSimulationAnalyser.C.o -c /Users/alon/Projects/2N-Analyser_e4nu/Old_analysers/DetectorSimulationAnalyser.C
 
 CMakeFiles/project.dir/Old_analysers/DetectorSimulationAnalyser.C.i: cmake_force
@@ -674,7 +604,7 @@ CMakeFiles/project.dir/Old_analysers/DetectorSimulationAnalyser.C.s: cmake_force
 CMakeFiles/project.dir/main.c.o: CMakeFiles/project.dir/flags.make
 CMakeFiles/project.dir/main.c.o: /Users/alon/Projects/2N-Analyser_e4nu/main.c
 CMakeFiles/project.dir/main.c.o: CMakeFiles/project.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_44) "Building C object CMakeFiles/project.dir/main.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_39) "Building C object CMakeFiles/project.dir/main.c.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/project.dir/main.c.o -MF CMakeFiles/project.dir/main.c.o.d -o CMakeFiles/project.dir/main.c.o -c /Users/alon/Projects/2N-Analyser_e4nu/main.c
 
 CMakeFiles/project.dir/main.c.i: cmake_force
@@ -688,7 +618,7 @@ CMakeFiles/project.dir/main.c.s: cmake_force
 CMakeFiles/project.dir/Old_analysers/TruthLevelAnalyser.c.o: CMakeFiles/project.dir/flags.make
 CMakeFiles/project.dir/Old_analysers/TruthLevelAnalyser.c.o: /Users/alon/Projects/2N-Analyser_e4nu/Old_analysers/TruthLevelAnalyser.c
 CMakeFiles/project.dir/Old_analysers/TruthLevelAnalyser.c.o: CMakeFiles/project.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_45) "Building C object CMakeFiles/project.dir/Old_analysers/TruthLevelAnalyser.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_40) "Building C object CMakeFiles/project.dir/Old_analysers/TruthLevelAnalyser.c.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/project.dir/Old_analysers/TruthLevelAnalyser.c.o -MF CMakeFiles/project.dir/Old_analysers/TruthLevelAnalyser.c.o.d -o CMakeFiles/project.dir/Old_analysers/TruthLevelAnalyser.c.o -c /Users/alon/Projects/2N-Analyser_e4nu/Old_analysers/TruthLevelAnalyser.c
 
 CMakeFiles/project.dir/Old_analysers/TruthLevelAnalyser.c.i: cmake_force
@@ -699,66 +629,52 @@ CMakeFiles/project.dir/Old_analysers/TruthLevelAnalyser.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/project.dir/Old_analysers/TruthLevelAnalyser.c.s"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/alon/Projects/2N-Analyser_e4nu/Old_analysers/TruthLevelAnalyser.c -o CMakeFiles/project.dir/Old_analysers/TruthLevelAnalyser.c.s
 
-CMakeFiles/project.dir/source/classes/Settings/Settings.cpp.o: CMakeFiles/project.dir/flags.make
-CMakeFiles/project.dir/source/classes/Settings/Settings.cpp.o: /Users/alon/Projects/2N-Analyser_e4nu/source/classes/Settings/Settings.cpp
-CMakeFiles/project.dir/source/classes/Settings/Settings.cpp.o: CMakeFiles/project.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_46) "Building CXX object CMakeFiles/project.dir/source/classes/Settings/Settings.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/project.dir/source/classes/Settings/Settings.cpp.o -MF CMakeFiles/project.dir/source/classes/Settings/Settings.cpp.o.d -o CMakeFiles/project.dir/source/classes/Settings/Settings.cpp.o -c /Users/alon/Projects/2N-Analyser_e4nu/source/classes/Settings/Settings.cpp
+CMakeFiles/project.dir/framework/classes/Settings/Settings.cpp.o: CMakeFiles/project.dir/flags.make
+CMakeFiles/project.dir/framework/classes/Settings/Settings.cpp.o: /Users/alon/Projects/2N-Analyser_e4nu/framework/classes/Settings/Settings.cpp
+CMakeFiles/project.dir/framework/classes/Settings/Settings.cpp.o: CMakeFiles/project.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_41) "Building CXX object CMakeFiles/project.dir/framework/classes/Settings/Settings.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/project.dir/framework/classes/Settings/Settings.cpp.o -MF CMakeFiles/project.dir/framework/classes/Settings/Settings.cpp.o.d -o CMakeFiles/project.dir/framework/classes/Settings/Settings.cpp.o -c /Users/alon/Projects/2N-Analyser_e4nu/framework/classes/Settings/Settings.cpp
 
-CMakeFiles/project.dir/source/classes/Settings/Settings.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/project.dir/source/classes/Settings/Settings.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alon/Projects/2N-Analyser_e4nu/source/classes/Settings/Settings.cpp > CMakeFiles/project.dir/source/classes/Settings/Settings.cpp.i
+CMakeFiles/project.dir/framework/classes/Settings/Settings.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/project.dir/framework/classes/Settings/Settings.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alon/Projects/2N-Analyser_e4nu/framework/classes/Settings/Settings.cpp > CMakeFiles/project.dir/framework/classes/Settings/Settings.cpp.i
 
-CMakeFiles/project.dir/source/classes/Settings/Settings.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/project.dir/source/classes/Settings/Settings.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alon/Projects/2N-Analyser_e4nu/source/classes/Settings/Settings.cpp -o CMakeFiles/project.dir/source/classes/Settings/Settings.cpp.s
+CMakeFiles/project.dir/framework/classes/Settings/Settings.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/project.dir/framework/classes/Settings/Settings.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alon/Projects/2N-Analyser_e4nu/framework/classes/Settings/Settings.cpp -o CMakeFiles/project.dir/framework/classes/Settings/Settings.cpp.s
 
-CMakeFiles/project.dir/source/classes/Settings/CustomPlotsDirectory.cpp.o: CMakeFiles/project.dir/flags.make
-CMakeFiles/project.dir/source/classes/Settings/CustomPlotsDirectory.cpp.o: /Users/alon/Projects/2N-Analyser_e4nu/source/classes/Settings/CustomPlotsDirectory.cpp
-CMakeFiles/project.dir/source/classes/Settings/CustomPlotsDirectory.cpp.o: CMakeFiles/project.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_47) "Building CXX object CMakeFiles/project.dir/source/classes/Settings/CustomPlotsDirectory.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/project.dir/source/classes/Settings/CustomPlotsDirectory.cpp.o -MF CMakeFiles/project.dir/source/classes/Settings/CustomPlotsDirectory.cpp.o.d -o CMakeFiles/project.dir/source/classes/Settings/CustomPlotsDirectory.cpp.o -c /Users/alon/Projects/2N-Analyser_e4nu/source/classes/Settings/CustomPlotsDirectory.cpp
+CMakeFiles/project.dir/framework/classes/Settings/CustomPlotsDirectory.cpp.o: CMakeFiles/project.dir/flags.make
+CMakeFiles/project.dir/framework/classes/Settings/CustomPlotsDirectory.cpp.o: /Users/alon/Projects/2N-Analyser_e4nu/framework/classes/Settings/CustomPlotsDirectory.cpp
+CMakeFiles/project.dir/framework/classes/Settings/CustomPlotsDirectory.cpp.o: CMakeFiles/project.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_42) "Building CXX object CMakeFiles/project.dir/framework/classes/Settings/CustomPlotsDirectory.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/project.dir/framework/classes/Settings/CustomPlotsDirectory.cpp.o -MF CMakeFiles/project.dir/framework/classes/Settings/CustomPlotsDirectory.cpp.o.d -o CMakeFiles/project.dir/framework/classes/Settings/CustomPlotsDirectory.cpp.o -c /Users/alon/Projects/2N-Analyser_e4nu/framework/classes/Settings/CustomPlotsDirectory.cpp
 
-CMakeFiles/project.dir/source/classes/Settings/CustomPlotsDirectory.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/project.dir/source/classes/Settings/CustomPlotsDirectory.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alon/Projects/2N-Analyser_e4nu/source/classes/Settings/CustomPlotsDirectory.cpp > CMakeFiles/project.dir/source/classes/Settings/CustomPlotsDirectory.cpp.i
+CMakeFiles/project.dir/framework/classes/Settings/CustomPlotsDirectory.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/project.dir/framework/classes/Settings/CustomPlotsDirectory.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alon/Projects/2N-Analyser_e4nu/framework/classes/Settings/CustomPlotsDirectory.cpp > CMakeFiles/project.dir/framework/classes/Settings/CustomPlotsDirectory.cpp.i
 
-CMakeFiles/project.dir/source/classes/Settings/CustomPlotsDirectory.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/project.dir/source/classes/Settings/CustomPlotsDirectory.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alon/Projects/2N-Analyser_e4nu/source/classes/Settings/CustomPlotsDirectory.cpp -o CMakeFiles/project.dir/source/classes/Settings/CustomPlotsDirectory.cpp.s
+CMakeFiles/project.dir/framework/classes/Settings/CustomPlotsDirectory.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/project.dir/framework/classes/Settings/CustomPlotsDirectory.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alon/Projects/2N-Analyser_e4nu/framework/classes/Settings/CustomPlotsDirectory.cpp -o CMakeFiles/project.dir/framework/classes/Settings/CustomPlotsDirectory.cpp.s
 
-CMakeFiles/project.dir/source/classes/ParticleID/ParticleID.cpp.o: CMakeFiles/project.dir/flags.make
-CMakeFiles/project.dir/source/classes/ParticleID/ParticleID.cpp.o: /Users/alon/Projects/2N-Analyser_e4nu/source/classes/ParticleID/ParticleID.cpp
-CMakeFiles/project.dir/source/classes/ParticleID/ParticleID.cpp.o: CMakeFiles/project.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_48) "Building CXX object CMakeFiles/project.dir/source/classes/ParticleID/ParticleID.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/project.dir/source/classes/ParticleID/ParticleID.cpp.o -MF CMakeFiles/project.dir/source/classes/ParticleID/ParticleID.cpp.o.d -o CMakeFiles/project.dir/source/classes/ParticleID/ParticleID.cpp.o -c /Users/alon/Projects/2N-Analyser_e4nu/source/classes/ParticleID/ParticleID.cpp
+CMakeFiles/project.dir/framework/classes/ParticleID/ParticleID.cpp.o: CMakeFiles/project.dir/flags.make
+CMakeFiles/project.dir/framework/classes/ParticleID/ParticleID.cpp.o: /Users/alon/Projects/2N-Analyser_e4nu/framework/classes/ParticleID/ParticleID.cpp
+CMakeFiles/project.dir/framework/classes/ParticleID/ParticleID.cpp.o: CMakeFiles/project.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_43) "Building CXX object CMakeFiles/project.dir/framework/classes/ParticleID/ParticleID.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/project.dir/framework/classes/ParticleID/ParticleID.cpp.o -MF CMakeFiles/project.dir/framework/classes/ParticleID/ParticleID.cpp.o.d -o CMakeFiles/project.dir/framework/classes/ParticleID/ParticleID.cpp.o -c /Users/alon/Projects/2N-Analyser_e4nu/framework/classes/ParticleID/ParticleID.cpp
 
-CMakeFiles/project.dir/source/classes/ParticleID/ParticleID.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/project.dir/source/classes/ParticleID/ParticleID.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alon/Projects/2N-Analyser_e4nu/source/classes/ParticleID/ParticleID.cpp > CMakeFiles/project.dir/source/classes/ParticleID/ParticleID.cpp.i
+CMakeFiles/project.dir/framework/classes/ParticleID/ParticleID.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/project.dir/framework/classes/ParticleID/ParticleID.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alon/Projects/2N-Analyser_e4nu/framework/classes/ParticleID/ParticleID.cpp > CMakeFiles/project.dir/framework/classes/ParticleID/ParticleID.cpp.i
 
-CMakeFiles/project.dir/source/classes/ParticleID/ParticleID.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/project.dir/source/classes/ParticleID/ParticleID.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alon/Projects/2N-Analyser_e4nu/source/classes/ParticleID/ParticleID.cpp -o CMakeFiles/project.dir/source/classes/ParticleID/ParticleID.cpp.s
-
-CMakeFiles/project.dir/source/classes/RecoAnalyser/RecoAnalyser.cpp.o: CMakeFiles/project.dir/flags.make
-CMakeFiles/project.dir/source/classes/RecoAnalyser/RecoAnalyser.cpp.o: /Users/alon/Projects/2N-Analyser_e4nu/source/classes/RecoAnalyser/RecoAnalyser.cpp
-CMakeFiles/project.dir/source/classes/RecoAnalyser/RecoAnalyser.cpp.o: CMakeFiles/project.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_49) "Building CXX object CMakeFiles/project.dir/source/classes/RecoAnalyser/RecoAnalyser.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/project.dir/source/classes/RecoAnalyser/RecoAnalyser.cpp.o -MF CMakeFiles/project.dir/source/classes/RecoAnalyser/RecoAnalyser.cpp.o.d -o CMakeFiles/project.dir/source/classes/RecoAnalyser/RecoAnalyser.cpp.o -c /Users/alon/Projects/2N-Analyser_e4nu/source/classes/RecoAnalyser/RecoAnalyser.cpp
-
-CMakeFiles/project.dir/source/classes/RecoAnalyser/RecoAnalyser.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/project.dir/source/classes/RecoAnalyser/RecoAnalyser.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alon/Projects/2N-Analyser_e4nu/source/classes/RecoAnalyser/RecoAnalyser.cpp > CMakeFiles/project.dir/source/classes/RecoAnalyser/RecoAnalyser.cpp.i
-
-CMakeFiles/project.dir/source/classes/RecoAnalyser/RecoAnalyser.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/project.dir/source/classes/RecoAnalyser/RecoAnalyser.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alon/Projects/2N-Analyser_e4nu/source/classes/RecoAnalyser/RecoAnalyser.cpp -o CMakeFiles/project.dir/source/classes/RecoAnalyser/RecoAnalyser.cpp.s
+CMakeFiles/project.dir/framework/classes/ParticleID/ParticleID.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/project.dir/framework/classes/ParticleID/ParticleID.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alon/Projects/2N-Analyser_e4nu/framework/classes/ParticleID/ParticleID.cpp -o CMakeFiles/project.dir/framework/classes/ParticleID/ParticleID.cpp.s
 
 CMakeFiles/project.dir/macros/zoomed_in_histogram.cpp.o: CMakeFiles/project.dir/flags.make
 CMakeFiles/project.dir/macros/zoomed_in_histogram.cpp.o: /Users/alon/Projects/2N-Analyser_e4nu/macros/zoomed_in_histogram.cpp
 CMakeFiles/project.dir/macros/zoomed_in_histogram.cpp.o: CMakeFiles/project.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_50) "Building CXX object CMakeFiles/project.dir/macros/zoomed_in_histogram.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_44) "Building CXX object CMakeFiles/project.dir/macros/zoomed_in_histogram.cpp.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/project.dir/macros/zoomed_in_histogram.cpp.o -MF CMakeFiles/project.dir/macros/zoomed_in_histogram.cpp.o.d -o CMakeFiles/project.dir/macros/zoomed_in_histogram.cpp.o -c /Users/alon/Projects/2N-Analyser_e4nu/macros/zoomed_in_histogram.cpp
 
 CMakeFiles/project.dir/macros/zoomed_in_histogram.cpp.i: cmake_force
@@ -769,24 +685,24 @@ CMakeFiles/project.dir/macros/zoomed_in_histogram.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/project.dir/macros/zoomed_in_histogram.cpp.s"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alon/Projects/2N-Analyser_e4nu/macros/zoomed_in_histogram.cpp -o CMakeFiles/project.dir/macros/zoomed_in_histogram.cpp.s
 
-CMakeFiles/project.dir/source/classes/DataAnalyser/DataAnalyser.cpp.o: CMakeFiles/project.dir/flags.make
-CMakeFiles/project.dir/source/classes/DataAnalyser/DataAnalyser.cpp.o: /Users/alon/Projects/2N-Analyser_e4nu/source/classes/DataAnalyser/DataAnalyser.cpp
-CMakeFiles/project.dir/source/classes/DataAnalyser/DataAnalyser.cpp.o: CMakeFiles/project.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_51) "Building CXX object CMakeFiles/project.dir/source/classes/DataAnalyser/DataAnalyser.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/project.dir/source/classes/DataAnalyser/DataAnalyser.cpp.o -MF CMakeFiles/project.dir/source/classes/DataAnalyser/DataAnalyser.cpp.o.d -o CMakeFiles/project.dir/source/classes/DataAnalyser/DataAnalyser.cpp.o -c /Users/alon/Projects/2N-Analyser_e4nu/source/classes/DataAnalyser/DataAnalyser.cpp
+CMakeFiles/project.dir/framework/classes/DataAnalyser/DataAnalyser.cpp.o: CMakeFiles/project.dir/flags.make
+CMakeFiles/project.dir/framework/classes/DataAnalyser/DataAnalyser.cpp.o: /Users/alon/Projects/2N-Analyser_e4nu/framework/classes/DataAnalyser/DataAnalyser.cpp
+CMakeFiles/project.dir/framework/classes/DataAnalyser/DataAnalyser.cpp.o: CMakeFiles/project.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_45) "Building CXX object CMakeFiles/project.dir/framework/classes/DataAnalyser/DataAnalyser.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/project.dir/framework/classes/DataAnalyser/DataAnalyser.cpp.o -MF CMakeFiles/project.dir/framework/classes/DataAnalyser/DataAnalyser.cpp.o.d -o CMakeFiles/project.dir/framework/classes/DataAnalyser/DataAnalyser.cpp.o -c /Users/alon/Projects/2N-Analyser_e4nu/framework/classes/DataAnalyser/DataAnalyser.cpp
 
-CMakeFiles/project.dir/source/classes/DataAnalyser/DataAnalyser.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/project.dir/source/classes/DataAnalyser/DataAnalyser.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alon/Projects/2N-Analyser_e4nu/source/classes/DataAnalyser/DataAnalyser.cpp > CMakeFiles/project.dir/source/classes/DataAnalyser/DataAnalyser.cpp.i
+CMakeFiles/project.dir/framework/classes/DataAnalyser/DataAnalyser.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/project.dir/framework/classes/DataAnalyser/DataAnalyser.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alon/Projects/2N-Analyser_e4nu/framework/classes/DataAnalyser/DataAnalyser.cpp > CMakeFiles/project.dir/framework/classes/DataAnalyser/DataAnalyser.cpp.i
 
-CMakeFiles/project.dir/source/classes/DataAnalyser/DataAnalyser.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/project.dir/source/classes/DataAnalyser/DataAnalyser.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alon/Projects/2N-Analyser_e4nu/source/classes/DataAnalyser/DataAnalyser.cpp -o CMakeFiles/project.dir/source/classes/DataAnalyser/DataAnalyser.cpp.s
+CMakeFiles/project.dir/framework/classes/DataAnalyser/DataAnalyser.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/project.dir/framework/classes/DataAnalyser/DataAnalyser.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alon/Projects/2N-Analyser_e4nu/framework/classes/DataAnalyser/DataAnalyser.cpp -o CMakeFiles/project.dir/framework/classes/DataAnalyser/DataAnalyser.cpp.s
 
 CMakeFiles/project.dir/testers/nFD_eff_test/nFD_eff_test_functions.cpp.o: CMakeFiles/project.dir/flags.make
 CMakeFiles/project.dir/testers/nFD_eff_test/nFD_eff_test_functions.cpp.o: /Users/alon/Projects/2N-Analyser_e4nu/testers/nFD_eff_test/nFD_eff_test_functions.cpp
 CMakeFiles/project.dir/testers/nFD_eff_test/nFD_eff_test_functions.cpp.o: CMakeFiles/project.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_52) "Building CXX object CMakeFiles/project.dir/testers/nFD_eff_test/nFD_eff_test_functions.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_46) "Building CXX object CMakeFiles/project.dir/testers/nFD_eff_test/nFD_eff_test_functions.cpp.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/project.dir/testers/nFD_eff_test/nFD_eff_test_functions.cpp.o -MF CMakeFiles/project.dir/testers/nFD_eff_test/nFD_eff_test_functions.cpp.o.d -o CMakeFiles/project.dir/testers/nFD_eff_test/nFD_eff_test_functions.cpp.o -c /Users/alon/Projects/2N-Analyser_e4nu/testers/nFD_eff_test/nFD_eff_test_functions.cpp
 
 CMakeFiles/project.dir/testers/nFD_eff_test/nFD_eff_test_functions.cpp.i: cmake_force
@@ -800,7 +716,7 @@ CMakeFiles/project.dir/testers/nFD_eff_test/nFD_eff_test_functions.cpp.s: cmake_
 CMakeFiles/project.dir/testers/nFD_eff_test/nFD_eff_test.cpp.o: CMakeFiles/project.dir/flags.make
 CMakeFiles/project.dir/testers/nFD_eff_test/nFD_eff_test.cpp.o: /Users/alon/Projects/2N-Analyser_e4nu/testers/nFD_eff_test/nFD_eff_test.cpp
 CMakeFiles/project.dir/testers/nFD_eff_test/nFD_eff_test.cpp.o: CMakeFiles/project.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_53) "Building CXX object CMakeFiles/project.dir/testers/nFD_eff_test/nFD_eff_test.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_47) "Building CXX object CMakeFiles/project.dir/testers/nFD_eff_test/nFD_eff_test.cpp.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/project.dir/testers/nFD_eff_test/nFD_eff_test.cpp.o -MF CMakeFiles/project.dir/testers/nFD_eff_test/nFD_eff_test.cpp.o.d -o CMakeFiles/project.dir/testers/nFD_eff_test/nFD_eff_test.cpp.o -c /Users/alon/Projects/2N-Analyser_e4nu/testers/nFD_eff_test/nFD_eff_test.cpp
 
 CMakeFiles/project.dir/testers/nFD_eff_test/nFD_eff_test.cpp.i: cmake_force
@@ -814,7 +730,7 @@ CMakeFiles/project.dir/testers/nFD_eff_test/nFD_eff_test.cpp.s: cmake_force
 CMakeFiles/project.dir/macros/plotHistogramsWithLabels.cpp.o: CMakeFiles/project.dir/flags.make
 CMakeFiles/project.dir/macros/plotHistogramsWithLabels.cpp.o: /Users/alon/Projects/2N-Analyser_e4nu/macros/plotHistogramsWithLabels.cpp
 CMakeFiles/project.dir/macros/plotHistogramsWithLabels.cpp.o: CMakeFiles/project.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_54) "Building CXX object CMakeFiles/project.dir/macros/plotHistogramsWithLabels.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_48) "Building CXX object CMakeFiles/project.dir/macros/plotHistogramsWithLabels.cpp.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/project.dir/macros/plotHistogramsWithLabels.cpp.o -MF CMakeFiles/project.dir/macros/plotHistogramsWithLabels.cpp.o.d -o CMakeFiles/project.dir/macros/plotHistogramsWithLabels.cpp.o -c /Users/alon/Projects/2N-Analyser_e4nu/macros/plotHistogramsWithLabels.cpp
 
 CMakeFiles/project.dir/macros/plotHistogramsWithLabels.cpp.i: cmake_force
@@ -828,7 +744,7 @@ CMakeFiles/project.dir/macros/plotHistogramsWithLabels.cpp.s: cmake_force
 CMakeFiles/project.dir/testers/reaction_cuts_test/reaction_cuts_test.cpp.o: CMakeFiles/project.dir/flags.make
 CMakeFiles/project.dir/testers/reaction_cuts_test/reaction_cuts_test.cpp.o: /Users/alon/Projects/2N-Analyser_e4nu/testers/reaction_cuts_test/reaction_cuts_test.cpp
 CMakeFiles/project.dir/testers/reaction_cuts_test/reaction_cuts_test.cpp.o: CMakeFiles/project.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_55) "Building CXX object CMakeFiles/project.dir/testers/reaction_cuts_test/reaction_cuts_test.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_49) "Building CXX object CMakeFiles/project.dir/testers/reaction_cuts_test/reaction_cuts_test.cpp.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/project.dir/testers/reaction_cuts_test/reaction_cuts_test.cpp.o -MF CMakeFiles/project.dir/testers/reaction_cuts_test/reaction_cuts_test.cpp.o.d -o CMakeFiles/project.dir/testers/reaction_cuts_test/reaction_cuts_test.cpp.o -c /Users/alon/Projects/2N-Analyser_e4nu/testers/reaction_cuts_test/reaction_cuts_test.cpp
 
 CMakeFiles/project.dir/testers/reaction_cuts_test/reaction_cuts_test.cpp.i: cmake_force
@@ -842,7 +758,7 @@ CMakeFiles/project.dir/testers/reaction_cuts_test/reaction_cuts_test.cpp.s: cmak
 CMakeFiles/project.dir/testers/reaction_cuts_test/reaction_cuts_test_functions.cpp.o: CMakeFiles/project.dir/flags.make
 CMakeFiles/project.dir/testers/reaction_cuts_test/reaction_cuts_test_functions.cpp.o: /Users/alon/Projects/2N-Analyser_e4nu/testers/reaction_cuts_test/reaction_cuts_test_functions.cpp
 CMakeFiles/project.dir/testers/reaction_cuts_test/reaction_cuts_test_functions.cpp.o: CMakeFiles/project.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_56) "Building CXX object CMakeFiles/project.dir/testers/reaction_cuts_test/reaction_cuts_test_functions.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_50) "Building CXX object CMakeFiles/project.dir/testers/reaction_cuts_test/reaction_cuts_test_functions.cpp.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/project.dir/testers/reaction_cuts_test/reaction_cuts_test_functions.cpp.o -MF CMakeFiles/project.dir/testers/reaction_cuts_test/reaction_cuts_test_functions.cpp.o.d -o CMakeFiles/project.dir/testers/reaction_cuts_test/reaction_cuts_test_functions.cpp.o -c /Users/alon/Projects/2N-Analyser_e4nu/testers/reaction_cuts_test/reaction_cuts_test_functions.cpp
 
 CMakeFiles/project.dir/testers/reaction_cuts_test/reaction_cuts_test_functions.cpp.i: cmake_force
@@ -852,6 +768,20 @@ CMakeFiles/project.dir/testers/reaction_cuts_test/reaction_cuts_test_functions.c
 CMakeFiles/project.dir/testers/reaction_cuts_test/reaction_cuts_test_functions.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/project.dir/testers/reaction_cuts_test/reaction_cuts_test_functions.cpp.s"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alon/Projects/2N-Analyser_e4nu/testers/reaction_cuts_test/reaction_cuts_test_functions.cpp -o CMakeFiles/project.dir/testers/reaction_cuts_test/reaction_cuts_test_functions.cpp.s
+
+CMakeFiles/project.dir/framework/namespaces/general_utilities/analysis_math/poly_solver.cpp.o: CMakeFiles/project.dir/flags.make
+CMakeFiles/project.dir/framework/namespaces/general_utilities/analysis_math/poly_solver.cpp.o: /Users/alon/Projects/2N-Analyser_e4nu/framework/namespaces/general_utilities/analysis_math/poly_solver.cpp
+CMakeFiles/project.dir/framework/namespaces/general_utilities/analysis_math/poly_solver.cpp.o: CMakeFiles/project.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_51) "Building CXX object CMakeFiles/project.dir/framework/namespaces/general_utilities/analysis_math/poly_solver.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/project.dir/framework/namespaces/general_utilities/analysis_math/poly_solver.cpp.o -MF CMakeFiles/project.dir/framework/namespaces/general_utilities/analysis_math/poly_solver.cpp.o.d -o CMakeFiles/project.dir/framework/namespaces/general_utilities/analysis_math/poly_solver.cpp.o -c /Users/alon/Projects/2N-Analyser_e4nu/framework/namespaces/general_utilities/analysis_math/poly_solver.cpp
+
+CMakeFiles/project.dir/framework/namespaces/general_utilities/analysis_math/poly_solver.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/project.dir/framework/namespaces/general_utilities/analysis_math/poly_solver.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alon/Projects/2N-Analyser_e4nu/framework/namespaces/general_utilities/analysis_math/poly_solver.cpp > CMakeFiles/project.dir/framework/namespaces/general_utilities/analysis_math/poly_solver.cpp.i
+
+CMakeFiles/project.dir/framework/namespaces/general_utilities/analysis_math/poly_solver.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/project.dir/framework/namespaces/general_utilities/analysis_math/poly_solver.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alon/Projects/2N-Analyser_e4nu/framework/namespaces/general_utilities/analysis_math/poly_solver.cpp -o CMakeFiles/project.dir/framework/namespaces/general_utilities/analysis_math/poly_solver.cpp.s
 
 # Object files for target project
 project_OBJECTS = \
@@ -875,42 +805,37 @@ project_OBJECTS = \
 "CMakeFiles/project.dir/macros/PoliFitter_-_Copy.cpp.o" \
 "CMakeFiles/project.dir/macros/PoliFitter.cpp.o" \
 "CMakeFiles/project.dir/macros/process_events.C.o" \
-"CMakeFiles/project.dir/setup/CLAS12DAnalysis/CLAS12DAnalyser/CLAS12DAnalyser.cpp.o" \
-"CMakeFiles/project.dir/setup/CLAS12DAnalysis/CLAS12DASettings/CLAS12DASettings.cpp.o" \
-"CMakeFiles/project.dir/setup/CLAS12DAnalysis/CLAS12DHistograms/CLAS12DHistograms.cpp.o" \
-"CMakeFiles/project.dir/source/classes/AMaps/AMaps.cpp.o" \
-"CMakeFiles/project.dir/source/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.cpp.o" \
-"CMakeFiles/project.dir/source/classes/clas12ana/example_ana_-_Copy.cpp.o" \
-"CMakeFiles/project.dir/source/classes/clas12ana/example_ana.cpp.o" \
-"CMakeFiles/project.dir/source/classes/clas12ana/skim_events.cpp.o" \
-"CMakeFiles/project.dir/source/classes/DEfficiency/DEfficiency.cpp.o" \
-"CMakeFiles/project.dir/source/classes/Directories/Directories.cpp.o" \
-"CMakeFiles/project.dir/source/classes/ExperimentParameters/ExperimentParameters.cpp.o" \
-"CMakeFiles/project.dir/source/classes/hData/hData.cpp.o" \
-"CMakeFiles/project.dir/source/classes/hPlots/hPlot1D.cpp.o" \
-"CMakeFiles/project.dir/source/classes/hPlots/hPlot1DStack.cpp.o" \
-"CMakeFiles/project.dir/source/classes/hPlots/hPlot2D.cpp.o" \
-"CMakeFiles/project.dir/source/classes/MomentumResolution/MomentumResolution.cpp.o" \
-"CMakeFiles/project.dir/source/classes/TLCuts/TLCuts.cpp.o" \
-"CMakeFiles/project.dir/source/functions/Math_func/poly34.cpp.o" \
-"CMakeFiles/project.dir/source/other/fitexample_-_Copy.c.o" \
-"CMakeFiles/project.dir/source/other/fitexample.c.o" \
-"CMakeFiles/project.dir/source/other/hPlot1D_example.cpp.o" \
-"CMakeFiles/project.dir/source/structures/Histogram1D_beta/Histogram1D.cpp.o" \
+"CMakeFiles/project.dir/framework/classes/AMaps/AMaps.cpp.o" \
+"CMakeFiles/project.dir/framework/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.cpp.o" \
+"CMakeFiles/project.dir/framework/classes/clas12ana/example_ana_-_Copy.cpp.o" \
+"CMakeFiles/project.dir/framework/classes/clas12ana/example_ana.cpp.o" \
+"CMakeFiles/project.dir/framework/classes/clas12ana/skim_events.cpp.o" \
+"CMakeFiles/project.dir/framework/classes/DEfficiency/DEfficiency.cpp.o" \
+"CMakeFiles/project.dir/framework/classes/Directories/Directories.cpp.o" \
+"CMakeFiles/project.dir/framework/classes/ExperimentParameters/ExperimentParameters.cpp.o" \
+"CMakeFiles/project.dir/framework/classes/hPlots/hPlot1D.cpp.o" \
+"CMakeFiles/project.dir/framework/classes/hPlots/hPlot1DStack.cpp.o" \
+"CMakeFiles/project.dir/framework/classes/hPlots/hPlot2D.cpp.o" \
+"CMakeFiles/project.dir/framework/classes/MomentumResolution/MomentumResolution.cpp.o" \
+"CMakeFiles/project.dir/framework/classes/TLCuts/TLCuts.cpp.o" \
+"CMakeFiles/project.dir/framework/other/fitexample_-_Copy.c.o" \
+"CMakeFiles/project.dir/framework/other/fitexample.c.o" \
+"CMakeFiles/project.dir/framework/other/hPlot1D_example.cpp.o" \
+"CMakeFiles/project.dir/framework/structures/Histogram1D_beta/Histogram1D.cpp.o" \
 "CMakeFiles/project.dir/Old_analysers/DetectorSimulationAnalyser.C.o" \
 "CMakeFiles/project.dir/main.c.o" \
 "CMakeFiles/project.dir/Old_analysers/TruthLevelAnalyser.c.o" \
-"CMakeFiles/project.dir/source/classes/Settings/Settings.cpp.o" \
-"CMakeFiles/project.dir/source/classes/Settings/CustomPlotsDirectory.cpp.o" \
-"CMakeFiles/project.dir/source/classes/ParticleID/ParticleID.cpp.o" \
-"CMakeFiles/project.dir/source/classes/RecoAnalyser/RecoAnalyser.cpp.o" \
+"CMakeFiles/project.dir/framework/classes/Settings/Settings.cpp.o" \
+"CMakeFiles/project.dir/framework/classes/Settings/CustomPlotsDirectory.cpp.o" \
+"CMakeFiles/project.dir/framework/classes/ParticleID/ParticleID.cpp.o" \
 "CMakeFiles/project.dir/macros/zoomed_in_histogram.cpp.o" \
-"CMakeFiles/project.dir/source/classes/DataAnalyser/DataAnalyser.cpp.o" \
+"CMakeFiles/project.dir/framework/classes/DataAnalyser/DataAnalyser.cpp.o" \
 "CMakeFiles/project.dir/testers/nFD_eff_test/nFD_eff_test_functions.cpp.o" \
 "CMakeFiles/project.dir/testers/nFD_eff_test/nFD_eff_test.cpp.o" \
 "CMakeFiles/project.dir/macros/plotHistogramsWithLabels.cpp.o" \
 "CMakeFiles/project.dir/testers/reaction_cuts_test/reaction_cuts_test.cpp.o" \
-"CMakeFiles/project.dir/testers/reaction_cuts_test/reaction_cuts_test_functions.cpp.o"
+"CMakeFiles/project.dir/testers/reaction_cuts_test/reaction_cuts_test_functions.cpp.o" \
+"CMakeFiles/project.dir/framework/namespaces/general_utilities/analysis_math/poly_solver.cpp.o"
 
 # External object files for target project
 project_EXTERNAL_OBJECTS =
@@ -935,42 +860,37 @@ project: CMakeFiles/project.dir/macros/plotter_2x2.cpp.o
 project: CMakeFiles/project.dir/macros/PoliFitter_-_Copy.cpp.o
 project: CMakeFiles/project.dir/macros/PoliFitter.cpp.o
 project: CMakeFiles/project.dir/macros/process_events.C.o
-project: CMakeFiles/project.dir/setup/CLAS12DAnalysis/CLAS12DAnalyser/CLAS12DAnalyser.cpp.o
-project: CMakeFiles/project.dir/setup/CLAS12DAnalysis/CLAS12DASettings/CLAS12DASettings.cpp.o
-project: CMakeFiles/project.dir/setup/CLAS12DAnalysis/CLAS12DHistograms/CLAS12DHistograms.cpp.o
-project: CMakeFiles/project.dir/source/classes/AMaps/AMaps.cpp.o
-project: CMakeFiles/project.dir/source/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.cpp.o
-project: CMakeFiles/project.dir/source/classes/clas12ana/example_ana_-_Copy.cpp.o
-project: CMakeFiles/project.dir/source/classes/clas12ana/example_ana.cpp.o
-project: CMakeFiles/project.dir/source/classes/clas12ana/skim_events.cpp.o
-project: CMakeFiles/project.dir/source/classes/DEfficiency/DEfficiency.cpp.o
-project: CMakeFiles/project.dir/source/classes/Directories/Directories.cpp.o
-project: CMakeFiles/project.dir/source/classes/ExperimentParameters/ExperimentParameters.cpp.o
-project: CMakeFiles/project.dir/source/classes/hData/hData.cpp.o
-project: CMakeFiles/project.dir/source/classes/hPlots/hPlot1D.cpp.o
-project: CMakeFiles/project.dir/source/classes/hPlots/hPlot1DStack.cpp.o
-project: CMakeFiles/project.dir/source/classes/hPlots/hPlot2D.cpp.o
-project: CMakeFiles/project.dir/source/classes/MomentumResolution/MomentumResolution.cpp.o
-project: CMakeFiles/project.dir/source/classes/TLCuts/TLCuts.cpp.o
-project: CMakeFiles/project.dir/source/functions/Math_func/poly34.cpp.o
-project: CMakeFiles/project.dir/source/other/fitexample_-_Copy.c.o
-project: CMakeFiles/project.dir/source/other/fitexample.c.o
-project: CMakeFiles/project.dir/source/other/hPlot1D_example.cpp.o
-project: CMakeFiles/project.dir/source/structures/Histogram1D_beta/Histogram1D.cpp.o
+project: CMakeFiles/project.dir/framework/classes/AMaps/AMaps.cpp.o
+project: CMakeFiles/project.dir/framework/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.cpp.o
+project: CMakeFiles/project.dir/framework/classes/clas12ana/example_ana_-_Copy.cpp.o
+project: CMakeFiles/project.dir/framework/classes/clas12ana/example_ana.cpp.o
+project: CMakeFiles/project.dir/framework/classes/clas12ana/skim_events.cpp.o
+project: CMakeFiles/project.dir/framework/classes/DEfficiency/DEfficiency.cpp.o
+project: CMakeFiles/project.dir/framework/classes/Directories/Directories.cpp.o
+project: CMakeFiles/project.dir/framework/classes/ExperimentParameters/ExperimentParameters.cpp.o
+project: CMakeFiles/project.dir/framework/classes/hPlots/hPlot1D.cpp.o
+project: CMakeFiles/project.dir/framework/classes/hPlots/hPlot1DStack.cpp.o
+project: CMakeFiles/project.dir/framework/classes/hPlots/hPlot2D.cpp.o
+project: CMakeFiles/project.dir/framework/classes/MomentumResolution/MomentumResolution.cpp.o
+project: CMakeFiles/project.dir/framework/classes/TLCuts/TLCuts.cpp.o
+project: CMakeFiles/project.dir/framework/other/fitexample_-_Copy.c.o
+project: CMakeFiles/project.dir/framework/other/fitexample.c.o
+project: CMakeFiles/project.dir/framework/other/hPlot1D_example.cpp.o
+project: CMakeFiles/project.dir/framework/structures/Histogram1D_beta/Histogram1D.cpp.o
 project: CMakeFiles/project.dir/Old_analysers/DetectorSimulationAnalyser.C.o
 project: CMakeFiles/project.dir/main.c.o
 project: CMakeFiles/project.dir/Old_analysers/TruthLevelAnalyser.c.o
-project: CMakeFiles/project.dir/source/classes/Settings/Settings.cpp.o
-project: CMakeFiles/project.dir/source/classes/Settings/CustomPlotsDirectory.cpp.o
-project: CMakeFiles/project.dir/source/classes/ParticleID/ParticleID.cpp.o
-project: CMakeFiles/project.dir/source/classes/RecoAnalyser/RecoAnalyser.cpp.o
+project: CMakeFiles/project.dir/framework/classes/Settings/Settings.cpp.o
+project: CMakeFiles/project.dir/framework/classes/Settings/CustomPlotsDirectory.cpp.o
+project: CMakeFiles/project.dir/framework/classes/ParticleID/ParticleID.cpp.o
 project: CMakeFiles/project.dir/macros/zoomed_in_histogram.cpp.o
-project: CMakeFiles/project.dir/source/classes/DataAnalyser/DataAnalyser.cpp.o
+project: CMakeFiles/project.dir/framework/classes/DataAnalyser/DataAnalyser.cpp.o
 project: CMakeFiles/project.dir/testers/nFD_eff_test/nFD_eff_test_functions.cpp.o
 project: CMakeFiles/project.dir/testers/nFD_eff_test/nFD_eff_test.cpp.o
 project: CMakeFiles/project.dir/macros/plotHistogramsWithLabels.cpp.o
 project: CMakeFiles/project.dir/testers/reaction_cuts_test/reaction_cuts_test.cpp.o
 project: CMakeFiles/project.dir/testers/reaction_cuts_test/reaction_cuts_test_functions.cpp.o
+project: CMakeFiles/project.dir/framework/namespaces/general_utilities/analysis_math/poly_solver.cpp.o
 project: CMakeFiles/project.dir/build.make
 project: /opt/homebrew/Cellar/root/6.34.04/lib/root/libCore.so
 project: /opt/homebrew/Cellar/root/6.34.04/lib/root/libImt.so
@@ -992,7 +912,7 @@ project: /opt/homebrew/Cellar/root/6.34.04/lib/root/libThread.so
 project: /opt/homebrew/Cellar/root/6.34.04/lib/root/libMultiProc.so
 project: /opt/homebrew/Cellar/root/6.34.04/lib/root/libROOTVecOps.so
 project: CMakeFiles/project.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_57) "Linking CXX executable project"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_52) "Linking CXX executable project"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/project.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

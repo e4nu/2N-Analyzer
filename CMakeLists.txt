@@ -101,12 +101,6 @@ add_executable(project ${CLAS12ROOT_SOURCES} ${CLAS12BANKS_SOURCES} ${HIPO4_SOUR
         "macros/PoliFitter - Copy.cpp"
         macros/PoliFitter.cpp
         macros/process_events.C
-        setup/CLAS12DAnalysis/CLAS12DAnalyser/CLAS12DAnalyser.cpp
-        setup/CLAS12DAnalysis/CLAS12DAnalyser/CLAS12DAnalyser.h
-        setup/CLAS12DAnalysis/CLAS12DASettings/CLAS12DASettings.cpp
-        setup/CLAS12DAnalysis/CLAS12DASettings/CLAS12DASettings.h
-        setup/CLAS12DAnalysis/CLAS12DHistograms/CLAS12DHistograms.cpp
-        setup/CLAS12DAnalysis/CLAS12DHistograms/CLAS12DHistograms.h
         setup/codeSetup.h
         framework/classes/gst/gst.h
         framework/classes/AMaps/AMaps.cpp
@@ -127,8 +121,6 @@ add_executable(project ${CLAS12ROOT_SOURCES} ${CLAS12BANKS_SOURCES} ${HIPO4_SOUR
         framework/classes/DSCuts/DSCuts.h
         framework/classes/ExperimentParameters/ExperimentParameters.cpp
         framework/classes/ExperimentParameters/ExperimentParameters.h
-        framework/classes/hData/hData.cpp
-        framework/classes/hData/hData.h
         framework/classes/hPlots/hPlot1D.cpp
         framework/classes/hPlots/hPlot1D.h
         framework/classes/hPlots/hPlot1DStack.cpp
@@ -162,55 +154,14 @@ add_executable(project ${CLAS12ROOT_SOURCES} ${CLAS12BANKS_SOURCES} ${HIPO4_SOUR
         source/data/PIDCuts/paramsPI_LD2_x2.dat
         source/data/PIDCuts/paramsSF_40Ca_x2.dat
         source/data/PIDCuts/paramsSF_LD2_x2.dat
-        framework/functions/AngleCalc/CalcdPhi.h
-        framework/functions/AngleCalc/GetBinFromAng.h
-        framework/functions/DrawAndSaveFunctions/DrawAndSaveACorrPlots.h
-        framework/functions/DrawAndSaveFunctions/DrawAndSaveEfficiencyPlots.h
-        framework/functions/DrawAndSaveFunctions/DrawAndSaveFSRatio.h
-        framework/functions/EventProperties/GetParticleName_rm.h
-        framework/functions/EventProperties/GetParticleNameLC_rm.h
-        framework/functions/EventProperties/GetParticleNameShort_rm.h
-        framework/functions/EventProperties/SetDRegion_rm.h
-        framework/functions/EventProperties/SetFSRatioSaveDir_rm.h
-        framework/functions/EventProperties/SetSaveDir_rm.h
-        framework/functions/EventProperties/SetStatsTitle_rm.h
-        framework/functions/EventProperties/SettingSaveNames_rm.h
-        framework/functions/EventProperties/SetTitle_rm.h
-        framework/functions/EventProperties/SetType_rm.h
-        framework/functions/EventProperties/SetXAxisTitle_rm.h
-        framework/functions/EventProperties/SetYAxisTitle_rm.h
-        framework/functions/FitFunctions/BetaFit.h
-        framework/functions/FitFunctions/BetaFitApprax.h
-        framework/functions/FitFunctions/FitFunction.h
-        framework/functions/Math_func/poly34.cpp
-        framework/functions/Math_func/poly34.h
-        framework/functions/other/neutron_veto.h
-        framework/functions/other/NeutronECAL_Cut_Veto.h
-        framework/functions/PID_functions/ChargedParticleID.h
-        framework/functions/PID_functions/FDNeutralParticle.h
-        framework/functions/PID_functions/FDNeutralParticleID.h
-        framework/functions/PID_functions/GetFDNeutronP.h
-        framework/functions/PID_functions/GetFDNeutrons.h
-        framework/functions/PID_functions/GetFDPhotons.h
-        framework/functions/PID_functions/GetGoodParticles.h
-        framework/functions/PID_functions/GetGoodProtons.h
-        framework/functions/PID_functions/NeutralParticleID.h
-        framework/functions/PID_functions/nParticleID.h
-        framework/functions/drawtext.h
         framework/functions/FillByInt.h
-        framework/functions/findSubstring.h
-        framework/functions/GeneralFunctions.h
-        framework/functions/GetPi0MomTh.h
         framework/functions/GetTruthLevelCuts.h
         framework/functions/HistogramPlottingFunctions.h
         framework/functions/neutron_veto.h
         framework/functions/NeutronECAL_Cut_Veto.h
         framework/functions/PlotsEff2x3.h
-        framework/functions/quit.h
         framework/functions/StackPlot3.h
         framework/functions/StackPlot4.h
-        framework/functions/TLKinCutsCheck.h
-        framework/functions/to_string_with_precision.h
         framework/namespaces/general_utilities/utilities/utilities.h
         framework/namespaces/general_utilities/analysis_math/analysis_math.h
         framework/namespaces/general_utilities/analysis_math/analysis_math_reco_extentions.h
@@ -237,8 +188,6 @@ add_executable(project ${CLAS12ROOT_SOURCES} ${CLAS12BANKS_SOURCES} ${HIPO4_SOUR
         framework/classes/Settings/CustomPlotsDirectory.h
         framework/classes/ParticleID/ParticleID.cpp
         framework/classes/ParticleID/ParticleID.h
-        framework/classes/RecoAnalyser/RecoAnalyser.cpp
-        framework/classes/RecoAnalyser/RecoAnalyser.h
         framework/classes/AMaps/CustomSliceLimits.h
         macros/zoomed_in_histogram.cpp
         framework/classes/DataAnalyser/DataAnalyser.cpp
@@ -250,6 +199,7 @@ add_executable(project ${CLAS12ROOT_SOURCES} ${CLAS12BANKS_SOURCES} ${HIPO4_SOUR
         testers/reaction_cuts_test/reaction_cuts_test_functions.cpp
         framework/namespaces/general_utilities/analysis_math/poly_solver.h
         framework/namespaces/general_utilities/analysis_math/poly_solver.cpp
+        framework/namespaces/fitters/fitter_functions/fitter_functions.h
 )
 
 ## Link against ROOT and CLAS12ROOT libraries

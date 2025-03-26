@@ -177,6 +177,534 @@ Old_analysers/TruthLevelAnalyser.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/Old_analysers/TruthLevelAnalyser.c.s
 .PHONY : Old_analysers/TruthLevelAnalyser.c.s
 
+framework/classes/AMaps/AMaps.o: framework/classes/AMaps/AMaps.cpp.o
+.PHONY : framework/classes/AMaps/AMaps.o
+
+# target to build an object file
+framework/classes/AMaps/AMaps.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/framework/classes/AMaps/AMaps.cpp.o
+.PHONY : framework/classes/AMaps/AMaps.cpp.o
+
+framework/classes/AMaps/AMaps.i: framework/classes/AMaps/AMaps.cpp.i
+.PHONY : framework/classes/AMaps/AMaps.i
+
+# target to preprocess a source file
+framework/classes/AMaps/AMaps.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/framework/classes/AMaps/AMaps.cpp.i
+.PHONY : framework/classes/AMaps/AMaps.cpp.i
+
+framework/classes/AMaps/AMaps.s: framework/classes/AMaps/AMaps.cpp.s
+.PHONY : framework/classes/AMaps/AMaps.s
+
+# target to generate assembly for a file
+framework/classes/AMaps/AMaps.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/framework/classes/AMaps/AMaps.cpp.s
+.PHONY : framework/classes/AMaps/AMaps.cpp.s
+
+framework/classes/DEfficiency/DEfficiency.o: framework/classes/DEfficiency/DEfficiency.cpp.o
+.PHONY : framework/classes/DEfficiency/DEfficiency.o
+
+# target to build an object file
+framework/classes/DEfficiency/DEfficiency.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/framework/classes/DEfficiency/DEfficiency.cpp.o
+.PHONY : framework/classes/DEfficiency/DEfficiency.cpp.o
+
+framework/classes/DEfficiency/DEfficiency.i: framework/classes/DEfficiency/DEfficiency.cpp.i
+.PHONY : framework/classes/DEfficiency/DEfficiency.i
+
+# target to preprocess a source file
+framework/classes/DEfficiency/DEfficiency.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/framework/classes/DEfficiency/DEfficiency.cpp.i
+.PHONY : framework/classes/DEfficiency/DEfficiency.cpp.i
+
+framework/classes/DEfficiency/DEfficiency.s: framework/classes/DEfficiency/DEfficiency.cpp.s
+.PHONY : framework/classes/DEfficiency/DEfficiency.s
+
+# target to generate assembly for a file
+framework/classes/DEfficiency/DEfficiency.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/framework/classes/DEfficiency/DEfficiency.cpp.s
+.PHONY : framework/classes/DEfficiency/DEfficiency.cpp.s
+
+framework/classes/DataAnalyser/DataAnalyser.o: framework/classes/DataAnalyser/DataAnalyser.cpp.o
+.PHONY : framework/classes/DataAnalyser/DataAnalyser.o
+
+# target to build an object file
+framework/classes/DataAnalyser/DataAnalyser.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/framework/classes/DataAnalyser/DataAnalyser.cpp.o
+.PHONY : framework/classes/DataAnalyser/DataAnalyser.cpp.o
+
+framework/classes/DataAnalyser/DataAnalyser.i: framework/classes/DataAnalyser/DataAnalyser.cpp.i
+.PHONY : framework/classes/DataAnalyser/DataAnalyser.i
+
+# target to preprocess a source file
+framework/classes/DataAnalyser/DataAnalyser.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/framework/classes/DataAnalyser/DataAnalyser.cpp.i
+.PHONY : framework/classes/DataAnalyser/DataAnalyser.cpp.i
+
+framework/classes/DataAnalyser/DataAnalyser.s: framework/classes/DataAnalyser/DataAnalyser.cpp.s
+.PHONY : framework/classes/DataAnalyser/DataAnalyser.s
+
+# target to generate assembly for a file
+framework/classes/DataAnalyser/DataAnalyser.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/framework/classes/DataAnalyser/DataAnalyser.cpp.s
+.PHONY : framework/classes/DataAnalyser/DataAnalyser.cpp.s
+
+framework/classes/Directories/Directories.o: framework/classes/Directories/Directories.cpp.o
+.PHONY : framework/classes/Directories/Directories.o
+
+# target to build an object file
+framework/classes/Directories/Directories.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/framework/classes/Directories/Directories.cpp.o
+.PHONY : framework/classes/Directories/Directories.cpp.o
+
+framework/classes/Directories/Directories.i: framework/classes/Directories/Directories.cpp.i
+.PHONY : framework/classes/Directories/Directories.i
+
+# target to preprocess a source file
+framework/classes/Directories/Directories.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/framework/classes/Directories/Directories.cpp.i
+.PHONY : framework/classes/Directories/Directories.cpp.i
+
+framework/classes/Directories/Directories.s: framework/classes/Directories/Directories.cpp.s
+.PHONY : framework/classes/Directories/Directories.s
+
+# target to generate assembly for a file
+framework/classes/Directories/Directories.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/framework/classes/Directories/Directories.cpp.s
+.PHONY : framework/classes/Directories/Directories.cpp.s
+
+framework/classes/ExperimentParameters/ExperimentParameters.o: framework/classes/ExperimentParameters/ExperimentParameters.cpp.o
+.PHONY : framework/classes/ExperimentParameters/ExperimentParameters.o
+
+# target to build an object file
+framework/classes/ExperimentParameters/ExperimentParameters.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/framework/classes/ExperimentParameters/ExperimentParameters.cpp.o
+.PHONY : framework/classes/ExperimentParameters/ExperimentParameters.cpp.o
+
+framework/classes/ExperimentParameters/ExperimentParameters.i: framework/classes/ExperimentParameters/ExperimentParameters.cpp.i
+.PHONY : framework/classes/ExperimentParameters/ExperimentParameters.i
+
+# target to preprocess a source file
+framework/classes/ExperimentParameters/ExperimentParameters.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/framework/classes/ExperimentParameters/ExperimentParameters.cpp.i
+.PHONY : framework/classes/ExperimentParameters/ExperimentParameters.cpp.i
+
+framework/classes/ExperimentParameters/ExperimentParameters.s: framework/classes/ExperimentParameters/ExperimentParameters.cpp.s
+.PHONY : framework/classes/ExperimentParameters/ExperimentParameters.s
+
+# target to generate assembly for a file
+framework/classes/ExperimentParameters/ExperimentParameters.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/framework/classes/ExperimentParameters/ExperimentParameters.cpp.s
+.PHONY : framework/classes/ExperimentParameters/ExperimentParameters.cpp.s
+
+framework/classes/MomentumResolution/MomentumResolution.o: framework/classes/MomentumResolution/MomentumResolution.cpp.o
+.PHONY : framework/classes/MomentumResolution/MomentumResolution.o
+
+# target to build an object file
+framework/classes/MomentumResolution/MomentumResolution.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/framework/classes/MomentumResolution/MomentumResolution.cpp.o
+.PHONY : framework/classes/MomentumResolution/MomentumResolution.cpp.o
+
+framework/classes/MomentumResolution/MomentumResolution.i: framework/classes/MomentumResolution/MomentumResolution.cpp.i
+.PHONY : framework/classes/MomentumResolution/MomentumResolution.i
+
+# target to preprocess a source file
+framework/classes/MomentumResolution/MomentumResolution.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/framework/classes/MomentumResolution/MomentumResolution.cpp.i
+.PHONY : framework/classes/MomentumResolution/MomentumResolution.cpp.i
+
+framework/classes/MomentumResolution/MomentumResolution.s: framework/classes/MomentumResolution/MomentumResolution.cpp.s
+.PHONY : framework/classes/MomentumResolution/MomentumResolution.s
+
+# target to generate assembly for a file
+framework/classes/MomentumResolution/MomentumResolution.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/framework/classes/MomentumResolution/MomentumResolution.cpp.s
+.PHONY : framework/classes/MomentumResolution/MomentumResolution.cpp.s
+
+framework/classes/ParticleID/ParticleID.o: framework/classes/ParticleID/ParticleID.cpp.o
+.PHONY : framework/classes/ParticleID/ParticleID.o
+
+# target to build an object file
+framework/classes/ParticleID/ParticleID.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/framework/classes/ParticleID/ParticleID.cpp.o
+.PHONY : framework/classes/ParticleID/ParticleID.cpp.o
+
+framework/classes/ParticleID/ParticleID.i: framework/classes/ParticleID/ParticleID.cpp.i
+.PHONY : framework/classes/ParticleID/ParticleID.i
+
+# target to preprocess a source file
+framework/classes/ParticleID/ParticleID.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/framework/classes/ParticleID/ParticleID.cpp.i
+.PHONY : framework/classes/ParticleID/ParticleID.cpp.i
+
+framework/classes/ParticleID/ParticleID.s: framework/classes/ParticleID/ParticleID.cpp.s
+.PHONY : framework/classes/ParticleID/ParticleID.s
+
+# target to generate assembly for a file
+framework/classes/ParticleID/ParticleID.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/framework/classes/ParticleID/ParticleID.cpp.s
+.PHONY : framework/classes/ParticleID/ParticleID.cpp.s
+
+framework/classes/Settings/CustomPlotsDirectory.o: framework/classes/Settings/CustomPlotsDirectory.cpp.o
+.PHONY : framework/classes/Settings/CustomPlotsDirectory.o
+
+# target to build an object file
+framework/classes/Settings/CustomPlotsDirectory.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/framework/classes/Settings/CustomPlotsDirectory.cpp.o
+.PHONY : framework/classes/Settings/CustomPlotsDirectory.cpp.o
+
+framework/classes/Settings/CustomPlotsDirectory.i: framework/classes/Settings/CustomPlotsDirectory.cpp.i
+.PHONY : framework/classes/Settings/CustomPlotsDirectory.i
+
+# target to preprocess a source file
+framework/classes/Settings/CustomPlotsDirectory.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/framework/classes/Settings/CustomPlotsDirectory.cpp.i
+.PHONY : framework/classes/Settings/CustomPlotsDirectory.cpp.i
+
+framework/classes/Settings/CustomPlotsDirectory.s: framework/classes/Settings/CustomPlotsDirectory.cpp.s
+.PHONY : framework/classes/Settings/CustomPlotsDirectory.s
+
+# target to generate assembly for a file
+framework/classes/Settings/CustomPlotsDirectory.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/framework/classes/Settings/CustomPlotsDirectory.cpp.s
+.PHONY : framework/classes/Settings/CustomPlotsDirectory.cpp.s
+
+framework/classes/Settings/Settings.o: framework/classes/Settings/Settings.cpp.o
+.PHONY : framework/classes/Settings/Settings.o
+
+# target to build an object file
+framework/classes/Settings/Settings.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/framework/classes/Settings/Settings.cpp.o
+.PHONY : framework/classes/Settings/Settings.cpp.o
+
+framework/classes/Settings/Settings.i: framework/classes/Settings/Settings.cpp.i
+.PHONY : framework/classes/Settings/Settings.i
+
+# target to preprocess a source file
+framework/classes/Settings/Settings.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/framework/classes/Settings/Settings.cpp.i
+.PHONY : framework/classes/Settings/Settings.cpp.i
+
+framework/classes/Settings/Settings.s: framework/classes/Settings/Settings.cpp.s
+.PHONY : framework/classes/Settings/Settings.s
+
+# target to generate assembly for a file
+framework/classes/Settings/Settings.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/framework/classes/Settings/Settings.cpp.s
+.PHONY : framework/classes/Settings/Settings.cpp.s
+
+framework/classes/TLCuts/TLCuts.o: framework/classes/TLCuts/TLCuts.cpp.o
+.PHONY : framework/classes/TLCuts/TLCuts.o
+
+# target to build an object file
+framework/classes/TLCuts/TLCuts.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/framework/classes/TLCuts/TLCuts.cpp.o
+.PHONY : framework/classes/TLCuts/TLCuts.cpp.o
+
+framework/classes/TLCuts/TLCuts.i: framework/classes/TLCuts/TLCuts.cpp.i
+.PHONY : framework/classes/TLCuts/TLCuts.i
+
+# target to preprocess a source file
+framework/classes/TLCuts/TLCuts.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/framework/classes/TLCuts/TLCuts.cpp.i
+.PHONY : framework/classes/TLCuts/TLCuts.cpp.i
+
+framework/classes/TLCuts/TLCuts.s: framework/classes/TLCuts/TLCuts.cpp.s
+.PHONY : framework/classes/TLCuts/TLCuts.s
+
+# target to generate assembly for a file
+framework/classes/TLCuts/TLCuts.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/framework/classes/TLCuts/TLCuts.cpp.s
+.PHONY : framework/classes/TLCuts/TLCuts.cpp.s
+
+framework/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.o: framework/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.cpp.o
+.PHONY : framework/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.o
+
+# target to build an object file
+framework/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/framework/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.cpp.o
+.PHONY : framework/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.cpp.o
+
+framework/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.i: framework/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.cpp.i
+.PHONY : framework/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.i
+
+# target to preprocess a source file
+framework/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/framework/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.cpp.i
+.PHONY : framework/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.cpp.i
+
+framework/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.s: framework/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.cpp.s
+.PHONY : framework/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.s
+
+# target to generate assembly for a file
+framework/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/framework/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.cpp.s
+.PHONY : framework/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.cpp.s
+
+framework/classes/clas12ana/example_ana.o: framework/classes/clas12ana/example_ana.cpp.o
+.PHONY : framework/classes/clas12ana/example_ana.o
+
+# target to build an object file
+framework/classes/clas12ana/example_ana.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/framework/classes/clas12ana/example_ana.cpp.o
+.PHONY : framework/classes/clas12ana/example_ana.cpp.o
+
+framework/classes/clas12ana/example_ana.i: framework/classes/clas12ana/example_ana.cpp.i
+.PHONY : framework/classes/clas12ana/example_ana.i
+
+# target to preprocess a source file
+framework/classes/clas12ana/example_ana.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/framework/classes/clas12ana/example_ana.cpp.i
+.PHONY : framework/classes/clas12ana/example_ana.cpp.i
+
+framework/classes/clas12ana/example_ana.s: framework/classes/clas12ana/example_ana.cpp.s
+.PHONY : framework/classes/clas12ana/example_ana.s
+
+# target to generate assembly for a file
+framework/classes/clas12ana/example_ana.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/framework/classes/clas12ana/example_ana.cpp.s
+.PHONY : framework/classes/clas12ana/example_ana.cpp.s
+
+framework/classes/clas12ana/example_ana_-_Copy.o: framework/classes/clas12ana/example_ana_-_Copy.cpp.o
+.PHONY : framework/classes/clas12ana/example_ana_-_Copy.o
+
+# target to build an object file
+framework/classes/clas12ana/example_ana_-_Copy.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/framework/classes/clas12ana/example_ana_-_Copy.cpp.o
+.PHONY : framework/classes/clas12ana/example_ana_-_Copy.cpp.o
+
+framework/classes/clas12ana/example_ana_-_Copy.i: framework/classes/clas12ana/example_ana_-_Copy.cpp.i
+.PHONY : framework/classes/clas12ana/example_ana_-_Copy.i
+
+# target to preprocess a source file
+framework/classes/clas12ana/example_ana_-_Copy.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/framework/classes/clas12ana/example_ana_-_Copy.cpp.i
+.PHONY : framework/classes/clas12ana/example_ana_-_Copy.cpp.i
+
+framework/classes/clas12ana/example_ana_-_Copy.s: framework/classes/clas12ana/example_ana_-_Copy.cpp.s
+.PHONY : framework/classes/clas12ana/example_ana_-_Copy.s
+
+# target to generate assembly for a file
+framework/classes/clas12ana/example_ana_-_Copy.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/framework/classes/clas12ana/example_ana_-_Copy.cpp.s
+.PHONY : framework/classes/clas12ana/example_ana_-_Copy.cpp.s
+
+framework/classes/clas12ana/skim_events.o: framework/classes/clas12ana/skim_events.cpp.o
+.PHONY : framework/classes/clas12ana/skim_events.o
+
+# target to build an object file
+framework/classes/clas12ana/skim_events.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/framework/classes/clas12ana/skim_events.cpp.o
+.PHONY : framework/classes/clas12ana/skim_events.cpp.o
+
+framework/classes/clas12ana/skim_events.i: framework/classes/clas12ana/skim_events.cpp.i
+.PHONY : framework/classes/clas12ana/skim_events.i
+
+# target to preprocess a source file
+framework/classes/clas12ana/skim_events.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/framework/classes/clas12ana/skim_events.cpp.i
+.PHONY : framework/classes/clas12ana/skim_events.cpp.i
+
+framework/classes/clas12ana/skim_events.s: framework/classes/clas12ana/skim_events.cpp.s
+.PHONY : framework/classes/clas12ana/skim_events.s
+
+# target to generate assembly for a file
+framework/classes/clas12ana/skim_events.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/framework/classes/clas12ana/skim_events.cpp.s
+.PHONY : framework/classes/clas12ana/skim_events.cpp.s
+
+framework/classes/hPlots/hPlot1D.o: framework/classes/hPlots/hPlot1D.cpp.o
+.PHONY : framework/classes/hPlots/hPlot1D.o
+
+# target to build an object file
+framework/classes/hPlots/hPlot1D.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/framework/classes/hPlots/hPlot1D.cpp.o
+.PHONY : framework/classes/hPlots/hPlot1D.cpp.o
+
+framework/classes/hPlots/hPlot1D.i: framework/classes/hPlots/hPlot1D.cpp.i
+.PHONY : framework/classes/hPlots/hPlot1D.i
+
+# target to preprocess a source file
+framework/classes/hPlots/hPlot1D.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/framework/classes/hPlots/hPlot1D.cpp.i
+.PHONY : framework/classes/hPlots/hPlot1D.cpp.i
+
+framework/classes/hPlots/hPlot1D.s: framework/classes/hPlots/hPlot1D.cpp.s
+.PHONY : framework/classes/hPlots/hPlot1D.s
+
+# target to generate assembly for a file
+framework/classes/hPlots/hPlot1D.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/framework/classes/hPlots/hPlot1D.cpp.s
+.PHONY : framework/classes/hPlots/hPlot1D.cpp.s
+
+framework/classes/hPlots/hPlot1DStack.o: framework/classes/hPlots/hPlot1DStack.cpp.o
+.PHONY : framework/classes/hPlots/hPlot1DStack.o
+
+# target to build an object file
+framework/classes/hPlots/hPlot1DStack.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/framework/classes/hPlots/hPlot1DStack.cpp.o
+.PHONY : framework/classes/hPlots/hPlot1DStack.cpp.o
+
+framework/classes/hPlots/hPlot1DStack.i: framework/classes/hPlots/hPlot1DStack.cpp.i
+.PHONY : framework/classes/hPlots/hPlot1DStack.i
+
+# target to preprocess a source file
+framework/classes/hPlots/hPlot1DStack.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/framework/classes/hPlots/hPlot1DStack.cpp.i
+.PHONY : framework/classes/hPlots/hPlot1DStack.cpp.i
+
+framework/classes/hPlots/hPlot1DStack.s: framework/classes/hPlots/hPlot1DStack.cpp.s
+.PHONY : framework/classes/hPlots/hPlot1DStack.s
+
+# target to generate assembly for a file
+framework/classes/hPlots/hPlot1DStack.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/framework/classes/hPlots/hPlot1DStack.cpp.s
+.PHONY : framework/classes/hPlots/hPlot1DStack.cpp.s
+
+framework/classes/hPlots/hPlot2D.o: framework/classes/hPlots/hPlot2D.cpp.o
+.PHONY : framework/classes/hPlots/hPlot2D.o
+
+# target to build an object file
+framework/classes/hPlots/hPlot2D.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/framework/classes/hPlots/hPlot2D.cpp.o
+.PHONY : framework/classes/hPlots/hPlot2D.cpp.o
+
+framework/classes/hPlots/hPlot2D.i: framework/classes/hPlots/hPlot2D.cpp.i
+.PHONY : framework/classes/hPlots/hPlot2D.i
+
+# target to preprocess a source file
+framework/classes/hPlots/hPlot2D.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/framework/classes/hPlots/hPlot2D.cpp.i
+.PHONY : framework/classes/hPlots/hPlot2D.cpp.i
+
+framework/classes/hPlots/hPlot2D.s: framework/classes/hPlots/hPlot2D.cpp.s
+.PHONY : framework/classes/hPlots/hPlot2D.s
+
+# target to generate assembly for a file
+framework/classes/hPlots/hPlot2D.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/framework/classes/hPlots/hPlot2D.cpp.s
+.PHONY : framework/classes/hPlots/hPlot2D.cpp.s
+
+framework/namespaces/general_utilities/analysis_math/poly_solver.o: framework/namespaces/general_utilities/analysis_math/poly_solver.cpp.o
+.PHONY : framework/namespaces/general_utilities/analysis_math/poly_solver.o
+
+# target to build an object file
+framework/namespaces/general_utilities/analysis_math/poly_solver.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/framework/namespaces/general_utilities/analysis_math/poly_solver.cpp.o
+.PHONY : framework/namespaces/general_utilities/analysis_math/poly_solver.cpp.o
+
+framework/namespaces/general_utilities/analysis_math/poly_solver.i: framework/namespaces/general_utilities/analysis_math/poly_solver.cpp.i
+.PHONY : framework/namespaces/general_utilities/analysis_math/poly_solver.i
+
+# target to preprocess a source file
+framework/namespaces/general_utilities/analysis_math/poly_solver.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/framework/namespaces/general_utilities/analysis_math/poly_solver.cpp.i
+.PHONY : framework/namespaces/general_utilities/analysis_math/poly_solver.cpp.i
+
+framework/namespaces/general_utilities/analysis_math/poly_solver.s: framework/namespaces/general_utilities/analysis_math/poly_solver.cpp.s
+.PHONY : framework/namespaces/general_utilities/analysis_math/poly_solver.s
+
+# target to generate assembly for a file
+framework/namespaces/general_utilities/analysis_math/poly_solver.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/framework/namespaces/general_utilities/analysis_math/poly_solver.cpp.s
+.PHONY : framework/namespaces/general_utilities/analysis_math/poly_solver.cpp.s
+
+framework/other/fitexample.o: framework/other/fitexample.c.o
+.PHONY : framework/other/fitexample.o
+
+# target to build an object file
+framework/other/fitexample.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/framework/other/fitexample.c.o
+.PHONY : framework/other/fitexample.c.o
+
+framework/other/fitexample.i: framework/other/fitexample.c.i
+.PHONY : framework/other/fitexample.i
+
+# target to preprocess a source file
+framework/other/fitexample.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/framework/other/fitexample.c.i
+.PHONY : framework/other/fitexample.c.i
+
+framework/other/fitexample.s: framework/other/fitexample.c.s
+.PHONY : framework/other/fitexample.s
+
+# target to generate assembly for a file
+framework/other/fitexample.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/framework/other/fitexample.c.s
+.PHONY : framework/other/fitexample.c.s
+
+framework/other/fitexample_-_Copy.o: framework/other/fitexample_-_Copy.c.o
+.PHONY : framework/other/fitexample_-_Copy.o
+
+# target to build an object file
+framework/other/fitexample_-_Copy.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/framework/other/fitexample_-_Copy.c.o
+.PHONY : framework/other/fitexample_-_Copy.c.o
+
+framework/other/fitexample_-_Copy.i: framework/other/fitexample_-_Copy.c.i
+.PHONY : framework/other/fitexample_-_Copy.i
+
+# target to preprocess a source file
+framework/other/fitexample_-_Copy.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/framework/other/fitexample_-_Copy.c.i
+.PHONY : framework/other/fitexample_-_Copy.c.i
+
+framework/other/fitexample_-_Copy.s: framework/other/fitexample_-_Copy.c.s
+.PHONY : framework/other/fitexample_-_Copy.s
+
+# target to generate assembly for a file
+framework/other/fitexample_-_Copy.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/framework/other/fitexample_-_Copy.c.s
+.PHONY : framework/other/fitexample_-_Copy.c.s
+
+framework/other/hPlot1D_example.o: framework/other/hPlot1D_example.cpp.o
+.PHONY : framework/other/hPlot1D_example.o
+
+# target to build an object file
+framework/other/hPlot1D_example.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/framework/other/hPlot1D_example.cpp.o
+.PHONY : framework/other/hPlot1D_example.cpp.o
+
+framework/other/hPlot1D_example.i: framework/other/hPlot1D_example.cpp.i
+.PHONY : framework/other/hPlot1D_example.i
+
+# target to preprocess a source file
+framework/other/hPlot1D_example.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/framework/other/hPlot1D_example.cpp.i
+.PHONY : framework/other/hPlot1D_example.cpp.i
+
+framework/other/hPlot1D_example.s: framework/other/hPlot1D_example.cpp.s
+.PHONY : framework/other/hPlot1D_example.s
+
+# target to generate assembly for a file
+framework/other/hPlot1D_example.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/framework/other/hPlot1D_example.cpp.s
+.PHONY : framework/other/hPlot1D_example.cpp.s
+
+framework/structures/Histogram1D_beta/Histogram1D.o: framework/structures/Histogram1D_beta/Histogram1D.cpp.o
+.PHONY : framework/structures/Histogram1D_beta/Histogram1D.o
+
+# target to build an object file
+framework/structures/Histogram1D_beta/Histogram1D.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/framework/structures/Histogram1D_beta/Histogram1D.cpp.o
+.PHONY : framework/structures/Histogram1D_beta/Histogram1D.cpp.o
+
+framework/structures/Histogram1D_beta/Histogram1D.i: framework/structures/Histogram1D_beta/Histogram1D.cpp.i
+.PHONY : framework/structures/Histogram1D_beta/Histogram1D.i
+
+# target to preprocess a source file
+framework/structures/Histogram1D_beta/Histogram1D.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/framework/structures/Histogram1D_beta/Histogram1D.cpp.i
+.PHONY : framework/structures/Histogram1D_beta/Histogram1D.cpp.i
+
+framework/structures/Histogram1D_beta/Histogram1D.s: framework/structures/Histogram1D_beta/Histogram1D.cpp.s
+.PHONY : framework/structures/Histogram1D_beta/Histogram1D.s
+
+# target to generate assembly for a file
+framework/structures/Histogram1D_beta/Histogram1D.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/framework/structures/Histogram1D_beta/Histogram1D.cpp.s
+.PHONY : framework/structures/Histogram1D_beta/Histogram1D.cpp.s
+
 macros/AMapsDiveTest.o: macros/AMapsDiveTest.cpp.o
 .PHONY : macros/AMapsDiveTest.o
 
@@ -729,654 +1257,6 @@ main.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/main.c.s
 .PHONY : main.c.s
 
-setup/CLAS12DAnalysis/CLAS12DASettings/CLAS12DASettings.o: setup/CLAS12DAnalysis/CLAS12DASettings/CLAS12DASettings.cpp.o
-.PHONY : setup/CLAS12DAnalysis/CLAS12DASettings/CLAS12DASettings.o
-
-# target to build an object file
-setup/CLAS12DAnalysis/CLAS12DASettings/CLAS12DASettings.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/setup/CLAS12DAnalysis/CLAS12DASettings/CLAS12DASettings.cpp.o
-.PHONY : setup/CLAS12DAnalysis/CLAS12DASettings/CLAS12DASettings.cpp.o
-
-setup/CLAS12DAnalysis/CLAS12DASettings/CLAS12DASettings.i: setup/CLAS12DAnalysis/CLAS12DASettings/CLAS12DASettings.cpp.i
-.PHONY : setup/CLAS12DAnalysis/CLAS12DASettings/CLAS12DASettings.i
-
-# target to preprocess a source file
-setup/CLAS12DAnalysis/CLAS12DASettings/CLAS12DASettings.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/setup/CLAS12DAnalysis/CLAS12DASettings/CLAS12DASettings.cpp.i
-.PHONY : setup/CLAS12DAnalysis/CLAS12DASettings/CLAS12DASettings.cpp.i
-
-setup/CLAS12DAnalysis/CLAS12DASettings/CLAS12DASettings.s: setup/CLAS12DAnalysis/CLAS12DASettings/CLAS12DASettings.cpp.s
-.PHONY : setup/CLAS12DAnalysis/CLAS12DASettings/CLAS12DASettings.s
-
-# target to generate assembly for a file
-setup/CLAS12DAnalysis/CLAS12DASettings/CLAS12DASettings.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/setup/CLAS12DAnalysis/CLAS12DASettings/CLAS12DASettings.cpp.s
-.PHONY : setup/CLAS12DAnalysis/CLAS12DASettings/CLAS12DASettings.cpp.s
-
-setup/CLAS12DAnalysis/CLAS12DAnalyser/CLAS12DAnalyser.o: setup/CLAS12DAnalysis/CLAS12DAnalyser/CLAS12DAnalyser.cpp.o
-.PHONY : setup/CLAS12DAnalysis/CLAS12DAnalyser/CLAS12DAnalyser.o
-
-# target to build an object file
-setup/CLAS12DAnalysis/CLAS12DAnalyser/CLAS12DAnalyser.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/setup/CLAS12DAnalysis/CLAS12DAnalyser/CLAS12DAnalyser.cpp.o
-.PHONY : setup/CLAS12DAnalysis/CLAS12DAnalyser/CLAS12DAnalyser.cpp.o
-
-setup/CLAS12DAnalysis/CLAS12DAnalyser/CLAS12DAnalyser.i: setup/CLAS12DAnalysis/CLAS12DAnalyser/CLAS12DAnalyser.cpp.i
-.PHONY : setup/CLAS12DAnalysis/CLAS12DAnalyser/CLAS12DAnalyser.i
-
-# target to preprocess a source file
-setup/CLAS12DAnalysis/CLAS12DAnalyser/CLAS12DAnalyser.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/setup/CLAS12DAnalysis/CLAS12DAnalyser/CLAS12DAnalyser.cpp.i
-.PHONY : setup/CLAS12DAnalysis/CLAS12DAnalyser/CLAS12DAnalyser.cpp.i
-
-setup/CLAS12DAnalysis/CLAS12DAnalyser/CLAS12DAnalyser.s: setup/CLAS12DAnalysis/CLAS12DAnalyser/CLAS12DAnalyser.cpp.s
-.PHONY : setup/CLAS12DAnalysis/CLAS12DAnalyser/CLAS12DAnalyser.s
-
-# target to generate assembly for a file
-setup/CLAS12DAnalysis/CLAS12DAnalyser/CLAS12DAnalyser.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/setup/CLAS12DAnalysis/CLAS12DAnalyser/CLAS12DAnalyser.cpp.s
-.PHONY : setup/CLAS12DAnalysis/CLAS12DAnalyser/CLAS12DAnalyser.cpp.s
-
-setup/CLAS12DAnalysis/CLAS12DHistograms/CLAS12DHistograms.o: setup/CLAS12DAnalysis/CLAS12DHistograms/CLAS12DHistograms.cpp.o
-.PHONY : setup/CLAS12DAnalysis/CLAS12DHistograms/CLAS12DHistograms.o
-
-# target to build an object file
-setup/CLAS12DAnalysis/CLAS12DHistograms/CLAS12DHistograms.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/setup/CLAS12DAnalysis/CLAS12DHistograms/CLAS12DHistograms.cpp.o
-.PHONY : setup/CLAS12DAnalysis/CLAS12DHistograms/CLAS12DHistograms.cpp.o
-
-setup/CLAS12DAnalysis/CLAS12DHistograms/CLAS12DHistograms.i: setup/CLAS12DAnalysis/CLAS12DHistograms/CLAS12DHistograms.cpp.i
-.PHONY : setup/CLAS12DAnalysis/CLAS12DHistograms/CLAS12DHistograms.i
-
-# target to preprocess a source file
-setup/CLAS12DAnalysis/CLAS12DHistograms/CLAS12DHistograms.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/setup/CLAS12DAnalysis/CLAS12DHistograms/CLAS12DHistograms.cpp.i
-.PHONY : setup/CLAS12DAnalysis/CLAS12DHistograms/CLAS12DHistograms.cpp.i
-
-setup/CLAS12DAnalysis/CLAS12DHistograms/CLAS12DHistograms.s: setup/CLAS12DAnalysis/CLAS12DHistograms/CLAS12DHistograms.cpp.s
-.PHONY : setup/CLAS12DAnalysis/CLAS12DHistograms/CLAS12DHistograms.s
-
-# target to generate assembly for a file
-setup/CLAS12DAnalysis/CLAS12DHistograms/CLAS12DHistograms.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/setup/CLAS12DAnalysis/CLAS12DHistograms/CLAS12DHistograms.cpp.s
-.PHONY : setup/CLAS12DAnalysis/CLAS12DHistograms/CLAS12DHistograms.cpp.s
-
-source/classes/AMaps/AMaps.o: source/classes/AMaps/AMaps.cpp.o
-.PHONY : source/classes/AMaps/AMaps.o
-
-# target to build an object file
-source/classes/AMaps/AMaps.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/classes/AMaps/AMaps.cpp.o
-.PHONY : source/classes/AMaps/AMaps.cpp.o
-
-source/classes/AMaps/AMaps.i: source/classes/AMaps/AMaps.cpp.i
-.PHONY : source/classes/AMaps/AMaps.i
-
-# target to preprocess a source file
-source/classes/AMaps/AMaps.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/classes/AMaps/AMaps.cpp.i
-.PHONY : source/classes/AMaps/AMaps.cpp.i
-
-source/classes/AMaps/AMaps.s: source/classes/AMaps/AMaps.cpp.s
-.PHONY : source/classes/AMaps/AMaps.s
-
-# target to generate assembly for a file
-source/classes/AMaps/AMaps.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/classes/AMaps/AMaps.cpp.s
-.PHONY : source/classes/AMaps/AMaps.cpp.s
-
-source/classes/DEfficiency/DEfficiency.o: source/classes/DEfficiency/DEfficiency.cpp.o
-.PHONY : source/classes/DEfficiency/DEfficiency.o
-
-# target to build an object file
-source/classes/DEfficiency/DEfficiency.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/classes/DEfficiency/DEfficiency.cpp.o
-.PHONY : source/classes/DEfficiency/DEfficiency.cpp.o
-
-source/classes/DEfficiency/DEfficiency.i: source/classes/DEfficiency/DEfficiency.cpp.i
-.PHONY : source/classes/DEfficiency/DEfficiency.i
-
-# target to preprocess a source file
-source/classes/DEfficiency/DEfficiency.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/classes/DEfficiency/DEfficiency.cpp.i
-.PHONY : source/classes/DEfficiency/DEfficiency.cpp.i
-
-source/classes/DEfficiency/DEfficiency.s: source/classes/DEfficiency/DEfficiency.cpp.s
-.PHONY : source/classes/DEfficiency/DEfficiency.s
-
-# target to generate assembly for a file
-source/classes/DEfficiency/DEfficiency.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/classes/DEfficiency/DEfficiency.cpp.s
-.PHONY : source/classes/DEfficiency/DEfficiency.cpp.s
-
-source/classes/DataAnalyser/DataAnalyser.o: source/classes/DataAnalyser/DataAnalyser.cpp.o
-.PHONY : source/classes/DataAnalyser/DataAnalyser.o
-
-# target to build an object file
-source/classes/DataAnalyser/DataAnalyser.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/classes/DataAnalyser/DataAnalyser.cpp.o
-.PHONY : source/classes/DataAnalyser/DataAnalyser.cpp.o
-
-source/classes/DataAnalyser/DataAnalyser.i: source/classes/DataAnalyser/DataAnalyser.cpp.i
-.PHONY : source/classes/DataAnalyser/DataAnalyser.i
-
-# target to preprocess a source file
-source/classes/DataAnalyser/DataAnalyser.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/classes/DataAnalyser/DataAnalyser.cpp.i
-.PHONY : source/classes/DataAnalyser/DataAnalyser.cpp.i
-
-source/classes/DataAnalyser/DataAnalyser.s: source/classes/DataAnalyser/DataAnalyser.cpp.s
-.PHONY : source/classes/DataAnalyser/DataAnalyser.s
-
-# target to generate assembly for a file
-source/classes/DataAnalyser/DataAnalyser.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/classes/DataAnalyser/DataAnalyser.cpp.s
-.PHONY : source/classes/DataAnalyser/DataAnalyser.cpp.s
-
-source/classes/Directories/Directories.o: source/classes/Directories/Directories.cpp.o
-.PHONY : source/classes/Directories/Directories.o
-
-# target to build an object file
-source/classes/Directories/Directories.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/classes/Directories/Directories.cpp.o
-.PHONY : source/classes/Directories/Directories.cpp.o
-
-source/classes/Directories/Directories.i: source/classes/Directories/Directories.cpp.i
-.PHONY : source/classes/Directories/Directories.i
-
-# target to preprocess a source file
-source/classes/Directories/Directories.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/classes/Directories/Directories.cpp.i
-.PHONY : source/classes/Directories/Directories.cpp.i
-
-source/classes/Directories/Directories.s: source/classes/Directories/Directories.cpp.s
-.PHONY : source/classes/Directories/Directories.s
-
-# target to generate assembly for a file
-source/classes/Directories/Directories.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/classes/Directories/Directories.cpp.s
-.PHONY : source/classes/Directories/Directories.cpp.s
-
-source/classes/ExperimentParameters/ExperimentParameters.o: source/classes/ExperimentParameters/ExperimentParameters.cpp.o
-.PHONY : source/classes/ExperimentParameters/ExperimentParameters.o
-
-# target to build an object file
-source/classes/ExperimentParameters/ExperimentParameters.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/classes/ExperimentParameters/ExperimentParameters.cpp.o
-.PHONY : source/classes/ExperimentParameters/ExperimentParameters.cpp.o
-
-source/classes/ExperimentParameters/ExperimentParameters.i: source/classes/ExperimentParameters/ExperimentParameters.cpp.i
-.PHONY : source/classes/ExperimentParameters/ExperimentParameters.i
-
-# target to preprocess a source file
-source/classes/ExperimentParameters/ExperimentParameters.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/classes/ExperimentParameters/ExperimentParameters.cpp.i
-.PHONY : source/classes/ExperimentParameters/ExperimentParameters.cpp.i
-
-source/classes/ExperimentParameters/ExperimentParameters.s: source/classes/ExperimentParameters/ExperimentParameters.cpp.s
-.PHONY : source/classes/ExperimentParameters/ExperimentParameters.s
-
-# target to generate assembly for a file
-source/classes/ExperimentParameters/ExperimentParameters.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/classes/ExperimentParameters/ExperimentParameters.cpp.s
-.PHONY : source/classes/ExperimentParameters/ExperimentParameters.cpp.s
-
-source/classes/MomentumResolution/MomentumResolution.o: source/classes/MomentumResolution/MomentumResolution.cpp.o
-.PHONY : source/classes/MomentumResolution/MomentumResolution.o
-
-# target to build an object file
-source/classes/MomentumResolution/MomentumResolution.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/classes/MomentumResolution/MomentumResolution.cpp.o
-.PHONY : source/classes/MomentumResolution/MomentumResolution.cpp.o
-
-source/classes/MomentumResolution/MomentumResolution.i: source/classes/MomentumResolution/MomentumResolution.cpp.i
-.PHONY : source/classes/MomentumResolution/MomentumResolution.i
-
-# target to preprocess a source file
-source/classes/MomentumResolution/MomentumResolution.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/classes/MomentumResolution/MomentumResolution.cpp.i
-.PHONY : source/classes/MomentumResolution/MomentumResolution.cpp.i
-
-source/classes/MomentumResolution/MomentumResolution.s: source/classes/MomentumResolution/MomentumResolution.cpp.s
-.PHONY : source/classes/MomentumResolution/MomentumResolution.s
-
-# target to generate assembly for a file
-source/classes/MomentumResolution/MomentumResolution.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/classes/MomentumResolution/MomentumResolution.cpp.s
-.PHONY : source/classes/MomentumResolution/MomentumResolution.cpp.s
-
-source/classes/ParticleID/ParticleID.o: source/classes/ParticleID/ParticleID.cpp.o
-.PHONY : source/classes/ParticleID/ParticleID.o
-
-# target to build an object file
-source/classes/ParticleID/ParticleID.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/classes/ParticleID/ParticleID.cpp.o
-.PHONY : source/classes/ParticleID/ParticleID.cpp.o
-
-source/classes/ParticleID/ParticleID.i: source/classes/ParticleID/ParticleID.cpp.i
-.PHONY : source/classes/ParticleID/ParticleID.i
-
-# target to preprocess a source file
-source/classes/ParticleID/ParticleID.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/classes/ParticleID/ParticleID.cpp.i
-.PHONY : source/classes/ParticleID/ParticleID.cpp.i
-
-source/classes/ParticleID/ParticleID.s: source/classes/ParticleID/ParticleID.cpp.s
-.PHONY : source/classes/ParticleID/ParticleID.s
-
-# target to generate assembly for a file
-source/classes/ParticleID/ParticleID.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/classes/ParticleID/ParticleID.cpp.s
-.PHONY : source/classes/ParticleID/ParticleID.cpp.s
-
-source/classes/RecoAnalyser/RecoAnalyser.o: source/classes/RecoAnalyser/RecoAnalyser.cpp.o
-.PHONY : source/classes/RecoAnalyser/RecoAnalyser.o
-
-# target to build an object file
-source/classes/RecoAnalyser/RecoAnalyser.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/classes/RecoAnalyser/RecoAnalyser.cpp.o
-.PHONY : source/classes/RecoAnalyser/RecoAnalyser.cpp.o
-
-source/classes/RecoAnalyser/RecoAnalyser.i: source/classes/RecoAnalyser/RecoAnalyser.cpp.i
-.PHONY : source/classes/RecoAnalyser/RecoAnalyser.i
-
-# target to preprocess a source file
-source/classes/RecoAnalyser/RecoAnalyser.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/classes/RecoAnalyser/RecoAnalyser.cpp.i
-.PHONY : source/classes/RecoAnalyser/RecoAnalyser.cpp.i
-
-source/classes/RecoAnalyser/RecoAnalyser.s: source/classes/RecoAnalyser/RecoAnalyser.cpp.s
-.PHONY : source/classes/RecoAnalyser/RecoAnalyser.s
-
-# target to generate assembly for a file
-source/classes/RecoAnalyser/RecoAnalyser.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/classes/RecoAnalyser/RecoAnalyser.cpp.s
-.PHONY : source/classes/RecoAnalyser/RecoAnalyser.cpp.s
-
-source/classes/Settings/CustomPlotsDirectory.o: source/classes/Settings/CustomPlotsDirectory.cpp.o
-.PHONY : source/classes/Settings/CustomPlotsDirectory.o
-
-# target to build an object file
-source/classes/Settings/CustomPlotsDirectory.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/classes/Settings/CustomPlotsDirectory.cpp.o
-.PHONY : source/classes/Settings/CustomPlotsDirectory.cpp.o
-
-source/classes/Settings/CustomPlotsDirectory.i: source/classes/Settings/CustomPlotsDirectory.cpp.i
-.PHONY : source/classes/Settings/CustomPlotsDirectory.i
-
-# target to preprocess a source file
-source/classes/Settings/CustomPlotsDirectory.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/classes/Settings/CustomPlotsDirectory.cpp.i
-.PHONY : source/classes/Settings/CustomPlotsDirectory.cpp.i
-
-source/classes/Settings/CustomPlotsDirectory.s: source/classes/Settings/CustomPlotsDirectory.cpp.s
-.PHONY : source/classes/Settings/CustomPlotsDirectory.s
-
-# target to generate assembly for a file
-source/classes/Settings/CustomPlotsDirectory.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/classes/Settings/CustomPlotsDirectory.cpp.s
-.PHONY : source/classes/Settings/CustomPlotsDirectory.cpp.s
-
-source/classes/Settings/Settings.o: source/classes/Settings/Settings.cpp.o
-.PHONY : source/classes/Settings/Settings.o
-
-# target to build an object file
-source/classes/Settings/Settings.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/classes/Settings/Settings.cpp.o
-.PHONY : source/classes/Settings/Settings.cpp.o
-
-source/classes/Settings/Settings.i: source/classes/Settings/Settings.cpp.i
-.PHONY : source/classes/Settings/Settings.i
-
-# target to preprocess a source file
-source/classes/Settings/Settings.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/classes/Settings/Settings.cpp.i
-.PHONY : source/classes/Settings/Settings.cpp.i
-
-source/classes/Settings/Settings.s: source/classes/Settings/Settings.cpp.s
-.PHONY : source/classes/Settings/Settings.s
-
-# target to generate assembly for a file
-source/classes/Settings/Settings.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/classes/Settings/Settings.cpp.s
-.PHONY : source/classes/Settings/Settings.cpp.s
-
-source/classes/TLCuts/TLCuts.o: source/classes/TLCuts/TLCuts.cpp.o
-.PHONY : source/classes/TLCuts/TLCuts.o
-
-# target to build an object file
-source/classes/TLCuts/TLCuts.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/classes/TLCuts/TLCuts.cpp.o
-.PHONY : source/classes/TLCuts/TLCuts.cpp.o
-
-source/classes/TLCuts/TLCuts.i: source/classes/TLCuts/TLCuts.cpp.i
-.PHONY : source/classes/TLCuts/TLCuts.i
-
-# target to preprocess a source file
-source/classes/TLCuts/TLCuts.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/classes/TLCuts/TLCuts.cpp.i
-.PHONY : source/classes/TLCuts/TLCuts.cpp.i
-
-source/classes/TLCuts/TLCuts.s: source/classes/TLCuts/TLCuts.cpp.s
-.PHONY : source/classes/TLCuts/TLCuts.s
-
-# target to generate assembly for a file
-source/classes/TLCuts/TLCuts.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/classes/TLCuts/TLCuts.cpp.s
-.PHONY : source/classes/TLCuts/TLCuts.cpp.s
-
-source/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.o: source/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.cpp.o
-.PHONY : source/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.o
-
-# target to build an object file
-source/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.cpp.o
-.PHONY : source/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.cpp.o
-
-source/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.i: source/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.cpp.i
-.PHONY : source/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.i
-
-# target to preprocess a source file
-source/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.cpp.i
-.PHONY : source/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.cpp.i
-
-source/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.s: source/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.cpp.s
-.PHONY : source/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.s
-
-# target to generate assembly for a file
-source/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.cpp.s
-.PHONY : source/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.cpp.s
-
-source/classes/clas12ana/example_ana.o: source/classes/clas12ana/example_ana.cpp.o
-.PHONY : source/classes/clas12ana/example_ana.o
-
-# target to build an object file
-source/classes/clas12ana/example_ana.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/classes/clas12ana/example_ana.cpp.o
-.PHONY : source/classes/clas12ana/example_ana.cpp.o
-
-source/classes/clas12ana/example_ana.i: source/classes/clas12ana/example_ana.cpp.i
-.PHONY : source/classes/clas12ana/example_ana.i
-
-# target to preprocess a source file
-source/classes/clas12ana/example_ana.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/classes/clas12ana/example_ana.cpp.i
-.PHONY : source/classes/clas12ana/example_ana.cpp.i
-
-source/classes/clas12ana/example_ana.s: source/classes/clas12ana/example_ana.cpp.s
-.PHONY : source/classes/clas12ana/example_ana.s
-
-# target to generate assembly for a file
-source/classes/clas12ana/example_ana.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/classes/clas12ana/example_ana.cpp.s
-.PHONY : source/classes/clas12ana/example_ana.cpp.s
-
-source/classes/clas12ana/example_ana_-_Copy.o: source/classes/clas12ana/example_ana_-_Copy.cpp.o
-.PHONY : source/classes/clas12ana/example_ana_-_Copy.o
-
-# target to build an object file
-source/classes/clas12ana/example_ana_-_Copy.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/classes/clas12ana/example_ana_-_Copy.cpp.o
-.PHONY : source/classes/clas12ana/example_ana_-_Copy.cpp.o
-
-source/classes/clas12ana/example_ana_-_Copy.i: source/classes/clas12ana/example_ana_-_Copy.cpp.i
-.PHONY : source/classes/clas12ana/example_ana_-_Copy.i
-
-# target to preprocess a source file
-source/classes/clas12ana/example_ana_-_Copy.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/classes/clas12ana/example_ana_-_Copy.cpp.i
-.PHONY : source/classes/clas12ana/example_ana_-_Copy.cpp.i
-
-source/classes/clas12ana/example_ana_-_Copy.s: source/classes/clas12ana/example_ana_-_Copy.cpp.s
-.PHONY : source/classes/clas12ana/example_ana_-_Copy.s
-
-# target to generate assembly for a file
-source/classes/clas12ana/example_ana_-_Copy.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/classes/clas12ana/example_ana_-_Copy.cpp.s
-.PHONY : source/classes/clas12ana/example_ana_-_Copy.cpp.s
-
-source/classes/clas12ana/skim_events.o: source/classes/clas12ana/skim_events.cpp.o
-.PHONY : source/classes/clas12ana/skim_events.o
-
-# target to build an object file
-source/classes/clas12ana/skim_events.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/classes/clas12ana/skim_events.cpp.o
-.PHONY : source/classes/clas12ana/skim_events.cpp.o
-
-source/classes/clas12ana/skim_events.i: source/classes/clas12ana/skim_events.cpp.i
-.PHONY : source/classes/clas12ana/skim_events.i
-
-# target to preprocess a source file
-source/classes/clas12ana/skim_events.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/classes/clas12ana/skim_events.cpp.i
-.PHONY : source/classes/clas12ana/skim_events.cpp.i
-
-source/classes/clas12ana/skim_events.s: source/classes/clas12ana/skim_events.cpp.s
-.PHONY : source/classes/clas12ana/skim_events.s
-
-# target to generate assembly for a file
-source/classes/clas12ana/skim_events.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/classes/clas12ana/skim_events.cpp.s
-.PHONY : source/classes/clas12ana/skim_events.cpp.s
-
-source/classes/hData/hData.o: source/classes/hData/hData.cpp.o
-.PHONY : source/classes/hData/hData.o
-
-# target to build an object file
-source/classes/hData/hData.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/classes/hData/hData.cpp.o
-.PHONY : source/classes/hData/hData.cpp.o
-
-source/classes/hData/hData.i: source/classes/hData/hData.cpp.i
-.PHONY : source/classes/hData/hData.i
-
-# target to preprocess a source file
-source/classes/hData/hData.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/classes/hData/hData.cpp.i
-.PHONY : source/classes/hData/hData.cpp.i
-
-source/classes/hData/hData.s: source/classes/hData/hData.cpp.s
-.PHONY : source/classes/hData/hData.s
-
-# target to generate assembly for a file
-source/classes/hData/hData.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/classes/hData/hData.cpp.s
-.PHONY : source/classes/hData/hData.cpp.s
-
-source/classes/hPlots/hPlot1D.o: source/classes/hPlots/hPlot1D.cpp.o
-.PHONY : source/classes/hPlots/hPlot1D.o
-
-# target to build an object file
-source/classes/hPlots/hPlot1D.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/classes/hPlots/hPlot1D.cpp.o
-.PHONY : source/classes/hPlots/hPlot1D.cpp.o
-
-source/classes/hPlots/hPlot1D.i: source/classes/hPlots/hPlot1D.cpp.i
-.PHONY : source/classes/hPlots/hPlot1D.i
-
-# target to preprocess a source file
-source/classes/hPlots/hPlot1D.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/classes/hPlots/hPlot1D.cpp.i
-.PHONY : source/classes/hPlots/hPlot1D.cpp.i
-
-source/classes/hPlots/hPlot1D.s: source/classes/hPlots/hPlot1D.cpp.s
-.PHONY : source/classes/hPlots/hPlot1D.s
-
-# target to generate assembly for a file
-source/classes/hPlots/hPlot1D.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/classes/hPlots/hPlot1D.cpp.s
-.PHONY : source/classes/hPlots/hPlot1D.cpp.s
-
-source/classes/hPlots/hPlot1DStack.o: source/classes/hPlots/hPlot1DStack.cpp.o
-.PHONY : source/classes/hPlots/hPlot1DStack.o
-
-# target to build an object file
-source/classes/hPlots/hPlot1DStack.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/classes/hPlots/hPlot1DStack.cpp.o
-.PHONY : source/classes/hPlots/hPlot1DStack.cpp.o
-
-source/classes/hPlots/hPlot1DStack.i: source/classes/hPlots/hPlot1DStack.cpp.i
-.PHONY : source/classes/hPlots/hPlot1DStack.i
-
-# target to preprocess a source file
-source/classes/hPlots/hPlot1DStack.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/classes/hPlots/hPlot1DStack.cpp.i
-.PHONY : source/classes/hPlots/hPlot1DStack.cpp.i
-
-source/classes/hPlots/hPlot1DStack.s: source/classes/hPlots/hPlot1DStack.cpp.s
-.PHONY : source/classes/hPlots/hPlot1DStack.s
-
-# target to generate assembly for a file
-source/classes/hPlots/hPlot1DStack.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/classes/hPlots/hPlot1DStack.cpp.s
-.PHONY : source/classes/hPlots/hPlot1DStack.cpp.s
-
-source/classes/hPlots/hPlot2D.o: source/classes/hPlots/hPlot2D.cpp.o
-.PHONY : source/classes/hPlots/hPlot2D.o
-
-# target to build an object file
-source/classes/hPlots/hPlot2D.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/classes/hPlots/hPlot2D.cpp.o
-.PHONY : source/classes/hPlots/hPlot2D.cpp.o
-
-source/classes/hPlots/hPlot2D.i: source/classes/hPlots/hPlot2D.cpp.i
-.PHONY : source/classes/hPlots/hPlot2D.i
-
-# target to preprocess a source file
-source/classes/hPlots/hPlot2D.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/classes/hPlots/hPlot2D.cpp.i
-.PHONY : source/classes/hPlots/hPlot2D.cpp.i
-
-source/classes/hPlots/hPlot2D.s: source/classes/hPlots/hPlot2D.cpp.s
-.PHONY : source/classes/hPlots/hPlot2D.s
-
-# target to generate assembly for a file
-source/classes/hPlots/hPlot2D.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/classes/hPlots/hPlot2D.cpp.s
-.PHONY : source/classes/hPlots/hPlot2D.cpp.s
-
-source/functions/Math_func/poly34.o: source/functions/Math_func/poly34.cpp.o
-.PHONY : source/functions/Math_func/poly34.o
-
-# target to build an object file
-source/functions/Math_func/poly34.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/functions/Math_func/poly34.cpp.o
-.PHONY : source/functions/Math_func/poly34.cpp.o
-
-source/functions/Math_func/poly34.i: source/functions/Math_func/poly34.cpp.i
-.PHONY : source/functions/Math_func/poly34.i
-
-# target to preprocess a source file
-source/functions/Math_func/poly34.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/functions/Math_func/poly34.cpp.i
-.PHONY : source/functions/Math_func/poly34.cpp.i
-
-source/functions/Math_func/poly34.s: source/functions/Math_func/poly34.cpp.s
-.PHONY : source/functions/Math_func/poly34.s
-
-# target to generate assembly for a file
-source/functions/Math_func/poly34.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/functions/Math_func/poly34.cpp.s
-.PHONY : source/functions/Math_func/poly34.cpp.s
-
-source/other/fitexample.o: source/other/fitexample.c.o
-.PHONY : source/other/fitexample.o
-
-# target to build an object file
-source/other/fitexample.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/other/fitexample.c.o
-.PHONY : source/other/fitexample.c.o
-
-source/other/fitexample.i: source/other/fitexample.c.i
-.PHONY : source/other/fitexample.i
-
-# target to preprocess a source file
-source/other/fitexample.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/other/fitexample.c.i
-.PHONY : source/other/fitexample.c.i
-
-source/other/fitexample.s: source/other/fitexample.c.s
-.PHONY : source/other/fitexample.s
-
-# target to generate assembly for a file
-source/other/fitexample.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/other/fitexample.c.s
-.PHONY : source/other/fitexample.c.s
-
-source/other/fitexample_-_Copy.o: source/other/fitexample_-_Copy.c.o
-.PHONY : source/other/fitexample_-_Copy.o
-
-# target to build an object file
-source/other/fitexample_-_Copy.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/other/fitexample_-_Copy.c.o
-.PHONY : source/other/fitexample_-_Copy.c.o
-
-source/other/fitexample_-_Copy.i: source/other/fitexample_-_Copy.c.i
-.PHONY : source/other/fitexample_-_Copy.i
-
-# target to preprocess a source file
-source/other/fitexample_-_Copy.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/other/fitexample_-_Copy.c.i
-.PHONY : source/other/fitexample_-_Copy.c.i
-
-source/other/fitexample_-_Copy.s: source/other/fitexample_-_Copy.c.s
-.PHONY : source/other/fitexample_-_Copy.s
-
-# target to generate assembly for a file
-source/other/fitexample_-_Copy.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/other/fitexample_-_Copy.c.s
-.PHONY : source/other/fitexample_-_Copy.c.s
-
-source/other/hPlot1D_example.o: source/other/hPlot1D_example.cpp.o
-.PHONY : source/other/hPlot1D_example.o
-
-# target to build an object file
-source/other/hPlot1D_example.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/other/hPlot1D_example.cpp.o
-.PHONY : source/other/hPlot1D_example.cpp.o
-
-source/other/hPlot1D_example.i: source/other/hPlot1D_example.cpp.i
-.PHONY : source/other/hPlot1D_example.i
-
-# target to preprocess a source file
-source/other/hPlot1D_example.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/other/hPlot1D_example.cpp.i
-.PHONY : source/other/hPlot1D_example.cpp.i
-
-source/other/hPlot1D_example.s: source/other/hPlot1D_example.cpp.s
-.PHONY : source/other/hPlot1D_example.s
-
-# target to generate assembly for a file
-source/other/hPlot1D_example.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/other/hPlot1D_example.cpp.s
-.PHONY : source/other/hPlot1D_example.cpp.s
-
-source/structures/Histogram1D_beta/Histogram1D.o: source/structures/Histogram1D_beta/Histogram1D.cpp.o
-.PHONY : source/structures/Histogram1D_beta/Histogram1D.o
-
-# target to build an object file
-source/structures/Histogram1D_beta/Histogram1D.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/structures/Histogram1D_beta/Histogram1D.cpp.o
-.PHONY : source/structures/Histogram1D_beta/Histogram1D.cpp.o
-
-source/structures/Histogram1D_beta/Histogram1D.i: source/structures/Histogram1D_beta/Histogram1D.cpp.i
-.PHONY : source/structures/Histogram1D_beta/Histogram1D.i
-
-# target to preprocess a source file
-source/structures/Histogram1D_beta/Histogram1D.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/structures/Histogram1D_beta/Histogram1D.cpp.i
-.PHONY : source/structures/Histogram1D_beta/Histogram1D.cpp.i
-
-source/structures/Histogram1D_beta/Histogram1D.s: source/structures/Histogram1D_beta/Histogram1D.cpp.s
-.PHONY : source/structures/Histogram1D_beta/Histogram1D.s
-
-# target to generate assembly for a file
-source/structures/Histogram1D_beta/Histogram1D.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/source/structures/Histogram1D_beta/Histogram1D.cpp.s
-.PHONY : source/structures/Histogram1D_beta/Histogram1D.cpp.s
-
 testers/nFD_eff_test/nFD_eff_test.o: testers/nFD_eff_test/nFD_eff_test.cpp.o
 .PHONY : testers/nFD_eff_test/nFD_eff_test.o
 
@@ -1488,6 +1368,72 @@ help:
 	@echo "... Old_analysers/TruthLevelAnalyser.o"
 	@echo "... Old_analysers/TruthLevelAnalyser.i"
 	@echo "... Old_analysers/TruthLevelAnalyser.s"
+	@echo "... framework/classes/AMaps/AMaps.o"
+	@echo "... framework/classes/AMaps/AMaps.i"
+	@echo "... framework/classes/AMaps/AMaps.s"
+	@echo "... framework/classes/DEfficiency/DEfficiency.o"
+	@echo "... framework/classes/DEfficiency/DEfficiency.i"
+	@echo "... framework/classes/DEfficiency/DEfficiency.s"
+	@echo "... framework/classes/DataAnalyser/DataAnalyser.o"
+	@echo "... framework/classes/DataAnalyser/DataAnalyser.i"
+	@echo "... framework/classes/DataAnalyser/DataAnalyser.s"
+	@echo "... framework/classes/Directories/Directories.o"
+	@echo "... framework/classes/Directories/Directories.i"
+	@echo "... framework/classes/Directories/Directories.s"
+	@echo "... framework/classes/ExperimentParameters/ExperimentParameters.o"
+	@echo "... framework/classes/ExperimentParameters/ExperimentParameters.i"
+	@echo "... framework/classes/ExperimentParameters/ExperimentParameters.s"
+	@echo "... framework/classes/MomentumResolution/MomentumResolution.o"
+	@echo "... framework/classes/MomentumResolution/MomentumResolution.i"
+	@echo "... framework/classes/MomentumResolution/MomentumResolution.s"
+	@echo "... framework/classes/ParticleID/ParticleID.o"
+	@echo "... framework/classes/ParticleID/ParticleID.i"
+	@echo "... framework/classes/ParticleID/ParticleID.s"
+	@echo "... framework/classes/Settings/CustomPlotsDirectory.o"
+	@echo "... framework/classes/Settings/CustomPlotsDirectory.i"
+	@echo "... framework/classes/Settings/CustomPlotsDirectory.s"
+	@echo "... framework/classes/Settings/Settings.o"
+	@echo "... framework/classes/Settings/Settings.i"
+	@echo "... framework/classes/Settings/Settings.s"
+	@echo "... framework/classes/TLCuts/TLCuts.o"
+	@echo "... framework/classes/TLCuts/TLCuts.i"
+	@echo "... framework/classes/TLCuts/TLCuts.s"
+	@echo "... framework/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.o"
+	@echo "... framework/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.i"
+	@echo "... framework/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.s"
+	@echo "... framework/classes/clas12ana/example_ana.o"
+	@echo "... framework/classes/clas12ana/example_ana.i"
+	@echo "... framework/classes/clas12ana/example_ana.s"
+	@echo "... framework/classes/clas12ana/example_ana_-_Copy.o"
+	@echo "... framework/classes/clas12ana/example_ana_-_Copy.i"
+	@echo "... framework/classes/clas12ana/example_ana_-_Copy.s"
+	@echo "... framework/classes/clas12ana/skim_events.o"
+	@echo "... framework/classes/clas12ana/skim_events.i"
+	@echo "... framework/classes/clas12ana/skim_events.s"
+	@echo "... framework/classes/hPlots/hPlot1D.o"
+	@echo "... framework/classes/hPlots/hPlot1D.i"
+	@echo "... framework/classes/hPlots/hPlot1D.s"
+	@echo "... framework/classes/hPlots/hPlot1DStack.o"
+	@echo "... framework/classes/hPlots/hPlot1DStack.i"
+	@echo "... framework/classes/hPlots/hPlot1DStack.s"
+	@echo "... framework/classes/hPlots/hPlot2D.o"
+	@echo "... framework/classes/hPlots/hPlot2D.i"
+	@echo "... framework/classes/hPlots/hPlot2D.s"
+	@echo "... framework/namespaces/general_utilities/analysis_math/poly_solver.o"
+	@echo "... framework/namespaces/general_utilities/analysis_math/poly_solver.i"
+	@echo "... framework/namespaces/general_utilities/analysis_math/poly_solver.s"
+	@echo "... framework/other/fitexample.o"
+	@echo "... framework/other/fitexample.i"
+	@echo "... framework/other/fitexample.s"
+	@echo "... framework/other/fitexample_-_Copy.o"
+	@echo "... framework/other/fitexample_-_Copy.i"
+	@echo "... framework/other/fitexample_-_Copy.s"
+	@echo "... framework/other/hPlot1D_example.o"
+	@echo "... framework/other/hPlot1D_example.i"
+	@echo "... framework/other/hPlot1D_example.s"
+	@echo "... framework/structures/Histogram1D_beta/Histogram1D.o"
+	@echo "... framework/structures/Histogram1D_beta/Histogram1D.i"
+	@echo "... framework/structures/Histogram1D_beta/Histogram1D.s"
 	@echo "... macros/AMapsDiveTest.o"
 	@echo "... macros/AMapsDiveTest.i"
 	@echo "... macros/AMapsDiveTest.s"
@@ -1557,87 +1503,6 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
-	@echo "... setup/CLAS12DAnalysis/CLAS12DASettings/CLAS12DASettings.o"
-	@echo "... setup/CLAS12DAnalysis/CLAS12DASettings/CLAS12DASettings.i"
-	@echo "... setup/CLAS12DAnalysis/CLAS12DASettings/CLAS12DASettings.s"
-	@echo "... setup/CLAS12DAnalysis/CLAS12DAnalyser/CLAS12DAnalyser.o"
-	@echo "... setup/CLAS12DAnalysis/CLAS12DAnalyser/CLAS12DAnalyser.i"
-	@echo "... setup/CLAS12DAnalysis/CLAS12DAnalyser/CLAS12DAnalyser.s"
-	@echo "... setup/CLAS12DAnalysis/CLAS12DHistograms/CLAS12DHistograms.o"
-	@echo "... setup/CLAS12DAnalysis/CLAS12DHistograms/CLAS12DHistograms.i"
-	@echo "... setup/CLAS12DAnalysis/CLAS12DHistograms/CLAS12DHistograms.s"
-	@echo "... source/classes/AMaps/AMaps.o"
-	@echo "... source/classes/AMaps/AMaps.i"
-	@echo "... source/classes/AMaps/AMaps.s"
-	@echo "... source/classes/DEfficiency/DEfficiency.o"
-	@echo "... source/classes/DEfficiency/DEfficiency.i"
-	@echo "... source/classes/DEfficiency/DEfficiency.s"
-	@echo "... source/classes/DataAnalyser/DataAnalyser.o"
-	@echo "... source/classes/DataAnalyser/DataAnalyser.i"
-	@echo "... source/classes/DataAnalyser/DataAnalyser.s"
-	@echo "... source/classes/Directories/Directories.o"
-	@echo "... source/classes/Directories/Directories.i"
-	@echo "... source/classes/Directories/Directories.s"
-	@echo "... source/classes/ExperimentParameters/ExperimentParameters.o"
-	@echo "... source/classes/ExperimentParameters/ExperimentParameters.i"
-	@echo "... source/classes/ExperimentParameters/ExperimentParameters.s"
-	@echo "... source/classes/MomentumResolution/MomentumResolution.o"
-	@echo "... source/classes/MomentumResolution/MomentumResolution.i"
-	@echo "... source/classes/MomentumResolution/MomentumResolution.s"
-	@echo "... source/classes/ParticleID/ParticleID.o"
-	@echo "... source/classes/ParticleID/ParticleID.i"
-	@echo "... source/classes/ParticleID/ParticleID.s"
-	@echo "... source/classes/RecoAnalyser/RecoAnalyser.o"
-	@echo "... source/classes/RecoAnalyser/RecoAnalyser.i"
-	@echo "... source/classes/RecoAnalyser/RecoAnalyser.s"
-	@echo "... source/classes/Settings/CustomPlotsDirectory.o"
-	@echo "... source/classes/Settings/CustomPlotsDirectory.i"
-	@echo "... source/classes/Settings/CustomPlotsDirectory.s"
-	@echo "... source/classes/Settings/Settings.o"
-	@echo "... source/classes/Settings/Settings.i"
-	@echo "... source/classes/Settings/Settings.s"
-	@echo "... source/classes/TLCuts/TLCuts.o"
-	@echo "... source/classes/TLCuts/TLCuts.i"
-	@echo "... source/classes/TLCuts/TLCuts.s"
-	@echo "... source/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.o"
-	@echo "... source/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.i"
-	@echo "... source/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.s"
-	@echo "... source/classes/clas12ana/example_ana.o"
-	@echo "... source/classes/clas12ana/example_ana.i"
-	@echo "... source/classes/clas12ana/example_ana.s"
-	@echo "... source/classes/clas12ana/example_ana_-_Copy.o"
-	@echo "... source/classes/clas12ana/example_ana_-_Copy.i"
-	@echo "... source/classes/clas12ana/example_ana_-_Copy.s"
-	@echo "... source/classes/clas12ana/skim_events.o"
-	@echo "... source/classes/clas12ana/skim_events.i"
-	@echo "... source/classes/clas12ana/skim_events.s"
-	@echo "... source/classes/hData/hData.o"
-	@echo "... source/classes/hData/hData.i"
-	@echo "... source/classes/hData/hData.s"
-	@echo "... source/classes/hPlots/hPlot1D.o"
-	@echo "... source/classes/hPlots/hPlot1D.i"
-	@echo "... source/classes/hPlots/hPlot1D.s"
-	@echo "... source/classes/hPlots/hPlot1DStack.o"
-	@echo "... source/classes/hPlots/hPlot1DStack.i"
-	@echo "... source/classes/hPlots/hPlot1DStack.s"
-	@echo "... source/classes/hPlots/hPlot2D.o"
-	@echo "... source/classes/hPlots/hPlot2D.i"
-	@echo "... source/classes/hPlots/hPlot2D.s"
-	@echo "... source/functions/Math_func/poly34.o"
-	@echo "... source/functions/Math_func/poly34.i"
-	@echo "... source/functions/Math_func/poly34.s"
-	@echo "... source/other/fitexample.o"
-	@echo "... source/other/fitexample.i"
-	@echo "... source/other/fitexample.s"
-	@echo "... source/other/fitexample_-_Copy.o"
-	@echo "... source/other/fitexample_-_Copy.i"
-	@echo "... source/other/fitexample_-_Copy.s"
-	@echo "... source/other/hPlot1D_example.o"
-	@echo "... source/other/hPlot1D_example.i"
-	@echo "... source/other/hPlot1D_example.s"
-	@echo "... source/structures/Histogram1D_beta/Histogram1D.o"
-	@echo "... source/structures/Histogram1D_beta/Histogram1D.i"
-	@echo "... source/structures/Histogram1D_beta/Histogram1D.s"
 	@echo "... testers/nFD_eff_test/nFD_eff_test.o"
 	@echo "... testers/nFD_eff_test/nFD_eff_test.i"
 	@echo "... testers/nFD_eff_test/nFD_eff_test.s"
