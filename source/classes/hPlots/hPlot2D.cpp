@@ -136,9 +136,9 @@ void hPlot2D::histPlotter2D(const std::string &SampleName, TCanvas *HistogramCan
 
     std::string sNameFlag;
 
-    if (FindSubstring(SampleName, "sim")) {
+    if (basic_tools::FindSubstring(SampleName, "sim")) {
         sNameFlag = "s";
-    } else if (FindSubstring(SampleName, "data")) {
+    } else if (basic_tools::FindSubstring(SampleName, "data")) {
         sNameFlag = "d";
     }
 
@@ -246,9 +246,9 @@ void hPlot2D::histPlotter2D(const std::string &SampleName, TCanvas *HistogramCan
 
     std::string sNameFlag;
 
-    if (FindSubstring(SampleName, "sim")) {
+    if (basic_tools::FindSubstring(SampleName, "sim")) {
         sNameFlag = "s";
-    } else if (FindSubstring(SampleName, "data")) {
+    } else if (basic_tools::FindSubstring(SampleName, "data")) {
         sNameFlag = "d";
     }
 
@@ -346,9 +346,9 @@ void hPlot2D::histPlotter2D(const std::string &SampleName, TCanvas *HistogramCan
 
     std::string sNameFlag;
 
-    if (FindSubstring(SampleName, "sim")) {
+    if (basic_tools::FindSubstring(SampleName, "sim")) {
         sNameFlag = "s";
-    } else if (FindSubstring(SampleName, "data")) {
+    } else if (basic_tools::FindSubstring(SampleName, "data")) {
         sNameFlag = "d";
     }
 
@@ -447,9 +447,9 @@ void hPlot2D::histPlotter2D(const std::string &SampleName, TCanvas *HistogramCan
 
     std::string sNameFlag;
 
-    if (FindSubstring(SampleName, "sim")) {
+    if (basic_tools::FindSubstring(SampleName, "sim")) {
         sNameFlag = "s";
-    } else if (FindSubstring(SampleName, "data")) {
+    } else if (basic_tools::FindSubstring(SampleName, "data")) {
         sNameFlag = "d";
     }
 
