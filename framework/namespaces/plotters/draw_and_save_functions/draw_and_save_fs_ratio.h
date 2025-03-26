@@ -1785,6 +1785,7 @@ void DrawAndSaveFSRatio(const std::string &SampleName, TH2D *pFDpCD_Plot, const 
     delete Canvas;
     delete CanvasMulti;
 }
-}
 
-#endif //DRAW_AND_SAVE_FS_RATIO_H
+};  // namespace draw_and_save_fs_ratio
+
+#endif  // DRAW_AND_SAVE_FS_RATIO_H

@@ -627,6 +627,6 @@ void BetaFitApprax(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Mome
     }
 }
 
-}  // namespace fitter_functions
+};  // namespace fitter_functions
 
 #endif  // FIT_FUNCTIONS_H

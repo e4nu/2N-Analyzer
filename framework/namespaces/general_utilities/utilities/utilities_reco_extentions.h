@@ -15,6 +15,6 @@ using namespace std;
 namespace utilities {
 using namespace analysis_math_reco_extentions;
 using namespace reco_analysis_functions;
-}  // namespace utilities
+};  // namespace utilities
 
 #endif  // UTILITIES_RECO_EXTENTIONS_H

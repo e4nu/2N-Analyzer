@@ -31,8 +31,8 @@
 #include <typeinfo>
 #include <vector>
 
-#include "poly_solver.h"
 #include "../../../classes/DSCuts/DSCuts.h"
+#include "poly_solver.h"
 //
 #include "HipoChain.h"
 #include "clas12reader.h"
@@ -125,6 +125,6 @@ bool TLKinCutsCheck(const std::unique_ptr<clas12::clas12reader> &c12, bool apply
     }
 }
 
-}  // namespace analysis_math_reco_extentions
+};  // namespace analysis_math_reco_extentions
 
 #endif  // ANALYSIS_MATH_RECO_EXTENTIONS_H

@@ -202,6 +202,6 @@ void drawtext() {
     }
 }
 
-}  // namespace utilities
+};  // namespace utilities
 
 #endif  // UTILITIES_H

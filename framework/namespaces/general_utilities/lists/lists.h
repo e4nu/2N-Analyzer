@@ -202,6 +202,6 @@ vector<string> C12x4_data_6GeV_runs = {"015186", "015187", "015188", "015189", "
 // dir: /lustre24/expphy/cache/clas12/rg-m/production/pass1/6gev/Ar/dst/recon
 vector<string> Ar40_data_6GeV_runs = {"015792", "015793", "015794", "015795", "015796", "015797", "015798", "015800", "015801", "015802"};
 
-}  // namespace lists
+};  // namespace lists
 
 #endif  // LISTS_H

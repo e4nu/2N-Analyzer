@@ -148,6 +148,6 @@ int GetBinFromAng(double Angle, double AngleBins, double AngleMin, double AngleM
     return Bin;
 }
 
-}  // namespace analysis_math
+};  // namespace analysis_math
 
 #endif  // ANALYSIS_MATH_H

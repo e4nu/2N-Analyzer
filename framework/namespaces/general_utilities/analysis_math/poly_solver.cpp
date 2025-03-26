@@ -408,6 +408,6 @@ int SolveP5(double *x, double a, double b, double c, double d, double e)  // sol
     return 1 + SolveP4(x + 1, a1, b1, c1, d1);
 }  // SolveP5(double *x,double a,double b,double c,double d,double e)	// solve equation x^5 + a*x^4 + b*x^3 + c*x^2 + d*x + e = 0
 //-----------------------------------------------------------------------------
-}  // namespace poly_solver
+};  // namespace poly_solver
 
 #endif  // POLY_SOLVER_H

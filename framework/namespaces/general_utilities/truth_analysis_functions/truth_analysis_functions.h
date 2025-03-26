@@ -90,6 +90,6 @@ bool TL_Event_Selection_pFDpCD;
 bool TL_Event_Selection_nFDpCD;
 //</editor-fold>
 
-}  // namespace truth_analysis_functions
+};  // namespace truth_analysis_functions
 
 #endif  // TRUTH_ANALYSIS_FUNCTIONS_H

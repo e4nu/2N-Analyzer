@@ -1,8 +1,6 @@
 #ifndef PDF_CANVAS_H
 #define PDF_CANVAS_H
 
-#include "../../settings/PDF_canvas_settings/PDF_canvas_settings.h"
-
 #include <TApplication.h>
 #include <TCanvas.h>
 #include <TChain.h>
@@ -26,6 +24,8 @@
 #include <sstream>
 #include <typeinfo>
 #include <vector>
+
+#include "../../settings/PDF_canvas_settings/PDF_canvas_settings.h"
 
 // ======================================================================================================================================================================
 // PDF file canvas settings
@@ -89,6 +89,6 @@ void CopyPadContent(TPad* sourcePad, TPad* targetPad) {
     targetPad->Update();
 }
 
-}
+};  // namespace PDF_canvas
 
 #endif  // PDF_CANVAS_H

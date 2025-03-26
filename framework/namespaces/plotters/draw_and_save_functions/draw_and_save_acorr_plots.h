@@ -664,6 +664,6 @@ void DrawAndSaveACorrPlots(bool save_ACorr_data, const std::string &SampleName, 
 
     delete Canvas;
 }
-}
+};  // namespace draw_and_save_acorr_plots
 
-#endif //DRAW_AND_SAVE_ACORR_PLOTS_H
+#endif  // DRAW_AND_SAVE_ACORR_PLOTS_H

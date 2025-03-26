@@ -730,6 +730,7 @@ void DrawAndSaveEfficiencyPlots(const std::string &SampleName, const hPlot1D &TL
 
     delete Canvas;
 }
-}
 
-#endif //DRAW_AND_SAVE_EFFICIENCY_PLOTS_H
+};  // namespace draw_and_save_efficiency_plots
+
+#endif  // DRAW_AND_SAVE_EFFICIENCY_PLOTS_H

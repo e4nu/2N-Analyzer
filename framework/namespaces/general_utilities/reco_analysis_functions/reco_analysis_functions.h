@@ -430,6 +430,6 @@ bool NeutronECAL_Cut_Veto(vector<region_part_ptr>& allParticles, vector<region_p
     return true; /* we survived up to this point, we do have a neutral particle */
 }
 
-}  // namespace reco_analysis_functions
+};  // namespace reco_analysis_functions
 
 #endif  // RECO_ANALYSIS_FUNCTIONS_H

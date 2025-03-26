@@ -1056,6 +1056,6 @@ void SettingSaveNames(const std::string &SampleName, const std::string &Type, co
     }
 }
 
-}  // namespace data_processor
+};  // namespace data_processor
 
 #endif  // DATA_PROCESSOR_H
