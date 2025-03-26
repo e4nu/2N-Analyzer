@@ -44,7 +44,7 @@
 using namespace std;
 using namespace utilities;
 
-class DEfficiency : public hData {
+class DEfficiency {
    private:
     bool plot_errorbars = true;
     bool rebin_plots = false;
