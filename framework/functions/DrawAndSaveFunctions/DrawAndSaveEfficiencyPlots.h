@@ -30,10 +30,6 @@
 #include <vector>
 
 #include "../../classes/hPlots/hPlot1D.cpp"
-// #include "../EventProperties/data_processor::GetParticleName.h"
-// #include "../EventProperties/data_processor::GetParticleNameLC.h"
-// #include "../EventProperties/data_processor::GetParticleNameShort.h"
-// #include "../GeneralFunctions.h"
 #include "../../namespaces/general_utilities/utilities/utilities.h"
 
 // TODO: move includes here into a namespace
@@ -173,7 +169,8 @@ void DrawAndSaveEfficiencyPlots(const std::string &SampleName, const hPlot1D &TL
         EfficiencySaveDir = TLPlot.GetHistogram1DSaveNamePath() + "/00_" + EfficiencyParticleDir + "_" + EfficiencyType + "_efficiency_plots_" + EfficiencyFSDir + "/";
         EfficiencyTestSaveDir = EfficiencySaveDir + "Cloned_hist_test/";
     } else {
-        if (basic_tools::FindSubstring(EfficiencyRecTitle, ", FD)") || basic_tools::FindSubstring(EfficiencyRecTitle, "FD " + EfficiencyParticle) || basic_tools::FindSubstring(EfficiencyRecTitle, "FD " + EfficiencyParticleLC)) {
+        if (basic_tools::FindSubstring(EfficiencyRecTitle, ", FD)") || basic_tools::FindSubstring(EfficiencyRecTitle, "FD " + EfficiencyParticle) ||
+            basic_tools::FindSubstring(EfficiencyRecTitle, "FD " + EfficiencyParticleLC)) {
             EfficiencySaveDir = TLPlot.GetHistogram1DSaveNamePath() + "/01_FD_" + EfficiencyParticleDir + "_" + EfficiencyType + "_efficiency_plots_" + EfficiencyFSDir + "/";
             EfficiencyTestSaveDir = EfficiencySaveDir + "Cloned_hist_test" + "_FD/";
         } else if (basic_tools::FindSubstring(EfficiencyRecTitle, ", CD)") || basic_tools::FindSubstring(EfficiencyRecTitle, "CD " + EfficiencyParticle) ||
@@ -534,7 +531,8 @@ void DrawAndSaveEfficiencyPlots(const std::string &SampleName, const hPlot1D &TL
         EfficiencySaveDir = TLPlot.GetHistogram1DSaveNamePath() + "/00_" + EfficiencyParticle + "_" + EfficiencyType + "_efficiency_plots_" + EfficiencyFS + "/";
         EfficiencyTestSaveDir = EfficiencySaveDir + "Cloned_hist_test/";
     } else {
-        if (basic_tools::FindSubstring(EfficiencyRecTitle, ", FD)") || basic_tools::FindSubstring(EfficiencyRecTitle, "FD " + EfficiencyParticle) || basic_tools::FindSubstring(EfficiencyRecTitle, "FD " + EfficiencyParticleLC)) {
+        if (basic_tools::FindSubstring(EfficiencyRecTitle, ", FD)") || basic_tools::FindSubstring(EfficiencyRecTitle, "FD " + EfficiencyParticle) ||
+            basic_tools::FindSubstring(EfficiencyRecTitle, "FD " + EfficiencyParticleLC)) {
             EfficiencySaveDir = TLPlot.GetHistogram1DSaveNamePath() + "/01_FD_" + EfficiencyParticle + "_" + EfficiencyType + "_efficiency_plots_" + EfficiencyFS + "/";
             EfficiencyTestSaveDir = EfficiencySaveDir + "Cloned_hist_test" + "_FD/";
         } else if (basic_tools::FindSubstring(EfficiencyRecTitle, ", CD)") || basic_tools::FindSubstring(EfficiencyRecTitle, "CD " + EfficiencyParticle) ||

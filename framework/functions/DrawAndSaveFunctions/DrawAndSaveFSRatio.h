@@ -41,16 +41,8 @@ SetYAxisTitle
 #include <typeinfo>
 #include <vector>
 
-// #include "../../classes/hData/hData.h"
 #include "../../classes/hPlots/hPlot1D.cpp"
 #include "../../namespaces/general_utilities/utilities/utilities.h"
-// #include "../EventProperties/SetFSRatioSaveDir.h"
-// #include "../EventProperties/SetStatsTitle.h"
-// #include "../EventProperties/SetTitle.h"
-// #include "../EventProperties/SetType.h"
-// #include "../EventProperties/SetXAxisTitle.h"
-// #include "../EventProperties/SetYAxisTitle.h"
-// #include "../EventProperties/SettingSaveNames.h"
 
 using namespace std;
 using namespace utilities;
@@ -66,8 +58,6 @@ const bool Equi_z_2D = true;
 // DrawAndSaveFSRatio in 1D plots ---------------------------------------------------------------------------------------------------------------------------------------
 
 void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot1D &pFDpCD_Plot, const hPlot1D &nFDpCD_Plot, TList *Histogram_list) {
-    hData Propeties;
-
     bool plot_errorbars = true;
     bool rebin_plots = false;
 
@@ -335,8 +325,6 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot1D &pFDpCD_Plo
 }
 
 void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot1D &pFDpCD_Plot, TH1D *nFDpCD_Plot, TList *Histogram_list) {
-    hData Propeties;
-
     bool plot_errorbars = true;
     bool rebin_plots = false;
 
@@ -653,8 +641,6 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot1D &pFDpCD_Plo
 }
 
 void DrawAndSaveFSRatio(const std::string &SampleName, TH1D *pFDpCD_Plot, const std::string &pFDpCD_PlotSaveNamePath, TH1D *nFDpCD_Plot, TList *Histogram_list) {
-    hData Propeties;
-
     bool plot_errorbars = true;
     bool rebin_plots = false;
 
@@ -981,8 +967,6 @@ void DrawAndSaveFSRatio(const std::string &SampleName, TH1D *pFDpCD_Plot, const 
 // DrawAndSaveFSRatio in 2D plots ---------------------------------------------------------------------------------------------------------------------------------------
 
 void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot2D &pFDpCD_Plot, const hPlot2D &nFDpCD_Plot, TList *Histogram_list) {
-    hData Propeties;
-
     bool plot_errorbars = true;
 
     //<editor-fold desc="Canvas definitions">
@@ -1307,8 +1291,6 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot2D &pFDpCD_Plo
 }
 
 void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot2D &pFDpCD_Plot, TH2D *nFDpCD_Plot, TList *Histogram_list) {
-    hData Propeties;
-
     bool plot_errorbars = true;
     bool rebin_plots = false;
 
@@ -1558,8 +1540,6 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot2D &pFDpCD_Plo
 }
 
 void DrawAndSaveFSRatio(const std::string &SampleName, TH2D *pFDpCD_Plot, const std::string &pFDpCD_PlotSaveNamePath, TH2D *nFDpCD_Plot, TList *Histogram_list) {
-    hData Propeties;
-
     bool plot_errorbars = false;
     bool rebin_plots = false;
 

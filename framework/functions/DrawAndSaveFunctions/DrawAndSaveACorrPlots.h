@@ -30,11 +30,7 @@
 #include <vector>
 
 #include "../../classes/hPlots/hPlot1D.cpp"
-// #include "../EventProperties/data_processor::GetParticleName.h"
-// #include "../EventProperties/data_processor::GetParticleNameLC.h"
-// #include "../EventProperties/data_processor::GetParticleNameShort.h"
 #include "../../namespaces/general_utilities/utilities/utilities.h"
-// #include "../GeneralFunctions.h"
 
 // TODO: move includes here into a namespace
 

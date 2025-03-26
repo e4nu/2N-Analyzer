@@ -452,7 +452,7 @@ std::string SetXLabel(const std::string &Source) {
 
 // SetSaveDir function --------------------------------------------------------------------------------------------------------------------------------------------------
 
-std::string SetSaveDir(const std::string &Source, const std::string &BaseSaveDir, const std::string &Mod) {
+std::string SetSaveDir(const std::string &Source, const std::string &BaseSaveDir, const std::string &Mod = "") {
     std::string SaveDir, TestSaveDir;
 
     std::string Particle = GetParticleName(Source), ParticleLC = GetParticleNameLC(Source), FS = GetFS(Source), Type = GetType(Source);
