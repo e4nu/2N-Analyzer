@@ -11,7 +11,7 @@
 #include <sstream>
 #include <typeinfo>
 
-#include "../../namespaces/utilities/utilities.h"
+#include "../../namespaces/general_utilities/utilities/utilities.h"
 #include "GetParticleName.h"
 #include "GetParticleNameShort.h"
 // #include "../findSubstring.h"

@@ -24,7 +24,7 @@
 
 
 #include "../../source/classes/AMaps/AMaps.cpp"
-#include "../../source/namespaces/utilities/utilities.h"
+#include "../../source/namespaces/general_utilities/utilities/utilities.h"
 //
 #include "HipoChain.h"
 #include "clas12reader.h"

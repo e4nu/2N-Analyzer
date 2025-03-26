@@ -43,7 +43,7 @@ SetYAxisTitle
 
 #include "../../classes/hData/hData.h"
 #include "../../classes/hPlots/hPlot1D.h"
-#include "../../namespaces/utilities/utilities.h"
+#include "../../namespaces/general_utilities/utilities/utilities.h"
 #include "../EventProperties/SetFSRatioSaveDir.h"
 #include "../EventProperties/SetStatsTitle.h"
 #include "../EventProperties/SetTitle.h"

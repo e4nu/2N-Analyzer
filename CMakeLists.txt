@@ -211,16 +211,16 @@ add_executable(project ${CLAS12ROOT_SOURCES} ${CLAS12BANKS_SOURCES} ${HIPO4_SOUR
         source/functions/StackPlot4.h
         source/functions/TLKinCutsCheck.h
         source/functions/to_string_with_precision.h
-        source/namespaces/utilities/utilities.h
-        source/namespaces/analysis_math/analysis_math.h
-        source/namespaces/analysis_math/analysis_math_reco_extentions.h
-        source/namespaces/basic_tools/basic_tools.h
-        source/namespaces/constants/constants.h
-        source/namespaces/data_processor/data_processor.h
-        source/namespaces/lists/lists.h
-        source/namespaces/reco_analysis_functions/reco_analysis_functions.h
+        source/namespaces/general_utilities/utilities/utilities.h
+        source/namespaces/general_utilities/analysis_math/analysis_math.h
+        source/namespaces/general_utilities/analysis_math/analysis_math_reco_extentions.h
+        source/namespaces/general_utilities/basic_tools/basic_tools.h
+        source/namespaces/general_utilities/constants/constants.h
+        source/namespaces/general_utilities/data_processor/data_processor.h
+        source/namespaces/general_utilities/lists/lists.h
+        source/namespaces/general_utilities/reco_analysis_functions/reco_analysis_functions.h
         source/namespaces/settings/settings.h
-        source/namespaces/truth_analysis_functions/truth_analysis_functions.h
+        source/namespaces/general_utilities/truth_analysis_functions/truth_analysis_functions.h
         "source/other/fitexample - Copy.c"
         source/other/fitexample.c
         source/other/hPlot1D_example.cpp

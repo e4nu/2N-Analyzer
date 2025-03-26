@@ -18,7 +18,7 @@ scp -r asportes@ftp.jlab.org:/w/hallb-scshelf2102/clas12/asportes/recon_c12_6gev
 #include "../source/classes/clas12ana/clas12ana.h"
 #include "../source/classes/hPlots/hPlot1D.cpp"
 #include "../source/classes/hPlots/hPlot2D.cpp"
-#include "../source/namespaces/utilities/utilities.h"
+#include "../source/namespaces/general_utilities/utilities/utilities.h"
 
 #if !defined(MOMENTUMRESOLUTION_H)
 #include "../source/classes/MomentumResolution/MomentumResolution.cpp"

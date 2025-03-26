@@ -42,7 +42,7 @@ scp -r asportes@ftp.jlab.org:/w/hallb-scshelf2102/clas12/asportes/recon_c12_6gev
 #include "../source/functions/StackPlot3.h"
 #include "../source/functions/StackPlot4.h"
 #include "../source/functions/TLKinCutsCheck.h"
-#include "../source/nameSpaces/utilities/utilities.cpp"
+#include "../source/namespaces/general_utilities/utilities/utilities.cpp"
 #include "HipoChain.h"
 #include "clas12reader.h"
 

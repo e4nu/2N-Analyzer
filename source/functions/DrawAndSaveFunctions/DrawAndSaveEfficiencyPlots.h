@@ -34,7 +34,7 @@
 // #include "../EventProperties/GetParticleNameLC.h"
 // #include "../EventProperties/GetParticleNameShort.h"
 // #include "../GeneralFunctions.h"
-#include "../../namespaces/utilities/utilities.h"
+#include "../../namespaces/general_utilities/utilities/utilities.h"
 
 using namespace std;
 using namespace utilities;

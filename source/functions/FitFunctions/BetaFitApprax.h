@@ -24,10 +24,10 @@
 
 #include "../../classes/DSCuts/DSCuts.h"
 #include "../../classes/hPlots/hPlot1D.h"
-#include "../../namespaces/constants/constants.h"
+#include "../../namespaces/general_utilities/constants/constants.h"
 #include "../EventProperties/GetParticleName.h"
 #include "../EventProperties/GetParticleNameShort.h"
-#include "../../namespaces/utilities/utilities.h"
+#include "../../namespaces/general_utilities/utilities/utilities.h"
 #include "../drawtext.h"
 #include "FitFunction.h"
 

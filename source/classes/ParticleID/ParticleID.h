@@ -12,9 +12,9 @@
 #include <map>
 #include <vector>
 
-#include "../../namespaces/constants/constants.h"
-#include "../../namespaces/analysis_math/analysis_math.h"
-#include "../../namespaces/reco_analysis_functions/reco_analysis_functions.h"
+#include "../../namespaces/general_utilities/constants/constants.h"
+#include "../../namespaces/general_utilities/analysis_math/analysis_math.h"
+#include "../../namespaces/general_utilities/reco_analysis_functions/reco_analysis_functions.h"
 // #include "../../functions/NeutronECAL_Cut_Veto.h"
 // #include "../../functions/PID_functions/GetFDNeutronP.h"
 #include "../DSCuts/DSCuts.h"

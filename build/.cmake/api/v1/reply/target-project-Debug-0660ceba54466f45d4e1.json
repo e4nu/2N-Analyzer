@@ -1612,42 +1612,42 @@
 		},
 		{
 			"backtrace" : 1,
-			"path" : "source/namespaces/utilities/utilities.h",
+			"path" : "source/namespaces/general_utilities/utilities/utilities.h",
 			"sourceGroupIndex" : 2
 		},
 		{
 			"backtrace" : 1,
-			"path" : "source/namespaces/analysis_math/analysis_math.h",
+			"path" : "source/namespaces/general_utilities/analysis_math/analysis_math.h",
 			"sourceGroupIndex" : 2
 		},
 		{
 			"backtrace" : 1,
-			"path" : "source/namespaces/analysis_math/analysis_math_reco_extentions.h",
+			"path" : "source/namespaces/general_utilities/analysis_math/analysis_math_reco_extentions.h",
 			"sourceGroupIndex" : 2
 		},
 		{
 			"backtrace" : 1,
-			"path" : "source/namespaces/basic_tools/basic_tools.h",
+			"path" : "source/namespaces/general_utilities/basic_tools/basic_tools.h",
 			"sourceGroupIndex" : 2
 		},
 		{
 			"backtrace" : 1,
-			"path" : "source/namespaces/constants/constants.h",
+			"path" : "source/namespaces/general_utilities/constants/constants.h",
 			"sourceGroupIndex" : 2
 		},
 		{
 			"backtrace" : 1,
-			"path" : "source/namespaces/data_processor/data_processor.h",
+			"path" : "source/namespaces/general_utilities/data_processor/data_processor.h",
 			"sourceGroupIndex" : 2
 		},
 		{
 			"backtrace" : 1,
-			"path" : "source/namespaces/lists/lists.h",
+			"path" : "source/namespaces/general_utilities/lists/lists.h",
 			"sourceGroupIndex" : 2
 		},
 		{
 			"backtrace" : 1,
-			"path" : "source/namespaces/reco_analysis_functions/reco_analysis_functions.h",
+			"path" : "source/namespaces/general_utilities/reco_analysis_functions/reco_analysis_functions.h",
 			"sourceGroupIndex" : 2
 		},
 		{
@@ -1657,7 +1657,7 @@
 		},
 		{
 			"backtrace" : 1,
-			"path" : "source/namespaces/truth_analysis_functions/truth_analysis_functions.h",
+			"path" : "source/namespaces/general_utilities/truth_analysis_functions/truth_analysis_functions.h",
 			"sourceGroupIndex" : 2
 		},
 		{

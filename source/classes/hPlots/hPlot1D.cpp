@@ -4,7 +4,7 @@
 
 #include "hPlot1D.h"
 
-// #include "../../namespaces/utilities/utilities.h"
+// #include "../../namespaces/general_utilities/utilities/utilities.h"
 // #include "../../functions/GeneralFunctions.h"
 
 // Constructor definition -----------------------------------------------------------------------------------------------------------------------------------------------

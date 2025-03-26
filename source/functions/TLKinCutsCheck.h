@@ -30,7 +30,7 @@
 #include <vector>
 
 #include "../classes/DSCuts/DSCuts.h"
-#include "../namespaces/constants/constants.h"
+#include "../namespaces/general_utilities/constants/constants.h"
 #include "AngleCalc/GetBinFromAng.h"
 #include "GeneralFunctions.h"
 #include "clas12reader.h"

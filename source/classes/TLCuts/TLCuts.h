@@ -32,7 +32,7 @@
 // #include "../../constants.h"
 // #include "../../functions/AngleCalc/GetBinFromAng.h"
 // #include "../../functions/GeneralFunctions.h"
-#include "../../namespaces/utilities/utilities.h"
+#include "../../namespaces/general_utilities/utilities/utilities.h"
 #include "../DSCuts/DSCuts.h"
 //
 #include "clas12reader.h"
