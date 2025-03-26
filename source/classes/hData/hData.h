@@ -48,61 +48,61 @@ class hData {
 
     // GetParticleName function ---------------------------------------------------------------------------------------------------------------------------------------------
 
-    string GetParticleName(const string &Source, const bool &PluralParticles = false);
+    std::string GetParticleName(const std::string &Source, const bool &PluralParticles = false);
 
-    string GetParticleName1(const string &Source, const bool &PluralParticles = false);
+    std::string GetParticleName1(const std::string &Source, const bool &PluralParticles = false);
 
     // GetParticleNameFromSubscript function --------------------------------------------------------------------------------------------------------------------------------
 
-    string GetParticleNameFromSubscript(const string &Source, const bool &PluralParticles = false);
+    std::string GetParticleNameFromSubscript(const std::string &Source, const bool &PluralParticles = false);
 
     // GetParticleNameLC function -------------------------------------------------------------------------------------------------------------------------------------------
 
-    string GetParticleNameLC(const string &Source, const bool &PluralParticles = false);
+    std::string GetParticleNameLC(const std::string &Source, const bool &PluralParticles = false);
 
     // GetParticleNameLCFromSubscript function ------------------------------------------------------------------------------------------------------------------------------
 
-    string GetParticleNameLCFromSubscript(const string &Source, const bool &PluralParticles = false);
+    std::string GetParticleNameLCFromSubscript(const std::string &Source, const bool &PluralParticles = false);
 
     // GetParticleNameShort function ----------------------------------------------------------------------------------------------------------------------------------------
 
-    string GetParticleNameShort(const string &Source);
+    std::string GetParticleNameShort(const std::string &Source);
 
     // GetParticleNameShortFromSubscript function ---------------------------------------------------------------------------------------------------------------------------
 
-    string GetParticleNameShortFromSubscript(const string &Source);
+    std::string GetParticleNameShortFromSubscript(const std::string &Source);
 
     // GetType function -----------------------------------------------------------------------------------------------------------------------------------------------------
 
-    string GetType(const string &Source);
+    std::string GetType(const std::string &Source);
 
     // GetDRegion function --------------------------------------------------------------------------------------------------------------------------------------------------
 
-    string GetDRegionExplicit(const string &Source, const bool &ReturnGoingRegion = false);
+    std::string GetDRegionExplicit(const std::string &Source, const bool &ReturnGoingRegion = false);
 
     // GetDRegion function --------------------------------------------------------------------------------------------------------------------------------------------------
 
-    string GetDRegion(const string &Source, const bool &ReturnGoingRegion = false);
+    std::string GetDRegion(const std::string &Source, const bool &ReturnGoingRegion = false);
 
     // GetFSRTitle function -------------------------------------------------------------------------------------------------------------------------------------------------
 
-    string GetFSRTitle(const string &Source, const string &PlotsT);
+    std::string GetFSRTitle(const std::string &Source, const std::string &PlotsT);
 
     // GetTitle function ----------------------------------------------------------------------------------------------------------------------------------------------------
 
-    string GetTitle(const string &Source);
+    std::string GetTitle(const std::string &Source);
 
     // GetStatsTitle function -----------------------------------------------------------------------------------------------------------------------------------------------
 
-    string GetStatsTitle(const string &Source);
+    std::string GetStatsTitle(const std::string &Source);
 
     // GetFS function -------------------------------------------------------------------------------------------------------------------------------------------------------
 
-    string GetFS(const string &Source);
+    std::string GetFS(const std::string &Source);
 
     // GetTopology function -------------------------------------------------------------------------------------------------------------------------------------------------
 
-    string GetTopology(const string &Source);
+    std::string GetTopology(const std::string &Source);
 
     // Other get function ---------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -120,15 +120,15 @@ class hData {
 
     // SetXLabel function ---------------------------------------------------------------------------------------------------------------------------------------------------
 
-    string SetXLabel(const string &Source);
+    std::string SetXLabel(const std::string &Source);
 
     // SetSaveDir function --------------------------------------------------------------------------------------------------------------------------------------------------
 
-    string SetSaveDir(const string &Source, const string &BaseSaveDir, const string &Mod = "");
+    std::string SetSaveDir(const std::string &Source, const std::string &BaseSaveDir, const std::string &Mod = "");
 
     // ReplaceSubStr function -----------------------------------------------------------------------------------------------------------------------------------------------
 
-    void ReplaceSubStr(string &str, const string &subStr, const string &replacement);
+    void ReplaceSubStr(string &str, const std::string &subStr, const std::string &replacement);
 };
 
 #endif  // HDATA_H

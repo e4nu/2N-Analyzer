@@ -40,7 +40,7 @@ using namespace std;
 using namespace utilities;
 
 // DrawAndSaveACorrPlots function for momentum plots:
-void DrawAndSaveACorrPlots(bool save_ACorr_data, const string &SampleName, const hPlot1D &TLPlot, const hPlot1D &RPlot, TList *Histogram_list, TList *ACorr_data, string &ACorr_data_Dir) {
+void DrawAndSaveACorrPlots(bool save_ACorr_data, const std::string &SampleName, const hPlot1D &TLPlot, const hPlot1D &RPlot, TList *Histogram_list, TList *ACorr_data, std::string &ACorr_data_Dir) {
     bool plot_errorbars = true;
     bool rebin_plots = false;
 
@@ -62,43 +62,43 @@ void DrawAndSaveACorrPlots(bool save_ACorr_data, const string &SampleName, const
 
     //<editor-fold desc="Cloning histograms">
     TH1D *Histogram1D_REC = RPlot.GetHistogram();
-    string RPlot_Clone_StatsTitle = "reco. " + RPlot.GetHistogramStatTitle() + " - cloned";
+    std::string RPlot_Clone_StatsTitle = "reco. " + RPlot.GetHistogramStatTitle() + " - cloned";
     TH1D *RPlot_Clone = (TH1D *)Histogram1D_REC->Clone((RPlot_Clone_StatsTitle).c_str());
-    string RPlot_Clone_test_StatsTitle = "reco. " + RPlot.GetHistogramStatTitle() + " - cloned test";
+    std::string RPlot_Clone_test_StatsTitle = "reco. " + RPlot.GetHistogramStatTitle() + " - cloned test";
     TH1D *RPlot_Clone_test = (TH1D *)Histogram1D_REC->Clone((RPlot_Clone_test_StatsTitle).c_str());
-    string RPlot_Clone_test_rebined_StatsTitle = "reco. " + RPlot.GetHistogramStatTitle() + " - cloned test rebined";
+    std::string RPlot_Clone_test_rebined_StatsTitle = "reco. " + RPlot.GetHistogramStatTitle() + " - cloned test rebined";
     TH1D *RPlot_Clone_test_rebined = (TH1D *)Histogram1D_REC->Clone((RPlot_Clone_test_rebined_StatsTitle).c_str());
     if (rebin_plots) { RPlot_Clone_test_rebined->Rebin(2); }
 
     TH1D *Histogram1D_Truth = TLPlot.GetHistogram();
-    string TLPlot_Clone_StatsTitle = "Truth " + TLPlot.GetHistogramStatTitle() + " - cloned";
+    std::string TLPlot_Clone_StatsTitle = "Truth " + TLPlot.GetHistogramStatTitle() + " - cloned";
     TH1D *TLPlot_Clone = (TH1D *)Histogram1D_Truth->Clone((TLPlot_Clone_StatsTitle).c_str());
-    string TLPlot_Clone_test_StatsTitle = "Truth " + TLPlot.GetHistogramStatTitle() + " - cloned test";
+    std::string TLPlot_Clone_test_StatsTitle = "Truth " + TLPlot.GetHistogramStatTitle() + " - cloned test";
     TH1D *TLPlot_Clone_test = (TH1D *)Histogram1D_Truth->Clone((TLPlot_Clone_test_StatsTitle).c_str());
-    string TLPlot_Clone_test_rebined_StatsTitle = "Truth " + TLPlot.GetHistogramStatTitle() + " - cloned test rebined";
+    std::string TLPlot_Clone_test_rebined_StatsTitle = "Truth " + TLPlot.GetHistogramStatTitle() + " - cloned test rebined";
     TH1D *TLPlot_Clone_test_rebined = (TH1D *)Histogram1D_Truth->Clone((TLPlot_Clone_test_rebined_StatsTitle).c_str());
     if (rebin_plots) { TLPlot_Clone_test_rebined->Rebin(2); }
     //</editor-fold>
 
     //<editor-fold desc="Setting particle">
-    string ACorrectionRecTitle = RPlot_Clone->GetTitle();
-    string ACorrectionParticle = GetParticleName(ACorrectionRecTitle);
-    string ACorrectionParticleLC = GetParticleNameLC(ACorrectionRecTitle);
-    string ACorrectionParticleShort = GetParticleNameShort(ACorrectionRecTitle);
+    std::string ACorrectionRecTitle = RPlot_Clone->GetTitle();
+    std::string ACorrectionParticle = GetParticleName(ACorrectionRecTitle);
+    std::string ACorrectionParticleLC = GetParticleNameLC(ACorrectionRecTitle);
+    std::string ACorrectionParticleShort = GetParticleNameShort(ACorrectionRecTitle);
     //</editor-fold>
 
     //<editor-fold desc="Setting title">
-    string ACorrectionType;
+    std::string ACorrectionType;
 
     if (findSubstring(ACorrectionRecTitle, "momentum")) {  // for momentum ACorrection plots
         ACorrectionType = "momentum";
     }
 
-    string ACorrectionTitle = ACorrectionParticle + " " + ACorrectionType;
+    std::string ACorrectionTitle = ACorrectionParticle + " " + ACorrectionType;
     //</editor-fold>
 
     //<editor-fold desc="Setting X axis label">
-    string ACorrectionXLabel;
+    std::string ACorrectionXLabel;
 
     if (findSubstring(ACorrectionRecTitle, "momentum")) {  // for momentum ACorrection plots
         ACorrectionXLabel = "P_{" + ACorrectionParticleShort + "} [GeV/c]";
@@ -110,17 +110,17 @@ void DrawAndSaveACorrPlots(bool save_ACorr_data, const string &SampleName, const
     //</editor-fold>
 
     //<editor-fold desc="Setting y axis label">
-    string xLabel_REC_temp = RPlot_Clone->GetXaxis()->GetTitle();
-    string xLabel_REC = xLabel_REC_temp.substr(0, xLabel_REC_temp.find_last_of('[') - 1);
-    string xLabel_Truth_temp = TLPlot_Clone->GetXaxis()->GetTitle();
-    string xLabel_Truth = xLabel_Truth_temp.substr(0, xLabel_Truth_temp.find_last_of('[') - 1);
+    std::string xLabel_REC_temp = RPlot_Clone->GetXaxis()->GetTitle();
+    std::string xLabel_REC = xLabel_REC_temp.substr(0, xLabel_REC_temp.find_last_of('[') - 1);
+    std::string xLabel_Truth_temp = TLPlot_Clone->GetXaxis()->GetTitle();
+    std::string xLabel_Truth = xLabel_Truth_temp.substr(0, xLabel_Truth_temp.find_last_of('[') - 1);
 
-    string ACorrectionYLabel = string("#alpha = ") + "#frac{1}{#epsilon_{eff}} = " + xLabel_Truth + "/" + xLabel_REC + "^{rec}";
-    //    string ACorrectionYLabel = "#epsilon_{eff} = " + xLabel_REC + "^{rec}" + "/" + xLabel_Truth;
+    std::string ACorrectionYLabel = string("#alpha = ") + "#frac{1}{#epsilon_{eff}} = " + xLabel_Truth + "/" + xLabel_REC + "^{rec}";
+    //    std::string ACorrectionYLabel = "#epsilon_{eff} = " + xLabel_REC + "^{rec}" + "/" + xLabel_Truth;
     //</editor-fold>
 
     //<editor-fold desc="Setting Final state">
-    string ACorrectionFS;
+    std::string ACorrectionFS;
 
     if (findSubstring(ACorrectionRecTitle, "1e_cut") || findSubstring(ACorrectionRecTitle, "1e cut") || findSubstring(ACorrectionRecTitle, "1e Cut")) {
         ACorrectionFS = "1e cut";
@@ -142,7 +142,7 @@ void DrawAndSaveACorrPlots(bool save_ACorr_data, const string &SampleName, const
     //</editor-fold>
 
     //<editor-fold desc="Setting save directory">
-    string ACorrectionSaveDir, ACorrectionTestSaveDir;
+    std::string ACorrectionSaveDir, ACorrectionTestSaveDir;
 
     if (findSubstring(ACorrectionRecTitle, "Electron") || findSubstring(ACorrectionRecTitle, "electron")) {
         ACorrectionSaveDir = TLPlot.GetHistogram1DSaveNamePath() + "/00_" + ACorrectionParticle + "_" + ACorrectionType + "_ACorrection_plots_" + ACorrectionFS + "/";
@@ -167,7 +167,7 @@ void DrawAndSaveACorrPlots(bool save_ACorr_data, const string &SampleName, const
     //</editor-fold>
 
     //<editor-fold desc="Setting save name">
-    string sNameFlag;
+    std::string sNameFlag;
 
     if (findSubstring(SampleName, "sim")) {
         sNameFlag = "s";
@@ -175,15 +175,15 @@ void DrawAndSaveACorrPlots(bool save_ACorr_data, const string &SampleName, const
         sNameFlag = "d";
     }
 
-    string RPlot_Clone_SaveName = ACorrectionSaveDir + sNameFlag + "_" + ACorrectionParticle + "_" + ACorrectionType + "_" + ACorrectionFS + "_" + "Rec_Clone.png";
-    string RPlot_Clone_test_SaveName = ACorrectionTestSaveDir + sNameFlag + "01a_" + ACorrectionParticle + "_" + ACorrectionType + "_" + ACorrectionFS + "_" + "Rec_Clone_test.png";
-    string RPlot_Clone_test_rebined_SaveName =
+    std::string RPlot_Clone_SaveName = ACorrectionSaveDir + sNameFlag + "_" + ACorrectionParticle + "_" + ACorrectionType + "_" + ACorrectionFS + "_" + "Rec_Clone.png";
+    std::string RPlot_Clone_test_SaveName = ACorrectionTestSaveDir + sNameFlag + "01a_" + ACorrectionParticle + "_" + ACorrectionType + "_" + ACorrectionFS + "_" + "Rec_Clone_test.png";
+    std::string RPlot_Clone_test_rebined_SaveName =
         ACorrectionTestSaveDir + sNameFlag + "01b_" + ACorrectionParticle + "_" + ACorrectionType + "_" + ACorrectionFS + "_" + "Rec_Clone_test_rebined.png";
-    string TLPlot_Clone_SaveName = ACorrectionSaveDir + sNameFlag + "_" + ACorrectionParticle + "_" + ACorrectionType + "_" + ACorrectionFS + "_" + "Truth_Clone.png";
-    string TLPlot_Clone_test_SaveName = ACorrectionTestSaveDir + sNameFlag + "02a_" + ACorrectionParticle + "_" + ACorrectionType + "_" + ACorrectionFS + "_" + "Truth_Clone_test.png";
-    string TLPlot_Clone_test_rebined_SaveName =
+    std::string TLPlot_Clone_SaveName = ACorrectionSaveDir + sNameFlag + "_" + ACorrectionParticle + "_" + ACorrectionType + "_" + ACorrectionFS + "_" + "Truth_Clone.png";
+    std::string TLPlot_Clone_test_SaveName = ACorrectionTestSaveDir + sNameFlag + "02a_" + ACorrectionParticle + "_" + ACorrectionType + "_" + ACorrectionFS + "_" + "Truth_Clone_test.png";
+    std::string TLPlot_Clone_test_rebined_SaveName =
         ACorrectionTestSaveDir + sNameFlag + "02b_" + ACorrectionParticle + "_" + ACorrectionType + "_" + ACorrectionFS + "_" + "Truth_Clone_test_rebined.png";
-    string ACorrection_plot_SaveName = ACorrectionSaveDir + sNameFlag + "_" + ACorrectionParticle + "_" + ACorrectionType + "_ACorrection_" + ACorrectionFS + ".png";
+    std::string ACorrection_plot_SaveName = ACorrectionSaveDir + sNameFlag + "_" + ACorrectionParticle + "_" + ACorrectionType + "_ACorrection_" + ACorrectionFS + ".png";
     //</editor-fold>
 
     TH1D *ACorrection_plot = (TH1D *)TLPlot_Clone->Clone((ACorrectionParticle + " " + ACorrectionType + " #alpha" + " (" + ACorrectionFS + ")").c_str());
@@ -287,7 +287,7 @@ void DrawAndSaveACorrPlots(bool save_ACorr_data, const string &SampleName, const
         system(("rm -r " + ACorr_data_Dir).c_str());     // clear old ACorr_data_Dir
         system(("mkdir -p " + ACorr_data_Dir).c_str());  // recreate ACorr_data_Dir
 
-        string ACorr_data_StatsTitle;
+        std::string ACorr_data_StatsTitle;
 
         if ((ACorrectionFS == "pFDpCD") || (ACorrectionFS == "nFDpCD")) {
             if (findSubstring(ACorrectionRecTitle, ", FD)") || findSubstring(ACorrectionRecTitle, "FD " + ACorrectionParticle) ||
@@ -324,7 +324,7 @@ void DrawAndSaveACorrPlots(bool save_ACorr_data, const string &SampleName, const
 }
 
 // DrawAndSaveACorrPlots function for angle plots:
-void DrawAndSaveACorrPlots(bool save_ACorr_data, const string &SampleName, const hPlot1D &TLPlot, TH1D *RPlot, TList *Histogram_list, TList *ACorr_data, string &ACorr_data_Dir) {
+void DrawAndSaveACorrPlots(bool save_ACorr_data, const std::string &SampleName, const hPlot1D &TLPlot, TH1D *RPlot, TList *Histogram_list, TList *ACorr_data, std::string &ACorr_data_Dir) {
     bool plot_errorbars = true;
     bool rebin_plots = false;
 
@@ -344,14 +344,14 @@ void DrawAndSaveACorrPlots(bool save_ACorr_data, const string &SampleName, const
     //</editor-fold>
 
     //<editor-fold desc="Setting particle">
-    string ACorrectionRecTitle = RPlot->GetTitle();
-    string ACorrectionParticle = GetParticleName(ACorrectionRecTitle);
-    string ACorrectionParticleLC = GetParticleNameLC(ACorrectionRecTitle);
-    string ACorrectionParticleShort = GetParticleNameShort(ACorrectionRecTitle);
+    std::string ACorrectionRecTitle = RPlot->GetTitle();
+    std::string ACorrectionParticle = GetParticleName(ACorrectionRecTitle);
+    std::string ACorrectionParticleLC = GetParticleNameLC(ACorrectionRecTitle);
+    std::string ACorrectionParticleShort = GetParticleNameShort(ACorrectionRecTitle);
     //</editor-fold>
 
     //<editor-fold desc="Setting Final state">
-    string ACorrectionFS;
+    std::string ACorrectionFS;
 
     if (findSubstring(ACorrectionRecTitle, "1e_cut") || findSubstring(ACorrectionRecTitle, "1e cut") || findSubstring(ACorrectionRecTitle, "1e Cut")) {
         ACorrectionFS = "1e cut";
@@ -373,7 +373,7 @@ void DrawAndSaveACorrPlots(bool save_ACorr_data, const string &SampleName, const
     //</editor-fold>
 
     //<editor-fold desc="Setting stats box title">
-    string ACorrectionStatsType;
+    std::string ACorrectionStatsType;
 
     if (findSubstring(ACorrectionRecTitle, "#theta")) {  // for momentum ACorrection plots
         ACorrectionStatsType = "#theta_{" + ACorrectionParticleShort + "}";
@@ -381,30 +381,30 @@ void DrawAndSaveACorrPlots(bool save_ACorr_data, const string &SampleName, const
         ACorrectionStatsType = "#phi_{" + ACorrectionParticleShort + "}";
     }
 
-    string ACorrectionStatsTitle = ACorrectionStatsType + " (" + ACorrectionFS + ")";
+    std::string ACorrectionStatsTitle = ACorrectionStatsType + " (" + ACorrectionFS + ")";
     //</editor-fold>
 
     //<editor-fold desc="Cloning histograms">
-    string RPlot_Clone_StatsTitle = "reco. " + ACorrectionStatsTitle + " - cloned";
+    std::string RPlot_Clone_StatsTitle = "reco. " + ACorrectionStatsTitle + " - cloned";
     TH1D *RPlot_Clone = (TH1D *)RPlot->Clone((RPlot_Clone_StatsTitle).c_str());
-    string RPlot_Clone_test_StatsTitle = "reco. " + ACorrectionStatsTitle + " - cloned test";
+    std::string RPlot_Clone_test_StatsTitle = "reco. " + ACorrectionStatsTitle + " - cloned test";
     TH1D *RPlot_Clone_test = (TH1D *)RPlot->Clone((RPlot_Clone_test_StatsTitle).c_str());
-    string RPlot_Clone_test_rebined_StatsTitle = "reco. " + ACorrectionStatsTitle + " - cloned test rebined";
+    std::string RPlot_Clone_test_rebined_StatsTitle = "reco. " + ACorrectionStatsTitle + " - cloned test rebined";
     TH1D *RPlot_Clone_test_rebined = (TH1D *)RPlot->Clone((RPlot_Clone_test_rebined_StatsTitle).c_str());
     if (rebin_plots) { RPlot_Clone_test_rebined->Rebin(2); }
 
     TH1D *Histogram1D_Truth = TLPlot.GetHistogram();
-    string TLPlot_Clone_StatsTitle = "Truth " + ACorrectionStatsTitle + " - cloned";
+    std::string TLPlot_Clone_StatsTitle = "Truth " + ACorrectionStatsTitle + " - cloned";
     TH1D *TLPlot_Clone = (TH1D *)Histogram1D_Truth->Clone((TLPlot_Clone_StatsTitle).c_str());
-    string TLPlot_Clone_test_StatsTitle = "Truth " + ACorrectionStatsTitle + " - cloned test";
+    std::string TLPlot_Clone_test_StatsTitle = "Truth " + ACorrectionStatsTitle + " - cloned test";
     TH1D *TLPlot_Clone_test = (TH1D *)Histogram1D_Truth->Clone((TLPlot_Clone_test_StatsTitle).c_str());
-    string TLPlot_Clone_test_rebined_StatsTitle = "Truth " + TLPlot.GetHistogramStatTitle() + " - cloned test rebined";
+    std::string TLPlot_Clone_test_rebined_StatsTitle = "Truth " + TLPlot.GetHistogramStatTitle() + " - cloned test rebined";
     TH1D *TLPlot_Clone_test_rebined = (TH1D *)Histogram1D_Truth->Clone((TLPlot_Clone_test_rebined_StatsTitle).c_str());
     if (rebin_plots) { TLPlot_Clone_test_rebined->Rebin(2); }
     //</editor-fold>
 
     //<editor-fold desc="Setting title">
-    string ACorrectionType, ACorrectionTitle;
+    std::string ACorrectionType, ACorrectionTitle;
 
     if (findSubstring(ACorrectionRecTitle, "momentum")) {  // for momentum ACorrection plots
         ACorrectionType = "momentum";
@@ -420,11 +420,11 @@ void DrawAndSaveACorrPlots(bool save_ACorr_data, const string &SampleName, const
         ACorrectionTitle = "#" + ACorrectionType + "_{" + ACorrectionParticleShort + "}";
     }
 
-    //    string ACorrectionTitle = ACorrectionParticle + " " + ACorrectionType;
+    //    std::string ACorrectionTitle = ACorrectionParticle + " " + ACorrectionType;
     //</editor-fold>
 
     //<editor-fold desc="Setting X axis label">
-    string ACorrectionXLabel;
+    std::string ACorrectionXLabel;
 
     if (findSubstring(ACorrectionRecTitle, "momentum")) {  // for momentum ACorrection plots
         ACorrectionXLabel = "P_{" + ACorrectionParticleShort + "} [GeV/c]";
@@ -438,17 +438,17 @@ void DrawAndSaveACorrPlots(bool save_ACorr_data, const string &SampleName, const
     //</editor-fold>
 
     //<editor-fold desc="Setting y axis label">
-    string xLabel_REC_temp = RPlot_Clone->GetXaxis()->GetTitle();
-    string xLabel_REC = xLabel_REC_temp.substr(0, xLabel_REC_temp.find_last_of('[') - 1);
-    string xLabel_Truth_temp = TLPlot_Clone->GetXaxis()->GetTitle();
-    string xLabel_Truth = xLabel_Truth_temp.substr(0, xLabel_Truth_temp.find_last_of('[') - 1);
+    std::string xLabel_REC_temp = RPlot_Clone->GetXaxis()->GetTitle();
+    std::string xLabel_REC = xLabel_REC_temp.substr(0, xLabel_REC_temp.find_last_of('[') - 1);
+    std::string xLabel_Truth_temp = TLPlot_Clone->GetXaxis()->GetTitle();
+    std::string xLabel_Truth = xLabel_Truth_temp.substr(0, xLabel_Truth_temp.find_last_of('[') - 1);
 
-    string ACorrectionYLabel = string("#alpha = ") + "#frac{1}{#epsilon_{eff}} = " + xLabel_Truth + "/" + xLabel_REC + "^{rec}";
-    //    string ACorrectionYLabel = "#epsilon_{eff} = " + xLabel_REC + "^{rec}" + "/" + xLabel_Truth;
+    std::string ACorrectionYLabel = string("#alpha = ") + "#frac{1}{#epsilon_{eff}} = " + xLabel_Truth + "/" + xLabel_REC + "^{rec}";
+    //    std::string ACorrectionYLabel = "#epsilon_{eff} = " + xLabel_REC + "^{rec}" + "/" + xLabel_Truth;
     //</editor-fold>
 
     //<editor-fold desc="Setting save directory">
-    string ACorrectionSaveDir, ACorrectionTestSaveDir;
+    std::string ACorrectionSaveDir, ACorrectionTestSaveDir;
 
     if (findSubstring(ACorrectionRecTitle, "Electron") || findSubstring(ACorrectionRecTitle, "electron")) {
         ACorrectionSaveDir = TLPlot.GetHistogram1DSaveNamePath() + "/00_" + ACorrectionParticle + "_" + ACorrectionType + "_ACorrection_plots_" + ACorrectionFS + "/";
@@ -473,7 +473,7 @@ void DrawAndSaveACorrPlots(bool save_ACorr_data, const string &SampleName, const
     //</editor-fold>
 
     //<editor-fold desc="Setting save name">
-    string sNameFlag;
+    std::string sNameFlag;
 
     if (findSubstring(SampleName, "sim")) {
         sNameFlag = "s";
@@ -481,15 +481,15 @@ void DrawAndSaveACorrPlots(bool save_ACorr_data, const string &SampleName, const
         sNameFlag = "d";
     }
 
-    string RPlot_Clone_SaveName = ACorrectionSaveDir + sNameFlag + "_" + ACorrectionParticle + "_" + ACorrectionType + "_" + ACorrectionFS + "_" + "Rec_Clone.png";
-    string RPlot_Clone_test_SaveName = ACorrectionTestSaveDir + sNameFlag + "01a_" + ACorrectionParticle + "_" + ACorrectionType + "_" + ACorrectionFS + "_" + "Rec_Clone_test.png";
-    string RPlot_Clone_test_rebined_SaveName =
+    std::string RPlot_Clone_SaveName = ACorrectionSaveDir + sNameFlag + "_" + ACorrectionParticle + "_" + ACorrectionType + "_" + ACorrectionFS + "_" + "Rec_Clone.png";
+    std::string RPlot_Clone_test_SaveName = ACorrectionTestSaveDir + sNameFlag + "01a_" + ACorrectionParticle + "_" + ACorrectionType + "_" + ACorrectionFS + "_" + "Rec_Clone_test.png";
+    std::string RPlot_Clone_test_rebined_SaveName =
         ACorrectionTestSaveDir + sNameFlag + "01b_" + ACorrectionParticle + "_" + ACorrectionType + "_" + ACorrectionFS + "_" + "Rec_Clone_test_rebined.png";
-    string TLPlot_Clone_SaveName = ACorrectionSaveDir + sNameFlag + "_" + ACorrectionParticle + "_" + ACorrectionType + "_" + ACorrectionFS + "_" + "Truth_Clone.png";
-    string TLPlot_Clone_test_SaveName = ACorrectionTestSaveDir + sNameFlag + "02a_" + ACorrectionParticle + "_" + ACorrectionType + "_" + ACorrectionFS + "_" + "Truth_Clone_test.png";
-    string TLPlot_Clone_test_rebined_SaveName =
+    std::string TLPlot_Clone_SaveName = ACorrectionSaveDir + sNameFlag + "_" + ACorrectionParticle + "_" + ACorrectionType + "_" + ACorrectionFS + "_" + "Truth_Clone.png";
+    std::string TLPlot_Clone_test_SaveName = ACorrectionTestSaveDir + sNameFlag + "02a_" + ACorrectionParticle + "_" + ACorrectionType + "_" + ACorrectionFS + "_" + "Truth_Clone_test.png";
+    std::string TLPlot_Clone_test_rebined_SaveName =
         ACorrectionTestSaveDir + sNameFlag + "02b_" + ACorrectionParticle + "_" + ACorrectionType + "_" + ACorrectionFS + "_" + "Truth_Clone_test_rebined.png";
-    string ACorrection_plot_SaveName = ACorrectionSaveDir + sNameFlag + "_" + ACorrectionParticle + "_" + ACorrectionType + "_ACorrection_" + ACorrectionFS + ".png";
+    std::string ACorrection_plot_SaveName = ACorrectionSaveDir + sNameFlag + "_" + ACorrectionParticle + "_" + ACorrectionType + "_ACorrection_" + ACorrectionFS + ".png";
     //</editor-fold>
 
     TH1D *ACorrection_plot = (TH1D *)TLPlot_Clone->Clone((ACorrectionParticle + " " + ACorrectionType + " #alpha" + " (" + ACorrectionFS + ")").c_str());
@@ -630,7 +630,7 @@ void DrawAndSaveACorrPlots(bool save_ACorr_data, const string &SampleName, const
         system(("rm -r " + ACorr_data_Dir).c_str());     // clear old ACorr_data_Dir
         system(("mkdir -p " + ACorr_data_Dir).c_str());  // recreate ACorr_data_Dir
 
-        string ACorr_data_StatsTitle;
+        std::string ACorr_data_StatsTitle;
 
         if (((ACorrectionFS == "pFDpCD") || (ACorrectionFS == "nFDpCD")) && (ACorrectionParticle != "Electron")) {
             if (findSubstring(ACorrectionRecTitle, ", FD)") || findSubstring(ACorrectionRecTitle, "FD " + ACorrectionParticle) ||

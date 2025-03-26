@@ -17,18 +17,18 @@ class RecoSettings {
     /* Initial input processing of loaded files (given by AnalyseFile) */
 
     /* Determine file path and name */
-    const string LoadedInput = AnalyseFile;  // AnalyseFile is taken from codeSetup.h
-    const string filePath = LoadedInput.substr(0, LoadedInput.find_last_of('/') + 1);
-    const string fileInput = LoadedInput.substr(LoadedInput.find_last_of('/') + 1);
-    const string plotsInput = fileInput.substr(0, fileInput.find_last_of(".hipo") - 4);
+    const std::string LoadedInput = AnalyseFile;  // AnalyseFile is taken from codeSetup.h
+    const std::string filePath = LoadedInput.substr(0, LoadedInput.find_last_of('/') + 1);
+    const std::string fileInput = LoadedInput.substr(LoadedInput.find_last_of('/') + 1);
+    const std::string plotsInput = fileInput.substr(0, fileInput.find_last_of(".hipo") - 4);
 
     /* Configure and get run parameters */
     ExperimentParameters Experiment(AnalyseFilePath, AnalyseFileSample);
-    const string SampleName = Experiment.ConfigureSampleName(AnalyseFilePath, AnalyseFileSample);  // Configure SampleName from input
+    const std::string SampleName = Experiment.ConfigureSampleName(AnalyseFilePath, AnalyseFileSample);  // Configure SampleName from input
     // TODO: change VaryingSampleName to simulation of a 4-foil!
-    const string VaryingSampleName = Experiment.GetVaryingSampleName();  // Get VaryingSampleName (configured from SampleName) - for data runs!
+    const std::string VaryingSampleName = Experiment.GetVaryingSampleName();  // Get VaryingSampleName (configured from SampleName) - for data runs!
     const double beamE = Experiment.GetBeamEnergy();                     // Configure beam energy from SampleName
-    const string Target = Experiment.GetTargetElement();                 // Configure target (element) from SampleName
+    const std::string Target = Experiment.GetTargetElement();                 // Configure target (element) from SampleName
     const int TargetPDG = Experiment.GetTargetElementPDG();              // Configure target PDG from SampleName
     const bool isLocal = Experiment.SLocal();
     const bool isMC = Experiment.SSample();
@@ -90,8 +90,8 @@ class RecoSettings {
     bool Calculate_momResS2 = false;   // Calculate momResS2 variables
     const double DeltaSlices = 0.05;
     const bool VaryingDelta = true;  // 1st momResS1 w/ VaryingDelta = false
-    const string SmearMode = "pol1_wKC";
-    const string CorrMode = "pol1_wKC";
+    const std::string SmearMode = "pol1_wKC";
+    const std::string CorrMode = "pol1_wKC";
     bool nRes_test = false;       // false by default
     bool Run_in_momResS2 = true;  // Smear w/ momResS2 & correct w/ momResS1
     //</editor-fold>
@@ -194,7 +194,7 @@ class RecoSettings {
     //<editor-fold desc="Custom cuts naming">
     /* Save plots to custom-named folders, to allow multi-sample runs at once. */
     const bool custom_cuts_naming = true;
-    string Nucleon_Cuts_Status, FD_photons_Status, PSmearing_Status, FiducialCuts_Status, KinCuts_Status, KinWei_Status, Additional_Status, Efficiency_Status;
+    std::string Nucleon_Cuts_Status, FD_photons_Status, PSmearing_Status, FiducialCuts_Status, KinCuts_Status, KinWei_Status, Additional_Status, Efficiency_Status;
 
     if (custom_cuts_naming) {
         //<editor-fold desc="Status additions">
@@ -325,7 +325,7 @@ class RecoSettings {
             plots_path = WorkingDirectory + SampleName + "_S00_NO_CUTS";
             plots_log_save_Directory = plots_path + "/" + "Run_log_" + SampleName + "_S00_NO_CUTS.txt";
         } else {
-            string added_names = Nucleon_Cuts_Status + FD_photons_Status + PSmearing_Status + FiducialCuts_Status + KinCuts_Status + KinWei_Status + Additional_Status + Efficiency_Status;
+            std::string added_names = Nucleon_Cuts_Status + FD_photons_Status + PSmearing_Status + FiducialCuts_Status + KinCuts_Status + KinWei_Status + Additional_Status + Efficiency_Status;
 
             if (!apply_chi2_cuts_1e_cut) {  // Stage 1 - with cuts except PID (chi2) cuts
                 plots_path = WorkingDirectory + SampleName + "_S01ACwoChi2";
@@ -547,7 +547,7 @@ class RecoSettings {
 
     /* General plots TList */
     TList *plots = new TList();
-    string listName = plots_path + "/" + SampleName + plots_TList_FileType;
+    std::string listName = plots_path + "/" + SampleName + plots_TList_FileType;
     const char *TListName = listName.c_str();
     //</editor-fold>
 
@@ -560,7 +560,7 @@ class RecoSettings {
      * All cut plots are separate from the analysis plots, and withing the 01_Cuts_plots folder. */
     cout << "\nCreating plot directories...";
 
-    string Plots_Folder = plots_path;
+    std::string Plots_Folder = plots_path;
     Directories directories = Directories(Plots_Folder);
 
     cout << " done.\n\n";
@@ -1035,8 +1035,8 @@ class RecoSettings {
     DEfficiency eff;
 
     TList *ACorr_data = new TList();
-    string ACorr_data_Dir = ACorrDirectory + SampleName;
-    string ACorr_data_listName = ACorr_data_Dir + "/" + "ACorr_data_-_" + SampleName + ".root";
+    std::string ACorr_data_Dir = ACorrDirectory + SampleName;
+    std::string ACorr_data_listName = ACorr_data_Dir + "/" + "ACorr_data_-_" + SampleName + ".root";
     const char *ACorr_DataName = ACorr_data_listName.c_str();
 
     if (!calculate_truth_level) { save_ACorr_data = false; }
@@ -1135,7 +1135,7 @@ class RecoSettings {
     const int Ne_in_event = 1, Nf_in_event = 2, nEvents2print = 10000;
 
     ofstream EventPrint;
-    string EventPrint_save_Directory;
+    std::string EventPrint_save_Directory;
 
     if (PrintEvents) {
         if (!apply_chi2_cuts_1e_cut) {
@@ -1179,18 +1179,18 @@ class RecoSettings {
         /* Initial input processing of loaded files (given by AnalyseFile) */
 
         /* Determine file path and name */
-        const string LoadedInput = AnalyseFile;  // AnalyseFile is taken from codeSetup.h
-        const string filePath = LoadedInput.substr(0, LoadedInput.find_last_of('/') + 1);
-        const string fileInput = LoadedInput.substr(LoadedInput.find_last_of('/') + 1);
-        const string plotsInput = fileInput.substr(0, fileInput.find_last_of(".hipo") - 4);
+        const std::string LoadedInput = AnalyseFile;  // AnalyseFile is taken from codeSetup.h
+        const std::string filePath = LoadedInput.substr(0, LoadedInput.find_last_of('/') + 1);
+        const std::string fileInput = LoadedInput.substr(LoadedInput.find_last_of('/') + 1);
+        const std::string plotsInput = fileInput.substr(0, fileInput.find_last_of(".hipo") - 4);
 
         /* Configure and get run parameters */
         ExperimentParameters Experiment(AnalyseFilePath, AnalyseFileSample);
-        const string SampleName = Experiment.ConfigureSampleName(AnalyseFilePath, AnalyseFileSample);  // Configure SampleName from input
+        const std::string SampleName = Experiment.ConfigureSampleName(AnalyseFilePath, AnalyseFileSample);  // Configure SampleName from input
         // TODO: change VaryingSampleName to simulation of a 4-foil!
-        const string VaryingSampleName = Experiment.GetVaryingSampleName();  // Get VaryingSampleName (configured from SampleName) - for data runs!
+        const std::string VaryingSampleName = Experiment.GetVaryingSampleName();  // Get VaryingSampleName (configured from SampleName) - for data runs!
         const double beamE = Experiment.GetBeamEnergy();                     // Configure beam energy from SampleName
-        const string Target = Experiment.GetTargetElement();                 // Configure target (element) from SampleName
+        const std::string Target = Experiment.GetTargetElement();                 // Configure target (element) from SampleName
         const int TargetPDG = Experiment.GetTargetElementPDG();              // Configure target PDG from SampleName
         const bool isLocal = Experiment.SLocal();
         const bool isMC = Experiment.SSample();
@@ -1252,8 +1252,8 @@ class RecoSettings {
         bool Calculate_momResS2 = false;   // Calculate momResS2 variables
         const double DeltaSlices = 0.05;
         const bool VaryingDelta = true;  // 1st momResS1 w/ VaryingDelta = false
-        const string SmearMode = "pol1_wKC";
-        const string CorrMode = "pol1_wKC";
+        const std::string SmearMode = "pol1_wKC";
+        const std::string CorrMode = "pol1_wKC";
         bool nRes_test = false;       // false by default
         bool Run_in_momResS2 = true;  // Smear w/ momResS2 & correct w/ momResS1
         //</editor-fold>
@@ -1356,7 +1356,7 @@ class RecoSettings {
         //<editor-fold desc="Custom cuts naming">
         /* Save plots to custom-named folders, to allow multi-sample runs at once. */
         const bool custom_cuts_naming = true;
-        string Nucleon_Cuts_Status, FD_photons_Status, PSmearing_Status, FiducialCuts_Status, KinCuts_Status, KinWei_Status, Additional_Status, Efficiency_Status;
+        std::string Nucleon_Cuts_Status, FD_photons_Status, PSmearing_Status, FiducialCuts_Status, KinCuts_Status, KinWei_Status, Additional_Status, Efficiency_Status;
 
         if (custom_cuts_naming) {
             //<editor-fold desc="Status additions">
@@ -1487,7 +1487,7 @@ class RecoSettings {
                 plots_path = WorkingDirectory + SampleName + "_S00_NO_CUTS";
                 plots_log_save_Directory = plots_path + "/" + "Run_log_" + SampleName + "_S00_NO_CUTS.txt";
             } else {
-                string added_names =
+                std::string added_names =
                     Nucleon_Cuts_Status + FD_photons_Status + PSmearing_Status + FiducialCuts_Status + KinCuts_Status + KinWei_Status + Additional_Status + Efficiency_Status;
 
                 if (!apply_chi2_cuts_1e_cut) {  // Stage 1 - with cuts except PID (chi2) cuts
@@ -1710,7 +1710,7 @@ class RecoSettings {
 
         /* General plots TList */
         TList *plots = new TList();
-        string listName = plots_path + "/" + SampleName + plots_TList_FileType;
+        std::string listName = plots_path + "/" + SampleName + plots_TList_FileType;
         const char *TListName = listName.c_str();
         //</editor-fold>
 
@@ -1723,7 +1723,7 @@ class RecoSettings {
          * All cut plots are separate from the analysis plots, and withing the 01_Cuts_plots folder. */
         cout << "\nCreating plot directories...";
 
-        string Plots_Folder = plots_path;
+        std::string Plots_Folder = plots_path;
         Directories directories = Directories(Plots_Folder);
 
         cout << " done.\n\n";
@@ -2198,8 +2198,8 @@ class RecoSettings {
         DEfficiency eff;
 
         TList *ACorr_data = new TList();
-        string ACorr_data_Dir = ACorrDirectory + SampleName;
-        string ACorr_data_listName = ACorr_data_Dir + "/" + "ACorr_data_-_" + SampleName + ".root";
+        std::string ACorr_data_Dir = ACorrDirectory + SampleName;
+        std::string ACorr_data_listName = ACorr_data_Dir + "/" + "ACorr_data_-_" + SampleName + ".root";
         const char *ACorr_DataName = ACorr_data_listName.c_str();
 
         if (!calculate_truth_level) { save_ACorr_data = false; }
@@ -2300,7 +2300,7 @@ class RecoSettings {
         const int Ne_in_event = 1, Nf_in_event = 2, nEvents2print = 10000;
 
         ofstream EventPrint;
-        string EventPrint_save_Directory;
+        std::string EventPrint_save_Directory;
 
         if (PrintEvents) {
             if (!apply_chi2_cuts_1e_cut) {

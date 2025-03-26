@@ -4,7 +4,7 @@
 // Constructor ----------------------------------------------------------------------------------------------------------------------------------------
 
 //<editor-fold desc="Constructor">
-ExperimentParameters::ExperimentParameters(const string &AnalyseFilePath, const string &AnalyseFileSample) {
+ExperimentParameters::ExperimentParameters(const std::string &AnalyseFilePath, const std::string &AnalyseFileSample) {
     SampleName = ConfigureSampleName(AnalyseFilePath, AnalyseFileSample);
     BeamEnergy = GetBeamEnergyFromString(SampleName);
     // BeamEnergy = ConfigureBeamEnergy(SampleName);
@@ -52,8 +52,8 @@ ExperimentParameters::ExperimentParameters(const string &AnalyseFilePath, const 
 // ConfigureSampleName function -----------------------------------------------------------------------------------------------------------------------------------------
 
 //<editor-fold desc="ConfigureSampleName function">
-string ExperimentParameters::ConfigureSampleName(const string &AnalyseFilePath, const string &AnalyseFileSample) {
-    string sName = "unknown_sample_598636MeV";  // to set beamE = 5.98636 by default;
+string ExperimentParameters::ConfigureSampleName(const std::string &AnalyseFilePath, const std::string &AnalyseFileSample) {
+    std::string sName = "unknown_sample_598636MeV";  // to set beamE = 5.98636 by default;
 
     if (FindSubstring(AnalyseFilePath, "Uniform_e-p-n_samples")) {  // Uniform samples
         if (FindSubstring(AnalyseFilePath, "OutPut_Tester_e_Tester_e"))
@@ -1786,7 +1786,7 @@ string ExperimentParameters::ConfigureSampleName(const string &AnalyseFilePath, 
 // ConfigureVaryingSampleName function -----------------------------------------------------------------------------------------------------------------------------------------
 
 //<editor-fold desc="ConfigureVaryingSampleName function">
-void ExperimentParameters::ConfigureVaryingSampleName(const string &sn) {  // TODO: change this to VaryingSampleName of the appropriate data. currently the same for all data.
+void ExperimentParameters::ConfigureVaryingSampleName(const std::string &sn) {  // TODO: change this to VaryingSampleName of the appropriate data. currently the same for all data.
     if (FindSubstring(sn, "sim") || (FindSubstring(sn, "Uniform") || FindSubstring(sn, "iniform") || FindSubstring(sn, "Isotrop") || FindSubstring(sn, "isotrop"))) {  // Sample is simulation
         //        VaryingSampleName = SampleName;
         VaryingSampleName = "C12x4_simulation_G18_Q204_6GeV";
@@ -1811,7 +1811,7 @@ void ExperimentParameters::ConfigureVaryingSampleName(const string &sn) {  // TO
 // ConfigureVz_cuts function -----------------------------------------------------------------------------------------------------------------------------------------
 
 //<editor-fold desc="ConfigureVz_cuts function">
-void ExperimentParameters::ConfigureVz_cuts(const string &sn) {
+void ExperimentParameters::ConfigureVz_cuts(const std::string &sn) {
     if (FindSubstring(sn, "Uniform")) {  // Sample is uniform simulation
         if (FindSubstring(sn, "2070MeV")) {
             if (sn == "Uniform_1e_sample_2070MeV") {
@@ -1997,7 +1997,7 @@ void ExperimentParameters::ConfigureVz_cuts(const string &sn) {
 // ConfigureVz_cuts function -----------------------------------------------------------------------------------------------------------------------------------------
 
 //<editor-fold desc="ConfigureVz_cuts function">
-void ExperimentParameters::ConfiguredVz_cuts(const string &sn) {
+void ExperimentParameters::ConfiguredVz_cuts(const std::string &sn) {
     if (FindSubstring(sn, "Uniform")) {  // Sample is uniform simulation
         if (FindSubstring(sn, "2070MeV")) {
             if (sn == "Uniform_1e_sample_2070MeV") {
@@ -2182,7 +2182,7 @@ void ExperimentParameters::ConfiguredVz_cuts(const string &sn) {
 // ConfigureBeamEnergy function -----------------------------------------------------------------------------------------------------------------------------------------
 
 //<editor-fold desc="ConfigureBeamEnergy function">
-double ExperimentParameters::ConfigureBeamEnergy(const string &sn) {
+double ExperimentParameters::ConfigureBeamEnergy(const std::string &sn) {
     // return GetBeamEnergyFromString(sn);
 
     double be;
@@ -2212,7 +2212,7 @@ double ExperimentParameters::GetBeamEnergy() { return BeamEnergy; }
 
 //<editor-fold desc="Description">
 // This is the old function used to add runs to the HipoChain
-void ExperimentParameters::AddToHipoChain(HipoChain &chain, const string &sn, const string &AnalyseFilePath, const string &AnalyseFileSample, const string &AnalyseFile) {
+void ExperimentParameters::AddToHipoChain(HipoChain &chain, const std::string &sn, const std::string &AnalyseFilePath, const std::string &AnalyseFileSample, const std::string &AnalyseFile) {
     bool PrintOut = true;
 
     if (DataSample) {
@@ -2228,7 +2228,7 @@ void ExperimentParameters::AddToHipoChain(HipoChain &chain, const string &sn, co
                                        "015304", "015305", "015306", "015307", "015308", "015309", "015310", "015311", "015312", "015313", "015314", "015316", "015317"};
 
                 for (int i = 0; i < Runs.size(); i++) {
-                    string TempAnalyseFile = "/" + AnalyseFilePath + "/" + Runs.at(i) + "/*.hipo";
+                    std::string TempAnalyseFile = "/" + AnalyseFilePath + "/" + Runs.at(i) + "/*.hipo";
                     chain.Add(TempAnalyseFile.c_str());
 
                     if (PrintOut) { cout << TempAnalyseFile << " directory added to HipoChain!\n"; }
@@ -2245,7 +2245,7 @@ void ExperimentParameters::AddToHipoChain(HipoChain &chain, const string &sn, co
                                        "015622", "015627", "015572", "015577", "015582", "015589", "015594", "015601", "015607", "015612", "015617", "015623"};
 
                 for (int i = 0; i < Runs.size(); i++) {
-                    string TempAnalyseFile = "/" + AnalyseFilePath + "/" + Runs.at(i) + "/*.hipo";
+                    std::string TempAnalyseFile = "/" + AnalyseFilePath + "/" + Runs.at(i) + "/*.hipo";
                     chain.Add(TempAnalyseFile.c_str());
 
                     if (PrintOut) { cout << TempAnalyseFile << " directory added to HipoChain!\n"; }
@@ -2267,7 +2267,7 @@ void ExperimentParameters::AddToHipoChain(HipoChain &chain, const string &sn, co
 // AddToHipoChainFromList function ----------------------------------------------------------------------------------------------------------------------------------------
 
 //<editor-fold desc="Description">
-void ExperimentParameters::AddToHipoChainFromList(HipoChain &chain, const string &sn, const string &AnalyseFilePath, const string &AnalyseFileSample, const string &AnalyseFile) {
+void ExperimentParameters::AddToHipoChainFromList(HipoChain &chain, const std::string &sn, const std::string &AnalyseFilePath, const std::string &AnalyseFileSample, const std::string &AnalyseFile) {
     bool PrintOut = true;
 
     if (DataSample) {
@@ -2275,7 +2275,7 @@ void ExperimentParameters::AddToHipoChainFromList(HipoChain &chain, const string
             if (AnalyseFileSample == "") {
                 /* Data in cache/clas12/rg-m/production/pass1/2gev/D/dst/recon */
                 for (int i = 0; i < lists::H1_data_2GeV_runs.size(); i++) {
-                    string TempAnalyseFile = "/" + AnalyseFilePath + "/" + lists::H1_data_2GeV_runs.at(i) + "/*.hipo";
+                    std::string TempAnalyseFile = "/" + AnalyseFilePath + "/" + lists::H1_data_2GeV_runs.at(i) + "/*.hipo";
                     chain.Add(TempAnalyseFile.c_str());
 
                     if (PrintOut) { cout << TempAnalyseFile << " directory added to HipoChain!\n"; }
@@ -2287,7 +2287,7 @@ void ExperimentParameters::AddToHipoChainFromList(HipoChain &chain, const string
             if (AnalyseFileSample == "") {
                 /* Data in cache/clas12/rg-m/production/pass1/2gev/D/dst/recon */
                 for (int i = 0; i < lists::D2_data_2GeV_runs.size(); i++) {
-                    string TempAnalyseFile = "/" + AnalyseFilePath + "/" + lists::D2_data_2GeV_runs.at(i) + "/*.hipo";
+                    std::string TempAnalyseFile = "/" + AnalyseFilePath + "/" + lists::D2_data_2GeV_runs.at(i) + "/*.hipo";
                     chain.Add(TempAnalyseFile.c_str());
 
                     if (PrintOut) { cout << TempAnalyseFile << " directory added to HipoChain!\n"; }
@@ -2299,7 +2299,7 @@ void ExperimentParameters::AddToHipoChainFromList(HipoChain &chain, const string
             if (AnalyseFileSample == "") {
                 /* Data in cache/clas12/rg-m/production/pass1/2gev/D/dst/recon */
                 for (int i = 0; i < lists::C12_data_2GeV_runs.size(); i++) {
-                    string TempAnalyseFile = "/" + AnalyseFilePath + "/" + lists::C12_data_2GeV_runs.at(i) + "/*.hipo";
+                    std::string TempAnalyseFile = "/" + AnalyseFilePath + "/" + lists::C12_data_2GeV_runs.at(i) + "/*.hipo";
                     chain.Add(TempAnalyseFile.c_str());
 
                     if (PrintOut) { cout << TempAnalyseFile << " directory added to HipoChain!\n"; }
@@ -2311,7 +2311,7 @@ void ExperimentParameters::AddToHipoChainFromList(HipoChain &chain, const string
             if (AnalyseFileSample == "") {
                 /* Data in cache/clas12/rg-m/production/pass1/2gev/D/dst/recon */
                 for (int i = 0; i < lists::Ar40_data_2GeV_runs.size(); i++) {
-                    string TempAnalyseFile = "/" + AnalyseFilePath + "/" + lists::Ar40_data_2GeV_runs.at(i) + "/*.hipo";
+                    std::string TempAnalyseFile = "/" + AnalyseFilePath + "/" + lists::Ar40_data_2GeV_runs.at(i) + "/*.hipo";
                     chain.Add(TempAnalyseFile.c_str());
 
                     if (PrintOut) { cout << TempAnalyseFile << " directory added to HipoChain!\n"; }
@@ -2323,7 +2323,7 @@ void ExperimentParameters::AddToHipoChainFromList(HipoChain &chain, const string
             if (AnalyseFileSample == "") {
                 /* Data in cache/clas12/rg-m/production/pass1/2gev/D/dst/recon */
                 for (int i = 0; i < lists::C12_data_4GeV_runs.size(); i++) {
-                    string TempAnalyseFile = "/" + AnalyseFilePath + "/" + lists::C12_data_4GeV_runs.at(i) + "/*.hipo";
+                    std::string TempAnalyseFile = "/" + AnalyseFilePath + "/" + lists::C12_data_4GeV_runs.at(i) + "/*.hipo";
                     chain.Add(TempAnalyseFile.c_str());
 
                     if (PrintOut) { cout << TempAnalyseFile << " directory added to HipoChain!\n"; }
@@ -2335,7 +2335,7 @@ void ExperimentParameters::AddToHipoChainFromList(HipoChain &chain, const string
             if (AnalyseFileSample == "") {
                 /* Data in cache/clas12/rg-m/production/pass1/2gev/D/dst/recon */
                 for (int i = 0; i < lists::Ar40_data_4GeV_runs.size(); i++) {
-                    string TempAnalyseFile = "/" + AnalyseFilePath + "/" + lists::Ar40_data_4GeV_runs.at(i) + "/*.hipo";
+                    std::string TempAnalyseFile = "/" + AnalyseFilePath + "/" + lists::Ar40_data_4GeV_runs.at(i) + "/*.hipo";
                     chain.Add(TempAnalyseFile.c_str());
 
                     if (PrintOut) { cout << TempAnalyseFile << " directory added to HipoChain!\n"; }
@@ -2347,7 +2347,7 @@ void ExperimentParameters::AddToHipoChainFromList(HipoChain &chain, const string
             if (AnalyseFileSample == "") {
                 /* Data in cache/clas12/rg-m/production/pass1/2gev/D/dst/recon */
                 for (int i = 0; i < lists::H1_data_6GeV_runs.size(); i++) {
-                    string TempAnalyseFile = "/" + AnalyseFilePath + "/" + lists::H1_data_6GeV_runs.at(i) + "/*.hipo";
+                    std::string TempAnalyseFile = "/" + AnalyseFilePath + "/" + lists::H1_data_6GeV_runs.at(i) + "/*.hipo";
                     chain.Add(TempAnalyseFile.c_str());
 
                     if (PrintOut) { cout << TempAnalyseFile << " directory added to HipoChain!\n"; }
@@ -2359,7 +2359,7 @@ void ExperimentParameters::AddToHipoChainFromList(HipoChain &chain, const string
             if (AnalyseFileSample == "") {
                 /* Data in cache/clas12/rg-m/production/pass1/2gev/D/dst/recon */
                 for (int i = 0; i < lists::D2_data_6GeV_runs.size(); i++) {
-                    string TempAnalyseFile = "/" + AnalyseFilePath + "/" + lists::D2_data_6GeV_runs.at(i) + "/*.hipo";
+                    std::string TempAnalyseFile = "/" + AnalyseFilePath + "/" + lists::D2_data_6GeV_runs.at(i) + "/*.hipo";
                     chain.Add(TempAnalyseFile.c_str());
 
                     if (PrintOut) { cout << TempAnalyseFile << " directory added to HipoChain!\n"; }
@@ -2371,7 +2371,7 @@ void ExperimentParameters::AddToHipoChainFromList(HipoChain &chain, const string
             if (AnalyseFileSample == "") {
                 /* Data in cache/clas12/rg-m/production/pass1/2gev/D/dst/recon */
                 for (int i = 0; i < lists::C12x4_data_6GeV_runs.size(); i++) {
-                    string TempAnalyseFile = "/" + AnalyseFilePath + "/" + lists::C12x4_data_6GeV_runs.at(i) + "/*.hipo";
+                    std::string TempAnalyseFile = "/" + AnalyseFilePath + "/" + lists::C12x4_data_6GeV_runs.at(i) + "/*.hipo";
                     chain.Add(TempAnalyseFile.c_str());
 
                     if (PrintOut) { cout << TempAnalyseFile << " directory added to HipoChain!\n"; }
@@ -2383,7 +2383,7 @@ void ExperimentParameters::AddToHipoChainFromList(HipoChain &chain, const string
             if (AnalyseFileSample == "") {
                 /* Data in cache/clas12/rg-m/production/pass1/2gev/D/dst/recon */
                 for (int i = 0; i < lists::Ar40_data_6GeV_runs.size(); i++) {
-                    string TempAnalyseFile = "/" + AnalyseFilePath + "/" + lists::Ar40_data_6GeV_runs.at(i) + "/*.hipo";
+                    std::string TempAnalyseFile = "/" + AnalyseFilePath + "/" + lists::Ar40_data_6GeV_runs.at(i) + "/*.hipo";
                     chain.Add(TempAnalyseFile.c_str());
 
                     if (PrintOut) { cout << TempAnalyseFile << " directory added to HipoChain!\n"; }

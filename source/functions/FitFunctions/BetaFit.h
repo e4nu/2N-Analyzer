@@ -38,7 +38,7 @@ using namespace std;
 using namespace constants;
 using namespace utilities;
 
-void BetaFit(const string &SampleName, DSCuts &Beta_cut, DSCuts &Momentum_cuts, const hPlot1D &BetaPlot, TList *Histogram_list, const double beamE) {
+void BetaFit(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Momentum_cuts, const hPlot1D &BetaPlot, TList *Histogram_list, const double beamE) {
     double W_yLLim = -0.1, W_yULim = 0.1, W_xLLim = 0.9, W_xULim = 1.;
     double deltaPRel_UncertaintyU = 0.2, deltaPRel_UncertaintyL = 0.1;
 
@@ -56,7 +56,7 @@ void BetaFit(const string &SampleName, DSCuts &Beta_cut, DSCuts &Momentum_cuts, 
     //</editor-fold>
 
     //<editor-fold desc="Setting sNameFlag">
-    string sNameFlag;
+    std::string sNameFlag;
 
     if (findSubstring(SampleName, "sim")) {
         sNameFlag = "s";
@@ -66,8 +66,8 @@ void BetaFit(const string &SampleName, DSCuts &Beta_cut, DSCuts &Momentum_cuts, 
     //</editor-fold>
 
     //<editor-fold desc="Setting particle">
-    string BetaParticle = GetParticleName(BetaPlot.GetHistogramTitle());
-    string BetaParticleShort = GetParticleNameShort(BetaPlot.GetHistogramTitle());
+    std::string BetaParticle = GetParticleName(BetaPlot.GetHistogramTitle());
+    std::string BetaParticleShort = GetParticleNameShort(BetaPlot.GetHistogramTitle());
 
     //    if (findSubstring(BetaPlot.GetHistogramTitle(), "neutrals") || findSubstring(BetaPlot.GetHistogramTitle(), "Neutrals")
     //        || findSubstring(BetaPlot.GetHistogramTitle(), "neut.") || findSubstring(BetaPlot.GetHistogramTitle(), "Neut.")) {
@@ -177,7 +177,7 @@ void BetaFit(const string &SampleName, DSCuts &Beta_cut, DSCuts &Momentum_cuts, 
         ((TText *)FitParam->GetListOfLines()->Last())->SetTextColor(kRed);
         FitParam->Draw("same");
 
-        string hBeta_CloneSaveNameDir = BetaPlot.GetHistogram1DSaveNamePath() + sNameFlag + BetaPlot.GetHistogram1DSaveName() + "_fitted.png";
+        std::string hBeta_CloneSaveNameDir = BetaPlot.GetHistogram1DSaveNamePath() + sNameFlag + BetaPlot.GetHistogram1DSaveName() + "_fitted.png";
         const char *hBeta_CloneSaveDir = hBeta_CloneSaveNameDir.c_str();
         Canvas->SaveAs(hBeta_CloneSaveDir);
 
@@ -185,9 +185,9 @@ void BetaFit(const string &SampleName, DSCuts &Beta_cut, DSCuts &Momentum_cuts, 
         //</editor-fold>
 
         //<editor-fold desc="Plot deltaP as function of beta">
-        string deltaPStatsTitle = "#deltaP_{" + BetaParticleShort + "} (" + BetaPlot.GetFinalState() + ")";
-        string deltaPTitle = BetaParticle + " momentum uncertainty #deltaP_{" + BetaParticleShort + "} (" + BetaPlot.GetFinalState() + ")";
-        string deltaPfunc = to_string(m_n * FitStd) + "/ ( (1 - x*x) * sqrt(1 - x*x) )";
+        std::string deltaPStatsTitle = "#deltaP_{" + BetaParticleShort + "} (" + BetaPlot.GetFinalState() + ")";
+        std::string deltaPTitle = BetaParticle + " momentum uncertainty #deltaP_{" + BetaParticleShort + "} (" + BetaPlot.GetFinalState() + ")";
+        std::string deltaPfunc = to_string(m_n * FitStd) + "/ ( (1 - x*x) * sqrt(1 - x*x) )";
 
         auto *deltaP = new TF1(deltaPStatsTitle.c_str(), deltaPfunc.c_str(), 0.9, 1);
         deltaP->SetTitle(deltaPTitle.c_str());
@@ -219,7 +219,7 @@ void BetaFit(const string &SampleName, DSCuts &Beta_cut, DSCuts &Momentum_cuts, 
         //    deltaPParam->AddText(("#delta#beta = " + to_string_with_precision(FitStd, 8)).c_str());
         deltaPParam->Draw("same");
 
-        string deltaPSaveNameDir = BetaPlot.GetHistogram1DSaveNamePath() + sNameFlag + "02a_P_" + BetaParticleShort + "_uncertainty" + BetaPlot.GetFinalState() + ".png";
+        std::string deltaPSaveNameDir = BetaPlot.GetHistogram1DSaveNamePath() + sNameFlag + "02a_P_" + BetaParticleShort + "_uncertainty" + BetaPlot.GetFinalState() + ".png";
         const char *deltaPSaveDir = deltaPSaveNameDir.c_str();
         Canvas->SaveAs(deltaPSaveDir);
 
@@ -267,9 +267,9 @@ void BetaFit(const string &SampleName, DSCuts &Beta_cut, DSCuts &Momentum_cuts, 
         //</editor-fold>
 
         //<editor-fold desc="Plot deltaP/P as function of beta">
-        string Rel_deltaPStatsTitle = "#deltaP_{" + BetaParticleShort + "} (" + BetaPlot.GetFinalState() + ")";
-        string Rel_deltaPTitle = BetaParticle + " relative uncertainty #deltaP_{" + BetaParticleShort + "}/P_{" + BetaParticleShort + "}" + " (" + BetaPlot.GetFinalState() + ")";
-        string Rel_deltaPfunc = to_string(FitStd) + "/ ( (1 - x*x) * x )";
+        std::string Rel_deltaPStatsTitle = "#deltaP_{" + BetaParticleShort + "} (" + BetaPlot.GetFinalState() + ")";
+        std::string Rel_deltaPTitle = BetaParticle + " relative uncertainty #deltaP_{" + BetaParticleShort + "}/P_{" + BetaParticleShort + "}" + " (" + BetaPlot.GetFinalState() + ")";
+        std::string Rel_deltaPfunc = to_string(FitStd) + "/ ( (1 - x*x) * x )";
 
         auto *Rel_deltaP = new TF1(Rel_deltaPStatsTitle.c_str(), Rel_deltaPfunc.c_str(), 0.9, 1);
         Rel_deltaP->SetTitle(Rel_deltaPTitle.c_str());
@@ -312,7 +312,7 @@ void BetaFit(const string &SampleName, DSCuts &Beta_cut, DSCuts &Momentum_cuts, 
         TLegendEntry *Cut_legend_lower_lim = Cut_legend->AddEntry(lower_cut, "10% cut", "l");
         Cut_legend->Draw("same");
 
-        string Rel_deltaPSaveNameDir = BetaPlot.GetHistogram1DSaveNamePath() + sNameFlag + "02b_P_" + BetaParticleShort + "_rel_uncertainty" + BetaPlot.GetFinalState() + ".png";
+        std::string Rel_deltaPSaveNameDir = BetaPlot.GetHistogram1DSaveNamePath() + sNameFlag + "02b_P_" + BetaParticleShort + "_rel_uncertainty" + BetaPlot.GetFinalState() + ".png";
 
         const Int_t n = 2;
         auto gr = new TGraph(n);
@@ -330,10 +330,10 @@ void BetaFit(const string &SampleName, DSCuts &Beta_cut, DSCuts &Momentum_cuts, 
         //</editor-fold>
 
         //<editor-fold desc="Plot w as function of beta">
-        string WStatsTitle = "W(#beta) (" + BetaPlot.GetFinalState() + ")";
-        string WTitle = "The W(#beta) function (" + BetaPlot.GetFinalState() + ")";
-        string W_Maxfunc = "x*x*x - x + " + to_string(FitStd / deltaPRel_UncertaintyU);
-        string W_Minfunc = "x*x*x - x + " + to_string(FitStd / deltaPRel_UncertaintyL);
+        std::string WStatsTitle = "W(#beta) (" + BetaPlot.GetFinalState() + ")";
+        std::string WTitle = "The W(#beta) function (" + BetaPlot.GetFinalState() + ")";
+        std::string W_Maxfunc = "x*x*x - x + " + to_string(FitStd / deltaPRel_UncertaintyU);
+        std::string W_Minfunc = "x*x*x - x + " + to_string(FitStd / deltaPRel_UncertaintyL);
 
         auto *W_Max = new TF1(WStatsTitle.c_str(), W_Maxfunc.c_str(), 0.9, 1);
         W_Max->SetLineWidth(2);
@@ -380,7 +380,7 @@ void BetaFit(const string &SampleName, DSCuts &Beta_cut, DSCuts &Momentum_cuts, 
         TLegendEntry *W_legend_lower_lim = W_legend->AddEntry(Beta_Min_cut, ("#deltaP_{" + BetaParticleShort + "}/P_{" + BetaParticleShort + "} = 0.1").c_str(), "l");
         W_legend->Draw("same");
 
-        string WSaveNameDir = BetaPlot.GetHistogram1DSaveNamePath() + sNameFlag + "03_W_function.png";
+        std::string WSaveNameDir = BetaPlot.GetHistogram1DSaveNamePath() + sNameFlag + "03_W_function.png";
         const char *WSaveDir = WSaveNameDir.c_str();
         Canvas->SaveAs(WSaveDir);
         Canvas->Clear();

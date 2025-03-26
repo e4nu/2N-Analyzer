@@ -21,8 +21,8 @@
 using namespace std;
 using namespace utilities;
 
-string SetDRegion(const string &RecTitle, const string &Particle, const string &ParticleLC) {
-    string DRegion;
+string SetDRegion(const std::string &RecTitle, const std::string &Particle, const std::string &ParticleLC) {
+    std::string DRegion;
 
     if (findSubstring(RecTitle, ", FD)") || findSubstring(RecTitle, "FD " + Particle) || findSubstring(RecTitle, "FD " + ParticleLC)) {
         DRegion = "FD";

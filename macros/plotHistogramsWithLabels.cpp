@@ -10,7 +10,7 @@
 
 void plotHistogramsWithLabels(const std::vector<std::string> &fileNames, const std::string &histName) {
     if (fileNames.size() != 6) {
-        std::cerr << "Error: Function requires exactly 6 ROOT files.\n";
+        std::std::cerr << "Error: Function requires exactly 6 ROOT files.\n";
         return;
     }
 
@@ -21,13 +21,13 @@ void plotHistogramsWithLabels(const std::vector<std::string> &fileNames, const s
     for (int i = 0; i < 6; ++i) {
         files[i] = TFile::Open(fileNames[i].c_str(), "READ");
         if (!files[i] || files[i]->IsZombie()) {
-            std::cerr << "Error: Could not open file " << fileNames[i] << "\n";
+            std::std::cerr << "Error: Could not open file " << fileNames[i] << "\n";
             return;
         }
 
         histograms[i] = dynamic_cast<TH1 *>(files[i]->Get(histName.c_str()));
         if (!histograms[i]) {
-            std::cerr << "Error: Histogram " << histName << " not found in " << fileNames[i] << "\n";
+            std::std::cerr << "Error: Histogram " << histName << " not found in " << fileNames[i] << "\n";
             return;
         }
     }

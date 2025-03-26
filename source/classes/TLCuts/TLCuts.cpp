@@ -4,7 +4,7 @@
 
 #include "TLCuts.h"
 
-TLCuts::TLCuts(const string &SampleName, bool calculate_truth_level, bool Enable_photons_FD, bool apply_nucleon_cuts, TH2D *Electron_AMap, TH2D *Proton_AMap, TH2D *Neutron_AMap,
+TLCuts::TLCuts(const std::string &SampleName, bool calculate_truth_level, bool Enable_photons_FD, bool apply_nucleon_cuts, TH2D *Electron_AMap, TH2D *Proton_AMap, TH2D *Neutron_AMap,
                const DSCuts &ThetaFD, double Theta_uboundary_FD, double Theta_lboundary_FD, const DSCuts &ThetaCD, double Theta_uboundary_CD, double Theta_lboundary_CD, double Phi_lboundary,
                double Phi_uboundary, const DSCuts &TL_e_mom_cuts, const DSCuts &TL_n_mom_cuts, const DSCuts &TL_p_mom_cuts, const DSCuts &TL_pip_mom_cuts, const DSCuts &TL_pim_mom_cuts,
                const DSCuts &TL_pi0_mom_cuts, const DSCuts &TL_ph_mom_cuts, const std::unique_ptr<clas12::clas12reader> &c12) {

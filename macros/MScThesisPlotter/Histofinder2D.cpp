@@ -40,7 +40,7 @@ TH2D *Histofinder2D(TFile *file, const char *Histogram2DNameSubstring) {
     while ((Key = (TKey *) Next())) {
         Histogram2DTemp = (TH2D *) Key->ReadObj();
 
-        string Histogram2DTempName = Histogram2DTemp->GetName();
+        std::string Histogram2DTempName = Histogram2DTemp->GetName();
 
         if (PrintOut) { cout << Histogram2DTempName << "\n\n"; }
 
@@ -81,8 +81,8 @@ TH2D *Histofinder2D(TFile *file, const char *Histogram2DNameSubstring, const boo
 //    static TString classname("TH2D");
 //    static TString classnameTFolder("TFolder");
 //    static TString classnameTHStack("THStack");
-    string FoundHistClass;
-    string FoundHistName;
+    std::string FoundHistClass;
+    std::string FoundHistName;
 
     TKey *Key;
     TIter Next((TList *) file->GetListOfKeys());
@@ -90,7 +90,7 @@ TH2D *Histofinder2D(TFile *file, const char *Histogram2DNameSubstring, const boo
 
     while ((Key = (TKey *) Next())) {
 
-        string Histogram2DTempName = ((TH2D *) Key->ReadObj())->GetName();
+        std::string Histogram2DTempName = ((TH2D *) Key->ReadObj())->GetName();
 
         if (PrintOut1) { cout << Histogram2DTempName << "\n\n"; }
 
@@ -110,7 +110,7 @@ TH2D *Histofinder2D(TFile *file, const char *Histogram2DNameSubstring, const boo
         while ((Key = (TKey *) Next())) {
             TH2D *Histogram2DTemp = (TH2D *) Key->ReadObj();
 
-            string Histogram2DTempName = Histogram2DTemp->GetName();
+            std::string Histogram2DTempName = Histogram2DTemp->GetName();
 
             if (PrintOut1) { cout << Histogram2DTempName << "\n\n"; }
 

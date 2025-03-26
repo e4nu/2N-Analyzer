@@ -21,9 +21,9 @@
 using namespace std;
 using namespace utilities;
 
-void SetFSRatioSaveDir(string &SaveDir, string &TestSaveDir, const string &RecTitle, const string &FinalState, const string &Histogram1DSaveNamePathOriginal, const string &PlotsT,
-                       const string &DRegion, const string &Particle, const string &ParticleLC, const string &ParticleShort, const string &Type) {
-    string Histogram1DSaveNamePath, FStoFind, FSTopology;  // TODO: reconfirm what is a topology
+void SetFSRatioSaveDir(string &SaveDir, std::string &TestSaveDir, const std::string &RecTitle, const std::string &FinalState, const std::string &Histogram1DSaveNamePathOriginal, const std::string &PlotsT,
+                       const std::string &DRegion, const std::string &Particle, const std::string &ParticleLC, const std::string &ParticleShort, const std::string &Type) {
+    std::string Histogram1DSaveNamePath, FStoFind, FSTopology;  // TODO: reconfirm what is a topology
 
     if (FinalState == "1p" || FinalState == "1n") {
         FSTopology = "_1N", FStoFind = "02_1p";
@@ -58,7 +58,7 @@ void SetFSRatioSaveDir(string &SaveDir, string &TestSaveDir, const string &RecTi
     }
 
     //<editor-fold desc="original">
-    //    string Histogram1DSaveNamePath = Histogram1DSaveNamePathOriginal.substr(0, Histogram1DSaveNamePathOriginal.find("05_pFDpCD") - 1) + "/FS_" + Type + "_ratio_plots";
+    //    std::string Histogram1DSaveNamePath = Histogram1DSaveNamePathOriginal.substr(0, Histogram1DSaveNamePathOriginal.find("05_pFDpCD") - 1) + "/FS_" + Type + "_ratio_plots";
 
     /*
     if (Type == "W" || Type == "Q2") {

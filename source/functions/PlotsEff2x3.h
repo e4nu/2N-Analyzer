@@ -29,7 +29,7 @@
 
 using namespace std;
 
-void PlotsEff2x3(string SampleName, const hPlot1D &REC_Plot_1p_hist, const hPlot1D &TL_Plot_1p_hist, const hPlot1D &REC_Plot_1n_hist, const hPlot1D &TL_Plot_1n_hist, string SavePath) {
+void PlotsEff2x3(string SampleName, const hPlot1D &REC_Plot_1p_hist, const hPlot1D &TL_Plot_1p_hist, const hPlot1D &REC_Plot_1n_hist, const hPlot1D &TL_Plot_1n_hist, std::string SavePath) {
     //<editor-fold desc="Canvas definitions">
     TCanvas *Canvas2x6 = new TCanvas("Canvas2x6", "Canvas2x6", 1000 * 2, 750 * 3);  // normal res
 
@@ -39,50 +39,50 @@ void PlotsEff2x3(string SampleName, const hPlot1D &REC_Plot_1p_hist, const hPlot
     //</editor-fold>
 
     TH1D *REC_Plot_1p = REC_Plot_1p_hist.GetHistogram();
-    string REC_Plot_1p_Clone_StatsTitle = "reco. " + REC_Plot_1p_hist.GetHistogramStatTitle() + " - cloned";
+    std::string REC_Plot_1p_Clone_StatsTitle = "reco. " + REC_Plot_1p_hist.GetHistogramStatTitle() + " - cloned";
     TH1D *REC_Plot_1p_Clone = (TH1D *)REC_Plot_1p->Clone((REC_Plot_1p_Clone_StatsTitle).c_str());
     REC_Plot_1p_Clone->Rebin(2);
 
     TH1D *TL_Plot_1p = TL_Plot_1p_hist.GetHistogram();
-    string TL_Plot_1p_Clone_StatsTitle = "TL. " + TL_Plot_1p_hist.GetHistogramStatTitle() + " - cloned";
+    std::string TL_Plot_1p_Clone_StatsTitle = "TL. " + TL_Plot_1p_hist.GetHistogramStatTitle() + " - cloned";
     TH1D *TL_Plot_1p_Clone = (TH1D *)TL_Plot_1p->Clone((TL_Plot_1p_Clone_StatsTitle).c_str());
     TL_Plot_1p->Rebin(2);
 
     TH1D *REC_Plot_1n = REC_Plot_1n_hist.GetHistogram();
-    string REC_Plot_1n_Clone_StatsTitle = "reco. " + REC_Plot_1n_hist.GetHistogramStatTitle() + " - cloned";
+    std::string REC_Plot_1n_Clone_StatsTitle = "reco. " + REC_Plot_1n_hist.GetHistogramStatTitle() + " - cloned";
     TH1D *REC_Plot_1n_Clone = (TH1D *)REC_Plot_1n->Clone((REC_Plot_1n_Clone_StatsTitle).c_str());
     REC_Plot_1n->Rebin(2);
 
     TH1D *TL_Plot_1n = TL_Plot_1n_hist.GetHistogram();
-    string TL_Plot_1n_Clone_StatsTitle = "TL. " + TL_Plot_1n_hist.GetHistogramStatTitle() + " - cloned";
+    std::string TL_Plot_1n_Clone_StatsTitle = "TL. " + TL_Plot_1n_hist.GetHistogramStatTitle() + " - cloned";
     TH1D *TL_Plot_1n_Clone = (TH1D *)TL_Plot_1n->Clone((TL_Plot_1n_Clone_StatsTitle).c_str());
     TL_Plot_1n->Rebin(2);
 
-    string EfficiencyRecTitle_1p = REC_Plot_1p_Clone->GetTitle();
-    string EfficiencyParticle_1p = GetParticleName(EfficiencyRecTitle_1p);
-    string EfficiencyType_1p;
+    std::string EfficiencyRecTitle_1p = REC_Plot_1p_Clone->GetTitle();
+    std::string EfficiencyParticle_1p = GetParticleName(EfficiencyRecTitle_1p);
+    std::string EfficiencyType_1p;
 
-    string EfficiencyRecTitle_1n = REC_Plot_1n_Clone->GetTitle();
-    string EfficiencyParticle_1n = GetParticleName(EfficiencyRecTitle_1n);
-    string EfficiencyType_1n;
+    std::string EfficiencyRecTitle_1n = REC_Plot_1n_Clone->GetTitle();
+    std::string EfficiencyParticle_1n = GetParticleName(EfficiencyRecTitle_1n);
+    std::string EfficiencyType_1n;
 
     if (findSubstring(EfficiencyRecTitle, "momentum")) {  // for momentum efficiency plots
         EfficiencyType = "momentum";
     }
 
-    string EfficiencyTitle = EfficiencyParticle + " " + EfficiencyType;
+    std::string EfficiencyTitle = EfficiencyParticle + " " + EfficiencyType;
 
     Efficiency_plot_1p->SetTitle((EfficiencyTitle + " efficiency #epsilon (" + EfficiencyFS + ")").c_str());
     Efficiency_plot_1p->GetYaxis()->SetTitle((EfficiencyYLabel).c_str());
     Efficiency_plot_1p->GetXaxis()->SetTitle((EfficiencyXLabel).c_str());
 
     TH1D *Eff_Plot_1p = REC_Plot_1p_hist.GetHistogram();
-    string Eff_Plot_1p_Clone_StatsTitle = "Eff. " + REC_Plot_1p_hist.GetHistogramStatTitle() + " - cloned";
+    std::string Eff_Plot_1p_Clone_StatsTitle = "Eff. " + REC_Plot_1p_hist.GetHistogramStatTitle() + " - cloned";
     TH1D *Eff_Plot_1p_Clone = (TH1D *)Eff_Plot_1p->Clone((Eff_Plot_1p_Clone_StatsTitle).c_str());
     //    REC_Plot_1p_Clone->Rebin(2);
 
     TH1D *Eff_Plot_1n = REC_Plot_1n_hist.GetHistogram();
-    string Eff_Plot_1n_Clone_StatsTitle = "Eff. " + REC_Plot_1n_hist.GetHistogramStatTitle() + " - cloned";
+    std::string Eff_Plot_1n_Clone_StatsTitle = "Eff. " + REC_Plot_1n_hist.GetHistogramStatTitle() + " - cloned";
     TH1D *Eff_Plot_1n_Clone = (TH1D *)Eff_Plot_1n->Clone((Eff_Plot_1n_Clone_StatsTitle).c_str());
     //    REC_Plot_1p_Clone->Rebin(2);
 
@@ -91,7 +91,7 @@ void PlotsEff2x3(string SampleName, const hPlot1D &REC_Plot_1p_hist, const hPlot
     //<editor-fold desc="Setting title">
 
     //<editor-fold desc="Setting sNameFlag">
-    string sNameFlag;
+    std::string sNameFlag;
 
     if (findSubstring(SampleName, "sim")) {
         sNameFlag = "s";
@@ -152,7 +152,7 @@ void PlotsEff2x3(string SampleName, const hPlot1D &REC_Plot_1p_hist, const hPlot
     Canvas2x6->Clear();
     //</editor-fold>
 
-    string SaveDir = SavePath + sNameFlag + BetaPlot.GetHistogram1DSaveName() + "_fitted.png";
+    std::string SaveDir = SavePath + sNameFlag + BetaPlot.GetHistogram1DSaveName() + "_fitted.png";
     const char *hBeta_CloneSaveDir = SaveDir.c_str();
     Canvas->SaveAs(hBeta_CloneSaveDir);
 

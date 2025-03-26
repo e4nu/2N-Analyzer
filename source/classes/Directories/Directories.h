@@ -17,7 +17,7 @@ using namespace utilities;
 
 class Directories {
 private:
-    string Plots_Folder;
+    std::string Plots_Folder;
 
     bool ClearOldDirectories = true; // Clear old directories by default
 
@@ -25,7 +25,7 @@ private:
 
     //<editor-fold desc="Number of Photo-electrons (Nphe) plots directories">
     bool create_Nphe_Dir = true;
-    string Nphe_Parent_Directory = "01_Cuts_plots/01_Nphe_plots";
+    std::string Nphe_Parent_Directory = "01_Cuts_plots/01_Nphe_plots";
     vector <string> Nphe_Daughter_Folders = {"",
                                              "01_1e_cut",
                                              "02_1p",
@@ -38,7 +38,7 @@ private:
 
     //<editor-fold desc="Chi2 plots directories">
     bool create_chi2_Dir = true;
-    string Chi2_Parent_Directory = "01_Cuts_plots/02_Chi2_plots";
+    std::string Chi2_Parent_Directory = "01_Cuts_plots/02_Chi2_plots";
     vector <string> Chi2_Daughter_Folders = {"",
                                              "00_All_e",
                                              "01_1e_cut",
@@ -53,7 +53,7 @@ private:
 
     //<editor-fold desc="Vertex plots directories">
     bool create_Vertex_Dir = true;
-    string Vertex_Parent_Directory = "01_Cuts_plots/03_Vertex_plots";
+    std::string Vertex_Parent_Directory = "01_Cuts_plots/03_Vertex_plots";
     vector <string> Vertex_Daughter_Folders = {"",
                                                "01_1e_cut/01_cParticles_Vtx_comp_plots/01_Electrons",
                                                "01_1e_cut/01_cParticles_Vtx_comp_plots/02_Protons",
@@ -79,7 +79,7 @@ private:
 
     //<editor-fold desc="Sampling Fraction (SF) plots directories">
     bool create_SF_Dir = true;
-    string SF_Parent_Directory = "01_Cuts_plots/04_SF_plots";
+    std::string SF_Parent_Directory = "01_Cuts_plots/04_SF_plots";
     vector <string> SF_Daughter_Folders = {"",
 //                                               "01_1e_cut",
                                            "01_1e_cut/01_SF_plots", "01_1e_cut/02_SF_VS_P_e_plots",
@@ -103,7 +103,7 @@ private:
 
     //<editor-fold desc="Edge cuts histograms plots directories">
     bool create_fiducial_Dir = true;
-    string fiducial_Parent_Directory = "01_Cuts_plots/05_Edge_cuts_plots";
+    std::string fiducial_Parent_Directory = "01_Cuts_plots/05_Edge_cuts_plots";
     vector <string> fiducial_Daughter_Folders = {"",
 //                                                     "01_1e_cut",
                                                  "01_1e_cut/01_PCAL",
@@ -127,7 +127,7 @@ private:
 
     //<editor-fold desc="Momentum threshold plots directories">
     bool create_Momentum_Dir = true;
-    string Momentum_Parent_Directory = "01_Cuts_plots/06_Momentum_plots";
+    std::string Momentum_Parent_Directory = "01_Cuts_plots/06_Momentum_plots";
     vector <string> Momentum_Daughter_Folders = {"",
                                                  "01_1e_cut", "01_1e_cut/01_Momentum_th_plots_1e_cut",
                                                  "02_1p", "02_1p/Analysis_plots_1p",
@@ -142,7 +142,7 @@ private:
 
     //<editor-fold desc="W plots directories">
     bool create_W_Dir = true;
-    string W_Parent_Directory = "02_W_plots";
+    std::string W_Parent_Directory = "02_W_plots";
     vector <string> W_Daughter_Folders = {"",
                                           "01_1e_cut",
                                           "02_1p",
@@ -155,7 +155,7 @@ private:
 
     //<editor-fold desc="Beta plots directories">
     bool create_Beta_Dir = true;
-    string Beta_Parent_Directory = "03_Beta_plots";
+    std::string Beta_Parent_Directory = "03_Beta_plots";
     vector <string> Beta_Daughter_Folders = {"",
                                              "01_Beta_fit_plots",
                                              "01_Beta_fit_plots/03_1n",
@@ -187,7 +187,7 @@ private:
 
     //<editor-fold desc="Angle plots directories">
     bool create_Angle_Dir = true;
-    string Angle_Parent_Directory = "04_Angle_plots";
+    std::string Angle_Parent_Directory = "04_Angle_plots";
     vector <string> Angle_Daughter_Folders = {"",
 //                                                  "00_All_e",
                                               "00_All_e/01_Theta_e_All_e_plots", "00_All_e/02_Phi_e_All_e_plots",
@@ -264,7 +264,7 @@ private:
 
     //<editor-fold desc="Momentum transfer plots directories">
     bool create_Momentum_transfer_Dir = true;
-    string Momentum_transfer_Parent_Directory = "05_Momentum_transfer_plots";
+    std::string Momentum_transfer_Parent_Directory = "05_Momentum_transfer_plots";
     vector <string> Momentum_transfer_Daughter_Folders = {"",
                                            "00_All_e",
                                            "01_1e_cut",
@@ -278,7 +278,7 @@ private:
 
     //<editor-fold desc="E_e plots directories">
     bool create_E_e_Dir = true;
-    string E_e_Parent_Directory = "06_E_e_plots";
+    std::string E_e_Parent_Directory = "06_E_e_plots";
     vector <string> E_e_Daughter_Folders = {"",
                                             "01_1e_cut",
                                             "01_1e_cut/E_e_plots_1e_cut", "01_1e_cut/E_e_VS_Theta_e_1e_cut",
@@ -304,7 +304,7 @@ private:
 
     //<editor-fold desc="ETrans plots directories">
     bool create_ETrans_Dir = true;
-    string ETrans_Parent_Directory = "07_ET_plots";
+    std::string ETrans_Parent_Directory = "07_ET_plots";
     vector <string> ETrans_Daughter_Folders = {"",
                                                "02_1p",
                                                "02_1p/02_Around_15_Deg_1p", "02_1p/02_Around_15_Deg_1p/00_All_interactions",
@@ -361,7 +361,7 @@ private:
 
     //<editor-fold desc="Ecal plots directories">
     bool create_Ecal_Dir = true;
-    string Ecal_Parent_Directory = "08_Ecal_rec_plots";
+    std::string Ecal_Parent_Directory = "08_Ecal_rec_plots";
     vector <string> Ecal_Daughter_Folders = {"",
                                              "02_1p",
                                              "02_1p/01_Ecal_rec_by_reaction_1p/00_All_interactions",
@@ -406,7 +406,7 @@ private:
 
     //<editor-fold desc="TKI plots directories">
     bool create_TKI_Dir = true;
-    string TKI_Parent_Directory = "09_TKI_plots";
+    std::string TKI_Parent_Directory = "09_TKI_plots";
     vector <string> TKI_Daughter_Folders = {"",
                                             "03_1n",
                                             "03_1n/01_dP_T_1n", "03_1n/02_dAlpha_T_1n", "03_1n/03_dPhi_T_1n",
@@ -428,7 +428,7 @@ private:
     //<editor-fold desc="ToF plots directories">
     // todo: change this folder's name
     bool create_ToF_Dir = true;
-    string ToF_Parent_Directory = "10_ToF_plots";
+    std::string ToF_Parent_Directory = "10_ToF_plots";
     vector <string> ToF_Daughter_Folders = {"",
                                             "01_1e_cut",
                                             "01_1e_cut/01_Neutron_vs_cParticles_hits_FTOF_1e_cut",
@@ -438,7 +438,7 @@ private:
 
     //<editor-fold desc="Efficiency & Acceptance Correction plots directories">
     bool create_Eff_and_ACorr_Dir = true;
-    string Eff_and_ACorr_Parent_Directory = "11_Eff_and_ACorr_plots";
+    std::string Eff_and_ACorr_Parent_Directory = "11_Eff_and_ACorr_plots";
     vector <string> Eff_and_ACorr_Daughter_Folders = {"",
                                                       "01_1e_cut",
                                                       "01_1e_cut/01_Momentum_Eff_and_ACorr_plots_1e_cut",
@@ -474,7 +474,7 @@ private:
 
     //<editor-fold desc="Acceptance maps plots directories">
     bool create_Acceptance_Maps_Dir = true;
-    string Hit_Maps_Parent_Directory = "12_Acceptance_maps_plots";
+    std::string Hit_Maps_Parent_Directory = "12_Acceptance_maps_plots";
     vector <string> Hit_Maps_Daughter_Folders = {"",
                                                  "01_AMaps_1e_cut",
                                                  "01_AMaps_1e_cut/00a_AMaps_BC_from_file",
@@ -486,7 +486,7 @@ private:
 
     //<editor-fold desc="Resolution plots directories">
     bool create_Resolution_Dir = true;
-    string Resolution_Parent_Directory = "13_Resolution_plots";
+    std::string Resolution_Parent_Directory = "13_Resolution_plots";
     vector <string> Resolution_Daughter_Folders = {"",
                                                    "02_1p",
                                                    "02_1p/01_Proton_resolution_plots_1p",
@@ -510,7 +510,7 @@ private:
 
     //<editor-fold desc="Multiplicity plots directories">
     bool create_Multiplicity_Dir = true;
-    string Multiplicity_Parent_Directory = "14_Multiplicity_plots";
+    std::string Multiplicity_Parent_Directory = "14_Multiplicity_plots";
     vector <string> Multiplicity_Daughter_Folders = {"",
                                                      "01_1e_cut",
                                                      "02_1p",
@@ -523,9 +523,9 @@ private:
 
 // Private methods ------------------------------------------------------------------------------------------------------------------------------------------------------
 
-    bool FindSubstring(string string1, string string2);
+    bool FindSubstring(string string1, std::string string2);
 
-    string Find(vector <string> vector, string string);
+    std::string Find(vector <string> vector, std::string string);
 
 public:
 
@@ -552,12 +552,12 @@ public:
 
 // MakeDirectory function -----------------------------------------------------------------------------------------------------------------------------------------------
 
-    void MakeDirectory(const bool &Create_Directory, const string &Plots_Parent_Folder, const string &Plots_Daughter_Folder,
-                       const bool &Clear_Parent_Folder_content = false, const string &Parent_Folder = "./plots");
+    void MakeDirectory(const bool &Create_Directory, const std::string &Plots_Parent_Folder, const std::string &Plots_Daughter_Folder,
+                       const bool &Clear_Parent_Folder_content = false, const std::string &Parent_Folder = "./plots");
 
 // Constructor ----------------------------------------------------------------------------------------------------------------------------------------------------------
 
-    Directories(const string &plots_path = "./plots", const bool Clear_Old_Directories = true);
+    Directories(const std::string &plots_path = "./plots", const bool Clear_Old_Directories = true);
 
 };
 

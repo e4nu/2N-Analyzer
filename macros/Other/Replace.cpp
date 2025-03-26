@@ -18,7 +18,7 @@ void replaceSubStr(std::string &str, const std::string &subStr, const std::strin
 }
 
 void Replace() {
-    string str = "#vec{P}_{tot} - #vec{q}";
+    std::string str = "#vec{P}_{tot} - #vec{q}";
 
     cout << "str = " << str << "\n";
 

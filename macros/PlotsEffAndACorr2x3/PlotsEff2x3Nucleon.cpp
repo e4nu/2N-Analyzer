@@ -134,7 +134,7 @@ void PlotsEff2x3Nucleon(string SampleName) {
     //</editor-fold>
 
     //<editor-fold desc="Momentum efficiency plots">
-    string MomEffMomEffSaveName = "./01_Nucleon_Mom_Eff_" + SampleName + ".png";
+    std::string MomEffMomEffSaveName = "./01_Nucleon_Mom_Eff_" + SampleName + ".png";
 
     CanvasEff2x3Nucleon->Divide(3, 2);
 
@@ -229,7 +229,7 @@ void PlotsEff2x3Nucleon(string SampleName) {
     //</editor-fold>
 
     //<editor-fold desc="Theta efficiency plots">
-    string ThetaEffSaveName = "./02_Nucleon_Theta_Eff_" + SampleName + ".png";
+    std::string ThetaEffSaveName = "./02_Nucleon_Theta_Eff_" + SampleName + ".png";
 
     CanvasEff2x3Nucleon->Divide(3, 2);
 
@@ -323,7 +323,7 @@ void PlotsEff2x3Nucleon(string SampleName) {
     //</editor-fold>
 
     //<editor-fold desc="Phi efficiency plots">
-    string PhiEffSaveName = "./03_Nucleon_Phi_Eff_" + SampleName + ".png";
+    std::string PhiEffSaveName = "./03_Nucleon_Phi_Eff_" + SampleName + ".png";
 
     CanvasEff2x3Nucleon->Divide(3, 2);
 

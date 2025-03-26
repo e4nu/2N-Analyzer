@@ -22,7 +22,7 @@ using namespace std;
 using namespace utilities;
 
 string GetParticleNameShort(string Source) {
-    string ParticleNameShort;
+    std::string ParticleNameShort;
 
     if (findSubstring(Source, "neutrals") || findSubstring(Source, "Neutrals") || findSubstring(Source, "neut.") || findSubstring(Source, "Neut.")) {
         ParticleNameShort = "neut";

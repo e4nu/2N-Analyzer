@@ -22,7 +22,7 @@
 // AMaps constructors ---------------------------------------------------------------------------------------------------------------------------------------------------
 
 //<editor-fold desc="AMaps generation constructor">
-AMaps::AMaps(const string &SampleName, const string &P_e_bin_profile, const string &P_nuc_bin_profile, double beamE, const string &AMapsMode, const string &SavePath, int nOfNucMomBins,
+AMaps::AMaps(const std::string &SampleName, const std::string &P_e_bin_profile, const std::string &P_nuc_bin_profile, double beamE, const std::string &AMapsMode, const std::string &SavePath, int nOfNucMomBins,
              int nOfElecMomBins, int hnsNumOfXBins, int hnsNumOfYBins, int hesNumOfXBins, int hesNumOfYBins) {
     AcceptanceMapsBC_OutFile0 = SavePath + "/" + "AcceptanceMapsBC.pdf";
     TLAMaps_OutFile0 = SavePath + "/" + "TLAMaps.pdf";
@@ -42,46 +42,46 @@ AMaps::AMaps(const string &SampleName, const string &P_e_bin_profile, const stri
     NumberElecOfMomSlices = nOfElecMomBins;
 
     //<editor-fold desc="Setting saving directories">
-    string SavePathAMapsBC = AMapSavePath + "00b_AMaps_BC_from_class/";
+    std::string SavePathAMapsBC = AMapSavePath + "00b_AMaps_BC_from_class/";
     system(("mkdir -p " + SavePathAMapsBC).c_str());
 
-    string AMapSavePathTLElectron = SavePath + "01a_Electron_TL_Hit_Maps/";
+    std::string AMapSavePathTLElectron = SavePath + "01a_Electron_TL_Hit_Maps/";
     system(("mkdir -p " + AMapSavePathTLElectron).c_str());
-    string AMapSavePathRecoElectron = SavePath + "01b_Electron_Reco_Hit_Maps/";
+    std::string AMapSavePathRecoElectron = SavePath + "01b_Electron_Reco_Hit_Maps/";
     system(("mkdir -p " + AMapSavePathRecoElectron).c_str());
-    string AMapSavePathRecoToTLElectron = SavePath + "01c_Electron_RecoToTL_Ratio/";
+    std::string AMapSavePathRecoToTLElectron = SavePath + "01c_Electron_RecoToTL_Ratio/";
     system(("mkdir -p " + AMapSavePathRecoToTLElectron).c_str());
-    string AMapSavePathSepAMapsElectron = AMapSavePath + "01d_Electron_Separate_AMaps/";
+    std::string AMapSavePathSepAMapsElectron = AMapSavePath + "01d_Electron_Separate_AMaps/";
     system(("mkdir -p " + AMapSavePathSepAMapsElectron).c_str());
 
-    string AMapSavePathTLProton = SavePath + "02a_Proton_TL_Hit_Maps/";
+    std::string AMapSavePathTLProton = SavePath + "02a_Proton_TL_Hit_Maps/";
     system(("mkdir -p " + AMapSavePathTLProton).c_str());
-    string AMapSavePathRecoProton = SavePath + "02b_Proton_Reco_Hit_Maps/";
+    std::string AMapSavePathRecoProton = SavePath + "02b_Proton_Reco_Hit_Maps/";
     system(("mkdir -p " + AMapSavePathRecoProton).c_str());
-    string AMapSavePathRecoToTLProton = SavePath + "02c_Proton_RecoToTL_Ratio/";
+    std::string AMapSavePathRecoToTLProton = SavePath + "02c_Proton_RecoToTL_Ratio/";
     system(("mkdir -p " + AMapSavePathRecoToTLProton).c_str());
-    string AMapSavePathSepAMapsProton = AMapSavePath + "02d_Proton_Separate_AMaps/";
+    std::string AMapSavePathSepAMapsProton = AMapSavePath + "02d_Proton_Separate_AMaps/";
     system(("mkdir -p " + AMapSavePathSepAMapsProton).c_str());
 
-    string AMapSavePathTLNeutron = SavePath + "03a_Neutron_TL_Hit_Maps/";
+    std::string AMapSavePathTLNeutron = SavePath + "03a_Neutron_TL_Hit_Maps/";
     system(("mkdir -p " + AMapSavePathTLNeutron).c_str());
-    string AMapSavePathRecoNeutron = SavePath + "03b_Neutron_Reco_Hit_Maps/";
+    std::string AMapSavePathRecoNeutron = SavePath + "03b_Neutron_Reco_Hit_Maps/";
     system(("mkdir -p " + AMapSavePathRecoNeutron).c_str());
-    string AMapSavePathRecoToTLNeutron = SavePath + "03c_Neutron_RecoToTL_Ratio/";
+    std::string AMapSavePathRecoToTLNeutron = SavePath + "03c_Neutron_RecoToTL_Ratio/";
     system(("mkdir -p " + AMapSavePathRecoToTLNeutron).c_str());
-    string AMapSavePathSepAMapsNeutron = AMapSavePath + "03d_Neutron_Separate_AMaps/";
+    std::string AMapSavePathSepAMapsNeutron = AMapSavePath + "03d_Neutron_Separate_AMaps/";
     system(("mkdir -p " + AMapSavePathSepAMapsNeutron).c_str());
 
-    string AMapSavePathAMap = AMapSavePath + "04_Finalized_AMaps/";
+    std::string AMapSavePathAMap = AMapSavePath + "04_Finalized_AMaps/";
     system(("mkdir -p " + AMapSavePathAMap).c_str());
 
-    string AMapSavePathGeneratedAMapCopy = AMapSavePath + "05_Generated_maps/";
+    std::string AMapSavePathGeneratedAMapCopy = AMapSavePath + "05_Generated_maps/";
     system(("mkdir -p " + AMapSavePathGeneratedAMapCopy).c_str());
     AMapCopySavePath = AMapSavePathGeneratedAMapCopy;
     //</editor-fold>
 
     //<editor-fold desc="Setting AMapsMode_TitleAddition">
-    string AMapsMode_TitleAddition;
+    std::string AMapsMode_TitleAddition;
 
     if (AMaps_Mode != "") {
         AMapsMode_TitleAddition = AMaps_Mode;
@@ -94,19 +94,19 @@ AMaps::AMaps(const string &SampleName, const string &P_e_bin_profile, const stri
     SetElectronBins(P_e_bin_profile, beamE);
 
     //<editor-fold desc="Reco theta VS phi BC">
-    string hStatsTitleAMapBCElectron = "Electron_AMap_BC", hTitleAMapBCElectron = "Electron AMap BC", hSaveNameAMapBCElectron = "01_e_AMap_BC";
+    std::string hStatsTitleAMapBCElectron = "Electron_AMap_BC", hTitleAMapBCElectron = "Electron AMap BC", hSaveNameAMapBCElectron = "01_e_AMap_BC";
     reco_theta_e_VS_phi_e_BC = hPlot2D(AMapsMode_TitleAddition, "", hStatsTitleAMapBCElectron, hTitleAMapBCElectron, "#phi_{e} [#circ]", "#theta_{e} [#circ]", SavePathAMapsBC,
                                        hSaveNameAMapBCElectron, hBinLowerXLim, hBinUpperXLim, hBinLowerYLim, hBinUpperYLim, HistElectronSliceNumOfXBins, HistElectronSliceNumOfYBins);
 
-    string hStatsTitleAMapBCProton = "Proton_AMap_BC", hTitleAMapBCProton = "Proton AMap BC", hSaveNameAMapBCProton = "02_p_AMap_BC";
+    std::string hStatsTitleAMapBCProton = "Proton_AMap_BC", hTitleAMapBCProton = "Proton AMap BC", hSaveNameAMapBCProton = "02_p_AMap_BC";
     reco_theta_p_VS_phi_p_BC = hPlot2D(AMapsMode_TitleAddition, "", hStatsTitleAMapBCProton, hTitleAMapBCProton, "#phi_{p} [#circ]", "#theta_{p} [#circ]", SavePathAMapsBC,
                                        hSaveNameAMapBCProton, hBinLowerXLim, hBinUpperXLim, hBinLowerYLim, hBinUpperYLim, HistNucSliceNumOfXBins, HistNucSliceNumOfYBins);
 
-    string hStatsTitleAMapBCNeutron = "Neutron_AMap_BC", hTitleAMapBCNeutron = "Neutron AMap BC", hSaveNameAMapBCNeutron = "03_n_AMap_BC";
+    std::string hStatsTitleAMapBCNeutron = "Neutron_AMap_BC", hTitleAMapBCNeutron = "Neutron AMap BC", hSaveNameAMapBCNeutron = "03_n_AMap_BC";
     reco_theta_n_VS_phi_n_BC = hPlot2D(AMapsMode_TitleAddition, "", hStatsTitleAMapBCNeutron, hTitleAMapBCNeutron, "#phi_{n} [#circ]", "#theta_{n} [#circ]", SavePathAMapsBC,
                                        hSaveNameAMapBCNeutron, hBinLowerXLim, hBinUpperXLim, hBinLowerYLim, hBinUpperYLim, HistNucSliceNumOfXBins, HistNucSliceNumOfYBins);
 
-    string hStatsTitleAMapBCNucleon = "Nucleon_AMap_BC", hTitleAMapBCNucleon = "Nucleon AMap BC", hSaveNameAMapBCNucleon = "04_nuc_AMap_BC";
+    std::string hStatsTitleAMapBCNucleon = "Nucleon_AMap_BC", hTitleAMapBCNucleon = "Nucleon AMap BC", hSaveNameAMapBCNucleon = "04_nuc_AMap_BC";
     reco_theta_nuc_VS_phi_nuc_BC = hPlot2D(AMapsMode_TitleAddition, "", hStatsTitleAMapBCNucleon, hTitleAMapBCNucleon, "#phi_{nuc} [#circ]", "#theta_{nuc} [#circ]", SavePathAMapsBC,
                                            hSaveNameAMapBCNucleon, hBinLowerXLim, hBinUpperXLim, hBinLowerYLim, hBinUpperYLim, HistNucSliceNumOfXBins, HistNucSliceNumOfYBins);
     //</editor-fold>
@@ -122,16 +122,16 @@ AMaps::AMaps(const string &SampleName, const string &P_e_bin_profile, const stri
             BinUpperLimPrecision = 2;
         }
 
-        string BinDensity = " (" + to_string(HistElectronSliceNumOfXBins) + "x" + to_string(HistElectronSliceNumOfYBins) + ")";
+        std::string BinDensity = " (" + to_string(HistElectronSliceNumOfXBins) + "x" + to_string(HistElectronSliceNumOfYBins) + ")";
 
         //<editor-fold desc="Setting electron Acceptance maps">
 
         //<editor-fold desc="Electron TL hit map">
-        string hStatsTitleTLElectron =
+        std::string hStatsTitleTLElectron =
             "TL P_{e} bin for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{e}#leq" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c]";
-        string hTitleTLElectron =
+        std::string hTitleTLElectron =
             "TL P_{e} bin for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{e}#leq" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c]" + BinDensity;
-        string hSaveNameTLElectron = to_string(i + 1) + "_TL_P_bin_for_P_from_" + ToStringWithPrecision(BinLowerLim, 2) + "_to_" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision);
+        std::string hSaveNameTLElectron = to_string(i + 1) + "_TL_P_bin_for_P_from_" + ToStringWithPrecision(BinLowerLim, 2) + "_to_" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision);
         hPlot2D hPBinTLElectron = hPlot2D(AMapsMode_TitleAddition, "", hStatsTitleTLElectron, hTitleTLElectron, "#phi_{e} [#circ]", "#theta_{e} [#circ]", AMapSavePathTLElectron,
                                           hSaveNameTLElectron, hBinLowerXLim, hBinUpperXLim, hBinLowerYLim, hBinUpperYLim, HistElectronSliceNumOfXBins, HistElectronSliceNumOfYBins);
         truth_theta_e_VS_phi_e_BySlice.push_back(hPBinTLElectron);
@@ -139,11 +139,11 @@ AMaps::AMaps(const string &SampleName, const string &P_e_bin_profile, const stri
         //</editor-fold>
 
         //<editor-fold desc="Electron Reco. Acceptance maps">
-        string hStatsTitleRecoElectron =
+        std::string hStatsTitleRecoElectron =
             "Reco P_{e} bin for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{e}#leq" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c]";
-        string hTitleRecoElectron =
+        std::string hTitleRecoElectron =
             "Reco P_{e} bin for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{e}#leq" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c]" + BinDensity;
-        string hSaveNameRecoElectron =
+        std::string hSaveNameRecoElectron =
             to_string(i + 1) + "_Reco_P_bin_for_P_from_" + ToStringWithPrecision(BinLowerLim, 2) + "_to_" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision);
         hPlot2D hPBinRecoElectron = hPlot2D(AMapsMode_TitleAddition, "", hStatsTitleRecoElectron, hTitleRecoElectron, "#phi_{e} [#circ]", "#theta_{e} [#circ]", AMapSavePathRecoElectron,
                                             hSaveNameRecoElectron, hBinLowerXLim, hBinUpperXLim, hBinLowerYLim, hBinUpperYLim, HistElectronSliceNumOfXBins, HistElectronSliceNumOfYBins);
@@ -152,11 +152,11 @@ AMaps::AMaps(const string &SampleName, const string &P_e_bin_profile, const stri
         //</editor-fold>
 
         //<editor-fold desc="Electron Reco./TL Ratio">
-        string hStatsTitleRecoToTLRatioElectron =
+        std::string hStatsTitleRecoToTLRatioElectron =
             "Electron Reco/TL ratio for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{e}#leq" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c]";
-        string hTitleRecoToTLRatioElectron = "Electron Reco/TL ratio for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{e}#leq" +
+        std::string hTitleRecoToTLRatioElectron = "Electron Reco/TL ratio for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{e}#leq" +
                                              ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c]" + BinDensity;
-        string hSaveNameRecoToTLRatioElectron =
+        std::string hSaveNameRecoToTLRatioElectron =
             to_string(i + 1) + "_e_Ratio_for_P_from_" + ToStringWithPrecision(BinLowerLim, 2) + "_to_" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision);
         hPlot2D hPBinRecoToTLRatioElectron =
             hPlot2D(AMapsMode_TitleAddition, "", hStatsTitleRecoToTLRatioElectron, hTitleRecoToTLRatioElectron, "#phi_{e} [#circ]", "#theta_{e} [#circ]", AMapSavePathRecoToTLElectron,
@@ -166,11 +166,11 @@ AMaps::AMaps(const string &SampleName, const string &P_e_bin_profile, const stri
         //</editor-fold>
 
         //<editor-fold desc="Electron separate AMaps">
-        string hStatsTitleSepAMapsElectron = "Electron AMap for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{e}#leq" +
+        std::string hStatsTitleSepAMapsElectron = "Electron AMap for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{e}#leq" +
                                              ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c] and (Reco./TL)#geq" + ToStringWithPrecision(Charged_particle_min_Ratio, 2);
-        string hTitleSepAMapsElectron = "Electron AMap for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{e}#leq" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) +
+        std::string hTitleSepAMapsElectron = "Electron AMap for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{e}#leq" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) +
                                         " [GeV/c] and (Reco./TL)#geq" + ToStringWithPrecision(Charged_particle_min_Ratio, 2);
-        string hSaveNameSepAMapsElectron =
+        std::string hSaveNameSepAMapsElectron =
             to_string(i + 1) + "_e_SepAMap_for_P_from_" + ToStringWithPrecision(BinLowerLim, 2) + "_to_" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision);
         hPlot2D hPBinSepAMapsElectron =
             hPlot2D(AMapsMode_TitleAddition, "", hStatsTitleSepAMapsElectron, hTitleSepAMapsElectron, "#phi_{e} [#circ]", "#theta_{e} [#circ]", AMapSavePathSepAMapsElectron,
@@ -196,16 +196,16 @@ AMaps::AMaps(const string &SampleName, const string &P_e_bin_profile, const stri
             BinUpperLimPrecision = 2;
         }
 
-        string BinDensity = " (" + to_string(HistNucSliceNumOfXBins) + "x" + to_string(HistNucSliceNumOfYBins) + ")";
+        std::string BinDensity = " (" + to_string(HistNucSliceNumOfXBins) + "x" + to_string(HistNucSliceNumOfYBins) + ")";
 
         //<editor-fold desc="Setting proton Acceptance maps">
 
         //<editor-fold desc="Proton TL Acceptance maps">
-        string hStatsTitleTLProton =
+        std::string hStatsTitleTLProton =
             "TL P_{p} bin for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{p}#leq" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c]";
-        string hTitleTLProton =
+        std::string hTitleTLProton =
             "TL P_{p} bin for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{p}#leq" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c]" + BinDensity;
-        string hSaveNameTLProton = to_string(i + 1) + "_TL_P_bin_for_P_from_" + ToStringWithPrecision(BinLowerLim, 2) + "_to_" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision);
+        std::string hSaveNameTLProton = to_string(i + 1) + "_TL_P_bin_for_P_from_" + ToStringWithPrecision(BinLowerLim, 2) + "_to_" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision);
         hPlot2D hPBinTLProton = hPlot2D(AMapsMode_TitleAddition, "", hStatsTitleTLProton, hTitleTLProton, "#phi_{p} [#circ]", "#theta_{p} [#circ]", AMapSavePathTLProton, hSaveNameTLProton,
                                         hBinLowerXLim, hBinUpperXLim, hBinLowerYLim, hBinUpperYLim, HistNucSliceNumOfXBins, HistNucSliceNumOfYBins);
         truth_theta_p_VS_phi_p_BySlice.push_back(hPBinTLProton);
@@ -213,11 +213,11 @@ AMaps::AMaps(const string &SampleName, const string &P_e_bin_profile, const stri
         //</editor-fold>
 
         //<editor-fold desc="Proton Reco. Acceptance maps">
-        string hStatsTitleRecoProton =
+        std::string hStatsTitleRecoProton =
             "Reco P_{p} bin for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{p}#leq" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c]";
-        string hTitleRecoProton =
+        std::string hTitleRecoProton =
             "Reco P_{p} bin for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{p}#leq" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c]" + BinDensity;
-        string hSaveNameRecoProton = to_string(i + 1) + "_Reco_P_bin_for_P_from_" + ToStringWithPrecision(BinLowerLim, 2) + "_to_" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision);
+        std::string hSaveNameRecoProton = to_string(i + 1) + "_Reco_P_bin_for_P_from_" + ToStringWithPrecision(BinLowerLim, 2) + "_to_" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision);
         hPlot2D hPBinRecoProton = hPlot2D(AMapsMode_TitleAddition, "", hStatsTitleRecoProton, hTitleRecoProton, "#phi_{p} [#circ]", "#theta_{p} [#circ]", AMapSavePathRecoProton,
                                           hSaveNameRecoProton, hBinLowerXLim, hBinUpperXLim, hBinLowerYLim, hBinUpperYLim, HistNucSliceNumOfXBins, HistNucSliceNumOfYBins);
         reco_theta_p_VS_phi_p_BySlice.push_back(hPBinRecoProton);
@@ -225,11 +225,11 @@ AMaps::AMaps(const string &SampleName, const string &P_e_bin_profile, const stri
         //</editor-fold>
 
         //<editor-fold desc="Proton Reco./TL Ratio">
-        string hStatsTitleRecoToTLRatioProton =
+        std::string hStatsTitleRecoToTLRatioProton =
             "Proton Reco/TL ratio for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{p}#leq" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c]";
-        string hTitleRecoToTLRatioProton = "Proton Reco/TL ratio for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{p}#leq" +
+        std::string hTitleRecoToTLRatioProton = "Proton Reco/TL ratio for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{p}#leq" +
                                            ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c]" + BinDensity;
-        string hSaveNameRecoToTLRatioProton =
+        std::string hSaveNameRecoToTLRatioProton =
             to_string(i + 1) + "_p_Ratio_for_P_from_" + ToStringWithPrecision(BinLowerLim, 2) + "_to_" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision);
         hPlot2D hPBinRecoToTLRatioProton =
             hPlot2D(AMapsMode_TitleAddition, "", hStatsTitleRecoToTLRatioProton, hTitleRecoToTLRatioProton, "#phi_{p} [#circ]", "#theta_{p} [#circ]", AMapSavePathRecoToTLProton,
@@ -239,11 +239,11 @@ AMaps::AMaps(const string &SampleName, const string &P_e_bin_profile, const stri
         //</editor-fold>
 
         //<editor-fold desc="Proton separate AMaps">
-        string hStatsTitleSepAMapsProton = "Proton AMap for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{p}#leq" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) +
+        std::string hStatsTitleSepAMapsProton = "Proton AMap for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{p}#leq" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) +
                                            " [GeV/c] and (Reco./TL)#geq" + ToStringWithPrecision(Charged_particle_min_Ratio, 2);
-        string hTitleSepAMapsProton = "Proton AMap for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{p}#leq" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) +
+        std::string hTitleSepAMapsProton = "Proton AMap for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{p}#leq" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) +
                                       " [GeV/c] and (Reco./TL)#geq" + ToStringWithPrecision(Charged_particle_min_Ratio, 2);
-        string hSaveNameSepAMapsProton =
+        std::string hSaveNameSepAMapsProton =
             to_string(i + 1) + "_p_SepAMap_for_P_from_" + ToStringWithPrecision(BinLowerLim, 2) + "_to_" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision);
         hPlot2D hPBinSepAMapsProton =
             hPlot2D(AMapsMode_TitleAddition, "", hStatsTitleSepAMapsProton, hTitleSepAMapsProton, "#phi_{p} [#circ]", "#theta_{p} [#circ]", AMapSavePathSepAMapsProton,
@@ -257,11 +257,11 @@ AMaps::AMaps(const string &SampleName, const string &P_e_bin_profile, const stri
         //<editor-fold desc="Setting neutron Acceptance maps">
 
         //<editor-fold desc="Neutron TL Acceptance maps">
-        string hStatsTitleTLNeutron =
+        std::string hStatsTitleTLNeutron =
             "TL P_{n} bin for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{n}#leq" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c]";
-        string hTitleTLNeutron =
+        std::string hTitleTLNeutron =
             "TL P_{n} bin for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{n}#leq" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c]" + BinDensity;
-        string hSaveNameTLNeutron = to_string(i + 1) + "_TL_P_bin_for_P_from_" + ToStringWithPrecision(BinLowerLim, 2) + "_to_" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision);
+        std::string hSaveNameTLNeutron = to_string(i + 1) + "_TL_P_bin_for_P_from_" + ToStringWithPrecision(BinLowerLim, 2) + "_to_" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision);
         hPlot2D hPBinTLNeutron = hPlot2D(AMapsMode_TitleAddition, "", hStatsTitleTLNeutron, hTitleTLNeutron, "#phi_{n} [#circ]", "#theta_{n} [#circ]", AMapSavePathTLNeutron,
                                          hSaveNameTLNeutron, hBinLowerXLim, hBinUpperXLim, hBinLowerYLim, hBinUpperYLim, HistNucSliceNumOfXBins, HistNucSliceNumOfYBins);
         truth_theta_n_VS_phi_n_BySlice.push_back(hPBinTLNeutron);
@@ -269,11 +269,11 @@ AMaps::AMaps(const string &SampleName, const string &P_e_bin_profile, const stri
         //</editor-fold>
 
         //<editor-fold desc="Neutron Reco. Acceptance maps">
-        string hStatsTitleRecoNeutron =
+        std::string hStatsTitleRecoNeutron =
             "Reco P_{n} bin for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{n}#leq" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c]";
-        string hTitleRecoNeutron =
+        std::string hTitleRecoNeutron =
             "Reco P_{n} bin for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{n}#leq" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c]" + BinDensity;
-        string hSaveNameRecoNeutron =
+        std::string hSaveNameRecoNeutron =
             to_string(i + 1) + "_Reco_P_bin_for_P_from_" + ToStringWithPrecision(BinLowerLim, 2) + "_to_" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision);
         hPlot2D hPBinRecoNeutron = hPlot2D(AMapsMode_TitleAddition, "", hStatsTitleRecoNeutron, hTitleRecoNeutron, "#phi_{n} [#circ]", "#theta_{n} [#circ]", AMapSavePathRecoNeutron,
                                            hSaveNameRecoNeutron, hBinLowerXLim, hBinUpperXLim, hBinLowerYLim, hBinUpperYLim, HistNucSliceNumOfXBins, HistNucSliceNumOfYBins);
@@ -282,11 +282,11 @@ AMaps::AMaps(const string &SampleName, const string &P_e_bin_profile, const stri
         //</editor-fold>
 
         //<editor-fold desc="Neutron Reco./TL Ratio">
-        string hStatsTitleRecoToTLRatioNeutron =
+        std::string hStatsTitleRecoToTLRatioNeutron =
             "Neutron Reco/TL ratio for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{n}#leq" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c]";
-        string hTitleRecoToTLRatioNeutron = "Neutron Reco/TL ratio for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{n}#leq" +
+        std::string hTitleRecoToTLRatioNeutron = "Neutron Reco/TL ratio for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{n}#leq" +
                                             ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c]" + BinDensity;
-        string hSaveNameRecoToTLRatioNeutron =
+        std::string hSaveNameRecoToTLRatioNeutron =
             to_string(i + 1) + "_p_Ratio_for_P_from_" + ToStringWithPrecision(BinLowerLim, 2) + "_to_" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision);
         hPlot2D hPBinRecoToTLRatioNeutron =
             hPlot2D(AMapsMode_TitleAddition, "", hStatsTitleRecoToTLRatioNeutron, hTitleRecoToTLRatioNeutron, "#phi_{n} [#circ]", "#theta_{n} [#circ]", AMapSavePathRecoToTLNeutron,
@@ -296,11 +296,11 @@ AMaps::AMaps(const string &SampleName, const string &P_e_bin_profile, const stri
         //</editor-fold>
 
         //<editor-fold desc="Neutron separate AMaps">
-        string hStatsTitleSepAMapsNeutron = "Neutron AMap for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{n}#leq" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) +
+        std::string hStatsTitleSepAMapsNeutron = "Neutron AMap for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{n}#leq" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) +
                                             " [GeV/c] and (Reco./TL)#geq" + ToStringWithPrecision(Neutral_particle_min_Ratio, 2);
-        string hTitleSepAMapsNeutron = "Neutron AMap for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{n}#leq" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) +
+        std::string hTitleSepAMapsNeutron = "Neutron AMap for " + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{n}#leq" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) +
                                        " [GeV/c] and (Reco./TL)#geq" + ToStringWithPrecision(Neutral_particle_min_Ratio, 2);
-        string hSaveNameSepAMapsNeutron =
+        std::string hSaveNameSepAMapsNeutron =
             to_string(i + 1) + "_n_SepAMap_for_P_from_" + ToStringWithPrecision(BinLowerLim, 2) + "_to_" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision);
         hPlot2D hPBinSepAMapsNeutron =
             hPlot2D(AMapsMode_TitleAddition, "", hStatsTitleSepAMapsNeutron, hTitleSepAMapsNeutron, "#phi_{n} [#circ]", "#theta_{n} [#circ]", AMapSavePathSepAMapsNeutron,
@@ -316,19 +316,19 @@ AMaps::AMaps(const string &SampleName, const string &P_e_bin_profile, const stri
     //<editor-fold desc="Setting neutron Acceptance maps">
 
     //<editor-fold desc="Neutron TL Acceptance maps">
-    string hStatsTitleTLNeutron = "TL Neutron Hit Map", hTitleTLNeutron = "TL Neutron Hit Map", hSaveNameTLNeutron = "TL_n_AMap";
+    std::string hStatsTitleTLNeutron = "TL Neutron Hit Map", hTitleTLNeutron = "TL Neutron Hit Map", hSaveNameTLNeutron = "TL_n_AMap";
     truth_theta_n_VS_phi_n = hPlot2D(AMapsMode_TitleAddition, "", hStatsTitleTLNeutron, hTitleTLNeutron, "#phi_{n} [#circ]", "#theta_{n} [#circ]", AMapSavePathTLNeutron, hSaveNameTLNeutron,
                                      hBinLowerXLim, hBinUpperXLim, hBinLowerYLim, hBinUpperYLim, HistNucSliceNumOfXBins, HistNucSliceNumOfYBins);
     //</editor-fold>
 
     //<editor-fold desc="Neutron Reco. Acceptance maps">
-    string hStatsTitleRecoNeutron = "Reco Neutron Hit Map", hTitleRecoNeutron = "Reco Neutron Hit Map", hSaveNameRecoNeutron = "Reco_n_AMap";
+    std::string hStatsTitleRecoNeutron = "Reco Neutron Hit Map", hTitleRecoNeutron = "Reco Neutron Hit Map", hSaveNameRecoNeutron = "Reco_n_AMap";
     reco_theta_n_VS_phi_n = hPlot2D(AMapsMode_TitleAddition, "", hStatsTitleRecoNeutron, hTitleRecoNeutron, "#phi_{n} [#circ]", "#theta_{n} [#circ]", AMapSavePathRecoNeutron,
                                     hSaveNameRecoNeutron, hBinLowerXLim, hBinUpperXLim, hBinLowerYLim, hBinUpperYLim, HistNucSliceNumOfXBins, HistNucSliceNumOfYBins);
     //</editor-fold>
 
     //<editor-fold desc="Neutron Reco./TL Ratio">
-    string hStatsTitleRecoToTLNeutron = "Neutron Reco/TL ratio", hTitleRecoToTLNeutron = "Neutron Reco/TL ratio", hSaveNameRecoToTLNeutron = "Neutron_Ratio";
+    std::string hStatsTitleRecoToTLNeutron = "Neutron Reco/TL ratio", hTitleRecoToTLNeutron = "Neutron Reco/TL ratio", hSaveNameRecoToTLNeutron = "Neutron_Ratio";
     acceptance_eff_n = hPlot2D(AMapsMode_TitleAddition, "", hStatsTitleRecoToTLNeutron, hTitleRecoToTLNeutron, "#phi_{n} [#circ]", "#theta_{n} [#circ]", AMapSavePathRecoToTLNeutron,
                                hSaveNameRecoToTLNeutron, hBinLowerXLim, hBinUpperXLim, hBinLowerYLim, hBinUpperYLim, HistNucSliceNumOfXBins, HistNucSliceNumOfYBins);
     //</editor-fold>
@@ -338,28 +338,28 @@ AMaps::AMaps(const string &SampleName, const string &P_e_bin_profile, const stri
     //</editor-fold>
 
     //<editor-fold desc="Finalized acceptance maps">
-    string hStatsTitleAMapElectron = "Electron_AMap";
-    string hTitleAMapElectron = "Electron AMap for (Reco./TL)#geq" + ToStringWithPrecision(Charged_particle_min_Ratio, 2);
-    string hSaveNameAMapElectron = "01_e_AMap";
+    std::string hStatsTitleAMapElectron = "Electron_AMap";
+    std::string hTitleAMapElectron = "Electron AMap for (Reco./TL)#geq" + ToStringWithPrecision(Charged_particle_min_Ratio, 2);
+    std::string hSaveNameAMapElectron = "01_e_AMap";
     filtered_reco_theta_e_VS_phi_e = hPlot2D(AMapsMode_TitleAddition, "", hStatsTitleAMapElectron, hTitleAMapElectron, "#phi_{e} [#circ]", "#theta_{e} [#circ]", AMapSavePathAMap,
                                              hSaveNameAMapElectron, hBinLowerXLim, hBinUpperXLim, hBinLowerYLim, hBinUpperYLim, HistElectronSliceNumOfXBins, HistElectronSliceNumOfYBins);
 
-    string hStatsTitleAMapProton = "Proton_AMap";
-    string hTitleAMapProton = "Proton AMap for (Reco./TL)#geq" + ToStringWithPrecision(Charged_particle_min_Ratio, 2);
-    string hSaveNameAMapProton = "02_p_AMap";
+    std::string hStatsTitleAMapProton = "Proton_AMap";
+    std::string hTitleAMapProton = "Proton AMap for (Reco./TL)#geq" + ToStringWithPrecision(Charged_particle_min_Ratio, 2);
+    std::string hSaveNameAMapProton = "02_p_AMap";
     filtered_reco_theta_p_VS_phi_p = hPlot2D(AMapsMode_TitleAddition, "", hStatsTitleAMapProton, hTitleAMapProton, "#phi_{p} [#circ]", "#theta_{p} [#circ]", AMapSavePathAMap,
                                              hSaveNameAMapProton, hBinLowerXLim, hBinUpperXLim, hBinLowerYLim, hBinUpperYLim, HistNucSliceNumOfXBins, HistNucSliceNumOfYBins);
 
-    string hStatsTitleAMapNeutron = "Neutron_AMap";
-    string hTitleAMapNeutron = "Neutron AMap for (Reco./TL)#geq" + ToStringWithPrecision(Neutral_particle_min_Ratio, 2);
-    string hSaveNameAMapNeutron = "03_n_AMap";
+    std::string hStatsTitleAMapNeutron = "Neutron_AMap";
+    std::string hTitleAMapNeutron = "Neutron AMap for (Reco./TL)#geq" + ToStringWithPrecision(Neutral_particle_min_Ratio, 2);
+    std::string hSaveNameAMapNeutron = "03_n_AMap";
     filtered_reco_theta_n_VS_phi_n = hPlot2D(AMapsMode_TitleAddition, "", hStatsTitleAMapNeutron, hTitleAMapNeutron, "#phi_{n} [#circ]", "#theta_{n} [#circ]", AMapSavePathAMap,
                                              hSaveNameAMapNeutron, hBinLowerXLim, hBinUpperXLim, hBinLowerYLim, hBinUpperYLim, HistNucSliceNumOfXBins, HistNucSliceNumOfYBins);
 
-    string hStatsTitleAMapNucleon = "Nucleon_AMap";
-    string hTitleAMapNucleon =
+    std::string hStatsTitleAMapNucleon = "Nucleon_AMap";
+    std::string hTitleAMapNucleon =
         "Nucleon AMap for (Reco./TL)_{n}#geq" + ToStringWithPrecision(Neutral_particle_min_Ratio, 2) + " and (Reco./TL)_{c}#geq" + ToStringWithPrecision(Charged_particle_min_Ratio, 2);
-    string hSaveNameAMapNucleon = "04_nuc_AMap";
+    std::string hSaveNameAMapNucleon = "04_nuc_AMap";
     filtered_reco_theta_nuc_VS_phi_nuc = hPlot2D(AMapsMode_TitleAddition, "", hStatsTitleAMapNucleon, hTitleAMapNucleon, "#phi_{nuc} [#circ]", "#theta_{nuc} [#circ]", AMapSavePathAMap,
                                                  hSaveNameAMapNucleon, hBinLowerXLim, hBinUpperXLim, hBinLowerYLim, hBinUpperYLim, HistNucSliceNumOfXBins, HistNucSliceNumOfYBins);
     //</editor-fold>
@@ -367,7 +367,7 @@ AMaps::AMaps(const string &SampleName, const string &P_e_bin_profile, const stri
 //</editor-fold>
 
 //<editor-fold desc="AMaps loading constructor">
-AMaps::AMaps(const string &AcceptanceMapsDirectory, const string &SampleName, const bool &Electron_single_slice_test, const bool &Nucleon_single_slice_test, const vector<int> &TestSlices) {
+AMaps::AMaps(const std::string &AcceptanceMapsDirectory, const std::string &SampleName, const bool &Electron_single_slice_test, const bool &Nucleon_single_slice_test, const vector<int> &TestSlices) {
     /* Load slices and their limits */
     ReadAMapLimits((AcceptanceMapsDirectory + SampleName + "/e_AMap_by_slice/e_slice_limits.par").c_str(), Loaded_ElectronMomSliceLimits);
     ReadAMapLimits((AcceptanceMapsDirectory + SampleName + "/p_AMap_by_slice/p_slice_limits.par").c_str(), Loaded_NucleonMomSliceLimits);
@@ -400,7 +400,7 @@ AMaps::AMaps(const string &AcceptanceMapsDirectory, const string &SampleName, co
 // SetBins functions ----------------------------------------------------------------------------------------------------------------------------------------------------
 
 //<editor-fold desc="SetBins function">
-void AMaps::SetBins(const string &P_nuc_bin_profile, double beamE) {
+void AMaps::SetBins(const std::string &P_nuc_bin_profile, double beamE) {
     bool InvertedPrintOut = false;
     bool RegPrintOut = false;
 
@@ -491,7 +491,7 @@ void AMaps::SetBins(const string &P_nuc_bin_profile, double beamE) {
 //</editor-fold>
 
 //<editor-fold desc="SetElectronBins function">
-void AMaps::SetElectronBins(const string &P_e_bin_profile, double beamE) {
+void AMaps::SetElectronBins(const std::string &P_e_bin_profile, double beamE) {
     bool InvertedPrintOut = false;
     bool RegPrintOut = false;
 
@@ -695,7 +695,7 @@ void AMaps::SetBins(double beamE, double nOfMomBins) {
 // isElectron function --------------------------------------------------------------------------------------------------------------------------------------------------
 
 //<editor-fold desc="isElectron function">
-bool AMaps::isElectron(const string &SampleType) {
+bool AMaps::isElectron(const std::string &SampleType) {
     if (SampleType == "Electron" || SampleType == "electron") {
         return true;
     } else {
@@ -707,7 +707,7 @@ bool AMaps::isElectron(const string &SampleType) {
 // isProton function ----------------------------------------------------------------------------------------------------------------------------------------------------
 
 //<editor-fold desc="isProton function">
-bool AMaps::isProton(const string &SampleType) {
+bool AMaps::isProton(const std::string &SampleType) {
     if (SampleType == "Proton" || SampleType == "proton") {
         return true;
     } else {
@@ -719,7 +719,7 @@ bool AMaps::isProton(const string &SampleType) {
 // isNeutron function ---------------------------------------------------------------------------------------------------------------------------------------------------
 
 //<editor-fold desc="isNeutron function">
-bool AMaps::isNeutron(const string &SampleType) {
+bool AMaps::isNeutron(const std::string &SampleType) {
     if (SampleType == "Neutron" || SampleType == "neutron") {
         return true;
     } else {
@@ -731,7 +731,7 @@ bool AMaps::isNeutron(const string &SampleType) {
 // isTL function --------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //<editor-fold desc="isTL function">
-bool AMaps::isTL(const string &SampleType) {
+bool AMaps::isTL(const std::string &SampleType) {
     if (SampleType == "Truth" || SampleType == "truth" || SampleType == "TL" || SampleType == "truth level" || SampleType == "truth-level" || SampleType == "Truth-Level") {
         return true;
     } else {
@@ -743,7 +743,7 @@ bool AMaps::isTL(const string &SampleType) {
 // isReco function --------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //<editor-fold desc="isReco function">
-bool AMaps::isReco(const string &SampleType) {
+bool AMaps::isReco(const std::string &SampleType) {
     if (SampleType == "reco" || SampleType == "Reco" || SampleType == "Reconstruction") {
         return true;
     } else {
@@ -755,7 +755,7 @@ bool AMaps::isReco(const string &SampleType) {
 // hFillHitMaps function ------------------------------------------------------------------------------------------------------------------------------------------------
 
 //<editor-fold desc="hFillHitMaps function">
-void AMaps::hFillHitMaps(const string &SampleType, const string &particle, double Momentum, double Theta, double Phi, double Weight) {
+void AMaps::hFillHitMaps(const std::string &SampleType, const std::string &particle, double Momentum, double Theta, double Phi, double Weight) {
     bool is_e = isElectron(particle), is_p = isProton(particle), is_n = isNeutron(particle);
     bool is_TL = isTL(SampleType), is_Reco = isReco(SampleType);
 
@@ -1300,45 +1300,45 @@ void AMaps::GenerateNucleonAMap() {
 
 // TODO: separate into AMaps and WMaps
 
-void AMaps::SaveHitMaps(const string &SampleName, const string &AcceptanceMapsDirectory) {
+void AMaps::SaveHitMaps(const std::string &SampleName, const std::string &AcceptanceMapsDirectory) {
     bool PrintOut = false;
 
     int testNumber = 0;
 
-    string AMapSliceElectronSavePath = AcceptanceMapsDirectory + SampleName + "/e_AMap_by_slice/";
+    std::string AMapSliceElectronSavePath = AcceptanceMapsDirectory + SampleName + "/e_AMap_by_slice/";
     system(("mkdir -p " + AMapSliceElectronSavePath).c_str());
-    string WMapSliceElectronSavePath = AcceptanceMapsDirectory + SampleName + "/e_WMap_by_slice/";
+    std::string WMapSliceElectronSavePath = AcceptanceMapsDirectory + SampleName + "/e_WMap_by_slice/";
     system(("mkdir -p " + WMapSliceElectronSavePath).c_str());
-    string AMapSliceElectronSavePathCopy = AMapCopySavePath + "/e_AMap_by_slice/";
+    std::string AMapSliceElectronSavePathCopy = AMapCopySavePath + "/e_AMap_by_slice/";
     system(("mkdir -p " + AMapSliceElectronSavePathCopy).c_str());
-    string WMapSliceElectronSavePathCopy = AMapCopySavePath + "/e_WMap_by_slice/";
+    std::string WMapSliceElectronSavePathCopy = AMapCopySavePath + "/e_WMap_by_slice/";
     system(("mkdir -p " + WMapSliceElectronSavePathCopy).c_str());
 
-    string AMapSliceProtonSavePath = AcceptanceMapsDirectory + SampleName + "/p_AMap_by_slice/";
+    std::string AMapSliceProtonSavePath = AcceptanceMapsDirectory + SampleName + "/p_AMap_by_slice/";
     system(("mkdir -p " + AMapSliceProtonSavePath).c_str());
-    string WMapSliceProtonSavePath = AcceptanceMapsDirectory + SampleName + "/p_WMap_by_slice/";
+    std::string WMapSliceProtonSavePath = AcceptanceMapsDirectory + SampleName + "/p_WMap_by_slice/";
     system(("mkdir -p " + WMapSliceProtonSavePath).c_str());
-    string AMapSliceProtonSavePathCopy = AMapCopySavePath + "/p_AMap_by_slice/";
+    std::string AMapSliceProtonSavePathCopy = AMapCopySavePath + "/p_AMap_by_slice/";
     system(("mkdir -p " + AMapSliceProtonSavePathCopy).c_str());
-    string WMapSliceProtonSavePathCopy = AMapCopySavePath + "/p_WMap_by_slice/";
+    std::string WMapSliceProtonSavePathCopy = AMapCopySavePath + "/p_WMap_by_slice/";
     system(("mkdir -p " + WMapSliceProtonSavePathCopy).c_str());
 
-    string AMapSliceNeutronSavePath = AcceptanceMapsDirectory + SampleName + "/n_AMap_by_slice/";
+    std::string AMapSliceNeutronSavePath = AcceptanceMapsDirectory + SampleName + "/n_AMap_by_slice/";
     system(("mkdir -p " + AMapSliceNeutronSavePath).c_str());
-    string WMapSliceNeutronSavePath = AcceptanceMapsDirectory + SampleName + "/n_WMap_by_slice/";
+    std::string WMapSliceNeutronSavePath = AcceptanceMapsDirectory + SampleName + "/n_WMap_by_slice/";
     system(("mkdir -p " + WMapSliceNeutronSavePath).c_str());
-    string AMapSliceNeutronSavePathCopy = AMapCopySavePath + "/n_AMap_by_slice/";
+    std::string AMapSliceNeutronSavePathCopy = AMapCopySavePath + "/n_AMap_by_slice/";
     system(("mkdir -p " + AMapSliceNeutronSavePathCopy).c_str());
-    string WMapSliceNeutronSavePathCopy = AMapCopySavePath + "/n_WMap_by_slice/";
+    std::string WMapSliceNeutronSavePathCopy = AMapCopySavePath + "/n_WMap_by_slice/";
     system(("mkdir -p " + WMapSliceNeutronSavePathCopy).c_str());
 
-    string AMapSliceNucleonSavePath = AcceptanceMapsDirectory + SampleName + "/nuc_AMap_by_slice/";
+    std::string AMapSliceNucleonSavePath = AcceptanceMapsDirectory + SampleName + "/nuc_AMap_by_slice/";
     system(("mkdir -p " + AMapSliceNucleonSavePath).c_str());
-    string WMapSliceNucleonSavePath = AcceptanceMapsDirectory + SampleName + "/nuc_WMap_by_slice/";
+    std::string WMapSliceNucleonSavePath = AcceptanceMapsDirectory + SampleName + "/nuc_WMap_by_slice/";
     system(("mkdir -p " + WMapSliceNucleonSavePath).c_str());
-    string AMapSliceNucleonSavePathCopy = AMapCopySavePath + "/nuc_AMap_by_slice/";
+    std::string AMapSliceNucleonSavePathCopy = AMapCopySavePath + "/nuc_AMap_by_slice/";
     system(("mkdir -p " + AMapSliceNucleonSavePathCopy).c_str());
-    string WMapSliceNucleonSavePathCopy = AMapCopySavePath + "/nuc_WMap_by_slice/";
+    std::string WMapSliceNucleonSavePathCopy = AMapCopySavePath + "/nuc_WMap_by_slice/";
     system(("mkdir -p " + WMapSliceNucleonSavePathCopy).c_str());
 
     if (PrintOut) { ++testNumber, cout << "\n\n\nTEST " << testNumber << "\n"; }
@@ -1347,9 +1347,9 @@ void AMaps::SaveHitMaps(const string &SampleName, const string &AcceptanceMapsDi
     for (int Slice = 0; Slice < ElectronMomSliceLimits.size(); Slice++) {
         ofstream e_AMap_TempFile, e_WMap_TempFile;
 
-        string AMapTempFileName =
+        std::string AMapTempFileName =
             "e_AMap_file_from_" + ToStringWithPrecision(ElectronMomSliceLimits.at(Slice).at(0), 2) + "_to_" + ToStringWithPrecision(ElectronMomSliceLimits.at(Slice).at(1), 2) + ".par";
-        string WMapTempFileName =
+        std::string WMapTempFileName =
             "e_WMap_file_from_" + ToStringWithPrecision(ElectronMomSliceLimits.at(Slice).at(0), 2) + "_to_" + ToStringWithPrecision(ElectronMomSliceLimits.at(Slice).at(1), 2) + ".par";
 
         e_AMap_TempFile.open(AMapSliceElectronSavePath + AMapTempFileName);
@@ -1391,17 +1391,17 @@ void AMaps::SaveHitMaps(const string &SampleName, const string &AcceptanceMapsDi
     for (int Slice = 0; Slice < NucleonMomSliceLimits.size(); Slice++) {
         ofstream p_AMap_TempFile, p_WMap_TempFile, n_AMap_TempFile, n_WMap_TempFile, nuc_AMap_TempFile, nuc_WMap_TempFile;
 
-        string ProtonAMapTempFileName =
+        std::string ProtonAMapTempFileName =
             "p_AMap_file_from_" + ToStringWithPrecision(NucleonMomSliceLimits.at(Slice).at(0), 2) + "_to_" + ToStringWithPrecision(NucleonMomSliceLimits.at(Slice).at(1), 2) + ".par";
-        string ProtonWMapTempFileName =
+        std::string ProtonWMapTempFileName =
             "p_WMap_file_from_" + ToStringWithPrecision(NucleonMomSliceLimits.at(Slice).at(0), 2) + "_to_" + ToStringWithPrecision(NucleonMomSliceLimits.at(Slice).at(1), 2) + ".par";
-        string NeutronAMapTempFileName =
+        std::string NeutronAMapTempFileName =
             "n_AMap_file_from_" + ToStringWithPrecision(NucleonMomSliceLimits.at(Slice).at(0), 2) + "_to_" + ToStringWithPrecision(NucleonMomSliceLimits.at(Slice).at(1), 2) + ".par";
-        string NeutronWMapTempFileName =
+        std::string NeutronWMapTempFileName =
             "n_WMap_file_from_" + ToStringWithPrecision(NucleonMomSliceLimits.at(Slice).at(0), 2) + "_to_" + ToStringWithPrecision(NucleonMomSliceLimits.at(Slice).at(1), 2) + ".par";
-        string NucleonAMapTempFileName =
+        std::string NucleonAMapTempFileName =
             "nuc_AMap_file_from_" + ToStringWithPrecision(NucleonMomSliceLimits.at(Slice).at(0), 2) + "_to_" + ToStringWithPrecision(NucleonMomSliceLimits.at(Slice).at(1), 2) + ".par";
-        string NucleonWMapTempFileName =
+        std::string NucleonWMapTempFileName =
             "nuc_WMap_file_from_" + ToStringWithPrecision(NucleonMomSliceLimits.at(Slice).at(0), 2) + "_to_" + ToStringWithPrecision(NucleonMomSliceLimits.at(Slice).at(1), 2) + ".par";
 
         p_AMap_TempFile.open(AMapSliceProtonSavePath + ProtonAMapTempFileName);
@@ -1598,7 +1598,7 @@ void AMaps::SaveHitMaps(const string &SampleName, const string &AcceptanceMapsDi
 // DrawAndSaveHitMapsPDFs function ------------------------------------------------------------------------------------------------------------------------------------------
 
 //<editor-fold desc="DrawAndSaveHitMapsPDFs function">
-void AMaps::DrawAndSaveHitMapsPDFs(vector<TH1 *> HistoList, const string &PDFfileName) {
+void AMaps::DrawAndSaveHitMapsPDFs(vector<TH1 *> HistoList, const std::string &PDFfileName) {
     TCanvas *myText_temp = new TCanvas("myText_temp", "myText_temp", pixelx, pixely);
     TCanvas *myCanvas_temp = new TCanvas("myCanvas_temp", "myCanvas_temp", pixelx, pixely);
 
@@ -1641,10 +1641,10 @@ void AMaps::DrawAndSaveHitMapsPDFs(vector<TH1 *> HistoList, const string &PDFfil
 // DrawAndSaveHitMaps function ------------------------------------------------------------------------------------------------------------------------------------------
 
 //<editor-fold desc="DrawAndSaveHitMaps function">
-void AMaps::DrawAndSaveHitMaps(const string &SampleName, TCanvas *h1DCanvas, const string &AcceptanceMapsDirectory) {
+void AMaps::DrawAndSaveHitMaps(const std::string &SampleName, TCanvas *h1DCanvas, const std::string &AcceptanceMapsDirectory) {
     cout << "\n\nProcessing maps...\n";
 
-    string SampleNameTemp = SampleName;
+    std::string SampleNameTemp = SampleName;
     const char *AcceptanceMapsBC_OutFile = AcceptanceMapsBC_OutFile0.c_str();
     const char *TLAMaps_OutFile = TLAMaps_OutFile0.c_str();
     const char *RecoAMaps_OutFile = RecoAMaps_OutFile0.c_str();
@@ -1878,9 +1878,9 @@ int AMaps::HistCounter(const char *fname) {
 void AMaps::SetHistBinsFromHistTitle(TH2D *Histogram2D) {
     bool PrintOut = false;
 
-    string Title = Histogram2D->GetTitle();
-    string NumOfXBinsStr = Title.substr((Title.find_last_of('(')) + 1, 3);
-    string NumOfYBinsStr = Title.substr(Title.find_last_of('x') + 1, 3);
+    std::string Title = Histogram2D->GetTitle();
+    std::string NumOfXBinsStr = Title.substr((Title.find_last_of('(')) + 1, 3);
+    std::string NumOfYBinsStr = Title.substr(Title.find_last_of('x') + 1, 3);
 
     HistNucSliceNumOfXBins = stoi(NumOfXBinsStr);
     HistNucSliceNumOfYBins = stoi(NumOfYBinsStr);
@@ -1899,12 +1899,12 @@ void AMaps::SetHistBinsFromHistTitle(TH2D *Histogram2D) {
 // SetSlicesFromHistTitle function --------------------------------------------------------------------------------------------------------------------------------------
 
 //<editor-fold desc="SetSlicesFromHistTitle function">
-void AMaps::SetSlicesFromHistTitle(TH2D *Histogram2D, const string &Particle) {
+void AMaps::SetSlicesFromHistTitle(TH2D *Histogram2D, const std::string &Particle) {
     bool PrintOut = false;
 
-    string Title = Histogram2D->GetTitle();
-    string SliceLowerLimStr = Title.substr((Title.find_first_of('#')) - 4, 4);
-    string SliceUpperLimStr = Title.substr(Title.find_last_of('#') + 4, 4);
+    std::string Title = Histogram2D->GetTitle();
+    std::string SliceLowerLimStr = Title.substr((Title.find_first_of('#')) - 4, 4);
+    std::string SliceUpperLimStr = Title.substr(Title.find_last_of('#') + 4, 4);
 
     double SliceLowerLim = stod(SliceLowerLimStr);
     double SliceUpperLim = stod(SliceUpperLimStr);
@@ -1932,9 +1932,9 @@ void AMaps::SetSlicesFromHistTitle(TH2D *Histogram2D, const string &Particle) {
 void AMaps::SetSlicesFromHistTitle(TH2D *Histogram2D, vector<vector<double>> MomBinsLimits) {
     bool PrintOut = false;
 
-    string Title = Histogram2D->GetTitle();
-    string SliceLowerLimStr = Title.substr((Title.find_first_of('#')) - 4, 4);
-    string SliceUpperLimStr = Title.substr(Title.find_last_of('#') + 4, 4);
+    std::string Title = Histogram2D->GetTitle();
+    std::string SliceLowerLimStr = Title.substr((Title.find_first_of('#')) - 4, 4);
+    std::string SliceUpperLimStr = Title.substr(Title.find_last_of('#') + 4, 4);
 
     double SliceLowerLim = stod(SliceLowerLimStr);
     double SliceUpperLim = stod(SliceUpperLimStr);
@@ -1958,11 +1958,11 @@ void AMaps::SetSlicesFromHistTitle(TH2D *Histogram2D, vector<vector<double>> Mom
 // ReadHitMaps function -------------------------------------------------------------------------------------------------------------------------------------------------
 
 //<editor-fold desc="ReadHitMaps function">
-void AMaps::ReadHitMaps(const string &AcceptanceMapsDirectory, const string &SampleName) {
+void AMaps::ReadHitMaps(const std::string &AcceptanceMapsDirectory, const std::string &SampleName) {
     bool PrintKeys = false;
 
     //<editor-fold desc="Load AMapsBC">
-    string AMapsBC_RootFile_FileName = AcceptanceMapsDirectory + "/" + SampleName + "/" + AMapsBC_prefix + SampleName + ".root";
+    std::string AMapsBC_RootFile_FileName = AcceptanceMapsDirectory + "/" + SampleName + "/" + AMapsBC_prefix + SampleName + ".root";
     TFile *AMapsBC_RootFile = new TFile(AMapsBC_RootFile_FileName.c_str());
     if (!AMapsBC_RootFile) { cout << "\n\nAMaps::ReadHitMaps: could not load AMapsBC root file! Exiting...\n", exit(0); }
 
@@ -1986,7 +1986,7 @@ void AMaps::ReadHitMaps(const string &AcceptanceMapsDirectory, const string &Sam
     //</editor-fold>
 
     //<editor-fold desc="Load Hit_Maps_TL">
-    string Hit_Maps_TL_RootFile_FileName = AcceptanceMapsDirectory + "/" + SampleName + "/" + AMap_TL_prefix + SampleName + ".root";
+    std::string Hit_Maps_TL_RootFile_FileName = AcceptanceMapsDirectory + "/" + SampleName + "/" + AMap_TL_prefix + SampleName + ".root";
     TFile *Hit_Maps_TL_RootFile = new TFile(Hit_Maps_TL_RootFile_FileName.c_str());
     if (!Hit_Maps_TL_RootFile) { cout << "\n\nAMaps::ReadHitMaps: could not load Hit_Maps_TL root file! Exiting...\n", exit(0); }
 
@@ -2017,7 +2017,7 @@ void AMaps::ReadHitMaps(const string &AcceptanceMapsDirectory, const string &Sam
     //</editor-fold>
 
     //<editor-fold desc="Load Hit_Maps_Reco">
-    string Hit_Maps_Reco_RootFile_FileName = AcceptanceMapsDirectory + "/" + SampleName + "/" + AMap_Reco_prefix + SampleName + ".root";
+    std::string Hit_Maps_Reco_RootFile_FileName = AcceptanceMapsDirectory + "/" + SampleName + "/" + AMap_Reco_prefix + SampleName + ".root";
     TFile *Hit_Maps_Reco_RootFile = new TFile(Hit_Maps_Reco_RootFile_FileName.c_str());
     if (!Hit_Maps_Reco_RootFile) { cout << "\n\nAMaps::ReadHitMaps: could not load Hit_Maps_Reco root file! Exiting...\n", exit(0); }
 
@@ -2041,7 +2041,7 @@ void AMaps::ReadHitMaps(const string &AcceptanceMapsDirectory, const string &Sam
     //</editor-fold>
 
     //<editor-fold desc="Load Hit_Maps_Ratio">
-    string Hit_Maps_Ratio_RootFile_FileName = AcceptanceMapsDirectory + "/" + SampleName + "/" + AMap_Ratio_prefix + SampleName + ".root";
+    std::string Hit_Maps_Ratio_RootFile_FileName = AcceptanceMapsDirectory + "/" + SampleName + "/" + AMap_Ratio_prefix + SampleName + ".root";
     TFile *Hit_Maps_Ratio_RootFile = new TFile(Hit_Maps_Ratio_RootFile_FileName.c_str());
     if (!Hit_Maps_Ratio_RootFile) { cout << "\n\nAMaps::ReadHitMaps: could not load Hit_Maps_Ratio root file! Exiting...\n", exit(0); }
 
@@ -2065,7 +2065,7 @@ void AMaps::ReadHitMaps(const string &AcceptanceMapsDirectory, const string &Sam
     //</editor-fold>
 
     //<editor-fold desc="Load cPart_Sep_AMaps">
-    string cPart_Sep_AMaps_RootFile_FileName = AcceptanceMapsDirectory + "/" + SampleName + "/" + cPart_Sep_AMaps_prefix + SampleName + ".root";
+    std::string cPart_Sep_AMaps_RootFile_FileName = AcceptanceMapsDirectory + "/" + SampleName + "/" + cPart_Sep_AMaps_prefix + SampleName + ".root";
     TFile *cPart_Sep_AMaps_RootFile = new TFile(cPart_Sep_AMaps_RootFile_FileName.c_str());
     if (!cPart_Sep_AMaps_RootFile) { cout << "\n\nAMaps::ReadHitMaps: could not load cPart_Sep_AMaps root file! Exiting...\n", exit(0); }
 
@@ -2087,7 +2087,7 @@ void AMaps::ReadHitMaps(const string &AcceptanceMapsDirectory, const string &Sam
     //</editor-fold>
 
     //<editor-fold desc="Load AMaps">
-    string AMaps_RootFile_FileName = AcceptanceMapsDirectory + "/" + SampleName + "/" + AMaps_prefix + SampleName + ".root";
+    std::string AMaps_RootFile_FileName = AcceptanceMapsDirectory + "/" + SampleName + "/" + AMaps_prefix + SampleName + ".root";
     TFile *AMaps_RootFile = new TFile(AMaps_RootFile_FileName.c_str());
     if (!AMaps_RootFile) { cout << "\n\nAMaps::ReadHitMaps: could not load AMaps root file! Exiting...\n", exit(0); }
 
@@ -2116,12 +2116,12 @@ void AMaps::ReadAMapLimits(const char *filename, vector<vector<double>> &Loaded_
     infile.open(filename);
 
     if (infile.is_open()) {
-        string tp;
+        std::string tp;
 
         // getline(infile, tp) = read data from file object and put it into string.
         while (getline(infile, tp)) {
             stringstream ss(tp);
-            string parameter, parameter2;
+            std::string parameter, parameter2;
             ss >> parameter;  // get cut identifier
 
             if (FindSubstring(parameter, "_slice_")) {
@@ -2129,7 +2129,7 @@ void AMaps::ReadAMapLimits(const char *filename, vector<vector<double>> &Loaded_
                 ss >> parameter2;
                 stringstream ss2(parameter2);
 
-                string LineEntry;
+                std::string LineEntry;
                 vector<double> particle_limits;
 
                 while (getline(ss2, LineEntry, ':')) { particle_limits.push_back(stod(LineEntry)); }
@@ -2146,11 +2146,11 @@ void AMaps::ReadAMapLimits(const char *filename, vector<vector<double>> &Loaded_
 // ReadAMapSlices function (AMaps) --------------------------------------------------------------------------------------------------------------------------------------
 
 //<editor-fold desc="ReadAMapSlices function (AMaps)">
-void AMaps::ReadAMapSlices(const string &SampleName, const string &AcceptanceMapsDirectory, const string &Particle, const vector<vector<double>> &Loaded_particle_limits,
+void AMaps::ReadAMapSlices(const std::string &SampleName, const std::string &AcceptanceMapsDirectory, const std::string &Particle, const vector<vector<double>> &Loaded_particle_limits,
                            vector<vector<vector<int>>
 
                                   > &Loaded_Particle_AMap_Slices) {
-    string ParticleShort;
+    std::string ParticleShort;
 
     if (isElectron(Particle)) {
         ParticleShort = "e";
@@ -2165,7 +2165,7 @@ void AMaps::ReadAMapSlices(const string &SampleName, const string &AcceptanceMap
     for (int Slice = 0; Slice < Loaded_particle_limits.size(); Slice++) {
         vector<vector<int>> Loaded_Particle_AMap_TempSlice;
 
-        string TempFileName = ParticleShort + "_AMap_by_slice/" + ParticleShort + "_AMap_file_from_" + ToStringWithPrecision(Loaded_particle_limits.at(Slice).at(0), 2) + "_to_" +
+        std::string TempFileName = ParticleShort + "_AMap_by_slice/" + ParticleShort + "_AMap_file_from_" + ToStringWithPrecision(Loaded_particle_limits.at(Slice).at(0), 2) + "_to_" +
                               ToStringWithPrecision(Loaded_particle_limits.at(Slice).at(1), 2) + ".par";
 
         ReadAMap((AcceptanceMapsDirectory + SampleName + "/" + TempFileName).c_str(), Loaded_Particle_AMap_TempSlice);
@@ -2178,9 +2178,9 @@ void AMaps::ReadAMapSlices(const string &SampleName, const string &AcceptanceMap
 // ReadWMapSlices function (WMaps) --------------------------------------------------------------------------------------------------------------------------------------
 
 //<editor-fold desc="ReadWMapSlices function (WMaps)">
-void AMaps::ReadWMapSlices(const string &SampleName, const string &AcceptanceMapsDirectory, const string &Particle, const vector<vector<double>> &Loaded_particle_limits,
+void AMaps::ReadWMapSlices(const std::string &SampleName, const std::string &AcceptanceMapsDirectory, const std::string &Particle, const vector<vector<double>> &Loaded_particle_limits,
                            vector<vector<vector<double>>> &Loaded_Particle_WMap_Slices) {
-    string ParticleShort;
+    std::string ParticleShort;
 
     if (isElectron(Particle)) {
         ParticleShort = "e";
@@ -2195,7 +2195,7 @@ void AMaps::ReadWMapSlices(const string &SampleName, const string &AcceptanceMap
     for (int Slice = 0; Slice < Loaded_particle_limits.size(); Slice++) {
         vector<vector<double>> Loaded_Particle_WMap_TempSlice;
 
-        string TempFileName = ParticleShort + "_WMap_by_slice/" + ParticleShort + "_WMap_file_from_" + ToStringWithPrecision(Loaded_particle_limits.at(Slice).at(0), 2) + "_to_" +
+        std::string TempFileName = ParticleShort + "_WMap_by_slice/" + ParticleShort + "_WMap_file_from_" + ToStringWithPrecision(Loaded_particle_limits.at(Slice).at(0), 2) + "_to_" +
                               ToStringWithPrecision(Loaded_particle_limits.at(Slice).at(1), 2) + ".par";
 
         ReadWMap((AcceptanceMapsDirectory + SampleName + "/" + TempFileName).c_str(), Loaded_Particle_WMap_TempSlice);
@@ -2215,12 +2215,12 @@ void AMaps::ReadAMap(const char *filename, vector<vector<int>> &Loaded_particle_
     infile.open(filename);
 
     if (infile.is_open()) {
-        string tp;
+        std::string tp;
 
         // getline(infile, tp) = read data from file object and put it into string.
         while (getline(infile, tp)) {
             stringstream ss(tp);
-            string parameter, parameter2;
+            std::string parameter, parameter2;
             ss >> parameter;  // get cut identifier
 
             if (FindSubstring(parameter, "Line")) {
@@ -2228,7 +2228,7 @@ void AMaps::ReadAMap(const char *filename, vector<vector<int>> &Loaded_particle_
                 ss >> parameter2;
                 stringstream ss2(parameter2);
 
-                string LineEntry;
+                std::string LineEntry;
                 vector<int> col;
 
                 while (getline(ss2, LineEntry, ':')) { col.push_back(stoi(LineEntry)); }
@@ -2252,12 +2252,12 @@ void AMaps::ReadWMap(const char *filename, vector<vector<double>> &Loaded_partic
     infile.open(filename);
 
     if (infile.is_open()) {
-        string tp;
+        std::string tp;
 
         // getline(infile, tp) = read data from file object and put it into string.
         while (getline(infile, tp)) {
             stringstream ss(tp);
-            string parameter, parameter2;
+            std::string parameter, parameter2;
             ss >> parameter;  // get cut identifier
 
             if (FindSubstring(parameter, "Weight")) {
@@ -2265,7 +2265,7 @@ void AMaps::ReadWMap(const char *filename, vector<vector<double>> &Loaded_partic
                 ss >> parameter2;
                 stringstream ss2(parameter2);
 
-                string LineEntry;
+                std::string LineEntry;
                 vector<double> col;
 
                 while (getline(ss2, LineEntry, ':')) { col.push_back(stod(LineEntry)); }
@@ -2282,7 +2282,7 @@ void AMaps::ReadWMap(const char *filename, vector<vector<double>> &Loaded_partic
 // MatchAngToHitMap function --------------------------------------------------------------------------------------------------------------------------------------------
 
 //<editor-fold desc="MatchAngToHitMap function (original with neutron FC 'bug')">
-bool AMaps::MatchAngToHitMap(const string &Particle, double Momentum, double Theta, double Phi, bool NucleonOverlappingFC) {
+bool AMaps::MatchAngToHitMap(const std::string &Particle, double Momentum, double Theta, double Phi, bool NucleonOverlappingFC) {
     int e_InitialSlice = 0, e_FinalSlice = Loaded_ElectronMomSliceLimits.size();
     int p_InitialSlice = 0, p_FinalSlice = Loaded_NucleonMomSliceLimits.size(), n_InitialSlice = 0, n_FinalSlice = Loaded_NucleonMomSliceLimits.size();
 
@@ -2393,7 +2393,7 @@ bool AMaps::MatchAngToHitMap(const string &Particle, double Momentum, double The
 //</editor-fold>
 
 ////<editor-fold desc="MatchAngToHitMap function (original after neutron FC 'bug' fix)">
-// bool AMaps::MatchAngToHitMap(const string &Particle, double Momentum, double Theta, double Phi, bool NucleonOverlappingFC) {
+// bool AMaps::MatchAngToHitMap(const std::string &Particle, double Momentum, double Theta, double Phi, bool NucleonOverlappingFC) {
 //     int e_InitialSlice = 0, e_FinalSlice = Loaded_ElectronMomSliceLimits.size();
 //     int p_InitialSlice = 0, p_FinalSlice = Loaded_NucleonMomSliceLimits.size(), n_InitialSlice = 0, n_FinalSlice = Loaded_NucleonMomSliceLimits.size();
 //
@@ -2526,7 +2526,7 @@ bool AMaps::MatchAngToHitMap(const string &Particle, double Momentum, double The
 // GetWeight function ---------------------------------------------------------------------------------------------------------------------------------------------------
 
 //<editor-fold desc="GetWeight function">
-double AMaps::GetWeight(bool apply_kinematical_weights, const string &Particle, double Momentum, double Theta, double Phi) {
+double AMaps::GetWeight(bool apply_kinematical_weights, const std::string &Particle, double Momentum, double Theta, double Phi) {
     bool PrintOut = false;
 
     if (apply_kinematical_weights) {
@@ -2640,7 +2640,7 @@ double AMaps::GetWeight(bool apply_kinematical_weights, const string &Particle, 
 // IsInFDQuery function -------------------------------------------------------------------------------------------------------------------------------------------------
 
 //<editor-fold desc="IsInFDQuery function">
-bool AMaps::IsInFDQuery(bool Generate_AMaps, const DSCuts &ThetaFD, const string &Particle, double Momentum, double Theta, double Phi, bool NucleonOverlappingFC) {
+bool AMaps::IsInFDQuery(bool Generate_AMaps, const DSCuts &ThetaFD, const std::string &Particle, double Momentum, double Theta, double Phi, bool NucleonOverlappingFC) {
     bool inFDQuery, part_inSomeSector;
 
     if (!Generate_AMaps) {

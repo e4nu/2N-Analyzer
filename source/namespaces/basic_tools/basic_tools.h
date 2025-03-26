@@ -57,7 +57,7 @@ void CheckSSHConnectionAndHost() {
             if (host) {
                 std::cout << "Remote Host Name: " << host->h_name << std::endl;
             } else {
-                std::cerr << "Could not resolve host name from IP." << std::endl;
+                std::std::cerr << "Could not resolve host name from IP." << std::endl;
             }
         }
     } else {
@@ -84,13 +84,13 @@ std::string GetSSHHostName() {
             if (host) {
                 return std::string(host->h_name);
             } else {
-                std::cerr << "Could not resolve host name from IP." << std::endl;
+                std::std::cerr << "Could not resolve host name from IP." << std::endl;
                 return "";
             }
         }
     }
 
-    std::cerr << "Not connected via SSH." << std::endl;
+    std::std::cerr << "Not connected via SSH." << std::endl;
     return "";
 }
 
@@ -99,7 +99,7 @@ std::string GetSSHHostName() {
 string GetCurrentDirectory() {
     char pwd[PATH_MAX];
     if (getcwd(pwd, sizeof(pwd)) == nullptr) {
-        std::cerr << "Error getting current directory." << std::endl;
+        std::std::cerr << "Error getting current directory." << std::endl;
         return "";
     }
 
@@ -126,11 +126,11 @@ string ToStringWithPrecision(const A a_value, const int n = 2) {
 
 // FindSubstring function -----------------------------------------------------------------------------------------------------------------------------------------------
 
-inline bool FindSubstring(const string &string1, const string &string2) { return string1.find(string2) != string::npos; }
+inline bool FindSubstring(const std::string &string1, const std::string &string2) { return string1.find(string2) != string::npos; }
 
 // GetBeamEnergyFromString function -------------------------------------------------------------------------------------------------------------------------------------
 
-double GetBeamEnergyFromString(const string &sn) {
+double GetBeamEnergyFromString(const std::string &sn) {
     double be = 0.;
 
     if (FindSubstring(sn, "598636MeV") || FindSubstring(sn, "598636mev") || FindSubstring(sn, "598636") || FindSubstring(sn, "5986MeV") || FindSubstring(sn, "5986mev") ||

@@ -27,7 +27,7 @@ using namespace std;
 // MCtoDATAcompare function ---------------------------------------------------------------------------------------------------------------------------------------------
 
 //<editor-fold desc="MCtoDATAcompare function">
-void MCtoDATAcompare(int counter, TCanvas *Canvas, TCanvas *CanvasMulti, TH1D *MC_Histogram, TH1D *DATA_Histogram, string SaveDir) {
+void MCtoDATAcompare(int counter, TCanvas *Canvas, TCanvas *CanvasMulti, TH1D *MC_Histogram, TH1D *DATA_Histogram, std::string SaveDir) {
     Canvas->cd();
 
     hData Properties;
@@ -36,9 +36,9 @@ void MCtoDATAcompare(int counter, TCanvas *Canvas, TCanvas *CanvasMulti, TH1D *M
     bool DATA_Save = false;
     bool Comparison_Save = true;
 
-    string Histogram_Type = Properties.GetType(MC_Histogram->GetTitle());
-    string Histogram_Particle = Properties.GetParticleNameShort(MC_Histogram->GetTitle());
-    string FinalState = Properties.GetFS(MC_Histogram->GetTitle());
+    std::string Histogram_Type = Properties.GetType(MC_Histogram->GetTitle());
+    std::string Histogram_Particle = Properties.GetParticleNameShort(MC_Histogram->GetTitle());
+    std::string FinalState = Properties.GetFS(MC_Histogram->GetTitle());
 
     TLine *EquiLine = new TLine(MC_Histogram->GetXaxis()->GetXmin(), 1, MC_Histogram->GetXaxis()->GetXmax(), 1);
     EquiLine->SetLineWidth(2);
@@ -133,7 +133,7 @@ void MCtoDATAcompare(int counter, TCanvas *Canvas, TCanvas *CanvasMulti, TH1D *M
 
 //<editor-fold desc="MCtoDATAcomp function">
 void MCtoDATAcomp() {
-    string SaveDir = "MC_to_DATA_comperison";
+    std::string SaveDir = "MC_to_DATA_comperison";
     system(("rm -r " + SaveDir).c_str());
     system(("mkdir -p " + SaveDir).c_str());
 
@@ -173,7 +173,7 @@ void MCtoDATAcomp() {
 
     while (MC_key = (TKey *) MC_next()) {
         TH1D *MC_Histogram = (TH1D *) MC_key->ReadObj();
-        string MC_Histogram_title = MC_Histogram->GetTitle();
+        std::string MC_Histogram_title = MC_Histogram->GetTitle();
         if (!findSubstring(MC_Histogram_title, "nFDpCD/pFDpCD") ||
             !(!findSubstring(MC_Histogram_title, "vs") && !findSubstring(MC_Histogram_title, "vs.") &&
               !findSubstring(MC_Histogram_title, "VS") && !findSubstring(MC_Histogram_title, "VS."))) {
@@ -183,7 +183,7 @@ void MCtoDATAcomp() {
 
             while (DATA_key = (TKey *) DATA_next()) {
                 TH1D *DATA_Histogram = (TH1D *) DATA_key->ReadObj();
-                string DATA_Histogram_title = DATA_Histogram->GetTitle();
+                std::string DATA_Histogram_title = DATA_Histogram->GetTitle();
                 if (!findSubstring(DATA_Histogram_title, "nFDpCD/pFDpCD") ||
                     !(!findSubstring(DATA_Histogram_title, "vs") && !findSubstring(DATA_Histogram_title, "vs.") &&
                       !findSubstring(DATA_Histogram_title, "VS") && !findSubstring(DATA_Histogram_title, "VS."))) { continue; }

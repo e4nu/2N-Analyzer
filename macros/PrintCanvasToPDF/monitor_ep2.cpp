@@ -31,7 +31,7 @@ void printProgress(double percentage);
 
 void Usage()
 {
-  std::cerr << "Usage: ./code <MC =1,Data = 0> <Ebeam(GeV)> <path/to/ouput.root> <path/to/ouput.pdf> <path/to/cutfile.txt> <path/to/input.hipo> \n";
+  std::std::cerr << "Usage: ./code <MC =1,Data = 0> <Ebeam(GeV)> <path/to/ouput.root> <path/to/ouput.pdf> <path/to/cutfile.txt> <path/to/input.hipo> \n";
 }
 
 
@@ -40,7 +40,7 @@ int main(int argc, char ** argv)
 
   if(argc < 7)
     {
-      std::cerr<<"Wrong number of arguments.\n";
+      std::std::cerr<<"Wrong number of arguments.\n";
       Usage();
       return -1;
     }
@@ -360,10 +360,10 @@ int main(int argc, char ** argv)
       //Display completed  
       counter++;
       if((counter%1000000) == 0){
-	cerr << "\n" <<counter/1000000 <<" million completed";
+	std::cerr << "\n" <<counter/1000000 <<" million completed";
       }    
       if((counter%100000) == 0){
-	cerr << ".";
+	std::cerr << ".";
       }    
 
       // get particles by type

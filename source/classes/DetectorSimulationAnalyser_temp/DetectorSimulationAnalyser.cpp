@@ -1,7 +1,7 @@
 #include "HistogramSetup.cpp"
 // #include "DetectorSimulationAnalyser.h"
 
-void DetectorSimulationAnalyser::EventAnalyser(const string &AnalyseFilePath, const string &AnalyseFileSample, const string &AnalyseFile) {
+void DetectorSimulationAnalyser::EventAnalyser(const std::string &AnalyseFilePath, const std::string &AnalyseFileSample, const std::string &AnalyseFile) {
     CodeDebugger.PrintStepTester(DebuggerMode);
 
     cout << "\033[33m\n\n===========================================================================\n\033[0m";
@@ -13,7 +13,7 @@ void DetectorSimulationAnalyser::EventAnalyser(const string &AnalyseFilePath, co
     SavePlots();
 }
 
-void DetectorSimulationAnalyser::CodeSetup(const string &AnalyseFilePath, const string &AnalyseFileSample, const string &AnalyseFile) {
+void DetectorSimulationAnalyser::CodeSetup(const std::string &AnalyseFilePath, const std::string &AnalyseFileSample, const std::string &AnalyseFile) {
     CodeDebugger.PrintStepTester(DebuggerMode);
 
     InputProcessing(AnalyseFilePath, AnalyseFileSample, AnalyseFile);
@@ -30,7 +30,7 @@ void DetectorSimulationAnalyser::CodeSetup(const string &AnalyseFilePath, const 
     DebuggingSetup();
 }
 
-void DetectorSimulationAnalyser::InputProcessing(const string &AnalyseFilePath, const string &AnalyseFileSample, const string &AnalyseFile) {
+void DetectorSimulationAnalyser::InputProcessing(const std::string &AnalyseFilePath, const std::string &AnalyseFileSample, const std::string &AnalyseFile) {
     CodeDebugger.PrintStepTester(DebuggerMode);
 
     // ======================================================================================================================================================================
@@ -8660,10 +8660,10 @@ void DetectorSimulationAnalyser::SaveLog() {
         // cout << "\n\nrun_plots_path: " << run_plots_path << "\n";
         // cout << "settings.GetRun_dir_name(): " << settings.GetRun_dir_name() << "\n";
         // exit(0);
-        string zip_filename = settings.GetRun_dir_name() + ".zip";
-        string zip_input_path = run_plots_path;
-        string zip_input = run_plots_path + "/" + zip_filename;
-        string zip_output_path = run_plots_path;
+        std::string zip_filename = settings.GetRun_dir_name() + ".zip";
+        std::string zip_input_path = run_plots_path;
+        std::string zip_input = run_plots_path + "/" + zip_filename;
+        std::string zip_output_path = run_plots_path;
         cout << "\n\nMaking zip file...\n";
         cout << "zip_filename: " << zip_filename << "\n";
         cout << "zip_input_path: " << zip_input_path << "\n";

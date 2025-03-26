@@ -7,7 +7,7 @@
 
 using namespace std;
 
-int GetBinFromAng(double Angle, double AngleBins, double AngleMin, double AngleMax, bool printOut = false, const string &AngleType = "") {
+int GetBinFromAng(double Angle, double AngleBins, double AngleMin, double AngleMax, bool printOut = false, const std::string &AngleType = "") {
     int Bin = 0;
     //    int Bin = -1;
 

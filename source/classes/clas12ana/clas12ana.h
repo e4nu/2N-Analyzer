@@ -15,7 +15,7 @@ using namespace std;
 using namespace clas12;
 
 struct cutpar {
-    string id;
+    std::string id;
     vector<double> par = {};  // pi- parameters
 };
 
@@ -245,7 +245,7 @@ class clas12ana : public
 
     bool HTCCNpheCuts(region_part_ptr p);  // My addition
 
-    double GetPidCutSigma(int Pid, string region) {
+    double GetPidCutSigma(int Pid, std::string region) {
         // My addition?
         if (region == "CD") {
             auto itter_CD = pid_cuts_cd.find(Pid);
@@ -261,7 +261,7 @@ class clas12ana : public
         }
     }
 
-    double GetPidCutMean(int Pid, string region) {
+    double GetPidCutMean(int Pid, std::string region) {
         // My addition?
         if (region == "CD") {
             auto itter_CD = pid_cuts_cd.find(Pid);
@@ -1112,7 +1112,7 @@ void clas12ana::readEcalSFPar(const char *filename) {
     infile.open(filename);
 
     if (infile.is_open()) {
-        string tp;
+        std::string tp;
 
         // remove 3 lines of header
         for (int i = 0; i < 2; i++) getline(infile, tp);
@@ -1140,7 +1140,7 @@ void clas12ana::readEcalPPar(const char *filename) {
     infile.open(filename);
 
     if (infile.is_open()) {
-        string tp;
+        std::string tp;
 
         // remove 3 lines of header
         for (int i = 0; i < 2; i++) getline(infile, tp);
@@ -1167,7 +1167,7 @@ void clas12ana::readInputParam(const char *filename) {
     infile.open(filename);
 
     if (infile.is_open()) {
-        string tp;
+        std::string tp;
 
         // remove 3 lines of header
         for (int i = 0; i < 3; i++) getline(infile, tp);
@@ -1176,7 +1176,7 @@ void clas12ana::readInputParam(const char *filename) {
                        tp))  // read data from file object and put it into string.
         {
             stringstream ss(tp);
-            string parameter, parameter2;
+            std::string parameter, parameter2;
             double value;
             // get cut identifier
             ss >> parameter;
@@ -1184,8 +1184,8 @@ void clas12ana::readInputParam(const char *filename) {
                 // get cut values
                 ss >> parameter2;
                 stringstream ss2(parameter2);
-                string pid_v;
-                string detector;
+                std::string pid_v;
+                std::string detector;
                 int count = 0;  // parameter number
                 int pid = -99;
                 vector<double> par;
@@ -1212,9 +1212,9 @@ void clas12ana::readInputParam(const char *filename) {
             else if (parameter == "vertex_cut") {
                 ss >> parameter2;
                 stringstream ss2(parameter2);
-                string pid_v;
+                std::string pid_v;
                 int count = 0;
-                string pid = "";
+                std::string pid = "";
                 vector<double> par;
 
                 while (getline(ss2, pid_v, ':')) {
@@ -1233,9 +1233,9 @@ void clas12ana::readInputParam(const char *filename) {
                 // TODO: organize this properly with a map for each pdg.
                 ss >> parameter2;
                 stringstream ss2(parameter2);
-                string pid_v;
+                std::string pid_v;
                 int count = 0;
-                string pid = "";
+                std::string pid = "";
                 vector<double> par;
 
                 while (getline(ss2, pid_v, ':')) {
@@ -1253,9 +1253,9 @@ void clas12ana::readInputParam(const char *filename) {
                 // TODO: organize this properly with a map for each pdg.
                 ss >> parameter2;
                 stringstream ss2(parameter2);
-                string pid_v;
+                std::string pid_v;
                 int count = 0;
-                string pid = "";
+                std::string pid = "";
                 vector<double> par;
 
                 while (getline(ss2, pid_v, ':')) {
@@ -1277,9 +1277,9 @@ void clas12ana::readInputParam(const char *filename) {
                 // TODO: organize this properly with a map for each pdg.
                 ss >> parameter2;
                 stringstream ss2(parameter2);
-                string pid_v;
+                std::string pid_v;
                 int count = 0;
-                string pid = "";
+                std::string pid = "";
                 vector<double> par;
 
                 while (getline(ss2, pid_v, ':')) {
@@ -1301,7 +1301,7 @@ void clas12ana::readInputParam(const char *filename) {
                   {
                 ss >> parameter2;
                     stringstream ss2(parameter2);
-                    string cell_v;
+                    std::string cell_v;
                     while(getline(ss2, cell_v, ':'))
                       cell.push_back(atof(cell_v.c_str()));
                   }

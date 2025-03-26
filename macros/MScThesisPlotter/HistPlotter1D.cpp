@@ -28,7 +28,7 @@
 
 using namespace std;
 
-const string ConfigRegion1D(const string &Histogram2DNameCopy) {
+const std::string ConfigRegion1D(const std::string &Histogram2DNameCopy) {
     if (findSubstring(Histogram2DNameCopy, "CD")) {
         return "CD";
     } else {
@@ -36,7 +36,7 @@ const string ConfigRegion1D(const string &Histogram2DNameCopy) {
     }
 }
 
-const string ConfigSName1D(const string &SampleName) {
+const std::string ConfigSName1D(const std::string &SampleName) {
     if (findSubstring(SampleName, "sim")) {
         return "s";
     } else if (findSubstring(SampleName, "data")) {
@@ -70,33 +70,33 @@ double SetyOffset1D(const bool &ShowStats) {
     return yOffset;
 }
 
-void DrawPlot(TCanvas *HistogramCanvas, TH1D *Histogram1D, const bool LogScalePlot, const bool LinearScalePlot, const string &SavePath, const string &SaveName,
-              const string &DrawRange) {
+void DrawPlot(TCanvas *HistogramCanvas, TH1D *Histogram1D, const bool LogScalePlot, const bool LinearScalePlot, const std::string &SavePath, const std::string &SaveName,
+              const std::string &DrawRange) {
     if (DrawRange == "") {
         if (LogScalePlot) {
             HistogramCanvas->SetLogy(1);
-            string SaveNameDir = SavePath + "/" + SaveName + "_log_scale.png";
+            std::string SaveNameDir = SavePath + "/" + SaveName + "_log_scale.png";
             const char *SaveDir = SaveNameDir.c_str();
             HistogramCanvas->SaveAs(SaveDir);
         }
 
         if (LinearScalePlot) {
             HistogramCanvas->SetLogy(0);
-            string SaveNameDir = SavePath + "/" + SaveName + "_linear_scale.png";
+            std::string SaveNameDir = SavePath + "/" + SaveName + "_linear_scale.png";
             const char *SaveDir = SaveNameDir.c_str();
             HistogramCanvas->SaveAs(SaveDir);
         }
     } else {
         if (LogScalePlot) {
             HistogramCanvas->SetLogy(1);
-            string SaveNameDir = SavePath + "/" + SaveName + "_" + DrawRange + "_log_scale.png";
+            std::string SaveNameDir = SavePath + "/" + SaveName + "_" + DrawRange + "_log_scale.png";
             const char *SaveDir = SaveNameDir.c_str();
             HistogramCanvas->SaveAs(SaveDir);
         }
 
         if (LinearScalePlot) {
             HistogramCanvas->SetLogy(0);
-            string SaveNameDir = SavePath + "/" + SaveName + "_" + DrawRange + "_linear_scale.png";
+            std::string SaveNameDir = SavePath + "/" + SaveName + "_" + DrawRange + "_linear_scale.png";
             const char *SaveDir = SaveNameDir.c_str();
             HistogramCanvas->SaveAs(SaveDir);
         }
@@ -104,7 +104,7 @@ void DrawPlot(TCanvas *HistogramCanvas, TH1D *Histogram1D, const bool LogScalePl
 }
 
 void HistPlotter1D(TCanvas *HistogramCanvas, TList *MScThesisPlotsList, const char *filename, const char *Histogram1DName,
-                   const string &SampleName, const string &SavePath, const string &SaveName, const bool TLmom = false) {
+                   const std::string &SampleName, const std::string &SavePath, const std::string &SaveName, const bool TLmom = false) {
     bool PresMode = false, ExamPresMode = false;
 
 #if PresentationMode
@@ -157,7 +157,7 @@ void HistPlotter1D(TCanvas *HistogramCanvas, TList *MScThesisPlotsList, const ch
     double CustomNormalizationFactor;
 
     /* Histogram appearance setup */
-    const string Histogram1DNameCopy = Histogram1DName;
+    const std::string Histogram1DNameCopy = Histogram1DName;
     int LineColor = 1;
 //    int LineWidth = 3; // original
 //    int LineWidth = 6; // size used in results part
@@ -184,8 +184,8 @@ void HistPlotter1D(TCanvas *HistogramCanvas, TList *MScThesisPlotsList, const ch
     HistogramCanvas->cd();
 
     const double beamE = 5.98636;
-    const string Region = ConfigRegion1D(Histogram1DNameCopy);
-    string sNameFlag = ConfigSName1D(SampleName);
+    const std::string Region = ConfigRegion1D(Histogram1DNameCopy);
+    std::string sNameFlag = ConfigSName1D(SampleName);
 
     double Histogram1D_integral; // To be calculated only if normalize_Histogram
     double x_1 = 0.18, y_1 = 0.3, x_2 = 0.86, y_2 = 0.7;
@@ -212,13 +212,13 @@ void HistPlotter1D(TCanvas *HistogramCanvas, TList *MScThesisPlotsList, const ch
         Histogram1D->Draw();
         displayText->Draw();
     } else if (Histogram1D->Integral() != 0.) {
-        string Histogram1D_Title = Histogram1D->GetTitle();
-        string Histogram1D_Title1 = Histogram1D_Title;
-        string Histogram1D_xLabel = Histogram1D->GetXaxis()->GetTitle(), Histogram1D_yLabel = Histogram1D->GetYaxis()->GetTitle();
-        string FSRyLabel;
+        std::string Histogram1D_Title = Histogram1D->GetTitle();
+        std::string Histogram1D_Title1 = Histogram1D_Title;
+        std::string Histogram1D_xLabel = Histogram1D->GetXaxis()->GetTitle(), Histogram1D_yLabel = Histogram1D->GetYaxis()->GetTitle();
+        std::string FSRyLabel;
 
-        string RatioVar = Histogram1D_xLabel.substr(0, Histogram1D_xLabel.find_last_of('[') - 1);
-        string RatioTopology;
+        std::string RatioVar = Histogram1D_xLabel.substr(0, Histogram1D_xLabel.find_last_of('[') - 1);
+        std::string RatioTopology;
 
         if (findSubstring(Histogram1DNameCopy, "FSRatio")) {
             if (findSubstring(Histogram1D_Title, "1n/1p") || findSubstring(Histogram1D_Title, "1nFD/1pFD")) {
@@ -265,8 +265,8 @@ void HistPlotter1D(TCanvas *HistogramCanvas, TList *MScThesisPlotsList, const ch
         }
 
         if (findSubstring(Histogram1DNameCopy, "FSRatio")) {
-            string StringTemp0 = Histogram1D->GetTitle();
-            string StringTemp = StringTemp0.substr(StringTemp0.find_last_of("ratio") + 1);
+            std::string StringTemp0 = Histogram1D->GetTitle();
+            std::string StringTemp = StringTemp0.substr(StringTemp0.find_last_of("ratio") + 1);
             TitleAligner(particles, Histogram1D, Histogram1D_Title, Histogram1D_xLabel, StringTemp, "");
 
             if (RatioTopology == "1N") { TitleAligner(particles, Histogram1D, Histogram1D_Title, Histogram1D_xLabel, "Leading nucleon", "Nucleon"); }
@@ -336,10 +336,10 @@ void HistPlotter1D(TCanvas *HistogramCanvas, TList *MScThesisPlotsList, const ch
         if (findSubstring(Histogram1DNameCopy, "V_{z}^{")) {
             LogScalePlot = true, ShowStats = false;
 
-            string HistTitle = Histogram1D_Title1;
-            string ParticleShort = particles.GetParticleNameShortFromSubscript(HistTitle);
-            string ParticlesLC;
-            string Region = particles.GetDRegionExplicit(HistTitle, true);
+            std::string HistTitle = Histogram1D_Title1;
+            std::string ParticleShort = particles.GetParticleNameShortFromSubscript(HistTitle);
+            std::string ParticlesLC;
+            std::string Region = particles.GetDRegionExplicit(HistTitle, true);
 
             if (ParticleShort == "#pi^{+}" || ParticleShort == "#pi^{-}" || ParticleShort == "K^{+}" || ParticleShort == "K^{-}") {
                 ParticlesLC = particles.GetParticleNameLCFromSubscript(HistTitle, false);
@@ -376,10 +376,10 @@ void HistPlotter1D(TCanvas *HistogramCanvas, TList *MScThesisPlotsList, const ch
         } else if (findSubstring(Histogram1DNameCopy, "Vertex corr. dV^{")) {
             LogScalePlot = true, ShowStats = false;
 
-            string HistTitle = Histogram1D_Title1;
-            string ParticleShort = particles.GetParticleNameShortFromSubscript(HistTitle.substr(0, HistTitle.find_last_of('=') + 1));
-            string ParticlesLC;
-            string Region = particles.GetDRegionExplicit(HistTitle, true);
+            std::string HistTitle = Histogram1D_Title1;
+            std::string ParticleShort = particles.GetParticleNameShortFromSubscript(HistTitle.substr(0, HistTitle.find_last_of('=') + 1));
+            std::string ParticlesLC;
+            std::string Region = particles.GetDRegionExplicit(HistTitle, true);
 
             if (ParticleShort == "#pi^{+}" || ParticleShort == "#pi^{-}" || ParticleShort == "K^{+}" || ParticleShort == "K^{-}") {
                 ParticlesLC = particles.GetParticleNameLCFromSubscript("{" + ParticleShort + "}", false);
@@ -425,16 +425,16 @@ void HistPlotter1D(TCanvas *HistogramCanvas, TList *MScThesisPlotsList, const ch
             TLegendEntry *LowerNpheCutEntry = Legend->AddEntry(LowerNpheCut, ("Lower cut = " + to_string_with_precision(LowerCut, 0)).c_str(), "l");
             Legend->SetTextSize(0.03), Legend->SetTextAlign(12), Legend->Draw("same");
         } else if (findSubstring(Histogram1DNameCopy, "#chi^{2}")) {
-            string HistTitle = Histogram1D_Title1;
-            string ParticleShort = particles.GetParticleNameShortFromSubscript(HistTitle);
-            string ParticlesLC;
-            string Region = particles.GetDRegionExplicit(HistTitle, true);
+            std::string HistTitle = Histogram1D_Title1;
+            std::string ParticleShort = particles.GetParticleNameShortFromSubscript(HistTitle);
+            std::string ParticlesLC;
+            std::string Region = particles.GetDRegionExplicit(HistTitle, true);
 
             ShowStats = false;
             double xOffset = SetxOffset1D(ShowStats), yOffset = SetyOffset1D(ShowStats);
 
             if (ParticleShort == "e") {
-                string ParticlesLC = particles.GetParticleNameLCFromSubscript(HistTitle, true);
+                std::string ParticlesLC = particles.GetParticleNameLCFromSubscript(HistTitle, true);
                 Histogram1D->SetTitle(("#chi^{2}_{" + ParticleShort + "} of " + ParticlesLC + "").c_str());
             } else {
                 if ((ParticleShort != "p") || (ParticleShort != "D")) {
@@ -466,9 +466,9 @@ void HistPlotter1D(TCanvas *HistogramCanvas, TList *MScThesisPlotsList, const ch
                    (Histogram1DNameCopy == "CD Proton momentum #epsilon_{eff} (1e cut)")) {
             ShowStats = false;
 
-            string HistTitle = Histogram1D_Title1;
-            string ParticlesLC = particles.GetParticleNameLC(HistTitle, true);
-            string Region = particles.GetDRegionExplicit(HistTitle, true);
+            std::string HistTitle = Histogram1D_Title1;
+            std::string ParticlesLC = particles.GetParticleNameLC(HistTitle, true);
+            std::string Region = particles.GetDRegionExplicit(HistTitle, true);
 
             double xOffset = SetxOffset1D(ShowStats), yOffset = SetyOffset1D(ShowStats);
             double LowerMomentumTh = 0.4;

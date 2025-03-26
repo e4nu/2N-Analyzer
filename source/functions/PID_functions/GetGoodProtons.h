@@ -172,7 +172,7 @@ string hTheta_pi_vs_theta_pj_forall_Theta_pi_pj_AE_4idp_2p_Dir;
 // ======================================================================================================================================================================
 
 //<editor-fold desc="SetGPMonitoringPlots function">
-void SetGPMonitoringPlots(bool GoodProtonsMonitorPlots, string CToF_hits_monitoring_2p_Directory, string Double_detection_monitoring_2p_Directory) {
+void SetGPMonitoringPlots(bool GoodProtonsMonitorPlots, std::string CToF_hits_monitoring_2p_Directory, std::string Double_detection_monitoring_2p_Directory) {
     if (GoodProtonsMonitorPlots) {
         // Monitoring histograms definitions ------------------------------------------------------------------------------------------------------------------------------------
 

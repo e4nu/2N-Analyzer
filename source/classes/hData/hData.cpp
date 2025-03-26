@@ -7,8 +7,8 @@
 // GetParticleName function ---------------------------------------------------------------------------------------------------------------------------------------------
 
 //<editor-fold desc="GetParticleName function">
-string hData::GetParticleName(const string &Source, const bool &PluralParticles) {
-    string ParticleName, FS = GetFS(Source);
+string hData::GetParticleName(const std::string &Source, const bool &PluralParticles) {
+    std::string ParticleName, FS = GetFS(Source);
 
     if (FindSubstring(Source, "neutrals") || FindSubstring(Source, "Neutrals") || FindSubstring(Source, "neut.") || FindSubstring(Source, "Neut.")) {
         if (PluralParticles) {
@@ -65,8 +65,8 @@ string hData::GetParticleName(const string &Source, const bool &PluralParticles)
 //</editor-fold>
 
 //<editor-fold desc="GetParticleName1 function">
-string hData::GetParticleName1(const string &Source, const bool &PluralParticles) {
-    string ParticleName, FS = GetFS(Source);
+string hData::GetParticleName1(const std::string &Source, const bool &PluralParticles) {
+    std::string ParticleName, FS = GetFS(Source);
 
     if (FindSubstring(Source, "neutrals") || FindSubstring(Source, "Neutrals") || FindSubstring(Source, "neut.") || FindSubstring(Source, "Neut.")) {
         if (PluralParticles) {
@@ -117,8 +117,8 @@ string hData::GetParticleName1(const string &Source, const bool &PluralParticles
 // GetParticleNameFromSubscript function --------------------------------------------------------------------------------------------------------------------------------
 
 //<editor-fold desc="GetParticleNameFromSubscript function">
-string hData::GetParticleNameFromSubscript(const string &Source, const bool &PluralParticles) {
-    string ParticleName;
+string hData::GetParticleNameFromSubscript(const std::string &Source, const bool &PluralParticles) {
+    std::string ParticleName;
 
     if (FindSubstring(Source, "{e}")) {
         if (PluralParticles) {
@@ -185,8 +185,8 @@ string hData::GetParticleNameFromSubscript(const string &Source, const bool &Plu
 // GetParticleNameLC function -------------------------------------------------------------------------------------------------------------------------------------------
 
 //<editor-fold desc="GetParticleNameLC function">
-string hData::GetParticleNameLC(const string &Source, const bool &PluralParticles) {
-    string ParticleName;
+string hData::GetParticleNameLC(const std::string &Source, const bool &PluralParticles) {
+    std::string ParticleName;
 
     if (FindSubstring(Source, "neutrals") || FindSubstring(Source, "Neutrals") || FindSubstring(Source, "neut.") || FindSubstring(Source, "Neut.")) {
         if (PluralParticles) {
@@ -243,8 +243,8 @@ string hData::GetParticleNameLC(const string &Source, const bool &PluralParticle
 // GetParticleNameLCFromSubscript function --------------------------------------------------------------------------------------------------------------------------------
 
 //<editor-fold desc="GetParticleNameLCFromSubscript function">
-string hData::GetParticleNameLCFromSubscript(const string &Source, const bool &PluralParticles) {
-    string ParticleName;
+string hData::GetParticleNameLCFromSubscript(const std::string &Source, const bool &PluralParticles) {
+    std::string ParticleName;
 
     if (FindSubstring(Source, "{e}")) {
         if (PluralParticles) {
@@ -311,8 +311,8 @@ string hData::GetParticleNameLCFromSubscript(const string &Source, const bool &P
 // GetParticleNameShort function ----------------------------------------------------------------------------------------------------------------------------------------
 
 //<editor-fold desc="GetParticleNameShort function">
-string hData::GetParticleNameShort(const string &Source) {
-    string ParticleNameShort;
+string hData::GetParticleNameShort(const std::string &Source) {
+    std::string ParticleNameShort;
 
     if (FindSubstring(Source, "neutrals") || FindSubstring(Source, "Neutrals") || FindSubstring(Source, "neut.") || FindSubstring(Source, "Neut.")) {
         ParticleNameShort = "neut";
@@ -345,8 +345,8 @@ string hData::GetParticleNameShort(const string &Source) {
 // GetParticleNameShortFromSubscript function ---------------------------------------------------------------------------------------------------------------------------
 
 //<editor-fold desc="GetParticleNameShortFromSubscript function">
-string hData::GetParticleNameShortFromSubscript(const string &Source) {
-    string ParticleNameShort;
+string hData::GetParticleNameShortFromSubscript(const std::string &Source) {
+    std::string ParticleNameShort;
 
     if (FindSubstring(Source, "{e}")) {
         ParticleNameShort = "e";
@@ -377,8 +377,8 @@ string hData::GetParticleNameShortFromSubscript(const string &Source) {
 // GetFS function -------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //<editor-fold desc="GetFS function">
-string hData::GetFS(const string &Source) {
-    string FinalState;
+string hData::GetFS(const std::string &Source) {
+    std::string FinalState;
 
     if (FindSubstring(Source, "1e_cut") || FindSubstring(Source, "1e cut") || FindSubstring(Source, "1e Cut") || FindSubstring(Source, "(e,e')")) {
         FinalState = "1e cut";
@@ -415,8 +415,8 @@ string hData::GetFS(const string &Source) {
 // GetTopology function -------------------------------------------------------------------------------------------------------------------------------------------------
 
 //<editor-fold desc="GetTopology function">
-string hData::GetTopology(const string &Source) {
-    string Topology;
+string hData::GetTopology(const std::string &Source) {
+    std::string Topology;
 
     if (FindSubstring(Source, "1n") || FindSubstring(Source, "1p") || FindSubstring(Source, "1nFD") || FindSubstring(Source, "1pFD")) {
         Topology = "1N";
@@ -435,8 +435,8 @@ string hData::GetTopology(const string &Source) {
 // GetType function -----------------------------------------------------------------------------------------------------------------------------------------------------
 
 //<editor-fold desc="GetType function">
-string hData::GetType(const string &Source) {
-    string Type;
+string hData::GetType(const std::string &Source) {
+    std::string Type;
 
     if (!FindSubstring(Source, "vs") && !FindSubstring(Source, "vs.") && !FindSubstring(Source, "VS") && !FindSubstring(Source, "VS.")) {
         if (FindSubstring(Source, "momentum") && !FindSubstring(Source, "-momentum") && !FindSubstring(Source, "Total") && !FindSubstring(Source, "Relative") &&
@@ -628,8 +628,8 @@ string hData::GetType(const string &Source) {
 // GetDRegion function --------------------------------------------------------------------------------------------------------------------------------------------------
 
 //<editor-fold desc="GetDRegion function">
-string hData::GetDRegion(const string &Source, const bool &ReturnGoingRegion) {
-    string DRegion, Type = GetType(Source), Particle = GetParticleName(Source), ParticleLC = GetParticleNameLC(Source);
+string hData::GetDRegion(const std::string &Source, const bool &ReturnGoingRegion) {
+    std::string DRegion, Type = GetType(Source), Particle = GetParticleName(Source), ParticleLC = GetParticleNameLC(Source);
 
     if (FindSubstring(Source, ", FD)") || FindSubstring(Type, "FD " + Particle) || FindSubstring(Source, "FD " + ParticleLC)) {
         if (ReturnGoingRegion) {
@@ -652,8 +652,8 @@ string hData::GetDRegion(const string &Source, const bool &ReturnGoingRegion) {
 // GetDRegionExplicit function ------------------------------------------------------------------------------------------------------------------------------------------
 
 //<editor-fold desc="GetDRegionExplicit function">
-string hData::GetDRegionExplicit(const string &Source, const bool &ReturnGoingRegion) {
-    string DRegion, Type = GetType(Source), Particle = GetParticleName(Source), ParticleLC = GetParticleNameLC(Source);
+string hData::GetDRegionExplicit(const std::string &Source, const bool &ReturnGoingRegion) {
+    std::string DRegion, Type = GetType(Source), Particle = GetParticleName(Source), ParticleLC = GetParticleNameLC(Source);
 
     if (FindSubstring(Source, "FD")) {
         if (ReturnGoingRegion) {
@@ -676,10 +676,10 @@ string hData::GetDRegionExplicit(const string &Source, const bool &ReturnGoingRe
 // GetFSRTitle function -------------------------------------------------------------------------------------------------------------------------------------------------
 
 //<editor-fold desc="GetFSRTitle function">
-string hData::GetFSRTitle(const string &Source, const string &PlotsT) {
-    string FSRTitle;
+string hData::GetFSRTitle(const std::string &Source, const std::string &PlotsT) {
+    std::string FSRTitle;
 
-    string Particle = GetParticleName(Source), ParticleShort = GetParticleNameShort(Source), Type = GetType(Source), DRegion = GetDRegion(Source);
+    std::string Particle = GetParticleName(Source), ParticleShort = GetParticleNameShort(Source), Type = GetType(Source), DRegion = GetDRegion(Source);
 
     if (PlotsT == "FSRatio") {
         if (!FindSubstring(Source, "vs") && !FindSubstring(Source, "vs.") && !FindSubstring(Source, "VS") && !FindSubstring(Source, "VS.")) {
@@ -876,8 +876,8 @@ string hData::GetFSRTitle(const string &Source, const string &PlotsT) {
 // GetTitle function ----------------------------------------------------------------------------------------------------------------------------------------------------
 
 //<editor-fold desc="GetTitle function">
-string hData::GetTitle(const string &Source) {
-    string Title, Type = GetType(Source), ParicleShort = GetParticleNameShort(Source), Paricle = GetParticleName(Source);
+string hData::GetTitle(const std::string &Source) {
+    std::string Title, Type = GetType(Source), ParicleShort = GetParticleNameShort(Source), Paricle = GetParticleName(Source);
 
     if (Type == "momentum") {
         Title = Paricle + " " + Type;
@@ -892,10 +892,10 @@ string hData::GetTitle(const string &Source) {
 // GetStatsTitle function -----------------------------------------------------------------------------------------------------------------------------------------------
 
 //<editor-fold desc="GetStatsTitle function">
-string hData::GetStatsTitle(const string &Source) {
-    string StatsTitle, StatsType;
+string hData::GetStatsTitle(const std::string &Source) {
+    std::string StatsTitle, StatsType;
 
-    string FS = GetFS(Source), Type = GetType(Source), ParticleShort = GetParticleNameShort(Source);
+    std::string FS = GetFS(Source), Type = GetType(Source), ParticleShort = GetParticleNameShort(Source);
 
     if (FindSubstring(Source, "#theta")) {  // for momentum ACorrection plots
         StatsType = "#theta_{" + ParticleShort + "}";
@@ -912,8 +912,8 @@ string hData::GetStatsTitle(const string &Source) {
 // SetXLabel function ---------------------------------------------------------------------------------------------------------------------------------------------------
 
 //<editor-fold desc="SetXLabel function">
-string hData::SetXLabel(const string &Source) {
-    string XLabel, ParicleShort = GetParticleNameShort(Source);
+string hData::SetXLabel(const std::string &Source) {
+    std::string XLabel, ParicleShort = GetParticleNameShort(Source);
 
     if (FindSubstring(Source, "momentum")) {
         XLabel = "P_{" + ParicleShort + "} [GeV/c]";
@@ -930,10 +930,10 @@ string hData::SetXLabel(const string &Source) {
 // SetSaveDir function --------------------------------------------------------------------------------------------------------------------------------------------------
 
 //<editor-fold desc="SetSaveDir function">
-string hData::SetSaveDir(const string &Source, const string &BaseSaveDir, const string &Mod) {
-    string SaveDir, TestSaveDir;
+string hData::SetSaveDir(const std::string &Source, const std::string &BaseSaveDir, const std::string &Mod) {
+    std::string SaveDir, TestSaveDir;
 
-    string Particle = GetParticleName(Source), ParticleLC = GetParticleNameLC(Source), FS = GetFS(Source), Type = GetType(Source);
+    std::string Particle = GetParticleName(Source), ParticleLC = GetParticleNameLC(Source), FS = GetFS(Source), Type = GetType(Source);
 
     if (FindSubstring(Source, "Electron") || FindSubstring(Source, "electron")) {
         SaveDir = BaseSaveDir + "/00_" + Particle + "_" + Type + "_ACorrection_plots_" + FS + "/";
@@ -966,18 +966,18 @@ string hData::SetSaveDir(const string &Source, const string &BaseSaveDir, const 
 // ReplaceSubStr function -----------------------------------------------------------------------------------------------------------------------------------------------
 
 //<editor-fold desc="ReplaceSubStr function">
-void hData::ReplaceSubStr(string &str, const string &subStr, const string &replacement) {
+void hData::ReplaceSubStr(string &str, const std::string &subStr, const std::string &replacement) {
     bool PrintOut = false;
 
     if (PrintOut) { cout << "\nstr0 = " << str << "\n"; }
 
-    string TempSource = str;
+    std::string TempSource = str;
 
     size_t pos = TempSource.find(subStr);
 
     // Iterate till index position of substring is valid:
     while (pos != std::string::npos) {
-        // Replace the first occurrence of substring in string from position pos onwards:
+        // Replace the first occurrence of substring in std::string from position pos onwards:
         TempSource.replace(pos, subStr.length(), replacement);
 
         // Get the index position of next occurrence of substring in string:

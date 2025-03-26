@@ -25,7 +25,7 @@ void printProgress(double percentage);
 
 void Usage()
 {
-  std::cerr << "Usage: ./code <MC =1,Data = 0> <Ebeam(GeV)> <path/to/ouput.root> <path/to/ouput.pdf> <path/to/cutfile.txt> <path/to/input.hipo> \n";
+  std::std::cerr << "Usage: ./code <MC =1,Data = 0> <Ebeam(GeV)> <path/to/ouput.root> <path/to/ouput.pdf> <path/to/cutfile.txt> <path/to/input.hipo> \n";
 }
 
 
@@ -33,7 +33,7 @@ void monitor_ep()
 {
     char *args[] = {"somefile.pdf"};
     char **my_argv = args;
-//    string file = "somefile.pdf";
+//    std::string file = "somefile.pdf";
     char * pdfFile = my_argv[0];
 
     TCanvas * myText = new TCanvas("myText","myText",1000,1000);

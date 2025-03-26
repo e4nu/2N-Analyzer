@@ -25,7 +25,7 @@ using namespace clas12;
 
 void SetLorentzVector(TLorentzVector &p4, clas12::region_part_ptr rp) { p4.SetXYZM(rp->par()->getPx(), rp->par()->getPy(), rp->par()->getPz(), p4.M()); }
 
-void Usage() { std::cerr << "Usage: ./testAna inputfiles.hipo outputfile.root \n\n\n"; }
+void Usage() { std::std::cerr << "Usage: ./testAna inputfiles.hipo outputfile.root \n\n\n"; }
 
 int main(int argc, char **argv) {
     if (argc < 2) {

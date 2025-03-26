@@ -134,7 +134,7 @@ void PlotsEff2x3Electron(string SampleName) {
     //</editor-fold>
 
     //<editor-fold desc="Momentum efficiency plots">
-    string MomEffMomEffSaveName = "./01_Electron_Mom_Eff_" + SampleName + ".png";
+    std::string MomEffMomEffSaveName = "./01_Electron_Mom_Eff_" + SampleName + ".png";
 
     CanvasEff2x3Electron->Divide(3, 2);
 
@@ -232,7 +232,7 @@ void PlotsEff2x3Electron(string SampleName) {
     //</editor-fold>
 
     //<editor-fold desc="Theta efficiency plots">
-    string ThetaEffSaveName = "./02_Electron_Theta_Eff_" + SampleName + ".png";
+    std::string ThetaEffSaveName = "./02_Electron_Theta_Eff_" + SampleName + ".png";
 
     CanvasEff2x3Electron->Divide(3, 2);
 
@@ -330,7 +330,7 @@ void PlotsEff2x3Electron(string SampleName) {
     //</editor-fold>
 
     //<editor-fold desc="Phi efficiency plots">
-    string PhiEffSaveName = "./03_Electron_Phi_Eff_" + SampleName + ".png";
+    std::string PhiEffSaveName = "./03_Electron_Phi_Eff_" + SampleName + ".png";
 
     CanvasEff2x3Electron->Divide(3, 2);
 

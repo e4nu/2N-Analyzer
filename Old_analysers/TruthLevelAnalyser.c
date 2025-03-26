@@ -91,10 +91,10 @@ void gst::Loop() {
                        //    int ni_selection = 2; // 3 for G18; 2 for SuSAv2
 
     //<editor-fold desc="Input processing (to determine custom_FSI_status)">
-    string loadedInput = fChain->GetCurrentFile()->GetName();
-    string filePath = loadedInput.substr(0, loadedInput.find_last_of("/") + 1);
-    string fileInput = loadedInput.substr(loadedInput.find_last_of("/") + 1);
-    string plotsInput = fileInput.substr(0, fileInput.find_last_of(".root") - 4);
+    std::string loadedInput = fChain->GetCurrentFile()->GetName();
+    std::string filePath = loadedInput.substr(0, loadedInput.find_last_of("/") + 1);
+    std::string fileInput = loadedInput.substr(loadedInput.find_last_of("/") + 1);
+    std::string plotsInput = fileInput.substr(0, fileInput.find_last_of(".root") - 4);
 
     if (fileInput.find("nofsi") <= fileInput[fileInput.size() - 1]) {
         ////        cout << "\n";
@@ -126,7 +126,7 @@ void gst::Loop() {
     //</editor-fold>
 
     //<editor-fold desc="Input processing (to determine ni_selection)">
-    string tune;
+    std::string tune;
 
     if (fileInput.find("G18") <= fileInput[fileInput.size() - 1]) {
         cout << "\n";
@@ -473,7 +473,7 @@ void gst::Loop() {
     // TList setup ----------------------------------------------------------------------------------------------------------------------------------------------------------
 
     //<editor-fold desc="TList name setup">
-    string listName = plots_path + plotsInput + plots_TList_FileType;  // TODO: add if-else to choose plotsInput or file_name
+    std::string listName = plots_path + plotsInput + plots_TList_FileType;  // TODO: add if-else to choose plotsInput or file_name
     const char *TListName = listName.c_str();
     //</editor-fold>
 
@@ -5583,11 +5583,11 @@ void gst::Loop() {
     TH1D *P_lp_hist = new TH1D("P_{l}", "Momentum of Lepton (P_{l});P_{l} [GeV/c]", 100, P_lp_hist_lower_lim, P_lp_hist_upper_lim);
     TH1D *P_pion_hist = new TH1D("P_{#pi^{#pm}}", "Momentum of Pions (P_{#pi^{#pm}});P_{#pi^{#pm}} [GeV/c]", 100, P_pion_hist_lower_lim, P_pion_hist_upper_lim);
 
-    string dP_T_title = "#deltaP_{T} Histogram (" + file_name + ")";
+    std::string dP_T_title = "#deltaP_{T} Histogram (" + file_name + ")";
     const char *dP_T_Title = dP_T_title.c_str();
     dP_T_hist->SetTitle(dP_T_Title);
 
-    string dP_T_weighted_title = "#deltaP_{T} Histogram (" + file_name + ", Q^{4} weighted)";
+    std::string dP_T_weighted_title = "#deltaP_{T} Histogram (" + file_name + ", Q^{4} weighted)";
     const char *dP_T_weighted_Title = dP_T_weighted_title.c_str();
     dP_T_hist_weighted->SetTitle(dP_T_weighted_Title);
     //</editor-fold>
@@ -5600,7 +5600,7 @@ void gst::Loop() {
 
     // List definition ---------------------------------------------------------------------------------
 
-    string Histogram_OutPDF_fileName = plots_path + "/Out" + plots_TFile_FileType;
+    std::string Histogram_OutPDF_fileName = plots_path + "/Out" + plots_TFile_FileType;
     const char *Histogram_OutPDF = Histogram_OutPDF_fileName.c_str();
 
     //  Code execution

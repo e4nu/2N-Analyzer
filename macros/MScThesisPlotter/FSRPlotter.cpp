@@ -31,12 +31,12 @@
 using namespace std;
 using namespace utilities;
 
-void FSRPlotter(hData &utilities, TCanvas *HistCanvas, TList *MScThesisPlotsList, const char *Sim_filename, const char *Data_filename, const string &SampleName,
-                const string &FSTopology, const string &DetRegion, const string &HistName_Denominator, const string &HistName_Numerator, const string &FSRHistName,
-                const string &SavePath, const string &SaveName_Denominator, const string &SaveName_Numerator, const string &SaveName_FSR, const int &Num) {
+void FSRPlotter(hData &utilities, TCanvas *HistCanvas, TList *MScThesisPlotsList, const char *Sim_filename, const char *Data_filename, const std::string &SampleName,
+                const std::string &FSTopology, const std::string &DetRegion, const std::string &HistName_Denominator, const std::string &HistName_Numerator, const std::string &FSRHistName,
+                const std::string &SavePath, const std::string &SaveName_Denominator, const std::string &SaveName_Numerator, const std::string &SaveName_FSR, const int &Num) {
     bool PrintOut = false;
 
-    string Numerator_FS, Denominator_FS;
+    std::string Numerator_FS, Denominator_FS;
     bool TLmom = false;
 
     if (FSTopology == "1N") {
@@ -45,7 +45,7 @@ void FSRPlotter(hData &utilities, TCanvas *HistCanvas, TList *MScThesisPlotsList
         Numerator_FS = "nFDpCD", Denominator_FS = "pFDpCD";
     }
 
-    string HistNameFeed_Numerator, HistNameFeed_Denominator;
+    std::string HistNameFeed_Numerator, HistNameFeed_Denominator;
 
     if (findSubstring(HistName_Numerator, "electron") || findSubstring(HistName_Numerator, "Electron") ||
         findSubstring(HistName_Denominator, "electron") || findSubstring(HistName_Denominator, "Electron") ||
@@ -96,7 +96,7 @@ void FSRPlotter(hData &utilities, TCanvas *HistCanvas, TList *MScThesisPlotsList
         }
     }
 
-    string FSRatioParticle = utilities.GetParticleName1(FSRHistName), FSRatioType = utilities.GetType(FSRHistName), FSTopo = utilities.GetTopology(FSRHistName), FSRationTemp;
+    std::string FSRatioParticle = utilities.GetParticleName1(FSRHistName), FSRatioType = utilities.GetType(FSRHistName), FSTopo = utilities.GetTopology(FSRHistName), FSRationTemp;
 
     if (PrintOut) {
 //        cout << "HistogramClass = " << HistogramClass << "\n";
@@ -148,12 +148,12 @@ void FSRPlotter(hData &utilities, TCanvas *HistCanvas, TList *MScThesisPlotsList
                      (to_string(Num) + "c_" + SaveName_FSR), TLmom);
 }
 
-void FSRPlotterStack(hData &utilities, TCanvas *HistCanvas, TList *MScThesisPlotsList, const char *Sim_filename, const char *Data_filename, const string &SampleName,
-                     const string &FSTopology, const string &DetRegion, const string &HistName_Denominator, const string &HistName_Numerator, const string &FSRHistName,
-                     const string &SavePath, const string &SaveName_Denominator, const string &SaveName_Numerator, const string &SaveName_FSR, const int &Num) {
+void FSRPlotterStack(hData &utilities, TCanvas *HistCanvas, TList *MScThesisPlotsList, const char *Sim_filename, const char *Data_filename, const std::string &SampleName,
+                     const std::string &FSTopology, const std::string &DetRegion, const std::string &HistName_Denominator, const std::string &HistName_Numerator, const std::string &FSRHistName,
+                     const std::string &SavePath, const std::string &SaveName_Denominator, const std::string &SaveName_Numerator, const std::string &SaveName_FSR, const int &Num) {
     bool PrintOut = false;
 
-    string Numerator_FS, Denominator_FS;
+    std::string Numerator_FS, Denominator_FS;
     bool TLmom = false;
 
     if (FSTopology == "1N") {
@@ -162,7 +162,7 @@ void FSRPlotterStack(hData &utilities, TCanvas *HistCanvas, TList *MScThesisPlot
         Numerator_FS = "nFDpCD", Denominator_FS = "pFDpCD";
     }
 
-    string HistNameFeed_Numerator, HistNameFeed_Denominator;
+    std::string HistNameFeed_Numerator, HistNameFeed_Denominator;
 
     if (findSubstring(HistName_Numerator, "electron") || findSubstring(HistName_Numerator, "Electron") ||
         findSubstring(HistName_Denominator, "electron") || findSubstring(HistName_Denominator, "Electron") ||
@@ -213,7 +213,7 @@ void FSRPlotterStack(hData &utilities, TCanvas *HistCanvas, TList *MScThesisPlot
         }
     }
 
-    string FSRatioParticle = utilities.GetParticleName1(FSRHistName), FSRatioType = utilities.GetType(FSRHistName), FSTopo = utilities.GetTopology(FSRHistName), FSRationTemp;
+    std::string FSRatioParticle = utilities.GetParticleName1(FSRHistName), FSRatioType = utilities.GetType(FSRHistName), FSTopo = utilities.GetTopology(FSRHistName), FSRationTemp;
 
     if (PrintOut) {
 //        cout << "HistogramClass = " << HistogramClass << "\n";
@@ -265,13 +265,13 @@ void FSRPlotterStack(hData &utilities, TCanvas *HistCanvas, TList *MScThesisPlot
                      (to_string(Num) + "c_" + SaveName_FSR), TLmom);
 }
 
-void FSRPlotter(hData &utilities, TCanvas *HistCanvas, TList *MScThesisPlotsList, const char *filename, const string &SampleName, const string &FSTopology,
-                const string &HistogramClass, const string &DetRegion, const string &HistName_Denominator, const string &HistName_Numerator, const string &FSRHistName,
-                const string &SavePath, const string &SaveName_Denominator, const string &SaveName_Numerator, const string &SaveName_FSR, const int &Num,
+void FSRPlotter(hData &utilities, TCanvas *HistCanvas, TList *MScThesisPlotsList, const char *filename, const std::string &SampleName, const std::string &FSTopology,
+                const std::string &HistogramClass, const std::string &DetRegion, const std::string &HistName_Denominator, const std::string &HistName_Numerator, const std::string &FSRHistName,
+                const std::string &SavePath, const std::string &SaveName_Denominator, const std::string &SaveName_Numerator, const std::string &SaveName_FSR, const int &Num,
                 const bool &Results_plots = false) {
     bool PrintOut = false;
 
-    string Numerator_FS, Denominator_FS;
+    std::string Numerator_FS, Denominator_FS;
     bool TLmom = false;
 
     if (FSTopology == "1N") {
@@ -280,7 +280,7 @@ void FSRPlotter(hData &utilities, TCanvas *HistCanvas, TList *MScThesisPlotsList
         Numerator_FS = "nFDpCD", Denominator_FS = "pFDpCD";
     }
 
-    string HistNameFeed_Numerator, HistNameFeed_Denominator;
+    std::string HistNameFeed_Numerator, HistNameFeed_Denominator;
 
     if (findSubstring(HistName_Numerator, "electron") || findSubstring(HistName_Numerator, "Electron") ||
         findSubstring(HistName_Denominator, "electron") || findSubstring(HistName_Denominator, "Electron") ||
@@ -331,7 +331,7 @@ void FSRPlotter(hData &utilities, TCanvas *HistCanvas, TList *MScThesisPlotsList
         }
     }
 
-    string FSRatioParticle = utilities.GetParticleName1(FSRHistName), FSRatioType = utilities.GetType(FSRHistName), FSTopo = utilities.GetTopology(FSRHistName), FSRationTemp;
+    std::string FSRatioParticle = utilities.GetParticleName1(FSRHistName), FSRatioType = utilities.GetType(FSRHistName), FSTopo = utilities.GetTopology(FSRHistName), FSRationTemp;
 
     if (PrintOut) {
         cout << "HistogramClass = " << HistogramClass << "\n";

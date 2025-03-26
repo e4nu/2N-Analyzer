@@ -16,8 +16,8 @@
 using namespace std;
 using namespace utilities;
 
-string SetType(const string &Title) {
-    string Type;
+string SetType(const std::string &Title) {
+    std::string Type;
 
     if (findSubstring(Title, "momentum")) {
         Type = "momentum";

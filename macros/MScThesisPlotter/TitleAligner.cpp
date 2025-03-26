@@ -20,7 +20,7 @@
 
 using namespace std;
 
-void TitleAligner(hData &Utilities, TH1D *Histogram1D, string &Histogram1D_Title, string &Histogram1D_xLabel, const string &OriginToreplace, const string &Replacement) {
+void TitleAligner(hData &Utilities, TH1D *Histogram1D, std::string &Histogram1D_Title, std::string &Histogram1D_xLabel, const std::string &OriginToreplace, const std::string &Replacement) {
     if (findSubstring(Histogram1D_Title, OriginToreplace)) {
         Utilities.ReplaceSubStr(Histogram1D_Title, OriginToreplace, Replacement);
         Histogram1D->SetTitle(Histogram1D_Title.c_str());
@@ -32,10 +32,10 @@ void TitleAligner(hData &Utilities, TH1D *Histogram1D, string &Histogram1D_Title
     }
 }
 
-void TitleAligner(hData &Utilities, TH1D *Sim_Histogram1D, TH1D *Data_Histogram1D, const string &OriginToreplace, const string &Replacement) {
-    string Sim_Histogram1D_Title = Sim_Histogram1D->GetTitle();
-    string Sim_Histogram1D_xLabel = Sim_Histogram1D->GetXaxis()->GetTitle();
-    string Sim_Histogram1D_yLabel = Sim_Histogram1D->GetYaxis()->GetTitle();
+void TitleAligner(hData &Utilities, TH1D *Sim_Histogram1D, TH1D *Data_Histogram1D, const std::string &OriginToreplace, const std::string &Replacement) {
+    std::string Sim_Histogram1D_Title = Sim_Histogram1D->GetTitle();
+    std::string Sim_Histogram1D_xLabel = Sim_Histogram1D->GetXaxis()->GetTitle();
+    std::string Sim_Histogram1D_yLabel = Sim_Histogram1D->GetYaxis()->GetTitle();
 
     if (findSubstring(Sim_Histogram1D_Title, OriginToreplace)) {
         Utilities.ReplaceSubStr(Sim_Histogram1D_Title, OriginToreplace, Replacement);
@@ -52,9 +52,9 @@ void TitleAligner(hData &Utilities, TH1D *Sim_Histogram1D, TH1D *Data_Histogram1
         Sim_Histogram1D->GetYaxis()->SetTitle(Sim_Histogram1D_yLabel.c_str());
     }
 
-    string Data_Histogram1D_Title = Data_Histogram1D->GetTitle();
-    string Data_Histogram1D_xLabel = Data_Histogram1D->GetXaxis()->GetTitle();
-    string Data_Histogram1D_yLabel = Data_Histogram1D->GetYaxis()->GetTitle();
+    std::string Data_Histogram1D_Title = Data_Histogram1D->GetTitle();
+    std::string Data_Histogram1D_xLabel = Data_Histogram1D->GetXaxis()->GetTitle();
+    std::string Data_Histogram1D_yLabel = Data_Histogram1D->GetYaxis()->GetTitle();
 
     if (findSubstring(Data_Histogram1D_Title, OriginToreplace)) {
         Utilities.ReplaceSubStr(Data_Histogram1D_Title, OriginToreplace, Replacement);
@@ -72,7 +72,7 @@ void TitleAligner(hData &Utilities, TH1D *Sim_Histogram1D, TH1D *Data_Histogram1
     }
 }
 
-void TitleAligner(hData &Utilities, THStack *Stack1D, string &Histogram1D_Title, string &Histogram1D_xLabel, const string &OriginToreplace, const string &Replacement) {
+void TitleAligner(hData &Utilities, THStack *Stack1D, std::string &Histogram1D_Title, std::string &Histogram1D_xLabel, const std::string &OriginToreplace, const std::string &Replacement) {
     if (findSubstring(Histogram1D_Title, OriginToreplace)) {
         Utilities.ReplaceSubStr(Histogram1D_Title, OriginToreplace, Replacement);
         Stack1D->SetTitle(Histogram1D_Title.c_str());
@@ -84,7 +84,7 @@ void TitleAligner(hData &Utilities, THStack *Stack1D, string &Histogram1D_Title,
     }
 }
 
-void TitleAligner(hData &Utilities, TGraph *Graph1D, string &Graph1D_Title, string &Graph1D_xLabel, const string &OriginToreplace, const string &Replacement) {
+void TitleAligner(hData &Utilities, TGraph *Graph1D, std::string &Graph1D_Title, std::string &Graph1D_xLabel, const std::string &OriginToreplace, const std::string &Replacement) {
     if (findSubstring(Graph1D_Title, OriginToreplace)) {
         Utilities.ReplaceSubStr(Graph1D_Title, OriginToreplace, Replacement);
         Graph1D->SetTitle(Graph1D_Title.c_str());
@@ -96,8 +96,8 @@ void TitleAligner(hData &Utilities, TGraph *Graph1D, string &Graph1D_Title, stri
     }
 }
 
-void TitleAligner(hData &Utilities, TGraph *Graph1D, string &Graph1D_Title, string &Graph1D_xLabel, string &Graph1D_yLabel,
-                  const string &OriginToreplace, const string &Replacement) {
+void TitleAligner(hData &Utilities, TGraph *Graph1D, std::string &Graph1D_Title, std::string &Graph1D_xLabel, std::string &Graph1D_yLabel,
+                  const std::string &OriginToreplace, const std::string &Replacement) {
     if (findSubstring(Graph1D_Title, OriginToreplace)) {
         Utilities.ReplaceSubStr(Graph1D_Title, OriginToreplace, Replacement);
         Graph1D->SetTitle(Graph1D_Title.c_str());
@@ -114,8 +114,8 @@ void TitleAligner(hData &Utilities, TGraph *Graph1D, string &Graph1D_Title, stri
     }
 }
 
-void TitleAligner(TH2D *Histogram2D, string &Histogram2D_Title, string &Histogram2D_xLabel, string &Histogram2D_yLabel, const string &OriginToreplace,
-             const string &Replacement) {
+void TitleAligner(TH2D *Histogram2D, std::string &Histogram2D_Title, std::string &Histogram2D_xLabel, std::string &Histogram2D_yLabel, const std::string &OriginToreplace,
+             const std::string &Replacement) {
     hData Utilities;
 
     if (findSubstring(Histogram2D_Title, OriginToreplace)) {

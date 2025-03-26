@@ -225,7 +225,7 @@ double CalcdPhi1(double dPhiTemp) {
 double GetPhi_e(TString OutPutFolder, double phi_N) {
     double phi_e_offset = 0.;  // Electron phi_e offset due to the solenoid field
 
-    string OutPutFolder0(OutPutFolder.Data());
+    std::string OutPutFolder0(OutPutFolder.Data());
 
     if (FindSubstring(OutPutFolder0, "2070MeV")) {
         phi_e_offset = 16.;

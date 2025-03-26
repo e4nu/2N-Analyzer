@@ -50,20 +50,20 @@ void nFD_eff_test() {
     int Limiter = 100000;  // 10 files
     // int Limiter = 10000; // 1 file
 
-    string OutFolderName_prefix = "nFD_eff_test";
-    string OutFolderName_ver_status = "_v6";
-    string samples_status = use_ConstPn_samples ? "_ConstPn" : "";
-    string neutFD_redef_status = apply_neutFD_redef ? "_ReDefed" : "_clas12neut";
-    string ECAL_veto_status = apply_ECAL_veto ? "_wECALveto" : "_NoECALveto";
-    string PCAL_neutral_veto_status = apply_PCAL_neutral_veto ? "_wPCALneutVeto" : "_NoPCALneutVeto";
-    string rc_factor_status = apply_ECAL_veto ? "_rc" + ToStringWithPrecision(rc_factor * ECALvetoCut, 0) : "";
-    string rn_factor_status = apply_PCAL_neutral_veto ? "_rn" + ToStringWithPrecision(rn_factor * ECALvetoCut, 0) : "";
-    string ConstrainedE_status = ConstrainedE ? "_ConstrainedE" : "";
+    std::string OutFolderName_prefix = "nFD_eff_test";
+    std::string OutFolderName_ver_status = "_v6";
+    std::string samples_status = use_ConstPn_samples ? "_ConstPn" : "";
+    std::string neutFD_redef_status = apply_neutFD_redef ? "_ReDefed" : "_clas12neut";
+    std::string ECAL_veto_status = apply_ECAL_veto ? "_wECALveto" : "_NoECALveto";
+    std::string PCAL_neutral_veto_status = apply_PCAL_neutral_veto ? "_wPCALneutVeto" : "_NoPCALneutVeto";
+    std::string rc_factor_status = apply_ECAL_veto ? "_rc" + ToStringWithPrecision(rc_factor * ECALvetoCut, 0) : "";
+    std::string rn_factor_status = apply_PCAL_neutral_veto ? "_rn" + ToStringWithPrecision(rn_factor * ECALvetoCut, 0) : "";
+    std::string ConstrainedE_status = ConstrainedE ? "_ConstrainedE" : "";
 
-    // string OutFolderName = "nFD_eff_test_v4_wPCALnVeto_rc100_rn200";
-    string OutFolderName = OutFolderName_prefix + OutFolderName_ver_status + samples_status + neutFD_redef_status + ECAL_veto_status + PCAL_neutral_veto_status + rc_factor_status +
+    // std::string OutFolderName = "nFD_eff_test_v4_wPCALnVeto_rc100_rn200";
+    std::string OutFolderName = OutFolderName_prefix + OutFolderName_ver_status + samples_status + neutFD_redef_status + ECAL_veto_status + PCAL_neutral_veto_status + rc_factor_status +
                            rn_factor_status + ConstrainedE_status;
-    // string OutFolderName = "nFD_eff_test_v5_AMaps_ConstPn_wPCALnVeto_rn100_6GeV_3";
+    // std::string OutFolderName = "nFD_eff_test_v5_AMaps_ConstPn_wPCALnVeto_rn100_6GeV_3";
 
     if (ConstrainTLmom) {
         P_upperLim = Ebeam * 0.5;
@@ -71,14 +71,14 @@ void nFD_eff_test() {
         P_upperLim = Ebeam * 1.1;
     }
 
-    const string OutputDir = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName;
+    const std::string OutputDir = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName;
     system(("rm -rf " + OutputDir).c_str());
     system(("mkdir -p " + OutputDir).c_str());
 
     TFile* outFile = new TFile(("/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/nFD_eff_test.root").c_str(), "RECREATE");
 
     clas12root::HipoChain chain;
-    string InputFiles, SampleName;
+    std::string InputFiles, SampleName;
 
     if (Is2GeV) {
         if (use_ConstPn_samples) {
@@ -784,16 +784,16 @@ void nFD_eff_test() {
 
 #pragma region /* Prepare AMaps */
 
-    const string OutputDirAMapsPlots = OutputDir + "/01_AMaps_Plots/";
+    const std::string OutputDirAMapsPlots = OutputDir + "/01_AMaps_Plots/";
     system(("rm -rf " + OutputDirAMapsPlots).c_str());
     system(("mkdir -p " + OutputDirAMapsPlots).c_str());
 
-    const string OutputDirAMapsMaps = OutputDir + "/02_AMaps_Maps/";
+    const std::string OutputDirAMapsMaps = OutputDir + "/02_AMaps_Maps/";
     system(("rm -rf " + OutputDirAMapsMaps).c_str());
     system(("mkdir -p " + OutputDirAMapsMaps).c_str());
 
-    const string P_e_bin_profile = "uniform_P_e_bins";      // {reformat_e_bins , varying_P_e_bins , uniform_P_e_bins, equi_inverted_P_e}
-    const string P_nuc_bin_profile = "uniform_P_nuc_bins";  // {equi_inverted_P_nuc , varying_P_nuc_bins , uniform_P_nuc_bins}
+    const std::string P_e_bin_profile = "uniform_P_e_bins";      // {reformat_e_bins , varying_P_e_bins , uniform_P_e_bins, equi_inverted_P_e}
+    const std::string P_nuc_bin_profile = "uniform_P_nuc_bins";  // {equi_inverted_P_nuc , varying_P_nuc_bins , uniform_P_nuc_bins}
 
     double beamE = Ebeam;
 
@@ -818,8 +818,8 @@ void nFD_eff_test() {
     while (chain.Next() == true) {
         // Display completed
         ++counter;
-        if ((counter % 1000000) == 0) { cerr << "\n" << counter / 1000000 << " million completed"; }
-        if ((counter % 100000) == 0) { cerr << "."; }
+        if ((counter % 1000000) == 0) { std::cerr << "\n" << counter / 1000000 << " million completed"; }
+        if ((counter % 100000) == 0) { std::cerr << "."; }
 
         if (counter > Limiter) { break; }
 
@@ -1624,7 +1624,7 @@ void nFD_eff_test() {
     // TCanvas* myCanvas_electron_cuts = new TCanvas("myPage_electron_cuts", "myPage_electron_cuts", pixelx, pixely);
     TCanvas* myCanvas_electron_cuts = new TCanvas("myPage_electron_cuts", "myPage_electron_cuts", pixelx, pixely);
 
-    string electron_cuts_PDF_fileName = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/electron_cuts.pdf";
+    std::string electron_cuts_PDF_fileName = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/electron_cuts.pdf";
     char fileName_electron_cuts[electron_cuts_PDF_fileName.length()];
     sprintf(fileName_electron_cuts, "%s[", electron_cuts_PDF_fileName.c_str());
     myText->SaveAs(fileName_electron_cuts);
@@ -1678,7 +1678,7 @@ void nFD_eff_test() {
         gPad->SetRightMargin(0.23);
 
         // // Set the PDF title and header for the bookmark
-        // string Title = HistoList_electron_cuts[i]->GetTitle();
+        // std::string Title = HistoList_electron_cuts[i]->GetTitle();
         // gStyle->SetTitlePS(Title.c_str());  // This sets the title in metadata
         //                                     // gStyle->SetHeaderPS(("[ /Title " + Title + " /DOCVIEW pdfmark").c_str());  // Adds a PDF title
         // gStyle->SetHeaderPS(("[ /Page " + to_string(i + 1) + " /View [/Fit] /Title (myTitle) ] /OUT pdfmark").c_str());
@@ -1709,7 +1709,7 @@ void nFD_eff_test() {
 #pragma region /* Print neutron plots */
     TCanvas* myCanvas = new TCanvas("myPage", "myPage", pixelx, pixely);
 
-    string nFD_eff_test_PDF_fileName = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/nFD_eff_test.pdf";
+    std::string nFD_eff_test_PDF_fileName = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/nFD_eff_test.pdf";
     char fileName[nFD_eff_test_PDF_fileName.length()];
     sprintf(fileName, "%s[", nFD_eff_test_PDF_fileName.c_str());
     myText->SaveAs(fileName);
@@ -1755,7 +1755,7 @@ void nFD_eff_test() {
         gPad->SetRightMargin(0.23);
 
         // // Set the PDF title and header for the bookmark
-        // string Title = HistoList[i]->GetTitle();
+        // std::string Title = HistoList[i]->GetTitle();
         // gStyle->SetTitlePS(Title.c_str());  // This sets the title in metadata
         //                                     // gStyle->SetHeaderPS(("[ /Title " + Title + " /DOCVIEW pdfmark").c_str());  // Adds a PDF title
         // gStyle->SetHeaderPS(("[ /Page " + to_string(i + 1) + " /View [/Fit] /Title (myTitle) ] /OUT pdfmark").c_str());
@@ -1810,7 +1810,7 @@ void nFD_eff_test() {
     TCanvas* myCanvas_eff_plots = new TCanvas("myPage_eff_plots", "myPage_eff_plots", pixelx * 3, pixely);
     // TCanvas* myCanvas_eff_plots = new TCanvas("myPage_eff_plots", "myPage_eff_plots", pixelx * 3 * 2, pixely * 2);
 
-    string eff_plots_PDF_fileName = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/eff_plots.pdf";
+    std::string eff_plots_PDF_fileName = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/eff_plots.pdf";
     char fileName_eff_plots[eff_plots_PDF_fileName.length()];
     sprintf(fileName_eff_plots, "%s[", eff_plots_PDF_fileName.c_str());
     myText->SaveAs(fileName_eff_plots);

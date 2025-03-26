@@ -7,7 +7,7 @@ void neutron_multi_counter() {
 //    TFile *file = TFile::Open("/Users/alon/Code runs/Uniform-sample-generator/Uniform_en_sample_5986MeV/02 AMaps generation (with 2N analysis code)/v5/00 AMaps tests/Uniform_en_sample_5986MeV_S03AC_NC_AMaps_ChainRunV5_R2_20s150b/Uniform_en_sample_5986MeV_plots.root");
 //    TFile *file = TFile::Open("/Users/alon/Code runs/2N-Analysis/C12x4_sim_G18_Q204_6GeV_MSc/05_Final_runs/v3/C12x4_simulation_G18_Q204_6GeV_S03AC_NC_wNSaC_wFCwKC_wKW_v3_ReRun2/C12x4_simulation_G18_Q204_6GeV_plots.root");
     if (!file || file->IsZombie()) {
-        std::cerr << "Error: Could not open file." << std::endl;
+        std::std::cerr << "Error: Could not open file." << std::endl;
         return;
     }
 
@@ -15,7 +15,7 @@ void neutron_multi_counter() {
     TH1D *h = (TH1D *)file->Get("Multiplicity of FD neutrons by redef. APID&AV (1e cut, FD)");
 //    TH1D *h = (TH1D *)file->Get("Multiplicity of FD neutrons by redef. APID&AV (nFDpCD, FD)");
     if (!h) {
-        std::cerr << "Error: Histogram not found." << std::endl;
+        std::std::cerr << "Error: Histogram not found." << std::endl;
         file->Close();
         return;
     }

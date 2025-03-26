@@ -15,7 +15,7 @@ using namespace clas12;
 /* this is clas12ana before adding {} brackets */
 
 struct cutpar {
-    string id;
+    std::string id;
     vector<double> par = {}; //pi- parameters
 };
 
@@ -1030,7 +1030,7 @@ void clas12ana::readEcalPar(const char *filename) {
     infile.open(filename);
 
     if (infile.is_open()) {
-        string tp;
+        std::string tp;
 
         //remove 3 lines of header
         for (int i = 0; i < 2; i++)
@@ -1059,7 +1059,7 @@ void clas12ana::readInputParam(const char *filename) {
     //  test_cuts.insert({ 1, 40 });
 
     if (infile.is_open()) {
-        string tp;
+        std::string tp;
 
         //remove 3 lines of header
         for (int i = 0; i < 3; i++)
@@ -1068,7 +1068,7 @@ void clas12ana::readInputParam(const char *filename) {
         while (getline(infile, tp))  //read data from file object and put it into string.
         {
             stringstream ss(tp);
-            string parameter, parameter2;
+            std::string parameter, parameter2;
             double value;
             //get cut identifier
             ss >> parameter;
@@ -1076,7 +1076,7 @@ void clas12ana::readInputParam(const char *filename) {
                 //get cut values
                 ss >> parameter2;
                 stringstream ss2(parameter2);
-                string pid_v;
+                std::string pid_v;
                 int count = 0;
                 int pid = -99;
                 vector<double> par;
@@ -1094,9 +1094,9 @@ void clas12ana::readInputParam(const char *filename) {
             } else if (parameter == "vertex_cut") {
                 ss >> parameter2;
                 stringstream ss2(parameter2);
-                string pid_v;
+                std::string pid_v;
                 int count = 0;
-                string pid = "";
+                std::string pid = "";
                 vector<double> par;
 
                 while (getline(ss2, pid_v, ':')) {
@@ -1117,7 +1117,7 @@ void clas12ana::readInputParam(const char *filename) {
                   {
                 ss >> parameter2;
                     stringstream ss2(parameter2);
-                    string cell_v;
+                    std::string cell_v;
                     while(getline(ss2, cell_v, ':'))
                       cell.push_back(atof(cell_v.c_str()));
                   }

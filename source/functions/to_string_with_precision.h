@@ -8,7 +8,7 @@
 // to_string_with_precision function ------------------------------------------------------------------------------------------------------------------------------------
 
 //<editor-fold desc="to_string_with_precision function">
-/* Usage: convert a number to string with n figures after the decimal point in the plotting functions */
+/* Usage: convert a number to std::string with n figures after the decimal point in the plotting functions */
 
 template <typename T>
 string to_string_with_precision(const T a_value, const int n = 2) {

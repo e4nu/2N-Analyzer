@@ -14,15 +14,15 @@ private:
 public:
     // default constructor --------------------------------------------------------------------------------------------------------------------------------------------------
 
-    DataAnalyser(const string &FileType, const string &AnalyseFilePath, const string &AnalyseFileSample, const string &AnalyseFile);
+    DataAnalyser(const std::string &FileType, const std::string &AnalyseFilePath, const std::string &AnalyseFileSample, const std::string &AnalyseFile);
 
     // ConfigureAnalyserMode function -----------------------------------------------------------------------------------------------------------------------------
 
-    string ConfigureAnalyserMode(const string &FileType);
+    std::string ConfigureAnalyserMode(const std::string &FileType);
 
     // RunEventAnalyser functions ---------------------------------------------------------------------------------------------------------------------------------
 
-    void RunEventAnalyser(const string &AnalyserMode, const string &AnalyseFilePath, const string &AnalyseFileSample, const string &AnalyseFile);
+    void RunEventAnalyser(const std::string &AnalyserMode, const std::string &AnalyseFilePath, const std::string &AnalyseFileSample, const std::string &AnalyseFile);
 };
 
 #endif // DATAANALYSER_H

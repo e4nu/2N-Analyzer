@@ -19,11 +19,11 @@
 using namespace std;
 using namespace utilities;
 
-string SetYAxisTitle(const string &PlotT, const string &FinalState, const string &Numerator, const string &Denominator, const string &Title = "") {
-    string YAxisTitle;
+string SetYAxisTitle(const std::string &PlotT, const std::string &FinalState, const std::string &Numerator, const std::string &Denominator, const std::string &Title = "") {
+    std::string YAxisTitle;
 
-    string xLabelNum = Numerator.substr(0, Numerator.find_last_of('[') - 1);
-    string xLabelDem = Denominator.substr(0, Denominator.find_last_of('[') - 1);
+    std::string xLabelNum = Numerator.substr(0, Numerator.find_last_of('[') - 1);
+    std::string xLabelDem = Denominator.substr(0, Denominator.find_last_of('[') - 1);
 
     if (PlotT == "efficiency" || PlotT == "Efficiency" || PlotT == "eff" || PlotT == "Eff") {
         YAxisTitle = "#epsilon_{eff} = " + xLabelNum + "^{rec}" + "/" + xLabelDem;

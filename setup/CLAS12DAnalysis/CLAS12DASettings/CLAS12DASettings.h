@@ -57,17 +57,17 @@ private:
     /* Initial input processing of loaded files (given by AnalyseFile) */
 
     /* Determine file path and name */
-     string LoadedInput = AnalyseFile; // AnalyseFile is taken from codeSetup.h
-     string filePath = LoadedInput.substr(0, LoadedInput.find_last_of('/') + 1);
-     string fileInput = LoadedInput.substr(LoadedInput.find_last_of('/') + 1);
-     string plotsInput = fileInput.substr(0, fileInput.find_last_of(".hipo") - 4);
+     std::string LoadedInput = AnalyseFile; // AnalyseFile is taken from codeSetup.h
+     std::string filePath = LoadedInput.substr(0, LoadedInput.find_last_of('/') + 1);
+     std::string fileInput = LoadedInput.substr(LoadedInput.find_last_of('/') + 1);
+     std::string plotsInput = fileInput.substr(0, fileInput.find_last_of(".hipo") - 4);
 
     /* Configure and get run parameters */
     ExperimentParameters Experiment(AnalyseFilePath, AnalyseFileSample);
 
-     string SampleName = Experiment.ConfigureSampleName(AnalyseFilePath, AnalyseFileSample); // Configure SampleName from input
+     std::string SampleName = Experiment.ConfigureSampleName(AnalyseFilePath, AnalyseFileSample); // Configure SampleName from input
      double beamE = Experiment.GetBeamEnergy(); // Configure beam energy from SampleName
-     string Target = Experiment.GetTargetElement(); // Configure target (element) from SampleName
+     std::string Target = Experiment.GetTargetElement(); // Configure target (element) from SampleName
      int TargetPDG = Experiment.GetTargetElementPDG(); // Configure target PDG from SampleName
      bool isLocal = Experiment.SLocal();
      bool isSimulation = Experiment.SSample();
@@ -180,7 +180,7 @@ private:
     //<editor-fold desc="Custom cuts naming">
     /* Save plots to custom-named folders, to allow multi-sample runs at once. */
     bool custom_cuts_naming = true;
-    string Nucleon_Cuts_Status, FD_photons_Status, PSmearing_Status, FiducialCuts_Status, KinCuts_Status, KinWei_Status, Additional_Status, Efficiency_Status;
+    std::string Nucleon_Cuts_Status, FD_photons_Status, PSmearing_Status, FiducialCuts_Status, KinCuts_Status, KinWei_Status, Additional_Status, Efficiency_Status;
 
     if (custom_cuts_naming) {
 
@@ -268,7 +268,7 @@ private:
             plots_path = WorkingDirectory + "00_plots_" + SampleName + "_-00_NO_CUTS";
             plots_log_save_Directory = plots_path + "/" + "Run_log_" + SampleName + "_-00_NO_CUTS.txt";
         } else {
-            string added_names = Nucleon_Cuts_Status + FD_photons_Status + PSmearing_Status + FiducialCuts_Status + KinCuts_Status + KinWei_Status + Additional_Status
+            std::string added_names = Nucleon_Cuts_Status + FD_photons_Status + PSmearing_Status + FiducialCuts_Status + KinCuts_Status + KinWei_Status + Additional_Status
                                  + Efficiency_Status;
 
             if (!apply_chi2_cuts_1e_cut) { // Stage 1 - with cuts except PID (chi2) cuts
@@ -528,7 +528,7 @@ private:
 
     /* General plots TList */
     TList *plots = new TList();
-    string listName = plots_path + "/" + AnalyseFileSample + plots_TList_FileType;
+    std::string listName = plots_path + "/" + AnalyseFileSample + plots_TList_FileType;
     const char *TListName = listName.c_str();
     //</editor-fold>
 
@@ -541,7 +541,7 @@ private:
      * All cut plots are separate from the analysis plots, and withing the 01_Cuts_plots folder. */
     cout << "\nCreating plot directories...";
 
-    string Plots_Folder = plots_path;
+    std::string Plots_Folder = plots_path;
     Directories directories = Directories(Plots_Folder);
 
     cout << " done.\n\n";
@@ -936,8 +936,8 @@ private:
 
 
     TList *ACorr_data = new TList();
-    string ACorr_data_Dir = ACorrDirectory + SampleName;
-    string ACorr_data_listName = ACorr_data_Dir + "/" + "ACorr_data_-_" + SampleName + ".root";
+    std::string ACorr_data_Dir = ACorrDirectory + SampleName;
+    std::string ACorr_data_listName = ACorr_data_Dir + "/" + "ACorr_data_-_" + SampleName + ".root";
     const char *ACorr_DataName = ACorr_data_listName.c_str();
 
     if (!calculate_truth_level) { save_ACorr_data = false; }
@@ -961,7 +961,7 @@ private:
     int Ne_in_event = 1, Nf_in_event = 2, nEvents2print = 10000;
 
     ofstream EventPrint;
-    string EventPrint_save_Directory;
+    std::string EventPrint_save_Directory;
 
     if (PrintEvents) {
         if (!apply_chi2_cuts_1e_cut) {

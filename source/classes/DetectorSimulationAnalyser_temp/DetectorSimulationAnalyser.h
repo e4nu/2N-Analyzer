@@ -54,21 +54,21 @@ class DetectorSimulationAnalyser {
    public:
     DetectorSimulationAnalyser() = default;
 
-    void EventAnalyser(const string &AnalyseFilePath, const string &AnalyseFileSample, const string &AnalyseFile);
+    void EventAnalyser(const std::string &AnalyseFilePath, const std::string &AnalyseFileSample, const std::string &AnalyseFile);
 
    private:
-    string LoadedInput;
-    string filePath;
-    string fileInput;
-    string plotsInput;
+    std::string LoadedInput;
+    std::string filePath;
+    std::string fileInput;
+    std::string plotsInput;
 
     ExperimentParameters Experiment;
 
-    string SampleName, VaryingSampleName;
+    std::string SampleName, VaryingSampleName;
 
     double beamE;
 
-    string Target;
+    std::string Target;
 
     int TargetPDG;
     bool isLocal;
@@ -243,7 +243,7 @@ class DetectorSimulationAnalyser {
     DSCuts MomRes_mu_cuts;
     DSCuts MomRes_sigma_cuts;
 
-    string Plots_Folder;
+    std::string Plots_Folder;
     const bool Clear_Old_Directories;
 
     Directories directories;
@@ -390,8 +390,8 @@ class DetectorSimulationAnalyser {
     TList *ACorr_data;
 
     // Directory and file name strings
-    string ACorr_data_Dir;
-    string ACorr_data_listName;
+    std::string ACorr_data_Dir;
+    std::string ACorr_data_listName;
 
     // File name as a C-string
     const char *ACorr_DataName;
@@ -405,17 +405,17 @@ class DetectorSimulationAnalyser {
     const int Ne_in_event, Nf_in_event, nEvents2print;
 
     ofstream EventPrint;
-    string EventPrint_save_Directory;
+    std::string EventPrint_save_Directory;
 
     ParticleID pid;
-    string AnalyserVersion = "Version 1.10";
+    std::string AnalyserVersion = "Version 1.10";
     // ...existing code...
 
     TCanvas *c1;
     
-    void CodeSetup(const string &AnalyseFilePath, const string &AnalyseFileSample, const string &AnalyseFile);
+    void CodeSetup(const std::string &AnalyseFilePath, const std::string &AnalyseFileSample, const std::string &AnalyseFile);
 
-    void InputProcessing(const string &AnalyseFilePath, const string &AnalyseFileSample, const string &AnalyseFile);
+    void InputProcessing(const std::string &AnalyseFilePath, const std::string &AnalyseFileSample, const std::string &AnalyseFile);
 
     void EventSelectionSetup();
 

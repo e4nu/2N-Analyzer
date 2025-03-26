@@ -15,10 +15,10 @@
 
 using namespace std;
 
-string SetStatsTitle(const string &RecTitle) {
-    string StatsTitle;
+string SetStatsTitle(const std::string &RecTitle) {
+    std::string StatsTitle;
 
-    string ParticleShort = GetParticleNameShort(RecTitle);
+    std::string ParticleShort = GetParticleNameShort(RecTitle);
 
     if (findSubstring(RecTitle, "momentum")) {
         StatsTitle = "P_{" + ParticleShort + "}";

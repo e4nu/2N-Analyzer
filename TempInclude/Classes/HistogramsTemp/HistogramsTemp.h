@@ -977,12 +977,12 @@ public:
     TH1D *hW_MEC_pFDpCD;
     TH1D *hW_RES_pFDpCD;
     TH1D *hW_DIS_pFDpCD;
-    string sW_pFDpCD_Dir;
-    string hW_All_Int_pFDpCD_Dir;
-    string hW_QEL_pFDpCD_Dir;
-    string hW_MEC_pFDpCD_Dir;
-    string hW_RES_pFDpCD_Dir;
-    string hW_DIS_pFDpCD_Dir;
+    std::string sW_pFDpCD_Dir;
+    std::string hW_All_Int_pFDpCD_Dir;
+    std::string hW_QEL_pFDpCD_Dir;
+    std::string hW_MEC_pFDpCD_Dir;
+    std::string hW_RES_pFDpCD_Dir;
+    std::string hW_DIS_pFDpCD_Dir;
     //</editor-fold>
 
     //<editor-fold desc="W plots (nFDpCD, CD & FD)">
@@ -992,12 +992,12 @@ public:
     TH1D *hW_MEC_nFDpCD;
     TH1D *hW_RES_nFDpCD;
     TH1D *hW_DIS_nFDpCD;
-    string sW_nFDpCD_Dir;
-    string hW_All_Int_nFDpCD_Dir;
-    string hW_QEL_nFDpCD_Dir;
-    string hW_MEC_nFDpCD_Dir;
-    string hW_RES_nFDpCD_Dir;
-    string hW_DIS_nFDpCD_Dir;
+    std::string sW_nFDpCD_Dir;
+    std::string hW_All_Int_nFDpCD_Dir;
+    std::string hW_QEL_nFDpCD_Dir;
+    std::string hW_MEC_nFDpCD_Dir;
+    std::string hW_RES_nFDpCD_Dir;
+    std::string hW_DIS_nFDpCD_Dir;
     //</editor-fold>
 
     //</editor-fold>
@@ -1020,12 +1020,12 @@ public:
 
     //<editor-fold desc="Theta_e histograms (no #(e) cut)">
     TH1D *hTheta_e_All_e_FD;
-    string hTheta_e_All_e_FD_Dir;
+    std::string hTheta_e_All_e_FD_Dir;
     //</editor-fold>
 
     //<editor-fold desc="Theta_e histograms (1e cut)">
     TH1D *hTheta_e_1e_cut_FD;
-    string hTheta_e_1e_cut_FD_Dir;
+    std::string hTheta_e_1e_cut_FD_Dir;
     //</editor-fold>
 
     //<editor-fold desc="Theta_e histograms (1p)">
@@ -1034,16 +1034,16 @@ public:
     TH1D *hTheta_e_MEC_1p_FD;
     TH1D *hTheta_e_RES_1p_FD;
     TH1D *hTheta_e_DIS_1p_FD;
-    string hTheta_e_All_Int_1p_FD_Dir;
-    string hTheta_e_QEL_1p_FD_Dir;
-    string hTheta_e_MEC_1p_FD_Dir;
-    string hTheta_e_RES_1p_FD_Dir;
-    string hTheta_e_DIS_1p_FD_Dir;
+    std::string hTheta_e_All_Int_1p_FD_Dir;
+    std::string hTheta_e_QEL_1p_FD_Dir;
+    std::string hTheta_e_MEC_1p_FD_Dir;
+    std::string hTheta_e_RES_1p_FD_Dir;
+    std::string hTheta_e_DIS_1p_FD_Dir;
 
     TH2D *hTheta_e_VS_P_e_1p_FD;
     TH2D *hTheta_e_VS_W_1p_FD;
-    string hTheta_e_VS_P_e_1p_FD_Dir;
-    string hTheta_e_VS_W_1p_FD_Dir;
+    std::string hTheta_e_VS_P_e_1p_FD_Dir;
+    std::string hTheta_e_VS_W_1p_FD_Dir;
     //</editor-fold>
 
     //<editor-fold desc="Theta_e histograms (1n)">
@@ -1052,16 +1052,16 @@ public:
     TH1D *hTheta_e_MEC_1n_FD;
     TH1D *hTheta_e_RES_1n_FD;
     TH1D *hTheta_e_DIS_1n_FD;
-    string hTheta_e_All_Int_1n_FD_Dir;
-    string hTheta_e_QEL_1n_FD_Dir;
-    string hTheta_e_MEC_1n_FD_Dir;
-    string hTheta_e_RES_1n_FD_Dir;
-    string hTheta_e_DIS_1n_FD_Dir;
+    std::string hTheta_e_All_Int_1n_FD_Dir;
+    std::string hTheta_e_QEL_1n_FD_Dir;
+    std::string hTheta_e_MEC_1n_FD_Dir;
+    std::string hTheta_e_RES_1n_FD_Dir;
+    std::string hTheta_e_DIS_1n_FD_Dir;
 
     TH2D *hTheta_e_VS_P_e_1n_FD;
     TH2D *hTheta_e_VS_W_1n_FD;
-    string hTheta_e_VS_P_e_1n_FD_Dir;
-    string hTheta_e_VS_W_1n_FD_Dir;
+    std::string hTheta_e_VS_P_e_1n_FD_Dir;
+    std::string hTheta_e_VS_W_1n_FD_Dir;
     //</editor-fold>
 
     //<editor-fold desc="Theta_e histograms (2p)">
@@ -1070,11 +1070,11 @@ public:
     TH1D *hTheta_e_MEC_2p_FD;
     TH1D *hTheta_e_RES_2p_FD;
     TH1D *hTheta_e_DIS_2p_FD;
-    string hTheta_e_All_Int_2p_FD_Dir;
-    string hTheta_e_QEL_2p_FD_Dir;
-    string hTheta_e_MEC_2p_FD_Dir;
-    string hTheta_e_RES_2p_FD_Dir;
-    string hTheta_e_DIS_2p_FD_Dir;
+    std::string hTheta_e_All_Int_2p_FD_Dir;
+    std::string hTheta_e_QEL_2p_FD_Dir;
+    std::string hTheta_e_MEC_2p_FD_Dir;
+    std::string hTheta_e_RES_2p_FD_Dir;
+    std::string hTheta_e_DIS_2p_FD_Dir;
     //</editor-fold>
 
     //<editor-fold desc="Theta_e histograms (pFDpCD)">
@@ -1083,16 +1083,16 @@ public:
     TH1D *hTheta_e_MEC_pFDpCD_FD;
     TH1D *hTheta_e_RES_pFDpCD_FD;
     TH1D *hTheta_e_DIS_pFDpCD_FD;
-    string hTheta_e_All_Int_pFDpCD_FD_Dir;
-    string hTheta_e_QEL_pFDpCD_FD_Dir;
-    string hTheta_e_MEC_pFDpCD_FD_Dir;
-    string hTheta_e_RES_pFDpCD_FD_Dir;
-    string hTheta_e_DIS_pFDpCD_FD_Dir;
+    std::string hTheta_e_All_Int_pFDpCD_FD_Dir;
+    std::string hTheta_e_QEL_pFDpCD_FD_Dir;
+    std::string hTheta_e_MEC_pFDpCD_FD_Dir;
+    std::string hTheta_e_RES_pFDpCD_FD_Dir;
+    std::string hTheta_e_DIS_pFDpCD_FD_Dir;
 
     TH2D *hTheta_e_VS_P_e_pFDpCD_FD;
     TH2D *hTheta_e_VS_W_pFDpCD_FD;
-    string hTheta_e_VS_P_e_pFDpCD_FD_Dir;
-    string hTheta_e_VS_W_pFDpCD_FD_Dir;
+    std::string hTheta_e_VS_P_e_pFDpCD_FD_Dir;
+    std::string hTheta_e_VS_W_pFDpCD_FD_Dir;
     //</editor-fold>
 
     //<editor-fold desc="Theta_e histograms (nFDpCD)">
@@ -1101,16 +1101,16 @@ public:
     TH1D *hTheta_e_MEC_nFDpCD_FD;
     TH1D *hTheta_e_RES_nFDpCD_FD;
     TH1D *hTheta_e_DIS_nFDpCD_FD;
-    string hTheta_e_All_Int_nFDpCD_FD_Dir;
-    string hTheta_e_QEL_nFDpCD_FD_Dir;
-    string hTheta_e_MEC_nFDpCD_FD_Dir;
-    string hTheta_e_RES_nFDpCD_FD_Dir;
-    string hTheta_e_DIS_nFDpCD_FD_Dir;
+    std::string hTheta_e_All_Int_nFDpCD_FD_Dir;
+    std::string hTheta_e_QEL_nFDpCD_FD_Dir;
+    std::string hTheta_e_MEC_nFDpCD_FD_Dir;
+    std::string hTheta_e_RES_nFDpCD_FD_Dir;
+    std::string hTheta_e_DIS_nFDpCD_FD_Dir;
 
     TH2D *hTheta_e_VS_P_e_nFDpCD_FD;
     TH2D *hTheta_e_VS_W_nFDpCD_FD;
-    string hTheta_e_VS_P_e_nFDpCD_FD_Dir;
-    string hTheta_e_VS_W_nFDpCD_FD_Dir;
+    std::string hTheta_e_VS_P_e_nFDpCD_FD_Dir;
+    std::string hTheta_e_VS_W_nFDpCD_FD_Dir;
     //</editor-fold>
 
     //</editor-fold>
@@ -1122,12 +1122,12 @@ public:
 
     //<editor-fold desc="Phi_e histograms (no #(e) cut)">
     TH1D *hPhi_e_All_e_FD;
-    string hPhi_e_All_e_FD_Dir;
+    std::string hPhi_e_All_e_FD_Dir;
     //</editor-fold>
 
     //<editor-fold desc="Phi_e histograms (1e cut)">
     TH1D *hPhi_e_1e_cut_FD;
-    string hPhi_e_1e_cut_FD_Dir;
+    std::string hPhi_e_1e_cut_FD_Dir;
     //</editor-fold>
 
     //<editor-fold desc="Phi_e histograms (1p)">
@@ -1136,16 +1136,16 @@ public:
     TH1D *hPhi_e_MEC_1p_FD;
     TH1D *hPhi_e_RES_1p_FD;
     TH1D *hPhi_e_DIS_1p_FD;
-    string hPhi_e_All_Int_1p_FD_Dir;
-    string hPhi_e_QEL_1p_FD_Dir;
-    string hPhi_e_MEC_1p_FD_Dir;
-    string hPhi_e_RES_1p_FD_Dir;
-    string hPhi_e_DIS_1p_FD_Dir;
+    std::string hPhi_e_All_Int_1p_FD_Dir;
+    std::string hPhi_e_QEL_1p_FD_Dir;
+    std::string hPhi_e_MEC_1p_FD_Dir;
+    std::string hPhi_e_RES_1p_FD_Dir;
+    std::string hPhi_e_DIS_1p_FD_Dir;
 
     TH2D *hPhi_e_VS_P_e_1p_FD;
     TH2D *hPhi_e_VS_W_1p_FD;
-    string hPhi_e_VS_P_e_1p_FD_Dir;
-    string hPhi_e_VS_W_1p_FD_Dir;
+    std::string hPhi_e_VS_P_e_1p_FD_Dir;
+    std::string hPhi_e_VS_W_1p_FD_Dir;
     //</editor-fold>
 
     //<editor-fold desc="Phi_e histograms (1n)">
@@ -1154,16 +1154,16 @@ public:
     TH1D *hPhi_e_MEC_1n_FD;
     TH1D *hPhi_e_RES_1n_FD;
     TH1D *hPhi_e_DIS_1n_FD;
-    string hPhi_e_All_Int_1n_FD_Dir;
-    string hPhi_e_QEL_1n_FD_Dir;
-    string hPhi_e_MEC_1n_FD_Dir;
-    string hPhi_e_RES_1n_FD_Dir;
-    string hPhi_e_DIS_1n_FD_Dir;
+    std::string hPhi_e_All_Int_1n_FD_Dir;
+    std::string hPhi_e_QEL_1n_FD_Dir;
+    std::string hPhi_e_MEC_1n_FD_Dir;
+    std::string hPhi_e_RES_1n_FD_Dir;
+    std::string hPhi_e_DIS_1n_FD_Dir;
 
     TH2D *hPhi_e_VS_P_e_1n_FD;
     TH2D *hPhi_e_VS_W_1n_FD;
-    string hPhi_e_VS_P_e_1n_FD_Dir;
-    string hPhi_e_VS_W_1n_FD_Dir;
+    std::string hPhi_e_VS_P_e_1n_FD_Dir;
+    std::string hPhi_e_VS_W_1n_FD_Dir;
     //</editor-fold>
 
     //<editor-fold desc="Phi_e histograms (2p)">
@@ -1172,11 +1172,11 @@ public:
     TH1D *hPhi_e_MEC_2p_FD;
     TH1D *hPhi_e_RES_2p_FD;
     TH1D *hPhi_e_DIS_2p_FD;
-    string hPhi_e_All_Int_2p_FD_Dir;
-    string hPhi_e_QEL_2p_FD_Dir;
-    string hPhi_e_MEC_2p_FD_Dir;
-    string hPhi_e_RES_2p_FD_Dir;
-    string hPhi_e_DIS_2p_FD_Dir;
+    std::string hPhi_e_All_Int_2p_FD_Dir;
+    std::string hPhi_e_QEL_2p_FD_Dir;
+    std::string hPhi_e_MEC_2p_FD_Dir;
+    std::string hPhi_e_RES_2p_FD_Dir;
+    std::string hPhi_e_DIS_2p_FD_Dir;
     //</editor-fold>
 
     //<editor-fold desc="Phi_e histograms (pFDpCD)">
@@ -1185,16 +1185,16 @@ public:
     TH1D *hPhi_e_MEC_pFDpCD_FD;
     TH1D *hPhi_e_RES_pFDpCD_FD;
     TH1D *hPhi_e_DIS_pFDpCD_FD;
-    string hPhi_e_All_Int_pFDpCD_FD_Dir;
-    string hPhi_e_QEL_pFDpCD_FD_Dir;
-    string hPhi_e_MEC_pFDpCD_FD_Dir;
-    string hPhi_e_RES_pFDpCD_FD_Dir;
-    string hPhi_e_DIS_pFDpCD_FD_Dir;
+    std::string hPhi_e_All_Int_pFDpCD_FD_Dir;
+    std::string hPhi_e_QEL_pFDpCD_FD_Dir;
+    std::string hPhi_e_MEC_pFDpCD_FD_Dir;
+    std::string hPhi_e_RES_pFDpCD_FD_Dir;
+    std::string hPhi_e_DIS_pFDpCD_FD_Dir;
 
     TH2D *hPhi_e_VS_P_e_pFDpCD_FD;
     TH2D *hPhi_e_VS_W_pFDpCD_FD;
-    string hPhi_e_VS_P_e_pFDpCD_FD_Dir;
-    string hPhi_e_VS_W_pFDpCD_FD_Dir;
+    std::string hPhi_e_VS_P_e_pFDpCD_FD_Dir;
+    std::string hPhi_e_VS_W_pFDpCD_FD_Dir;
     //</editor-fold>
 
     //<editor-fold desc="Phi_e histograms (nFDpCD)">
@@ -1203,16 +1203,16 @@ public:
     TH1D *hPhi_e_MEC_nFDpCD_FD;
     TH1D *hPhi_e_RES_nFDpCD_FD;
     TH1D *hPhi_e_DIS_nFDpCD_FD;
-    string hPhi_e_All_Int_nFDpCD_FD_Dir;
-    string hPhi_e_QEL_nFDpCD_FD_Dir;
-    string hPhi_e_MEC_nFDpCD_FD_Dir;
-    string hPhi_e_RES_nFDpCD_FD_Dir;
-    string hPhi_e_DIS_nFDpCD_FD_Dir;
+    std::string hPhi_e_All_Int_nFDpCD_FD_Dir;
+    std::string hPhi_e_QEL_nFDpCD_FD_Dir;
+    std::string hPhi_e_MEC_nFDpCD_FD_Dir;
+    std::string hPhi_e_RES_nFDpCD_FD_Dir;
+    std::string hPhi_e_DIS_nFDpCD_FD_Dir;
 
     TH2D *hPhi_e_VS_P_e_nFDpCD_FD;
     TH2D *hPhi_e_VS_W_nFDpCD_FD;
-    string hPhi_e_VS_P_e_nFDpCD_FD_Dir;
-    string hPhi_e_VS_W_nFDpCD_FD_Dir;
+    std::string hPhi_e_VS_P_e_nFDpCD_FD_Dir;
+    std::string hPhi_e_VS_W_nFDpCD_FD_Dir;
     //</editor-fold>
 
     //</editor-fold>
@@ -1222,31 +1222,31 @@ public:
     //<editor-fold desc="Theta_e vs. Phi_e">
     /* Theta_e vs. Phi_e histograms (no #(e) cut) */
     TH2D *hTheta_e_VS_Phi_e_All_e_FD;
-    string hTheta_e_VS_Phi_e_All_e_FD_Dir;
+    std::string hTheta_e_VS_Phi_e_All_e_FD_Dir;
 
     /* Theta_e vs. Phi_e histograms (1e cut) */
     TH2D *hTheta_e_VS_Phi_e_1e_cut_FD;
-    string hTheta_e_VS_Phi_e_1e_cut_FD_Dir;
+    std::string hTheta_e_VS_Phi_e_1e_cut_FD_Dir;
 
     /* Theta_e vs. Phi_e histograms (1p) */
     TH2D *hTheta_e_VS_Phi_e_1p_FD;
-    string hTheta_e_VS_Phi_e_1p_FD_Dir;
+    std::string hTheta_e_VS_Phi_e_1p_FD_Dir;
 
     /* Theta_e vs. Phi_e histograms (1n) */
     TH2D *hTheta_e_VS_Phi_e_1n_FD;
-    string hTheta_e_VS_Phi_e_1n_FD_Dir;
+    std::string hTheta_e_VS_Phi_e_1n_FD_Dir;
 
     /* Theta_e vs. Phi_e histograms (2p) */
     TH2D *hTheta_e_VS_Phi_e_2p_FD;
-    string hTheta_e_VS_Phi_e_2p_FD_Dir;
+    std::string hTheta_e_VS_Phi_e_2p_FD_Dir;
 
     /* Theta_e vs. Phi_e histograms (pFDpCD) */
     TH2D *hTheta_e_VS_Phi_e_pFDpCD_FD;
-    string hTheta_e_VS_Phi_e_pFDpCD_FD_Dir;
+    std::string hTheta_e_VS_Phi_e_pFDpCD_FD_Dir;
 
     /* Theta_e vs. Phi_e histograms (nFDpCD) */
     TH2D *hTheta_e_VS_Phi_e_nFDpCD_FD;
-    string hTheta_e_VS_Phi_e_nFDpCD_FD_Dir;
+    std::string hTheta_e_VS_Phi_e_nFDpCD_FD_Dir;
     //</editor-fold>
 
 // Other angle plots ----------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1305,12 +1305,12 @@ public:
     //<editor-fold desc="Theta_p (1p, FD only)">
     THStack *sTheta_p_1p;
     TH1D *hTheta_p_All_Int_1p;
-    string hTheta_p_All_Int_1p_Dir;
+    std::string hTheta_p_All_Int_1p_Dir;
 
     TH2D *hTheta_p_VS_P_p_1p_FD;
     TH2D *hTheta_p_VS_W_1p_FD;
-    string hTheta_p_VS_P_p_1p_FD_Dir;
-    string hTheta_p_VS_W_1p_FD_Dir;
+    std::string hTheta_p_VS_P_p_1p_FD_Dir;
+    std::string hTheta_p_VS_W_1p_FD_Dir;
     //</editor-fold>
 
 // Phi_p (1p, FD only) ----------------------------------------------------------------------------------------------------------------------------------------
@@ -1318,14 +1318,14 @@ public:
     //<editor-fold desc="Phi_p (1p, FD only)">
     THStack *sPhi_p_1p;
     TH1D *hPhi_p_All_Int_1p;
-    string hPhi_p_All_Int_1p_Dir;
+    std::string hPhi_p_All_Int_1p_Dir;
     //</editor-fold>
 
 // Theta_p vs. Phi_p ------------------------------------------------------------------------------------------------------------------------------------------------
 
     //<editor-fold desc="Theta_p vs. Phi_p histograms">
     TH2D *hTheta_p_VS_Phi_p_1p_FD;
-    string hTheta_p_VS_Phi_p_1p_FD_Dir;
+    std::string hTheta_p_VS_Phi_p_1p_FD_Dir;
     //</editor-fold>
 
 // Theta_p_e_p_p (1p, FD only) ----------------------------------------------------------------------------------------------------------------------------------------
@@ -1333,7 +1333,7 @@ public:
     //<editor-fold desc="Theta_p_e_p_p (1p, FD only)">
     THStack *sTheta_p_e_p_p_1p;
     TH1D *hTheta_p_e_p_p_1p;
-    string hTheta_p_e_p_p_1p_Dir;
+    std::string hTheta_p_e_p_p_1p_Dir;
     //</editor-fold>
 
 // Theta_q_p (1p, FD only) ----------------------------------------------------------------------------------------------------------------------------------------------
@@ -1341,21 +1341,21 @@ public:
     //<editor-fold desc="Theta_q_p (1p, FD only)">
     THStack *sTheta_q_p_p_1p;
     TH1D *hTheta_q_p_p_1p;
-    string hTheta_q_p_p_1p_Dir;
+    std::string hTheta_q_p_p_1p_Dir;
     //</editor-fold>
 
 // Theta_q_p_p vs. |P_p|/|q| (1p, FD only) -------------------------------------------------------------------------------------------------------------------------------
 
     //<editor-fold desc="Theta_q_p_p vs. |P_p|/|q| (1p, FD only)">
     TH2D *hTheta_q_p_p_vs_p_p_q_1p;
-    string hTheta_q_p_p_vs_p_p_q_1p_Dir;
+    std::string hTheta_q_p_p_vs_p_p_q_1p_Dir;
     //</editor-fold>
 
 // Theta_q_p_p vs. |p_N|/|q| (1p, FD only) -------------------------------------------------------------------------------------------------------------------------------
 
     //<editor-fold desc="Theta_q_p_p vs. |p_N|/|q| (1p, FD only)">
     TH2D *hTheta_q_p_p_vs_p_N_q_1p;
-    string hTheta_q_p_p_vs_p_N_q_1p_Dir;
+    std::string hTheta_q_p_p_vs_p_N_q_1p_Dir;
     //</editor-fold>
 
     //</editor-fold>
@@ -1367,12 +1367,12 @@ public:
     //<editor-fold desc="Theta_n (1n, FD only)">
     THStack *sTheta_n_1n;
     TH1D *hTheta_n_All_Int_1n;
-    string hTheta_n_All_Int_1n_Dir;
+    std::string hTheta_n_All_Int_1n_Dir;
 
     TH2D *hTheta_n_VS_P_n_1n_FD;
     TH2D *hTheta_n_VS_W_1n_FD;
-    string hTheta_n_VS_P_n_1n_FD_Dir;
-    string hTheta_n_VS_W_1n_FD_Dir;
+    std::string hTheta_n_VS_P_n_1n_FD_Dir;
+    std::string hTheta_n_VS_W_1n_FD_Dir;
     //</editor-fold>
 
 // Phi_n (1n, FD only) --------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1380,14 +1380,14 @@ public:
     //<editor-fold desc="Phi_n (1n, FD only)">
     THStack *sPhi_n_1n;
     TH1D *hPhi_n_All_Int_1n;
-    string hPhi_n_All_Int_1n_Dir;
+    std::string hPhi_n_All_Int_1n_Dir;
     //</editor-fold>
 
 // Theta_n vs. Phi_n ------------------------------------------------------------------------------------------------------------------------------------------------
 
     //<editor-fold desc="Theta_n vs. Phi_n histograms">
     TH2D *hTheta_n_VS_Phi_n_1n_FD;
-    string hTheta_n_VS_Phi_n_1n_FD_Dir;
+    std::string hTheta_n_VS_Phi_n_1n_FD_Dir;
     //</editor-fold>
 
 // Theta_p_e_p_n (1n, FD only) ------------------------------------------------------------------------------------------------------------------------------------------
@@ -1395,7 +1395,7 @@ public:
     //<editor-fold desc="Theta_p_e_p_n (1n, FD only)">
     THStack *sTheta_p_e_p_n_1n;
     TH1D *hTheta_p_e_p_n_1n;
-    string hTheta_p_e_p_n_1n_Dir;
+    std::string hTheta_p_e_p_n_1n_Dir;
     //</editor-fold>
 
 // Theta_q_p_n (1n, FD only) --------------------------------------------------------------------------------------------------------------------------------------------
@@ -1403,21 +1403,21 @@ public:
     //<editor-fold desc="Theta_q_p_n (1n, FD only)">
     THStack *sTheta_q_p_n_1n;
     TH1D *hTheta_q_p_n_1n;
-    string hTheta_q_p_n_1n_Dir;
+    std::string hTheta_q_p_n_1n_Dir;
     //</editor-fold>
 
 // Theta_q_p_n vs. |p_n|/|q| (1n, FD only) ------------------------------------------------------------------------------------------------------------------------------
 
     //<editor-fold desc="Theta_q_p_n vs. |p_n|/|q| (1n, FD only)">
     TH2D *hTheta_q_p_n_vs_p_n_q_1n;
-    string hTheta_q_p_n_vs_p_n_q_1n_Dir;
+    std::string hTheta_q_p_n_vs_p_n_q_1n_Dir;
     //</editor-fold>
 
 // Theta_q_p_n vs. |p_N|/|q| (1n, FD only) ------------------------------------------------------------------------------------------------------------------------------
 
     //<editor-fold desc="Theta_q_p_n vs. |p_N|/|q| (1n, FD only)">
     TH2D *hTheta_q_p_n_vs_p_N_q_1n;
-    string hTheta_q_p_n_vs_p_N_q_1n_Dir;
+    std::string hTheta_q_p_n_vs_p_N_q_1n_Dir;
     //</editor-fold>
 
 // Neutron veto plots (1n) ----------------------------------------------------------------------------------------------------------------------------------------------
@@ -1440,8 +1440,8 @@ public:
     THStack *sPhi_Proton_1e2pXy;
     TH1D *hPhi_p1_1e2pXy_CD;
     TH1D *hPhi_p2_1e2pXy_CD;
-    string hPhi_p1_1e2pXy_CD_Dir;
-    string hPhi_p2_1e2pXy_CD_Dir;
+    std::string hPhi_p1_1e2pXy_CD_Dir;
+    std::string hPhi_p2_1e2pXy_CD_Dir;
     //</editor-fold>
 
     //</editor-fold>
@@ -1453,7 +1453,7 @@ public:
     //<editor-fold desc="Theta_p_e_p_tot (2p, CD & FD)">
     THStack *sTheta_p_e_p_tot_2p;
     TH1D *hTheta_p_e_p_tot_2p;
-    string hTheta_p_e_p_tot_2p_Dir;
+    std::string hTheta_p_e_p_tot_2p_Dir;
     //</editor-fold>
 
 // Theta_q_p (2p, CD & FD) ----------------------------------------------------------------------------------------------------------------------------------------------
@@ -1463,15 +1463,15 @@ public:
     //<editor-fold desc="Theta_q_p_tot (CD & FD)">
     THStack *sTheta_q_p_tot_2p;
     TH1D *hTheta_q_p_tot_2p;
-    string hTheta_q_p_tot_2p_Dir;
+    std::string hTheta_q_p_tot_2p_Dir;
     //</editor-fold>
 
     //<editor-fold desc="Theta_q_p_L and Theta_q_p_R (2p, CD & FD)">
     THStack *sTheta_q_p_2p;
     TH1D *hTheta_q_p_L_2p;
     TH1D *hTheta_q_p_R_2p;
-    string hTheta_q_p_L_2p_Dir;
-    string hTheta_q_p_R_2p_Dir;
+    std::string hTheta_q_p_L_2p_Dir;
+    std::string hTheta_q_p_R_2p_Dir;
     //</editor-fold>
 
     //</editor-fold>
@@ -1480,7 +1480,7 @@ public:
 
     //<editor-fold desc="Theta_q_p_tot (CD & FD)">
     TH2D *hTheta_q_p_L_vs_p_L_q_2p;
-    string hTheta_q_p_L_vs_p_L_q_2p_Dir;
+    std::string hTheta_q_p_L_vs_p_L_q_2p_Dir;
     //</editor-fold>
 
 // Theta_p1_p2 (2p, CD & FD) --------------------------------------------------------------------------------------------------------------------------------------------
@@ -1492,99 +1492,99 @@ public:
     TH1D *hTheta_p1_p2_MEC_2p;
     TH1D *hTheta_p1_p2_RES_2p;
     TH1D *hTheta_p1_p2_DIS_2p;
-    string sTheta_p1_p2_2p_Dir;
-    string hTheta_p1_p2_All_Int_2p_Dir;
-    string hTheta_p1_p2_QEL_2p_Dir;
-    string hTheta_p1_p2_MEC_2p_Dir;
-    string hTheta_p1_p2_RES_2p_Dir;
-    string hTheta_p1_p2_DIS_2p_Dir;
+    std::string sTheta_p1_p2_2p_Dir;
+    std::string hTheta_p1_p2_All_Int_2p_Dir;
+    std::string hTheta_p1_p2_QEL_2p_Dir;
+    std::string hTheta_p1_p2_MEC_2p_Dir;
+    std::string hTheta_p1_p2_RES_2p_Dir;
+    std::string hTheta_p1_p2_DIS_2p_Dir;
     //</editor-fold>
 
 // Theta_p1_p2 vs. W (2p, CD & FD) --------------------------------------------------------------------------------------------------------------------------------------
 
     //<editor-fold desc="Theta_p1_p2 vs. W (CD & FD)">
     TH2D *hTheta_p1_p2_vs_W_2p;
-    string hTheta_p1_p2_vs_W_2p_Dir;
+    std::string hTheta_p1_p2_vs_W_2p_Dir;
     //</editor-fold>
 
 // Theta_p1_vs_Theta_p2 for Theta_p1_p2 < 20 (2p, CD & FD) --------------------------------------------------------------------------------------------------------------
 
     //<editor-fold desc="Theta_p1_vs_Theta_p2 for Theta_p1_p2 < 20 (CD & FD)">
     TH2D *hTheta_p1_vs_theta_p2_for_Theta_p1_p2_20_2p;
-    string hTheta_p1_vs_theta_p2_for_Theta_p1_p2_20_2p_Dir;
+    std::string hTheta_p1_vs_theta_p2_for_Theta_p1_p2_20_2p_Dir;
     //</editor-fold>
 
 // Theta_pFD_vs_Theta_pCD for Theta_pFD_pCD < 20 (2p, CD & FD) ----------------------------------------------------------------------------------------------------------
 
     //<editor-fold desc="Theta_p1_vs_Theta_p2 for Theta_p1_p2 < 20 (CD & FD)">
     TH2D *hTheta_pFD_vs_Theta_pCD_for_Theta_pFD_pCD_20_2p;
-    string hTheta_pFD_vs_Theta_pCD_for_Theta_pFD_pCD_20_2p_Dir;
+    std::string hTheta_pFD_vs_Theta_pCD_for_Theta_pFD_pCD_20_2p_Dir;
     //</editor-fold>
 
 // dPhi_p1_p2 for Theta_p1_p2 < 20 (2p, CD & FD) ------------------------------------------------------------------------------------------------------------------------
 
     //<editor-fold desc="dPhi_p1_p2 for Theta_p1_p2 < 20 (CD & FD)">
     TH1D *hdPhi_p1_p2_for_Theta_p1_p2_20_2p;
-    string hdPhi_p1_p2_for_Theta_p1_p2_20_2p_Dir;
+    std::string hdPhi_p1_p2_for_Theta_p1_p2_20_2p_Dir;
 
     TH1D *hdPhi_p1_p2_for_Theta_p1_p2_20_ZOOMIN_2p;
-    string hdPhi_p1_p2_for_Theta_p1_p2_20_ZOOMIN_2p_Dir;
+    std::string hdPhi_p1_p2_for_Theta_p1_p2_20_ZOOMIN_2p_Dir;
     //</editor-fold>
 
 // dPhi_pFD_pCD for Theta_pFD_pCD < 20 (2p, CD & FD) --------------------------------------------------------------------------------------------------------------------
 
     //<editor-fold desc="dPhi_p1_p2 for Theta_pFD_pCD < 20 (CD & FD)">
     TH1D *hdPhi_pFD_pCD_for_Theta_pFD_pCD_20_2p;
-    string hdPhi_pFD_pCD_for_Theta_pFD_pCD_20_2p_Dir;
+    std::string hdPhi_pFD_pCD_for_Theta_pFD_pCD_20_2p_Dir;
 
     TH1D *hdPhi_pFD_pCD_for_Theta_pFD_pCD_20_ZOOMIN_2p;
-    string hdPhi_pFD_pCD_for_Theta_pFD_pCD_20_ZOOMIN_2p_Dir;
+    std::string hdPhi_pFD_pCD_for_Theta_pFD_pCD_20_ZOOMIN_2p_Dir;
     //</editor-fold>
 
 // Theta_p1_vs_Theta_p2 for every Theta_p1_p2 (2p, CD & FD) -------------------------------------------------------------------------------------------------------------
 
     //<editor-fold desc="Theta_p1_vs_Theta_p2 for every Theta_p1_p2 (CD & FD)">
     TH2D *hTheta_p1_vs_theta_p2_forall_Theta_p1_p2_2p;
-    string hTheta_p1_vs_theta_p2_forall_Theta_p1_p2_2p_Dir;
+    std::string hTheta_p1_vs_theta_p2_forall_Theta_p1_p2_2p_Dir;
     //</editor-fold>
 
 // Theta_pFD_vs_Theta_pCD for every Theta_pFD_pCD (2p, CD & FD) ---------------------------------------------------------------------------------------------------------
 
     //<editor-fold desc="Theta_pFD_vs_Theta_pCD for every Theta_pFD_pCD (CD & FD)">
     TH2D *hTheta_pFD_vs_Theta_pCD_forall_Theta_pFD_pCD_2p;
-    string hTheta_pFD_vs_Theta_pCD_forall_Theta_pFD_pCD_2p_Dir;
+    std::string hTheta_pFD_vs_Theta_pCD_forall_Theta_pFD_pCD_2p_Dir;
     //</editor-fold>
 
 // dPhi_p1_p2 for every Theta_p1_p2 (2p, CD & FD) -----------------------------------------------------------------------------------------------------------------------
 
     //<editor-fold desc="dPhi_p1_p2 for every Theta_p1_p2 (CD & FD)">
     TH1D *hdPhi_p1_p2_for_all_Theta_p1_p2_2p;
-    string hdPhi_p1_p2_for_all_Theta_p1_p2_2p_Dir;
+    std::string hdPhi_p1_p2_for_all_Theta_p1_p2_2p_Dir;
 
     TH1D *hdPhi_p1_p2_for_all_Theta_p1_p2_ZOOMIN_2p;
-    string hdPhi_p1_p2_for_all_Theta_p1_p2_ZOOMIN_2p_Dir;
+    std::string hdPhi_p1_p2_for_all_Theta_p1_p2_ZOOMIN_2p_Dir;
 
     TH1D *hdPhi_p1_p2_for_small_dTheta_2p;
-    string hdPhi_p1_p2_for_small_dTheta_2p_Dir;
+    std::string hdPhi_p1_p2_for_small_dTheta_2p_Dir;
 
     TH1D *hdPhi_p1_p2_for_small_dTheta_ZOOMIN_2p;
-    string hdPhi_p1_p2_for_small_dTheta_ZOOMIN_2p_Dir;
+    std::string hdPhi_p1_p2_for_small_dTheta_ZOOMIN_2p_Dir;
     //</editor-fold>
 
 // dPhi_pFD_pCD for every Theta_pFD_pCD (2p, CD & FD) --------------------------------------------------------------------------------------------------------------------
 
     //<editor-fold desc="dPhi_pFD_pCD for every Theta_pFD_pCD (CD & FD)">
     TH1D *hdPhi_pFD_pCD_for_all_Theta_pFD_pCD_2p;
-    string hdPhi_pFD_pCD_for_all_Theta_pFD_pCD_2p_Dir;
+    std::string hdPhi_pFD_pCD_for_all_Theta_pFD_pCD_2p_Dir;
 
     TH1D *hdPhi_pFD_pCD_for_all_Theta_pFD_pCD_ZOOMIN_2p;
-    string hdPhi_pFD_pCD_for_all_Theta_pFD_pCD_ZOOMIN_2p_Dir;
+    std::string hdPhi_pFD_pCD_for_all_Theta_pFD_pCD_ZOOMIN_2p_Dir;
 
     TH1D *hdPhi_pFD_pCD_for_small_dTheta_2p;
-    string hdPhi_pFD_pCD_for_small_dTheta_2p_Dir;
+    std::string hdPhi_pFD_pCD_for_small_dTheta_2p_Dir;
 
     TH1D *hdPhi_pFD_pCD_for_small_dTheta_ZOOMIN_2p;
-    string hdPhi_pFD_pCD_for_small_dTheta_ZOOMIN_2p_Dir;
+    std::string hdPhi_pFD_pCD_for_small_dTheta_ZOOMIN_2p_Dir;
     //</editor-fold>
 
 // Ghost tracks handling (2p, CD only) ----------------------------------------------------------------------------------------------------------------------------------
@@ -1613,16 +1613,16 @@ public:
     TH1D *hTheta_pFD_MEC_pFDpCD_FD;
     TH1D *hTheta_pFD_RES_pFDpCD_FD;
     TH1D *hTheta_pFD_DIS_pFDpCD_FD;
-    string hTheta_pFD_All_Int_pFDpCD_FD_Dir;
-    string hTheta_pFD_QEL_pFDpCD_FD_Dir;
-    string hTheta_pFD_MEC_pFDpCD_FD_Dir;
-    string hTheta_pFD_RES_pFDpCD_FD_Dir;
-    string hTheta_pFD_DIS_pFDpCD_FD_Dir;
+    std::string hTheta_pFD_All_Int_pFDpCD_FD_Dir;
+    std::string hTheta_pFD_QEL_pFDpCD_FD_Dir;
+    std::string hTheta_pFD_MEC_pFDpCD_FD_Dir;
+    std::string hTheta_pFD_RES_pFDpCD_FD_Dir;
+    std::string hTheta_pFD_DIS_pFDpCD_FD_Dir;
 
     TH2D *hTheta_pFD_VS_P_pFD_pFDpCD_FD;
     TH2D *hTheta_pFD_VS_W_pFDpCD_FD;
-    string hTheta_pFD_VS_P_pFD_pFDpCD_FD_Dir;
-    string hTheta_pFD_VS_W_pFDpCD_FD_Dir;
+    std::string hTheta_pFD_VS_P_pFD_pFDpCD_FD_Dir;
+    std::string hTheta_pFD_VS_W_pFDpCD_FD_Dir;
     //</editor-fold>
 
 // Phi_pFD --------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1635,23 +1635,23 @@ public:
     TH1D *hPhi_pFD_MEC_pFDpCD_FD;
     TH1D *hPhi_pFD_RES_pFDpCD_FD;
     TH1D *hPhi_pFD_DIS_pFDpCD_FD;
-    string hPhi_pFD_All_Int_pFDpCD_FD_Dir;
-    string hPhi_pFD_QEL_pFDpCD_FD_Dir;
-    string hPhi_pFD_MEC_pFDpCD_FD_Dir;
-    string hPhi_pFD_RES_pFDpCD_FD_Dir;
-    string hPhi_pFD_DIS_pFDpCD_FD_Dir;
+    std::string hPhi_pFD_All_Int_pFDpCD_FD_Dir;
+    std::string hPhi_pFD_QEL_pFDpCD_FD_Dir;
+    std::string hPhi_pFD_MEC_pFDpCD_FD_Dir;
+    std::string hPhi_pFD_RES_pFDpCD_FD_Dir;
+    std::string hPhi_pFD_DIS_pFDpCD_FD_Dir;
 
     TH2D *hPhi_pFD_VS_P_pFD_pFDpCD_FD;
     TH2D *hPhi_pFD_VS_W_pFDpCD_FD;
-    string hPhi_pFD_VS_P_pFD_pFDpCD_FD_Dir;
-    string hPhi_pFD_VS_W_pFDpCD_FD_Dir;
+    std::string hPhi_pFD_VS_P_pFD_pFDpCD_FD_Dir;
+    std::string hPhi_pFD_VS_W_pFDpCD_FD_Dir;
     //</editor-fold>
 
 // Theta_pFD vs. Phi_pFD ------------------------------------------------------------------------------------------------------------------------------------------------
 
     //<editor-fold desc="Theta_pFD vs. Phi_pFD histograms">
     TH2D *hTheta_pFD_VS_Phi_pFD_pFDpCD_FD;
-    string hTheta_pFD_VS_Phi_pFD_pFDpCD_FD_Dir;
+    std::string hTheta_pFD_VS_Phi_pFD_pFDpCD_FD_Dir;
     //</editor-fold>
 
 // Theta_pCD ------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1664,16 +1664,16 @@ public:
     TH1D *hTheta_pCD_MEC_pFDpCD_CD;
     TH1D *hTheta_pCD_RES_pFDpCD_CD;
     TH1D *hTheta_pCD_DIS_pFDpCD_CD;
-    string hTheta_pCD_All_Int_pFDpCD_CD_Dir;
-    string hTheta_pCD_QEL_pFDpCD_CD_Dir;
-    string hTheta_pCD_MEC_pFDpCD_CD_Dir;
-    string hTheta_pCD_RES_pFDpCD_CD_Dir;
-    string hTheta_pCD_DIS_pFDpCD_CD_Dir;
+    std::string hTheta_pCD_All_Int_pFDpCD_CD_Dir;
+    std::string hTheta_pCD_QEL_pFDpCD_CD_Dir;
+    std::string hTheta_pCD_MEC_pFDpCD_CD_Dir;
+    std::string hTheta_pCD_RES_pFDpCD_CD_Dir;
+    std::string hTheta_pCD_DIS_pFDpCD_CD_Dir;
 
     TH2D *hTheta_pCD_VS_P_pCD_pFDpCD_CD;
     TH2D *hTheta_pCD_VS_W_pFDpCD_CD;
-    string hTheta_pCD_VS_P_pCD_pFDpCD_CD_Dir;
-    string hTheta_pCD_VS_W_pFDpCD_CD_Dir;
+    std::string hTheta_pCD_VS_P_pCD_pFDpCD_CD_Dir;
+    std::string hTheta_pCD_VS_W_pFDpCD_CD_Dir;
     //</editor-fold>
 
 // Phi_pCD --------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1686,23 +1686,23 @@ public:
     TH1D *hPhi_pCD_MEC_pFDpCD_CD;
     TH1D *hPhi_pCD_RES_pFDpCD_CD;
     TH1D *hPhi_pCD_DIS_pFDpCD_CD;
-    string hPhi_pCD_All_Int_pFDpCD_CD_Dir;
-    string hPhi_pCD_QEL_pFDpCD_CD_Dir;
-    string hPhi_pCD_MEC_pFDpCD_CD_Dir;
-    string hPhi_pCD_RES_pFDpCD_CD_Dir;
-    string hPhi_pCD_DIS_pFDpCD_CD_Dir;
+    std::string hPhi_pCD_All_Int_pFDpCD_CD_Dir;
+    std::string hPhi_pCD_QEL_pFDpCD_CD_Dir;
+    std::string hPhi_pCD_MEC_pFDpCD_CD_Dir;
+    std::string hPhi_pCD_RES_pFDpCD_CD_Dir;
+    std::string hPhi_pCD_DIS_pFDpCD_CD_Dir;
 
     TH2D *hPhi_pCD_VS_P_pCD_pFDpCD_CD;
     TH2D *hPhi_pCD_VS_W_pFDpCD_CD;
-    string hPhi_pCD_VS_P_pCD_pFDpCD_CD_Dir;
-    string hPhi_pCD_VS_W_pFDpCD_CD_Dir;
+    std::string hPhi_pCD_VS_P_pCD_pFDpCD_CD_Dir;
+    std::string hPhi_pCD_VS_W_pFDpCD_CD_Dir;
     //</editor-fold>
 
 // Theta_pCD vs. Phi_pCD ------------------------------------------------------------------------------------------------------------------------------------------------
 
     //<editor-fold desc="Theta_pCD vs. Phi_pCD histograms">
     TH2D *hTheta_pCD_VS_Phi_pCD_pFDpCD_CD;
-    string hTheta_pCD_VS_Phi_pCD_pFDpCD_CD_Dir;
+    std::string hTheta_pCD_VS_Phi_pCD_pFDpCD_CD_Dir;
     //</editor-fold>
 
 // Theta_tot ------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1715,16 +1715,16 @@ public:
     TH1D *hTheta_tot_MEC_pFDpCD;
     TH1D *hTheta_tot_RES_pFDpCD;
     TH1D *hTheta_tot_DIS_pFDpCD;
-    string hTheta_tot_All_Int_pFDpCD_Dir;
-    string hTheta_tot_QEL_pFDpCD_Dir;
-    string hTheta_tot_MEC_pFDpCD_Dir;
-    string hTheta_tot_RES_pFDpCD_Dir;
-    string hTheta_tot_DIS_pFDpCD_Dir;
+    std::string hTheta_tot_All_Int_pFDpCD_Dir;
+    std::string hTheta_tot_QEL_pFDpCD_Dir;
+    std::string hTheta_tot_MEC_pFDpCD_Dir;
+    std::string hTheta_tot_RES_pFDpCD_Dir;
+    std::string hTheta_tot_DIS_pFDpCD_Dir;
 
     TH2D *hTheta_tot_VS_P_tot_pFDpCD;
     TH2D *hTheta_tot_VS_W_pFDpCD;
-    string hTheta_tot_VS_P_tot_pFDpCD_Dir;
-    string hTheta_tot_VS_W_pFDpCD_Dir;
+    std::string hTheta_tot_VS_P_tot_pFDpCD_Dir;
+    std::string hTheta_tot_VS_W_pFDpCD_Dir;
     //</editor-fold>
 
 // Phi_tot --------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1737,23 +1737,23 @@ public:
     TH1D *hPhi_tot_MEC_pFDpCD;
     TH1D *hPhi_tot_RES_pFDpCD;
     TH1D *hPhi_tot_DIS_pFDpCD;
-    string hPhi_tot_All_Int_pFDpCD_Dir;
-    string hPhi_tot_QEL_pFDpCD_Dir;
-    string hPhi_tot_MEC_pFDpCD_Dir;
-    string hPhi_tot_RES_pFDpCD_Dir;
-    string hPhi_tot_DIS_pFDpCD_Dir;
+    std::string hPhi_tot_All_Int_pFDpCD_Dir;
+    std::string hPhi_tot_QEL_pFDpCD_Dir;
+    std::string hPhi_tot_MEC_pFDpCD_Dir;
+    std::string hPhi_tot_RES_pFDpCD_Dir;
+    std::string hPhi_tot_DIS_pFDpCD_Dir;
 
     TH2D *hPhi_tot_VS_P_tot_pFDpCD;
     TH2D *hPhi_tot_VS_W_pFDpCD;
-    string hPhi_tot_VS_P_tot_pFDpCD_Dir;
-    string hPhi_tot_VS_W_pFDpCD_Dir;
+    std::string hPhi_tot_VS_P_tot_pFDpCD_Dir;
+    std::string hPhi_tot_VS_W_pFDpCD_Dir;
     //</editor-fold>
 
 // Theta_tot vs. Phi_tot ------------------------------------------------------------------------------------------------------------------------------------------------
 
     //<editor-fold desc="Theta_tot vs. Phi_tot histograms">
     TH2D *hTheta_tot_VS_Phi_tot_pFDpCD;
-    string hTheta_tot_VS_Phi_tot_pFDpCD_Dir;
+    std::string hTheta_tot_VS_Phi_tot_pFDpCD_Dir;
     //</editor-fold>
 
 // Theta_rel ------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1766,16 +1766,16 @@ public:
     TH1D *hTheta_rel_MEC_pFDpCD;
     TH1D *hTheta_rel_RES_pFDpCD;
     TH1D *hTheta_rel_DIS_pFDpCD;
-    string hTheta_rel_All_Int_pFDpCD_Dir;
-    string hTheta_rel_QEL_pFDpCD_Dir;
-    string hTheta_rel_MEC_pFDpCD_Dir;
-    string hTheta_rel_RES_pFDpCD_Dir;
-    string hTheta_rel_DIS_pFDpCD_Dir;
+    std::string hTheta_rel_All_Int_pFDpCD_Dir;
+    std::string hTheta_rel_QEL_pFDpCD_Dir;
+    std::string hTheta_rel_MEC_pFDpCD_Dir;
+    std::string hTheta_rel_RES_pFDpCD_Dir;
+    std::string hTheta_rel_DIS_pFDpCD_Dir;
 
     TH2D *hTheta_rel_VS_P_rel_pFDpCD;
     TH2D *hTheta_rel_VS_W_pFDpCD;
-    string hTheta_rel_VS_P_rel_pFDpCD_Dir;
-    string hTheta_rel_VS_W_pFDpCD_Dir;
+    std::string hTheta_rel_VS_P_rel_pFDpCD_Dir;
+    std::string hTheta_rel_VS_W_pFDpCD_Dir;
     //</editor-fold>
 
 // Phi_rel --------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1788,23 +1788,23 @@ public:
     TH1D *hPhi_rel_MEC_pFDpCD;
     TH1D *hPhi_rel_RES_pFDpCD;
     TH1D *hPhi_rel_DIS_pFDpCD;
-    string hPhi_rel_All_Int_pFDpCD_Dir;
-    string hPhi_rel_QEL_pFDpCD_Dir;
-    string hPhi_rel_MEC_pFDpCD_Dir;
-    string hPhi_rel_RES_pFDpCD_Dir;
-    string hPhi_rel_DIS_pFDpCD_Dir;
+    std::string hPhi_rel_All_Int_pFDpCD_Dir;
+    std::string hPhi_rel_QEL_pFDpCD_Dir;
+    std::string hPhi_rel_MEC_pFDpCD_Dir;
+    std::string hPhi_rel_RES_pFDpCD_Dir;
+    std::string hPhi_rel_DIS_pFDpCD_Dir;
 
     TH2D *hPhi_rel_VS_P_rel_pFDpCD;
     TH2D *hPhi_rel_VS_W_pFDpCD;
-    string hPhi_rel_VS_P_rel_pFDpCD_Dir;
-    string hPhi_rel_VS_W_pFDpCD_Dir;
+    std::string hPhi_rel_VS_P_rel_pFDpCD_Dir;
+    std::string hPhi_rel_VS_W_pFDpCD_Dir;
     //</editor-fold>
 
 // Theta_rel vs. Phi_rel ------------------------------------------------------------------------------------------------------------------------------------------------
 
     //<editor-fold desc="Theta_rel vs. Phi_rel histograms">
     TH2D *hTheta_rel_VS_Phi_rel_pFDpCD;
-    string hTheta_rel_VS_Phi_rel_pFDpCD_Dir;
+    std::string hTheta_rel_VS_Phi_rel_pFDpCD_Dir;
     //</editor-fold>
 
     //</editor-fold>
@@ -1814,14 +1814,14 @@ public:
     //<editor-fold desc="Theta_p_e_p_tot (pFDpCD, CD & FD)">
     THStack *sTheta_p_e_p_tot_pFDpCD;
     TH1D *hTheta_p_e_p_tot_pFDpCD;
-    string hTheta_p_e_p_tot_pFDpCD_Dir;
+    std::string hTheta_p_e_p_tot_pFDpCD_Dir;
     //</editor-fold>
 
 // Theta_p_e_p_tot vs. W (pFDpCD, CD & FD) ------------------------------------------------------------------------------------------------------------------------------
 
     //<editor-fold desc="Theta_p_e_p_tot vs. W (pFDpCD)">
     TH2D *hTheta_p_e_p_tot_vs_W_pFDpCD;
-    string hTheta_p_e_p_tot_vs_W_pFDpCD_Dir;
+    std::string hTheta_p_e_p_tot_vs_W_pFDpCD_Dir;
     //</editor-fold>
 
 // Theta_q_p_tot (pFDpCD, CD & FD) --------------------------------------------------------------------------------------------------------------------------------------
@@ -1831,34 +1831,34 @@ public:
     //<editor-fold desc="Theta_q_p_tot (CD & FD)">
     THStack *sTheta_q_p_tot_pFDpCD;
     TH1D *hTheta_q_p_tot_pFDpCD;
-    string hTheta_q_p_tot_pFDpCD_Dir;
+    std::string hTheta_q_p_tot_pFDpCD_Dir;
     //</editor-fold>
 
     //<editor-fold desc="Theta_q_p_max (CD & FD)">
     TH1D *hTheta_q_p_max_pFDpCD;
-    string hTheta_q_p_max_pFDpCD_Dir;
+    std::string hTheta_q_p_max_pFDpCD_Dir;
     //</editor-fold>
 
     //<editor-fold desc="Theta_P_pL_minus_q_pR and Theta_q_p_R (pFDpCD, CD & FD)">
     THStack *sTheta_P_pL_minus_q_pR_pFDpCD;
     TH1D *hTheta_P_pL_minus_q_pR_pFDpCD;
-    string hTheta_P_pL_minus_q_pR_pFDpCD_Dir;
+    std::string hTheta_P_pL_minus_q_pR_pFDpCD_Dir;
     //</editor-fold>
 
     //<editor-fold desc="Theta_q_p_L and Theta_q_p_R (pFDpCD, CD & FD)">
     THStack *sTheta_q_p_L_R_pFDpCD;
     TH1D *hTheta_q_p_L_pFDpCD;
     TH1D *hTheta_q_p_R_pFDpCD;
-    string hTheta_q_p_L_pFDpCD_Dir;
-    string hTheta_q_p_R_pFDpCD_Dir;
+    std::string hTheta_q_p_L_pFDpCD_Dir;
+    std::string hTheta_q_p_R_pFDpCD_Dir;
     //</editor-fold>
 
     //<editor-fold desc="Theta_q_pFD and Theta_q_pCD (pFDpCD, CD & FD)">
     THStack *sTheta_q_p_pFDpCD;
     TH1D *hTheta_q_pFD_pFDpCD;
     TH1D *hTheta_q_pCD_pFDpCD;
-    string hTheta_q_pFD_pFDpCD_Dir;
-    string hTheta_q_pCD_pFDpCD_Dir;
+    std::string hTheta_q_pFD_pFDpCD_Dir;
+    std::string hTheta_q_pCD_pFDpCD_Dir;
     //</editor-fold>
 
     //</editor-fold>
@@ -1867,32 +1867,32 @@ public:
 
     //<editor-fold desc="Theta_q_p_tot vs. W (CD & FD)">
     TH2D *hTheta_q_p_tot_vs_W_pFDpCD;
-    string hTheta_q_p_tot_vs_W_pFDpCD_Dir;
+    std::string hTheta_q_p_tot_vs_W_pFDpCD_Dir;
     //</editor-fold>
 
     //<editor-fold desc="Theta_P_pL_minus_q_pR vs. W (CD & FD)">
     TH2D *hTheta_P_pL_minus_q_pR_vs_W_pFDpCD;
-    string hTheta_P_pL_minus_q_pR_vs_W_pFDpCD_Dir;
+    std::string hTheta_P_pL_minus_q_pR_vs_W_pFDpCD_Dir;
     //</editor-fold>
 
     //<editor-fold desc="Theta_q_p_L vs. W (CD & FD)">
     TH2D *hTheta_q_p_L_vs_W_pFDpCD;
-    string hTheta_q_p_L_vs_W_pFDpCD_Dir;
+    std::string hTheta_q_p_L_vs_W_pFDpCD_Dir;
     //</editor-fold>
 
     //<editor-fold desc="Theta_q_p_R vs. W (CD & FD)">
     TH2D *hTheta_q_p_R_vs_W_pFDpCD;
-    string hTheta_q_p_R_vs_W_pFDpCD_Dir;
+    std::string hTheta_q_p_R_vs_W_pFDpCD_Dir;
     //</editor-fold>
 
     //<editor-fold desc="Theta_q_pFD vs. W (CD & FD)">
     TH2D *hTheta_q_pFD_vs_W_pFDpCD;
-    string hTheta_q_pFD_vs_W_pFDpCD_Dir;
+    std::string hTheta_q_pFD_vs_W_pFDpCD_Dir;
     //</editor-fold>
 
     //<editor-fold desc="Theta_q_pCD vs. W (CD & FD)">
     TH2D *hTheta_q_pCD_vs_W_pFDpCD;
-    string hTheta_q_pCD_vs_W_pFDpCD_Dir;
+    std::string hTheta_q_pCD_vs_W_pFDpCD_Dir;
     //</editor-fold>
 
 // Theta_q_p vs |P_p|/|q| (pFDpCD, CD & FD) ---------------------------------------------------------------------------------------------------------------------------
@@ -1901,7 +1901,7 @@ public:
 
     //<editor-fold desc="Theta_q_p_L vs |P_p_L|/|q|">
     TH2D *hTheta_q_p_L_vs_p_L_q_pFDpCD;
-    string hTheta_q_p_L_vs_p_L_q_pFDpCD_Dir;
+    std::string hTheta_q_p_L_vs_p_L_q_pFDpCD_Dir;
     //</editor-fold>
 
     //</editor-fold>
@@ -1910,12 +1910,12 @@ public:
 
     //<editor-fold desc="Theta_q_p_L vs Theta_q_p_R">
     TH2D *hTheta_q_p_L_vs_Theta_q_p_R_pFDpCD;
-    string hTheta_q_p_L_vs_Theta_q_p_R_pFDpCD_Dir;
+    std::string hTheta_q_p_L_vs_Theta_q_p_R_pFDpCD_Dir;
     //</editor-fold>
 
     //<editor-fold desc="Theta_q_pFD vs Theta_q_pCD">
     TH2D *hTheta_q_pFD_vs_Theta_q_pCD_pFDpCD;
-    string hTheta_q_pFD_vs_Theta_q_pCD_pFDpCD_Dir;
+    std::string hTheta_q_pFD_vs_Theta_q_pCD_pFDpCD_Dir;
     //</editor-fold>
 
 // Theta_pFD_pCD (pFDpCD, CD & FD) --------------------------------------------------------------------------------------------------------------------------------------
@@ -1926,59 +1926,59 @@ public:
     TH1D *hTheta_pFD_pCD_MEC_pFDpCD;
     TH1D *hTheta_pFD_pCD_RES_pFDpCD;
     TH1D *hTheta_pFD_pCD_DIS_pFDpCD;
-    string sTheta_pFD_pCD_pFDpCD_Dir;
-    string hTheta_pFD_pCD_All_Int_pFDpCD_Dir;
-    string hTheta_pFD_pCD_QEL_pFDpCD_Dir;
-    string hTheta_pFD_pCD_MEC_pFDpCD_Dir;
-    string hTheta_pFD_pCD_RES_pFDpCD_Dir;
-    string hTheta_pFD_pCD_DIS_pFDpCD_Dir;
+    std::string sTheta_pFD_pCD_pFDpCD_Dir;
+    std::string hTheta_pFD_pCD_All_Int_pFDpCD_Dir;
+    std::string hTheta_pFD_pCD_QEL_pFDpCD_Dir;
+    std::string hTheta_pFD_pCD_MEC_pFDpCD_Dir;
+    std::string hTheta_pFD_pCD_RES_pFDpCD_Dir;
+    std::string hTheta_pFD_pCD_DIS_pFDpCD_Dir;
     //</editor-fold>
 
 // Theta_pFD_pCD vs. W (pFDpCD, CD & FD) --------------------------------------------------------------------------------------------------------------------------------
 
     //<editor-fold desc="Theta_pFD_pCD vs. W (CD & FD)">
     TH2D *hTheta_pFD_pCD_vs_W_pFDpCD;
-    string hTheta_pFD_pCD_vs_W_pFDpCD_Dir;
+    std::string hTheta_pFD_pCD_vs_W_pFDpCD_Dir;
     //</editor-fold>
 
 // Theta_pFD_vs_Theta_pCD for Theta_pFD_pCD < 20 (CD & FD) ------------------------------------------------------------------------------------------------------
 
     //<editor-fold desc="Theta_pFD_vs_Theta_pCD for Theta_pFD_pCD < 20 (CD & FD)">
     TH2D *hTheta_pFD_vs_theta_pCD_for_Theta_pFD_pCD_20_pFDpCD;
-    string hTheta_pFD_vs_theta_pCD_for_Theta_pFD_pCD_20_pFDpCD_Dir;
+    std::string hTheta_pFD_vs_theta_pCD_for_Theta_pFD_pCD_20_pFDpCD_Dir;
     //</editor-fold>
 
 // dPhi_pFD_pCD for Theta_pFD_pCD < 20 (pFDpCD, CD & FD) ----------------------------------------------------------------------------------------------------------------
 
     //<editor-fold desc="dPhi_pFD_pCD for Theta_pFD_pCD < 20 (CD & FD)">
     TH1D *hdPhi_pFD_pCD_for_Theta_pFD_pCD_20_pFDpCD;
-    string hdPhi_pFD_pCD_for_Theta_pFD_pCD_20_pFDpCD_Dir;
+    std::string hdPhi_pFD_pCD_for_Theta_pFD_pCD_20_pFDpCD_Dir;
 
     TH1D *hdPhi_pFD_pCD_for_Theta_pFD_pCD_20_ZOOMIN_pFDpCD;
-    string hdPhi_pFD_pCD_for_Theta_pFD_pCD_20_ZOOMIN_pFDpCD_Dir;
+    std::string hdPhi_pFD_pCD_for_Theta_pFD_pCD_20_ZOOMIN_pFDpCD_Dir;
     //</editor-fold>
 
 // Theta_pFD_vs_Theta_pCD for every Theta_pFD_pCD (pFDpCD, CD & FD) -----------------------------------------------------------------------------------------------------
 
     //<editor-fold desc="Theta_pFD_vs_Theta_pCD for every Theta_pFD_pCD (CD & FD)">
     TH2D *hTheta_pFD_vs_theta_pCD_forall_Theta_pFD_pCD_pFDpCD;
-    string hTheta_pFD_vs_theta_pCD_forall_Theta_pFD_pCD_pFDpCD_Dir;
+    std::string hTheta_pFD_vs_theta_pCD_forall_Theta_pFD_pCD_pFDpCD_Dir;
     //</editor-fold>
 
 // dPhi_pFD_pCD for every Theta_pFD_pCD (pFDpCD, CD & FD) ---------------------------------------------------------------------------------------------------------------
 
     //<editor-fold desc="dPhi_pFD_pCD for every Theta_pFD_pCD (CD & FD)">
     TH1D *hdPhi_pFD_pCD_for_all_Theta_pFD_pCD_pFDpCD;
-    string hdPhi_pFD_pCD_for_all_Theta_pFD_pCD_pFDpCD_Dir;
+    std::string hdPhi_pFD_pCD_for_all_Theta_pFD_pCD_pFDpCD_Dir;
 
     TH1D *hdPhi_pFD_pCD_for_all_Theta_pFD_pCD_ZOOMIN_pFDpCD;
-    string hdPhi_pFD_pCD_for_all_Theta_pFD_pCD_ZOOMIN_pFDpCD_Dir;
+    std::string hdPhi_pFD_pCD_for_all_Theta_pFD_pCD_ZOOMIN_pFDpCD_Dir;
 
     TH1D *hdPhi_pFD_pCD_for_small_dTheta_pFDpCD;
-    string hdPhi_pFD_pCD_for_small_dTheta_pFDpCD_Dir;
+    std::string hdPhi_pFD_pCD_for_small_dTheta_pFDpCD_Dir;
 
     TH1D *hdPhi_pFD_pCD_for_small_dTheta_ZOOMIN_pFDpCD;
-    string hdPhi_pFD_pCD_for_small_dTheta_ZOOMIN_pFDpCD_Dir;
+    std::string hdPhi_pFD_pCD_for_small_dTheta_ZOOMIN_pFDpCD_Dir;
     //</editor-fold>
 
 // Ghost tracks handling (CD only) --------------------------------------------------------------------------------------------------------------------------------------
@@ -2007,16 +2007,16 @@ public:
     TH1D *hTheta_nFD_MEC_nFDpCD_FD;
     TH1D *hTheta_nFD_RES_nFDpCD_FD;
     TH1D *hTheta_nFD_DIS_nFDpCD_FD;
-    string hTheta_nFD_All_Int_nFDpCD_FD_Dir;
-    string hTheta_nFD_QEL_nFDpCD_FD_Dir;
-    string hTheta_nFD_MEC_nFDpCD_FD_Dir;
-    string hTheta_nFD_RES_nFDpCD_FD_Dir;
-    string hTheta_nFD_DIS_nFDpCD_FD_Dir;
+    std::string hTheta_nFD_All_Int_nFDpCD_FD_Dir;
+    std::string hTheta_nFD_QEL_nFDpCD_FD_Dir;
+    std::string hTheta_nFD_MEC_nFDpCD_FD_Dir;
+    std::string hTheta_nFD_RES_nFDpCD_FD_Dir;
+    std::string hTheta_nFD_DIS_nFDpCD_FD_Dir;
 
     TH2D *hTheta_nFD_VS_P_nFD_nFDpCD_FD;
     TH2D *hTheta_nFD_VS_W_nFDpCD_FD;
-    string hTheta_nFD_VS_P_nFD_nFDpCD_FD_Dir;
-    string hTheta_nFD_VS_W_nFDpCD_FD_Dir;
+    std::string hTheta_nFD_VS_P_nFD_nFDpCD_FD_Dir;
+    std::string hTheta_nFD_VS_W_nFDpCD_FD_Dir;
     //</editor-fold>
 
 // Phi_nFD --------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -2029,23 +2029,23 @@ public:
     TH1D *hPhi_nFD_MEC_nFDpCD_FD;
     TH1D *hPhi_nFD_RES_nFDpCD_FD;
     TH1D *hPhi_nFD_DIS_nFDpCD_FD;
-    string hPhi_nFD_All_Int_nFDpCD_FD_Dir;
-    string hPhi_nFD_QEL_nFDpCD_FD_Dir;
-    string hPhi_nFD_MEC_nFDpCD_FD_Dir;
-    string hPhi_nFD_RES_nFDpCD_FD_Dir;
-    string hPhi_nFD_DIS_nFDpCD_FD_Dir;
+    std::string hPhi_nFD_All_Int_nFDpCD_FD_Dir;
+    std::string hPhi_nFD_QEL_nFDpCD_FD_Dir;
+    std::string hPhi_nFD_MEC_nFDpCD_FD_Dir;
+    std::string hPhi_nFD_RES_nFDpCD_FD_Dir;
+    std::string hPhi_nFD_DIS_nFDpCD_FD_Dir;
 
     TH2D *hPhi_nFD_VS_P_nFD_nFDpCD_FD;
     TH2D *hPhi_nFD_VS_W_nFDpCD_FD;
-    string hPhi_nFD_VS_P_nFD_nFDpCD_FD_Dir;
-    string hPhi_nFD_VS_W_nFDpCD_FD_Dir;
+    std::string hPhi_nFD_VS_P_nFD_nFDpCD_FD_Dir;
+    std::string hPhi_nFD_VS_W_nFDpCD_FD_Dir;
     //</editor-fold>
 
 // Theta_nFD vs. Phi_nFD ------------------------------------------------------------------------------------------------------------------------------------------------
 
     //<editor-fold desc="Theta_nFD vs. Phi_nFD histograms">
     TH2D *hTheta_nFD_VS_Phi_nFD_nFDpCD_FD;
-    string hTheta_nFD_VS_Phi_nFD_nFDpCD_FD_Dir;
+    std::string hTheta_nFD_VS_Phi_nFD_nFDpCD_FD_Dir;
     //</editor-fold>
 
 // Theta_pCD ------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -2058,16 +2058,16 @@ public:
     TH1D *hTheta_pCD_MEC_nFDpCD_CD;
     TH1D *hTheta_pCD_RES_nFDpCD_CD;
     TH1D *hTheta_pCD_DIS_nFDpCD_CD;
-    string hTheta_pCD_All_Int_nFDpCD_CD_Dir;
-    string hTheta_pCD_QEL_nFDpCD_CD_Dir;
-    string hTheta_pCD_MEC_nFDpCD_CD_Dir;
-    string hTheta_pCD_RES_nFDpCD_CD_Dir;
-    string hTheta_pCD_DIS_nFDpCD_CD_Dir;
+    std::string hTheta_pCD_All_Int_nFDpCD_CD_Dir;
+    std::string hTheta_pCD_QEL_nFDpCD_CD_Dir;
+    std::string hTheta_pCD_MEC_nFDpCD_CD_Dir;
+    std::string hTheta_pCD_RES_nFDpCD_CD_Dir;
+    std::string hTheta_pCD_DIS_nFDpCD_CD_Dir;
 
     TH2D *hTheta_pCD_VS_P_pCD_nFDpCD_CD;
     TH2D *hTheta_pCD_VS_W_nFDpCD_CD;
-    string hTheta_pCD_VS_P_pCD_nFDpCD_CD_Dir;
-    string hTheta_pCD_VS_W_nFDpCD_CD_Dir;
+    std::string hTheta_pCD_VS_P_pCD_nFDpCD_CD_Dir;
+    std::string hTheta_pCD_VS_W_nFDpCD_CD_Dir;
     //</editor-fold>
 
 // Phi_pCD --------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -2080,23 +2080,23 @@ public:
     TH1D *hPhi_pCD_MEC_nFDpCD_CD;
     TH1D *hPhi_pCD_RES_nFDpCD_CD;
     TH1D *hPhi_pCD_DIS_nFDpCD_CD;
-    string hPhi_pCD_All_Int_nFDpCD_CD_Dir;
-    string hPhi_pCD_QEL_nFDpCD_CD_Dir;
-    string hPhi_pCD_MEC_nFDpCD_CD_Dir;
-    string hPhi_pCD_RES_nFDpCD_CD_Dir;
-    string hPhi_pCD_DIS_nFDpCD_CD_Dir;
+    std::string hPhi_pCD_All_Int_nFDpCD_CD_Dir;
+    std::string hPhi_pCD_QEL_nFDpCD_CD_Dir;
+    std::string hPhi_pCD_MEC_nFDpCD_CD_Dir;
+    std::string hPhi_pCD_RES_nFDpCD_CD_Dir;
+    std::string hPhi_pCD_DIS_nFDpCD_CD_Dir;
 
     TH2D *hPhi_pCD_VS_P_pCD_nFDpCD_CD;
     TH2D *hPhi_pCD_VS_W_nFDpCD_CD;
-    string hPhi_pCD_VS_P_pCD_nFDpCD_CD_Dir;
-    string hPhi_pCD_VS_W_nFDpCD_CD_Dir;
+    std::string hPhi_pCD_VS_P_pCD_nFDpCD_CD_Dir;
+    std::string hPhi_pCD_VS_W_nFDpCD_CD_Dir;
     //</editor-fold>
 
 // Theta_pCD vs. Phi_pCD ------------------------------------------------------------------------------------------------------------------------------------------------
 
     //<editor-fold desc="Theta_pCD vs. Phi_pCD histograms">
     TH2D *hTheta_pCD_VS_Phi_pCD_nFDpCD_CD;
-    string hTheta_pCD_VS_Phi_pCD_nFDpCD_CD_Dir;
+    std::string hTheta_pCD_VS_Phi_pCD_nFDpCD_CD_Dir;
     //</editor-fold>
 
 // Theta_tot ------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -2109,16 +2109,16 @@ public:
     TH1D *hTheta_tot_MEC_nFDpCD;
     TH1D *hTheta_tot_RES_nFDpCD;
     TH1D *hTheta_tot_DIS_nFDpCD;
-    string hTheta_tot_All_Int_nFDpCD_Dir;
-    string hTheta_tot_QEL_nFDpCD_Dir;
-    string hTheta_tot_MEC_nFDpCD_Dir;
-    string hTheta_tot_RES_nFDpCD_Dir;
-    string hTheta_tot_DIS_nFDpCD_Dir;
+    std::string hTheta_tot_All_Int_nFDpCD_Dir;
+    std::string hTheta_tot_QEL_nFDpCD_Dir;
+    std::string hTheta_tot_MEC_nFDpCD_Dir;
+    std::string hTheta_tot_RES_nFDpCD_Dir;
+    std::string hTheta_tot_DIS_nFDpCD_Dir;
 
     TH2D *hTheta_tot_VS_P_tot_nFDpCD;
     TH2D *hTheta_tot_VS_W_nFDpCD;
-    string hTheta_tot_VS_P_tot_nFDpCD_Dir;
-    string hTheta_tot_VS_W_nFDpCD_Dir;
+    std::string hTheta_tot_VS_P_tot_nFDpCD_Dir;
+    std::string hTheta_tot_VS_W_nFDpCD_Dir;
     //</editor-fold>
 
 // Phi_tot --------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -2131,23 +2131,23 @@ public:
     TH1D *hPhi_tot_MEC_nFDpCD;
     TH1D *hPhi_tot_RES_nFDpCD;
     TH1D *hPhi_tot_DIS_nFDpCD;
-    string hPhi_tot_All_Int_nFDpCD_Dir;
-    string hPhi_tot_QEL_nFDpCD_Dir;
-    string hPhi_tot_MEC_nFDpCD_Dir;
-    string hPhi_tot_RES_nFDpCD_Dir;
-    string hPhi_tot_DIS_nFDpCD_Dir;
+    std::string hPhi_tot_All_Int_nFDpCD_Dir;
+    std::string hPhi_tot_QEL_nFDpCD_Dir;
+    std::string hPhi_tot_MEC_nFDpCD_Dir;
+    std::string hPhi_tot_RES_nFDpCD_Dir;
+    std::string hPhi_tot_DIS_nFDpCD_Dir;
 
     TH2D *hPhi_tot_VS_P_tot_nFDpCD;
     TH2D *hPhi_tot_VS_W_nFDpCD;
-    string hPhi_tot_VS_P_tot_nFDpCD_Dir;
-    string hPhi_tot_VS_W_nFDpCD_Dir;
+    std::string hPhi_tot_VS_P_tot_nFDpCD_Dir;
+    std::string hPhi_tot_VS_W_nFDpCD_Dir;
     //</editor-fold>
 
 // Theta_tot vs. Phi_tot ------------------------------------------------------------------------------------------------------------------------------------------------
 
     //<editor-fold desc="Theta_tot vs. Phi_tot histograms">
     TH2D *hTheta_tot_VS_Phi_tot_nFDpCD;
-    string hTheta_tot_VS_Phi_tot_nFDpCD_Dir;
+    std::string hTheta_tot_VS_Phi_tot_nFDpCD_Dir;
     //</editor-fold>
 
 // Theta_rel ------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -2159,16 +2159,16 @@ public:
     TH1D *hTheta_rel_MEC_nFDpCD;
     TH1D *hTheta_rel_RES_nFDpCD;
     TH1D *hTheta_rel_DIS_nFDpCD;
-    string hTheta_rel_All_Int_nFDpCD_Dir;
-    string hTheta_rel_QEL_nFDpCD_Dir;
-    string hTheta_rel_MEC_nFDpCD_Dir;
-    string hTheta_rel_RES_nFDpCD_Dir;
-    string hTheta_rel_DIS_nFDpCD_Dir;
+    std::string hTheta_rel_All_Int_nFDpCD_Dir;
+    std::string hTheta_rel_QEL_nFDpCD_Dir;
+    std::string hTheta_rel_MEC_nFDpCD_Dir;
+    std::string hTheta_rel_RES_nFDpCD_Dir;
+    std::string hTheta_rel_DIS_nFDpCD_Dir;
 
     TH2D *hTheta_rel_VS_P_rel_nFDpCD;
     TH2D *hTheta_rel_VS_W_nFDpCD;
-    string hTheta_rel_VS_P_rel_nFDpCD_Dir;
-    string hTheta_rel_VS_W_nFDpCD_Dir;
+    std::string hTheta_rel_VS_P_rel_nFDpCD_Dir;
+    std::string hTheta_rel_VS_W_nFDpCD_Dir;
     //</editor-fold>
 
 // Phi_rel --------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -2181,23 +2181,23 @@ public:
     TH1D *hPhi_rel_MEC_nFDpCD;
     TH1D *hPhi_rel_RES_nFDpCD;
     TH1D *hPhi_rel_DIS_nFDpCD;
-    string hPhi_rel_All_Int_nFDpCD_Dir;
-    string hPhi_rel_QEL_nFDpCD_Dir;
-    string hPhi_rel_MEC_nFDpCD_Dir;
-    string hPhi_rel_RES_nFDpCD_Dir;
-    string hPhi_rel_DIS_nFDpCD_Dir;
+    std::string hPhi_rel_All_Int_nFDpCD_Dir;
+    std::string hPhi_rel_QEL_nFDpCD_Dir;
+    std::string hPhi_rel_MEC_nFDpCD_Dir;
+    std::string hPhi_rel_RES_nFDpCD_Dir;
+    std::string hPhi_rel_DIS_nFDpCD_Dir;
 
     TH2D *hPhi_rel_VS_P_rel_nFDpCD;
     TH2D *hPhi_rel_VS_W_nFDpCD;
-    string hPhi_rel_VS_P_rel_nFDpCD_Dir;
-    string hPhi_rel_VS_W_nFDpCD_Dir;
+    std::string hPhi_rel_VS_P_rel_nFDpCD_Dir;
+    std::string hPhi_rel_VS_W_nFDpCD_Dir;
     //</editor-fold>
 
 // Theta_rel vs. Phi_rel ------------------------------------------------------------------------------------------------------------------------------------------------
 
     //<editor-fold desc="Theta_rel vs. Phi_rel histograms">
     TH2D *hTheta_rel_VS_Phi_rel_nFDpCD;
-    string hTheta_rel_VS_Phi_rel_nFDpCD_Dir;
+    std::string hTheta_rel_VS_Phi_rel_nFDpCD_Dir;
     //</editor-fold>
 
     //</editor-fold>
@@ -2207,14 +2207,14 @@ public:
     //<editor-fold desc="Theta_p_e_p_tot (nFDpCD, CD & FD)">
     THStack *sTheta_p_e_p_tot_nFDpCD;
     TH1D *hTheta_p_e_p_tot_nFDpCD;
-    string hTheta_p_e_p_tot_nFDpCD_Dir;
+    std::string hTheta_p_e_p_tot_nFDpCD_Dir;
     //</editor-fold>
 
 // Theta_p_e_p_tot vs. W (nFDpCD, CD & FD) ------------------------------------------------------------------------------------------------------------------------------
 
     //<editor-fold desc="Theta_p_e_p_tot vs. W (nFDpCD)">
     TH2D *hTheta_p_e_p_tot_vs_W_nFDpCD;
-    string hTheta_p_e_p_tot_vs_W_nFDpCD_Dir;
+    std::string hTheta_p_e_p_tot_vs_W_nFDpCD_Dir;
     //</editor-fold>
 
 // Theta_q_p (nFDpCD, CD & FD) ------------------------------------------------------------------------------------------------------------------------------------------
@@ -2224,29 +2224,29 @@ public:
     //<editor-fold desc="Theta_q_p_tot (CD & FD)">
     THStack *sTheta_q_p_tot_nFDpCD;
     TH1D *hTheta_q_p_tot_nFDpCD;
-    string hTheta_q_p_tot_nFDpCD_Dir;
+    std::string hTheta_q_p_tot_nFDpCD_Dir;
     //</editor-fold>
 
     //<editor-fold desc="Theta_P_nL_minus_q_nR and Theta_q_p_R (nFDpCD, CD & FD)">
     THStack *sTheta_P_nL_minus_q_nR_nFDpCD;
     TH1D *hTheta_P_nL_minus_q_nR_nFDpCD;
-    string hTheta_P_nL_minus_q_nR_nFDpCD_Dir;
+    std::string hTheta_P_nL_minus_q_nR_nFDpCD_Dir;
     //</editor-fold>
 
     //<editor-fold desc="Theta_q_p_L and Theta_q_p_R (nFDpCD, CD & FD)">
     THStack *sTheta_q_p_L_R_nFDpCD;
     TH1D *hTheta_q_p_L_nFDpCD;
     TH1D *hTheta_q_p_R_nFDpCD;
-    string hTheta_q_p_L_nFDpCD_Dir;
-    string hTheta_q_p_R_nFDpCD_Dir;
+    std::string hTheta_q_p_L_nFDpCD_Dir;
+    std::string hTheta_q_p_R_nFDpCD_Dir;
     //</editor-fold>
 
     //<editor-fold desc="Theta_q_nFD and Theta_q_pCD (nFDpCD, CD & FD)">
     THStack *sTheta_q_p_nFDpCD;
     TH1D *hTheta_q_nFD_nFDpCD;
     TH1D *hTheta_q_pCD_nFDpCD;
-    string hTheta_q_nFD_nFDpCD_Dir;
-    string hTheta_q_pCD_nFDpCD_Dir;
+    std::string hTheta_q_nFD_nFDpCD_Dir;
+    std::string hTheta_q_pCD_nFDpCD_Dir;
     //</editor-fold>
 
     //</editor-fold>
@@ -2255,51 +2255,51 @@ public:
 
     //<editor-fold desc="Theta_nFD_pCD vs. W (CD & FD)">
     TH2D *hTheta_q_p_tot_vs_W_nFDpCD;
-    string hTheta_q_p_tot_vs_W_nFDpCD_Dir;
+    std::string hTheta_q_p_tot_vs_W_nFDpCD_Dir;
     //</editor-fold>
 
     //<editor-fold desc="Theta_P_nL_minus_q_nR vs. W (CD & FD)">
     TH2D *hTheta_P_nL_minus_q_nR_vs_W_nFDpCD;
-    string hTheta_P_nL_minus_q_nR_vs_W_nFDpCD_Dir;
+    std::string hTheta_P_nL_minus_q_nR_vs_W_nFDpCD_Dir;
     //</editor-fold>
 
     //<editor-fold desc="Theta_q_p_L vs. W (CD & FD)">
     TH2D *hTheta_q_p_L_vs_W_nFDpCD;
-    string hTheta_q_p_L_vs_W_nFDpCD_Dir;
+    std::string hTheta_q_p_L_vs_W_nFDpCD_Dir;
     //</editor-fold>
 
     //<editor-fold desc="Theta_q_p_R vs. W (CD & FD)">
     TH2D *hTheta_q_p_R_vs_W_nFDpCD;
-    string hTheta_q_p_R_vs_W_nFDpCD_Dir;
+    std::string hTheta_q_p_R_vs_W_nFDpCD_Dir;
     //</editor-fold>
 
     //<editor-fold desc="Theta_q_nFD vs. W (CD & FD)">
     TH2D *hTheta_q_nFD_vs_W_nFDpCD;
-    string hTheta_q_nFD_vs_W_nFDpCD_Dir;
+    std::string hTheta_q_nFD_vs_W_nFDpCD_Dir;
     //</editor-fold>
 
     //<editor-fold desc="Theta_q_pCD vs. W (CD & FD)">
     TH2D *hTheta_q_pCD_vs_W_nFDpCD;
-    string hTheta_q_pCD_vs_W_nFDpCD_Dir;
+    std::string hTheta_q_pCD_vs_W_nFDpCD_Dir;
     //</editor-fold>
 
 // Theta_q_p_L vs |P_L|/|q| (nFDpCD, CD & FD) ---------------------------------------------------------------------------------------------------------------------------
 
     //<editor-fold desc="Theta_q_p vs |P_p|/|q| (CD & FD)">
     TH2D *hTheta_q_p_L_vs_p_L_q_nFDpCD;
-    string hTheta_q_p_L_vs_p_L_q_nFDpCD_Dir;
+    std::string hTheta_q_p_L_vs_p_L_q_nFDpCD_Dir;
     //</editor-fold>
 
 // Theta_q_p vs Theta_q_p (nFDpCD, CD & FD) -------------------------------------------------------------------------------------------------------------------------
 
     //<editor-fold desc="Theta_q_p_L vs Theta_q_p_R">
     TH2D *hTheta_q_p_L_vs_Theta_q_p_R_nFDpCD;
-    string hTheta_q_p_L_vs_Theta_q_p_R_nFDpCD_Dir;
+    std::string hTheta_q_p_L_vs_Theta_q_p_R_nFDpCD_Dir;
     //</editor-fold>
 
     //<editor-fold desc="Theta_q_nFD vs Theta_q_pCD">
     TH2D *hTheta_q_nFD_vs_Theta_q_pCD_nFDpCD;
-    string hTheta_q_nFD_vs_Theta_q_pCD_nFDpCD_Dir;
+    std::string hTheta_q_nFD_vs_Theta_q_pCD_nFDpCD_Dir;
     //</editor-fold>
 
 // Theta_nFD_pCD (nFDpCD, CD & FD) --------------------------------------------------------------------------------------------------------------------------------------
@@ -2311,66 +2311,66 @@ public:
     TH1D *hTheta_nFD_pCD_MEC_nFDpCD;
     TH1D *hTheta_nFD_pCD_RES_nFDpCD;
     TH1D *hTheta_nFD_pCD_DIS_nFDpCD;
-    string sTheta_nFD_pCD_nFDpCD_Dir;
-    string hTheta_nFD_pCD_All_Int_nFDpCD_Dir;
-    string hTheta_nFD_pCD_QEL_nFDpCD_Dir;
-    string hTheta_nFD_pCD_MEC_nFDpCD_Dir;
-    string hTheta_nFD_pCD_RES_nFDpCD_Dir;
-    string hTheta_nFD_pCD_DIS_nFDpCD_Dir;
+    std::string sTheta_nFD_pCD_nFDpCD_Dir;
+    std::string hTheta_nFD_pCD_All_Int_nFDpCD_Dir;
+    std::string hTheta_nFD_pCD_QEL_nFDpCD_Dir;
+    std::string hTheta_nFD_pCD_MEC_nFDpCD_Dir;
+    std::string hTheta_nFD_pCD_RES_nFDpCD_Dir;
+    std::string hTheta_nFD_pCD_DIS_nFDpCD_Dir;
     //</editor-fold>
 
 // Theta_nFD_pCD vs. W (nFDpCD, CD & FD) --------------------------------------------------------------------------------------------------------------------------------
 
     //<editor-fold desc="Theta_nFD_pCD vs. W (CD & FD)">
     TH2D *hTheta_nFD_pCD_vs_W_nFDpCD;
-    string hTheta_nFD_pCD_vs_W_nFDpCD_Dir;
+    std::string hTheta_nFD_pCD_vs_W_nFDpCD_Dir;
     //</editor-fold>
 
 // Theta_nFD_vs_theta_pCD for Theta_nFD_pCD < 20 (nFDpCD, CD & FD) ------------------------------------------------------------------------------------------------------
 
     //<editor-fold desc="Theta_nFD_vs_theta_pCD for Theta_nFD_pCD < 20 (CD & FD)">
     TH2D *hTheta_nFD_vs_theta_pCD_for_Theta_nFD_pCD_20_nFDpCD;
-    string hTheta_nFD_vs_theta_pCD_for_Theta_nFD_pCD_20_nFDpCD_Dir;
+    std::string hTheta_nFD_vs_theta_pCD_for_Theta_nFD_pCD_20_nFDpCD_Dir;
     //</editor-fold>
 
 // dphi_nFD_pCD for Theta_nFD_pCD < 20 (nFDpCD, CD & FD) --------------------------------------------------------------------------------------------------------------
 
     //<editor-fold desc="dphi_nFD_pCD for Theta_nFD_pCD < 20 (CD & FD)">
     TH1D *hdphi_nFD_pCD_for_Theta_nFD_pCD_20_nFDpCD;
-    string hdphi_nFD_pCD_for_Theta_nFD_pCD_20_nFDpCD_Dir;
+    std::string hdphi_nFD_pCD_for_Theta_nFD_pCD_20_nFDpCD_Dir;
 
     TH1D *hdphi_nFD_pCD_for_Theta_nFD_pCD_20_ZOOMIN_nFDpCD;
-    string hdphi_nFD_pCD_for_Theta_nFD_pCD_20_ZOOMIN_nFDpCD_Dir;
+    std::string hdphi_nFD_pCD_for_Theta_nFD_pCD_20_ZOOMIN_nFDpCD_Dir;
     //</editor-fold>
 
 // Theta_nFD_vs_theta_pCD for every Theta_nFD_pCD (nFDpCD, CD & FD) -------------------------------------------------------------------------------------------------------------
 
     //<editor-fold desc="Theta_nFD_vs_theta_pCD for Theta_nFD_pCD (CD & FD)">
     TH2D *hTheta_nFD_vs_theta_pCD_forall_Theta_nFD_pCD_nFDpCD;
-    string hTheta_nFD_vs_theta_pCD_forall_Theta_nFD_pCD_nFDpCD_Dir;
+    std::string hTheta_nFD_vs_theta_pCD_forall_Theta_nFD_pCD_nFDpCD_Dir;
     //</editor-fold>
 
 // dphi_nFD_pCD for every Theta_nFD_pCD (nFDpCD, CD & FD) -----------------------------------------------------------------------------------------------------------------------
 
     //<editor-fold desc="Theta_nFD_vs_theta_pCD for every Theta_nFD_pCD (CD & FD)">
     TH1D *hdphi_nFD_pCD_for_all_Theta_nFD_pCD_nFDpCD;
-    string hdphi_nFD_pCD_for_all_Theta_nFD_pCD_nFDpCD_Dir;
+    std::string hdphi_nFD_pCD_for_all_Theta_nFD_pCD_nFDpCD_Dir;
 
     TH1D *hdphi_nFD_pCD_for_all_Theta_nFD_pCD_ZOOMIN_nFDpCD;
-    string hdphi_nFD_pCD_for_all_Theta_nFD_pCD_ZOOMIN_nFDpCD_Dir;
+    std::string hdphi_nFD_pCD_for_all_Theta_nFD_pCD_ZOOMIN_nFDpCD_Dir;
 
     TH1D *hdphi_nFD_pCD_for_small_dTheta_nFDpCD;
-    string hdphi_nFD_pCD_for_small_dTheta_nFDpCD_Dir;
+    std::string hdphi_nFD_pCD_for_small_dTheta_nFDpCD_Dir;
 
     TH1D *hdphi_nFD_pCD_for_small_dTheta_ZOOMIN_nFDpCD;
-    string hdphi_nFD_pCD_for_small_dTheta_ZOOMIN_nFDpCD_Dir;
+    std::string hdphi_nFD_pCD_for_small_dTheta_ZOOMIN_nFDpCD_Dir;
     //</editor-fold>
 
 // Theta_nFD_vs_theta_pCD for Theta_nFD_pCD < 20 (nFDpCD, CD & FD) --------------------------------------------------------------------------------------------------------------
 
     //<editor-fold desc="Theta_nFD_vs_theta_pCD for Theta_nFD_pCD < 20 (CD & FD)">
     TH2D *hTheta_nFD_vs_theta_pCD_for_Theta_nFD_pCD_10_nFDpCD;
-    string hTheta_nFD_vs_theta_pCD_for_Theta_nFD_pCD_10_nFDpCD_Dir;
+    std::string hTheta_nFD_vs_theta_pCD_for_Theta_nFD_pCD_10_nFDpCD_Dir;
     //</editor-fold>
 
 // Neutron veto plots (nFDpCD) ----------------------------------------------------------------------------------------------------------------------------------------------
@@ -2398,49 +2398,49 @@ public:
     //<editor-fold desc="Q2 histograms (no #(e) cut)">
     THStack *sQ2_All_e;
     TH1D *hQ2_All_e;
-    string hQ2_All_e_Dir;
+    std::string hQ2_All_e_Dir;
     //</editor-fold>
 
     //<editor-fold desc="Q2 histograms (1e cut)">
     THStack *sQ2_1e_cut;
     TH1D *hQ2_1e_cut;
-    string hQ2_1e_cut_Dir;
+    std::string hQ2_1e_cut_Dir;
     //</editor-fold>
 
     //<editor-fold desc="Q2 histograms (1p)">
     THStack *sQ2_1p;
     TH1D *hQ2_1p;
-    string hQ2_1p_Dir;
+    std::string hQ2_1p_Dir;
     //</editor-fold>
 
     //<editor-fold desc="Q2 histograms (1n)">
     THStack *sQ2_1n;
     TH1D *hQ2_1n;
-    string hQ2_1n_Dir;
+    std::string hQ2_1n_Dir;
     //</editor-fold>
 
     //<editor-fold desc="Q2 histograms (2p)">
     THStack *sQ2_2p;
     TH1D *hQ2_2p;
-    string hQ2_2p_Dir;
+    std::string hQ2_2p_Dir;
     //</editor-fold>
 
     //<editor-fold desc="Q2 histograms (pFDpCD)">
     THStack *sQ2_pFDpCD;
     TH1D *hQ2_pFDpCD;
-    string hQ2_pFDpCD_Dir;
+    std::string hQ2_pFDpCD_Dir;
 
     TH2D *hQ2_VS_W_pFDpCD;
-    string hQ2_VS_W_pFDpCD_Dir;
+    std::string hQ2_VS_W_pFDpCD_Dir;
     //</editor-fold>
 
     //<editor-fold desc="Q2 histograms (nFDpCD)">
     THStack *sQ2_nFDpCD;
     TH1D *hQ2_nFDpCD;
-    string hQ2_nFDpCD_Dir;
+    std::string hQ2_nFDpCD_Dir;
 
     TH2D *hQ2_VS_W_nFDpCD;
-    string hQ2_VS_W_nFDpCD_Dir;
+    std::string hQ2_VS_W_nFDpCD_Dir;
     //</editor-fold>
 
     //</editor-fold>
@@ -2454,46 +2454,46 @@ public:
     //<editor-fold desc="E_e plots (1e cut)">
     /* Energy (E_e) histograms (1e cut, CD & FD) */
     THStack *sE_e_1e_cut;
-    string sE_e_1e_cut_Dir;
+    std::string sE_e_1e_cut_Dir;
 
     TH1D *hE_e_All_Int_1e_cut_FD;
     TH1D *hE_e_QEL_1e_cut_FD;
     TH1D *hE_e_MEC_1e_cut_FD;
     TH1D *hE_e_RES_1e_cut_FD;
     TH1D *hE_e_DIS_1e_cut_FD;
-    string hE_e_All_Int_1e_cut_FD_Dir;
-    string hE_e_QEL_1e_cut_FD_Dir;
-    string hE_e_MEC_1e_cut_FD_Dir;
-    string hE_e_RES_1e_cut_FD_Dir;
-    string hE_e_DIS_1e_cut_FD_Dir;
+    std::string hE_e_All_Int_1e_cut_FD_Dir;
+    std::string hE_e_QEL_1e_cut_FD_Dir;
+    std::string hE_e_MEC_1e_cut_FD_Dir;
+    std::string hE_e_RES_1e_cut_FD_Dir;
+    std::string hE_e_DIS_1e_cut_FD_Dir;
 
     TH2D *hE_e_VS_Theta_e_All_Int_1e_cut_FD;
     TH2D *hE_e_VS_Theta_e_QEL_1e_cut_FD;
     TH2D *hE_e_VS_Theta_e_MEC_1e_cut_FD;
     TH2D *hE_e_VS_Theta_e_RES_1e_cut_FD;
     TH2D *hE_e_VS_Theta_e_DIS_1e_cut_FD;
-    string hE_e_VS_Theta_e_All_Int_1e_cut_FD_Dir;
-    string hE_e_VS_Theta_e_QEL_1e_cut_FD_Dir;
-    string hE_e_VS_Theta_e_MEC_1e_cut_FD_Dir;
-    string hE_e_VS_Theta_e_RES_1e_cut_FD_Dir;
-    string hE_e_VS_Theta_e_DIS_1e_cut_FD_Dir;
+    std::string hE_e_VS_Theta_e_All_Int_1e_cut_FD_Dir;
+    std::string hE_e_VS_Theta_e_QEL_1e_cut_FD_Dir;
+    std::string hE_e_VS_Theta_e_MEC_1e_cut_FD_Dir;
+    std::string hE_e_VS_Theta_e_RES_1e_cut_FD_Dir;
+    std::string hE_e_VS_Theta_e_DIS_1e_cut_FD_Dir;
     //</editor-fold>
 
     //<editor-fold desc="E_e plots (1p)">
     /* Energy (E_e) histograms (1p, CD & FD) */
     THStack *sE_e_1p_FD;
-    string sE_e_1p_FD_Dir;
+    std::string sE_e_1p_FD_Dir;
 
     TH1D *hE_e_All_Int_1p_FD;
     TH1D *hE_e_QEL_1p_FD;
     TH1D *hE_e_MEC_1p_FD;
     TH1D *hE_e_RES_1p_FD;
     TH1D *hE_e_DIS_1p_FD;
-    string hE_e_All_Int_1p_FD_Dir;
-    string hE_e_QEL_1p_FD_Dir;
-    string hE_e_MEC_1p_FD_Dir;
-    string hE_e_RES_1p_FD_Dir;
-    string hE_e_DIS_1p_FD_Dir;
+    std::string hE_e_All_Int_1p_FD_Dir;
+    std::string hE_e_QEL_1p_FD_Dir;
+    std::string hE_e_MEC_1p_FD_Dir;
+    std::string hE_e_RES_1p_FD_Dir;
+    std::string hE_e_DIS_1p_FD_Dir;
 
     /* E_e vs. Theta_e (1p, CD & FD) */
     TH2D *hE_e_VS_Theta_e_All_Int_1p_FD;
@@ -2501,44 +2501,44 @@ public:
     TH2D *hE_e_VS_Theta_e_MEC_1p_FD;
     TH2D *hE_e_VS_Theta_e_RES_1p_FD;
     TH2D *hE_e_VS_Theta_e_DIS_1p_FD;
-    string hE_e_VS_Theta_e_All_Int_1p_FD_Dir;
-    string hE_e_VS_Theta_e_QEL_1p_FD_Dir;
-    string hE_e_VS_Theta_e_MEC_1p_FD_Dir;
-    string hE_e_VS_Theta_e_RES_1p_FD_Dir;
-    string hE_e_VS_Theta_e_DIS_1p_FD_Dir;
+    std::string hE_e_VS_Theta_e_All_Int_1p_FD_Dir;
+    std::string hE_e_VS_Theta_e_QEL_1p_FD_Dir;
+    std::string hE_e_VS_Theta_e_MEC_1p_FD_Dir;
+    std::string hE_e_VS_Theta_e_RES_1p_FD_Dir;
+    std::string hE_e_VS_Theta_e_DIS_1p_FD_Dir;
 
     /* Energy (E_e) histograms around theta_e = 15 (1p, CD & FD) */
     THStack *sE_e_15_1p_FD;
-    string sE_e_15_1p_CD_Dir;
-    string sE_e_15_1p_FD_Dir;
+    std::string sE_e_15_1p_CD_Dir;
+    std::string sE_e_15_1p_FD_Dir;
 
     TH1D *hE_e_15_All_Int_1p_FD;
     TH1D *hE_e_15_QEL_1p_FD;
     TH1D *hE_e_15_MEC_1p_FD;
     TH1D *hE_e_15_RES_1p_FD;
     TH1D *hE_e_15_DIS_1p_FD;
-    string hE_e_15_All_Int_1p_FD_Dir;
-    string hE_e_15_QEL_1p_FD_Dir;
-    string hE_e_15_MEC_1p_FD_Dir;
-    string hE_e_15_RES_1p_FD_Dir;
-    string hE_e_15_DIS_1p_FD_Dir;
+    std::string hE_e_15_All_Int_1p_FD_Dir;
+    std::string hE_e_15_QEL_1p_FD_Dir;
+    std::string hE_e_15_MEC_1p_FD_Dir;
+    std::string hE_e_15_RES_1p_FD_Dir;
+    std::string hE_e_15_DIS_1p_FD_Dir;
     //</editor-fold>
 
     //<editor-fold desc="E_e plots (1n)">
     /* Energy (E_e) histograms (1n, CD & FD) */
     THStack *sE_e_1n_FD;
-    string sE_e_1n_FD_Dir;
+    std::string sE_e_1n_FD_Dir;
 
     TH1D *hE_e_All_Int_1n_FD;
     TH1D *hE_e_QEL_1n_FD;
     TH1D *hE_e_MEC_1n_FD;
     TH1D *hE_e_RES_1n_FD;
     TH1D *hE_e_DIS_1n_FD;
-    string hE_e_All_Int_1n_FD_Dir;
-    string hE_e_QEL_1n_FD_Dir;
-    string hE_e_MEC_1n_FD_Dir;
-    string hE_e_RES_1n_FD_Dir;
-    string hE_e_DIS_1n_FD_Dir;
+    std::string hE_e_All_Int_1n_FD_Dir;
+    std::string hE_e_QEL_1n_FD_Dir;
+    std::string hE_e_MEC_1n_FD_Dir;
+    std::string hE_e_RES_1n_FD_Dir;
+    std::string hE_e_DIS_1n_FD_Dir;
 
     /* E_e vs. Theta_e (1n, CD & FD) */
     TH2D *hE_e_VS_Theta_e_All_Int_1n_FD;
@@ -2546,44 +2546,44 @@ public:
     TH2D *hE_e_VS_Theta_e_MEC_1n_FD;
     TH2D *hE_e_VS_Theta_e_RES_1n_FD;
     TH2D *hE_e_VS_Theta_e_DIS_1n_FD;
-    string hE_e_VS_Theta_e_All_Int_1n_FD_Dir;
-    string hE_e_VS_Theta_e_QEL_1n_FD_Dir;
-    string hE_e_VS_Theta_e_MEC_1n_FD_Dir;
-    string hE_e_VS_Theta_e_RES_1n_FD_Dir;
-    string hE_e_VS_Theta_e_DIS_1n_FD_Dir;
+    std::string hE_e_VS_Theta_e_All_Int_1n_FD_Dir;
+    std::string hE_e_VS_Theta_e_QEL_1n_FD_Dir;
+    std::string hE_e_VS_Theta_e_MEC_1n_FD_Dir;
+    std::string hE_e_VS_Theta_e_RES_1n_FD_Dir;
+    std::string hE_e_VS_Theta_e_DIS_1n_FD_Dir;
 
     /* Energy (E_e) histograms around theta_e = 15 (1n, CD & FD) */
     THStack *sE_e_15_1n_FD;
-    string sE_e_15_1n_CD_Dir;
-    string sE_e_15_1n_FD_Dir;
+    std::string sE_e_15_1n_CD_Dir;
+    std::string sE_e_15_1n_FD_Dir;
 
     TH1D *hE_e_15_All_Int_1n_FD;
     TH1D *hE_e_15_QEL_1n_FD;
     TH1D *hE_e_15_MEC_1n_FD;
     TH1D *hE_e_15_RES_1n_FD;
     TH1D *hE_e_15_DIS_1n_FD;
-    string hE_e_15_All_Int_1n_FD_Dir;
-    string hE_e_15_QEL_1n_FD_Dir;
-    string hE_e_15_MEC_1n_FD_Dir;
-    string hE_e_15_RES_1n_FD_Dir;
-    string hE_e_15_DIS_1n_FD_Dir;
+    std::string hE_e_15_All_Int_1n_FD_Dir;
+    std::string hE_e_15_QEL_1n_FD_Dir;
+    std::string hE_e_15_MEC_1n_FD_Dir;
+    std::string hE_e_15_RES_1n_FD_Dir;
+    std::string hE_e_15_DIS_1n_FD_Dir;
     //</editor-fold>
 
     //<editor-fold desc="E_e plots (2p)">
     /* Energy (E_e) histograms (2p, CD & FD) */
     THStack *sE_e_2p_FD;
-    string sE_e_2p_FD_Dir;
+    std::string sE_e_2p_FD_Dir;
 
     TH1D *hE_e_All_Int_2p_FD;
     TH1D *hE_e_QEL_2p_FD;
     TH1D *hE_e_MEC_2p_FD;
     TH1D *hE_e_RES_2p_FD;
     TH1D *hE_e_DIS_2p_FD;
-    string hE_e_All_Int_2p_FD_Dir;
-    string hE_e_QEL_2p_FD_Dir;
-    string hE_e_MEC_2p_FD_Dir;
-    string hE_e_RES_2p_FD_Dir;
-    string hE_e_DIS_2p_FD_Dir;
+    std::string hE_e_All_Int_2p_FD_Dir;
+    std::string hE_e_QEL_2p_FD_Dir;
+    std::string hE_e_MEC_2p_FD_Dir;
+    std::string hE_e_RES_2p_FD_Dir;
+    std::string hE_e_DIS_2p_FD_Dir;
 
     /* E_e vs. Theta_e (2p, CD & FD) */
     TH2D *hE_e_VS_Theta_e_All_Int_2p_FD;
@@ -2591,45 +2591,45 @@ public:
     TH2D *hE_e_VS_Theta_e_MEC_2p_FD;
     TH2D *hE_e_VS_Theta_e_RES_2p_FD;
     TH2D *hE_e_VS_Theta_e_DIS_2p_FD;
-    string hE_e_VS_Theta_e_All_Int_2p_FD_Dir;
-    string hE_e_VS_Theta_e_QEL_2p_FD_Dir;
-    string hE_e_VS_Theta_e_MEC_2p_FD_Dir;
-    string hE_e_VS_Theta_e_RES_2p_FD_Dir;
-    string hE_e_VS_Theta_e_DIS_2p_FD_Dir;
+    std::string hE_e_VS_Theta_e_All_Int_2p_FD_Dir;
+    std::string hE_e_VS_Theta_e_QEL_2p_FD_Dir;
+    std::string hE_e_VS_Theta_e_MEC_2p_FD_Dir;
+    std::string hE_e_VS_Theta_e_RES_2p_FD_Dir;
+    std::string hE_e_VS_Theta_e_DIS_2p_FD_Dir;
 
     /* Energy (E_e) histograms around theta_e = 15 (2p, CD & FD) */
     THStack *sE_e_15_2p_FD;
-    string sE_e_15_2p_CD_Dir;
-    string sE_e_15_2p_FD_Dir;
+    std::string sE_e_15_2p_CD_Dir;
+    std::string sE_e_15_2p_FD_Dir;
 
     TH1D *hE_e_15_All_Int_2p_FD;
     TH1D *hE_e_15_QEL_2p_FD;
     TH1D *hE_e_15_MEC_2p_FD;
     TH1D *hE_e_15_RES_2p_FD;
     TH1D *hE_e_15_DIS_2p_FD;
-    string hE_e_15_All_Int_2p_FD_Dir;
-    string hE_e_15_QEL_2p_FD_Dir;
-    string hE_e_15_MEC_2p_FD_Dir;
-    string hE_e_15_RES_2p_FD_Dir;
-    string hE_e_15_DIS_2p_FD_Dir;
+    std::string hE_e_15_All_Int_2p_FD_Dir;
+    std::string hE_e_15_QEL_2p_FD_Dir;
+    std::string hE_e_15_MEC_2p_FD_Dir;
+    std::string hE_e_15_RES_2p_FD_Dir;
+    std::string hE_e_15_DIS_2p_FD_Dir;
     //</editor-fold>
 
     //<editor-fold desc="E_e plots (pFDpCD)">
     /* Energy (E_e) histograms (pFDpCD, CD & FD) */
     THStack *sE_e_pFDpCD_FD;
-    string sE_e_pFDpCD_CD_Dir;
-    string sE_e_pFDpCD_FD_Dir;
+    std::string sE_e_pFDpCD_CD_Dir;
+    std::string sE_e_pFDpCD_FD_Dir;
 
     TH1D *hE_e_All_Int_pFDpCD_FD;
     TH1D *hE_e_QEL_pFDpCD_FD;
     TH1D *hE_e_MEC_pFDpCD_FD;
     TH1D *hE_e_RES_pFDpCD_FD;
     TH1D *hE_e_DIS_pFDpCD_FD;
-    string hE_e_All_Int_pFDpCD_FD_Dir;
-    string hE_e_QEL_pFDpCD_FD_Dir;
-    string hE_e_MEC_pFDpCD_FD_Dir;
-    string hE_e_RES_pFDpCD_FD_Dir;
-    string hE_e_DIS_pFDpCD_FD_Dir;
+    std::string hE_e_All_Int_pFDpCD_FD_Dir;
+    std::string hE_e_QEL_pFDpCD_FD_Dir;
+    std::string hE_e_MEC_pFDpCD_FD_Dir;
+    std::string hE_e_RES_pFDpCD_FD_Dir;
+    std::string hE_e_DIS_pFDpCD_FD_Dir;
 
     /* E_e vs. Theta_e (pFDpCD, CD & FD) */
     TH2D *hE_e_VS_Theta_e_All_Int_pFDpCD_FD;
@@ -2637,44 +2637,44 @@ public:
     TH2D *hE_e_VS_Theta_e_MEC_pFDpCD_FD;
     TH2D *hE_e_VS_Theta_e_RES_pFDpCD_FD;
     TH2D *hE_e_VS_Theta_e_DIS_pFDpCD_FD;
-    string hE_e_VS_Theta_e_All_Int_pFDpCD_FD_Dir;
-    string hE_e_VS_Theta_e_QEL_pFDpCD_FD_Dir;
-    string hE_e_VS_Theta_e_MEC_pFDpCD_FD_Dir;
-    string hE_e_VS_Theta_e_RES_pFDpCD_FD_Dir;
-    string hE_e_VS_Theta_e_DIS_pFDpCD_FD_Dir;
+    std::string hE_e_VS_Theta_e_All_Int_pFDpCD_FD_Dir;
+    std::string hE_e_VS_Theta_e_QEL_pFDpCD_FD_Dir;
+    std::string hE_e_VS_Theta_e_MEC_pFDpCD_FD_Dir;
+    std::string hE_e_VS_Theta_e_RES_pFDpCD_FD_Dir;
+    std::string hE_e_VS_Theta_e_DIS_pFDpCD_FD_Dir;
 
     /* Energy (E_e) histograms around theta_e = 15 (pFDpCD, CD & FD) */
     THStack *sE_e_15_pFDpCD_FD;
-    string sE_e_15_pFDpCD_CD_Dir;
-    string sE_e_15_pFDpCD_FD_Dir;
+    std::string sE_e_15_pFDpCD_CD_Dir;
+    std::string sE_e_15_pFDpCD_FD_Dir;
 
     TH1D *hE_e_15_All_Int_pFDpCD_FD;
     TH1D *hE_e_15_QEL_pFDpCD_FD;
     TH1D *hE_e_15_MEC_pFDpCD_FD;
     TH1D *hE_e_15_RES_pFDpCD_FD;
     TH1D *hE_e_15_DIS_pFDpCD_FD;
-    string hE_e_15_All_Int_pFDpCD_FD_Dir;
-    string hE_e_15_QEL_pFDpCD_FD_Dir;
-    string hE_e_15_MEC_pFDpCD_FD_Dir;
-    string hE_e_15_RES_pFDpCD_FD_Dir;
-    string hE_e_15_DIS_pFDpCD_FD_Dir;
+    std::string hE_e_15_All_Int_pFDpCD_FD_Dir;
+    std::string hE_e_15_QEL_pFDpCD_FD_Dir;
+    std::string hE_e_15_MEC_pFDpCD_FD_Dir;
+    std::string hE_e_15_RES_pFDpCD_FD_Dir;
+    std::string hE_e_15_DIS_pFDpCD_FD_Dir;
     //</editor-fold>
 
     //<editor-fold desc="E_e plots (nFDpCD)">
     /* Energy (E_e) histograms (nFDpCD, CD & FD) */
     THStack *sE_e_nFDpCD_FD;
-    string sE_e_nFDpCD_FD_Dir;
+    std::string sE_e_nFDpCD_FD_Dir;
 
     TH1D *hE_e_All_Int_nFDpCD_FD;
     TH1D *hE_e_QEL_nFDpCD_FD;
     TH1D *hE_e_MEC_nFDpCD_FD;
     TH1D *hE_e_RES_nFDpCD_FD;
     TH1D *hE_e_DIS_nFDpCD_FD;
-    string hE_e_All_Int_nFDpCD_FD_Dir;
-    string hE_e_QEL_nFDpCD_FD_Dir;
-    string hE_e_MEC_nFDpCD_FD_Dir;
-    string hE_e_RES_nFDpCD_FD_Dir;
-    string hE_e_DIS_nFDpCD_FD_Dir;
+    std::string hE_e_All_Int_nFDpCD_FD_Dir;
+    std::string hE_e_QEL_nFDpCD_FD_Dir;
+    std::string hE_e_MEC_nFDpCD_FD_Dir;
+    std::string hE_e_RES_nFDpCD_FD_Dir;
+    std::string hE_e_DIS_nFDpCD_FD_Dir;
 
     /* E_e vs. Theta_e (nFDpCD, CD & FD) */
     TH2D *hE_e_VS_Theta_e_All_Int_nFDpCD_FD;
@@ -2682,27 +2682,27 @@ public:
     TH2D *hE_e_VS_Theta_e_MEC_nFDpCD_FD;
     TH2D *hE_e_VS_Theta_e_RES_nFDpCD_FD;
     TH2D *hE_e_VS_Theta_e_DIS_nFDpCD_FD;
-    string hE_e_VS_Theta_e_All_Int_nFDpCD_FD_Dir;
-    string hE_e_VS_Theta_e_QEL_nFDpCD_FD_Dir;
-    string hE_e_VS_Theta_e_MEC_nFDpCD_FD_Dir;
-    string hE_e_VS_Theta_e_RES_nFDpCD_FD_Dir;
-    string hE_e_VS_Theta_e_DIS_nFDpCD_FD_Dir;
+    std::string hE_e_VS_Theta_e_All_Int_nFDpCD_FD_Dir;
+    std::string hE_e_VS_Theta_e_QEL_nFDpCD_FD_Dir;
+    std::string hE_e_VS_Theta_e_MEC_nFDpCD_FD_Dir;
+    std::string hE_e_VS_Theta_e_RES_nFDpCD_FD_Dir;
+    std::string hE_e_VS_Theta_e_DIS_nFDpCD_FD_Dir;
 
     /* Energy (E_e) histograms around theta_e = 15 (nFDpCD, CD & FD) */
     THStack *sE_e_15_nFDpCD_FD;
-    string sE_e_15_nFDpCD_CD_Dir;
-    string sE_e_15_nFDpCD_FD_Dir;
+    std::string sE_e_15_nFDpCD_CD_Dir;
+    std::string sE_e_15_nFDpCD_FD_Dir;
 
     TH1D *hE_e_15_All_Int_nFDpCD_FD;
     TH1D *hE_e_15_QEL_nFDpCD_FD;
     TH1D *hE_e_15_MEC_nFDpCD_FD;
     TH1D *hE_e_15_RES_nFDpCD_FD;
     TH1D *hE_e_15_DIS_nFDpCD_FD;
-    string hE_e_15_All_Int_nFDpCD_FD_Dir;
-    string hE_e_15_QEL_nFDpCD_FD_Dir;
-    string hE_e_15_MEC_nFDpCD_FD_Dir;
-    string hE_e_15_RES_nFDpCD_FD_Dir;
-    string hE_e_15_DIS_nFDpCD_FD_Dir;
+    std::string hE_e_15_All_Int_nFDpCD_FD_Dir;
+    std::string hE_e_15_QEL_nFDpCD_FD_Dir;
+    std::string hE_e_15_MEC_nFDpCD_FD_Dir;
+    std::string hE_e_15_RES_nFDpCD_FD_Dir;
+    std::string hE_e_15_DIS_nFDpCD_FD_Dir;
     //</editor-fold>
 
     //</editor-fold>
@@ -2712,12 +2712,12 @@ public:
 // ======================================================================================================================================================================
 
     //<editor-fold desc="Energy Transfer (ET) histograms">
-    string tET_All_Ang = "Energy transfer #omega for every #theta_{e}", tET15 = "Energy transfer #omega Around #theta_{e} = 15#circ";
+    std::string tET_All_Ang = "Energy transfer #omega for every #theta_{e}", tET15 = "Energy transfer #omega Around #theta_{e} = 15#circ";
 
     //<editor-fold desc="ET for every theta_e (1p)">
     THStack *sET_All_Ang_All_Int_1p_FD = new THStack("#omega for all #theta_{e} (1p)",
                                                      "Energy transfer #omega for all #theta_{e} (1p);#omega = E_{beam}-E_{e} [GeV]");
-    string sET_All_Ang_All_Int_1p_FD_Dir = directories.ETrans_Directory_map["ETrans_All_Ang_stack_1p_Directory"];
+    std::string sET_All_Ang_All_Int_1p_FD_Dir = directories.ETrans_Directory_map["ETrans_All_Ang_stack_1p_Directory"];
 
     TH1D *hET_All_Ang_All_Int_1p_FD = new TH1D("#omega for all #theta_{e} (All Int., 1p)",
                                                "Energy transfer #omega for all #theta_{e} (All Int., 1p);#omega = E_{beam}-E_{e} [GeV]",
@@ -2734,17 +2734,17 @@ public:
     TH1D *hET_All_Ang_DIS_1p_FD = new TH1D("#omega for all #theta_{e} (DIS Only, 1p, FD)",
                                            "Energy transfer #omega for all #theta_{e} (DIS Only, 1p);#omega = E_{beam}-E_{e} [GeV]",
                                            numTH1Dbins_ET_Plots, 0, beamE * 1.1);
-    string hET_All_Ang_All_Int_1p_FD_Dir = directories.ETrans_Directory_map["ETrans_All_Int_All_Ang_1p_Directory"];
-    string hET_All_Ang_QEL_1p_FD_Dir = directories.ETrans_Directory_map["ETrans_QEL_All_Ang_1p_Directory"];
-    string hET_All_Ang_MEC_1p_FD_Dir = directories.ETrans_Directory_map["ETrans_MEC_All_Ang_1p_Directory"];
-    string hET_All_Ang_RES_1p_FD_Dir = directories.ETrans_Directory_map["ETrans_RES_All_Ang_1p_Directory"];
-    string hET_All_Ang_DIS_1p_FD_Dir = directories.ETrans_Directory_map["ETrans_DIS_All_Ang_1p_Directory"];
+    std::string hET_All_Ang_All_Int_1p_FD_Dir = directories.ETrans_Directory_map["ETrans_All_Int_All_Ang_1p_Directory"];
+    std::string hET_All_Ang_QEL_1p_FD_Dir = directories.ETrans_Directory_map["ETrans_QEL_All_Ang_1p_Directory"];
+    std::string hET_All_Ang_MEC_1p_FD_Dir = directories.ETrans_Directory_map["ETrans_MEC_All_Ang_1p_Directory"];
+    std::string hET_All_Ang_RES_1p_FD_Dir = directories.ETrans_Directory_map["ETrans_RES_All_Ang_1p_Directory"];
+    std::string hET_All_Ang_DIS_1p_FD_Dir = directories.ETrans_Directory_map["ETrans_DIS_All_Ang_1p_Directory"];
     //</editor-fold>
 
     //<editor-fold desc="ET for every theta_e (1n)">
     THStack *sET_All_Ang_All_Int_1n_FD = new THStack("#omega for all #theta_{e} (1n)",
                                                      "Energy transfer #omega for all #theta_{e} (1n);#omega = E_{beam}-E_{e} [GeV]");
-    string sET_All_Ang_All_Int_1n_FD_Dir = directories.ETrans_Directory_map["ETrans_All_Ang_stack_1n_Directory"];
+    std::string sET_All_Ang_All_Int_1n_FD_Dir = directories.ETrans_Directory_map["ETrans_All_Ang_stack_1n_Directory"];
 
     TH1D *hET_All_Ang_All_Int_1n_FD = new TH1D("#omega for all #theta_{e} (All Int., 1n)",
                                                "Energy transfer #omega for all #theta_{e} (All Int., 1n);#omega = E_{beam}-E_{e} [GeV]",
@@ -2761,17 +2761,17 @@ public:
     TH1D *hET_All_Ang_DIS_1n_FD = new TH1D("#omega for all #theta_{e} (DIS Only, 1n, FD)",
                                            "Energy transfer #omega for all #theta_{e} (DIS Only, 1n);#omega = E_{beam}-E_{e} [GeV]",
                                            numTH1Dbins_ET_Plots, 0, beamE * 1.1);
-    string hET_All_Ang_All_Int_1n_FD_Dir = directories.ETrans_Directory_map["ETrans_All_Int_All_Ang_1n_Directory"];
-    string hET_All_Ang_QEL_1n_FD_Dir = directories.ETrans_Directory_map["ETrans_QEL_All_Ang_1n_Directory"];
-    string hET_All_Ang_MEC_1n_FD_Dir = directories.ETrans_Directory_map["ETrans_MEC_All_Ang_1n_Directory"];
-    string hET_All_Ang_RES_1n_FD_Dir = directories.ETrans_Directory_map["ETrans_RES_All_Ang_1n_Directory"];
-    string hET_All_Ang_DIS_1n_FD_Dir = directories.ETrans_Directory_map["ETrans_DIS_All_Ang_1n_Directory"];
+    std::string hET_All_Ang_All_Int_1n_FD_Dir = directories.ETrans_Directory_map["ETrans_All_Int_All_Ang_1n_Directory"];
+    std::string hET_All_Ang_QEL_1n_FD_Dir = directories.ETrans_Directory_map["ETrans_QEL_All_Ang_1n_Directory"];
+    std::string hET_All_Ang_MEC_1n_FD_Dir = directories.ETrans_Directory_map["ETrans_MEC_All_Ang_1n_Directory"];
+    std::string hET_All_Ang_RES_1n_FD_Dir = directories.ETrans_Directory_map["ETrans_RES_All_Ang_1n_Directory"];
+    std::string hET_All_Ang_DIS_1n_FD_Dir = directories.ETrans_Directory_map["ETrans_DIS_All_Ang_1n_Directory"];
     //</editor-fold>
 
     //<editor-fold desc="ET for every theta_e (2p)">
     THStack *sET_All_Ang_All_Int_2p_FD = new THStack("#omega for all #theta_{e} (2p)",
                                                      "Energy transfer #omega for all #theta_{e} (2p);#omega = E_{beam}-E_{e} [GeV]");
-    string sET_All_Ang_All_Int_2p_FD_Dir = directories.ETrans_Directory_map["ETrans_All_Ang_stack_2p_Directory"];
+    std::string sET_All_Ang_All_Int_2p_FD_Dir = directories.ETrans_Directory_map["ETrans_All_Ang_stack_2p_Directory"];
 
     TH1D *hET_All_Ang_All_Int_2p_FD = new TH1D("#omega for all #theta_{e} (All Int., 2p)",
                                                "Energy transfer #omega for all #theta_{e} (All Int., 2p);#omega = E_{beam}-E_{e} [GeV]",
@@ -2788,17 +2788,17 @@ public:
     TH1D *hET_All_Ang_DIS_2p_FD = new TH1D("#omega for all #theta_{e} (DIS Only, 2p, FD)",
                                            "Energy transfer #omega for all #theta_{e} (DIS Only, 2p);#omega = E_{beam}-E_{e} [GeV]",
                                            numTH1Dbins_ET_Plots, 0, beamE * 1.1);
-    string hET_All_Ang_All_Int_2p_FD_Dir = directories.ETrans_Directory_map["ETrans_All_Int_All_Ang_2p_Directory"];
-    string hET_All_Ang_QEL_2p_FD_Dir = directories.ETrans_Directory_map["ETrans_QEL_All_Ang_2p_Directory"];
-    string hET_All_Ang_MEC_2p_FD_Dir = directories.ETrans_Directory_map["ETrans_MEC_All_Ang_2p_Directory"];
-    string hET_All_Ang_RES_2p_FD_Dir = directories.ETrans_Directory_map["ETrans_RES_All_Ang_2p_Directory"];
-    string hET_All_Ang_DIS_2p_FD_Dir = directories.ETrans_Directory_map["ETrans_DIS_All_Ang_2p_Directory"];
+    std::string hET_All_Ang_All_Int_2p_FD_Dir = directories.ETrans_Directory_map["ETrans_All_Int_All_Ang_2p_Directory"];
+    std::string hET_All_Ang_QEL_2p_FD_Dir = directories.ETrans_Directory_map["ETrans_QEL_All_Ang_2p_Directory"];
+    std::string hET_All_Ang_MEC_2p_FD_Dir = directories.ETrans_Directory_map["ETrans_MEC_All_Ang_2p_Directory"];
+    std::string hET_All_Ang_RES_2p_FD_Dir = directories.ETrans_Directory_map["ETrans_RES_All_Ang_2p_Directory"];
+    std::string hET_All_Ang_DIS_2p_FD_Dir = directories.ETrans_Directory_map["ETrans_DIS_All_Ang_2p_Directory"];
     //</editor-fold>
 
     //<editor-fold desc="ET for every theta_e (pFDpCD)">
     THStack *sET_All_Ang_All_Int_pFDpCD_FD = new THStack("#omega for all #theta_{e} (pFDpCD)",
                                                          "Energy transfer #omega for all #theta_{e} (pFDpCD);#omega = E_{beam}-E_{e} [GeV]");
-    string sET_All_Ang_All_Int_pFDpCD_FD_Dir = directories.ETrans_Directory_map["ETrans_All_Ang_stack_pFDpCD_Directory"];
+    std::string sET_All_Ang_All_Int_pFDpCD_FD_Dir = directories.ETrans_Directory_map["ETrans_All_Ang_stack_pFDpCD_Directory"];
 
     TH1D *hET_All_Ang_All_Int_pFDpCD_FD = new TH1D("#omega for all #theta_{e} (All Int., pFDpCD)",
                                                    "Energy transfer #omega for all #theta_{e} (All Int., pFDpCD);#omega = E_{beam}-E_{e} [GeV]",
@@ -2815,17 +2815,17 @@ public:
     TH1D *hET_All_Ang_DIS_pFDpCD_FD = new TH1D("#omega for all #theta_{e} (DIS Only, pFDpCD, FD)",
                                                "Energy transfer #omega for all #theta_{e} (DIS Only, pFDpCD);#omega = E_{beam}-E_{e} [GeV]",
                                                numTH1Dbins_ET_Plots, 0, beamE * 1.1);
-    string hET_All_Ang_All_Int_pFDpCD_FD_Dir = directories.ETrans_Directory_map["ETrans_All_Int_All_Ang_pFDpCD_Directory"];
-    string hET_All_Ang_QEL_pFDpCD_FD_Dir = directories.ETrans_Directory_map["ETrans_QEL_All_Ang_pFDpCD_Directory"];
-    string hET_All_Ang_MEC_pFDpCD_FD_Dir = directories.ETrans_Directory_map["ETrans_MEC_All_Ang_pFDpCD_Directory"];
-    string hET_All_Ang_RES_pFDpCD_FD_Dir = directories.ETrans_Directory_map["ETrans_RES_All_Ang_pFDpCD_Directory"];
-    string hET_All_Ang_DIS_pFDpCD_FD_Dir = directories.ETrans_Directory_map["ETrans_DIS_All_Ang_pFDpCD_Directory"];
+    std::string hET_All_Ang_All_Int_pFDpCD_FD_Dir = directories.ETrans_Directory_map["ETrans_All_Int_All_Ang_pFDpCD_Directory"];
+    std::string hET_All_Ang_QEL_pFDpCD_FD_Dir = directories.ETrans_Directory_map["ETrans_QEL_All_Ang_pFDpCD_Directory"];
+    std::string hET_All_Ang_MEC_pFDpCD_FD_Dir = directories.ETrans_Directory_map["ETrans_MEC_All_Ang_pFDpCD_Directory"];
+    std::string hET_All_Ang_RES_pFDpCD_FD_Dir = directories.ETrans_Directory_map["ETrans_RES_All_Ang_pFDpCD_Directory"];
+    std::string hET_All_Ang_DIS_pFDpCD_FD_Dir = directories.ETrans_Directory_map["ETrans_DIS_All_Ang_pFDpCD_Directory"];
     //</editor-fold>
 
     //<editor-fold desc="ET for every theta_e (nFDpCD)">
     THStack *sET_All_Ang_All_Int_nFDpCD_FD = new THStack("#omega for all #theta_{e} (nFDpCD)",
                                                          "Energy transfer #omega for all #theta_{e} (nFDpCD);#omega = E_{beam}-E_{e} [GeV]");
-    string sET_All_Ang_All_Int_nFDpCD_FD_Dir = directories.ETrans_Directory_map["ETrans_All_Ang_stack_nFDpCD_Directory"];
+    std::string sET_All_Ang_All_Int_nFDpCD_FD_Dir = directories.ETrans_Directory_map["ETrans_All_Ang_stack_nFDpCD_Directory"];
 
     TH1D *hET_All_Ang_All_Int_nFDpCD_FD = new TH1D("#omega for all #theta_{e} (All Int., nFDpCD)",
                                                    "Energy transfer #omega for all #theta_{e} (All Int., nFDpCD);#omega = E_{beam}-E_{e} [GeV]",
@@ -2842,18 +2842,18 @@ public:
     TH1D *hET_All_Ang_DIS_nFDpCD_FD = new TH1D("#omega for all #theta_{e} (DIS Only, nFDpCD, FD)",
                                                "Energy transfer #omega for all #theta_{e} (DIS Only, nFDpCD);#omega = E_{beam}-E_{e} [GeV]",
                                                numTH1Dbins_ET_Plots, 0, beamE * 1.1);
-    string hET_All_Ang_All_Int_nFDpCD_FD_Dir = directories.ETrans_Directory_map["ETrans_All_Int_All_Ang_nFDpCD_Directory"];
-    string hET_All_Ang_QEL_nFDpCD_FD_Dir = directories.ETrans_Directory_map["ETrans_QEL_All_Ang_nFDpCD_Directory"];
-    string hET_All_Ang_MEC_nFDpCD_FD_Dir = directories.ETrans_Directory_map["ETrans_MEC_All_Ang_nFDpCD_Directory"];
-    string hET_All_Ang_RES_nFDpCD_FD_Dir = directories.ETrans_Directory_map["ETrans_RES_All_Ang_nFDpCD_Directory"];
-    string hET_All_Ang_DIS_nFDpCD_FD_Dir = directories.ETrans_Directory_map["ETrans_DIS_All_Ang_nFDpCD_Directory"];
+    std::string hET_All_Ang_All_Int_nFDpCD_FD_Dir = directories.ETrans_Directory_map["ETrans_All_Int_All_Ang_nFDpCD_Directory"];
+    std::string hET_All_Ang_QEL_nFDpCD_FD_Dir = directories.ETrans_Directory_map["ETrans_QEL_All_Ang_nFDpCD_Directory"];
+    std::string hET_All_Ang_MEC_nFDpCD_FD_Dir = directories.ETrans_Directory_map["ETrans_MEC_All_Ang_nFDpCD_Directory"];
+    std::string hET_All_Ang_RES_nFDpCD_FD_Dir = directories.ETrans_Directory_map["ETrans_RES_All_Ang_nFDpCD_Directory"];
+    std::string hET_All_Ang_DIS_nFDpCD_FD_Dir = directories.ETrans_Directory_map["ETrans_DIS_All_Ang_nFDpCD_Directory"];
     //</editor-fold>
 
     //<editor-fold desc="ET around 15 Deg (1p)">
     /* ET around 15 Deg */
     THStack *sET15_All_Int_1p_FD = new THStack("ET around #theta_{e} = 15#circ (1p)",
                                                "Energy transfer #omega Around #theta_{e} = 15#circ (1p);#omega = E_{beam}-E_{e} [GeV]");
-    string sET15_All_Int_1p_FD_Dir = directories.ETrans_Directory_map["ETrans_15_stack_1p_Directory"];
+    std::string sET15_All_Int_1p_FD_Dir = directories.ETrans_Directory_map["ETrans_15_stack_1p_Directory"];
 
     TH1D *hET15_All_Int_1p_FD = new TH1D("ET around #theta_{e} = 15#circ (All Int., 1p)",
                                          "Energy transfer #omega Around #theta_{e} = 15#circ (All Int., 1p);#omega = E_{beam}-E_{e} [GeV]",
@@ -2870,18 +2870,18 @@ public:
     TH1D *hET15_DIS_1p_FD = new TH1D("ET around #theta_{e} = 15#circ (DIS Only, 1p, FD)",
                                      "Energy transfer #omega Around #theta_{e} = 15#circ (DIS Only, 1p);#omega = E_{beam}-E_{e} [GeV]",
                                      numTH1Dbins_ET_Plots, 0, beamE * 1.1);
-    string hET15_All_Int_1p_FD_Dir = directories.ETrans_Directory_map["ETrans_All_Int_15_1p_Directory"];
-    string hET15_QEL_1p_FD_Dir = directories.ETrans_Directory_map["ETrans_QEL_15_1p_Directory"];
-    string hET15_MEC_1p_FD_Dir = directories.ETrans_Directory_map["ETrans_MEC_15_1p_Directory"];
-    string hET15_RES_1p_FD_Dir = directories.ETrans_Directory_map["ETrans_RES_15_1p_Directory"];
-    string hET15_DIS_1p_FD_Dir = directories.ETrans_Directory_map["ETrans_DIS_15_1p_Directory"];
+    std::string hET15_All_Int_1p_FD_Dir = directories.ETrans_Directory_map["ETrans_All_Int_15_1p_Directory"];
+    std::string hET15_QEL_1p_FD_Dir = directories.ETrans_Directory_map["ETrans_QEL_15_1p_Directory"];
+    std::string hET15_MEC_1p_FD_Dir = directories.ETrans_Directory_map["ETrans_MEC_15_1p_Directory"];
+    std::string hET15_RES_1p_FD_Dir = directories.ETrans_Directory_map["ETrans_RES_15_1p_Directory"];
+    std::string hET15_DIS_1p_FD_Dir = directories.ETrans_Directory_map["ETrans_DIS_15_1p_Directory"];
     //</editor-fold>
 
     //<editor-fold desc="ET around 15 Deg (1n)">
     /* ET around 15 Deg */
     THStack *sET15_All_Int_1n_FD = new THStack("ET around #theta_{e} = 15#circ (1n)",
                                                "Energy transfer #omega Around #theta_{e} = 15#circ (1n);#omega = E_{beam}-E_{e} [GeV]");
-    string sET15_All_Int_1n_FD_Dir = directories.ETrans_Directory_map["ETrans_15_stack_1n_Directory"];
+    std::string sET15_All_Int_1n_FD_Dir = directories.ETrans_Directory_map["ETrans_15_stack_1n_Directory"];
 
     TH1D *hET15_All_Int_1n_FD = new TH1D("ET around #theta_{e} = 15#circ (All Int., 1n)",
                                          "Energy transfer #omega Around #theta_{e} = 15#circ (All Int., 1n);#omega = E_{beam}-E_{e} [GeV]",
@@ -2898,18 +2898,18 @@ public:
     TH1D *hET15_DIS_1n_FD = new TH1D("ET around #theta_{e} = 15#circ (DIS Only, 1n, FD)",
                                      "Energy transfer #omega Around #theta_{e} = 15#circ (DIS Only, 1n);#omega = E_{beam}-E_{e} [GeV]",
                                      numTH1Dbins_ET_Plots, 0, beamE * 1.1);
-    string hET15_All_Int_1n_FD_Dir = directories.ETrans_Directory_map["ETrans_All_Int_15_1n_Directory"];
-    string hET15_QEL_1n_FD_Dir = directories.ETrans_Directory_map["ETrans_QEL_15_1n_Directory"];
-    string hET15_MEC_1n_FD_Dir = directories.ETrans_Directory_map["ETrans_MEC_15_1n_Directory"];
-    string hET15_RES_1n_FD_Dir = directories.ETrans_Directory_map["ETrans_RES_15_1n_Directory"];
-    string hET15_DIS_1n_FD_Dir = directories.ETrans_Directory_map["ETrans_DIS_15_1n_Directory"];
+    std::string hET15_All_Int_1n_FD_Dir = directories.ETrans_Directory_map["ETrans_All_Int_15_1n_Directory"];
+    std::string hET15_QEL_1n_FD_Dir = directories.ETrans_Directory_map["ETrans_QEL_15_1n_Directory"];
+    std::string hET15_MEC_1n_FD_Dir = directories.ETrans_Directory_map["ETrans_MEC_15_1n_Directory"];
+    std::string hET15_RES_1n_FD_Dir = directories.ETrans_Directory_map["ETrans_RES_15_1n_Directory"];
+    std::string hET15_DIS_1n_FD_Dir = directories.ETrans_Directory_map["ETrans_DIS_15_1n_Directory"];
     //</editor-fold>
 
     //<editor-fold desc="ET around 15 Deg (2p)">
     /* ET around 15 Deg */
     THStack *sET15_All_Int_2p_FD = new THStack("#omega around #theta_{e} = 15#circ (2p)",
                                                "Energy transfer #omega Around #theta_{e} = 15#circ (2p);#omega = E_{beam}-E_{e} [GeV]");
-    string sET15_All_Int_2p_FD_Dir = directories.ETrans_Directory_map["ETrans_15_stack_2p_Directory"];
+    std::string sET15_All_Int_2p_FD_Dir = directories.ETrans_Directory_map["ETrans_15_stack_2p_Directory"];
 
     TH1D *hET15_All_Int_2p_FD = new TH1D("#omega around #theta_{e} = 15#circ (All Int., 2p)",
                                          "Energy transfer #omega Around #theta_{e} = 15#circ (All Int., 2p);#omega = E_{beam}-E_{e} [GeV]",
@@ -2926,18 +2926,18 @@ public:
     TH1D *hET15_DIS_2p_FD = new TH1D("#omega around #theta_{e} = 15#circ (DIS Only, 2p, FD)",
                                      "Energy transfer #omega Around #theta_{e} = 15#circ (DIS Only, 2p);#omega = E_{beam}-E_{e} [GeV]",
                                      numTH1Dbins_ET_Plots, 0, beamE * 1.1);
-    string hET15_All_Int_2p_FD_Dir = directories.ETrans_Directory_map["ETrans_All_Int_15_2p_Directory"];
-    string hET15_QEL_2p_FD_Dir = directories.ETrans_Directory_map["ETrans_QEL_15_2p_Directory"];
-    string hET15_MEC_2p_FD_Dir = directories.ETrans_Directory_map["ETrans_MEC_15_2p_Directory"];
-    string hET15_RES_2p_FD_Dir = directories.ETrans_Directory_map["ETrans_RES_15_2p_Directory"];
-    string hET15_DIS_2p_FD_Dir = directories.ETrans_Directory_map["ETrans_DIS_15_2p_Directory"];
+    std::string hET15_All_Int_2p_FD_Dir = directories.ETrans_Directory_map["ETrans_All_Int_15_2p_Directory"];
+    std::string hET15_QEL_2p_FD_Dir = directories.ETrans_Directory_map["ETrans_QEL_15_2p_Directory"];
+    std::string hET15_MEC_2p_FD_Dir = directories.ETrans_Directory_map["ETrans_MEC_15_2p_Directory"];
+    std::string hET15_RES_2p_FD_Dir = directories.ETrans_Directory_map["ETrans_RES_15_2p_Directory"];
+    std::string hET15_DIS_2p_FD_Dir = directories.ETrans_Directory_map["ETrans_DIS_15_2p_Directory"];
     //</editor-fold>
 
     //<editor-fold desc="ET around 15 Deg (pFDpCD)">
     /* ET around 15 Deg */
     THStack *sET15_All_Int_pFDpCD_FD = new THStack("#omega around #theta_{e} = 15#circ (pFDpCD)",
                                                    "Energy transfer #omega Around #theta_{e} = 15#circ (pFDpCD);#omega = E_{beam}-E_{e} [GeV]");
-    string sET15_All_Int_pFDpCD_FD_Dir = directories.ETrans_Directory_map["ETrans_15_stack_pFDpCD_Directory"];
+    std::string sET15_All_Int_pFDpCD_FD_Dir = directories.ETrans_Directory_map["ETrans_15_stack_pFDpCD_Directory"];
 
     TH1D *hET15_All_Int_pFDpCD_FD = new TH1D("#omega around #theta_{e} = 15#circ (All Int., pFDpCD)",
                                              "Energy transfer #omega Around #theta_{e} = 15#circ (All Int., pFDpCD);#omega = E_{beam}-E_{e} [GeV]",
@@ -2954,18 +2954,18 @@ public:
     TH1D *hET15_DIS_pFDpCD_FD = new TH1D("#omega around #theta_{e} = 15#circ (DIS Only, pFDpCD, FD)",
                                          "Energy transfer #omega Around #theta_{e} = 15#circ (DIS Only, pFDpCD);#omega = E_{beam}-E_{e} [GeV]",
                                          numTH1Dbins_ET_Plots, 0, beamE * 1.1);
-    string hET15_All_Int_pFDpCD_FD_Dir = directories.ETrans_Directory_map["ETrans_All_Int_15_pFDpCD_Directory"];
-    string hET15_QEL_pFDpCD_FD_Dir = directories.ETrans_Directory_map["ETrans_QEL_15_pFDpCD_Directory"];
-    string hET15_MEC_pFDpCD_FD_Dir = directories.ETrans_Directory_map["ETrans_MEC_15_pFDpCD_Directory"];
-    string hET15_RES_pFDpCD_FD_Dir = directories.ETrans_Directory_map["ETrans_RES_15_pFDpCD_Directory"];
-    string hET15_DIS_pFDpCD_FD_Dir = directories.ETrans_Directory_map["ETrans_DIS_15_pFDpCD_Directory"];
+    std::string hET15_All_Int_pFDpCD_FD_Dir = directories.ETrans_Directory_map["ETrans_All_Int_15_pFDpCD_Directory"];
+    std::string hET15_QEL_pFDpCD_FD_Dir = directories.ETrans_Directory_map["ETrans_QEL_15_pFDpCD_Directory"];
+    std::string hET15_MEC_pFDpCD_FD_Dir = directories.ETrans_Directory_map["ETrans_MEC_15_pFDpCD_Directory"];
+    std::string hET15_RES_pFDpCD_FD_Dir = directories.ETrans_Directory_map["ETrans_RES_15_pFDpCD_Directory"];
+    std::string hET15_DIS_pFDpCD_FD_Dir = directories.ETrans_Directory_map["ETrans_DIS_15_pFDpCD_Directory"];
     //</editor-fold>
 
     //<editor-fold desc="ET around 15 Deg (nFDpCD)">
     /* ET around 15 Deg */
     THStack *sET15_All_Int_nFDpCD_FD = new THStack("#omega around #theta_{e} = 15#circ (nFDpCD)",
                                                    "Energy transfer #omega Around #theta_{e} = 15#circ (nFDpCD);#omega = E_{beam}-E_{e} [GeV]");
-    string sET15_All_Int_nFDpCD_FD_Dir = directories.ETrans_Directory_map["ETrans_15_stack_nFDpCD_Directory"];
+    std::string sET15_All_Int_nFDpCD_FD_Dir = directories.ETrans_Directory_map["ETrans_15_stack_nFDpCD_Directory"];
 
     TH1D *hET15_All_Int_nFDpCD_FD = new TH1D("#omega around #theta_{e} = 15#circ (All Int., nFDpCD)",
                                              "Energy transfer #omega Around #theta_{e} = 15#circ (All Int., nFDpCD);#omega = E_{beam}-E_{e} [GeV]",
@@ -2982,11 +2982,11 @@ public:
     TH1D *hET15_DIS_nFDpCD_FD = new TH1D("#omega around #theta_{e} = 15#circ (DIS Only, nFDpCD, FD)",
                                          "Energy transfer #omega Around #theta_{e} = 15#circ (DIS Only, nFDpCD);#omega = E_{beam}-E_{e} [GeV]",
                                          numTH1Dbins_ET_Plots, 0, beamE * 1.1);
-    string hET15_All_Int_nFDpCD_FD_Dir = directories.ETrans_Directory_map["ETrans_All_Int_15_nFDpCD_Directory"];
-    string hET15_QEL_nFDpCD_FD_Dir = directories.ETrans_Directory_map["ETrans_QEL_15_nFDpCD_Directory"];
-    string hET15_MEC_nFDpCD_FD_Dir = directories.ETrans_Directory_map["ETrans_MEC_15_nFDpCD_Directory"];
-    string hET15_RES_nFDpCD_FD_Dir = directories.ETrans_Directory_map["ETrans_RES_15_nFDpCD_Directory"];
-    string hET15_DIS_nFDpCD_FD_Dir = directories.ETrans_Directory_map["ETrans_DIS_15_nFDpCD_Directory"];
+    std::string hET15_All_Int_nFDpCD_FD_Dir = directories.ETrans_Directory_map["ETrans_All_Int_15_nFDpCD_Directory"];
+    std::string hET15_QEL_nFDpCD_FD_Dir = directories.ETrans_Directory_map["ETrans_QEL_15_nFDpCD_Directory"];
+    std::string hET15_MEC_nFDpCD_FD_Dir = directories.ETrans_Directory_map["ETrans_MEC_15_nFDpCD_Directory"];
+    std::string hET15_RES_nFDpCD_FD_Dir = directories.ETrans_Directory_map["ETrans_RES_15_nFDpCD_Directory"];
+    std::string hET15_DIS_nFDpCD_FD_Dir = directories.ETrans_Directory_map["ETrans_DIS_15_nFDpCD_Directory"];
     //</editor-fold>
 
     //</editor-fold>
@@ -3001,7 +3001,7 @@ public:
 
     //<editor-fold desc="Ecal plots (1p)">
     THStack *sEcal_1p = new THStack("E_{cal} Reconstruction (1p)", "E_{cal} Reconstruction (1p);E_{cal} = E_{e} + T_{p} [GeV]");
-    string sEcal_1p_Dir = directories.Ecal_Directory_map["Ecal_stack_1p_Directory"];
+    std::string sEcal_1p_Dir = directories.Ecal_Directory_map["Ecal_stack_1p_Directory"];
 
     TH1D *hEcal_All_Int_1p = new TH1D("E_{cal} reco. (All Int., 1p)", "E_{cal} Reconstruction (All Int., 1p);E_{cal} = E_{e} + T_{p} [GeV]",
                                       numTH1Dbins_E_cal_Plots, 0, beamE * 1.35);
@@ -3013,11 +3013,11 @@ public:
                                   numTH1Dbins_E_cal_Plots, 0, beamE * 1.35);
     TH1D *hEcal_DIS_1p = new TH1D("E_{cal} reco. (DIS only, 1p)", "E_{cal} Reconstruction (DIS only, 1p);E_{cal} = E_{e} + T_{p} [GeV]",
                                   numTH1Dbins_E_cal_Plots, 0, beamE * 1.35);
-    string hEcal_All_Int_1p_Dir = directories.Ecal_Directory_map["Ecal_All_Int_1p_Directory"];
-    string hEcal_QEL_1p_Dir = directories.Ecal_Directory_map["Ecal_QEL_1p_Directory"];
-    string hEcal_MEC_1p_Dir = directories.Ecal_Directory_map["Ecal_MEC_1p_Directory"];
-    string hEcal_RES_1p_Dir = directories.Ecal_Directory_map["Ecal_RES_1p_Directory"];
-    string hEcal_DIS_1p_Dir = directories.Ecal_Directory_map["Ecal_DIS_1p_Directory"];
+    std::string hEcal_All_Int_1p_Dir = directories.Ecal_Directory_map["Ecal_All_Int_1p_Directory"];
+    std::string hEcal_QEL_1p_Dir = directories.Ecal_Directory_map["Ecal_QEL_1p_Directory"];
+    std::string hEcal_MEC_1p_Dir = directories.Ecal_Directory_map["Ecal_MEC_1p_Directory"];
+    std::string hEcal_RES_1p_Dir = directories.Ecal_Directory_map["Ecal_RES_1p_Directory"];
+    std::string hEcal_DIS_1p_Dir = directories.Ecal_Directory_map["Ecal_DIS_1p_Directory"];
     //</editor-fold>
 
     //<editor-fold desc="Ecal vs. momentum (1p)">
@@ -3026,14 +3026,14 @@ public:
     TH2D *hEcal_vs_P_e_test_1p = new TH2D("E_{cal} vs. P_{e} for E_{cal}>E_{beam} (All Int., 1p)",
                                           "E_{cal} vs. P_{e} for E_{cal}>E_{beam} (All Int., 1p);P_{e} [GeV/c];E_{cal} [GeV];",
                                           numTH2Dbins_E_cal_Plots, Momentum_lboundary, Momentum_uboundary, numTH2Dbins_E_cal_Plots, 0, beamE * 1.35);
-    string hEcal_vs_P_e_1p_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_Mom_1p_Directory"];
+    std::string hEcal_vs_P_e_1p_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_Mom_1p_Directory"];
 
     TH2D *hEcal_vs_P_p_1p = new TH2D("E_{cal} vs. P_{p} (All Int., 1p)", "E_{cal} vs. P_{p} (All Int., 1p);P_{p} [GeV/c];E_{cal} [GeV];",
                                      numTH2Dbins_E_cal_Plots, P_nucFD_lboundary, P_nucFD_uboundary, numTH2Dbins_E_cal_Plots, 0, beamE * 1.35);
     TH2D *hEcal_vs_P_p_test_1p = new TH2D("E_{cal} vs. P_{p} for E_{cal}>E_{beam} (All Int., 1p)",
                                           "E_{cal} vs. P_{p} for E_{cal}>E_{beam} (All Int., 1p);P_{p} [GeV/c];E_{cal} [GeV];",
                                           numTH2Dbins_E_cal_Plots, P_nucFD_lboundary, P_nucFD_uboundary, numTH2Dbins_E_cal_Plots, 0, beamE * 1.35);
-    string hEcal_vs_P_p_1p_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_Mom_1p_Directory"];
+    std::string hEcal_vs_P_p_1p_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_Mom_1p_Directory"];
     //</editor-fold>`
 
     //<editor-fold desc="Ecal vs. angles (1p)">
@@ -3049,8 +3049,8 @@ public:
     TH2D *hEcal_vs_Phi_e_test_1p = new TH2D("E_{cal} vs. #phi_{e} for E_{cal}>E_{beam} (All Int., 1p)",
                                             "E_{cal} vs. #phi_{e} for E_{cal}>E_{beam} (All Int., 1p);#phi_{e} [Deg];E_{cal} [GeV];",
                                             numTH2Dbins_E_cal_Plots, Phi_lboundary, Phi_uboundary, numTH2Dbins_E_cal_Plots, 0, beamE * 1.35);
-    string hEcal_vs_Theta_e_1p_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_Ang_1p_Directory"];
-    string hEcal_vs_Phi_e_1p_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_Ang_1p_Directory"];
+    std::string hEcal_vs_Theta_e_1p_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_Ang_1p_Directory"];
+    std::string hEcal_vs_Phi_e_1p_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_Ang_1p_Directory"];
 
     TH2D *hEcal_vs_Theta_p_1p = new TH2D("E_{cal} vs. #theta_{p} (All Int., 1p)",
                                          "E_{cal} vs. #theta_{p} (All Int., 1p);#theta_{p} [Deg];E_{cal} [GeV];",
@@ -3064,22 +3064,22 @@ public:
     TH2D *hEcal_vs_Phi_p_test_1p = new TH2D("E_{cal} vs. #phi_{p} for E_{cal}>E_{beam} (All Int., 1p)",
                                             "E_{cal} vs. #phi_{p} for E_{cal}>E_{beam} (All Int., 1p);#phi_{p} [Deg];E_{cal} [GeV];",
                                             numTH2Dbins_E_cal_Plots, Phi_lboundary, Phi_uboundary, numTH2Dbins_E_cal_Plots, 0, beamE * 1.35);
-    string hEcal_vs_Theta_p_1p_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_Ang_1p_Directory"];
-    string hEcal_vs_Phi_p_1p_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_Ang_1p_Directory"];
+    std::string hEcal_vs_Theta_p_1p_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_Ang_1p_Directory"];
+    std::string hEcal_vs_Phi_p_1p_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_Ang_1p_Directory"];
     //</editor-fold>
 
     //<editor-fold desc="Ecal vs. dAlpha_T (1p)">
     TH2D *hEcal_vs_dAlpha_T_1p = new TH2D("E_{cal} vs. #delta#alpha_{T} (All Int., 1p)",
                                           "E_{cal} vs. #delta#alpha_{T} (All Int., 1p);#delta#alpha_{T} [Deg];E_{cal} [GeV];",
                                           numTH2Dbins_E_cal_Plots, 0, 180, numTH2Dbins_E_cal_Plots, 0, beamE * 1.35);
-    string hEcal_vs_dAlpha_T_1p_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_TKI_1p_Directory"];
+    std::string hEcal_vs_dAlpha_T_1p_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_TKI_1p_Directory"];
     //</editor-fold>`
 
     //<editor-fold desc="Ecal vs. dP_T (1p)">
     TH2D *hEcal_vs_dP_T_1p = new TH2D("E_{cal} vs. #deltaP_{T} (All Int., 1p)",
                                       "E_{cal} vs. #deltaP_{T} (All Int., 1p);#deltaP_{T} [GeV/c];E_{cal} [GeV];",
                                       numTH2Dbins_E_cal_Plots, 0, dP_T_boundary, numTH2Dbins_E_cal_Plots, 0, beamE * 1.35);
-    string hEcal_vs_dP_T_1p_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_TKI_1p_Directory"];
+    std::string hEcal_vs_dP_T_1p_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_TKI_1p_Directory"];
     //</editor-fold>
 
     //</editor-fold>
@@ -3088,7 +3088,7 @@ public:
 
     //<editor-fold desc="Ecal plots (1n)">
     THStack *sEcal_1n = new THStack("E_{cal} Reconstruction (1n)", "E_{cal} Reconstruction (1n);E_{cal} = E_{e} + T_{n} [GeV]");
-    string sEcal_1n_Dir = directories.Ecal_Directory_map["Ecal_stack_1n_Directory"];
+    std::string sEcal_1n_Dir = directories.Ecal_Directory_map["Ecal_stack_1n_Directory"];
 
     TH1D *hEcal_All_Int_1n = new TH1D("E_{cal} reco. (All Int., 1n)", "E_{cal} Reconstruction (All Int., 1n);E_{cal} = E_{e} + T_{n} [GeV]",
                                       numTH1Dbins_E_cal_Plots, 0, beamE * 1.35);
@@ -3100,11 +3100,11 @@ public:
                                   numTH1Dbins_E_cal_Plots, 0, beamE * 1.35);
     TH1D *hEcal_DIS_1n = new TH1D("E_{cal} reco. (DIS only, 1n)", "E_{cal} Reconstruction (DIS only, 1n);E_{cal} = E_{e} + T_{n} [GeV]",
                                   numTH1Dbins_E_cal_Plots, 0, beamE * 1.35);
-    string hEcal_All_Int_1n_Dir = directories.Ecal_Directory_map["Ecal_All_Int_1n_Directory"];
-    string hEcal_QEL_1n_Dir = directories.Ecal_Directory_map["Ecal_QEL_1n_Directory"];
-    string hEcal_MEC_1n_Dir = directories.Ecal_Directory_map["Ecal_MEC_1n_Directory"];
-    string hEcal_RES_1n_Dir = directories.Ecal_Directory_map["Ecal_RES_1n_Directory"];
-    string hEcal_DIS_1n_Dir = directories.Ecal_Directory_map["Ecal_DIS_1n_Directory"];
+    std::string hEcal_All_Int_1n_Dir = directories.Ecal_Directory_map["Ecal_All_Int_1n_Directory"];
+    std::string hEcal_QEL_1n_Dir = directories.Ecal_Directory_map["Ecal_QEL_1n_Directory"];
+    std::string hEcal_MEC_1n_Dir = directories.Ecal_Directory_map["Ecal_MEC_1n_Directory"];
+    std::string hEcal_RES_1n_Dir = directories.Ecal_Directory_map["Ecal_RES_1n_Directory"];
+    std::string hEcal_DIS_1n_Dir = directories.Ecal_Directory_map["Ecal_DIS_1n_Directory"];
     //</editor-fold>
 
     //<editor-fold desc="Ecal vs. momentum (1n)">
@@ -3113,14 +3113,14 @@ public:
     TH2D *hEcal_vs_P_e_test_1n = new TH2D("E_{cal} vs. P_{e} for E_{cal}>E_{beam} (All Int., 1n)",
                                           "E_{cal} vs. P_{e} for E_{cal}>E_{beam} (All Int., 1n);P_{e} [GeV/c];E_{cal} [GeV];",
                                           numTH2Dbins_E_cal_Plots, Momentum_lboundary, Momentum_uboundary, numTH2Dbins_E_cal_Plots, 0, beamE * 1.35);
-    string hEcal_vs_P_e_1n_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_Mom_1n_Directory"];
+    std::string hEcal_vs_P_e_1n_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_Mom_1n_Directory"];
 
     TH2D *hEcal_vs_P_n_1n = new TH2D("E_{cal} vs. P_{n} (All Int., 1n)", "E_{cal} vs. P_{n} (All Int., 1n);P_{n} [GeV/c];E_{cal} [GeV];",
                                      numTH2Dbins_E_cal_Plots, P_nucFD_lboundary, P_nucFD_uboundary, numTH2Dbins_E_cal_Plots, 0, beamE * 1.35);
     TH2D *hEcal_vs_P_n_test_1n = new TH2D("E_{cal} vs. P_{n} for E_{cal}>E_{beam} (All Int., 1n)",
                                           "E_{cal} vs. P_{n} for E_{cal}>E_{beam} (All Int., 1n);P_{n} [GeV/c];E_{cal} [GeV];",
                                           numTH2Dbins_E_cal_Plots, P_nucFD_lboundary, P_nucFD_uboundary, numTH2Dbins_E_cal_Plots, 0, beamE * 1.35);
-    string hEcal_vs_P_n_1n_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_Mom_1n_Directory"];
+    std::string hEcal_vs_P_n_1n_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_Mom_1n_Directory"];
     //</editor-fold>`
 
     //<editor-fold desc="Ecal vs. angles (1n)">
@@ -3136,8 +3136,8 @@ public:
     TH2D *hEcal_vs_Phi_e_test_1n = new TH2D("E_{cal} vs. #phi_{e} for E_{cal}>E_{beam} (All Int., 1n)",
                                             "E_{cal} vs. #phi_{e} for E_{cal}>E_{beam} (All Int., 1n);#phi_{e} [Deg];E_{cal} [GeV];",
                                             numTH2Dbins_E_cal_Plots, Phi_lboundary, Phi_uboundary, numTH2Dbins_E_cal_Plots, 0, beamE * 1.35);
-    string hEcal_vs_Theta_e_1n_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_Ang_1n_Directory"];
-    string hEcal_vs_Phi_e_1n_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_Ang_1n_Directory"];
+    std::string hEcal_vs_Theta_e_1n_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_Ang_1n_Directory"];
+    std::string hEcal_vs_Phi_e_1n_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_Ang_1n_Directory"];
 
     TH2D *hEcal_vs_Theta_n_1n = new TH2D("E_{cal} vs. #theta_{n} (All Int., 1n)",
                                          "E_{cal} vs. #theta_{n} (All Int., 1n);#theta_{n} [Deg];E_{cal} [GeV];",
@@ -3151,22 +3151,22 @@ public:
     TH2D *hEcal_vs_Phi_n_test_1n = new TH2D("E_{cal} vs. #phi_{n} for E_{cal}>E_{beam} (All Int., 1n)",
                                             "E_{cal} vs. #phi_{n} for E_{cal}>E_{beam} (All Int., 1n);#phi_{n} [Deg];E_{cal} [GeV];",
                                             numTH2Dbins_E_cal_Plots, Phi_lboundary, Phi_uboundary, numTH2Dbins_E_cal_Plots, 0, beamE * 1.35);
-    string hEcal_vs_Theta_n_1n_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_Ang_1n_Directory"];
-    string hEcal_vs_Phi_n_1n_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_Ang_1n_Directory"];
+    std::string hEcal_vs_Theta_n_1n_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_Ang_1n_Directory"];
+    std::string hEcal_vs_Phi_n_1n_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_Ang_1n_Directory"];
     //</editor-fold>
 
     //<editor-fold desc="Ecal vs. dAlpha_T (1n)">
     TH2D *hEcal_vs_dAlpha_T_1n = new TH2D("E_{cal} vs. #delta#alpha_{T} (All Int., 1n)",
                                           "E_{cal} vs. #delta#alpha_{T} (All Int., 1n);#delta#alpha_{T} [Deg];E_{cal} [GeV];",
                                           numTH2Dbins_E_cal_Plots, 0, 180, numTH2Dbins_E_cal_Plots, 0, beamE * 1.35);
-    string hEcal_vs_dAlpha_T_1n_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_TKI_1n_Directory"];
+    std::string hEcal_vs_dAlpha_T_1n_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_TKI_1n_Directory"];
     //</editor-fold>`
 
     //<editor-fold desc="Ecal vs. dP_T (1n)">
     TH2D *hEcal_vs_dP_T_1n = new TH2D("E_{cal} vs. #deltaP_{T} (All Int., 1n)",
                                       "E_{cal} vs. #deltaP_{T} (All Int., 1n);#deltaP_{T} [GeV/c];E_{cal} [GeV];",
                                       numTH2Dbins_E_cal_Plots, 0, dP_T_boundary, numTH2Dbins_E_cal_Plots, 0, beamE * 1.35);
-    string hEcal_vs_dP_T_1n_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_TKI_1n_Directory"];
+    std::string hEcal_vs_dP_T_1n_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_TKI_1n_Directory"];
     //</editor-fold>
 
     //</editor-fold>
@@ -3175,7 +3175,7 @@ public:
 
     //<editor-fold desc="Ecal plots (2p)">
     THStack *sEcal_2p = new THStack("E_{cal} Reconstruction (2p)", "E_{cal} Reconstruction (2p);E_{cal} = E_{e} + T_{p_{1}} + T_{p_{2}} [GeV]");
-    string sEcal_2p_Dir = directories.Ecal_Directory_map["Ecal_stack_2p_Directory"];
+    std::string sEcal_2p_Dir = directories.Ecal_Directory_map["Ecal_stack_2p_Directory"];
 
     TH1D *hEcal_All_Int_2p = new TH1D("E_{cal} reco. (All Int., 2p)", "E_{cal} Reconstruction (All Int., 2p);E_{cal} = E_{e} + T_{p_{1}} + T_{p_{2}} [GeV]",
                                       numTH1Dbins_E_cal_Plots, 0, beamE * 1.35);
@@ -3187,11 +3187,11 @@ public:
                                   numTH1Dbins_E_cal_Plots, 0, beamE * 1.35);
     TH1D *hEcal_DIS_2p = new TH1D("E_{cal} reco. (DIS only, 2p)", "E_{cal} Reconstruction (DIS only, 2p);E_{cal} = E_{e} + T_{p_{1}} + T_{p_{2}} [GeV]",
                                   numTH1Dbins_E_cal_Plots, 0, beamE * 1.35);
-    string hEcal_All_Int_2p_Dir = directories.Ecal_Directory_map["Ecal_All_Int_2p_Directory"];
-    string hEcal_QEL_2p_Dir = directories.Ecal_Directory_map["Ecal_QEL_2p_Directory"];
-    string hEcal_MEC_2p_Dir = directories.Ecal_Directory_map["Ecal_MEC_2p_Directory"];
-    string hEcal_RES_2p_Dir = directories.Ecal_Directory_map["Ecal_RES_2p_Directory"];
-    string hEcal_DIS_2p_Dir = directories.Ecal_Directory_map["Ecal_DIS_2p_Directory"];
+    std::string hEcal_All_Int_2p_Dir = directories.Ecal_Directory_map["Ecal_All_Int_2p_Directory"];
+    std::string hEcal_QEL_2p_Dir = directories.Ecal_Directory_map["Ecal_QEL_2p_Directory"];
+    std::string hEcal_MEC_2p_Dir = directories.Ecal_Directory_map["Ecal_MEC_2p_Directory"];
+    std::string hEcal_RES_2p_Dir = directories.Ecal_Directory_map["Ecal_RES_2p_Directory"];
+    std::string hEcal_DIS_2p_Dir = directories.Ecal_Directory_map["Ecal_DIS_2p_Directory"];
     //</editor-fold>
 
     //<editor-fold desc="Ecal vs. dAlpha_T (2p)">
@@ -3201,8 +3201,8 @@ public:
     TH2D *hEcal_vs_dAlpha_T_tot_2p = new TH2D("E_{cal} vs. #delta#alpha_{T,tot} (All Int., 2p)",
                                               "E_{cal} vs. #delta#alpha_{T,tot} (All Int., 2p);#delta#alpha_{T,tot} [Deg];E_{cal} [GeV];",
                                               numTH2Dbins_E_cal_Plots, 0, 180, numTH2Dbins_E_cal_Plots, 0, beamE * 1.35);
-    string hEcal_vs_dAlpha_T_L_2p_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_TKI_2p_Directory"];
-    string hEcal_vs_dAlpha_T_tot_2p_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_TKI_2p_Directory"];
+    std::string hEcal_vs_dAlpha_T_L_2p_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_TKI_2p_Directory"];
+    std::string hEcal_vs_dAlpha_T_tot_2p_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_TKI_2p_Directory"];
     //</editor-fold>`
 
     //<editor-fold desc="Ecal vs. dP_T (2p)">
@@ -3212,8 +3212,8 @@ public:
     TH2D *hEcal_vs_dP_T_tot_2p = new TH2D("E_{cal} vs. #deltaP_{T,tot} (All Int., 2p)",
                                           "E_{cal} vs. #deltaP_{T,tot} (All Int., 2p);#deltaP_{T,tot} [GeV/c];E_{cal} [GeV];",
                                           numTH2Dbins_E_cal_Plots, 0, dP_T_boundary, numTH2Dbins_E_cal_Plots, 0, beamE * 1.35);
-    string hEcal_vs_dP_T_L_2p_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_TKI_2p_Directory"];
-    string hEcal_vs_dP_T_tot_2p_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_TKI_2p_Directory"];
+    std::string hEcal_vs_dP_T_L_2p_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_TKI_2p_Directory"];
+    std::string hEcal_vs_dP_T_tot_2p_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_TKI_2p_Directory"];
     //</editor-fold>
 
     //</editor-fold>
@@ -3222,7 +3222,7 @@ public:
 
     //<editor-fold desc="Ecal plots (pFDpCD)">
     THStack *sEcal_pFDpCD = new THStack("E_{cal} Reconstruction (pFDpCD)", "E_{cal} Reconstruction (pFDpCD);E_{cal} = E_{e} + T_{pFD} + T_{pCD} [GeV]");
-    string sEcal_pFDpCD_Dir = directories.Ecal_Directory_map["Ecal_stack_pFDpCD_Directory"];
+    std::string sEcal_pFDpCD_Dir = directories.Ecal_Directory_map["Ecal_stack_pFDpCD_Directory"];
 
     TH1D *hEcal_All_Int_pFDpCD = new TH1D("E_{cal} reco. (All Int., pFDpCD)", "E_{cal} Reconstruction (All Int., pFDpCD);E_{cal} = E_{e} + T_{pFD} + T_{pCD} [GeV]",
                                           numTH1Dbins_E_cal_Plots, 0, beamE * 1.35);
@@ -3234,11 +3234,11 @@ public:
                                       numTH1Dbins_E_cal_Plots, 0, beamE * 1.35);
     TH1D *hEcal_DIS_pFDpCD = new TH1D("E_{cal} reco. (DIS only, pFDpCD)", "E_{cal} Reconstruction (DIS only, pFDpCD);E_{cal} = E_{e} + T_{pFD} + T_{pCD} [GeV]",
                                       numTH1Dbins_E_cal_Plots, 0, beamE * 1.35);
-    string hEcal_All_Int_pFDpCD_Dir = directories.Ecal_Directory_map["Ecal_All_Int_pFDpCD_Directory"];
-    string hEcal_QEL_pFDpCD_Dir = directories.Ecal_Directory_map["Ecal_QEL_pFDpCD_Directory"];
-    string hEcal_MEC_pFDpCD_Dir = directories.Ecal_Directory_map["Ecal_MEC_pFDpCD_Directory"];
-    string hEcal_RES_pFDpCD_Dir = directories.Ecal_Directory_map["Ecal_RES_pFDpCD_Directory"];
-    string hEcal_DIS_pFDpCD_Dir = directories.Ecal_Directory_map["Ecal_DIS_pFDpCD_Directory"];
+    std::string hEcal_All_Int_pFDpCD_Dir = directories.Ecal_Directory_map["Ecal_All_Int_pFDpCD_Directory"];
+    std::string hEcal_QEL_pFDpCD_Dir = directories.Ecal_Directory_map["Ecal_QEL_pFDpCD_Directory"];
+    std::string hEcal_MEC_pFDpCD_Dir = directories.Ecal_Directory_map["Ecal_MEC_pFDpCD_Directory"];
+    std::string hEcal_RES_pFDpCD_Dir = directories.Ecal_Directory_map["Ecal_RES_pFDpCD_Directory"];
+    std::string hEcal_DIS_pFDpCD_Dir = directories.Ecal_Directory_map["Ecal_DIS_pFDpCD_Directory"];
     //</editor-fold>
 
     //<editor-fold desc="Ecal vs. momentum (pFDpCD)">
@@ -3247,7 +3247,7 @@ public:
     TH2D *hEcal_vs_P_e_test_pFDpCD = new TH2D("E_{cal} vs. P_{e} for E_{cal}>E_{beam} (All Int., pFDpCD)",
                                               "E_{cal} vs. P_{e} for E_{cal}>E_{beam} (All Int., pFDpCD);P_{e} [GeV/c];E_{cal} [GeV];",
                                               numTH2Dbins_E_cal_Plots, Momentum_lboundary, Momentum_uboundary, numTH2Dbins_E_cal_Plots, 0, beamE * 1.35);
-    string hEcal_vs_P_e_pFDpCD_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_Mom_pFDpCD_Directory"];
+    std::string hEcal_vs_P_e_pFDpCD_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_Mom_pFDpCD_Directory"];
 
     TH2D *hEcal_vs_P_pFD_pFDpCD = new TH2D("E_{cal} vs. P_{pFD} (All Int., pFDpCD)", "E_{cal} vs. P_{pFD} (All Int., pFDpCD);P_{pFD} [GeV/c];E_{cal} [GeV];",
                                            numTH2Dbins_E_cal_Plots, P_nucFD_lboundary, P_nucFD_uboundary, numTH2Dbins_E_cal_Plots, 0, beamE * 1.35);
@@ -3259,8 +3259,8 @@ public:
     TH2D *hEcal_vs_P_pCD_test_pFDpCD = new TH2D("E_{cal} vs. P_{pCD} for E_{cal}>E_{beam} (All Int., pFDpCD)",
                                                 "E_{cal} vs. P_{pCD} for E_{cal}>E_{beam} (All Int., pFDpCD);P_{pCD} [GeV/c];E_{cal} [GeV];",
                                                 numTH2Dbins_E_cal_Plots, P_nucCD_lboundary, P_nucCD_uboundary, numTH2Dbins_E_cal_Plots, 0, beamE * 1.35);
-    string hEcal_vs_P_pFD_pFDpCD_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_Mom_pFDpCD_Directory"];
-    string hEcal_vs_P_pCD_pFDpCD_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_Mom_pFDpCD_Directory"];
+    std::string hEcal_vs_P_pFD_pFDpCD_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_Mom_pFDpCD_Directory"];
+    std::string hEcal_vs_P_pCD_pFDpCD_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_Mom_pFDpCD_Directory"];
     //</editor-fold>`
 
     //<editor-fold desc="Ecal vs. angles (pFDpCD)">
@@ -3276,8 +3276,8 @@ public:
     TH2D *hEcal_vs_Phi_e_test_pFDpCD = new TH2D("E_{cal} vs. #phi_{e} for E_{cal}>E_{beam} (All Int., pFDpCD)",
                                                 "E_{cal} vs. #phi_{e} for E_{cal}>E_{beam} (All Int., pFDpCD);#phi_{e} [Deg];E_{cal} [GeV];",
                                                 numTH2Dbins_E_cal_Plots, Phi_lboundary, Phi_uboundary, numTH2Dbins_E_cal_Plots, 0, beamE * 1.35);
-    string hEcal_vs_Theta_e_pFDpCD_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_Ang_pFDpCD_Directory"];
-    string hEcal_vs_Phi_e_pFDpCD_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_Ang_pFDpCD_Directory"];
+    std::string hEcal_vs_Theta_e_pFDpCD_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_Ang_pFDpCD_Directory"];
+    std::string hEcal_vs_Phi_e_pFDpCD_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_Ang_pFDpCD_Directory"];
 
     TH2D *hEcal_vs_Theta_pFD_pFDpCD = new TH2D("E_{cal} vs. #theta_{pFD} (All Int., pFDpCD)",
                                                "E_{cal} vs. #theta_{pFD} (All Int., pFDpCD);#theta_{pFD} [Deg];E_{cal} [GeV];",
@@ -3291,8 +3291,8 @@ public:
     TH2D *hEcal_vs_Phi_pFD_test_pFDpCD = new TH2D("E_{cal} vs. #phi_{pFD} for E_{cal}>E_{beam} (All Int., pFDpCD)",
                                                   "E_{cal} vs. #phi_{pFD} for E_{cal}>E_{beam} (All Int., pFDpCD);#phi_{pFD} [Deg];E_{cal} [GeV];",
                                                   numTH2Dbins_E_cal_Plots, Phi_lboundary, Phi_uboundary, numTH2Dbins_E_cal_Plots, 0, beamE * 1.35);
-    string hEcal_vs_Theta_pFD_pFDpCD_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_Ang_pFDpCD_Directory"];
-    string hEcal_vs_Phi_pFD_pFDpCD_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_Ang_pFDpCD_Directory"];
+    std::string hEcal_vs_Theta_pFD_pFDpCD_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_Ang_pFDpCD_Directory"];
+    std::string hEcal_vs_Phi_pFD_pFDpCD_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_Ang_pFDpCD_Directory"];
 
     TH2D *hEcal_vs_Theta_pCD_pFDpCD = new TH2D("E_{cal} vs. #theta_{pCD} (All Int., pFDpCD)",
                                                "E_{cal} vs. #theta_{pCD} (All Int., pFDpCD);#theta_{pCD} [Deg];E_{cal} [GeV];",
@@ -3306,8 +3306,8 @@ public:
     TH2D *hEcal_vs_Phi_pCD_test_pFDpCD = new TH2D("E_{cal} vs. #phi_{pCD} for E_{cal}>E_{beam} (All Int., pFDpCD)",
                                                   "E_{cal} vs. #phi_{pCD} for E_{cal}>E_{beam} (All Int., pFDpCD);#phi_{pCD} [Deg];E_{cal} [GeV];",
                                                   numTH2Dbins_E_cal_Plots, Phi_lboundary, Phi_uboundary, numTH2Dbins_E_cal_Plots, 0, beamE * 1.35);
-    string hEcal_vs_Theta_pCD_pFDpCD_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_Ang_pFDpCD_Directory"];
-    string hEcal_vs_Phi_pCD_pFDpCD_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_Ang_pFDpCD_Directory"];
+    std::string hEcal_vs_Theta_pCD_pFDpCD_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_Ang_pFDpCD_Directory"];
+    std::string hEcal_vs_Phi_pCD_pFDpCD_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_Ang_pFDpCD_Directory"];
     //</editor-fold>
 
     //<editor-fold desc="Ecal vs. dAlpha_T (pFDpCD)">
@@ -3317,8 +3317,8 @@ public:
     TH2D *hEcal_vs_dAlpha_T_tot_pFDpCD = new TH2D("E_{cal} vs. #delta#alpha_{T,tot} (All Int., pFDpCD)",
                                                   "E_{cal} vs. #delta#alpha_{T,tot} (All Int., pFDpCD);#delta#alpha_{T,tot} [Deg];E_{cal} [GeV];",
                                                   numTH2Dbins_E_cal_Plots, 0, 180, numTH2Dbins_E_cal_Plots, 0, beamE * 1.35);
-    string hEcal_vs_dAlpha_T_L_pFDpCD_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_TKI_pFDpCD_Directory"];
-    string hEcal_vs_dAlpha_T_tot_pFDpCD_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_TKI_pFDpCD_Directory"];
+    std::string hEcal_vs_dAlpha_T_L_pFDpCD_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_TKI_pFDpCD_Directory"];
+    std::string hEcal_vs_dAlpha_T_tot_pFDpCD_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_TKI_pFDpCD_Directory"];
     //</editor-fold>`
 
     //<editor-fold desc="Ecal vs. dP_T (pFDpCD)">
@@ -3328,15 +3328,15 @@ public:
     TH2D *hEcal_vs_dP_T_tot_pFDpCD = new TH2D("E_{cal} vs. #deltaP_{T,tot} (All Int., pFDpCD)",
                                               "E_{cal} vs. #deltaP_{T,tot} (All Int., pFDpCD);#deltaP_{T,tot} [GeV];E_{cal} [GeV];",
                                               numTH2Dbins_E_cal_Plots, 0, dP_T_boundary, numTH2Dbins_E_cal_Plots, 0, beamE * 1.35);
-    string hEcal_vs_dP_T_L_pFDpCD_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_TKI_pFDpCD_Directory"];
-    string hEcal_vs_dP_T_tot_pFDpCD_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_TKI_pFDpCD_Directory"];
+    std::string hEcal_vs_dP_T_L_pFDpCD_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_TKI_pFDpCD_Directory"];
+    std::string hEcal_vs_dP_T_tot_pFDpCD_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_TKI_pFDpCD_Directory"];
     //</editor-fold>
 
     //<editor-fold desc="Ecal vs. W (pFDpCD)">
     TH2D *hEcal_vs_W_pFDpCD = new TH2D("E_{cal} vs. W (All Int., pFDpCD)",
                                        "E_{cal} vs. W (All Int., pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV];E_{cal} = E_{e} + T_{pFD} + T_{pCD} [GeV];",
                                        numTH2Dbins_E_cal_Plots, W_lboundary, W_uboundary, numTH2Dbins_E_cal_Plots, 0, beamE * 1.35);
-    string hEcal_vs_W_pFDpCD_Dir = directories.Ecal_Directory_map["Ecal_stack_pFDpCD_Directory"];
+    std::string hEcal_vs_W_pFDpCD_Dir = directories.Ecal_Directory_map["Ecal_stack_pFDpCD_Directory"];
     //</editor-fold>
 
     //</editor-fold>
@@ -3345,7 +3345,7 @@ public:
 
     //<editor-fold desc="Ecal plots (nFDpCD)">
     THStack *sEcal_nFDpCD = new THStack("E_{cal} Reconstruction (nFDpCD)", "E_{cal} Reconstruction (nFDpCD);E_{cal} = E_{e} + T_{nFD} + T_{pCD} [GeV]");
-    string sEcal_nFDpCD_Dir = directories.Ecal_Directory_map["Ecal_stack_nFDpCD_Directory"];
+    std::string sEcal_nFDpCD_Dir = directories.Ecal_Directory_map["Ecal_stack_nFDpCD_Directory"];
 
     TH1D *hEcal_All_Int_nFDpCD = new TH1D("E_{cal} reco. (All Int., nFDpCD)", "E_{cal} Reconstruction (All Int., nFDpCD);E_{cal} = E_{e} + T_{nFD} + T_{pCD} [GeV]",
                                           numTH1Dbins_E_cal_Plots, 0, beamE * 1.35);
@@ -3357,11 +3357,11 @@ public:
                                       numTH1Dbins_E_cal_Plots, 0, beamE * 1.35);
     TH1D *hEcal_DIS_nFDpCD = new TH1D("E_{cal} reco. (DIS only, nFDpCD)", "E_{cal} Reconstruction (DIS only, nFDpCD);E_{cal} = E_{e} + T_{nFD} + T_{pCD} [GeV]",
                                       numTH1Dbins_E_cal_Plots, 0, beamE * 1.35);
-    string hEcal_All_Int_nFDpCD_Dir = directories.Ecal_Directory_map["Ecal_All_Int_nFDpCD_Directory"];
-    string hEcal_QEL_nFDpCD_Dir = directories.Ecal_Directory_map["Ecal_QEL_nFDpCD_Directory"];
-    string hEcal_MEC_nFDpCD_Dir = directories.Ecal_Directory_map["Ecal_MEC_nFDpCD_Directory"];
-    string hEcal_RES_nFDpCD_Dir = directories.Ecal_Directory_map["Ecal_RES_nFDpCD_Directory"];
-    string hEcal_DIS_nFDpCD_Dir = directories.Ecal_Directory_map["Ecal_DIS_nFDpCD_Directory"];
+    std::string hEcal_All_Int_nFDpCD_Dir = directories.Ecal_Directory_map["Ecal_All_Int_nFDpCD_Directory"];
+    std::string hEcal_QEL_nFDpCD_Dir = directories.Ecal_Directory_map["Ecal_QEL_nFDpCD_Directory"];
+    std::string hEcal_MEC_nFDpCD_Dir = directories.Ecal_Directory_map["Ecal_MEC_nFDpCD_Directory"];
+    std::string hEcal_RES_nFDpCD_Dir = directories.Ecal_Directory_map["Ecal_RES_nFDpCD_Directory"];
+    std::string hEcal_DIS_nFDpCD_Dir = directories.Ecal_Directory_map["Ecal_DIS_nFDpCD_Directory"];
     //</editor-fold>
 
     //<editor-fold desc="Ecal vs. momentum (nFDpCD)">
@@ -3370,7 +3370,7 @@ public:
     TH2D *hEcal_vs_P_e_test_nFDpCD = new TH2D("E_{cal} vs. P_{e} for E_{cal}>E_{beam} (All Int., nFDpCD)",
                                               "E_{cal} vs. P_{e} for E_{cal}>E_{beam} (All Int., nFDpCD);P_{e} [GeV/c];E_{cal} [GeV];",
                                               numTH2Dbins_E_cal_Plots, Momentum_lboundary, Momentum_uboundary, numTH2Dbins_E_cal_Plots, 0, beamE * 1.35);
-    string hEcal_vs_P_e_nFDpCD_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_Mom_nFDpCD_Directory"];
+    std::string hEcal_vs_P_e_nFDpCD_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_Mom_nFDpCD_Directory"];
 
     TH2D *hEcal_vs_P_nFD_nFDpCD = new TH2D("E_{cal} vs. P_{nFD} (All Int., nFDpCD)", "E_{cal} vs. P_{nFD} (All Int., nFDpCD);P_{nFD} [GeV/c];E_{cal} [GeV];",
                                            numTH2Dbins_E_cal_Plots, P_nucFD_lboundary, P_nucFD_uboundary, numTH2Dbins_E_cal_Plots, 0, beamE * 1.35);
@@ -3382,8 +3382,8 @@ public:
     TH2D *hEcal_vs_P_pCD_test_nFDpCD = new TH2D("E_{cal} vs. P_{pCD} for E_{cal}>E_{beam} (All Int., nFDpCD)",
                                                 "E_{cal} vs. P_{pCD} for E_{cal}>E_{beam} (All Int., nFDpCD);P_{pCD} [GeV/c];E_{cal} [GeV];",
                                                 numTH2Dbins_E_cal_Plots, P_nucCD_lboundary, P_nucCD_uboundary, numTH2Dbins_E_cal_Plots, 0, beamE * 1.35);
-    string hEcal_vs_P_nFD_nFDpCD_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_Mom_nFDpCD_Directory"];
-    string hEcal_vs_P_pCD_nFDpCD_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_Mom_nFDpCD_Directory"];
+    std::string hEcal_vs_P_nFD_nFDpCD_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_Mom_nFDpCD_Directory"];
+    std::string hEcal_vs_P_pCD_nFDpCD_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_Mom_nFDpCD_Directory"];
     //</editor-fold>`
 
     //<editor-fold desc="Ecal vs. angles (nFDpCD)">
@@ -3399,8 +3399,8 @@ public:
     TH2D *hEcal_vs_Phi_e_test_nFDpCD = new TH2D("E_{cal} vs. #phi_{e} for E_{cal}>E_{beam} (All Int., nFDpCD)",
                                                 "E_{cal} vs. #phi_{e} for E_{cal}>E_{beam} (All Int., nFDpCD);#phi_{e} [Deg];E_{cal} [GeV];",
                                                 numTH2Dbins_E_cal_Plots, Phi_lboundary, Phi_uboundary, numTH2Dbins_E_cal_Plots, 0, beamE * 1.35);
-    string hEcal_vs_Theta_e_nFDpCD_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_Ang_nFDpCD_Directory"];
-    string hEcal_vs_Phi_e_nFDpCD_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_Ang_nFDpCD_Directory"];
+    std::string hEcal_vs_Theta_e_nFDpCD_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_Ang_nFDpCD_Directory"];
+    std::string hEcal_vs_Phi_e_nFDpCD_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_Ang_nFDpCD_Directory"];
 
     TH2D *hEcal_vs_Theta_nFD_nFDpCD = new TH2D("E_{cal} vs. #theta_{nFD} (All Int., nFDpCD)",
                                                "E_{cal} vs. #theta_{nFD} (All Int., nFDpCD);#theta_{nFD} [Deg];E_{cal} [GeV];",
@@ -3414,8 +3414,8 @@ public:
     TH2D *hEcal_vs_Phi_nFD_test_nFDpCD = new TH2D("E_{cal} vs. #phi_{nFD} for E_{cal}>E_{beam} (All Int., nFDpCD)",
                                                   "E_{cal} vs. #phi_{nFD} for E_{cal}>E_{beam} (All Int., nFDpCD);#phi_{nFD} [Deg];E_{cal} [GeV];",
                                                   numTH2Dbins_E_cal_Plots, Phi_lboundary, Phi_uboundary, numTH2Dbins_E_cal_Plots, 0, beamE * 1.35);
-    string hEcal_vs_Theta_nFD_nFDpCD_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_Ang_nFDpCD_Directory"];
-    string hEcal_vs_Phi_nFD_nFDpCD_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_Ang_nFDpCD_Directory"];
+    std::string hEcal_vs_Theta_nFD_nFDpCD_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_Ang_nFDpCD_Directory"];
+    std::string hEcal_vs_Phi_nFD_nFDpCD_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_Ang_nFDpCD_Directory"];
 
     TH2D *hEcal_vs_Theta_pCD_nFDpCD = new TH2D("E_{cal} vs. #theta_{pCD} (All Int., nFDpCD)",
                                                "E_{cal} vs. #theta_{pCD} (All Int., nFDpCD);#theta_{pCD} [Deg];E_{cal} [GeV];",
@@ -3429,8 +3429,8 @@ public:
     TH2D *hEcal_vs_Phi_pCD_test_nFDpCD = new TH2D("E_{cal} vs. #phi_{pCD} for E_{cal}>E_{beam} (All Int., nFDpCD)",
                                                   "E_{cal} vs. #phi_{pCD} for E_{cal}>E_{beam} (All Int., nFDpCD);#phi_{pCD} [Deg];E_{cal} [GeV];",
                                                   numTH2Dbins_E_cal_Plots, Phi_lboundary, Phi_uboundary, numTH2Dbins_E_cal_Plots, 0, beamE * 1.35);
-    string hEcal_vs_Theta_pCD_nFDpCD_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_Ang_nFDpCD_Directory"];
-    string hEcal_vs_Phi_pCD_nFDpCD_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_Ang_nFDpCD_Directory"];
+    std::string hEcal_vs_Theta_pCD_nFDpCD_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_Ang_nFDpCD_Directory"];
+    std::string hEcal_vs_Phi_pCD_nFDpCD_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_Ang_nFDpCD_Directory"];
     //</editor-fold>
 
     //<editor-fold desc="Ecal vs. dAlpha_T (nFDpCD)">
@@ -3440,8 +3440,8 @@ public:
     TH2D *hEcal_vs_dAlpha_T_tot_nFDpCD = new TH2D("E_{cal} vs. #delta#alpha_{T,tot} (All Int., nFDpCD)",
                                                   "E_{cal} vs. #delta#alpha_{T,tot} (All Int., nFDpCD);#delta#alpha_{T,tot} [Deg];E_{cal} [GeV];",
                                                   numTH2Dbins_E_cal_Plots, 0, 180, numTH2Dbins_E_cal_Plots, 0, beamE * 1.35);
-    string hEcal_vs_dAlpha_T_L_nFDpCD_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_TKI_nFDpCD_Directory"];
-    string hEcal_vs_dAlpha_T_tot_nFDpCD_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_TKI_nFDpCD_Directory"];
+    std::string hEcal_vs_dAlpha_T_L_nFDpCD_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_TKI_nFDpCD_Directory"];
+    std::string hEcal_vs_dAlpha_T_tot_nFDpCD_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_TKI_nFDpCD_Directory"];
     //</editor-fold>`
 
     //<editor-fold desc="Ecal vs. dP_T (nFDpCD)">
@@ -3451,15 +3451,15 @@ public:
     TH2D *hEcal_vs_dP_T_tot_nFDpCD = new TH2D("E_{cal} vs. #deltaP_{T,tot} (All Int., nFDpCD)",
                                               "E_{cal} vs. #deltaP_{T,tot} (All Int., nFDpCD);#deltaP_{T,tot} [GeV];E_{cal} [GeV];",
                                               numTH2Dbins_E_cal_Plots, 0, dP_T_boundary, numTH2Dbins_E_cal_Plots, 0, beamE * 1.35);
-    string hEcal_vs_dP_T_L_nFDpCD_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_TKI_nFDpCD_Directory"];
-    string hEcal_vs_dP_T_tot_nFDpCD_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_TKI_nFDpCD_Directory"];
+    std::string hEcal_vs_dP_T_L_nFDpCD_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_TKI_nFDpCD_Directory"];
+    std::string hEcal_vs_dP_T_tot_nFDpCD_Dir = directories.Ecal_Directory_map["Ecal_rec_vs_TKI_nFDpCD_Directory"];
     //</editor-fold>
 
     //<editor-fold desc="Ecal vs. W (nFDpCD)">
     TH2D *hEcal_vs_W_nFDpCD = new TH2D("E_{cal} vs. W (All Int., nFDpCD)",
                                        "E_{cal} vs. W (All Int., nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV];E_{cal} = E_{e} + T_{nFD} + T_{pCD} [GeV];",
                                        numTH2Dbins_E_cal_Plots, W_lboundary, W_uboundary, numTH2Dbins_E_cal_Plots, 0, beamE * 1.35);
-    string hEcal_vs_W_nFDpCD_Dir = directories.Ecal_Directory_map["Ecal_stack_nFDpCD_Directory"];
+    std::string hEcal_vs_W_nFDpCD_Dir = directories.Ecal_Directory_map["Ecal_stack_nFDpCD_Directory"];
     //</editor-fold>
 
     //</editor-fold>
@@ -3476,44 +3476,44 @@ public:
     THStack *sdP_T_1p = new THStack("#deltaP_{T} vs. #deltaP_{T,tot} (1p)", "#deltaP_{T,L} vs. #deltaP_{T,tot} (1p);#deltaP_{T} [GeV/c]");
     TH1D *hdP_T_1p = new TH1D("#deltaP_{T} (1p)", "#deltaP_{T} histogram (1p);#deltaP_{T} = |#vec{p}_{T,e} + #vec{p}_{T,p}| [GeV/c]",
                               numTH1Dbins_TKI_dP_T_Plots, 0, dP_T_boundary);
-    string hdP_T_1p_Dir = directories.TKI_Directory_map["dP_T_1p_Directory"];
+    std::string hdP_T_1p_Dir = directories.TKI_Directory_map["dP_T_1p_Directory"];
 
     THStack *sdAlpha_T_1p = new THStack("#delta#alpha_{T} & #delta#alpha_{T,tot} (1p)", "#delta#alpha_{T,L} vs. #delta#alpha_{T,tot} (1p);#delta#alpha_{T} [Deg]");
     TH1D *hdAlpha_T_1p = new TH1D("#delta#alpha_{T} (1p)", "#delta#alpha_{T} histogram (1p);#delta#alpha_{T} [Deg]",
                                   numTH1Dbins_TKI_dAlpha_T_Plots, 0, 180);
-    string hdAlpha_T_1p_Dir = directories.TKI_Directory_map["dAlpha_T_1p_Directory"];
+    std::string hdAlpha_T_1p_Dir = directories.TKI_Directory_map["dAlpha_T_1p_Directory"];
 
     THStack *sdPhi_T_1p = new THStack("#delta#phi_{T} & #delta#phi_{T,tot} (1p)", "#delta#phi_{T,L} vs. #delta#phi_{T,tot} (1p);#delta#phi_{T} [Deg]");
     TH1D *hdPhi_T_1p = new TH1D("#delta#phi_{T} (1p)", "#delta#phi_{T} histogram (1p);#delta#phi_{T} [Deg]",
                                 numTH1Dbins_TKI_dP_T_Plots, 0, 180);
-    string hdPhi_T_1p_Dir = directories.TKI_Directory_map["dPhi_T_1p_Directory"];
+    std::string hdPhi_T_1p_Dir = directories.TKI_Directory_map["dPhi_T_1p_Directory"];
 
     TH2D *hdP_T_vs_dAlpha_T_1p = new TH2D("#deltaP_{T} vs. #delta#alpha_{T} (All Int., 1p)",
                                           "#deltaP_{T} vs. #delta#alpha_{T} (All Int., 1p);#delta#alpha_{T} [Deg];#deltaP_{T} [GeV/c];",
                                           numTH2Dbins_TKI_Plots, 0, 180, numTH2Dbins_TKI_Plots, 0, dP_T_boundary);
-    string hdP_T_vs_dAlpha_T_1p_Dir = directories.TKI_Directory_map["dP_T_vs_dAlpha_T_1p_Directory"];
+    std::string hdP_T_vs_dAlpha_T_1p_Dir = directories.TKI_Directory_map["dP_T_vs_dAlpha_T_1p_Directory"];
     //</editor-fold>
 
     //<editor-fold desc="TKI histograms (1n)">
     THStack *sdP_T_1n = new THStack("#deltaP_{T} vs. #deltaP_{T,tot} (1n)", "#deltaP_{T,L} vs. #deltaP_{T,tot} (1n);#deltaP_{T} [GeV/c]");
     TH1D *hdP_T_1n = new TH1D("#deltaP_{T} (1n)", "#deltaP_{T} histogram (1n);#deltaP_{T} = |#vec{p}_{T,e} + #vec{p}_{T,n}| [GeV/c]",
                               numTH1Dbins_TKI_dP_T_Plots, 0, dP_T_boundary);
-    string hdP_T_1n_Dir = directories.TKI_Directory_map["dP_T_1n_Directory"];
+    std::string hdP_T_1n_Dir = directories.TKI_Directory_map["dP_T_1n_Directory"];
 
     THStack *sdAlpha_T_1n = new THStack("#delta#alpha_{T} & #delta#alpha_{T,tot} (1n)", "#delta#alpha_{T,L} vs. #delta#alpha_{T,tot} (1n);#delta#alpha_{T} [Deg]");
     TH1D *hdAlpha_T_1n = new TH1D("#delta#alpha_{T} (1n)", "#delta#alpha_{T} histogram (1n);#delta#alpha_{T} [Deg]",
                                   numTH1Dbins_TKI_dAlpha_T_Plots, 0, 180);
-    string hdAlpha_T_1n_Dir = directories.TKI_Directory_map["dAlpha_T_1n_Directory"];
+    std::string hdAlpha_T_1n_Dir = directories.TKI_Directory_map["dAlpha_T_1n_Directory"];
 
     THStack *sdPhi_T_1n = new THStack("#delta#phi_{T} & #delta#phi_{T,tot} (1n)", "#delta#phi_{T,L} vs. #delta#phi_{T,tot} (1n);#delta#phi_{T} [Deg]");
     TH1D *hdPhi_T_1n = new TH1D("#delta#phi_{T} (1n)", "#delta#phi_{T} histogram (1n);#delta#phi_{T} [Deg]",
                                 numTH1Dbins_TKI_dP_T_Plots, 0, 180);
-    string hdPhi_T_1n_Dir = directories.TKI_Directory_map["dPhi_T_1n_Directory"];
+    std::string hdPhi_T_1n_Dir = directories.TKI_Directory_map["dPhi_T_1n_Directory"];
 
     TH2D *hdP_T_vs_dAlpha_T_1n = new TH2D("#deltaP_{T} vs. #delta#alpha_{T} (All Int., 1n)",
                                           "#deltaP_{T} vs. #delta#alpha_{T} (All Int., 1n);#delta#alpha_{T} [Deg];#deltaP_{T} [GeV/c];",
                                           numTH2Dbins_TKI_Plots, 0, 180, numTH2Dbins_TKI_Plots, 0, dP_T_boundary);
-    string hdP_T_vs_dAlpha_T_1n_Dir = directories.TKI_Directory_map["dP_T_vs_dAlpha_T_1n_Directory"];
+    std::string hdP_T_vs_dAlpha_T_1n_Dir = directories.TKI_Directory_map["dP_T_vs_dAlpha_T_1n_Directory"];
     //</editor-fold>
 
     //<editor-fold desc="TKI histograms (2p)">
@@ -3523,24 +3523,24 @@ public:
     TH1D *hdP_T_tot_2p = new TH1D("#deltaP_{T,tot} (2p)",
                                   "#deltaP_{T,tot} by Momentum Sum (2p);#deltaP_{T,tot} = |#vec{p}_{T,e} + #vec{p}_{T,1} + #vec{p}_{T,2}| [GeV/c]",
                                   numTH1Dbins_TKI_dP_T_Plots, 0, dP_T_boundary);
-    string hdP_T_L_2p_Dir = directories.TKI_Directory_map["dP_T_2p_Directory"];
-    string hdP_T_tot_2p_Dir = directories.TKI_Directory_map["dP_T_2p_Directory"];
+    std::string hdP_T_L_2p_Dir = directories.TKI_Directory_map["dP_T_2p_Directory"];
+    std::string hdP_T_tot_2p_Dir = directories.TKI_Directory_map["dP_T_2p_Directory"];
 
     THStack *sdAlpha_T_2p = new THStack("#delta#alpha_{T,L} & #delta#alpha_{T,tot} (2p)", "#delta#alpha_{T,L} vs. #delta#alpha_{T,tot} (2p);#delta#alpha_{T} [Deg]");
     TH1D *hdAlpha_T_L_2p = new TH1D("#delta#alpha_{T,L} (2p)", "#delta#alpha_{T,L} by Leading Proton (2p);#delta#alpha_{T,L} [Deg]",
                                     numTH1Dbins_TKI_dAlpha_T_Plots, 0, 180);
     TH1D *hdAlpha_T_tot_2p = new TH1D("#delta#alpha_{T,tot} (2p)", "#delta#alpha_{T,tot} by Momentum Sum (2p);#delta#alpha_{T,tot} [Deg]",
                                       numTH1Dbins_TKI_dAlpha_T_Plots, 0, 180);
-    string hdAlpha_T_L_2p_Dir = directories.TKI_Directory_map["dAlpha_T_2p_Directory"];
-    string hdAlpha_T_tot_2p_Dir = directories.TKI_Directory_map["dAlpha_T_2p_Directory"];
+    std::string hdAlpha_T_L_2p_Dir = directories.TKI_Directory_map["dAlpha_T_2p_Directory"];
+    std::string hdAlpha_T_tot_2p_Dir = directories.TKI_Directory_map["dAlpha_T_2p_Directory"];
 
     THStack *sdPhi_T_2p = new THStack("#delta#phi_{T,L} & #delta#phi_{T,tot} (2p)", "#delta#phi_{T,L} vs. #delta#phi_{T,tot} (2p);#delta#phi_{T} [Deg]");
     TH1D *hdPhi_T_L_2p = new TH1D("#delta#phi_{T,L} (2p)", "#delta#phi_{T,L} by Leading Proton (2p);#delta#phi_{T,L} [Deg]",
                                   numTH1Dbins_TKI_dP_T_Plots, 0, 180);
     TH1D *hdPhi_T_tot_2p = new TH1D("#delta#phi_{T,tot} (2p)", "#delta#phi_{T,tot} by Momentum Sum (2p);#delta#phi_{T,tot} [Deg]",
                                     numTH1Dbins_TKI_dP_T_Plots, 0, 180);
-    string hdPhi_T_L_2p_Dir = directories.TKI_Directory_map["dPhi_T_2p_Directory"];
-    string hdPhi_T_tot_2p_Dir = directories.TKI_Directory_map["dPhi_T_2p_Directory"];
+    std::string hdPhi_T_L_2p_Dir = directories.TKI_Directory_map["dPhi_T_2p_Directory"];
+    std::string hdPhi_T_tot_2p_Dir = directories.TKI_Directory_map["dPhi_T_2p_Directory"];
 
     TH2D *hdP_T_L_vs_dAlpha_T_L_2p = new TH2D("#deltaP_{T,L} vs. #delta#alpha_{T,L} (All Int., 2p)",
                                               "#deltaP_{T,L} vs. #delta#alpha_{T,L} (All Int., 2p);#delta#alpha_{T,L} [Deg];#deltaP_{T,L} [GeV/c];",
@@ -3548,8 +3548,8 @@ public:
     TH2D *hdP_T_tot_vs_dAlpha_T_tot_2p = new TH2D("#deltaP_{T,tot} vs. #delta#alpha_{T,tot} (All Int., 2p)",
                                                   "#deltaP_{T,tot} vs. #delta#alpha_{T,tot} (All Int., 2p);#delta#alpha_{T,tot} [Deg];#deltaP_{T,tot} [GeV/c];",
                                                   numTH2Dbins_TKI_Plots, 0, 180, numTH2Dbins_TKI_Plots, 0, dP_T_boundary);
-    string hdP_T_L_vs_dAlpha_T_L_2p_Dir = directories.TKI_Directory_map["dP_T_vs_dAlpha_T_2p_Directory"];
-    string hdP_T_tot_vs_dAlpha_T_tot_2p_Dir = directories.TKI_Directory_map["dP_T_vs_dAlpha_T_2p_Directory"];
+    std::string hdP_T_L_vs_dAlpha_T_L_2p_Dir = directories.TKI_Directory_map["dP_T_vs_dAlpha_T_2p_Directory"];
+    std::string hdP_T_tot_vs_dAlpha_T_tot_2p_Dir = directories.TKI_Directory_map["dP_T_vs_dAlpha_T_2p_Directory"];
     //</editor-fold>
 
     //<editor-fold desc="TKI histograms (pFDpCD)">
@@ -3561,8 +3561,8 @@ public:
     TH1D *hdP_T_tot_pFDpCD = new TH1D("#deltaP_{T,tot} (pFDpCD)",
                                       "#deltaP_{T,tot} by Momentum Sum (pFDpCD);#deltaP_{T,tot} = |#vec{p}_{T,e} + #vec{p}_{T,pFD} + #vec{p}_{T,pCD}| [GeV/c]",
                                       numTH1Dbins_TKI_dP_T_Plots, 0, dP_T_boundary);
-    string hdP_T_L_pFDpCD_Dir = directories.TKI_Directory_map["dP_T_pFDpCD_Directory"];
-    string hdP_T_tot_pFDpCD_Dir = directories.TKI_Directory_map["dP_T_pFDpCD_Directory"];
+    std::string hdP_T_L_pFDpCD_Dir = directories.TKI_Directory_map["dP_T_pFDpCD_Directory"];
+    std::string hdP_T_tot_pFDpCD_Dir = directories.TKI_Directory_map["dP_T_pFDpCD_Directory"];
 
     THStack *sdAlpha_T_pFDpCD = new THStack("#delta#alpha_{T,L} & #delta#alpha_{T,tot} (pFDpCD)",
                                             "#delta#alpha_{T,L} vs. #delta#alpha_{T,tot} (pFDpCD);#delta#alpha_{T} [Deg]");
@@ -3570,16 +3570,16 @@ public:
                                         numTH1Dbins_TKI_dAlpha_T_Plots, 0, 180);
     TH1D *hdAlpha_T_tot_pFDpCD = new TH1D("#delta#alpha_{T,tot} (pFDpCD)", "#delta#alpha_{T,tot} by Momentum Sum (pFDpCD);#delta#alpha_{T,tot} [Deg]",
                                           numTH1Dbins_TKI_dAlpha_T_Plots, 0, 180);
-    string hdAlpha_T_L_pFDpCD_Dir = directories.TKI_Directory_map["dAlpha_T_pFDpCD_Directory"];
-    string hdAlpha_T_tot_pFDpCD_Dir = directories.TKI_Directory_map["dAlpha_T_pFDpCD_Directory"];
+    std::string hdAlpha_T_L_pFDpCD_Dir = directories.TKI_Directory_map["dAlpha_T_pFDpCD_Directory"];
+    std::string hdAlpha_T_tot_pFDpCD_Dir = directories.TKI_Directory_map["dAlpha_T_pFDpCD_Directory"];
 
     THStack *sdPhi_T_pFDpCD = new THStack("#delta#phi_{T,L} & #delta#phi_{T,tot} (pFDpCD)", "#delta#phi_{T,L} vs. #delta#phi_{T,tot} (pFDpCD);#delta#phi_{T} [Deg]");
     TH1D *hdPhi_T_L_pFDpCD = new TH1D("#delta#phi_{T,L} (pFDpCD)", "#delta#phi_{T,L} by leading proton (pFDpCD);#delta#phi_{T,L} [Deg]",
                                       numTH1Dbins_TKI_dP_T_Plots, 0, 180);
     TH1D *hdPhi_T_tot_pFDpCD = new TH1D("#delta#phi_{T,tot} (pFDpCD)", "#delta#phi_{T,tot} by Momentum Sum (pFDpCD);#delta#phi_{T,tot} [Deg]",
                                         numTH1Dbins_TKI_dP_T_Plots, 0, 180);
-    string hdPhi_T_L_pFDpCD_Dir = directories.TKI_Directory_map["dPhi_T_pFDpCD_Directory"];
-    string hdPhi_T_tot_pFDpCD_Dir = directories.TKI_Directory_map["dPhi_T_pFDpCD_Directory"];
+    std::string hdPhi_T_L_pFDpCD_Dir = directories.TKI_Directory_map["dPhi_T_pFDpCD_Directory"];
+    std::string hdPhi_T_tot_pFDpCD_Dir = directories.TKI_Directory_map["dPhi_T_pFDpCD_Directory"];
 
     TH2D *hdP_T_L_vs_dAlpha_T_L_pFDpCD = new TH2D("#deltaP_{T,L} vs. #delta#alpha_{T,L} (All Int., pFDpCD)",
                                                   "#deltaP_{T,L} vs. #delta#alpha_{T,L} (All Int., pFDpCD);#delta#alpha_{T,L} [Deg];#deltaP_{T,L} [GeV/c];",
@@ -3587,8 +3587,8 @@ public:
     TH2D *hdP_T_tot_vs_dAlpha_T_tot_pFDpCD = new TH2D("#deltaP_{T,tot} vs. #delta#alpha_{T,tot} (All Int., pFDpCD)",
                                                       "#deltaP_{T,tot} vs. #delta#alpha_{T,tot} (All Int., pFDpCD);#delta#alpha_{T,tot} [Deg];#deltaP_{T,tot} [GeV/c];",
                                                       numTH2Dbins_TKI_Plots, 0, 180, numTH2Dbins_TKI_Plots, 0, dP_T_boundary);
-    string hdP_T_L_vs_dAlpha_T_L_pFDpCD_Dir = directories.TKI_Directory_map["dP_T_vs_dAlpha_T_pFDpCD_Directory"];
-    string hdP_T_tot_vs_dAlpha_T_tot_pFDpCD_Dir = directories.TKI_Directory_map["dP_T_vs_dAlpha_T_pFDpCD_Directory"];
+    std::string hdP_T_L_vs_dAlpha_T_L_pFDpCD_Dir = directories.TKI_Directory_map["dP_T_vs_dAlpha_T_pFDpCD_Directory"];
+    std::string hdP_T_tot_vs_dAlpha_T_tot_pFDpCD_Dir = directories.TKI_Directory_map["dP_T_vs_dAlpha_T_pFDpCD_Directory"];
     //</editor-fold>
 
     //<editor-fold desc="TKI vs. W (pFDpCD)">
@@ -3600,8 +3600,8 @@ public:
                                            "#deltaP_{T,tot} vs. W (All Int., pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV];"
                                            "#deltaP_{T,tot} = |#vec{p}_{T,e} + #vec{p}_{T,pFD} + #vec{p}_{T,pCD}| [GeV/c];",
                                            numTH2Dbins_TKI_Plots, W_lboundary, W_uboundary, numTH2Dbins_TKI_Plots, 0, dP_T_boundary);
-    string hdP_T_L_vs_W_pFDpCD_Dir = directories.TKI_Directory_map["dP_T_pFDpCD_Directory"];
-    string hdP_T_tot_vs_W_pFDpCD_Dir = directories.TKI_Directory_map["dP_T_pFDpCD_Directory"];
+    std::string hdP_T_L_vs_W_pFDpCD_Dir = directories.TKI_Directory_map["dP_T_pFDpCD_Directory"];
+    std::string hdP_T_tot_vs_W_pFDpCD_Dir = directories.TKI_Directory_map["dP_T_pFDpCD_Directory"];
 
     TH2D *hdAlpha_T_L_vs_W_pFDpCD = new TH2D("#delta#alpha_{T,L} vs. W (All Int., pFDpCD)",
                                              "#delta#alpha_{T,L} vs. W (All Int., pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV];#delta#alpha_{T,L} [Deg];",
@@ -3609,8 +3609,8 @@ public:
     TH2D *hdAlpha_T_tot_vs_W_pFDpCD = new TH2D("#delta#alpha_{T,tot} vs. W (All Int., pFDpCD)",
                                                "#delta#alpha_{T,tot} vs. W (All Int., pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV];#delta#alpha_{T,tot} [Deg];",
                                                numTH2Dbins_TKI_Plots, W_lboundary, W_uboundary, numTH2Dbins_TKI_Plots, 0, 180);
-    string hdAlpha_T_L_vs_W_pFDpCD_Dir = directories.TKI_Directory_map["dAlpha_T_pFDpCD_Directory"];
-    string hdAlpha_T_tot_vs_W_pFDpCD_Dir = directories.TKI_Directory_map["dAlpha_T_pFDpCD_Directory"];
+    std::string hdAlpha_T_L_vs_W_pFDpCD_Dir = directories.TKI_Directory_map["dAlpha_T_pFDpCD_Directory"];
+    std::string hdAlpha_T_tot_vs_W_pFDpCD_Dir = directories.TKI_Directory_map["dAlpha_T_pFDpCD_Directory"];
     //</editor-fold>
 
     //</editor-fold>
@@ -3624,8 +3624,8 @@ public:
     TH1D *hdP_T_tot_nFDpCD = new TH1D("#deltaP_{T,tot} (nFDpCD)",
                                       "#deltaP_{T,tot} by Momentum Sum (nFDpCD);#deltaP_{T,tot} = |#vec{p}_{T,e} + #vec{p}_{T,nFD} + #vec{p}_{T,pCD}| [GeV/c]",
                                       numTH1Dbins_TKI_dP_T_Plots, 0, dP_T_boundary);
-    string hdP_T_L_nFDpCD_Dir = directories.TKI_Directory_map["dP_T_nFDpCD_Directory"];
-    string hdP_T_tot_nFDpCD_Dir = directories.TKI_Directory_map["dP_T_nFDpCD_Directory"];
+    std::string hdP_T_L_nFDpCD_Dir = directories.TKI_Directory_map["dP_T_nFDpCD_Directory"];
+    std::string hdP_T_tot_nFDpCD_Dir = directories.TKI_Directory_map["dP_T_nFDpCD_Directory"];
 
     THStack *sdAlpha_T_nFDpCD = new THStack("#delta#alpha_{T,L} & #delta#alpha_{T,tot} (nFDpCD)",
                                             "#delta#alpha_{T,L} vs. #delta#alpha_{T,tot} (nFDpCD);#delta#alpha_{T} [Deg]");
@@ -3633,16 +3633,16 @@ public:
                                         numTH1Dbins_TKI_dAlpha_T_Plots, 0, 180);
     TH1D *hdAlpha_T_tot_nFDpCD = new TH1D("#delta#alpha_{T,tot} (nFDpCD)", "#delta#alpha_{T,tot} by Momentum Sum (nFDpCD);#delta#alpha_{T,tot} [Deg]",
                                           numTH1Dbins_TKI_dAlpha_T_Plots, 0, 180);
-    string hdAlpha_T_L_nFDpCD_Dir = directories.TKI_Directory_map["dAlpha_T_nFDpCD_Directory"];
-    string hdAlpha_T_tot_nFDpCD_Dir = directories.TKI_Directory_map["dAlpha_T_nFDpCD_Directory"];
+    std::string hdAlpha_T_L_nFDpCD_Dir = directories.TKI_Directory_map["dAlpha_T_nFDpCD_Directory"];
+    std::string hdAlpha_T_tot_nFDpCD_Dir = directories.TKI_Directory_map["dAlpha_T_nFDpCD_Directory"];
 
     THStack *sdPhi_T_nFDpCD = new THStack("#delta#phi_{T,L} & #delta#phi_{T,tot} (nFDpCD)", "#delta#phi_{T,L} vs. #delta#phi_{T,tot} (nFDpCD);#delta#phi_{T} [Deg]");
     TH1D *hdPhi_T_L_nFDpCD = new TH1D("#delta#phi_{T,L} (nFDpCD)", "#delta#phi_{T,L} by leading nucleon (nFDpCD);#delta#phi_{T,L} [Deg]",
                                       numTH1Dbins_TKI_dP_T_Plots, 0, 180);
     TH1D *hdPhi_T_tot_nFDpCD = new TH1D("#delta#phi_{T,tot} (nFDpCD)", "#delta#phi_{T,tot} by Momentum Sum (nFDpCD);#delta#phi_{T,tot} [Deg]",
                                         numTH1Dbins_TKI_dP_T_Plots, 0, 180);
-    string hdPhi_T_L_nFDpCD_Dir = directories.TKI_Directory_map["dPhi_T_nFDpCD_Directory"];
-    string hdPhi_T_tot_nFDpCD_Dir = directories.TKI_Directory_map["dPhi_T_nFDpCD_Directory"];
+    std::string hdPhi_T_L_nFDpCD_Dir = directories.TKI_Directory_map["dPhi_T_nFDpCD_Directory"];
+    std::string hdPhi_T_tot_nFDpCD_Dir = directories.TKI_Directory_map["dPhi_T_nFDpCD_Directory"];
 
     TH2D *hdP_T_L_vs_dAlpha_T_L_nFDpCD = new TH2D("#deltaP_{T,L} vs. #delta#alpha_{T,L} (All Int., nFDpCD)",
                                                   "#deltaP_{T,L} vs. #delta#alpha_{T,L} (All Int., nFDpCD);#delta#alpha_{T,L} [Deg];#deltaP_{T,L} [GeV/c];",
@@ -3650,8 +3650,8 @@ public:
     TH2D *hdP_T_tot_vs_dAlpha_T_tot_nFDpCD = new TH2D("#deltaP_{T,tot} vs. #delta#alpha_{T,tot} (All Int., nFDpCD)",
                                                       "#deltaP_{T,tot} vs. #delta#alpha_{T,tot} (All Int., nFDpCD);#delta#alpha_{T,tot} [Deg];#deltaP_{T,tot} [GeV/c];",
                                                       numTH2Dbins_TKI_Plots, 0, 180, numTH2Dbins_TKI_Plots, 0, dP_T_boundary);
-    string hdP_T_L_vs_dAlpha_T_L_nFDpCD_Dir = directories.TKI_Directory_map["dP_T_vs_dAlpha_T_nFDpCD_Directory"];
-    string hdP_T_tot_vs_dAlpha_T_tot_nFDpCD_Dir = directories.TKI_Directory_map["dP_T_vs_dAlpha_T_nFDpCD_Directory"];
+    std::string hdP_T_L_vs_dAlpha_T_L_nFDpCD_Dir = directories.TKI_Directory_map["dP_T_vs_dAlpha_T_nFDpCD_Directory"];
+    std::string hdP_T_tot_vs_dAlpha_T_tot_nFDpCD_Dir = directories.TKI_Directory_map["dP_T_vs_dAlpha_T_nFDpCD_Directory"];
     //</editor-fold>
 
     //<editor-fold desc="TKI vs. W (nFDpCD)">
@@ -3663,8 +3663,8 @@ public:
                                            "#deltaP_{T,tot} vs. W (All Int., nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV];"
                                            "#deltaP_{T,tot} = |#vec{p}_{T,e} + #vec{p}_{T,nFD} + #vec{p}_{T,pCD}| [GeV/c];",
                                            numTH2Dbins_TKI_Plots, W_lboundary, W_uboundary, numTH2Dbins_TKI_Plots, 0, dP_T_boundary);
-    string hdP_T_L_vs_W_nFDpCD_Dir = directories.TKI_Directory_map["dP_T_nFDpCD_Directory"];
-    string hdP_T_tot_vs_W_nFDpCD_Dir = directories.TKI_Directory_map["dP_T_nFDpCD_Directory"];
+    std::string hdP_T_L_vs_W_nFDpCD_Dir = directories.TKI_Directory_map["dP_T_nFDpCD_Directory"];
+    std::string hdP_T_tot_vs_W_nFDpCD_Dir = directories.TKI_Directory_map["dP_T_nFDpCD_Directory"];
 
     TH2D *hdAlpha_T_L_vs_W_nFDpCD = new TH2D("#delta#alpha_{T,L} vs. W (All Int., nFDpCD)",
                                              "#delta#alpha_{T,L} vs. W (All Int., nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV];#delta#alpha_{T,L} [Deg];",
@@ -3672,8 +3672,8 @@ public:
     TH2D *hdAlpha_T_tot_vs_W_nFDpCD = new TH2D("#delta#alpha_{T,tot} vs. W (All Int., nFDpCD)",
                                                "#delta#alpha_{T,tot} vs. W (All Int., nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV];#delta#alpha_{T,tot} [Deg];",
                                                numTH2Dbins_TKI_Plots, W_lboundary, W_uboundary, numTH2Dbins_TKI_Plots, 0, 180);
-    string hdAlpha_T_L_vs_W_nFDpCD_Dir = directories.TKI_Directory_map["dAlpha_T_nFDpCD_Directory"];
-    string hdAlpha_T_tot_vs_W_nFDpCD_Dir = directories.TKI_Directory_map["dAlpha_T_nFDpCD_Directory"];
+    std::string hdAlpha_T_L_vs_W_nFDpCD_Dir = directories.TKI_Directory_map["dAlpha_T_nFDpCD_Directory"];
+    std::string hdAlpha_T_tot_vs_W_nFDpCD_Dir = directories.TKI_Directory_map["dAlpha_T_nFDpCD_Directory"];
     //</editor-fold>
 
     //</editor-fold>
@@ -5217,7 +5217,7 @@ public:
                                                            "#theta^{truth}_{pFD} vs. #phi^{truth}_{pFD} ApResC (1p, FD);#phi^{truth}_{pFD} [Deg];#theta^{truth}_{pFD} [Deg]",
                                                            numTH2Dbins_nRes_Plots, Phi_lboundary, Phi_uboundary,
                                                            numTH2Dbins_nRes_Plots, Theta_lboundary_FD, Theta_uboundary_FD);
-    string hTheta_pFD_TL_VS_Phi_pFD_TL_ApResC_1p_Dir = directories.Resolution_Directory_map["Resolution_1p_Directory"];
+    std::string hTheta_pFD_TL_VS_Phi_pFD_TL_ApResC_1p_Dir = directories.Resolution_Directory_map["Resolution_1p_Directory"];
 
     hPlot1D hTheta_pFD_TL_MatchedP_1p = hPlot1D("1p", "", "TL #theta^{truth}_{pFD} of matched TL p", "#theta^{truth}_{pFD} of matched TL FD proton",
                                                 "#theta^{truth}_{pFD} [Deg]",
@@ -5231,7 +5231,7 @@ public:
                                                              "#theta^{truth}_{pFD} vs. #phi^{truth}_{pFD} of matched TL FD proton (1p, FD);#phi^{truth}_{pFD} [Deg];#theta^{truth}_{pFD} [Deg]",
                                                              numTH2Dbins_nRes_Plots, Phi_lboundary, Phi_uboundary,
                                                              numTH2Dbins_nRes_Plots, Theta_lboundary_FD, Theta_uboundary_FD);
-    string hTheta_pFD_TL_VS_Phi_pFD_TL_MatchedP_1p_Dir = directories.Resolution_Directory_map["Resolution_1p_Directory"];
+    std::string hTheta_pFD_TL_VS_Phi_pFD_TL_MatchedP_1p_Dir = directories.Resolution_Directory_map["Resolution_1p_Directory"];
 
     hPlot1D hTheta_pFD_TL_1p = hPlot1D("1p", "", "TL #theta^{truth}_{pFD} AC", "#theta^{truth}_{pFD} of FD proton AC", "#theta^{truth}_{pFD} [Deg]",
                                        directories.Resolution_Directory_map["Resolution_1p_Directory"], "01_Theta_pFD_AC_TL_1p",
@@ -5243,7 +5243,7 @@ public:
                                                     "#theta^{truth}_{pFD} vs. #phi^{truth}_{pFD} (1p, FD);#phi^{truth}_{pFD} [Deg];#theta^{truth}_{pFD} [Deg]",
                                                     numTH2Dbins_nRes_Plots, Phi_lboundary, Phi_uboundary, numTH2Dbins_nRes_Plots, Theta_lboundary_FD,
                                                     Theta_uboundary_FD);
-    string hTheta_pFD_TL_VS_Phi_pFD_TL_1p_Dir = directories.Resolution_Directory_map["Resolution_1p_Directory"];
+    std::string hTheta_pFD_TL_VS_Phi_pFD_TL_1p_Dir = directories.Resolution_Directory_map["Resolution_1p_Directory"];
 
     hPlot1D hP_pFD_Res_1p = hPlot1D("1p", "", "P_{pFD} resolution AC", "FD proton P_{pFD} resolution AC",
                                     "Resolution = (P^{truth}_{pFD} - P^{reco.}_{pFD})/P^{truth}_{pFD}",
@@ -5253,7 +5253,7 @@ public:
                                             "P_{pFD} resolution AC vs. P^{truth}_{pFD} (1p, FD);P^{truth}_{pFD} [GeV/c];"
                                             "Resolution = (P^{truth}_{pFD} - P^{reco.}_{pFD})/P^{truth}_{pFD}",
                                             numTH2Dbins_nRes_Plots, 0, beamE * 1.1, numTH2Dbins_nRes_Plots, -2, 2);
-    string hP_pFD_Res_VS_P_pFD_1p_Dir = directories.Resolution_Directory_map["Resolution_1p_Directory"];
+    std::string hP_pFD_Res_VS_P_pFD_1p_Dir = directories.Resolution_Directory_map["Resolution_1p_Directory"];
 
     hPlot1D hReco_P_pFD_pRes_1p = hPlot1D("1p", "FD", "Reco P_{pFD} used in pRes", "Reco P_{pFD} used in pRes", "P_{pFD} [GeV/c]",
                                           directories.Resolution_Directory_map["Resolution_1p_Directory"], "06a_Reco_P_pFD_used_in_pRes_1p",
@@ -5308,7 +5308,7 @@ public:
                                                            "#theta^{truth}_{nFD} vs. #phi^{truth}_{nFD} AnResC (1n, FD);#phi^{truth}_{nFD} [Deg];#theta^{truth}_{nFD} [Deg]",
                                                            numTH2Dbins_nRes_Plots, Phi_lboundary, Phi_uboundary,
                                                            numTH2Dbins_nRes_Plots, Theta_lboundary_FD, Theta_uboundary_FD);
-    string hTheta_nFD_TL_VS_Phi_nFD_TL_AnResC_1n_Dir = directories.Resolution_Directory_map["Resolution_1n_Directory"];
+    std::string hTheta_nFD_TL_VS_Phi_nFD_TL_AnResC_1n_Dir = directories.Resolution_Directory_map["Resolution_1n_Directory"];
 
     hPlot1D hTheta_nFD_TL_MatchedN_1n = hPlot1D("1n", "", "TL #theta^{truth}_{nFD} of matched TL n", "#theta^{truth}_{nFD} of matched TL FD neutron",
                                                 "#theta^{truth}_{nFD} [Deg]",
@@ -5322,7 +5322,7 @@ public:
                                                              "#theta^{truth}_{nFD} vs. #phi^{truth}_{nFD} of matched TL FD neutron (1n, FD);#phi^{truth}_{nFD} [Deg];#theta^{truth}_{nFD} [Deg]",
                                                              numTH2Dbins_nRes_Plots, Phi_lboundary, Phi_uboundary,
                                                              numTH2Dbins_nRes_Plots, Theta_lboundary_FD, Theta_uboundary_FD);
-    string hTheta_nFD_TL_VS_Phi_nFD_TL_MatchedN_1n_Dir = directories.Resolution_Directory_map["Resolution_1n_Directory"];
+    std::string hTheta_nFD_TL_VS_Phi_nFD_TL_MatchedN_1n_Dir = directories.Resolution_Directory_map["Resolution_1n_Directory"];
 
     hPlot1D hP_nFD_Res_1n = hPlot1D("1n", "", "P_{nFD} resolution AC", "FD neutron P_{nFD} resolution AC",
                                     "Resolution = (P^{truth}_{nFD} - P^{reco.}_{nFD})/P^{truth}_{nFD}",
@@ -5332,7 +5332,7 @@ public:
                                             "P_{nFD} resolution AC vs. P^{truth}_{nFD} (1n, FD);P^{truth}_{nFD} [GeV/c];"
                                             "Resolution = (P^{truth}_{nFD} - P^{reco.}_{nFD})/P^{truth}_{nFD}",
                                             numTH2Dbins_nRes_Plots, 0, beamE * 1.1, numTH2Dbins_nRes_Plots, -2, 2);
-    string hP_nFD_Res_VS_P_nFD_1n_Dir = directories.Resolution_Directory_map["Resolution_1n_Directory"];
+    std::string hP_nFD_Res_VS_P_nFD_1n_Dir = directories.Resolution_Directory_map["Resolution_1n_Directory"];
 
     hPlot1D hReco_P_nFD_nRes_1n = hPlot1D("1n", "FD", "Reco P_{nFD} used in nRes", "Reco P_{nFD} used in nRes", "P_{nFD} [GeV/c]",
                                           directories.Resolution_Directory_map["Resolution_1n_Directory"], "06a_Reco_P_nFD_used_in_nRes_1n",

@@ -17,12 +17,12 @@
 
 using namespace std;
 
-string SetTitle(const string &RecTitle, const string &PlotsT, const string &DRegion) {
-    string Title;
+string SetTitle(const std::string &RecTitle, const std::string &PlotsT, const std::string &DRegion) {
+    std::string Title;
 
-    string Particle = GetParticleName(RecTitle);
-    string ParticleShort = GetParticleNameShort(RecTitle);
-    string Type = SetType(RecTitle);
+    std::string Particle = GetParticleName(RecTitle);
+    std::string ParticleShort = GetParticleNameShort(RecTitle);
+    std::string Type = SetType(RecTitle);
 
     if (PlotsT == "FSRatio") {
         if (Particle == "Electron") {

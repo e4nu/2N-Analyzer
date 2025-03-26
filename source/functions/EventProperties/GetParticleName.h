@@ -22,7 +22,7 @@ using namespace std;
 using namespace utilities;
 
 string GetParticleName(string Source, bool ForDir = false) {
-    string ParticleName;
+    std::string ParticleName;
 
     if (findSubstring(Source, "neutrals") || findSubstring(Source, "Neutrals") || findSubstring(Source, "neut.") || findSubstring(Source, "Neut.")) {
         ParticleName = "neut";
@@ -58,8 +58,8 @@ string GetParticleName(string Source, bool ForDir = false) {
 }
 
 ////<editor-fold desc="Before LnFD addition">
-// string GetParticleName(string Source) {
-//     string ParticleName;
+// std::string GetParticleName(string Source) {
+//     std::string ParticleName;
 //
 //     if (findSubstring(Source, "neutrals") || findSubstring(Source, "Neutrals")
 //         || findSubstring(Source, "neut.") || findSubstring(Source, "Neut.")) {

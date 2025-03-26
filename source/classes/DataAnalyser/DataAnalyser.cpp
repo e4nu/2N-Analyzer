@@ -7,15 +7,15 @@
 // DataAnalyser constructors ----------------------------------------------------------------------------------------------------------------------------------
 
 /* Default constructor */
-DataAnalyser::DataAnalyser(const string &FileType, const string &AnalyseFilePath, const string &AnalyseFileSample, const string &AnalyseFile) {
-    string AnalyserMode = ConfigureAnalyserMode(FileType);
+DataAnalyser::DataAnalyser(const std::string &FileType, const std::string &AnalyseFilePath, const std::string &AnalyseFileSample, const std::string &AnalyseFile) {
+    std::string AnalyserMode = ConfigureAnalyserMode(FileType);
     RunEventAnalyser(AnalyserMode, AnalyseFilePath, AnalyseFileSample, AnalyseFile);
 }
 
 // ConfigureAnalyserMode function -----------------------------------------------------------------------------------------------------------------------------
 
-string DataAnalyser::ConfigureAnalyserMode(const string &FileType) {
-    string AnalyserMode;
+string DataAnalyser::ConfigureAnalyserMode(const std::string &FileType) {
+    std::string AnalyserMode;
 
     if (FileType == "root") {
         AnalyserMode = "Truth level";
@@ -30,7 +30,7 @@ string DataAnalyser::ConfigureAnalyserMode(const string &FileType) {
 
 // RunEventAnalyser functions ---------------------------------------------------------------------------------------------------------------------------------
 
-void DataAnalyser::RunEventAnalyser(const string &AnalyserMode, const string &AnalyseFilePath, const string &AnalyseFileSample, const string &AnalyseFile) {
+void DataAnalyser::RunEventAnalyser(const std::string &AnalyserMode, const std::string &AnalyseFilePath, const std::string &AnalyseFileSample, const std::string &AnalyseFile) {
 
     if (AnalyserMode == "Truth level") {
         gst g;

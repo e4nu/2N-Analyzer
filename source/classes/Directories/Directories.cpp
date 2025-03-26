@@ -7,10 +7,10 @@
 // Constructor ----------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //<editor-fold desc="Constructor">
-Directories::Directories(const string &plots_path, const bool Clear_Old_Directories) {
+Directories::Directories(const std::string &plots_path, const bool Clear_Old_Directories) {
     ClearOldDirectories = Clear_Old_Directories;
 
-    string Plots_Folder = plots_path;              // Plots_Folder = Parent_Folder
+    std::string Plots_Folder = plots_path;              // Plots_Folder = Parent_Folder
     system(("mkdir -p " + Plots_Folder).c_str());  // clear old stuff in Parent_Folder
 
     if (ClearOldDirectories) {
@@ -926,7 +926,7 @@ Directories::Directories(const string &plots_path, const bool Clear_Old_Director
 
 // Private methods ------------------------------------------------------------------------------------------------------------------------------------------------------
 
-bool Directories::FindSubstring(string string1, string string2) {
+bool Directories::FindSubstring(string string1, std::string string2) {
     if (string1.find(string2) != string::npos) {
         return true;
     } else {
@@ -934,7 +934,7 @@ bool Directories::FindSubstring(string string1, string string2) {
     }
 }
 
-string Directories::Find(vector<string> Vector, string String) {
+string Directories::Find(vector<string> Vector, std::string String) {
     for (string Element : Vector) {
         if (FindSubstring(Element, String)) { return Element; }
     }
@@ -944,10 +944,10 @@ string Directories::Find(vector<string> Vector, string String) {
 
 // MakeDirectory function -----------------------------------------------------------------------------------------------------------------------------------------------
 
-void Directories::MakeDirectory(const bool &Create_Directory, const string &Plots_Parent_Folder, const string &Plots_Daughter_Folder, const bool &Clear_Parent_Folder_content,
-                                const string &Parent_Folder) {
-    string MakeDirectory = "mkdir -p " + Parent_Folder;
-    string RemoveDirectoryContent = "rm -r " + Parent_Folder + "/" + Plots_Parent_Folder + "/*";
+void Directories::MakeDirectory(const bool &Create_Directory, const std::string &Plots_Parent_Folder, const std::string &Plots_Daughter_Folder, const bool &Clear_Parent_Folder_content,
+                                const std::string &Parent_Folder) {
+    std::string MakeDirectory = "mkdir -p " + Parent_Folder;
+    std::string RemoveDirectoryContent = "rm -r " + Parent_Folder + "/" + Plots_Parent_Folder + "/*";
 
     if (Create_Directory) {
         if (Clear_Parent_Folder_content) { system(RemoveDirectoryContent.c_str()); }

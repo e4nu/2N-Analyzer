@@ -23,7 +23,7 @@ using namespace std;
  * Photon = a neutral particle (i.e., neutron or photon) in the FD with a PCal hit. */
 
 // bool GetFDNeutrons(region_part_ptr &particle) {
-vector<int> NeutralParticleID(vector<region_part_ptr> &allParticles, DSCuts &Momentum_th, const string &NeutralParticle2ID, bool apply_nucleon_cuts) {
+vector<int> NeutralParticleID(vector<region_part_ptr> &allParticles, DSCuts &Momentum_th, const std::string &NeutralParticle2ID, bool apply_nucleon_cuts) {
     vector<int> Neutral_indices_in_allParticles;
 
     for (int i = 0; i < allParticles.size(); i++) {

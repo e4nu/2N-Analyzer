@@ -9,25 +9,25 @@ using namespace std;
 
 class CustomPlotsDirectory {
    private:
-    string Plots_path;
-    string Run_dir_name;
-    string Plots_log_save_Directory;
+    std::string Plots_path;
+    std::string Run_dir_name;
+    std::string Plots_log_save_Directory;
 
-    string Stage0_prefix = "_S00_NO_CUTS";  // Stage 0 - no cuts
-    string Stage1_prefix = "_S01ACwoChi2";  // Stage 1 - with cuts except PID (chi2) cuts
-    string Stage2_prefix = "_S02AC";        // Stage 2 - set nucleon cuts (neutron beta fit & proton double detection cuts)
-    string Stage3_prefix = "_S03AC";        // Stage 3 - other runs
+    std::string Stage0_prefix = "_S00_NO_CUTS";  // Stage 0 - no cuts
+    std::string Stage1_prefix = "_S01ACwoChi2";  // Stage 1 - with cuts except PID (chi2) cuts
+    std::string Stage2_prefix = "_S02AC";        // Stage 2 - set nucleon cuts (neutron beta fit & proton double detection cuts)
+    std::string Stage3_prefix = "_S03AC";        // Stage 3 - other runs
 
     /* Save plots to custom-named folders, to allow multi-sample runs at once. */
     bool Custom_cuts_naming = true;
-    string Clas12ana_particles_status = "", Preselection_Cuts_Status = "", Electron_Quality_Cuts_Status = "";
+    std::string Clas12ana_particles_status = "", Preselection_Cuts_Status = "", Electron_Quality_Cuts_Status = "";
 
-    string Nucleon_Cuts_Status = "", FD_photons_Status = "", PSmearing_Status = "", FiducialCuts_Status = "";
-    string KinCuts_Status = "", KinWei_Status = "", Additional_Status = "", Efficiency_Status = "";
+    std::string Nucleon_Cuts_Status = "", FD_photons_Status = "", PSmearing_Status = "", FiducialCuts_Status = "";
+    std::string KinCuts_Status = "", KinWei_Status = "", Additional_Status = "", Efficiency_Status = "";
 
-    string Added_PreStatuses, Added_Statuses;
+    std::string Added_PreStatuses, Added_Statuses;
 
-    string Global_Run_Status = "reaction_test";
+    std::string Global_Run_Status = "reaction_test";
 
    public:
     // Default constructor ---------------------------------------------------------------------------------------------------------------------------------------------
@@ -44,7 +44,7 @@ class CustomPlotsDirectory {
 
     // SetPaths function -----------------------------------------------------------------------------------------------------------------------------------------------
 
-    void SetPaths(const string &WorkingDirectory, const string &SampleName, const string &plots_path, const bool &apply_cuts, const bool &apply_chi2_cuts_1e_cut,
+    void SetPaths(const std::string &WorkingDirectory, const std::string &SampleName, const std::string &plots_path, const bool &apply_cuts, const bool &apply_chi2_cuts_1e_cut,
                   const bool &apply_nucleon_cuts);
 
     // Set functions ---------------------------------------------------------------------------------------------------------------------------------------------------
@@ -59,29 +59,29 @@ class CustomPlotsDirectory {
         if (Custom_cuts_naming) { plots_path = Plots_path; }
     }
 
-    string GetRun_dir_name() { return Run_dir_name; }
+    std::string GetRun_dir_name() { return Run_dir_name; }
 
     void GetPlotsLogSaveDirectory(string &plots_log_save_Directory) {
         if (Custom_cuts_naming) { plots_log_save_Directory = Plots_log_save_Directory; }
     }
 
-    string GetPreselection_Cuts_Status() { return Preselection_Cuts_Status; }
+    std::string GetPreselection_Cuts_Status() { return Preselection_Cuts_Status; }
 
-    string GetElectron_Quality_Cuts_Status() { return Electron_Quality_Cuts_Status; }
+    std::string GetElectron_Quality_Cuts_Status() { return Electron_Quality_Cuts_Status; }
 
-    string GetNucleon_Cuts_Status() { return Nucleon_Cuts_Status; }
+    std::string GetNucleon_Cuts_Status() { return Nucleon_Cuts_Status; }
 
-    string GetFD_photons_Status() { return FD_photons_Status; }
+    std::string GetFD_photons_Status() { return FD_photons_Status; }
 
-    string GetPSmearing_Status() { return PSmearing_Status; }
+    std::string GetPSmearing_Status() { return PSmearing_Status; }
 
-    string GetFiducialCuts_Status() { return FiducialCuts_Status; }
+    std::string GetFiducialCuts_Status() { return FiducialCuts_Status; }
 
-    string GetKinWei_Status() { return KinWei_Status; }
+    std::string GetKinWei_Status() { return KinWei_Status; }
 
-    string GetAdditional_Status() { return Additional_Status; }
+    std::string GetAdditional_Status() { return Additional_Status; }
 
-    string GetEfficiency_Status() { return Efficiency_Status; }
+    std::string GetEfficiency_Status() { return Efficiency_Status; }
 };
 
 #endif  // CUSTOMPLOTSDIRECTORY_H

@@ -130,7 +130,7 @@ void PlotsACorr2x3Nucleon(string SampleName) {
     //</editor-fold>
 
     //<editor-fold desc="Momentum acceptance correction plots">
-    string MomACorrSaveName = "./01_Nucleon_Mom_ACorr_" + SampleName + ".png";
+    std::string MomACorrSaveName = "./01_Nucleon_Mom_ACorr_" + SampleName + ".png";
 
     CanvasACorr2x3Nucleon->Divide(3, 2);
 
@@ -228,7 +228,7 @@ void PlotsACorr2x3Nucleon(string SampleName) {
     //</editor-fold>
 
     //<editor-fold desc="Theta acceptance correction plots">
-    string ThetaACorrSaveName = "./02_Nucleon_Theta_ACorr_" + SampleName + ".png";
+    std::string ThetaACorrSaveName = "./02_Nucleon_Theta_ACorr_" + SampleName + ".png";
 
     CanvasACorr2x3Nucleon->Divide(3, 2);
 
@@ -322,7 +322,7 @@ void PlotsACorr2x3Nucleon(string SampleName) {
     //</editor-fold>
 
     //<editor-fold desc="Phi acceptance correction plots">
-    string PhiACorrSaveName = "./03_Nucleon_Phi_ACorr_" + SampleName + ".png";
+    std::string PhiACorrSaveName = "./03_Nucleon_Phi_ACorr_" + SampleName + ".png";
 
     CanvasACorr2x3Nucleon->Divide(3, 2);
 
@@ -529,7 +529,7 @@ void PlotsACorr2x3Nucleon(string SampleName) {
 //    //</editor-fold>
 //
 //    //<editor-fold desc="Momentum acceptance correction plots">
-//    string MomACorrSaveName = "./01_Nucleon_Mom_ACorr_" + SampleName + ".png";
+//    std::string MomACorrSaveName = "./01_Nucleon_Mom_ACorr_" + SampleName + ".png";
 //
 //    CanvasACorr2x3Nucleon->Divide(3, 2);
 //
@@ -623,7 +623,7 @@ void PlotsACorr2x3Nucleon(string SampleName) {
 //    //</editor-fold>
 //
 //    //<editor-fold desc="Theta acceptance correction plots">
-//    string ThetaACorrSaveName = "./02_Nucleon_Theta_ACorr_" + SampleName + ".png";
+//    std::string ThetaACorrSaveName = "./02_Nucleon_Theta_ACorr_" + SampleName + ".png";
 //
 //    CanvasACorr2x3Nucleon->Divide(3, 2);
 //
@@ -717,7 +717,7 @@ void PlotsACorr2x3Nucleon(string SampleName) {
 //    //</editor-fold>
 //
 //    //<editor-fold desc="Phi acceptance correction plots">
-//    string PhiACorrSaveName = "./03_Nucleon_Phi_ACorr_" + SampleName + ".png";
+//    std::string PhiACorrSaveName = "./03_Nucleon_Phi_ACorr_" + SampleName + ".png";
 //
 //    CanvasACorr2x3Nucleon->Divide(3, 2);
 //

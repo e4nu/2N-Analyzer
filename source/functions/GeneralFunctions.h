@@ -58,7 +58,7 @@ string GetCurrentDirectory() {
     char pwd[PATH_MAX];
     getcwd(pwd, sizeof(pwd));
 
-    string WorkingDirectory = pwd;
+    std::string WorkingDirectory = pwd;
 
     return WorkingDirectory;
 }
@@ -69,7 +69,7 @@ string GetCurrentDirectory() {
 //<editor-fold desc="findSubstring function">
 /* Usage: in getBeanE */
 
-bool findSubstring(string string1, string string2) {
+bool findSubstring(string string1, std::string string2) {
     if (string1.find(string2) != string::npos) {
         return true;
     } else {
@@ -81,7 +81,7 @@ bool findSubstring(string string1, string string2) {
 // to_string_with_precision function ------------------------------------------------------------------------------------------------------------------------------------
 
 //<editor-fold desc="to_string_with_precision function">
-/* Usage: convert a number to string with n figures after the decimal point in the plotting functions */
+/* Usage: convert a number to std::string with n figures after the decimal point in the plotting functions */
 
 template <typename T>
 string to_string_with_precision(const T a_value, const int n = 2) {
@@ -110,7 +110,7 @@ double rCalc(double x, double y, double z) {
 //<editor-fold desc="LogEventCuts function (original/MicroBooNE)">
 /* Usage: in cut parameter testings, log to an AC histogram given the cuts. May be applied to other cuts in the future. */
 
-void LogEventCuts(TH1D *Histogram1D, clas12::region_part_ptr Particle, string CutType, double Upper_cut, double Lower_cut, double CutCenter = 0) {
+void LogEventCuts(TH1D *Histogram1D, clas12::region_part_ptr Particle, std::string CutType, double Upper_cut, double Lower_cut, double CutCenter = 0) {
     if (CutType == "momentum" || CutType == "") {
         TVector3 P;
         P.SetMagThetaPhi(Particle->getP(), Particle->getTheta(), Particle->getPhi());

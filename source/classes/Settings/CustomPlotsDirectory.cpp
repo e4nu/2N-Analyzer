@@ -153,9 +153,9 @@ void CustomPlotsDirectory::ConfigureStatuses(const bool &apply_cuts, const bool 
 // SetPaths function -----------------------------------------------------------------------------------------------------------------------------------------------
 
 //<editor-fold desc="SetPaths function">
-void CustomPlotsDirectory::SetPaths(const string &WorkingDirectory, const string &SampleName, const string &plots_path, const bool &apply_cuts, const bool &apply_chi2_cuts_1e_cut,
+void CustomPlotsDirectory::SetPaths(const std::string &WorkingDirectory, const std::string &SampleName, const std::string &plots_path, const bool &apply_cuts, const bool &apply_chi2_cuts_1e_cut,
                                     const bool &apply_nucleon_cuts) {
-    string run, Global_Run_Status_Local;
+    std::string run, Global_Run_Status_Local;
 
     if (Global_Run_Status == "") {
         Global_Run_Status_Local = Global_Run_Status;

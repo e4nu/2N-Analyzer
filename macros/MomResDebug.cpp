@@ -50,10 +50,10 @@ vector<TH1D *> SliceLoader(const char *filename, vector<int> &SliceNumbers) {
             ++Counter;
 
             TH1D *Histogram1DTempFromKey = (TH1D *) Key->ReadObj();
-            string CloneName = Histogram1DTempFromKey->GetName();
+            std::string CloneName = Histogram1DTempFromKey->GetName();
             TH1D *Histogram1DTemp = (TH1D *) Histogram1DTempFromKey->Clone((CloneName + " - CLONED").c_str());
 
-            string Histogram1DTempName = Histogram1DTemp->GetName();
+            std::string Histogram1DTempName = Histogram1DTemp->GetName();
 
             auto FuncList = Histogram1DTemp->GetListOfFunctions();
             FuncList->Clear();
@@ -67,7 +67,7 @@ vector<TH1D *> SliceLoader(const char *filename, vector<int> &SliceNumbers) {
     return MomResSlices;
 }
 
-void DrawAndSave(TCanvas *Canvas, const string &MomResDebugSaveDir, vector<TH1D *> &MomResSlices, vector<int> &SliceNumbers) {
+void DrawAndSave(TCanvas *Canvas, const std::string &MomResDebugSaveDir, vector<TH1D *> &MomResSlices, vector<int> &SliceNumbers) {
     Canvas->cd();
 
     for (int i = 0; i < MomResSlices.size(); i++) {
@@ -77,7 +77,7 @@ void DrawAndSave(TCanvas *Canvas, const string &MomResDebugSaveDir, vector<TH1D 
     }
 }
 
-bool IsNeutron(const string &source) {
+bool IsNeutron(const std::string &source) {
     if (findSubstring(source, "Neutron") || findSubstring(source, "neutron")) {
         return true;
     } else {
@@ -85,7 +85,7 @@ bool IsNeutron(const string &source) {
     }
 }
 
-bool IsProton(const string &source) {
+bool IsProton(const std::string &source) {
     if (findSubstring(source, "Proton") || findSubstring(source, "proton")) {
         return true;
     } else {
@@ -101,7 +101,7 @@ void MomResDebug() {
     c->cd()->SetBottomMargin(0.14), c->cd()->SetLeftMargin(0.16), c->cd()->SetRightMargin(0.16), c->cd()->SetTopMargin(0.12);
     c->cd();
 
-    const string MomResDebugSaveDir = "MomRes_Fitted_Reco_Slices";
+    const std::string MomResDebugSaveDir = "MomRes_Fitted_Reco_Slices";
     system(("rm -r " + MomResDebugSaveDir).c_str());
     system(("mkdir -p " + MomResDebugSaveDir).c_str());
 
@@ -120,7 +120,7 @@ void MomResDebug() {
     nRes.MomResInit(true, false, false, "C12x4_simulation_G18_Q204_6GeV", MomResDebugSaveDir, beamE, FD_nucleon_momentum_cut_nRes,
                     0.4, MomResDebugSaveDir, MomResDebugSaveDir, 0.05, true, "pol1_wKC", "pol3_wKC", false, false, true);
 
-    string MomentumType = "reco";
+    std::string MomentumType = "reco";
     vector <vector<double>> ResRecoMomSlicesLimits = nRes.GetResRecoMomSlicesLimits();
     vector <DSCuts> ResRecoMomSlicesFitVar = nRes.GetResRecoMomSlicesFitVar();
     vector <DSCuts> ResRecoMomSlicesHistVar = nRes.GetResRecoMomSlicesHistVar();
@@ -253,8 +253,8 @@ void MomResDebug() {
             int SliceUpperLimPrecision;
             if (ResRecoMomSlicesLimits.at(i).at(1) == beamE) { SliceUpperLimPrecision = 3; } else { SliceUpperLimPrecision = 2; }
 
-            string hSlice_CloneSaveDir = MomResDebugSaveDir;
-            string hSlice_CloneSaveName = MomResDebugSaveDir + "/" + "Slice_" + to_string(SliceNumbers.at(i)) + "_fitted.png";
+            std::string hSlice_CloneSaveDir = MomResDebugSaveDir;
+            std::string hSlice_CloneSaveName = MomResDebugSaveDir + "/" + "Slice_" + to_string(SliceNumbers.at(i)) + "_fitted.png";
             system(("mkdir -p " + hSlice_CloneSaveDir).c_str());
 
             auto ListOfFunctions = hSlice->GetListOfFunctions();

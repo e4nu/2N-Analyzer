@@ -27,7 +27,7 @@ using namespace std;
 // MCtoDATAcompareHistograms function ---------------------------------------------------------------------------------------------------------------------------------------------
 
 //<editor-fold desc="MCtoDATAcompareHistograms function">
-void MCtoDATAcompareHistograms(int HistogramCounter, TCanvas *Canvas, TCanvas *CanvasMulti, TH1D *MC_Histogram, TH1D *DATA_Histogram, string SaveDirRatios) {
+void MCtoDATAcompareHistograms(int HistogramCounter, TCanvas *Canvas, TCanvas *CanvasMulti, TH1D *MC_Histogram, TH1D *DATA_Histogram, std::string SaveDirRatios) {
     Canvas->cd();
 
     hData Properties;
@@ -36,9 +36,9 @@ void MCtoDATAcompareHistograms(int HistogramCounter, TCanvas *Canvas, TCanvas *C
     bool DATA_Save = false;
     bool Comparison_Save = true;
 
-    string Histogram_Type = Properties.GetType(MC_Histogram->GetTitle());
-    string Histogram_Particle = Properties.GetParticleNameShort(MC_Histogram->GetTitle());
-    string FinalState = Properties.GetFS(MC_Histogram->GetTitle());
+    std::string Histogram_Type = Properties.GetType(MC_Histogram->GetTitle());
+    std::string Histogram_Particle = Properties.GetParticleNameShort(MC_Histogram->GetTitle());
+    std::string FinalState = Properties.GetFS(MC_Histogram->GetTitle());
 
     DATA_Histogram->Scale(MC_Histogram->Integral() / DATA_Histogram->Integral());
 
@@ -121,7 +121,7 @@ void MCtoDATAcompareHistograms(int HistogramCounter, TCanvas *Canvas, TCanvas *C
 // MCtoDATAcompareRatios function ---------------------------------------------------------------------------------------------------------------------------------------------
 
 //<editor-fold desc="MCtoDATAcompareRatios function">
-void MCtoDATAcompareRatios(int RatioCounter, TCanvas *Canvas, TCanvas *CanvasMulti, TH1D *MC_Histogram, TH1D *DATA_Histogram, string SaveDirRatios) {
+void MCtoDATAcompareRatios(int RatioCounter, TCanvas *Canvas, TCanvas *CanvasMulti, TH1D *MC_Histogram, TH1D *DATA_Histogram, std::string SaveDirRatios) {
     Canvas->cd();
 
     hData Properties;
@@ -130,9 +130,9 @@ void MCtoDATAcompareRatios(int RatioCounter, TCanvas *Canvas, TCanvas *CanvasMul
     bool DATA_Save = false;
     bool Comparison_Save = true;
 
-    string Histogram_Type = Properties.GetType(MC_Histogram->GetTitle());
-    string Histogram_Particle = Properties.GetParticleNameShort(MC_Histogram->GetTitle());
-    string FinalState = Properties.GetFS(MC_Histogram->GetTitle());
+    std::string Histogram_Type = Properties.GetType(MC_Histogram->GetTitle());
+    std::string Histogram_Particle = Properties.GetParticleNameShort(MC_Histogram->GetTitle());
+    std::string FinalState = Properties.GetFS(MC_Histogram->GetTitle());
 
     TLine *EquiLine = new TLine(MC_Histogram->GetXaxis()->GetXmin(), 1, MC_Histogram->GetXaxis()->GetXmax(), 1);
     EquiLine->SetLineWidth(2);
@@ -227,8 +227,8 @@ void MCtoDATAcompareRatios(int RatioCounter, TCanvas *Canvas, TCanvas *CanvasMul
 
 //<editor-fold desc="MCtoDATAcomp function">
 void MCtoDATAcomp() {
-    string SaveDirRatios = "MC_to_DATA_comperison";
-    string SaveDirHistograms = "MC_to_DATA_comperison/Histograms";
+    std::string SaveDirRatios = "MC_to_DATA_comperison";
+    std::string SaveDirHistograms = "MC_to_DATA_comperison/Histograms";
 
     system(("rm -r " + SaveDirRatios).c_str());
     system(("mkdir -p " + SaveDirRatios).c_str());
@@ -271,12 +271,12 @@ void MCtoDATAcomp() {
 
     while (MC_key = (TKey *) MC_next()) {
         TH1D *MC_Histogram = (TH1D *) MC_key->ReadObj();
-        string MC_Histogram_title = MC_Histogram->GetTitle();
+        std::string MC_Histogram_title = MC_Histogram->GetTitle();
 
         if (!findSubstring(MC_Histogram_title, "nFDpCD/pFDpCD") ||
             !(!findSubstring(MC_Histogram_title, "vs") && !findSubstring(MC_Histogram_title, "vs.") &&
               !findSubstring(MC_Histogram_title, "VS") && !findSubstring(MC_Histogram_title, "VS."))) {
-            string MC_Histogram_type = Properties.GetType(MC_Histogram_title);
+            std::string MC_Histogram_type = Properties.GetType(MC_Histogram_title);
 
 //            if (MC_key->GetClassName() != "TH1D") { continue; }
             if (MC_key->GetClassName() != classname("TH1D")) { continue; }
@@ -287,7 +287,7 @@ void MCtoDATAcomp() {
 
                 /*
                 TH1D *DATA_Histogram = (TH1D *) DATA_file->Get(MC_Histogram->GetName());
-                string DATA_Histogram_title = DATA_Histogram->GetTitle();
+                std::string DATA_Histogram_title = DATA_Histogram->GetTitle();
 
                 cout << "\n\n\nMC_Histogram_title = " << MC_Histogram_title << "\n";
                 cout << "DATA_Histogram_title = " << DATA_Histogram_title << "\n";
@@ -301,12 +301,12 @@ void MCtoDATAcomp() {
 
                 while (DATA_key = (TKey *) DATA_next()) {
                     TH1D *DATA_Histogram = (TH1D *) DATA_key->ReadObj();
-                    string DATA_Histogram_title = DATA_Histogram->GetTitle();
+                    std::string DATA_Histogram_title = DATA_Histogram->GetTitle();
 
                     if (!findSubstring(DATA_Histogram_title, "nFDpCD/pFDpCD") ||
                         !(!findSubstring(DATA_Histogram_title, "vs") && !findSubstring(DATA_Histogram_title, "vs.") &&
                           !findSubstring(DATA_Histogram_title, "VS") && !findSubstring(DATA_Histogram_title, "VS."))) { continue; }
-                    string DATA_Histogram_type = Properties.GetType(DATA_Histogram_title);
+                    std::string DATA_Histogram_type = Properties.GetType(DATA_Histogram_title);
 
                     if (DATA_key->GetClassName() != classname("TH1D")) { continue; }
 
@@ -326,7 +326,7 @@ void MCtoDATAcomp() {
 
             while (DATA_key = (TKey *) DATA_next()) {
                 TH1D *DATA_Histogram = (TH1D *) DATA_key->ReadObj();
-                string DATA_Histogram_title = DATA_Histogram->GetTitle();
+                std::string DATA_Histogram_title = DATA_Histogram->GetTitle();
                 if (!findSubstring(DATA_Histogram_title, "nFDpCD/pFDpCD") ||
                     !(!findSubstring(DATA_Histogram_title, "vs") && !findSubstring(DATA_Histogram_title, "vs.") &&
                       !findSubstring(DATA_Histogram_title, "VS") && !findSubstring(DATA_Histogram_title, "VS."))) { continue; }

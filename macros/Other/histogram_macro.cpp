@@ -2,13 +2,13 @@ void histogram_macro() {
     // Open the ROOT file and retrieve the histogram
     TFile *file = TFile::Open("your_file.root");
     if (!file || file->IsZombie()) {
-        std::cerr << "Error: Could not open file." << std::endl;
+        std::std::cerr << "Error: Could not open file." << std::endl;
         return;
     }
 
     TH1D *h = (TH1D *)file->Get("Multiplicity of FD neutrons by redef. APID&AV (nFDpCD, FD)");
     if (!h) {
-        std::cerr << "Error: Histogram not found." << std::endl;
+        std::std::cerr << "Error: Histogram not found." << std::endl;
         file->Close();
         return;
     }

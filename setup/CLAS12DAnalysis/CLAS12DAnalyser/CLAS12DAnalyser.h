@@ -55,16 +55,16 @@ using namespace clas12;
 /* Initial input processing of loaded files (given by AnalyseFile) */
 
 /* Determine file path and name */
-const string LoadedInput = AnalyseFile; // AnalyseFile is taken from codeSetup.h
-const string filePath = LoadedInput.substr(0, LoadedInput.find_last_of('/') + 1);
-const string fileInput = LoadedInput.substr(LoadedInput.find_last_of('/') + 1);
-const string plotsInput = fileInput.substr(0, fileInput.find_last_of(".hipo") - 4);
+const std::string LoadedInput = AnalyseFile; // AnalyseFile is taken from codeSetup.h
+const std::string filePath = LoadedInput.substr(0, LoadedInput.find_last_of('/') + 1);
+const std::string fileInput = LoadedInput.substr(LoadedInput.find_last_of('/') + 1);
+const std::string plotsInput = fileInput.substr(0, fileInput.find_last_of(".hipo") - 4);
 
 /* Configure and get run parameters */
 ExperimentParameters Experiment(AnalyseFilePath, AnalyseFileSample);
-const string SampleName = Experiment.ConfigureSampleName(AnalyseFilePath, AnalyseFileSample); // Configure SampleName from input
+const std::string SampleName = Experiment.ConfigureSampleName(AnalyseFilePath, AnalyseFileSample); // Configure SampleName from input
 const double beamE = Experiment.GetBeamEnergy(); // Configure beam energy from SampleName
-const string Target = Experiment.GetTargetElement(); // Configure target (element) from SampleName
+const std::string Target = Experiment.GetTargetElement(); // Configure target (element) from SampleName
 const int TargetPDG = Experiment.GetTargetElementPDG(); // Configure target PDG from SampleName
 const bool isLocal = Experiment.SLocal();
 const bool isSimulation = Experiment.SSample();
@@ -788,7 +788,7 @@ void InitSettings() {
             plots_path = WorkingDirectory + "00_plots_" + SampleName + "_-00_NO_CUTS";
             plots_log_save_Directory = plots_path + "/" + "Run_log_" + SampleName + "_-00_NO_CUTS.txt";
         } else {
-            string added_names = Nucleon_Cuts_Status + FD_photons_Status + PSmearing_Status + FiducialCuts_Status + KinCuts_Status + KinWei_Status + Additional_Status
+            std::string added_names = Nucleon_Cuts_Status + FD_photons_Status + PSmearing_Status + FiducialCuts_Status + KinCuts_Status + KinWei_Status + Additional_Status
                                  + Efficiency_Status;
 
             if (!apply_chi2_cuts_1e_cut) { // Stage 1 - with cuts except PID (chi2) cuts

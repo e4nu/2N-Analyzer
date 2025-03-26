@@ -19,11 +19,11 @@
 using namespace std;
 using namespace utilities;
 
-string SetXAxisTitle(const string &RecTitle) {
-    string XAxisTitle;
+string SetXAxisTitle(const std::string &RecTitle) {
+    std::string XAxisTitle;
 
-    string Particle = GetParticleName(RecTitle);
-    string ParticleShort = GetParticleNameShort(RecTitle);
+    std::string Particle = GetParticleName(RecTitle);
+    std::string ParticleShort = GetParticleNameShort(RecTitle);
 
     if (!findSubstring(RecTitle, "vs") && !findSubstring(RecTitle, "vs.") && !findSubstring(RecTitle, "VS") && !findSubstring(RecTitle, "VS.")) {
         if (findSubstring(RecTitle, "momentum") && !findSubstring(RecTitle, "-momentum") && !findSubstring(RecTitle, "Total") && !findSubstring(RecTitle, "Relative") &&

@@ -8,7 +8,7 @@
 
 //<editor-fold desc="MomentumResolution constructor">
 /* A constructor that sets the particle (neutron or proton) */
-MomentumResolution::MomentumResolution(const string &Particle) {
+MomentumResolution::MomentumResolution(const std::string &Particle) {
     bool PrintOut = false;
 
     if (Particle == "Neutron") {
@@ -47,10 +47,10 @@ MomentumResolution::MomentumResolution(const string &Particle) {
 // MomResInit function ---------------------------------------------------------------------------------------------------------------------------------------------------
 
 //<editor-fold desc="MomResInit function">
-void MomentumResolution::MomResInit(const bool &plot_and_fit_MomRes, const bool &Calculate_momResS2, const bool &Run_with_momResS2, const string &SampleName,
-                                    const string &NucleonCutsDirectory, const double &beamE, const DSCuts &MomRes_mu_cuts, const DSCuts &MomRes_sigma_cuts, const double &ParticleMomTh,
-                                    const string &MomentumResolutionDirectory, const string &SavePath, const double &DeltaSlices, const bool &VaryingDelta, const string &SmearM,
-                                    const string &CorrM, const bool &momRes_test, const bool &ForceSmallpResLimits, const bool &FitDebugging) {
+void MomentumResolution::MomResInit(const bool &plot_and_fit_MomRes, const bool &Calculate_momResS2, const bool &Run_with_momResS2, const std::string &SampleName,
+                                    const std::string &NucleonCutsDirectory, const double &beamE, const DSCuts &MomRes_mu_cuts, const DSCuts &MomRes_sigma_cuts, const double &ParticleMomTh,
+                                    const std::string &MomentumResolutionDirectory, const std::string &SavePath, const double &DeltaSlices, const bool &VaryingDelta, const std::string &SmearM,
+                                    const std::string &CorrM, const bool &momRes_test, const bool &ForceSmallpResLimits, const bool &FitDebugging) {
     if (isNeutron) {
         if (plot_and_fit_MomRes) {
             ResSlicePlots_OutFile0 = SavePath + "/" + "Neutron_ResSlicePlots.pdf";
@@ -92,8 +92,8 @@ void MomentumResolution::MomResInit(const bool &plot_and_fit_MomRes, const bool 
             SetSmearAndCorrModes(SmearM, CorrM);
 
             if (Run_with_momResS2) {  // if Run_with_momResS2=true => load correction from momResS1 and smearing from momResS2
-                string NeutronCorrectionDataFile = MomentumResolutionDirectory + "Res_data_-_" + SampleName + "/Neutron_momResS1_fit_param_-_" + SampleName + ".par";
-                string ProtonSmearingDataFile = MomentumResolutionDirectory + "Res_data_-_" + SampleName + "/Neutron_momResS2_fit_param_-_" + SampleName + ".par";
+                std::string NeutronCorrectionDataFile = MomentumResolutionDirectory + "Res_data_-_" + SampleName + "/Neutron_momResS1_fit_param_-_" + SampleName + ".par";
+                std::string ProtonSmearingDataFile = MomentumResolutionDirectory + "Res_data_-_" + SampleName + "/Neutron_momResS2_fit_param_-_" + SampleName + ".par";
 
                 /* Load neutron correction fit parameters (correction factor from momResS1 reco fits!) */
                 ReadResDataParam(NeutronCorrectionDataFile.c_str(), Calculate_momResS2, SampleName, NucleonCutsDirectory, "reco", true, false);
@@ -115,8 +115,8 @@ void MomentumResolution::MomResInit(const bool &plot_and_fit_MomRes, const bool 
                 }
                 //</editor-fold>
             } else {  // if Calculate_momResS2 = false and Run_with_momResS2 = false => load both correction and smearing from momResS1
-                string NeutronCorrectionDataFile = MomentumResolutionDirectory + "Res_data_-_" + SampleName + "/Neutron_momResS1_fit_param_-_" + SampleName + ".par";
-                string ProtonSmearingDataFile = MomentumResolutionDirectory + "Res_data_-_" + SampleName + "/Neutron_momResS1_fit_param_-_" + SampleName + ".par";
+                std::string NeutronCorrectionDataFile = MomentumResolutionDirectory + "Res_data_-_" + SampleName + "/Neutron_momResS1_fit_param_-_" + SampleName + ".par";
+                std::string ProtonSmearingDataFile = MomentumResolutionDirectory + "Res_data_-_" + SampleName + "/Neutron_momResS1_fit_param_-_" + SampleName + ".par";
 
                 /* Load neutron correction fit parameters (correction factor from momResS1 reco fits!) */
                 ReadResDataParam(NeutronCorrectionDataFile.c_str(), Calculate_momResS2, SampleName, NucleonCutsDirectory, "reco", true, false);
@@ -147,10 +147,10 @@ void MomentumResolution::MomResInit(const bool &plot_and_fit_MomRes, const bool 
 //</editor-fold>
 
 //<editor-fold desc="SetMomResCalculations function">
-void MomentumResolution::SetMomResCalculations(const string &SampleName, const string &NucleonCutsDirectory, const double &beamE, const DSCuts &MomRes_mu_cuts,
+void MomentumResolution::SetMomResCalculations(const std::string &SampleName, const std::string &NucleonCutsDirectory, const double &beamE, const DSCuts &MomRes_mu_cuts,
                                                const DSCuts &MomRes_sigma_cuts, const double &ParticleMomTh, bool const &Calculate_momResS2, bool const &Run_in_momResS2,
-                                               const string &MomentumResolutionDirectory, const string &SavePath, const double &DeltaSlices, const bool &VaryingDelta, const string &SmearM,
-                                               const string &CorrM, const bool momRes_test, const bool ForceSmallpResLimits, const bool &FitDebugging) {
+                                               const std::string &MomentumResolutionDirectory, const std::string &SavePath, const double &DeltaSlices, const bool &VaryingDelta, const std::string &SmearM,
+                                               const std::string &CorrM, const bool momRes_test, const bool ForceSmallpResLimits, const bool &FitDebugging) {
     SliceUpperMomLimKC_mu = MomRes_mu_cuts.GetUpperCutConst(), SliceLowerMomLimKC_mu = MomRes_mu_cuts.GetLowerCutConst();
     SliceUpperMomLimKC_sigma = MomRes_sigma_cuts.GetUpperCutConst(), SliceLowerMomLimKC_sigma = MomRes_sigma_cuts.GetLowerCutConst();
     momResS2CalcMode = Calculate_momResS2, momResS2RunMode = Run_in_momResS2;
@@ -174,8 +174,8 @@ void MomentumResolution::SetMomResCalculations(const string &SampleName, const s
 //</editor-fold>
 
 //<editor-fold desc="SetMomResSlicesByType function">
-void MomentumResolution::SetMomResSlicesByType(const string &SampleName, const string &NucleonCutsDirectory, const double &beamE, const double &ParticleMomTh, const string &MomentumType,
-                                               const string &SavePath, const bool &VaryingDelta, const bool &momRes_test, const bool &ForceSmallpResLimits, const bool &FitDebugging) {
+void MomentumResolution::SetMomResSlicesByType(const std::string &SampleName, const std::string &NucleonCutsDirectory, const double &beamE, const double &ParticleMomTh, const std::string &MomentumType,
+                                               const std::string &SavePath, const bool &VaryingDelta, const bool &momRes_test, const bool &ForceSmallpResLimits, const bool &FitDebugging) {
     if (MomentumType == "truth") {
         SetMomResSlices(SampleName, NucleonCutsDirectory, beamE, ParticleMomTh, MomentumType, SavePath, VaryingDelta, momRes_test, ForceSmallpResLimits, ResTLMomSlices, ResTLMomSlicesLimits,
                         ResTLMomSlicesFitVar, ResTLMomSlicesHistVar, TL_NumberOfSlices, FitDebugging);
@@ -187,8 +187,8 @@ void MomentumResolution::SetMomResSlicesByType(const string &SampleName, const s
 //</editor-fold>
 
 //<editor-fold desc="SetMomResSlices function">
-void MomentumResolution::SetMomResSlices(const string &SampleName, const string &NucleonCutsDirectory, const double &beamE, const double &ParticleMomTh, const string &MomentumType,
-                                         const string &SavePath, const bool &VaryingDelta, const bool &momRes_test, const bool &ForceSmallpResLimits, vector<hPlot1D> &ResSlices0,
+void MomentumResolution::SetMomResSlices(const std::string &SampleName, const std::string &NucleonCutsDirectory, const double &beamE, const double &ParticleMomTh, const std::string &MomentumType,
+                                         const std::string &SavePath, const bool &VaryingDelta, const bool &momRes_test, const bool &ForceSmallpResLimits, vector<hPlot1D> &ResSlices0,
                                          vector<vector<double>> &ResSlicesLimits0, vector<DSCuts> &ResSlicesFitVar0, vector<DSCuts> &ResSlicesHistVar0, int &NumberOfSlices0,
                                          const bool &FitDebugging) {
     double Delta = delta, SliceLowerLim = ParticleMomTh, SliceUpperLim;
@@ -251,7 +251,7 @@ void MomentumResolution::SetMomResSlices(const string &SampleName, const string 
             SliceUpperLimPrecision = 2;
         }
 
-        string hStatsTitle, hTitle, hSaveName, hCutName;
+        std::string hStatsTitle, hTitle, hSaveName, hCutName;
 
         hPlot1D hResolutionSlice;
 
@@ -408,7 +408,7 @@ void MomentumResolution::SetMomResSlices(const string &SampleName, const string 
 //</editor-fold>
 
 //<editor-fold desc="SetUpperMomCut function">
-void MomentumResolution::SetUpperMomCut(const string &SampleName, const string &NucleonCutsDirectory, const bool &FitDebugging) {
+void MomentumResolution::SetUpperMomCut(const std::string &SampleName, const std::string &NucleonCutsDirectory, const bool &FitDebugging) {
     if (!FitDebugging) {
         // load sample-appropriate cuts file from NucleonCutsDirectory:
         ReadInputParam((NucleonCutsDirectory + "Nucleon_Cuts_-_" + SampleName + ".par").c_str());
@@ -421,13 +421,13 @@ void MomentumResolution::SetUpperMomCut(const string &SampleName, const string &
 //</editor-fold>
 
 //<editor-fold desc="LoadFitParam function">
-void MomentumResolution::LoadFitParam(const string &SampleName, const string &NucleonCutsDirectory, bool const &Calculate_momResS2, const string &MomentumResolutionDirectory) {
+void MomentumResolution::LoadFitParam(const std::string &SampleName, const std::string &NucleonCutsDirectory, bool const &Calculate_momResS2, const std::string &MomentumResolutionDirectory) {
     if (isNeutron) {
         if (momResS2CalcMode && !momResS2RunMode) {
             cout << "\n\nMomentumResolution::MomentumResolution: running in momResS2 calculation mode. Loading momResS1 variables...\n";
 
-            string NeutronCorrectionDataFile = MomentumResolutionDirectory + "Res_data_-_" + SampleName + "/Neutron_momResS1_fit_param_-_" + SampleName + ".par";
-            string ProtonSmearingDataFile = MomentumResolutionDirectory + "Res_data_-_" + SampleName + "/Neutron_momResS1_fit_param_-_" + SampleName + ".par";
+            std::string NeutronCorrectionDataFile = MomentumResolutionDirectory + "Res_data_-_" + SampleName + "/Neutron_momResS1_fit_param_-_" + SampleName + ".par";
+            std::string ProtonSmearingDataFile = MomentumResolutionDirectory + "Res_data_-_" + SampleName + "/Neutron_momResS1_fit_param_-_" + SampleName + ".par";
 
             /* Load neutron correction variables (from momResS1), but not smearing variables */
             ReadResDataParam(NeutronCorrectionDataFile.c_str(), Calculate_momResS2, SampleName, NucleonCutsDirectory, "reco", true, false);
@@ -450,8 +450,8 @@ void MomentumResolution::LoadFitParam(const string &SampleName, const string &Nu
             cout << "\n\nMomentumResolution::MomentumResolution: running in momResS2 run mode.\n";
             cout << "Loading correction from momResS1 variables & smearing from momResS2 variables...\n";
 
-            string NeutronCorrectionDataFile = MomentumResolutionDirectory + "Res_data_-_" + SampleName + "/Neutron_momResS1_fit_param_-_" + SampleName + ".par";
-            string ProtonSmearingDataFile = MomentumResolutionDirectory + "Res_data_-_" + SampleName + "/Neutron_momResS2_fit_param_-_" + SampleName + ".par";
+            std::string NeutronCorrectionDataFile = MomentumResolutionDirectory + "Res_data_-_" + SampleName + "/Neutron_momResS1_fit_param_-_" + SampleName + ".par";
+            std::string ProtonSmearingDataFile = MomentumResolutionDirectory + "Res_data_-_" + SampleName + "/Neutron_momResS2_fit_param_-_" + SampleName + ".par";
 
             /* Load neutron correction variables (from momResS1) */
             ReadResDataParam(NeutronCorrectionDataFile.c_str(), Calculate_momResS2, SampleName, NucleonCutsDirectory, "reco", true, false);
@@ -485,7 +485,7 @@ void MomentumResolution::ReadInputParam(const char *filename) {
     infile.open(filename);
 
     if (infile.is_open()) {
-        string tp;
+        std::string tp;
 
         // remove 3 lines of header
         for (int i = 0; i < 3; i++) { getline(infile, tp); }
@@ -493,7 +493,7 @@ void MomentumResolution::ReadInputParam(const char *filename) {
         while (getline(infile, tp))  // read data from file object and put it into string.
         {
             stringstream ss(tp);
-            string parameter, parameter2;
+            std::string parameter, parameter2;
             double value;
             // get cut identifier
             ss >> parameter;
@@ -501,9 +501,9 @@ void MomentumResolution::ReadInputParam(const char *filename) {
             if (parameter == "nRes_Momentum_cut") {
                 ss >> parameter2;
                 stringstream ss2(parameter2);
-                string pid_v;
+                std::string pid_v;
                 int count = 0;
-                string pid = "";
+                std::string pid = "";
                 vector<double> par;
 
                 while (getline(ss2, pid_v, ':')) {
@@ -569,14 +569,14 @@ Double_t CFitFunction(Double_t *v, Double_t *par) {
 //</editor-fold>
 
 //<editor-fold desc="SliceFitDrawAndSaveByType function">
-void MomentumResolution::SliceFitDrawAndSaveByType(const string &SampleName, const double &beamE) {
+void MomentumResolution::SliceFitDrawAndSaveByType(const std::string &SampleName, const double &beamE) {
     SliceFitDrawAndSave(SampleName, beamE, "truth", ResTLMomSlices, ResTLMomSlicesLimits, ResTLMomSlicesFitVar, ResTLMomSlicesHistVar, FittedTLMomSlices, TL_NumberOfSlices);
     SliceFitDrawAndSave(SampleName, beamE, "reco", ResRecoMomSlices, ResRecoMomSlicesLimits, ResRecoMomSlicesFitVar, ResRecoMomSlicesHistVar, FittedRecoMomSlices, Reco_NumberOfSlices);
 }
 //</editor-fold>
 
 //<editor-fold desc="SliceFitDrawAndSave function">
-void MomentumResolution::SliceFitDrawAndSave(const string &SampleName, const double &beamE, const string &MomentumType, vector<hPlot1D> &ResSlices0, vector<vector<double>> &ResSlicesLimits0,
+void MomentumResolution::SliceFitDrawAndSave(const std::string &SampleName, const double &beamE, const std::string &MomentumType, vector<hPlot1D> &ResSlices0, vector<vector<double>> &ResSlicesLimits0,
                                              vector<DSCuts> &ResSlicesFitVar0, vector<DSCuts> &ResSlicesHistVar0, vector<int> &FittedSlices0, int &NumberOfSlices0) {
     TCanvas *SliceFitCanvas = new TCanvas("SliceFitCanvas", "SliceFitCanvas", 1000, 750);  // normal res
     SliceFitCanvas->SetGrid();
@@ -585,7 +585,7 @@ void MomentumResolution::SliceFitDrawAndSave(const string &SampleName, const dou
 
     for (int i = 0; i < NumberOfSlices0; i++) {
         //<editor-fold desc="Setting sNameFlag">
-        string sNameFlag;
+        std::string sNameFlag;
 
         if (FindSubstring(SampleName, "sim")) {
             sNameFlag = "s";
@@ -678,7 +678,7 @@ void MomentumResolution::SliceFitDrawAndSave(const string &SampleName, const dou
             double x_2_FitParam = x_2_Cut_legend, y_2_FitParam = y_2_Cut_legend;
 
             //<editor-fold desc="Setting fitter particle">
-            string SliceFitterParticle;
+            std::string SliceFitterParticle;
 
             if (isNeutron) {
                 SliceFitterParticle = "nFD";
@@ -702,8 +702,8 @@ void MomentumResolution::SliceFitDrawAndSave(const string &SampleName, const dou
                 SliceUpperLimPrecision = 2;
             }
 
-            string hSlice_CloneSaveDir = ResSlices0.at(i).GetHistogram1DSaveNamePath() + "00_Fitted_" + MomentumType + "_res_slices/";
-            string hSlice_CloneSaveName = hSlice_CloneSaveDir + sNameFlag + "_" + MomentumType + "_" + ResSlices0.at(i).GetHistogram1DSaveName() + "_fitted.png";
+            std::string hSlice_CloneSaveDir = ResSlices0.at(i).GetHistogram1DSaveNamePath() + "00_Fitted_" + MomentumType + "_res_slices/";
+            std::string hSlice_CloneSaveName = hSlice_CloneSaveDir + sNameFlag + "_" + MomentumType + "_" + ResSlices0.at(i).GetHistogram1DSaveName() + "_fitted.png";
             system(("mkdir -p " + hSlice_CloneSaveDir).c_str());
 
             auto ListOfFunctions = hSlice->GetListOfFunctions();
@@ -764,13 +764,13 @@ void MomentumResolution::SliceFitDrawAndSave(const string &SampleName, const dou
 //</editor-fold>
 
 //<editor-fold desc="PolyFitter function">
-void MomentumResolution::PolyFitter(const string &MomentumType, const int &PolynomialDegree, const string &FitType, const string &MomentumFitRange, vector<vector<double>> &FitParamResults) {
+void MomentumResolution::PolyFitter(const std::string &MomentumType, const int &PolynomialDegree, const std::string &FitType, const std::string &MomentumFitRange, vector<vector<double>> &FitParamResults) {
     cout << "\n\nPolyFitter variables:\n";
     bool PrintOut = false;
     bool PlotPoints = false;
 
     //<editor-fold desc="Setting fitter particle">
-    string FitterParticle;
+    std::string FitterParticle;
 
     if (isNeutron) {
         FitterParticle = "nFD";
@@ -780,7 +780,7 @@ void MomentumResolution::PolyFitter(const string &MomentumType, const int &Polyn
     //</editor-fold>
 
     //<editor-fold desc="Setting polynomial">
-    string PolynomialFuncName, PolynomialFuncStruct, PolynomialFitType;
+    std::string PolynomialFuncName, PolynomialFuncStruct, PolynomialFitType;
 
     if (MomentumFitRange == "noKC") {
         if (PolynomialDegree == 1) {
@@ -837,7 +837,7 @@ void MomentumResolution::PolyFitter(const string &MomentumType, const int &Polyn
     //</editor-fold>
 
     //<editor-fold desc="Setting variable to fit">
-    string FittedVar;
+    std::string FittedVar;
 
     if (FitType == "Smear") {
         FittedVar = "#sigma_{" + FitterParticle + "}";
@@ -1130,7 +1130,7 @@ void MomentumResolution::PolyFitter(const string &MomentumType, const int &Polyn
 
     TLegendEntry *Graph1D_Legend_fit;
 
-    string LegendPolyStruct;
+    std::string LegendPolyStruct;
 
     if (PolynomialDegree == 1) {
         LegendPolyStruct = FittedVar + " = " + "A#LTP^{" + MomentumType + "}_{" + FitterParticle + "}#GT + " + "B";
@@ -1209,9 +1209,9 @@ void MomentumResolution::PolyFitter(const string &MomentumType, const int &Polyn
     }
     //</editor-fold>
 
-    string FitsDir = SlicesSavePath + "/" + "Graph1D_" + MomentumType + "_fits";
-    string FitsDirByType = FitsDir + "/" + MomentumType + "_" + FitType + "_fits";
-    string GraphSaveName = FitsDirByType + "/" + "0" + to_string(PolynomialDegree) + "_Fit_" + FitType + "_pol" + to_string(PolynomialDegree) + "_" + MomentumFitRange + ".png";
+    std::string FitsDir = SlicesSavePath + "/" + "Graph1D_" + MomentumType + "_fits";
+    std::string FitsDirByType = FitsDir + "/" + MomentumType + "_" + FitType + "_fits";
+    std::string GraphSaveName = FitsDirByType + "/" + "0" + to_string(PolynomialDegree) + "_Fit_" + FitType + "_pol" + to_string(PolynomialDegree) + "_" + MomentumFitRange + ".png";
 
     system(("mkdir -p " + FitsDir).c_str());
     system(("mkdir -p " + FitsDirByType).c_str());
@@ -1226,8 +1226,8 @@ void MomentumResolution::PolyFitter(const string &MomentumType, const int &Polyn
 // DrawAndSaveResSlices function ----------------------------------------------------------------------------------------------------------------------------------------
 
 //<editor-fold desc="DrawAndSaveResSlices function">
-void MomentumResolution::DrawAndSaveResSlices(const string &SampleName, TCanvas *h1DCanvas, const string &plots_path, const string &MomentumResolutionDirectory) {
-    string SampleNameTemp = SampleName;
+void MomentumResolution::DrawAndSaveResSlices(const std::string &SampleName, TCanvas *h1DCanvas, const std::string &plots_path, const std::string &MomentumResolutionDirectory) {
+    std::string SampleNameTemp = SampleName;
     const char *ResSlicePlots_OutFile = ResSlicePlots_OutFile0.c_str();
 
     if (isNeutron) {
@@ -1256,9 +1256,9 @@ void MomentumResolution::DrawAndSaveResSlices(const string &SampleName, TCanvas 
 // LogResDataToFile function --------------------------------------------------------------------------------------------------------------------------------------------
 
 //<editor-fold desc="LogResDataToFile function">
-void MomentumResolution::LogResDataToFile(const string &SampleName, const string &plots_path, const string &MomentumResolutionDirectory) {
+void MomentumResolution::LogResDataToFile(const std::string &SampleName, const std::string &plots_path, const std::string &MomentumResolutionDirectory) {
     // TODO: reorder file save in test mode properly
-    string SaveDateDir = MomentumResolutionDirectory + "Res_data_-_" + SampleName + "/";
+    std::string SaveDateDir = MomentumResolutionDirectory + "Res_data_-_" + SampleName + "/";
 
     if (!momResTestMode) {
         system(("mkdir -p " + SaveDateDir).c_str());
@@ -1275,7 +1275,7 @@ void MomentumResolution::LogResDataToFile(const string &SampleName, const string
 // LogFitDataToFile function --------------------------------------------------------------------------------------------------------------------------------------------
 
 //<editor-fold desc="LogFitDataToFile function">
-void MomentumResolution::LogFitDataToFile(const string &SampleName, const string &plots_path, const string &MomentumResolutionDirectory) {
+void MomentumResolution::LogFitDataToFile(const std::string &SampleName, const std::string &plots_path, const std::string &MomentumResolutionDirectory) {
     ofstream Neutron_res_fit_param;
     std::string Neutron_res_fit_paramFilePath;
 
@@ -1302,7 +1302,7 @@ void MomentumResolution::LogFitDataToFile(const string &SampleName, const string
     }
 
     //<editor-fold desc="Writing log header">
-    string momRes_calculation_mode;
+    std::string momRes_calculation_mode;
 
     if (momResS2CalcMode && !momResS2RunMode) {
         momRes_calculation_mode = "Calculate momResS2";
@@ -1410,11 +1410,11 @@ void MomentumResolution::LogFitDataToFile(const string &SampleName, const string
 //</editor-fold>
 
 //<editor-fold desc="AutoLogger function">
-void MomentumResolution::AutoLogger(const string &SampleName, const string &plots_path, const string &MomentumResolutionDirectory, const string &LogHeader,
+void MomentumResolution::AutoLogger(const std::string &SampleName, const std::string &plots_path, const std::string &MomentumResolutionDirectory, const std::string &LogHeader,
                                     const vector<vector<double>> &Vector2Log, ofstream &Neutron_res_fit_param) {
     if (Vector2Log.size() != 0) {
         vector<string> FitVarName = {"A", "B", "C", "D"}, FitVarErrName = {"A_Err", "B_Err", "C_Err", "D_Err"};
-        string FitVarNameEnding = "# ", FitVarErrNameEnding = "# ";
+        std::string FitVarNameEnding = "# ", FitVarErrNameEnding = "# ";
 
         for (int i = 0; i < Vector2Log.at(0).size(); i++) {
             if (i > 0) {
@@ -1472,7 +1472,7 @@ void MomentumResolution::AutoLogger(const string &SampleName, const string &plot
 // LogHistDataToFile function --------------------------------------------------------------------------------------------------------------------------------------------
 
 //<editor-fold desc="LogHistDataToFile function">
-void MomentumResolution::LogHistDataToFile(const string &SampleName, const string &plots_path, const string &MomentumResolutionDirectory) {
+void MomentumResolution::LogHistDataToFile(const std::string &SampleName, const std::string &plots_path, const std::string &MomentumResolutionDirectory) {
     ofstream Neutron_res_Hist_param;
     std::string Neutron_res_Hist_paramFilePath;
 
@@ -1499,7 +1499,7 @@ void MomentumResolution::LogHistDataToFile(const string &SampleName, const strin
     }
 
     //<editor-fold desc="Writing log header">
-    string momRes_calculation_mode;
+    std::string momRes_calculation_mode;
 
     if (momResS2CalcMode && !momResS2RunMode) {
         momRes_calculation_mode = "Calculate momResS2";
@@ -1546,7 +1546,7 @@ void MomentumResolution::LogHistDataToFile(const string &SampleName, const strin
 // ReadResDataParam function --------------------------------------------------------------------------------------------------------------------------------------------
 
 //<editor-fold desc="ReadResDataParam function">
-void MomentumResolution::ReadResDataParam(const char *filename, const bool &Calculate_momResS2, const string &SampleName, const string &NucleonCutsDirectory, const string &MomentumType,
+void MomentumResolution::ReadResDataParam(const char *filename, const bool &Calculate_momResS2, const std::string &SampleName, const std::string &NucleonCutsDirectory, const std::string &MomentumType,
                                           const bool &Load_correction = false, const bool &Load_smearing = false) {
     ifstream infile;
     infile.open(filename);
@@ -1560,7 +1560,7 @@ void MomentumResolution::ReadResDataParam(const char *filename, const bool &Calc
     if (Load_smearing) { cout << "\nLoading proton smearing from:\n" << filename << "\n"; }
 
     if (infile.is_open()) {
-        string tp;
+        std::string tp;
 
         // remove 3 lines of header
         for (int i = 0; i < 3; i++) { getline(infile, tp); }
@@ -1568,7 +1568,7 @@ void MomentumResolution::ReadResDataParam(const char *filename, const bool &Calc
         // getline(infile, tp) = read data from file object and put it into string.
         while (getline(infile, tp)) {
             stringstream ss(tp);
-            string parameter, parameter2;
+            std::string parameter, parameter2;
             ss >> parameter;  // get cut identifier
 
             if (!Load_correction && !Load_smearing) {
@@ -1576,10 +1576,10 @@ void MomentumResolution::ReadResDataParam(const char *filename, const bool &Calc
                     // get cut values
                     ss >> parameter2;
                     stringstream ss2(parameter2);
-                    string SliceParam;
+                    std::string SliceParam;
                     int count = 0;  // parameter number
 
-                    string CutNameTemp = parameter;
+                    std::string CutNameTemp = parameter;
                     int SliceNumberTemp;
                     double SliceLowerBoundaryTemp, SliceUpperBoundaryTemp, FitMeanTemp, FitSigmaTemp;
 
@@ -1609,10 +1609,10 @@ void MomentumResolution::ReadResDataParam(const char *filename, const bool &Calc
                     // get cut values
                     ss >> parameter2;
                     stringstream ss2(parameter2);
-                    string SliceParam;
+                    std::string SliceParam;
                     int count = 0;  // parameter number
 
-                    string CutNameTemp = parameter;
+                    std::string CutNameTemp = parameter;
                     int SliceNumberTemp;
                     double SliceLowerBoundaryTemp, SliceUpperBoundaryTemp, HistMeanTemp, HistSigmaTemp;
 
@@ -1818,12 +1818,12 @@ void MomentumResolution::ReadResDataParam(const char *filename, const bool &Calc
 //</editor-fold>
 
 //<editor-fold desc="AutoReader function">
-void MomentumResolution::AutoReader(const string &MomentumType, const int &PolynomialDegree, const string &parameter, basic_istream<char> &ss2, vector<vector<double>> &Loading_Dest,
+void MomentumResolution::AutoReader(const std::string &MomentumType, const int &PolynomialDegree, const std::string &parameter, basic_istream<char> &ss2, vector<vector<double>> &Loading_Dest,
                                     vector<double> &Loaded_coefficients_values, vector<string> &Loaded_coefficients_names) {
     if (FindSubstring(parameter, MomentumType)) {
         vector<string> VarNames = {"A", "B", "C", "D"};
         vector<double> Loaded_FitVarResults, Loaded_FitVarResultsErrors, Loaded_FitVarResultsGoodness;
-        string Loaded_FitVar;
+        std::string Loaded_FitVar;
 
         int counter = 0;
 
@@ -1887,16 +1887,16 @@ void MomentumResolution::AutoReader(const string &MomentumType, const int &Polyn
 //</editor-fold>
 
 //<editor-fold desc="AutoReader function">
-void MomentumResolution::AutoReader(const string &MomentumType, const int &PolynomialDegree, const string &parameter, basic_istream<char> &ss2, vector<vector<double>> &Loading_Dest) {
+void MomentumResolution::AutoReader(const std::string &MomentumType, const int &PolynomialDegree, const std::string &parameter, basic_istream<char> &ss2, vector<vector<double>> &Loading_Dest) {
     bool PrintOut = false;
     bool PrintOutAndExit = false;
     int PolynomialDeg2Print = 3;
-    string MomentumType2Print = "reco";
+    std::string MomentumType2Print = "reco";
 
     if (FindSubstring(parameter, MomentumType)) {
         vector<string> VarNames = {"A", "B", "C", "D"};
         vector<double> Loaded_FitVarResults, Loaded_FitVarResultsErrors, Loaded_FitVarResultsGoodness;
-        string Loaded_FitVar;
+        std::string Loaded_FitVar;
 
         if (PrintOut && (PolynomialDegree == PolynomialDeg2Print) && (MomentumType == MomentumType2Print)) { cout << "parameter = " << parameter << "\n"; }
 

@@ -10,7 +10,7 @@
 //<editor-fold desc="findSubstring function">
 /* Usage: in getBeanE */
 
-bool findSubstring(string string1, string string2) {
+bool findSubstring(string string1, std::string string2) {
     if (string1.find(string2) != string::npos) {
         return true;
     } else {

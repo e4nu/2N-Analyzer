@@ -15,11 +15,11 @@
 
 using namespace std;
 
-void SettingSaveNames(const string &SampleName, const string &Type, const string &Particle, const string &SaveDir, const string &TestSaveDir, const string &PlotsT,
-                      string &Numerator_Clone_SaveName, string &Numerator_Clone_test_SaveName, string &Numerator_Clone_test_rebined_SaveName, string &Denominator_Clone_SaveName,
-                      string &Denominator_Clone_test_SaveName, string &Denominator_Clone_test_rebined_SaveName, string &sNameFlag, string &PlotSaveName, const string &DRegion = "",
-                      const string &FinalState = "") {
-    string FinalState1, FinalState2;
+void SettingSaveNames(const std::string &SampleName, const std::string &Type, const std::string &Particle, const std::string &SaveDir, const std::string &TestSaveDir, const std::string &PlotsT,
+                      std::string &Numerator_Clone_SaveName, std::string &Numerator_Clone_test_SaveName, std::string &Numerator_Clone_test_rebined_SaveName, std::string &Denominator_Clone_SaveName,
+                      std::string &Denominator_Clone_test_SaveName, std::string &Denominator_Clone_test_rebined_SaveName, std::string &sNameFlag, std::string &PlotSaveName, const std::string &DRegion = "",
+                      const std::string &FinalState = "") {
+    std::string FinalState1, FinalState2;
 
     if (findSubstring(SampleName, "sim")) {
         sNameFlag = "s";

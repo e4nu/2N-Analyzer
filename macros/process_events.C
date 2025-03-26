@@ -17,7 +17,7 @@ using namespace std;
 
 void process_events() {
 
-    string fileName = "Downloads/C12_G18_10a_02_11b_207052MeV.root";
+    std::string fileName = "Downloads/C12_G18_10a_02_11b_207052MeV.root";
 
     cout << "\n\nLoaded file:\t" << fileName << "\n";
 

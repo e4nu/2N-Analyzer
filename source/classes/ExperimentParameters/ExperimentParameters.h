@@ -18,8 +18,8 @@ using namespace utilities;
 
 class ExperimentParameters : public TargetParameters {
    protected:
-    string SampleName;
-    string VaryingSampleName;  // for AMaps, WMaps and nRes
+    std::string SampleName;
+    std::string VaryingSampleName;  // for AMaps, WMaps and nRes
     double BeamEnergy;
 
     bool LocalSample = false;
@@ -39,27 +39,27 @@ class ExperimentParameters : public TargetParameters {
    public:
     // Constructor ----------------------------------------------------------------------------------------------------------------------------------------
 
-    ExperimentParameters(const string &AnalyseFilePath, const string &AnalyseFileSample);
+    ExperimentParameters(const std::string &AnalyseFilePath, const std::string &AnalyseFileSample);
 
     // ConfigureSampleName function -----------------------------------------------------------------------------------------------------------------------------------------
 
-    string ConfigureSampleName(const string &AnalyseFilePath, const string &AnalyseFileSample);
+    std::string ConfigureSampleName(const std::string &AnalyseFilePath, const std::string &AnalyseFileSample);
 
     // ConfigureVaryingSampleName function -----------------------------------------------------------------------------------------------------------------------------------
 
-    void ConfigureVaryingSampleName(const string &sn);
+    void ConfigureVaryingSampleName(const std::string &sn);
 
     // ConfigureVz_cuts function --------------------------------------------------------------------------------------------------------------------------------------------
 
-    void ConfigureVz_cuts(const string &sn);
+    void ConfigureVz_cuts(const std::string &sn);
 
     // ConfiguredVz_cuts function -------------------------------------------------------------------------------------------------------------------------------------------
 
-    void ConfiguredVz_cuts(const string &sn);
+    void ConfiguredVz_cuts(const std::string &sn);
 
     // ConfigureBeamEnergy function -----------------------------------------------------------------------------------------------------------------------------------------
 
-    double ConfigureBeamEnergy(const string &sn);
+    double ConfigureBeamEnergy(const std::string &sn);
 
     // GetBeamEnergy function -----------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -92,12 +92,12 @@ class ExperimentParameters : public TargetParameters {
     // AddToHipoChain function ----------------------------------------------------------------------------------------------------------------------------------------
 
     // This is the old function used to add runs to the HipoChain
-    void AddToHipoChain(HipoChain &chain, const string &sn, const string &AnalyseFilePath, const string &AnalyseFileSample, const string &AnalyseFile);
+    void AddToHipoChain(HipoChain &chain, const std::string &sn, const std::string &AnalyseFilePath, const std::string &AnalyseFileSample, const std::string &AnalyseFile);
 
     // AddToHipoChainFromList function ----------------------------------------------------------------------------------------------------------------------------------------
 
     // This is the old function used to add runs to the HipoChain
-    void AddToHipoChainFromList(HipoChain &chain, const string &sn, const string &AnalyseFilePath, const string &AnalyseFileSample, const string &AnalyseFile);
+    void AddToHipoChainFromList(HipoChain &chain, const std::string &sn, const std::string &AnalyseFilePath, const std::string &AnalyseFileSample, const std::string &AnalyseFile);
 
     // other functions ------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -113,7 +113,7 @@ class ExperimentParameters : public TargetParameters {
 
     bool IsBeamAt6GeV() const { return BeamAt6GeV; };
 
-    string GetVaryingSampleName() { return VaryingSampleName; };
+    std::string GetVaryingSampleName() { return VaryingSampleName; };
 };
 
 #endif  // EXPERIMENTPARAMETERS_H

@@ -34,8 +34,8 @@
 
 using namespace std;
 
-void StackPlot4(string &SampleName, TList *Histogram_list, hPlot1D const &Hist1, const string &Hist1_legened, hPlot1D const &Hist2, const string &Hist2_legened, hPlot1D const &Hist3,
-                const string &Hist3_legened, hPlot1D const &Hist4, const string &Hist4_legened) {
+void StackPlot4(string &SampleName, TList *Histogram_list, hPlot1D const &Hist1, const std::string &Hist1_legened, hPlot1D const &Hist2, const std::string &Hist2_legened, hPlot1D const &Hist3,
+                const std::string &Hist3_legened, hPlot1D const &Hist4, const std::string &Hist4_legened) {
     //<editor-fold desc="Canvas definitions">
     //    TCanvas *StackPlot4Canvas = new TCanvas("StackPlot4Canvas", "StackPlot4Canvas", 1000, 750); // normal res
     TCanvas *StackPlot4Canvas = new TCanvas("StackPlot4Canvas", "StackPlot4Canvas", 1000 * 2, 750 * 2);  // double res
@@ -92,15 +92,15 @@ void StackPlot4(string &SampleName, TList *Histogram_list, hPlot1D const &Hist1,
     double x_1 = 0.18, y_1 = 0.3, x_2 = 0.86, y_2 = 0.7;
     double diplayTextSize = 0.1;
 
-    string Histogram1DTitle = Hist1.GetHistogramTitle();
-    string Histogram1DTitleReactions;
-    string xLable = Hist1.GetXaxisTitle();
-    string finalState = Hist1.GetFinalState();
-    string HistogramStackSaveNamePath0 = Hist1.GetHistogram1DSaveNamePath().substr(0, Hist1.GetHistogram1DSaveNamePath().find_last_of("/"));
-    string HistogramStackSaveNamePath1 = HistogramStackSaveNamePath0.substr(0, HistogramStackSaveNamePath0.find_last_of("/"));
-    string HistogramStackSaveNamePath = HistogramStackSaveNamePath1.substr(0, HistogramStackSaveNamePath1.find_last_of("/")) + "/";
-    string HistogramStackSaveName = HistogramStackSaveNamePath1.substr(HistogramStackSaveNamePath1.find_last_of('/') + 1) + "_Stack4";
-    //    string HistogramStackSaveName = Hist1.GetHistogram1DSaveName() + "_Stack";
+    std::string Histogram1DTitle = Hist1.GetHistogramTitle();
+    std::string Histogram1DTitleReactions;
+    std::string xLable = Hist1.GetXaxisTitle();
+    std::string finalState = Hist1.GetFinalState();
+    std::string HistogramStackSaveNamePath0 = Hist1.GetHistogram1DSaveNamePath().substr(0, Hist1.GetHistogram1DSaveNamePath().find_last_of("/"));
+    std::string HistogramStackSaveNamePath1 = HistogramStackSaveNamePath0.substr(0, HistogramStackSaveNamePath0.find_last_of("/"));
+    std::string HistogramStackSaveNamePath = HistogramStackSaveNamePath1.substr(0, HistogramStackSaveNamePath1.find_last_of("/")) + "/";
+    std::string HistogramStackSaveName = HistogramStackSaveNamePath1.substr(HistogramStackSaveNamePath1.find_last_of('/') + 1) + "_Stack4";
+    //    std::string HistogramStackSaveName = Hist1.GetHistogram1DSaveName() + "_Stack";
 
     cout << "\n\n\n\nHistogramStackSaveNamePath0 = " << HistogramStackSaveNamePath0 << "\n";
     cout << "HistogramStackSaveNamePath1 = " << HistogramStackSaveNamePath1 << "\n";
@@ -126,7 +126,7 @@ void StackPlot4(string &SampleName, TList *Histogram_list, hPlot1D const &Hist1,
     HistogramStack->GetHistogram()->GetYaxis()->CenterTitle(centerTitle);
 
     if (normalize_Histogram) {
-        string title;
+        std::string title;
 
         if (Histogram1DTitleReactions != "") {
             if (finalState == "") {
@@ -157,7 +157,7 @@ void StackPlot4(string &SampleName, TList *Histogram_list, hPlot1D const &Hist1,
             displayText->Draw();
         }
     } else {
-        string title;
+        std::string title;
 
         if (Histogram1DTitleReactions != "") {
             if (finalState == "") {

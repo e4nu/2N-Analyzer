@@ -236,18 +236,18 @@ void PoliFitter() {
 //    cout << "\n\n";
 //
 //    //    TFile *f = new TFile("plots_C12_simulation_6GeV_T5_first_10_-_ALL_CUTS/recon_qe_GENIE_C_598636MeV_Q2_0_5_test_5_first_10_plots.root");
-////    string SampleName = "C12_simulation_6GeV_T5_first_10";
+////    std::string SampleName = "C12_simulation_6GeV_T5_first_10";
 //
 ////    TFile *f = new TFile("plots_C12_simulation_6GeV_T5_first_100_-02_ALL_CUTS_NoBetaCut/recon_qe_GENIE_C_598636MeV_Q2_0_5_test_5_first_100_plots.root");
-////    string SampleName = "C12_simulation_6GeV_T5_first_100";
+////    std::string SampleName = "C12_simulation_6GeV_T5_first_100";
 //
 ////    TFile *f = new TFile("plots_C12_simulation_6GeV_T5_first_250_-02_ALL_CUTS_NoBetaCut/recon_qe_GENIE_C_598636MeV_Q2_0_5_test_5_first_250_plots.root");
-////    string SampleName = "C12_simulation_6GeV_T5_first_250";
+////    std::string SampleName = "C12_simulation_6GeV_T5_first_250";
 //
 ////    TFile *f = new TFile("plots_C12_simulation_6GeV_T5_-02_ALL_CUTS_NoBetaCut_wPhotonsFD/recon_qe_GENIE_C_598636MeV_Q2_0_5_test_5_plots.root");
 ////    TFile *f = new TFile("plots_C12_simulation_6GeV_T5_-03_ALL_CUTS_WithBetaCut_fixedTLcuts/recon_qe_GENIE_C_598636MeV_Q2_0_5_test_5_plots.root");
 //    TFile *f = new TFile("00_plots_C12_simulation_6GeV_T5_-02_ALL_CUTS_noNC_/recon_qe_GENIE_C_598636MeV_Q2_0_5_test_5_plots.root");
-//    string SampleName = "C12_simulation_6GeV_T5";
+//    std::string SampleName = "C12_simulation_6GeV_T5";
 //
 //    cout << "\nSampleName:\t" << SampleName << "\n\n";
 //
@@ -271,7 +271,7 @@ void PoliFitter() {
 //    //</editor-fold>
 //
 //    //<editor-fold desc="Setting sNameFlag">
-//    string sNameFlag;
+//    std::string sNameFlag;
 //
 //    if (findSubstring(SampleName, "sim")) {
 //        sNameFlag = "s";
@@ -281,9 +281,9 @@ void PoliFitter() {
 //    //</editor-fold>
 //
 //    //<editor-fold desc="Setting particle">
-//    string BetaTitle = "Neutron #beta from 'photons'";
+//    std::string BetaTitle = "Neutron #beta from 'photons'";
 //
-//    string BetaParticle, BetaParticleShort;
+//    std::string BetaParticle, BetaParticleShort;
 //
 //    if (findSubstring(BetaTitle, "Electron") || findSubstring(BetaTitle, "electron")) {
 //        BetaParticle = "Electron";
@@ -314,7 +314,7 @@ void PoliFitter() {
 //    //</editor-fold>
 //
 //    //<editor-fold desc="Setting final State">
-//    string BetaFinalState = "1n";
+//    std::string BetaFinalState = "1n";
 //    //</editor-fold>
 //
 //    //<editor-fold desc="Setting histogram and preforming a fit">
@@ -409,7 +409,7 @@ void PoliFitter() {
 //    ((TText *) FitParam->GetListOfLines()->Last())->SetTextColor(kRed);
 //    FitParam->Draw("same");
 //
-//    string hBeta_CloneSaveNameDir = "./" + sNameFlag + "01_Beta_Neutron_from_photons_1n" + "_fitted.png";
+//    std::string hBeta_CloneSaveNameDir = "./" + sNameFlag + "01_Beta_Neutron_from_photons_1n" + "_fitted.png";
 //    const char *hBeta_CloneSaveDir = hBeta_CloneSaveNameDir.c_str();
 //    Canvas->SaveAs(hBeta_CloneSaveDir);
 //
@@ -417,9 +417,9 @@ void PoliFitter() {
 //    //</editor-fold>
 //
 //    //<editor-fold desc="Plot deltaP as function of beta">
-//    string deltaPStatsTitle = "#deltaP_{" + BetaParticleShort + "} (" + BetaFinalState + ")";
-//    string deltaPTitle = BetaParticle + " momentum uncertainty #deltaP_{" + BetaParticleShort + "} (" + BetaFinalState + ")";
-//    string deltaPfunc = to_string(m_n * FitStd) + "/ ( (1 - x*x) * sqrt(1 - x*x) )";
+//    std::string deltaPStatsTitle = "#deltaP_{" + BetaParticleShort + "} (" + BetaFinalState + ")";
+//    std::string deltaPTitle = BetaParticle + " momentum uncertainty #deltaP_{" + BetaParticleShort + "} (" + BetaFinalState + ")";
+//    std::string deltaPfunc = to_string(m_n * FitStd) + "/ ( (1 - x*x) * sqrt(1 - x*x) )";
 //
 //    auto *deltaP = new TF1(deltaPStatsTitle.c_str(), deltaPfunc.c_str(), 0.9, 1);
 //    deltaP->SetTitle(deltaPTitle.c_str());
@@ -448,7 +448,7 @@ void PoliFitter() {
 ////    deltaPParam->AddText(("#delta#beta = " + to_string_with_precision(FitStd, 8)).c_str());
 //    deltaPParam->Draw("same");
 //
-//    string deltaPSaveNameDir = "./" + sNameFlag + "02a_P_" + BetaParticleShort + "_uncertainty" + BetaFinalState + ".png";
+//    std::string deltaPSaveNameDir = "./" + sNameFlag + "02a_P_" + BetaParticleShort + "_uncertainty" + BetaFinalState + ".png";
 //    const char *deltaPSaveDir = deltaPSaveNameDir.c_str();
 //    Canvas->SaveAs(deltaPSaveDir);
 //
@@ -496,9 +496,9 @@ void PoliFitter() {
 //    //</editor-fold>
 //
 //    //<editor-fold desc="Plot deltaP/P as function of beta">
-//    string Rel_deltaPStatsTitle = "#deltaP_{" + BetaParticleShort + "} (" + BetaFinalState + ")";
-//    string Rel_deltaPTitle = BetaParticle + " relative uncertainty #deltaP_{" + BetaParticleShort + "}/P_{" + BetaParticleShort + "} (" + BetaFinalState + ")";
-//    string Rel_deltaPfunc = to_string(FitStd) + "/ ( (1 - x*x) * x )";
+//    std::string Rel_deltaPStatsTitle = "#deltaP_{" + BetaParticleShort + "} (" + BetaFinalState + ")";
+//    std::string Rel_deltaPTitle = BetaParticle + " relative uncertainty #deltaP_{" + BetaParticleShort + "}/P_{" + BetaParticleShort + "} (" + BetaFinalState + ")";
+//    std::string Rel_deltaPfunc = to_string(FitStd) + "/ ( (1 - x*x) * x )";
 //
 //    auto *Rel_deltaP = new TF1(Rel_deltaPStatsTitle.c_str(), Rel_deltaPfunc.c_str(), 0.9, 1);
 //    Rel_deltaP->SetTitle(Rel_deltaPTitle.c_str());
@@ -541,7 +541,7 @@ void PoliFitter() {
 //    TLegendEntry *Cut_legend_lower_lim = Cut_legend->AddEntry(lower_cut, "10% cut", "l");
 //    Cut_legend->Draw("same");
 //
-//    string Rel_deltaPSaveNameDir = "./" + sNameFlag + "02b_P_" + BetaParticleShort + "_rel_uncertainty" + BetaFinalState + ".png";
+//    std::string Rel_deltaPSaveNameDir = "./" + sNameFlag + "02b_P_" + BetaParticleShort + "_rel_uncertainty" + BetaFinalState + ".png";
 //
 //    const Int_t n = 2;
 //    auto gr = new TGraph(n);
@@ -577,10 +577,10 @@ void PoliFitter() {
 //    //</editor-fold>
 //
 //    //<editor-fold desc="Plot w as function of beta">
-//    string WStatsTitle = "W(#beta) (" + BetaFinalState + ")";
-//    string WTitle = "The W(#beta) function (" + BetaFinalState + ")";
-//    string W_Maxfunc = "x*x*x - x + " + to_string(FitStd / deltaPRel_UncertaintyU);
-//    string W_Minfunc = "x*x*x - x + " + to_string(FitStd / deltaPRel_UncertaintyL);
+//    std::string WStatsTitle = "W(#beta) (" + BetaFinalState + ")";
+//    std::string WTitle = "The W(#beta) function (" + BetaFinalState + ")";
+//    std::string W_Maxfunc = "x*x*x - x + " + to_string(FitStd / deltaPRel_UncertaintyU);
+//    std::string W_Minfunc = "x*x*x - x + " + to_string(FitStd / deltaPRel_UncertaintyL);
 //
 //    auto *W_Max = new TF1(WStatsTitle.c_str(), W_Maxfunc.c_str(), 0.9, 1);
 //    W_Max->SetLineWidth(2);
@@ -625,7 +625,7 @@ void PoliFitter() {
 //    TLegendEntry *W_legend_lower_lim = W_legend->AddEntry(Beta_Min_cut, ("#deltaP_{" + BetaParticleShort + "}/P_{" + BetaParticleShort + "} = 0.1").c_str(), "l");
 //    W_legend->Draw("same");
 //
-//    string WSaveNameDir = "./" + sNameFlag + "03_W_function.png";
+//    std::string WSaveNameDir = "./" + sNameFlag + "03_W_function.png";
 //    const char *WSaveDir = WSaveNameDir.c_str();
 //    Canvas->SaveAs(WSaveDir);
 //    Canvas->Clear();

@@ -51,7 +51,7 @@ using namespace utilities;
 class MomentumResolution {
    private:
     bool isNeutron = false, isProton = false;
-    string MomResParticle = "";
+    std::string MomResParticle = "";
 
     bool momResTestMode, momResS2CalcMode, momResS2RunMode;
 
@@ -61,9 +61,9 @@ class MomentumResolution {
 
     double Ebeam;
 
-    string SmearMode = "NONE", CorrMode = "NONE";
+    std::string SmearMode = "NONE", CorrMode = "NONE";
 
-    string RecoSliceFitAlgorithm = "", TLSliceFitAlgorithm = "";
+    std::string RecoSliceFitAlgorithm = "", TLSliceFitAlgorithm = "";
     vector<hPlot1D> ResTLMomSlices, ResRecoMomSlices;
     vector<vector<double>> ResTLMomSlicesLimits, ResRecoMomSlicesLimits;
     vector<DSCuts> ResTLMomSlicesFitVar, ResRecoMomSlicesFitVar;
@@ -94,10 +94,10 @@ class MomentumResolution {
     TFolder *FittedRecoProtonResSlicesMean = new TFolder("Fitted reco proton resolution slice mean", "Fitted reco proton resolution slice mean");
     TFolder *FittedRecoProtonResSlicesWidth = new TFolder("Fitted reco proton resolution slice width", "Fitted reco proton resolution slice width");
 
-    string ResSlicePlots_OutFile0;
+    std::string ResSlicePlots_OutFile0;
 
     //<editor-fold desc="Random number generators">
-    string RandomNumGenerator = "TRandom3";  // TRandom3 by default
+    std::string RandomNumGenerator = "TRandom3";  // TRandom3 by default
 
     TRandom1 *Rand1 = new TRandom1();
     TRandom2 *Rand2 = new TRandom2();
@@ -131,7 +131,7 @@ class MomentumResolution {
     //</editor-fold>
 
     //<editor-fold desc="Loaded correction and smear fit variables">
-    string Loaded_Std_coefficients_path;
+    std::string Loaded_Std_coefficients_path;
     vector<double> Loaded_Smear_coefficients_values;
     vector<string> Loaded_Smear_coefficients_names;
 
@@ -142,7 +142,7 @@ class MomentumResolution {
     vector<vector<double>> Loaded_TL_FitParam_Smear_pol3, Loaded_Reco_FitParam_Smear_pol3;
     vector<vector<double>> Loaded_TL_FitParam_Smear_pol3_wKC, Loaded_Reco_FitParam_Smear_pol3_wKC;
 
-    string Loaded_Corr_coefficients_path;
+    std::string Loaded_Corr_coefficients_path;
     vector<double> Loaded_Corr_coefficients_values;
     vector<string> Loaded_Corr_coefficients_names;
 
@@ -157,10 +157,10 @@ class MomentumResolution {
     //</editor-fold>
 
     double Neutron_Momentum_cut = 9999.;  // from clas12ana
-    string SName;
+    std::string SName;
 
-    string SlicesSavePath;
-    string SlicesSaveNamePrefix;
+    std::string SlicesSavePath;
+    std::string SlicesSaveNamePrefix;
 
    public:
     // Default constructor --------------------------------------------------------------------------------------------------------------------------------------------------
@@ -169,31 +169,31 @@ class MomentumResolution {
 
     // Other constructors ---------------------------------------------------------------------------------------------------------------------------------------------------
 
-    MomentumResolution(const string &Particle);
+    MomentumResolution(const std::string &Particle);
 
     // MomResInit function --------------------------------------------------------------------------------------------------------------------------------------------------
 
-    void MomResInit(const bool &plot_and_fit_MomRes, const bool &Calculate_momResS2, const bool &Run_with_momResS2, const string &SampleName, const string &NucleonCutsDirectory,
-                    const double &beamE, const DSCuts &MomRes_mu_cuts, const DSCuts &MomRes_sigma_cuts, const double &ParticleMomTh, const string &MomentumResolutionDirectory,
-                    const string &SavePath = "./", const double &DeltaSlices = 0.2, const bool &VaryingDelta = false, const string &SmearM = "pol1", const string &CorrM = "pol1",
+    void MomResInit(const bool &plot_and_fit_MomRes, const bool &Calculate_momResS2, const bool &Run_with_momResS2, const std::string &SampleName, const std::string &NucleonCutsDirectory,
+                    const double &beamE, const DSCuts &MomRes_mu_cuts, const DSCuts &MomRes_sigma_cuts, const double &ParticleMomTh, const std::string &MomentumResolutionDirectory,
+                    const std::string &SavePath = "./", const double &DeltaSlices = 0.2, const bool &VaryingDelta = false, const std::string &SmearM = "pol1", const std::string &CorrM = "pol1",
                     const bool &momRes_test = false, const bool &ForceSmallpResLimits = false, const bool &FitDebugging = false);
 
-    void SetMomResCalculations(const string &SampleName, const string &NucleonCutsDirectory, const double &beamE, const DSCuts &MomRes_mu_cuts, const DSCuts &MomRes_sigma_cuts,
-                               const double &ParticleMomTh, bool const &Calculate_momResS2, bool const &Run_in_momResS2, const string &MomentumResolutionDirectory,
-                               const string &SavePath = "./", const double &DeltaSlices = 0.2, const bool &VaryingDelta = false, const string &SmearM = "pol1", const string &CorrM = "pol1",
+    void SetMomResCalculations(const std::string &SampleName, const std::string &NucleonCutsDirectory, const double &beamE, const DSCuts &MomRes_mu_cuts, const DSCuts &MomRes_sigma_cuts,
+                               const double &ParticleMomTh, bool const &Calculate_momResS2, bool const &Run_in_momResS2, const std::string &MomentumResolutionDirectory,
+                               const std::string &SavePath = "./", const double &DeltaSlices = 0.2, const bool &VaryingDelta = false, const std::string &SmearM = "pol1", const std::string &CorrM = "pol1",
                                const bool momRes_test = false, const bool ForceSmallpResLimits = false, const bool &FitDebugging = false);
 
-    void SetMomResSlicesByType(const string &SampleName, const string &NucleonCutsDirectory, const double &beamE, const double &ParticleMomTh, const string &MomentumType,
-                               const string &SavePath = "./", const bool &VaryingDelta = false, const bool &momRes_test = false, const bool &ForceSmallpResLimits = false,
+    void SetMomResSlicesByType(const std::string &SampleName, const std::string &NucleonCutsDirectory, const double &beamE, const double &ParticleMomTh, const std::string &MomentumType,
+                               const std::string &SavePath = "./", const bool &VaryingDelta = false, const bool &momRes_test = false, const bool &ForceSmallpResLimits = false,
                                const bool &FitDebugging = false);
 
-    void SetMomResSlices(const string &SampleName, const string &NucleonCutsDirectory, const double &beamE, const double &ParticleMomTh, const string &MomentumType, const string &SavePath,
+    void SetMomResSlices(const std::string &SampleName, const std::string &NucleonCutsDirectory, const double &beamE, const double &ParticleMomTh, const std::string &MomentumType, const std::string &SavePath,
                          const bool &VaryingDelta, const bool &momRes_test, const bool &ForceSmallpResLimits, vector<hPlot1D> &ResSlices0, vector<vector<double>> &ResSlicesLimits0,
                          vector<DSCuts> &ResSlicesFitVar0, vector<DSCuts> &ResSlicesHistVar0, int &NumberOfSlices0, const bool &FitDebugging = false);
 
-    void SetUpperMomCut(const string &SampleName, const string &NucleonCutsDirectory, const bool &FitDebugging = false);
+    void SetUpperMomCut(const std::string &SampleName, const std::string &NucleonCutsDirectory, const bool &FitDebugging = false);
 
-    void LoadFitParam(const string &SampleName, const string &NucleonCutsDirectory, bool const &Calculate_momResS2, const string &MomentumResolutionDirectory);
+    void LoadFitParam(const std::string &SampleName, const std::string &NucleonCutsDirectory, bool const &Calculate_momResS2, const std::string &MomentumResolutionDirectory);
 
     // ReadInputParam function ----------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -207,41 +207,41 @@ class MomentumResolution {
 
     // SliceFitDrawAndSaveByType function -----------------------------------------------------------------------------------------------------------------------------------
 
-    void SliceFitDrawAndSaveByType(const string &SampleName, const double &beamE);
+    void SliceFitDrawAndSaveByType(const std::string &SampleName, const double &beamE);
 
-    void SliceFitDrawAndSave(const string &SampleName, const double &beamE, const string &MomentumType, vector<hPlot1D> &ResSlices0, vector<vector<double>> &ResSlicesLimits0,
+    void SliceFitDrawAndSave(const std::string &SampleName, const double &beamE, const std::string &MomentumType, vector<hPlot1D> &ResSlices0, vector<vector<double>> &ResSlicesLimits0,
                              vector<DSCuts> &ResSlicesFitVar0, vector<DSCuts> &ResSlicesHistVar0, vector<int> &FittedSlices0, int &NumberOfSlices0);
 
-    void PolyFitter(const string &MomentumType, const int &PolynomialDegree, const string &FitType, const string &MomentumFitRange, vector<vector<double>> &FitParam);
+    void PolyFitter(const std::string &MomentumType, const int &PolynomialDegree, const std::string &FitType, const std::string &MomentumFitRange, vector<vector<double>> &FitParam);
 
     // DrawAndSaveResSlices function ----------------------------------------------------------------------------------------------------------------------------------------
 
-    void DrawAndSaveResSlices(const string &SampleName, TCanvas *h1DCanvas, const string &plots_path, const string &MomentumResolutionDirectory);
+    void DrawAndSaveResSlices(const std::string &SampleName, TCanvas *h1DCanvas, const std::string &plots_path, const std::string &MomentumResolutionDirectory);
 
     // LogResDataToFile function --------------------------------------------------------------------------------------------------------------------------------------------
 
-    void LogResDataToFile(const string &SampleName, const string &plots_path, const string &MomentumResolutionDirectory);
+    void LogResDataToFile(const std::string &SampleName, const std::string &plots_path, const std::string &MomentumResolutionDirectory);
 
     // LogFitDataToFile function --------------------------------------------------------------------------------------------------------------------------------------------
 
-    void LogFitDataToFile(const string &SampleName, const string &plots_path, const string &MomentumResolutionDirectory);
+    void LogFitDataToFile(const std::string &SampleName, const std::string &plots_path, const std::string &MomentumResolutionDirectory);
 
-    void AutoLogger(const string &SampleName, const string &plots_path, const string &MomentumResolutionDirectory, const string &LogHeader, const vector<vector<double>> &Vector2Log,
+    void AutoLogger(const std::string &SampleName, const std::string &plots_path, const std::string &MomentumResolutionDirectory, const std::string &LogHeader, const vector<vector<double>> &Vector2Log,
                     ofstream &Neutron_res_fit_param);
 
     // LogHistDataToFile function -------------------------------------------------------------------------------------------------------------------------------------------
 
-    void LogHistDataToFile(const string &SampleName, const string &plots_path, const string &MomentumResolutionDirectory);
+    void LogHistDataToFile(const std::string &SampleName, const std::string &plots_path, const std::string &MomentumResolutionDirectory);
 
     // ReadResDataParam function --------------------------------------------------------------------------------------------------------------------------------------------
 
-    void ReadResDataParam(const char *filename, const bool &Calculate_momResS2, const string &SampleName, const string &NucleonCutsDirectory, const string &MomentumType,
+    void ReadResDataParam(const char *filename, const bool &Calculate_momResS2, const std::string &SampleName, const std::string &NucleonCutsDirectory, const std::string &MomentumType,
                           const bool &Load_correction = false, const bool &Load_smearing = false);
 
-    void AutoReader(const string &MomentumType, const int &PolynomialDegree, const string &parameter, basic_istream<char> &ss2, vector<vector<double>> &Loading_Dest,
+    void AutoReader(const std::string &MomentumType, const int &PolynomialDegree, const std::string &parameter, basic_istream<char> &ss2, vector<vector<double>> &Loading_Dest,
                     vector<double> &Loaded_coefficients_values, vector<string> &Loaded_coefficients_names);
 
-    void AutoReader(const string &MomentumType, const int &PolynomialDegree, const string &parameter, basic_istream<char> &ss2, vector<vector<double>> &Loading_Dest);
+    void AutoReader(const std::string &MomentumType, const int &PolynomialDegree, const std::string &parameter, basic_istream<char> &ss2, vector<vector<double>> &Loading_Dest);
 
     // PSmear function ------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -258,11 +258,11 @@ class MomentumResolution {
 
     void SetHistSliceLowerLim(double hsLowerLim) { hSliceLowerLim = hsLowerLim; };
 
-    void SetSmearMode(const string &SmearM) { SmearMode = SmearM; };
+    void SetSmearMode(const std::string &SmearM) { SmearMode = SmearM; };
 
-    void SetCorrMode(const string &ShiftM) { CorrMode = ShiftM; };
+    void SetCorrMode(const std::string &ShiftM) { CorrMode = ShiftM; };
 
-    void SetSmearAndCorrModes(const string &SmearM, const string &ShiftM) { SmearMode = SmearM, CorrMode = ShiftM; };
+    void SetSmearAndCorrModes(const std::string &SmearM, const std::string &ShiftM) { SmearMode = SmearM, CorrMode = ShiftM; };
 
     void SetForceSmallpResLimits(const bool &fsprl) { ForceSmallProtonResLimits = fsprl; };
 
@@ -293,17 +293,17 @@ class MomentumResolution {
     // Get functions
     double GetSliceUpperMomLim() { return SliceUpperMomLim; };
 
-    string Get_SmearMode() { return SmearMode; };
+    std::string Get_SmearMode() { return SmearMode; };
 
-    string Get_Loaded_Std_coefficients_path() { return Loaded_Std_coefficients_path; };
+    std::string Get_Loaded_Std_coefficients_path() { return Loaded_Std_coefficients_path; };
 
     vector<double> Get_Loaded_Smear_coefficients_values() { return Loaded_Smear_coefficients_values; };
 
     vector<string> Get_Loaded_Smear_coefficients_names() { return Loaded_Smear_coefficients_names; };
 
-    string Get_CorrMode() { return CorrMode; };
+    std::string Get_CorrMode() { return CorrMode; };
 
-    string Get_Loaded_Corr_coefficients_path() { return Loaded_Corr_coefficients_path; };
+    std::string Get_Loaded_Corr_coefficients_path() { return Loaded_Corr_coefficients_path; };
 
     vector<double> Get_Loaded_Corr_coefficients_values() { return Loaded_Corr_coefficients_values; };
 
@@ -325,7 +325,7 @@ class MomentumResolution {
 
     vector<int> GetFittedTLMomSlices() { return FittedTLMomSlices; };
 
-    string GetRandNumGenerator() { return RandomNumGenerator; };
+    std::string GetRandNumGenerator() { return RandomNumGenerator; };
 };
 
 #endif  // MOMENTUMRESOLUTION_H

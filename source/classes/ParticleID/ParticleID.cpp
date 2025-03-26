@@ -586,7 +586,7 @@ vector<int> ParticleID::GetGoodProtons(const bool &apply_nucleon_cuts, vector<re
 //</editor-fold>
 
 //<editor-fold desc="SetGPMonitoringPlots function">
-void ParticleID::SetGPMonitoringPlots(const bool &GoodProtonsMonitorPlots, string CToF_hits_monitoring_2p_Directory, string Double_detection_monitoring_2p_Directory) {
+void ParticleID::SetGPMonitoringPlots(const bool &GoodProtonsMonitorPlots, std::string CToF_hits_monitoring_2p_Directory, std::string Double_detection_monitoring_2p_Directory) {
     if (GoodProtonsMonitorPlots) {
         // Monitoring histograms definitions ------------------------------------------------------------------------------------------------------------------------------------
 

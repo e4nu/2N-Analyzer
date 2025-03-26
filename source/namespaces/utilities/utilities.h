@@ -30,11 +30,11 @@ using namespace lists;
 
 // ConfigRegion function ------------------------------------------------------------------------------------------------------------------------------------------------
 
-const string ConfigRegion(const string &Histogram2DNameCopy) { return FindSubstring(Histogram2DNameCopy, "CD") ? "CD" : "FD"; }
+const std::string ConfigRegion(const std::string &Histogram2DNameCopy) { return FindSubstring(Histogram2DNameCopy, "CD") ? "CD" : "FD"; }
 
 // ConfigSampleType function --------------------------------------------------------------------------------------------------------------------------------------------
 
-const string ConfigSampleType(const string &SampleName) {
+const std::string ConfigSampleType(const std::string &SampleName) {
     if (FindSubstring(SampleName, "sim")) {
         return "s";
     } else if (FindSubstring(SampleName, "data")) {
@@ -47,7 +47,7 @@ const string ConfigSampleType(const string &SampleName) {
 // ReplaceSubstring function --------------------------------------------------------------------------------------------------------------------------------------------
 
 // Function to replace one substring with another
-string ReplaceSubstring(const string &input, const string &toReplace, const string &replaceWith) {
+string ReplaceSubstring(const std::string &input, const std::string &toReplace, const std::string &replaceWith) {
     size_t pos = input.find(toReplace);
 
     if (pos == string::npos) {
@@ -61,7 +61,7 @@ string ReplaceSubstring(const string &input, const string &toReplace, const stri
 // TitleAligner functions -----------------------------------------------------------------------------------------------------------------------------------------------
 
 template <typename T>
-void TitleAligner(T *obj, string &title, string &xLabel, const string &originToReplace, const string &replacement) {
+void TitleAligner(T *obj, std::string &title, std::string &xLabel, const std::string &originToReplace, const std::string &replacement) {
     auto updateTitle = [&](string &str, auto setTitleFunc) {
         if (FindSubstring(str, originToReplace)) {
             str = ReplaceSubstring(str, originToReplace, replacement);
@@ -74,7 +74,7 @@ void TitleAligner(T *obj, string &title, string &xLabel, const string &originToR
 }
 
 template <typename T>
-void TitleAligner(T *obj, string &title, string &xLabel, string &yLabel, const string &originToReplace, const string &replacement) {
+void TitleAligner(T *obj, std::string &title, std::string &xLabel, std::string &yLabel, const std::string &originToReplace, const std::string &replacement) {
     auto updateTitle = [&](string &str, auto setTitleFunc) {
         if (FindSubstring(str, originToReplace)) {
             str = ReplaceSubstring(str, originToReplace, replacement);
@@ -89,11 +89,11 @@ void TitleAligner(T *obj, string &title, string &xLabel, string &yLabel, const s
 
 // TitleAligner function ------------------------------------------------------------------------------------------------------------------------------------------------
 
-void TitleAligner(TH1D *simHistogram, TH1D *dataHistogram, const string &originToReplace, const string &replacement) {
+void TitleAligner(TH1D *simHistogram, TH1D *dataHistogram, const std::string &originToReplace, const std::string &replacement) {
     auto updateTitle = [&](TH1D *hist) {
-        string title = hist->GetTitle();
-        string xLabel = hist->GetXaxis()->GetTitle();
-        string yLabel = hist->GetYaxis()->GetTitle();
+        std::string title = hist->GetTitle();
+        std::string xLabel = hist->GetXaxis()->GetTitle();
+        std::string yLabel = hist->GetYaxis()->GetTitle();
 
         if (FindSubstring(title, originToReplace)) {
             title = ReplaceSubstring(title, originToReplace, replacement);
@@ -117,7 +117,7 @@ void TitleAligner(TH1D *simHistogram, TH1D *dataHistogram, const string &originT
 
 // GetHistogramFromVector function --------------------------------------------------------------------------------------------------------------------------------------
 
-TH1 *GetHistogramFromVector(const std::vector<TH1 *> &HistoList, const string &searchString, const string &searchStringOption = "name") {
+TH1 *GetHistogramFromVector(const std::vector<TH1 *> &HistoList, const std::string &searchString, const std::string &searchStringOption = "name") {
     for (const auto &hist : HistoList) {
         if (!hist) continue;
 
@@ -152,7 +152,7 @@ void FillHistogramByProcess(double Variable, TH1D *Histogram_All_Int, TH1D *Hist
 
 // GetHistogramEntries function -----------------------------------------------------------------------------------------------------------------------------------------
 
-double GetHistogramEntriesFromVector(const std::vector<TH1 *> &HistoList, const string &searchString, const string &searchStringOption = "name") {
+double GetHistogramEntriesFromVector(const std::vector<TH1 *> &HistoList, const std::string &searchString, const std::string &searchStringOption = "name") {
     if (TH1 *Histogram = GetHistogramFromVector(HistoList, searchString, searchStringOption)) { return Histogram->GetEntries(); }
     return -1;  // Return -1 if no match is found
 }
@@ -161,7 +161,7 @@ double GetHistogramEntriesFromVector(const std::vector<TH1 *> &HistoList, const 
 
 Double_t FitFunction(Double_t *v, Double_t *par, const int NumOfParameters = 3) {
     if (NumOfParameters != 2 && NumOfParameters != 3) {
-        cerr << "utilities::FitFunction: invalid number of parameters! Choose 2 or 3. Aborting..." << endl;
+        std::cerr << "utilities::FitFunction: invalid number of parameters! Choose 2 or 3. Aborting..." << endl;
         exit(1);
     }
 

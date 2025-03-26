@@ -29,7 +29,7 @@
 using namespace std;
 
 #if IndependentStackdraw
-const string ConfigRegion1D(const string &Histogram2DNameCopy) {
+const std::string ConfigRegion1D(const std::string &Histogram2DNameCopy) {
     if (findSubstring(Histogram2DNameCopy, "CD")) {
         return "CD";
     } else {
@@ -37,7 +37,7 @@ const string ConfigRegion1D(const string &Histogram2DNameCopy) {
     }
 }
 
-const string ConfigSName1D(const string &SampleName) {
+const std::string ConfigSName1D(const std::string &SampleName) {
     if (findSubstring(SampleName, "sim")) {
         return "s";
     } else if (findSubstring(SampleName, "data")) {
@@ -69,33 +69,33 @@ double SetyOffset1D(const bool &ShowStats) {
     return yOffset;
 }
 
-void DrawPlot(TCanvas *HistogramCanvas, TH1D *Histogram1D, const bool LogScalePlot, const bool LinearScalePlot, const string &SavePath, const string &SaveName,
-              const string &DrawRange) {
+void DrawPlot(TCanvas *HistogramCanvas, TH1D *Histogram1D, const bool LogScalePlot, const bool LinearScalePlot, const std::string &SavePath, const std::string &SaveName,
+              const std::string &DrawRange) {
     if (DrawRange == "") {
         if (LogScalePlot) {
             HistogramCanvas->SetLogy(1);
-            string SaveNameDir = SavePath + "/" + SaveName + "_log_scale.png";
+            std::string SaveNameDir = SavePath + "/" + SaveName + "_log_scale.png";
             const char *SaveDir = SaveNameDir.c_str();
             HistogramCanvas->SaveAs(SaveDir);
         }
 
         if (LinearScalePlot) {
             HistogramCanvas->SetLogy(0);
-            string SaveNameDir = SavePath + "/" + SaveName + "_linear_scale.png";
+            std::string SaveNameDir = SavePath + "/" + SaveName + "_linear_scale.png";
             const char *SaveDir = SaveNameDir.c_str();
             HistogramCanvas->SaveAs(SaveDir);
         }
     } else {
         if (LogScalePlot) {
             HistogramCanvas->SetLogy(1);
-            string SaveNameDir = SavePath + "/" + SaveName + "_" + DrawRange + "_log_scale.png";
+            std::string SaveNameDir = SavePath + "/" + SaveName + "_" + DrawRange + "_log_scale.png";
             const char *SaveDir = SaveNameDir.c_str();
             HistogramCanvas->SaveAs(SaveDir);
         }
 
         if (LinearScalePlot) {
             HistogramCanvas->SetLogy(0);
-            string SaveNameDir = SavePath + "/" + SaveName + "_" + DrawRange + "_linear_scale.png";
+            std::string SaveNameDir = SavePath + "/" + SaveName + "_" + DrawRange + "_linear_scale.png";
             const char *SaveDir = SaveNameDir.c_str();
             HistogramCanvas->SaveAs(SaveDir);
         }
@@ -103,33 +103,33 @@ void DrawPlot(TCanvas *HistogramCanvas, TH1D *Histogram1D, const bool LogScalePl
 }
 #else
 
-void DrawPlot1(TCanvas *HistogramCanvas, const bool LogScalePlot, const bool LinearScalePlot, const string &SavePath, const string &SaveName,
-               const string &DrawRange) {
+void DrawPlot1(TCanvas *HistogramCanvas, const bool LogScalePlot, const bool LinearScalePlot, const std::string &SavePath, const std::string &SaveName,
+               const std::string &DrawRange) {
     if (DrawRange == "") {
         if (LogScalePlot) {
             HistogramCanvas->SetLogy(1);
-            string SaveNameDir = SavePath + "/" + SaveName + "_log_scale.png";
+            std::string SaveNameDir = SavePath + "/" + SaveName + "_log_scale.png";
             const char *SaveDir = SaveNameDir.c_str();
             HistogramCanvas->SaveAs(SaveDir);
         }
 
         if (LinearScalePlot) {
             HistogramCanvas->SetLogy(0);
-            string SaveNameDir = SavePath + "/" + SaveName + "_linear_scale.png";
+            std::string SaveNameDir = SavePath + "/" + SaveName + "_linear_scale.png";
             const char *SaveDir = SaveNameDir.c_str();
             HistogramCanvas->SaveAs(SaveDir);
         }
     } else {
         if (LogScalePlot) {
             HistogramCanvas->SetLogy(1);
-            string SaveNameDir = SavePath + "/" + SaveName + "_" + DrawRange + "_log_scale.png";
+            std::string SaveNameDir = SavePath + "/" + SaveName + "_" + DrawRange + "_log_scale.png";
             const char *SaveDir = SaveNameDir.c_str();
             HistogramCanvas->SaveAs(SaveDir);
         }
 
         if (LinearScalePlot) {
             HistogramCanvas->SetLogy(0);
-            string SaveNameDir = SavePath + "/" + SaveName + "_" + DrawRange + "_linear_scale.png";
+            std::string SaveNameDir = SavePath + "/" + SaveName + "_" + DrawRange + "_linear_scale.png";
             const char *SaveDir = SaveNameDir.c_str();
             HistogramCanvas->SaveAs(SaveDir);
         }
@@ -139,7 +139,7 @@ void DrawPlot1(TCanvas *HistogramCanvas, const bool LogScalePlot, const bool Lin
 #endif
 
 void HistPlotterStack1(hData &particles, TCanvas *HistogramCanvas, TList *MScThesisPlotsList, const char *Sim_filename, const char *Data_filename, const char *Histogram1DName,
-                       const string &SampleName, const string &SavePath, const string &SaveName, const bool TLmom = false) {
+                       const std::string &SampleName, const std::string &SavePath, const std::string &SaveName, const bool TLmom = false) {
     bool PresMode = false, PosterModePlots = false, PosterModePlotsColorblind = false;
 
 #if PresentationMode
@@ -172,8 +172,8 @@ void HistPlotterStack1(hData &particles, TCanvas *HistogramCanvas, TList *MScThe
             findSubstring(Histogram1DName, "E_{e}") ||
             findSubstring(Histogram1DName, "#omega around #theta_{e} = 15#circ")) {
             if (findSubstring(Histogram1DName, "pFDpCD")) {
-                string Histogram1DName0 = Histogram1DName;
-                string Histogram1DName1 = Histogram1DName0.substr(0, Histogram1DName0.find_last_of('(') - 1);
+                std::string Histogram1DName0 = Histogram1DName;
+                std::string Histogram1DName1 = Histogram1DName0.substr(0, Histogram1DName0.find_last_of('(') - 1);
 
                 if (findSubstring(Histogram1DName, "W distribution")) {
                     Stack1D = new THStack("W distribution in 1pFD1pCD", "W distribution in 1pFD1pCD;W [GeV/c^{2}];");
@@ -207,8 +207,8 @@ void HistPlotterStack1(hData &particles, TCanvas *HistogramCanvas, TList *MScThe
                 }
 
             } else if (findSubstring(Histogram1DName, "nFDpCD")) {
-                string Histogram1DName0 = Histogram1DName;
-                string Histogram1DName1 = Histogram1DName0.substr(0, Histogram1DName0.find_last_of('(') - 1);
+                std::string Histogram1DName0 = Histogram1DName;
+                std::string Histogram1DName1 = Histogram1DName0.substr(0, Histogram1DName0.find_last_of('(') - 1);
 
                 if (findSubstring(Histogram1DName, "W distribution")) {
                     Stack1D = new THStack("W distribution in 1nFD1pCD", "W distribution in 1nFD1pCD;W [GeV/c^{2}];");
@@ -247,8 +247,8 @@ void HistPlotterStack1(hData &particles, TCanvas *HistogramCanvas, TList *MScThe
         } else if (findSubstring(Histogram1DName, "#deltaP_{T,tot}") ||
                    findSubstring(Histogram1DName, "#delta#alpha_{T,tot}")) {
             if (findSubstring(Histogram1DName, "pFDpCD")) {
-                string Histogram1DName0 = Histogram1DName;
-                string Histogram1DName1 = Histogram1DName0.substr(0, Histogram1DName0.find_last_of('(') - 1);
+                std::string Histogram1DName0 = Histogram1DName;
+                std::string Histogram1DName1 = Histogram1DName0.substr(0, Histogram1DName0.find_last_of('(') - 1);
 
                 if (findSubstring(Histogram1DName, "#deltaP_{T,tot}")) {
                     Stack1D = new THStack("#deltaP_{T,tot} in 1pFD1pCD", "#deltaP_{T,tot} in 1pFD1pCD;#deltaP_{T,tot} [GeV/c];");
@@ -266,8 +266,8 @@ void HistPlotterStack1(hData &particles, TCanvas *HistogramCanvas, TList *MScThe
                     Sim_Histogram1D_DIS = Histofinder1D(Sim_file, (Histogram1DName1 + " (DIS Only, pFDpCD)").c_str());
                 }
             } else if (findSubstring(Histogram1DName, "nFDpCD")) {
-                string Histogram1DName0 = Histogram1DName;
-                string Histogram1DName1 = Histogram1DName0.substr(0, Histogram1DName0.find_last_of('(') - 1);
+                std::string Histogram1DName0 = Histogram1DName;
+                std::string Histogram1DName1 = Histogram1DName0.substr(0, Histogram1DName0.find_last_of('(') - 1);
 
                 if (findSubstring(Histogram1DName, "#deltaP_{T,tot}")) {
                     Stack1D = new THStack("#deltaP_{T,tot} in 1pFD1pCD", "#deltaP_{T,tot} in 1pFD1pCD;#deltaP_{T,tot} [GeV/c];");
@@ -289,7 +289,7 @@ void HistPlotterStack1(hData &particles, TCanvas *HistogramCanvas, TList *MScThe
             Data_Histogram1D = Histofinder1D(Data_file, Histogram1DName);
         }
     } else {
-        string Histogram1DName1 = Histogram1DName;
+        std::string Histogram1DName1 = Histogram1DName;
 
         Sim_Histogram1D = Histofinder1D(Sim_file, (Histogram1DName1 + " (All Int., ").c_str(), TLmom);
         Data_Histogram1D = Histofinder1D(Data_file, Histogram1DName, TLmom);
@@ -313,7 +313,7 @@ void HistPlotterStack1(hData &particles, TCanvas *HistogramCanvas, TList *MScThe
     double CustomNormalizationFactor;
 
     /* Histogram appearance setup */
-    const string Histogram1DNameCopy = Histogram1DName;
+    const std::string Histogram1DNameCopy = Histogram1DName;
     int LineWidth;
     if (!PosterModePlots) {
         LineWidth = 6;
@@ -339,8 +339,8 @@ void HistPlotterStack1(hData &particles, TCanvas *HistogramCanvas, TList *MScThe
     HistogramCanvas->cd();
 
     const double beamE = 5.98636;
-    const string Region = ConfigRegion1D(Histogram1DNameCopy);
-    string sNameFlag = ConfigSName1D(SampleName);
+    const std::string Region = ConfigRegion1D(Histogram1DNameCopy);
+    std::string sNameFlag = ConfigSName1D(SampleName);
 
     double Histogram1D_integral; // To be calculated only if normalize_Histogram
     double x_1 = 0.18, y_1 = 0.3, x_2 = 0.86, y_2 = 0.7;
@@ -529,9 +529,9 @@ void HistPlotterStack1(hData &particles, TCanvas *HistogramCanvas, TList *MScThe
         Sim_Histogram1D->Draw();
         displayText->Draw();
     } else if (Sim_Histogram1D->Integral() != 0. && Data_Histogram1D->Integral() != 0.) {
-        string Histogram1D_Title = Sim_Histogram1D->GetTitle();
-        string Histogram1D_xLabel = Sim_Histogram1D->GetXaxis()->GetTitle(), Histogram1D_yLabel = Sim_Histogram1D->GetYaxis()->GetTitle();
-        string FSRyLabel;
+        std::string Histogram1D_Title = Sim_Histogram1D->GetTitle();
+        std::string Histogram1D_xLabel = Sim_Histogram1D->GetXaxis()->GetTitle(), Histogram1D_yLabel = Sim_Histogram1D->GetYaxis()->GetTitle();
+        std::string FSRyLabel;
 
         if (!findSubstring(Histogram1DNameCopy, "FSRatio")) {
             cout << "Title = " << Sim_Histogram1D->GetTitle() << "\n";
@@ -553,8 +553,8 @@ void HistPlotterStack1(hData &particles, TCanvas *HistogramCanvas, TList *MScThe
         }
 
         if (findSubstring(Histogram1DNameCopy, "FSRatio")) {
-            string RatioVar = Histogram1D_xLabel.substr(0, Histogram1D_xLabel.find_last_of('[') - 1);
-            string RatioTopology;
+            std::string RatioVar = Histogram1D_xLabel.substr(0, Histogram1D_xLabel.find_last_of('[') - 1);
+            std::string RatioTopology;
 
             if (findSubstring(Histogram1D_Title, "1n/1p")) {
                 RatioTopology = "1N";
@@ -691,10 +691,10 @@ void HistPlotterStack1(hData &particles, TCanvas *HistogramCanvas, TList *MScThe
                 CustomColorRatio = new TColor(CustomColorRatio_index, 0, 0.6, 0.5); // Color index 1000, with RGB (0.5, 0.2, 0.7)
             }
 
-            string Poster_y_label_temp = Sim_Histogram1D->GetYaxis()->GetTitle();
-            string Poster_y_label_temp_ratio_indicator = Poster_y_label_temp.substr(0, Poster_y_label_temp.find_last_of(" =") - 2);
+            std::string Poster_y_label_temp = Sim_Histogram1D->GetYaxis()->GetTitle();
+            std::string Poster_y_label_temp_ratio_indicator = Poster_y_label_temp.substr(0, Poster_y_label_temp.find_last_of(" =") - 2);
 
-            string Poster_y_label = "#font[62]{#color[" + to_string(CustomColorRatio_index) + "]{" + Poster_y_label_temp_ratio_indicator + "}} = " +
+            std::string Poster_y_label = "#font[62]{#color[" + to_string(CustomColorRatio_index) + "]{" + Poster_y_label_temp_ratio_indicator + "}} = " +
                                     "#font[62]{#frac{#color[" + to_string(CustomColor1n1p_index) + "]{1n1p}}{#color[" + to_string(CustomColor2p_index) + "]{2p}}}";
             TitleAligner(particles, Sim_Histogram1D, Data_Histogram1D, (Poster_y_label_temp_ratio_indicator + " = " + "#frac{1n1p}{2p}").c_str(), Poster_y_label);
         }

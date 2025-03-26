@@ -24,7 +24,7 @@ void GraphPlotter1D() {
     const char *filename = "/mnt/e/C12x4_simulation_G18_Q204_6GeV_afterTrip/03_momRes_runs/v2/C12x4_simulation_G18_Q204_6GeV_S03ACNC_nResS1_Eff1_v2"
                            "/Neutron_resolution_plots_-_C12x4_simulation_G18_Q204_6GeV.root";
 
-    const string Graph1DNameCopy = "g_Std_pol1_wKC";
+    const std::string Graph1DNameCopy = "g_Std_pol1_wKC";
 
 //    HistogramCanvas->Clear();
     TCanvas *c1 = new TCanvas("can1", "can2", 1000, 750); // normal res
@@ -141,7 +141,7 @@ void GraphPlotter1D() {
 
     Graph1D->Draw("ap");
 
-//    string SaveNameDir = "plot.png";
+//    std::string SaveNameDir = "plot.png";
 //    const char *SaveDir = SaveNameDir.c_str();
 //    c1->SaveAs(SaveDir);
 //    delete c1;

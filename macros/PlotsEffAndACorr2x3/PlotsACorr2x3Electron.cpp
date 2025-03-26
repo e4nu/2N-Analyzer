@@ -130,7 +130,7 @@ void PlotsACorr2x3Electron(string SampleName) {
     //</editor-fold>
 
     //<editor-fold desc="Momentum acceptance correction plots">
-    string MomACorrSaveName = "./01_Electron_Mom_ACorr_" + SampleName + ".png";
+    std::string MomACorrSaveName = "./01_Electron_Mom_ACorr_" + SampleName + ".png";
 
     CanvasACorr2x3Electron->Divide(3, 2);
 
@@ -232,7 +232,7 @@ void PlotsACorr2x3Electron(string SampleName) {
     //</editor-fold>
 
     //<editor-fold desc="Theta acceptance correction plots">
-    string ThetaACorrSaveName = "./02_Electron_Theta_ACorr_" + SampleName + ".png";
+    std::string ThetaACorrSaveName = "./02_Electron_Theta_ACorr_" + SampleName + ".png";
 
     CanvasACorr2x3Electron->Divide(3, 2);
 
@@ -330,7 +330,7 @@ void PlotsACorr2x3Electron(string SampleName) {
     //</editor-fold>
 
     //<editor-fold desc="Phi acceptance correction plots">
-    string PhiACorrSaveName = "./03_Electron_Phi_ACorr_" + SampleName + ".png";
+    std::string PhiACorrSaveName = "./03_Electron_Phi_ACorr_" + SampleName + ".png";
 
     CanvasACorr2x3Electron->Divide(3, 2);
 
@@ -523,7 +523,7 @@ void PlotsACorr2x3Electron(string SampleName) {
 //    //</editor-fold>
 //
 //    //<editor-fold desc="Momentum acceptance correction plots">
-//    string MomACorrSaveName = "./01_Electron_Mom_ACorr_" + SampleName + ".png";
+//    std::string MomACorrSaveName = "./01_Electron_Mom_ACorr_" + SampleName + ".png";
 //
 //    CanvasACorr2x3Electron->Divide(3, 2);
 //
@@ -621,7 +621,7 @@ void PlotsACorr2x3Electron(string SampleName) {
 //    //</editor-fold>
 //
 //    //<editor-fold desc="Theta acceptance correction plots">
-//    string ThetaACorrSaveName = "./02_Electron_Theta_ACorr_" + SampleName + ".png";
+//    std::string ThetaACorrSaveName = "./02_Electron_Theta_ACorr_" + SampleName + ".png";
 //
 //    CanvasACorr2x3Electron->Divide(3, 2);
 //
@@ -719,7 +719,7 @@ void PlotsACorr2x3Electron(string SampleName) {
 //    //</editor-fold>
 //
 //    //<editor-fold desc="Phi acceptance correction plots">
-//    string PhiACorrSaveName = "./03_Electron_Phi_ACorr_" + SampleName + ".png";
+//    std::string PhiACorrSaveName = "./03_Electron_Phi_ACorr_" + SampleName + ".png";
 //
 //    CanvasACorr2x3Electron->Divide(3, 2);
 //

@@ -12,9 +12,9 @@ void zoomed_in_histogram() {
     h1->Draw();
 
     // Clone the main histogram
-    string CloneName = h1->GetName();
+    std::string CloneName = h1->GetName();
     TH1D *h2 = (TH1D *) h1->Clone((CloneName + "_zoomin").c_str());
-    string Histogram_title = h2->GetTitle();
+    std::string Histogram_title = h2->GetTitle();
     h2->SetTitle((Histogram_title + " (zoomin)").c_str());
 
     // Define the region to zoom in

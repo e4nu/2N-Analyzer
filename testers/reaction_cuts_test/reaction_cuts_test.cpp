@@ -70,13 +70,13 @@ void reaction_cuts_test() {
     bool plot_AMaps = false;
     // bool plot_AMaps = true;
 
-    string OutFolderName_prefix = "reaction_cuts";
-    string OutFolderName_ver_status = "_v16";
-    string samples_status = "_data";
-    string neutFD_redef_status = apply_neutFD_redef ? "_RDed" : "_c12n";
-    string ECAL_veto_status = apply_ECAL_veto ? "_wEV" : "_woEV";
-    string PCAL_neutral_veto_status = apply_PCAL_neutral_veto ? "_wPnV" : "_woPnV";
-    string General_status = "";
+    std::string OutFolderName_prefix = "reaction_cuts";
+    std::string OutFolderName_ver_status = "_v16";
+    std::string samples_status = "_data";
+    std::string neutFD_redef_status = apply_neutFD_redef ? "_RDed" : "_c12n";
+    std::string ECAL_veto_status = apply_ECAL_veto ? "_wEV" : "_woEV";
+    std::string PCAL_neutral_veto_status = apply_PCAL_neutral_veto ? "_wPnV" : "_woPnV";
+    std::string General_status = "";
 
     nPart_veto_radii = (!apply_PCAL_neutral_veto) ? vector<double>{0} : nPart_veto_radii;
 
@@ -93,34 +93,34 @@ void reaction_cuts_test() {
                     bool OnlyGood_nFD = CutSelector.at(Selector_ind).at(1);
                     bool OnlyBad_nFD = CutSelector.at(Selector_ind).at(2);
 
-                    string Ebeam_status = Is2GeV ? "_2GeV" : Is4GeV ? "_4GeV" : Is6GeV ? "_6GeV" : "_Unknown";
-                    string rc_factor_status = apply_ECAL_veto ? "_rc" + ToStringWithPrecision(cPart_veto_radius, 0) : "";
-                    string nPart_veto_radius_status = apply_PCAL_neutral_veto ? "_rn" + ToStringWithPrecision(nPart_veto_radius, 0) : "";
-                    string Good_nFD_status = (OnlyGood_nFD && !OnlyBad_nFD) ? "_OnlyGood_nFD" : "";
-                    string Bad_nFD_status = (!OnlyGood_nFD && OnlyBad_nFD) ? "_OnlyBad_nFD" : "";
-                    string ConstrainedE_status = ConstrainedE ? "_CE" : "";
+                    std::string Ebeam_status = Is2GeV ? "_2GeV" : Is4GeV ? "_4GeV" : Is6GeV ? "_6GeV" : "_Unknown";
+                    std::string rc_factor_status = apply_ECAL_veto ? "_rc" + ToStringWithPrecision(cPart_veto_radius, 0) : "";
+                    std::string nPart_veto_radius_status = apply_PCAL_neutral_veto ? "_rn" + ToStringWithPrecision(nPart_veto_radius, 0) : "";
+                    std::string Good_nFD_status = (OnlyGood_nFD && !OnlyBad_nFD) ? "_OnlyGood_nFD" : "";
+                    std::string Bad_nFD_status = (!OnlyGood_nFD && OnlyBad_nFD) ? "_OnlyBad_nFD" : "";
+                    std::string ConstrainedE_status = ConstrainedE ? "_CE" : "";
 
-                    string OutFolderName = OutFolderName_prefix + OutFolderName_ver_status + Ebeam_status + samples_status + neutFD_redef_status + ECAL_veto_status +
+                    std::string OutFolderName = OutFolderName_prefix + OutFolderName_ver_status + Ebeam_status + samples_status + neutFD_redef_status + ECAL_veto_status +
                                            PCAL_neutral_veto_status + rc_factor_status + nPart_veto_radius_status + Good_nFD_status + Bad_nFD_status + ConstrainedE_status + General_status;
 
-                    string OutFileName = OutFolderName;
+                    std::string OutFileName = OutFolderName;
 
                     if (OnlyGood_nFD == OnlyBad_nFD) { OnlyGood_nFD = OnlyBad_nFD = false; }
 
                     double P_upperLim = ConstrainTLmom ? (Ebeam * 0.5) : (Ebeam * 1.1);
-                    const string OutputDir = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName;
+                    const std::string OutputDir = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName;
                     system(("rm -rf " + OutputDir).c_str());
                     system(("mkdir -p " + OutputDir).c_str());
 
                     TFile* outFile = new TFile(("/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/" + OutFileName + ".root").c_str(), "RECREATE");
 
-                    string BaseDir = "/cache/clas12/rg-m/production/pass1/2gev/C/dst/recon";
-                    string InputFiles = BaseDir + "/015664/*.hipo", SampleName = "C12_data_2GeV_run_015664";
+                    std::string BaseDir = "/cache/clas12/rg-m/production/pass1/2gev/C/dst/recon";
+                    std::string InputFiles = BaseDir + "/015664/*.hipo", SampleName = "C12_data_2GeV_run_015664";
                     
                     TString Beam_energy_TString = "2070MeV";
 
-                    // string BaseDir = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples";
-                    // string InputFiles, SampleName;
+                    // std::string BaseDir = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples";
+                    // std::string InputFiles, SampleName;
                     // TString Beam_energy_TString;
 
                     // if (Is2GeV) {
@@ -998,16 +998,16 @@ void reaction_cuts_test() {
 
 // #pragma region /* Prepare AMaps */
 
-//                     const string OutputDirAMapsPlots = OutputDir + "/01_AMaps_Plots/";
+//                     const std::string OutputDirAMapsPlots = OutputDir + "/01_AMaps_Plots/";
 //                     system(("rm -rf " + OutputDirAMapsPlots).c_str());
 //                     system(("mkdir -p " + OutputDirAMapsPlots).c_str());
 
-//                     const string OutputDirAMapsMaps = OutputDir + "/02_AMaps_Maps/";
+//                     const std::string OutputDirAMapsMaps = OutputDir + "/02_AMaps_Maps/";
 //                     system(("rm -rf " + OutputDirAMapsMaps).c_str());
 //                     system(("mkdir -p " + OutputDirAMapsMaps).c_str());
 
-//                     const string P_e_bin_profile = "uniform_P_e_bins";      // {reformat_e_bins , varying_P_e_bins , uniform_P_e_bins, equi_inverted_P_e}
-//                     const string P_nuc_bin_profile = "uniform_P_nuc_bins";  // {equi_inverted_P_nuc , varying_P_nuc_bins , uniform_P_nuc_bins}
+//                     const std::string P_e_bin_profile = "uniform_P_e_bins";      // {reformat_e_bins , varying_P_e_bins , uniform_P_e_bins, equi_inverted_P_e}
+//                     const std::string P_nuc_bin_profile = "uniform_P_nuc_bins";  // {equi_inverted_P_nuc , varying_P_nuc_bins , uniform_P_nuc_bins}
 
 //                     double beamE = Ebeam;
 
@@ -1032,8 +1032,8 @@ void reaction_cuts_test() {
                     while (chain.Next() == true) {
                         // Display completed
                         ++counter;
-                        if ((counter % 1000000) == 0) { cerr << "\n" << counter / 1000000 << " million completed"; }
-                        if ((counter % 100000) == 0) { cerr << "."; }
+                        if ((counter % 1000000) == 0) { std::cerr << "\n" << counter / 1000000 << " million completed"; }
+                        if ((counter % 100000) == 0) { std::cerr << "."; }
 
                         if (counter > Limiter) { break; }
 
@@ -2194,7 +2194,7 @@ void reaction_cuts_test() {
                     // TCanvas* myCanvas_electron_cuts = new TCanvas("myPage_electron_cuts", "myPage_electron_cuts", pixelx, pixely);
                     TCanvas* myCanvas_electron_cuts = new TCanvas("myPage_electron_cuts", "myPage_electron_cuts", pixelx, pixely);
 
-                    string electron_cuts_PDF_fileName = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/electron_cuts.pdf";
+                    std::string electron_cuts_PDF_fileName = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/electron_cuts.pdf";
                     char fileName_electron_cuts[electron_cuts_PDF_fileName.length()];
                     sprintf(fileName_electron_cuts, "%s[", electron_cuts_PDF_fileName.c_str());
                     myText->SaveAs(fileName_electron_cuts);
@@ -2257,7 +2257,7 @@ void reaction_cuts_test() {
                         gPad->SetRightMargin(0.23);
 
                         // // Set the PDF title and header for the bookmark
-                        // string Title = HistoList_electron_cuts[i]->GetTitle();
+                        // std::string Title = HistoList_electron_cuts[i]->GetTitle();
                         // gStyle->SetTitlePS(Title.c_str());  // This sets the title in metadata
                         //                                     // gStyle->SetHeaderPS(("[ /Title " + Title + " /DOCVIEW pdfmark").c_str());  // Adds a PDF title
                         // gStyle->SetHeaderPS(("[ /Page " + to_string(i + 1) + " /View [/Fit] /Title (myTitle) ] /OUT pdfmark").c_str());
@@ -2289,7 +2289,7 @@ void reaction_cuts_test() {
                     // TCanvas* myCanvas_raw = new TCanvas("myPage_raw", "myPage_raw", pixelx, pixely);
                     TCanvas* myCanvas_raw = new TCanvas("myPage_raw", "myPage_raw", pixelx, pixely);
 
-                    string raw_PDF_fileName = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/raw_nFD_plots.pdf";
+                    std::string raw_PDF_fileName = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/raw_nFD_plots.pdf";
                     char fileName_raw[raw_PDF_fileName.length()];
                     sprintf(fileName_raw, "%s[", raw_PDF_fileName.c_str());
                     myText->SaveAs(fileName_raw);
@@ -2352,7 +2352,7 @@ void reaction_cuts_test() {
                         gPad->SetRightMargin(0.23);
 
                         // // Set the PDF title and header for the bookmark
-                        // string Title = HistoList_raw[i]->GetTitle();
+                        // std::string Title = HistoList_raw[i]->GetTitle();
                         // gStyle->SetTitlePS(Title.c_str());  // This sets the title in metadata
                         //                                     // gStyle->SetHeaderPS(("[ /Title " + Title + " /DOCVIEW pdfmark").c_str());  // Adds a PDF title
                         // gStyle->SetHeaderPS(("[ /Page " + to_string(i + 1) + " /View [/Fit] /Title (myTitle) ] /OUT pdfmark").c_str());
@@ -2384,7 +2384,7 @@ void reaction_cuts_test() {
                     // TCanvas* myCanvas_clas12reco = new TCanvas("myPage_clas12reco", "myPage_clas12reco", pixelx, pixely);
                     TCanvas* myCanvas_clas12reco = new TCanvas("myPage_clas12reco", "myPage_clas12reco", pixelx, pixely);
 
-                    string clas12reco_PDF_fileName = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/clas12reco_nFD_plots.pdf";
+                    std::string clas12reco_PDF_fileName = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/clas12reco_nFD_plots.pdf";
                     char fileName_clas12reco[clas12reco_PDF_fileName.length()];
                     sprintf(fileName_clas12reco, "%s[", clas12reco_PDF_fileName.c_str());
                     myText->SaveAs(fileName_clas12reco);
@@ -2447,7 +2447,7 @@ void reaction_cuts_test() {
                         gPad->SetRightMargin(0.23);
 
                         // // Set the PDF title and header for the bookmark
-                        // string Title = HistoList_clas12reco[i]->GetTitle();
+                        // std::string Title = HistoList_clas12reco[i]->GetTitle();
                         // gStyle->SetTitlePS(Title.c_str());  // This sets the title in metadata
                         //                                     // gStyle->SetHeaderPS(("[ /Title " + Title + " /DOCVIEW pdfmark").c_str());  // Adds a PDF title
                         // gStyle->SetHeaderPS(("[ /Page " + to_string(i + 1) + " /View [/Fit] /Title (myTitle) ] /OUT pdfmark").c_str());
@@ -2479,7 +2479,7 @@ void reaction_cuts_test() {
                     // TCanvas* myCanvas_redef = new TCanvas("myPage_redef", "myPage_redef", pixelx, pixely);
                     TCanvas* myCanvas_redef = new TCanvas("myPage_redef", "myPage_redef", pixelx, pixely);
 
-                    string redef_PDF_fileName = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/redef_nFD_plots.pdf";
+                    std::string redef_PDF_fileName = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/redef_nFD_plots.pdf";
                     char fileName_redef[redef_PDF_fileName.length()];
                     sprintf(fileName_redef, "%s[", redef_PDF_fileName.c_str());
                     myText->SaveAs(fileName_redef);
@@ -2542,7 +2542,7 @@ void reaction_cuts_test() {
                         gPad->SetRightMargin(0.23);
 
                         // // Set the PDF title and header for the bookmark
-                        // string Title = HistoList_redef[i]->GetTitle();
+                        // std::string Title = HistoList_redef[i]->GetTitle();
                         // gStyle->SetTitlePS(Title.c_str());  // This sets the title in metadata
                         //                                     // gStyle->SetHeaderPS(("[ /Title " + Title + " /DOCVIEW pdfmark").c_str());  // Adds a PDF title
                         // gStyle->SetHeaderPS(("[ /Page " + to_string(i + 1) + " /View [/Fit] /Title (myTitle) ] /OUT pdfmark").c_str());
@@ -2573,7 +2573,7 @@ void reaction_cuts_test() {
 #pragma region /* Print neutron plots */
                     TCanvas* myCanvas = new TCanvas("myPage", "myPage", pixelx, pixely);
 
-                    string nFD_eff_test_PDF_fileName = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/" + OutFileName + ".pdf";
+                    std::string nFD_eff_test_PDF_fileName = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/" + OutFileName + ".pdf";
                     char fileName[nFD_eff_test_PDF_fileName.length()];
                     sprintf(fileName, "%s[", nFD_eff_test_PDF_fileName.c_str());
                     myText->SaveAs(fileName);
@@ -2634,7 +2634,7 @@ void reaction_cuts_test() {
                         gPad->SetRightMargin(0.23);
 
                         // // Set the PDF title and header for the bookmark
-                        // string Title = HistoList[i]->GetTitle();
+                        // std::string Title = HistoList[i]->GetTitle();
                         // gStyle->SetTitlePS(Title.c_str());  // This sets the title in metadata
                         //                                     // gStyle->SetHeaderPS(("[ /Title " + Title + " /DOCVIEW pdfmark").c_str());  // Adds a PDF title
                         // gStyle->SetHeaderPS(("[ /Page " + to_string(i + 1) + " /View [/Fit] /Title (myTitle) ] /OUT pdfmark").c_str());
@@ -2689,7 +2689,7 @@ void reaction_cuts_test() {
                     TCanvas* myCanvas_eff_plots = new TCanvas("myPage_eff_plots", "myPage_eff_plots", pixelx * 3, pixely);
                     // TCanvas* myCanvas_eff_plots = new TCanvas("myPage_eff_plots", "myPage_eff_plots", pixelx * 3 * 2, pixely * 2);
 
-                    string eff_plots_PDF_fileName = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/eff_plots.pdf";
+                    std::string eff_plots_PDF_fileName = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/eff_plots.pdf";
                     char fileName_eff_plots[eff_plots_PDF_fileName.length()];
                     sprintf(fileName_eff_plots, "%s[", eff_plots_PDF_fileName.c_str());
                     myText->SaveAs(fileName_eff_plots);

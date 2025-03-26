@@ -56,44 +56,44 @@ class ParticleID {
 
     //<editor-fold desc="Theta_p1_vs_Theta_p2 for Theta_p1_p2 < 20 (2p, CD & FD)">
     TH2D *hTheta_pi_vs_theta_pj_for_Theta_pi_pj_20_BC_2idp_2p;
-    string hTheta_pi_vs_theta_pj_for_Theta_pi_pj_20_BC_2idp_2p_Dir;
+    std::string hTheta_pi_vs_theta_pj_for_Theta_pi_pj_20_BC_2idp_2p_Dir;
 
     TH2D *hTheta_pi_vs_theta_pj_for_Theta_pi_pj_20_RE_2idp_2p;
-    string hTheta_pi_vs_theta_pj_for_Theta_pi_pj_20_RE_2idp_2p_Dir;
+    std::string hTheta_pi_vs_theta_pj_for_Theta_pi_pj_20_RE_2idp_2p_Dir;
 
     TH2D *hTheta_pi_vs_theta_pj_for_Theta_pi_pj_20_BC_3idp_2p;
-    string hTheta_pi_vs_theta_pj_for_Theta_pi_pj_20_BC_3idp_2p_Dir;
+    std::string hTheta_pi_vs_theta_pj_for_Theta_pi_pj_20_BC_3idp_2p_Dir;
 
     TH2D *hTheta_pi_vs_theta_pj_for_Theta_pi_pj_20_AE_3idp_2p;
-    string hTheta_pi_vs_theta_pj_for_Theta_pi_pj_20_AE_3idp_2p_Dir;
+    std::string hTheta_pi_vs_theta_pj_for_Theta_pi_pj_20_AE_3idp_2p_Dir;
 
     TH2D *hTheta_pi_vs_theta_pj_for_Theta_pi_pj_20_BC_4idp_2p;
-    string hTheta_pi_vs_theta_pj_for_Theta_pi_pj_20_BC_4idp_2p_Dir;
+    std::string hTheta_pi_vs_theta_pj_for_Theta_pi_pj_20_BC_4idp_2p_Dir;
 
     TH2D *hTheta_pi_vs_theta_pj_for_Theta_pi_pj_20_AE_4idp_2p;
-    string hTheta_pi_vs_theta_pj_for_Theta_pi_pj_20_AE_4idp_2p_Dir;
+    std::string hTheta_pi_vs_theta_pj_for_Theta_pi_pj_20_AE_4idp_2p_Dir;
     //</editor-fold>
 
     // Theta_p1_vs_Theta_p2 for every Theta_p1_p2 (2p, CD & FD) -------------------------------------------------------------------------------------------------------------
 
     //<editor-fold desc="Theta_p1_vs_Theta_p2 for every Theta_p1_p2 (2p, CD & FD)">
     TH2D *hTheta_pi_vs_theta_pj_forall_Theta_pi_pj_BC_2idp_2p;
-    string hTheta_pi_vs_theta_pj_forall_Theta_pi_pj_BC_2idp_2p_Dir;
+    std::string hTheta_pi_vs_theta_pj_forall_Theta_pi_pj_BC_2idp_2p_Dir;
 
     TH2D *hTheta_pi_vs_theta_pj_forall_Theta_pi_pj_RE_2idp_2p;
-    string hTheta_pi_vs_theta_pj_forall_Theta_pi_pj_RE_2idp_2p_Dir;
+    std::string hTheta_pi_vs_theta_pj_forall_Theta_pi_pj_RE_2idp_2p_Dir;
 
     TH2D *hTheta_pi_vs_theta_pj_forall_Theta_pi_pj_BC_3idp_2p;
-    string hTheta_pi_vs_theta_pj_forall_Theta_pi_pj_BC_3idp_2p_Dir;
+    std::string hTheta_pi_vs_theta_pj_forall_Theta_pi_pj_BC_3idp_2p_Dir;
 
     TH2D *hTheta_pi_vs_theta_pj_forall_Theta_pi_pj_AE_3idp_2p;
-    string hTheta_pi_vs_theta_pj_forall_Theta_pi_pj_AE_3idp_2p_Dir;
+    std::string hTheta_pi_vs_theta_pj_forall_Theta_pi_pj_AE_3idp_2p_Dir;
 
     TH2D *hTheta_pi_vs_theta_pj_forall_Theta_pi_pj_BC_4idp_2p;
-    string hTheta_pi_vs_theta_pj_forall_Theta_pi_pj_BC_4idp_2p_Dir;
+    std::string hTheta_pi_vs_theta_pj_forall_Theta_pi_pj_BC_4idp_2p_Dir;
 
     TH2D *hTheta_pi_vs_theta_pj_forall_Theta_pi_pj_AE_4idp_2p;
-    string hTheta_pi_vs_theta_pj_forall_Theta_pi_pj_AE_4idp_2p_Dir;
+    std::string hTheta_pi_vs_theta_pj_forall_Theta_pi_pj_AE_4idp_2p_Dir;
     //</editor-fold>
 
     /* Counting variables for good protons monitoring */
@@ -158,7 +158,7 @@ class ParticleID {
     vector<int> GetGoodProtons(const bool &apply_nucleon_cuts, vector<region_part_ptr> &protons, const vector<int> &IDProtons_ind, const DSCuts &Theta_p1_cuts_2p,
                                const DSCuts &Theta_p2_cuts_2p, const DSCuts &dphi_pFD_pCD_2p);
 
-    void SetGPMonitoringPlots(const bool &GoodProtonsMonitorPlots, string CToF_hits_monitoring_2p_Directory, string Double_detection_monitoring_2p_Directory);
+    void SetGPMonitoringPlots(const bool &GoodProtonsMonitorPlots, std::string CToF_hits_monitoring_2p_Directory, std::string Double_detection_monitoring_2p_Directory);
 
     void GPMonitoring(const bool &GoodProtonsMonitorPlots, vector<region_part_ptr> &protons, const vector<int> &IDProtons_ind, const vector<int> &Protons_ind, const DSCuts &Theta_p1_cuts_2p,
                       const DSCuts &Theta_p2_cuts_2p, const DSCuts &dphi_p1_p2_2p, const double &Weight);

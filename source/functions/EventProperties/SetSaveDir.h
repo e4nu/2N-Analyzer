@@ -21,8 +21,8 @@
 using namespace std;
 using namespace utilities;
 
-void SetSaveDir(string &SaveDir, string &TestSaveDir, const string &RecTitle, const string &Histogram1DSaveNamePath, const string &PlotsT, const string &DRegion, const string &Particle,
-                const string &ParticleLC, const string &ParticleShort, const string &Type) {
+void SetSaveDir(string &SaveDir, std::string &TestSaveDir, const std::string &RecTitle, const std::string &Histogram1DSaveNamePath, const std::string &PlotsT, const std::string &DRegion, const std::string &Particle,
+                const std::string &ParticleLC, const std::string &ParticleShort, const std::string &Type) {
     if (PlotsT == "FSRatio") {
         if (!findSubstring(Type, "vs") && !findSubstring(Type, "vs.") && !findSubstring(Type, "VS") && !findSubstring(Type, "VS.")) {
             if (Type == "W" || Type == "Q2" || Type == "E_e" || Type == "omega" || Type == "Ecal" || Type == "deltaP_T_tot" || Type == "deltaP_T_L" || Type == "deltaAlpha_T_tot" ||

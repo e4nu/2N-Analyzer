@@ -43,7 +43,7 @@ using namespace utilities;
 
 class AMaps {
    private:
-    string AMaps_Mode = "AMaps";
+    std::string AMaps_Mode = "AMaps";
 
     /* Acceptance maps from class and before cuts (to be compared with one generated with the file) */
     hPlot2D reco_theta_e_VS_phi_e_BC, reco_theta_p_VS_phi_p_BC, reco_theta_n_VS_phi_n_BC, reco_theta_nuc_VS_phi_nuc_BC;
@@ -120,21 +120,21 @@ class AMaps {
 
     int pixelx = 1980, pixely = 1530;
 
-    string AcceptanceMapsBC_OutFile0;
-    string TLAMaps_OutFile0;
-    string RecoAMaps_OutFile0;
-    string AMapsRatio_OutFile0;
-    string Charged_particle_Sep_AMaps_OutFile0;
-    string AcceptanceMaps_OutFile0;
+    std::string AcceptanceMapsBC_OutFile0;
+    std::string TLAMaps_OutFile0;
+    std::string RecoAMaps_OutFile0;
+    std::string AMapsRatio_OutFile0;
+    std::string Charged_particle_Sep_AMaps_OutFile0;
+    std::string AcceptanceMaps_OutFile0;
 
-    string AMapSavePath, AMapCopySavePath;
+    std::string AMapSavePath, AMapCopySavePath;
 
-    string AMapsBC_prefix = "00_AMaps_BC_-_";
-    string AMap_TL_prefix = "01_AMap_TL_-_";
-    string AMap_Reco_prefix = "02_AMap_Reco_-_";
-    string AMap_Ratio_prefix = "03_AMap_Ratio_-_";
-    string cPart_Sep_AMaps_prefix = "04_cPart_Sep_AMaps_-_";
-    string AMaps_prefix = "05_AMaps_-_";
+    std::string AMapsBC_prefix = "00_AMaps_BC_-_";
+    std::string AMap_TL_prefix = "01_AMap_TL_-_";
+    std::string AMap_Reco_prefix = "02_AMap_Reco_-_";
+    std::string AMap_Ratio_prefix = "03_AMap_Ratio_-_";
+    std::string cPart_Sep_AMaps_prefix = "04_cPart_Sep_AMaps_-_";
+    std::string AMaps_prefix = "05_AMaps_-_";
 
     vector<vector<double>> Loaded_ElectronMomSliceLimits;
     vector<vector<double>> Loaded_NucleonMomSliceLimits;
@@ -163,7 +163,7 @@ class AMaps {
     TH2D *LoadedNeutronAMap;
     TH2D *LoadedNucleonAMap;
 
-    string SName;
+    std::string SName;
 
     //    bool e_single_slice_test, nuc_single_slice_test;
     bool e_single_slice_test = false;    // keep as false for normal runs! (false by default)
@@ -178,43 +178,43 @@ class AMaps {
     // constructor ----------------------------------------------------------------------------------------------------------------------------------------------------------
 
     // AMaps generation constructor:
-    AMaps(const string &SampleName, const string &P_e_bin_profile, const string &P_nuc_bin_profile, double beamE, const string &AMapsMode = "", const string &SavePath = "./",
+    AMaps(const std::string &SampleName, const std::string &P_e_bin_profile, const std::string &P_nuc_bin_profile, double beamE, const std::string &AMapsMode = "", const std::string &SavePath = "./",
           int nOfNucMomBins = 4, int nOfElecMomBins = 4, int hnsNumOfXBins = 75, int hnsNumOfYBins = 75, int hesNumOfXBins = 100, int hesNumOfYBins = 100);
 
     // AMaps loading constructor:
-    AMaps(const string &AcceptanceMapsDirectory, const string &SampleName, const bool &Electron_single_slice_test, const bool &Nucleon_single_slice_test, const vector<int> &TestSlices);
+    AMaps(const std::string &AcceptanceMapsDirectory, const std::string &SampleName, const bool &Electron_single_slice_test, const bool &Nucleon_single_slice_test, const vector<int> &TestSlices);
 
     // SetBins functions ----------------------------------------------------------------------------------------------------------------------------------------------------
 
-    void SetBins(const string &P_nuc_bin_profile, double beamE);
+    void SetBins(const std::string &P_nuc_bin_profile, double beamE);
 
-    void SetElectronBins(const string &P_e_bin_profile, double beamE);
+    void SetElectronBins(const std::string &P_e_bin_profile, double beamE);
 
     void SetBins(double beamE, double NumberNucOfMomSlices);  // old
 
     // isElectron function --------------------------------------------------------------------------------------------------------------------------------------------------
 
-    bool isElectron(const string &SampleType);
+    bool isElectron(const std::string &SampleType);
 
     // isProton function ----------------------------------------------------------------------------------------------------------------------------------------------------
 
-    bool isProton(const string &SampleType);
+    bool isProton(const std::string &SampleType);
 
     // isNeutron function ---------------------------------------------------------------------------------------------------------------------------------------------------
 
-    bool isNeutron(const string &SampleType);
+    bool isNeutron(const std::string &SampleType);
 
     // isTL function --------------------------------------------------------------------------------------------------------------------------------------------------------
 
-    bool isTL(const string &SampleType);
+    bool isTL(const std::string &SampleType);
 
     // isReco function --------------------------------------------------------------------------------------------------------------------------------------------------------
 
-    bool isReco(const string &SampleType);
+    bool isReco(const std::string &SampleType);
 
     // hFillHitMaps function ------------------------------------------------------------------------------------------------------------------------------------------------
 
-    void hFillHitMaps(const string &SampleType, const string &particle, double Momentum, double Theta, double Phi, double Weight);
+    void hFillHitMaps(const std::string &SampleType, const std::string &particle, double Momentum, double Theta, double Phi, double Weight);
 
     // CalcAMapsRatio function --------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -239,15 +239,15 @@ class AMaps {
 
     // SaveHitMaps function -------------------------------------------------------------------------------------------------------------------------------------------------
 
-    void SaveHitMaps(const string &SampleName, const string &AcceptanceMapsDirectory);
+    void SaveHitMaps(const std::string &SampleName, const std::string &AcceptanceMapsDirectory);
 
     // DrawAndSaveHitMaps function ------------------------------------------------------------------------------------------------------------------------------------------
 
-    void DrawAndSaveHitMapsPDFs(vector<TH1 *> HistoList, const string &PDFfileName);
+    void DrawAndSaveHitMapsPDFs(vector<TH1 *> HistoList, const std::string &PDFfileName);
 
     // DrawAndSaveHitMaps function ------------------------------------------------------------------------------------------------------------------------------------------
 
-    void DrawAndSaveHitMaps(const string &SampleName, TCanvas *h1DCanvas, const string &AcceptanceMapsDirectory);
+    void DrawAndSaveHitMaps(const std::string &SampleName, TCanvas *h1DCanvas, const std::string &AcceptanceMapsDirectory);
 
     // HistCounter function -------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -259,13 +259,13 @@ class AMaps {
 
     // SetSlicesFromHistTitle function --------------------------------------------------------------------------------------------------------------------------------------
 
-    void SetSlicesFromHistTitle(TH2D *Histogram2D, const string &Particle);
+    void SetSlicesFromHistTitle(TH2D *Histogram2D, const std::string &Particle);
 
     void SetSlicesFromHistTitle(TH2D *Histogram2D, vector<vector<double>> MomBinsLimits);
 
     // ReadHitMaps function -------------------------------------------------------------------------------------------------------------------------------------------------
 
-    void ReadHitMaps(const string &AcceptanceMapsDirectory, const string &SampleName);
+    void ReadHitMaps(const std::string &AcceptanceMapsDirectory, const std::string &SampleName);
 
     // ReadAMapLimits function ----------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -273,12 +273,12 @@ class AMaps {
 
     // ReadAMapSlices function ----------------------------------------------------------------------------------------------------------------------------------------------------
 
-    void ReadAMapSlices(const string &SampleName, const string &AcceptanceMapsDirectory, const string &Particle, const vector<vector<double>> &Loaded_particle_limits,
+    void ReadAMapSlices(const std::string &SampleName, const std::string &AcceptanceMapsDirectory, const std::string &Particle, const vector<vector<double>> &Loaded_particle_limits,
                         vector<vector<vector<int>>> &Loaded_Particle_AMap_Slices);
 
     // ReadAMapSlices function ----------------------------------------------------------------------------------------------------------------------------------------------------
 
-    void ReadWMapSlices(const string &SampleName, const string &AcceptanceMapsDirectory, const string &Particle, const vector<vector<double>> &Loaded_particle_limits,
+    void ReadWMapSlices(const std::string &SampleName, const std::string &AcceptanceMapsDirectory, const std::string &Particle, const vector<vector<double>> &Loaded_particle_limits,
                         vector<vector<vector<double>>> &Loaded_Particle_WMap_Slices);
 
     // ReadAMap function ----------------------------------------------------------------------------------------------------------------------------------------------------
@@ -291,15 +291,15 @@ class AMaps {
 
     // MatchAngToHitMap function --------------------------------------------------------------------------------------------------------------------------------------------
 
-    bool MatchAngToHitMap(const string &Particle, double Momentum, double Theta, double Phi, bool NucleonOverlappingFC = true);
+    bool MatchAngToHitMap(const std::string &Particle, double Momentum, double Theta, double Phi, bool NucleonOverlappingFC = true);
 
     // GetWeight function ---------------------------------------------------------------------------------------------------------------------------------------------------
 
-    double GetWeight(bool apply_kinematical_weights, const string &Particle, double Momentum, double Theta, double Phi);
+    double GetWeight(bool apply_kinematical_weights, const std::string &Particle, double Momentum, double Theta, double Phi);
 
     // IsInFDQuery function -------------------------------------------------------------------------------------------------------------------------------------------------
 
-    bool IsInFDQuery(bool Generate_AMaps, const DSCuts &ThetaFD, const string &Particle, double Momentum, double Theta, double Phi, bool NucleonOverlappingFC = true);
+    bool IsInFDQuery(bool Generate_AMaps, const DSCuts &ThetaFD, const std::string &Particle, double Momentum, double Theta, double Phi, bool NucleonOverlappingFC = true);
 
     // Other methods --------------------------------------------------------------------------------------------------------------------------------------------------------
 

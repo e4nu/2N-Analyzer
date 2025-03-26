@@ -21,7 +21,7 @@ using namespace basic_tools;
 
 // GetFS function -------------------------------------------------------------------------------------------------------------------------------------------------------
 
-string GetFS(const string &Source) {
+string GetFS(const std::string &Source) {
     static const vector<pair<string, string>> patterns = {{"1e_cut", "1e cut"}, {"1e cut", "1e cut"}, {"1e Cut", "1e cut"}, {"(e,e')", "1e cut"}, {"1pFD", "1pFD"},
                                                           {"1p", "1p"},         {"1nFD", "1n"},       {"1LnFD", "1LnFD"},   {"1n", "1n"},         {"1n1p", "1n1p"},
                                                           {"1e2p", "1e2p"},     {"2p", "2p"},         {"pFDpCD", "pFDpCD"}, {"nFDpCD", "nFDpCD"}};
@@ -35,10 +35,10 @@ string GetFS(const string &Source) {
 
 // GetParticleName function -------------------------------------------------------------------------------------------------------------------------------------------
 
-string GetParticleName(const string &Source, const bool &PluralParticles = false) {
-    string ParticleName, FS = GetFS(Source);
+string GetParticleName(const std::string &Source, const bool &PluralParticles = false) {
+    std::string ParticleName, FS = GetFS(Source);
 
-    auto setParticleName = [&](const string &singular, const string &plural) { ParticleName = PluralParticles ? plural : singular; };
+    auto setParticleName = [&](const std::string &singular, const std::string &plural) { ParticleName = PluralParticles ? plural : singular; };
 
     static const vector<tuple<string, string, string>> patterns = {{"neutrals|Neutrals|neut.|Neut.", "Neut", "Neut"},
                                                                    {"Electron|electron", "Electron", "Electrons"},
@@ -65,7 +65,7 @@ string GetParticleName(const string &Source, const bool &PluralParticles = false
 
 // GetParticleName1 function ------------------------------------------------------------------------------------------------------------------------------------------
 
-string GetParticleName1(const string &Source, const bool &PluralParticles) {
+string GetParticleName1(const std::string &Source, const bool &PluralParticles) {
     static const vector<tuple<string, string, string>> patterns = {{"neutrals|Neutrals|neut.|Neut.", "Neut", "Neut"},
                                                                    {"Electron|electron", "Electron", "Electrons"},
                                                                    {"Proton|proton", "Proton", "Protons"},
@@ -85,7 +85,7 @@ string GetParticleName1(const string &Source, const bool &PluralParticles) {
 
 // GetParticleNameFromSubscript function --------------------------------------------------------------------------------------------------------------------------------
 
-string GetParticleNameFromSubscript(const string &Source, const bool &PluralParticles) {
+string GetParticleNameFromSubscript(const std::string &Source, const bool &PluralParticles) {
     static const vector<tuple<string, string, string>> patterns = {{"{e}", "Electron", "Electrons"},           {"{p}|{pFD}|{pCD}", "Proton", "Protons"},   {"{n}|{nFD}", "Neutron", "Neutrons"},
                                                                    {"{#pi^{+}}", "#pi^{+}", "Positive pions"}, {"{#pi^{-}}", "#pi^{-}", "Negative pions"}, {"{K^{+}}", "K^{+}", "Positive kaons"},
                                                                    {"{K^{-}}", "K^{-}", "Negative kaons"},     {"{D}", "Deuteron", "Deuterons"},           {"{#gamma}", "Photon", "Photons"}};
@@ -99,7 +99,7 @@ string GetParticleNameFromSubscript(const string &Source, const bool &PluralPart
 
 // GetParticleNameLC function -------------------------------------------------------------------------------------------------------------------------------------------
 
-string GetParticleNameLC(const string &Source, const bool &PluralParticles = false) {
+string GetParticleNameLC(const std::string &Source, const bool &PluralParticles = false) {
     static const vector<tuple<string, string, string>> patterns = {{"neutrals|Neutrals|neut.|Neut.", "neut", "neut"},
                                                                    {"Electron|electron", "electron", "electrons"},
                                                                    {"Proton|proton", "proton", "protons"},
@@ -120,7 +120,7 @@ string GetParticleNameLC(const string &Source, const bool &PluralParticles = fal
 
 // GetParticleNameLCFromSubscript function --------------------------------------------------------------------------------------------------------------------------------
 
-string GetParticleNameLCFromSubscript(const string &Source, const bool &PluralParticles) {
+string GetParticleNameLCFromSubscript(const std::string &Source, const bool &PluralParticles) {
     static const vector<tuple<string, string, string>> patterns = {{"{e}", "electron", "electrons"},           {"{p}|{pFD}|{pCD}", "proton", "protons"},   {"{n}|{nFD}", "neutron", "neutrons"},
                                                                    {"{#pi^{+}}", "#pi^{+}", "positive pions"}, {"{#pi^{-}}", "#pi^{-}", "negative pions"}, {"{K^{+}}", "K^{+}", "positive kaons"},
                                                                    {"{K^{-}}", "K^{-}", "negative kaons"},     {"{D}", "deuteron", "deuterons"},           {"{#gamma}", "Photon", "Photons"}};
@@ -134,7 +134,7 @@ string GetParticleNameLCFromSubscript(const string &Source, const bool &PluralPa
 
 // GetParticleNameShort function ----------------------------------------------------------------------------------------------------------------------------------------
 
-string GetParticleNameShort(const string &Source) {
+string GetParticleNameShort(const std::string &Source) {
     static const vector<pair<string, string>> patterns = {{"neutrals|Neutrals|neut.|Neut.", "neut"},
                                                           {"Electron|electron", "e"},
                                                           {"Proton|proton", "p"},
@@ -155,7 +155,7 @@ string GetParticleNameShort(const string &Source) {
 
 // GetParticleNameShortFromSubscript function ---------------------------------------------------------------------------------------------------------------------------
 
-string GetParticleNameShortFromSubscript(const string &Source) {
+string GetParticleNameShortFromSubscript(const std::string &Source) {
     static const vector<pair<string, string>> patterns = {{"{e}", "e"},         {"{p}", "p"},         {"{n}", "n"}, {"{#pi^{+}}", "#pi^{+}"}, {"{#pi^{-}}", "#pi^{-}"},
                                                           {"{K^{+}}", "K^{+}"}, {"{K^{-}}", "K^{-}"}, {"{D}", "D"}, {"{#gamma}", "#gamma"}};
 
@@ -168,7 +168,7 @@ string GetParticleNameShortFromSubscript(const string &Source) {
 
 // GetTopology function -------------------------------------------------------------------------------------------------------------------------------------------------
 
-string GetTopology(const string &Source) {
+string GetTopology(const std::string &Source) {
     static const vector<pair<string, string>> patterns = {{"1n", "1N"}, {"1p", "1N"}, {"1nFD", "1N"}, {"1pFD", "1N"}, {"1n1p", "2N"}, {"2p", "2N"}, {"nFDpCD", "2N"}, {"pFDpCD", "2N"}};
 
     for (const auto &pattern : patterns) {
@@ -180,7 +180,7 @@ string GetTopology(const string &Source) {
 
 // GetType function -----------------------------------------------------------------------------------------------------------------------------------------------------
 
-string GetType(const string &Source) {
+string GetType(const std::string &Source) {
     static const vector<pair<string, string>> patterns = {{"momentum", "momentum"},
                                                           {"Leading momentum", "leading_nuc_momentum"},
                                                           {"Recoil momentum", "recoil_nuc_momentum"},
@@ -268,7 +268,7 @@ string GetType(const string &Source) {
 
 // GetDRegion function --------------------------------------------------------------------------------------------------------------------------------------------------
 
-string GetDRegion(const string &Source, const bool &ReturnGoingRegion = false) {
+string GetDRegion(const std::string &Source, const bool &ReturnGoingRegion = false) {
     static const vector<pair<string, string>> patterns = {{", FD)", "FD"}, {"FD ", "FD"}, {"FD", "FD"}, {", CD)", "CD"}, {"CD ", "CD"}, {"CD", "CD"}};
 
     for (const auto &pattern : patterns) {
@@ -280,7 +280,7 @@ string GetDRegion(const string &Source, const bool &ReturnGoingRegion = false) {
 
 // GetDRegionExplicit function ------------------------------------------------------------------------------------------------------------------------------------------
 
-string GetDRegionExplicit(const string &Source, const bool &ReturnGoingRegion) {
+string GetDRegionExplicit(const std::string &Source, const bool &ReturnGoingRegion) {
     static const vector<pair<string, string>> patterns = {{"FD", "FD"}, {"CD", "CD"}};
 
     for (const auto &pattern : patterns) {
@@ -292,9 +292,9 @@ string GetDRegionExplicit(const string &Source, const bool &ReturnGoingRegion) {
 
 // GetFSRTitle function -------------------------------------------------------------------------------------------------------------------------------------------------
 
-string GetFSRTitle(const string &Source, const string &PlotsT) {
-    string FSRTitle;
-    string Particle = GetParticleName(Source), ParticleShort = GetParticleNameShort(Source), Type = GetType(Source), DRegion = GetDRegion(Source);
+string GetFSRTitle(const std::string &Source, const std::string &PlotsT) {
+    std::string FSRTitle;
+    std::string Particle = GetParticleName(Source), ParticleShort = GetParticleNameShort(Source), Type = GetType(Source), DRegion = GetDRegion(Source);
 
     if (PlotsT == "FSRatio") {
         if (!basic_tools::FindSubstring(Source, "vs")) {
@@ -395,8 +395,8 @@ string GetFSRTitle(const string &Source, const string &PlotsT) {
 
 // GetTitle function -----------------------------------------------------------------------------------------------------------------------------------------------------
 
-string GetTitle(const string &Source) {
-    string Title, Type = GetType(Source), ParticleShort = GetParticleNameShort(Source), Particle = GetParticleName(Source);
+string GetTitle(const std::string &Source) {
+    std::string Title, Type = GetType(Source), ParticleShort = GetParticleNameShort(Source), Particle = GetParticleName(Source);
 
     if (Type == "momentum") {
         Title = Particle + " " + Type;
@@ -409,12 +409,12 @@ string GetTitle(const string &Source) {
 
 // GetStatsTitle function -----------------------------------------------------------------------------------------------------------------------------------------------
 
-string GetStatsTitle(const string &Source) {
-    string StatsTitle, StatsType;
+string GetStatsTitle(const std::string &Source) {
+    std::string StatsTitle, StatsType;
 
     static const vector<pair<string, string>> patterns = {{"#theta", "#theta_{"}, {"#phi", "#phi_{"}};
 
-    string FS = GetFS(Source), ParticleShort = GetParticleNameShort(Source);
+    std::string FS = GetFS(Source), ParticleShort = GetParticleNameShort(Source);
 
     for (const auto &pattern : patterns) {
         if (basic_tools::FindSubstring(Source, pattern.first)) {
@@ -430,10 +430,10 @@ string GetStatsTitle(const string &Source) {
 
 // SetXLabel function ---------------------------------------------------------------------------------------------------------------------------------------------------
 
-string SetXLabel(const string &Source) {
+string SetXLabel(const std::string &Source) {
     static const vector<pair<string, string>> patterns = {{"momentum", "P_{"}, {"#theta", "#theta_{"}, {"#phi", "#phi_{"}};
 
-    string ParticleShort = GetParticleNameShort(Source);
+    std::string ParticleShort = GetParticleNameShort(Source);
 
     for (const auto &pattern : patterns) {
         if (basic_tools::FindSubstring(Source, pattern.first)) { return pattern.second + ParticleShort + "} [" + (pattern.first == "momentum" ? "GeV/c" : "Deg") + "]"; }
@@ -444,10 +444,10 @@ string SetXLabel(const string &Source) {
 
 // SetSaveDir function --------------------------------------------------------------------------------------------------------------------------------------------------
 
-string SetSaveDir(const string &Source, const string &BaseSaveDir, const string &Mod) {
-    string SaveDir, TestSaveDir;
+string SetSaveDir(const std::string &Source, const std::string &BaseSaveDir, const std::string &Mod) {
+    std::string SaveDir, TestSaveDir;
 
-    string Particle = GetParticleName(Source), ParticleLC = GetParticleNameLC(Source), FS = GetFS(Source), Type = GetType(Source);
+    std::string Particle = GetParticleName(Source), ParticleLC = GetParticleNameLC(Source), FS = GetFS(Source), Type = GetType(Source);
 
     static const vector<pair<string, string>> patterns = {{"Electron|electron", "/00_" + Particle + "_" + Type + "_ACorrection_plots_" + FS + "/"},
                                                           {", FD)|FD " + Particle + "|FD " + ParticleLC, "/01_FD_" + Particle + "_" + Type + "_ACorrection_plots_" + FS + "/"},
