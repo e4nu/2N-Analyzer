@@ -153,7 +153,7 @@ double GetBeamEnergyFromString(const std::string &sn) {
 
 // GetBeamEnergyFromDouble function -------------------------------------------------------------------------------------------------------------------------------------
 
-double GetBeamEnergyFromDouble(const double &BeamE) {
+std::string GetBeamEnergyFromDouble(const double &BeamE) {
     std::string BeamE_str;
 
     if (std::round(BeamE) == 6) {
