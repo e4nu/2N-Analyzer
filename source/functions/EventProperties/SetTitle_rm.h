@@ -13,7 +13,7 @@
 
 #include "GetParticleNameShort_rm.h"
 #include "GetParticleName_rm.h"
-#include "SetType.h"
+#include "SetType_rm.h"
 
 using namespace std;
 

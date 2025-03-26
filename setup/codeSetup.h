@@ -9,16 +9,17 @@
 
 #include "../source/namespaces/general_utilities/basic_tools/basic_tools.h"
 #include "../source/namespaces/general_utilities/constants/constants.h"
+#include "../source/namespaces/plotters/PDF_canvas/PDF_canvas.h"
 
 #include "../source/classes/Debugger/Debugger.cpp"
 #include "../source/classes/Directories/Directories.cpp"
 #include "../source/classes/ExperimentParameters/ExperimentParameters.cpp"
-// #include "../source/namespaces/basic_tools/basic_tools.h"
 #include "../source/functions/HistogramPlottingFunctions.h"
-// #include "../source/functions/quit.h"
-#include "../source/includes/CanvasPDF/CanvasPDF.h"
+
 #include "samples/Q2_testing_samples.h"
 #include "samples/Uniform_samples.h"
+
+using namespace PDF_canvas;
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                         Code version                                                                                //

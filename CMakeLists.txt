@@ -167,18 +167,18 @@ add_executable(project ${CLAS12ROOT_SOURCES} ${CLAS12BANKS_SOURCES} ${HIPO4_SOUR
         source/functions/DrawAndSaveFunctions/DrawAndSaveACorrPlots.h
         source/functions/DrawAndSaveFunctions/DrawAndSaveEfficiencyPlots.h
         source/functions/DrawAndSaveFunctions/DrawAndSaveFSRatio.h
-        source/functions/EventProperties/GetParticleName.h
-        source/functions/EventProperties/GetParticleNameLC.h
-        source/functions/EventProperties/GetParticleNameShort.h
-        source/functions/EventProperties/SetDRegion.h
-        source/functions/EventProperties/SetFSRatioSaveDir.h
-        source/functions/EventProperties/SetSaveDir.h
-        source/functions/EventProperties/SetStatsTitle.h
-        source/functions/EventProperties/SettingSaveNames.h
-        source/functions/EventProperties/SetTitle.h
-        source/functions/EventProperties/SetType.h
-        source/functions/EventProperties/SetXAxisTitle.h
-        source/functions/EventProperties/SetYAxisTitle.h
+        source/functions/EventProperties/GetParticleName_rm.h
+        source/functions/EventProperties/GetParticleNameLC_rm.h
+        source/functions/EventProperties/GetParticleNameShort_rm.h
+        source/functions/EventProperties/SetDRegion_rm.h
+        source/functions/EventProperties/SetFSRatioSaveDir_rm.h
+        source/functions/EventProperties/SetSaveDir_rm.h
+        source/functions/EventProperties/SetStatsTitle_rm.h
+        source/functions/EventProperties/SettingSaveNames_rm.h
+        source/functions/EventProperties/SetTitle_rm.h
+        source/functions/EventProperties/SetType_rm.h
+        source/functions/EventProperties/SetXAxisTitle_rm.h
+        source/functions/EventProperties/SetYAxisTitle_rm.h
         source/functions/FitFunctions/BetaFit.h
         source/functions/FitFunctions/BetaFitApprax.h
         source/functions/FitFunctions/FitFunction.h
@@ -219,7 +219,7 @@ add_executable(project ${CLAS12ROOT_SOURCES} ${CLAS12BANKS_SOURCES} ${HIPO4_SOUR
         source/namespaces/general_utilities/data_processor/data_processor.h
         source/namespaces/general_utilities/lists/lists.h
         source/namespaces/general_utilities/reco_analysis_functions/reco_analysis_functions.h
-        source/namespaces/settings/settings.h
+        source/namespaces/settings/general_settings/settings.h
         source/namespaces/general_utilities/truth_analysis_functions/truth_analysis_functions.h
         "source/other/fitexample - Copy.c"
         source/other/fitexample.c

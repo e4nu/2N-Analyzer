@@ -1,3 +1,8 @@
+#ifndef PDF_CANVAS_H
+#define PDF_CANVAS_H
+
+#include "../../settings/PDF_canvas_settings/PDF_canvas_settings.h"
+
 #include <TApplication.h>
 #include <TCanvas.h>
 #include <TChain.h>
@@ -26,16 +31,8 @@
 // PDF file canvas settings
 // ======================================================================================================================================================================
 
-namespace CanvasPDF_settings {
-// Canvas variables -----------------------------------------------------------------------------------------------------------------------------------------------------
-
-int num_of_hist_per_row = 4;
-int num_of_hist_per_col = 3;
-
-int CanvasPDF_ind = 1;
-
-TCanvas* CanvasPDF = new TCanvas("CanvasPDF", "CanvasPDF", 1000 * num_of_hist_per_row, 750 * num_of_hist_per_col);  // normal res
-}
+namespace PDF_canvas {
+using namespace PDF_canvas_settings;
 
 // Canvas functions -----------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -91,3 +88,7 @@ void CopyPadContent(TPad* sourcePad, TPad* targetPad) {
 
     targetPad->Update();
 }
+
+}
+
+#endif  // PDF_CANVAS_H

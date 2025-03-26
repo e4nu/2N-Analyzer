@@ -23,8 +23,8 @@
 #include <string>
 
 #include "../classes/hPlots/hPlot1D.cpp"
-#include "EventProperties/GetParticleName.h"
-#include "EventProperties/GetParticleNameShort.h"
+#include "EventProperties/GetParticleNameShort_rm.h"
+#include "EventProperties/GetParticleName_rm.h"
 #include "GeneralFunctions.h"
 
 using namespace std;
