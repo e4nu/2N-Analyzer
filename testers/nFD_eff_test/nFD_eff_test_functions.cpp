@@ -1,4 +1,4 @@
-// source nFD_eff_tester_run.sh
+// framework nFD_eff_tester_run.sh
 // git pull && clas12root -b -q testers/nFD_eff_test.cpp
 
 #ifndef NFD_EFF_TEST_FUNCTIONS
@@ -22,9 +22,9 @@
 
 // #define IndependentCanvasPDF false
 
-// #include "../source/classes/ParticleID/ParticleID.cpp"
-#include "../../source/constants.h"
-#include "../../source/namespaces/general_utilities/utilities/utilities.h"
+// #include "../framework/classes/ParticleID/ParticleID.cpp"
+#include "../../framework/constants.h"
+#include "../../framework/namespaces/general_utilities/utilities/utilities.h"
 //
 #include "HipoChain.h"
 #include "clas12reader.h"
@@ -33,7 +33,7 @@ using namespace std;
 using namespace clas12;
 using namespace utilities;
 
-#include "../../source/classes/AMaps/AMaps.cpp"
+#include "../../framework/classes/AMaps/AMaps.cpp"
 
 #pragma region /* CheckForECALHits function */
 void CheckForECALHits(bool& ParticleInPCAL, bool& ParticleInECIN, bool& ParticleInECOUT, short& Neutron_ECAL_detlayer, vector<region_part_ptr>& allParticles, const int& i) {

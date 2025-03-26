@@ -52,32 +52,32 @@ include_directories(setup/CLAS12DAnalysis)
 include_directories(setup/CLAS12DAnalysis/CLAS12DAnalyser)
 include_directories(setup/CLAS12DAnalysis/CLAS12DASettings)
 include_directories(setup/CLAS12DAnalysis/CLAS12DHistograms)
-include_directories(source)
-include_directories(source/classes)
-include_directories(source/classes/AMaps)
-include_directories(source/classes/clas12ana)
-include_directories(source/classes/clas12ana/clas12ana_ver_1_myedit)
-include_directories(source/classes/clas12ana/other)
-include_directories(source/classes/DEfficiency)
-include_directories(source/classes/Directories)
-include_directories(source/classes/DSCuts)
-include_directories(source/classes/ExperimentParameters)
-include_directories(source/classes/hData)
-include_directories(source/classes/hPlots)
-include_directories(source/classes/MomentumResolution)
-include_directories(source/classes/TargetParameters)
-include_directories(source/classes/TLCuts)
+include_directories(framework)
+include_directories(framework/classes)
+include_directories(framework/classes/AMaps)
+include_directories(framework/classes/clas12ana)
+include_directories(framework/classes/clas12ana/clas12ana_ver_1_myedit)
+include_directories(framework/classes/clas12ana/other)
+include_directories(framework/classes/DEfficiency)
+include_directories(framework/classes/Directories)
+include_directories(framework/classes/DSCuts)
+include_directories(framework/classes/ExperimentParameters)
+include_directories(framework/classes/hData)
+include_directories(framework/classes/hPlots)
+include_directories(framework/classes/MomentumResolution)
+include_directories(framework/classes/TargetParameters)
+include_directories(framework/classes/TLCuts)
 include_directories(source/data)
-include_directories(source/functions)
-include_directories(source/functions/AngleCalc)
-include_directories(source/functions/DrawAndSaveFunctions)
-include_directories(source/functions/EventProperties)
-include_directories(source/functions/FitFunctions)
-include_directories(source/functions/Math_func)
-include_directories(source/functions/other)
-include_directories(source/functions/PID_functions)
-include_directories(source/other)
-include_directories(source/structures)
+include_directories(framework/functions)
+include_directories(framework/functions/AngleCalc)
+include_directories(framework/functions/DrawAndSaveFunctions)
+include_directories(framework/functions/EventProperties)
+include_directories(framework/functions/FitFunctions)
+include_directories(framework/functions/Math_func)
+include_directories(framework/functions/other)
+include_directories(framework/functions/PID_functions)
+include_directories(framework/other)
+include_directories(framework/structures)
 
 add_executable(project ${CLAS12ROOT_SOURCES} ${CLAS12BANKS_SOURCES} ${HIPO4_SOURCES}
         macros/Other/process_events.C
@@ -108,38 +108,38 @@ add_executable(project ${CLAS12ROOT_SOURCES} ${CLAS12BANKS_SOURCES} ${HIPO4_SOUR
         setup/CLAS12DAnalysis/CLAS12DHistograms/CLAS12DHistograms.cpp
         setup/CLAS12DAnalysis/CLAS12DHistograms/CLAS12DHistograms.h
         setup/codeSetup.h
-        source/classes/gst/gst.h
-        source/classes/AMaps/AMaps.cpp
-        source/classes/AMaps/AMaps.h
-        source/classes/clas12ana/clas12ana_ver_1_myedit/clas12ana.h
-        source/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.cpp
-        "source/classes/clas12ana/other/clas12ana - Copy (2).h"
-        "source/classes/clas12ana/other/clas12ana - Copy.h"
-        source/classes/clas12ana/clas12ana.h
-        source/classes/clas12ana/clas12ana_ver_1_myedit.h
-        "source/classes/clas12ana/example_ana - Copy.cpp"
-        source/classes/clas12ana/example_ana.cpp
-        source/classes/clas12ana/skim_events.cpp
-        source/classes/DEfficiency/DEfficiency.cpp
-        source/classes/DEfficiency/DEfficiency.h
-        source/classes/Directories/Directories.cpp
-        source/classes/Directories/Directories.h
-        source/classes/DSCuts/DSCuts.h
-        source/classes/ExperimentParameters/ExperimentParameters.cpp
-        source/classes/ExperimentParameters/ExperimentParameters.h
-        source/classes/hData/hData.cpp
-        source/classes/hData/hData.h
-        source/classes/hPlots/hPlot1D.cpp
-        source/classes/hPlots/hPlot1D.h
-        source/classes/hPlots/hPlot1DStack.cpp
-        source/classes/hPlots/hPlot1DStack.h
-        source/classes/hPlots/hPlot2D.cpp
-        source/classes/hPlots/hPlot2D.h
-        source/classes/MomentumResolution/MomentumResolution.cpp
-        source/classes/MomentumResolution/MomentumResolution.h
-        source/classes/TargetParameters/TargetParameters.h
-        source/classes/TLCuts/TLCuts.cpp
-        source/classes/TLCuts/TLCuts.h
+        framework/classes/gst/gst.h
+        framework/classes/AMaps/AMaps.cpp
+        framework/classes/AMaps/AMaps.h
+        framework/classes/clas12ana/clas12ana_ver_1_myedit/clas12ana.h
+        framework/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.cpp
+        "framework/classes/clas12ana/other/clas12ana - Copy (2).h"
+        "framework/classes/clas12ana/other/clas12ana - Copy.h"
+        framework/classes/clas12ana/clas12ana.h
+        framework/classes/clas12ana/clas12ana_ver_1_myedit.h
+        "framework/classes/clas12ana/example_ana - Copy.cpp"
+        framework/classes/clas12ana/example_ana.cpp
+        framework/classes/clas12ana/skim_events.cpp
+        framework/classes/DEfficiency/DEfficiency.cpp
+        framework/classes/DEfficiency/DEfficiency.h
+        framework/classes/Directories/Directories.cpp
+        framework/classes/Directories/Directories.h
+        framework/classes/DSCuts/DSCuts.h
+        framework/classes/ExperimentParameters/ExperimentParameters.cpp
+        framework/classes/ExperimentParameters/ExperimentParameters.h
+        framework/classes/hData/hData.cpp
+        framework/classes/hData/hData.h
+        framework/classes/hPlots/hPlot1D.cpp
+        framework/classes/hPlots/hPlot1D.h
+        framework/classes/hPlots/hPlot1DStack.cpp
+        framework/classes/hPlots/hPlot1DStack.h
+        framework/classes/hPlots/hPlot2D.cpp
+        framework/classes/hPlots/hPlot2D.h
+        framework/classes/MomentumResolution/MomentumResolution.cpp
+        framework/classes/MomentumResolution/MomentumResolution.h
+        framework/classes/TargetParameters/TargetParameters.h
+        framework/classes/TLCuts/TLCuts.cpp
+        framework/classes/TLCuts/TLCuts.h
         source/data/AcceptanceCorrections/C12_simulation_6GeV_T5/ACorr_data_-_C12_simulation_6GeV_T5.root
         source/data/AcceptanceCorrections/C12_simulation_6GeV_T5_first_10/ACorr_data_-_C12_simulation_6GeV_T5_first_10.root
         source/data/AcceptanceCorrections/C12_simulation_6GeV_T5_first_100/ACorr_data_-_C12_simulation_6GeV_T5_first_100.root
@@ -162,88 +162,87 @@ add_executable(project ${CLAS12ROOT_SOURCES} ${CLAS12BANKS_SOURCES} ${HIPO4_SOUR
         source/data/PIDCuts/paramsPI_LD2_x2.dat
         source/data/PIDCuts/paramsSF_40Ca_x2.dat
         source/data/PIDCuts/paramsSF_LD2_x2.dat
-        source/functions/AngleCalc/CalcdPhi.h
-        source/functions/AngleCalc/GetBinFromAng.h
-        source/functions/DrawAndSaveFunctions/DrawAndSaveACorrPlots.h
-        source/functions/DrawAndSaveFunctions/DrawAndSaveEfficiencyPlots.h
-        source/functions/DrawAndSaveFunctions/DrawAndSaveFSRatio.h
-        source/functions/EventProperties/GetParticleName_rm.h
-        source/functions/EventProperties/GetParticleNameLC_rm.h
-        source/functions/EventProperties/GetParticleNameShort_rm.h
-        source/functions/EventProperties/SetDRegion_rm.h
-        source/functions/EventProperties/SetFSRatioSaveDir_rm.h
-        source/functions/EventProperties/SetSaveDir_rm.h
-        source/functions/EventProperties/SetStatsTitle_rm.h
-        source/functions/EventProperties/SettingSaveNames_rm.h
-        source/functions/EventProperties/SetTitle_rm.h
-        source/functions/EventProperties/SetType_rm.h
-        source/functions/EventProperties/SetXAxisTitle_rm.h
-        source/functions/EventProperties/SetYAxisTitle_rm.h
-        source/functions/FitFunctions/BetaFit.h
-        source/functions/FitFunctions/BetaFitApprax.h
-        source/functions/FitFunctions/FitFunction.h
-        source/functions/Math_func/poly34.cpp
-        source/functions/Math_func/poly34.h
-        source/functions/other/neutron_veto.h
-        source/functions/other/NeutronECAL_Cut_Veto.h
-        source/functions/PID_functions/ChargedParticleID.h
-        source/functions/PID_functions/FDNeutralParticle.h
-        source/functions/PID_functions/FDNeutralParticleID.h
-        source/functions/PID_functions/GetFDNeutronP.h
-        source/functions/PID_functions/GetFDNeutrons.h
-        source/functions/PID_functions/GetFDPhotons.h
-        source/functions/PID_functions/GetGoodParticles.h
-        source/functions/PID_functions/GetGoodProtons.h
-        source/functions/PID_functions/NeutralParticleID.h
-        source/functions/PID_functions/nParticleID.h
-        source/functions/drawtext.h
-        source/functions/FillByInt.h
-        source/functions/findSubstring.h
-        source/functions/GeneralFunctions.h
-        source/functions/GetPi0MomTh.h
-        source/functions/GetTruthLevelCuts.h
-        source/functions/HistogramPlottingFunctions.h
-        source/functions/neutron_veto.h
-        source/functions/NeutronECAL_Cut_Veto.h
-        source/functions/PlotsEff2x3.h
-        source/functions/quit.h
-        source/functions/StackPlot3.h
-        source/functions/StackPlot4.h
-        source/functions/TLKinCutsCheck.h
-        source/functions/to_string_with_precision.h
-        source/namespaces/general_utilities/utilities/utilities.h
-        source/namespaces/general_utilities/analysis_math/analysis_math.h
-        source/namespaces/general_utilities/analysis_math/analysis_math_reco_extentions.h
-        source/namespaces/general_utilities/basic_tools/basic_tools.h
-        source/namespaces/general_utilities/constants/constants.h
-        source/namespaces/general_utilities/data_processor/data_processor.h
-        source/namespaces/general_utilities/lists/lists.h
-        source/namespaces/general_utilities/reco_analysis_functions/reco_analysis_functions.h
-        source/namespaces/settings/general_settings/settings.h
-        source/namespaces/general_utilities/truth_analysis_functions/truth_analysis_functions.h
-        "source/other/fitexample - Copy.c"
-        source/other/fitexample.c
-        source/other/hPlot1D_example.cpp
-        source/structures/Histogram1D_beta/Histogram1D.cpp
-        source/constants_old.h
+        framework/functions/AngleCalc/CalcdPhi.h
+        framework/functions/AngleCalc/GetBinFromAng.h
+        framework/functions/DrawAndSaveFunctions/DrawAndSaveACorrPlots.h
+        framework/functions/DrawAndSaveFunctions/DrawAndSaveEfficiencyPlots.h
+        framework/functions/DrawAndSaveFunctions/DrawAndSaveFSRatio.h
+        framework/functions/EventProperties/GetParticleName_rm.h
+        framework/functions/EventProperties/GetParticleNameLC_rm.h
+        framework/functions/EventProperties/GetParticleNameShort_rm.h
+        framework/functions/EventProperties/SetDRegion_rm.h
+        framework/functions/EventProperties/SetFSRatioSaveDir_rm.h
+        framework/functions/EventProperties/SetSaveDir_rm.h
+        framework/functions/EventProperties/SetStatsTitle_rm.h
+        framework/functions/EventProperties/SettingSaveNames_rm.h
+        framework/functions/EventProperties/SetTitle_rm.h
+        framework/functions/EventProperties/SetType_rm.h
+        framework/functions/EventProperties/SetXAxisTitle_rm.h
+        framework/functions/EventProperties/SetYAxisTitle_rm.h
+        framework/functions/FitFunctions/BetaFit.h
+        framework/functions/FitFunctions/BetaFitApprax.h
+        framework/functions/FitFunctions/FitFunction.h
+        framework/functions/Math_func/poly34.cpp
+        framework/functions/Math_func/poly34.h
+        framework/functions/other/neutron_veto.h
+        framework/functions/other/NeutronECAL_Cut_Veto.h
+        framework/functions/PID_functions/ChargedParticleID.h
+        framework/functions/PID_functions/FDNeutralParticle.h
+        framework/functions/PID_functions/FDNeutralParticleID.h
+        framework/functions/PID_functions/GetFDNeutronP.h
+        framework/functions/PID_functions/GetFDNeutrons.h
+        framework/functions/PID_functions/GetFDPhotons.h
+        framework/functions/PID_functions/GetGoodParticles.h
+        framework/functions/PID_functions/GetGoodProtons.h
+        framework/functions/PID_functions/NeutralParticleID.h
+        framework/functions/PID_functions/nParticleID.h
+        framework/functions/drawtext.h
+        framework/functions/FillByInt.h
+        framework/functions/findSubstring.h
+        framework/functions/GeneralFunctions.h
+        framework/functions/GetPi0MomTh.h
+        framework/functions/GetTruthLevelCuts.h
+        framework/functions/HistogramPlottingFunctions.h
+        framework/functions/neutron_veto.h
+        framework/functions/NeutronECAL_Cut_Veto.h
+        framework/functions/PlotsEff2x3.h
+        framework/functions/quit.h
+        framework/functions/StackPlot3.h
+        framework/functions/StackPlot4.h
+        framework/functions/TLKinCutsCheck.h
+        framework/functions/to_string_with_precision.h
+        framework/namespaces/general_utilities/utilities/utilities.h
+        framework/namespaces/general_utilities/analysis_math/analysis_math.h
+        framework/namespaces/general_utilities/analysis_math/analysis_math_reco_extentions.h
+        framework/namespaces/general_utilities/basic_tools/basic_tools.h
+        framework/namespaces/general_utilities/constants/constants.h
+        framework/namespaces/general_utilities/data_processor/data_processor.h
+        framework/namespaces/general_utilities/lists/lists.h
+        framework/namespaces/general_utilities/reco_analysis_functions/reco_analysis_functions.h
+        framework/namespaces/settings/general_settings/settings.h
+        framework/namespaces/general_utilities/truth_analysis_functions/truth_analysis_functions.h
+        "framework/other/fitexample - Copy.c"
+        framework/other/fitexample.c
+        framework/other/hPlot1D_example.cpp
+        framework/structures/Histogram1D_beta/Histogram1D.cpp
         macros/Other/db_script.txt
         Old_analysers/DetectorSimulationAnalyser.C
         git_handle.sh
         main.c
         run.csh
         Old_analysers/TruthLevelAnalyser.c
-        source/classes/Settings/Settings.cpp
-        source/classes/Settings/Settings.h
-        source/classes/Settings/CustomPlotsDirectory.cpp
-        source/classes/Settings/CustomPlotsDirectory.h
-        source/classes/ParticleID/ParticleID.cpp
-        source/classes/ParticleID/ParticleID.h
-        source/classes/RecoAnalyser/RecoAnalyser.cpp
-        source/classes/RecoAnalyser/RecoAnalyser.h
-        source/classes/AMaps/CustomSliceLimits.h
+        framework/classes/Settings/Settings.cpp
+        framework/classes/Settings/Settings.h
+        framework/classes/Settings/CustomPlotsDirectory.cpp
+        framework/classes/Settings/CustomPlotsDirectory.h
+        framework/classes/ParticleID/ParticleID.cpp
+        framework/classes/ParticleID/ParticleID.h
+        framework/classes/RecoAnalyser/RecoAnalyser.cpp
+        framework/classes/RecoAnalyser/RecoAnalyser.h
+        framework/classes/AMaps/CustomSliceLimits.h
         macros/zoomed_in_histogram.cpp
-        source/classes/DataAnalyser/DataAnalyser.cpp
-        source/classes/DataAnalyser/DataAnalyser.h
+        framework/classes/DataAnalyser/DataAnalyser.cpp
+        framework/classes/DataAnalyser/DataAnalyser.h
         testers/nFD_eff_test/nFD_eff_test_functions.cpp
         testers/nFD_eff_test/nFD_eff_test.cpp
         macros/plotHistogramsWithLabels.cpp

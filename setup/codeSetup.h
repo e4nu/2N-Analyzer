@@ -7,15 +7,13 @@
 #define FullAnalyser true
 #define IndependentCanvasPDF false
 
-#include "../source/namespaces/general_utilities/basic_tools/basic_tools.h"
-#include "../source/namespaces/general_utilities/constants/constants.h"
-#include "../source/namespaces/plotters/PDF_canvas/PDF_canvas.h"
-
-#include "../source/classes/Debugger/Debugger.cpp"
-#include "../source/classes/Directories/Directories.cpp"
-#include "../source/classes/ExperimentParameters/ExperimentParameters.cpp"
-#include "../source/functions/HistogramPlottingFunctions.h"
-
+#include "../framework/classes/Debugger/Debugger.cpp"
+#include "../framework/classes/Directories/Directories.cpp"
+#include "../framework/classes/ExperimentParameters/ExperimentParameters.cpp"
+#include "../framework/functions/HistogramPlottingFunctions.h"
+#include "../framework/namespaces/general_utilities/basic_tools/basic_tools.h"
+#include "../framework/namespaces/general_utilities/constants/constants.h"
+#include "../framework/namespaces/plotters/PDF_canvas/PDF_canvas.h"
 #include "samples/Q2_testing_samples.h"
 #include "samples/Uniform_samples.h"
 
@@ -51,8 +49,8 @@ const std::string plots_path = "/lustre24/expphy/volatile/clas12/asportes/Analys
 /* setup directory and directories */
 const std::string SettingsDirectory = WorkingDirectory + "setup" + "/";
 
-/* source directory and directories */
-const std::string SourcesDirectory = WorkingDirectory + "source" + "/";
+/* framework directory and directories */
+const std::string SourcesDirectory = WorkingDirectory + "framework" + "/";
 const std::string DataDirectory = SourcesDirectory + "data" + "/";
 const std::string ACorrDirectory = DataDirectory + "AcceptanceCorrections" + "/";
 const std::string AcceptanceMapsDirectory = DataDirectory + "AcceptanceMaps" + "/";

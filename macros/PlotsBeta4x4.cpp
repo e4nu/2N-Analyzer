@@ -19,13 +19,13 @@ root -b -q PlotsBeta4x4.cpp
 #include <TApplication.h>
 #include <TROOT.h>
 
-////#include "source/functions/GeneralFunctions.h"
-//#include "source/functions/to_string_with_precision.h"
-//#include "source/functions/findSubstring.h"
-//#include "source/classes/DSCuts/DSCuts.h"
-//#include "source/classes/hPlots/hPlot1D.cpp"
-//#include "source/constants.h"
-////#include "source/functions/Math_func/poly34.cpp"
+////#include "framework/functions/GeneralFunctions.h"
+//#include "framework/functions/to_string_with_precision.h"
+//#include "framework/functions/findSubstring.h"
+//#include "framework/classes/DSCuts/DSCuts.h"
+//#include "framework/classes/hPlots/hPlot1D.cpp"
+//#include "framework/constants.h"
+////#include "framework/functions/Math_func/poly34.cpp"
 
 using namespace std;
 

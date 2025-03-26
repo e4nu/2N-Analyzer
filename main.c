@@ -6,10 +6,10 @@
 #define RECO_ANALYSIS_RUN false
 #endif
 
-// #include "source/namespaces/general_utilities/namespace_includes.h"
-// 
-#include "source/namespaces/general_utilities/basic_tools/basic_tools.h"
-#include "source/classes/DataAnalyser/DataAnalyser.cpp"
+// #include "framework/namespaces/general_utilities/namespace_includes.h"
+//
+#include "framework/classes/DataAnalyser/DataAnalyser.cpp"
+#include "framework/namespaces/general_utilities/basic_tools/basic_tools.h"
 
 using namespace std;
 

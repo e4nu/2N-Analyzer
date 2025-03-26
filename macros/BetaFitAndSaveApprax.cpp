@@ -1,27 +1,27 @@
 /* root BetaFitAndSave.cpp -q -b */
 
-#include <iostream>
-#include <fstream>
-#include <string>
-
+#include <TApplication.h>
+#include <TCanvas.h>
+#include <TChain.h>
+#include <TDatabasePDG.h>
 #include <TFile.h>
-#include <TTree.h>
-#include <TLorentzVector.h>
 #include <TH1.h>
 #include <TH2.h>
 #include <TLatex.h>
-#include <TChain.h>
-#include <TCanvas.h>
-#include <TStyle.h>
-#include <TDatabasePDG.h>
-#include <TApplication.h>
+#include <TLorentzVector.h>
 #include <TROOT.h>
+#include <TStyle.h>
+#include <TTree.h>
 
-#include "../source/classes/DSCuts/DSCuts.h"
-#include "../source/functions/Math_func/poly34.cpp"
-#include "../source/functions/findSubstring.h"
-#include "../source/functions/to_string_with_precision.h"
-#include "../source/constants.h"
+#include <fstream>
+#include <iostream>
+#include <string>
+
+#include "../framework/classes/DSCuts/DSCuts.h"
+#include "../framework/constants.h"
+#include "../framework/functions/Math_func/poly34.cpp"
+#include "../framework/functions/findSubstring.h"
+#include "../framework/functions/to_string_with_precision.h"
 
 using namespace std;
 

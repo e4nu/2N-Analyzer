@@ -2,25 +2,25 @@
 // Created by alons on 10/05/2023.
 //
 
-#include <iostream>
-#include <fstream>
-#include <string>
-
+#include <TApplication.h>
+#include <TCanvas.h>
+#include <TChain.h>
+#include <TDatabasePDG.h>
 #include <TFile.h>
-#include <TTree.h>
-#include <TLorentzVector.h>
 #include <TH1.h>
 #include <TH2.h>
 #include <TLatex.h>
-#include <TChain.h>
-#include <TCanvas.h>
-#include <TStyle.h>
-#include <TDatabasePDG.h>
-#include <TApplication.h>
+#include <TLorentzVector.h>
 #include <TROOT.h>
+#include <TStyle.h>
+#include <TTree.h>
 
-#include "../source/functions/GeneralFunctions.h"
-#include "../source/classes/hData/hData.cpp"
+#include <fstream>
+#include <iostream>
+#include <string>
+
+#include "../framework/classes/hData/hData.cpp"
+#include "../framework/functions/GeneralFunctions.h"
 
 using namespace std;
 

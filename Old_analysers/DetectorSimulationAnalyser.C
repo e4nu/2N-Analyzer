@@ -11,37 +11,37 @@ scp -r asportes@ftp.jlab.org:/w/hallb-scshelf2102/clas12/asportes/recon_c12_6gev
 
  */
 
+#include "../framework/classes/AMaps/AMaps.cpp"
+#include "../framework/classes/DEfficiency/DEfficiency.cpp"
+#include "../framework/classes/DSCuts/DSCuts.h"
+#include "../framework/classes/clas12ana/clas12ana.h"
+#include "../framework/classes/hPlots/hPlot1D.cpp"
+#include "../framework/classes/hPlots/hPlot2D.cpp"
+#include "../framework/namespaces/general_utilities/utilities/utilities.h"
 #include "../setup/codeSetup.h"
-#include "../source/classes/AMaps/AMaps.cpp"
-#include "../source/classes/DEfficiency/DEfficiency.cpp"
-#include "../source/classes/DSCuts/DSCuts.h"
-#include "../source/classes/clas12ana/clas12ana.h"
-#include "../source/classes/hPlots/hPlot1D.cpp"
-#include "../source/classes/hPlots/hPlot2D.cpp"
-#include "../source/namespaces/general_utilities/utilities/utilities.h"
 
 #if !defined(MOMENTUMRESOLUTION_H)
-#include "../source/classes/MomentumResolution/MomentumResolution.cpp"
+#include "../framework/classes/MomentumResolution/MomentumResolution.cpp"
 #endif
 
 #if !defined(PARTICLEID_H)
-#include "../source/classes/ParticleID/ParticleID.cpp"
+#include "../framework/classes/ParticleID/ParticleID.cpp"
 #endif
 
-#include "../source/classes/Settings/Settings.cpp"
-#include "../source/classes/TLCuts/TLCuts.cpp"
-// #include "../source/functions/AngleCalc/CalcdPhi.h"
-// #include "../source/functions/AngleCalc/GetBinFromAng.h"
-#include "../source/functions/DrawAndSaveFunctions/DrawAndSaveACorrPlots.h"
-#include "../source/functions/DrawAndSaveFunctions/DrawAndSaveEfficiencyPlots.h"
-#include "../source/functions/DrawAndSaveFunctions/DrawAndSaveFSRatio.h"
-#include "../source/functions/FillByInt.h"
-#include "../source/functions/FitFunctions/BetaFit.h"
-#include "../source/functions/FitFunctions/BetaFitApprax.h"
-// #include "../source/functions/GetPi0MomTh.h"
-// #include "../source/functions/StackPlot3.h"
-// #include "../source/functions/StackPlot4.h"
-// #include "../source/functions/TLKinCutsCheck.h"
+#include "../framework/classes/Settings/Settings.cpp"
+#include "../framework/classes/TLCuts/TLCuts.cpp"
+// #include "../framework/functions/AngleCalc/CalcdPhi.h"
+// #include "../framework/functions/AngleCalc/GetBinFromAng.h"
+#include "../framework/functions/DrawAndSaveFunctions/DrawAndSaveACorrPlots.h"
+#include "../framework/functions/DrawAndSaveFunctions/DrawAndSaveEfficiencyPlots.h"
+#include "../framework/functions/DrawAndSaveFunctions/DrawAndSaveFSRatio.h"
+#include "../framework/functions/FillByInt.h"
+#include "../framework/functions/FitFunctions/BetaFit.h"
+#include "../framework/functions/FitFunctions/BetaFitApprax.h"
+// #include "../framework/functions/GetPi0MomTh.h"
+// #include "../framework/functions/StackPlot3.h"
+// #include "../framework/functions/StackPlot4.h"
+// #include "../framework/functions/TLKinCutsCheck.h"
 #include "HipoChain.h"
 #include "clas12reader.h"
 

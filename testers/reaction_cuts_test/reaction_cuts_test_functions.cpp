@@ -1,4 +1,4 @@
-// source nFD_eff_tester_run.sh
+// framework nFD_eff_tester_run.sh
 // git pull && clas12root -b -q testers/nFD_eff_test.cpp
 
 #ifndef REACTION_CUTS_TEST_FUNCTIONS
@@ -22,9 +22,8 @@
 #include <typeinfo>
 #include <vector>
 
-
-#include "../../source/classes/AMaps/AMaps.cpp"
-#include "../../source/namespaces/general_utilities/utilities/utilities.h"
+#include "../../framework/classes/AMaps/AMaps.cpp"
+#include "../../framework/namespaces/general_utilities/utilities/utilities.h"
 //
 #include "HipoChain.h"
 #include "clas12reader.h"

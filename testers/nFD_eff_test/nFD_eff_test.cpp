@@ -1,4 +1,4 @@
-// source nFD_eff_tester_run.sh
+// framework nFD_eff_tester_run.sh
 // git pull && clas12root -b -q testers/nFD_eff_test.cpp
 
 #define PBSTR "||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||"

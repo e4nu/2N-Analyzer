@@ -2,7 +2,7 @@
 // replaces - splines_plot.cpp
 // COMMAND4ROOT: root splines_plot.cpp+ .L (from Julia)
 // COMMAND4ROOT: root -b -q plotter_1x1.cpp (mine)
-// COMMAND4ROOT: root -b -q source/functions/plotter_1x1.cpp (mine)
+// COMMAND4ROOT: root -b -q framework/functions/plotter_1x1.cpp (mine)
 //
 
 #include<iostream>
