@@ -26,8 +26,8 @@
 #include "../../general_utilities/constants/constants.h"
 #include "../../general_utilities/utilities/utilities.h"
 //
-#include "../../classes/DSCuts/DSCuts.h"
-#include "../../classes/hPlots/hPlot1D.cpp"
+#include "../../../classes/DSCuts/DSCuts.h"
+#include "../../../classes/hPlots/hPlot1D.cpp"
 
 namespace fitter_functions {
 using namespace analysis_math;
