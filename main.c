@@ -14,22 +14,6 @@
 using namespace std;
 
 int main() {
-    // // Check if the current hostname matches a specific pattern
-    // std::string HostName = basic_tools::GetSSHHostName();
-    
-    // // Set the macro IFARM_RUN based on the hostname
-    // #define IFARM_RUN (basic_tools::FindSubstring(HostName, "jlab.org"))
-
-    // // Now you can use the macro IFARM_RUN
-    // if (IFARM_RUN) {
-    //     std::cout << "\n\nRunning in JLab environment...\n\n";
-    // } else {
-    //     std::cout << "\n\nNot running in JLab environment...\n\n";
-    // }
-
-    // // Include other files (with the macro defined before)
-    // #include "source/classes/DataAnalyser/DataAnalyser.cpp"
-
     ConfigSampleChain();
     ConfigCanvasPDF();
 
@@ -80,6 +64,6 @@ int main() {
     if (elapsed_time_seconds.count() < 60) {
         std::cout << "Running time:\t" << elapsed_time_seconds.count() << " seconds\n\n";
     } else {
-        std::cout << "Running time:\t" << to_string_with_precision(elapsed_time_minutes, 3) << " minutes\n\n";
+        std::cout << "Running time:\t" << basic_tools::ToStringWithPrecision(elapsed_time_minutes, 3) << " minutes\n\n";
     }
 }

@@ -108,7 +108,7 @@ add_executable(project ${CLAS12ROOT_SOURCES} ${CLAS12BANKS_SOURCES} ${HIPO4_SOUR
         setup/CLAS12DAnalysis/CLAS12DHistograms/CLAS12DHistograms.cpp
         setup/CLAS12DAnalysis/CLAS12DHistograms/CLAS12DHistograms.h
         setup/codeSetup.h
-        setup/TruthLevelAnalyser.h
+        source/classes/gst/gst.h
         source/classes/AMaps/AMaps.cpp
         source/classes/AMaps/AMaps.h
         source/classes/clas12ana/clas12ana_ver_1_myedit/clas12ana.h
