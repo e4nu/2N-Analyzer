@@ -2,34 +2,32 @@
 // Created by alons on 06/04/2023.
 //
 
-#include <cstdlib>
-#include <iostream>
-#include <iomanip>
-#include <chrono>
-#include <vector>
-#include <typeinfo>
-#include <sstream>
-
+#include <TApplication.h>
+#include <TBenchmark.h>
+#include <TCanvas.h>
+#include <TChain.h>
+#include <TDatabasePDG.h>
 #include <TFile.h>
-#include <TTree.h>
-#include <TLorentzVector.h>
 #include <TH1.h>
 #include <TH2.h>
 #include <TLatex.h>
-#include <TChain.h>
-#include <TCanvas.h>
-#include <TStyle.h>
-#include <TDatabasePDG.h>
-#include <TApplication.h>
+#include <TLorentzVector.h>
 #include <TROOT.h>
+#include <TStyle.h>
+#include <TTree.h>
 
-#include <TBenchmark.h>
+#include <chrono>
+#include <cstdlib>
+#include <iomanip>
+#include <iostream>
+#include <sstream>
+#include <typeinfo>
+#include <vector>
 
 #include "HipoChain.h"
 #include "clas12reader.h"
-
+#include "framework/classes/hPlots/hPlot1D.cpp"
 #include "setup/codeSetup.h"
-#include "source/classes/hPlots/hPlot1D.cpp"
 
 using namespace std;
 using namespace clas12;
