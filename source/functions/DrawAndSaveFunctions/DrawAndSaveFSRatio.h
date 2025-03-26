@@ -104,7 +104,7 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot1D &pFDpCD_Plo
 
     //<editor-fold desc="Cloning histograms">
     TH1D *Histogram1D_nFDpCD = nFDpCD_Plot.GetHistogram();
-    std::string FSRatioFSNumerator = Propeties.GetFS(Histogram1D_nFDpCD->GetTitle());
+    std::string FSRatioFSNumerator = data_processor::GetFS(Histogram1D_nFDpCD->GetTitle());
     std::string nFDpCD_Plot_Clone_StatsTitle = "FSR " + nFDpCD_Plot.GetHistogramStatTitle() + " - cloned (" + FSRatioFSNumerator + ")";
     TH1D *nFDpCD_Plot_Clone = (TH1D *)Histogram1D_nFDpCD->Clone((nFDpCD_Plot_Clone_StatsTitle).c_str());
     std::string nFDpCD_Plot_Clone_test_StatsTitle = "FSR " + nFDpCD_Plot.GetHistogramStatTitle() + " - cloned test (" + FSRatioFSNumerator + ")";
@@ -114,7 +114,7 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot1D &pFDpCD_Plo
     if (rebin_plots) { nFDpCD_Plot_Clone_test_rebined->Rebin(2); }
 
     TH1D *Histogram1D_pFDpCD = pFDpCD_Plot.GetHistogram();
-    std::string FSRatioFSDenominator = Propeties.GetFS(Histogram1D_pFDpCD->GetTitle());
+    std::string FSRatioFSDenominator = data_processor::GetFS(Histogram1D_pFDpCD->GetTitle());
     std::string pFDpCD_Plot_Clone_StatsTitle = "FSR " + pFDpCD_Plot.GetHistogramStatTitle() + " - cloned (" + FSRatioFSDenominator + ")";
     TH1D *pFDpCD_Plot_Clone = (TH1D *)Histogram1D_pFDpCD->Clone((pFDpCD_Plot_Clone_StatsTitle).c_str());
     std::string pFDpCD_Plot_Clone_test_StatsTitle = "FSR " + pFDpCD_Plot.GetHistogramStatTitle() + " - cloned test (" + FSRatioFSDenominator + ")";
@@ -127,16 +127,16 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot1D &pFDpCD_Plo
     //<editor-fold desc="Setting variables">
     std::string FSRatioRecTitle = nFDpCD_Plot_Clone->GetTitle();
 
-    std::string FSRatioParticle = Propeties.data_processor::GetParticleName(FSRatioRecTitle);
-    std::string FSRatioParticleLC = Propeties.data_processor::GetParticleNameLC(FSRatioRecTitle);
-    std::string FSRatioParticleShort = Propeties.data_processor::GetParticleNameShort(FSRatioRecTitle);
+    std::string FSRatioParticle = data_processor::GetParticleName(FSRatioRecTitle);
+    std::string FSRatioParticleLC = data_processor::GetParticleNameLC(FSRatioRecTitle);
+    std::string FSRatioParticleShort = data_processor::GetParticleNameShort(FSRatioRecTitle);
 
-    std::string FSRatioType = Propeties.GetType(FSRatioRecTitle);
+    std::string FSRatioType = data_processor::GetType(FSRatioRecTitle);
     std::string FSRatioPlotsT = "FSRatio";
-    std::string FSRatioDRegion = Propeties.GetDRegion(FSRatioRecTitle);
-    std::string FSRatioTitle = Propeties.GetFSRTitle(FSRatioRecTitle, FSRatioPlotsT);
-    std::string FSRatioFS = Propeties.GetFS(FSRatioRecTitle);
-    std::string FSTopology = Propeties.GetTopology(FSRatioRecTitle);
+    std::string FSRatioDRegion = data_processor::GetDRegion(FSRatioRecTitle);
+    std::string FSRatioTitle = data_processor::GetFSRTitle(FSRatioRecTitle, FSRatioPlotsT);
+    std::string FSRatioFS = data_processor::GetFS(FSRatioRecTitle);
+    std::string FSTopology = data_processor::GetTopology(FSRatioRecTitle);
 
     std::string FSRatioXLabel = SetXAxisTitle(FSRatioRecTitle);
     std::string FSRatioYLabel = SetYAxisTitle("FSRatio", FSRatioFS, nFDpCD_Plot_Clone->GetXaxis()->GetTitle(), pFDpCD_Plot_Clone->GetXaxis()->GetTitle());
@@ -378,9 +378,9 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot1D &pFDpCD_Plo
     //<editor-fold desc="Setting variables">
     std::string FSRatioRecTitle = nFDpCD_Plot->GetTitle();
 
-    std::string FSRatioParticle = Propeties.data_processor::GetParticleName(FSRatioRecTitle);
-    std::string FSRatioParticleLC = Propeties.data_processor::GetParticleNameLC(FSRatioRecTitle);
-    std::string FSRatioParticleShort = Propeties.data_processor::GetParticleNameShort(FSRatioRecTitle);
+    std::string FSRatioParticle = data_processor::GetParticleName(FSRatioRecTitle);
+    std::string FSRatioParticleLC = data_processor::GetParticleNameLC(FSRatioRecTitle);
+    std::string FSRatioParticleShort = data_processor::GetParticleNameShort(FSRatioRecTitle);
     //</editor-fold>
 
     //<editor-fold desc="Setting stats box title">
@@ -388,7 +388,7 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot1D &pFDpCD_Plo
     //</editor-fold>
 
     //<editor-fold desc="Cloning histograms">
-    std::string FSRatioFSNumerator = Propeties.GetFS(nFDpCD_Plot->GetTitle());
+    std::string FSRatioFSNumerator = data_processor::GetFS(nFDpCD_Plot->GetTitle());
     std::string nFDpCD_Plot_Clone_StatsTitle = "FSR " + FSRatioStatsTitle + " - cloned (" + FSRatioFSNumerator + ")";
     TH1D *nFDpCD_Plot_Clone = (TH1D *)nFDpCD_Plot->Clone((nFDpCD_Plot_Clone_StatsTitle).c_str());
     std::string nFDpCD_Plot_Clone_test_StatsTitle = "FSR " + FSRatioStatsTitle + " - cloned test (" + FSRatioFSNumerator + ")";
@@ -398,7 +398,7 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot1D &pFDpCD_Plo
     if (rebin_plots) { nFDpCD_Plot_Clone_test_rebined->Rebin(2); }
 
     TH1D *Histogram1D_pFDpCD = pFDpCD_Plot.GetHistogram();
-    std::string FSRatioFSDenominator = Propeties.GetFS(Histogram1D_pFDpCD->GetTitle());
+    std::string FSRatioFSDenominator = data_processor::GetFS(Histogram1D_pFDpCD->GetTitle());
     std::string pFDpCD_Plot_Clone_StatsTitle = "FSR " + FSRatioStatsTitle + " - cloned (" + FSRatioFSDenominator + ")";
     TH1D *pFDpCD_Plot_Clone = (TH1D *)Histogram1D_pFDpCD->Clone((pFDpCD_Plot_Clone_StatsTitle).c_str());
     std::string pFDpCD_Plot_Clone_test_StatsTitle = "FSR " + FSRatioStatsTitle + " - cloned test (" + FSRatioFSDenominator + ")";
@@ -409,12 +409,12 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot1D &pFDpCD_Plo
     //</editor-fold>
 
     //<editor-fold desc="Setting title">
-    std::string FSRatioType = Propeties.GetType(FSRatioRecTitle);
+    std::string FSRatioType = data_processor::GetType(FSRatioRecTitle);
     std::string FSRatioPlotsT = "FSRatio";
-    std::string FSRatioDRegion = Propeties.GetDRegion(FSRatioRecTitle);
-    std::string FSRatioTitle = Propeties.GetFSRTitle(FSRatioRecTitle, FSRatioPlotsT);
-    std::string FSRatioFS = Propeties.GetFS(FSRatioRecTitle);
-    std::string FSTopology = Propeties.GetTopology(FSRatioRecTitle);
+    std::string FSRatioDRegion = data_processor::GetDRegion(FSRatioRecTitle);
+    std::string FSRatioTitle = data_processor::GetFSRTitle(FSRatioRecTitle, FSRatioPlotsT);
+    std::string FSRatioFS = data_processor::GetFS(FSRatioRecTitle);
+    std::string FSTopology = data_processor::GetTopology(FSRatioRecTitle);
     //</editor-fold>
 
     //<editor-fold desc="Setting X axis label">
@@ -696,11 +696,11 @@ void DrawAndSaveFSRatio(const std::string &SampleName, TH1D *pFDpCD_Plot, const 
     //<editor-fold desc="Setting variables">
     std::string FSRatioRecTitle = nFDpCD_Plot->GetTitle();
 
-    std::string FSRatioParticle = Propeties.data_processor::GetParticleName(FSRatioRecTitle);
-    std::string FSRatioParticleLC = Propeties.data_processor::GetParticleNameLC(FSRatioRecTitle);
-    std::string FSRatioParticleShort = Propeties.data_processor::GetParticleNameShort(FSRatioRecTitle);
-    std::string FSRatioFS = Propeties.GetFS(FSRatioRecTitle);
-    std::string FSTopology = Propeties.GetTopology(FSRatioRecTitle);
+    std::string FSRatioParticle = data_processor::GetParticleName(FSRatioRecTitle);
+    std::string FSRatioParticleLC = data_processor::GetParticleNameLC(FSRatioRecTitle);
+    std::string FSRatioParticleShort = data_processor::GetParticleNameShort(FSRatioRecTitle);
+    std::string FSRatioFS = data_processor::GetFS(FSRatioRecTitle);
+    std::string FSTopology = data_processor::GetTopology(FSRatioRecTitle);
     //</editor-fold>
 
     //<editor-fold desc="Setting stats box title">
@@ -708,7 +708,7 @@ void DrawAndSaveFSRatio(const std::string &SampleName, TH1D *pFDpCD_Plot, const 
     //</editor-fold>
 
     //<editor-fold desc="Cloning histograms">
-    std::string FSRatioFSNumerator = Propeties.GetFS(nFDpCD_Plot->GetTitle());
+    std::string FSRatioFSNumerator = data_processor::GetFS(nFDpCD_Plot->GetTitle());
     std::string nFDpCD_Plot_Clone_StatsTitle = "FSR " + FSRatioStatsTitle + " " + FSTopology + " - cloned (" + FSRatioFSNumerator + ")";
     TH1D *nFDpCD_Plot_Clone = (TH1D *)nFDpCD_Plot->Clone((nFDpCD_Plot_Clone_StatsTitle).c_str());
     std::string nFDpCD_Plot_Clone_test_StatsTitle = "FSR " + FSRatioStatsTitle + " " + FSTopology + " - cloned test (" + FSRatioFSNumerator + ")";
@@ -717,7 +717,7 @@ void DrawAndSaveFSRatio(const std::string &SampleName, TH1D *pFDpCD_Plot, const 
     TH1D *nFDpCD_Plot_Clone_test_rebined = (TH1D *)nFDpCD_Plot->Clone((nFDpCD_Plot_Clone_test_rebined_StatsTitle).c_str());
     if (rebin_plots) { nFDpCD_Plot_Clone_test_rebined->Rebin(2); }
 
-    std::string FSRatioFSDenominator = Propeties.GetFS(pFDpCD_Plot->GetTitle());
+    std::string FSRatioFSDenominator = data_processor::GetFS(pFDpCD_Plot->GetTitle());
     std::string pFDpCD_Plot_Clone_StatsTitle = "FSR " + FSRatioStatsTitle + " " + FSTopology + " - cloned (" + FSRatioFSDenominator + ")";
     TH1D *pFDpCD_Plot_Clone = (TH1D *)pFDpCD_Plot->Clone((pFDpCD_Plot_Clone_StatsTitle).c_str());
     std::string pFDpCD_Plot_Clone_test_StatsTitle = "FSR " + FSRatioStatsTitle + " " + FSTopology + " - cloned test (" + FSRatioFSDenominator + ")";
@@ -728,10 +728,10 @@ void DrawAndSaveFSRatio(const std::string &SampleName, TH1D *pFDpCD_Plot, const 
     //</editor-fold>
 
     //<editor-fold desc="Setting title">
-    std::string FSRatioType = Propeties.GetType(FSRatioRecTitle);
+    std::string FSRatioType = data_processor::GetType(FSRatioRecTitle);
     std::string FSRatioPlotsT = "FSRatio";
-    std::string FSRatioDRegion = Propeties.GetDRegion(FSRatioRecTitle);
-    std::string FSRatioTitle = Propeties.GetFSRTitle(FSRatioRecTitle, FSRatioPlotsT);
+    std::string FSRatioDRegion = data_processor::GetDRegion(FSRatioRecTitle);
+    std::string FSRatioTitle = data_processor::GetFSRTitle(FSRatioRecTitle, FSRatioPlotsT);
     //</editor-fold>
 
     //<editor-fold desc="Setting X axis label">
@@ -1018,7 +1018,7 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot2D &pFDpCD_Plo
 
     //<editor-fold desc="Cloning histograms">
     TH2D *Histogram2D_nFDpCD = nFDpCD_Plot.GetHistogram();
-    std::string FSRatioFSNumerator = Propeties.GetFS(Histogram2D_nFDpCD->GetTitle());
+    std::string FSRatioFSNumerator = data_processor::GetFS(Histogram2D_nFDpCD->GetTitle());
 
     std::string nFDpCD_Plot_Clone_StatsTitle = "FSR " + nFDpCD_Plot.GetHistogramStatTitle() + " - cloned (" + FSRatioFSNumerator + ")";
     TH2D *nFDpCD_Plot_Clone = (TH2D *)Histogram2D_nFDpCD->Clone((nFDpCD_Plot_Clone_StatsTitle).c_str());
@@ -1029,7 +1029,7 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot2D &pFDpCD_Plo
     //    nFDpCD_Plot_Clone_test_rebined->Rebin(2);
 
     TH2D *Histogram2D_pFDpCD = pFDpCD_Plot.GetHistogram();
-    std::string FSRatioFSDenominator = Propeties.GetFS(Histogram2D_pFDpCD->GetTitle());
+    std::string FSRatioFSDenominator = data_processor::GetFS(Histogram2D_pFDpCD->GetTitle());
     std::string pFDpCD_Plot_Clone_StatsTitle = "FSR " + pFDpCD_Plot.GetHistogramStatTitle() + " - cloned (" + FSRatioFSDenominator + ")";
     TH2D *pFDpCD_Plot_Clone = (TH2D *)Histogram2D_pFDpCD->Clone((pFDpCD_Plot_Clone_StatsTitle).c_str());
     std::string pFDpCD_Plot_Clone_test_StatsTitle = "FSR " + pFDpCD_Plot.GetHistogramStatTitle() + " - cloned test (" + FSRatioFSDenominator + ")";
@@ -1049,16 +1049,16 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot2D &pFDpCD_Plo
     //<editor-fold desc="Setting variables">
     std::string FSRatioRecTitle = nFDpCD_Plot_Clone->GetTitle();
 
-    std::string FSRatioParticle = Propeties.data_processor::GetParticleName(FSRatioRecTitle);
-    std::string FSRatioParticleLC = Propeties.data_processor::GetParticleNameLC(FSRatioRecTitle);
-    std::string FSRatioParticleShort = Propeties.data_processor::GetParticleNameShort(FSRatioRecTitle);
+    std::string FSRatioParticle = data_processor::GetParticleName(FSRatioRecTitle);
+    std::string FSRatioParticleLC = data_processor::GetParticleNameLC(FSRatioRecTitle);
+    std::string FSRatioParticleShort = data_processor::GetParticleNameShort(FSRatioRecTitle);
 
-    std::string FSRatioType = Propeties.GetType(FSRatioRecTitle);
+    std::string FSRatioType = data_processor::GetType(FSRatioRecTitle);
     std::string FSRatioPlotsT = "FSRatio";
-    std::string FSRatioDRegion = Propeties.GetDRegion(FSRatioRecTitle);
-    std::string FSRatioTitle = Propeties.GetFSRTitle(FSRatioRecTitle, FSRatioPlotsT);
-    std::string FSRatioFS = Propeties.GetFS(FSRatioRecTitle);
-    std::string FSTopology = Propeties.GetTopology(FSRatioRecTitle);
+    std::string FSRatioDRegion = data_processor::GetDRegion(FSRatioRecTitle);
+    std::string FSRatioTitle = data_processor::GetFSRTitle(FSRatioRecTitle, FSRatioPlotsT);
+    std::string FSRatioFS = data_processor::GetFS(FSRatioRecTitle);
+    std::string FSTopology = data_processor::GetTopology(FSRatioRecTitle);
 
     std::string FSRatioXLabel = SetXAxisTitle(FSRatioRecTitle);
     std::string FSRatioYLabel = SetYAxisTitle("FSRatio", FSRatioFS, nFDpCD_Plot_Clone->GetXaxis()->GetTitle(), pFDpCD_Plot_Clone->GetXaxis()->GetTitle(), FSRatioRecTitle);
@@ -1350,9 +1350,9 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot2D &pFDpCD_Plo
     //<editor-fold desc="Setting variables">
     std::string FSRatioRecTitle = nFDpCD_Plot->GetTitle();
 
-    std::string FSRatioParticle = Propeties.data_processor::GetParticleName(FSRatioRecTitle);
-    std::string FSRatioParticleLC = Propeties.data_processor::GetParticleNameLC(FSRatioRecTitle);
-    std::string FSRatioParticleShort = Propeties.data_processor::GetParticleNameShort(FSRatioRecTitle);
+    std::string FSRatioParticle = data_processor::GetParticleName(FSRatioRecTitle);
+    std::string FSRatioParticleLC = data_processor::GetParticleNameLC(FSRatioRecTitle);
+    std::string FSRatioParticleShort = data_processor::GetParticleNameShort(FSRatioRecTitle);
     //</editor-fold>
 
     //<editor-fold desc="Setting stats box title">
@@ -1360,7 +1360,7 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot2D &pFDpCD_Plo
     //</editor-fold>
 
     //<editor-fold desc="Cloning histograms">
-    std::string FSRatioFSNumerator = Propeties.GetFS(nFDpCD_Plot->GetTitle());
+    std::string FSRatioFSNumerator = data_processor::GetFS(nFDpCD_Plot->GetTitle());
     std::string nFDpCD_Plot_Clone_StatsTitle = "FSR " + FSRatioStatsTitle + " - cloned (" + FSRatioFSNumerator + ")";
     TH2D *nFDpCD_Plot_Clone = (TH2D *)nFDpCD_Plot->Clone((nFDpCD_Plot_Clone_StatsTitle).c_str());
     std::string nFDpCD_Plot_Clone_test_StatsTitle = "FSR " + FSRatioStatsTitle + " - cloned test (" + FSRatioFSNumerator + ")";
@@ -1370,7 +1370,7 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot2D &pFDpCD_Plo
     if (rebin_plots) { nFDpCD_Plot_Clone_test_rebined->Rebin(2); }
 
     TH2D *Histogram2D_pFDpCD = pFDpCD_Plot.GetHistogram();
-    std::string FSRatioFSDenominator = Propeties.GetFS(Histogram2D_pFDpCD->GetTitle());
+    std::string FSRatioFSDenominator = data_processor::GetFS(Histogram2D_pFDpCD->GetTitle());
     std::string pFDpCD_Plot_Clone_StatsTitle = "FSR " + FSRatioStatsTitle + " - cloned (" + FSRatioFSDenominator + ")";
     TH2D *pFDpCD_Plot_Clone = (TH2D *)Histogram2D_pFDpCD->Clone((pFDpCD_Plot_Clone_StatsTitle).c_str());
     std::string pFDpCD_Plot_Clone_test_StatsTitle = "FSR " + FSRatioStatsTitle + " - cloned test (" + FSRatioFSDenominator + ")";
@@ -1388,12 +1388,12 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot2D &pFDpCD_Plo
     //</editor-fold>
 
     //<editor-fold desc="Setting title">
-    std::string FSRatioType = Propeties.GetType(FSRatioRecTitle);
+    std::string FSRatioType = data_processor::GetType(FSRatioRecTitle);
     std::string FSRatioPlotsT = "FSRatio";
-    std::string FSRatioDRegion = Propeties.GetDRegion(FSRatioRecTitle);
-    std::string FSRatioTitle = Propeties.GetFSRTitle(FSRatioRecTitle, FSRatioPlotsT);
-    std::string FSRatioFS = Propeties.GetFS(FSRatioRecTitle);
-    std::string FSTopology = Propeties.GetTopology(FSRatioRecTitle);
+    std::string FSRatioDRegion = data_processor::GetDRegion(FSRatioRecTitle);
+    std::string FSRatioTitle = data_processor::GetFSRTitle(FSRatioRecTitle, FSRatioPlotsT);
+    std::string FSRatioFS = data_processor::GetFS(FSRatioRecTitle);
+    std::string FSTopology = data_processor::GetTopology(FSRatioRecTitle);
     //</editor-fold>
 
     //<editor-fold desc="Setting X axis label">
@@ -1601,15 +1601,15 @@ void DrawAndSaveFSRatio(const std::string &SampleName, TH2D *pFDpCD_Plot, const 
     //<editor-fold desc="Setting variables">
     std::string FSRatioRecTitle = nFDpCD_Plot->GetTitle();
 
-    std::string FSRatioParticle = Propeties.data_processor::GetParticleName(FSRatioRecTitle);
-    std::string FSRatioParticleLC = Propeties.data_processor::GetParticleNameLC(FSRatioRecTitle);
-    std::string FSRatioParticleShort = Propeties.data_processor::GetParticleNameShort(FSRatioRecTitle);
+    std::string FSRatioParticle = data_processor::GetParticleName(FSRatioRecTitle);
+    std::string FSRatioParticleLC = data_processor::GetParticleNameLC(FSRatioRecTitle);
+    std::string FSRatioParticleShort = data_processor::GetParticleNameShort(FSRatioRecTitle);
     std::string FSRatioStatsTitle = SetStatsTitle(FSRatioRecTitle);
-    std::string FSTopology = Propeties.GetTopology(FSRatioRecTitle);
+    std::string FSTopology = data_processor::GetTopology(FSRatioRecTitle);
     //</editor-fold>
 
     //<editor-fold desc="Cloning histograms">
-    std::string FSRatioFSNumerator = Propeties.GetFS(nFDpCD_Plot->GetTitle());
+    std::string FSRatioFSNumerator = data_processor::GetFS(nFDpCD_Plot->GetTitle());
     std::string nFDpCD_Plot_Clone_StatsTitle = "FSR " + FSRatioStatsTitle + " - cloned (" + FSRatioFSNumerator + ")";
     TH2D *nFDpCD_Plot_Clone = (TH2D *)nFDpCD_Plot->Clone((nFDpCD_Plot_Clone_StatsTitle).c_str());
     std::string nFDpCD_Plot_Clone_test_StatsTitle = "FSR " + FSRatioStatsTitle + " - cloned test (" + FSRatioFSNumerator + ")";
@@ -1618,7 +1618,7 @@ void DrawAndSaveFSRatio(const std::string &SampleName, TH2D *pFDpCD_Plot, const 
     TH2D *nFDpCD_Plot_Clone_test_rebined = (TH2D *)nFDpCD_Plot->Clone((nFDpCD_Plot_Clone_test_rebined_StatsTitle).c_str());
     //    if (rebin_plots) { nFDpCD_Plot_Clone_test_rebined->Rebin(2); }
 
-    std::string FSRatioFSDenominator = Propeties.GetFS(pFDpCD_Plot->GetTitle());
+    std::string FSRatioFSDenominator = data_processor::GetFS(pFDpCD_Plot->GetTitle());
     std::string pFDpCD_Plot_Clone_StatsTitle = "FSR " + FSRatioStatsTitle + " - cloned (" + FSRatioFSDenominator + ")";
     TH2D *pFDpCD_Plot_Clone = (TH2D *)pFDpCD_Plot->Clone((pFDpCD_Plot_Clone_StatsTitle).c_str());
     std::string pFDpCD_Plot_Clone_test_StatsTitle = "FSR " + FSRatioStatsTitle + " - cloned test (" + FSRatioFSDenominator + ")";
@@ -1636,11 +1636,11 @@ void DrawAndSaveFSRatio(const std::string &SampleName, TH2D *pFDpCD_Plot, const 
     //</editor-fold>
 
     //<editor-fold desc="Setting title">
-    std::string FSRatioType = Propeties.GetType(FSRatioRecTitle);
+    std::string FSRatioType = data_processor::GetType(FSRatioRecTitle);
     std::string FSRatioPlotsT = "FSRatio";
-    std::string FSRatioDRegion = Propeties.GetDRegion(FSRatioRecTitle);
-    std::string FSRatioTitle = Propeties.GetFSRTitle(FSRatioRecTitle, FSRatioPlotsT);
-    std::string FSRatioFS = Propeties.GetFS(FSRatioRecTitle);
+    std::string FSRatioDRegion = data_processor::GetDRegion(FSRatioRecTitle);
+    std::string FSRatioTitle = data_processor::GetFSRTitle(FSRatioRecTitle, FSRatioPlotsT);
+    std::string FSRatioFS = data_processor::GetFS(FSRatioRecTitle);
     //</editor-fold>
 
     //<editor-fold desc="Setting X axis label">
