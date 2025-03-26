@@ -31,7 +31,7 @@ void printProgress(double percentage);
 
 void Usage()
 {
-  std::std::cerr << "Usage: ./code <MC =1,Data = 0> <Ebeam(GeV)> <path/to/ouput.root> <path/to/ouput.pdf> <path/to/cutfile.txt> <path/to/input.hipo> \n";
+  std::cerr << "Usage: ./code <MC =1,Data = 0> <Ebeam(GeV)> <path/to/ouput.root> <path/to/ouput.pdf> <path/to/cutfile.txt> <path/to/input.hipo> \n";
 }
 
 
@@ -40,7 +40,7 @@ int main(int argc, char ** argv)
 
   if(argc < 7)
     {
-      std::std::cerr<<"Wrong number of arguments.\n";
+      std::cerr<<"Wrong number of arguments.\n";
       Usage();
       return -1;
     }

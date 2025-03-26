@@ -110,7 +110,7 @@ void MomResSlicePlotter(const char *filename, const std::string &ParticleNameSho
     TFile *file = new TFile(filename);
 
     if (!file || file->IsZombie()) {
-        std::std::cerr << "Error: Could not open file: " << filename << std::endl;
+        std::cerr << "Error: Could not open file: " << filename << std::endl;
         return;
     }
 

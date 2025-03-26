@@ -19,7 +19,7 @@ using namespace analysis_math;
 
 double CalcdPhi2(region_part_ptr proton1, region_part_ptr proton2) {
     if (proton1->getRegion() == proton2->getRegion()) {
-        std::std::cerr << "\n\nCalcdPhi2: protons are in the same region (" << proton1->getRegion() << " & " << proton2->getRegion() << ")! Exiting...\n";
+        std::cerr << "\n\nCalcdPhi2: protons are in the same region (" << proton1->getRegion() << " & " << proton2->getRegion() << ")! Exiting...\n";
         exit(0);
     }
 

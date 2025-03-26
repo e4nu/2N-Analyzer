@@ -28,7 +28,7 @@ void SetLorentzVector(TLorentzVector &p4,clas12::region_part_ptr rp){
 
 void Usage()
 {
-  std::std::cerr << "Usage: ./testAna inputfiles.hipo outputfile.root \n\n\n";
+  std::cerr << "Usage: ./testAna inputfiles.hipo outputfile.root \n\n\n";
 
 }
 

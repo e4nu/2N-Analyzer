@@ -27,3 +27,12 @@ echo ""
 
 source ./setup/scripts/environment/set_environment.csh
 source ./setup/scripts/screen/setup_screen_commands.csh
+
+echo ""
+echo "${COLOR_START}=======================================================================${COLOR_END}"
+echo "${COLOR_START}= Update review                                                       =${COLOR_END}"
+echo "${COLOR_START}=======================================================================${COLOR_END}"
+echo ""
+echo "${COLOR_START}HEAD:${COLOR_END}"
+git log -1 --oneline
+echo ""

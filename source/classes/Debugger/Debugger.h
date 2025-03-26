@@ -83,8 +83,8 @@ class Debugger {
 
     void PrintStepTester(const bool &DebuggerMode) {
         if (DebuggerMode) {
-            std::std::cerr << "\033[31m\n\nTest number " << StepTester << std::endl;
-            std::std::cerr << "File: " << __FILE__ << ", Line: " << __LINE__ << "\n\n" << std::endl;
+            std::cerr << "\033[31m\n\nTest number " << StepTester << std::endl;
+            std::cerr << "File: " << __FILE__ << ", Line: " << __LINE__ << "\n\n" << std::endl;
             ++StepTester;
         }
     }
@@ -92,27 +92,27 @@ class Debugger {
     // PrintErrorMessage function -------------------------------------------------------------------------------------------------------------------------------------------
 
     void PrintErrorMessage(const std::string &ErrorMessage, const std::string &FunctionName = "") {
-        std::std::cerr << "\033[31m\n\nError: " << ErrorMessage << std::endl;
+        std::cerr << "\033[31m\n\nError: " << ErrorMessage << std::endl;
 
         if (FunctionName != "") {
-            std::std::cerr << "File: " << __FILE__ << ", Line: " << __LINE__ << ", Function: " << FunctionName << std::endl;
+            std::cerr << "File: " << __FILE__ << ", Line: " << __LINE__ << ", Function: " << FunctionName << std::endl;
         } else {
-            std::std::cerr << "File: " << __FILE__ << ", Line: " << __LINE__ << std::endl;
+            std::cerr << "File: " << __FILE__ << ", Line: " << __LINE__ << std::endl;
         }
 
-        std::std::cerr << "Aborting.\033[0m" << std::endl, exit(0);
+        std::cerr << "Aborting.\033[0m" << std::endl, exit(0);
     }
 
     void PrintErrorMessage(const char *FILE, const int LINE, const std::string &ErrorMessage, const std::string &FunctionName = "") {
-        std::std::cerr << "\033[31m\n\nError: " << ErrorMessage << std::endl;
+        std::cerr << "\033[31m\n\nError: " << ErrorMessage << std::endl;
 
         if (FunctionName != "") {
-            std::std::cerr << "File: " << FILE << ", Line: " << LINE << ", Function: " << FunctionName << std::endl;
+            std::cerr << "File: " << FILE << ", Line: " << LINE << ", Function: " << FunctionName << std::endl;
         } else {
-            std::std::cerr << "File: " << FILE << ", Line: " << LINE << std::endl;
+            std::cerr << "File: " << FILE << ", Line: " << LINE << std::endl;
         }
 
-        std::std::cerr << "Aborting.\033[0m" << std::endl, exit(0);
+        std::cerr << "Aborting.\033[0m" << std::endl, exit(0);
     }
 };
 

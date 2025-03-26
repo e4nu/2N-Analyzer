@@ -85,7 +85,7 @@ void CombineHistogramsToGif(TCanvas *Sep_canv, std::vector<TH2D *> &Histograms2D
     }
     else
     {
-        std::std::cerr << "Error creating GIF!" << std::endl;
+        std::cerr << "Error creating GIF!" << std::endl;
     }
 
     // Optionally, remove the individual images after creating the GIF

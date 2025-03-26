@@ -26,7 +26,7 @@ using namespace clas12;
 //}
 
 void Usage() {
-    std::std::cerr << "Usage: ./example_ana inputfiles.hipo outputfile.root \n\n\n";
+    std::cerr << "Usage: ./example_ana inputfiles.hipo outputfile.root \n\n\n";
 
 }
 

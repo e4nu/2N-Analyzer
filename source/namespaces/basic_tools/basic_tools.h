@@ -57,7 +57,7 @@ void CheckSSHConnectionAndHost() {
             if (host) {
                 std::cout << "Remote Host Name: " << host->h_name << std::endl;
             } else {
-                std::std::cerr << "Could not resolve host name from IP." << std::endl;
+                std::cerr << "Could not resolve host name from IP." << std::endl;
             }
         }
     } else {
@@ -84,13 +84,13 @@ std::string GetSSHHostName() {
             if (host) {
                 return std::string(host->h_name);
             } else {
-                std::std::cerr << "Could not resolve host name from IP." << std::endl;
+                std::cerr << "Could not resolve host name from IP." << std::endl;
                 return "";
             }
         }
     }
 
-    std::std::cerr << "Not connected via SSH." << std::endl;
+    std::cerr << "Not connected via SSH." << std::endl;
     return "";
 }
 
@@ -99,7 +99,7 @@ std::string GetSSHHostName() {
 string GetCurrentDirectory() {
     char pwd[PATH_MAX];
     if (getcwd(pwd, sizeof(pwd)) == nullptr) {
-        std::std::cerr << "Error getting current directory." << std::endl;
+        std::cerr << "Error getting current directory." << std::endl;
         return "";
     }
 
