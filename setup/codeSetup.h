@@ -53,14 +53,22 @@ const std::string plots_path = "/lustre24/expphy/volatile/clas12/asportes/Analys
 const std::string SettingsDirectory = wd + "setup" + "/";
 
 /* framework directory and directories */
-const std::string SourcesDirectory = wd + "source" + "/";
-const std::string DataDirectory = SourcesDirectory + "data" + "/";
-const std::string ACorrDirectory = DataDirectory + "AcceptanceCorrections" + "/";
-const std::string AcceptanceMapsDirectory = DataDirectory + "AcceptanceMaps" + "/";
-const std::string AcceptanceWeightsDirectory = DataDirectory + "AcceptanceWeights" + "/";
-const std::string MomentumResolutionDirectory = DataDirectory + "NeutronResolution" + "/";
-const std::string NucleonCutsDirectory = DataDirectory + "NucleonCuts" + "/";
-const std::string PIDCutsDirectory = DataDirectory + "PIDCuts" + "/";
+std::string sd = wd + "source" + "/";
+const std::string SourcesDirectory = sd;
+std::string dd = sd + "data" + "/";
+const std::string DataDirectory = dd;
+std::string ad = dd + "AcceptanceCorrections" + "/";
+const std::string ACorrDirectory = ad;
+std::string amd = dd + "AcceptanceMaps" + "/";
+const std::string AcceptanceMapsDirectory = amd;
+std::string awd = dd + "AcceptanceWeights" + "/";
+const std::string AcceptanceWeightsDirectory = awd;
+std::string mrd = dd + "NeutronResolution" + "/";
+const std::string MomentumResolutionDirectory = mrd;
+std::string ncd = dd + "NucleonCuts" + "/";
+const std::string NucleonCutsDirectory = ncd;
+std::string pidcd = dd + "PIDCuts" + "/";
+const std::string PIDCutsDirectory = pidcd;
 
 const std::string plots_TList_FileType = "_plots.root";
 const std::string plots_TFile_FileType = "_plots.pdf";
