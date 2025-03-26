@@ -1793,17 +1793,8 @@ void ExperimentParameters::ConfigureVaryingSampleName(const std::string &sn) {  
         //        VaryingSampleName = SampleName;
         VaryingSampleName = "C12x4_simulation_G18_Q204_6GeV";
     } else if (FindSubstring(sn, "data")) {  // Sample is data
-        VaryingSampleName = "C12x4_simulation_G18_Q204_6GeV";
-
-        cout << "\n====================================================================\n";
-        cout << "\t\tVaryingSampleName is uniform to all samples!!!\n";
-        cout << "\n====================================================================\n\n";
-
-        // if (FindSubstring(sn, "C12") && BeamAt6GeV) {
-        //     VaryingSampleName = "C12x4_simulation_G18_Q204_6GeV";
-        // } else {
-        //     cout << "\n\n\nExperimentParameters::GetVaryingSampleName: no corresponding simulation sample! Exiting...\n", exit(0);
-        // }
+        VaryingSampleName = sn;
+        // VaryingSampleName = "C12x4_simulation_G18_Q204_6GeV";
     } else {
         cout << "\n\n\nExperimentParameters::ConfigureVaryingSampleName: sample can't be configured! Exiting...\n", exit(0);
     }
