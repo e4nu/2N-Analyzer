@@ -23,7 +23,7 @@
 #include <string>
 
 #include "../../classes/DSCuts/DSCuts.h"
-#include "../../classes/hPlots/hPlot1D.h"
+#include "../../classes/hPlots/hPlot1D.cpp"
 #include "../../namespaces/general_utilities/constants/constants.h"
 #include "../EventProperties/GetParticleName.h"
 #include "../EventProperties/GetParticleNameShort.h"

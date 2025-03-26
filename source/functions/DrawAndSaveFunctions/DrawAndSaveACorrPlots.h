@@ -29,18 +29,21 @@
 #include <typeinfo>
 #include <vector>
 
-#include "../../classes/hPlots/hPlot1D.h"
-// #include "../EventProperties/GetParticleName.h"
-// #include "../EventProperties/GetParticleNameLC.h"
-// #include "../EventProperties/GetParticleNameShort.h"
+#include "../../classes/hPlots/hPlot1D.cpp"
+// #include "../EventProperties/data_processor::GetParticleName.h"
+// #include "../EventProperties/data_processor::GetParticleNameLC.h"
+// #include "../EventProperties/data_processor::GetParticleNameShort.h"
 #include "../../namespaces/general_utilities/utilities/utilities.h"
 // #include "../GeneralFunctions.h"
+
+// TODO: move includes here into a namespace
 
 using namespace std;
 using namespace utilities;
 
 // DrawAndSaveACorrPlots function for momentum plots:
-void DrawAndSaveACorrPlots(bool save_ACorr_data, const std::string &SampleName, const hPlot1D &TLPlot, const hPlot1D &RPlot, TList *Histogram_list, TList *ACorr_data, std::string &ACorr_data_Dir) {
+void DrawAndSaveACorrPlots(bool save_ACorr_data, const std::string &SampleName, const hPlot1D &TLPlot, const hPlot1D &RPlot, TList *Histogram_list, TList *ACorr_data,
+                           std::string &ACorr_data_Dir) {
     bool plot_errorbars = true;
     bool rebin_plots = false;
 
@@ -82,15 +85,15 @@ void DrawAndSaveACorrPlots(bool save_ACorr_data, const std::string &SampleName, 
 
     //<editor-fold desc="Setting particle">
     std::string ACorrectionRecTitle = RPlot_Clone->GetTitle();
-    std::string ACorrectionParticle = GetParticleName(ACorrectionRecTitle);
-    std::string ACorrectionParticleLC = GetParticleNameLC(ACorrectionRecTitle);
-    std::string ACorrectionParticleShort = GetParticleNameShort(ACorrectionRecTitle);
+    std::string ACorrectionParticle = data_processor::GetParticleName(ACorrectionRecTitle);
+    std::string ACorrectionParticleLC = data_processor::GetParticleNameLC(ACorrectionRecTitle);
+    std::string ACorrectionParticleShort = data_processor::GetParticleNameShort(ACorrectionRecTitle);
     //</editor-fold>
 
     //<editor-fold desc="Setting title">
     std::string ACorrectionType;
 
-    if (findSubstring(ACorrectionRecTitle, "momentum")) {  // for momentum ACorrection plots
+    if (basic_tools::FindSubstring(ACorrectionRecTitle, "momentum")) {  // for momentum ACorrection plots
         ACorrectionType = "momentum";
     }
 
@@ -100,11 +103,11 @@ void DrawAndSaveACorrPlots(bool save_ACorr_data, const std::string &SampleName, 
     //<editor-fold desc="Setting X axis label">
     std::string ACorrectionXLabel;
 
-    if (findSubstring(ACorrectionRecTitle, "momentum")) {  // for momentum ACorrection plots
+    if (basic_tools::FindSubstring(ACorrectionRecTitle, "momentum")) {  // for momentum ACorrection plots
         ACorrectionXLabel = "P_{" + ACorrectionParticleShort + "} [GeV/c]";
-    } else if (findSubstring(ACorrectionRecTitle, "#theta")) {  // for momentum ACorrection plots
+    } else if (basic_tools::FindSubstring(ACorrectionRecTitle, "#theta")) {  // for momentum ACorrection plots
         ACorrectionXLabel = "#theta [Deg]";
-    } else if (findSubstring(ACorrectionRecTitle, "#phi")) {  // for momentum ACorrection plots
+    } else if (basic_tools::FindSubstring(ACorrectionRecTitle, "#phi")) {  // for momentum ACorrection plots
         ACorrectionXLabel = "#phi [Deg]";
     }
     //</editor-fold>
@@ -122,21 +125,21 @@ void DrawAndSaveACorrPlots(bool save_ACorr_data, const std::string &SampleName, 
     //<editor-fold desc="Setting Final state">
     std::string ACorrectionFS;
 
-    if (findSubstring(ACorrectionRecTitle, "1e_cut") || findSubstring(ACorrectionRecTitle, "1e cut") || findSubstring(ACorrectionRecTitle, "1e Cut")) {
+    if (basic_tools::FindSubstring(ACorrectionRecTitle, "1e_cut") || basic_tools::FindSubstring(ACorrectionRecTitle, "1e cut") || basic_tools::FindSubstring(ACorrectionRecTitle, "1e Cut")) {
         ACorrectionFS = "1e cut";
-    } else if (findSubstring(ACorrectionRecTitle, "1p")) {
+    } else if (basic_tools::FindSubstring(ACorrectionRecTitle, "1p")) {
         ACorrectionFS = "1p";
-    } else if (findSubstring(ACorrectionRecTitle, "1n")) {
+    } else if (basic_tools::FindSubstring(ACorrectionRecTitle, "1n")) {
         ACorrectionFS = "1n";
-    } else if (findSubstring(ACorrectionRecTitle, "1n1p")) {
+    } else if (basic_tools::FindSubstring(ACorrectionRecTitle, "1n1p")) {
         ACorrectionFS = "1n1p";
-    } else if (findSubstring(ACorrectionRecTitle, "1e2p")) {
+    } else if (basic_tools::FindSubstring(ACorrectionRecTitle, "1e2p")) {
         ACorrectionFS = "1e2p";
-    } else if (findSubstring(ACorrectionRecTitle, "2p")) {
+    } else if (basic_tools::FindSubstring(ACorrectionRecTitle, "2p")) {
         ACorrectionFS = "2p";
-    } else if (findSubstring(ACorrectionRecTitle, "pFDpCD")) {
+    } else if (basic_tools::FindSubstring(ACorrectionRecTitle, "pFDpCD")) {
         ACorrectionFS = "pFDpCD";
-    } else if (findSubstring(ACorrectionRecTitle, "nFDpCD")) {
+    } else if (basic_tools::FindSubstring(ACorrectionRecTitle, "nFDpCD")) {
         ACorrectionFS = "nFDpCD";
     }
     //</editor-fold>
@@ -144,16 +147,16 @@ void DrawAndSaveACorrPlots(bool save_ACorr_data, const std::string &SampleName, 
     //<editor-fold desc="Setting save directory">
     std::string ACorrectionSaveDir, ACorrectionTestSaveDir;
 
-    if (findSubstring(ACorrectionRecTitle, "Electron") || findSubstring(ACorrectionRecTitle, "electron")) {
+    if (basic_tools::FindSubstring(ACorrectionRecTitle, "Electron") || basic_tools::FindSubstring(ACorrectionRecTitle, "electron")) {
         ACorrectionSaveDir = TLPlot.GetHistogram1DSaveNamePath() + "/00_" + ACorrectionParticle + "_" + ACorrectionType + "_ACorrection_plots_" + ACorrectionFS + "/";
         ACorrectionTestSaveDir = ACorrectionSaveDir + "Cloned_hist_test/";
     } else {
-        if (findSubstring(ACorrectionRecTitle, ", FD)") || findSubstring(ACorrectionRecTitle, "FD " + ACorrectionParticle) ||
-            findSubstring(ACorrectionRecTitle, "FD " + ACorrectionParticleLC)) {
+        if (basic_tools::FindSubstring(ACorrectionRecTitle, ", FD)") || basic_tools::FindSubstring(ACorrectionRecTitle, "FD " + ACorrectionParticle) ||
+            basic_tools::FindSubstring(ACorrectionRecTitle, "FD " + ACorrectionParticleLC)) {
             ACorrectionSaveDir = TLPlot.GetHistogram1DSaveNamePath() + "/01_FD_" + ACorrectionParticle + "_" + ACorrectionType + "_ACorrection_plots_" + ACorrectionFS + "/";
             ACorrectionTestSaveDir = ACorrectionSaveDir + "Cloned_hist_test/";
-        } else if (findSubstring(ACorrectionRecTitle, ", CD)") || findSubstring(ACorrectionRecTitle, "CD " + ACorrectionParticle) ||
-                   findSubstring(ACorrectionRecTitle, "CD " + ACorrectionParticleLC)) {
+        } else if (basic_tools::FindSubstring(ACorrectionRecTitle, ", CD)") || basic_tools::FindSubstring(ACorrectionRecTitle, "CD " + ACorrectionParticle) ||
+                   basic_tools::FindSubstring(ACorrectionRecTitle, "CD " + ACorrectionParticleLC)) {
             ACorrectionSaveDir = TLPlot.GetHistogram1DSaveNamePath() + "/02_CD_" + ACorrectionParticle + "_" + ACorrectionType + "_ACorrection_plots_" + ACorrectionFS + "/";
             ACorrectionTestSaveDir = ACorrectionSaveDir + "Cloned_hist_test/";
         } else {
@@ -169,9 +172,9 @@ void DrawAndSaveACorrPlots(bool save_ACorr_data, const std::string &SampleName, 
     //<editor-fold desc="Setting save name">
     std::string sNameFlag;
 
-    if (findSubstring(SampleName, "sim")) {
+    if (basic_tools::FindSubstring(SampleName, "sim")) {
         sNameFlag = "s";
-    } else if (findSubstring(SampleName, "data")) {
+    } else if (basic_tools::FindSubstring(SampleName, "data")) {
         sNameFlag = "d";
     }
 
@@ -290,11 +293,11 @@ void DrawAndSaveACorrPlots(bool save_ACorr_data, const std::string &SampleName, 
         std::string ACorr_data_StatsTitle;
 
         if ((ACorrectionFS == "pFDpCD") || (ACorrectionFS == "nFDpCD")) {
-            if (findSubstring(ACorrectionRecTitle, ", FD)") || findSubstring(ACorrectionRecTitle, "FD " + ACorrectionParticle) ||
-                findSubstring(ACorrectionRecTitle, "FD " + ACorrectionParticleLC)) {
+            if (basic_tools::FindSubstring(ACorrectionRecTitle, ", FD)") || basic_tools::FindSubstring(ACorrectionRecTitle, "FD " + ACorrectionParticle) ||
+                basic_tools::FindSubstring(ACorrectionRecTitle, "FD " + ACorrectionParticleLC)) {
                 ACorr_data_StatsTitle = "FD_" + ACorrectionParticle + "_" + ACorrectionType + "_" + "ACorr_" + ACorrectionFS;
-            } else if (findSubstring(ACorrectionRecTitle, ", CD)") || findSubstring(ACorrectionRecTitle, "CD " + ACorrectionParticle) ||
-                       findSubstring(ACorrectionRecTitle, "CD " + ACorrectionParticleLC)) {
+            } else if (basic_tools::FindSubstring(ACorrectionRecTitle, ", CD)") || basic_tools::FindSubstring(ACorrectionRecTitle, "CD " + ACorrectionParticle) ||
+                       basic_tools::FindSubstring(ACorrectionRecTitle, "CD " + ACorrectionParticleLC)) {
                 ACorr_data_StatsTitle = "CD_" + ACorrectionParticle + "_" + ACorrectionType + "_" + "ACorr_" + ACorrectionFS;
             } else {
                 ACorr_data_StatsTitle = ACorrectionParticle + "_" + ACorrectionType + "_" + "ACorr_" + ACorrectionFS;
@@ -345,29 +348,29 @@ void DrawAndSaveACorrPlots(bool save_ACorr_data, const std::string &SampleName, 
 
     //<editor-fold desc="Setting particle">
     std::string ACorrectionRecTitle = RPlot->GetTitle();
-    std::string ACorrectionParticle = GetParticleName(ACorrectionRecTitle);
-    std::string ACorrectionParticleLC = GetParticleNameLC(ACorrectionRecTitle);
-    std::string ACorrectionParticleShort = GetParticleNameShort(ACorrectionRecTitle);
+    std::string ACorrectionParticle = data_processor::GetParticleName(ACorrectionRecTitle);
+    std::string ACorrectionParticleLC = data_processor::GetParticleNameLC(ACorrectionRecTitle);
+    std::string ACorrectionParticleShort = data_processor::GetParticleNameShort(ACorrectionRecTitle);
     //</editor-fold>
 
     //<editor-fold desc="Setting Final state">
     std::string ACorrectionFS;
 
-    if (findSubstring(ACorrectionRecTitle, "1e_cut") || findSubstring(ACorrectionRecTitle, "1e cut") || findSubstring(ACorrectionRecTitle, "1e Cut")) {
+    if (basic_tools::FindSubstring(ACorrectionRecTitle, "1e_cut") || basic_tools::FindSubstring(ACorrectionRecTitle, "1e cut") || basic_tools::FindSubstring(ACorrectionRecTitle, "1e Cut")) {
         ACorrectionFS = "1e cut";
-    } else if (findSubstring(ACorrectionRecTitle, "1p")) {
+    } else if (basic_tools::FindSubstring(ACorrectionRecTitle, "1p")) {
         ACorrectionFS = "1p";
-    } else if (findSubstring(ACorrectionRecTitle, "1n")) {
+    } else if (basic_tools::FindSubstring(ACorrectionRecTitle, "1n")) {
         ACorrectionFS = "1n";
-    } else if (findSubstring(ACorrectionRecTitle, "1n1p")) {
+    } else if (basic_tools::FindSubstring(ACorrectionRecTitle, "1n1p")) {
         ACorrectionFS = "1n1p";
-    } else if (findSubstring(ACorrectionRecTitle, "1e2p")) {
+    } else if (basic_tools::FindSubstring(ACorrectionRecTitle, "1e2p")) {
         ACorrectionFS = "1e2p";
-    } else if (findSubstring(ACorrectionRecTitle, "2p")) {
+    } else if (basic_tools::FindSubstring(ACorrectionRecTitle, "2p")) {
         ACorrectionFS = "2p";
-    } else if (findSubstring(ACorrectionRecTitle, "pFDpCD")) {
+    } else if (basic_tools::FindSubstring(ACorrectionRecTitle, "pFDpCD")) {
         ACorrectionFS = "pFDpCD";
-    } else if (findSubstring(ACorrectionRecTitle, "nFDpCD")) {
+    } else if (basic_tools::FindSubstring(ACorrectionRecTitle, "nFDpCD")) {
         ACorrectionFS = "nFDpCD";
     }
     //</editor-fold>
@@ -375,9 +378,9 @@ void DrawAndSaveACorrPlots(bool save_ACorr_data, const std::string &SampleName, 
     //<editor-fold desc="Setting stats box title">
     std::string ACorrectionStatsType;
 
-    if (findSubstring(ACorrectionRecTitle, "#theta")) {  // for momentum ACorrection plots
+    if (basic_tools::FindSubstring(ACorrectionRecTitle, "#theta")) {  // for momentum ACorrection plots
         ACorrectionStatsType = "#theta_{" + ACorrectionParticleShort + "}";
-    } else if (findSubstring(ACorrectionRecTitle, "#phi")) {  // for momentum ACorrection plots
+    } else if (basic_tools::FindSubstring(ACorrectionRecTitle, "#phi")) {  // for momentum ACorrection plots
         ACorrectionStatsType = "#phi_{" + ACorrectionParticleShort + "}";
     }
 
@@ -406,11 +409,11 @@ void DrawAndSaveACorrPlots(bool save_ACorr_data, const std::string &SampleName, 
     //<editor-fold desc="Setting title">
     std::string ACorrectionType, ACorrectionTitle;
 
-    if (findSubstring(ACorrectionRecTitle, "momentum")) {  // for momentum ACorrection plots
+    if (basic_tools::FindSubstring(ACorrectionRecTitle, "momentum")) {  // for momentum ACorrection plots
         ACorrectionType = "momentum";
-    } else if (findSubstring(ACorrectionRecTitle, "#theta")) {  // for theta ACorrection plots
+    } else if (basic_tools::FindSubstring(ACorrectionRecTitle, "#theta")) {  // for theta ACorrection plots
         ACorrectionType = "theta";
-    } else if (findSubstring(ACorrectionRecTitle, "#phi")) {  // for phi ACorrection plots
+    } else if (basic_tools::FindSubstring(ACorrectionRecTitle, "#phi")) {  // for phi ACorrection plots
         ACorrectionType = "phi";
     }
 
@@ -426,12 +429,12 @@ void DrawAndSaveACorrPlots(bool save_ACorr_data, const std::string &SampleName, 
     //<editor-fold desc="Setting X axis label">
     std::string ACorrectionXLabel;
 
-    if (findSubstring(ACorrectionRecTitle, "momentum")) {  // for momentum ACorrection plots
+    if (basic_tools::FindSubstring(ACorrectionRecTitle, "momentum")) {  // for momentum ACorrection plots
         ACorrectionXLabel = "P_{" + ACorrectionParticleShort + "} [GeV/c]";
-    } else if (findSubstring(ACorrectionRecTitle, "#theta")) {  // for momentum ACorrection plots
+    } else if (basic_tools::FindSubstring(ACorrectionRecTitle, "#theta")) {  // for momentum ACorrection plots
         ACorrectionXLabel = ACorrectionTitle + " [Deg]";
         //        ACorrectionXLabel = "#theta [Deg]";
-    } else if (findSubstring(ACorrectionRecTitle, "#phi")) {  // for momentum ACorrection plots
+    } else if (basic_tools::FindSubstring(ACorrectionRecTitle, "#phi")) {  // for momentum ACorrection plots
         ACorrectionXLabel = ACorrectionTitle + " [Deg]";
         //        ACorrectionXLabel = "#phi [Deg]";
     }
@@ -450,16 +453,16 @@ void DrawAndSaveACorrPlots(bool save_ACorr_data, const std::string &SampleName, 
     //<editor-fold desc="Setting save directory">
     std::string ACorrectionSaveDir, ACorrectionTestSaveDir;
 
-    if (findSubstring(ACorrectionRecTitle, "Electron") || findSubstring(ACorrectionRecTitle, "electron")) {
+    if (basic_tools::FindSubstring(ACorrectionRecTitle, "Electron") || basic_tools::FindSubstring(ACorrectionRecTitle, "electron")) {
         ACorrectionSaveDir = TLPlot.GetHistogram1DSaveNamePath() + "/00_" + ACorrectionParticle + "_" + ACorrectionType + "_ACorrection_plots_" + ACorrectionFS + "/";
         ACorrectionTestSaveDir = ACorrectionSaveDir + "Cloned_hist_test/";
     } else {
-        if (findSubstring(ACorrectionRecTitle, ", FD)") || findSubstring(ACorrectionRecTitle, "FD " + ACorrectionParticle) ||
-            findSubstring(ACorrectionRecTitle, "FD " + ACorrectionParticleLC)) {
+        if (basic_tools::FindSubstring(ACorrectionRecTitle, ", FD)") || basic_tools::FindSubstring(ACorrectionRecTitle, "FD " + ACorrectionParticle) ||
+            basic_tools::FindSubstring(ACorrectionRecTitle, "FD " + ACorrectionParticleLC)) {
             ACorrectionSaveDir = TLPlot.GetHistogram1DSaveNamePath() + "/01_FD_" + ACorrectionParticle + "_" + ACorrectionType + "_ACorrection_plots_" + ACorrectionFS + "/";
             ACorrectionTestSaveDir = ACorrectionSaveDir + "Cloned_hist_test/";
-        } else if (findSubstring(ACorrectionRecTitle, ", CD)") || findSubstring(ACorrectionRecTitle, "CD " + ACorrectionParticle) ||
-                   findSubstring(ACorrectionRecTitle, "CD " + ACorrectionParticleLC)) {
+        } else if (basic_tools::FindSubstring(ACorrectionRecTitle, ", CD)") || basic_tools::FindSubstring(ACorrectionRecTitle, "CD " + ACorrectionParticle) ||
+                   basic_tools::FindSubstring(ACorrectionRecTitle, "CD " + ACorrectionParticleLC)) {
             ACorrectionSaveDir = TLPlot.GetHistogram1DSaveNamePath() + "/02_CD_" + ACorrectionParticle + "_" + ACorrectionType + "_ACorrection_plots_" + ACorrectionFS + "/";
             ACorrectionTestSaveDir = ACorrectionSaveDir + "Cloned_hist_test/";
         } else {
@@ -475,9 +478,9 @@ void DrawAndSaveACorrPlots(bool save_ACorr_data, const std::string &SampleName, 
     //<editor-fold desc="Setting save name">
     std::string sNameFlag;
 
-    if (findSubstring(SampleName, "sim")) {
+    if (basic_tools::FindSubstring(SampleName, "sim")) {
         sNameFlag = "s";
-    } else if (findSubstring(SampleName, "data")) {
+    } else if (basic_tools::FindSubstring(SampleName, "data")) {
         sNameFlag = "d";
     }
 
@@ -633,11 +636,11 @@ void DrawAndSaveACorrPlots(bool save_ACorr_data, const std::string &SampleName, 
         std::string ACorr_data_StatsTitle;
 
         if (((ACorrectionFS == "pFDpCD") || (ACorrectionFS == "nFDpCD")) && (ACorrectionParticle != "Electron")) {
-            if (findSubstring(ACorrectionRecTitle, ", FD)") || findSubstring(ACorrectionRecTitle, "FD " + ACorrectionParticle) ||
-                findSubstring(ACorrectionRecTitle, "FD " + ACorrectionParticleLC)) {
+            if (basic_tools::FindSubstring(ACorrectionRecTitle, ", FD)") || basic_tools::FindSubstring(ACorrectionRecTitle, "FD " + ACorrectionParticle) ||
+                basic_tools::FindSubstring(ACorrectionRecTitle, "FD " + ACorrectionParticleLC)) {
                 ACorr_data_StatsTitle = "FD_" + ACorrectionParticle + "_" + ACorrectionType + "_" + "ACorr_" + ACorrectionFS;
-            } else if (findSubstring(ACorrectionRecTitle, ", CD)") || findSubstring(ACorrectionRecTitle, "CD " + ACorrectionParticle) ||
-                       findSubstring(ACorrectionRecTitle, "CD " + ACorrectionParticleLC)) {
+            } else if (basic_tools::FindSubstring(ACorrectionRecTitle, ", CD)") || basic_tools::FindSubstring(ACorrectionRecTitle, "CD " + ACorrectionParticle) ||
+                       basic_tools::FindSubstring(ACorrectionRecTitle, "CD " + ACorrectionParticleLC)) {
                 ACorr_data_StatsTitle = "CD_" + ACorrectionParticle + "_" + ACorrectionType + "_" + "ACorr_" + ACorrectionFS;
             } else {
                 ACorr_data_StatsTitle = ACorrectionParticle + "_" + ACorrectionType + "_" + "ACorr_" + ACorrectionFS;

@@ -13,8 +13,8 @@
 #include <vector>
 
 #include "../../classes/DSCuts/DSCuts.h"
-#include "../../classes/hPlots/hPlot1D.h"
-#include "../../classes/hPlots/hPlot2D.h"
+#include "../../classes/hPlots/hPlot1D.cpp"
+#include "../../classes/hPlots/hPlot2D.cpp"
 #include "../../constants.h"
 #include "../AngleCalc/CalcdPhi.h"
 #include "clas12reader.h"

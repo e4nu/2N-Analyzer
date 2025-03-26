@@ -29,12 +29,14 @@
 #include <typeinfo>
 #include <vector>
 
-#include "../../classes/hPlots/hPlot1D.h"
-// #include "../EventProperties/GetParticleName.h"
-// #include "../EventProperties/GetParticleNameLC.h"
-// #include "../EventProperties/GetParticleNameShort.h"
+#include "../../classes/hPlots/hPlot1D.cpp"
+// #include "../EventProperties/data_processor::GetParticleName.h"
+// #include "../EventProperties/data_processor::GetParticleNameLC.h"
+// #include "../EventProperties/data_processor::GetParticleNameShort.h"
 // #include "../GeneralFunctions.h"
 #include "../../namespaces/general_utilities/utilities/utilities.h"
+
+// TODO: move includes here into a namespace
 
 using namespace std;
 using namespace utilities;
@@ -81,10 +83,10 @@ void DrawAndSaveEfficiencyPlots(const std::string &SampleName, const hPlot1D &TL
 
     //<editor-fold desc="Setting particle">
     std::string EfficiencyRecTitle = RPlot_Clone->GetTitle();
-    std::string EfficiencyParticle = GetParticleName(EfficiencyRecTitle);
-    std::string EfficiencyParticleDir = GetParticleName(EfficiencyRecTitle, true);
-    std::string EfficiencyParticleLC = GetParticleNameLC(EfficiencyRecTitle);
-    std::string EfficiencyParticleShort = GetParticleNameShort(EfficiencyRecTitle);
+    std::string EfficiencyParticle = data_processor::GetParticleName(EfficiencyRecTitle);
+    std::string EfficiencyParticleDir = data_processor::GetParticleName(EfficiencyRecTitle, true);
+    std::string EfficiencyParticleLC = data_processor::GetParticleNameLC(EfficiencyRecTitle);
+    std::string EfficiencyParticleShort = data_processor::GetParticleNameShort(EfficiencyRecTitle);
     //</editor-fold>
 
     //<editor-fold desc="Setting region">
@@ -101,7 +103,7 @@ void DrawAndSaveEfficiencyPlots(const std::string &SampleName, const hPlot1D &TL
     //<editor-fold desc="Setting title">
     std::string EfficiencyType;
 
-    if (findSubstring(EfficiencyRecTitle, "momentum")) {  // for momentum efficiency plots
+    if (basic_tools::FindSubstring(EfficiencyRecTitle, "momentum")) {  // for momentum efficiency plots
         EfficiencyType = "momentum";
     }
 
@@ -111,11 +113,11 @@ void DrawAndSaveEfficiencyPlots(const std::string &SampleName, const hPlot1D &TL
     //<editor-fold desc="Setting X axis label">
     std::string EfficiencyXLabel;
 
-    if (findSubstring(EfficiencyRecTitle, "momentum")) {  // for momentum efficiency plots
+    if (basic_tools::FindSubstring(EfficiencyRecTitle, "momentum")) {  // for momentum efficiency plots
         EfficiencyXLabel = "P_{" + EfficiencyParticleShort + "} [GeV/c]";
-    } else if (findSubstring(EfficiencyRecTitle, "#theta")) {  // for momentum efficiency plots
+    } else if (basic_tools::FindSubstring(EfficiencyRecTitle, "#theta")) {  // for momentum efficiency plots
         EfficiencyXLabel = "#theta [Deg]";
-    } else if (findSubstring(EfficiencyRecTitle, "#phi")) {  // for momentum efficiency plots
+    } else if (basic_tools::FindSubstring(EfficiencyRecTitle, "#phi")) {  // for momentum efficiency plots
         EfficiencyXLabel = "#phi [Deg]";
     }
     //</editor-fold>
@@ -132,33 +134,33 @@ void DrawAndSaveEfficiencyPlots(const std::string &SampleName, const hPlot1D &TL
     //<editor-fold desc="Setting Final state">
     std::string EfficiencyFS, EfficiencyFSDir;
 
-    if (findSubstring(EfficiencyRecTitle, "1e_cut") || findSubstring(EfficiencyRecTitle, "1e cut") || findSubstring(EfficiencyRecTitle, "1e Cut")) {
+    if (basic_tools::FindSubstring(EfficiencyRecTitle, "1e_cut") || basic_tools::FindSubstring(EfficiencyRecTitle, "1e cut") || basic_tools::FindSubstring(EfficiencyRecTitle, "1e Cut")) {
         EfficiencyFS = "1e cut";
         EfficiencyFSDir = "1e_cut";
-    } else if (findSubstring(EfficiencyRecTitle, "1p")) {
+    } else if (basic_tools::FindSubstring(EfficiencyRecTitle, "1p")) {
         EfficiencyFS = "1p";
         EfficiencyFSDir = EfficiencyFS;
-    } else if (findSubstring(EfficiencyRecTitle, "1n")) {
+    } else if (basic_tools::FindSubstring(EfficiencyRecTitle, "1n")) {
         EfficiencyFS = "1n";
         EfficiencyFSDir = EfficiencyFS;
 
-    } else if (findSubstring(EfficiencyRecTitle, "1n1p")) {
+    } else if (basic_tools::FindSubstring(EfficiencyRecTitle, "1n1p")) {
         EfficiencyFS = "1n1p";
         EfficiencyFSDir = EfficiencyFS;
 
-    } else if (findSubstring(EfficiencyRecTitle, "1e2p")) {
+    } else if (basic_tools::FindSubstring(EfficiencyRecTitle, "1e2p")) {
         EfficiencyFS = "1e2p";
         EfficiencyFSDir = EfficiencyFS;
 
-    } else if (findSubstring(EfficiencyRecTitle, "2p")) {
+    } else if (basic_tools::FindSubstring(EfficiencyRecTitle, "2p")) {
         EfficiencyFS = "2p";
         EfficiencyFSDir = EfficiencyFS;
 
-    } else if (findSubstring(EfficiencyRecTitle, "pFDpCD")) {
+    } else if (basic_tools::FindSubstring(EfficiencyRecTitle, "pFDpCD")) {
         EfficiencyFS = "pFDpCD";
         EfficiencyFSDir = EfficiencyFS;
 
-    } else if (findSubstring(EfficiencyRecTitle, "nFDpCD")) {
+    } else if (basic_tools::FindSubstring(EfficiencyRecTitle, "nFDpCD")) {
         EfficiencyFS = "nFDpCD";
         EfficiencyFSDir = EfficiencyFS;
     }
@@ -167,15 +169,15 @@ void DrawAndSaveEfficiencyPlots(const std::string &SampleName, const hPlot1D &TL
     //<editor-fold desc="Setting save directory">
     std::string EfficiencySaveDir, EfficiencyTestSaveDir;
 
-    if (findSubstring(EfficiencyRecTitle, "Electron") || findSubstring(EfficiencyRecTitle, "electron")) {
+    if (basic_tools::FindSubstring(EfficiencyRecTitle, "Electron") || basic_tools::FindSubstring(EfficiencyRecTitle, "electron")) {
         EfficiencySaveDir = TLPlot.GetHistogram1DSaveNamePath() + "/00_" + EfficiencyParticleDir + "_" + EfficiencyType + "_efficiency_plots_" + EfficiencyFSDir + "/";
         EfficiencyTestSaveDir = EfficiencySaveDir + "Cloned_hist_test/";
     } else {
-        if (findSubstring(EfficiencyRecTitle, ", FD)") || findSubstring(EfficiencyRecTitle, "FD " + EfficiencyParticle) || findSubstring(EfficiencyRecTitle, "FD " + EfficiencyParticleLC)) {
+        if (basic_tools::FindSubstring(EfficiencyRecTitle, ", FD)") || basic_tools::FindSubstring(EfficiencyRecTitle, "FD " + EfficiencyParticle) || basic_tools::FindSubstring(EfficiencyRecTitle, "FD " + EfficiencyParticleLC)) {
             EfficiencySaveDir = TLPlot.GetHistogram1DSaveNamePath() + "/01_FD_" + EfficiencyParticleDir + "_" + EfficiencyType + "_efficiency_plots_" + EfficiencyFSDir + "/";
             EfficiencyTestSaveDir = EfficiencySaveDir + "Cloned_hist_test" + "_FD/";
-        } else if (findSubstring(EfficiencyRecTitle, ", CD)") || findSubstring(EfficiencyRecTitle, "CD " + EfficiencyParticle) ||
-                   findSubstring(EfficiencyRecTitle, "CD " + EfficiencyParticleLC)) {
+        } else if (basic_tools::FindSubstring(EfficiencyRecTitle, ", CD)") || basic_tools::FindSubstring(EfficiencyRecTitle, "CD " + EfficiencyParticle) ||
+                   basic_tools::FindSubstring(EfficiencyRecTitle, "CD " + EfficiencyParticleLC)) {
             EfficiencySaveDir = TLPlot.GetHistogram1DSaveNamePath() + "/02_CD_" + EfficiencyParticleDir + "_" + EfficiencyType + "_efficiency_plots_" + EfficiencyFSDir + "/";
             EfficiencyTestSaveDir = EfficiencySaveDir + "Cloned_hist_test" + "_CD/";
         } else {
@@ -191,9 +193,9 @@ void DrawAndSaveEfficiencyPlots(const std::string &SampleName, const hPlot1D &TL
     //<editor-fold desc="Setting save name">
     std::string sNameFlag;
 
-    if (findSubstring(SampleName, "sim")) {
+    if (basic_tools::FindSubstring(SampleName, "sim")) {
         sNameFlag = "s";
-    } else if (findSubstring(SampleName, "data")) {
+    } else if (basic_tools::FindSubstring(SampleName, "data")) {
         sNameFlag = "d";
     }
 
@@ -418,29 +420,29 @@ void DrawAndSaveEfficiencyPlots(const std::string &SampleName, const hPlot1D &TL
 
     //<editor-fold desc="Setting particle">
     std::string EfficiencyRecTitle = RPlot->GetTitle();
-    std::string EfficiencyParticle = GetParticleName(EfficiencyRecTitle);
-    std::string EfficiencyParticleLC = GetParticleNameLC(EfficiencyRecTitle);
-    std::string EfficiencyParticleShort = GetParticleNameShort(EfficiencyRecTitle);
+    std::string EfficiencyParticle = data_processor::GetParticleName(EfficiencyRecTitle);
+    std::string EfficiencyParticleLC = data_processor::GetParticleNameLC(EfficiencyRecTitle);
+    std::string EfficiencyParticleShort = data_processor::GetParticleNameShort(EfficiencyRecTitle);
     //</editor-fold>
 
     //<editor-fold desc="Setting Final state">
     std::string EfficiencyFS;
 
-    if (findSubstring(EfficiencyRecTitle, "1e_cut") || findSubstring(EfficiencyRecTitle, "1e cut") || findSubstring(EfficiencyRecTitle, "1e Cut")) {
+    if (basic_tools::FindSubstring(EfficiencyRecTitle, "1e_cut") || basic_tools::FindSubstring(EfficiencyRecTitle, "1e cut") || basic_tools::FindSubstring(EfficiencyRecTitle, "1e Cut")) {
         EfficiencyFS = "1e cut";
-    } else if (findSubstring(EfficiencyRecTitle, "1p")) {
+    } else if (basic_tools::FindSubstring(EfficiencyRecTitle, "1p")) {
         EfficiencyFS = "1p";
-    } else if (findSubstring(EfficiencyRecTitle, "1n")) {
+    } else if (basic_tools::FindSubstring(EfficiencyRecTitle, "1n")) {
         EfficiencyFS = "1n";
-    } else if (findSubstring(EfficiencyRecTitle, "1n1p")) {
+    } else if (basic_tools::FindSubstring(EfficiencyRecTitle, "1n1p")) {
         EfficiencyFS = "1n1p";
-    } else if (findSubstring(EfficiencyRecTitle, "1e2p")) {
+    } else if (basic_tools::FindSubstring(EfficiencyRecTitle, "1e2p")) {
         EfficiencyFS = "1e2p";
-    } else if (findSubstring(EfficiencyRecTitle, "2p")) {
+    } else if (basic_tools::FindSubstring(EfficiencyRecTitle, "2p")) {
         EfficiencyFS = "2p";
-    } else if (findSubstring(EfficiencyRecTitle, "pFDpCD")) {
+    } else if (basic_tools::FindSubstring(EfficiencyRecTitle, "pFDpCD")) {
         EfficiencyFS = "pFDpCD";
-    } else if (findSubstring(EfficiencyRecTitle, "nFDpCD")) {
+    } else if (basic_tools::FindSubstring(EfficiencyRecTitle, "nFDpCD")) {
         EfficiencyFS = "nFDpCD";
     }
     //</editor-fold>
@@ -448,13 +450,13 @@ void DrawAndSaveEfficiencyPlots(const std::string &SampleName, const hPlot1D &TL
     //<editor-fold desc="Setting stats box title">
     std::string EfficiencyStatsType;
 
-    if (findSubstring(EfficiencyRecTitle, "#theta")) {  // for momentum efficiency plots
+    if (basic_tools::FindSubstring(EfficiencyRecTitle, "#theta")) {  // for momentum efficiency plots
         EfficiencyStatsType = "#theta_{" + EfficiencyParticleShort + "}";
-    } else if (findSubstring(EfficiencyRecTitle, "#phi")) {  // for momentum efficiency plots
+    } else if (basic_tools::FindSubstring(EfficiencyRecTitle, "#phi")) {  // for momentum efficiency plots
         EfficiencyStatsType = "#phi_{" + EfficiencyParticleShort + "}";
     }
 
-    //    if (findSubstring(EfficiencyRecTitle, "ZOOMIN")) { EfficiencyStatsType = EfficiencyStatsType + " - ZOOMIN"; }
+    //    if (basic_tools::FindSubstring(EfficiencyRecTitle, "ZOOMIN")) { EfficiencyStatsType = EfficiencyStatsType + " - ZOOMIN"; }
 
     std::string EfficiencyStatsTitle = EfficiencyStatsType + " (" + EfficiencyFS + ")";
     //</editor-fold>
@@ -481,11 +483,11 @@ void DrawAndSaveEfficiencyPlots(const std::string &SampleName, const hPlot1D &TL
     //<editor-fold desc="Setting title">
     std::string EfficiencyType, EfficiencyTitle;
 
-    if (findSubstring(EfficiencyRecTitle, "momentum")) {  // for momentum efficiency plots
+    if (basic_tools::FindSubstring(EfficiencyRecTitle, "momentum")) {  // for momentum efficiency plots
         EfficiencyType = "momentum";
-    } else if (findSubstring(EfficiencyRecTitle, "#theta")) {  // for theta efficiency plots
+    } else if (basic_tools::FindSubstring(EfficiencyRecTitle, "#theta")) {  // for theta efficiency plots
         EfficiencyType = "theta";
-    } else if (findSubstring(EfficiencyRecTitle, "#phi")) {  // for phi efficiency plots
+    } else if (basic_tools::FindSubstring(EfficiencyRecTitle, "#phi")) {  // for phi efficiency plots
         EfficiencyType = "phi";
     }
 
@@ -501,12 +503,12 @@ void DrawAndSaveEfficiencyPlots(const std::string &SampleName, const hPlot1D &TL
     //<editor-fold desc="Setting X axis label">
     std::string EfficiencyXLabel;
 
-    if (findSubstring(EfficiencyRecTitle, "momentum")) {  // for momentum efficiency plots
+    if (basic_tools::FindSubstring(EfficiencyRecTitle, "momentum")) {  // for momentum efficiency plots
         EfficiencyXLabel = "P_{" + EfficiencyParticleShort + "} [GeV/c]";
-    } else if (findSubstring(EfficiencyRecTitle, "#theta")) {  // for momentum efficiency plots
+    } else if (basic_tools::FindSubstring(EfficiencyRecTitle, "#theta")) {  // for momentum efficiency plots
         EfficiencyXLabel = EfficiencyTitle + " [Deg]";
         //        EfficiencyXLabel = "#theta [Deg]";
-    } else if (findSubstring(EfficiencyRecTitle, "#phi")) {  // for momentum efficiency plots
+    } else if (basic_tools::FindSubstring(EfficiencyRecTitle, "#phi")) {  // for momentum efficiency plots
         EfficiencyXLabel = EfficiencyTitle + " [Deg]";
         //        EfficiencyXLabel = "#phi [Deg]";
     }
@@ -528,15 +530,15 @@ void DrawAndSaveEfficiencyPlots(const std::string &SampleName, const hPlot1D &TL
     //<editor-fold desc="Setting save directory">
     std::string EfficiencySaveDir, EfficiencyTestSaveDir;
 
-    if (findSubstring(EfficiencyRecTitle, "Electron") || findSubstring(EfficiencyRecTitle, "electron")) {
+    if (basic_tools::FindSubstring(EfficiencyRecTitle, "Electron") || basic_tools::FindSubstring(EfficiencyRecTitle, "electron")) {
         EfficiencySaveDir = TLPlot.GetHistogram1DSaveNamePath() + "/00_" + EfficiencyParticle + "_" + EfficiencyType + "_efficiency_plots_" + EfficiencyFS + "/";
         EfficiencyTestSaveDir = EfficiencySaveDir + "Cloned_hist_test/";
     } else {
-        if (findSubstring(EfficiencyRecTitle, ", FD)") || findSubstring(EfficiencyRecTitle, "FD " + EfficiencyParticle) || findSubstring(EfficiencyRecTitle, "FD " + EfficiencyParticleLC)) {
+        if (basic_tools::FindSubstring(EfficiencyRecTitle, ", FD)") || basic_tools::FindSubstring(EfficiencyRecTitle, "FD " + EfficiencyParticle) || basic_tools::FindSubstring(EfficiencyRecTitle, "FD " + EfficiencyParticleLC)) {
             EfficiencySaveDir = TLPlot.GetHistogram1DSaveNamePath() + "/01_FD_" + EfficiencyParticle + "_" + EfficiencyType + "_efficiency_plots_" + EfficiencyFS + "/";
             EfficiencyTestSaveDir = EfficiencySaveDir + "Cloned_hist_test" + "_FD/";
-        } else if (findSubstring(EfficiencyRecTitle, ", CD)") || findSubstring(EfficiencyRecTitle, "CD " + EfficiencyParticle) ||
-                   findSubstring(EfficiencyRecTitle, "CD " + EfficiencyParticleLC)) {
+        } else if (basic_tools::FindSubstring(EfficiencyRecTitle, ", CD)") || basic_tools::FindSubstring(EfficiencyRecTitle, "CD " + EfficiencyParticle) ||
+                   basic_tools::FindSubstring(EfficiencyRecTitle, "CD " + EfficiencyParticleLC)) {
             EfficiencySaveDir = TLPlot.GetHistogram1DSaveNamePath() + "/02_CD_" + EfficiencyParticle + "_" + EfficiencyType + "_efficiency_plots_" + EfficiencyFS + "/";
             EfficiencyTestSaveDir = EfficiencySaveDir + "Cloned_hist_test" + "_CD/";
         } else {
@@ -552,9 +554,9 @@ void DrawAndSaveEfficiencyPlots(const std::string &SampleName, const hPlot1D &TL
     //<editor-fold desc="Setting save name">
     std::string sNameFlag;
 
-    if (findSubstring(SampleName, "sim")) {
+    if (basic_tools::FindSubstring(SampleName, "sim")) {
         sNameFlag = "s";
-    } else if (findSubstring(SampleName, "data")) {
+    } else if (basic_tools::FindSubstring(SampleName, "data")) {
         sNameFlag = "d";
     }
 

@@ -29,7 +29,7 @@
 #include <typeinfo>
 #include <vector>
 
-#include "../classes/hPlots/hPlot1D.h"
+#include "../classes/hPlots/hPlot1D.cpp"
 #include "GeneralFunctions.h"
 
 using namespace std;

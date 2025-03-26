@@ -41,16 +41,16 @@ SetYAxisTitle
 #include <typeinfo>
 #include <vector>
 
-#include "../../classes/hData/hData.h"
-#include "../../classes/hPlots/hPlot1D.h"
+// #include "../../classes/hData/hData.h"
+#include "../../classes/hPlots/hPlot1D.cpp"
 #include "../../namespaces/general_utilities/utilities/utilities.h"
-#include "../EventProperties/SetFSRatioSaveDir.h"
-#include "../EventProperties/SetStatsTitle.h"
-#include "../EventProperties/SetTitle.h"
-#include "../EventProperties/SetType.h"
-#include "../EventProperties/SetXAxisTitle.h"
-#include "../EventProperties/SetYAxisTitle.h"
-#include "../EventProperties/SettingSaveNames.h"
+// #include "../EventProperties/SetFSRatioSaveDir.h"
+// #include "../EventProperties/SetStatsTitle.h"
+// #include "../EventProperties/SetTitle.h"
+// #include "../EventProperties/SetType.h"
+// #include "../EventProperties/SetXAxisTitle.h"
+// #include "../EventProperties/SetYAxisTitle.h"
+// #include "../EventProperties/SettingSaveNames.h"
 
 using namespace std;
 using namespace utilities;
@@ -127,9 +127,9 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot1D &pFDpCD_Plo
     //<editor-fold desc="Setting variables">
     std::string FSRatioRecTitle = nFDpCD_Plot_Clone->GetTitle();
 
-    std::string FSRatioParticle = Propeties.GetParticleName(FSRatioRecTitle);
-    std::string FSRatioParticleLC = Propeties.GetParticleNameLC(FSRatioRecTitle);
-    std::string FSRatioParticleShort = Propeties.GetParticleNameShort(FSRatioRecTitle);
+    std::string FSRatioParticle = Propeties.data_processor::GetParticleName(FSRatioRecTitle);
+    std::string FSRatioParticleLC = Propeties.data_processor::GetParticleNameLC(FSRatioRecTitle);
+    std::string FSRatioParticleShort = Propeties.data_processor::GetParticleNameShort(FSRatioRecTitle);
 
     std::string FSRatioType = Propeties.GetType(FSRatioRecTitle);
     std::string FSRatioPlotsT = "FSRatio";
@@ -378,9 +378,9 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot1D &pFDpCD_Plo
     //<editor-fold desc="Setting variables">
     std::string FSRatioRecTitle = nFDpCD_Plot->GetTitle();
 
-    std::string FSRatioParticle = Propeties.GetParticleName(FSRatioRecTitle);
-    std::string FSRatioParticleLC = Propeties.GetParticleNameLC(FSRatioRecTitle);
-    std::string FSRatioParticleShort = Propeties.GetParticleNameShort(FSRatioRecTitle);
+    std::string FSRatioParticle = Propeties.data_processor::GetParticleName(FSRatioRecTitle);
+    std::string FSRatioParticleLC = Propeties.data_processor::GetParticleNameLC(FSRatioRecTitle);
+    std::string FSRatioParticleShort = Propeties.data_processor::GetParticleNameShort(FSRatioRecTitle);
     //</editor-fold>
 
     //<editor-fold desc="Setting stats box title">
@@ -696,9 +696,9 @@ void DrawAndSaveFSRatio(const std::string &SampleName, TH1D *pFDpCD_Plot, const 
     //<editor-fold desc="Setting variables">
     std::string FSRatioRecTitle = nFDpCD_Plot->GetTitle();
 
-    std::string FSRatioParticle = Propeties.GetParticleName(FSRatioRecTitle);
-    std::string FSRatioParticleLC = Propeties.GetParticleNameLC(FSRatioRecTitle);
-    std::string FSRatioParticleShort = Propeties.GetParticleNameShort(FSRatioRecTitle);
+    std::string FSRatioParticle = Propeties.data_processor::GetParticleName(FSRatioRecTitle);
+    std::string FSRatioParticleLC = Propeties.data_processor::GetParticleNameLC(FSRatioRecTitle);
+    std::string FSRatioParticleShort = Propeties.data_processor::GetParticleNameShort(FSRatioRecTitle);
     std::string FSRatioFS = Propeties.GetFS(FSRatioRecTitle);
     std::string FSTopology = Propeties.GetTopology(FSRatioRecTitle);
     //</editor-fold>
@@ -1049,9 +1049,9 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot2D &pFDpCD_Plo
     //<editor-fold desc="Setting variables">
     std::string FSRatioRecTitle = nFDpCD_Plot_Clone->GetTitle();
 
-    std::string FSRatioParticle = Propeties.GetParticleName(FSRatioRecTitle);
-    std::string FSRatioParticleLC = Propeties.GetParticleNameLC(FSRatioRecTitle);
-    std::string FSRatioParticleShort = Propeties.GetParticleNameShort(FSRatioRecTitle);
+    std::string FSRatioParticle = Propeties.data_processor::GetParticleName(FSRatioRecTitle);
+    std::string FSRatioParticleLC = Propeties.data_processor::GetParticleNameLC(FSRatioRecTitle);
+    std::string FSRatioParticleShort = Propeties.data_processor::GetParticleNameShort(FSRatioRecTitle);
 
     std::string FSRatioType = Propeties.GetType(FSRatioRecTitle);
     std::string FSRatioPlotsT = "FSRatio";
@@ -1350,9 +1350,9 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot2D &pFDpCD_Plo
     //<editor-fold desc="Setting variables">
     std::string FSRatioRecTitle = nFDpCD_Plot->GetTitle();
 
-    std::string FSRatioParticle = Propeties.GetParticleName(FSRatioRecTitle);
-    std::string FSRatioParticleLC = Propeties.GetParticleNameLC(FSRatioRecTitle);
-    std::string FSRatioParticleShort = Propeties.GetParticleNameShort(FSRatioRecTitle);
+    std::string FSRatioParticle = Propeties.data_processor::GetParticleName(FSRatioRecTitle);
+    std::string FSRatioParticleLC = Propeties.data_processor::GetParticleNameLC(FSRatioRecTitle);
+    std::string FSRatioParticleShort = Propeties.data_processor::GetParticleNameShort(FSRatioRecTitle);
     //</editor-fold>
 
     //<editor-fold desc="Setting stats box title">
@@ -1601,9 +1601,9 @@ void DrawAndSaveFSRatio(const std::string &SampleName, TH2D *pFDpCD_Plot, const 
     //<editor-fold desc="Setting variables">
     std::string FSRatioRecTitle = nFDpCD_Plot->GetTitle();
 
-    std::string FSRatioParticle = Propeties.GetParticleName(FSRatioRecTitle);
-    std::string FSRatioParticleLC = Propeties.GetParticleNameLC(FSRatioRecTitle);
-    std::string FSRatioParticleShort = Propeties.GetParticleNameShort(FSRatioRecTitle);
+    std::string FSRatioParticle = Propeties.data_processor::GetParticleName(FSRatioRecTitle);
+    std::string FSRatioParticleLC = Propeties.data_processor::GetParticleNameLC(FSRatioRecTitle);
+    std::string FSRatioParticleShort = Propeties.data_processor::GetParticleNameShort(FSRatioRecTitle);
     std::string FSRatioStatsTitle = SetStatsTitle(FSRatioRecTitle);
     std::string FSTopology = Propeties.GetTopology(FSRatioRecTitle);
     //</editor-fold>

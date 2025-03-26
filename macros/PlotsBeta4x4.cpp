@@ -23,7 +23,7 @@ root -b -q PlotsBeta4x4.cpp
 //#include "source/functions/to_string_with_precision.h"
 //#include "source/functions/findSubstring.h"
 //#include "source/classes/DSCuts/DSCuts.h"
-//#include "source/classes/hPlots/hPlot1D.h"
+//#include "source/classes/hPlots/hPlot1D.cpp"
 //#include "source/constants.h"
 ////#include "source/functions/Math_func/poly34.cpp"
 
