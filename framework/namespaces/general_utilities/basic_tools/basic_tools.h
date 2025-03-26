@@ -135,36 +135,36 @@ inline bool FindSubstring(const std::string &string1, const std::string &string2
 // GetBeamEnergyFromString function -------------------------------------------------------------------------------------------------------------------------------------
 
 double GetBeamEnergyFromString(const std::string &sn) {
-    double be = 0.;
+    double BeamE_double = 0.;
 
     if (FindSubstring(sn, "598636MeV") || FindSubstring(sn, "598636mev") || FindSubstring(sn, "598636") || FindSubstring(sn, "5986MeV") || FindSubstring(sn, "5986mev") ||
         FindSubstring(sn, "5986") || FindSubstring(sn, "6GeV") || FindSubstring(sn, "6Gev") || FindSubstring(sn, "6gev")) {
-        be = 5.98636;
+        BeamE_double = 5.98636;
     } else if (FindSubstring(sn, "402962MeV") || FindSubstring(sn, "402962mev") || FindSubstring(sn, "402962") || FindSubstring(sn, "4029MeV") || FindSubstring(sn, "4029mev") ||
                FindSubstring(sn, "4029") || FindSubstring(sn, "4GeV") || FindSubstring(sn, "4Gev") || FindSubstring(sn, "4gev")) {
-        be = 4.02962;
+        BeamE_double = 4.02962;
     } else if (FindSubstring(sn, "207052MeV") || FindSubstring(sn, "207052mev") || FindSubstring(sn, "207052") || FindSubstring(sn, "2070MeV") || FindSubstring(sn, "2070mev") ||
                FindSubstring(sn, "2070") || FindSubstring(sn, "2GeV") || FindSubstring(sn, "2Gev") || FindSubstring(sn, "2gev")) {
-        be = 2.07052;
+        BeamE_double = 2.07052;
     }
 
-    return be;
+    return BeamE_double;
 }
 
 // GetBeamEnergyFromDouble function -------------------------------------------------------------------------------------------------------------------------------------
 
 double GetBeamEnergyFromDouble(const double &BeamE) {
-    std::string be;
+    std::string BeamE_str;
 
     if (std::round(BeamE) == 6) {
-        be = "5986MeV";
+        BeamE_str = "5986MeV";
     } else if (std::round(BeamE) == 4) {
-        be = "4029MeV";
+        BeamE_str = "4029MeV";
     } else if (std::round(BeamE) == 2) {
-        be = "2070MeV";
+        BeamE_str = "2070MeV";
     }
 
-    return be;
+    return BeamE_str;
 }
 
 };  // namespace basic_tools
