@@ -21,8 +21,8 @@ TLCuts::TLCuts(const std::string &SampleName, bool calculate_truth_level, bool E
 
             int particlePDGtmp = mcpbank->getPid();
 
-            double Particle_TL_Momentum = rCalc(mcpbank->getPx(), mcpbank->getPy(), mcpbank->getPz());
-            double Particle_TL_Theta = acos((mcpbank->getPz()) / rCalc(mcpbank->getPx(), mcpbank->getPy(), mcpbank->getPz())) * 180.0 / pi;
+            double Particle_TL_Momentum = analysis_math::RadCalc(mcpbank->getPx(), mcpbank->getPy(), mcpbank->getPz());
+            double Particle_TL_Theta = acos((mcpbank->getPz()) / analysis_math::RadCalc(mcpbank->getPx(), mcpbank->getPy(), mcpbank->getPz())) * 180.0 / pi;
             double Particle_TL_Phi = atan2(mcpbank->getPy(), mcpbank->getPx()) * 180.0 / pi;
 
             int BinX = GetBinFromAng(Particle_TL_Phi, Neutron_AMap->GetNbinsX(), Phi_lboundary, Phi_uboundary, false, "Phi");

@@ -10018,8 +10018,8 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
                 int particlePDGtmp = mcpbank->getPid();
 
-                double Particle_TL_Momentum = rCalc(mcpbank->getPx(), mcpbank->getPy(), mcpbank->getPz());
-                double Particle_TL_Theta = acos((mcpbank->getPz()) / rCalc(mcpbank->getPx(), mcpbank->getPy(), mcpbank->getPz())) * 180.0 / pi;
+                double Particle_TL_Momentum = analysis_math::RadCalc(mcpbank->getPx(), mcpbank->getPy(), mcpbank->getPz());
+                double Particle_TL_Theta = acos((mcpbank->getPz()) / analysis_math::RadCalc(mcpbank->getPx(), mcpbank->getPy(), mcpbank->getPz())) * 180.0 / pi;
                 double Particle_TL_Phi = atan2(mcpbank->getPy(), mcpbank->getPx()) * 180.0 / pi;
 
                 bool inFD = ((Particle_TL_Theta >= ThetaFD.GetLowerCut()) && (Particle_TL_Theta <= ThetaFD.GetUpperCut()));
@@ -10147,8 +10147,8 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
             if (TL_IDed_Leading_nFD_ind != -1) {
                 mcpbank->setEntry(TL_IDed_Leading_nFD_ind);
 
-                Leading_TL_FDNeutron_Momentum = rCalc(mcpbank->getPx(), mcpbank->getPy(), mcpbank->getPz());
-                Leading_TL_FDNeutron_Theta = acos((mcpbank->getPz()) / rCalc(mcpbank->getPx(), mcpbank->getPy(), mcpbank->getPz())) * 180.0 / pi;
+                Leading_TL_FDNeutron_Momentum = analysis_math::RadCalc(mcpbank->getPx(), mcpbank->getPy(), mcpbank->getPz());
+                Leading_TL_FDNeutron_Theta = acos((mcpbank->getPz()) / analysis_math::RadCalc(mcpbank->getPx(), mcpbank->getPy(), mcpbank->getPz())) * 180.0 / pi;
                 Leading_TL_FDNeutron_Phi = atan2(mcpbank->getPy(), mcpbank->getPx()) * 180.0 / pi;
 
                 Leading_Neutron_inFD_wFC = aMaps_master.IsInFDQuery((!TL_fiducial_cuts), ThetaFD, "Neutron", Leading_TL_FDNeutron_Momentum, Leading_TL_FDNeutron_Theta,
@@ -10221,8 +10221,8 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
                 int particlePDGtmp = mcpbank->getPid();
 
-                double Particle_TL_Momentum = rCalc(mcpbank->getPx(), mcpbank->getPy(), mcpbank->getPz());
-                double Particle_TL_Theta = acos((mcpbank->getPz()) / rCalc(mcpbank->getPx(), mcpbank->getPy(), mcpbank->getPz())) * 180.0 / pi;
+                double Particle_TL_Momentum = analysis_math::RadCalc(mcpbank->getPx(), mcpbank->getPy(), mcpbank->getPz());
+                double Particle_TL_Theta = acos((mcpbank->getPz()) / analysis_math::RadCalc(mcpbank->getPx(), mcpbank->getPy(), mcpbank->getPz())) * 180.0 / pi;
                 double Particle_TL_Phi = atan2(mcpbank->getPy(), mcpbank->getPx()) * 180.0 / pi;
 
                 bool inFD = ((Particle_TL_Theta >= ThetaFD.GetLowerCut()) && (Particle_TL_Theta <= ThetaFD.GetUpperCut()));
@@ -11051,8 +11051,8 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
                 int particlePDGtmp = mcpbank->getPid();
 
-                double Particle_TL_Momentum = rCalc(mcpbank->getPx(), mcpbank->getPy(), mcpbank->getPz());
-                double Particle_TL_Theta = acos((mcpbank->getPz()) / rCalc(mcpbank->getPx(), mcpbank->getPy(), mcpbank->getPz())) * 180.0 / pi;
+                double Particle_TL_Momentum = analysis_math::RadCalc(mcpbank->getPx(), mcpbank->getPy(), mcpbank->getPz());
+                double Particle_TL_Theta = acos((mcpbank->getPz()) / analysis_math::RadCalc(mcpbank->getPx(), mcpbank->getPy(), mcpbank->getPz())) * 180.0 / pi;
                 double Particle_TL_Phi = atan2(mcpbank->getPy(), mcpbank->getPx()) * 180.0 / pi;
 
                 bool inFD_AMaps = ((Particle_TL_Theta >= ThetaFD_AMaps.GetLowerCut()) && (Particle_TL_Theta <= ThetaFD_AMaps.GetUpperCut()));
@@ -11155,8 +11155,8 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
                 int particlePDGtmp = mcpbank->getPid();
 
-                double Particle_TL_Momentum = rCalc(mcpbank->getPx(), mcpbank->getPy(), mcpbank->getPz());
-                double Particle_TL_Theta = acos((mcpbank->getPz()) / rCalc(mcpbank->getPx(), mcpbank->getPy(), mcpbank->getPz())) * 180.0 / pi;
+                double Particle_TL_Momentum = analysis_math::RadCalc(mcpbank->getPx(), mcpbank->getPy(), mcpbank->getPz());
+                double Particle_TL_Theta = acos((mcpbank->getPz()) / analysis_math::RadCalc(mcpbank->getPx(), mcpbank->getPy(), mcpbank->getPz())) * 180.0 / pi;
                 double Particle_TL_Phi = atan2(mcpbank->getPy(), mcpbank->getPx()) * 180.0 / pi;
 
                 bool inFD = ((Particle_TL_Theta >= ThetaFD.GetLowerCut()) && (Particle_TL_Theta <= ThetaFD.GetUpperCut()));
@@ -11190,8 +11190,8 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
                 int particlePDGtmp = mcpbank->getPid();
 
-                double Particle_TL_Momentum = rCalc(mcpbank->getPx(), mcpbank->getPy(), mcpbank->getPz());
-                double Particle_TL_Theta = acos((mcpbank->getPz()) / rCalc(mcpbank->getPx(), mcpbank->getPy(), mcpbank->getPz())) * 180.0 / pi;
+                double Particle_TL_Momentum = analysis_math::RadCalc(mcpbank->getPx(), mcpbank->getPy(), mcpbank->getPz());
+                double Particle_TL_Theta = acos((mcpbank->getPz()) / analysis_math::RadCalc(mcpbank->getPx(), mcpbank->getPy(), mcpbank->getPz())) * 180.0 / pi;
                 double Particle_TL_Phi = atan2(mcpbank->getPy(), mcpbank->getPx()) * 180.0 / pi;
 
                 bool inFD = ((Particle_TL_Theta >= ThetaFD.GetLowerCut()) && (Particle_TL_Theta <= ThetaFD.GetUpperCut()));
@@ -12975,7 +12975,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                         mcpbank_pRes->setEntry(i);
 
                         /* TL Proton kinematic variables */
-                        double TLProtonP = rCalc(mcpbank_pRes->getPx(), mcpbank_pRes->getPy(), mcpbank_pRes->getPz());
+                        double TLProtonP = analysis_math::RadCalc(mcpbank_pRes->getPx(), mcpbank_pRes->getPy(), mcpbank_pRes->getPz());
                         double TLProtonTheta = acos(mcpbank_pRes->getPz() / TLProtonP) * 180.0 / pi;
                         double TLProtonPhi = atan2(mcpbank_pRes->getPy(), mcpbank_pRes->getPx()) * 180.0 / pi;
 
@@ -13822,7 +13822,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                         mcpbank_nRes->setEntry(i);
 
                         /* TL neutron kinematic variables */
-                        double TLNeutronP = rCalc(mcpbank_nRes->getPx(), mcpbank_nRes->getPy(), mcpbank_nRes->getPz());
+                        double TLNeutronP = analysis_math::RadCalc(mcpbank_nRes->getPx(), mcpbank_nRes->getPy(), mcpbank_nRes->getPz());
                         double TLNeutronTheta = acos(mcpbank_nRes->getPz() / TLNeutronP) * 180.0 / pi;
                         double TLNeutronPhi = atan2(mcpbank_nRes->getPy(), mcpbank_nRes->getPx()) * 180.0 / pi;
 

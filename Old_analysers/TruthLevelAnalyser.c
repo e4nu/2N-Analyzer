@@ -5677,11 +5677,11 @@ void gst::Loop() {
         //<editor-fold desc="Inclusive calculations">
         //      Energy transfer VS q3,q calculations:
         double q3 = abs(pzv - pzl);
-        double q = rCalc(pxv - pxl, pyv - pyl, pzv - pzl);
+        double q = analysis_math::RadCalc(pxv - pxl, pyv - pyl, pzv - pzl);
 
         E_Trans_VS_q_all_inclusive->Fill(q3, Ev - El);
         Q2_hist_inclusive->Fill(Q2);
-        P_lp_hist_inclusive->Fill(rCalc(pxl, pyl, pzl));
+        P_lp_hist_inclusive->Fill(analysis_math::RadCalc(pxl, pyl, pzl));
 
         if (qel == true) {
             E_Trans_VS_q_QEL_inclusive->Fill(q, Ev - El);
@@ -5689,7 +5689,7 @@ void gst::Loop() {
             E_Trans_VS_q_MEC_inclusive->Fill(q, Ev - El);
         }
 
-        double Theta_lp_inclusive = acos(pzl / rCalc(pxl, pyl, pzl)) * 180.0 / 3.14159265359;  // In degrees
+        double Theta_lp_inclusive = acos(pzl / analysis_math::RadCalc(pxl, pyl, pzl)) * 180.0 / 3.14159265359;  // In degrees
         theta_lp_inclusive->Fill(Theta_lp_inclusive);
         double Phi_lp_inclusive = atan2(pyl, pxl) * 180.0 / 3.14159265359;
         phi_lp_inclusive->Fill(Phi_lp_inclusive);
@@ -5746,13 +5746,13 @@ void gst::Loop() {
                     //</editor-fold>
 
                     //                  Momentum of first proton in Ef[]:
-                    double P_n1_2n = rCalc(pxf[Neutron_1_ind_2n], pyf[Neutron_1_ind_2n], pzf[Neutron_1_ind_2n]);
+                    double P_n1_2n = analysis_math::RadCalc(pxf[Neutron_1_ind_2n], pyf[Neutron_1_ind_2n], pzf[Neutron_1_ind_2n]);
 
                     //                  Momentum of second proton in Ef[]:
-                    double P_n2_2n = rCalc(pxf[Neutron_2_ind_2n], pyf[Neutron_2_ind_2n], pzf[Neutron_2_ind_2n]);
+                    double P_n2_2n = analysis_math::RadCalc(pxf[Neutron_2_ind_2n], pyf[Neutron_2_ind_2n], pzf[Neutron_2_ind_2n]);
 
                     //                  Momentum of second proton in Ef[]:
-                    double P_lp_2n = rCalc(pxl, pyl, pzl);
+                    double P_lp_2n = analysis_math::RadCalc(pxl, pyl, pzl);
 
                     ////                  Leading proton:
                     //                    double P_L_2p = -1;
@@ -5792,7 +5792,7 @@ void gst::Loop() {
                             //                            fsEl_MEC_2p->Fill(El);
                         }
 
-                        //                        double Theta_lp_2p = acos(pzl / rCalc(pxl, pyl, pzl)) * 180.0 / 3.14159265359; // Theta_lp_2p is in degrees
+                        //                        double Theta_lp_2p = acos(pzl / analysis_math::RadCalc(pxl, pyl, pzl)) * 180.0 / 3.14159265359; // Theta_lp_2p is in degrees
                         //
                         ////                      NOT REALLY dtheta:
                         //                        double d_theta_2p = acos(
@@ -5876,8 +5876,8 @@ void gst::Loop() {
                         //
                         //                        E_cal_VS_theta_lp_all_int_2p->Fill(Theta_lp_2p, E_cal_2p);
                         //                        E_cal_VS_Q2_all_int_2p->Fill(Q2, E_cal_2p);
-                        //                        E_cal_VS_dtheta_all_int_2p->Fill(fabs(acos(pzf[Proton_1_ind_2p] / rCalc(pxf[Proton_1_ind_2p], pyf[Proton_1_ind_2p], pzf[Proton_1_ind_2p])) -
-                        //                                                              acos(pzf[Proton_2_ind_2p] / rCalc(pxf[Proton_2_ind_2p], pyf[Proton_2_ind_2p], pzf[Proton_2_ind_2p])))
+                        //                        E_cal_VS_dtheta_all_int_2p->Fill(fabs(acos(pzf[Proton_1_ind_2p] / analysis_math::RadCalc(pxf[Proton_1_ind_2p], pyf[Proton_1_ind_2p], pzf[Proton_1_ind_2p])) -
+                        //                                                              acos(pzf[Proton_2_ind_2p] / analysis_math::RadCalc(pxf[Proton_2_ind_2p], pyf[Proton_2_ind_2p], pzf[Proton_2_ind_2p])))
                         //                                                              *
                         //                                                         180.0 / 3.14159265359, E_cal_2p);
                         //
@@ -6023,13 +6023,13 @@ void gst::Loop() {
                     //</editor-fold>
 
                     //                  Momentum of first proton in Ef[]:
-                    double P_p1_2p = rCalc(pxf[Proton_1_ind_2p], pyf[Proton_1_ind_2p], pzf[Proton_1_ind_2p]);
+                    double P_p1_2p = analysis_math::RadCalc(pxf[Proton_1_ind_2p], pyf[Proton_1_ind_2p], pzf[Proton_1_ind_2p]);
 
                     //                  Momentum of second proton in Ef[]:
-                    double P_p2_2p = rCalc(pxf[Proton_2_ind_2p], pyf[Proton_2_ind_2p], pzf[Proton_2_ind_2p]);
+                    double P_p2_2p = analysis_math::RadCalc(pxf[Proton_2_ind_2p], pyf[Proton_2_ind_2p], pzf[Proton_2_ind_2p]);
 
                     //                  Momentum of second proton in Ef[]:
-                    double P_lp_2p = rCalc(pxl, pyl, pzl);
+                    double P_lp_2p = analysis_math::RadCalc(pxl, pyl, pzl);
 
                     //                  Leading proton:
                     double P_L_2p = -1;
@@ -6048,7 +6048,7 @@ void gst::Loop() {
                             E_cal_2p = El + (Ef[Proton_1_ind_2p] - 0.938272) + (Ef[Proton_2_ind_2p] - 0.938272);
                         }
 
-                        double Theta_lp_2p = acos(pzl / rCalc(pxl, pyl, pzl)) * 180.0 / 3.14159265359;  // Theta_lp_2p is in degrees
+                        double Theta_lp_2p = acos(pzl / analysis_math::RadCalc(pxl, pyl, pzl)) * 180.0 / 3.14159265359;  // Theta_lp_2p is in degrees
 
                         //                      NOT REALLY dtheta:
                         double d_theta_2p = acos((pxf[Proton_1_ind_2p] * pxf[Proton_2_ind_2p] + pyf[Proton_1_ind_2p] * pyf[Proton_2_ind_2p] + pzf[Proton_1_ind_2p] * pzf[Proton_2_ind_2p]) /
@@ -6140,8 +6140,8 @@ void gst::Loop() {
 
                         E_cal_VS_theta_lp_all_int_2p->Fill(Theta_lp_2p, E_cal_2p);
                         E_cal_VS_Q2_all_int_2p->Fill(Q2, E_cal_2p);
-                        E_cal_VS_dtheta_all_int_2p->Fill(fabs(acos(pzf[Proton_1_ind_2p] / rCalc(pxf[Proton_1_ind_2p], pyf[Proton_1_ind_2p], pzf[Proton_1_ind_2p])) -
-                                                              acos(pzf[Proton_2_ind_2p] / rCalc(pxf[Proton_2_ind_2p], pyf[Proton_2_ind_2p], pzf[Proton_2_ind_2p]))) *
+                        E_cal_VS_dtheta_all_int_2p->Fill(fabs(acos(pzf[Proton_1_ind_2p] / analysis_math::RadCalc(pxf[Proton_1_ind_2p], pyf[Proton_1_ind_2p], pzf[Proton_1_ind_2p])) -
+                                                              acos(pzf[Proton_2_ind_2p] / analysis_math::RadCalc(pxf[Proton_2_ind_2p], pyf[Proton_2_ind_2p], pzf[Proton_2_ind_2p]))) *
                                                              180.0 / 3.14159265359,
                                                          E_cal_2p);
 
@@ -6281,13 +6281,13 @@ void gst::Loop() {
                     //</editor-fold>
 
                     //                  Momentum of first proton in Ei[]:
-                    double P_p1_2p = rCalc(pxi[Proton_1_ind_2p], pyi[Proton_1_ind_2p], pzi[Proton_1_ind_2p]);
+                    double P_p1_2p = analysis_math::RadCalc(pxi[Proton_1_ind_2p], pyi[Proton_1_ind_2p], pzi[Proton_1_ind_2p]);
 
                     //                  Momentum of second proton in Ei[]:
-                    double P_p2_2p = rCalc(pxi[Proton_2_ind_2p], pyi[Proton_2_ind_2p], pzi[Proton_2_ind_2p]);
+                    double P_p2_2p = analysis_math::RadCalc(pxi[Proton_2_ind_2p], pyi[Proton_2_ind_2p], pzi[Proton_2_ind_2p]);
 
                     //                  Momentum of second proton in Ei[]:
-                    double P_lp_2p = rCalc(pxl, pyl, pzl);
+                    double P_lp_2p = analysis_math::RadCalc(pxl, pyl, pzl);
 
                     //                  Leading proton:
                     double P_L_2p = -1;
@@ -6305,7 +6305,7 @@ void gst::Loop() {
                             E_cal_2p = El + (Ei[Proton_1_ind_2p] - 0.938272) + (Ei[Proton_2_ind_2p] - 0.938272);
                         }
 
-                        double Theta_lp_2p = acos(pzl / rCalc(pxl, pyl, pzl)) * 180.0 / 3.14159265359;  // Theta_lp_2p is in degrees
+                        double Theta_lp_2p = acos(pzl / analysis_math::RadCalc(pxl, pyl, pzl)) * 180.0 / 3.14159265359;  // Theta_lp_2p is in degrees
 
                         //                      NOT REALLY dtheta:
                         double d_theta_2p = acos((pxi[Proton_1_ind_2p] * pxi[Proton_2_ind_2p] + pyi[Proton_1_ind_2p] * pyi[Proton_2_ind_2p] + pzi[Proton_1_ind_2p] * pzi[Proton_2_ind_2p]) /
@@ -6397,8 +6397,8 @@ void gst::Loop() {
 
                         E_cal_VS_theta_lp_all_int_2p->Fill(Theta_lp_2p, E_cal_2p);
                         E_cal_VS_Q2_all_int_2p->Fill(Q2, E_cal_2p);
-                        E_cal_VS_dtheta_all_int_2p->Fill(fabs(acos(pzi[Proton_1_ind_2p] / rCalc(pxi[Proton_1_ind_2p], pyi[Proton_1_ind_2p], pzi[Proton_1_ind_2p])) -
-                                                              acos(pzi[Proton_2_ind_2p] / rCalc(pxi[Proton_2_ind_2p], pyi[Proton_2_ind_2p], pzi[Proton_2_ind_2p]))) *
+                        E_cal_VS_dtheta_all_int_2p->Fill(fabs(acos(pzi[Proton_1_ind_2p] / analysis_math::RadCalc(pxi[Proton_1_ind_2p], pyi[Proton_1_ind_2p], pzi[Proton_1_ind_2p])) -
+                                                              acos(pzi[Proton_2_ind_2p] / analysis_math::RadCalc(pxi[Proton_2_ind_2p], pyi[Proton_2_ind_2p], pzi[Proton_2_ind_2p]))) *
                                                              180.0 / 3.14159265359,
                                                          E_cal_2p);
 
@@ -6534,10 +6534,10 @@ void gst::Loop() {
                     //</editor-fold>
 
                     //                  Proton momentum:
-                    double P_p_1n1p = rCalc(pxf[Proton_ind_1n1p], pyf[Proton_ind_1n1p], pzf[Proton_ind_1n1p]);
+                    double P_p_1n1p = analysis_math::RadCalc(pxf[Proton_ind_1n1p], pyf[Proton_ind_1n1p], pzf[Proton_ind_1n1p]);
 
                     //                  Neutron momentum:
-                    double P_n_1n1p = rCalc(pxf[Neutron_ind_1n1p], pyf[Neutron_ind_1n1p], pzf[Neutron_ind_1n1p]);
+                    double P_n_1n1p = analysis_math::RadCalc(pxf[Neutron_ind_1n1p], pyf[Neutron_ind_1n1p], pzf[Neutron_ind_1n1p]);
                     ;
 
                     //                   Momentum cut to at least 300 [MeV/c] == 0.3 [GeV/c]:
@@ -6551,14 +6551,14 @@ void gst::Loop() {
                             E_cal_1n1p = El + (Ef[Proton_ind_1n1p] - 0.938272) + (Ef[Neutron_ind_1n1p] - 0.939565);
                         }
 
-                        double Theta_lp_1n1p = acos(pzl / rCalc(pxl, pyl, pzl)) * 180.0 / 3.14159265359;
+                        double Theta_lp_1n1p = acos(pzl / analysis_math::RadCalc(pxl, pyl, pzl)) * 180.0 / 3.14159265359;
 
                         double phi_p = atan2(pyf[Proton_ind_1n1p], pxf[Proton_ind_1n1p]) * 180.0 / 3.14159265359;
                         double phi_n = atan2(pyf[Neutron_ind_1n1p], pxf[Neutron_ind_1n1p]) * 180.0 / 3.14159265359;
                         double d_phi_1n1p = phi_p - phi_n;  // In radians
 
-                        double theta_p = acos(pzf[Proton_ind_1n1p] / rCalc(pxf[Proton_ind_1n1p], pyf[Proton_ind_1n1p], pzf[Proton_ind_1n1p])) * 180.0 / 3.14159265359;
-                        double theta_n = acos(pzf[Neutron_ind_1n1p] / rCalc(pxf[Neutron_ind_1n1p], pyf[Neutron_ind_1n1p], pzf[Neutron_ind_1n1p])) * 180.0 / 3.14159265359;
+                        double theta_p = acos(pzf[Proton_ind_1n1p] / analysis_math::RadCalc(pxf[Proton_ind_1n1p], pyf[Proton_ind_1n1p], pzf[Proton_ind_1n1p])) * 180.0 / 3.14159265359;
+                        double theta_n = acos(pzf[Neutron_ind_1n1p] / analysis_math::RadCalc(pxf[Neutron_ind_1n1p], pyf[Neutron_ind_1n1p], pzf[Neutron_ind_1n1p])) * 180.0 / 3.14159265359;
 
                         //                      NOT REALLY dtheta:
                         double d_theta_1n1p =
@@ -6566,7 +6566,7 @@ void gst::Loop() {
                                  (P_p_1n1p * P_n_1n1p));
 
                         //                      Lepton momentum:
-                        double P_lp_1n1p = rCalc(pxl, pyl, pzl);
+                        double P_lp_1n1p = analysis_math::RadCalc(pxl, pyl, pzl);
 
                         E_Trans_VS_q3_all_1n1p->Fill(q3, Ev - El);
 
@@ -6712,10 +6712,10 @@ void gst::Loop() {
                     //</editor-fold>
 
                     //                  Proton momentum:
-                    double P_p_1n1p = rCalc(pxi[Proton_ind_1n1p], pyi[Proton_ind_1n1p], pzi[Proton_ind_1n1p]);
+                    double P_p_1n1p = analysis_math::RadCalc(pxi[Proton_ind_1n1p], pyi[Proton_ind_1n1p], pzi[Proton_ind_1n1p]);
 
                     //                  Neutron momentum:
-                    double P_n_1n1p = rCalc(pxi[Neutron_ind_1n1p], pyi[Neutron_ind_1n1p], pzi[Neutron_ind_1n1p]);
+                    double P_n_1n1p = analysis_math::RadCalc(pxi[Neutron_ind_1n1p], pyi[Neutron_ind_1n1p], pzi[Neutron_ind_1n1p]);
                     ;
 
                     //                  Momentum cut to at least 300 [MeV/c] == 0.3 [GeV/c]:
@@ -6728,14 +6728,14 @@ void gst::Loop() {
                             E_cal_1n1p = El + (Ei[Proton_ind_1n1p] - 0.938272) + (Ei[Neutron_ind_1n1p] - 0.939565);
                         }
 
-                        double Theta_lp_1n1p = acos(pzl / rCalc(pxl, pyl, pzl)) * 180.0 / 3.14159265359;
+                        double Theta_lp_1n1p = acos(pzl / analysis_math::RadCalc(pxl, pyl, pzl)) * 180.0 / 3.14159265359;
 
                         double phi_p = atan2(pyi[Proton_ind_1n1p], pxi[Proton_ind_1n1p]) * 180.0 / 3.14159265359;
                         double phi_n = atan2(pyi[Neutron_ind_1n1p], pxi[Neutron_ind_1n1p]) * 180.0 / 3.14159265359;
                         double d_phi_1n1p = phi_p - phi_n;  // In radians
 
-                        double theta_p = acos(pzi[Proton_ind_1n1p] / rCalc(pxi[Proton_ind_1n1p], pyi[Proton_ind_1n1p], pzi[Proton_ind_1n1p])) * 180.0 / 3.14159265359;
-                        double theta_n = acos(pzi[Neutron_ind_1n1p] / rCalc(pxi[Neutron_ind_1n1p], pyi[Neutron_ind_1n1p], pzi[Neutron_ind_1n1p])) * 180.0 / 3.14159265359;
+                        double theta_p = acos(pzi[Proton_ind_1n1p] / analysis_math::RadCalc(pxi[Proton_ind_1n1p], pyi[Proton_ind_1n1p], pzi[Proton_ind_1n1p])) * 180.0 / 3.14159265359;
+                        double theta_n = acos(pzi[Neutron_ind_1n1p] / analysis_math::RadCalc(pxi[Neutron_ind_1n1p], pyi[Neutron_ind_1n1p], pzi[Neutron_ind_1n1p])) * 180.0 / 3.14159265359;
 
                         //                      NOT REALLY dtheta:
                         double d_theta_1n1p =
@@ -6743,7 +6743,7 @@ void gst::Loop() {
                                  (P_p_1n1p * P_n_1n1p));
 
                         //                      Lepton momentum:
-                        double P_lp_1n1p = rCalc(pxl, pyl, pzl);
+                        double P_lp_1n1p = analysis_math::RadCalc(pxl, pyl, pzl);
 
                         E_Trans_VS_q3_all_1n1p->Fill(q3, Ev - El);
 
@@ -6893,12 +6893,12 @@ void gst::Loop() {
                     double P_lp_f = sqrt(pxl * pxl + pyl * pyl + pzl * pzl);
 
                     //                  Leading proton (according to "the proton with the most momentum is labeled as the leading proton") momentum modulus:
-                    double P_L = fmax(rCalc(pxf[Proton_1_ind_article], pyf[Proton_1_ind_article], pzf[Proton_1_ind_article]),
-                                      rCalc(pxf[Proton_2_ind_article], pyf[Proton_2_ind_article], pzf[Proton_2_ind_article]));
+                    double P_L = fmax(analysis_math::RadCalc(pxf[Proton_1_ind_article], pyf[Proton_1_ind_article], pzf[Proton_1_ind_article]),
+                                      analysis_math::RadCalc(pxf[Proton_2_ind_article], pyf[Proton_2_ind_article], pzf[Proton_2_ind_article]));
 
                     //                  Recoil proton (according to "the secondary proton is labeled as the recoil proton") momentum modulus:
-                    double P_R = fmin(rCalc(pxf[Proton_1_ind_article], pyf[Proton_1_ind_article], pzf[Proton_1_ind_article]),
-                                      rCalc(pxf[Proton_2_ind_article], pyf[Proton_2_ind_article], pzf[Proton_2_ind_article]));
+                    double P_R = fmin(analysis_math::RadCalc(pxf[Proton_1_ind_article], pyf[Proton_1_ind_article], pzf[Proton_1_ind_article]),
+                                      analysis_math::RadCalc(pxf[Proton_2_ind_article], pyf[Proton_2_ind_article], pzf[Proton_2_ind_article]));
 
                     if ((P_lp_f >= P_lp_lower_lim_MicroBooNE && P_lp_f <= P_lp_upper_lim_MicroBooNE) && (P_L >= P_L_lower_lim_MicroBooNE && P_L <= P_L_upper_lim_MicroBooNE) &&
                         (P_R >= P_R_lower_lim_MicroBooNE && P_R <= P_R_upper_lim_MicroBooNE)) {
@@ -6922,8 +6922,8 @@ void gst::Loop() {
 
                             //                          Gamma_Lab calculations -------------------------------------------------
 
-                            double P_p1 = rCalc(pxf[Proton_1_ind_article], pyf[Proton_1_ind_article], pzf[Proton_1_ind_article]);
-                            double P_p2 = rCalc(pxf[Proton_2_ind_article], pyf[Proton_2_ind_article], pzf[Proton_2_ind_article]);
+                            double P_p1 = analysis_math::RadCalc(pxf[Proton_1_ind_article], pyf[Proton_1_ind_article], pzf[Proton_1_ind_article]);
+                            double P_p2 = analysis_math::RadCalc(pxf[Proton_2_ind_article], pyf[Proton_2_ind_article], pzf[Proton_2_ind_article]);
 
                             gamma_Lab_hist->Fill((pxf[Proton_1_ind_article] * pxf[Proton_2_ind_article] + pyf[Proton_1_ind_article] * pyf[Proton_2_ind_article] +
                                                   pzf[Proton_1_ind_article] * pzf[Proton_2_ind_article]) /
@@ -6943,7 +6943,7 @@ void gst::Loop() {
                         } else {  // In events with pions
                             for (int i = 0; i < nf; i++) {
                                 if (abs(pdgf[i]) == 211) {  // The abs() for either pi+ or pi-
-                                    double P_pion = rCalc(pxf[i], pyf[i], pzf[i]);
+                                    double P_pion = analysis_math::RadCalc(pxf[i], pyf[i], pzf[i]);
 
                                     //                                  Pion momentum modulus (according to "no charged pions with momentum above 65 MeV/c (= 0.065 GeV)"):
                                     if (P_pion <= P_pion_upper_lim_MicroBooNE) {
@@ -6962,8 +6962,8 @@ void gst::Loop() {
 
                                         //                                      Gamma_Lab calculations -------------------------------------------------
 
-                                        double P_p1 = rCalc(pxf[Proton_1_ind_article], pyf[Proton_1_ind_article], pzf[Proton_1_ind_article]);
-                                        double P_p2 = rCalc(pxf[Proton_2_ind_article], pyf[Proton_2_ind_article], pzf[Proton_2_ind_article]);
+                                        double P_p1 = analysis_math::RadCalc(pxf[Proton_1_ind_article], pyf[Proton_1_ind_article], pzf[Proton_1_ind_article]);
+                                        double P_p2 = analysis_math::RadCalc(pxf[Proton_2_ind_article], pyf[Proton_2_ind_article], pzf[Proton_2_ind_article]);
 
                                         gamma_Lab_hist->Fill((pxf[Proton_1_ind_article] * pxf[Proton_2_ind_article] + pyf[Proton_1_ind_article] * pyf[Proton_2_ind_article] +
                                                               pzf[Proton_1_ind_article] * pzf[Proton_2_ind_article]) /
@@ -7007,12 +7007,12 @@ void gst::Loop() {
                     double P_lp_i = sqrt(pxl * pxl + pyl * pyl + pzl * pzl);
 
                     //                  Leading proton (according to "the proton with the most momentum is labeled as the leading proton") momentum modulus:
-                    double P_L = fmax(rCalc(pxi[Proton_1_ind_article], pyi[Proton_1_ind_article], pzi[Proton_1_ind_article]),
-                                      rCalc(pxi[Proton_2_ind_article], pyi[Proton_2_ind_article], pzi[Proton_2_ind_article]));
+                    double P_L = fmax(analysis_math::RadCalc(pxi[Proton_1_ind_article], pyi[Proton_1_ind_article], pzi[Proton_1_ind_article]),
+                                      analysis_math::RadCalc(pxi[Proton_2_ind_article], pyi[Proton_2_ind_article], pzi[Proton_2_ind_article]));
 
                     //                  Recoil proton (according to "the secondary proton is labeled as the recoil proton") momentum modulus:
-                    double P_R = fmin(rCalc(pxi[Proton_1_ind_article], pyi[Proton_1_ind_article], pzi[Proton_1_ind_article]),
-                                      rCalc(pxi[Proton_2_ind_article], pyi[Proton_2_ind_article], pzi[Proton_2_ind_article]));
+                    double P_R = fmin(analysis_math::RadCalc(pxi[Proton_1_ind_article], pyi[Proton_1_ind_article], pzi[Proton_1_ind_article]),
+                                      analysis_math::RadCalc(pxi[Proton_2_ind_article], pyi[Proton_2_ind_article], pzi[Proton_2_ind_article]));
 
                     //<editor-fold desc="MicroBooNE momentum plots (with charged pions case)">
                     P_R_hist->Fill(P_R);
@@ -7043,8 +7043,8 @@ void gst::Loop() {
 
                             //                          Gamma_Lab calculations -------------------------------------------------
 
-                            double P_p1 = rCalc(pxi[Proton_1_ind_article], pyi[Proton_1_ind_article], pzi[Proton_1_ind_article]);
-                            double P_p2 = rCalc(pxi[Proton_2_ind_article], pyi[Proton_2_ind_article], pzi[Proton_2_ind_article]);
+                            double P_p1 = analysis_math::RadCalc(pxi[Proton_1_ind_article], pyi[Proton_1_ind_article], pzi[Proton_1_ind_article]);
+                            double P_p2 = analysis_math::RadCalc(pxi[Proton_2_ind_article], pyi[Proton_2_ind_article], pzi[Proton_2_ind_article]);
 
                             gamma_Lab_hist->Fill((pxi[Proton_1_ind_article] * pxi[Proton_2_ind_article] + pyi[Proton_1_ind_article] * pyi[Proton_2_ind_article] +
                                                   pzi[Proton_1_ind_article] * pzi[Proton_2_ind_article]) /
@@ -7065,7 +7065,7 @@ void gst::Loop() {
                             for (int i = 0; i < ni; i++) {
                                 //                            for (int i = 0; i < length; i++) {
                                 if (abs(pdgi[i]) == 211) {  // The abs() for either pi+ or pi-
-                                    double P_pion = rCalc(pxi[i], pyi[i], pzi[i]);
+                                    double P_pion = analysis_math::RadCalc(pxi[i], pyi[i], pzi[i]);
 
                                     //                                  Pion momentum modulus (according to "no charged pions with momentum above 65 MeV/c (= 0.065 GeV)"):
                                     if (P_pion <= P_pion_upper_lim_MicroBooNE) {
@@ -7084,8 +7084,8 @@ void gst::Loop() {
 
                                         //                                      Gamma_Lab calculations -------------------------------------------------
 
-                                        double P_p1 = rCalc(pxi[Proton_1_ind_article], pyi[Proton_1_ind_article], pzi[Proton_1_ind_article]);
-                                        double P_p2 = rCalc(pxi[Proton_2_ind_article], pyi[Proton_2_ind_article], pzi[Proton_2_ind_article]);
+                                        double P_p1 = analysis_math::RadCalc(pxi[Proton_1_ind_article], pyi[Proton_1_ind_article], pzi[Proton_1_ind_article]);
+                                        double P_p2 = analysis_math::RadCalc(pxi[Proton_2_ind_article], pyi[Proton_2_ind_article], pzi[Proton_2_ind_article]);
 
                                         gamma_Lab_hist->Fill((pxi[Proton_1_ind_article] * pxi[Proton_2_ind_article] + pyi[Proton_1_ind_article] * pyi[Proton_2_ind_article] +
                                                               pzi[Proton_1_ind_article] * pzi[Proton_2_ind_article]) /

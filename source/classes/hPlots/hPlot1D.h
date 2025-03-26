@@ -30,7 +30,7 @@
 #include <typeinfo>
 #include <vector>
 
-#include "../hData/hData.h"
+#include "../hData/hData.cpp"
 #include "../../namespaces/general_utilities/utilities/utilities.h"
 
 #if IndependentCanvasPDF
