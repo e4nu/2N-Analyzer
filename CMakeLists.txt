@@ -232,8 +232,6 @@ add_executable(project ${CLAS12ROOT_SOURCES} ${CLAS12BANKS_SOURCES} ${HIPO4_SOUR
         main.c
         run.csh
         Old_analysers/TruthLevelAnalyser.c
-        TempInclude/Classes/HistogramsTemp/HistogramsTemp.cpp
-        TempInclude/Classes/HistogramsTemp/HistogramsTemp.h
         source/classes/Settings/Settings.cpp
         source/classes/Settings/Settings.h
         source/classes/Settings/CustomPlotsDirectory.cpp

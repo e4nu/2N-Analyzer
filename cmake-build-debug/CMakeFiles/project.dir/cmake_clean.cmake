@@ -3,8 +3,6 @@ file(REMOVE_RECURSE
   "CMakeFiles/project.dir/Old_analysers/DetectorSimulationAnalyser.C.o.d"
   "CMakeFiles/project.dir/Old_analysers/TruthLevelAnalyser.c.o"
   "CMakeFiles/project.dir/Old_analysers/TruthLevelAnalyser.c.o.d"
-  "CMakeFiles/project.dir/TempInclude/Classes/HistogramsTemp/HistogramsTemp.cpp.o"
-  "CMakeFiles/project.dir/TempInclude/Classes/HistogramsTemp/HistogramsTemp.cpp.o.d"
   "CMakeFiles/project.dir/macros/AMapsDiveTest.cpp.o"
   "CMakeFiles/project.dir/macros/AMapsDiveTest.cpp.o.d"
   "CMakeFiles/project.dir/macros/BetaFitAndSave.cpp.o"

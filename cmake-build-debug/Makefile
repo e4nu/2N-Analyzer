@@ -177,30 +177,6 @@ Old_analysers/TruthLevelAnalyser.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/Old_analysers/TruthLevelAnalyser.c.s
 .PHONY : Old_analysers/TruthLevelAnalyser.c.s
 
-TempInclude/Classes/HistogramsTemp/HistogramsTemp.o: TempInclude/Classes/HistogramsTemp/HistogramsTemp.cpp.o
-.PHONY : TempInclude/Classes/HistogramsTemp/HistogramsTemp.o
-
-# target to build an object file
-TempInclude/Classes/HistogramsTemp/HistogramsTemp.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/TempInclude/Classes/HistogramsTemp/HistogramsTemp.cpp.o
-.PHONY : TempInclude/Classes/HistogramsTemp/HistogramsTemp.cpp.o
-
-TempInclude/Classes/HistogramsTemp/HistogramsTemp.i: TempInclude/Classes/HistogramsTemp/HistogramsTemp.cpp.i
-.PHONY : TempInclude/Classes/HistogramsTemp/HistogramsTemp.i
-
-# target to preprocess a source file
-TempInclude/Classes/HistogramsTemp/HistogramsTemp.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/TempInclude/Classes/HistogramsTemp/HistogramsTemp.cpp.i
-.PHONY : TempInclude/Classes/HistogramsTemp/HistogramsTemp.cpp.i
-
-TempInclude/Classes/HistogramsTemp/HistogramsTemp.s: TempInclude/Classes/HistogramsTemp/HistogramsTemp.cpp.s
-.PHONY : TempInclude/Classes/HistogramsTemp/HistogramsTemp.s
-
-# target to generate assembly for a file
-TempInclude/Classes/HistogramsTemp/HistogramsTemp.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/TempInclude/Classes/HistogramsTemp/HistogramsTemp.cpp.s
-.PHONY : TempInclude/Classes/HistogramsTemp/HistogramsTemp.cpp.s
-
 macros/AMapsDiveTest.o: macros/AMapsDiveTest.cpp.o
 .PHONY : macros/AMapsDiveTest.o
 
@@ -1512,9 +1488,6 @@ help:
 	@echo "... Old_analysers/TruthLevelAnalyser.o"
 	@echo "... Old_analysers/TruthLevelAnalyser.i"
 	@echo "... Old_analysers/TruthLevelAnalyser.s"
-	@echo "... TempInclude/Classes/HistogramsTemp/HistogramsTemp.o"
-	@echo "... TempInclude/Classes/HistogramsTemp/HistogramsTemp.i"
-	@echo "... TempInclude/Classes/HistogramsTemp/HistogramsTemp.s"
 	@echo "... macros/AMapsDiveTest.o"
 	@echo "... macros/AMapsDiveTest.i"
 	@echo "... macros/AMapsDiveTest.s"
