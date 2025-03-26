@@ -282,10 +282,11 @@ void hPlot1D::histPlotter1D(TCanvas *HistogramCanvas, TH1D *Histogram1D, bool no
 //</editor-fold>
 
 //<editor-fold desc="histPlotter1D function (old, stackless)">
-void hPlot1D::histPlotter1D(TCanvas *HistogramCanvas, TH1D *Histogram1D, bool normalize_Histogram, bool custom_normalization, double custom_normalization_factor, std::string Histogram1DTitle,
-                            std::string Histogram1DTitleReactions, double titleSize, double labelSizex, double labelSizey, TList *Histogram_list, const char *Histogram_OutPDF, int lineWidth,
-                            bool LogScalePlot, bool LinearScalePlot, std::string Histogram1DSaveName, const std::string &Histogram1DSaveNamePath, std::string finalState, bool centerTitle = true,
-                            bool showStats = true, bool title2 = false, bool apply_plot_cuts = false, double plot_cuts = 0, double plot_Xmax = 0, bool plot_max = true) {
+void hPlot1D::histPlotter1D(TCanvas *HistogramCanvas, TH1D *Histogram1D, bool normalize_Histogram, bool custom_normalization, double custom_normalization_factor,
+                            std::string Histogram1DTitle, std::string Histogram1DTitleReactions, double titleSize, double labelSizex, double labelSizey, TList *Histogram_list,
+                            const char *Histogram_OutPDF, int lineWidth, bool LogScalePlot, bool LinearScalePlot, std::string Histogram1DSaveName, const std::string &Histogram1DSaveNamePath,
+                            std::string finalState, bool centerTitle = true, bool showStats = true, bool title2 = false, bool apply_plot_cuts = false, double plot_cuts = 0,
+                            double plot_Xmax = 0, bool plot_max = true) {
     double Histogram1D_integral;  // To be calculated only if normalize_Histogram
     double x_1 = 0.18, y_1 = 0.3, x_2 = 0.86, y_2 = 0.7;
     double diplayTextSize = 0.1;
@@ -628,10 +629,10 @@ void hPlot1D::histPlotter1D(TCanvas *HistogramCanvas, TH1D *Histogram1D, bool no
 //</editor-fold>
 
 //<editor-fold desc="histPlotter1D function (unsymmetric cuts for SF plots, stackless)">
-void hPlot1D::histPlotter1D(TCanvas *HistogramCanvas, TH1D *Histogram1D, bool normalize_Histogram, bool custom_normalization, double custom_normalization_factor, std::string Histogram1DTitle,
-                            std::string Histogram1DTitleReactions, TList *Histogram_list, const char *Histogram_OutPDF, int lineWidth, bool LogScalePlot, bool LinearScalePlot,
-                            std::string Histogram1DSaveName, const std::string &Histogram1DSaveNamePath, std::string finalState, bool showStats = true, bool title2 = false, bool apply_plot_cuts = false,
-                            double plot_upper_cut = 0, double plot_lower_cut = 0, double plot_Xmax = 0, bool plot_max = true) {
+void hPlot1D::histPlotter1D(TCanvas *HistogramCanvas, TH1D *Histogram1D, bool normalize_Histogram, bool custom_normalization, double custom_normalization_factor,
+                            std::string Histogram1DTitle, std::string Histogram1DTitleReactions, TList *Histogram_list, const char *Histogram_OutPDF, int lineWidth, bool LogScalePlot,
+                            bool LinearScalePlot, std::string Histogram1DSaveName, const std::string &Histogram1DSaveNamePath, std::string finalState, bool showStats = true,
+                            bool title2 = false, bool apply_plot_cuts = false, double plot_upper_cut = 0, double plot_lower_cut = 0, double plot_Xmax = 0, bool plot_max = true) {
     double Histogram1D_integral;  // To be calculated only if normalize_Histogram
     double x_1 = 0.18, y_1 = 0.3, x_2 = 0.86, y_2 = 0.7;
     double diplayTextSize = 0.1;
@@ -945,10 +946,10 @@ void hPlot1D::histPlotter1D(TCanvas *HistogramCanvas, TH1D *Histogram1D, bool no
 //</editor-fold>
 
 //<editor-fold desc="histPlotter1D function (one-sided cuts for Nphe plots, stackless)">
-void hPlot1D::histPlotter1D(TCanvas *HistogramCanvas, TH1D *Histogram1D, bool normalize_Histogram, bool custom_normalization, double custom_normalization_factor, std::string Histogram1DTitle,
-                            std::string Histogram1DTitleReactions, TList *Histogram_list, const char *Histogram_OutPDF, int lineWidth, bool LogScalePlot, bool LinearScalePlot,
-                            std::string Histogram1DSaveName, const std::string &Histogram1DSaveNamePath, std::string finalState, bool showStats = true, bool title2 = false, bool apply_plot_cuts = false,
-                            double plot_cut = 0, double plot_Xmax = 0, bool plot_max = true) {
+void hPlot1D::histPlotter1D(TCanvas *HistogramCanvas, TH1D *Histogram1D, bool normalize_Histogram, bool custom_normalization, double custom_normalization_factor,
+                            std::string Histogram1DTitle, std::string Histogram1DTitleReactions, TList *Histogram_list, const char *Histogram_OutPDF, int lineWidth, bool LogScalePlot,
+                            bool LinearScalePlot, std::string Histogram1DSaveName, const std::string &Histogram1DSaveNamePath, std::string finalState, bool showStats = true,
+                            bool title2 = false, bool apply_plot_cuts = false, double plot_cut = 0, double plot_Xmax = 0, bool plot_max = true) {
     double Histogram1D_integral;  // To be calculated only if normalize_Histogram
     double x_1 = 0.18, y_1 = 0.3, x_2 = 0.86, y_2 = 0.7;
     double diplayTextSize = 0.1;
@@ -1133,9 +1134,9 @@ void hPlot1D::histPlotter1D(const std::string &SampleName, TCanvas *HistogramCan
     HistogramCanvas->cd();
     std::string sNameFlag;
 
-    if (FindSubstring(SampleName, "sim")) {
+    if (basic_tools::FindSubstring(SampleName, "sim")) {
         sNameFlag = "s";
-    } else if (FindSubstring(SampleName, "data")) {
+    } else if (basic_tools::FindSubstring(SampleName, "data")) {
         sNameFlag = "d";
     }
 
@@ -1321,9 +1322,9 @@ void hPlot1D::histPlotter1D(const std::string &SampleName, TCanvas *HistogramCan
     HistogramCanvas->cd();
     std::string sNameFlag;
 
-    if (FindSubstring(SampleName, "sim")) {
+    if (basic_tools::FindSubstring(SampleName, "sim")) {
         sNameFlag = "s";
-    } else if (FindSubstring(SampleName, "data")) {
+    } else if (basic_tools::FindSubstring(SampleName, "data")) {
         sNameFlag = "d";
     }
 
@@ -1501,15 +1502,13 @@ void hPlot1D::histPlotter1D(const std::string &SampleName, TCanvas *HistogramCan
 //<editor-fold desc="histPlotter1DwFit function">
 void hPlot1D::histPlotter1DwFit(std::string SampleName, TCanvas *HistogramCanvas, TH1D *Histogram1D, bool normalize_Histogram, bool custom_normalization, double custom_normalization_factor,
                                 std::string Histogram1DTitle, std::string Histogram1DTitleReactions, TList *Histogram_list, const char *Histogram_OutPDF, std::string Histogram1DSaveName,
-                                const std::string &Histogram1DSaveNamePath, std::string finalState, double &plot_Xmax, double &plot_lcut, double &plot_ucut, double factor, bool plot_max = true,
-                                std::string particle = "") {
-    hData Properties;
-
+                                const std::string &Histogram1DSaveNamePath, std::string finalState, double &plot_Xmax, double &plot_lcut, double &plot_ucut, double factor,
+                                bool plot_max = true, std::string particle = "") {
     std::string sNameFlag;
 
-    if (FindSubstring(SampleName, "sim")) {
+    if (basic_tools::FindSubstring(SampleName, "sim")) {
         sNameFlag = "s";
-    } else if (FindSubstring(SampleName, "data")) {
+    } else if (basic_tools::FindSubstring(SampleName, "data")) {
         sNameFlag = "d";
     }
 
@@ -1587,7 +1586,7 @@ void hPlot1D::histPlotter1DwFit(std::string SampleName, TCanvas *HistogramCanvas
         }
     }
 
-    std::string Particle = Properties.GetParticleNameShortFromSubscript(Histogram1D->GetTitle());
+    std::string Particle = data_processor::GetParticleNameShortFromSubscript(Histogram1D->GetTitle());
 
     Histogram1D->GetXaxis()->SetTitleSize(Histogram1DTitleSizes.at(0));
     Histogram1D->GetXaxis()->SetLabelSize(Histogram1DTitleSizes.at(1));
@@ -1688,8 +1687,7 @@ void hPlot1D::histPlotter1DwFit(std::string SampleName, TCanvas *HistogramCanvas
             FitParam->AddText(("Fit #mu^{" + Particle + "}_{" + Histogram1DTitles["DetectorRegion"] + "} = " + ToStringWithPrecision(Mean, 3)).c_str());
             //            ((TText *) FitParam->GetListOfLines()->Last())->SetTextColor(kRed);
             FitParam->AddText(
-                ("Cuts = " + ToStringWithPrecision(factor, 0) + "#sigma^{" + Particle + "}_{" + Histogram1DTitles["DetectorRegion"] + "} = " + ToStringWithPrecision(plot_ucut, 3))
-                    .c_str());
+                ("Cuts = " + ToStringWithPrecision(factor, 0) + "#sigma^{" + Particle + "}_{" + Histogram1DTitles["DetectorRegion"] + "} = " + ToStringWithPrecision(plot_ucut, 3)).c_str());
             //            ((TText *) FitParam->GetListOfLines()->Last())->SetTextColor(kRed);
             FitParam->SetTextFont(42), FitParam->SetTextSize(0.0235), /*FitParam->SetTextSize(0.03), */ FitParam->SetTextAlign(12);
             FitParam->Draw("same"), ListOfFunctions->Add(FitParam);
