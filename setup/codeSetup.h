@@ -44,15 +44,16 @@ std::string Ver = "DetSim testings";
 
 //<editor-fold desc="path definitions">
 /* Histogram plots output directory */
-const std::string WorkingDirectory = basic_tools::GetCurrentDirectory() + "/";
+std::string wd = basic_tools::GetCurrentDirectory() + "/";
+const std::string WorkingDirectory = wd;
 const std::string plots_path = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output";
 // const std::string plots_path = WorkingDirectory + "00_plots";
 
 /* setup directory and directories */
-const std::string SettingsDirectory = WorkingDirectory + "setup" + "/";
+const std::string SettingsDirectory = wd + "setup" + "/";
 
 /* framework directory and directories */
-const std::string SourcesDirectory = WorkingDirectory + "source" + "/";
+const std::string SourcesDirectory = wd + "source" + "/";
 const std::string DataDirectory = SourcesDirectory + "data" + "/";
 const std::string ACorrDirectory = DataDirectory + "AcceptanceCorrections" + "/";
 const std::string AcceptanceMapsDirectory = DataDirectory + "AcceptanceMaps" + "/";
