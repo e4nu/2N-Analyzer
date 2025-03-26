@@ -486,7 +486,7 @@ std::string SetSaveDir(const std::string &Source, const std::string &BaseSaveDir
 void SetSaveDir(std::string &SaveDir, std::string &TestSaveDir, const std::string &RecTitle, const std::string &Histogram1DSaveNamePath, const std::string &PlotsT,
                 const std::string &DRegion, const std::string &Particle, const std::string &ParticleLC, const std::string &ParticleShort, const std::string &Type) {
     if (PlotsT == "FSRatio") {
-        if (!findSubstring(Type, "vs") && !findSubstring(Type, "vs.") && !findSubstring(Type, "VS") && !findSubstring(Type, "VS.")) {
+        if (!basic_tools::FindSubstring(Type, "vs") && !basic_tools::FindSubstring(Type, "vs.") && !basic_tools::FindSubstring(Type, "VS") && !basic_tools::FindSubstring(Type, "VS.")) {
             if (Type == "W" || Type == "Q2" || Type == "E_e" || Type == "omega" || Type == "Ecal" || Type == "deltaP_T_tot" || Type == "deltaP_T_L" || Type == "deltaAlpha_T_tot" ||
                 Type == "deltaAlpha_T_L" || Type == "deltaPhi_T_tot" || Type == "deltaPhi_T_L" || Type == "total_3momentum" || Type == "relative_3momentum" || Type == "total_4momentum" ||
                 Type == "relative_4momentum" || Type == "leading_nuc_momentum" || Type == "recoil_nuc_momentum" || Type == "theta_tot" || Type == "phi_tot" || Type == "theta_rel" ||
@@ -494,7 +494,7 @@ void SetSaveDir(std::string &SaveDir, std::string &TestSaveDir, const std::strin
                 SaveDir = Histogram1DSaveNamePath + "/";
                 TestSaveDir = SaveDir + "Cloned_hist_test/";
             } else {
-                if (findSubstring(RecTitle, "Electron") || findSubstring(RecTitle, "electron")) {
+                if (basic_tools::FindSubstring(RecTitle, "Electron") || basic_tools::FindSubstring(RecTitle, "electron")) {
                     SaveDir = Histogram1DSaveNamePath + "/00_" + Particle + "_" + Type + "_plots/";
                     TestSaveDir = SaveDir + "Cloned_hist_test/";
                 } else {
@@ -515,14 +515,14 @@ void SetSaveDir(std::string &SaveDir, std::string &TestSaveDir, const std::strin
             TestSaveDir = SaveDir + "Cloned_hist_test/";
         }
     } else {
-        if (findSubstring(RecTitle, "Electron") || findSubstring(RecTitle, "electron")) {
+        if (basic_tools::FindSubstring(RecTitle, "Electron") || basic_tools::FindSubstring(RecTitle, "electron")) {
             SaveDir = Histogram1DSaveNamePath + "/00_" + Particle + "_" + Type + "_plots/";
             TestSaveDir = SaveDir + "Cloned_hist_test/";
         } else {
-            if (findSubstring(RecTitle, ", FD)") || findSubstring(RecTitle, "FD " + Particle) || findSubstring(RecTitle, "FD " + ParticleLC)) {
+            if (basic_tools::FindSubstring(RecTitle, ", FD)") || basic_tools::FindSubstring(RecTitle, "FD " + Particle) || basic_tools::FindSubstring(RecTitle, "FD " + ParticleLC)) {
                 SaveDir = Histogram1DSaveNamePath + "/01_FD_" + Particle + "_" + Type + "_plots/";
                 TestSaveDir = SaveDir + "Cloned_hist_test/";
-            } else if (findSubstring(RecTitle, ", CD)") || findSubstring(RecTitle, "CD " + Particle) || findSubstring(RecTitle, "CD " + ParticleLC)) {
+            } else if (basic_tools::FindSubstring(RecTitle, ", CD)") || basic_tools::FindSubstring(RecTitle, "CD " + Particle) || basic_tools::FindSubstring(RecTitle, "CD " + ParticleLC)) {
                 SaveDir = Histogram1DSaveNamePath + "/02_CD_" + Particle + "_" + Type + "_plots/";
                 TestSaveDir = SaveDir + "Cloned_hist_test/";
             } else {
@@ -591,6 +591,22 @@ void SetFSRatioSaveDir(std::string &SaveDir, std::string &TestSaveDir, const std
     SetSaveDir(SaveDir, TestSaveDir, RecTitle, Histogram1DSaveNamePath, PlotsT, DRegion, Particle, ParticleLC, ParticleShort, Type);
 }
 
+// SetType function -----------------------------------------------------------------------------------------------------------------------------------------------------
+
+std::string SetType(const std::string &Title) {
+    std::string Type;
+
+    if (basic_tools::FindSubstring(Title, "momentum")) {
+        Type = "momentum";
+    } else if (basic_tools::FindSubstring(Title, "#theta")) {
+        Type = "theta";
+    } else if (basic_tools::FindSubstring(Title, "#phi")) {
+        Type = "phi";
+    }
+
+    return Type;
+}
+
 // SetStatsTitle function -----------------------------------------------------------------------------------------------------------------------------------------------
 
 std::string SetStatsTitle(const std::string &RecTitle) {
@@ -649,22 +665,6 @@ std::string SetTitle(const std::string &RecTitle, const std::string &PlotsT, con
     }
 
     return Title;
-}
-
-// SetType function -----------------------------------------------------------------------------------------------------------------------------------------------------
-
-std::string SetType(const std::string &Title) {
-    std::string Type;
-
-    if (basic_tools::FindSubstring(Title, "momentum")) {
-        Type = "momentum";
-    } else if (basic_tools::FindSubstring(Title, "#theta")) {
-        Type = "theta";
-    } else if (basic_tools::FindSubstring(Title, "#phi")) {
-        Type = "phi";
-    }
-
-    return Type;
 }
 
 // SetXAxisTitle function -----------------------------------------------------------------------------------------------------------------------------------------------------
