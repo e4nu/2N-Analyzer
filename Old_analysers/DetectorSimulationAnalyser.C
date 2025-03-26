@@ -49,9 +49,9 @@ using namespace draw_and_save_functions;
 void EventAnalyser(const std::string &AnalyseFilePath, const std::string &AnalyseFileSample, const std::string &AnalyseFile) {
     CodeDebugger.PrintStepTester(DebuggerMode);
 
-    cout << "\033[33m\n\n===========================================================================\n\033[0m";
-    cout << "\033[33m\t\t\tDetector simulation analyser\n\033[0m";
-    cout << "\033[33m===========================================================================\n\n\033[0m";
+    std::cout << "\033[33m\n\n===========================================================================\n\033[0m";
+    std::cout << "\033[33m\t\t\tDetector simulation analyser\n\033[0m";
+    std::cout << "\033[33m===========================================================================\n\n\033[0m";
 
     std::string AnalyserVersion = "Version 1.10";
 
@@ -155,7 +155,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
     // Auto-disable variables
     if (Generate_Electron_AMaps && Generate_Nucleon_AMaps) {
-        cout << "\n\nGenerate AMaps: Generate_Electron_AMaps and Generate_Nucleon_AMaps can't be true at the same time! Exiting...", exit(0);
+        std::cout << "\n\nGenerate AMaps: Generate_Electron_AMaps and Generate_Nucleon_AMaps can't be true at the same time! Exiting...", exit(0);
     }
 
     if (Generate_Electron_AMaps && !FindSubstring(SampleName, "Uniform_1e")) { Generate_Electron_AMaps = false; }
@@ -291,7 +291,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     if ((Calculate_momResS2 && Run_with_momResS2)  // Don't run calculate momResS2 and run on it at the same time
         || (Calculate_momResS2 && !VaryingDelta)   // Don't run calculate momResS2 and small momentum slices at the same time
     ) {
-        cout << "\033[33m\n\nmomRes order error! Exiting...\n\n", exit(0);
+        std::cout << "\033[33m\n\nmomRes order error! Exiting...\n\n", exit(0);
     }
 
     // Custom cuts naming
@@ -310,57 +310,57 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
     // Print out execution variables
     /* Print out execution variables (for self observation) */
-    cout << "\033[33m-- Execution variables ----------------------------------------------------\n\033[0m";
-    cout << "\033[33mWorkingDirectory:\t" << WorkingDirectory << "\n\033[0m";
-    cout << "\033[33mrun_plots_path:\t\t" << run_plots_path << "\n\n\033[0m";
+    std::cout << "\033[33m-- Execution variables ----------------------------------------------------\n\033[0m";
+    std::cout << "\033[33mWorkingDirectory:\t" << WorkingDirectory << "\n\033[0m";
+    std::cout << "\033[33mrun_plots_path:\t\t" << run_plots_path << "\n\n\033[0m";
 
-    cout << "\033[33mAnalyseFilePath:\t" << "/" << AnalyseFilePath << "/" << "\n\033[0m";
-    cout << "\033[33mAnalyseFileSample:\t" << "/" << AnalyseFileSample << "/" << "\n\033[0m";
-    cout << "\033[33mAnalyseFile:\t\t" << AnalyseFile << "\n\033[0m";
-    cout << "\033[33mSettings mode:\t\t'" << file_name << "'\n\n\033[0m";
+    std::cout << "\033[33mAnalyseFilePath:\t" << "/" << AnalyseFilePath << "/" << "\n\033[0m";
+    std::cout << "\033[33mAnalyseFileSample:\t" << "/" << AnalyseFileSample << "/" << "\n\033[0m";
+    std::cout << "\033[33mAnalyseFile:\t\t" << AnalyseFile << "\n\033[0m";
+    std::cout << "\033[33mSettings mode:\t\t'" << file_name << "'\n\n\033[0m";
 
-    cout << "\033[33mSampleName:\t\t" << SampleName << "\n\033[0m";
-    cout << "\033[33mVaryingSampleName:\t" << VaryingSampleName << "\n\033[0m";
-    cout << "\033[33mTarget:\t\t\t" << Target << " (PDG: " << TargetPDG << ")\n\033[0m";
-    cout << "\033[33mBeam Energy:\t\t" << beamE << " [GeV]\n\n\n\n\033[0m";
+    std::cout << "\033[33mSampleName:\t\t" << SampleName << "\n\033[0m";
+    std::cout << "\033[33mVaryingSampleName:\t" << VaryingSampleName << "\n\033[0m";
+    std::cout << "\033[33mTarget:\t\t\t" << Target << " (PDG: " << TargetPDG << ")\n\033[0m";
+    std::cout << "\033[33mBeam Energy:\t\t" << beamE << " [GeV]\n\n\n\n\033[0m";
 
     // Cuts output
     /* Print out the cuts within the run (for self-observation) */
     if (!apply_cuts) {
-        cout << "\033[33mCuts are disabled:\n\033[0m";
+        std::cout << "\033[33mCuts are disabled:\n\033[0m";
     } else {
-        cout << "\033[33mCuts are enabled:\n\033[0m";
+        std::cout << "\033[33mCuts are enabled:\n\033[0m";
     }
 
-    cout << "\033[33mapply_cuts:\t\t\t" << BoolToString(apply_cuts) << "\n\033[0m";
-    cout << "\033[33mclas12ana_particles:\t\t" << BoolToString(clas12ana_particles) << "\n\033[0m";  // TODO: move form here!
-    cout << "\033[33monly_preselection_cuts:\t\t" << BoolToString(only_preselection_cuts) << "\n\033[0m";
-    cout << "\033[33monly_electron_quality_cuts:\t" << BoolToString(only_electron_quality_cuts) << "\n\n\033[0m";
+    std::cout << "\033[33mapply_cuts:\t\t\t" << BoolToString(apply_cuts) << "\n\033[0m";
+    std::cout << "\033[33mclas12ana_particles:\t\t" << BoolToString(clas12ana_particles) << "\n\033[0m";  // TODO: move form here!
+    std::cout << "\033[33monly_preselection_cuts:\t\t" << BoolToString(only_preselection_cuts) << "\n\033[0m";
+    std::cout << "\033[33monly_electron_quality_cuts:\t" << BoolToString(only_electron_quality_cuts) << "\n\n\033[0m";
 
-    cout << "\033[33mapply_preselection_cuts:\t" << BoolToString(apply_preselection_cuts) << "\n\033[0m";
-    cout << "\033[33mapply_Vz_e_cuts:\t\t\t" << BoolToString(apply_Vz_e_cuts) << "\n\033[0m";
-    cout << "\033[33mapply_Vz_cuts:\t\t\t" << BoolToString(apply_Vz_cuts) << "\n\033[0m";
-    cout << "\033[33mapply_dVz_cuts:\t\t\t" << BoolToString(apply_dVz_cuts) << "\n\033[0m";
-    cout << "\033[33mapply_DC_e_fiducial_cuts:\t\t" << BoolToString(apply_DC_e_fiducial_cuts) << "\n\033[0m";
-    cout << "\033[33mapply_DC_fiducial_cuts:\t\t" << BoolToString(apply_DC_fiducial_cuts) << "\n\n\033[0m";
+    std::cout << "\033[33mapply_preselection_cuts:\t" << BoolToString(apply_preselection_cuts) << "\n\033[0m";
+    std::cout << "\033[33mapply_Vz_e_cuts:\t\t\t" << BoolToString(apply_Vz_e_cuts) << "\n\033[0m";
+    std::cout << "\033[33mapply_Vz_cuts:\t\t\t" << BoolToString(apply_Vz_cuts) << "\n\033[0m";
+    std::cout << "\033[33mapply_dVz_cuts:\t\t\t" << BoolToString(apply_dVz_cuts) << "\n\033[0m";
+    std::cout << "\033[33mapply_DC_e_fiducial_cuts:\t\t" << BoolToString(apply_DC_e_fiducial_cuts) << "\n\033[0m";
+    std::cout << "\033[33mapply_DC_fiducial_cuts:\t\t" << BoolToString(apply_DC_fiducial_cuts) << "\n\n\033[0m";
 
-    cout << "\033[33mapply_electron_quality_cuts:\t" << BoolToString(apply_electron_quality_cuts) << "\n\033[0m";
-    cout << "\033[33mapply_Nphe_cut:\t\t\t" << BoolToString(apply_Nphe_cut) << "\n\033[0m";
-    cout << "\033[33mapply_ECAL_SF_cuts:\t\t" << BoolToString(apply_ECAL_SF_cuts) << "\n\033[0m";
-    cout << "\033[33mapply_ECAL_P_cuts:\t\t" << BoolToString(apply_ECAL_P_cuts) << "\n\033[0m";
-    cout << "\033[33mapply_ECAL_fiducial_cuts:\t" << BoolToString(apply_ECAL_fiducial_cuts) << "\n\033[0m";
-    cout << "\033[33mapply_Electron_beta_cut:\t" << BoolToString(apply_Electron_beta_cut) << "\n\n\033[0m";
+    std::cout << "\033[33mapply_electron_quality_cuts:\t" << BoolToString(apply_electron_quality_cuts) << "\n\033[0m";
+    std::cout << "\033[33mapply_Nphe_cut:\t\t\t" << BoolToString(apply_Nphe_cut) << "\n\033[0m";
+    std::cout << "\033[33mapply_ECAL_SF_cuts:\t\t" << BoolToString(apply_ECAL_SF_cuts) << "\n\033[0m";
+    std::cout << "\033[33mapply_ECAL_P_cuts:\t\t" << BoolToString(apply_ECAL_P_cuts) << "\n\033[0m";
+    std::cout << "\033[33mapply_ECAL_fiducial_cuts:\t" << BoolToString(apply_ECAL_fiducial_cuts) << "\n\033[0m";
+    std::cout << "\033[33mapply_Electron_beta_cut:\t" << BoolToString(apply_Electron_beta_cut) << "\n\n\033[0m";
 
-    cout << "\033[33mapply_chi2_cuts_1e_cut:\t\t" << BoolToString(apply_chi2_cuts_1e_cut) << "\n\033[0m";
+    std::cout << "\033[33mapply_chi2_cuts_1e_cut:\t\t" << BoolToString(apply_chi2_cuts_1e_cut) << "\n\033[0m";
 
-    cout << "\033[33mapply_nucleon_cuts:\t\t" << BoolToString(apply_nucleon_cuts) << "\n\n\033[0m";
+    std::cout << "\033[33mapply_nucleon_cuts:\t\t" << BoolToString(apply_nucleon_cuts) << "\n\n\033[0m";
 
-    cout << "\033[33mapply_nucleon_physical_cuts:\t" << BoolToString(apply_nucleon_physical_cuts) << "\n\033[0m";
-    cout << "\033[33mapply_nBeta_fit_cuts:\t\t" << BoolToString(apply_nBeta_fit_cuts) << "\n\033[0m";
-    cout << "\033[33mapply_fiducial_cuts:\t\t" << BoolToString(apply_fiducial_cuts) << "\n\033[0m";
-    cout << "\033[33mapply_kinematical_cuts:\t\t" << BoolToString(apply_kinematical_cuts) << "\n\033[0m";
-    cout << "\033[33mapply_kinematical_weights:\t" << BoolToString(apply_kinematical_weights) << "\n\033[0m";
-    cout << "\033[33mapply_nucleon_SmearAndCorr:\t" << BoolToString(apply_nucleon_SmearAndCorr) << "\n\n\033[0m";
+    std::cout << "\033[33mapply_nucleon_physical_cuts:\t" << BoolToString(apply_nucleon_physical_cuts) << "\n\033[0m";
+    std::cout << "\033[33mapply_nBeta_fit_cuts:\t\t" << BoolToString(apply_nBeta_fit_cuts) << "\n\033[0m";
+    std::cout << "\033[33mapply_fiducial_cuts:\t\t" << BoolToString(apply_fiducial_cuts) << "\n\033[0m";
+    std::cout << "\033[33mapply_kinematical_cuts:\t\t" << BoolToString(apply_kinematical_cuts) << "\n\033[0m";
+    std::cout << "\033[33mapply_kinematical_weights:\t" << BoolToString(apply_kinematical_weights) << "\n\033[0m";
+    std::cout << "\033[33mapply_nucleon_SmearAndCorr:\t" << BoolToString(apply_nucleon_SmearAndCorr) << "\n\n\033[0m";
 
     // Cut declarations -----------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -513,7 +513,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
      * Directory creation is done in the Directories class.
      * Added for the case that plots out folder does not exist and for organization.
      * All cut plots are separate from the analysis plots, and withing the 01_Cuts_plots folder. */
-    cout << "\033[33m\nCreating plot directories...\033[0m";
+    std::cout << "\033[33m\nCreating plot directories...\033[0m";
 
     std::string Plots_Folder = run_plots_path;
     const bool Clear_Old_Directories = true;
@@ -521,7 +521,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     Directories directories = Directories(Plots_Folder, Clear_Old_Directories);
 
     bool Save_Plots_folder_to_zip_files = true;
-    cout << "\033[33m done.\n\n\033[0m";
+    std::cout << "\033[33m done.\n\n\033[0m";
 
     // TList definition -----------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -775,9 +775,9 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     if (!apply_nucleon_cuts || (Electron_single_slice_test || Nucleon_single_slice_test)) { FSR_1D_plots = FSR_2D_plots = false; }
 
     if (TestRun || ApplyLimiter) {
-        if (TestRun) { cout << "\033[31m\n\nNOTE: running code in testing mode!\n\033[0m"; }
+        if (TestRun) { std::cout << "\033[31m\n\nNOTE: running code in testing mode!\n\033[0m"; }
 
-        if (ApplyLimiter) { cout << "\033[31m\n\nNOTE: running code with a limiter on number of events!\n\n\033[0m"; }
+        if (ApplyLimiter) { std::cout << "\033[31m\n\nNOTE: running code with a limiter on number of events!\n\n\033[0m"; }
     }
 
     // Normalization setup -----------------------------------------------------------------------------------------------------------------------------------------------
@@ -813,20 +813,20 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
     // Deleting files by cases
     if (delete_png_files && !delete_root_files) {
-        cout << "\033[33m\nClearing old plots...\033[0m";
+        std::cout << "\033[33m\nClearing old plots...\033[0m";
         system(("find " + run_plots_path + " -type f -iname '*.png' -delete").c_str());  // Delete existing .png files
-        cout << "\033[33m done.\n\n\033[0m";
+        std::cout << "\033[33m done.\n\n\033[0m";
     } else if (!delete_png_files && delete_root_files) {
-        cout << "\033[33m\nClearing old root files...\033[0m";
+        std::cout << "\033[33m\nClearing old root files...\033[0m";
         system(("find " + run_plots_path + " -type f -iname '*.root' -delete").c_str());  // Delete existing .root files
-        cout << "\033[33m done.\n\n\033[0m";
+        std::cout << "\033[33m done.\n\n\033[0m";
     } else if (delete_png_files && delete_root_files) {
-        cout << "\033[33m\nClearing old plots & root files...\033[0m";
+        std::cout << "\033[33m\nClearing old plots & root files...\033[0m";
         system(("find " + run_plots_path + " -type f -iname '*.png' -delete").c_str());   // Delete existing .png files
         system(("find " + run_plots_path + " -type f -iname '*.root' -delete").c_str());  // Delete existing .root files
-        cout << "\033[33m done.\n\n\033[0m";
+        std::cout << "\033[33m done.\n\n\033[0m";
     } else {
-        cout << "\033[33m\nNo files were cleared.\n\n\033[0m";
+        std::cout << "\033[33m\nNo files were cleared.\n\n\033[0m";
     }
 
     // Histogram setup ---------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1002,7 +1002,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
     // Acceptance maps generation
     /* Acceptance maps are handled completely by the AMaps class */
-    cout << "\033[33m\nSetting Acceptance maps...\033[0m";
+    std::cout << "\033[33m\nSetting Acceptance maps...\033[0m";
 
     if (!calculate_truth_level) { Generate_WMaps = false; }
 
@@ -1030,17 +1030,17 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
         wMaps_master = AMaps(AcceptanceWeightsDirectory, VaryingSampleName, Electron_single_slice_test, Nucleon_single_slice_test, TestSlices);
     }
 
-    cout << "\033[33m done.\n\n\033[0m";
+    std::cout << "\033[33m done.\n\n\033[0m";
 
-    if (Generate_Electron_AMaps) { cout << "\033[33m\n\nGenerating electron AMaps\n\n\033[0m"; }
+    if (Generate_Electron_AMaps) { std::cout << "\033[33m\n\nGenerating electron AMaps\n\n\033[0m"; }
 
-    if (Generate_Nucleon_AMaps) { cout << "\033[33m\n\nGenerating nucleon AMaps\n\n\033[0m"; }
+    if (Generate_Nucleon_AMaps) { std::cout << "\033[33m\n\nGenerating nucleon AMaps\n\n\033[0m"; }
 
     // Acceptance correction data -------------------------------------------------------------------------------------------------------------------------------------------
 
     // Acceptance correction
     /* Neutron resolution fits is handled completely by the MomentumResolution class */
-    cout << "\033[33m\nSetting acceptance correction data...\033[0m";
+    std::cout << "\033[33m\nSetting acceptance correction data...\033[0m";
 
     bool save_ACorr_data = false;
 
@@ -1053,13 +1053,13 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
     if (!calculate_truth_level) { save_ACorr_data = false; }
 
-    cout << "\033[33m done.\n\n\033[0m";
+    std::cout << "\033[33m done.\n\n\033[0m";
 
     // Neutron resolution & proton smearing ---------------------------------------------------------------------------------------------------------------------------------
 
     // Neutron resolution
     /* Neutron resolution fits is handled completely by the MomentumResolution class */
-    cout << "\033[33m\nSetting neutron resolution data...\033[0m";
+    std::cout << "\033[33m\nSetting neutron resolution data...\033[0m";
 
     if (!calculate_truth_level) { plot_and_fit_MomRes = false; }  // Disable resolution-related operations if not calculating TL plots
 
@@ -1079,7 +1079,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                     MomentumResolutionDirectory, directories.Resolution_Directory_map["pRes_plots_1p_Directory"], DeltaSlices, VaryingDelta, SmearMode, CorrMode, momRes_test,
                     ForceSmallpResLimits);
 
-    cout << "\033[33m\ndone.\n\n\033[0m";
+    std::cout << "\033[33m\ndone.\n\n\033[0m";
 
     // Debugging setup ---------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -1129,7 +1129,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     // Histogram definitions
     /* Histogram definitions and setup. */
 
-    cout << "\033[33m\nDefining histograms...\033[0m";
+    std::cout << "\033[33m\nDefining histograms...\033[0m";
 
     // ======================================================================================================================================================================
     // Cut parameters plots
@@ -2641,12 +2641,12 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                 directories.Beta_Directory_map["Neutron_beta_from_ph_03_1n_Directory"], "01_Beta_Neutron_from_photons_noPCAL_yesECIN_1n_ZOOMOUT", Beta_dist_ZOOMOUT_lboundary,
                 Beta_dist_ZOOMOUT_uboundary, numTH1Dbins_Beta_Plots);
 
-    hPlot1D hBeta_n_from_ph_04_1n_FD = hPlot1D("1n", "FD", "Neutron #beta from 'photons' - !PCAL & !ECIN & ECOUT", "Neutron #beta from 'photons' w/o PCAL/ECIN & w/ECOUT", "#beta",
-                                               directories.Beta_Directory_map["Neutron_beta_from_ph_04_1n_Directory"], "01_Beta_Neutron_from_photons_noPCAL_noECIN_yesECOUT_1n",
+    hPlot1D hBeta_n_from_ph_04_1n_FD = hPlot1D("1n", "FD", "Neutron #beta from 'photons' - !PCAL & !ECIN & Estd::cout", "Neutron #beta from 'photons' w/o PCAL/ECIN & w/Estd::cout", "#beta",
+                                               directories.Beta_Directory_map["Neutron_beta_from_ph_04_1n_Directory"], "01_Beta_Neutron_from_photons_noPCAL_noECIN_yesEstd::cout_1n",
                                                Beta_dist_lboundary, Beta_dist_uboundary, numTH1Dbins_Beta_Plots);
     hPlot1D hBeta_n_from_ph_04_1n_ZOOMOUT_FD =
-        hPlot1D("1n", "FD", "Neutron #beta from 'photons' - !PCAL & !ECIN & ECOUT - ZOOMOUT", "Neutron #beta from 'photons' w/o PCAL/ECIN & w/ECOUT - ZOOMOUT", "#beta",
-                directories.Beta_Directory_map["Neutron_beta_from_ph_04_1n_Directory"], "01_Beta_Neutron_from_photons_noPCAL_noECIN_yesECOUT_1n_ZOOMOUT", Beta_dist_ZOOMOUT_lboundary,
+        hPlot1D("1n", "FD", "Neutron #beta from 'photons' - !PCAL & !ECIN & Estd::cout - ZOOMOUT", "Neutron #beta from 'photons' w/o PCAL/ECIN & w/Estd::cout - ZOOMOUT", "#beta",
+                directories.Beta_Directory_map["Neutron_beta_from_ph_04_1n_Directory"], "01_Beta_Neutron_from_photons_noPCAL_noECIN_yesEstd::cout_1n_ZOOMOUT", Beta_dist_ZOOMOUT_lboundary,
                 Beta_dist_ZOOMOUT_uboundary, numTH1Dbins_Beta_Plots);
 
     // Beta vs. P plots
@@ -9108,20 +9108,20 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                 "#font[12]{R_{nFD} = (P^{truth}_{nFD} - P^{reco}_{nFD})/P^{truth}_{nFD}}", directories.Resolution_Directory_map["Basic_var_1n_Directory"], "02d_Reco_L_VS_R_nFD_ECIN_1n", 700,
                 950, -1, 1, numTH2Dbins * 3, numTH2Dbins * 3);
 
-    hPlot1D hReco_L_ECOUT_1n = hPlot1D("1n", "ECOUT Only", "Reco neutron path #font[12]{L_{reco}}", "Reco neutron path #font[12]{L_{reco}}", "#font[12]{L_{reco}} [cm]",
-                                       directories.Resolution_Directory_map["Basic_var_1n_Directory"], "03a_Reco_L_ECOUT_1n", 700, 950, numTH1Dbins);
-    hPlot2D hReco_L_VS_reco_P_nFD_ECOUT_1n =
-        hPlot2D("1n", "ECOUT Only", "Reco neutron path #font[12]{L_{reco}} vs. #font[12]{P^{reco}_{nFD}}", "Reco neutron path #font[12]{L_{reco}} vs. #font[12]{P^{reco}_{nFD}}",
-                "#font[12]{L_{reco}} [cm]", "#font[12]{P^{reco}_{nFD}} [GeV/c]", directories.Resolution_Directory_map["Basic_var_1n_Directory"], "03b_Reco_L_VS_reco_P_nFD_ECOUT_1n", 700,
-                950, 0.4 * 0.95, beamE * 1.1, numTH2Dbins * 3, numTH2Dbins * 3);
-    hPlot2D hReco_L_VS_truth_P_nFD_ECOUT_1n =
-        hPlot2D("1n", "ECOUT Only", "Reco neutron path #font[12]{L_{reco}} vs. #font[12]{P^{truth}_{nFD}}", "Reco neutron path #font[12]{L_{reco}} vs. #font[12]{P^{truth}_{nFD}}",
-                "#font[12]{L_{reco}} [cm]", "#font[12]{P^{truth}_{nFD}} [GeV/c]", directories.Resolution_Directory_map["Basic_var_1n_Directory"], "03c_Reco_L_VS_truth_P_nFD_ECOUT_1n", 700,
-                950, 0.4 * 0.95, beamE * 1.1, numTH2Dbins * 3, numTH2Dbins * 3);
-    hPlot2D hReco_L_VS_R_nFD_ECOUT_1n =
-        hPlot2D("1n", "ECOUT Only", "Reco neutron path #font[12]{L_{reco}} vs. #font[12]{R_{nFD}}", "Reco neutron path #font[12]{L_{reco}} vs. #font[12]{R_{nFD}}",
+    hPlot1D hReco_L_Estd::cout_1n = hPlot1D("1n", "Estd::cout Only", "Reco neutron path #font[12]{L_{reco}}", "Reco neutron path #font[12]{L_{reco}}", "#font[12]{L_{reco}} [cm]",
+                                            directories.Resolution_Directory_map["Basic_var_1n_Directory"], "03a_Reco_L_Estd::cout_1n", 700, 950, numTH1Dbins);
+    hPlot2D hReco_L_VS_reco_P_nFD_Estd::cout_1n =
+        hPlot2D("1n", "Estd::cout Only", "Reco neutron path #font[12]{L_{reco}} vs. #font[12]{P^{reco}_{nFD}}", "Reco neutron path #font[12]{L_{reco}} vs. #font[12]{P^{reco}_{nFD}}",
+                "#font[12]{L_{reco}} [cm]", "#font[12]{P^{reco}_{nFD}} [GeV/c]", directories.Resolution_Directory_map["Basic_var_1n_Directory"], "03b_Reco_L_VS_reco_P_nFD_Estd::cout_1n",
+                700, 950, 0.4 * 0.95, beamE * 1.1, numTH2Dbins * 3, numTH2Dbins * 3);
+    hPlot2D hReco_L_VS_truth_P_nFD_Estd::cout_1n =
+        hPlot2D("1n", "Estd::cout Only", "Reco neutron path #font[12]{L_{reco}} vs. #font[12]{P^{truth}_{nFD}}", "Reco neutron path #font[12]{L_{reco}} vs. #font[12]{P^{truth}_{nFD}}",
+                "#font[12]{L_{reco}} [cm]", "#font[12]{P^{truth}_{nFD}} [GeV/c]", directories.Resolution_Directory_map["Basic_var_1n_Directory"], "03c_Reco_L_VS_truth_P_nFD_Estd::cout_1n",
+                700, 950, 0.4 * 0.95, beamE * 1.1, numTH2Dbins * 3, numTH2Dbins * 3);
+    hPlot2D hReco_L_VS_R_nFD_Estd::cout_1n =
+        hPlot2D("1n", "Estd::cout Only", "Reco neutron path #font[12]{L_{reco}} vs. #font[12]{R_{nFD}}", "Reco neutron path #font[12]{L_{reco}} vs. #font[12]{R_{nFD}}",
                 "#font[12]{L_{reco}} [cm]", "#font[12]{R_{nFD} = (P^{truth}_{nFD} - P^{reco}_{nFD})/P^{truth}_{nFD}}", directories.Resolution_Directory_map["Basic_var_1n_Directory"],
-                "03d_Reco_L_VS_R_nFD_ECOUT_1n", 700, 950, -1, 1, numTH2Dbins * 3, numTH2Dbins * 3);
+                "03d_Reco_L_VS_R_nFD_Estd::cout_1n", 700, 950, -1, 1, numTH2Dbins * 3, numTH2Dbins * 3);
 
     hPlot1D hReco_t_ToF_1n = hPlot1D("1n", "FD", "Reco neutron #font[12]{t_{ToF}}", "Reco neutron #font[12]{t_{ToF}}", "#font[12]{t_{ToF}} [ns]",
                                      directories.Resolution_Directory_map["Basic_var_1n_Directory"], "04a_Reco_t_ToF_1n", 135, 220, numTH1Dbins);
@@ -9445,7 +9445,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                                                              directories.Multiplicity_Directory_map["Multiplicity_nFDpCD_Directory"], "04_Multiplicity_Neutrons_By_Redef_BPID_AV_nFDpCD_FD",
                                                              0, numTH1Dbins_multi_Plots, numTH1Dbins_multi_Plots);
 
-    cout << "\033[33m done.\n\n\033[0m";
+    std::cout << "\033[33m done.\n\n\033[0m";
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //                                                                         Code execution                                                                              //
@@ -9454,7 +9454,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     CodeDebugger.PrintStepTester(DebuggerMode);
 
     // Code execution
-    cout << "\033[33m\nReading target parameter files...\n\n\033[0m";
+    std::cout << "\033[33m\nReading target parameter files...\n\n\033[0m";
 
     // Setting and loading cuts (via clas12ana)
     clas12ana clasAna;
@@ -9497,7 +9497,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
         if (!apply_chi2_cuts_1e_cut) {
             clasAna.readInputParam((PIDCutsDirectory + "ana.par").c_str());
         } else if (apply_chi2_cuts_1e_cut) {
-            cout << "\033[33m\nLoading fitted pid cuts...\n\n\033[0m";
+            std::cout << "\033[33m\nLoading fitted pid cuts...\n\n\033[0m";
             clasAna.readInputParam((PIDCutsDirectory + "Fitted_PID_Cuts_-_" + SampleName + ".par").c_str());  // load sample-appropreate cuts file from CutsDirectory
 
             /* Overwriting PID cuts according to SampleName */
@@ -9556,7 +9556,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
             Beta_max_cut_ABF_FD_n_from_ph = DSCuts("Beta_cut_ECAL", "FD-ECAL", "", "nFDpCD", 1, -9999, 9999);
             Beta_max_cut_ABF_FD_n_from_ph_apprax = DSCuts("Beta_cut_ECAL_apprax", "FD-ECAL_apprax", "", "1n", 1, -9999, 9999);
         } else {
-            cout << "\033[33m\n\nLoading fitted Beta cuts...\n\n\033[0m";
+            std::cout << "\033[33m\n\nLoading fitted Beta cuts...\n\n\033[0m";
             clasAna.readInputParam((NucleonCutsDirectory + "Nucleon_Cuts_-_" + SampleName + ".par").c_str());  // load sample-appropreate cuts file from CutsDirectory
 
             /* Setting nucleon cuts - only if NOT plotting efficiency plots! */
@@ -9656,7 +9656,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     }
 
     // Setting HipoChain
-    cout << "\033[33m\n\nSetting HipoChain...\n\n\033[0m";
+    std::cout << "\033[33m\n\nSetting HipoChain...\n\n\033[0m";
 
     clas12root::HipoChain chain;
     Experiment.AddToHipoChainFromList(chain, SampleName, AnalyseFilePath, AnalyseFileSample, AnalyseFile);
@@ -9670,7 +9670,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     chain.db()->turnOffQADB();
 
     // Auto-disable variables accoding to HipoChain length
-    cout << "\033[33m\n\nHipoChain loaded! HipoChainLength = " << HipoChainLength << "\n\033[0m";
+    std::cout << "\033[33m\n\nHipoChain loaded! HipoChainLength = " << HipoChainLength << "\n\033[0m";
 
     if (HipoChainLength < 100) {
         /* This avoids a crush when plotting 2D final state ratios */
@@ -9703,9 +9703,9 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     /* Counting FD neurton and photon hits in the ECAL */
     // TODO: rename variable (not crucial)
     int num_of_events_with_nFD_CLA12 = 0;
-    int num_of_events_with_nFD_CLA12_PCAL = 0, num_of_events_with_nFD_CLA12_ECIN = 0, num_of_events_with_nFD_CLA12_ECOUT = 0, num_of_events_with_nFD_CLA12_EC = 0;
+    int num_of_events_with_nFD_CLA12_PCAL = 0, num_of_events_with_nFD_CLA12_ECIN = 0, num_of_events_with_nFD_CLA12_Estd::cout = 0, num_of_events_with_nFD_CLA12_EC = 0;
     int num_of_events_with_phFD_CLA12 = 0;
-    int num_of_events_with_phFD_CLA12_PCAL = 0, num_of_events_with_phFD_CLA12_ECIN = 0, num_of_events_with_phFD_CLA12_ECOUT = 0, num_of_events_with_phFD_CLA12_EC = 0;
+    int num_of_events_with_phFD_CLA12_PCAL = 0, num_of_events_with_phFD_CLA12_ECIN = 0, num_of_events_with_phFD_CLA12_Estd::cout = 0, num_of_events_with_phFD_CLA12_EC = 0;
 
     int num_of_events_1n_in_FD = 0, num_of_events_2n_in_FD = 0, num_of_events_3n_in_FD = 0, num_of_events_Xn_in_FD = 0;
 
@@ -9728,7 +9728,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     //  Looping over each HipoChain files
     //  ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-    cout << "\033[33m\n\nLooping over chain files...\n\n\033[0m";
+    std::cout << "\033[33m\n\nLooping over chain files...\n\n\033[0m";
 
     CodeDebugger.PrintStepTester(DebuggerMode);
 
@@ -9843,28 +9843,28 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
         // Safety checks
         for (int &i : ReDef_neutrons_FD) {
             if (!((allParticles[i]->par()->getPid() == 2112) || (allParticles[i]->par()->getPid() == 22))) {
-                cout << "\033[33m\n\nReDef_neutrons_FD: A neutron PDG is not 2112 or 22 (" << allParticles[i]->par()->getPid() << ")! Exiting...\n\n", exit(0);
+                std::cout << "\033[33m\n\nReDef_neutrons_FD: A neutron PDG is not 2112 or 22 (" << allParticles[i]->par()->getPid() << ")! Exiting...\n\n", exit(0);
             }
 
-            bool NeutronInPCAL_test = (allParticles[i]->cal(clas12::PCAL)->getDetector() == 7);    // PCAL hit
-            bool NeutronInECIN_test = (allParticles[i]->cal(clas12::ECIN)->getDetector() == 7);    // ECIN hit
-            bool NeutronInECOUT_test = (allParticles[i]->cal(clas12::ECOUT)->getDetector() == 7);  // ECIN hit
+            bool NeutronInPCAL_test = (allParticles[i]->cal(clas12::PCAL)->getDetector() == 7);              // PCAL hit
+            bool NeutronInECIN_test = (allParticles[i]->cal(clas12::ECIN)->getDetector() == 7);              // ECIN hit
+            bool NeutronInEstd::cout_test = (allParticles[i]->cal(clas12::Estd::cout)->getDetector() == 7);  // ECIN hit
 
-            if (NeutronInPCAL_test) { cout << "\033[33m\n\nReDef_neutrons_FD test: a neutron have been found with a PCAL hit! Exiting...\n\n", exit(0); }
+            if (NeutronInPCAL_test) { std::cout << "\033[33m\n\nReDef_neutrons_FD test: a neutron have been found with a PCAL hit! Exiting...\n\n", exit(0); }
 
-            if (!(NeutronInECIN_test || NeutronInECOUT_test)) {
-                cout << "\033[33m\n\nReDef_neutrons_FD test: a neutron have been found without either ECIN or ECOUT hit! Exiting...\n\n", exit(0);
+            if (!(NeutronInECIN_test || NeutronInEstd::cout_test)) {
+                std::cout << "\033[33m\n\nReDef_neutrons_FD test: a neutron have been found without either ECIN or Estd::cout hit! Exiting...\n\n", exit(0);
             }
         }
 
         for (int &i : ReDef_photons_FD) {
             if (allParticles[i]->par()->getPid() != 22) {
-                cout << "\033[33m\n\nReDef_photons_FD test: A photon PDG is not 2112 or 22 (" << allParticles[i]->par()->getPid() << ")! Exiting...\n\n", exit(0);
+                std::cout << "\033[33m\n\nReDef_photons_FD test: A photon PDG is not 2112 or 22 (" << allParticles[i]->par()->getPid() << ")! Exiting...\n\n", exit(0);
             }
 
             bool PhotonInPCAL_test = (allParticles[i]->cal(clas12::PCAL)->getDetector() == 7);  // PCAL hit
 
-            if (!PhotonInPCAL_test) { cout << "\033[33m\n\n1n: a photon have been found without a PCAL hit! Exiting...\n\n", exit(0); }
+            if (!PhotonInPCAL_test) { std::cout << "\033[33m\n\n1n: a photon have been found without a PCAL hit! Exiting...\n\n", exit(0); }
         }
 
         // Setting up event selection
@@ -11588,19 +11588,19 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                 if (n->getRegion() == FD) {
                     ++num_of_events_with_nFD_CLA12;
 
-                    bool NeutronInPCAL_1e_cut = (n->cal(clas12::PCAL)->getDetector() == 7);    // PCAL hit
-                    bool NeutronInECIN_1e_cut = (n->cal(clas12::ECIN)->getDetector() == 7);    // ECIN hit
-                    bool NeutronInECOUT_1e_cut = (n->cal(clas12::ECOUT)->getDetector() == 7);  // ECOUT hit
+                    bool NeutronInPCAL_1e_cut = (n->cal(clas12::PCAL)->getDetector() == 7);              // PCAL hit
+                    bool NeutronInECIN_1e_cut = (n->cal(clas12::ECIN)->getDetector() == 7);              // ECIN hit
+                    bool NeutronInEstd::cout_1e_cut = (n->cal(clas12::Estd::cout)->getDetector() == 7);  // Estd::cout hit
 
                     if (NeutronInPCAL_1e_cut) {
                         ++num_of_events_with_nFD_CLA12_PCAL;
-                    } else if (NeutronInECIN_1e_cut || NeutronInECOUT_1e_cut) {
+                    } else if (NeutronInECIN_1e_cut || NeutronInEstd::cout_1e_cut) {
                         ++num_of_events_with_nFD_CLA12_EC;
 
                         if (NeutronInECIN_1e_cut) {
                             ++num_of_events_with_nFD_CLA12_ECIN;
-                        } else if (NeutronInECOUT_1e_cut) {
-                            ++num_of_events_with_nFD_CLA12_ECOUT;
+                        } else if (NeutronInEstd::cout_1e_cut) {
+                            ++num_of_events_with_nFD_CLA12_Estd::cout;
                         }
                     }
                 }
@@ -11610,19 +11610,19 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                 if ((allParticles[i]->par()->getPid() == 22) && (allParticles[i]->getRegion() == FD)) {
                     ++num_of_events_with_phFD_CLA12;
 
-                    bool PhotonInPCAL_1e_cut = (allParticles[i]->cal(clas12::PCAL)->getDetector() == 7);    // PCAL hit
-                    bool PhotonInECIN_1e_cut = (allParticles[i]->cal(clas12::ECIN)->getDetector() == 7);    // ECIN hit
-                    bool PhotonInECOUT_1e_cut = (allParticles[i]->cal(clas12::ECOUT)->getDetector() == 7);  // ECOUT hit
+                    bool PhotonInPCAL_1e_cut = (allParticles[i]->cal(clas12::PCAL)->getDetector() == 7);              // PCAL hit
+                    bool PhotonInECIN_1e_cut = (allParticles[i]->cal(clas12::ECIN)->getDetector() == 7);              // ECIN hit
+                    bool PhotonInEstd::cout_1e_cut = (allParticles[i]->cal(clas12::Estd::cout)->getDetector() == 7);  // Estd::cout hit
 
                     if (PhotonInPCAL_1e_cut) {
                         ++num_of_events_with_phFD_CLA12_PCAL;
-                    } else if (PhotonInECIN_1e_cut || PhotonInECOUT_1e_cut) {
+                    } else if (PhotonInECIN_1e_cut || PhotonInEstd::cout_1e_cut) {
                         ++num_of_events_with_phFD_CLA12_EC;
 
                         if (PhotonInECIN_1e_cut) {
                             ++num_of_events_with_phFD_CLA12_ECIN;
-                        } else if (PhotonInECOUT_1e_cut) {
-                            ++num_of_events_with_phFD_CLA12_ECOUT;
+                        } else if (PhotonInEstd::cout_1e_cut) {
+                            ++num_of_events_with_phFD_CLA12_Estd::cout;
                         }
                     }
                 }
@@ -11636,7 +11636,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
         // Testing cuts
         /* Testing SF cuts */
-        double EoP_e = (electrons[0]->cal(clas12::PCAL)->getEnergy() + electrons[0]->cal(ECIN)->getEnergy() + electrons[0]->cal(ECOUT)->getEnergy()) / P_e_1e_cut;
+        double EoP_e = (electrons[0]->cal(clas12::PCAL)->getEnergy() + electrons[0]->cal(ECIN)->getEnergy() + electrons[0]->cal(Estd::cout)->getEnergy()) / P_e_1e_cut;
 
         if (!apply_cuts) {
             /* SF plots before cuts */
@@ -12116,14 +12116,14 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
             for (auto &n : neutrons) {
                 // loop on every detected neutron
-                // check neutron hits in the PCAL, ECIN and ECOUT:
+                // check neutron hits in the PCAL, ECIN and Estd::cout:
                 bool n_hit_PCAL_1e_cut = (n->cal(clas12::PCAL)->getDetector() == 7);
                 bool n_hit_ECIN_1e_cut = (n->cal(clas12::ECIN)->getDetector() == 7);
-                bool n_hit_ECOUT_1e_cut = (n->cal(clas12::ECOUT)->getDetector() == 7);
+                bool n_hit_Estd::cout_1e_cut = (n->cal(clas12::Estd::cout)->getDetector() == 7);
 
-                if (!n_hit_PCAL_1e_cut && (n_hit_ECIN_1e_cut || n_hit_ECOUT_1e_cut)) {
-                    // if neutron (n) did not hit PCAL & hit either ECIN or ECOUT
-                    auto n_detlayer_1e_cut = n_hit_ECIN_1e_cut ? clas12::ECIN : clas12::ECOUT;  // find first layer of hit
+                if (!n_hit_PCAL_1e_cut && (n_hit_ECIN_1e_cut || n_hit_Estd::cout_1e_cut)) {
+                    // if neutron (n) did not hit PCAL & hit either ECIN or Estd::cout
+                    auto n_detlayer_1e_cut = n_hit_ECIN_1e_cut ? clas12::ECIN : clas12::Estd::cout;  // find first layer of hit
 
                     // neutron ECIN/ECAL hit vector and angles:
                     TVector3 n_hit_1e_cut_3v(n->cal(n_detlayer_1e_cut)->getX(), n->cal(n_detlayer_1e_cut)->getY(), n->cal(n_detlayer_1e_cut)->getZ());
@@ -12138,13 +12138,13 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
         // Redefined neutrons (leading FD neutron)
         if (NeutronsFD_ind_mom_max_noNeutCuts != -1) {
             // if there's an electron hit in the PCAL
-            // check neutron hits in the PCAL, ECIN and ECOUT:
+            // check neutron hits in the PCAL, ECIN and Estd::cout:
             bool LnFD_hit_PCAL_1e_cut = (allParticles[NeutronsFD_ind_mom_max_noNeutCuts]->cal(clas12::PCAL)->getDetector() == 7);
             bool LnFD_hit_ECIN_1e_cut = (allParticles[NeutronsFD_ind_mom_max_noNeutCuts]->cal(clas12::ECIN)->getDetector() == 7);
-            bool LnFD_hit_ECOUT_1e_cut = (allParticles[NeutronsFD_ind_mom_max_noNeutCuts]->cal(clas12::ECOUT)->getDetector() == 7);
+            bool LnFD_hit_Estd::cout_1e_cut = (allParticles[NeutronsFD_ind_mom_max_noNeutCuts]->cal(clas12::Estd::cout)->getDetector() == 7);
 
-            if (!LnFD_hit_PCAL_1e_cut && (LnFD_hit_ECIN_1e_cut || LnFD_hit_ECOUT_1e_cut)) {
-                auto LnFD_detlayer_1e_cut = LnFD_hit_ECIN_1e_cut ? clas12::ECIN : clas12::ECOUT;  // find first layer of hit
+            if (!LnFD_hit_PCAL_1e_cut && (LnFD_hit_ECIN_1e_cut || LnFD_hit_Estd::cout_1e_cut)) {
+                auto LnFD_detlayer_1e_cut = LnFD_hit_ECIN_1e_cut ? clas12::ECIN : clas12::Estd::cout;  // find first layer of hit
 
                 // neutron ECIN/ECAL hit vector and angles:
                 TVector3 LnFD_hit_1e_cut_3v(allParticles[NeutronsFD_ind_mom_max_noNeutCuts]->cal(LnFD_detlayer_1e_cut)->getX(),
@@ -12155,11 +12155,11 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                 if ((LnFD_detlayer_1e_cut == clas12::ECIN) && (electrons[0]->cal(clas12::ECIN)->getZ() != 0)) {
                     /* if both particles hit the inner calorimeter, use the inner calorimeter to determine e_hit_1e_cut_3v */
                     e_hit_1e_cut_3v.SetXYZ(electrons[0]->cal(clas12::ECIN)->getX(), electrons[0]->cal(clas12::ECIN)->getY(), electrons[0]->cal(clas12::ECIN)->getZ());
-                } else if ((LnFD_detlayer_1e_cut == clas12::ECOUT) && (electrons[0]->cal(clas12::ECOUT)->getZ() != 0)) {
+                } else if ((LnFD_detlayer_1e_cut == clas12::Estd::cout) && (electrons[0]->cal(clas12::Estd::cout)->getZ() != 0)) {
                     /* if both particles hit the outer calorimeter, use the outer calorimeter to determine e_hit_1e_cut_3v */
-                    e_hit_1e_cut_3v.SetXYZ(electrons[0]->cal(clas12::ECOUT)->getX(), electrons[0]->cal(clas12::ECOUT)->getY(), electrons[0]->cal(clas12::ECOUT)->getZ());
+                    e_hit_1e_cut_3v.SetXYZ(electrons[0]->cal(clas12::Estd::cout)->getX(), electrons[0]->cal(clas12::Estd::cout)->getY(), electrons[0]->cal(clas12::Estd::cout)->getZ());
                 } else {
-                    /* the neutral has to hit either the ECIN or ECOUT.
+                    /* the neutral has to hit either the ECIN or Estd::cout.
                        If the charged particle hit the other calorimeter, then look at where the charged particle was expected to be according to the trajectory. */
                     int trajlayer = (LnFD_detlayer_1e_cut == clas12::ECIN) ? 4 : 7;
                     e_hit_1e_cut_3v.SetXYZ(electrons[0]->traj(clas12::ECAL, trajlayer)->getX(), electrons[0]->traj(clas12::ECAL, trajlayer)->getY(),
@@ -12187,13 +12187,13 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
         if (e_hit_PCAL_1e_cut) {
             // if there's an electron hit in the PCAL
             for (auto &i : NeutronsFD_ind_noNeutCuts) {
-                // check neutron hits in the PCAL, ECIN and ECOUT:
+                // check neutron hits in the PCAL, ECIN and Estd::cout:
                 bool nFD_hit_PCAL_1e_cut = (allParticles[i]->cal(clas12::PCAL)->getDetector() == 7);
                 bool nFD_hit_ECIN_1e_cut = (allParticles[i]->cal(clas12::ECIN)->getDetector() == 7);
-                bool nFD_hit_ECOUT_1e_cut = (allParticles[i]->cal(clas12::ECOUT)->getDetector() == 7);
+                bool nFD_hit_Estd::cout_1e_cut = (allParticles[i]->cal(clas12::Estd::cout)->getDetector() == 7);
 
-                if (!nFD_hit_PCAL_1e_cut && (nFD_hit_ECIN_1e_cut || nFD_hit_ECOUT_1e_cut)) {
-                    auto nFD_detlayer_1e_cut = nFD_hit_ECIN_1e_cut ? clas12::ECIN : clas12::ECOUT;  // find first layer of hit
+                if (!nFD_hit_PCAL_1e_cut && (nFD_hit_ECIN_1e_cut || nFD_hit_Estd::cout_1e_cut)) {
+                    auto nFD_detlayer_1e_cut = nFD_hit_ECIN_1e_cut ? clas12::ECIN : clas12::Estd::cout;  // find first layer of hit
 
                     // neutron ECIN/ECAL hit vector and angles:
                     TVector3 nFD_hit_1e_cut_3v(allParticles[i]->cal(nFD_detlayer_1e_cut)->getX(), allParticles[i]->cal(nFD_detlayer_1e_cut)->getY(),
@@ -12203,11 +12203,11 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                     if ((nFD_detlayer_1e_cut == clas12::ECIN) && (electrons[0]->cal(clas12::ECIN)->getZ() != 0)) {
                         /* if both particles hit the inner calorimeter, use the inner calorimeter to determine e_hit_1e_cut_3v */
                         e_hit_1e_cut_3v.SetXYZ(electrons[0]->cal(clas12::ECIN)->getX(), electrons[0]->cal(clas12::ECIN)->getY(), electrons[0]->cal(clas12::ECIN)->getZ());
-                    } else if ((nFD_detlayer_1e_cut == clas12::ECOUT) && (electrons[0]->cal(clas12::ECOUT)->getZ() != 0)) {
+                    } else if ((nFD_detlayer_1e_cut == clas12::Estd::cout) && (electrons[0]->cal(clas12::Estd::cout)->getZ() != 0)) {
                         /* if both particles hit the outer calorimeter, use the outer calorimeter to determine e_hit_1e_cut_3v */
-                        e_hit_1e_cut_3v.SetXYZ(electrons[0]->cal(clas12::ECOUT)->getX(), electrons[0]->cal(clas12::ECOUT)->getY(), electrons[0]->cal(clas12::ECOUT)->getZ());
+                        e_hit_1e_cut_3v.SetXYZ(electrons[0]->cal(clas12::Estd::cout)->getX(), electrons[0]->cal(clas12::Estd::cout)->getY(), electrons[0]->cal(clas12::Estd::cout)->getZ());
                     } else {
-                        /* the neutral has to hit either the ECIN or ECOUT.
+                        /* the neutral has to hit either the ECIN or Estd::cout.
                            If the charged particle hit the other calorimeter, then look at where the charged particle was expected to be according to the trajectory. */
                         int trajlayer = (nFD_detlayer_1e_cut == clas12::ECIN) ? 4 : 7;
                         e_hit_1e_cut_3v.SetXYZ(electrons[0]->traj(clas12::ECAL, trajlayer)->getX(), electrons[0]->traj(clas12::ECAL, trajlayer)->getY(),
@@ -12237,14 +12237,14 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
         // CLAS12 neutrons
         for (auto &n : neutrons) {
             // loop on every detected neutron
-            // check neutron (n) hits in the PCAL, ECIN and ECOUT:
+            // check neutron (n) hits in the PCAL, ECIN and Estd::cout:
             bool n_hit_PCAL_1e_cut = (n->cal(clas12::PCAL)->getDetector() == 7);
             bool n_hit_ECIN_1e_cut = (n->cal(clas12::ECIN)->getDetector() == 7);
-            bool n_hit_ECOUT_1e_cut = (n->cal(clas12::ECOUT)->getDetector() == 7);
+            bool n_hit_Estd::cout_1e_cut = (n->cal(clas12::Estd::cout)->getDetector() == 7);
 
-            // if neutron (n) did not hit PCAL & hit either ECIN or ECOUT // if neutron (n) did not hit PCAL & hit either ECIN or ECOUT:
-            if (!n_hit_PCAL_1e_cut && (n_hit_ECIN_1e_cut || n_hit_ECOUT_1e_cut)) {
-                auto n_detlayer_1e_cut = n_hit_ECIN_1e_cut ? clas12::ECIN : clas12::ECOUT;  // find first layer of hit
+            // if neutron (n) did not hit PCAL & hit either ECIN or Estd::cout // if neutron (n) did not hit PCAL & hit either ECIN or Estd::cout:
+            if (!n_hit_PCAL_1e_cut && (n_hit_ECIN_1e_cut || n_hit_Estd::cout_1e_cut)) {
+                auto n_detlayer_1e_cut = n_hit_ECIN_1e_cut ? clas12::ECIN : clas12::Estd::cout;  // find first layer of hit
 
                 // neutron (n)'s ECIN/ECAL hit vector and angles:
                 TVector3 n_hit_1e_cut_3v(n->cal(n_detlayer_1e_cut)->getX(), n->cal(n_detlayer_1e_cut)->getY(), n->cal(n_detlayer_1e_cut)->getZ());
@@ -12271,14 +12271,14 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
         // Redefined neutrons (leading FD neutron)
         if (NeutronsFD_ind_mom_max_noNeutCuts != -1) {
-            // check neutron (n) hits in the PCAL, ECIN and ECOUT:
+            // check neutron (n) hits in the PCAL, ECIN and Estd::cout:
             bool LnFD_hit_PCAL_1e_cut = (allParticles[NeutronsFD_ind_mom_max_noNeutCuts]->cal(clas12::PCAL)->getDetector() == 7);
             bool LnFD_hit_ECIN_1e_cut = (allParticles[NeutronsFD_ind_mom_max_noNeutCuts]->cal(clas12::ECIN)->getDetector() == 7);
-            bool LnFD_hit_ECOUT_1e_cut = (allParticles[NeutronsFD_ind_mom_max_noNeutCuts]->cal(clas12::ECOUT)->getDetector() == 7);
+            bool LnFD_hit_Estd::cout_1e_cut = (allParticles[NeutronsFD_ind_mom_max_noNeutCuts]->cal(clas12::Estd::cout)->getDetector() == 7);
 
-            // if neutron (n) did not hit PCAL & hit either ECIN or ECOUT // if neutron (n) did not hit PCAL & hit either ECIN or ECOUT:
-            if (!LnFD_hit_PCAL_1e_cut && (LnFD_hit_ECIN_1e_cut || LnFD_hit_ECOUT_1e_cut)) {
-                auto LnFD_detlayer_1e_cut = LnFD_hit_ECIN_1e_cut ? clas12::ECIN : clas12::ECOUT;  // find first layer of hit
+            // if neutron (n) did not hit PCAL & hit either ECIN or Estd::cout // if neutron (n) did not hit PCAL & hit either ECIN or Estd::cout:
+            if (!LnFD_hit_PCAL_1e_cut && (LnFD_hit_ECIN_1e_cut || LnFD_hit_Estd::cout_1e_cut)) {
+                auto LnFD_detlayer_1e_cut = LnFD_hit_ECIN_1e_cut ? clas12::ECIN : clas12::Estd::cout;  // find first layer of hit
 
                 // neutron (n)'s ECIN/ECAL hit vector and angles:
                 TVector3 LnFD_hit_1e_cut_3v(allParticles[NeutronsFD_ind_mom_max_noNeutCuts]->cal(LnFD_detlayer_1e_cut)->getX(),
@@ -12293,11 +12293,11 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                         if ((LnFD_detlayer_1e_cut == clas12::ECIN) && (protons[i]->cal(clas12::ECIN)->getZ() != 0)) {
                             /* if both particles hit the inner calorimeter, use the inner calorimeter to determine p_hit_1e_cut_3v */
                             p_hit_1e_cut_3v.SetXYZ(protons[i]->cal(clas12::ECIN)->getX(), protons[i]->cal(clas12::ECIN)->getY(), protons[i]->cal(clas12::ECIN)->getZ());
-                        } else if ((LnFD_detlayer_1e_cut == clas12::ECOUT) && (protons[i]->cal(clas12::ECOUT)->getZ() != 0)) {
+                        } else if ((LnFD_detlayer_1e_cut == clas12::Estd::cout) && (protons[i]->cal(clas12::Estd::cout)->getZ() != 0)) {
                             /* if both particles hit the outer calorimeter, use the outer calorimeter to determine p_hit_1e_cut_3v */
-                            p_hit_1e_cut_3v.SetXYZ(protons[i]->cal(clas12::ECOUT)->getX(), protons[i]->cal(clas12::ECOUT)->getY(), protons[i]->cal(clas12::ECOUT)->getZ());
+                            p_hit_1e_cut_3v.SetXYZ(protons[i]->cal(clas12::Estd::cout)->getX(), protons[i]->cal(clas12::Estd::cout)->getY(), protons[i]->cal(clas12::Estd::cout)->getZ());
                         } else {
-                            /* the neutral has to hit either the ECIN or ECOUT.
+                            /* the neutral has to hit either the ECIN or Estd::cout.
                                If the charged particle hit the other calorimeter, then look at where the charged particle was expected to be according to the trajectory. */
                             int trajlayer = (LnFD_detlayer_1e_cut == clas12::ECIN) ? 4 : 7;
                             p_hit_1e_cut_3v.SetXYZ(protons[i]->traj(clas12::ECAL, trajlayer)->getX(), protons[i]->traj(clas12::ECAL, trajlayer)->getY(),
@@ -12324,14 +12324,14 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
         // Redefined neutrons (all FD neutrons)
         for (auto &i : NeutronsFD_ind_noNeutCuts) {
-            // check neutron (n) hits in the PCAL, ECIN and ECOUT:
+            // check neutron (n) hits in the PCAL, ECIN and Estd::cout:
             bool nFD_hit_PCAL_1e_cut = (allParticles[i]->cal(clas12::PCAL)->getDetector() == 7);
             bool nFD_hit_ECIN_1e_cut = (allParticles[i]->cal(clas12::ECIN)->getDetector() == 7);
-            bool nFD_hit_ECOUT_1e_cut = (allParticles[i]->cal(clas12::ECOUT)->getDetector() == 7);
+            bool nFD_hit_Estd::cout_1e_cut = (allParticles[i]->cal(clas12::Estd::cout)->getDetector() == 7);
 
-            // if neutron (n) did not hit PCAL & hit either ECIN or ECOUT // if neutron (n) did not hit PCAL & hit either ECIN or ECOUT:
-            if (!nFD_hit_PCAL_1e_cut && (nFD_hit_ECIN_1e_cut || nFD_hit_ECOUT_1e_cut)) {
-                auto nFD_detlayer_1e_cut = nFD_hit_ECIN_1e_cut ? clas12::ECIN : clas12::ECOUT;  // find first layer of hit
+            // if neutron (n) did not hit PCAL & hit either ECIN or Estd::cout // if neutron (n) did not hit PCAL & hit either ECIN or Estd::cout:
+            if (!nFD_hit_PCAL_1e_cut && (nFD_hit_ECIN_1e_cut || nFD_hit_Estd::cout_1e_cut)) {
+                auto nFD_detlayer_1e_cut = nFD_hit_ECIN_1e_cut ? clas12::ECIN : clas12::Estd::cout;  // find first layer of hit
 
                 // neutron (n)'s ECIN/ECAL hit vector and angles:
                 TVector3 nFD_hit_1e_cut_3v(allParticles[i]->cal(nFD_detlayer_1e_cut)->getX(), allParticles[i]->cal(nFD_detlayer_1e_cut)->getY(),
@@ -12345,11 +12345,11 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                         if ((nFD_detlayer_1e_cut == clas12::ECIN) && (protons[j]->cal(clas12::ECIN)->getZ() != 0)) {
                             /* if both particles hit the inner calorimeter, use the inner calorimeter to determine p_hit_1e_cut_3v */
                             p_hit_1e_cut_3v.SetXYZ(protons[j]->cal(clas12::ECIN)->getX(), protons[j]->cal(clas12::ECIN)->getY(), protons[j]->cal(clas12::ECIN)->getZ());
-                        } else if ((nFD_detlayer_1e_cut == clas12::ECOUT) && (protons[j]->cal(clas12::ECOUT)->getZ() != 0)) {
+                        } else if ((nFD_detlayer_1e_cut == clas12::Estd::cout) && (protons[j]->cal(clas12::Estd::cout)->getZ() != 0)) {
                             /* if both particles hit the outer calorimeter, use the outer calorimeter to determine p_hit_1e_cut_3v */
-                            p_hit_1e_cut_3v.SetXYZ(protons[j]->cal(clas12::ECOUT)->getX(), protons[j]->cal(clas12::ECOUT)->getY(), protons[j]->cal(clas12::ECOUT)->getZ());
+                            p_hit_1e_cut_3v.SetXYZ(protons[j]->cal(clas12::Estd::cout)->getX(), protons[j]->cal(clas12::Estd::cout)->getY(), protons[j]->cal(clas12::Estd::cout)->getZ());
                         } else {
-                            /* the neutral has to hit either the ECIN or ECOUT.
+                            /* the neutral has to hit either the ECIN or Estd::cout.
                                If the charged particle hit the other calorimeter, then look at where the charged particle was expected to be according to the trajectory. */
                             int trajlayer = (nFD_detlayer_1e_cut == clas12::ECIN) ? 4 : 7;
                             p_hit_1e_cut_3v.SetXYZ(protons[j]->traj(clas12::ECAL, trajlayer)->getX(), protons[j]->traj(clas12::ECAL, trajlayer)->getY(),
@@ -12415,13 +12415,13 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                 if (NeutronsFD_ind_mom_max != -1) {
                     // if NeutronsFD_ind_mom_max == -1, there are no neutrons above momentum th. in the event
                     /* Fill leading reco FD neutron acceptance maps */
-                    bool hitPCAL_1e_cut = (allParticles[NeutronsFD_ind_mom_max]->cal(clas12::PCAL)->getDetector() == 7);    // PCAL hit
-                    bool hitECIN_1e_cut = (allParticles[NeutronsFD_ind_mom_max]->cal(clas12::ECIN)->getDetector() == 7);    // ECIN hit
-                    bool hitECOUT_1e_cut = (allParticles[NeutronsFD_ind_mom_max]->cal(clas12::ECOUT)->getDetector() == 7);  // ECOUT hit
-                    auto n_detlayer_1e_cut = hitECIN_1e_cut ? clas12::ECIN : clas12::ECOUT;                                 // find first layer of hit
+                    bool hitPCAL_1e_cut = (allParticles[NeutronsFD_ind_mom_max]->cal(clas12::PCAL)->getDetector() == 7);              // PCAL hit
+                    bool hitECIN_1e_cut = (allParticles[NeutronsFD_ind_mom_max]->cal(clas12::ECIN)->getDetector() == 7);              // ECIN hit
+                    bool hitEstd::cout_1e_cut = (allParticles[NeutronsFD_ind_mom_max]->cal(clas12::Estd::cout)->getDetector() == 7);  // Estd::cout hit
+                    auto n_detlayer_1e_cut = hitECIN_1e_cut ? clas12::ECIN : clas12::Estd::cout;                                      // find first layer of hit
 
                     // Safety checks that leading nFD is neutron by definition (AMaps & WMaps)
-                    CodeDebugger.SafetyCheck_AMaps_Reco_leading_neutrons(__FILE__, __LINE__, allParticles, NeutronsFD_ind_mom_max, hitPCAL_1e_cut, hitECIN_1e_cut, hitECOUT_1e_cut);
+                    CodeDebugger.SafetyCheck_AMaps_Reco_leading_neutrons(__FILE__, __LINE__, allParticles, NeutronsFD_ind_mom_max, hitPCAL_1e_cut, hitECIN_1e_cut, hitEstd::cout_1e_cut);
 
                     if (true) {
                         // if (allParticles[NeutronsFD_ind_mom_max]->cal(n_detlayer_1e_cut)->getLv() > clasAna.getEcalEdgeCuts() &&
@@ -12504,13 +12504,13 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                 if (NeutronsFD_ind_mom_max != -1) {
                     // if NeutronsFD_ind_mom_max == -1, there are no neutrons above momentum th. in the event
                     /* Fill leading reco FD neutron efficiency maps */
-                    bool hitPCAL_1e_cut = (allParticles[NeutronsFD_ind_mom_max]->cal(clas12::PCAL)->getDetector() == 7);    // PCAL hit
-                    bool hitECIN_1e_cut = (allParticles[NeutronsFD_ind_mom_max]->cal(clas12::ECIN)->getDetector() == 7);    // ECIN hit
-                    bool hitECOUT_1e_cut = (allParticles[NeutronsFD_ind_mom_max]->cal(clas12::ECOUT)->getDetector() == 7);  // ECOUT hit
-                    auto n_detlayer_1e_cut = hitECIN_1e_cut ? clas12::ECIN : clas12::ECOUT;                                 // find first layer of hit
+                    bool hitPCAL_1e_cut = (allParticles[NeutronsFD_ind_mom_max]->cal(clas12::PCAL)->getDetector() == 7);              // PCAL hit
+                    bool hitECIN_1e_cut = (allParticles[NeutronsFD_ind_mom_max]->cal(clas12::ECIN)->getDetector() == 7);              // ECIN hit
+                    bool hitEstd::cout_1e_cut = (allParticles[NeutronsFD_ind_mom_max]->cal(clas12::Estd::cout)->getDetector() == 7);  // Estd::cout hit
+                    auto n_detlayer_1e_cut = hitECIN_1e_cut ? clas12::ECIN : clas12::Estd::cout;                                      // find first layer of hit
 
                     // Safety checks that leading nFD is neutron by definition (AMaps & WMaps)
-                    CodeDebugger.SafetyCheck_AMaps_Reco_leading_neutrons(__FILE__, __LINE__, allParticles, NeutronsFD_ind_mom_max, hitPCAL_1e_cut, hitECIN_1e_cut, hitECOUT_1e_cut);
+                    CodeDebugger.SafetyCheck_AMaps_Reco_leading_neutrons(__FILE__, __LINE__, allParticles, NeutronsFD_ind_mom_max, hitPCAL_1e_cut, hitECIN_1e_cut, hitEstd::cout_1e_cut);
 
                     if (allParticles[NeutronsFD_ind_mom_max]->cal(n_detlayer_1e_cut)->getLv() > clasAna.getEcalEdgeCuts() &&
                         allParticles[NeutronsFD_ind_mom_max]->cal(n_detlayer_1e_cut)->getLw() > clasAna.getEcalEdgeCuts()) {
@@ -12589,7 +12589,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
             double E_e_1p = sqrt(m_e * m_e + P_e_1p_3v.Mag2()), E_p_1p = sqrt(m_p * m_p + P_p_1p_3v.Mag2()), Ecal_1p, dAlpha_T_1p, dPhi_T_1p;
             double omega_1p = beamE - E_e_1p, W_1p = sqrt((omega_1p + m_p) * (omega_1p + m_p) - q_1p_3v.Mag2());
             double Theta_p_e_p_p_1p, Theta_q_p_p_1p;
-            double EoP_e_1p = (e_1p->cal(clas12::PCAL)->getEnergy() + e_1p->cal(ECIN)->getEnergy() + e_1p->cal(ECOUT)->getEnergy()) / P_e_1p_3v.Mag();
+            double EoP_e_1p = (e_1p->cal(clas12::PCAL)->getEnergy() + e_1p->cal(ECIN)->getEnergy() + e_1p->cal(Estd::cout)->getEnergy()) / P_e_1p_3v.Mag();
             double Vx_e_1p = e_1p->par()->getVx(), Vy_e_1p = e_1p->par()->getVy(), Vz_e_1p = e_1p->par()->getVz();
 
             /* Setting Q2 (1p) */
@@ -13111,15 +13111,15 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
             region_part_ptr e_1n = electrons[Electron_ind.at(0)];
             region_part_ptr n_1n = allParticles[n_ind_1n];  // neutron with the largest momentum magnitude
 
-            bool NeutronInPCAL_1n = (n_1n->cal(clas12::PCAL)->getDetector() == 7);                                   // PCAL hit
-            bool NeutronInECIN_1n = (n_1n->cal(clas12::ECIN)->getDetector() == 7);                                   // ECIN hit
-            bool NeutronInECOUT_1n = (n_1n->cal(clas12::ECOUT)->getDetector() == 7);                                 // ECOUT hit
-            auto n_detlayer_1n = NeutronInPCAL_1n ? clas12::PCAL : NeutronInECIN_1n ? clas12::ECIN : clas12::ECOUT;  // determine the earliest layer of the neutral hit
+            bool NeutronInPCAL_1n = (n_1n->cal(clas12::PCAL)->getDetector() == 7);                                        // PCAL hit
+            bool NeutronInECIN_1n = (n_1n->cal(clas12::ECIN)->getDetector() == 7);                                        // ECIN hit
+            bool NeutronInEstd::cout_1n = (n_1n->cal(clas12::Estd::cout)->getDetector() == 7);                            // Estd::cout hit
+            auto n_detlayer_1n = NeutronInPCAL_1n ? clas12::PCAL : NeutronInECIN_1n ? clas12::ECIN : clas12::Estd::cout;  // determine the earliest layer of the neutral hit
 
             /* Safety check that we are looking at 1n */
             CodeDebugger.SafetyCheck_basic_event_selection(__FILE__, __LINE__, "1n", Kplus, Kminus, Piplus_ind, Piminus_ind, Electron_ind, deuterons);
             CodeDebugger.SafetyCheck_1n(__FILE__, __LINE__, NeutronsFD_ind, e_1n, n_1n, Enable_FD_photons, PhotonsFD_ind, ES_by_leading_FDneutron, pid, allParticles, NeutronsFD_ind_mom_max,
-                                        apply_nucleon_cuts, NeutronInPCAL_1n, NeutronInECIN_1n, NeutronInECOUT_1n, n_detlayer_1n);
+                                        apply_nucleon_cuts, NeutronInPCAL_1n, NeutronInECIN_1n, NeutronInEstd::cout_1n, n_detlayer_1n);
 
             // Setting 1n analysis variables
             double NeutronMomBKC_1n = pid.GetFDNeutronP(n_1n, apply_nucleon_cuts);  // neutron momentum before shift for kin cuts
@@ -13136,7 +13136,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
             double E_e_1n = sqrt(m_e * m_e + P_e_1n_3v.Mag2()), E_n_1n = sqrt(m_n * m_n + P_n_1n_3v.Mag2()), Ecal_1n, dAlpha_T_1n, dPhi_T_1n;
             double omega_1n = beamE - E_e_1n, W_1n = sqrt((omega_1n + m_n) * (omega_1n + m_n) - q_1n_3v.Mag2());
             double Theta_p_e_p_n_1n, Theta_q_p_n_1n;
-            double EoP_e_1n = (e_1n->cal(clas12::PCAL)->getEnergy() + e_1n->cal(ECIN)->getEnergy() + e_1n->cal(ECOUT)->getEnergy()) / P_e_1n_3v.Mag();
+            double EoP_e_1n = (e_1n->cal(clas12::PCAL)->getEnergy() + e_1n->cal(ECIN)->getEnergy() + e_1n->cal(Estd::cout)->getEnergy()) / P_e_1n_3v.Mag();
             double Vx_e_1n = e_1n->par()->getVx(), Vy_e_1n = e_1n->par()->getVy(), Vz_e_1n = e_1n->par()->getVz();
 
             /* Setting Q2 (1n) */
@@ -13161,8 +13161,8 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
             double n_hit_Phi_1n, n_hit_Theta_1n, e_hit_Phi_1n, e_hit_Theta_1n, dPhi_hit_1n, dTheta_hit_1n;
 
-            if (!NeutronInPCAL_1n && (NeutronInECIN_1n || NeutronInECOUT_1n)) {
-                // if neutron did not hit PCAL, and hit either ECIN or ECOUT
+            if (!NeutronInPCAL_1n && (NeutronInECIN_1n || NeutronInEstd::cout_1n)) {
+                // if neutron did not hit PCAL, and hit either ECIN or Estd::cout
 
                 // neutron ECIN/ECAL hit vector and angles:
                 n_hit_1n_3v.SetXYZ(n_1n->cal(n_detlayer_1n)->getX(), n_1n->cal(n_detlayer_1n)->getY(), n_1n->cal(n_detlayer_1n)->getZ());
@@ -13171,8 +13171,8 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                 if ((n_detlayer_1n == clas12::ECIN) && (e_1n->cal(clas12::ECIN)->getZ() != 0)) {
                     e_hit_1n_3v.SetXYZ(e_1n->cal(clas12::ECIN)->getX(), e_1n->cal(clas12::ECIN)->getY(), e_1n->cal(clas12::ECIN)->getZ());
                     e_hit_Theta_1n = e_hit_1n_3v.Theta() * 180 / pi, e_hit_Phi_1n = e_hit_1n_3v.Phi() * 180 / pi;
-                } else if ((n_detlayer_1n == clas12::ECOUT) && (e_1n->cal(clas12::ECOUT)->getZ() != 0)) {
-                    e_hit_1n_3v.SetXYZ(e_1n->cal(clas12::ECOUT)->getX(), e_1n->cal(clas12::ECOUT)->getY(), e_1n->cal(clas12::ECOUT)->getZ());
+                } else if ((n_detlayer_1n == clas12::Estd::cout) && (e_1n->cal(clas12::Estd::cout)->getZ() != 0)) {
+                    e_hit_1n_3v.SetXYZ(e_1n->cal(clas12::Estd::cout)->getX(), e_1n->cal(clas12::Estd::cout)->getY(), e_1n->cal(clas12::Estd::cout)->getZ());
                     e_hit_Theta_1n = e_hit_1n_3v.Theta() * 180 / pi, e_hit_Phi_1n = e_hit_1n_3v.Phi() * 180 / pi;
                 } else {
                     int trajlayer = (n_detlayer_1n == clas12::ECIN) ? 4 : 7;
@@ -13184,7 +13184,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
                 // subtracting the angles between the neutron hit and electron hit to see if we have fake neutrons:
                 hdTheta_n_e_VS_dPhi_n_e_Electrons_BV_1n.hFill(dPhi_hit_1n, dTheta_hit_1n, Weight_1n);
-            }  // end of if neutron did not hit PCAL & hit either ECIN or ECOUT
+            }  // end of if neutron did not hit PCAL & hit either ECIN or Estd::cout
 
             bool NeutronPassVeto_1n = pid.NeutronECAL_Cut_Veto(allParticles, electrons, beamE, n_ind_1n, Neutron_veto_cut.GetLowerCut());
 
@@ -13279,11 +13279,11 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                 // Neutron momentum - verified neutrons (1n)
                 /* Neutron mom. before th. (verified neutrons) */
                 for (int i = 0; i < neutrons.size(); i++) {
-                    bool inPCALtmp = (neutrons[i]->cal(clas12::PCAL)->getDetector() == 7);    // PCAL hit
-                    bool inECINtmp = (neutrons[i]->cal(clas12::ECIN)->getDetector() == 7);    // ECIN hit
-                    bool inECOUTtmp = (neutrons[i]->cal(clas12::ECOUT)->getDetector() == 7);  // ECOUT hit
+                    bool inPCALtmp = (neutrons[i]->cal(clas12::PCAL)->getDetector() == 7);              // PCAL hit
+                    bool inECINtmp = (neutrons[i]->cal(clas12::ECIN)->getDetector() == 7);              // ECIN hit
+                    bool inEstd::couttmp = (neutrons[i]->cal(clas12::Estd::cout)->getDetector() == 7);  // Estd::cout hit
 
-                    if ((neutrons[i]->getRegion() == FD) && (!inPCALtmp && (inECINtmp || inECOUTtmp))) {
+                    if ((neutrons[i]->getRegion() == FD) && (!inPCALtmp && (inECINtmp || inEstd::couttmp))) {
                         hP_n_VN_BPID_1n_FD.hFill(neutrons[i]->getP(), Weight_1n);  // before mom. th.
                     }
                 }
@@ -13292,11 +13292,11 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                 for (int &i : NeutronsFD_ind) {
                     int ParticlePDGtmp = allParticles[i]->par()->getPid();
 
-                    bool inPCALtmp = (allParticles[i]->cal(clas12::PCAL)->getDetector() == 7);    // PCAL hit
-                    bool inECINtmp = (allParticles[i]->cal(clas12::ECIN)->getDetector() == 7);    // ECIN hit
-                    bool inECOUTtmp = (allParticles[i]->cal(clas12::ECOUT)->getDetector() == 7);  // ECOUT hit
+                    bool inPCALtmp = (allParticles[i]->cal(clas12::PCAL)->getDetector() == 7);              // PCAL hit
+                    bool inECINtmp = (allParticles[i]->cal(clas12::ECIN)->getDetector() == 7);              // ECIN hit
+                    bool inEstd::couttmp = (allParticles[i]->cal(clas12::Estd::cout)->getDetector() == 7);  // Estd::cout hit
 
-                    if ((allParticles[i]->getRegion() == FD) && (ParticlePDGtmp == 2112) && (!inPCALtmp && (inECINtmp || inECOUTtmp))) {
+                    if ((allParticles[i]->getRegion() == FD) && (ParticlePDGtmp == 2112) && (!inPCALtmp && (inECINtmp || inEstd::couttmp))) {
                         hP_n_VN_APID_1n_FD.hFill(allParticles[i]->getP(), Weight_1n);  // after mom. th.
                     }
                 }
@@ -13306,12 +13306,12 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                 for (int i = 0; i < allParticles.size(); i++) {
                     int ParticlePDGtmp = allParticles[i]->par()->getPid();
 
-                    bool inPCALtmp = (allParticles[i]->cal(clas12::PCAL)->getDetector() == 7);    // PCAL hit
-                    bool inECINtmp = (allParticles[i]->cal(clas12::ECIN)->getDetector() == 7);    // ECIN hit
-                    bool inECOUTtmp = (allParticles[i]->cal(clas12::ECOUT)->getDetector() == 7);  // ECOUT hit
+                    bool inPCALtmp = (allParticles[i]->cal(clas12::PCAL)->getDetector() == 7);              // PCAL hit
+                    bool inECINtmp = (allParticles[i]->cal(clas12::ECIN)->getDetector() == 7);              // ECIN hit
+                    bool inEstd::couttmp = (allParticles[i]->cal(clas12::Estd::cout)->getDetector() == 7);  // Estd::cout hit
 
                     // 'photon' mom before cuts:
-                    if ((allParticles[i]->getRegion() == FD) && (ParticlePDGtmp == 22) && (!inPCALtmp && (inECINtmp || inECOUTtmp))) {
+                    if ((allParticles[i]->getRegion() == FD) && (ParticlePDGtmp == 22) && (!inPCALtmp && (inECINtmp || inEstd::couttmp))) {
                         hP_n_Ph_BPID_1n_FD.hFill(pid.GetFDNeutronP(allParticles[i], apply_nucleon_cuts), Weight_1n);  // before mom. th.
                     }
                 }
@@ -13320,11 +13320,11 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                 for (int &i : NeutronsFD_ind) {
                     int ParticlePDGtmp = allParticles[i]->par()->getPid();
 
-                    bool inPCALtmp = (allParticles[i]->cal(clas12::PCAL)->getDetector() == 7);    // PCAL hit
-                    bool inECINtmp = (allParticles[i]->cal(clas12::ECIN)->getDetector() == 7);    // ECIN hit
-                    bool inECOUTtmp = (allParticles[i]->cal(clas12::ECOUT)->getDetector() == 7);  // ECOUT hit
+                    bool inPCALtmp = (allParticles[i]->cal(clas12::PCAL)->getDetector() == 7);              // PCAL hit
+                    bool inECINtmp = (allParticles[i]->cal(clas12::ECIN)->getDetector() == 7);              // ECIN hit
+                    bool inEstd::couttmp = (allParticles[i]->cal(clas12::Estd::cout)->getDetector() == 7);  // Estd::cout hit
 
-                    if ((allParticles[i]->getRegion() == FD) && (ParticlePDGtmp == 22) && (!inPCALtmp && (inECINtmp || inECOUTtmp))) {
+                    if ((allParticles[i]->getRegion() == FD) && (ParticlePDGtmp == 22) && (!inPCALtmp && (inECINtmp || inEstd::couttmp))) {
                         hP_n_Ph_APID_1n_FD.hFill(pid.GetFDNeutronP(allParticles[i], apply_nucleon_cuts), Weight_1n);  // after mom. th.
                     }
                 }
@@ -13395,13 +13395,13 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                         int PDGtmp = allParticles[i]->par()->getPid();
                         double P_n_temp = pid.GetFDNeutronP(allParticles[i], apply_nucleon_cuts);
 
-                        bool inPCALtmp = (allParticles[i]->cal(clas12::PCAL)->getDetector() == 7);    // PCAL hit
-                        bool inECINtmp = (allParticles[i]->cal(clas12::ECIN)->getDetector() == 7);    // ECIN hit
-                        bool inECOUTtmp = (allParticles[i]->cal(clas12::ECOUT)->getDetector() == 7);  // ECOUT hit
+                        bool inPCALtmp = (allParticles[i]->cal(clas12::PCAL)->getDetector() == 7);              // PCAL hit
+                        bool inECINtmp = (allParticles[i]->cal(clas12::ECIN)->getDetector() == 7);              // ECIN hit
+                        bool inEstd::couttmp = (allParticles[i]->cal(clas12::Estd::cout)->getDetector() == 7);  // Estd::cout hit
 
                         if (PDGtmp == 22) {
-                            if (!(allParticles[i]->getRegion() == FD)) { cout << "\033[33m\n\nBeta_n_1n: neutron is not in FD! Exiting...\n\n", exit(0); }
-                            if (!(!inPCALtmp && (inECINtmp || inECOUTtmp))) { cout << "\033[33m\n\nBeta_n_1n: photon is not a neutron! Exiting...\n\n", exit(0); }
+                            if (!(allParticles[i]->getRegion() == FD)) { std::cout << "\033[33m\n\nBeta_n_1n: neutron is not in FD! Exiting...\n\n", exit(0); }
+                            if (!(!inPCALtmp && (inECINtmp || inEstd::couttmp))) { std::cout << "\033[33m\n\nBeta_n_1n: photon is not a neutron! Exiting...\n\n", exit(0); }
 
                             // Filling beta of neutrons from 'photons' - all sectors
                             hBeta_n_from_ph_01_1n_FD.hFill(allParticles[i]->par()->getBeta());
@@ -13420,8 +13420,8 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                                 hBeta_n_from_ph_03_1n_ZOOMOUT_FD.hFill(allParticles[i]->par()->getBeta());
                             }
 
-                            // Beta_n_from_ph - !PCAL && !ECIN && ECOUT
-                            if (!inPCALtmp && !inECINtmp && inECOUTtmp) {
+                            // Beta_n_from_ph - !PCAL && !ECIN && Estd::cout
+                            if (!inPCALtmp && !inECINtmp && inEstd::couttmp) {
                                 hBeta_n_from_ph_04_1n_FD.hFill(allParticles[i]->par()->getBeta());
                                 hBeta_n_from_ph_04_1n_ZOOMOUT_FD.hFill(allParticles[i]->par()->getBeta());
                             }
@@ -13432,13 +13432,13 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                     int PDGtmp = allParticles[n_ind_1n]->par()->getPid();
                     double P_n_temp = pid.GetFDNeutronP(allParticles[n_ind_1n], apply_nucleon_cuts);
 
-                    bool inPCALtmp = (allParticles[n_ind_1n]->cal(clas12::PCAL)->getDetector() == 7);    // PCAL hit
-                    bool inECINtmp = (allParticles[n_ind_1n]->cal(clas12::ECIN)->getDetector() == 7);    // ECIN hit
-                    bool inECOUTtmp = (allParticles[n_ind_1n]->cal(clas12::ECOUT)->getDetector() == 7);  // ECOUT hit
+                    bool inPCALtmp = (allParticles[n_ind_1n]->cal(clas12::PCAL)->getDetector() == 7);              // PCAL hit
+                    bool inECINtmp = (allParticles[n_ind_1n]->cal(clas12::ECIN)->getDetector() == 7);              // ECIN hit
+                    bool inEstd::couttmp = (allParticles[n_ind_1n]->cal(clas12::Estd::cout)->getDetector() == 7);  // Estd::cout hit
 
                     if (PDGtmp == 22) {
-                        if (!(allParticles[n_ind_1n]->getRegion() == FD)) { cout << "\033[33m\n\nBeta_n_1n: neutron is not in FD! Exiting...\n\n", exit(0); }
-                        if (!(!inPCALtmp && (inECINtmp || inECOUTtmp))) { cout << "\033[33m\n\nBeta_n_1n: photon is not a neutron! Exiting...\n\n", exit(0); }
+                        if (!(allParticles[n_ind_1n]->getRegion() == FD)) { std::cout << "\033[33m\n\nBeta_n_1n: neutron is not in FD! Exiting...\n\n", exit(0); }
+                        if (!(!inPCALtmp && (inECINtmp || inEstd::couttmp))) { std::cout << "\033[33m\n\nBeta_n_1n: photon is not a neutron! Exiting...\n\n", exit(0); }
 
                         // Filling beta of neutrons from 'photons' - all sectors
                         hBeta_n_from_ph_01_1n_FD.hFill(allParticles[n_ind_1n]->par()->getBeta());
@@ -13457,8 +13457,8 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                             hBeta_n_from_ph_03_1n_ZOOMOUT_FD.hFill(allParticles[n_ind_1n]->par()->getBeta());
                         }
 
-                        // Beta_n_from_ph - !PCAL && !ECIN && ECOUT
-                        if (!inPCALtmp && !inECINtmp && inECOUTtmp) {
+                        // Beta_n_from_ph - !PCAL && !ECIN && Estd::cout
+                        if (!inPCALtmp && !inECINtmp && inEstd::couttmp) {
                             hBeta_n_from_ph_04_1n_FD.hFill(allParticles[n_ind_1n]->par()->getBeta());
                             hBeta_n_from_ph_04_1n_ZOOMOUT_FD.hFill(allParticles[n_ind_1n]->par()->getBeta());
                         }
@@ -13878,9 +13878,9 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
                             if (nRes_Pass_dThetaCut && nRes_Pass_dPhiCut) {
                                 /* Basic reco variables */
-                                bool ECIN_HIT = (n_1n->cal(clas12::ECIN)->getDetector() == 7);    // ECIN hit
-                                bool ECOUT_HIT = (n_1n->cal(clas12::ECOUT)->getDetector() == 7);  // ECOUT hit
-                                auto Detlayer_1n = ECIN_HIT ? clas12::ECIN : clas12::ECOUT;       // determine the earliest layer of the neutral hit
+                                bool ECIN_HIT = (n_1n->cal(clas12::ECIN)->getDetector() == 7);              // ECIN hit
+                                bool Estd::cout_HIT = (n_1n->cal(clas12::Estd::cout)->getDetector() == 7);  // Estd::cout hit
+                                auto Detlayer_1n = ECIN_HIT ? clas12::ECIN : clas12::Estd::cout;            // determine the earliest layer of the neutral hit
 
                                 double t_start = c12->event()->getStartTime();  // Event start time
 
@@ -13938,18 +13938,18 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                                     hReco_L_VS_reco_theta_nFD_1n.hFill(Reco_L, RecoNeutronTheta, Weight);
                                     hReco_L_VS_reco_phi_nFD_1n.hFill(Reco_L, RecoNeutronPhi, Weight);
 
-                                    if (ECIN_HIT && !ECOUT_HIT) {
+                                    if (ECIN_HIT && !Estd::cout_HIT) {
                                         hReco_L_ECIN_1n.hFill(Reco_L, Weight);
                                         hReco_L_VS_reco_P_nFD_ECIN_1n.hFill(Reco_L, RecoNeutronP, Weight);
                                         hReco_L_VS_truth_P_nFD_ECIN_1n.hFill(Reco_L, TLNeutronP, Weight);
                                         hReco_L_VS_R_nFD_ECIN_1n.hFill(Reco_L, nResolution, Weight);
                                     }
 
-                                    if (ECOUT_HIT && !ECIN_HIT) {
-                                        hReco_L_ECOUT_1n.hFill(Reco_L, Weight);
-                                        hReco_L_VS_reco_P_nFD_ECOUT_1n.hFill(Reco_L, RecoNeutronP, Weight);
-                                        hReco_L_VS_truth_P_nFD_ECOUT_1n.hFill(Reco_L, TLNeutronP, Weight);
-                                        hReco_L_VS_R_nFD_ECOUT_1n.hFill(Reco_L, nResolution, Weight);
+                                    if (Estd::cout_HIT && !ECIN_HIT) {
+                                        hReco_L_Estd::cout_1n.hFill(Reco_L, Weight);
+                                        hReco_L_VS_reco_P_nFD_Estd::cout_1n.hFill(Reco_L, RecoNeutronP, Weight);
+                                        hReco_L_VS_truth_P_nFD_Estd::cout_1n.hFill(Reco_L, TLNeutronP, Weight);
+                                        hReco_L_VS_R_nFD_Estd::cout_1n.hFill(Reco_L, nResolution, Weight);
                                     }
 
                                     hReco_t_ToF_1n.hFill(Reco_t_nFD, Weight);
@@ -14041,7 +14041,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                         hnRes_Match_Multi_vs_Reco_Phi_nFD_1n.hFill(Neutron_match_counter, RecoNeutronPhi_Debug, Weight);
                     }
                 }  // end of resolution calculation if
-            }  // end of NeutronPassVeto_1n is true (i.e. if neutron did not hit PCAL & hit either ECIN or ECOUT) & pass kinematical cuts (1n) if
+            }  // end of NeutronPassVeto_1n is true (i.e. if neutron did not hit PCAL & hit either ECIN or Estd::cout) & pass kinematical cuts (1n) if
         }  // end of 1n cuts if
 
         //  1e2pXy (or (e,e'pp)X) -----------------------------------------------------------------------------------------------------------------------------------------------
@@ -14079,7 +14079,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
             // Safety checks (2p)
             /* Safety check that we are looking at 2p */
-            if (Protons_ind.size() != 2) { cout << "\033[33m\n\n2p: Protons_ind.size() is different than 2! Exiting...\n\n", exit(0); }
+            if (Protons_ind.size() != 2) { std::cout << "\033[33m\n\n2p: Protons_ind.size() is different than 2! Exiting...\n\n", exit(0); }
 
             CodeDebugger.SafetyCheck_basic_event_selection(__FILE__, __LINE__, "2p", Kplus, Kminus, Piplus_ind, Piminus_ind, Electron_ind, deuterons);
 
@@ -14636,16 +14636,18 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
             // Safety checks (pFDpCD)
             /* Safety check that we are looking at pFDpCD */
-            if (e_pFDpCD->getRegion() != FD) { cout << "\033[33m\n\npFDpCD: Electron is not in the FD! Exiting...\n\n", exit(0); }
-            if (pFD_pFDpCD->getRegion() != FD) { cout << "\033[33m\n\npFDpCD: nFD is not in the FD! Exiting...\n\n", exit(0); }
-            if (pCD_pFDpCD->getRegion() != CD) { cout << "\033[33m\n\npFDpCD: pCD is not in the CD! Exiting...\n\n", exit(0); }
-            if (Protons_ind.size() != 2) { cout << "\033[33m\n\npFDpCD: Protons_ind.size() is different than 2! Exiting...\n\n", exit(0); }
+            if (e_pFDpCD->getRegion() != FD) { std::cout << "\033[33m\n\npFDpCD: Electron is not in the FD! Exiting...\n\n", exit(0); }
+            if (pFD_pFDpCD->getRegion() != FD) { std::cout << "\033[33m\n\npFDpCD: nFD is not in the FD! Exiting...\n\n", exit(0); }
+            if (pCD_pFDpCD->getRegion() != CD) { std::cout << "\033[33m\n\npFDpCD: pCD is not in the CD! Exiting...\n\n", exit(0); }
+            if (Protons_ind.size() != 2) { std::cout << "\033[33m\n\npFDpCD: Protons_ind.size() is different than 2! Exiting...\n\n", exit(0); }
 
-            if (protons[Protons_ind.at(0)]->getRegion() == protons[Protons_ind.at(1)]->getRegion()) { cout << "\033[33m\n\npFDpCD: Protons are in the same region! Exiting...\n\n", exit(0); }
+            if (protons[Protons_ind.at(0)]->getRegion() == protons[Protons_ind.at(1)]->getRegion()) {
+                std::cout << "\033[33m\n\npFDpCD: Protons are in the same region! Exiting...\n\n", exit(0);
+            }
 
-            if (e_pFDpCD->getRegion() != FD) { cout << "\033[33m\n\npFDpCD: Electron is not in the FD! Exiting...\n\n", exit(0); }
-            if (pFD_pFDpCD->getRegion() != FD) { cout << "\033[33m\n\npFDpCD: pFD is not in the FD! Exiting...\n\n", exit(0); }
-            if (pCD_pFDpCD->getRegion() != CD) { cout << "\033[33m\n\npFDpCD: pCD is not in the CD! Exiting...\n\n", exit(0); }
+            if (e_pFDpCD->getRegion() != FD) { std::cout << "\033[33m\n\npFDpCD: Electron is not in the FD! Exiting...\n\n", exit(0); }
+            if (pFD_pFDpCD->getRegion() != FD) { std::cout << "\033[33m\n\npFDpCD: pFD is not in the FD! Exiting...\n\n", exit(0); }
+            if (pCD_pFDpCD->getRegion() != CD) { std::cout << "\033[33m\n\npFDpCD: pCD is not in the CD! Exiting...\n\n", exit(0); }
 
             CodeDebugger.SafetyCheck_basic_event_selection(__FILE__, __LINE__, "pFDpCD", Kplus, Kminus, Piplus_ind, Piminus_ind, Electron_ind, deuterons);
 
@@ -14670,7 +14672,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
             double E_pL_pFDpCD, E_pR_pFDpCD;
             double Theta_p_e_p_tot_pFDpCD, Theta_q_p_tot_pFDpCD, Theta_P_pL_minus_q_pR_pFDpCD, Theta_q_p_L_pFDpCD, Theta_q_p_R_pFDpCD, Theta_q_pFD_pFDpCD, Theta_q_pCD_pFDpCD;
             double dAlpha_T_L_pFDpCD, dAlpha_T_tot_pFDpCD, dPhi_T_L_pFDpCD, dPhi_T_tot_pFDpCD, Ecal_pFDpCD;
-            double EoP_e_pFDpCD = (e_pFDpCD->cal(PCAL)->getEnergy() + e_pFDpCD->cal(ECIN)->getEnergy() + e_pFDpCD->cal(ECOUT)->getEnergy()) / P_e_pFDpCD_3v.Mag();
+            double EoP_e_pFDpCD = (e_pFDpCD->cal(PCAL)->getEnergy() + e_pFDpCD->cal(ECIN)->getEnergy() + e_pFDpCD->cal(Estd::cout)->getEnergy()) / P_e_pFDpCD_3v.Mag();
             double Vx_e_pFDpCD = e_pFDpCD->par()->getVx(), Vy_e_pFDpCD = e_pFDpCD->par()->getVy(), Vz_e_pFDpCD = e_pFDpCD->par()->getVz();
 
             /* Setting Q2 */
@@ -15376,31 +15378,31 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
             // Safety checks (nFDpCD)
             /* Safety check that we are looking at nFDpCD */
             // TODO: reorgenize these Safety checks
-            if (e_nFDpCD->getRegion() != FD) { cout << "\033[33m\n\nnFDpCD: Electron is not in the FD! Exiting...\n\n", exit(0); }
-            if (nFD_nFDpCD->getRegion() != FD) { cout << "\033[33m\n\nnFDpCD: nFD is not in the FD! Exiting...\n\n", exit(0); }
-            if (pCD_nFDpCD->getRegion() != CD) { cout << "\033[33m\n\nnFDpCD: pCD is not in the CD! Exiting...\n\n", exit(0); }
+            if (e_nFDpCD->getRegion() != FD) { std::cout << "\033[33m\n\nnFDpCD: Electron is not in the FD! Exiting...\n\n", exit(0); }
+            if (nFD_nFDpCD->getRegion() != FD) { std::cout << "\033[33m\n\nnFDpCD: nFD is not in the FD! Exiting...\n\n", exit(0); }
+            if (pCD_nFDpCD->getRegion() != CD) { std::cout << "\033[33m\n\nnFDpCD: pCD is not in the CD! Exiting...\n\n", exit(0); }
 
             if (!(Enable_FD_photons || (PhotonsFD_ind.size() == 0))) {
-                cout << "\033[33m\n\nnFDpCD: PhotonsFD_ind.size() is non-zero (" << PhotonsFD_ind.size() << ")! Exiting...\n\n", exit(0);
+                std::cout << "\033[33m\n\nnFDpCD: PhotonsFD_ind.size() is non-zero (" << PhotonsFD_ind.size() << ")! Exiting...\n\n", exit(0);
             }
 
-            if (Protons_ind.size() != 1) { cout << "\033[33m\n\nnFDpCD: Protons_ind.size() is different than 2! Exiting...\n\n", exit(0); }
+            if (Protons_ind.size() != 1) { std::cout << "\033[33m\n\nnFDpCD: Protons_ind.size() is different than 2! Exiting...\n\n", exit(0); }
 
             CodeDebugger.SafetyCheck_basic_event_selection(__FILE__, __LINE__, "nFDpCD", Kplus, Kminus, Piplus_ind, Piminus_ind, Electron_ind, deuterons);
 
             for (int &i : NeutronsFD_ind) {
                 bool NeutronInPCAL_nFDpCD = (allParticles[i]->cal(clas12::PCAL)->getDetector() == 7);  // PCAL hit
-                if (NeutronInPCAL_nFDpCD) { cout << "\033[33m\n\nnFDpCD: a neutron have been found with a PCAL hit! Exiting...\n\n", exit(0); }
+                if (NeutronInPCAL_nFDpCD) { std::cout << "\033[33m\n\nnFDpCD: a neutron have been found with a PCAL hit! Exiting...\n\n", exit(0); }
                 if (!((allParticles[i]->par()->getPid() == 2112) || (allParticles[i]->par()->getPid() == 22))) {
-                    cout << "\033[33m\n\nnFDpCD: A neutron PDG is not 2112 or 22 (" << allParticles[i]->par()->getPid() << ")! Exiting...\n\n", exit(0);
+                    std::cout << "\033[33m\n\nnFDpCD: A neutron PDG is not 2112 or 22 (" << allParticles[i]->par()->getPid() << ")! Exiting...\n\n", exit(0);
                 }
             }
 
             for (int &i : PhotonsFD_ind) {
                 bool PhotonInPCAL_nFDpCD = (allParticles[i]->cal(clas12::PCAL)->getDetector() == 7);  // PCAL hit
-                if (!PhotonInPCAL_nFDpCD) { cout << "\033[33m\n\nnFDpCD: a photon have been found without a PCAL hit! Exiting...\n\n", exit(0); }
+                if (!PhotonInPCAL_nFDpCD) { std::cout << "\033[33m\n\nnFDpCD: a photon have been found without a PCAL hit! Exiting...\n\n", exit(0); }
                 if (allParticles[i]->par()->getPid() != 22) {
-                    cout << "\033[33m\n\nnFDpCD: A photon PDG is not 2112 or 22 (" << allParticles[i]->par()->getPid() << ")! Exiting...\n\n", exit(0);
+                    std::cout << "\033[33m\n\nnFDpCD: A photon PDG is not 2112 or 22 (" << allParticles[i]->par()->getPid() << ")! Exiting...\n\n", exit(0);
                 }
             }
 
@@ -15425,7 +15427,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
             double E_nFD_nFDpCD, E_pCD_nFDpCD, E_nL_nFDpCD, E_nR_nFDpCD;
             double Theta_p_e_p_tot_nFDpCD, Theta_q_p_tot_nFDpCD, Theta_P_nL_minus_q_nR_nFDpCD, Theta_q_p_L_nFDpCD, Theta_q_p_R_nFDpCD, Theta_q_nFD_nFDpCD, Theta_q_pCD_nFDpCD;
             double dAlpha_T_L_nFDpCD, dAlpha_T_tot_nFDpCD, dPhi_T_L_nFDpCD, dPhi_T_tot_nFDpCD, Ecal_nFDpCD;
-            double EoP_e_nFDpCD = (e_nFDpCD->cal(PCAL)->getEnergy() + e_nFDpCD->cal(ECIN)->getEnergy() + e_nFDpCD->cal(ECOUT)->getEnergy()) / P_e_nFDpCD_3v.Mag();
+            double EoP_e_nFDpCD = (e_nFDpCD->cal(PCAL)->getEnergy() + e_nFDpCD->cal(ECIN)->getEnergy() + e_nFDpCD->cal(Estd::cout)->getEnergy()) / P_e_nFDpCD_3v.Mag();
             double Vx_e_nFDpCD = e_nFDpCD->par()->getVx(), Vy_e_nFDpCD = e_nFDpCD->par()->getVy(), Vz_e_nFDpCD = e_nFDpCD->par()->getVz();
 
             /* Setting Q2 */
@@ -15490,27 +15492,27 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
             // Fake FD neutrons handling (neutron veto)
             int NeutronPDG_nFDpCD = nFD_nFDpCD->par()->getPid();
 
-            bool NeutronInPCAL_nFDpCD = (nFD_nFDpCD->cal(clas12::PCAL)->getDetector() == 7);    // PCAL hit
-            bool NeutronInECIN_nFDpCD = (nFD_nFDpCD->cal(clas12::ECIN)->getDetector() == 7);    // ECIN hit
-            bool NeutronInECOUT_nFDpCD = (nFD_nFDpCD->cal(clas12::ECOUT)->getDetector() == 7);  // ECOUT hit
+            bool NeutronInPCAL_nFDpCD = (nFD_nFDpCD->cal(clas12::PCAL)->getDetector() == 7);              // PCAL hit
+            bool NeutronInECIN_nFDpCD = (nFD_nFDpCD->cal(clas12::ECIN)->getDetector() == 7);              // ECIN hit
+            bool NeutronInEstd::cout_nFDpCD = (nFD_nFDpCD->cal(clas12::Estd::cout)->getDetector() == 7);  // Estd::cout hit
 
             // Safety check (nFDpCD)
             /* Safety check that we are looking at good neutron (BEFORE VETO!!!) */
-            if (nFD_nFDpCD->getRegion() != FD) { cout << "\033[33m\n\nnFDpCD: neutron is not in FD! Exiting...\n\n", exit(0); }
+            if (nFD_nFDpCD->getRegion() != FD) { std::cout << "\033[33m\n\nnFDpCD: neutron is not in FD! Exiting...\n\n", exit(0); }
             if (!((NeutronPDG_nFDpCD == 22) || (NeutronPDG_nFDpCD == 2112))) {
-                cout << "\033[33m\n\nnFDpCD: neutral PDG is not 2112 or 22 (" << NeutronPDG_nFDpCD << ")! Exiting...\n\n", exit(0);
+                std::cout << "\033[33m\n\nnFDpCD: neutral PDG is not 2112 or 22 (" << NeutronPDG_nFDpCD << ")! Exiting...\n\n", exit(0);
             }
-            if (NeutronInPCAL_nFDpCD) { cout << "\033[33m\n\nnFDpCD: neutron hit in PCAL! Exiting...\n\n", exit(0); }
-            if (!(NeutronInECIN_nFDpCD || NeutronInECOUT_nFDpCD)) { cout << "\033[33m\n\nnFDpCD: no neutron hit in ECIN or ECOUT! Exiting...\n\n", exit(0); }
+            if (NeutronInPCAL_nFDpCD) { std::cout << "\033[33m\n\nnFDpCD: neutron hit in PCAL! Exiting...\n\n", exit(0); }
+            if (!(NeutronInECIN_nFDpCD || NeutronInEstd::cout_nFDpCD)) { std::cout << "\033[33m\n\nnFDpCD: no neutron hit in ECIN or Estd::cout! Exiting...\n\n", exit(0); }
 
             TVector3 n_hit_nFDpCD_3v, e_hit_nFDpCD_3v;
 
             double nFD_hit_Theta_nFDpCD, nFD_hit_Phi_nFDpCD;
             double e_hit_Theta_nFDpCD, e_hit_Phi_nFDpCD, dTheta_hit_e_nFD_nFDpCD, dPhi_hit_e_nFD_nFDpCD;
 
-            if (!NeutronInPCAL_nFDpCD && (NeutronInECIN_nFDpCD || NeutronInECOUT_nFDpCD)) {
-                // if neutron did not hit PCAL, and hit either ECIN or ECOUT
-                auto nFD_detlayer_nFDpCD = NeutronInECIN_nFDpCD ? clas12::ECIN : clas12::ECOUT;  // find first layer of hit
+            if (!NeutronInPCAL_nFDpCD && (NeutronInECIN_nFDpCD || NeutronInEstd::cout_nFDpCD)) {
+                // if neutron did not hit PCAL, and hit either ECIN or Estd::cout
+                auto nFD_detlayer_nFDpCD = NeutronInECIN_nFDpCD ? clas12::ECIN : clas12::Estd::cout;  // find first layer of hit
 
                 // neutron ECIN/ECAL hit vector and angles:
                 n_hit_nFDpCD_3v.SetXYZ(nFD_nFDpCD->cal(nFD_detlayer_nFDpCD)->getX(), nFD_nFDpCD->cal(nFD_detlayer_nFDpCD)->getY(), nFD_nFDpCD->cal(nFD_detlayer_nFDpCD)->getZ());
@@ -15519,8 +15521,8 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                 if ((nFD_detlayer_nFDpCD == clas12::ECIN) && (e_nFDpCD->cal(clas12::ECIN)->getZ() != 0)) {
                     e_hit_nFDpCD_3v.SetXYZ(e_nFDpCD->cal(clas12::ECIN)->getX(), e_nFDpCD->cal(clas12::ECIN)->getY(), e_nFDpCD->cal(clas12::ECIN)->getZ());
                     e_hit_Theta_nFDpCD = e_hit_nFDpCD_3v.Theta() * 180 / pi, e_hit_Phi_nFDpCD = e_hit_nFDpCD_3v.Phi() * 180 / pi;
-                } else if ((nFD_detlayer_nFDpCD == clas12::ECOUT) && (e_nFDpCD->cal(clas12::ECOUT)->getZ() != 0)) {
-                    e_hit_nFDpCD_3v.SetXYZ(e_nFDpCD->cal(clas12::ECOUT)->getX(), e_nFDpCD->cal(clas12::ECOUT)->getY(), e_nFDpCD->cal(clas12::ECOUT)->getZ());
+                } else if ((nFD_detlayer_nFDpCD == clas12::Estd::cout) && (e_nFDpCD->cal(clas12::Estd::cout)->getZ() != 0)) {
+                    e_hit_nFDpCD_3v.SetXYZ(e_nFDpCD->cal(clas12::Estd::cout)->getX(), e_nFDpCD->cal(clas12::Estd::cout)->getY(), e_nFDpCD->cal(clas12::Estd::cout)->getZ());
                     e_hit_Theta_nFDpCD = e_hit_nFDpCD_3v.Theta() * 180 / pi, e_hit_Phi_nFDpCD = e_hit_nFDpCD_3v.Phi() * 180 / pi;
                 } else {
                     int trajlayer = (nFD_detlayer_nFDpCD == clas12::ECIN) ? 4 : 7;
@@ -15539,7 +15541,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
                 // subtracting the angles between the neutron hit and electron hit to see if we have fake neutrons:
                 hdTheta_nFD_e_VS_dPhi_nFD_e_Electrons_BV_nFDpCD.hFill(dPhi_hit_e_nFD_nFDpCD, dTheta_hit_e_nFD_nFDpCD, Weight_nFDpCD);
-            }  // end of if neutron did not hit PCAL & hit either ECIN or ECOUT
+            }  // end of if neutron did not hit PCAL & hit either ECIN or Estd::cout
 
             bool NeutronPassVeto_nFDpCD = pid.NeutronECAL_Cut_Veto(allParticles, electrons, beamE, nFD_ind_nFDpCD, Neutron_veto_cut.GetLowerCut());
 
@@ -16255,7 +16257,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
     // Number of Photo-electrons (Nphe) histograms
     if (Nphe_plots) {
-        cout << "\033[33m\n\nPlotting number of photo-electrons (Nphe) histograms...\n\n\033[0m";
+        std::cout << "\033[33m\n\nPlotting number of photo-electrons (Nphe) histograms...\n\n\033[0m";
 
         //  Nphe plots ----------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -16282,7 +16284,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
         // Nphe plots (nFDpCD, FD)
         hNphe_nFDpCD_FD.hDrawAndSave(SampleName, c1, plots, Histogram_OutPDF, norm_Nphe_plots, true, 1., clasAna.getNpheCuts(), 9999, 0, false);
     } else {
-        cout << "\033[33m\n\nnumber of photo-electrons (Nphe) plots are disabled by user.\n\n\033[0m";
+        std::cout << "\033[33m\n\nnumber of photo-electrons (Nphe) plots are disabled by user.\n\n\033[0m";
     }
 
     // ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -16291,7 +16293,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
     // Chi2 plots
     if (Chi2_plots) {
-        cout << "\033[33m\n\nPlotting Chi2 plots...\n\n\033[0m";
+        std::cout << "\033[33m\n\nPlotting Chi2 plots...\n\n\033[0m";
 
         // Finding Xmax
         Chi2_Electron_cuts_FD.MeanFromHistogram = hChi2_Electron_1e_cut_FD.GetHistogram1D().GetBinCenter(hChi2_Electron_1e_cut_FD.GetHistogram1D().GetMaximumBin());
@@ -16460,7 +16462,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
         hChi2_Proton_nFDpCD_FD.hDrawAndSave(SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., -Chi2_Proton_cuts_FD.Cuts.at(2), Chi2_Proton_cuts_FD.Cuts.at(2),
                                             Chi2_Proton_cuts_FD.Cuts.at(0), true);
     } else {
-        cout << "\033[33m\n\nChi2 plots are disabled by user.\n\n\033[0m";
+        std::cout << "\033[33m\n\nChi2 plots are disabled by user.\n\n\033[0m";
     }
 
     // ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -16469,7 +16471,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
     // Vertex plots
     if (Vertex_plots) {
-        cout << "\033[33m\n\nPlotting Vertex plots...\n\n\033[0m";
+        std::cout << "\033[33m\n\nPlotting Vertex plots...\n\n\033[0m";
 
         //  Vertex plots --------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -16619,7 +16621,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
         hdVy_pCD_nFDpCD.hDrawAndSave(SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., 9999, 9999, 0, false);
         hdVz_pCD_nFDpCD.hDrawAndSave(SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., dVz_cuts_CD.GetLowerCut(), dVz_cuts_CD.GetUpperCut(), 0, false);
     } else {
-        cout << "\033[33m\n\nVertex plots are disabled by user.\n\n\033[0m";
+        std::cout << "\033[33m\n\nVertex plots are disabled by user.\n\n\033[0m";
     }
 
     // ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -16628,7 +16630,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
     // Sampling Fraction (SF) histograms
     if (SF_plots) {
-        cout << "\033[33m\n\nPlotting Sampling Fraction histograms...\n\n\033[0m";
+        std::cout << "\033[33m\n\nPlotting Sampling Fraction histograms...\n\n\033[0m";
 
         //  SF plots ------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -16680,7 +16682,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
         // SF vs. P plots (nFDpCD, FD)
         hSF_VS_P_e_nFDpCD_FD.hDrawAndSave(SampleName, c1, plots, Histogram_OutPDF, false);
     } else {
-        cout << "\033[33m\n\nSampling Fraction plots are disabled by user.\n\n\033[0m";
+        std::cout << "\033[33m\n\nSampling Fraction plots are disabled by user.\n\n\033[0m";
     }
 
     // ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -16689,7 +16691,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
     // ECAL edge histograms (electrons only, FD only)
     if (fiducial_plots) {
-        cout << "\033[33m\n\nPlotting fiducial histograms...\n\n\033[0m";
+        std::cout << "\033[33m\n\nPlotting fiducial histograms...\n\n\033[0m";
 
         //  ECAL coordinates vs. SF plots ---------------------------------------------------------------------------------------------------------------------------------------
 
@@ -16729,7 +16731,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
         hVcal_VS_EoP_nFDpCD_PCAL.hDrawAndSave(SampleName, c1, plots, Histogram_OutPDF, false);
         hWcal_VS_EoP_nFDpCD_PCAL.hDrawAndSave(SampleName, c1, plots, Histogram_OutPDF, false);
     } else {
-        cout << "\033[33m\n\nFiducial plots are disabled by user.\n\n\033[0m";
+        std::cout << "\033[33m\n\nFiducial plots are disabled by user.\n\n\033[0m";
     }
 
     // ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -16738,7 +16740,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
     // Momentum histograms
     if (Momentum_plots) {
-        cout << "\033[33m\n\nPlotting Momentum histograms...\n\n\033[0m";
+        std::cout << "\033[33m\n\nPlotting Momentum histograms...\n\n\033[0m";
 
         //  Momentum plots ------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -17186,7 +17188,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
             }
         }
     } else {
-        cout << "\033[33m\n\nMomentum plots are disabled by user.\n\n\033[0m";
+        std::cout << "\033[33m\n\nMomentum plots are disabled by user.\n\n\033[0m";
     }
 
     // ======================================================================================================================================================================
@@ -17195,7 +17197,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
     // W histograms
     if (W_plots) {
-        cout << "\033[33m\n\nPlotting W histograms...\n\n\033[0m";
+        std::cout << "\033[33m\n\nPlotting W histograms...\n\n\033[0m";
 
         //  W plots (CD & FD) ---------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -17389,7 +17391,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
             if (FSR_1D_plots) { DrawAndSaveFSRatio(SampleName, hW_All_Int_pFDpCD, hW_All_Int_pFDpCD_Dir, hW_All_Int_nFDpCD, plots); }
         }
     } else {
-        cout << "\033[33m\n\nW plots are disabled by user.\n\n\033[0m";
+        std::cout << "\033[33m\n\nW plots are disabled by user.\n\n\033[0m";
     }  // end of Beta plot if
 
     // ======================================================================================================================================================================
@@ -17400,7 +17402,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
     // Beta plots
     if (Beta_plots) {
-        cout << "\033[33m\n\nPlotting Beta histograms...\n\n\033[0m";
+        std::cout << "\033[33m\n\nPlotting Beta histograms...\n\n\033[0m";
 
         //  Beta plots ----------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -17416,7 +17418,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
         hBeta_n_from_ph_04_1n_FD.hDrawAndSave(SampleName, c1, plots, Histogram_OutPDF, norm_Beta_plots, true, 1., 9999, 9999, 0, false);
         hBeta_n_from_ph_04_1n_ZOOMOUT_FD.hDrawAndSave(SampleName, c1, plots, Histogram_OutPDF, norm_Beta_plots, true, 1., 9999, 9999, 0, false);
     } else {
-        cout << "\033[33m\n\nBeta plots are disabled by user.\n\n\033[0m";
+        std::cout << "\033[33m\n\nBeta plots are disabled by user.\n\n\033[0m";
     }  // end of Beta plot if
 
     if (!apply_nucleon_cuts && !is2GeVSample) {
@@ -17427,7 +17429,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
     // Beta vs. P plots
     if (Beta_vs_P_plots) {
-        cout << "\033[33m\n\nPlotting Beta vs. P histograms...\n\n\033[0m";
+        std::cout << "\033[33m\n\nPlotting Beta vs. P histograms...\n\n\033[0m";
 
         //  Beta vs. P TF1 plots ------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -17616,7 +17618,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
         hBeta_vs_P_neg_part_nFDpCD_CD.hDrawAndSave(SampleName, c1, plots, Histogram_OutPDF, beta_Kminus, "Negative kaons", beta_piminus, "Negative pions", beta_electron, "Electrons", true);
         hBeta_vs_P_neg_part_nFDpCD_FD.hDrawAndSave(SampleName, c1, plots, Histogram_OutPDF, beta_Kminus, "Negative kaons", beta_piminus, "Negative pions", beta_electron, "Electrons", true);
     } else {
-        cout << "\033[33m\n\nBeta vs. P plots are disabled by user.\n\n\033[0m";
+        std::cout << "\033[33m\n\nBeta vs. P plots are disabled by user.\n\n\033[0m";
     }  // end of Beta vs. P plot if
 
     // ======================================================================================================================================================================
@@ -17625,7 +17627,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
     // Angle histograms
     if (Angle_plots_master) {
-        cout << "\033[33m\n\nPlotting Angle histograms...\n\n\033[0m";
+        std::cout << "\033[33m\n\nPlotting Angle histograms...\n\n\033[0m";
 
         CanvasPDF->Print(Form("%s[", Histogram_OutPDF));  // Open the PDF file
         CanvasPDF->cd();
@@ -19250,7 +19252,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
         CanvasPDF->Print(Form("%s]", Histogram_OutPDF));  // Close the PDF file
         c1->cd();
     } else {
-        cout << "\033[33m\n\nAngle plots are disabled by user.\n\n\033[0m";
+        std::cout << "\033[33m\n\nAngle plots are disabled by user.\n\n\033[0m";
     }
 
     // ======================================================================================================================================================================
@@ -19259,7 +19261,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
     // Momentum transfer histograms
     if (Momentum_transfer_plots) {
-        cout << "\033[33m\n\nPlotting Momentum transfer histograms...\n\n\033[0m";
+        std::cout << "\033[33m\n\nPlotting Momentum transfer histograms...\n\n\033[0m";
 
         //  Momentum transfer plots (FD only)
         //  --------------------------------------------------------------------------------------------------------------------------------------------------
@@ -19693,7 +19695,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
             if (FSR_2D_plots && SampleName != "C12_simulation_6GeV_T5_first_10") { DrawAndSaveFSRatio(SampleName, hQ2_VS_W_pFDpCD, hQ2_VS_W_pFDpCD_Dir, hQ2_VS_W_nFDpCD, plots); }
         }
     } else {
-        cout << "\033[33m\n\nMomentum transfer plots are disabled by user.\n\n\033[0m";
+        std::cout << "\033[33m\n\nMomentum transfer plots are disabled by user.\n\n\033[0m";
     }
 
     // ======================================================================================================================================================================
@@ -19702,7 +19704,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
     // Energy (E_e) histograms
     if (E_e_plots) {
-        cout << "\033[33m\n\nPlotting Energy (E_e) histograms...\n\n\033[0m";
+        std::cout << "\033[33m\n\nPlotting Energy (E_e) histograms...\n\n\033[0m";
 
         //  E_e plots (FD only) -------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -19977,11 +19979,11 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                 DrawAndSaveFSRatio(SampleName, hE_e_VS_Theta_e_All_Int_pFDpCD_FD, hE_e_VS_Theta_e_All_Int_pFDpCD_FD_Dir, hE_e_VS_Theta_e_All_Int_nFDpCD_FD, plots);
             }
 
-            //            cout << "\033[33m\n\n\nExited after DrawAndSaveFSRatio finished for Q2!\n\n\n\033[0m";
+            //            std::cout << "\033[33m\n\n\nExited after DrawAndSaveFSRatio finished for Q2!\n\n\n\033[0m";
             //            quit();
         }
     } else {
-        cout << "\033[33m\n\nEnergy (E_e) plots are disabled by user.\n\n\033[0m";
+        std::cout << "\033[33m\n\nEnergy (E_e) plots are disabled by user.\n\n\033[0m";
     }
 
     // ======================================================================================================================================================================
@@ -19990,7 +19992,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
     // Energy transfer histograms
     if (ETrans_all_plots) {
-        cout << "\033[33m\n\nPlotting Energy Transfer (ET) histograms...\n\n\033[0m";
+        std::cout << "\033[33m\n\nPlotting Energy Transfer (ET) histograms...\n\n\033[0m";
 
         if (ETrans_All_Int_plots) {
             double ETrans_All_Ang_All_Int_integral_1p = hET_All_Ang_All_Int_1p_FD->Integral();
@@ -20293,7 +20295,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
             if (FSR_1D_plots) { DrawAndSaveFSRatio(SampleName, hET15_All_Int_pFDpCD_FD, hET15_All_Int_pFDpCD_FD_Dir, hET15_All_Int_nFDpCD_FD, plots); }
         }
     } else {
-        cout << "\033[33m\n\nEnergy transfer plots are disabled by user.\n\n\033[0m";
+        std::cout << "\033[33m\n\nEnergy transfer plots are disabled by user.\n\n\033[0m";
     }
 
     // ======================================================================================================================================================================
@@ -20302,7 +20304,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
     // Ecal reconstruction histograms
     if (Ecal_plots) {
-        cout << "\033[33m\n\nPlotting Ecal reconstruction histograms...\n\n\033[0m";
+        std::cout << "\033[33m\n\nPlotting Ecal reconstruction histograms...\n\n\033[0m";
 
         //  Ecal plots (CD & FD) ------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -20574,7 +20576,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
             }
         }
     } else {
-        cout << "\033[33m\n\nEcal plots are disabled by user.\n\n\033[0m";
+        std::cout << "\033[33m\n\nEcal plots are disabled by user.\n\n\033[0m";
     }
 
     // ======================================================================================================================================================================
@@ -20583,7 +20585,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
     // TKI histograms
     if (TKI_plots) {
-        cout << "\033[33m\n\nTKI histograms...\n\n\033[0m";
+        std::cout << "\033[33m\n\nTKI histograms...\n\n\033[0m";
 
         //  dP_T plots (CD & FD) ------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -20782,7 +20784,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
             }
         }
     } else {
-        cout << "\033[33m\n\nTKI plots are disabled by user.\n\n\033[0m";
+        std::cout << "\033[33m\n\nTKI plots are disabled by user.\n\n\033[0m";
     }
 
     // ======================================================================================================================================================================
@@ -20791,9 +20793,9 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
     // ToF histograms
     if (ToF_plots) {
-        cout << "\033[33m\n\nToF histograms...\n\n\033[0m";
+        std::cout << "\033[33m\n\nToF histograms...\n\n\033[0m";
     } else {
-        cout << "\033[33m\n\nToF plots are disabled by user.\n\n\033[0m";
+        std::cout << "\033[33m\n\nToF plots are disabled by user.\n\n\033[0m";
     }
 
     // ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -20804,7 +20806,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
     // Efficiency plots
     if (Efficiency_plots) {
-        cout << "\033[33m\n\nPlotting efficiency histograms...\n\n\033[0m";
+        std::cout << "\033[33m\n\nPlotting efficiency histograms...\n\n\033[0m";
 
         //  Efficiency plots ----------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -21493,16 +21495,16 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                 //                DrawAndSaveFSRatio(SampleName, hPhi_pCD_AC_truth_pFDpCD, hPhi_nFD_AC_truth_nFDpCD, plots);
             }
 
-            //            cout << "\033[33m\n\n\nExited after DrawAndSaveFSRatio finished for TL!\n\n\n\033[0m";
+            //            std::cout << "\033[33m\n\n\nExited after DrawAndSaveFSRatio finished for TL!\n\n\n\033[0m";
             //            quit();
         }
     } else {
-        cout << "\033[33m\n\nEfficiency plots are disabled by user.\n\n\033[0m";
+        std::cout << "\033[33m\n\nEfficiency plots are disabled by user.\n\n\033[0m";
     }
 
     // TL plots after Acceptance maps
     if (TL_after_Acceptance_Maps_plots) {
-        cout << "\033[33m\n\nPlotting TL plots after Acceptance maps...\n\n\033[0m";
+        std::cout << "\033[33m\n\nPlotting TL plots after Acceptance maps...\n\n\033[0m";
 
         //  TL after Acceptance maps plots
         //  ---------------------------------------------------------------------------------------------------------------------------------------------
@@ -21528,7 +21530,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
         hTheta_e_vs_Phi_e_truth_nFDpCD.hDrawAndSave(SampleName, c1, plots, Histogram_OutPDF, true);
         hTheta_nFD_vs_Phi_nFD_truth_nFDpCD.hDrawAndSave(SampleName, c1, plots, Histogram_OutPDF, true);
     } else {
-        cout << "\033[33m\n\nTL plots after Acceptance maps are disabled by user.\n\n\033[0m";
+        std::cout << "\033[33m\n\nTL plots after Acceptance maps are disabled by user.\n\n\033[0m";
     }
 
     // ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -21537,7 +21539,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
     // Acceptance maps histograms
     if (AMaps_plots) {
-        cout << "\033[33m\n\nPlotting Acceptance maps histograms...\n\n\033[0m";
+        std::cout << "\033[33m\n\nPlotting Acceptance maps histograms...\n\n\033[0m";
 
         //  Acceptance maps plots -----------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -21582,11 +21584,11 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
         // Acceptance maps plots (1e cut)
         aMaps_master.DrawAndSaveHitMaps(SampleName, c1, AcceptanceMapsDirectory);
     } else {
-        cout << "\033[33m\n\nAcceptance maps plots are disabled by user.\n\n\033[0m";
+        std::cout << "\033[33m\n\nAcceptance maps plots are disabled by user.\n\n\033[0m";
     }
 
     if (WMaps_plots) {
-        cout << "\033[33m\n\nPlotting Efficiency maps histograms...\n\n\033[0m";
+        std::cout << "\033[33m\n\nPlotting Efficiency maps histograms...\n\n\033[0m";
 
         //  Efficiency maps plots -----------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -21631,7 +21633,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
         // Efficiency maps plots (1e cut)
         wMaps_master.DrawAndSaveHitMaps(SampleName, c1, AcceptanceWeightsDirectory);
     } else {
-        cout << "\033[33m\n\nEfficiency maps plots are disabled by user.\n\n\033[0m";
+        std::cout << "\033[33m\n\nEfficiency maps plots are disabled by user.\n\n\033[0m";
     }
 
     // ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -21640,7 +21642,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
     // Resolution histograms
     if (Resolution_plots) {
-        cout << "\033[33m\n\nPlotting Resolution histograms...\n\n\033[0m";
+        std::cout << "\033[33m\n\nPlotting Resolution histograms...\n\n\033[0m";
 
         //  Resolution plots -----------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -21764,10 +21766,10 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
         hReco_L_VS_truth_P_nFD_ECIN_1n.hDrawAndSave(SampleName, c1, plots, Histogram_OutPDF, true);
         hReco_L_VS_R_nFD_ECIN_1n.hDrawAndSave(SampleName, c1, plots, Histogram_OutPDF, true);
 
-        hReco_L_ECOUT_1n.hDrawAndSave(SampleName, c1, plots, Histogram_OutPDF, norm_Angle_plots_master, true, 1., 9999, 9999, 0, false);
-        hReco_L_VS_reco_P_nFD_ECOUT_1n.hDrawAndSave(SampleName, c1, plots, Histogram_OutPDF, true);
-        hReco_L_VS_truth_P_nFD_ECOUT_1n.hDrawAndSave(SampleName, c1, plots, Histogram_OutPDF, true);
-        hReco_L_VS_R_nFD_ECOUT_1n.hDrawAndSave(SampleName, c1, plots, Histogram_OutPDF, true);
+        hReco_L_Estd::cout_1n.hDrawAndSave(SampleName, c1, plots, Histogram_OutPDF, norm_Angle_plots_master, true, 1., 9999, 9999, 0, false);
+        hReco_L_VS_reco_P_nFD_Estd::cout_1n.hDrawAndSave(SampleName, c1, plots, Histogram_OutPDF, true);
+        hReco_L_VS_truth_P_nFD_Estd::cout_1n.hDrawAndSave(SampleName, c1, plots, Histogram_OutPDF, true);
+        hReco_L_VS_R_nFD_Estd::cout_1n.hDrawAndSave(SampleName, c1, plots, Histogram_OutPDF, true);
         hReco_L_VS_reco_theta_nFD_1n.hDrawAndSave(SampleName, c1, plots, Histogram_OutPDF, false);
         hReco_L_VS_reco_phi_nFD_1n.hDrawAndSave(SampleName, c1, plots, Histogram_OutPDF, false);
 
@@ -21830,7 +21832,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
         hDeltat_ToF_reco_VS_truth_P_nFD_1n.hDrawAndSave(SampleName, c1, plots, Histogram_OutPDF, false);
         hDeltat_ToF_reco_VS_R_nFD_1n.hDrawAndSave(SampleName, c1, plots, Histogram_OutPDF, false);
     } else {
-        cout << "\033[33m\n\nResolution plots are disabled by user.\n\n\033[0m";
+        std::cout << "\033[33m\n\nResolution plots are disabled by user.\n\n\033[0m";
     }
 
     // ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -21839,7 +21841,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
     // Multiplicity histograms
     if (Multiplicity_plots) {
-        cout << "\033[33m\n\nPlotting Multiplicity histograms...\n\n\033[0m";
+        std::cout << "\033[33m\n\nPlotting Multiplicity histograms...\n\n\033[0m";
 
         //  Multiplicity plots -----------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -21878,7 +21880,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
         hNeut_Multi_By_Redef_BPID_BV_nFDpCD_FD.hDrawAndSave(SampleName, c1, plots, Histogram_OutPDF, norm_Multi_plots, true, 1., -9999, 9999, 0, false);
         hNeut_Multi_By_Redef_BPID_AV_nFDpCD_FD.hDrawAndSave(SampleName, c1, plots, Histogram_OutPDF, norm_Multi_plots, true, 1., -9999, 9999, 0, false);
     } else {
-        cout << "\033[33m\n\nMultiplicity plots are disabled by user.\n\n\033[0m";
+        std::cout << "\033[33m\n\nMultiplicity plots are disabled by user.\n\n\033[0m";
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -21971,7 +21973,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     if (PrintEvents == true) { EventPrint.close(); }
 
     if (debug_plots == true) {
-        cout << "\033[33m\n\nSaving debugging plots...\n\n\033[0m";
+        std::cout << "\033[33m\n\nSaving debugging plots...\n\n\033[0m";
         TString hit_map_ref_filePath = run_plots_path + "/" + "hit_map_ref.root";
         clasAna.set_hit_map_ref_fileName(hit_map_ref_filePath);
 
@@ -21979,7 +21981,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
         clasAna.setdebug_fileName(debug_filePath);
         clasAna.WriteDebugPlots();
     } else {
-        cout << "\033[33m\n\nDebugging plots are disabled...\n\n\033[0m";
+        std::cout << "\033[33m\n\nDebugging plots are disabled...\n\n\033[0m";
     }
 
     // Saving setup to log file ------------------------------------------------------------------------------------------------------------------------------------------
@@ -22589,14 +22591,14 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
         myLogFile << "num_of_events_with_nFD_CLA12:\t\t" << num_of_events_with_nFD_CLA12 << "\n";
         myLogFile << "num_of_events_with_nFD_CLA12_PCAL:\t" << num_of_events_with_nFD_CLA12_PCAL << "\n";
         myLogFile << "num_of_events_with_nFD_CLA12_ECIN:\t" << num_of_events_with_nFD_CLA12_ECIN << "\n";
-        myLogFile << "num_of_events_with_nFD_CLA12_ECOUT:\t" << num_of_events_with_nFD_CLA12_ECOUT << "\n";
+        myLogFile << "num_of_events_with_nFD_CLA12_Estd::cout:\t" << num_of_events_with_nFD_CLA12_Estd::cout << "\n";
         myLogFile << "num_of_events_with_nFD_CLA12_EC:\t" << num_of_events_with_nFD_CLA12_EC << "\n\n";
 
         myLogFile << "-- FD photon hit counts in ECAL -------------------------------------------\n";
         myLogFile << "num_of_events_with_phFD_CLA12:\t\t" << num_of_events_with_phFD_CLA12 << "\n";
         myLogFile << "num_of_events_with_phFD_CLA12_PCAL:\t" << num_of_events_with_phFD_CLA12_PCAL << "\n";
         myLogFile << "num_of_events_with_phFD_CLA12_ECIN:\t" << num_of_events_with_phFD_CLA12_ECIN << "\n";
-        myLogFile << "num_of_events_with_phFD_CLA12_ECOUT:\t" << num_of_events_with_phFD_CLA12_ECOUT << "\n";
+        myLogFile << "num_of_events_with_phFD_CLA12_Estd::cout:\t" << num_of_events_with_phFD_CLA12_Estd::cout << "\n";
         myLogFile << "num_of_events_with_phFD_CLA12_EC:\t" << num_of_events_with_phFD_CLA12_EC << "\n\n";
     }
 
@@ -22692,7 +22694,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     // Saving histogram list and finishing execution
 
     // Saving histogram list
-    cout << "\033[33m\n\nSaving histogram list...\033[0m";
+    std::cout << "\033[33m\n\nSaving histogram list...\033[0m";
 
     // Saving histogram TList
     TFile *plots_fout = new TFile(TListName, "recreate");
@@ -22712,161 +22714,161 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
         ACorr_data_fout->Close();
     }
 
-    cout << "\033[33m done.\n\n\033[0m";
+    std::cout << "\033[33m done.\n\n\033[0m";
 
     // finishing execution
-    cout << "\033[33m\n\n===========================================================================\n\033[0m";
-    cout << "\033[33m\t\t\tExecution summary\n\033[0m";
-    cout << "\033[33m===========================================================================\n\n\033[0m";
+    std::cout << "\033[33m\n\n===========================================================================\n\033[0m";
+    std::cout << "\033[33m\t\t\tExecution summary\n\033[0m";
+    std::cout << "\033[33m===========================================================================\n\n\033[0m";
 
-    cout << "\033[33m---------------------------------------------------------------------------\n\033[0m";
-    cout << "\033[33m\t\t\tEvent counts\n\033[0m";
-    cout << "\033[33m---------------------------------------------------------------------------\n\n\033[0m";
+    std::cout << "\033[33m---------------------------------------------------------------------------\n\033[0m";
+    std::cout << "\033[33m\t\t\tEvent counts\n\033[0m";
+    std::cout << "\033[33m---------------------------------------------------------------------------\n\n\033[0m";
 
-    cout << "\033[33m-- Inclusive TL counts ----------------------------------------------------\n\033[0m";
-    cout << "\033[33mTotal #(QEL events):\t\t\t" << num_of_QEL_events << "\n\033[0m";
-    cout << "\033[33mTotal #(MEC events):\t\t\t" << num_of_MEC_events << "\n\033[0m";
-    cout << "\033[33mTotal #(RES events):\t\t\t" << num_of_RES_events << "\n\033[0m";
-    cout << "\033[33mTotal #(DIS events):\t\t\t" << num_of_DIS_events << "\n\033[0m";
-    cout << "\033[33mQEL + MEC + RES + DIS:\t\t\t" << num_of_QEL_events + num_of_MEC_events + num_of_RES_events + num_of_DIS_events << "\n\n\033[0m";
+    std::cout << "\033[33m-- Inclusive TL counts ----------------------------------------------------\n\033[0m";
+    std::cout << "\033[33mTotal #(QEL events):\t\t\t" << num_of_QEL_events << "\n\033[0m";
+    std::cout << "\033[33mTotal #(MEC events):\t\t\t" << num_of_MEC_events << "\n\033[0m";
+    std::cout << "\033[33mTotal #(RES events):\t\t\t" << num_of_RES_events << "\n\033[0m";
+    std::cout << "\033[33mTotal #(DIS events):\t\t\t" << num_of_DIS_events << "\n\033[0m";
+    std::cout << "\033[33mQEL + MEC + RES + DIS:\t\t\t" << num_of_QEL_events + num_of_MEC_events + num_of_RES_events + num_of_DIS_events << "\n\n\033[0m";
 
-    cout << "\033[33m-- Total counts -----------------------------------------------------------\n\033[0m";
-    cout << "\033[33mTotal #(events):\t\t\t" << num_of_events << "\n\033[0m";
-    cout << "\033[33mTotal #(events) w/o any e:\t\t" << num_of_events_without_any_e << "\n\033[0m";
-    cout << "\033[33mTotal #(events) w/ any e:\t\t" << num_of_events_with_any_e << "\n\n\033[0m";
+    std::cout << "\033[33m-- Total counts -----------------------------------------------------------\n\033[0m";
+    std::cout << "\033[33mTotal #(events):\t\t\t" << num_of_events << "\n\033[0m";
+    std::cout << "\033[33mTotal #(events) w/o any e:\t\t" << num_of_events_without_any_e << "\n\033[0m";
+    std::cout << "\033[33mTotal #(events) w/ any e:\t\t" << num_of_events_with_any_e << "\n\n\033[0m";
 
-    cout << "\033[33m-- Events with electrons counts -------------------------------------------\n\033[0m";
-    cout << "\033[33m#(events) w/ at least 1e:\t\t" << num_of_events_with_at_least_1e << "\n\033[0m";
-    cout << "\033[33m#(events) w/ more then 1e:\t\t" << num_of_events_more_then_1e << "\n\033[0m";
-    cout << "\033[33m#(events) w/ exactly 1e:\t\t" << num_of_events_with_exactly_1e << "\n\n\033[0m";
-    cout << "\033[33m#(events) w/ exactly 1e (from file):\t\t" << num_of_events_with_exactly_1e_from_file << "\n\n\033[0m";
+    std::cout << "\033[33m-- Events with electrons counts -------------------------------------------\n\033[0m";
+    std::cout << "\033[33m#(events) w/ at least 1e:\t\t" << num_of_events_with_at_least_1e << "\n\033[0m";
+    std::cout << "\033[33m#(events) w/ more then 1e:\t\t" << num_of_events_more_then_1e << "\n\033[0m";
+    std::cout << "\033[33m#(events) w/ exactly 1e:\t\t" << num_of_events_with_exactly_1e << "\n\n\033[0m";
+    std::cout << "\033[33m#(events) w/ exactly 1e (from file):\t\t" << num_of_events_with_exactly_1e_from_file << "\n\n\033[0m";
 
     if (Count_FD_neurton_and_photon_hits) {
-        cout << "\033[33m-- FD neutron hit counts in ECAL ------------------------------------------\n\033[0m";
-        cout << "\033[33mnum_of_events_with_nFD_CLA12:\t\t" << num_of_events_with_nFD_CLA12 << "\n\033[0m";
-        cout << "\033[33mnum_of_events_with_nFD_CLA12_PCAL:\t" << num_of_events_with_nFD_CLA12_PCAL << "\n\033[0m";
-        cout << "\033[33mnum_of_events_with_nFD_CLA12_ECIN:\t" << num_of_events_with_nFD_CLA12_ECIN << "\n\033[0m";
-        cout << "\033[33mnum_of_events_with_nFD_CLA12_ECOUT:\t" << num_of_events_with_nFD_CLA12_ECOUT << "\n\033[0m";
-        cout << "\033[33mnum_of_events_with_nFD_CLA12_EC:\t" << num_of_events_with_nFD_CLA12_EC << "\n\n\033[0m";
+        std::cout << "\033[33m-- FD neutron hit counts in ECAL ------------------------------------------\n\033[0m";
+        std::cout << "\033[33mnum_of_events_with_nFD_CLA12:\t\t" << num_of_events_with_nFD_CLA12 << "\n\033[0m";
+        std::cout << "\033[33mnum_of_events_with_nFD_CLA12_PCAL:\t" << num_of_events_with_nFD_CLA12_PCAL << "\n\033[0m";
+        std::cout << "\033[33mnum_of_events_with_nFD_CLA12_ECIN:\t" << num_of_events_with_nFD_CLA12_ECIN << "\n\033[0m";
+        std::cout << "\033[33mnum_of_events_with_nFD_CLA12_Estd::cout:\t" << num_of_events_with_nFD_CLA12_Estd::cout << "\n\033[0m";
+        std::cout << "\033[33mnum_of_events_with_nFD_CLA12_EC:\t" << num_of_events_with_nFD_CLA12_EC << "\n\n\033[0m";
 
-        cout << "\033[33m-- FD photon hit counts in ECAL -------------------------------------------\n\033[0m";
-        cout << "\033[33mnum_of_events_with_phFD_CLA12:\t\t" << num_of_events_with_phFD_CLA12 << "\n\033[0m";
-        cout << "\033[33mnum_of_events_with_phFD_CLA12_PCAL:\t" << num_of_events_with_phFD_CLA12_PCAL << "\n\033[0m";
-        cout << "\033[33mnum_of_events_with_phFD_CLA12_ECIN:\t" << num_of_events_with_phFD_CLA12_ECIN << "\n\033[0m";
-        cout << "\033[33mnum_of_events_with_phFD_CLA12_ECOUT:\t" << num_of_events_with_phFD_CLA12_ECOUT << "\n\033[0m";
-        cout << "\033[33mnum_of_events_with_phFD_CLA12_EC:\t" << num_of_events_with_phFD_CLA12_EC << "\n\n\033[0m";
+        std::cout << "\033[33m-- FD photon hit counts in ECAL -------------------------------------------\n\033[0m";
+        std::cout << "\033[33mnum_of_events_with_phFD_CLA12:\t\t" << num_of_events_with_phFD_CLA12 << "\n\033[0m";
+        std::cout << "\033[33mnum_of_events_with_phFD_CLA12_PCAL:\t" << num_of_events_with_phFD_CLA12_PCAL << "\n\033[0m";
+        std::cout << "\033[33mnum_of_events_with_phFD_CLA12_ECIN:\t" << num_of_events_with_phFD_CLA12_ECIN << "\n\033[0m";
+        std::cout << "\033[33mnum_of_events_with_phFD_CLA12_Estd::cout:\t" << num_of_events_with_phFD_CLA12_Estd::cout << "\n\033[0m";
+        std::cout << "\033[33mnum_of_events_with_phFD_CLA12_EC:\t" << num_of_events_with_phFD_CLA12_EC << "\n\n\033[0m";
     }
 
-    cout << "\033[33m-- Inclusive Reco counts --------------------------------------------------\n\033[0m";
-    cout << "\033[33mTotal #(QEL events) 1e cut:\t\t" << num_of_QEL_events_1e_cut << "\n\033[0m";
-    cout << "\033[33mTotal #(MEC events) 1e cut:\t\t" << num_of_MEC_events_1e_cut << "\n\033[0m";
-    cout << "\033[33mTotal #(RES events) 1e cut:\t\t" << num_of_RES_events_1e_cut << "\n\033[0m";
-    cout << "\033[33mTotal #(DIS events) 1e cut:\t\t" << num_of_DIS_events_1e_cut << "\n\033[0m";
-    cout << "\033[33mQEL + MEC + RES + DIS:\t\t\t" << num_of_QEL_events_1e_cut + num_of_MEC_events_1e_cut + num_of_RES_events_1e_cut + num_of_DIS_events_1e_cut << "\n\n\033[0m";
+    std::cout << "\033[33m-- Inclusive Reco counts --------------------------------------------------\n\033[0m";
+    std::cout << "\033[33mTotal #(QEL events) 1e cut:\t\t" << num_of_QEL_events_1e_cut << "\n\033[0m";
+    std::cout << "\033[33mTotal #(MEC events) 1e cut:\t\t" << num_of_MEC_events_1e_cut << "\n\033[0m";
+    std::cout << "\033[33mTotal #(RES events) 1e cut:\t\t" << num_of_RES_events_1e_cut << "\n\033[0m";
+    std::cout << "\033[33mTotal #(DIS events) 1e cut:\t\t" << num_of_DIS_events_1e_cut << "\n\033[0m";
+    std::cout << "\033[33mQEL + MEC + RES + DIS:\t\t\t" << num_of_QEL_events_1e_cut + num_of_MEC_events_1e_cut + num_of_RES_events_1e_cut + num_of_DIS_events_1e_cut << "\n\n\033[0m";
 
-    cout << "\033[33m-- 1e1p event counts ------------------------------------------------------\n\033[0m";
-    cout << "\033[33m#(events) w/ 1e1p:\t\t\t" << num_of_events_with_1e1p << "\n\n\033[0m";
+    std::cout << "\033[33m-- 1e1p event counts ------------------------------------------------------\n\033[0m";
+    std::cout << "\033[33m#(events) w/ 1e1p:\t\t\t" << num_of_events_with_1e1p << "\n\n\033[0m";
 
-    cout << "\033[33m-- 1e2p event counts ------------------------------------------------------\n\033[0m";
-    cout << "\033[33m#(events) w/ 1e2p:\t\t\t" << num_of_events_with_1e2p << "\n\n\033[0m";
+    std::cout << "\033[33m-- 1e2p event counts ------------------------------------------------------\n\033[0m";
+    std::cout << "\033[33m#(events) w/ 1e2p:\t\t\t" << num_of_events_with_1e2p << "\n\n\033[0m";
 
-    cout << "\033[33m-- 1epFDpCD event counts --------------------------------------------------\n\033[0m";
-    cout << "\033[33m#(events) w/ 1epFDpCD:\t\t\t" << num_of_events_with_1epFDpCD << "\n\n\033[0m";
+    std::cout << "\033[33m-- 1epFDpCD event counts --------------------------------------------------\n\033[0m";
+    std::cout << "\033[33m#(events) w/ 1epFDpCD:\t\t\t" << num_of_events_with_1epFDpCD << "\n\n\033[0m";
 
-    cout << "\033[33m-- 2p event counts --------------------------------------------------------\n\033[0m";
-    cout << "\033[33mnum_of_events_2p_wFakeProtons:\t\t" << num_of_events_2p_wFakeProtons << "\n\n\033[0m";
+    std::cout << "\033[33m-- 2p event counts --------------------------------------------------------\n\033[0m";
+    std::cout << "\033[33mnum_of_events_2p_wFakeProtons:\t\t" << num_of_events_2p_wFakeProtons << "\n\n\033[0m";
 
     if (apply_nucleon_cuts) {
-        cout << "\033[33mnum_of_RM_2p_events_sCTOFhp:\t\t" << pid.num_of_RM_2p_events_sCTOFhp << "\n\033[0m";
-        cout << "\033[33mnum_of_AD_2p_events_from_3p_sCTOFhp:\t" << pid.num_of_AD_2p_events_from_3p_sCTOFhp << "\n\033[0m";
-        cout << "\033[33mnum_of_AD_2p_events_from_4p_sCTOFhp:\t" << pid.num_of_AD_2p_events_from_4p_sCTOFhp << "\n\033[0m";
-        cout << "\033[33mnum_of_AD_2p_events_from_Xp_sCTOFhp:\t" << pid.num_of_AD_2p_events_from_Xp_sCTOFhp << "\n\033[0m";
-        cout << "\033[33mnum_of_RM_2p_events_dCDaFDd:\t\t" << pid.num_of_RM_2p_events_dCDaFDd << "\n\033[0m";
-        cout << "\033[33mnum_of_AD_2p_events_from_3p_dCDaFDd:\t" << pid.num_of_AD_2p_events_from_3p_dCDaFDd << "\n\033[0m";
-        cout << "\033[33mnum_of_AD_2p_events_from_4p_dCDaFDd:\t" << pid.num_of_AD_2p_events_from_4p_dCDaFDd << "\n\033[0m";
-        cout << "\033[33mnum_of_AD_2p_events_from_Xp_dCDaFDd:\t" << pid.num_of_AD_2p_events_from_Xp_dCDaFDd << "\n\n\033[0m";
+        std::cout << "\033[33mnum_of_RM_2p_events_sCTOFhp:\t\t" << pid.num_of_RM_2p_events_sCTOFhp << "\n\033[0m";
+        std::cout << "\033[33mnum_of_AD_2p_events_from_3p_sCTOFhp:\t" << pid.num_of_AD_2p_events_from_3p_sCTOFhp << "\n\033[0m";
+        std::cout << "\033[33mnum_of_AD_2p_events_from_4p_sCTOFhp:\t" << pid.num_of_AD_2p_events_from_4p_sCTOFhp << "\n\033[0m";
+        std::cout << "\033[33mnum_of_AD_2p_events_from_Xp_sCTOFhp:\t" << pid.num_of_AD_2p_events_from_Xp_sCTOFhp << "\n\033[0m";
+        std::cout << "\033[33mnum_of_RM_2p_events_dCDaFDd:\t\t" << pid.num_of_RM_2p_events_dCDaFDd << "\n\033[0m";
+        std::cout << "\033[33mnum_of_AD_2p_events_from_3p_dCDaFDd:\t" << pid.num_of_AD_2p_events_from_3p_dCDaFDd << "\n\033[0m";
+        std::cout << "\033[33mnum_of_AD_2p_events_from_4p_dCDaFDd:\t" << pid.num_of_AD_2p_events_from_4p_dCDaFDd << "\n\033[0m";
+        std::cout << "\033[33mnum_of_AD_2p_events_from_Xp_dCDaFDd:\t" << pid.num_of_AD_2p_events_from_Xp_dCDaFDd << "\n\n\033[0m";
 
-        cout << "\033[33mnum_of_AD_2p_events_from_mixed_sCTOFhp_dCDaFDd:\t" << pid.num_of_AD_2p_events_from_mixed_sCTOFhp_dCDaFDd << "\n\n\033[0m";
+        std::cout << "\033[33mnum_of_AD_2p_events_from_mixed_sCTOFhp_dCDaFDd:\t" << pid.num_of_AD_2p_events_from_mixed_sCTOFhp_dCDaFDd << "\n\n\033[0m";
 
-        cout << "\033[33mnum_of_events_2p (from monitoring):\t"
-             << num_of_events_2p_wFakeProtons - pid.num_of_RM_2p_events_sCTOFhp - pid.num_of_RM_2p_events_dCDaFDd + pid.num_of_AD_2p_events_from_3p_sCTOFhp +
-                    pid.num_of_AD_2p_events_from_4p_sCTOFhp + pid.num_of_AD_2p_events_from_3p_dCDaFDd + pid.num_of_AD_2p_events_from_4p_dCDaFDd
-             << "\n\n\033[0m";
+        std::cout << "\033[33mnum_of_events_2p (from monitoring):\t"
+                  << num_of_events_2p_wFakeProtons - pid.num_of_RM_2p_events_sCTOFhp - pid.num_of_RM_2p_events_dCDaFDd + pid.num_of_AD_2p_events_from_3p_sCTOFhp +
+                         pid.num_of_AD_2p_events_from_4p_sCTOFhp + pid.num_of_AD_2p_events_from_3p_dCDaFDd + pid.num_of_AD_2p_events_from_4p_dCDaFDd
+                  << "\n\n\033[0m";
 
-        cout << "\033[33mnum_of_events_2p (from monitoring; no mixed):\t"
-             << num_of_events_2p_wFakeProtons - pid.num_of_RM_2p_events_sCTOFhp - pid.num_of_RM_2p_events_dCDaFDd + pid.num_of_AD_2p_events_from_3p_sCTOFhp +
-                    pid.num_of_AD_2p_events_from_4p_sCTOFhp + pid.num_of_AD_2p_events_from_3p_dCDaFDd + pid.num_of_AD_2p_events_from_4p_dCDaFDd -
-                    pid.num_of_AD_2p_events_from_mixed_sCTOFhp_dCDaFDd
-             << "\n\n\033[0m";
+        std::cout << "\033[33mnum_of_events_2p (from monitoring; no mixed):\t"
+                  << num_of_events_2p_wFakeProtons - pid.num_of_RM_2p_events_sCTOFhp - pid.num_of_RM_2p_events_dCDaFDd + pid.num_of_AD_2p_events_from_3p_sCTOFhp +
+                         pid.num_of_AD_2p_events_from_4p_sCTOFhp + pid.num_of_AD_2p_events_from_3p_dCDaFDd + pid.num_of_AD_2p_events_from_4p_dCDaFDd -
+                         pid.num_of_AD_2p_events_from_mixed_sCTOFhp_dCDaFDd
+                  << "\n\n\033[0m";
     }
 
-    cout << "\033[33m#(events) 2p:\t\t\t\t" << num_of_events_2p << "\n\n\033[0m";
+    std::cout << "\033[33m#(events) 2p:\t\t\t\t" << num_of_events_2p << "\n\n\033[0m";
 
-    cout << "\033[33m-- pFDpCD event counts ----------------------------------------------------\n\033[0m";
-    cout << "\033[33m#(events) pFDpCD:\t\t\t" << num_of_events_pFDpCD << "\n\n\033[0m";
+    std::cout << "\033[33m-- pFDpCD event counts ----------------------------------------------------\n\033[0m";
+    std::cout << "\033[33m#(events) pFDpCD:\t\t\t" << num_of_events_pFDpCD << "\n\n\033[0m";
 
-    cout << "\033[33m-- Event counts -----------------------------------------------------------\n\033[0m";
-    cout << "\033[33mnum_of_events_1p_inFD:\t\t\t" << num_of_events_1p_inFD << "\n\n\033[0m";
+    std::cout << "\033[33m-- Event counts -----------------------------------------------------------\n\033[0m";
+    std::cout << "\033[33mnum_of_events_1p_inFD:\t\t\t" << num_of_events_1p_inFD << "\n\n\033[0m";
 
-    cout << "\033[33mnum_of_events_1n_inFD:\t\t\t" << num_of_events_1n_inFD << "\n\033[0m";
-    cout << "\033[33mnum_of_events_1n_inFD_AV:\t\t" << num_of_events_1n_inFD_AV << "\n\033[0m";
-    cout << "\033[33mnum_of_events_1n_inFD_AV_wmt1gTLn:\t" << num_of_events_1n_inFD_AV_wmt1gTLn << "\n\n\033[0m";
+    std::cout << "\033[33mnum_of_events_1n_inFD:\t\t\t" << num_of_events_1n_inFD << "\n\033[0m";
+    std::cout << "\033[33mnum_of_events_1n_inFD_AV:\t\t" << num_of_events_1n_inFD_AV << "\n\033[0m";
+    std::cout << "\033[33mnum_of_events_1n_inFD_AV_wmt1gTLn:\t" << num_of_events_1n_inFD_AV_wmt1gTLn << "\n\n\033[0m";
 
-    cout << "\033[33mnum_of_events_2p_wFakeProtons:\t\t" << num_of_events_2p_wFakeProtons << "\n\033[0m";
-    cout << "\033[33mnum_of_events_2p:\t\t\t" << num_of_events_2p << "\n\n\033[0m";
+    std::cout << "\033[33mnum_of_events_2p_wFakeProtons:\t\t" << num_of_events_2p_wFakeProtons << "\n\033[0m";
+    std::cout << "\033[33mnum_of_events_2p:\t\t\t" << num_of_events_2p << "\n\n\033[0m";
 
-    cout << "\033[33mnum_of_events_1epFDpCD:\t\t\t" << num_of_events_with_1epFDpCD << "\n\033[0m";
-    cout << "\033[33mnum_of_events_1epFDpFD:\t\t\t" << num_of_events_with_1epFDpFD << "\n\033[0m";
-    cout << "\033[33mnum_of_events_1epCDpCD:\t\t\t" << num_of_events_with_1epCDpCD << "\n\n\033[0m";
+    std::cout << "\033[33mnum_of_events_1epFDpCD:\t\t\t" << num_of_events_with_1epFDpCD << "\n\033[0m";
+    std::cout << "\033[33mnum_of_events_1epFDpFD:\t\t\t" << num_of_events_with_1epFDpFD << "\n\033[0m";
+    std::cout << "\033[33mnum_of_events_1epCDpCD:\t\t\t" << num_of_events_with_1epCDpCD << "\n\n\033[0m";
 
-    cout << "\033[33mnum_of_events_pFDpCD:\t\t\t" << num_of_events_pFDpCD << "\n\n\033[0m";
+    std::cout << "\033[33mnum_of_events_pFDpCD:\t\t\t" << num_of_events_pFDpCD << "\n\n\033[0m";
 
-    cout << "\033[33mnum_of_events_nFDpCD:\t\t\t" << num_of_events_nFDpCD << "\n\033[0m";
-    cout << "\033[33mnum_of_events_nFDpCD_AV:\t\t" << num_of_events_nFDpCD_AV << "\n\n\033[0m";
+    std::cout << "\033[33mnum_of_events_nFDpCD:\t\t\t" << num_of_events_nFDpCD << "\n\033[0m";
+    std::cout << "\033[33mnum_of_events_nFDpCD_AV:\t\t" << num_of_events_nFDpCD_AV << "\n\n\033[0m";
 
-    cout << "\033[33m---------------------------------------------------------------------------\n\033[0m";
-    cout << "\033[33m\t\t\tExecution variables\n\033[0m";
-    cout << "\033[33m---------------------------------------------------------------------------\n\n\033[0m";
+    std::cout << "\033[33m---------------------------------------------------------------------------\n\033[0m";
+    std::cout << "\033[33m\t\t\tExecution variables\n\033[0m";
+    std::cout << "\033[33m---------------------------------------------------------------------------\n\n\033[0m";
 
-    cout << "\033[33mWorkingDirectory:\t" << WorkingDirectory << "\n\033[0m";
-    cout << "\033[33mrun_plots_path:\t\t" << run_plots_path << "\n\n\033[0m";
+    std::cout << "\033[33mWorkingDirectory:\t" << WorkingDirectory << "\n\033[0m";
+    std::cout << "\033[33mrun_plots_path:\t\t" << run_plots_path << "\n\n\033[0m";
 
-    cout << "\033[33mAnalyseFilePath:\t" << "/" << AnalyseFilePath << "/" << "\n\033[0m";
-    cout << "\033[33mAnalyseFileSample:\t" << "/" << AnalyseFileSample << "/" << "\n\033[0m";
-    cout << "\033[33mAnalyseFile:\t\t" << AnalyseFile << "\n\n\033[0m";
+    std::cout << "\033[33mAnalyseFilePath:\t" << "/" << AnalyseFilePath << "/" << "\n\033[0m";
+    std::cout << "\033[33mAnalyseFileSample:\t" << "/" << AnalyseFileSample << "/" << "\n\033[0m";
+    std::cout << "\033[33mAnalyseFile:\t\t" << AnalyseFile << "\n\n\033[0m";
 
-    cout << "\033[33mSampleName:\t\t" << SampleName << "\n\033[0m";
-    cout << "\033[33mVaryingSampleName:\t" << VaryingSampleName << "\n\n\033[0m";
+    std::cout << "\033[33mSampleName:\t\t" << SampleName << "\n\033[0m";
+    std::cout << "\033[33mVaryingSampleName:\t" << VaryingSampleName << "\n\n\033[0m";
 
-    cout << "\033[33mapply_cuts:\t\t'" << BoolToString(apply_cuts) << "'\n\033[0m";
-    cout << "\033[33mSettings mode:\t\t'" << file_name << "'\n\n\033[0m";
+    std::cout << "\033[33mapply_cuts:\t\t'" << BoolToString(apply_cuts) << "'\n\033[0m";
+    std::cout << "\033[33mSettings mode:\t\t'" << file_name << "'\n\n\033[0m";
 
-    cout << "\033[33mBeam Energy:\t\t" << beamE << " [GeV]\n\033[0m";
-    cout << "\033[33mTarget:\t\t\t" << Target << " (PDG: " << TargetPDG << ")\n\n\033[0m";
+    std::cout << "\033[33mBeam Energy:\t\t" << beamE << " [GeV]\n\033[0m";
+    std::cout << "\033[33mTarget:\t\t\t" << Target << " (PDG: " << TargetPDG << ")\n\n\033[0m";
 
-    cout << "\033[33mOperation finished (AnalyserVersion = " << AnalyserVersion << ")." << "\n\n\033[0m";
+    std::cout << "\033[33mOperation finished (AnalyserVersion = " << AnalyserVersion << ")." << "\n\n\033[0m";
 
     if (TestRun || ApplyLimiter) {
-        if (TestRun) { cout << "\033[31m\n\nNOTE: running code in testing mode!\n\033[0m"; }
+        if (TestRun) { std::cout << "\033[31m\n\nNOTE: running code in testing mode!\n\033[0m"; }
 
-        if (ApplyLimiter) { cout << "\033[31m\n\nNOTE: running code with a limiter on number of events!\n\n\033[0m"; }
+        if (ApplyLimiter) { std::cout << "\033[31m\n\nNOTE: running code with a limiter on number of events!\n\n\033[0m"; }
     }
 
     if (Save_Plots_folder_to_zip_files) {
         // TODO: this saves the plots folder in multiple folders in the save path - fix!
 
-        // cout << "\n\nrun_plots_path: " << run_plots_path << "\n";
-        // cout << "settings.GetRun_dir_name(): " << settings.GetRun_dir_name() << "\n";
+        // std::cout << "\n\nrun_plots_path: " << run_plots_path << "\n";
+        // std::cout << "settings.GetRun_dir_name(): " << settings.GetRun_dir_name() << "\n";
         // exit(0);
         std::string zip_filename = settings.GetRun_dir_name() + ".zip";
         std::string zip_input_path = run_plots_path;
         std::string zip_input = run_plots_path + "/" + zip_filename;
         std::string zip_output_path = run_plots_path;
-        cout << "\n\nMaking zip file...\n";
-        cout << "zip_filename: " << zip_filename << "\n";
-        cout << "zip_input_path: " << zip_input_path << "\n";
-        cout << "zip_input: " << zip_input << "\n";
-        cout << "zip_output_path: " << zip_output_path << "\n";
+        std::cout << "\n\nMaking zip file...\n";
+        std::cout << "zip_filename: " << zip_filename << "\n";
+        std::cout << "zip_input_path: " << zip_input_path << "\n";
+        std::cout << "zip_input: " << zip_input << "\n";
+        std::cout << "zip_output_path: " << zip_output_path << "\n";
         system(("zip -r " + zip_input + " " + zip_output_path).c_str());
         // system(("mv -r " + run_plots_path + "/" + settings.GetRun_dir_name() + "/" + settings.GetRun_dir_name() + ".zip " + run_plots_path).c_str());
     }
