@@ -7,13 +7,15 @@
 #define FullAnalyser true
 #define IndependentCanvasPDF false
 
+#include "../framework/namespaces/general_utilities/basic_tools/basic_tools.h"
+#include "../framework/namespaces/general_utilities/constants/constants.h"
+#include "../framework/namespaces/plotters/PDF_canvas/PDF_canvas.h"
+//
 #include "../framework/classes/Debugger/Debugger.cpp"
 #include "../framework/classes/Directories/Directories.cpp"
 #include "../framework/classes/ExperimentParameters/ExperimentParameters.cpp"
 #include "../framework/functions/HistogramPlottingFunctions.h"
-#include "../framework/namespaces/general_utilities/basic_tools/basic_tools.h"
-#include "../framework/namespaces/general_utilities/constants/constants.h"
-#include "../framework/namespaces/plotters/PDF_canvas/PDF_canvas.h"
+//
 #include "samples/Q2_testing_samples.h"
 #include "samples/Uniform_samples.h"
 
@@ -144,7 +146,7 @@ void ConfigSampleChain() {
     AnalyseFilePath = "cache/clas12/rg-m/production/pass1/2gev/C/dst/recon";
     AnalyseFileSample = "015664";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all run files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all run files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);

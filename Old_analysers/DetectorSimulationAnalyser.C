@@ -30,18 +30,11 @@ scp -r asportes@ftp.jlab.org:/w/hallb-scshelf2102/clas12/asportes/recon_c12_6gev
 
 #include "../framework/classes/Settings/Settings.cpp"
 #include "../framework/classes/TLCuts/TLCuts.cpp"
-// #include "../framework/functions/AngleCalc/CalcdPhi.h"
-// #include "../framework/functions/AngleCalc/GetBinFromAng.h"
-#include "../framework/functions/DrawAndSaveFunctions/DrawAndSaveACorrPlots.h"
-#include "../framework/functions/DrawAndSaveFunctions/DrawAndSaveEfficiencyPlots.h"
-#include "../framework/functions/DrawAndSaveFunctions/DrawAndSaveFSRatio.h"
+#include "../framework/namespaces/plotters/draw_and_save_functions/draw_and_save_functions.h"
 #include "../framework/functions/FillByInt.h"
 #include "../framework/functions/FitFunctions/BetaFit.h"
 #include "../framework/functions/FitFunctions/BetaFitApprax.h"
-// #include "../framework/functions/GetPi0MomTh.h"
-// #include "../framework/functions/StackPlot3.h"
-// #include "../framework/functions/StackPlot4.h"
-// #include "../framework/functions/TLKinCutsCheck.h"
+//
 #include "HipoChain.h"
 #include "clas12reader.h"
 

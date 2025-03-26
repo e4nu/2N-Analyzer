@@ -5,10 +5,13 @@
 // Thanks to John Fairman <jfairman1066 (at) gmail.com>
 // public domain
 //
+
 #include "poly34.h"  // solution of cubic and quartic equation
 
 #include <math.h>
+
 #define TwoPi 6.28318530717958648
+
 const double eps = 1e-14;
 
 //=============================================================================

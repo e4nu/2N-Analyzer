@@ -31,6 +31,7 @@
 #include <typeinfo>
 #include <vector>
 
+#include "poly_solver.h"
 #include "../../../classes/DSCuts/DSCuts.h"
 //
 #include "HipoChain.h"

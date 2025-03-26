@@ -248,6 +248,8 @@ add_executable(project ${CLAS12ROOT_SOURCES} ${CLAS12BANKS_SOURCES} ${HIPO4_SOUR
         macros/plotHistogramsWithLabels.cpp
         testers/reaction_cuts_test/reaction_cuts_test.cpp
         testers/reaction_cuts_test/reaction_cuts_test_functions.cpp
+        framework/namespaces/general_utilities/analysis_math/poly_solver.h
+        framework/namespaces/general_utilities/analysis_math/poly_solver.cpp
 )
 
 ## Link against ROOT and CLAS12ROOT libraries
