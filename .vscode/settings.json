@@ -103,7 +103,11 @@
         "lists.h": "c",
         "constants.h": "c",
         "dscuts.h": "c",
-        "data_processor.h": "c"
+        "data_processor.h": "c",
+        "tdatabasepdg.h": "c",
+        "tcanvas.h": "c",
+        "tapplication.h": "c",
+        "th2.h": "c"
     },
     "[jsonc]": {
         "editor.defaultFormatter": "vscode.json-language-features"

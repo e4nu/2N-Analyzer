@@ -25,12 +25,12 @@
 #include "../../classes/DSCuts/DSCuts.h"
 #include "../../classes/hPlots/hPlot1D.cpp"
 #include "../../namespaces/general_utilities/constants/constants.h"
-#include "../EventProperties/GetParticleName.h"
+// #include "../EventProperties/GetParticleName.h"
 // #include "../EventProperties/GetParticleNameShort.h"
 #include "../../namespaces/general_utilities/utilities/utilities.h"
 #include "../Math_func/poly34.cpp"
-#include "../drawtext.h"
-#include "FitFunction.h"
+// #include "../drawtext.h"
+// #include "FitFunction.h"
 
 // TODO: move into namespace!
 
@@ -109,7 +109,7 @@ void BetaFit(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Momentum_c
 
     if (hBeta_Clone->Integral() != 0.) {
         //<editor-fold desc="Preforming a fit">
-        TF1 *func = new TF1("fit", FitFunction, 0, 2, 3);  // create a function with 3 parameters in the range [-3,3]
+        TF1 *func = new TF1("fit", utilities::FitFunction, 0, 2, 3);  // create a function with 3 parameters in the range [-3,3]
         func->SetLineColor(kRed);
 
         double BetaMax = hBeta_Clone->GetMaximum();
@@ -318,7 +318,7 @@ void BetaFit(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Momentum_c
         auto gr = new TGraph(n);
         gr->SetMarkerStyle(20);
         gr->SetMarkerSize(20);
-        auto ex = new TExec("ex", "drawtext();");
+        auto ex = new TExec("ex", "utilities::drawtext();");
         gr->GetListOfFunctions()->Add(ex);
         gr->SetPoint(0, Beta_Max, deltaPRel_UncertaintyU);
         gr->SetPoint(1, Beta_Min, deltaPRel_UncertaintyL);

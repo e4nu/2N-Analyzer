@@ -5,24 +5,36 @@
 #ifndef UTILITIES_H
 #define UTILITIES_H
 
+#include <TApplication.h>
+#include <TCanvas.h>
+#include <TChain.h>
+#include <TDatabasePDG.h>
+#include <TFile.h>
 #include <TGraph.h>
 #include <TH1.h>
 #include <TH2.h>
 #include <THStack.h>
+#include <TLatex.h>
+#include <TLorentzVector.h>
 #include <TMath.h>
+#include <TROOT.h>
+#include <TStyle.h>
+#include <TTree.h>
 
+#include <fstream>
 #include <iostream>
 #include <map>
+#include <string>
 #include <tuple>
 
 #include "../basic_tools/basic_tools.h"
 #include "../constants/constants.h"
-#include "../lists/lists.h"
 #include "../data_processor/data_processor.h"
+#include "../lists/lists.h"
 // #include "../truth_analysis_functions/truth_analysis_functions.h"
 
 #ifdef RECO_ANALYSIS_RUN
-//TODO: review and fix the conditional includes of all namespaces
+// TODO: review and fix the conditional includes of all namespaces
 #include "../analysis_math/analysis_math_reco_extentions.h"
 #else
 #include "../analysis_math/analysis_math.h"
@@ -164,6 +176,30 @@ void FillHistogramByProcess(double Variable, TH1D *Histogram_All_Int, TH1D *Hist
 double GetHistogramEntriesFromVector(const std::vector<TH1 *> &HistoList, const std::string &searchString, const std::string &searchStringOption = "name") {
     if (TH1 *Histogram = GetHistogramFromVector(HistoList, searchString, searchStringOption)) { return Histogram->GetEntries(); }
     return -1;  // Return -1 if no match is found
+}
+
+// drawtext function ----------------------------------------------------------------------------------------------------------------------------------------------------
+
+void drawtext() {
+    Int_t i, n;
+    Double_t x, y;
+    TLatex l;
+
+    l.SetTextSize(0.025);
+    l.SetTextFont(0);
+    //    l.SetTextFont(42);
+    l.SetTextAlign(21);
+    l.SetTextColor(kMagenta);
+    //    l.SetTextColor(kBlue);
+    l.SetLineColor(kWhite);
+
+    auto g = (TGraph *)gPad->GetListOfPrimitives()->FindObject("Graph");
+    n = g->GetN();
+
+    for (i = 0; i < n; i++) {
+        g->GetPoint(i, x, y);
+        l.PaintText(x, y + 0.02, Form("(%4.5f,%4.1f)", x, y));
+    }
 }
 
 // FitFunction function --------------------------------------------------------------------------------------------------------------------------------------------------

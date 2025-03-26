@@ -28,8 +28,8 @@
 // #include "../EventProperties/GetParticleName.h"
 // #include "../EventProperties/GetParticleNameShort.h"
 #include "../../namespaces/general_utilities/utilities/utilities.h"
-#include "../drawtext.h"
-#include "FitFunction.h"
+// #include "../drawtext.h"
+// #include "FitFunction.h"
 
 // TODO: move into namespace!
 
@@ -41,7 +41,7 @@ void BetaFitApprax(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Mome
     double W_yLLim = -0.1, W_yULim = 0.1, W_xLLim = 0.9, W_xULim = 1.;
     double deltaPRel_UncertaintyU = 0.2, deltaPRel_UncertaintyL = 0.1;
 
-    system(("mkdir -p " + BetaPlot.GetHistogram1DSaveNamePath() + "Approximatied_beta/").c_str());
+    system(("mkdir -p " + BetaPlot.GetHistogram1DSaveNamePath() + "Approximated_beta/").c_str());
 
     //<editor-fold desc="Canvas definitions">
     TCanvas *Canvas = new TCanvas("Canvas", "Canvas", 1000 * 2, 750 * 2);  // normal res
@@ -113,7 +113,7 @@ void BetaFitApprax(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Mome
 
     if (hBeta_Clone->Integral() != 0.) {
         //<editor-fold desc="Preforming a fit">
-        TF1 *func = new TF1("fit", FitFunction, 0, 2, 3);  // create a function with 3 parameters in the range [-3,3]
+        TF1 *func = new TF1("fit", utilities::FitFunction, 0, 2, 3);  // create a function with 3 parameters in the range [-3,3]
         func->SetLineColor(kRed);
 
         double BetaMax = hBeta_Clone->GetMaximum();
@@ -307,7 +307,7 @@ void BetaFitApprax(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Mome
         auto gr = new TGraph(n);
         gr->SetMarkerStyle(20);
         gr->SetMarkerSize(20);
-        auto ex = new TExec("ex", "drawtext();");
+        auto ex = new TExec("ex", "utilities::drawtext();");
         gr->GetListOfFunctions()->Add(ex);
         gr->SetPoint(0, Beta_Max_Apprax, deltaPRel_UncertaintyU);
         gr->SetPoint(1, Beta_Min_Apprax, deltaPRel_UncertaintyL);
