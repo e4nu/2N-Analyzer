@@ -40,8 +40,6 @@
 #include "../analysis_math/analysis_math.h"
 #endif
 
-#include "../../fitters/fitter_functions/fitter_functions.h"
-
 using namespace std;
 
 namespace utilities {
@@ -50,7 +48,6 @@ using namespace basic_tools;
 using namespace analysis_math;
 using namespace lists;
 using namespace data_processor;
-using namespace fitter_functions;
 
 // ConfigRegion function ------------------------------------------------------------------------------------------------------------------------------------------------
 
