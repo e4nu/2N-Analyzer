@@ -176,7 +176,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     /* Settings that allow to disable/enable every cut individually */
 
     // clas12ana cuts ---------------------------------------------------------------------------------------------------------------------------------------------------
-    bool apply_cuts = false;                   // master ON/OFF switch for applying cuts
+    bool apply_cuts = false;                  // master ON/OFF switch for applying cuts
     bool clas12ana_particles = true;          // TODO: move form here!
     bool only_preselection_cuts = false;      // keep as false for regular runs!
     bool only_electron_quality_cuts = false;  // keep as false for regular runs!
@@ -1020,7 +1020,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
         aMaps_master = AMaps(SampleName, P_e_bin_profile, P_nuc_bin_profile, beamE, "AMaps", directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], NumberNucOfMomSlices,
                              NumberElecOfMomSlices, HistNucSliceNumOfXBins, HistNucSliceNumOfXBins, HistElectronSliceNumOfXBins, HistElectronSliceNumOfXBins);
     } else {
-        aMaps_master = AMaps(AcceptanceMapsDirectory, VaryingSampleName, Electron_single_slice_test, Nucleon_single_slice_test, TestSlices);
+        aMaps_master = AMaps(AcceptanceMapsDirectory, VaryingSampleName, beamE, Electron_single_slice_test, Nucleon_single_slice_test, TestSlices);
     }
 
     if (Generate_WMaps) {
