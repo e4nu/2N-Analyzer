@@ -41,7 +41,7 @@ scp -r asportes@ftp.jlab.org:/w/hallb-scshelf2102/clas12/asportes/recon_c12_6gev
 // #include "../source/functions/GetPi0MomTh.h"
 // #include "../source/functions/StackPlot3.h"
 // #include "../source/functions/StackPlot4.h"
-#include "../source/functions/TLKinCutsCheck.h"
+// #include "../source/functions/TLKinCutsCheck.h"
 #include "HipoChain.h"
 #include "clas12reader.h"
 
