@@ -18,7 +18,7 @@
 #include <sstream>  // for std::ostringstream
 #include <string>
 
-using namespace std;
+// using namespace std;
 
 namespace basic_tools {
 
@@ -94,16 +94,20 @@ std::string GetSSHHostName() {
     return "";
 }
 
+// quit function --------------------------------------------------------------------------------------------------------------------------------------------------------
+
+void quit() { exit(0); }
+
 // GetCurrentDirectory function -----------------------------------------------------------------------------------------------------------------------------------------
 
-string GetCurrentDirectory() {
+std::string GetCurrentDirectory() {
     char pwd[PATH_MAX];
     if (getcwd(pwd, sizeof(pwd)) == nullptr) {
         std::cerr << "Error getting current directory." << std::endl;
         return "";
     }
 
-    return string(pwd);
+    return std::string(pwd);
 }
 
 // BoolToChar function --------------------------------------------------------------------------------------------------------------------------------------------------
@@ -112,12 +116,12 @@ inline const char *const BoolToChar(bool b) { return b ? "true" : "false"; }
 
 // BoolToString function ------------------------------------------------------------------------------------------------------------------------------------------------
 
-string BoolToString(bool b) { return b ? "true" : "false"; }
+std::string BoolToString(bool b) { return b ? "true" : "false"; }
 
 // ToStringWithPrecision function ---------------------------------------------------------------------------------------------------------------------------------------
 
 template <typename A>
-string ToStringWithPrecision(const A a_value, const int n = 2) {
+std::string ToStringWithPrecision(const A a_value, const int n = 2) {
     std::ostringstream out;
     out.precision(n);
     out << std::fixed << a_value;
@@ -126,7 +130,7 @@ string ToStringWithPrecision(const A a_value, const int n = 2) {
 
 // FindSubstring function -----------------------------------------------------------------------------------------------------------------------------------------------
 
-inline bool FindSubstring(const std::string &string1, const std::string &string2) { return string1.find(string2) != string::npos; }
+inline bool FindSubstring(const std::string &string1, const std::string &string2) { return string1.find(string2) != std::string::npos; }
 
 // GetBeamEnergyFromString function -------------------------------------------------------------------------------------------------------------------------------------
 

@@ -173,9 +173,9 @@ void BetaFitApprax(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Mome
         FitParam->SetTextFont(0);
         FitParam->SetFillColor(0);
         FitParam->SetTextAlign(12);
-        FitParam->AddText(("Fit amp = " + to_string_with_precision(FitAmp, 8)).c_str());
-        FitParam->AddText(("Fit mean = " + to_string_with_precision(FitMean, 8)).c_str());
-        FitParam->AddText(("Fit std = " + to_string_with_precision(FitStd, 8)).c_str());
+        FitParam->AddText(("Fit amp = " + basic_tools::ToStringWithPrecision(FitAmp, 8)).c_str());
+        FitParam->AddText(("Fit mean = " + basic_tools::ToStringWithPrecision(FitMean, 8)).c_str());
+        FitParam->AddText(("Fit std = " + basic_tools::ToStringWithPrecision(FitStd, 8)).c_str());
         ((TText *)FitParam->GetListOfLines()->Last())->SetTextColor(kRed);
         FitParam->Draw("same");
 
@@ -218,7 +218,7 @@ void BetaFitApprax(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Mome
         deltaPParam->SetFillColor(0);
         deltaPParam->SetTextAlign(12);
         deltaPParam->AddText(("d#beta = " + to_string(FitStd)).c_str());
-        //    deltaPParam->AddText(("#delta#beta = " + to_string_with_precision(FitStd, 8)).c_str());
+        //    deltaPParam->AddText(("#delta#beta = " + basic_tools::ToStringWithPrecision(FitStd, 8)).c_str());
         deltaPParam->Draw("same");
 
         std::string deltaPSaveNameDir =
