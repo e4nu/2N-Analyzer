@@ -2,8 +2,9 @@
 // Created by alons on 22/01/2024.
 //
 
-#ifndef PARTICLEID_H
-#define PARTICLEID_H
+// #ifndef PARTICLEID_H
+// #define PARTICLEID_H
+#ifdef PARTICLEID_H
 
 #include <TF1.h>
 #include <math.h>
@@ -12,14 +13,15 @@
 #include <map>
 #include <vector>
 
-#include "../../namespaces/general_utilities/constants/constants.h"
 #include "../../namespaces/general_utilities/analysis_math/analysis_math.h"
+#include "../../namespaces/general_utilities/constants/constants.h"
 #include "../../namespaces/general_utilities/reco_analysis_functions/reco_analysis_functions.h"
 // #include "../../functions/NeutronECAL_Cut_Veto.h"
 // #include "../../functions/PID_functions/GetFDNeutronP.h"
 #include "../DSCuts/DSCuts.h"
-#include "../hPlots/hPlot1D.h"
-#include "../hPlots/hPlot2D.h"
+#include "../hPlots/hPlot1D.cpp"
+#include "../hPlots/hPlot2D.cpp"
+//
 #include "clas12reader.h"
 #include "region_particle.h"
 

@@ -2,8 +2,9 @@
 // Created by alons on 05/08/2024.
 //
 
-#ifndef DATAANALYSER_H
-#define DATAANALYSER_H
+// #ifndef DATAANALYSER_H
+// #define DATAANALYSER_H
+#ifdef DATAANALYSER_H
 
 #include "../../../Old_analysers/DetectorSimulationAnalyser.C"
 #include "../../../Old_analysers/TruthLevelAnalyser.c"

@@ -1,5 +1,6 @@
-#ifndef DEBUGGER_H
-#define DEBUGGER_H
+// #ifndef DEBUGGER_H
+// #define DEBUGGER_H
+#ifdef DEBUGGER_H
 
 #include <iostream>
 

@@ -2,6 +2,9 @@
 // Created by alons on 09/07/2023.
 //
 
+#ifndef HDATA_H
+#define HDATA_H
+
 #include "hData.h"
 
 // GetParticleName function ---------------------------------------------------------------------------------------------------------------------------------------------
@@ -989,3 +992,5 @@ void hData::ReplaceSubStr(string &str, const std::string &subStr, const std::str
     if (PrintOut) { cout << "str1 = " << str << "\n"; }
 }
 //</editor-fold>
+
+#endif  // HDATA_H

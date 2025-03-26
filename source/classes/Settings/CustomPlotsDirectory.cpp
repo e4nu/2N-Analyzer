@@ -2,6 +2,9 @@
 // Created by alons on 23/12/2023.
 //
 
+#ifndef CUSTOMPLOTSDIRECTORY_H
+#define CUSTOMPLOTSDIRECTORY_H
+
 #include "CustomPlotsDirectory.h"
 
 // ConfigureStatuses function ------------------------------------------------------------------------------------------------------------------------------------
@@ -220,3 +223,5 @@ void CustomPlotsDirectory::SetPaths(const std::string &WorkingDirectory, const s
 }
 
 //</editor-fold>
+
+#endif  // CUSTOMPLOTSDIRECTORY_H

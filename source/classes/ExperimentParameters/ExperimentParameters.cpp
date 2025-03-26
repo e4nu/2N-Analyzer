@@ -1,3 +1,5 @@
+#ifndef EXPERIMENTPARAMETERS_H
+#define EXPERIMENTPARAMETERS_H
 
 #include "ExperimentParameters.h"
 
@@ -2401,3 +2403,5 @@ void ExperimentParameters::AddToHipoChainFromList(HipoChain &chain, const std::s
     }
 }
 //</editor-fold>
+
+#endif  // EXPERIMENTPARAMETERS_H

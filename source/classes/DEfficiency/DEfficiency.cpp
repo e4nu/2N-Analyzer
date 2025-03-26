@@ -2,6 +2,9 @@
 // Created by alons on 08/07/2023.
 //
 
+#ifndef DEFFICIENCY_H
+#define DEFFICIENCY_H
+
 #include "DEfficiency.h"
 
 // ResetHistograms function ----------------------------------------------------------------------------------------------------------------------------------------------
@@ -276,3 +279,5 @@ void DEfficiency::DrawAndSaveHistogram1D(TCanvas *HistCanvas, TList *Histogram_l
     HistCanvas->Clear();
 }
 //</editor-fold>
+
+#endif  // DEFFICIENCY_H

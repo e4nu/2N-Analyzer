@@ -2,6 +2,9 @@
 // Created by alons on 22/06/2023.
 //
 
+#ifndef AMAPS_H
+#define AMAPS_H
+
 #include "AMaps.h"
 
 // #include <TApplication.h>
@@ -2654,3 +2657,5 @@ bool AMaps::IsInFDQuery(bool Generate_AMaps, const DSCuts &ThetaFD, const std::s
     return inFDQuery;
 }
 //</editor-fold>
+
+#endif  // AMAPS_H

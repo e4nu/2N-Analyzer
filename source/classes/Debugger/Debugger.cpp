@@ -1,3 +1,6 @@
+#ifndef DEBUGGER_H
+#define DEBUGGER_H
+
 #include "Debugger.h"
 
 // SafetyCheck_clas12ana_particles function ------------------------------------------------------------------------------------------------------------------------------------------------
@@ -244,3 +247,5 @@ void Debugger::SafetyCheck_1n(const char *FILE, const int LINE, vector<int> &Neu
 
     if (!(!NeutronInPCAL_1n && (NeutronInECIN_1n || NeutronInECOUT_1n))) { PrintErrorMessage(FILE, LINE, "1n: not neutron by definition!", ""); }
 }
+
+#endif  // DEBUGGER_H

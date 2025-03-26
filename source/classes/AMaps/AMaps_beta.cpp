@@ -2,7 +2,10 @@
 // Created by alons on 22/06/2023.
 //
 
-#include "AMaps.h"
+#ifndef AMAPS_H
+#define AMAPS_H
+
+#include "AMaps_beta.h"
 
 // AMaps constructors ---------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -1952,3 +1955,5 @@ bool AMaps::IsInFDQuery(bool Generate_AMaps, const DSCuts &ThetaFD, const std::s
     return inFDQuery;
 }
 //</editor-fold>
+
+#endif  // AMAPS_H

@@ -2,8 +2,9 @@
 // Created by alons on 22/06/2023.
 //
 
-#ifndef AMAPS_H
-#define AMAPS_H
+// #ifndef AMAPS_H
+// #define AMAPS_H
+#ifdef AMAPS_H
 
 #include <TApplication.h>
 #include <TCanvas.h>

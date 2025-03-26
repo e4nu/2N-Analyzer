@@ -2,6 +2,9 @@
 // Created by alons on 05/08/2024.
 //
 
+#ifndef DATAANALYSER_H
+#define DATAANALYSER_H
+
 #include "DataAnalyser.h"
 
 // DataAnalyser constructors ----------------------------------------------------------------------------------------------------------------------------------
@@ -39,3 +42,5 @@ void DataAnalyser::RunEventAnalyser(const std::string &AnalyserMode, const std::
         EventAnalyser(AnalyseFilePath, AnalyseFileSample, AnalyseFile);
     }
 };
+
+#endif // DATAANALYSER_H

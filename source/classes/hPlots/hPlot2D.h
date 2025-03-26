@@ -2,8 +2,9 @@
 // Created by alons on 07/04/2023.
 //
 
-#ifndef HPLOT2D_H
-#define HPLOT2D_H
+// #ifndef HPLOT2D_H
+// #define HPLOT2D_H
+#ifdef HPLOT2D_H
 
 #include "../../namespaces/general_utilities/utilities/utilities.h"
 

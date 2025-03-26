@@ -2,6 +2,9 @@
 // Created by alons on 09/04/2023.
 //
 
+#ifndef DIRECTORIES_H
+#define DIRECTORIES_H
+
 #include "Directories.h"
 
 // Constructor ----------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -10,7 +13,7 @@
 Directories::Directories(const std::string &plots_path, const bool Clear_Old_Directories) {
     ClearOldDirectories = Clear_Old_Directories;
 
-    std::string Plots_Folder = plots_path;              // Plots_Folder = Parent_Folder
+    std::string Plots_Folder = plots_path;         // Plots_Folder = Parent_Folder
     system(("mkdir -p " + Plots_Folder).c_str());  // clear old stuff in Parent_Folder
 
     if (ClearOldDirectories) {
@@ -962,3 +965,4 @@ void Directories::MakeDirectory(const bool &Create_Directory, const std::string 
     //        system((MakeDirectory + "/" + Plots_Parent_Folder + "/" + Plots_Daughter_Folder).c_str());
     //    }
 }
+#endif  // DIRECTORIES_H

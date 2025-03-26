@@ -2,6 +2,9 @@
 // Created by alons on 22/01/2024.
 //
 
+#ifndef PARTICLEID_H
+#define PARTICLEID_H
+
 #include "ParticleID.h"
 
 // NeutronECAL_Cut_Veto functions ----------------------------------------------------------------------------------------------------------------
@@ -738,7 +741,7 @@ void ParticleID::GPMonitoring(const bool &GoodProtonsMonitorPlots, vector<region
 
             auto proton_i_2p = protons[IDProtons_ind.at(i)];
             TVector3 proton_i_2p_2p_3v;
-            proton_i_2p_2p_3v.SetMagThetaPhi(proton_i_2p->getP(), proton_i_2p->getTheta(), proton_i_2p->getPhi());                              // proton i in protons vector
+            proton_i_2p_2p_3v.SetMagThetaPhi(proton_i_2p->getP(), proton_i_2p->getTheta(), proton_i_2p->getPhi());  // proton i in protons vector
             double Theta_pi = analysis_math::RadToDeg(proton_i_2p->getTheta());
             double Phi_pi = analysis_math::RadToDeg(proton_i_2p->getPhi());  // Theta_pi; Phi_pi in deg
 
@@ -746,7 +749,7 @@ void ParticleID::GPMonitoring(const bool &GoodProtonsMonitorPlots, vector<region
                 auto proton_j_2p = protons[IDProtons_ind.at(j)];
                 TVector3 proton_j_2p_2p_3v;
                 proton_j_2p_2p_3v.SetMagThetaPhi(proton_j_2p->getP(), proton_j_2p->getTheta(),
-                                                 proton_j_2p->getPhi());                                                                            // proton j in protons vector
+                                                 proton_j_2p->getPhi());  // proton j in protons vector
                 double Theta_pj = analysis_math::RadToDeg(proton_j_2p->getTheta());
                 double Phi_pj = analysis_math::RadToDeg(proton_j_2p->getPhi());  // Theta_pi; Phi_pi in deg
 
@@ -970,3 +973,5 @@ void ParticleID::FillMultiPlots(vector<region_part_ptr> &allParticles, vector<re
     hNeutronMulti_AV.hFill(Multiplicity_AV, Weight);
 }
 //</editor-fold>
+
+#endif  // PARTICLEID_H

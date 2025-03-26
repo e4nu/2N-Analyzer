@@ -2,8 +2,9 @@
 // Created by alons on 23/12/2023.
 //
 
-#ifndef CUSTOMPLOTSDIRECTORY_H
-#define CUSTOMPLOTSDIRECTORY_H
+// #ifndef CUSTOMPLOTSDIRECTORY_H
+// #define CUSTOMPLOTSDIRECTORY_H
+#ifdef CUSTOMPLOTSDIRECTORY_H
 
 using namespace std;
 

@@ -2,8 +2,9 @@
 // Created by alons on 09/07/2023.
 //
 
-#ifndef HDATA_H
-#define HDATA_H
+// #ifndef HDATA_H
+// #define HDATA_H
+#ifdef HDATA_H
 
 #include <TApplication.h>
 #include <TCanvas.h>

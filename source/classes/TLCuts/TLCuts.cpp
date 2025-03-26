@@ -2,6 +2,9 @@
 // Created by alons on 13/06/2023.
 //
 
+#ifndef TLCUTS_H
+#define TLCUTS_H
+
 #include "TLCuts.h"
 
 TLCuts::TLCuts(const std::string &SampleName, bool calculate_truth_level, bool Enable_photons_FD, bool apply_nucleon_cuts, TH2D *Electron_AMap, TH2D *Proton_AMap, TH2D *Neutron_AMap,
@@ -153,3 +156,5 @@ TLCuts::TLCuts(const std::string &SampleName, bool calculate_truth_level, bool E
         //</editor-fold>
     }
 }
+
+#endif  // TLCUTS_H
