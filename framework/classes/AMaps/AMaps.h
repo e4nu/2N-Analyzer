@@ -179,11 +179,13 @@ class AMaps {
     // constructor ----------------------------------------------------------------------------------------------------------------------------------------------------------
 
     // AMaps generation constructor:
-    AMaps(const std::string &SampleName, const std::string &P_e_bin_profile, const std::string &P_nuc_bin_profile, double beamE, const std::string &AMapsMode = "", const std::string &SavePath = "./",
-          int nOfNucMomBins = 4, int nOfElecMomBins = 4, int hnsNumOfXBins = 75, int hnsNumOfYBins = 75, int hesNumOfXBins = 100, int hesNumOfYBins = 100);
+    AMaps(const std::string &SampleName, const std::string &P_e_bin_profile, const std::string &P_nuc_bin_profile, double beamE, const std::string &AMapsMode = "",
+          const std::string &SavePath = "./", int nOfNucMomBins = 4, int nOfElecMomBins = 4, int hnsNumOfXBins = 75, int hnsNumOfYBins = 75, int hesNumOfXBins = 100,
+          int hesNumOfYBins = 100);
 
     // AMaps loading constructor:
-    AMaps(const std::string &AcceptanceMapsDirectory, const std::string &SampleName, const bool &Electron_single_slice_test, const bool &Nucleon_single_slice_test, const vector<int> &TestSlices);
+    AMaps(const std::string &AcceptanceMapsDirectory, const std::string &SampleName, const double &beamE, const bool &Electron_single_slice_test, const bool &Nucleon_single_slice_test,
+          const vector<int> &TestSlices);
 
     // SetBins functions ----------------------------------------------------------------------------------------------------------------------------------------------------
 
