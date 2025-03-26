@@ -41,6 +41,7 @@ SetYAxisTitle
 #include <vector>
 
 #include "../../../classes/hPlots/hPlot1D.cpp"
+#include "../../../classes/hPlots/hPlot2D.cpp"
 #include "../../../namespaces/general_utilities/utilities/utilities.h"
 
 using namespace std;

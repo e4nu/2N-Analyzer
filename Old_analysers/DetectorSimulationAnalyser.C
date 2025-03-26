@@ -12,7 +12,7 @@
 */
 
 #include "../framework/namespaces/general_utilities/utilities/utilities.h"
-#include "../framework/namespaces/plotters/draw_and_save_functions/draw_and_save_functions.h"
+#include "../framework/namespaces/plotters/draw_and_save_functions/draw_and_save_includes.h"
 //
 #include "../setup/codeSetup.h"
 // 
@@ -43,6 +43,7 @@
 using namespace std;
 using namespace clas12;
 using namespace utilities;
+using namespace draw_and_save_functions;
 
 void EventAnalyser(const std::string &AnalyseFilePath, const std::string &AnalyseFileSample, const std::string &AnalyseFile) {
     CodeDebugger.PrintStepTester(DebuggerMode);

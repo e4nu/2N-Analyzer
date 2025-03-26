@@ -39,7 +39,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "project::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-project-Debug-2cce5b42b89f13e81729.json",
+					"jsonFile" : "target-project-Debug-6bd22ba1187e9a33ca0f.json",
 					"name" : "project",
 					"projectIndex" : 0
 				}
@@ -49,7 +49,7 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/Users/alon/Projects/2N-Analyser_e4nu/build",
+		"build" : "/Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug",
 		"source" : "/Users/alon/Projects/2N-Analyser_e4nu"
 	},
 	"version" : 

@@ -32,7 +32,7 @@
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 257,
+				"line" : 208,
 				"parent" : 0
 			},
 			{
@@ -247,7 +247,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-g -std=gnu++14 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk"
+					"fragment" : "-g -std=gnu++14 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk -fcolor-diagnostics"
 				}
 			],
 			"includes" : 
@@ -286,63 +286,63 @@
 				},
 				{
 					"backtrace" : 11,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/source"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework"
 				},
 				{
 					"backtrace" : 12,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/source/classes"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes"
 				},
 				{
 					"backtrace" : 13,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/source/classes/AMaps"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/AMaps"
 				},
 				{
 					"backtrace" : 14,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/source/classes/clas12ana"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/clas12ana"
 				},
 				{
 					"backtrace" : 15,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/source/classes/clas12ana/clas12ana_ver_1_myedit"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/clas12ana/clas12ana_ver_1_myedit"
 				},
 				{
 					"backtrace" : 16,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/source/classes/clas12ana/other"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/clas12ana/other"
 				},
 				{
 					"backtrace" : 17,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/source/classes/DEfficiency"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/DEfficiency"
 				},
 				{
 					"backtrace" : 18,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/source/classes/Directories"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/Directories"
 				},
 				{
 					"backtrace" : 19,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/source/classes/DSCuts"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/DSCuts"
 				},
 				{
 					"backtrace" : 20,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/source/classes/ExperimentParameters"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/ExperimentParameters"
 				},
 				{
 					"backtrace" : 21,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/source/classes/hData"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/hData"
 				},
 				{
 					"backtrace" : 22,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/source/classes/hPlots"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/hPlots"
 				},
 				{
 					"backtrace" : 23,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/source/classes/MomentumResolution"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/MomentumResolution"
 				},
 				{
 					"backtrace" : 24,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/source/classes/TargetParameters"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/TargetParameters"
 				},
 				{
 					"backtrace" : 25,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/source/classes/TLCuts"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/TLCuts"
 				},
 				{
 					"backtrace" : 26,
@@ -350,43 +350,43 @@
 				},
 				{
 					"backtrace" : 27,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/source/functions"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/functions"
 				},
 				{
 					"backtrace" : 28,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/source/functions/AngleCalc"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/functions/AngleCalc"
 				},
 				{
 					"backtrace" : 29,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/source/functions/DrawAndSaveFunctions"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/functions/DrawAndSaveFunctions"
 				},
 				{
 					"backtrace" : 30,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/source/functions/EventProperties"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/functions/EventProperties"
 				},
 				{
 					"backtrace" : 31,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/source/functions/FitFunctions"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/functions/FitFunctions"
 				},
 				{
 					"backtrace" : 32,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/source/functions/Math_func"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/functions/Math_func"
 				},
 				{
 					"backtrace" : 33,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/source/functions/other"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/functions/other"
 				},
 				{
 					"backtrace" : 34,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/source/functions/PID_functions"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/functions/PID_functions"
 				},
 				{
 					"backtrace" : 35,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/source/other"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/other"
 				},
 				{
 					"backtrace" : 36,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/source/structures"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/structures"
 				}
 			],
 			"language" : "CXX",
@@ -420,45 +420,40 @@
 				18,
 				19,
 				20,
-				21,
 				23,
-				25,
-				29,
+				26,
+				31,
 				32,
-				37,
-				38,
+				33,
+				34,
+				36,
 				39,
-				40,
-				42,
+				41,
+				43,
 				45,
 				47,
-				49,
-				51,
-				53,
-				55,
-				58,
+				50,
+				93,
+				94,
+				96,
 				101,
-				142,
-				143,
-				146,
-				151,
-				153,
-				155,
-				157,
-				160,
-				161,
-				163,
-				164,
-				165,
-				166,
-				167
+				103,
+				105,
+				108,
+				109,
+				111,
+				112,
+				113,
+				114,
+				115,
+				117
 			]
 		},
 		{
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk"
+					"fragment" : "-g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk -fcolor-diagnostics"
 				}
 			],
 			"includes" : 
@@ -497,63 +492,63 @@
 				},
 				{
 					"backtrace" : 11,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/source"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework"
 				},
 				{
 					"backtrace" : 12,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/source/classes"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes"
 				},
 				{
 					"backtrace" : 13,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/source/classes/AMaps"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/AMaps"
 				},
 				{
 					"backtrace" : 14,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/source/classes/clas12ana"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/clas12ana"
 				},
 				{
 					"backtrace" : 15,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/source/classes/clas12ana/clas12ana_ver_1_myedit"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/clas12ana/clas12ana_ver_1_myedit"
 				},
 				{
 					"backtrace" : 16,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/source/classes/clas12ana/other"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/clas12ana/other"
 				},
 				{
 					"backtrace" : 17,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/source/classes/DEfficiency"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/DEfficiency"
 				},
 				{
 					"backtrace" : 18,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/source/classes/Directories"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/Directories"
 				},
 				{
 					"backtrace" : 19,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/source/classes/DSCuts"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/DSCuts"
 				},
 				{
 					"backtrace" : 20,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/source/classes/ExperimentParameters"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/ExperimentParameters"
 				},
 				{
 					"backtrace" : 21,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/source/classes/hData"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/hData"
 				},
 				{
 					"backtrace" : 22,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/source/classes/hPlots"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/hPlots"
 				},
 				{
 					"backtrace" : 23,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/source/classes/MomentumResolution"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/MomentumResolution"
 				},
 				{
 					"backtrace" : 24,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/source/classes/TargetParameters"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/TargetParameters"
 				},
 				{
 					"backtrace" : 25,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/source/classes/TLCuts"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/TLCuts"
 				},
 				{
 					"backtrace" : 26,
@@ -561,52 +556,52 @@
 				},
 				{
 					"backtrace" : 27,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/source/functions"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/functions"
 				},
 				{
 					"backtrace" : 28,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/source/functions/AngleCalc"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/functions/AngleCalc"
 				},
 				{
 					"backtrace" : 29,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/source/functions/DrawAndSaveFunctions"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/functions/DrawAndSaveFunctions"
 				},
 				{
 					"backtrace" : 30,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/source/functions/EventProperties"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/functions/EventProperties"
 				},
 				{
 					"backtrace" : 31,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/source/functions/FitFunctions"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/functions/FitFunctions"
 				},
 				{
 					"backtrace" : 32,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/source/functions/Math_func"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/functions/Math_func"
 				},
 				{
 					"backtrace" : 33,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/source/functions/other"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/functions/other"
 				},
 				{
 					"backtrace" : 34,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/source/functions/PID_functions"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/functions/PID_functions"
 				},
 				{
 					"backtrace" : 35,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/source/other"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/other"
 				},
 				{
 					"backtrace" : 36,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/source/structures"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/structures"
 				}
 			],
 			"language" : "C",
 			"sourceIndexes" : 
 			[
-				140,
-				141,
-				148,
-				150
+				91,
+				92,
+				98,
+				100
 			]
 		}
 	],
@@ -754,42 +749,37 @@
 				18,
 				19,
 				20,
-				21,
 				23,
-				25,
-				29,
+				26,
+				31,
 				32,
-				37,
-				38,
+				33,
+				34,
+				36,
 				39,
-				40,
-				42,
+				41,
+				43,
 				45,
 				47,
-				49,
-				51,
-				53,
-				55,
-				58,
+				50,
+				91,
+				92,
+				93,
+				94,
+				96,
+				98,
+				100,
 				101,
-				140,
-				141,
-				142,
-				143,
-				146,
-				148,
-				150,
-				151,
-				153,
-				155,
-				157,
-				160,
-				161,
-				163,
-				164,
-				165,
-				166,
-				167
+				103,
+				105,
+				108,
+				109,
+				111,
+				112,
+				113,
+				114,
+				115,
+				117
 			]
 		},
 		{
@@ -797,6 +787,14 @@
 			"sourceIndexes" : 
 			[
 				12,
+				52,
+				53,
+				54,
+				55,
+				56,
+				57,
+				58,
+				59,
 				60,
 				61,
 				62,
@@ -810,6 +808,33 @@
 				70,
 				71,
 				72,
+				95,
+				97,
+				99
+			]
+		},
+		{
+			"name" : "Header Files",
+			"sourceIndexes" : 
+			[
+				21,
+				22,
+				24,
+				25,
+				27,
+				28,
+				29,
+				30,
+				35,
+				37,
+				38,
+				40,
+				42,
+				44,
+				46,
+				48,
+				49,
+				51,
 				73,
 				74,
 				75,
@@ -818,37 +843,6 @@
 				78,
 				79,
 				80,
-				145,
-				147,
-				149
-			]
-		},
-		{
-			"name" : "Header Files",
-			"sourceIndexes" : 
-			[
-				22,
-				24,
-				26,
-				27,
-				28,
-				30,
-				31,
-				33,
-				34,
-				35,
-				36,
-				41,
-				43,
-				44,
-				46,
-				48,
-				50,
-				52,
-				54,
-				56,
-				57,
-				59,
 				81,
 				82,
 				83,
@@ -859,61 +853,13 @@
 				88,
 				89,
 				90,
-				91,
-				92,
-				93,
-				94,
-				95,
-				96,
-				97,
-				98,
-				99,
-				100,
 				102,
-				103,
 				104,
-				105,
 				106,
 				107,
-				108,
-				109,
 				110,
-				111,
-				112,
-				113,
-				114,
-				115,
 				116,
-				117,
-				118,
-				119,
-				120,
-				121,
-				122,
-				123,
-				124,
-				125,
-				126,
-				127,
-				128,
-				129,
-				130,
-				131,
-				132,
-				133,
-				134,
-				135,
-				136,
-				137,
-				138,
-				139,
-				144,
-				152,
-				154,
-				156,
-				158,
-				159,
-				162
+				118
 			]
 		}
 	],
@@ -1046,214 +992,170 @@
 		},
 		{
 			"backtrace" : 1,
-			"compileGroupIndex" : 0,
-			"path" : "setup/CLAS12DAnalysis/CLAS12DAnalyser/CLAS12DAnalyser.cpp",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"path" : "setup/CLAS12DAnalysis/CLAS12DAnalyser/CLAS12DAnalyser.h",
-			"sourceGroupIndex" : 2
-		},
-		{
-			"backtrace" : 1,
-			"compileGroupIndex" : 0,
-			"path" : "setup/CLAS12DAnalysis/CLAS12DASettings/CLAS12DASettings.cpp",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"path" : "setup/CLAS12DAnalysis/CLAS12DASettings/CLAS12DASettings.h",
-			"sourceGroupIndex" : 2
-		},
-		{
-			"backtrace" : 1,
-			"compileGroupIndex" : 0,
-			"path" : "setup/CLAS12DAnalysis/CLAS12DHistograms/CLAS12DHistograms.cpp",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"path" : "setup/CLAS12DAnalysis/CLAS12DHistograms/CLAS12DHistograms.h",
-			"sourceGroupIndex" : 2
-		},
-		{
-			"backtrace" : 1,
 			"path" : "setup/codeSetup.h",
 			"sourceGroupIndex" : 2
 		},
 		{
 			"backtrace" : 1,
-			"path" : "setup/TruthLevelAnalyser.h",
+			"path" : "framework/classes/gst/gst.h",
 			"sourceGroupIndex" : 2
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "source/classes/AMaps/AMaps.cpp",
+			"path" : "framework/classes/AMaps/AMaps.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
-			"path" : "source/classes/AMaps/AMaps.h",
+			"path" : "framework/classes/AMaps/AMaps.h",
 			"sourceGroupIndex" : 2
 		},
 		{
 			"backtrace" : 1,
-			"path" : "source/classes/clas12ana/clas12ana_ver_1_myedit/clas12ana.h",
+			"path" : "framework/classes/clas12ana/clas12ana_ver_1_myedit/clas12ana.h",
 			"sourceGroupIndex" : 2
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "source/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.cpp",
+			"path" : "framework/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
-			"path" : "source/classes/clas12ana/other/clas12ana - Copy (2).h",
+			"path" : "framework/classes/clas12ana/other/clas12ana - Copy (2).h",
 			"sourceGroupIndex" : 2
 		},
 		{
 			"backtrace" : 1,
-			"path" : "source/classes/clas12ana/other/clas12ana - Copy.h",
+			"path" : "framework/classes/clas12ana/other/clas12ana - Copy.h",
 			"sourceGroupIndex" : 2
 		},
 		{
 			"backtrace" : 1,
-			"path" : "source/classes/clas12ana/clas12ana.h",
+			"path" : "framework/classes/clas12ana/clas12ana.h",
 			"sourceGroupIndex" : 2
 		},
 		{
 			"backtrace" : 1,
-			"path" : "source/classes/clas12ana/clas12ana_ver_1_myedit.h",
+			"path" : "framework/classes/clas12ana/clas12ana_ver_1_myedit.h",
 			"sourceGroupIndex" : 2
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "source/classes/clas12ana/example_ana - Copy.cpp",
+			"path" : "framework/classes/clas12ana/example_ana - Copy.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "source/classes/clas12ana/example_ana.cpp",
+			"path" : "framework/classes/clas12ana/example_ana.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "source/classes/clas12ana/skim_events.cpp",
+			"path" : "framework/classes/clas12ana/skim_events.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "source/classes/DEfficiency/DEfficiency.cpp",
+			"path" : "framework/classes/DEfficiency/DEfficiency.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
-			"path" : "source/classes/DEfficiency/DEfficiency.h",
+			"path" : "framework/classes/DEfficiency/DEfficiency.h",
 			"sourceGroupIndex" : 2
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "source/classes/Directories/Directories.cpp",
+			"path" : "framework/classes/Directories/Directories.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
-			"path" : "source/classes/Directories/Directories.h",
+			"path" : "framework/classes/Directories/Directories.h",
 			"sourceGroupIndex" : 2
 		},
 		{
 			"backtrace" : 1,
-			"path" : "source/classes/DSCuts/DSCuts.h",
+			"path" : "framework/classes/DSCuts/DSCuts.h",
 			"sourceGroupIndex" : 2
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "source/classes/ExperimentParameters/ExperimentParameters.cpp",
+			"path" : "framework/classes/ExperimentParameters/ExperimentParameters.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
-			"path" : "source/classes/ExperimentParameters/ExperimentParameters.h",
+			"path" : "framework/classes/ExperimentParameters/ExperimentParameters.h",
 			"sourceGroupIndex" : 2
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "source/classes/hData/hData.cpp",
+			"path" : "framework/classes/hPlots/hPlot1D.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
-			"path" : "source/classes/hData/hData.h",
+			"path" : "framework/classes/hPlots/hPlot1D.h",
 			"sourceGroupIndex" : 2
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "source/classes/hPlots/hPlot1D.cpp",
+			"path" : "framework/classes/hPlots/hPlot1DStack.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
-			"path" : "source/classes/hPlots/hPlot1D.h",
+			"path" : "framework/classes/hPlots/hPlot1DStack.h",
 			"sourceGroupIndex" : 2
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "source/classes/hPlots/hPlot1DStack.cpp",
+			"path" : "framework/classes/hPlots/hPlot2D.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
-			"path" : "source/classes/hPlots/hPlot1DStack.h",
+			"path" : "framework/classes/hPlots/hPlot2D.h",
 			"sourceGroupIndex" : 2
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "source/classes/hPlots/hPlot2D.cpp",
+			"path" : "framework/classes/MomentumResolution/MomentumResolution.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
-			"path" : "source/classes/hPlots/hPlot2D.h",
+			"path" : "framework/classes/MomentumResolution/MomentumResolution.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "framework/classes/TargetParameters/TargetParameters.h",
 			"sourceGroupIndex" : 2
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "source/classes/MomentumResolution/MomentumResolution.cpp",
+			"path" : "framework/classes/TLCuts/TLCuts.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
-			"path" : "source/classes/MomentumResolution/MomentumResolution.h",
-			"sourceGroupIndex" : 2
-		},
-		{
-			"backtrace" : 1,
-			"path" : "source/classes/TargetParameters/TargetParameters.h",
-			"sourceGroupIndex" : 2
-		},
-		{
-			"backtrace" : 1,
-			"compileGroupIndex" : 0,
-			"path" : "source/classes/TLCuts/TLCuts.cpp",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"path" : "source/classes/TLCuts/TLCuts.h",
+			"path" : "framework/classes/TLCuts/TLCuts.h",
 			"sourceGroupIndex" : 2
 		},
 		{
@@ -1363,328 +1265,117 @@
 		},
 		{
 			"backtrace" : 1,
-			"path" : "source/functions/AngleCalc/CalcdPhi.h",
+			"path" : "framework/functions/FillByInt.h",
 			"sourceGroupIndex" : 2
 		},
 		{
 			"backtrace" : 1,
-			"path" : "source/functions/AngleCalc/GetBinFromAng.h",
+			"path" : "framework/functions/GetTruthLevelCuts.h",
 			"sourceGroupIndex" : 2
 		},
 		{
 			"backtrace" : 1,
-			"path" : "source/functions/DrawAndSaveFunctions/DrawAndSaveACorrPlots.h",
+			"path" : "framework/functions/HistogramPlottingFunctions.h",
 			"sourceGroupIndex" : 2
 		},
 		{
 			"backtrace" : 1,
-			"path" : "source/functions/DrawAndSaveFunctions/DrawAndSaveEfficiencyPlots.h",
+			"path" : "framework/functions/neutron_veto.h",
 			"sourceGroupIndex" : 2
 		},
 		{
 			"backtrace" : 1,
-			"path" : "source/functions/DrawAndSaveFunctions/DrawAndSaveFSRatio.h",
+			"path" : "framework/functions/NeutronECAL_Cut_Veto.h",
 			"sourceGroupIndex" : 2
 		},
 		{
 			"backtrace" : 1,
-			"path" : "source/functions/EventProperties/GetParticleName.h",
+			"path" : "framework/functions/PlotsEff2x3.h",
 			"sourceGroupIndex" : 2
 		},
 		{
 			"backtrace" : 1,
-			"path" : "source/functions/EventProperties/GetParticleNameLC.h",
+			"path" : "framework/functions/StackPlot3.h",
 			"sourceGroupIndex" : 2
 		},
 		{
 			"backtrace" : 1,
-			"path" : "source/functions/EventProperties/GetParticleNameShort.h",
+			"path" : "framework/functions/StackPlot4.h",
 			"sourceGroupIndex" : 2
 		},
 		{
 			"backtrace" : 1,
-			"path" : "source/functions/EventProperties/SetDRegion.h",
+			"path" : "framework/namespaces/general_utilities/utilities/utilities.h",
 			"sourceGroupIndex" : 2
 		},
 		{
 			"backtrace" : 1,
-			"path" : "source/functions/EventProperties/SetFSRatioSaveDir.h",
+			"path" : "framework/namespaces/general_utilities/analysis_math/analysis_math.h",
 			"sourceGroupIndex" : 2
 		},
 		{
 			"backtrace" : 1,
-			"path" : "source/functions/EventProperties/SetSaveDir.h",
+			"path" : "framework/namespaces/general_utilities/analysis_math/analysis_math_reco_extentions.h",
 			"sourceGroupIndex" : 2
 		},
 		{
 			"backtrace" : 1,
-			"path" : "source/functions/EventProperties/SetStatsTitle.h",
+			"path" : "framework/namespaces/general_utilities/basic_tools/basic_tools.h",
 			"sourceGroupIndex" : 2
 		},
 		{
 			"backtrace" : 1,
-			"path" : "source/functions/EventProperties/SettingSaveNames.h",
+			"path" : "framework/namespaces/general_utilities/constants/constants.h",
 			"sourceGroupIndex" : 2
 		},
 		{
 			"backtrace" : 1,
-			"path" : "source/functions/EventProperties/SetTitle.h",
+			"path" : "framework/namespaces/general_utilities/data_processor/data_processor.h",
 			"sourceGroupIndex" : 2
 		},
 		{
 			"backtrace" : 1,
-			"path" : "source/functions/EventProperties/SetType.h",
+			"path" : "framework/namespaces/general_utilities/lists/lists.h",
 			"sourceGroupIndex" : 2
 		},
 		{
 			"backtrace" : 1,
-			"path" : "source/functions/EventProperties/SetXAxisTitle.h",
+			"path" : "framework/namespaces/general_utilities/reco_analysis_functions/reco_analysis_functions.h",
 			"sourceGroupIndex" : 2
 		},
 		{
 			"backtrace" : 1,
-			"path" : "source/functions/EventProperties/SetYAxisTitle.h",
+			"path" : "framework/namespaces/settings/general_settings/settings.h",
 			"sourceGroupIndex" : 2
 		},
 		{
 			"backtrace" : 1,
-			"path" : "source/functions/FitFunctions/BetaFit.h",
-			"sourceGroupIndex" : 2
-		},
-		{
-			"backtrace" : 1,
-			"path" : "source/functions/FitFunctions/BetaFitApprax.h",
-			"sourceGroupIndex" : 2
-		},
-		{
-			"backtrace" : 1,
-			"path" : "source/functions/FitFunctions/FitFunction.h",
-			"sourceGroupIndex" : 2
-		},
-		{
-			"backtrace" : 1,
-			"compileGroupIndex" : 0,
-			"path" : "source/functions/Math_func/poly34.cpp",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"path" : "source/functions/Math_func/poly34.h",
-			"sourceGroupIndex" : 2
-		},
-		{
-			"backtrace" : 1,
-			"path" : "source/functions/other/neutron_veto.h",
-			"sourceGroupIndex" : 2
-		},
-		{
-			"backtrace" : 1,
-			"path" : "source/functions/other/NeutronECAL_Cut_Veto.h",
-			"sourceGroupIndex" : 2
-		},
-		{
-			"backtrace" : 1,
-			"path" : "source/functions/PID_functions/ChargedParticleID.h",
-			"sourceGroupIndex" : 2
-		},
-		{
-			"backtrace" : 1,
-			"path" : "source/functions/PID_functions/FDNeutralParticle.h",
-			"sourceGroupIndex" : 2
-		},
-		{
-			"backtrace" : 1,
-			"path" : "source/functions/PID_functions/FDNeutralParticleID.h",
-			"sourceGroupIndex" : 2
-		},
-		{
-			"backtrace" : 1,
-			"path" : "source/functions/PID_functions/GetFDNeutronP.h",
-			"sourceGroupIndex" : 2
-		},
-		{
-			"backtrace" : 1,
-			"path" : "source/functions/PID_functions/GetFDNeutrons.h",
-			"sourceGroupIndex" : 2
-		},
-		{
-			"backtrace" : 1,
-			"path" : "source/functions/PID_functions/GetFDPhotons.h",
-			"sourceGroupIndex" : 2
-		},
-		{
-			"backtrace" : 1,
-			"path" : "source/functions/PID_functions/GetGoodParticles.h",
-			"sourceGroupIndex" : 2
-		},
-		{
-			"backtrace" : 1,
-			"path" : "source/functions/PID_functions/GetGoodProtons.h",
-			"sourceGroupIndex" : 2
-		},
-		{
-			"backtrace" : 1,
-			"path" : "source/functions/PID_functions/NeutralParticleID.h",
-			"sourceGroupIndex" : 2
-		},
-		{
-			"backtrace" : 1,
-			"path" : "source/functions/PID_functions/nParticleID.h",
-			"sourceGroupIndex" : 2
-		},
-		{
-			"backtrace" : 1,
-			"path" : "source/functions/drawtext.h",
-			"sourceGroupIndex" : 2
-		},
-		{
-			"backtrace" : 1,
-			"path" : "source/functions/FillByInt.h",
-			"sourceGroupIndex" : 2
-		},
-		{
-			"backtrace" : 1,
-			"path" : "source/functions/findSubstring.h",
-			"sourceGroupIndex" : 2
-		},
-		{
-			"backtrace" : 1,
-			"path" : "source/functions/GeneralFunctions.h",
-			"sourceGroupIndex" : 2
-		},
-		{
-			"backtrace" : 1,
-			"path" : "source/functions/GetPi0MomTh.h",
-			"sourceGroupIndex" : 2
-		},
-		{
-			"backtrace" : 1,
-			"path" : "source/functions/GetTruthLevelCuts.h",
-			"sourceGroupIndex" : 2
-		},
-		{
-			"backtrace" : 1,
-			"path" : "source/functions/HistogramPlottingFunctions.h",
-			"sourceGroupIndex" : 2
-		},
-		{
-			"backtrace" : 1,
-			"path" : "source/functions/neutron_veto.h",
-			"sourceGroupIndex" : 2
-		},
-		{
-			"backtrace" : 1,
-			"path" : "source/functions/NeutronECAL_Cut_Veto.h",
-			"sourceGroupIndex" : 2
-		},
-		{
-			"backtrace" : 1,
-			"path" : "source/functions/PlotsEff2x3.h",
-			"sourceGroupIndex" : 2
-		},
-		{
-			"backtrace" : 1,
-			"path" : "source/functions/quit.h",
-			"sourceGroupIndex" : 2
-		},
-		{
-			"backtrace" : 1,
-			"path" : "source/functions/StackPlot3.h",
-			"sourceGroupIndex" : 2
-		},
-		{
-			"backtrace" : 1,
-			"path" : "source/functions/StackPlot4.h",
-			"sourceGroupIndex" : 2
-		},
-		{
-			"backtrace" : 1,
-			"path" : "source/functions/TLKinCutsCheck.h",
-			"sourceGroupIndex" : 2
-		},
-		{
-			"backtrace" : 1,
-			"path" : "source/functions/to_string_with_precision.h",
-			"sourceGroupIndex" : 2
-		},
-		{
-			"backtrace" : 1,
-			"path" : "source/namespaces/general_utilities/utilities/utilities.h",
-			"sourceGroupIndex" : 2
-		},
-		{
-			"backtrace" : 1,
-			"path" : "source/namespaces/general_utilities/analysis_math/analysis_math.h",
-			"sourceGroupIndex" : 2
-		},
-		{
-			"backtrace" : 1,
-			"path" : "source/namespaces/general_utilities/analysis_math/analysis_math_reco_extentions.h",
-			"sourceGroupIndex" : 2
-		},
-		{
-			"backtrace" : 1,
-			"path" : "source/namespaces/general_utilities/basic_tools/basic_tools.h",
-			"sourceGroupIndex" : 2
-		},
-		{
-			"backtrace" : 1,
-			"path" : "source/namespaces/general_utilities/constants/constants.h",
-			"sourceGroupIndex" : 2
-		},
-		{
-			"backtrace" : 1,
-			"path" : "source/namespaces/general_utilities/data_processor/data_processor.h",
-			"sourceGroupIndex" : 2
-		},
-		{
-			"backtrace" : 1,
-			"path" : "source/namespaces/general_utilities/lists/lists.h",
-			"sourceGroupIndex" : 2
-		},
-		{
-			"backtrace" : 1,
-			"path" : "source/namespaces/general_utilities/reco_analysis_functions/reco_analysis_functions.h",
-			"sourceGroupIndex" : 2
-		},
-		{
-			"backtrace" : 1,
-			"path" : "source/namespaces/settings/settings.h",
-			"sourceGroupIndex" : 2
-		},
-		{
-			"backtrace" : 1,
-			"path" : "source/namespaces/general_utilities/truth_analysis_functions/truth_analysis_functions.h",
+			"path" : "framework/namespaces/general_utilities/truth_analysis_functions/truth_analysis_functions.h",
 			"sourceGroupIndex" : 2
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 1,
-			"path" : "source/other/fitexample - Copy.c",
+			"path" : "framework/other/fitexample - Copy.c",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 1,
-			"path" : "source/other/fitexample.c",
+			"path" : "framework/other/fitexample.c",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "source/other/hPlot1D_example.cpp",
+			"path" : "framework/other/hPlot1D_example.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "source/structures/Histogram1D_beta/Histogram1D.cpp",
+			"path" : "framework/structures/Histogram1D_beta/Histogram1D.cpp",
 			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"path" : "source/constants_old.h",
-			"sourceGroupIndex" : 2
 		},
 		{
 			"backtrace" : 1,
@@ -1722,50 +1413,39 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "source/classes/Settings/Settings.cpp",
+			"path" : "framework/classes/Settings/Settings.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
-			"path" : "source/classes/Settings/Settings.h",
+			"path" : "framework/classes/Settings/Settings.h",
 			"sourceGroupIndex" : 2
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "source/classes/Settings/CustomPlotsDirectory.cpp",
+			"path" : "framework/classes/Settings/CustomPlotsDirectory.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
-			"path" : "source/classes/Settings/CustomPlotsDirectory.h",
+			"path" : "framework/classes/Settings/CustomPlotsDirectory.h",
 			"sourceGroupIndex" : 2
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "source/classes/ParticleID/ParticleID.cpp",
+			"path" : "framework/classes/ParticleID/ParticleID.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
-			"path" : "source/classes/ParticleID/ParticleID.h",
+			"path" : "framework/classes/ParticleID/ParticleID.h",
 			"sourceGroupIndex" : 2
 		},
 		{
 			"backtrace" : 1,
-			"compileGroupIndex" : 0,
-			"path" : "source/classes/RecoAnalyser/RecoAnalyser.cpp",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"path" : "source/classes/RecoAnalyser/RecoAnalyser.h",
-			"sourceGroupIndex" : 2
-		},
-		{
-			"backtrace" : 1,
-			"path" : "source/classes/AMaps/CustomSliceLimits.h",
+			"path" : "framework/classes/AMaps/CustomSliceLimits.h",
 			"sourceGroupIndex" : 2
 		},
 		{
@@ -1777,12 +1457,12 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "source/classes/DataAnalyser/DataAnalyser.cpp",
+			"path" : "framework/classes/DataAnalyser/DataAnalyser.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
-			"path" : "source/classes/DataAnalyser/DataAnalyser.h",
+			"path" : "framework/classes/DataAnalyser/DataAnalyser.h",
 			"sourceGroupIndex" : 2
 		},
 		{
@@ -1814,6 +1494,22 @@
 			"compileGroupIndex" : 0,
 			"path" : "testers/reaction_cuts_test/reaction_cuts_test_functions.cpp",
 			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "framework/namespaces/general_utilities/analysis_math/poly_solver.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "framework/namespaces/general_utilities/analysis_math/poly_solver.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "framework/namespaces/fitters/fitter_functions/fitter_functions.h",
+			"sourceGroupIndex" : 2
 		}
 	],
 	"type" : "EXECUTABLE"
