@@ -101,7 +101,8 @@
         "reco_analysis_functions.h": "c",
         "analysis_math.h": "c",
         "lists.h": "c",
-        "constants.h": "c"
+        "constants.h": "c",
+        "dscuts.h": "c"
     },
     "[jsonc]": {
         "editor.defaultFormatter": "vscode.json-language-features"
