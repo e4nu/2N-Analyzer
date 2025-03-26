@@ -40,6 +40,8 @@
 #include "../analysis_math/analysis_math.h"
 #endif
 
+#include "../../../classes/hPlots/hPlot1D.cpp"
+
 using namespace std;
 
 namespace utilities {

@@ -14,12 +14,13 @@
 //
 
 #include "poly_solver.h"  // solution of cubic and quartic equation
-//#include "poly34.h"  // solution of cubic and quartic equation
+// #include "poly34.h"  // solution of cubic and quartic equation
 
 #include <math.h>
 
 #define TwoPi 6.28318530717958648
 
+namespace poly_solver {
 const double eps = 1e-14;
 
 //=============================================================================
@@ -407,5 +408,6 @@ int SolveP5(double *x, double a, double b, double c, double d, double e)  // sol
     return 1 + SolveP4(x + 1, a1, b1, c1, d1);
 }  // SolveP5(double *x,double a,double b,double c,double d,double e)	// solve equation x^5 + a*x^4 + b*x^3 + c*x^2 + d*x + e = 0
 //-----------------------------------------------------------------------------
+}  // namespace poly_solver
 
-#endif //POLY_SOLVER_H
+#endif  // POLY_SOLVER_H

@@ -2,8 +2,9 @@
 // Created by Alon Sportes on 26/03/2025.
 //
 
-//#ifndef POLY_SOLVER_H
-//#define POLY_SOLVER_H
+namespace poly_solver {
+// #ifndef POLY_SOLVER_H
+// #define POLY_SOLVER_H
 #ifdef POLY_SOLVER_H
 
 // poly34.h : solution of cubic and quartic equation
@@ -40,5 +41,6 @@ int SolveP4De(double *x, double b, double c, double d);              // solve eq
 void CSqrt(double x, double y, double &a, double &b);                // returns as a+i*s,  sqrt(x+i*y)
 double N4Step(double x, double a, double b, double c, double d);     // one Newton step for x^4 + a*x^3 + b*x^2 + c*x + d
 double SolveP5_1(double a, double b, double c, double d, double e);  // return real root of x^5 + a*x^4 + b*x^3 + c*x^2 + d*x + e = 0
+}
 
-#endif //POLY_SOLVER_H
+#endif  // POLY_SOLVER_H

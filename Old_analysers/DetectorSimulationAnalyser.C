@@ -3,22 +3,25 @@
  git pull && clas12root -b -q main.c
 
  * Copy commend (local -> JLab):
-scp -r /home/alon/project/temp/BankHist/Analyser.C -J asportes@ftp.jlab.org:/u/home/asportes/clas12project/
+ scp -r /home/alon/project/temp/BankHist/Analyser.C -J asportes@ftp.jlab.org:/u/home/asportes/clas12project/
 
  * Copy commend (JLab -> local):
-scp -r asportes@ftp.jlab.org:/u/home/asportes/Analyser/plots -J /home/alon/project/temp/
-scp -r asportes@ftp.jlab.org:/w/hallb-scshelf2102/clas12/asportes/recon_c12_6gev.hipo -J /home/alon/project/temp/
+ scp -r asportes@ftp.jlab.org:/u/home/asportes/Analyser/plots -J /home/alon/project/temp/
+ scp -r asportes@ftp.jlab.org:/w/hallb-scshelf2102/clas12/asportes/recon_c12_6gev.hipo -J /home/alon/project/temp/
 
- */
+*/
 
+#include "../framework/namespaces/general_utilities/utilities/utilities.h"
+#include "../framework/namespaces/plotters/draw_and_save_functions/draw_and_save_functions.h"
+//
+#include "../setup/codeSetup.h"
+// 
 #include "../framework/classes/AMaps/AMaps.cpp"
 #include "../framework/classes/DEfficiency/DEfficiency.cpp"
 #include "../framework/classes/DSCuts/DSCuts.h"
 #include "../framework/classes/clas12ana/clas12ana.h"
 #include "../framework/classes/hPlots/hPlot1D.cpp"
 #include "../framework/classes/hPlots/hPlot2D.cpp"
-#include "../framework/namespaces/general_utilities/utilities/utilities.h"
-#include "../setup/codeSetup.h"
 
 #if !defined(MOMENTUMRESOLUTION_H)
 #include "../framework/classes/MomentumResolution/MomentumResolution.cpp"
@@ -30,10 +33,9 @@ scp -r asportes@ftp.jlab.org:/w/hallb-scshelf2102/clas12/asportes/recon_c12_6gev
 
 #include "../framework/classes/Settings/Settings.cpp"
 #include "../framework/classes/TLCuts/TLCuts.cpp"
-#include "../framework/namespaces/plotters/draw_and_save_functions/draw_and_save_functions.h"
 #include "../framework/functions/FillByInt.h"
-#include "../framework/functions/FitFunctions/BetaFit.h"
-#include "../framework/functions/FitFunctions/BetaFitApprax.h"
+// #include "../framework/functions/FitFunctions/BetaFit.h"
+// #include "../framework/functions/FitFunctions/BetaFitApprax.h"
 //
 #include "HipoChain.h"
 #include "clas12reader.h"
@@ -76,9 +78,9 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     ExperimentParameters Experiment(AnalyseFilePath, AnalyseFileSample);
     const std::string SampleName = Experiment.ConfigureSampleName(AnalyseFilePath, AnalyseFileSample);  // Configure SampleName from input
     const std::string VaryingSampleName = Experiment.GetVaryingSampleName();                            // Get VaryingSampleName (configured from SampleName) - for data runs!
-    const double beamE = Experiment.GetBeamEnergy();                                               // Configure beam energy from SampleName
+    const double beamE = Experiment.GetBeamEnergy();                                                    // Configure beam energy from SampleName
     const std::string Target = Experiment.GetTargetElement();                                           // Configure target (element) from SampleName
-    const int TargetPDG = Experiment.GetTargetElementPDG();                                        // Configure target PDG from SampleName
+    const int TargetPDG = Experiment.GetTargetElementPDG();                                             // Configure target PDG from SampleName
     const bool isLocal = Experiment.SLocal();
     const bool isMC = Experiment.SSample();
     const bool isData = Experiment.DSample();
@@ -125,9 +127,9 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     bool AMaps_calc_with_one_reco_electron = true;
     const std::string P_e_bin_profile = "uniform_P_e_bins";      // {reformat_e_bins , varying_P_e_bins , uniform_P_e_bins, equi_inverted_P_e}
     const std::string P_nuc_bin_profile = "uniform_P_nuc_bins";  // {equi_inverted_P_nuc , varying_P_nuc_bins , uniform_P_nuc_bins}
-    bool Electron_single_slice_test = false;                // keep as false for normal runs!
-    bool Nucleon_single_slice_test = false;                 // keep as false for normal runs!
-    vector<int> TestSlices = {1, 1, 1};                     // {ElectronTestSlice, ProtonTestSlice, NeutronTestSlice}
+    bool Electron_single_slice_test = false;                     // keep as false for normal runs!
+    bool Nucleon_single_slice_test = false;                      // keep as false for normal runs!
+    vector<int> TestSlices = {1, 1, 1};                          // {ElectronTestSlice, ProtonTestSlice, NeutronTestSlice}
 
     /* Neutron resolution setup */
     // TODO: align neutron and proton momRes calculations!
