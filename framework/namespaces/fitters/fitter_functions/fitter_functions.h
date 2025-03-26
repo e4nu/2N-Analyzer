@@ -22,9 +22,9 @@
 #include <iostream>
 #include <string>
 
-#include "../../namespaces/general_utilities/constants/constants.h"
-#include "../../namespaces/general_utilities/utilities/utilities.h"
-#include "../../namespaces/general_utilities/analysis_math/analysis_math.h"
+#include "../../general_utilities/analysis_math/analysis_math.h"
+#include "../../general_utilities/constants/constants.h"
+#include "../../general_utilities/utilities/utilities.h"
 //
 #include "../../classes/DSCuts/DSCuts.h"
 #include "../../classes/hPlots/hPlot1D.cpp"
@@ -559,7 +559,8 @@ void BetaFitApprax(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Mome
 
         //<editor-fold desc="Plot deltaP/P as function of beta">
         std::string Rel_deltaPStatsTitle = "#deltaP_{" + BetaParticleShort + "} (" + BetaPlot.GetFinalState() + ")";
-        std::string Rel_deltaPTitle = BetaParticle + " relative uncertainty #deltaP_{" + BetaParticleShort + "}/P_{" + BetaParticleShort + "}" + " (apprax. ," + BetaPlot.GetFinalState() + ")";
+        std::string Rel_deltaPTitle =
+            BetaParticle + " relative uncertainty #deltaP_{" + BetaParticleShort + "}/P_{" + BetaParticleShort + "}" + " (apprax. ," + BetaPlot.GetFinalState() + ")";
         std::string Rel_deltaPfunc = to_string(FitStd) + "/ (1 - x*x)";
 
         auto *Rel_deltaP = new TF1(Rel_deltaPStatsTitle.c_str(), Rel_deltaPfunc.c_str(), 0.9, 1);
@@ -626,6 +627,6 @@ void BetaFitApprax(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Mome
     }
 }
 
-}
+}  // namespace fitter_functions
 
-#endif //FIT_FUNCTIONS_H
+#endif  // FIT_FUNCTIONS_H
