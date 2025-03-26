@@ -26,7 +26,7 @@
 #include "../../classes/hPlots/hPlot1D.cpp"
 #include "../../namespaces/general_utilities/constants/constants.h"
 #include "../EventProperties/GetParticleName.h"
-#include "../EventProperties/GetParticleNameShort.h"
+// #include "../EventProperties/GetParticleNameShort.h"
 #include "../../namespaces/general_utilities/utilities/utilities.h"
 #include "../Math_func/poly34.cpp"
 #include "../drawtext.h"
@@ -58,44 +58,44 @@ void BetaFit(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Momentum_c
     //<editor-fold desc="Setting sNameFlag">
     std::string sNameFlag;
 
-    if (findSubstring(SampleName, "sim")) {
+    if (basic_tools::FindSubstring(SampleName, "sim")) {
         sNameFlag = "s";
-    } else if (findSubstring(SampleName, "data")) {
+    } else if (basic_tools::FindSubstring(SampleName, "data")) {
         sNameFlag = "d";
     }
     //</editor-fold>
 
     //<editor-fold desc="Setting particle">
-    std::string BetaParticle = GetParticleName(BetaPlot.GetHistogramTitle());
-    std::string BetaParticleShort = GetParticleNameShort(BetaPlot.GetHistogramTitle());
+    std::string BetaParticle = data_processor::GetParticleName(BetaPlot.GetHistogramTitle());
+    std::string BetaParticleShort = data_processor::GetParticleNameShort(BetaPlot.GetHistogramTitle());
 
-    //    if (findSubstring(BetaPlot.GetHistogramTitle(), "neutrals") || findSubstring(BetaPlot.GetHistogramTitle(), "Neutrals")
-    //        || findSubstring(BetaPlot.GetHistogramTitle(), "neut.") || findSubstring(BetaPlot.GetHistogramTitle(), "Neut.")) {
+    //    if (basic_tools::FindSubstring(BetaPlot.GetHistogramTitle(), "neutrals") || basic_tools::FindSubstring(BetaPlot.GetHistogramTitle(), "Neutrals")
+    //        || basic_tools::FindSubstring(BetaPlot.GetHistogramTitle(), "neut.") || basic_tools::FindSubstring(BetaPlot.GetHistogramTitle(), "Neut.")) {
     //        BetaParticle = "Neutrals";
     //        BetaParticleShort = "neut";
-    //    } else if (findSubstring(BetaPlot.GetHistogramTitle(), "Electron") || findSubstring(BetaPlot.GetHistogramTitle(), "electron")) {
+    //    } else if (basic_tools::FindSubstring(BetaPlot.GetHistogramTitle(), "Electron") || basic_tools::FindSubstring(BetaPlot.GetHistogramTitle(), "electron")) {
     //        BetaParticle = "Electron";
     //        BetaParticleShort = "e";
-    //    } else if (findSubstring(BetaPlot.GetHistogramTitle(), "Proton") || findSubstring(BetaPlot.GetHistogramTitle(), "proton")) {
+    //    } else if (basic_tools::FindSubstring(BetaPlot.GetHistogramTitle(), "Proton") || basic_tools::FindSubstring(BetaPlot.GetHistogramTitle(), "proton")) {
     //        BetaParticle = "Proton";
     //        BetaParticleShort = "p";
-    //    } else if (findSubstring(BetaPlot.GetHistogramTitle(), "Neutron") || findSubstring(BetaPlot.GetHistogramTitle(), "neutron")) {
+    //    } else if (basic_tools::FindSubstring(BetaPlot.GetHistogramTitle(), "Neutron") || basic_tools::FindSubstring(BetaPlot.GetHistogramTitle(), "neutron")) {
     //        BetaParticle = "Neutron";
     //        BetaParticleShort = "n";
-    //    } else if (findSubstring(BetaPlot.GetHistogramTitle(), "#pi^{+}")) {
+    //    } else if (basic_tools::FindSubstring(BetaPlot.GetHistogramTitle(), "#pi^{+}")) {
     //        BetaParticle = "Piplus";
     //        BetaParticleShort = "#pi^{+}";
-    //    } else if (findSubstring(BetaPlot.GetHistogramTitle(), "#pi^{-}")) {
+    //    } else if (basic_tools::FindSubstring(BetaPlot.GetHistogramTitle(), "#pi^{-}")) {
     //        BetaParticle = "Piminus";
     //        BetaParticleShort = "#pi^{-}";
-    //    } else if (findSubstring(BetaPlot.GetHistogramTitle(), "K^{+}")) {
+    //    } else if (basic_tools::FindSubstring(BetaPlot.GetHistogramTitle(), "K^{+}")) {
     //        BetaParticle = "Kplus";
     //        BetaParticleShort = "K^{+}";
-    //    } else if (findSubstring(BetaPlot.GetHistogramTitle(), "K^{-}")) {
+    //    } else if (basic_tools::FindSubstring(BetaPlot.GetHistogramTitle(), "K^{-}")) {
     //        BetaParticle = "Kminus";
     //        BetaParticleShort = "K^{-}";
-    //    } else if (findSubstring(BetaPlot.GetHistogramTitle(), "#gamma") || findSubstring(BetaPlot.GetHistogramTitle(), "photon")
-    //               || findSubstring(BetaPlot.GetHistogramTitle(), "Photon")) {
+    //    } else if (basic_tools::FindSubstring(BetaPlot.GetHistogramTitle(), "#gamma") || basic_tools::FindSubstring(BetaPlot.GetHistogramTitle(), "photon")
+    //               || basic_tools::FindSubstring(BetaPlot.GetHistogramTitle(), "Photon")) {
     //        BetaParticle = "Photon";
     //        BetaParticleShort = "#gamma";
     //    }
