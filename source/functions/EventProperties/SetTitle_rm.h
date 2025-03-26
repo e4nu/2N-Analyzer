@@ -11,8 +11,8 @@
 #include <sstream>
 #include <typeinfo>
 
-#include "GetParticleName.h"
-#include "GetParticleNameShort.h"
+#include "GetParticleNameShort_rm.h"
+#include "GetParticleName_rm.h"
 #include "SetType.h"
 
 using namespace std;

@@ -11,7 +11,7 @@
 #include <sstream>
 #include <typeinfo>
 
-#include "GetParticleNameShort.h"
+#include "GetParticleNameShort_rm.h"
 
 using namespace std;
 
