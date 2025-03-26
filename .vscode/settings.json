@@ -99,7 +99,9 @@
         "utilities_reco_extentions.h": "c",
         "analysis_math_reco_extentions.h": "c",
         "reco_analysis_functions.h": "c",
-        "analysis_math.h": "c"
+        "analysis_math.h": "c",
+        "lists.h": "c",
+        "constants.h": "c"
     },
     "[jsonc]": {
         "editor.defaultFormatter": "vscode.json-language-features"
@@ -108,7 +110,8 @@
     "editor.wordWrap": "on",
     "betterFolding.foldClosingBrackets": true,
     "betterFolding.showFoldedBrackets": true,
-    "workbench.tree.indent": 20
+    "workbench.tree.indent": 20,
+    "C_Cpp.errorSquiggles": "disabled"
     // "betterFolding.showFoldedBodyLinesCount": false,
     // "betterFolding.showFoldedBrackets": true
 }
