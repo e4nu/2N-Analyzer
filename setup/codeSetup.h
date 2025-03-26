@@ -52,7 +52,7 @@ const std::string plots_path = "/lustre24/expphy/volatile/clas12/asportes/Analys
 const std::string SettingsDirectory = WorkingDirectory + "setup" + "/";
 
 /* framework directory and directories */
-const std::string SourcesDirectory = WorkingDirectory + "framework" + "/";
+const std::string SourcesDirectory = WorkingDirectory + "source" + "/";
 const std::string DataDirectory = SourcesDirectory + "data" + "/";
 const std::string ACorrDirectory = DataDirectory + "AcceptanceCorrections" + "/";
 const std::string AcceptanceMapsDirectory = DataDirectory + "AcceptanceMaps" + "/";

@@ -310,57 +310,57 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
     // Print out execution variables
     /* Print out execution variables (for self observation) */
-    std::cout << "\033[33m-- Execution variables ----------------------------------------------------\n\033[0m";
-    std::cout << "\033[33mWorkingDirectory:\t" << WorkingDirectory << "\n\033[0m";
-    std::cout << "\033[33mrun_plots_path:\t\t" << run_plots_path << "\n\n\033[0m";
+    std::cout << "\033[33m-- Execution variables ----------------------------------------------------\n";
+    std::cout << "\033[33mWorkingDirectory:\033[0m\t" << WorkingDirectory << "\n";
+    std::cout << "\033[33mrun_plots_path:\033[0m\t\t" << run_plots_path << "\n\n";
 
-    std::cout << "\033[33mAnalyseFilePath:\t" << "/" << AnalyseFilePath << "/" << "\n\033[0m";
-    std::cout << "\033[33mAnalyseFileSample:\t" << "/" << AnalyseFileSample << "/" << "\n\033[0m";
-    std::cout << "\033[33mAnalyseFile:\t\t" << AnalyseFile << "\n\033[0m";
-    std::cout << "\033[33mSettings mode:\t\t'" << file_name << "'\n\n\033[0m";
+    std::cout << "\033[33mAnalyseFilePath:\033[0m\t" << "/" << AnalyseFilePath << "/" << "\n";
+    std::cout << "\033[33mAnalyseFileSample:\033[0m\t" << "/" << AnalyseFileSample << "/" << "\n";
+    std::cout << "\033[33mAnalyseFile:\033[0m\t\t" << AnalyseFile << "\n";
+    std::cout << "\033[33mSettings mode:\033[0m\t\t'" << file_name << "'\n\n";
 
-    std::cout << "\033[33mSampleName:\t\t" << SampleName << "\n\033[0m";
-    std::cout << "\033[33mVaryingSampleName:\t" << VaryingSampleName << "\n\033[0m";
-    std::cout << "\033[33mTarget:\t\t\t" << Target << " (PDG: " << TargetPDG << ")\n\033[0m";
-    std::cout << "\033[33mBeam Energy:\t\t" << beamE << " [GeV]\n\n\n\n\033[0m";
+    std::cout << "\033[33mSampleName:\033[0m\t\t" << SampleName << "\n";
+    std::cout << "\033[33mVaryingSampleName:\033[0m\t" << VaryingSampleName << "\n";
+    std::cout << "\033[33mTarget:\033[0m\t\t\t" << Target << " (PDG: " << TargetPDG << ")\n";
+    std::cout << "\033[33mBeam Energy:\033[0m\t\t" << beamE << " [GeV]\n\n\n\n";
 
     // Cuts output
     /* Print out the cuts within the run (for self-observation) */
     if (!apply_cuts) {
-        std::cout << "\033[33mCuts are disabled:\n\033[0m";
+        std::cout << "\033[33mCuts are disabled:\n";
     } else {
-        std::cout << "\033[33mCuts are enabled:\n\033[0m";
+        std::cout << "\033[33mCuts are enabled:\n";
     }
 
-    std::cout << "\033[33mapply_cuts:\t\t\t" << BoolToString(apply_cuts) << "\n\033[0m";
-    std::cout << "\033[33mclas12ana_particles:\t\t" << BoolToString(clas12ana_particles) << "\n\033[0m";  // TODO: move form here!
-    std::cout << "\033[33monly_preselection_cuts:\t\t" << BoolToString(only_preselection_cuts) << "\n\033[0m";
-    std::cout << "\033[33monly_electron_quality_cuts:\t" << BoolToString(only_electron_quality_cuts) << "\n\n\033[0m";
+    std::cout << "\033[33mapply_cuts:\033[0m\t\t\t" << basic_tools::BoolToString(apply_cuts) << "\n";
+    std::cout << "\033[33mclas12ana_particles:\033[0m\t\t" << basic_tools::BoolToString(clas12ana_particles) << "\n";  // TODO: move form here!
+    std::cout << "\033[33monly_preselection_cuts:\033[0m\t\t" << basic_tools::BoolToString(only_preselection_cuts) << "\n";
+    std::cout << "\033[33monly_electron_quality_cuts:\033[0m\t" << basic_tools::BoolToString(only_electron_quality_cuts) << "\n\n";
 
-    std::cout << "\033[33mapply_preselection_cuts:\t" << BoolToString(apply_preselection_cuts) << "\n\033[0m";
-    std::cout << "\033[33mapply_Vz_e_cuts:\t\t\t" << BoolToString(apply_Vz_e_cuts) << "\n\033[0m";
-    std::cout << "\033[33mapply_Vz_cuts:\t\t\t" << BoolToString(apply_Vz_cuts) << "\n\033[0m";
-    std::cout << "\033[33mapply_dVz_cuts:\t\t\t" << BoolToString(apply_dVz_cuts) << "\n\033[0m";
-    std::cout << "\033[33mapply_DC_e_fiducial_cuts:\t\t" << BoolToString(apply_DC_e_fiducial_cuts) << "\n\033[0m";
-    std::cout << "\033[33mapply_DC_fiducial_cuts:\t\t" << BoolToString(apply_DC_fiducial_cuts) << "\n\n\033[0m";
+    std::cout << "\033[33mapply_preselection_cuts:\033[0m\t" << basic_tools::BoolToString(apply_preselection_cuts) << "\n";
+    std::cout << "\033[33mapply_Vz_e_cuts:\033[0m\t\t" << basic_tools::BoolToString(apply_Vz_e_cuts) << "\n";
+    std::cout << "\033[33mapply_Vz_cuts:\033[0m\t\t\t" << basic_tools::BoolToString(apply_Vz_cuts) << "\n";
+    std::cout << "\033[33mapply_dVz_cuts:\033[0m\t\t\t" << basic_tools::BoolToString(apply_dVz_cuts) << "\n";
+    std::cout << "\033[33mapply_DC_e_fiducial_cuts:\033[0m\t" << basic_tools::BoolToString(apply_DC_e_fiducial_cuts) << "\n";
+    std::cout << "\033[33mapply_DC_fiducial_cuts:\033[0m\t\t" << basic_tools::BoolToString(apply_DC_fiducial_cuts) << "\n\n";
 
-    std::cout << "\033[33mapply_electron_quality_cuts:\t" << BoolToString(apply_electron_quality_cuts) << "\n\033[0m";
-    std::cout << "\033[33mapply_Nphe_cut:\t\t\t" << BoolToString(apply_Nphe_cut) << "\n\033[0m";
-    std::cout << "\033[33mapply_ECAL_SF_cuts:\t\t" << BoolToString(apply_ECAL_SF_cuts) << "\n\033[0m";
-    std::cout << "\033[33mapply_ECAL_P_cuts:\t\t" << BoolToString(apply_ECAL_P_cuts) << "\n\033[0m";
-    std::cout << "\033[33mapply_ECAL_fiducial_cuts:\t" << BoolToString(apply_ECAL_fiducial_cuts) << "\n\033[0m";
-    std::cout << "\033[33mapply_Electron_beta_cut:\t" << BoolToString(apply_Electron_beta_cut) << "\n\n\033[0m";
+    std::cout << "\033[33mapply_electron_quality_cuts:\033[0m\t" << basic_tools::BoolToString(apply_electron_quality_cuts) << "\n";
+    std::cout << "\033[33mapply_Nphe_cut:\033[0m\t\t\t" << basic_tools::BoolToString(apply_Nphe_cut) << "\n";
+    std::cout << "\033[33mapply_ECAL_SF_cuts:\033[0m\t\t" << basic_tools::BoolToString(apply_ECAL_SF_cuts) << "\n";
+    std::cout << "\033[33mapply_ECAL_P_cuts:\033[0m\t\t" << basic_tools::BoolToString(apply_ECAL_P_cuts) << "\n";
+    std::cout << "\033[33mapply_ECAL_fiducial_cuts:\033[0m\t" << basic_tools::BoolToString(apply_ECAL_fiducial_cuts) << "\n";
+    std::cout << "\033[33mapply_Electron_beta_cut:\033[0m\t" << basic_tools::BoolToString(apply_Electron_beta_cut) << "\n\n";
 
-    std::cout << "\033[33mapply_chi2_cuts_1e_cut:\t\t" << BoolToString(apply_chi2_cuts_1e_cut) << "\n\033[0m";
+    std::cout << "\033[33mapply_chi2_cuts_1e_cut:\033[0m\t\t" << basic_tools::BoolToString(apply_chi2_cuts_1e_cut) << "\n";
 
-    std::cout << "\033[33mapply_nucleon_cuts:\t\t" << BoolToString(apply_nucleon_cuts) << "\n\n\033[0m";
+    std::cout << "\033[33mapply_nucleon_cuts:\033[0m\t\t" << basic_tools::BoolToString(apply_nucleon_cuts) << "\n\n";
 
-    std::cout << "\033[33mapply_nucleon_physical_cuts:\t" << BoolToString(apply_nucleon_physical_cuts) << "\n\033[0m";
-    std::cout << "\033[33mapply_nBeta_fit_cuts:\t\t" << BoolToString(apply_nBeta_fit_cuts) << "\n\033[0m";
-    std::cout << "\033[33mapply_fiducial_cuts:\t\t" << BoolToString(apply_fiducial_cuts) << "\n\033[0m";
-    std::cout << "\033[33mapply_kinematical_cuts:\t\t" << BoolToString(apply_kinematical_cuts) << "\n\033[0m";
-    std::cout << "\033[33mapply_kinematical_weights:\t" << BoolToString(apply_kinematical_weights) << "\n\033[0m";
-    std::cout << "\033[33mapply_nucleon_SmearAndCorr:\t" << BoolToString(apply_nucleon_SmearAndCorr) << "\n\n\033[0m";
+    std::cout << "\033[33mapply_nucleon_physical_cuts:\033[0m\t" << basic_tools::BoolToString(apply_nucleon_physical_cuts) << "\n";
+    std::cout << "\033[33mapply_nBeta_fit_cuts:\033[0m\t\t" << basic_tools::BoolToString(apply_nBeta_fit_cuts) << "\n";
+    std::cout << "\033[33mapply_fiducial_cuts:\033[0m\t\t" << basic_tools::BoolToString(apply_fiducial_cuts) << "\n";
+    std::cout << "\033[33mapply_kinematical_cuts:\033[0m\t\t" << basic_tools::BoolToString(apply_kinematical_cuts) << "\n";
+    std::cout << "\033[33mapply_kinematical_weights:\033[0m\t" << basic_tools::BoolToString(apply_kinematical_weights) << "\n";
+    std::cout << "\033[33mapply_nucleon_SmearAndCorr:\033[0m\t" << basic_tools::BoolToString(apply_nucleon_SmearAndCorr) << "\n\n";
 
     // Cut declarations -----------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -14641,7 +14641,9 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
             if (pCD_pFDpCD->getRegion() != CD) { std::cout << "\033[33m\n\npFDpCD: pCD is not in the CD! Exiting...\n\n", exit(0); }
             if (Protons_ind.size() != 2) { std::cout << "\033[33m\n\npFDpCD: Protons_ind.size() is different than 2! Exiting...\n\n", exit(0); }
 
-            if (protons[Protons_ind.at(0)]->getRegion() == protons[Protons_ind.at(1)]->getRegion()) { std::cout << "\033[33m\n\npFDpCD: Protons are in the same region! Exiting...\n\n", exit(0); }
+            if (protons[Protons_ind.at(0)]->getRegion() == protons[Protons_ind.at(1)]->getRegion()) {
+                std::cout << "\033[33m\n\npFDpCD: Protons are in the same region! Exiting...\n\n", exit(0);
+            }
 
             if (e_pFDpCD->getRegion() != FD) { std::cout << "\033[33m\n\npFDpCD: Electron is not in the FD! Exiting...\n\n", exit(0); }
             if (pFD_pFDpCD->getRegion() != FD) { std::cout << "\033[33m\n\npFDpCD: pFD is not in the FD! Exiting...\n\n", exit(0); }
@@ -22011,12 +22013,12 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     myLogFile << "SampleName: " << SampleName << "\n";
     myLogFile << "VaryingSampleName: " << VaryingSampleName << "\n\n";
 
-    myLogFile << "isLocal:\t\t\t" << BoolToString(isLocal) << "\n";
-    myLogFile << "isMC:\t\t" << BoolToString(isMC) << "\n";
-    myLogFile << "isData:\t\t\t" << BoolToString(isData) << "\n";
-    myLogFile << "is2GeVSample:\t\t" << BoolToString(is2GeVSample) << "\n";
-    myLogFile << "is4GeVSample:\t\t" << BoolToString(is4GeVSample) << "\n";
-    myLogFile << "is6GeVSample:\t\t" << BoolToString(is6GeVSample) << "\n\n";
+    myLogFile << "isLocal:\t\t\t" << basic_tools::BoolToString(isLocal) << "\n";
+    myLogFile << "isMC:\t\t" << basic_tools::BoolToString(isMC) << "\n";
+    myLogFile << "isData:\t\t\t" << basic_tools::BoolToString(isData) << "\n";
+    myLogFile << "is2GeVSample:\t\t" << basic_tools::BoolToString(is2GeVSample) << "\n";
+    myLogFile << "is4GeVSample:\t\t" << basic_tools::BoolToString(is4GeVSample) << "\n";
+    myLogFile << "is6GeVSample:\t\t" << basic_tools::BoolToString(is6GeVSample) << "\n\n";
 
     myLogFile << "HipoChainLength:\t\t" << HipoChainLength << "\n\n";
 
@@ -22027,68 +22029,68 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     myLogFile << "Plot setup\n";
     myLogFile << "===========================================================================\n\n";
 
-    myLogFile << "wider_margin = " << BoolToString(wider_margin) << "\n";
-    myLogFile << "debug_plots = " << BoolToString(debug_plots) << "\n\n";
+    myLogFile << "wider_margin = " << basic_tools::BoolToString(wider_margin) << "\n";
+    myLogFile << "debug_plots = " << basic_tools::BoolToString(debug_plots) << "\n\n";
 
-    myLogFile << "Log_scale_Vx_plots = " << BoolToString(Log_scale_Vx_plots) << "\n";
-    myLogFile << "Log_scale_Vy_plots = " << BoolToString(Log_scale_Vy_plots) << "\n";
-    myLogFile << "Log_scale_Vz_plots = " << BoolToString(Log_scale_Vz_plots) << "\n";
-    myLogFile << "Log_scale_dVx_plots = " << BoolToString(Log_scale_dVx_plots) << "\n";
-    myLogFile << "Log_scale_dVy_plots = " << BoolToString(Log_scale_dVy_plots) << "\n";
-    myLogFile << "Log_scale_dVz_plots = " << BoolToString(Log_scale_dVz_plots) << "\n\n";
+    myLogFile << "Log_scale_Vx_plots = " << basic_tools::BoolToString(Log_scale_Vx_plots) << "\n";
+    myLogFile << "Log_scale_Vy_plots = " << basic_tools::BoolToString(Log_scale_Vy_plots) << "\n";
+    myLogFile << "Log_scale_Vz_plots = " << basic_tools::BoolToString(Log_scale_Vz_plots) << "\n";
+    myLogFile << "Log_scale_dVx_plots = " << basic_tools::BoolToString(Log_scale_dVx_plots) << "\n";
+    myLogFile << "Log_scale_dVy_plots = " << basic_tools::BoolToString(Log_scale_dVy_plots) << "\n";
+    myLogFile << "Log_scale_dVz_plots = " << basic_tools::BoolToString(Log_scale_dVz_plots) << "\n\n";
 
     // Calculation setup
     myLogFile << "\n===========================================================================\n";
     myLogFile << "Calculation setup\n";
     myLogFile << "===========================================================================\n\n";
 
-    myLogFile << "calculate_1p = " << BoolToString(calculate_1p) << "\n";
-    myLogFile << "calculate_1n = " << BoolToString(calculate_1n) << "\n";
-    myLogFile << "calculate_2p = " << BoolToString(calculate_2p) << "\n\n";
-    myLogFile << "calculate_pFDpCD = " << BoolToString(calculate_pFDpCD) << "\n";
-    myLogFile << "calculate_nFDpCD = " << BoolToString(calculate_nFDpCD) << "\n\n";
+    myLogFile << "calculate_1p = " << basic_tools::BoolToString(calculate_1p) << "\n";
+    myLogFile << "calculate_1n = " << basic_tools::BoolToString(calculate_1n) << "\n";
+    myLogFile << "calculate_2p = " << basic_tools::BoolToString(calculate_2p) << "\n\n";
+    myLogFile << "calculate_pFDpCD = " << basic_tools::BoolToString(calculate_pFDpCD) << "\n";
+    myLogFile << "calculate_nFDpCD = " << basic_tools::BoolToString(calculate_nFDpCD) << "\n\n";
 
     myLogFile << "-- Truth level calculation setup ------------------------------------------\n";
-    myLogFile << "calculate_truth_level = " << BoolToString(calculate_truth_level) << "\n";
-    myLogFile << "TL_plots_only_for_NC = " << BoolToString(TL_plots_only_for_NC) << "\n";
-    myLogFile << "fill_TL_plots = " << BoolToString(fill_TL_plots) << "\n";
-    myLogFile << "ZoomIn_On_mom_th_plots = " << BoolToString(ZoomIn_On_mom_th_plots) << "\n";
-    myLogFile << "Eff_calc_with_one_reco_electron = " << BoolToString(Eff_calc_with_one_reco_electron) << "\n";
-    myLogFile << "Calc_inc_eff_with_varying_theta = " << BoolToString(Calc_inc_eff_with_varying_theta) << "\n";
-    myLogFile << "Calc_1n_n_eff_with_smaller_theta = " << BoolToString(Calc_1n_n_eff_with_smaller_theta) << "\n";
-    myLogFile << "Calc_eff_overlapping_FC = " << BoolToString(Calc_eff_overlapping_FC) << "\n";
-    myLogFile << "Rec_wTL_ES = " << BoolToString(Rec_wTL_ES) << "\n\n";
+    myLogFile << "calculate_truth_level = " << basic_tools::BoolToString(calculate_truth_level) << "\n";
+    myLogFile << "TL_plots_only_for_NC = " << basic_tools::BoolToString(TL_plots_only_for_NC) << "\n";
+    myLogFile << "fill_TL_plots = " << basic_tools::BoolToString(fill_TL_plots) << "\n";
+    myLogFile << "ZoomIn_On_mom_th_plots = " << basic_tools::BoolToString(ZoomIn_On_mom_th_plots) << "\n";
+    myLogFile << "Eff_calc_with_one_reco_electron = " << basic_tools::BoolToString(Eff_calc_with_one_reco_electron) << "\n";
+    myLogFile << "Calc_inc_eff_with_varying_theta = " << basic_tools::BoolToString(Calc_inc_eff_with_varying_theta) << "\n";
+    myLogFile << "Calc_1n_n_eff_with_smaller_theta = " << basic_tools::BoolToString(Calc_1n_n_eff_with_smaller_theta) << "\n";
+    myLogFile << "Calc_eff_overlapping_FC = " << basic_tools::BoolToString(Calc_eff_overlapping_FC) << "\n";
+    myLogFile << "Rec_wTL_ES = " << basic_tools::BoolToString(Rec_wTL_ES) << "\n\n";
 
-    myLogFile << "limless_mom_eff_plots = " << BoolToString(limless_mom_eff_plots) << "\n\n";
+    myLogFile << "limless_mom_eff_plots = " << basic_tools::BoolToString(limless_mom_eff_plots) << "\n\n";
 
     myLogFile << "-- FD neutrals settings ---------------------------------------------------\n";
-    myLogFile << "Enable_FD_photons = " << BoolToString(Enable_FD_photons) << "\n";
-    myLogFile << "Enable_FD_neutrons = " << BoolToString(Enable_FD_neutrons) << "\n";
-    myLogFile << "Count_FD_neurton_and_photon_hits = " << BoolToString(Count_FD_neurton_and_photon_hits) << "\n";
+    myLogFile << "Enable_FD_photons = " << basic_tools::BoolToString(Enable_FD_photons) << "\n";
+    myLogFile << "Enable_FD_neutrons = " << basic_tools::BoolToString(Enable_FD_neutrons) << "\n";
+    myLogFile << "Count_FD_neurton_and_photon_hits = " << basic_tools::BoolToString(Count_FD_neurton_and_photon_hits) << "\n";
 
-    myLogFile << "ES_by_leading_FDneutron = " << BoolToString(ES_by_leading_FDneutron) << "\n\n";
+    myLogFile << "ES_by_leading_FDneutron = " << basic_tools::BoolToString(ES_by_leading_FDneutron) << "\n\n";
 
     myLogFile << "-- AMaps settings ---------------------------------------------------------\n";
-    myLogFile << "Generate_Electron_AMaps = " << BoolToString(Generate_Electron_AMaps) << "\n";
-    myLogFile << "Generate_Nucleon_AMaps = " << BoolToString(Generate_Nucleon_AMaps) << "\n";
-    myLogFile << "Generate_WMaps = " << BoolToString(Generate_WMaps) << "\n";
-    myLogFile << "AMaps_calc_with_one_reco_electron = " << BoolToString(AMaps_calc_with_one_reco_electron) << "\n";
+    myLogFile << "Generate_Electron_AMaps = " << basic_tools::BoolToString(Generate_Electron_AMaps) << "\n";
+    myLogFile << "Generate_Nucleon_AMaps = " << basic_tools::BoolToString(Generate_Nucleon_AMaps) << "\n";
+    myLogFile << "Generate_WMaps = " << basic_tools::BoolToString(Generate_WMaps) << "\n";
+    myLogFile << "AMaps_calc_with_one_reco_electron = " << basic_tools::BoolToString(AMaps_calc_with_one_reco_electron) << "\n";
     myLogFile << "P_e_bin_profile = " << P_e_bin_profile << "\n";
     myLogFile << "P_nuc_bin_profile = " << P_nuc_bin_profile << "\n";
-    myLogFile << "Electron_single_slice_test = " << BoolToString(Electron_single_slice_test) << "\n";
-    myLogFile << "Nucleon_single_slice_test = " << BoolToString(Nucleon_single_slice_test) << "\n";
+    myLogFile << "Electron_single_slice_test = " << basic_tools::BoolToString(Electron_single_slice_test) << "\n";
+    myLogFile << "Nucleon_single_slice_test = " << basic_tools::BoolToString(Nucleon_single_slice_test) << "\n";
     myLogFile << "TestSlices = {" << TestSlices.at(0) << ", " << TestSlices.at(1) << ", " << TestSlices.at(2) << "}\n\n";
 
     myLogFile << "-- nRES settings ----------------------------------------------------------\n";
-    myLogFile << "plot_and_fit_MomRes = " << BoolToString(plot_and_fit_MomRes) << "\n";
-    myLogFile << "Calculate_momResS2 = " << BoolToString(Calculate_momResS2) << "\n";
+    myLogFile << "plot_and_fit_MomRes = " << basic_tools::BoolToString(plot_and_fit_MomRes) << "\n";
+    myLogFile << "Calculate_momResS2 = " << basic_tools::BoolToString(Calculate_momResS2) << "\n";
     myLogFile << "DeltaSlices = " << DeltaSlices << "\n";
-    myLogFile << "VaryingDelta = " << BoolToString(VaryingDelta) << "\n";
-    myLogFile << "ForceSmallpResLimits = " << BoolToString(ForceSmallpResLimits) << "\n";
+    myLogFile << "VaryingDelta = " << basic_tools::BoolToString(VaryingDelta) << "\n";
+    myLogFile << "ForceSmallpResLimits = " << basic_tools::BoolToString(ForceSmallpResLimits) << "\n";
     myLogFile << "SmearMode = " << SmearMode << "\n";
     myLogFile << "CorrMode = " << CorrMode << "\n";
-    myLogFile << "Run_with_momResS2 = " << BoolToString(Run_with_momResS2) << "\n";
-    myLogFile << "momRes_test = " << BoolToString(momRes_test) << "\n\n";
+    myLogFile << "Run_with_momResS2 = " << basic_tools::BoolToString(Run_with_momResS2) << "\n";
+    myLogFile << "momRes_test = " << basic_tools::BoolToString(momRes_test) << "\n\n";
 
     myLogFile << "-- Other run parameters ---------------------------------------------------\n";
     myLogFile << "Probe = " << Probe << " (PDG: " << Probe_pdg << ")" << "\n";
@@ -22115,89 +22117,89 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     myLogFile << "Directory settings\n";
     myLogFile << "===========================================================================\n\n";
 
-    myLogFile << "Clear_Old_Directories = " << BoolToString(Clear_Old_Directories) << "\n\n";
+    myLogFile << "Clear_Old_Directories = " << basic_tools::BoolToString(Clear_Old_Directories) << "\n\n";
 
-    myLogFile << "Save_Plots_folder_to_zip_files = " << BoolToString(Save_Plots_folder_to_zip_files) << "\n";
+    myLogFile << "Save_Plots_folder_to_zip_files = " << basic_tools::BoolToString(Save_Plots_folder_to_zip_files) << "\n";
 
     // Plot selector
     myLogFile << "\n===========================================================================\n";
     myLogFile << "Plot selector\n";
     myLogFile << "===========================================================================\n\n";
 
-    myLogFile << "TestRun = " << BoolToString(TestRun) << "\n";
+    myLogFile << "TestRun = " << basic_tools::BoolToString(TestRun) << "\n";
 
-    myLogFile << "Plot_selector_master = " << BoolToString(Plot_selector_master) << "\n";
+    myLogFile << "Plot_selector_master = " << basic_tools::BoolToString(Plot_selector_master) << "\n";
 
     myLogFile << "\n-- Cut variable plots -----------------------------------------------------" << "\n";
-    myLogFile << "Cut_plots_master = " << BoolToString(Cut_plots_master) << "\n";
-    myLogFile << "Nphe_plots = " << BoolToString(Nphe_plots) << "\n";
-    myLogFile << "Chi2_plots = " << BoolToString(Chi2_plots) << "\n";
-    myLogFile << "Vertex_plots = " << BoolToString(Vertex_plots) << "\n";
-    myLogFile << "SF_plots = " << BoolToString(SF_plots) << "\n";
-    myLogFile << "fiducial_plots = " << BoolToString(fiducial_plots) << "\n";
-    myLogFile << "Momentum_plots = " << BoolToString(Momentum_plots) << "\n";
+    myLogFile << "Cut_plots_master = " << basic_tools::BoolToString(Cut_plots_master) << "\n";
+    myLogFile << "Nphe_plots = " << basic_tools::BoolToString(Nphe_plots) << "\n";
+    myLogFile << "Chi2_plots = " << basic_tools::BoolToString(Chi2_plots) << "\n";
+    myLogFile << "Vertex_plots = " << basic_tools::BoolToString(Vertex_plots) << "\n";
+    myLogFile << "SF_plots = " << basic_tools::BoolToString(SF_plots) << "\n";
+    myLogFile << "fiducial_plots = " << basic_tools::BoolToString(fiducial_plots) << "\n";
+    myLogFile << "Momentum_plots = " << basic_tools::BoolToString(Momentum_plots) << "\n";
 
     myLogFile << "\n-- W plots ----------------------------------------------------------------" << "\n";
-    myLogFile << "W_plots = " << BoolToString(W_plots) << "\n";
+    myLogFile << "W_plots = " << basic_tools::BoolToString(W_plots) << "\n";
 
     myLogFile << "\n-- Beta plots -------------------------------------------------------------" << "\n";
-    myLogFile << "Beta_plots = " << BoolToString(Beta_plots) << "\n";
-    myLogFile << "Beta_vs_P_plots = " << BoolToString(Beta_vs_P_plots) << "\n";
+    myLogFile << "Beta_plots = " << basic_tools::BoolToString(Beta_plots) << "\n";
+    myLogFile << "Beta_vs_P_plots = " << basic_tools::BoolToString(Beta_vs_P_plots) << "\n";
 
     myLogFile << "\n-- Angle plots ------------------------------------------------------------" << "\n";
-    myLogFile << "Angle_plots_master = " << BoolToString(Angle_plots_master) << "\n";
-    myLogFile << "Theta_e_plots = " << BoolToString(Theta_e_plots) << "\n";
-    myLogFile << "Phi_e_plots = " << BoolToString(Phi_e_plots) << "\n";
+    myLogFile << "Angle_plots_master = " << basic_tools::BoolToString(Angle_plots_master) << "\n";
+    myLogFile << "Theta_e_plots = " << basic_tools::BoolToString(Theta_e_plots) << "\n";
+    myLogFile << "Phi_e_plots = " << basic_tools::BoolToString(Phi_e_plots) << "\n";
 
     myLogFile << "\n-- Momentum transfer plots ------------------------------------------------" << "\n";
-    myLogFile << "Momentum_transfer_plots = " << BoolToString(Momentum_transfer_plots) << "\n";
+    myLogFile << "Momentum_transfer_plots = " << basic_tools::BoolToString(Momentum_transfer_plots) << "\n";
 
     myLogFile << "\n-- E_e plots --------------------------------------------------------------" << "\n";
-    myLogFile << "E_e_plots = " << BoolToString(E_e_plots) << "\n";
+    myLogFile << "E_e_plots = " << basic_tools::BoolToString(E_e_plots) << "\n";
 
     myLogFile << "\n-- ET plots ---------------------------------------------------------------" << "\n";
-    myLogFile << "ETrans_plots_master = " << BoolToString(ETrans_plots_master) << "\n";
-    myLogFile << "ETrans_all_plots = " << BoolToString(ETrans_all_plots) << "\n";
-    myLogFile << "ETrans_QEL_plots = " << BoolToString(ETrans_QEL_plots) << "\n";
-    myLogFile << "ETrans_MEC_plots = " << BoolToString(ETrans_MEC_plots) << "\n";
-    myLogFile << "ETrans_RES_plots = " << BoolToString(ETrans_RES_plots) << "\n";
-    myLogFile << "ETrans_DIS_plots = " << BoolToString(ETrans_DIS_plots) << "\n";
+    myLogFile << "ETrans_plots_master = " << basic_tools::BoolToString(ETrans_plots_master) << "\n";
+    myLogFile << "ETrans_all_plots = " << basic_tools::BoolToString(ETrans_all_plots) << "\n";
+    myLogFile << "ETrans_QEL_plots = " << basic_tools::BoolToString(ETrans_QEL_plots) << "\n";
+    myLogFile << "ETrans_MEC_plots = " << basic_tools::BoolToString(ETrans_MEC_plots) << "\n";
+    myLogFile << "ETrans_RES_plots = " << basic_tools::BoolToString(ETrans_RES_plots) << "\n";
+    myLogFile << "ETrans_DIS_plots = " << basic_tools::BoolToString(ETrans_DIS_plots) << "\n";
 
     myLogFile << "\n-- E_cal plots ------------------------------------------------------------" << "\n";
-    myLogFile << "E_cal_plots = " << BoolToString(Ecal_plots) << "\n";
+    myLogFile << "E_cal_plots = " << basic_tools::BoolToString(Ecal_plots) << "\n";
 
     // Normalization setup
     myLogFile << "\n===========================================================================\n";
     myLogFile << "Normalization setup\n";
     myLogFile << "===========================================================================\n\n";
 
-    myLogFile << "normalize_master = " << BoolToString(normalize_master) << "\n\n";
+    myLogFile << "normalize_master = " << basic_tools::BoolToString(normalize_master) << "\n\n";
 
-    myLogFile << "norm_Nphe_plots = " << BoolToString(norm_Nphe_plots) << "\n";
-    myLogFile << "norm_Chi2_plots = " << BoolToString(norm_Chi2_plots) << "\n";
-    myLogFile << "norm_Vertex_plots = " << BoolToString(norm_Vertex_plots) << "\n";
-    myLogFile << "norm_SF_plots = " << BoolToString(norm_SF_plots) << "\n";
-    myLogFile << "norm_Fiducial_plots = " << BoolToString(norm_Fiducial_plots) << "\n";
-    myLogFile << "norm_Momentum_plots = " << BoolToString(norm_Momentum_plots) << "\n\n";
+    myLogFile << "norm_Nphe_plots = " << basic_tools::BoolToString(norm_Nphe_plots) << "\n";
+    myLogFile << "norm_Chi2_plots = " << basic_tools::BoolToString(norm_Chi2_plots) << "\n";
+    myLogFile << "norm_Vertex_plots = " << basic_tools::BoolToString(norm_Vertex_plots) << "\n";
+    myLogFile << "norm_SF_plots = " << basic_tools::BoolToString(norm_SF_plots) << "\n";
+    myLogFile << "norm_Fiducial_plots = " << basic_tools::BoolToString(norm_Fiducial_plots) << "\n";
+    myLogFile << "norm_Momentum_plots = " << basic_tools::BoolToString(norm_Momentum_plots) << "\n\n";
 
-    myLogFile << "norm_W_plots = " << BoolToString(norm_W_plots) << "\n";
-    myLogFile << "norm_Beta_plots = " << BoolToString(norm_Beta_plots) << "\n";
-    myLogFile << "norm_Angle_plots_master = " << BoolToString(norm_Angle_plots_master) << "\n";
-    myLogFile << "norm_Momentum_transfer_plots = " << BoolToString(norm_Momentum_transfer_plots) << "\n";
-    myLogFile << "norm_E_e_plots = " << BoolToString(norm_E_e_plots) << "\n";
-    myLogFile << "norm_ET_plots = " << BoolToString(norm_ET_plots) << "\n";
-    myLogFile << "norm_Ecal_plots = " << BoolToString(norm_Ecal_plots) << "\n";
-    myLogFile << "norm_TKI_plots = " << BoolToString(norm_TKI_plots) << "\n";
-    myLogFile << "norm_MomRes_plots = " << BoolToString(norm_MomRes_plots) << "\n";
-    myLogFile << "norm_Multi_plots = " << BoolToString(norm_Multi_plots) << "\n\n";
+    myLogFile << "norm_W_plots = " << basic_tools::BoolToString(norm_W_plots) << "\n";
+    myLogFile << "norm_Beta_plots = " << basic_tools::BoolToString(norm_Beta_plots) << "\n";
+    myLogFile << "norm_Angle_plots_master = " << basic_tools::BoolToString(norm_Angle_plots_master) << "\n";
+    myLogFile << "norm_Momentum_transfer_plots = " << basic_tools::BoolToString(norm_Momentum_transfer_plots) << "\n";
+    myLogFile << "norm_E_e_plots = " << basic_tools::BoolToString(norm_E_e_plots) << "\n";
+    myLogFile << "norm_ET_plots = " << basic_tools::BoolToString(norm_ET_plots) << "\n";
+    myLogFile << "norm_Ecal_plots = " << basic_tools::BoolToString(norm_Ecal_plots) << "\n";
+    myLogFile << "norm_TKI_plots = " << basic_tools::BoolToString(norm_TKI_plots) << "\n";
+    myLogFile << "norm_MomRes_plots = " << basic_tools::BoolToString(norm_MomRes_plots) << "\n";
+    myLogFile << "norm_Multi_plots = " << basic_tools::BoolToString(norm_Multi_plots) << "\n\n";
 
     // Delete setup
     myLogFile << "\n===========================================================================\n";
     myLogFile << "Delete setup\n";
     myLogFile << "===========================================================================\n\n";
 
-    myLogFile << "delete_png_files = " << BoolToString(delete_png_files) << "\n";
-    myLogFile << "delete_root_files = " << BoolToString(delete_root_files) << "\n\n";
+    myLogFile << "delete_png_files = " << basic_tools::BoolToString(delete_png_files) << "\n";
+    myLogFile << "delete_root_files = " << basic_tools::BoolToString(delete_root_files) << "\n\n";
 
     // Cut application setup
     myLogFile << "\n===========================================================================\n";
@@ -22205,38 +22207,38 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     myLogFile << "===========================================================================\n\n";
 
     myLogFile << "-- clas12ana cuts ---------------------------------------------------------\n";
-    myLogFile << "apply_cuts = " << BoolToString(apply_cuts) << "\n\n";
+    myLogFile << "apply_cuts = " << basic_tools::BoolToString(apply_cuts) << "\n\n";
 
-    myLogFile << "clas12ana_particles = " << BoolToString(clas12ana_particles) << "\n\n";  // TODO: move form here!
+    myLogFile << "clas12ana_particles = " << basic_tools::BoolToString(clas12ana_particles) << "\n\n";  // TODO: move form here!
 
-    myLogFile << "only_preselection_cuts = " << BoolToString(only_preselection_cuts) << "\n";
-    myLogFile << "only_electron_quality_cuts = " << BoolToString(only_electron_quality_cuts) << "\n\n";
+    myLogFile << "only_preselection_cuts = " << basic_tools::BoolToString(only_preselection_cuts) << "\n";
+    myLogFile << "only_electron_quality_cuts = " << basic_tools::BoolToString(only_electron_quality_cuts) << "\n\n";
 
-    myLogFile << "apply_preselection_cuts = " << BoolToString(apply_preselection_cuts) << "\n";
-    myLogFile << "apply_Vz_e_cuts = " << BoolToString(apply_Vz_e_cuts) << "\n";
-    myLogFile << "apply_Vz_cuts = " << BoolToString(apply_Vz_cuts) << "\n";
-    myLogFile << "apply_dVz_cuts = " << BoolToString(apply_dVz_cuts) << "\n";
-    myLogFile << "apply_DC_e_fiducial_cuts = " << BoolToString(apply_DC_e_fiducial_cuts) << "\n";
-    myLogFile << "apply_DC_fiducial_cuts = " << BoolToString(apply_DC_fiducial_cuts) << "\n\n";
+    myLogFile << "apply_preselection_cuts = " << basic_tools::BoolToString(apply_preselection_cuts) << "\n";
+    myLogFile << "apply_Vz_e_cuts = " << basic_tools::BoolToString(apply_Vz_e_cuts) << "\n";
+    myLogFile << "apply_Vz_cuts = " << basic_tools::BoolToString(apply_Vz_cuts) << "\n";
+    myLogFile << "apply_dVz_cuts = " << basic_tools::BoolToString(apply_dVz_cuts) << "\n";
+    myLogFile << "apply_DC_e_fiducial_cuts = " << basic_tools::BoolToString(apply_DC_e_fiducial_cuts) << "\n";
+    myLogFile << "apply_DC_fiducial_cuts = " << basic_tools::BoolToString(apply_DC_fiducial_cuts) << "\n\n";
 
-    myLogFile << "apply_electron_quality_cuts = " << BoolToString(apply_electron_quality_cuts) << "\n";
-    myLogFile << "apply_Nphe_cut = " << BoolToString(apply_Nphe_cut) << "\n";
-    myLogFile << "apply_ECAL_SF_cuts = " << BoolToString(apply_ECAL_SF_cuts) << "\n";
-    myLogFile << "apply_ECAL_P_cuts = " << BoolToString(apply_ECAL_P_cuts) << "\n";
-    myLogFile << "apply_ECAL_fiducial_cuts = " << BoolToString(apply_ECAL_fiducial_cuts) << "\n\n";
-    myLogFile << "apply_Electron_beta_cut = " << BoolToString(apply_Electron_beta_cut) << "\n\n";
+    myLogFile << "apply_electron_quality_cuts = " << basic_tools::BoolToString(apply_electron_quality_cuts) << "\n";
+    myLogFile << "apply_Nphe_cut = " << basic_tools::BoolToString(apply_Nphe_cut) << "\n";
+    myLogFile << "apply_ECAL_SF_cuts = " << basic_tools::BoolToString(apply_ECAL_SF_cuts) << "\n";
+    myLogFile << "apply_ECAL_P_cuts = " << basic_tools::BoolToString(apply_ECAL_P_cuts) << "\n";
+    myLogFile << "apply_ECAL_fiducial_cuts = " << basic_tools::BoolToString(apply_ECAL_fiducial_cuts) << "\n\n";
+    myLogFile << "apply_Electron_beta_cut = " << basic_tools::BoolToString(apply_Electron_beta_cut) << "\n\n";
 
-    myLogFile << "apply_chi2_cuts_1e_cut = " << BoolToString(apply_chi2_cuts_1e_cut) << "\n";
+    myLogFile << "apply_chi2_cuts_1e_cut = " << basic_tools::BoolToString(apply_chi2_cuts_1e_cut) << "\n";
 
     myLogFile << "-- My analysis cuts -------------------------------------------------------\n";
-    myLogFile << "apply_nucleon_cuts = " << BoolToString(apply_nucleon_cuts) << "\n\n";
+    myLogFile << "apply_nucleon_cuts = " << basic_tools::BoolToString(apply_nucleon_cuts) << "\n\n";
 
-    myLogFile << "apply_nucleon_physical_cuts = " << BoolToString(apply_nucleon_physical_cuts) << "\n";
-    myLogFile << "apply_nBeta_fit_cuts = " << BoolToString(apply_nBeta_fit_cuts) << "\n";
-    myLogFile << "apply_fiducial_cuts = " << BoolToString(apply_fiducial_cuts) << "\n";
-    myLogFile << "apply_kinematical_cuts = " << BoolToString(apply_kinematical_cuts) << "\n";
-    myLogFile << "apply_kinematical_weights = " << BoolToString(apply_kinematical_weights) << "\n";
-    myLogFile << "apply_nucleon_SmearAndCorr = " << BoolToString(apply_nucleon_SmearAndCorr) << "\n\n";
+    myLogFile << "apply_nucleon_physical_cuts = " << basic_tools::BoolToString(apply_nucleon_physical_cuts) << "\n";
+    myLogFile << "apply_nBeta_fit_cuts = " << basic_tools::BoolToString(apply_nBeta_fit_cuts) << "\n";
+    myLogFile << "apply_fiducial_cuts = " << basic_tools::BoolToString(apply_fiducial_cuts) << "\n";
+    myLogFile << "apply_kinematical_cuts = " << basic_tools::BoolToString(apply_kinematical_cuts) << "\n";
+    myLogFile << "apply_kinematical_weights = " << basic_tools::BoolToString(apply_kinematical_weights) << "\n";
+    myLogFile << "apply_nucleon_SmearAndCorr = " << basic_tools::BoolToString(apply_nucleon_SmearAndCorr) << "\n\n";
 
     // cuts
 
@@ -22789,15 +22791,15 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
         std::cout << "\033[33mnum_of_AD_2p_events_from_mixed_sCTOFhp_dCDaFDd:\t" << pid.num_of_AD_2p_events_from_mixed_sCTOFhp_dCDaFDd << "\n\n\033[0m";
 
         std::cout << "\033[33mnum_of_events_2p (from monitoring):\t"
-             << num_of_events_2p_wFakeProtons - pid.num_of_RM_2p_events_sCTOFhp - pid.num_of_RM_2p_events_dCDaFDd + pid.num_of_AD_2p_events_from_3p_sCTOFhp +
-                    pid.num_of_AD_2p_events_from_4p_sCTOFhp + pid.num_of_AD_2p_events_from_3p_dCDaFDd + pid.num_of_AD_2p_events_from_4p_dCDaFDd
-             << "\n\n\033[0m";
+                  << num_of_events_2p_wFakeProtons - pid.num_of_RM_2p_events_sCTOFhp - pid.num_of_RM_2p_events_dCDaFDd + pid.num_of_AD_2p_events_from_3p_sCTOFhp +
+                         pid.num_of_AD_2p_events_from_4p_sCTOFhp + pid.num_of_AD_2p_events_from_3p_dCDaFDd + pid.num_of_AD_2p_events_from_4p_dCDaFDd
+                  << "\n\n\033[0m";
 
         std::cout << "\033[33mnum_of_events_2p (from monitoring; no mixed):\t"
-             << num_of_events_2p_wFakeProtons - pid.num_of_RM_2p_events_sCTOFhp - pid.num_of_RM_2p_events_dCDaFDd + pid.num_of_AD_2p_events_from_3p_sCTOFhp +
-                    pid.num_of_AD_2p_events_from_4p_sCTOFhp + pid.num_of_AD_2p_events_from_3p_dCDaFDd + pid.num_of_AD_2p_events_from_4p_dCDaFDd -
-                    pid.num_of_AD_2p_events_from_mixed_sCTOFhp_dCDaFDd
-             << "\n\n\033[0m";
+                  << num_of_events_2p_wFakeProtons - pid.num_of_RM_2p_events_sCTOFhp - pid.num_of_RM_2p_events_dCDaFDd + pid.num_of_AD_2p_events_from_3p_sCTOFhp +
+                         pid.num_of_AD_2p_events_from_4p_sCTOFhp + pid.num_of_AD_2p_events_from_3p_dCDaFDd + pid.num_of_AD_2p_events_from_4p_dCDaFDd -
+                         pid.num_of_AD_2p_events_from_mixed_sCTOFhp_dCDaFDd
+                  << "\n\n\033[0m";
     }
 
     std::cout << "\033[33m#(events) 2p:\t\t\t\t" << num_of_events_2p << "\n\n\033[0m";
@@ -22838,7 +22840,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     std::cout << "\033[33mSampleName:\t\t" << SampleName << "\n\033[0m";
     std::cout << "\033[33mVaryingSampleName:\t" << VaryingSampleName << "\n\n\033[0m";
 
-    std::cout << "\033[33mapply_cuts:\t\t'" << BoolToString(apply_cuts) << "'\n\033[0m";
+    std::cout << "\033[33mapply_cuts:\t\t'" << basic_tools::BoolToString(apply_cuts) << "'\n\033[0m";
     std::cout << "\033[33mSettings mode:\t\t'" << file_name << "'\n\n\033[0m";
 
     std::cout << "\033[33mBeam Energy:\t\t" << beamE << " [GeV]\n\033[0m";
