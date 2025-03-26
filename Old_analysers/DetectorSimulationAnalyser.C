@@ -11,11 +11,12 @@
 
 */
 
+#include "../framework/namespaces/fitters/fitter_functions/fitter_functions.h"
 #include "../framework/namespaces/general_utilities/utilities/utilities.h"
 #include "../framework/namespaces/plotters/draw_and_save_functions/draw_and_save_functions.h"
 //
 #include "../setup/codeSetup.h"
-// 
+//
 #include "../framework/classes/AMaps/AMaps.cpp"
 #include "../framework/classes/DEfficiency/DEfficiency.cpp"
 #include "../framework/classes/DSCuts/DSCuts.h"
@@ -17420,8 +17421,8 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
     if (!apply_nucleon_cuts && !is2GeVSample) {
         /* If sample is with 2GeV beam energy, no fit is needed. */
-        BetaFit(SampleName, Beta_max_cut_ABF_FD_n_from_ph, n_momentum_cuts_ABF_FD_n_from_ph, hBeta_n_from_ph_01_1n_FD, plots, beamE);
-        BetaFitApprax(SampleName, Beta_max_cut_ABF_FD_n_from_ph_apprax, n_momentum_cuts_ABF_FD_n_from_ph_apprax, hBeta_n_from_ph_01_1n_FD, plots, beamE);
+        fitter_functions::BetaFit(SampleName, Beta_max_cut_ABF_FD_n_from_ph, n_momentum_cuts_ABF_FD_n_from_ph, hBeta_n_from_ph_01_1n_FD, plots, beamE);
+        fitter_functions::BetaFitApprax(SampleName, Beta_max_cut_ABF_FD_n_from_ph_apprax, n_momentum_cuts_ABF_FD_n_from_ph_apprax, hBeta_n_from_ph_01_1n_FD, plots, beamE);
     }
 
     // Beta vs. P plots
