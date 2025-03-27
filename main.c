@@ -8,14 +8,15 @@
 
 // #include "framework/namespaces/general_utilities/namespace_includes.h"
 //
-#include "framework/classes/DataAnalyser/DataAnalyser.cpp"
-#include "framework/namespaces/general_utilities/basic_tools/basic_tools.h"
+// #include "framework/classes/DataAnalyser/DataAnalyser.cpp"
+// #include "framework/namespaces/general_utilities/basic_tools/basic_tools.h"
+#include "framework/namespaces/setup/path_definitions/path_definitions.h"
 
 using namespace std;
 
 int main() {
-    ConfigSampleChain();
-    ConfigCanvasPDF();
+    // ConfigSampleChain();
+    // ConfigCanvasPDF();
 
     auto start = std::chrono::system_clock::now();  // Start counting running time
 

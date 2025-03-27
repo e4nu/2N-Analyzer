@@ -111,7 +111,8 @@
         "hplot1d.cpp": "c",
         "poly_solver.cpp": "c",
         "fitter_functions.h": "c",
-        "ttree.h": "c"
+        "ttree.h": "c",
+        "path_definitions.h": "c"
     },
     "[jsonc]": {
         "editor.defaultFormatter": "vscode.json-language-features"
