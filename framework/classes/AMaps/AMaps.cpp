@@ -2245,7 +2245,10 @@ void AMaps::ReadAMap(const char *filename, vector<vector<int>> &Loaded_particle_
                 std::string LineEntry;
                 vector<int> col;
 
-                if (PrintOut) { cout << "\n\nLineEntry = " << LineEntry << "\n\n"; }
+                if (PrintOut) {
+                    cout << "\n\nfilename = " << filename << "\n";
+                    cout << "LineEntry = " << LineEntry << "\n\n";
+                }
 
                 while (getline(ss2, LineEntry, ':')) { col.push_back(stoi(LineEntry)); }
 
