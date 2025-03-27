@@ -2,8 +2,8 @@
 // Created by Alon Sportes on 27/03/2025.
 //
 
-#ifndef ISOTROPIC_SAMPLES_H
-#define ISOTROPIC_SAMPLES_H
+#ifndef UNIFORM_SAMPLES_H
+#define UNIFORM_SAMPLES_H
 
 #include <vector>
 
@@ -225,4 +225,4 @@ void Config_Uniform_ep_6GeV_samples(std::vector<std::string> &AnalyseFilePath_v,
 
 }  // namespace uniform_samples
 
-#endif  // ISOTROPIC_SAMPLES_H
+#endif  // UNIFORM_SAMPLES_H
