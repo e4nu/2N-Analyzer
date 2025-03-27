@@ -1,9 +1,13 @@
-#ifndef UNIFORM_SAMPLES_H
-#define UNIFORM_SAMPLES_H
+//
+// Created by Alon Sportes on 27/03/2025.
+//
+
+#ifndef ISOTROPIC_SAMPLES_H
+#define ISOTROPIC_SAMPLES_H
 
 #include <vector>
 
-namespace analysis_samples {
+namespace uniform_samples {
 
 #pragma region Uniform electron tester samples
 /* Uniform electron tester samples */
@@ -219,6 +223,6 @@ void Config_Uniform_ep_6GeV_samples(std::vector<std::string> &AnalyseFilePath_v,
 
 #pragma endregion
 
-}  // namespace analysis_samples
+}  // namespace uniform_samples
 
-#endif  // UNIFORM_SAMPLES_H
+#endif  // ISOTROPIC_SAMPLES_H
