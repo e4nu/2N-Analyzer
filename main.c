@@ -2,7 +2,7 @@
 
 #include "framework/includes/work_dir_include.h"
 
-#include "framework/namespaces/setup/code_setup/code_setup.h"
+// #include "framework/namespaces/setup/code_setup/code_setup.h"
 
 // #include "framework/classes/DataAnalyser/DataAnalyser.cpp"
 #include "framework/namespaces/general_utilities/basic_tools/basic_tools.h"
@@ -11,15 +11,16 @@
 using namespace code_setup;
 
 int main() {
+    RECO_ANALYSIS_RUN_PrintOut();
     // ConfigSampleChain();
     // ConfigCanvasPDF();
 
     auto start = std::chrono::system_clock::now();  // Start counting running time
 
-    cout << "\n\nWorkingDirectory = " << WorkingDirectory << "\n\n";
-    cout << "\n\nSourceDirectory = " << SourceDirectory << "\n\n";
-    cout << "\n\nDataDirectory = " << DataDirectory << "\n\n";
-    cout << "\n\nAcceptanceMapsDirectory = " << AcceptanceMapsDirectory << "\n\n";
+    cout << "\n\nPathDefinitions.WorkingDirectory = " << PathDefinitions.WorkingDirectory << "\n\n";
+    cout << "\n\nPathDefinitions.SourceDirectory = " << PathDefinitions.SourceDirectory << "\n\n";
+    cout << "\n\nPathDefinitions.DataDirectory = " << PathDefinitions.DataDirectory << "\n\n";
+    cout << "\n\nPathDefinitions.AcceptanceMapsDirectory = " << PathDefinitions.AcceptanceMapsDirectory << "\n\n";
 
     // int Num_of_analysed_samples = 0;
     //

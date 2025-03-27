@@ -32,7 +32,7 @@
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 212,
+				"line" : 214,
 				"parent" : 0
 			},
 			{
@@ -863,7 +863,9 @@
 				119,
 				120,
 				121,
-				122
+				122,
+				123,
+				124
 			]
 		}
 	],
@@ -1532,7 +1534,17 @@
 		},
 		{
 			"backtrace" : 1,
-			"path" : "framework/namespaces/setup/setup/setup.h",
+			"path" : "framework/namespaces/setup/code_setup/code_setup.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "framework/includes/work_dir_include.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "framework/structures/CodeDirectories/CodeDirectories.h",
 			"sourceGroupIndex" : 2
 		}
 	],

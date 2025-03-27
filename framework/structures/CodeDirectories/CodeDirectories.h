@@ -9,7 +9,7 @@
 
 #include "../../namespaces/general_utilities/basic_tools/basic_tools.h"
 
-struct PathDefinitions {
+struct CodeDirectories {
     const std::string WorkingDirectory;
     const std::string plots_path;
     const std::string SettingsDirectory;
@@ -22,7 +22,7 @@ struct PathDefinitions {
     const std::string NucleonCutsDirectory;
     const std::string PIDCutsDirectory;
 
-    PathDefinitions()
+    CodeDirectories()
         : WorkingDirectory(basic_tools::GetCurrentDirectory() + "/"),
           plots_path("/lustre24/expphy/volatile/clas12/asportes/Analysis_output"),
           SettingsDirectory(WorkingDirectory + "setup/"),
@@ -34,6 +34,6 @@ struct PathDefinitions {
           MomentumResolutionDirectory(DataDirectory + "NeutronResolution/"),
           NucleonCutsDirectory(DataDirectory + "NucleonCuts/"),
           PIDCutsDirectory(DataDirectory + "PIDCuts/") {}
-};
+};  // struct CodeDirectories
 
-#endif //CODEDIRECTORIES_H
+#endif  // CODEDIRECTORIES_H

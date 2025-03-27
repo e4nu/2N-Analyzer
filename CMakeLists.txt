@@ -203,9 +203,9 @@ add_executable(project ${CLAS12ROOT_SOURCES} ${CLAS12BANKS_SOURCES} ${HIPO4_SOUR
         framework/namespaces/setup/path_definitions/path_definitions.h
         framework/namespaces/settings/debugging_settings/debugging_settings.h
         framework/namespaces/setup/debugging/debugging.h
-        framework/namespaces/setup/setup/setup.h
         framework/namespaces/setup/code_setup/code_setup.h
         framework/includes/work_dir_include.h
+        framework/structures/CodeDirectories/CodeDirectories.h
 )
 
 ## Link against ROOT and CLAS12ROOT libraries
