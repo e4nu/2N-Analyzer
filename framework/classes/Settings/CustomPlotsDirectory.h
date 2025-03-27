@@ -6,7 +6,7 @@
 // #define CUSTOMPLOTSDIRECTORY_H
 #ifdef CUSTOMPLOTSDIRECTORY_H
 
-using namespace std;
+// using namespace std;
 
 class CustomPlotsDirectory {
    private:

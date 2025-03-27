@@ -23,7 +23,7 @@ const std::string plots_log_save_Directory = PathDefinitions.plots_path + "/" + 
 // const std::string plots_path = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output";
 
 // /* setup directory */
-// const std::string SettingsDirectory = WorkingDirectory + "setup/";
+// const std::string SetupDirectory = WorkingDirectory + "setup/";
 
 // /* framework directories */
 // const std::string FrameworkDirectory = WorkingDirectory + "framework/";

@@ -9,10 +9,9 @@
 #include "../../../Old_analysers/DetectorSimulationAnalyser.C"
 #include "../../../Old_analysers/TruthLevelAnalyser.c"
 
-class DataAnalyser
-{
-private:
-public:
+class DataAnalyser {
+   private:
+   public:
     // default constructor --------------------------------------------------------------------------------------------------------------------------------------------------
 
     DataAnalyser(const std::string &FileType, const std::string &AnalyseFilePath, const std::string &AnalyseFileSample, const std::string &AnalyseFile);
@@ -26,4 +25,4 @@ public:
     void RunEventAnalyser(const std::string &AnalyserMode, const std::string &AnalyseFilePath, const std::string &AnalyseFileSample, const std::string &AnalyseFile);
 };
 
-#endif // DATAANALYSER_H
+#endif  // DATAANALYSER_H

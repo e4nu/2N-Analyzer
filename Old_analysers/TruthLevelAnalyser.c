@@ -1,6 +1,7 @@
 #define gst_cxx
 
 #include <TCanvas.h>
+#include <TFile.h>
 #include <TH2.h>
 #include <TMath.h>
 #include <TStyle.h>
@@ -13,16 +14,15 @@
 #include <string>
 
 #include "../framework/classes/gst/gst.h"
-#include "TFile.h"
 
-using namespace std;
+// using namespace std;
 
 void gst::Loop() {
     //    auto start = std::chrono::system_clock::now(); // Start counting running time
 
-    cout << "\n\n===========================================================================\n";
-    cout << "\t\t\tTruth level analyser\n";
-    cout << "===========================================================================\n\n";
+    std::cout << "\n\n===========================================================================\n";
+    std::cout << "\t\t\tTruth level analyser\n";
+    std::cout << "===========================================================================\n\n";
 
     //  Code setup
     //  =====================================================================================================================================================================
@@ -32,7 +32,7 @@ void gst::Loop() {
     //  Creating plots directories --------------------------------------------------------------------------------------------------------------------------------------------------------
 
     //<editor-fold desc="Creating plots directories">
-    cout << "Creating plots directories...\n\n";
+    std::cout << "Creating plots directories...\n\n";
 
     system(("rm -r " + path_definitions::PathDefinitions.WorkingDirectory + "plots").c_str());  // clear old stuff in Parent_Folder
     system(("mkdir -p " + path_definitions::PathDefinitions.WorkingDirectory + "plots").c_str());
@@ -96,31 +96,31 @@ void gst::Loop() {
     std::string plotsInput = fileInput.substr(0, fileInput.find_last_of(".root") - 4);
 
     if (fileInput.find("nofsi") <= fileInput[fileInput.size() - 1]) {
-        ////        cout << "\n";
-        //        cout << "\n";
-        //        cout << "nofsi is in fileInput! Setting custom_FSI_status == false." << "\n";
-        //        cout << "\n";
+        ////        std::cout << "\n";
+        //        std::cout << "\n";
+        //        std::cout << "nofsi is in fileInput! Setting custom_FSI_status == false." << "\n";
+        //        std::cout << "\n";
         //
         custom_FSI_status = false;  // and custom_FSI_status is set to be false
     }
 
     //    if (fileInput.find("wfsi") <= fileInput[fileInput.size() - 1]) {
-    ////        cout << "\n";
-    ////        cout << "\n";
-    ////        cout << "wfsi is in fileInput! Setting custom_FSI_status == true." << "\n";  // and no change to custom_FSI_status
-    ////        cout << "\n";
+    ////        std::cout << "\n";
+    ////        std::cout << "\n";
+    ////        std::cout << "wfsi is in fileInput! Setting custom_FSI_status == true." << "\n";  // and no change to custom_FSI_status
+    ////        std::cout << "\n";
     //    } else if (fileInput.find("nofsi") <= fileInput[fileInput.size() - 1]) {
-    ////        cout << "\n";
-    //        cout << "\n";
-    //        cout << "nofsi is in fileInput! Setting custom_FSI_status == false." << "\n";
-    //        cout << "\n";
+    ////        std::cout << "\n";
+    //        std::cout << "\n";
+    //        std::cout << "nofsi is in fileInput! Setting custom_FSI_status == false." << "\n";
+    //        std::cout << "\n";
     //
     //        custom_FSI_status = false; // and custom_FSI_status is set to be false
     //    } else {
-    ////        cout << "\n";
-    //        cout << "\n";
-    //        cout << "Could not figure FSI status. FSI is kept ON." << "\n";
-    //        cout << "\n";
+    ////        std::cout << "\n";
+    //        std::cout << "\n";
+    //        std::cout << "Could not figure FSI status. FSI is kept ON." << "\n";
+    //        std::cout << "\n";
     //    }
     //</editor-fold>
 
@@ -128,30 +128,30 @@ void gst::Loop() {
     std::string tune;
 
     if (fileInput.find("G18") <= fileInput[fileInput.size() - 1]) {
-        cout << "\n";
-        cout << "G18 is in fileInput! Setting ni_selection == 3\n";  // and no change to custom_FSI_status
-        cout << "\n";
+        std::cout << "\n";
+        std::cout << "G18 is in fileInput! Setting ni_selection == 3\n";  // and no change to custom_FSI_status
+        std::cout << "\n";
 
         tune = "G18";
         ni_selection = 3;
     } else if (fileInput.find("GEM21") <= fileInput[fileInput.size() - 1]) {
-        cout << "\n";
-        cout << "GEM21 is in fileInput! Setting ni_selection == 2\n";
-        cout << "\n";
+        std::cout << "\n";
+        std::cout << "GEM21 is in fileInput! Setting ni_selection == 2\n";
+        std::cout << "\n";
 
         tune = "GEM21 (SuSAv2)";
         ni_selection = 2;
     } else if (fileInput.find("SuSAv2") <= fileInput[fileInput.size() - 1]) {
-        cout << "\n";
-        cout << "SuSAv2 is in fileInput! Setting ni_selection == 2\n";
-        cout << "\n";
+        std::cout << "\n";
+        std::cout << "SuSAv2 is in fileInput! Setting ni_selection == 2\n";
+        std::cout << "\n";
 
         tune = "SuSAv2";
         ni_selection = 2;
     } else {
-        cout << "\n";
-        cout << "Could not figure tune, keeping ni = 2\n";
-        cout << "\n";
+        std::cout << "\n";
+        std::cout << "Could not figure tune, keeping ni = 2\n";
+        std::cout << "\n";
 
         ni_selection = 2;
         tune = "unknown";
@@ -171,23 +171,23 @@ void gst::Loop() {
     //</editor-fold>
 
     //<editor-fold desc="FSI indicator">
-    cout << "\n";
-    cout << "\n";
-    cout << "-- Execution variables ----------------------------------------------------\n";
-    cout << "File input:\t" << AnalyseFile << "\n";
-    cout << "Settings mode:\t'" << file_name << "'\n";
-    cout << "FSI status:\t" << BoolToString(FSI_status) << "\n";
-    cout << "ni:\t\t" << ni_selection << "\n";
-    cout << "Tune:\t\t" << tune << "\n";
-    cout << "\n";
-    cout << "\n";
+    std::cout << "\n";
+    std::cout << "\n";
+    std::cout << "-- Execution variables ----------------------------------------------------\n";
+    std::cout << "File input:\t" << AnalyseFile << "\n";
+    std::cout << "Settings mode:\t'" << file_name << "'\n";
+    std::cout << "FSI status:\t" << BoolToString(FSI_status) << "\n";
+    std::cout << "ni:\t\t" << ni_selection << "\n";
+    std::cout << "Tune:\t\t" << tune << "\n";
+    std::cout << "\n";
+    std::cout << "\n";
 
-    cout << "-- File input -------------------------------------------------------------\n";
-    cout << "loadedInput:\t" << loadedInput << "\n";
-    cout << "filePath:\t" << filePath << "\n";
-    cout << "fileInput:\t" << fileInput << "\n";
-    cout << "\n";
-    cout << "\n";
+    std::cout << "-- File input -------------------------------------------------------------\n";
+    std::cout << "loadedInput:\t" << loadedInput << "\n";
+    std::cout << "filePath:\t" << filePath << "\n";
+    std::cout << "fileInput:\t" << fileInput << "\n";
+    std::cout << "\n";
+    std::cout << "\n";
     //</editor-fold>
 
     //</editor-fold>
@@ -326,15 +326,15 @@ void gst::Loop() {
         }
         //</editor-fold>
 
-        cout << "Event parameters (*)\n";
-        cout << "---------------------------------------------------------------------------\n";
-        cout << "Probe:\t\t" << Probe << " (PDG: " << Probe_pdg << ")\n";
-        cout << "Target:\t\t" << Target_nucleus << " (PDG: " << Target_pdg << ")\n";
-        cout << "Beam energy:\t" << BeamEnergy << " GeV\n";
-        cout << "\n";
-        cout << "(*) assuming all entries have the same parameters\n";
-        cout << "\n";
-        cout << "\n";
+        std::cout << "Event parameters (*)\n";
+        std::cout << "---------------------------------------------------------------------------\n";
+        std::cout << "Probe:\t\t" << Probe << " (PDG: " << Probe_pdg << ")\n";
+        std::cout << "Target:\t\t" << Target_nucleus << " (PDG: " << Target_pdg << ")\n";
+        std::cout << "Beam energy:\t" << BeamEnergy << " GeV\n";
+        std::cout << "\n";
+        std::cout << "(*) assuming all entries have the same parameters\n";
+        std::cout << "\n";
+        std::cout << "\n";
     }
     //</editor-fold>
 
@@ -421,9 +421,9 @@ void gst::Loop() {
         normalized_P_L_plots = false;   // 2p & 1n1p
         normalized_P_R_plots = false;   // 2p & 1n1p
 
-        cout << "\n";
-        cout << "All normalizations are disabled.\n";  // and no change to custom_FSI_status
-        cout << "\n";
+        std::cout << "\n";
+        std::cout << "All normalizations are disabled.\n";  // and no change to custom_FSI_status
+        std::cout << "\n";
     }
 
     if (normalized_E_lp_plots == false) {
@@ -442,28 +442,28 @@ void gst::Loop() {
 
     //<editor-fold desc="Deleting files by cases">
     if (delete_png_files == true && delete_root_files == false) {
-        cout << "\n";
-        cout << "Clearing old plots...\n";
-        cout << "\n";
+        std::cout << "\n";
+        std::cout << "Clearing old plots...\n";
+        std::cout << "\n";
 
         system(("find " + path_definitions::PathDefinitions.WorkingDirectory + "plots -type f -iname '*.png' -delete").c_str());  // Delete existing .png files
     } else if (delete_png_files == false && delete_root_files == true) {
-        cout << "\n";
-        cout << "Clearing old root files...\n";
-        cout << "\n";
+        std::cout << "\n";
+        std::cout << "Clearing old root files...\n";
+        std::cout << "\n";
 
         system(("find " + path_definitions::PathDefinitions.WorkingDirectory + "plots -type f -iname '*.root' -delete").c_str());  // Delete existing .root files
     } else if (delete_png_files == true && delete_root_files == true) {
-        cout << "\n";
-        cout << "Clearing old plots & root files...\n";
-        cout << "\n";
+        std::cout << "\n";
+        std::cout << "Clearing old plots & root files...\n";
+        std::cout << "\n";
 
         system(("find " + path_definitions::PathDefinitions.WorkingDirectory + "plots -type f -iname '*.png' -delete").c_str());   // Delete existing .png files
         system(("find " + path_definitions::PathDefinitions.WorkingDirectory + "plots -type f -iname '*.root' -delete").c_str());  // Delete existing .root files
     } else {
-        cout << "\n";
-        cout << "No files were cleared.\n";
-        cout << "\n";
+        std::cout << "\n";
+        std::cout << "No files were cleared.\n";
+        std::cout << "\n";
     }
     //</editor-fold>
 
@@ -5032,9 +5032,9 @@ void gst::Loop() {
 
     //<editor-fold desc="Histogram definitions">
 
-    cout << "\n";
-    cout << "Defining histograms...\n";
-    cout << "\n";
+    std::cout << "\n";
+    std::cout << "Defining histograms...\n";
+    std::cout << "\n";
 
     // Theta histograms -----------------------------------------------------------------------------------
 
@@ -5614,15 +5614,15 @@ void gst::Loop() {
     if (lowest_nentries) {
         nentries = custom_nentries;  // nentries according to "12C_2222GeV_G18_10a_02_11a" (C12_1161GeV_EM+MEC_G18_02a_00_000_Q2_0_1 is lower)
 
-        cout << "\n";
-        cout << "Filling histograms (lowest_nentries; nentries = " << nentries << ")...\n";
-        cout << "\n";
+        std::cout << "\n";
+        std::cout << "Filling histograms (lowest_nentries; nentries = " << nentries << ")...\n";
+        std::cout << "\n";
     } else {
         nentries = fChain->GetEntriesFast();
 
-        cout << "\n";
-        cout << "Filling histograms (nentries = " << nentries << "; no limit on nentries)...\n";
-        cout << "\n";
+        std::cout << "\n";
+        std::cout << "Filling histograms (nentries = " << nentries << "; no limit on nentries)...\n";
+        std::cout << "\n";
     }
 
     Long64_t nbytes = 0, nb = 0;
@@ -5664,9 +5664,9 @@ void gst::Loop() {
         //                 && (pdgf[i] != -12) && (pdgf[i] != 13) && (pdgf[i] != -13) && (pdgf[i] != -2212)
         //                 && (abs(pdgf[i]) <= 10000)
         //                    ) {
-        //                cout << "\n";
-        //                cout << pdgf[i] << "\n";
-        //                cout << "\n";
+        //                std::cout << "\n";
+        //                std::cout << pdgf[i] << "\n";
+        //                std::cout << "\n";
         //            }
         //        }
 
@@ -5727,18 +5727,18 @@ void gst::Loop() {
                             } else if (NeutronCounter_2n == 2) {
                                 Neutron_2_ind_2n = i;
                             } else if (NeutronCounter_2n > 2) {
-                                cout << "\n";
-                                cout << "Additional Protons detected (2n). PDG = " << pdgf[i] << "\n";
-                                cout << "\n";
-                                cout << "\n";
+                                std::cout << "\n";
+                                std::cout << "Additional Protons detected (2n). PDG = " << pdgf[i] << "\n";
+                                std::cout << "\n";
+                                std::cout << "\n";
                             }
                         } else if (pdgf[i] != 2112) {
                             ++OtherParticleCounter_2n;
                             if (OtherParticleCounter_2n > 0) {
-                                cout << "\n";
-                                cout << "Additional particles detected (2n). PDG = " << pdgf[i] << "\n";
-                                cout << "\n";
-                                cout << "\n";
+                                std::cout << "\n";
+                                std::cout << "Additional particles detected (2n). PDG = " << pdgf[i] << "\n";
+                                std::cout << "\n";
+                                std::cout << "\n";
                             }
                         }
                     }
@@ -5875,8 +5875,10 @@ void gst::Loop() {
                         //
                         //                        E_cal_VS_theta_lp_all_int_2p->Fill(Theta_lp_2p, E_cal_2p);
                         //                        E_cal_VS_Q2_all_int_2p->Fill(Q2, E_cal_2p);
-                        //                        E_cal_VS_dtheta_all_int_2p->Fill(fabs(acos(pzf[Proton_1_ind_2p] / analysis_math::RadCalc(pxf[Proton_1_ind_2p], pyf[Proton_1_ind_2p], pzf[Proton_1_ind_2p])) -
-                        //                                                              acos(pzf[Proton_2_ind_2p] / analysis_math::RadCalc(pxf[Proton_2_ind_2p], pyf[Proton_2_ind_2p], pzf[Proton_2_ind_2p])))
+                        //                        E_cal_VS_dtheta_all_int_2p->Fill(fabs(acos(pzf[Proton_1_ind_2p] / analysis_math::RadCalc(pxf[Proton_1_ind_2p], pyf[Proton_1_ind_2p],
+                        //                        pzf[Proton_1_ind_2p])) -
+                        //                                                              acos(pzf[Proton_2_ind_2p] / analysis_math::RadCalc(pxf[Proton_2_ind_2p], pyf[Proton_2_ind_2p],
+                        //                                                              pzf[Proton_2_ind_2p])))
                         //                                                              *
                         //                                                         180.0 / 3.14159265359, E_cal_2p);
                         //
@@ -6003,19 +6005,19 @@ void gst::Loop() {
                             } else if (ProtonCounter_2p == 2) {
                                 Proton_2_ind_2p = i;
                             } else if (ProtonCounter_2p > 2) {
-                                cout << "\n";
-                                cout << "Additional Protons detected (2p). PDG = " << pdgf[i] << "\n";
-                                cout << "\n";
-                                cout << "\n";
+                                std::cout << "\n";
+                                std::cout << "Additional Protons detected (2p). PDG = " << pdgf[i] << "\n";
+                                std::cout << "\n";
+                                std::cout << "\n";
                             }
                         }
                         //                        else if (pdgf[i] != 2212) {
                         //                            ++OtherParticleCounter_2p;
                         //                            if (OtherParticleCounter_2p > 0) {
-                        //                                cout << "\n";
-                        //                                cout << "Additional particles detected (2p). PDG = " << pdgf[i] << "\n";
-                        //                                cout << "\n";
-                        //                                cout << "\n";
+                        //                                std::cout << "\n";
+                        //                                std::cout << "Additional particles detected (2p). PDG = " << pdgf[i] << "\n";
+                        //                                std::cout << "\n";
+                        //                                std::cout << "\n";
                         //                            }
                         //                        }
                     }
@@ -6270,10 +6272,10 @@ void gst::Loop() {
                         } else if (pdgi[i] != 2212) {
                             ++OtherParticleCounter_2p;
                             if (OtherParticleCounter_2p > 1) {  // Taking into account that the rest of the nucleus is in pdgi
-                                cout << "\n";
-                                cout << "Additional particles detected (2p). PDG = " << pdgi[i] << "\n";
-                                cout << "\n";
-                                cout << "\n";
+                                std::cout << "\n";
+                                std::cout << "Additional particles detected (2p). PDG = " << pdgi[i] << "\n";
+                                std::cout << "\n";
+                                std::cout << "\n";
                             }
                         }
                     }
@@ -6523,10 +6525,10 @@ void gst::Loop() {
                         } else if ((pdgf[i] != 2212) && (pdgf[i] != 2112)) {
                             ++OtherParticleCounter_1n1p;
                             if (OtherParticleCounter_1n1p > 0) {
-                                cout << "\n";
-                                cout << "Additional particles detected (1n1p). PDG = " << pdgf[i] << "\n";
-                                cout << "\n";
-                                cout << "\n";
+                                std::cout << "\n";
+                                std::cout << "Additional particles detected (1n1p). PDG = " << pdgf[i] << "\n";
+                                std::cout << "\n";
+                                std::cout << "\n";
                             }
                         }
                     }
@@ -6701,10 +6703,10 @@ void gst::Loop() {
                         } else if ((pdgi[i] != 2212) && (pdgi[i] != 2112)) {
                             ++OtherParticleCounter_1n1p;
                             if (OtherParticleCounter_1n1p > 1) {  // Taking into account that the rest of the nucleus is in pdgi
-                                cout << "\n";
-                                cout << "Additional particles detected (1n1p). PDG = " << pdgf[i] << "\n";
-                                cout << "\n";
-                                cout << "\n";
+                                std::cout << "\n";
+                                std::cout << "Additional particles detected (1n1p). PDG = " << pdgf[i] << "\n";
+                                std::cout << "\n";
+                                std::cout << "\n";
                             }
                         }
                     }
@@ -7148,10 +7150,10 @@ void gst::Loop() {
     //  ===================================================================================================
 
     if (Theta_plots) {
-        cout << "\n";
-        cout << "\n";
-        cout << "Plotting Theta histograms...\n";
-        cout << "\n";
+        std::cout << "\n";
+        std::cout << "\n";
+        std::cout << "Plotting Theta histograms...\n";
+        std::cout << "\n";
 
         //  Theta of outgoing lepton histograms --------------------------------------------------------------
 
@@ -7259,10 +7261,10 @@ void gst::Loop() {
     // ====================================================================================================
 
     if (Phi_plots) {
-        cout << "\n";
-        cout << "\n";
-        cout << "Plotting Phi histograms...\n";
-        cout << "\n";
+        std::cout << "\n";
+        std::cout << "\n";
+        std::cout << "Plotting Phi histograms...\n";
+        std::cout << "\n";
 
         //  Phi of outgoing lepton histogram ---------------------------------------------------------------------------
 
@@ -7343,10 +7345,10 @@ void gst::Loop() {
     // ====================================================================================================
 
     if (Energy_histogram_plots) {
-        cout << "\n";
-        cout << "\n";
-        cout << "Plotting energy histograms...\n";
-        cout << "\n";
+        std::cout << "\n";
+        std::cout << "\n";
+        std::cout << "Plotting energy histograms...\n";
+        std::cout << "\n";
 
         //  El histograms --------------------------------------------------------------------------------------
 
@@ -7666,10 +7668,10 @@ void gst::Loop() {
     //</editor-fold>
 
     if (ET_all_plots) {
-        cout << "\n";
-        cout << "\n";
-        cout << "Plotting energy transfer histograms (all interactions)...\n";
-        cout << "\n";
+        std::cout << "\n";
+        std::cout << "\n";
+        std::cout << "Plotting energy transfer histograms (all interactions)...\n";
+        std::cout << "\n";
 
         //  Energy transfer (Ev-El) for every theta_{l} --------------------------------------------------------
 
@@ -7890,10 +7892,10 @@ void gst::Loop() {
     // ====================================================================================================
 
     if (ET_QEL_plots) {
-        cout << "\n";
-        cout << "\n";
-        cout << "Plotting energy transfer histograms (QEL only)...\n";
-        cout << "\n";
+        std::cout << "\n";
+        std::cout << "\n";
+        std::cout << "Plotting energy transfer histograms (QEL only)...\n";
+        std::cout << "\n";
 
         //  Energy transfer Ev-El in the angle range 14[Deg] <= theta_{l} <= 16[Deg] (QEL only) ----------------
 
@@ -8068,10 +8070,10 @@ void gst::Loop() {
     // ====================================================================================================
 
     if (ET_MEC_plots) {
-        cout << "\n";
-        cout << "\n";
-        cout << "Plotting energy transfer histograms (MEC only)...\n";
-        cout << "\n";
+        std::cout << "\n";
+        std::cout << "\n";
+        std::cout << "Plotting energy transfer histograms (MEC only)...\n";
+        std::cout << "\n";
 
         //  Energy transfer Ev-El in the angle range 14[Deg] <= theta_{l} <= 16[Deg] (MEC only) ------------------
 
@@ -8248,10 +8250,10 @@ void gst::Loop() {
     // ====================================================================================================
 
     if (ET_RES_plots) {
-        cout << "\n";
-        cout << "\n";
-        cout << "Plotting energy transfer histograms (RES only)...\n";
-        cout << "\n";
+        std::cout << "\n";
+        std::cout << "\n";
+        std::cout << "Plotting energy transfer histograms (RES only)...\n";
+        std::cout << "\n";
 
         //  Energy transfer Ev-El in the angle range 14[Deg] <= theta_{l} <= 16[Deg] (RES only) ----------------
 
@@ -8428,10 +8430,10 @@ void gst::Loop() {
     // ====================================================================================================
 
     if (ET_DIS_plots) {
-        cout << "\n";
-        cout << "\n";
-        cout << "Plotting energy transfer histograms (DIS only)...\n";
-        cout << "\n";
+        std::cout << "\n";
+        std::cout << "\n";
+        std::cout << "Plotting energy transfer histograms (DIS only)...\n";
+        std::cout << "\n";
 
         //  Energy transfer Ev-El in the angle range 14[Deg] <= theta_{l} <= 16[Deg] (DIS only) ----------------
 
@@ -8608,10 +8610,10 @@ void gst::Loop() {
     // ====================================================================================================
 
     if (ET_all_plots && ET_QEL_plots && ET_MEC_plots && ET_RES_plots && ET_DIS_plots) {
-        cout << "\n";
-        cout << "\n";
-        cout << "Plotting energy transfer stacks...\n";
-        cout << "\n";
+        std::cout << "\n";
+        std::cout << "\n";
+        std::cout << "Plotting energy transfer stacks...\n";
+        std::cout << "\n";
 
         //  Energy transfer around 15 deg stack (2p only) ------------------------------------------------------
 
@@ -8705,10 +8707,10 @@ void gst::Loop() {
     // ====================================================================================================
 
     if (E_cal_plots) {
-        cout << "\n";
-        cout << "\n";
-        cout << "Plotting E_cal restoration histograms...\n";
-        cout << "\n";
+        std::cout << "\n";
+        std::cout << "\n";
+        std::cout << "Plotting E_cal restoration histograms...\n";
+        std::cout << "\n";
 
         //  E_cal_QEL restoration ------------------------------------------------------------------------------
 
@@ -8916,10 +8918,10 @@ void gst::Loop() {
     // Other E_cal plots ----------------------------------------------------------------------------------
 
     if (other_E_cal_plots) {
-        cout << "\n";
-        cout << "\n";
-        cout << "Plotting other E_cal restoration histograms...\n";
-        cout << "\n";
+        std::cout << "\n";
+        std::cout << "\n";
+        std::cout << "Plotting other E_cal restoration histograms...\n";
+        std::cout << "\n";
 
         //<editor-fold desc="Other E_cal plots (all interactions, 2p)">
         E_cal_VS_theta_lp_all_int_2p->Draw("colz");
@@ -9299,10 +9301,10 @@ void gst::Loop() {
     // ====================================================================================================
 
     if (momentum_plots) {
-        cout << "\n";
-        cout << "\n";
-        cout << "Plotting momentum histograms for 2p and 1n1p...\n";
-        cout << "\n";
+        std::cout << "\n";
+        std::cout << "\n";
+        std::cout << "Plotting momentum histograms for 2p and 1n1p...\n";
+        std::cout << "\n";
 
         //<editor-fold desc="Momentum histograms (2p)">
         histPlotter1D(c1, P_L_hist_2p, normalized_P_L_plots, false, 1., "Momentum Histogram of Leading Proton P_{L} = P_{p1}", "all interactions", 0.06, 0.0425, 0.0425, plots,
@@ -9376,10 +9378,10 @@ void gst::Loop() {
     // ====================================================================================================
 
     if (MicroBooNE_plots) {
-        cout << "\n";
-        cout << "\n";
-        cout << "Plotting article histograms...\n";
-        cout << "\n";
+        std::cout << "\n";
+        std::cout << "\n";
+        std::cout << "Plotting article histograms...\n";
+        std::cout << "\n";
 
         // Momentum plots -------------------------------------------------------------------------------------
 
@@ -9637,10 +9639,10 @@ void gst::Loop() {
     // ====================================================================================================
 
     if (inclusive_plots) {
-        cout << "\n";
-        cout << "\n";
-        cout << "Plotting inclusive histograms...\n";
-        cout << "\n";
+        std::cout << "\n";
+        std::cout << "\n";
+        std::cout << "Plotting inclusive histograms...\n";
+        std::cout << "\n";
 
         //      Q2 histogram (inclusive) -----------------------------------------------------
 
@@ -9942,10 +9944,10 @@ void gst::Loop() {
     // =======================================================================================================================================================================
 
     //<editor-fold desc="Saving histogram list and finishing execution">
-    cout << "\n";
-    cout << "\n";
-    cout << "Saving histogram list...\n";
-    cout << "\n";
+    std::cout << "\n";
+    std::cout << "\n";
+    std::cout << "Saving histogram list...\n";
+    std::cout << "\n";
 
     TFile *fout = new TFile(TListName, "recreate");
     fout->cd();
@@ -9953,23 +9955,23 @@ void gst::Loop() {
     fout->Write();  // TODO: figure out if fout is needed.
     fout->Close();
 
-    cout << "\n";
-    cout << "\n";
-    cout << "===========================================================================\n";
-    cout << "Execution summary\n";
-    cout << "===========================================================================\n";
-    cout << "\n";
+    std::cout << "\n";
+    std::cout << "\n";
+    std::cout << "===========================================================================\n";
+    std::cout << "Execution summary\n";
+    std::cout << "===========================================================================\n";
+    std::cout << "\n";
 
-    cout << "File input:\t" << loadedInput << "\n";
+    std::cout << "File input:\t" << loadedInput << "\n";
 
     if (FSI_status == false) {
-        cout << "FSI status:\tOFF (ni = " << ni_selection << ")\n";
+        std::cout << "FSI status:\tOFF (ni = " << ni_selection << ")\n";
     } else if (FSI_status == true) {
-        cout << "FSI status:\tON\n";
+        std::cout << "FSI status:\tON\n";
     }
 
-    cout << "ni:\t\t" << ni_selection << "\n";
-    cout << "Tune:\t\t" << tune << "\n";
-    cout << "Settings mode:\t'" << file_name << "'\n";
+    std::cout << "ni:\t\t" << ni_selection << "\n";
+    std::cout << "Tune:\t\t" << tune << "\n";
+    std::cout << "Settings mode:\t'" << file_name << "'\n";
     //</editor-fold>
 }

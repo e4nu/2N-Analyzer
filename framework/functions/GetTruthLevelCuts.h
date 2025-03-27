@@ -34,7 +34,7 @@
 #include "GeneralFunctions.h"
 #include "clas12reader.h"
 
-using namespace std;
+// using namespace std;
 
 void GetTruthLevelCuts(const std::string &SampleName, bool calculate_truth_level, bool Enable_FD_photons, bool apply_nucleon_cuts, TH2D *Electron_AMap, TH2D *Proton_AMap, TH2D *Neutron_AMap,
                        const DSCuts &ThetaFD, double Theta_uboundary_FD, double Theta_lboundary_FD, const DSCuts &ThetaCD, double Theta_uboundary_CD, double Theta_lboundary_CD,

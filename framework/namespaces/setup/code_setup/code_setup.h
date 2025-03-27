@@ -11,8 +11,8 @@
 #include "../path_definitions/path_definitions.h"
 
 namespace code_setup {
-    using namespace path_definitions;
-    using namespace debugging;
+using namespace path_definitions;
+using namespace debugging;
 };  // namespace code_setup
 
 #endif  // CODE_SETUP_H

@@ -119,7 +119,22 @@
         "poly_solver.h": "c",
         "clas12_include.h": "c",
         "any": "cpp",
-        "typeindex": "cpp"
+        "typeindex": "cpp",
+        "tchain.h": "c",
+        "tfile.h": "c",
+        "tgraph.h": "c",
+        "th1.h": "c",
+        "thstack.h": "c",
+        "tlatex.h": "c",
+        "tlorentzvector.h": "c",
+        "tmath.h": "c",
+        "tstyle.h": "c",
+        "troot.h": "c",
+        "tcolor.h": "c",
+        "debugging.h": "c",
+        "debugging_settings.h": "c",
+        "debugger.cpp": "c",
+        "debugger.h": "c"
     },
     "[jsonc]": {
         "editor.defaultFormatter": "vscode.json-language-features"

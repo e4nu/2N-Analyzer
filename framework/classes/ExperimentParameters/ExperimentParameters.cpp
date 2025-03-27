@@ -2260,7 +2260,8 @@ void ExperimentParameters::AddToHipoChain(HipoChain &chain, const std::string &s
 // AddToHipoChainFromList function ----------------------------------------------------------------------------------------------------------------------------------------
 
 //<editor-fold desc="Description">
-void ExperimentParameters::AddToHipoChainFromList(HipoChain &chain, const std::string &sn, const std::string &AnalyseFilePath, const std::string &AnalyseFileSample, const std::string &AnalyseFile) {
+void ExperimentParameters::AddToHipoChainFromList(HipoChain &chain, const std::string &sn, const std::string &AnalyseFilePath, const std::string &AnalyseFileSample,
+                                                  const std::string &AnalyseFile) {
     bool PrintOut = true;
 
     if (DataSample) {

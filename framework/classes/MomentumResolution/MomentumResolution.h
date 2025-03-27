@@ -31,7 +31,8 @@
 #include <typeinfo>
 #include <vector>
 
-#include "clas12reader.h"
+// #include "clas12reader.h"
+#include "../../includes/clas12_include.h"
 
 #if MomResDebugMacro
 #include "../hData/hData.cpp"
@@ -44,7 +45,7 @@
 // #include "../../functions/GeneralFunctions.h"
 #include "../DSCuts/DSCuts.h"
 
-using namespace std;
+// using namespace std;
 using namespace utilities;
 
 class MomentumResolution {
@@ -174,21 +175,22 @@ class MomentumResolution {
 
     void MomResInit(const bool &plot_and_fit_MomRes, const bool &Calculate_momResS2, const bool &Run_with_momResS2, const std::string &SampleName, const std::string &NucleonCutsDirectory,
                     const double &beamE, const DSCuts &MomRes_mu_cuts, const DSCuts &MomRes_sigma_cuts, const double &ParticleMomTh, const std::string &MomentumResolutionDirectory,
-                    const std::string &SavePath = "./", const double &DeltaSlices = 0.2, const bool &VaryingDelta = false, const std::string &SmearM = "pol1", const std::string &CorrM = "pol1",
-                    const bool &momRes_test = false, const bool &ForceSmallpResLimits = false, const bool &FitDebugging = false);
+                    const std::string &SavePath = "./", const double &DeltaSlices = 0.2, const bool &VaryingDelta = false, const std::string &SmearM = "pol1",
+                    const std::string &CorrM = "pol1", const bool &momRes_test = false, const bool &ForceSmallpResLimits = false, const bool &FitDebugging = false);
 
     void SetMomResCalculations(const std::string &SampleName, const std::string &NucleonCutsDirectory, const double &beamE, const DSCuts &MomRes_mu_cuts, const DSCuts &MomRes_sigma_cuts,
                                const double &ParticleMomTh, bool const &Calculate_momResS2, bool const &Run_in_momResS2, const std::string &MomentumResolutionDirectory,
-                               const std::string &SavePath = "./", const double &DeltaSlices = 0.2, const bool &VaryingDelta = false, const std::string &SmearM = "pol1", const std::string &CorrM = "pol1",
-                               const bool momRes_test = false, const bool ForceSmallpResLimits = false, const bool &FitDebugging = false);
+                               const std::string &SavePath = "./", const double &DeltaSlices = 0.2, const bool &VaryingDelta = false, const std::string &SmearM = "pol1",
+                               const std::string &CorrM = "pol1", const bool momRes_test = false, const bool ForceSmallpResLimits = false, const bool &FitDebugging = false);
 
     void SetMomResSlicesByType(const std::string &SampleName, const std::string &NucleonCutsDirectory, const double &beamE, const double &ParticleMomTh, const std::string &MomentumType,
                                const std::string &SavePath = "./", const bool &VaryingDelta = false, const bool &momRes_test = false, const bool &ForceSmallpResLimits = false,
                                const bool &FitDebugging = false);
 
-    void SetMomResSlices(const std::string &SampleName, const std::string &NucleonCutsDirectory, const double &beamE, const double &ParticleMomTh, const std::string &MomentumType, const std::string &SavePath,
-                         const bool &VaryingDelta, const bool &momRes_test, const bool &ForceSmallpResLimits, vector<hPlot1D> &ResSlices0, vector<vector<double>> &ResSlicesLimits0,
-                         vector<DSCuts> &ResSlicesFitVar0, vector<DSCuts> &ResSlicesHistVar0, int &NumberOfSlices0, const bool &FitDebugging = false);
+    void SetMomResSlices(const std::string &SampleName, const std::string &NucleonCutsDirectory, const double &beamE, const double &ParticleMomTh, const std::string &MomentumType,
+                         const std::string &SavePath, const bool &VaryingDelta, const bool &momRes_test, const bool &ForceSmallpResLimits, vector<hPlot1D> &ResSlices0,
+                         vector<vector<double>> &ResSlicesLimits0, vector<DSCuts> &ResSlicesFitVar0, vector<DSCuts> &ResSlicesHistVar0, int &NumberOfSlices0,
+                         const bool &FitDebugging = false);
 
     void SetUpperMomCut(const std::string &SampleName, const std::string &NucleonCutsDirectory, const bool &FitDebugging = false);
 
@@ -225,8 +227,8 @@ class MomentumResolution {
 
     void LogFitDataToFile(const std::string &SampleName, const std::string &plots_path, const std::string &MomentumResolutionDirectory);
 
-    void AutoLogger(const std::string &SampleName, const std::string &plots_path, const std::string &MomentumResolutionDirectory, const std::string &LogHeader, const vector<vector<double>> &Vector2Log,
-                    ofstream &Neutron_res_fit_param);
+    void AutoLogger(const std::string &SampleName, const std::string &plots_path, const std::string &MomentumResolutionDirectory, const std::string &LogHeader,
+                    const vector<vector<double>> &Vector2Log, ofstream &Neutron_res_fit_param);
 
     // LogHistDataToFile function -------------------------------------------------------------------------------------------------------------------------------------------
 

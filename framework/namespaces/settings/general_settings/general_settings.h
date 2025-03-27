@@ -13,6 +13,6 @@ std::map<std::string, bool> CodeSettings = {
     {"keep_good", true},
 };
 
-};  // namespace settings
+};  // namespace general_settings
 
 #endif  // GENERAL_SETTINGS_H

@@ -34,7 +34,6 @@ string DataAnalyser::ConfigureAnalyserMode(const std::string &FileType) {
 // RunEventAnalyser functions ---------------------------------------------------------------------------------------------------------------------------------
 
 void DataAnalyser::RunEventAnalyser(const std::string &AnalyserMode, const std::string &AnalyseFilePath, const std::string &AnalyseFileSample, const std::string &AnalyseFile) {
-
     if (AnalyserMode == "Truth level") {
         gst g;
         g.Loop();
@@ -43,4 +42,4 @@ void DataAnalyser::RunEventAnalyser(const std::string &AnalyserMode, const std::
     }
 };
 
-#endif // DATAANALYSER_H
+#endif  // DATAANALYSER_H

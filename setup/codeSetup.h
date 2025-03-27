@@ -55,7 +55,7 @@ using namespace path_definitions;
 // // const std::string plots_path = WorkingDirectory + "00_plots";
 
 // /* setup directory and directories */
-// const std::string SettingsDirectory = wd + "setup" + "/";
+// const std::string SetupDirectory = wd + "setup" + "/";
 
 // /* framework directory and directories */
 // std::string sd = wd + "source" + "/";

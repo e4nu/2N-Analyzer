@@ -30,7 +30,7 @@
 #include "HipoChain.h"
 #include "clas12reader.h"
 
-using namespace std;
+// using namespace std;
 
 void reaction_cuts_test() {
     cout << "\n\nInitiating reaction_cuts.cpp\n";

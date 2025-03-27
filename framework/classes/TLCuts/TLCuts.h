@@ -29,16 +29,17 @@
 #include <sstream>
 #include <typeinfo>
 #include <vector>
+//
+// #include "clas12reader.h"
+#include "../../includes/clas12_include.h"
 
 // #include "../../constants.h"
 // #include "../../functions/AngleCalc/GetBinFromAng.h"
 // #include "../../functions/GeneralFunctions.h"
 #include "../../namespaces/general_utilities/utilities/utilities.h"
 #include "../DSCuts/DSCuts.h"
-//
-#include "clas12reader.h"
 
-using namespace std;
+// using namespace std;
 using namespace utilities;
 
 class TLCuts {

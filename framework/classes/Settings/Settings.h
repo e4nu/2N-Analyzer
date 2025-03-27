@@ -8,7 +8,7 @@
 
 #include "CustomPlotsDirectory.cpp"
 
-using namespace std;
+// using namespace std;
 
 class Settings : public CustomPlotsDirectory {
    private:

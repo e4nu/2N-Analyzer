@@ -6,4 +6,4 @@
 
 using namespace clas12;
 
-#endif // CLAS12_INCLUDE_H
+#endif  // CLAS12_INCLUDE_H

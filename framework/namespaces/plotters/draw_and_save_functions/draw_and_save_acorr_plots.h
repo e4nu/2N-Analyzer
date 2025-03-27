@@ -32,7 +32,7 @@
 #include "../../../classes/hPlots/hPlot1D.cpp"
 #include "../../../namespaces/general_utilities/utilities/utilities.h"
 
-using namespace std;
+// using namespace std;
 using namespace utilities;
 
 namespace draw_and_save_acorr_plots {

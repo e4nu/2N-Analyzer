@@ -278,7 +278,7 @@ class clas12ana : public
     }
 
     void FillECALHitMap(region_part_ptr p);  // My addition
-    //</editor-fold>
+                                             //</editor-fold>
 
    private:
     std::vector<region_part_ptr> electrons;

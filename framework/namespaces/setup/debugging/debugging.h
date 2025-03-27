@@ -7,14 +7,14 @@
 
 #include <iostream>
 
-#include "../../settings/debugging_settings/debugging_settings.h"
 #include "../../../classes/Debugger/Debugger.cpp"
+#include "../../settings/debugging_settings/debugging_settings.h"
 
 namespace debugging {
 using namespace debugging_settings;
 
 // CodeDebugger declaration ---------------------------------------------------------------------------------------------------------------------------------------------
 Debugger CodeDebugger;
-}
+}  // namespace debugging
 
-#endif //DEBUGGING_H
+#endif  // DEBUGGING_H

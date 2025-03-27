@@ -44,7 +44,7 @@ SetYAxisTitle
 #include "../../../classes/hPlots/hPlot2D.cpp"
 #include "../../../namespaces/general_utilities/utilities/utilities.h"
 
-using namespace std;
+// using namespace std;
 using namespace utilities;
 
 // TODO: move this into a class with the proper functions
