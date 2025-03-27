@@ -48,7 +48,7 @@ using namespace utilities;
 using namespace draw_and_save_functions;
 
 void EventAnalyser(const std::string &AnalyseFilePath, const std::string &AnalyseFileSample, const std::string &AnalyseFile) {
-    CodeDebugger.PrintStepTester(DebuggerMode);
+    debugging::CodeDebugger.PrintStepTester(DebuggerMode);
 
     std::cout << "\033[33m\n\n===========================================================================\n\033[0m";
     std::cout << "\033[33m\t\t\tDetector simulation analyser\n\033[0m";
@@ -171,7 +171,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     // Cut setup
     // ======================================================================================================================================================================
 
-    CodeDebugger.PrintStepTester(DebuggerMode);
+    debugging::CodeDebugger.PrintStepTester(DebuggerMode);
 
     // Cut setup ---------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -507,7 +507,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     // Other setup
     // ======================================================================================================================================================================
 
-    CodeDebugger.PrintStepTester(DebuggerMode);
+    debugging::CodeDebugger.PrintStepTester(DebuggerMode);
 
     //  Directory settings ------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -528,7 +528,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
     // TList definition -----------------------------------------------------------------------------------------------------------------------------------------------------
 
-    CodeDebugger.PrintStepTester(DebuggerMode);
+    debugging::CodeDebugger.PrintStepTester(DebuggerMode);
 
     // TList definition
     /* Definition of plots TLists used to save all plots to .root file. */
@@ -540,7 +540,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
     // TFile definition -----------------------------------------------------------------------------------------------------------------------------------------------------
 
-    CodeDebugger.PrintStepTester(DebuggerMode);
+    debugging::CodeDebugger.PrintStepTester(DebuggerMode);
 
     // TFile definition
     /* Definition of plots TFile used to save all plots to .pdf file. */
@@ -551,7 +551,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
     // Plot selector --------------------------------------------------------------------------------------------------------------------------------------------------------
 
-    CodeDebugger.PrintStepTester(DebuggerMode);
+    debugging::CodeDebugger.PrintStepTester(DebuggerMode);
 
     // Plot selector
     /* Here are boolean variables used to turn ON/OFF the different plots of the code.
@@ -791,7 +791,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
     // Normalization setup -----------------------------------------------------------------------------------------------------------------------------------------------
 
-    CodeDebugger.PrintStepTester(DebuggerMode);
+    debugging::CodeDebugger.PrintStepTester(DebuggerMode);
 
     // Normalization setup
     /* Here are boolean variables used to turn ON/OFF the different plot normalizations of the code.
@@ -814,7 +814,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
     // Delete setup ------------------------------------------------------------------------------------------------------------------------------------------------------
 
-    CodeDebugger.PrintStepTester(DebuggerMode);
+    debugging::CodeDebugger.PrintStepTester(DebuggerMode);
 
     // Delete setup
     /* Clear files from previous runs (to prevent mix fo plots from different codes). */
@@ -844,7 +844,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
     // Histogram setup ---------------------------------------------------------------------------------------------------------------------------------------------------
 
-    CodeDebugger.PrintStepTester(DebuggerMode);
+    debugging::CodeDebugger.PrintStepTester(DebuggerMode);
 
     // Histogram setup
     /* Histogram boundary variables. Used to unify histograms to the same boundaries. */
@@ -1015,7 +1015,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
     // Acceptance maps generation -------------------------------------------------------------------------------------------------------------------------------------------
 
-    CodeDebugger.PrintStepTester(DebuggerMode);
+    debugging::CodeDebugger.PrintStepTester(DebuggerMode);
 
     // Acceptance maps generation
     /* Acceptance maps are handled completely by the AMaps class */
@@ -1055,7 +1055,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
     // Acceptance correction data -------------------------------------------------------------------------------------------------------------------------------------------
 
-    CodeDebugger.PrintStepTester(DebuggerMode);
+    debugging::CodeDebugger.PrintStepTester(DebuggerMode);
 
     // Acceptance correction
     /* Neutron resolution fits is handled completely by the MomentumResolution class */
@@ -1076,7 +1076,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
     // Neutron resolution & proton smearing ---------------------------------------------------------------------------------------------------------------------------------
 
-    CodeDebugger.PrintStepTester(DebuggerMode);
+    debugging::CodeDebugger.PrintStepTester(DebuggerMode);
 
     // Neutron resolution
     /* Neutron resolution fits is handled completely by the MomentumResolution class */
@@ -1105,7 +1105,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
     // Debugging setup ---------------------------------------------------------------------------------------------------------------------------------------------------
 
-    CodeDebugger.PrintStepTester(DebuggerMode);
+    debugging::CodeDebugger.PrintStepTester(DebuggerMode);
 
     // Debugging setup
     /* Saving a printout of the number of particles in nEvents2print events. Used for clas12ana debugging. */
@@ -1150,7 +1150,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     //                                                                      Histogram definitions                                                                          //
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    CodeDebugger.PrintStepTester(DebuggerMode);
+    debugging::CodeDebugger.PrintStepTester(DebuggerMode);
 
     // Histogram definitions
     /* Histogram definitions and setup. */
@@ -1161,7 +1161,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     // Cut parameters plots
     // ======================================================================================================================================================================
 
-    CodeDebugger.PrintStepTester(DebuggerMode);
+    debugging::CodeDebugger.PrintStepTester(DebuggerMode);
 
     // Cut parameters plots
 
@@ -9477,7 +9477,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     //                                                                         Code execution                                                                              //
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    CodeDebugger.PrintStepTester(DebuggerMode);
+    debugging::CodeDebugger.PrintStepTester(DebuggerMode);
 
     // Code execution
     std::cout << "\033[33m\nReading target parameter files...\n\n\033[0m";
@@ -9709,7 +9709,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     //  Setting beam particle's momentum
     //  ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-    CodeDebugger.PrintStepTester(DebuggerMode);
+    debugging::CodeDebugger.PrintStepTester(DebuggerMode);
 
     // Setting beam particle's momentum
     double Pv = beamE, Pvx = 0., Pvy = 0., Pvz = Pv;  // Assuming momentum of incoming lepton is in the z direction
@@ -9758,11 +9758,11 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
     std::cout << "\033[33m\n\nLooping over chain files...\n\n\033[0m";
 
-    CodeDebugger.PrintStepTester(DebuggerMode);
+    debugging::CodeDebugger.PrintStepTester(DebuggerMode);
 
     while (chain.Next()) {
         // loop over events
-        CodeDebugger.PrintStepTester(DebuggerMode);
+        debugging::CodeDebugger.PrintStepTester(DebuggerMode);
 
         ++num_of_events;  // logging Total #(events) in sample
 
@@ -9929,16 +9929,16 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
         /* Safety checks */
 
         // Safety check for clas12ana particles - check that allParticles.size(), Nf are the same:
-        CodeDebugger.SafetyCheck_clas12ana_particles(__FILE__, __LINE__, clas12ana_particles, allParticles, Nf);
+        debugging::CodeDebugger.SafetyCheck_clas12ana_particles(__FILE__, __LINE__, clas12ana_particles, allParticles, Nf);
 
         // Safety checks for FD protons:
-        CodeDebugger.SafetyCheck_FD_protons(__FILE__, __LINE__, Protons_ind, protons, p_mom_th);
+        debugging::CodeDebugger.SafetyCheck_FD_protons(__FILE__, __LINE__, Protons_ind, protons, p_mom_th);
 
         // Safety checks for FD neutrons - checks for leading FD neutron
-        CodeDebugger.SafetyCheck_Reco_leading_FD_neutron(__FILE__, __LINE__, apply_nucleon_cuts, ES_by_leading_FDneutron, NeutronsFD_ind_mom_max, allParticles, NeutronsFD_ind, pid);
+        debugging::CodeDebugger.SafetyCheck_Reco_leading_FD_neutron(__FILE__, __LINE__, apply_nucleon_cuts, ES_by_leading_FDneutron, NeutronsFD_ind_mom_max, allParticles, NeutronsFD_ind, pid);
 
         //  Safety checks for FD neutrons - checks for FD neutrons
-        CodeDebugger.SafetyCheck_FD_neutron(__FILE__, __LINE__, apply_nucleon_cuts, allParticles, n_mom_th, NeutronsFD_ind, pid);
+        debugging::CodeDebugger.SafetyCheck_FD_neutron(__FILE__, __LINE__, apply_nucleon_cuts, allParticles, n_mom_th, NeutronsFD_ind, pid);
 
         // Some event counting
         if (electrons_det.size() == 1) { ++num_of_events_with_exactly_1e_from_file; }
@@ -9987,7 +9987,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
             pid.GPMonitoring(GoodProtonsMonitorPlots, protons, IDed_Protons_ind, Protons_ind, Theta_p1_cuts_2p, Theta_p2_cuts_2p, dphi_p1_p2_2p, Weight);
         }
 
-        CodeDebugger.PrintStepTester(DebuggerMode);
+        debugging::CodeDebugger.PrintStepTester(DebuggerMode);
 
         //  Filling truth level histograms (lundfile loop) ----------------------------------------------------------------------------------------------------------------------
 
@@ -10183,7 +10183,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
             }
 
             // Safety check for truth leading FD neutron
-            CodeDebugger.SafetyCheck_Truth_leading_FD_neutron(__FILE__, __LINE__, ES_by_leading_FDneutron, TL_IDed_Leading_nFD_ind, TL_IDed_Leading_nFD_momentum,
+            debugging::CodeDebugger.SafetyCheck_Truth_leading_FD_neutron(__FILE__, __LINE__, ES_by_leading_FDneutron, TL_IDed_Leading_nFD_ind, TL_IDed_Leading_nFD_momentum,
                                                               Leading_TL_FDNeutron_Momentum, TL_NeutronsFD_mom_ind, mcpbank);
 
             // Event selection for TL plots
@@ -11089,7 +11089,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                         /* Fill TL electron acceptance maps */
 
                         // Safety checks for TL electrons (AMaps & WMaps)
-                        CodeDebugger.SafetyCheck_AMaps_Truth_electrons(__FILE__, __LINE__, particlePDGtmp, inFD_AMaps);
+                        debugging::CodeDebugger.SafetyCheck_AMaps_Truth_electrons(__FILE__, __LINE__, particlePDGtmp, inFD_AMaps);
 
                         Electron_TL_Momentum = Particle_TL_Momentum;
                         Electron_TL_Theta = Particle_TL_Theta;
@@ -11112,7 +11112,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                             // if id. TL proton
 
                             // Safety checks for TL protons (AMaps & WMaps)
-                            CodeDebugger.SafetyCheck_AMaps_Truth_protons(__FILE__, __LINE__, particlePDGtmp, inFD_AMaps);
+                            debugging::CodeDebugger.SafetyCheck_AMaps_Truth_protons(__FILE__, __LINE__, particlePDGtmp, inFD_AMaps);
 
                             hTL_P_pFD_AMaps.hFill(Particle_TL_Momentum, Weight);
                             hTL_P_pFD_vs_TL_Theta_pFD_AMap.hFill(Particle_TL_Momentum, Particle_TL_Theta, Weight);
@@ -11132,7 +11132,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                         /* Fill TL electron efficiency maps */
 
                         // Safety checks for TL electrons (AMaps & WMaps)
-                        CodeDebugger.SafetyCheck_AMaps_Truth_electrons(__FILE__, __LINE__, particlePDGtmp, inFD_AMaps);
+                        debugging::CodeDebugger.SafetyCheck_AMaps_Truth_electrons(__FILE__, __LINE__, particlePDGtmp, inFD_AMaps);
 
                         Electron_TL_Momentum = Particle_TL_Momentum;
                         Electron_TL_Theta = Particle_TL_Theta;
@@ -11149,7 +11149,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                             // if id. TL proton
 
                             // Safety checks for TL protons (AMaps & WMaps)
-                            CodeDebugger.SafetyCheck_AMaps_Truth_protons(__FILE__, __LINE__, particlePDGtmp, inFD_AMaps);
+                            debugging::CodeDebugger.SafetyCheck_AMaps_Truth_protons(__FILE__, __LINE__, particlePDGtmp, inFD_AMaps);
 
                             bool FD_Theta_Cut_TL_protons = (Particle_TL_Theta <= FD_nucleon_theta_cut.GetUpperCut());
                             bool FD_Momentum_Cut_TL_protons =
@@ -11191,7 +11191,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                     // if id. TL leading neutron
 
                     // Safety checks for TL neutrons (AMaps & WMaps)
-                    CodeDebugger.SafetyCheck_AMaps_Truth_neutrons(__FILE__, __LINE__, particlePDGtmp, inFD);
+                    debugging::CodeDebugger.SafetyCheck_AMaps_Truth_neutrons(__FILE__, __LINE__, particlePDGtmp, inFD);
 
                     TL_nFD_theta = Particle_TL_Theta;  // FOR nFD eff test!
                     TL_nFD_phi = Particle_TL_Phi;      // FOR nFD eff test!
@@ -11226,7 +11226,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                     // if id. TL leading neutron
 
                     // Safety checks for TL neutrons (AMaps & WMaps)
-                    CodeDebugger.SafetyCheck_AMaps_Truth_neutrons(__FILE__, __LINE__, particlePDGtmp, inFD);
+                    debugging::CodeDebugger.SafetyCheck_AMaps_Truth_neutrons(__FILE__, __LINE__, particlePDGtmp, inFD);
 
                     bool FD_Theta_Cut_TL_neutrons = (Particle_TL_Theta <= FD_nucleon_theta_cut.GetUpperCut());
                     bool FD_Momentum_Cut_TL_neutrons = ((Particle_TL_Momentum <= FD_nucleon_momentum_cut.GetUpperCut()) && (Particle_TL_Momentum >= FD_nucleon_momentum_cut.GetLowerCut()));
@@ -11246,7 +11246,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
         //  Fill All particles (All e) plots ------------------------------------------------------------------------------------------------------------------------------------
 
-        CodeDebugger.PrintStepTester(DebuggerMode);
+        debugging::CodeDebugger.PrintStepTester(DebuggerMode);
 
         // All particles plots
         /* Declaration of electron variables for all particles analysis.
@@ -11394,7 +11394,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
         //  1e cut --------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-        CodeDebugger.PrintStepTester(DebuggerMode);
+        debugging::CodeDebugger.PrintStepTester(DebuggerMode);
 
         // 1e cut
         /* Here we apply electron cut on everything that follows (1p, nFDpCD, 1e2p and 2p) */
@@ -11408,7 +11408,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
         if (ApplyLimiter && (num_of_events > Limiter)) { break; }  // FOR nFD eff test!
 
         // Safety checks (1e cut)
-        CodeDebugger.SafetyCheck_one_good_electron(__FILE__, __LINE__, electrons);
+        debugging::CodeDebugger.SafetyCheck_one_good_electron(__FILE__, __LINE__, electrons);
 
         // Applying electron beta cut
         bool Bad_Electron_beta;
@@ -11422,7 +11422,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
         if (Bad_Electron_beta) { continue; }
 
         /* Safety check that we are looking at 1e cut. */
-        CodeDebugger.SafetyCheck_1e_cut_electron(__FILE__, __LINE__, electrons, Electron_ind);
+        debugging::CodeDebugger.SafetyCheck_1e_cut_electron(__FILE__, __LINE__, electrons, Electron_ind);
 
         // events counts (1e cut)
         ++num_of_events_with_exactly_1e;  // logging #(events) w/ exactly 1e (after beta cut)
@@ -12449,7 +12449,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                     auto n_detlayer_1e_cut = hitECIN_1e_cut ? clas12::ECIN : clas12::ECOUT;                                 // find first layer of hit
 
                     // Safety checks that leading nFD is neutron by definition (AMaps & WMaps)
-                    CodeDebugger.SafetyCheck_AMaps_Reco_leading_neutrons(__FILE__, __LINE__, allParticles, NeutronsFD_ind_mom_max, hitPCAL_1e_cut, hitECIN_1e_cut, hitECOUT_1e_cut);
+                    debugging::CodeDebugger.SafetyCheck_AMaps_Reco_leading_neutrons(__FILE__, __LINE__, allParticles, NeutronsFD_ind_mom_max, hitPCAL_1e_cut, hitECIN_1e_cut, hitECOUT_1e_cut);
 
                     if (true) {
                         // if (allParticles[NeutronsFD_ind_mom_max]->cal(n_detlayer_1e_cut)->getLv() > clasAna.getEcalEdgeCuts() &&
@@ -12538,7 +12538,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                     auto n_detlayer_1e_cut = hitECIN_1e_cut ? clas12::ECIN : clas12::ECOUT;                                 // find first layer of hit
 
                     // Safety checks that leading nFD is neutron by definition (AMaps & WMaps)
-                    CodeDebugger.SafetyCheck_AMaps_Reco_leading_neutrons(__FILE__, __LINE__, allParticles, NeutronsFD_ind_mom_max, hitPCAL_1e_cut, hitECIN_1e_cut, hitECOUT_1e_cut);
+                    debugging::CodeDebugger.SafetyCheck_AMaps_Reco_leading_neutrons(__FILE__, __LINE__, allParticles, NeutronsFD_ind_mom_max, hitPCAL_1e_cut, hitECIN_1e_cut, hitECOUT_1e_cut);
 
                     if (allParticles[NeutronsFD_ind_mom_max]->cal(n_detlayer_1e_cut)->getLv() > clasAna.getEcalEdgeCuts() &&
                         allParticles[NeutronsFD_ind_mom_max]->cal(n_detlayer_1e_cut)->getLw() > clasAna.getEcalEdgeCuts()) {
@@ -12582,7 +12582,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
         //  1p (FD only) --------------------------------------------------------------------------------------------------------------------------------------------------------
 
-        CodeDebugger.PrintStepTester(DebuggerMode);
+        debugging::CodeDebugger.PrintStepTester(DebuggerMode);
 
         // 1p (FD only)
         /* 1p event selection: 1p = Protons_ind.size() = 1 in the FD, any number of FD neutrons and any number of other neutrals and particles with pdg=0.*/
@@ -12600,8 +12600,8 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
             region_part_ptr p_1p = protons[Protons_ind.at(0)];
 
             /* Safety check that we are looking at 1p */
-            CodeDebugger.SafetyCheck_basic_event_selection(__FILE__, __LINE__, "1p", Kplus, Kminus, Piplus_ind, Piminus_ind, Electron_ind, deuterons);
-            CodeDebugger.SafetyCheck_1p(__FILE__, __LINE__, Protons_ind, e_1p, p_1p, Enable_FD_photons, PhotonsFD_ind);
+            debugging::CodeDebugger.SafetyCheck_basic_event_selection(__FILE__, __LINE__, "1p", Kplus, Kminus, Piplus_ind, Piminus_ind, Electron_ind, deuterons);
+            debugging::CodeDebugger.SafetyCheck_1p(__FILE__, __LINE__, Protons_ind, e_1p, p_1p, Enable_FD_photons, PhotonsFD_ind);
 
             // Setting 1p analysis variables
             double ProtonMomBKC_1p = p_1p->getP();  // proton momentum before smearing or kinematical cuts
@@ -13107,7 +13107,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
         //  1n (FD only) --------------------------------------------------------------------------------------------------------------------------------------------------------
 
-        CodeDebugger.PrintStepTester(DebuggerMode);
+        debugging::CodeDebugger.PrintStepTester(DebuggerMode);
 
         // 1n (FD only)
         /* 1n event selection: 1n = any number of id. FD neutrons (we look at the leading nFD), with no charged particles (except electrons) and any number of other
@@ -13145,8 +13145,8 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
             auto n_detlayer_1n = NeutronInPCAL_1n ? clas12::PCAL : NeutronInECIN_1n ? clas12::ECIN : clas12::ECOUT;  // determine the earliest layer of the neutral hit
 
             /* Safety check that we are looking at 1n */
-            CodeDebugger.SafetyCheck_basic_event_selection(__FILE__, __LINE__, "1n", Kplus, Kminus, Piplus_ind, Piminus_ind, Electron_ind, deuterons);
-            CodeDebugger.SafetyCheck_1n(__FILE__, __LINE__, NeutronsFD_ind, e_1n, n_1n, Enable_FD_photons, PhotonsFD_ind, ES_by_leading_FDneutron, pid, allParticles, NeutronsFD_ind_mom_max,
+            debugging::CodeDebugger.SafetyCheck_basic_event_selection(__FILE__, __LINE__, "1n", Kplus, Kminus, Piplus_ind, Piminus_ind, Electron_ind, deuterons);
+            debugging::CodeDebugger.SafetyCheck_1n(__FILE__, __LINE__, NeutronsFD_ind, e_1n, n_1n, Enable_FD_photons, PhotonsFD_ind, ES_by_leading_FDneutron, pid, allParticles, NeutronsFD_ind_mom_max,
                                         apply_nucleon_cuts, NeutronInPCAL_1n, NeutronInECIN_1n, NeutronInECOUT_1n, n_detlayer_1n);
 
             // Setting 1n analysis variables
@@ -14109,7 +14109,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
             /* Safety check that we are looking at 2p */
             if (Protons_ind.size() != 2) { std::cout << "\033[33m\n\n2p: Protons_ind.size() is different than 2! Exiting...\n\n", exit(0); }
 
-            CodeDebugger.SafetyCheck_basic_event_selection(__FILE__, __LINE__, "2p", Kplus, Kminus, Piplus_ind, Piminus_ind, Electron_ind, deuterons);
+            debugging::CodeDebugger.SafetyCheck_basic_event_selection(__FILE__, __LINE__, "2p", Kplus, Kminus, Piplus_ind, Piminus_ind, Electron_ind, deuterons);
 
             /* Setting particle vectors (for code organization) */
             auto e_2p = electrons[Electron_ind.at(0)];
@@ -14158,7 +14158,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
             //  Fillings 2p histograms ---------------------------------------------------------------------------------------------------------------------------------
 
-            CodeDebugger.PrintStepTester(DebuggerMode);
+            debugging::CodeDebugger.PrintStepTester(DebuggerMode);
 
             // Fillings 2p histograms
             ++num_of_events_2p;
@@ -14615,7 +14615,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
         //  pFDpCD --------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-        CodeDebugger.PrintStepTester(DebuggerMode);
+        debugging::CodeDebugger.PrintStepTester(DebuggerMode);
 
         // pFDpCD
 
@@ -14677,7 +14677,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
             if (pFD_pFDpCD->getRegion() != FD) { std::cout << "\033[33m\n\npFDpCD: pFD is not in the FD! Exiting...\n\n", exit(0); }
             if (pCD_pFDpCD->getRegion() != CD) { std::cout << "\033[33m\n\npFDpCD: pCD is not in the CD! Exiting...\n\n", exit(0); }
 
-            CodeDebugger.SafetyCheck_basic_event_selection(__FILE__, __LINE__, "pFDpCD", Kplus, Kminus, Piplus_ind, Piminus_ind, Electron_ind, deuterons);
+            debugging::CodeDebugger.SafetyCheck_basic_event_selection(__FILE__, __LINE__, "pFDpCD", Kplus, Kminus, Piplus_ind, Piminus_ind, Electron_ind, deuterons);
 
             // Setting pFDpCD analysis variables
             double ProtonMomBKC_pFDpCD = pFD_pFDpCD->getP();  // proton momentum before smearing or kinematical cuts
@@ -15369,7 +15369,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
         //  nFDpCD --------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-        CodeDebugger.PrintStepTester(DebuggerMode);
+        debugging::CodeDebugger.PrintStepTester(DebuggerMode);
 
         // nFDpCD
 
@@ -15416,7 +15416,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
             if (Protons_ind.size() != 1) { std::cout << "\033[33m\n\nnFDpCD: Protons_ind.size() is different than 2! Exiting...\n\n", exit(0); }
 
-            CodeDebugger.SafetyCheck_basic_event_selection(__FILE__, __LINE__, "nFDpCD", Kplus, Kminus, Piplus_ind, Piminus_ind, Electron_ind, deuterons);
+            debugging::CodeDebugger.SafetyCheck_basic_event_selection(__FILE__, __LINE__, "nFDpCD", Kplus, Kminus, Piplus_ind, Piminus_ind, Electron_ind, deuterons);
 
             for (int &i : NeutronsFD_ind) {
                 bool NeutronInPCAL_nFDpCD = (allParticles[i]->cal(clas12::PCAL)->getDetector() == 7);  // PCAL hit
@@ -16245,7 +16245,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
             }
         }  // end of 1enFDpCD & nFDpCD cuts if
 
-        CodeDebugger.PrintStepTester(DebuggerMode);
+        debugging::CodeDebugger.PrintStepTester(DebuggerMode);
     }  // end of while
     // </editor-fold>
 
