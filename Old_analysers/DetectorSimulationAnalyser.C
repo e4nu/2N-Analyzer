@@ -1020,18 +1020,18 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
         aMaps_master = AMaps(SampleName, P_e_bin_profile, P_nuc_bin_profile, beamE, "AMaps", directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], NumberNucOfMomSlices,
                              NumberElecOfMomSlices, HistNucSliceNumOfXBins, HistNucSliceNumOfXBins, HistElectronSliceNumOfXBins, HistElectronSliceNumOfXBins);
     } else {
-        cout << "\n\nPathDefinitions.WorkingDirectory = " << PathDefinitions.WorkingDirectory << "\n\n";
-        cout << "\n\nPathDefinitions.SourceDirectory = " << PathDefinitions.SourceDirectory << "\n\n";
-        cout << "\n\nPathDefinitions.DataDirectory = " << PathDefinitions.DataDirectory << "\n\n";
-        cout << "\n\nPathDefinitions.AcceptanceMapsDirectory = " << PathDefinitions.AcceptanceMapsDirectory << "\n\n";
-        aMaps_master = AMaps(PathDefinitions.AcceptanceMapsDirectory, VaryingSampleName, beamE, Electron_single_slice_test, Nucleon_single_slice_test, TestSlices);
+        cout << "\n\npath_definitions::PathDefinitions.WorkingDirectory = " << path_definitions::PathDefinitions.WorkingDirectory << "\n\n";
+        cout << "\n\npath_definitions::PathDefinitions.SourceDirectory = " << path_definitions::PathDefinitions.SourceDirectory << "\n\n";
+        cout << "\n\npath_definitions::PathDefinitions.DataDirectory = " << path_definitions::PathDefinitions.DataDirectory << "\n\n";
+        cout << "\n\npath_definitions::PathDefinitions.AcceptanceMapsDirectory = " << path_definitions::PathDefinitions.AcceptanceMapsDirectory << "\n\n";
+        aMaps_master = AMaps(path_definitions::PathDefinitions.AcceptanceMapsDirectory, VaryingSampleName, beamE, Electron_single_slice_test, Nucleon_single_slice_test, TestSlices);
     }
 
     if (Generate_WMaps) {
         wMaps_master = AMaps(SampleName, P_e_bin_profile, P_nuc_bin_profile, beamE, "WMaps", directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], NumberNucOfMomSlices,
                              NumberElecOfMomSlices, HistNucSliceNumOfXBins, HistNucSliceNumOfXBins, HistElectronSliceNumOfXBins, HistElectronSliceNumOfXBins);
     } else {
-        wMaps_master = AMaps(PathDefinitions.AcceptanceWeightsDirectory, VaryingSampleName, beamE, Electron_single_slice_test, Nucleon_single_slice_test, TestSlices);
+        wMaps_master = AMaps(path_definitions::PathDefinitions.AcceptanceWeightsDirectory, VaryingSampleName, beamE, Electron_single_slice_test, Nucleon_single_slice_test, TestSlices);
     }
 
     std::cout << "\033[33m done.\n\n\033[0m";
@@ -1051,7 +1051,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     DEfficiency eff;
 
     TList *ACorr_data = new TList();
-    std::string ACorr_data_Dir = PathDefinitions.ACorrDirectory + SampleName;
+    std::string ACorr_data_Dir = path_definitions::PathDefinitions.ACorrDirectory + SampleName;
     std::string ACorr_data_listName = ACorr_data_Dir + "/" + "ACorr_data_-_" + SampleName + ".root";
     const char *ACorr_DataName = ACorr_data_listName.c_str();
 
@@ -1077,12 +1077,12 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     // Neutron resolution class declaration & definition
     MomentumResolution nRes("Neutron"), pRes("Proton");
 
-    nRes.MomResInit(plot_and_fit_MomRes, Calculate_momResS2, Run_with_momResS2, VaryingSampleName, PathDefinitions.NucleonCutsDirectory, beamE, MomRes_mu_cuts, MomRes_sigma_cuts,
-                    n_mom_th.GetLowerCut(), PathDefinitions.MomentumResolutionDirectory, directories.Resolution_Directory_map["nRes_plots_1n_Directory"], DeltaSlices, VaryingDelta,
-                    SmearMode, CorrMode, momRes_test);
-    pRes.MomResInit(plot_and_fit_MomRes, Calculate_momResS2, Run_with_momResS2, VaryingSampleName, PathDefinitions.NucleonCutsDirectory, beamE, MomRes_mu_cuts, MomRes_sigma_cuts,
-                    p_mom_th.GetLowerCut(), PathDefinitions.MomentumResolutionDirectory, directories.Resolution_Directory_map["pRes_plots_1p_Directory"], DeltaSlices, VaryingDelta,
-                    SmearMode, CorrMode, momRes_test, ForceSmallpResLimits);
+    nRes.MomResInit(plot_and_fit_MomRes, Calculate_momResS2, Run_with_momResS2, VaryingSampleName, path_definitions::PathDefinitions.NucleonCutsDirectory, beamE, MomRes_mu_cuts,
+                    MomRes_sigma_cuts, n_mom_th.GetLowerCut(), path_definitions::PathDefinitions.MomentumResolutionDirectory, directories.Resolution_Directory_map["nRes_plots_1n_Directory"],
+                    DeltaSlices, VaryingDelta, SmearMode, CorrMode, momRes_test);
+    pRes.MomResInit(plot_and_fit_MomRes, Calculate_momResS2, Run_with_momResS2, VaryingSampleName, path_definitions::PathDefinitions.NucleonCutsDirectory, beamE, MomRes_mu_cuts,
+                    MomRes_sigma_cuts, p_mom_th.GetLowerCut(), path_definitions::PathDefinitions.MomentumResolutionDirectory, directories.Resolution_Directory_map["pRes_plots_1p_Directory"],
+                    DeltaSlices, VaryingDelta, SmearMode, CorrMode, momRes_test, ForceSmallpResLimits);
 
     std::cout << "\033[33m\ndone.\n\n\033[0m";
 
@@ -9470,7 +9470,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
             // making f_ecalSFCuts = true
             // TODO: ask justin what are these cuts:
             // TODO: ask justin for these cuts for LH2 and C12 (and other elements)
-            clasAna.readEcalSFPar((PathDefinitions.PIDCutsDirectory + "paramsSF_40Ca_x2.dat").c_str());
+            clasAna.readEcalSFPar((path_definitions::PathDefinitions.PIDCutsDirectory + "paramsSF_40Ca_x2.dat").c_str());
             // TODO: RECHECK WHAT ARE THE CUTS HERE:
             SF_cuts = DSCuts("SF", "FD", "Electron", "1e cut", 0.24865, clasAna.getEcalSFLowerCut(), clasAna.getEcalSFUpperCut());
 
@@ -9481,7 +9481,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
             // making f_ecalSFCuts = true
             // TODO: ask justin what are these cuts:
             // TODO: ask justin for these cuts for LH2 and C12 (and other elements)
-            clasAna.readEcalPPar((PathDefinitions.PIDCutsDirectory + "paramsPI_40Ca_x2.dat").c_str());
+            clasAna.readEcalPPar((path_definitions::PathDefinitions.PIDCutsDirectory + "paramsPI_40Ca_x2.dat").c_str());
 
             clasAna.setEcalPCuts();
         }
@@ -9500,10 +9500,11 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
         // Cuts on all charged hadrons:
         if (!apply_chi2_cuts_1e_cut) {
-            clasAna.readInputParam((PathDefinitions.PIDCutsDirectory + "ana.par").c_str());
+            clasAna.readInputParam((path_definitions::PathDefinitions.PIDCutsDirectory + "ana.par").c_str());
         } else if (apply_chi2_cuts_1e_cut) {
             std::cout << "\033[33m\nLoading fitted pid cuts...\n\n\033[0m";
-            clasAna.readInputParam((PathDefinitions.PIDCutsDirectory + "Fitted_PID_Cuts_-_" + SampleName + ".par").c_str());  // load sample-appropreate cuts file from CutsDirectory
+            clasAna.readInputParam(
+                (path_definitions::PathDefinitions.PIDCutsDirectory + "Fitted_PID_Cuts_-_" + SampleName + ".par").c_str());  // load sample-appropreate cuts file from CutsDirectory
 
             /* Overwriting PID cuts according to SampleName */
             Chi2_Proton_cuts_CD.SetCutPram(clasAna.GetPidCutMean(2212, "CD"), -clasAna.GetPidCutSigma(2212, "CD"), clasAna.GetPidCutSigma(2212, "CD"));
@@ -9562,7 +9563,8 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
             Beta_max_cut_ABF_FD_n_from_ph_apprax = DSCuts("Beta_cut_ECAL_apprax", "FD-ECAL_apprax", "", "1n", 1, -9999, 9999);
         } else {
             std::cout << "\033[33m\n\nLoading fitted Beta cuts...\n\n\033[0m";
-            clasAna.readInputParam((PathDefinitions.NucleonCutsDirectory + "Nucleon_Cuts_-_" + SampleName + ".par").c_str());  // load sample-appropreate cuts file from CutsDirectory
+            clasAna.readInputParam(
+                (path_definitions::PathDefinitions.NucleonCutsDirectory + "Nucleon_Cuts_-_" + SampleName + ".par").c_str());  // load sample-appropreate cuts file from CutsDirectory
 
             /* Setting nucleon cuts - only if NOT plotting efficiency plots! */
             if (limless_mom_eff_plots || is2GeVSample) {
@@ -9630,7 +9632,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                 // making f_ecalSFCuts = true
                 // TODO: ask justin what are these cuts:
                 // TODO: ask justin for these cuts for LH2 and C12 (and other elements)
-                clasAna.readEcalSFPar((PathDefinitions.PIDCutsDirectory + "paramsSF_40Ca_x2.dat").c_str());
+                clasAna.readEcalSFPar((path_definitions::PathDefinitions.PIDCutsDirectory + "paramsSF_40Ca_x2.dat").c_str());
                 // TODO: RECHECK WHAT ARE THE CUTS HERE:
                 SF_cuts = DSCuts("SF", "FD", "Electron", "1e cut", 0.24865, clasAna.getEcalSFLowerCut(), clasAna.getEcalSFUpperCut());
 
@@ -9641,7 +9643,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                 // making f_ecalSFCuts = true
                 // TODO: ask justin what are these cuts:
                 // TODO: ask justin for these cuts for LH2 and C12 (and other elements)
-                clasAna.readEcalPPar((PathDefinitions.PIDCutsDirectory + "paramsPI_40Ca_x2.dat").c_str());
+                clasAna.readEcalPPar((path_definitions::PathDefinitions.PIDCutsDirectory + "paramsPI_40Ca_x2.dat").c_str());
 
                 clasAna.setEcalPCuts();
             }
@@ -21587,7 +21589,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
         hNucleonAMapBC.hDrawAndSave(SampleName, c1, plots, Histogram_OutPDF, true);
 
         // Acceptance maps plots (1e cut)
-        aMaps_master.DrawAndSaveHitMaps(SampleName, c1, PathDefinitions.AcceptanceMapsDirectory);
+        aMaps_master.DrawAndSaveHitMaps(SampleName, c1, path_definitions::PathDefinitions.AcceptanceMapsDirectory);
     } else {
         std::cout << "\033[33m\n\nAcceptance maps plots are disabled by user.\n\n\033[0m";
     }
@@ -21636,7 +21638,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
         hTL_P_nFD_vs_TL_Phi_e_WMap.hDrawAndSave(SampleName, c1, plots, Histogram_OutPDF, true);
 
         // Efficiency maps plots (1e cut)
-        wMaps_master.DrawAndSaveHitMaps(SampleName, c1, PathDefinitions.AcceptanceWeightsDirectory);
+        wMaps_master.DrawAndSaveHitMaps(SampleName, c1, path_definitions::PathDefinitions.AcceptanceWeightsDirectory);
     } else {
         std::cout << "\033[33m\n\nEfficiency maps plots are disabled by user.\n\n\033[0m";
     }
@@ -21702,8 +21704,8 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
         if (plot_and_fit_MomRes) {
             pRes.SliceFitDrawAndSaveByType(SampleName, beamE);
-            pRes.LogResDataToFile(SampleName, run_plots_path, PathDefinitions.MomentumResolutionDirectory);
-            pRes.DrawAndSaveResSlices(SampleName, c1, run_plots_path, PathDefinitions.MomentumResolutionDirectory);
+            pRes.LogResDataToFile(SampleName, run_plots_path, path_definitions::PathDefinitions.MomentumResolutionDirectory);
+            pRes.DrawAndSaveResSlices(SampleName, c1, run_plots_path, path_definitions::PathDefinitions.MomentumResolutionDirectory);
         }
 
         // Resolution plots (1n, CD & FD)
@@ -21757,8 +21759,8 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
         if (plot_and_fit_MomRes) {
             nRes.SliceFitDrawAndSaveByType(SampleName, beamE);
-            nRes.LogResDataToFile(SampleName, run_plots_path, PathDefinitions.MomentumResolutionDirectory);
-            nRes.DrawAndSaveResSlices(SampleName, c1, run_plots_path, PathDefinitions.MomentumResolutionDirectory);
+            nRes.LogResDataToFile(SampleName, run_plots_path, path_definitions::PathDefinitions.MomentumResolutionDirectory);
+            nRes.DrawAndSaveResSlices(SampleName, c1, run_plots_path, path_definitions::PathDefinitions.MomentumResolutionDirectory);
         }
 
         hReco_L_1n.hDrawAndSave(SampleName, c1, plots, Histogram_OutPDF, norm_Angle_plots_master, true, 1., 9999, 9999, 0, false);
@@ -21905,7 +21907,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
         int chi2cuts_length = 6;
 
         ofstream FittedPIDCuts;
-        std::string FittedPIDCutsFilePath = PathDefinitions.PIDCutsDirectory + "Fitted_PID_Cuts_-_" + SampleName + ".par";
+        std::string FittedPIDCutsFilePath = path_definitions::PathDefinitions.PIDCutsDirectory + "Fitted_PID_Cuts_-_" + SampleName + ".par";
 
         FittedPIDCuts.open(FittedPIDCutsFilePath);
 
@@ -21928,7 +21930,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     if (!apply_nucleon_cuts && apply_chi2_cuts_1e_cut && (!only_preselection_cuts && !only_electron_quality_cuts)) {
         // log nucleon cuts
         ofstream Nucleon_Cuts;
-        std::string Nucleon_CutsFilePath = PathDefinitions.NucleonCutsDirectory + "Nucleon_Cuts_-_" + SampleName + ".par";
+        std::string Nucleon_CutsFilePath = path_definitions::PathDefinitions.NucleonCutsDirectory + "Nucleon_Cuts_-_" + SampleName + ".par";
 
         Nucleon_Cuts.open(Nucleon_CutsFilePath);
         Nucleon_Cuts << "######################################################################\n";
