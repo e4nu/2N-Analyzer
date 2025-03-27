@@ -1022,12 +1022,6 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
         aMaps_master = AMaps(SampleName, P_e_bin_profile, P_nuc_bin_profile, beamE, "AMaps", directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], NumberNucOfMomSlices,
                              NumberElecOfMomSlices, HistNucSliceNumOfXBins, HistNucSliceNumOfXBins, HistElectronSliceNumOfXBins, HistElectronSliceNumOfXBins);
     } else {
-        cout << "\n\npath_definitions::PathDefinitions.WorkingDirectory = " << path_definitions::PathDefinitions.WorkingDirectory << "\n\n";
-        cout << "\n\npath_definitions::PathDefinitions.SourceDirectory = " << path_definitions::PathDefinitions.SourceDirectory << "\n\n";
-        cout << "\n\npath_definitions::PathDefinitions.DataDirectory = " << path_definitions::PathDefinitions.DataDirectory << "\n\n";
-        cout << "\n\npath_definitions::PathDefinitions.AcceptanceMapsDirectory = " << path_definitions::PathDefinitions.AcceptanceMapsDirectory << "\n\n";
-        cout << "\n\npath_definitions::PathDefinitions.WorkingDirectory = " << path_definitions::PathDefinitions.WorkingDirectory << "\n\n";
-
         aMaps_master = AMaps(path_definitions::PathDefinitions.AcceptanceMapsDirectory, VaryingSampleName, beamE, Electron_single_slice_test, Nucleon_single_slice_test, TestSlices);
     }
 
