@@ -13,14 +13,23 @@
 // #define RECO_ANALYSIS_RUN false
 // #endif
 
-#include <cstdlib>  // For getenv()
-#include <cstdlib>  // For atoi()
-#include <iostream>
+// #include <cstdlib>  // For getenv()
+// #include <cstdlib>  // For atoi()
+// #include <iostream>
 
-// Define RECO_ANALYSIS_RUN as a runtime constant
-const bool RECO_ANALYSIS_RUN = (getenv("IFARM_RUN") && atoi(getenv("IFARM_RUN")) == 1);
-// #define RECO_ANALYSIS_RUN (getenv("IFARM_RUN") == 1)
-// #define RECO_ANALYSIS_RUN (getenv("IFARM_RUN") != NULL)
+#ifdef IFARM_RUN
+    #if IFARM_RUN == 1
+        #define RECO_ANALYSIS_RUN true
+    #else
+        #define RECO_ANALYSIS_RUN false
+    #endif
+#else
+    #define RECO_ANALYSIS_RUN false
+#endif
+// // Define RECO_ANALYSIS_RUN as a runtime constant
+// const bool RECO_ANALYSIS_RUN = (getenv("IFARM_RUN") && atoi(getenv("IFARM_RUN")) == 1);
+// // #define RECO_ANALYSIS_RUN (getenv("IFARM_RUN") == 1)
+// // #define RECO_ANALYSIS_RUN (getenv("IFARM_RUN") != NULL)
 
 void RECO_ANALYSIS_RUN_PrintOut() {
 #if RECO_ANALYSIS_RUN
