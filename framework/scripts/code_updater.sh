@@ -25,8 +25,8 @@ echo ""
 git clean -f
 echo ""
 
-source ./setup/scripts/environment/set_environment.csh
-source ./setup/scripts/screen/setup_screen_commands.csh
+source ./framework/scripts/environment/set_environment.csh
+source ./framework/scripts/screen/setup_screen_commands.csh
 
 echo ""
 echo "${COLOR_START}=======================================================================${COLOR_END}"

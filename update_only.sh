@@ -1,3 +1,3 @@
 #!/bin/bash
 
-source ./setup/scripts/code_updater.sh
+source ./framework/scripts/code_updater.sh
