@@ -8,8 +8,6 @@
 
 #include "framework/namespaces/setup/code_setup/code_setup.h"
 
-#include "framework/namespaces/general_utilities/namespace_includes.h"
-
 #include "framework/classes/DataAnalyser/DataAnalyser.cpp"
 #include "framework/namespaces/general_utilities/basic_tools/basic_tools.h"
 
