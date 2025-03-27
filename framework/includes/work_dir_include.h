@@ -13,17 +13,19 @@
 // #define RECO_ANALYSIS_RUN false
 // #endif
 
+#include <cstdlib>  // For getenv()
+#include <cstdlib>  // For atoi()
+#include <iostream>
+
 #define RECO_ANALYSIS_RUN (getenv("IFARM_RUN") && atoi(getenv("IFARM_RUN")) == 1)
 // #define RECO_ANALYSIS_RUN (getenv("IFARM_RUN") == 1)
 // #define RECO_ANALYSIS_RUN (getenv("IFARM_RUN") != NULL)
 
-#include <iostream>
-
 void RECO_ANALYSIS_RUN_PrintOut() {
 #if RECO_ANALYSIS_RUN
-    std::cout << "\033[33m\nRunning in ifarm configuration (WorkDir = " << WorkDir << "; RECO_ANALYSIS_RUN = " << RECO_ANALYSIS_RUN << ")\n";
+    std::cout << "\033[33m\nRunning in ifarm configuration (IFARM_RUN = " << getenv("IFARM_RUN") << "; RECO_ANALYSIS_RUN = " << RECO_ANALYSIS_RUN << ")\n";
 #else
-    std::cout << "\033[33m\nRunning in gpvm configuration (WorkDir = " << WorkDir << "; RECO_ANALYSIS_RUN = " << RECO_ANALYSIS_RUN << ")\n\n";
+    std::cout << "\033[33m\nRunning in gpvm configuration (IFARM_RUN = " << getenv("IFARM_RUN") << "; RECO_ANALYSIS_RUN = " << RECO_ANALYSIS_RUN << ")\n\n";
 #endif
 }
 
