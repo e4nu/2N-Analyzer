@@ -7,7 +7,9 @@
 
 #ifdef WORK_DIR
 #define RECO_ANALYSIS_RUN true
+const char* directory = WORK_DIR;  // Define a variable using WORK_DIR
 #else
+const char* directory = "UNKNOWN";
 #define RECO_ANALYSIS_RUN false
 #endif
 
