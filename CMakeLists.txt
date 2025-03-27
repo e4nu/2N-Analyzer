@@ -80,40 +80,40 @@ include_directories(framework/other)
 include_directories(framework/structures)
 
 add_executable(project ${CLAS12ROOT_SOURCES} ${CLAS12BANKS_SOURCES} ${HIPO4_SOURCES}
-        macros/Other/process_events.C
-        macros/PlotsEffAndACorr2x3/PlotsACorr2x3Electron.cpp
-        macros/PlotsEffAndACorr2x3/PlotsACorr2x3Nucleon.cpp
-        macros/PlotsEffAndACorr2x3/PlotsEff2x3.cpp
-        macros/PlotsEffAndACorr2x3/PlotsEff2x3Electron.cpp
-        macros/PlotsEffAndACorr2x3/PlotsEff2x3Nucleon.cpp
-        macros/AMapsDiveTest.cpp
-        macros/BetaFitAndSave.cpp
-        macros/BetaFitAndSaveApprax.cpp
-        "macros/MCtoDATAcomp - Copy (2).cpp"
-        "macros/MCtoDATAcomp - Copy.cpp"
-        macros/MCtoDATAcomp.cpp
-        macros/plots4x4.txt
-        macros/PlotsBeta4x4.cpp
-        macros/PlotsEffAndACorr2x3.cpp
-        macros/plotter_1x1.cpp
-        macros/plotter_1x2.cpp
-        macros/plotter_2x2.cpp
-        "macros/PoliFitter - Copy.cpp"
-        macros/PoliFitter.cpp
-        macros/process_events.C
+        # macros/Other/process_events.C
+        # macros/PlotsEffAndACorr2x3/PlotsACorr2x3Electron.cpp
+        # macros/PlotsEffAndACorr2x3/PlotsACorr2x3Nucleon.cpp
+        # macros/PlotsEffAndACorr2x3/PlotsEff2x3.cpp
+        # macros/PlotsEffAndACorr2x3/PlotsEff2x3Electron.cpp
+        # macros/PlotsEffAndACorr2x3/PlotsEff2x3Nucleon.cpp
+        # macros/AMapsDiveTest.cpp
+        # macros/BetaFitAndSave.cpp
+        # macros/BetaFitAndSaveApprax.cpp
+        # "macros/MCtoDATAcomp - Copy (2).cpp"
+        # "macros/MCtoDATAcomp - Copy.cpp"
+        # macros/MCtoDATAcomp.cpp
+        # macros/plots4x4.txt
+        # macros/PlotsBeta4x4.cpp
+        # macros/PlotsEffAndACorr2x3.cpp
+        # macros/plotter_1x1.cpp
+        # macros/plotter_1x2.cpp
+        # macros/plotter_2x2.cpp
+        # "macros/PoliFitter - Copy.cpp"
+        # macros/PoliFitter.cpp
+        # macros/process_events.C
         setup/codeSetup.h
         framework/classes/gst/gst.h
         framework/classes/AMaps/AMaps.cpp
         framework/classes/AMaps/AMaps.h
-        framework/classes/clas12ana/clas12ana_ver_1_myedit/clas12ana.h
-        framework/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.cpp
-        "framework/classes/clas12ana/other/clas12ana - Copy (2).h"
-        "framework/classes/clas12ana/other/clas12ana - Copy.h"
+        # framework/classes/clas12ana/clas12ana_ver_1_myedit/clas12ana.h
+        # framework/classes/clas12ana/clas12ana_ver_1_myedit/example_ana.cpp
+        # "framework/classes/clas12ana/other/clas12ana - Copy (2).h"
+        # "framework/classes/clas12ana/other/clas12ana - Copy.h"
         framework/classes/clas12ana/clas12ana.h
-        framework/classes/clas12ana/clas12ana_ver_1_myedit.h
-        "framework/classes/clas12ana/example_ana - Copy.cpp"
-        framework/classes/clas12ana/example_ana.cpp
-        framework/classes/clas12ana/skim_events.cpp
+        # framework/classes/clas12ana/clas12ana_ver_1_myedit.h
+        # "framework/classes/clas12ana/example_ana - Copy.cpp"
+        # framework/classes/clas12ana/example_ana.cpp
+        # framework/classes/clas12ana/skim_events.cpp
         framework/classes/DEfficiency/DEfficiency.cpp
         framework/classes/DEfficiency/DEfficiency.h
         framework/classes/Directories/Directories.cpp
@@ -123,8 +123,8 @@ add_executable(project ${CLAS12ROOT_SOURCES} ${CLAS12BANKS_SOURCES} ${HIPO4_SOUR
         framework/classes/ExperimentParameters/ExperimentParameters.h
         framework/classes/hPlots/hPlot1D.cpp
         framework/classes/hPlots/hPlot1D.h
-        framework/classes/hPlots/hPlot1DStack.cpp
-        framework/classes/hPlots/hPlot1DStack.h
+        # framework/classes/hPlots/hPlot1DStack.cpp
+        # framework/classes/hPlots/hPlot1DStack.h
         framework/classes/hPlots/hPlot2D.cpp
         framework/classes/hPlots/hPlot2D.h
         framework/classes/MomentumResolution/MomentumResolution.cpp
@@ -132,24 +132,23 @@ add_executable(project ${CLAS12ROOT_SOURCES} ${CLAS12BANKS_SOURCES} ${HIPO4_SOUR
         framework/classes/TargetParameters/TargetParameters.h
         framework/classes/TLCuts/TLCuts.cpp
         framework/classes/TLCuts/TLCuts.h
-        source/data/AcceptanceCorrections/C12_simulation_6GeV_T5/ACorr_data_-_C12_simulation_6GeV_T5.root
-        source/data/AcceptanceCorrections/C12_simulation_6GeV_T5_first_10/ACorr_data_-_C12_simulation_6GeV_T5_first_10.root
-        source/data/AcceptanceCorrections/C12_simulation_6GeV_T5_first_100/ACorr_data_-_C12_simulation_6GeV_T5_first_100.root
-        source/data/AcceptanceCorrections/C12_simulation_6GeV_T5_first_250/ACorr_data_-_C12_simulation_6GeV_T5_first_250.root
-        source/data/AcceptanceCorrections/C12_simulation_G18_2GeV/ACorr_data_-_C12_simulation_G18_2GeV.root
-        source/data/AcceptanceCorrections/C12_simulation_G18_Q208_6GeV/ACorr_data_-_C12_simulation_G18_Q208_6GeV.root
-        source/data/AcceptanceCorrections/Ca48_simulation_G18_10a_02_11b_6GeV/ACorr_data_-_Ca48_simulation_G18_10a_02_11b_6GeV.root
-        source/data/PIDCuts/clas12ana_ver_1_myedit/ana.par
-        source/data/PIDCuts/clas12ana_ver_1_myedit/ecal.par
-        source/data/PIDCuts/clas12ana_ver_1_myedit/Fitted_PID_Cuts__C12_simulation_6GeV_T5.par
-        source/data/PIDCuts/clas12ana_ver_1_myedit/Fitted_PID_Cuts__C12_simulation_6GeV_T5_first_10.par
-        source/data/PIDCuts/clas12ana_ver_1_myedit/Fitted_PID_Cuts__C12_simulation_6GeV_T5_first_100.par
-        source/data/PIDCuts/clas12ana_ver_1_myedit/Fitted_PID_Cuts__Ca48_data_6GeV_run_015832.par
-        source/data/PIDCuts/clas12ana_ver_1_myedit/Fitted_PID_Cuts__Ca48_simulation_G18_10a_02_11b_6GeV.par
-        source/data/PIDCuts/clas12ana_ver_1_myedit/Fitted_PID_Cuts__LH2_data_6GeV_run_015032.par
+        # source/data/AcceptanceCorrections/C12_simulation_6GeV_T5/ACorr_data_-_C12_simulation_6GeV_T5.root
+        # source/data/AcceptanceCorrections/C12_simulation_6GeV_T5_first_10/ACorr_data_-_C12_simulation_6GeV_T5_first_10.root
+        # source/data/AcceptanceCorrections/C12_simulation_6GeV_T5_first_100/ACorr_data_-_C12_simulation_6GeV_T5_first_100.root
+        # source/data/AcceptanceCorrections/C12_simulation_6GeV_T5_first_250/ACorr_data_-_C12_simulation_6GeV_T5_first_250.root
+        # source/data/AcceptanceCorrections/C12_simulation_G18_2GeV/ACorr_data_-_C12_simulation_G18_2GeV.root
+        # source/data/AcceptanceCorrections/C12_simulation_G18_Q208_6GeV/ACorr_data_-_C12_simulation_G18_Q208_6GeV.root
+        # source/data/AcceptanceCorrections/Ca48_simulation_G18_10a_02_11b_6GeV/ACorr_data_-_Ca48_simulation_G18_10a_02_11b_6GeV.root
+        # source/data/PIDCuts/clas12ana_ver_1_myedit/ana.par
+        # source/data/PIDCuts/clas12ana_ver_1_myedit/ecal.par
+        # source/data/PIDCuts/clas12ana_ver_1_myedit/Fitted_PID_Cuts__C12_simulation_6GeV_T5.par
+        # source/data/PIDCuts/clas12ana_ver_1_myedit/Fitted_PID_Cuts__C12_simulation_6GeV_T5_first_10.par
+        # source/data/PIDCuts/clas12ana_ver_1_myedit/Fitted_PID_Cuts__C12_simulation_6GeV_T5_first_100.par
+        # source/data/PIDCuts/clas12ana_ver_1_myedit/Fitted_PID_Cuts__Ca48_data_6GeV_run_015832.par
+        # source/data/PIDCuts/clas12ana_ver_1_myedit/Fitted_PID_Cuts__Ca48_simulation_G18_10a_02_11b_6GeV.par
+        # source/data/PIDCuts/clas12ana_ver_1_myedit/Fitted_PID_Cuts__LH2_data_6GeV_run_015032.par
         source/data/PIDCuts/ana.par
         source/data/PIDCuts/ecal.par
-
         source/data/PIDCuts/paramsPI_40Ca_x2.dat
         source/data/PIDCuts/paramsPI_LD2_x2.dat
         source/data/PIDCuts/paramsSF_40Ca_x2.dat
@@ -171,11 +170,11 @@ add_executable(project ${CLAS12ROOT_SOURCES} ${CLAS12BANKS_SOURCES} ${HIPO4_SOUR
         framework/namespaces/general_utilities/reco_analysis_functions/reco_analysis_functions.h
         framework/namespaces/settings/general_settings/general_settings.h
         framework/namespaces/general_utilities/truth_analysis_functions/truth_analysis_functions.h
-        "framework/other/fitexample - Copy.c"
-        framework/other/fitexample.c
-        framework/other/hPlot1D_example.cpp
+        # "framework/other/fitexample - Copy.c"
+        # framework/other/fitexample.c
+        # framework/other/hPlot1D_example.cpp
         framework/structures/Histogram1D_beta/Histogram1D.cpp
-        macros/Other/db_script.txt
+        # macros/Other/db_script.txt
         Old_analysers/DetectorSimulationAnalyser.C
         git_handle.sh
         main.c
@@ -188,12 +187,12 @@ add_executable(project ${CLAS12ROOT_SOURCES} ${CLAS12BANKS_SOURCES} ${HIPO4_SOUR
         framework/classes/ParticleID/ParticleID.cpp
         framework/classes/ParticleID/ParticleID.h
         framework/classes/AMaps/CustomSliceLimits.h
-        macros/zoomed_in_histogram.cpp
+        # macros/zoomed_in_histogram.cpp
         framework/classes/DataAnalyser/DataAnalyser.cpp
         framework/classes/DataAnalyser/DataAnalyser.h
         testers/nFD_eff_test/nFD_eff_test_functions.cpp
         testers/nFD_eff_test/nFD_eff_test.cpp
-        macros/plotHistogramsWithLabels.cpp
+        # macros/plotHistogramsWithLabels.cpp
         testers/reaction_cuts_test/reaction_cuts_test.cpp
         testers/reaction_cuts_test/reaction_cuts_test_functions.cpp
         framework/namespaces/general_utilities/analysis_math/poly_solver.h
@@ -203,7 +202,7 @@ add_executable(project ${CLAS12ROOT_SOURCES} ${CLAS12BANKS_SOURCES} ${HIPO4_SOUR
         framework/namespaces/settings/debugging_settings/debugging_settings.h
         framework/namespaces/setup/debugging/debugging.h
         framework/namespaces/setup/code_setup/code_setup.h
-        framework/includes/work_dir_include.h
+        # framework/includes/work_dir_include.h
         framework/structures/CodeDirectories/CodeDirectories.h
         framework/namespaces/setup/analysis_samples/analysis_samples.h
         framework/namespaces/setup/analysis_samples/data_samples.h
