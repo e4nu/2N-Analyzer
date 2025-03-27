@@ -32,7 +32,7 @@
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 213,
+				"line" : 214,
 				"parent" : 0
 			},
 			{
@@ -864,7 +864,8 @@
 				120,
 				121,
 				122,
-				123
+				123,
+				124
 			]
 		}
 	],
@@ -1539,6 +1540,11 @@
 		{
 			"backtrace" : 1,
 			"path" : "framework/structures/CodeDirectories/CodeDirectories.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "framework/namespaces/setup/analysis_samples/analysis_samples.h",
 			"sourceGroupIndex" : 2
 		}
 	],
