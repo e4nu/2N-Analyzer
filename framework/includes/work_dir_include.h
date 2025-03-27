@@ -13,7 +13,8 @@
 // #define RECO_ANALYSIS_RUN false
 // #endif
 
-#define RECO_ANALYSIS_RUN (getenv("IFARM_RUN") == 1)
+#define RECO_ANALYSIS_RUN (getenv("IFARM_RUN") && atoi(getenv("IFARM_RUN")) == 1)
+// #define RECO_ANALYSIS_RUN (getenv("IFARM_RUN") == 1)
 // #define RECO_ANALYSIS_RUN (getenv("IFARM_RUN") != NULL)
 
 #include <iostream>
