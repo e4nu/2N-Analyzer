@@ -18,7 +18,6 @@
 using namespace code_setup;
 
 int main() {
-    RECO_ANALYSIS_RUN_PrintOut();
     // ConfigSampleChain();
     // ConfigCanvasPDF();
 
