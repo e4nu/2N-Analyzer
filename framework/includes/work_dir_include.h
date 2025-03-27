@@ -5,13 +5,15 @@
 // #ifndef WORK_DIR_INCLUDE_H
 // #define WORK_DIR_INCLUDE_H
 
+#include <iostream>
+
 #ifdef WORK_DIR
+std::cout << "WORK_DIR is defined: " << WORK_DIR << std::endl;
 #define RECO_ANALYSIS_RUN true
 #else
+std::cout << "WORK_DIR is not defined, using default: " << workDir << std::endl;
 #define RECO_ANALYSIS_RUN false
 #endif
-
-#include <iostream>
 
 void RECO_ANALYSIS_RUN_PrintOut() {
 #if RECO_ANALYSIS_RUN
