@@ -5,6 +5,7 @@ source update_only.sh
 echo "\033[35m- Launching data-analysis code -------------------------------------\033[0m"
 echo ""
 if ( "$IFARM_RUN" == "1" ) then
+    echo "clas12root -DIFARM_RUN=$IFARM_RUN -b -q ./main.c"
     # If IFARM_RUN is 1, run the macro with WORK_DIR set
     # clas12root -DWORK_DIR=\"$(pwd)\" -b -q ./main.c
     # clas12root -DWORK_DIR="`pwd`" -b -q ./main.c
