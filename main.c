@@ -6,18 +6,19 @@
 #define RECO_ANALYSIS_RUN false
 #endif
 
-// #include "framework/namespaces/general_utilities/namespace_includes.h"
-//
-// #include "framework/classes/DataAnalyser/DataAnalyser.cpp"
-// #include "framework/namespaces/general_utilities/basic_tools/basic_tools.h"
-#include "framework/namespaces/setup/path_definitions/path_definitions.h"
+#include "framework/namespaces/setup/code_setup/code_setup.h"
 
-using namespace std;
-using namespace path_definitions;
+#include "framework/namespaces/general_utilities/namespace_includes.h"
+
+#include "framework/classes/DataAnalyser/DataAnalyser.cpp"
+#include "framework/namespaces/general_utilities/basic_tools/basic_tools.h"
+
+// using namespace std;
+using namespace code_setup;
 
 int main() {
-    // ConfigSampleChain();
-    // ConfigCanvasPDF();
+    ConfigSampleChain();
+    ConfigCanvasPDF();
 
     auto start = std::chrono::system_clock::now();  // Start counting running time
 

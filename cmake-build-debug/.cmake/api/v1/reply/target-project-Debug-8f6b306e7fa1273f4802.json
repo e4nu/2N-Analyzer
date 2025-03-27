@@ -32,7 +32,7 @@
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 211,
+				"line" : 212,
 				"parent" : 0
 			},
 			{
@@ -862,7 +862,8 @@
 				118,
 				119,
 				120,
-				121
+				121,
+				122
 			]
 		}
 	],
@@ -1527,6 +1528,11 @@
 		{
 			"backtrace" : 1,
 			"path" : "framework/namespaces/setup/debugging/debugging.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "framework/namespaces/setup/setup/setup.h",
 			"sourceGroupIndex" : 2
 		}
 	],

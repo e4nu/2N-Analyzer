@@ -112,7 +112,8 @@
         "poly_solver.cpp": "c",
         "fitter_functions.h": "c",
         "ttree.h": "c",
-        "path_definitions.h": "c"
+        "path_definitions.h": "c",
+        "code_setup.h": "c"
     },
     "[jsonc]": {
         "editor.defaultFormatter": "vscode.json-language-features"
