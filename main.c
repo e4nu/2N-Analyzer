@@ -9,8 +9,8 @@
 using namespace code_setup;
 
 int main() {
-    // ConfigSampleChain();
-    // ConfigCanvasPDF();
+    ConfigSampleChain();
+    ConfigCanvasPDF();
 
     auto start = std::chrono::system_clock::now();  // Start counting running time
 
