@@ -24,6 +24,8 @@
 #include "../framework/classes/hPlots/hPlot1D.cpp"
 #include "../framework/classes/hPlots/hPlot2D.cpp"
 
+#include "../framework/includes/clas12_include.h"
+
 #if !defined(MOMENTUMRESOLUTION_H)
 #include "../framework/classes/MomentumResolution/MomentumResolution.cpp"
 #endif
@@ -38,11 +40,11 @@
 // #include "../framework/functions/FitFunctions/BetaFit.h"
 // #include "../framework/functions/FitFunctions/BetaFitApprax.h"
 //
-#include "HipoChain.h"
-#include "clas12reader.h"
+// #include "HipoChain.h"
+// #include "clas12reader.h"
 
 using namespace std;
-using namespace clas12;
+// using namespace clas12;
 using namespace utilities;
 using namespace draw_and_save_functions;
 
