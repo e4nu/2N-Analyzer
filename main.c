@@ -19,41 +19,46 @@ int main() {
 
     auto start = std::chrono::system_clock::now();  // Start counting running time
 
-    int Num_of_analysed_samples = 0;
+    cout << "\n\nWorkingDirectory = " << WorkingDirectory << "\n\n";
+    cout << "\n\nSourceDirectory = " << SourceDirectory << "\n\n";
+    cout << "\n\nDataDirectory = " << DataDirectory << "\n\n";
+    cout << "\n\nAcceptanceMapsDirectory = " << AcceptanceMapsDirectory << "\n\n";
 
-    cout << "\nLooping over sample chain...\n";
-
-    for (int i = 0; i < AnalyseFilePath_v.size(); i++) {
-        std::string AnalyseFilePath0 = AnalyseFilePath_v.at(i);
-        std::string AnalyseFileSample0 = AnalyseFileSample_v.at(i);
-        std::string AnalyseFileDir0 = AnalyseFileDir_v.at(i);
-        std::string AnalyseFile0 = AnalyseFile_v.at(i);
-
-        std::string FileType = AnalyseFile_v.at(i).substr(AnalyseFile_v.at(i).find_last_of(".") + 1);
-
-        cout << "\nAnalyseFilePath:\t" << AnalyseFilePath0 << "\n";
-        cout << "AnalyseFileSample:\t" << AnalyseFileSample0 << "\n";
-        cout << "AnalyseFileDir:\t" << AnalyseFileDir0 << "\n";
-        cout << "AnalyseFile:\t" << AnalyseFile0 << "\n\n";
-
-        cout << "FileType:\t" << FileType << "\n";
-
-        DataAnalyser Analysis(FileType, AnalyseFilePath0, AnalyseFileSample0, AnalyseFile0);
-        std::string AnalyserMode = Analysis.ConfigureAnalyserMode(FileType);
-
-        cout << "Analyser mode:\t'" << AnalyserMode << "'\n";
-
-        cout << "\n---------------------------------------------------------------------------\n\n";
-        cout << "Analysis mode:\t'" << AnalyserMode << "'" << "\n";
-        cout << "Code version:\t" << Ver << "\n";
-
-        ++Num_of_analysed_samples;
-
-        if (AnalyseFilePath_v.size() > 1) {  // Delete all ROOT objects whose class names start with TH (to prevent a memory leak)
-            // gDirectory->Delete("TH*;*");
-            gDirectory->Clear();
-        }
-    }
+    // int Num_of_analysed_samples = 0;
+    //
+    // cout << "\nLooping over sample chain...\n";
+    //
+    // for (int i = 0; i < AnalyseFilePath_v.size(); i++) {
+    //     std::string AnalyseFilePath0 = AnalyseFilePath_v.at(i);
+    //     std::string AnalyseFileSample0 = AnalyseFileSample_v.at(i);
+    //     std::string AnalyseFileDir0 = AnalyseFileDir_v.at(i);
+    //     std::string AnalyseFile0 = AnalyseFile_v.at(i);
+    //
+    //     std::string FileType = AnalyseFile_v.at(i).substr(AnalyseFile_v.at(i).find_last_of(".") + 1);
+    //
+    //     cout << "\nAnalyseFilePath:\t" << AnalyseFilePath0 << "\n";
+    //     cout << "AnalyseFileSample:\t" << AnalyseFileSample0 << "\n";
+    //     cout << "AnalyseFileDir:\t" << AnalyseFileDir0 << "\n";
+    //     cout << "AnalyseFile:\t" << AnalyseFile0 << "\n\n";
+    //
+    //     cout << "FileType:\t" << FileType << "\n";
+    //
+    //     DataAnalyser Analysis(FileType, AnalyseFilePath0, AnalyseFileSample0, AnalyseFile0);
+    //     std::string AnalyserMode = Analysis.ConfigureAnalyserMode(FileType);
+    //
+    //     cout << "Analyser mode:\t'" << AnalyserMode << "'\n";
+    //
+    //     cout << "\n---------------------------------------------------------------------------\n\n";
+    //     cout << "Analysis mode:\t'" << AnalyserMode << "'" << "\n";
+    //     cout << "Code version:\t" << Ver << "\n";
+    //
+    //     ++Num_of_analysed_samples;
+    //
+    //     if (AnalyseFilePath_v.size() > 1) {  // Delete all ROOT objects whose class names start with TH (to prevent a memory leak)
+    //         // gDirectory->Delete("TH*;*");
+    //         gDirectory->Clear();
+    //     }
+    // }
 
     cout << "#(analysed samples):\t" << Num_of_analysed_samples << "\n";
 

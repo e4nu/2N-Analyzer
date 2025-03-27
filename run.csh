@@ -9,7 +9,7 @@ if ( "$IFARM_RUN" == "1" ) then
     clas12root -DWORK_DIR="`pwd`" -b -q ./main.c
 else
     # If IFARM_RUN is not 1, just run the macro without WORK_DIR
-    clas12root -b -q ./main.c
+    root -b -q ./main.c
 endif
 echo ""
 echo "\033[35m- Operation finished --------------------------------------------------\033[0m"
