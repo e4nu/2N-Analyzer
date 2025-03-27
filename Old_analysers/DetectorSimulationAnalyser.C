@@ -1040,6 +1040,8 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
         aMaps_master = AMaps(path_definitions::PathDefinitions.AcceptanceMapsDirectory, VaryingSampleName, beamE, Electron_single_slice_test, Nucleon_single_slice_test, TestSlices);
     }
 
+    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode);
+
     if (Generate_WMaps) {
         wMaps_master = AMaps(SampleName, P_e_bin_profile, P_nuc_bin_profile, beamE, "WMaps", directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], NumberNucOfMomSlices,
                              NumberElecOfMomSlices, HistNucSliceNumOfXBins, HistNucSliceNumOfXBins, HistElectronSliceNumOfXBins, HistElectronSliceNumOfXBins);
