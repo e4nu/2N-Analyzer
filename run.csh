@@ -6,8 +6,8 @@ echo "\033[35m- Launching data-analysis code -----------------------------------
 echo ""
 if ( "$IFARM_RUN" == "1" ) then
     # If IFARM_RUN is 1, run the macro with WORK_DIR set
-    clas12root -DWORK_DIR=\"$(pwd)\" -b -q ./main.c
-    # clas12root -DWORK_DIR="`pwd`" -b -q ./main.c
+    # clas12root -DWORK_DIR=\"$(pwd)\" -b -q ./main.c
+    clas12root -DWORK_DIR="`pwd`" -b -q ./main.c
 else
     # If IFARM_RUN is not 1, just run the macro without WORK_DIR
     root -b -q ./main.c
