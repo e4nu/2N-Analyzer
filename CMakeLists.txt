@@ -164,7 +164,6 @@ add_executable(project ${CLAS12ROOT_SOURCES} ${CLAS12BANKS_SOURCES} ${HIPO4_SOUR
         framework/functions/StackPlot4.h
         framework/namespaces/general_utilities/utilities/utilities.h
         framework/namespaces/general_utilities/analysis_math/analysis_math.h
-        framework/namespaces/general_utilities/analysis_math/analysis_math_reco_extentions.h
         framework/namespaces/general_utilities/basic_tools/basic_tools.h
         framework/namespaces/general_utilities/constants/constants.h
         framework/namespaces/general_utilities/data_processor/data_processor.h
