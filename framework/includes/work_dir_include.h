@@ -1,7 +1,12 @@
 #include <iostream>
 
+#define STRINGIFY(x) #x
+#define IFARM_RUN_STR(x) STRINGIFY(x)
+
+#pragma message "IFARM_RUN is defined as " IFARM_RUN_STR(IFARM_RUN)
+
 #ifdef IFARM_RUN
-#if IFARM_RUN == 1
+#if IFARM_RUN + 0 == 1  // Ensures it's treated as an integer
 #define RECO_ANALYSIS_RUN true
 #else
 #define RECO_ANALYSIS_RUN false
