@@ -13,6 +13,7 @@
 #include "framework/namespaces/setup/path_definitions/path_definitions.h"
 
 using namespace std;
+using namespace path_definitions;
 
 int main() {
     // ConfigSampleChain();
