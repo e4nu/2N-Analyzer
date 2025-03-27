@@ -23,21 +23,21 @@ struct CodeDirectories {
     std::string PIDCutsDirectory;
 
     CodeDirectories() {
-        WorkingDirectory(basic_tools::GetCurrentDirectory() + "/");
-        plots_path("/lustre24/expphy/volatile/clas12/asportes/Analysis_output");
+        WorkingDirectory = basic_tools::GetCurrentDirectory() + "/";
+        plots_path = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output";
 
-        SettingsDirectory(WorkingDirectory + "setup/");
+        SettingsDirectory = WorkingDirectory + "setup/";
 
-        SourceDirectory(WorkingDirectory + "source/");
+        SourceDirectory = WorkingDirectory + "source/";
 
-        DataDirectory(SourceDirectory + "data/");
-        ACorrDirectory(DataDirectory + "AcceptanceCorrections/");
+        DataDirectory = SourceDirectory + "data/";
+        ACorrDirectory = DataDirectory + "AcceptanceCorrections/";
 
-        AcceptanceMapsDirectory(DataDirectory + "AcceptanceMaps/");
-        AcceptanceWeightsDirectory(DataDirectory + "AcceptanceWeights/");
-        MomentumResolutionDirectory(DataDirectory + "NeutronResolution/");
-        NucleonCutsDirectory(DataDirectory + "NucleonCuts/");
-        PIDCutsDirectory(DataDirectory + "PIDCuts/");
+        AcceptanceMapsDirectory = DataDirectory + "AcceptanceMaps/";
+        AcceptanceWeightsDirectory = DataDirectory + "AcceptanceWeights/";
+        MomentumResolutionDirectory = DataDirectory + "NeutronResolution/";
+        NucleonCutsDirectory = DataDirectory + "NucleonCuts/";
+        PIDCutsDirectory = DataDirectory + "PIDCuts/";
     }
     // CodeDirectories()
     //     : WorkingDirectory(basic_tools::GetCurrentDirectory() + "/"),
