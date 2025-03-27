@@ -1024,6 +1024,10 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
         cout << "\n\npath_definitions::PathDefinitions.SourceDirectory = " << path_definitions::PathDefinitions.SourceDirectory << "\n\n";
         cout << "\n\npath_definitions::PathDefinitions.DataDirectory = " << path_definitions::PathDefinitions.DataDirectory << "\n\n";
         cout << "\n\npath_definitions::PathDefinitions.AcceptanceMapsDirectory = " << path_definitions::PathDefinitions.AcceptanceMapsDirectory << "\n\n";
+
+        path_definitions::PathDefinitions.WorkingDirectory = "";
+        cout << "\n\npath_definitions::PathDefinitions.WorkingDirectory = " << path_definitions::PathDefinitions.WorkingDirectory << "\n\n";
+
         aMaps_master = AMaps(path_definitions::PathDefinitions.AcceptanceMapsDirectory, VaryingSampleName, beamE, Electron_single_slice_test, Nucleon_single_slice_test, TestSlices);
     }
 
