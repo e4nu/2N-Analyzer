@@ -382,7 +382,7 @@ AMaps::AMaps(const std::string &AcceptanceMapsDirectory, const std::string &Samp
     ReadWMapSlices(Proton_source_folder, AcceptanceMapsDirectory, "Proton", Loaded_NucleonMomSliceLimits, Loaded_p_WMap_Slices);  // TODO: figure out what to do with these
     ReadAMapSlices(Neutron_source_folder, AcceptanceMapsDirectory, "Neutron", Loaded_NucleonMomSliceLimits, Loaded_n_AMap_Slices);
     ReadWMapSlices(Neutron_source_folder, AcceptanceMapsDirectory, "Neutron", Loaded_NucleonMomSliceLimits, Loaded_n_WMap_Slices);  // TODO: figure out what to do with these
-    ReadAMapSlices(SampleName, AcceptanceMapsDirectory, "Nucleon", Loaded_NucleonMomSliceLimits, Loaded_nuc_AMap_Slices);            // TODO: figure out what to do with these
+    ReadAMapSlices(SampleName, AcceptanceMapsDirectory, "Nucleon", Loaded_NucleonMomSliceLimits, Loaded_nuc_AMap_Slices);           // TODO: figure out what to do with these
     // ReadAMapSlices(SampleName, AcceptanceMapsDirectory, "Electron", Loaded_ElectronMomSliceLimits, Loaded_e_AMap_Slices);
     // ReadWMapSlices(SampleName, AcceptanceMapsDirectory, "Electron", Loaded_ElectronMomSliceLimits, Loaded_e_WMap_Slices);
     // ReadAMapSlices(SampleName, AcceptanceMapsDirectory, "Proton", Loaded_NucleonMomSliceLimits, Loaded_p_AMap_Slices);
@@ -2223,6 +2223,8 @@ void AMaps::ReadWMapSlices(const std::string &SampleName, const std::string &Acc
 /* A function that reads AMaps */
 
 void AMaps::ReadAMap(const char *filename, vector<vector<int>> &Loaded_particle_AMap) {
+    bool PrintOut = true;
+
     ifstream infile;
     infile.open(filename);
 
@@ -2242,6 +2244,8 @@ void AMaps::ReadAMap(const char *filename, vector<vector<int>> &Loaded_particle_
 
                 std::string LineEntry;
                 vector<int> col;
+
+                if (PrintOut) { cout << "\n\nLineEntry = " << LineEntry << "\n\n"; }
 
                 while (getline(ss2, LineEntry, ':')) { col.push_back(stoi(LineEntry)); }
 
