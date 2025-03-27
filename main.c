@@ -60,7 +60,7 @@ int main() {
     //     }
     // }
 
-    cout << "#(analysed samples):\t" << Num_of_analysed_samples << "\n";
+    // cout << "#(analysed samples):\t" << Num_of_analysed_samples << "\n";
 
     auto end = std::chrono::system_clock::now();
     auto elapsed_time_seconds = std::chrono::duration_cast<std::chrono::seconds>(end - start);
