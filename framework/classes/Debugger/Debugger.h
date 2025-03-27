@@ -84,8 +84,9 @@ class Debugger {
 
     void PrintStepTester(const char *FILE, const int LINE, const bool &DebuggerMode) {
         if (DebuggerMode) {
-            std::cerr << "\033[31m\n\nTest number " << StepTester << std::endl;
-            std::cerr << "File: " << FILE << ", Line: " << LINE << "\n\n" << std::endl;
+            std::cerr << "\033[31m\n\nStep-by-step tester is enabled:" << std::endl;
+            std::cerr << "Test number " << StepTester << std::endl;
+            std::cerr << "File: " << FILE << ", Line: " << LINE << "\n\n\033[0m" << std::endl;
             ++StepTester;
         }
     }
