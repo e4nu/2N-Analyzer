@@ -6,7 +6,8 @@
 #pragma message "Running in ifarm configuration..."
 #else
 #define RECO_ANALYSIS_RUN false
-#pragma message "Running in gpvm configuration..."
+#pragma message __FILE__
+// #pragma message "Running in gpvm configuration..."
 #endif
 
 #include "framework/namespaces/setup/code_setup/code_setup.h"
