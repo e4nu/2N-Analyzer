@@ -23,7 +23,6 @@
 #include "../framework/classes/clas12ana/clas12ana.h"
 #include "../framework/classes/hPlots/hPlot1D.cpp"
 #include "../framework/classes/hPlots/hPlot2D.cpp"
-
 #include "../framework/includes/clas12_include.h"
 
 #if !defined(MOMENTUMRESOLUTION_H)
@@ -156,13 +155,15 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     */
 
     // Auto-disable variables
+    if (isData) { Generate_Electron_AMaps = Generate_Nucleon_AMaps = Generate_WMaps = false; }
+
     if (Generate_Electron_AMaps && Generate_Nucleon_AMaps) {
         std::cout << "\n\nGenerate AMaps: Generate_Electron_AMaps and Generate_Nucleon_AMaps can't be true at the same time! Exiting...", exit(0);
     }
 
-    if (Generate_Electron_AMaps && !FindSubstring(SampleName, "Uniform_1e")) { Generate_Electron_AMaps = false; }
+    if (Generate_Electron_AMaps && !basic_tools::FindSubstring(SampleName, "Uniform_1e")) { Generate_Electron_AMaps = false; }
 
-    if (Generate_Nucleon_AMaps && (!FindSubstring(SampleName, "Uniform_ep")) && !FindSubstring(SampleName, "Uniform_en")) { Generate_Nucleon_AMaps = false; }
+    if (Generate_Nucleon_AMaps && (!basic_tools::FindSubstring(SampleName, "Uniform_ep")) && !basic_tools::FindSubstring(SampleName, "Uniform_en")) { Generate_Nucleon_AMaps = false; }
 
     if (plot_and_fit_MomRes && (Calculate_momResS2 || Run_with_momResS2)) { ForceSmallpResLimits = false; }
 
@@ -178,7 +179,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     /* Settings that allow to disable/enable every cut individually */
 
     // clas12ana cuts ---------------------------------------------------------------------------------------------------------------------------------------------------
-    bool apply_cuts = false;                  // master ON/OFF switch for applying cuts
+    bool apply_cuts = true;                   // master ON/OFF switch for applying cuts
     bool clas12ana_particles = true;          // TODO: move form here!
     bool only_preselection_cuts = false;      // keep as false for regular runs!
     bool only_electron_quality_cuts = false;  // keep as false for regular runs!
@@ -11147,8 +11148,8 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
             }  // end of for loop over TL particles
 
             // Fill leading FD neutron acceptance maps
-            if (
-                // if ((TL_NeutronsFD_mom_ind.size() == 1) &&  // FOR nFD eff test!
+            // if (
+            if ((TL_NeutronsFD_mom_ind.size() == 1) &&  // FOR nFD eff test!
                 Generate_Nucleon_AMaps && TL_Event_Selection_1e_cut_AMaps && (!AMaps_calc_with_one_reco_electron || (electrons.size() == 1)) && ES_by_leading_FDneutron &&
                 ((TL_IDed_Leading_nFD_ind != -1) && (TL_IDed_Leading_nFD_momentum > 0))) {
                 /* Fill leading TL FD neutron acceptance maps */
@@ -12414,8 +12415,8 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
             }
 
             // Filling neurton reco. Acceptance maps
-            if (
-                // if ((NeutronsFD_ind.size() == 1) &&  // FOR nFD eff test!
+            // if (
+            if ((NeutronsFD_ind.size() == 1) &&  // FOR nFD eff test!
                 ES_by_leading_FDneutron) {
                 if (NeutronsFD_ind_mom_max != -1) {
                     // if NeutronsFD_ind_mom_max == -1, there are no neutrons above momentum th. in the event

@@ -22,9 +22,9 @@ void nFD_eff_test() {
 
     bool use_ConstPn_samples = false;
 
-    // vector<double> cPart_veto_radii = {100};
+    vector<double> cPart_veto_radii = {100};
     // vector<double> cPart_veto_radii = {100, 125, 150};
-    vector<double> cPart_veto_radii = {100, 125, 150, 175, 200};
+    // vector<double> cPart_veto_radii = {100, 125, 150, 175, 200};
     vector<double> nPart_veto_radii = {100, 125, 150, 175, 200, 250};
 
     // vector<double> Ebeam_v = {2.07052};
@@ -44,19 +44,20 @@ void nFD_eff_test() {
 
     bool apply_neutFD_redef = true;
     bool apply_ECAL_veto = true;
-    bool apply_PCAL_neutral_veto = true;
+    bool apply_PCAL_neutral_veto = false;
 
+    vector<vector<bool>> CutSelector = {{true, false, false}, {true, true, false}, {true, false, true}};  // ConstrainedE = true
     // vector<vector<bool>> CutSelector = {{true, false, false}, {true, true, false}, {true, false, true}};  // ConstrainedE = true
     // vector<vector<bool>> CutSelector = {{false, false, false}, {false, true, false}, {false, false, true}}; // ConstrainedE = false
-    vector<vector<bool>> CutSelector = {{true, false, false}, {true, true, false}, {true, false, true}, {false, false, false}, {false, true, false}, {false, false, true}};
+    // vector<vector<bool>> CutSelector = {{true, false, false}, {true, true, false}, {true, false, true}, {false, false, false}, {false, true, false}, {false, false, true}};
 
     bool ConstrainTLmom = false;
 
     // bool plot_AMaps = false;
     bool plot_AMaps = true;
 
-    std::string OutFolderName_prefix = "05_test";
-    std::string OutFolderName_ver_status = "_v16";
+    std::string OutFolderName_prefix = "05_en_AMaps";
+    std::string OutFolderName_ver_status = "_v17";
     // std::string OutFolderName_prefix = "nFD_eff_test";
     // std::string OutFolderName_ver_status = "_v6";
     std::string samples_status = use_ConstPn_samples ? "_CPn" : "";
