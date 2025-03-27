@@ -2247,10 +2247,10 @@ void AMaps::ReadAMap(const char *filename, vector<vector<int>> &Loaded_particle_
 
                 if (PrintOut) {
                     cout << "\n\nfilename = " << filename << "\n";
-                    cout << "ss = " << ss << "\n";
+                    // cout << "ss = " << ss << "\n";
                     cout << "parameter = " << parameter << "\n";
                     cout << "parameter2 = " << parameter2 << "\n";
-                    cout << "ss2 = " << ss2 << "\n";
+                    // cout << "ss2 = " << ss2 << "\n";
                     cout << "LineEntry = " << LineEntry << "\n\n";
                 }
 
