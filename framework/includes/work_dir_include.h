@@ -15,9 +15,9 @@
 
 void RECO_ANALYSIS_RUN_PrintOut() {
 #if RECO_ANALYSIS_RUN
-    std::cout << "\033[33m\nRunning in ifarm configuration (RECO_ANALYSIS_RUN = " << RECO_ANALYSIS_RUN << ")\n";
+    std::cout << "\033[33m\nRunning in ifarm configuration (WORK_DIR = " << WORK_DIR << "; RECO_ANALYSIS_RUN = " << basic_tools::BoolToString(RECO_ANALYSIS_RUN) << ")\n";
 #else
-    std::cout << "\033[33m\nRunning in gpvm configuration (RECO_ANALYSIS_RUN = " << RECO_ANALYSIS_RUN << ")\n";
+    std::cout << "\033[33m\nRunning in gpvm configuration (WORK_DIR = " << WORK_DIR << "; RECO_ANALYSIS_RUN = " << basic_tools::BoolToString(RECO_ANALYSIS_RUN) << ")\n\n";
 #endif
 }
 

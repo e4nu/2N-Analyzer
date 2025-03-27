@@ -17,10 +17,10 @@ int main() {
 
     auto start = std::chrono::system_clock::now();  // Start counting running time
 
-    // cout << "\n\nPathDefinitions.WorkingDirectory = " << PathDefinitions.WorkingDirectory << "\n\n";
-    // cout << "\n\nPathDefinitions.SourceDirectory = " << PathDefinitions.SourceDirectory << "\n\n";
-    // cout << "\n\nPathDefinitions.DataDirectory = " << PathDefinitions.DataDirectory << "\n\n";
-    // cout << "\n\nPathDefinitions.AcceptanceMapsDirectory = " << PathDefinitions.AcceptanceMapsDirectory << "\n\n";
+    cout << "\n\nPathDefinitions.WorkingDirectory = " << PathDefinitions.WorkingDirectory << "\n\n";
+    cout << "\n\nPathDefinitions.SourceDirectory = " << PathDefinitions.SourceDirectory << "\n\n";
+    cout << "\n\nPathDefinitions.DataDirectory = " << PathDefinitions.DataDirectory << "\n\n";
+    cout << "\n\nPathDefinitions.AcceptanceMapsDirectory = " << PathDefinitions.AcceptanceMapsDirectory << "\n\n";
 
     // int Num_of_analysed_samples = 0;
     //
