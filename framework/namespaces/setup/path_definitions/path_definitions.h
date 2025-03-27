@@ -11,7 +11,7 @@
 #include "../../../structures/CodeDirectories/CodeDirectories.h"
 
 namespace path_definitions {
-const CodeDirectories& PathDefinitions = CodeDirectories();
+const CodeDirectories PathDefinitions = CodeDirectories();
 
 const std::string plots_TList_FileType = "_plots.root";
 const std::string plots_TFile_FileType = "_plots.pdf";
