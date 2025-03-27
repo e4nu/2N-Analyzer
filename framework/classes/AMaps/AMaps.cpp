@@ -7,21 +7,6 @@
 
 #include "AMaps.h"
 
-// #include <TApplication.h>
-// #include <TCanvas.h>
-// #include <TChain.h>
-// #include <TDatabasePDG.h>
-// #include <TFile.h>
-// #include <TH1.h>
-// #include <TH2.h>
-// #include <TLatex.h>
-// #include <TLorentzVector.h>
-// #include <TROOT.h>
-// #include <TStyle.h>
-// #include <TTree.h>
-
-// #include "CustomSliceLimits.h"
-
 // AMaps constructors ---------------------------------------------------------------------------------------------------------------------------------------------------
 
 //<editor-fold desc="AMaps generation constructor">
@@ -1548,18 +1533,18 @@ void AMaps::SaveHitMaps(const std::string &SampleName, const std::string &Accept
 
         for (int j = 0; j < HistNucSliceNumOfXBins; j++) {
             if (j != HistNucSliceNumOfXBins - 1) {
-                if (PrintOut) { cout << "\n\np_AMap_file << p_AMap.at(i).at(j) <<\n"; }
+                if (PrintOut) { cout << "\n\np_AMap_file << p_AMap.at(" << i << ").at(" << j << ") <<\n"; }
                 p_AMap_file << p_AMap.at(i).at(j) << ":";
-                if (PrintOut) { cout << "\n\nn_AMap_file << n_AMap.at(i).at(j) <<\n"; }
+                if (PrintOut) { cout << "\n\nn_AMap_file << n_AMap.at(" << i << ").at(" << j << ") <<\n"; }
                 n_AMap_file << n_AMap.at(i).at(j) << ":";
-                if (PrintOut) { cout << "\n\nnuc_AMap_file << nuc_AMap.at(i).at(j) <<\n"; }
+                if (PrintOut) { cout << "\n\nnuc_AMap_file << nuc_AMap.at(" << i << ").at(" << j << ") <<\n"; }
                 nuc_AMap_file << nuc_AMap.at(i).at(j) << ":";
             } else {
-                if (PrintOut) { cout << "\n\np_AMap_file << p_AMap.at(i).at(j) <<\n"; }
+                if (PrintOut) { cout << "\n\np_AMap_file << p_AMap.at(" << i << ").at(" << j << ") <<\n"; }
                 p_AMap_file << p_AMap.at(i).at(j);
-                if (PrintOut) { cout << "\n\nn_AMap_file << n_AMap.at(i).at(j) <<\n"; }
+                if (PrintOut) { cout << "\n\nn_AMap_file << n_AMap.at(" << i << ").at(" << j << ") <<\n"; }
                 n_AMap_file << n_AMap.at(i).at(j);
-                if (PrintOut) { cout << "\n\nnuc_AMap_file << nuc_AMap.at(i).at(j) <<\n"; }
+                if (PrintOut) { cout << "\n\nnuc_AMap_file << nuc_AMap.at(" << i << ").at(" << j << ") <<\n"; }
                 nuc_AMap_file << nuc_AMap.at(i).at(j);
             }
         }

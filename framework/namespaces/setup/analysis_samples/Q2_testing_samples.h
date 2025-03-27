@@ -1,20 +1,21 @@
+#ifndef Q2_TESTING_SAMPLES_H
+#define Q2_TESTING_SAMPLES_H
+
 #include <vector>
 
-#ifndef Q2_TESTING_SAMPLES
-#define Q2_TESTING_SAMPLES
+namespace analysis_samples {
 
 #pragma region C12 varing Q2 4GeV
 
 /* C12 G18 varing Q2 4GeV */
-void Config_C12_G18_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFilePath_v, std::vector<std::string> &AnalyseFileSample_v,
-                                         std::vector<std::string> &AnalyseFileDir_v, std::vector<std::string> &AnalyseFile_v,
-                                         std::string &AnalyseFilePath, std::string &AnalyseFileSample, std::string &AnalyseFileDir, std::string &AnalyseFile)
-{
+void Config_C12_G18_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFilePath_v, std::vector<std::string> &AnalyseFileSample_v, std::vector<std::string> &AnalyseFileDir_v,
+                                         std::vector<std::string> &AnalyseFile_v, std::string &AnalyseFilePath, std::string &AnalyseFileSample, std::string &AnalyseFileDir,
+                                         std::string &AnalyseFile) {
     AnalyseFilePath = "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/2N_Analysis_Reco_Samples/C12/G18_10a_00_000/Q2_th_test_samples/4029MeV/Q2_0_02";
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -24,7 +25,7 @@ void Config_C12_G18_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFilePa
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -34,7 +35,7 @@ void Config_C12_G18_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFilePa
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -44,7 +45,7 @@ void Config_C12_G18_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFilePa
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -54,7 +55,7 @@ void Config_C12_G18_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFilePa
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -64,7 +65,7 @@ void Config_C12_G18_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFilePa
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -74,7 +75,7 @@ void Config_C12_G18_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFilePa
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -84,7 +85,7 @@ void Config_C12_G18_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFilePa
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -94,7 +95,7 @@ void Config_C12_G18_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFilePa
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -104,7 +105,7 @@ void Config_C12_G18_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFilePa
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -114,7 +115,7 @@ void Config_C12_G18_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFilePa
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -124,7 +125,7 @@ void Config_C12_G18_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFilePa
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -134,7 +135,7 @@ void Config_C12_G18_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFilePa
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -144,7 +145,7 @@ void Config_C12_G18_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFilePa
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -154,7 +155,7 @@ void Config_C12_G18_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFilePa
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -164,7 +165,7 @@ void Config_C12_G18_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFilePa
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -174,7 +175,7 @@ void Config_C12_G18_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFilePa
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -184,7 +185,7 @@ void Config_C12_G18_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFilePa
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -194,7 +195,7 @@ void Config_C12_G18_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFilePa
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -204,7 +205,7 @@ void Config_C12_G18_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFilePa
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -214,7 +215,7 @@ void Config_C12_G18_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFilePa
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -224,7 +225,7 @@ void Config_C12_G18_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFilePa
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -234,7 +235,7 @@ void Config_C12_G18_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFilePa
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -244,7 +245,7 @@ void Config_C12_G18_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFilePa
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -254,7 +255,7 @@ void Config_C12_G18_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFilePa
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -264,7 +265,7 @@ void Config_C12_G18_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFilePa
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -274,7 +275,7 @@ void Config_C12_G18_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFilePa
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -284,7 +285,7 @@ void Config_C12_G18_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFilePa
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -294,7 +295,7 @@ void Config_C12_G18_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFilePa
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -304,7 +305,7 @@ void Config_C12_G18_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFilePa
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -314,7 +315,7 @@ void Config_C12_G18_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFilePa
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -324,7 +325,7 @@ void Config_C12_G18_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFilePa
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -334,7 +335,7 @@ void Config_C12_G18_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFilePa
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -344,7 +345,7 @@ void Config_C12_G18_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFilePa
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -354,7 +355,7 @@ void Config_C12_G18_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFilePa
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -364,7 +365,7 @@ void Config_C12_G18_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFilePa
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -374,7 +375,7 @@ void Config_C12_G18_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFilePa
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -384,7 +385,7 @@ void Config_C12_G18_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFilePa
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -394,7 +395,7 @@ void Config_C12_G18_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFilePa
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -402,15 +403,14 @@ void Config_C12_G18_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFilePa
 }
 
 /* C12 SuSa varing Q2 4GeV */
-void Config_C12_SuSa_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFilePath_v, std::vector<std::string> &AnalyseFileSample_v,
-                                          std::vector<std::string> &AnalyseFileDir_v, std::vector<std::string> &AnalyseFile_v,
-                                          std::string &AnalyseFilePath, std::string &AnalyseFileSample, std::string &AnalyseFileDir, std::string &AnalyseFile)
-{
+void Config_C12_SuSa_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFilePath_v, std::vector<std::string> &AnalyseFileSample_v, std::vector<std::string> &AnalyseFileDir_v,
+                                          std::vector<std::string> &AnalyseFile_v, std::string &AnalyseFilePath, std::string &AnalyseFileSample, std::string &AnalyseFileDir,
+                                          std::string &AnalyseFile) {
     AnalyseFilePath = "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/2N_Analysis_Reco_Samples/C12/GEM21_11a_00_000/Q2_th_test_samples/4029MeV/Q2_0_02";
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -420,7 +420,7 @@ void Config_C12_SuSa_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFileP
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -430,7 +430,7 @@ void Config_C12_SuSa_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFileP
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -440,7 +440,7 @@ void Config_C12_SuSa_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFileP
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -450,7 +450,7 @@ void Config_C12_SuSa_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFileP
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -460,7 +460,7 @@ void Config_C12_SuSa_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFileP
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -470,7 +470,7 @@ void Config_C12_SuSa_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFileP
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -480,7 +480,7 @@ void Config_C12_SuSa_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFileP
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -490,7 +490,7 @@ void Config_C12_SuSa_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFileP
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -500,7 +500,7 @@ void Config_C12_SuSa_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFileP
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -510,7 +510,7 @@ void Config_C12_SuSa_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFileP
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -520,7 +520,7 @@ void Config_C12_SuSa_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFileP
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -530,7 +530,7 @@ void Config_C12_SuSa_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFileP
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -540,7 +540,7 @@ void Config_C12_SuSa_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFileP
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -550,7 +550,7 @@ void Config_C12_SuSa_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFileP
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -560,7 +560,7 @@ void Config_C12_SuSa_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFileP
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -570,7 +570,7 @@ void Config_C12_SuSa_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFileP
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -580,7 +580,7 @@ void Config_C12_SuSa_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFileP
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -590,7 +590,7 @@ void Config_C12_SuSa_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFileP
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -600,7 +600,7 @@ void Config_C12_SuSa_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFileP
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -610,7 +610,7 @@ void Config_C12_SuSa_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFileP
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -620,7 +620,7 @@ void Config_C12_SuSa_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFileP
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -630,7 +630,7 @@ void Config_C12_SuSa_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFileP
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -640,7 +640,7 @@ void Config_C12_SuSa_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFileP
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -650,7 +650,7 @@ void Config_C12_SuSa_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFileP
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -660,7 +660,7 @@ void Config_C12_SuSa_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFileP
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -670,7 +670,7 @@ void Config_C12_SuSa_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFileP
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -680,7 +680,7 @@ void Config_C12_SuSa_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFileP
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -690,7 +690,7 @@ void Config_C12_SuSa_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFileP
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -700,7 +700,7 @@ void Config_C12_SuSa_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFileP
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -710,7 +710,7 @@ void Config_C12_SuSa_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFileP
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -720,7 +720,7 @@ void Config_C12_SuSa_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFileP
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -730,7 +730,7 @@ void Config_C12_SuSa_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFileP
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -740,7 +740,7 @@ void Config_C12_SuSa_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFileP
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -750,7 +750,7 @@ void Config_C12_SuSa_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFileP
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -760,7 +760,7 @@ void Config_C12_SuSa_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFileP
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -770,7 +770,7 @@ void Config_C12_SuSa_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFileP
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -780,7 +780,7 @@ void Config_C12_SuSa_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFileP
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -790,7 +790,7 @@ void Config_C12_SuSa_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFileP
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -802,15 +802,14 @@ void Config_C12_SuSa_4GeV_Q2_test_samples(std::vector<std::string> &AnalyseFileP
 #pragma region Ar40 varing Q2 6GeV
 
 /* Ar40 G18 varing Q2 6GeV */
-void Config_Ar40_G18_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFilePath_v, std::vector<std::string> &AnalyseFileSample_v,
-                                          std::vector<std::string> &AnalyseFileDir_v, std::vector<std::string> &AnalyseFile_v,
-                                          std::string &AnalyseFilePath, std::string &AnalyseFileSample, std::string &AnalyseFileDir, std::string &AnalyseFile)
-{
+void Config_Ar40_G18_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFilePath_v, std::vector<std::string> &AnalyseFileSample_v, std::vector<std::string> &AnalyseFileDir_v,
+                                          std::vector<std::string> &AnalyseFile_v, std::string &AnalyseFilePath, std::string &AnalyseFileSample, std::string &AnalyseFileDir,
+                                          std::string &AnalyseFile) {
     AnalyseFilePath = "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/2N_Analysis_Reco_Samples/Ar40/G18_10a_00_000/Q2_th_test_samples/5986MeV/Q2_0_40";
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -820,7 +819,7 @@ void Config_Ar40_G18_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFileP
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -830,7 +829,7 @@ void Config_Ar40_G18_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFileP
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -840,7 +839,7 @@ void Config_Ar40_G18_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFileP
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -850,7 +849,7 @@ void Config_Ar40_G18_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFileP
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -860,7 +859,7 @@ void Config_Ar40_G18_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFileP
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -870,7 +869,7 @@ void Config_Ar40_G18_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFileP
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -880,7 +879,7 @@ void Config_Ar40_G18_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFileP
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -890,7 +889,7 @@ void Config_Ar40_G18_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFileP
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -900,7 +899,7 @@ void Config_Ar40_G18_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFileP
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -910,7 +909,7 @@ void Config_Ar40_G18_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFileP
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -920,7 +919,7 @@ void Config_Ar40_G18_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFileP
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -930,7 +929,7 @@ void Config_Ar40_G18_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFileP
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -940,7 +939,7 @@ void Config_Ar40_G18_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFileP
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -950,7 +949,7 @@ void Config_Ar40_G18_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFileP
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -960,7 +959,7 @@ void Config_Ar40_G18_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFileP
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -970,7 +969,7 @@ void Config_Ar40_G18_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFileP
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -980,7 +979,7 @@ void Config_Ar40_G18_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFileP
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -990,7 +989,7 @@ void Config_Ar40_G18_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFileP
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -1000,7 +999,7 @@ void Config_Ar40_G18_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFileP
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -1010,7 +1009,7 @@ void Config_Ar40_G18_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFileP
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -1020,7 +1019,7 @@ void Config_Ar40_G18_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFileP
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -1030,7 +1029,7 @@ void Config_Ar40_G18_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFileP
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -1040,7 +1039,7 @@ void Config_Ar40_G18_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFileP
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -1050,7 +1049,7 @@ void Config_Ar40_G18_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFileP
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -1060,7 +1059,7 @@ void Config_Ar40_G18_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFileP
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -1070,7 +1069,7 @@ void Config_Ar40_G18_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFileP
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -1080,7 +1079,7 @@ void Config_Ar40_G18_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFileP
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -1090,7 +1089,7 @@ void Config_Ar40_G18_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFileP
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -1100,7 +1099,7 @@ void Config_Ar40_G18_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFileP
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -1110,7 +1109,7 @@ void Config_Ar40_G18_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFileP
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -1120,7 +1119,7 @@ void Config_Ar40_G18_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFileP
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -1130,7 +1129,7 @@ void Config_Ar40_G18_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFileP
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -1140,7 +1139,7 @@ void Config_Ar40_G18_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFileP
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -1150,7 +1149,7 @@ void Config_Ar40_G18_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFileP
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -1160,7 +1159,7 @@ void Config_Ar40_G18_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFileP
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -1170,7 +1169,7 @@ void Config_Ar40_G18_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFileP
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -1180,7 +1179,7 @@ void Config_Ar40_G18_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFileP
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -1190,7 +1189,7 @@ void Config_Ar40_G18_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFileP
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -1200,7 +1199,7 @@ void Config_Ar40_G18_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFileP
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -1210,7 +1209,7 @@ void Config_Ar40_G18_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFileP
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -1218,15 +1217,14 @@ void Config_Ar40_G18_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFileP
 }
 
 /* Ar40 SuSa varing Q2 6GeV */
-void Config_Ar40_SuSa_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFilePath_v, std::vector<std::string> &AnalyseFileSample_v,
-                                           std::vector<std::string> &AnalyseFileDir_v, std::vector<std::string> &AnalyseFile_v,
-                                           std::string &AnalyseFilePath, std::string &AnalyseFileSample, std::string &AnalyseFileDir, std::string &AnalyseFile)
-{
+void Config_Ar40_SuSa_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFilePath_v, std::vector<std::string> &AnalyseFileSample_v, std::vector<std::string> &AnalyseFileDir_v,
+                                           std::vector<std::string> &AnalyseFile_v, std::string &AnalyseFilePath, std::string &AnalyseFileSample, std::string &AnalyseFileDir,
+                                           std::string &AnalyseFile) {
     AnalyseFilePath = "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/2N_Analysis_Reco_Samples/Ar40/GEM21_11a_00_000/Q2_th_test_samples/5986MeV/Q2_0_40";
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -1236,7 +1234,7 @@ void Config_Ar40_SuSa_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFile
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -1246,7 +1244,7 @@ void Config_Ar40_SuSa_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFile
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -1256,7 +1254,7 @@ void Config_Ar40_SuSa_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFile
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -1266,7 +1264,7 @@ void Config_Ar40_SuSa_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFile
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -1276,7 +1274,7 @@ void Config_Ar40_SuSa_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFile
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -1286,7 +1284,7 @@ void Config_Ar40_SuSa_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFile
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -1296,7 +1294,7 @@ void Config_Ar40_SuSa_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFile
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -1306,7 +1304,7 @@ void Config_Ar40_SuSa_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFile
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -1316,7 +1314,7 @@ void Config_Ar40_SuSa_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFile
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -1326,7 +1324,7 @@ void Config_Ar40_SuSa_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFile
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -1336,7 +1334,7 @@ void Config_Ar40_SuSa_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFile
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -1346,7 +1344,7 @@ void Config_Ar40_SuSa_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFile
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -1356,7 +1354,7 @@ void Config_Ar40_SuSa_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFile
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -1366,7 +1364,7 @@ void Config_Ar40_SuSa_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFile
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -1376,7 +1374,7 @@ void Config_Ar40_SuSa_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFile
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -1386,7 +1384,7 @@ void Config_Ar40_SuSa_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFile
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -1396,7 +1394,7 @@ void Config_Ar40_SuSa_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFile
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -1406,7 +1404,7 @@ void Config_Ar40_SuSa_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFile
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -1416,7 +1414,7 @@ void Config_Ar40_SuSa_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFile
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -1426,7 +1424,7 @@ void Config_Ar40_SuSa_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFile
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -1436,7 +1434,7 @@ void Config_Ar40_SuSa_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFile
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -1446,7 +1444,7 @@ void Config_Ar40_SuSa_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFile
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -1456,7 +1454,7 @@ void Config_Ar40_SuSa_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFile
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -1466,7 +1464,7 @@ void Config_Ar40_SuSa_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFile
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -1476,7 +1474,7 @@ void Config_Ar40_SuSa_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFile
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -1486,7 +1484,7 @@ void Config_Ar40_SuSa_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFile
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -1496,7 +1494,7 @@ void Config_Ar40_SuSa_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFile
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -1506,7 +1504,7 @@ void Config_Ar40_SuSa_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFile
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -1516,7 +1514,7 @@ void Config_Ar40_SuSa_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFile
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -1526,7 +1524,7 @@ void Config_Ar40_SuSa_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFile
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -1536,7 +1534,7 @@ void Config_Ar40_SuSa_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFile
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -1546,7 +1544,7 @@ void Config_Ar40_SuSa_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFile
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -1556,7 +1554,7 @@ void Config_Ar40_SuSa_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFile
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -1566,7 +1564,7 @@ void Config_Ar40_SuSa_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFile
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -1576,7 +1574,7 @@ void Config_Ar40_SuSa_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFile
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -1586,7 +1584,7 @@ void Config_Ar40_SuSa_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFile
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -1596,7 +1594,7 @@ void Config_Ar40_SuSa_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFile
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -1606,7 +1604,7 @@ void Config_Ar40_SuSa_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFile
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -1616,7 +1614,7 @@ void Config_Ar40_SuSa_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFile
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
@@ -1626,11 +1624,12 @@ void Config_Ar40_SuSa_6GeV_Q2_test_samples(std::vector<std::string> &AnalyseFile
     AnalyseFileSample = "reconhipo";
     AnalyseFileDir = "/" + AnalyseFilePath + "/" + AnalyseFileSample + "/";
     // AnalyseFile = AnalyseFileDir + "recon_Uniform_1e_sample_2070MeV_1000_torus0.5.hipo"; // 1 file
-    AnalyseFile = AnalyseFileDir + "*.hipo"; // all files
+    AnalyseFile = AnalyseFileDir + "*.hipo";  // all files
     AnalyseFilePath_v.push_back(AnalyseFilePath);
     AnalyseFileSample_v.push_back(AnalyseFileSample);
     AnalyseFileDir_v.push_back(AnalyseFileDir);
     AnalyseFile_v.push_back(AnalyseFile);
 }
+}  // namespace analysis_samples
 
-#endif // Q2_TESTING_SAMPLES
+#endif  // Q2_TESTING_SAMPLES_H

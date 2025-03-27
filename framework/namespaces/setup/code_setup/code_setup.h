@@ -7,12 +7,14 @@
 
 #include <iostream>
 
+#include "../analysis_samples/analysis_samples.h"
 #include "../debugging/debugging.h"
 #include "../path_definitions/path_definitions.h"
 
 namespace code_setup {
 using namespace path_definitions;
 using namespace debugging;
+using namespace analysis_samples;
 };  // namespace code_setup
 
 #endif  // CODE_SETUP_H

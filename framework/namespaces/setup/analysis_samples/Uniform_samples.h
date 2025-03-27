@@ -1,7 +1,9 @@
+#ifndef UNIFORM_SAMPLES_H
+#define UNIFORM_SAMPLES_H
+
 #include <vector>
 
-#ifndef UNIFORM_SAMPLES
-#define UNIFORM_SAMPLES
+namespace analysis_samples {
 
 #pragma region Uniform electron tester samples
 /* Uniform electron tester samples */
@@ -214,6 +216,9 @@ void Config_Uniform_ep_6GeV_samples(std::vector<std::string> &AnalyseFilePath_v,
     AnalyseFileDir_v.push_back(AnalyseFileDir);
     AnalyseFile_v.push_back(AnalyseFile);
 }
+
 #pragma endregion
 
-#endif  // UNIFORM_SAMPLES
+}  // namespace analysis_samples
+
+#endif  // UNIFORM_SAMPLES_H
