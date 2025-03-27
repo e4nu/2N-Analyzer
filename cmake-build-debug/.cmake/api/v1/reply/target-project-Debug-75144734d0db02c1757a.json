@@ -68,24 +68,6 @@
 			{
 				"command" : 2,
 				"file" : 0,
-				"line" : 52,
-				"parent" : 0
-			},
-			{
-				"command" : 2,
-				"file" : 0,
-				"line" : 53,
-				"parent" : 0
-			},
-			{
-				"command" : 2,
-				"file" : 0,
-				"line" : 54,
-				"parent" : 0
-			},
-			{
-				"command" : 2,
-				"file" : 0,
 				"line" : 55,
 				"parent" : 0
 			},
@@ -105,18 +87,6 @@
 				"command" : 2,
 				"file" : 0,
 				"line" : 58,
-				"parent" : 0
-			},
-			{
-				"command" : 2,
-				"file" : 0,
-				"line" : 59,
-				"parent" : 0
-			},
-			{
-				"command" : 2,
-				"file" : 0,
-				"line" : 60,
 				"parent" : 0
 			},
 			{
@@ -274,118 +244,98 @@
 				},
 				{
 					"backtrace" : 8,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/setup/CLAS12DAnalysis/CLAS12DAnalyser"
-				},
-				{
-					"backtrace" : 9,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/setup/CLAS12DAnalysis/CLAS12DASettings"
-				},
-				{
-					"backtrace" : 10,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/setup/CLAS12DAnalysis/CLAS12DHistograms"
-				},
-				{
-					"backtrace" : 11,
 					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework"
 				},
 				{
-					"backtrace" : 12,
+					"backtrace" : 9,
 					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes"
 				},
 				{
-					"backtrace" : 13,
+					"backtrace" : 10,
 					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/AMaps"
 				},
 				{
-					"backtrace" : 14,
+					"backtrace" : 11,
 					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/clas12ana"
 				},
 				{
-					"backtrace" : 15,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/clas12ana/clas12ana_ver_1_myedit"
-				},
-				{
-					"backtrace" : 16,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/clas12ana/other"
-				},
-				{
-					"backtrace" : 17,
+					"backtrace" : 12,
 					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/DEfficiency"
 				},
 				{
-					"backtrace" : 18,
+					"backtrace" : 13,
 					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/Directories"
 				},
 				{
-					"backtrace" : 19,
+					"backtrace" : 14,
 					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/DSCuts"
 				},
 				{
-					"backtrace" : 20,
+					"backtrace" : 15,
 					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/ExperimentParameters"
 				},
 				{
-					"backtrace" : 21,
+					"backtrace" : 16,
 					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/hData"
 				},
 				{
-					"backtrace" : 22,
+					"backtrace" : 17,
 					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/hPlots"
 				},
 				{
-					"backtrace" : 23,
+					"backtrace" : 18,
 					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/MomentumResolution"
 				},
 				{
-					"backtrace" : 24,
+					"backtrace" : 19,
 					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/TargetParameters"
 				},
 				{
-					"backtrace" : 25,
+					"backtrace" : 20,
 					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/TLCuts"
 				},
 				{
-					"backtrace" : 26,
+					"backtrace" : 21,
 					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/source/data"
 				},
 				{
-					"backtrace" : 27,
+					"backtrace" : 22,
 					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/functions"
 				},
 				{
-					"backtrace" : 28,
+					"backtrace" : 23,
 					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/functions/AngleCalc"
 				},
 				{
-					"backtrace" : 29,
+					"backtrace" : 24,
 					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/functions/DrawAndSaveFunctions"
 				},
 				{
-					"backtrace" : 30,
+					"backtrace" : 25,
 					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/functions/EventProperties"
 				},
 				{
-					"backtrace" : 31,
+					"backtrace" : 26,
 					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/functions/FitFunctions"
 				},
 				{
-					"backtrace" : 32,
+					"backtrace" : 27,
 					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/functions/Math_func"
 				},
 				{
-					"backtrace" : 33,
+					"backtrace" : 28,
 					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/functions/other"
 				},
 				{
-					"backtrace" : 34,
+					"backtrace" : 29,
 					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/functions/PID_functions"
 				},
 				{
-					"backtrace" : 35,
+					"backtrace" : 30,
 					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/other"
 				},
 				{
-					"backtrace" : 36,
+					"backtrace" : 31,
 					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/structures"
 				}
 			],
@@ -452,118 +402,98 @@
 				},
 				{
 					"backtrace" : 8,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/setup/CLAS12DAnalysis/CLAS12DAnalyser"
-				},
-				{
-					"backtrace" : 9,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/setup/CLAS12DAnalysis/CLAS12DASettings"
-				},
-				{
-					"backtrace" : 10,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/setup/CLAS12DAnalysis/CLAS12DHistograms"
-				},
-				{
-					"backtrace" : 11,
 					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework"
 				},
 				{
-					"backtrace" : 12,
+					"backtrace" : 9,
 					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes"
 				},
 				{
-					"backtrace" : 13,
+					"backtrace" : 10,
 					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/AMaps"
 				},
 				{
-					"backtrace" : 14,
+					"backtrace" : 11,
 					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/clas12ana"
 				},
 				{
-					"backtrace" : 15,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/clas12ana/clas12ana_ver_1_myedit"
-				},
-				{
-					"backtrace" : 16,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/clas12ana/other"
-				},
-				{
-					"backtrace" : 17,
+					"backtrace" : 12,
 					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/DEfficiency"
 				},
 				{
-					"backtrace" : 18,
+					"backtrace" : 13,
 					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/Directories"
 				},
 				{
-					"backtrace" : 19,
+					"backtrace" : 14,
 					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/DSCuts"
 				},
 				{
-					"backtrace" : 20,
+					"backtrace" : 15,
 					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/ExperimentParameters"
 				},
 				{
-					"backtrace" : 21,
+					"backtrace" : 16,
 					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/hData"
 				},
 				{
-					"backtrace" : 22,
+					"backtrace" : 17,
 					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/hPlots"
 				},
 				{
-					"backtrace" : 23,
+					"backtrace" : 18,
 					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/MomentumResolution"
 				},
 				{
-					"backtrace" : 24,
+					"backtrace" : 19,
 					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/TargetParameters"
 				},
 				{
-					"backtrace" : 25,
+					"backtrace" : 20,
 					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/TLCuts"
 				},
 				{
-					"backtrace" : 26,
+					"backtrace" : 21,
 					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/source/data"
 				},
 				{
-					"backtrace" : 27,
+					"backtrace" : 22,
 					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/functions"
 				},
 				{
-					"backtrace" : 28,
+					"backtrace" : 23,
 					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/functions/AngleCalc"
 				},
 				{
-					"backtrace" : 29,
+					"backtrace" : 24,
 					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/functions/DrawAndSaveFunctions"
 				},
 				{
-					"backtrace" : 30,
+					"backtrace" : 25,
 					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/functions/EventProperties"
 				},
 				{
-					"backtrace" : 31,
+					"backtrace" : 26,
 					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/functions/FitFunctions"
 				},
 				{
-					"backtrace" : 32,
+					"backtrace" : 27,
 					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/functions/Math_func"
 				},
 				{
-					"backtrace" : 33,
+					"backtrace" : 28,
 					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/functions/other"
 				},
 				{
-					"backtrace" : 34,
+					"backtrace" : 29,
 					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/functions/PID_functions"
 				},
 				{
-					"backtrace" : 35,
+					"backtrace" : 30,
 					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/other"
 				},
 				{
-					"backtrace" : 36,
+					"backtrace" : 31,
 					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/structures"
 				}
 			],

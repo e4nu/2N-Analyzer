@@ -8,7 +8,7 @@
 #include <iostream>
 
 namespace debugging_settings {
-const bool DebuggerMode = false;
+const bool DebuggerMode = true;
 }
 
 #endif  // DEBUGGING_SETTINGS_H
