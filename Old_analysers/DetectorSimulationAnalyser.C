@@ -1021,7 +1021,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                              NumberElecOfMomSlices, HistNucSliceNumOfXBins, HistNucSliceNumOfXBins, HistElectronSliceNumOfXBins, HistElectronSliceNumOfXBins);
     } else {
         cout << "\n\nWorkingDirectory = " << WorkingDirectory << "\n\n";
-        cout << "\n\nSourcesDirectory = " << SourcesDirectory << "\n\n";
+        cout << "\n\nSourceDirectory = " << SourceDirectory << "\n\n";
         cout << "\n\nDataDirectory = " << DataDirectory << "\n\n";
         cout << "\n\nAcceptanceMapsDirectory = " << AcceptanceMapsDirectory << "\n\n";
         aMaps_master = AMaps(AcceptanceMapsDirectory, VaryingSampleName, beamE, Electron_single_slice_test, Nucleon_single_slice_test, TestSlices);

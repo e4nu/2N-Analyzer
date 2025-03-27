@@ -2,12 +2,12 @@
 // Created by Alon Sportes on 14/03/2025.
 //
 
-#ifndef SETTINGS_H
-#define SETTINGS_H
+#ifndef GENERAL_SETTINGS_H
+#define GENERAL_SETTINGS_H
 
 #include <map>
 
-namespace settings {
+namespace general_settings {
 std::map<std::string, bool> CodeSettings = {
     {"isMC", false},
     {"keep_good", true},
@@ -15,4 +15,4 @@ std::map<std::string, bool> CodeSettings = {
 
 };  // namespace settings
 
-#endif  // SETTINGS_H
+#endif  // GENERAL_SETTINGS_H

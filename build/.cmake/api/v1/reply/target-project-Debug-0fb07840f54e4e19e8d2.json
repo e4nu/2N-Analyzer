@@ -32,7 +32,7 @@
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 208,
+				"line" : 209,
 				"parent" : 0
 			},
 			{
@@ -247,7 +247,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-g -std=gnu++14 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk -fcolor-diagnostics"
+					"fragment" : "-g -std=gnu++14 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk"
 				}
 			],
 			"includes" : 
@@ -453,7 +453,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk -fcolor-diagnostics"
+					"fragment" : "-g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.2.sdk"
 				}
 			],
 			"includes" : 
@@ -859,7 +859,8 @@
 				107,
 				110,
 				116,
-				118
+				118,
+				119
 			]
 		}
 	],
@@ -1509,6 +1510,11 @@
 		{
 			"backtrace" : 1,
 			"path" : "framework/namespaces/fitters/fitter_functions/fitter_functions.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "framework/namespaces/setup/path_definitions/path_definitions.h",
 			"sourceGroupIndex" : 2
 		}
 	],

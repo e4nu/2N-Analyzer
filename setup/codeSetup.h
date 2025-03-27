@@ -7,6 +7,9 @@
 #define FullAnalyser true
 #define IndependentCanvasPDF false
 
+#include "../framework/namespaces/setup/path_definitions/path_definitions.h"
+#include "../framework/namespaces/setup/debugging/debugging.h"
+// 
 #include "../framework/namespaces/general_utilities/basic_tools/basic_tools.h"
 #include "../framework/namespaces/general_utilities/constants/constants.h"
 #include "../framework/namespaces/plotters/PDF_canvas/PDF_canvas.h"
@@ -42,46 +45,50 @@ std::string Ver = "DetSim testings";
 // Path definitions
 // ======================================================================================================================================================================
 
-//<editor-fold desc="path definitions">
-/* Histogram plots output directory */
-std::string wd = basic_tools::GetCurrentDirectory() + "/";
-const std::string WorkingDirectory = wd;
-const std::string plots_path = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output";
-// const std::string plots_path = WorkingDirectory + "00_plots";
+using namespace path_definitions;
 
-/* setup directory and directories */
-const std::string SettingsDirectory = wd + "setup" + "/";
+// //<editor-fold desc="path definitions">
+// /* Histogram plots output directory */
+// std::string wd = basic_tools::GetCurrentDirectory() + "/";
+// const std::string WorkingDirectory = wd;
+// const std::string plots_path = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output";
+// // const std::string plots_path = WorkingDirectory + "00_plots";
 
-/* framework directory and directories */
-std::string sd = wd + "source" + "/";
-const std::string SourcesDirectory = sd;
-std::string dd = sd + "data" + "/";
-const std::string DataDirectory = dd;
-std::string acd = dd + "AcceptanceCorrections" + "/";
-const std::string ACorrDirectory = acd;
-std::string amd = dd + "AcceptanceMaps" + "/";
-const std::string AcceptanceMapsDirectory = amd;
-std::string awd = dd + "AcceptanceWeights" + "/";
-const std::string AcceptanceWeightsDirectory = awd;
-std::string mrd = dd + "NeutronResolution" + "/";
-const std::string MomentumResolutionDirectory = mrd;
-std::string ncd = dd + "NucleonCuts" + "/";
-const std::string NucleonCutsDirectory = ncd;
-std::string pidcd = dd + "PIDCuts" + "/";
-const std::string PIDCutsDirectory = pidcd;
+// /* setup directory and directories */
+// const std::string SettingsDirectory = wd + "setup" + "/";
 
-const std::string plots_TList_FileType = "_plots.root";
-const std::string plots_TFile_FileType = "_plots.pdf";
-const std::string log_file_name = "Run_log.txt";
-const std::string plots_log_save_Directory = plots_path + "/" + log_file_name;
-//</editor-fold>
+// /* framework directory and directories */
+// std::string sd = wd + "source" + "/";
+// const std::string SourceDirectory = sd;
+// std::string dd = sd + "data" + "/";
+// const std::string DataDirectory = dd;
+// std::string acd = dd + "AcceptanceCorrections" + "/";
+// const std::string ACorrDirectory = acd;
+// std::string amd = dd + "AcceptanceMaps" + "/";
+// const std::string AcceptanceMapsDirectory = amd;
+// std::string awd = dd + "AcceptanceWeights" + "/";
+// const std::string AcceptanceWeightsDirectory = awd;
+// std::string mrd = dd + "NeutronResolution" + "/";
+// const std::string MomentumResolutionDirectory = mrd;
+// std::string ncd = dd + "NucleonCuts" + "/";
+// const std::string NucleonCutsDirectory = ncd;
+// std::string pidcd = dd + "PIDCuts" + "/";
+// const std::string PIDCutsDirectory = pidcd;
+
+// const std::string plots_TList_FileType = "_plots.root";
+// const std::string plots_TFile_FileType = "_plots.pdf";
+// const std::string log_file_name = "Run_log.txt";
+// const std::string plots_log_save_Directory = plots_path + "/" + log_file_name;
+// //</editor-fold>
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                        Debugger                                                                                     //
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-const bool DebuggerMode = false;
-Debugger CodeDebugger;
+using namespace debugging;
+
+// const bool DebuggerMode = false;
+// Debugger CodeDebugger;
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                 Samples in sample chain                                                                             //

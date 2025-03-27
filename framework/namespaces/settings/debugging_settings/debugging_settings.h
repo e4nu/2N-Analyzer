@@ -5,4 +5,10 @@
 #ifndef DEBUGGING_SETTINGS_H
 #define DEBUGGING_SETTINGS_H
 
-#endif //DEBUGGING_SETTINGS_H
+#include <iostream>
+
+namespace debugging_settings {
+const bool DebuggerMode = false;
+}
+
+#endif  // DEBUGGING_SETTINGS_H

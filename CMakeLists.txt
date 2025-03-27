@@ -170,7 +170,7 @@ add_executable(project ${CLAS12ROOT_SOURCES} ${CLAS12BANKS_SOURCES} ${HIPO4_SOUR
         framework/namespaces/general_utilities/data_processor/data_processor.h
         framework/namespaces/general_utilities/lists/lists.h
         framework/namespaces/general_utilities/reco_analysis_functions/reco_analysis_functions.h
-        framework/namespaces/settings/general_settings/settings.h
+        framework/namespaces/settings/general_settings/general_settings.h
         framework/namespaces/general_utilities/truth_analysis_functions/truth_analysis_functions.h
         "framework/other/fitexample - Copy.c"
         framework/other/fitexample.c
@@ -200,6 +200,9 @@ add_executable(project ${CLAS12ROOT_SOURCES} ${CLAS12BANKS_SOURCES} ${HIPO4_SOUR
         framework/namespaces/general_utilities/analysis_math/poly_solver.h
         framework/namespaces/general_utilities/analysis_math/poly_solver.cpp
         framework/namespaces/fitters/fitter_functions/fitter_functions.h
+        framework/namespaces/setup/path_definitions/path_definitions.h
+        framework/namespaces/settings/debugging_settings/debugging_settings.h
+        framework/namespaces/setup/debugging/debugging.h
 )
 
 ## Link against ROOT and CLAS12ROOT libraries

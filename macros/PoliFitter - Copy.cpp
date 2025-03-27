@@ -164,8 +164,8 @@ void PoliFitter() {
 //    std::string WorkingDirectory = "../";
 //
 ///* framework directory and directories */
-//    std::string SourcesDirectory = WorkingDirectory + "framework" + "/";
-//    std::string DataDirectory = SourcesDirectory + "data" + "/";
+//    std::string SourceDirectory = WorkingDirectory + "framework" + "/";
+//    std::string DataDirectory = SourceDirectory + "data" + "/";
 //    std::string ACorrDirectory = DataDirectory + "AcceptanceCorrections" + "/";
 //    std::string AcceptanceMapsDirectory = DataDirectory + "AcceptanceMaps" + "/";
 //    std::string AcceptanceWeightsDirectory = DataDirectory + "AcceptanceWeights" + "/";
