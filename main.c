@@ -1,13 +1,16 @@
 #include <iostream>
 
 // #include "framework/includes/work_dir_include.h"
-#ifdef IFARM_RUN
-#define RECO_ANALYSIS_RUN true
-#pragma message "Running in ifarm configuration..."
+// Define the expected file path for comparison
+#define TARGET_FILE_PATH "/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/main.c"
+
+// Use stringification to compare file paths
+#if defined(__FILE__) && (__FILE__ == TARGET_FILE_PATH)
+    #define RECO_ANALYSIS_RUN true
+    #pragma message "Running in ifarm configuration..."
 #else
-#define RECO_ANALYSIS_RUN false
-#pragma message __FILE__
-// #pragma message "Running in gpvm configuration..."
+    #define RECO_ANALYSIS_RUN false
+    #pragma message "Running in gpvm configuration..."
 #endif
 
 #include "framework/namespaces/setup/code_setup/code_setup.h"
