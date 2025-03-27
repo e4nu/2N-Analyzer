@@ -1,120 +1,69 @@
 #include <iostream>
 
+#include "framework/namespaces/setup/code_setup/code_setup.h"
+
+// #include "framework/classes/DataAnalyser/DataAnalyser.cpp"
+#include "framework/namespaces/general_utilities/basic_tools/basic_tools.h"
+
+// using namespace std;
+using namespace code_setup;
+
 int main() {
-#ifdef _WIN32
-    std::cout << "Windows (_WIN32 defined)\n";
-#endif
+    // ConfigSampleChain();
+    // ConfigCanvasPDF();
 
-#ifdef _WIN64
-    std::cout << "Windows 64-bit (_WIN64 defined)\n";
-#endif
+    auto start = std::chrono::system_clock::now();  // Start counting running time
 
-#ifdef __linux__
-    std::cout << "Linux (__linux__ defined)\n";
-#endif
+    cout << "\n\nPathDefinitions.WorkingDirectory = " << PathDefinitions.WorkingDirectory << "\n\n";
+    cout << "\n\nPathDefinitions.SourceDirectory = " << PathDefinitions.SourceDirectory << "\n\n";
+    cout << "\n\nPathDefinitions.DataDirectory = " << PathDefinitions.DataDirectory << "\n\n";
+    cout << "\n\nPathDefinitions.AcceptanceMapsDirectory = " << PathDefinitions.AcceptanceMapsDirectory << "\n\n";
 
-#ifdef __APPLE__
-    std::cout << "MacOS (__APPLE__ defined)\n";
-#endif
+    // int Num_of_analysed_samples = 0;
+    //
+    // cout << "\nLooping over sample chain...\n";
+    //
+    // for (int i = 0; i < AnalyseFilePath_v.size(); i++) {
+    //     std::string AnalyseFilePath0 = AnalyseFilePath_v.at(i);
+    //     std::string AnalyseFileSample0 = AnalyseFileSample_v.at(i);
+    //     std::string AnalyseFileDir0 = AnalyseFileDir_v.at(i);
+    //     std::string AnalyseFile0 = AnalyseFile_v.at(i);
+    //
+    //     std::string FileType = AnalyseFile_v.at(i).substr(AnalyseFile_v.at(i).find_last_of(".") + 1);
+    //
+    //     cout << "\nAnalyseFilePath:\t" << AnalyseFilePath0 << "\n";
+    //     cout << "AnalyseFileSample:\t" << AnalyseFileSample0 << "\n";
+    //     cout << "AnalyseFileDir:\t" << AnalyseFileDir0 << "\n";
+    //     cout << "AnalyseFile:\t" << AnalyseFile0 << "\n\n";
+    //
+    //     cout << "FileType:\t" << FileType << "\n";
+    //
+    //     DataAnalyser Analysis(FileType, AnalyseFilePath0, AnalyseFileSample0, AnalyseFile0);
+    //     std::string AnalyserMode = Analysis.ConfigureAnalyserMode(FileType);
+    //
+    //     cout << "Analyser mode:\t'" << AnalyserMode << "'\n";
+    //
+    //     cout << "\n---------------------------------------------------------------------------\n\n";
+    //     cout << "Analysis mode:\t'" << AnalyserMode << "'" << "\n";
+    //     cout << "Code version:\t" << Ver << "\n";
+    //
+    //     ++Num_of_analysed_samples;
+    //
+    //     if (AnalyseFilePath_v.size() > 1) {  // Delete all ROOT objects whose class names start with TH (to prevent a memory leak)
+    //         // gDirectory->Delete("TH*;*");
+    //         gDirectory->Clear();
+    //     }
+    // }
 
-#ifdef __MACH__
-    std::cout << "MacOS (__MACH__ defined)\n";
-#endif
+    // cout << "#(analysed samples):\t" << Num_of_analysed_samples << "\n";
 
-#ifdef __unix__
-    std::cout << "Unix-like system (__unix__ defined)\n";
-#endif
+    auto end = std::chrono::system_clock::now();
+    auto elapsed_time_seconds = std::chrono::duration_cast<std::chrono::seconds>(end - start);
+    double elapsed_time_minutes = elapsed_time_seconds.count() / 60;
 
-#ifdef __CYGWIN__
-    std::cout << "Cygwin (__CYGWIN__ defined)\n";
-#endif
-
-#ifdef __FreeBSD__
-    std::cout << "FreeBSD (__FreeBSD__ defined)\n";
-#endif
-
-    return 0;
+    if (elapsed_time_seconds.count() < 60) {
+        std::cout << "Running time:\t" << elapsed_time_seconds.count() << " seconds\n\n";
+    } else {
+        std::cout << "Running time:\t" << basic_tools::ToStringWithPrecision(elapsed_time_minutes, 3) << " minutes\n\n";
+    }
 }
-
-// #include <iostream>
-
-// // #include "framework/includes/work_dir_include.h"
-// // Define the expected file path for comparison
-// #define TARGET_FILE_PATH "/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/main.c"
-
-// // Use stringification to compare file paths
-// #if defined(__FILE__) && (__FILE__ == TARGET_FILE_PATH)
-//     #define RECO_ANALYSIS_RUN true
-//     #pragma message "Running in ifarm configuration..."
-// #else
-//     #define RECO_ANALYSIS_RUN false
-//     #pragma message "Running in gpvm configuration..."
-// #endif
-
-// #include "framework/namespaces/setup/code_setup/code_setup.h"
-
-// // #include "framework/classes/DataAnalyser/DataAnalyser.cpp"
-// #include "framework/namespaces/general_utilities/basic_tools/basic_tools.h"
-
-// // using namespace std;
-// using namespace code_setup;
-
-// int main() {
-//     // ConfigSampleChain();
-//     // ConfigCanvasPDF();
-
-//     auto start = std::chrono::system_clock::now();  // Start counting running time
-
-//     cout << "\n\nPathDefinitions.WorkingDirectory = " << PathDefinitions.WorkingDirectory << "\n\n";
-//     cout << "\n\nPathDefinitions.SourceDirectory = " << PathDefinitions.SourceDirectory << "\n\n";
-//     cout << "\n\nPathDefinitions.DataDirectory = " << PathDefinitions.DataDirectory << "\n\n";
-//     cout << "\n\nPathDefinitions.AcceptanceMapsDirectory = " << PathDefinitions.AcceptanceMapsDirectory << "\n\n";
-
-//     // int Num_of_analysed_samples = 0;
-//     //
-//     // cout << "\nLooping over sample chain...\n";
-//     //
-//     // for (int i = 0; i < AnalyseFilePath_v.size(); i++) {
-//     //     std::string AnalyseFilePath0 = AnalyseFilePath_v.at(i);
-//     //     std::string AnalyseFileSample0 = AnalyseFileSample_v.at(i);
-//     //     std::string AnalyseFileDir0 = AnalyseFileDir_v.at(i);
-//     //     std::string AnalyseFile0 = AnalyseFile_v.at(i);
-//     //
-//     //     std::string FileType = AnalyseFile_v.at(i).substr(AnalyseFile_v.at(i).find_last_of(".") + 1);
-//     //
-//     //     cout << "\nAnalyseFilePath:\t" << AnalyseFilePath0 << "\n";
-//     //     cout << "AnalyseFileSample:\t" << AnalyseFileSample0 << "\n";
-//     //     cout << "AnalyseFileDir:\t" << AnalyseFileDir0 << "\n";
-//     //     cout << "AnalyseFile:\t" << AnalyseFile0 << "\n\n";
-//     //
-//     //     cout << "FileType:\t" << FileType << "\n";
-//     //
-//     //     DataAnalyser Analysis(FileType, AnalyseFilePath0, AnalyseFileSample0, AnalyseFile0);
-//     //     std::string AnalyserMode = Analysis.ConfigureAnalyserMode(FileType);
-//     //
-//     //     cout << "Analyser mode:\t'" << AnalyserMode << "'\n";
-//     //
-//     //     cout << "\n---------------------------------------------------------------------------\n\n";
-//     //     cout << "Analysis mode:\t'" << AnalyserMode << "'" << "\n";
-//     //     cout << "Code version:\t" << Ver << "\n";
-//     //
-//     //     ++Num_of_analysed_samples;
-//     //
-//     //     if (AnalyseFilePath_v.size() > 1) {  // Delete all ROOT objects whose class names start with TH (to prevent a memory leak)
-//     //         // gDirectory->Delete("TH*;*");
-//     //         gDirectory->Clear();
-//     //     }
-//     // }
-
-//     // cout << "#(analysed samples):\t" << Num_of_analysed_samples << "\n";
-
-//     auto end = std::chrono::system_clock::now();
-//     auto elapsed_time_seconds = std::chrono::duration_cast<std::chrono::seconds>(end - start);
-//     double elapsed_time_minutes = elapsed_time_seconds.count() / 60;
-
-//     if (elapsed_time_seconds.count() < 60) {
-//         std::cout << "Running time:\t" << elapsed_time_seconds.count() << " seconds\n\n";
-//     } else {
-//         std::cout << "Running time:\t" << basic_tools::ToStringWithPrecision(elapsed_time_minutes, 3) << " minutes\n\n";
-//     }
-// }

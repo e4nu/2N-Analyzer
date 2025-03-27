@@ -115,7 +115,8 @@
         "path_definitions.h": "c",
         "code_setup.h": "c",
         "work_dir_include.h": "c",
-        "codedirectories.h": "c"
+        "codedirectories.h": "c",
+        "poly_solver.h": "c"
     },
     "[jsonc]": {
         "editor.defaultFormatter": "vscode.json-language-features"

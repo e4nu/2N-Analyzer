@@ -10,8 +10,8 @@
 // AMaps constructors ---------------------------------------------------------------------------------------------------------------------------------------------------
 
 //<editor-fold desc="AMaps generation constructor">
-AMaps::AMaps(const std::string &SampleName, const std::string &P_e_bin_profile, const std::string &P_nuc_bin_profile, double beamE, const std::string &AMapsMode, const std::string &SavePath, int nOfNucMomBins,
-             int nOfElecMomBins, int hnsNumOfXBins, int hnsNumOfYBins, int hesNumOfXBins, int hesNumOfYBins) {
+AMaps::AMaps(const std::string &SampleName, const std::string &P_e_bin_profile, const std::string &P_nuc_bin_profile, double beamE, const std::string &AMapsMode, const std::string &SavePath,
+             int nOfNucMomBins, int nOfElecMomBins, int hnsNumOfXBins, int hnsNumOfYBins, int hesNumOfXBins, int hesNumOfYBins) {
     AcceptanceMapsBC_OutFile0 = SavePath + "/" + "AcceptanceMapsBC.pdf";
     TLAMaps_OutFile0 = SavePath + "/" + "TLAMaps.pdf";
     RecoAMaps_OutFile0 = SavePath + "/" + "RecoAMaps.pdf";
@@ -85,7 +85,8 @@ AMaps::AMaps(const std::string &SampleName, const std::string &P_e_bin_profile, 
             {"Electron AMap for ", "Electron AMap for ", "_e_SepAMap_for_P_from_", filtered_reco_theta_e_VS_phi_e_BySlice, filtered_reco_e_BySlice}};
 
         for (auto &[statsTitlePrefix, titlePrefix, saveNamePrefix, histVec, hist2DVec] : electronHistograms) {
-            std::string hStatsTitle = statsTitlePrefix + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{e}#leq" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c]";
+            std::string hStatsTitle =
+                statsTitlePrefix + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{e}#leq" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c]";
             std::string hTitle =
                 titlePrefix + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{e}#leq" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c]" + BinDensity;
             std::string hSaveName = to_string(i + 1) + saveNamePrefix + ToStringWithPrecision(BinLowerLim, 2) + "_to_" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision);
@@ -116,7 +117,8 @@ AMaps::AMaps(const std::string &SampleName, const std::string &P_e_bin_profile, 
             {"Neutron AMap for ", "Neutron AMap for ", "_n_SepAMap_for_P_from_", filtered_reco_theta_n_VS_phi_n_BySlice, filtered_reco_n_BySlice}};
 
         for (auto &[statsTitlePrefix, titlePrefix, saveNamePrefix, histVec, hist2DVec] : nucleonHistograms) {
-            std::string hStatsTitle = statsTitlePrefix + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{p}#leq" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c]";
+            std::string hStatsTitle =
+                statsTitlePrefix + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{p}#leq" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c]";
             std::string hTitle =
                 titlePrefix + ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{p}#leq" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c]" + BinDensity;
             std::string hSaveName = to_string(i + 1) + saveNamePrefix + ToStringWithPrecision(BinLowerLim, 2) + "_to_" + ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision);
@@ -172,7 +174,8 @@ AMaps::AMaps(const std::string &SampleName, const std::string &P_e_bin_profile, 
 //</editor-fold>
 
 //<editor-fold desc="AMaps loading constructor">
-AMaps::AMaps(const std::string &AcceptanceMapsDirectory, const std::string &SampleName, const bool &Electron_single_slice_test, const bool &Nucleon_single_slice_test, const vector<int> &TestSlices) {
+AMaps::AMaps(const std::string &AcceptanceMapsDirectory, const std::string &SampleName, const bool &Electron_single_slice_test, const bool &Nucleon_single_slice_test,
+             const vector<int> &TestSlices) {
     /* Load slices and their limits */
     ReadAMapLimits((AcceptanceMapsDirectory + SampleName + "/e_AMap_by_slice/e_slice_limits.par").c_str(), Loaded_ElectronMomSliceLimits);
     ReadAMapLimits((AcceptanceMapsDirectory + SampleName + "/p_AMap_by_slice/p_slice_limits.par").c_str(), Loaded_NucleonMomSliceLimits);
@@ -544,9 +547,7 @@ void AMaps::GenerateNucleonAMap() {
     nuc_AMap.resize(HistNucSliceNumOfYBins, vector<int>(HistNucSliceNumOfXBins, 0));
     for (int i = 0; i < HistNucSliceNumOfYBins; i++) {
         for (int j = 0; j < HistNucSliceNumOfXBins; j++) {
-            if (filtered_reco_theta_nuc_VS_phi_nuc.GetHistogram2D()->GetBinContent(j + 1, i + 1) != 0) {
-                nuc_AMap[i][j] = 1;
-            }
+            if (filtered_reco_theta_nuc_VS_phi_nuc.GetHistogram2D()->GetBinContent(j + 1, i + 1) != 0) { nuc_AMap[i][j] = 1; }
         }
     }
 
@@ -554,9 +555,7 @@ void AMaps::GenerateNucleonAMap() {
         vector<vector<int>> nuc_slice(HistNucSliceNumOfYBins, vector<int>(HistNucSliceNumOfXBins, 0));
         for (int i = 0; i < HistNucSliceNumOfYBins; i++) {
             for (int j = 0; j < HistNucSliceNumOfXBins; j++) {
-                if (p_AMap_Slices[bin][i][j] == 1 && n_AMap_Slices[bin][i][j] == 1) {
-                    nuc_slice[i][j] = 1;
-                }
+                if (p_AMap_Slices[bin][i][j] == 1 && n_AMap_Slices[bin][i][j] == 1) { nuc_slice[i][j] = 1; }
             }
         }
         nuc_AMap_Slices.push_back(nuc_slice);
@@ -1467,7 +1466,7 @@ void AMaps::ReadAMapSlices(const std::string &SampleName, const std::string &Acc
         vector<vector<int>> Loaded_Particle_AMap_TempSlice;
 
         std::string TempFileName = ParticleShort + "_AMap_by_slice/" + ParticleShort + "_AMap_file_from_" + ToStringWithPrecision(Loaded_particle_limits.at(Slice).at(0), 2) + "_to_" +
-                              ToStringWithPrecision(Loaded_particle_limits.at(Slice).at(1), 2) + ".par";
+                                   ToStringWithPrecision(Loaded_particle_limits.at(Slice).at(1), 2) + ".par";
 
         ReadAMap((AcceptanceMapsDirectory + SampleName + "/" + TempFileName).c_str(), Loaded_Particle_AMap_TempSlice);
 
@@ -1497,7 +1496,7 @@ void AMaps::ReadWMapSlices(const std::string &SampleName, const std::string &Acc
         vector<vector<double>> Loaded_Particle_WMap_TempSlice;
 
         std::string TempFileName = ParticleShort + "_WMap_by_slice/" + ParticleShort + "_WMap_file_from_" + ToStringWithPrecision(Loaded_particle_limits.at(Slice).at(0), 2) + "_to_" +
-                              ToStringWithPrecision(Loaded_particle_limits.at(Slice).at(1), 2) + ".par";
+                                   ToStringWithPrecision(Loaded_particle_limits.at(Slice).at(1), 2) + ".par";
 
         ReadWMap((AcceptanceMapsDirectory + SampleName + "/" + TempFileName).c_str(), Loaded_Particle_WMap_TempSlice);
 
