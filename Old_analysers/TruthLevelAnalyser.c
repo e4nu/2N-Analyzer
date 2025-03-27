@@ -34,50 +34,50 @@ void gst::Loop() {
     //<editor-fold desc="Creating plots directories">
     cout << "Creating plots directories...\n\n";
 
-    system(("rm -r " + WorkingDirectory + "plots").c_str());  // clear old stuff in Parent_Folder
-    system(("mkdir -p " + WorkingDirectory + "plots").c_str());
+    system(("rm -r " + path_definitions::PathDefinitions.WorkingDirectory + "plots").c_str());  // clear old stuff in Parent_Folder
+    system(("mkdir -p " + path_definitions::PathDefinitions.WorkingDirectory + "plots").c_str());
 
-    system(("mkdir -p " + WorkingDirectory + "plots/E_cal_restorations").c_str());
-    system(("mkdir -p " + WorkingDirectory + "plots/E_cal_restorations/Other").c_str());
+    system(("mkdir -p " + path_definitions::PathDefinitions.WorkingDirectory + "plots/E_cal_restorations").c_str());
+    system(("mkdir -p " + path_definitions::PathDefinitions.WorkingDirectory + "plots/E_cal_restorations/Other").c_str());
     // TODO: IPS plots - these plots are for IPS poster. Rename them to fit the code.
-    system(("mkdir -p " + WorkingDirectory + "plots/E_cal_restorations/All_Int_Stack_IPS").c_str());
+    system(("mkdir -p " + path_definitions::PathDefinitions.WorkingDirectory + "plots/E_cal_restorations/All_Int_Stack_IPS").c_str());
 
-    system(("mkdir -p " + WorkingDirectory + "plots/Energy_histograms").c_str());
-    system(("mkdir -p " + WorkingDirectory + "plots/Energy_histograms/El_histograms").c_str());
-    system(("mkdir -p " + WorkingDirectory + "plots/Energy_histograms/El_VS_theta_l").c_str());
-    system(("mkdir -p " + WorkingDirectory + "plots/Energy_histograms/El_VS_theta_l/all_interactions").c_str());
-    system(("mkdir -p " + WorkingDirectory + "plots/Energy_histograms/El_VS_theta_l/QEL_only").c_str());
-    system(("mkdir -p " + WorkingDirectory + "plots/Energy_histograms/El_VS_theta_l/MEC_only").c_str());
-    system(("mkdir -p " + WorkingDirectory + "plots/Energy_histograms/El_VS_theta_l/RES_only").c_str());
-    system(("mkdir -p " + WorkingDirectory + "plots/Energy_histograms/El_VS_theta_l/DIS_only").c_str());
+    system(("mkdir -p " + path_definitions::PathDefinitions.WorkingDirectory + "plots/Energy_histograms").c_str());
+    system(("mkdir -p " + path_definitions::PathDefinitions.WorkingDirectory + "plots/Energy_histograms/El_histograms").c_str());
+    system(("mkdir -p " + path_definitions::PathDefinitions.WorkingDirectory + "plots/Energy_histograms/El_VS_theta_l").c_str());
+    system(("mkdir -p " + path_definitions::PathDefinitions.WorkingDirectory + "plots/Energy_histograms/El_VS_theta_l/all_interactions").c_str());
+    system(("mkdir -p " + path_definitions::PathDefinitions.WorkingDirectory + "plots/Energy_histograms/El_VS_theta_l/QEL_only").c_str());
+    system(("mkdir -p " + path_definitions::PathDefinitions.WorkingDirectory + "plots/Energy_histograms/El_VS_theta_l/MEC_only").c_str());
+    system(("mkdir -p " + path_definitions::PathDefinitions.WorkingDirectory + "plots/Energy_histograms/El_VS_theta_l/RES_only").c_str());
+    system(("mkdir -p " + path_definitions::PathDefinitions.WorkingDirectory + "plots/Energy_histograms/El_VS_theta_l/DIS_only").c_str());
 
-    system(("mkdir -p " + WorkingDirectory + "plots/Energy_transfer_histograms").c_str());
-    system(("mkdir -p " + WorkingDirectory + "plots/Energy_transfer_histograms/Energy_transfer_histograms_all_interactions").c_str());
-    system(("mkdir -p " + WorkingDirectory + "plots/Energy_transfer_histograms/Energy_transfer_histograms_DIS_only").c_str());
-    system(("mkdir -p " + WorkingDirectory + "plots/Energy_transfer_histograms/Energy_transfer_histograms_MEC_only").c_str());
-    system(("mkdir -p " + WorkingDirectory + "plots/Energy_transfer_histograms/Energy_transfer_histograms_QEL_only").c_str());
-    system(("mkdir -p " + WorkingDirectory + "plots/Energy_transfer_histograms/Energy_transfer_histograms_RES_only").c_str());
-    system(("mkdir -p " + WorkingDirectory + "plots/Energy_transfer_histograms/Energy_transfer_VS_q3").c_str());
-    system(("mkdir -p " + WorkingDirectory + "plots/Energy_transfer_histograms/Inclusive_plots").c_str());
-    system(("mkdir -p " + WorkingDirectory + "plots/Energy_transfer_histograms/ET_All_Ang_2p").c_str());
-    system(("mkdir -p " + WorkingDirectory + "plots/Energy_transfer_histograms/ET_All_Ang_1n1p").c_str());
+    system(("mkdir -p " + path_definitions::PathDefinitions.WorkingDirectory + "plots/Energy_transfer_histograms").c_str());
+    system(("mkdir -p " + path_definitions::PathDefinitions.WorkingDirectory + "plots/Energy_transfer_histograms/Energy_transfer_histograms_all_interactions").c_str());
+    system(("mkdir -p " + path_definitions::PathDefinitions.WorkingDirectory + "plots/Energy_transfer_histograms/Energy_transfer_histograms_DIS_only").c_str());
+    system(("mkdir -p " + path_definitions::PathDefinitions.WorkingDirectory + "plots/Energy_transfer_histograms/Energy_transfer_histograms_MEC_only").c_str());
+    system(("mkdir -p " + path_definitions::PathDefinitions.WorkingDirectory + "plots/Energy_transfer_histograms/Energy_transfer_histograms_QEL_only").c_str());
+    system(("mkdir -p " + path_definitions::PathDefinitions.WorkingDirectory + "plots/Energy_transfer_histograms/Energy_transfer_histograms_RES_only").c_str());
+    system(("mkdir -p " + path_definitions::PathDefinitions.WorkingDirectory + "plots/Energy_transfer_histograms/Energy_transfer_VS_q3").c_str());
+    system(("mkdir -p " + path_definitions::PathDefinitions.WorkingDirectory + "plots/Energy_transfer_histograms/Inclusive_plots").c_str());
+    system(("mkdir -p " + path_definitions::PathDefinitions.WorkingDirectory + "plots/Energy_transfer_histograms/ET_All_Ang_2p").c_str());
+    system(("mkdir -p " + path_definitions::PathDefinitions.WorkingDirectory + "plots/Energy_transfer_histograms/ET_All_Ang_1n1p").c_str());
 
-    system(("mkdir -p " + WorkingDirectory + "plots/MicroBooNE_plots").c_str());
-    system(("mkdir -p " + WorkingDirectory + "plots/MicroBooNE_plots/gamma_lab").c_str());
-    system(("mkdir -p " + WorkingDirectory + "plots/MicroBooNE_plots/gamma_lab/all_interactions").c_str());
-    system(("mkdir -p " + WorkingDirectory + "plots/MicroBooNE_plots/gamma_lab/DIS_only").c_str());
-    system(("mkdir -p " + WorkingDirectory + "plots/MicroBooNE_plots/gamma_lab/MEC_only").c_str());
-    system(("mkdir -p " + WorkingDirectory + "plots/MicroBooNE_plots/gamma_lab/QEL_only").c_str());
-    system(("mkdir -p " + WorkingDirectory + "plots/MicroBooNE_plots/gamma_lab/RES_only").c_str());
-    system(("mkdir -p " + WorkingDirectory + "plots/MicroBooNE_plots/momentum_distributions").c_str());
+    system(("mkdir -p " + path_definitions::PathDefinitions.WorkingDirectory + "plots/MicroBooNE_plots").c_str());
+    system(("mkdir -p " + path_definitions::PathDefinitions.WorkingDirectory + "plots/MicroBooNE_plots/gamma_lab").c_str());
+    system(("mkdir -p " + path_definitions::PathDefinitions.WorkingDirectory + "plots/MicroBooNE_plots/gamma_lab/all_interactions").c_str());
+    system(("mkdir -p " + path_definitions::PathDefinitions.WorkingDirectory + "plots/MicroBooNE_plots/gamma_lab/DIS_only").c_str());
+    system(("mkdir -p " + path_definitions::PathDefinitions.WorkingDirectory + "plots/MicroBooNE_plots/gamma_lab/MEC_only").c_str());
+    system(("mkdir -p " + path_definitions::PathDefinitions.WorkingDirectory + "plots/MicroBooNE_plots/gamma_lab/QEL_only").c_str());
+    system(("mkdir -p " + path_definitions::PathDefinitions.WorkingDirectory + "plots/MicroBooNE_plots/gamma_lab/RES_only").c_str());
+    system(("mkdir -p " + path_definitions::PathDefinitions.WorkingDirectory + "plots/MicroBooNE_plots/momentum_distributions").c_str());
 
-    system(("mkdir -p " + WorkingDirectory + "plots/momentum_histograms").c_str());
-    system(("mkdir -p " + WorkingDirectory + "plots/momentum_histograms/1n1p").c_str());
-    system(("mkdir -p " + WorkingDirectory + "plots/momentum_histograms/2p").c_str());
+    system(("mkdir -p " + path_definitions::PathDefinitions.WorkingDirectory + "plots/momentum_histograms").c_str());
+    system(("mkdir -p " + path_definitions::PathDefinitions.WorkingDirectory + "plots/momentum_histograms/1n1p").c_str());
+    system(("mkdir -p " + path_definitions::PathDefinitions.WorkingDirectory + "plots/momentum_histograms/2p").c_str());
 
-    system(("mkdir -p " + WorkingDirectory + "plots/phi_histograms").c_str());
+    system(("mkdir -p " + path_definitions::PathDefinitions.WorkingDirectory + "plots/phi_histograms").c_str());
 
-    system(("mkdir -p " + WorkingDirectory + "plots/theta_histograms").c_str());
+    system(("mkdir -p " + path_definitions::PathDefinitions.WorkingDirectory + "plots/theta_histograms").c_str());
     //</editor-fold>
 
     //  FSI setup --------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -446,20 +446,20 @@ void gst::Loop() {
         cout << "Clearing old plots...\n";
         cout << "\n";
 
-        system(("find " + WorkingDirectory + "plots -type f -iname '*.png' -delete").c_str());  // Delete existing .png files
+        system(("find " + path_definitions::PathDefinitions.WorkingDirectory + "plots -type f -iname '*.png' -delete").c_str());  // Delete existing .png files
     } else if (delete_png_files == false && delete_root_files == true) {
         cout << "\n";
         cout << "Clearing old root files...\n";
         cout << "\n";
 
-        system(("find " + WorkingDirectory + "plots -type f -iname '*.root' -delete").c_str());  // Delete existing .root files
+        system(("find " + path_definitions::PathDefinitions.WorkingDirectory + "plots -type f -iname '*.root' -delete").c_str());  // Delete existing .root files
     } else if (delete_png_files == true && delete_root_files == true) {
         cout << "\n";
         cout << "Clearing old plots & root files...\n";
         cout << "\n";
 
-        system(("find " + WorkingDirectory + "plots -type f -iname '*.png' -delete").c_str());   // Delete existing .png files
-        system(("find " + WorkingDirectory + "plots -type f -iname '*.root' -delete").c_str());  // Delete existing .root files
+        system(("find " + path_definitions::PathDefinitions.WorkingDirectory + "plots -type f -iname '*.png' -delete").c_str());   // Delete existing .png files
+        system(("find " + path_definitions::PathDefinitions.WorkingDirectory + "plots -type f -iname '*.root' -delete").c_str());  // Delete existing .root files
     } else {
         cout << "\n";
         cout << "No files were cleared.\n";
@@ -4887,13 +4887,13 @@ void gst::Loop() {
 
     //<editor-fold desc="Creating directories">
 
-    system(("mkdir -p " + WorkingDirectory + "plots").c_str());
-    system(("mkdir -p " + WorkingDirectory + "plots/theta_histograms").c_str());
-    system(("mkdir -p " + WorkingDirectory + "plots/phi_histograms").c_str());
+    system(("mkdir -p " + path_definitions::PathDefinitions.WorkingDirectory + "plots").c_str());
+    system(("mkdir -p " + path_definitions::PathDefinitions.WorkingDirectory + "plots/theta_histograms").c_str());
+    system(("mkdir -p " + path_definitions::PathDefinitions.WorkingDirectory + "plots/phi_histograms").c_str());
 
-    system(("mkdir -p " + WorkingDirectory + "plots/momentum_histograms").c_str());
-    system(("mkdir -p " + WorkingDirectory + "plots/momentum_histograms/2p").c_str());
-    system(("mkdir -p " + WorkingDirectory + "plots/momentum_histograms/1n1p").c_str());
+    system(("mkdir -p " + path_definitions::PathDefinitions.WorkingDirectory + "plots/momentum_histograms").c_str());
+    system(("mkdir -p " + path_definitions::PathDefinitions.WorkingDirectory + "plots/momentum_histograms/2p").c_str());
+    system(("mkdir -p " + path_definitions::PathDefinitions.WorkingDirectory + "plots/momentum_histograms/1n1p").c_str());
 
     //</editor-fold>
 
@@ -4901,12 +4901,12 @@ void gst::Loop() {
 
     //<editor-fold desc="Saving setup to log file">
     if (delete_txt_files == true) {
-        system(("find " + WorkingDirectory + "plots -type f -iname '*.txt' -delete").c_str());  // Delete existing .txt files
+        system(("find " + path_definitions::PathDefinitions.WorkingDirectory + "plots -type f -iname '*.txt' -delete").c_str());  // Delete existing .txt files
     }
 
     ofstream myLogFile;
 
-    myLogFile.open("" + WorkingDirectory + "plots/Run_log.txt");
+    myLogFile.open("" + path_definitions::PathDefinitions.WorkingDirectory + "plots/Run_log.txt");
 
     myLogFile << "//////////////////////////////////////////////////////////////////////////////////////////\n";
     myLogFile << "// Run was with '" << file_name << "' setup mode.\n";
@@ -7249,7 +7249,7 @@ void gst::Loop() {
         //        gStyle->SetStatX(0.88);
         //        gStyle->SetStatY(0.935); // gStyle->SetStatY(0.4);
         theta_lp_VS_phi_lp->SetStats(0);
-        c1->SaveAs((WorkingDirectory + "plots/Theta_l_VS_Phi_l_inclusive.png").c_str());
+        c1->SaveAs((path_definitions::PathDefinitions.WorkingDirectory + "plots/Theta_l_VS_Phi_l_inclusive.png").c_str());
         //        gStyle->SetStatX(DefStatX);
         //        gStyle->SetStatY(DefStatY);
         c1->Clear();

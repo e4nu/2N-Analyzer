@@ -298,20 +298,20 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
     /* Save plots to custom-named folders, to allow multi-sample runs at once. */
     const bool custom_cuts_naming = true;
-    std::string run_plots_path = plots_path;
+    std::string run_plots_path = path_definitions::PathDefinitions.plots_path;
     std::string run_plots_log_save_Directory = plots_log_save_Directory;
     settings.SetCustomCutsNaming(custom_cuts_naming);
     settings.ConfigureStatuses(apply_cuts, clas12ana_particles, only_preselection_cuts, apply_chi2_cuts_1e_cut, only_electron_quality_cuts, apply_nucleon_cuts, Enable_FD_photons,
                                apply_nucleon_SmearAndCorr, apply_kinematical_cuts, apply_kinematical_weights, apply_fiducial_cuts, (Generate_Electron_AMaps || Generate_Nucleon_AMaps),
                                plot_and_fit_MomRes, VaryingDelta, Calculate_momResS2, Run_with_momResS2, momRes_test, Rec_wTL_ES, ZoomIn_On_mom_th_plots);
-    settings.SetPaths(WorkingDirectory, SampleName, run_plots_path, apply_cuts, apply_chi2_cuts_1e_cut, apply_nucleon_cuts);
+    settings.SetPaths(path_definitions::PathDefinitions.WorkingDirectory, SampleName, run_plots_path, apply_cuts, apply_chi2_cuts_1e_cut, apply_nucleon_cuts);
     settings.GetPlotsPath(run_plots_path);
     settings.GetPlotsLogSaveDirectory(run_plots_log_save_Directory);
 
     // Print out execution variables
     /* Print out execution variables (for self observation) */
     std::cout << "\033[33m-- Execution variables ----------------------------------------------------\n";
-    std::cout << "\033[33mWorkingDirectory:\033[0m\t" << WorkingDirectory << "\n";
+    std::cout << "\033[33mWorkingDirectory:\033[0m\t" << path_definitions::PathDefinitions.WorkingDirectory << "\n";
     std::cout << "\033[33mrun_plots_path:\033[0m\t\t" << run_plots_path << "\n\n";
 
     std::cout << "\033[33mAnalyseFilePath:\033[0m\t" << "/" << AnalyseFilePath << "/" << "\n";
@@ -22013,7 +22013,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     myLogFile << "fileInput: " << fileInput << "\n";
     myLogFile << "plotsInput: " << plotsInput << "\n\n";
 
-    myLogFile << "WorkingDirectory: " << WorkingDirectory << "\n";
+    myLogFile << "WorkingDirectory: " << path_definitions::PathDefinitions.WorkingDirectory << "\n";
     myLogFile << "run_plots_path: " << run_plots_path << "\n";
     myLogFile << "SampleName: " << SampleName << "\n";
     myLogFile << "VaryingSampleName: " << VaryingSampleName << "\n\n";
@@ -22835,7 +22835,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     std::cout << "\033[33m\t\t\tExecution variables\n\033[0m";
     std::cout << "\033[33m---------------------------------------------------------------------------\n\n\033[0m";
 
-    std::cout << "\033[33mWorkingDirectory:\t" << WorkingDirectory << "\n\033[0m";
+    std::cout << "\033[33mWorkingDirectory:\t" << path_definitions::PathDefinitions.WorkingDirectory << "\n\033[0m";
     std::cout << "\033[33mrun_plots_path:\t\t" << run_plots_path << "\n\n\033[0m";
 
     std::cout << "\033[33mAnalyseFilePath:\t" << "/" << AnalyseFilePath << "/" << "\n\033[0m";
