@@ -13,7 +13,7 @@ struct CodeDirectories {
     const std::string WorkingDirectory;
     const std::string plots_path;
     const std::string SettingsDirectory;
-    const std::string SourcesDirectory;
+    const std::string SourceDirectory;
     const std::string DataDirectory;
     const std::string ACorrDirectory;
     const std::string AcceptanceMapsDirectory;
@@ -26,8 +26,8 @@ struct CodeDirectories {
         : WorkingDirectory(basic_tools::GetCurrentDirectory() + "/"),
           plots_path("/lustre24/expphy/volatile/clas12/asportes/Analysis_output"),
           SettingsDirectory(WorkingDirectory + "setup/"),
-          SourcesDirectory(WorkingDirectory + "source/"),
-          DataDirectory(SourcesDirectory + "data/"),
+          SourceDirectory(WorkingDirectory + "source/"),
+          DataDirectory(SourceDirectory + "data/"),
           ACorrDirectory(DataDirectory + "AcceptanceCorrections/"),
           AcceptanceMapsDirectory(DataDirectory + "AcceptanceMaps/"),
           AcceptanceWeightsDirectory(DataDirectory + "AcceptanceWeights/"),
