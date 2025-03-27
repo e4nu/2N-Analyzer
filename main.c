@@ -1,6 +1,13 @@
 #include <iostream>
 
-#include "framework/includes/work_dir_include.h"
+// #include "framework/includes/work_dir_include.h"
+#ifdef IFARM_RUN
+#define RECO_ANALYSIS_RUN true
+#pragma message "Running in ifarm configuration..."
+#else
+#define RECO_ANALYSIS_RUN false
+#pragma message "Running in gpvm configuration..."
+#endif
 
 #include "framework/namespaces/setup/code_setup/code_setup.h"
 
