@@ -22,15 +22,17 @@
 #include "../hPlots/hPlot1D.cpp"
 #include "../hPlots/hPlot2D.cpp"
 //
-#include "clas12reader.h"
-#include "region_particle.h"
+// #include "clas12reader.h"
+// #include "region_particle.h"
+
+#include "../../includes/clas12_include.h"
 
 #if !defined(MOMENTUMRESOLUTION_H)
 #include "../MomentumResolution/MomentumResolution.cpp"
 #endif
 
 using namespace std;
-using namespace clas12;
+// using namespace clas12;
 using namespace constants;
 // using namespace analysis_math;
 

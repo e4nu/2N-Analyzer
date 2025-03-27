@@ -380,9 +380,9 @@ AMaps::AMaps(const std::string &SampleName, const std::string &P_e_bin_profile, 
 AMaps::AMaps(const std::string &AcceptanceMapsDirectory, const std::string &SampleName, const double &beamE, const bool &Electron_single_slice_test, const bool &Nucleon_single_slice_test,
              const vector<int> &TestSlices) {
     std::string BeamE_str = basic_tools::GetBeamEnergyFromDouble(beamE);
-    std::string Electron_source_folder = "Uniform_1e_" + BeamE_str;
-    std::string Proton_source_folder = "Uniform_ep_" + BeamE_str;
-    std::string Neutron_source_folder = "Uniform_en_" + BeamE_str;
+    std::string Electron_source_folder = "Uniform_1e_sample_" + BeamE_str;
+    std::string Proton_source_folder = "Uniform_ep_sample_" + BeamE_str;
+    std::string Neutron_source_folder = "Uniform_en_sample_" + BeamE_str;
 
     /* Load slices and their limits */
     ReadAMapLimits((AcceptanceMapsDirectory + Electron_source_folder + "/e_AMap_by_slice/e_slice_limits.par").c_str(), Loaded_ElectronMomSliceLimits);

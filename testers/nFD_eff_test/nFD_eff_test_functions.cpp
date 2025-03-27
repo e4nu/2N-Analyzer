@@ -26,11 +26,13 @@
 #include "../../framework/constants.h"
 #include "../../framework/namespaces/general_utilities/utilities/utilities.h"
 //
-#include "HipoChain.h"
-#include "clas12reader.h"
+// #include "HipoChain.h"
+// #include "clas12reader.h"
+
+#include "../../framework/includes/clas12_include.h"
 
 using namespace std;
-using namespace clas12;
+// using namespace clas12;
 using namespace utilities;
 
 #include "../../framework/classes/AMaps/AMaps.cpp"

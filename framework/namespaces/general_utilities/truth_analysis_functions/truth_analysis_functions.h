@@ -37,14 +37,17 @@
 #include "../constants/constants.h"
 #include "../analysis_math/analysis_math.h"
 #include "../lists/lists.h"
+//
+// #include "HipoChain.h"
+// #include "clas12reader.h"
+
+// #include "../../../includes/clas12_include.h"
 
 using namespace std;
-using namespace clas12;
+// using namespace clas12;
 using namespace lists;
 
 namespace truth_analysis_functions {
-using namespace clas12;
-
 //<editor-fold desc="Particle vectors">
 /* Particle index vectors */
 vector<int> TL_Electron_ind, TL_Neutrons_ind, TL_Protons_ind, TL_piplus_ind, TL_piminus_ind, TL_pizero_ind, TL_Photons_ind, TL_OtherPart_ind;

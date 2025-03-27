@@ -10,11 +10,14 @@
 #include "../../namespaces/general_utilities/utilities/utilities.h"
 #include "../DSCuts/DSCuts.h"
 #include "../TargetParameters/TargetParameters.h"
-#include "HipoChain.h"
-#include "clas12reader.h"
+// 
+// #include "HipoChain.h"
+// #include "clas12reader.h"
+
+#include "../../includes/clas12_include.h"
 
 using namespace std;
-using namespace clas12;
+// using namespace clas12;
 using namespace utilities;
 
 class ExperimentParameters : public TargetParameters {
