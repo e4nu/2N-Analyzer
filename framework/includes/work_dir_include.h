@@ -18,13 +18,13 @@
 // #include <iostream>
 
 #ifdef IFARM_RUN
-    #if IFARM_RUN == 1
-        #define RECO_ANALYSIS_RUN true
-    #else
-        #define RECO_ANALYSIS_RUN false
-    #endif
+#if IFARM_RUN == 1
+#define RECO_ANALYSIS_RUN true
 #else
-    #define RECO_ANALYSIS_RUN false
+#define RECO_ANALYSIS_RUN false
+#endif
+#else
+#define RECO_ANALYSIS_RUN false
 #endif
 // // Define RECO_ANALYSIS_RUN as a runtime constant
 // const bool RECO_ANALYSIS_RUN = (getenv("IFARM_RUN") && atoi(getenv("IFARM_RUN")) == 1);
@@ -32,11 +32,11 @@
 // // #define RECO_ANALYSIS_RUN (getenv("IFARM_RUN") != NULL)
 
 void RECO_ANALYSIS_RUN_PrintOut() {
-#if RECO_ANALYSIS_RUN
-    std::cout << "\033[33m\nRunning in ifarm configuration (IFARM_RUN = " << getenv("IFARM_RUN") << "; RECO_ANALYSIS_RUN = " << RECO_ANALYSIS_RUN << ")\n";
-#else
-    std::cout << "\033[33m\nRunning in gpvm configuration (IFARM_RUN = " << getenv("IFARM_RUN") << "; RECO_ANALYSIS_RUN = " << RECO_ANALYSIS_RUN << ")\n\n";
-#endif
+    if (RECO_ANALYSIS_RUN) {
+        std::cout << "\033[33m\nRunning in ifarm configuration (IFARM_RUN = " << getenv("IFARM_RUN") << "; RECO_ANALYSIS_RUN = " << RECO_ANALYSIS_RUN << ")\n";
+    } else {
+        std::cout << "\033[33m\nRunning in gpvm configuration (IFARM_RUN = " << getenv("IFARM_RUN") << "; RECO_ANALYSIS_RUN = " << RECO_ANALYSIS_RUN << ")\n\n";
+    }
 }
 
 // #endif //WORK_DIR_INCLUDE_H
