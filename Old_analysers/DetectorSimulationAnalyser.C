@@ -528,6 +528,8 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
     // TList definition -----------------------------------------------------------------------------------------------------------------------------------------------------
 
+    CodeDebugger.PrintStepTester(DebuggerMode);
+
     // TList definition
     /* Definition of plots TLists used to save all plots to .root file. */
 
@@ -538,6 +540,8 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
     // TFile definition -----------------------------------------------------------------------------------------------------------------------------------------------------
 
+    CodeDebugger.PrintStepTester(DebuggerMode);
+
     // TFile definition
     /* Definition of plots TFile used to save all plots to .pdf file. */
 
@@ -546,6 +550,8 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     const char *Histogram_OutPDF = Histogram_OutPDF_fileName.c_str();
 
     // Plot selector --------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    CodeDebugger.PrintStepTester(DebuggerMode);
 
     // Plot selector
     /* Here are boolean variables used to turn ON/OFF the different plots of the code.
@@ -785,6 +791,8 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
     // Normalization setup -----------------------------------------------------------------------------------------------------------------------------------------------
 
+    CodeDebugger.PrintStepTester(DebuggerMode);
+
     // Normalization setup
     /* Here are boolean variables used to turn ON/OFF the different plot normalizations of the code.
      * Enable of presentations only, since event count is important otherwise. */
@@ -805,6 +813,8 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     }
 
     // Delete setup ------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    CodeDebugger.PrintStepTester(DebuggerMode);
 
     // Delete setup
     /* Clear files from previous runs (to prevent mix fo plots from different codes). */
@@ -833,6 +843,8 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     }
 
     // Histogram setup ---------------------------------------------------------------------------------------------------------------------------------------------------
+
+    CodeDebugger.PrintStepTester(DebuggerMode);
 
     // Histogram setup
     /* Histogram boundary variables. Used to unify histograms to the same boundaries. */
@@ -1003,6 +1015,8 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
     // Acceptance maps generation -------------------------------------------------------------------------------------------------------------------------------------------
 
+    CodeDebugger.PrintStepTester(DebuggerMode);
+
     // Acceptance maps generation
     /* Acceptance maps are handled completely by the AMaps class */
     std::cout << "\033[33m\nSetting Acceptance maps...\033[0m";
@@ -1041,6 +1055,8 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
     // Acceptance correction data -------------------------------------------------------------------------------------------------------------------------------------------
 
+    CodeDebugger.PrintStepTester(DebuggerMode);
+
     // Acceptance correction
     /* Neutron resolution fits is handled completely by the MomentumResolution class */
     std::cout << "\033[33m\nSetting acceptance correction data...\033[0m";
@@ -1059,6 +1075,8 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     std::cout << "\033[33m done.\n\n\033[0m";
 
     // Neutron resolution & proton smearing ---------------------------------------------------------------------------------------------------------------------------------
+
+    CodeDebugger.PrintStepTester(DebuggerMode);
 
     // Neutron resolution
     /* Neutron resolution fits is handled completely by the MomentumResolution class */
@@ -1087,16 +1105,18 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
     // Debugging setup ---------------------------------------------------------------------------------------------------------------------------------------------------
 
+    CodeDebugger.PrintStepTester(DebuggerMode);
+
     // Debugging setup
     /* Saving a printout of the number of particles in nEvents2print events. Used for clas12ana debugging. */
 
-    const bool GoodProtonsMonitorPlots = true;
+    // const bool GoodProtonsMonitorPlots = true;
 
     pid.SetGPMonitoringPlots(GoodProtonsMonitorPlots, directories.Angle_Directory_map["CToF_hits_monitoring_2p_Directory"],
                              directories.Angle_Directory_map["Double_detection_monitoring_2p_Directory"]);
 
-    const bool PrintEvents = false;
-    const int Ne_in_event = 1, Nf_in_event = 2, nEvents2print = 10000;
+    // const bool PrintEvents = false;
+    // const int Ne_in_event = 1, Nf_in_event = 2, nEvents2print = 10000;
 
     ofstream EventPrint;
     std::string EventPrint_save_Directory;
@@ -1129,6 +1149,8 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //                                                                      Histogram definitions                                                                          //
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    CodeDebugger.PrintStepTester(DebuggerMode);
 
     // Histogram definitions
     /* Histogram definitions and setup. */
