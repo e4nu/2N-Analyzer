@@ -17,7 +17,8 @@
 #include <cstdlib>  // For atoi()
 #include <iostream>
 
-#define RECO_ANALYSIS_RUN (getenv("IFARM_RUN") && atoi(getenv("IFARM_RUN")) == 1)
+// Define RECO_ANALYSIS_RUN as a runtime constant
+const bool RECO_ANALYSIS_RUN = (getenv("IFARM_RUN") && atoi(getenv("IFARM_RUN")) == 1);
 // #define RECO_ANALYSIS_RUN (getenv("IFARM_RUN") == 1)
 // #define RECO_ANALYSIS_RUN (getenv("IFARM_RUN") != NULL)
 
