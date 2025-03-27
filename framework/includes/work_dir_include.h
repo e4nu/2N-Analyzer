@@ -6,10 +6,10 @@
 // #define WORK_DIR_INCLUDE_H
 
 #ifdef WORK_DIR
+const char* WorkDir = WORK_DIR;  // Define a variable using WORK_DIR
 #define RECO_ANALYSIS_RUN true
-const char* directory = WORK_DIR;  // Define a variable using WORK_DIR
 #else
-const char* directory = "UNKNOWN";
+const char* WorkDir = "UNKNOWN";
 #define RECO_ANALYSIS_RUN false
 #endif
 
@@ -17,9 +17,9 @@ const char* directory = "UNKNOWN";
 
 void RECO_ANALYSIS_RUN_PrintOut() {
 #if RECO_ANALYSIS_RUN
-    std::cout << "\033[33m\nRunning in ifarm configuration (WORK_DIR = " << WORK_DIR << "; RECO_ANALYSIS_RUN = " << RECO_ANALYSIS_RUN << ")\n";
+    std::cout << "\033[33m\nRunning in ifarm configuration (WorkDir = " << WorkDir << "; RECO_ANALYSIS_RUN = " << RECO_ANALYSIS_RUN << ")\n";
 #else
-    std::cout << "\033[33m\nRunning in gpvm configuration (WORK_DIR = " << WORK_DIR << "; RECO_ANALYSIS_RUN = " << RECO_ANALYSIS_RUN << ")\n\n";
+    std::cout << "\033[33m\nRunning in gpvm configuration (WorkDir = " << WorkDir << "; RECO_ANALYSIS_RUN = " << RECO_ANALYSIS_RUN << ")\n\n";
 #endif
 }
 
