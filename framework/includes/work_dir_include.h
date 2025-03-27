@@ -5,13 +5,16 @@
 // #ifndef WORK_DIR_INCLUDE_H
 // #define WORK_DIR_INCLUDE_H
 
-#ifdef WORK_DIR
-const char* WorkDir = WORK_DIR;  // Define a variable using WORK_DIR
-#define RECO_ANALYSIS_RUN true
-#else
-const char* WorkDir = "UNKNOWN";
-#define RECO_ANALYSIS_RUN false
-#endif
+// #ifdef WORK_DIR
+// const char* WorkDir = WORK_DIR;  // Define a variable using WORK_DIR
+// #define RECO_ANALYSIS_RUN true
+// #else
+// const char* WorkDir = "UNKNOWN";
+// #define RECO_ANALYSIS_RUN false
+// #endif
+
+#define RECO_ANALYSIS_RUN (getenv("IFARM_RUN") == 1)
+// #define RECO_ANALYSIS_RUN (getenv("IFARM_RUN") != NULL)
 
 #include <iostream>
 
