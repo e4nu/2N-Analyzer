@@ -7,9 +7,9 @@
 
 #include <iostream>
 
-#include "Data_samples.h"
+#include "data_samples.h"
 // #include "Q2_testing_samples.h"
-#include "Uniform_samples.h"
+#include "uniform_samples.h"
 
 namespace analysis_samples {
 std::vector<std::string> AnalyseFilePath_v, AnalyseFileSample_v, AnalyseFileDir_v, AnalyseFile_v;

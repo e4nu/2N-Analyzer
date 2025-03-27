@@ -135,7 +135,8 @@
         "debugging_settings.h": "c",
         "debugger.cpp": "c",
         "debugger.h": "c",
-        "analysis_samples.h": "c"
+        "analysis_samples.h": "c",
+        "data_samples.h": "c"
     },
     "[jsonc]": {
         "editor.defaultFormatter": "vscode.json-language-features"
