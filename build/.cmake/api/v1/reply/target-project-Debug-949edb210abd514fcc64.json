@@ -32,7 +32,7 @@
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 209,
+				"line" : 213,
 				"parent" : 0
 			},
 			{
@@ -433,20 +433,20 @@
 				45,
 				47,
 				50,
+				92,
 				93,
-				94,
-				96,
-				101,
-				103,
-				105,
+				95,
+				100,
+				102,
+				104,
+				107,
 				108,
-				109,
+				110,
 				111,
 				112,
 				113,
 				114,
-				115,
-				117
+				116
 			]
 		},
 		{
@@ -598,10 +598,10 @@
 			"language" : "C",
 			"sourceIndexes" : 
 			[
+				90,
 				91,
-				92,
-				98,
-				100
+				97,
+				99
 			]
 		}
 	],
@@ -762,24 +762,24 @@
 				45,
 				47,
 				50,
+				90,
 				91,
 				92,
 				93,
-				94,
-				96,
-				98,
+				95,
+				97,
+				99,
 				100,
-				101,
-				103,
-				105,
+				102,
+				104,
+				107,
 				108,
-				109,
+				110,
 				111,
 				112,
 				113,
 				114,
-				115,
-				117
+				116
 			]
 		},
 		{
@@ -808,9 +808,9 @@
 				70,
 				71,
 				72,
-				95,
-				97,
-				99
+				94,
+				96,
+				98
 			]
 		},
 		{
@@ -852,15 +852,19 @@
 				87,
 				88,
 				89,
-				90,
-				102,
-				104,
+				101,
+				103,
+				105,
 				106,
-				107,
-				110,
-				116,
+				109,
+				115,
+				117,
 				118,
-				119
+				119,
+				120,
+				121,
+				122,
+				123
 			]
 		}
 	],
@@ -1316,11 +1320,6 @@
 		},
 		{
 			"backtrace" : 1,
-			"path" : "framework/namespaces/general_utilities/analysis_math/analysis_math_reco_extentions.h",
-			"sourceGroupIndex" : 2
-		},
-		{
-			"backtrace" : 1,
 			"path" : "framework/namespaces/general_utilities/basic_tools/basic_tools.h",
 			"sourceGroupIndex" : 2
 		},
@@ -1346,7 +1345,7 @@
 		},
 		{
 			"backtrace" : 1,
-			"path" : "framework/namespaces/settings/general_settings/settings.h",
+			"path" : "framework/namespaces/settings/general_settings/general_settings.h",
 			"sourceGroupIndex" : 2
 		},
 		{
@@ -1515,6 +1514,31 @@
 		{
 			"backtrace" : 1,
 			"path" : "framework/namespaces/setup/path_definitions/path_definitions.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "framework/namespaces/settings/debugging_settings/debugging_settings.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "framework/namespaces/setup/debugging/debugging.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "framework/namespaces/setup/code_setup/code_setup.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "framework/includes/work_dir_include.h",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "framework/structures/CodeDirectories/CodeDirectories.h",
 			"sourceGroupIndex" : 2
 		}
 	],
