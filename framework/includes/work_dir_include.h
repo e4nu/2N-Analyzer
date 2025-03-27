@@ -33,9 +33,9 @@
 
 void RECO_ANALYSIS_RUN_PrintOut() {
     if (RECO_ANALYSIS_RUN) {
-        std::cout << "\033[33m\nRunning in ifarm configuration (IFARM_RUN = " << getenv("IFARM_RUN") << "; RECO_ANALYSIS_RUN = " << RECO_ANALYSIS_RUN << ")\n";
+        std::cout << "\033[33m\nRunning in ifarm configuration (IFARM_RUN = " << IFARM_RUN << "; RECO_ANALYSIS_RUN = " << RECO_ANALYSIS_RUN << ")\n";
     } else {
-        std::cout << "\033[33m\nRunning in gpvm configuration (IFARM_RUN = " << getenv("IFARM_RUN") << "; RECO_ANALYSIS_RUN = " << RECO_ANALYSIS_RUN << ")\n\n";
+        std::cout << "\033[33m\nRunning in gpvm configuration (IFARM_RUN = " << IFARM_RUN << "; RECO_ANALYSIS_RUN = " << RECO_ANALYSIS_RUN << ")\n\n";
     }
 }
 
