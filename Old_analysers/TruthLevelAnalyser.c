@@ -472,7 +472,7 @@ void gst::Loop() {
     // TList setup ----------------------------------------------------------------------------------------------------------------------------------------------------------
 
     //<editor-fold desc="TList name setup">
-    std::string listName = plots_path + plotsInput + plots_TList_FileType;  // TODO: add if-else to choose plotsInput or file_name
+    std::string listName = path_definitions::plots_path.WorkingDirectory + plotsInput + plots_TList_FileType;  // TODO: add if-else to choose plotsInput or file_name
     const char *TListName = listName.c_str();
     //</editor-fold>
 
@@ -5599,7 +5599,7 @@ void gst::Loop() {
 
     // List definition ---------------------------------------------------------------------------------
 
-    std::string Histogram_OutPDF_fileName = plots_path + "/Out" + plots_TFile_FileType;
+    std::string Histogram_OutPDF_fileName = path_definitions::plots_path.WorkingDirectory + "/Out" + plots_TFile_FileType;
     const char *Histogram_OutPDF = Histogram_OutPDF_fileName.c_str();
 
     //  Code execution
