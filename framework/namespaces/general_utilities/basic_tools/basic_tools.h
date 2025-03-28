@@ -37,7 +37,7 @@ std::string GetSSHHostName();
 
 // quit function --------------------------------------------------------------------------------------------------------------------------------------------------------
 
-void quit() { exit(0); }
+void quit();
 
 // GetCurrentDirectory function -----------------------------------------------------------------------------------------------------------------------------------------
 
@@ -45,7 +45,7 @@ std::string GetCurrentDirectory();
 
 // BoolToChar function --------------------------------------------------------------------------------------------------------------------------------------------------
 
-inline const char *const BoolToChar(bool b);
+const char *const BoolToChar(bool b);
 
 // BoolToString function ------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -58,7 +58,7 @@ std::string ToStringWithPrecision(const A a_value, const int n = 2);
 
 // FindSubstring function -----------------------------------------------------------------------------------------------------------------------------------------------
 
-inline bool FindSubstring(const std::string &string1, const std::string &string2);
+bool FindSubstring(const std::string &string1, const std::string &string2);
 
 // GetBeamEnergyFromString function -------------------------------------------------------------------------------------------------------------------------------------
 

@@ -13,7 +13,6 @@
 #include "../basic_tools/basic_tools.h"
 #include "../constants/constants.h"
 //
-// #include "analysis_math_reco_extentions.h"
 #include "polynomial_solver.h"
 //
 #include "HipoChain.h"

@@ -10,6 +10,8 @@
 #include "data_samples.h"
 #include "uniform_samples.h"
 
+// TODO: split into header and source files!
+
 namespace analysis_samples {
 using namespace data_samples;
 using namespace uniform_samples;
@@ -26,7 +28,7 @@ std::string file_name = "general_file";
 
 // HIPO files for Q2 study ----------------------------------------------------------------------------------------------------------------------------------------------
 
-void ConfigSampleChain() {
+inline void ConfigSampleChain() {
     // ==================================================================================================================================================================
     // Data runs
     // ==================================================================================================================================================================

@@ -96,7 +96,7 @@ std::string GetCurrentDirectory() {
 
 // BoolToChar function --------------------------------------------------------------------------------------------------------------------------------------------------
 
-inline const char *const BoolToChar(bool b) { return b ? "true" : "false"; }
+const char *const BoolToChar(bool b) { return b ? "true" : "false"; }
 
 // BoolToString function ------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -104,7 +104,6 @@ std::string BoolToString(bool b) { return b ? "true" : "false"; }
 
 // ToStringWithPrecision function ---------------------------------------------------------------------------------------------------------------------------------------
 
-template <typename A>
 std::string ToStringWithPrecision(const A a_value, const int n = 2) {
     std::ostringstream out;
     out.precision(n);
@@ -114,7 +113,7 @@ std::string ToStringWithPrecision(const A a_value, const int n = 2) {
 
 // FindSubstring function -----------------------------------------------------------------------------------------------------------------------------------------------
 
-inline bool FindSubstring(const std::string &string1, const std::string &string2) { return string1.find(string2) != std::string::npos; }
+bool FindSubstring(const std::string &string1, const std::string &string2) { return string1.find(string2) != std::string::npos; }
 
 // GetBeamEnergyFromString function -------------------------------------------------------------------------------------------------------------------------------------
 

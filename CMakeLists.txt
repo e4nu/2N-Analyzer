@@ -8,7 +8,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CLAS12ROOT $ENV{CLAS12ROOT})
 set(HIPO $ENV{HIPO})
 find_package(ROOT)
-list(APPEND CMAKE_PREFIX_PATH $ENV{ROOTSYS}) 
+list(APPEND CMAKE_PREFIX_PATH $ENV{ROOTSYS})
 include(${ROOT_USE_FILE})
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${ROOT_CXX_FLAGS} -O0 -ggdb")
 find_package(PkgConfig REQUIRED)
@@ -136,8 +136,11 @@ add_executable(project ${CLAS12ROOT_SOURCES} ${CLAS12BANKS_SOURCES} ${HIPO4_SOUR
         framework/functions/StackPlot4.h
         framework/namespaces/general_utilities/utilities/utilities.h
         framework/namespaces/general_utilities/analysis_math/analysis_math.h
+        framework/namespaces/general_utilities/analysis_math/analysis_math.cpp
         framework/namespaces/general_utilities/basic_tools/basic_tools.h
+        framework/namespaces/general_utilities/basic_tools/basic_tools.cpp
         framework/namespaces/general_utilities/constants/constants.h
+        framework/namespaces/general_utilities/constants/constants.cpp
         framework/namespaces/general_utilities/data_processor/data_processor.h
         framework/namespaces/general_utilities/lists/lists.h
         framework/namespaces/general_utilities/reco_analysis_functions/reco_analysis_functions.h
@@ -171,6 +174,7 @@ add_executable(project ${CLAS12ROOT_SOURCES} ${CLAS12BANKS_SOURCES} ${HIPO4_SOUR
         framework/namespaces/general_utilities/analysis_math/polynomial_solver.h
         framework/namespaces/general_utilities/analysis_math/polynomial_solver.cpp
         framework/namespaces/fitters/fitter_functions/fitter_functions.h
+        framework/namespaces/fitters/fitter_functions/fitter_functions.cpp
         framework/namespaces/setup/path_definitions/path_definitions.h
         framework/namespaces/settings/debugging_settings/debugging_settings.h
         framework/namespaces/setup/debugging/debugging.h
@@ -180,6 +184,14 @@ add_executable(project ${CLAS12ROOT_SOURCES} ${CLAS12BANKS_SOURCES} ${HIPO4_SOUR
         framework/namespaces/setup/analysis_samples/analysis_samples.h
         framework/namespaces/setup/analysis_samples/data_samples.h
         framework/namespaces/setup/analysis_samples/uniform_samples.h
+        framework/namespaces/plotters/draw_and_save_functions/draw_and_save_acorr_plots.h
+        framework/namespaces/plotters/draw_and_save_functions/draw_and_save_acorr_plots.cpp
+        framework/namespaces/plotters/draw_and_save_functions/draw_and_save_efficiency_plots.h
+        framework/namespaces/plotters/draw_and_save_functions/draw_and_save_efficiency_plots.cpp
+        framework/namespaces/plotters/draw_and_save_functions/draw_and_save_fs_ratio.h
+        framework/namespaces/plotters/draw_and_save_functions/draw_and_save_fs_ratio.cpp
+        framework/namespaces/plotters/draw_and_save_functions/draw_and_save_functions.h
+        framework/namespaces/plotters/PDF_canvas/PDF_canvas.h
 )
 
 # ## Link against ROOT and CLAS12ROOT libraries
