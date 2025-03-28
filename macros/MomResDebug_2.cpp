@@ -21,20 +21,20 @@
 
 #include "../source/functions/GeneralFunctions.h"
 #include "../source/constants.h"
-#include "../source/classes/MomentumResolution/MomentumResolution.cpp"
+#include "../source/classes/MomentumResolution/MomentumResolution.h"
 
 using namespace std;
 
 /* clas12root macros/MomResDebug_2.cpp -q */
 
-vector<TH1D *> SliceLoader(const char *filename, vector<int> &SliceNumbers, const std::string &Variant = "reco") {
+std::vector<TH1D *> SliceLoader(const char *filename, std::vector<int> &SliceNumbers, const std::string &Variant = "reco") {
     bool PrintOut = false;
 
     TFile *file = new TFile(filename);
-    if (!file) { cout << "\n\nMomResDebug_2::SliceLoader: could not load Hit_Maps_TL root file! Exiting...\n", exit(0); }
+    if (!file) { std::cout << "\n\nMomResDebug_2::SliceLoader: could not load Hit_Maps_TL root file! Exiting...\n", exit(0); }
 
     vector < TH1D * > MomResSlices;
-    vector<int> SliceNumbers0;
+    std::vector<int> SliceNumbers0;
     int Counter = 0;
     static TString classname("TH1D");
 
@@ -43,7 +43,7 @@ vector<TH1D *> SliceLoader(const char *filename, vector<int> &SliceNumbers, cons
 
     while ((Key = (TKey *) Next())) {
 
-        if (PrintOut) { cout << "Key name: " << Key->GetName() << "|\t Type: " << Key->GetClassName() << "\n\n"; }
+        if (PrintOut) { std::cout << "Key name: " << Key->GetName() << "|\t Type: " << Key->GetClassName() << "\n\n"; }
 
         if ((Key->GetClassName() == classname("TH1D")) && (findSubstring(Key->GetName(), Variant))) {
             ++Counter;
@@ -66,7 +66,7 @@ vector<TH1D *> SliceLoader(const char *filename, vector<int> &SliceNumbers, cons
     return MomResSlices;
 }
 
-void DrawAndSave(TCanvas *Canvas, const std::string &MomResDebugSaveDir, vector<TH1D *> &MomResSlices, vector<int> &SliceNumbers) {
+void DrawAndSave(TCanvas *Canvas, const std::string &MomResDebugSaveDir, std::vector<TH1D *> &MomResSlices, std::vector<int> &SliceNumbers) {
     Canvas->cd();
 
     for (int i = 0; i < MomResSlices.size(); i++) {
@@ -104,7 +104,7 @@ void MomResDebug_2() {
     system(("rm -r " + MomResDebugSaveDir).c_str());
     system(("mkdir -p " + MomResDebugSaveDir).c_str());
 
-    vector<int> SliceNumbers;
+    std::vector<int> SliceNumbers;
     const char *filename = "/mnt/e/C12x4_sim_G18_Q204_6GeV/03_momRes_runs/v3/C12x4_simulation_G18_Q204_6GeV_S03AC_NC_momResS1_v3"
                            "/Proton_resolution_plots_-_C12x4_simulation_G18_Q204_6GeV.root";
     vector < TH1D * > MomResSlices = SliceLoader(filename, SliceNumbers, "truth");
@@ -125,14 +125,14 @@ void MomResDebug_2() {
                     0.4, MomResDebugSaveDir, MomResDebugSaveDir, 0.05, true, "pol1_wKC", "pol3_wKC", false, false, true);
 
     std::string MomentumType = "truth";
-    vector <vector<double>> ResTLMomSlicesLimits = nRes.GetResTLMomSlicesLimits();
+    vector <std::vector<double>> ResTLMomSlicesLimits = nRes.GetResTLMomSlicesLimits();
     vector <DSCuts> ResTLMomSlicesFitVar = nRes.GetResTLMomSlicesFitVar();
     vector <DSCuts> ResTLMomSlicesHistVar = nRes.GetResTLMomSlicesHistVar();
-    vector<int> FittedTLMomSlices = nRes.GetFittedTLMomSlices();
-    vector <vector<double>> TL_FitParam;
-    vector <vector<double>> TL_FitParam_Smear_pol1, TL_FitParam_Smear_pol1_wKC;
-    vector <vector<double>> TL_FitParam_Smear_pol2, TL_FitParam_Smear_pol2_wKC;
-    vector <vector<double>> TL_FitParam_Smear_pol3, TL_FitParam_Smear_pol3_wKC;
+    std::vector<int> FittedTLMomSlices = nRes.GetFittedTLMomSlices();
+    vector <std::vector<double>> TL_FitParam;
+    vector <std::vector<double>> TL_FitParam_Smear_pol1, TL_FitParam_Smear_pol1_wKC;
+    vector <std::vector<double>> TL_FitParam_Smear_pol2, TL_FitParam_Smear_pol2_wKC;
+    vector <std::vector<double>> TL_FitParam_Smear_pol3, TL_FitParam_Smear_pol3_wKC;
 
     for (int i = 0; i < MomResSlices.size(); i++) {
         TH1D *hSlice = MomResSlices.at(i);
@@ -146,7 +146,7 @@ void MomResDebug_2() {
         if (hSlice->Integral() != 0.) {
             if (true) { // Fit only the non-empty histograms
 //            if (i >= 5 && i <= 21) { // Fit only the non-empty histograms
-                cout << "\n\n";
+                std::cout << "\n\n";
 
                 double FitUlim, FitLlim;
 
@@ -272,7 +272,7 @@ void MomResDebug_2() {
                 auto ListOfFunctions = hSlice->GetListOfFunctions();
                 ListOfFunctions->Add((TObject *) FitParam);
 
-                cout << "\n", c->SaveAs(hSlice_CloneSaveName.c_str());
+                std::cout << "\n", c->SaveAs(hSlice_CloneSaveName.c_str());
 
                 /*
                             if (MomentumType == "truth") {

@@ -20,9 +20,9 @@ void replaceSubStr(std::string &str, const std::string &subStr, const std::strin
 void Replace() {
     std::string str = "#vec{P}_{tot} - #vec{q}";
 
-    cout << "str = " << str << "\n";
+    std::cout << "str = " << str << "\n";
 
     replaceSubStr(str, "#vec{", "BBB");
 
-    cout << "str = " << str << "\n";
+    std::cout << "str = " << str << "\n";
 }

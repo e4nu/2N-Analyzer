@@ -25,7 +25,7 @@ string DataAnalyser::ConfigureAnalyserMode(const std::string &FileType) {
     } else if (FileType == "hipo") {
         AnalyserMode = "Detector Simulation";
     } else {
-        cout << "\nCould not find file type!! Exiting...\n\n", exit(0);
+        std::cout << "\nCould not find file type!! Exiting...\n\n", exit(0);
     }
 
     return AnalyserMode;

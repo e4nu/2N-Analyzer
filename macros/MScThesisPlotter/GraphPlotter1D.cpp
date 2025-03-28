@@ -21,7 +21,7 @@
 #include "../../source/constants.h"
 
 #if Independent1DGraphDraw
-#include "TitleAligner.cpp"
+#include "TitleAligner.h"
 #endif
 
 using namespace std;
@@ -80,7 +80,7 @@ void GraphPlotter1D(TList *MScThesisPlotsList, const char *filename, const char 
     ExamPresMode = true;
 #endif
 
-    cout << "\n\n";
+    std::cout << "\n\n";
     hData utilities;
 
     const std::string Graph1DNameCopy = Graph1DName;
@@ -90,13 +90,13 @@ void GraphPlotter1D(TList *MScThesisPlotsList, const char *filename, const char 
     c1->cd()->SetGrid(), c1->cd()->SetBottomMargin(0.14), c1->cd()->SetLeftMargin(0.18), c1->cd()->SetRightMargin(0.12), c1->cd()->SetTopMargin(0.12), c1->cd();
 
     TFile *file = new TFile(filename);
-    if (!file) { cout << "\nInvalid file! Exiting...\n", exit(0); }
+    if (!file) { std::cout << "\nInvalid file! Exiting...\n", exit(0); }
 
     TFolder *momResDir = (TFolder *) file->Get(filenameDir);
-    if (!momResDir) { cout << "\nInvalid folder! Exiting...\n", exit(0); }
+    if (!momResDir) { std::cout << "\nInvalid folder! Exiting...\n", exit(0); }
 
     TGraph *Graph1D = (TGraph *) momResDir->FindObject(Graph1DNameCopy.c_str());
-    if (!Graph1D) { cout << "\nInvalid graph! Exiting...\n", exit(0); }
+    if (!Graph1D) { std::cout << "\nInvalid graph! Exiting...\n", exit(0); }
 
     double Legend_x1_BaseLine = gStyle->GetStatX(), Legend_y1_BaseLine = gStyle->GetStatY(); // Top right
     double Legend_x2_BaseLine = gStyle->GetStatX(), Legend_y2_BaseLine = gStyle->GetStatY(); // Bottom left
@@ -136,7 +136,7 @@ void GraphPlotter1D(TList *MScThesisPlotsList, const char *filename, const char 
     /* Histogram appearance setup */
     int LineColor = 1;
     int LineWidth = 2;
-    vector<double> Graph1DTitleSizes = {0.06, 0.0425, 0.0425}; // {TitleSize, LabelSizex, LabelSizey}
+    std::vector<double> Graph1DTitleSizes = {0.06, 0.0425, 0.0425}; // {TitleSize, LabelSizex, LabelSizey}
     bool CenterTitle = true;
     bool ShowStats = true;
 

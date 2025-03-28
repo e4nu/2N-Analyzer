@@ -15,9 +15,9 @@
 #include "../framework/namespaces/general_utilities/constants/constants.h"
 #include "../framework/namespaces/plotters/PDF_canvas/PDF_canvas.h"
 //
-// #include "../framework/classes/Debugger/Debugger.cpp"
-#include "../framework/classes/Directories/Directories.cpp"
-#include "../framework/classes/ExperimentParameters/ExperimentParameters.cpp"
+// #include "../framework/classes/Debugger/Debugger.h"
+#include "../framework/classes/Directories/Directories.h"
+#include "../framework/classes/ExperimentParameters/ExperimentParameters.h"
 #include "../framework/functions/HistogramPlottingFunctions.h"
 //
 // #include "samples/Q2_testing_samples.h"

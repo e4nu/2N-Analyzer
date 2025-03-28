@@ -24,7 +24,7 @@
 using namespace std;
 
 void PlotsEff2x3Electron(string SampleName) {
-    cout << "\nSaving efficiency plots for Electrons...\n\n";
+    std::cout << "\nSaving efficiency plots for Electrons...\n\n";
 
     //<editor-fold desc="Setting file">
     TFile *f;
@@ -178,12 +178,12 @@ void PlotsEff2x3Electron(string SampleName) {
 //    EffPlot_mom_1n->Rebin(2);
 //    EffPlot_mom_1n->Divide(TruthPlot_mom_1n);
 
-    if (!RecPlot_mom_1p) { cout << "\n\nEmpty hist\n\n\n"; }
-    if (!TruthPlot_mom_1p) { cout << "\n\nEmpty hist\n\n\n"; }
-    if (!EffPlot_mom_1p) { cout << "\n\nEmpty hist\n\n\n"; }
-    if (!RecPlot_mom_1n) { cout << "\n\nEmpty hist\n\n\n"; }
-    if (!TruthPlot_mom_1n) { cout << "\n\nEmpty hist\n\n\n"; }
-    if (!EffPlot_mom_1n) { cout << "\n\nEmpty hist\n\n\n"; }
+    if (!RecPlot_mom_1p) { std::cout << "\n\nEmpty hist\n\n\n"; }
+    if (!TruthPlot_mom_1p) { std::cout << "\n\nEmpty hist\n\n\n"; }
+    if (!EffPlot_mom_1p) { std::cout << "\n\nEmpty hist\n\n\n"; }
+    if (!RecPlot_mom_1n) { std::cout << "\n\nEmpty hist\n\n\n"; }
+    if (!TruthPlot_mom_1n) { std::cout << "\n\nEmpty hist\n\n\n"; }
+    if (!EffPlot_mom_1n) { std::cout << "\n\nEmpty hist\n\n\n"; }
 
     CanvasEff2x3Electron->cd(1);
     CanvasEff2x3Electron->cd(1)->SetGrid();
@@ -276,12 +276,12 @@ void PlotsEff2x3Electron(string SampleName) {
 //    EffPlot_Theta_1n->Rebin(2);
 //    EffPlot_Theta_1n->Divide(TruthPlot_Theta_1n);
 
-    if (!RecPlot_Theta_1p) { cout << "\n\nEmpty hist\n\n\n"; }
-    if (!TruthPlot_Theta_1p) { cout << "\n\nEmpty hist\n\n\n"; }
-    if (!EffPlot_Theta_1p) { cout << "\n\nEmpty hist\n\n\n"; }
-    if (!RecPlot_Theta_1n) { cout << "\n\nEmpty hist\n\n\n"; }
-    if (!TruthPlot_Theta_1n) { cout << "\n\nEmpty hist\n\n\n"; }
-    if (!EffPlot_Theta_1n) { cout << "\n\nEmpty hist\n\n\n"; }
+    if (!RecPlot_Theta_1p) { std::cout << "\n\nEmpty hist\n\n\n"; }
+    if (!TruthPlot_Theta_1p) { std::cout << "\n\nEmpty hist\n\n\n"; }
+    if (!EffPlot_Theta_1p) { std::cout << "\n\nEmpty hist\n\n\n"; }
+    if (!RecPlot_Theta_1n) { std::cout << "\n\nEmpty hist\n\n\n"; }
+    if (!TruthPlot_Theta_1n) { std::cout << "\n\nEmpty hist\n\n\n"; }
+    if (!EffPlot_Theta_1n) { std::cout << "\n\nEmpty hist\n\n\n"; }
 
     CanvasEff2x3Electron->cd(1);
     CanvasEff2x3Electron->cd(1)->SetGrid();
@@ -376,12 +376,12 @@ void PlotsEff2x3Electron(string SampleName) {
 //    EffPlot_Phi_1n->Rebin(2);
 //    EffPlot_Phi_1n->Divide(TruthPlot_Phi_1n);
 
-    if (!RecPlot_Phi_1p) { cout << "\n\nEmpty hist\n\n\n"; }
-    if (!TruthPlot_Phi_1p) { cout << "\n\nEmpty hist\n\n\n"; }
-    if (!EffPlot_Phi_1p) { cout << "\n\nEmpty hist\n\n\n"; }
-    if (!RecPlot_Phi_1n) { cout << "\n\nEmpty hist\n\n\n"; }
-    if (!TruthPlot_Phi_1n) { cout << "\n\nEmpty hist\n\n\n"; }
-    if (!EffPlot_Phi_1n) { cout << "\n\nEmpty hist\n\n\n"; }
+    if (!RecPlot_Phi_1p) { std::cout << "\n\nEmpty hist\n\n\n"; }
+    if (!TruthPlot_Phi_1p) { std::cout << "\n\nEmpty hist\n\n\n"; }
+    if (!EffPlot_Phi_1p) { std::cout << "\n\nEmpty hist\n\n\n"; }
+    if (!RecPlot_Phi_1n) { std::cout << "\n\nEmpty hist\n\n\n"; }
+    if (!TruthPlot_Phi_1n) { std::cout << "\n\nEmpty hist\n\n\n"; }
+    if (!EffPlot_Phi_1n) { std::cout << "\n\nEmpty hist\n\n\n"; }
 
     CanvasEff2x3Electron->cd(1);
     CanvasEff2x3Electron->cd(1)->SetGrid();
@@ -429,7 +429,7 @@ void PlotsEff2x3Electron(string SampleName) {
     CanvasEff2x3Electron->Clear();
     //</editor-fold>
 
-    cout << "\n";
+    std::cout << "\n";
 
 }
 

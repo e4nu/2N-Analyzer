@@ -19,10 +19,10 @@
 
 #include "../../source/functions/GeneralFunctions.h"
 #include "../../source/constants.h"
-#include "Histofinder2D.cpp"
+#include "Histofinder2D.h"
 
 #if Independent2Ddraw
-#include "TitleAligner.cpp"
+#include "TitleAligner.h"
 #endif
 
 using namespace std;
@@ -82,14 +82,14 @@ void HistPlotter2D(TCanvas *HistogramCanvas, TList *MScThesisPlotsList, const ch
     ExamPresMode = true;
 #endif
 
-    cout << "\n\n";
+    std::cout << "\n\n";
 
     system(("mkdir -p " + SavePath).c_str());
 
     HistogramCanvas->Clear(); // Clear previous plot
 
     TFile *file = new TFile(filename);
-    if (!file) { cout << "\n\nHistPlotter2D: could not load root file! Exiting...\n", exit(0); }
+    if (!file) { std::cout << "\n\nHistPlotter2D: could not load root file! Exiting...\n", exit(0); }
 
     TH2D *Histogram2D;
 
@@ -115,7 +115,7 @@ void HistPlotter2D(TCanvas *HistogramCanvas, TList *MScThesisPlotsList, const ch
     const std::string Histogram2DNameCopy = Histogram2DName;
     int LineColor = 1;
     int LineWidth = 2;
-    vector<double> Histogram2DTitleSizes = {0.06, 0.0425, 0.0425, 0.0425}; // {TitleSize, LabelSizex, LabelSizey, LabelSizez}
+    std::vector<double> Histogram2DTitleSizes = {0.06, 0.0425, 0.0425, 0.0425}; // {TitleSize, LabelSizex, LabelSizey, LabelSizez}
     bool CenterTitle = true;
     bool ShowStats = false;
 

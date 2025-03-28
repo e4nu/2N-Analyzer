@@ -46,7 +46,7 @@ int main(int argc, char **argv) {
     TString outFile = argv[2];
     //  TString outFile = "test.root";
 
-    cout << "Ouput file " << outFile << endl;
+    std::cout << "Ouput file " << outFile << endl;
 
 
     clas12ana clasAna;

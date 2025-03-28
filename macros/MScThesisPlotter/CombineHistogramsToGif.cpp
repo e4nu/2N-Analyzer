@@ -29,16 +29,16 @@ void CombineHistogramsToGif(TCanvas *Sep_canv, std::vector<TH2D *> &Histograms2D
         GIFnumber = 4;
     }
 
-    // cout << "1\n";
-    // cout << Histograms2D.size() << "\n";
-    // cout << "1b\n";
+    // std::cout << "1\n";
+    // std::cout << Histograms2D.size() << "\n";
+    // std::cout << "1b\n";
 
     std::vector<std::string> imageFiles;
 
     // Loop over the histograms and save each one as an image
     for (size_t i = 0; i < Histograms2D.size(); ++i)
     {
-        // cout  << "1c\n";
+        // std::cout  << "1c\n";
 
         std::ostringstream oss;
         oss << SavePath << "/" << "hist_" << i + 1 << ".png"; // Create unique filenames for each image
@@ -63,7 +63,7 @@ void CombineHistogramsToGif(TCanvas *Sep_canv, std::vector<TH2D *> &Histograms2D
         }
     }
 
-    // cout << "2\n";
+    // std::cout << "2\n";
 
     // Use ImageMagick's 'convert' command to combine the images into a GIF
     std::ostringstream command;

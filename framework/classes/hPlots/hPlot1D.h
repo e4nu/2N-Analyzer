@@ -6,6 +6,10 @@
 #define HPLOT1D_H
 // #ifdef HPLOT1D_H
 
+#include <TFrame.h>
+#include <TLegend.h>
+#include <TLine.h>
+#include <TPaveText.h>
 #include <TApplication.h>
 #include <TCanvas.h>
 #include <TChain.h>
@@ -30,7 +34,7 @@
 #include <typeinfo>
 #include <vector>
 
-// #include "../hData/hData.cpp"
+// #include "../hData/hData.h"
 #include "../../namespaces/general_utilities/utilities/utilities.h"
 
 #if IndependentCanvasPDF
@@ -47,13 +51,13 @@ class hPlot1D {
 
     /* Histogram titles & labels.
      * contains HistogramStatTitle, HistogramTitle, XaxisTitle, YaxisTitle, Histogram1DTitleReactions, FinalState and DetectorRegion. */
-    map<std::string, std::string> Histogram1DTitles{{"FinalState", ""}, {"DetectorRegion", ""}, {"Histogram1DTitleReactions", ""}};
+    std::map<std::string, std::string> Histogram1DTitles{{"FinalState", ""}, {"DetectorRegion", ""}, {"Histogram1DTitleReactions", ""}};
     std::string HistogramStatsTitle, HistogramTitle, XaxisTitle, FinalState, DetectorRegion;
     bool Title2 = false;
 
     /* Histogram xAxis limits and #bins */
     int HistogramNumberOfXBins;           // default #bins for 1D histogram is 100 (see constructor)
-    vector<double> HistogramXAxisLimits;  // {LowerXlim, UpperXlim}
+    std::vector<double> HistogramXAxisLimits;  // {LowerXlim, UpperXlim}
 
     /* Histogram normalization setup */
     bool NormalizeHistogram;
@@ -63,7 +67,7 @@ class hPlot1D {
     /* Histogram appearance setup */
     int LineColor = 1;
     int LineWidth = 2;
-    vector<double> Histogram1DTitleSizes = {0.06, 0.0425, 0.0425};  // {TitleSize, LabelSizex, LabelSizey}
+    std::vector<double> Histogram1DTitleSizes = {0.06, 0.0425, 0.0425};  // {TitleSize, LabelSizex, LabelSizey}
     bool CenterTitle = true;
     bool ShowStats = true;
 
@@ -73,7 +77,7 @@ class hPlot1D {
 
     /* Histogram cuts setup */
     bool ShowPlotCuts = true;
-    // vector<double> - for cuts
+    // std::vector<double> - for cuts
     double PlotCuts = 0;
     double PlotXmax = 0;
     bool PlotHistogramMax = true;

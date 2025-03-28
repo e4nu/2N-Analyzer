@@ -17,10 +17,10 @@
 #include <TApplication.h>
 #include <TROOT.h>
 
-#include "macros/MScThesisPlotter/HistPlotter1D.cpp"
-#include "macros/MScThesisPlotter/HistPlotter2D.cpp"
-#include "macros/MScThesisPlotter/AMapsPlotter.cpp"
-#include "macros/MScThesisPlotter/GraphPlotter1D.cpp"
+#include "macros/MScThesisPlotter/HistPlotter1D.h"
+#include "macros/MScThesisPlotter/HistPlotter2D.h"
+#include "macros/MScThesisPlotter/AMapsPlotter.h"
+#include "macros/MScThesisPlotter/GraphPlotter1D.h"
 
 using namespace std;
 
@@ -50,7 +50,7 @@ void noNCdebugger() {
     dPhi_pFD_pCD_peak->SetLineColor(kRed);
     dPhi_pFD_pCD_peak->Draw("same");
 
-    cout << "\ndPhi_pFD_pCD_mean = " << dPhi_pFD_pCD_mean << "\n";
+    std::cout << "\ndPhi_pFD_pCD_mean = " << dPhi_pFD_pCD_mean << "\n";
 
     TH1D *dPhi_p1_p2_Histogram1D = Histofinder1D(filename, "#Delta#phi for small #Delta#theta_{1/2} - ZOOMIN (All Int., 2p)");
     if (!dPhi_p1_p2_Histogram1D) {cout << "\n\nEmpty histogram! Exiting...\n\n", exit(0); }
@@ -68,6 +68,6 @@ void noNCdebugger() {
     dPhi_p1_p2_peak->SetLineColor(kRed);
     dPhi_p1_p2_peak->Draw("same");
 
-    cout << "\ndPhi_p1_p2_mean = " << dPhi_p1_p2_mean << "\n";
+    std::cout << "\ndPhi_p1_p2_mean = " << dPhi_p1_p2_mean << "\n";
 
 }

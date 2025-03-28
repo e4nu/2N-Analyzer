@@ -40,8 +40,8 @@ SetYAxisTitle
 #include <typeinfo>
 #include <vector>
 
-#include "../../../classes/hPlots/hPlot1D.cpp"
-#include "../../../classes/hPlots/hPlot2D.cpp"
+#include "../../../classes/hPlots/hPlot1D.h"
+#include "../../../classes/hPlots/hPlot2D.h"
 #include "../../../namespaces/general_utilities/utilities/utilities.h"
 
 // using namespace std;
@@ -314,9 +314,9 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot1D &pFDpCD_Plo
 
     CanvasMulti->Clear();
 
-    //    cout << "\n\n\nFSRatioType = " << FSRatioType << "\n\n\n";
-    //    cout << "\n\n\nFSRatioRecTitle = " << FSRatioRecTitle << "\n\n\n";
-    //    cout << "\n\n\nFSRatio_plot_1D_SaveName = " << FSRatio_plot_1D_SaveName << "\n\n\n";
+    //    std::cout << "\n\n\nFSRatioType = " << FSRatioType << "\n\n\n";
+    //    std::cout << "\n\n\nFSRatioRecTitle = " << FSRatioRecTitle << "\n\n\n";
+    //    std::cout << "\n\n\nFSRatio_plot_1D_SaveName = " << FSRatio_plot_1D_SaveName << "\n\n\n";
     //</editor-fold>
 
     delete Canvas;
@@ -630,9 +630,9 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot1D &pFDpCD_Plo
 
     CanvasMulti->Clear();
 
-    //    cout << "\n\n\nFSRatioType = " << FSRatioType << "\n\n\n";
-    //    cout << "\n\n\nFSRatioRecTitle = " << FSRatioRecTitle << "\n\n\n";
-    //    cout << "\n\n\nFSRatio_plot_1D_SaveName = " << FSRatio_plot_1D_SaveName << "\n\n\n";
+    //    std::cout << "\n\n\nFSRatioType = " << FSRatioType << "\n\n\n";
+    //    std::cout << "\n\n\nFSRatioRecTitle = " << FSRatioRecTitle << "\n\n\n";
+    //    std::cout << "\n\n\nFSRatio_plot_1D_SaveName = " << FSRatio_plot_1D_SaveName << "\n\n\n";
     // </editor-fold>
 
     delete Canvas;
@@ -754,12 +754,12 @@ void DrawAndSaveFSRatio(const std::string &SampleName, TH1D *pFDpCD_Plot, const 
     TFolder *FSRatio_plot_1D_TFolder = new TFolder(TFolder_Name.c_str(), TFolder_Name.c_str());
 
     //    if (Histogram_list->FindObject(TFolder_Name.c_str())) {
-    //        cout << "\n\nTFolder_Name is in TList!\n\n";
-    //        cout << "\n\nFSRatioFSNumerator = " << FSRatioFSNumerator << "\n\n";
-    //        cout << "\n\nFSRatioFSDenominator = " << FSRatioFSDenominator << "\n\n";
-    //        cout << "\n\nFSRatioDRegion = " << FSRatioDRegion << "\n\n";
-    //        cout << "\n\nFSTopology = " << FSTopology << "\n\n";
-    //        cout << "\n\nExiting...\n\n", exit(0);
+    //        std::cout << "\n\nTFolder_Name is in TList!\n\n";
+    //        std::cout << "\n\nFSRatioFSNumerator = " << FSRatioFSNumerator << "\n\n";
+    //        std::cout << "\n\nFSRatioFSDenominator = " << FSRatioFSDenominator << "\n\n";
+    //        std::cout << "\n\nFSRatioDRegion = " << FSRatioDRegion << "\n\n";
+    //        std::cout << "\n\nFSTopology = " << FSTopology << "\n\n";
+    //        std::cout << "\n\nExiting...\n\n", exit(0);
     //    }
 
     //<editor-fold desc="Plotting and saving nFDpCD_Plot_Clone_test">
@@ -954,9 +954,9 @@ void DrawAndSaveFSRatio(const std::string &SampleName, TH1D *pFDpCD_Plot, const 
 
     CanvasMulti->Clear();
 
-    //    cout << "\n\n\nFSRatioType = " << FSRatioType << "\n\n\n";
-    //    cout << "\n\n\nFSRatioRecTitle = " << FSRatioRecTitle << "\n\n\n";
-    //    cout << "\n\n\nFSRatio_plot_1D_SaveName = " << FSRatio_plot_1D_SaveName << "\n\n\n";
+    //    std::cout << "\n\n\nFSRatioType = " << FSRatioType << "\n\n\n";
+    //    std::cout << "\n\n\nFSRatioRecTitle = " << FSRatioRecTitle << "\n\n\n";
+    //    std::cout << "\n\n\nFSRatio_plot_1D_SaveName = " << FSRatio_plot_1D_SaveName << "\n\n\n";
     //</editor-fold>
 
     delete Canvas;
@@ -1021,7 +1021,7 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot2D &pFDpCD_Plo
     TH2D *pFDpCD_Plot_Clone_test_rebined = (TH2D *)Histogram2D_pFDpCD->Clone((pFDpCD_Plot_Clone_test_rebined_StatsTitle).c_str());
     //    pFDpCD_Plot_Clone_test_rebined->Rebin(2);
 
-    double Zmax = 1.1 * max(pFDpCD_Plot_Clone->GetMaximum(), nFDpCD_Plot_Clone->GetMaximum());
+    double Zmax = 1.1 * std::max(pFDpCD_Plot_Clone->GetMaximum(), nFDpCD_Plot_Clone->GetMaximum());
 
     if (Equi_z_2D) {
         pFDpCD_Plot_Clone->SetMaximum(Zmax);
@@ -1120,8 +1120,8 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot2D &pFDpCD_Plo
     nFDpCD_Plot_Clone->Draw("colz");
 
     if (FSRatioType == "P_nucFD_vs_P_nucCD" || FSRatioType == "P_nucL_vs_P_nucR") {
-        double Lowerlim_nFDpCD = max(nFDpCD_Plot.GetLowerXlim(), nFDpCD_Plot.GetLowerYlim());
-        double Upperlim_nFDpCD = min(nFDpCD_Plot.GetUpperXlim(), nFDpCD_Plot.GetUpperYlim());
+        double Lowerlim_nFDpCD = std::max(nFDpCD_Plot.GetLowerXlim(), nFDpCD_Plot.GetLowerYlim());
+        double Upperlim_nFDpCD = std::min(nFDpCD_Plot.GetUpperXlim(), nFDpCD_Plot.GetUpperYlim());
 
         TLine *EquiLine2D_nFDpCD = new TLine(Lowerlim_nFDpCD, Lowerlim_nFDpCD, Upperlim_nFDpCD, Upperlim_nFDpCD);
         EquiLine2D_nFDpCD->SetLineWidth(2);
@@ -1149,8 +1149,8 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot2D &pFDpCD_Plo
     nFDpCD_Plot_Clone->Draw("colz");
 
     if (FSRatioType == "P_nucFD_vs_P_nucCD" || FSRatioType == "P_nucL_vs_P_nucR") {
-        double Lowerlim_nFDpCD = max(nFDpCD_Plot.GetLowerXlim(), nFDpCD_Plot.GetLowerYlim());
-        double Upperlim_nFDpCD = min(nFDpCD_Plot.GetUpperXlim(), nFDpCD_Plot.GetUpperYlim());
+        double Lowerlim_nFDpCD = std::max(nFDpCD_Plot.GetLowerXlim(), nFDpCD_Plot.GetLowerYlim());
+        double Upperlim_nFDpCD = std::min(nFDpCD_Plot.GetUpperXlim(), nFDpCD_Plot.GetUpperYlim());
 
         TLine *EquiLine2D_nFDpCD = new TLine(Lowerlim_nFDpCD, Lowerlim_nFDpCD, Upperlim_nFDpCD, Upperlim_nFDpCD);
         EquiLine2D_nFDpCD->SetLineWidth(2);
@@ -1174,8 +1174,8 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot2D &pFDpCD_Plo
     pFDpCD_Plot_Clone->Draw("colz");
 
     if (FSRatioType == "P_nucFD_vs_P_nucCD" || FSRatioType == "P_nucL_vs_P_nucR") {
-        double Lowerlim_pFDpCD = max(pFDpCD_Plot.GetLowerXlim(), pFDpCD_Plot.GetLowerYlim());
-        double Upperlim_pFDpCD = min(pFDpCD_Plot.GetUpperXlim(), pFDpCD_Plot.GetUpperYlim());
+        double Lowerlim_pFDpCD = std::max(pFDpCD_Plot.GetLowerXlim(), pFDpCD_Plot.GetLowerYlim());
+        double Upperlim_pFDpCD = std::min(pFDpCD_Plot.GetUpperXlim(), pFDpCD_Plot.GetUpperYlim());
 
         TLine *EquiLine2D_pFDpCD = new TLine(Lowerlim_pFDpCD, Lowerlim_pFDpCD, Upperlim_pFDpCD, Upperlim_pFDpCD);
         EquiLine2D_pFDpCD->SetLineWidth(2);
@@ -1203,8 +1203,8 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot2D &pFDpCD_Plo
     pFDpCD_Plot_Clone->Draw("colz");
 
     if (FSRatioType == "P_nucFD_vs_P_nucCD" || FSRatioType == "P_nucL_vs_P_nucR") {
-        double Lowerlim_pFDpCD = max(pFDpCD_Plot.GetLowerXlim(), pFDpCD_Plot.GetLowerYlim());
-        double Upperlim_pFDpCD = min(pFDpCD_Plot.GetUpperXlim(), pFDpCD_Plot.GetUpperYlim());
+        double Lowerlim_pFDpCD = std::max(pFDpCD_Plot.GetLowerXlim(), pFDpCD_Plot.GetLowerYlim());
+        double Upperlim_pFDpCD = std::min(pFDpCD_Plot.GetUpperXlim(), pFDpCD_Plot.GetUpperYlim());
 
         TLine *EquiLine2D_pFDpCD = new TLine(Lowerlim_pFDpCD, Lowerlim_pFDpCD, Upperlim_pFDpCD, Upperlim_pFDpCD);
         EquiLine2D_pFDpCD->SetLineWidth(2);
@@ -1232,8 +1232,8 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot2D &pFDpCD_Plo
     FSRatio_plot_2D->Draw("colz");
 
     if (FSRatioType == "P_nucFD_vs_P_nucCD" || FSRatioType == "P_nucL_vs_P_nucR") {
-        double Lowerlim_FSRatio = max(nFDpCD_Plot.GetLowerXlim(), nFDpCD_Plot.GetLowerYlim());
-        double Upperlim_FSRatio = min(nFDpCD_Plot.GetUpperXlim(), nFDpCD_Plot.GetUpperYlim());
+        double Lowerlim_FSRatio = std::max(nFDpCD_Plot.GetLowerXlim(), nFDpCD_Plot.GetLowerYlim());
+        double Upperlim_FSRatio = std::min(nFDpCD_Plot.GetUpperXlim(), nFDpCD_Plot.GetUpperYlim());
 
         TLine *EquiLine2D_FSRatio = new TLine(Lowerlim_FSRatio, Lowerlim_FSRatio, Upperlim_FSRatio, Upperlim_FSRatio);
         EquiLine2D_FSRatio->SetLineWidth(2);
@@ -1261,8 +1261,8 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot2D &pFDpCD_Plo
     FSRatio_plot_2D->Draw("colz");
 
     if (FSRatioType == "P_nucFD_vs_P_nucCD" || FSRatioType == "P_nucL_vs_P_nucR") {
-        double Lowerlim_FSRatio = max(nFDpCD_Plot.GetLowerXlim(), nFDpCD_Plot.GetLowerYlim());
-        double Upperlim_FSRatio = min(nFDpCD_Plot.GetUpperXlim(), nFDpCD_Plot.GetUpperYlim());
+        double Lowerlim_FSRatio = std::max(nFDpCD_Plot.GetLowerXlim(), nFDpCD_Plot.GetLowerYlim());
+        double Upperlim_FSRatio = std::min(nFDpCD_Plot.GetUpperXlim(), nFDpCD_Plot.GetUpperYlim());
 
         TLine *EquiLine2D_FSRatio = new TLine(Lowerlim_FSRatio, Lowerlim_FSRatio, Upperlim_FSRatio, Upperlim_FSRatio);
         EquiLine2D_FSRatio->SetLineWidth(2);
@@ -1281,9 +1281,9 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot2D &pFDpCD_Plo
     CanvasMulti->Clear();
     //</editor-fold>
 
-    //    cout << "\n\n\nFSRatioType = " << FSRatioType << "\n\n\n";
-    //    cout << "\n\n\nFSRatioRecTitle = " << FSRatioRecTitle << "\n\n\n";
-    //    cout << "\n\n\nFSRatio_plot_2D_SaveName = " << FSRatio_plot_2D_SaveName << "\n\n\n";
+    //    std::cout << "\n\n\nFSRatioType = " << FSRatioType << "\n\n\n";
+    //    std::cout << "\n\n\nFSRatioRecTitle = " << FSRatioRecTitle << "\n\n\n";
+    //    std::cout << "\n\n\nFSRatio_plot_2D_SaveName = " << FSRatio_plot_2D_SaveName << "\n\n\n";
 
     delete Canvas;
     delete CanvasMulti;
@@ -1360,7 +1360,7 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot2D &pFDpCD_Plo
     TH2D *pFDpCD_Plot_Clone_test_rebined = (TH2D *)Histogram2D_pFDpCD->Clone((pFDpCD_Plot_Clone_test_rebined_StatsTitle).c_str());
     if (rebin_plots) { pFDpCD_Plot_Clone_test_rebined->Rebin(2); }
 
-    double Zmax = 1.1 * max(pFDpCD_Plot_Clone->GetMaximum(), nFDpCD_Plot_Clone->GetMaximum());
+    double Zmax = 1.1 * std::max(pFDpCD_Plot_Clone->GetMaximum(), nFDpCD_Plot_Clone->GetMaximum());
 
     if (Equi_z_2D) {
         pFDpCD_Plot_Clone->SetMaximum(Zmax);
@@ -1530,9 +1530,9 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot2D &pFDpCD_Plo
     CanvasMulti->Clear();
     //</editor-fold>
 
-    //    cout << "\n\n\nFSRatioType = " << FSRatioType << "\n\n\n";
-    //    cout << "\n\n\nFSRatioRecTitle = " << FSRatioRecTitle << "\n\n\n";
-    //    cout << "\n\n\nFSRatio_plot_2D_SaveName = " << FSRatio_plot_2D_SaveName << "\n\n\n";
+    //    std::cout << "\n\n\nFSRatioType = " << FSRatioType << "\n\n\n";
+    //    std::cout << "\n\n\nFSRatioRecTitle = " << FSRatioRecTitle << "\n\n\n";
+    //    std::cout << "\n\n\nFSRatio_plot_2D_SaveName = " << FSRatio_plot_2D_SaveName << "\n\n\n";
 
     delete Canvas;
     delete CanvasMulti;
@@ -1606,7 +1606,7 @@ void DrawAndSaveFSRatio(const std::string &SampleName, TH2D *pFDpCD_Plot, const 
     TH2D *pFDpCD_Plot_Clone_test_rebined = (TH2D *)pFDpCD_Plot->Clone((pFDpCD_Plot_Clone_test_rebined_StatsTitle).c_str());
     //    if (rebin_plots) { pFDpCD_Plot_Clone_test_rebined->Rebin(2); }
 
-    double Zmax = 1.1 * max(pFDpCD_Plot_Clone->GetMaximum(), nFDpCD_Plot_Clone->GetMaximum());
+    double Zmax = 1.1 * std::max(pFDpCD_Plot_Clone->GetMaximum(), nFDpCD_Plot_Clone->GetMaximum());
 
     if (Equi_z_2D) {
         pFDpCD_Plot_Clone->SetMaximum(Zmax);
@@ -1778,9 +1778,9 @@ void DrawAndSaveFSRatio(const std::string &SampleName, TH2D *pFDpCD_Plot, const 
     CanvasMulti->Clear();
     //</editor-fold>
 
-    //    cout << "\n\n\nFSRatioType = " << FSRatioType << "\n\n\n";
-    //    cout << "\n\n\nFSRatioRecTitle = " << FSRatioRecTitle << "\n\n\n";
-    //    cout << "\n\n\nFSRatio_plot_2D_SaveName = " << FSRatio_plot_2D_SaveName << "\n\n\n";
+    //    std::cout << "\n\n\nFSRatioType = " << FSRatioType << "\n\n\n";
+    //    std::cout << "\n\n\nFSRatioRecTitle = " << FSRatioRecTitle << "\n\n\n";
+    //    std::cout << "\n\n\nFSRatio_plot_2D_SaveName = " << FSRatio_plot_2D_SaveName << "\n\n\n";
 
     delete Canvas;
     delete CanvasMulti;

@@ -11,13 +11,13 @@
 #include "../DSCuts/DSCuts.h"
 #include "../TargetParameters/TargetParameters.h"
 // 
-// #include "HipoChain.h"
-// #include "clas12reader.h"
+#include "HipoChain.h"
+#include "clas12reader.h"
 
-#include "../../includes/clas12_include.h"
+// #include "../../includes/clas12_include.h"
 
 // using namespace std;
-// using namespace clas12;
+using namespace clas12;
 using namespace utilities;
 
 class ExperimentParameters : public TargetParameters {
@@ -96,12 +96,12 @@ class ExperimentParameters : public TargetParameters {
     // AddToHipoChain function ----------------------------------------------------------------------------------------------------------------------------------------
 
     // This is the old function used to add runs to the HipoChain
-    void AddToHipoChain(HipoChain &chain, const std::string &sn, const std::string &AnalyseFilePath, const std::string &AnalyseFileSample, const std::string &AnalyseFile);
+    void AddToHipoChain(clas12root::HipoChain &chain, const std::string &sn, const std::string &AnalyseFilePath, const std::string &AnalyseFileSample, const std::string &AnalyseFile);
 
     // AddToHipoChainFromList function ----------------------------------------------------------------------------------------------------------------------------------------
 
     // This is the old function used to add runs to the HipoChain
-    void AddToHipoChainFromList(HipoChain &chain, const std::string &sn, const std::string &AnalyseFilePath, const std::string &AnalyseFileSample, const std::string &AnalyseFile);
+    void AddToHipoChainFromList(clas12root::HipoChain &chain, const std::string &sn, const std::string &AnalyseFilePath, const std::string &AnalyseFileSample, const std::string &AnalyseFile);
 
     // other functions ------------------------------------------------------------------------------------------------------------------------------------------------------
 

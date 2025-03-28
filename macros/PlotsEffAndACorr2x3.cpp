@@ -19,10 +19,10 @@
 #include <TApplication.h>
 #include <TROOT.h>
 
-#include "PlotsEffAndACorr2x3/PlotsACorr2x3Nucleon.cpp"
-#include "PlotsEffAndACorr2x3/PlotsACorr2x3Electron.cpp"
-#include "PlotsEffAndACorr2x3/PlotsEff2x3Nucleon.cpp"
-#include "PlotsEffAndACorr2x3/PlotsEff2x3Electron.cpp"
+#include "PlotsEffAndACorr2x3/PlotsACorr2x3Nucleon.h"
+#include "PlotsEffAndACorr2x3/PlotsACorr2x3Electron.h"
+#include "PlotsEffAndACorr2x3/PlotsEff2x3Nucleon.h"
+#include "PlotsEffAndACorr2x3/PlotsEff2x3Electron.h"
 
 using namespace std;
 

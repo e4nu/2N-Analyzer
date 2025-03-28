@@ -26,7 +26,7 @@
 
 #include "HipoChain.h"
 #include "clas12reader.h"
-#include "framework/classes/hPlots/hPlot1D.cpp"
+#include "framework/classes/hPlots/hPlot1D.h"
 #include "setup/codeSetup.h"
 
 using namespace std;

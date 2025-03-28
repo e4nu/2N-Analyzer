@@ -24,7 +24,7 @@
 using namespace std;
 
 void PlotsACorr2x3Electron(string SampleName) {
-    cout << "\nSaving acceptance correction plots for Electrons...\n\n";
+    std::cout << "\nSaving acceptance correction plots for Electrons...\n\n";
 
     //<editor-fold desc="Setting file">
     TFile *f;
@@ -178,12 +178,12 @@ void PlotsACorr2x3Electron(string SampleName) {
 //    ACorrPlot_mom_1n_Clone->Rebin(2);
     ACorrPlot_mom_1n_Clone->Divide(RecPlot_mom_1n);
 
-    if (!RecPlot_mom_1p) { cout << "\n\nEmpty hist\n\n\n"; }
-    if (!TruthPlot_mom_1p) { cout << "\n\nEmpty hist\n\n\n"; }
-    if (!ACorrPlot_mom_1p_Clone) { cout << "\n\nEmpty hist\n\n\n"; }
-    if (!RecPlot_mom_1n) { cout << "\n\nEmpty hist\n\n\n"; }
-    if (!TruthPlot_mom_1n) { cout << "\n\nEmpty hist\n\n\n"; }
-    if (!ACorrPlot_mom_1n_Clone) { cout << "\n\nEmpty hist\n\n\n"; }
+    if (!RecPlot_mom_1p) { std::cout << "\n\nEmpty hist\n\n\n"; }
+    if (!TruthPlot_mom_1p) { std::cout << "\n\nEmpty hist\n\n\n"; }
+    if (!ACorrPlot_mom_1p_Clone) { std::cout << "\n\nEmpty hist\n\n\n"; }
+    if (!RecPlot_mom_1n) { std::cout << "\n\nEmpty hist\n\n\n"; }
+    if (!TruthPlot_mom_1n) { std::cout << "\n\nEmpty hist\n\n\n"; }
+    if (!ACorrPlot_mom_1n_Clone) { std::cout << "\n\nEmpty hist\n\n\n"; }
 
     CanvasACorr2x3Electron->cd(1);
     CanvasACorr2x3Electron->cd(1)->SetGrid();
@@ -276,12 +276,12 @@ void PlotsACorr2x3Electron(string SampleName) {
 //    ACorrPlot_Theta_1n->Rebin(2);
 //    ACorrPlot_Theta_1n->Divide(TruthPlot_Theta_1n);
 
-    if (!RecPlot_Theta_1p) { cout << "\n\nEmpty hist\n\n\n"; }
-    if (!TruthPlot_Theta_1p) { cout << "\n\nEmpty hist\n\n\n"; }
-    if (!ACorrPlot_Theta_1p) { cout << "\n\nEmpty hist\n\n\n"; }
-    if (!RecPlot_Theta_1n) { cout << "\n\nEmpty hist\n\n\n"; }
-    if (!TruthPlot_Theta_1n) { cout << "\n\nEmpty hist\n\n\n"; }
-    if (!ACorrPlot_Theta_1n) { cout << "\n\nEmpty hist\n\n\n"; }
+    if (!RecPlot_Theta_1p) { std::cout << "\n\nEmpty hist\n\n\n"; }
+    if (!TruthPlot_Theta_1p) { std::cout << "\n\nEmpty hist\n\n\n"; }
+    if (!ACorrPlot_Theta_1p) { std::cout << "\n\nEmpty hist\n\n\n"; }
+    if (!RecPlot_Theta_1n) { std::cout << "\n\nEmpty hist\n\n\n"; }
+    if (!TruthPlot_Theta_1n) { std::cout << "\n\nEmpty hist\n\n\n"; }
+    if (!ACorrPlot_Theta_1n) { std::cout << "\n\nEmpty hist\n\n\n"; }
 
     CanvasACorr2x3Electron->cd(1);
     CanvasACorr2x3Electron->cd(1)->SetGrid();
@@ -376,12 +376,12 @@ void PlotsACorr2x3Electron(string SampleName) {
 //    ACorrPlot_Phi_1n->Rebin(2);
 //    ACorrPlot_Phi_1n->Divide(TruthPlot_Phi_1n);
 
-    if (!RecPlot_Phi_1p) { cout << "\n\nEmpty hist\n\n\n"; }
-    if (!TruthPlot_Phi_1p) { cout << "\n\nEmpty hist\n\n\n"; }
-    if (!ACorrPlot_Phi_1p) { cout << "\n\nEmpty hist\n\n\n"; }
-    if (!RecPlot_Phi_1n) { cout << "\n\nEmpty hist\n\n\n"; }
-    if (!TruthPlot_Phi_1n) { cout << "\n\nEmpty hist\n\n\n"; }
-    if (!ACorrPlot_Phi_1n) { cout << "\n\nEmpty hist\n\n\n"; }
+    if (!RecPlot_Phi_1p) { std::cout << "\n\nEmpty hist\n\n\n"; }
+    if (!TruthPlot_Phi_1p) { std::cout << "\n\nEmpty hist\n\n\n"; }
+    if (!ACorrPlot_Phi_1p) { std::cout << "\n\nEmpty hist\n\n\n"; }
+    if (!RecPlot_Phi_1n) { std::cout << "\n\nEmpty hist\n\n\n"; }
+    if (!TruthPlot_Phi_1n) { std::cout << "\n\nEmpty hist\n\n\n"; }
+    if (!ACorrPlot_Phi_1n) { std::cout << "\n\nEmpty hist\n\n\n"; }
 
     CanvasACorr2x3Electron->cd(1);
     CanvasACorr2x3Electron->cd(1)->SetGrid();
@@ -429,13 +429,13 @@ void PlotsACorr2x3Electron(string SampleName) {
     CanvasACorr2x3Electron->Clear();
     //</editor-fold>
 
-    cout << "\n";
+    std::cout << "\n";
 
 }
 
 ////<editor-fold desc="GOOD OLD">
 //void PlotsACorr2x3Electron(string SampleName) {
-//    cout << "\nSaving acceptance correction plots for Electrons...\n\n";
+//    std::cout << "\nSaving acceptance correction plots for Electrons...\n\n";
 //
 //    //<editor-fold desc="Setting file">
 //    TFile *f;
@@ -567,12 +567,12 @@ void PlotsACorr2x3Electron(string SampleName) {
 ////    ACorrPlot_mom_1n->Rebin(2);
 ////    ACorrPlot_mom_1n->Divide(TruthPlot_mom_1n);
 //
-//    if (!RecPlot_mom_1p) { cout << "\n\nEmpty hist\n\n\n"; }
-//    if (!TruthPlot_mom_1p) { cout << "\n\nEmpty hist\n\n\n"; }
-//    if (!ACorrPlot_mom_1p) { cout << "\n\nEmpty hist\n\n\n"; }
-//    if (!RecPlot_mom_1n) { cout << "\n\nEmpty hist\n\n\n"; }
-//    if (!TruthPlot_mom_1n) { cout << "\n\nEmpty hist\n\n\n"; }
-//    if (!ACorrPlot_mom_1n) { cout << "\n\nEmpty hist\n\n\n"; }
+//    if (!RecPlot_mom_1p) { std::cout << "\n\nEmpty hist\n\n\n"; }
+//    if (!TruthPlot_mom_1p) { std::cout << "\n\nEmpty hist\n\n\n"; }
+//    if (!ACorrPlot_mom_1p) { std::cout << "\n\nEmpty hist\n\n\n"; }
+//    if (!RecPlot_mom_1n) { std::cout << "\n\nEmpty hist\n\n\n"; }
+//    if (!TruthPlot_mom_1n) { std::cout << "\n\nEmpty hist\n\n\n"; }
+//    if (!ACorrPlot_mom_1n) { std::cout << "\n\nEmpty hist\n\n\n"; }
 //
 //    CanvasACorr2x3Electron->cd(1);
 //    CanvasACorr2x3Electron->cd(1)->SetGrid();
@@ -665,12 +665,12 @@ void PlotsACorr2x3Electron(string SampleName) {
 ////    ACorrPlot_Theta_1n->Rebin(2);
 ////    ACorrPlot_Theta_1n->Divide(TruthPlot_Theta_1n);
 //
-//    if (!RecPlot_Theta_1p) { cout << "\n\nEmpty hist\n\n\n"; }
-//    if (!TruthPlot_Theta_1p) { cout << "\n\nEmpty hist\n\n\n"; }
-//    if (!ACorrPlot_Theta_1p) { cout << "\n\nEmpty hist\n\n\n"; }
-//    if (!RecPlot_Theta_1n) { cout << "\n\nEmpty hist\n\n\n"; }
-//    if (!TruthPlot_Theta_1n) { cout << "\n\nEmpty hist\n\n\n"; }
-//    if (!ACorrPlot_Theta_1n) { cout << "\n\nEmpty hist\n\n\n"; }
+//    if (!RecPlot_Theta_1p) { std::cout << "\n\nEmpty hist\n\n\n"; }
+//    if (!TruthPlot_Theta_1p) { std::cout << "\n\nEmpty hist\n\n\n"; }
+//    if (!ACorrPlot_Theta_1p) { std::cout << "\n\nEmpty hist\n\n\n"; }
+//    if (!RecPlot_Theta_1n) { std::cout << "\n\nEmpty hist\n\n\n"; }
+//    if (!TruthPlot_Theta_1n) { std::cout << "\n\nEmpty hist\n\n\n"; }
+//    if (!ACorrPlot_Theta_1n) { std::cout << "\n\nEmpty hist\n\n\n"; }
 //
 //    CanvasACorr2x3Electron->cd(1);
 //    CanvasACorr2x3Electron->cd(1)->SetGrid();
@@ -765,12 +765,12 @@ void PlotsACorr2x3Electron(string SampleName) {
 ////    ACorrPlot_Phi_1n->Rebin(2);
 ////    ACorrPlot_Phi_1n->Divide(TruthPlot_Phi_1n);
 //
-//    if (!RecPlot_Phi_1p) { cout << "\n\nEmpty hist\n\n\n"; }
-//    if (!TruthPlot_Phi_1p) { cout << "\n\nEmpty hist\n\n\n"; }
-//    if (!ACorrPlot_Phi_1p) { cout << "\n\nEmpty hist\n\n\n"; }
-//    if (!RecPlot_Phi_1n) { cout << "\n\nEmpty hist\n\n\n"; }
-//    if (!TruthPlot_Phi_1n) { cout << "\n\nEmpty hist\n\n\n"; }
-//    if (!ACorrPlot_Phi_1n) { cout << "\n\nEmpty hist\n\n\n"; }
+//    if (!RecPlot_Phi_1p) { std::cout << "\n\nEmpty hist\n\n\n"; }
+//    if (!TruthPlot_Phi_1p) { std::cout << "\n\nEmpty hist\n\n\n"; }
+//    if (!ACorrPlot_Phi_1p) { std::cout << "\n\nEmpty hist\n\n\n"; }
+//    if (!RecPlot_Phi_1n) { std::cout << "\n\nEmpty hist\n\n\n"; }
+//    if (!TruthPlot_Phi_1n) { std::cout << "\n\nEmpty hist\n\n\n"; }
+//    if (!ACorrPlot_Phi_1n) { std::cout << "\n\nEmpty hist\n\n\n"; }
 //
 //    CanvasACorr2x3Electron->cd(1);
 //    CanvasACorr2x3Electron->cd(1)->SetGrid();
@@ -818,7 +818,7 @@ void PlotsACorr2x3Electron(string SampleName) {
 //    CanvasACorr2x3Electron->Clear();
 //    //</editor-fold>
 //
-//    cout << "\n";
+//    std::cout << "\n";
 //
 //}
 ////</editor-fold>

@@ -27,6 +27,7 @@ echo ""
 
 source ./framework/scripts/environment/set_environment.csh
 source ./framework/scripts/screen/setup_screen_commands.csh
+chmod +x ./framework/scripts/cmake/cmake_rebuild.csh
 
 echo ""
 echo "${COLOR_START}=======================================================================${COLOR_END}"

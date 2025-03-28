@@ -19,7 +19,7 @@ void process_events() {
 
     std::string fileName = "Downloads/C12_G18_10a_02_11b_207052MeV.root";
 
-    cout << "\n\nLoaded file:\t" << fileName << "\n";
+    std::cout << "\n\nLoaded file:\t" << fileName << "\n";
 
     double beamE = 2.07052;
     double pi = 3.14159265359;
@@ -672,5 +672,5 @@ void process_events() {
     c1->SaveAs("TL_plots/22_1eFD1pFD0pizeroFD0phFDcPiXn_wPpth_wPphth_wPpi0th_wKCpith.png");
     c1->Clear();
 
-    cout << "\n\nFinished!\n\n";
+    std::cout << "\n\nFinished!\n\n";
 }

@@ -20,7 +20,7 @@
 using namespace std;
 
 void AMapsDiveTest() {
-    cout << "\n\n";
+    std::cout << "\n\n";
 
     TCanvas *Canvas = new TCanvas("Canvas", "Canvas", 1000, 750 * 4.5); // normal res
     Canvas->Divide(3, 1);
@@ -55,7 +55,7 @@ void AMapsDiveTest() {
     nFD_AMap_Div->Draw("colz");
 
     //    //<editor-fold desc="Old">
-//    cout << "\n\n";
+//    std::cout << "\n\n";
 //
 //    //    TFile *f = new TFile("plots_C12_simulation_6GeV_T5_first_10_-_ALL_CUTS/recon_qe_GENIE_C_598636MeV_Q2_0_5_test_5_first_10_plots.root");
 ////    std::string SampleName = "C12_simulation_6GeV_T5_first_10";
@@ -71,7 +71,7 @@ void AMapsDiveTest() {
 //    TFile *f = new TFile("00_plots_C12_simulation_6GeV_T5_-02_ALL_CUTS_noNC_/recon_qe_GENIE_C_598636MeV_Q2_0_5_test_5_plots.root");
 //    std::string SampleName = "C12_simulation_6GeV_T5";
 //
-//    cout << "\nSampleName:\t" << SampleName << "\n\n";
+//    std::cout << "\nSampleName:\t" << SampleName << "\n\n";
 //
 //    DSCuts Beta_cut = DSCuts("Beta_nuc", "FD", "", "1n", 1, -9999, 9999); /* Beta cut (1n, FD) */
 //    DSCuts n_momentum_cuts = DSCuts("Momentum", "", "Neutron", "", 0, 0.3, 9999); /* Momentum cuts (thresholds) */
@@ -153,20 +153,20 @@ void AMapsDiveTest() {
 //    func->SetParameters(BetaMax, BetaMean, 0.001); // start fit with histogram's max and mean
 //    func->SetParNames("Constant", "Mean_value", "Sigma");
 //
-//    cout << "Beta histogram {max, mean}:\t{" << BetaMax << ", " << BetaMean << "}\n\n\n\n";
+//    std::cout << "Beta histogram {max, mean}:\t{" << BetaMax << ", " << BetaMean << "}\n\n\n\n";
 //
 //////    // Adding limits to "Constant"
 //////    double BetaConstantUlim = 1.2 * BetaMax;
 //////    double BetaConstantLlim = 0.95 * BetaMax;
 //////    func->SetParLimits(0, BetaConstantLlim, BetaConstantUlim);
-//////    cout << "Beta Constant {Llim, Ulim}:\t{" << BetaConstantLlim << ", " << BetaConstantUlim << "}\n\n";
+//////    std::cout << "Beta Constant {Llim, Ulim}:\t{" << BetaConstantLlim << ", " << BetaConstantUlim << "}\n\n";
 ////    // Adding limits to "Constant"
 ////    double BetaConstantUlim = 1.2 * BetaMax;
 ////    double BetaConstantLlim = BetaMax;
 //////    double BetaConstantLlim = 0.90 * BetaMax;
 //////    double BetaConstantLlim = 0.67 * BetaMax;
 ////    func->SetParLimits(0, BetaConstantLlim, BetaConstantUlim);
-////    cout << "Beta Constant {Llim, Ulim}:\t{" << BetaConstantLlim << ", " << BetaConstantUlim << "}\n\n";
+////    std::cout << "Beta Constant {Llim, Ulim}:\t{" << BetaConstantLlim << ", " << BetaConstantUlim << "}\n\n";
 //
 //    // Adding limits to "Constant"
 //    double BetaConstantUlim = 1.5 * BetaMax;
@@ -174,7 +174,7 @@ void AMapsDiveTest() {
 //    double BetaConstantLlim = 0.90 * BetaMax;
 ////    double BetaConstantLlim = 0.67 * BetaMax;
 //    func->SetParLimits(0, BetaConstantLlim, BetaConstantUlim);
-//    cout << "Beta Constant {Llim, Ulim}:\t{" << BetaConstantLlim << ", " << BetaConstantUlim << "}\n\n";
+//    std::cout << "Beta Constant {Llim, Ulim}:\t{" << BetaConstantLlim << ", " << BetaConstantUlim << "}\n\n";
 //
 //
 //    // Adding limits to "Mean_value"
@@ -183,12 +183,12 @@ void AMapsDiveTest() {
 ////    double BetaMean_valueLlim = 1.008;
 ////    double BetaMean_valueLlim = 1.0075;
 //    func->SetParLimits(1, BetaMean_valueLlim, BetaMean_valueUlim);
-//    cout << "Beta Mean_value {Llim, Ulim}:\t{" << BetaMean_valueLlim << ", " << BetaMean_valueUlim << "}\n\n";
+//    std::cout << "Beta Mean_value {Llim, Ulim}:\t{" << BetaMean_valueLlim << ", " << BetaMean_valueUlim << "}\n\n";
 ////    // Adding limits to "Mean_value"
 ////    double BetaMean_valueUlim = 1.02;
 ////    double BetaMean_valueLlim = 1.005;
 ////    func->SetParLimits(1, BetaMean_valueLlim, BetaMean_valueUlim);
-////    cout << "Beta Mean_value {Llim, Ulim}:\t{" << BetaMean_valueLlim << ", " << BetaMean_valueUlim << "}\n\n";
+////    std::cout << "Beta Mean_value {Llim, Ulim}:\t{" << BetaMean_valueLlim << ", " << BetaMean_valueUlim << "}\n\n";
 //
 //
 ////    // Adding limits to "Sigma"
@@ -196,14 +196,14 @@ void AMapsDiveTest() {
 ////    double BetaSigmaUlim = 0.01;
 ////    double BetaSigmaLlim = 0.00001;
 ////    func->SetParLimits(2, BetaSigmaLlim, BetaSigmaUlim);
-////    cout << "Beta Sigma {Llim, Ulim}:\t{" << BetaSigmaLlim << ", " << BetaSigmaUlim << "}\n\n";
+////    std::cout << "Beta Sigma {Llim, Ulim}:\t{" << BetaSigmaLlim << ", " << BetaSigmaUlim << "}\n\n";
 //
 //
 //
-//    cout << "\n";
+//    std::cout << "\n";
 //    hBeta_Clone->Fit("fit");
 //    hBeta_Clone->Draw();
-//    cout << "\n";
+//    std::cout << "\n";
 //
 //    TF1 *fit = hBeta_Clone->GetFunction("fit");
 //    double FitAmp = fit->GetParameter(0); // get p0
@@ -225,9 +225,9 @@ void AMapsDiveTest() {
 //    FitParam->SetTextFont(0);
 //    FitParam->SetFillColor(0);
 //    FitParam->SetTextAlign(12);
-//    FitParam->AddText(("Fit amp = " + to_string_with_precision(FitAmp, 8)).c_str());
-//    FitParam->AddText(("Fit mean = " + to_string_with_precision(FitMean, 8)).c_str());
-//    FitParam->AddText(("Fit std = " + to_string_with_precision(FitStd, 8)).c_str());
+//    FitParam->AddText(("Fit amp = " + std::to_string_with_precision(FitAmp, 8)).c_str());
+//    FitParam->AddText(("Fit mean = " + std::to_string_with_precision(FitMean, 8)).c_str());
+//    FitParam->AddText(("Fit std = " + std::to_string_with_precision(FitStd, 8)).c_str());
 //    ((TText *) FitParam->GetListOfLines()->Last())->SetTextColor(kRed);
 //    FitParam->Draw("same");
 //
@@ -241,7 +241,7 @@ void AMapsDiveTest() {
 //    //<editor-fold desc="Plot deltaP as function of beta">
 //    std::string deltaPStatsTitle = "#deltaP_{" + BetaParticleShort + "} (" + BetaFinalState + ")";
 //    std::string deltaPTitle = BetaParticle + " momentum uncertainty #deltaP_{" + BetaParticleShort + "} (" + BetaFinalState + ")";
-//    std::string deltaPfunc = to_string(m_n * FitStd) + "/ ( (1 - x*x) * sqrt(1 - x*x) )";
+//    std::string deltaPfunc = std::to_string(m_n * FitStd) + "/ ( (1 - x*x) * sqrt(1 - x*x) )";
 //
 //    auto *deltaP = new TF1(deltaPStatsTitle.c_str(), deltaPfunc.c_str(), 0.9, 1);
 //    deltaP->SetTitle(deltaPTitle.c_str());
@@ -266,8 +266,8 @@ void AMapsDiveTest() {
 //    deltaPParam->SetTextSize(0.03);
 //    deltaPParam->SetFillColor(0);
 //    deltaPParam->SetTextAlign(12);
-//    deltaPParam->AddText(("d#beta = " + to_string(FitStd)).c_str());
-////    deltaPParam->AddText(("#delta#beta = " + to_string_with_precision(FitStd, 8)).c_str());
+//    deltaPParam->AddText(("d#beta = " + std::to_string(FitStd)).c_str());
+////    deltaPParam->AddText(("#delta#beta = " + std::to_string_with_precision(FitStd, 8)).c_str());
 //    deltaPParam->Draw("same");
 //
 //    std::string deltaPSaveNameDir = "./" + sNameFlag + "02a_P_" + BetaParticleShort + "_uncertainty" + BetaFinalState + ".png";
@@ -284,10 +284,10 @@ void AMapsDiveTest() {
 //    SolveP3(Beta_Max_sol, 0, -1, FitStd / deltaPRel_UncertaintyU);
 //    SolveP3(Beta_Min_sol, 0, -1, FitStd / deltaPRel_UncertaintyL);
 //
-//    cout << "\nSolutions for W(beta) = 0 for 20%:\n";
+//    std::cout << "\nSolutions for W(beta) = 0 for 20%:\n";
 //
 //    for (int i = 0; i < 3; i++) {
-//        cout << "Beta_Max_sol[" << i << "] = " << Beta_Max_sol[i] << "\n";
+//        std::cout << "Beta_Max_sol[" << i << "] = " << Beta_Max_sol[i] << "\n";
 //
 //        //TODO: see if other checks for the solution are required!!!
 //        if (Beta_Max_sol[i] >= 0.9 && Beta_Max_sol[i] < 1) { Beta_Max = Beta_Max_sol[i]; }
@@ -295,14 +295,14 @@ void AMapsDiveTest() {
 //
 //    P_Beta_Max = m_n * Beta_Max / sqrt(1 - Beta_Max * Beta_Max);
 //
-//    cout << "W(beta) const Max = " << FitStd / deltaPRel_UncertaintyU << "\n";
-//    cout << "Beta_Max = " << Beta_Max << " is chosen\n";
-//    cout << "P(Beta_Max) = " << P_Beta_Max << "\n\n";
+//    std::cout << "W(beta) const Max = " << FitStd / deltaPRel_UncertaintyU << "\n";
+//    std::cout << "Beta_Max = " << Beta_Max << " is chosen\n";
+//    std::cout << "P(Beta_Max) = " << P_Beta_Max << "\n\n";
 //
-//    cout << "Solutions for W(beta) = 0 for 10%:\n";
+//    std::cout << "Solutions for W(beta) = 0 for 10%:\n";
 //
 //    for (int i = 0; i < 3; i++) {
-//        cout << "Beta_Min_sol[" << i << "] = " << Beta_Min_sol[i] << "\n";
+//        std::cout << "Beta_Min_sol[" << i << "] = " << Beta_Min_sol[i] << "\n";
 //
 //        //TODO: see if other checks for the solution are required!!!
 //        if (Beta_Min_sol[i] >= 0.9 && Beta_Min_sol[i] < 1) { Beta_Min = Beta_Min_sol[i]; }
@@ -310,9 +310,9 @@ void AMapsDiveTest() {
 //
 //    P_Beta_Min = m_n * Beta_Min / sqrt(1 - Beta_Min * Beta_Min);
 //
-//    cout << "W(beta) const Max = " << FitStd / deltaPRel_UncertaintyL << "\n";
-//    cout << "Beta_Min = " << Beta_Min << " is chosen\n";
-//    cout << "P(Beta_Min) = " << P_Beta_Min << "\n\n";
+//    std::cout << "W(beta) const Max = " << FitStd / deltaPRel_UncertaintyL << "\n";
+//    std::cout << "Beta_Min = " << Beta_Min << " is chosen\n";
+//    std::cout << "P(Beta_Min) = " << P_Beta_Min << "\n\n";
 //
 //    n_momentum_cuts.SetUpperCut(P_Beta_Max);
 //    //</editor-fold>
@@ -320,7 +320,7 @@ void AMapsDiveTest() {
 //    //<editor-fold desc="Plot deltaP/P as function of beta">
 //    std::string Rel_deltaPStatsTitle = "#deltaP_{" + BetaParticleShort + "} (" + BetaFinalState + ")";
 //    std::string Rel_deltaPTitle = BetaParticle + " relative uncertainty #deltaP_{" + BetaParticleShort + "}/P_{" + BetaParticleShort + "} (" + BetaFinalState + ")";
-//    std::string Rel_deltaPfunc = to_string(FitStd) + "/ ( (1 - x*x) * x )";
+//    std::string Rel_deltaPfunc = std::to_string(FitStd) + "/ ( (1 - x*x) * x )";
 //
 //    auto *Rel_deltaP = new TF1(Rel_deltaPStatsTitle.c_str(), Rel_deltaPfunc.c_str(), 0.9, 1);
 //    Rel_deltaP->SetTitle(Rel_deltaPTitle.c_str());
@@ -343,7 +343,7 @@ void AMapsDiveTest() {
 //    deltaPRel_deltaP->SetTextSize(0.03);
 //    deltaPRel_deltaP->SetFillColor(0);
 //    deltaPRel_deltaP->SetTextAlign(12);
-//    deltaPRel_deltaP->AddText(("d#beta = " + to_string(FitStd)).c_str());
+//    deltaPRel_deltaP->AddText(("d#beta = " + std::to_string(FitStd)).c_str());
 //    deltaPRel_deltaP->Draw("same");
 //
 //    TLine *upper_cut = new TLine(gPad->GetFrame()->GetX2() - 0.1, deltaPRel_UncertaintyU, gPad->GetFrame()->GetX2(), deltaPRel_UncertaintyU);
@@ -401,8 +401,8 @@ void AMapsDiveTest() {
 //    //<editor-fold desc="Plot w as function of beta">
 //    std::string WStatsTitle = "W(#beta) (" + BetaFinalState + ")";
 //    std::string WTitle = "The W(#beta) function (" + BetaFinalState + ")";
-//    std::string W_Maxfunc = "x*x*x - x + " + to_string(FitStd / deltaPRel_UncertaintyU);
-//    std::string W_Minfunc = "x*x*x - x + " + to_string(FitStd / deltaPRel_UncertaintyL);
+//    std::string W_Maxfunc = "x*x*x - x + " + std::to_string(FitStd / deltaPRel_UncertaintyU);
+//    std::string W_Minfunc = "x*x*x - x + " + std::to_string(FitStd / deltaPRel_UncertaintyL);
 //
 //    auto *W_Max = new TF1(WStatsTitle.c_str(), W_Maxfunc.c_str(), 0.9, 1);
 //    W_Max->SetLineWidth(2);

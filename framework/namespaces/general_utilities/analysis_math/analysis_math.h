@@ -14,12 +14,16 @@
 #include "../constants/constants.h"
 //
 // #include "analysis_math_reco_extentions.h"
-#include "poly_solver.cpp"
+#include "polynomial_solver.h"
+//
+#include "HipoChain.h"
+#include "clas12reader.h"
 
 // using namespace std;
+using namespace clas12;
 
 namespace analysis_math {
-using namespace poly_solver;
+using namespace polynomial_solver;
 
 // Mathematical constants -----------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -133,12 +137,12 @@ int GetBinFromAng(double Angle, double AngleBins, double AngleMin, double AngleM
 
         if (Angle >= min_i && Angle <= max_i) {
             if (printOut) {
-                cout << "\n\n\nAngleType = " << AngleType << "\n";
-                cout << "Angle = " << Angle << "\n";
-                cout << "max_i = " << max_i << "\n";
-                cout << "min_i = " << min_i << "\n";
-                cout << "i = " << i << "\n";
-                cout << "Delta = " << Delta << "\n\n\n";
+                std::cout << "\n\n\nAngleType = " << AngleType << "\n";
+                std::cout << "Angle = " << Angle << "\n";
+                std::cout << "max_i = " << max_i << "\n";
+                std::cout << "min_i = " << min_i << "\n";
+                std::cout << "i = " << i << "\n";
+                std::cout << "Delta = " << Delta << "\n\n\n";
             }
 
             Bin = i;
@@ -173,7 +177,7 @@ double CalcdPhi2(region_part_ptr proton1, region_part_ptr proton2) {
 // TLKinCutsCheck function (CLAS12 extention) ---------------------------------------------------------------------------------------------------------------------------
 
 /* TLKinCutsCheck for a general vector of particles */
-bool TLKinCutsCheck(const std::unique_ptr<clas12::clas12reader> &c12, bool apply_kinematical_cuts, const vector<int> &FD_nucleon, const DSCuts &FD_nucleon_theta_cut,
+bool TLKinCutsCheck(const std::unique_ptr<clas12::clas12reader> &c12, bool apply_kinematical_cuts, const std::vector<int> &FD_nucleon, const DSCuts &FD_nucleon_theta_cut,
                     const DSCuts &FD_nucleon_momentum_cut) {
     auto mcpbank = c12->mcparts();
 

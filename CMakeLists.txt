@@ -146,13 +146,13 @@ add_executable(project ${CLAS12ROOT_SOURCES} ${CLAS12BANKS_SOURCES} ${HIPO4_SOUR
         # "framework/other/fitexample - Copy.c"
         # framework/other/fitexample.c
         # framework/other/hPlot1D_example.cpp
-        framework/structures/Histogram1D_beta/Histogram1D.cpp
+        # framework/structures/Histogram1D_beta/Histogram1D.cpp
         # macros/Other/db_script.txt
-        Old_analysers/DetectorSimulationAnalyser.C
+        Old_analysers/DetectorSimulationAnalyser.cpp
         git_handle.sh
-        main.c
+        main.cpp
         run.csh
-        Old_analysers/TruthLevelAnalyser.c
+        Old_analysers/TruthLevelAnalyser.cpp
         framework/classes/Settings/Settings.cpp
         framework/classes/Settings/Settings.h
         framework/classes/Settings/CustomPlotsDirectory.cpp
@@ -166,10 +166,10 @@ add_executable(project ${CLAS12ROOT_SOURCES} ${CLAS12BANKS_SOURCES} ${HIPO4_SOUR
         testers/nFD_eff_test/nFD_eff_test_functions.cpp
         testers/nFD_eff_test/nFD_eff_test.cpp
         # macros/plotHistogramsWithLabels.cpp
-        testers/reaction_cuts_test/reaction_cuts_test.cpp
-        testers/reaction_cuts_test/reaction_cuts_test_functions.cpp
-        framework/namespaces/general_utilities/analysis_math/poly_solver.h
-        framework/namespaces/general_utilities/analysis_math/poly_solver.cpp
+        # testers/reaction_cuts_test/reaction_cuts_test.cpp
+        # testers/reaction_cuts_test/reaction_cuts_test_functions.cpp
+        framework/namespaces/general_utilities/analysis_math/polynomial_solver.h
+        framework/namespaces/general_utilities/analysis_math/polynomial_solver.cpp
         framework/namespaces/fitters/fitter_functions/fitter_functions.h
         framework/namespaces/setup/path_definitions/path_definitions.h
         framework/namespaces/settings/debugging_settings/debugging_settings.h

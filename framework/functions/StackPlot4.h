@@ -29,7 +29,7 @@
 #include <typeinfo>
 #include <vector>
 
-#include "../classes/hPlots/hPlot1D.cpp"
+#include "../classes/hPlots/hPlot1D.h"
 #include "GeneralFunctions.h"
 
 using namespace std;
@@ -102,10 +102,10 @@ void StackPlot4(string &SampleName, TList *Histogram_list, hPlot1D const &Hist1,
     std::string HistogramStackSaveName = HistogramStackSaveNamePath1.substr(HistogramStackSaveNamePath1.find_last_of('/') + 1) + "_Stack4";
     //    std::string HistogramStackSaveName = Hist1.GetHistogram1DSaveName() + "_Stack";
 
-    cout << "\n\n\n\nHistogramStackSaveNamePath0 = " << HistogramStackSaveNamePath0 << "\n";
-    cout << "HistogramStackSaveNamePath1 = " << HistogramStackSaveNamePath1 << "\n";
-    cout << "HistogramStackSaveNamePath = " << HistogramStackSaveNamePath << "\n";
-    cout << "HistogramStackSaveName = " << HistogramStackSaveName << "\n\n\n\n";
+    std::cout << "\n\n\n\nHistogramStackSaveNamePath0 = " << HistogramStackSaveNamePath0 << "\n";
+    std::cout << "HistogramStackSaveNamePath1 = " << HistogramStackSaveNamePath1 << "\n";
+    std::cout << "HistogramStackSaveNamePath = " << HistogramStackSaveNamePath << "\n";
+    std::cout << "HistogramStackSaveName = " << HistogramStackSaveName << "\n\n\n\n";
 
     double TitleSize = Hist1.GetTitleSize();
     double LabelSize = Hist1.GetLabelSizeX();

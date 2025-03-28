@@ -19,29 +19,29 @@ MomentumResolution::MomentumResolution(const std::string &Particle) {
         MomResParticle = Particle;
 
         if (PrintOut) {
-            cout << "\nParticle = " << Particle << "\n";
-            cout << "MomResParticle = " << MomResParticle << "\n";
+            std::cout << "\nParticle = " << Particle << "\n";
+            std::cout << "MomResParticle = " << MomResParticle << "\n";
         }
     } else if (Particle == "Proton") {
         isNeutron = false, isProton = true;
         MomResParticle = Particle;
 
         if (PrintOut) {
-            cout << "\nParticle = " << Particle << "\n";
-            cout << "MomResParticle = " << MomResParticle << "\n";
+            std::cout << "\nParticle = " << Particle << "\n";
+            std::cout << "MomResParticle = " << MomResParticle << "\n";
         }
     } else {
-        cout << "MomentumResolution::MomentumResolution: entered particle is illegal! Exiting...\n\n", exit(0);
+        std::cout << "MomentumResolution::MomentumResolution: entered particle is illegal! Exiting...\n\n", exit(0);
     }
 
     //<editor-fold desc="Safety checks">
-    if (isNeutron == isProton) { cout << "MomentumResolution::MomentumResolution: unclear nucleon selection! Exiting...\n\n", exit(0); }
+    if (isNeutron == isProton) { std::cout << "MomentumResolution::MomentumResolution: unclear nucleon selection! Exiting...\n\n", exit(0); }
 
     if (MomResParticle != "Neutron" && MomResParticle != "Proton") {
-        cout << "\nMomentumResolution::MomentumResolution: nucleon have not been set!\n";
-        cout << "Particle = " << Particle << "\n";
-        cout << "MomResParticle = " << MomResParticle << "\n";
-        cout << "Exiting...\n\n", exit(0);
+        std::cout << "\nMomentumResolution::MomentumResolution: nucleon have not been set!\n";
+        std::cout << "Particle = " << Particle << "\n";
+        std::cout << "MomResParticle = " << MomResParticle << "\n";
+        std::cout << "Exiting...\n\n", exit(0);
     }
     //</editor-fold>
 }
@@ -106,13 +106,13 @@ void MomentumResolution::MomResInit(const bool &plot_and_fit_MomRes, const bool 
 
                 //<editor-fold desc="Safety checks for data files">
                 if (!FindSubstring(NeutronCorrectionDataFile, "Neutron") || FindSubstring(NeutronCorrectionDataFile, "Proton")) {
-                    cout << "\n\nMomentumResolution::MomentumResolution: neutron correction variables are not being loaded from neutron data! "
+                    std::cout << "\n\nMomentumResolution::MomentumResolution: neutron correction variables are not being loaded from neutron data! "
                             "Exiting...\n\n",
                         exit(0);
                 }
 
                 if (!FindSubstring(ProtonSmearingDataFile, "Neutron") || FindSubstring(ProtonSmearingDataFile, "Proton")) {
-                    cout << "\n\nMomentumResolution::MomentumResolution: proton smearing variables are not being loaded from neutron data! "
+                    std::cout << "\n\nMomentumResolution::MomentumResolution: proton smearing variables are not being loaded from neutron data! "
                             "Exiting...\n\n",
                         exit(0);
                 }
@@ -129,11 +129,11 @@ void MomentumResolution::MomResInit(const bool &plot_and_fit_MomRes, const bool 
 
                 //<editor-fold desc="Safety checks for data files">
                 if (!FindSubstring(NeutronCorrectionDataFile, "Neutron") || FindSubstring(NeutronCorrectionDataFile, "Proton")) {
-                    cout << "\n\nMomentumResolution::MomentumResolution: neutron correction variables are not being loaded from neutron data! Exiting...\n\n", exit(0);
+                    std::cout << "\n\nMomentumResolution::MomentumResolution: neutron correction variables are not being loaded from neutron data! Exiting...\n\n", exit(0);
                 }
 
                 if (!FindSubstring(ProtonSmearingDataFile, "Neutron") || FindSubstring(ProtonSmearingDataFile, "Proton")) {
-                    cout << "\n\nMomentumResolution::MomentumResolution: proton smearing variables are not being loaded from neutron data! Exiting...\n\n", exit(0);
+                    std::cout << "\n\nMomentumResolution::MomentumResolution: proton smearing variables are not being loaded from neutron data! Exiting...\n\n", exit(0);
                 }
                 //</editor-fold>
             }
@@ -166,7 +166,7 @@ void MomentumResolution::SetMomResCalculations(const std::string &SampleName, co
     Ebeam = beamE;
 
     //<editor-fold desc="Safety check">
-    if (momResS2CalcMode && momResS2RunMode) { cout << "MomentumResolution::MomentumResolution: calculating and running on momResS2 is illegal! Exiting...\n\n", exit(0); }
+    if (momResS2CalcMode && momResS2RunMode) { std::cout << "MomentumResolution::MomentumResolution: calculating and running on momResS2 is illegal! Exiting...\n\n", exit(0); }
     //</editor-fold>
 
     SetMomResSlicesByType(SampleName, NucleonCutsDirectory, beamE, ParticleMomTh, "truth", SavePath, VaryingDelta, momRes_test, ForceSmallpResLimits, FitDebugging);
@@ -193,7 +193,7 @@ void MomentumResolution::SetMomResSlicesByType(const std::string &SampleName, co
 //<editor-fold desc="SetMomResSlices function">
 void MomentumResolution::SetMomResSlices(const std::string &SampleName, const std::string &NucleonCutsDirectory, const double &beamE, const double &ParticleMomTh,
                                          const std::string &MomentumType, const std::string &SavePath, const bool &VaryingDelta, const bool &momRes_test, const bool &ForceSmallpResLimits,
-                                         vector<hPlot1D> &ResSlices0, vector<vector<double>> &ResSlicesLimits0, vector<DSCuts> &ResSlicesFitVar0, vector<DSCuts> &ResSlicesHistVar0,
+                                         std::vector<hPlot1D> &ResSlices0, std::vector<std::vector<double>> &ResSlicesLimits0, std::vector<DSCuts> &ResSlicesFitVar0, std::vector<DSCuts> &ResSlicesHistVar0,
                                          int &NumberOfSlices0, const bool &FitDebugging) {
     double Delta = delta, SliceLowerLim = ParticleMomTh, SliceUpperLim;
     SetUpperMomCut(SampleName, NucleonCutsDirectory, FitDebugging);
@@ -231,20 +231,20 @@ void MomentumResolution::SetMomResSlices(const std::string &SampleName, const st
         ++SliceNumber;
 
         if (TLLimitsPrintOut && (MomentumType == "truth")) {
-            cout << "\n\nMomResParticle = " << MomResParticle << " (MomentumType == " << MomentumType << ")\n";
-            cout << "SliceLowerLim = " << SliceLowerLim << " (MomentumType == " << MomentumType << ")\n";
-            cout << "SliceUpperLim = " << SliceUpperLim << " (MomentumType == " << MomentumType << ")\n";
+            std::cout << "\n\nMomResParticle = " << MomResParticle << " (MomentumType == " << MomentumType << ")\n";
+            std::cout << "SliceLowerLim = " << SliceLowerLim << " (MomentumType == " << MomentumType << ")\n";
+            std::cout << "SliceUpperLim = " << SliceUpperLim << " (MomentumType == " << MomentumType << ")\n";
         }
 
         if (RecoLimitsPrintOut && (MomentumType == "reco")) {
-            cout << "\n\nMomResParticle = " << MomResParticle << " (MomentumType == " << MomentumType << ")\n";
-            cout << "SliceLowerLim = " << SliceLowerLim << " (MomentumType == " << MomentumType << ")\n";
-            cout << "SliceUpperLim = " << SliceUpperLim << " (MomentumType == " << MomentumType << ")\n";
+            std::cout << "\n\nMomResParticle = " << MomResParticle << " (MomentumType == " << MomentumType << ")\n";
+            std::cout << "SliceLowerLim = " << SliceLowerLim << " (MomentumType == " << MomentumType << ")\n";
+            std::cout << "SliceUpperLim = " << SliceUpperLim << " (MomentumType == " << MomentumType << ")\n";
         }
 
         //<editor-fold desc="Safety check">
         if ((abs(SliceUpperLim) > beamE * 1.5) || (abs(SliceLowerLim) > beamE * 1.5)) {
-            cout << "\n\nMomentumResolution::SetMomResSlices: slice limits are not defined properly! Exiting...\n\n", exit(0);
+            std::cout << "\n\nMomentumResolution::SetMomResSlices: slice limits are not defined properly! Exiting...\n\n", exit(0);
         }
         //</editor-fold>
 
@@ -266,9 +266,9 @@ void MomentumResolution::SetMomResSlices(const std::string &SampleName, const st
                 "n res. - " + ToStringWithPrecision(SliceLowerLim, 2) + "#leqP^{" + MomentumType + "}_{nFD}#leq" + ToStringWithPrecision(SliceUpperLim, SliceUpperLimPrecision) + " [GeV/c]";
             hTitle = "Neutron resolution for " + ToStringWithPrecision(SliceLowerLim, 2) + "#leqP^{" + MomentumType + "}_{nFD}#leq" +
                      ToStringWithPrecision(SliceUpperLim, SliceUpperLimPrecision) + " [GeV/c]";
-            hSaveName = to_string(SliceNumber) + "_res_plot_for_" + MomentumType + "_P_n_from_" + ToStringWithPrecision(SliceLowerLim, 2) + "_to_" +
+            hSaveName = std::to_string(SliceNumber) + "_res_plot_for_" + MomentumType + "_P_n_from_" + ToStringWithPrecision(SliceLowerLim, 2) + "_to_" +
                         ToStringWithPrecision(SliceUpperLim, SliceUpperLimPrecision);
-            hCutName = "Slice_#" + to_string(SliceNumber) + "_from_" + ToStringWithPrecision(SliceLowerLim, 2) + "_to_" + ToStringWithPrecision(SliceUpperLim, SliceUpperLimPrecision);
+            hCutName = "Slice_#" + std::to_string(SliceNumber) + "_from_" + ToStringWithPrecision(SliceLowerLim, 2) + "_to_" + ToStringWithPrecision(SliceUpperLim, SliceUpperLimPrecision);
 
             hResolutionSlice = hPlot1D("1n", "FD", hStatsTitle, hTitle, "R_{nFD} = (P^{truth}_{nFD} - P^{reco}_{nFD})/P^{truth}_{nFD}", SlicesSavePath, hSaveName, hSliceLowerLim,
                                        hSliceUpperLim, hSliceNumOfBin);
@@ -278,9 +278,9 @@ void MomentumResolution::SetMomResSlices(const std::string &SampleName, const st
                 "p res. - " + ToStringWithPrecision(SliceLowerLim, 2) + "#leqP^{" + MomentumType + "}_{pFD}#leq" + ToStringWithPrecision(SliceUpperLim, SliceUpperLimPrecision) + " [GeV/c]";
             hTitle = "Proton resolution for " + ToStringWithPrecision(SliceLowerLim, 2) + "#leqP^{" + MomentumType + "}_{pFD}#leq" +
                      ToStringWithPrecision(SliceUpperLim, SliceUpperLimPrecision) + " [GeV/c]";
-            hSaveName = to_string(SliceNumber) + "_res_plot_for_" + MomentumType + "_P_p_from_" + ToStringWithPrecision(SliceLowerLim, 2) + "_to_" +
+            hSaveName = std::to_string(SliceNumber) + "_res_plot_for_" + MomentumType + "_P_p_from_" + ToStringWithPrecision(SliceLowerLim, 2) + "_to_" +
                         ToStringWithPrecision(SliceUpperLim, SliceUpperLimPrecision);
-            hCutName = "Slice_#" + to_string(SliceNumber) + "_from_" + ToStringWithPrecision(SliceLowerLim, 2) + "_to_" + ToStringWithPrecision(SliceUpperLim, SliceUpperLimPrecision);
+            hCutName = "Slice_#" + std::to_string(SliceNumber) + "_from_" + ToStringWithPrecision(SliceLowerLim, 2) + "_to_" + ToStringWithPrecision(SliceUpperLim, SliceUpperLimPrecision);
 
             if (!momResS2CalcMode || !momResS2RunMode) {
                 if (ForceSmallpResLimits) {
@@ -353,7 +353,7 @@ void MomentumResolution::SetMomResSlices(const std::string &SampleName, const st
                                 Delta = SliceUpperMomLim - SliceLowerLim;
                             }
                         } else {
-                            cout << "MomentumResolution::SetMomResSlices: no set of varying delta is available for '" << SampleName << "'! Exiting...\n\n", exit(0);
+                            std::cout << "MomentumResolution::SetMomResSlices: no set of varying delta is available for '" << SampleName << "'! Exiting...\n\n", exit(0);
                         }
                     } else if (beamE == 2.07052) {
                         if ((SliceLowerLim >= 0.40) && (SliceLowerLim < 0.50)) {  // 0.4-0.55
@@ -366,7 +366,7 @@ void MomentumResolution::SetMomResSlices(const std::string &SampleName, const st
                             Delta = beamE - SliceLowerLim;
                         }
                     } else {
-                        cout << "MomentumResolution::SetMomResSlices: no set of varying delta is available for '" << SampleName << "'! Exiting...\n\n", exit(0);
+                        std::cout << "MomentumResolution::SetMomResSlices: no set of varying delta is available for '" << SampleName << "'! Exiting...\n\n", exit(0);
                     }
                 } else if (MomentumType == "reco") {
                     if (beamE == 5.98636) {
@@ -389,7 +389,7 @@ void MomentumResolution::SetMomResSlices(const std::string &SampleName, const st
                                 Delta = SliceUpperMomLim - SliceLowerLim;
                             }
                         } else {
-                            cout << "MomentumResolution::SetMomResSlices: no set of varying delta is available for '" << SampleName << "'! Exiting...\n\n", exit(0);
+                            std::cout << "MomentumResolution::SetMomResSlices: no set of varying delta is available for '" << SampleName << "'! Exiting...\n\n", exit(0);
                         }
                     }
                 }
@@ -429,7 +429,7 @@ void MomentumResolution::LoadFitParam(const std::string &SampleName, const std::
                                       const std::string &MomentumResolutionDirectory) {
     if (isNeutron) {
         if (momResS2CalcMode && !momResS2RunMode) {
-            cout << "\n\nMomentumResolution::MomentumResolution: running in momResS2 calculation mode. Loading momResS1 variables...\n";
+            std::cout << "\n\nMomentumResolution::MomentumResolution: running in momResS2 calculation mode. Loading momResS1 variables...\n";
 
             std::string NeutronCorrectionDataFile = MomentumResolutionDirectory + "Res_data_-_" + SampleName + "/Neutron_momResS1_fit_param_-_" + SampleName + ".par";
             std::string ProtonSmearingDataFile = MomentumResolutionDirectory + "Res_data_-_" + SampleName + "/Neutron_momResS1_fit_param_-_" + SampleName + ".par";
@@ -442,18 +442,18 @@ void MomentumResolution::LoadFitParam(const std::string &SampleName, const std::
 
             //<editor-fold desc="Safety checks for data files">
             if (!FindSubstring(NeutronCorrectionDataFile, "Neutron") || FindSubstring(NeutronCorrectionDataFile, "Proton")) {
-                cout << "\n\nMomentumResolution::MomentumResolution: neutron correction variables are not being loaded from neutron data! Exiting...\n\n", exit(0);
+                std::cout << "\n\nMomentumResolution::MomentumResolution: neutron correction variables are not being loaded from neutron data! Exiting...\n\n", exit(0);
             }
 
             if (!FindSubstring(ProtonSmearingDataFile, "Neutron") || FindSubstring(ProtonSmearingDataFile, "Proton")) {
-                cout << "\n\nMomentumResolution::MomentumResolution: proton smearing variables are not being loaded from neutron data! Exiting...\n\n", exit(0);
+                std::cout << "\n\nMomentumResolution::MomentumResolution: proton smearing variables are not being loaded from neutron data! Exiting...\n\n", exit(0);
             }
             //</editor-fold>
 
-            cout << "\nDone.\n";
+            std::cout << "\nDone.\n";
         } else if (!momResS2CalcMode && momResS2RunMode) {
-            cout << "\n\nMomentumResolution::MomentumResolution: running in momResS2 run mode.\n";
-            cout << "Loading correction from momResS1 variables & smearing from momResS2 variables...\n";
+            std::cout << "\n\nMomentumResolution::MomentumResolution: running in momResS2 run mode.\n";
+            std::cout << "Loading correction from momResS1 variables & smearing from momResS2 variables...\n";
 
             std::string NeutronCorrectionDataFile = MomentumResolutionDirectory + "Res_data_-_" + SampleName + "/Neutron_momResS1_fit_param_-_" + SampleName + ".par";
             std::string ProtonSmearingDataFile = MomentumResolutionDirectory + "Res_data_-_" + SampleName + "/Neutron_momResS2_fit_param_-_" + SampleName + ".par";
@@ -466,15 +466,15 @@ void MomentumResolution::LoadFitParam(const std::string &SampleName, const std::
 
             //<editor-fold desc="Safety checks for data files">
             if (!FindSubstring(NeutronCorrectionDataFile, "Neutron") || FindSubstring(NeutronCorrectionDataFile, "Proton")) {
-                cout << "\n\nMomentumResolution::MomentumResolution: neutron correction variables are not being loaded from neutron data! Exiting...\n\n", exit(0);
+                std::cout << "\n\nMomentumResolution::MomentumResolution: neutron correction variables are not being loaded from neutron data! Exiting...\n\n", exit(0);
             }
 
             if (!FindSubstring(ProtonSmearingDataFile, "Neutron") || FindSubstring(ProtonSmearingDataFile, "Proton")) {
-                cout << "\n\nMomentumResolution::MomentumResolution: proton smearing variables are not being loaded from neutron data! Exiting...\n\n", exit(0);
+                std::cout << "\n\nMomentumResolution::MomentumResolution: proton smearing variables are not being loaded from neutron data! Exiting...\n\n", exit(0);
             }
             //</editor-fold>
 
-            cout << "\nDone.\n";
+            std::cout << "\nDone.\n";
         }
     }
 }
@@ -486,7 +486,7 @@ void MomentumResolution::LoadFitParam(const std::string &SampleName, const std::
 /* This function reads nucleon cuts (especially neutron upper th.). It was imported from the clas12ana class */
 
 void MomentumResolution::ReadInputParam(const char *filename) {
-    ifstream infile;
+    std::ifstream infile;
     infile.open(filename);
 
     if (infile.is_open()) {
@@ -497,7 +497,7 @@ void MomentumResolution::ReadInputParam(const char *filename) {
 
         while (getline(infile, tp))  // read data from file object and put it into string.
         {
-            stringstream ss(tp);
+            std::stringstream ss(tp);
             std::string parameter, parameter2;
             double value;
             // get cut identifier
@@ -505,11 +505,11 @@ void MomentumResolution::ReadInputParam(const char *filename) {
 
             if (parameter == "nRes_Momentum_cut") {
                 ss >> parameter2;
-                stringstream ss2(parameter2);
+                std::stringstream ss2(parameter2);
                 std::string pid_v;
                 int count = 0;
                 std::string pid = "";
-                vector<double> par;
+                std::vector<double> par;
 
                 while (getline(ss2, pid_v, ':')) {
                     if (count == 0) {
@@ -525,7 +525,7 @@ void MomentumResolution::ReadInputParam(const char *filename) {
             }
         }
     } else {
-        cout << "MomentumResolution::ReadInputParam: Parameter file didn't read in:\n" << filename << endl;
+        std::cout << "MomentumResolution::ReadInputParam: Parameter file didn't read in:\n" << filename << endl;
     }
 }
 //</editor-fold>
@@ -540,7 +540,7 @@ void MomentumResolution::hFillResPlotsByType(const double &TL_momentum, const do
 //</editor-fold>
 
 //<editor-fold desc="hFillResPlots function">
-void MomentumResolution::hFillResPlots(const double &Momentum, const double &Resolution, const double &Weight, vector<hPlot1D> &ResSlices0, vector<vector<double>> &ResSlicesLimits0,
+void MomentumResolution::hFillResPlots(const double &Momentum, const double &Resolution, const double &Weight, std::vector<hPlot1D> &ResSlices0, std::vector<std::vector<double>> &ResSlicesLimits0,
                                        int &NumberOfSlices0) {
     bool Printout = false;
 
@@ -549,9 +549,9 @@ void MomentumResolution::hFillResPlots(const double &Momentum, const double &Res
             ResSlices0.at(i).hFill(Resolution, Weight);
 
             if (Printout) {
-                cout << "\n\nResSlicesLimits0.at(" << i << ").at(0) = " << ResSlicesLimits0.at(i).at(0) << "\n";
-                cout << "Momentum = " << Momentum << "\n";
-                cout << "ResSlicesLimits0.at(" << i << ").at(1) = " << ResSlicesLimits0.at(i).at(1) << "\n";
+                std::cout << "\n\nResSlicesLimits0.at(" << i << ").at(0) = " << ResSlicesLimits0.at(i).at(0) << "\n";
+                std::cout << "Momentum = " << Momentum << "\n";
+                std::cout << "ResSlicesLimits0.at(" << i << ").at(1) = " << ResSlicesLimits0.at(i).at(1) << "\n";
             }
 
             break;  // No need to keep the loop going after filling histogram
@@ -581,8 +581,8 @@ void MomentumResolution::SliceFitDrawAndSaveByType(const std::string &SampleName
 //</editor-fold>
 
 //<editor-fold desc="SliceFitDrawAndSave function">
-void MomentumResolution::SliceFitDrawAndSave(const std::string &SampleName, const double &beamE, const std::string &MomentumType, vector<hPlot1D> &ResSlices0,
-                                             vector<vector<double>> &ResSlicesLimits0, vector<DSCuts> &ResSlicesFitVar0, vector<DSCuts> &ResSlicesHistVar0, vector<int> &FittedSlices0,
+void MomentumResolution::SliceFitDrawAndSave(const std::string &SampleName, const double &beamE, const std::string &MomentumType, std::vector<hPlot1D> &ResSlices0,
+                                             std::vector<std::vector<double>> &ResSlicesLimits0, std::vector<DSCuts> &ResSlicesFitVar0, std::vector<DSCuts> &ResSlicesHistVar0, std::vector<int> &FittedSlices0,
                                              int &NumberOfSlices0) {
     TCanvas *SliceFitCanvas = new TCanvas("SliceFitCanvas", "SliceFitCanvas", 1000, 750);  // normal res
     SliceFitCanvas->SetGrid();
@@ -607,7 +607,7 @@ void MomentumResolution::SliceFitDrawAndSave(const std::string &SampleName, cons
         hSlice->Sumw2();
 
         if (hSlice->Integral() != 0.) {  // Fit only the non-empty histograms
-            cout << "\n\n";
+            std::cout << "\n\n";
 
             double FitUlim, FitLlim;
 
@@ -715,7 +715,7 @@ void MomentumResolution::SliceFitDrawAndSave(const std::string &SampleName, cons
             auto ListOfFunctions = hSlice->GetListOfFunctions();
             ListOfFunctions->Add((TObject *)FitParam);
 
-            cout << "\n", SliceFitCanvas->SaveAs(hSlice_CloneSaveName.c_str());
+            std::cout << "\n", SliceFitCanvas->SaveAs(hSlice_CloneSaveName.c_str());
 
             if (MomentumType == "truth") {
                 if (isNeutron) {
@@ -771,8 +771,8 @@ void MomentumResolution::SliceFitDrawAndSave(const std::string &SampleName, cons
 
 //<editor-fold desc="PolyFitter function">
 void MomentumResolution::PolyFitter(const std::string &MomentumType, const int &PolynomialDegree, const std::string &FitType, const std::string &MomentumFitRange,
-                                    vector<vector<double>> &FitParamResults) {
-    cout << "\n\nPolyFitter variables:\n";
+                                    std::vector<std::vector<double>> &FitParamResults) {
+    std::cout << "\n\nPolyFitter variables:\n";
     bool PrintOut = false;
     bool PlotPoints = false;
 
@@ -818,16 +818,16 @@ void MomentumResolution::PolyFitter(const std::string &MomentumType, const int &
             PolynomialFitType = "cubic";
         }
     } else {
-        cout << "\n\nMomentumResolution::PolyFitter: MomentumFitRange is illegal! Exiting...\n\n", exit(0);
+        std::cout << "\n\nMomentumResolution::PolyFitter: MomentumFitRange is illegal! Exiting...\n\n", exit(0);
     }
     //</editor-fold>
 
     //<editor-fold desc="Setting fitted slices">
-    vector<hPlot1D> ResSlices0;
-    vector<vector<double>> ResSlicesLimits0;
-    vector<DSCuts> ResSlicesFitVar0, ResSlicesHistVar0;
+    std::vector<hPlot1D> ResSlices0;
+    std::vector<std::vector<double>> ResSlicesLimits0;
+    std::vector<DSCuts> ResSlicesFitVar0, ResSlicesHistVar0;
     int NumberOfSlices0;
-    vector<int> FittedSlices0;
+    std::vector<int> FittedSlices0;
 
     if (MomentumType == "truth") {
         ResSlices0 = ResTLMomSlices;
@@ -839,7 +839,7 @@ void MomentumResolution::PolyFitter(const std::string &MomentumType, const int &
         ResSlicesHistVar0 = ResRecoMomSlicesHistVar;
         NumberOfSlices0 = Reco_NumberOfSlices, FittedSlices0 = FittedRecoMomSlices;
     } else {
-        cout << "\n\nMomentumResolution::PolyFitter: MomentumType is illegal! Exiting...\n\n", exit(0);
+        std::cout << "\n\nMomentumResolution::PolyFitter: MomentumType is illegal! Exiting...\n\n", exit(0);
     }
     //</editor-fold>
 
@@ -851,12 +851,12 @@ void MomentumResolution::PolyFitter(const std::string &MomentumType, const int &
     } else if (FitType == "Corr") {
         FittedVar = "#mu_{" + FitterParticle + "}";
     } else {
-        cout << "\n\nMomentumResolution::PolyFitter: FitType is illegal! Exiting...\n\n", exit(0);
+        std::cout << "\n\nMomentumResolution::PolyFitter: FitType is illegal! Exiting...\n\n", exit(0);
     }
     //</editor-fold>
 
     //<editor-fold desc="Setting plot x and y data">
-    vector<double> MeanPn, Pn_FitVar;
+    std::vector<double> MeanPn, Pn_FitVar;
 
     for (int i = 0; i < NumberOfSlices0; i++) {
         double Mean = (ResSlicesLimits0.at(i).at(1) + ResSlicesLimits0.at(i).at(0)) / 2;
@@ -871,9 +871,9 @@ void MomentumResolution::PolyFitter(const std::string &MomentumType, const int &
                     MeanPn.push_back(Mean);
 
                     if (PrintOut) {
-                        cout << "\nMean = " << Mean << "\n";
-                        cout << "Std = " << Std << "\n";
-                        cout << "Corr = " << Corr << "\n";
+                        std::cout << "\nMean = " << Mean << "\n";
+                        std::cout << "Std = " << Std << "\n";
+                        std::cout << "Corr = " << Corr << "\n";
                     }
                 }
             } else if (FitType == "Corr") {
@@ -882,9 +882,9 @@ void MomentumResolution::PolyFitter(const std::string &MomentumType, const int &
                     MeanPn.push_back(Mean);
 
                     if (PrintOut) {
-                        cout << "\nMean = " << Mean << "\n";
-                        cout << "Std = " << Std << "\n";
-                        cout << "Corr = " << Corr << "\n";
+                        std::cout << "\nMean = " << Mean << "\n";
+                        std::cout << "Std = " << Std << "\n";
+                        std::cout << "Corr = " << Corr << "\n";
                     }
                 }
             }
@@ -894,31 +894,31 @@ void MomentumResolution::PolyFitter(const std::string &MomentumType, const int &
                 MeanPn.push_back(Mean);
 
                 if (PrintOut) {
-                    cout << "\nMean = " << Mean << "\n";
-                    cout << "Std = " << Std << "\n";
-                    cout << "Corr = " << Corr << "\n";
+                    std::cout << "\nMean = " << Mean << "\n";
+                    std::cout << "Std = " << Std << "\n";
+                    std::cout << "Corr = " << Corr << "\n";
                 }
             } else if (FitType == "Corr") {
                 Pn_FitVar.push_back(Corr);  // TODO: add a mechanism to ignore failed fits
                 MeanPn.push_back(Mean);
 
                 if (PrintOut) {
-                    cout << "\nMean = " << Mean << "\n";
-                    cout << "Std = " << Std << "\n";
-                    cout << "Corr = " << Corr << "\n";
+                    std::cout << "\nMean = " << Mean << "\n";
+                    std::cout << "Std = " << Std << "\n";
+                    std::cout << "Corr = " << Corr << "\n";
                 }
             }
         }
     }
 
     if (PrintOut) {
-        cout << "\nMeanPn.size() = " << MeanPn.size() << "\n";
-        cout << "Pn_FitVar.size() = " << Pn_FitVar.size() << "\n";
-        cout << "FitType = " << FitType << "\n\n";
+        std::cout << "\nMeanPn.size() = " << MeanPn.size() << "\n";
+        std::cout << "Pn_FitVar.size() = " << Pn_FitVar.size() << "\n";
+        std::cout << "FitType = " << FitType << "\n\n";
     }
 
     //<editor-fold desc="Safety check">
-    if (MeanPn.size() != Pn_FitVar.size()) { cout << "\n\nMomentumResolution::Fitter_Std_pol1: x and y data are of different lengths! Exiting...\n\n", exit(0); }
+    if (MeanPn.size() != Pn_FitVar.size()) { std::cout << "\n\nMomentumResolution::Fitter_Std_pol1: x and y data are of different lengths! Exiting...\n\n", exit(0); }
     //</editor-fold>
 
     //</editor-fold>
@@ -940,7 +940,7 @@ void MomentumResolution::PolyFitter(const std::string &MomentumType, const int &
         Graph1D->AddPoint(x, y);
 
         if (PlotPoints) {
-            TLatex *latex = new TLatex(x, y, ("(" + to_string(x) + " , " + to_string(y) + ")").c_str());
+            TLatex *latex = new TLatex(x, y, ("(" + std::to_string(x) + " , " + std::to_string(y) + ")").c_str());
             latex->SetTextSize(0.02);
             Graph1D->GetListOfFunctions()->Add(latex);
         }
@@ -976,7 +976,7 @@ void MomentumResolution::PolyFitter(const std::string &MomentumType, const int &
     //</editor-fold>
 
     //<editor-fold desc="Log fit results to variables">
-    vector<double> FitVarResults, FitVarResultsErrors, FitVarResultsGoodness;
+    std::vector<double> FitVarResults, FitVarResultsErrors, FitVarResultsGoodness;
 
     if (PolynomialDegree == 1) {
         FitVarResults.push_back(PolynomialFunc->GetParameter(0));  // get [0]
@@ -1171,14 +1171,14 @@ void MomentumResolution::PolyFitter(const std::string &MomentumType, const int &
         FitParam->AddText(("D = " + ToStringWithPrecision(FitParamResults.at(0).at(3), 4) + " #pm " + ToStringWithPrecision(FitParamResults.at(1).at(3), 4)).c_str());
     }
 
-    FitParam->AddText(("Fit #chi^{2} = " + to_string(FitParamResults.at(2).at(0))).c_str());
+    FitParam->AddText(("Fit #chi^{2} = " + std::to_string(FitParamResults.at(2).at(0))).c_str());
     FitParam->Draw("same");
     //</editor-fold>
 
     //</editor-fold>
 
     //<editor-fold desc="Save graph and exit">
-    cout << "\n\n";
+    std::cout << "\n\n";
 
     auto ListOfFunctions = Graph1D->GetListOfFunctions();
     ListOfFunctions->Add((TLegend *)Graph1D_Legend);
@@ -1218,12 +1218,12 @@ void MomentumResolution::PolyFitter(const std::string &MomentumType, const int &
 
     std::string FitsDir = SlicesSavePath + "/" + "Graph1D_" + MomentumType + "_fits";
     std::string FitsDirByType = FitsDir + "/" + MomentumType + "_" + FitType + "_fits";
-    std::string GraphSaveName = FitsDirByType + "/" + "0" + to_string(PolynomialDegree) + "_Fit_" + FitType + "_pol" + to_string(PolynomialDegree) + "_" + MomentumFitRange + ".png";
+    std::string GraphSaveName = FitsDirByType + "/" + "0" + std::to_string(PolynomialDegree) + "_Fit_" + FitType + "_pol" + std::to_string(PolynomialDegree) + "_" + MomentumFitRange + ".png";
 
     system(("mkdir -p " + FitsDir).c_str());
     system(("mkdir -p " + FitsDirByType).c_str());
 
-    cout << "\n", Fit_Canvas->SaveAs(GraphSaveName.c_str());
+    std::cout << "\n", Fit_Canvas->SaveAs(GraphSaveName.c_str());
     Fit_Canvas->Clear();
     delete Fit_Canvas;
     //</editor-fold>
@@ -1283,7 +1283,7 @@ void MomentumResolution::LogResDataToFile(const std::string &SampleName, const s
 
 //<editor-fold desc="LogFitDataToFile function">
 void MomentumResolution::LogFitDataToFile(const std::string &SampleName, const std::string &plots_path, const std::string &MomentumResolutionDirectory) {
-    ofstream Neutron_res_fit_param;
+    std::ofstream Neutron_res_fit_param;
     std::string Neutron_res_fit_paramFilePath;
 
     if (momResS2CalcMode) {
@@ -1418,9 +1418,9 @@ void MomentumResolution::LogFitDataToFile(const std::string &SampleName, const s
 
 //<editor-fold desc="AutoLogger function">
 void MomentumResolution::AutoLogger(const std::string &SampleName, const std::string &plots_path, const std::string &MomentumResolutionDirectory, const std::string &LogHeader,
-                                    const vector<vector<double>> &Vector2Log, ofstream &Neutron_res_fit_param) {
+                                    const std::vector<std::vector<double>> &Vector2Log, std::ofstream &Neutron_res_fit_param) {
     if (Vector2Log.size() != 0) {
-        vector<string> FitVarName = {"A", "B", "C", "D"}, FitVarErrName = {"A_Err", "B_Err", "C_Err", "D_Err"};
+        std::vector<string> FitVarName = {"A", "B", "C", "D"}, FitVarErrName = {"A_Err", "B_Err", "C_Err", "D_Err"};
         std::string FitVarNameEnding = "# ", FitVarErrNameEnding = "# ";
 
         for (int i = 0; i < Vector2Log.at(0).size(); i++) {
@@ -1480,7 +1480,7 @@ void MomentumResolution::AutoLogger(const std::string &SampleName, const std::st
 
 //<editor-fold desc="LogHistDataToFile function">
 void MomentumResolution::LogHistDataToFile(const std::string &SampleName, const std::string &plots_path, const std::string &MomentumResolutionDirectory) {
-    ofstream Neutron_res_Hist_param;
+    std::ofstream Neutron_res_Hist_param;
     std::string Neutron_res_Hist_paramFilePath;
 
     if (momResS2CalcMode) {
@@ -1554,17 +1554,17 @@ void MomentumResolution::LogHistDataToFile(const std::string &SampleName, const 
 
 //<editor-fold desc="ReadResDataParam function">
 void MomentumResolution::ReadResDataParam(const char *filename, const bool &Calculate_momResS2, const std::string &SampleName, const std::string &NucleonCutsDirectory,
-                                          const std::string &MomentumType, const bool &Load_correction = false, const bool &Load_smearing = false) {
-    ifstream infile;
+                                          const std::string &MomentumType, const bool &Load_correction , const bool &Load_smearing ) {
+    std::ifstream infile;
     infile.open(filename);
 
     momResS2CalcMode = Calculate_momResS2;
     SName = SampleName;
     SetUpperMomCut(SampleName, NucleonCutsDirectory);
 
-    if (Load_correction) { cout << "\n\nLoading neutron correction from:\n" << filename << "\n"; }
+    if (Load_correction) { std::cout << "\n\nLoading neutron correction from:\n" << filename << "\n"; }
 
-    if (Load_smearing) { cout << "\nLoading proton smearing from:\n" << filename << "\n"; }
+    if (Load_smearing) { std::cout << "\nLoading proton smearing from:\n" << filename << "\n"; }
 
     if (infile.is_open()) {
         std::string tp;
@@ -1574,7 +1574,7 @@ void MomentumResolution::ReadResDataParam(const char *filename, const bool &Calc
 
         // getline(infile, tp) = read data from file object and put it into string.
         while (getline(infile, tp)) {
-            stringstream ss(tp);
+            std::stringstream ss(tp);
             std::string parameter, parameter2;
             ss >> parameter;  // get cut identifier
 
@@ -1582,7 +1582,7 @@ void MomentumResolution::ReadResDataParam(const char *filename, const bool &Calc
                 if (FindSubstring(parameter, "fit_" + MomentumType + "_" + "Slice_#")) {
                     // get cut values
                     ss >> parameter2;
-                    stringstream ss2(parameter2);
+                    std::stringstream ss2(parameter2);
                     std::string SliceParam;
                     int count = 0;  // parameter number
 
@@ -1615,7 +1615,7 @@ void MomentumResolution::ReadResDataParam(const char *filename, const bool &Calc
                 } else if (FindSubstring(parameter, "hist_" + MomentumType + "_" + "Slice_#")) {
                     // get cut values
                     ss >> parameter2;
-                    stringstream ss2(parameter2);
+                    std::stringstream ss2(parameter2);
                     std::string SliceParam;
                     int count = 0;  // parameter number
 
@@ -1648,7 +1648,7 @@ void MomentumResolution::ReadResDataParam(const char *filename, const bool &Calc
                 }
             } else {
                 ss >> parameter2;
-                stringstream ss2(parameter2);
+                std::stringstream ss2(parameter2);
 
                 // TODO: reorganize these into vectors!
                 if (Load_correction && FindSubstring(parameter, MomentumType) && FindSubstring(parameter, "Corr")) {
@@ -1656,9 +1656,9 @@ void MomentumResolution::ReadResDataParam(const char *filename, const bool &Calc
 
                     //<editor-fold desc="Safety checks for loading correction variables">
                     if (Loaded_Corr_coefficients_path == "") {
-                        cout << "\n\nMomentumResolution::ReadResDataParam: Loaded_Corr_coefficients_path is empty!\n";
-                        cout << "The file:\n" << filename << "\n";
-                        cout << "is not found! Exiting...\n\n", exit(0);
+                        std::cout << "\n\nMomentumResolution::ReadResDataParam: Loaded_Corr_coefficients_path is empty!\n";
+                        std::cout << "The file:\n" << filename << "\n";
+                        std::cout << "is not found! Exiting...\n\n", exit(0);
                     }
                     //</editor-fold>
 
@@ -1734,9 +1734,9 @@ void MomentumResolution::ReadResDataParam(const char *filename, const bool &Calc
 
                     //<editor-fold desc="Safety checks for loading smearing variables">
                     if (Load_smearing && Loaded_Std_coefficients_path == "") {
-                        cout << "\n\nMomentumResolution::ReadResDataParam: Loaded_Std_coefficients_path is empty!\n";
-                        cout << "The file:\n" << filename << "\n";
-                        cout << "is not found! Exiting...\n\n", exit(0);
+                        std::cout << "\n\nMomentumResolution::ReadResDataParam: Loaded_Std_coefficients_path is empty!\n";
+                        std::cout << "The file:\n" << filename << "\n";
+                        std::cout << "is not found! Exiting...\n\n", exit(0);
                     }
                     //</editor-fold>
 
@@ -1809,27 +1809,27 @@ void MomentumResolution::ReadResDataParam(const char *filename, const bool &Calc
 
                 //<editor-fold desc="Safety checks">
                 if (Loaded_Smear_coefficients_values.size() != Loaded_Smear_coefficients_names.size()) {
-                    cout << "\n\nMomentumResolution::ReadResDataParam: smearing coefficients load registered improperly! Exiting...\n\n", exit(0);
+                    std::cout << "\n\nMomentumResolution::ReadResDataParam: smearing coefficients load registered improperly! Exiting...\n\n", exit(0);
                 }
 
                 if (Loaded_Corr_coefficients_values.size() != Loaded_Corr_coefficients_names.size()) {
-                    cout << "\n\nMomentumResolution::ReadResDataParam: correction coefficients load registered improperly! Exiting...\n\n", exit(0);
+                    std::cout << "\n\nMomentumResolution::ReadResDataParam: correction coefficients load registered improperly! Exiting...\n\n", exit(0);
                 }
                 //</editor-fold>
             }
         }
     } else {
-        cout << "\n\nMomentumResolution::ReadResDataParam: file not found! Exiting...\n\n", exit(0);
+        std::cout << "\n\nMomentumResolution::ReadResDataParam: file not found! Exiting...\n\n", exit(0);
     }
 }
 //</editor-fold>
 
 //<editor-fold desc="AutoReader function">
-void MomentumResolution::AutoReader(const std::string &MomentumType, const int &PolynomialDegree, const std::string &parameter, basic_istream<char> &ss2,
-                                    vector<vector<double>> &Loading_Dest, vector<double> &Loaded_coefficients_values, vector<string> &Loaded_coefficients_names) {
+void MomentumResolution::AutoReader(const std::string &MomentumType, const int &PolynomialDegree, const std::string &parameter, std::basic_istream<char> &ss2,
+                                    std::vector<std::vector<double>> &Loading_Dest, std::vector<double> &Loaded_coefficients_values, std::vector<string> &Loaded_coefficients_names) {
     if (FindSubstring(parameter, MomentumType)) {
-        vector<string> VarNames = {"A", "B", "C", "D"};
-        vector<double> Loaded_FitVarResults, Loaded_FitVarResultsErrors, Loaded_FitVarResultsGoodness;
+        std::vector<string> VarNames = {"A", "B", "C", "D"};
+        std::vector<double> Loaded_FitVarResults, Loaded_FitVarResultsErrors, Loaded_FitVarResultsGoodness;
         std::string Loaded_FitVar;
 
         int counter = 0;
@@ -1858,34 +1858,34 @@ void MomentumResolution::AutoReader(const std::string &MomentumType, const int &
         //<editor-fold desc="Safety checks">
         if (!FindSubstring(parameter, "error") && !FindSubstring(parameter, "FitGoodness")) {
             if (Loaded_FitVarResults.size() != (PolynomialDegree + 1)) {
-                cout << "\n\nMomentumResolution::AutoReader: the parameter " << parameter << " loaded improperly!\n";
-                cout << "Loaded_FitVarResults.size() = " << Loaded_FitVarResults.size() << "\n";
-                cout << "expected size (= PolynomialDegree) = " << PolynomialDegree << "\n";
-                cout << "Loaded_FitVarResultsErrors elements:\n";
-                for (int i = 0; i < Loaded_FitVarResults.size(); i++) { cout << Loaded_FitVarResults.at(i) << "\n"; }
-                cout << "\nExiting...\n\n", exit(0);
+                std::cout << "\n\nMomentumResolution::AutoReader: the parameter " << parameter << " loaded improperly!\n";
+                std::cout << "Loaded_FitVarResults.size() = " << Loaded_FitVarResults.size() << "\n";
+                std::cout << "expected size (= PolynomialDegree) = " << PolynomialDegree << "\n";
+                std::cout << "Loaded_FitVarResultsErrors elements:\n";
+                for (int i = 0; i < Loaded_FitVarResults.size(); i++) { std::cout << Loaded_FitVarResults.at(i) << "\n"; }
+                std::cout << "\nExiting...\n\n", exit(0);
             }
         }
 
         if (FindSubstring(parameter, "error") && !FindSubstring(parameter, "FitGoodness")) {
             if (Loaded_FitVarResultsErrors.size() != (PolynomialDegree + 1)) {
-                cout << "\n\nMomentumResolution::AutoReader: the parameter " << parameter << " loaded improperly!\n";
-                cout << "Loaded_FitVarResultsErrors.size() = " << Loaded_FitVarResultsErrors.size() << "\n";
-                cout << "expected size (= PolynomialDegree) = " << PolynomialDegree << "\n";
-                cout << "Loaded_FitVarResultsErrors elements:\n";
-                for (int i = 0; i < Loaded_FitVarResultsErrors.size(); i++) { cout << Loaded_FitVarResultsErrors.at(i) << "\n"; }
-                cout << "\nExiting...\n\n", exit(0);
+                std::cout << "\n\nMomentumResolution::AutoReader: the parameter " << parameter << " loaded improperly!\n";
+                std::cout << "Loaded_FitVarResultsErrors.size() = " << Loaded_FitVarResultsErrors.size() << "\n";
+                std::cout << "expected size (= PolynomialDegree) = " << PolynomialDegree << "\n";
+                std::cout << "Loaded_FitVarResultsErrors elements:\n";
+                for (int i = 0; i < Loaded_FitVarResultsErrors.size(); i++) { std::cout << Loaded_FitVarResultsErrors.at(i) << "\n"; }
+                std::cout << "\nExiting...\n\n", exit(0);
             }
         }
 
         if (!FindSubstring(parameter, "error") && FindSubstring(parameter, "FitGoodness")) {
             if (Loaded_FitVarResultsGoodness.size() != 2) {
-                cout << "\n\nMomentumResolution::AutoReader: the parameter " << parameter << " loaded improperly!\n";
-                cout << "Loaded_FitVarResultsErrors.size() = " << Loaded_FitVarResultsGoodness.size() << "\n";
-                cout << "expected size = " << 2 << "\n";
-                cout << "Loaded_FitVarResultsErrors elements:\n";
-                for (int i = 0; i < Loaded_FitVarResultsGoodness.size(); i++) { cout << Loaded_FitVarResultsGoodness.at(i) << "\n"; }
-                cout << "\nExiting...\n\n", exit(0);
+                std::cout << "\n\nMomentumResolution::AutoReader: the parameter " << parameter << " loaded improperly!\n";
+                std::cout << "Loaded_FitVarResultsErrors.size() = " << Loaded_FitVarResultsGoodness.size() << "\n";
+                std::cout << "expected size = " << 2 << "\n";
+                std::cout << "Loaded_FitVarResultsErrors elements:\n";
+                for (int i = 0; i < Loaded_FitVarResultsGoodness.size(); i++) { std::cout << Loaded_FitVarResultsGoodness.at(i) << "\n"; }
+                std::cout << "\nExiting...\n\n", exit(0);
             }
         }
         //</editor-fold>
@@ -1894,25 +1894,25 @@ void MomentumResolution::AutoReader(const std::string &MomentumType, const int &
 //</editor-fold>
 
 //<editor-fold desc="AutoReader function">
-void MomentumResolution::AutoReader(const std::string &MomentumType, const int &PolynomialDegree, const std::string &parameter, basic_istream<char> &ss2,
-                                    vector<vector<double>> &Loading_Dest) {
+void MomentumResolution::AutoReader(const std::string &MomentumType, const int &PolynomialDegree, const std::string &parameter, std::basic_istream<char> &ss2,
+                                    std::vector<std::vector<double>> &Loading_Dest) {
     bool PrintOut = false;
     bool PrintOutAndExit = false;
     int PolynomialDeg2Print = 3;
     std::string MomentumType2Print = "reco";
 
     if (FindSubstring(parameter, MomentumType)) {
-        vector<string> VarNames = {"A", "B", "C", "D"};
-        vector<double> Loaded_FitVarResults, Loaded_FitVarResultsErrors, Loaded_FitVarResultsGoodness;
+        std::vector<string> VarNames = {"A", "B", "C", "D"};
+        std::vector<double> Loaded_FitVarResults, Loaded_FitVarResultsErrors, Loaded_FitVarResultsGoodness;
         std::string Loaded_FitVar;
 
-        if (PrintOut && (PolynomialDegree == PolynomialDeg2Print) && (MomentumType == MomentumType2Print)) { cout << "parameter = " << parameter << "\n"; }
+        if (PrintOut && (PolynomialDegree == PolynomialDeg2Print) && (MomentumType == MomentumType2Print)) { std::cout << "parameter = " << parameter << "\n"; }
 
         while (getline(ss2, Loaded_FitVar, ':')) {
             if (!FindSubstring(parameter, "error") && !FindSubstring(parameter, "FitGoodness")) {
                 Loaded_FitVarResults.push_back(stod(Loaded_FitVar));
 
-                if (PrintOut && (PolynomialDegree == PolynomialDeg2Print) && (MomentumType == MomentumType2Print)) { cout << "Loaded_FitVar = " << Loaded_FitVar << "\n"; }
+                if (PrintOut && (PolynomialDegree == PolynomialDeg2Print) && (MomentumType == MomentumType2Print)) { std::cout << "Loaded_FitVar = " << Loaded_FitVar << "\n"; }
             } else if (FindSubstring(parameter, "error") && !FindSubstring(parameter, "FitGoodness")) {
                 Loaded_FitVarResultsErrors.push_back(stod(Loaded_FitVar));
             } else if (!FindSubstring(parameter, "error") && FindSubstring(parameter, "FitGoodness")) {
@@ -1933,34 +1933,34 @@ void MomentumResolution::AutoReader(const std::string &MomentumType, const int &
         //<editor-fold desc="Safety checks">
         if (!FindSubstring(parameter, "error") && !FindSubstring(parameter, "FitGoodness")) {
             if (Loaded_FitVarResults.size() != (PolynomialDegree + 1)) {
-                cout << "\n\nMomentumResolution::AutoReader: the parameter " << parameter << " loaded improperly!\n";
-                cout << "Loaded_FitVarResults.size() = " << Loaded_FitVarResults.size() << "\n";
-                cout << "expected size (= PolynomialDegree) = " << PolynomialDegree << "\n";
-                cout << "Loaded_FitVarResultsErrors elements:\n";
-                for (int i = 0; i < Loaded_FitVarResults.size(); i++) { cout << Loaded_FitVarResults.at(i) << "\n"; }
-                cout << "\nExiting...\n\n", exit(0);
+                std::cout << "\n\nMomentumResolution::AutoReader: the parameter " << parameter << " loaded improperly!\n";
+                std::cout << "Loaded_FitVarResults.size() = " << Loaded_FitVarResults.size() << "\n";
+                std::cout << "expected size (= PolynomialDegree) = " << PolynomialDegree << "\n";
+                std::cout << "Loaded_FitVarResultsErrors elements:\n";
+                for (int i = 0; i < Loaded_FitVarResults.size(); i++) { std::cout << Loaded_FitVarResults.at(i) << "\n"; }
+                std::cout << "\nExiting...\n\n", exit(0);
             }
         }
 
         if (FindSubstring(parameter, "error") && !FindSubstring(parameter, "FitGoodness")) {
             if (Loaded_FitVarResultsErrors.size() != (PolynomialDegree + 1)) {
-                cout << "\n\nMomentumResolution::AutoReader: the parameter " << parameter << " loaded improperly!\n";
-                cout << "Loaded_FitVarResultsErrors.size() = " << Loaded_FitVarResultsErrors.size() << "\n";
-                cout << "expected size (= PolynomialDegree) = " << PolynomialDegree << "\n";
-                cout << "Loaded_FitVarResultsErrors elements:\n";
-                for (int i = 0; i < Loaded_FitVarResultsErrors.size(); i++) { cout << Loaded_FitVarResultsErrors.at(i) << "\n"; }
-                cout << "\nExiting...\n\n", exit(0);
+                std::cout << "\n\nMomentumResolution::AutoReader: the parameter " << parameter << " loaded improperly!\n";
+                std::cout << "Loaded_FitVarResultsErrors.size() = " << Loaded_FitVarResultsErrors.size() << "\n";
+                std::cout << "expected size (= PolynomialDegree) = " << PolynomialDegree << "\n";
+                std::cout << "Loaded_FitVarResultsErrors elements:\n";
+                for (int i = 0; i < Loaded_FitVarResultsErrors.size(); i++) { std::cout << Loaded_FitVarResultsErrors.at(i) << "\n"; }
+                std::cout << "\nExiting...\n\n", exit(0);
             }
         }
 
         if (!FindSubstring(parameter, "error") && FindSubstring(parameter, "FitGoodness")) {
             if (Loaded_FitVarResultsGoodness.size() != 2) {
-                cout << "\n\nMomentumResolution::AutoReader: the parameter " << parameter << " loaded improperly!\n";
-                cout << "Loaded_FitVarResultsErrors.size() = " << Loaded_FitVarResultsGoodness.size() << "\n";
-                cout << "expected size = " << 2 << "\n";
-                cout << "Loaded_FitVarResultsErrors elements:\n";
-                for (int i = 0; i < Loaded_FitVarResultsGoodness.size(); i++) { cout << Loaded_FitVarResultsGoodness.at(i) << "\n"; }
-                cout << "\nExiting...\n\n", exit(0);
+                std::cout << "\n\nMomentumResolution::AutoReader: the parameter " << parameter << " loaded improperly!\n";
+                std::cout << "Loaded_FitVarResultsErrors.size() = " << Loaded_FitVarResultsGoodness.size() << "\n";
+                std::cout << "expected size = " << 2 << "\n";
+                std::cout << "Loaded_FitVarResultsErrors elements:\n";
+                for (int i = 0; i < Loaded_FitVarResultsGoodness.size(); i++) { std::cout << Loaded_FitVarResultsGoodness.at(i) << "\n"; }
+                std::cout << "\nExiting...\n\n", exit(0);
             }
         }
         //</editor-fold>
@@ -2002,17 +2002,17 @@ double MomentumResolution::PSmear(const bool &apply_nucleon_SmearAndCorr, const 
                         } else if (RandomNumGenerator == "TRandom3") {
                             Smearing = Rand3->Gaus(1, Loaded_res_slice.GetUpperCut());
                         } else {
-                            cout << "\n\nMomentumResolution::PSmear: RandomNumGenerator illegal! Exiting...\n", exit(0);
+                            std::cout << "\n\nMomentumResolution::PSmear: RandomNumGenerator illegal! Exiting...\n", exit(0);
                         }
 
                         //                        double Smearing = Rand->Gaus(1, Loaded_res_slice.GetUpperCut());
 
                         if (PrintOut) {
-                            cout << "\n\nLoaded_res_slice.GetUpperCut() = " << Loaded_res_slice.GetUpperCut() << "\n";
-                            cout << "RandomNumGenerator = " << RandomNumGenerator << "\n";
-                            cout << "Momentum = " << Momentum << "\n";
-                            cout << "Smearing = " << Smearing << "\n";
-                            cout << "Smearing * Momentum = " << Smearing * Momentum << "\n\n";
+                            std::cout << "\n\nLoaded_res_slice.GetUpperCut() = " << Loaded_res_slice.GetUpperCut() << "\n";
+                            std::cout << "RandomNumGenerator = " << RandomNumGenerator << "\n";
+                            std::cout << "Momentum = " << Momentum << "\n";
+                            std::cout << "Smearing = " << Smearing << "\n";
+                            std::cout << "Smearing * Momentum = " << Smearing * Momentum << "\n\n";
                         }
 
                         return Smearing * Momentum;
@@ -2028,18 +2028,18 @@ double MomentumResolution::PSmear(const bool &apply_nucleon_SmearAndCorr, const 
                 } else if (RandomNumGenerator == "TRandom3") {
                     Smearing = Rand3->Gaus(1, Arg);
                 } else {
-                    cout << "\n\nMomentumResolution::PSmear: RandomNumGenerator illegal! Exiting...\n", exit(0);
+                    std::cout << "\n\nMomentumResolution::PSmear: RandomNumGenerator illegal! Exiting...\n", exit(0);
                 }
 
                 if (PrintOut) {
-                    cout << "\n\nLoaded_Res_Slices_FitVar.GetUpperCut() = " << Loaded_Res_Slices_FitVar.at(Loaded_Res_Slices_FitVar.size() - 1).GetUpperCut() << "\n";
-                    cout << "Loaded_res_slice.GetSliceLowerb() = " << Loaded_Res_Slices_FitVar.at(Loaded_Res_Slices_FitVar.size() - 1).GetSliceLowerb() << "\n";
-                    cout << "Loaded_res_slice.GetSliceUpperb() = " << Loaded_Res_Slices_FitVar.at(Loaded_Res_Slices_FitVar.size() - 1).GetSliceUpperb() << "\n";
-                    cout << "RandomNumGenerator = " << RandomNumGenerator << "\n";
-                    cout << "Arg = " << Arg << "\n";
-                    cout << "Momentum = " << Momentum << "\n";
-                    cout << "Smearing = " << Smearing << "\n";
-                    cout << "Smearing * Momentum = " << Smearing * Momentum << "\n\n";
+                    std::cout << "\n\nLoaded_Res_Slices_FitVar.GetUpperCut() = " << Loaded_Res_Slices_FitVar.at(Loaded_Res_Slices_FitVar.size() - 1).GetUpperCut() << "\n";
+                    std::cout << "Loaded_res_slice.GetSliceLowerb() = " << Loaded_Res_Slices_FitVar.at(Loaded_Res_Slices_FitVar.size() - 1).GetSliceLowerb() << "\n";
+                    std::cout << "Loaded_res_slice.GetSliceUpperb() = " << Loaded_Res_Slices_FitVar.at(Loaded_Res_Slices_FitVar.size() - 1).GetSliceUpperb() << "\n";
+                    std::cout << "RandomNumGenerator = " << RandomNumGenerator << "\n";
+                    std::cout << "Arg = " << Arg << "\n";
+                    std::cout << "Momentum = " << Momentum << "\n";
+                    std::cout << "Smearing = " << Smearing << "\n";
+                    std::cout << "Smearing * Momentum = " << Smearing * Momentum << "\n\n";
                 }
 
                 return Smearing * Momentum;
@@ -2048,13 +2048,13 @@ double MomentumResolution::PSmear(const bool &apply_nucleon_SmearAndCorr, const 
         } else if ((SmearMode == "pol1") || (SmearMode == "pol2") || (SmearMode == "pol3") || (SmearMode == "pol1_wKC") || (SmearMode == "pol2_wKC") || (SmearMode == "pol3_wKC")) {
             /* Smear using pol fit results */
             double Smearing, Arg;
-            vector<string> VarNames = {"A", "B", "C", "D"};
+            std::vector<string> VarNames = {"A", "B", "C", "D"};
 
             if (SmearMode == "pol1") {
                 //<editor-fold desc="Safety checks">
-                if (Loaded_Reco_FitParam_Smear_pol1.size() == 0) { cout << "\n\nMomentumResolution::PSmear: Loaded_Reco_FitParam_Smear_pol1 wasn't loaded! Exiting...\n", exit(0); }
+                if (Loaded_Reco_FitParam_Smear_pol1.size() == 0) { std::cout << "\n\nMomentumResolution::PSmear: Loaded_Reco_FitParam_Smear_pol1 wasn't loaded! Exiting...\n", exit(0); }
                 if (Loaded_Reco_FitParam_Smear_pol1.at(0).size() == 0) {
-                    cout << "\n\nMomentumResolution::PSmear: Loaded_Reco_FitParam_Smear_pol1 smearing wasn't loaded! Exiting...\n", exit(0);
+                    std::cout << "\n\nMomentumResolution::PSmear: Loaded_Reco_FitParam_Smear_pol1 smearing wasn't loaded! Exiting...\n", exit(0);
                 }
                 //</editor-fold>
 
@@ -2068,19 +2068,19 @@ double MomentumResolution::PSmear(const bool &apply_nucleon_SmearAndCorr, const 
                 }
 
                 if (PrintOut_Smear_Variables) {
-                    cout << "\n\n\n#(FitParam groups) = " << Loaded_Reco_FitParam_Smear_pol1.size() << "\n";
-                    cout << "#(FitParam variables) = " << Loaded_Reco_FitParam_Smear_pol1.at(0).size() << "\n";
-                    cout << "#(FitParam errors) = " << Loaded_Reco_FitParam_Smear_pol1.at(1).size() << "\n";
-                    cout << "#(FitParam fit goodness variables) = " << Loaded_Reco_FitParam_Smear_pol1.at(2).size() << "\n\n";
+                    std::cout << "\n\n\n#(FitParam groups) = " << Loaded_Reco_FitParam_Smear_pol1.size() << "\n";
+                    std::cout << "#(FitParam variables) = " << Loaded_Reco_FitParam_Smear_pol1.at(0).size() << "\n";
+                    std::cout << "#(FitParam errors) = " << Loaded_Reco_FitParam_Smear_pol1.at(1).size() << "\n";
+                    std::cout << "#(FitParam fit goodness variables) = " << Loaded_Reco_FitParam_Smear_pol1.at(2).size() << "\n\n";
 
-                    cout << "Loaded_A_Std_pol1 = " << Loaded_Reco_FitParam_Smear_pol1.at(0).at(0) << "\n";
-                    cout << "Loaded_B_Std_pol1 = " << Loaded_Reco_FitParam_Smear_pol1.at(0).at(1) << "\n\n";
+                    std::cout << "Loaded_A_Std_pol1 = " << Loaded_Reco_FitParam_Smear_pol1.at(0).at(0) << "\n";
+                    std::cout << "Loaded_B_Std_pol1 = " << Loaded_Reco_FitParam_Smear_pol1.at(0).at(1) << "\n\n";
                 }
             } else if (SmearMode == "pol1_wKC") {
                 //<editor-fold desc="Safety checks">
-                if (Loaded_Reco_FitParam_Smear_pol1_wKC.size() == 0) { cout << "\n\nMomentumResolution::PSmear: Loaded_Reco_FitParam_Smear_pol1_wKC wasn't loaded! Exiting...\n", exit(0); }
+                if (Loaded_Reco_FitParam_Smear_pol1_wKC.size() == 0) { std::cout << "\n\nMomentumResolution::PSmear: Loaded_Reco_FitParam_Smear_pol1_wKC wasn't loaded! Exiting...\n", exit(0); }
                 if (Loaded_Reco_FitParam_Smear_pol1_wKC.at(0).size() == 0) {
-                    cout << "\n\nMomentumResolution::PSmear: Loaded_Reco_FitParam_Smear_pol1_wKC smearing wasn't loaded! Exiting...\n", exit(0);
+                    std::cout << "\n\nMomentumResolution::PSmear: Loaded_Reco_FitParam_Smear_pol1_wKC smearing wasn't loaded! Exiting...\n", exit(0);
                 }
                 //</editor-fold>
 
@@ -2094,19 +2094,19 @@ double MomentumResolution::PSmear(const bool &apply_nucleon_SmearAndCorr, const 
                 }
 
                 if (PrintOut_Smear_Variables) {
-                    cout << "\n\n\n#(FitParam groups) = " << Loaded_Reco_FitParam_Smear_pol1_wKC.size() << "\n";
-                    cout << "#(FitParam variables) = " << Loaded_Reco_FitParam_Smear_pol1_wKC.at(0).size() << "\n";
-                    cout << "#(FitParam errors) = " << Loaded_Reco_FitParam_Smear_pol1_wKC.at(1).size() << "\n";
-                    cout << "#(FitParam fit goodness variables) = " << Loaded_Reco_FitParam_Smear_pol1_wKC.at(2).size() << "\n\n";
+                    std::cout << "\n\n\n#(FitParam groups) = " << Loaded_Reco_FitParam_Smear_pol1_wKC.size() << "\n";
+                    std::cout << "#(FitParam variables) = " << Loaded_Reco_FitParam_Smear_pol1_wKC.at(0).size() << "\n";
+                    std::cout << "#(FitParam errors) = " << Loaded_Reco_FitParam_Smear_pol1_wKC.at(1).size() << "\n";
+                    std::cout << "#(FitParam fit goodness variables) = " << Loaded_Reco_FitParam_Smear_pol1_wKC.at(2).size() << "\n\n";
 
-                    cout << "Loaded_A_Std_pol1_wKC = " << Loaded_Reco_FitParam_Smear_pol1_wKC.at(0).at(0) << "\n";
-                    cout << "Loaded_B_Std_pol1_wKC = " << Loaded_Reco_FitParam_Smear_pol1_wKC.at(0).at(1) << "\n\n";
+                    std::cout << "Loaded_A_Std_pol1_wKC = " << Loaded_Reco_FitParam_Smear_pol1_wKC.at(0).at(0) << "\n";
+                    std::cout << "Loaded_B_Std_pol1_wKC = " << Loaded_Reco_FitParam_Smear_pol1_wKC.at(0).at(1) << "\n\n";
                 }
             } else if (SmearMode == "pol2") {
                 //<editor-fold desc="Safety checks">
-                if (Loaded_Reco_FitParam_Smear_pol2.size() == 0) { cout << "\n\nMomentumResolution::PSmear: Loaded_Reco_FitParam_Smear_pol2 wasn't loaded! Exiting...\n", exit(0); }
+                if (Loaded_Reco_FitParam_Smear_pol2.size() == 0) { std::cout << "\n\nMomentumResolution::PSmear: Loaded_Reco_FitParam_Smear_pol2 wasn't loaded! Exiting...\n", exit(0); }
                 if (Loaded_Reco_FitParam_Smear_pol2.at(0).size() == 0) {
-                    cout << "\n\nMomentumResolution::PSmear: Loaded_Reco_FitParam_Smear_pol2 smearing wasn't loaded! Exiting...\n", exit(0);
+                    std::cout << "\n\nMomentumResolution::PSmear: Loaded_Reco_FitParam_Smear_pol2 smearing wasn't loaded! Exiting...\n", exit(0);
                 }
                 //</editor-fold>
 
@@ -2122,20 +2122,20 @@ double MomentumResolution::PSmear(const bool &apply_nucleon_SmearAndCorr, const 
                 }
 
                 if (PrintOut_Smear_Variables) {
-                    cout << "\n\n\n#(FitParam groups) = " << Loaded_Reco_FitParam_Smear_pol2.size() << "\n";
-                    cout << "#(FitParam variables) = " << Loaded_Reco_FitParam_Smear_pol2.at(0).size() << "\n";
-                    cout << "#(FitParam errors) = " << Loaded_Reco_FitParam_Smear_pol2.at(1).size() << "\n";
-                    cout << "#(FitParam fit goodness variables) = " << Loaded_Reco_FitParam_Smear_pol2.at(2).size() << "\n\n";
+                    std::cout << "\n\n\n#(FitParam groups) = " << Loaded_Reco_FitParam_Smear_pol2.size() << "\n";
+                    std::cout << "#(FitParam variables) = " << Loaded_Reco_FitParam_Smear_pol2.at(0).size() << "\n";
+                    std::cout << "#(FitParam errors) = " << Loaded_Reco_FitParam_Smear_pol2.at(1).size() << "\n";
+                    std::cout << "#(FitParam fit goodness variables) = " << Loaded_Reco_FitParam_Smear_pol2.at(2).size() << "\n\n";
 
-                    cout << "Loaded_A_Std_pol2 = " << Loaded_Reco_FitParam_Smear_pol2.at(0).at(0) << "\n";
-                    cout << "Loaded_B_Std_pol2 = " << Loaded_Reco_FitParam_Smear_pol2.at(0).at(1) << "\n";
-                    cout << "Loaded_C_Std_pol2 = " << Loaded_Reco_FitParam_Smear_pol2.at(0).at(2) << "\n\n";
+                    std::cout << "Loaded_A_Std_pol2 = " << Loaded_Reco_FitParam_Smear_pol2.at(0).at(0) << "\n";
+                    std::cout << "Loaded_B_Std_pol2 = " << Loaded_Reco_FitParam_Smear_pol2.at(0).at(1) << "\n";
+                    std::cout << "Loaded_C_Std_pol2 = " << Loaded_Reco_FitParam_Smear_pol2.at(0).at(2) << "\n\n";
                 }
             } else if (SmearMode == "pol2_wKC") {
                 //<editor-fold desc="Safety checks">
-                if (Loaded_Reco_FitParam_Smear_pol2_wKC.size() == 0) { cout << "\n\nMomentumResolution::PSmear: Loaded_Reco_FitParam_Smear_pol2_wKC wasn't loaded! Exiting...\n", exit(0); }
+                if (Loaded_Reco_FitParam_Smear_pol2_wKC.size() == 0) { std::cout << "\n\nMomentumResolution::PSmear: Loaded_Reco_FitParam_Smear_pol2_wKC wasn't loaded! Exiting...\n", exit(0); }
                 if (Loaded_Reco_FitParam_Smear_pol2_wKC.at(0).size() == 0) {
-                    cout << "\n\nMomentumResolution::PSmear: Loaded_Reco_FitParam_Smear_pol2_wKC smearing wasn't loaded! Exiting...\n", exit(0);
+                    std::cout << "\n\nMomentumResolution::PSmear: Loaded_Reco_FitParam_Smear_pol2_wKC smearing wasn't loaded! Exiting...\n", exit(0);
                 }
                 //</editor-fold>
 
@@ -2152,20 +2152,20 @@ double MomentumResolution::PSmear(const bool &apply_nucleon_SmearAndCorr, const 
                 }
 
                 if (PrintOut_Smear_Variables) {
-                    cout << "\n\n\n#(FitParam groups) = " << Loaded_Reco_FitParam_Smear_pol2_wKC.size() << "\n";
-                    cout << "#(FitParam variables) = " << Loaded_Reco_FitParam_Smear_pol2_wKC.at(0).size() << "\n";
-                    cout << "#(FitParam errors) = " << Loaded_Reco_FitParam_Smear_pol2_wKC.at(1).size() << "\n";
-                    cout << "#(FitParam fit goodness variables) = " << Loaded_Reco_FitParam_Smear_pol2_wKC.at(2).size() << "\n\n";
+                    std::cout << "\n\n\n#(FitParam groups) = " << Loaded_Reco_FitParam_Smear_pol2_wKC.size() << "\n";
+                    std::cout << "#(FitParam variables) = " << Loaded_Reco_FitParam_Smear_pol2_wKC.at(0).size() << "\n";
+                    std::cout << "#(FitParam errors) = " << Loaded_Reco_FitParam_Smear_pol2_wKC.at(1).size() << "\n";
+                    std::cout << "#(FitParam fit goodness variables) = " << Loaded_Reco_FitParam_Smear_pol2_wKC.at(2).size() << "\n\n";
 
-                    cout << "Loaded_A_Std_pol2_wKC = " << Loaded_Reco_FitParam_Smear_pol2_wKC.at(0).at(0) << "\n";
-                    cout << "Loaded_B_Std_pol2_wKC = " << Loaded_Reco_FitParam_Smear_pol2_wKC.at(0).at(1) << "\n";
-                    cout << "Loaded_C_Std_pol2_wKC = " << Loaded_Reco_FitParam_Smear_pol2_wKC.at(0).at(2) << "\n\n";
+                    std::cout << "Loaded_A_Std_pol2_wKC = " << Loaded_Reco_FitParam_Smear_pol2_wKC.at(0).at(0) << "\n";
+                    std::cout << "Loaded_B_Std_pol2_wKC = " << Loaded_Reco_FitParam_Smear_pol2_wKC.at(0).at(1) << "\n";
+                    std::cout << "Loaded_C_Std_pol2_wKC = " << Loaded_Reco_FitParam_Smear_pol2_wKC.at(0).at(2) << "\n\n";
                 }
             } else if (SmearMode == "pol3") {
                 //<editor-fold desc="Safety checks">
-                if (Loaded_Reco_FitParam_Smear_pol3.size() == 0) { cout << "\n\nMomentumResolution::PSmear: Loaded_Reco_FitParam_Smear_pol3 wasn't loaded! Exiting...\n", exit(0); }
+                if (Loaded_Reco_FitParam_Smear_pol3.size() == 0) { std::cout << "\n\nMomentumResolution::PSmear: Loaded_Reco_FitParam_Smear_pol3 wasn't loaded! Exiting...\n", exit(0); }
                 if (Loaded_Reco_FitParam_Smear_pol3.at(0).size() == 0) {
-                    cout << "\n\nMomentumResolution::PSmear: Loaded_Reco_FitParam_Smear_pol3 smearing wasn't loaded! Exiting...\n", exit(0);
+                    std::cout << "\n\nMomentumResolution::PSmear: Loaded_Reco_FitParam_Smear_pol3 smearing wasn't loaded! Exiting...\n", exit(0);
                 }
                 //</editor-fold>
 
@@ -2184,21 +2184,21 @@ double MomentumResolution::PSmear(const bool &apply_nucleon_SmearAndCorr, const 
                 }
 
                 if (PrintOut_Smear_Variables) {
-                    cout << "\n\n\n#(FitParam groups) = " << Loaded_Reco_FitParam_Smear_pol3.size() << "\n";
-                    cout << "#(FitParam variables) = " << Loaded_Reco_FitParam_Smear_pol3.at(0).size() << "\n";
-                    cout << "#(FitParam errors) = " << Loaded_Reco_FitParam_Smear_pol3.at(1).size() << "\n";
-                    cout << "#(FitParam fit goodness variables) = " << Loaded_Reco_FitParam_Smear_pol3.at(2).size() << "\n\n";
+                    std::cout << "\n\n\n#(FitParam groups) = " << Loaded_Reco_FitParam_Smear_pol3.size() << "\n";
+                    std::cout << "#(FitParam variables) = " << Loaded_Reco_FitParam_Smear_pol3.at(0).size() << "\n";
+                    std::cout << "#(FitParam errors) = " << Loaded_Reco_FitParam_Smear_pol3.at(1).size() << "\n";
+                    std::cout << "#(FitParam fit goodness variables) = " << Loaded_Reco_FitParam_Smear_pol3.at(2).size() << "\n\n";
 
-                    cout << "Loaded_A_Std_pol3 = " << Loaded_Reco_FitParam_Smear_pol3.at(0).at(0) << "\n";
-                    cout << "Loaded_B_Std_pol3 = " << Loaded_Reco_FitParam_Smear_pol3.at(0).at(1) << "\n";
-                    cout << "Loaded_C_Std_pol3 = " << Loaded_Reco_FitParam_Smear_pol3.at(0).at(2) << "\n";
-                    cout << "Loaded_D_Std_pol3 = " << Loaded_Reco_FitParam_Smear_pol3.at(0).at(3) << "\n\n";
+                    std::cout << "Loaded_A_Std_pol3 = " << Loaded_Reco_FitParam_Smear_pol3.at(0).at(0) << "\n";
+                    std::cout << "Loaded_B_Std_pol3 = " << Loaded_Reco_FitParam_Smear_pol3.at(0).at(1) << "\n";
+                    std::cout << "Loaded_C_Std_pol3 = " << Loaded_Reco_FitParam_Smear_pol3.at(0).at(2) << "\n";
+                    std::cout << "Loaded_D_Std_pol3 = " << Loaded_Reco_FitParam_Smear_pol3.at(0).at(3) << "\n\n";
                 }
             } else if (SmearMode == "pol3_wKC") {
                 //<editor-fold desc="Safety checks">
-                if (Loaded_Reco_FitParam_Smear_pol3_wKC.size() == 0) { cout << "\n\nMomentumResolution::PSmear: Loaded_Reco_FitParam_Smear_pol3_wKC wasn't loaded! Exiting...\n", exit(0); }
+                if (Loaded_Reco_FitParam_Smear_pol3_wKC.size() == 0) { std::cout << "\n\nMomentumResolution::PSmear: Loaded_Reco_FitParam_Smear_pol3_wKC wasn't loaded! Exiting...\n", exit(0); }
                 if (Loaded_Reco_FitParam_Smear_pol3_wKC.at(0).size() == 0) {
-                    cout << "\n\nMomentumResolution::PSmear: Loaded_Reco_FitParam_Smear_pol3_wKC smearing wasn't loaded! Exiting...\n", exit(0);
+                    std::cout << "\n\nMomentumResolution::PSmear: Loaded_Reco_FitParam_Smear_pol3_wKC smearing wasn't loaded! Exiting...\n", exit(0);
                 }
                 //</editor-fold>
 
@@ -2217,18 +2217,18 @@ double MomentumResolution::PSmear(const bool &apply_nucleon_SmearAndCorr, const 
                 }
 
                 if (PrintOut_Smear_Variables) {
-                    cout << "\n\n\n#(FitParam groups) = " << Loaded_Reco_FitParam_Smear_pol3_wKC.size() << "\n";
-                    cout << "#(FitParam variables) = " << Loaded_Reco_FitParam_Smear_pol3_wKC.at(0).size() << "\n";
-                    cout << "#(FitParam errors) = " << Loaded_Reco_FitParam_Smear_pol3_wKC.at(1).size() << "\n";
-                    cout << "#(FitParam fit goodness variables) = " << Loaded_Reco_FitParam_Smear_pol3_wKC.at(2).size() << "\n\n";
+                    std::cout << "\n\n\n#(FitParam groups) = " << Loaded_Reco_FitParam_Smear_pol3_wKC.size() << "\n";
+                    std::cout << "#(FitParam variables) = " << Loaded_Reco_FitParam_Smear_pol3_wKC.at(0).size() << "\n";
+                    std::cout << "#(FitParam errors) = " << Loaded_Reco_FitParam_Smear_pol3_wKC.at(1).size() << "\n";
+                    std::cout << "#(FitParam fit goodness variables) = " << Loaded_Reco_FitParam_Smear_pol3_wKC.at(2).size() << "\n\n";
 
-                    cout << "Loaded_A_Std_pol3_wKC = " << Loaded_Reco_FitParam_Smear_pol3_wKC.at(0).at(0) << "\n";
-                    cout << "Loaded_B_Std_pol3_wKC = " << Loaded_Reco_FitParam_Smear_pol3_wKC.at(0).at(1) << "\n";
-                    cout << "Loaded_C_Std_pol3_wKC = " << Loaded_Reco_FitParam_Smear_pol3_wKC.at(0).at(2) << "\n";
-                    cout << "Loaded_D_Std_pol3_wKC = " << Loaded_Reco_FitParam_Smear_pol3_wKC.at(0).at(3) << "\n\n";
+                    std::cout << "Loaded_A_Std_pol3_wKC = " << Loaded_Reco_FitParam_Smear_pol3_wKC.at(0).at(0) << "\n";
+                    std::cout << "Loaded_B_Std_pol3_wKC = " << Loaded_Reco_FitParam_Smear_pol3_wKC.at(0).at(1) << "\n";
+                    std::cout << "Loaded_C_Std_pol3_wKC = " << Loaded_Reco_FitParam_Smear_pol3_wKC.at(0).at(2) << "\n";
+                    std::cout << "Loaded_D_Std_pol3_wKC = " << Loaded_Reco_FitParam_Smear_pol3_wKC.at(0).at(3) << "\n\n";
                 }
             } else {
-                cout << "\n\nMomentumResolution::PSmear: SmearMode is not a polynomial! Exiting...\n", exit(0);
+                std::cout << "\n\nMomentumResolution::PSmear: SmearMode is not a polynomial! Exiting...\n", exit(0);
             }
 
             if (RandomNumGenerator == "TRandom1") {
@@ -2238,24 +2238,24 @@ double MomentumResolution::PSmear(const bool &apply_nucleon_SmearAndCorr, const 
             } else if (RandomNumGenerator == "TRandom3") {
                 Smearing = Rand3->Gaus(1, Arg);  // TODO: recheck if this smearing can be negative!
             } else {
-                cout << "\n\nMomentumResolution::PSmear: RandomNumGenerator illegal! Exiting...\n", exit(0);
+                std::cout << "\n\nMomentumResolution::PSmear: RandomNumGenerator illegal! Exiting...\n", exit(0);
             }
 
             SmearedMomentum = Smearing * Momentum;
 
             if (PrintOut) {
-                cout << "\n\nSmearMode = " << SmearMode << "\n";
-                cout << "RandomNumGenerator = " << RandomNumGenerator << "\n";
-                cout << "Arg = " << Arg << "\n";
-                cout << "Smearing = " << Smearing << "\n";
-                cout << "Momentum = " << Momentum << "\n";
-                cout << "SmearedMomentum = " << SmearedMomentum << "\n";
-                cout << "==========================================================================\n\n";
+                std::cout << "\n\nSmearMode = " << SmearMode << "\n";
+                std::cout << "RandomNumGenerator = " << RandomNumGenerator << "\n";
+                std::cout << "Arg = " << Arg << "\n";
+                std::cout << "Smearing = " << Smearing << "\n";
+                std::cout << "Momentum = " << Momentum << "\n";
+                std::cout << "SmearedMomentum = " << SmearedMomentum << "\n";
+                std::cout << "==========================================================================\n\n";
             }
 
             if (PrintOut_And_Exit) { exit(0); }
         } else {
-            cout << "\n\nMomentumResolution::PSmear: SmearMode illegal! Exiting...\n", exit(0);
+            std::cout << "\n\nMomentumResolution::PSmear: SmearMode illegal! Exiting...\n", exit(0);
         }
 
         return SmearedMomentum;
@@ -2290,10 +2290,10 @@ double MomentumResolution::NCorr(const bool &apply_nucleon_SmearAndCorr, const d
                     CorrectedMomentum = Momentum * (1 + Loaded_res_slice.GetMean());  // minus for protons and plus for neutrons
 
                     if (PrintOut) {
-                        cout << "\n\nLoaded_res_slice.GetMean() = " << Loaded_res_slice.GetMean() << "\n";
-                        cout << "Momentum = " << Momentum << "\n";
-                        cout << "Correction = " << Loaded_res_slice.GetMean() << "\n";
-                        cout << "CorrectedMomentum = " << CorrectedMomentum << "\n\n";
+                        std::cout << "\n\nLoaded_res_slice.GetMean() = " << Loaded_res_slice.GetMean() << "\n";
+                        std::cout << "Momentum = " << Momentum << "\n";
+                        std::cout << "Correction = " << Loaded_res_slice.GetMean() << "\n";
+                        std::cout << "CorrectedMomentum = " << CorrectedMomentum << "\n\n";
                     }
                 }
             }
@@ -2301,15 +2301,15 @@ double MomentumResolution::NCorr(const bool &apply_nucleon_SmearAndCorr, const d
         } else if ((CorrMode == "pol1") || (CorrMode == "pol2") || (CorrMode == "pol3") || (CorrMode == "pol1_wKC") || (CorrMode == "pol2_wKC") || (CorrMode == "pol3_wKC")) {
             /* Correction using pol fit results */
             double Mu, CorrectionFactor;
-            vector<string> VarNames = {"A", "B", "C", "D"};
+            std::vector<string> VarNames = {"A", "B", "C", "D"};
 
             // TODO: add choice mechanism between truth and reco correction factors
 
             if (CorrMode == "pol1") {
                 //<editor-fold desc="Safety checks">
-                if (Loaded_Reco_FitParam_Corr_pol1.size() == 0) { cout << "\n\nMomentumResolution::NCorr: Loaded_Reco_FitParam_Corr_pol1 wasn't loaded! Exiting...\n", exit(0); }
+                if (Loaded_Reco_FitParam_Corr_pol1.size() == 0) { std::cout << "\n\nMomentumResolution::NCorr: Loaded_Reco_FitParam_Corr_pol1 wasn't loaded! Exiting...\n", exit(0); }
                 if (Loaded_Reco_FitParam_Corr_pol1.at(0).size() == 0) {
-                    cout << "\n\nMomentumResolution::NCorr: Loaded_Reco_FitParam_Corr_pol1 correction wasn't loaded! Exiting...\n", exit(0);
+                    std::cout << "\n\nMomentumResolution::NCorr: Loaded_Reco_FitParam_Corr_pol1 correction wasn't loaded! Exiting...\n", exit(0);
                 }
                 //</editor-fold>
 
@@ -2323,19 +2323,19 @@ double MomentumResolution::NCorr(const bool &apply_nucleon_SmearAndCorr, const d
                 }
 
                 if (PrintOut_Corr_Variables) {
-                    cout << "\n\n\n#(FitParam groups) = " << Loaded_Reco_FitParam_Corr_pol1.size() << "\n";
-                    cout << "#(FitParam variables) = " << Loaded_Reco_FitParam_Corr_pol1.at(0).size() << "\n";
-                    cout << "#(FitParam errors) = " << Loaded_Reco_FitParam_Corr_pol1.at(1).size() << "\n";
-                    cout << "#(FitParam fit goodness variables) = " << Loaded_Reco_FitParam_Corr_pol1.at(2).size() << "\n\n";
+                    std::cout << "\n\n\n#(FitParam groups) = " << Loaded_Reco_FitParam_Corr_pol1.size() << "\n";
+                    std::cout << "#(FitParam variables) = " << Loaded_Reco_FitParam_Corr_pol1.at(0).size() << "\n";
+                    std::cout << "#(FitParam errors) = " << Loaded_Reco_FitParam_Corr_pol1.at(1).size() << "\n";
+                    std::cout << "#(FitParam fit goodness variables) = " << Loaded_Reco_FitParam_Corr_pol1.at(2).size() << "\n\n";
 
-                    cout << "Loaded_A_Corr_pol1 = " << Loaded_Reco_FitParam_Corr_pol1.at(0).at(0) << "\n";
-                    cout << "Loaded_B_Corr_pol1 = " << Loaded_Reco_FitParam_Corr_pol1.at(0).at(1) << "\n\n";
+                    std::cout << "Loaded_A_Corr_pol1 = " << Loaded_Reco_FitParam_Corr_pol1.at(0).at(0) << "\n";
+                    std::cout << "Loaded_B_Corr_pol1 = " << Loaded_Reco_FitParam_Corr_pol1.at(0).at(1) << "\n\n";
                 }
             } else if (CorrMode == "pol1_wKC") {
                 //<editor-fold desc="Safety checks">
-                if (Loaded_Reco_FitParam_Corr_pol1_wKC.size() == 0) { cout << "\n\nMomentumResolution::NCorr: Loaded_Reco_FitParam_Corr_pol1_wKC wasn't loaded! Exiting...\n", exit(0); }
+                if (Loaded_Reco_FitParam_Corr_pol1_wKC.size() == 0) { std::cout << "\n\nMomentumResolution::NCorr: Loaded_Reco_FitParam_Corr_pol1_wKC wasn't loaded! Exiting...\n", exit(0); }
                 if (Loaded_Reco_FitParam_Corr_pol1_wKC.at(0).size() == 0) {
-                    cout << "\n\nMomentumResolution::NCorr: Loaded_Reco_FitParam_Corr_pol1_wKC correction wasn't loaded! Exiting...\n", exit(0);
+                    std::cout << "\n\nMomentumResolution::NCorr: Loaded_Reco_FitParam_Corr_pol1_wKC correction wasn't loaded! Exiting...\n", exit(0);
                 }
                 //</editor-fold>
 
@@ -2349,19 +2349,19 @@ double MomentumResolution::NCorr(const bool &apply_nucleon_SmearAndCorr, const d
                 }
 
                 if (PrintOut_Corr_Variables) {
-                    cout << "\n\n\n#(FitParam groups) = " << Loaded_Reco_FitParam_Corr_pol1_wKC.size() << "\n";
-                    cout << "#(FitParam variables) = " << Loaded_Reco_FitParam_Corr_pol1_wKC.at(0).size() << "\n";
-                    cout << "#(FitParam errors) = " << Loaded_Reco_FitParam_Corr_pol1_wKC.at(1).size() << "\n";
-                    cout << "#(FitParam fit goodness variables) = " << Loaded_Reco_FitParam_Corr_pol1_wKC.at(2).size() << "\n\n";
+                    std::cout << "\n\n\n#(FitParam groups) = " << Loaded_Reco_FitParam_Corr_pol1_wKC.size() << "\n";
+                    std::cout << "#(FitParam variables) = " << Loaded_Reco_FitParam_Corr_pol1_wKC.at(0).size() << "\n";
+                    std::cout << "#(FitParam errors) = " << Loaded_Reco_FitParam_Corr_pol1_wKC.at(1).size() << "\n";
+                    std::cout << "#(FitParam fit goodness variables) = " << Loaded_Reco_FitParam_Corr_pol1_wKC.at(2).size() << "\n\n";
 
-                    cout << "Loaded_A_Corr_pol1_wKC = " << Loaded_Reco_FitParam_Corr_pol1_wKC.at(0).at(0) << "\n";
-                    cout << "Loaded_B_Corr_pol1_wKC = " << Loaded_Reco_FitParam_Corr_pol1_wKC.at(0).at(1) << "\n\n";
+                    std::cout << "Loaded_A_Corr_pol1_wKC = " << Loaded_Reco_FitParam_Corr_pol1_wKC.at(0).at(0) << "\n";
+                    std::cout << "Loaded_B_Corr_pol1_wKC = " << Loaded_Reco_FitParam_Corr_pol1_wKC.at(0).at(1) << "\n\n";
                 }
             } else if (CorrMode == "pol2") {
                 //<editor-fold desc="Safety checks">
-                if (Loaded_Reco_FitParam_Corr_pol2.size() == 0) { cout << "\n\nMomentumResolution::NCorr: Loaded_Reco_FitParam_Corr_pol2 wasn't loaded! Exiting...\n", exit(0); }
+                if (Loaded_Reco_FitParam_Corr_pol2.size() == 0) { std::cout << "\n\nMomentumResolution::NCorr: Loaded_Reco_FitParam_Corr_pol2 wasn't loaded! Exiting...\n", exit(0); }
                 if (Loaded_Reco_FitParam_Corr_pol2.at(0).size() == 0) {
-                    cout << "\n\nMomentumResolution::NCorr: Loaded_Reco_FitParam_Corr_pol2 correction wasn't loaded! Exiting...\n", exit(0);
+                    std::cout << "\n\nMomentumResolution::NCorr: Loaded_Reco_FitParam_Corr_pol2 correction wasn't loaded! Exiting...\n", exit(0);
                 }
                 //</editor-fold>
 
@@ -2377,20 +2377,20 @@ double MomentumResolution::NCorr(const bool &apply_nucleon_SmearAndCorr, const d
                 }
 
                 if (PrintOut_Corr_Variables) {
-                    cout << "\n\n\n#(FitParam groups) = " << Loaded_Reco_FitParam_Corr_pol2.size() << "\n";
-                    cout << "#(FitParam variables) = " << Loaded_Reco_FitParam_Corr_pol2.at(0).size() << "\n";
-                    cout << "#(FitParam errors) = " << Loaded_Reco_FitParam_Corr_pol2.at(1).size() << "\n";
-                    cout << "#(FitParam fit goodness variables) = " << Loaded_Reco_FitParam_Corr_pol2.at(2).size() << "\n\n";
+                    std::cout << "\n\n\n#(FitParam groups) = " << Loaded_Reco_FitParam_Corr_pol2.size() << "\n";
+                    std::cout << "#(FitParam variables) = " << Loaded_Reco_FitParam_Corr_pol2.at(0).size() << "\n";
+                    std::cout << "#(FitParam errors) = " << Loaded_Reco_FitParam_Corr_pol2.at(1).size() << "\n";
+                    std::cout << "#(FitParam fit goodness variables) = " << Loaded_Reco_FitParam_Corr_pol2.at(2).size() << "\n\n";
 
-                    cout << "Loaded_A_Corr_pol2 = " << Loaded_Reco_FitParam_Corr_pol2.at(0).at(0) << "\n";
-                    cout << "Loaded_B_Corr_pol2 = " << Loaded_Reco_FitParam_Corr_pol2.at(0).at(1) << "\n";
-                    cout << "Loaded_C_Corr_pol2 = " << Loaded_Reco_FitParam_Corr_pol2.at(0).at(2) << "\n\n";
+                    std::cout << "Loaded_A_Corr_pol2 = " << Loaded_Reco_FitParam_Corr_pol2.at(0).at(0) << "\n";
+                    std::cout << "Loaded_B_Corr_pol2 = " << Loaded_Reco_FitParam_Corr_pol2.at(0).at(1) << "\n";
+                    std::cout << "Loaded_C_Corr_pol2 = " << Loaded_Reco_FitParam_Corr_pol2.at(0).at(2) << "\n\n";
                 }
             } else if (CorrMode == "pol2_wKC") {
                 //<editor-fold desc="Safety checks">
-                if (Loaded_Reco_FitParam_Corr_pol2_wKC.size() == 0) { cout << "\n\nMomentumResolution::NCorr: Loaded_Reco_FitParam_Corr_pol2_wKC wasn't loaded! Exiting...\n", exit(0); }
+                if (Loaded_Reco_FitParam_Corr_pol2_wKC.size() == 0) { std::cout << "\n\nMomentumResolution::NCorr: Loaded_Reco_FitParam_Corr_pol2_wKC wasn't loaded! Exiting...\n", exit(0); }
                 if (Loaded_Reco_FitParam_Corr_pol2_wKC.at(0).size() == 0) {
-                    cout << "\n\nMomentumResolution::NCorr: Loaded_Reco_FitParam_Corr_pol2_wKC correction wasn't loaded! Exiting...\n", exit(0);
+                    std::cout << "\n\nMomentumResolution::NCorr: Loaded_Reco_FitParam_Corr_pol2_wKC correction wasn't loaded! Exiting...\n", exit(0);
                 }
                 //</editor-fold>
 
@@ -2406,20 +2406,20 @@ double MomentumResolution::NCorr(const bool &apply_nucleon_SmearAndCorr, const d
                 }
 
                 if (PrintOut_Corr_Variables) {
-                    cout << "\n\n\n#(FitParam groups) = " << Loaded_Reco_FitParam_Corr_pol2_wKC.size() << "\n";
-                    cout << "#(FitParam variables) = " << Loaded_Reco_FitParam_Corr_pol2_wKC.at(0).size() << "\n";
-                    cout << "#(FitParam errors) = " << Loaded_Reco_FitParam_Corr_pol2_wKC.at(1).size() << "\n";
-                    cout << "#(FitParam fit goodness variables) = " << Loaded_Reco_FitParam_Corr_pol2_wKC.at(2).size() << "\n\n";
+                    std::cout << "\n\n\n#(FitParam groups) = " << Loaded_Reco_FitParam_Corr_pol2_wKC.size() << "\n";
+                    std::cout << "#(FitParam variables) = " << Loaded_Reco_FitParam_Corr_pol2_wKC.at(0).size() << "\n";
+                    std::cout << "#(FitParam errors) = " << Loaded_Reco_FitParam_Corr_pol2_wKC.at(1).size() << "\n";
+                    std::cout << "#(FitParam fit goodness variables) = " << Loaded_Reco_FitParam_Corr_pol2_wKC.at(2).size() << "\n\n";
 
-                    cout << "Loaded_A_Corr_pol2_wKC = " << Loaded_Reco_FitParam_Corr_pol2_wKC.at(0).at(0) << "\n";
-                    cout << "Loaded_B_Corr_pol2_wKC = " << Loaded_Reco_FitParam_Corr_pol2_wKC.at(0).at(1) << "\n";
-                    cout << "Loaded_C_Corr_pol2_wKC = " << Loaded_Reco_FitParam_Corr_pol2_wKC.at(0).at(2) << "\n\n";
+                    std::cout << "Loaded_A_Corr_pol2_wKC = " << Loaded_Reco_FitParam_Corr_pol2_wKC.at(0).at(0) << "\n";
+                    std::cout << "Loaded_B_Corr_pol2_wKC = " << Loaded_Reco_FitParam_Corr_pol2_wKC.at(0).at(1) << "\n";
+                    std::cout << "Loaded_C_Corr_pol2_wKC = " << Loaded_Reco_FitParam_Corr_pol2_wKC.at(0).at(2) << "\n\n";
                 }
             } else if (CorrMode == "pol3") {
                 //<editor-fold desc="Safety checks">
-                if (Loaded_Reco_FitParam_Corr_pol3.size() == 0) { cout << "\n\nMomentumResolution::NCorr: Loaded_Reco_FitParam_Corr_pol3 wasn't loaded! Exiting...\n", exit(0); }
+                if (Loaded_Reco_FitParam_Corr_pol3.size() == 0) { std::cout << "\n\nMomentumResolution::NCorr: Loaded_Reco_FitParam_Corr_pol3 wasn't loaded! Exiting...\n", exit(0); }
                 if (Loaded_Reco_FitParam_Corr_pol3.at(0).size() == 0) {
-                    cout << "\n\nMomentumResolution::NCorr: Loaded_Reco_FitParam_Corr_pol3 correction wasn't loaded! Exiting...\n", exit(0);
+                    std::cout << "\n\nMomentumResolution::NCorr: Loaded_Reco_FitParam_Corr_pol3 correction wasn't loaded! Exiting...\n", exit(0);
                 }
                 //</editor-fold>
 
@@ -2438,21 +2438,21 @@ double MomentumResolution::NCorr(const bool &apply_nucleon_SmearAndCorr, const d
                 }
 
                 if (PrintOut_Corr_Variables) {
-                    cout << "\n\n\n#(FitParam groups) = " << Loaded_Reco_FitParam_Corr_pol3.size() << "\n";
-                    cout << "#(FitParam variables) = " << Loaded_Reco_FitParam_Corr_pol3.at(0).size() << "\n";
-                    cout << "#(FitParam errors) = " << Loaded_Reco_FitParam_Corr_pol3.at(1).size() << "\n";
-                    cout << "#(FitParam fit goodness variables) = " << Loaded_Reco_FitParam_Corr_pol3.at(2).size() << "\n\n";
+                    std::cout << "\n\n\n#(FitParam groups) = " << Loaded_Reco_FitParam_Corr_pol3.size() << "\n";
+                    std::cout << "#(FitParam variables) = " << Loaded_Reco_FitParam_Corr_pol3.at(0).size() << "\n";
+                    std::cout << "#(FitParam errors) = " << Loaded_Reco_FitParam_Corr_pol3.at(1).size() << "\n";
+                    std::cout << "#(FitParam fit goodness variables) = " << Loaded_Reco_FitParam_Corr_pol3.at(2).size() << "\n\n";
 
-                    cout << "Loaded_A_Corr_pol3 = " << Loaded_Reco_FitParam_Corr_pol3.at(0).at(0) << "\n";
-                    cout << "Loaded_B_Corr_pol3 = " << Loaded_Reco_FitParam_Corr_pol3.at(0).at(1) << "\n";
-                    cout << "Loaded_C_Corr_pol3 = " << Loaded_Reco_FitParam_Corr_pol3.at(0).at(2) << "\n";
-                    cout << "Loaded_D_Corr_pol3 = " << Loaded_Reco_FitParam_Corr_pol3.at(0).at(3) << "\n\n";
+                    std::cout << "Loaded_A_Corr_pol3 = " << Loaded_Reco_FitParam_Corr_pol3.at(0).at(0) << "\n";
+                    std::cout << "Loaded_B_Corr_pol3 = " << Loaded_Reco_FitParam_Corr_pol3.at(0).at(1) << "\n";
+                    std::cout << "Loaded_C_Corr_pol3 = " << Loaded_Reco_FitParam_Corr_pol3.at(0).at(2) << "\n";
+                    std::cout << "Loaded_D_Corr_pol3 = " << Loaded_Reco_FitParam_Corr_pol3.at(0).at(3) << "\n\n";
                 }
             } else if (CorrMode == "pol3_wKC") {
                 //<editor-fold desc="Safety checks">
-                if (Loaded_Reco_FitParam_Corr_pol3_wKC.size() == 0) { cout << "\n\nMomentumResolution::NCorr: Loaded_Reco_FitParam_Corr_pol3_wKC wasn't loaded! Exiting...\n", exit(0); }
+                if (Loaded_Reco_FitParam_Corr_pol3_wKC.size() == 0) { std::cout << "\n\nMomentumResolution::NCorr: Loaded_Reco_FitParam_Corr_pol3_wKC wasn't loaded! Exiting...\n", exit(0); }
                 if (Loaded_Reco_FitParam_Corr_pol3_wKC.at(0).size() == 0) {
-                    cout << "\n\nMomentumResolution::NCorr: Loaded_Reco_FitParam_Corr_pol3_wKC correction wasn't loaded! Exiting...\n", exit(0);
+                    std::cout << "\n\nMomentumResolution::NCorr: Loaded_Reco_FitParam_Corr_pol3_wKC correction wasn't loaded! Exiting...\n", exit(0);
                 }
                 //</editor-fold>
 
@@ -2471,15 +2471,15 @@ double MomentumResolution::NCorr(const bool &apply_nucleon_SmearAndCorr, const d
                 }
 
                 if (PrintOut_Corr_Variables) {
-                    cout << "\n\n\n#(FitParam groups) = " << Loaded_Reco_FitParam_Corr_pol3_wKC.size() << "\n";
-                    cout << "#(FitParam variables) = " << Loaded_Reco_FitParam_Corr_pol3_wKC.at(0).size() << "\n";
-                    cout << "#(FitParam errors) = " << Loaded_Reco_FitParam_Corr_pol3_wKC.at(1).size() << "\n";
-                    cout << "#(FitParam fit goodness variables) = " << Loaded_Reco_FitParam_Corr_pol3_wKC.at(2).size() << "\n\n";
+                    std::cout << "\n\n\n#(FitParam groups) = " << Loaded_Reco_FitParam_Corr_pol3_wKC.size() << "\n";
+                    std::cout << "#(FitParam variables) = " << Loaded_Reco_FitParam_Corr_pol3_wKC.at(0).size() << "\n";
+                    std::cout << "#(FitParam errors) = " << Loaded_Reco_FitParam_Corr_pol3_wKC.at(1).size() << "\n";
+                    std::cout << "#(FitParam fit goodness variables) = " << Loaded_Reco_FitParam_Corr_pol3_wKC.at(2).size() << "\n\n";
 
-                    cout << "Loaded_A_Corr_pol3_wKC = " << Loaded_Reco_FitParam_Corr_pol3_wKC.at(0).at(0) << "\n";
-                    cout << "Loaded_B_Corr_pol3_wKC = " << Loaded_Reco_FitParam_Corr_pol3_wKC.at(0).at(1) << "\n";
-                    cout << "Loaded_C_Corr_pol3_wKC = " << Loaded_Reco_FitParam_Corr_pol3_wKC.at(0).at(2) << "\n";
-                    cout << "Loaded_D_Corr_pol3_wKC = " << Loaded_Reco_FitParam_Corr_pol3_wKC.at(0).at(3) << "\n\n";
+                    std::cout << "Loaded_A_Corr_pol3_wKC = " << Loaded_Reco_FitParam_Corr_pol3_wKC.at(0).at(0) << "\n";
+                    std::cout << "Loaded_B_Corr_pol3_wKC = " << Loaded_Reco_FitParam_Corr_pol3_wKC.at(0).at(1) << "\n";
+                    std::cout << "Loaded_C_Corr_pol3_wKC = " << Loaded_Reco_FitParam_Corr_pol3_wKC.at(0).at(2) << "\n";
+                    std::cout << "Loaded_D_Corr_pol3_wKC = " << Loaded_Reco_FitParam_Corr_pol3_wKC.at(0).at(3) << "\n\n";
                 }
             }
 
@@ -2487,15 +2487,15 @@ double MomentumResolution::NCorr(const bool &apply_nucleon_SmearAndCorr, const d
             CorrectedMomentum = Momentum * CorrectionFactor;
 
             if (PrintOut) {
-                cout << "\n\nCorrMode = " << CorrMode << "\n";
-                cout << "Momentum = " << Momentum << "\n";
-                cout << "Mu = " << Mu << "\n";
-                cout << "CorrectionFactor = " << CorrectionFactor << "\n";
-                cout << "CorrectedMomentum = " << CorrectedMomentum << "\n";
-                cout << "==========================================================================\n\n";
+                std::cout << "\n\nCorrMode = " << CorrMode << "\n";
+                std::cout << "Momentum = " << Momentum << "\n";
+                std::cout << "Mu = " << Mu << "\n";
+                std::cout << "CorrectionFactor = " << CorrectionFactor << "\n";
+                std::cout << "CorrectedMomentum = " << CorrectedMomentum << "\n";
+                std::cout << "==========================================================================\n\n";
             }
         } else {
-            cout << "\n\nMomentumResolution::NCorr: CorrMode illegal! Exiting...\n", exit(0);
+            std::cout << "\n\nMomentumResolution::NCorr: CorrMode illegal! Exiting...\n", exit(0);
         }
 
         return CorrectedMomentum;

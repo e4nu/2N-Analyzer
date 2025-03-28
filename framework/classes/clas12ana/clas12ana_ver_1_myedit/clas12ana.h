@@ -21,7 +21,7 @@ using namespace clas12;
 
 struct cutpar {
     std::string id;
-    vector<double> par = {}; //pi- parameters
+    std::vector<double> par = {}; //pi- parameters
 };
 
 
@@ -297,12 +297,12 @@ private:
     double ecal_fcn_par[7][6]; //sector, parameter
     int sigma_cut = 4;
     //vector to hold constants of function for each particle type
-    //  vector<cutpar> dc_cuts;
-    //  vector<cutpar> ecal_cuts;
+    //  std::vector<cutpar> dc_cuts;
+    //  std::vector<cutpar> ecal_cuts;
 
     //pid quality cuts e.g. {2212, {0.,2}} for a proton with chisq2pid mean = 0. and sigma = 2
-    //  vector<cutpar> pid_cuts;
-    //vector<cutpar> vertex_cuts;
+    //  std::vector<cutpar> pid_cuts;
+    //std::vector<cutpar> vertex_cuts;
 
     bool f_ecalSFCuts = false;
     bool f_ecalEdgeCuts = false;
@@ -312,16 +312,16 @@ private:
     bool f_corr_vertexCuts = false;
     bool f_NpheCuts = false; // My addition
 
-    //  map<int,vector<double> > test_cuts;
+    //  map<int,std::vector<double> > test_cuts;
     //  map<int,int> test_cuts;
-    map<int, vector<double> > pid_cuts; // map<pid, {min,max cut}>
-    map<int, vector<double> > pid_cuts_CD; // map<pid, {min,max cut}> (my addition)
-    map<int, vector<double> > pid_cuts_FD; // map<pid, {min,max cut}> (my addition)
-    vector<double> vertex_x_cuts = {-99, 99};
-    vector<double> vertex_y_cuts = {-99, 99};
-    vector<double> vertex_z_cuts = {-99, 99};
-    map<string, vector<double> > vertex_cuts; //map< x,y,z, {min,max}>
-    vector<double> vertex_corr_cuts = {-99, 99}; //electron vertex <-> particle vertex correlation cuts
+    map<int, std::vector<double> > pid_cuts; // map<pid, {min,max cut}>
+    map<int, std::vector<double> > pid_cuts_CD; // map<pid, {min,max cut}> (my addition)
+    map<int, std::vector<double> > pid_cuts_FD; // map<pid, {min,max cut}> (my addition)
+    std::vector<double> vertex_x_cuts = {-99, 99};
+    std::vector<double> vertex_y_cuts = {-99, 99};
+    std::vector<double> vertex_z_cuts = {-99, 99};
+    map<string, std::vector<double> > vertex_cuts; //map< x,y,z, {min,max}>
+    std::vector<double> vertex_corr_cuts = {-99, 99}; //electron vertex <-> particle vertex correlation cuts
 
     double htcc_Nphe_cut = 2; // My addition
 
@@ -348,8 +348,8 @@ private:
     double pq_e = 0;
     double theta_pq_e = 0;
 
-    //  map<int,vector<int> > pid_cuts_stats;
-    //  map<string,vector<int> > vertex_cuts_stats;
+    //  map<int,std::vector<int> > pid_cuts_stats;
+    //  map<string,std::vector<int> > vertex_cuts_stats;
 
     //constants
     double mass_proton = 0.938272; //GeV/c2
@@ -1238,7 +1238,7 @@ void clas12ana::pidCuts(std::vector<region_part_ptr> &particles) {
 
 void clas12ana::readEcalPar(const char *filename) {
     int num_par = 6;
-    ifstream infile;
+    std::ifstream infile;
     infile.open(filename);
 
     if (infile.is_open()) {
@@ -1251,7 +1251,7 @@ void clas12ana::readEcalPar(const char *filename) {
 
         for (int i = 1; i < 7; i++) {
             getline(infile, tp);  //read data from file object and put it into string.
-            stringstream ss(tp);
+            std::stringstream ss(tp);
             double parameter;
             //get parameters for a given sector
             for (int j = 0; j < num_par; j++) {
@@ -1266,7 +1266,7 @@ void clas12ana::readEcalPar(const char *filename) {
 }
 
 void clas12ana::readInputParam(const char *filename) {
-    ifstream infile;
+    std::ifstream infile;
     infile.open(filename);
     //  test_cuts.insert({ 1, 40 });
 
@@ -1279,7 +1279,7 @@ void clas12ana::readInputParam(const char *filename) {
 
         while (getline(infile, tp))  //read data from file object and put it into string.
         {
-            stringstream ss(tp);
+            std::stringstream ss(tp);
             std::string parameter, parameter2;
             double value;
             //get cut identifier
@@ -1287,11 +1287,11 @@ void clas12ana::readInputParam(const char *filename) {
             if (parameter == "pid_cuts") { // Justin's original
                 //get cut values
                 ss >> parameter2;
-                stringstream ss2(parameter2);
+                std::stringstream ss2(parameter2);
                 std::string pid_v;
                 int count = 0;
                 int pid = -99;
-                vector<double> par;
+                std::vector<double> par;
 
                 while (getline(ss2, pid_v, ':')) {
                     if (count == 0) {
@@ -1303,16 +1303,16 @@ void clas12ana::readInputParam(const char *filename) {
                     count++;
                 }
                 if (pid != -99) {
-                    pid_cuts.insert(pair<int, vector<double> >(pid, par));
+                    pid_cuts.insert(pair<int, std::vector<double> >(pid, par));
                 }
             } else if (parameter == "pid_cuts_CD") { // My addition
                 //get cut values
                 ss >> parameter2;
-                stringstream ss2(parameter2);
+                std::stringstream ss2(parameter2);
                 std::string pid_v;
                 int count = 0;
                 int pid = -99;
-                vector<double> par;
+                std::vector<double> par;
 
                 while (getline(ss2, pid_v, ':')) {
                     if (count == 0) {
@@ -1324,16 +1324,16 @@ void clas12ana::readInputParam(const char *filename) {
                     count++;
                 }
                 if (pid != -99) {
-                    pid_cuts_CD.insert(pair<int, vector<double> >(pid, par));
+                    pid_cuts_CD.insert(pair<int, std::vector<double> >(pid, par));
                 }
             } else if (parameter == "pid_cuts_FD") { // My addition
                 //get cut values
                 ss >> parameter2;
-                stringstream ss2(parameter2);
+                std::stringstream ss2(parameter2);
                 std::string pid_v;
                 int count = 0;
                 int pid = -99;
-                vector<double> par;
+                std::vector<double> par;
 
                 while (getline(ss2, pid_v, ':')) {
                     if (count == 0) {
@@ -1345,15 +1345,15 @@ void clas12ana::readInputParam(const char *filename) {
                     count++;
                 }
                 if (pid != -99) {
-                    pid_cuts_FD.insert(pair<int, vector<double> >(pid, par));
+                    pid_cuts_FD.insert(pair<int, std::vector<double> >(pid, par));
                 }
             } else if (parameter == "vertex_cut") {
                 ss >> parameter2;
-                stringstream ss2(parameter2);
+                std::stringstream ss2(parameter2);
                 std::string pid_v;
                 int count = 0;
                 std::string pid = "";
-                vector<double> par;
+                std::vector<double> par;
 
                 while (getline(ss2, pid_v, ':')) {
                     if (count == 0)
@@ -1365,14 +1365,14 @@ void clas12ana::readInputParam(const char *filename) {
                 }
 
                 if (pid != "")
-                    vertex_cuts.insert(pair<string, vector<double> >(pid, par));
+                    vertex_cuts.insert(pair<string, std::vector<double> >(pid, par));
             }
 
             /*
                 else if(parameter == "cell_pos")
                   {
                 ss >> parameter2;
-                    stringstream ss2(parameter2);
+                    std::stringstream ss2(parameter2);
                     std::string cell_v;
                     while(getline(ss2, cell_v, ':'))
                       cell.push_back(atof(cell_v.c_str()));

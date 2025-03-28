@@ -25,7 +25,7 @@ Double_t FitFunction(Double_t *v, Double_t *par) {
 }
 
 void fitexample() {
-    cout << "\n\n";
+    std::cout << "\n\n";
 
     TFile *f = new
     TFile("./plots_C12_simulation_6GeV_T5_first_10_-_ALL_CUTS2222/recon_qe_GENIE_C_598636MeV_Q2_0_5_test_5_first_10_plots.root");
@@ -50,9 +50,9 @@ void fitexample() {
 //    func->SetParameters(300, 1, 0.001);
     func->SetParNames("Constant", "Mean_value", "Sigma");
 
-    cout << "max = " << max << "\n";
-//    cout << "hpx->GetBinCenter(hpx->GetMaximumBin()) = " << hpx->GetBinCenter(hpx->GetMaximumBin()) << "\n";
-//    cout << "hpx->GetMaximumBin() = " << hpx->GetMaximumBin() << "\n\n";
+    std::cout << "max = " << max << "\n";
+//    std::cout << "hpx->GetBinCenter(hpx->GetMaximumBin()) = " << hpx->GetBinCenter(hpx->GetMaximumBin()) << "\n";
+//    std::cout << "hpx->GetMaximumBin() = " << hpx->GetMaximumBin() << "\n\n";
 
 //    func->SetParLimits(0, 3.5, 1.2*max); // amp limits
     func->SetParLimits(0, 0.7*max, 1.2*max); // amp limits
@@ -107,9 +107,9 @@ void fitexample() {
     double Mean = fit->GetParameter(1); // get p1
     double Std = fit->GetParameter(2); // get p2
 
-    cout << "\n\n\nAmp:\t" << Amp << "\n";
-    cout << "Mean:\t" << Mean << "\n";
-    cout << "Std:\t" << Std << "\n\n\n\n";
+    std::cout << "\n\n\nAmp:\t" << Amp << "\n";
+    std::cout << "Mean:\t" << Mean << "\n";
+    std::cout << "Std:\t" << Std << "\n\n\n\n";
 
     double titleSize = 0.06;
     double labelSizex = 0.0425;
@@ -219,9 +219,9 @@ void fitexample() {
 //    double Mean = fit->GetParameter(1); // get p1
 //    double Std = fit->GetParameter(2); // get p2
 //
-//    cout << "\n\n\nAmp:\t" << Amp << "\n";
-//    cout << "Mean:\t" << Mean << "\n";
-//    cout << "Std:\t" << Std << "\n\n\n\n";
+//    std::cout << "\n\n\nAmp:\t" << Amp << "\n";
+//    std::cout << "Mean:\t" << Mean << "\n";
+//    std::cout << "Std:\t" << Std << "\n\n\n\n";
 //
 //    double titleSize = 0.06;
 //    double labelSizex = 0.0425;
@@ -324,9 +324,9 @@ void fitexample() {
 //    double Mean = fit->GetParameter(1); // get p1
 //    double Std = fit->GetParameter(2); // get p2
 //
-//    cout << "\n\n\nAmp:\t" << Amp << "\n";
-//    cout << "Mean:\t" << Mean << "\n";
-//    cout << "Std:\t" << Std << "\n\n\n\n";
+//    std::cout << "\n\n\nAmp:\t" << Amp << "\n";
+//    std::cout << "Mean:\t" << Mean << "\n";
+//    std::cout << "Std:\t" << Std << "\n\n\n\n";
 //
 //    double titleSize = 0.06;
 //    double labelSizex = 0.0425;

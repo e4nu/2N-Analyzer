@@ -23,9 +23,9 @@ root -b -q PlotsBeta4x4.cpp
 //#include "framework/functions/to_string_with_precision.h"
 //#include "framework/functions/findSubstring.h"
 //#include "framework/classes/DSCuts/DSCuts.h"
-//#include "framework/classes/hPlots/hPlot1D.cpp"
+//#include "framework/classes/hPlots/hPlot1D.h"
 //#include "framework/constants.h"
-////#include "framework/functions/Math_func/poly34.cpp"
+////#include "framework/functions/Math_func/poly34.h"
 
 using namespace std;
 
@@ -79,10 +79,10 @@ void PlotsBeta4x4() {
     TH1D *Beta4Plot = (TH1D *) f->Get("h4 (1n, FD)");
 //    TH1D *Beta4Plot = (TH1D *) f->Get("FD neutrals (no PDG=0) #beta w/o PCAL/ECIN & w/ ECOUT (1n, FD)");
 
-    if (!Beta1Plot) { cout << "\n\nEmpty hist\n\n\n"; }
-    if (!Beta2Plot) { cout << "\n\nEmpty hist\n\n\n"; }
-    if (!Beta3Plot) { cout << "\n\nEmpty hist\n\n\n"; }
-    if (!Beta4Plot) { cout << "\n\nEmpty hist\n\n\n"; }
+    if (!Beta1Plot) { std::cout << "\n\nEmpty hist\n\n\n"; }
+    if (!Beta2Plot) { std::cout << "\n\nEmpty hist\n\n\n"; }
+    if (!Beta3Plot) { std::cout << "\n\nEmpty hist\n\n\n"; }
+    if (!Beta4Plot) { std::cout << "\n\nEmpty hist\n\n\n"; }
 
     Canvas4x4->cd(1);
     Canvas4x4->cd(1)->SetGrid();
@@ -150,7 +150,7 @@ void PlotsBeta4x4() {
 //    TH1D *Beta4Plot = (TH1D *) f->Get("FD neutrals (no PDG=0) #beta w/o PCAL/ECIN & w/ ECOUT (1n, FD)");
 
     if (!Beta2Plot) {
-        cout << "empty hist\n\n\n";
+        std::cout << "empty hist\n\n\n";
     }
 
     Canvas4x4->cd(1);

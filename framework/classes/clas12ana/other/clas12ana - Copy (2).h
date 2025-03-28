@@ -18,7 +18,7 @@ using namespace clas12;
 
 struct cutpar {
     std::string id;
-    vector<double> par = {}; //pi- parameters
+    std::vector<double> par = {}; //pi- parameters
 };
 
 
@@ -287,12 +287,12 @@ private:
     double ecal_fcn_par[7][6]; //sector, parameter
     int sigma_cut = 4;
     //vector to hold constants of function for each particle type
-    //  vector<cutpar> dc_cuts;
-    //  vector<cutpar> ecal_cuts;
+    //  std::vector<cutpar> dc_cuts;
+    //  std::vector<cutpar> ecal_cuts;
 
     //pid quality cuts e.g. {2212, {0.,2}} for a proton with chisq2pid mean = 0. and sigma = 2
-    //  vector<cutpar> pid_cuts;
-    //vector<cutpar> vertex_cuts;
+    //  std::vector<cutpar> pid_cuts;
+    //std::vector<cutpar> vertex_cuts;
 
     bool f_ecalSFCuts = false;
     bool f_ecalEdgeCuts = false;
@@ -301,14 +301,14 @@ private:
     bool f_vertexCuts = false;
     bool f_corr_vertexCuts = false;
 
-    //  map<int,vector<double> > test_cuts;
+    //  map<int,std::vector<double> > test_cuts;
     //  map<int,int> test_cuts;
-    map<int, vector<double> > pid_cuts; // map<pid, {min,max cut}>
-    vector<double> vertex_x_cuts = {-99, 99};
-    vector<double> vertex_y_cuts = {-99, 99};
-    vector<double> vertex_z_cuts = {-99, 99};
-    map<string, vector<double> > vertex_cuts; //map< x,y,z, {min,max}>
-    vector<double> vertex_corr_cuts = {-99, 99}; //electron vertex <-> particle vertex correlation cuts
+    map<int, std::vector<double> > pid_cuts; // map<pid, {min,max cut}>
+    std::vector<double> vertex_x_cuts = {-99, 99};
+    std::vector<double> vertex_y_cuts = {-99, 99};
+    std::vector<double> vertex_z_cuts = {-99, 99};
+    map<string, std::vector<double> > vertex_cuts; //map< x,y,z, {min,max}>
+    std::vector<double> vertex_corr_cuts = {-99, 99}; //electron vertex <-> particle vertex correlation cuts
 
     double ecal_edge_cut = 14;
     double dc_edge_cut = 10;
@@ -330,8 +330,8 @@ private:
     double pq_e = 0;
     double theta_pq_e = 0;
 
-    //  map<int,vector<int> > pid_cuts_stats;
-    //  map<string,vector<int> > vertex_cuts_stats;
+    //  map<int,std::vector<int> > pid_cuts_stats;
+    //  map<string,std::vector<int> > vertex_cuts_stats;
 
     //constants
     double mass_proton = 0.938272; //GeV/c2
@@ -663,19 +663,19 @@ void clas12ana::Run(const std::unique_ptr<clas12::clas12reader> &c12) {
         */
         if (!checkEcalCuts(*el) && f_ecalSFCuts) //ECAL SF cuts
         {
-            cout << "ECAL SF cuts (electrons)\n"; // My debugging
+            std::cout << "ECAL SF cuts (electrons)\n"; // My debugging
             el = electrons_det.erase(el);
         } else if (!EcalEdgeCuts(*el) && f_ecalEdgeCuts) //ECAL edge cuts
         {
-            cout << "ECAL edge cuts (electrons)\n"; // My debugging
+            std::cout << "ECAL edge cuts (electrons)\n"; // My debugging
             el = electrons_det.erase(el);
         } else if (!checkVertex(*el) && f_vertexCuts) //Vertex cut
         {
-            cout << "Vertex cut (electrons)\n"; // My debugging
+            std::cout << "Vertex cut (electrons)\n"; // My debugging
             el = electrons_det.erase(el);
         } else if (!DCEdgeCuts(*el) && f_DCEdgeCuts) //DC edge cut
         {
-            cout << "DC edge cut (electrons)\n"; // My debugging
+            std::cout << "DC edge cut (electrons)\n"; // My debugging
             el = electrons_det.erase(el);
         } else {
             //DEBUG plots
@@ -758,19 +758,19 @@ void clas12ana::Run(const std::unique_ptr<clas12::clas12reader> &c12) {
              * checkVertexCorrelation - checkes if dVz,Vy,Vz are within cuts (what are the cuts?) */
             if (!checkPidCut(*p) && f_pidCuts) //PID cuts
             {
-                cout << "PID cuts (protons & cPions only); PID: " << (*p)->par()->getPid() << "\n"; // My debugging
+                std::cout << "PID cuts (protons & cPions only); PID: " << (*p)->par()->getPid() << "\n"; // My debugging
                 p = particles.erase(p);
             } else if (!checkVertex(*p) && f_vertexCuts) //Vertex cut
             {
-                cout << "Vertex cut (all p); PID: " << (*p)->par()->getPid() << "\n"; // My debugging
+                std::cout << "Vertex cut (all p); PID: " << (*p)->par()->getPid() << "\n"; // My debugging
                 p = particles.erase(p);
             } else if (!DCEdgeCuts(*p) && f_DCEdgeCuts) //DC edge cut
             {
-                cout << "DC edge cut (all p); PID: " << (*p)->par()->getPid() << "\n"; // My debugging
+                std::cout << "DC edge cut (all p); PID: " << (*p)->par()->getPid() << "\n"; // My debugging
                 p = particles.erase(p);
             } else if (!checkVertexCorrelation(electrons_det[0], *p) && f_corr_vertexCuts) //Vertex correlation cut between electron
             {
-                cout << "Vertex correlation cut between electron (all p); PID: " << (*p)->par()->getPid() << "\n"; // My debugging
+                std::cout << "Vertex correlation cut between electron (all p); PID: " << (*p)->par()->getPid() << "\n"; // My debugging
                 p = particles.erase(p);
             } else //itterate
             {
@@ -799,7 +799,7 @@ void clas12ana::Run(const std::unique_ptr<clas12::clas12reader> &c12) {
 
 
 
-        cout << "particles.size() = " << particles.size() << "\n\n";
+        std::cout << "particles.size() = " << particles.size() << "\n\n";
 
 
 
@@ -834,7 +834,7 @@ void clas12ana::plotDebug() {
 void clas12ana::InitCuts() {
     for (int i = 1; i < 7; i++) {
         for (int j = 0; j < 6; j++) {
-            cout << "sector " << i << " j " << j << " par " << ecal_fcn_par[i][j] << endl;
+            std::cout << "sector " << i << " j " << j << " par " << ecal_fcn_par[i][j] << endl;
             ecal_fcn[0][i]->SetParameter(j, ecal_fcn_par[i][j]);
             ecal_fcn[1][i]->SetParameter(j, ecal_fcn_par[i][j]);
         }
@@ -927,8 +927,8 @@ bool clas12ana::checkEcalCuts(region_part_ptr p) {
 
         //      double sf_max_cut = ecal_fcn[1][sector]->Eval(p->par()->getP() );
         //      double sf_min_cut = ecal_fcn[0][sector]->Eval(p->par()->getP() );
-        //      cout<<"sf cut "<<sf_max_cut<<" "<<sf_min_cut<< " "<< sampling_frac <<" mom "<<p->par()->getP()<<endl;
-        //      cout<<ecal_fcn[0][sector]->GetParameter(0)<<" "<<ecal_fcn[0][sector]->GetParameter(1)<<" "<<ecal_fcn[0][sector]->GetParameter(2)<<" sector "<<sector<<endl;
+        //      std::cout<<"sf cut "<<sf_max_cut<<" "<<sf_min_cut<< " "<< sampling_frac <<" mom "<<p->par()->getP()<<endl;
+        //      std::cout<<ecal_fcn[0][sector]->GetParameter(0)<<" "<<ecal_fcn[0][sector]->GetParameter(1)<<" "<<ecal_fcn[0][sector]->GetParameter(2)<<" sector "<<sector<<endl;
 
         double sf_max_cut = .28;
         double sf_min_cut = .2;
@@ -963,8 +963,8 @@ void clas12ana::ecalCuts(std::vector<region_part_ptr> &particles)
 
 	    double sf_max_cut = ecal_fcn[1][sector]->Eval(p->par()->getP() );
 	    double sf_min_cut = ecal_fcn[0][sector]->Eval(p->par()->getP() );
-	    cout<<"sf cut "<<sf_max_cut<<" "<<sf_min_cut<< " "<< p->par()->getP()<<endl;
-	    cout<<ecal_fcn[0][sector]->GetParameter(0)<<" "<<ecal_fcn[0][sector]->GetParameter(1)<<" "<<ecal_fcn[0][sector]->GetParameter(2)<<" sector "<<sector<<endl;
+	    std::cout<<"sf cut "<<sf_max_cut<<" "<<sf_min_cut<< " "<< p->par()->getP()<<endl;
+	    std::cout<<ecal_fcn[0][sector]->GetParameter(0)<<" "<<ecal_fcn[0][sector]->GetParameter(1)<<" "<<ecal_fcn[0][sector]->GetParameter(2)<<" sector "<<sector<<endl;
 	    //	    double sf_max_cut = .18;
 	    //	    double sf_min_cut = .16;
 	    
@@ -1050,8 +1050,8 @@ void clas12ana::vertexCuts(std::vector<region_part_ptr> &particles)
 
 void clas12ana::pidCuts(std::vector<region_part_ptr> &particles) {
     for (auto &p: particles) {
-        cout << " Part ID " << p->par()->getPid() << " " << endl;
-        cout << " Part ID " << p->par()->getChi2Pid() << " " << endl;
+        std::cout << " Part ID " << p->par()->getPid() << " " << endl;
+        std::cout << " Part ID " << p->par()->getChi2Pid() << " " << endl;
     }
 
     particles.erase(std::remove_if(particles.begin(), particles.end(), [this](const region_part_ptr &p) {
@@ -1062,16 +1062,16 @@ void clas12ana::pidCuts(std::vector<region_part_ptr> &particles) {
             return false;
     }), particles.end());
 
-    cout << "After remove " << endl;
+    std::cout << "After remove " << endl;
     for (auto &p: particles) {
-        cout << " Part ID " << p->par()->getPid() << " " << endl;
-        cout << " Part ID " << p->par()->getChi2Pid() << " " << endl;
+        std::cout << " Part ID " << p->par()->getPid() << " " << endl;
+        std::cout << " Part ID " << p->par()->getChi2Pid() << " " << endl;
     }
 }
 
 void clas12ana::readEcalPar(const char *filename) {
     int num_par = 6;
-    ifstream infile;
+    std::ifstream infile;
     infile.open(filename);
 
     if (infile.is_open()) {
@@ -1080,11 +1080,11 @@ void clas12ana::readEcalPar(const char *filename) {
         //remove 3 lines of header
         for (int i = 0; i < 2; i++)
             getline(infile, tp);
-        cout << tp << endl;
+        std::cout << tp << endl;
 
         for (int i = 1; i < 7; i++) {
             getline(infile, tp);  //read data from file object and put it into string.
-            stringstream ss(tp);
+            std::stringstream ss(tp);
             double parameter;
             //get parameters for a given sector
             for (int j = 0; j < num_par; j++) {
@@ -1099,7 +1099,7 @@ void clas12ana::readEcalPar(const char *filename) {
 }
 
 void clas12ana::readInputParam(const char *filename) {
-    ifstream infile;
+    std::ifstream infile;
     infile.open(filename);
     //  test_cuts.insert({ 1, 40 });
 
@@ -1112,7 +1112,7 @@ void clas12ana::readInputParam(const char *filename) {
 
         while (getline(infile, tp))  //read data from file object and put it into string.
         {
-            stringstream ss(tp);
+            std::stringstream ss(tp);
             std::string parameter, parameter2;
             double value;
             //get cut identifier
@@ -1120,11 +1120,11 @@ void clas12ana::readInputParam(const char *filename) {
             if (parameter == "pid_cuts") {
                 //get cut values
                 ss >> parameter2;
-                stringstream ss2(parameter2);
+                std::stringstream ss2(parameter2);
                 std::string pid_v;
                 int count = 0;
                 int pid = -99;
-                vector<double> par;
+                std::vector<double> par;
 
                 while (getline(ss2, pid_v, ':')) {
                     if (count == 0)
@@ -1135,14 +1135,14 @@ void clas12ana::readInputParam(const char *filename) {
                     count++;
                 }
                 if (pid != -99)
-                    pid_cuts.insert(pair<int, vector<double> >(pid, par));
+                    pid_cuts.insert(pair<int, std::vector<double> >(pid, par));
             } else if (parameter == "vertex_cut") {
                 ss >> parameter2;
-                stringstream ss2(parameter2);
+                std::stringstream ss2(parameter2);
                 std::string pid_v;
                 int count = 0;
                 std::string pid = "";
-                vector<double> par;
+                std::vector<double> par;
 
                 while (getline(ss2, pid_v, ':')) {
                     if (count == 0)
@@ -1154,14 +1154,14 @@ void clas12ana::readInputParam(const char *filename) {
                 }
 
                 if (pid != "")
-                    vertex_cuts.insert(pair<string, vector<double> >(pid, par));
+                    vertex_cuts.insert(pair<string, std::vector<double> >(pid, par));
             }
 
             /*
                 else if(parameter == "cell_pos")
                   {
                 ss >> parameter2;
-                    stringstream ss2(parameter2);
+                    std::stringstream ss2(parameter2);
                     std::string cell_v;
                     while(getline(ss2, cell_v, ':'))
                       cell.push_back(atof(cell_v.c_str()));
@@ -1191,30 +1191,30 @@ void clas12ana::readInputParam(const char *filename) {
             */
         }
     } else
-        cout << "Parameter file didn't read in " << endl;
+        std::cout << "Parameter file didn't read in " << endl;
 
     return;
 }
 
 void clas12ana::printParams() {
-    cout << endl;
-    cout << "Target Parameters:" << endl;
+    std::cout << endl;
+    std::cout << "Target Parameters:" << endl;
 
-    cout << "PID cuts:" << endl;
+    std::cout << "PID cuts:" << endl;
     for (auto itr = pid_cuts.begin(); itr != pid_cuts.end(); ++itr) {
-        cout << '\t' << "Particle type: " << itr->first << '\t' << "{mean,sigma}: ";
+        std::cout << '\t' << "Particle type: " << itr->first << '\t' << "{mean,sigma}: ";
         for (auto a: itr->second)
-            cout << '\t' << a;
-        cout << '\n';
+            std::cout << '\t' << a;
+        std::cout << '\n';
     }
 
-    cout << "Vertex cuts:" << endl;
+    std::cout << "Vertex cuts:" << endl;
 
     for (auto itr = vertex_cuts.begin(); itr != vertex_cuts.end(); ++itr) {
-        cout << '\t' << "Particle type: " << itr->first << '\t' << "{min,max}: ";
+        std::cout << '\t' << "Particle type: " << itr->first << '\t' << "{min,max}: ";
         for (auto a: itr->second)
-            cout << '\t' << a;
-        cout << '\n';
+            std::cout << '\t' << a;
+        std::cout << '\n';
     }
 }
 
@@ -1242,9 +1242,9 @@ template <typename Cont, typename Pred>
 std::vector<region_part_ptr> clas12ana::getByPid(std::vector<region_part_ptr> particles, int pid) {
     //  return container_filter(this->getDetParticles(), [pid](region_part_ptr dr)
     return container_filter(particles, [pid, this](region_part_ptr dr) {
-        cout << "ecal cuts " << checkEcalCuts(dr) << endl;
-        cout << "pid cuts " << checkPidCut(dr) << endl;
-        cout << "vertex cuts " << checkVertex(dr) << endl;
+        std::cout << "ecal cuts " << checkEcalCuts(dr) << endl;
+        std::cout << "pid cuts " << checkPidCut(dr) << endl;
+        std::cout << "vertex cuts " << checkVertex(dr) << endl;
         if (f_ecalSFCuts && !checkEcalCuts(dr))
             return false;
         if (f_pidCuts && !checkPidCut(dr))
@@ -1276,18 +1276,18 @@ void clas12ana::getByChi2Pid(std::vector<region_part_ptr> &particles, double mea
 
   for(auto &p : particles)
     {
-    cout<<" Part ID "<<p->par()->getPid()<<" "<<endl;
-    cout<<" Part ID "<<p->par()->getChi2Pid()<<" "<<endl;
+    std::cout<<" Part ID "<<p->par()->getPid()<<" "<<endl;
+    std::cout<<" Part ID "<<p->par()->getChi2Pid()<<" "<<endl;
     }  
   particles.erase(std::remove_if(particles.begin(), particles.end(), [mean,sigma](const region_part_ptr& p) {
 	return abs(p->par()->getChi2Pid() - mean) > sigma;
       }), particles.end());
 
-  cout <<"After remove "<<endl;
+  std::cout <<"After remove "<<endl;
   for(auto &p : particles)
     {
-    cout<<" Part ID "<<p->par()->getPid()<<" "<<endl;
-    cout<<" Part ID "<<p->par()->getChi2Pid()<<" "<<endl;
+    std::cout<<" Part ID "<<p->par()->getPid()<<" "<<endl;
+    std::cout<<" Part ID "<<p->par()->getChi2Pid()<<" "<<endl;
     }
   //  return container_filter(particles, [par](region_part_ptr dr)
   //			  {return abs(dr->par()->getChi2Pid() - par.at(0)) < par.at(1);  });

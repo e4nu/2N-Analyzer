@@ -9,6 +9,9 @@
 #include "../../namespaces/general_utilities/utilities/utilities.h"
 
 #if !defined(IndependentCanvasPDF) || !IndependentCanvasPDF
+#include <TLegendEntry.h>
+#include <TLegend.h>
+#include <TPaveText.h>
 #include <TApplication.h>
 #include <TCanvas.h>
 #include <TChain.h>
@@ -46,7 +49,7 @@ class hPlot2D {
 
     /* Histogram titles & labels.
      * contains HistogramStatTitle, HistogramTitle, XaxisTitle, YaxisTitle, Histogram2DTitleReactions, FinalState and DetectorRegion. */
-    map<std::string, std::string> Histogram2DTitles{{"FinalState", ""}, {"DetectorRegion", ""}, {"Histogram2DTitleReactions", ""}};
+    std::map<std::string, std::string> Histogram2DTitles{{"FinalState", ""}, {"DetectorRegion", ""}, {"Histogram2DTitleReactions", ""}};
     std::string HistogramStatsTitle;
 
     bool Title2 = false;
@@ -54,8 +57,8 @@ class hPlot2D {
     /* Histogram xAxis limits and #bins */
     int HistogramNumberOfXBins;           // default #bins for 2D histogram is 250 (see constructor)
     int HistogramNumberOfYBins;           // default #bins for 2D histogram is 250 (see constructor)
-    vector<double> HistogramXAxisLimits;  // {LowerXlim, UpperXlim}
-    vector<double> HistogramYAxisLimits;  // {LowerYlim, UpperYlim}
+    std::vector<double> HistogramXAxisLimits;  // {LowerXlim, UpperXlim}
+    std::vector<double> HistogramYAxisLimits;  // {LowerYlim, UpperYlim}
 
     //    /* Histogram normalization setup */
     //    bool NormalizeHistogram;
@@ -65,7 +68,7 @@ class hPlot2D {
     /* Histogram appearance setup */
     int LineColor = 1;
     int LineWidth = 2;
-    vector<double> Histogram2DTitleSizes = {0.06, 0.0425, 0.0425, 0.0425};  // {TitleSize, LabelSizex, LabelSizey, LabelSizez}
+    std::vector<double> Histogram2DTitleSizes = {0.06, 0.0425, 0.0425, 0.0425};  // {TitleSize, LabelSizex, LabelSizey, LabelSizez}
     bool CenterTitle = true;
     bool ShowStats = true;
 
@@ -75,7 +78,7 @@ class hPlot2D {
 
     /* Histogram cuts setup */
     bool ShowPlotCuts = false;
-    // vector<double> - for cuts
+    // std::vector<double> - for cuts
     double PlotCuts = 0;
     double PlotXmax = 0;
     bool PlotHistogramMax = true;
@@ -344,4 +347,4 @@ class hPlot2D {
     bool GetPlotHistogramMax() { return PlotHistogramMax; }
 };
 
-// #endif  // HPLOT2D_H
+#endif  // HPLOT2D_H

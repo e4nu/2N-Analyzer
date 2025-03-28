@@ -937,7 +937,7 @@ bool Directories::FindSubstring(string string1, std::string string2) {
     }
 }
 
-string Directories::Find(vector<string> Vector, std::string String) {
+string Directories::Find(std::vector<string> Vector, std::string String) {
     for (string Element : Vector) {
         if (FindSubstring(Element, String)) { return Element; }
     }

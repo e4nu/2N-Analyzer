@@ -1945,7 +1945,7 @@ void histPlotter1DwFit(TCanvas *HistogramCanvas, TH1D *Histogram1D, bool normali
 
     if (!ShowStats) { Histogram1D->SetStats(0); }
 
-    if (particle != "") { cout << "\n\nFit results for " << particle << " in " << finalState << " are (" << Histogram1DTitleReactions << "):\n\n"; }
+    if (particle != "") { std::cout << "\n\nFit results for " << particle << " in " << finalState << " are (" << Histogram1DTitleReactions << "):\n\n"; }
 
     if (apply_plot_cuts) {
         /* A fit to a gaussian with 3 parameters: f(x) = p0*exp(-0.5((x-p1)/p2)^2)). */
@@ -2021,7 +2021,7 @@ void histPlotter1DwFit(TCanvas *HistogramCanvas, TH1D *Histogram1D, bool normali
         }
     }
 
-    if (particle != "") { cout << "\n"; }
+    if (particle != "") { std::cout << "\n"; }
 
     if (LogScalePlot) {
         HistogramCanvas->SetLogy(1);

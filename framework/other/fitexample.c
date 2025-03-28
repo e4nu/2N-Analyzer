@@ -58,9 +58,9 @@ void fitexample() {
     double Mean = fit->GetParameter(1); // get p1
     double Std = fit->GetParameter(2); // get p2
 
-    cout << "\n\n\nAmp:\t" << Amp << "\n";
-    cout << "Mean:\t" << Mean << "\n";
-    cout << "Std:\t" << Std << "\n\n\n\n";
+    std::cout << "\n\n\nAmp:\t" << Amp << "\n";
+    std::cout << "Mean:\t" << Mean << "\n";
+    std::cout << "Std:\t" << Std << "\n\n\n\n";
 
     double titleSize = 0.06;
     double labelSizex = 0.0425;

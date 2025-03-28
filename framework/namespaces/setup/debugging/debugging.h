@@ -7,7 +7,7 @@
 
 #include <iostream>
 
-#include "../../../classes/Debugger/Debugger.cpp"
+#include "../../../classes/Debugger/Debugger.h"
 #include "../../settings/debugging_settings/debugging_settings.h"
 
 namespace debugging {

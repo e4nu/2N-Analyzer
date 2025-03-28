@@ -29,7 +29,7 @@
 #include <typeinfo>
 #include <vector>
 
-#include "../../../classes/hPlots/hPlot1D.cpp"
+#include "../../../classes/hPlots/hPlot1D.h"
 #include "../../../namespaces/general_utilities/utilities/utilities.h"
 
 // using namespace std;

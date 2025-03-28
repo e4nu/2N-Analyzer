@@ -4,10 +4,11 @@
 #define PBSTR "||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||"
 #define PBWIDTH 60
 
-// #include "reaction_cuts_test_functions.cpp"
+// #include "reaction_cuts_test_functions.h"
 
 #define RECO_ANALYSIS_RUN 1
 
+#include <TPaletteAxis.h>
 #include <TCanvas.h>
 #include <TChain.h>
 #include <TFile.h>
@@ -24,31 +25,32 @@
 #include <typeinfo>
 #include <vector>
 
-#include "../../framework/classes/AMaps/AMaps.cpp"
+#include "../../framework/classes/AMaps/AMaps.h"
 #include "../../framework/namespaces/general_utilities/utilities/utilities.h"
 //
 #include "HipoChain.h"
 #include "clas12reader.h"
 
 // using namespace std;
+using namespace utilities;
 
 void reaction_cuts_test() {
-    cout << "\n\nInitiating reaction_cuts.cpp\n";
+    std::cout << "\n\nInitiating reaction_cuts.cpp\n";
 
-    vector<double> cPart_veto_radii = {100};
-    // vector<double> cPart_veto_radii = {100, 125, 150};
-    // vector<double> cPart_veto_radii = {100, 125, 150, 175, 200};
-    // vector<double> nPart_veto_radii = {100, 125, 150, 175, 200, 250};
-    vector<double> nPart_veto_radii = {0};
+    std::vector<double> cPart_veto_radii = {100};
+    // std::vector<double> cPart_veto_radii = {100, 125, 150};
+    // std::vector<double> cPart_veto_radii = {100, 125, 150, 175, 200};
+    // std::vector<double> nPart_veto_radii = {100, 125, 150, 175, 200, 250};
+    std::vector<double> nPart_veto_radii = {0};
 
-    vector<double> Ebeam_v = {2.07052};
-    vector<vector<bool>> Ebeam_bool_v = {{true, false, false}};
-    // vector<double> Ebeam_v = {4.02962};
-    // vector<vector<bool>> Ebeam_bool_v = {{false, true, false}};
-    // vector<double> Ebeam_v = {5.98636};
-    // vector<vector<bool>> Ebeam_bool_v = {{false, false, true}};
-    // vector<double> Ebeam_v = {2.07052, 4.02962, 5.98636};
-    // vector<vector<bool>> Ebeam_bool_v = {{true, false, false}, {false, true, false}, {false, false, true}};
+    std::vector<double> Ebeam_v = {2.07052};
+    std::vector<std::vector<bool>> Ebeam_bool_v = {{true, false, false}};
+    // std::vector<double> Ebeam_v = {4.02962};
+    // std::vector<std::vector<bool>> Ebeam_bool_v = {{false, true, false}};
+    // std::vector<double> Ebeam_v = {5.98636};
+    // std::vector<std::vector<bool>> Ebeam_bool_v = {{false, false, true}};
+    // std::vector<double> Ebeam_v = {2.07052, 4.02962, 5.98636};
+    // std::vector<std::vector<bool>> Ebeam_bool_v = {{true, false, false}, {false, true, false}, {false, false, true}};
 
     // int Limiter = 25000000;  // 2500 files
     // int Limiter = 10000000;  // 1000 files
@@ -60,10 +62,10 @@ void reaction_cuts_test() {
     bool apply_ECAL_veto = true;
     bool apply_PCAL_neutral_veto = false;
 
-    vector<vector<bool>> CutSelector = {{false, false, false}};  // ConstrainedE = true
-    // vector<vector<bool>> CutSelector = {{true, false, false}, {true, true, false}, {true, false, true}};  // ConstrainedE = true
-    // vector<vector<bool>> CutSelector = {{false, false, false}, {false, true, false}, {false, false, true}}; // ConstrainedE = false
-    // vector<vector<bool>> CutSelector = {{true, false, false}, {true, true, false}, {true, false, true}, {false, false, false}, {false, true, false}, {false, false, true}};
+    std::vector<std::vector<bool>> CutSelector = {{false, false, false}};  // ConstrainedE = true
+    // std::vector<std::vector<bool>> CutSelector = {{true, false, false}, {true, true, false}, {true, false, true}};  // ConstrainedE = true
+    // std::vector<std::vector<bool>> CutSelector = {{false, false, false}, {false, true, false}, {false, false, true}}; // ConstrainedE = false
+    // std::vector<std::vector<bool>> CutSelector = {{true, false, false}, {true, true, false}, {true, false, true}, {false, false, false}, {false, true, false}, {false, false, true}};
 
     bool ConstrainTLmom = false;
 
@@ -78,7 +80,7 @@ void reaction_cuts_test() {
     std::string PCAL_neutral_veto_status = apply_PCAL_neutral_veto ? "_wPnV" : "_woPnV";
     std::string General_status = "";
 
-    nPart_veto_radii = (!apply_PCAL_neutral_veto) ? vector<double>{0} : nPart_veto_radii;
+    nPart_veto_radii = (!apply_PCAL_neutral_veto) ? std::vector<double>{0} : nPart_veto_radii;
 
     for (int Selector_ind = 0; Selector_ind < CutSelector.size(); Selector_ind++) {
         for (int rc_ind = 0; rc_ind < cPart_veto_radii.size(); rc_ind++) {
@@ -152,12 +154,12 @@ void reaction_cuts_test() {
                     /////////////////////////////////////
                     // Prepare histograms
                     /////////////////////////////////////
-                    vector<TH1*> HistoList_electron_cuts;
+                    std::vector<TH1*> HistoList_electron_cuts;
 
-                    vector<TH1*> HistoList;
-                    vector<string> HistSubjects;
-                    vector<string> HistSubjects2;
-                    vector<bool> FirstPrint;
+                    std::vector<TH1*> HistoList;
+                    std::vector<string> HistSubjects;
+                    std::vector<string> HistSubjects2;
+                    std::vector<bool> FirstPrint;
 
                     gStyle->SetTitleXSize(0.05);
                     gStyle->SetTitleYSize(0.05);
@@ -1091,7 +1093,7 @@ void reaction_cuts_test() {
                             auto Truth_theta_temp = mcpbank->getTheta() * 180 / M_PI;
                             auto Truth_phi_temp = mcpbank->getPhi() * 180 / M_PI;
 
-                            // cout << "\n\nTruth_theta_temp = " << Truth_theta_temp << "\n\n";
+                            // std::cout << "\n\nTruth_theta_temp = " << Truth_theta_temp << "\n\n";
 
                             if (pid_temp == 11) {
                                 Truth_theta_e = Truth_theta_temp, Truth_phi_e = Truth_phi_temp;
@@ -1163,14 +1165,14 @@ void reaction_cuts_test() {
                         if (ConstrainedE && (CalcdPhi1(fabs(GetPhi_e(Beam_energy_TString, Truth_phi_nFD) - (reco_P_e.Phi() * 180 / M_PI))) > 5.)) { continue; }
 
                         // if (fabs(Truth_phi_nFD) < 30.) {
-                        //     cout << "\n\n==========================================================\n";
-                        //     cout << "Truth_phi_nFD = " << Truth_phi_nFD << "\n";
-                        //     cout << "Truth_phi_e = " << Truth_phi_e << "\n";
-                        //     cout << "GetPhi_e(Beam_energy_TString, Truth_phi_nFD) = " << GetPhi_e(Beam_energy_TString, Truth_phi_nFD) << "\n";
-                        //     cout << "reco_P_e.Phi() * 180 / M_PI = " << reco_P_e.Phi() * 180 / M_PI << "\n";
-                        //     cout << "fabs(GetPhi_e(Beam_energy_TString, Truth_phi_nFD) - reco_P_e.Phi() * 180 / M_PI) = "
+                        //     std::cout << "\n\n==========================================================\n";
+                        //     std::cout << "Truth_phi_nFD = " << Truth_phi_nFD << "\n";
+                        //     std::cout << "Truth_phi_e = " << Truth_phi_e << "\n";
+                        //     std::cout << "GetPhi_e(Beam_energy_TString, Truth_phi_nFD) = " << GetPhi_e(Beam_energy_TString, Truth_phi_nFD) << "\n";
+                        //     std::cout << "reco_P_e.Phi() * 180 / M_PI = " << reco_P_e.Phi() * 180 / M_PI << "\n";
+                        //     std::cout << "fabs(GetPhi_e(Beam_energy_TString, Truth_phi_nFD) - reco_P_e.Phi() * 180 / M_PI) = "
                         //          << fabs(GetPhi_e(Beam_energy_TString, Truth_phi_nFD) - reco_P_e.Phi() * 180 / M_PI) << "\n\n";
-                        //     cout << "CalcdPhi1(fabs(GetPhi_e(Beam_energy_TString, Truth_phi_nFD) - reco_P_e.Phi() * 180 / M_PI)) = "
+                        //     std::cout << "CalcdPhi1(fabs(GetPhi_e(Beam_energy_TString, Truth_phi_nFD) - reco_P_e.Phi() * 180 / M_PI)) = "
                         //          << CalcdPhi1(fabs(GetPhi_e(Beam_energy_TString, Truth_phi_nFD) - reco_P_e.Phi() * 180 / M_PI)) << "\n\n";
                         // }
 
@@ -1194,7 +1196,7 @@ void reaction_cuts_test() {
 
 //                         bool TLpassCuts = true;
 
-//                         vector<int> truth_NeutronsFD;
+//                         std::vector<int> truth_NeutronsFD;
 
 //                         for (Int_t i = 0; i < Ngen; i++) {
 //                             mcpbank->setEntry(i);
@@ -1267,9 +1269,9 @@ void reaction_cuts_test() {
 //                         if (ConstrainTLmom && !TLpassCuts) { continue; }
 
 //                         // if (truth_NeutronsFD.size() != 1) {
-//                         //     cout << "\n\nError! truth_NeutronsFD size is not 1! Aborting...\n";
-//                         //     cout << "truth_NeutronsFD.size() = " << truth_NeutronsFD.size() << "\n";
-//                         //     cout << "Truth_theta_nFD = " << Truth_theta_nFD << "\nAborting...\n\n", exit(0);
+//                         //     std::cout << "\n\nError! truth_NeutronsFD size is not 1! Aborting...\n";
+//                         //     std::cout << "truth_NeutronsFD.size() = " << truth_NeutronsFD.size() << "\n";
+//                         //     std::cout << "Truth_theta_nFD = " << Truth_theta_nFD << "\nAborting...\n\n", exit(0);
 //                         // }
 //                         if (truth_NeutronsFD.size() != 1) { continue; }
 
@@ -1296,8 +1298,8 @@ void reaction_cuts_test() {
                         //  ---------------------------------------------------------------------------------------------------------------------------------------------------
 
 #pragma region /* Setting up neutrals (RAW) */
-                        vector<region_part_ptr> neutrons;
-                        vector<region_part_ptr> photons;
+                        std::vector<region_part_ptr> neutrons;
+                        std::vector<region_part_ptr> photons;
 
                         for (int i = 0; i < allParticles.size(); i++) {
                             int pid_temp = allParticles[i]->par()->getPid();
@@ -1321,8 +1323,8 @@ void reaction_cuts_test() {
                         //  -----------------------------------------------------------------------------------------------------------------------------------
 
 #pragma region /* Setting up FD neutrals (clas12reco) */
-                        vector<region_part_ptr> neutrons_FD_clas12;
-                        vector<region_part_ptr> photons_FD_clas12;
+                        std::vector<region_part_ptr> neutrons_FD_clas12;
+                        std::vector<region_part_ptr> photons_FD_clas12;
 
                         for (int i = 0; i < allParticles.size(); i++) {
                             int pid_temp = allParticles[i]->par()->getPid();
@@ -1350,8 +1352,8 @@ void reaction_cuts_test() {
                         //  ----------------------------------------------------------------------------------------------------------------------------------------
 
 #pragma region /* Setting up FD neutrals (redef) */
-                        vector<region_part_ptr> neutrons_FD_redef;
-                        vector<region_part_ptr> photons_FD_redef;
+                        std::vector<region_part_ptr> neutrons_FD_redef;
+                        std::vector<region_part_ptr> photons_FD_redef;
 
                         for (int i = 0; i < allParticles.size(); i++) {
                             int pid_temp = allParticles[i]->par()->getPid();
@@ -1377,7 +1379,7 @@ void reaction_cuts_test() {
                             bool ParticleInPCAL = (neutrons_FD_redef[i]->cal(clas12::PCAL)->getDetector() == 7);    // PCAL hit
                             bool ParticleInECIN = (neutrons_FD_redef[i]->cal(clas12::ECIN)->getDetector() == 7);    // ECIN hit
                             bool ParticleInECOUT = (neutrons_FD_redef[i]->cal(clas12::ECOUT)->getDetector() == 7);  // ECOUT hit
-                            if (ParticleInPCAL) { cout << "\n\nError! neutrons_FD_redef is in the PCAL! Aborting...\n\n", exit(0); }
+                            if (ParticleInPCAL) { std::cout << "\n\nError! neutrons_FD_redef is in the PCAL! Aborting...\n\n", exit(0); }
 
                             double Beta_ph = neutrons_FD_redef[i]->par()->getBeta();
                             double Gamma_ph = 1 / sqrt(1 - (Beta_ph * Beta_ph));
@@ -1402,8 +1404,8 @@ void reaction_cuts_test() {
                         double P_max = -1;
                         int NeutronsFD_ind_mom_max = -1;
 
-                        vector<region_part_ptr> neutrons_FD_ECALveto;
-                        vector<int> neutrons_FD_ECALveto_ind;
+                        std::vector<region_part_ptr> neutrons_FD_ECALveto;
+                        std::vector<int> neutrons_FD_ECALveto_ind;
 
                         for (int i = 0; i < allParticles.size(); i++) {
                             int pid_temp = allParticles[i]->par()->getPid();
@@ -1475,7 +1477,7 @@ void reaction_cuts_test() {
                         }
 
                         if (neutrons_FD_ECALveto.size() != neutrons_FD_ECALveto_ind.size()) {
-                            cout << "\n\nError! neutrons_FD_ECALveto.size() is different from neutrons_FD_ECALveto_ind.size()! Aborting...\n\n", exit(0);
+                            std::cout << "\n\nError! neutrons_FD_ECALveto.size() is different from neutrons_FD_ECALveto_ind.size()! Aborting...\n\n", exit(0);
                         }
 
                         if (NeutronsFD_ind_mom_max != -1) {
@@ -1512,7 +1514,7 @@ void reaction_cuts_test() {
                             bool ParticleInECIN = (neutrons_FD_ECALveto[i]->cal(clas12::ECIN)->getDetector() == 7);         // ECIN hit
                             bool ParticleInECOUT = (neutrons_FD_ECALveto[i]->cal(clas12::ECOUT)->getDetector() == 7);       // ECOUT hit
                             auto detlayer = ParticleInPCAL ? clas12::PCAL : ParticleInECIN ? clas12::ECIN : clas12::ECOUT;  // determine the earliest layer of the neutral hit
-                            if (apply_neutFD_redef && ParticleInPCAL) { cout << "\n\nError! neutrons_FD_ECALveto is in the PCAL! Aborting...\n\n", exit(0); }
+                            if (apply_neutFD_redef && ParticleInPCAL) { std::cout << "\n\nError! neutrons_FD_ECALveto is in the PCAL! Aborting...\n\n", exit(0); }
 
                             double Path_nFD = CalcPathnFD(neutrons_FD_ECALveto[i], electrons[0]);
                             double reco_ToF_nFD = CalcToFnFD(neutrons_FD_ECALveto[i], starttime);
@@ -1524,10 +1526,10 @@ void reaction_cuts_test() {
                             reco_P_nFD.SetMagThetaPhi(CalcPnFD(neutrons_FD_ECALveto[i], electrons[0], starttime), neutrons_FD_ECALveto[i]->getTheta(), neutrons_FD_ECALveto[i]->getPhi());
 
                             if ((reco_P_nFD.Mag() > P_max) && (neutrons_FD_ECALveto_ind.at(i) != NeutronsFD_ind_mom_max)) {
-                                cout << "\n\nError! P_max is is not of the leading neutron!\n";
-                                cout << "P_max = " << P_max << "\n";
-                                cout << "reco_P_nFD.Mag() = " << reco_P_nFD.Mag() << "\n";
-                                cout << "Aborting...\n\n", exit(0);
+                                std::cout << "\n\nError! P_max is is not of the leading neutron!\n";
+                                std::cout << "P_max = " << P_max << "\n";
+                                std::cout << "reco_P_nFD.Mag() = " << reco_P_nFD.Mag() << "\n";
+                                std::cout << "Aborting...\n\n", exit(0);
                             }
 
                             h_reco_P_nFD_ECALveto_1e_cut->Fill(reco_P_nFD.Mag(), weight);
@@ -1675,7 +1677,7 @@ void reaction_cuts_test() {
                             bool ParticleInECIN = (neutrons_FD_ECALveto[i]->cal(clas12::ECIN)->getDetector() == 7);         // ECIN hit
                             bool ParticleInECOUT = (neutrons_FD_ECALveto[i]->cal(clas12::ECOUT)->getDetector() == 7);       // ECOUT hit
                             auto detlayer = ParticleInPCAL ? clas12::PCAL : ParticleInECIN ? clas12::ECIN : clas12::ECOUT;  // determine the earliest layer of the neutral hit
-                            if (apply_neutFD_redef && ParticleInPCAL) { cout << "\n\nError! neutrons_FD_ECALveto is in the PCAL! Aborting...\n\n", exit(0); }
+                            if (apply_neutFD_redef && ParticleInPCAL) { std::cout << "\n\nError! neutrons_FD_ECALveto is in the PCAL! Aborting...\n\n", exit(0); }
 
                             double Path_nFD = CalcPathnFD(neutrons_FD_ECALveto[i], electrons[0]);
                             double reco_ToF_nFD = CalcToFnFD(neutrons_FD_ECALveto[i], starttime);
@@ -1687,10 +1689,10 @@ void reaction_cuts_test() {
                             reco_P_nFD.SetMagThetaPhi(CalcPnFD(neutrons_FD_ECALveto[i], electrons[0], starttime), neutrons_FD_ECALveto[i]->getTheta(), neutrons_FD_ECALveto[i]->getPhi());
 
                             if ((reco_P_nFD.Mag() > P_max) && (neutrons_FD_ECALveto_ind.at(i) != NeutronsFD_ind_mom_max)) {
-                                cout << "\n\nError! P_max is is not of the leading neutron!\n";
-                                cout << "P_max = " << P_max << "\n";
-                                cout << "reco_P_nFD.Mag() = " << reco_P_nFD.Mag() << "\n";
-                                cout << "Aborting...\n\n", exit(0);
+                                std::cout << "\n\nError! P_max is is not of the leading neutron!\n";
+                                std::cout << "P_max = " << P_max << "\n";
+                                std::cout << "reco_P_nFD.Mag() = " << reco_P_nFD.Mag() << "\n";
+                                std::cout << "Aborting...\n\n", exit(0);
                             }
 
                             h_reco_P_nFD_ECALveto_1e_cut->Fill(reco_P_nFD.Mag(), weight);
@@ -1843,7 +1845,7 @@ void reaction_cuts_test() {
                         //  -----------------------------------------------------------------------------------------------------------------------------------------
 
 #pragma region /* Setting up FD neutrals (matched) */
-                        vector<region_part_ptr> neutrons_FD_matched;
+                        std::vector<region_part_ptr> neutrons_FD_matched;
 
                         double tl_P;
 
@@ -1995,7 +1997,7 @@ void reaction_cuts_test() {
                             bool ParticleInPCAL = (neutrons_FD_matched[i]->cal(clas12::PCAL)->getDetector() == 7);    // PCAL hit
                             bool ParticleInECIN = (neutrons_FD_matched[i]->cal(clas12::ECIN)->getDetector() == 7);    // ECIN hit
                             bool ParticleInECOUT = (neutrons_FD_matched[i]->cal(clas12::ECOUT)->getDetector() == 7);  // ECOUT hit
-                            if (apply_neutFD_redef && ParticleInPCAL) { cout << "\n\nError! neutrons_FD_matched is in the PCAL! Aborting...\n\n", exit(0); }
+                            if (apply_neutFD_redef && ParticleInPCAL) { std::cout << "\n\nError! neutrons_FD_matched is in the PCAL! Aborting...\n\n", exit(0); }
                             auto detlayer = ParticleInPCAL ? clas12::PCAL : ParticleInECIN ? clas12::ECIN : clas12::ECOUT;  // determine the earliest layer of the neutral hit
 
                             double Path_nFD = CalcPathnFD(neutrons_FD_matched[i], electrons[0]);
@@ -2100,7 +2102,7 @@ void reaction_cuts_test() {
                     /////////////////////////////////////////////////////
                     // Organize histograms
                     /////////////////////////////////////////////////////
-                    cout << counter << endl;
+                    std::cout << counter << endl;
 
                     for (int i = 0; i < HistoList_electron_cuts.size(); i++) {
                         if (HistoList_electron_cuts[i]->InheritsFrom("TH1D")) {
@@ -2260,7 +2262,7 @@ void reaction_cuts_test() {
                         // std::string Title = HistoList_electron_cuts[i]->GetTitle();
                         // gStyle->SetTitlePS(Title.c_str());  // This sets the title in metadata
                         //                                     // gStyle->SetHeaderPS(("[ /Title " + Title + " /DOCVIEW pdfmark").c_str());  // Adds a PDF title
-                        // gStyle->SetHeaderPS(("[ /Page " + to_string(i + 1) + " /View [/Fit] /Title (myTitle) ] /OUT pdfmark").c_str());
+                        // gStyle->SetHeaderPS(("[ /Page " + std::to_string(i + 1) + " /View [/Fit] /Title (myTitle) ] /OUT pdfmark").c_str());
 
                         if (HistoList_electron_cuts[i]->InheritsFrom("TH1D")) {
                             HistoList_electron_cuts[i]->Draw();
@@ -2355,7 +2357,7 @@ void reaction_cuts_test() {
                         // std::string Title = HistoList_raw[i]->GetTitle();
                         // gStyle->SetTitlePS(Title.c_str());  // This sets the title in metadata
                         //                                     // gStyle->SetHeaderPS(("[ /Title " + Title + " /DOCVIEW pdfmark").c_str());  // Adds a PDF title
-                        // gStyle->SetHeaderPS(("[ /Page " + to_string(i + 1) + " /View [/Fit] /Title (myTitle) ] /OUT pdfmark").c_str());
+                        // gStyle->SetHeaderPS(("[ /Page " + std::to_string(i + 1) + " /View [/Fit] /Title (myTitle) ] /OUT pdfmark").c_str());
 
                         if (HistoList_raw[i]->InheritsFrom("TH1D")) {
                             HistoList_raw[i]->Draw();
@@ -2450,7 +2452,7 @@ void reaction_cuts_test() {
                         // std::string Title = HistoList_clas12reco[i]->GetTitle();
                         // gStyle->SetTitlePS(Title.c_str());  // This sets the title in metadata
                         //                                     // gStyle->SetHeaderPS(("[ /Title " + Title + " /DOCVIEW pdfmark").c_str());  // Adds a PDF title
-                        // gStyle->SetHeaderPS(("[ /Page " + to_string(i + 1) + " /View [/Fit] /Title (myTitle) ] /OUT pdfmark").c_str());
+                        // gStyle->SetHeaderPS(("[ /Page " + std::to_string(i + 1) + " /View [/Fit] /Title (myTitle) ] /OUT pdfmark").c_str());
 
                         if (HistoList_clas12reco[i]->InheritsFrom("TH1D")) {
                             HistoList_clas12reco[i]->Draw();
@@ -2545,7 +2547,7 @@ void reaction_cuts_test() {
                         // std::string Title = HistoList_redef[i]->GetTitle();
                         // gStyle->SetTitlePS(Title.c_str());  // This sets the title in metadata
                         //                                     // gStyle->SetHeaderPS(("[ /Title " + Title + " /DOCVIEW pdfmark").c_str());  // Adds a PDF title
-                        // gStyle->SetHeaderPS(("[ /Page " + to_string(i + 1) + " /View [/Fit] /Title (myTitle) ] /OUT pdfmark").c_str());
+                        // gStyle->SetHeaderPS(("[ /Page " + std::to_string(i + 1) + " /View [/Fit] /Title (myTitle) ] /OUT pdfmark").c_str());
 
                         if (HistoList_redef[i]->InheritsFrom("TH1D")) {
                             HistoList_redef[i]->Draw();
@@ -2637,7 +2639,7 @@ void reaction_cuts_test() {
                         // std::string Title = HistoList[i]->GetTitle();
                         // gStyle->SetTitlePS(Title.c_str());  // This sets the title in metadata
                         //                                     // gStyle->SetHeaderPS(("[ /Title " + Title + " /DOCVIEW pdfmark").c_str());  // Adds a PDF title
-                        // gStyle->SetHeaderPS(("[ /Page " + to_string(i + 1) + " /View [/Fit] /Title (myTitle) ] /OUT pdfmark").c_str());
+                        // gStyle->SetHeaderPS(("[ /Page " + std::to_string(i + 1) + " /View [/Fit] /Title (myTitle) ] /OUT pdfmark").c_str());
 
                         if (HistoList[i]->InheritsFrom("TH1D")) {
                             HistoList[i]->Draw();
@@ -2668,7 +2670,7 @@ void reaction_cuts_test() {
 #pragma endregion
 
 #pragma region /* Print eff plots */
-                    vector<vector<TH1*>> HistoList_eff_plots;
+                    std::vector<std::vector<TH1*>> HistoList_eff_plots;
 
                     TH1D* h_eff_P_nFD_1e_cut_demominator = (TH1D*)h_truth_P_nFD_ECALveto_1e_cut->Clone((std::string(h_truth_P_nFD_ECALveto_1e_cut->GetName()) + "_demominator").c_str());
                     // TH1D* h_eff_P_nFD_1e_cut_demominator = (TH1D*)h_truth_P_n_1e_cut->Clone((std::string(h_truth_P_n_1e_cut->GetName()) + "_demominator").c_str());

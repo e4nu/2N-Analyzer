@@ -27,7 +27,7 @@ TH2D *Histofinder2D(const char *filename, const char *Histogram2DNameSubstring) 
     bool PrintOutResult = false;
 
     TFile *file = new TFile(filename);
-    if (!file) { cout << "\n\nHistofinder2D: could not load Hit_Maps_TL root file! Exiting...\n", exit(0); }
+    if (!file) { std::cout << "\n\nHistofinder2D: could not load Hit_Maps_TL root file! Exiting...\n", exit(0); }
 
     TH2D *Histogram2D;
 
@@ -43,15 +43,15 @@ TH2D *Histofinder2D(const char *filename, const char *Histogram2DNameSubstring) 
 
         std::string Histogram2DTempName = Histogram2DTemp->GetName();
 
-        if (PrintOut) { cout << Histogram2DTempName << "\n\n"; }
+        if (PrintOut) { std::cout << Histogram2DTempName << "\n\n"; }
 
         if (findSubstring(Histogram2DTempName, Histogram2DNameSubstring)) {
             HistogramFound = true;
 
             if (PrintOutResult) {
-                cout << "\n\nKey name: " << Histogram2DTemp->GetName() << "; Type: " << Key->GetClassName() << "\n";
-                cout << "filename: " << filename << "\n\n";
-                cout << "Histogram2DNameSubstring: " << Histogram2DNameSubstring << "\n\n";
+                std::cout << "\n\nKey name: " << Histogram2DTemp->GetName() << "; Type: " << Key->GetClassName() << "\n";
+                std::cout << "filename: " << filename << "\n\n";
+                std::cout << "Histogram2DNameSubstring: " << Histogram2DNameSubstring << "\n\n";
             }
 
             Histogram2D = (TH2D *) Key->ReadObj();
@@ -61,7 +61,7 @@ TH2D *Histofinder2D(const char *filename, const char *Histogram2DNameSubstring) 
     }
 
     if (!HistogramFound) {
-        cout << "\n\nHistofinder2D: could not find histogram!\n";
+        std::cout << "\n\nHistofinder2D: could not find histogram!\n";
 
         return Histogram2D;
     } else {

@@ -40,22 +40,22 @@ TH1D *Histofinder1D(TFile *file, const char *Histogram1DNameSubstring, const boo
     while ((Key = (TKey *) Next())) {
         std::string Histogram1DTempName = ((TH1D *) Key->ReadObj())->GetName();
 
-        if (PrintOut1) { cout << Histogram1DTempName << "\n\n"; }
+        if (PrintOut1) { std::cout << Histogram1DTempName << "\n\n"; }
 
         if (findSubstring(Histogram1DTempName, Histogram1DNameSubstring) &&
             (Key->GetClassName() != classnameTH2D("TH2D")) &&
             (Key->GetClassName() != classnameTFolder("TFolder")) &&
             (Key->GetClassName() != classnameTHStack("THStack"))) {
 
-            if (PrintOut) { cout << "\n\nKey name: " << ((TH1D *) Key->ReadObj())->GetName() << "; Type: " << Key->GetClassName() << "\n\n"; }
+            if (PrintOut) { std::cout << "\n\nKey name: " << ((TH1D *) Key->ReadObj())->GetName() << "; Type: " << Key->GetClassName() << "\n\n"; }
 
             std::string Histogram1DxLable = ((TH1D *) Key->ReadObj())->GetXaxis()->GetTitle();
             std::string Histogram1DTitle = ((TH1D *) Key->ReadObj())->GetTitle();
 
             if (PrintOut) {
-                cout << "\nHistogram1DxLable = " << Histogram1DxLable << "\n";
-                cout << "Histogram1DTitle = " << Histogram1DTitle << "\n";
-                cout << "TLmom = " << TLmom << "\n";
+                std::cout << "\nHistogram1DxLable = " << Histogram1DxLable << "\n";
+                std::cout << "Histogram1DTitle = " << Histogram1DTitle << "\n";
+                std::cout << "TLmom = " << TLmom << "\n";
             }
 
             if ((TLmom || !findSubstring(Histogram1DxLable, "Momentum"))) {
@@ -69,16 +69,16 @@ TH1D *Histofinder1D(TFile *file, const char *Histogram1DNameSubstring, const boo
     }
 
     if (!HistogramFound) {
-        cout << "\n\nHistofinder1D: could not find histogram!\n";
-        cout << "TLmom = " << TLmom << "\n";
-        cout << "Histogram1DNameSubstring = " << Histogram1DNameSubstring << "\n";
+        std::cout << "\n\nHistofinder1D: could not find histogram!\n";
+        std::cout << "TLmom = " << TLmom << "\n";
+        std::cout << "Histogram1DNameSubstring = " << Histogram1DNameSubstring << "\n";
         exit(0);
 
         return Histogram1D;
     } else {
         if (PrintOut) {
-            cout << "\n\nHistofinder1D: histogram found!\n";
-            cout << "FoundHistName = " << FoundHistName << "\n";
+            std::cout << "\n\nHistofinder1D: histogram found!\n";
+            std::cout << "FoundHistName = " << FoundHistName << "\n";
         }
 
         return Histogram1D;

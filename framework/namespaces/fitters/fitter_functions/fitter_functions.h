@@ -5,6 +5,7 @@
 #ifndef FIT_FUNCTIONS_H
 #define FIT_FUNCTIONS_H
 
+#include <TExec.h>
 #include <TApplication.h>
 #include <TCanvas.h>
 #include <TChain.h>
@@ -27,7 +28,7 @@
 #include "../../general_utilities/utilities/utilities.h"
 //
 #include "../../../classes/DSCuts/DSCuts.h"
-#include "../../../classes/hPlots/hPlot1D.cpp"
+#include "../../../classes/hPlots/hPlot1D.h"
 
 namespace fitter_functions {
 using namespace analysis_math;
@@ -101,14 +102,14 @@ void BetaFit(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Momentum_c
         func->SetParameters(BetaMax, BetaMean, 0.001);  // start fit with histogram's max and mean
         func->SetParNames("Constant", "Mean_value", "Sigma");
 
-        cout << "Beta histogram {max, mean}:\t{" << BetaMax << ", " << BetaMean << "}\n\n\n\n";
+        std::cout << "Beta histogram {max, mean}:\t{" << BetaMax << ", " << BetaMean << "}\n\n\n\n";
 
         // Adding limits to "Constant"
         double BetaConstantUlim = 1.2 * BetaMax;
         double BetaConstantLlim = 0.90 * BetaMax;
         //    double BetaConstantLlim = 0.67 * BetaMax;
         func->SetParLimits(0, BetaConstantLlim, BetaConstantUlim);
-        cout << "Beta Constant {Llim, Ulim}:\t{" << BetaConstantLlim << ", " << BetaConstantUlim << "}\n\n";
+        std::cout << "Beta Constant {Llim, Ulim}:\t{" << BetaConstantLlim << ", " << BetaConstantUlim << "}\n\n";
 
         // Adding limits to "Mean_value"
         //    double BetaMean_valueUlim = 1.0075;
@@ -117,19 +118,19 @@ void BetaFit(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Momentum_c
         //        double BetaMean_valueLlim = 1.0075;
         //        double BetaMean_valueLlim = 1.005;
         func->SetParLimits(1, BetaMean_valueLlim, BetaMean_valueUlim);
-        cout << "Beta Mean_value {Llim, Ulim}:\t{" << BetaMean_valueLlim << ", " << BetaMean_valueUlim << "}\n\n";
+        std::cout << "Beta Mean_value {Llim, Ulim}:\t{" << BetaMean_valueLlim << ", " << BetaMean_valueUlim << "}\n\n";
 
         //    // Adding limits to "Sigma"
         ////    double BetaSigmaUlim = 0.015;
         //    double BetaSigmaUlim = 0.01;
         //    double BetaSigmaLlim = 0.00001;
         //    func->SetParLimits(2, BetaSigmaLlim, BetaSigmaUlim);
-        //    cout << "Beta Sigma {Llim, Ulim}:\t{" << BetaSigmaLlim << ", " << BetaSigmaUlim << "}\n\n";
+        //    std::cout << "Beta Sigma {Llim, Ulim}:\t{" << BetaSigmaLlim << ", " << BetaSigmaUlim << "}\n\n";
 
-        cout << "\n";
+        std::cout << "\n";
         hBeta_Clone->Fit("fit");
         hBeta_Clone->Draw();
-        cout << "\n";
+        std::cout << "\n";
 
         TF1 *fit = hBeta_Clone->GetFunction("fit");
         double FitAmp = fit->GetParameter(0);   // get p0
@@ -170,7 +171,7 @@ void BetaFit(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Momentum_c
         //<editor-fold desc="Plot deltaP as function of beta">
         std::string deltaPStatsTitle = "#deltaP_{" + BetaParticleShort + "} (" + BetaPlot.GetFinalState() + ")";
         std::string deltaPTitle = BetaParticle + " momentum uncertainty #deltaP_{" + BetaParticleShort + "} (" + BetaPlot.GetFinalState() + ")";
-        std::string deltaPfunc = to_string(m_n * FitStd) + "/ ( (1 - x*x) * sqrt(1 - x*x) )";
+        std::string deltaPfunc = std::to_string(m_n * FitStd) + "/ ( (1 - x*x) * sqrt(1 - x*x) )";
 
         auto *deltaP = new TF1(deltaPStatsTitle.c_str(), deltaPfunc.c_str(), 0.9, 1);
         deltaP->SetTitle(deltaPTitle.c_str());
@@ -198,7 +199,7 @@ void BetaFit(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Momentum_c
         deltaPParam->SetTextSize(0.03);
         deltaPParam->SetFillColor(0);
         deltaPParam->SetTextAlign(12);
-        deltaPParam->AddText(("d#beta = " + to_string(FitStd)).c_str());
+        deltaPParam->AddText(("d#beta = " + std::to_string(FitStd)).c_str());
         //    deltaPParam->AddText(("#delta#beta = " + basic_tools::ToStringWithPrecision(FitStd, 8)).c_str());
         deltaPParam->Draw("same");
 
@@ -216,10 +217,10 @@ void BetaFit(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Momentum_c
         SolveP3(Beta_Max_sol, 0, -1, FitStd / deltaPRel_UncertaintyU);
         SolveP3(Beta_Min_sol, 0, -1, FitStd / deltaPRel_UncertaintyL);
 
-        cout << "\nSolutions for W(beta) = 0 for 20%:\n";
+        std::cout << "\nSolutions for W(beta) = 0 for 20%:\n";
 
         for (int i = 0; i < 3; i++) {
-            cout << "Beta_Max_sol[" << i << "] = " << Beta_Max_sol[i] << "\n";
+            std::cout << "Beta_Max_sol[" << i << "] = " << Beta_Max_sol[i] << "\n";
 
             // TODO: see if other checks for the solution are required!!!
             if (Beta_Max_sol[i] >= 0.9 && Beta_Max_sol[i] < 1) { Beta_Max = Beta_Max_sol[i]; }
@@ -227,14 +228,14 @@ void BetaFit(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Momentum_c
 
         P_Beta_Max = m_n * Beta_Max / sqrt(1 - Beta_Max * Beta_Max);
 
-        cout << "W(beta) const Max = " << FitStd / deltaPRel_UncertaintyU << "\n";
-        cout << "Beta_Max = " << Beta_Max << " is chosen\n";
-        cout << "P(Beta_Max) = " << P_Beta_Max << "\n\n";
+        std::cout << "W(beta) const Max = " << FitStd / deltaPRel_UncertaintyU << "\n";
+        std::cout << "Beta_Max = " << Beta_Max << " is chosen\n";
+        std::cout << "P(Beta_Max) = " << P_Beta_Max << "\n\n";
 
-        cout << "Solutions for W(beta) = 0 for 10%:\n";
+        std::cout << "Solutions for W(beta) = 0 for 10%:\n";
 
         for (int i = 0; i < 3; i++) {
-            cout << "Beta_Min_sol[" << i << "] = " << Beta_Min_sol[i] << "\n";
+            std::cout << "Beta_Min_sol[" << i << "] = " << Beta_Min_sol[i] << "\n";
 
             // TODO: see if other checks for the solution are required!!!
             if (Beta_Min_sol[i] >= 0.9 && Beta_Min_sol[i] < 1) { Beta_Min = Beta_Min_sol[i]; }
@@ -242,9 +243,9 @@ void BetaFit(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Momentum_c
 
         P_Beta_Min = m_n * Beta_Min / sqrt(1 - Beta_Min * Beta_Min);
 
-        cout << "W(beta) const Max = " << FitStd / deltaPRel_UncertaintyL << "\n";
-        cout << "Beta_Min = " << Beta_Min << " is chosen\n";
-        cout << "P(Beta_Min) = " << P_Beta_Min << "\n\n";
+        std::cout << "W(beta) const Max = " << FitStd / deltaPRel_UncertaintyL << "\n";
+        std::cout << "Beta_Min = " << Beta_Min << " is chosen\n";
+        std::cout << "P(Beta_Min) = " << P_Beta_Min << "\n\n";
 
         Momentum_cuts.SetUpperCut(P_Beta_Max);
         //</editor-fold>
@@ -252,7 +253,7 @@ void BetaFit(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Momentum_c
         //<editor-fold desc="Plot deltaP/P as function of beta">
         std::string Rel_deltaPStatsTitle = "#deltaP_{" + BetaParticleShort + "} (" + BetaPlot.GetFinalState() + ")";
         std::string Rel_deltaPTitle = BetaParticle + " relative uncertainty #deltaP_{" + BetaParticleShort + "}/P_{" + BetaParticleShort + "}" + " (" + BetaPlot.GetFinalState() + ")";
-        std::string Rel_deltaPfunc = to_string(FitStd) + "/ ( (1 - x*x) * x )";
+        std::string Rel_deltaPfunc = std::to_string(FitStd) + "/ ( (1 - x*x) * x )";
 
         auto *Rel_deltaP = new TF1(Rel_deltaPStatsTitle.c_str(), Rel_deltaPfunc.c_str(), 0.9, 1);
         Rel_deltaP->SetTitle(Rel_deltaPTitle.c_str());
@@ -276,7 +277,7 @@ void BetaFit(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Momentum_c
         deltaPRel_deltaP->SetTextSize(0.03);
         deltaPRel_deltaP->SetFillColor(0);
         deltaPRel_deltaP->SetTextAlign(12);
-        deltaPRel_deltaP->AddText(("d#beta = " + to_string(FitStd)).c_str());
+        deltaPRel_deltaP->AddText(("d#beta = " + std::to_string(FitStd)).c_str());
         deltaPRel_deltaP->Draw("same");
 
         TLine *upper_cut = new TLine(gPad->GetFrame()->GetX2() - 0.1, deltaPRel_UncertaintyU, gPad->GetFrame()->GetX2(), deltaPRel_UncertaintyU);
@@ -315,8 +316,8 @@ void BetaFit(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Momentum_c
         //<editor-fold desc="Plot w as function of beta">
         std::string WStatsTitle = "W(#beta) (" + BetaPlot.GetFinalState() + ")";
         std::string WTitle = "The W(#beta) function (" + BetaPlot.GetFinalState() + ")";
-        std::string W_Maxfunc = "x*x*x - x + " + to_string(FitStd / deltaPRel_UncertaintyU);
-        std::string W_Minfunc = "x*x*x - x + " + to_string(FitStd / deltaPRel_UncertaintyL);
+        std::string W_Maxfunc = "x*x*x - x + " + std::to_string(FitStd / deltaPRel_UncertaintyU);
+        std::string W_Minfunc = "x*x*x - x + " + std::to_string(FitStd / deltaPRel_UncertaintyL);
 
         auto *W_Max = new TF1(WStatsTitle.c_str(), W_Maxfunc.c_str(), 0.9, 1);
         W_Max->SetLineWidth(2);
@@ -425,14 +426,14 @@ void BetaFitApprax(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Mome
         func->SetParameters(BetaMax, BetaMean, 0.001);  // start fit with histogram's max and mean
         func->SetParNames("Constant", "Mean_value", "Sigma");
 
-        cout << "Beta histogram {max, mean}:\t{" << BetaMax << ", " << BetaMean << "}\n\n\n\n";
+        std::cout << "Beta histogram {max, mean}:\t{" << BetaMax << ", " << BetaMean << "}\n\n\n\n";
 
         // Adding limits to "Constant"
         double BetaConstantUlim = 1.2 * BetaMax;
         double BetaConstantLlim = 0.90 * BetaMax;
         //    double BetaConstantLlim = 0.67 * BetaMax;
         func->SetParLimits(0, BetaConstantLlim, BetaConstantUlim);
-        cout << "Beta Constant {Llim, Ulim}:\t{" << BetaConstantLlim << ", " << BetaConstantUlim << "}\n\n";
+        std::cout << "Beta Constant {Llim, Ulim}:\t{" << BetaConstantLlim << ", " << BetaConstantUlim << "}\n\n";
 
         // Adding limits to "Mean_value"
         //    double BetaMean_valueUlim = 1.0075;
@@ -440,19 +441,19 @@ void BetaFitApprax(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Mome
         double BetaMean_valueLlim = 1.0075;
         //        double BetaMean_valueLlim = 1.005;
         func->SetParLimits(1, BetaMean_valueLlim, BetaMean_valueUlim);
-        cout << "Beta Mean_value {Llim, Ulim}:\t{" << BetaMean_valueLlim << ", " << BetaMean_valueUlim << "}\n\n";
+        std::cout << "Beta Mean_value {Llim, Ulim}:\t{" << BetaMean_valueLlim << ", " << BetaMean_valueUlim << "}\n\n";
 
         //    // Adding limits to "Sigma"
         ////    double BetaSigmaUlim = 0.015;
         //    double BetaSigmaUlim = 0.01;
         //    double BetaSigmaLlim = 0.00001;
         //    func->SetParLimits(2, BetaSigmaLlim, BetaSigmaUlim);
-        //    cout << "Beta Sigma {Llim, Ulim}:\t{" << BetaSigmaLlim << ", " << BetaSigmaUlim << "}\n\n";
+        //    std::cout << "Beta Sigma {Llim, Ulim}:\t{" << BetaSigmaLlim << ", " << BetaSigmaUlim << "}\n\n";
 
-        cout << "\n";
+        std::cout << "\n";
         hBeta_Clone->Fit("fit");
         hBeta_Clone->Draw();
-        cout << "\n";
+        std::cout << "\n";
 
         TF1 *fit = hBeta_Clone->GetFunction("fit");
         double FitAmp = fit->GetParameter(0);   // get p0
@@ -492,7 +493,7 @@ void BetaFitApprax(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Mome
         //<editor-fold desc="Plot deltaP as function of beta">
         std::string deltaPStatsTitle = "#deltaP_{" + BetaParticleShort + "} (" + BetaPlot.GetFinalState() + ")";
         std::string deltaPTitle = BetaParticle + " momentum uncertainty #deltaP_{" + BetaParticleShort + "} (" + BetaPlot.GetFinalState() + ")";
-        std::string deltaPfunc = to_string(m_n * FitStd) + "/ ( (1 - x*x) * sqrt(1 - x*x) )";
+        std::string deltaPfunc = std::to_string(m_n * FitStd) + "/ ( (1 - x*x) * sqrt(1 - x*x) )";
 
         auto *deltaP = new TF1(deltaPStatsTitle.c_str(), deltaPfunc.c_str(), 0.9, 1);
         deltaP->SetTitle(deltaPTitle.c_str());
@@ -520,7 +521,7 @@ void BetaFitApprax(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Mome
         deltaPParam->SetTextSize(0.03);
         deltaPParam->SetFillColor(0);
         deltaPParam->SetTextAlign(12);
-        deltaPParam->AddText(("d#beta = " + to_string(FitStd)).c_str());
+        deltaPParam->AddText(("d#beta = " + std::to_string(FitStd)).c_str());
         //    deltaPParam->AddText(("#delta#beta = " + basic_tools::ToStringWithPrecision(FitStd, 8)).c_str());
         deltaPParam->Draw("same");
 
@@ -535,23 +536,23 @@ void BetaFitApprax(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Mome
         //<editor-fold desc="Solve deltaP/P for beta in range 0.9<=beta<1">
         double Beta_Max_Apprax, P_Beta_Max_Apprax, Beta_Min_Apprax, P_Beta_Min_Apprax;
 
-        cout << "\nSolutions for deltaP/P = 20%:\n";
+        std::cout << "\nSolutions for deltaP/P = 20%:\n";
 
         Beta_Max_Apprax = sqrt(1 - FitStd / deltaPRel_UncertaintyU);
         P_Beta_Max_Apprax = m_n * Beta_Max_Apprax / sqrt(1 - Beta_Max_Apprax * Beta_Max_Apprax);
 
-        cout << "Beta_Max_Apprax = " << Beta_Max_Apprax << " is chosen\n";
-        cout << "P(Beta_Max_Apprax) = " << P_Beta_Max_Apprax << "\n\n";
+        std::cout << "Beta_Max_Apprax = " << Beta_Max_Apprax << " is chosen\n";
+        std::cout << "P(Beta_Max_Apprax) = " << P_Beta_Max_Apprax << "\n\n";
 
-        cout << "Solutions for deltaP/P = 10%:\n";
+        std::cout << "Solutions for deltaP/P = 10%:\n";
 
         Beta_Min_Apprax = sqrt(1 - FitStd / deltaPRel_UncertaintyL);
         P_Beta_Min_Apprax = m_n * Beta_Min_Apprax / sqrt(1 - Beta_Min_Apprax * Beta_Min_Apprax);
 
-        cout << "Beta_Min_Apprax = " << Beta_Min_Apprax << " is chosen\n";
-        cout << "P(Beta_Min_Apprax) = " << P_Beta_Min_Apprax << "\n\n";
+        std::cout << "Beta_Min_Apprax = " << Beta_Min_Apprax << " is chosen\n";
+        std::cout << "P(Beta_Min_Apprax) = " << P_Beta_Min_Apprax << "\n\n";
 
-        ////        cout << "\n\n\n\n" << BetaPlot.GetHistogram1DSaveNamePath() << "Approximatied_beta/" << "\n\n\n\n";
+        ////        std::cout << "\n\n\n\n" << BetaPlot.GetHistogram1DSaveNamePath() << "Approximatied_beta/" << "\n\n\n\n";
         //        exit(0);
 
         Momentum_cuts.SetUpperCut(P_Beta_Max_Apprax);
@@ -561,7 +562,7 @@ void BetaFitApprax(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Mome
         std::string Rel_deltaPStatsTitle = "#deltaP_{" + BetaParticleShort + "} (" + BetaPlot.GetFinalState() + ")";
         std::string Rel_deltaPTitle =
             BetaParticle + " relative uncertainty #deltaP_{" + BetaParticleShort + "}/P_{" + BetaParticleShort + "}" + " (apprax. ," + BetaPlot.GetFinalState() + ")";
-        std::string Rel_deltaPfunc = to_string(FitStd) + "/ (1 - x*x)";
+        std::string Rel_deltaPfunc = std::to_string(FitStd) + "/ (1 - x*x)";
 
         auto *Rel_deltaP = new TF1(Rel_deltaPStatsTitle.c_str(), Rel_deltaPfunc.c_str(), 0.9, 1);
         Rel_deltaP->SetTitle(Rel_deltaPTitle.c_str());
@@ -585,7 +586,7 @@ void BetaFitApprax(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Mome
         deltaPRel_deltaP->SetTextSize(0.03);
         deltaPRel_deltaP->SetFillColor(0);
         deltaPRel_deltaP->SetTextAlign(12);
-        deltaPRel_deltaP->AddText(("d#beta = " + to_string(FitStd)).c_str());
+        deltaPRel_deltaP->AddText(("d#beta = " + std::to_string(FitStd)).c_str());
         deltaPRel_deltaP->Draw("same");
 
         TLine *upper_cut = new TLine(gPad->GetFrame()->GetX2() - 0.1, deltaPRel_UncertaintyU, gPad->GetFrame()->GetX2(), deltaPRel_UncertaintyU);

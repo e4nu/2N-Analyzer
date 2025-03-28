@@ -19,8 +19,8 @@
 #include <TApplication.h>
 #include <TROOT.h>
 
-#include "PlotsEff2x3Nucleon.cpp"
-#include "PlotsEff2x3Electron.cpp"
+#include "PlotsEff2x3Nucleon.h"
+#include "PlotsEff2x3Electron.h"
 
 using namespace std;
 

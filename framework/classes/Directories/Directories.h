@@ -27,13 +27,13 @@ class Directories {
     //<editor-fold desc="Number of Photo-electrons (Nphe) plots directories">
     bool create_Nphe_Dir = true;
     std::string Nphe_Parent_Directory = "01_Cuts_plots/01_Nphe_plots";
-    vector<string> Nphe_Daughter_Folders = {"", "01_1e_cut", "02_1p", "03_1n", "04_2p", "05_pFDpCD", "06_nFDpCD"};
+    std::vector<string> Nphe_Daughter_Folders = {"", "01_1e_cut", "02_1p", "03_1n", "04_2p", "05_pFDpCD", "06_nFDpCD"};
     //</editor-fold>
 
     //<editor-fold desc="Chi2 plots directories">
     bool create_chi2_Dir = true;
     std::string Chi2_Parent_Directory = "01_Cuts_plots/02_Chi2_plots";
-    vector<string> Chi2_Daughter_Folders = {"", "00_All_e", "01_1e_cut", "02_1p", "03_1n",
+    std::vector<string> Chi2_Daughter_Folders = {"", "00_All_e", "01_1e_cut", "02_1p", "03_1n",
                                             //                                                 "04_1e2p_BC-AC_cut_tests",
                                             "04_2p", "05_pFDpCD", "06_nFDpCD"};
     //</editor-fold>
@@ -41,7 +41,7 @@ class Directories {
     //<editor-fold desc="Vertex plots directories">
     bool create_Vertex_Dir = true;
     std::string Vertex_Parent_Directory = "01_Cuts_plots/03_Vertex_plots";
-    vector<string> Vertex_Daughter_Folders = {"",
+    std::vector<string> Vertex_Daughter_Folders = {"",
                                               "01_1e_cut/01_cParticles_Vtx_comp_plots/01_Electrons",
                                               "01_1e_cut/01_cParticles_Vtx_comp_plots/02_Protons",
                                               "01_1e_cut/01_cParticles_Vtx_comp_plots/03_Kplus",
@@ -66,7 +66,7 @@ class Directories {
     //<editor-fold desc="Sampling Fraction (SF) plots directories">
     bool create_SF_Dir = true;
     std::string SF_Parent_Directory = "01_Cuts_plots/04_SF_plots";
-    vector<string> SF_Daughter_Folders = {
+    std::vector<string> SF_Daughter_Folders = {
         "",
         //                                               "01_1e_cut",
         "01_1e_cut/01_SF_plots",
@@ -97,7 +97,7 @@ class Directories {
     //<editor-fold desc="Edge cuts histograms plots directories">
     bool create_fiducial_Dir = true;
     std::string fiducial_Parent_Directory = "01_Cuts_plots/05_Edge_cuts_plots";
-    vector<string> fiducial_Daughter_Folders = {"",
+    std::vector<string> fiducial_Daughter_Folders = {"",
                                                 //                                                     "01_1e_cut",
                                                 "01_1e_cut/01_PCAL",
 
@@ -120,7 +120,7 @@ class Directories {
     //<editor-fold desc="Momentum threshold plots directories">
     bool create_Momentum_Dir = true;
     std::string Momentum_Parent_Directory = "01_Cuts_plots/06_Momentum_plots";
-    vector<string> Momentum_Daughter_Folders = {
+    std::vector<string> Momentum_Daughter_Folders = {
         "",      "01_1e_cut", "01_1e_cut/01_Momentum_th_plots_1e_cut", "02_1p",     "02_1p/Analysis_plots_1p",        "03_1n", "03_1n/Analysis_plots_1n",
         "04_2p", "05_pFDpCD", "05_pFDpCD/Analysis_plots_pFDpCD",       "06_nFDpCD", "06_nFDpCD/Analysis_plots_nFDpCD"};
     //</editor-fold>
@@ -130,13 +130,13 @@ class Directories {
     //<editor-fold desc="W plots directories">
     bool create_W_Dir = true;
     std::string W_Parent_Directory = "02_W_plots";
-    vector<string> W_Daughter_Folders = {"", "01_1e_cut", "02_1p", "03_1n", "04_2p", "05_pFDpCD", "06_nFDpCD"};
+    std::vector<string> W_Daughter_Folders = {"", "01_1e_cut", "02_1p", "03_1n", "04_2p", "05_pFDpCD", "06_nFDpCD"};
     //</editor-fold>
 
     //<editor-fold desc="Beta plots directories">
     bool create_Beta_Dir = true;
     std::string Beta_Parent_Directory = "03_Beta_plots";
-    vector<string> Beta_Daughter_Folders = {"", "01_Beta_fit_plots", "01_Beta_fit_plots/03_1n", "01_Beta_fit_plots/03_1n/01_Neutron_beta_from_fPhotons_plots_1n",
+    std::vector<string> Beta_Daughter_Folders = {"", "01_Beta_fit_plots", "01_Beta_fit_plots/03_1n", "01_Beta_fit_plots/03_1n/01_Neutron_beta_from_fPhotons_plots_1n",
                                             "01_Beta_fit_plots/03_1n/01_Neutron_beta_from_fPhotons_plots_1n/01_fPhotons_All_plots_1n",
                                             "01_Beta_fit_plots/03_1n/01_Neutron_beta_from_fPhotons_plots_1n/02_fPhotons_noPCAL_hit_plots_1n",
                                             "01_Beta_fit_plots/03_1n/01_Neutron_beta_from_fPhotons_plots_1n/03_fPhotons_noPCAL_yesECIN_plots_1n",
@@ -164,7 +164,7 @@ class Directories {
     //<editor-fold desc="Angle plots directories">
     bool create_Angle_Dir = true;
     std::string Angle_Parent_Directory = "04_Angle_plots";
-    vector<string> Angle_Daughter_Folders = {
+    std::vector<string> Angle_Daughter_Folders = {
         "",
         //                                                  "00_All_e",
         "00_All_e/01_Theta_e_All_e_plots", "00_All_e/02_Phi_e_All_e_plots", "00_All_e/03_Theta_e_VS_Phi_e_All_e_plots",
@@ -216,13 +216,13 @@ class Directories {
     //<editor-fold desc="Momentum transfer plots directories">
     bool create_Momentum_transfer_Dir = true;
     std::string Momentum_transfer_Parent_Directory = "05_Momentum_transfer_plots";
-    vector<string> Momentum_transfer_Daughter_Folders = {"", "00_All_e", "01_1e_cut", "02_1p", "03_1n", "04_2p", "05_pFDpCD", "06_nFDpCD"};
+    std::vector<string> Momentum_transfer_Daughter_Folders = {"", "00_All_e", "01_1e_cut", "02_1p", "03_1n", "04_2p", "05_pFDpCD", "06_nFDpCD"};
     //</editor-fold>
 
     //<editor-fold desc="E_e plots directories">
     bool create_E_e_Dir = true;
     std::string E_e_Parent_Directory = "06_E_e_plots";
-    vector<string> E_e_Daughter_Folders = {"",
+    std::vector<string> E_e_Daughter_Folders = {"",
                                            "01_1e_cut",
                                            "01_1e_cut/E_e_plots_1e_cut",
                                            "01_1e_cut/E_e_VS_Theta_e_1e_cut",
@@ -256,7 +256,7 @@ class Directories {
     //<editor-fold desc="ETrans plots directories">
     bool create_ETrans_Dir = true;
     std::string ETrans_Parent_Directory = "07_ET_plots";
-    vector<string> ETrans_Daughter_Folders = {"",
+    std::vector<string> ETrans_Daughter_Folders = {"",
                                               "02_1p",
                                               "02_1p/02_Around_15_Deg_1p",
                                               "02_1p/02_Around_15_Deg_1p/00_All_interactions",
@@ -331,7 +331,7 @@ class Directories {
     //<editor-fold desc="Ecal plots directories">
     bool create_Ecal_Dir = true;
     std::string Ecal_Parent_Directory = "08_Ecal_rec_plots";
-    vector<string> Ecal_Daughter_Folders = {"",
+    std::vector<string> Ecal_Daughter_Folders = {"",
                                             "02_1p",
                                             "02_1p/01_Ecal_rec_by_reaction_1p/00_All_interactions",
                                             "02_1p/01_Ecal_rec_by_reaction_1p/01_QEL_only",
@@ -389,7 +389,7 @@ class Directories {
     //<editor-fold desc="TKI plots directories">
     bool create_TKI_Dir = true;
     std::string TKI_Parent_Directory = "09_TKI_plots";
-    vector<string> TKI_Daughter_Folders = {"",
+    std::vector<string> TKI_Daughter_Folders = {"",
                                            "03_1n",
                                            "03_1n/01_dP_T_1n",
                                            "03_1n/02_dAlpha_T_1n",
@@ -420,13 +420,13 @@ class Directories {
     // todo: change this folder's name
     bool create_ToF_Dir = true;
     std::string ToF_Parent_Directory = "10_ToF_plots";
-    vector<string> ToF_Daughter_Folders = {"", "01_1e_cut", "01_1e_cut/01_Neutron_vs_cParticles_hits_FTOF_1e_cut", "06_nFDpCD", "06_nFDpCD/01_Neutron_vs_cParticles_hits_FTOF_nFDpCD"};
+    std::vector<string> ToF_Daughter_Folders = {"", "01_1e_cut", "01_1e_cut/01_Neutron_vs_cParticles_hits_FTOF_1e_cut", "06_nFDpCD", "06_nFDpCD/01_Neutron_vs_cParticles_hits_FTOF_nFDpCD"};
     //</editor-fold>
 
     //<editor-fold desc="Efficiency & Acceptance Correction plots directories">
     bool create_Eff_and_ACorr_Dir = true;
     std::string Eff_and_ACorr_Parent_Directory = "11_Eff_and_ACorr_plots";
-    vector<string> Eff_and_ACorr_Daughter_Folders = {
+    std::vector<string> Eff_and_ACorr_Daughter_Folders = {
         "",
         "01_1e_cut",
         "01_1e_cut/01_Momentum_Eff_and_ACorr_plots_1e_cut",
@@ -471,7 +471,7 @@ class Directories {
     //<editor-fold desc="Acceptance maps plots directories">
     bool create_Acceptance_Maps_Dir = true;
     std::string Hit_Maps_Parent_Directory = "12_Acceptance_maps_plots";
-    vector<string> Hit_Maps_Daughter_Folders = {
+    std::vector<string> Hit_Maps_Daughter_Folders = {
         "",
         "01_AMaps_1e_cut",
         "01_AMaps_1e_cut/00a_AMaps_BC_from_file",
@@ -484,7 +484,7 @@ class Directories {
     //<editor-fold desc="Resolution plots directories">
     bool create_Resolution_Dir = true;
     std::string Resolution_Parent_Directory = "13_Resolution_plots";
-    vector<string> Resolution_Daughter_Folders = {
+    std::vector<string> Resolution_Daughter_Folders = {
         "",
         "02_1p",
         "02_1p/01_Proton_resolution_plots_1p",
@@ -509,7 +509,7 @@ class Directories {
     //<editor-fold desc="Multiplicity plots directories">
     bool create_Multiplicity_Dir = true;
     std::string Multiplicity_Parent_Directory = "14_Multiplicity_plots";
-    vector<string> Multiplicity_Daughter_Folders = {
+    std::vector<string> Multiplicity_Daughter_Folders = {
         "", "01_1e_cut", "02_1p", "03_1n", "05_pFDpCD", "06_nFDpCD",
 
     };
@@ -519,29 +519,29 @@ class Directories {
 
     bool FindSubstring(string string1, std::string string2);
 
-    std::string Find(vector<string> vector, std::string string);
+    std::string Find(std::vector<string> vector, std::string string);
 
    public:
-    map<string, string> Nphe_Directory_map;
-    map<string, string> Chi2_Directory_map;
-    map<string, string> Vertex_Directory_map;
-    map<string, string> SF_Directory_map;
-    map<string, string> Fiducial_Directory_map;
-    map<string, string> Momentum_Directory_map;
+    std::map<string, string> Nphe_Directory_map;
+    std::map<string, string> Chi2_Directory_map;
+    std::map<string, string> Vertex_Directory_map;
+    std::map<string, string> SF_Directory_map;
+    std::map<string, string> Fiducial_Directory_map;
+    std::map<string, string> Momentum_Directory_map;
 
-    map<string, string> W_Directory_map;
-    map<string, string> Beta_Directory_map;
-    map<string, string> Angle_Directory_map;
-    map<string, string> Momentum_transfer_Directory_map;
-    map<string, string> E_e_Directory_map;
-    map<string, string> ETrans_Directory_map;
-    map<string, string> Ecal_Directory_map;
-    map<string, string> TKI_Directory_map;
-    map<string, string> ToF_Directory_map;
-    map<string, string> Eff_and_ACorr_Directory_map;
-    map<string, string> AMaps_Directory_map;
-    map<string, string> Resolution_Directory_map;
-    map<string, string> Multiplicity_Directory_map;
+    std::map<string, string> W_Directory_map;
+    std::map<string, string> Beta_Directory_map;
+    std::map<string, string> Angle_Directory_map;
+    std::map<string, string> Momentum_transfer_Directory_map;
+    std::map<string, string> E_e_Directory_map;
+    std::map<string, string> ETrans_Directory_map;
+    std::map<string, string> Ecal_Directory_map;
+    std::map<string, string> TKI_Directory_map;
+    std::map<string, string> ToF_Directory_map;
+    std::map<string, string> Eff_and_ACorr_Directory_map;
+    std::map<string, string> AMaps_Directory_map;
+    std::map<string, string> Resolution_Directory_map;
+    std::map<string, string> Multiplicity_Directory_map;
 
     // MakeDirectory function -----------------------------------------------------------------------------------------------------------------------------------------------
 

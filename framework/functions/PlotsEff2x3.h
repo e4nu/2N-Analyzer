@@ -22,7 +22,7 @@
 #include <iostream>
 #include <string>
 
-#include "../classes/hPlots/hPlot1D.cpp"
+#include "../classes/hPlots/hPlot1D.h"
 #include "EventProperties/GetParticleNameShort_rm.h"
 #include "EventProperties/GetParticleName_rm.h"
 #include "GeneralFunctions.h"
@@ -101,10 +101,10 @@ void PlotsEff2x3(string SampleName, const hPlot1D &REC_Plot_1p_hist, const hPlot
     //</editor-fold>
 
     //<editor-fold desc="Canvas definitions">
-    if (!REC_Plot_1p) { cout << "\n\nEmpty hist\n\n\n"; }
-    if (!TL_Plot_1p) { cout << "\n\nEmpty hist\n\n\n"; }
-    if (!REC_Plot_1n) { cout << "\n\nEmpty hist\n\n\n"; }
-    if (!TL_Plot_1n) { cout << "\n\nEmpty hist\n\n\n"; }
+    if (!REC_Plot_1p) { std::cout << "\n\nEmpty hist\n\n\n"; }
+    if (!TL_Plot_1p) { std::cout << "\n\nEmpty hist\n\n\n"; }
+    if (!REC_Plot_1n) { std::cout << "\n\nEmpty hist\n\n\n"; }
+    if (!TL_Plot_1n) { std::cout << "\n\nEmpty hist\n\n\n"; }
 
     Canvas2x6->cd(1);
     Canvas2x6->cd(1)->SetGrid();

@@ -6,8 +6,8 @@
 #define DATAANALYSER_H
 // #ifdef DATAANALYSER_H
 
-#include "../../../Old_analysers/DetectorSimulationAnalyser.C"
-#include "../../../Old_analysers/TruthLevelAnalyser.c"
+#include "../../../Old_analysers/DetectorSimulationAnalyser.cpp"
+#include "../../../Old_analysers/TruthLevelAnalyser.cpp"
 
 class DataAnalyser {
    private:

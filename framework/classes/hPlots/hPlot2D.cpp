@@ -10,7 +10,7 @@
 // Constructor definition -----------------------------------------------------------------------------------------------------------------------------------------------
 
 hPlot2D::hPlot2D(std::string h2DtReactions, std::string fState, std::string dRegion, std::string hst, std::string ht, std::string xat, std::string yat, double LowerXlim, double UpperXlim,
-                 double LowerYlim, double UpperYlim, int hnoXb = 150, int hnoYb = 150) {
+                 double LowerYlim, double UpperYlim, int hnoXb, int hnoYb) {
     Histogram2DTitles["Histogram2DTitleReactions"] = h2DtReactions, Histogram2DTitles["FinalState"] = fState, Histogram2DTitles["DetectorRegion"] = dRegion;
     Histogram2DTitles["HistogramStatTitle"] = hst, Histogram2DTitles["HistogramTitle"] = ht, Histogram2DTitles["XaxisTitle"] = xat, Histogram2DTitles["YaxisTitle"] = yat;
     HistogramXAxisLimits.push_back(LowerXlim), HistogramXAxisLimits.push_back(UpperXlim);
@@ -28,7 +28,7 @@ hPlot2D::hPlot2D(std::string h2DtReactions, std::string fState, std::string dReg
 }
 
 hPlot2D::hPlot2D(std::string h2DtReactions, std::string fState, std::string dRegion, std::string hst, std::string ht, std::string xat, std::string yat, std::string sPath, std::string sName,
-                 double LowerXlim, double UpperXlim, double LowerYlim, double UpperYlim, int hnoXb = 150, int hnoYb = 150) {
+                 double LowerXlim, double UpperXlim, double LowerYlim, double UpperYlim, int hnoXb, int hnoYb) {
     Histogram2DTitles["Histogram2DTitleReactions"] = h2DtReactions, Histogram2DTitles["FinalState"] = fState, Histogram2DTitles["DetectorRegion"] = dRegion;
     Histogram2DTitles["HistogramStatTitle"] = hst, Histogram2DTitles["HistogramTitle"] = ht, Histogram2DTitles["XaxisTitle"] = xat, Histogram2DTitles["YaxisTitle"] = yat;
     HistogramXAxisLimits.push_back(LowerXlim), HistogramXAxisLimits.push_back(UpperXlim);
@@ -55,7 +55,7 @@ hPlot2D::hPlot2D(std::string h2DtReactions, std::string fState, std::string dReg
 }
 
 hPlot2D::hPlot2D(std::string fState, std::string dRegion, std::string hst, std::string ht, std::string xat, std::string yat, double LowerXlim, double UpperXlim, double LowerYlim,
-                 double UpperYlim, int hnoXb = 150, int hnoYb = 150) {
+                 double UpperYlim, int hnoXb, int hnoYb) {
     Histogram2DTitles["FinalState"] = fState, Histogram2DTitles["DetectorRegion"] = dRegion;
     Histogram2DTitles["HistogramStatTitle"] = hst, Histogram2DTitles["HistogramTitle"] = ht, Histogram2DTitles["XaxisTitle"] = xat, Histogram2DTitles["YaxisTitle"] = yat;
     HistogramXAxisLimits.push_back(LowerXlim), HistogramXAxisLimits.push_back(UpperXlim);
@@ -71,7 +71,7 @@ hPlot2D::hPlot2D(std::string fState, std::string dRegion, std::string hst, std::
 }
 
 hPlot2D::hPlot2D(std::string fState, std::string dRegion, std::string hst, std::string ht, std::string xat, std::string yat, std::string sPath, std::string sName, double LowerXlim,
-                 double UpperXlim, double LowerYlim, double UpperYlim, int hnoXb = 150, int hnoYb = 150) {
+                 double UpperXlim, double LowerYlim, double UpperYlim, int hnoXb, int hnoYb) {
     Histogram2DTitles["FinalState"] = fState, Histogram2DTitles["DetectorRegion"] = dRegion;
     Histogram2DTitles["HistogramStatTitle"] = hst, Histogram2DTitles["HistogramTitle"] = ht, Histogram2DTitles["XaxisTitle"] = xat, Histogram2DTitles["YaxisTitle"] = yat;
     HistogramXAxisLimits.push_back(LowerXlim), HistogramXAxisLimits.push_back(UpperXlim);
@@ -110,8 +110,8 @@ hPlot2D::hPlot2D(std::string fState, std::string dRegion, std::string hst, std::
     }
 }
 
-hPlot2D::hPlot2D(std::string hst, std::string ht, std::string xat, std::string yat, double LowerXlim, double UpperXlim, double LowerYlim, double UpperYlim, int hnoXb = 150,
-                 int hnoYb = 150) {
+hPlot2D::hPlot2D(std::string hst, std::string ht, std::string xat, std::string yat, double LowerXlim, double UpperXlim, double LowerYlim, double UpperYlim, int hnoXb,
+                 int hnoYb) {
     Histogram2DTitles["HistogramStatTitle"] = hst, Histogram2DTitles["HistogramTitle"] = ht, Histogram2DTitles["XaxisTitle"] = xat, Histogram2DTitles["YaxisTitle"] = yat;
     HistogramXAxisLimits.push_back(LowerXlim), HistogramXAxisLimits.push_back(UpperXlim);
     HistogramYAxisLimits.push_back(LowerYlim), HistogramYAxisLimits.push_back(UpperYlim);
@@ -131,7 +131,7 @@ hPlot2D::hPlot2D(std::string hst, std::string ht, std::string xat, std::string y
 
 //<editor-fold desc="histPlotter2D function (regular)">
 void hPlot2D::histPlotter2D(const std::string &SampleName, TCanvas *HistogramCanvas, TH2D *Histogram2D, TList *Histogram_list, const char *Histogram_OutPDF,
-                            std::string Histogram2DSaveNameDir, std::string Histogram2DSaveName, bool showStats = true) {
+                            std::string Histogram2DSaveNameDir, std::string Histogram2DSaveName, bool showStats) {
     HistogramCanvas->cd();
 
     std::string sNameFlag;
@@ -241,7 +241,7 @@ void hPlot2D::hDrawAndSave(const std::string &SampleName, TCanvas *h2DCanvas, TL
 //<editor-fold desc="histPlotter2D function (Beta vs. P plots, all particles)">
 void hPlot2D::histPlotter2D(const std::string &SampleName, TCanvas *HistogramCanvas, TH2D *Histogram2D, TList *Histogram_list, const char *Histogram_OutPDF,
                             std::string Histogram2DSaveNameDir, std::string Histogram2DSaveName, TF1 *Beta_function1, TF1 *Beta_function2, TF1 *Beta_function3, TF1 *Beta_function4,
-                            TF1 *Beta_function5, TF1 *Beta_function6, TF1 *Beta_function7, TF1 *Beta_function8, TF1 *Beta_function9, bool showStats = true) {
+                            TF1 *Beta_function5, TF1 *Beta_function6, TF1 *Beta_function7, TF1 *Beta_function8, TF1 *Beta_function9, bool showStats) {
     HistogramCanvas->cd();
 
     std::string sNameFlag;
@@ -341,7 +341,7 @@ void hPlot2D::hDrawAndSave(const std::string &SampleName, TCanvas *h2DCanvas, TL
 
 //<editor-fold desc="histPlotter2D function (Beta vs. P plots, single particle)">
 void hPlot2D::histPlotter2D(const std::string &SampleName, TCanvas *HistogramCanvas, TH2D *Histogram2D, TList *Histogram_list, const char *Histogram_OutPDF,
-                            std::string Histogram2DSaveNameDir, std::string Histogram2DSaveName, TF1 *Beta_function1, std::string particle1, bool showStats = true, bool plot_legend = true) {
+                            std::string Histogram2DSaveNameDir, std::string Histogram2DSaveName, TF1 *Beta_function1, std::string particle1, bool showStats, bool plot_legend) {
     HistogramCanvas->cd();
 
     std::string sNameFlag;

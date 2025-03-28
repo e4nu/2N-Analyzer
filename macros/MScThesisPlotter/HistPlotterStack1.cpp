@@ -21,9 +21,9 @@
 #include "../../source/constants.h"
 
 #if IndependentStack1draw
-#include "../../source/classes/hData/hData.cpp"
-#include "Histofinder1D.cpp"
-#include "TitleAligner.cpp"
+#include "../../source/classes/hData/hData.h"
+#include "Histofinder1D.h"
+#include "TitleAligner.h"
 #endif
 
 using namespace std;
@@ -158,7 +158,7 @@ void HistPlotterStack1(hData &particles, TCanvas *HistogramCanvas, TList *MScThe
     PosterModePlotsColorblind = true;
 #endif
 
-    cout << "\n\n";
+    std::cout << "\n\n";
 
     HistogramCanvas->Clear();
 
@@ -325,7 +325,7 @@ void HistPlotterStack1(hData &particles, TCanvas *HistogramCanvas, TList *MScThe
     } else {
         LineWidth = 12;
     }
-    vector<double> Histogram1DTitleSizes = {0.06, 0.0425, 0.0425}; // {TitleSize, LabelSizex, LabelSizey}
+    std::vector<double> Histogram1DTitleSizes = {0.06, 0.0425, 0.0425}; // {TitleSize, LabelSizex, LabelSizey}
     bool CenterTitle = true;
     bool ShowStats = true;
 
@@ -540,22 +540,22 @@ void HistPlotterStack1(hData &particles, TCanvas *HistogramCanvas, TList *MScThe
         std::string FSRyLabel;
 
         if (!findSubstring(Histogram1DNameCopy, "FSRatio")) {
-            cout << "Title = " << Sim_Histogram1D->GetTitle() << "\n";
-            cout << "Sim peak = " << Sim_Histogram1D->GetBinCenter(Sim_Histogram1D->GetMaximumBin()) << "\n";
-            cout << "Data peak = " << Data_Histogram1D->GetBinCenter(Data_Histogram1D->GetMaximumBin()) << "\n\n";
+            std::cout << "Title = " << Sim_Histogram1D->GetTitle() << "\n";
+            std::cout << "Sim peak = " << Sim_Histogram1D->GetBinCenter(Sim_Histogram1D->GetMaximumBin()) << "\n";
+            std::cout << "Data peak = " << Data_Histogram1D->GetBinCenter(Data_Histogram1D->GetMaximumBin()) << "\n\n";
 
-            cout << "Title QE = " << Sim_Histogram1D_QE->GetTitle() << "\n";
-            cout << "Sim peak QE = " << Sim_Histogram1D_QE->GetBinCenter(Sim_Histogram1D_QE->GetMaximumBin()) << "\n\n";
+            std::cout << "Title QE = " << Sim_Histogram1D_QE->GetTitle() << "\n";
+            std::cout << "Sim peak QE = " << Sim_Histogram1D_QE->GetBinCenter(Sim_Histogram1D_QE->GetMaximumBin()) << "\n\n";
 
-            cout << "Title MEC = " << Sim_Histogram1D_MEC->GetTitle() << "\n";
-            cout << "Sim peak MEC = " << Sim_Histogram1D_MEC->GetBinCenter(Sim_Histogram1D_MEC->GetMaximumBin()) << "\n\n";
+            std::cout << "Title MEC = " << Sim_Histogram1D_MEC->GetTitle() << "\n";
+            std::cout << "Sim peak MEC = " << Sim_Histogram1D_MEC->GetBinCenter(Sim_Histogram1D_MEC->GetMaximumBin()) << "\n\n";
 
-            cout << "Title RES = " << Sim_Histogram1D_RES->GetTitle() << "\n";
-            cout << "Sim peak RES = " << Sim_Histogram1D_RES->GetBinCenter(Sim_Histogram1D_RES->GetMaximumBin()) << "\n\n";
+            std::cout << "Title RES = " << Sim_Histogram1D_RES->GetTitle() << "\n";
+            std::cout << "Sim peak RES = " << Sim_Histogram1D_RES->GetBinCenter(Sim_Histogram1D_RES->GetMaximumBin()) << "\n\n";
 
-            cout << "Title DIS = " << Sim_Histogram1D_DIS->GetTitle() << "\n";
-            cout << "Sim peak DIS = " << Sim_Histogram1D_DIS->GetBinCenter(Sim_Histogram1D_DIS->GetMaximumBin()) << "\n";
-            cout << "========================================================================================\n\n";
+            std::cout << "Title DIS = " << Sim_Histogram1D_DIS->GetTitle() << "\n";
+            std::cout << "Sim peak DIS = " << Sim_Histogram1D_DIS->GetBinCenter(Sim_Histogram1D_DIS->GetMaximumBin()) << "\n";
+            std::cout << "========================================================================================\n\n";
         }
 
         if (findSubstring(Histogram1DNameCopy, "FSRatio")) {

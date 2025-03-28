@@ -6,6 +6,7 @@
 #define DEFFICIENCY_H
 // #ifdef DEFFICIENCY_H
 
+#include <TFolder.h>
 #include <TApplication.h>
 #include <TCanvas.h>
 #include <TChain.h>
@@ -30,12 +31,12 @@
 #include <typeinfo>
 #include <vector>
 
-// #include "../hData/hData.cpp"
+// #include "../hData/hData.h"
 // #include "../../namespaces/general_utilities/data_processor/data_processor.h"
 
-// #include "../hPlots/hPlot1D.cpp"
+// #include "../hPlots/hPlot1D.h"
 #include "../../namespaces/general_utilities/utilities/utilities.h"
-#include "../hPlots/hPlot1D.cpp"
+#include "../hPlots/hPlot1D.h"
 // #include "../../functions/GeneralFunctions.h"
 // #include "../../functions/EventProperties/GetParticleName.h"
 // #include "../../functions/EventProperties/GetParticleNameLC.h"

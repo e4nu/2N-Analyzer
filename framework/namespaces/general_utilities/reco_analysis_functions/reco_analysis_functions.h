@@ -25,13 +25,13 @@
 #include "../constants/constants.h"
 #include "../lists/lists.h"
 //
-// #include "HipoChain.h"
-// #include "clas12reader.h"
+#include "HipoChain.h"
+#include "clas12reader.h"
 
-#include "../../../includes/clas12_include.h"
+// #include "../../../includes/clas12_include.h"
 
 // using namespace std;
-// using namespace clas12;
+using namespace clas12;
 using namespace analysis_math;
 
 namespace reco_analysis_functions {
@@ -112,7 +112,7 @@ void CheckForNeutralFDECALHits(bool& ParticleInPCAL, bool& ParticleInECIN, bool&
 
 // CheckForECALHits function --------------------------------------------------------------------------------------------------------------------------------------------
 
-void CheckForECALHits(bool& ParticleInPCAL, bool& ParticleInECIN, bool& ParticleInECOUT, short& NeutralFD_ECAL_detlayer, vector<region_part_ptr>& allParticles, const int& i) {
+void CheckForECALHits(bool& ParticleInPCAL, bool& ParticleInECIN, bool& ParticleInECOUT, short& NeutralFD_ECAL_detlayer, std::vector<region_part_ptr>& allParticles, const int& i) {
     CheckForNeutralFDECALHits(ParticleInPCAL, ParticleInECIN, ParticleInECOUT, NeutralFD_ECAL_detlayer, allParticles[i]);
 
     // ParticleInPCAL = (allParticles[i]->cal(clas12::PCAL)->getDetector() == 7);    // PCAL hit
@@ -187,7 +187,7 @@ double CalcPnFD(region_part_ptr NeutronFD, region_part_ptr electron, double star
         double Gamma_ph = 1 / sqrt(1 - (Beta_ph * Beta_ph));
         Momentum =  constants::m_n * Beta_ph * Gamma_ph;
     } else {
-        cout << "\n\nError! Particle PDG is not 22 or 2112! Aborting...\n\n", exit(0);
+        std::cout << "\n\nError! Particle PDG is not 22 or 2112! Aborting...\n\n", exit(0);
     }
     */
 
@@ -263,7 +263,7 @@ void fillDCdebug(region_part_ptr p, TH2D** h, double weight) {
 
 // NeutronECAL_Cut_Veto function ----------------------------------------------------------------------------------------------------------------------------------------
 
-bool NeutronECAL_Cut_Veto(vector<region_part_ptr>& allParticles, vector<region_part_ptr>& electrons, const double& beamE, const int& index, const double& cPart_veto_radius,
+bool NeutronECAL_Cut_Veto(std::vector<region_part_ptr>& allParticles, std::vector<region_part_ptr>& electrons, const double& beamE, const int& index, const double& cPart_veto_radius,
                           bool apply_PCAL_neutral_veto = false, const double& nPart_veto_radius = 0.) {
     TVector3 p_b(0, 0, beamE); /* beam energy */
 

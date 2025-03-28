@@ -38,28 +38,28 @@
 #include "../constants/constants.h"
 #include "../lists/lists.h"
 //
-// #include "HipoChain.h"
-// #include "clas12reader.h"
+#include "HipoChain.h"
+#include "clas12reader.h"
 
-// #include "../../../includes/clas12_include.h"
+// // #include "../../../includes/clas12_include.h"
 
 // using namespace std;
-// using namespace clas12;
+using namespace clas12;
 using namespace lists;
 
 namespace truth_analysis_functions {
 //<editor-fold desc="Particle vectors">
 /* Particle index vectors */
-vector<int> TL_Electron_ind, TL_Neutrons_ind, TL_Protons_ind, TL_piplus_ind, TL_piminus_ind, TL_pizero_ind, TL_Photons_ind, TL_OtherPart_ind;
+std::vector<int> TL_Electron_ind, TL_Neutrons_ind, TL_Protons_ind, TL_piplus_ind, TL_piminus_ind, TL_pizero_ind, TL_Photons_ind, TL_OtherPart_ind;
 
 /* Particle index vectors (for FD particles) */
-vector<int> TL_ElectronFD_ind, TL_IDed_neutrons_FD, TL_ProtonsFD_ind, TL_ProtonsCD_ind, TL_pi0FD_ind, TL_PhotonsFD_ind;
+std::vector<int> TL_ElectronFD_ind, TL_IDed_neutrons_FD, TL_ProtonsFD_ind, TL_ProtonsCD_ind, TL_pi0FD_ind, TL_PhotonsFD_ind;
 
 /* Particle index vectors (for particles above momentum threshold) */
-vector<int> TL_Electron_mom_ind, TL_Neutrons_mom_ind, TL_Protons_mom_ind, TL_piplus_mom_ind, TL_piminus_mom_ind, TL_pizero_mom_ind, TL_Photons_mom_ind;
+std::vector<int> TL_Electron_mom_ind, TL_Neutrons_mom_ind, TL_Protons_mom_ind, TL_piplus_mom_ind, TL_piminus_mom_ind, TL_pizero_mom_ind, TL_Photons_mom_ind;
 
 /* Particle index vectors (for FD particles above momentum threshold) */
-vector<int> TL_ElectronFD_mom_ind, TL_NeutronsFD_mom_ind, TL_ProtonsFD_mom_ind, TL_ProtonsCD_mom_ind, TL_pi0FD_mom_ind, TL_PhotonsFD_mom_ind;
+std::vector<int> TL_ElectronFD_mom_ind, TL_NeutronsFD_mom_ind, TL_ProtonsFD_mom_ind, TL_ProtonsCD_mom_ind, TL_pi0FD_mom_ind, TL_PhotonsFD_mom_ind;
 //</editor-fold>
 
 //<editor-fold desc="Basic event selection variables">
