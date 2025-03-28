@@ -1,22 +1,49 @@
-cmake_minimum_required(VERSION 3.29)
-# cmake_minimum_required(VERSION 3.16.3)
+cmake_minimum_required(VERSION 3.16.3)
 project(2N_Analyser_e4nu)
 
-set(CMAKE_CXX_STANDARD 17)
-# set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 14)
 
-set(CLAS12ROOT $ENV{CLAS12ROOT})
-set(HIPO $ENV{HIPO})
-find_package(ROOT)
-list(APPEND CMAKE_PREFIX_PATH $ENV{ROOTSYS}) 
-include(${ROOT_USE_FILE})
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${ROOT_CXX_FLAGS} -O0 -ggdb")
-find_package(PkgConfig REQUIRED)
-pkg_check_modules(hipo4 REQUIRED IMPORTED_TARGET hipo4)
+# Find ROOT
+find_package(ROOT REQUIRED)
 
-set(INCLUDES ${ROOT_INCLUDE_DIR} ${CMAKE_SOURCE_DIR}/include ${CMAKE_SOURCE_DIR}/libraries/simulation_reweighting ${HIPO}/include)
-set(LIBRARIES ${CMAKE_SOURCE_DIR}/libraries ${HIPO}/lib)
-include_directories(${CLAS12ROOT}/Clas12Banks ${CLAS12ROOT}/Clas12Root ${INCLUDES} ${LIBRARIES})
+# Include ROOT
+include_directories(${ROOT_INCLUDE_DIRS})
+
+# # Set the path to CLAS12ROOT includes and libraries
+# set(CLAS12ROOT_INCLUDE_DIR /home/alon/clas12root/Clas12Root)
+# set(CLAS12BANKS_INCLUDE_DIR /home/alon/clas12root/Clas12Banks)
+# set(HIPO4_INCLUDE_DIR /home/alon/clas12root/hipo4)
+
+# # Include directories for CLAS12ROOT
+# include_directories(${CLAS12ROOT_INCLUDE_DIR})
+# include_directories(${CLAS12BANKS_INCLUDE_DIR})
+# include_directories(${HIPO4_INCLUDE_DIR})
+
+# # Set library paths
+# set(CLAS12ROOT_LIBRARY /home/alon/clas12root/lib/libClas12Root.so)
+# set(CLAS12BANKS_LIBRARY /home/alon/clas12root/lib/libClas12Banks.so)
+# set(HIPO4_LIBRARY /home/alon/clas12root/lib/libHipo4.so)
+
+# # Check if the library files exist
+# if (NOT EXISTS ${CLAS12ROOT_LIBRARY})
+#     message(FATAL_ERROR "CLAS12ROOT_LIBRARY does not exist at ${CLAS12ROOT_LIBRARY}")
+# endif()
+
+# if (NOT EXISTS ${CLAS12BANKS_LIBRARY})
+#     message(FATAL_ERROR "CLAS12BANKS_LIBRARY does not exist at ${CLAS12BANKS_LIBRARY}")
+# endif()
+
+# if (NOT EXISTS ${HIPO4_LIBRARY})
+#     message(FATAL_ERROR "HIPO4_LIBRARY does not exist at ${HIPO4_LIBRARY}")
+# endif()
+
+# # Collect all .cpp files in the src directory
+# file(GLOB CLAS12ROOT_SOURCES "${CLAS12ROOT_INCLUDE_DIR}/*.cpp")
+# file(GLOB CLAS12BANKS_SOURCES "${CLAS12BANKS_INCLUDE_DIR}/*.cpp")
+# file(GLOB HIPO4_SOURCES "${HIPO4_INCLUDE_DIR}/*.cpp")
+
+# Add executable
+#add_executable(project ${CLAS12ROOT_SOURCES} ${CLAS12BANKS_SOURCES} ${HIPO4_SOURCES})
 
 include_directories(.)
 include_directories(macros)
@@ -182,8 +209,8 @@ add_executable(project ${CLAS12ROOT_SOURCES} ${CLAS12BANKS_SOURCES} ${HIPO4_SOUR
         framework/namespaces/setup/analysis_samples/uniform_samples.h
 )
 
-# ## Link against ROOT and CLAS12ROOT libraries
-# #target_link_libraries(project ${ROOT_LIBRARIES})
+## Link against ROOT and CLAS12ROOT libraries
+#target_link_libraries(project ${ROOT_LIBRARIES})
 
-# target_link_libraries(project ${ROOT_LIBRARIES})
-# # target_link_libraries(project ${ROOT_LIBRARIES} ${CLAS12ROOT_LIBRARY} ${CLAS12BANKS_LIBRARY} ${HIPO4_LIBRARY})
+target_link_libraries(project ${ROOT_LIBRARIES})
+# target_link_libraries(project ${ROOT_LIBRARIES} ${CLAS12ROOT_LIBRARY} ${CLAS12BANKS_LIBRARY} ${HIPO4_LIBRARY})

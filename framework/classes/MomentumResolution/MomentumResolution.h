@@ -2,9 +2,9 @@
 // Created by alons on 20/06/2023.
 //
 
-// #ifndef MOMENTUMRESOLUTION_H
-// #define MOMENTUMRESOLUTION_H
-#ifdef MOMENTUMRESOLUTION_H
+#ifndef MOMENTUMRESOLUTION_H
+#define MOMENTUMRESOLUTION_H
+// #ifdef MOMENTUMRESOLUTION_H
 
 #include <TApplication.h>
 #include <TCanvas.h>

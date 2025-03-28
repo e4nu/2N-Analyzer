@@ -2,8 +2,8 @@
 // Created by alons on 20/06/2023.
 //
 
-#ifndef MOMENTUMRESOLUTION_H
-#define MOMENTUMRESOLUTION_H
+// #ifndef MOMENTUMRESOLUTION_H
+// #define MOMENTUMRESOLUTION_H
 
 #include "MomentumResolution.h"
 
@@ -2503,4 +2503,4 @@ double MomentumResolution::NCorr(const bool &apply_nucleon_SmearAndCorr, const d
 }
 //</editor-fold>
 
-#endif  // MOMENTUMRESOLUTION_H
+// #endif  // MOMENTUMRESOLUTION_H

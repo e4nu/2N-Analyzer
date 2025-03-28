@@ -2,9 +2,9 @@
 // Created by alons on 09/04/2023.
 //
 
-// #ifndef DIRECTORIES_H
-// #define DIRECTORIES_H
-#ifdef DIRECTORIES_H
+#ifndef DIRECTORIES_H
+#define DIRECTORIES_H
+// #ifdef DIRECTORIES_H
 
 #include <algorithm>
 #include <iostream>

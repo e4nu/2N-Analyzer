@@ -2,9 +2,9 @@
 // Created by alons on 08/07/2023.
 //
 
-// #ifndef DEFFICIENCY_H
-// #define DEFFICIENCY_H
-#ifdef DEFFICIENCY_H
+#ifndef DEFFICIENCY_H
+#define DEFFICIENCY_H
+// #ifdef DEFFICIENCY_H
 
 #include <TApplication.h>
 #include <TCanvas.h>

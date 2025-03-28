@@ -2,9 +2,9 @@
 // Created by alons on 13/06/2023.
 //
 
-// #ifndef TLCUTS_H
-// #define TLCUTS_H
-#ifdef TLCUTS_H
+#ifndef TLCUTS_H
+#define TLCUTS_H
+// #ifdef TLCUTS_H
 
 #include <TApplication.h>
 #include <TCanvas.h>

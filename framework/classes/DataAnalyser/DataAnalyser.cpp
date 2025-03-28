@@ -2,8 +2,8 @@
 // Created by alons on 05/08/2024.
 //
 
-#ifndef DATAANALYSER_H
-#define DATAANALYSER_H
+// #ifndef DATAANALYSER_H
+// #define DATAANALYSER_H
 
 #include "DataAnalyser.h"
 
@@ -40,6 +40,6 @@ void DataAnalyser::RunEventAnalyser(const std::string &AnalyserMode, const std::
     } else if (AnalyserMode == "Detector Simulation") {
         EventAnalyser(AnalyseFilePath, AnalyseFileSample, AnalyseFile);
     }
-};
+}
 
-#endif  // DATAANALYSER_H
+// #endif  // DATAANALYSER_H
