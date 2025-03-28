@@ -27,6 +27,8 @@
 
 #include "../../settings/PDF_canvas_settings/PDF_canvas_settings.h"
 
+// TODO: split into header and source files!
+
 // ======================================================================================================================================================================
 // PDF file canvas settings
 // ======================================================================================================================================================================
@@ -36,7 +38,7 @@ using namespace PDF_canvas_settings;
 
 // Canvas functions -----------------------------------------------------------------------------------------------------------------------------------------------------
 
-void ConfigCanvasPDF() {
+inline void ConfigCanvasPDF() {
     for (int i = 1; i < num_of_hist_per_row * num_of_hist_per_col + 1; i++) {
         CanvasPDF->cd(i)->SetGrid();
         CanvasPDF->cd(i)->SetBottomMargin(0.14);
@@ -45,7 +47,7 @@ void ConfigCanvasPDF() {
     }
 }
 
-void SetCanvasPDFind(int& CanvasPDFind) {
+inline void SetCanvasPDFind(int& CanvasPDFind) {
     if (CanvasPDFind <= 0) {
         CanvasPDFind = 1;
     } else if (CanvasPDFind > num_of_hist_per_row * num_of_hist_per_col) {
@@ -55,7 +57,7 @@ void SetCanvasPDFind(int& CanvasPDFind) {
     }
 }
 
-void CopyPadContent(TPad* sourcePad, TPad* targetPad) {
+inline void CopyPadContent(TPad* sourcePad, TPad* targetPad) {
     if (!sourcePad || !targetPad) {
         std::cerr << "Error: One of the pads is null." << std::endl;
         return;

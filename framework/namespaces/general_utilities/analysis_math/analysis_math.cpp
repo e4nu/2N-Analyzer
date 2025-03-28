@@ -1,26 +1,4 @@
-//
-// Created by Alon Sportes on 15/03/2025.
-//
-
-#ifndef ANALYSIS_MATH_H
-#define ANALYSIS_MATH_H
-
-#include <cmath>
-#include <iostream>
-#include <string>
-#include <vector>
-
-#include "../basic_tools/basic_tools.h"
-#include "../constants/constants.h"
-//
-// #include "analysis_math_reco_extentions.h"
-#include "polynomial_solver.h"
-//
-#include "HipoChain.h"
-#include "clas12reader.h"
-
-// using namespace std;
-using namespace clas12;
+#include "analysis_math.h"
 
 namespace analysis_math {
 using namespace polynomial_solver;
@@ -237,5 +215,3 @@ bool TLKinCutsCheck(const std::unique_ptr<clas12::clas12reader> &c12, bool apply
 }
 
 };  // namespace analysis_math
-
-#endif  // ANALYSIS_MATH_H

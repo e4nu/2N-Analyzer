@@ -37,6 +37,8 @@
 
 // using namespace std;
 
+// TODO: split into header and source files!
+
 namespace utilities {
 using namespace constants;
 using namespace basic_tools;
@@ -47,11 +49,11 @@ using namespace reco_analysis_functions;
 
 // ConfigRegion function ------------------------------------------------------------------------------------------------------------------------------------------------
 
-const std::string ConfigRegion(const std::string &Histogram2DNameCopy) { return FindSubstring(Histogram2DNameCopy, "CD") ? "CD" : "FD"; }
+inline const std::string ConfigRegion(const std::string &Histogram2DNameCopy) { return FindSubstring(Histogram2DNameCopy, "CD") ? "CD" : "FD"; }
 
 // ConfigSampleType function --------------------------------------------------------------------------------------------------------------------------------------------
 
-const std::string ConfigSampleType(const std::string &SampleName) {
+inline const std::string ConfigSampleType(const std::string &SampleName) {
     if (FindSubstring(SampleName, "sim")) {
         return "s";
     } else if (FindSubstring(SampleName, "data")) {
@@ -64,7 +66,7 @@ const std::string ConfigSampleType(const std::string &SampleName) {
 // ReplaceSubstring function --------------------------------------------------------------------------------------------------------------------------------------------
 
 // Function to replace one substring with another
-string ReplaceSubstring(const std::string &input, const std::string &toReplace, const std::string &replaceWith) {
+inline std::string ReplaceSubstring(const std::string &input, const std::string &toReplace, const std::string &replaceWith) {
     size_t pos = input.find(toReplace);
 
     if (pos == string::npos) {
@@ -78,7 +80,7 @@ string ReplaceSubstring(const std::string &input, const std::string &toReplace, 
 // TitleAligner functions -----------------------------------------------------------------------------------------------------------------------------------------------
 
 template <typename T>
-void TitleAligner(T *obj, std::string &title, std::string &xLabel, const std::string &originToReplace, const std::string &replacement) {
+inline void TitleAligner(T *obj, std::string &title, std::string &xLabel, const std::string &originToReplace, const std::string &replacement) {
     auto updateTitle = [&](string &str, auto setTitleFunc) {
         if (FindSubstring(str, originToReplace)) {
             str = ReplaceSubstring(str, originToReplace, replacement);
@@ -91,7 +93,7 @@ void TitleAligner(T *obj, std::string &title, std::string &xLabel, const std::st
 }
 
 template <typename T>
-void TitleAligner(T *obj, std::string &title, std::string &xLabel, std::string &yLabel, const std::string &originToReplace, const std::string &replacement) {
+inline void TitleAligner(T *obj, std::string &title, std::string &xLabel, std::string &yLabel, const std::string &originToReplace, const std::string &replacement) {
     auto updateTitle = [&](string &str, auto setTitleFunc) {
         if (FindSubstring(str, originToReplace)) {
             str = ReplaceSubstring(str, originToReplace, replacement);
@@ -106,7 +108,7 @@ void TitleAligner(T *obj, std::string &title, std::string &xLabel, std::string &
 
 // TitleAligner function ------------------------------------------------------------------------------------------------------------------------------------------------
 
-void TitleAligner(TH1D *simHistogram, TH1D *dataHistogram, const std::string &originToReplace, const std::string &replacement) {
+inline void TitleAligner(TH1D *simHistogram, TH1D *dataHistogram, const std::string &originToReplace, const std::string &replacement) {
     auto updateTitle = [&](TH1D *hist) {
         std::string title = hist->GetTitle();
         std::string xLabel = hist->GetXaxis()->GetTitle();
@@ -134,7 +136,7 @@ void TitleAligner(TH1D *simHistogram, TH1D *dataHistogram, const std::string &or
 
 // GetHistogramFromVector function --------------------------------------------------------------------------------------------------------------------------------------
 
-TH1 *GetHistogramFromVector(const std::vector<TH1 *> &HistoList, const std::string &searchString, const std::string &searchStringOption = "name") {
+inline TH1 *GetHistogramFromVector(const std::vector<TH1 *> &HistoList, const std::string &searchString, const std::string &searchStringOption = "name") {
     for (const auto &hist : HistoList) {
         if (!hist) continue;
 
@@ -150,8 +152,8 @@ TH1 *GetHistogramFromVector(const std::vector<TH1 *> &HistoList, const std::stri
 
 // FillHistogramByProcess function --------------------------------------------------------------------------------------------------------------------------------------
 
-void FillHistogramByProcess(double Variable, TH1D *Histogram_All_Int, TH1D *Histogram_QE, TH1D *Histogram_MEC, TH1D *Histogram_RES, TH1D *Histogram_DIS, bool qel, bool mec, bool res,
-                            bool dis, double weight = 1., bool IsMC = true, bool IsData = false) {
+inline void FillHistogramByProcess(double Variable, TH1D *Histogram_All_Int, TH1D *Histogram_QE, TH1D *Histogram_MEC, TH1D *Histogram_RES, TH1D *Histogram_DIS, bool qel, bool mec, bool res,
+                                   bool dis, double weight = 1., bool IsMC = true, bool IsData = false) {
     Histogram_All_Int->Fill(Variable, weight);
 
     if (IsMC) {
@@ -169,14 +171,14 @@ void FillHistogramByProcess(double Variable, TH1D *Histogram_All_Int, TH1D *Hist
 
 // GetHistogramEntries function -----------------------------------------------------------------------------------------------------------------------------------------
 
-double GetHistogramEntriesFromVector(const std::vector<TH1 *> &HistoList, const std::string &searchString, const std::string &searchStringOption = "name") {
+inline double GetHistogramEntriesFromVector(const std::vector<TH1 *> &HistoList, const std::string &searchString, const std::string &searchStringOption = "name") {
     if (TH1 *Histogram = GetHistogramFromVector(HistoList, searchString, searchStringOption)) { return Histogram->GetEntries(); }
     return -1;  // Return -1 if no match is found
 }
 
 // drawtext function ----------------------------------------------------------------------------------------------------------------------------------------------------
 
-void drawtext() {
+inline void drawtext() {
     Int_t i, n;
     Double_t x, y;
     TLatex l;

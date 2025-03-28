@@ -231,6 +231,12 @@ CMAKE_TAPI:FILEPATH=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeD
 // Studio IDE projects all commands are done without /nologo.
 CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 
+//Arguments to supply to pkg-config
+PKG_CONFIG_ARGN:STRING=
+
+//pkg-config executable
+PKG_CONFIG_EXECUTABLE:FILEPATH=/opt/homebrew/bin/pkg-config
+
 //Path to a library.
 ROOT_Core_LIBRARY:FILEPATH=/opt/homebrew/Cellar/root/6.34.04/lib/root/libCore.so
 
@@ -479,10 +485,16 @@ CMAKE_TAPI-ADVANCED:INTERNAL=1
 CMAKE_UNAME:INTERNAL=/usr/bin/uname
 //ADVANCED property for variable: CMAKE_VERBOSE_MAKEFILE
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
+//Details about finding PkgConfig
+FIND_PACKAGE_MESSAGE_DETAILS_PkgConfig:INTERNAL=[/opt/homebrew/bin/pkg-config][v2.4.3()]
 //Details about finding Vdt
 FIND_PACKAGE_MESSAGE_DETAILS_Vdt:INTERNAL=[/opt/homebrew/Cellar/root/6.34.04/include/root][/opt/homebrew/Cellar/root/6.34.04/lib/root/libvdt.dylib][v0.4()]
 //Details about finding nlohmann_json
 FIND_PACKAGE_MESSAGE_DETAILS_nlohmann_json:INTERNAL=[/opt/homebrew/share/cmake/nlohmann_json/nlohmann_jsonConfig.cmake][v3.11.3(3.11.3)]
+//ADVANCED property for variable: PKG_CONFIG_ARGN
+PKG_CONFIG_ARGN-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: PKG_CONFIG_EXECUTABLE
+PKG_CONFIG_EXECUTABLE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: ROOT_Core_LIBRARY
 ROOT_Core_LIBRARY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: ROOT_Gpad_LIBRARY
@@ -547,4 +559,29 @@ ROOT_rootrm_CMD-ADVANCED:INTERNAL=1
 VDT_INCLUDE_DIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: VDT_LIBRARY
 VDT_LIBRARY-ADVANCED:INTERNAL=1
+hipo4_CFLAGS:INTERNAL=
+hipo4_CFLAGS_I:INTERNAL=
+hipo4_CFLAGS_OTHER:INTERNAL=
+hipo4_FOUND:INTERNAL=
+hipo4_INCLUDEDIR:INTERNAL=
+hipo4_LIBDIR:INTERNAL=
+hipo4_LIBS:INTERNAL=
+hipo4_LIBS_L:INTERNAL=
+hipo4_LIBS_OTHER:INTERNAL=
+hipo4_LIBS_PATHS:INTERNAL=
+hipo4_MODULE_NAME:INTERNAL=
+hipo4_PREFIX:INTERNAL=
+hipo4_STATIC_CFLAGS:INTERNAL=
+hipo4_STATIC_CFLAGS_I:INTERNAL=
+hipo4_STATIC_CFLAGS_OTHER:INTERNAL=
+hipo4_STATIC_LIBDIR:INTERNAL=
+hipo4_STATIC_LIBS:INTERNAL=
+hipo4_STATIC_LIBS_L:INTERNAL=
+hipo4_STATIC_LIBS_OTHER:INTERNAL=
+hipo4_STATIC_LIBS_PATHS:INTERNAL=
+hipo4_VERSION:INTERNAL=
+hipo4_hipo4_INCLUDEDIR:INTERNAL=
+hipo4_hipo4_LIBDIR:INTERNAL=
+hipo4_hipo4_PREFIX:INTERNAL=
+hipo4_hipo4_VERSION:INTERNAL=
 

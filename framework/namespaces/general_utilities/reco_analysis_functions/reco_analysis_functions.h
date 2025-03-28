@@ -34,12 +34,14 @@
 using namespace clas12;
 using namespace analysis_math;
 
+// TODO: split into header and source files!
+
 namespace reco_analysis_functions {
 
 // GetFDNeutronP function -----------------------------------------------------------------------------------------------------------------------------------------------
 
 /* This is the old function used to calculate and obtain FD neutron momentum */
-double GetFDNeutronP(region_part_ptr& Neutron, bool apply_nucleon_cuts) {
+inline double GetFDNeutronP(region_part_ptr& Neutron, bool apply_nucleon_cuts) {
     double Momentum;
 
     if (apply_nucleon_cuts) {
@@ -103,7 +105,7 @@ double GetFDNeutronP(region_part_ptr& Neutron, bool apply_nucleon_cuts) {
 
 // CheckForNeutralFDECALHits function -----------------------------------------------------------------------------------------------------------------------------------
 
-void CheckForNeutralFDECALHits(bool& ParticleInPCAL, bool& ParticleInECIN, bool& ParticleInECOUT, short& NeutralFD_ECAL_detlayer, region_part_ptr& NeutralFD) {
+inline void CheckForNeutralFDECALHits(bool& ParticleInPCAL, bool& ParticleInECIN, bool& ParticleInECOUT, short& NeutralFD_ECAL_detlayer, region_part_ptr& NeutralFD) {
     ParticleInPCAL = (NeutralFD->cal(clas12::PCAL)->getDetector() == 7);      // PCAL hit
     ParticleInECIN = (NeutralFD->cal(clas12::ECIN)->getDetector() == 7);      // ECIN hit
     ParticleInECOUT = (NeutralFD->cal(clas12::ECOUT)->getDetector() == 7);    // ECOUT hit
@@ -112,7 +114,7 @@ void CheckForNeutralFDECALHits(bool& ParticleInPCAL, bool& ParticleInECIN, bool&
 
 // CheckForECALHits function --------------------------------------------------------------------------------------------------------------------------------------------
 
-void CheckForECALHits(bool& ParticleInPCAL, bool& ParticleInECIN, bool& ParticleInECOUT, short& NeutralFD_ECAL_detlayer, std::vector<region_part_ptr>& allParticles, const int& i) {
+inline void CheckForECALHits(bool& ParticleInPCAL, bool& ParticleInECIN, bool& ParticleInECOUT, short& NeutralFD_ECAL_detlayer, std::vector<region_part_ptr>& allParticles, const int& i) {
     CheckForNeutralFDECALHits(ParticleInPCAL, ParticleInECIN, ParticleInECOUT, NeutralFD_ECAL_detlayer, allParticles[i]);
 
     // ParticleInPCAL = (allParticles[i]->cal(clas12::PCAL)->getDetector() == 7);    // PCAL hit
@@ -123,7 +125,7 @@ void CheckForECALHits(bool& ParticleInPCAL, bool& ParticleInECIN, bool& Particle
 
 // CalcToFnFD function --------------------------------------------------------------------------------------------------------------------------------------------------
 
-double CalcToFnFD(region_part_ptr NeutronFD, double starttime = 9999) {
+inline double CalcToFnFD(region_part_ptr NeutronFD, double starttime = 9999) {
     bool ParticleInPCAL;   // PCAL hit
     bool ParticleInECIN;   // ECIN hit
     bool ParticleInECOUT;  // ECOUT hit
@@ -142,7 +144,7 @@ double CalcToFnFD(region_part_ptr NeutronFD, double starttime = 9999) {
 
 // CalcPathnFD function -------------------------------------------------------------------------------------------------------------------------------------------------
 
-double CalcPathnFD(region_part_ptr NeutronFD, region_part_ptr electron) {
+inline double CalcPathnFD(region_part_ptr NeutronFD, region_part_ptr electron) {
     bool ParticleInPCAL;   // PCAL hit
     bool ParticleInECIN;   // ECIN hit
     bool ParticleInECOUT;  // ECOUT hit
@@ -170,7 +172,7 @@ double CalcPathnFD(region_part_ptr NeutronFD, region_part_ptr electron) {
 
 // CalcPnFD function ----------------------------------------------------------------------------------------------------------------------------------------------------
 
-double CalcPnFD(region_part_ptr NeutronFD, region_part_ptr electron, double starttime = 9999) {
+inline double CalcPnFD(region_part_ptr NeutronFD, region_part_ptr electron, double starttime = 9999) {
     double reco_Path_nFD = CalcPathnFD(NeutronFD, electron);
     // double reco_Path_nFD = NeutronFD->getPath();
     double reco_ToF_nFD = CalcToFnFD(NeutronFD, starttime);
@@ -198,7 +200,7 @@ double CalcPnFD(region_part_ptr NeutronFD, region_part_ptr electron, double star
 
 // checkEcalDiagCuts function -------------------------------------------------------------------------------------------------------------------------------------------
 
-bool checkEcalDiagCuts(region_part_ptr electrons) {
+inline bool checkEcalDiagCuts(region_part_ptr electrons) {
     double ecal_diag_cut = 0.2;  // diagonal cut on SF
 
     double mom = electrons->par()->getP();
@@ -218,7 +220,7 @@ bool checkEcalDiagCuts(region_part_ptr electrons) {
 
 // DCEdgeCuts function --------------------------------------------------------------------------------------------------------------------------------------------------
 
-bool DCEdgeCuts(region_part_ptr p) {
+inline bool DCEdgeCuts(region_part_ptr p) {
     std::vector<double> dc_edge_cut_el = {4.5, 3.5, 7.5};  // units cm; {region1, region2, region3} cuts for electrons INBENDING
     std::vector<double> dc_edge_cut_ptr = {2.5, 3, 10.5};  // units cm; {region1, region2, region3} cuts for protons  OUTBENDING
 
@@ -252,7 +254,7 @@ bool DCEdgeCuts(region_part_ptr p) {
 
 // fillDCdebug function -------------------------------------------------------------------------------------------------------------------------------------------------
 
-void fillDCdebug(region_part_ptr p, TH2D** h, double weight) {
+inline void fillDCdebug(region_part_ptr p, TH2D** h, double weight) {
     //  if(p->par()->getPid() == 11)
     //    {
     h[1]->Fill(p->traj(DC, 6)->getX(), p->traj(DC, 6)->getY(), weight);
@@ -263,8 +265,8 @@ void fillDCdebug(region_part_ptr p, TH2D** h, double weight) {
 
 // NeutronECAL_Cut_Veto function ----------------------------------------------------------------------------------------------------------------------------------------
 
-bool NeutronECAL_Cut_Veto(std::vector<region_part_ptr>& allParticles, std::vector<region_part_ptr>& electrons, const double& beamE, const int& index, const double& cPart_veto_radius,
-                          bool apply_PCAL_neutral_veto = false, const double& nPart_veto_radius = 0.) {
+inline bool NeutronECAL_Cut_Veto(std::vector<region_part_ptr>& allParticles, std::vector<region_part_ptr>& electrons, const double& beamE, const int& index, const double& cPart_veto_radius,
+                                 bool apply_PCAL_neutral_veto = false, const double& nPart_veto_radius = 0.) {
     TVector3 p_b(0, 0, beamE); /* beam energy */
 
     TVector3 p_e; /* our electron */

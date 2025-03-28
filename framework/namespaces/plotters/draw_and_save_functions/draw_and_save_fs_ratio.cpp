@@ -2,54 +2,7 @@
 // Created by Alon Sportes on 26/03/2025.
 //
 
-/*
-to change FSR, change:
-
-type function
-title function
-SettingSaveNames
-SetSaveDir
-SetXAxisTitle
-SetYAxisTitle
-*/
-
-#ifndef DRAW_AND_SAVE_FS_RATIO_H
-#define DRAW_AND_SAVE_FS_RATIO_H
-
-#include <TApplication.h>
-#include <TCanvas.h>
-#include <TChain.h>
-#include <TDatabasePDG.h>
-#include <TF1.h>
-#include <TFile.h>
-#include <TH1.h>
-#include <TH2.h>
-#include <TLatex.h>
-#include <TLorentzVector.h>
-#include <TROOT.h>
-#include <TStyle.h>
-#include <TTree.h>
-#include <math.h>
-
-#include <chrono>
-#include <cstdlib>
-#include <iomanip>
-#include <iostream>
-#include <map>
-#include <sstream>
-#include <typeinfo>
-#include <vector>
-
-#include "../../../classes/hPlots/hPlot1D.h"
-#include "../../../classes/hPlots/hPlot2D.h"
-#include "../../../namespaces/general_utilities/utilities/utilities.h"
-
-// using namespace std;
-using namespace utilities;
-
-// TODO: move this into a class with the proper functions
-
-// TODO: finish debugging TFolder addition!
+#include "draw_and_save_fs_ratio.h"
 
 namespace draw_and_save_fs_ratio {
 const bool Equi_z_2D = true;
@@ -1787,5 +1740,3 @@ void DrawAndSaveFSRatio(const std::string &SampleName, TH2D *pFDpCD_Plot, const 
 }
 
 };  // namespace draw_and_save_fs_ratio
-
-#endif  // DRAW_AND_SAVE_FS_RATIO_H
