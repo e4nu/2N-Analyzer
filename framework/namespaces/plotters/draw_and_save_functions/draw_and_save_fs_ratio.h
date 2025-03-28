@@ -68,7 +68,7 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot2D &pFDpCD_Plo
 
 void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot2D &pFDpCD_Plot, TH2D *nFDpCD_Plot, TList *Histogram_list);
 
-void DrawAndSaveFSRatio(const std::string &SampleName, TH2D *pFDpCD_Plot, const std::string &pFDpCD_PlotSaveNamePath, TH2D *nFDpCD_Plot, TList *Histogram_list)
+void DrawAndSaveFSRatio(const std::string &SampleName, TH2D *pFDpCD_Plot, const std::string &pFDpCD_PlotSaveNamePath, TH2D *nFDpCD_Plot, TList *Histogram_list);
 
 };  // namespace draw_and_save_fs_ratio
 
