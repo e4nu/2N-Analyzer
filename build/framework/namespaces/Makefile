@@ -274,6 +274,30 @@ general_utilities/data_processor/data_processor.cpp.s:
 	cd /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build && $(MAKE) $(MAKESILENT) -f framework/namespaces/CMakeFiles/AnalysisLibraries.dir/build.make framework/namespaces/CMakeFiles/AnalysisLibraries.dir/general_utilities/data_processor/data_processor.cpp.s
 .PHONY : general_utilities/data_processor/data_processor.cpp.s
 
+general_utilities/histogram_functions/histogram_functions.o: general_utilities/histogram_functions/histogram_functions.cpp.o
+.PHONY : general_utilities/histogram_functions/histogram_functions.o
+
+# target to build an object file
+general_utilities/histogram_functions/histogram_functions.cpp.o:
+	cd /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build && $(MAKE) $(MAKESILENT) -f framework/namespaces/CMakeFiles/AnalysisLibraries.dir/build.make framework/namespaces/CMakeFiles/AnalysisLibraries.dir/general_utilities/histogram_functions/histogram_functions.cpp.o
+.PHONY : general_utilities/histogram_functions/histogram_functions.cpp.o
+
+general_utilities/histogram_functions/histogram_functions.i: general_utilities/histogram_functions/histogram_functions.cpp.i
+.PHONY : general_utilities/histogram_functions/histogram_functions.i
+
+# target to preprocess a source file
+general_utilities/histogram_functions/histogram_functions.cpp.i:
+	cd /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build && $(MAKE) $(MAKESILENT) -f framework/namespaces/CMakeFiles/AnalysisLibraries.dir/build.make framework/namespaces/CMakeFiles/AnalysisLibraries.dir/general_utilities/histogram_functions/histogram_functions.cpp.i
+.PHONY : general_utilities/histogram_functions/histogram_functions.cpp.i
+
+general_utilities/histogram_functions/histogram_functions.s: general_utilities/histogram_functions/histogram_functions.cpp.s
+.PHONY : general_utilities/histogram_functions/histogram_functions.s
+
+# target to generate assembly for a file
+general_utilities/histogram_functions/histogram_functions.cpp.s:
+	cd /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build && $(MAKE) $(MAKESILENT) -f framework/namespaces/CMakeFiles/AnalysisLibraries.dir/build.make framework/namespaces/CMakeFiles/AnalysisLibraries.dir/general_utilities/histogram_functions/histogram_functions.cpp.s
+.PHONY : general_utilities/histogram_functions/histogram_functions.cpp.s
+
 general_utilities/lists/lists.o: general_utilities/lists/lists.cpp.o
 .PHONY : general_utilities/lists/lists.o
 
@@ -517,6 +541,9 @@ help:
 	@echo "... general_utilities/data_processor/data_processor.o"
 	@echo "... general_utilities/data_processor/data_processor.i"
 	@echo "... general_utilities/data_processor/data_processor.s"
+	@echo "... general_utilities/histogram_functions/histogram_functions.o"
+	@echo "... general_utilities/histogram_functions/histogram_functions.i"
+	@echo "... general_utilities/histogram_functions/histogram_functions.s"
 	@echo "... general_utilities/lists/lists.o"
 	@echo "... general_utilities/lists/lists.i"
 	@echo "... general_utilities/lists/lists.s"

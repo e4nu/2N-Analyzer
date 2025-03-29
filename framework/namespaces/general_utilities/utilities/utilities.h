@@ -31,6 +31,7 @@
 #include "../basic_tools/basic_tools.h"
 #include "../constants/constants.h"
 #include "../data_processor/data_processor.h"
+#include "../histogram_functions/histogram_functions.h"
 #include "../lists/lists.h"
 #include "../reco_analysis_functions/reco_analysis_functions.h"
 // #include "../truth_analysis_functions/truth_analysis_functions.h"
@@ -45,6 +46,7 @@ using namespace basic_tools;
 using namespace analysis_math;
 using namespace lists;
 using namespace data_processor;
+using namespace histogram_functions;
 using namespace reco_analysis_functions;
 
 // ConfigRegion function ------------------------------------------------------------------------------------------------------------------------------------------------

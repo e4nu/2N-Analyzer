@@ -57,6 +57,8 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     const bool is4GeVSample = Experiment.IsBeamAt4GeV();
     const bool is6GeVSample = Experiment.IsBeamAt6GeV();
 
+    // code_setup::Probe_pdg = 
+
     // ======================================================================================================================================================================
     // Event selection setup
     // ======================================================================================================================================================================
@@ -98,7 +100,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     const std::string P_nuc_bin_profile = "uniform_P_nuc_bins";  // {equi_inverted_P_nuc , varying_P_nuc_bins , uniform_P_nuc_bins}
     bool Electron_single_slice_test = false;                     // keep as false for normal runs!
     bool Nucleon_single_slice_test = false;                      // keep as false for normal runs!
-    std::vector<int> TestSlices = {1, 1, 1};                          // {ElectronTestSlice, ProtonTestSlice, NeutronTestSlice}
+    std::vector<int> TestSlices = {1, 1, 1};                     // {ElectronTestSlice, ProtonTestSlice, NeutronTestSlice}
 
     /* Neutron resolution setup */
     // TODO: align neutron and proton momRes calculations!
@@ -9788,7 +9790,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
         std::vector<int> IDed_Protons_ind = pid.ChargedParticleID(protons, p_mom_th);  // indices of identified protons (i.e., within P_p th.)
         std::vector<int> Protons_ind = pid.GetGoodProtons(apply_nucleon_cuts, protons, IDed_Protons_ind, Theta_p1_cuts_2p, Theta_p2_cuts_2p,
-                                                     dphi_pFD_pCD_2p);  // good identified protons (no sCTOFhp and no dCDaFDd)
+                                                          dphi_pFD_pCD_2p);  // good identified protons (no sCTOFhp and no dCDaFDd)
 
         std::vector<int> Piplus_ind = pid.ChargedParticleID(piplus, pip_mom_th);
         std::vector<int> Piminus_ind = pid.ChargedParticleID(piminus, pim_mom_th);
@@ -9797,7 +9799,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
         // Proton vectors for (e,e'Xp)Y efficiency
         std::vector<int> All_Protons_ind = pid.ChargedParticleID(protons, no_p_mom_th);  // indices of all protons (i.e., without P_p th.)
         std::vector<int> All_gProtons_ind = pid.GetGoodProtons(apply_nucleon_cuts, protons, All_Protons_ind, Theta_p1_cuts_2p, Theta_p2_cuts_2p,
-                                                          dphi_pFD_pCD_2p);  // good protons (no sCTOFhp and no dCDaFDd) - WITHOUT mom. th.
+                                                               dphi_pFD_pCD_2p);  // good protons (no sCTOFhp and no dCDaFDd) - WITHOUT mom. th.
 
         // Neutral particles' identification (FD only)
         /* Get FD neutrons and photons, according to the definitions: */
@@ -11248,8 +11250,8 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                 hPhi_e_All_e_FD->Fill(Phi_e_tmp);
                 hTheta_e_VS_Phi_e_All_e_FD->Fill(Phi_e_tmp, Theta_e_tmp);
 
-                FillByInt(hQ2_All_e, hQ2_QEL_All_e, hQ2_MEC_All_e, hQ2_RES_All_e, hQ2_DIS_All_e, qel, mec, res, dis, Q2, Weight);
-                FillByInt(hq_3v_All_e, hq_3v_QEL_All_e, hq_3v_MEC_All_e, hq_3v_RES_All_e, hq_3v_DIS_All_e, qel, mec, res, dis, q_All_e_3v.Mag(), Weight);
+                FillByReaction(hQ2_All_e, hQ2_QEL_All_e, hQ2_MEC_All_e, hQ2_RES_All_e, hQ2_DIS_All_e, qel, mec, res, dis, Q2, Weight);
+                FillByReaction(hq_3v_All_e, hq_3v_QEL_All_e, hq_3v_MEC_All_e, hq_3v_RES_All_e, hq_3v_DIS_All_e, qel, mec, res, dis, q_All_e_3v.Mag(), Weight);
             }
         }  // end of loop over electrons vector
 
@@ -11802,7 +11804,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
         }
 
         // Fill W (1e cut, CD & FD)
-        FillByInt(hW_All_Int_1e_cut, hW_QEL_1e_cut, hW_MEC_1e_cut, hW_RES_1e_cut, hW_DIS_1e_cut, qel, mec, res, dis, W_1e_cut, Weight_1e_cut);
+        FillByReaction(hW_All_Int_1e_cut, hW_QEL_1e_cut, hW_MEC_1e_cut, hW_RES_1e_cut, hW_DIS_1e_cut, qel, mec, res, dis, W_1e_cut, Weight_1e_cut);
         hW_VS_q_3v_1e_cut->Fill(W_1e_cut, q_1e_cut_3v.Mag(), Weight_1e_cut);
         hW_VS_omega_1e_cut->Fill(W_1e_cut, omega_1e_cut, Weight_1e_cut);
 
@@ -11821,8 +11823,8 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
         }
 
         // Fill momentum transfer plots (1e cut, CD & FD)
-        FillByInt(hQ2_1e_cut, hQ2_QEL_1e_cut, hQ2_MEC_1e_cut, hQ2_RES_1e_cut, hQ2_DIS_1e_cut, qel, mec, res, dis, Q2_1e_cut, Weight);
-        FillByInt(hq_3v_1e_cut, hq_3v_QEL_1e_cut, hq_3v_MEC_1e_cut, hq_3v_RES_1e_cut, hq_3v_DIS_1e_cut, qel, mec, res, dis, q_1e_cut_3v.Mag(), Weight);
+        FillByReaction(hQ2_1e_cut, hQ2_QEL_1e_cut, hQ2_MEC_1e_cut, hQ2_RES_1e_cut, hQ2_DIS_1e_cut, qel, mec, res, dis, Q2_1e_cut, Weight);
+        FillByReaction(hq_3v_1e_cut, hq_3v_QEL_1e_cut, hq_3v_MEC_1e_cut, hq_3v_RES_1e_cut, hq_3v_DIS_1e_cut, qel, mec, res, dis, q_1e_cut_3v.Mag(), Weight);
 
         hQ2_VS_W_1e_cut->Fill(W_1e_cut, Q2_1e_cut, Weight_1e_cut);
         hQ2_VS_q_3v_1e_cut->Fill(q_1e_cut_3v.Mag(), Q2_1e_cut, Weight_1e_cut);
@@ -12826,8 +12828,8 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                 }
 
                 // Fill momentum transfer plots (1p)
-                FillByInt(hQ2_1p, hQ2_QEL_1p, hQ2_MEC_1p, hQ2_RES_1p, hQ2_DIS_1p, qel, mec, res, dis, Q2_1p, Weight_1p);
-                FillByInt(hq_3v_1p, hq_3v_QEL_1p, hq_3v_MEC_1p, hq_3v_RES_1p, hq_3v_DIS_1p, qel, mec, res, dis, q_1p_3v.Mag(), Weight_1p);
+                FillByReaction(hQ2_1p, hQ2_QEL_1p, hQ2_MEC_1p, hQ2_RES_1p, hQ2_DIS_1p, qel, mec, res, dis, Q2_1p, Weight_1p);
+                FillByReaction(hq_3v_1p, hq_3v_QEL_1p, hq_3v_MEC_1p, hq_3v_RES_1p, hq_3v_DIS_1p, qel, mec, res, dis, q_1p_3v.Mag(), Weight_1p);
 
                 hQ2_VS_W_1p->Fill(W_1p, Q2_1p, Weight_1p);
                 hQ2_VS_q_3v_1p->Fill(q_1p_3v.Mag(), Q2_1p, Weight_1p);
@@ -12885,7 +12887,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                                        ReDef_neutrons_FD, hNeut_Multi_By_Redef_APID_BV_1p_FD, hNeut_Multi_By_Redef_APID_AV_1p_FD, NeutronsFD_ind);
 
                 // Fill W (1p)
-                FillByInt(hW_All_Int_1p, hW_QEL_1p, hW_MEC_1p, hW_RES_1p, hW_DIS_1p, qel, mec, res, dis, W_1p, Weight_1p);
+                FillByReaction(hW_All_Int_1p, hW_QEL_1p, hW_MEC_1p, hW_RES_1p, hW_DIS_1p, qel, mec, res, dis, W_1p, Weight_1p);
                 hW_VS_q_3v_1p->Fill(W_1p, q_1p_3v.Mag(), Weight_1p);
                 hW_VS_omega_1p->Fill(W_1p, omega_1p, Weight_1p);
 
@@ -13657,8 +13659,8 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                 }
 
                 // Fill momentum transfer plots (1n)
-                FillByInt(hQ2_1n, hQ2_QEL_1n, hQ2_MEC_1n, hQ2_RES_1n, hQ2_DIS_1n, qel, mec, res, dis, Q2_1n, Weight_1n);
-                FillByInt(hq_3v_1n, hq_3v_QEL_1n, hq_3v_MEC_1n, hq_3v_RES_1n, hq_3v_DIS_1n, qel, mec, res, dis, q_1n_3v.Mag(), Weight_1n);
+                FillByReaction(hQ2_1n, hQ2_QEL_1n, hQ2_MEC_1n, hQ2_RES_1n, hQ2_DIS_1n, qel, mec, res, dis, Q2_1n, Weight_1n);
+                FillByReaction(hq_3v_1n, hq_3v_QEL_1n, hq_3v_MEC_1n, hq_3v_RES_1n, hq_3v_DIS_1n, qel, mec, res, dis, q_1n_3v.Mag(), Weight_1n);
 
                 hQ2_VS_W_1n->Fill(W_1n, Q2_1n, Weight_1n);
                 hQ2_VS_q_3v_1n->Fill(q_1n_3v.Mag(), Q2_1n, Weight_1n);
@@ -13716,7 +13718,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                                        ReDef_neutrons_FD, hNeut_Multi_By_Redef_APID_BV_1n_FD, hNeut_Multi_By_Redef_APID_AV_1n_FD, NeutronsFD_ind);
 
                 // Fill W (1n)
-                FillByInt(hW_All_Int_1n, hW_QEL_1n, hW_MEC_1n, hW_RES_1n, hW_DIS_1n, qel, mec, res, dis, W_1n, Weight_1n);
+                FillByReaction(hW_All_Int_1n, hW_QEL_1n, hW_MEC_1n, hW_RES_1n, hW_DIS_1n, qel, mec, res, dis, W_1n, Weight_1n);
                 hW_VS_q_3v_1n->Fill(W_1n, q_1n_3v.Mag(), Weight_1n);
                 hW_VS_omega_1n->Fill(W_1n, omega_1n, Weight_1n);
 
@@ -14385,8 +14387,8 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
             /* Filling Momentum transfer histograms (2p) */
             if (e_2p->getRegion() == FD) {
                 // Fill momentum transfer plots (1n)
-                FillByInt(hQ2_2p, hQ2_QEL_2p, hQ2_MEC_2p, hQ2_RES_2p, hQ2_DIS_2p, qel, mec, res, dis, Q2_2p, Weight);
-                FillByInt(hq_3v_2p, hq_3v_QEL_2p, hq_3v_MEC_2p, hq_3v_RES_2p, hq_3v_DIS_2p, qel, mec, res, dis, q_2p_3v.Mag(), Weight);
+                FillByReaction(hQ2_2p, hQ2_QEL_2p, hQ2_MEC_2p, hQ2_RES_2p, hQ2_DIS_2p, qel, mec, res, dis, Q2_2p, Weight);
+                FillByReaction(hq_3v_2p, hq_3v_QEL_2p, hq_3v_MEC_2p, hq_3v_RES_2p, hq_3v_DIS_2p, qel, mec, res, dis, q_2p_3v.Mag(), Weight);
 
                 hQ2_VS_W_2p->Fill(W_2p, Q2_2p, Weight);
                 hQ2_VS_q_3v_2p->Fill(q_2p_3v.Mag(), Q2_2p, Weight);
@@ -14417,7 +14419,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
             }
 
             // Fill W (2p)
-            FillByInt(hW_All_Int_2p, hW_QEL_2p, hW_MEC_2p, hW_RES_2p, hW_DIS_2p, qel, mec, res, dis, W_2p, Weight);
+            FillByReaction(hW_All_Int_2p, hW_QEL_2p, hW_MEC_2p, hW_RES_2p, hW_DIS_2p, qel, mec, res, dis, W_2p, Weight);
             hW_VS_q_3v_2p->Fill(W_2p, q_2p_3v.Mag(), Weight);
             hW_VS_omega_2p->Fill(W_2p, omega_2p, Weight);
 
@@ -15012,8 +15014,8 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                 }
 
                 // Fill momentum transfer plots (pFDpCD)
-                FillByInt(hQ2_pFDpCD, hQ2_QEL_pFDpCD, hQ2_MEC_pFDpCD, hQ2_RES_pFDpCD, hQ2_DIS_pFDpCD, qel, mec, res, dis, Q2_pFDpCD, Weight_pFDpCD);
-                FillByInt(hq_3v_pFDpCD, hq_3v_QEL_pFDpCD, hq_3v_MEC_pFDpCD, hq_3v_RES_pFDpCD, hq_3v_DIS_pFDpCD, qel, mec, res, dis, q_pFDpCD_3v.Mag(), Weight_pFDpCD);
+                FillByReaction(hQ2_pFDpCD, hQ2_QEL_pFDpCD, hQ2_MEC_pFDpCD, hQ2_RES_pFDpCD, hQ2_DIS_pFDpCD, qel, mec, res, dis, Q2_pFDpCD, Weight_pFDpCD);
+                FillByReaction(hq_3v_pFDpCD, hq_3v_QEL_pFDpCD, hq_3v_MEC_pFDpCD, hq_3v_RES_pFDpCD, hq_3v_DIS_pFDpCD, qel, mec, res, dis, q_pFDpCD_3v.Mag(), Weight_pFDpCD);
 
                 hQ2_VS_W_pFDpCD->Fill(W_pFDpCD, Q2_pFDpCD, Weight_pFDpCD);
                 hQ2_VS_q_3v_pFDpCD->Fill(q_pFDpCD_3v.Mag(), Q2_pFDpCD, Weight_pFDpCD);
@@ -15045,12 +15047,12 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                 // Filling angle plots (pFDpCD)
 
                 // FD proton angle plots (pFDpCD)
-                FillByInt(hTheta_pFD_All_Int_pFDpCD_FD, hTheta_pFD_QEL_pFDpCD_FD, hTheta_pFD_MEC_pFDpCD_FD, hTheta_pFD_RES_pFDpCD_FD, hTheta_pFD_DIS_pFDpCD_FD, qel, mec, res, dis,
+                FillByReaction(hTheta_pFD_All_Int_pFDpCD_FD, hTheta_pFD_QEL_pFDpCD_FD, hTheta_pFD_MEC_pFDpCD_FD, hTheta_pFD_RES_pFDpCD_FD, hTheta_pFD_DIS_pFDpCD_FD, qel, mec, res, dis,
                           Theta_pFD_pFDpCD, Weight_pFDpCD);
                 hTheta_pFD_VS_P_pFD_pFDpCD_FD->Fill(P_pFD_pFDpCD_3v.Mag(), Theta_pFD_pFDpCD, Weight_pFDpCD);
                 hTheta_pFD_VS_W_pFDpCD_FD->Fill(W_pFDpCD, Theta_pFD_pFDpCD, Weight_pFDpCD);
 
-                FillByInt(hPhi_pFD_All_Int_pFDpCD_FD, hPhi_pFD_QEL_pFDpCD_FD, hPhi_pFD_MEC_pFDpCD_FD, hPhi_pFD_RES_pFDpCD_FD, hPhi_pFD_DIS_pFDpCD_FD, qel, mec, res, dis, Phi_pFD_pFDpCD,
+                FillByReaction(hPhi_pFD_All_Int_pFDpCD_FD, hPhi_pFD_QEL_pFDpCD_FD, hPhi_pFD_MEC_pFDpCD_FD, hPhi_pFD_RES_pFDpCD_FD, hPhi_pFD_DIS_pFDpCD_FD, qel, mec, res, dis, Phi_pFD_pFDpCD,
                           Weight_pFDpCD);
                 hPhi_pFD_VS_P_pFD_pFDpCD_FD->Fill(P_pFD_pFDpCD_3v.Mag(), Phi_pFD_pFDpCD, Weight_pFDpCD);
                 hPhi_pFD_VS_W_pFDpCD_FD->Fill(W_pFDpCD, Phi_pFD_pFDpCD, Weight_pFDpCD);
@@ -15058,12 +15060,12 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                 hTheta_pFD_VS_Phi_pFD_pFDpCD_FD->Fill(Phi_pFD_pFDpCD, Theta_pFD_pFDpCD, Weight_pFDpCD);
 
                 // CD proton angle plots (pFDpCD)
-                FillByInt(hTheta_pCD_All_Int_pFDpCD_CD, hTheta_pCD_QEL_pFDpCD_CD, hTheta_pCD_MEC_pFDpCD_CD, hTheta_pCD_RES_pFDpCD_CD, hTheta_pCD_DIS_pFDpCD_CD, qel, mec, res, dis,
+                FillByReaction(hTheta_pCD_All_Int_pFDpCD_CD, hTheta_pCD_QEL_pFDpCD_CD, hTheta_pCD_MEC_pFDpCD_CD, hTheta_pCD_RES_pFDpCD_CD, hTheta_pCD_DIS_pFDpCD_CD, qel, mec, res, dis,
                           Theta_pCD_pFDpCD, Weight_pFDpCD);
                 hTheta_pCD_VS_P_pCD_pFDpCD_CD->Fill(P_pCD_pFDpCD_3v.Mag(), Theta_pCD_pFDpCD, Weight_pFDpCD);
                 hTheta_pCD_VS_W_pFDpCD_CD->Fill(W_pFDpCD, Theta_pCD_pFDpCD, Weight_pFDpCD);
 
-                FillByInt(hPhi_pCD_All_Int_pFDpCD_CD, hPhi_pCD_QEL_pFDpCD_CD, hPhi_pCD_MEC_pFDpCD_CD, hPhi_pCD_RES_pFDpCD_CD, hPhi_pCD_DIS_pFDpCD_CD, qel, mec, res, dis, Phi_pCD_pFDpCD,
+                FillByReaction(hPhi_pCD_All_Int_pFDpCD_CD, hPhi_pCD_QEL_pFDpCD_CD, hPhi_pCD_MEC_pFDpCD_CD, hPhi_pCD_RES_pFDpCD_CD, hPhi_pCD_DIS_pFDpCD_CD, qel, mec, res, dis, Phi_pCD_pFDpCD,
                           Weight_pFDpCD);
                 hPhi_pCD_VS_P_pCD_pFDpCD_CD->Fill(P_pCD_pFDpCD_3v.Mag(), Phi_pCD_pFDpCD, Weight_pFDpCD);
                 hPhi_pCD_VS_W_pFDpCD_CD->Fill(W_pFDpCD, Phi_pCD_pFDpCD, Weight_pFDpCD);
@@ -15071,24 +15073,24 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                 hTheta_pCD_VS_Phi_pCD_pFDpCD_CD->Fill(Phi_pCD_pFDpCD, Theta_pCD_pFDpCD, Weight_pFDpCD);
 
                 // Total momentum angle plots (pFDpCD)
-                FillByInt(hTheta_tot_All_Int_pFDpCD, hTheta_tot_QEL_pFDpCD, hTheta_tot_MEC_pFDpCD, hTheta_tot_RES_pFDpCD, hTheta_tot_DIS_pFDpCD, qel, mec, res, dis, Theta_tot_pFDpCD,
+                FillByReaction(hTheta_tot_All_Int_pFDpCD, hTheta_tot_QEL_pFDpCD, hTheta_tot_MEC_pFDpCD, hTheta_tot_RES_pFDpCD, hTheta_tot_DIS_pFDpCD, qel, mec, res, dis, Theta_tot_pFDpCD,
                           Weight_pFDpCD);
                 hTheta_tot_VS_P_tot_pFDpCD->Fill(P_tot_pFDpCD_3v.Mag(), Theta_tot_pFDpCD, Weight_pFDpCD);
                 hTheta_tot_VS_W_pFDpCD->Fill(W_pFDpCD, Theta_tot_pFDpCD, Weight_pFDpCD);
 
-                FillByInt(hPhi_tot_All_Int_pFDpCD, hPhi_tot_QEL_pFDpCD, hPhi_tot_MEC_pFDpCD, hPhi_tot_RES_pFDpCD, hPhi_tot_DIS_pFDpCD, qel, mec, res, dis, Phi_tot_pFDpCD, Weight_pFDpCD);
+                FillByReaction(hPhi_tot_All_Int_pFDpCD, hPhi_tot_QEL_pFDpCD, hPhi_tot_MEC_pFDpCD, hPhi_tot_RES_pFDpCD, hPhi_tot_DIS_pFDpCD, qel, mec, res, dis, Phi_tot_pFDpCD, Weight_pFDpCD);
                 hPhi_tot_VS_P_tot_pFDpCD->Fill(P_tot_pFDpCD_3v.Mag(), Phi_tot_pFDpCD, Weight_pFDpCD);
                 hPhi_tot_VS_W_pFDpCD->Fill(W_pFDpCD, Phi_tot_pFDpCD, Weight_pFDpCD);
 
                 hTheta_tot_VS_Phi_tot_pFDpCD->Fill(Phi_tot_pFDpCD, Theta_tot_pFDpCD, Weight_pFDpCD);
 
                 // Relative momentum angle plots (pFDpCD)
-                FillByInt(hTheta_rel_All_Int_pFDpCD, hTheta_rel_QEL_pFDpCD, hTheta_rel_MEC_pFDpCD, hTheta_rel_RES_pFDpCD, hTheta_rel_DIS_pFDpCD, qel, mec, res, dis, Theta_rel_pFDpCD,
+                FillByReaction(hTheta_rel_All_Int_pFDpCD, hTheta_rel_QEL_pFDpCD, hTheta_rel_MEC_pFDpCD, hTheta_rel_RES_pFDpCD, hTheta_rel_DIS_pFDpCD, qel, mec, res, dis, Theta_rel_pFDpCD,
                           Weight_pFDpCD);
                 hTheta_rel_VS_P_rel_pFDpCD->Fill(P_rel_pFDpCD_3v.Mag(), Theta_rel_pFDpCD, Weight_pFDpCD);
                 hTheta_rel_VS_W_pFDpCD->Fill(W_pFDpCD, Theta_rel_pFDpCD, Weight_pFDpCD);
 
-                FillByInt(hPhi_rel_All_Int_pFDpCD, hPhi_rel_QEL_pFDpCD, hPhi_rel_MEC_pFDpCD, hPhi_rel_RES_pFDpCD, hPhi_rel_DIS_pFDpCD, qel, mec, res, dis, Phi_rel_pFDpCD, Weight_pFDpCD);
+                FillByReaction(hPhi_rel_All_Int_pFDpCD, hPhi_rel_QEL_pFDpCD, hPhi_rel_MEC_pFDpCD, hPhi_rel_RES_pFDpCD, hPhi_rel_DIS_pFDpCD, qel, mec, res, dis, Phi_rel_pFDpCD, Weight_pFDpCD);
                 hPhi_rel_VS_P_rel_pFDpCD->Fill(P_rel_pFDpCD_3v.Mag(), Phi_rel_pFDpCD, Weight_pFDpCD);
                 hPhi_rel_VS_W_pFDpCD->Fill(W_pFDpCD, Phi_rel_pFDpCD, Weight_pFDpCD);
 
@@ -15100,7 +15102,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                                        NeutronsFD_ind);
 
                 // Fill W (pFDpCD)
-                FillByInt(hW_All_Int_pFDpCD, hW_QEL_pFDpCD, hW_MEC_pFDpCD, hW_RES_pFDpCD, hW_DIS_pFDpCD, qel, mec, res, dis, W_pFDpCD, Weight_pFDpCD);
+                FillByReaction(hW_All_Int_pFDpCD, hW_QEL_pFDpCD, hW_MEC_pFDpCD, hW_RES_pFDpCD, hW_DIS_pFDpCD, qel, mec, res, dis, W_pFDpCD, Weight_pFDpCD);
                 hW_VS_q_3v_pFDpCD->Fill(W_pFDpCD, q_pFDpCD_3v.Mag(), Weight_pFDpCD);
                 hW_VS_omega_pFDpCD->Fill(W_pFDpCD, omega_pFDpCD, Weight_pFDpCD);
 
@@ -15165,7 +15167,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                 // Filling Theta_pFD_pCD plots (pFDpCD)
 
                 // General Theta_pFD_pCD plots (pFDpCD)
-                FillByInt(hTheta_pFD_pCD_All_Int_pFDpCD, hTheta_pFD_pCD_QEL_pFDpCD, hTheta_pFD_pCD_MEC_pFDpCD, hTheta_pFD_pCD_RES_pFDpCD, hTheta_pFD_pCD_DIS_pFDpCD, qel, mec, res, dis,
+                FillByReaction(hTheta_pFD_pCD_All_Int_pFDpCD, hTheta_pFD_pCD_QEL_pFDpCD, hTheta_pFD_pCD_MEC_pFDpCD, hTheta_pFD_pCD_RES_pFDpCD, hTheta_pFD_pCD_DIS_pFDpCD, qel, mec, res, dis,
                           Theta_pFD_pCD_pFDpCD, Weight_pFDpCD);
                 hTheta_pFD_pCD_vs_W_pFDpCD->Fill(W_pFDpCD, Theta_pFD_pCD_pFDpCD, Weight_pFDpCD);
 
@@ -15875,8 +15877,8 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                 }
 
                 // Fill momentum transfer plots (nFDpCD)
-                FillByInt(hQ2_nFDpCD, hQ2_QEL_nFDpCD, hQ2_MEC_nFDpCD, hQ2_RES_nFDpCD, hQ2_DIS_nFDpCD, qel, mec, res, dis, Q2_nFDpCD, Weight_nFDpCD);
-                FillByInt(hq_3v_nFDpCD, hq_3v_QEL_nFDpCD, hq_3v_MEC_nFDpCD, hq_3v_RES_nFDpCD, hq_3v_DIS_nFDpCD, qel, mec, res, dis, q_nFDpCD_3v.Mag(), Weight_nFDpCD);
+                FillByReaction(hQ2_nFDpCD, hQ2_QEL_nFDpCD, hQ2_MEC_nFDpCD, hQ2_RES_nFDpCD, hQ2_DIS_nFDpCD, qel, mec, res, dis, Q2_nFDpCD, Weight_nFDpCD);
+                FillByReaction(hq_3v_nFDpCD, hq_3v_QEL_nFDpCD, hq_3v_MEC_nFDpCD, hq_3v_RES_nFDpCD, hq_3v_DIS_nFDpCD, qel, mec, res, dis, q_nFDpCD_3v.Mag(), Weight_nFDpCD);
 
                 hQ2_VS_W_nFDpCD->Fill(W_nFDpCD, Q2_nFDpCD, Weight_nFDpCD);
                 hQ2_VS_q_3v_nFDpCD->Fill(q_nFDpCD_3v.Mag(), Q2_nFDpCD, Weight_nFDpCD);
@@ -15908,12 +15910,12 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                 // Filling angle plots (nFDpCD)
 
                 // FD neutron angle plots (nFDpCD)
-                FillByInt(hTheta_nFD_All_Int_nFDpCD_FD, hTheta_nFD_QEL_nFDpCD_FD, hTheta_nFD_MEC_nFDpCD_FD, hTheta_nFD_RES_nFDpCD_FD, hTheta_nFD_DIS_nFDpCD_FD, qel, mec, res, dis,
+                FillByReaction(hTheta_nFD_All_Int_nFDpCD_FD, hTheta_nFD_QEL_nFDpCD_FD, hTheta_nFD_MEC_nFDpCD_FD, hTheta_nFD_RES_nFDpCD_FD, hTheta_nFD_DIS_nFDpCD_FD, qel, mec, res, dis,
                           Theta_nFD_nFDpCD, Weight_nFDpCD);
                 hTheta_nFD_VS_P_nFD_nFDpCD_FD->Fill(P_nFD_nFDpCD_3v.Mag(), Theta_nFD_nFDpCD, Weight_nFDpCD);
                 hTheta_nFD_VS_W_nFDpCD_FD->Fill(W_nFDpCD, Theta_nFD_nFDpCD, Weight_nFDpCD);
 
-                FillByInt(hPhi_nFD_All_Int_nFDpCD_FD, hPhi_nFD_QEL_nFDpCD_FD, hPhi_nFD_MEC_nFDpCD_FD, hPhi_nFD_RES_nFDpCD_FD, hPhi_nFD_DIS_nFDpCD_FD, qel, mec, res, dis, Phi_nFD_nFDpCD,
+                FillByReaction(hPhi_nFD_All_Int_nFDpCD_FD, hPhi_nFD_QEL_nFDpCD_FD, hPhi_nFD_MEC_nFDpCD_FD, hPhi_nFD_RES_nFDpCD_FD, hPhi_nFD_DIS_nFDpCD_FD, qel, mec, res, dis, Phi_nFD_nFDpCD,
                           Weight_nFDpCD);
                 hPhi_nFD_VS_P_nFD_nFDpCD_FD->Fill(P_nFD_nFDpCD_3v.Mag(), Phi_nFD_nFDpCD, Weight_nFDpCD);
                 hPhi_nFD_VS_W_nFDpCD_FD->Fill(W_nFDpCD, Phi_nFD_nFDpCD, Weight_nFDpCD);
@@ -15921,12 +15923,12 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                 hTheta_nFD_VS_Phi_nFD_nFDpCD_FD->Fill(Phi_nFD_nFDpCD, Theta_nFD_nFDpCD, Weight_nFDpCD);
 
                 // CD proton angle plots (nFDpCD)
-                FillByInt(hTheta_pCD_All_Int_nFDpCD_CD, hTheta_pCD_QEL_nFDpCD_CD, hTheta_pCD_MEC_nFDpCD_CD, hTheta_pCD_RES_nFDpCD_CD, hTheta_pCD_DIS_nFDpCD_CD, qel, mec, res, dis,
+                FillByReaction(hTheta_pCD_All_Int_nFDpCD_CD, hTheta_pCD_QEL_nFDpCD_CD, hTheta_pCD_MEC_nFDpCD_CD, hTheta_pCD_RES_nFDpCD_CD, hTheta_pCD_DIS_nFDpCD_CD, qel, mec, res, dis,
                           Theta_pCD_nFDpCD, Weight_nFDpCD);
                 hTheta_pCD_VS_P_pCD_nFDpCD_CD->Fill(P_pCD_nFDpCD_3v.Mag(), Theta_pCD_nFDpCD, Weight_nFDpCD);
                 hTheta_pCD_VS_W_nFDpCD_CD->Fill(W_nFDpCD, Theta_pCD_nFDpCD, Weight_nFDpCD);
 
-                FillByInt(hPhi_pCD_All_Int_nFDpCD_CD, hPhi_pCD_QEL_nFDpCD_CD, hPhi_pCD_MEC_nFDpCD_CD, hPhi_pCD_RES_nFDpCD_CD, hPhi_pCD_DIS_nFDpCD_CD, qel, mec, res, dis, Phi_pCD_nFDpCD,
+                FillByReaction(hPhi_pCD_All_Int_nFDpCD_CD, hPhi_pCD_QEL_nFDpCD_CD, hPhi_pCD_MEC_nFDpCD_CD, hPhi_pCD_RES_nFDpCD_CD, hPhi_pCD_DIS_nFDpCD_CD, qel, mec, res, dis, Phi_pCD_nFDpCD,
                           Weight_nFDpCD);
                 hPhi_pCD_VS_P_pCD_nFDpCD_CD->Fill(P_pCD_nFDpCD_3v.Mag(), Phi_pCD_nFDpCD, Weight_nFDpCD);
                 hPhi_pCD_VS_W_nFDpCD_CD->Fill(W_nFDpCD, Phi_pCD_nFDpCD, Weight_nFDpCD);
@@ -15934,24 +15936,24 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                 hTheta_pCD_VS_Phi_pCD_nFDpCD_CD->Fill(Phi_pCD_nFDpCD, Theta_pCD_nFDpCD, Weight_nFDpCD);
 
                 // Total momentum angle plots (nFDpCD)
-                FillByInt(hTheta_tot_All_Int_nFDpCD, hTheta_tot_QEL_nFDpCD, hTheta_tot_MEC_nFDpCD, hTheta_tot_RES_nFDpCD, hTheta_tot_DIS_nFDpCD, qel, mec, res, dis, Theta_tot_nFDpCD,
+                FillByReaction(hTheta_tot_All_Int_nFDpCD, hTheta_tot_QEL_nFDpCD, hTheta_tot_MEC_nFDpCD, hTheta_tot_RES_nFDpCD, hTheta_tot_DIS_nFDpCD, qel, mec, res, dis, Theta_tot_nFDpCD,
                           Weight_nFDpCD);
                 hTheta_tot_VS_P_tot_nFDpCD->Fill(P_tot_nFDpCD_3v.Mag(), Theta_tot_nFDpCD, Weight_nFDpCD);
                 hTheta_tot_VS_W_nFDpCD->Fill(W_nFDpCD, Theta_tot_nFDpCD, Weight_nFDpCD);
 
-                FillByInt(hPhi_tot_All_Int_nFDpCD, hPhi_tot_QEL_nFDpCD, hPhi_tot_MEC_nFDpCD, hPhi_tot_RES_nFDpCD, hPhi_tot_DIS_nFDpCD, qel, mec, res, dis, Phi_tot_nFDpCD, Weight_nFDpCD);
+                FillByReaction(hPhi_tot_All_Int_nFDpCD, hPhi_tot_QEL_nFDpCD, hPhi_tot_MEC_nFDpCD, hPhi_tot_RES_nFDpCD, hPhi_tot_DIS_nFDpCD, qel, mec, res, dis, Phi_tot_nFDpCD, Weight_nFDpCD);
                 hPhi_tot_VS_P_tot_nFDpCD->Fill(P_tot_nFDpCD_3v.Mag(), Phi_tot_nFDpCD, Weight_nFDpCD);
                 hPhi_tot_VS_W_nFDpCD->Fill(W_nFDpCD, Phi_tot_nFDpCD, Weight_nFDpCD);
 
                 hTheta_tot_VS_Phi_tot_nFDpCD->Fill(Phi_tot_nFDpCD, Theta_tot_nFDpCD, Weight_nFDpCD);
 
                 // Relative momentum angle plots (nFDpCD)
-                FillByInt(hTheta_rel_All_Int_nFDpCD, hTheta_rel_QEL_nFDpCD, hTheta_rel_MEC_nFDpCD, hTheta_rel_RES_nFDpCD, hTheta_rel_DIS_nFDpCD, qel, mec, res, dis, Theta_rel_nFDpCD,
+                FillByReaction(hTheta_rel_All_Int_nFDpCD, hTheta_rel_QEL_nFDpCD, hTheta_rel_MEC_nFDpCD, hTheta_rel_RES_nFDpCD, hTheta_rel_DIS_nFDpCD, qel, mec, res, dis, Theta_rel_nFDpCD,
                           Weight_nFDpCD);
                 hTheta_rel_VS_P_rel_nFDpCD->Fill(P_rel_nFDpCD_3v.Mag(), Theta_rel_nFDpCD, Weight_nFDpCD);
                 hTheta_rel_VS_W_nFDpCD->Fill(W_nFDpCD, Theta_rel_nFDpCD, Weight_nFDpCD);
 
-                FillByInt(hPhi_rel_All_Int_nFDpCD, hPhi_rel_QEL_nFDpCD, hPhi_rel_MEC_nFDpCD, hPhi_rel_RES_nFDpCD, hPhi_rel_DIS_nFDpCD, qel, mec, res, dis, Phi_rel_nFDpCD, Weight_nFDpCD);
+                FillByReaction(hPhi_rel_All_Int_nFDpCD, hPhi_rel_QEL_nFDpCD, hPhi_rel_MEC_nFDpCD, hPhi_rel_RES_nFDpCD, hPhi_rel_DIS_nFDpCD, qel, mec, res, dis, Phi_rel_nFDpCD, Weight_nFDpCD);
                 hPhi_rel_VS_P_rel_nFDpCD->Fill(P_rel_nFDpCD_3v.Mag(), Phi_rel_nFDpCD, Weight_nFDpCD);
                 hPhi_rel_VS_W_nFDpCD->Fill(W_nFDpCD, Phi_rel_nFDpCD, Weight_nFDpCD);
 
@@ -15963,7 +15965,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                                        NeutronsFD_ind);
 
                 // Fill W (nFDpCD)
-                FillByInt(hW_All_Int_nFDpCD, hW_QEL_nFDpCD, hW_MEC_nFDpCD, hW_RES_nFDpCD, hW_DIS_nFDpCD, qel, mec, res, dis, W_nFDpCD, Weight_nFDpCD);
+                FillByReaction(hW_All_Int_nFDpCD, hW_QEL_nFDpCD, hW_MEC_nFDpCD, hW_RES_nFDpCD, hW_DIS_nFDpCD, qel, mec, res, dis, W_nFDpCD, Weight_nFDpCD);
                 hW_VS_q_3v_nFDpCD->Fill(W_nFDpCD, q_nFDpCD_3v.Mag(), Weight_nFDpCD);
                 hW_VS_omega_nFDpCD->Fill(W_nFDpCD, omega_nFDpCD, Weight_nFDpCD);
 
@@ -16041,7 +16043,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                 // Filling Theta_nFD_pCD plots (nFDpCD)
 
                 // General Theta_nFD_pCD plots (nFDpCD)
-                FillByInt(hTheta_nFD_pCD_All_Int_nFDpCD, hTheta_nFD_pCD_QEL_nFDpCD, hTheta_nFD_pCD_MEC_nFDpCD, hTheta_nFD_pCD_RES_nFDpCD, hTheta_nFD_pCD_DIS_nFDpCD, qel, mec, res, dis,
+                FillByReaction(hTheta_nFD_pCD_All_Int_nFDpCD, hTheta_nFD_pCD_QEL_nFDpCD, hTheta_nFD_pCD_MEC_nFDpCD, hTheta_nFD_pCD_RES_nFDpCD, hTheta_nFD_pCD_DIS_nFDpCD, qel, mec, res, dis,
                           Theta_nFD_pCD_nFDpCD, Weight_nFDpCD);
                 hTheta_nFD_pCD_vs_W_nFDpCD->Fill(W_nFDpCD, Theta_nFD_pCD_nFDpCD, Weight_nFDpCD);
 
@@ -21992,7 +21994,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     myLogFile << "///////////////////////////////////////////////////////////////////////////\n";
     myLogFile << "// Run was with '" << file_name << "' setup mode\n";
     myLogFile << "// Input file was " << LoadedInput << "\n";
-    myLogFile << "// Code version was " << code_setup::Ver << "\n";
+    // myLogFile << "// Code version was " << code_setup::Ver << "\n";
     myLogFile << "// Analysis mode was 'Detector simulation'\n";
     myLogFile << "///////////////////////////////////////////////////////////////////////////\n\n";
     myLogFile << "Code ran with the following setup:" << "\n\n";
@@ -22092,8 +22094,8 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     myLogFile << "momRes_test = " << basic_tools::BoolToString(momRes_test) << "\n\n";
 
     myLogFile << "-- Other run parameters ---------------------------------------------------\n";
-    myLogFile << "Probe = " << Probe << " (PDG: " << Probe_pdg << ")" << "\n";
-    myLogFile << "Target = " << Target_nucleus << " (PDG: " << Target_pdg << ")" << "\n\n";
+    // myLogFile << "Probe = " << Probe << " (PDG: " << Probe_pdg << ")" << "\n";
+    // myLogFile << "Target = " << Target_nucleus << " (PDG: " << Target_pdg << ")" << "\n\n";
 
     myLogFile << "m_e = " << m_e << "\n";
     myLogFile << "m_p = " << m_p << "\n";

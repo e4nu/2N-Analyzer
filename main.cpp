@@ -9,8 +9,6 @@
 using namespace code_setup;
 
 int main() {
-    code_setup::Ver = "DetSim testings";
-    
     code_setup::ConfigSampleChain();
     PDF_canvas::ConfigCanvasPDF();
 
