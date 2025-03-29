@@ -1,3 +1,0 @@
-/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/cmake-build-debug/CMakeFiles/project.dir
-/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/cmake-build-debug/CMakeFiles/edit_cache.dir
-/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/cmake-build-debug/CMakeFiles/rebuild_cache.dir

@@ -7,11 +7,10 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CLAS12ROOT $ENV{CLAS12ROOT})
 set(HIPO $ENV{HIPO})
 
-list(APPEND CMAKE_PREFIX_PATH $ENV{ROOTSYS})  # Ensure ROOTSYS is set before finding ROOT
 find_package(ROOT REQUIRED)
+list(APPEND CMAKE_PREFIX_PATH $ENV{ROOTSYS})  # Ensure ROOTSYS is set before finding ROOT
 include(${ROOT_USE_FILE})
-
-add_compile_options(${ROOT_CXX_FLAGS} -O0 -ggdb)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${ROOT_CXX_FLAGS}")
 
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(HIPO4 REQUIRED hipo4)
@@ -19,6 +18,8 @@ pkg_check_modules(HIPO4 REQUIRED hipo4)
 include_directories(${CLAS12ROOT}/Clas12Banks)
 include_directories(${CLAS12ROOT}/Clas12Root)
 include_directories(${CLAS12ROOT}/hipo4)
+include_directories(${HIPO})
+include_directories(${HIPO}/include)
 
 set(Analyser myclas12root)
 
