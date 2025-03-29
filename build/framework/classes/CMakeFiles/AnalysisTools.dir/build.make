@@ -97,10 +97,24 @@ framework/classes/CMakeFiles/AnalysisTools.dir/AMaps/CustomSliceLimits.cpp.s: cm
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AnalysisTools.dir/AMaps/CustomSliceLimits.cpp.s"
 	cd /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build/framework/classes && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/classes/AMaps/CustomSliceLimits.cpp -o CMakeFiles/AnalysisTools.dir/AMaps/CustomSliceLimits.cpp.s
 
+framework/classes/CMakeFiles/AnalysisTools.dir/clas12ana/clas12ana.cpp.o: framework/classes/CMakeFiles/AnalysisTools.dir/flags.make
+framework/classes/CMakeFiles/AnalysisTools.dir/clas12ana/clas12ana.cpp.o: /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/classes/clas12ana/clas12ana.cpp
+framework/classes/CMakeFiles/AnalysisTools.dir/clas12ana/clas12ana.cpp.o: framework/classes/CMakeFiles/AnalysisTools.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object framework/classes/CMakeFiles/AnalysisTools.dir/clas12ana/clas12ana.cpp.o"
+	cd /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build/framework/classes && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT framework/classes/CMakeFiles/AnalysisTools.dir/clas12ana/clas12ana.cpp.o -MF CMakeFiles/AnalysisTools.dir/clas12ana/clas12ana.cpp.o.d -o CMakeFiles/AnalysisTools.dir/clas12ana/clas12ana.cpp.o -c /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/classes/clas12ana/clas12ana.cpp
+
+framework/classes/CMakeFiles/AnalysisTools.dir/clas12ana/clas12ana.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AnalysisTools.dir/clas12ana/clas12ana.cpp.i"
+	cd /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build/framework/classes && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/classes/clas12ana/clas12ana.cpp > CMakeFiles/AnalysisTools.dir/clas12ana/clas12ana.cpp.i
+
+framework/classes/CMakeFiles/AnalysisTools.dir/clas12ana/clas12ana.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AnalysisTools.dir/clas12ana/clas12ana.cpp.s"
+	cd /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build/framework/classes && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/classes/clas12ana/clas12ana.cpp -o CMakeFiles/AnalysisTools.dir/clas12ana/clas12ana.cpp.s
+
 framework/classes/CMakeFiles/AnalysisTools.dir/DataAnalyser/DataAnalyser.cpp.o: framework/classes/CMakeFiles/AnalysisTools.dir/flags.make
 framework/classes/CMakeFiles/AnalysisTools.dir/DataAnalyser/DataAnalyser.cpp.o: /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/classes/DataAnalyser/DataAnalyser.cpp
 framework/classes/CMakeFiles/AnalysisTools.dir/DataAnalyser/DataAnalyser.cpp.o: framework/classes/CMakeFiles/AnalysisTools.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object framework/classes/CMakeFiles/AnalysisTools.dir/DataAnalyser/DataAnalyser.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object framework/classes/CMakeFiles/AnalysisTools.dir/DataAnalyser/DataAnalyser.cpp.o"
 	cd /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build/framework/classes && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT framework/classes/CMakeFiles/AnalysisTools.dir/DataAnalyser/DataAnalyser.cpp.o -MF CMakeFiles/AnalysisTools.dir/DataAnalyser/DataAnalyser.cpp.o.d -o CMakeFiles/AnalysisTools.dir/DataAnalyser/DataAnalyser.cpp.o -c /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/classes/DataAnalyser/DataAnalyser.cpp
 
 framework/classes/CMakeFiles/AnalysisTools.dir/DataAnalyser/DataAnalyser.cpp.i: cmake_force
@@ -114,7 +128,7 @@ framework/classes/CMakeFiles/AnalysisTools.dir/DataAnalyser/DataAnalyser.cpp.s: 
 framework/classes/CMakeFiles/AnalysisTools.dir/Debugger/Debugger.cpp.o: framework/classes/CMakeFiles/AnalysisTools.dir/flags.make
 framework/classes/CMakeFiles/AnalysisTools.dir/Debugger/Debugger.cpp.o: /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/classes/Debugger/Debugger.cpp
 framework/classes/CMakeFiles/AnalysisTools.dir/Debugger/Debugger.cpp.o: framework/classes/CMakeFiles/AnalysisTools.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object framework/classes/CMakeFiles/AnalysisTools.dir/Debugger/Debugger.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object framework/classes/CMakeFiles/AnalysisTools.dir/Debugger/Debugger.cpp.o"
 	cd /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build/framework/classes && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT framework/classes/CMakeFiles/AnalysisTools.dir/Debugger/Debugger.cpp.o -MF CMakeFiles/AnalysisTools.dir/Debugger/Debugger.cpp.o.d -o CMakeFiles/AnalysisTools.dir/Debugger/Debugger.cpp.o -c /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/classes/Debugger/Debugger.cpp
 
 framework/classes/CMakeFiles/AnalysisTools.dir/Debugger/Debugger.cpp.i: cmake_force
@@ -128,7 +142,7 @@ framework/classes/CMakeFiles/AnalysisTools.dir/Debugger/Debugger.cpp.s: cmake_fo
 framework/classes/CMakeFiles/AnalysisTools.dir/DEfficiency/DEfficiency.cpp.o: framework/classes/CMakeFiles/AnalysisTools.dir/flags.make
 framework/classes/CMakeFiles/AnalysisTools.dir/DEfficiency/DEfficiency.cpp.o: /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/classes/DEfficiency/DEfficiency.cpp
 framework/classes/CMakeFiles/AnalysisTools.dir/DEfficiency/DEfficiency.cpp.o: framework/classes/CMakeFiles/AnalysisTools.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object framework/classes/CMakeFiles/AnalysisTools.dir/DEfficiency/DEfficiency.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object framework/classes/CMakeFiles/AnalysisTools.dir/DEfficiency/DEfficiency.cpp.o"
 	cd /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build/framework/classes && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT framework/classes/CMakeFiles/AnalysisTools.dir/DEfficiency/DEfficiency.cpp.o -MF CMakeFiles/AnalysisTools.dir/DEfficiency/DEfficiency.cpp.o.d -o CMakeFiles/AnalysisTools.dir/DEfficiency/DEfficiency.cpp.o -c /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/classes/DEfficiency/DEfficiency.cpp
 
 framework/classes/CMakeFiles/AnalysisTools.dir/DEfficiency/DEfficiency.cpp.i: cmake_force
@@ -142,7 +156,7 @@ framework/classes/CMakeFiles/AnalysisTools.dir/DEfficiency/DEfficiency.cpp.s: cm
 framework/classes/CMakeFiles/AnalysisTools.dir/Directories/Directories.cpp.o: framework/classes/CMakeFiles/AnalysisTools.dir/flags.make
 framework/classes/CMakeFiles/AnalysisTools.dir/Directories/Directories.cpp.o: /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/classes/Directories/Directories.cpp
 framework/classes/CMakeFiles/AnalysisTools.dir/Directories/Directories.cpp.o: framework/classes/CMakeFiles/AnalysisTools.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object framework/classes/CMakeFiles/AnalysisTools.dir/Directories/Directories.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object framework/classes/CMakeFiles/AnalysisTools.dir/Directories/Directories.cpp.o"
 	cd /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build/framework/classes && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT framework/classes/CMakeFiles/AnalysisTools.dir/Directories/Directories.cpp.o -MF CMakeFiles/AnalysisTools.dir/Directories/Directories.cpp.o.d -o CMakeFiles/AnalysisTools.dir/Directories/Directories.cpp.o -c /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/classes/Directories/Directories.cpp
 
 framework/classes/CMakeFiles/AnalysisTools.dir/Directories/Directories.cpp.i: cmake_force
@@ -156,7 +170,7 @@ framework/classes/CMakeFiles/AnalysisTools.dir/Directories/Directories.cpp.s: cm
 framework/classes/CMakeFiles/AnalysisTools.dir/ExperimentParameters/ExperimentParameters.cpp.o: framework/classes/CMakeFiles/AnalysisTools.dir/flags.make
 framework/classes/CMakeFiles/AnalysisTools.dir/ExperimentParameters/ExperimentParameters.cpp.o: /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/classes/ExperimentParameters/ExperimentParameters.cpp
 framework/classes/CMakeFiles/AnalysisTools.dir/ExperimentParameters/ExperimentParameters.cpp.o: framework/classes/CMakeFiles/AnalysisTools.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object framework/classes/CMakeFiles/AnalysisTools.dir/ExperimentParameters/ExperimentParameters.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object framework/classes/CMakeFiles/AnalysisTools.dir/ExperimentParameters/ExperimentParameters.cpp.o"
 	cd /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build/framework/classes && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT framework/classes/CMakeFiles/AnalysisTools.dir/ExperimentParameters/ExperimentParameters.cpp.o -MF CMakeFiles/AnalysisTools.dir/ExperimentParameters/ExperimentParameters.cpp.o.d -o CMakeFiles/AnalysisTools.dir/ExperimentParameters/ExperimentParameters.cpp.o -c /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/classes/ExperimentParameters/ExperimentParameters.cpp
 
 framework/classes/CMakeFiles/AnalysisTools.dir/ExperimentParameters/ExperimentParameters.cpp.i: cmake_force
@@ -170,7 +184,7 @@ framework/classes/CMakeFiles/AnalysisTools.dir/ExperimentParameters/ExperimentPa
 framework/classes/CMakeFiles/AnalysisTools.dir/hPlots/hPlot1D.cpp.o: framework/classes/CMakeFiles/AnalysisTools.dir/flags.make
 framework/classes/CMakeFiles/AnalysisTools.dir/hPlots/hPlot1D.cpp.o: /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/classes/hPlots/hPlot1D.cpp
 framework/classes/CMakeFiles/AnalysisTools.dir/hPlots/hPlot1D.cpp.o: framework/classes/CMakeFiles/AnalysisTools.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object framework/classes/CMakeFiles/AnalysisTools.dir/hPlots/hPlot1D.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object framework/classes/CMakeFiles/AnalysisTools.dir/hPlots/hPlot1D.cpp.o"
 	cd /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build/framework/classes && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT framework/classes/CMakeFiles/AnalysisTools.dir/hPlots/hPlot1D.cpp.o -MF CMakeFiles/AnalysisTools.dir/hPlots/hPlot1D.cpp.o.d -o CMakeFiles/AnalysisTools.dir/hPlots/hPlot1D.cpp.o -c /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/classes/hPlots/hPlot1D.cpp
 
 framework/classes/CMakeFiles/AnalysisTools.dir/hPlots/hPlot1D.cpp.i: cmake_force
@@ -184,7 +198,7 @@ framework/classes/CMakeFiles/AnalysisTools.dir/hPlots/hPlot1D.cpp.s: cmake_force
 framework/classes/CMakeFiles/AnalysisTools.dir/hPlots/hPlot2D.cpp.o: framework/classes/CMakeFiles/AnalysisTools.dir/flags.make
 framework/classes/CMakeFiles/AnalysisTools.dir/hPlots/hPlot2D.cpp.o: /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/classes/hPlots/hPlot2D.cpp
 framework/classes/CMakeFiles/AnalysisTools.dir/hPlots/hPlot2D.cpp.o: framework/classes/CMakeFiles/AnalysisTools.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object framework/classes/CMakeFiles/AnalysisTools.dir/hPlots/hPlot2D.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object framework/classes/CMakeFiles/AnalysisTools.dir/hPlots/hPlot2D.cpp.o"
 	cd /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build/framework/classes && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT framework/classes/CMakeFiles/AnalysisTools.dir/hPlots/hPlot2D.cpp.o -MF CMakeFiles/AnalysisTools.dir/hPlots/hPlot2D.cpp.o.d -o CMakeFiles/AnalysisTools.dir/hPlots/hPlot2D.cpp.o -c /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/classes/hPlots/hPlot2D.cpp
 
 framework/classes/CMakeFiles/AnalysisTools.dir/hPlots/hPlot2D.cpp.i: cmake_force
@@ -198,7 +212,7 @@ framework/classes/CMakeFiles/AnalysisTools.dir/hPlots/hPlot2D.cpp.s: cmake_force
 framework/classes/CMakeFiles/AnalysisTools.dir/MomentumResolution/MomentumResolution.cpp.o: framework/classes/CMakeFiles/AnalysisTools.dir/flags.make
 framework/classes/CMakeFiles/AnalysisTools.dir/MomentumResolution/MomentumResolution.cpp.o: /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/classes/MomentumResolution/MomentumResolution.cpp
 framework/classes/CMakeFiles/AnalysisTools.dir/MomentumResolution/MomentumResolution.cpp.o: framework/classes/CMakeFiles/AnalysisTools.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object framework/classes/CMakeFiles/AnalysisTools.dir/MomentumResolution/MomentumResolution.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object framework/classes/CMakeFiles/AnalysisTools.dir/MomentumResolution/MomentumResolution.cpp.o"
 	cd /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build/framework/classes && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT framework/classes/CMakeFiles/AnalysisTools.dir/MomentumResolution/MomentumResolution.cpp.o -MF CMakeFiles/AnalysisTools.dir/MomentumResolution/MomentumResolution.cpp.o.d -o CMakeFiles/AnalysisTools.dir/MomentumResolution/MomentumResolution.cpp.o -c /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/classes/MomentumResolution/MomentumResolution.cpp
 
 framework/classes/CMakeFiles/AnalysisTools.dir/MomentumResolution/MomentumResolution.cpp.i: cmake_force
@@ -212,7 +226,7 @@ framework/classes/CMakeFiles/AnalysisTools.dir/MomentumResolution/MomentumResolu
 framework/classes/CMakeFiles/AnalysisTools.dir/ParticleID/ParticleID.cpp.o: framework/classes/CMakeFiles/AnalysisTools.dir/flags.make
 framework/classes/CMakeFiles/AnalysisTools.dir/ParticleID/ParticleID.cpp.o: /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/classes/ParticleID/ParticleID.cpp
 framework/classes/CMakeFiles/AnalysisTools.dir/ParticleID/ParticleID.cpp.o: framework/classes/CMakeFiles/AnalysisTools.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object framework/classes/CMakeFiles/AnalysisTools.dir/ParticleID/ParticleID.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object framework/classes/CMakeFiles/AnalysisTools.dir/ParticleID/ParticleID.cpp.o"
 	cd /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build/framework/classes && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT framework/classes/CMakeFiles/AnalysisTools.dir/ParticleID/ParticleID.cpp.o -MF CMakeFiles/AnalysisTools.dir/ParticleID/ParticleID.cpp.o.d -o CMakeFiles/AnalysisTools.dir/ParticleID/ParticleID.cpp.o -c /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/classes/ParticleID/ParticleID.cpp
 
 framework/classes/CMakeFiles/AnalysisTools.dir/ParticleID/ParticleID.cpp.i: cmake_force
@@ -226,7 +240,7 @@ framework/classes/CMakeFiles/AnalysisTools.dir/ParticleID/ParticleID.cpp.s: cmak
 framework/classes/CMakeFiles/AnalysisTools.dir/Settings/CustomPlotsDirectory.cpp.o: framework/classes/CMakeFiles/AnalysisTools.dir/flags.make
 framework/classes/CMakeFiles/AnalysisTools.dir/Settings/CustomPlotsDirectory.cpp.o: /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/classes/Settings/CustomPlotsDirectory.cpp
 framework/classes/CMakeFiles/AnalysisTools.dir/Settings/CustomPlotsDirectory.cpp.o: framework/classes/CMakeFiles/AnalysisTools.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object framework/classes/CMakeFiles/AnalysisTools.dir/Settings/CustomPlotsDirectory.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object framework/classes/CMakeFiles/AnalysisTools.dir/Settings/CustomPlotsDirectory.cpp.o"
 	cd /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build/framework/classes && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT framework/classes/CMakeFiles/AnalysisTools.dir/Settings/CustomPlotsDirectory.cpp.o -MF CMakeFiles/AnalysisTools.dir/Settings/CustomPlotsDirectory.cpp.o.d -o CMakeFiles/AnalysisTools.dir/Settings/CustomPlotsDirectory.cpp.o -c /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/classes/Settings/CustomPlotsDirectory.cpp
 
 framework/classes/CMakeFiles/AnalysisTools.dir/Settings/CustomPlotsDirectory.cpp.i: cmake_force
@@ -240,7 +254,7 @@ framework/classes/CMakeFiles/AnalysisTools.dir/Settings/CustomPlotsDirectory.cpp
 framework/classes/CMakeFiles/AnalysisTools.dir/Settings/Settings.cpp.o: framework/classes/CMakeFiles/AnalysisTools.dir/flags.make
 framework/classes/CMakeFiles/AnalysisTools.dir/Settings/Settings.cpp.o: /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/classes/Settings/Settings.cpp
 framework/classes/CMakeFiles/AnalysisTools.dir/Settings/Settings.cpp.o: framework/classes/CMakeFiles/AnalysisTools.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object framework/classes/CMakeFiles/AnalysisTools.dir/Settings/Settings.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object framework/classes/CMakeFiles/AnalysisTools.dir/Settings/Settings.cpp.o"
 	cd /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build/framework/classes && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT framework/classes/CMakeFiles/AnalysisTools.dir/Settings/Settings.cpp.o -MF CMakeFiles/AnalysisTools.dir/Settings/Settings.cpp.o.d -o CMakeFiles/AnalysisTools.dir/Settings/Settings.cpp.o -c /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/classes/Settings/Settings.cpp
 
 framework/classes/CMakeFiles/AnalysisTools.dir/Settings/Settings.cpp.i: cmake_force
@@ -254,7 +268,7 @@ framework/classes/CMakeFiles/AnalysisTools.dir/Settings/Settings.cpp.s: cmake_fo
 framework/classes/CMakeFiles/AnalysisTools.dir/TLCuts/TLCuts.cpp.o: framework/classes/CMakeFiles/AnalysisTools.dir/flags.make
 framework/classes/CMakeFiles/AnalysisTools.dir/TLCuts/TLCuts.cpp.o: /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/classes/TLCuts/TLCuts.cpp
 framework/classes/CMakeFiles/AnalysisTools.dir/TLCuts/TLCuts.cpp.o: framework/classes/CMakeFiles/AnalysisTools.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object framework/classes/CMakeFiles/AnalysisTools.dir/TLCuts/TLCuts.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object framework/classes/CMakeFiles/AnalysisTools.dir/TLCuts/TLCuts.cpp.o"
 	cd /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build/framework/classes && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT framework/classes/CMakeFiles/AnalysisTools.dir/TLCuts/TLCuts.cpp.o -MF CMakeFiles/AnalysisTools.dir/TLCuts/TLCuts.cpp.o.d -o CMakeFiles/AnalysisTools.dir/TLCuts/TLCuts.cpp.o -c /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/classes/TLCuts/TLCuts.cpp
 
 framework/classes/CMakeFiles/AnalysisTools.dir/TLCuts/TLCuts.cpp.i: cmake_force
@@ -269,6 +283,7 @@ framework/classes/CMakeFiles/AnalysisTools.dir/TLCuts/TLCuts.cpp.s: cmake_force
 AnalysisTools_OBJECTS = \
 "CMakeFiles/AnalysisTools.dir/AMaps/AMaps.cpp.o" \
 "CMakeFiles/AnalysisTools.dir/AMaps/CustomSliceLimits.cpp.o" \
+"CMakeFiles/AnalysisTools.dir/clas12ana/clas12ana.cpp.o" \
 "CMakeFiles/AnalysisTools.dir/DataAnalyser/DataAnalyser.cpp.o" \
 "CMakeFiles/AnalysisTools.dir/Debugger/Debugger.cpp.o" \
 "CMakeFiles/AnalysisTools.dir/DEfficiency/DEfficiency.cpp.o" \
@@ -287,6 +302,7 @@ AnalysisTools_EXTERNAL_OBJECTS =
 
 framework/classes/libAnalysisTools.a: framework/classes/CMakeFiles/AnalysisTools.dir/AMaps/AMaps.cpp.o
 framework/classes/libAnalysisTools.a: framework/classes/CMakeFiles/AnalysisTools.dir/AMaps/CustomSliceLimits.cpp.o
+framework/classes/libAnalysisTools.a: framework/classes/CMakeFiles/AnalysisTools.dir/clas12ana/clas12ana.cpp.o
 framework/classes/libAnalysisTools.a: framework/classes/CMakeFiles/AnalysisTools.dir/DataAnalyser/DataAnalyser.cpp.o
 framework/classes/libAnalysisTools.a: framework/classes/CMakeFiles/AnalysisTools.dir/Debugger/Debugger.cpp.o
 framework/classes/libAnalysisTools.a: framework/classes/CMakeFiles/AnalysisTools.dir/DEfficiency/DEfficiency.cpp.o
@@ -301,7 +317,7 @@ framework/classes/libAnalysisTools.a: framework/classes/CMakeFiles/AnalysisTools
 framework/classes/libAnalysisTools.a: framework/classes/CMakeFiles/AnalysisTools.dir/TLCuts/TLCuts.cpp.o
 framework/classes/libAnalysisTools.a: framework/classes/CMakeFiles/AnalysisTools.dir/build.make
 framework/classes/libAnalysisTools.a: framework/classes/CMakeFiles/AnalysisTools.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Linking CXX static library libAnalysisTools.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Linking CXX static library libAnalysisTools.a"
 	cd /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build/framework/classes && $(CMAKE_COMMAND) -P CMakeFiles/AnalysisTools.dir/cmake_clean_target.cmake
 	cd /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build/framework/classes && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/AnalysisTools.dir/link.txt --verbose=$(VERBOSE)
 

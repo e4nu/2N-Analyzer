@@ -23,6 +23,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/AnalysisTools.dir/Settings/Settings.cpp.o.d"
   "CMakeFiles/AnalysisTools.dir/TLCuts/TLCuts.cpp.o"
   "CMakeFiles/AnalysisTools.dir/TLCuts/TLCuts.cpp.o.d"
+  "CMakeFiles/AnalysisTools.dir/clas12ana/clas12ana.cpp.o"
+  "CMakeFiles/AnalysisTools.dir/clas12ana/clas12ana.cpp.o.d"
   "CMakeFiles/AnalysisTools.dir/hPlots/hPlot1D.cpp.o"
   "CMakeFiles/AnalysisTools.dir/hPlots/hPlot1D.cpp.o.d"
   "CMakeFiles/AnalysisTools.dir/hPlots/hPlot2D.cpp.o"

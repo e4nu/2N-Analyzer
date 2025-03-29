@@ -14,14 +14,14 @@ set(NAMESPACE_SOURCES
     plotters/draw_and_save_functions/draw_and_save_acorr_plots.cpp
     plotters/draw_and_save_functions/draw_and_save_efficiency_plots.cpp
     plotters/draw_and_save_functions/draw_and_save_fs_ratio.cpp
-    # plotters/PDF_canvas/PDF_canvas.cpp
+    plotters/PDF_canvas/PDF_canvas.cpp
     # settings/debugging_settings/debugging_settings.cpp
     # settings/general_settings/general_settings.cpp
     settings/PDF_canvas_settings/PDF_canvas_settings.cpp
     # setup/analysis_samples/analysis_samples.cpp
     # setup/analysis_samples/data_samples.cpp
     # setup/analysis_samples/uniform_samples.cpp
-    # setup/code_setup/code_setup.cpp
+    setup/code_setup/code_setup.cpp
     setup/debugging/debugging.cpp
     setup/path_definitions/path_definitions.cpp
     # setup/truth_analysis_variables/truth_analysis_variables.cpp

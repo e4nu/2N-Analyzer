@@ -298,6 +298,30 @@ general_utilities/lists/lists.cpp.s:
 	cd /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build && $(MAKE) $(MAKESILENT) -f framework/namespaces/CMakeFiles/AnalysisLibraries.dir/build.make framework/namespaces/CMakeFiles/AnalysisLibraries.dir/general_utilities/lists/lists.cpp.s
 .PHONY : general_utilities/lists/lists.cpp.s
 
+plotters/PDF_canvas/PDF_canvas.o: plotters/PDF_canvas/PDF_canvas.cpp.o
+.PHONY : plotters/PDF_canvas/PDF_canvas.o
+
+# target to build an object file
+plotters/PDF_canvas/PDF_canvas.cpp.o:
+	cd /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build && $(MAKE) $(MAKESILENT) -f framework/namespaces/CMakeFiles/AnalysisLibraries.dir/build.make framework/namespaces/CMakeFiles/AnalysisLibraries.dir/plotters/PDF_canvas/PDF_canvas.cpp.o
+.PHONY : plotters/PDF_canvas/PDF_canvas.cpp.o
+
+plotters/PDF_canvas/PDF_canvas.i: plotters/PDF_canvas/PDF_canvas.cpp.i
+.PHONY : plotters/PDF_canvas/PDF_canvas.i
+
+# target to preprocess a source file
+plotters/PDF_canvas/PDF_canvas.cpp.i:
+	cd /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build && $(MAKE) $(MAKESILENT) -f framework/namespaces/CMakeFiles/AnalysisLibraries.dir/build.make framework/namespaces/CMakeFiles/AnalysisLibraries.dir/plotters/PDF_canvas/PDF_canvas.cpp.i
+.PHONY : plotters/PDF_canvas/PDF_canvas.cpp.i
+
+plotters/PDF_canvas/PDF_canvas.s: plotters/PDF_canvas/PDF_canvas.cpp.s
+.PHONY : plotters/PDF_canvas/PDF_canvas.s
+
+# target to generate assembly for a file
+plotters/PDF_canvas/PDF_canvas.cpp.s:
+	cd /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build && $(MAKE) $(MAKESILENT) -f framework/namespaces/CMakeFiles/AnalysisLibraries.dir/build.make framework/namespaces/CMakeFiles/AnalysisLibraries.dir/plotters/PDF_canvas/PDF_canvas.cpp.s
+.PHONY : plotters/PDF_canvas/PDF_canvas.cpp.s
+
 plotters/draw_and_save_functions/draw_and_save_acorr_plots.o: plotters/draw_and_save_functions/draw_and_save_acorr_plots.cpp.o
 .PHONY : plotters/draw_and_save_functions/draw_and_save_acorr_plots.o
 
@@ -394,6 +418,30 @@ settings/PDF_canvas_settings/PDF_canvas_settings.cpp.s:
 	cd /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build && $(MAKE) $(MAKESILENT) -f framework/namespaces/CMakeFiles/AnalysisLibraries.dir/build.make framework/namespaces/CMakeFiles/AnalysisLibraries.dir/settings/PDF_canvas_settings/PDF_canvas_settings.cpp.s
 .PHONY : settings/PDF_canvas_settings/PDF_canvas_settings.cpp.s
 
+setup/code_setup/code_setup.o: setup/code_setup/code_setup.cpp.o
+.PHONY : setup/code_setup/code_setup.o
+
+# target to build an object file
+setup/code_setup/code_setup.cpp.o:
+	cd /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build && $(MAKE) $(MAKESILENT) -f framework/namespaces/CMakeFiles/AnalysisLibraries.dir/build.make framework/namespaces/CMakeFiles/AnalysisLibraries.dir/setup/code_setup/code_setup.cpp.o
+.PHONY : setup/code_setup/code_setup.cpp.o
+
+setup/code_setup/code_setup.i: setup/code_setup/code_setup.cpp.i
+.PHONY : setup/code_setup/code_setup.i
+
+# target to preprocess a source file
+setup/code_setup/code_setup.cpp.i:
+	cd /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build && $(MAKE) $(MAKESILENT) -f framework/namespaces/CMakeFiles/AnalysisLibraries.dir/build.make framework/namespaces/CMakeFiles/AnalysisLibraries.dir/setup/code_setup/code_setup.cpp.i
+.PHONY : setup/code_setup/code_setup.cpp.i
+
+setup/code_setup/code_setup.s: setup/code_setup/code_setup.cpp.s
+.PHONY : setup/code_setup/code_setup.s
+
+# target to generate assembly for a file
+setup/code_setup/code_setup.cpp.s:
+	cd /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build && $(MAKE) $(MAKESILENT) -f framework/namespaces/CMakeFiles/AnalysisLibraries.dir/build.make framework/namespaces/CMakeFiles/AnalysisLibraries.dir/setup/code_setup/code_setup.cpp.s
+.PHONY : setup/code_setup/code_setup.cpp.s
+
 setup/debugging/debugging.o: setup/debugging/debugging.cpp.o
 .PHONY : setup/debugging/debugging.o
 
@@ -472,6 +520,9 @@ help:
 	@echo "... general_utilities/lists/lists.o"
 	@echo "... general_utilities/lists/lists.i"
 	@echo "... general_utilities/lists/lists.s"
+	@echo "... plotters/PDF_canvas/PDF_canvas.o"
+	@echo "... plotters/PDF_canvas/PDF_canvas.i"
+	@echo "... plotters/PDF_canvas/PDF_canvas.s"
 	@echo "... plotters/draw_and_save_functions/draw_and_save_acorr_plots.o"
 	@echo "... plotters/draw_and_save_functions/draw_and_save_acorr_plots.i"
 	@echo "... plotters/draw_and_save_functions/draw_and_save_acorr_plots.s"
@@ -484,6 +535,9 @@ help:
 	@echo "... settings/PDF_canvas_settings/PDF_canvas_settings.o"
 	@echo "... settings/PDF_canvas_settings/PDF_canvas_settings.i"
 	@echo "... settings/PDF_canvas_settings/PDF_canvas_settings.s"
+	@echo "... setup/code_setup/code_setup.o"
+	@echo "... setup/code_setup/code_setup.i"
+	@echo "... setup/code_setup/code_setup.s"
 	@echo "... setup/debugging/debugging.o"
 	@echo "... setup/debugging/debugging.i"
 	@echo "... setup/debugging/debugging.s"

@@ -209,10 +209,24 @@ framework/namespaces/CMakeFiles/AnalysisLibraries.dir/plotters/draw_and_save_fun
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AnalysisLibraries.dir/plotters/draw_and_save_functions/draw_and_save_fs_ratio.cpp.s"
 	cd /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build/framework/namespaces && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/namespaces/plotters/draw_and_save_functions/draw_and_save_fs_ratio.cpp -o CMakeFiles/AnalysisLibraries.dir/plotters/draw_and_save_functions/draw_and_save_fs_ratio.cpp.s
 
+framework/namespaces/CMakeFiles/AnalysisLibraries.dir/plotters/PDF_canvas/PDF_canvas.cpp.o: framework/namespaces/CMakeFiles/AnalysisLibraries.dir/flags.make
+framework/namespaces/CMakeFiles/AnalysisLibraries.dir/plotters/PDF_canvas/PDF_canvas.cpp.o: /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/namespaces/plotters/PDF_canvas/PDF_canvas.cpp
+framework/namespaces/CMakeFiles/AnalysisLibraries.dir/plotters/PDF_canvas/PDF_canvas.cpp.o: framework/namespaces/CMakeFiles/AnalysisLibraries.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object framework/namespaces/CMakeFiles/AnalysisLibraries.dir/plotters/PDF_canvas/PDF_canvas.cpp.o"
+	cd /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build/framework/namespaces && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT framework/namespaces/CMakeFiles/AnalysisLibraries.dir/plotters/PDF_canvas/PDF_canvas.cpp.o -MF CMakeFiles/AnalysisLibraries.dir/plotters/PDF_canvas/PDF_canvas.cpp.o.d -o CMakeFiles/AnalysisLibraries.dir/plotters/PDF_canvas/PDF_canvas.cpp.o -c /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/namespaces/plotters/PDF_canvas/PDF_canvas.cpp
+
+framework/namespaces/CMakeFiles/AnalysisLibraries.dir/plotters/PDF_canvas/PDF_canvas.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AnalysisLibraries.dir/plotters/PDF_canvas/PDF_canvas.cpp.i"
+	cd /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build/framework/namespaces && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/namespaces/plotters/PDF_canvas/PDF_canvas.cpp > CMakeFiles/AnalysisLibraries.dir/plotters/PDF_canvas/PDF_canvas.cpp.i
+
+framework/namespaces/CMakeFiles/AnalysisLibraries.dir/plotters/PDF_canvas/PDF_canvas.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AnalysisLibraries.dir/plotters/PDF_canvas/PDF_canvas.cpp.s"
+	cd /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build/framework/namespaces && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/namespaces/plotters/PDF_canvas/PDF_canvas.cpp -o CMakeFiles/AnalysisLibraries.dir/plotters/PDF_canvas/PDF_canvas.cpp.s
+
 framework/namespaces/CMakeFiles/AnalysisLibraries.dir/settings/PDF_canvas_settings/PDF_canvas_settings.cpp.o: framework/namespaces/CMakeFiles/AnalysisLibraries.dir/flags.make
 framework/namespaces/CMakeFiles/AnalysisLibraries.dir/settings/PDF_canvas_settings/PDF_canvas_settings.cpp.o: /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/namespaces/settings/PDF_canvas_settings/PDF_canvas_settings.cpp
 framework/namespaces/CMakeFiles/AnalysisLibraries.dir/settings/PDF_canvas_settings/PDF_canvas_settings.cpp.o: framework/namespaces/CMakeFiles/AnalysisLibraries.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object framework/namespaces/CMakeFiles/AnalysisLibraries.dir/settings/PDF_canvas_settings/PDF_canvas_settings.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object framework/namespaces/CMakeFiles/AnalysisLibraries.dir/settings/PDF_canvas_settings/PDF_canvas_settings.cpp.o"
 	cd /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build/framework/namespaces && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT framework/namespaces/CMakeFiles/AnalysisLibraries.dir/settings/PDF_canvas_settings/PDF_canvas_settings.cpp.o -MF CMakeFiles/AnalysisLibraries.dir/settings/PDF_canvas_settings/PDF_canvas_settings.cpp.o.d -o CMakeFiles/AnalysisLibraries.dir/settings/PDF_canvas_settings/PDF_canvas_settings.cpp.o -c /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/namespaces/settings/PDF_canvas_settings/PDF_canvas_settings.cpp
 
 framework/namespaces/CMakeFiles/AnalysisLibraries.dir/settings/PDF_canvas_settings/PDF_canvas_settings.cpp.i: cmake_force
@@ -223,10 +237,24 @@ framework/namespaces/CMakeFiles/AnalysisLibraries.dir/settings/PDF_canvas_settin
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AnalysisLibraries.dir/settings/PDF_canvas_settings/PDF_canvas_settings.cpp.s"
 	cd /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build/framework/namespaces && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/namespaces/settings/PDF_canvas_settings/PDF_canvas_settings.cpp -o CMakeFiles/AnalysisLibraries.dir/settings/PDF_canvas_settings/PDF_canvas_settings.cpp.s
 
+framework/namespaces/CMakeFiles/AnalysisLibraries.dir/setup/code_setup/code_setup.cpp.o: framework/namespaces/CMakeFiles/AnalysisLibraries.dir/flags.make
+framework/namespaces/CMakeFiles/AnalysisLibraries.dir/setup/code_setup/code_setup.cpp.o: /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/namespaces/setup/code_setup/code_setup.cpp
+framework/namespaces/CMakeFiles/AnalysisLibraries.dir/setup/code_setup/code_setup.cpp.o: framework/namespaces/CMakeFiles/AnalysisLibraries.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object framework/namespaces/CMakeFiles/AnalysisLibraries.dir/setup/code_setup/code_setup.cpp.o"
+	cd /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build/framework/namespaces && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT framework/namespaces/CMakeFiles/AnalysisLibraries.dir/setup/code_setup/code_setup.cpp.o -MF CMakeFiles/AnalysisLibraries.dir/setup/code_setup/code_setup.cpp.o.d -o CMakeFiles/AnalysisLibraries.dir/setup/code_setup/code_setup.cpp.o -c /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/namespaces/setup/code_setup/code_setup.cpp
+
+framework/namespaces/CMakeFiles/AnalysisLibraries.dir/setup/code_setup/code_setup.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AnalysisLibraries.dir/setup/code_setup/code_setup.cpp.i"
+	cd /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build/framework/namespaces && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/namespaces/setup/code_setup/code_setup.cpp > CMakeFiles/AnalysisLibraries.dir/setup/code_setup/code_setup.cpp.i
+
+framework/namespaces/CMakeFiles/AnalysisLibraries.dir/setup/code_setup/code_setup.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AnalysisLibraries.dir/setup/code_setup/code_setup.cpp.s"
+	cd /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build/framework/namespaces && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/namespaces/setup/code_setup/code_setup.cpp -o CMakeFiles/AnalysisLibraries.dir/setup/code_setup/code_setup.cpp.s
+
 framework/namespaces/CMakeFiles/AnalysisLibraries.dir/setup/debugging/debugging.cpp.o: framework/namespaces/CMakeFiles/AnalysisLibraries.dir/flags.make
 framework/namespaces/CMakeFiles/AnalysisLibraries.dir/setup/debugging/debugging.cpp.o: /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/namespaces/setup/debugging/debugging.cpp
 framework/namespaces/CMakeFiles/AnalysisLibraries.dir/setup/debugging/debugging.cpp.o: framework/namespaces/CMakeFiles/AnalysisLibraries.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object framework/namespaces/CMakeFiles/AnalysisLibraries.dir/setup/debugging/debugging.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object framework/namespaces/CMakeFiles/AnalysisLibraries.dir/setup/debugging/debugging.cpp.o"
 	cd /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build/framework/namespaces && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT framework/namespaces/CMakeFiles/AnalysisLibraries.dir/setup/debugging/debugging.cpp.o -MF CMakeFiles/AnalysisLibraries.dir/setup/debugging/debugging.cpp.o.d -o CMakeFiles/AnalysisLibraries.dir/setup/debugging/debugging.cpp.o -c /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/namespaces/setup/debugging/debugging.cpp
 
 framework/namespaces/CMakeFiles/AnalysisLibraries.dir/setup/debugging/debugging.cpp.i: cmake_force
@@ -240,7 +268,7 @@ framework/namespaces/CMakeFiles/AnalysisLibraries.dir/setup/debugging/debugging.
 framework/namespaces/CMakeFiles/AnalysisLibraries.dir/setup/path_definitions/path_definitions.cpp.o: framework/namespaces/CMakeFiles/AnalysisLibraries.dir/flags.make
 framework/namespaces/CMakeFiles/AnalysisLibraries.dir/setup/path_definitions/path_definitions.cpp.o: /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/namespaces/setup/path_definitions/path_definitions.cpp
 framework/namespaces/CMakeFiles/AnalysisLibraries.dir/setup/path_definitions/path_definitions.cpp.o: framework/namespaces/CMakeFiles/AnalysisLibraries.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object framework/namespaces/CMakeFiles/AnalysisLibraries.dir/setup/path_definitions/path_definitions.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object framework/namespaces/CMakeFiles/AnalysisLibraries.dir/setup/path_definitions/path_definitions.cpp.o"
 	cd /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build/framework/namespaces && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT framework/namespaces/CMakeFiles/AnalysisLibraries.dir/setup/path_definitions/path_definitions.cpp.o -MF CMakeFiles/AnalysisLibraries.dir/setup/path_definitions/path_definitions.cpp.o.d -o CMakeFiles/AnalysisLibraries.dir/setup/path_definitions/path_definitions.cpp.o -c /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/namespaces/setup/path_definitions/path_definitions.cpp
 
 framework/namespaces/CMakeFiles/AnalysisLibraries.dir/setup/path_definitions/path_definitions.cpp.i: cmake_force
@@ -263,7 +291,9 @@ AnalysisLibraries_OBJECTS = \
 "CMakeFiles/AnalysisLibraries.dir/plotters/draw_and_save_functions/draw_and_save_acorr_plots.cpp.o" \
 "CMakeFiles/AnalysisLibraries.dir/plotters/draw_and_save_functions/draw_and_save_efficiency_plots.cpp.o" \
 "CMakeFiles/AnalysisLibraries.dir/plotters/draw_and_save_functions/draw_and_save_fs_ratio.cpp.o" \
+"CMakeFiles/AnalysisLibraries.dir/plotters/PDF_canvas/PDF_canvas.cpp.o" \
 "CMakeFiles/AnalysisLibraries.dir/settings/PDF_canvas_settings/PDF_canvas_settings.cpp.o" \
+"CMakeFiles/AnalysisLibraries.dir/setup/code_setup/code_setup.cpp.o" \
 "CMakeFiles/AnalysisLibraries.dir/setup/debugging/debugging.cpp.o" \
 "CMakeFiles/AnalysisLibraries.dir/setup/path_definitions/path_definitions.cpp.o"
 
@@ -280,12 +310,14 @@ framework/namespaces/libAnalysisLibraries.a: framework/namespaces/CMakeFiles/Ana
 framework/namespaces/libAnalysisLibraries.a: framework/namespaces/CMakeFiles/AnalysisLibraries.dir/plotters/draw_and_save_functions/draw_and_save_acorr_plots.cpp.o
 framework/namespaces/libAnalysisLibraries.a: framework/namespaces/CMakeFiles/AnalysisLibraries.dir/plotters/draw_and_save_functions/draw_and_save_efficiency_plots.cpp.o
 framework/namespaces/libAnalysisLibraries.a: framework/namespaces/CMakeFiles/AnalysisLibraries.dir/plotters/draw_and_save_functions/draw_and_save_fs_ratio.cpp.o
+framework/namespaces/libAnalysisLibraries.a: framework/namespaces/CMakeFiles/AnalysisLibraries.dir/plotters/PDF_canvas/PDF_canvas.cpp.o
 framework/namespaces/libAnalysisLibraries.a: framework/namespaces/CMakeFiles/AnalysisLibraries.dir/settings/PDF_canvas_settings/PDF_canvas_settings.cpp.o
+framework/namespaces/libAnalysisLibraries.a: framework/namespaces/CMakeFiles/AnalysisLibraries.dir/setup/code_setup/code_setup.cpp.o
 framework/namespaces/libAnalysisLibraries.a: framework/namespaces/CMakeFiles/AnalysisLibraries.dir/setup/debugging/debugging.cpp.o
 framework/namespaces/libAnalysisLibraries.a: framework/namespaces/CMakeFiles/AnalysisLibraries.dir/setup/path_definitions/path_definitions.cpp.o
 framework/namespaces/libAnalysisLibraries.a: framework/namespaces/CMakeFiles/AnalysisLibraries.dir/build.make
 framework/namespaces/libAnalysisLibraries.a: framework/namespaces/CMakeFiles/AnalysisLibraries.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Linking CXX static library libAnalysisLibraries.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Linking CXX static library libAnalysisLibraries.a"
 	cd /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build/framework/namespaces && $(CMAKE_COMMAND) -P CMakeFiles/AnalysisLibraries.dir/cmake_clean_target.cmake
 	cd /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build/framework/namespaces && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/AnalysisLibraries.dir/link.txt --verbose=$(VERBOSE)
 

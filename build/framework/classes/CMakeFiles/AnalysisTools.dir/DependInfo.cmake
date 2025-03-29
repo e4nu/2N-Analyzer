@@ -20,6 +20,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/classes/Settings/CustomPlotsDirectory.cpp" "framework/classes/CMakeFiles/AnalysisTools.dir/Settings/CustomPlotsDirectory.cpp.o" "gcc" "framework/classes/CMakeFiles/AnalysisTools.dir/Settings/CustomPlotsDirectory.cpp.o.d"
   "/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/classes/Settings/Settings.cpp" "framework/classes/CMakeFiles/AnalysisTools.dir/Settings/Settings.cpp.o" "gcc" "framework/classes/CMakeFiles/AnalysisTools.dir/Settings/Settings.cpp.o.d"
   "/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/classes/TLCuts/TLCuts.cpp" "framework/classes/CMakeFiles/AnalysisTools.dir/TLCuts/TLCuts.cpp.o" "gcc" "framework/classes/CMakeFiles/AnalysisTools.dir/TLCuts/TLCuts.cpp.o.d"
+  "/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/classes/clas12ana/clas12ana.cpp" "framework/classes/CMakeFiles/AnalysisTools.dir/clas12ana/clas12ana.cpp.o" "gcc" "framework/classes/CMakeFiles/AnalysisTools.dir/clas12ana/clas12ana.cpp.o.d"
   "/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/classes/hPlots/hPlot1D.cpp" "framework/classes/CMakeFiles/AnalysisTools.dir/hPlots/hPlot1D.cpp.o" "gcc" "framework/classes/CMakeFiles/AnalysisTools.dir/hPlots/hPlot1D.cpp.o.d"
   "/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/classes/hPlots/hPlot2D.cpp" "framework/classes/CMakeFiles/AnalysisTools.dir/hPlots/hPlot2D.cpp.o" "gcc" "framework/classes/CMakeFiles/AnalysisTools.dir/hPlots/hPlot2D.cpp.o.d"
   )

@@ -111,6 +111,29 @@ myclas12root: /u/scigroup/cvmfs/hallb/clas12/sw/almalinux9-gcc11/local/root/6.30
 myclas12root: /u/scigroup/cvmfs/hallb/clas12/sw/almalinux9-gcc11/local/root/6.30.04/lib/libThread.so
 myclas12root: /u/scigroup/cvmfs/hallb/clas12/sw/almalinux9-gcc11/local/root/6.30.04/lib/libMultiProc.so
 myclas12root: /u/scigroup/cvmfs/hallb/clas12/sw/almalinux9-gcc11/local/root/6.30.04/lib/libROOTVecOps.so
+myclas12root: framework/structures/libAnalysisDataStructures.a
+myclas12root: framework/namespaces/libAnalysisLibraries.a
+myclas12root: framework/classes/libAnalysisTools.a
+myclas12root: framework/applications/libAnalysisApps.a
+myclas12root: /u/scigroup/cvmfs/hallb/clas12/sw/almalinux9-gcc11/local/root/6.30.04/lib/libCore.so
+myclas12root: /u/scigroup/cvmfs/hallb/clas12/sw/almalinux9-gcc11/local/root/6.30.04/lib/libImt.so
+myclas12root: /u/scigroup/cvmfs/hallb/clas12/sw/almalinux9-gcc11/local/root/6.30.04/lib/libRIO.so
+myclas12root: /u/scigroup/cvmfs/hallb/clas12/sw/almalinux9-gcc11/local/root/6.30.04/lib/libNet.so
+myclas12root: /u/scigroup/cvmfs/hallb/clas12/sw/almalinux9-gcc11/local/root/6.30.04/lib/libHist.so
+myclas12root: /u/scigroup/cvmfs/hallb/clas12/sw/almalinux9-gcc11/local/root/6.30.04/lib/libGraf.so
+myclas12root: /u/scigroup/cvmfs/hallb/clas12/sw/almalinux9-gcc11/local/root/6.30.04/lib/libGraf3d.so
+myclas12root: /u/scigroup/cvmfs/hallb/clas12/sw/almalinux9-gcc11/local/root/6.30.04/lib/libGpad.so
+myclas12root: /u/scigroup/cvmfs/hallb/clas12/sw/almalinux9-gcc11/local/root/6.30.04/lib/libROOTDataFrame.so
+myclas12root: /u/scigroup/cvmfs/hallb/clas12/sw/almalinux9-gcc11/local/root/6.30.04/lib/libTree.so
+myclas12root: /u/scigroup/cvmfs/hallb/clas12/sw/almalinux9-gcc11/local/root/6.30.04/lib/libTreePlayer.so
+myclas12root: /u/scigroup/cvmfs/hallb/clas12/sw/almalinux9-gcc11/local/root/6.30.04/lib/libRint.so
+myclas12root: /u/scigroup/cvmfs/hallb/clas12/sw/almalinux9-gcc11/local/root/6.30.04/lib/libPostscript.so
+myclas12root: /u/scigroup/cvmfs/hallb/clas12/sw/almalinux9-gcc11/local/root/6.30.04/lib/libMatrix.so
+myclas12root: /u/scigroup/cvmfs/hallb/clas12/sw/almalinux9-gcc11/local/root/6.30.04/lib/libPhysics.so
+myclas12root: /u/scigroup/cvmfs/hallb/clas12/sw/almalinux9-gcc11/local/root/6.30.04/lib/libMathCore.so
+myclas12root: /u/scigroup/cvmfs/hallb/clas12/sw/almalinux9-gcc11/local/root/6.30.04/lib/libThread.so
+myclas12root: /u/scigroup/cvmfs/hallb/clas12/sw/almalinux9-gcc11/local/root/6.30.04/lib/libMultiProc.so
+myclas12root: /u/scigroup/cvmfs/hallb/clas12/sw/almalinux9-gcc11/local/root/6.30.04/lib/libROOTVecOps.so
 myclas12root: CMakeFiles/myclas12root.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable myclas12root"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/myclas12root.dir/link.txt --verbose=$(VERBOSE)

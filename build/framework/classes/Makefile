@@ -418,6 +418,30 @@ TLCuts/TLCuts.cpp.s:
 	cd /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build && $(MAKE) $(MAKESILENT) -f framework/classes/CMakeFiles/AnalysisTools.dir/build.make framework/classes/CMakeFiles/AnalysisTools.dir/TLCuts/TLCuts.cpp.s
 .PHONY : TLCuts/TLCuts.cpp.s
 
+clas12ana/clas12ana.o: clas12ana/clas12ana.cpp.o
+.PHONY : clas12ana/clas12ana.o
+
+# target to build an object file
+clas12ana/clas12ana.cpp.o:
+	cd /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build && $(MAKE) $(MAKESILENT) -f framework/classes/CMakeFiles/AnalysisTools.dir/build.make framework/classes/CMakeFiles/AnalysisTools.dir/clas12ana/clas12ana.cpp.o
+.PHONY : clas12ana/clas12ana.cpp.o
+
+clas12ana/clas12ana.i: clas12ana/clas12ana.cpp.i
+.PHONY : clas12ana/clas12ana.i
+
+# target to preprocess a source file
+clas12ana/clas12ana.cpp.i:
+	cd /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build && $(MAKE) $(MAKESILENT) -f framework/classes/CMakeFiles/AnalysisTools.dir/build.make framework/classes/CMakeFiles/AnalysisTools.dir/clas12ana/clas12ana.cpp.i
+.PHONY : clas12ana/clas12ana.cpp.i
+
+clas12ana/clas12ana.s: clas12ana/clas12ana.cpp.s
+.PHONY : clas12ana/clas12ana.s
+
+# target to generate assembly for a file
+clas12ana/clas12ana.cpp.s:
+	cd /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/build && $(MAKE) $(MAKESILENT) -f framework/classes/CMakeFiles/AnalysisTools.dir/build.make framework/classes/CMakeFiles/AnalysisTools.dir/clas12ana/clas12ana.cpp.s
+.PHONY : clas12ana/clas12ana.cpp.s
+
 hPlots/hPlot1D.o: hPlots/hPlot1D.cpp.o
 .PHONY : hPlots/hPlot1D.o
 
@@ -511,6 +535,9 @@ help:
 	@echo "... TLCuts/TLCuts.o"
 	@echo "... TLCuts/TLCuts.i"
 	@echo "... TLCuts/TLCuts.s"
+	@echo "... clas12ana/clas12ana.o"
+	@echo "... clas12ana/clas12ana.i"
+	@echo "... clas12ana/clas12ana.s"
 	@echo "... hPlots/hPlot1D.o"
 	@echo "... hPlots/hPlot1D.i"
 	@echo "... hPlots/hPlot1D.s"

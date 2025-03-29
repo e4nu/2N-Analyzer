@@ -7,11 +7,11 @@
 #define FullAnalyser true
 #define IndependentCanvasPDF false
 
-#include "../framework/namespaces/setup/path_definitions/path_definitions.h"
-#include "../framework/namespaces/setup/debugging/debugging.h"
 #include "../framework/namespaces/setup/analysis_samples/analysis_samples.h"
+#include "../framework/namespaces/setup/debugging/debugging.h"
+#include "../framework/namespaces/setup/path_definitions/path_definitions.h"
 // #include "../framework/namespaces/setup/truth_analysis_variables/truth_analysis_variables.h"
-// 
+//
 #include "../framework/namespaces/general_utilities/basic_tools/basic_tools.h"
 #include "../framework/namespaces/general_utilities/constants/constants.h"
 #include "../framework/namespaces/plotters/PDF_canvas/PDF_canvas.h"
@@ -24,13 +24,13 @@
 // #include "samples/Q2_testing_samples.h"
 // #include "samples/Uniform_samples.h"
 
-using namespace PDF_canvas;
-
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                         Code version                                                                                //
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-std::string Ver = "DetSim testings";
+using namespace code_setup;
+using namespace PDF_canvas;
+// code_setup::Ver = "DetSim testings";
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                    File & path definitions                                                                          //
@@ -301,15 +301,15 @@ using namespace analysis_samples;
 // BEnergyToNucleus definition
 // ======================================================================================================================================================================
 
-double BEnergyToNucleus;
+// double BEnergyToNucleus;
 
 // ======================================================================================================================================================================
 // Simulation parameters extraction
 // ======================================================================================================================================================================
 
-inline int Target_pdg, Probe_pdg;
-inline std::string Target_nucleus, Probe;
-inline double BeamEnergy;
+// inline int Target_pdg, Probe_pdg;
+// inline std::string Target_nucleus, Probe;
+// inline double BeamEnergy;
 
 // ======================================================================================================================================================================
 // Histogram ranges
