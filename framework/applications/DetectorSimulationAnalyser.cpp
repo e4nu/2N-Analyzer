@@ -21992,7 +21992,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     myLogFile << "///////////////////////////////////////////////////////////////////////////\n";
     myLogFile << "// Run was with '" << file_name << "' setup mode\n";
     myLogFile << "// Input file was " << LoadedInput << "\n";
-    myLogFile << "// Code version was " << Ver << "\n";
+    myLogFile << "// Code version was " << code_setup::Ver << "\n";
     myLogFile << "// Analysis mode was 'Detector simulation'\n";
     myLogFile << "///////////////////////////////////////////////////////////////////////////\n\n";
     myLogFile << "Code ran with the following setup:" << "\n\n";
