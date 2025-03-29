@@ -1,20 +1,18 @@
-// #ifndef PDF_CANVAS_SETTINGS_H
-// #define PDF_CANVAS_SETTINGS_H
-#ifdef PDF_CANVAS_H
+#ifndef PDF_CANVAS_SETTINGS_H
+#define PDF_CANVAS_SETTINGS_H
+// #ifdef PDF_CANVAS_H
 
-// ======================================================================================================================================================================
-// PDF file canvas settings
-// ======================================================================================================================================================================
+#include <TCanvas.h>
 
 namespace PDF_canvas_settings {
 // Canvas variables -----------------------------------------------------------------------------------------------------------------------------------------------------
 
-int num_of_hist_per_row = 4;
-int num_of_hist_per_col = 3;
+extern int num_of_hist_per_row;
+extern int num_of_hist_per_col;
 
-int CanvasPDF_ind = 1;
+extern int CanvasPDF_ind;
 
-TCanvas* CanvasPDF = new TCanvas("CanvasPDF", "CanvasPDF", 1000 * num_of_hist_per_row, 750 * num_of_hist_per_col);  // normal res
+extern TCanvas* CanvasPDF;
 
 };  // namespace PDF_canvas_settings
 

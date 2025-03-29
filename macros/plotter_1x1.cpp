@@ -6,7 +6,7 @@
 //
 
 #include<iostream>
-#include<TH1.h>
+#include<TH1D.h>
 #include<TFile.h>
 #include<TDirectoryFile.h>
 #include<TGraph.h>

@@ -2,7 +2,7 @@
 #include<cstdio>
 #include<fstream>
 #include<cmath>
-#include<TH1.h>
+#include<TH1D.h>
 #include<TLine.h>
 #include<THStack.h>
 #include<TLatex.h>

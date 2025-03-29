@@ -5,6 +5,9 @@
 #ifndef DSCUTS_H
 #define DSCUTS_H
 
+#include <iostream>
+#include <vector>
+
 class DSCuts {
    public:
     /* Constructors */

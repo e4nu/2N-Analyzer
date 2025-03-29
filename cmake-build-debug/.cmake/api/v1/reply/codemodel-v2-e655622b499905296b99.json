@@ -49,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug",
-		"source" : "/Users/alon/Projects/2N-Analyser_e4nu"
+		"build" : "/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/cmake-build-debug",
+		"source" : "/w/hallb-scshelf2102/clas12/asportes/2N-Analyser"
 	},
 	"version" : 
 	{

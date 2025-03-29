@@ -1,6 +1,6 @@
 #include <iostream>
 #include <TFile.h>
-#include <TH1.h>
+#include <TH1D.h>
 #include <TCanvas.h>
 
 #include "../../source/functions/GeneralFunctions.h"

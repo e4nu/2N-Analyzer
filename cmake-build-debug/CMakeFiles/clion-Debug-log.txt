@@ -1,4 +1,4 @@
-/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "Unix Makefiles" -S /Users/alon/Projects/2N-Analyser_e4nu -B /Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug
+/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "Unix Makefiles" -S /w/hallb-scshelf2102/clas12/asportes/2N-Analyser -B /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/cmake-build-debug
 -- Checking for module 'hipo4'
 --   Package 'hipo4' not found
 CMake Error at /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.30/Modules/FindPkgConfig.cmake:645 (message):

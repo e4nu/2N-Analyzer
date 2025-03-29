@@ -146,7 +146,7 @@
 			]
 		},
 		{
-			"path": "Old_analysers/DetectorSimulationAnalyser.C",
+			"path": "framework/applications/DetectorSimulationAnalyser.C",
 			"bookmarks": [
 				{
 					"line": 10752,

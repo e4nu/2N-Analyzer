@@ -1,12 +1,6 @@
 #include "analysis_math.h"
 
 namespace analysis_math {
-using namespace polynomial_solver;
-
-// Mathematical constants -----------------------------------------------------------------------------------------------------------------------------------------------
-
-const double pi = M_PI;
-
 // RadToDeg function ----------------------------------------------------------------------------------------------------------------------------------------------------
 
 double RadToDeg(const double &rad) { return rad * 180. / pi; }
@@ -33,7 +27,7 @@ double CalcPhi_deg(const double &x, const double &y, const double &z) { return R
 
 // RadCalc function ------------------------------------------------------------------------------------------------------------------------------------------------------
 
-inline double RadCalc(double x, double y, double z) { return sqrt(x * x + y * y + z * z); }
+double RadCalc(double x, double y, double z) { return sqrt(x * x + y * y + z * z); }
 
 // GetPi0MomTh function -------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -101,7 +95,7 @@ double GetPhi_e(TString OutPutFolder, double phi_N) {
 
 // GetBinFromAng function -----------------------------------------------------------------------------------------------------------------------------------------------
 
-int GetBinFromAng(double Angle, double AngleBins, double AngleMin, double AngleMax, bool printOut = false, const std::string &AngleType = "") {
+int GetBinFromAng(double Angle, double AngleBins, double AngleMin, double AngleMax, bool printOut, const std::string &AngleType) {
     int Bin = 0;
     //    int Bin = -1;
 

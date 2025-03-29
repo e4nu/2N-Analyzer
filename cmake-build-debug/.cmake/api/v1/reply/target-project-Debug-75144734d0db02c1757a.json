@@ -228,115 +228,115 @@
 				},
 				{
 					"backtrace" : 4,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/."
+					"path" : "/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/."
 				},
 				{
 					"backtrace" : 5,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/macros"
+					"path" : "/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/macros"
 				},
 				{
 					"backtrace" : 6,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/setup"
+					"path" : "/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/setup"
 				},
 				{
 					"backtrace" : 7,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/setup/CLAS12DAnalysis"
+					"path" : "/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/setup/CLAS12DAnalysis"
 				},
 				{
 					"backtrace" : 8,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework"
+					"path" : "/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework"
 				},
 				{
 					"backtrace" : 9,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes"
+					"path" : "/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/classes"
 				},
 				{
 					"backtrace" : 10,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/AMaps"
+					"path" : "/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/classes/AMaps"
 				},
 				{
 					"backtrace" : 11,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/clas12ana"
+					"path" : "/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/classes/clas12ana"
 				},
 				{
 					"backtrace" : 12,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/DEfficiency"
+					"path" : "/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/classes/DEfficiency"
 				},
 				{
 					"backtrace" : 13,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/Directories"
+					"path" : "/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/classes/Directories"
 				},
 				{
 					"backtrace" : 14,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/DSCuts"
+					"path" : "/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/classes/DSCuts"
 				},
 				{
 					"backtrace" : 15,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/ExperimentParameters"
+					"path" : "/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/classes/ExperimentParameters"
 				},
 				{
 					"backtrace" : 16,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/hData"
+					"path" : "/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/classes/hData"
 				},
 				{
 					"backtrace" : 17,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/hPlots"
+					"path" : "/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/classes/hPlots"
 				},
 				{
 					"backtrace" : 18,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/MomentumResolution"
+					"path" : "/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/classes/MomentumResolution"
 				},
 				{
 					"backtrace" : 19,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/TargetParameters"
+					"path" : "/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/classes/TargetParameters"
 				},
 				{
 					"backtrace" : 20,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/TLCuts"
+					"path" : "/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/classes/TLCuts"
 				},
 				{
 					"backtrace" : 21,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/source/data"
+					"path" : "/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/source/data"
 				},
 				{
 					"backtrace" : 22,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/functions"
+					"path" : "/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/functions"
 				},
 				{
 					"backtrace" : 23,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/functions/AngleCalc"
+					"path" : "/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/functions/AngleCalc"
 				},
 				{
 					"backtrace" : 24,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/functions/DrawAndSaveFunctions"
+					"path" : "/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/functions/DrawAndSaveFunctions"
 				},
 				{
 					"backtrace" : 25,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/functions/EventProperties"
+					"path" : "/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/functions/EventProperties"
 				},
 				{
 					"backtrace" : 26,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/functions/FitFunctions"
+					"path" : "/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/functions/FitFunctions"
 				},
 				{
 					"backtrace" : 27,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/functions/Math_func"
+					"path" : "/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/functions/Math_func"
 				},
 				{
 					"backtrace" : 28,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/functions/other"
+					"path" : "/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/functions/other"
 				},
 				{
 					"backtrace" : 29,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/functions/PID_functions"
+					"path" : "/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/functions/PID_functions"
 				},
 				{
 					"backtrace" : 30,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/other"
+					"path" : "/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/other"
 				},
 				{
 					"backtrace" : 31,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/structures"
+					"path" : "/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/structures"
 				}
 			],
 			"language" : "CXX",
@@ -386,115 +386,115 @@
 				},
 				{
 					"backtrace" : 4,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/."
+					"path" : "/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/."
 				},
 				{
 					"backtrace" : 5,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/macros"
+					"path" : "/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/macros"
 				},
 				{
 					"backtrace" : 6,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/setup"
+					"path" : "/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/setup"
 				},
 				{
 					"backtrace" : 7,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/setup/CLAS12DAnalysis"
+					"path" : "/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/setup/CLAS12DAnalysis"
 				},
 				{
 					"backtrace" : 8,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework"
+					"path" : "/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework"
 				},
 				{
 					"backtrace" : 9,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes"
+					"path" : "/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/classes"
 				},
 				{
 					"backtrace" : 10,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/AMaps"
+					"path" : "/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/classes/AMaps"
 				},
 				{
 					"backtrace" : 11,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/clas12ana"
+					"path" : "/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/classes/clas12ana"
 				},
 				{
 					"backtrace" : 12,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/DEfficiency"
+					"path" : "/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/classes/DEfficiency"
 				},
 				{
 					"backtrace" : 13,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/Directories"
+					"path" : "/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/classes/Directories"
 				},
 				{
 					"backtrace" : 14,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/DSCuts"
+					"path" : "/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/classes/DSCuts"
 				},
 				{
 					"backtrace" : 15,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/ExperimentParameters"
+					"path" : "/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/classes/ExperimentParameters"
 				},
 				{
 					"backtrace" : 16,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/hData"
+					"path" : "/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/classes/hData"
 				},
 				{
 					"backtrace" : 17,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/hPlots"
+					"path" : "/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/classes/hPlots"
 				},
 				{
 					"backtrace" : 18,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/MomentumResolution"
+					"path" : "/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/classes/MomentumResolution"
 				},
 				{
 					"backtrace" : 19,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/TargetParameters"
+					"path" : "/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/classes/TargetParameters"
 				},
 				{
 					"backtrace" : 20,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/TLCuts"
+					"path" : "/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/classes/TLCuts"
 				},
 				{
 					"backtrace" : 21,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/source/data"
+					"path" : "/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/source/data"
 				},
 				{
 					"backtrace" : 22,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/functions"
+					"path" : "/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/functions"
 				},
 				{
 					"backtrace" : 23,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/functions/AngleCalc"
+					"path" : "/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/functions/AngleCalc"
 				},
 				{
 					"backtrace" : 24,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/functions/DrawAndSaveFunctions"
+					"path" : "/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/functions/DrawAndSaveFunctions"
 				},
 				{
 					"backtrace" : 25,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/functions/EventProperties"
+					"path" : "/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/functions/EventProperties"
 				},
 				{
 					"backtrace" : 26,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/functions/FitFunctions"
+					"path" : "/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/functions/FitFunctions"
 				},
 				{
 					"backtrace" : 27,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/functions/Math_func"
+					"path" : "/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/functions/Math_func"
 				},
 				{
 					"backtrace" : 28,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/functions/other"
+					"path" : "/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/functions/other"
 				},
 				{
 					"backtrace" : 29,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/functions/PID_functions"
+					"path" : "/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/functions/PID_functions"
 				},
 				{
 					"backtrace" : 30,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/other"
+					"path" : "/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/other"
 				},
 				{
 					"backtrace" : 31,
-					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/structures"
+					"path" : "/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/structures"
 				}
 			],
 			"language" : "C",
@@ -957,7 +957,7 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "Old_analysers/DetectorSimulationAnalyser.C",
+			"path" : "framework/applications/DetectorSimulationAnalyser.C",
 			"sourceGroupIndex" : 1
 		},
 		{
@@ -979,7 +979,7 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 1,
-			"path" : "Old_analysers/TruthLevelAnalyser.c",
+			"path" : "framework/applications/TruthLevelAnalyser.c",
 			"sourceGroupIndex" : 1
 		},
 		{

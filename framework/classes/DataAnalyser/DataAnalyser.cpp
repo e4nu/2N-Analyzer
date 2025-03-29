@@ -34,12 +34,16 @@ string DataAnalyser::ConfigureAnalyserMode(const std::string &FileType) {
 // RunEventAnalyser functions ---------------------------------------------------------------------------------------------------------------------------------
 
 void DataAnalyser::RunEventAnalyser(const std::string &AnalyserMode, const std::string &AnalyseFilePath, const std::string &AnalyseFileSample, const std::string &AnalyseFile) {
-    if (AnalyserMode == "Truth level") {
-        gst g;
-        g.Loop();
-    } else if (AnalyserMode == "Detector Simulation") {
-        EventAnalyser(AnalyseFilePath, AnalyseFileSample, AnalyseFile);
-    }
+    if (AnalyserMode == "Detector Simulation") { EventAnalyser(AnalyseFilePath, AnalyseFileSample, AnalyseFile); }
+    
+    // TODO: add truth-level analyser to cmake build!
+
+    // if (AnalyserMode == "Truth level") {
+    //     gst g;
+    //     g.Loop();
+    // } else if (AnalyserMode == "Detector Simulation") {
+    //     EventAnalyser(AnalyseFilePath, AnalyseFileSample, AnalyseFile);
+    // }
 }
 
 // #endif  // DATAANALYSER_H

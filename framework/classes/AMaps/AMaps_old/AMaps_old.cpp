@@ -9,8 +9,8 @@
 // #include <TChain.h>
 // #include <TDatabasePDG.h>
 // #include <TFile.h>
-// #include <TH1.h>
-// #include <TH2.h>
+// #include <TH1D.h>
+// #include <TH2D.h>
 // #include <TLatex.h>
 // #include <TLorentzVector.h>
 // #include <TROOT.h>

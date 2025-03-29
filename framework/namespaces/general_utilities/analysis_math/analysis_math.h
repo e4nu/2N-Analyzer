@@ -54,7 +54,7 @@ double CalcPhi_deg(const double &x, const double &y, const double &z);
 
 // RadCalc function ------------------------------------------------------------------------------------------------------------------------------------------------------
 
-inline double RadCalc(double x, double y, double z);
+double RadCalc(double x, double y, double z);
 
 // GetPi0MomTh function -------------------------------------------------------------------------------------------------------------------------------------------------
 

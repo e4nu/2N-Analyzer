@@ -5,7 +5,6 @@
 #include "draw_and_save_fs_ratio.h"
 
 namespace draw_and_save_fs_ratio {
-const bool Equi_z_2D = true;
 
 // DrawAndSaveFSRatio in 1D plots ---------------------------------------------------------------------------------------------------------------------------------------
 

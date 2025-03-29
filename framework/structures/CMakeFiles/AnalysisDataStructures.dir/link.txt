@@ -1,0 +1,2 @@
+/usr/bin/ar qc libAnalysisDataStructures.a CMakeFiles/AnalysisDataStructures.dir/CodeDirectories/CodeDirectories.cpp.o
+/usr/bin/ranlib libAnalysisDataStructures.a

@@ -175,11 +175,11 @@ add_executable(project ${CLAS12ROOT_SOURCES} ${CLAS12BANKS_SOURCES} ${HIPO4_SOUR
         # framework/other/hPlot1D_example.cpp
         framework/structures/Histogram1D_beta/Histogram1D.cpp
         # macros/Other/db_script.txt
-        Old_analysers/DetectorSimulationAnalyser.C
+        framework/applications/DetectorSimulationAnalyser.C
         git_handle.sh
         main.c
         run.csh
-        Old_analysers/TruthLevelAnalyser.c
+        framework/applications/TruthLevelAnalyser.c
         framework/classes/Settings/Settings.cpp
         framework/classes/Settings/Settings.h
         framework/classes/Settings/CustomPlotsDirectory.cpp

@@ -14,7 +14,9 @@ namespace debugging {
 using namespace debugging_settings;
 
 // CodeDebugger declaration ---------------------------------------------------------------------------------------------------------------------------------------------
-Debugger CodeDebugger;
+
+extern Debugger CodeDebugger;
+
 }  // namespace debugging
 
 #endif  // DEBUGGING_H

@@ -1,0 +1,403 @@
+# Finished -----------------------------------------------------------------------------
+
+cmake_minimum_required(VERSION 3.29)
+project(2N_Analyser_e4nu)
+
+set(CMAKE_CXX_STANDARD 17)
+
+# To implement -----------------------------------------------------------------------------
+
+# # Define paths
+# set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
+
+# # Output binaries to a common directory
+# set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+
+# The rest -----------------------------------------------------------------------------
+
+message("")
+
+set(CLAS12ROOT $ENV{CLAS12ROOT})
+message("CLAS12ROOT is set as: ${CLAS12ROOT}")
+set(HIPO $ENV{HIPO})
+message("HIPO is set as: ${HIPO}")
+
+find_package(ROOT REQUIRED)
+message(STATUS "ROOT found: ${ROOT_FOUND}")
+list(APPEND CMAKE_PREFIX_PATH $ENV{ROOTSYS})
+include(${ROOT_USE_FILE})
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${ROOT_CXX_FLAGS} -O0 -ggdb")
+
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(hipo4 REQUIRED IMPORTED_TARGET hipo4)
+
+message("")
+
+include_directories(${CLAS12ROOT}/Clas12Banks)
+include_directories(${CLAS12ROOT}/Clas12Root)
+include_directories(${CLAS12ROOT}/hipo4)
+
+# 
+
+set(Analyser myclas12root)
+
+# 
+
+set(FRAMEWORK_DIR framework)
+include_directories(${FRAMEWORK_DIR})
+
+set(CLASSES_DIR ${FRAMEWORK_DIR}/classes)
+include_directories(${CLASSES_DIR})
+include_directories(${CLASSES_DIR}/AMaps)
+include_directories(${CLASSES_DIR}/clas12ana)
+include_directories(${CLASSES_DIR}/DataAnalyser)
+include_directories(${CLASSES_DIR}/Debugger)
+include_directories(${CLASSES_DIR}/DEfficiency)
+include_directories(${CLASSES_DIR}/Directories)
+include_directories(${CLASSES_DIR}/DSCuts)
+include_directories(${CLASSES_DIR}/ExperimentParameters)
+include_directories(${CLASSES_DIR}/gst)
+include_directories(${CLASSES_DIR}/hPlots)
+include_directories(${CLASSES_DIR}/MomentumResolution)
+include_directories(${CLASSES_DIR}/ParticleID)
+include_directories(${CLASSES_DIR}/Settings)
+include_directories(${CLASSES_DIR}/TargetParameters)
+include_directories(${CLASSES_DIR}/TLCuts)
+
+set(NAMESPACES_DIR ${FRAMEWORK_DIR}/namespaces)
+include_directories(${NAMESPACES_DIR}/fitters/fitter_functions)
+include_directories(${NAMESPACES_DIR}/general_utilities/analysis_math)
+include_directories(${NAMESPACES_DIR}/general_utilities/basic_tools)
+include_directories(${NAMESPACES_DIR}/general_utilities/constants)
+include_directories(${NAMESPACES_DIR}/general_utilities/data_processor)
+include_directories(${NAMESPACES_DIR}/general_utilities/lists)
+include_directories(${NAMESPACES_DIR}/general_utilities/reco_analysis_functions)
+# include_directories(${NAMESPACES_DIR}/general_utilities/truth_analysis_functions)
+include_directories(${NAMESPACES_DIR}/general_utilities/utilities)
+include_directories(${NAMESPACES_DIR}/plotters/draw_and_save_functions)
+include_directories(${NAMESPACES_DIR}/plotters/PDF_canvas)
+include_directories(${NAMESPACES_DIR}/settings/debugging_settings)
+# include_directories(${NAMESPACES_DIR}/settings/general_settings)
+include_directories(${NAMESPACES_DIR}/settings/PDF_canvas_settings)
+include_directories(${NAMESPACES_DIR}/setup/analysis_samples)
+include_directories(${NAMESPACES_DIR}/setup/code_setup)
+include_directories(${NAMESPACES_DIR}/setup/path_definitions)
+# include_directories(${NAMESPACES_DIR}/setup/truth_analysis_variables)
+
+set(STRUCTURES_DIR ${FRAMEWORK_DIR}/structures)
+include_directories(${STRUCTURES_DIR}/CodeDirectories)
+include_directories(${STRUCTURES_DIR}/DataSample)
+
+set(FUNCTIONS_DIR ${FRAMEWORK_DIR}/functions)
+
+# set(SOURCE_DIR ${FRAMEWORK_DIR}/source)
+
+set(APPS_DIR framework/applications)
+include_directories(${APPS_DIR})
+
+include_directories(setup)
+
+# set(AMaps ./framework)
+# set(clas12ana ./framework)
+# set(DataAnalyser ./framework)
+# set(DEfficiency ./framework)
+# set(DSCuts ./framework)
+
+# 
+
+# Subdirectories
+add_subdirectory(${STRUCTURES_DIR})   # Library code
+add_subdirectory(${NAMESPACES_DIR})   # Library code
+add_subdirectory(${CLASSES_DIR})   # Library code
+add_subdirectory(${APPS_DIR})  # Main executables
+# add_subdirectory(tests) # Unit tests
+
+# 
+
+add_executable(${Analyser} main.cpp)
+ 
+target_link_libraries(${Analyser} ${ROOT_LIBRARIES} -lEG)
+target_link_libraries(${Analyser} -lClas12Banks -lHipo4 -lClas12Root)
+target_link_libraries(${Analyser} -L${CLAS12ROOT}/lib)
+
+
+
+
+# 
+# 
+# 
+
+
+# find_package(PkgConfig REQUIRED)
+# pkg_check_modules(hipo4 REQUIRED IMPORTED_TARGET hipo4)
+# message(STATUS "PkgConfig found: ${PkgConfig_FOUND}")
+
+# find_package(CLAS12ROOT REQUIRED)
+# message(STATUS "CLAS12ROOT found: ${CLAS12ROOT_FOUND}")
+
+# pkg_check_modules(hipo4 REQUIRED IMPORTED_TARGET hipo4)
+
+# set(INCLUDES ${ROOT_INCLUDE_DIR} ${CMAKE_SOURCE_DIR}/include ${CMAKE_SOURCE_DIR}/libraries/simulation_reweighting ${HIPO}/include)
+
+# set(LIBRARIES ${CMAKE_SOURCE_DIR}/libraries ${HIPO}/lib)
+# include_directories(${CLAS12ROOT}/Clas12Banks ${CLAS12ROOT}/Clas12Root ${INCLUDES} ${LIBRARIES})
+
+# include_directories(.)
+# include_directories(macros)
+# include_directories(setup)
+# include_directories(setup/CLAS12DAnalysis)
+# #include_directories(setup/CLAS12DAnalysis/CLAS12DAnalyser)
+# #include_directories(setup/CLAS12DAnalysis/CLAS12DASettings)
+# #include_directories(setup/CLAS12DAnalysis/CLAS12DHistograms)
+# include_directories(framework)
+# include_directories(framework/classes)
+# include_directories(framework/classes/AMaps)
+# include_directories(framework/classes/clas12ana)
+# #include_directories(framework/classes/clas12ana/clas12ana_ver_1_myedit)
+# #include_directories(framework/classes/clas12ana/other)
+# include_directories(framework/classes/DEfficiency)
+# include_directories(framework/classes/Directories)
+# include_directories(framework/classes/DSCuts)
+# include_directories(framework/classes/ExperimentParameters)
+# include_directories(framework/classes/hData)
+# include_directories(framework/classes/hPlots)
+# include_directories(framework/classes/MomentumResolution)
+# include_directories(framework/classes/TargetParameters)
+# include_directories(framework/classes/TLCuts)
+# include_directories(source/data)
+# include_directories(framework/functions)
+# include_directories(framework/functions/AngleCalc)
+# include_directories(framework/functions/DrawAndSaveFunctions)
+# include_directories(framework/functions/EventProperties)
+# include_directories(framework/functions/FitFunctions)
+# include_directories(framework/functions/Math_func)
+# include_directories(framework/functions/other)
+# include_directories(framework/functions/PID_functions)
+# include_directories(framework/other)
+# include_directories(framework/structures)
+
+# add_executable(project ${CLAS12ROOT_SOURCES} ${CLAS12BANKS_SOURCES} ${HIPO4_SOURCES}
+#         setup/codeSetup.h
+#         framework/classes/gst/gst.h
+#         framework/classes/AMaps/AMaps.cpp
+#         framework/classes/AMaps/AMaps.h
+#         framework/classes/clas12ana/clas12ana.h
+#         framework/classes/DEfficiency/DEfficiency.cpp
+#         framework/classes/DEfficiency/DEfficiency.h
+#         framework/classes/Directories/Directories.cpp
+#         framework/classes/Directories/Directories.h
+#         framework/classes/DSCuts/DSCuts.h
+#         framework/classes/ExperimentParameters/ExperimentParameters.cpp
+#         framework/classes/ExperimentParameters/ExperimentParameters.h
+#         framework/classes/hPlots/hPlot1D.cpp
+#         framework/classes/hPlots/hPlot1D.h
+#         framework/classes/hPlots/hPlot2D.cpp
+#         framework/classes/hPlots/hPlot2D.h
+#         framework/classes/MomentumResolution/MomentumResolution.cpp
+#         framework/classes/MomentumResolution/MomentumResolution.h
+#         framework/classes/TargetParameters/TargetParameters.h
+#         framework/classes/TLCuts/TLCuts.cpp
+#         framework/classes/TLCuts/TLCuts.h
+#         framework/functions/FillByInt.h
+#         framework/functions/GetTruthLevelCuts.h
+#         framework/functions/HistogramPlottingFunctions.h
+#         framework/functions/HistogramPlottingFunctions.cpp
+#         framework/namespaces/general_utilities/utilities/utilities.h
+#         framework/namespaces/general_utilities/analysis_math/analysis_math.h
+#         framework/namespaces/general_utilities/analysis_math/analysis_math.cpp
+#         framework/namespaces/general_utilities/basic_tools/basic_tools.h
+#         framework/namespaces/general_utilities/basic_tools/basic_tools.cpp
+#         framework/namespaces/general_utilities/constants/constants.h
+#         framework/namespaces/general_utilities/constants/constants.cpp
+#         framework/namespaces/general_utilities/data_processor/data_processor.h
+#         framework/namespaces/general_utilities/data_processor/data_processor.cpp
+#         framework/namespaces/general_utilities/lists/lists.h
+#         framework/namespaces/general_utilities/lists/lists.cpp
+#         framework/namespaces/general_utilities/reco_analysis_functions/reco_analysis_functions.h
+#         # framework/namespaces/general_utilities/truth_analysis_functions/truth_analysis_functions.h
+#         framework/namespaces/general_utilities/analysis_math/polynomial_solver.h
+#         framework/namespaces/general_utilities/analysis_math/polynomial_solver.cpp
+#         framework/namespaces/fitters/fitter_functions/fitter_functions.h
+#         framework/namespaces/fitters/fitter_functions/fitter_functions.cpp
+#         framework/namespaces/setup/path_definitions/path_definitions.h
+#         framework/namespaces/setup/path_definitions/path_definitions.cpp
+#         framework/namespaces/settings/debugging_settings/debugging_settings.h
+#         framework/namespaces/settings/PDF_canvas_settings/PDF_canvas_settings.h
+#         framework/namespaces/settings/PDF_canvas_settings/PDF_canvas_settings.cpp
+#         framework/namespaces/setup/debugging/debugging.h
+#         framework/namespaces/setup/debugging/debugging.cpp
+#         framework/namespaces/setup/code_setup/code_setup.h
+#         framework/namespaces/setup/analysis_samples/analysis_samples.h
+#         framework/namespaces/setup/analysis_samples/data_samples.h
+#         framework/namespaces/setup/analysis_samples/uniform_samples.h
+#         framework/namespaces/plotters/draw_and_save_functions/draw_and_save_acorr_plots.h
+#         framework/namespaces/plotters/draw_and_save_functions/draw_and_save_acorr_plots.cpp
+#         framework/namespaces/plotters/draw_and_save_functions/draw_and_save_efficiency_plots.h
+#         framework/namespaces/plotters/draw_and_save_functions/draw_and_save_efficiency_plots.cpp
+#         framework/namespaces/plotters/draw_and_save_functions/draw_and_save_fs_ratio.h
+#         framework/namespaces/plotters/draw_and_save_functions/draw_and_save_fs_ratio.cpp
+#         framework/namespaces/plotters/draw_and_save_functions/draw_and_save_functions.h
+#         framework/namespaces/plotters/PDF_canvas/PDF_canvas.h
+#         framework/applications/DetectorSimulationAnalyser.h
+#         framework/applications/DetectorSimulationAnalyser.cpp
+#         git_handle.sh
+#         main.cpp
+#         run.csh
+#         framework/classes/Settings/Settings.cpp
+#         framework/classes/Settings/Settings.h
+#         framework/classes/Settings/CustomPlotsDirectory.cpp
+#         framework/classes/Settings/CustomPlotsDirectory.h
+#         framework/classes/ParticleID/ParticleID.cpp
+#         framework/classes/ParticleID/ParticleID.h
+#         framework/classes/AMaps/CustomSliceLimits.h
+#         framework/classes/AMaps/CustomSliceLimits.cpp
+#         framework/classes/DataAnalyser/DataAnalyser.cpp
+#         framework/classes/DataAnalyser/DataAnalyser.h
+#         framework/structures/CodeDirectories/CodeDirectories.h
+#         framework/structures/CodeDirectories/CodeDirectories.cpp
+# )
+
+
+
+
+
+
+
+
+
+# Old -----------------------------------------------------------------------------
+
+# cmake_minimum_required(VERSION 3.29)
+# # cmake_minimum_required(VERSION 3.16.3)
+# project(2N_Analyser_e4nu)
+
+# set(CMAKE_CXX_STANDARD 17)
+# # set(CMAKE_CXX_STANDARD 14)
+
+# set(CLAS12ROOT $ENV{CLAS12ROOT})
+# set(HIPO $ENV{HIPO})
+# find_package(ROOT)
+# list(APPEND CMAKE_PREFIX_PATH $ENV{ROOTSYS})
+# include(${ROOT_USE_FILE})
+# set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${ROOT_CXX_FLAGS} -O0 -ggdb")
+# find_package(PkgConfig REQUIRED)
+# pkg_check_modules(hipo4 REQUIRED IMPORTED_TARGET hipo4)
+
+# set(INCLUDES ${ROOT_INCLUDE_DIR} ${CMAKE_SOURCE_DIR}/include ${CMAKE_SOURCE_DIR}/libraries/simulation_reweighting ${HIPO}/include)
+# set(LIBRARIES ${CMAKE_SOURCE_DIR}/libraries ${HIPO}/lib)
+# include_directories(${CLAS12ROOT}/Clas12Banks ${CLAS12ROOT}/Clas12Root ${INCLUDES} ${LIBRARIES})
+
+# include_directories(.)
+# include_directories(macros)
+# include_directories(setup)
+# include_directories(setup/CLAS12DAnalysis)
+# #include_directories(setup/CLAS12DAnalysis/CLAS12DAnalyser)
+# #include_directories(setup/CLAS12DAnalysis/CLAS12DASettings)
+# #include_directories(setup/CLAS12DAnalysis/CLAS12DHistograms)
+# include_directories(framework)
+# include_directories(framework/classes)
+# include_directories(framework/classes/AMaps)
+# include_directories(framework/classes/clas12ana)
+# #include_directories(framework/classes/clas12ana/clas12ana_ver_1_myedit)
+# #include_directories(framework/classes/clas12ana/other)
+# include_directories(framework/classes/DEfficiency)
+# include_directories(framework/classes/Directories)
+# include_directories(framework/classes/DSCuts)
+# include_directories(framework/classes/ExperimentParameters)
+# include_directories(framework/classes/hData)
+# include_directories(framework/classes/hPlots)
+# include_directories(framework/classes/MomentumResolution)
+# include_directories(framework/classes/TargetParameters)
+# include_directories(framework/classes/TLCuts)
+# include_directories(source/data)
+# include_directories(framework/functions)
+# include_directories(framework/functions/AngleCalc)
+# include_directories(framework/functions/DrawAndSaveFunctions)
+# include_directories(framework/functions/EventProperties)
+# include_directories(framework/functions/FitFunctions)
+# include_directories(framework/functions/Math_func)
+# include_directories(framework/functions/other)
+# include_directories(framework/functions/PID_functions)
+# include_directories(framework/other)
+# include_directories(framework/structures)
+
+# add_executable(project ${CLAS12ROOT_SOURCES} ${CLAS12BANKS_SOURCES} ${HIPO4_SOURCES}
+#         setup/codeSetup.h
+#         framework/classes/gst/gst.h
+#         framework/classes/AMaps/AMaps.cpp
+#         framework/classes/AMaps/AMaps.h
+#         framework/classes/clas12ana/clas12ana.h
+#         framework/classes/DEfficiency/DEfficiency.cpp
+#         framework/classes/DEfficiency/DEfficiency.h
+#         framework/classes/Directories/Directories.cpp
+#         framework/classes/Directories/Directories.h
+#         framework/classes/DSCuts/DSCuts.h
+#         framework/classes/ExperimentParameters/ExperimentParameters.cpp
+#         framework/classes/ExperimentParameters/ExperimentParameters.h
+#         framework/classes/hPlots/hPlot1D.cpp
+#         framework/classes/hPlots/hPlot1D.h
+#         framework/classes/hPlots/hPlot2D.cpp
+#         framework/classes/hPlots/hPlot2D.h
+#         framework/classes/MomentumResolution/MomentumResolution.cpp
+#         framework/classes/MomentumResolution/MomentumResolution.h
+#         framework/classes/TargetParameters/TargetParameters.h
+#         framework/classes/TLCuts/TLCuts.cpp
+#         framework/classes/TLCuts/TLCuts.h
+#         framework/functions/FillByInt.h
+#         framework/functions/GetTruthLevelCuts.h
+#         framework/functions/HistogramPlottingFunctions.h
+#         framework/functions/HistogramPlottingFunctions.cpp
+#         framework/namespaces/general_utilities/utilities/utilities.h
+#         framework/namespaces/general_utilities/analysis_math/analysis_math.h
+#         framework/namespaces/general_utilities/analysis_math/analysis_math.cpp
+#         framework/namespaces/general_utilities/basic_tools/basic_tools.h
+#         framework/namespaces/general_utilities/basic_tools/basic_tools.cpp
+#         framework/namespaces/general_utilities/constants/constants.h
+#         framework/namespaces/general_utilities/constants/constants.cpp
+#         framework/namespaces/general_utilities/data_processor/data_processor.h
+#         framework/namespaces/general_utilities/data_processor/data_processor.cpp
+#         framework/namespaces/general_utilities/lists/lists.h
+#         framework/namespaces/general_utilities/lists/lists.cpp
+#         framework/namespaces/general_utilities/reco_analysis_functions/reco_analysis_functions.h
+#         framework/namespaces/general_utilities/truth_analysis_functions/truth_analysis_functions.h
+#         framework/namespaces/general_utilities/analysis_math/polynomial_solver.h
+#         framework/namespaces/general_utilities/analysis_math/polynomial_solver.cpp
+#         framework/namespaces/fitters/fitter_functions/fitter_functions.h
+#         framework/namespaces/fitters/fitter_functions/fitter_functions.cpp
+#         framework/namespaces/setup/path_definitions/path_definitions.h
+#         framework/namespaces/setup/path_definitions/path_definitions.cpp
+#         framework/namespaces/settings/debugging_settings/debugging_settings.h
+#         framework/namespaces/settings/PDF_canvas_settings/PDF_canvas_settings.h
+#         framework/namespaces/settings/PDF_canvas_settings/PDF_canvas_settings.cpp
+#         framework/namespaces/setup/debugging/debugging.h
+#         framework/namespaces/setup/debugging/debugging.cpp
+#         framework/namespaces/setup/code_setup/code_setup.h
+#         framework/namespaces/setup/analysis_samples/analysis_samples.h
+#         framework/namespaces/setup/analysis_samples/data_samples.h
+#         framework/namespaces/setup/analysis_samples/uniform_samples.h
+#         framework/namespaces/plotters/draw_and_save_functions/draw_and_save_acorr_plots.h
+#         framework/namespaces/plotters/draw_and_save_functions/draw_and_save_acorr_plots.cpp
+#         framework/namespaces/plotters/draw_and_save_functions/draw_and_save_efficiency_plots.h
+#         framework/namespaces/plotters/draw_and_save_functions/draw_and_save_efficiency_plots.cpp
+#         framework/namespaces/plotters/draw_and_save_functions/draw_and_save_fs_ratio.h
+#         framework/namespaces/plotters/draw_and_save_functions/draw_and_save_fs_ratio.cpp
+#         framework/namespaces/plotters/draw_and_save_functions/draw_and_save_functions.h
+#         framework/namespaces/plotters/PDF_canvas/PDF_canvas.h
+#         framework/applications/DetectorSimulationAnalyser.h
+#         framework/applications/DetectorSimulationAnalyser.cpp
+#         git_handle.sh
+#         main.cpp
+#         run.csh
+#         framework/classes/Settings/Settings.cpp
+#         framework/classes/Settings/Settings.h
+#         framework/classes/Settings/CustomPlotsDirectory.cpp
+#         framework/classes/Settings/CustomPlotsDirectory.h
+#         framework/classes/ParticleID/ParticleID.cpp
+#         framework/classes/ParticleID/ParticleID.h
+#         framework/classes/AMaps/CustomSliceLimits.h
+#         framework/classes/AMaps/CustomSliceLimits.cpp
+#         framework/classes/DataAnalyser/DataAnalyser.cpp
+#         framework/classes/DataAnalyser/DataAnalyser.h
+#         framework/structures/CodeDirectories/CodeDirectories.h
+#         framework/structures/CodeDirectories/CodeDirectories.cpp
+# )
