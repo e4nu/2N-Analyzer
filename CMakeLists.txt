@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.29)
-project(2N_Analyser_e4nu)
+project(2N_Analysis_e4nu)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -7,20 +7,19 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CLAS12ROOT $ENV{CLAS12ROOT})
 # set(HIPO $ENV{HIPO})
 
-MESSAGE( CHECK_START "Checking for installed hipo..."  )
+MESSAGE(CHECK_START "Checking for installed hipo...")
 
 if(DEFINED ENV{HIPO})
     set(HIPOEXT $ENV{HIPO})
     set(HIPO_INCLUDE_DIR ${HIPOEXT}/include/)
     set(HIPO_LIBS "-L${HIPOEXT}/lib -lhipo4")
 
-    MESSAGE(STATUS "HIPO INCLUDE_DIR : " ${HIPO_INCLUDE_DIR} )
-    MESSAGE(STATUS "HIPO LIBRARIES : " ${HIPO_LIBS} )
+    MESSAGE(STATUS "HIPO INCLUDE_DIR : " ${HIPO_INCLUDE_DIR})
+    MESSAGE(STATUS "HIPO LIBRARIES : " ${HIPO_LIBS})
 else()
-    MESSAGE(CHECK_FAIL "$HIPO not set" )
+    MESSAGE(CHECK_FAIL "$HIPO not set")
     MESSAGE(FATAL_ERROR , "\n ... $HIPO must be set to local install of the hipo library\n ... see clas12root/README.md\n ... cmake exiting")
 endif()
-
 
 find_package(ROOT REQUIRED)
 list(APPEND CMAKE_PREFIX_PATH $ENV{ROOTSYS})  # Ensure ROOTSYS is set before finding ROOT
@@ -35,7 +34,7 @@ include_directories(${CLAS12ROOT}/Clas12Root)
 include_directories(${HIPOEXT}/include)
 # include_directories(${HIPO}/include)
 
-set(Analyser myclas12root)
+set(Analyser 2N_Analyser_e4nu)
 
 set(FRAMEWORK_DIR framework)
 include_directories(${FRAMEWORK_DIR})
@@ -98,10 +97,10 @@ add_executable(${Analyser} main.cpp)
 # Link external libraries first, then project libraries
 # target_link_libraries(${Analyser} ${ROOT_LIBRARIES} Hipo4 Clas12Banks Clas12Root)
 
-target_link_libraries(${Analyser} PUBLIC ${ROOT_LIBRARIES} ${HIPO_LIBS} -L${CLAS12ROOT}/lib -lClas12Banks -lClas12Root -L${CLAS12ROOT}/ccdb/lib)
-# target_link_libraries(${Analyser} ${ROOT_LIBRARIES} PkgConfig::hipo4 -L${CLAS12ROOT}/lib -lClas12Banks -lClas12Root -L${CLAS12ROOT}/ccdb/lib AnalysisDataStructures AnalysisLibraries AnalysisTools AnalysisApps)
+target_link_libraries(${Analyser} PUBLIC 
+    ${ROOT_LIBRARIES} 
+    ${HIPO_LIBS}
+    -L${CLAS12ROOT}/lib -lClas12Banks -lClas12Root -L${CLAS12ROOT}/ccdb/lib
+    AnalysisDataStructures AnalysisLibraries AnalysisTools AnalysisApps
+)
 
-target_link_libraries(${Analyser} PUBLIC AnalysisDataStructures)
-target_link_libraries(${Analyser} PUBLIC AnalysisLibraries)
-target_link_libraries(${Analyser} PUBLIC AnalysisTools)
-target_link_libraries(${Analyser} PUBLIC AnalysisApps)
