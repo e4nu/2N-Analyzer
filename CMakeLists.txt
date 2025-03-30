@@ -103,9 +103,6 @@ add_executable(${Analyser} main.cpp)
 #     AnalysisDataStructures AnalysisLibraries AnalysisTools AnalysisApps
 # )
 
-target_link_libraries(${Analyser} PUBLIC ${ROOT_LIBRARIES} Clas12Banks PkgConfig::hipo4 -L${CLAS12ROOT}/lib -L${CLAS12ROOT}/ccdb/lib AnalysisDataStructures AnalysisLibraries AnalysisTools AnalysisApps)
+target_link_libraries(${Analyser} PUBLIC ${ROOT_LIBRARIES} Clas12Banks hipo4 -L${CLAS12ROOT}/lib -L${CLAS12ROOT}/ccdb/lib AnalysisDataStructures AnalysisLibraries AnalysisTools AnalysisApps)
+# target_link_libraries(${Analyser} PUBLIC ${ROOT_LIBRARIES} Clas12Banks PkgConfig::hipo4 -L${CLAS12ROOT}/lib -L${CLAS12ROOT}/ccdb/lib AnalysisDataStructures AnalysisLibraries AnalysisTools AnalysisApps)
 # target_link_libraries(${Analyser} PUBLIC ${ROOT_LIBRARIES} Clas12Banks Hipo4 -L${CLAS12ROOT}/lib -L${CLAS12ROOT}/ccdb/lib AnalysisDataStructures AnalysisLibraries AnalysisTools AnalysisApps)
-# target_link_libraries(${Analyser} PUBLIC ${ROOT_LIBRARIES} -lClas12Banks PkgConfig::hipo4 -lClas12Root -L${CLAS12ROOT}/lib -L${CLAS12ROOT}/ccdb/lib AnalysisDataStructures AnalysisLibraries AnalysisTools AnalysisApps)
-# target_link_libraries(${Analyser} PUBLIC ${ROOT_LIBRARIES} Clas12Banks Hipo4 -L${CLAS12ROOT}/lib AnalysisDataStructures AnalysisLibraries AnalysisTools AnalysisApps)
-# target_link_libraries(${Analyser} PUBLIC ${ROOT_LIBRARIES} ${HIPO_LIBS} Clas12Banks -L${CLAS12ROOT}/lib AnalysisDataStructures AnalysisLibraries AnalysisTools AnalysisApps)
-# target_link_libraries(${Analyser} PUBLIC ${ROOT_LIBRARIES} Clas12Banks Hipo4 -L${CLAS12ROOT}/lib AnalysisDataStructures AnalysisLibraries AnalysisTools AnalysisApps)
