@@ -5,6 +5,8 @@
 #ifndef ANALYSIS_MATH_H
 #define ANALYSIS_MATH_H
 
+#include <TVector3.h>
+
 #include <cmath>
 #include <iostream>
 #include <string>
@@ -71,6 +73,11 @@ double CalcdPhi1(double dPhiTemp);
 // GetPhi_e function ----------------------------------------------------------------------------------------------------------------------------------------------------
 
 double GetPhi_e(TString OutPutFolder, double phi_N);
+
+// rotate function ------------------------------------------------------------------------------------------------------------------------------------------------------
+
+// helper function for DC fiducials (from clas12ana)
+TVector3 rotate(TVector3 vec, int sector);
 
 // GetBinFromAng function -----------------------------------------------------------------------------------------------------------------------------------------------
 

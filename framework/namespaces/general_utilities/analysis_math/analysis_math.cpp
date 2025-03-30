@@ -93,6 +93,17 @@ double GetPhi_e(TString OutPutFolder, double phi_N) {
     // return closest_angle;
 }
 
+// rotate function ------------------------------------------------------------------------------------------------------------------------------------------------------
+
+// helper function for DC fiducials (from clas12ana)
+TVector3 rotate(TVector3 vec, int sector) {
+    double rot_ang = -(sector - 1) * 60 * TMath::DegToRad();
+
+    vec.RotateZ(rot_ang);
+
+    return vec;
+}
+
 // GetBinFromAng function -----------------------------------------------------------------------------------------------------------------------------------------------
 
 int GetBinFromAng(double Angle, double AngleBins, double AngleMin, double AngleMax, bool printOut, const std::string &AngleType) {

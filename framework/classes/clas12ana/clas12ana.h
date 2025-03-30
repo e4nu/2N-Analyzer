@@ -29,14 +29,15 @@ struct cutpar {
     std::vector<double> par = {};  // pi- parameters
 };
 
-// helper function for DC fiducials
-TVector3 rotate(TVector3 vec, int sector) {
-    double rot_ang = -(sector - 1) * 60 * TMath::DegToRad();
+// My edit!
+// // helper function for DC fiducials
+// TVector3 rotate(TVector3 vec, int sector) {
+//     double rot_ang = -(sector - 1) * 60 * TMath::DegToRad();
 
-    vec.RotateZ(rot_ang);
+//     vec.RotateZ(rot_ang);
 
-    return vec;
-}
+//     return vec;
+// }
 
 // #################################################################### //
 // Analysis suite for CLAS12 analysis                                   //
