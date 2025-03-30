@@ -85,25 +85,23 @@ include_directories(${APPS_DIR})
 
 include_directories(setup)
 
+# Add subdirectories
 # Ensure subdirectories exist and contain a CMakeLists.txt
-add_subdirectory(${STRUCTURES_DIR})
-add_subdirectory(${NAMESPACES_DIR})
-add_subdirectory(${CLASSES_DIR})
-add_subdirectory(${APPS_DIR})
+foreach(dir ${STRUCTURES_DIR} ${NAMESPACES_DIR} ${CLASSES_DIR} ${APPS_DIR})
+    if(EXISTS ${dir})
+        add_subdirectory(${dir})
+        message(STATUS "Added subdirectory: ${dir}")
+    else()
+        message(WARNING "Directory ${dir} does not exist.")
+    endif()
+endforeach()
 
 add_executable(${Analyser} main.cpp)
 
 # Link external libraries first, then project libraries
 # target_link_libraries(${Analyser} ${ROOT_LIBRARIES} Hipo4 Clas12Banks Clas12Root)
 
-# target_link_libraries(${Analyser} PUBLIC 
-#     ${ROOT_LIBRARIES} 
-#     ${HIPO_LIBS}
-#     -L${CLAS12ROOT}/lib -lClas12Banks -lClas12Root -L${CLAS12ROOT}/ccdb/lib
-#     AnalysisDataStructures AnalysisLibraries AnalysisTools AnalysisApps
-# )
-
-target_link_libraries(${Analyser} PUBLIC ${ROOT_LIBRARIES} -L${HIPO}/lib Clas12Banks hipo4 -L${CLAS12ROOT}/lib -L${CLAS12ROOT}/ccdb/lib AnalysisDataStructures AnalysisLibraries AnalysisTools AnalysisApps)
-# target_link_libraries(${Analyser} PUBLIC ${ROOT_LIBRARIES} Clas12Banks hipo4 -L${CLAS12ROOT}/lib -L${CLAS12ROOT}/ccdb/lib AnalysisDataStructures AnalysisLibraries AnalysisTools AnalysisApps) # best one!
+target_link_libraries(${Analyser} PUBLIC ${ROOT_LIBRARIES} Clas12Banks hipo4 -L${CLAS12ROOT}/lib -L${CLAS12ROOT}/ccdb/lib AnalysisDataStructures AnalysisLibraries AnalysisTools AnalysisApps)
+# target_link_libraries(${Analyser} PUBLIC ${ROOT_LIBRARIES} -L${HIPO}/lib Clas12Banks hipo4 -L${CLAS12ROOT}/lib -L${CLAS12ROOT}/ccdb/lib AnalysisDataStructures AnalysisLibraries AnalysisTools AnalysisApps)
 # target_link_libraries(${Analyser} PUBLIC ${ROOT_LIBRARIES} Clas12Banks PkgConfig::hipo4 -L${CLAS12ROOT}/lib -L${CLAS12ROOT}/ccdb/lib AnalysisDataStructures AnalysisLibraries AnalysisTools AnalysisApps)
 # target_link_libraries(${Analyser} PUBLIC ${ROOT_LIBRARIES} Clas12Banks Hipo4 -L${CLAS12ROOT}/lib -L${CLAS12ROOT}/ccdb/lib AnalysisDataStructures AnalysisLibraries AnalysisTools AnalysisApps) # best one!
