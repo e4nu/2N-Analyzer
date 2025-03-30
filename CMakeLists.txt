@@ -5,35 +5,21 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(CLAS12ROOT $ENV{CLAS12ROOT})
-# set(HIPO $ENV{HIPO})
-
-MESSAGE(CHECK_START "Checking for installed hipo...")
-
-if(DEFINED ENV{HIPO})
-    set(HIPOEXT $ENV{HIPO})
-    set(HIPO_INCLUDE_DIR ${HIPOEXT}/include/)
-    set(HIPO_LIBS "-L${HIPOEXT}/lib -lhipo4")
-
-    MESSAGE(STATUS "HIPO INCLUDE_DIR : " ${HIPO_INCLUDE_DIR})
-    MESSAGE(STATUS "HIPO LIBRARIES : " ${HIPO_LIBS})
-else()
-    MESSAGE(CHECK_FAIL "$HIPO not set")
-    MESSAGE(FATAL_ERROR , "\n ... $HIPO must be set to local install of the hipo library\n ... see clas12root/README.md\n ... cmake exiting")
-endif()
+MESSAGE(STATUS "CLAS12ROOT: " ${CLAS12ROOT})
+set(HIPO $ENV{HIPO})
+MESSAGE(STATUS "HIPO: " ${HIPO})
 
 find_package(ROOT REQUIRED)
 list(APPEND CMAKE_PREFIX_PATH $ENV{ROOTSYS})  # Ensure ROOTSYS is set before finding ROOT
 include(${ROOT_USE_FILE})
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${ROOT_CXX_FLAGS}")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${ROOT_CXX_FLAGS} -O0 -ggdb")
 
 find_package(PkgConfig REQUIRED)
-# pkg_check_modules(hipo4 REQUIRED IMPORTED_TARGET hipo4) # makes the target 'PkgConfig::hipo4`
+pkg_check_modules(hipo4 REQUIRED IMPORTED_TARGET hipo4) # makes the target 'PkgConfig::hipo4`
 
-include_directories(${CLAS12ROOT}/Clas12Banks)
-include_directories(${CLAS12ROOT}/Clas12Root)
-include_directories(${HIPOEXT})
-include_directories(${HIPOEXT}/include)
-include_directories(${HIPOEXT}/lib)
+set(INCLUDES ${ROOT_INCLUDE_DIR} ${CMAKE_SOURCE_DIR}/include ${CMAKE_SOURCE_DIR}/libraries/simulation_reweighting ${HIPO}/include)
+set(LIBRARIES ${CMAKE_SOURCE_DIR}/libraries ${HIPO}/lib)
+include_directories(${CLAS12ROOT}/Clas12Banks ${CLAS12ROOT}/Clas12Root ${INCLUDES} ${LIBRARIES})
 
 set(Analyser 2N_Analyser_e4nu)
 
@@ -41,40 +27,52 @@ set(FRAMEWORK_DIR framework)
 include_directories(${FRAMEWORK_DIR})
 
 set(CLASSES_DIR ${FRAMEWORK_DIR}/classes)
-include_directories(${CLASSES_DIR})
-include_directories(${CLASSES_DIR}/AMaps)
-include_directories(${CLASSES_DIR}/clas12ana)
-include_directories(${CLASSES_DIR}/DataAnalyser)
-include_directories(${CLASSES_DIR}/Debugger)
-include_directories(${CLASSES_DIR}/DEfficiency)
-include_directories(${CLASSES_DIR}/Directories)
-include_directories(${CLASSES_DIR}/DSCuts)
-include_directories(${CLASSES_DIR}/ExperimentParameters)
-include_directories(${CLASSES_DIR}/gst)
-include_directories(${CLASSES_DIR}/hPlots)
-include_directories(${CLASSES_DIR}/MomentumResolution)
-include_directories(${CLASSES_DIR}/ParticleID)
-include_directories(${CLASSES_DIR}/Settings)
-include_directories(${CLASSES_DIR}/TargetParameters)
-include_directories(${CLASSES_DIR}/TLCuts)
+set(CLASSES_SUBDIRS 
+    AMaps 
+    clas12ana 
+    DataAnalyser 
+    Debugger 
+    DEfficiency 
+    Directories 
+    DSCuts 
+    ExperimentParameters 
+    gst 
+    hPlots 
+    MomentumResolution 
+    ParticleID 
+    Settings 
+    TargetParameters 
+    TLCuts
+)
+
+foreach(subdir ${CLASSES_SUBDIRS})
+    include_directories(${CLASSES_DIR}/${subdir})
+endforeach()
 
 set(NAMESPACES_DIR ${FRAMEWORK_DIR}/namespaces)
-include_directories(${NAMESPACES_DIR}/fitters/fitter_functions)
-include_directories(${NAMESPACES_DIR}/general_utilities/analysis_math)
-include_directories(${NAMESPACES_DIR}/general_utilities/basic_tools)
-include_directories(${NAMESPACES_DIR}/general_utilities/constants)
-include_directories(${NAMESPACES_DIR}/general_utilities/data_processor)
-include_directories(${NAMESPACES_DIR}/general_utilities/histogram_functions)
-include_directories(${NAMESPACES_DIR}/general_utilities/lists)
-include_directories(${NAMESPACES_DIR}/general_utilities/reco_analysis_functions)
-include_directories(${NAMESPACES_DIR}/general_utilities/utilities)
-include_directories(${NAMESPACES_DIR}/plotters/draw_and_save_functions)
-include_directories(${NAMESPACES_DIR}/plotters/PDF_canvas)
-include_directories(${NAMESPACES_DIR}/settings/debugging_settings)
-include_directories(${NAMESPACES_DIR}/settings/PDF_canvas_settings)
-include_directories(${NAMESPACES_DIR}/setup/analysis_samples)
-include_directories(${NAMESPACES_DIR}/setup/code_setup)
-include_directories(${NAMESPACES_DIR}/setup/path_definitions)
+
+set(NAMESPACES_SUBDIRS 
+    fitters/fitter_functions
+    general_utilities/analysis_math
+    general_utilities/basic_tools
+    general_utilities/constants
+    general_utilities/data_processor
+    general_utilities/histogram_functions
+    general_utilities/lists
+    general_utilities/reco_analysis_functions
+    general_utilities/utilities
+    plotters/draw_and_save_functions
+    plotters/PDF_canvas
+    settings/debugging_settings
+    settings/PDF_canvas_settings
+    setup/analysis_samples
+    setup/code_setup
+    setup/path_definitions
+)
+
+foreach(subdir ${NAMESPACES_SUBDIRS})
+    include_directories(${NAMESPACES_DIR}/${subdir})
+endforeach()
 
 set(STRUCTURES_DIR ${FRAMEWORK_DIR}/structures)
 include_directories(${STRUCTURES_DIR}/CodeDirectories)
@@ -105,6 +103,7 @@ add_executable(${Analyser} main.cpp)
 #     AnalysisDataStructures AnalysisLibraries AnalysisTools AnalysisApps
 # )
 
-target_link_libraries(${Analyser} PUBLIC ${ROOT_LIBRARIES} Clas12Banks ${HIPO_LIBS} -L${CLAS12ROOT}/lib AnalysisDataStructures AnalysisLibraries AnalysisTools AnalysisApps)
+target_link_libraries(${Analyser} PUBLIC ${ROOT_LIBRARIES} -lClas12Banks PkgConfig::hipo4 -lClas12Root -L${CLAS12ROOT}/lib -L${CLAS12ROOT}/ccdb/lib AnalysisDataStructures AnalysisLibraries AnalysisTools AnalysisApps)
+# target_link_libraries(${Analyser} PUBLIC ${ROOT_LIBRARIES} Clas12Banks Hipo4 -L${CLAS12ROOT}/lib AnalysisDataStructures AnalysisLibraries AnalysisTools AnalysisApps)
 # target_link_libraries(${Analyser} PUBLIC ${ROOT_LIBRARIES} ${HIPO_LIBS} Clas12Banks -L${CLAS12ROOT}/lib AnalysisDataStructures AnalysisLibraries AnalysisTools AnalysisApps)
 # target_link_libraries(${Analyser} PUBLIC ${ROOT_LIBRARIES} Clas12Banks Hipo4 -L${CLAS12ROOT}/lib AnalysisDataStructures AnalysisLibraries AnalysisTools AnalysisApps)
