@@ -87,7 +87,7 @@ add_executable(${Analyser} main.cpp)
 
 
 
-target_link_libraries(${exename} ${ROOT_LIBRARIES} -lEG -lClas12Banks -lHipo4 -lClas12Root -L${CLAS12ROOT}/lib)
+target_link_libraries(${exename} ${ROOT_LIBRARIES} -lClas12Banks -lHipo4 -lClas12Root -L${CLAS12ROOT}/lib)
 # target_link_libraries(${exename} -lClas12Banks -lHipo4 -lClas12Root)
 # target_link_libraries(${exename} -L${CLAS12ROOT}/lib)
 # target_link_libraries(${Analyser} PUBLIC ${ROOT_LIBRARIES} -lClas12Banks PkgConfig::hipo4 -lClas12Root -L${CLAS12ROOT}/lib AnalysisDataStructures AnalysisLibraries AnalysisTools AnalysisApps)
