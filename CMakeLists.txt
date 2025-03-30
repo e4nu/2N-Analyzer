@@ -31,6 +31,7 @@ find_package(PkgConfig REQUIRED)
 
 include_directories(${CLAS12ROOT}/Clas12Banks)
 include_directories(${CLAS12ROOT}/Clas12Root)
+include_directories(${HIPOEXT})
 include_directories(${HIPOEXT}/include)
 # include_directories(${HIPO}/include)
 
@@ -97,10 +98,11 @@ add_executable(${Analyser} main.cpp)
 # Link external libraries first, then project libraries
 # target_link_libraries(${Analyser} ${ROOT_LIBRARIES} Hipo4 Clas12Banks Clas12Root)
 
-target_link_libraries(${Analyser} PUBLIC 
-    ${ROOT_LIBRARIES} 
-    ${HIPO_LIBS}
-    -L${CLAS12ROOT}/lib -lClas12Banks -lClas12Root -L${CLAS12ROOT}/ccdb/lib
-    AnalysisDataStructures AnalysisLibraries AnalysisTools AnalysisApps
-)
+# target_link_libraries(${Analyser} PUBLIC 
+#     ${ROOT_LIBRARIES} 
+#     ${HIPO_LIBS}
+#     -L${CLAS12ROOT}/lib -lClas12Banks -lClas12Root -L${CLAS12ROOT}/ccdb/lib
+#     AnalysisDataStructures AnalysisLibraries AnalysisTools AnalysisApps
+# )
 
+target_link_libraries(${Analyser} PUBLIC ${ROOT_LIBRARIES} Clas12Banks Hipo4 -L${CLAS12ROOT}/lib AnalysisDataStructures AnalysisLibraries AnalysisTools AnalysisApps)
