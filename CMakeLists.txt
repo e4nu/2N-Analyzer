@@ -80,7 +80,7 @@ include_directories(${STRUCTURES_DIR}/DataSample)
 
 set(FUNCTIONS_DIR ${FRAMEWORK_DIR}/functions)
 
-set(APPS_DIR framework/applications)
+set(APPS_DIR ${FRAMEWORK_DIR}/applications)
 include_directories(${APPS_DIR})
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/setup)
