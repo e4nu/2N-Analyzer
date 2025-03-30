@@ -99,4 +99,6 @@ add_executable(${Analyser} main.cpp)
 # target_link_libraries(${Analyser} ${ROOT_LIBRARIES} Hipo4 Clas12Banks Clas12Root)
 
 target_link_libraries(${Analyser} PUBLIC ${ROOT_LIBRARIES} ${HIPO_LIBS} -L${CLAS12ROOT}/lib -lClas12Banks -lClas12Root -L${CLAS12ROOT}/ccdb/lib)
-# target_link_libraries(${Analyser} ${ROOT_LIBRARIES} PkgConfig::hipo4 -L${CLAS12ROOT}/lib -lClas12Banks -lClas12Root -L${CLAS12ROOT}/ccdb/lib)
+# target_link_libraries(${Analyser} ${ROOT_LIBRARIES} PkgConfig::hipo4 -L${CLAS12ROOT}/lib -lClas12Banks -lClas12Root -L${CLAS12ROOT}/ccdb/lib AnalysisDataStructures AnalysisLibraries AnalysisTools AnalysisApps)
+
+target_link_libraries(AnalysisDataStructures AnalysisLibraries AnalysisTools AnalysisApps)
