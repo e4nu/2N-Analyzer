@@ -33,7 +33,7 @@ include_directories(${CLAS12ROOT}/Clas12Banks)
 include_directories(${CLAS12ROOT}/Clas12Root)
 include_directories(${HIPOEXT})
 include_directories(${HIPOEXT}/include)
-# include_directories(${HIPOEXT}/lib)
+include_directories(${HIPOEXT}/lib)
 
 set(Analyser 2N_Analyser_e4nu)
 
@@ -105,5 +105,5 @@ add_executable(${Analyser} main.cpp)
 #     AnalysisDataStructures AnalysisLibraries AnalysisTools AnalysisApps
 # )
 
-target_link_libraries(${Analyser} PUBLIC ${ROOT_LIBRARIES} ${HIPO_LIBS} Clas12Banks -L${CLAS12ROOT}/lib AnalysisDataStructures AnalysisLibraries AnalysisTools AnalysisApps)
+target_link_libraries(${Analyser} PUBLIC ${ROOT_LIBRARIES} Clas12Banks ${HIPO_LIBS} -L${CLAS12ROOT}/lib AnalysisDataStructures AnalysisLibraries AnalysisTools AnalysisApps)# target_link_libraries(${Analyser} PUBLIC ${ROOT_LIBRARIES} ${HIPO_LIBS} Clas12Banks -L${CLAS12ROOT}/lib AnalysisDataStructures AnalysisLibraries AnalysisTools AnalysisApps)
 # target_link_libraries(${Analyser} PUBLIC ${ROOT_LIBRARIES} Clas12Banks Hipo4 -L${CLAS12ROOT}/lib AnalysisDataStructures AnalysisLibraries AnalysisTools AnalysisApps)
