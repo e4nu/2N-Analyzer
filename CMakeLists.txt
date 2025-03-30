@@ -23,7 +23,7 @@ include_directories(${CLAS12ROOT}/Clas12Banks ${CLAS12ROOT}/Clas12Root ${INCLUDE
 
 set(Analyser 2N_Analyser_e4nu)
 
-set(FRAMEWORK_DIR framework)
+set(FRAMEWORK_DIR ${CMAKE_CURRENT_SOURCE_DIR}/framework)
 include_directories(${FRAMEWORK_DIR})
 
 set(CLASSES_DIR ${FRAMEWORK_DIR}/classes)
@@ -83,7 +83,7 @@ set(FUNCTIONS_DIR ${FRAMEWORK_DIR}/functions)
 set(APPS_DIR framework/applications)
 include_directories(${APPS_DIR})
 
-include_directories(setup)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/setup)
 
 # Add subdirectories
 # Ensure subdirectories exist and contain a CMakeLists.txt
