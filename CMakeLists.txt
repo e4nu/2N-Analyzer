@@ -59,7 +59,7 @@ set(CLASSES_SUBDIRS
 
 foreach(subdir ${CLASSES_SUBDIRS})
     include_directories(${CLASSES_DIR}/${subdir})
-    message(STATUS "Included directory: ${subdir}")
+    message(STATUS "Included directory: ${CLASSES_DIR}/${subdir}")
 endforeach()
 
 set(NAMESPACES_DIR ${FRAMEWORK_DIR}/namespaces)
@@ -85,7 +85,7 @@ set(NAMESPACES_SUBDIRS
 
 foreach(subdir ${NAMESPACES_SUBDIRS})
     include_directories(${NAMESPACES_DIR}/${subdir})
-    message(STATUS "Included directory: ${subdir}")
+    message(STATUS "Included directory: ${NAMESPACES_DIR}/${subdir}")
 endforeach()
 
 set(STRUCTURES_DIR ${FRAMEWORK_DIR}/structures)
@@ -119,7 +119,8 @@ add_executable(${Analyser} main.cpp)
 # Link external libraries first, then project libraries
 # target_link_libraries(${Analyser} ${ROOT_LIBRARIES} Hipo4 Clas12Banks Clas12Root)
 
-target_link_libraries(${Analyser} PUBLIC ${ROOT_LIBRARIES} Clas12Banks hipo4 -L${CLAS12ROOT}/lib -L${CLAS12ROOT}/ccdb/lib AnalysisDataStructures AnalysisLibraries AnalysisTools AnalysisApps)
+target_link_libraries(${Analyser} PUBLIC ${ROOT_LIBRARIES} Clas12Banks -L${HIPOEXT}/lib -lhipo4 -L${CLAS12ROOT}/lib -L${CLAS12ROOT}/ccdb/lib AnalysisDataStructures AnalysisLibraries AnalysisTools AnalysisApps) # best one!
+# target_link_libraries(${Analyser} PUBLIC ${ROOT_LIBRARIES} Clas12Banks hipo4 -L${CLAS12ROOT}/lib -L${CLAS12ROOT}/ccdb/lib AnalysisDataStructures AnalysisLibraries AnalysisTools AnalysisApps)
 # target_link_libraries(${Analyser} PUBLIC ${ROOT_LIBRARIES} -L${HIPO}/lib Clas12Banks hipo4 -L${CLAS12ROOT}/lib -L${CLAS12ROOT}/ccdb/lib AnalysisDataStructures AnalysisLibraries AnalysisTools AnalysisApps)
 # target_link_libraries(${Analyser} PUBLIC ${ROOT_LIBRARIES} Clas12Banks PkgConfig::hipo4 -L${CLAS12ROOT}/lib -L${CLAS12ROOT}/ccdb/lib AnalysisDataStructures AnalysisLibraries AnalysisTools AnalysisApps)
 # target_link_libraries(${Analyser} PUBLIC ${ROOT_LIBRARIES} Clas12Banks Hipo4 -L${CLAS12ROOT}/lib -L${CLAS12ROOT}/ccdb/lib AnalysisDataStructures AnalysisLibraries AnalysisTools AnalysisApps) # best one!
