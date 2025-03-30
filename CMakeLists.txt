@@ -13,7 +13,8 @@ include(${ROOT_USE_FILE})
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${ROOT_CXX_FLAGS}")
 
 find_package(PkgConfig REQUIRED)
-pkg_check_modules(HIPO4 REQUIRED hipo4)
+pkg_check_modules(hipo4 REQUIRED IMPORTED_TARGET hipo4)
+# pkg_check_modules(HIPO4 REQUIRED hipo4)
 
 include_directories(${CLAS12ROOT}/Clas12Banks)
 include_directories(${CLAS12ROOT}/Clas12Root)
