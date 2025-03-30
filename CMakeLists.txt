@@ -20,11 +20,23 @@ pkg_check_modules(hipo4 REQUIRED IMPORTED_TARGET hipo4) # makes the target 'PkgC
 set(INCLUDES ${ROOT_INCLUDE_DIR} ${CMAKE_SOURCE_DIR}/include ${CMAKE_SOURCE_DIR}/libraries/simulation_reweighting ${HIPO}/include)
 set(LIBRARIES ${CMAKE_SOURCE_DIR}/libraries ${HIPO}/lib)
 include_directories(${CLAS12ROOT}/Clas12Banks ${CLAS12ROOT}/Clas12Root ${INCLUDES} ${LIBRARIES})
+message(STATUS "Included directory: ${CLAS12ROOT}/Clas12Banks")
+message(STATUS "Included directory: ${CLAS12ROOT}/Clas12Root")
+message(STATUS "Included directory: ${CLAS12ROOT}/Clas12Root")
+
+foreach(subdir ${INCLUDES})
+    message(STATUS "Included directory: ${subdir}")
+endforeach()
+
+foreach(subdir ${LIBRARIES})
+    message(STATUS "Included directory: ${subdir}")
+endforeach()
 
 set(Analyser 2N_Analyser_e4nu)
 
 set(FRAMEWORK_DIR ${CMAKE_CURRENT_SOURCE_DIR}/framework)
 include_directories(${FRAMEWORK_DIR})
+message(STATUS "Included directory: ${FRAMEWORK_DIR}")
 
 set(CLASSES_DIR ${FRAMEWORK_DIR}/classes)
 set(CLASSES_SUBDIRS 
@@ -47,6 +59,7 @@ set(CLASSES_SUBDIRS
 
 foreach(subdir ${CLASSES_SUBDIRS})
     include_directories(${CLASSES_DIR}/${subdir})
+    message(STATUS "Included directory: ${subdir}")
 endforeach()
 
 set(NAMESPACES_DIR ${FRAMEWORK_DIR}/namespaces)
@@ -72,18 +85,23 @@ set(NAMESPACES_SUBDIRS
 
 foreach(subdir ${NAMESPACES_SUBDIRS})
     include_directories(${NAMESPACES_DIR}/${subdir})
+    message(STATUS "Included directory: ${subdir}")
 endforeach()
 
 set(STRUCTURES_DIR ${FRAMEWORK_DIR}/structures)
 include_directories(${STRUCTURES_DIR}/CodeDirectories)
+message(STATUS "Included directory: ${STRUCTURES_DIR}/CodeDirectories")
 include_directories(${STRUCTURES_DIR}/DataSample)
+message(STATUS "Included directory: ${STRUCTURES_DIR}/DataSample")
 
 set(FUNCTIONS_DIR ${FRAMEWORK_DIR}/functions)
 
 set(APPS_DIR ${FRAMEWORK_DIR}/applications)
 include_directories(${APPS_DIR})
+message(STATUS "Included directory: ${APPS_DIR}")
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/setup)
+message(STATUS "Included directory: ${CMAKE_CURRENT_SOURCE_DIR}/setup")
 
 # Add subdirectories
 # Ensure subdirectories exist and contain a CMakeLists.txt
