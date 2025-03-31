@@ -6,13 +6,15 @@
 #define DATAANALYSER_H
 // #ifdef DATAANALYSER_H
 
-#if CMakeBuidIncludes
-    #include "../../applications/DetectorSimulationAnalyser.h"
+#include "../../applications/DetectorSimulationAnalyser.cpp"
 // #include "../../applications/framework/applications/TruthLevelAnalyser.cpp"
-#else
-    #include "../../applications/DetectorSimulationAnalyser.cpp"
-// #include "../../applications/framework/applications/TruthLevelAnalyser.cpp"
-#endif
+// #if CMakeBuidIncludes
+//     #include "../../applications/DetectorSimulationAnalyser.h"
+// // #include "../../applications/framework/applications/TruthLevelAnalyser.cpp"
+// #else
+//     #include "../../applications/DetectorSimulationAnalyser.cpp"
+// // #include "../../applications/framework/applications/TruthLevelAnalyser.cpp"
+// #endif
 
 class DataAnalyser {
    private:
