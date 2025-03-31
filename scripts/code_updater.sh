@@ -25,9 +25,9 @@ echo ""
 git clean -f
 echo ""
 
-source ./framework/scripts/environment/set_environment.csh
-source ./framework/scripts/screen/setup_screen_commands.csh
-chmod +x ./framework/scripts/cmake/cmake_rebuild.csh
+source ./scripts/environment/set_environment.csh
+source ./scripts/screen/setup_screen_commands.csh
+chmod +x ./scripts/cmake/cmake_rebuild.csh
 
 echo ""
 echo "${COLOR_START}=======================================================================${COLOR_END}"

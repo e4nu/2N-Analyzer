@@ -1,7 +1,7 @@
 #!/bin/tcsh
 
 # To run script:
-# source ./framework/scripts/cmake/cmake_rebuild.csh
+# source ./scripts/cmake/cmake_rebuild.csh
 
 unset COLOR_START
 setenv COLOR_START '\033[35m'
@@ -10,7 +10,7 @@ unset COLOR_END
 setenv COLOR_END '\033[0m'
 
 echo ""
-source ./framework/scripts/environment/set_environment.csh
+source ./scripts/environment/set_environment.csh
 
 cd ${DIR_2N_ANALYSIS_CODE}
 
@@ -39,7 +39,7 @@ echo ""
 
 cd ${DIR_2N_ANALYSIS_CODE}
 # # To run script:
-# # source ./framework/scripts/cmake/cmake_rebuild.csh
+# # source ./scripts/cmake/cmake_rebuild.csh
 
 # unset COLOR_START
 # setenv COLOR_START '\033[35m'
@@ -48,7 +48,7 @@ cd ${DIR_2N_ANALYSIS_CODE}
 # setenv COLOR_END '\033[0m'
 
 # echo ""
-# source ./framework/scripts/environment/set_environment.csh
+# source ./scripts/environment/set_environment.csh
 
 # cd ${DIR_2N_ANALYSIS_CODE}
 

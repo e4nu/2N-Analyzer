@@ -13,9 +13,10 @@ CodeDirectories::CodeDirectories() {
 
     FrameworkDirectory = WorkingDirectory + "framework/";
 
-    SourceDirectory = WorkingDirectory + "source/";
+    // SourceDirectory = WorkingDirectory + "source/";
 
-    DataDirectory = SourceDirectory + "data/";
+    DataDirectory = WorkingDirectory + "data/";
+    // DataDirectory = SourceDirectory + "data/";
     ACorrDirectory = DataDirectory + "AcceptanceCorrections/";
 
     AcceptanceMapsDirectory = DataDirectory + "AcceptanceMaps/";

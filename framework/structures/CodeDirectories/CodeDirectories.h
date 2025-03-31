@@ -19,8 +19,8 @@ struct CodeDirectories {
     /* Framework directory */
     std::string FrameworkDirectory;
 
-    /* Source directory and sub-directories */
-    std::string SourceDirectory;
+    /* Data directory and sub-directories */
+    // std::string SourceDirectory;
     std::string DataDirectory;
     std::string ACorrDirectory;
     std::string AcceptanceMapsDirectory;

@@ -9,7 +9,7 @@ echo "${COLOR_START}- Setting screen directory ---------------------------------
 echo ""
 
 unset SCREEN_SCRIPT_DIR
-setenv SCREEN_SCRIPT_DIR ${DIR_2N_ANALYSIS_CODE}/framework/scripts/screen
+setenv SCREEN_SCRIPT_DIR ${DIR_2N_ANALYSIS_CODE}/scripts/screen
 echo "${COLOR_START}SCREEN_SCRIPT_DIR:${COLOR_END} ${SCREEN_SCRIPT_DIR}"
 echo ""
 
@@ -28,8 +28,8 @@ echo "${COLOR_START}- Setting screen command -----------------------------------
 echo ""
 
 chmod +x $SCREEN_SCRIPT_DIR/start_screen_session.csh
-# chmod +x ./framework/scripts/screen/start_screen_session.csh
-# source ./framework/scripts/screen/start_screen_session.csh
+# chmod +x ./scripts/screen/start_screen_session.csh
+# source ./scripts/screen/start_screen_session.csh
 
 echo "${COLOR_START}Screen commands have been updated.${COLOR_END}"
 echo "${COLOR_START}To run a screen session, use the following command:${COLOR_END}"
