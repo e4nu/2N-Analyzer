@@ -11,19 +11,19 @@
 
 */
 
-#include "../setup/codeSetup.h"
+#include "../../setup/codeSetup.h"
 //
-#include "../framework/namespaces/fitters/fitter_functions/fitter_functions.h"
-#include "../framework/namespaces/general_utilities/utilities/utilities.h"
-#include "../framework/namespaces/plotters/draw_and_save_functions/draw_and_save_functions.h"
+#include "../namespaces/fitters/fitter_functions/fitter_functions.h"
+#include "../namespaces/general_utilities/utilities/utilities.h"
+#include "../namespaces/plotters/draw_and_save_functions/draw_and_save_functions.h"
 //
-#include "../framework/classes/AMaps/AMaps.cpp"
-#include "../framework/classes/DEfficiency/DEfficiency.cpp"
-#include "../framework/classes/DSCuts/DSCuts.h"
-#include "../framework/classes/clas12ana/clas12ana.h"
-#include "../framework/classes/hPlots/hPlot1D.cpp"
-#include "../framework/classes/hPlots/hPlot2D.cpp"
-#include "../framework/includes/clas12_include.h"
+#include "../classes/AMaps/AMaps.cpp"
+#include "../classes/DEfficiency/DEfficiency.cpp"
+#include "../classes/DSCuts/DSCuts.h"
+#include "../classes/clas12ana/clas12ana.h"
+#include "../classes/hPlots/hPlot1D.cpp"
+#include "../classes/hPlots/hPlot2D.cpp"
+#include "../includes/clas12_include.h"
 
 #if !defined(MOMENTUMRESOLUTION_H)
     #include "../framework/classes/MomentumResolution/MomentumResolution.cpp"

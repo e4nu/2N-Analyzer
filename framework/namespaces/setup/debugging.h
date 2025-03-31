@@ -7,8 +7,8 @@
 
 #include <iostream>
 
-#include "../../../classes/Debugger/Debugger.cpp"
-#include "../../settings/debugging_settings/debugging_settings.h"
+#include "../../classes/Debugger/Debugger.cpp"
+#include "../settings/debugging_settings/debugging_settings.h"
 
 namespace debugging {
 using namespace debugging_settings;

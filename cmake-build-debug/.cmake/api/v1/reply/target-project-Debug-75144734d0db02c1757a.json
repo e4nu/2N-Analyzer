@@ -1073,7 +1073,7 @@
 		},
 		{
 			"backtrace" : 1,
-			"path" : "framework/namespaces/setup/path_definitions/path_definitions.h",
+			"path" : "framework/namespaces/setup/path_definitions.h",
 			"sourceGroupIndex" : 0
 		},
 		{
@@ -1083,12 +1083,12 @@
 		},
 		{
 			"backtrace" : 1,
-			"path" : "framework/namespaces/setup/debugging/debugging.h",
+			"path" : "framework/namespaces/setup/debugging.h",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
-			"path" : "framework/namespaces/setup/code_setup/code_setup.h",
+			"path" : "framework/namespaces/setup/code_setup.h",
 			"sourceGroupIndex" : 0
 		},
 		{
