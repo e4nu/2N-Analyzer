@@ -29,6 +29,9 @@ link_directories(
     $ENV{CLAS12ROOT}/lib
 )
 
+find_library(HIPO_LIB NAMES hipo4 PATHS /u/scigroup/cvmfs/hallb/clas12/sw/almalinux9-gcc11/local/hipo/4.2.0/lib)
+# target_link_libraries(2N_Analyser_e4nu PRIVATE ${HIPO_LIB})
+
 set(Analyser 2N_Analyser_e4nu)
 
 # message(STATUS "Including analysis directories...")
@@ -114,6 +117,8 @@ foreach(dir ${STRUCTURES_DIR} ${NAMESPACES_DIR} ${CLASSES_DIR} ${APPS_DIR})
 endforeach()
 
 add_executable(${Analyser} main.cpp)
+
+target_link_libraries(2N_Analyser_e4nu PRIVATE ${HIPO_LIB})
 
 # link libraries (external libraries first, then project libraries)
 target_link_libraries(${Analyser} PRIVATE 
