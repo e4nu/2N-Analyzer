@@ -20,7 +20,7 @@
 #define MomResDebugMacro true
 
 #include "../source/functions/GeneralFunctions.h"
-#include "../source/constants_include.h"
+#include "../source/constants.h"
 #include "../source/classes/MomentumResolution/MomentumResolution.h"
 
 using namespace std;

@@ -18,7 +18,7 @@
 #include <TROOT.h>
 
 #include "../../source/functions/GeneralFunctions.h"
-#include "../../source/constants_include.h"
+#include "../../source/constants.h"
 
 #if Independent1DGraphDraw
 #include "TitleAligner.h"

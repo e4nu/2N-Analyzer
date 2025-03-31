@@ -12,7 +12,7 @@
 #include <map>
 #include <vector>
 
-#include "../constants_include.h"
+#include "../constants.h"
 #include "clas12reader.h"
 
 /* NOTE: this code is valid for a single neutral only. */

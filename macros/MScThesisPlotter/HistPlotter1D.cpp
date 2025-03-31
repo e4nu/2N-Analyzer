@@ -19,7 +19,7 @@
 
 #include "../../source/classes/hData/hData.h"
 #include "../../source/functions/GeneralFunctions.h"
-#include "../../source/constants_include.h"
+#include "../../source/constants.h"
 #include "Histofinder1D.h"
 
 #if Independent1DHistDraw

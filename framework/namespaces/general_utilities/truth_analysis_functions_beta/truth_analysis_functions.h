@@ -35,8 +35,8 @@
 #include "clas12reader.h"
 //
 #include "../analysis_math/analysis_math_include.h"
-#include "../constants/constants_include.h"
-#include "../lists/lists_include.h"
+#include "../constants/constants.h"
+#include "../lists/lists.h"
 //
 #include "HipoChain.h"
 #include "clas12reader.h"
