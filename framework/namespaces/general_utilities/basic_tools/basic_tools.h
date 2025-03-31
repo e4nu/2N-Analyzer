@@ -121,7 +121,7 @@ std::string BoolToString(bool b) { return b ? "true" : "false"; }
 // ToStringWithPrecision function ---------------------------------------------------------------------------------------------------------------------------------------
 
 template <typename A>
-std::string ToStringWithPrecision(const A a_value, const int n) {
+std::string ToStringWithPrecision(const A a_value, const int n = 2) {
     std::ostringstream out;
     out.precision(n);
     out << std::fixed << a_value;
