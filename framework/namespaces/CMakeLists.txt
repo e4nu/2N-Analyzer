@@ -8,7 +8,7 @@ set(NAMESPACE_SOURCES
     general_utilities/constants/constants.cpp
     general_utilities/data_processor/data_processor.cpp
     general_utilities/histogram_functions/histogram_functions.cpp
-    general_utilities/lists/lists.cpp
+    general_utilities/lists/lists.h
     # general_utilities/reco_analysis_functions/reco_analysis_functions.cpp
     # general_utilities/truth_analysis_functions/truth_analysis_functions.cpp
     # general_utilities/utilities/utilities.cpp

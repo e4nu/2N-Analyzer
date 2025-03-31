@@ -32,7 +32,7 @@
 #include "../constants/constants.h"
 #include "../data_processor/data_processor.h"
 #include "../histogram_functions/histogram_functions.h"
-#include "../lists/lists.cpp"
+#include "../lists/lists.h"
 #include "../reco_analysis_functions/reco_analysis_functions.h"
 // #include "../truth_analysis_functions/truth_analysis_functions.h"
 
