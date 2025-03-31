@@ -975,7 +975,7 @@
 		},
 		{
 			"backtrace" : 1,
-			"path" : "framework/namespaces/general_utilities/utilities/utilities.h",
+			"path" : "framework/namespaces/general_utilities/utilities.h",
 			"sourceGroupIndex" : 0
 		},
 		{
@@ -985,27 +985,27 @@
 		},
 		{
 			"backtrace" : 1,
-			"path" : "framework/namespaces/general_utilities/basic_tools/basic_tools.h",
+			"path" : "framework/namespaces/general_utilities/basic_tools.h",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
-			"path" : "framework/namespaces/general_utilities/constants/constants.h",
+			"path" : "framework/namespaces/general_utilities/constants.h",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
-			"path" : "framework/namespaces/general_utilities/data_processor/data_processor.h",
+			"path" : "framework/namespaces/general_utilities/data_processor.h",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
-			"path" : "framework/namespaces/general_utilities/lists/lists.h",
+			"path" : "framework/namespaces/general_utilities/lists.h",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
-			"path" : "framework/namespaces/general_utilities/reco_analysis_functions/reco_analysis_functions.h",
+			"path" : "framework/namespaces/general_utilities/reco_analysis_functions.h",
 			"sourceGroupIndex" : 0
 		},
 		{
@@ -1015,7 +1015,7 @@
 		},
 		{
 			"backtrace" : 1,
-			"path" : "framework/namespaces/general_utilities/truth_analysis_functions/truth_analysis_functions.h",
+			"path" : "framework/namespaces/general_utilities/truth_analysis_functions.h",
 			"sourceGroupIndex" : 0
 		},
 		{
@@ -1138,7 +1138,7 @@
 		},
 		{
 			"backtrace" : 1,
-			"path" : "framework/namespaces/fitters/fitter_functions/fitter_functions.h",
+			"path" : "framework/namespaces/fitters/fitter_functions.h",
 			"sourceGroupIndex" : 0
 		},
 		{
@@ -1148,7 +1148,7 @@
 		},
 		{
 			"backtrace" : 1,
-			"path" : "framework/namespaces/settings/debugging_settings/debugging_settings.h",
+			"path" : "framework/namespaces/settings/debugging_settings.h",
 			"sourceGroupIndex" : 0
 		},
 		{

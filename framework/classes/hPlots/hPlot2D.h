@@ -6,7 +6,7 @@
 // #define HPLOT2D_H
 #ifdef HPLOT2D_H
 
-#include "../../namespaces/general_utilities/utilities/utilities.h"
+#include "../../namespaces/general_utilities/utilities.h"
 
 #if !defined(IndependentCanvasPDF) || !IndependentCanvasPDF
 #include <TApplication.h>

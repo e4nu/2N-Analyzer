@@ -13,8 +13,8 @@
 
 #include "../../setup/codeSetup.h"
 //
-#include "../namespaces/fitters/fitter_functions/fitter_functions.h"
-#include "../namespaces/general_utilities/utilities/utilities.h"
+#include "../namespaces/fitters/fitter_functions.h"
+#include "../namespaces/general_utilities/utilities.h"
 #include "../namespaces/plotters/draw_and_save_functions/draw_and_save_functions.h"
 //
 #include "../classes/AMaps/AMaps.cpp"

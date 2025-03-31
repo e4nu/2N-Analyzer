@@ -24,7 +24,7 @@
 
 // #include "../framework/classes/ParticleID/ParticleID.cpp"
 #include "../../framework/constants.h"
-#include "../../framework/namespaces/general_utilities/utilities/utilities.h"
+#include "../../framework/namespaces/general_utilities/utilities.h"
 //
 // #include "HipoChain.h"
 // #include "clas12reader.h"

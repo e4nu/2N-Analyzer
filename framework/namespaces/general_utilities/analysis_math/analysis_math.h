@@ -10,8 +10,8 @@
 #include <string>
 #include <vector>
 
-#include "../basic_tools/basic_tools.h"
-#include "../constants/constants.h"
+#include "../basic_tools.h"
+#include "../constants.h"
 //
 // #include "analysis_math_reco_extentions.h"
 #include "poly_solver.cpp"

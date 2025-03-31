@@ -11,8 +11,8 @@
 #include "../framework/namespaces/setup/debugging.h"
 #include "../framework/namespaces/setup/analysis_samples/analysis_samples.h"
 // 
-#include "../framework/namespaces/general_utilities/basic_tools/basic_tools.h"
-#include "../framework/namespaces/general_utilities/constants/constants.h"
+#include "../framework/namespaces/general_utilities/basic_tools.h"
+#include "../framework/namespaces/general_utilities/constants.h"
 #include "../framework/namespaces/plotters/PDF_canvas/PDF_canvas.h"
 //
 // #include "../framework/classes/Debugger/Debugger.cpp"

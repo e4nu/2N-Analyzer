@@ -53,7 +53,7 @@ set(NAMESPACES_SUBDIRS
     general_utilities/histogram_functions
     general_utilities/lists
     general_utilities/reco_analysis_functions
-    general_utilities/utilities
+    general_utilities
     plotters/draw_and_save_functions
     plotters/PDF_canvas
     settings/debugging_settings

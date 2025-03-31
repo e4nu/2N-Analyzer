@@ -5,9 +5,9 @@
 
 #include <iostream>
 
-#include "../../namespaces/general_utilities/lists/lists.h"
+#include "../../namespaces/general_utilities/lists.h"
 // #include "../../functions/GeneralFunctions.h"
-#include "../../namespaces/general_utilities/utilities/utilities.h"
+#include "../../namespaces/general_utilities/utilities.h"
 #include "../DSCuts/DSCuts.h"
 #include "../TargetParameters/TargetParameters.h"
 // 
