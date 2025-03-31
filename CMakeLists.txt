@@ -5,63 +5,41 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(CLAS12ROOT $ENV{CLAS12ROOT})
-MESSAGE(STATUS "CLAS12ROOT: " ${CLAS12ROOT})
+message(STATUS "CLAS12ROOT: " ${CLAS12ROOT})
 set(HIPO $ENV{HIPO})
-MESSAGE(STATUS "HIPO: " ${HIPO})
+message(STATUS "HIPO: " ${HIPO})
 
 find_package(ROOT REQUIRED)
 list(APPEND CMAKE_PREFIX_PATH $ENV{ROOTSYS})  # Ensure ROOTSYS is set before finding ROOT
 include(${ROOT_USE_FILE})
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${ROOT_CXX_FLAGS} -O0 -ggdb")
 
-find_package(PkgConfig REQUIRED)
-pkg_check_modules(hipo4 REQUIRED IMPORTED_TARGET hipo4) # makes the target 'PkgConfig::hipo4`
+# Include directories
+include_directories(
+    ${ROOT_INCLUDE_DIRS}
+    $ENV{HIPO}/include
+    $ENV{CLAS12ROOT}/Clas12Root
+    $ENV{CLAS12ROOT}/Clas12Banks
+)
 
-message(STATUS "Including clas12root and hipo4 directories...")
-set(INCLUDES ${ROOT_INCLUDE_DIR} ${CMAKE_SOURCE_DIR}/include ${CMAKE_SOURCE_DIR}/libraries/simulation_reweighting ${HIPO}/include)
-set(LIBRARIES ${CMAKE_SOURCE_DIR}/libraries ${HIPO}/lib)
-include_directories(${CLAS12ROOT}/Clas12Banks ${CLAS12ROOT}/Clas12Root ${INCLUDES} ${LIBRARIES})
-message(STATUS "Included directory: ${CLAS12ROOT}/Clas12Banks")
-message(STATUS "Included directory: ${CLAS12ROOT}/Clas12Root")
-
-foreach(subdir ${INCLUDES})
-    message(STATUS "Included directory: ${subdir}")
-endforeach()
-
-foreach(subdir ${LIBRARIES})
-    message(STATUS "Included directory: ${subdir}")
-endforeach()
+# Link directories
+link_directories(
+    $ENV{HIPO}/lib
+    $ENV{CLAS12ROOT}/lib
+)
 
 set(Analyser 2N_Analyser_e4nu)
 
-message(STATUS "Including analysis directories...")
+# message(STATUS "Including analysis directories...")
 set(FRAMEWORK_DIR ${CMAKE_CURRENT_SOURCE_DIR}/framework)
 include_directories(${FRAMEWORK_DIR})
-message(STATUS "Included directory: ${FRAMEWORK_DIR}")
+# message(STATUS "Included directory: ${FRAMEWORK_DIR}")
 
-set(CLASSES_DIR ${FRAMEWORK_DIR}/classes)
-set(CLASSES_SUBDIRS 
-    AMaps 
-    clas12ana 
-    DataAnalyser 
-    Debugger 
-    DEfficiency 
-    Directories 
-    DSCuts 
-    ExperimentParameters 
-    gst 
-    hPlots 
-    MomentumResolution 
-    ParticleID 
-    Settings 
-    TargetParameters 
-    TLCuts
-)
-
-foreach(subdir ${CLASSES_SUBDIRS})
-    include_directories(${CLASSES_DIR}/${subdir})
-    message(STATUS "Included directory: ${CLASSES_DIR}/${subdir}")
-endforeach()
+set(STRUCTURES_DIR ${FRAMEWORK_DIR}/structures)
+include_directories(${STRUCTURES_DIR}/CodeDirectories)
+# message(STATUS "Included directory: ${STRUCTURES_DIR}/CodeDirectories")
+include_directories(${STRUCTURES_DIR}/DataSample)
+# message(STATUS "Included directory: ${STRUCTURES_DIR}/DataSample")
 
 set(NAMESPACES_DIR ${FRAMEWORK_DIR}/namespaces)
 
@@ -86,27 +64,45 @@ set(NAMESPACES_SUBDIRS
 
 foreach(subdir ${NAMESPACES_SUBDIRS})
     include_directories(${NAMESPACES_DIR}/${subdir})
-    message(STATUS "Included directory: ${NAMESPACES_DIR}/${subdir}")
+    # message(STATUS "Included directory: ${NAMESPACES_DIR}/${subdir}")
 endforeach()
 
-set(STRUCTURES_DIR ${FRAMEWORK_DIR}/structures)
-include_directories(${STRUCTURES_DIR}/CodeDirectories)
-message(STATUS "Included directory: ${STRUCTURES_DIR}/CodeDirectories")
-include_directories(${STRUCTURES_DIR}/DataSample)
-message(STATUS "Included directory: ${STRUCTURES_DIR}/DataSample")
+set(CLASSES_DIR ${FRAMEWORK_DIR}/classes)
+set(CLASSES_SUBDIRS 
+    AMaps 
+    clas12ana 
+    DataAnalyser 
+    Debugger 
+    DEfficiency 
+    Directories 
+    DSCuts 
+    ExperimentParameters 
+    gst 
+    hPlots 
+    MomentumResolution 
+    ParticleID 
+    Settings 
+    TargetParameters 
+    TLCuts
+)
 
-set(FUNCTIONS_DIR ${FRAMEWORK_DIR}/functions)
+foreach(subdir ${CLASSES_SUBDIRS})
+    include_directories(${CLASSES_DIR}/${subdir})
+    # message(STATUS "Included directory: ${CLASSES_DIR}/${subdir}")
+endforeach()
+
+# set(FUNCTIONS_DIR ${FRAMEWORK_DIR}/functions)
+
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/setup)
+# message(STATUS "Included directory: ${CMAKE_CURRENT_SOURCE_DIR}/setup")
 
 set(APPS_DIR ${FRAMEWORK_DIR}/applications)
 include_directories(${APPS_DIR})
-message(STATUS "Included directory: ${APPS_DIR}")
-
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/setup)
-message(STATUS "Included directory: ${CMAKE_CURRENT_SOURCE_DIR}/setup")
+# message(STATUS "Included directory: ${APPS_DIR}")
 
 # Add subdirectories
 # Ensure subdirectories exist and contain a CMakeLists.txt
-message(STATUS "Adding analysis subdirectories...")
+# message(STATUS "Adding analysis subdirectories...")
 foreach(dir ${STRUCTURES_DIR} ${NAMESPACES_DIR} ${CLASSES_DIR} ${APPS_DIR})
     if(EXISTS ${dir})
         add_subdirectory(${dir})
@@ -118,16 +114,17 @@ endforeach()
 
 add_executable(${Analyser} main.cpp)
 
-# Link external libraries first, then project libraries
-# target_link_libraries(${Analyser} ${ROOT_LIBRARIES} Hipo4 Clas12Banks Clas12Root)
+# link libraries (external libraries first, then project libraries)
+target_link_libraries(${Analyser}
+    ${ROOT_LIBRARIES} -lEG 
+    -lHipo4
+    -lClas12Banks -lClas12Root
+    -L${CLAS12ROOT}/lib
+)
 
-target_link_libraries(${Analyser} PUBLIC ${ROOT_LIBRARIES} -L${HIPO}/lib hipo4 Clas12Banks -L${CLAS12ROOT}/lib -L${CLAS12ROOT}/ccdb/lib AnalysisDataStructures AnalysisLibraries AnalysisTools AnalysisApps)
-# target_link_libraries(${Analyser} PUBLIC ${ROOT_LIBRARIES} Clas12Banks hipo4 -L${CLAS12ROOT}/lib -L${CLAS12ROOT}/ccdb/lib AnalysisDataStructures AnalysisLibraries AnalysisTools AnalysisApps)
-# target_link_libraries(${Analyser} PUBLIC ${ROOT_LIBRARIES} Clas12Banks -L${HIPO}/lib hipo4 -L${CLAS12ROOT}/lib -L${CLAS12ROOT}/ccdb/lib AnalysisDataStructures AnalysisLibraries AnalysisTools AnalysisApps)
-# target_link_libraries(${Analyser} PUBLIC ${ROOT_LIBRARIES} Clas12Banks -L${HIPO}/lib -lhipo4 -L${CLAS12ROOT}/lib -L${CLAS12ROOT}/ccdb/lib AnalysisDataStructures AnalysisLibraries AnalysisTools AnalysisApps)
-# target_link_libraries(${Analyser} PUBLIC ${ROOT_LIBRARIES} -L${HIPO}/lib -lhipo4 Clas12Banks -L${CLAS12ROOT}/lib -L${CLAS12ROOT}/ccdb/lib AnalysisDataStructures AnalysisLibraries AnalysisTools AnalysisApps)
-# target_link_libraries(${Analyser} PUBLIC ${ROOT_LIBRARIES} Clas12Banks -L${HIPOEXT}/lib -lhipo4 -L${CLAS12ROOT}/lib -L${CLAS12ROOT}/ccdb/lib AnalysisDataStructures AnalysisLibraries AnalysisTools AnalysisApps) # best one!
-# target_link_libraries(${Analyser} PUBLIC ${ROOT_LIBRARIES} Clas12Banks hipo4 -L${CLAS12ROOT}/lib -L${CLAS12ROOT}/ccdb/lib AnalysisDataStructures AnalysisLibraries AnalysisTools AnalysisApps)
-# target_link_libraries(${Analyser} PUBLIC ${ROOT_LIBRARIES} -L${HIPO}/lib Clas12Banks hipo4 -L${CLAS12ROOT}/lib -L${CLAS12ROOT}/ccdb/lib AnalysisDataStructures AnalysisLibraries AnalysisTools AnalysisApps)
-# target_link_libraries(${Analyser} PUBLIC ${ROOT_LIBRARIES} Clas12Banks PkgConfig::hipo4 -L${CLAS12ROOT}/lib -L${CLAS12ROOT}/ccdb/lib AnalysisDataStructures AnalysisLibraries AnalysisTools AnalysisApps)
-# target_link_libraries(${Analyser} PUBLIC ${ROOT_LIBRARIES} Clas12Banks Hipo4 -L${CLAS12ROOT}/lib -L${CLAS12ROOT}/ccdb/lib AnalysisDataStructures AnalysisLibraries AnalysisTools AnalysisApps) # best one!
+target_link_libraries(${Analyser}
+    AnalysisDataStructures    
+    AnalysisLibraries
+    AnalysisTools
+    AnalysisApps
+)
