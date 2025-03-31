@@ -1039,8 +1039,8 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     cout << "\n\nGenerate_Nucleon_AMaps = " << Generate_Nucleon_AMaps << "\n";
     cout << "\n\nGenerate_WMaps = " << Generate_WMaps << "\n";
 
+    quit();
 
-    
     if (Generate_Electron_AMaps || Generate_Nucleon_AMaps) {
         aMaps_master = AMaps(SampleName, P_e_bin_profile, P_nuc_bin_profile, beamE, "AMaps", directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], NumberNucOfMomSlices,
                              NumberElecOfMomSlices, HistNucSliceNumOfXBins, HistNucSliceNumOfXBins, HistElectronSliceNumOfXBins, HistElectronSliceNumOfXBins);
