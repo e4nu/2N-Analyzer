@@ -161,7 +161,9 @@
         "experimentparameters.cpp": "c",
         "experimentparameters.h": "c",
         "targetparameters.h": "c",
-        "constants.cpp": "c"
+        "constants.cpp": "c",
+        "draw_and_save_acorr_plots.h": "c",
+        "draw_and_save_efficiency_plots.cpp": "c"
     },
     "[jsonc]": {
         "editor.defaultFormatter": "vscode.json-language-features"

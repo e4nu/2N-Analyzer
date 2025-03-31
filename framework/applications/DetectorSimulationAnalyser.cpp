@@ -288,7 +288,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     std::cout << "\033[33mAnalyseFilePath:\033[0m\t" << "/" << AnalyseFilePath << "/" << "\n";
     std::cout << "\033[33mAnalyseFileSample:\033[0m\t" << "/" << AnalyseFileSample << "/" << "\n";
     std::cout << "\033[33mAnalyseFile:\033[0m\t\t" << AnalyseFile << "\n";
-    std::cout << "\033[33mSettings mode:\033[0m\t\t'" << file_name << "'\n\n";
+    std::cout << "\033[33mSettings mode:\033[0m\t\t'" << code_setup::file_name << "'\n\n";
 
     std::cout << "\033[33mSampleName:\033[0m\t\t" << SampleName << "\n";
     std::cout << "\033[33mVaryingSampleName:\033[0m\t" << VaryingSampleName << "\n";
@@ -1082,7 +1082,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
     // const bool GoodProtonsMonitorPlots = true;
 
-    pid.SetGPMonitoringPlots(GoodProtonsMonitorPlots, directories.Angle_Directory_map["CToF_hits_monitoring_2p_Directory"],
+    pid.SetGPMonitoringPlots(code_setup::GoodProtonsMonitorPlots, directories.Angle_Directory_map["CToF_hits_monitoring_2p_Directory"],
                              directories.Angle_Directory_map["Double_detection_monitoring_2p_Directory"]);
 
     // const bool PrintEvents = false;
@@ -1091,7 +1091,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     std::ofstream EventPrint;
     std::string EventPrint_save_Directory;
 
-    if (PrintEvents) {
+    if (code_setup::PrintEvents) {
         if (!apply_chi2_cuts_1e_cut) {
             EventPrint_save_Directory = run_plots_path + "/" + "Event_Print_without_chi2.txt";
         } else if (apply_chi2_cuts_1e_cut) {
@@ -1111,9 +1111,9 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
         }
 
         EventPrint << "EVENT SELECTION:\n\033[0m";
-        EventPrint << "#electrons in event:\t\t" << Ne_in_event << "\n\033[0m";
-        EventPrint << "minimal #hadrons in event:\t" << Nf_in_event << "\n\033[0m";
-        EventPrint << "#event upper bound:\t\t" << nEvents2print << "\n\n\n\033[0m";
+        EventPrint << "#electrons in event:\t\t" << code_setup::Ne_in_event << "\n\033[0m";
+        EventPrint << "minimal #hadrons in event:\t" << code_setup::Nf_in_event << "\n\033[0m";
+        EventPrint << "#event upper bound:\t\t" << code_setup::nEvents2print << "\n\n\n\033[0m";
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -9929,13 +9929,13 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
         }
 
         // Print events to file
-        if (PrintEvents)  // TODO: add to debugger class?
+        if (code_setup::PrintEvents)  // TODO: add to debugger class?
         {
-            bool EventPrintSelection = (Ne == Ne_in_event && Nf >= Nf_in_event);
+            bool EventPrintSelection = (Ne == code_setup::Ne_in_event && Nf >= code_setup::Nf_in_event);
             int event = c12->runconfig()->getEvent();
 
             if (EventPrintSelection) {
-                if (event < (nEvents2print + 1)) {
+                if (event < (code_setup::nEvents2print + 1)) {
                     EventPrint << "--- EVENT NUMBER " << event << " ---\n\033[0m";
                     EventPrint << "#particles in event:\t" << Nf << "\n\033[0m";
                     EventPrint << "protons.size() = " << protons.size() << "\n\033[0m";
@@ -9952,10 +9952,10 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
         }
 
         // Monitoring handling fake protons
-        if (GoodProtonsMonitorPlots && basic_event_selection) {
+        if (code_setup::GoodProtonsMonitorPlots && basic_event_selection) {
             if (IDed_Protons_ind.size() == 2) { ++num_of_events_2p_wFakeProtons; }
 
-            pid.GPMonitoring(GoodProtonsMonitorPlots, protons, IDed_Protons_ind, Protons_ind, Theta_p1_cuts_2p, Theta_p2_cuts_2p, dphi_p1_p2_2p, Weight);
+            pid.GPMonitoring(code_setup::GoodProtonsMonitorPlots, protons, IDed_Protons_ind, Protons_ind, Theta_p1_cuts_2p, Theta_p2_cuts_2p, dphi_p1_p2_2p, Weight);
         }
 
         debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, debugging::DebuggerMode);
@@ -18132,7 +18132,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                       "01a_Theta_p1_vs_theta_p2_for_Theta_p1_p2_20_2p");
 
         // Theta_p1_vs_Theta_p2 for Theta_p1_p2 monitoring plots
-        if (apply_nucleon_cuts && GoodProtonsMonitorPlots) {
+        if (apply_nucleon_cuts && code_setup::GoodProtonsMonitorPlots) {
             histPlotter2D(c1, pid.hTheta_pi_vs_theta_pj_for_Theta_pi_pj_20_BC_2idp_2p, 0.06, true, 0.0425, 0.0425, 0.0425, plots, Histogram_OutPDF, false,
                           pid.hTheta_pi_vs_theta_pj_for_Theta_pi_pj_20_BC_2idp_2p_Dir, "01a_hTheta_pi_vs_theta_pj_for_Theta_pi_pj_20_BC_2idp_2p");
             histPlotter2D(c1, pid.hTheta_pi_vs_theta_pj_for_Theta_pi_pj_20_RE_2idp_2p, 0.06, true, 0.0425, 0.0425, 0.0425, plots, Histogram_OutPDF, false,
@@ -18186,7 +18186,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                       "01b_Theta_p1_vs_theta_p2_for_every_Theta_p1_p2_2p");
 
         // Theta_p1_vs_Theta_p2 for every Theta_p1_p2 monitoring plots
-        if (apply_nucleon_cuts && GoodProtonsMonitorPlots) {
+        if (apply_nucleon_cuts && code_setup::GoodProtonsMonitorPlots) {
             histPlotter2D(c1, pid.hTheta_pi_vs_theta_pj_forall_Theta_pi_pj_BC_2idp_2p, 0.06, true, 0.0425, 0.0425, 0.0425, plots, Histogram_OutPDF, false,
                           pid.hTheta_pi_vs_theta_pj_forall_Theta_pi_pj_BC_2idp_2p_Dir, "04a_hTheta_pi_vs_theta_pj_forall_Theta_pi_pj_BC_2idp_2p");
             histPlotter2D(c1, pid.hTheta_pi_vs_theta_pj_forall_Theta_pi_pj_RE_2idp_2p, 0.06, true, 0.0425, 0.0425, 0.0425, plots, Histogram_OutPDF, false,
@@ -21971,7 +21971,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     // Saving debug files ---------------------------------------------------------------------------------------------------------------------------------------------------
 
     // Saving debug files
-    if (PrintEvents == true) { EventPrint.close(); }
+    if (code_setup::PrintEvents == true) { EventPrint.close(); }
 
     if (debug_plots == true) {
         std::cout << "\033[33m\n\nSaving debugging plots...\n\n\033[0m";
@@ -21992,7 +21992,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     myLogFile.open(run_plots_log_save_Directory.c_str());
 
     myLogFile << "///////////////////////////////////////////////////////////////////////////\n";
-    myLogFile << "// Run was with '" << file_name << "' setup mode\n";
+    myLogFile << "// Run was with '" << code_setup::file_name << "' setup mode\n";
     myLogFile << "// Input file was " << LoadedInput << "\n";
     // myLogFile << "// Code version was " << code_setup::Ver << "\n";
     myLogFile << "// Analysis mode was 'Detector simulation'\n";
@@ -22842,7 +22842,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     std::cout << "\033[33mVaryingSampleName:\t" << VaryingSampleName << "\n\n\033[0m";
 
     std::cout << "\033[33mapply_cuts:\t\t'" << basic_tools::BoolToString(apply_cuts) << "'\n\033[0m";
-    std::cout << "\033[33mSettings mode:\t\t'" << file_name << "'\n\n\033[0m";
+    std::cout << "\033[33mSettings mode:\t\t'" << code_setup::file_name << "'\n\n\033[0m";
 
     std::cout << "\033[33mBeam Energy:\t\t" << beamE << " [GeV]\n\033[0m";
     std::cout << "\033[33mTarget:\t\t\t" << Target << " (PDG: " << TargetPDG << ")\n\n\033[0m";
