@@ -160,7 +160,8 @@
         "pdf_canvas.cpp": "c",
         "experimentparameters.cpp": "c",
         "experimentparameters.h": "c",
-        "targetparameters.h": "c"
+        "targetparameters.h": "c",
+        "constants.cpp": "c"
     },
     "[jsonc]": {
         "editor.defaultFormatter": "vscode.json-language-features"

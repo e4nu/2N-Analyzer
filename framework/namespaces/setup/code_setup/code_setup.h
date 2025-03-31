@@ -48,7 +48,7 @@ using namespace analysis_samples;
 
 extern const std::string Ver;
 
-extern std::string file_name = "general_file";
+extern std::string file_name;
 
 extern double BEnergyToNucleus;
 
