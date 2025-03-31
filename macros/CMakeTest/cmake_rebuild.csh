@@ -10,7 +10,7 @@ unset COLOR_END
 setenv COLOR_END '\033[0m'
 
 echo ""
-source ../../update_only.sh
+source ../../scripts/code_updater.sh
 source ../../scripts/environment/set_environment.csh
 
 cd ${DIR_2N_ANALYSIS_CODE}
