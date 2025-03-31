@@ -115,7 +115,7 @@ endforeach()
 add_executable(${Analyser} main.cpp)
 
 # link libraries (external libraries first, then project libraries)
-target_link_libraries(${Analyser}
+target_link_libraries(${Analyser} PRIVATE 
     ${ROOT_LIBRARIES} -lEG 
     -lHipo4
     -lClas12Banks -lClas12Root
