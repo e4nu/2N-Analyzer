@@ -37,7 +37,8 @@ class Debugger {
                                              std::vector<region_part_ptr> &allParticles, std::vector<int> &NeutronsFD_ind, ParticleID &pid);
 
     void SafetyCheck_Truth_leading_FD_neutron(const char *FILE, const int LINE, const bool &ES_by_leading_FDneutron, const int &TL_IDed_Leading_nFD_ind,
-                                              const double &TL_IDed_Leading_nFD_momentum, const double &Leading_TL_FDNeutron_Momentum, std::vector<int> TL_NeutronsFD_mom_ind, mcpar_ptr mcpbank);
+                                              const double &TL_IDed_Leading_nFD_momentum, const double &Leading_TL_FDNeutron_Momentum, std::vector<int> TL_NeutronsFD_mom_ind,
+                                              mcpar_ptr mcpbank);
 
     // SafetyCheck_FD_neutron function ------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -67,7 +68,8 @@ class Debugger {
     // ------------------------------------------------------------------------------------------------------------------------------------------------
 
     void SafetyCheck_basic_event_selection(const char *FILE, const int LINE, const std::string FinaleState, std::vector<region_part_ptr> &Kplus, std::vector<region_part_ptr> &Kminus,
-                                           const std::vector<int> &Piplus_ind, const std::vector<int> &Piminus_ind, const std::vector<int> &Electron_ind, std::vector<region_part_ptr> &deuterons);
+                                           const std::vector<int> &Piplus_ind, const std::vector<int> &Piminus_ind, const std::vector<int> &Electron_ind,
+                                           std::vector<region_part_ptr> &deuterons);
 
     // SafetyCheck_1p function ------------------------------------------------------------------------------------------------------------------------------------------------
 

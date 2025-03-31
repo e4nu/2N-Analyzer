@@ -6,20 +6,20 @@
 #define HPLOT1D_H
 // #ifdef HPLOT1D_H
 
-#include <TFrame.h>
-#include <TLegend.h>
-#include <TLine.h>
-#include <TPaveText.h>
 #include <TApplication.h>
 #include <TCanvas.h>
 #include <TChain.h>
 #include <TDatabasePDG.h>
 #include <TF1.h>
 #include <TFile.h>
+#include <TFrame.h>
 #include <TH1D.h>
 #include <TH2D.h>
 #include <TLatex.h>
+#include <TLegend.h>
+#include <TLine.h>
 #include <TLorentzVector.h>
+#include <TPaveText.h>
 #include <TROOT.h>
 #include <TStyle.h>
 #include <TTree.h>
@@ -38,7 +38,7 @@
 #include "../../namespaces/general_utilities/utilities/utilities.h"
 
 #if IndependentCanvasPDF
-#include "../../includes/CanvasPDF/CanvasPDF.h"
+    #include "../../includes/CanvasPDF/CanvasPDF.h"
 #endif
 
 // using namespace std;
@@ -56,7 +56,7 @@ class hPlot1D {
     bool Title2 = false;
 
     /* Histogram xAxis limits and #bins */
-    int HistogramNumberOfXBins;           // default #bins for 1D histogram is 100 (see constructor)
+    int HistogramNumberOfXBins;                // default #bins for 1D histogram is 100 (see constructor)
     std::vector<double> HistogramXAxisLimits;  // {LowerXlim, UpperXlim}
 
     /* Histogram normalization setup */

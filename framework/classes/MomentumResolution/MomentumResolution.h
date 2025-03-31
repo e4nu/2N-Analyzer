@@ -6,21 +6,21 @@
 #define MOMENTUMRESOLUTION_H
 // #ifdef MOMENTUMRESOLUTION_H
 
-#include <TFolder.h>
-#include <TRandom3.h>
-#include <TRandom2.h>
-#include <TRandom1.h>
 #include <TApplication.h>
 #include <TCanvas.h>
 #include <TChain.h>
 #include <TDatabasePDG.h>
 #include <TF1.h>
 #include <TFile.h>
+#include <TFolder.h>
 #include <TH1D.h>
 #include <TH2D.h>
 #include <TLatex.h>
 #include <TLorentzVector.h>
 #include <TROOT.h>
+#include <TRandom1.h>
+#include <TRandom2.h>
+#include <TRandom3.h>
 #include <TStyle.h>
 #include <TTree.h>
 #include <math.h>
@@ -40,10 +40,10 @@
 // #include "../../includes/clas12_include.h"
 
 #if MomResDebugMacro
-#include "../hData/hData.h"
-#include "../hPlots/hPlot1D.h"
+    #include "../hData/hData.h"
+    #include "../hPlots/hPlot1D.h"
 #else
-#include "../hPlots/hPlot1D.h"
+    #include "../hPlots/hPlot1D.h"
 #endif
 
 #include "../../namespaces/general_utilities/utilities/utilities.h"
@@ -209,16 +209,19 @@ class MomentumResolution {
 
     void hFillResPlotsByType(const double &MomentumTL, const double &MomentumReco, const double &Resolution, const double &Weight);
 
-    void hFillResPlots(const double &Momentum, const double &Resolution, const double &Weight, std::vector<hPlot1D> &ResSlices0, std::vector<std::vector<double>> &ResSlicesLimits0, int &NumberOfSlices0);
+    void hFillResPlots(const double &Momentum, const double &Resolution, const double &Weight, std::vector<hPlot1D> &ResSlices0, std::vector<std::vector<double>> &ResSlicesLimits0,
+                       int &NumberOfSlices0);
 
     // SliceFitDrawAndSaveByType function -----------------------------------------------------------------------------------------------------------------------------------
 
     void SliceFitDrawAndSaveByType(const std::string &SampleName, const double &beamE);
 
-    void SliceFitDrawAndSave(const std::string &SampleName, const double &beamE, const std::string &MomentumType, std::vector<hPlot1D> &ResSlices0, std::vector<std::vector<double>> &ResSlicesLimits0,
-                             std::vector<DSCuts> &ResSlicesFitVar0, std::vector<DSCuts> &ResSlicesHistVar0, std::vector<int> &FittedSlices0, int &NumberOfSlices0);
+    void SliceFitDrawAndSave(const std::string &SampleName, const double &beamE, const std::string &MomentumType, std::vector<hPlot1D> &ResSlices0,
+                             std::vector<std::vector<double>> &ResSlicesLimits0, std::vector<DSCuts> &ResSlicesFitVar0, std::vector<DSCuts> &ResSlicesHistVar0,
+                             std::vector<int> &FittedSlices0, int &NumberOfSlices0);
 
-    void PolyFitter(const std::string &MomentumType, const int &PolynomialDegree, const std::string &FitType, const std::string &MomentumFitRange, std::vector<std::vector<double>> &FitParam);
+    void PolyFitter(const std::string &MomentumType, const int &PolynomialDegree, const std::string &FitType, const std::string &MomentumFitRange,
+                    std::vector<std::vector<double>> &FitParam);
 
     // DrawAndSaveResSlices function ----------------------------------------------------------------------------------------------------------------------------------------
 
@@ -247,7 +250,8 @@ class MomentumResolution {
     void AutoReader(const std::string &MomentumType, const int &PolynomialDegree, const std::string &parameter, std::basic_istream<char> &ss2, std::vector<std::vector<double>> &Loading_Dest,
                     std::vector<double> &Loaded_coefficients_values, std::vector<string> &Loaded_coefficients_names);
 
-    void AutoReader(const std::string &MomentumType, const int &PolynomialDegree, const std::string &parameter, std::basic_istream<char> &ss2, std::vector<std::vector<double>> &Loading_Dest);
+    void AutoReader(const std::string &MomentumType, const int &PolynomialDegree, const std::string &parameter, std::basic_istream<char> &ss2,
+                    std::vector<std::vector<double>> &Loading_Dest);
 
     // PSmear function ------------------------------------------------------------------------------------------------------------------------------------------------------
 

@@ -28,7 +28,7 @@
 // #include "../../includes/clas12_include.h"
 
 #if !defined(MOMENTUMRESOLUTION_H)
-#include "../MomentumResolution/MomentumResolution.h"
+    #include "../MomentumResolution/MomentumResolution.h"
 #endif
 
 // using namespace std;
@@ -127,9 +127,10 @@ class ParticleID {
 
     // FDNeutralParticleID function ------------------------------------------------------------------------------------------------------------------
 
-    void FDNeutralParticleID(std::vector<region_part_ptr> allParticles, std::vector<region_part_ptr> electrons, std::vector<int> &FD_Neutrons_within_PID_cuts, std::vector<int> &ID_Neutrons_FD,
-                             DSCuts &Neutron_momentum_th, std::vector<int> &FD_Photons_within_th, std::vector<int> &ID_Photons_FD, DSCuts &Photon_momentum_th, DSCuts &Neutron_veto_cut,
-                             const double &beamE, const double &ECAL_V_edge_cut, const double &ECAL_W_edge_cut, const bool &apply_nucleon_cuts);
+    void FDNeutralParticleID(std::vector<region_part_ptr> allParticles, std::vector<region_part_ptr> electrons, std::vector<int> &FD_Neutrons_within_PID_cuts,
+                             std::vector<int> &ID_Neutrons_FD, DSCuts &Neutron_momentum_th, std::vector<int> &FD_Photons_within_th, std::vector<int> &ID_Photons_FD,
+                             DSCuts &Photon_momentum_th, DSCuts &Neutron_veto_cut, const double &beamE, const double &ECAL_V_edge_cut, const double &ECAL_W_edge_cut,
+                             const bool &apply_nucleon_cuts);
 
     void FDNeutralParticleID(std::vector<region_part_ptr> allParticles, std::vector<int> &FD_Neutrons_within_th, std::vector<int> &ID_Neutrons_FD, DSCuts &Neutron_momentum_th,
                              std::vector<int> &FD_Photons_within_th, std::vector<int> &ID_Photons_FD, DSCuts &Photon_momentum_th, const bool &apply_nucleon_cuts);
@@ -160,17 +161,17 @@ class ParticleID {
     // GetGoodProtons function -----------------------------------------------------------------------------------------------------------------------
 
     std::vector<int> GetGoodProtons(const bool &apply_nucleon_cuts, std::vector<region_part_ptr> &protons, const std::vector<int> &IDProtons_ind, const DSCuts &Theta_p1_cuts_2p,
-                               const DSCuts &Theta_p2_cuts_2p, const DSCuts &dphi_pFD_pCD_2p);
+                                    const DSCuts &Theta_p2_cuts_2p, const DSCuts &dphi_pFD_pCD_2p);
 
     void SetGPMonitoringPlots(const bool &GoodProtonsMonitorPlots, std::string CToF_hits_monitoring_2p_Directory, std::string Double_detection_monitoring_2p_Directory);
 
-    void GPMonitoring(const bool &GoodProtonsMonitorPlots, std::vector<region_part_ptr> &protons, const std::vector<int> &IDProtons_ind, const std::vector<int> &Protons_ind, const DSCuts &Theta_p1_cuts_2p,
-                      const DSCuts &Theta_p2_cuts_2p, const DSCuts &dphi_p1_p2_2p, const double &Weight);
+    void GPMonitoring(const bool &GoodProtonsMonitorPlots, std::vector<region_part_ptr> &protons, const std::vector<int> &IDProtons_ind, const std::vector<int> &Protons_ind,
+                      const DSCuts &Theta_p1_cuts_2p, const DSCuts &Theta_p2_cuts_2p, const DSCuts &dphi_p1_p2_2p, const double &Weight);
 
     // nParticleID function --------------------------------------------------------------------------------------------------------------------------
 
-    void nParticleID(std::vector<region_part_ptr> &allParticles, std::vector<int> &ID_Neutrons_FD, const DSCuts &Neutron_momentum_th, std::vector<int> &ID_Photons_FD, const DSCuts &Photon_momentum_th,
-                     const bool &apply_nucleon_cuts);
+    void nParticleID(std::vector<region_part_ptr> &allParticles, std::vector<int> &ID_Neutrons_FD, const DSCuts &Neutron_momentum_th, std::vector<int> &ID_Photons_FD,
+                     const DSCuts &Photon_momentum_th, const bool &apply_nucleon_cuts);
 
     // Fill neutron multiplicity plots functions -----------------------------------------------------------------------------------------------------
 

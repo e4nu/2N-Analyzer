@@ -6,8 +6,6 @@
 #define AMAPS_H
 // #ifdef AMAPS_H
 
-#include <TKey.h>
-#include <TPaletteAxis.h>
 #include <TApplication.h>
 #include <TCanvas.h>
 #include <TChain.h>
@@ -16,8 +14,10 @@
 #include <TFile.h>
 #include <TH1D.h>
 #include <TH2D.h>
+#include <TKey.h>
 #include <TLatex.h>
 #include <TLorentzVector.h>
+#include <TPaletteAxis.h>
 #include <TROOT.h>
 #include <TStyle.h>
 #include <TTree.h>
@@ -278,13 +278,13 @@ class AMaps {
 
     // ReadAMapSlices function ----------------------------------------------------------------------------------------------------------------------------------------------------
 
-    void ReadAMapSlices(const std::string &SampleName, const std::string &AcceptanceMapsDirectory, const std::string &Particle, const std::vector<std::vector<double>> &Loaded_particle_limits,
-                        std::vector<std::vector<std::vector<int>>> &Loaded_Particle_AMap_Slices);
+    void ReadAMapSlices(const std::string &SampleName, const std::string &AcceptanceMapsDirectory, const std::string &Particle,
+                        const std::vector<std::vector<double>> &Loaded_particle_limits, std::vector<std::vector<std::vector<int>>> &Loaded_Particle_AMap_Slices);
 
     // ReadAMapSlices function ----------------------------------------------------------------------------------------------------------------------------------------------------
 
-    void ReadWMapSlices(const std::string &SampleName, const std::string &AcceptanceMapsDirectory, const std::string &Particle, const std::vector<std::vector<double>> &Loaded_particle_limits,
-                        std::vector<std::vector<std::vector<double>>> &Loaded_Particle_WMap_Slices);
+    void ReadWMapSlices(const std::string &SampleName, const std::string &AcceptanceMapsDirectory, const std::string &Particle,
+                        const std::vector<std::vector<double>> &Loaded_particle_limits, std::vector<std::vector<std::vector<double>>> &Loaded_Particle_WMap_Slices);
 
     // ReadAMap function ----------------------------------------------------------------------------------------------------------------------------------------------------
 

@@ -140,8 +140,8 @@ void Debugger::SafetyCheck_AMaps_Reco_leading_neutrons(const char *FILE, const i
     if (allParticles[NeutronsFD_ind_mom_max]->getRegion() != FD) { PrintErrorMessage(FILE, LINE, "Leading reco nFD check (AMaps & WMaps): Leading nFD is not in the FD!", ""); }
 
     if (!((allParticles[NeutronsFD_ind_mom_max]->par()->getPid() == 2112) || (allParticles[NeutronsFD_ind_mom_max]->par()->getPid() == 22))) {
-        PrintErrorMessage(FILE, LINE, ("Leading reco nFD check (AMaps & WMaps): A neutron PDG is not 2112 or 22 (" + std::to_string(allParticles[NeutronsFD_ind_mom_max]->par()->getPid()) + ")!"),
-                          "");
+        PrintErrorMessage(FILE, LINE,
+                          ("Leading reco nFD check (AMaps & WMaps): A neutron PDG is not 2112 or 22 (" + std::to_string(allParticles[NeutronsFD_ind_mom_max]->par()->getPid()) + ")!"), "");
     }
 
     if (hitPCAL_1e_cut) { PrintErrorMessage(FILE, LINE, "Leading reco nFD check (AMaps & WMaps): neutron hit in PCAL!", ""); }
@@ -168,7 +168,8 @@ void Debugger::SafetyCheck_1e_cut_electron(const char *FILE, const int LINE, std
 // SafetyCheck_basic_event_selection function ------------------------------------------------------------------------------------------------------------------------------------------------
 
 void Debugger::SafetyCheck_basic_event_selection(const char *FILE, const int LINE, const std::string FinaleState, std::vector<region_part_ptr> &Kplus, std::vector<region_part_ptr> &Kminus,
-                                                 const std::vector<int> &Piplus_ind, const std::vector<int> &Piminus_ind, const std::vector<int> &Electron_ind, std::vector<region_part_ptr> &deuterons) {
+                                                 const std::vector<int> &Piplus_ind, const std::vector<int> &Piminus_ind, const std::vector<int> &Electron_ind,
+                                                 std::vector<region_part_ptr> &deuterons) {
     if (Kplus.size() != 0) { PrintErrorMessage(FILE, LINE, (FinaleState + ": Kplus.size() is different than 0!"), ""); }
 
     if (Kminus.size() != 0) { PrintErrorMessage(FILE, LINE, (FinaleState + ": Kminus.size() is different than 0!"), ""); }
@@ -198,8 +199,9 @@ void Debugger::SafetyCheck_1p(const char *FILE, const int LINE, const std::vecto
 // SafetyCheck_1n function ------------------------------------------------------------------------------------------------------------------------------------------------
 
 void Debugger::SafetyCheck_1n(const char *FILE, const int LINE, std::vector<int> &NeutronsFD_ind, region_part_ptr &e_1n, region_part_ptr &n_1n, const bool &Enable_FD_photons,
-                              std::vector<int> &PhotonsFD_ind, const bool &ES_by_leading_FDneutron, ParticleID &pid, std::vector<region_part_ptr> &allParticles, const int &NeutronsFD_ind_mom_max,
-                              const bool &apply_nucleon_cuts, const bool &NeutronInPCAL_1n, const bool &NeutronInECIN_1n, const bool &NeutronInECOUT_1n, const int &n_detlayer_1n) {
+                              std::vector<int> &PhotonsFD_ind, const bool &ES_by_leading_FDneutron, ParticleID &pid, std::vector<region_part_ptr> &allParticles,
+                              const int &NeutronsFD_ind_mom_max, const bool &apply_nucleon_cuts, const bool &NeutronInPCAL_1n, const bool &NeutronInECIN_1n, const bool &NeutronInECOUT_1n,
+                              const int &n_detlayer_1n) {
     if (e_1n->getRegion() != FD) { PrintErrorMessage(FILE, LINE, "1n: Electron is not in the FD!", ""); }
 
     if (n_1n->getRegion() != FD) { PrintErrorMessage(FILE, LINE, "1n: nFD is not in the FD!", ""); }

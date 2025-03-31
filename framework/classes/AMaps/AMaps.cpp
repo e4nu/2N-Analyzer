@@ -2158,10 +2158,11 @@ void AMaps::ReadAMapLimits(const char *filename, std::vector<std::vector<double>
 // ReadAMapSlices function (AMaps) --------------------------------------------------------------------------------------------------------------------------------------
 
 //<editor-fold desc="ReadAMapSlices function (AMaps)">
-void AMaps::ReadAMapSlices(const std::string &SampleName, const std::string &AcceptanceMapsDirectory, const std::string &Particle, const std::vector<std::vector<double>> &Loaded_particle_limits,
+void AMaps::ReadAMapSlices(const std::string &SampleName, const std::string &AcceptanceMapsDirectory, const std::string &Particle,
+                           const std::vector<std::vector<double>> &Loaded_particle_limits,
                            std::vector<std::vector<std::vector<int>>
 
-                                  > &Loaded_Particle_AMap_Slices) {
+                                       > &Loaded_Particle_AMap_Slices) {
     std::string ParticleShort;
 
     if (isElectron(Particle)) {
@@ -2190,8 +2191,8 @@ void AMaps::ReadAMapSlices(const std::string &SampleName, const std::string &Acc
 // ReadWMapSlices function (WMaps) --------------------------------------------------------------------------------------------------------------------------------------
 
 //<editor-fold desc="ReadWMapSlices function (WMaps)">
-void AMaps::ReadWMapSlices(const std::string &SampleName, const std::string &AcceptanceMapsDirectory, const std::string &Particle, const std::vector<std::vector<double>> &Loaded_particle_limits,
-                           std::vector<std::vector<std::vector<double>>> &Loaded_Particle_WMap_Slices) {
+void AMaps::ReadWMapSlices(const std::string &SampleName, const std::string &AcceptanceMapsDirectory, const std::string &Particle,
+                           const std::vector<std::vector<double>> &Loaded_particle_limits, std::vector<std::vector<std::vector<double>>> &Loaded_Particle_WMap_Slices) {
     std::string ParticleShort;
 
     if (isElectron(Particle)) {

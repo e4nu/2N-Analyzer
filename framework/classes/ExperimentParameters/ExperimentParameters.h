@@ -10,7 +10,7 @@
 #include "../../namespaces/general_utilities/utilities/utilities.h"
 #include "../DSCuts/DSCuts.h"
 #include "../TargetParameters/TargetParameters.h"
-// 
+//
 #include "HipoChain.h"
 #include "clas12reader.h"
 
@@ -101,7 +101,8 @@ class ExperimentParameters : public TargetParameters {
     // AddToHipoChainFromList function ----------------------------------------------------------------------------------------------------------------------------------------
 
     // This is the old function used to add runs to the HipoChain
-    void AddToHipoChainFromList(clas12root::HipoChain &chain, const std::string &sn, const std::string &AnalyseFilePath, const std::string &AnalyseFileSample, const std::string &AnalyseFile);
+    void AddToHipoChainFromList(clas12root::HipoChain &chain, const std::string &sn, const std::string &AnalyseFilePath, const std::string &AnalyseFileSample,
+                                const std::string &AnalyseFile);
 
     // other functions ------------------------------------------------------------------------------------------------------------------------------------------------------
 

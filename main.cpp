@@ -2,10 +2,17 @@
 
 #include <iostream>
 
-#include "framework/namespaces/setup/code_setup/code_setup.h"
-//
-#include "framework/classes/DataAnalyser/DataAnalyser.h"
-#include "framework/namespaces/general_utilities/basic_tools/basic_tools.h"
+#if CMakeBuidIncludes
+    #include "framework/namespaces/setup/code_setup/code_setup.h"
+    //
+    #include "framework/classes/DataAnalyser/DataAnalyser.h"
+    #include "framework/namespaces/general_utilities/basic_tools/basic_tools.h"
+#else
+    #include "framework/namespaces/setup/code_setup/code_setup.cpp"
+    //
+    #include "framework/classes/DataAnalyser/DataAnalyser.cpp"
+    #include "framework/namespaces/general_utilities/basic_tools/basic_tools.cpp"
+#endif
 
 // using namespace std;
 using namespace code_setup;
