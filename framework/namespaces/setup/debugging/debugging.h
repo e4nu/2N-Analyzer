@@ -8,13 +8,13 @@
 #include <iostream>
 
 #include "../../../classes/Debugger/Debugger.cpp"
-#include "../../settings/debugging_settings/debugging_settings.cpp"
+#include "../../settings/debugging_settings/debugging_settings.h"
 // #if CMakeBuidIncludes
 //     #include "../../../classes/Debugger/Debugger.h"
 //     #include "../../settings/debugging_settings/debugging_settings.h"
 // #else
 //     #include "../../../classes/Debugger/Debugger.cpp"
-//     #include "../../settings/debugging_settings/debugging_settings.cpp"
+//     #include "../../settings/debugging_settings/debugging_settings.h"
 // #endif
 
 namespace debugging {
