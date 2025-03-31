@@ -150,7 +150,10 @@
         "defficiency.h": "c",
         "particleid.h": "c",
         "momentumresolution.cpp": "c",
-        "tlcuts.cpp": "c"
+        "tlcuts.cpp": "c",
+        "pdf_canvas.h": "c",
+        "directories.h": "c",
+        "settings.cpp": "c"
     },
     "[jsonc]": {
         "editor.defaultFormatter": "vscode.json-language-features"
