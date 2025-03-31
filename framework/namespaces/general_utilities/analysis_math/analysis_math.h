@@ -14,7 +14,7 @@
 #include "../constants/constants.h"
 //
 // #include "analysis_math_reco_extentions.h"
-#include "poly_solver.cpp"
+#include "polynomial_solver.cpp"
 
 // using namespace std;
 
