@@ -24,7 +24,7 @@
     //
     #include "../../../classes/Directories/Directories.h"
     #include "../../../classes/ExperimentParameters/ExperimentParameters.h"
-    #include "../../plotters/draw_and_save_functions/draw_and_save_functions.h"
+    #include "../../functions/HistogramPlottingFunctions.h"
 #else
     #include "../analysis_samples/analysis_samples.h"
     #include "../debugging/debugging.cpp"
@@ -37,7 +37,7 @@
     //
     #include "../../../classes/Directories/Directories.cpp"
     #include "../../../classes/ExperimentParameters/ExperimentParameters.cpp"
-    #include "../../plotters/draw_and_save_functions/draw_and_save_functions.h"
+    #include "../../functions/HistogramPlottingFunctions.cpp"
 #endif
 
 namespace code_setup {
