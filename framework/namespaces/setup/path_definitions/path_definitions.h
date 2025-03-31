@@ -16,12 +16,12 @@
 // #endif
 
 namespace path_definitions {
-extern const CodeDirectories PathDefinitions;
+const CodeDirectories PathDefinitions = CodeDirectories();
 
-extern const std::string plots_TList_FileType;
-extern const std::string plots_TFile_FileType;
-extern const std::string log_file_name;
-extern const std::string plots_log_save_Directory;
+const std::string plots_TList_FileType = "_plots.root";
+const std::string plots_TFile_FileType = "_plots.pdf";
+const std::string log_file_name = "Run_log.txt";
+const std::string plots_log_save_Directory = PathDefinitions.plots_path + "/" + log_file_name;
 }  // namespace path_definitions
 
 #endif  // PATH_DEFINITIONS_H

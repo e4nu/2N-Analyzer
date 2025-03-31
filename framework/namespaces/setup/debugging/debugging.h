@@ -22,7 +22,7 @@ using namespace debugging_settings;
 
 // CodeDebugger declaration ---------------------------------------------------------------------------------------------------------------------------------------------
 
-extern Debugger CodeDebugger;
+Debugger CodeDebugger;
 
 }  // namespace debugging
 

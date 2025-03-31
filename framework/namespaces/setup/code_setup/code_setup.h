@@ -13,13 +13,13 @@
 #include <vector>
 
 #include "../analysis_samples/analysis_samples.h"
-#include "../debugging/debugging.cpp"
-#include "../path_definitions/path_definitions.cpp"
+#include "../debugging/debugging.h"
+#include "../path_definitions/path_definitions.h"
 // #include "../truth_analysis_variables/truth_analysis_variables.h"
 
 #include "../../general_utilities/basic_tools/basic_tools.h"
 #include "../../general_utilities/constants/constants.h"
-#include "../../plotters/PDF_canvas/PDF_canvas.cpp"
+#include "../../plotters/PDF_canvas/PDF_canvas.h"
 //
 #include "../../../classes/Directories/Directories.cpp"
 #include "../../../classes/ExperimentParameters/ExperimentParameters.cpp"
@@ -39,13 +39,13 @@
 //     #include "../../../functions/HistogramPlottingFunctions.h"
 // #else
 //     #include "../analysis_samples/analysis_samples.h"
-//     #include "../debugging/debugging.cpp"
-//     #include "../path_definitions/path_definitions.cpp"
+//     #include "../debugging/debugging.h"
+//     #include "../path_definitions/path_definitions.h"
 //     // #include "../truth_analysis_variables/truth_analysis_variables.h"
 
 //     #include "../../general_utilities/basic_tools/basic_tools.cpp"
 //     #include "../../general_utilities/constants/constants.h"
-//     #include "../../plotters/PDF_canvas/PDF_canvas.cpp"
+//     #include "../../plotters/PDF_canvas/PDF_canvas.h"
 //     //
 //     #include "../../../classes/Directories/Directories.cpp"
 //     #include "../../../classes/ExperimentParameters/ExperimentParameters.cpp"
@@ -59,15 +59,15 @@ using namespace analysis_samples;
 using namespace PDF_canvas;
 // using namespace truth_analysis_variables;
 
-extern const std::string Ver;
+const std::string Ver = "DetSim testings";
 
-extern std::string file_name;
+std::string file_name = "general_file";
 
-extern double BEnergyToNucleus;
+double BEnergyToNucleus = 9999;  // TODO: check if I really need these variables
 
-extern int Target_pdg, Probe_pdg;
-extern std::string Target_nucleus, Probe;
-extern double BeamEnergy;
+int Target_pdg = 9999, Probe_pdg = 11;           // TODO: check if I really need these variables
+std::string Target_nucleus = "A", Probe = "e-";  // TODO: check if I really need these variables
+double BeamEnergy = 0.;                          // TODO: check if I really need this variable
 };  // namespace code_setup
 
 #endif  // CODE_SETUP_H

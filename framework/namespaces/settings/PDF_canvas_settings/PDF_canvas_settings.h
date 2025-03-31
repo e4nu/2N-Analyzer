@@ -7,12 +7,12 @@
 namespace PDF_canvas_settings {
 // Canvas variables -----------------------------------------------------------------------------------------------------------------------------------------------------
 
-extern int num_of_hist_per_row;
-extern int num_of_hist_per_col;
+int num_of_hist_per_row = 4;
+int num_of_hist_per_col = 3;
 
-extern int CanvasPDF_ind;
+int CanvasPDF_ind = 1;
 
-extern TCanvas* CanvasPDF;
+TCanvas* CanvasPDF = new TCanvas("CanvasPDF", "CanvasPDF", 1000 * num_of_hist_per_row, 750 * num_of_hist_per_col);  // normal res
 
 };  // namespace PDF_canvas_settings
 

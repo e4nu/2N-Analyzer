@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-#include "framework/namespaces/setup/code_setup/code_setup.cpp"
+#include "framework/namespaces/setup/code_setup/code_setup.h"
 //
 #include "framework/classes/DataAnalyser/DataAnalyser.cpp"
 
@@ -16,7 +16,7 @@
 //         #include "framework/namespaces/general_utilities/basic_tools/basic_tools.h"
 //     #endif
 // #else
-//     #include "framework/namespaces/setup/code_setup/code_setup.cpp"
+//     #include "framework/namespaces/setup/code_setup/code_setup.h"
 //     //
 //     #include "framework/classes/DataAnalyser/DataAnalyser.cpp"
 

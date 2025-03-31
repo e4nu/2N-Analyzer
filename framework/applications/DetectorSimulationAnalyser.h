@@ -16,10 +16,10 @@
 
 #include <THStack.h>
 
-// #include "../namespaces/setup/code_setup/code_setup.cpp"
+// #include "../namespaces/setup/code_setup/code_setup.h"
 // #include "../setup/codeSetup.h"
 
-#include "../namespaces/fitters/fitter_functions/fitter_functions.cpp"
+#include "../namespaces/fitters/fitter_functions/fitter_functions.h"
 #include "../namespaces/general_utilities/utilities/utilities.h"
 #include "../namespaces/plotters/draw_and_save_functions/draw_and_save_functions.h"
 //
@@ -63,7 +63,7 @@
 //     #include "../classes/Settings/Settings.h"
 //     #include "../classes/TLCuts/TLCuts.h"
 // #else
-//     #include "../namespaces/fitters/fitter_functions/fitter_functions.cpp"
+//     #include "../namespaces/fitters/fitter_functions/fitter_functions.h"
 //     #include "../namespaces/general_utilities/utilities/utilities.h"
 //     #include "../namespaces/plotters/draw_and_save_functions/draw_and_save_functions.h"
 //     //
