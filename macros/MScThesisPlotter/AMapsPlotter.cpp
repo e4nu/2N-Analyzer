@@ -1,14 +1,14 @@
 #include <iostream>
 #include <TFile.h>
-#include <TH1D.h>
+#include <TH1.h>
 #include <TCanvas.h>
 
 #include "../../source/functions/GeneralFunctions.h"
-#include "CombineHistogramsToGif.h"
+#include "CombineHistogramsToGif.cpp"
 
 #if Independent2Ddraw
-#include "Histofinder2D.h"
-#include "TitleAligner.h"
+#include "Histofinder2D.cpp"
+#include "TitleAligner.cpp"
 #endif
 
 using namespace std;
@@ -216,7 +216,7 @@ int countHistograms(const char *filename, const std::string &ParticleNameShort1,
         }
         else
         {
-            std::cout << "plotHistograms: 'filename' does not point to a uniform sample! Exiting...", exit(0);
+            cout << "plotHistograms: 'filename' does not point to a uniform sample! Exiting...", exit(0);
         }
     }
 
@@ -316,7 +316,7 @@ int countHistograms(const char *filename, const std::string &ParticleNameShort1,
 
             if (PrintOutHistName)
             {
-                std::cout << Histogram2DTempName << "\n\n";
+                cout << Histogram2DTempName << "\n\n";
             }
 
             if (findSubstring(Histogram2DTempName, ParticleNameShort2))
@@ -325,7 +325,7 @@ int countHistograms(const char *filename, const std::string &ParticleNameShort1,
 
                 if (PrintOut)
                 {
-                    std::cout << "\nKey name: " << Histogram2DTemp->GetName() << "; Type: " << Key->GetClassName() << "\n";
+                    cout << "\nKey name: " << Histogram2DTemp->GetName() << "; Type: " << Key->GetClassName() << "\n";
                 }
 
                 if (Sep_plots)
@@ -645,7 +645,7 @@ int countHistograms(const char *filename, const std::string &ParticleNameShort1,
 
             if (PrintOutHistName)
             {
-                std::cout << Histogram2DTempName << "\n\n";
+                cout << Histogram2DTempName << "\n\n";
             }
 
             if (findSubstring(Histogram2DTempName, ParticleNameShort2))
@@ -654,7 +654,7 @@ int countHistograms(const char *filename, const std::string &ParticleNameShort1,
 
                 if (PrintOut)
                 {
-                    std::cout << "\nKey name: " << Histogram2DTemp->GetName() << "; Type: " << Key->GetClassName() << "\n";
+                    cout << "\nKey name: " << Histogram2DTemp->GetName() << "; Type: " << Key->GetClassName() << "\n";
                 }
 
                 if (Sep_plots)
@@ -911,9 +911,9 @@ int countHistograms(const char *filename, const std::string &ParticleNameShort1,
         std::string FileName0 = filename;
         std::string FileName = FileName0.substr(0, FileName0.find_last_of('/') + 1);
 
-        std::cout << "\n";
+        cout << "\n";
 
-        std::cout << "\n\nLoading 'TL Neutron Hit Map (AMaps)' from:\n"
+        cout << "\n\nLoading 'TL Neutron Hit Map (AMaps)' from:\n"
              << FileName + TL_root_file_prefix << "\n";
         TFile *TL_root_file = new TFile((FileName + TL_root_file_prefix).c_str());
         TH2D *TL_Histogram2D = (TH2D *)TL_root_file->Get("TL Neutron Hit Map (AMaps)");
@@ -929,7 +929,7 @@ int countHistograms(const char *filename, const std::string &ParticleNameShort1,
             exit(0);
         }
 
-        std::cout << "\n\nLoading 'Reco Neutron Hit Map (AMaps)' from:\n"
+        cout << "\n\nLoading 'Reco Neutron Hit Map (AMaps)' from:\n"
              << FileName + TL_root_file_prefix << "\n";
         TFile *Reco_root_file = new TFile((FileName + Reco_root_file_prefix).c_str());
         TH2D *Reco_Histogram2D = (TH2D *)Reco_root_file->Get("Reco Neutron Hit Map (AMaps)");
@@ -945,7 +945,7 @@ int countHistograms(const char *filename, const std::string &ParticleNameShort1,
             exit(0);
         }
 
-        std::cout << "\n\nLoading 'Neutron Reco/TL ratio (AMaps)' from:\n"
+        cout << "\n\nLoading 'Neutron Reco/TL ratio (AMaps)' from:\n"
              << FileName + TL_root_file_prefix << "\n";
         TFile *Ratio_root_file = new TFile((FileName + Ratio_root_file_prefix).c_str());
         TH2D *Ratio_Histogram2D = Histofinder2D(Ratio_root_file, "Neutron Reco/TL ratio (");
@@ -961,7 +961,7 @@ int countHistograms(const char *filename, const std::string &ParticleNameShort1,
             exit(0);
         }
 
-        std::cout << "\n\nLoading 'Neutron_AMap (AMaps)' from:\n"
+        cout << "\n\nLoading 'Neutron_AMap (AMaps)' from:\n"
              << FileName + TL_root_file_prefix << "\n";
         TFile *Finalized_AMaps_root_file = new TFile((FileName + Finalized_AMaps_root_file_prefix).c_str());
         TH2D *Finalized_AMaps_Histogram2D = (TH2D *)Finalized_AMaps_root_file->Get("Neutron_AMap (AMaps)");
@@ -977,7 +977,7 @@ int countHistograms(const char *filename, const std::string &ParticleNameShort1,
             exit(0);
         }
 
-        std::cout << "\nplotting into canvas...\n";
+        cout << "\nplotting into canvas...\n";
         // TCanvas *canvas = new TCanvas("c", "c", 1000 * 2 * 0.6, 750 * 2 * 0.6);
         TCanvas *canvas = new TCanvas("c", "c", 1000 * 2, 750 * 2);
         canvas->Divide(2, 2); // Divide the canvas into a 3x3 grid
@@ -1406,7 +1406,7 @@ int countHistograms(const char *filename, const std::string &ParticleNameShort1,
             Finalized_AMaps_Histogram2D->SetStats(1);
         }
 
-        std::cout << "\nOutputPath + SaveName = " << OutputPath + SaveName << "\n";
+        cout << "\nOutputPath + SaveName = " << OutputPath + SaveName << "\n";
 
         canvas->SaveAs((OutputPath + SaveName).c_str());
 
@@ -1475,7 +1475,7 @@ void plotHistograms(const char *filename, const std::string &ParticleNameShort1,
         }
         else
         {
-            std::cout << "plotHistograms: 'filename' does not point to a uniform sample! Exiting...", exit(0);
+            cout << "plotHistograms: 'filename' does not point to a uniform sample! Exiting...", exit(0);
         }
     }
 
@@ -1573,7 +1573,7 @@ void plotHistograms(const char *filename, const std::string &ParticleNameShort1,
 
             if (PrintOutHistName)
             {
-                std::cout << Histogram2DTempName << "\n\n";
+                cout << Histogram2DTempName << "\n\n";
             }
 
             if (findSubstring(Histogram2DTempName, ParticleNameShort2))
@@ -1582,7 +1582,7 @@ void plotHistograms(const char *filename, const std::string &ParticleNameShort1,
 
                 if (PrintOut)
                 {
-                    std::cout << "\nKey name: " << Histogram2DTemp->GetName() << "; Type: " << Key->GetClassName() << "\n";
+                    cout << "\nKey name: " << Histogram2DTemp->GetName() << "; Type: " << Key->GetClassName() << "\n";
                 }
 
                 if (Sep_plots)
@@ -1900,7 +1900,7 @@ void plotHistograms(const char *filename, const std::string &ParticleNameShort1,
 
             if (PrintOutHistName)
             {
-                std::cout << Histogram2DTempName << "\n\n";
+                cout << Histogram2DTempName << "\n\n";
             }
 
             if (findSubstring(Histogram2DTempName, ParticleNameShort2))
@@ -1909,7 +1909,7 @@ void plotHistograms(const char *filename, const std::string &ParticleNameShort1,
 
                 if (PrintOut)
                 {
-                    std::cout << "\nKey name: " << Histogram2DTemp->GetName() << "; Type: " << Key->GetClassName() << "\n";
+                    cout << "\nKey name: " << Histogram2DTemp->GetName() << "; Type: " << Key->GetClassName() << "\n";
                 }
 
                 if (Sep_plots)
@@ -2168,9 +2168,9 @@ void plotHistograms(const char *filename, const std::string &ParticleNameShort1,
         std::string FileName0 = filename;
         std::string FileName = FileName0.substr(0, FileName0.find_last_of('/') + 1);
 
-        std::cout << "\n";
+        cout << "\n";
 
-        std::cout << "\n\nLoading 'TL Neutron Hit Map (AMaps)' from:\n"
+        cout << "\n\nLoading 'TL Neutron Hit Map (AMaps)' from:\n"
              << FileName + TL_root_file_prefix << "\n";
         TFile *TL_root_file = new TFile((FileName + TL_root_file_prefix).c_str());
         TH2D *TL_Histogram2D = (TH2D *)TL_root_file->Get("TL Neutron Hit Map (AMaps)");
@@ -2186,7 +2186,7 @@ void plotHistograms(const char *filename, const std::string &ParticleNameShort1,
             exit(0);
         }
 
-        std::cout << "\n\nLoading 'Reco Neutron Hit Map (AMaps)' from:\n"
+        cout << "\n\nLoading 'Reco Neutron Hit Map (AMaps)' from:\n"
              << FileName + TL_root_file_prefix << "\n";
         TFile *Reco_root_file = new TFile((FileName + Reco_root_file_prefix).c_str());
         TH2D *Reco_Histogram2D = (TH2D *)Reco_root_file->Get("Reco Neutron Hit Map (AMaps)");
@@ -2202,7 +2202,7 @@ void plotHistograms(const char *filename, const std::string &ParticleNameShort1,
             exit(0);
         }
 
-        std::cout << "\n\nLoading 'Neutron Reco/TL ratio (AMaps)' from:\n"
+        cout << "\n\nLoading 'Neutron Reco/TL ratio (AMaps)' from:\n"
              << FileName + TL_root_file_prefix << "\n";
         TFile *Ratio_root_file = new TFile((FileName + Ratio_root_file_prefix).c_str());
         TH2D *Ratio_Histogram2D = Histofinder2D(Ratio_root_file, "Neutron Reco/TL ratio (");
@@ -2218,7 +2218,7 @@ void plotHistograms(const char *filename, const std::string &ParticleNameShort1,
             exit(0);
         }
 
-        std::cout << "\n\nLoading 'Neutron_AMap (AMaps)' from:\n"
+        cout << "\n\nLoading 'Neutron_AMap (AMaps)' from:\n"
              << FileName + TL_root_file_prefix << "\n";
         TFile *Finalized_AMaps_root_file = new TFile((FileName + Finalized_AMaps_root_file_prefix).c_str());
         TH2D *Finalized_AMaps_Histogram2D = (TH2D *)Finalized_AMaps_root_file->Get("Neutron_AMap (AMaps)");
@@ -2234,7 +2234,7 @@ void plotHistograms(const char *filename, const std::string &ParticleNameShort1,
             exit(0);
         }
 
-        std::cout << "\nplotting into canvas...\n";
+        cout << "\nplotting into canvas...\n";
         // TCanvas *canvas = new TCanvas("c", "c", 1000 * 2 * 0.6, 750 * 2 * 0.6);
         TCanvas *canvas = new TCanvas("c", "c", 1000 * 2, 750 * 2);
         canvas->Divide(2, 2); // Divide the canvas into a 3x3 grid
@@ -2663,7 +2663,7 @@ void plotHistograms(const char *filename, const std::string &ParticleNameShort1,
             Finalized_AMaps_Histogram2D->SetStats(1);
         }
 
-        std::cout << "\nOutputPath + SaveName = " << OutputPath + SaveName << "\n";
+        cout << "\nOutputPath + SaveName = " << OutputPath + SaveName << "\n";
 
         canvas->SaveAs((OutputPath + SaveName).c_str());
 

@@ -11,8 +11,8 @@
 #include <TDatabasePDG.h>
 #include <TFile.h>
 #include <TGraph.h>
-#include <TH1D.h>
-#include <TH2D.h>
+#include <TH1.h>
+#include <TH2.h>
 #include <THStack.h>
 #include <TLatex.h>
 #include <TLorentzVector.h>
@@ -31,14 +31,11 @@
 #include "../basic_tools/basic_tools.h"
 #include "../constants/constants.h"
 #include "../data_processor/data_processor.h"
-#include "../histogram_functions/histogram_functions.h"
 #include "../lists/lists.h"
 #include "../reco_analysis_functions/reco_analysis_functions.h"
 // #include "../truth_analysis_functions/truth_analysis_functions.h"
 
 // using namespace std;
-
-// TODO: split into header and source files!
 
 namespace utilities {
 using namespace constants;
@@ -46,16 +43,15 @@ using namespace basic_tools;
 using namespace analysis_math;
 using namespace lists;
 using namespace data_processor;
-using namespace histogram_functions;
 using namespace reco_analysis_functions;
 
 // ConfigRegion function ------------------------------------------------------------------------------------------------------------------------------------------------
 
-inline const std::string ConfigRegion(const std::string &Histogram2DNameCopy) { return FindSubstring(Histogram2DNameCopy, "CD") ? "CD" : "FD"; }
+const std::string ConfigRegion(const std::string &Histogram2DNameCopy) { return FindSubstring(Histogram2DNameCopy, "CD") ? "CD" : "FD"; }
 
 // ConfigSampleType function --------------------------------------------------------------------------------------------------------------------------------------------
 
-inline const std::string ConfigSampleType(const std::string &SampleName) {
+const std::string ConfigSampleType(const std::string &SampleName) {
     if (FindSubstring(SampleName, "sim")) {
         return "s";
     } else if (FindSubstring(SampleName, "data")) {
@@ -68,7 +64,7 @@ inline const std::string ConfigSampleType(const std::string &SampleName) {
 // ReplaceSubstring function --------------------------------------------------------------------------------------------------------------------------------------------
 
 // Function to replace one substring with another
-inline std::string ReplaceSubstring(const std::string &input, const std::string &toReplace, const std::string &replaceWith) {
+string ReplaceSubstring(const std::string &input, const std::string &toReplace, const std::string &replaceWith) {
     size_t pos = input.find(toReplace);
 
     if (pos == string::npos) {
@@ -82,7 +78,7 @@ inline std::string ReplaceSubstring(const std::string &input, const std::string 
 // TitleAligner functions -----------------------------------------------------------------------------------------------------------------------------------------------
 
 template <typename T>
-inline void TitleAligner(T *obj, std::string &title, std::string &xLabel, const std::string &originToReplace, const std::string &replacement) {
+void TitleAligner(T *obj, std::string &title, std::string &xLabel, const std::string &originToReplace, const std::string &replacement) {
     auto updateTitle = [&](string &str, auto setTitleFunc) {
         if (FindSubstring(str, originToReplace)) {
             str = ReplaceSubstring(str, originToReplace, replacement);
@@ -95,7 +91,7 @@ inline void TitleAligner(T *obj, std::string &title, std::string &xLabel, const 
 }
 
 template <typename T>
-inline void TitleAligner(T *obj, std::string &title, std::string &xLabel, std::string &yLabel, const std::string &originToReplace, const std::string &replacement) {
+void TitleAligner(T *obj, std::string &title, std::string &xLabel, std::string &yLabel, const std::string &originToReplace, const std::string &replacement) {
     auto updateTitle = [&](string &str, auto setTitleFunc) {
         if (FindSubstring(str, originToReplace)) {
             str = ReplaceSubstring(str, originToReplace, replacement);
@@ -110,7 +106,7 @@ inline void TitleAligner(T *obj, std::string &title, std::string &xLabel, std::s
 
 // TitleAligner function ------------------------------------------------------------------------------------------------------------------------------------------------
 
-inline void TitleAligner(TH1D *simHistogram, TH1D *dataHistogram, const std::string &originToReplace, const std::string &replacement) {
+void TitleAligner(TH1D *simHistogram, TH1D *dataHistogram, const std::string &originToReplace, const std::string &replacement) {
     auto updateTitle = [&](TH1D *hist) {
         std::string title = hist->GetTitle();
         std::string xLabel = hist->GetXaxis()->GetTitle();
@@ -138,7 +134,7 @@ inline void TitleAligner(TH1D *simHistogram, TH1D *dataHistogram, const std::str
 
 // GetHistogramFromVector function --------------------------------------------------------------------------------------------------------------------------------------
 
-inline TH1 *GetHistogramFromVector(const std::vector<TH1 *> &HistoList, const std::string &searchString, const std::string &searchStringOption = "name") {
+TH1 *GetHistogramFromVector(const std::vector<TH1 *> &HistoList, const std::string &searchString, const std::string &searchStringOption = "name") {
     for (const auto &hist : HistoList) {
         if (!hist) continue;
 
@@ -154,8 +150,8 @@ inline TH1 *GetHistogramFromVector(const std::vector<TH1 *> &HistoList, const st
 
 // FillHistogramByProcess function --------------------------------------------------------------------------------------------------------------------------------------
 
-inline void FillHistogramByProcess(double Variable, TH1D *Histogram_All_Int, TH1D *Histogram_QE, TH1D *Histogram_MEC, TH1D *Histogram_RES, TH1D *Histogram_DIS, bool qel, bool mec, bool res,
-                                   bool dis, double weight = 1., bool IsMC = true, bool IsData = false) {
+void FillHistogramByProcess(double Variable, TH1D *Histogram_All_Int, TH1D *Histogram_QE, TH1D *Histogram_MEC, TH1D *Histogram_RES, TH1D *Histogram_DIS, bool qel, bool mec, bool res,
+                            bool dis, double weight = 1., bool IsMC = true, bool IsData = false) {
     Histogram_All_Int->Fill(Variable, weight);
 
     if (IsMC) {
@@ -173,14 +169,14 @@ inline void FillHistogramByProcess(double Variable, TH1D *Histogram_All_Int, TH1
 
 // GetHistogramEntries function -----------------------------------------------------------------------------------------------------------------------------------------
 
-inline double GetHistogramEntriesFromVector(const std::vector<TH1 *> &HistoList, const std::string &searchString, const std::string &searchStringOption = "name") {
+double GetHistogramEntriesFromVector(const std::vector<TH1 *> &HistoList, const std::string &searchString, const std::string &searchStringOption = "name") {
     if (TH1 *Histogram = GetHistogramFromVector(HistoList, searchString, searchStringOption)) { return Histogram->GetEntries(); }
     return -1;  // Return -1 if no match is found
 }
 
 // drawtext function ----------------------------------------------------------------------------------------------------------------------------------------------------
 
-inline void drawtext() {
+void drawtext() {
     Int_t i, n;
     Double_t x, y;
     TLatex l;

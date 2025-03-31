@@ -11,8 +11,8 @@
 #include <TDatabasePDG.h>
 #include <TF1.h>
 #include <TFile.h>
-#include <TH1D.h>
-#include <TH2D.h>
+#include <TH1.h>
+#include <TH2.h>
 #include <TLatex.h>
 #include <TLorentzVector.h>
 #include <TROOT.h>
@@ -102,10 +102,10 @@ void StackPlot4(string &SampleName, TList *Histogram_list, hPlot1D const &Hist1,
     std::string HistogramStackSaveName = HistogramStackSaveNamePath1.substr(HistogramStackSaveNamePath1.find_last_of('/') + 1) + "_Stack4";
     //    std::string HistogramStackSaveName = Hist1.GetHistogram1DSaveName() + "_Stack";
 
-    std::cout << "\n\n\n\nHistogramStackSaveNamePath0 = " << HistogramStackSaveNamePath0 << "\n";
-    std::cout << "HistogramStackSaveNamePath1 = " << HistogramStackSaveNamePath1 << "\n";
-    std::cout << "HistogramStackSaveNamePath = " << HistogramStackSaveNamePath << "\n";
-    std::cout << "HistogramStackSaveName = " << HistogramStackSaveName << "\n\n\n\n";
+    cout << "\n\n\n\nHistogramStackSaveNamePath0 = " << HistogramStackSaveNamePath0 << "\n";
+    cout << "HistogramStackSaveNamePath1 = " << HistogramStackSaveNamePath1 << "\n";
+    cout << "HistogramStackSaveNamePath = " << HistogramStackSaveNamePath << "\n";
+    cout << "HistogramStackSaveName = " << HistogramStackSaveName << "\n\n\n\n";
 
     double TitleSize = Hist1.GetTitleSize();
     double LabelSize = Hist1.GetLabelSizeX();

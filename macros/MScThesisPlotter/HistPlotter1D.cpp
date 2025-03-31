@@ -7,8 +7,8 @@
 #include <TFile.h>
 #include <TTree.h>
 #include <TLorentzVector.h>
-#include <TH1D.h>
-#include <TH2D.h>
+#include <TH1.h>
+#include <TH2.h>
 #include <TLatex.h>
 #include <TChain.h>
 #include <TCanvas.h>
@@ -17,13 +17,13 @@
 #include <TApplication.h>
 #include <TROOT.h>
 
-#include "../../source/classes/hData/hData.h"
+#include "../../source/classes/hData/hData.cpp"
 #include "../../source/functions/GeneralFunctions.h"
 #include "../../source/constants.h"
-#include "Histofinder1D.h"
+#include "Histofinder1D.cpp"
 
 #if Independent1DHistDraw
-#include "TitleAligner.h"
+#include "TitleAligner.cpp"
 #endif
 
 using namespace std;
@@ -115,7 +115,7 @@ void HistPlotter1D(TCanvas *HistogramCanvas, TList *MScThesisPlotsList, const ch
     ExamPresMode = true;
 #endif
 
-    std::cout << "\n\n";
+    cout << "\n\n";
 
     hData particles;
 
@@ -163,7 +163,7 @@ void HistPlotter1D(TCanvas *HistogramCanvas, TList *MScThesisPlotsList, const ch
 //    int LineWidth = 6; // size used in results part
     int LineWidth = 3;
 //    int LineWidth = 4;
-    std::vector<double> Histogram1DTitleSizes = {0.06, 0.0425, 0.0425}; // {TitleSize, LabelSizex, LabelSizey}
+    vector<double> Histogram1DTitleSizes = {0.06, 0.0425, 0.0425}; // {TitleSize, LabelSizex, LabelSizey}
     bool CenterTitle = true;
     bool ShowStats = true;
 
@@ -173,7 +173,7 @@ void HistPlotter1D(TCanvas *HistogramCanvas, TList *MScThesisPlotsList, const ch
 
     /* Histogram cuts setup */
     bool ShowPlotCuts = true;
-    //std::vector<double> - for cuts
+    //vector<double> - for cuts
     double PlotCuts = 0;
     double PlotXmax = 0;
     bool PlotHistogramMax = true;

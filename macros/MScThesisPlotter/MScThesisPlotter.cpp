@@ -5,8 +5,8 @@
 #include <TFile.h>
 #include <TTree.h>
 #include <TLorentzVector.h>
-#include <TH1D.h>
-#include <TH2D.h>
+#include <TH1.h>
+#include <TH2.h>
 #include <TLatex.h>
 #include <TChain.h>
 #include <TCanvas.h>
@@ -30,14 +30,14 @@
 #define PosterMode false
 #define ColorblindMode false
 
-#include "HistPlotter1D.h"
-#include "HistPlotterStack.h"
-#include "HistPlotterStack1.h"
-#include "HistPlotter2D.h"
-#include "AMapsPlotter.h"
-#include "MomResSlicePlotter.h"
-#include "GraphPlotter1D.h"
-#include "FSRPlotter.h"
+#include "HistPlotter1D.cpp"
+#include "HistPlotterStack.cpp"
+#include "HistPlotterStack1.cpp"
+#include "HistPlotter2D.cpp"
+#include "AMapsPlotter.cpp"
+#include "MomResSlicePlotter.cpp"
+#include "GraphPlotter1D.cpp"
+#include "FSRPlotter.cpp"
 
 #if !PresentationMode
 #define ExamPresentationMode false
@@ -601,10 +601,10 @@ void MScThesisPlotter()
     const char *TListName = listName.c_str();
 
     //     //<editor-fold desc="Preselection">
-    //     std::cout << "\n\n\nPlotting preselection cut plots\n";
+    //     cout << "\n\n\nPlotting preselection cut plots\n";
 
     //     //<editor-fold desc="Vertex plots">
-    //     std::cout << "\n\n\nPlotting vertex cuts plots\n";
+    //     cout << "\n\n\nPlotting vertex cuts plots\n";
 
     //     /* Before cuts */
     //     HistPlotter1D(Canv, MScThesisPlots, plots_NO_CUTS, "V_{z}^{e} (1e cut)", SampleName, VertexCutsFolderSimBC, "01_Vz_e_FD");
@@ -650,7 +650,7 @@ void MScThesisPlotter()
     //     //</editor-fold>
 
     //     //<editor-fold desc="Vertex correlation plots">
-    //     std::cout << "\n\n\nPlotting vertex correlation cuts plots\n";
+    //     cout << "\n\n\nPlotting vertex correlation cuts plots\n";
 
     //     /* Before cuts */
     //     HistPlotter1D(Canv, MScThesisPlots, plots_NO_CUTS, "Vertex corr. dV^{p}_{z} (1e cut, FD)", SampleName, VertexCorrCutsFolderSimBC, "01_dVz_p_FD");
@@ -692,7 +692,7 @@ void MScThesisPlotter()
     //     //</editor-fold>
 
     //     //<editor-fold desc="DC fiducial cuts">
-    //     std::cout << "\n\n\nPlotting vertex DC fiducial cuts plots\n";
+    //     cout << "\n\n\nPlotting vertex DC fiducial cuts plots\n";
 
     //     /* Before cuts */
     //     HistPlotter2D(Canv, MScThesisPlots, plots_NO_CUTS_DC, "dc_hitmap_before_1", SampleName, DCFiducialCutsFolderSimBC, "01_dc_hitmap_e_R1");
@@ -724,7 +724,7 @@ void MScThesisPlotter()
     //     //</editor-fold>
 
     //     //<editor-fold desc="Electron ID">
-    //     std::cout << "\n\n\nPlotting Electron ID plots\n";
+    //     cout << "\n\n\nPlotting Electron ID plots\n";
 
     //     /* Before cuts */
     //     HistPlotter2D(Canv, MScThesisPlots, NO_CUTS_beta_VS_P_no_clas12ana, "#beta vs. P (all particles, no #(e) cut, CD)", SampleName, ElectronIDFolderSimBC,
@@ -768,7 +768,7 @@ void MScThesisPlotter()
     //     //</editor-fold>
 
     //     //<editor-fold desc="Proton ID">
-    //     std::cout << "\n\n\nPlotting Proton ID plots\n";
+    //     cout << "\n\n\nPlotting Proton ID plots\n";
 
     //     /* Before cuts */
     //     HistPlotter1D(Canv, MScThesisPlots, plots_woChi2, "#chi^{2}_{p} (1e cut, FD)", SampleName, ProtonIDFolderSimBC, "01_chi2_p_FD_1e_cut");
@@ -811,7 +811,7 @@ void MScThesisPlotter()
     //     //</editor-fold>
 
     //     //<editor-fold desc="Neutrals ID">
-    //     std::cout << "\n\n\nPlotting Neutrals ID plots\n";
+    //     cout << "\n\n\nPlotting Neutrals ID plots\n";
 
     //     /* ECAL veto before cuts */
     //     HistPlotter2D(Canv, MScThesisPlots, plots_noNC, "#Delta#theta_{LnFD,e} vs. #Delta#phi_{LnFD,e} BV (1e cut, FD)", SampleName, NeutralsFDIDFolderSimBC,
@@ -880,7 +880,7 @@ void MScThesisPlotter()
     //     //</editor-fold>
 
     //     //<editor-fold desc="Pions ID">
-    //     std::cout << "\n\n\nPlotting Pions ID plots\n";
+    //     cout << "\n\n\nPlotting Pions ID plots\n";
 
     //     /* Before cuts */
     //     HistPlotter1D(Canv, MScThesisPlots, plots_woChi2, "#chi^{2}_{#pi^{+}} (1e cut, FD)", SampleName, PionsIDFolderSimBC, "01_chi2_pip_FD_1e_cut");
@@ -898,7 +898,7 @@ void MScThesisPlotter()
     //     //</editor-fold>
 
     //     //<editor-fold desc="Other particles ID">
-    //     std::cout << "\n\n\nPlotting Other particles ID plots\n";
+    //     cout << "\n\n\nPlotting Other particles ID plots\n";
 
     //     /* Before cuts */
     //     HistPlotter1D(Canv, MScThesisPlots, plots_woChi2, "#chi^{2}_{D} (1e cut, FD)", SampleName, OtherPartIDFolderSimBC, "01_chi2_D_FD_1e_cut");
@@ -911,7 +911,7 @@ void MScThesisPlotter()
     //     //</editor-fold>
 
     //<editor-fold desc="AMaps">
-    std::cout << "\n\n\nPlotting AMaps plots\n";
+    cout << "\n\n\nPlotting AMaps plots\n";
 
     std::string TL_root_file_prefix, Reco_root_file_prefix, Ratio_root_file_prefix, cPart_Sep_AMaps_root_file_prefix, Finalized_AMaps_root_file_prefix;
 
@@ -930,7 +930,7 @@ void MScThesisPlotter()
     //</editor-fold>
 
     //     //<editor-fold desc="Efficiency">
-    //     std::cout << "\n\n\nPlotting Efficiency plots\n";
+    //     cout << "\n\n\nPlotting Efficiency plots\n";
 
     //     /* No fiducial cuts & with momentum th. */
     //     HistPlotter1D(Canv, MScThesisPlots, plots_Efficiency_reg, "Electron momentum #epsilon_{eff} (1p)", SampleName, EfficiencyRegFolderSim, "01_electron_mom_eff_1p_wMomTh");
@@ -969,7 +969,7 @@ void MScThesisPlotter()
     //     //</editor-fold>
 
     //     //<editor-fold desc="momRes">
-    //     std::cout << "\n\n\nPlotting Momentum Resolution plots\n";
+    //     cout << "\n\n\nPlotting Momentum Resolution plots\n";
 
     //     //<editor-fold desc="MomResS1">
     //     /* Mean fit before correction */
@@ -1102,7 +1102,7 @@ void MScThesisPlotter()
     //     //</editor-fold>
 
     //     //<editor-fold desc="Results">
-    //     std::cout << "\n\n\nPlotting results plots\n";
+    //     cout << "\n\n\nPlotting results plots\n";
 
     // //    //<editor-fold desc="Event_Selection_Data">
     // //    const std::string ElectronIDFolderData = ConfigeTopDir(plots_AMaps_plotsPath, costumTopDir) + "/Results/Event_Selection_Data/01_Electron_ID_Data";
@@ -1601,7 +1601,7 @@ void MScThesisPlotter()
 
     //     //</editor-fold>
 
-    std::cout << "\n\nExcecution finished!\n", exit(0);
+    cout << "\n\nExcecution finished!\n", exit(0);
 
     Canv->Clear();
 }

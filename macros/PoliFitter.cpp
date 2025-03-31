@@ -7,8 +7,8 @@
 #include <TFile.h>
 #include <TTree.h>
 #include <TLorentzVector.h>
-#include <TH1D.h>
-#include <TH2D.h>
+#include <TH1.h>
+#include <TH2.h>
 #include <TLatex.h>
 #include <TChain.h>
 #include <TCanvas.h>
@@ -17,15 +17,15 @@
 #include <TApplication.h>
 #include <TROOT.h>
 
-//#include "../framework/classes/ExperimentParameters/ExperimentParameters.h"
-//#include "../framework/classes/AMaps/AMaps.h"
+//#include "../framework/classes/ExperimentParameters/ExperimentParameters.cpp"
+//#include "../framework/classes/AMaps/AMaps.cpp"
 //#include "../framework/classes/clas12ana/clas12ana.h"
-//#include "../framework/classes/DEfficiency/DEfficiency.h"
+//#include "../framework/classes/DEfficiency/DEfficiency.cpp"
 //#include "../framework/classes/DSCuts/DSCuts.h"
 //#include "../framework/classes/hPlots/hPlot1D.cpp"
 //#include "../framework/classes/hPlots/hPlot2D.cpp"
-//#include "../framework/classes/MomentumResolution/MomentumResolution.h"
-//#include "../framework/classes/TLCuts/TLCuts.h"
+//#include "../framework/classes/MomentumResolution/MomentumResolution.cpp"
+//#include "../framework/classes/TLCuts/TLCuts.cpp"
 //#include "../framework/functions/AngleCalc/GetBinFromAng.h"
 //#include "../framework/functions/FitFunctions/BetaFit.h"
 //#include "../framework/functions/FitFunctions/BetaFitApprax.h"
@@ -60,8 +60,8 @@ using namespace std;
 #include <TFile.h>
 #include <TTree.h>
 #include <TLorentzVector.h>
-#include <TH1D.h>
-#include <TH2D.h>
+#include <TH1.h>
+#include <TH2.h>
 #include <TLatex.h>
 #include <TChain.h>
 #include <TCanvas.h>
@@ -71,12 +71,12 @@ using namespace std;
 #include <TROOT.h>
 
 #include "../framework/classes/DSCuts/DSCuts.h"
-#include "../framework/functions/Math_func/poly34.h"
+#include "../framework/functions/Math_func/poly34.cpp"
 #include "../framework/functions/findSubstring.h"
 #include "../framework/functions/to_string_with_precision.h"
 #include "../framework/constants.h"
 
-#include "../framework/classes/MomentumResolution/MomentumResolution.h"
+#include "../framework/classes/MomentumResolution/MomentumResolution.cpp"
 
 using namespace std;
 */
@@ -233,7 +233,7 @@ void PoliFitter() {
     //</editor-fold>
 
 //    //<editor-fold desc="Old stuff">
-//    std::cout << "\n\n";
+//    cout << "\n\n";
 //
 //    //    TFile *f = new TFile("plots_C12_simulation_6GeV_T5_first_10_-_ALL_CUTS/recon_qe_GENIE_C_598636MeV_Q2_0_5_test_5_first_10_plots.root");
 ////    std::string SampleName = "C12_simulation_6GeV_T5_first_10";
@@ -249,7 +249,7 @@ void PoliFitter() {
 //    TFile *f = new TFile("00_plots_C12_simulation_6GeV_T5_-02_ALL_CUTS_noNC_/recon_qe_GENIE_C_598636MeV_Q2_0_5_test_5_plots.root");
 //    std::string SampleName = "C12_simulation_6GeV_T5";
 //
-//    std::cout << "\nSampleName:\t" << SampleName << "\n\n";
+//    cout << "\nSampleName:\t" << SampleName << "\n\n";
 //
 //    DSCuts Beta_cut = DSCuts("Beta_nuc", "FD", "", "1n", 1, -9999, 9999); /* Beta cut (1n, FD) */
 //    DSCuts n_momentum_cuts = DSCuts("Momentum", "", "Neutron", "", 0, 0.3, 9999); /* Momentum cuts (thresholds) */
@@ -331,20 +331,20 @@ void PoliFitter() {
 //    func->SetParameters(BetaMax, BetaMean, 0.001); // start fit with histogram's max and mean
 //    func->SetParNames("Constant", "Mean_value", "Sigma");
 //
-//    std::cout << "Beta histogram {max, mean}:\t{" << BetaMax << ", " << BetaMean << "}\n\n\n\n";
+//    cout << "Beta histogram {max, mean}:\t{" << BetaMax << ", " << BetaMean << "}\n\n\n\n";
 //
 //////    // Adding limits to "Constant"
 //////    double BetaConstantUlim = 1.2 * BetaMax;
 //////    double BetaConstantLlim = 0.95 * BetaMax;
 //////    func->SetParLimits(0, BetaConstantLlim, BetaConstantUlim);
-//////    std::cout << "Beta Constant {Llim, Ulim}:\t{" << BetaConstantLlim << ", " << BetaConstantUlim << "}\n\n";
+//////    cout << "Beta Constant {Llim, Ulim}:\t{" << BetaConstantLlim << ", " << BetaConstantUlim << "}\n\n";
 ////    // Adding limits to "Constant"
 ////    double BetaConstantUlim = 1.2 * BetaMax;
 ////    double BetaConstantLlim = BetaMax;
 //////    double BetaConstantLlim = 0.90 * BetaMax;
 //////    double BetaConstantLlim = 0.67 * BetaMax;
 ////    func->SetParLimits(0, BetaConstantLlim, BetaConstantUlim);
-////    std::cout << "Beta Constant {Llim, Ulim}:\t{" << BetaConstantLlim << ", " << BetaConstantUlim << "}\n\n";
+////    cout << "Beta Constant {Llim, Ulim}:\t{" << BetaConstantLlim << ", " << BetaConstantUlim << "}\n\n";
 //
 //    // Adding limits to "Constant"
 //    double BetaConstantUlim = 1.5 * BetaMax;
@@ -352,7 +352,7 @@ void PoliFitter() {
 //    double BetaConstantLlim = 0.90 * BetaMax;
 ////    double BetaConstantLlim = 0.67 * BetaMax;
 //    func->SetParLimits(0, BetaConstantLlim, BetaConstantUlim);
-//    std::cout << "Beta Constant {Llim, Ulim}:\t{" << BetaConstantLlim << ", " << BetaConstantUlim << "}\n\n";
+//    cout << "Beta Constant {Llim, Ulim}:\t{" << BetaConstantLlim << ", " << BetaConstantUlim << "}\n\n";
 //
 //
 //    // Adding limits to "Mean_value"
@@ -361,12 +361,12 @@ void PoliFitter() {
 ////    double BetaMean_valueLlim = 1.008;
 ////    double BetaMean_valueLlim = 1.0075;
 //    func->SetParLimits(1, BetaMean_valueLlim, BetaMean_valueUlim);
-//    std::cout << "Beta Mean_value {Llim, Ulim}:\t{" << BetaMean_valueLlim << ", " << BetaMean_valueUlim << "}\n\n";
+//    cout << "Beta Mean_value {Llim, Ulim}:\t{" << BetaMean_valueLlim << ", " << BetaMean_valueUlim << "}\n\n";
 ////    // Adding limits to "Mean_value"
 ////    double BetaMean_valueUlim = 1.02;
 ////    double BetaMean_valueLlim = 1.005;
 ////    func->SetParLimits(1, BetaMean_valueLlim, BetaMean_valueUlim);
-////    std::cout << "Beta Mean_value {Llim, Ulim}:\t{" << BetaMean_valueLlim << ", " << BetaMean_valueUlim << "}\n\n";
+////    cout << "Beta Mean_value {Llim, Ulim}:\t{" << BetaMean_valueLlim << ", " << BetaMean_valueUlim << "}\n\n";
 //
 //
 ////    // Adding limits to "Sigma"
@@ -374,14 +374,14 @@ void PoliFitter() {
 ////    double BetaSigmaUlim = 0.01;
 ////    double BetaSigmaLlim = 0.00001;
 ////    func->SetParLimits(2, BetaSigmaLlim, BetaSigmaUlim);
-////    std::cout << "Beta Sigma {Llim, Ulim}:\t{" << BetaSigmaLlim << ", " << BetaSigmaUlim << "}\n\n";
+////    cout << "Beta Sigma {Llim, Ulim}:\t{" << BetaSigmaLlim << ", " << BetaSigmaUlim << "}\n\n";
 //
 //
 //
-//    std::cout << "\n";
+//    cout << "\n";
 //    hBeta_Clone->Fit("fit");
 //    hBeta_Clone->Draw();
-//    std::cout << "\n";
+//    cout << "\n";
 //
 //    TF1 *fit = hBeta_Clone->GetFunction("fit");
 //    double FitAmp = fit->GetParameter(0); // get p0
@@ -462,10 +462,10 @@ void PoliFitter() {
 //    SolveP3(Beta_Max_sol, 0, -1, FitStd / deltaPRel_UncertaintyU);
 //    SolveP3(Beta_Min_sol, 0, -1, FitStd / deltaPRel_UncertaintyL);
 //
-//    std::cout << "\nSolutions for W(beta) = 0 for 20%:\n";
+//    cout << "\nSolutions for W(beta) = 0 for 20%:\n";
 //
 //    for (int i = 0; i < 3; i++) {
-//        std::cout << "Beta_Max_sol[" << i << "] = " << Beta_Max_sol[i] << "\n";
+//        cout << "Beta_Max_sol[" << i << "] = " << Beta_Max_sol[i] << "\n";
 //
 //        //TODO: see if other checks for the solution are required!!!
 //        if (Beta_Max_sol[i] >= 0.9 && Beta_Max_sol[i] < 1) { Beta_Max = Beta_Max_sol[i]; }
@@ -473,14 +473,14 @@ void PoliFitter() {
 //
 //    P_Beta_Max = m_n * Beta_Max / sqrt(1 - Beta_Max * Beta_Max);
 //
-//    std::cout << "W(beta) const Max = " << FitStd / deltaPRel_UncertaintyU << "\n";
-//    std::cout << "Beta_Max = " << Beta_Max << " is chosen\n";
-//    std::cout << "P(Beta_Max) = " << P_Beta_Max << "\n\n";
+//    cout << "W(beta) const Max = " << FitStd / deltaPRel_UncertaintyU << "\n";
+//    cout << "Beta_Max = " << Beta_Max << " is chosen\n";
+//    cout << "P(Beta_Max) = " << P_Beta_Max << "\n\n";
 //
-//    std::cout << "Solutions for W(beta) = 0 for 10%:\n";
+//    cout << "Solutions for W(beta) = 0 for 10%:\n";
 //
 //    for (int i = 0; i < 3; i++) {
-//        std::cout << "Beta_Min_sol[" << i << "] = " << Beta_Min_sol[i] << "\n";
+//        cout << "Beta_Min_sol[" << i << "] = " << Beta_Min_sol[i] << "\n";
 //
 //        //TODO: see if other checks for the solution are required!!!
 //        if (Beta_Min_sol[i] >= 0.9 && Beta_Min_sol[i] < 1) { Beta_Min = Beta_Min_sol[i]; }
@@ -488,9 +488,9 @@ void PoliFitter() {
 //
 //    P_Beta_Min = m_n * Beta_Min / sqrt(1 - Beta_Min * Beta_Min);
 //
-//    std::cout << "W(beta) const Max = " << FitStd / deltaPRel_UncertaintyL << "\n";
-//    std::cout << "Beta_Min = " << Beta_Min << " is chosen\n";
-//    std::cout << "P(Beta_Min) = " << P_Beta_Min << "\n\n";
+//    cout << "W(beta) const Max = " << FitStd / deltaPRel_UncertaintyL << "\n";
+//    cout << "Beta_Min = " << Beta_Min << " is chosen\n";
+//    cout << "P(Beta_Min) = " << P_Beta_Min << "\n\n";
 //
 //    n_momentum_cuts.SetUpperCut(P_Beta_Max);
 //    //</editor-fold>

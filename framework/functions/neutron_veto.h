@@ -6,8 +6,8 @@
 #include <TCanvas.h>
 #include <TChain.h>
 #include <TFile.h>
-#include <TH1D.h>
-#include <TH2D.h>
+#include <TH1.h>
+#include <TH2.h>
 #include <TLatex.h>
 #include <TLorentzVector.h>
 #include <TStyle.h>
@@ -275,7 +275,7 @@ bool NeutronECAL_CutVeto(const std::unique_ptr<clas12::clas12reader> &c12, doubl
     double theta_n = p_n_Angles.Theta() * 180 / M_PI;
     double theta_q = p_q.Theta() * 180 / M_PI;
     double theta_nq = p_n_Angles.Angle(p_q) * 180 / M_PI;
-    // std::cout<<beta<<endl;
+    // cout<<beta<<endl;
     if (beta < 0) { return false; }
     if (beta > 1.1) { return false; }
     // if(theta_nq>25){return false;}

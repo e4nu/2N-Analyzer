@@ -7,8 +7,8 @@
 #include <TChain.h>
 #include <TDatabasePDG.h>
 #include <TFile.h>
-#include <TH1D.h>
-#include <TH2D.h>
+#include <TH1.h>
+#include <TH2.h>
 #include <TLatex.h>
 #include <TLorentzVector.h>
 #include <TROOT.h>
@@ -19,7 +19,7 @@
 #include <iostream>
 #include <string>
 
-#include "../framework/classes/hData/hData.h"
+#include "../framework/classes/hData/hData.cpp"
 #include "../framework/functions/GeneralFunctions.h"
 
 using namespace std;
@@ -119,9 +119,9 @@ void MCtoDATAcompare(int counter, TCanvas *Canvas, TCanvas *CanvasMulti, TH1D *M
         }
         //</editor-fold>
 
-//        std::cout << "\n\nMC_Histogram->GetMaximum() = " << MC_Histogram->GetMaximum() << "\n";
-//        std::cout << "DATA_Histogram->GetMaximum() = " << DATA_Histogram->GetMaximum() << "\n";
-//        std::cout << "Ymax = " << Ymax << "\n\n\n";
+//        cout << "\n\nMC_Histogram->GetMaximum() = " << MC_Histogram->GetMaximum() << "\n";
+//        cout << "DATA_Histogram->GetMaximum() = " << DATA_Histogram->GetMaximum() << "\n";
+//        cout << "Ymax = " << Ymax << "\n\n\n";
     }
 
 
@@ -138,10 +138,10 @@ void MCtoDATAcomp() {
     system(("mkdir -p " + SaveDir).c_str());
 
     TFile *MC_file = new TFile("C12_simulation_G18_Q204_6GeV_plots.root");
-    if (!MC_file) { std::cout << "\n\nMCtoDATAcomp: MC file not found! Exiting...\n", exit(0); }
+    if (!MC_file) { cout << "\n\nMCtoDATAcomp: MC file not found! Exiting...\n", exit(0); }
 
     TFile *DATA_file = new TFile("C12x4_data_6GeV_run_015188_plots.root");
-    if (!DATA_file) { std::cout << "\n\nDATAtoDATAcomp: DATA file not found! Exiting...\n", exit(0); }
+    if (!DATA_file) { cout << "\n\nDATAtoDATAcomp: DATA file not found! Exiting...\n", exit(0); }
 
     //<editor-fold desc="Canvas definitions">
     int canvas_x = 1000, canvas_y = 750;
@@ -196,11 +196,11 @@ void MCtoDATAcomp() {
             } // end of DATA while
         }
 
-//        std::cout << "\n\n\nTEST TEST TEST\n\n\n";
+//        cout << "\n\n\nTEST TEST TEST\n\n\n";
 
     } // end of MC while
 
-    std::cout << "\n";
+    cout << "\n";
 
 }
 //</editor-fold>

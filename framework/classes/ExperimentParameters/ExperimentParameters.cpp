@@ -1,5 +1,5 @@
-// #ifndef EXPERIMENTPARAMETERS_H
-// #define EXPERIMENTPARAMETERS_H
+#ifndef EXPERIMENTPARAMETERS_H
+#define EXPERIMENTPARAMETERS_H
 
 #include "ExperimentParameters.h"
 
@@ -1731,49 +1731,49 @@ string ExperimentParameters::ConfigureSampleName(const std::string &AnalyseFileP
 
     //<editor-fold desc="Safety checks">
     if (!BeamAt2GeV && !BeamAt4GeV && !BeamAt6GeV) {
-        std::cout << "\n\nConfigureSampleName: beam energy unknown! Configured variables are:\n";
-        std::cout << "AnalyseFilePath = " << AnalyseFilePath << "\n";
-        std::cout << "sName = " << sName << "\n";
-        std::cout << "BeamAt2GeV = " << BeamAt2GeV << "\n";
-        std::cout << "BeamAt4GeV = " << BeamAt4GeV << "\n";
-        std::cout << "BeamAt6GeV = " << BeamAt6GeV << "\n";
-        std::cout << "Exiting...\n", exit(0);
+        cout << "\n\nConfigureSampleName: beam energy unknown! Configured variables are:\n";
+        cout << "AnalyseFilePath = " << AnalyseFilePath << "\n";
+        cout << "sName = " << sName << "\n";
+        cout << "BeamAt2GeV = " << BeamAt2GeV << "\n";
+        cout << "BeamAt4GeV = " << BeamAt4GeV << "\n";
+        cout << "BeamAt6GeV = " << BeamAt6GeV << "\n";
+        cout << "Exiting...\n", exit(0);
     }
 
     if (BeamAt2GeV && BeamAt4GeV && BeamAt6GeV) {
-        std::cout << "\n\nConfigureSampleName: beam energy configuration error! Configured variables are:\n";
-        std::cout << "AnalyseFilePath = " << AnalyseFilePath << "\n";
-        std::cout << "sName = " << sName << "\n";
-        std::cout << "BeamAt2GeV = " << BeamAt2GeV << "\n";
-        std::cout << "BeamAt4GeV = " << BeamAt4GeV << "\n";
-        std::cout << "BeamAt6GeV = " << BeamAt6GeV << "\n";
-        std::cout << "SimulationSample = " << SimulationSample << "\n";
-        std::cout << "DataSample = " << DataSample << "\n";
-        std::cout << "Exiting...\n", exit(0);
+        cout << "\n\nConfigureSampleName: beam energy configuration error! Configured variables are:\n";
+        cout << "AnalyseFilePath = " << AnalyseFilePath << "\n";
+        cout << "sName = " << sName << "\n";
+        cout << "BeamAt2GeV = " << BeamAt2GeV << "\n";
+        cout << "BeamAt4GeV = " << BeamAt4GeV << "\n";
+        cout << "BeamAt6GeV = " << BeamAt6GeV << "\n";
+        cout << "SimulationSample = " << SimulationSample << "\n";
+        cout << "DataSample = " << DataSample << "\n";
+        cout << "Exiting...\n", exit(0);
     }
 
     if (SimulationSample && DataSample) {
-        std::cout << "\n\nConfigureSampleName: sample type unknown! Configured variables are:\n";
-        std::cout << "AnalyseFilePath = " << AnalyseFilePath << "\n";
-        std::cout << "sName = " << sName << "\n";
-        std::cout << "BeamAt2GeV = " << BeamAt2GeV << "\n";
-        std::cout << "BeamAt4GeV = " << BeamAt4GeV << "\n";
-        std::cout << "BeamAt6GeV = " << BeamAt6GeV << "\n";
-        std::cout << "SimulationSample = " << SimulationSample << "\n";
-        std::cout << "DataSample = " << DataSample << "\n";
-        std::cout << "Exiting...\n", exit(0);
+        cout << "\n\nConfigureSampleName: sample type unknown! Configured variables are:\n";
+        cout << "AnalyseFilePath = " << AnalyseFilePath << "\n";
+        cout << "sName = " << sName << "\n";
+        cout << "BeamAt2GeV = " << BeamAt2GeV << "\n";
+        cout << "BeamAt4GeV = " << BeamAt4GeV << "\n";
+        cout << "BeamAt6GeV = " << BeamAt6GeV << "\n";
+        cout << "SimulationSample = " << SimulationSample << "\n";
+        cout << "DataSample = " << DataSample << "\n";
+        cout << "Exiting...\n", exit(0);
     }
 
     if (!SimulationSample && !DataSample) {
-        std::cout << "\n\nConfigureSampleName: sample type configuration error! Configured variables are:\n";
-        std::cout << "AnalyseFilePath = " << AnalyseFilePath << "\n";
-        std::cout << "sName = " << sName << "\n";
-        std::cout << "BeamAt2GeV = " << BeamAt2GeV << "\n";
-        std::cout << "BeamAt4GeV = " << BeamAt4GeV << "\n";
-        std::cout << "BeamAt6GeV = " << BeamAt6GeV << "\n";
-        std::cout << "SimulationSample = " << SimulationSample << "\n";
-        std::cout << "DataSample = " << DataSample << "\n";
-        std::cout << "Exiting...\n", exit(0);
+        cout << "\n\nConfigureSampleName: sample type configuration error! Configured variables are:\n";
+        cout << "AnalyseFilePath = " << AnalyseFilePath << "\n";
+        cout << "sName = " << sName << "\n";
+        cout << "BeamAt2GeV = " << BeamAt2GeV << "\n";
+        cout << "BeamAt4GeV = " << BeamAt4GeV << "\n";
+        cout << "BeamAt6GeV = " << BeamAt6GeV << "\n";
+        cout << "SimulationSample = " << SimulationSample << "\n";
+        cout << "DataSample = " << DataSample << "\n";
+        cout << "Exiting...\n", exit(0);
     }
     //</editor-fold>
 
@@ -1796,7 +1796,7 @@ void ExperimentParameters::ConfigureVaryingSampleName(const std::string &sn) {  
         VaryingSampleName = sn;
         // VaryingSampleName = "C12x4_simulation_G18_Q204_6GeV";
     } else {
-        std::cout << "\n\n\nExperimentParameters::ConfigureVaryingSampleName: sample can't be configured! Exiting...\n", exit(0);
+        cout << "\n\n\nExperimentParameters::ConfigureVaryingSampleName: sample can't be configured! Exiting...\n", exit(0);
     }
 }
 //</editor-fold>
@@ -2205,48 +2205,46 @@ double ExperimentParameters::GetBeamEnergy() { return BeamEnergy; }
 
 //<editor-fold desc="Description">
 // This is the old function used to add runs to the HipoChain
-void ExperimentParameters::AddToHipoChain(clas12root::HipoChain &chain, const std::string &sn, const std::string &AnalyseFilePath, const std::string &AnalyseFileSample,
-                                          const std::string &AnalyseFile) {
+void ExperimentParameters::AddToHipoChain(HipoChain &chain, const std::string &sn, const std::string &AnalyseFilePath, const std::string &AnalyseFileSample, const std::string &AnalyseFile) {
     bool PrintOut = true;
 
     if (DataSample) {
         if (sn == "C12x4_data_6GeV") {
             if (AnalyseFileSample == "") {
                 /* Data in cache/clas12/rg-m/production/pass1/6gev/Cx4/dst/recon */
-                std::vector<string> Runs = {"015186", "015187", "015188", "015189", "015190", "015191", "015192", "015193", "015194", "015196", "015199", "015200", "015202",
-                                            "015203", "015204", "015205", "015206", "015207", "015210", "015212", "015213", "015214", "015215", "015217", "015219", "015220",
-                                            "015221", "015223", "015224", "015225", "015226", "015228", "015234", "015235", "015236", "015238", "015239", "015240", "015241",
-                                            "015242", "015243", "015245", "015246", "015247", "015248", "015249", "015250", "015252", "015253", "015254", "015255", "015257",
-                                            "015258", "015259", "015260", "015261", "015262", "015263", "015264", "015265", "015266", "015269", "015270", "015271", "015272",
-                                            "015273", "015274", "015275", "015278", "015279", "015280", "015282", "015283", "015284", "015286", "015287", "015288", "015289",
-                                            "015290", "015291", "015292", "015293", "015294", "015295", "015296", "015298", "015300", "015301", "015302", "015303", "015304",
-                                            "015305", "015306", "015307", "015308", "015309", "015310", "015311", "015312", "015313", "015314", "015316", "015317"};
+                vector<string> Runs = {"015186", "015187", "015188", "015189", "015190", "015191", "015192", "015193", "015194", "015196", "015199", "015200", "015202", "015203", "015204",
+                                       "015205", "015206", "015207", "015210", "015212", "015213", "015214", "015215", "015217", "015219", "015220", "015221", "015223", "015224", "015225",
+                                       "015226", "015228", "015234", "015235", "015236", "015238", "015239", "015240", "015241", "015242", "015243", "015245", "015246", "015247", "015248",
+                                       "015249", "015250", "015252", "015253", "015254", "015255", "015257", "015258", "015259", "015260", "015261", "015262", "015263", "015264", "015265",
+                                       "015266", "015269", "015270", "015271", "015272", "015273", "015274", "015275", "015278", "015279", "015280", "015282", "015283", "015284", "015286",
+                                       "015287", "015288", "015289", "015290", "015291", "015292", "015293", "015294", "015295", "015296", "015298", "015300", "015301", "015302", "015303",
+                                       "015304", "015305", "015306", "015307", "015308", "015309", "015310", "015311", "015312", "015313", "015314", "015316", "015317"};
 
                 for (int i = 0; i < Runs.size(); i++) {
                     std::string TempAnalyseFile = "/" + AnalyseFilePath + "/" + Runs.at(i) + "/*.hipo";
                     chain.Add(TempAnalyseFile.c_str());
 
-                    if (PrintOut) { std::cout << TempAnalyseFile << " directory added to HipoChain!\n"; }
+                    if (PrintOut) { cout << TempAnalyseFile << " directory added to HipoChain!\n"; }
                 }
 
-                if (PrintOut) { std::cout << "\n"; }
+                if (PrintOut) { cout << "\n"; }
             }
         } else if (sn == "D2_data_2GeV") {
             if (AnalyseFileSample == "") {
                 /* Data in cache/clas12/rg-m/production/pass1/2gev/D/dst/recon */
-                std::vector<string> Runs = {"015567", "015573", "015578", "015583", "015590", "015595", "015602", "015608", "015613", "015618", "015624", "015568", "015574", "015579",
-                                            "015586", "015591", "015598", "015603", "015609", "015614", "015619", "015625", "015569", "015575", "015580", "015587", "015592", "015599",
-                                            "015604", "015610", "015615", "015620", "015626", "015570", "015576", "015581", "015588", "015593", "015600", "015606", "015611", "015616",
-                                            "015622", "015627", "015572", "015577", "015582", "015589", "015594", "015601", "015607", "015612", "015617", "015623"};
+                vector<string> Runs = {"015567", "015573", "015578", "015583", "015590", "015595", "015602", "015608", "015613", "015618", "015624", "015568", "015574", "015579",
+                                       "015586", "015591", "015598", "015603", "015609", "015614", "015619", "015625", "015569", "015575", "015580", "015587", "015592", "015599",
+                                       "015604", "015610", "015615", "015620", "015626", "015570", "015576", "015581", "015588", "015593", "015600", "015606", "015611", "015616",
+                                       "015622", "015627", "015572", "015577", "015582", "015589", "015594", "015601", "015607", "015612", "015617", "015623"};
 
                 for (int i = 0; i < Runs.size(); i++) {
                     std::string TempAnalyseFile = "/" + AnalyseFilePath + "/" + Runs.at(i) + "/*.hipo";
                     chain.Add(TempAnalyseFile.c_str());
 
-                    if (PrintOut) { std::cout << TempAnalyseFile << " directory added to HipoChain!\n"; }
+                    if (PrintOut) { cout << TempAnalyseFile << " directory added to HipoChain!\n"; }
                 }
 
-                if (PrintOut) { std::cout << "\n"; }
+                if (PrintOut) { cout << "\n"; }
             }
         } else {
             chain.Add(AnalyseFile.c_str());
@@ -2254,7 +2252,7 @@ void ExperimentParameters::AddToHipoChain(clas12root::HipoChain &chain, const st
     } else if (SimulationSample) {
         chain.Add(AnalyseFile.c_str());
 
-        if (PrintOut) { std::cout << AnalyseFile << " directory added to HipoChain!\n\n"; }
+        if (PrintOut) { cout << AnalyseFile << " directory added to HipoChain!\n\n"; }
     }
 }
 //</editor-fold>
@@ -2262,7 +2260,7 @@ void ExperimentParameters::AddToHipoChain(clas12root::HipoChain &chain, const st
 // AddToHipoChainFromList function ----------------------------------------------------------------------------------------------------------------------------------------
 
 //<editor-fold desc="Description">
-void ExperimentParameters::AddToHipoChainFromList(clas12root::HipoChain &chain, const std::string &sn, const std::string &AnalyseFilePath, const std::string &AnalyseFileSample,
+void ExperimentParameters::AddToHipoChainFromList(HipoChain &chain, const std::string &sn, const std::string &AnalyseFilePath, const std::string &AnalyseFileSample,
                                                   const std::string &AnalyseFile) {
     bool PrintOut = true;
 
@@ -2274,10 +2272,10 @@ void ExperimentParameters::AddToHipoChainFromList(clas12root::HipoChain &chain, 
                     std::string TempAnalyseFile = "/" + AnalyseFilePath + "/" + lists::H1_data_2GeV_runs.at(i) + "/*.hipo";
                     chain.Add(TempAnalyseFile.c_str());
 
-                    if (PrintOut) { std::cout << TempAnalyseFile << " directory added to HipoChain!\n"; }
+                    if (PrintOut) { cout << TempAnalyseFile << " directory added to HipoChain!\n"; }
                 }
 
-                if (PrintOut) { std::cout << "\n"; }
+                if (PrintOut) { cout << "\n"; }
             }
         } else if (sn == "D2_data_2GeV") {
             if (AnalyseFileSample == "") {
@@ -2286,10 +2284,10 @@ void ExperimentParameters::AddToHipoChainFromList(clas12root::HipoChain &chain, 
                     std::string TempAnalyseFile = "/" + AnalyseFilePath + "/" + lists::D2_data_2GeV_runs.at(i) + "/*.hipo";
                     chain.Add(TempAnalyseFile.c_str());
 
-                    if (PrintOut) { std::cout << TempAnalyseFile << " directory added to HipoChain!\n"; }
+                    if (PrintOut) { cout << TempAnalyseFile << " directory added to HipoChain!\n"; }
                 }
 
-                if (PrintOut) { std::cout << "\n"; }
+                if (PrintOut) { cout << "\n"; }
             }
         } else if (sn == "C12_data_2GeV") {
             if (AnalyseFileSample == "") {
@@ -2298,10 +2296,10 @@ void ExperimentParameters::AddToHipoChainFromList(clas12root::HipoChain &chain, 
                     std::string TempAnalyseFile = "/" + AnalyseFilePath + "/" + lists::C12_data_2GeV_runs.at(i) + "/*.hipo";
                     chain.Add(TempAnalyseFile.c_str());
 
-                    if (PrintOut) { std::cout << TempAnalyseFile << " directory added to HipoChain!\n"; }
+                    if (PrintOut) { cout << TempAnalyseFile << " directory added to HipoChain!\n"; }
                 }
 
-                if (PrintOut) { std::cout << "\n"; }
+                if (PrintOut) { cout << "\n"; }
             }
         } else if (sn == "Ar40_data_2GeV") {
             if (AnalyseFileSample == "") {
@@ -2310,10 +2308,10 @@ void ExperimentParameters::AddToHipoChainFromList(clas12root::HipoChain &chain, 
                     std::string TempAnalyseFile = "/" + AnalyseFilePath + "/" + lists::Ar40_data_2GeV_runs.at(i) + "/*.hipo";
                     chain.Add(TempAnalyseFile.c_str());
 
-                    if (PrintOut) { std::cout << TempAnalyseFile << " directory added to HipoChain!\n"; }
+                    if (PrintOut) { cout << TempAnalyseFile << " directory added to HipoChain!\n"; }
                 }
 
-                if (PrintOut) { std::cout << "\n"; }
+                if (PrintOut) { cout << "\n"; }
             }
         } else if (sn == "C12_data_4GeV") {
             if (AnalyseFileSample == "") {
@@ -2322,10 +2320,10 @@ void ExperimentParameters::AddToHipoChainFromList(clas12root::HipoChain &chain, 
                     std::string TempAnalyseFile = "/" + AnalyseFilePath + "/" + lists::C12_data_4GeV_runs.at(i) + "/*.hipo";
                     chain.Add(TempAnalyseFile.c_str());
 
-                    if (PrintOut) { std::cout << TempAnalyseFile << " directory added to HipoChain!\n"; }
+                    if (PrintOut) { cout << TempAnalyseFile << " directory added to HipoChain!\n"; }
                 }
 
-                if (PrintOut) { std::cout << "\n"; }
+                if (PrintOut) { cout << "\n"; }
             }
         } else if (sn == "Ar40_data_4GeV") {
             if (AnalyseFileSample == "") {
@@ -2334,10 +2332,10 @@ void ExperimentParameters::AddToHipoChainFromList(clas12root::HipoChain &chain, 
                     std::string TempAnalyseFile = "/" + AnalyseFilePath + "/" + lists::Ar40_data_4GeV_runs.at(i) + "/*.hipo";
                     chain.Add(TempAnalyseFile.c_str());
 
-                    if (PrintOut) { std::cout << TempAnalyseFile << " directory added to HipoChain!\n"; }
+                    if (PrintOut) { cout << TempAnalyseFile << " directory added to HipoChain!\n"; }
                 }
 
-                if (PrintOut) { std::cout << "\n"; }
+                if (PrintOut) { cout << "\n"; }
             }
         } else if (sn == "H1_data_6GeV") {
             if (AnalyseFileSample == "") {
@@ -2346,10 +2344,10 @@ void ExperimentParameters::AddToHipoChainFromList(clas12root::HipoChain &chain, 
                     std::string TempAnalyseFile = "/" + AnalyseFilePath + "/" + lists::H1_data_6GeV_runs.at(i) + "/*.hipo";
                     chain.Add(TempAnalyseFile.c_str());
 
-                    if (PrintOut) { std::cout << TempAnalyseFile << " directory added to HipoChain!\n"; }
+                    if (PrintOut) { cout << TempAnalyseFile << " directory added to HipoChain!\n"; }
                 }
 
-                if (PrintOut) { std::cout << "\n"; }
+                if (PrintOut) { cout << "\n"; }
             }
         } else if (sn == "D2_data_6GeV") {
             if (AnalyseFileSample == "") {
@@ -2358,10 +2356,10 @@ void ExperimentParameters::AddToHipoChainFromList(clas12root::HipoChain &chain, 
                     std::string TempAnalyseFile = "/" + AnalyseFilePath + "/" + lists::D2_data_6GeV_runs.at(i) + "/*.hipo";
                     chain.Add(TempAnalyseFile.c_str());
 
-                    if (PrintOut) { std::cout << TempAnalyseFile << " directory added to HipoChain!\n"; }
+                    if (PrintOut) { cout << TempAnalyseFile << " directory added to HipoChain!\n"; }
                 }
 
-                if (PrintOut) { std::cout << "\n"; }
+                if (PrintOut) { cout << "\n"; }
             }
         } else if (sn == "C12x4_data_6GeV") {
             if (AnalyseFileSample == "") {
@@ -2370,10 +2368,10 @@ void ExperimentParameters::AddToHipoChainFromList(clas12root::HipoChain &chain, 
                     std::string TempAnalyseFile = "/" + AnalyseFilePath + "/" + lists::C12x4_data_6GeV_runs.at(i) + "/*.hipo";
                     chain.Add(TempAnalyseFile.c_str());
 
-                    if (PrintOut) { std::cout << TempAnalyseFile << " directory added to HipoChain!\n"; }
+                    if (PrintOut) { cout << TempAnalyseFile << " directory added to HipoChain!\n"; }
                 }
 
-                if (PrintOut) { std::cout << "\n"; }
+                if (PrintOut) { cout << "\n"; }
             }
         } else if (sn == "Ar40_data_6GeV") {
             if (AnalyseFileSample == "") {
@@ -2382,10 +2380,10 @@ void ExperimentParameters::AddToHipoChainFromList(clas12root::HipoChain &chain, 
                     std::string TempAnalyseFile = "/" + AnalyseFilePath + "/" + lists::Ar40_data_6GeV_runs.at(i) + "/*.hipo";
                     chain.Add(TempAnalyseFile.c_str());
 
-                    if (PrintOut) { std::cout << TempAnalyseFile << " directory added to HipoChain!\n"; }
+                    if (PrintOut) { cout << TempAnalyseFile << " directory added to HipoChain!\n"; }
                 }
 
-                if (PrintOut) { std::cout << "\n"; }
+                if (PrintOut) { cout << "\n"; }
             }
         } else {
             chain.Add(AnalyseFile.c_str());
@@ -2393,9 +2391,9 @@ void ExperimentParameters::AddToHipoChainFromList(clas12root::HipoChain &chain, 
     } else if (SimulationSample) {
         chain.Add(AnalyseFile.c_str());
 
-        if (PrintOut) { std::cout << AnalyseFile << " directory added to HipoChain!\n\n"; }
+        if (PrintOut) { cout << AnalyseFile << " directory added to HipoChain!\n\n"; }
     }
 }
 //</editor-fold>
 
-// #endif  // EXPERIMENTPARAMETERS_H
+#endif  // EXPERIMENTPARAMETERS_H

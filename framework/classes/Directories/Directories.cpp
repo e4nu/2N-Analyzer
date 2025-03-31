@@ -2,8 +2,8 @@
 // Created by alons on 09/04/2023.
 //
 
-// #ifndef DIRECTORIES_H
-// #define DIRECTORIES_H
+#ifndef DIRECTORIES_H
+#define DIRECTORIES_H
 
 #include "Directories.h"
 
@@ -937,7 +937,7 @@ bool Directories::FindSubstring(string string1, std::string string2) {
     }
 }
 
-string Directories::Find(std::vector<string> Vector, std::string String) {
+string Directories::Find(vector<string> Vector, std::string String) {
     for (string Element : Vector) {
         if (FindSubstring(Element, String)) { return Element; }
     }
@@ -965,5 +965,4 @@ void Directories::MakeDirectory(const bool &Create_Directory, const std::string 
     //        system((MakeDirectory + "/" + Plots_Parent_Folder + "/" + Plots_Daughter_Folder).c_str());
     //    }
 }
-
-// #endif  // DIRECTORIES_H
+#endif  // DIRECTORIES_H

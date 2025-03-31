@@ -5,9 +5,6 @@
 #ifndef DSCUTS_H
 #define DSCUTS_H
 
-#include <iostream>
-#include <vector>
-
 class DSCuts {
    public:
     /* Constructors */
@@ -114,8 +111,8 @@ class DSCuts {
     double GetSliceLowerb() { return SliceLowerb; }
 
     double MeanFromHistogram, MeanFromFit, FitStdFactor, FitStd;
-    std::vector<double> Cuts = {0, -9999, 9999};  // {mean, lower cut, upper cut}
-                                                  //    std::vector<double> Cuts = {0, -1, -1}; // {mean, lower cut, upper cut}
+    vector<double> Cuts = {0, -9999, 9999};  // {mean, lower cut, upper cut}
+                                             //    vector<double> Cuts = {0, -1, -1}; // {mean, lower cut, upper cut}
    private:
     std::string CutVariable, Region, Particle, AppliedCuts;
 

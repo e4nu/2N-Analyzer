@@ -14,7 +14,7 @@
 #include "../constants/constants.h"
 //
 // #include "analysis_math_reco_extentions.h"
-#include "polynomial_solver.cpp"
+#include "poly_solver.cpp"
 
 // using namespace std;
 
@@ -115,17 +115,6 @@ double GetPhi_e(TString OutPutFolder, double phi_N) {
 
     return closest_angle + phi_e_offset;
     // return closest_angle;
-}
-
-// rotate function ------------------------------------------------------------------------------------------------------------------------------------------------------
-
-// helper function for DC fiducials (from clas12ana)
-TVector3 rotate(TVector3 vec, int sector) {
-    double rot_ang = -(sector - 1) * 60 * TMath::DegToRad();
-
-    vec.RotateZ(rot_ang);
-
-    return vec;
 }
 
 // GetBinFromAng function -----------------------------------------------------------------------------------------------------------------------------------------------

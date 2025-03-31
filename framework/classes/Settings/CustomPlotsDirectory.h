@@ -2,12 +2,9 @@
 // Created by alons on 23/12/2023.
 //
 
-#ifndef CUSTOMPLOTSDIRECTORY_H
-#define CUSTOMPLOTSDIRECTORY_H
-// #ifdef CUSTOMPLOTSDIRECTORY_H
-
-#include <iostream>
-#include <string>
+// #ifndef CUSTOMPLOTSDIRECTORY_H
+// #define CUSTOMPLOTSDIRECTORY_H
+#ifdef CUSTOMPLOTSDIRECTORY_H
 
 // using namespace std;
 
@@ -59,13 +56,13 @@ class CustomPlotsDirectory {
 
     bool GetCustomCutsNaming() { return Custom_cuts_naming; }
 
-    void GetPlotsPath(std::string &plots_path) {
+    void GetPlotsPath(string &plots_path) {
         if (Custom_cuts_naming) { plots_path = Plots_path; }
     }
 
     std::string GetRun_dir_name() { return Run_dir_name; }
 
-    void GetPlotsLogSaveDirectory(std::string &plots_log_save_Directory) {
+    void GetPlotsLogSaveDirectory(string &plots_log_save_Directory) {
         if (Custom_cuts_naming) { plots_log_save_Directory = Plots_log_save_Directory; }
     }
 

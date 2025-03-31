@@ -11,8 +11,8 @@
 #include <TDatabasePDG.h>
 #include <TF1.h>
 #include <TFile.h>
-#include <TH1D.h>
-#include <TH2D.h>
+#include <TH1.h>
+#include <TH2.h>
 #include <TLatex.h>
 #include <TLorentzVector.h>
 #include <TROOT.h>
@@ -37,8 +37,7 @@ using namespace utilities;
 
 namespace draw_and_save_acorr_plots {
 
-// DrawAndSaveACorrPlots function for momentum plots --------------------------------------------------------------------------------------------------------------------
-
+// DrawAndSaveACorrPlots function for momentum plots:
 void DrawAndSaveACorrPlots(bool save_ACorr_data, const std::string &SampleName, const hPlot1D &TLPlot, const hPlot1D &RPlot, TList *Histogram_list, TList *ACorr_data,
                            std::string &ACorr_data_Dir) {
     bool plot_errorbars = true;
@@ -323,8 +322,7 @@ void DrawAndSaveACorrPlots(bool save_ACorr_data, const std::string &SampleName, 
     delete Canvas;
 }
 
-// DrawAndSaveACorrPlots function for angle plots -----------------------------------------------------------------------------------------------------------------------
-
+// DrawAndSaveACorrPlots function for angle plots:
 void DrawAndSaveACorrPlots(bool save_ACorr_data, const std::string &SampleName, const hPlot1D &TLPlot, TH1D *RPlot, TList *Histogram_list, TList *ACorr_data, std::string &ACorr_data_Dir) {
     bool plot_errorbars = true;
     bool rebin_plots = false;
@@ -666,7 +664,6 @@ void DrawAndSaveACorrPlots(bool save_ACorr_data, const std::string &SampleName, 
 
     delete Canvas;
 }
-
 };  // namespace draw_and_save_acorr_plots
 
 #endif  // DRAW_AND_SAVE_ACORR_PLOTS_H

@@ -12,14 +12,10 @@
 #include <TDatabasePDG.h>
 #include <TF1.h>
 #include <TFile.h>
-#include <TFrame.h>
-#include <TH1D.h>
-#include <TH2D.h>
+#include <TH1.h>
+#include <TH2.h>
 #include <TLatex.h>
-#include <TLegend.h>
-#include <TLine.h>
 #include <TLorentzVector.h>
-#include <TPaveText.h>
 #include <TROOT.h>
 #include <TStyle.h>
 #include <TTree.h>
@@ -34,11 +30,11 @@
 #include <typeinfo>
 #include <vector>
 
-// #include "../hData/hData.h"
+// #include "../hData/hData.cpp"
 #include "../../namespaces/general_utilities/utilities/utilities.h"
 
 #if IndependentCanvasPDF
-    #include "../../includes/CanvasPDF/CanvasPDF.h"
+#include "../../includes/CanvasPDF/CanvasPDF.h"
 #endif
 
 // using namespace std;
@@ -51,13 +47,13 @@ class hPlot1D {
 
     /* Histogram titles & labels.
      * contains HistogramStatTitle, HistogramTitle, XaxisTitle, YaxisTitle, Histogram1DTitleReactions, FinalState and DetectorRegion. */
-    std::map<std::string, std::string> Histogram1DTitles{{"FinalState", ""}, {"DetectorRegion", ""}, {"Histogram1DTitleReactions", ""}};
+    map<std::string, std::string> Histogram1DTitles{{"FinalState", ""}, {"DetectorRegion", ""}, {"Histogram1DTitleReactions", ""}};
     std::string HistogramStatsTitle, HistogramTitle, XaxisTitle, FinalState, DetectorRegion;
     bool Title2 = false;
 
     /* Histogram xAxis limits and #bins */
-    int HistogramNumberOfXBins;                // default #bins for 1D histogram is 100 (see constructor)
-    std::vector<double> HistogramXAxisLimits;  // {LowerXlim, UpperXlim}
+    int HistogramNumberOfXBins;           // default #bins for 1D histogram is 100 (see constructor)
+    vector<double> HistogramXAxisLimits;  // {LowerXlim, UpperXlim}
 
     /* Histogram normalization setup */
     bool NormalizeHistogram;
@@ -67,7 +63,7 @@ class hPlot1D {
     /* Histogram appearance setup */
     int LineColor = 1;
     int LineWidth = 2;
-    std::vector<double> Histogram1DTitleSizes = {0.06, 0.0425, 0.0425};  // {TitleSize, LabelSizex, LabelSizey}
+    vector<double> Histogram1DTitleSizes = {0.06, 0.0425, 0.0425};  // {TitleSize, LabelSizex, LabelSizey}
     bool CenterTitle = true;
     bool ShowStats = true;
 
@@ -77,7 +73,7 @@ class hPlot1D {
 
     /* Histogram cuts setup */
     bool ShowPlotCuts = true;
-    // std::vector<double> - for cuts
+    // vector<double> - for cuts
     double PlotCuts = 0;
     double PlotXmax = 0;
     bool PlotHistogramMax = true;

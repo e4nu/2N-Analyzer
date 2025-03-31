@@ -2,8 +2,8 @@
 // Created by alons on 22/01/2024.
 //
 
-// #ifndef PARTICLEID_H
-// #define PARTICLEID_H
+#ifndef PARTICLEID_H
+#define PARTICLEID_H
 
 #include "ParticleID.h"
 
@@ -16,7 +16,7 @@
  * const std::unique_ptr<clas12::clas12reader> &c12 - the event
  * beamE
  * index - of the particle in question (the neutral) */
-bool ParticleID::NeutronECAL_Cut_Veto(std::vector<region_part_ptr> &allParticles, std::vector<region_part_ptr> &electrons, const double &beamE, const int &index, const double &veto_cut) {
+bool ParticleID::NeutronECAL_Cut_Veto(vector<region_part_ptr> &allParticles, vector<region_part_ptr> &electrons, const double &beamE, const int &index, const double &veto_cut) {
     TVector3 p_b(0, 0, beamE); /* beam energy */
 
     TVector3 p_e; /* our electron */
@@ -94,12 +94,12 @@ bool ParticleID::NeutronECAL_Cut_Veto(std::vector<region_part_ptr> &allParticles
 // ChargedParticleID function --------------------------------------------------------------------------------------------------------------------
 
 //<editor-fold desc="ChargedParticleID function">
-std::vector<int> ParticleID::ChargedParticleID(std::vector<region_part_ptr> &Particle, const DSCuts &Momentum_th) {
-    std::vector<int> ChargedParticle;
+vector<int> ParticleID::ChargedParticleID(vector<region_part_ptr> &Particle, const DSCuts &Momentum_th) {
+    vector<int> ChargedParticle;
 
     for (int i = 0; i < Particle.size(); i++) {
         if (Particle[i]->par()->getCharge() == 0) {  // Check that the particle's charge is zero
-            std::cout << "\n\nChargedParticleID: Particle is neutral! Exiting...\n\n", exit(0);
+            cout << "\n\nChargedParticleID: Particle is neutral! Exiting...\n\n", exit(0);
         }
 
         double Momentum = Particle[i]->getP();
@@ -121,10 +121,9 @@ std::vector<int> ParticleID::ChargedParticleID(std::vector<region_part_ptr> &Par
  * Neutron = a neutral particle (i.e., neutron or photon) in the FD with no PCal hit and with an ECal hit.
  * Photon = a neutral particle (i.e., neutron or photon) in the FD with a PCal hit. */
 
-void ParticleID::FDNeutralParticleID(std::vector<region_part_ptr> allParticles, std::vector<region_part_ptr> electrons, std::vector<int> &FD_Neutrons_within_PID_cuts,
-                                     std::vector<int> &ID_Neutrons_FD, DSCuts &Neutron_momentum_th, std::vector<int> &FD_Photons_within_th, std::vector<int> &ID_Photons_FD,
-                                     DSCuts &Photon_momentum_th, DSCuts &Neutron_veto_cut, const double &beamE, const double &ECAL_V_edge_cut, const double &ECAL_W_edge_cut,
-                                     const bool &apply_nucleon_cuts) {
+void ParticleID::FDNeutralParticleID(vector<region_part_ptr> allParticles, vector<region_part_ptr> electrons, vector<int> &FD_Neutrons_within_PID_cuts, vector<int> &ID_Neutrons_FD,
+                                     DSCuts &Neutron_momentum_th, vector<int> &FD_Photons_within_th, vector<int> &ID_Photons_FD, DSCuts &Photon_momentum_th, DSCuts &Neutron_veto_cut,
+                                     const double &beamE, const double &ECAL_V_edge_cut, const double &ECAL_W_edge_cut, const bool &apply_nucleon_cuts) {
     for (int &i : ID_Neutrons_FD) {  // Identify neutron above momentum threshold
         /* Particles that get in here are neutrons. Now we take neutrons who pass momentum cuts. */
 
@@ -136,11 +135,9 @@ void ParticleID::FDNeutralParticleID(std::vector<region_part_ptr> allParticles, 
         auto Neutron_ECAL_detlayer = Neutron_with_ECIN_hit ? clas12::ECIN : clas12::ECOUT;        // find first layer of hit
 
         //<editor-fold desc="Safety checks">
-        if (!((NeutralPDG == 22) || (NeutralPDG == 2112))) {
-            std::cout << "\n\nFDNeutralParticleID (Neutrons): neutron PDG is not 2112 or 22 (" << NeutralPDG << "). Exiting...\n\n", exit(0);
-        }
+        if (!((NeutralPDG == 22) || (NeutralPDG == 2112))) { cout << "\n\nFDNeutralParticleID (Neutrons): neutron PDG is not 2112 or 22 (" << NeutralPDG << "). Exiting...\n\n", exit(0); }
 
-        if (Neutron_with_PCAL_hit) { std::cout << "\n\nFDNeutralParticleID (Neutrons): redefined neutron is in the PCAL!! Exiting...\n\n", exit(0); }
+        if (Neutron_with_PCAL_hit) { cout << "\n\nFDNeutralParticleID (Neutrons): redefined neutron is in the PCAL!! Exiting...\n\n", exit(0); }
         //</editor-fold>
 
         bool Neutron_pass_momentum_th = (Momentum >= Neutron_momentum_th.GetLowerCutConst() && Momentum <= Neutron_momentum_th.GetUpperCutConst());
@@ -163,7 +160,7 @@ void ParticleID::FDNeutralParticleID(std::vector<region_part_ptr> allParticles, 
         int NeutralPDG = allParticles[i]->par()->getPid();
 
         //<editor-fold desc="Safety check">
-        if (NeutralPDG != 22) { std::cout << "\n\nFDNeutralParticleID (Photons): photon PDG is not 22 (" << NeutralPDG << "). Exiting...\n\n", exit(0); }
+        if (NeutralPDG != 22) { cout << "\n\nFDNeutralParticleID (Photons): photon PDG is not 22 (" << NeutralPDG << "). Exiting...\n\n", exit(0); }
         //</editor-fold>
 
         double Momentum = allParticles[i]->getP();
@@ -179,17 +176,15 @@ void ParticleID::FDNeutralParticleID(std::vector<region_part_ptr> allParticles, 
  * Neutron = a neutral particle (i.e., neutron or photon) in the FD with no PCal hit and with an ECal hit.
  * Photon = a neutral particle (i.e., neutron or photon) in the FD with a PCal hit. */
 
-void ParticleID::FDNeutralParticleID(std::vector<region_part_ptr> allParticles, std::vector<int> &FD_Neutrons_within_th, std::vector<int> &ID_Neutrons_FD, DSCuts &Neutron_momentum_th,
-                                     std::vector<int> &FD_Photons_within_th, std::vector<int> &ID_Photons_FD, DSCuts &Photon_momentum_th, const bool &apply_nucleon_cuts) {
+void ParticleID::FDNeutralParticleID(vector<region_part_ptr> allParticles, vector<int> &FD_Neutrons_within_th, vector<int> &ID_Neutrons_FD, DSCuts &Neutron_momentum_th,
+                                     vector<int> &FD_Photons_within_th, vector<int> &ID_Photons_FD, DSCuts &Photon_momentum_th, const bool &apply_nucleon_cuts) {
     for (int &i : ID_Neutrons_FD) {  // Identify neutron above momentum threshold
         /* Particles that get in here are neutrons. Now we take neutrons who pass momentum cuts. */
 
         int NeutralPDG = allParticles[i]->par()->getPid();
 
         //<editor-fold desc="Safety check">
-        if (!((NeutralPDG == 22) || (NeutralPDG == 2112))) {
-            std::cout << "\n\nFDNeutralParticleID (Neutrons): neutron PDG is not 2112 or 22 (" << NeutralPDG << "). Exiting...\n\n", exit(0);
-        }
+        if (!((NeutralPDG == 22) || (NeutralPDG == 2112))) { cout << "\n\nFDNeutralParticleID (Neutrons): neutron PDG is not 2112 or 22 (" << NeutralPDG << "). Exiting...\n\n", exit(0); }
         //</editor-fold>
 
         double Momentum = GetFDNeutronP(allParticles[i], apply_nucleon_cuts);
@@ -204,7 +199,7 @@ void ParticleID::FDNeutralParticleID(std::vector<region_part_ptr> allParticles, 
         int NeutralPDG = allParticles[i]->par()->getPid();
 
         //<editor-fold desc="Safety check">
-        if (NeutralPDG != 22) { std::cout << "\n\nFDNeutralParticleID (Photons): photon PDG is not 22 (" << NeutralPDG << "). Exiting...\n\n", exit(0); }
+        if (NeutralPDG != 22) { cout << "\n\nFDNeutralParticleID (Photons): photon PDG is not 22 (" << NeutralPDG << "). Exiting...\n\n", exit(0); }
         //</editor-fold>
 
         double Momentum = allParticles[i]->getP();
@@ -216,7 +211,7 @@ void ParticleID::FDNeutralParticleID(std::vector<region_part_ptr> allParticles, 
 //</editor-fold>
 
 //<editor-fold desc="Get leading neutron (ORIGINAL!)">
-int ParticleID::GetLnFDIndex(std::vector<region_part_ptr> allParticles, std::vector<int> &FD_Neutrons_within_th, const bool &apply_nucleon_cuts) {
+int ParticleID::GetLnFDIndex(vector<region_part_ptr> allParticles, vector<int> &FD_Neutrons_within_th, const bool &apply_nucleon_cuts) {
     bool PrintOut = false;
 
     double P_max = -1;
@@ -230,7 +225,7 @@ int ParticleID::GetLnFDIndex(std::vector<region_part_ptr> allParticles, std::vec
 
         //<editor-fold desc="Safety check">
         if (!((NeutralPDG_temp == 22) || (NeutralPDG_temp == 2112))) {
-            std::cout << "\n\nFDNeutralParticleID (Neutrons): neutron PDG is not 2112 or 22 (" << NeutralPDG_temp << "). Exiting...\n\n", exit(0);
+            cout << "\n\nFDNeutralParticleID (Neutrons): neutron PDG is not 2112 or 22 (" << NeutralPDG_temp << "). Exiting...\n\n", exit(0);
         }
         //</editor-fold>
 
@@ -246,14 +241,14 @@ int ParticleID::GetLnFDIndex(std::vector<region_part_ptr> allParticles, std::vec
             bool ECIN_hit_temp = (allParticles[i]->cal(clas12::ECIN)->getDetector() == 7);    // ECIN hit
             bool ECOUT_hit_temp = (allParticles[i]->cal(clas12::ECOUT)->getDetector() == 7);  // ECOUT hit
 
-            std::cout << "P_temp = " << P_temp << " (i = " << i << ", PDG = " << ParticlePDG_temp << ", PCAL_hit = " << PCAL_hit_temp << ", ECIN_hit = " << ECIN_hit_temp
-                      << ", ECOUT_hit = " << ECOUT_hit_temp << ")\n";
+            cout << "P_temp = " << P_temp << " (i = " << i << ", PDG = " << ParticlePDG_temp << ", PCAL_hit = " << PCAL_hit_temp << ", ECIN_hit = " << ECIN_hit_temp
+                 << ", ECOUT_hit = " << ECOUT_hit_temp << ")\n";
         }
     }
 
     if (PrintLog) {
-        std::cout << "P_max = " << P_max << " (MaxPIndex = " << MaxPIndex << ")\n\n";
-        std::cout << "==========================================================\n\n\n";
+        cout << "P_max = " << P_max << " (MaxPIndex = " << MaxPIndex << ")\n\n";
+        cout << "==========================================================\n\n\n";
     }
 
     return MaxPIndex;
@@ -267,7 +262,7 @@ int ParticleID::GetLnFDIndex(std::vector<region_part_ptr> allParticles, std::vec
 //<editor-fold desc="GetCorrLnFDIndex function">
 /* A function similar to GetLnFDIndex that selects the leading (LnFD) after correction.
    This function might be usefully if the neutron correction factor (1/(1 - mu)) is not increasing/desreasing monotonically! */
-int ParticleID::GetCorrLnFDIndex(MomentumResolution &nRes, std::vector<region_part_ptr> allParticles, std::vector<int> &FD_Neutrons_within_th, const bool &apply_nucleon_cuts,
+int ParticleID::GetCorrLnFDIndex(MomentumResolution &nRes, vector<region_part_ptr> allParticles, vector<int> &FD_Neutrons_within_th, const bool &apply_nucleon_cuts,
                                  const bool &apply_nucleon_SmearAndCorr) {
     bool PrintOut = false;
     bool PrintOutCorr = false;
@@ -275,7 +270,7 @@ int ParticleID::GetCorrLnFDIndex(MomentumResolution &nRes, std::vector<region_pa
 
     double P_max_ACorr = -1;
     int MaxPIndex_ACorr = -1;
-    std::vector<double> FD_Neutrons_within_th_ACorr;
+    vector<double> FD_Neutrons_within_th_ACorr;
 
     // Create a vector of corrected neutron momenta, corresponding to the i-th neutron in FD_Neutrons_within_th:
     for (int i = 0; i < FD_Neutrons_within_th.size(); i++) {
@@ -284,7 +279,7 @@ int ParticleID::GetCorrLnFDIndex(MomentumResolution &nRes, std::vector<region_pa
 
         //<editor-fold desc="Safety check">
         if (!((NeutralPDG_temp == 22) || (NeutralPDG_temp == 2112))) {
-            std::cout << "\n\nFDNeutralParticleID (Neutrons): neutron PDG is not 2112 or 22 (" << NeutralPDG_temp << "). Exiting...\n\n", exit(0);
+            cout << "\n\nFDNeutralParticleID (Neutrons): neutron PDG is not 2112 or 22 (" << NeutralPDG_temp << "). Exiting...\n\n", exit(0);
         }
         //</editor-fold>
 
@@ -295,7 +290,7 @@ int ParticleID::GetCorrLnFDIndex(MomentumResolution &nRes, std::vector<region_pa
 
     //<editor-fold desc="Safety check">
     if (FD_Neutrons_within_th.size() != FD_Neutrons_within_th_ACorr.size()) {
-        std::cout << "\n\nParticleID::GetCorrLnFDIndex: FD_Neutrons_within_th_ACorr have been filled incorrectly! Exiting...\n", exit(0);
+        cout << "\n\nParticleID::GetCorrLnFDIndex: FD_Neutrons_within_th_ACorr have been filled incorrectly! Exiting...\n", exit(0);
     }
     //</editor-fold>
 
@@ -312,21 +307,21 @@ int ParticleID::GetCorrLnFDIndex(MomentumResolution &nRes, std::vector<region_pa
         for (int i = 0; i < FD_Neutrons_within_th.size(); i++) {
             double P_temp0 = GetFDNeutronP(allParticles[FD_Neutrons_within_th.at(i)], apply_nucleon_cuts);
 
-            std::cout << "P_temp = " << P_temp0 << " (ind = " << FD_Neutrons_within_th.at(i) << ")\n";
+            cout << "P_temp = " << P_temp0 << " (ind = " << FD_Neutrons_within_th.at(i) << ")\n";
         }
 
-        std::cout << "\n";
+        cout << "\n";
 
         for (int i = 0; i < FD_Neutrons_within_th_ACorr.size(); i++) {
             double P_temp_ACorr0 = FD_Neutrons_within_th_ACorr.at(i);
 
-            std::cout << "P_temp_ACorr = " << P_temp_ACorr0 << " (ind = " << FD_Neutrons_within_th.at(i) << ")\n";
+            cout << "P_temp_ACorr = " << P_temp_ACorr0 << " (ind = " << FD_Neutrons_within_th.at(i) << ")\n";
         }
 
-        std::cout << "\n";
+        cout << "\n";
 
-        std::cout << "P_max_ACorr = " << P_max_ACorr << " (MaxPIndex_ACorr = " << MaxPIndex_ACorr << ")\n\n";
-        std::cout << "==========================================================\n\n\n";
+        cout << "P_max_ACorr = " << P_max_ACorr << " (MaxPIndex_ACorr = " << MaxPIndex_ACorr << ")\n\n";
+        cout << "==========================================================\n\n\n";
     }
 
     return MaxPIndex_ACorr;
@@ -341,7 +336,7 @@ int ParticleID::GetCorrLnFDIndex(MomentumResolution &nRes, std::vector<region_pa
  * Photon = a neutral particle (i.e., neutron or photon) in the FD with a PCal hit. */
 
 /* FDNeutralParticle without ECAL veto */
-void ParticleID::ReDefFDNeutrals(std::vector<region_part_ptr> allParticles, std::vector<int> &ID_Neutrons_FD, std::vector<int> &ID_Photons_FD) {
+void ParticleID::ReDefFDNeutrals(vector<region_part_ptr> allParticles, vector<int> &ID_Neutrons_FD, vector<int> &ID_Photons_FD) {
     for (int i = 0; i < allParticles.size(); i++) {
         int ParticlePDG = allParticles[i]->par()->getPid();
 
@@ -443,8 +438,8 @@ double ParticleID::GetFDNeutronP(region_part_ptr &Neutron, const bool &apply_nuc
 /* The GetFDNeutrons function gets neutrons from the FD, according to the definition from Larry:
  * Neutron = a neutral particle (i.e., neutron or photon) in the FD with no PCal hit and with an ECal hit. */
 
-std::vector<int> ParticleID::GetFDNeutrons(std::vector<region_part_ptr> &allParticles, const DSCuts &Momentum_cuts, const bool &apply_nucleon_cuts) {
-    std::vector<int> Neutrons_indices_in_allParticles;
+vector<int> ParticleID::GetFDNeutrons(vector<region_part_ptr> &allParticles, const DSCuts &Momentum_cuts, const bool &apply_nucleon_cuts) {
+    vector<int> Neutrons_indices_in_allParticles;
 
     for (int i = 0; i < allParticles.size(); i++) {
         int ParticlePDG = allParticles[i]->par()->getPid();
@@ -475,8 +470,8 @@ std::vector<int> ParticleID::GetFDNeutrons(std::vector<region_part_ptr> &allPart
 /* The GetFDPhotons function gets photons from the FD, according to the definition from Larry:
  * Photon = a photon in the FD with a PCAL hit. */
 
-std::vector<int> ParticleID::GetFDPhotons(std::vector<region_part_ptr> &allParticles, const DSCuts &Momentum_cuts) {
-    std::vector<int> Photons_indices_in_allParticles;
+vector<int> ParticleID::GetFDPhotons(vector<region_part_ptr> &allParticles, const DSCuts &Momentum_cuts) {
+    vector<int> Photons_indices_in_allParticles;
 
     for (int i = 0; i < allParticles.size(); i++) {
         int ParticlePDG = allParticles[i]->par()->getPid();
@@ -502,10 +497,10 @@ std::vector<int> ParticleID::GetFDPhotons(std::vector<region_part_ptr> &allParti
 // GetGoodParticles functions --------------------------------------------------------------------------------------------------------------------
 
 //<editor-fold desc="GetGoodParticles functions">
-std::vector<int> ParticleID::GetGoodParticles(std::vector<region_part_ptr> &Particle,  // particle
-                                              const DSCuts &Momentum_cuts              // corresponding momentum cuts
+vector<int> ParticleID::GetGoodParticles(vector<region_part_ptr> &Particle,  // particle
+                                         const DSCuts &Momentum_cuts         // corresponding momentum cuts
 ) {
-    std::vector<int> GoodParticles;
+    vector<int> GoodParticles;
 
     for (int i = 0; i < Particle.size(); i++) {
         double Momentum = Particle[i]->getP();
@@ -523,9 +518,9 @@ std::vector<int> ParticleID::GetGoodParticles(std::vector<region_part_ptr> &Part
 //<editor-fold desc="GetGoodProtons functions">
 
 //<editor-fold desc="GetGoodProtons function">
-std::vector<int> ParticleID::GetGoodProtons(const bool &apply_nucleon_cuts, std::vector<region_part_ptr> &protons, const std::vector<int> &IDProtons_ind, const DSCuts &Theta_p1_cuts_2p,
-                                            const DSCuts &Theta_p2_cuts_2p, const DSCuts &dphi_p1_p2_2p) {
-    std::vector<int> GoodProtons;  // good protons vector after the cuts
+vector<int> ParticleID::GetGoodProtons(const bool &apply_nucleon_cuts, vector<region_part_ptr> &protons, const vector<int> &IDProtons_ind, const DSCuts &Theta_p1_cuts_2p,
+                                       const DSCuts &Theta_p2_cuts_2p, const DSCuts &dphi_p1_p2_2p) {
+    vector<int> GoodProtons;  // good protons vector after the cuts
 
     /* Monitoring variables */
     bool TwoCutsPrintout = false;                   // set as true to print a massage when both cuts are applied
@@ -574,19 +569,19 @@ std::vector<int> ParticleID::GetGoodProtons(const bool &apply_nucleon_cuts, std:
 
     //<editor-fold desc="Safety checks">
     if (!apply_nucleon_cuts && (GoodProtons.size() != IDProtons_ind.size())) {
-        std::cout << "\n\nGetGoodProtons(): GoodProtons and IDProtons_ind are not the same withot neucleon cut! exiting...\n\n", exit(0);
+        cout << "\n\nGetGoodProtons(): GoodProtons and IDProtons_ind are not the same withot neucleon cut! exiting...\n\n", exit(0);
     }
 
-    if (GoodProtons.size() > IDProtons_ind.size()) { std::cout << "\n\nGetGoodProtons(): GoodProtons.size() can't be greater than IDProtons_ind.size()! exiting...\n\n", exit(0); }
+    if (GoodProtons.size() > IDProtons_ind.size()) { cout << "\n\nGetGoodProtons(): GoodProtons.size() can't be greater than IDProtons_ind.size()! exiting...\n\n", exit(0); }
     //</editor-fold>
 
     //<editor-fold desc="Monitoring printout">
     if (TwoCutsPrintout && Cut_sCTOFhp && Cut_dCDaFDd) {
-        std::cout << "\n\nGetGoodProtons(): We have a duble cut!\n";
-        std::cout << "IDProtons_ind.size() = " << IDProtons_ind.size() << "\n";
-        std::cout << "GoodProtons.size() = " << GoodProtons.size() << "\n\n\n";
+        cout << "\n\nGetGoodProtons(): We have a duble cut!\n";
+        cout << "IDProtons_ind.size() = " << IDProtons_ind.size() << "\n";
+        cout << "GoodProtons.size() = " << GoodProtons.size() << "\n\n\n";
     }
-    //    if (Cut_sCTOFhp && Cut_dCDaFDd) { std::cout << "\n\nGetGoodProtons(): We have a duble cut! exiting...\n\n", exit(0); }
+    //    if (Cut_sCTOFhp && Cut_dCDaFDd) { cout << "\n\nGetGoodProtons(): We have a duble cut! exiting...\n\n", exit(0); }
     //</editor-fold>
 
     return GoodProtons;
@@ -738,7 +733,7 @@ void ParticleID::SetGPMonitoringPlots(const bool &GoodProtonsMonitorPlots, std::
 //</editor-fold>
 
 //<editor-fold desc="GPMonitoring function">
-void ParticleID::GPMonitoring(const bool &GoodProtonsMonitorPlots, std::vector<region_part_ptr> &protons, const std::vector<int> &IDProtons_ind, const std::vector<int> &Protons_ind,
+void ParticleID::GPMonitoring(const bool &GoodProtonsMonitorPlots, vector<region_part_ptr> &protons, const vector<int> &IDProtons_ind, const vector<int> &Protons_ind,
                               const DSCuts &Theta_p1_cuts_2p, const DSCuts &Theta_p2_cuts_2p, const DSCuts &dphi_p1_p2_2p, const double &Weight) {
     if (GoodProtonsMonitorPlots) {
         for (int i = 0; i < IDProtons_ind.size(); i++) {
@@ -889,7 +884,7 @@ void ParticleID::GPMonitoring(const bool &GoodProtonsMonitorPlots, std::vector<r
  * Neutron = a neutral particle (i.e., neutron or photon) in the FD with no PCal hit and with an ECal hit.
  * Photon = a neutral particle (i.e., neutron or photon) in the FD with a PCal hit. */
 
-void ParticleID::nParticleID(std::vector<region_part_ptr> &allParticles, std::vector<int> &ID_Neutrons_FD, const DSCuts &Neutron_momentum_th, std::vector<int> &ID_Photons_FD,
+void ParticleID::nParticleID(vector<region_part_ptr> &allParticles, vector<int> &ID_Neutrons_FD, const DSCuts &Neutron_momentum_th, vector<int> &ID_Photons_FD,
                              const DSCuts &Photon_momentum_th, const bool &apply_nucleon_cuts) {
     for (int i = 0; i < allParticles.size(); i++) {
         if ((allParticles[i]->par()->getCharge() == 0) && (allParticles[i]->getRegion() == FD)) {  // If particle is neutral and in the FD
@@ -930,15 +925,15 @@ void ParticleID::nParticleID(std::vector<region_part_ptr> &allParticles, std::ve
 // TODO: move from this class
 
 //<editor-fold desc="Neutrons by CLAS12PID">
-void ParticleID::FillNeutMultiPlots(std::vector<region_part_ptr> &allParticles, std::vector<region_part_ptr> &electrons, const double &Weight, const double &beamE,
-                                    const double &ECAL_veto_cut, hPlot1D &hNeutronMulti_BPID_BV, hPlot1D &hNeutronMulti_BPID_AV, std::vector<region_part_ptr> &Neutrons_BPID,
-                                    hPlot1D &hNeutronMulti_APID_BV, hPlot1D &hNeutronMulti_APID_AV, std::vector<region_part_ptr> &Neutrons_APID) {
+void ParticleID::FillNeutMultiPlots(vector<region_part_ptr> &allParticles, vector<region_part_ptr> &electrons, const double &Weight, const double &beamE, const double &ECAL_veto_cut,
+                                    hPlot1D &hNeutronMulti_BPID_BV, hPlot1D &hNeutronMulti_BPID_AV, vector<region_part_ptr> &Neutrons_BPID, hPlot1D &hNeutronMulti_APID_BV,
+                                    hPlot1D &hNeutronMulti_APID_AV, vector<region_part_ptr> &Neutrons_APID) {
     FillMultiPlots(allParticles, electrons, Weight, beamE, ECAL_veto_cut, hNeutronMulti_BPID_BV, hNeutronMulti_BPID_AV, Neutrons_BPID);
     FillMultiPlots(allParticles, electrons, Weight, beamE, ECAL_veto_cut, hNeutronMulti_APID_BV, hNeutronMulti_APID_AV, Neutrons_APID);
 }
 
-void ParticleID::FillMultiPlots(std::vector<region_part_ptr> &allParticles, std::vector<region_part_ptr> &electrons, const double &Weight, const double &beamE, const double &ECAL_veto_cut,
-                                hPlot1D &hNeutronMulti_BV, hPlot1D &hNeutronMulti_AV, std::vector<region_part_ptr> &Neutrons) {
+void ParticleID::FillMultiPlots(vector<region_part_ptr> &allParticles, vector<region_part_ptr> &electrons, const double &Weight, const double &beamE, const double &ECAL_veto_cut,
+                                hPlot1D &hNeutronMulti_BV, hPlot1D &hNeutronMulti_AV, vector<region_part_ptr> &Neutrons) {
     int Multiplicity_BV = Neutrons.size();
     int Multiplicity_AV = 0;
 
@@ -956,15 +951,15 @@ void ParticleID::FillMultiPlots(std::vector<region_part_ptr> &allParticles, std:
 //</editor-fold>
 
 //<editor-fold desc="Neutrons by redefinition">
-void ParticleID::FillNeutMultiPlots(std::vector<region_part_ptr> &allParticles, std::vector<region_part_ptr> &electrons, const double &Weight, const double &beamE,
-                                    const double &ECAL_veto_cut, hPlot1D &hNeutronMulti_BPID_BV, hPlot1D &hNeutronMulti_BPID_AV, std::vector<int> &Neutrons_BPID,
-                                    hPlot1D &hNeutronMulti_APID_BV, hPlot1D &hNeutronMulti_APID_AV, std::vector<int> &Neutrons_APID) {
+void ParticleID::FillNeutMultiPlots(vector<region_part_ptr> &allParticles, vector<region_part_ptr> &electrons, const double &Weight, const double &beamE, const double &ECAL_veto_cut,
+                                    hPlot1D &hNeutronMulti_BPID_BV, hPlot1D &hNeutronMulti_BPID_AV, vector<int> &Neutrons_BPID, hPlot1D &hNeutronMulti_APID_BV,
+                                    hPlot1D &hNeutronMulti_APID_AV, vector<int> &Neutrons_APID) {
     FillMultiPlots(allParticles, electrons, Weight, beamE, ECAL_veto_cut, hNeutronMulti_BPID_BV, hNeutronMulti_BPID_AV, Neutrons_BPID);
     FillMultiPlots(allParticles, electrons, Weight, beamE, ECAL_veto_cut, hNeutronMulti_APID_BV, hNeutronMulti_APID_AV, Neutrons_APID);
 }
 
-void ParticleID::FillMultiPlots(std::vector<region_part_ptr> &allParticles, std::vector<region_part_ptr> &electrons, const double &Weight, const double &beamE, const double &ECAL_veto_cut,
-                                hPlot1D &hNeutronMulti_BV, hPlot1D &hNeutronMulti_AV, std::vector<int> &Neutrons_indices) {
+void ParticleID::FillMultiPlots(vector<region_part_ptr> &allParticles, vector<region_part_ptr> &electrons, const double &Weight, const double &beamE, const double &ECAL_veto_cut,
+                                hPlot1D &hNeutronMulti_BV, hPlot1D &hNeutronMulti_AV, vector<int> &Neutrons_indices) {
     int Multiplicity_BV = Neutrons_indices.size();
     int Multiplicity_AV = 0;
 
@@ -979,4 +974,4 @@ void ParticleID::FillMultiPlots(std::vector<region_part_ptr> &allParticles, std:
 }
 //</editor-fold>
 
-// #endif  // PARTICLEID_H
+#endif  // PARTICLEID_H

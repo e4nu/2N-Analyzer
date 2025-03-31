@@ -21,7 +21,7 @@
  * const std::unique_ptr<clas12::clas12reader> &c12 - the event
  * Ebeam
  * index - of the particle in question (the neutral) */
-bool NeutronECAL_Cut_Veto(std::vector<region_part_ptr> &allParticles, std::vector<region_part_ptr> &electrons, double Ebeam, int index, double veto_cut) {
+bool NeutronECAL_Cut_Veto(vector<region_part_ptr> &allParticles, vector<region_part_ptr> &electrons, double Ebeam, int index, double veto_cut) {
     TVector3 p_b(0, 0, Ebeam); /* beam energy */
 
     TVector3 p_e; /* our electron */

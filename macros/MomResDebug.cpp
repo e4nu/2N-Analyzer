@@ -7,8 +7,8 @@
 #include <TFile.h>
 #include <TTree.h>
 #include <TLorentzVector.h>
-#include <TH1D.h>
-#include <TH2D.h>
+#include <TH1.h>
+#include <TH2.h>
 #include <TLatex.h>
 #include <TChain.h>
 #include <TCanvas.h>
@@ -21,20 +21,20 @@
 
 #include "../source/functions/GeneralFunctions.h"
 #include "../source/constants.h"
-#include "../source/classes/MomentumResolution/MomentumResolution.h"
+#include "../source/classes/MomentumResolution/MomentumResolution.cpp"
 
 using namespace std;
 
 /* clas12root macros/MomResDebug.cpp -q */
 
-std::vector<TH1D *> SliceLoader(const char *filename, std::vector<int> &SliceNumbers) {
+vector<TH1D *> SliceLoader(const char *filename, vector<int> &SliceNumbers) {
     bool PrintOut = false;
 
     TFile *file = new TFile(filename);
-    if (!file) { std::cout << "\n\nMomResDebug::SliceLoader: could not load Hit_Maps_TL root file! Exiting...\n", exit(0); }
+    if (!file) { cout << "\n\nMomResDebug::SliceLoader: could not load Hit_Maps_TL root file! Exiting...\n", exit(0); }
 
     vector < TH1D * > MomResSlices;
-    std::vector<int> SliceNumbers0;
+    vector<int> SliceNumbers0;
     int Counter = 0;
     static TString classname("TH1D");
 
@@ -44,7 +44,7 @@ std::vector<TH1D *> SliceLoader(const char *filename, std::vector<int> &SliceNum
     while ((Key = (TKey *) Next())) {
 //    while (Key = (TKey *) Next()) {
 
-        if (PrintOut) { std::cout << "Key name: " << Key->GetName() << "|\t Type: " << Key->GetClassName() << "\n\n"; }
+        if (PrintOut) { cout << "Key name: " << Key->GetName() << "|\t Type: " << Key->GetClassName() << "\n\n"; }
 
         if ((Key->GetClassName() == classname("TH1D")) && (findSubstring(Key->GetName(), "reco"))) {
             ++Counter;
@@ -67,7 +67,7 @@ std::vector<TH1D *> SliceLoader(const char *filename, std::vector<int> &SliceNum
     return MomResSlices;
 }
 
-void DrawAndSave(TCanvas *Canvas, const std::string &MomResDebugSaveDir, std::vector<TH1D *> &MomResSlices, std::vector<int> &SliceNumbers) {
+void DrawAndSave(TCanvas *Canvas, const std::string &MomResDebugSaveDir, vector<TH1D *> &MomResSlices, vector<int> &SliceNumbers) {
     Canvas->cd();
 
     for (int i = 0; i < MomResSlices.size(); i++) {
@@ -105,7 +105,7 @@ void MomResDebug() {
     system(("rm -r " + MomResDebugSaveDir).c_str());
     system(("mkdir -p " + MomResDebugSaveDir).c_str());
 
-    std::vector<int> SliceNumbers;
+    vector<int> SliceNumbers;
     const char *filename = "Neutron_resolution_plots_-_C12x4_simulation_G18_Q204_6GeV.root";
 //    const char *filename = "C12x4_simulation_G18_Q204_6GeV_S03ACNC_momResS1_Eff1"
 //                           "/Neutron_resolution_plots_-_C12x4_simulation_G18_Q204_6GeV.root";
@@ -121,14 +121,14 @@ void MomResDebug() {
                     0.4, MomResDebugSaveDir, MomResDebugSaveDir, 0.05, true, "pol1_wKC", "pol3_wKC", false, false, true);
 
     std::string MomentumType = "reco";
-    vector <std::vector<double>> ResRecoMomSlicesLimits = nRes.GetResRecoMomSlicesLimits();
+    vector <vector<double>> ResRecoMomSlicesLimits = nRes.GetResRecoMomSlicesLimits();
     vector <DSCuts> ResRecoMomSlicesFitVar = nRes.GetResRecoMomSlicesFitVar();
     vector <DSCuts> ResRecoMomSlicesHistVar = nRes.GetResRecoMomSlicesHistVar();
-    std::vector<int> FittedRecoMomSlices = nRes.GetFittedRecoMomSlices();
-    vector <std::vector<double>> Reco_FitParam;
-    vector <std::vector<double>> Reco_FitParam_Corr_pol1, Reco_FitParam_Corr_pol1_wKC;
-    vector <std::vector<double>> Reco_FitParam_Corr_pol2, Reco_FitParam_Corr_pol2_wKC;
-    vector <std::vector<double>> Reco_FitParam_Corr_pol3, Reco_FitParam_Corr_pol3_wKC;
+    vector<int> FittedRecoMomSlices = nRes.GetFittedRecoMomSlices();
+    vector <vector<double>> Reco_FitParam;
+    vector <vector<double>> Reco_FitParam_Corr_pol1, Reco_FitParam_Corr_pol1_wKC;
+    vector <vector<double>> Reco_FitParam_Corr_pol2, Reco_FitParam_Corr_pol2_wKC;
+    vector <vector<double>> Reco_FitParam_Corr_pol3, Reco_FitParam_Corr_pol3_wKC;
 
     for (int i = 0; i < MomResSlices.size(); i++) {
         TH1D *hSlice = MomResSlices.at(i);
@@ -140,7 +140,7 @@ void MomResDebug() {
         bool isNeutron = IsNeutron(hSlice->GetTitle()), isProton = IsProton(hSlice->GetTitle());
 
         if (hSlice->Integral() != 0.) { // Fit only the non-empty histograms
-            std::cout << "\n\n";
+            cout << "\n\n";
 
             double FitUlim, FitLlim;
 
@@ -260,7 +260,7 @@ void MomResDebug() {
             auto ListOfFunctions = hSlice->GetListOfFunctions();
             ListOfFunctions->Add((TObject *) FitParam);
 
-            std::cout << "\n", c->SaveAs(hSlice_CloneSaveName.c_str());
+            cout << "\n", c->SaveAs(hSlice_CloneSaveName.c_str());
 
             /*
                         if (MomentumType == "truth") {

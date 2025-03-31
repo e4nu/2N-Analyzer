@@ -1,14 +1,14 @@
 #include <iostream>
 #include <TFile.h>
-#include <TH1D.h>
+#include <TH1.h>
 #include <TCanvas.h>
 
 #include "../../source/functions/GeneralFunctions.h"
 
 #if Independent1DMomResDraw
-#include "Histofinder1D.h"
-#include "TitleAligner.h"
-#include "../../source/classes/hData/hData.h"
+#include "Histofinder1D.cpp"
+#include "TitleAligner.cpp"
+#include "../../source/classes/hData/hData.cpp"
 #endif
 
 using namespace std;
@@ -17,8 +17,8 @@ using namespace std;
 
 /*
 void MomResSliceFitParam(const char *filename, const std::string &NucleonCutsDirectory, const std::string &MomentumType,
-                         std::vector<double> &Amp, std::vector<double> &mean, std::vector<double> &Std) {
-    std::ifstream infile;
+                         vector<double> &Amp, vector<double> &mean, vector<double> &Std) {
+    ifstream infile;
     std::string FileInput = "../../Source/data/NeutronResolution/Res_data_-_C12x4_simulation_G18_Q204_6GeV/" + filename;
 
     infile.open(FileInput.c_str());
@@ -31,7 +31,7 @@ void MomResSliceFitParam(const char *filename, const std::string &NucleonCutsDir
             getline(infile, tp);
 
         while (getline(infile, tp)) {
-            std::stringstream ss(tp);
+            stringstream ss(tp);
             std::string parameter, parameter2;
             double value;
             ss >> parameter;
@@ -39,12 +39,12 @@ void MomResSliceFitParam(const char *filename, const std::string &NucleonCutsDir
             if (findSubstring(parameter, ("fit_" + MomentumType + "_Slice_#")) {
                 //get cut values
                 ss >> parameter2;
-                std::stringstream ss2(parameter2);
+                stringstream ss2(parameter2);
                 std::string TempInput;
                 std::string detector;
                 int count = 0; //parameter number
                 int pid = -99;
-                std::vector<double> par;
+                vector<double> par;
 
                 while (getline(ss2, TempInput, ':')) {
                     if (count == 0)
@@ -59,7 +59,7 @@ void MomResSliceFitParam(const char *filename, const std::string &NucleonCutsDir
             }
         }
     } else
-        std::cout << "Parameter file didn't read in " << endl;
+        cout << "Parameter file didn't read in " << endl;
 }
 */
 
@@ -139,14 +139,14 @@ void MomResSlicePlotter(const char *filename, const std::string &ParticleNameSho
 
         std::string Histogram1DTempName = Histogram1DTemp->GetName(), Histogram1DTempTitle = Histogram1DTemp->GetTitle();
 
-        if (PrintOutHistName) { std::cout << Histogram1DTempName << "\n\n"; }
+        if (PrintOutHistName) { cout << Histogram1DTempName << "\n\n"; }
 
         if (findSubstring(Histogram1DTempName, (ParticleNameShortInput + " res.")) &&
             findSubstring(Histogram1DTempName, MomentumTyp)) {
             ++HistogramCounter;
 
             if (HistogramCounter >= InitialSlice && HistogramCounter <= FinalSlice) {
-                if (PrintOut) { std::cout << "\nKey name: " << Histogram1DTemp->GetName() << "; Type: " << Key->GetClassName() << "\n"; }
+                if (PrintOut) { cout << "\nKey name: " << Histogram1DTemp->GetName() << "; Type: " << Key->GetClassName() << "\n"; }
 
                 canvas->cd(canvasIndex), canvas->cd(canvasIndex)->SetGrid();
                 canvas->cd(canvasIndex)->SetBottomMargin(0.14), canvas->cd(canvasIndex)->SetLeftMargin(0.18), canvas->cd(canvasIndex)->SetRightMargin(0.12);

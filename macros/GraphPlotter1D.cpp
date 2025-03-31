@@ -7,8 +7,8 @@
 #include <TFile.h>
 #include <TTree.h>
 #include <TLorentzVector.h>
-#include <TH1D.h>
-#include <TH2D.h>
+#include <TH1.h>
+#include <TH2.h>
 #include <TLatex.h>
 #include <TChain.h>
 #include <TCanvas.h>
@@ -20,7 +20,7 @@
 using namespace std;
 
 void GraphPlotter1D() {
-    std::cout << "\n\n";
+    cout << "\n\n";
     const char *filename = "/mnt/e/C12x4_simulation_G18_Q204_6GeV_afterTrip/03_momRes_runs/v2/C12x4_simulation_G18_Q204_6GeV_S03ACNC_nResS1_Eff1_v2"
                            "/Neutron_resolution_plots_-_C12x4_simulation_G18_Q204_6GeV.root";
 
@@ -31,13 +31,13 @@ void GraphPlotter1D() {
     c1->cd()->SetGrid(), c1->cd()->SetBottomMargin(0.14), c1->cd()->SetLeftMargin(0.18), c1->cd()->SetRightMargin(0.12), c1->cd();
 
     TFile *file = new TFile(filename);
-    if (!file) { std::cout << "\nInvalid file! Exiting...\n", exit(0); }
+    if (!file) { cout << "\nInvalid file! Exiting...\n", exit(0); }
 
     TFolder *momResDir = (TFolder *) file->Get("Fitted neutron resolution slice width");
-    if (!momResDir) { std::cout << "\nInvalid folder! Exiting...\n", exit(0); }
+    if (!momResDir) { cout << "\nInvalid folder! Exiting...\n", exit(0); }
 
     TGraph *Graph1D = (TGraph *) momResDir->FindObject(Graph1DNameCopy.c_str());
-    if (!Graph1D) { std::cout << "\nInvalid graph! Exiting...\n", exit(0); }
+    if (!Graph1D) { cout << "\nInvalid graph! Exiting...\n", exit(0); }
 
     auto *funcList = Graph1D->GetListOfFunctions();
     auto *Legend = (TLegend *) funcList->At(1);
@@ -104,7 +104,7 @@ void GraphPlotter1D() {
     /* Histogram appearance setup */
     int LineColor = 1;
     int LineWidth = 2;
-    std::vector<double> Graph1DTitleSizes = {0.06, 0.0425, 0.0425}; // {TitleSize, LabelSizex, LabelSizey}
+    vector<double> Graph1DTitleSizes = {0.06, 0.0425, 0.0425}; // {TitleSize, LabelSizex, LabelSizey}
     bool CenterTitle = true;
     bool ShowStats = true;
 

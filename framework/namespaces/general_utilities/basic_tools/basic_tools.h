@@ -12,7 +12,6 @@
 #include <sys/socket.h>
 #include <unistd.h>  // for getcwd
 //
-#include <cmath>
 #include <cstdlib>  // for getenv
 #include <cstring>  // for strtok, strcpy
 #include <iostream>
@@ -33,6 +32,7 @@ void CheckSSHConnection() {
         std::cout << "Not connected via SSH." << std::endl;
     }
 }
+
 // CheckSSHConnectionAndHost function -----------------------------------------------------------------------------------------------------------------------------------
 
 void CheckSSHConnectionAndHost() {
@@ -112,7 +112,7 @@ std::string GetCurrentDirectory() {
 
 // BoolToChar function --------------------------------------------------------------------------------------------------------------------------------------------------
 
-const char *const BoolToChar(bool b) { return b ? "true" : "false"; }
+inline const char *const BoolToChar(bool b) { return b ? "true" : "false"; }
 
 // BoolToString function ------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -130,7 +130,7 @@ std::string ToStringWithPrecision(const A a_value, const int n = 2) {
 
 // FindSubstring function -----------------------------------------------------------------------------------------------------------------------------------------------
 
-bool FindSubstring(const std::string &string1, const std::string &string2) { return string1.find(string2) != std::string::npos; }
+inline bool FindSubstring(const std::string &string1, const std::string &string2) { return string1.find(string2) != std::string::npos; }
 
 // GetBeamEnergyFromString function -------------------------------------------------------------------------------------------------------------------------------------
 
@@ -156,11 +156,11 @@ double GetBeamEnergyFromString(const std::string &sn) {
 std::string GetBeamEnergyFromDouble(const double &BeamE) {
     std::string BeamE_str;
 
-    if (round(BeamE) == 6) {
+    if (std::round(BeamE) == 6) {
         BeamE_str = "5986MeV";
-    } else if (round(BeamE) == 4) {
+    } else if (std::round(BeamE) == 4) {
         BeamE_str = "4029MeV";
-    } else if (round(BeamE) == 2) {
+    } else if (std::round(BeamE) == 2) {
         BeamE_str = "2070MeV";
     }
 

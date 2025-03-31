@@ -7,8 +7,8 @@
 #include <TDatabasePDG.h>
 #include <TF1.h>
 #include <TFile.h>
-#include <TH1D.h>
-#include <TH2D.h>
+#include <TH1.h>
+#include <TH2.h>
 #include <TLatex.h>
 #include <TLorentzVector.h>
 #include <TROOT.h>
@@ -26,8 +26,6 @@
 #include <vector>
 
 #include "../../settings/PDF_canvas_settings/PDF_canvas_settings.h"
-
-// TODO: split into header and source files!
 
 // ======================================================================================================================================================================
 // PDF file canvas settings

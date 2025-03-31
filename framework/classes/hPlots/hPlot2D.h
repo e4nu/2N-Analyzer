@@ -9,34 +9,31 @@
 #include "../../namespaces/general_utilities/utilities/utilities.h"
 
 #if !defined(IndependentCanvasPDF) || !IndependentCanvasPDF
-    #include <TApplication.h>
-    #include <TCanvas.h>
-    #include <TChain.h>
-    #include <TDatabasePDG.h>
-    #include <TF1.h>
-    #include <TFile.h>
-    #include <TH1D.h>
-    #include <TH2D.h>
-    #include <TLatex.h>
-    #include <TLegend.h>
-    #include <TLegendEntry.h>
-    #include <TLorentzVector.h>
-    #include <TPaveText.h>
-    #include <TROOT.h>
-    #include <TStyle.h>
-    #include <TTree.h>
-    #include <math.h>
+#include <TApplication.h>
+#include <TCanvas.h>
+#include <TChain.h>
+#include <TDatabasePDG.h>
+#include <TF1.h>
+#include <TFile.h>
+#include <TH1.h>
+#include <TH2.h>
+#include <TLatex.h>
+#include <TLorentzVector.h>
+#include <TROOT.h>
+#include <TStyle.h>
+#include <TTree.h>
+#include <math.h>
 
-    #include <chrono>
-    #include <cstdlib>
-    #include <iomanip>
-    #include <iostream>
-    #include <map>
-    #include <sstream>
-    #include <typeinfo>
-    #include <vector>
+#include <chrono>
+#include <cstdlib>
+#include <iomanip>
+#include <iostream>
+#include <map>
+#include <sstream>
+#include <typeinfo>
+#include <vector>
 #else
-    #include "../../includes/CanvasPDF/CanvasPDF.h"
+#include "../../includes/CanvasPDF/CanvasPDF.h"
 #endif
 
 // using namespace std;
@@ -49,16 +46,16 @@ class hPlot2D {
 
     /* Histogram titles & labels.
      * contains HistogramStatTitle, HistogramTitle, XaxisTitle, YaxisTitle, Histogram2DTitleReactions, FinalState and DetectorRegion. */
-    std::map<std::string, std::string> Histogram2DTitles{{"FinalState", ""}, {"DetectorRegion", ""}, {"Histogram2DTitleReactions", ""}};
+    map<std::string, std::string> Histogram2DTitles{{"FinalState", ""}, {"DetectorRegion", ""}, {"Histogram2DTitleReactions", ""}};
     std::string HistogramStatsTitle;
 
     bool Title2 = false;
 
     /* Histogram xAxis limits and #bins */
-    int HistogramNumberOfXBins;                // default #bins for 2D histogram is 250 (see constructor)
-    int HistogramNumberOfYBins;                // default #bins for 2D histogram is 250 (see constructor)
-    std::vector<double> HistogramXAxisLimits;  // {LowerXlim, UpperXlim}
-    std::vector<double> HistogramYAxisLimits;  // {LowerYlim, UpperYlim}
+    int HistogramNumberOfXBins;           // default #bins for 2D histogram is 250 (see constructor)
+    int HistogramNumberOfYBins;           // default #bins for 2D histogram is 250 (see constructor)
+    vector<double> HistogramXAxisLimits;  // {LowerXlim, UpperXlim}
+    vector<double> HistogramYAxisLimits;  // {LowerYlim, UpperYlim}
 
     //    /* Histogram normalization setup */
     //    bool NormalizeHistogram;
@@ -68,7 +65,7 @@ class hPlot2D {
     /* Histogram appearance setup */
     int LineColor = 1;
     int LineWidth = 2;
-    std::vector<double> Histogram2DTitleSizes = {0.06, 0.0425, 0.0425, 0.0425};  // {TitleSize, LabelSizex, LabelSizey, LabelSizez}
+    vector<double> Histogram2DTitleSizes = {0.06, 0.0425, 0.0425, 0.0425};  // {TitleSize, LabelSizex, LabelSizey, LabelSizez}
     bool CenterTitle = true;
     bool ShowStats = true;
 
@@ -78,7 +75,7 @@ class hPlot2D {
 
     /* Histogram cuts setup */
     bool ShowPlotCuts = false;
-    // std::vector<double> - for cuts
+    // vector<double> - for cuts
     double PlotCuts = 0;
     double PlotXmax = 0;
     bool PlotHistogramMax = true;

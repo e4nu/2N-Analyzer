@@ -107,8 +107,8 @@ hPlot1D::hPlot1D(std::string hst, std::string ht, std::string xat, double LowerX
 void hPlot1D::histPlotter1D(TCanvas *HistogramCanvas, TH1D *Histogram1D, bool normalize_Histogram, bool custom_normalization, double custom_normalization_factor,
                             std::string Histogram1DTitle, std::string Histogram1DTitleReactions, double titleSize, double labelSizex, double labelSizey, TList *Histogram_list,
                             const char *Histogram_OutPDF, int lineWidth, bool LogScalePlot, bool LinearScalePlot, THStack *Histogram1DStack, std::string Histogram1DSaveName,
-                            std::string Histogram1DSaveNamePath, std::string finalState, int kColor, bool centerTitle, bool AddToStack, bool showStats, bool title2, bool apply_plot_cuts,
-                            double plot_cuts, double plot_Xmax, bool plot_max) {
+                            std::string Histogram1DSaveNamePath, std::string finalState, int kColor = 1, bool centerTitle = true, bool AddToStack = false, bool showStats = true,
+                            bool title2 = false, bool apply_plot_cuts = false, double plot_cuts = 0, double plot_Xmax = 0, bool plot_max = true) {
     //  Normalization factor:
     double Histogram1D_integral;  // To be calculated only if normalize_Histogram
     double x_1 = 0.175, y_1 = 0.3, x_2 = 0.875, y_2 = 0.7;
@@ -215,10 +215,10 @@ void hPlot1D::histPlotter1D(TCanvas *HistogramCanvas, TH1D *Histogram1D, bool no
                 max_location->SetLineColor(kGreen);
             }
 
-            TLegendEntry *Cut_legend_upper_lim = Cut_legend->AddEntry(upper_cut, ("Upper cut = " + basic_tools::ToStringWithPrecision(Upper_cut)).c_str(), "l");
-            TLegendEntry *Cut_legend_lower_lim = Cut_legend->AddEntry(lower_cut, ("Lower cut = " + basic_tools::ToStringWithPrecision(Lower_cut)).c_str(), "l");
+            TLegendEntry *Cut_legend_upper_lim = Cut_legend->AddEntry(upper_cut, ("Upper cut = " + ToStringWithPrecision(Upper_cut)).c_str(), "l");
+            TLegendEntry *Cut_legend_lower_lim = Cut_legend->AddEntry(lower_cut, ("Lower cut = " + ToStringWithPrecision(Lower_cut)).c_str(), "l");
 
-            if (plot_max) { TLegendEntry *Cut_max_location_lim = Cut_legend->AddEntry(max_location, ("Peak location = " + basic_tools::ToStringWithPrecision(plot_xmax)).c_str(), "l"); }
+            if (plot_max) { TLegendEntry *Cut_max_location_lim = Cut_legend->AddEntry(max_location, ("Peak location = " + ToStringWithPrecision(plot_xmax)).c_str(), "l"); }
 
             Cut_legend->Draw("same");
         }
@@ -285,7 +285,8 @@ void hPlot1D::histPlotter1D(TCanvas *HistogramCanvas, TH1D *Histogram1D, bool no
 void hPlot1D::histPlotter1D(TCanvas *HistogramCanvas, TH1D *Histogram1D, bool normalize_Histogram, bool custom_normalization, double custom_normalization_factor,
                             std::string Histogram1DTitle, std::string Histogram1DTitleReactions, double titleSize, double labelSizex, double labelSizey, TList *Histogram_list,
                             const char *Histogram_OutPDF, int lineWidth, bool LogScalePlot, bool LinearScalePlot, std::string Histogram1DSaveName, const std::string &Histogram1DSaveNamePath,
-                            std::string finalState, bool centerTitle, bool showStats, bool title2, bool apply_plot_cuts, double plot_cuts, double plot_Xmax, bool plot_max) {
+                            std::string finalState, bool centerTitle = true, bool showStats = true, bool title2 = false, bool apply_plot_cuts = false, double plot_cuts = 0,
+                            double plot_Xmax = 0, bool plot_max = true) {
     double Histogram1D_integral;  // To be calculated only if normalize_Histogram
     double x_1 = 0.18, y_1 = 0.3, x_2 = 0.86, y_2 = 0.7;
     double diplayTextSize = 0.1;
@@ -391,10 +392,10 @@ void hPlot1D::histPlotter1D(TCanvas *HistogramCanvas, TH1D *Histogram1D, bool no
                 max_location->SetLineColor(kGreen);
             }
 
-            TLegendEntry *Cut_legend_upper_lim = Cut_legend->AddEntry(upper_cut, ("Upper cut = " + basic_tools::ToStringWithPrecision(Upper_cut, 3)).c_str(), "l");
-            TLegendEntry *Cut_legend_lower_lim = Cut_legend->AddEntry(lower_cut, ("Lower cut = " + basic_tools::ToStringWithPrecision(Lower_cut, 3)).c_str(), "l");
+            TLegendEntry *Cut_legend_upper_lim = Cut_legend->AddEntry(upper_cut, ("Upper cut = " + ToStringWithPrecision(Upper_cut, 3)).c_str(), "l");
+            TLegendEntry *Cut_legend_lower_lim = Cut_legend->AddEntry(lower_cut, ("Lower cut = " + ToStringWithPrecision(Lower_cut, 3)).c_str(), "l");
 
-            if (plot_max) { TLegendEntry *Cut_max_location_lim = Cut_legend->AddEntry(max_location, ("Peak location = " + basic_tools::ToStringWithPrecision(plot_xmax, 3)).c_str(), "l"); }
+            if (plot_max) { TLegendEntry *Cut_max_location_lim = Cut_legend->AddEntry(max_location, ("Peak location = " + ToStringWithPrecision(plot_xmax, 3)).c_str(), "l"); }
 
             Cut_legend->Draw("same");
         }
@@ -456,8 +457,9 @@ void hPlot1D::histPlotter1D(TCanvas *HistogramCanvas, TH1D *Histogram1D, bool no
 //<editor-fold desc="histPlotter1D function (unsymmetric cuts for SF plots)">
 void hPlot1D::histPlotter1D(TCanvas *HistogramCanvas, TH1D *Histogram1D, bool normalize_Histogram, bool custom_normalization, double custom_normalization_factor,
                             std::string Histogram1DTitle, std::string Histogram1DTitleReactions, TList *Histogram_list, const char *Histogram_OutPDF, int lineWidth, bool LogScalePlot,
-                            bool LinearScalePlot, THStack *Histogram1DStack, std::string Histogram1DSaveName, std::string Histogram1DSaveNamePath, std::string finalState, int kColor,
-                            bool AddToStack, bool showStats, bool title2, bool apply_plot_cuts, double plot_upper_cut, double plot_lower_cut, double plot_Xmax, bool plot_max) {
+                            bool LinearScalePlot, THStack *Histogram1DStack, std::string Histogram1DSaveName, std::string Histogram1DSaveNamePath, std::string finalState, int kColor = 1,
+                            bool AddToStack = false, bool showStats = true, bool title2 = false, bool apply_plot_cuts = false, double plot_upper_cut = 0, double plot_lower_cut = 0,
+                            double plot_Xmax = 0, bool plot_max = true) {
     //  Normalization factor:
     double Histogram1D_integral;  // To be calculated only if normalize_Histogram
     double x_1 = 0.175, y_1 = 0.3, x_2 = 0.875, y_2 = 0.7;
@@ -559,12 +561,12 @@ void hPlot1D::histPlotter1D(TCanvas *HistogramCanvas, TH1D *Histogram1D, bool no
                 //            lower_cut->SetLineColor(kMagenta);
             }
 
-            TLegendEntry *Cut_legend_upper_lim = Cut_legend->AddEntry(upper_cut, ("Upper cut = " + basic_tools::ToStringWithPrecision(Upper_cut)).c_str(), "l");
-            TLegendEntry *Cut_legend_lower_lim = Cut_legend->AddEntry(lower_cut, ("Lower cut = " + basic_tools::ToStringWithPrecision(Lower_cut)).c_str(), "l");
+            TLegendEntry *Cut_legend_upper_lim = Cut_legend->AddEntry(upper_cut, ("Upper cut = " + ToStringWithPrecision(Upper_cut)).c_str(), "l");
+            TLegendEntry *Cut_legend_lower_lim = Cut_legend->AddEntry(lower_cut, ("Lower cut = " + ToStringWithPrecision(Lower_cut)).c_str(), "l");
 
             if (plot_max) {
-                TLegendEntry *Cut_max_location_lim = Cut_legend->AddEntry(max_location, ("Peak location = " + basic_tools::ToStringWithPrecision(plot_xmax)).c_str(), "l");
-                //            TLegendEntry *Cut_max_location_lim = Cut_legend->AddEntry(lower_cut, ("Peak location = " + basic_tools::ToStringWithPrecision(max_location)).c_str(), "l");
+                TLegendEntry *Cut_max_location_lim = Cut_legend->AddEntry(max_location, ("Peak location = " + ToStringWithPrecision(plot_xmax)).c_str(), "l");
+                //            TLegendEntry *Cut_max_location_lim = Cut_legend->AddEntry(lower_cut, ("Peak location = " + ToStringWithPrecision(max_location)).c_str(), "l");
             }
 
             Cut_legend->Draw("same");
@@ -629,8 +631,8 @@ void hPlot1D::histPlotter1D(TCanvas *HistogramCanvas, TH1D *Histogram1D, bool no
 //<editor-fold desc="histPlotter1D function (unsymmetric cuts for SF plots, stackless)">
 void hPlot1D::histPlotter1D(TCanvas *HistogramCanvas, TH1D *Histogram1D, bool normalize_Histogram, bool custom_normalization, double custom_normalization_factor,
                             std::string Histogram1DTitle, std::string Histogram1DTitleReactions, TList *Histogram_list, const char *Histogram_OutPDF, int lineWidth, bool LogScalePlot,
-                            bool LinearScalePlot, std::string Histogram1DSaveName, const std::string &Histogram1DSaveNamePath, std::string finalState, bool showStats, bool title2,
-                            bool apply_plot_cuts, double plot_upper_cut, double plot_lower_cut, double plot_Xmax, bool plot_max) {
+                            bool LinearScalePlot, std::string Histogram1DSaveName, const std::string &Histogram1DSaveNamePath, std::string finalState, bool showStats = true,
+                            bool title2 = false, bool apply_plot_cuts = false, double plot_upper_cut = 0, double plot_lower_cut = 0, double plot_Xmax = 0, bool plot_max = true) {
     double Histogram1D_integral;  // To be calculated only if normalize_Histogram
     double x_1 = 0.18, y_1 = 0.3, x_2 = 0.86, y_2 = 0.7;
     double diplayTextSize = 0.1;
@@ -737,10 +739,10 @@ void hPlot1D::histPlotter1D(TCanvas *HistogramCanvas, TH1D *Histogram1D, bool no
                 max_location->SetLineColor(kGreen);
             }
 
-            TLegendEntry *Cut_legend_upper_lim = Cut_legend->AddEntry(upper_cut, ("Upper cut = " + basic_tools::ToStringWithPrecision(Upper_cut)).c_str(), "l");
-            TLegendEntry *Cut_legend_lower_lim = Cut_legend->AddEntry(lower_cut, ("Lower cut = " + basic_tools::ToStringWithPrecision(Lower_cut)).c_str(), "l");
+            TLegendEntry *Cut_legend_upper_lim = Cut_legend->AddEntry(upper_cut, ("Upper cut = " + ToStringWithPrecision(Upper_cut)).c_str(), "l");
+            TLegendEntry *Cut_legend_lower_lim = Cut_legend->AddEntry(lower_cut, ("Lower cut = " + ToStringWithPrecision(Lower_cut)).c_str(), "l");
 
-            if (plot_max) { TLegendEntry *Cut_max_location_lim = Cut_legend->AddEntry(max_location, ("Peak location = " + basic_tools::ToStringWithPrecision(plot_xmax)).c_str(), "l"); }
+            if (plot_max) { TLegendEntry *Cut_max_location_lim = Cut_legend->AddEntry(max_location, ("Peak location = " + ToStringWithPrecision(plot_xmax)).c_str(), "l"); }
 
             Cut_legend->Draw("same");
         }
@@ -802,8 +804,9 @@ void hPlot1D::histPlotter1D(TCanvas *HistogramCanvas, TH1D *Histogram1D, bool no
 //<editor-fold desc="histPlotter1D function (one-sided cuts for Nphe plots)">
 void hPlot1D::histPlotter1D(TCanvas *HistogramCanvas, TH1D *Histogram1D, bool normalize_Histogram, bool custom_normalization, double custom_normalization_factor,
                             std::string Histogram1DTitle, std::string Histogram1DTitleReactions, TList *Histogram_list, const char *Histogram_OutPDF, int lineWidth, bool LogScalePlot,
-                            bool LinearScalePlot, THStack *Histogram1DStack, std::string Histogram1DSaveName, std::string Histogram1DSaveNamePath, std::string finalState, int kColor,
-                            bool AddToStack, bool showStats, bool title2, bool apply_plot_cuts, double plot_cut, double plot_Xmax, bool plot_max) {
+                            bool LinearScalePlot, THStack *Histogram1DStack, std::string Histogram1DSaveName, std::string Histogram1DSaveNamePath, std::string finalState, int kColor = 1,
+                            bool AddToStack = false, bool showStats = true, bool title2 = false, bool apply_plot_cuts = false, double plot_cut = 0, double plot_Xmax = 0,
+                            bool plot_max = true) {
     //  Normalization factor:
     double Histogram1D_integral;  // To be calculated only if normalize_Histogram
     double x_1 = 0.175, y_1 = 0.3, x_2 = 0.875, y_2 = 0.7;
@@ -891,9 +894,9 @@ void hPlot1D::histPlotter1D(TCanvas *HistogramCanvas, TH1D *Histogram1D, bool no
                 max_location->SetLineColor(kGreen);
             }
 
-            TLegendEntry *Cut_legend_lower_lim = Cut_legend->AddEntry(plot_cut, ("Lower cut = " + basic_tools::ToStringWithPrecision(Cut, 0)).c_str(), "l");
+            TLegendEntry *Cut_legend_lower_lim = Cut_legend->AddEntry(plot_cut, ("Lower cut = " + ToStringWithPrecision(Cut, 0)).c_str(), "l");
 
-            if (plot_max) { TLegendEntry *Cut_max_location_lim = Cut_legend->AddEntry(max_location, ("Peak location = " + basic_tools::ToStringWithPrecision(plot_xmax)).c_str(), "l"); }
+            if (plot_max) { TLegendEntry *Cut_max_location_lim = Cut_legend->AddEntry(max_location, ("Peak location = " + ToStringWithPrecision(plot_xmax)).c_str(), "l"); }
 
             Cut_legend->Draw("same");
         }
@@ -945,8 +948,8 @@ void hPlot1D::histPlotter1D(TCanvas *HistogramCanvas, TH1D *Histogram1D, bool no
 //<editor-fold desc="histPlotter1D function (one-sided cuts for Nphe plots, stackless)">
 void hPlot1D::histPlotter1D(TCanvas *HistogramCanvas, TH1D *Histogram1D, bool normalize_Histogram, bool custom_normalization, double custom_normalization_factor,
                             std::string Histogram1DTitle, std::string Histogram1DTitleReactions, TList *Histogram_list, const char *Histogram_OutPDF, int lineWidth, bool LogScalePlot,
-                            bool LinearScalePlot, std::string Histogram1DSaveName, const std::string &Histogram1DSaveNamePath, std::string finalState, bool showStats, bool title2,
-                            bool apply_plot_cuts, double plot_cut, double plot_Xmax, bool plot_max) {
+                            bool LinearScalePlot, std::string Histogram1DSaveName, const std::string &Histogram1DSaveNamePath, std::string finalState, bool showStats = true,
+                            bool title2 = false, bool apply_plot_cuts = false, double plot_cut = 0, double plot_Xmax = 0, bool plot_max = true) {
     double Histogram1D_integral;  // To be calculated only if normalize_Histogram
     double x_1 = 0.18, y_1 = 0.3, x_2 = 0.86, y_2 = 0.7;
     double diplayTextSize = 0.1;
@@ -1047,9 +1050,9 @@ void hPlot1D::histPlotter1D(TCanvas *HistogramCanvas, TH1D *Histogram1D, bool no
                 max_location->SetLineColor(kGreen);
             }
 
-            TLegendEntry *Cut_legend_lower_lim = Cut_legend->AddEntry(plot_cut, ("Lower cut = " + basic_tools::ToStringWithPrecision(Cut, 0)).c_str(), "l");
+            TLegendEntry *Cut_legend_lower_lim = Cut_legend->AddEntry(plot_cut, ("Lower cut = " + ToStringWithPrecision(Cut, 0)).c_str(), "l");
 
-            if (plot_max) { TLegendEntry *Cut_max_location_lim = Cut_legend->AddEntry(max_location, ("Peak location = " + basic_tools::ToStringWithPrecision(plot_xmax)).c_str(), "l"); }
+            if (plot_max) { TLegendEntry *Cut_max_location_lim = Cut_legend->AddEntry(max_location, ("Peak location = " + ToStringWithPrecision(plot_xmax)).c_str(), "l"); }
 
             Cut_legend->Draw("same");
         }
@@ -1126,8 +1129,8 @@ void hPlot1D::histPlotter1D(TCanvas *HistogramCanvas, TH1D *Histogram1D, bool no
 
 //<editor-fold desc="histPlotter1D function (unified)">
 void hPlot1D::histPlotter1D(const std::string &SampleName, TCanvas *HistogramCanvas, TH1D *Histogram1D, bool normalize_Histogram, bool custom_normalization,
-                            double custom_normalization_factor, TList *Histogram_list, const char *Histogram_OutPDF, THStack *Histogram1DStack, double plot_lower_cut, double plot_upper_cut,
-                            double plot_Xmax, bool plot_max) {
+                            double custom_normalization_factor, TList *Histogram_list, const char *Histogram_OutPDF, THStack *Histogram1DStack, double plot_lower_cut = -9999,
+                            double plot_upper_cut = 9999, double plot_Xmax = 0, bool plot_max = true) {
     HistogramCanvas->cd();
     std::string sNameFlag;
 
@@ -1246,10 +1249,10 @@ void hPlot1D::histPlotter1D(const std::string &SampleName, TCanvas *HistogramCan
                 max_location->SetLineColor(kGreen);
             }
 
-            TLegendEntry *Cut_legend_upper_lim = Cut_legend->AddEntry(upper_cut, ("Upper cut = " + basic_tools::ToStringWithPrecision(Upper_cut + plot_xmax, 3)).c_str(), "l");
-            TLegendEntry *Cut_legend_lower_lim = Cut_legend->AddEntry(lower_cut, ("Lower cut = " + basic_tools::ToStringWithPrecision(Lower_cut + plot_xmax, 3)).c_str(), "l");
+            TLegendEntry *Cut_legend_upper_lim = Cut_legend->AddEntry(upper_cut, ("Upper cut = " + ToStringWithPrecision(Upper_cut + plot_xmax, 3)).c_str(), "l");
+            TLegendEntry *Cut_legend_lower_lim = Cut_legend->AddEntry(lower_cut, ("Lower cut = " + ToStringWithPrecision(Lower_cut + plot_xmax, 3)).c_str(), "l");
 
-            if (plot_max) { TLegendEntry *Cut_max_location_lim = Cut_legend->AddEntry(max_location, ("Peak location = " + basic_tools::ToStringWithPrecision(plot_xmax, 3)).c_str(), "l"); }
+            if (plot_max) { TLegendEntry *Cut_max_location_lim = Cut_legend->AddEntry(max_location, ("Peak location = " + ToStringWithPrecision(plot_xmax, 3)).c_str(), "l"); }
 
             Cut_legend->Draw("same");
         }
@@ -1314,8 +1317,8 @@ void hPlot1D::histPlotter1D(const std::string &SampleName, TCanvas *HistogramCan
 
 //<editor-fold desc="histPlotter1D function (unified, stackless)">
 void hPlot1D::histPlotter1D(const std::string &SampleName, TCanvas *HistogramCanvas, TH1D *Histogram1D, bool normalize_Histogram, bool custom_normalization,
-                            double custom_normalization_factor, TList *Histogram_list, const char *Histogram_OutPDF, double plot_lower_cut, double plot_upper_cut, double plot_Xmax,
-                            bool plot_max) {
+                            double custom_normalization_factor, TList *Histogram_list, const char *Histogram_OutPDF, double plot_lower_cut = -9999, double plot_upper_cut = 9999,
+                            double plot_Xmax = 0, bool plot_max = true) {
     HistogramCanvas->cd();
     std::string sNameFlag;
 
@@ -1435,10 +1438,10 @@ void hPlot1D::histPlotter1D(const std::string &SampleName, TCanvas *HistogramCan
                 max_location->SetLineColor(kGreen);
             }
 
-            TLegendEntry *Cut_legend_upper_lim = Cut_legend->AddEntry(upper_cut, ("Upper cut = " + basic_tools::ToStringWithPrecision(Upper_cut + plot_xmax, 3)).c_str(), "l");
-            TLegendEntry *Cut_legend_lower_lim = Cut_legend->AddEntry(lower_cut, ("Lower cut = " + basic_tools::ToStringWithPrecision(Lower_cut + plot_xmax, 3)).c_str(), "l");
+            TLegendEntry *Cut_legend_upper_lim = Cut_legend->AddEntry(upper_cut, ("Upper cut = " + ToStringWithPrecision(Upper_cut + plot_xmax, 3)).c_str(), "l");
+            TLegendEntry *Cut_legend_lower_lim = Cut_legend->AddEntry(lower_cut, ("Lower cut = " + ToStringWithPrecision(Lower_cut + plot_xmax, 3)).c_str(), "l");
 
-            if (plot_max) { TLegendEntry *Cut_max_location_lim = Cut_legend->AddEntry(max_location, ("Peak location = " + basic_tools::ToStringWithPrecision(plot_xmax, 3)).c_str(), "l"); }
+            if (plot_max) { TLegendEntry *Cut_max_location_lim = Cut_legend->AddEntry(max_location, ("Peak location = " + ToStringWithPrecision(plot_xmax, 3)).c_str(), "l"); }
 
             Cut_legend->Draw("same");
         }
@@ -1499,8 +1502,8 @@ void hPlot1D::histPlotter1D(const std::string &SampleName, TCanvas *HistogramCan
 //<editor-fold desc="histPlotter1DwFit function">
 void hPlot1D::histPlotter1DwFit(std::string SampleName, TCanvas *HistogramCanvas, TH1D *Histogram1D, bool normalize_Histogram, bool custom_normalization, double custom_normalization_factor,
                                 std::string Histogram1DTitle, std::string Histogram1DTitleReactions, TList *Histogram_list, const char *Histogram_OutPDF, std::string Histogram1DSaveName,
-                                const std::string &Histogram1DSaveNamePath, std::string finalState, double &plot_Xmax, double &plot_lcut, double &plot_ucut, double factor, bool plot_max,
-                                std::string particle) {
+                                const std::string &Histogram1DSaveNamePath, std::string finalState, double &plot_Xmax, double &plot_lcut, double &plot_ucut, double factor,
+                                bool plot_max = true, std::string particle = "") {
     std::string sNameFlag;
 
     if (basic_tools::FindSubstring(SampleName, "sim")) {
@@ -1596,7 +1599,7 @@ void hPlot1D::histPlotter1DwFit(std::string SampleName, TCanvas *HistogramCanvas
 
     if (!ShowStats) { Histogram1D->SetStats(0); }
 
-    if (particle != "") { std::cout << "\n\nFit results for " << particle << " in " << finalState << " are (" << Histogram1DTitleReactions << "):\n\n"; }
+    if (particle != "") { cout << "\n\nFit results for " << particle << " in " << finalState << " are (" << Histogram1DTitleReactions << "):\n\n"; }
 
     gPad->Update();
 
@@ -1625,9 +1628,9 @@ void hPlot1D::histPlotter1DwFit(std::string SampleName, TCanvas *HistogramCanvas
 
         if (Histogram1D->Integral() != 0.) {  // don't fit if histogram is empty (leads to an error!)
             /* A fit to a gaussian with 3 parameters: f(x) = p0*exp(-0.5((x-p1)/p2)^2)). */
-            std::cout << "\n\n";
+            cout << "\n\n";
             Histogram1D->Fit("gaus");
-            std::cout << "\n\n";
+            cout << "\n\n";
 
             /* Get fitted function to TF1 plot */
             fit = Histogram1D->GetFunction("gaus");
@@ -1667,31 +1670,31 @@ void hPlot1D::histPlotter1DwFit(std::string SampleName, TCanvas *HistogramCanvas
 
             if (plot_max) { max_location->Draw("same"), max_location->SetLineColor(kGreen), ListOfFunctions->Add(max_location); }
 
-            TLegendEntry *Cut_legend_upper_lim = Cut_legend->AddEntry(upper_cut, ("Upper cut = " + basic_tools::ToStringWithPrecision(Upper_cut, 3)).c_str(), "l");
-            TLegendEntry *Cut_legend_lower_lim = Cut_legend->AddEntry(lower_cut, ("Lower cut = " + basic_tools::ToStringWithPrecision(Lower_cut, 3)).c_str(), "l");
+            TLegendEntry *Cut_legend_upper_lim = Cut_legend->AddEntry(upper_cut, ("Upper cut = " + ToStringWithPrecision(Upper_cut, 3)).c_str(), "l");
+            TLegendEntry *Cut_legend_lower_lim = Cut_legend->AddEntry(lower_cut, ("Lower cut = " + ToStringWithPrecision(Lower_cut, 3)).c_str(), "l");
 
             if (plot_max) {
                 TLegendEntry *Cut_max_location_lim =
-                    Cut_legend->AddEntry(max_location, ("#mu^{" + Particle + "}_{" + Histogram1DTitles["DetectorRegion"] + "} = " + basic_tools::ToStringWithPrecision(plot_xmax, 3)).c_str(), "l");
+                    Cut_legend->AddEntry(max_location, ("#mu^{" + Particle + "}_{" + Histogram1DTitles["DetectorRegion"] + "} = " + ToStringWithPrecision(plot_xmax, 3)).c_str(), "l");
             }
 
             Cut_legend->SetTextFont(42), Cut_legend->SetTextSize(0.0235), /*Cut_legend->SetTextSize(0.03), */ Cut_legend->SetTextAlign(12);
             Cut_legend->Draw("same"), ListOfFunctions->Add(Cut_legend);
 
             FitParam->SetBorderSize(1), FitParam->SetTextFont(0), FitParam->SetFillColor(0), FitParam->SetTextAlign(12);
-            FitParam->AddText(("Fit amp = " + basic_tools::ToStringWithPrecision(Amp, 3)).c_str());
-            FitParam->AddText(("Fit #sigma^{" + Particle + "}_{" + Histogram1DTitles["DetectorRegion"] + "} = " + basic_tools::ToStringWithPrecision(Std, 3)).c_str());
-            FitParam->AddText(("Fit #mu^{" + Particle + "}_{" + Histogram1DTitles["DetectorRegion"] + "} = " + basic_tools::ToStringWithPrecision(Mean, 3)).c_str());
+            FitParam->AddText(("Fit amp = " + ToStringWithPrecision(Amp, 3)).c_str());
+            FitParam->AddText(("Fit #sigma^{" + Particle + "}_{" + Histogram1DTitles["DetectorRegion"] + "} = " + ToStringWithPrecision(Std, 3)).c_str());
+            FitParam->AddText(("Fit #mu^{" + Particle + "}_{" + Histogram1DTitles["DetectorRegion"] + "} = " + ToStringWithPrecision(Mean, 3)).c_str());
             //            ((TText *) FitParam->GetListOfLines()->Last())->SetTextColor(kRed);
             FitParam->AddText(
-                ("Cuts = " + basic_tools::ToStringWithPrecision(factor, 0) + "#sigma^{" + Particle + "}_{" + Histogram1DTitles["DetectorRegion"] + "} = " + basic_tools::ToStringWithPrecision(plot_ucut, 3)).c_str());
+                ("Cuts = " + ToStringWithPrecision(factor, 0) + "#sigma^{" + Particle + "}_{" + Histogram1DTitles["DetectorRegion"] + "} = " + ToStringWithPrecision(plot_ucut, 3)).c_str());
             //            ((TText *) FitParam->GetListOfLines()->Last())->SetTextColor(kRed);
             FitParam->SetTextFont(42), FitParam->SetTextSize(0.0235), /*FitParam->SetTextSize(0.03), */ FitParam->SetTextAlign(12);
             FitParam->Draw("same"), ListOfFunctions->Add(FitParam);
         }
     }
 
-    if (particle != "") { std::cout << "\n"; }
+    if (particle != "") { cout << "\n"; }
 
     if (LogScalePlot) {
         HistogramCanvas->SetLogy(1);
@@ -1750,7 +1753,7 @@ void hPlot1D::histPlotter1DwFit(std::string SampleName, TCanvas *HistogramCanvas
 
 //<editor-fold desc="hDrawAndSave function">
 void hPlot1D::hDrawAndSave(const std::string &SampleName, TCanvas *h1DCanvas, TList *hList, const char *Histogram_OutPDF, bool normHistogram, bool cNormalization,
-                           double cNormalizationFactor, double plot_lower_cut, double plot_upper_cut, double plot_Xmax, bool plotMax) {
+                           double cNormalizationFactor, double plot_lower_cut = -9999, double plot_upper_cut = 9999, double plot_Xmax = 0, bool plotMax = false) {
     histPlotter1D(SampleName, h1DCanvas, Histogram1D, normHistogram, cNormalization, cNormalizationFactor, hList, Histogram_OutPDF, plot_lower_cut, plot_upper_cut, plot_Xmax, plotMax);
 }
 
@@ -1765,7 +1768,7 @@ void hPlot1D::hDrawAndSave(TCanvas *h1DCanvas, TList *hList, const char *Histogr
 
 //<editor-fold desc="hDrawAndSaveWFit function">
 void hPlot1D::hDrawAndSaveWFit(const std::string &SampleName, TCanvas *h1DCanvas, TList *hList, const char *Histogram_OutPDF, bool normHistogram, bool cNormalization,
-                               double cNormalizationFactor, double factor, double &plot_lower_cut, double &plot_upper_cut, double &plot_Xmax, bool plotMax) {
+                               double cNormalizationFactor, double factor, double &plot_lower_cut, double &plot_upper_cut, double &plot_Xmax, bool plotMax = false) {
     histPlotter1DwFit(SampleName, h1DCanvas, Histogram1D, normHistogram, cNormalization, cNormalizationFactor, Histogram1DTitles["HistogramTitle"],
                       Histogram1DTitles["Histogram1DTitleReactions"], hList, Histogram_OutPDF, Histogram1DSaveName, Histogram1DSaveNamePath, Histogram1DTitles["FinalState"], plot_Xmax,
                       plot_lower_cut, plot_upper_cut, factor, plotMax);
@@ -1787,7 +1790,7 @@ Double_t hPlot1D::FitFunction(Double_t *v, Double_t *par) {
 // hLogEventCuts function ------------------------------------------------------------------------------------------------------------------------------------------------
 
 //<editor-fold desc="hLogEventCuts function">
-void hPlot1D::hLogEventCuts(clas12::region_part_ptr Particle, double Lower_cut, double Upper_cut, double CutCenter, double Weight) {
+void hPlot1D::hLogEventCuts(clas12::region_part_ptr Particle, double Lower_cut, double Upper_cut, double CutCenter = 0, double Weight = 1) {
     TVector3 P;
     P.SetMagThetaPhi(Particle->getP(), Particle->getTheta(), Particle->getPhi());
 

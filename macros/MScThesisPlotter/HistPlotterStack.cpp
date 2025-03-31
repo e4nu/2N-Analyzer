@@ -7,8 +7,8 @@
 #include <TFile.h>
 #include <TTree.h>
 #include <TLorentzVector.h>
-#include <TH1D.h>
-#include <TH2D.h>
+#include <TH1.h>
+#include <TH2.h>
 #include <TLatex.h>
 #include <TChain.h>
 #include <TCanvas.h>
@@ -21,9 +21,9 @@
 #include "../../source/constants.h"
 
 #if IndependentStackdraw
-#include "../../source/classes/hData/hData.h"
-#include "Histofinder1D.h"
-#include "TitleAligner.h"
+#include "../../source/classes/hData/hData.cpp"
+#include "Histofinder1D.cpp"
+#include "TitleAligner.cpp"
 #endif
 
 using namespace std;
@@ -140,7 +140,7 @@ void DrawPlot(TCanvas *HistogramCanvas, const bool LogScalePlot, const bool Line
 
 void HistPlotterStack(hData &particles, TCanvas *HistogramCanvas, TList *MScThesisPlotsList, const char *Sim_filename, const char *Data_filename, const char *Histogram1DName,
                       const std::string &SampleName, const std::string &SavePath, const std::string &SaveName, const bool TLmom = false) {
-    std::cout << "\n\n";
+    cout << "\n\n";
 
     bool PosterModePlots = false, PosterModePlotsColorblind = false, ExamPresMode = false;
 
@@ -217,7 +217,7 @@ void HistPlotterStack(hData &particles, TCanvas *HistogramCanvas, TList *MScThes
     } else {
         LineWidth = 12;
     }
-    std::vector<double> Histogram1DTitleSizes = {0.06, 0.0425, 0.0425}; // {TitleSize, LabelSizex, LabelSizey}
+    vector<double> Histogram1DTitleSizes = {0.06, 0.0425, 0.0425}; // {TitleSize, LabelSizex, LabelSizey}
     bool CenterTitle = true;
     bool ShowStats = true;
 
@@ -227,7 +227,7 @@ void HistPlotterStack(hData &particles, TCanvas *HistogramCanvas, TList *MScThes
 
     /* Histogram cuts setup */
     bool ShowPlotCuts = true;
-    //std::vector<double> - for cuts
+    //vector<double> - for cuts
     double PlotCuts = 0;
     double PlotXmax = 0;
     bool PlotHistogramMax = true;
@@ -324,17 +324,17 @@ void HistPlotterStack(hData &particles, TCanvas *HistogramCanvas, TList *MScThes
         std::string FSRyLabel;
 
         if (!findSubstring(Histogram1DNameCopy, "FSRatio")) {
-            std::cout << "\n\n\nTitle = " << Histogram1D_Title << "\n";
-            std::cout << "Sim peak = " << Sim_Histogram1D->GetBinCenter(Sim_Histogram1D->GetMaximumBin()) << "\n";
-            std::cout << "Data peak = " << Data_Histogram1D->GetBinCenter(Data_Histogram1D->GetMaximumBin()) << "\n";
-            std::cout << "========================================================================================\n\n";
+            cout << "\n\n\nTitle = " << Histogram1D_Title << "\n";
+            cout << "Sim peak = " << Sim_Histogram1D->GetBinCenter(Sim_Histogram1D->GetMaximumBin()) << "\n";
+            cout << "Data peak = " << Data_Histogram1D->GetBinCenter(Data_Histogram1D->GetMaximumBin()) << "\n";
+            cout << "========================================================================================\n\n";
         }
 
         std::string RatioVar = Histogram1D_xLabel.substr(0, Histogram1D_xLabel.find_last_of('[') - 1);
         std::string RatioTopology;
 
         if (findSubstring(Histogram1DNameCopy, "FSRatio")) {
-//            std::cout << "Histogram1D_Title1 = " << Histogram1D_Title << "\n";
+//            cout << "Histogram1D_Title1 = " << Histogram1D_Title << "\n";
 
             if (findSubstring(Histogram1D_Title, "1n/1p") || findSubstring(Histogram1D_Title, "1nFD/1pFD")) {
                 RatioTopology = "1N";
@@ -365,9 +365,9 @@ void HistPlotterStack(hData &particles, TCanvas *HistogramCanvas, TList *MScThes
             }
         }
 
-//        std::cout << "Histogram1D_Title = " << Histogram1D_Title << "\n";
-//        std::cout << "RatioTopology = " << RatioTopology << "\n";
-//        std::cout << "FSRyLabel = " << FSRyLabel << "\n";
+//        cout << "Histogram1D_Title = " << Histogram1D_Title << "\n";
+//        cout << "RatioTopology = " << RatioTopology << "\n";
+//        cout << "FSRyLabel = " << FSRyLabel << "\n";
 
         if (findSubstring(Histogram1DNameCopy, "FSRatio")) {
             std::string StringTemp0 = Sim_Histogram1D->GetTitle();
@@ -543,8 +543,8 @@ void HistPlotterStack(hData &particles, TCanvas *HistogramCanvas, TList *MScThes
             std::string OpeningAngle = OpeningAngleTemp.substr(0, OpeningAngleTemp.find(" ["));
             std::string Title = TitleTemp.substr(0, TitleTemp.find_last_of("ratio") - 5);
 
-//            std::cout << "OpeningAngle = " << OpeningAngle << "\n";
-//            std::cout << "Title = " << Title << "\n";
+//            cout << "OpeningAngle = " << OpeningAngle << "\n";
+//            cout << "Title = " << Title << "\n";
 //            exit(0);
 
             TitleAligner(particles, Sim_Histogram1D, Data_Histogram1D, Title, OpeningAngle);

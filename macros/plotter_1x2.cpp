@@ -4,7 +4,7 @@
 //
 
 #include<iostream>
-#include<TH1D.h>
+#include<TH1.h>
 #include<TFile.h>
 #include<TDirectoryFile.h>
 #include<TGraph.h>

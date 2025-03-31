@@ -4,10 +4,10 @@
 #define PBSTR "||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||"
 #define PBWIDTH 60
 
-#include "nFD_eff_test_functions.h"
+#include "nFD_eff_test_functions.cpp"
 
 void nFD_eff_test() {
-    std::cout << "\n\nInitiating nFD_eff_test.cpp\n";
+    cout << "\n\nInitiating nFD_eff_test.cpp\n";
 
     bool Is2GeV = false, Is4GeV = false, Is6GeV = false;
 
@@ -116,12 +116,12 @@ void nFD_eff_test() {
     /////////////////////////////////////
     // Prepare histograms
     /////////////////////////////////////
-    std::vector<TH1*> HistoList_electron_cuts;
+    vector<TH1*> HistoList_electron_cuts;
 
-    std::vector<TH1*> HistoList;
-    std::vector<string> HistSubjects;
-    std::vector<string> HistSubjects2;
-    std::vector<bool> FirstPrint;
+    vector<TH1*> HistoList;
+    vector<string> HistSubjects;
+    vector<string> HistSubjects2;
+    vector<bool> FirstPrint;
 
     gStyle->SetTitleXSize(0.05);
     gStyle->SetTitleYSize(0.05);
@@ -872,7 +872,7 @@ void nFD_eff_test() {
             auto Truth_theta_temp = mcpbank->getTheta() * 180 / M_PI;
             auto Truth_phi_temp = mcpbank->getPhi() * 180 / M_PI;
 
-            // std::cout << "\n\nTruth_theta_temp = " << Truth_theta_temp << "\n\n";
+            // cout << "\n\nTruth_theta_temp = " << Truth_theta_temp << "\n\n";
 
             if (pid_temp == 11) {
                 Truth_theta_e = Truth_theta_temp, Truth_phi_e = Truth_phi_temp;
@@ -960,7 +960,7 @@ void nFD_eff_test() {
 
         bool TLpassCuts = true;
 
-        std::vector<int> truth_NeutronsFD;
+        vector<int> truth_NeutronsFD;
 
         for (Int_t i = 0; i < Ngen; i++) {
             mcpbank->setEntry(i);
@@ -1033,9 +1033,9 @@ void nFD_eff_test() {
         if (ConstrainTLmom && !TLpassCuts) { continue; }
 
         // if (truth_NeutronsFD.size() != 1) {
-        //     std::cout << "\n\nError! truth_NeutronsFD size is not 1! Aborting...\n";
-        //     std::cout << "truth_NeutronsFD.size() = " << truth_NeutronsFD.size() << "\n";
-        //     std::cout << "Truth_theta_nFD = " << Truth_theta_nFD << "\nAborting...\n\n", exit(0);
+        //     cout << "\n\nError! truth_NeutronsFD size is not 1! Aborting...\n";
+        //     cout << "truth_NeutronsFD.size() = " << truth_NeutronsFD.size() << "\n";
+        //     cout << "Truth_theta_nFD = " << Truth_theta_nFD << "\nAborting...\n\n", exit(0);
         // }
         if (truth_NeutronsFD.size() != 1) { continue; }
 
@@ -1059,8 +1059,8 @@ void nFD_eff_test() {
         //  Setting up neutrals ---------------------------------------------------------------------------------------------------------------------------------------------------
 
 #pragma region /* Setting up neutrals (RAW) */
-        std::vector<region_part_ptr> neutrons;
-        std::vector<region_part_ptr> photons;
+        vector<region_part_ptr> neutrons;
+        vector<region_part_ptr> photons;
 
         for (int i = 0; i < allParticles.size(); i++) {
             int pid_temp = allParticles[i]->par()->getPid();
@@ -1083,8 +1083,8 @@ void nFD_eff_test() {
         //  Setting up FD neutrals (clas12reco) -----------------------------------------------------------------------------------------------------------------------------------
 
 #pragma region /* Setting up FD neutrals (clas12reco) */
-        std::vector<region_part_ptr> neutrons_FD_clas12;
-        std::vector<region_part_ptr> photons_FD_clas12;
+        vector<region_part_ptr> neutrons_FD_clas12;
+        vector<region_part_ptr> photons_FD_clas12;
 
         for (int i = 0; i < allParticles.size(); i++) {
             int pid_temp = allParticles[i]->par()->getPid();
@@ -1111,8 +1111,8 @@ void nFD_eff_test() {
         //  Setting up FD neutrals (redef) ----------------------------------------------------------------------------------------------------------------------------------------
 
 #pragma region /* Setting up FD neutrals (redef) */
-        std::vector<region_part_ptr> neutrons_FD_redef;
-        std::vector<region_part_ptr> photons_FD_redef;
+        vector<region_part_ptr> neutrons_FD_redef;
+        vector<region_part_ptr> photons_FD_redef;
 
         for (int i = 0; i < allParticles.size(); i++) {
             int pid_temp = allParticles[i]->par()->getPid();
@@ -1138,7 +1138,7 @@ void nFD_eff_test() {
             bool ParticleInPCAL = (neutrons_FD_redef[i]->cal(clas12::PCAL)->getDetector() == 7);    // PCAL hit
             bool ParticleInECIN = (neutrons_FD_redef[i]->cal(clas12::ECIN)->getDetector() == 7);    // ECIN hit
             bool ParticleInECOUT = (neutrons_FD_redef[i]->cal(clas12::ECOUT)->getDetector() == 7);  // ECOUT hit
-            if (ParticleInPCAL) { std::cout << "\n\nError! neutrons_FD_redef is in the PCAL! Aborting...\n\n", exit(0); }
+            if (ParticleInPCAL) { cout << "\n\nError! neutrons_FD_redef is in the PCAL! Aborting...\n\n", exit(0); }
 
             double Beta_ph = neutrons_FD_redef[i]->par()->getBeta();
             double Gamma_ph = 1 / sqrt(1 - (Beta_ph * Beta_ph));
@@ -1162,7 +1162,7 @@ void nFD_eff_test() {
         double P_max = -1;
         int NeutronsFD_ind_mom_max = -1;
 
-        std::vector<region_part_ptr> neutrons_FD_ECALveto;
+        vector<region_part_ptr> neutrons_FD_ECALveto;
 
         for (int i = 0; i < allParticles.size(); i++) {
             int pid_temp = allParticles[i]->par()->getPid();
@@ -1245,7 +1245,7 @@ void nFD_eff_test() {
             bool ParticleInECIN = (neutrons_FD_ECALveto[i]->cal(clas12::ECIN)->getDetector() == 7);         // ECIN hit
             bool ParticleInECOUT = (neutrons_FD_ECALveto[i]->cal(clas12::ECOUT)->getDetector() == 7);       // ECOUT hit
             auto detlayer = ParticleInPCAL ? clas12::PCAL : ParticleInECIN ? clas12::ECIN : clas12::ECOUT;  // determine the earliest layer of the neutral hit
-            if (apply_neutFD_redef && ParticleInPCAL) { std::cout << "\n\nError! neutrons_FD_ECALveto is in the PCAL! Aborting...\n\n", exit(0); }
+            if (apply_neutFD_redef && ParticleInPCAL) { cout << "\n\nError! neutrons_FD_ECALveto is in the PCAL! Aborting...\n\n", exit(0); }
 
             double Path_nFD = CalcPathnFD(neutrons_FD_ECALveto[i], electrons[0]);
             double reco_ToF_nFD = CalcToFnFD(neutrons_FD_ECALveto[i], starttime);
@@ -1330,7 +1330,7 @@ void nFD_eff_test() {
         //  Setting up FD neutrals (matched) -----------------------------------------------------------------------------------------------------------------------------------------
 
 #pragma region /* Setting up FD neutrals (matched) */
-        std::vector<region_part_ptr> neutrons_FD_matched;
+        vector<region_part_ptr> neutrons_FD_matched;
 
         double tl_P;
 
@@ -1475,7 +1475,7 @@ void nFD_eff_test() {
             bool ParticleInPCAL = (neutrons_FD_matched[i]->cal(clas12::PCAL)->getDetector() == 7);    // PCAL hit
             bool ParticleInECIN = (neutrons_FD_matched[i]->cal(clas12::ECIN)->getDetector() == 7);    // ECIN hit
             bool ParticleInECOUT = (neutrons_FD_matched[i]->cal(clas12::ECOUT)->getDetector() == 7);  // ECOUT hit
-            if (apply_neutFD_redef && ParticleInPCAL) { std::cout << "\n\nError! neutrons_FD_matched is in the PCAL! Aborting...\n\n", exit(0); }
+            if (apply_neutFD_redef && ParticleInPCAL) { cout << "\n\nError! neutrons_FD_matched is in the PCAL! Aborting...\n\n", exit(0); }
             auto detlayer = ParticleInPCAL ? clas12::PCAL : ParticleInECIN ? clas12::ECIN : clas12::ECOUT;  // determine the earliest layer of the neutral hit
 
             double Path_nFD = CalcPathnFD(neutrons_FD_matched[i], electrons[0]);
@@ -1566,7 +1566,7 @@ void nFD_eff_test() {
     /////////////////////////////////////////////////////
     // Organize histograms
     /////////////////////////////////////////////////////
-    std::cout << counter << endl;
+    cout << counter << endl;
 
     for (int i = 0; i < HistoList_electron_cuts.size(); i++) {
         if (HistoList_electron_cuts[i]->InheritsFrom("TH1D")) {
@@ -1681,7 +1681,7 @@ void nFD_eff_test() {
         // std::string Title = HistoList_electron_cuts[i]->GetTitle();
         // gStyle->SetTitlePS(Title.c_str());  // This sets the title in metadata
         //                                     // gStyle->SetHeaderPS(("[ /Title " + Title + " /DOCVIEW pdfmark").c_str());  // Adds a PDF title
-        // gStyle->SetHeaderPS(("[ /Page " + std::to_string(i + 1) + " /View [/Fit] /Title (myTitle) ] /OUT pdfmark").c_str());
+        // gStyle->SetHeaderPS(("[ /Page " + to_string(i + 1) + " /View [/Fit] /Title (myTitle) ] /OUT pdfmark").c_str());
 
         if (HistoList_electron_cuts[i]->InheritsFrom("TH1D")) {
             HistoList_electron_cuts[i]->Draw();
@@ -1758,7 +1758,7 @@ void nFD_eff_test() {
         // std::string Title = HistoList[i]->GetTitle();
         // gStyle->SetTitlePS(Title.c_str());  // This sets the title in metadata
         //                                     // gStyle->SetHeaderPS(("[ /Title " + Title + " /DOCVIEW pdfmark").c_str());  // Adds a PDF title
-        // gStyle->SetHeaderPS(("[ /Page " + std::to_string(i + 1) + " /View [/Fit] /Title (myTitle) ] /OUT pdfmark").c_str());
+        // gStyle->SetHeaderPS(("[ /Page " + to_string(i + 1) + " /View [/Fit] /Title (myTitle) ] /OUT pdfmark").c_str());
 
         if (HistoList[i]->InheritsFrom("TH1D")) {
             HistoList[i]->Draw();
@@ -1789,7 +1789,7 @@ void nFD_eff_test() {
 #pragma endregion
 
 #pragma region /* Print eff plots */
-    std::vector<std::vector<TH1*>> HistoList_eff_plots;
+    vector<vector<TH1*>> HistoList_eff_plots;
 
     TH1D* h_eff_P_nFD_1e_cut_demominator = (TH1D*)h_truth_P_nFD_ECALveto_1e_cut->Clone((std::string(h_truth_P_nFD_ECALveto_1e_cut->GetName()) + "_demominator").c_str());
     // TH1D* h_eff_P_nFD_1e_cut_demominator = (TH1D*)h_truth_P_n_1e_cut->Clone((std::string(h_truth_P_n_1e_cut->GetName()) + "_demominator").c_str());

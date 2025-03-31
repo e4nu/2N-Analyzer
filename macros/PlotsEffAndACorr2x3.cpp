@@ -9,8 +9,8 @@
 #include <TFile.h>
 #include <TTree.h>
 #include <TLorentzVector.h>
-#include <TH1D.h>
-#include <TH2D.h>
+#include <TH1.h>
+#include <TH2.h>
 #include <TLatex.h>
 #include <TChain.h>
 #include <TCanvas.h>
@@ -19,10 +19,10 @@
 #include <TApplication.h>
 #include <TROOT.h>
 
-#include "PlotsEffAndACorr2x3/PlotsACorr2x3Nucleon.h"
-#include "PlotsEffAndACorr2x3/PlotsACorr2x3Electron.h"
-#include "PlotsEffAndACorr2x3/PlotsEff2x3Nucleon.h"
-#include "PlotsEffAndACorr2x3/PlotsEff2x3Electron.h"
+#include "PlotsEffAndACorr2x3/PlotsACorr2x3Nucleon.cpp"
+#include "PlotsEffAndACorr2x3/PlotsACorr2x3Electron.cpp"
+#include "PlotsEffAndACorr2x3/PlotsEff2x3Nucleon.cpp"
+#include "PlotsEffAndACorr2x3/PlotsEff2x3Electron.cpp"
 
 using namespace std;
 

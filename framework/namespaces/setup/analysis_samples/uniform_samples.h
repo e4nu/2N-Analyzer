@@ -7,13 +7,11 @@
 
 #include <vector>
 
-// TODO: split into header and source files!
-
 namespace uniform_samples {
 
 #pragma region Uniform electron tester samples
 /* Uniform electron tester samples */
-inline void Config_Uniform_tester_e_samples(std::vector<std::string> &AnalyseFilePath_v, std::vector<std::string> &AnalyseFileSample_v, std::vector<std::string> &AnalyseFileDir_v,
+void Config_Uniform_tester_e_samples(std::vector<std::string> &AnalyseFilePath_v, std::vector<std::string> &AnalyseFileSample_v, std::vector<std::string> &AnalyseFileDir_v,
                                      std::vector<std::string> &AnalyseFile_v, std::string &AnalyseFilePath, std::string &AnalyseFileSample, std::string &AnalyseFileDir,
                                      std::string &AnalyseFile) {
     /* Uniform electron tester sample @ 2GeV */
@@ -55,7 +53,7 @@ inline void Config_Uniform_tester_e_samples(std::vector<std::string> &AnalyseFil
 /* Uniform samples @ 2GeV */
 
 /* Uniform 1e @ 2GeV */
-inline void Config_Uniform_1e_2GeV_samples(std::vector<std::string> &AnalyseFilePath_v, std::vector<std::string> &AnalyseFileSample_v, std::vector<std::string> &AnalyseFileDir_v,
+void Config_Uniform_1e_2GeV_samples(std::vector<std::string> &AnalyseFilePath_v, std::vector<std::string> &AnalyseFileSample_v, std::vector<std::string> &AnalyseFileDir_v,
                                     std::vector<std::string> &AnalyseFile_v, std::string &AnalyseFilePath, std::string &AnalyseFileSample, std::string &AnalyseFileDir,
                                     std::string &AnalyseFile) {
     std::string AnalyseFilePath0 = "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/2070MeV/OutPut_1e";
@@ -77,7 +75,7 @@ inline void Config_Uniform_1e_2GeV_samples(std::vector<std::string> &AnalyseFile
 }
 
 /* Uniform en @ 2GeV */
-inline void Config_Uniform_en_2GeV_samples(std::vector<std::string> &AnalyseFilePath_v, std::vector<std::string> &AnalyseFileSample_v, std::vector<std::string> &AnalyseFileDir_v,
+void Config_Uniform_en_2GeV_samples(std::vector<std::string> &AnalyseFilePath_v, std::vector<std::string> &AnalyseFileSample_v, std::vector<std::string> &AnalyseFileDir_v,
                                     std::vector<std::string> &AnalyseFile_v, std::string &AnalyseFilePath, std::string &AnalyseFileSample, std::string &AnalyseFileDir,
                                     std::string &AnalyseFile) {
     std::string AnalyseFilePath0 = "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/2070MeV_ConstPn/OutPut_en";
@@ -100,7 +98,7 @@ inline void Config_Uniform_en_2GeV_samples(std::vector<std::string> &AnalyseFile
 }
 
 /* Uniform ep @ 2GeV */
-inline void Config_Uniform_ep_2GeV_samples(std::vector<std::string> &AnalyseFilePath_v, std::vector<std::string> &AnalyseFileSample_v, std::vector<std::string> &AnalyseFileDir_v,
+void Config_Uniform_ep_2GeV_samples(std::vector<std::string> &AnalyseFilePath_v, std::vector<std::string> &AnalyseFileSample_v, std::vector<std::string> &AnalyseFileDir_v,
                                     std::vector<std::string> &AnalyseFile_v, std::string &AnalyseFilePath, std::string &AnalyseFileSample, std::string &AnalyseFileDir,
                                     std::string &AnalyseFile) {
     std::string AnalyseFilePath0 = "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/2070MeV/OutPut_ep";
@@ -126,7 +124,7 @@ inline void Config_Uniform_ep_2GeV_samples(std::vector<std::string> &AnalyseFile
 /* Uniform samples @ 4GeV */
 
 /* Uniform 1e @ 4GeV */
-inline void Config_Uniform_1e_4GeV_samples(std::vector<std::string> &AnalyseFilePath_v, std::vector<std::string> &AnalyseFileSample_v, std::vector<std::string> &AnalyseFileDir_v,
+void Config_Uniform_1e_4GeV_samples(std::vector<std::string> &AnalyseFilePath_v, std::vector<std::string> &AnalyseFileSample_v, std::vector<std::string> &AnalyseFileDir_v,
                                     std::vector<std::string> &AnalyseFile_v, std::string &AnalyseFilePath, std::string &AnalyseFileSample, std::string &AnalyseFileDir,
                                     std::string &AnalyseFile) {
     std::string AnalyseFilePath0 = "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/4029MeV/OutPut_1e";
@@ -148,7 +146,7 @@ inline void Config_Uniform_1e_4GeV_samples(std::vector<std::string> &AnalyseFile
 }
 
 /* Uniform en @ 4GeV */
-inline void Config_Uniform_en_4GeV_samples(std::vector<std::string> &AnalyseFilePath_v, std::vector<std::string> &AnalyseFileSample_v, std::vector<std::string> &AnalyseFileDir_v,
+void Config_Uniform_en_4GeV_samples(std::vector<std::string> &AnalyseFilePath_v, std::vector<std::string> &AnalyseFileSample_v, std::vector<std::string> &AnalyseFileDir_v,
                                     std::vector<std::string> &AnalyseFile_v, std::string &AnalyseFilePath, std::string &AnalyseFileSample, std::string &AnalyseFileDir,
                                     std::string &AnalyseFile) {
     AnalyseFilePath = "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/4029MeV_ConstPn/OutPut_en";
@@ -163,7 +161,7 @@ inline void Config_Uniform_en_4GeV_samples(std::vector<std::string> &AnalyseFile
 }
 
 /* Uniform ep @ 4GeV */
-inline void Config_Uniform_ep_4GeV_samples(std::vector<std::string> &AnalyseFilePath_v, std::vector<std::string> &AnalyseFileSample_v, std::vector<std::string> &AnalyseFileDir_v,
+void Config_Uniform_ep_4GeV_samples(std::vector<std::string> &AnalyseFilePath_v, std::vector<std::string> &AnalyseFileSample_v, std::vector<std::string> &AnalyseFileDir_v,
                                     std::vector<std::string> &AnalyseFile_v, std::string &AnalyseFilePath, std::string &AnalyseFileSample, std::string &AnalyseFileDir,
                                     std::string &AnalyseFile) {
     AnalyseFilePath = "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/4029MeV/OutPut_ep";
@@ -181,7 +179,7 @@ inline void Config_Uniform_ep_4GeV_samples(std::vector<std::string> &AnalyseFile
 /* Uniform samples @ 6GeV */
 
 /* Uniform 1e @ 6GeV */
-inline void Config_Uniform_1e_6GeV_samples(std::vector<std::string> &AnalyseFilePath_v, std::vector<std::string> &AnalyseFileSample_v, std::vector<std::string> &AnalyseFileDir_v,
+void Config_Uniform_1e_6GeV_samples(std::vector<std::string> &AnalyseFilePath_v, std::vector<std::string> &AnalyseFileSample_v, std::vector<std::string> &AnalyseFileDir_v,
                                     std::vector<std::string> &AnalyseFile_v, std::string &AnalyseFilePath, std::string &AnalyseFileSample, std::string &AnalyseFileDir,
                                     std::string &AnalyseFile) {
     AnalyseFilePath = "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/5986MeV/OutPut_1e";
@@ -195,7 +193,7 @@ inline void Config_Uniform_1e_6GeV_samples(std::vector<std::string> &AnalyseFile
 }
 
 /* Uniform en @ 6GeV */
-inline void Config_Uniform_en_6GeV_samples(std::vector<std::string> &AnalyseFilePath_v, std::vector<std::string> &AnalyseFileSample_v, std::vector<std::string> &AnalyseFileDir_v,
+void Config_Uniform_en_6GeV_samples(std::vector<std::string> &AnalyseFilePath_v, std::vector<std::string> &AnalyseFileSample_v, std::vector<std::string> &AnalyseFileDir_v,
                                     std::vector<std::string> &AnalyseFile_v, std::string &AnalyseFilePath, std::string &AnalyseFileSample, std::string &AnalyseFileDir,
                                     std::string &AnalyseFile) {
     AnalyseFilePath = "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/5986MeV_ConstPn/OutPut_en";
@@ -210,7 +208,7 @@ inline void Config_Uniform_en_6GeV_samples(std::vector<std::string> &AnalyseFile
 }
 
 /* Uniform ep @ 6GeV */
-inline void Config_Uniform_ep_6GeV_samples(std::vector<std::string> &AnalyseFilePath_v, std::vector<std::string> &AnalyseFileSample_v, std::vector<std::string> &AnalyseFileDir_v,
+void Config_Uniform_ep_6GeV_samples(std::vector<std::string> &AnalyseFilePath_v, std::vector<std::string> &AnalyseFileSample_v, std::vector<std::string> &AnalyseFileDir_v,
                                     std::vector<std::string> &AnalyseFile_v, std::string &AnalyseFilePath, std::string &AnalyseFileSample, std::string &AnalyseFileDir,
                                     std::string &AnalyseFile) {
     AnalyseFilePath = "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/5986MeV/OutPut_ep";

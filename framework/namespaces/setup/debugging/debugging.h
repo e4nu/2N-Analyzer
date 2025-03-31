@@ -9,21 +9,12 @@
 
 #include "../../../classes/Debugger/Debugger.cpp"
 #include "../../settings/debugging_settings/debugging_settings.h"
-// #if CMakeBuidIncludes
-//     #include "../../../classes/Debugger/Debugger.h"
-//     #include "../../settings/debugging_settings/debugging_settings.h"
-// #else
-//     #include "../../../classes/Debugger/Debugger.cpp"
-//     #include "../../settings/debugging_settings/debugging_settings.h"
-// #endif
 
 namespace debugging {
 using namespace debugging_settings;
 
 // CodeDebugger declaration ---------------------------------------------------------------------------------------------------------------------------------------------
-
 Debugger CodeDebugger;
-
 }  // namespace debugging
 
 #endif  // DEBUGGING_H

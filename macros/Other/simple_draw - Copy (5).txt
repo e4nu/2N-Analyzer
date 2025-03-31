@@ -48,8 +48,8 @@
     TLegendEntry *graph1_Entry = Comparison_legend->AddEntry(graph1, "xsec", "l");
     Comparison_legend->SetTextSize(0.03), Comparison_legend->SetTextAlign(12), Comparison_legend->Draw("same");
 
-    std::cout << "\n";
-    std::cout << "xsec(E_beam) = " << to_string(yValue) << "\n";
-    std::cout << "\n";
+    cout << "\n";
+    cout << "xsec(E_beam) = " << to_string(yValue) << "\n";
+    cout << "\n";
 
     c->SaveAs("Total_cross_section.png");

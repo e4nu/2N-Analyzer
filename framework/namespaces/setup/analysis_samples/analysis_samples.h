@@ -10,25 +10,23 @@
 #include "data_samples.h"
 #include "uniform_samples.h"
 
-// TODO: split into header and source files!
-
 namespace analysis_samples {
 using namespace data_samples;
 using namespace uniform_samples;
 
-inline std::vector<std::string> AnalyseFilePath_v, AnalyseFileSample_v, AnalyseFileDir_v, AnalyseFile_v;
-inline std::string AnalyseFilePath, AnalyseFileSample, AnalyseFileDir, AnalyseFile;
+std::vector<std::string> AnalyseFilePath_v, AnalyseFileSample_v, AnalyseFileDir_v, AnalyseFile_v;
+std::string AnalyseFilePath, AnalyseFileSample, AnalyseFileDir, AnalyseFile;
 
 // TODO: get rid of:
 // std::string &AnalyseFilePath, std::string &AnalyseFileSample, std::string &AnalyseFileDir, std::string &AnalyseFile
 
 // file_name definition -------------------------------------------------------------------------------------------------------------------------------------------------
 
-inline std::string file_name = "general_file";
+std::string file_name = "general_file";
 
 // HIPO files for Q2 study ----------------------------------------------------------------------------------------------------------------------------------------------
 
-inline void ConfigSampleChain() {
+void ConfigSampleChain() {
     // ==================================================================================================================================================================
     // Data runs
     // ==================================================================================================================================================================

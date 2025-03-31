@@ -2,8 +2,8 @@
 // Created by alons on 05/08/2024.
 //
 
-// #ifndef DATAANALYSER_H
-// #define DATAANALYSER_H
+#ifndef DATAANALYSER_H
+#define DATAANALYSER_H
 
 #include "DataAnalyser.h"
 
@@ -25,7 +25,7 @@ string DataAnalyser::ConfigureAnalyserMode(const std::string &FileType) {
     } else if (FileType == "hipo") {
         AnalyserMode = "Detector Simulation";
     } else {
-        std::cout << "\nCould not find file type!! Exiting...\n\n", exit(0);
+        cout << "\nCould not find file type!! Exiting...\n\n", exit(0);
     }
 
     return AnalyserMode;
@@ -34,16 +34,12 @@ string DataAnalyser::ConfigureAnalyserMode(const std::string &FileType) {
 // RunEventAnalyser functions ---------------------------------------------------------------------------------------------------------------------------------
 
 void DataAnalyser::RunEventAnalyser(const std::string &AnalyserMode, const std::string &AnalyseFilePath, const std::string &AnalyseFileSample, const std::string &AnalyseFile) {
-    if (AnalyserMode == "Detector Simulation") { EventAnalyser(AnalyseFilePath, AnalyseFileSample, AnalyseFile); }
+    if (AnalyserMode == "Truth level") {
+        gst g;
+        g.Loop();
+    } else if (AnalyserMode == "Detector Simulation") {
+        EventAnalyser(AnalyseFilePath, AnalyseFileSample, AnalyseFile);
+    }
+};
 
-    // TODO: add truth-level analyser to cmake build!
-
-    // if (AnalyserMode == "Truth level") {
-    //     gst g;
-    //     g.Loop();
-    // } else if (AnalyserMode == "Detector Simulation") {
-    //     EventAnalyser(AnalyseFilePath, AnalyseFileSample, AnalyseFile);
-    // }
-}
-
-// #endif  // DATAANALYSER_H
+#endif  // DATAANALYSER_H

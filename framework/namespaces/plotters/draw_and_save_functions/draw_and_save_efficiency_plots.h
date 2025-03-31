@@ -11,9 +11,8 @@
 #include <TDatabasePDG.h>
 #include <TF1.h>
 #include <TFile.h>
-#include <TFolder.h>
-#include <TH1D.h>
-#include <TH2D.h>
+#include <TH1.h>
+#include <TH2.h>
 #include <TLatex.h>
 #include <TLorentzVector.h>
 #include <TROOT.h>
@@ -37,9 +36,6 @@
 using namespace utilities;
 
 namespace draw_and_save_efficiency_plots {
-
-// DrawAndSaveEfficiencyPlots function ------------------------------------------------------------------------------------------------------------------------------
-
 void DrawAndSaveEfficiencyPlots(const std::string &SampleName, const hPlot1D &TLPlot, const hPlot1D &RPlot, TList *Histogram_list) {
     bool plot_errorbars = true;
     bool rebin_plots = false;

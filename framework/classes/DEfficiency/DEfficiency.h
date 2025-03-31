@@ -2,9 +2,9 @@
 // Created by alons on 08/07/2023.
 //
 
-#ifndef DEFFICIENCY_H
-#define DEFFICIENCY_H
-// #ifdef DEFFICIENCY_H
+// #ifndef DEFFICIENCY_H
+// #define DEFFICIENCY_H
+#ifdef DEFFICIENCY_H
 
 #include <TApplication.h>
 #include <TCanvas.h>
@@ -12,9 +12,8 @@
 #include <TDatabasePDG.h>
 #include <TF1.h>
 #include <TFile.h>
-#include <TFolder.h>
-#include <TH1D.h>
-#include <TH2D.h>
+#include <TH1.h>
+#include <TH2.h>
 #include <TLatex.h>
 #include <TLorentzVector.h>
 #include <TROOT.h>
@@ -31,7 +30,7 @@
 #include <typeinfo>
 #include <vector>
 
-// #include "../hData/hData.h"
+// #include "../hData/hData.cpp"
 // #include "../../namespaces/general_utilities/data_processor/data_processor.h"
 
 // #include "../hPlots/hPlot1D.cpp"

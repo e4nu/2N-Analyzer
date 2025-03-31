@@ -10,8 +10,8 @@
 #include <TFile.h>
 #include <TTree.h>
 #include <TLorentzVector.h>
-#include <TH1D.h>
-#include <TH2D.h>
+#include <TH1.h>
+#include <TH2.h>
 #include <TLatex.h>
 #include <TChain.h>
 #include <TCanvas.h>
@@ -58,7 +58,7 @@ int main(int argc, char ** argv)
   myCut.print_cuts();
   clas12root::HipoChain chain;
   for(int k = 6; k < argc; k++){
-    std::cout<<"Input file "<<argv[k]<<endl;
+    cout<<"Input file "<<argv[k]<<endl;
     chain.Add(argv[k]);
   }
   auto config_c12=chain.GetC12Reader();
@@ -70,8 +70,8 @@ int main(int argc, char ** argv)
   /////////////////////////////////////
   //Prepare histograms
   /////////////////////////////////////
-  std::vector<TH1*> hist_list_1;
-  std::vector<TH2*> hist_list_2;
+  vector<TH1*> hist_list_1;
+  vector<TH2*> hist_list_2;
 
   gStyle->SetTitleXSize(0.05);
   gStyle->SetTitleYSize(0.05);
@@ -597,7 +597,7 @@ int main(int argc, char ** argv)
 	h_mmiss_momT_p_Lead_CTOF->Fill(mmiss,p_L.Perp(),weight);
       }
   }
-  std::cout<<counter<<endl;
+  cout<<counter<<endl;
 
   outFile->cd();
   for(int i=0; i<hist_list_1.size(); i++){

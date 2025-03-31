@@ -7,8 +7,8 @@
 #include <TFile.h>
 #include <TTree.h>
 #include <TLorentzVector.h>
-#include <TH1D.h>
-#include <TH2D.h>
+#include <TH1.h>
+#include <TH2.h>
 #include <TLatex.h>
 #include <TChain.h>
 #include <TCanvas.h>
@@ -19,10 +19,10 @@
 
 #include "../../source/functions/GeneralFunctions.h"
 #include "../../source/constants.h"
-#include "Histofinder2D.h"
+#include "Histofinder2D.cpp"
 
 #if Independent2Ddraw
-#include "TitleAligner.h"
+#include "TitleAligner.cpp"
 #endif
 
 using namespace std;
@@ -82,14 +82,14 @@ void HistPlotter2D(TCanvas *HistogramCanvas, TList *MScThesisPlotsList, const ch
     ExamPresMode = true;
 #endif
 
-    std::cout << "\n\n";
+    cout << "\n\n";
 
     system(("mkdir -p " + SavePath).c_str());
 
     HistogramCanvas->Clear(); // Clear previous plot
 
     TFile *file = new TFile(filename);
-    if (!file) { std::cout << "\n\nHistPlotter2D: could not load root file! Exiting...\n", exit(0); }
+    if (!file) { cout << "\n\nHistPlotter2D: could not load root file! Exiting...\n", exit(0); }
 
     TH2D *Histogram2D;
 
@@ -115,7 +115,7 @@ void HistPlotter2D(TCanvas *HistogramCanvas, TList *MScThesisPlotsList, const ch
     const std::string Histogram2DNameCopy = Histogram2DName;
     int LineColor = 1;
     int LineWidth = 2;
-    std::vector<double> Histogram2DTitleSizes = {0.06, 0.0425, 0.0425, 0.0425}; // {TitleSize, LabelSizex, LabelSizey, LabelSizez}
+    vector<double> Histogram2DTitleSizes = {0.06, 0.0425, 0.0425, 0.0425}; // {TitleSize, LabelSizex, LabelSizey, LabelSizez}
     bool CenterTitle = true;
     bool ShowStats = false;
 

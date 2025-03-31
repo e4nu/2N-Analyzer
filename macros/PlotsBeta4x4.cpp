@@ -9,8 +9,8 @@ root -b -q PlotsBeta4x4.cpp
 #include <TFile.h>
 #include <TTree.h>
 #include <TLorentzVector.h>
-#include <TH1D.h>
-#include <TH2D.h>
+#include <TH1.h>
+#include <TH2.h>
 #include <TLatex.h>
 #include <TChain.h>
 #include <TCanvas.h>
@@ -25,7 +25,7 @@ root -b -q PlotsBeta4x4.cpp
 //#include "framework/classes/DSCuts/DSCuts.h"
 //#include "framework/classes/hPlots/hPlot1D.cpp"
 //#include "framework/constants.h"
-////#include "framework/functions/Math_func/poly34.h"
+////#include "framework/functions/Math_func/poly34.cpp"
 
 using namespace std;
 
@@ -79,10 +79,10 @@ void PlotsBeta4x4() {
     TH1D *Beta4Plot = (TH1D *) f->Get("h4 (1n, FD)");
 //    TH1D *Beta4Plot = (TH1D *) f->Get("FD neutrals (no PDG=0) #beta w/o PCAL/ECIN & w/ ECOUT (1n, FD)");
 
-    if (!Beta1Plot) { std::cout << "\n\nEmpty hist\n\n\n"; }
-    if (!Beta2Plot) { std::cout << "\n\nEmpty hist\n\n\n"; }
-    if (!Beta3Plot) { std::cout << "\n\nEmpty hist\n\n\n"; }
-    if (!Beta4Plot) { std::cout << "\n\nEmpty hist\n\n\n"; }
+    if (!Beta1Plot) { cout << "\n\nEmpty hist\n\n\n"; }
+    if (!Beta2Plot) { cout << "\n\nEmpty hist\n\n\n"; }
+    if (!Beta3Plot) { cout << "\n\nEmpty hist\n\n\n"; }
+    if (!Beta4Plot) { cout << "\n\nEmpty hist\n\n\n"; }
 
     Canvas4x4->cd(1);
     Canvas4x4->cd(1)->SetGrid();
@@ -150,7 +150,7 @@ void PlotsBeta4x4() {
 //    TH1D *Beta4Plot = (TH1D *) f->Get("FD neutrals (no PDG=0) #beta w/o PCAL/ECIN & w/ ECOUT (1n, FD)");
 
     if (!Beta2Plot) {
-        std::cout << "empty hist\n\n\n";
+        cout << "empty hist\n\n\n";
     }
 
     Canvas4x4->cd(1);
