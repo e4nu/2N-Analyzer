@@ -18,6 +18,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${ROOT_CXX_FLAGS} -O0 -ggdb")
 include_directories(
     ${ROOT_INCLUDE_DIRS}
     $ENV{HIPO}/include
+    $ENV{HIPO}/lib
     $ENV{CLAS12ROOT}/Clas12Root
     $ENV{CLAS12ROOT}/Clas12Banks
 )
