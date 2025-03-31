@@ -6,12 +6,18 @@
     #include "framework/namespaces/setup/code_setup/code_setup.h"
     //
     #include "framework/classes/DataAnalyser/DataAnalyser.h"
-    #include "framework/namespaces/general_utilities/basic_tools/basic_tools.h"
+
+    #if !defined(BASIC_TOOLS_H)
+        #include "framework/namespaces/general_utilities/basic_tools/basic_tools.h"
+    #endif
 #else
     #include "framework/namespaces/setup/code_setup/code_setup.cpp"
     //
     #include "framework/classes/DataAnalyser/DataAnalyser.cpp"
-    #include "framework/namespaces/general_utilities/basic_tools/basic_tools.cpp"
+
+    #if !defined(BASIC_TOOLS_H)
+        #include "framework/namespaces/general_utilities/basic_tools/basic_tools.cpp"
+    #endif
 #endif
 
 // using namespace std;
