@@ -47,13 +47,14 @@ echo ""
 
 echo "\033[35m- Running initial Setup -----------------------------------------------\033[0m"
 echo ""
-rm -rf build
+# rm -rf build
 # echo "rm -rf build"
-mkdir build && cd build
+cd build
 # echo "mkdir build && cd build"
-cmake ..
+# cmake ..
 # echo "cmake .."
 cmake --build .
+cd ..
 # echo "cmake --build ."
 echo ""
 echo "\033[35m- Building code -------------------------------------------------------\033[0m"

@@ -8,6 +8,7 @@
 #include <TLorentzVector.h>
 #include <TROOT.h>
 #include <TTree.h>
+#include <TStyle.h>
 
 #include <chrono>
 #include <cstdlib>
@@ -20,7 +21,10 @@ using namespace clas12;
 
 void SetLorentzVector(TLorentzVector& p4, clas12::region_part_ptr rp) { p4.SetXYZM(rp->par()->getPx(), rp->par()->getPy(), rp->par()->getPz(), p4.M()); }
 
-void Ex1_CLAS12ReaderChain() {
+int main() {
+    system("rm -rf OutPut");
+    system("mkdir OutPut");
+
     // some particles
     auto db = TDatabasePDG::Instance();
     TLorentzVector beam(0, 0, 10.6, 10.6);
@@ -36,11 +40,12 @@ void Ex1_CLAS12ReaderChain() {
     auto* hm2g = new TH1F("m2g", "m2g", 200, 0, 1);
     auto* hm2gCut = new TH1F("m2gCut", "m2g", 200, 0, 1);
 
-    gBenchmark->Start("timer");
+    // gBenchmark->Start("timer");
     int counter = 0;
 
     clas12root::HipoChain chain;
-    chain.Add("/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/2070MeV/OutPut_Tester_e_Tester_e/reconhipo/recon_Uniform_1e_sample_2070MeV_2113_torus0.5.hipo");
+    chain.Add("/cache/clas12/rg-m/production/pass1/2gev/C/dst/recon/015651/*.hipo");
+    // chain.Add("/cache/clas12/rg-m/production/pass1/2gev/C/dst/recon/015644/*.hipo");
     // chain.Add("/WHERE/IS/MY/HIPO/file2.hipo");
     // chain.Add("/WHERE/IS/MY/HIPO/file*.hipo");
     //////////////////////////////////////
@@ -64,7 +69,13 @@ void Ex1_CLAS12ReaderChain() {
     // this will point to the correct place when file changes
     auto& c12 = chain.C12ref();
 
+    int Limiter = 10000000;
+    int Num_Of_Events = 0;
+
     while (chain.Next()) {
+        ++Num_Of_Events;
+
+        if (Num_Of_Events > Limiter) { break; }
         // c12->event()->getStartTime();
 
         // Loop over all particles to see how to access detector info.
@@ -157,14 +168,25 @@ void Ex1_CLAS12ReaderChain() {
     auto bcharge = chain.TotalBeamCharge();
     cout << "Number of Events = " << counter << " total charge = " << bcharge << endl;
 
-    gBenchmark->Stop("timer");
-    gBenchmark->Print("timer");
-    TCanvas* can = new TCanvas();
-    can->Divide(2, 1);
-    can->cd(1);
-    hmiss->DrawCopy();
-    can->cd(2);
-    hm2g->DrawCopy();
+    // gBenchmark->Stop("timer");
+    // gBenchmark->Print("timer");
+    // Canvas definitions
+    TCanvas *c1 = new TCanvas("canvas", "canvas", 1000, 750);  // normal res
+    c1->SetGrid();
+    c1->SetBottomMargin(0.14);
+    c1->SetLeftMargin(0.16);
+    c1->SetRightMargin(0.12);
+    float DefStatX = gStyle->GetStatX(), DefStatY = gStyle->GetStatY();
+    c1->cd();
+
+    hmiss->Draw();
+    c1->SaveAs("OutPut/hmiss.png");
+    c1->Clear();
+
+    hm2g->Draw();
     hm2gCut->SetLineColor(2);
-    hm2gCut->DrawCopy("same");
+    c1->SaveAs("OutPut/hm2gCut.png");
+    c1->Clear();
+
+    return 0;
 }

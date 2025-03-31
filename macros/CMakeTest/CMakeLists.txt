@@ -1,21 +1,54 @@
-cmake_minimum_required(VERSION 3.0)
-project(myclas12root)
+cmake_minimum_required(VERSION 3.29)
+project(2N_Analysis_e4nu)
 
-set (CLAS12ROOT $ENV{CLAS12ROOT})
-set (exename myclas12root)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-include_directories(${CLAS12ROOT}/Clas12Banks)
-include_directories(${CLAS12ROOT}/Clas12Root)
-include_directories(${CLAS12ROOT}/hipo4)
+set(CLAS12ROOT $ENV{CLAS12ROOT})
+set(HIPO $ENV{HIPO})
+
+set(Analyser 2N_Analysis_e4nu)
 
 find_package(ROOT)
 list(APPEND CMAKE_PREFIX_PATH $ENV{ROOTSYS}) 
 include(${ROOT_USE_FILE})
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${ROOT_CXX_FLAGS}")
 
+# Include directories
+include_directories(
+    ${ROOT_INCLUDE_DIRS}
+    $ENV{HIPO}/include
+    $ENV{CLAS12ROOT}/Clas12Root
+    $ENV{CLAS12ROOT}/Clas12Banks
+)
 
-add_executable(${exename}  Ex1_CLAS12ReaderChain.C )
- 
-target_link_libraries(${exename} ${ROOT_LIBRARIES} -lEG)
-target_link_libraries(${exename} -lClas12Banks -lHipo4 -lClas12Root)
-target_link_libraries(${exename} -L${CLAS12ROOT}/lib)
+# Link directories
+link_directories(
+    $ENV{HIPO}/lib
+    $ENV{CLAS12ROOT}/lib
+)
+
+add_executable(${Analyser}  main.C)
+
+# Link libraries
+# target_link_libraries(${Analyser}
+#     hipo4
+#     Clas12Banks
+#     Clas12Root
+#     ${ROOT_LIBRARIES}
+# )
+
+
+
+target_link_libraries(${Analyser}
+    ${ROOT_LIBRARIES} -lEG 
+    -lHipo4
+    -lClas12Banks -lClas12Root
+    -L${CLAS12ROOT}/lib
+)
+
+
+
+# target_link_libraries(${Analyser} ${ROOT_LIBRARIES} -lEG)
+# target_link_libraries(${Analyser} -lClas12Banks -lHipo4 -lClas12Root)
+# target_link_libraries(${Analyser} -L${CLAS12ROOT}/lib)
