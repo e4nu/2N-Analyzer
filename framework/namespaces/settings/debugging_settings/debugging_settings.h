@@ -8,7 +8,7 @@
 #include <iostream>
 
 namespace debugging_settings {
-const bool DebuggerMode = true;
+const bool DebuggerMode = false;
 
 const bool GoodProtonsMonitorPlots = true;
 
