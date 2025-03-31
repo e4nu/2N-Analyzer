@@ -44,6 +44,7 @@ namespace code_setup {
 using namespace path_definitions;
 using namespace debugging;
 using namespace analysis_samples;
+using namespace PDF_canvas;
 // using namespace truth_analysis_variables;
 
 extern const std::string Ver;
