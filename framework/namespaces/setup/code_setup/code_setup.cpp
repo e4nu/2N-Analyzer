@@ -7,6 +7,8 @@
 namespace code_setup {
 const std::string Ver = "DetSim testings";
 
+std::string file_name = "general_file";
+
 double BEnergyToNucleus = 9999;  // TODO: check if I really need these variables
 
 int Target_pdg = 9999, Probe_pdg = 11;           // TODO: check if I really need these variables

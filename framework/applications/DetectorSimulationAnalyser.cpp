@@ -270,14 +270,14 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     /* Save plots to custom-named folders, to allow multi-sample runs at once. */
     const bool custom_cuts_naming = true;
     std::string run_plots_path = code_setup::PathDefinitions.plots_path;
-    std::string plots_log_save_Directory = code_setup::plots_log_save_Directory;
+    std::string run_plots_log_save_Directory = code_setup::plots_log_save_Directory;
     settings.SetCustomCutsNaming(custom_cuts_naming);
     settings.ConfigureStatuses(apply_cuts, clas12ana_particles, only_preselection_cuts, apply_chi2_cuts_1e_cut, only_electron_quality_cuts, apply_nucleon_cuts, Enable_FD_photons,
                                apply_nucleon_SmearAndCorr, apply_kinematical_cuts, apply_kinematical_weights, apply_fiducial_cuts, (Generate_Electron_AMaps || Generate_Nucleon_AMaps),
                                plot_and_fit_MomRes, VaryingDelta, Calculate_momResS2, Run_with_momResS2, momRes_test, Rec_wTL_ES, ZoomIn_On_mom_th_plots);
     settings.SetPaths(code_setup::PathDefinitions.WorkingDirectory, SampleName, run_plots_path, apply_cuts, apply_chi2_cuts_1e_cut, apply_nucleon_cuts);
     settings.GetPlotsPath(run_plots_path);
-    settings.GetPlotsLogSaveDirectory(run_code_setup::plots_log_save_Directory);
+    settings.GetPlotsLogSaveDirectory(run_plots_log_save_Directory);
 
     // Print out execution variables
     /* Print out execution variables (for self observation) */
@@ -21989,7 +21989,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
     // Saving setup to log file
     std::ofstream myLogFile;
-    myLogFile.open(run_code_setup::plots_log_save_Directory.c_str());
+    myLogFile.open(run_plots_log_save_Directory.c_str());
 
     myLogFile << "///////////////////////////////////////////////////////////////////////////\n";
     myLogFile << "// Run was with '" << file_name << "' setup mode\n";
