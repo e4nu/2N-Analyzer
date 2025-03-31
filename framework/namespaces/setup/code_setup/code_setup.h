@@ -5,27 +5,18 @@
 #ifndef CODE_SETUP_H
 #define CODE_SETUP_H
 
+#define MomResDebugMacro false
+#define FullAnalyser true
+#define IndependentCanvasPDF false
+
 #include <iostream>
+#include <vector>
 
 #include "../analysis_samples/analysis_samples.h"
 #include "../debugging/debugging.h"
 #include "../path_definitions/path_definitions.h"
 // #include "../truth_analysis_variables/truth_analysis_variables.h"
 
-#ifndef ANALYSER_CODESETUP_H
-#define ANALYSER_CODESETUP_H
-
-#include <vector>
-
-#define MomResDebugMacro false
-#define FullAnalyser true
-#define IndependentCanvasPDF false
-
-#include "../../setup/analysis_samples/analysis_samples.h"
-#include "../../setup/debugging/debugging.h"
-#include "../../setup/path_definitions/path_definitions.h"
-// #include "../../setup/truth_analysis_variables/truth_analysis_variables.h"
-//
 #include "../../general_utilities/basic_tools/basic_tools.h"
 #include "../../general_utilities/constants/constants.h"
 #include "../../plotters/PDF_canvas/PDF_canvas.h"
