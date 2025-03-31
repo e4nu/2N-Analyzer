@@ -137,7 +137,8 @@
         "debugger.h": "c",
         "analysis_samples.h": "c",
         "data_samples.h": "c",
-        "uniform_samples.h": "c"
+        "uniform_samples.h": "c",
+        "Ex1_CLAS12ReaderChain.C": "cpp"
     },
     "[jsonc]": {
         "editor.defaultFormatter": "vscode.json-language-features"
