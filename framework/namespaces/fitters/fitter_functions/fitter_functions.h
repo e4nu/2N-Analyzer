@@ -35,6 +35,12 @@ using namespace analysis_math;
 
 // FitFunction function --------------------------------------------------------------------------------------------------------------------------------------------------
 
+// NOTE:
+// TF1 in ROOT expects a function with exactly the signature:
+// Double_t func(Double_t* x, Double_t* par);
+// And since NumOfParameters is meant to be a constant for each fit function, we define it externally and set it before calling TF1 when deeded.
+static int NumOfParameters = 3;  // Define it externally
+
 Double_t FitFunction(Double_t *v, Double_t *par) {
     if (NumOfParameters != 2 && NumOfParameters != 3) {
         std::cerr << "fitter_functions::FitFunction: invalid number of parameters! Choose 2 or 3. Aborting..." << std::endl;
