@@ -4,7 +4,7 @@ source update_only.sh
 
 echo "\033[35m- Launching data-analysis code -------------------------------------\033[0m"
 echo ""
-clas12root -b -q ./main.c
+clas12root -b -q ./main.cpp
 # if ( "$IFARM_RUN" == "1" ) then
 #     echo "clas12root -b -q -DIFARM_RUN=$IFARM_RUN ./main.c"
 #     # If IFARM_RUN is 1, run the macro with WORK_DIR set
