@@ -153,7 +153,8 @@
         "tlcuts.cpp": "c",
         "pdf_canvas.h": "c",
         "directories.h": "c",
-        "settings.cpp": "c"
+        "settings.cpp": "c",
+        "code_setup.cpp": "c"
     },
     "[jsonc]": {
         "editor.defaultFormatter": "vscode.json-language-features"
