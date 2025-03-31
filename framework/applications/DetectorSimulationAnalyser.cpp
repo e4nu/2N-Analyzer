@@ -33,9 +33,9 @@
     #include "../framework/classes/ParticleID/ParticleID.cpp"
 #endif
 
-#include "../framework/classes/Settings/Settings.cpp"
-#include "../framework/classes/TLCuts/TLCuts.cpp"
-#include "../framework/functions/FillByInt.h"
+#include "../classes/Settings/Settings.cpp"
+#include "../classes/TLCuts/TLCuts.cpp"
+#include "../functions/FillByInt.h"
 // #include "../framework/functions/FitFunctions/BetaFit.h"
 // #include "../framework/functions/FitFunctions/BetaFitApprax.h"
 //
