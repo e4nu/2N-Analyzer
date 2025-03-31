@@ -17630,8 +17630,8 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     if (Angle_plots_master) {
         std::cout << "\033[33m\n\nPlotting Angle histograms...\n\n\033[0m";
 
-        CanvasPDF->Print(Form("%s[", Histogram_OutPDF));  // Open the PDF file
-        CanvasPDF->cd();
+        code_setup::CanvasPDF->Print(Form("%s[", Histogram_OutPDF));  // Open the PDF file
+        code_setup::CanvasPDF->cd();
 
         TLatex text;
         text.SetTextSize(0.05);
@@ -17639,15 +17639,15 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
         // text.DrawLatex(0.2, 0.8, "No Cuts");
 
         // Force canvas to recognize modifications
-        CanvasPDF->Modified();
-        CanvasPDF->Update();
+        code_setup::CanvasPDF->Modified();
+        code_setup::CanvasPDF->Update();
 
         // Save the current canvas content to the PDF
-        CanvasPDF->Print(Histogram_OutPDF);
+        code_setup::CanvasPDF->Print(Histogram_OutPDF);
 
         // End the multi-page PDF
-        CanvasPDF->Print(Form("%s]", Histogram_OutPDF));  // Close the PDF file
-        CanvasPDF->Print(Form("%s[", Histogram_OutPDF));  // Open the PDF file
+        code_setup::CanvasPDF->Print(Form("%s]", Histogram_OutPDF));  // Close the PDF file
+        code_setup::CanvasPDF->Print(Form("%s[", Histogram_OutPDF));  // Open the PDF file
         c1->cd();
 
         //  Theta_e plots (FD only) ---------------------------------------------------------------------------------------------------------------------------------------------
@@ -19249,8 +19249,8 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
             }
         }
 
-        CanvasPDF->cd();
-        CanvasPDF->Print(Form("%s]", Histogram_OutPDF));  // Close the PDF file
+        code_setup::CanvasPDF->cd();
+        code_setup::CanvasPDF->Print(Form("%s]", Histogram_OutPDF));  // Close the PDF file
         c1->cd();
     } else {
         std::cout << "\033[33m\n\nAngle plots are disabled by user.\n\n\033[0m";
