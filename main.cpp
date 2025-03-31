@@ -1,3 +1,5 @@
+#define CMakeBuidIncludes false
+
 #include <iostream>
 
 #include "framework/namespaces/setup/code_setup/code_setup.h"

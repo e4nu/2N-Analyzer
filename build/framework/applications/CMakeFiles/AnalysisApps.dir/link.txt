@@ -1,2 +1,0 @@
-/usr/bin/ar qc libAnalysisApps.a CMakeFiles/AnalysisApps.dir/DetectorSimulationAnalyser.cpp.o
-/usr/bin/ranlib libAnalysisApps.a

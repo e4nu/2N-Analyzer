@@ -6,8 +6,13 @@
 #define DATAANALYSER_H
 // #ifdef DATAANALYSER_H
 
-#include "../../applications/DetectorSimulationAnalyser.h"
+#if CMakeBuidIncludes
+    #include "../../applications/DetectorSimulationAnalyser.h"
 // #include "../../applications/framework/applications/TruthLevelAnalyser.cpp"
+#else
+    #include "../../applications/DetectorSimulationAnalyser.cpp"
+// #include "../../applications/framework/applications/TruthLevelAnalyser.cpp"
+#endif
 
 class DataAnalyser {
    private:

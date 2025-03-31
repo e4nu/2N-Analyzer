@@ -138,7 +138,19 @@
         "analysis_samples.h": "c",
         "data_samples.h": "c",
         "uniform_samples.h": "c",
-        "Ex1_CLAS12ReaderChain.C": "cpp"
+        "Ex1_CLAS12ReaderChain.C": "cpp",
+        "detectorsimulationanalyser.h": "c",
+        "detectorsimulationanalyser.cpp": "c",
+        "codesetup.h": "c",
+        "clas12ana.h": "c",
+        "amaps.h": "c",
+        "defficiency.cpp": "c",
+        "draw_and_save_functions.h": "c",
+        "hplot2d.h": "c",
+        "defficiency.h": "c",
+        "particleid.h": "c",
+        "momentumresolution.cpp": "c",
+        "tlcuts.cpp": "c"
     },
     "[jsonc]": {
         "editor.defaultFormatter": "vscode.json-language-features"
