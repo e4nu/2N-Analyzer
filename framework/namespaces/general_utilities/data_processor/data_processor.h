@@ -454,7 +454,7 @@ std::string SetXLabel(const std::string &Source) {
 
 // SetSaveDir function --------------------------------------------------------------------------------------------------------------------------------------------------
 
-std::string SetSaveDir(const std::string &Source, const std::string &BaseSaveDir, const std::string &Mod) {
+std::string SetSaveDir(const std::string &Source, const std::string &BaseSaveDir, const std::string &Mod = "") {
     std::string SaveDir, TestSaveDir;
 
     std::string Particle = GetParticleName(Source), ParticleLC = GetParticleNameLC(Source), FS = GetFS(Source), Type = GetType(Source);
@@ -486,7 +486,7 @@ std::string SetSaveDir(const std::string &Source, const std::string &BaseSaveDir
     }
 }
 
-void SetSaveDir(std::string &SaveDir, std::string &TestSaveDir, const std::string &RecTitle, const std::string &Histogram1DSaveNamePath, const std::string &PlotsT,
+void (std::string &SaveDir, std::string &TestSaveDir, const std::string &RecTitle,SetSaveDir const std::string &Histogram1DSaveNamePath, const std::string &PlotsT,
                 const std::string &DRegion, const std::string &Particle, const std::string &ParticleLC, const std::string &ParticleShort, const std::string &Type) {
     if (PlotsT == "FSRatio") {
         if (!basic_tools::FindSubstring(Type, "vs") && !basic_tools::FindSubstring(Type, "vs.") && !basic_tools::FindSubstring(Type, "VS") && !basic_tools::FindSubstring(Type, "VS.")) {
