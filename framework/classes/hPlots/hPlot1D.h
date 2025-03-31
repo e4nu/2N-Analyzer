@@ -2,9 +2,9 @@
 // Created by alons on 14/02/2023.
 //
 
-#ifndef HPLOT1D_H
-#define HPLOT1D_H
-// #ifdef HPLOT1D_H
+// #ifndef HPLOT1D_H
+// #define HPLOT1D_H
+#ifdef HPLOT1D_H
 
 #include <TApplication.h>
 #include <TCanvas.h>
