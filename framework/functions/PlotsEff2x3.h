@@ -22,7 +22,7 @@
 #include <iostream>
 #include <string>
 
-#include "../classes/hPlots/hPlot1D.h"
+#include "../classes/hPlots/hPlot1D.cpp"
 #include "EventProperties/GetParticleNameShort_rm.h"
 #include "EventProperties/GetParticleName_rm.h"
 #include "GeneralFunctions.h"

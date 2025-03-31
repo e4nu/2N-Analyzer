@@ -27,12 +27,12 @@
 #include <string>
 #include <tuple>
 
-#include "../analysis_math/analysis_math.h"
-#include "../basic_tools/basic_tools.h"
-#include "../constants/constants.h"
-#include "../data_processor/data_processor.h"
-#include "../histogram_functions/histogram_functions.h"
-#include "../lists/lists.h"
+#include "../analysis_math/analysis_math_include.cpp"
+#include "../basic_tools/basic_tools_include.h"
+#include "../constants/constants_include.h"
+#include "../data_processor/data_processor.cpp"
+#include "../histogram_functions/histogram_functions.cpp"
+#include "../lists/lists.cpp"
 #include "../reco_analysis_functions/reco_analysis_functions.h"
 // #include "../truth_analysis_functions/truth_analysis_functions.h"
 

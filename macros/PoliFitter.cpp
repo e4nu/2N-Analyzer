@@ -22,8 +22,8 @@
 //#include "../framework/classes/clas12ana/clas12ana.h"
 //#include "../framework/classes/DEfficiency/DEfficiency.h"
 //#include "../framework/classes/DSCuts/DSCuts.h"
-//#include "../framework/classes/hPlots/hPlot1D.h"
-//#include "../framework/classes/hPlots/hPlot2D.h"
+//#include "../framework/classes/hPlots/hPlot1D.cpp"
+//#include "../framework/classes/hPlots/hPlot2D.cpp"
 //#include "../framework/classes/MomentumResolution/MomentumResolution.h"
 //#include "../framework/classes/TLCuts/TLCuts.h"
 //#include "../framework/functions/AngleCalc/GetBinFromAng.h"
@@ -74,7 +74,7 @@ using namespace std;
 #include "../framework/functions/Math_func/poly34.h"
 #include "../framework/functions/findSubstring.h"
 #include "../framework/functions/to_string_with_precision.h"
-#include "../framework/constants.h"
+#include "../framework/constants_include.h"
 
 #include "../framework/classes/MomentumResolution/MomentumResolution.h"
 

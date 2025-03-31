@@ -5,7 +5,7 @@
 // #ifndef HPLOT1D_H
 // #define HPLOT1D_H
 
-#include "hPlot1D.h"
+#include "hPlot1D.cpp"
 
 // #include "../../namespaces/general_utilities/utilities/utilities.h"
 // #include "../../functions/GeneralFunctions.h"

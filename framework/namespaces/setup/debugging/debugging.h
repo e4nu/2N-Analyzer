@@ -7,8 +7,15 @@
 
 #include <iostream>
 
-#include "../../../classes/Debugger/Debugger.h"
-#include "../../settings/debugging_settings/debugging_settings.h"
+#include "../../../classes/Debugger/Debugger.cpp"
+#include "../../settings/debugging_settings/debugging_settings.cpp"
+// #if CMakeBuidIncludes
+//     #include "../../../classes/Debugger/Debugger.h"
+//     #include "../../settings/debugging_settings/debugging_settings.h"
+// #else
+//     #include "../../../classes/Debugger/Debugger.cpp"
+//     #include "../../settings/debugging_settings/debugging_settings.cpp"
+// #endif
 
 namespace debugging {
 using namespace debugging_settings;

@@ -12,8 +12,8 @@
 #include <string>
 #include <vector>
 
-#include "../basic_tools/basic_tools.h"
-#include "../constants/constants.h"
+#include "../basic_tools/basic_tools_include.h"
+#include "../constants/constants_include.h"
 //
 #include "polynomial_solver.h"
 //

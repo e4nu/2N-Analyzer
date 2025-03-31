@@ -13,22 +13,20 @@
 #include <map>
 #include <vector>
 
-#include "../../namespaces/general_utilities/analysis_math/analysis_math.h"
-#include "../../namespaces/general_utilities/constants/constants.h"
+#include "../../namespaces/general_utilities/analysis_math/analysis_math_include.cpp"
+#include "../../namespaces/general_utilities/constants/constants_include.h"
 #include "../../namespaces/general_utilities/reco_analysis_functions/reco_analysis_functions.h"
 // #include "../../functions/NeutronECAL_Cut_Veto.h"
 // #include "../../functions/PID_functions/GetFDNeutronP.h"
 #include "../DSCuts/DSCuts.h"
-#include "../hPlots/hPlot1D.h"
-#include "../hPlots/hPlot2D.h"
+#include "../hPlots/hPlot1D.cpp"
+#include "../hPlots/hPlot2D.cpp"
 //
-// #include "clas12reader.h"
-// #include "region_particle.h"
-
-// #include "../../includes/clas12_include.h"
+#include "clas12reader.h"
+#include "region_particle.h"
 
 #if !defined(MOMENTUMRESOLUTION_H)
-    #include "../MomentumResolution/MomentumResolution.h"
+    #include "../MomentumResolution/MomentumResolution.cpp"
 #endif
 
 // using namespace std;

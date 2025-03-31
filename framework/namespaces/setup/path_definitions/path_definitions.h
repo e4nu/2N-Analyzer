@@ -8,7 +8,12 @@
 #include <iostream>
 #include <string>
 
-#include "../../../structures/CodeDirectories/CodeDirectories.h"
+#include "../../../structures/CodeDirectories/CodeDirectories.cpp"
+// #if CMakeBuidIncludes
+// #include "../../../structures/CodeDirectories/CodeDirectories.h"
+// #else
+// #include "../../../structures/CodeDirectories/CodeDirectories.cpp"
+// #endif
 
 namespace path_definitions {
 extern const CodeDirectories PathDefinitions;

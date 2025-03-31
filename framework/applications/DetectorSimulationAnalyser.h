@@ -49,8 +49,8 @@
 //     #include "../classes/DEfficiency/DEfficiency.h"
 //     #include "../classes/DSCuts/DSCuts.h"
 //     #include "../classes/clas12ana/clas12ana.h"
-//     #include "../classes/hPlots/hPlot1D.h"
-//     #include "../classes/hPlots/hPlot2D.h"
+//     #include "../classes/hPlots/hPlot1D.cpp"
+//     #include "../classes/hPlots/hPlot2D.cpp"
 
 //     #if !defined(MOMENTUMRESOLUTION_H)
 //         #include "../classes/MomentumResolution/MomentumResolution.h"

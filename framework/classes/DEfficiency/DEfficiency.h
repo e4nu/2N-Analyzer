@@ -34,9 +34,9 @@
 // #include "../hData/hData.h"
 // #include "../../namespaces/general_utilities/data_processor/data_processor.h"
 
-// #include "../hPlots/hPlot1D.h"
+// #include "../hPlots/hPlot1D.cpp"
 #include "../../namespaces/general_utilities/utilities/utilities.h"
-#include "../hPlots/hPlot1D.h"
+#include "../hPlots/hPlot1D.cpp"
 // #include "../../functions/GeneralFunctions.h"
 // #include "../../functions/EventProperties/GetParticleName.h"
 // #include "../../functions/EventProperties/GetParticleNameLC.h"

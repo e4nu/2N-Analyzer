@@ -41,9 +41,9 @@
 
 #if MomResDebugMacro
     #include "../hData/hData.h"
-    #include "../hPlots/hPlot1D.h"
+    #include "../hPlots/hPlot1D.cpp"
 #else
-    #include "../hPlots/hPlot1D.h"
+    #include "../hPlots/hPlot1D.cpp"
 #endif
 
 #include "../../namespaces/general_utilities/utilities/utilities.h"

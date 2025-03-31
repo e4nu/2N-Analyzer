@@ -6,7 +6,13 @@
 #define CODEDIRECTORIES_H
 
 #include <string>
-#include "../../namespaces/general_utilities/basic_tools/basic_tools.h"
+
+#include "../../namespaces/general_utilities/basic_tools/basic_tools_include.h"
+// #if CMakeBuidIncludes
+//     #include "../../namespaces/general_utilities/basic_tools/basic_tools.h"
+// #else
+//     #include "../../namespaces/general_utilities/basic_tools/basic_tools.cpp"
+// #endif
 
 struct CodeDirectories {
     /* Histogram plots output directory */

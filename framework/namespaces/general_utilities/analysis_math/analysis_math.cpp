@@ -1,4 +1,5 @@
-#include "analysis_math.h"
+
+#include "analysis_math_include.h"
 
 namespace analysis_math {
 // RadToDeg function ----------------------------------------------------------------------------------------------------------------------------------------------------

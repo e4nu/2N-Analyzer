@@ -6,9 +6,7 @@
 //
 #include "framework/classes/DataAnalyser/DataAnalyser.cpp"
 
-#if !defined(BASIC_TOOLS_H)
-    #include "framework/namespaces/general_utilities/basic_tools/basic_tools.cpp"
-#endif
+#include "framework/namespaces/general_utilities/basic_tools/basic_tools_include.h"
 // #if CMakeBuidIncludes
 //     #include "framework/namespaces/setup/code_setup/code_setup.h"
 //     //

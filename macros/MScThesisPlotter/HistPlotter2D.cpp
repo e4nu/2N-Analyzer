@@ -18,7 +18,7 @@
 #include <TROOT.h>
 
 #include "../../source/functions/GeneralFunctions.h"
-#include "../../source/constants.h"
+#include "../../source/constants_include.h"
 #include "Histofinder2D.h"
 
 #if Independent2Ddraw
