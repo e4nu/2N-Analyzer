@@ -122,7 +122,7 @@ target_link_libraries(${Analyser} PRIVATE
     -L${CLAS12ROOT}/lib
 )
 
-target_link_libraries(${Analyser}
+target_link_libraries(${Analyser} PRIVATE 
     AnalysisDataStructures    
     AnalysisLibraries
     AnalysisTools
