@@ -99,7 +99,7 @@
         "utilities_reco_extentions.h": "c",
         "analysis_math_reco_extentions.h": "c",
         "reco_analysis_functions.h": "c",
-        "analysis_math_include.h": "c",
+        "analysis_math.h": "c",
         "lists.h": "c",
         "constants.h": "c",
         "dscuts.h": "c",

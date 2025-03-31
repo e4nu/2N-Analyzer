@@ -27,7 +27,7 @@
 #include <string>
 #include <tuple>
 
-#include "../analysis_math/analysis_math_include.h"
+#include "../analysis_math/analysis_math.h"
 #include "../basic_tools/basic_tools.h
 #include "../constants/constants.h"
 #include "../data_processor/data_processor.h"
