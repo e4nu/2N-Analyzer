@@ -486,7 +486,7 @@ std::string SetSaveDir(const std::string &Source, const std::string &BaseSaveDir
     }
 }
 
-void (std::string &SaveDir, std::string &TestSaveDir, const std::string &RecTitle,SetSaveDir const std::string, &Histogram1DSaveNamePath, const std::string &PlotsT,
+void (std::string &SaveDir, std::string &TestSaveDir, const std::string &RecTitle,SetSaveDir, const std::string &Histogram1DSaveNamePath, const std::string &PlotsT,
                 const std::string &DRegion, const std::string &Particle, const std::string &ParticleLC, const std::string &ParticleShort, const std::string &Type) {
     if (PlotsT == "FSRatio") {
         if (!basic_tools::FindSubstring(Type, "vs") && !basic_tools::FindSubstring(Type, "vs.") && !basic_tools::FindSubstring(Type, "VS") && !basic_tools::FindSubstring(Type, "VS.")) {
