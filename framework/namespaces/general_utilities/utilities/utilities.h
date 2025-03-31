@@ -28,7 +28,7 @@
 #include <tuple>
 
 #include "../analysis_math/analysis_math.h"
-#include "../basic_tools/basic_tools.h
+#include "../basic_tools/basic_tools.h"
 #include "../constants/constants.h"
 #include "../data_processor/data_processor.h"
 #include "../histogram_functions/histogram_functions.h"
