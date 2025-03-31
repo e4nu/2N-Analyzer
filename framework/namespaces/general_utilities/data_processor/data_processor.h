@@ -42,7 +42,7 @@ std::string GetFS(const std::string &Source) {
 
 // GetParticleName function ---------------------------------------------------------------------------------------------------------------------------------------------
 
-std::string GetParticleName(const std::string &Source, const bool &PluralParticles) {
+std::string GetParticleName(const std::string &Source, const bool &PluralParticles = false) {
     std::string ParticleName, FS = GetFS(Source);
 
     auto setParticleName = [&](const std::string &singular, const std::string &plural) { ParticleName = PluralParticles ? plural : singular; };
@@ -107,7 +107,7 @@ std::string GetParticleNameFromSubscript(const std::string &Source, const bool &
 
 // GetParticleNameLC function -------------------------------------------------------------------------------------------------------------------------------------------
 
-std::string GetParticleNameLC(const std::string &Source, const bool &PluralParticles) {
+std::string GetParticleNameLC(const std::string &Source, const bool &PluralParticles = false) {
     static const std::vector<std::tuple<std::string, std::string, std::string>> patterns = {{"neutrals|Neutrals|neut.|Neut.", "neut", "neut"},
                                                                                             {"Electron|electron", "electron", "electrons"},
                                                                                             {"Proton|proton", "proton", "protons"},
@@ -278,7 +278,7 @@ std::string GetType(const std::string &Source) {
 
 // GetDRegion function --------------------------------------------------------------------------------------------------------------------------------------------------
 
-std::string GetDRegion(const std::string &Source, const bool &ReturnGoingRegion) {
+std::string GetDRegion(const std::string &Source, const bool &ReturnGoingRegion = false) {
     static const std::vector<std::pair<std::string, std::string>> patterns = {{", FD)", "FD"}, {"FD ", "FD"}, {"FD", "FD"}, {", CD)", "CD"}, {"CD ", "CD"}, {"CD", "CD"}};
 
     for (const auto &pattern : patterns) {
@@ -851,7 +851,7 @@ std::string SetXAxisTitle(const std::string &RecTitle) {
 
 // SetYAxisTitle function -----------------------------------------------------------------------------------------------------------------------------------------------
 
-std::string SetYAxisTitle(const std::string &PlotT, const std::string &FinalState, const std::string &Numerator, const std::string &Denominator, const std::string &Title) {
+std::string SetYAxisTitle(const std::string &PlotT, const std::string &FinalState, const std::string &Numerator, const std::string &Denominator, const std::string &Title = "") {
     std::string YAxisTitle;
 
     std::string xLabelNum = Numerator.substr(0, Numerator.find_last_of('[') - 1);
@@ -968,7 +968,7 @@ std::string SetYAxisTitle(const std::string &PlotT, const std::string &FinalStat
 void SettingSaveNames(const std::string &SampleName, const std::string &Type, const std::string &Particle, const std::string &SaveDir, const std::string &TestSaveDir,
                       const std::string &PlotsT, std::string &Numerator_Clone_SaveName, std::string &Numerator_Clone_test_SaveName, std::string &Numerator_Clone_test_rebined_SaveName,
                       std::string &Denominator_Clone_SaveName, std::string &Denominator_Clone_test_SaveName, std::string &Denominator_Clone_test_rebined_SaveName, std::string &sNameFlag,
-                      std::string &PlotSaveName, const std::string &DRegion, const std::string &FinalState) {
+                      std::string &PlotSaveName, const std::string &DRegion = "", const std::string &FinalState = "") {
     std::string FinalState1, FinalState2;
 
     if (basic_tools::FindSubstring(SampleName, "sim")) {
