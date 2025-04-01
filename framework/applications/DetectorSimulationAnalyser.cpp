@@ -1044,8 +1044,8 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
     
     cout << "\n\nGenerate_Electron_AMaps = " << Generate_Electron_AMaps << "\n";
-    cout << "\n\nGenerate_Nucleon_AMaps = " << Generate_Nucleon_AMaps << "\n";
-    cout << "\n\nGenerate_WMaps = " << Generate_WMaps << "\n";
+    cout << "Generate_Nucleon_AMaps = " << Generate_Nucleon_AMaps << "\n";
+    cout << "Generate_WMaps = " << Generate_WMaps << "\n\n";
 
     // quit();
 
