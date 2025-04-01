@@ -2261,9 +2261,10 @@ void AMaps::ReadAMap(const char *filename, vector<vector<int>> &Loaded_particle_
 
                 while (getline(ss2, LineEntry, ':')) {
                     if (LineEntry.empty()) {
-                        cerr << "Warning: Empty entry at line " << lineNumber << " in file " << filename << ":\n"
-                             << "   -> " << tp << "\n";
-                        exit(0);  // Skip empty entries from "::"
+                        cerr << "AMaps::ReadAMap: Error! Empty entry at line " << lineNumber << " in file:\n"
+                             << filename << ":\n"
+                             << "   -> " << tp << "\nAborting...",
+                            exit(0);  // Abort if there are empty entries from "::"
                     }
 
                     try {
