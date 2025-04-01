@@ -2163,9 +2163,7 @@ void AMaps::ReadAMapLimits(const char *filename, vector<vector<double>> &Loaded_
 
 //<editor-fold desc="ReadAMapSlices function (AMaps)">
 void AMaps::ReadAMapSlices(const std::string &SampleName, const std::string &AcceptanceMapsDirectory, const std::string &Particle, const vector<vector<double>> &Loaded_particle_limits,
-                           vector<vector<vector<int>>
-
-                                  > &Loaded_Particle_AMap_Slices) {
+                           vector<vector<vector<int>>> &Loaded_Particle_AMap_Slices) {
     std::string ParticleShort;
 
     if (isElectron(Particle)) {
@@ -2183,6 +2181,8 @@ void AMaps::ReadAMapSlices(const std::string &SampleName, const std::string &Acc
 
         std::string TempFileName = ParticleShort + "_AMap_by_slice/" + ParticleShort + "_AMap_file_from_" + ToStringWithPrecision(Loaded_particle_limits.at(Slice).at(0), 2) + "_to_" +
                                    ToStringWithPrecision(Loaded_particle_limits.at(Slice).at(1), 2) + ".par";
+
+        std::cout << "\n\nReading " << Particle << " map: " << TempFileName << "\n";
 
         ReadAMap((AcceptanceMapsDirectory + SampleName + "/" + TempFileName).c_str(), Loaded_Particle_AMap_TempSlice);
 
@@ -2225,7 +2225,6 @@ void AMaps::ReadWMapSlices(const std::string &SampleName, const std::string &Acc
 
 //<editor-fold desc="ReadAMap function (AMaps)">
 /* A function that reads AMaps */
-
 void AMaps::ReadAMap(const char *filename, vector<vector<int>> &Loaded_particle_AMap) {
     bool PrintOut = true;
 
@@ -2258,7 +2257,19 @@ void AMaps::ReadAMap(const char *filename, vector<vector<int>> &Loaded_particle_
                     cout << "LineEntry = " << LineEntry << "\n\n";
                 }
 
-                while (getline(ss2, LineEntry, ':')) { col.push_back(stoi(LineEntry)); }
+                while (getline(ss2, LineEntry, ':')) {
+                    if (LineEntry.empty()) {
+                        cerr << "Warning: Empty entry at line " << lineNumber << " in file " << filename << ":\n"
+                             << "   -> " << tp << "\n";
+                        exit(0);  // Skip empty entries from "::"
+                    }
+
+                    try {
+                        col.push_back(stoi(LineEntry));  // Convert string to int safely
+                    } catch (const std::invalid_argument &e) { cerr << "Invalid integer found in file " << filename << ": " << LineEntry << "\n"; } catch (const std::out_of_range &e) {
+                        cerr << "Integer out of range in file " << filename << ": " << LineEntry << "\n";
+                    }
+                }
 
                 Loaded_particle_AMap.push_back(col);
             }
