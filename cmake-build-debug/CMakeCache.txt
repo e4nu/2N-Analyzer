@@ -32,6 +32,15 @@
 //Value Computed by CMake
 2N_Analyser_e4nu_SOURCE_DIR:STATIC=/Users/alon/Projects/2N-Analyser_e4nu
 
+//Value Computed by CMake
+2N_Analysis_e4nu_BINARY_DIR:STATIC=/Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug/framework/applications
+
+//Value Computed by CMake
+2N_Analysis_e4nu_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+2N_Analysis_e4nu_SOURCE_DIR:STATIC=/Users/alon/Projects/2N-Analyser_e4nu/framework/applications
+
 //Path to a program.
 CMAKE_ADDR2LINE:FILEPATH=CMAKE_ADDR2LINE-NOTFOUND
 
@@ -164,7 +173,7 @@ CMAKE_PROJECT_DESCRIPTION:STATIC=
 CMAKE_PROJECT_HOMEPAGE_URL:STATIC=
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=2N_Analyser_e4nu
+CMAKE_PROJECT_NAME:STATIC=2N_Analysis_e4nu
 
 //Path to a program.
 CMAKE_RANLIB:FILEPATH=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ranlib
@@ -434,7 +443,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=1
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=5
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP
@@ -480,7 +489,7 @@ CMAKE_UNAME:INTERNAL=/usr/bin/uname
 //ADVANCED property for variable: CMAKE_VERBOSE_MAKEFILE
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
 //Details about finding Vdt
-FIND_PACKAGE_MESSAGE_DETAILS_Vdt:INTERNAL=[/opt/homebrew/Cellar/root/6.34.04/include/root][/opt/homebrew/Cellar/root/6.34.04/lib/root/libvdt.dylib][v0.4()]
+FIND_PACKAGE_MESSAGE_DETAILS_Vdt:INTERNAL=[/opt/homebrew/Cellar/root/6.34.04/include/root][/opt/homebrew/Cellar/root/6.34.04/lib/root/libvdt.dylib][v0.3()]
 //Details about finding nlohmann_json
 FIND_PACKAGE_MESSAGE_DETAILS_nlohmann_json:INTERNAL=[/opt/homebrew/share/cmake/nlohmann_json/nlohmann_jsonConfig.cmake][v3.11.3(3.11.3)]
 //ADVANCED property for variable: ROOT_Core_LIBRARY

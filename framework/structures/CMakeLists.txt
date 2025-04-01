@@ -1,7 +1,9 @@
 set(STRUCTURES_SOURCES 
     /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/structures/CodeDirectories/CodeDirectories.cpp
+    /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/structures/DataSample/DataSample.cpp
     # /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/structures/DataSample/DataSample.cpp
     # /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/structures/Histogram1D_beta/Histogram1D.cpp
+    /w/hallb-scshelf2102/clas12/asportes/2N-Analyser/framework/structures/RunParameters/RunParameters.cpp
 )
 
 # Create a library
