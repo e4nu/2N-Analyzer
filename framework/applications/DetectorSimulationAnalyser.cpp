@@ -1056,8 +1056,8 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode);
 
     cout << "\n\nAMapsSettings.Generate_Electron_AMaps = " << AMapsSettings.Generate_Electron_AMaps << "\n";
-    cout << "AMapsSettings.Generate_Nucleon_AMaps = " << AMapsSettings.Generate_Nucleon_AMaps << "\n";
-    cout << "AMapsSettings.Generate_WMaps = " << AMapsSettings.Generate_WMaps << "\n\n";
+    cout << "Generate_Nucleon_AMaps = " << AMapsSettings.Generate_Nucleon_AMaps << "\n";
+    cout << "Generate_WMaps = " << AMapsSettings.Generate_WMaps << "\n\n";
 
     // quit();
 
@@ -22167,26 +22167,26 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     myLogFile << "ESSettings.ES_by_leading_FDneutron = " << basic_tools::BoolToString(ESSettings.ES_by_leading_FDneutron) << "\n\n";
 
     myLogFile << "-- AMaps settings ---------------------------------------------------------\n";
-    myLogFile << "AMapsSettings.Generate_Electron_AMaps = " << basic_tools::BoolToString(AMapsSettings.Generate_Electron_AMaps) << "\n";
-    myLogFile << "AMapsSettings.Generate_Nucleon_AMaps = " << basic_tools::BoolToString(AMapsSettings.Generate_Nucleon_AMaps) << "\n";
-    myLogFile << "AMapsSettings.Generate_WMaps = " << basic_tools::BoolToString(AMapsSettings.Generate_WMaps) << "\n";
-    myLogFile << "AMapsSettings.AMaps_calc_with_one_reco_electron = " << basic_tools::BoolToString(AMapsSettings.AMaps_calc_with_one_reco_electron) << "\n";
-    myLogFile << "AMapsSettings.P_e_bin_profile = " << AMapsSettings.P_e_bin_profile << "\n";
-    myLogFile << "AMapsSettings.P_nuc_bin_profile = " << AMapsSettings.P_nuc_bin_profile << "\n";
-    myLogFile << "AMapsSettings.Electron_single_slice_test = " << basic_tools::BoolToString(AMapsSettings.Electron_single_slice_test) << "\n";
-    myLogFile << "AMapsSettings.Nucleon_single_slice_test = " << basic_tools::BoolToString(AMapsSettings.Nucleon_single_slice_test) << "\n";
-    myLogFile << "AMapsSettings.TestSlices = {" << AMapsSettings.TestSlices.at(0) << ", " << AMapsSettings.TestSlices.at(1) << ", " << AMapsSettings.TestSlices.at(2) << "}\n\n";
+    myLogFile << "Generate_Electron_AMaps = " << basic_tools::BoolToString(AMapsSettings.Generate_Electron_AMaps) << "\n";
+    myLogFile << "Generate_Nucleon_AMaps = " << basic_tools::BoolToString(AMapsSettings.Generate_Nucleon_AMaps) << "\n";
+    myLogFile << "Generate_WMaps = " << basic_tools::BoolToString(AMapsSettings.Generate_WMaps) << "\n";
+    myLogFile << "AMaps_calc_with_one_reco_electron = " << basic_tools::BoolToString(AMapsSettings.AMaps_calc_with_one_reco_electron) << "\n";
+    myLogFile << "P_e_bin_profile = " << AMapsSettings.P_e_bin_profile << "\n";
+    myLogFile << "P_nuc_bin_profile = " << AMapsSettings.P_nuc_bin_profile << "\n";
+    myLogFile << "Electron_single_slice_test = " << basic_tools::BoolToString(AMapsSettings.Electron_single_slice_test) << "\n";
+    myLogFile << "Nucleon_single_slice_test = " << basic_tools::BoolToString(AMapsSettings.Nucleon_single_slice_test) << "\n";
+    myLogFile << "TestSlices = {" << AMapsSettings.TestSlices.at(0) << ", " << AMapsSettings.TestSlices.at(1) << ", " << AMapsSettings.TestSlices.at(2) << "}\n\n";
 
     myLogFile << "-- nRES settings ----------------------------------------------------------\n";
-    myLogFile << "MomResSettings.plot_and_fit_MomRes = " << basic_tools::BoolToString(MomResSettings.plot_and_fit_MomRes) << "\n";
-    myLogFile << "MomResSettings.Calculate_momResS2 = " << basic_tools::BoolToString(MomResSettings.Calculate_momResS2) << "\n";
-    myLogFile << "MomResSettings.DeltaSlices = " << MomResSettings.DeltaSlices << "\n";
-    myLogFile << "MomResSettings.VaryingDelta = " << basic_tools::BoolToString(MomResSettings.VaryingDelta) << "\n";
-    myLogFile << "MomResSettings.ForceSmallpResLimits = " << basic_tools::BoolToString(MomResSettings.ForceSmallpResLimits) << "\n";
-    myLogFile << "MomResSettings.SmearMode = " << MomResSettings.SmearMode << "\n";
-    myLogFile << "MomResSettings.CorrMode = " << MomResSettings.CorrMode << "\n";
-    myLogFile << "MomResSettings.Run_with_momResS2 = " << basic_tools::BoolToString(MomResSettings.Run_with_momResS2) << "\n";
-    myLogFile << "MomResSettings.momRes_test = " << basic_tools::BoolToString(MomResSettings.momRes_test) << "\n\n";
+    myLogFile << "plot_and_fit_MomRes = " << basic_tools::BoolToString(MomResSettings.plot_and_fit_MomRes) << "\n";
+    myLogFile << "Calculate_momResS2 = " << basic_tools::BoolToString(MomResSettings.Calculate_momResS2) << "\n";
+    myLogFile << "DeltaSlices = " << MomResSettings.DeltaSlices << "\n";
+    myLogFile << "VaryingDelta = " << basic_tools::BoolToString(MomResSettings.VaryingDelta) << "\n";
+    myLogFile << "ForceSmallpResLimits = " << basic_tools::BoolToString(MomResSettings.ForceSmallpResLimits) << "\n";
+    myLogFile << "SmearMode = " << MomResSettings.SmearMode << "\n";
+    myLogFile << "CorrMode = " << MomResSettings.CorrMode << "\n";
+    myLogFile << "Run_with_momResS2 = " << basic_tools::BoolToString(MomResSettings.Run_with_momResS2) << "\n";
+    myLogFile << "momRes_test = " << basic_tools::BoolToString(MomResSettings.momRes_test) << "\n\n";
 
     myLogFile << "-- Other run parameters ---------------------------------------------------\n";
     myLogFile << "Probe = " << Probe << " (PDG: " << Probe_pdg << ")" << "\n";
@@ -22635,7 +22635,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     }
 
     myLogFile << "\n-- Neutron correction -----------------------------------------------------" << "\n";
-    myLogFile << "MomResSettings.CorrMode = " << nRes.Get_MomResSettings.CorrMode() << "\n\n";
+    myLogFile << "CorrMode = " << nRes.Get_MomResSettings.CorrMode() << "\n\n";
     myLogFile << "Correction loading path:\n" << nRes.Get_Loaded_Corr_coefficients_path() << "\n\n";
 
     vector<double> Corr_coefficients_values = nRes.Get_Loaded_Corr_coefficients_values();
@@ -22644,7 +22644,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     for (int i = 0; i < Corr_coefficients_values.size(); i++) { myLogFile << Corr_coefficients_names.at(i) << " = " << Corr_coefficients_values.at(i) << "\n"; }
 
     myLogFile << "\n-- Proton smearing --------------------------------------------------------" << "\n";
-    myLogFile << "MomResSettings.SmearMode = " << nRes.Get_MomResSettings.SmearMode() << "\n\n";
+    myLogFile << "SmearMode = " << nRes.Get_MomResSettings.SmearMode() << "\n\n";
     myLogFile << "Smearing loading path:\n" << nRes.Get_Loaded_Std_coefficients_path() << "\n\n";
 
     vector<double> Std_coefficients_values = nRes.Get_Loaded_Smear_coefficients_values();
