@@ -364,17 +364,20 @@ AMaps::AMaps(const std::string &SampleName, const std::string &P_e_bin_profile, 
 //<editor-fold desc="AMaps loading constructor">
 AMaps::AMaps(const std::string &AcceptanceMapsDirectory, const std::string &SampleName, const double &beamE, const bool &Electron_single_slice_test, const bool &Nucleon_single_slice_test,
              const vector<int> &TestSlices) {
+    std::cout << "\n\nSetting iso samp names\n";
     std::string BeamE_str = basic_tools::GetBeamEnergyFromDouble(beamE);
     std::string Electron_source_folder = "Uniform_1e_sample_" + BeamE_str;
     std::string Proton_source_folder = "Uniform_ep_sample_" + BeamE_str;
     std::string Neutron_source_folder = "Uniform_en_sample_" + BeamE_str;
 
+    std::cout << "\n\nLoad slices and their limits\n";
     /* Load slices and their limits */
     ReadAMapLimits((AcceptanceMapsDirectory + Electron_source_folder + "/e_AMap_by_slice/e_slice_limits.par").c_str(), Loaded_ElectronMomSliceLimits);
     ReadAMapLimits((AcceptanceMapsDirectory + Proton_source_folder + "/p_AMap_by_slice/p_slice_limits.par").c_str(), Loaded_NucleonMomSliceLimits);
     // ReadAMapLimits((AcceptanceMapsDirectory + SampleName + "/e_AMap_by_slice/e_slice_limits.par").c_str(), Loaded_ElectronMomSliceLimits);
     // ReadAMapLimits((AcceptanceMapsDirectory + SampleName + "/p_AMap_by_slice/p_slice_limits.par").c_str(), Loaded_NucleonMomSliceLimits);
 
+    std::cout << "\n\nLoad separate maps\n";
     /* Load separate maps */
     ReadAMapSlices(Electron_source_folder, AcceptanceMapsDirectory, "Electron", Loaded_ElectronMomSliceLimits, Loaded_e_AMap_Slices);
     ReadWMapSlices(Electron_source_folder, AcceptanceMapsDirectory, "Electron", Loaded_ElectronMomSliceLimits, Loaded_e_WMap_Slices);  // TODO: figure out what to do with these
@@ -391,6 +394,7 @@ AMaps::AMaps(const std::string &AcceptanceMapsDirectory, const std::string &Samp
     // ReadWMapSlices(SampleName, AcceptanceMapsDirectory, "Neutron", Loaded_NucleonMomSliceLimits, Loaded_n_WMap_Slices);
     // ReadAMapSlices(SampleName, AcceptanceMapsDirectory, "Nucleon", Loaded_NucleonMomSliceLimits, Loaded_nuc_AMap_Slices);
 
+    std::cout << "\n\nLoad combined maps\n";
     /* Load combined maps */
     // TODO: figure out what to do with these
     ReadAMap((AcceptanceMapsDirectory + SampleName + "/e_AMap_file.par").c_str(), Loaded_e_AMap);

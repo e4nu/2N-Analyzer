@@ -39,7 +39,6 @@
 #include "CustomSliceLimits.h"
 // #include "clas12reader.h"
 
-// using namespace std;
 using namespace utilities;
 
 class AMaps {

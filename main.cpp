@@ -5,7 +5,6 @@
 #include "framework/classes/DataAnalyser/DataAnalyser.cpp"
 #include "framework/namespaces/general_utilities/basic_tools.h"
 
-// using namespace std;
 using namespace code_setup;
 
 void RunCode() {

@@ -31,7 +31,6 @@
 #include "../MomentumResolution/MomentumResolution.cpp"
 #endif
 
-// using namespace std;
 // using namespace clas12;
 using namespace constants;
 // using namespace analysis_math;

@@ -16,7 +16,6 @@
 
 #include "../../includes/clas12_include.h"
 
-// using namespace std;
 // using namespace clas12;
 using namespace utilities;
 

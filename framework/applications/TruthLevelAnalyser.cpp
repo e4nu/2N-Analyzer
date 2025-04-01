@@ -15,8 +15,6 @@
 
 #include "../classes/gst/gst.h"
 
-// using namespace std;
-
 void gst::Loop() {
     //    auto start = std::chrono::system_clock::now(); // Start counting running time
 

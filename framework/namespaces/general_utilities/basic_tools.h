@@ -18,8 +18,6 @@
 #include <sstream>  // for std::ostringstream
 #include <string>
 
-// // using namespace std;
-
 namespace basic_tools {
 
 // CheckSSHConnection function ------------------------------------------------------------------------------------------------------------------------------------------

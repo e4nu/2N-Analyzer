@@ -16,8 +16,6 @@
 // #include "analysis_math_reco_extentions.h"
 #include "poly_solver.cpp"
 
-// using namespace std;
-
 namespace analysis_math {
 using namespace poly_solver;
 

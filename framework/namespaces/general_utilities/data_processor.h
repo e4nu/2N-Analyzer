@@ -17,9 +17,6 @@
 #include <vector>
 
 #include "basic_tools.h"
-// #include "../utilities.h"
-
-// using namespace std;
 
 namespace data_processor {
 // using namespace basic_tools;

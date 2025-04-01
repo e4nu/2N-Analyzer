@@ -6,8 +6,6 @@
 // #define CUSTOMPLOTSDIRECTORY_H
 #ifdef CUSTOMPLOTSDIRECTORY_H
 
-// using namespace std;
-
 class CustomPlotsDirectory {
    private:
     std::string Plots_path;

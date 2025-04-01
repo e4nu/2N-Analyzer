@@ -42,7 +42,6 @@
 // #include "HipoChain.h"
 // #include "clas12reader.h"
 
-// using namespace std;
 // using namespace clas12;
 using namespace utilities;
 using namespace draw_and_save_functions;

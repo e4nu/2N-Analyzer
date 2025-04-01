@@ -39,7 +39,6 @@
 #include "../../namespaces/general_utilities/utilities.h"
 #include "../DSCuts/DSCuts.h"
 
-// using namespace std;
 using namespace utilities;
 
 class TLCuts {
