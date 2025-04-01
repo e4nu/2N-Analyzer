@@ -81,7 +81,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     /* Configure and get run parameters */
     ExperimentParameters Experiment(AnalyseFilePath, AnalyseFileSample);
     RunParameters parameters = RunParameters(Experiment, AnalyseFilePath, AnalyseFileSample);
-    ExperimentParameters Experiment(AnalyseFilePath, AnalyseFileSample);
+    // ExperimentParameters Experiment(AnalyseFilePath, AnalyseFileSample);
     // const std::string SampleName = Experiment.ConfigureSampleName(AnalyseFilePath, AnalyseFileSample);  // Configure SampleName from input
     // const std::string VaryingSampleName = Experiment.GetVaryingSampleName();                            // Get VaryingSampleName (configured from SampleName) - for data runs!
     // const double beamE = Experiment.GetBeamEnergy();                                                    // Configure beam energy from SampleName
