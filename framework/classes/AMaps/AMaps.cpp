@@ -2233,9 +2233,11 @@ void AMaps::ReadAMap(const char *filename, vector<vector<int>> &Loaded_particle_
 
     if (infile.is_open()) {
         std::string tp;
+        int lineNumber = 0;  // Track line number
 
         // getline(infile, tp) = read data from file object and put it into string.
         while (getline(infile, tp)) {
+            lineNumber++;  // Increment line number for each line read
             stringstream ss(tp);
             std::string parameter, parameter2;
             ss >> parameter;  // get cut identifier
