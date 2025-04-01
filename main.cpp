@@ -7,7 +7,7 @@
 
 using namespace code_setup;
 
-void RunCode() {
+void main() {
     code_setup::ConfigSampleChain();
     ConfigCanvasPDF();
 
