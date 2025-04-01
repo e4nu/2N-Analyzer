@@ -2226,10 +2226,20 @@ void AMaps::ReadWMapSlices(const std::string &SampleName, const std::string &Acc
 //<editor-fold desc="ReadAMap function (AMaps)">
 /* A function that reads AMaps */
 void AMaps::ReadAMap(const char *filename, vector<vector<int>> &Loaded_particle_AMap) {
-    bool PrintOut = true;
+    bool PrintOut = false;
+
+    std::string FileName_str;
+
+    if (basic_tool::fileExists(filename)) {
+        FileName_str = std::string(filename);
+    } else {
+        FileName_str = DefaultMapsDir;
+    }
+
+    const char *FileName = FileName_str.c_str();
 
     ifstream infile;
-    infile.open(filename);
+    infile.open(FileName);
 
     if (infile.is_open()) {
         std::string tp;
@@ -2251,7 +2261,7 @@ void AMaps::ReadAMap(const char *filename, vector<vector<int>> &Loaded_particle_
                 vector<int> col;
 
                 if (PrintOut) {
-                    cout << "\n\nfilename = " << filename << "\n";
+                    cout << "\n\nFileName = " << FileName << "\n";
                     // cout << "ss = " << ss << "\n";
                     cout << "parameter = " << parameter << "\n";
                     cout << "parameter2 = " << parameter2 << "\n";
@@ -2262,15 +2272,15 @@ void AMaps::ReadAMap(const char *filename, vector<vector<int>> &Loaded_particle_
                 while (getline(ss2, LineEntry, ':')) {
                     if (LineEntry.empty()) {
                         cerr << "AMaps::ReadAMap: Error! Empty entry at line " << lineNumber << " in file:\n"
-                             << filename << ":\n"
+                             << FileName << ":\n"
                              << "   -> " << tp << "\nAborting...",
                             exit(0);  // Abort if there are empty entries from "::"
                     }
 
                     try {
                         col.push_back(stoi(LineEntry));  // Convert string to int safely
-                    } catch (const std::invalid_argument &e) { cerr << "Invalid integer found in file " << filename << ": " << LineEntry << "\n"; } catch (const std::out_of_range &e) {
-                        cerr << "Integer out of range in file " << filename << ": " << LineEntry << "\n";
+                    } catch (const std::invalid_argument &e) { cerr << "Invalid integer found in file " << FileName << ": " << LineEntry << "\n"; } catch (const std::out_of_range &e) {
+                        cerr << "Integer out of range in file " << FileName << ": " << LineEntry << "\n";
                     }
                 }
 
@@ -2278,7 +2288,7 @@ void AMaps::ReadAMap(const char *filename, vector<vector<int>> &Loaded_particle_
             }
         }
     } else {
-        cout << "\n\nAMaps::ReadAMap: file:\n" << filename << "\nwas not found! Exiting...\n\n", exit(0);
+        cout << "\n\nAMaps::ReadAMap: file:\n" << FileName << "\nwas not found! Exiting...\n\n", exit(0);
     }
 }
 //</editor-fold>
