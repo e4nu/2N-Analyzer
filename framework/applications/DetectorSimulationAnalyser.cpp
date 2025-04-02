@@ -122,7 +122,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
     // /* FD neutrals settings */
     // const bool Enable_FD_photons = false;  // keep as false to decrease RES & DIS
-    // const bool Enable_FD_neutrons = true;  // keep as false to increse eff. plots
+    // const bool Enable_FD_neutrons = true;  // keep as false to increase eff. plots
     // const bool Count_FD_neurton_and_photon_hits = true;
 
     // // TODO: add this switch to event selection variables!
@@ -162,7 +162,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     */
 
     // Auto-disable variables
-    AMapsSettings.RefreshSettings(parameters, SampleName);
+    AMapsSettings.RefreshSettings(parameters);
     // if (parameters.isData) { Generate_Electron_AMaps = Generate_Nucleon_AMaps = Generate_WMaps = false; }
 
     // if (Generate_Electron_AMaps && Generate_Nucleon_AMaps) {
@@ -189,41 +189,41 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     // /* Settings that allow to disable/enable every cut individually */
 
     // // clas12ana cuts ---------------------------------------------------------------------------------------------------------------------------------------------------
-    // bool AnalysisCutSettings.AnalysisCutSettings = true;                   // master ON/OFF switch for applying cuts
-    // bool AnalysisCutSettings.clas12ana_particles = true;          // TODO: move form here!
-    // bool AnalysisCutSettings.only_preselection_cuts = false;      // keep as false for regular runs!
-    // bool AnalysisCutSettings.only_electron_quality_cuts = false;  // keep as false for regular runs!
+    // bool apply_cuts = true;                   // master ON/OFF switch for applying cuts
+    // bool clas12ana_particles = true;          // TODO: move form here!
+    // bool only_preselection_cuts = false;      // keep as false for regular runs!
+    // bool only_electron_quality_cuts = false;  // keep as false for regular runs!
 
     // /* Preselection cuts (event cuts) */
-    // bool AnalysisCutSettings.apply_preselection_cuts = true;               // master ON/OFF switch for preselection cuts
-    // bool AnalysisCutSettings.apply_Vz_e_cuts = true;                       // Electron vertex cuts
-    // bool AnalysisCutSettings.apply_Vz_cuts = true, AnalysisCutSettings.apply_dVz_cuts = true;  // Vertex cuts
-    // bool AnalysisCutSettings.apply_DC_e_fiducial_cuts = true;              // Electron DC fiducial (edge) cuts
-    // bool AnalysisCutSettings.apply_DC_fiducial_cuts = true;                // DC fiducial (edge) cuts
+    // bool apply_preselection_cuts = true;               // master ON/OFF switch for preselection cuts
+    // bool apply_Vz_e_cuts = true;                       // Electron vertex cuts
+    // bool apply_Vz_cuts = true, apply_dVz_cuts = true;  // Vertex cuts
+    // bool apply_DC_e_fiducial_cuts = true;              // Electron DC fiducial (edge) cuts
+    // bool apply_DC_fiducial_cuts = true;                // DC fiducial (edge) cuts
 
     // /* Electron quality cuts */
     // bool apply_electron_quality_cuts = true;  // master ON/OFF switch for eQC
-    // bool AnalysisCutSettings.apply_Nphe_cut = true;               // Number of photo-electrons in HTCC cut
-    // bool AnalysisCutSettings.apply_ECAL_SF_cuts = true;           // SF cut on both E_deb AND P_e
-    // bool AnalysisCutSettings.apply_ECAL_P_cuts = false;           // SF cut on P_e (keep as false for now!)
-    // bool AnalysisCutSettings.apply_ECAL_fiducial_cuts = true;     // ECAL edge cuts for other charged particles
-    // bool AnalysisCutSettings.apply_Electron_beta_cut = true;      // Electron beta cut
+    // bool apply_Nphe_cut = true;               // Number of photo-electrons in HTCC cut
+    // bool apply_ECAL_SF_cuts = true;           // SF cut on both E_deb AND P_e
+    // bool apply_ECAL_P_cuts = false;           // SF cut on P_e (keep as false for now!)
+    // bool apply_ECAL_fiducial_cuts = true;     // ECAL edge cuts for other charged particles
+    // bool apply_Electron_beta_cut = true;      // Electron beta cut
 
     // /* Chi2 cuts (= PID cuts) */
-    // bool AnalysisCutSettings.apply_chi2_cuts_1e_cut = true;
+    // bool apply_chi2_cuts_1e_cut = true;
 
     // // My analysis cuts ---------------------------------------------------------------------------------------------------------------------------------------------------
     // /* Nucleon cuts */
-    // bool AnalysisCutSettings.apply_nucleon_cuts = false;  // set as true to get good protons and calculate upper neutron momentum th.
+    // bool apply_nucleon_cuts = false;  // set as true to get good protons and calculate upper neutron momentum th.
 
     // /* Physical cuts */
-    // bool AnalysisCutSettings.apply_nucleon_physical_cuts = false;  // nucleon physical cuts master
+    // bool apply_nucleon_physical_cuts = false;  // nucleon physical cuts master
     // // TODO: automate adding upper mom. th. to nucleon cuts (for nRes calc)
-    // bool AnalysisCutSettings.apply_nBeta_fit_cuts = true;  // apply neutron upper mom. th.
-    // bool AnalysisCutSettings.apply_fiducial_cuts = false;
-    // bool AnalysisCutSettings.apply_kinematical_cuts = false;
-    // bool AnalysisCutSettings.apply_kinematical_weights = false;
-    // bool AnalysisCutSettings.apply_nucleon_SmearAndCorr = false;
+    // bool apply_nBeta_fit_cuts = true;  // apply neutron upper mom. th.
+    // bool apply_fiducial_cuts = false;
+    // bool apply_kinematical_cuts = false;
+    // bool apply_kinematical_weights = false;
+    // bool apply_nucleon_SmearAndCorr = false;
 
     // Custom cuts naming & print out execution variables
     CutSettings.Refresh(parameters, ESSettings, AMapsSettings, MomResSettings);
@@ -239,7 +239,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     //         AnalysisCutSettings = true;
 
     //         apply_preselection_cuts = true;
-    //         apply_Vz_e_cuts = true, apply_Vz_cuts = AnalysisCutSettings.apply_dVz_cuts = false;
+    //         apply_Vz_e_cuts = true, apply_Vz_cuts = apply_dVz_cuts = false;
     //         apply_DC_e_fiducial_cuts = true, apply_DC_fiducial_cuts = false;
 
     //         apply_electron_quality_cuts = apply_Nphe_cut = apply_ECAL_SF_cuts = true;
@@ -260,7 +260,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     //     // AMapsSettings.Generate_Electron_AMaps = true;
     // }
 
-    // if (!apply_preselection_cuts) { apply_Vz_e_cuts = apply_Vz_cuts = AnalysisCutSettings.apply_dVz_cuts = apply_DC_e_fiducial_cuts = apply_DC_fiducial_cuts = false; }
+    // if (!apply_preselection_cuts) { apply_Vz_e_cuts = apply_Vz_cuts = apply_dVz_cuts = apply_DC_e_fiducial_cuts = apply_DC_fiducial_cuts = false; }
 
     // if (!apply_electron_quality_cuts) { apply_Nphe_cut = apply_ECAL_SF_cuts = apply_ECAL_P_cuts = apply_ECAL_fiducial_cuts = apply_Electron_beta_cut = false; }
     // // else
@@ -276,16 +276,16 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     // if (!apply_nucleon_physical_cuts) {
     //     apply_nBeta_fit_cuts = apply_fiducial_cuts = apply_kinematical_cuts = apply_kinematical_weights = apply_nucleon_SmearAndCorr = false;
     // } else {
-    //     if (MomResSettings.Calculate_momResS2) { apply_nucleon_SmearAndCorr = true; }
+    //     if (Calculate_momResS2) { apply_nucleon_SmearAndCorr = true; }
     // }
 
     // if (AMapsSettings.Generate_WMaps) { apply_fiducial_cuts = false; }
 
-    // if (!MomResSettings.VaryingDelta) { apply_nucleon_SmearAndCorr = false; }
+    // if (!VaryingDelta) { apply_nucleon_SmearAndCorr = false; }
 
     // if (parameters.isData) {
     //     // no TL calculation, AMap,WMap generation nor nRes calculation when running on data
-    //     ESSettings.calculate_truth_level = AMapsSettings.Generate_WMaps = MomResSettings.plot_and_fit_MomRes = MomResSettings.momRes_test = false;
+    //     ESSettings.calculate_truth_level = AMapsSettings.Generate_WMaps = plot_and_fit_MomRes = momRes_test = false;
     // }
 
     // if (!ESSettings.calculate_truth_level) { AMapsSettings.AMaps_calc_with_one_reco_electron = ESSettings.fill_TL_plots = ESSettings.Rec_wTL_ES = false; }
@@ -293,16 +293,16 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     // if (ESSettings.Rec_wTL_ES) {
     //     /* if ESSettings.Rec_wTL_ES = true, there are no momentum thresholds, and we get an infinite loop in the nRes slice calculations!
     //        Additionally, there is no need to calculate the resolution and efficiency in the same time! */
-    //     MomResSettings.plot_and_fit_MomRes = false;
+    //     plot_and_fit_MomRes = false;
     // } else if (!ESSettings.Rec_wTL_ES) {
     //     /* if ESSettings.Rec_wTL_ES = false, keep fiducial cuts with the overlapping maps! (safety measure) */
     //     ESSettings.Calc_eff_overlapping_FC = true;
     // }
 
-    // if (!MomResSettings.plot_and_fit_MomRes) { MomResSettings.Calculate_momResS2 = false; }
+    // if (!plot_and_fit_MomRes) { Calculate_momResS2 = false; }
 
-    // if ((MomResSettings.Calculate_momResS2 && MomResSettings.Run_with_momResS2)  // Don't run calculate momResS2 and run on it at the same time
-    //     || (MomResSettings.Calculate_momResS2 && !MomResSettings.VaryingDelta)   // Don't run calculate momResS2 and small momentum slices at the same time
+    // if ((Calculate_momResS2 && Run_with_momResS2)  // Don't run calculate momResS2 and run on it at the same time
+    //     || (Calculate_momResS2 && !VaryingDelta)   // Don't run calculate momResS2 and small momentum slices at the same time
     // ) {
     //     std::cout << "\033[33m\n\nmomRes order error! Exiting...\n\n", exit(0);
     // }
@@ -318,8 +318,8 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     // settings.ConfigureStatuses(AnalysisCutSettings, clas12ana_particles, only_preselection_cuts, apply_chi2_cuts_1e_cut, only_electron_quality_cuts, apply_nucleon_cuts,
     // ESSettings.Enable_FD_photons,
     //                            apply_nucleon_SmearAndCorr, apply_kinematical_cuts, apply_kinematical_weights, apply_fiducial_cuts,
-    //                            (AMapsSettings.Generate_Electron_AMaps || AMapsSettings.Generate_Nucleon_AMaps), MomResSettings.plot_and_fit_MomRes, MomResSettings.VaryingDelta,
-    //                            MomResSettings.Calculate_momResS2, MomResSettings.Run_with_momResS2, MomResSettings.momRes_test, ESSettings.Rec_wTL_ES,
+    //                            (AMapsSettings.Generate_Electron_AMaps || AMapsSettings.Generate_Nucleon_AMaps), plot_and_fit_MomRes, VaryingDelta,
+    //                            Calculate_momResS2, Run_with_momResS2, momRes_test, ESSettings.Rec_wTL_ES,
     //                            ESSettings.ZoomIn_OCutManager.n_mom_th_plots);
     // settings.SetPaths(path_definitions::PathDefinitions.WorkingDirectory, parameters.SampleName, run_plots_path, AnalysisCutSettings, apply_chi2_cuts_1e_cut, apply_nucleon_cuts);
     // settings.GetPlotsPath(run_plots_path);
@@ -343,13 +343,13 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
     // Cuts output
     /* Print out the cuts within the run (for self-observation) */
-    if (!AnalysisCutSettings.AnalysisCutSettings) {
+    if (!AnalysisCutSettings.apply_cuts) {
         std::cout << "\033[33mCuts are disabled:\n";
     } else {
         std::cout << "\033[33mCuts are enabled:\n";
     }
 
-    std::cout << "\033[33mAnalysisCutSettings:\033[0m\t\t\t" << basic_tools::BoolToString(AnalysisCutSettings.AnalysisCutSettings) << "\n";
+    std::cout << "\033[33mAnalysisCutSettings:\033[0m\t\t\t" << basic_tools::BoolToString(AnalysisCutSettings.apply_cuts) << "\n";
     std::cout << "\033[33mclas12ana_particles:\033[0m\t\t" << basic_tools::BoolToString(AnalysisCutSettings.clas12ana_particles) << "\n";  // TODO: move form here!
     std::cout << "\033[33monly_preselection_cuts:\033[0m\t\t" << basic_tools::BoolToString(AnalysisCutSettings.only_preselection_cuts) << "\n";
     std::cout << "\033[33monly_electron_quality_cuts:\033[0m\t" << basic_tools::BoolToString(AnalysisCutSettings.only_electron_quality_cuts) << "\n\n";
@@ -361,7 +361,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     std::cout << "\033[33mapply_DC_e_fiducial_cuts:\033[0m\t" << basic_tools::BoolToString(AnalysisCutSettings.apply_DC_e_fiducial_cuts) << "\n";
     std::cout << "\033[33mapply_DC_fiducial_cuts:\033[0m\t\t" << basic_tools::BoolToString(AnalysisCutSettings.apply_DC_fiducial_cuts) << "\n\n";
 
-    std::cout << "\033[33mapply_electron_quality_cuts:\033[0m\t" << basic_tools::BoolToString(apply_electron_quality_cuts) << "\n";
+    std::cout << "\033[33mapply_electron_quality_cuts:\033[0m\t" << basic_tools::BoolToString(AnalysisCutSettings.apply_electron_quality_cuts) << "\n";
     std::cout << "\033[33mapply_Nphe_cut:\033[0m\t\t\t" << basic_tools::BoolToString(AnalysisCutSettings.apply_Nphe_cut) << "\n";
     std::cout << "\033[33mapply_ECAL_SF_cuts:\033[0m\t\t" << basic_tools::BoolToString(AnalysisCutSettings.apply_ECAL_SF_cuts) << "\n";
     std::cout << "\033[33mapply_ECAL_P_cuts:\033[0m\t\t" << basic_tools::BoolToString(AnalysisCutSettings.apply_ECAL_P_cuts) << "\n";
@@ -939,7 +939,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     double Chi2_boundary = 20;
     //    double Chi2_boundary = 30;
 
-    if (AnalysisCutSettings.AnalysisCutSettings) { Chi2_boundary = 9; }
+    if (AnalysisCutSettings.apply_cuts) { Chi2_boundary = 9; }
 
     /* Vertex boundaries */
     double Vertex_boundary = 20., Vertex_uboundary = Vertex_boundary, Vertex_lboundary = -Vertex_boundary;
@@ -949,7 +949,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     double dV_boundary_FD = dV_boundary, dV_uboundary_FD = dV_uboundary, dV_lboundary_FD = dV_lboundary;
     double dV_boundary_CD = dV_boundary, dV_uboundary_CD = dV_uboundary, dV_lboundary_CD = dV_lboundary;
 
-    if (AnalysisCutSettings.AnalysisCutSettings) {
+    if (AnalysisCutSettings.apply_cuts) {
         double dVertex_boundary = CutManager.Vz_cut.GetUpperCut() - CutManager.Vz_cut.GetLowerCut();
         double dVertex_boundary_FD = CutManager.Vz_cut_FD.GetUpperCut() - CutManager.Vz_cut_FD.GetLowerCut(),
                dVertex_boundary_CD = CutManager.Vz_cut_CD.GetUpperCut() - CutManager.Vz_cut_CD.GetLowerCut();
@@ -1001,7 +1001,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
     double Beta_boundary_const = 3., Beta_boundary = 3., P_boundary = parameters.beamE * 1.425;
 
-    if (AnalysisCutSettings.AnalysisCutSettings) {
+    if (AnalysisCutSettings.apply_cuts) {
         Beta_boundary = 1.25;
         P_boundary = parameters.beamE * 1.1;
     }
@@ -1206,7 +1206,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     // Nphe plots (1e cut, FD)
     hPlot1D hNphe_1e_cut_BC_FD, hNphe_1e_cut_AC_FD;
 
-    if (!AnalysisCutSettings.AnalysisCutSettings) {
+    if (!AnalysisCutSettings.apply_cuts) {
         hNphe_1e_cut_BC_FD = hPlot1D("1e cut", "", "N_{phe} in HTCC BC", "#Photo-electrons in HTCC - N_{phe} - BC", "N_{phe}", directories.Nphe_Directory_map["Nphe_1e_cut_BC_Directory"],
                                      "01_Nphe_1e_cut_BC", 0, Nphe_boundary, numTH1Dbins);
         hNphe_1e_cut_AC_FD = hPlot1D("1e cut", "", "N_{phe} in HTCC AC", "#Photo-electrons in HTCC - N_{phe} - AC", "N_{phe}", directories.Nphe_Directory_map["Nphe_1e_cut_AC_Directory"],
@@ -1671,7 +1671,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     // SF plots (1e cut, FD)
     hPlot1D hSF_1e_cut_BC_FD, hSF_1e_cut_AC_FD;
 
-    if (!AnalysisCutSettings.AnalysisCutSettings) {
+    if (!AnalysisCutSettings.apply_cuts) {
         hSF_1e_cut_BC_FD = hPlot1D("1e cut", "FD", "SF BC", "Sampling fraction f_{e} - before cuts", "f_{e} = (E_{PCAL} + E_{IN} + E_{OUT})/P_{e}",
                                    directories.SF_Directory_map["SF_1e_cut_BC_Directory"], "01_SF_1e_cut_before_SF_cuts", SF_lboundary, SF_uboundary, numTH1Dbins);
         hSF_1e_cut_AC_FD = hPlot1D("1e cut", "FD", "SF AC", "Sampling fraction f_{e} - after cuts", "f_{e} = (E_{PCAL} + E_{IN} + E_{OUT})/P_{e}",
@@ -1684,7 +1684,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     // SF vs. P plots (1e cut, FD)
     hPlot2D hSF_VS_P_e_1e_cut_BC_FD, hSF_VS_P_e_1e_cut_AC_FD;
 
-    if (!AnalysisCutSettings.AnalysisCutSettings) {
+    if (!AnalysisCutSettings.apply_cuts) {
         hSF_VS_P_e_1e_cut_BC_FD = hPlot2D("1e cut", "FD", "SF vs. P_{e} BC", "Sampling fraction f_{e} vs. P_{e} - before cuts", "P_{e} [GeV/c]",
                                           "f_{e} = (E_{PCAL} + E_{IN} + E_{OUT})/P_{e}", directories.SF_Directory_map["SF_VS_P_e_1e_cut_BC_Directory"], "01_SF_VS_P_e_1e_cut_BC_FD", 0,
                                           parameters.beamE * 1.1, SF_lboundary, SF_uboundary, numTH2Dbins, numTH2Dbins);
@@ -1763,7 +1763,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     hPlot2D hWcal_VS_EoP_1e_cut_BC_PCAL, hWcal_VS_EoP_1e_cut_AC_PCAL;
     hPlot2D hUcal_VS_EoP_1e_cut_BC_PCAL, hUcal_VS_EoP_1e_cut_AC_PCAL;  // TODO: add this to all final states
 
-    if (!AnalysisCutSettings.AnalysisCutSettings) {
+    if (!AnalysisCutSettings.apply_cuts) {
         hVcal_VS_EoP_1e_cut_BC_PCAL =
             hPlot2D("1e cut", "PCAL", "Vcal vs. SF BC", "ECAL V coordinate vs. SF - before cuts", "ECAL V coordinate [cm]", "Sampling Fraction (SF)",
                     directories.Fiducial_Directory_map["Edge_1e_BC_PCAL_Directory"], "01_Vcal_VS_EoP_PCAL_1e_cut_BC", 0, 50, SF_lboundary, SF_uboundary, numTH2Dbins, numTH2Dbins);
@@ -9579,7 +9579,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     // Setting and loading cuts (via clas12ana)
     clas12ana clasAna;
 
-    if (AnalysisCutSettings.AnalysisCutSettings) {
+    if (AnalysisCutSettings.apply_cuts) {
         // Cuts on electrons only:
         if (AnalysisCutSettings.apply_ECAL_SF_cuts) {
             // making f_ecalSFCuts = true
@@ -11788,14 +11788,14 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
         // Testing electron cuts
         /* Here we plot cut histograms:
-         * If cuts are turned off (AnalysisCutSettings.AnalysisCutSettings == false) - we plot each cut parameter before and after the cut.
-         * If cuts are applied (AnalysisCutSettings.AnalysisCutSettings), we plot the parameters for the 1e cut only */
+         * If cuts are turned off (AnalysisCutSettings.apply_cuts == false) - we plot each cut parameter before and after the cut.
+         * If cuts are applied (AnalysisCutSettings.apply_cuts), we plot the parameters for the 1e cut only */
 
         // Testing cuts
         /* Testing SF cuts */
         double EoP_e = (electrons[0]->cal(clas12::PCAL)->getEnergy() + electrons[0]->cal(ECIN)->getEnergy() + electrons[0]->cal(ECOUT)->getEnergy()) / P_e_1e_cut;
 
-        if (!AnalysisCutSettings.AnalysisCutSettings) {
+        if (!AnalysisCutSettings.apply_cuts) {
             /* SF plots before cuts */
             hSF_1e_cut_BC_FD.hFill(EoP_e, Weight), hSF_VS_P_e_1e_cut_BC_FD.hFill(P_e_1e_cut, EoP_e, Weight);
 
@@ -11808,7 +11808,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
         }
 
         /* Testing fiducial cuts */
-        if (!AnalysisCutSettings.AnalysisCutSettings) {
+        if (!AnalysisCutSettings.apply_cuts) {
             /* Fiducial plots before cuts */
             hVcal_VS_EoP_1e_cut_BC_PCAL.hFill(electrons[0]->cal(clas12::PCAL)->getLv(), EoP_e, Weight);
             hWcal_VS_EoP_1e_cut_BC_PCAL.hFill(electrons[0]->cal(clas12::PCAL)->getLw(), EoP_e, Weight);
@@ -11831,7 +11831,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
         /* Testing Nphe cuts */
         int Nphe = electrons[0]->che(clas12::HTCC)->getNphe();
 
-        if (!AnalysisCutSettings.AnalysisCutSettings) {
+        if (!AnalysisCutSettings.apply_cuts) {
             /* Nphe plots before cuts */
             hNphe_1e_cut_BC_FD.hFill(Nphe, Weight);
 
@@ -16443,7 +16443,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
         //  Nphe plots ----------------------------------------------------------------------------------------------------------------------------------------------------------
 
         // Nphe plots (1e cut, FD)
-        if (!AnalysisCutSettings.AnalysisCutSettings) {
+        if (!AnalysisCutSettings.apply_cuts) {
             hNphe_1e_cut_BC_FD.hDrawAndSave(parameters.SampleName, c1, plots, Histogram_OutPDF, norm_Nphe_plots, true, 1., clasAna.getNpheCuts(), 9999, 0, false);
             hNphe_1e_cut_AC_FD.hDrawAndSave(parameters.SampleName, c1, plots, Histogram_OutPDF, norm_Nphe_plots, true, 1., clasAna.getNpheCuts(), 9999, 0, false);
         } else {
@@ -16504,79 +16504,79 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
         // Chi2 plots (1e cut)
         hChi2_Electron_1e_cut_FD.hDrawAndSave(parameters.SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., 9999, 9999, 0, false);
 
-        if (!AnalysisCutSettings.AnalysisCutSettings && !AnalysisCutSettings.apply_chi2_cuts_1e_cut) {
+        if (!AnalysisCutSettings.apply_cuts && !AnalysisCutSettings.apply_chi2_cuts_1e_cut) {
             /* No cuts are applied. Plot without cut limits or fit */
             hChi2_Proton_1e_cut_CD.hDrawAndSave(parameters.SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., 9999, 9999, 0, false);
             hChi2_Proton_1e_cut_FD.hDrawAndSave(parameters.SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., 9999, 9999, 0, false);
-        } else if (AnalysisCutSettings.AnalysisCutSettings && !AnalysisCutSettings.apply_chi2_cuts_1e_cut) {
+        } else if (AnalysisCutSettings.apply_cuts && !AnalysisCutSettings.apply_chi2_cuts_1e_cut) {
             /* Do Gaussian fit if not applying chi2 cuts */
             hChi2_Proton_1e_cut_CD.hDrawAndSaveWFit(parameters.SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., CutManager.Chi2_Proton_cuts_CD.FitStdFactor,
                                                     CutManager.Chi2_Proton_cuts_CD.Cuts.at(1), CutManager.Chi2_Proton_cuts_CD.Cuts.at(2), CutManager.Chi2_Proton_cuts_CD.Cuts.at(0), true);
             hChi2_Proton_1e_cut_FD.hDrawAndSaveWFit(parameters.SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., CutManager.Chi2_Proton_cuts_FD.FitStdFactor,
                                                     CutManager.Chi2_Proton_cuts_FD.Cuts.at(1), CutManager.Chi2_Proton_cuts_FD.Cuts.at(2), CutManager.Chi2_Proton_cuts_FD.Cuts.at(0), true);
-        } else if (AnalysisCutSettings.AnalysisCutSettings && AnalysisCutSettings.apply_chi2_cuts_1e_cut) {
+        } else if (AnalysisCutSettings.apply_cuts && AnalysisCutSettings.apply_chi2_cuts_1e_cut) {
             hChi2_Proton_1e_cut_CD.hDrawAndSave(parameters.SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., -CutManager.Chi2_Proton_cuts_CD.Cuts.at(2),
                                                 CutManager.Chi2_Proton_cuts_CD.Cuts.at(2), CutManager.Chi2_Proton_cuts_CD.Cuts.at(0), true);
             hChi2_Proton_1e_cut_FD.hDrawAndSave(parameters.SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., -CutManager.Chi2_Proton_cuts_FD.Cuts.at(2),
                                                 CutManager.Chi2_Proton_cuts_FD.Cuts.at(2), CutManager.Chi2_Proton_cuts_FD.Cuts.at(0), true);
         }
 
-        if (!AnalysisCutSettings.AnalysisCutSettings && !AnalysisCutSettings.apply_chi2_cuts_1e_cut) {
+        if (!AnalysisCutSettings.apply_cuts && !AnalysisCutSettings.apply_chi2_cuts_1e_cut) {
             /* No cuts are applied. Plot without cut limits or fit */
             hChi2_Kplus_1e_cut_CD.hDrawAndSave(parameters.SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., 9999, 9999, 0, false);
             hChi2_Kplus_1e_cut_FD.hDrawAndSave(parameters.SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., 9999, 9999, 0, false);
-        } else if (AnalysisCutSettings.AnalysisCutSettings && !AnalysisCutSettings.apply_chi2_cuts_1e_cut) {
+        } else if (AnalysisCutSettings.apply_cuts && !AnalysisCutSettings.apply_chi2_cuts_1e_cut) {
             /* Do Gaussian fit if not applying chi2 cuts */
             hChi2_Kplus_1e_cut_CD.hDrawAndSaveWFit(parameters.SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., CutManager.Chi2_Kplus_cuts_CD.FitStdFactor,
                                                    CutManager.Chi2_Kplus_cuts_CD.Cuts.at(1), CutManager.Chi2_Kplus_cuts_CD.Cuts.at(2), CutManager.Chi2_Kplus_cuts_CD.Cuts.at(0), true);
             hChi2_Kplus_1e_cut_FD.hDrawAndSaveWFit(parameters.SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., CutManager.Chi2_Kplus_cuts_FD.FitStdFactor,
                                                    CutManager.Chi2_Kplus_cuts_FD.Cuts.at(1), CutManager.Chi2_Kplus_cuts_FD.Cuts.at(2), CutManager.Chi2_Kplus_cuts_FD.Cuts.at(0), true);
-        } else if (AnalysisCutSettings.AnalysisCutSettings && AnalysisCutSettings.apply_chi2_cuts_1e_cut) {
+        } else if (AnalysisCutSettings.apply_cuts && AnalysisCutSettings.apply_chi2_cuts_1e_cut) {
             hChi2_Kplus_1e_cut_CD.hDrawAndSave(parameters.SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., -CutManager.Chi2_Kplus_cuts_CD.Cuts.at(2),
                                                CutManager.Chi2_Kplus_cuts_CD.Cuts.at(2), CutManager.Chi2_Kplus_cuts_CD.Cuts.at(0), true);
             hChi2_Kplus_1e_cut_FD.hDrawAndSave(parameters.SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., -CutManager.Chi2_Kplus_cuts_FD.Cuts.at(2),
                                                CutManager.Chi2_Kplus_cuts_FD.Cuts.at(2), CutManager.Chi2_Kplus_cuts_FD.Cuts.at(0), true);
         }
 
-        if (!AnalysisCutSettings.AnalysisCutSettings && !AnalysisCutSettings.apply_chi2_cuts_1e_cut) {
+        if (!AnalysisCutSettings.apply_cuts && !AnalysisCutSettings.apply_chi2_cuts_1e_cut) {
             /* No cuts are applied. Plot without cut limits or fit */
             hChi2_Kminus_1e_cut_CD.hDrawAndSave(parameters.SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., 9999, 9999, 0, false);
             hChi2_Kminus_1e_cut_FD.hDrawAndSave(parameters.SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., 9999, 9999, 0, false);
-        } else if (AnalysisCutSettings.AnalysisCutSettings && !AnalysisCutSettings.apply_chi2_cuts_1e_cut) {
+        } else if (AnalysisCutSettings.apply_cuts && !AnalysisCutSettings.apply_chi2_cuts_1e_cut) {
             /* Do Gaussian fit if not applying chi2 cuts */
             hChi2_Kminus_1e_cut_CD.hDrawAndSaveWFit(parameters.SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., CutManager.Chi2_Kminus_cuts_CD.FitStdFactor,
                                                     CutManager.Chi2_Kminus_cuts_CD.Cuts.at(1), CutManager.Chi2_Kminus_cuts_CD.Cuts.at(2), CutManager.Chi2_Kminus_cuts_CD.Cuts.at(0), true);
             hChi2_Kminus_1e_cut_FD.hDrawAndSaveWFit(parameters.SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., CutManager.Chi2_Kminus_cuts_FD.FitStdFactor,
                                                     CutManager.Chi2_Kminus_cuts_FD.Cuts.at(1), CutManager.Chi2_Kminus_cuts_FD.Cuts.at(2), CutManager.Chi2_Kminus_cuts_FD.Cuts.at(0), true);
-        } else if (AnalysisCutSettings.AnalysisCutSettings && AnalysisCutSettings.apply_chi2_cuts_1e_cut) {
+        } else if (AnalysisCutSettings.apply_cuts && AnalysisCutSettings.apply_chi2_cuts_1e_cut) {
             hChi2_Kminus_1e_cut_CD.hDrawAndSave(parameters.SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., -CutManager.Chi2_Kminus_cuts_CD.Cuts.at(2),
                                                 CutManager.Chi2_Kminus_cuts_CD.Cuts.at(2), CutManager.Chi2_Kminus_cuts_CD.Cuts.at(0), true);
             hChi2_Kminus_1e_cut_FD.hDrawAndSave(parameters.SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., -CutManager.Chi2_Kminus_cuts_FD.Cuts.at(2),
                                                 CutManager.Chi2_Kminus_cuts_FD.Cuts.at(2), CutManager.Chi2_Kminus_cuts_FD.Cuts.at(0), true);
         }
 
-        if (!AnalysisCutSettings.AnalysisCutSettings && !AnalysisCutSettings.apply_chi2_cuts_1e_cut) {
+        if (!AnalysisCutSettings.apply_cuts && !AnalysisCutSettings.apply_chi2_cuts_1e_cut) {
             /* No cuts are applied. Plot without cut limits or fit */
             hChi2_piplus_1e_cut_CD.hDrawAndSave(parameters.SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., 9999, 9999, 0, false);
             hChi2_piplus_1e_cut_FD.hDrawAndSave(parameters.SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., 9999, 9999, 0, false);
-        } else if (AnalysisCutSettings.AnalysisCutSettings && !AnalysisCutSettings.apply_chi2_cuts_1e_cut) {
+        } else if (AnalysisCutSettings.apply_cuts && !AnalysisCutSettings.apply_chi2_cuts_1e_cut) {
             /* Do Gaussian fit if not applying chi2 cuts */
             hChi2_piplus_1e_cut_CD.hDrawAndSaveWFit(parameters.SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., CutManager.Chi2_piplus_cuts_CD.FitStdFactor,
                                                     CutManager.Chi2_piplus_cuts_CD.Cuts.at(1), CutManager.Chi2_piplus_cuts_CD.Cuts.at(2), CutManager.Chi2_piplus_cuts_CD.Cuts.at(0), true);
             hChi2_piplus_1e_cut_FD.hDrawAndSaveWFit(parameters.SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., CutManager.Chi2_piplus_cuts_FD.FitStdFactor,
                                                     CutManager.Chi2_piplus_cuts_FD.Cuts.at(1), CutManager.Chi2_piplus_cuts_FD.Cuts.at(2), CutManager.Chi2_piplus_cuts_FD.Cuts.at(0), true);
-        } else if (AnalysisCutSettings.AnalysisCutSettings && AnalysisCutSettings.apply_chi2_cuts_1e_cut) {
+        } else if (AnalysisCutSettings.apply_cuts && AnalysisCutSettings.apply_chi2_cuts_1e_cut) {
             hChi2_piplus_1e_cut_CD.hDrawAndSave(parameters.SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., -CutManager.Chi2_piplus_cuts_CD.Cuts.at(2),
                                                 CutManager.Chi2_piplus_cuts_CD.Cuts.at(2), CutManager.Chi2_piplus_cuts_CD.Cuts.at(0), true);
             hChi2_piplus_1e_cut_FD.hDrawAndSave(parameters.SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., -CutManager.Chi2_piplus_cuts_FD.Cuts.at(2),
                                                 CutManager.Chi2_piplus_cuts_FD.Cuts.at(2), CutManager.Chi2_piplus_cuts_FD.Cuts.at(0), true);
         }
 
-        if (!AnalysisCutSettings.AnalysisCutSettings && !AnalysisCutSettings.apply_chi2_cuts_1e_cut) {
+        if (!AnalysisCutSettings.apply_cuts && !AnalysisCutSettings.apply_chi2_cuts_1e_cut) {
             /* No cuts are applied. Plot without cut limits or fit */
             hChi2_piminus_1e_cut_CD.hDrawAndSave(parameters.SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., 9999, 9999, 0, false);
             hChi2_piminus_1e_cut_FD.hDrawAndSave(parameters.SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., 9999, 9999, 0, false);
-        } else if (AnalysisCutSettings.AnalysisCutSettings && !AnalysisCutSettings.apply_chi2_cuts_1e_cut) {
+        } else if (AnalysisCutSettings.apply_cuts && !AnalysisCutSettings.apply_chi2_cuts_1e_cut) {
             /* Do Gaussian fit if not applying chi2 cuts */
             hChi2_piminus_1e_cut_CD.hDrawAndSaveWFit(parameters.SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., CutManager.Chi2_piminus_cuts_CD.FitStdFactor,
                                                      CutManager.Chi2_piminus_cuts_CD.Cuts.at(1), CutManager.Chi2_piminus_cuts_CD.Cuts.at(2), CutManager.Chi2_piminus_cuts_CD.Cuts.at(0),
@@ -16584,18 +16584,18 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
             hChi2_piminus_1e_cut_FD.hDrawAndSaveWFit(parameters.SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., CutManager.Chi2_piminus_cuts_FD.FitStdFactor,
                                                      CutManager.Chi2_piminus_cuts_FD.Cuts.at(1), CutManager.Chi2_piminus_cuts_FD.Cuts.at(2), CutManager.Chi2_piminus_cuts_FD.Cuts.at(0),
                                                      true);
-        } else if (AnalysisCutSettings.AnalysisCutSettings && AnalysisCutSettings.apply_chi2_cuts_1e_cut) {
+        } else if (AnalysisCutSettings.apply_cuts && AnalysisCutSettings.apply_chi2_cuts_1e_cut) {
             hChi2_piminus_1e_cut_CD.hDrawAndSave(parameters.SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., -CutManager.Chi2_piminus_cuts_CD.Cuts.at(2),
                                                  CutManager.Chi2_piminus_cuts_CD.Cuts.at(2), CutManager.Chi2_piminus_cuts_CD.Cuts.at(0), true);
             hChi2_piminus_1e_cut_FD.hDrawAndSave(parameters.SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., -CutManager.Chi2_piminus_cuts_FD.Cuts.at(2),
                                                  CutManager.Chi2_piminus_cuts_FD.Cuts.at(2), CutManager.Chi2_piminus_cuts_FD.Cuts.at(0), true);
         }
 
-        if (!AnalysisCutSettings.AnalysisCutSettings && !AnalysisCutSettings.apply_chi2_cuts_1e_cut) {
+        if (!AnalysisCutSettings.apply_cuts && !AnalysisCutSettings.apply_chi2_cuts_1e_cut) {
             /* No cuts are applied. Plot without cut limits or fit */
             hChi2_deuteron_1e_cut_CD.hDrawAndSave(parameters.SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., 9999, 9999, 0, false);
             hChi2_deuteron_1e_cut_FD.hDrawAndSave(parameters.SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., 9999, 9999, 0, false);
-        } else if (AnalysisCutSettings.AnalysisCutSettings && !AnalysisCutSettings.apply_chi2_cuts_1e_cut) {
+        } else if (AnalysisCutSettings.apply_cuts && !AnalysisCutSettings.apply_chi2_cuts_1e_cut) {
             /* Do Gaussian fit if not applying chi2 cuts */
             hChi2_deuteron_1e_cut_CD.hDrawAndSaveWFit(parameters.SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., CutManager.Chi2_deuteron_cuts_CD.FitStdFactor,
                                                       CutManager.Chi2_deuteron_cuts_CD.Cuts.at(1), CutManager.Chi2_deuteron_cuts_CD.Cuts.at(2), CutManager.Chi2_deuteron_cuts_CD.Cuts.at(0),
@@ -16603,7 +16603,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
             hChi2_deuteron_1e_cut_FD.hDrawAndSaveWFit(parameters.SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., CutManager.Chi2_deuteron_cuts_FD.FitStdFactor,
                                                       CutManager.Chi2_deuteron_cuts_FD.Cuts.at(1), CutManager.Chi2_deuteron_cuts_FD.Cuts.at(2), CutManager.Chi2_deuteron_cuts_FD.Cuts.at(0),
                                                       true);
-        } else if (AnalysisCutSettings.AnalysisCutSettings && AnalysisCutSettings.apply_chi2_cuts_1e_cut) {
+        } else if (AnalysisCutSettings.apply_cuts && AnalysisCutSettings.apply_chi2_cuts_1e_cut) {
             hChi2_deuteron_1e_cut_CD.hDrawAndSave(parameters.SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., -CutManager.Chi2_deuteron_cuts_CD.Cuts.at(2),
                                                   CutManager.Chi2_deuteron_cuts_CD.Cuts.at(2), CutManager.Chi2_deuteron_cuts_CD.Cuts.at(0), true);
             hChi2_deuteron_1e_cut_FD.hDrawAndSave(parameters.SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., -CutManager.Chi2_deuteron_cuts_FD.Cuts.at(2),
@@ -16853,7 +16853,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
         //  SF plots ------------------------------------------------------------------------------------------------------------------------------------------------------------
 
         // SF plots (1e cut, FD)
-        if (!AnalysisCutSettings.AnalysisCutSettings) {
+        if (!AnalysisCutSettings.apply_cuts) {
             hSF_1e_cut_BC_FD.hDrawAndSave(parameters.SampleName, c1, plots, Histogram_OutPDF, norm_SF_plots, true, 1., clasAna.getEcalSFLowerCut(), clasAna.getEcalSFUpperCut(), 0, false);
             hSF_1e_cut_AC_FD.hDrawAndSave(parameters.SampleName, c1, plots, Histogram_OutPDF, norm_SF_plots, true, 1., clasAna.getEcalSFLowerCut(), clasAna.getEcalSFUpperCut(), 0, false);
         } else {
@@ -16878,7 +16878,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
         //  SF vs. P plots ------------------------------------------------------------------------------------------------------------------------------------------------------
 
         // SF vs. P plots (1e cut, FD)
-        if (!AnalysisCutSettings.AnalysisCutSettings) {
+        if (!AnalysisCutSettings.apply_cuts) {
             hSF_VS_P_e_1e_cut_BC_FD.hDrawAndSave(parameters.SampleName, c1, plots, Histogram_OutPDF, false);
             hSF_VS_P_e_1e_cut_AC_FD.hDrawAndSave(parameters.SampleName, c1, plots, Histogram_OutPDF, false);
         } else {
@@ -16914,7 +16914,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
         //  ECAL coordinates vs. SF plots ---------------------------------------------------------------------------------------------------------------------------------------
 
         // ECAL coordinates vs. SF plots (1e cut, FD only)
-        if (!AnalysisCutSettings.AnalysisCutSettings) {
+        if (!AnalysisCutSettings.apply_cuts) {
             hVcal_VS_EoP_1e_cut_BC_PCAL.hDrawAndSave(parameters.SampleName, c1, plots, Histogram_OutPDF, false);
             hVcal_VS_EoP_1e_cut_AC_PCAL.hDrawAndSave(parameters.SampleName, c1, plots, Histogram_OutPDF, false);
             hWcal_VS_EoP_1e_cut_BC_PCAL.hDrawAndSave(parameters.SampleName, c1, plots, Histogram_OutPDF, false);
@@ -22388,7 +22388,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     // Saving proton pid cuts to .par file ----------------------------------------------------------------------------------------------------------------------------------
 
     // Saving pid cuts to .par file
-    if (AnalysisCutSettings.AnalysisCutSettings &&  // log pid cuts only if all other cuts are enabled //TODO: review this. make code preform cuts only in this case
+    if (AnalysisCutSettings.apply_cuts &&  // log pid cuts only if all other cuts are enabled //TODO: review this. make code preform cuts only in this case
         (!AnalysisCutSettings.only_preselection_cuts && !AnalysisCutSettings.only_electron_quality_cuts) &&
         // Do not log PID cuts if running in only preselection or only electron qulity cuts mode
         !AnalysisCutSettings.apply_chi2_cuts_1e_cut) {
@@ -22707,7 +22707,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     myLogFile << "===========================================================================\n\n";
 
     myLogFile << "-- clas12ana cuts ---------------------------------------------------------\n";
-    myLogFile << "AnalysisCutSettings = " << basic_tools::BoolToString(AnalysisCutSettings.AnalysisCutSettings) << "\n\n";
+    myLogFile << "AnalysisCutSettings = " << basic_tools::BoolToString(AnalysisCutSettings.apply_cuts) << "\n\n";
 
     myLogFile << "clas12ana_particles = " << basic_tools::BoolToString(AnalysisCutSettings.clas12ana_particles) << "\n\n";  // TODO: move form here!
 
@@ -22721,7 +22721,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     myLogFile << "apply_DC_e_fiducial_cuts = " << basic_tools::BoolToString(AnalysisCutSettings.apply_DC_e_fiducial_cuts) << "\n";
     myLogFile << "apply_DC_fiducial_cuts = " << basic_tools::BoolToString(AnalysisCutSettings.apply_DC_fiducial_cuts) << "\n\n";
 
-    myLogFile << "apply_electron_quality_cuts = " << basic_tools::BoolToString(apply_electron_quality_cuts) << "\n";
+    myLogFile << "apply_electron_quality_cuts = " << basic_tools::BoolToString(AnalysisCutSettings.apply_electron_quality_cuts) << "\n";
     myLogFile << "apply_Nphe_cut = " << basic_tools::BoolToString(AnalysisCutSettings.apply_Nphe_cut) << "\n";
     myLogFile << "apply_ECAL_SF_cuts = " << basic_tools::BoolToString(AnalysisCutSettings.apply_ECAL_SF_cuts) << "\n";
     myLogFile << "apply_ECAL_P_cuts = " << basic_tools::BoolToString(AnalysisCutSettings.apply_ECAL_P_cuts) << "\n";
@@ -23169,7 +23169,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     myLogFile << "num_of_events_nFDpCD_AV:\t\t\t" << num_of_events_nFDpCD_AV << "\n\n\n";
 
     // content of FittedPIDCuts.par file
-    if (AnalysisCutSettings.AnalysisCutSettings && !AnalysisCutSettings.apply_chi2_cuts_1e_cut &&
+    if (AnalysisCutSettings.apply_cuts && !AnalysisCutSettings.apply_chi2_cuts_1e_cut &&
         (!AnalysisCutSettings.only_preselection_cuts && AnalysisCutSettings.only_electron_quality_cuts)) {
         myLogFile << "===========================================================================\n";
         myLogFile << "content of FittedPIDCuts.par file\n";
@@ -23344,7 +23344,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     std::cout << "\033[33mSampleName:\t\t" << parameters.SampleName << "\n\033[0m";
     std::cout << "\033[33mVaryingSampleName:\t" << parameters.VaryingSampleName << "\n\n\033[0m";
 
-    std::cout << "\033[33mAnalysisCutSettings:\t\t'" << basic_tools::BoolToString(AnalysisCutSettings.AnalysisCutSettings) << "'\n\033[0m";
+    std::cout << "\033[33mAnalysisCutSettings:\t\t'" << basic_tools::BoolToString(AnalysisCutSettings.apply_cuts) << "'\n\033[0m";
     std::cout << "\033[33mSettings mode:\t\t'" << file_name << "'\n\n\033[0m";
 
     std::cout << "\033[33mBeam Energy:\t\t" << parameters.beamE << " [GeV]\n\033[0m";

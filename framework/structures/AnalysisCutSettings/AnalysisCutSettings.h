@@ -42,12 +42,15 @@ struct AnalysisCutSettings {
     bool apply_nucleon_cuts;  // set as true to get good protons and calculate upper neutron momentum th.
 
     // Physical cuts
+    // TODO: automate adding upper mom. th. to nucleon cuts (for nRes calc)
     bool apply_nucleon_physical_cuts;  // nucleon physical cuts master
     bool apply_nBeta_fit_cuts;         // apply neutron upper mom. th.
     bool apply_fiducial_cuts;
     bool apply_kinematical_cuts;
     bool apply_kinematical_weights;
     bool apply_nucleon_SmearAndCorr;
+
+    const bool custom_cuts_naming; // Enable custom cuts naming
 
     // Constructor with default values
     AnalysisCutSettings()
@@ -74,7 +77,8 @@ struct AnalysisCutSettings {
           apply_fiducial_cuts(false),
           apply_kinematical_cuts(false),
           apply_kinematical_weights(false),
-          apply_nucleon_SmearAndCorr(false) {}
+          apply_nucleon_SmearAndCorr(false),
+          custom_cuts_naming(true) {}
 
     void RefreshSettings(const ExperimentParameters& parameters, const EventSelectionSettings& ESSettings, const AMapsSettings& AMapsSettings,
                          const MomentumResolutionSettings& MomResSettings) {
@@ -131,21 +135,27 @@ struct AnalysisCutSettings {
         if (!ESSettings.calculate_truth_level) { AMapsSettings.AMaps_calc_with_one_reco_electron = ESSettings.fill_TL_plots = ESSettings.Rec_wTL_ES = false; }
 
         if (ESSettings.Rec_wTL_ES) {
+            /* if ESSettings.Rec_wTL_ES = true, there are no momentum thresholds, and we get an infinite loop in the nRes slice calculations!
+               Additionally, there is no need to calculate the resolution and efficiency in the same time! */
             MomResSettings.plot_and_fit_MomRes = false;
         } else if (!ESSettings.Rec_wTL_ES) {
+            /* if ESSettings.Rec_wTL_ES = false, keep fiducial cuts with the overlapping maps! (safety measure) */
             ESSettings.Calc_eff_overlapping_FC = true;
         }
 
         if (!MomResSettings.plot_and_fit_MomRes) { MomResSettings.Calculate_momResS2 = false; }
 
-        if ((MomResSettings.Calculate_momResS2 && MomResSettings.Run_with_momResS2) || (MomResSettings.Calculate_momResS2 && !MomResSettings.VaryingDelta)) {
+        if ((MomResSettings.Calculate_momResS2    // Don't run calculate momResS2 and run on it at the same time
+             && MomResSettings.Run_with_momResS2  // Don't run calculate momResS2 and small momentum slices at the same time
+             ) ||
+            (MomResSettings.Calculate_momResS2 && !MomResSettings.VaryingDelta)) {
             std::cout << "\033[33m\n\nmomRes order error! Exiting...\n\n", exit(0);
         }
     }
 
     void CustomNamingRefresh(Settings& settings, const AMapsSettings& AMapsSettings, const MomentumResolutionSettings& MomResSettings, const EventSelectionSettings& ESSettings,
                              const ExperimentParameters& parameters) {
-        const bool custom_cuts_naming = true;
+        /* Save plots to custom-named folders, to allow multi-sample runs at once. */
         std::string run_plots_path = path_definitions::PathDefinitions.plots_path;
         std::string run_plots_log_save_Directory = plots_log_save_Directory;
 
