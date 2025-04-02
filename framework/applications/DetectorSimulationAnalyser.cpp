@@ -11,6 +11,7 @@
 
 */
 
+#pragma region /* Includes */
 #include "../../setup/codeSetup.h"
 
 // Include Libraries:
@@ -48,6 +49,7 @@
 // using namespace clas12;
 using namespace utilities;
 using namespace draw_and_save_functions;
+#pragma endregion
 
 void EventAnalyser(const std::string &AnalyseFilePath, const std::string &AnalyseFileSample, const std::string &AnalyseFile) {
     debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode);
@@ -61,6 +63,8 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //                                                                         Code setup                                                                               //
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+#pragma region /* Code setup */
 
     // Code setup
     Settings settings;
@@ -101,6 +105,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
     // Event selection setup
     EventSelectionSettings ESSettings = EventSelectionSettings();
+    ESSettings.RefreshSettings();
     /* Settings to enable/disable specific FS plot calculations (Rec only): */
 
     /* Final states to analyse (1N & 2N) */
@@ -1178,9 +1183,13 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
         EventPrint << "#event upper bound:\t\t" << nEvents2print << "\n\n\n\033[0m";
     }
 
+#pragma endregion
+
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //                                                                      Histogram definitions                                                                          //
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+#pragma region /* Histogram definitions */
 
     debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode);
 
@@ -9567,9 +9576,13 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
     std::cout << "\033[33m done.\n\n\033[0m";
 
+#pragma endregion
+
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //                                                                         Code execution                                                                              //
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+#pragma region /* Code execution */
 
     debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode);
 
@@ -9795,10 +9808,8 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     // Auto-disable variables accoding to HipoChain length
     std::cout << "\033[33m\n\nHipoChain loaded! HipoChainLength = " << HipoChainLength << "\n\033[0m";
 
-    if (HipoChainLength < 100) {
-        /* This avoids a crush when plotting 2D final state ratios */
-        FSR_2D_plots = false;
-    }
+    /* This if statment avoids a crush when plotting 2D final state ratios */
+    if (HipoChainLength < 100) { FSR_2D_plots = false; }
 
     //  ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
     //  Setting beam particle's momentum
@@ -9862,44 +9873,17 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
         ++num_of_events;  // logging Total #(events) in sample
 
         /* Particles outside clas12ana */
-        auto allParticles_det = c12->getDetParticles();
-        auto electrons_det = c12->getByID(11);
+        std::vector<clas12::region_part_ptr> allParticles_det = c12->getDetParticles();
+        std::vector<clas12::region_part_ptr> electrons_det = c12->getByID(11);
 
         clasAna.Run(c12);
 
         /* allParticles vector from clas12ana (my addition). Used mostly for 1n & nFDpCD.  */
-        auto allParticles = clasAna.getParticles();
+        std::vector<clas12::region_part_ptr> allParticles = clasAna.getParticles();
 
         /* All of these particles are with clas12ana cuts. Only cuts missing are momentum and beta(?) cuts - to be applied later */
-        vector<region_part_ptr> neutrons, protons, Kplus, Kminus, piplus, piminus, electrons, deuterons, neutrals, otherpart;
-
-        if (AnalysisCutSettings.clas12ana_particles) {
-            // Get particle outside from clas12ana:
-            neutrons = clasAna.getByPid(2112);  // Neutrons
-            protons = clasAna.getByPid(2212);   // Protons
-            Kplus = clasAna.getByPid(321);      // K+
-            Kminus = clasAna.getByPid(-321);    // K-
-            piplus = clasAna.getByPid(211);     // pi+
-            piminus = clasAna.getByPid(-211);   // pi-
-            electrons = clasAna.getByPid(11);   // Electrons
-
-            deuterons = clasAna.getByPid(45);   // Deuterons
-            neutrals = clasAna.getByPid(0);     // Unidentified
-            otherpart = clasAna.getByPid(311);  // Other particles
-        } else {
-            // Get particle outside of clas12ana:
-            neutrons = c12->getByID(2112);  // Neutrons
-            protons = c12->getByID(2212);   // Protons
-            Kplus = c12->getByID(321);      // K+
-            Kminus = c12->getByID(-321);    // K-
-            piplus = c12->getByID(211);     // pi+
-            piminus = c12->getByID(-211);   // pi-
-            electrons = c12->getByID(11);   // Electrons
-
-            deuterons = c12->getByID(45);   // Deuterons
-            neutrals = c12->getByID(0);     // Unidentified
-            otherpart = c12->getByID(311);  // Other particles
-        }
+        std::vector<clas12::region_part_ptr> neutrons, protons, Kplus, Kminus, piplus, piminus, electrons, deuterons, neutrals, otherpart;
+        pid.SetEventParticles(AnalysisCutSettings.clas12ana_particles, clasAna, c12, neutrons, protons, Kplus, Kminus, piplus, piminus, electrons, deuterons, neutrals, otherpart);
 
         int Nn = neutrons.size(), Np = protons.size(), Nkp = Kplus.size(), Nkm = Kminus.size(), Npip = piplus.size(), Npim = piminus.size(), Ne = electrons.size();
         int Nd = deuterons.size(), Nneut = neutrals.size(), No = otherpart.size();
@@ -9911,47 +9895,44 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
         /* Configure particles within general momentum cuts (i.e. "identified particles") */
 
         // Charged particles' identification
-        vector<int> Electron_ind = pid.ChargedParticleID(electrons, CutManager.e_mom_th);
+        std::vector<int> Electron_ind = pid.ChargedParticleID(electrons, CutManager.e_mom_th);
 
-        vector<int> IDed_Protons_ind = pid.ChargedParticleID(protons, CutManager.p_mom_th);  // indices of identified protons (i.e., within P_p th.)
-        vector<int> Protons_ind = pid.GetGoodProtons(AnalysisCutSettings.apply_nucleon_cuts, protons, IDed_Protons_ind, CutManager.Theta_p1_cuts_2p, CutManager.Theta_p2_cuts_2p,
-                                                     CutManager.dphi_pFD_pCD_2p);  // good identified protons (no sCTOFhp and no dCDaFDd)
+        std::vector<int> IDed_Protons_ind = pid.ChargedParticleID(protons, CutManager.p_mom_th);  // indices of identified protons (i.e., within P_p th.)
+        std::vector<int> Protons_ind = pid.GetGoodProtons(AnalysisCutSettings.apply_nucleon_cuts, protons, IDed_Protons_ind, CutManager.Theta_p1_cuts_2p, CutManager.Theta_p2_cuts_2p,
+                                                          CutManager.dphi_pFD_pCD_2p);  // good identified protons (no sCTOFhp and no dCDaFDd)
 
-        vector<int> Piplus_ind = pid.ChargedParticleID(piplus, CutManager.pip_mom_th);
-        vector<int> Piminus_ind = pid.ChargedParticleID(piminus, CutManager.pim_mom_th);
+        std::vector<int> Piplus_ind = pid.ChargedParticleID(piplus, CutManager.pip_mom_th);
+        std::vector<int> Piminus_ind = pid.ChargedParticleID(piminus, CutManager.pim_mom_th);
 
         // Charged particles for inclusive efficiency
         // Proton vectors for (e,e'Xp)Y efficiency
-        vector<int> All_Protons_ind = pid.ChargedParticleID(protons, CutManager.no_CutManager.p_mom_th);  // indices of all protons (i.e., without P_p th.)
-        vector<int> All_gProtons_ind = pid.GetGoodProtons(AnalysisCutSettings.apply_nucleon_cuts, protons, All_Protons_ind, CutManager.Theta_p1_cuts_2p, CutManager.Theta_p2_cuts_2p,
-                                                          CutManager.dphi_pFD_pCD_2p);  // good protons (no sCTOFhp and no dCDaFDd) - WITHOUT mom. th.
+        std::vector<int> All_Protons_ind = pid.ChargedParticleID(protons, CutManager.no_CutManager.p_mom_th);  // indices of all protons (i.e., without P_p th.)
+        std::vector<int> All_gProtons_ind = pid.GetGoodProtons(AnalysisCutSettings.apply_nucleon_cuts, protons, All_Protons_ind, CutManager.Theta_p1_cuts_2p, CutManager.Theta_p2_cuts_2p,
+                                                               CutManager.dphi_pFD_pCD_2p);  // good protons (no sCTOFhp and no dCDaFDd) - WITHOUT mom. th.
 
-        // Neutral particles' identification (FD only)
+        // Neutral particles' identification (FD only; CD neutrals are ignored since they have to much background)
         /* Get FD neutrons and photons, according to the definitions: */
         // FD neutrons and photons to be set by definition - before momentum th. & any cuts:
-        vector<int> ReDef_neutrons_FD, ReDef_photons_FD;
-        // Get FD neutrons and photons, according to the definitions (ORIGINAL!):
-        pid.ReDefFDNeutrals(allParticles, ReDef_neutrons_FD, ReDef_photons_FD);
-        // FD neutron with maximal momentum:
-        int NeutronsFD_ind_max = pid.GetLnFDIndex(allParticles, ReDef_neutrons_FD, AnalysisCutSettings.apply_nucleon_cuts);
+        std::vector<int> ReDef_FD_neutrons, ReDef_FD_photons;
+        pid.ReDefFDNeutrals(allParticles, ReDef_FD_neutrons, ReDef_FD_photons);  // Get FD neutrons and photons, according to the definitions (ORIGINAL!)
+        int NeutronsFD_ind_max =
+            pid.GetLnFDIndex(allParticles, ReDef_FD_neutrons, AnalysisCutSettings.apply_nucleon_cuts);  // Get index of FD neutron with maximal momentum (before momentum th. & any cuts)
 
         /* Get FD neutrons and photons above momentum threshold (noNeutCuts): */
         // FD neutrons and photons by definition (after momentum th. only!):
-        vector<int> NeutronsFD_ind_noNeutCuts, PhotonsFD_ind_noNeutCuts;
-        pid.FDNeutralParticleID(allParticles, NeutronsFD_ind_noNeutCuts, ReDef_neutrons_FD, CutManager.n_mom_th, PhotonsFD_ind_noNeutCuts, ReDef_photons_FD, CutManager.ph_mom_th,
+        std::vector<int> NeutronsFD_ind_noNeutCuts, PhotonsFD_ind_noNeutCuts;
+        pid.FDNeutralParticleID(allParticles, NeutronsFD_ind_noNeutCuts, ReDef_FD_neutrons, CutManager.n_mom_th, PhotonsFD_ind_noNeutCuts, ReDef_FD_photons, CutManager.ph_mom_th,
                                 AnalysisCutSettings.apply_nucleon_cuts);
-        // FD neutron (with momentum th.) with maximal momentum:
-        int NeutronsFD_ind_mom_max_noNeutCuts = pid.GetLnFDIndex(allParticles, NeutronsFD_ind_noNeutCuts, AnalysisCutSettings.apply_nucleon_cuts);
+        int NeutronsFD_ind_mom_max_noNeutCuts =
+            pid.GetLnFDIndex(allParticles, NeutronsFD_ind_noNeutCuts, AnalysisCutSettings.apply_nucleon_cuts);  // Get index of FD neutron with maximal momentum (with only momentum th.)
 
         /* Get FD neutrons and photons above momentum threshold and after ECAL veto and after ECAL edge cuts: */
-        // FD neutrons and photons by definition (after momentum th. & ECAL & edge cuts):
-        vector<int> NeutronsFD_ind, PhotonsFD_ind;
-        pid.FDNeutralParticleID(allParticles, electrons, NeutronsFD_ind, ReDef_neutrons_FD, CutManager.n_mom_th, PhotonsFD_ind, ReDef_photons_FD, CutManager.ph_mom_th,
+        // FD neutrons and photons by redefinition (after momentum th. & ECAL & edge cuts):
+        std::vector<int> NeutronsFD_ind, PhotonsFD_ind;
+        pid.FDNeutralParticleID(allParticles, electrons, NeutronsFD_ind, ReDef_FD_neutrons, CutManager.n_mom_th, PhotonsFD_ind, ReDef_FD_photons, CutManager.ph_mom_th,
                                 CutManager.Neutron_veto_cut, parameters.beamE, clasAna.getEcalEdgeCuts(), clasAna.getEcalEdgeCuts(), AnalysisCutSettings.apply_nucleon_cuts);
-        //        pid.FDNeutralParticleID(allParticles, NeutronsFD_ind, ReDef_neutrons_FD, CutManager.n_mom_th, PhotonsFD_ind, ReDef_photons_FD, CutManager.ph_mom_th,
-        //                                AnalysisCutSettings.apply_nucleon_cuts);
-        // FD neutron (with momentum th.) with maximal momentum:
-        int NeutronsFD_ind_mom_max = pid.GetLnFDIndex(allParticles, NeutronsFD_ind, AnalysisCutSettings.apply_nucleon_cuts);
+        int NeutronsFD_ind_mom_max = pid.GetLnFDIndex(
+            allParticles, NeutronsFD_ind, AnalysisCutSettings.apply_nucleon_cuts);  // Get index of FD neutron with maximal momentum (with momentum th., ECAL edge, ECAL veto cuts)
 
         // Counting events with good FD neutrons
         if (NeutronsFD_ind.size() == 1) {
@@ -9965,25 +9946,25 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
         }
 
         // Safety checks
-        for (int &i : ReDef_neutrons_FD) {
+        for (int &i : ReDef_FD_neutrons) {
             if (!((allParticles[i]->par()->getPid() == 2112) || (allParticles[i]->par()->getPid() == 22))) {
-                std::cout << "\033[33m\n\nReDef_neutrons_FD: A neutron PDG is not 2112 or 22 (" << allParticles[i]->par()->getPid() << ")! Exiting...\n\n", exit(0);
+                std::cout << "\033[33m\n\nReDef_FD_neutrons: A neutron PDG is not 2112 or 22 (" << allParticles[i]->par()->getPid() << ")! Exiting...\n\n", exit(0);
             }
 
             bool NeutronInPCAL_test = (allParticles[i]->cal(clas12::PCAL)->getDetector() == 7);    // PCAL hit
             bool NeutronInECIN_test = (allParticles[i]->cal(clas12::ECIN)->getDetector() == 7);    // ECIN hit
             bool NeutronInECOUT_test = (allParticles[i]->cal(clas12::ECOUT)->getDetector() == 7);  // ECIN hit
 
-            if (NeutronInPCAL_test) { std::cout << "\033[33m\n\nReDef_neutrons_FD test: a neutron have been found with a PCAL hit! Exiting...\n\n", exit(0); }
+            if (NeutronInPCAL_test) { std::cout << "\033[33m\n\nReDef_FD_neutrons test: a neutron have been found with a PCAL hit! Exiting...\n\n", exit(0); }
 
             if (!(NeutronInECIN_test || NeutronInECOUT_test)) {
-                std::cout << "\033[33m\n\nReDef_neutrons_FD test: a neutron have been found without either ECIN or ECOUT hit! Exiting...\n\n", exit(0);
+                std::cout << "\033[33m\n\nReDef_FD_neutrons test: a neutron have been found without either ECIN or ECOUT hit! Exiting...\n\n", exit(0);
             }
         }
 
-        for (int &i : ReDef_photons_FD) {
+        for (int &i : ReDef_FD_photons) {
             if (allParticles[i]->par()->getPid() != 22) {
-                std::cout << "\033[33m\n\nReDef_photons_FD test: A photon PDG is not 2112 or 22 (" << allParticles[i]->par()->getPid() << ")! Exiting...\n\n", exit(0);
+                std::cout << "\033[33m\n\nReDef_FD_photons test: A photon PDG is not 2112 or 22 (" << allParticles[i]->par()->getPid() << ")! Exiting...\n\n", exit(0);
             }
 
             bool PhotonInPCAL_test = (allParticles[i]->cal(clas12::PCAL)->getDetector() == 7);  // PCAL hit
@@ -10088,6 +10069,8 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
         //  Filling truth level histograms (lundfile loop) ----------------------------------------------------------------------------------------------------------------------
 
+#pragma region /* Truth-level events */
+
         // TODO: confirm that the TL kin cuts are working!
 
         // Filling truth level histograms (lundfile loop)
@@ -10098,7 +10081,8 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
         if (ESSettings.calculate_truth_level && (!ESSettings.TL_plots_only_for_NC || AnalysisCutSettings.apply_nucleon_cuts) && parameters.isMC) {
             // run only for CLAS12 simulation & AFTER beta fit
-            auto mcpbank = c12->mcparts();
+            mcpar_ptr mcpbank = c12->mcparts();
+            // auto mcpbank = c12->mcparts();
             const Int_t Ngen = mcpbank->getRows();
 
             bool TL_fiducial_cuts;
@@ -10111,22 +10095,22 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
             // counting TL particles
             /* Particle index vectors */
-            vector<int> TL_Electron_ind, TL_Neutrons_ind, TL_Protons_ind, TL_piplus_ind, TL_piminus_ind, TL_pizero_ind, TL_Photons_ind, TL_OtherPart_ind;
+            std::vector<int> TL_Electron_ind, TL_Neutrons_ind, TL_Protons_ind, TL_piplus_ind, TL_piminus_ind, TL_pizero_ind, TL_Photons_ind, TL_OtherPart_ind;
 
             /* Particle index vectors (FD & CD) */
-            vector<int> TL_ElectronFD_ind, TL_NeutronsFD_ind, TL_ProtonsFD_ind, TL_piplusFD_ind, TL_piminusFD_ind, TL_pi0FD_ind, TL_PhotonsFD_ind;
-            vector<int> TL_ProtonsCD_ind, TL_piplusCD_ind, TL_piminusCD_ind;
+            std::vector<int> TL_ElectronFD_ind, TL_NeutronsFD_ind, TL_ProtonsFD_ind, TL_piplusFD_ind, TL_piminusFD_ind, TL_pi0FD_ind, TL_PhotonsFD_ind;
+            std::vector<int> TL_ProtonsCD_ind, TL_piplusCD_ind, TL_piminusCD_ind;
 
             /* Particle index vectors (for particles above momentum threshold) */
-            vector<int> TL_Electron_mom_ind, TL_Neutrons_mom_ind, TL_Protons_mom_ind, TL_piplus_mom_ind, TL_piminus_mom_ind, TL_pizero_mom_ind, TL_Photons_mom_ind;
+            std::vector<int> TL_Electron_mom_ind, TL_Neutrons_mom_ind, TL_Protons_mom_ind, TL_piplus_mom_ind, TL_piminus_mom_ind, TL_pizero_mom_ind, TL_Photons_mom_ind;
 
             /* Particle index vectors (for particles above momentum threshold, FD & CD) */
-            vector<int> TL_ElectronFD_mom_ind, TL_NeutronsFD_mom_ind, TL_NeutronsFD_max_mom_ind, TL_pi0FD_mom_ind, TL_PhotonsFD_mom_ind;
-            vector<int> TL_ProtonsFD_mom_ind, TL_piplusFD_mom_ind, TL_piminusFD_mom_ind;
-            vector<int> TL_ProtonsCD_mom_ind, TL_piplusCD_mom_ind, TL_piminusCD_mom_ind;
+            std::vector<int> TL_ElectronFD_mom_ind, TL_NeutronsFD_mom_ind, TL_NeutronsFD_max_mom_ind, TL_pi0FD_mom_ind, TL_PhotonsFD_mom_ind;
+            std::vector<int> TL_ProtonsFD_mom_ind, TL_piplusFD_mom_ind, TL_piminusFD_mom_ind;
+            std::vector<int> TL_ProtonsCD_mom_ind, TL_piplusCD_mom_ind, TL_piminusCD_mom_ind;
 
             /* Particle index vectors (for FD particles above momentum threshold and within fiducial cuts (wFC)) */
-            vector<int> TL_ElectronFD_wFC_mom_ind, TL_NeutronsFD_wFC_mom_ind, TL_ProtonsFD_wFC_mom_ind;
+            std::vector<int> TL_ElectronFD_wFC_mom_ind, TL_NeutronsFD_wFC_mom_ind, TL_ProtonsFD_wFC_mom_ind;
 
             double TL_Leading_nFD_momentum = -1;       // Leading nFD without momentum thresholds
             int TL_Leading_nFD_ind = -1;               // Leading nFD without momentum thresholds
@@ -10333,9 +10317,11 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
             TL_Event_Selection_1p = (TL_Basic_ES && TL_FDneutrons_1p && no_CDproton_1p && one_FDproton_1p && FDproton_wFC_1p);
 
             // Setting up 1n TL event selection
-            // 1n = any number of id. FD neutron (we look at the leading nFD) & no id. protons:
+            // 1n = X number of id. FD neutron (we look at the leading nFD) & no id. protons:
+            // (TL_IDed_Leading_nFD_ind != -1) -> ensures that we have at least one FD neutron in the event
+            // (ESSettings.ES_by_leading_FDneutron || (TL_NeutronsFD_mom_ind.size() == 1)) -> ensures that we are looking at the leading nFD if ESSettings.ES_by_leading_FDneutron = true
             bool one_FDneutron_1n =
-                ((TL_IDed_Leading_nFD_ind != -1) &&  // for TL_IDed_Leading_nFD_ind = -1 we don't have any nFD
+                (((ESSettings.ES_by_leading_FDneutron || (TL_NeutronsFD_mom_ind.size() == 1)) && (TL_IDed_Leading_nFD_ind != -1)) &&
                  (TLKinCutsCheck(c12, AnalysisCutSettings.apply_kinematical_cuts, TL_IDed_Leading_nFD_ind, CutManager.FD_nucleon_theta_cut, CutManager.FD_nucleon_momentum_cut)));
             bool no_protons_1n = ((TL_ProtonsCD_mom_ind.size() == 0) && (TL_ProtonsFD_mom_ind.size() == 0));
             bool FDneutron_wFC_1p = Leading_Neutron_inFD_wFC;  // leading nFD is within fiducial cuts (wFC)
@@ -10346,18 +10332,18 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
             bool one_CDproton_pFDpCD = (TL_ProtonsCD_mom_ind.size() == 1);
             bool one_FDproton_pFDpCD = ((TL_ProtonsFD_mom_ind.size() == 1) && (TLKinCutsCheck(c12, AnalysisCutSettings.apply_kinematical_cuts, TL_ProtonsFD_mom_ind,
                                                                                               CutManager.FD_nucleon_theta_cut, CutManager.FD_nucleon_momentum_cut)));
-            bool TL_FDneutrons_pFDpCD = (ESSettings.Enable_FD_neutrons || (TL_NeutronsFD_mom_ind.size() == 0));
-            // no id. FD neutrons for ESSettings.Enable_FD_neutrons = false
-            bool FDproton_wFC_pFDpCD = (TL_ProtonsFD_mom_ind.size() == TL_ProtonsFD_wFC_mom_ind.size());
-            // id. FD proton is within fiducial cuts (wFC)
+            bool TL_FDneutrons_pFDpCD = (ESSettings.Enable_FD_neutrons || (TL_NeutronsFD_mom_ind.size() == 0));  // no id. FD neutrons for ESSettings.Enable_FD_neutrons = false
+            bool FDproton_wFC_pFDpCD = (TL_ProtonsFD_mom_ind.size() == TL_ProtonsFD_wFC_mom_ind.size());         // id. FD proton is within fiducial cuts (wFC)
             TL_Event_Selection_pFDpCD = (TL_Basic_ES && one_CDproton_pFDpCD && one_FDproton_pFDpCD && TL_FDneutrons_pFDpCD && FDproton_wFC_pFDpCD);
 
             // Setting up nFDpCD TL event selection
-            // nFDpCD = any number of id. FD neutron (we look at the leading nFD) & one id. CD proton:
+            // nFDpCD = X number of id. FD neutron (we look at the leading nFD) & one id. CD proton:
+            // (TL_IDed_Leading_nFD_ind != -1) -> ensures that we have at least one FD neutron in the event
+            // (ESSettings.ES_by_leading_FDneutron || (TL_NeutronsFD_mom_ind.size() == 1)) -> ensures that we are looking at the leading nFD if ESSettings.ES_by_leading_FDneutron = true
             bool one_CDproton_nFDpCD = (TL_ProtonsCD_mom_ind.size() == 1);
             bool no_FDproton_nFDpCD = (TL_ProtonsFD_mom_ind.size() == 0);
             bool one_FDNeutron_nFDpCD =
-                ((TL_IDed_Leading_nFD_ind != -1) &&  // for TL_IDed_Leading_nFD_ind = -1 we don't have any nFD
+                (((ESSettings.ES_by_leading_FDneutron || (TL_NeutronsFD_mom_ind.size() == 1)) && (TL_IDed_Leading_nFD_ind != -1)) &&
                  (TLKinCutsCheck(c12, AnalysisCutSettings.apply_kinematical_cuts, TL_IDed_Leading_nFD_ind, CutManager.FD_nucleon_theta_cut, CutManager.FD_nucleon_momentum_cut)));
             bool FDneutron_wFC_nFDpCD = Leading_Neutron_inFD_wFC;  // leading nFD is within fiducial cuts (wFC)
             TL_Event_Selection_nFDpCD = (TL_Basic_ES && one_CDproton_nFDpCD && no_FDproton_nFDpCD && one_FDNeutron_nFDpCD && FDneutron_wFC_nFDpCD);
@@ -11298,13 +11284,14 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
             }  // end of for loop over TL particles
 
             // Fill leading FD neutron acceptance maps
-            // if (
-            if ((TL_NeutronsFD_mom_ind.size() == 1) &&  // FOR nFD eff test!
-                AMapsSettings.Generate_Nucleon_AMaps && TL_Event_Selection_1e_cut_AMaps && (!AMapsSettings.AMaps_calc_with_one_reco_electron || (electrons.size() == 1)) &&
-                ESSettings.ES_by_leading_FDneutron && ((TL_IDed_Leading_nFD_ind != -1) && (TL_IDed_Leading_nFD_momentum > 0))) {
+            int AMaps_NeutronsFD_fill_ind = (ESSettings.ES_by_leading_FDneutron && (TL_IDed_Leading_nFD_ind != -1) && (TL_IDed_Leading_nFD_momentum > 0)) ? TL_IDed_Leading_nFD_ind
+                                            : (TL_NeutronsFD_mom_ind.size() == 1)                                                                         ? TL_NeutronsFD_mom_ind.at(0)
+                                                                                                                                                          : -9999;
+
+            if (AMapsSettings.Generate_Nucleon_AMaps && TL_Event_Selection_1e_cut_AMaps && (!AMapsSettings.AMaps_calc_with_one_reco_electron || (electrons.size() == 1))) {
                 /* Fill leading TL FD neutron acceptance maps */
 
-                mcpbank->setEntry(TL_IDed_Leading_nFD_ind);
+                mcpbank->setEntry(AMaps_NeutronsFD_fill_ind);
 
                 int particlePDGtmp = mcpbank->getPid();
 
@@ -11335,11 +11322,10 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
             }
 
             // Fill leading FD neutron efficiency maps
-            if (AMapsSettings.Generate_WMaps && TL_Event_Selection_1e_cut_AMaps && (!AMapsSettings.AMaps_calc_with_one_reco_electron || (electrons.size() == 1)) &&
-                ESSettings.ES_by_leading_FDneutron && ((TL_IDed_Leading_nFD_ind != -1) && (TL_IDed_Leading_nFD_momentum > 0))) {
+            if (AMapsSettings.Generate_WMaps && TL_Event_Selection_1e_cut_AMaps && (!AMapsSettings.AMaps_calc_with_one_reco_electron || (electrons.size() == 1))) {
                 /* Fill leading TL FD neutron efficiency maps */
 
-                mcpbank->setEntry(TL_IDed_Leading_nFD_ind);
+                mcpbank->setEntry(AMaps_NeutronsFD_fill_ind);
 
                 int particlePDGtmp = mcpbank->getPid();
 
@@ -11373,7 +11359,11 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
             }
         }
 
+#pragma endregion
+
         //  Fill All particles (All e) plots ------------------------------------------------------------------------------------------------------------------------------------
+
+#pragma region /* Reco. All e events */
 
         debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode);
 
@@ -11521,7 +11511,11 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
             }
         }  // end of loop over deuterons vector
 
+#pragma endregion
+
         //  1e cut --------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+#pragma region /* Reco. 1e cut */
 
         debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode);
 
@@ -11590,7 +11584,8 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
         // Fill momentum threshold plots (1e cut, CD & FD)
         if (!ESSettings.Rec_wTL_ES || TL_Event_Selection_inclusive) {
-            for (auto &e : electrons) {
+            for (clas12::region_part_ptr &e : electrons) {
+                // for (auto &e : electrons) {
                 bool e_Pass_FC = aMaps_master.IsInFDQuery((AMapsSettings.Generate_Electron_AMaps || AMapsSettings.Generate_Nucleon_AMaps), CutManager.ThetaFD, "Electron", e->getP(),
                                                           e->getTheta() * 180.0 / pi, e->getPhi() * 180.0 / pi);
 
@@ -11637,7 +11632,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                 }
             }
 
-            for (int &i : ReDef_neutrons_FD) {
+            for (int &i : ReDef_FD_neutrons) {
                 // mom. distributions for all nFD (BPID)
                 double NeutronMomentum_1e_cut = pid.GetFDNeutronP(allParticles[i], AnalysisCutSettings.apply_nucleon_cuts);
                 double NeutronTheta_1e_cut = allParticles[i]->getTheta() * 180.0 / pi;
@@ -11692,7 +11687,8 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                 }
             }
 
-            for (auto &pip : piplus) {
+            for (clas12::region_part_ptr &pip : piplus) {
+                // for (auto &pip : piplus) {
                 hP_piplus_reco_1e_cut.hFill(pip->getP(), Weight);
                 hP_piplus_reco_1e_cut_ZOOMIN.hFill(pip->getP(), Weight);
 
@@ -11707,7 +11703,8 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                 }
             }
 
-            for (auto &pim : piminus) {
+            for (clas12::region_part_ptr &pim : piminus) {
+                // for (auto &pim : piminus) {
                 hP_piminus_reco_1e_cut.hFill(pim->getP(), Weight);
                 hP_piminus_reco_1e_cut_ZOOMIN.hFill(pim->getP(), Weight);
 
@@ -11725,7 +11722,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
             // FD photons
 
             // FD photons (BPID)
-            for (int &i : ReDef_photons_FD) {
+            for (int &i : ReDef_FD_photons) {
                 hP_ph_reco_BPID_1e_cut_FD.hFill(allParticles[i]->getP(), Weight);
                 hP_ph_reco_BPID_1e_cut_FD_ZOOMIN.hFill(allParticles[i]->getP(), Weight);
                 hP_ph_vs_Theta_ph_reco_BPID_1e_cut_FD.hFill(allParticles[i]->getP(), allParticles[i]->getTheta() * 180.0 / pi, Weight);
@@ -11741,7 +11738,8 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
         // FD Neutron and photon detection probability (1e cut, CD & FD)
         if (ESSettings.Count_FD_neurton_and_photon_hits) {
-            for (auto &n : neutrons) {
+            for (clas12::region_part_ptr &n : neutrons) {
+                // for (auto &n : neutrons) {
                 if (n->getRegion() == FD) {
                     ++num_of_events_with_nFD_CLA12;
 
@@ -11880,7 +11878,8 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
         }
 
         // Fill Proton plots (1e cut, CD & FD)
-        for (auto &p : protons) {
+        for (clas12::region_part_ptr &p : protons) {
+            // for (auto &p : protons) {
             if (p->getRegion() == CD) {
                 hChi2_Proton_1e_cut_CD.hFill(p->par()->getChi2Pid(), Weight);
 
@@ -11960,7 +11959,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
         }
 
         /* All FD Neutrons before mom. th. */
-        for (int &i : ReDef_neutrons_FD) {
+        for (int &i : ReDef_FD_neutrons) {
             hP_nFD_BPID_1e_cut_FD.hFill(pid.GetFDNeutronP(allParticles[i], AnalysisCutSettings.apply_nucleon_cuts), Weight);
             hP_nFD_BPID_1e_cut_ZOOMOUT_FD.hFill(pid.GetFDNeutronP(allParticles[i], AnalysisCutSettings.apply_nucleon_cuts), Weight);
         }
@@ -12275,7 +12274,8 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
             TVector3 e_hit_1e_cut_3v(electrons[0]->cal(clas12::PCAL)->getX(), electrons[0]->cal(clas12::PCAL)->getY(), electrons[0]->cal(clas12::PCAL)->getZ());
             double e_hit_Theta_1e_cut = e_hit_1e_cut_3v.Theta() * 180 / pi, e_hit_Phi_1e_cut = e_hit_1e_cut_3v.Phi() * 180 / pi;
 
-            for (auto &n : neutrons) {
+            for (clas12::region_part_ptr &n : neutrons) {
+                // for (auto &n : neutrons) {
                 // loop on every detected neutron
                 // check neutron hits in the PCAL, ECIN and ECOUT:
                 bool n_hit_PCAL_1e_cut = (n->cal(clas12::PCAL)->getDetector() == 7);
@@ -12397,7 +12397,8 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
         // Fill ToF plots for protons (1e cut, FD)
 
         // CLAS12 neutrons
-        for (auto &n : neutrons) {
+        for (clas12::region_part_ptr &n : neutrons) {
+            // for (auto &n : neutrons) {
             // loop on every detected neutron
             // check neutron (n) hits in the PCAL, ECIN and ECOUT:
             bool n_hit_PCAL_1e_cut = (n->cal(clas12::PCAL)->getDetector() == 7);
@@ -12412,7 +12413,8 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                 TVector3 n_hit_1e_cut_3v(n->cal(n_detlayer_1e_cut)->getX(), n->cal(n_detlayer_1e_cut)->getY(), n->cal(n_detlayer_1e_cut)->getZ());
                 double n_hit_Theta_1e_cut = n_hit_1e_cut_3v.Theta() * 180 / pi, n_hit_Phi_1e_cut = n_hit_1e_cut_3v.Phi() * 180 / pi;
 
-                for (auto &p : protons) {
+                for (clas12::region_part_ptr &p : protons) {
+                    // for (auto &p : protons) {
                     // loop over protons vector
                     bool p_hit_PCAL_1e_cut = (p->cal(clas12::PCAL)->getDetector() == 7);  // check if proton hit the PCAL
                     // TODO: rename and move from ToF to angles folder
@@ -12572,56 +12574,48 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
             }
 
             // Filling neurton reco. Acceptance maps
-            // if (
-            if ((NeutronsFD_ind.size() == 1) &&  // FOR nFD eff test!
-                ESSettings.ES_by_leading_FDneutron) {
-                if (NeutronsFD_ind_mom_max != -1) {
-                    // if NeutronsFD_ind_mom_max == -1, there are no neutrons above momentum th. in the event
-                    /* Fill leading reco FD neutron acceptance maps */
-                    bool hitPCAL_1e_cut = (allParticles[NeutronsFD_ind_mom_max]->cal(clas12::PCAL)->getDetector() == 7);    // PCAL hit
-                    bool hitECIN_1e_cut = (allParticles[NeutronsFD_ind_mom_max]->cal(clas12::ECIN)->getDetector() == 7);    // ECIN hit
-                    bool hitECOUT_1e_cut = (allParticles[NeutronsFD_ind_mom_max]->cal(clas12::ECOUT)->getDetector() == 7);  // ECOUT hit
-                    auto n_detlayer_1e_cut = hitECIN_1e_cut ? clas12::ECIN : clas12::ECOUT;                                 // find first layer of hit
+            int AMaps_NeutronsFD_fill_ind = (ESSettings.ES_by_leading_FDneutron && (NeutronsFD_ind_mom_max != -1)) ? NeutronsFD_ind_mom_max
+                                            : (NeutronsFD_ind.size() == 1)                                         ? NeutronsFD_ind.at(0)
+                                                                                                                   : -9999;
 
-                    // Safety checks that leading nFD is neutron by definition (AMaps & WMaps)
-                    debugging::CodeDebugger.SafetyCheck_AMaps_Reco_leading_neutrons(__FILE__, __LINE__, allParticles, NeutronsFD_ind_mom_max, hitPCAL_1e_cut, hitECIN_1e_cut,
-                                                                                    hitECOUT_1e_cut);
+            if (AMaps_NeutronsFD_fill_ind >= 0) {
+                /* Fill leading reco FD neutron acceptance maps */
+                bool hitPCAL_1e_cut = (allParticles[AMaps_NeutronsFD_fill_ind]->cal(clas12::PCAL)->getDetector() == 7);    // PCAL hit
+                bool hitECIN_1e_cut = (allParticles[AMaps_NeutronsFD_fill_ind]->cal(clas12::ECIN)->getDetector() == 7);    // ECIN hit
+                bool hitECOUT_1e_cut = (allParticles[AMaps_NeutronsFD_fill_ind]->cal(clas12::ECOUT)->getDetector() == 7);  // ECOUT hit
+                auto n_detlayer_1e_cut = hitECIN_1e_cut ? clas12::ECIN : clas12::ECOUT;                                    // find first layer of hit
 
-                    if (true) {
-                        // if (allParticles[NeutronsFD_ind_mom_max]->cal(n_detlayer_1e_cut)->getLv() > clasAna.getEcalEdgeCuts() &&
-                        //     allParticles[NeutronsFD_ind_mom_max]->cal(n_detlayer_1e_cut)->getLw() > clasAna.getEcalEdgeCuts()) {
-                        // if neutron is within fiducial cuts
+                // Safety checks that leading nFD is neutron by definition (AMaps & WMaps)
+                debugging::CodeDebugger.SafetyCheck_AMaps_Reco_leading_neutrons(__FILE__, __LINE__, allParticles, AMaps_NeutronsFD_fill_ind, hitPCAL_1e_cut, hitECIN_1e_cut, hitECOUT_1e_cut);
 
-                        bool NeutronPassVeto_1e_cut = pid.NeutronECAL_Cut_Veto(allParticles, electrons, parameters.beamE, NeutronsFD_ind_mom_max, CutManager.Neutron_veto_cut.GetLowerCut());
+                if ((allParticles[AMaps_NeutronsFD_fill_ind]->cal(n_detlayer_1e_cut)->getLv() > clasAna.getEcalEdgeCuts() &&
+                     allParticles[AMaps_NeutronsFD_fill_ind]->cal(n_detlayer_1e_cut)->getLw() > clasAna.getEcalEdgeCuts())  // if neutron is within fiducial cuts
+                ) {
+                    bool NeutronPassVeto_1e_cut = pid.NeutronECAL_Cut_Veto(allParticles, electrons, parameters.beamE, AMaps_NeutronsFD_fill_ind, CutManager.Neutron_veto_cut.GetLowerCut());
 
-                        // double Mom_neut_1e_cut = pid.GetFDNeutronP(allParticles[NeutronsFD_ind_mom_max], true);  // if neutron is within fiducial cuts
-                        double Mom_neut_1e_cut = pid.GetFDNeutronP(allParticles[NeutronsFD_ind_mom_max], AnalysisCutSettings.apply_nucleon_cuts);
-                        double Theta_neut_1e_cut = allParticles[NeutronsFD_ind_mom_max]->getTheta() * 180.0 / pi;
-                        double Phi_neut_1e_cut = allParticles[NeutronsFD_ind_mom_max]->getPhi() * 180.0 / pi;
+                    // double Mom_neut_1e_cut = pid.GetFDNeutronP(allParticles[AMaps_NeutronsFD_fill_ind], true);  // if neutron is within fiducial cuts
+                    double Mom_neut_1e_cut = pid.GetFDNeutronP(allParticles[AMaps_NeutronsFD_fill_ind], AnalysisCutSettings.apply_nucleon_cuts);
+                    double Theta_neut_1e_cut = allParticles[AMaps_NeutronsFD_fill_ind]->getTheta() * 180.0 / pi;
+                    double Phi_neut_1e_cut = allParticles[AMaps_NeutronsFD_fill_ind]->getPhi() * 180.0 / pi;
 
-                        if ((Mom_neut_1e_cut >= CutManager.n_mom_th.GetLowerCut()) && (Mom_neut_1e_cut <= parameters.beamE))  // FOR nFD eff test!
-                        // if ((Mom_neut_1e_cut <= CutManager.n_mom_th.GetUpperCut()) && (Mom_neut_1e_cut >= CutManager.n_mom_th.GetLowerCut()))
-                        {
-                            // if id. reco leading neutron
+                    if ((Mom_neut_1e_cut >= CutManager.n_mom_th.GetLowerCut()) && (Mom_neut_1e_cut <= parameters.beamE))  // FOR nFD eff test!
+                    // if ((Mom_neut_1e_cut <= CutManager.n_mom_th.GetUpperCut()) && (Mom_neut_1e_cut >= CutManager.n_mom_th.GetLowerCut()))
+                    {
+                        // if id. reco leading neutron
 
-                            bool GoodTLMatch_AMaps = ((fabs(TL_nFD_theta - Theta_neut_1e_cut) < 2.) && (fabs(CalcdPhi1(TL_nFD_phi - Phi_neut_1e_cut)) < 5.));  // FOR nFD eff test!
-
-                            // if neutron passes ECAL veto:
-                            if (NeutronPassVeto_1e_cut)
-                            // if (NeutronPassVeto_1e_cut && GoodTLMatch_AMaps)  // FOR nFD eff test!
-                            {
-                                hReco_P_nFD_AMaps.hFill(Mom_neut_1e_cut, Weight);
-                                hNeutronAMapBC.hFill(Phi_neut_1e_cut, Theta_neut_1e_cut, Weight);
-                                hReco_P_nFD_vs_Reco_Theta_nFD_AMap.hFill(Mom_neut_1e_cut, Theta_neut_1e_cut, Weight);
-                                hReco_P_nFD_vs_Reco_Phi_nFD_AMap.hFill(Mom_neut_1e_cut, Phi_neut_1e_cut, Weight);
-                                hReco_P_nFD_vs_Reco_P_e_AMap.hFill(Mom_neut_1e_cut, P_e_1e_cut, Weight);
-                                hReco_P_nFD_vs_Reco_Theta_e_AMap.hFill(Mom_neut_1e_cut, Theta_e, Weight);
-                                hReco_P_nFD_vs_Reco_Phi_e_AMap.hFill(Mom_neut_1e_cut, Phi_e, Weight);
-                                aMaps_master.hFillHitMaps("Reco", "Neutron", Mom_neut_1e_cut, Theta_neut_1e_cut, Phi_neut_1e_cut, Weight);
-                            }  // end of if pass neutron ECAL veto
-                        }  // end of if id. reco leading neutron
-                    }  // end of if neutron is within fiducial cuts
-                }
+                        // if neutron passes ECAL veto:
+                        if (NeutronPassVeto_1e_cut) {
+                            hReco_P_nFD_AMaps.hFill(Mom_neut_1e_cut, Weight);
+                            hNeutronAMapBC.hFill(Phi_neut_1e_cut, Theta_neut_1e_cut, Weight);
+                            hReco_P_nFD_vs_Reco_Theta_nFD_AMap.hFill(Mom_neut_1e_cut, Theta_neut_1e_cut, Weight);
+                            hReco_P_nFD_vs_Reco_Phi_nFD_AMap.hFill(Mom_neut_1e_cut, Phi_neut_1e_cut, Weight);
+                            hReco_P_nFD_vs_Reco_P_e_AMap.hFill(Mom_neut_1e_cut, P_e_1e_cut, Weight);
+                            hReco_P_nFD_vs_Reco_Theta_e_AMap.hFill(Mom_neut_1e_cut, Theta_e, Weight);
+                            hReco_P_nFD_vs_Reco_Phi_e_AMap.hFill(Mom_neut_1e_cut, Phi_e, Weight);
+                            aMaps_master.hFillHitMaps("Reco", "Neutron", Mom_neut_1e_cut, Theta_neut_1e_cut, Phi_neut_1e_cut, Weight);
+                        }  // end of if pass neutron ECAL veto
+                    }  // end of if id. reco leading neutron
+                }  // end of if neutron is within fiducial cuts
             }
         }  // end of fill Acceptance maps if
 
@@ -12664,51 +12658,50 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
             }
 
             // Filling neurton reco. efficiency maps
-            if (ESSettings.ES_by_leading_FDneutron) {
-                if (NeutronsFD_ind_mom_max != -1) {
-                    // if NeutronsFD_ind_mom_max == -1, there are no neutrons above momentum th. in the event
-                    /* Fill leading reco FD neutron efficiency maps */
-                    bool hitPCAL_1e_cut = (allParticles[NeutronsFD_ind_mom_max]->cal(clas12::PCAL)->getDetector() == 7);    // PCAL hit
-                    bool hitECIN_1e_cut = (allParticles[NeutronsFD_ind_mom_max]->cal(clas12::ECIN)->getDetector() == 7);    // ECIN hit
-                    bool hitECOUT_1e_cut = (allParticles[NeutronsFD_ind_mom_max]->cal(clas12::ECOUT)->getDetector() == 7);  // ECOUT hit
-                    auto n_detlayer_1e_cut = hitECIN_1e_cut ? clas12::ECIN : clas12::ECOUT;                                 // find first layer of hit
+            int WMaps_NeutronsFD_fill_ind = (ESSettings.ES_by_leading_FDneutron && (NeutronsFD_ind_mom_max != -1)) ? NeutronsFD_ind_mom_max
+                                            : (NeutronsFD_ind.size() == 1)                                         ? NeutronsFD_ind.at(0)
+                                                                                                                   : -9999;
 
-                    // Safety checks that leading nFD is neutron by definition (AMaps & WMaps)
-                    debugging::CodeDebugger.SafetyCheck_AMaps_Reco_leading_neutrons(__FILE__, __LINE__, allParticles, NeutronsFD_ind_mom_max, hitPCAL_1e_cut, hitECIN_1e_cut,
-                                                                                    hitECOUT_1e_cut);
+            if (AMaps_NeutronsFD_fill_ind >= 0) {
+                /* Fill leading reco FD neutron efficiency maps */
+                bool hitPCAL_1e_cut = (allParticles[WMaps_NeutronsFD_fill_ind]->cal(clas12::PCAL)->getDetector() == 7);    // PCAL hit
+                bool hitECIN_1e_cut = (allParticles[WMaps_NeutronsFD_fill_ind]->cal(clas12::ECIN)->getDetector() == 7);    // ECIN hit
+                bool hitECOUT_1e_cut = (allParticles[WMaps_NeutronsFD_fill_ind]->cal(clas12::ECOUT)->getDetector() == 7);  // ECOUT hit
+                auto n_detlayer_1e_cut = hitECIN_1e_cut ? clas12::ECIN : clas12::ECOUT;                                    // find first layer of hit
 
-                    if (allParticles[NeutronsFD_ind_mom_max]->cal(n_detlayer_1e_cut)->getLv() > clasAna.getEcalEdgeCuts() &&
-                        allParticles[NeutronsFD_ind_mom_max]->cal(n_detlayer_1e_cut)->getLw() > clasAna.getEcalEdgeCuts()) {
-                        // if neutron is within fiducial cuts
+                // Safety checks that leading nFD is neutron by definition (AMaps & WMaps)
+                debugging::CodeDebugger.SafetyCheck_AMaps_Reco_leading_neutrons(__FILE__, __LINE__, allParticles, WMaps_NeutronsFD_fill_ind, hitPCAL_1e_cut, hitECIN_1e_cut, hitECOUT_1e_cut);
 
-                        bool NeutronPassVeto_1e_cut = pid.NeutronECAL_Cut_Veto(allParticles, electrons, parameters.beamE, NeutronsFD_ind_mom_max, CutManager.Neutron_veto_cut.GetLowerCut());
+                if ((allParticles[WMaps_NeutronsFD_fill_ind]->cal(n_detlayer_1e_cut)->getLv() > clasAna.getEcalEdgeCuts() &&
+                     allParticles[WMaps_NeutronsFD_fill_ind]->cal(n_detlayer_1e_cut)->getLw() > clasAna.getEcalEdgeCuts())  // if neutron is within fiducial cuts
+                ) {
+                    bool NeutronPassVeto_1e_cut = pid.NeutronECAL_Cut_Veto(allParticles, electrons, parameters.beamE, WMaps_NeutronsFD_fill_ind, CutManager.Neutron_veto_cut.GetLowerCut());
 
-                        double Mom_neut_1e_cut = pid.GetFDNeutronP(allParticles[NeutronsFD_ind_mom_max], AnalysisCutSettings.apply_nucleon_cuts);
-                        double Theta_neut_1e_cut = allParticles[NeutronsFD_ind_mom_max]->getTheta() * 180.0 / pi;
-                        double Phi_neut_1e_cut = allParticles[NeutronsFD_ind_mom_max]->getPhi() * 180.0 / pi;
+                    double Mom_neut_1e_cut = pid.GetFDNeutronP(allParticles[WMaps_NeutronsFD_fill_ind], AnalysisCutSettings.apply_nucleon_cuts);
+                    double Theta_neut_1e_cut = allParticles[WMaps_NeutronsFD_fill_ind]->getTheta() * 180.0 / pi;
+                    double Phi_neut_1e_cut = allParticles[WMaps_NeutronsFD_fill_ind]->getPhi() * 180.0 / pi;
 
-                        if ((Mom_neut_1e_cut <= CutManager.n_mom_th.GetUpperCut()) && (Mom_neut_1e_cut >= CutManager.n_mom_th.GetLowerCut())) {
-                            // if id. reco leading neutron
-                            bool FD_Theta_Cut_Reco_neutrons = (Theta_neut_1e_cut <= CutManager.FD_nucleon_theta_cut.GetUpperCut());
-                            bool FD_Momentum_Cut_Reco_neutrons =
-                                ((Mom_neut_1e_cut <= CutManager.FD_nucleon_momentum_cut.GetUpperCut()) && (Mom_neut_1e_cut >= CutManager.FD_nucleon_momentum_cut.GetLowerCut()));
+                    if ((Mom_neut_1e_cut >= CutManager.n_mom_th.GetLowerCut()) && (Mom_neut_1e_cut <= parameters.beamE))  // FOR nFD eff test!
+                    // if ((Mom_neut_1e_cut <= CutManager.n_mom_th.GetUpperCut()) && (Mom_neut_1e_cut >= CutManager.n_mom_th.GetLowerCut()))
+                    {
+                        // if id. reco leading neutron
+                        bool FD_Theta_Cut_Reco_neutrons = (Theta_neut_1e_cut <= CutManager.FD_nucleon_theta_cut.GetUpperCut());
+                        bool FD_Momentum_Cut_Reco_neutrons =
+                            ((Mom_neut_1e_cut <= CutManager.FD_nucleon_momentum_cut.GetUpperCut()) && (Mom_neut_1e_cut >= CutManager.FD_nucleon_momentum_cut.GetLowerCut()));
 
-                            // if neutron passes ECAL veto:
-                            if (NeutronPassVeto_1e_cut) {
-                                if (FD_Theta_Cut_Reco_neutrons && FD_Momentum_Cut_Reco_neutrons) {
-                                    hReco_P_nFD_WMaps.hFill(Mom_neut_1e_cut, Weight);
-                                    hNeutronAMapBCwKC.hFill(Phi_neut_1e_cut, Theta_neut_1e_cut, Weight);
-                                    hReco_P_nFD_vs_Reco_Theta_nFD_WMap.hFill(Mom_neut_1e_cut, Theta_neut_1e_cut, Weight);
-                                    hReco_P_nFD_vs_Reco_Phi_nFD_WMap.hFill(Mom_neut_1e_cut, Phi_neut_1e_cut, Weight);
-                                    hReco_P_nFD_vs_Reco_P_e_WMap.hFill(Mom_neut_1e_cut, P_e_1e_cut, Weight);
-                                    hReco_P_nFD_vs_Reco_Theta_e_WMap.hFill(Mom_neut_1e_cut, Theta_e, Weight);
-                                    hReco_P_nFD_vs_Reco_Phi_e_WMap.hFill(Mom_neut_1e_cut, Phi_e, Weight);
-                                    wMaps_master.hFillHitMaps("Reco", "Neutron", Mom_neut_1e_cut, Theta_neut_1e_cut, Phi_neut_1e_cut, Weight);
-                                }
-                            }  // end of if pass neutron ECAL veto
-                        }  // end of if id. reco leading neutron
-                    }  // end of if neutron is within fiducial cuts
-                }
+                        // if neutron passes ECAL veto and kinematical cuts:
+                        if (NeutronPassVeto_1e_cut && FD_Theta_Cut_Reco_neutrons && FD_Momentum_Cut_Reco_neutrons) {
+                            hReco_P_nFD_WMaps.hFill(Mom_neut_1e_cut, Weight);
+                            hNeutronAMapBCwKC.hFill(Phi_neut_1e_cut, Theta_neut_1e_cut, Weight);
+                            hReco_P_nFD_vs_Reco_Theta_nFD_WMap.hFill(Mom_neut_1e_cut, Theta_neut_1e_cut, Weight);
+                            hReco_P_nFD_vs_Reco_Phi_nFD_WMap.hFill(Mom_neut_1e_cut, Phi_neut_1e_cut, Weight);
+                            hReco_P_nFD_vs_Reco_P_e_WMap.hFill(Mom_neut_1e_cut, P_e_1e_cut, Weight);
+                            hReco_P_nFD_vs_Reco_Theta_e_WMap.hFill(Mom_neut_1e_cut, Theta_e, Weight);
+                            hReco_P_nFD_vs_Reco_Phi_e_WMap.hFill(Mom_neut_1e_cut, Phi_e, Weight);
+                            wMaps_master.hFillHitMaps("Reco", "Neutron", Mom_neut_1e_cut, Theta_neut_1e_cut, Phi_neut_1e_cut, Weight);
+                        }  // end of if pass neutron ECAL veto
+                    }  // end of if id. reco leading neutron
+                }  // end of if neutron is within fiducial cuts
             }
         }  // end of fill efficiency maps if
 
@@ -12716,9 +12709,13 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
         pid.FillNeutMultiPlots(allParticles, electrons, Weight, parameters.beamE, CutManager.Neutron_veto_cut.GetLowerCutConst(), hNeut_Multi_By_clas12pid_BPID_BV_1e_cut_FD,
                                hNeut_Multi_By_clas12pid_BPID_AV_1e_cut_FD, neutrons, hNeut_Multi_By_clas12pid_APID_BV_1e_cut_FD, hNeut_Multi_By_clas12pid_APID_AV_1e_cut_FD, neutrons);
         pid.FillNeutMultiPlots(allParticles, electrons, Weight, parameters.beamE, CutManager.Neutron_veto_cut.GetLowerCutConst(), hNeut_Multi_By_Redef_BPID_BV_1e_cut_FD,
-                               hNeut_Multi_By_Redef_BPID_AV_1e_cut_FD, ReDef_neutrons_FD, hNeut_Multi_By_Redef_APID_BV_1e_cut_FD, hNeut_Multi_By_Redef_APID_AV_1e_cut_FD, NeutronsFD_ind);
+                               hNeut_Multi_By_Redef_BPID_AV_1e_cut_FD, ReDef_FD_neutrons, hNeut_Multi_By_Redef_APID_BV_1e_cut_FD, hNeut_Multi_By_Redef_APID_AV_1e_cut_FD, NeutronsFD_ind);
+
+#pragma endregion
 
         //  1p (FD only) --------------------------------------------------------------------------------------------------------------------------------------------------------
+
+#pragma region /* Reco. 1p (FD only) events */
 
         debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode);
 
@@ -12734,8 +12731,8 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
             // Setting particle vectors & SaS variable (for code organization)
             /* Defining initial particle vectors: */
-            region_part_ptr e_1p = electrons[Electron_ind.at(0)];
-            region_part_ptr p_1p = protons[Protons_ind.at(0)];
+            clas12::region_part_ptr e_1p = electrons[Electron_ind.at(0)];
+            clas12::region_part_ptr p_1p = protons[Protons_ind.at(0)];
 
             /* Safety check that we are looking at 1p */
             debugging::CodeDebugger.SafetyCheck_basic_event_selection(__FILE__, __LINE__, "1p", Kplus, Kminus, Piplus_ind, Piminus_ind, Electron_ind, deuterons);
@@ -12810,7 +12807,8 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                 }
 
                 /* Filling dVx, dVy, dVz (1p) */
-                for (auto &p : protons) {
+                for (clas12::region_part_ptr &p : protons) {
+                    // for (auto &p : protons) {
                     double Vx_p_1p = p->par()->getVx(), Vy_p_1p = p->par()->getVy(), Vz_p_1p = p->par()->getVz();
                     double dVx = Vx_p_1p - Vx_e_1p, dVy = Vy_p_1p - Vy_e_1p, dVz = Vz_p_1p - Vz_e_1p;
 
@@ -12894,12 +12892,12 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                 // Photon momentum (1p)
                 for (int &i : PhotonsFD_ind) { hP_ph_APID_1p_FD.hFill(allParticles[i]->getP(), Weight_1p); }  // after mom. th.
 
-                for (int &i : ReDef_photons_FD) { hP_ph_BPID_1p_FD.hFill(allParticles[i]->getP(), Weight_1p); }  // before mom. th.
+                for (int &i : ReDef_FD_photons) { hP_ph_BPID_1p_FD.hFill(allParticles[i]->getP(), Weight_1p); }  // before mom. th.
 
                 // Neutron momentum (1p)
                 for (int &i : NeutronsFD_ind) { hP_n_APID_1p_FD.hFill(pid.GetFDNeutronP(allParticles[i], AnalysisCutSettings.apply_nucleon_cuts), Weight_1p); }  // after mom. th.
 
-                for (int &i : ReDef_neutrons_FD) { hP_n_BPID_1p_FD.hFill(pid.GetFDNeutronP(allParticles[i], AnalysisCutSettings.apply_nucleon_cuts), Weight_1p); }  // before mom. th.
+                for (int &i : ReDef_FD_neutrons) { hP_n_BPID_1p_FD.hFill(pid.GetFDNeutronP(allParticles[i], AnalysisCutSettings.apply_nucleon_cuts), Weight_1p); }  // before mom. th.
 
                 // Filling Beta vs. P plots (1p)
 
@@ -13050,7 +13048,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
                 // Fill neutron multiplicity plots (1p)
                 pid.FillNeutMultiPlots(allParticles, electrons, Weight_1p, parameters.beamE, CutManager.Neutron_veto_cut.GetLowerCutConst(), hNeut_Multi_By_Redef_BPID_BV_1p_FD,
-                                       hNeut_Multi_By_Redef_BPID_AV_1p_FD, ReDef_neutrons_FD, hNeut_Multi_By_Redef_APID_BV_1p_FD, hNeut_Multi_By_Redef_APID_AV_1p_FD, NeutronsFD_ind);
+                                       hNeut_Multi_By_Redef_BPID_AV_1p_FD, ReDef_FD_neutrons, hNeut_Multi_By_Redef_APID_BV_1p_FD, hNeut_Multi_By_Redef_APID_AV_1p_FD, NeutronsFD_ind);
 
                 // Fill W (1p)
                 FillByInt(hW_All_Int_1p, hW_QEL_1p, hW_MEC_1p, hW_RES_1p, hW_DIS_1p, qel, mec, res, dis, W_1p, Weight_1p);
@@ -13127,7 +13125,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
                 // Fill resolution histograms (1p)
                 if (MomResSettings.plot_and_fit_MomRes) {
-                    auto mcpbank_pRes = c12->mcparts();
+                    mcpar_ptr mcpbank_pRes = c12->mcparts();
                     const Int_t Ngen_pRes = mcpbank_pRes->getRows();
 
                     int Proton_match_counter = 0;
@@ -13153,7 +13151,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                         double dProtonPhi = CalcdPhi1(TLProtonPhi - RecoProtonPhi);
 
                         int pid_pRes = mcpbank_pRes->getPid();
-                        //                        auto pid = mcpbank_pRes->getPid();
+                        // auto pid = mcpbank_pRes->getPid();
 
                         // pRes cuts
 
@@ -13247,22 +13245,27 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
             }  // end of pass kinematical cuts (1p) if
         }  // end of 1p cuts if
 
+#pragma endregion
+
         //  1n (FD only) --------------------------------------------------------------------------------------------------------------------------------------------------------
+
+#pragma region /* Reco. 1n (FD only) events */
 
         debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode);
 
         // 1n (FD only)
         /* 1n event selection: 1n = any number of id. FD neutrons (we look at the leading nFD), with no charged particles (except electrons) and any number of other
                                     neutrals and particles with pdg=0. */
-        bool no_protons_1n = (Protons_ind.size() == 0);                   // there are no id. protons in both CD and FD
-        bool at_least_one_FDneutron_1n = (NeutronsFD_ind_mom_max != -1);  // for NeutronsFD_ind_mom_max = -1 we don't have any nFD
+        // (NeutronsFD_ind_mom_max != -1) -> ensures that we have at least one FD neutron in the event
+        // (ESSettings.ES_by_leading_FDneutron || (NeutronsFD_ind.size() == 1)) -> ensures that we are looking at the leading nFD if ESSettings.ES_by_leading_FDneutron = true
+        bool no_protons_1n = (Protons_ind.size() == 0);  // there are no id. protons in both CD and FD
+        bool at_least_one_FDneutron_1n =
+            ((ESSettings.ES_by_leading_FDneutron || (NeutronsFD_ind.size() == 1)) && (NeutronsFD_ind_mom_max != -1));  // for NeutronsFD_ind_mom_max = -1 we don't have any nFD
         bool event_selection_1n = (basic_event_selection && no_protons_1n && at_least_one_FDneutron_1n);
 
         bool apply_TL_1n_ES = (!ESSettings.Rec_wTL_ES || TL_Event_Selection_1n);
 
-        if (  // FOR nFD eff test!
-              // if ((NeutronsFD_ind.size() == 1) &&  // FFOR nFD eff test!
-            ESSettings.calculate_1n && event_selection_1n && apply_TL_1n_ES) {
+        if (ESSettings.calculate_1n && event_selection_1n && apply_TL_1n_ES) {
             // for 1n calculations (with any number of neutrals)
             ++num_of_events_1n_inFD;  // 1n event count after momentum and theta_n cuts
 
@@ -13270,16 +13273,16 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
             /* Defining initial particle vectors: */
 
             // Setting FD neutron index (1n)
-            int n_ind_1n;
+            int n_ind_1n = ESSettings.ES_by_leading_FDneutron ? NeutronsFD_ind_mom_max : NeutronsFD_ind.at(0);
 
-            if (ESSettings.ES_by_leading_FDneutron) {
-                n_ind_1n = NeutronsFD_ind_mom_max;
-            } else {
-                n_ind_1n = NeutronsFD_ind.at(0);
-            }
+            // if (ESSettings.ES_by_leading_FDneutron) {
+            //     n_ind_1n = NeutronsFD_ind_mom_max;
+            // } else {
+            //     n_ind_1n = NeutronsFD_ind.at(0);
+            // }
 
-            region_part_ptr e_1n = electrons[Electron_ind.at(0)];
-            region_part_ptr n_1n = allParticles[n_ind_1n];  // neutron with the largest momentum magnitude
+            clas12::region_part_ptr e_1n = electrons[Electron_ind.at(0)];
+            clas12::region_part_ptr n_1n = allParticles[n_ind_1n];  // neutron with the largest momentum magnitude
 
             bool NeutronInPCAL_1n = (n_1n->cal(clas12::PCAL)->getDetector() == 7);                                   // PCAL hit
             bool NeutronInECIN_1n = (n_1n->cal(clas12::ECIN)->getDetector() == 7);                                   // ECIN hit
@@ -13444,7 +13447,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                 }
 
                 /* FD Neutrons before mom. th. */
-                for (int &i : ReDef_neutrons_FD) {
+                for (int &i : ReDef_FD_neutrons) {
                     hP_n_BPID_1n_FD.hFill(pid.GetFDNeutronP(allParticles[i], AnalysisCutSettings.apply_nucleon_cuts), Weight_1n);
                     hP_n_BPID_1n_ZOOMOUT_FD.hFill(pid.GetFDNeutronP(allParticles[i], AnalysisCutSettings.apply_nucleon_cuts), Weight_1n);
                 }
@@ -13556,7 +13559,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                 // Photon momentum (1n)
                 for (int &i : PhotonsFD_ind) { hP_ph_APID_1n_FD.hFill(allParticles[i]->getP(), Weight_1n); }  // after mom. th.
 
-                for (int &i : ReDef_photons_FD) { hP_ph_BPID_1n_FD.hFill(allParticles[i]->getP(), Weight_1n); }  // before mom. th.
+                for (int &i : ReDef_FD_photons) { hP_ph_BPID_1n_FD.hFill(allParticles[i]->getP(), Weight_1n); }  // before mom. th.
 
                 // Filling Beta plots (1n)
 
@@ -13887,7 +13890,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
                 // Fill neutron multiplicity plots (1n)
                 pid.FillNeutMultiPlots(allParticles, electrons, Weight_1n, parameters.beamE, CutManager.Neutron_veto_cut.GetLowerCutConst(), hNeut_Multi_By_Redef_BPID_BV_1n_FD,
-                                       hNeut_Multi_By_Redef_BPID_AV_1n_FD, ReDef_neutrons_FD, hNeut_Multi_By_Redef_APID_BV_1n_FD, hNeut_Multi_By_Redef_APID_AV_1n_FD, NeutronsFD_ind);
+                                       hNeut_Multi_By_Redef_BPID_AV_1n_FD, ReDef_FD_neutrons, hNeut_Multi_By_Redef_APID_BV_1n_FD, hNeut_Multi_By_Redef_APID_AV_1n_FD, NeutronsFD_ind);
 
                 // Fill W (1n)
                 FillByInt(hW_All_Int_1n, hW_QEL_1n, hW_MEC_1n, hW_RES_1n, hW_DIS_1n, qel, mec, res, dis, W_1n, Weight_1n);
@@ -13980,7 +13983,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
                 // Fill resolution histograms (1n)
                 if (MomResSettings.plot_and_fit_MomRes) {
-                    auto mcpbank_nRes = c12->mcparts();
+                    mcpar_ptr mcpbank_nRes = c12->mcparts();
                     const Int_t Ngen_nRes = mcpbank_nRes->getRows();
 
                     int Neutron_match_counter = 0;
@@ -14006,7 +14009,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                         double dNeutronPhi = CalcdPhi1(TLNeutronPhi - RecoNeutronPhi);
 
                         int pid_nRes = mcpbank_nRes->getPid();
-                        //                        auto pid = mcpbank_nRes->getPid();
+                        // auto pid = mcpbank_nRes->getPid();
 
                         // nRes cuts
 
@@ -14218,8 +14221,11 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
             }  // end of NeutronPassVeto_1n is true (i.e. if neutron did not hit PCAL & hit either ECIN or ECOUT) & pass kinematical cuts (1n) if
         }  // end of 1n cuts if
 
+#pragma endregion
+
         //  1e2pXy (or (e,e'pp)X) -----------------------------------------------------------------------------------------------------------------------------------------------
 
+#pragma region /* Reco. 1e2pXy (or (e,e'pp)X) events */
         // 1e2pXy
         if (Np == 2) {
             // 2p and everything else is allowed
@@ -14239,7 +14245,11 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
             }
         }
 
+#pragma endregion
+
         //  2p (FD & CD) --------------------------------------------------------------------------------------------------------------------------------------------------------
+
+#pragma region /* Reco. 2p (FD & CD) events */
 
         // 2p (FD & CD)
         /* 2p event selection: 2p = Protons_ind.size() = 2, any id. FD neutrons and any number of other neutrals and particles with pdg=0. */
@@ -14258,9 +14268,9 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
             debugging::CodeDebugger.SafetyCheck_basic_event_selection(__FILE__, __LINE__, "2p", Kplus, Kminus, Piplus_ind, Piminus_ind, Electron_ind, deuterons);
 
             /* Setting particle vectors (for code organization) */
-            auto e_2p = electrons[Electron_ind.at(0)];
-            auto p_first_2p = protons[Protons_ind.at(0)];
-            auto p_second_2p = protons[Protons_ind.at(1)];
+            clas12::region_part_ptr e_2p = electrons[Electron_ind.at(0)];
+            clas12::region_part_ptr p_first_2p = protons[Protons_ind.at(0)];
+            clas12::region_part_ptr p_second_2p = protons[Protons_ind.at(1)];
 
             /* NOTE: p_first corresponds to protons[Protons_ind.at(0)] & p_second corresponds to protons[Protons_ind.at(1)] */
             TVector3 P_e_2p_3v, q_2p_3v, P_p_first_2p_3v, P_p_second_2p_3v, P_tot_2p_3v, P_1_2p_3v, P_2_2p_3v;
@@ -14330,7 +14340,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
             }
 
             /* Filling dVx, dVy, dVz (2p) */
-            for (auto &p : protons) {
+            for (clas12::region_part_ptr &p : protons) {
                 double Vx_p_2p = p->par()->getVx(), Vy_p_2p = p->par()->getVy(), Vz_p_2p = p->par()->getVz();
                 double dVx = Vx_p_2p - Vx_e, dVy = Vy_p_2p - Vy_e, dVz = Vz_p_2p - Vz_e;
 
@@ -14411,12 +14421,12 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
             // Photon momentum (2p)
             for (int &i : PhotonsFD_ind) { hP_ph_APID_2p_FD.hFill(allParticles[i]->getP(), Weight); }  // after mom. th.
 
-            for (int &i : ReDef_photons_FD) { hP_ph_BPID_2p_FD.hFill(allParticles[i]->getP(), Weight); }  // before mom. th.
+            for (int &i : ReDef_FD_photons) { hP_ph_BPID_2p_FD.hFill(allParticles[i]->getP(), Weight); }  // before mom. th.
 
             // Neutron momentum (2p)
             for (int &i : NeutronsFD_ind) { hP_n_APID_2p_FD.hFill(pid.GetFDNeutronP(allParticles[i], AnalysisCutSettings.apply_nucleon_cuts), Weight); }  // after mom. th.
 
-            for (int &i : ReDef_neutrons_FD) { hP_n_BPID_2p_FD.hFill(pid.GetFDNeutronP(allParticles[i], AnalysisCutSettings.apply_nucleon_cuts), Weight); }  // before mom. th.
+            for (int &i : ReDef_FD_neutrons) { hP_n_BPID_2p_FD.hFill(pid.GetFDNeutronP(allParticles[i], AnalysisCutSettings.apply_nucleon_cuts), Weight); }  // before mom. th.
 
             // Filling Beta vs. P plots (2p)
 
@@ -14494,7 +14504,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                 }
             }  // end of loop over piminus vector
 
-            for (auto &e : electrons) {
+            for (clas12::region_part_ptr &e : electrons) {
                 if (e->getRegion() == FD) {
                     hTheta_e_All_Int_2p_FD->Fill(Theta_e, Weight);
                     hPhi_e_All_Int_2p_FD->Fill(Phi_e, Weight);
@@ -14761,7 +14771,11 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
             }
         }  // end of 2p cuts if
 
+#pragma endregion
+
         //  pFDpCD --------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+#pragma region /* Reco. pFDpCD events */
 
         debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode);
 
@@ -14797,12 +14811,12 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
              * p_first corresponds to protons[Protons_ind.at(0)] & p_second corresponds to protons[Protons_ind.at(1)]
              * P_1 corresponds to leading proton & P_2 corresponds to the recoil */
 
-            region_part_ptr e_pFDpCD = electrons[Electron_ind.at(0)];
-            region_part_ptr p_first_pFDpCD = protons[Protons_ind.at(0)];
-            region_part_ptr p_second_pFDpCD = protons[Protons_ind.at(1)];
+            clas12::region_part_ptr e_pFDpCD = electrons[Electron_ind.at(0)];
+            clas12::region_part_ptr p_first_pFDpCD = protons[Protons_ind.at(0)];
+            clas12::region_part_ptr p_second_pFDpCD = protons[Protons_ind.at(1)];
 
             /* Declaring Determining particle vectors: */
-            region_part_ptr pCD_pFDpCD, pFD_pFDpCD;
+            clas12::region_part_ptr pCD_pFDpCD, pFD_pFDpCD;
 
             if (protons[Protons_ind.at(0)]->getRegion() == FD) {
                 pFD_pFDpCD = protons[Protons_ind.at(0)], pCD_pFDpCD = protons[Protons_ind.at(1)];
@@ -14944,7 +14958,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                 // Filling dVx, dVy, dVz histograms (pFDpCD)
 
                 // All protons (pFDpCD)
-                for (auto &p : protons) {
+                for (clas12::region_part_ptr &p : protons) {
                     double Vx_p_pFDpCD = p->par()->getVx(), Vy_p_pFDpCD = p->par()->getVy(), Vz_p_pFDpCD = p->par()->getVz();
                     double dVx_pFDpCD = Vx_p_pFDpCD - Vx_e_pFDpCD, dVy_pFDpCD = Vy_p_pFDpCD - Vy_e_pFDpCD, dVz_pFDpCD = Vz_p_pFDpCD - Vz_e_pFDpCD;
 
@@ -15036,12 +15050,12 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                 // Photon momentum (pFDpCD)
                 for (int &i : PhotonsFD_ind) { hP_ph_APID_pFDpCD_FD.hFill(allParticles[i]->getP(), Weight_pFDpCD); }  // after mom. th.
 
-                for (int &i : ReDef_photons_FD) { hP_ph_BPID_pFDpCD_FD.hFill(allParticles[i]->getP(), Weight_pFDpCD); }  // before mom. th.
+                for (int &i : ReDef_FD_photons) { hP_ph_BPID_pFDpCD_FD.hFill(allParticles[i]->getP(), Weight_pFDpCD); }  // before mom. th.
 
                 // Neutron momentum (pFDpCD)
                 for (int &i : NeutronsFD_ind) { hP_n_APID_pFDpCD_FD.hFill(pid.GetFDNeutronP(allParticles[i], AnalysisCutSettings.apply_nucleon_cuts), Weight_pFDpCD); }  // after mom. th.
 
-                for (int &i : ReDef_neutrons_FD) { hP_n_BPID_pFDpCD_FD.hFill(pid.GetFDNeutronP(allParticles[i], AnalysisCutSettings.apply_nucleon_cuts), Weight_pFDpCD); }  // before mom. th.
+                for (int &i : ReDef_FD_neutrons) { hP_n_BPID_pFDpCD_FD.hFill(pid.GetFDNeutronP(allParticles[i], AnalysisCutSettings.apply_nucleon_cuts), Weight_pFDpCD); }  // before mom. th.
 
                 // Filling Beta vs. P plots (pFDpCD)
 
@@ -15275,7 +15289,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
                 // Fill neutron multiplicity plots (pFDpCD)
                 pid.FillNeutMultiPlots(allParticles, electrons, Weight_pFDpCD, parameters.beamE, CutManager.Neutron_veto_cut.GetLowerCutConst(), hNeut_Multi_By_Redef_BPID_BV_pFDpCD_FD,
-                                       hNeut_Multi_By_Redef_BPID_AV_pFDpCD_FD, ReDef_neutrons_FD, hNeut_Multi_By_Redef_APID_BV_pFDpCD_FD, hNeut_Multi_By_Redef_APID_AV_pFDpCD_FD,
+                                       hNeut_Multi_By_Redef_BPID_AV_pFDpCD_FD, ReDef_FD_neutrons, hNeut_Multi_By_Redef_APID_BV_pFDpCD_FD, hNeut_Multi_By_Redef_APID_AV_pFDpCD_FD,
                                        NeutronsFD_ind);
 
                 // Fill W (pFDpCD)
@@ -15517,7 +15531,11 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
             }
         }  // end of 1epFDpCD & pFDpCD cuts if
 
+#pragma endregion
+
         //  nFDpCD --------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+#pragma region /* Reco. nFDpCD events */
 
         debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode);
 
@@ -15526,9 +15544,11 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
         // Configure if event is nFDpCD
         /* nFDpCD event selection: nFDpCD = one id. proton in the CD, any number of id. FD neutrons (we look at the leading nFD) and any number of neutrons, other
                                             neutrals and particles with pdg=0.*/
-        bool one_CDproton_nFDpCD = (Protons_ind.size() == 1 && protons[Protons_ind.at(0)]->getRegion() == CD);
-        // there's only one id. proton + this proton is in the CD
-        bool at_least_one_FDneutron_nFDpCD = (NeutronsFD_ind_mom_max != -1);  // for NeutronsFD_ind_mom_max = -1 we don't have any nFD
+        // (NeutronsFD_ind_mom_max != -1) -> ensures that we have at least one FD neutron in the event
+        // (ESSettings.ES_by_leading_FDneutron || (NeutronsFD_ind.size() == 1)) -> ensures that we are looking at the leading nFD if ESSettings.ES_by_leading_FDneutron = true
+        bool one_CDproton_nFDpCD = (Protons_ind.size() == 1 && protons[Protons_ind.at(0)]->getRegion() == CD);  // there's only one id. proton + this proton is in the CD
+        bool at_least_one_FDneutron_nFDpCD =
+            (ESSettings.ES_by_leading_FDneutron || (NeutronsFD_ind.size() == 1)) && (NeutronsFD_ind_mom_max != -1);  // for NeutronsFD_ind_mom_max = -1 we don't have any nFD
         bool event_selection_nFDpCD = (basic_event_selection && one_CDproton_nFDpCD && at_least_one_FDneutron_nFDpCD);
 
         bool apply_TL_nFDpCD_ES = (!ESSettings.Rec_wTL_ES || TL_Event_Selection_nFDpCD);
@@ -15541,17 +15561,17 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
             /* Defining initial particle vectors: */
 
             // Setting FD neutron index (nFDpCD)
-            int nFD_ind_nFDpCD;
+            int nFD_ind_nFDpCD = ESSettings.ES_by_leading_FDneutron ? NeutronsFD_ind_mom_max : NeutronsFD_ind.at(0);
 
-            if (ESSettings.ES_by_leading_FDneutron) {
-                nFD_ind_nFDpCD = NeutronsFD_ind_mom_max;
-            } else {
-                nFD_ind_nFDpCD = NeutronsFD_ind.at(0);
-            }
+            // if (ESSettings.ES_by_leading_FDneutron) {
+            //     nFD_ind_nFDpCD = NeutronsFD_ind_mom_max;
+            // } else {
+            //     nFD_ind_nFDpCD = NeutronsFD_ind.at(0);
+            // }
 
-            region_part_ptr e_nFDpCD = electrons[Electron_ind.at(0)];
-            region_part_ptr nFD_nFDpCD = allParticles[nFD_ind_nFDpCD];  // neutron with the largest momentum magnitude
-            region_part_ptr pCD_nFDpCD = protons[Protons_ind.at(0)];
+            clas12::region_part_ptr e_nFDpCD = electrons[Electron_ind.at(0)];
+            clas12::region_part_ptr nFD_nFDpCD = allParticles[nFD_ind_nFDpCD];  // neutron with the largest momentum magnitude
+            clas12::region_part_ptr pCD_nFDpCD = protons[Protons_ind.at(0)];
 
             // Safety checks (nFDpCD)
             /* Safety check that we are looking at nFDpCD */
@@ -15766,7 +15786,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                 // Filling dVx, dVy, dVz histograms (nFDpCD)
 
                 // All protons (nFDpCD)
-                for (auto &p : protons) {
+                for (clas12::region_part_ptr &p : protons) {
                     double Vx_p_nFDpCD = p->par()->getVx(), Vy_p_nFDpCD = p->par()->getVy(), Vz_p_nFDpCD = p->par()->getVz();
                     double dVx_nFDpCD = Vx_p_nFDpCD - Vx_e_nFDpCD, dVy_nFDpCD = Vy_p_nFDpCD - Vy_e_nFDpCD, dVz_nFDpCD = Vz_p_nFDpCD - Vz_e_nFDpCD;
 
@@ -15851,7 +15871,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                 // Photon momentum (nFDpCD)
                 for (int &i : PhotonsFD_ind) { hP_ph_APID_nFDpCD_FD.hFill(allParticles[i]->getP(), Weight_nFDpCD); }  // after mom. th.
 
-                for (int &i : ReDef_photons_FD) { hP_ph_BPID_nFDpCD_FD.hFill(allParticles[i]->getP(), Weight_nFDpCD); }  // before mom. th.
+                for (int &i : ReDef_FD_photons) { hP_ph_BPID_nFDpCD_FD.hFill(allParticles[i]->getP(), Weight_nFDpCD); }  // before mom. th.
 
                 // Neutron momentum (nFDpCD)
                 for (int &i : NeutronsFD_ind) {
@@ -15861,7 +15881,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
                     hP_n_APIDandNS_nFDpCD_FD.hFill(nRes.NCorr(AnalysisCutSettings.apply_nucleon_SmearAndCorr, TempNeutonMomentum), Weight_nFDpCD);
                 }  // after mom. th.
 
-                for (int &i : ReDef_neutrons_FD) { hP_n_BPID_nFDpCD_FD.hFill(pid.GetFDNeutronP(allParticles[i], AnalysisCutSettings.apply_nucleon_cuts), Weight_nFDpCD); }  // before mom. th.
+                for (int &i : ReDef_FD_neutrons) { hP_n_BPID_nFDpCD_FD.hFill(pid.GetFDNeutronP(allParticles[i], AnalysisCutSettings.apply_nucleon_cuts), Weight_nFDpCD); }  // before mom. th.
 
                 // Filling Beta vs. P plots (nFDpCD)
 
@@ -16141,7 +16161,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
                 // Fill neutron multiplicity plots (nFDpCD)
                 pid.FillNeutMultiPlots(allParticles, electrons, Weight_nFDpCD, parameters.beamE, CutManager.Neutron_veto_cut.GetLowerCutConst(), hNeut_Multi_By_Redef_BPID_BV_nFDpCD_FD,
-                                       hNeut_Multi_By_Redef_BPID_AV_nFDpCD_FD, ReDef_neutrons_FD, hNeut_Multi_By_Redef_APID_BV_nFDpCD_FD, hNeut_Multi_By_Redef_APID_AV_nFDpCD_FD,
+                                       hNeut_Multi_By_Redef_BPID_AV_nFDpCD_FD, ReDef_FD_neutrons, hNeut_Multi_By_Redef_APID_BV_nFDpCD_FD, hNeut_Multi_By_Redef_APID_AV_nFDpCD_FD,
                                        NeutronsFD_ind);
 
                 // Fill W (nFDpCD)
@@ -16399,12 +16419,18 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
         }  // end of 1enFDpCD & nFDpCD cuts if
 
         debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode);
+
+#pragma endregion
     }  // end of while
     // </editor-fold>
+
+#pragma endregion
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //                                                                        Histograms plots                                                                             //
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+#pragma region /* Histograms plots */
 
     // Histograms plots
 
@@ -17784,16 +17810,16 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
         //  Beta vs. P TF1 plots ------------------------------------------------------------------------------------------------------------------------------------------------
 
         // Beta vs. P TF1 plots
-        auto *beta_neutron = new TF1("beta_neutron", ("x/sqrt(x*x + " + to_string(m_n * m_n) + ")").c_str(), 0, parameters.beamE);
-        auto *beta_proton = new TF1("beta_proton", ("x/sqrt(x*x + " + to_string(m_p * m_p) + ")").c_str(), 0, parameters.beamE);
-        auto *beta_Kplus = new TF1("beta_Kplus", ("x/sqrt(x*x + " + to_string(m_Kplus * m_Kplus) + ")").c_str(), 0, parameters.beamE);
-        auto *beta_Kminus = new TF1("beta_Kminus", ("x/sqrt(x*x + " + to_string(m_Kminus * m_Kminus) + ")").c_str(), 0, parameters.beamE);
-        auto *beta_Kzero = new TF1("beta_Kplus", ("x/sqrt(x*x + " + to_string(m_Kzero * m_Kzero) + ")").c_str(), 0, parameters.beamE);
-        auto *beta_piplus = new TF1("beta_piplus", ("x/sqrt(x*x + " + to_string(m_piplus * m_piplus) + ")").c_str(), 0, parameters.beamE);
-        auto *beta_piminus = new TF1("beta_piminus", ("x/sqrt(x*x + " + to_string(m_piminus * m_piminus) + ")").c_str(), 0, parameters.beamE);
-        auto *beta_pizero = new TF1("beta_piplus", ("x/sqrt(x*x + " + to_string(m_pizero * m_pizero) + ")").c_str(), 0, parameters.beamE);
-        auto *beta_electron = new TF1("beta_electron", ("x/sqrt(x*x + " + to_string(m_e * m_e) + ")").c_str(), 0, parameters.beamE);
-        auto *beta_photon = new TF1("beta_electron", ("x/sqrt(x*x + " + to_string(0) + ")").c_str(), 0, parameters.beamE);
+        TF1 *beta_neutron = new TF1("beta_neutron", ("x/sqrt(x*x + " + to_string(m_n * m_n) + ")").c_str(), 0, parameters.beamE);
+        TF1 *beta_proton = new TF1("beta_proton", ("x/sqrt(x*x + " + to_string(m_p * m_p) + ")").c_str(), 0, parameters.beamE);
+        TF1 *beta_Kplus = new TF1("beta_Kplus", ("x/sqrt(x*x + " + to_string(m_Kplus * m_Kplus) + ")").c_str(), 0, parameters.beamE);
+        TF1 *beta_Kminus = new TF1("beta_Kminus", ("x/sqrt(x*x + " + to_string(m_Kminus * m_Kminus) + ")").c_str(), 0, parameters.beamE);
+        TF1 *beta_Kzero = new TF1("beta_Kplus", ("x/sqrt(x*x + " + to_string(m_Kzero * m_Kzero) + ")").c_str(), 0, parameters.beamE);
+        TF1 *beta_piplus = new TF1("beta_piplus", ("x/sqrt(x*x + " + to_string(m_piplus * m_piplus) + ")").c_str(), 0, parameters.beamE);
+        TF1 *beta_piminus = new TF1("beta_piminus", ("x/sqrt(x*x + " + to_string(m_piminus * m_piminus) + ")").c_str(), 0, parameters.beamE);
+        TF1 *beta_pizero = new TF1("beta_piplus", ("x/sqrt(x*x + " + to_string(m_pizero * m_pizero) + ")").c_str(), 0, parameters.beamE);
+        TF1 *beta_electron = new TF1("beta_electron", ("x/sqrt(x*x + " + to_string(m_e * m_e) + ")").c_str(), 0, parameters.beamE);
+        TF1 *beta_photon = new TF1("beta_electron", ("x/sqrt(x*x + " + to_string(0) + ")").c_str(), 0, parameters.beamE);
 
         //  Beta vs. P plots ----------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -22379,9 +22405,13 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
         std::cout << "\033[33m\n\nMultiplicity plots are disabled by user.\n\n\033[0m";
     }
 
+#pragma endregion
+
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //                                                          Saving histogram list and finishing execution                                                              //
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+#pragma region /* Saving histogram list and finishing execution */
 
     // Saving and finishing execution
 
@@ -22544,31 +22574,31 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     myLogFile << "Calculation setup\n";
     myLogFile << "===========================================================================\n\n";
 
-    myLogFile << "ESSettings.calculate_1p = " << basic_tools::BoolToString(ESSettings.calculate_1p) << "\n";
-    myLogFile << "ESSettings.calculate_1n = " << basic_tools::BoolToString(ESSettings.calculate_1n) << "\n";
-    myLogFile << "ESSettings.calculate_2p = " << basic_tools::BoolToString(ESSettings.calculate_2p) << "\n\n";
-    myLogFile << "ESSettings.calculate_pFDpCD = " << basic_tools::BoolToString(ESSettings.calculate_pFDpCD) << "\n";
-    myLogFile << "ESSettings.calculate_nFDpCD = " << basic_tools::BoolToString(ESSettings.calculate_nFDpCD) << "\n\n";
+    myLogFile << "calculate_1p = " << basic_tools::BoolToString(ESSettings.calculate_1p) << "\n";
+    myLogFile << "calculate_1n = " << basic_tools::BoolToString(ESSettings.calculate_1n) << "\n";
+    myLogFile << "calculate_2p = " << basic_tools::BoolToString(ESSettings.calculate_2p) << "\n\n";
+    myLogFile << "calculate_pFDpCD = " << basic_tools::BoolToString(ESSettings.calculate_pFDpCD) << "\n";
+    myLogFile << "calculate_nFDpCD = " << basic_tools::BoolToString(ESSettings.calculate_nFDpCD) << "\n\n";
 
     myLogFile << "-- Truth level calculation setup ------------------------------------------\n";
-    myLogFile << "ESSettings.calculate_truth_level = " << basic_tools::BoolToString(ESSettings.calculate_truth_level) << "\n";
-    myLogFile << "ESSettings.TL_plots_only_for_NC = " << basic_tools::BoolToString(ESSettings.TL_plots_only_for_NC) << "\n";
-    myLogFile << "ESSettings.fill_TL_plots = " << basic_tools::BoolToString(ESSettings.fill_TL_plots) << "\n";
-    myLogFile << "ESSettings.ZoomIn_OCutManager.n_mom_th_plots = " << basic_tools::BoolToString(ESSettings.ZoomIn_OCutManager.n_mom_th_plots) << "\n";
-    myLogFile << "ESSettings.Eff_calc_with_one_reco_electron = " << basic_tools::BoolToString(ESSettings.Eff_calc_with_one_reco_electron) << "\n";
-    myLogFile << "ESSettings.Calc_inc_eff_with_varying_theta = " << basic_tools::BoolToString(ESSettings.Calc_inc_eff_with_varying_theta) << "\n";
-    myLogFile << "ESSettings.Calc_1n_n_eff_with_smaller_theta = " << basic_tools::BoolToString(ESSettings.Calc_1n_n_eff_with_smaller_theta) << "\n";
-    myLogFile << "ESSettings.Calc_eff_overlapping_FC = " << basic_tools::BoolToString(ESSettings.Calc_eff_overlapping_FC) << "\n";
-    myLogFile << "ESSettings.Rec_wTL_ES = " << basic_tools::BoolToString(ESSettings.Rec_wTL_ES) << "\n\n";
+    myLogFile << "calculate_truth_level = " << basic_tools::BoolToString(ESSettings.calculate_truth_level) << "\n";
+    myLogFile << "TL_plots_only_for_NC = " << basic_tools::BoolToString(ESSettings.TL_plots_only_for_NC) << "\n";
+    myLogFile << "fill_TL_plots = " << basic_tools::BoolToString(ESSettings.fill_TL_plots) << "\n";
+    myLogFile << "ZoomIn_OCutManager.n_mom_th_plots = " << basic_tools::BoolToString(ESSettings.ZoomIn_OCutManager.n_mom_th_plots) << "\n";
+    myLogFile << "Eff_calc_with_one_reco_electron = " << basic_tools::BoolToString(ESSettings.Eff_calc_with_one_reco_electron) << "\n";
+    myLogFile << "Calc_inc_eff_with_varying_theta = " << basic_tools::BoolToString(ESSettings.Calc_inc_eff_with_varying_theta) << "\n";
+    myLogFile << "Calc_1n_n_eff_with_smaller_theta = " << basic_tools::BoolToString(ESSettings.Calc_1n_n_eff_with_smaller_theta) << "\n";
+    myLogFile << "Calc_eff_overlapping_FC = " << basic_tools::BoolToString(ESSettings.Calc_eff_overlapping_FC) << "\n";
+    myLogFile << "Rec_wTL_ES = " << basic_tools::BoolToString(ESSettings.Rec_wTL_ES) << "\n\n";
 
-    myLogFile << "ESSettings.limless_mom_eff_plots = " << basic_tools::BoolToString(ESSettings.limless_mom_eff_plots) << "\n\n";
+    myLogFile << "limless_mom_eff_plots = " << basic_tools::BoolToString(ESSettings.limless_mom_eff_plots) << "\n\n";
 
     myLogFile << "-- FD neutrals settings ---------------------------------------------------\n";
-    myLogFile << "ESSettings.Enable_FD_photons = " << basic_tools::BoolToString(ESSettings.Enable_FD_photons) << "\n";
-    myLogFile << "ESSettings.Enable_FD_neutrons = " << basic_tools::BoolToString(ESSettings.Enable_FD_neutrons) << "\n";
-    myLogFile << "ESSettings.Count_FD_neurton_and_photon_hits = " << basic_tools::BoolToString(ESSettings.Count_FD_neurton_and_photon_hits) << "\n";
+    myLogFile << "Enable_FD_photons = " << basic_tools::BoolToString(ESSettings.Enable_FD_photons) << "\n";
+    myLogFile << "Enable_FD_neutrons = " << basic_tools::BoolToString(ESSettings.Enable_FD_neutrons) << "\n";
+    myLogFile << "Count_FD_neurton_and_photon_hits = " << basic_tools::BoolToString(ESSettings.Count_FD_neurton_and_photon_hits) << "\n";
 
-    myLogFile << "ESSettings.ES_by_leading_FDneutron = " << basic_tools::BoolToString(ESSettings.ES_by_leading_FDneutron) << "\n\n";
+    myLogFile << "ES_by_leading_FDneutron = " << basic_tools::BoolToString(ESSettings.ES_by_leading_FDneutron) << "\n\n";
 
     myLogFile << "-- AMaps settings ---------------------------------------------------------\n";
     myLogFile << "Generate_Electron_AMaps = " << basic_tools::BoolToString(AMapsSettings.Generate_Electron_AMaps) << "\n";
@@ -23169,8 +23199,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     myLogFile << "num_of_events_nFDpCD_AV:\t\t\t" << num_of_events_nFDpCD_AV << "\n\n\n";
 
     // content of FittedPIDCuts.par file
-    if (AnalysisCutSettings.apply_cuts && !AnalysisCutSettings.apply_chi2_cuts_1e_cut &&
-        (!AnalysisCutSettings.only_preselection_cuts && AnalysisCutSettings.only_electron_quality_cuts)) {
+    if (AnalysisCutSettings.apply_cuts && !AnalysisCutSettings.apply_chi2_cuts_1e_cut && (!AnalysisCutSettings.only_preselection_cuts && AnalysisCutSettings.only_electron_quality_cuts)) {
         myLogFile << "===========================================================================\n";
         myLogFile << "content of FittedPIDCuts.par file\n";
         myLogFile << "===========================================================================\n\n";
@@ -23376,4 +23405,6 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
         system(("zip -r " + zip_input + " " + zip_output_path).c_str());
         // system(("mv -r " + run_plots_path + "/" + settings.GetRun_dir_name() + "/" + settings.GetRun_dir_name() + ".zip " + run_plots_path).c_str());
     }
+
+#pragma endregion
 }

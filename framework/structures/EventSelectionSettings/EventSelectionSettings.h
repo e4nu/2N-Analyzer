@@ -59,7 +59,12 @@ struct EventSelectionSettings {
           Enable_FD_photons(false),
           Enable_FD_neutrons(true),
           Count_FD_neurton_and_photon_hits(true),
-          ES_by_leading_FDneutron(true) {}
+
+          ES_by_leading_FDneutron(false) {}
+
+    void RefreshSettings() {
+        if (!ES_by_leading_FDneutron) { Enable_FD_neutrons = false; }
+    }
 };
 
 #endif  // EVENTSELECTIONSETTINGS_H

@@ -6,30 +6,31 @@
 // #define PARTICLEID_H
 #ifdef PARTICLEID_H
 
-#include <TF1.h>
-#include <math.h>
+    #include <TF1.h>
+    #include <math.h>
 
-#include <iostream>
-#include <map>
-#include <vector>
+    #include <iostream>
+    #include <map>
+    #include <vector>
 
-#include "../../namespaces/general_utilities/analysis_math/analysis_math.h"
-#include "../../namespaces/general_utilities/constants.h"
-#include "../../namespaces/general_utilities/reco_analysis_functions.h"
-// #include "../../functions/NeutronECAL_Cut_Veto.h"
-// #include "../../functions/PID_functions/GetFDNeutronP.h"
-#include "../DSCuts/DSCuts.h"
-#include "../hPlots/hPlot1D.cpp"
-#include "../hPlots/hPlot2D.cpp"
+    #include "../../namespaces/general_utilities/analysis_math/analysis_math.h"
+    #include "../../namespaces/general_utilities/constants.h"
+    #include "../../namespaces/general_utilities/reco_analysis_functions.h"
+    // #include "../../functions/NeutronECAL_Cut_Veto.h"
+    // #include "../../functions/PID_functions/GetFDNeutronP.h"
+    #include "../DSCuts/DSCuts.h"
+    #include "../clas12ana/clas12ana.h"
+    #include "../hPlots/hPlot1D.cpp"
+    #include "../hPlots/hPlot2D.cpp"
 //
 // #include "clas12reader.h"
 // #include "region_particle.h"
 
-#include "../../includes/clas12_include.h"
+    #include "../../includes/clas12_include.h"
 
-#if !defined(MOMENTUMRESOLUTION_H)
-#include "../MomentumResolution/MomentumResolution.cpp"
-#endif
+    #if !defined(MOMENTUMRESOLUTION_H)
+        #include "../MomentumResolution/MomentumResolution.cpp"
+    #endif
 
 // using namespace clas12;
 using namespace constants;
@@ -170,6 +171,13 @@ class ParticleID {
 
     void nParticleID(vector<region_part_ptr> &allParticles, vector<int> &ID_Neutrons_FD, const DSCuts &Neutron_momentum_th, vector<int> &ID_Photons_FD, const DSCuts &Photon_momentum_th,
                      const bool &apply_nucleon_cuts);
+
+    // SetEventParticles function --------------------------------------------------------------------------------------------------------------------
+
+    void SetEventParticles(const bool &clas12ana_particles, const clas12ana &clasAna, const std::unique_ptr<clas12::clas12reader> &c12, vector<clas12::region_part_ptr> &neutrons,
+                           vector<clas12::region_part_ptr> &protons, vector<clas12::region_part_ptr> &Kplus, vector<clas12::region_part_ptr> &Kminus, vector<clas12::region_part_ptr> &piplus,
+                           vector<clas12::region_part_ptr> &piminus, vector<clas12::region_part_ptr> &electrons, vector<clas12::region_part_ptr> &deuterons,
+                           vector<clas12::region_part_ptr> &neutrals, vector<clas12::region_part_ptr> &otherpart);
 
     // Fill neutron multiplicity plots functions -----------------------------------------------------------------------------------------------------
 

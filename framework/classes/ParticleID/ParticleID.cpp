@@ -117,10 +117,9 @@ vector<int> ParticleID::ChargedParticleID(vector<region_part_ptr> &Particle, con
 //<editor-fold desc="FDNeutralParticleID function">
 
 //<editor-fold desc="Get neutrals by new definition (with neutron ECAL veto and ECAL edge cuts)">
-/* The FDNeutralParticleID function gets neutrons or photons from the FD, according to the definition from Larry:
+/* The FDNeutralParticleID function gets neutrons or photons from the FD, according to the redefinition from Larry:
  * Neutron = a neutral particle (i.e., neutron or photon) in the FD with no PCal hit and with an ECal hit.
  * Photon = a neutral particle (i.e., neutron or photon) in the FD with a PCal hit. */
-
 void ParticleID::FDNeutralParticleID(vector<region_part_ptr> allParticles, vector<region_part_ptr> electrons, vector<int> &FD_Neutrons_within_PID_cuts, vector<int> &ID_Neutrons_FD,
                                      DSCuts &Neutron_momentum_th, vector<int> &FD_Photons_within_th, vector<int> &ID_Photons_FD, DSCuts &Photon_momentum_th, DSCuts &Neutron_veto_cut,
                                      const double &beamE, const double &ECAL_V_edge_cut, const double &ECAL_W_edge_cut, const bool &apply_nucleon_cuts) {
@@ -336,7 +335,7 @@ int ParticleID::GetCorrLnFDIndex(MomentumResolution &nRes, vector<region_part_pt
  * Photon = a neutral particle (i.e., neutron or photon) in the FD with a PCal hit. */
 
 /* FDNeutralParticle without ECAL veto */
-void ParticleID::ReDefFDNeutrals(vector<region_part_ptr> allParticles, vector<int> &ID_Neutrons_FD, vector<int> &ID_Photons_FD) {
+void ParticleID::ReDefFDNeutrals(vector<region_part_ptr> allParticles, vector<int> &ReDef_FD_neutrons, vector<int> &ReDef_FD_photons) {
     for (int i = 0; i < allParticles.size(); i++) {
         int ParticlePDG = allParticles[i]->par()->getPid();
 
@@ -345,20 +344,13 @@ void ParticleID::ReDefFDNeutrals(vector<region_part_ptr> allParticles, vector<in
             bool ParticleInECIN = (allParticles[i]->cal(clas12::ECIN)->getDetector() == 7);                              // ECIN hit
             bool ParticleInECOUT = (allParticles[i]->cal(clas12::ECOUT)->getDetector() == 7);                            // ECOUT hit
 
-            // if ((ParticlePDG == 2112) || (ParticlePDG == 22)) {  // FOR nFD eff test!
-            //     if (ParticlePDG == 2112) {
-            //         ID_Neutrons_FD.push_back(i);
-            //     } else if (ParticlePDG == 22) {
-            //         ID_Photons_FD.push_back(i);
-            //     }
-            // }  // end of clas12root neutron or 'photon' if
             if ((ParticlePDG == 2112) || (ParticlePDG == 22)) {
                 if (ParticleInPCAL) {
                     // if there's a 'photon' with a PCAL hit -> photon:
-                    if (ParticlePDG == 22) { ID_Photons_FD.push_back(i); }
+                    if (ParticlePDG == 22) { ReDef_FD_photons.push_back(i); }
                 } else if (!ParticleInPCAL) {  // if there is a neutron or a 'photon' without a PCAL hit
                     // if there is either a ECIN or ECOUT hit -> neutron:
-                    if (ParticleInECIN || ParticleInECOUT) { ID_Neutrons_FD.push_back(i); }
+                    if (ParticleInECIN || ParticleInECOUT) { ReDef_FD_neutrons.push_back(i); }
                 }
             }  // end of clas12root neutron or 'photon' if
         }  // end of neutral and in the FD if
@@ -919,6 +911,38 @@ void ParticleID::nParticleID(vector<region_part_ptr> &allParticles, vector<int> 
     }  // end of loop over allparticle vector
 }
 //</editor-fold>
+
+// SetEventParticles function --------------------------------------------------------------------------------------------------------------------
+
+void SetEventParticles(const bool &clas12ana_particles, const clas12ana &clasAna, const std::unique_ptr<clas12::clas12reader> &c12, vector<clas12::region_part_ptr> &neutrons,
+                       vector<clas12::region_part_ptr> &protons, vector<clas12::region_part_ptr> &Kplus, vector<clas12::region_part_ptr> &Kminus, vector<clas12::region_part_ptr> &piplus,
+                       vector<clas12::region_part_ptr> &piminus, vector<clas12::region_part_ptr> &electrons, vector<clas12::region_part_ptr> &deuterons,
+                       vector<clas12::region_part_ptr> &neutrals, vector<clas12::region_part_ptr> &otherpart) {
+    // TODO: change these PDG numbers to those from the constants namespace
+    if (clas12ana_particles) {
+        neutrons = clasAna.getByPid(2112);
+        protons = clasAna.getByPid(2212);
+        Kplus = clasAna.getByPid(321);
+        Kminus = clasAna.getByPid(-321);
+        piplus = clasAna.getByPid(211);
+        piminus = clasAna.getByPid(-211);
+        electrons = clasAna.getByPid(11);
+        deuterons = clasAna.getByPid(45);
+        neutrals = clasAna.getByPid(0);
+        otherpart = clasAna.getByPid(311);
+    } else {
+        neutrons = c12->getByID(2112);
+        protons = c12->getByID(2212);
+        Kplus = c12->getByID(321);
+        Kminus = c12->getByID(-321);
+        piplus = c12->getByID(211);
+        piminus = c12->getByID(-211);
+        electrons = c12->getByID(11);
+        deuterons = c12->getByID(45);
+        neutrals = c12->getByID(0);
+        otherpart = c12->getByID(311);
+    }
+}
 
 // Fill neutron multiplicity plots functions -----------------------------------------------------------------------------------------------------
 
