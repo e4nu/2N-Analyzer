@@ -6,37 +6,37 @@
 // #define AMAPS_H
 #ifdef AMAPS_H
 
-#include <TApplication.h>
-#include <TCanvas.h>
-#include <TChain.h>
-#include <TDatabasePDG.h>
-#include <TF1.h>
-#include <TFile.h>
-#include <TH1.h>
-#include <TH2.h>
-#include <TLatex.h>
-#include <TLorentzVector.h>
-#include <TROOT.h>
-#include <TStyle.h>
-#include <TTree.h>
-#include <math.h>
+    #include <TApplication.h>
+    #include <TCanvas.h>
+    #include <TChain.h>
+    #include <TDatabasePDG.h>
+    #include <TF1.h>
+    #include <TFile.h>
+    #include <TH1.h>
+    #include <TH2.h>
+    #include <TLatex.h>
+    #include <TLorentzVector.h>
+    #include <TROOT.h>
+    #include <TStyle.h>
+    #include <TTree.h>
+    #include <math.h>
 
-#include <chrono>
-#include <cstdlib>
-#include <fstream>
-#include <iomanip>
-#include <iostream>
-#include <map>
-#include <sstream>
-#include <string>
-#include <typeinfo>
-#include <vector>
+    #include <chrono>
+    #include <cstdlib>
+    #include <fstream>
+    #include <iomanip>
+    #include <iostream>
+    #include <map>
+    #include <sstream>
+    #include <string>
+    #include <typeinfo>
+    #include <vector>
 
-// #include "../../functions/GeneralFunctions.h"
-#include "../../namespaces/general_utilities/utilities.h"
-#include "../DSCuts/DSCuts.h"
-#include "../hPlots/hPlot2D.cpp"
-#include "CustomSliceLimits.h"
+    // #include "../../functions/GeneralFunctions.h"
+    #include "../../namespaces/general_utilities/utilities.h"
+    #include "../DSCuts/DSCuts.h"
+    #include "../hPlots/hPlot2D.cpp"
+    #include "CustomSliceLimits.h"
 // #include "clas12reader.h"
 
 using namespace utilities;
@@ -44,7 +44,7 @@ using namespace utilities;
 class AMaps {
    private:
     std::string AMaps_Mode = "AMaps";
-    
+
     /* Acceptance maps from class and before cuts (to be compared with one generated with the file) */
     hPlot2D reco_theta_e_VS_phi_e_BC, reco_theta_p_VS_phi_p_BC, reco_theta_n_VS_phi_n_BC, reco_theta_nuc_VS_phi_nuc_BC;
 
@@ -135,8 +135,6 @@ class AMaps {
     std::string AMap_Ratio_prefix = "03_AMap_Ratio_-_";
     std::string cPart_Sep_AMaps_prefix = "04_cPart_Sep_AMaps_-_";
     std::string AMaps_prefix = "05_AMaps_-_";
-
-    std::string DefaultMapsDir = path_definitions::PathDefinitions.AcceptanceMapsDirectory + "default_maps"
 
     vector<vector<double>> Loaded_ElectronMomSliceLimits;
     vector<vector<double>> Loaded_NucleonMomSliceLimits;

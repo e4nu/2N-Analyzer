@@ -1067,18 +1067,12 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
 
     debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode);
 
-    cout << "\n\nAMapsSettings.Generate_Electron_AMaps = " << AMapsSettings.Generate_Electron_AMaps << "\n";
-    cout << "Generate_Nucleon_AMaps = " << AMapsSettings.Generate_Nucleon_AMaps << "\n";
-    cout << "Generate_WMaps = " << AMapsSettings.Generate_WMaps << "\n\n";
-
-    // quit();
-
     if (AMapsSettings.Generate_WMaps) {
         wMaps_master =
             AMaps(parameters.SampleName, AMapsSettings.P_e_bin_profile, AMapsSettings.P_nuc_bin_profile, parameters.beamE, "WMaps", directories.AMaps_Directory_map["WMaps_1e_cut_Directory"],
                   NumberNucOfMomSlices, NumberElecOfMomSlices, HistNucSliceNumOfXBins, HistNucSliceNumOfXBins, HistElectronSliceNumOfXBins, HistElectronSliceNumOfXBins);
     } else {
-        wMaps_master = AMaps(path_definitions::PathDefinitions.AcceptanceWeightsDirectory, parameters.VaryingSampleName, parameters.beamE, AMapsSettings.Electron_single_slice_test,
+        wMaps_master = AMaps(path_definitions::PathDefinitions.AcceptanceWeightsDirectory, parameters.VaryingSampleName, parameters.beamE, "WMaps", AMapsSettings.Electron_single_slice_test,
                              AMapsSettings.Nucleon_single_slice_test, AMapsSettings.TestSlices);
     }
 
