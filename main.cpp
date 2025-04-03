@@ -1,10 +1,11 @@
 #include <iostream>
 
-#include "framework/namespaces/setup/code_setup.h"
+#include "framework/namespaces/setup/code_setup/code_setup.h"
 
 #include "framework/classes/DataAnalyser/DataAnalyser.cpp"
-#include "framework/namespaces/general_utilities/basic_tools.h"
+#include "framework/namespaces/general_utilities/basic_tools/basic_tools.h"
 
+// using namespace std;
 using namespace code_setup;
 
 int main() {

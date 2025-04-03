@@ -1,3 +1,0 @@
-/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/macros/CMakeTest/build/CMakeFiles/2N_Analysis_e4nu.dir
-/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/macros/CMakeTest/build/CMakeFiles/edit_cache.dir
-/w/hallb-scshelf2102/clas12/asportes/2N-Analyser/macros/CMakeTest/build/CMakeFiles/rebuild_cache.dir

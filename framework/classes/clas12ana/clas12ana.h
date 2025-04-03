@@ -32,7 +32,9 @@ TVector3 rotate(TVector3 vec, int sector) {
 // Analysis suite for CLAS12 analysis                                   //
 // #################################################################### //
 
-class clas12ana : public clas12reader {
+class clas12ana : public
+
+                  clas12reader {
    public:
     clas12ana() { Init(); };
 
