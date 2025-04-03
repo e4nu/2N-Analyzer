@@ -1032,9 +1032,9 @@ void RecoEventAnalyser(const std::string &AnalyzeFilePath, const std::string &An
 
     std::cout << "\033[33m done.\n\n\033[0m";
 
-    if (Generate_Electron_AMaps) { std::cout << "\033[33m\n\nGenerating electron AMaps\n\n\033[0m"; }
+    if (Generate_Electron_AMaps) { std::cout << "\033[33m\nGenerating electron AMaps\n\n\033[0m"; }
 
-    if (Generate_Nucleon_AMaps) { std::cout << "\033[33m\n\nGenerating nucleon AMaps\n\n\033[0m"; }
+    if (Generate_Nucleon_AMaps) { std::cout << "\033[33m\nGenerating nucleon AMaps\n\n\033[0m"; }
 
     // Acceptance correction data -------------------------------------------------------------------------------------------------------------------------------------------
 
