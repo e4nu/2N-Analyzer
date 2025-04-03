@@ -7,10 +7,13 @@
 
 #include <iostream>
 
+// Include classes:
+#include "../../classes/ExperimentParameters/ExperimentParameters.h"
 #include "../../classes/Settings/Settings.cpp"
+
+// Include settings:
 #include "../AcceptanceMapsSettings/AcceptanceMapsSettings.h"
 #include "../EventSelectionSettings/EventSelectionSettings.h"
-#include "../ExperimentParameters/ExperimentParameters.h"
 #include "../MomentumResolutionSettings/MomentumResolutionSettings.h"
 
 struct AnalysisCutSettings {
@@ -50,7 +53,7 @@ struct AnalysisCutSettings {
     bool apply_kinematical_weights;
     bool apply_nucleon_SmearAndCorr;
 
-    const bool custom_cuts_naming; // Enable custom cuts naming
+    const bool custom_cuts_naming;  // Enable custom cuts naming
 
     // Constructor with default values
     AnalysisCutSettings()

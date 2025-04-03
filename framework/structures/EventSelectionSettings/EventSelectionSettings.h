@@ -30,8 +30,8 @@ struct EventSelectionSettings {
 
     const bool limless_mom_eff_plots;
 
-    const bool Enable_FD_photons;   // keep as false to decrease RES & DIS
-    const bool Enable_FD_neutrons;  // keep as false to increase eff. plots
+    const bool Enable_FD_photons;  // keep as false to decrease RES & DIS
+    bool Enable_FD_neutrons;       // keep as false to increase eff. plots
     const bool Count_FD_neurton_and_photon_hits;
 
     // // TODO: add this switch to event selection variables!

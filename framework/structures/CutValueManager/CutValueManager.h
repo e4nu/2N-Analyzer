@@ -7,11 +7,14 @@
 
 #include <iostream>
 
-#include "../../../classes/DSCuts/DSCuts.h"
-#include "../../../classes/ExperimentParameters/ExperimentParameters.cpp"
-#include "../../../classes/clas12ana/clas12ana.h"
-#include "../../../classes/hPlots/hPlot1D.cpp"
-#include "../../../namespaces/general_utilities/analysis_math/analysis_math.h"
+// Include libraries:
+#include "../../namespaces/general_utilities/analysis_math/analysis_math.h"
+
+// Include classes:
+#include "../../classes/DSCuts/DSCuts.h"
+#include "../../classes/ExperimentParameters/ExperimentParameters.cpp"
+#include "../../classes/clas12ana/clas12ana.h"
+#include "../../classes/hPlots/hPlot1D.cpp"
 
 struct CutValueManager {
     // Cut declarations -----------------------------------------------------------------------------------------------------------------------------------------------------
