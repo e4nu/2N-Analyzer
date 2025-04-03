@@ -7,12 +7,12 @@
 // #ifdef DATAANALYZER_H
 
 // Include settings:
-#include "../structures/AcceptanceMapsSettings/AcceptanceMapsSettings.h"
-#include "../structures/AnalysisCutSettings/AnalysisCutSettings.h"
-#include "../structures/CutValueManager/CutValueManager.h"
-#include "../structures/EventSelectionSettings/EventSelectionSettings.h"
-#include "../structures/MomentumResolutionSettings/MomentumResolutionSettings.h"
-#include "../structures/RunParameters/RunParameters.h"
+#include "../../structures/AcceptanceMapsSettings/AcceptanceMapsSettings.h"
+#include "../../structures/AnalysisCutSettings/AnalysisCutSettings.h"
+#include "../../structures/CutValueManager/CutValueManager.h"
+#include "../../structures/EventSelectionSettings/EventSelectionSettings.h"
+#include "../../structures/MomentumResolutionSettings/MomentumResolutionSettings.h"
+#include "../../structures/RunParameters/RunParameters.h"
 
 // #include "../../applications/DetectorSimulationAnalyser.cpp"
 #include "../../applications/TruthLevelAnalyser.cpp"
