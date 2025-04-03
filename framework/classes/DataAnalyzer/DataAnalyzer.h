@@ -2,8 +2,6 @@
 // Created by alons on 05/08/2024.
 //
 
-#ifndef DATAANALYZER_H
-#define DATAANALYZER_H
 // // #ifndef DATAANALYZER_H
 // // #define DATAANALYZER_H
 // #ifdef DATAANALYZER_H
@@ -44,4 +42,4 @@ class DataAnalyzer {
     void RunEventAnalyser(const std::string &AnalyserMode, const std::string &AnalyzeFilePath, const std::string &AnalyzeFileSample, const std::string &AnalyzeFile);
 };
 
-#endif  // DATAANALYZER_H
+// #endif  // DATAANALYZER_H
