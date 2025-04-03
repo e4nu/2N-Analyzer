@@ -2,6 +2,9 @@
 // Created by Alon Sportes on 16/03/2025.
 //
 
+#ifndef RECO_ANALYSIS_FUNCTIONS_H
+#define RECO_ANALYSIS_FUNCTIONS_H
+
 #include <TCanvas.h>
 #include <TFile.h>
 #include <TH1.h>
@@ -429,3 +432,5 @@ bool NeutronECAL_Cut_Veto(vector<region_part_ptr>& allParticles, vector<region_p
 }
 
 };  // namespace reco_analysis_functions
+
+#endif  // RECO_ANALYSIS_FUNCTIONS_H
