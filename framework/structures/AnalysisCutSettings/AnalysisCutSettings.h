@@ -157,11 +157,8 @@ struct AnalysisCutSettings {
     }
 
     void CustomNamingRefresh(Settings& settings, const AcceptanceMapsSettings& AMapsSettings, const MomentumResolutionSettings& MomResSettings, const EventSelectionSettings& ESSettings,
-                             const RunParameters& parameters) {
+                             const RunParameters& parameters, std::string& run_plots_path, std::string& run_plots_log_save_Directory) {
         /* Save plots to custom-named folders, to allow multi-sample runs at once. */
-        std::string run_plots_path = path_definitions::PathDefinitions.plots_path;
-        std::string run_plots_log_save_Directory = path_definitions::plots_log_save_Directory;
-
         settings.SetCustomCutsNaming(custom_cuts_naming);
         settings.ConfigureStatuses(apply_cuts, clas12ana_particles, only_preselection_cuts, apply_chi2_cuts_1e_cut, only_electron_quality_cuts, apply_nucleon_cuts,
                                    ESSettings.Enable_FD_photons, apply_nucleon_SmearAndCorr, apply_kinematical_cuts, apply_kinematical_weights, apply_fiducial_cuts,

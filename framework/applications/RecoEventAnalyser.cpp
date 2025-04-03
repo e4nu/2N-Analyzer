@@ -308,10 +308,12 @@ void DataAnalyzer::RecoEventAnalyser(const std::string &AnalyzeFilePath, const s
     // Custom cuts naming
 
     /* Save plots to custom-named folders, to allow multi-sample runs at once. */
-    CutSettings.CustomNamingRefresh(settings, AMapsSettings, ESSettings, parameters);
+    std::string run_plots_path = path_definitions::PathDefinitions.plots_path;
+    std::string run_plots_log_save_Directory = path_definitions::plots_log_save_Directory;
+    CutSettings.CustomNamingRefresh(settings, AMapsSettings, MomResSettings, ESSettings, parameters, run_plots_path, run_plots_log_save_Directory);
     // const bool custom_cuts_naming = true;
     // std::string run_plots_path = path_definitions::PathDefinitions.plots_path;
-    // std::string run_plots_log_save_Directory = plots_log_save_Directory;
+    // std::string run_plots_log_save_Directory = path_definitions::plots_log_save_Directory;
     // settings.SetCustomCutsNaming(custom_cuts_naming);
     // settings.ConfigureStatuses(AnalysisCutSettings, clas12ana_particles, only_preselection_cuts, apply_chi2_cuts_1e_cut, only_electron_quality_cuts, apply_nucleon_cuts,
     // ESSettings.Enable_FD_photons,
@@ -380,7 +382,7 @@ void DataAnalyzer::RecoEventAnalyser(const std::string &AnalyzeFilePath, const s
 
     // Cut declarations -----------------------------------------------------------------------------------------------------------------------------------------------------
 
-    CutValueManager CutManager = CutValueManager(Experiment, limless_mom_eff_plots);
+    CutValueManager CutManager = CutValueManager(Experiment, ESSettings.limless_mom_eff_plots);
 
     // Cuts declarations
     /* Log cut values to be used later when applying them. */
@@ -988,7 +990,7 @@ void DataAnalyzer::RecoEventAnalyser(const std::string &AnalyzeFilePath, const s
 
     /* W boundries */
     const double W_lboundary = 0.35;
-    const double W_uboundary = 1.1 * sqrt((beamE + m_p) * (beamE + m_p) - parameters.beamE * parameters.beamE);  // Default
+    const double W_uboundary = 1.1 * sqrt((parameters.beamE + m_p) * (parameters.beamE + m_p) - parameters.beamE * parameters.beamE);  // Default
 
     /* Beta boundries */
     const double dBeta_sigma_boundary = 0.1;
@@ -1055,7 +1057,7 @@ void DataAnalyzer::RecoEventAnalyser(const std::string &AnalyzeFilePath, const s
             AMaps(parameters.SampleName, AMapsSettings.P_e_bin_profile, AMapsSettings.P_nuc_bin_profile, parameters.beamE, "AMaps", directories.AMaps_Directory_map["AMaps_1e_cut_Directory"],
                   NumberNucOfMomSlices, NumberElecOfMomSlices, HistNucSliceNumOfXBins, HistNucSliceNumOfXBins, HistElectronSliceNumOfXBins, HistElectronSliceNumOfXBins);
     } else {
-        aMaps_master = AMaps(path_definitions::PathDefinitions.AcceptanceMapsDirectory, parameters.VaryingSampleName, parameters.beamE, AMapsSettings.Electron_single_slice_test,
+        aMaps_master = AMaps(path_definitions::PathDefinitions.AcceptanceMapsDirectory, parameters.VaryingSampleName, parameters.beamE, "AMaps", AMapsSettings.Electron_single_slice_test,
                              AMapsSettings.Nucleon_single_slice_test, AMapsSettings.TestSlices);
     }
 
