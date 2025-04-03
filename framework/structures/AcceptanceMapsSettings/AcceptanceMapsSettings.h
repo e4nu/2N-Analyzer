@@ -12,8 +12,9 @@
 
 // Include settings:
 #include "../RunParameters/RunParameters.h"
+#include "../RunParameters/RunParameters.h"
 
-struct AMapsSettings {
+struct AcceptanceMapsSettings {
     bool Generate_Electron_AMaps;  // Generate electron acceptance maps
     bool Generate_Nucleon_AMaps;   // Generate nucleon acceptance maps
     bool Generate_WMaps;           // Generate efficiency maps
@@ -26,7 +27,7 @@ struct AMapsSettings {
     bool Nucleon_single_slice_test;   // keep as false for normal runs!
     std::vector<int> TestSlices;      // {ElectronTestSlice, ProtonTestSlice, NeutronTestSlice}
 
-    AMapsSettings()
+    AcceptanceMapsSettings()
         : Generate_Electron_AMaps(false),
           Generate_Nucleon_AMaps(true),
           Generate_WMaps(true),

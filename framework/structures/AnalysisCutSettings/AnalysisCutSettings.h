@@ -8,13 +8,14 @@
 #include <iostream>
 
 // Include classes:
-#include "../../classes/ExperimentParameters/ExperimentParameters.h"
+#include "../../classes/ExperimentParameters/ExperimentParameters.cpp"
 #include "../../classes/Settings/Settings.cpp"
 
 // Include settings:
 #include "../AcceptanceMapsSettings/AcceptanceMapsSettings.h"
 #include "../EventSelectionSettings/EventSelectionSettings.h"
 #include "../MomentumResolutionSettings/MomentumResolutionSettings.h"
+#include "../RunParameters/RunParameters.h"
 
 struct AnalysisCutSettings {
     // Cuts setup
@@ -83,8 +84,7 @@ struct AnalysisCutSettings {
           apply_nucleon_SmearAndCorr(false),
           custom_cuts_naming(true) {}
 
-    void RefreshSettings(const ExperimentParameters& parameters, const EventSelectionSettings& ESSettings, const AcceptanceMapsSettings& AMapsSettings,
-                         const MomentumResolutionSettings& MomResSettings) {
+    void RefreshSettings(const RunParameters& parameters, const EventSelectionSettings& ESSettings, const AcceptanceMapsSettings& AMapsSettings, MomentumResolutionSettings& MomResSettings) {
         // Auto-disable variables
         if (only_preselection_cuts || only_electron_quality_cuts) {
             apply_cuts = false;
@@ -156,8 +156,8 @@ struct AnalysisCutSettings {
         }
     }
 
-    void CustomNamingRefresh(Settings& settings, const AMapsSettings& AMapsSettings, const MomentumResolutionSettings& MomResSettings, const EventSelectionSettings& ESSettings,
-                             const ExperimentParameters& parameters) {
+    void CustomNamingRefresh(Settings& settings, const AcceptanceMapsSettings& AMapsSettings, const MomentumResolutionSettings& MomResSettings, const EventSelectionSettings& ESSettings,
+                             const RunParameters& parameters) {
         /* Save plots to custom-named folders, to allow multi-sample runs at once. */
         std::string run_plots_path = path_definitions::PathDefinitions.plots_path;
         std::string run_plots_log_save_Directory = plots_log_save_Directory;
