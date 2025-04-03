@@ -146,7 +146,7 @@
 			]
 		},
 		{
-			"path": "framework/applications/DetectorSimulationAnalyser.C",
+			"path": "framework/applications/DetectorSimulationAnalyzer.C",
 			"bookmarks": [
 				{
 					"line": 10752,

@@ -10,7 +10,7 @@
 struct EventSelectionSettings {
     // Settings to enable/disable specific FS plot calculations (Rec only):
 
-    // Final states to analyse (1N & 2N):
+    // Final states to Analyze (1N & 2N):
     const bool calculate_1p;
     const bool calculate_1n;
     const bool calculate_2p;

@@ -1,8 +1,8 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/project.dir/Old_analysers/DetectorSimulationAnalyser.C.o"
-  "CMakeFiles/project.dir/Old_analysers/DetectorSimulationAnalyser.C.o.d"
-  "CMakeFiles/project.dir/Old_analysers/TruthLevelAnalyser.c.o"
-  "CMakeFiles/project.dir/Old_analysers/TruthLevelAnalyser.c.o.d"
+  "CMakeFiles/project.dir/Old_Analyzers/DetectorSimulationAnalyzer.C.o"
+  "CMakeFiles/project.dir/Old_Analyzers/DetectorSimulationAnalyzer.C.o.d"
+  "CMakeFiles/project.dir/Old_Analyzers/TruthLevelAnalyzer.c.o"
+  "CMakeFiles/project.dir/Old_Analyzers/TruthLevelAnalyzer.c.o.d"
   "CMakeFiles/project.dir/framework/classes/AMaps/AMaps.cpp.o"
   "CMakeFiles/project.dir/framework/classes/AMaps/AMaps.cpp.o.d"
   "CMakeFiles/project.dir/framework/classes/DEfficiency/DEfficiency.cpp.o"

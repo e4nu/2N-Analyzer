@@ -2,7 +2,7 @@
 	"entries" : 
 	[
 		{
-			"name" : "2N_Analyser_e4nu_BINARY_DIR",
+			"name" : "2N_Analyzer_e4nu_BINARY_DIR",
 			"properties" : 
 			[
 				{
@@ -11,10 +11,10 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/Users/alon/Projects/2N-Analyser_e4nu/build"
+			"value" : "/Users/alon/Projects/2N-Analyzer_e4nu/build"
 		},
 		{
-			"name" : "2N_Analyser_e4nu_IS_TOP_LEVEL",
+			"name" : "2N_Analyzer_e4nu_IS_TOP_LEVEL",
 			"properties" : 
 			[
 				{
@@ -26,7 +26,7 @@
 			"value" : "ON"
 		},
 		{
-			"name" : "2N_Analyser_e4nu_SOURCE_DIR",
+			"name" : "2N_Analyzer_e4nu_SOURCE_DIR",
 			"properties" : 
 			[
 				{
@@ -35,7 +35,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/Users/alon/Projects/2N-Analyser_e4nu"
+			"value" : "/Users/alon/Projects/2N-Analyzer_e4nu"
 		},
 		{
 			"name" : "CMAKE_ADDR2LINE",
@@ -91,7 +91,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/Users/alon/Projects/2N-Analyser_e4nu/build"
+			"value" : "/Users/alon/Projects/2N-Analyzer_e4nu/build"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -527,7 +527,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/Users/alon/Projects/2N-Analyser_e4nu/build/CMakeFiles/pkgRedirects"
+			"value" : "/Users/alon/Projects/2N-Analyzer_e4nu/build/CMakeFiles/pkgRedirects"
 		},
 		{
 			"name" : "CMAKE_GENERATOR",
@@ -587,7 +587,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/Users/alon/Projects/2N-Analyser_e4nu"
+			"value" : "/Users/alon/Projects/2N-Analyzer_e4nu"
 		},
 		{
 			"name" : "CMAKE_INSTALL_NAME_TOOL",
@@ -871,7 +871,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "2N_Analyser_e4nu"
+			"value" : "2N_Analyzer_e4nu"
 		},
 		{
 			"name" : "CMAKE_RANLIB",

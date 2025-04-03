@@ -57,10 +57,10 @@ RM = /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/alon/Projects/2N-Analyser_e4nu
+CMAKE_SOURCE_DIR = /Users/alon/Projects/2N-Analyzer_e4nu
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug
+CMAKE_BINARY_DIR = /Users/alon/Projects/2N-Analyzer_e4nu/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug/CMakeFiles /Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/alon/Projects/2N-Analyzer_e4nu/cmake-build-debug/CMakeFiles /Users/alon/Projects/2N-Analyzer_e4nu/cmake-build-debug//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/alon/Projects/2N-Analyzer_e4nu/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -129,53 +129,53 @@ project/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/build
 .PHONY : project/fast
 
-Old_analysers/DetectorSimulationAnalyser.o: Old_analysers/DetectorSimulationAnalyser.C.o
-.PHONY : Old_analysers/DetectorSimulationAnalyser.o
+Old_Analyzers/DetectorSimulationAnalyzer.o: Old_Analyzers/DetectorSimulationAnalyzer.C.o
+.PHONY : Old_Analyzers/DetectorSimulationAnalyzer.o
 
 # target to build an object file
-Old_analysers/DetectorSimulationAnalyser.C.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/Old_analysers/DetectorSimulationAnalyser.C.o
-.PHONY : Old_analysers/DetectorSimulationAnalyser.C.o
+Old_Analyzers/DetectorSimulationAnalyzer.C.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/Old_Analyzers/DetectorSimulationAnalyzer.C.o
+.PHONY : Old_Analyzers/DetectorSimulationAnalyzer.C.o
 
-Old_analysers/DetectorSimulationAnalyser.i: Old_analysers/DetectorSimulationAnalyser.C.i
-.PHONY : Old_analysers/DetectorSimulationAnalyser.i
+Old_Analyzers/DetectorSimulationAnalyzer.i: Old_Analyzers/DetectorSimulationAnalyzer.C.i
+.PHONY : Old_Analyzers/DetectorSimulationAnalyzer.i
 
 # target to preprocess a source file
-Old_analysers/DetectorSimulationAnalyser.C.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/Old_analysers/DetectorSimulationAnalyser.C.i
-.PHONY : Old_analysers/DetectorSimulationAnalyser.C.i
+Old_Analyzers/DetectorSimulationAnalyzer.C.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/Old_Analyzers/DetectorSimulationAnalyzer.C.i
+.PHONY : Old_Analyzers/DetectorSimulationAnalyzer.C.i
 
-Old_analysers/DetectorSimulationAnalyser.s: Old_analysers/DetectorSimulationAnalyser.C.s
-.PHONY : Old_analysers/DetectorSimulationAnalyser.s
+Old_Analyzers/DetectorSimulationAnalyzer.s: Old_Analyzers/DetectorSimulationAnalyzer.C.s
+.PHONY : Old_Analyzers/DetectorSimulationAnalyzer.s
 
 # target to generate assembly for a file
-Old_analysers/DetectorSimulationAnalyser.C.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/Old_analysers/DetectorSimulationAnalyser.C.s
-.PHONY : Old_analysers/DetectorSimulationAnalyser.C.s
+Old_Analyzers/DetectorSimulationAnalyzer.C.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/Old_Analyzers/DetectorSimulationAnalyzer.C.s
+.PHONY : Old_Analyzers/DetectorSimulationAnalyzer.C.s
 
-Old_analysers/TruthLevelAnalyser.o: Old_analysers/TruthLevelAnalyser.c.o
-.PHONY : Old_analysers/TruthLevelAnalyser.o
+Old_Analyzers/TruthLevelAnalyzer.o: Old_Analyzers/TruthLevelAnalyzer.c.o
+.PHONY : Old_Analyzers/TruthLevelAnalyzer.o
 
 # target to build an object file
-Old_analysers/TruthLevelAnalyser.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/Old_analysers/TruthLevelAnalyser.c.o
-.PHONY : Old_analysers/TruthLevelAnalyser.c.o
+Old_Analyzers/TruthLevelAnalyzer.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/Old_Analyzers/TruthLevelAnalyzer.c.o
+.PHONY : Old_Analyzers/TruthLevelAnalyzer.c.o
 
-Old_analysers/TruthLevelAnalyser.i: Old_analysers/TruthLevelAnalyser.c.i
-.PHONY : Old_analysers/TruthLevelAnalyser.i
+Old_Analyzers/TruthLevelAnalyzer.i: Old_Analyzers/TruthLevelAnalyzer.c.i
+.PHONY : Old_Analyzers/TruthLevelAnalyzer.i
 
 # target to preprocess a source file
-Old_analysers/TruthLevelAnalyser.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/Old_analysers/TruthLevelAnalyser.c.i
-.PHONY : Old_analysers/TruthLevelAnalyser.c.i
+Old_Analyzers/TruthLevelAnalyzer.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/Old_Analyzers/TruthLevelAnalyzer.c.i
+.PHONY : Old_Analyzers/TruthLevelAnalyzer.c.i
 
-Old_analysers/TruthLevelAnalyser.s: Old_analysers/TruthLevelAnalyser.c.s
-.PHONY : Old_analysers/TruthLevelAnalyser.s
+Old_Analyzers/TruthLevelAnalyzer.s: Old_Analyzers/TruthLevelAnalyzer.c.s
+.PHONY : Old_Analyzers/TruthLevelAnalyzer.s
 
 # target to generate assembly for a file
-Old_analysers/TruthLevelAnalyser.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/Old_analysers/TruthLevelAnalyser.c.s
-.PHONY : Old_analysers/TruthLevelAnalyser.c.s
+Old_Analyzers/TruthLevelAnalyzer.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/Old_Analyzers/TruthLevelAnalyzer.c.s
+.PHONY : Old_Analyzers/TruthLevelAnalyzer.c.s
 
 framework/classes/AMaps/AMaps.o: framework/classes/AMaps/AMaps.cpp.o
 .PHONY : framework/classes/AMaps/AMaps.o
@@ -642,12 +642,12 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... project"
-	@echo "... Old_analysers/DetectorSimulationAnalyser.o"
-	@echo "... Old_analysers/DetectorSimulationAnalyser.i"
-	@echo "... Old_analysers/DetectorSimulationAnalyser.s"
-	@echo "... Old_analysers/TruthLevelAnalyser.o"
-	@echo "... Old_analysers/TruthLevelAnalyser.i"
-	@echo "... Old_analysers/TruthLevelAnalyser.s"
+	@echo "... Old_Analyzers/DetectorSimulationAnalyzer.o"
+	@echo "... Old_Analyzers/DetectorSimulationAnalyzer.i"
+	@echo "... Old_Analyzers/DetectorSimulationAnalyzer.s"
+	@echo "... Old_Analyzers/TruthLevelAnalyzer.o"
+	@echo "... Old_Analyzers/TruthLevelAnalyzer.i"
+	@echo "... Old_Analyzers/TruthLevelAnalyzer.s"
 	@echo "... framework/classes/AMaps/AMaps.o"
 	@echo "... framework/classes/AMaps/AMaps.i"
 	@echo "... framework/classes/AMaps/AMaps.s"

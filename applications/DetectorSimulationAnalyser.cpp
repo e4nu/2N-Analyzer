@@ -3,10 +3,10 @@
  git pull && clas12root -b -q main.c
 
  * Copy commend (local -> JLab):
- scp -r /home/alon/project/temp/BankHist/Analyser.C -J asportes@ftp.jlab.org:/u/home/asportes/clas12project/
+ scp -r /home/alon/project/temp/BankHist/Analyzer.C -J asportes@ftp.jlab.org:/u/home/asportes/clas12project/
 
  * Copy commend (JLab -> local):
- scp -r asportes@ftp.jlab.org:/u/home/asportes/Analyser/plots -J /home/alon/project/temp/
+ scp -r asportes@ftp.jlab.org:/u/home/asportes/Analyzer/plots -J /home/alon/project/temp/
  scp -r asportes@ftp.jlab.org:/w/hallb-scshelf2102/clas12/asportes/recon_c12_6gev.hipo -J /home/alon/project/temp/
 
 */
@@ -47,14 +47,14 @@
 using namespace utilities;
 using namespace draw_and_save_functions;
 
-void EventAnalyser(const std::string &AnalyseFilePath, const std::string &AnalyseFileSample, const std::string &AnalyseFile) {
+void EventAnalyzer(const std::string &AnalyzeFilePath, const std::string &AnalyzeFileSample, const std::string &AnalyzeFile) {
     debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode);
 
     std::cout << "\033[33m\n\n===========================================================================\n\033[0m";
-    std::cout << "\033[33m\t\t\tDetector simulation analyser\n\033[0m";
+    std::cout << "\033[33m\t\t\tDetector simulation Analyzer\n\033[0m";
     std::cout << "\033[33m===========================================================================\n\n\033[0m";
 
-    std::string AnalyserVersion = "Version 1.10";
+    std::string AnalyzerVersion = "Version 1.10";
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //                                                                         Code setup                                                                               //
@@ -69,17 +69,17 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     // ======================================================================================================================================================================
 
     // Input processing
-    /* Initial input processing of loaded files (given by AnalyseFile) */
+    /* Initial input processing of loaded files (given by AnalyzeFile) */
 
     /* Determine file path and name */
-    const std::string LoadedInput = AnalyseFile;  // AnalyseFile is taken from codeSetup.h
+    const std::string LoadedInput = AnalyzeFile;  // AnalyzeFile is taken from codeSetup.h
     const std::string filePath = LoadedInput.substr(0, LoadedInput.find_last_of('/') + 1);
     const std::string fileInput = LoadedInput.substr(LoadedInput.find_last_of('/') + 1);
     const std::string plotsInput = fileInput.substr(0, fileInput.find_last_of(".hipo") - 4);
 
     /* Configure and get run parameters */
-    ExperimentParameters Experiment(AnalyseFilePath, AnalyseFileSample);
-    const std::string SampleName = Experiment.ConfigureSampleName(AnalyseFilePath, AnalyseFileSample);  // Configure SampleName from input
+    ExperimentParameters Experiment(AnalyzeFilePath, AnalyzeFileSample);
+    const std::string SampleName = Experiment.ConfigureSampleName(AnalyzeFilePath, AnalyzeFileSample);  // Configure SampleName from input
     const std::string VaryingSampleName = Experiment.GetVaryingSampleName();                            // Get VaryingSampleName (configured from SampleName) - for data runs!
     const double beamE = Experiment.GetBeamEnergy();                                                    // Configure beam energy from SampleName
     const std::string Target = Experiment.GetTargetElement();                                           // Configure target (element) from SampleName
@@ -98,7 +98,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     // Event selection setup
     /* Settings to enable/disable specific FS plot calculations (Rec only): */
 
-    /* Final states to analyse (1N & 2N) */
+    /* Final states to Analyze (1N & 2N) */
     const bool calculate_1p = true, calculate_1n = true;
     const bool calculate_2p = true, calculate_pFDpCD = true, calculate_nFDpCD = true;
 
@@ -317,9 +317,9 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     std::cout << "\033[33mWorkingDirectory:\033[0m\t" << path_definitions::PathDefinitions.WorkingDirectory << "\n";
     std::cout << "\033[33mrun_plots_path:\033[0m\t\t" << run_plots_path << "\n\n";
 
-    std::cout << "\033[33mAnalyseFilePath:\033[0m\t" << "/" << AnalyseFilePath << "/" << "\n";
-    std::cout << "\033[33mAnalyseFileSample:\033[0m\t" << "/" << AnalyseFileSample << "/" << "\n";
-    std::cout << "\033[33mAnalyseFile:\033[0m\t\t" << AnalyseFile << "\n";
+    std::cout << "\033[33mAnalyzeFilePath:\033[0m\t" << "/" << AnalyzeFilePath << "/" << "\n";
+    std::cout << "\033[33mAnalyzeFileSample:\033[0m\t" << "/" << AnalyzeFileSample << "/" << "\n";
+    std::cout << "\033[33mAnalyzeFile:\033[0m\t\t" << AnalyzeFile << "\n";
     std::cout << "\033[33mSettings mode:\033[0m\t\t'" << file_name << "'\n\n";
 
     std::cout << "\033[33mSampleName:\033[0m\t\t" << SampleName << "\n";
@@ -9689,8 +9689,8 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     std::cout << "\033[33m\n\nSetting HipoChain...\n\n\033[0m";
 
     clas12root::HipoChain chain;
-    Experiment.AddToHipoChainFromList(chain, SampleName, AnalyseFilePath, AnalyseFileSample, AnalyseFile);
-    // utilities::AddToHipoChain(chain, SampleName, AnalyseFilePath, AnalyseFileSample, AnalyseFile);
+    Experiment.AddToHipoChainFromList(chain, SampleName, AnalyzeFilePath, AnalyzeFileSample, AnalyzeFile);
+    // utilities::AddToHipoChain(chain, SampleName, AnalyzeFilePath, AnalyzeFileSample, AnalyzeFile);
     chain.SetReaderTags({0});
     int HipoChainLength = chain.GetNFiles();
     auto config_c12 = chain.GetC12Reader();
@@ -22866,9 +22866,9 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     std::cout << "\033[33mWorkingDirectory:\t" << path_definitions::PathDefinitions.WorkingDirectory << "\n\033[0m";
     std::cout << "\033[33mrun_plots_path:\t\t" << run_plots_path << "\n\n\033[0m";
 
-    std::cout << "\033[33mAnalyseFilePath:\t" << "/" << AnalyseFilePath << "/" << "\n\033[0m";
-    std::cout << "\033[33mAnalyseFileSample:\t" << "/" << AnalyseFileSample << "/" << "\n\033[0m";
-    std::cout << "\033[33mAnalyseFile:\t\t" << AnalyseFile << "\n\n\033[0m";
+    std::cout << "\033[33mAnalyzeFilePath:\t" << "/" << AnalyzeFilePath << "/" << "\n\033[0m";
+    std::cout << "\033[33mAnalyzeFileSample:\t" << "/" << AnalyzeFileSample << "/" << "\n\033[0m";
+    std::cout << "\033[33mAnalyzeFile:\t\t" << AnalyzeFile << "\n\n\033[0m";
 
     std::cout << "\033[33mSampleName:\t\t" << SampleName << "\n\033[0m";
     std::cout << "\033[33mVaryingSampleName:\t" << VaryingSampleName << "\n\n\033[0m";
@@ -22879,7 +22879,7 @@ void EventAnalyser(const std::string &AnalyseFilePath, const std::string &Analys
     std::cout << "\033[33mBeam Energy:\t\t" << beamE << " [GeV]\n\033[0m";
     std::cout << "\033[33mTarget:\t\t\t" << Target << " (PDG: " << TargetPDG << ")\n\n\033[0m";
 
-    std::cout << "\033[33mOperation finished (AnalyserVersion = " << AnalyserVersion << ")." << "\n\n\033[0m";
+    std::cout << "\033[33mOperation finished (AnalyzerVersion = " << AnalyzerVersion << ")." << "\n\n\033[0m";
 
     if (TestRun || ApplyLimiter) {
         if (TestRun) { std::cout << "\033[31m\n\nNOTE: running code in testing mode!\n\033[0m"; }
