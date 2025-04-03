@@ -22,8 +22,8 @@ struct RunParameters {
     bool is4GeVSample;
     bool is6GeVSample;
 
-    RunParameters(const ExperimentParameters& Experiment, const std::string& AnalyseFilePath, const std::string& AnalyseFileSample)
-        : SampleName(Experiment.ConfigureSampleName(AnalyseFilePath, AnalyseFileSample)),
+    RunParameters(const ExperimentParameters& Experiment, const std::string& AnalyzeFilePath, const std::string& AnalyzeFileSample)
+        : SampleName(Experiment.ConfigureSampleName(AnalyzeFilePath, AnalyzeFileSample)),
           VaryingSampleName(Experiment.GetVaryingSampleName()),
           beamE(Experiment.GetBeamEnergy()),
           Target(Experiment.GetTargetElement()),

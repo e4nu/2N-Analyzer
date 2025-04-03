@@ -2,7 +2,8 @@
 
 #include "framework/namespaces/setup/code_setup.h"
 
-#include "framework/classes/DataAnalyser/DataAnalyser.cpp"
+#include "framework/applications/RecoEventAnalyser.cpp"
+// #include "framework/classes/DataAnalyzer/DataAnalyzer.cpp"
 #include "framework/namespaces/general_utilities/basic_tools.h"
 
 using namespace code_setup;
@@ -17,22 +18,22 @@ int main() {
     
     cout << "\nLooping over sample chain...\n";
     
-    for (int i = 0; i < AnalyseFilePath_v.size(); i++) {
-        std::string AnalyseFilePath0 = AnalyseFilePath_v.at(i);
-        std::string AnalyseFileSample0 = AnalyseFileSample_v.at(i);
-        std::string AnalyseFileDir0 = AnalyseFileDir_v.at(i);
-        std::string AnalyseFile0 = AnalyseFile_v.at(i);
+    for (int i = 0; i < AnalyzeFilePath_v.size(); i++) {
+        std::string AnalyzeFilePath0 = AnalyzeFilePath_v.at(i);
+        std::string AnalyzeFileSample0 = AnalyzeFileSample_v.at(i);
+        std::string AnalyzeFileDir0 = AnalyzeFileDir_v.at(i);
+        std::string AnalyzeFile0 = AnalyzeFile_v.at(i);
     
-        std::string FileType = AnalyseFile_v.at(i).substr(AnalyseFile_v.at(i).find_last_of(".") + 1);
+        std::string FileType = AnalyzeFile_v.at(i).substr(AnalyzeFile_v.at(i).find_last_of(".") + 1);
     
-        cout << "\nAnalyseFilePath:\t" << AnalyseFilePath0 << "\n";
-        cout << "AnalyseFileSample:\t" << AnalyseFileSample0 << "\n";
-        cout << "AnalyseFileDir:\t" << AnalyseFileDir0 << "\n";
-        cout << "AnalyseFile:\t" << AnalyseFile0 << "\n\n";
+        cout << "\nAnalyzeFilePath:\t" << AnalyzeFilePath0 << "\n";
+        cout << "AnalyzeFileSample:\t" << AnalyzeFileSample0 << "\n";
+        cout << "AnalyzeFileDir:\t" << AnalyzeFileDir0 << "\n";
+        cout << "AnalyzeFile:\t" << AnalyzeFile0 << "\n\n";
     
         cout << "FileType:\t" << FileType << "\n";
     
-        DataAnalyser Analysis(FileType, AnalyseFilePath0, AnalyseFileSample0, AnalyseFile0);
+        DataAnalyzer Analysis(FileType, AnalyzeFilePath0, AnalyzeFileSample0, AnalyzeFile0);
         std::string AnalyserMode = Analysis.ConfigureAnalyserMode(FileType);
     
         cout << "Analyser mode:\t'" << AnalyserMode << "'\n";
@@ -43,7 +44,7 @@ int main() {
     
         ++Num_of_analysed_samples;
     
-        if (AnalyseFilePath_v.size() > 1) {  // Delete all ROOT objects whose class names start with TH (to prevent a memory leak)
+        if (AnalyzeFilePath_v.size() > 1) {  // Delete all ROOT objects whose class names start with TH (to prevent a memory leak)
             // gDirectory->Delete("TH*;*");
             gDirectory->Clear();
         }

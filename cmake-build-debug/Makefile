@@ -225,29 +225,29 @@ framework/classes/DEfficiency/DEfficiency.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/framework/classes/DEfficiency/DEfficiency.cpp.s
 .PHONY : framework/classes/DEfficiency/DEfficiency.cpp.s
 
-framework/classes/DataAnalyser/DataAnalyser.o: framework/classes/DataAnalyser/DataAnalyser.cpp.o
-.PHONY : framework/classes/DataAnalyser/DataAnalyser.o
+framework/classes/DataAnalyzer/DataAnalyzer.o: framework/classes/DataAnalyzer/DataAnalyzer.cpp.o
+.PHONY : framework/classes/DataAnalyzer/DataAnalyzer.o
 
 # target to build an object file
-framework/classes/DataAnalyser/DataAnalyser.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/framework/classes/DataAnalyser/DataAnalyser.cpp.o
-.PHONY : framework/classes/DataAnalyser/DataAnalyser.cpp.o
+framework/classes/DataAnalyzer/DataAnalyzer.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/framework/classes/DataAnalyzer/DataAnalyzer.cpp.o
+.PHONY : framework/classes/DataAnalyzer/DataAnalyzer.cpp.o
 
-framework/classes/DataAnalyser/DataAnalyser.i: framework/classes/DataAnalyser/DataAnalyser.cpp.i
-.PHONY : framework/classes/DataAnalyser/DataAnalyser.i
+framework/classes/DataAnalyzer/DataAnalyzer.i: framework/classes/DataAnalyzer/DataAnalyzer.cpp.i
+.PHONY : framework/classes/DataAnalyzer/DataAnalyzer.i
 
 # target to preprocess a source file
-framework/classes/DataAnalyser/DataAnalyser.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/framework/classes/DataAnalyser/DataAnalyser.cpp.i
-.PHONY : framework/classes/DataAnalyser/DataAnalyser.cpp.i
+framework/classes/DataAnalyzer/DataAnalyzer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/framework/classes/DataAnalyzer/DataAnalyzer.cpp.i
+.PHONY : framework/classes/DataAnalyzer/DataAnalyzer.cpp.i
 
-framework/classes/DataAnalyser/DataAnalyser.s: framework/classes/DataAnalyser/DataAnalyser.cpp.s
-.PHONY : framework/classes/DataAnalyser/DataAnalyser.s
+framework/classes/DataAnalyzer/DataAnalyzer.s: framework/classes/DataAnalyzer/DataAnalyzer.cpp.s
+.PHONY : framework/classes/DataAnalyzer/DataAnalyzer.s
 
 # target to generate assembly for a file
-framework/classes/DataAnalyser/DataAnalyser.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/framework/classes/DataAnalyser/DataAnalyser.cpp.s
-.PHONY : framework/classes/DataAnalyser/DataAnalyser.cpp.s
+framework/classes/DataAnalyzer/DataAnalyzer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/framework/classes/DataAnalyzer/DataAnalyzer.cpp.s
+.PHONY : framework/classes/DataAnalyzer/DataAnalyzer.cpp.s
 
 framework/classes/Directories/Directories.o: framework/classes/Directories/Directories.cpp.o
 .PHONY : framework/classes/Directories/Directories.o
@@ -654,9 +654,9 @@ help:
 	@echo "... framework/classes/DEfficiency/DEfficiency.o"
 	@echo "... framework/classes/DEfficiency/DEfficiency.i"
 	@echo "... framework/classes/DEfficiency/DEfficiency.s"
-	@echo "... framework/classes/DataAnalyser/DataAnalyser.o"
-	@echo "... framework/classes/DataAnalyser/DataAnalyser.i"
-	@echo "... framework/classes/DataAnalyser/DataAnalyser.s"
+	@echo "... framework/classes/DataAnalyzer/DataAnalyzer.o"
+	@echo "... framework/classes/DataAnalyzer/DataAnalyzer.i"
+	@echo "... framework/classes/DataAnalyzer/DataAnalyzer.s"
 	@echo "... framework/classes/Directories/Directories.o"
 	@echo "... framework/classes/Directories/Directories.i"
 	@echo "... framework/classes/Directories/Directories.s"

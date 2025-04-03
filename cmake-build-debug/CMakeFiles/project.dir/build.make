@@ -279,19 +279,19 @@ CMakeFiles/project.dir/framework/classes/ParticleID/ParticleID.cpp.s: cmake_forc
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/project.dir/framework/classes/ParticleID/ParticleID.cpp.s"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alon/Projects/2N-Analyser_e4nu/framework/classes/ParticleID/ParticleID.cpp -o CMakeFiles/project.dir/framework/classes/ParticleID/ParticleID.cpp.s
 
-CMakeFiles/project.dir/framework/classes/DataAnalyser/DataAnalyser.cpp.o: CMakeFiles/project.dir/flags.make
-CMakeFiles/project.dir/framework/classes/DataAnalyser/DataAnalyser.cpp.o: /Users/alon/Projects/2N-Analyser_e4nu/framework/classes/DataAnalyser/DataAnalyser.cpp
-CMakeFiles/project.dir/framework/classes/DataAnalyser/DataAnalyser.cpp.o: CMakeFiles/project.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/project.dir/framework/classes/DataAnalyser/DataAnalyser.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/project.dir/framework/classes/DataAnalyser/DataAnalyser.cpp.o -MF CMakeFiles/project.dir/framework/classes/DataAnalyser/DataAnalyser.cpp.o.d -o CMakeFiles/project.dir/framework/classes/DataAnalyser/DataAnalyser.cpp.o -c /Users/alon/Projects/2N-Analyser_e4nu/framework/classes/DataAnalyser/DataAnalyser.cpp
+CMakeFiles/project.dir/framework/classes/DataAnalyzer/DataAnalyzer.cpp.o: CMakeFiles/project.dir/flags.make
+CMakeFiles/project.dir/framework/classes/DataAnalyzer/DataAnalyzer.cpp.o: /Users/alon/Projects/2N-Analyser_e4nu/framework/classes/DataAnalyzer/DataAnalyzer.cpp
+CMakeFiles/project.dir/framework/classes/DataAnalyzer/DataAnalyzer.cpp.o: CMakeFiles/project.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/project.dir/framework/classes/DataAnalyzer/DataAnalyzer.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/project.dir/framework/classes/DataAnalyzer/DataAnalyzer.cpp.o -MF CMakeFiles/project.dir/framework/classes/DataAnalyzer/DataAnalyzer.cpp.o.d -o CMakeFiles/project.dir/framework/classes/DataAnalyzer/DataAnalyzer.cpp.o -c /Users/alon/Projects/2N-Analyser_e4nu/framework/classes/DataAnalyzer/DataAnalyzer.cpp
 
-CMakeFiles/project.dir/framework/classes/DataAnalyser/DataAnalyser.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/project.dir/framework/classes/DataAnalyser/DataAnalyser.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alon/Projects/2N-Analyser_e4nu/framework/classes/DataAnalyser/DataAnalyser.cpp > CMakeFiles/project.dir/framework/classes/DataAnalyser/DataAnalyser.cpp.i
+CMakeFiles/project.dir/framework/classes/DataAnalyzer/DataAnalyzer.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/project.dir/framework/classes/DataAnalyzer/DataAnalyzer.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alon/Projects/2N-Analyser_e4nu/framework/classes/DataAnalyzer/DataAnalyzer.cpp > CMakeFiles/project.dir/framework/classes/DataAnalyzer/DataAnalyzer.cpp.i
 
-CMakeFiles/project.dir/framework/classes/DataAnalyser/DataAnalyser.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/project.dir/framework/classes/DataAnalyser/DataAnalyser.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alon/Projects/2N-Analyser_e4nu/framework/classes/DataAnalyser/DataAnalyser.cpp -o CMakeFiles/project.dir/framework/classes/DataAnalyser/DataAnalyser.cpp.s
+CMakeFiles/project.dir/framework/classes/DataAnalyzer/DataAnalyzer.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/project.dir/framework/classes/DataAnalyzer/DataAnalyzer.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alon/Projects/2N-Analyser_e4nu/framework/classes/DataAnalyzer/DataAnalyzer.cpp -o CMakeFiles/project.dir/framework/classes/DataAnalyzer/DataAnalyzer.cpp.s
 
 CMakeFiles/project.dir/testers/nFD_eff_test/nFD_eff_test_functions.cpp.o: CMakeFiles/project.dir/flags.make
 CMakeFiles/project.dir/testers/nFD_eff_test/nFD_eff_test_functions.cpp.o: /Users/alon/Projects/2N-Analyser_e4nu/testers/nFD_eff_test/nFD_eff_test_functions.cpp
@@ -380,7 +380,7 @@ project_OBJECTS = \
 "CMakeFiles/project.dir/framework/classes/Settings/Settings.cpp.o" \
 "CMakeFiles/project.dir/framework/classes/Settings/CustomPlotsDirectory.cpp.o" \
 "CMakeFiles/project.dir/framework/classes/ParticleID/ParticleID.cpp.o" \
-"CMakeFiles/project.dir/framework/classes/DataAnalyser/DataAnalyser.cpp.o" \
+"CMakeFiles/project.dir/framework/classes/DataAnalyzer/DataAnalyzer.cpp.o" \
 "CMakeFiles/project.dir/testers/nFD_eff_test/nFD_eff_test_functions.cpp.o" \
 "CMakeFiles/project.dir/testers/nFD_eff_test/nFD_eff_test.cpp.o" \
 "CMakeFiles/project.dir/testers/reaction_cuts_test/reaction_cuts_test.cpp.o" \
@@ -405,7 +405,7 @@ project: CMakeFiles/project.dir/Old_analysers/TruthLevelAnalyser.c.o
 project: CMakeFiles/project.dir/framework/classes/Settings/Settings.cpp.o
 project: CMakeFiles/project.dir/framework/classes/Settings/CustomPlotsDirectory.cpp.o
 project: CMakeFiles/project.dir/framework/classes/ParticleID/ParticleID.cpp.o
-project: CMakeFiles/project.dir/framework/classes/DataAnalyser/DataAnalyser.cpp.o
+project: CMakeFiles/project.dir/framework/classes/DataAnalyzer/DataAnalyzer.cpp.o
 project: CMakeFiles/project.dir/testers/nFD_eff_test/nFD_eff_test_functions.cpp.o
 project: CMakeFiles/project.dir/testers/nFD_eff_test/nFD_eff_test.cpp.o
 project: CMakeFiles/project.dir/testers/reaction_cuts_test/reaction_cuts_test.cpp.o

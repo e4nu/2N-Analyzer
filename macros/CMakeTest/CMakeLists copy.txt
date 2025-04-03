@@ -43,7 +43,7 @@ set(CLASSES_DIR ${FRAMEWORK_DIR}/classes)
 set(CLASSES_SUBDIRS 
     AMaps 
     clas12ana 
-    DataAnalyser 
+    DataAnalyzer 
     Debugger 
     DEfficiency 
     Directories 

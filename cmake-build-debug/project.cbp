@@ -285,10 +285,10 @@
 		<Unit filename="/home/alon/project/source/classes/DSCuts/DSCuts.h">
 			<Option target="project"/>
 		</Unit>
-		<Unit filename="/home/alon/project/source/classes/DataAnalyser/DataAnalyser.cpp">
+		<Unit filename="/home/alon/project/source/classes/DataAnalyzer/DataAnalyzer.cpp">
 			<Option target="project"/>
 		</Unit>
-		<Unit filename="/home/alon/project/source/classes/DataAnalyser/DataAnalyser.h">
+		<Unit filename="/home/alon/project/source/classes/DataAnalyzer/DataAnalyzer.h">
 			<Option target="project"/>
 		</Unit>
 		<Unit filename="/home/alon/project/source/classes/Directories/Directories.cpp">

@@ -42,11 +42,11 @@ class ExperimentParameters : public TargetParameters {
    public:
     // Constructor ----------------------------------------------------------------------------------------------------------------------------------------
 
-    ExperimentParameters(const std::string &AnalyseFilePath, const std::string &AnalyseFileSample);
+    ExperimentParameters(const std::string &AnalyzeFilePath, const std::string &AnalyzeFileSample);
 
     // ConfigureSampleName function -----------------------------------------------------------------------------------------------------------------------------------------
 
-    std::string ConfigureSampleName(const std::string &AnalyseFilePath, const std::string &AnalyseFileSample);
+    std::string ConfigureSampleName(const std::string &AnalyzeFilePath, const std::string &AnalyzeFileSample);
 
     // ConfigureVaryingSampleName function -----------------------------------------------------------------------------------------------------------------------------------
 
@@ -95,12 +95,12 @@ class ExperimentParameters : public TargetParameters {
     // AddToHipoChain function ----------------------------------------------------------------------------------------------------------------------------------------
 
     // This is the old function used to add runs to the HipoChain
-    void AddToHipoChain(HipoChain &chain, const std::string &sn, const std::string &AnalyseFilePath, const std::string &AnalyseFileSample, const std::string &AnalyseFile);
+    void AddToHipoChain(HipoChain &chain, const std::string &sn, const std::string &AnalyzeFilePath, const std::string &AnalyzeFileSample, const std::string &AnalyzeFile);
 
     // AddToHipoChainFromList function ----------------------------------------------------------------------------------------------------------------------------------------
 
     // This is the old function used to add runs to the HipoChain
-    void AddToHipoChainFromList(HipoChain &chain, const std::string &sn, const std::string &AnalyseFilePath, const std::string &AnalyseFileSample, const std::string &AnalyseFile);
+    void AddToHipoChainFromList(HipoChain &chain, const std::string &sn, const std::string &AnalyzeFilePath, const std::string &AnalyzeFileSample, const std::string &AnalyzeFile);
 
     // other functions ------------------------------------------------------------------------------------------------------------------------------------------------------
 

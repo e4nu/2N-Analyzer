@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "*.gcard": "xml",
+        "*.cpp": "cpp",
         "DetectorSimulationAnalyser.C": "cpp",
         "new": "cpp",
         "string": "cpp",
@@ -154,7 +155,6 @@
         "pdf_canvas.h": "c",
         "directories.h": "c",
         "settings.cpp": "c",
-        "code_setup.h": "c",
         "source_location": "c",
         "basic_tools.cpp": "c",
         "PDF_canvas.h": "c",
@@ -163,24 +163,21 @@
         "targetparameters.h": "c",
         "draw_and_save_acorr_plots.h": "c",
         "draw_and_save_efficiency_plots.h": "c",
-        "path_definitions.h": "c",
-        "debugging.h": "c",
         "codedirectories.cpp": "c",
         "directories.cpp": "c",
         "particleid.cpp": "c",
         "analysis_math.cpp": "c",
         "histogram_functions.h": "c",
-        "basic_tools.h: "c",
         "constants.cpp": "c",
-        "constants.h": "c",
-        "data_processor.h": "c",
-        "histogram_functions.h": "c",
-        "fitter_functions.h": "c",
         "th1d.h": "c",
-        "draw_and_save_acorr_plots.h": "c",
-        "draw_and_save_efficiency_plots.h": "c",
         "draw_and_save_fs_ratio.h": "c",
-        "draw_and_save_fs_ratio.h": "c"
+        "acceptancemapssettings.h": "c",
+        "runparameters.h": "c",
+        "semaphore": "c",
+        "stop_token": "c",
+        "system_error": "c",
+        "text_encoding": "c",
+        "thread": "c"
     },
     "[jsonc]": {
         "editor.defaultFormatter": "vscode.json-language-features"
@@ -192,7 +189,7 @@
     "workbench.tree.indent": 20,
     "C_Cpp.errorSquiggles": "disabled",
     "cmake.configureOnEdit": false,
-    "cmake.configureOnOpen": false
+    "cmake.configureOnOpen": true
     // "betterFolding.showFoldedBodyLinesCount": false,
     // "betterFolding.showFoldedBrackets": true
 }
