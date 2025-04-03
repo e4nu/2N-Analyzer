@@ -7,7 +7,7 @@
 
 #include <iostream>
 
-#include "../../../classes/ExperimentParameters/ExperimentParameters.cpp"
+#include "../../classes/ExperimentParameters/ExperimentParameters.cpp"
 
 struct RunParameters {
     std::string SampleName;
