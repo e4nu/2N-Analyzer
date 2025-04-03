@@ -914,7 +914,7 @@ void ParticleID::nParticleID(vector<region_part_ptr> &allParticles, vector<int> 
 
 // SetEventParticles function --------------------------------------------------------------------------------------------------------------------
 
-void SetEventParticles(const bool &clas12ana_particles, const clas12ana &clasAna, const std::unique_ptr<clas12::clas12reader> &c12, vector<clas12::region_part_ptr> &neutrons,
+void SetEventParticles(const bool &clas12ana_particles, clas12ana &clasAna, const std::unique_ptr<clas12::clas12reader> &c12, vector<clas12::region_part_ptr> &neutrons,
                        vector<clas12::region_part_ptr> &protons, vector<clas12::region_part_ptr> &Kplus, vector<clas12::region_part_ptr> &Kminus, vector<clas12::region_part_ptr> &piplus,
                        vector<clas12::region_part_ptr> &piminus, vector<clas12::region_part_ptr> &electrons, vector<clas12::region_part_ptr> &deuterons,
                        vector<clas12::region_part_ptr> &neutrals, vector<clas12::region_part_ptr> &otherpart) {
