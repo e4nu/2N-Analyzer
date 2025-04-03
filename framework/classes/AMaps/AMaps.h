@@ -183,8 +183,8 @@ class AMaps {
           int hesNumOfYBins = 100);
 
     // AMaps loading constructor:
-    AMaps(const std::string &AcceptanceMapsDirectory, const std::string &SampleName, const double &beamE, const bool &Electron_single_slice_test, const bool &Nucleon_single_slice_test,
-          const vector<int> &TestSlices);
+    AMaps(const std::string &AcceptanceMapsDirectory, const std::string &SampleName, const double &beamE, const std::string &AMapsMode, const bool &Electron_single_slice_test,
+          const bool &Nucleon_single_slice_test, const vector<int> &TestSlices);
 
     // SetBins functions ----------------------------------------------------------------------------------------------------------------------------------------------------
 
