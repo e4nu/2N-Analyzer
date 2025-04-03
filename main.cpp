@@ -4,7 +4,6 @@
 #include "framework/namespaces/general_utilities/basic_tools.h"
 #include "framework/namespaces/setup/code_setup.h"
 
-// using namespace std;
 using namespace code_setup;
 
 int main() {
@@ -15,7 +14,7 @@ int main() {
 
     int Num_of_Analyzed_samples = 0;
 
-    cout << "\nLooping over sample chain...\n";
+    cout << "\033[33m\nLooping over sample chain...\n\033[0m";
 
     for (int i = 0; i < AnalyzeFilePath_v.size(); i++) {
         std::string AnalyzeFilePath0 = AnalyzeFilePath_v.at(i);
@@ -25,21 +24,21 @@ int main() {
 
         std::string FileType = AnalyzeFile_v.at(i).substr(AnalyzeFile_v.at(i).find_last_of(".") + 1);
 
-        cout << "\nAnalyzeFilePath:\t" << AnalyzeFilePath0 << "\n";
-        cout << "AnalyzeFileSample:\t" << AnalyzeFileSample0 << "\n";
-        cout << "AnalyzeFileDir:\t" << AnalyzeFileDir0 << "\n";
-        cout << "AnalyzeFile:\t" << AnalyzeFile0 << "\n\n";
+        cout << "\033[33m\nAnalyzeFilePath:\033[0m\t" << AnalyzeFilePath0 << "\n";
+        cout << "\033[33mAnalyzeFileSample:\033[0m\t" << AnalyzeFileSample0 << "\n";
+        cout << "\033[33mAnalyzeFileDir:\033[0m\t\t" << AnalyzeFileDir0 << "\n";
+        cout << "\033[33mAnalyzeFile:\033[0m\t\t" << AnalyzeFile0 << "\n\n";
 
-        cout << "FileType:\t" << FileType << "\n";
+        cout << "\033[33mFileType:\033[0m\t\t" << FileType << "\n";
 
         DataAnalyzer Analysis(FileType, AnalyzeFilePath0, AnalyzeFileSample0, AnalyzeFile0);
         std::string AnalyzerMode = Analysis.ConfigureAnalyzerMode(FileType);
 
-        cout << "Analyzer mode:\t'" << AnalyzerMode << "'\n";
+        cout << "\033[33mAnalyzer mode:\033[0m\t'" << AnalyzerMode << "'\n";
 
-        cout << "\n---------------------------------------------------------------------------\n\n";
-        cout << "Analysis mode:\t'" << AnalyzerMode << "'" << "\n";
-        cout << "Code version:\t" << Ver << "\n";
+        cout << "\033[33m\n---------------------------------------------------------------------------\n\n\033[0m";
+        cout << "\033[33mAnalysis mode:\033[0m\t'" << AnalyzerMode << "'" << "\n";
+        cout << "\033[33mCode version:\033[0m\t" << Ver << "\n";
 
         ++Num_of_Analyzed_samples;
 
@@ -47,15 +46,15 @@ int main() {
         if (AnalyzeFilePath_v.size() > 1) { gDirectory->Clear(); }
     }
 
-    cout << "#(Analyzed samples):\t" << Num_of_Analyzed_samples << "\n";
+    cout << "\033[33m#(Analyzed samples):\033[0m\t" << Num_of_Analyzed_samples << "\n";
 
     auto end = std::chrono::system_clock::now();
     auto elapsed_time_seconds = std::chrono::duration_cast<std::chrono::seconds>(end - start);
     double elapsed_time_minutes = elapsed_time_seconds.count() / 60;
 
     if (elapsed_time_seconds.count() < 60) {
-        std::cout << "Running time:\t" << elapsed_time_seconds.count() << " seconds\n\n";
+        std::cout << "\033[33mRunning time:\033[0m\t" << elapsed_time_seconds.count() << " seconds\n\n";
     } else {
-        std::cout << "Running time:\t" << basic_tools::ToStringWithPrecision(elapsed_time_minutes, 3) << " minutes\n\n";
+        std::cout << "\033[33mRunning time:\033[0m\t" << basic_tools::ToStringWithPrecision(elapsed_time_minutes, 3) << " minutes\n\n";
     }
 }
