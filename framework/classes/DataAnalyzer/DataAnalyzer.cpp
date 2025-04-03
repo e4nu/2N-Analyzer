@@ -38,7 +38,7 @@ void DataAnalyzer::RunEventAnalyzer(const std::string &AnalyzerMode, const std::
         gst g;
         g.Loop();
     } else if (AnalyzerMode == "Detector Simulation") {
-        EventAnalyzer(AnalyzeFilePath, AnalyzeFileSample, AnalyzeFile);
+        RecoEventAnalyser(AnalyzeFilePath, AnalyzeFileSample, AnalyzeFile);
     }
 };
 

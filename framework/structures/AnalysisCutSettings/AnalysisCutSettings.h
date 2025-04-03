@@ -7,11 +7,9 @@
 
 #include <iostream>
 
-// Include classes:
 #include "../../classes/ExperimentParameters/ExperimentParameters.cpp"
 #include "../../classes/Settings/Settings.cpp"
-
-// Include settings:
+#include "../../namespaces/setup/path_definitions.h"
 #include "../AcceptanceMapsSettings/AcceptanceMapsSettings.h"
 #include "../EventSelectionSettings/EventSelectionSettings.h"
 #include "../MomentumResolutionSettings/MomentumResolutionSettings.h"
