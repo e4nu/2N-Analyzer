@@ -7,17 +7,11 @@
 
 #include <iostream>
 
-// Include libraries:
-#include "../../namespaces/general_utilities/analysis_math/analysis_math.h"
-
-// Include classes:
-#include "../../classes/DSCuts/DSCuts.h"
-#include "../../classes/ExperimentParameters/ExperimentParameters.cpp"
-#include "../../classes/clas12ana/clas12ana.h"
-#include "../../classes/hPlots/hPlot1D.cpp"
-
-// Include settings:
-#include "../EventSelectionSettings/EventSelectionSettings.h"
+#include "../../../classes/DSCuts/DSCuts.h"
+#include "../../../classes/ExperimentParameters/ExperimentParameters.cpp"
+#include "../../../classes/clas12ana/clas12ana.h"
+#include "../../../classes/hPlots/hPlot1D.cpp"
+#include "../../../namespaces/general_utilities/analysis_math/analysis_math.h"
 
 struct CutValueManager {
     // Cut declarations -----------------------------------------------------------------------------------------------------------------------------------------------------
@@ -98,11 +92,7 @@ struct CutValueManager {
     DSCuts TL_pFD_mom_cuts = DSCuts("Momentum", "FD", "Proton", "", 0, p_mom_th.GetLowerCut(), p_mom_th.GetUpperCut());
     DSCuts TL_pCD_mom_cuts = DSCuts("Momentum", "CD", "Proton", "", 0, p_mom_th.GetLowerCut(), p_mom_th.GetUpperCut());
     DSCuts TL_pip_mom_cuts = DSCuts("Momentum", "", "Piplus", "", 0, pip_mom_th.GetLowerCut(), pip_mom_th.GetUpperCut());
-    DSCuts TL_pipFD_mom_cuts = DSCuts("Momentum", "FD", "Piplus", "", 0, pip_mom_th.GetLowerCut(), pip_mom_th.GetUpperCut());
-    DSCuts TL_pipCD_mom_cuts = DSCuts("Momentum", "CD", "Piplus", "", 0, pip_mom_th.GetLowerCut(), pip_mom_th.GetUpperCut());
     DSCuts TL_pim_mom_cuts = DSCuts("Momentum", "", "Piminus", "", 0, pim_mom_th.GetLowerCut(), pim_mom_th.GetUpperCut());
-    DSCuts TL_pimFD_mom_cuts = DSCuts("Momentum", "FD", "Piminus", "", 0, pim_mom_th.GetLowerCut(), pim_mom_th.GetUpperCut());
-    DSCuts TL_pimCD_mom_cuts = DSCuts("Momentum", "CD", "Piminus", "", 0, pim_mom_th.GetLowerCut(), pim_mom_th.GetUpperCut());
     DSCuts TL_pi0_mom_cuts = DSCuts("Momentum", "", "Pizero", "", 0, analysis_math::GetPi0MomTh(ph_mom_th.GetUpperCut()), 9999);
     DSCuts TL_ph_mom_cuts = DSCuts("Momentum", "", "Photons", "", 0, ph_mom_th.GetLowerCut(), ph_mom_th.GetUpperCut());
 
@@ -111,8 +101,7 @@ struct CutValueManager {
     DSCuts ThetaCD = DSCuts("Theta CD", "CD", "", "", 1, 40., 135.);
 
     /* FD & CD theta range (for AMaps) */
-    DSCuts ThetaFD_AMaps = ThetaFD;
-    // DSCuts ThetaFD_AMaps = DSCuts("Theta FD", "FD", "", "", 1, 5., 45.);
+    DSCuts ThetaFD_AMaps = DSCuts("Theta FD", "FD", "", "", 1, 5., 45.);
 
     /* Beta cut (1n, FD) */
     DSCuts Beta_cut = DSCuts("Beta_nuc", "FD", "", "1n", 1, 0, 9999);
@@ -129,27 +118,14 @@ struct CutValueManager {
     DSCuts Theta_pCD_cuts_2p = DSCuts("Theta_p2 recoil", "", "Proton", "2p", Theta_p2_cuts_2p.GetMean(), -9999, Theta_p2_cuts_2p.GetUpperCut());
     DSCuts dphi_pFD_pCD_2p = DSCuts("dPhi_pFD_pCD", "", "Proton", "2p", dphi_p1_p2_2p.GetMean(), -9999, dphi_p1_p2_2p.GetUpperCut());
 
-    DSCuts Theta_pFD_cuts_pFDpCD = DSCuts("Theta_pFD", "", "Proton", "pFDpCD", Theta_p1_cuts_2p.GetMean(), -9999, Theta_p1_cuts_2p.GetUpperCut());
-    DSCuts Theta_pCD_cuts_pFDpCD = DSCuts("Theta_pCD", "", "Proton", "pFDpCD", Theta_p2_cuts_2p.GetMean(), -9999, Theta_p2_cuts_2p.GetUpperCut());
-    DSCuts dphi_pFD_pCD_pFDpCD = DSCuts("dPhi_pFD_pCD", "", "Proton", "pFDpCD", dphi_p1_p2_2p.GetMean(), -9999, dphi_p1_p2_2p.GetUpperCut());
-
-    DSCuts Theta_L_cuts_nFDpCD = DSCuts("Theta_L", "", "", "nFDpCD", Theta_p1_cuts_2p.GetMean(), -9999, Theta_p1_cuts_2p.GetUpperCut());
-    DSCuts Theta_R_cuts_nFDpCD = DSCuts("Theta_R", "", "", "nFDpCD", Theta_p2_cuts_2p.GetMean(), -9999, Theta_p2_cuts_2p.GetUpperCut());
-    DSCuts dphi_L_R_nFDpCD = DSCuts("dphi_L_R", "", "", "nFDpCD", dphi_p1_p2_2p.GetMean(), -9999, dphi_p1_p2_2p.GetUpperCut());
-
     /* reco. kinematic cuts (based on nucleons' efficiency) */
     DSCuts FD_nucleon_theta_cut = DSCuts("FD Nucleon theta cut", "FD", "", "", 0, 0, 32.);
-    //    DSCuts Nucleon_momentum_cut = DSCuts("Nucleon momentum cut", "FD", "", "", 0, n_mom_th.GetLowerCut(), n_mom_th.GetUpperCut());
-    //    DSCuts FD_nucleon_momentum_cut = DSCuts("FD nucleon momentum cut", "FD", "", "Protons and neutrons", 0, 1., 4.); // Original mom. KC
-    //    DSCuts FD_nucleon_momentum_cut = DSCuts("FD nucleon momentum cut", "FD", "", "Protons and neutrons", 0, 1., 3.); // Larry meeting (10/08/23)
-    DSCuts FD_nucleon_momentum_cut = DSCuts("FD nucleon momentum cut", "FD", "", "Protons and neutrons", 0, 1., 2.5);  // E4nu meeting (29/01/24)
+    DSCuts FD_nucleon_momentum_cut = DSCuts("FD nucleon momentum cut", "FD", "", "Protons and neutrons", 0, 1., 2.5);
 
-    DSCuts MomRes_mu_cuts = DSCuts("MomRes_mu_cuts", "FD", "", "Protons and neutrons", 0, FD_nucleon_momentum_cut.GetLowerCut(), 2.2);
-    // E4nu meeting (29/01/24)
-    DSCuts MomRes_sigma_cuts = DSCuts("MomRes_sigma_cuts", "FD", "", "Protons and neutrons", 0, FD_nucleon_momentum_cut.GetLowerCut(), 2.2);
-    // Adi meeting after (29/01/24)
+    DSCuts MomRes_mu_cuts = DSCuts("MomRes_mu_cuts", "FD", "", "Protons and neutrons", 0, FD_nucleon_momentum_cut.GetLowerCut(), 2.2);        // E4nu meeting (29/01/24)
+    DSCuts MomRes_sigma_cuts = DSCuts("MomRes_sigma_cuts", "FD", "", "Protons and neutrons", 0, FD_nucleon_momentum_cut.GetLowerCut(), 2.2);  // Adi meeting after (29/01/24)
 
-    CutValueManager(ExperimentParameters &Experiment, const EventSelectionSettings &ESSettings) {
+    CutValueManager(const ExperimentParameters &Experiment, const bool &limless_mom_eff_plots) {
         Vz_cut = Experiment.GetVz_cuts();
         Vz_cut_FD = Experiment.GetVz_cuts_FD();
         Vz_cut_CD = Experiment.GetVz_cuts_CD();
@@ -167,7 +143,7 @@ struct CutValueManager {
         }
     }
 
-    void UpdateChargedParticleChi2Cuts(clas12ana &clasAna) {
+    void UpdateChargedParticleChi2Cuts(const clas12ana &clasAna) {
         Chi2_Proton_cuts_CD.SetCutPram(clasAna.GetPidCutMean(2212, "CD"), -clasAna.GetPidCutSigma(2212, "CD"), clasAna.GetPidCutSigma(2212, "CD"));
         Chi2_Proton_cuts_FD.SetCutPram(clasAna.GetPidCutMean(2212, "FD"), -clasAna.GetPidCutSigma(2212, "FD"), clasAna.GetPidCutSigma(2212, "FD"));
         Chi2_piplus_cuts_CD.SetCutPram(clasAna.GetPidCutMean(211, "CD"), -clasAna.GetPidCutSigma(211, "CD"), clasAna.GetPidCutSigma(211, "CD"));
@@ -176,21 +152,21 @@ struct CutValueManager {
         Chi2_piminus_cuts_FD.SetCutPram(clasAna.GetPidCutMean(-211, "FD"), -clasAna.GetPidCutSigma(-211, "FD"), clasAna.GetPidCutSigma(-211, "FD"));
     }
 
-    // void FindChi2Xmax() {
-    //     Chi2_Electron_cuts_FD.MeanFromHistogram = hChi2_Electron_1e_cut_FD.GetHistogram1D().GetBinCenter(hChi2_Electron_1e_cut_FD.GetHistogram1D().GetMaximumBin());
-    //     Chi2_Proton_cuts_CD.MeanFromHistogram = hChi2_Proton_1e_cut_CD.GetHistogram1D().GetBinCenter(hChi2_Proton_1e_cut_CD.GetHistogram1D().GetMaximumBin());
-    //     Chi2_Proton_cuts_FD.MeanFromHistogram = hChi2_Proton_1e_cut_FD.GetHistogram1D().GetBinCenter(hChi2_Proton_1e_cut_FD.GetHistogram1D().GetMaximumBin());
-    //     Chi2_Kplus_cuts_CD.MeanFromHistogram = hChi2_Kplus_1e_cut_CD.GetHistogram1D().GetBinCenter(hChi2_Kplus_1e_cut_CD.GetHistogram1D().GetMaximumBin());
-    //     Chi2_Kplus_cuts_FD.MeanFromHistogram = hChi2_Kplus_1e_cut_FD.GetHistogram1D().GetBinCenter(hChi2_Kplus_1e_cut_FD.GetHistogram1D().GetMaximumBin());
-    //     Chi2_Kminus_cuts_CD.MeanFromHistogram = hChi2_Kminus_1e_cut_CD.GetHistogram1D().GetBinCenter(hChi2_Kminus_1e_cut_CD.GetHistogram1D().GetMaximumBin());
-    //     Chi2_Kminus_cuts_FD.MeanFromHistogram = hChi2_Kminus_1e_cut_FD.GetHistogram1D().GetBinCenter(hChi2_Kminus_1e_cut_FD.GetHistogram1D().GetMaximumBin());
-    //     Chi2_piplus_cuts_CD.MeanFromHistogram = hChi2_piplus_1e_cut_CD.GetHistogram1D().GetBinCenter(hChi2_piplus_1e_cut_CD.GetHistogram1D().GetMaximumBin());
-    //     Chi2_piplus_cuts_FD.MeanFromHistogram = hChi2_piplus_1e_cut_FD.GetHistogram1D().GetBinCenter(hChi2_piplus_1e_cut_FD.GetHistogram1D().GetMaximumBin());
-    //     Chi2_piminus_cuts_CD.MeanFromHistogram = hChi2_piminus_1e_cut_CD.GetHistogram1D().GetBinCenter(hChi2_piminus_1e_cut_CD.GetHistogram1D().GetMaximumBin());
-    //     Chi2_piminus_cuts_FD.MeanFromHistogram = hChi2_piminus_1e_cut_FD.GetHistogram1D().GetBinCenter(hChi2_piminus_1e_cut_FD.GetHistogram1D().GetMaximumBin());
-    //     Chi2_deuteron_cuts_CD.MeanFromHistogram = hChi2_deuteron_1e_cut_CD.GetHistogram1D().GetBinCenter(hChi2_deuteron_1e_cut_CD.GetHistogram1D().GetMaximumBin());
-    //     Chi2_deuteron_cuts_FD.MeanFromHistogram = hChi2_deuteron_1e_cut_FD.GetHistogram1D().GetBinCenter(hChi2_deuteron_1e_cut_FD.GetHistogram1D().GetMaximumBin());
-    // }
+    void FindChi2Xmax() {
+        Chi2_Electron_cuts_FD.MeanFromHistogram = hChi2_Electron_1e_cut_FD.GetHistogram1D().GetBinCenter(hChi2_Electron_1e_cut_FD.GetHistogram1D().GetMaximumBin());
+        Chi2_Proton_cuts_CD.MeanFromHistogram = hChi2_Proton_1e_cut_CD.GetHistogram1D().GetBinCenter(hChi2_Proton_1e_cut_CD.GetHistogram1D().GetMaximumBin());
+        Chi2_Proton_cuts_FD.MeanFromHistogram = hChi2_Proton_1e_cut_FD.GetHistogram1D().GetBinCenter(hChi2_Proton_1e_cut_FD.GetHistogram1D().GetMaximumBin());
+        Chi2_Kplus_cuts_CD.MeanFromHistogram = hChi2_Kplus_1e_cut_CD.GetHistogram1D().GetBinCenter(hChi2_Kplus_1e_cut_CD.GetHistogram1D().GetMaximumBin());
+        Chi2_Kplus_cuts_FD.MeanFromHistogram = hChi2_Kplus_1e_cut_FD.GetHistogram1D().GetBinCenter(hChi2_Kplus_1e_cut_FD.GetHistogram1D().GetMaximumBin());
+        Chi2_Kminus_cuts_CD.MeanFromHistogram = hChi2_Kminus_1e_cut_CD.GetHistogram1D().GetBinCenter(hChi2_Kminus_1e_cut_CD.GetHistogram1D().GetMaximumBin());
+        Chi2_Kminus_cuts_FD.MeanFromHistogram = hChi2_Kminus_1e_cut_FD.GetHistogram1D().GetBinCenter(hChi2_Kminus_1e_cut_FD.GetHistogram1D().GetMaximumBin());
+        Chi2_piplus_cuts_CD.MeanFromHistogram = hChi2_piplus_1e_cut_CD.GetHistogram1D().GetBinCenter(hChi2_piplus_1e_cut_CD.GetHistogram1D().GetMaximumBin());
+        Chi2_piplus_cuts_FD.MeanFromHistogram = hChi2_piplus_1e_cut_FD.GetHistogram1D().GetBinCenter(hChi2_piplus_1e_cut_FD.GetHistogram1D().GetMaximumBin());
+        Chi2_piminus_cuts_CD.MeanFromHistogram = hChi2_piminus_1e_cut_CD.GetHistogram1D().GetBinCenter(hChi2_piminus_1e_cut_CD.GetHistogram1D().GetMaximumBin());
+        Chi2_piminus_cuts_FD.MeanFromHistogram = hChi2_piminus_1e_cut_FD.GetHistogram1D().GetBinCenter(hChi2_piminus_1e_cut_FD.GetHistogram1D().GetMaximumBin());
+        Chi2_deuteron_cuts_CD.MeanFromHistogram = hChi2_deuteron_1e_cut_CD.GetHistogram1D().GetBinCenter(hChi2_deuteron_1e_cut_CD.GetHistogram1D().GetMaximumBin());
+        Chi2_deuteron_cuts_FD.MeanFromHistogram = hChi2_deuteron_1e_cut_FD.GetHistogram1D().GetBinCenter(hChi2_deuteron_1e_cut_FD.GetHistogram1D().GetMaximumBin());
+    }
 };
 
 #endif  // CUTVALUEMANAGER_H

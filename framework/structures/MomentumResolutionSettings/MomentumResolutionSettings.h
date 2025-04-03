@@ -2,8 +2,8 @@
 // Created by Alon Sportes on 01/04/2025.
 //
 
-#ifndef MOMENTUMRESOLUTIONSETTINGS_H
-#define MOMENTUMRESOLUTIONSETTINGS_H
+#ifndef ACCEPTANCEMAPSSETTINGS_H
+#define ACCEPTANCEMAPSSETTINGS_H
 
 #include <iostream>
 
@@ -43,4 +43,4 @@ struct MomentumResolutionSettings {
     }
 };
 
-#endif  // MOMENTUMRESOLUTIONSETTINGS_H
+#endif  // ACCEPTANCEMAPSSETTINGS_H

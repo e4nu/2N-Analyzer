@@ -7,23 +7,23 @@
 
 #include <iostream>
 
-#include "../../classes/ExperimentParameters/ExperimentParameters.cpp"
+#include "../../../classes/ExperimentParameters/ExperimentParameters.cpp"
 
 struct RunParameters {
-    const std::string SampleName;
-    const std::string VaryingSampleName;
-    const double beamE;
-    const std::string Target;
-    const int TargetPDG;
-    const bool isLocal;
-    const bool isMC;
-    const bool isData;
-    const bool is2GeVSample;
-    const bool is4GeVSample;
-    const bool is6GeVSample;
+    std::string SampleName;
+    std::string VaryingSampleName;
+    double beamE;
+    std::string Target;
+    int TargetPDG;
+    bool isLocal;
+    bool isMC;
+    bool isData;
+    bool is2GeVSample;
+    bool is4GeVSample;
+    bool is6GeVSample;
 
-    RunParameters(ExperimentParameters& Experiment, const std::string& AnalyzeFilePath, const std::string& AnalyzeFileSample)
-        : SampleName(Experiment.ConfigureSampleName(AnalyzeFilePath, AnalyzeFileSample)),
+    RunParameters(const ExperimentParameters& Experiment, const std::string& AnalyseFilePath, const std::string& AnalyseFileSample)
+        : SampleName(Experiment.ConfigureSampleName(AnalyseFilePath, AnalyseFileSample)),
           VaryingSampleName(Experiment.GetVaryingSampleName()),
           beamE(Experiment.GetBeamEnergy()),
           Target(Experiment.GetTargetElement()),

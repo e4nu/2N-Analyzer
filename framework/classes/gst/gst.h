@@ -262,11 +262,11 @@ gst::gst(TTree *tree) : fChain(0) {
 
         if (file_name == "general_file") { // general_file (asportes_11_1000060120_2222_wfsi_SuSAv2_fixed_seed_555_test_17.gst.root)
 
-//            std::string AnalyzeFile = "asportes_11_1000060120_2222_wfsi_SuSAv2_fixed_seed_555_test_17.gst.root";
+//            std::string AnalyseFile = "asportes_11_1000060120_2222_wfsi_SuSAv2_fixed_seed_555_test_17.gst.root";
 
-            f = (TFile*)gROOT->GetListOfFiles()->FindObject(AnalyzeFile.c_str());
+            f = (TFile*)gROOT->GetListOfFiles()->FindObject(AnalyseFile.c_str());
             if (!f || !f->IsOpen()) {
-                f = new TFile(AnalyzeFile.c_str());
+                f = new TFile(AnalyseFile.c_str());
             }
         }
 

@@ -7,14 +7,9 @@
 
 #include <iostream>
 
-// Include libraries:
-#include "../../namespaces/general_utilities/basic_tools.h"
+#include "../../../namespaces/general_utilities/basic_tools.h"
 
-// Include settings:
-#include "../RunParameters/RunParameters.h"
-#include "../RunParameters/RunParameters.h"
-
-struct AcceptanceMapsSettings {
+struct AMapsSettings {
     bool Generate_Electron_AMaps;  // Generate electron acceptance maps
     bool Generate_Nucleon_AMaps;   // Generate nucleon acceptance maps
     bool Generate_WMaps;           // Generate efficiency maps
@@ -27,7 +22,7 @@ struct AcceptanceMapsSettings {
     bool Nucleon_single_slice_test;   // keep as false for normal runs!
     std::vector<int> TestSlices;      // {ElectronTestSlice, ProtonTestSlice, NeutronTestSlice}
 
-    AcceptanceMapsSettings()
+    AMapsSettings()
         : Generate_Electron_AMaps(false),
           Generate_Nucleon_AMaps(true),
           Generate_WMaps(true),

@@ -172,7 +172,7 @@ void gst::Loop() {
     std::cout << "\n";
     std::cout << "\n";
     std::cout << "-- Execution variables ----------------------------------------------------\n";
-    std::cout << "File input:\t" << AnalyzeFile << "\n";
+    std::cout << "File input:\t" << AnalyseFile << "\n";
     std::cout << "Settings mode:\t'" << file_name << "'\n";
     std::cout << "FSI status:\t" << BoolToString(FSI_status) << "\n";
     std::cout << "ni:\t\t" << ni_selection << "\n";

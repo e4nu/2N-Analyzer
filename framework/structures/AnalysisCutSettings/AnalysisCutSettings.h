@@ -7,15 +7,11 @@
 
 #include <iostream>
 
-// Include classes:
-#include "../../classes/ExperimentParameters/ExperimentParameters.cpp"
-#include "../../classes/Settings/Settings.cpp"
-
-// Include settings:
-#include "../AcceptanceMapsSettings/AcceptanceMapsSettings.h"
-#include "../EventSelectionSettings/EventSelectionSettings.h"
+#include "../../../classes/Settings/Settings.cpp"
+#include "../AMapsSettings/AMapsSettings.h"
+#include "../ESSettings/ESSettings.h"
+#include "../ExperimentParameters/ExperimentParameters.h"
 #include "../MomentumResolutionSettings/MomentumResolutionSettings.h"
-#include "../RunParameters/RunParameters.h"
 
 struct AnalysisCutSettings {
     // Cuts setup
@@ -54,7 +50,7 @@ struct AnalysisCutSettings {
     bool apply_kinematical_weights;
     bool apply_nucleon_SmearAndCorr;
 
-    const bool custom_cuts_naming;  // Enable custom cuts naming
+    const bool custom_cuts_naming; // Enable custom cuts naming
 
     // Constructor with default values
     AnalysisCutSettings()
@@ -84,7 +80,8 @@ struct AnalysisCutSettings {
           apply_nucleon_SmearAndCorr(false),
           custom_cuts_naming(true) {}
 
-    void RefreshSettings(const RunParameters& parameters, EventSelectionSettings& ESSettings, AcceptanceMapsSettings& AMapsSettings, MomentumResolutionSettings& MomResSettings) {
+    void RefreshSettings(const ExperimentParameters& parameters, const EventSelectionSettings& ESSettings, const AMapsSettings& AMapsSettings,
+                         const MomentumResolutionSettings& MomResSettings) {
         // Auto-disable variables
         if (only_preselection_cuts || only_electron_quality_cuts) {
             apply_cuts = false;
@@ -156,9 +153,12 @@ struct AnalysisCutSettings {
         }
     }
 
-    void CustomNamingRefresh(Settings& settings, const AcceptanceMapsSettings& AMapsSettings, const MomentumResolutionSettings& MomResSettings, const EventSelectionSettings& ESSettings,
-                             const RunParameters& parameters, std::string& run_plots_path, std::string& run_plots_log_save_Directory) {
+    void CustomNamingRefresh(Settings& settings, const AMapsSettings& AMapsSettings, const MomentumResolutionSettings& MomResSettings, const EventSelectionSettings& ESSettings,
+                             const ExperimentParameters& parameters) {
         /* Save plots to custom-named folders, to allow multi-sample runs at once. */
+        std::string run_plots_path = path_definitions::PathDefinitions.plots_path;
+        std::string run_plots_log_save_Directory = plots_log_save_Directory;
+
         settings.SetCustomCutsNaming(custom_cuts_naming);
         settings.ConfigureStatuses(apply_cuts, clas12ana_particles, only_preselection_cuts, apply_chi2_cuts_1e_cut, only_electron_quality_cuts, apply_nucleon_cuts,
                                    ESSettings.Enable_FD_photons, apply_nucleon_SmearAndCorr, apply_kinematical_cuts, apply_kinematical_weights, apply_fiducial_cuts,
