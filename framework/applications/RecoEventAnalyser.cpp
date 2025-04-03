@@ -382,7 +382,7 @@ void DataAnalyzer::RecoEventAnalyser(const std::string &AnalyzeFilePath, const s
 
     // Cut declarations -----------------------------------------------------------------------------------------------------------------------------------------------------
 
-    CutValueManager CutManager = CutValueManager(Experiment, ESSettings.limless_mom_eff_plots);
+    CutValueManager CutManager = CutValueManager(Experiment, ESSettings);
 
     // Cuts declarations
     /* Log cut values to be used later when applying them. */
@@ -9896,7 +9896,7 @@ void DataAnalyzer::RecoEventAnalyser(const std::string &AnalyzeFilePath, const s
 
         // Charged particles for inclusive efficiency
         // Proton vectors for (e,e'Xp)Y efficiency
-        std::vector<int> All_Protons_ind = pid.ChargedParticleID(protons, CutManager.no_CutManager.p_mom_th);  // indices of all protons (i.e., without P_p th.)
+        std::vector<int> All_Protons_ind = pid.ChargedParticleID(protons, CutManager.no_p_mom_th);  // indices of all protons (i.e., without P_p th.)
         std::vector<int> All_gProtons_ind = pid.GetGoodProtons(CutSettings.apply_nucleon_cuts, protons, All_Protons_ind, CutManager.Theta_p1_cuts_2p, CutManager.Theta_p2_cuts_2p,
                                                                CutManager.dphi_pFD_pCD_2p);  // good protons (no sCTOFhp and no dCDaFDd) - WITHOUT mom. th.
 
@@ -9996,7 +9996,7 @@ void DataAnalyzer::RecoEventAnalyser(const std::string &AnalyzeFilePath, const s
         /* Safety checks */
 
         // Safety check for clas12ana particles - check that allParticles.size(), Nf are the same:
-        debugging::CodeDebugger.SafetyCheck_CutSettings.clas12ana_particles(__FILE__, __LINE__, CutSettings.clas12ana_particles, allParticles, Nf);
+        debugging::CodeDebugger.SafetyCheck_clas12ana_particles(__FILE__, __LINE__, clas12ana_particles, allParticles, Nf);
 
         // Safety checks for FD protons:
         debugging::CodeDebugger.SafetyCheck_FD_protons(__FILE__, __LINE__, Protons_ind, protons, CutManager.p_mom_th);
@@ -12649,7 +12649,7 @@ void DataAnalyzer::RecoEventAnalyser(const std::string &AnalyzeFilePath, const s
                                             : (NeutronsFD_ind.size() == 1)                                         ? NeutronsFD_ind.at(0)
                                                                                                                    : -9999;
 
-            if (AMaps_NeutronsFD_fill_ind >= 0) {
+            if (WMaps_NeutronsFD_fill_ind >= 0) {
                 /* Fill leading reco FD neutron efficiency maps */
                 bool hitPCAL_1e_cut = (allParticles[WMaps_NeutronsFD_fill_ind]->cal(clas12::PCAL)->getDetector() == 7);    // PCAL hit
                 bool hitECIN_1e_cut = (allParticles[WMaps_NeutronsFD_fill_ind]->cal(clas12::ECIN)->getDetector() == 7);    // ECIN hit
@@ -12921,10 +12921,10 @@ void DataAnalyzer::RecoEventAnalyser(const std::string &AnalyzeFilePath, const s
                 hE_e_All_Int_1p_FD->Fill(E_e_1p, Weight_1p);
                 hE_e_VS_Theta_e_All_Int_1p_FD->Fill(Theta_e_1p, E_e_1p, Weight_1p);
 
-                hET_All_Ang_All_Int_1p_FD->Fill(beamE - E_e_1p, Weight_1p);
+                hET_All_Ang_All_Int_1p_FD->Fill(parameters.beamE - E_e_1p, Weight_1p);
 
                 if ((Theta_e_1p >= 14.0) && (Theta_e_1p <= 16.0)) {
-                    hET15_All_Int_1p_FD->Fill(beamE - E_e_1p, Weight_1p);
+                    hET15_All_Int_1p_FD->Fill(parameters.beamE - E_e_1p, Weight_1p);
                     hE_e_15_All_Int_1p_FD->Fill(E_e_1p, Weight_1p);
                 }
 
@@ -12934,10 +12934,10 @@ void DataAnalyzer::RecoEventAnalyser(const std::string &AnalyzeFilePath, const s
                     hE_e_QEL_1p_FD->Fill(E_e_1p, Weight_1p);
                     hE_e_VS_Theta_e_QEL_1p_FD->Fill(Theta_e_1p, E_e_1p, Weight_1p);
 
-                    hET_All_Ang_QEL_1p_FD->Fill(beamE - E_e_1p, Weight_1p);
+                    hET_All_Ang_QEL_1p_FD->Fill(parameters.beamE - E_e_1p, Weight_1p);
 
                     if ((Theta_e_1p >= 14.0) && (Theta_e_1p <= 16.0)) {
-                        hET15_QEL_1p_FD->Fill(beamE - E_e_1p, Weight_1p);
+                        hET15_QEL_1p_FD->Fill(parameters.beamE - E_e_1p, Weight_1p);
                         hE_e_15_QEL_1p_FD->Fill(E_e_1p, Weight_1p);
                     }
                 } else if (mec) {
@@ -12946,10 +12946,10 @@ void DataAnalyzer::RecoEventAnalyser(const std::string &AnalyzeFilePath, const s
                     hE_e_MEC_1p_FD->Fill(E_e_1p, Weight_1p);
                     hE_e_VS_Theta_e_MEC_1p_FD->Fill(Theta_e_1p, E_e_1p, Weight_1p);
 
-                    hET_All_Ang_MEC_1p_FD->Fill(beamE - E_e_1p, Weight_1p);
+                    hET_All_Ang_MEC_1p_FD->Fill(parameters.beamE - E_e_1p, Weight_1p);
 
                     if ((Theta_e_1p >= 14.0) && (Theta_e_1p <= 16.0)) {
-                        hET15_MEC_1p_FD->Fill(beamE - E_e_1p, Weight_1p);
+                        hET15_MEC_1p_FD->Fill(parameters.beamE - E_e_1p, Weight_1p);
                         hE_e_15_MEC_1p_FD->Fill(E_e_1p, Weight_1p);
                     }
                 } else if (res) {
@@ -12958,10 +12958,10 @@ void DataAnalyzer::RecoEventAnalyser(const std::string &AnalyzeFilePath, const s
                     hE_e_RES_1p_FD->Fill(E_e_1p, Weight_1p);
                     hE_e_VS_Theta_e_RES_1p_FD->Fill(Theta_e_1p, E_e_1p, Weight_1p);
 
-                    hET_All_Ang_RES_1p_FD->Fill(beamE - E_e_1p, Weight_1p);
+                    hET_All_Ang_RES_1p_FD->Fill(parameters.beamE - E_e_1p, Weight_1p);
 
                     if ((Theta_e_1p >= 14.0) && (Theta_e_1p <= 16.0)) {
-                        hET15_RES_1p_FD->Fill(beamE - E_e_1p, Weight_1p);
+                        hET15_RES_1p_FD->Fill(parameters.beamE - E_e_1p, Weight_1p);
                         hE_e_15_RES_1p_FD->Fill(E_e_1p, Weight_1p);
                     }
                 } else if (dis) {
@@ -12970,10 +12970,10 @@ void DataAnalyzer::RecoEventAnalyser(const std::string &AnalyzeFilePath, const s
                     hE_e_DIS_1p_FD->Fill(E_e_1p, Weight_1p);
                     hE_e_VS_Theta_e_DIS_1p_FD->Fill(Theta_e_1p, E_e_1p, Weight_1p);
 
-                    hET_All_Ang_DIS_1p_FD->Fill(beamE - E_e_1p, Weight_1p);
+                    hET_All_Ang_DIS_1p_FD->Fill(parameters.beamE - E_e_1p, Weight_1p);
 
                     if ((Theta_e_1p >= 14.0) && (Theta_e_1p <= 16.0)) {
-                        hET15_DIS_1p_FD->Fill(beamE - E_e_1p, Weight_1p);
+                        hET15_DIS_1p_FD->Fill(parameters.beamE - E_e_1p, Weight_1p);
                         hE_e_15_DIS_1p_FD->Fill(E_e_1p, Weight_1p);
                     }
                 }
@@ -13761,10 +13761,10 @@ void DataAnalyzer::RecoEventAnalyser(const std::string &AnalyzeFilePath, const s
                 hE_e_All_Int_1n_FD->Fill(E_e_1n, Weight_1n);
                 hE_e_VS_Theta_e_All_Int_1n_FD->Fill(Theta_e_1n, E_e_1n, Weight_1n);
 
-                hET_All_Ang_All_Int_1n_FD->Fill(beamE - E_e_1n, Weight_1n);
+                hET_All_Ang_All_Int_1n_FD->Fill(parameters.beamE - E_e_1n, Weight_1n);
 
                 if ((Theta_e_1n >= 14.0) && (Theta_e_1n <= 16.0)) {
-                    hET15_All_Int_1n_FD->Fill(beamE - E_e_1n, Weight_1n);
+                    hET15_All_Int_1n_FD->Fill(parameters.beamE - E_e_1n, Weight_1n);
                     hE_e_15_All_Int_1n_FD->Fill(E_e_1n, Weight_1n);
                 }
 
@@ -13774,10 +13774,10 @@ void DataAnalyzer::RecoEventAnalyser(const std::string &AnalyzeFilePath, const s
                     hE_e_QEL_1n_FD->Fill(E_e_1n, Weight_1n);
                     hE_e_VS_Theta_e_QEL_1n_FD->Fill(Theta_e_1n, E_e_1n, Weight_1n);
 
-                    hET_All_Ang_QEL_1n_FD->Fill(beamE - E_e_1n, Weight_1n);
+                    hET_All_Ang_QEL_1n_FD->Fill(parameters.beamE - E_e_1n, Weight_1n);
 
                     if ((Theta_e_1n >= 14.0) && (Theta_e_1n <= 16.0)) {
-                        hET15_QEL_1n_FD->Fill(beamE - E_e_1n, Weight_1n);
+                        hET15_QEL_1n_FD->Fill(parameters.beamE - E_e_1n, Weight_1n);
                         hE_e_15_QEL_1n_FD->Fill(E_e_1n, Weight_1n);
                     }
                 } else if (mec) {
@@ -13786,10 +13786,10 @@ void DataAnalyzer::RecoEventAnalyser(const std::string &AnalyzeFilePath, const s
                     hE_e_MEC_1n_FD->Fill(E_e_1n, Weight_1n);
                     hE_e_VS_Theta_e_MEC_1n_FD->Fill(Theta_e_1n, E_e_1n, Weight_1n);
 
-                    hET_All_Ang_MEC_1n_FD->Fill(beamE - E_e_1n, Weight_1n);
+                    hET_All_Ang_MEC_1n_FD->Fill(parameters.beamE - E_e_1n, Weight_1n);
 
                     if ((Theta_e_1n >= 14.0) && (Theta_e_1n <= 16.0)) {
-                        hET15_MEC_1n_FD->Fill(beamE - E_e_1n, Weight_1n);
+                        hET15_MEC_1n_FD->Fill(parameters.beamE - E_e_1n, Weight_1n);
                         hE_e_15_MEC_1n_FD->Fill(E_e_1n, Weight_1n);
                     }
                 } else if (res) {
@@ -13798,10 +13798,10 @@ void DataAnalyzer::RecoEventAnalyser(const std::string &AnalyzeFilePath, const s
                     hE_e_RES_1n_FD->Fill(E_e_1n, Weight_1n);
                     hE_e_VS_Theta_e_RES_1n_FD->Fill(Theta_e_1n, E_e_1n, Weight_1n);
 
-                    hET_All_Ang_RES_1n_FD->Fill(beamE - E_e_1n, Weight_1n);
+                    hET_All_Ang_RES_1n_FD->Fill(parameters.beamE - E_e_1n, Weight_1n);
 
                     if ((Theta_e_1n >= 14.0) && (Theta_e_1n <= 16.0)) {
-                        hET15_RES_1n_FD->Fill(beamE - E_e_1n, Weight_1n);
+                        hET15_RES_1n_FD->Fill(parameters.beamE - E_e_1n, Weight_1n);
                         hE_e_15_RES_1n_FD->Fill(E_e_1n, Weight_1n);
                     }
                 } else if (dis) {
@@ -13810,10 +13810,10 @@ void DataAnalyzer::RecoEventAnalyser(const std::string &AnalyzeFilePath, const s
                     hE_e_DIS_1n_FD->Fill(E_e_1n, Weight_1n);
                     hE_e_VS_Theta_e_DIS_1n_FD->Fill(Theta_e_1n, E_e_1n, Weight_1n);
 
-                    hET_All_Ang_DIS_1n_FD->Fill(beamE - E_e_1n, Weight_1n);
+                    hET_All_Ang_DIS_1n_FD->Fill(parameters.beamE - E_e_1n, Weight_1n);
 
                     if ((Theta_e_1n >= 14.0) && (Theta_e_1n <= 16.0)) {
-                        hET15_DIS_1n_FD->Fill(beamE - E_e_1n, Weight_1n);
+                        hET15_DIS_1n_FD->Fill(parameters.beamE - E_e_1n, Weight_1n);
                         hE_e_15_DIS_1n_FD->Fill(E_e_1n, Weight_1n);
                     }
                 }
@@ -14498,9 +14498,9 @@ void DataAnalyzer::RecoEventAnalyser(const std::string &AnalyzeFilePath, const s
                     hE_e_All_Int_2p_FD->Fill(E_e_1e_cut, Weight);
                     hE_e_VS_Theta_e_All_Int_2p_FD->Fill(Theta_e, E_e_1e_cut, Weight);
 
-                    hET_All_Ang_All_Int_2p_FD->Fill(beamE - E_e_1e_cut, Weight);
+                    hET_All_Ang_All_Int_2p_FD->Fill(parameters.beamE - E_e_1e_cut, Weight);
                     if ((Theta_e >= 14.0) && (Theta_e <= 16.0)) {
-                        hET15_All_Int_2p_FD->Fill(beamE - E_e_1e_cut, Weight);
+                        hET15_All_Int_2p_FD->Fill(parameters.beamE - E_e_1e_cut, Weight);
                         hE_e_15_All_Int_2p_FD->Fill(E_e_1e_cut, Weight);
                     }
 
@@ -14510,9 +14510,9 @@ void DataAnalyzer::RecoEventAnalyser(const std::string &AnalyzeFilePath, const s
                         hE_e_QEL_2p_FD->Fill(E_e_1e_cut, Weight);
                         hE_e_VS_Theta_e_QEL_2p_FD->Fill(Theta_e, E_e_1e_cut, Weight);
 
-                        hET_All_Ang_QEL_2p_FD->Fill(beamE - E_e_1e_cut, Weight);
+                        hET_All_Ang_QEL_2p_FD->Fill(parameters.beamE - E_e_1e_cut, Weight);
                         if ((Theta_e >= 14.0) && (Theta_e <= 16.0)) {
-                            hET15_QEL_2p_FD->Fill(beamE - E_e_1e_cut, Weight);
+                            hET15_QEL_2p_FD->Fill(parameters.beamE - E_e_1e_cut, Weight);
                             hE_e_15_QEL_2p_FD->Fill(E_e_1e_cut, Weight);
                         }
                     } else if (mec) {
@@ -14521,9 +14521,9 @@ void DataAnalyzer::RecoEventAnalyser(const std::string &AnalyzeFilePath, const s
                         hE_e_MEC_2p_FD->Fill(E_e_1e_cut, Weight);
                         hE_e_VS_Theta_e_MEC_2p_FD->Fill(Theta_e, E_e_1e_cut, Weight);
 
-                        hET_All_Ang_MEC_2p_FD->Fill(beamE - E_e_1e_cut, Weight);
+                        hET_All_Ang_MEC_2p_FD->Fill(parameters.beamE - E_e_1e_cut, Weight);
                         if ((Theta_e >= 14.0) && (Theta_e <= 16.0)) {
-                            hET15_MEC_2p_FD->Fill(beamE - E_e_1e_cut, Weight);
+                            hET15_MEC_2p_FD->Fill(parameters.beamE - E_e_1e_cut, Weight);
                             hE_e_15_MEC_2p_FD->Fill(E_e_1e_cut, Weight);
                         }
                     } else if (res) {
@@ -14532,9 +14532,9 @@ void DataAnalyzer::RecoEventAnalyser(const std::string &AnalyzeFilePath, const s
                         hE_e_RES_2p_FD->Fill(E_e_1e_cut, Weight);
                         hE_e_VS_Theta_e_RES_2p_FD->Fill(Theta_e, E_e_1e_cut, Weight);
 
-                        hET_All_Ang_RES_2p_FD->Fill(beamE - E_e_1e_cut, Weight);
+                        hET_All_Ang_RES_2p_FD->Fill(parameters.beamE - E_e_1e_cut, Weight);
                         if ((Theta_e >= 14.0) && (Theta_e <= 16.0)) {
-                            hET15_RES_2p_FD->Fill(beamE - E_e_1e_cut, Weight);
+                            hET15_RES_2p_FD->Fill(parameters.beamE - E_e_1e_cut, Weight);
                             hE_e_15_RES_2p_FD->Fill(E_e_1e_cut, Weight);
                         }
                     } else if (dis) {
@@ -14543,9 +14543,9 @@ void DataAnalyzer::RecoEventAnalyser(const std::string &AnalyzeFilePath, const s
                         hE_e_DIS_2p_FD->Fill(E_e_1e_cut, Weight);
                         hE_e_VS_Theta_e_DIS_2p_FD->Fill(Theta_e, E_e_1e_cut, Weight);
 
-                        hET_All_Ang_DIS_2p_FD->Fill(beamE - E_e_1e_cut, Weight);
+                        hET_All_Ang_DIS_2p_FD->Fill(parameters.beamE - E_e_1e_cut, Weight);
                         if ((Theta_e >= 14.0) && (Theta_e <= 16.0)) {
-                            hET15_DIS_2p_FD->Fill(beamE - E_e_1e_cut, Weight);
+                            hET15_DIS_2p_FD->Fill(parameters.beamE - E_e_1e_cut, Weight);
                             hE_e_15_DIS_2p_FD->Fill(E_e_1e_cut, Weight);
                         }
                     }
@@ -15133,10 +15133,10 @@ void DataAnalyzer::RecoEventAnalyser(const std::string &AnalyzeFilePath, const s
                 hE_e_All_Int_pFDpCD_FD->Fill(E_e_pFDpCD, Weight_pFDpCD);
                 hE_e_VS_Theta_e_All_Int_pFDpCD_FD->Fill(Theta_e_pFDpCD, E_e_pFDpCD, Weight_pFDpCD);
 
-                hET_All_Ang_All_Int_pFDpCD_FD->Fill(beamE - E_e_pFDpCD, Weight_pFDpCD);
+                hET_All_Ang_All_Int_pFDpCD_FD->Fill(parameters.beamE - E_e_pFDpCD, Weight_pFDpCD);
 
                 if ((Theta_e_pFDpCD >= 14.0) && (Theta_e_pFDpCD <= 16.0)) {
-                    hET15_All_Int_pFDpCD_FD->Fill(beamE - E_e_pFDpCD, Weight_pFDpCD);
+                    hET15_All_Int_pFDpCD_FD->Fill(parameters.beamE - E_e_pFDpCD, Weight_pFDpCD);
                     hE_e_15_All_Int_pFDpCD_FD->Fill(E_e_pFDpCD, Weight_pFDpCD);
                 }
 
@@ -15146,10 +15146,10 @@ void DataAnalyzer::RecoEventAnalyser(const std::string &AnalyzeFilePath, const s
                     hE_e_QEL_pFDpCD_FD->Fill(E_e_pFDpCD, Weight_pFDpCD);
                     hE_e_VS_Theta_e_QEL_pFDpCD_FD->Fill(Theta_e_pFDpCD, E_e_pFDpCD, Weight_pFDpCD);
 
-                    hET_All_Ang_QEL_pFDpCD_FD->Fill(beamE - E_e_pFDpCD, Weight_pFDpCD);
+                    hET_All_Ang_QEL_pFDpCD_FD->Fill(parameters.beamE - E_e_pFDpCD, Weight_pFDpCD);
 
                     if ((Theta_e_pFDpCD >= 14.0) && (Theta_e_pFDpCD <= 16.0)) {
-                        hET15_QEL_pFDpCD_FD->Fill(beamE - E_e_pFDpCD, Weight_pFDpCD);
+                        hET15_QEL_pFDpCD_FD->Fill(parameters.beamE - E_e_pFDpCD, Weight_pFDpCD);
                         hE_e_15_QEL_pFDpCD_FD->Fill(E_e_pFDpCD, Weight_pFDpCD);
                     }
                 } else if (mec) {
@@ -15158,9 +15158,9 @@ void DataAnalyzer::RecoEventAnalyser(const std::string &AnalyzeFilePath, const s
                     hE_e_MEC_pFDpCD_FD->Fill(E_e_pFDpCD, Weight_pFDpCD);
                     hE_e_VS_Theta_e_MEC_pFDpCD_FD->Fill(Theta_e_pFDpCD, E_e_pFDpCD, Weight_pFDpCD);
 
-                    hET_All_Ang_MEC_pFDpCD_FD->Fill(beamE - E_e_pFDpCD, Weight_pFDpCD);
+                    hET_All_Ang_MEC_pFDpCD_FD->Fill(parameters.beamE - E_e_pFDpCD, Weight_pFDpCD);
                     if ((Theta_e_pFDpCD >= 14.0) && (Theta_e_pFDpCD <= 16.0)) {
-                        hET15_MEC_pFDpCD_FD->Fill(beamE - E_e_pFDpCD, Weight_pFDpCD);
+                        hET15_MEC_pFDpCD_FD->Fill(parameters.beamE - E_e_pFDpCD, Weight_pFDpCD);
                         hE_e_15_MEC_pFDpCD_FD->Fill(E_e_pFDpCD, Weight_pFDpCD);
                     }
                 } else if (res) {
@@ -15169,10 +15169,10 @@ void DataAnalyzer::RecoEventAnalyser(const std::string &AnalyzeFilePath, const s
                     hE_e_RES_pFDpCD_FD->Fill(E_e_pFDpCD, Weight_pFDpCD);
                     hE_e_VS_Theta_e_RES_pFDpCD_FD->Fill(Theta_e_pFDpCD, E_e_pFDpCD, Weight_pFDpCD);
 
-                    hET_All_Ang_RES_pFDpCD_FD->Fill(beamE - E_e_pFDpCD, Weight_pFDpCD);
+                    hET_All_Ang_RES_pFDpCD_FD->Fill(parameters.beamE - E_e_pFDpCD, Weight_pFDpCD);
 
                     if ((Theta_e_pFDpCD >= 14.0) && (Theta_e_pFDpCD <= 16.0)) {
-                        hET15_RES_pFDpCD_FD->Fill(beamE - E_e_pFDpCD, Weight_pFDpCD);
+                        hET15_RES_pFDpCD_FD->Fill(parameters.beamE - E_e_pFDpCD, Weight_pFDpCD);
                         hE_e_15_RES_pFDpCD_FD->Fill(E_e_pFDpCD, Weight_pFDpCD);
                     }
                 } else if (dis) {
@@ -15181,10 +15181,10 @@ void DataAnalyzer::RecoEventAnalyser(const std::string &AnalyzeFilePath, const s
                     hE_e_DIS_pFDpCD_FD->Fill(E_e_pFDpCD, Weight_pFDpCD);
                     hE_e_VS_Theta_e_DIS_pFDpCD_FD->Fill(Theta_e_pFDpCD, E_e_pFDpCD, Weight_pFDpCD);
 
-                    hET_All_Ang_DIS_pFDpCD_FD->Fill(beamE - E_e_pFDpCD, Weight_pFDpCD);
+                    hET_All_Ang_DIS_pFDpCD_FD->Fill(parameters.beamE - E_e_pFDpCD, Weight_pFDpCD);
 
                     if ((Theta_e_pFDpCD >= 14.0) && (Theta_e_pFDpCD <= 16.0)) {
-                        hET15_DIS_pFDpCD_FD->Fill(beamE - E_e_pFDpCD, Weight_pFDpCD);
+                        hET15_DIS_pFDpCD_FD->Fill(parameters.beamE - E_e_pFDpCD, Weight_pFDpCD);
                         hE_e_15_DIS_pFDpCD_FD->Fill(E_e_pFDpCD, Weight_pFDpCD);
                     }
                 }
@@ -16005,10 +16005,10 @@ void DataAnalyzer::RecoEventAnalyser(const std::string &AnalyzeFilePath, const s
                 hE_e_All_Int_nFDpCD_FD->Fill(E_e_nFDpCD, Weight_nFDpCD);
                 hE_e_VS_Theta_e_All_Int_nFDpCD_FD->Fill(Theta_e_nFDpCD, E_e_nFDpCD, Weight_nFDpCD);
 
-                hET_All_Ang_All_Int_nFDpCD_FD->Fill(beamE - E_e_nFDpCD, Weight_nFDpCD);
+                hET_All_Ang_All_Int_nFDpCD_FD->Fill(parameters.beamE - E_e_nFDpCD, Weight_nFDpCD);
 
                 if ((Theta_e_nFDpCD >= 14.0) && (Theta_e_nFDpCD <= 16.0)) {
-                    hET15_All_Int_nFDpCD_FD->Fill(beamE - E_e_nFDpCD, Weight_nFDpCD);
+                    hET15_All_Int_nFDpCD_FD->Fill(parameters.beamE - E_e_nFDpCD, Weight_nFDpCD);
                     hE_e_15_All_Int_nFDpCD_FD->Fill(E_e_nFDpCD, Weight_nFDpCD);
                 }
 
@@ -16018,10 +16018,10 @@ void DataAnalyzer::RecoEventAnalyser(const std::string &AnalyzeFilePath, const s
                     hE_e_QEL_nFDpCD_FD->Fill(E_e_nFDpCD, Weight_nFDpCD);
                     hE_e_VS_Theta_e_QEL_nFDpCD_FD->Fill(Theta_e_nFDpCD, E_e_nFDpCD, Weight_nFDpCD);
 
-                    hET_All_Ang_QEL_nFDpCD_FD->Fill(beamE - E_e_nFDpCD, Weight_nFDpCD);
+                    hET_All_Ang_QEL_nFDpCD_FD->Fill(parameters.beamE - E_e_nFDpCD, Weight_nFDpCD);
 
                     if ((Theta_e_nFDpCD >= 14.0) && (Theta_e_nFDpCD <= 16.0)) {
-                        hET15_QEL_nFDpCD_FD->Fill(beamE - E_e_nFDpCD, Weight_nFDpCD);
+                        hET15_QEL_nFDpCD_FD->Fill(parameters.beamE - E_e_nFDpCD, Weight_nFDpCD);
                         hE_e_15_QEL_nFDpCD_FD->Fill(E_e_nFDpCD, Weight_nFDpCD);
                     }
                 } else if (mec) {
@@ -16030,9 +16030,9 @@ void DataAnalyzer::RecoEventAnalyser(const std::string &AnalyzeFilePath, const s
                     hE_e_MEC_nFDpCD_FD->Fill(E_e_nFDpCD, Weight_nFDpCD);
                     hE_e_VS_Theta_e_MEC_nFDpCD_FD->Fill(Theta_e_nFDpCD, E_e_nFDpCD, Weight_nFDpCD);
 
-                    hET_All_Ang_MEC_nFDpCD_FD->Fill(beamE - E_e_nFDpCD, Weight_nFDpCD);
+                    hET_All_Ang_MEC_nFDpCD_FD->Fill(parameters.beamE - E_e_nFDpCD, Weight_nFDpCD);
                     if ((Theta_e_nFDpCD >= 14.0) && (Theta_e_nFDpCD <= 16.0)) {
-                        hET15_MEC_nFDpCD_FD->Fill(beamE - E_e_nFDpCD, Weight_nFDpCD);
+                        hET15_MEC_nFDpCD_FD->Fill(parameters.beamE - E_e_nFDpCD, Weight_nFDpCD);
                         hE_e_15_MEC_nFDpCD_FD->Fill(E_e_nFDpCD, Weight_nFDpCD);
                     }
                 } else if (res) {
@@ -16041,10 +16041,10 @@ void DataAnalyzer::RecoEventAnalyser(const std::string &AnalyzeFilePath, const s
                     hE_e_RES_nFDpCD_FD->Fill(E_e_nFDpCD, Weight_nFDpCD);
                     hE_e_VS_Theta_e_RES_nFDpCD_FD->Fill(Theta_e_nFDpCD, E_e_nFDpCD, Weight_nFDpCD);
 
-                    hET_All_Ang_RES_nFDpCD_FD->Fill(beamE - E_e_nFDpCD, Weight_nFDpCD);
+                    hET_All_Ang_RES_nFDpCD_FD->Fill(parameters.beamE - E_e_nFDpCD, Weight_nFDpCD);
 
                     if ((Theta_e_nFDpCD >= 14.0) && (Theta_e_nFDpCD <= 16.0)) {
-                        hET15_RES_nFDpCD_FD->Fill(beamE - E_e_nFDpCD, Weight_nFDpCD);
+                        hET15_RES_nFDpCD_FD->Fill(parameters.beamE - E_e_nFDpCD, Weight_nFDpCD);
                         hE_e_15_RES_nFDpCD_FD->Fill(E_e_nFDpCD, Weight_nFDpCD);
                     }
                 } else if (dis) {
@@ -16053,10 +16053,10 @@ void DataAnalyzer::RecoEventAnalyser(const std::string &AnalyzeFilePath, const s
                     hE_e_DIS_nFDpCD_FD->Fill(E_e_nFDpCD, Weight_nFDpCD);
                     hE_e_VS_Theta_e_DIS_nFDpCD_FD->Fill(Theta_e_nFDpCD, E_e_nFDpCD, Weight_nFDpCD);
 
-                    hET_All_Ang_DIS_nFDpCD_FD->Fill(beamE - E_e_nFDpCD, Weight_nFDpCD);
+                    hET_All_Ang_DIS_nFDpCD_FD->Fill(parameters.beamE - E_e_nFDpCD, Weight_nFDpCD);
 
                     if ((Theta_e_nFDpCD >= 14.0) && (Theta_e_nFDpCD <= 16.0)) {
-                        hET15_DIS_nFDpCD_FD->Fill(beamE - E_e_nFDpCD, Weight_nFDpCD);
+                        hET15_DIS_nFDpCD_FD->Fill(parameters.beamE - E_e_nFDpCD, Weight_nFDpCD);
                         hE_e_15_DIS_nFDpCD_FD->Fill(E_e_nFDpCD, Weight_nFDpCD);
                     }
                 }
