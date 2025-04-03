@@ -10201,11 +10201,15 @@ void DataAnalyzer::RecoEventAnalyser(const std::string &AnalyzeFilePath, const s
                     TL_piplus_ind.push_back(i);
 
                     if (inFD) {
-                        if ((Particle_TL_Momentum >= CutManager.TL_pipFD_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= CutManager.TL_pipFD_mom_cuts.GetUpperCut())) { TL_piplusFD_mom_ind.push_back(i); }
+                        if ((Particle_TL_Momentum >= CutManager.TL_pipFD_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= CutManager.TL_pipFD_mom_cuts.GetUpperCut())) {
+                            TL_piplusFD_mom_ind.push_back(i);
+                        }
 
                         TL_piplusFD_ind.push_back(i);
                     } else if (inCD) {
-                        if ((Particle_TL_Momentum >= CutManager.TL_pipCD_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= CutManager.TL_pipCD_mom_cuts.GetUpperCut())) { TL_piplusCD_mom_ind.push_back(i); }
+                        if ((Particle_TL_Momentum >= CutManager.TL_pipCD_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= CutManager.TL_pipCD_mom_cuts.GetUpperCut())) {
+                            TL_piplusCD_mom_ind.push_back(i);
+                        }
 
                         TL_piplusCD_ind.push_back(i);
                     }
@@ -10217,11 +10221,15 @@ void DataAnalyzer::RecoEventAnalyser(const std::string &AnalyzeFilePath, const s
                     TL_piminus_ind.push_back(i);
 
                     if (inFD) {
-                        if ((Particle_TL_Momentum >= CutManager.TL_pimFD_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= CutManager.TL_pimFD_mom_cuts.GetUpperCut())) { TL_piminusFD_mom_ind.push_back(i); }
+                        if ((Particle_TL_Momentum >= CutManager.TL_pimFD_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= CutManager.TL_pimFD_mom_cuts.GetUpperCut())) {
+                            TL_piminusFD_mom_ind.push_back(i);
+                        }
 
                         TL_piminusFD_ind.push_back(i);
                     } else if (inCD) {
-                        if ((Particle_TL_Momentum >= CutManager.TL_pimCD_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= CutManager.TL_pimCD_mom_cuts.GetUpperCut())) { TL_piminusCD_mom_ind.push_back(i); }
+                        if ((Particle_TL_Momentum >= CutManager.TL_pimCD_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= CutManager.TL_pimCD_mom_cuts.GetUpperCut())) {
+                            TL_piminusCD_mom_ind.push_back(i);
+                        }
 
                         TL_piminusCD_ind.push_back(i);
                     }
@@ -22907,7 +22915,7 @@ void DataAnalyzer::RecoEventAnalyser(const std::string &AnalyzeFilePath, const s
     myLogFile << "dV cuts (CD & FD)\n";
     myLogFile << "===========================================================================\n\n";
 
-    myLogFile << "dVz_cuts.GetUpperCut() = " << dVz_cuts.GetUpperCut() << "\n";
+    myLogFile << "dVz_cuts.GetUpperCut() = " << CutManager.dVz_cuts.GetUpperCut() << "\n";
     myLogFile << "dVz_cuts.GetLowerCut() = " << CutManager.dVz_cuts.GetLowerCut() << "\n\n";
     myLogFile << "dVz_cuts_FD.GetUpperCut() = " << CutManager.dVz_cuts_FD.GetUpperCut() << "\n";
     myLogFile << "dVz_cuts_FD.GetLowerCut() = " << CutManager.dVz_cuts_FD.GetLowerCut() << "\n\n";
@@ -23054,7 +23062,7 @@ void DataAnalyzer::RecoEventAnalyser(const std::string &AnalyzeFilePath, const s
     }
 
     myLogFile << "\n-- Neutron correction -----------------------------------------------------" << "\n";
-    myLogFile << "CorrMode = " << nRes.Get_MomResSettings.CorrMode() << "\n\n";
+    myLogFile << "CorrMode = " << nRes.Get_CorrMode() << "\n\n";
     myLogFile << "Correction loading path:\n" << nRes.Get_Loaded_Corr_coefficients_path() << "\n\n";
 
     vector<double> Corr_coefficients_values = nRes.Get_Loaded_Corr_coefficients_values();
@@ -23063,7 +23071,7 @@ void DataAnalyzer::RecoEventAnalyser(const std::string &AnalyzeFilePath, const s
     for (int i = 0; i < Corr_coefficients_values.size(); i++) { myLogFile << Corr_coefficients_names.at(i) << " = " << Corr_coefficients_values.at(i) << "\n"; }
 
     myLogFile << "\n-- Proton smearing --------------------------------------------------------" << "\n";
-    myLogFile << "SmearMode = " << nRes.Get_MomResSettings.SmearMode() << "\n\n";
+    myLogFile << "SmearMode = " << nRes.Get_SmearMode() << "\n\n";
     myLogFile << "Smearing loading path:\n" << nRes.Get_Loaded_Std_coefficients_path() << "\n\n";
 
     vector<double> Std_coefficients_values = nRes.Get_Loaded_Smear_coefficients_values();
