@@ -7,7 +7,7 @@
 
 #include <iostream>
 
-#include "../../../namespaces/general_utilities/basic_tools.h"
+#include "../../namespaces/general_utilities/basic_tools.h"
 
 struct AMapsSettings {
     bool Generate_Electron_AMaps;  // Generate electron acceptance maps
