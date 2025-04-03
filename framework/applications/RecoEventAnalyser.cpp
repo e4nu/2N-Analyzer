@@ -9688,8 +9688,8 @@ void DataAnalyzer::RecoEventAnalyser(const std::string &AnalyzeFilePath, const s
             /* Setting nucleon cuts - only if NOT plotting efficiency plots! */
             if (ESSettings.limless_mom_eff_plots || parameters.is2GeVSample) {
                 /* If sample is with 2GeV beam energy, no fit is needed. */
-                CutManager.n_mom_th.SetUpperCut(beamE);
-                CutManager.TL_n_mom_cuts.SetUpperCut(beamE);
+                CutManager.n_mom_th.SetUpperCut(parameters.beamE);
+                CutManager.TL_n_mom_cuts.SetUpperCut(parameters.beamE);
             } else {
                 /* Else, load values from fit. */
                 if (CutSettings.apply_nBeta_fit_cuts) {
@@ -9702,7 +9702,7 @@ void DataAnalyzer::RecoEventAnalyser(const std::string &AnalyzeFilePath, const s
 
             CutManager.dphi_p1_p2_2p.SetMean(clasAna.getdPhiCutMean());
             CutManager.dphi_pFD_pCD_2p.SetMean(clasAna.getdPhiCutMean());
-            dphi_pFD_pCD_pFDpCD.SetMean(clasAna.getdPhiCutMean());
+            CutManager.dphi_pFD_pCD_pFDpCD.SetMean(clasAna.getdPhiCutMean());
         }
 
         clasAna.printParams();
