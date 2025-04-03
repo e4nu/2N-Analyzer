@@ -9,7 +9,7 @@
 
 #include "../../classes/Settings/Settings.cpp"
 #include "../AcceptanceMapsSettings/AcceptanceMapsSettings.h"
-#include "../ESSettings/ESSettings.h"
+#include "../EventSelectionSettings/EventSelectionSettings.h"
 #include "../ExperimentParameters/ExperimentParameters.h"
 #include "../MomentumResolutionSettings/MomentumResolutionSettings.h"
 
