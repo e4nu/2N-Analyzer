@@ -8,7 +8,7 @@
 #include <iostream>
 
 #include "../../classes/Settings/Settings.cpp"
-#include "../AMapsSettings/AMapsSettings.h"
+#include "../AcceptanceMapsSettings/AcceptanceMapsSettings.h"
 #include "../ESSettings/ESSettings.h"
 #include "../ExperimentParameters/ExperimentParameters.h"
 #include "../MomentumResolutionSettings/MomentumResolutionSettings.h"
@@ -80,7 +80,7 @@ struct AnalysisCutSettings {
           apply_nucleon_SmearAndCorr(false),
           custom_cuts_naming(true) {}
 
-    void RefreshSettings(const ExperimentParameters& parameters, const EventSelectionSettings& ESSettings, const AMapsSettings& AMapsSettings,
+    void RefreshSettings(const ExperimentParameters& parameters, const EventSelectionSettings& ESSettings, const AcceptanceMapsSettings& AMapsSettings,
                          const MomentumResolutionSettings& MomResSettings) {
         // Auto-disable variables
         if (only_preselection_cuts || only_electron_quality_cuts) {

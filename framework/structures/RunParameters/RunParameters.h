@@ -10,11 +10,11 @@
 #include "../../classes/ExperimentParameters/ExperimentParameters.cpp"
 
 struct RunParameters {
-    std::string SampleName;
-    std::string VaryingSampleName;
-    double beamE;
-    std::string Target;
-    int TargetPDG;
+    const std::string SampleName;
+    const std::string VaryingSampleName;
+    const double beamE;
+    const std::string Target;
+    const int TargetPDG;
     bool isLocal;
     bool isMC;
     bool isData;
