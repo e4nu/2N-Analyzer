@@ -15,14 +15,14 @@ struct RunParameters {
     const double beamE;
     const std::string Target;
     const int TargetPDG;
-    bool isLocal;
-    bool isMC;
-    bool isData;
-    bool is2GeVSample;
-    bool is4GeVSample;
-    bool is6GeVSample;
+    const bool isLocal;
+    const bool isMC;
+    const bool isData;
+    const bool is2GeVSample;
+    const bool is4GeVSample;
+    const bool is6GeVSample;
 
-    RunParameters(const ExperimentParameters& Experiment, const std::string& AnalyzeFilePath, const std::string& AnalyzeFileSample)
+    RunParameters(ExperimentParameters& Experiment, const std::string& AnalyzeFilePath, const std::string& AnalyzeFileSample)
         : SampleName(Experiment.ConfigureSampleName(AnalyzeFilePath, AnalyzeFileSample)),
           VaryingSampleName(Experiment.GetVaryingSampleName()),
           beamE(Experiment.GetBeamEnergy()),
