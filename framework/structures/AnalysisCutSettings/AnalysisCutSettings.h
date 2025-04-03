@@ -84,7 +84,7 @@ struct AnalysisCutSettings {
           apply_nucleon_SmearAndCorr(false),
           custom_cuts_naming(true) {}
 
-    void RefreshSettings(const RunParameters& parameters, const EventSelectionSettings& ESSettings, const AcceptanceMapsSettings& AMapsSettings, MomentumResolutionSettings& MomResSettings) {
+    void RefreshSettings(const RunParameters& parameters, EventSelectionSettings& ESSettings, AcceptanceMapsSettings& AMapsSettings, MomentumResolutionSettings& MomResSettings) {
         // Auto-disable variables
         if (only_preselection_cuts || only_electron_quality_cuts) {
             apply_cuts = false;
@@ -160,7 +160,7 @@ struct AnalysisCutSettings {
                              const RunParameters& parameters) {
         /* Save plots to custom-named folders, to allow multi-sample runs at once. */
         std::string run_plots_path = path_definitions::PathDefinitions.plots_path;
-        std::string run_plots_log_save_Directory = plots_log_save_Directory;
+        std::string run_plots_log_save_Directory = path_definitions::plots_log_save_Directory;
 
         settings.SetCustomCutsNaming(custom_cuts_naming);
         settings.ConfigureStatuses(apply_cuts, clas12ana_particles, only_preselection_cuts, apply_chi2_cuts_1e_cut, only_electron_quality_cuts, apply_nucleon_cuts,

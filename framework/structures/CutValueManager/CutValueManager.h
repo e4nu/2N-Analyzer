@@ -16,6 +16,9 @@
 #include "../../classes/clas12ana/clas12ana.h"
 #include "../../classes/hPlots/hPlot1D.cpp"
 
+// Include settings:
+#include "../EventSelectionSettings/EventSelectionSettings.h"
+
 struct CutValueManager {
     // Cut declarations -----------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -128,7 +131,7 @@ struct CutValueManager {
     DSCuts MomRes_mu_cuts = DSCuts("MomRes_mu_cuts", "FD", "", "Protons and neutrons", 0, FD_nucleon_momentum_cut.GetLowerCut(), 2.2);        // E4nu meeting (29/01/24)
     DSCuts MomRes_sigma_cuts = DSCuts("MomRes_sigma_cuts", "FD", "", "Protons and neutrons", 0, FD_nucleon_momentum_cut.GetLowerCut(), 2.2);  // Adi meeting after (29/01/24)
 
-    CutValueManager(const ExperimentParameters &Experiment, const bool &limless_mom_eff_plots) {
+    CutValueManager(ExperimentParameters &Experiment, const EventSelectionSettings &ESSettings, const bool &limless_mom_eff_plots) {
         Vz_cut = Experiment.GetVz_cuts();
         Vz_cut_FD = Experiment.GetVz_cuts_FD();
         Vz_cut_CD = Experiment.GetVz_cuts_CD();
