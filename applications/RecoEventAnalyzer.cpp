@@ -261,7 +261,8 @@ void EventAnalyzer(const std::string &AnalyzeFilePath, const std::string &Analyz
 
     if (!apply_chi2_cuts_1e_cut) { apply_nucleon_cuts = false; }
 
-    if (!apply_nucleon_cuts) { Generate_WMaps = apply_nucleon_physical_cuts = false; }
+    // TODO: uncomment Generate_WMaps in here in the future!
+    if (!apply_nucleon_cuts) { /* Generate_WMaps = */ apply_nucleon_physical_cuts = false; }
 
     if (!apply_nucleon_physical_cuts) {
         apply_nBeta_fit_cuts = apply_fiducial_cuts = apply_kinematical_cuts = apply_kinematical_weights = apply_nucleon_SmearAndCorr = false;
