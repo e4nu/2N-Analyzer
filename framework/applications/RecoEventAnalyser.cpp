@@ -109,7 +109,7 @@ void DataAnalyzer::RecoEventAnalyser(const std::string &AnalyzeFilePath, const s
     // bool calculate_truth_level = true;  // TL master ON/OFF switch
     // bool TL_plots_only_for_NC = false;  // TL plots only AFTER beta fit
     // bool fill_TL_plots = true;
-    // bool ZoomIn_OCutManager.n_mom_th_plots = false;          // momentum th. efficiencies with zoomin
+    // bool ZoomIn_On_mom_th_plots = false;          // momentum th. efficiencies with zoomin
     // bool Eff_calc_with_one_reco_electron = true;  // keep as true in normal runs
     // bool Calc_inc_eff_with_varying_theta = false;
     // bool Calc_1n_n_eff_with_smaller_theta = false;
@@ -320,7 +320,7 @@ void DataAnalyzer::RecoEventAnalyser(const std::string &AnalyzeFilePath, const s
     //                            apply_nucleon_SmearAndCorr, apply_kinematical_cuts, apply_kinematical_weights, apply_fiducial_cuts,
     //                            (AMapsSettings.Generate_Electron_AMaps || AMapsSettings.Generate_Nucleon_AMaps), plot_and_fit_MomRes, VaryingDelta,
     //                            Calculate_momResS2, Run_with_momResS2, momRes_test, ESSettings.Rec_wTL_ES,
-    //                            ESSettings.ZoomIn_OCutManager.n_mom_th_plots);
+    //                            ESSettings.ZoomIn_On_mom_th_plots);
     // settings.SetPaths(path_definitions::PathDefinitions.WorkingDirectory, parameters.SampleName, run_plots_path, AnalysisCutSettings, apply_chi2_cuts_1e_cut, apply_nucleon_cuts);
     // settings.GetPlotsPath(run_plots_path);
     // settings.GetPlotsLogSaveDirectory(run_plots_log_save_Directory);
@@ -9996,7 +9996,7 @@ void DataAnalyzer::RecoEventAnalyser(const std::string &AnalyzeFilePath, const s
         /* Safety checks */
 
         // Safety check for clas12ana particles - check that allParticles.size(), Nf are the same:
-        debugging::CodeDebugger.SafetyCheck_clas12ana_particles(__FILE__, __LINE__, clas12ana_particles, allParticles, Nf);
+        debugging::CodeDebugger.SafetyCheck_clas12ana_particles(__FILE__, __LINE__, CutSettings.clas12ana_particles, allParticles, Nf);
 
         // Safety checks for FD protons:
         debugging::CodeDebugger.SafetyCheck_FD_protons(__FILE__, __LINE__, Protons_ind, protons, CutManager.p_mom_th);
@@ -10201,11 +10201,11 @@ void DataAnalyzer::RecoEventAnalyser(const std::string &AnalyzeFilePath, const s
                     TL_piplus_ind.push_back(i);
 
                     if (inFD) {
-                        if ((Particle_TL_Momentum >= TL_pipFD_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= TL_pipFD_mom_cuts.GetUpperCut())) { TL_piplusFD_mom_ind.push_back(i); }
+                        if ((Particle_TL_Momentum >= CutManager.TL_pipFD_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= CutManager.TL_pipFD_mom_cuts.GetUpperCut())) { TL_piplusFD_mom_ind.push_back(i); }
 
                         TL_piplusFD_ind.push_back(i);
                     } else if (inCD) {
-                        if ((Particle_TL_Momentum >= TL_pipCD_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= TL_pipCD_mom_cuts.GetUpperCut())) { TL_piplusCD_mom_ind.push_back(i); }
+                        if ((Particle_TL_Momentum >= CutManager.TL_pipCD_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= CutManager.TL_pipCD_mom_cuts.GetUpperCut())) { TL_piplusCD_mom_ind.push_back(i); }
 
                         TL_piplusCD_ind.push_back(i);
                     }
@@ -10217,11 +10217,11 @@ void DataAnalyzer::RecoEventAnalyser(const std::string &AnalyzeFilePath, const s
                     TL_piminus_ind.push_back(i);
 
                     if (inFD) {
-                        if ((Particle_TL_Momentum >= TL_pimFD_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= TL_pimFD_mom_cuts.GetUpperCut())) { TL_piminusFD_mom_ind.push_back(i); }
+                        if ((Particle_TL_Momentum >= CutManager.TL_pimFD_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= CutManager.TL_pimFD_mom_cuts.GetUpperCut())) { TL_piminusFD_mom_ind.push_back(i); }
 
                         TL_piminusFD_ind.push_back(i);
                     } else if (inCD) {
-                        if ((Particle_TL_Momentum >= TL_pimCD_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= TL_pimCD_mom_cuts.GetUpperCut())) { TL_piminusCD_mom_ind.push_back(i); }
+                        if ((Particle_TL_Momentum >= CutManager.TL_pimCD_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= CutManager.TL_pimCD_mom_cuts.GetUpperCut())) { TL_piminusCD_mom_ind.push_back(i); }
 
                         TL_piminusCD_ind.push_back(i);
                     }
@@ -15358,8 +15358,8 @@ void DataAnalyzer::RecoEventAnalyser(const std::string &AnalyzeFilePath, const s
                 hdPhi_pFD_pCD_for_all_Theta_pFD_pCD_pFDpCD->Fill(dPhi_hit_pFDpCD, Weight_pFDpCD);
                 hdPhi_pFD_pCD_for_all_Theta_pFD_pCD_ZOOMIN_pFDpCD->Fill(dPhi_hit_pFDpCD, Weight_pFDpCD);
 
-                if ((fabs(Theta_pFD_pFDpCD - Theta_pFD_cuts_pFDpCD.GetMean()) < Theta_pFD_cuts_pFDpCD.GetUpperCut()) &&
-                    (fabs(Theta_pCD_pFDpCD - Theta_pCD_cuts_pFDpCD.GetMean()) < Theta_pCD_cuts_pFDpCD.GetUpperCut())) {
+                if ((fabs(Theta_pFD_pFDpCD - CutManager.Theta_pFD_cuts_pFDpCD.GetMean()) < CutManager.Theta_pFD_cuts_pFDpCD.GetUpperCut()) &&
+                    (fabs(Theta_pCD_pFDpCD - CutManager.Theta_pCD_cuts_pFDpCD.GetMean()) < CutManager.Theta_pCD_cuts_pFDpCD.GetUpperCut())) {
                     hdPhi_pFD_pCD_for_small_dTheta_pFDpCD->Fill(dPhi_hit_pFDpCD, Weight_pFDpCD);
                     hdPhi_pFD_pCD_for_small_dTheta_ZOOMIN_pFDpCD->Fill(dPhi_hit_pFDpCD, Weight_pFDpCD);
                 }
@@ -16243,8 +16243,8 @@ void DataAnalyzer::RecoEventAnalyser(const std::string &AnalyzeFilePath, const s
                 hdphi_nFD_pCD_for_all_Theta_nFD_pCD_nFDpCD->Fill(dPhi_hit_e_nFD_nFDpCD, Weight_nFDpCD);
                 hdphi_nFD_pCD_for_all_Theta_nFD_pCD_ZOOMIN_nFDpCD->Fill(dPhi_hit_e_nFD_nFDpCD, Weight_nFDpCD);
 
-                if ((fabs(Theta_L_nFDpCD - Theta_L_cuts_nFDpCD.GetMean()) < Theta_L_cuts_nFDpCD.GetUpperCut()) &&
-                    (fabs(Theta_R_nFDpCD - Theta_R_cuts_nFDpCD.GetMean()) < Theta_R_cuts_nFDpCD.GetUpperCut())) {
+                if ((fabs(Theta_L_nFDpCD - CutManager.Theta_L_cuts_nFDpCD.GetMean()) < CutManager.Theta_L_cuts_nFDpCD.GetUpperCut()) &&
+                    (fabs(Theta_R_nFDpCD - CutManager.Theta_R_cuts_nFDpCD.GetMean()) < CutManager.Theta_R_cuts_nFDpCD.GetUpperCut())) {
                     hdphi_nFD_pCD_for_small_dTheta_nFDpCD->Fill(dPhi_hit_e_nFD_nFDpCD, Weight_nFDpCD);
                     hdphi_nFD_pCD_for_small_dTheta_ZOOMIN_nFDpCD->Fill(dPhi_hit_e_nFD_nFDpCD, Weight_nFDpCD);
                 }
@@ -21295,7 +21295,7 @@ void DataAnalyzer::RecoEventAnalyser(const std::string &AnalyzeFilePath, const s
         hP_e_truth_1e_cut_FD.hDrawAndSave(parameters.SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., -9999, 9999, 0, false);
         hP_e_truth_1e_cut_FD_ZOOMIN.hDrawAndSave(parameters.SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., -9999, 9999, 0, false);
 
-        if (ESSettings.ZoomIn_OCutManager.n_mom_th_plots) {
+        if (ESSettings.ZoomIn_On_mom_th_plots) {
             DrawAndSaveEfficiencyPlots(parameters.SampleName, hP_e_truth_1e_cut_FD_ZOOMIN, hP_e_reco_1e_cut_FD_ZOOMIN, plots);
         } else {
             DrawAndSaveEfficiencyPlots(parameters.SampleName, hP_e_truth_1e_cut_FD, hP_e_reco_1e_cut_FD, plots);
@@ -21306,7 +21306,7 @@ void DataAnalyzer::RecoEventAnalyser(const std::string &AnalyzeFilePath, const s
         hP_p_truth_1e_cut_FD_ZOOMIN.hDrawAndSave(parameters.SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., -9999, 9999, 0, false);
         hP_p_truth_1e_cut_CD_ZOOMIN.hDrawAndSave(parameters.SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., -9999, 9999, 0, false);
 
-        if (ESSettings.ZoomIn_OCutManager.n_mom_th_plots) {
+        if (ESSettings.ZoomIn_On_mom_th_plots) {
             DrawAndSaveEfficiencyPlots(parameters.SampleName, hP_p_truth_1e_cut_FD_ZOOMIN, hP_p_reco_1e_cut_FD_ZOOMIN, plots);
             DrawAndSaveEfficiencyPlots(parameters.SampleName, hP_p_truth_1e_cut_CD_ZOOMIN, hP_p_reco_1e_cut_CD_ZOOMIN, plots);
         } else {
@@ -21319,7 +21319,7 @@ void DataAnalyzer::RecoEventAnalyser(const std::string &AnalyzeFilePath, const s
         hP_nFD_truth_1e_cut_FD.hDrawAndSave(parameters.SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., -9999, 9999, 0, false);
         hP_nFD_truth_1e_cut_FD_ZOOMIN.hDrawAndSave(parameters.SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., -9999, 9999, 0, false);
 
-        if (ESSettings.ZoomIn_OCutManager.n_mom_th_plots) {
+        if (ESSettings.ZoomIn_On_mom_th_plots) {
             DrawAndSaveEfficiencyPlots(parameters.SampleName, hP_LnFD_truth_1e_cut_FD_ZOOMIN, hP_LnFD_reco_BPID_1e_cut_FD_ZOOMIN, plots);
             DrawAndSaveEfficiencyPlots(parameters.SampleName, hP_nFD_truth_1e_cut_FD_ZOOMIN, hP_nFD_reco_BPID_1e_cut_FD_ZOOMIN, plots);
         } else {
@@ -21334,7 +21334,7 @@ void DataAnalyzer::RecoEventAnalyser(const std::string &AnalyzeFilePath, const s
         hP_piplus_truth_1e_cut_FD_ZOOMIN.hDrawAndSave(parameters.SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., -9999, 9999, 0, false);
         hP_piplus_truth_1e_cut_CD_ZOOMIN.hDrawAndSave(parameters.SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., -9999, 9999, 0, false);
 
-        if (ESSettings.ZoomIn_OCutManager.n_mom_th_plots) {
+        if (ESSettings.ZoomIn_On_mom_th_plots) {
             DrawAndSaveEfficiencyPlots(parameters.SampleName, hP_piplus_truth_1e_cut_ZOOMIN, hP_piplus_reco_1e_cut_ZOOMIN, plots);
         } else {
             DrawAndSaveEfficiencyPlots(parameters.SampleName, hP_piplus_truth_1e_cut, hP_piplus_reco_1e_cut, plots);
@@ -21347,7 +21347,7 @@ void DataAnalyzer::RecoEventAnalyser(const std::string &AnalyzeFilePath, const s
         hP_piminus_truth_1e_cut_FD_ZOOMIN.hDrawAndSave(parameters.SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., -9999, 9999, 0, false);
         hP_piminus_truth_1e_cut_CD_ZOOMIN.hDrawAndSave(parameters.SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., -9999, 9999, 0, false);
 
-        if (ESSettings.ZoomIn_OCutManager.n_mom_th_plots) {
+        if (ESSettings.ZoomIn_On_mom_th_plots) {
             DrawAndSaveEfficiencyPlots(parameters.SampleName, hP_piminus_truth_1e_cut_ZOOMIN, hP_piminus_reco_1e_cut_ZOOMIN, plots);
         } else {
             DrawAndSaveEfficiencyPlots(parameters.SampleName, hP_piminus_truth_1e_cut, hP_piminus_reco_1e_cut, plots);
@@ -21356,7 +21356,7 @@ void DataAnalyzer::RecoEventAnalyser(const std::string &AnalyzeFilePath, const s
         hP_ph_truth_1e_cut_FD.hDrawAndSave(parameters.SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., -9999, 9999, 0, false);
         hP_ph_truth_1e_cut_FD_ZOOMIN.hDrawAndSave(parameters.SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., -9999, 9999, 0, false);
 
-        if (ESSettings.ZoomIn_OCutManager.n_mom_th_plots) {
+        if (ESSettings.ZoomIn_On_mom_th_plots) {
             DrawAndSaveEfficiencyPlots(parameters.SampleName, hP_ph_truth_1e_cut_FD_ZOOMIN, hP_ph_reco_BPID_1e_cut_FD_ZOOMIN, plots);
         } else {
             DrawAndSaveEfficiencyPlots(parameters.SampleName, hP_ph_truth_1e_cut_FD, hP_ph_reco_BPID_1e_cut_FD, plots);
@@ -22568,7 +22568,7 @@ void DataAnalyzer::RecoEventAnalyser(const std::string &AnalyzeFilePath, const s
     myLogFile << "calculate_truth_level = " << basic_tools::BoolToString(ESSettings.calculate_truth_level) << "\n";
     myLogFile << "TL_plots_only_for_NC = " << basic_tools::BoolToString(ESSettings.TL_plots_only_for_NC) << "\n";
     myLogFile << "fill_TL_plots = " << basic_tools::BoolToString(ESSettings.fill_TL_plots) << "\n";
-    myLogFile << "ZoomIn_OCutManager.n_mom_th_plots = " << basic_tools::BoolToString(ESSettings.ZoomIn_OCutManager.n_mom_th_plots) << "\n";
+    myLogFile << "ZoomIn_On_mom_th_plots = " << basic_tools::BoolToString(ESSettings.ZoomIn_On_mom_th_plots) << "\n";
     myLogFile << "Eff_calc_with_one_reco_electron = " << basic_tools::BoolToString(ESSettings.Eff_calc_with_one_reco_electron) << "\n";
     myLogFile << "Calc_inc_eff_with_varying_theta = " << basic_tools::BoolToString(ESSettings.Calc_inc_eff_with_varying_theta) << "\n";
     myLogFile << "Calc_1n_n_eff_with_smaller_theta = " << basic_tools::BoolToString(ESSettings.Calc_1n_n_eff_with_smaller_theta) << "\n";
@@ -22964,11 +22964,11 @@ void DataAnalyzer::RecoEventAnalyser(const std::string &AnalyzeFilePath, const s
     myLogFile << "TL_pFD_mom_cuts:\t{" << CutManager.TL_pFD_mom_cuts.GetLowerCut() << ", " << CutManager.TL_pFD_mom_cuts.GetUpperCut() << "}\n";
     myLogFile << "TL_pCD_mom_cuts:\t{" << CutManager.TL_pCD_mom_cuts.GetLowerCut() << ", " << CutManager.TL_pCD_mom_cuts.GetUpperCut() << "}\n";
     myLogFile << "TL_pip_mom_cuts:\t{" << CutManager.TL_pip_mom_cuts.GetLowerCut() << ", " << CutManager.TL_pip_mom_cuts.GetUpperCut() << "}\n";
-    myLogFile << "TL_pipFD_mom_cuts:\t{" << TL_pipFD_mom_cuts.GetLowerCut() << ", " << TL_pipFD_mom_cuts.GetUpperCut() << "}\n";
-    myLogFile << "TL_pipCD_mom_cuts:\t{" << TL_pipCD_mom_cuts.GetLowerCut() << ", " << TL_pipCD_mom_cuts.GetUpperCut() << "}\n";
+    myLogFile << "TL_pipFD_mom_cuts:\t{" << CutManager.TL_pipFD_mom_cuts.GetLowerCut() << ", " << CutManager.TL_pipFD_mom_cuts.GetUpperCut() << "}\n";
+    myLogFile << "TL_pipCD_mom_cuts:\t{" << CutManager.TL_pipCD_mom_cuts.GetLowerCut() << ", " << CutManager.TL_pipCD_mom_cuts.GetUpperCut() << "}\n";
     myLogFile << "TL_pim_mom_cuts:\t{" << CutManager.TL_pim_mom_cuts.GetLowerCut() << ", " << CutManager.TL_pim_mom_cuts.GetUpperCut() << "}\n";
-    myLogFile << "TL_pimFD_mom_cuts:\t{" << TL_pimFD_mom_cuts.GetLowerCut() << ", " << TL_pimFD_mom_cuts.GetUpperCut() << "}\n";
-    myLogFile << "TL_pimCD_mom_cuts:\t{" << TL_pimCD_mom_cuts.GetLowerCut() << ", " << TL_pimCD_mom_cuts.GetUpperCut() << "}\n";
+    myLogFile << "TL_pimFD_mom_cuts:\t{" << CutManager.TL_pimFD_mom_cuts.GetLowerCut() << ", " << CutManager.TL_pimFD_mom_cuts.GetUpperCut() << "}\n";
+    myLogFile << "TL_pimCD_mom_cuts:\t{" << CutManager.TL_pimCD_mom_cuts.GetLowerCut() << ", " << CutManager.TL_pimCD_mom_cuts.GetUpperCut() << "}\n";
     myLogFile << "TL_pi0_mom_cuts:\t{" << CutManager.TL_pi0_mom_cuts.GetLowerCut() << ", " << CutManager.TL_pi0_mom_cuts.GetUpperCut() << "}\n";
     myLogFile << "TL_ph_mom_cuts:\t{" << CutManager.TL_ph_mom_cuts.GetLowerCut() << ", " << CutManager.TL_ph_mom_cuts.GetUpperCut() << "}\n\n";
 
