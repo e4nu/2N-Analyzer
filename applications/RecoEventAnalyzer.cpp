@@ -1,15 +1,3 @@
-/*
-
- git pull && clas12root -b -q main.c
-
- * Copy commend (local -> JLab):
- scp -r /home/alon/project/temp/BankHist/Analyzer.C -J asportes@ftp.jlab.org:/u/home/asportes/clas12project/
-
- * Copy commend (JLab -> local):
- scp -r asportes@ftp.jlab.org:/u/home/asportes/Analyzer/plots -J /home/alon/project/temp/
- scp -r asportes@ftp.jlab.org:/w/hallb-scshelf2102/clas12/asportes/recon_c12_6gev.hipo -J /home/alon/project/temp/
-
-*/
 
 #include "../framework/classes/AMaps/AMaps.cpp"
 #include "../framework/classes/DEfficiency/DEfficiency.cpp"
