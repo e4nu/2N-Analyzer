@@ -177,7 +177,8 @@
         "stop_token": "c",
         "system_error": "c",
         "text_encoding": "c",
-        "thread": "c"
+        "thread": "c",
+        "SplitGLView.C": "cpp"
     },
     "[jsonc]": {
         "editor.defaultFormatter": "vscode.json-language-features"

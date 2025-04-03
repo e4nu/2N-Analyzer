@@ -224,7 +224,7 @@ void DataAnalyzer::RecoEventAnalyser(const std::string &AnalyzeFilePath, const s
     // bool apply_nucleon_SmearAndCorr = false;
 
     // Custom cuts naming & print out execution variables
-    CutSettings.Refresh(parameters, ESSettings, AMapsSettings, MomResSettings);
+    CutSettings.RefreshSettings(parameters, ESSettings, AMapsSettings, MomResSettings);
     // // Auto-disable variables
     // if (only_preselection_cuts || only_electron_quality_cuts) {
     //     AnalysisCutSettings = false;
