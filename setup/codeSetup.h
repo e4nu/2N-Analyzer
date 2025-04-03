@@ -7,8 +7,8 @@
 #define FullAnalyzer true
 #define IndependentCanvasPDF false
 
-#include "../framework/namespaces/setup/path_definitions/path_definitions.h"
-#include "../framework/namespaces/setup/debugging/debugging.h"
+#include "../framework/namespaces/setup/path_definitions.h"
+#include "../framework/namespaces/setup/debugging.h"
 #include "../framework/namespaces/setup/analysis_samples/analysis_samples.h"
 // 
 #include "../framework/namespaces/general_utilities/basic_tools/basic_tools.h"
