@@ -178,7 +178,8 @@
         "system_error": "c",
         "text_encoding": "c",
         "thread": "c",
-        "SplitGLView.C": "cpp"
+        "SplitGLView.C": "cpp",
+        "cutvaluemanager.h": "c"
     },
     "[jsonc]": {
         "editor.defaultFormatter": "vscode.json-language-features"

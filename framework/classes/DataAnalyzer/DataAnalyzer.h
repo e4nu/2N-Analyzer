@@ -6,15 +6,15 @@
 // // #define DATAANALYZER_H
 // #ifdef DATAANALYZER_H
 
-// Include settings:
-#include "../../structures/AcceptanceMapsSettings/AcceptanceMapsSettings.h"
-#include "../../structures/AnalysisCutSettings/AnalysisCutSettings.h"
-#include "../../structures/CutValueManager/CutValueManager.h"
-#include "../../structures/EventSelectionSettings/EventSelectionSettings.h"
-#include "../../structures/MomentumResolutionSettings/MomentumResolutionSettings.h"
-#include "../../structures/RunParameters/RunParameters.h"
+// // Include settings:
+// #include "../../structures/AcceptanceMapsSettings/AcceptanceMapsSettings.h"
+// #include "../../structures/AnalysisCutSettings/AnalysisCutSettings.h"
+// #include "../../structures/CutValueManager/CutValueManager.h"
+// #include "../../structures/EventSelectionSettings/EventSelectionSettings.h"
+// #include "../../structures/MomentumResolutionSettings/MomentumResolutionSettings.h"
+// #include "../../structures/RunParameters/RunParameters.h"
 
-// #include "../../applications/DetectorSimulationAnalyser.cpp"
+#include "../../applications/RecoEventAnalyser.cpp"
 #include "../../applications/TruthLevelAnalyser.cpp"
 
 class DataAnalyzer {
@@ -23,10 +23,10 @@ class DataAnalyzer {
 
     void RecoEventAnalyser(const std::string &AnalyzeFilePath, const std::string &AnalyzeFileSample, const std::string &AnalyzeFile);
 
-    // RecoEventAnalyser function ---------------------------------------------------------------------------------------------------------------------------------------
+    // // RecoEventAnalyser function ---------------------------------------------------------------------------------------------------------------------------------------
 
-    void RecoCutsPrintOut(const std::string &workingDirectory, const std::string &run_plots_path, const std::string &analyseFilePath, const std::string &analyseFileSample,
-                          const std::string &analyseFile, const std::string &fileName, const RunParameters &parameters, const AnalysisCutSettings &CutSettings);
+    // void RecoCutsPrintOut(const std::string &workingDirectory, const std::string &run_plots_path, const std::string &analyseFilePath, const std::string &analyseFileSample,
+    //                       const std::string &analyseFile, const std::string &fileName, const RunParameters &parameters, const AnalysisCutSettings &CutSettings);
 
    public:
     // default constructor ----------------------------------------------------------------------------------------------------------------------------------------------

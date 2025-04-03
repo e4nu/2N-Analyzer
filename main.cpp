@@ -2,7 +2,8 @@
 
 #include "framework/namespaces/setup/code_setup.h"
 
-#include "framework/applications/RecoEventAnalyser.cpp"
+// #include "framework/applications/RecoEventAnalyser.cpp"
+#include "framework/applications/DataAnalyzer.cpp"
 // #include "framework/classes/DataAnalyzer/DataAnalyzer.cpp"
 #include "framework/namespaces/general_utilities/basic_tools.h"
 

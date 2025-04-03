@@ -2,8 +2,8 @@
 // Created by alons on 05/08/2024.
 //
 
-// // #ifndef DATAANALYZER_H
-// // #define DATAANALYZER_H
+#ifndef DATAANALYZER_H
+#define DATAANALYZER_H
 // #ifdef DATAANALYZER_H
 
 #include "DataAnalyzer.h"
@@ -16,8 +16,9 @@ DataAnalyzer::DataAnalyzer(const std::string &FileType, const std::string &Analy
     RunEventAnalyser(AnalyserMode, AnalyzeFilePath, AnalyzeFileSample, AnalyzeFile);
 }
 
-// DataAnalyzer function ------------------------------------------------------------------------------------------------------------------------------------------------
+// RecoCutsPrintOut function --------------------------------------------------------------------------------------------------------------------------------------------
 
+/* 
 void RecoCutsPrintOut(const std::string &workingDirectory, const std::string &run_plots_path, const std::string &AnalyzeFilePath, const std::string &AnalyzeFileSample,
                       const std::string &AnalyzeFile, const std::string &file_name, const RunParameters &parameters, const AnalysisCutSettings &CutSettings) {
     std::cout << "\033[33m-- Execution variables ----------------------------------------------------\n";
@@ -69,6 +70,7 @@ void RecoCutsPrintOut(const std::string &workingDirectory, const std::string &ru
     std::cout << "\033[33mapply_kinematical_weights:\033[0m\t" << basic_tools::BoolToString(CutSettings.apply_kinematical_weights) << "\n";
     std::cout << "\033[33mapply_nucleon_SmearAndCorr:\033[0m\t" << basic_tools::BoolToString(CutSettings.apply_nucleon_SmearAndCorr) << "\n\n";
 }
+*/
 
 // ConfigureAnalyserMode function ---------------------------------------------------------------------------------------------------------------------------------------
 
@@ -98,4 +100,4 @@ void DataAnalyzer::RunEventAnalyser(const std::string &AnalyserMode, const std::
     }
 };
 
-// #endif  // DATAANALYZER_H
+#endif  // DATAANALYZER_H

@@ -1,11 +1,11 @@
-#ifndef DATAANALYZER_H
-#define DATAANALYZER_H
+// #ifndef DATAANALYZER_H
+// #define DATAANALYZER_H
 
 #pragma region /* Includes */
-#include "../classes/DataAnalyzer/DataAnalyzer.cpp"
+// #include "../classes/DataAnalyzer/DataAnalyzer.cpp"
 
 // Include code setup:
-#include "../../setup/codeSetup.h"
+// #include "../../setup/codeSetup.h"
 
 // Include Libraries:
 #include "../namespaces/fitters/fitter_functions.h"
@@ -40,11 +40,12 @@
 // #include "clas12reader.h"
 
 // using namespace clas12;
+using namespace code_setup;
 using namespace utilities;
 using namespace draw_and_save_functions;
 #pragma endregion
 
-void DataAnalyzer::RecoEventAnalyser(const std::string &AnalyzeFilePath, const std::string &AnalyzeFileSample, const std::string &AnalyzeFile) {
+void RecoEventAnalyser(const std::string &AnalyzeFilePath, const std::string &AnalyzeFileSample, const std::string &AnalyzeFile) {
     debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode);
 
     std::cout << "\033[33m\n\n===========================================================================\n\033[0m";
@@ -326,7 +327,8 @@ void DataAnalyzer::RecoEventAnalyser(const std::string &AnalyzeFilePath, const s
     // settings.GetPlotsLogSaveDirectory(run_plots_log_save_Directory);
 
     // Print out execution variables
-    RecoCutsPrintOut(path_definitions::PathDefinitions.WorkingDirectory, run_plots_path, AnalyzeFilePath, AnalyzeFileSample, AnalyzeFile, file_name, parameters, CutSettings);
+    reco_analysis_functions::RecoCutsPrintOut(path_definitions::PathDefinitions.WorkingDirectory, run_plots_path, AnalyzeFilePath, AnalyzeFileSample, AnalyzeFile, file_name, parameters,
+                                              CutSettings);
     // /* Print out execution variables (for self observation) */
     // std::cout << "\033[33m-- Execution variables ----------------------------------------------------\n";
     // std::cout << "\033[33mWorkingDirectory:\033[0m\t" << path_definitions::PathDefinitions.WorkingDirectory << "\n";
@@ -23401,4 +23403,4 @@ void DataAnalyzer::RecoEventAnalyser(const std::string &AnalyzeFilePath, const s
 #pragma endregion
 }
 
-#endif  // DATAANALYZER_H
+// #endif  // DATAANALYZER_H
