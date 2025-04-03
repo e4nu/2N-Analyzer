@@ -36,7 +36,7 @@
 using namespace utilities;
 using namespace draw_and_save_functions;
 
-void EventAnalyzer(const std::string &AnalyzeFilePath, const std::string &AnalyzeFileSample, const std::string &AnalyzeFile) {
+void RecoEventAnalyser(const std::string &AnalyzeFilePath, const std::string &AnalyzeFileSample, const std::string &AnalyzeFile) {
     debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode);
 
     std::cout << "\033[33m\n\n===========================================================================\n\033[0m";
