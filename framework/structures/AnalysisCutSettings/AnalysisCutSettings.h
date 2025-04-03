@@ -7,7 +7,7 @@
 
 #include <iostream>
 
-#include "../../../classes/Settings/Settings.cpp"
+#include "../../classes/Settings/Settings.cpp"
 #include "../AMapsSettings/AMapsSettings.h"
 #include "../ESSettings/ESSettings.h"
 #include "../ExperimentParameters/ExperimentParameters.h"
