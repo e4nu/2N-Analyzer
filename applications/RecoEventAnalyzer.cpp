@@ -1037,7 +1037,7 @@ void EventAnalyzer(const std::string &AnalyzeFilePath, const std::string &Analyz
         aMaps_master = AMaps(SampleName, P_e_bin_profile, P_nuc_bin_profile, beamE, "AMaps", directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], NumberNucOfMomSlices,
                              NumberElecOfMomSlices, HistNucSliceNumOfXBins, HistNucSliceNumOfXBins, HistElectronSliceNumOfXBins, HistElectronSliceNumOfXBins);
     } else {
-        aMaps_master = AMaps(path_definitions::PathDefinitions.AcceptanceMapsDirectory, VaryingSampleName, beamE, Electron_single_slice_test, Nucleon_single_slice_test, TestSlices);
+        aMaps_master = AMaps(path_definitions::PathDefinitions.AcceptanceMapsDirectory, VaryingSampleName, beamE, "AMaps", Electron_single_slice_test, Nucleon_single_slice_test, TestSlices);
     }
 
     debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode);
@@ -1046,7 +1046,7 @@ void EventAnalyzer(const std::string &AnalyzeFilePath, const std::string &Analyz
         wMaps_master = AMaps(SampleName, P_e_bin_profile, P_nuc_bin_profile, beamE, "WMaps", directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], NumberNucOfMomSlices,
                              NumberElecOfMomSlices, HistNucSliceNumOfXBins, HistNucSliceNumOfXBins, HistElectronSliceNumOfXBins, HistElectronSliceNumOfXBins);
     } else {
-        wMaps_master = AMaps(path_definitions::PathDefinitions.AcceptanceWeightsDirectory, VaryingSampleName, beamE, Electron_single_slice_test, Nucleon_single_slice_test, TestSlices);
+        wMaps_master = AMaps(path_definitions::PathDefinitions.AcceptanceWeightsDirectory, VaryingSampleName, beamE, "WMaps", Electron_single_slice_test, Nucleon_single_slice_test, TestSlices);
     }
 
     std::cout << "\033[33m done.\n\n\033[0m";
