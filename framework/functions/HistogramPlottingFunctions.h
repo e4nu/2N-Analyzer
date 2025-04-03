@@ -9,7 +9,7 @@
 #include "../includes/CanvasPDF/CanvasPDF.h"
 #endif
 
-#include "../namespaces/general_utilities/utilities/utilities.h"
+#include "../namespaces/general_utilities/utilities.h"
 // #include "GeneralFunctions.h"
 
 using namespace utilities;

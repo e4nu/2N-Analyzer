@@ -180,7 +180,8 @@
         "thread": "c",
         "SplitGLView.C": "cpp",
         "cutvaluemanager.h": "c",
-        "dataanalyser.h": "c"
+        "dataanalyser.h": "c",
+        "histogramplottingfunctions.h": "c"
     },
     "[jsonc]": {
         "editor.defaultFormatter": "vscode.json-language-features"
