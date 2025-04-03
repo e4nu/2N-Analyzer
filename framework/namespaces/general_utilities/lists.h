@@ -7,8 +7,8 @@
 
 #include <map>
 
-#include "../../../structures/DataSample/DataSample.h"
-#include "../constants/constants.h"
+#include "../../structures/DataSample/DataSample.h"
+#include "constants.h"
 
 namespace lists {
 // VariableNames map ----------------------------------------------------------------------------------------------------------------------------------------------------

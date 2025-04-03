@@ -30,9 +30,8 @@
 #include <vector>
 
 #include "../../../classes/hPlots/hPlot1D.cpp"
-#include "../../../namespaces/general_utilities/utilities/utilities.h"
+#include "../../../namespaces/general_utilities/utilities.h"
 
-// using namespace std;
 using namespace utilities;
 
 namespace draw_and_save_efficiency_plots {

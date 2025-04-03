@@ -7,7 +7,7 @@
 
 #include <string>
 
-#include "../../namespaces/general_utilities/basic_tools/basic_tools.h"
+#include "../../namespaces/general_utilities/basic_tools.h"
 
 struct CodeDirectories {
     /* Histogram plots output directory */
@@ -20,8 +20,7 @@ struct CodeDirectories {
     /* Framework directory */
     std::string FrameworkDirectory;
 
-    /* Source directory and sub-directories */
-    std::string SourceDirectory;
+    /* Data directory and sub-directories */
     std::string DataDirectory;
     std::string ACorrDirectory;
     std::string AcceptanceMapsDirectory;
@@ -39,9 +38,7 @@ struct CodeDirectories {
 
         FrameworkDirectory = WorkingDirectory + "framework/";
 
-        SourceDirectory = WorkingDirectory + "source/";
-
-        DataDirectory = SourceDirectory + "data/";
+        DataDirectory = WorkingDirectory + "data/";
         ACorrDirectory = DataDirectory + "AcceptanceCorrections/";
 
         AcceptanceMapsDirectory = DataDirectory + "AcceptanceMaps/";

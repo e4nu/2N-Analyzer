@@ -6,40 +6,39 @@
 // #define AMAPS_H
 #ifdef AMAPS_H
 
-#include <TApplication.h>
-#include <TCanvas.h>
-#include <TChain.h>
-#include <TDatabasePDG.h>
-#include <TF1.h>
-#include <TFile.h>
-#include <TH1.h>
-#include <TH2.h>
-#include <TLatex.h>
-#include <TLorentzVector.h>
-#include <TROOT.h>
-#include <TStyle.h>
-#include <TTree.h>
-#include <math.h>
+    #include <TApplication.h>
+    #include <TCanvas.h>
+    #include <TChain.h>
+    #include <TDatabasePDG.h>
+    #include <TF1.h>
+    #include <TFile.h>
+    #include <TH1.h>
+    #include <TH2.h>
+    #include <TLatex.h>
+    #include <TLorentzVector.h>
+    #include <TROOT.h>
+    #include <TStyle.h>
+    #include <TTree.h>
+    #include <math.h>
 
-#include <chrono>
-#include <cstdlib>
-#include <fstream>
-#include <iomanip>
-#include <iostream>
-#include <map>
-#include <sstream>
-#include <string>
-#include <typeinfo>
-#include <vector>
+    #include <chrono>
+    #include <cstdlib>
+    #include <fstream>
+    #include <iomanip>
+    #include <iostream>
+    #include <map>
+    #include <sstream>
+    #include <string>
+    #include <typeinfo>
+    #include <vector>
 
-// #include "../../functions/GeneralFunctions.h"
-#include "../../namespaces/general_utilities/utilities/utilities.h"
-#include "../DSCuts/DSCuts.h"
-#include "../hPlots/hPlot2D.cpp"
-#include "CustomSliceLimits.h"
+    // #include "../../functions/GeneralFunctions.h"
+    #include "../../namespaces/general_utilities/utilities.h"
+    #include "../DSCuts/DSCuts.h"
+    #include "../hPlots/hPlot2D.cpp"
+    #include "CustomSliceLimits.h"
 // #include "clas12reader.h"
 
-// using namespace std;
 using namespace utilities;
 
 class AMaps {
@@ -184,8 +183,8 @@ class AMaps {
           int hesNumOfYBins = 100);
 
     // AMaps loading constructor:
-    AMaps(const std::string &AcceptanceMapsDirectory, const std::string &SampleName, const double &beamE, const bool &Electron_single_slice_test, const bool &Nucleon_single_slice_test,
-          const vector<int> &TestSlices);
+    AMaps(const std::string &AcceptanceMapsDirectory, const std::string &SampleName, const double &beamE, const std::string &AMapsMode, const bool &Electron_single_slice_test,
+          const bool &Nucleon_single_slice_test, const vector<int> &TestSlices);
 
     // SetBins functions ----------------------------------------------------------------------------------------------------------------------------------------------------
 

@@ -19,18 +19,17 @@
 #include <cmath>
 #include <iostream>
 #include <vector>
+
 //
-// #include "../analysis_math/analysis_math_reco_extentions.h"
-#include "../analysis_math/analysis_math.h"
-#include "../constants/constants.h"
-#include "../lists/lists.h"
-//
+#include "analysis_math/analysis_math.h"
+#include "constants.h"
+#include "lists.h"
+
 // #include "HipoChain.h"
 // #include "clas12reader.h"
 
-#include "../../../includes/clas12_include.h"
+#include "../../includes/clas12_include.h"
 
-// using namespace std;
 // using namespace clas12;
 using namespace analysis_math;
 

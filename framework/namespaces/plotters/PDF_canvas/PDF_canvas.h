@@ -25,7 +25,7 @@
 #include <typeinfo>
 #include <vector>
 
-#include "../../settings/PDF_canvas_settings/PDF_canvas_settings.h"
+#include "../../settings/PDF_canvas_settings.h"
 
 // ======================================================================================================================================================================
 // PDF file canvas settings

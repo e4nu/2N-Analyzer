@@ -11,14 +11,13 @@
 #include <netinet/in.h>
 #include <sys/socket.h>
 #include <unistd.h>  // for getcwd
-//
+
 #include <cstdlib>  // for getenv
 #include <cstring>  // for strtok, strcpy
+#include <fstream>
 #include <iostream>
 #include <sstream>  // for std::ostringstream
 #include <string>
-
-// // using namespace std;
 
 namespace basic_tools {
 
@@ -165,6 +164,13 @@ std::string GetBeamEnergyFromDouble(const double &BeamE) {
     }
 
     return BeamE_str;
+}
+
+// GetBeamEnergyFromDouble function -------------------------------------------------------------------------------------------------------------------------------------
+
+bool fileExists(const char *filename) {
+    std::ifstream file(filename);
+    return file.good();
 }
 
 };  // namespace basic_tools

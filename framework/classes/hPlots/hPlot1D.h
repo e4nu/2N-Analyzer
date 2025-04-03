@@ -31,13 +31,12 @@
 #include <vector>
 
 // #include "../hData/hData.cpp"
-#include "../../namespaces/general_utilities/utilities/utilities.h"
+#include "../../namespaces/general_utilities/utilities.h"
 
 #if IndependentCanvasPDF
 #include "../../includes/CanvasPDF/CanvasPDF.h"
 #endif
 
-// using namespace std;
 using namespace utilities;
 
 class hPlot1D {

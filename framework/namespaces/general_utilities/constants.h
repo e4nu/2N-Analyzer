@@ -1,7 +1,8 @@
+
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
 
-#include "../../../classes/DSCuts/DSCuts.h"
+#include "../../classes/DSCuts/DSCuts.h"
 
 namespace constants {
 // Physical constants ---------------------------------------------------------------------------------------------------------------------------------------------------

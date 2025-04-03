@@ -7,9 +7,9 @@
 
 #include <iostream>
 
-#include "../analysis_samples/analysis_samples.h"
-#include "../debugging/debugging.h"
-#include "../path_definitions/path_definitions.h"
+#include "analysis_samples/analysis_samples.h"
+#include "debugging.h"
+#include "path_definitions.h"
 
 namespace code_setup {
 using namespace path_definitions;
