@@ -5,7 +5,7 @@
 #ifndef DATAAnalyzeR_H
 #define DATAAnalyzeR_H
 
-#include "DataAnalyzer.h"
+#include "DataAnalyser.h"
 
 // DataAnalyzer constructors ----------------------------------------------------------------------------------------------------------------------------------
 
