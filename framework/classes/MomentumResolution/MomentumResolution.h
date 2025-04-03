@@ -6,44 +6,43 @@
 // #define MOMENTUMRESOLUTION_H
 #ifdef MOMENTUMRESOLUTION_H
 
-#include <TApplication.h>
-#include <TCanvas.h>
-#include <TChain.h>
-#include <TDatabasePDG.h>
-#include <TF1.h>
-#include <TFile.h>
-#include <TH1.h>
-#include <TH2.h>
-#include <TLatex.h>
-#include <TLorentzVector.h>
-#include <TROOT.h>
-#include <TStyle.h>
-#include <TTree.h>
-#include <math.h>
+    #include <TApplication.h>
+    #include <TCanvas.h>
+    #include <TChain.h>
+    #include <TDatabasePDG.h>
+    #include <TF1.h>
+    #include <TFile.h>
+    #include <TH1.h>
+    #include <TH2.h>
+    #include <TLatex.h>
+    #include <TLorentzVector.h>
+    #include <TROOT.h>
+    #include <TStyle.h>
+    #include <TTree.h>
+    #include <math.h>
 
-#include <chrono>
-#include <cstdlib>
-#include <fstream>
-#include <iomanip>
-#include <iostream>
-#include <map>
-#include <sstream>
-#include <typeinfo>
-#include <vector>
+    #include <chrono>
+    #include <cstdlib>
+    #include <fstream>
+    #include <iomanip>
+    #include <iostream>
+    #include <map>
+    #include <sstream>
+    #include <typeinfo>
+    #include <vector>
 
-// #include "clas12reader.h"
-#include "../../includes/clas12_include.h"
+    // #include "clas12reader.h"
+    #include "../../includes/clas12_include.h"
 
-#if MomResDebugMacro
-#include "../hData/hData.cpp"
-#include "../hPlots/hPlot1D.cpp"
-#else
-#include "../hPlots/hPlot1D.cpp"
-#endif
+    #if MomResDebugMacro
+        #include "../hData/hData.cpp"
+        #include "../hPlots/hPlot1D.cpp"
+    #else
+        #include "../hPlots/hPlot1D.cpp"
+    #endif
 
-#include "../../namespaces/general_utilities/utilities.h"
-// #include "../../functions/GeneralFunctions.h"
-#include "../DSCuts/DSCuts.h"
+    #include "../../namespaces/general_utilities/utilities.h"
+    #include "../DSCuts/DSCuts.h"
 
 using namespace utilities;
 

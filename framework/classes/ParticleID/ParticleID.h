@@ -16,8 +16,6 @@
     #include "../../namespaces/general_utilities/analysis_math/analysis_math.h"
     #include "../../namespaces/general_utilities/constants.h"
     #include "../../namespaces/general_utilities/reco_analysis_functions.h"
-    // #include "../../functions/NeutronECAL_Cut_Veto.h"
-    // #include "../../functions/PID_functions/GetFDNeutronP.h"
     #include "../DSCuts/DSCuts.h"
     #include "../clas12ana/clas12ana.h"
     #include "../hPlots/hPlot1D.cpp"
@@ -34,7 +32,6 @@
 
 // using namespace clas12;
 using namespace constants;
-// using namespace analysis_math;
 
 class ParticleID {
    public:

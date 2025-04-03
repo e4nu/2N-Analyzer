@@ -6,40 +6,32 @@
 // #define DEFFICIENCY_H
 #ifdef DEFFICIENCY_H
 
-#include <TApplication.h>
-#include <TCanvas.h>
-#include <TChain.h>
-#include <TDatabasePDG.h>
-#include <TF1.h>
-#include <TFile.h>
-#include <TH1.h>
-#include <TH2.h>
-#include <TLatex.h>
-#include <TLorentzVector.h>
-#include <TROOT.h>
-#include <TStyle.h>
-#include <TTree.h>
-#include <math.h>
+    #include <TApplication.h>
+    #include <TCanvas.h>
+    #include <TChain.h>
+    #include <TDatabasePDG.h>
+    #include <TF1.h>
+    #include <TFile.h>
+    #include <TH1.h>
+    #include <TH2.h>
+    #include <TLatex.h>
+    #include <TLorentzVector.h>
+    #include <TROOT.h>
+    #include <TStyle.h>
+    #include <TTree.h>
+    #include <math.h>
 
-#include <chrono>
-#include <cstdlib>
-#include <iomanip>
-#include <iostream>
-#include <map>
-#include <sstream>
-#include <typeinfo>
-#include <vector>
+    #include <chrono>
+    #include <cstdlib>
+    #include <iomanip>
+    #include <iostream>
+    #include <map>
+    #include <sstream>
+    #include <typeinfo>
+    #include <vector>
 
-// #include "../hData/hData.cpp"
-// #include "../../namespaces/general_utilities/data_processor.h"
-
-// #include "../hPlots/hPlot1D.cpp"
-#include "../../namespaces/general_utilities/utilities.h"
-#include "../hPlots/hPlot1D.cpp"
-// #include "../../functions/GeneralFunctions.h"
-// #include "../../functions/EventProperties/GetParticleName.h"
-// #include "../../functions/EventProperties/GetParticleNameLC.h"
-// #include "../../functions/EventProperties/GetParticleNameShort.h"
+    #include "../../namespaces/general_utilities/utilities.h"
+    #include "../hPlots/hPlot1D.cpp"
 
 using namespace utilities;
 

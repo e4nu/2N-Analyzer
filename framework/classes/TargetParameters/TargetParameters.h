@@ -2,6 +2,8 @@
 #ifndef TARGETPARAMETERS_H
 #define TARGETPARAMETERS_H
 
+#include <iostream>
+
 class TargetParameters {
    protected:
     std::string TargetElement;

@@ -12,8 +12,6 @@
 
 #include "../basic_tools.h"
 #include "../constants.h"
-//
-// #include "analysis_math_reco_extentions.h"
 #include "poly_solver.cpp"
 
 namespace analysis_math {

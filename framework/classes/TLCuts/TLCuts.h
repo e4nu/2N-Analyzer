@@ -6,38 +6,33 @@
 // #define TLCUTS_H
 #ifdef TLCUTS_H
 
-#include <TApplication.h>
-#include <TCanvas.h>
-#include <TChain.h>
-#include <TDatabasePDG.h>
-#include <TF1.h>
-#include <TFile.h>
-#include <TH1.h>
-#include <TH2.h>
-#include <TLatex.h>
-#include <TLorentzVector.h>
-#include <TROOT.h>
-#include <TStyle.h>
-#include <TTree.h>
-#include <math.h>
+    #include <TApplication.h>
+    #include <TCanvas.h>
+    #include <TChain.h>
+    #include <TDatabasePDG.h>
+    #include <TF1.h>
+    #include <TFile.h>
+    #include <TH1.h>
+    #include <TH2.h>
+    #include <TLatex.h>
+    #include <TLorentzVector.h>
+    #include <TROOT.h>
+    #include <TStyle.h>
+    #include <TTree.h>
+    #include <math.h>
 
-#include <chrono>
-#include <cstdlib>
-#include <iomanip>
-#include <iostream>
-#include <map>
-#include <sstream>
-#include <typeinfo>
-#include <vector>
-//
-// #include "clas12reader.h"
-#include "../../includes/clas12_include.h"
+    #include <chrono>
+    #include <cstdlib>
+    #include <iomanip>
+    #include <iostream>
+    #include <map>
+    #include <sstream>
+    #include <typeinfo>
+    #include <vector>
 
-// #include "../../constants.h"
-// #include "../../functions/AngleCalc/GetBinFromAng.h"
-// #include "../../functions/GeneralFunctions.h"
-#include "../../namespaces/general_utilities/utilities.h"
-#include "../DSCuts/DSCuts.h"
+    #include "../../includes/clas12_include.h"
+    #include "../../namespaces/general_utilities/utilities.h"
+    #include "../DSCuts/DSCuts.h"
 
 using namespace utilities;
 

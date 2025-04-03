@@ -10,7 +10,7 @@
 struct DataSample {
     std::string SampleDir;
     std::string SampleName;
-    std::vector<std::string> SampleRuns;    
+    std::vector<std::string> SampleRuns;
 };
 
-#endif //DATASAMPLE_H
+#endif  // DATASAMPLE_H

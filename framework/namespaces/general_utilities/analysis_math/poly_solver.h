@@ -2,10 +2,11 @@
 // Created by Alon Sportes on 26/03/2025.
 //
 
-namespace poly_solver {
 // #ifndef POLY_SOLVER_H
 // #define POLY_SOLVER_H
 #ifdef POLY_SOLVER_H
+
+namespace poly_solver {
 
 // poly34.h : solution of cubic and quartic equation
 // (c) Khashin S.I. http://math.ivanovo.ac.ru/dalgebra/Khashin/index.html

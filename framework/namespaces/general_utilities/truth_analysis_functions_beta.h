@@ -29,21 +29,13 @@
 #include <typeinfo>
 #include <vector>
 
-#include "../classes/DSCuts/DSCuts.h"
-// #include "AngleCalc/GetBinFromAng.h"
-#include "GeneralFunctions.h"
-#include "clas12reader.h"
-//
 #include "../analysis_math/analysis_math.h"
+#include "../classes/DSCuts/DSCuts.h"
 #include "../constants.h"
 #include "../lists.h"
-//
-// #include "HipoChain.h"
-// #include "clas12reader.h"
+#include "GeneralFunctions.h"
+#include "clas12reader.h"
 
-// #include "../../../includes/clas12_include.h"
-
-// using namespace clas12;
 using namespace lists;
 
 namespace truth_analysis_functions {

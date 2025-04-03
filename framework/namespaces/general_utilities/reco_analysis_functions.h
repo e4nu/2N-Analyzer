@@ -20,7 +20,6 @@
 #include <iostream>
 #include <vector>
 
-//
 #include "analysis_math/analysis_math.h"
 #include "constants.h"
 #include "lists.h"

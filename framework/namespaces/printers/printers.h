@@ -8,7 +8,6 @@
 
 #include <iostream>
 
-// Include settings:
 #include "../../structures/AcceptanceMapsSettings/AcceptanceMapsSettings.h"
 #include "../../structures/AnalysisCutSettings/AnalysisCutSettings.h"
 #include "../../structures/CutValueManager/CutValueManager.h"

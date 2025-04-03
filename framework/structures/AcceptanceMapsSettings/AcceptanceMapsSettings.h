@@ -7,11 +7,7 @@
 
 #include <iostream>
 
-// Include libraries:
 #include "../../namespaces/general_utilities/basic_tools.h"
-
-// Include settings:
-#include "../RunParameters/RunParameters.h"
 #include "../RunParameters/RunParameters.h"
 
 struct AcceptanceMapsSettings {
