@@ -179,7 +179,8 @@
         "text_encoding": "c",
         "thread": "c",
         "SplitGLView.C": "cpp",
-        "cutvaluemanager.h": "c"
+        "cutvaluemanager.h": "c",
+        "dataanalyser.h": "c"
     },
     "[jsonc]": {
         "editor.defaultFormatter": "vscode.json-language-features"
