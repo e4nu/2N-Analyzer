@@ -7,6 +7,16 @@
 #ifdef RECOANALYSER_H
 
     #pragma region /* Includes */
+
+    // // Include settings:
+    // #include "../structures/AcceptanceMapsSettings/AcceptanceMapsSettings.h"
+    // #include "../structures/AnalysisCutSettings/CutSettings.h"
+    // #include "../structures/CutValueManager/CutValueManager.h"
+    // #include "../structures/EventSelectionSettings/EventSelectionSettings.h"
+    // #include "../structures/MomentumResolutionSettings/MomentumResolutionSettings.h"
+    // #include "../structures/RunParameters/RunParameters.h"
+    // #include "../namespaces/printers/printers.h"
+    
     #include "../framework/classes/AMaps/AMaps.cpp"
     #include "../framework/classes/DEfficiency/DEfficiency.cpp"
     #include "../framework/classes/DSCuts/DSCuts.h"
