@@ -35,10 +35,9 @@ string DataAnalyzer::ConfigureAnalyzerMode(const std::string &FileType) {
 
 void DataAnalyzer::RunEventAnalyzer(const std::string &AnalyzerMode, const std::string &AnalyzeFilePath, const std::string &AnalyzeFileSample, const std::string &AnalyzeFile) {
     if (AnalyzerMode == "Truth level") {
-        gst g;
-        g.Loop();
+        TruthAnalyzer TruthEventAnalyzer = TruthAnalyzer(AnalyzeFilePath, AnalyzeFileSample, AnalyzeFile);
     } else if (AnalyzerMode == "Detector Simulation") {
-        RecoAnalyser RecoEventAnalyser = RecoAnalyser(AnalyzeFilePath, AnalyzeFileSample, AnalyzeFile);
+        RecoAnalyzer RecoEventAnalyzer = RecoAnalyzer(AnalyzeFilePath, AnalyzeFileSample, AnalyzeFile);
     }
 };
 

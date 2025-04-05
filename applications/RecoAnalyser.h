@@ -6,23 +6,23 @@
 // #define RECOEVENTANALYSER_H
 #ifdef RECOEVENTANALYSER_H
 
-#pragma region /* Includes */
-#include "../framework/classes/AMaps/AMaps.cpp"
-#include "../framework/classes/DEfficiency/DEfficiency.cpp"
-#include "../framework/classes/DSCuts/DSCuts.h"
-#include "../framework/classes/MomentumResolution/MomentumResolution.cpp"
-#include "../framework/classes/ParticleID/ParticleID.cpp"
-#include "../framework/classes/Settings/Settings.cpp"
-#include "../framework/classes/TLCuts/TLCuts.cpp"
-#include "../framework/classes/clas12ana/clas12ana.h"
-#include "../framework/classes/hPlots/hPlot1D.cpp"
-#include "../framework/classes/hPlots/hPlot2D.cpp"
-#include "../framework/functions/FillByInt.h"
-#include "../framework/includes/clas12_include.h"
-#include "../framework/namespaces/fitters/fitter_functions.h"
-#include "../framework/namespaces/general_utilities/utilities.h"
-#include "../framework/namespaces/plotters/draw_and_save_functions/draw_and_save_functions.h"
-#include "../setup/codeSetup.h"
+    #pragma region /* Includes */
+    #include "../framework/classes/AMaps/AMaps.cpp"
+    #include "../framework/classes/DEfficiency/DEfficiency.cpp"
+    #include "../framework/classes/DSCuts/DSCuts.h"
+    #include "../framework/classes/MomentumResolution/MomentumResolution.cpp"
+    #include "../framework/classes/ParticleID/ParticleID.cpp"
+    #include "../framework/classes/Settings/Settings.cpp"
+    #include "../framework/classes/TLCuts/TLCuts.cpp"
+    #include "../framework/classes/clas12ana/clas12ana.h"
+    #include "../framework/classes/hPlots/hPlot1D.cpp"
+    #include "../framework/classes/hPlots/hPlot2D.cpp"
+    #include "../framework/functions/FillByInt.h"
+    #include "../framework/includes/clas12_include.h"
+    #include "../framework/namespaces/fitters/fitter_functions.h"
+    #include "../framework/namespaces/general_utilities/utilities.h"
+    #include "../framework/namespaces/plotters/draw_and_save_functions/draw_and_save_functions.h"
+    #include "../setup/codeSetup.h"
 
 // #include "HipoChain.h"
 // #include "clas12reader.h"
@@ -31,15 +31,15 @@
 // using namespace clas12;
 using namespace utilities;
 using namespace draw_and_save_functions;
-#pragma endregion
+    #pragma endregion
 
-class RecoEventAnalyser {
+class RecoAnalyzer {
    public:
-   // RecoEventAnalyser constructor -------------------------------------------------------------------------------------------------------------------------------------
+    // RecoAnalyzer constructor ---------------------------------------------------------------------------------------------------------------------------------------------
 
-    RecoEventAnalyser(const std::string &AnalyzeFilePath, const std::string &AnalyzeFileSample, const std::string &AnalyzeFile);
+    RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string &AnalyzeFileSample, const std::string &AnalyzeFile);
 
-    ~RecoEventAnalyser() = default;
+    ~RecoAnalyzer() = default;
 };
 
 #endif  // RECOEVENTANALYSER_H

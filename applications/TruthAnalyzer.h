@@ -28,7 +28,7 @@ class TruthAnalyser : public gst {
    public:
     // TruthAnalyser constructor ----------------------------------------------------------------------------------------------------------------------------------------
 
-    TruthAnalyser(const std::string &AnalyzeFilePath, const std::string &AnalyzeFileSample, const std::string &AnalyzeFile);
+    TruthAnalyser();
 
     ~TruthAnalyser() = default;
 };

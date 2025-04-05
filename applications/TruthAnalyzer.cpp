@@ -1,6 +1,11 @@
 
-#include "TruthAnalyser.h"
+#ifndef TRUTHANALYSER_H
+#define TRUTHANALYSER_H
+
+#include "TruthAnalyzer.h"
 
 // TruthAnalyser constructor ----------------------------------------------------------------------------------------------------------------------------------------
 
-TruthAnalyser::TruthAnalyser(const std::string &AnalyzeFilePath, const std::string &AnalyzeFileSample, const std::string &AnalyzeFile) : gst() { Loop(); }
+TruthAnalyser::TruthAnalyser() : gst() { Loop(); }
+
+#endif  // TRUTHANALYSER_H

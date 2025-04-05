@@ -2,12 +2,12 @@
 #define RECOANALYSER_H
 
 #pragma region /* Includes */
-#include "RecoAnalyser.h"
+#include "RecoAnalyzer.h"
 #pragma endregion
 
-// RecoEventAnalyser constructor -------------------------------------------------------------------------------------------------------------------------------------
+// RecoAnalyzer constructor ---------------------------------------------------------------------------------------------------------------------------------------------
 
-RecoAnalyser::RecoAnalyser(const std::string &AnalyzeFilePath, const std::string &AnalyzeFileSample, const std::string &AnalyzeFile) {
+RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string &AnalyzeFileSample, const std::string &AnalyzeFile) {
     debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode);
 
     std::cout << "\033[33m\n\n===========================================================================\n\033[0m";
