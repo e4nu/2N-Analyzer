@@ -6,8 +6,8 @@
 // #define DATAANALYZER_H
 #ifdef DATAANALYZER_H
 
-#include "../../../applications/RecoAnalyzer.cpp"
-#include "../../../applications/TruthAnalyzer.cpp"
+    #include "../../../applications/RecoAnalyzer.cpp"
+    #include "../../../applications/TruthAnalyzer.cpp"
 
 class DataAnalyzer {
    private:
