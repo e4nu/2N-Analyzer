@@ -2,8 +2,8 @@
 // Created by alons on 05/08/2024.
 //
 
-#ifndef DATAAnalyzeR_H
-#define DATAAnalyzeR_H
+#ifndef DATAANALYZER_H
+#define DATAANALYZER_H
 
 #include "DataAnalyser.h"
 
@@ -38,8 +38,8 @@ void DataAnalyzer::RunEventAnalyzer(const std::string &AnalyzerMode, const std::
         gst g;
         g.Loop();
     } else if (AnalyzerMode == "Detector Simulation") {
-        RecoEventAnalyser(AnalyzeFilePath, AnalyzeFileSample, AnalyzeFile);
+        RecoAnalyser RecoEventAnalyser = RecoAnalyser(AnalyzeFilePath, AnalyzeFileSample, AnalyzeFile);
     }
 };
 
-#endif  // DATAAnalyzeR_H
+#endif  // DATAANALYZER_H

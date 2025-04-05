@@ -1,32 +1,13 @@
+#ifndef RECOANALYSER_H
+#define RECOANALYSER_H
 
 #pragma region /* Includes */
-#include "../framework/classes/AMaps/AMaps.cpp"
-#include "../framework/classes/DEfficiency/DEfficiency.cpp"
-#include "../framework/classes/DSCuts/DSCuts.h"
-#include "../framework/classes/MomentumResolution/MomentumResolution.cpp"
-#include "../framework/classes/ParticleID/ParticleID.cpp"
-#include "../framework/classes/Settings/Settings.cpp"
-#include "../framework/classes/TLCuts/TLCuts.cpp"
-#include "../framework/classes/clas12ana/clas12ana.h"
-#include "../framework/classes/hPlots/hPlot1D.cpp"
-#include "../framework/classes/hPlots/hPlot2D.cpp"
-#include "../framework/functions/FillByInt.h"
-#include "../framework/includes/clas12_include.h"
-#include "../framework/namespaces/fitters/fitter_functions.h"
-#include "../framework/namespaces/general_utilities/utilities.h"
-#include "../framework/namespaces/plotters/draw_and_save_functions/draw_and_save_functions.h"
-#include "../setup/codeSetup.h"
-
-// #include "HipoChain.h"
-// #include "clas12reader.h"
-
-// using namespace std;
-// using namespace clas12;
-using namespace utilities;
-using namespace draw_and_save_functions;
+#include "RecoAnalyser.h"
 #pragma endregion
 
-void RecoEventAnalyser(const std::string &AnalyzeFilePath, const std::string &AnalyzeFileSample, const std::string &AnalyzeFile) {
+// RecoEventAnalyser constructor -------------------------------------------------------------------------------------------------------------------------------------
+
+RecoAnalyser::RecoAnalyser(const std::string &AnalyzeFilePath, const std::string &AnalyzeFileSample, const std::string &AnalyzeFile) {
     debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode);
 
     std::cout << "\033[33m\n\n===========================================================================\n\033[0m";
@@ -9472,7 +9453,7 @@ void RecoEventAnalyser(const std::string &AnalyzeFilePath, const std::string &An
 
     std::cout << "\033[33m\nReading target parameter files...\n\n\033[0m";
 
-    #pragma region /* Setting and loading cuts (via clas12ana) */
+#pragma region /* Setting and loading cuts (via clas12ana) */
     clas12ana clasAna;
 
     if (apply_cuts) {
@@ -9673,7 +9654,7 @@ void RecoEventAnalyser(const std::string &AnalyzeFilePath, const std::string &An
         }
     }
 
-    #pragma endregion
+#pragma endregion
 
     // Setting HipoChain
     std::cout << "\033[33m\n\nSetting HipoChain...\n\n\033[0m";
@@ -9984,8 +9965,8 @@ void RecoEventAnalyser(const std::string &AnalyzeFilePath, const std::string &An
 
         //  Filling truth level histograms (lundfile loop) ----------------------------------------------------------------------------------------------------------------------
 
-        #pragma region /* Truth-level analysis */
-        
+#pragma region /* Truth-level analysis */
+
         // TODO: confirm that the TL kin cuts are working!
 
         // Filling truth level histograms (lundfile loop)
@@ -11239,7 +11220,7 @@ void RecoEventAnalyser(const std::string &AnalyzeFilePath, const std::string &An
             }
         }
 
-        #pragma endregion
+#pragma endregion
 
         //  Fill All particles (All e) plots ------------------------------------------------------------------------------------------------------------------------------------
 
@@ -22905,5 +22886,6 @@ void RecoEventAnalyser(const std::string &AnalyzeFilePath, const std::string &An
     }
 
 #pragma endregion
-
 }
+
+#endif  // RECOEVENTANALYSER_H

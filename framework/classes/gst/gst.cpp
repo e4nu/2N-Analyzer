@@ -13,7 +13,7 @@
 #include <iostream>
 #include <string>
 
-#include "../framework/classes/gst/gst.h"
+#include "gst.h"
 
 // using namespace std;
 

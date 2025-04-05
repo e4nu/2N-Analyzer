@@ -2,12 +2,12 @@
 // Created by alons on 05/08/2024.
 //
 
-// #ifndef DATAAnalyzeR_H
-// #define DATAAnalyzeR_H
-#ifdef DATAAnalyzeR_H
+// #ifndef DATAANALYZER_H
+// #define DATAANALYZER_H
+#ifdef DATAANALYZER_H
 
-#include "../../../applications/RecoEventAnalyzer.cpp"
-#include "../../../applications/TruthLevelAnalyzer.cpp"
+#include "../../../applications/RecoAnalyser.cpp"
+#include "../../../applications/TruthAnalyzer.cpp"
 
 class DataAnalyzer {
    private:
@@ -25,4 +25,4 @@ class DataAnalyzer {
     void RunEventAnalyzer(const std::string &AnalyzerMode, const std::string &AnalyzeFilePath, const std::string &AnalyzeFileSample, const std::string &AnalyzeFile);
 };
 
-#endif  // DATAAnalyzeR_H
+#endif  // DATAANALYZER_H
