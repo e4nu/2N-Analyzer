@@ -2,9 +2,9 @@
 // Created by alons on 05/04/2025.
 //
 
-// #ifndef RECOEVENTANALYSER_H
-// #define RECOEVENTANALYSER_H
-#ifdef RECOEVENTANALYSER_H
+// #ifndef RECOANALYSER_H
+// #define RECOANALYSER_H
+#ifdef RECOANALYSER_H
 
     #pragma region /* Includes */
     #include "../framework/classes/AMaps/AMaps.cpp"
@@ -42,4 +42,4 @@ class RecoAnalyzer {
     ~RecoAnalyzer() = default;
 };
 
-#endif  // RECOEVENTANALYSER_H
+#endif  // RECOANALYSER_H

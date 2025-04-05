@@ -2,9 +2,9 @@
 // Created by alons on 05/04/2025.
 //
 
-// #ifndef TRUTHEVENTANALYSER_H
-// #define TRUTHEVENTANALYSER_H
-#ifdef TRUTHEVENTANALYSER_H
+// #ifndef TRUTHANALYSER_H
+// #define TRUTHANALYSER_H
+#ifdef TRUTHANALYSER_H
 
     #include <TCanvas.h>
     #include <TFile.h>
@@ -33,4 +33,4 @@ class TruthAnalyser : public gst {
     ~TruthAnalyser() = default;
 };
 
-#endif  // TRUTHEVENTANALYSER_H
+#endif  // TRUTHANALYSER_H
