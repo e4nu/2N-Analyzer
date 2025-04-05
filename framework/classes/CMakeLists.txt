@@ -2,7 +2,7 @@ set(CLASS_SOURCES
     AMaps/AMaps.cpp
     AMaps/CustomSliceLimits.cpp
     clas12ana/clas12ana.cpp
-    DataAnalyser/DataAnalyser.cpp
+    DataAnalyzer/DataAnalyzer.cpp
     Debugger/Debugger.cpp
     DEfficiency/DEfficiency.cpp
     Directories/Directories.cpp

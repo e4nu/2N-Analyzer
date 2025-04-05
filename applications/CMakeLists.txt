@@ -1,5 +1,6 @@
 set(APPS_SOURCES
-    DetectorSimulationAnalyser.cpp
+    RecoAnalyzer.cpp
+    TruthAnalyzer.cpp
 )
 
 # Create a library
@@ -12,7 +13,7 @@ target_link_libraries(AnalysisApps PUBLIC ${ROOT_LIBRARIES})
 target_link_libraries(AnalysisApps PUBLIC Clas12Banks Hipo4 Clas12Root)
 
 # set(APPS_SOURCES
-#     DetectorSimulationAnalyser.cpp
+#     DetectorSimulationAnalyzer.cpp
 # )
 
 # foreach(fnameAppSrc ${APPS_SOURCES})

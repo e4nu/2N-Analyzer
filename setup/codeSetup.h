@@ -1,10 +1,10 @@
 #include <vector>
 
-#ifndef Analyser_CODESETUP_H
-#define Analyser_CODESETUP_H
+#ifndef Analyzer_CODESETUP_H
+#define Analyzer_CODESETUP_H
 
 #define MomResDebugMacro false
-#define FullAnalyser true
+#define FullAnalyzer true
 #define IndependentCanvasPDF false
 
 #include "../framework/namespaces/setup/path_definitions.h"
@@ -516,4 +516,4 @@ double P_L_hist_upper_lim, P_L_hist_lower_lim, P_R_hist_upper_lim, P_R_hist_lowe
 
 //</editor-fold>
 
-#endif  // Analyser_CODESETUP_H
+#endif  // Analyzer_CODESETUP_H

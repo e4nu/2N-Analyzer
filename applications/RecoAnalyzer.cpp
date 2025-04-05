@@ -1,20 +1,20 @@
-#ifndef RECOANALYSER_H
-#define RECOANALYSER_H
+#ifndef RECOANALYZER_H
+#define RECOANALYZER_H
 
 #pragma region /* Includes */
-#include "RecoAnalyser.h"
+#include "RecoAnalyzer.h"
 #pragma endregion
 
-// RecoAnalyser constructor ---------------------------------------------------------------------------------------------------------------------------------------------
+// RecoAnalyzer constructor ---------------------------------------------------------------------------------------------------------------------------------------------
 
-RecoAnalyser::RecoAnalyser(const std::string &AnalyzeFilePath, const std::string &AnalyzeFileSample, const std::string &AnalyzeFile) {
+RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string &AnalyzeFileSample, const std::string &AnalyzeFile) {
     debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode);
 
     std::cout << "\033[33m\n\n===========================================================================\n\033[0m";
-    std::cout << "\033[33m\t\t\tDetector simulation Analyser\n\033[0m";
+    std::cout << "\033[33m\t\t\tDetector simulation Analyzer\n\033[0m";
     std::cout << "\033[33m===========================================================================\n\n\033[0m";
 
-    std::string AnalyserVersion = "Version 1.10";
+    std::string AnalyzerVersion = "Version 1.10";
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Code setup                                                                                                                                                      //
@@ -23336,7 +23336,7 @@ RecoAnalyser::RecoAnalyser(const std::string &AnalyzeFilePath, const std::string
     std::cout << "\033[33mBeam Energy:\t\t" << /* parameters. */beamE << " [GeV]\n\033[0m";
     std::cout << "\033[33mTarget:\t\t\t" << /* parameters. */Target << " (PDG: " << /* parameters. */TargetPDG << ")\n\n\033[0m";
 
-    std::cout << "\033[33mOperation finished (AnalyserVersion = " << AnalyserVersion << ")." << "\n\n\033[0m";
+    std::cout << "\033[33mOperation finished (AnalyzerVersion = " << AnalyzerVersion << ")." << "\n\n\033[0m";
 
     if (TestRun || ApplyLimiter) {
         if (TestRun) { std::cout << "\033[31m\n\nNOTE: running code in testing mode!\n\033[0m"; }
@@ -23367,4 +23367,4 @@ RecoAnalyser::RecoAnalyser(const std::string &AnalyzeFilePath, const std::string
 
 }
 
-#endif  // RECOEVENTANALYSER_H
+#endif  // RECOEVENTANALYZER_H

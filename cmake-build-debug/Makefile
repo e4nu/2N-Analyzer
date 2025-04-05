@@ -57,10 +57,10 @@ RM = /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/alon/Projects/2N-Analyser_e4nu
+CMAKE_SOURCE_DIR = /Users/alon/Projects/2N-Analyzer_e4nu
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug
+CMAKE_BINARY_DIR = /Users/alon/Projects/2N-Analyzer_e4nu/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug/CMakeFiles /Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/alon/Projects/2N-Analyzer_e4nu/cmake-build-debug/CMakeFiles /Users/alon/Projects/2N-Analyzer_e4nu/cmake-build-debug//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/alon/Projects/2N-Analyzer_e4nu/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -129,53 +129,53 @@ project/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/build
 .PHONY : project/fast
 
-Old_Analysers/DetectorSimulationAnalyser.o: Old_Analysers/DetectorSimulationAnalyser.C.o
-.PHONY : Old_Analysers/DetectorSimulationAnalyser.o
+Old_Analyzers/DetectorSimulationAnalyzer.o: Old_Analyzers/DetectorSimulationAnalyzer.C.o
+.PHONY : Old_Analyzers/DetectorSimulationAnalyzer.o
 
 # target to build an object file
-Old_Analysers/DetectorSimulationAnalyser.C.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/Old_Analysers/DetectorSimulationAnalyser.C.o
-.PHONY : Old_Analysers/DetectorSimulationAnalyser.C.o
+Old_Analyzers/DetectorSimulationAnalyzer.C.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/Old_Analyzers/DetectorSimulationAnalyzer.C.o
+.PHONY : Old_Analyzers/DetectorSimulationAnalyzer.C.o
 
-Old_Analysers/DetectorSimulationAnalyser.i: Old_Analysers/DetectorSimulationAnalyser.C.i
-.PHONY : Old_Analysers/DetectorSimulationAnalyser.i
+Old_Analyzers/DetectorSimulationAnalyzer.i: Old_Analyzers/DetectorSimulationAnalyzer.C.i
+.PHONY : Old_Analyzers/DetectorSimulationAnalyzer.i
 
 # target to preprocess a source file
-Old_Analysers/DetectorSimulationAnalyser.C.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/Old_Analysers/DetectorSimulationAnalyser.C.i
-.PHONY : Old_Analysers/DetectorSimulationAnalyser.C.i
+Old_Analyzers/DetectorSimulationAnalyzer.C.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/Old_Analyzers/DetectorSimulationAnalyzer.C.i
+.PHONY : Old_Analyzers/DetectorSimulationAnalyzer.C.i
 
-Old_Analysers/DetectorSimulationAnalyser.s: Old_Analysers/DetectorSimulationAnalyser.C.s
-.PHONY : Old_Analysers/DetectorSimulationAnalyser.s
+Old_Analyzers/DetectorSimulationAnalyzer.s: Old_Analyzers/DetectorSimulationAnalyzer.C.s
+.PHONY : Old_Analyzers/DetectorSimulationAnalyzer.s
 
 # target to generate assembly for a file
-Old_Analysers/DetectorSimulationAnalyser.C.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/Old_Analysers/DetectorSimulationAnalyser.C.s
-.PHONY : Old_Analysers/DetectorSimulationAnalyser.C.s
+Old_Analyzers/DetectorSimulationAnalyzer.C.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/Old_Analyzers/DetectorSimulationAnalyzer.C.s
+.PHONY : Old_Analyzers/DetectorSimulationAnalyzer.C.s
 
-Old_Analysers/TruthLevelAnalyser.o: Old_Analysers/TruthLevelAnalyser.c.o
-.PHONY : Old_Analysers/TruthLevelAnalyser.o
+Old_Analyzers/TruthLevelAnalyzer.o: Old_Analyzers/TruthLevelAnalyzer.c.o
+.PHONY : Old_Analyzers/TruthLevelAnalyzer.o
 
 # target to build an object file
-Old_Analysers/TruthLevelAnalyser.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/Old_Analysers/TruthLevelAnalyser.c.o
-.PHONY : Old_Analysers/TruthLevelAnalyser.c.o
+Old_Analyzers/TruthLevelAnalyzer.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/Old_Analyzers/TruthLevelAnalyzer.c.o
+.PHONY : Old_Analyzers/TruthLevelAnalyzer.c.o
 
-Old_Analysers/TruthLevelAnalyser.i: Old_Analysers/TruthLevelAnalyser.c.i
-.PHONY : Old_Analysers/TruthLevelAnalyser.i
+Old_Analyzers/TruthLevelAnalyzer.i: Old_Analyzers/TruthLevelAnalyzer.c.i
+.PHONY : Old_Analyzers/TruthLevelAnalyzer.i
 
 # target to preprocess a source file
-Old_Analysers/TruthLevelAnalyser.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/Old_Analysers/TruthLevelAnalyser.c.i
-.PHONY : Old_Analysers/TruthLevelAnalyser.c.i
+Old_Analyzers/TruthLevelAnalyzer.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/Old_Analyzers/TruthLevelAnalyzer.c.i
+.PHONY : Old_Analyzers/TruthLevelAnalyzer.c.i
 
-Old_Analysers/TruthLevelAnalyser.s: Old_Analysers/TruthLevelAnalyser.c.s
-.PHONY : Old_Analysers/TruthLevelAnalyser.s
+Old_Analyzers/TruthLevelAnalyzer.s: Old_Analyzers/TruthLevelAnalyzer.c.s
+.PHONY : Old_Analyzers/TruthLevelAnalyzer.s
 
 # target to generate assembly for a file
-Old_Analysers/TruthLevelAnalyser.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/Old_Analysers/TruthLevelAnalyser.c.s
-.PHONY : Old_Analysers/TruthLevelAnalyser.c.s
+Old_Analyzers/TruthLevelAnalyzer.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/Old_Analyzers/TruthLevelAnalyzer.c.s
+.PHONY : Old_Analyzers/TruthLevelAnalyzer.c.s
 
 framework/classes/AMaps/AMaps.o: framework/classes/AMaps/AMaps.cpp.o
 .PHONY : framework/classes/AMaps/AMaps.o
@@ -225,29 +225,29 @@ framework/classes/DEfficiency/DEfficiency.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/framework/classes/DEfficiency/DEfficiency.cpp.s
 .PHONY : framework/classes/DEfficiency/DEfficiency.cpp.s
 
-framework/classes/DataAnalyser/DataAnalyser.o: framework/classes/DataAnalyser/DataAnalyser.cpp.o
-.PHONY : framework/classes/DataAnalyser/DataAnalyser.o
+framework/classes/DataAnalyzer/DataAnalyzer.o: framework/classes/DataAnalyzer/DataAnalyzer.cpp.o
+.PHONY : framework/classes/DataAnalyzer/DataAnalyzer.o
 
 # target to build an object file
-framework/classes/DataAnalyser/DataAnalyser.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/framework/classes/DataAnalyser/DataAnalyser.cpp.o
-.PHONY : framework/classes/DataAnalyser/DataAnalyser.cpp.o
+framework/classes/DataAnalyzer/DataAnalyzer.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/framework/classes/DataAnalyzer/DataAnalyzer.cpp.o
+.PHONY : framework/classes/DataAnalyzer/DataAnalyzer.cpp.o
 
-framework/classes/DataAnalyser/DataAnalyser.i: framework/classes/DataAnalyser/DataAnalyser.cpp.i
-.PHONY : framework/classes/DataAnalyser/DataAnalyser.i
+framework/classes/DataAnalyzer/DataAnalyzer.i: framework/classes/DataAnalyzer/DataAnalyzer.cpp.i
+.PHONY : framework/classes/DataAnalyzer/DataAnalyzer.i
 
 # target to preprocess a source file
-framework/classes/DataAnalyser/DataAnalyser.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/framework/classes/DataAnalyser/DataAnalyser.cpp.i
-.PHONY : framework/classes/DataAnalyser/DataAnalyser.cpp.i
+framework/classes/DataAnalyzer/DataAnalyzer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/framework/classes/DataAnalyzer/DataAnalyzer.cpp.i
+.PHONY : framework/classes/DataAnalyzer/DataAnalyzer.cpp.i
 
-framework/classes/DataAnalyser/DataAnalyser.s: framework/classes/DataAnalyser/DataAnalyser.cpp.s
-.PHONY : framework/classes/DataAnalyser/DataAnalyser.s
+framework/classes/DataAnalyzer/DataAnalyzer.s: framework/classes/DataAnalyzer/DataAnalyzer.cpp.s
+.PHONY : framework/classes/DataAnalyzer/DataAnalyzer.s
 
 # target to generate assembly for a file
-framework/classes/DataAnalyser/DataAnalyser.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/framework/classes/DataAnalyser/DataAnalyser.cpp.s
-.PHONY : framework/classes/DataAnalyser/DataAnalyser.cpp.s
+framework/classes/DataAnalyzer/DataAnalyzer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project.dir/build.make CMakeFiles/project.dir/framework/classes/DataAnalyzer/DataAnalyzer.cpp.s
+.PHONY : framework/classes/DataAnalyzer/DataAnalyzer.cpp.s
 
 framework/classes/Directories/Directories.o: framework/classes/Directories/Directories.cpp.o
 .PHONY : framework/classes/Directories/Directories.o
@@ -642,21 +642,21 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... project"
-	@echo "... Old_Analysers/DetectorSimulationAnalyser.o"
-	@echo "... Old_Analysers/DetectorSimulationAnalyser.i"
-	@echo "... Old_Analysers/DetectorSimulationAnalyser.s"
-	@echo "... Old_Analysers/TruthLevelAnalyser.o"
-	@echo "... Old_Analysers/TruthLevelAnalyser.i"
-	@echo "... Old_Analysers/TruthLevelAnalyser.s"
+	@echo "... Old_Analyzers/DetectorSimulationAnalyzer.o"
+	@echo "... Old_Analyzers/DetectorSimulationAnalyzer.i"
+	@echo "... Old_Analyzers/DetectorSimulationAnalyzer.s"
+	@echo "... Old_Analyzers/TruthLevelAnalyzer.o"
+	@echo "... Old_Analyzers/TruthLevelAnalyzer.i"
+	@echo "... Old_Analyzers/TruthLevelAnalyzer.s"
 	@echo "... framework/classes/AMaps/AMaps.o"
 	@echo "... framework/classes/AMaps/AMaps.i"
 	@echo "... framework/classes/AMaps/AMaps.s"
 	@echo "... framework/classes/DEfficiency/DEfficiency.o"
 	@echo "... framework/classes/DEfficiency/DEfficiency.i"
 	@echo "... framework/classes/DEfficiency/DEfficiency.s"
-	@echo "... framework/classes/DataAnalyser/DataAnalyser.o"
-	@echo "... framework/classes/DataAnalyser/DataAnalyser.i"
-	@echo "... framework/classes/DataAnalyser/DataAnalyser.s"
+	@echo "... framework/classes/DataAnalyzer/DataAnalyzer.o"
+	@echo "... framework/classes/DataAnalyzer/DataAnalyzer.i"
+	@echo "... framework/classes/DataAnalyzer/DataAnalyzer.s"
 	@echo "... framework/classes/Directories/Directories.o"
 	@echo "... framework/classes/Directories/Directories.i"
 	@echo "... framework/classes/Directories/Directories.s"

@@ -2,9 +2,9 @@
 // Created by alons on 05/04/2025.
 //
 
-// #ifndef RECOANALYSER_H
-// #define RECOANALYSER_H
-#ifdef RECOANALYSER_H
+// #ifndef RECOANALYZER_H
+// #define RECOANALYZER_H
+#ifdef RECOANALYZER_H
 
     #pragma region /* Includes */
 
@@ -43,13 +43,13 @@ using namespace utilities;
 using namespace draw_and_save_functions;
     #pragma endregion
 
-class RecoAnalyser {
+class RecoAnalyzer {
    public:
-    // RecoAnalyser constructor ---------------------------------------------------------------------------------------------------------------------------------------------
+    // RecoAnalyzer constructor ---------------------------------------------------------------------------------------------------------------------------------------------
 
-    RecoAnalyser(const std::string &AnalyzeFilePath, const std::string &AnalyzeFileSample, const std::string &AnalyzeFile);
+    RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string &AnalyzeFileSample, const std::string &AnalyzeFile);
 
-    ~RecoAnalyser() = default;
+    ~RecoAnalyzer() = default;
 };
 
-#endif  // RECOANALYSER_H
+#endif  // RECOANALYZER_H
