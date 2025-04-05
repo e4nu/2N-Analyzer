@@ -9748,34 +9748,35 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
         /* All of these particles are with clas12ana cuts. Only cuts missing are momentum and beta(?) cuts - to be applied later */
         vector<region_part_ptr> neutrons, protons, Kplus, Kminus, piplus, piminus, electrons, deuterons, neutrals, otherpart;
+        pid.SetEventParticles(CutSettings.clas12ana_particles, clasAna, c12, neutrons, protons, Kplus, Kminus, piplus, piminus, electrons, deuterons, neutrals, otherpart);
 
-        if (clas12ana_particles) {
-            // Get particle outside from clas12ana:
-            neutrons = clasAna.getByPid(2112);  // Neutrons
-            protons = clasAna.getByPid(2212);   // Protons
-            Kplus = clasAna.getByPid(321);      // K+
-            Kminus = clasAna.getByPid(-321);    // K-
-            piplus = clasAna.getByPid(211);     // pi+
-            piminus = clasAna.getByPid(-211);   // pi-
-            electrons = clasAna.getByPid(11);   // Electrons
+        // if (clas12ana_particles) {
+        //     // Get particle outside from clas12ana:
+        //     neutrons = clasAna.getByPid(2112);  // Neutrons
+        //     protons = clasAna.getByPid(2212);   // Protons
+        //     Kplus = clasAna.getByPid(321);      // K+
+        //     Kminus = clasAna.getByPid(-321);    // K-
+        //     piplus = clasAna.getByPid(211);     // pi+
+        //     piminus = clasAna.getByPid(-211);   // pi-
+        //     electrons = clasAna.getByPid(11);   // Electrons
 
-            deuterons = clasAna.getByPid(45);   // Deuterons
-            neutrals = clasAna.getByPid(0);     // Unidentified
-            otherpart = clasAna.getByPid(311);  // Other particles
-        } else {
-            // Get particle outside of clas12ana:
-            neutrons = c12->getByID(2112);  // Neutrons
-            protons = c12->getByID(2212);   // Protons
-            Kplus = c12->getByID(321);      // K+
-            Kminus = c12->getByID(-321);    // K-
-            piplus = c12->getByID(211);     // pi+
-            piminus = c12->getByID(-211);   // pi-
-            electrons = c12->getByID(11);   // Electrons
+        //     deuterons = clasAna.getByPid(45);   // Deuterons
+        //     neutrals = clasAna.getByPid(0);     // Unidentified
+        //     otherpart = clasAna.getByPid(311);  // Other particles
+        // } else {
+        //     // Get particle outside of clas12ana:
+        //     neutrons = c12->getByID(2112);  // Neutrons
+        //     protons = c12->getByID(2212);   // Protons
+        //     Kplus = c12->getByID(321);      // K+
+        //     Kminus = c12->getByID(-321);    // K-
+        //     piplus = c12->getByID(211);     // pi+
+        //     piminus = c12->getByID(-211);   // pi-
+        //     electrons = c12->getByID(11);   // Electrons
 
-            deuterons = c12->getByID(45);   // Deuterons
-            neutrals = c12->getByID(0);     // Unidentified
-            otherpart = c12->getByID(311);  // Other particles
-        }
+        //     deuterons = c12->getByID(45);   // Deuterons
+        //     neutrals = c12->getByID(0);     // Unidentified
+        //     otherpart = c12->getByID(311);  // Other particles
+        // }
 
         int Nn = neutrons.size(), Np = protons.size(), Nkp = Kplus.size(), Nkm = Kminus.size(), Npip = piplus.size(), Npim = piminus.size(), Ne = electrons.size();
         int Nd = deuterons.size(), Nneut = neutrals.size(), No = otherpart.size();
