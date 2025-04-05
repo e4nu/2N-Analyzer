@@ -31,18 +31,20 @@
     #include <typeinfo>
     #include <vector>
 
-    // #include "clas12reader.h"
-    #include "../../includes/clas12_include.h"
+    // Include libraries:
+    #include "../../namespaces/general_utilities/utilities.h"
 
+    // Include classes:
+    #include "../DSCuts/DSCuts.h"
     #if MomResDebugMacro
         #include "../hData/hData.cpp"
         #include "../hPlots/hPlot1D.cpp"
     #else
         #include "../hPlots/hPlot1D.cpp"
     #endif
-
-    #include "../../namespaces/general_utilities/utilities.h"
-    #include "../DSCuts/DSCuts.h"
+    
+    // Include CLAS12 libraries:
+    #include "../../includes/clas12_include.h"
 
 using namespace utilities;
 

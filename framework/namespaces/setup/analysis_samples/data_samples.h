@@ -5,6 +5,8 @@
 #ifndef DATA_SAMPLES_H
 #define DATA_SAMPLES_H
 
+#include <iostream>
+#include <string>
 #include <vector>
 
 namespace data_samples {

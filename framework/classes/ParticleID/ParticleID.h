@@ -13,24 +13,21 @@
     #include <map>
     #include <vector>
 
+    // Include libraries:
     #include "../../namespaces/general_utilities/analysis_math/analysis_math.h"
     #include "../../namespaces/general_utilities/constants.h"
     #include "../../namespaces/general_utilities/reco_analysis_functions.h"
+
+    // Include classes:
     #include "../DSCuts/DSCuts.h"
+    #include "../MomentumResolution/MomentumResolution.cpp"
     #include "../clas12ana/clas12ana.h"
     #include "../hPlots/hPlot1D.cpp"
     #include "../hPlots/hPlot2D.cpp"
-//
-// #include "clas12reader.h"
-// #include "region_particle.h"
 
+    // Include CLAS12 libraries:
     #include "../../includes/clas12_include.h"
 
-    #if !defined(MOMENTUMRESOLUTION_H)
-        #include "../MomentumResolution/MomentumResolution.cpp"
-    #endif
-
-// using namespace clas12;
 using namespace constants;
 
 class ParticleID {

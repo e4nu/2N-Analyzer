@@ -8,11 +8,14 @@
 #include <map>
 #include <vector>
 
-#include "clas12reader.h"
-#include "region_particle.h"
+// Include CLAS12 libraries:
+#include "../../includes/clas12_include.h"  // My addition!
+
+// #include "clas12reader.h" // My edit!
+// #include "region_particle.h" // My edit!
 
 using namespace std;
-using namespace clas12;
+// using namespace clas12; // My edit!
 
 struct cutpar {
     std::string id;

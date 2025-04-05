@@ -1,9 +1,12 @@
 #include <iostream>
 
+// Include setup:
 #include "framework/namespaces/setup/code_setup.h"
-//
+
+// Include libraries:
 #include "framework/namespaces/general_utilities/basic_tools.h"
-//
+
+// Include classes:
 #include "framework/classes/DataAnalyzer/DataAnalyzer.cpp"
 
 using namespace code_setup;
@@ -33,13 +36,13 @@ int main() {
 
         cout << "\033[33mFileType:\033[0m\t\t" << FileType << "\n";
 
-        // DataAnalyzer Analysis(FileType, AnalyzeFilePath0, AnalyzeFileSample0, AnalyzeFile0);
-        // std::string AnalyzerMode = Analysis.ConfigureAnalyzerMode(FileType);
+        DataAnalyzer Analysis(FileType, AnalyzeFilePath0, AnalyzeFileSample0, AnalyzeFile0);
+        std::string AnalyzerMode = Analysis.ConfigureAnalyzerMode(FileType);
 
-        // cout << "\033[33mAnalyzer mode:\033[0m\t'" << AnalyzerMode << "'\n";
+        cout << "\033[33mAnalyzer mode:\033[0m\t'" << AnalyzerMode << "'\n";
 
         cout << "\033[33m\n---------------------------------------------------------------------------\n\n\033[0m";
-        // cout << "\033[33mAnalysis mode:\033[0m\t'" << AnalyzerMode << "'" << "\n";
+        cout << "\033[33mAnalysis mode:\033[0m\t'" << AnalyzerMode << "'" << "\n";
         cout << "\033[33mCode version:\033[0m\t" << Ver << "\n";
 
         ++Num_of_Analyzed_samples;

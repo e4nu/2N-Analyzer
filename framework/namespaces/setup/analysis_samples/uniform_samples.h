@@ -5,6 +5,8 @@
 #ifndef UNIFORM_SAMPLES_H
 #define UNIFORM_SAMPLES_H
 
+#include <iostream>
+#include <string>
 #include <vector>
 
 namespace uniform_samples {

@@ -7,9 +7,6 @@
 
 #include "hPlot1D.h"
 
-// #include "../../namespaces/general_utilities/utilities.h"
-// #include "../../functions/GeneralFunctions.h"
-
 // Constructor definition -----------------------------------------------------------------------------------------------------------------------------------------------
 
 hPlot1D::hPlot1D(std::string h1DtReactions, std::string fState, std::string dRegion, std::string hst, std::string ht, std::string xat, double LowerXlim, double UpperXlim, int hnob) {

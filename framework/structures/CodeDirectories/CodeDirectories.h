@@ -5,6 +5,7 @@
 #ifndef CODEDIRECTORIES_H
 #define CODEDIRECTORIES_H
 
+#include <iostream>
 #include <string>
 
 #include "../../namespaces/general_utilities/basic_tools.h"
