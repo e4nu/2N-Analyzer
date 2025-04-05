@@ -1,5 +1,5 @@
 //
-// Created by alons on 20/06/2023.
+// Created by Alon Sportes on 20/06/2023.
 //
 
 // #ifndef MOMENTUMRESOLUTION_H

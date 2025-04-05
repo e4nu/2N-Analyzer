@@ -1,5 +1,5 @@
 //
-// Created by alons on 14/05/2023.
+// Created by Alon Sportes on 14/05/2023.
 //
 
 #ifndef PLOTSEFF2X3_H

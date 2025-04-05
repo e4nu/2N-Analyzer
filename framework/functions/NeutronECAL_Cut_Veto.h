@@ -1,5 +1,5 @@
 //
-// Created by alons on 13/04/2023.
+// Created by Alon Sportes on 13/04/2023.
 //
 
 #ifndef NEUTRONECAL_CUT_VETO_H

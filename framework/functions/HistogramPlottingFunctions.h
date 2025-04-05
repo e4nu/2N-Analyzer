@@ -1,5 +1,5 @@
 //
-// Created by alons on 27/01/2023.
+// Created by Alon Sportes on 27/01/2023.
 //
 
 #ifndef HISTOGRAMPLOTTINGFUNCTIONS_H

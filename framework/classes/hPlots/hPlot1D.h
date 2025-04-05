@@ -1,5 +1,5 @@
 //
-// Created by alons on 14/02/2023.
+// Created by Alon Sportes on 14/02/2023.
 //
 
 // #ifndef HPLOT1D_H

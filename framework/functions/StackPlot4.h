@@ -1,5 +1,5 @@
 //
-// Created by alons on 12/05/2023.
+// Created by Alon Sportes on 12/05/2023.
 //
 
 #ifndef STACKPLOT4_H

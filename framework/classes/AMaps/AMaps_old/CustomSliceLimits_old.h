@@ -1,5 +1,5 @@
 //
-// Created by alons on 20/02/2024.
+// Created by Alon Sportes on 20/02/2024.
 //
 
 #ifndef CUSTOMSLICELIMITS_H
