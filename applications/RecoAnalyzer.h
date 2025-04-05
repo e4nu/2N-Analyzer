@@ -20,7 +20,7 @@
 
     // Include settings:
     #include "../framework/structures/AcceptanceMapsSettings/AcceptanceMapsSettings.h"
-    #include "../framework/structures/AnalysisCutSettings/CutSettings.h"
+    #include "../framework/structures/AnalysisCutSettings/AnalysisCutSettings.h"
     #include "../framework/structures/CutValueManager/CutValueManager.h"
     #include "../framework/structures/EventSelectionSettings/EventSelectionSettings.h"
     #include "../framework/structures/MomentumResolutionSettings/MomentumResolutionSettings.h"
