@@ -1,4 +1,5 @@
 
+#pragma region /* Includes */
 #include "../framework/classes/AMaps/AMaps.cpp"
 #include "../framework/classes/DEfficiency/DEfficiency.cpp"
 #include "../framework/classes/DSCuts/DSCuts.h"
@@ -23,6 +24,7 @@
 // using namespace clas12;
 using namespace utilities;
 using namespace draw_and_save_functions;
+#pragma endregion
 
 void RecoEventAnalyser(const std::string &AnalyzeFilePath, const std::string &AnalyzeFileSample, const std::string &AnalyzeFile) {
     debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode);
@@ -37,7 +39,8 @@ void RecoEventAnalyser(const std::string &AnalyzeFilePath, const std::string &An
     //                                                                         Code setup                                                                               //
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    // Code setup
+#pragma region /* Code setup */
+
     Settings settings;
     ParticleID pid;
 
@@ -1129,14 +1132,15 @@ void RecoEventAnalyser(const std::string &AnalyzeFilePath, const std::string &An
         EventPrint << "#event upper bound:\t\t" << nEvents2print << "\n\n\n\033[0m";
     }
 
+#pragma endregion
+
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //                                                                      Histogram definitions                                                                          //
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode);
+#pragma region /* Histogram definitions */
 
-    // Histogram definitions
-    /* Histogram definitions and setup. */
+    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode);
 
     std::cout << "\033[33m\nDefining histograms...\033[0m";
 
@@ -9456,16 +9460,19 @@ void RecoEventAnalyser(const std::string &AnalyzeFilePath, const std::string &An
 
     std::cout << "\033[33m done.\n\n\033[0m";
 
+#pragma endregion
+
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //                                                                         Code execution                                                                              //
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+#pragma region /* Code execution */
+
     debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode);
 
-    // Code execution
     std::cout << "\033[33m\nReading target parameter files...\n\n\033[0m";
 
-    // Setting and loading cuts (via clas12ana)
+    #pragma region /* Setting and loading cuts (via clas12ana) */
     clas12ana clasAna;
 
     if (apply_cuts) {
@@ -9665,6 +9672,8 @@ void RecoEventAnalyser(const std::string &AnalyzeFilePath, const std::string &An
             }
         }
     }
+
+    #pragma endregion
 
     // Setting HipoChain
     std::cout << "\033[33m\n\nSetting HipoChain...\n\n\033[0m";
@@ -9975,6 +9984,8 @@ void RecoEventAnalyser(const std::string &AnalyzeFilePath, const std::string &An
 
         //  Filling truth level histograms (lundfile loop) ----------------------------------------------------------------------------------------------------------------------
 
+        #pragma region /* Truth-level analysis */
+        
         // TODO: confirm that the TL kin cuts are working!
 
         // Filling truth level histograms (lundfile loop)
@@ -11227,6 +11238,8 @@ void RecoEventAnalyser(const std::string &AnalyzeFilePath, const std::string &An
                 }  // end of if id. TL leading neutron
             }
         }
+
+        #pragma endregion
 
         //  Fill All particles (All e) plots ------------------------------------------------------------------------------------------------------------------------------------
 
@@ -16235,11 +16248,13 @@ void RecoEventAnalyser(const std::string &AnalyzeFilePath, const std::string &An
     }  // end of while
     // </editor-fold>
 
+#pragma endregion
+
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //                                                                        Histograms plots                                                                             //
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    // Histograms plots
+#pragma region /* Histograms plots */
 
     // ======================================================================================================================================================================
     // Canvas definitions
@@ -21897,11 +21912,13 @@ void RecoEventAnalyser(const std::string &AnalyzeFilePath, const std::string &An
         std::cout << "\033[33m\n\nMultiplicity plots are disabled by user.\n\n\033[0m";
     }
 
+#pragma endregion
+
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //                                                          Saving histogram list and finishing execution                                                              //
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    // Saving and finishing execution
+#pragma region /* Saving histogram list and finishing execution */
 
     // Saving proton pid cuts to .par file ----------------------------------------------------------------------------------------------------------------------------------
 
@@ -22886,4 +22903,7 @@ void RecoEventAnalyser(const std::string &AnalyzeFilePath, const std::string &An
         system(("zip -r " + zip_input + " " + zip_output_path).c_str());
         // system(("mv -r " + run_plots_path + "/" + settings.GetRun_dir_name() + "/" + settings.GetRun_dir_name() + ".zip " + run_plots_path).c_str());
     }
+
+#pragma endregion
+
 }
