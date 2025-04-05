@@ -33,8 +33,8 @@ int main() {
 
         cout << "\033[33mFileType:\033[0m\t\t" << FileType << "\n";
 
-        DataAnalyzer Analysis(FileType, AnalyzeFilePath0, AnalyzeFileSample0, AnalyzeFile0);
-        std::string AnalyzerMode = Analysis.ConfigureAnalyzerMode(FileType);
+        // DataAnalyzer Analysis(FileType, AnalyzeFilePath0, AnalyzeFileSample0, AnalyzeFile0);
+        // std::string AnalyzerMode = Analysis.ConfigureAnalyzerMode(FileType);
 
         cout << "\033[33mAnalyzer mode:\033[0m\t'" << AnalyzerMode << "'\n";
 
