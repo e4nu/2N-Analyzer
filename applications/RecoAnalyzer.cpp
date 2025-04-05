@@ -310,7 +310,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     // Cuts output
     /* Print out the cuts within the run (for self-observation) */
-    if (!CutSettings.apply_cuts) {
+    if (!/* CutSettings. */apply_cuts) {
         std::cout << "\033[33mCuts are disabled:\n";
     } else {
         std::cout << "\033[33mCuts are enabled:\n";
@@ -916,19 +916,19 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     double dV_boundary_CD = dV_boundary, dV_uboundary_CD = dV_uboundary, dV_lboundary_CD = dV_lboundary;
 
     if (/* CutSettings. */apply_cuts) {
-        double dVertex_boundary = /* CutManager. */.Vz_cut.GetUpperCut() - /* CutManager. */.Vz_cut.GetLowerCut();
-        double dVertex_boundary_FD = /* CutManager. */.Vz_cut_FD.GetUpperCut() - /* CutManager. */.Vz_cut_FD.GetLowerCut(),
-               dVertex_boundary_CD = /* CutManager. */.Vz_cut_CD.GetUpperCut() - /* CutManager. */.Vz_cut_CD.GetLowerCut();
-        double ddV_boundary = /* CutManager. */.dVz_cuts.GetUpperCut() - /* CutManager. */.dVz_cuts.GetLowerCut();
-        double ddV_boundary_FD = /* CutManager. */.dVz_cuts_FD.GetUpperCut() - /* CutManager. */.dVz_cuts_FD.GetLowerCut(),
-               ddV_boundary_CD = /* CutManager. */.dVz_cuts_CD.GetUpperCut() - /* CutManager. */.dVz_cuts_CD.GetLowerCut();
+        double dVertex_boundary = /* CutManager. */Vz_cut.GetUpperCut() - /* CutManager. */Vz_cut.GetLowerCut();
+        double dVertex_boundary_FD = /* CutManager. */Vz_cut_FD.GetUpperCut() - /* CutManager. */Vz_cut_FD.GetLowerCut(),
+               dVertex_boundary_CD = /* CutManager. */Vz_cut_CD.GetUpperCut() - /* CutManager. */Vz_cut_CD.GetLowerCut();
+        double ddV_boundary = /* CutManager. */dVz_cuts.GetUpperCut() - /* CutManager. */dVz_cuts.GetLowerCut();
+        double ddV_boundary_FD = /* CutManager. */dVz_cuts_FD.GetUpperCut() - /* CutManager. */dVz_cuts_FD.GetLowerCut(),
+               ddV_boundary_CD = /* CutManager. */dVz_cuts_CD.GetUpperCut() - /* CutManager. */dVz_cuts_CD.GetLowerCut();
 
-        Vertex_uboundary = /* CutManager. */.Vz_cut.GetUpperCut() + 0.2 * dVertex_boundary, Vertex_lboundary = /* CutManager. */.Vz_cut.GetLowerCut() - 0.1 * dVertex_boundary;
-        Vertex_uboundary_FD = /* CutManager. */.Vz_cut_FD.GetUpperCut() + 0.2 * dVertex_boundary_FD, Vertex_lboundary_FD = /* CutManager. */.Vz_cut_FD.GetLowerCut() - 0.1 * dVertex_boundary_FD;
-        Vertex_uboundary_CD = /* CutManager. */.Vz_cut_CD.GetUpperCut() + 0.2 * dVertex_boundary_CD, Vertex_lboundary_CD = /* CutManager. */.Vz_cut_CD.GetLowerCut() - 0.1 * dVertex_boundary_CD;
-        dV_uboundary = /* CutManager. */.dVz_cuts.GetUpperCut() + 0.2 * ddV_boundary, dV_lboundary = /* CutManager. */.dVz_cuts.GetLowerCut() - 0.1 * ddV_boundary;
-        dV_uboundary_FD = /* CutManager. */.dVz_cuts_FD.GetUpperCut() + 0.2 * ddV_boundary_FD, dV_lboundary_FD = /* CutManager. */.dVz_cuts_FD.GetLowerCut() - 0.1 * ddV_boundary_FD;
-        dV_uboundary_CD = /* CutManager. */.dVz_cuts_CD.GetUpperCut() + 0.2 * ddV_boundary_CD, dV_lboundary_CD = /* CutManager. */.dVz_cuts_CD.GetLowerCut() - 0.1 * ddV_boundary_CD;
+        Vertex_uboundary = /* CutManager. */Vz_cut.GetUpperCut() + 0.2 * dVertex_boundary, Vertex_lboundary = /* CutManager. */Vz_cut.GetLowerCut() - 0.1 * dVertex_boundary;
+        Vertex_uboundary_FD = /* CutManager. */Vz_cut_FD.GetUpperCut() + 0.2 * dVertex_boundary_FD, Vertex_lboundary_FD = /* CutManager. */Vz_cut_FD.GetLowerCut() - 0.1 * dVertex_boundary_FD;
+        Vertex_uboundary_CD = /* CutManager. */Vz_cut_CD.GetUpperCut() + 0.2 * dVertex_boundary_CD, Vertex_lboundary_CD = /* CutManager. */Vz_cut_CD.GetLowerCut() - 0.1 * dVertex_boundary_CD;
+        dV_uboundary = /* CutManager. */dVz_cuts.GetUpperCut() + 0.2 * ddV_boundary, dV_lboundary = /* CutManager. */dVz_cuts.GetLowerCut() - 0.1 * ddV_boundary;
+        dV_uboundary_FD = /* CutManager. */dVz_cuts_FD.GetUpperCut() + 0.2 * ddV_boundary_FD, dV_lboundary_FD = /* CutManager. */dVz_cuts_FD.GetLowerCut() - 0.1 * ddV_boundary_FD;
+        dV_uboundary_CD = /* CutManager. */dVz_cuts_CD.GetUpperCut() + 0.2 * ddV_boundary_CD, dV_lboundary_CD = /* CutManager. */dVz_cuts_CD.GetLowerCut() - 0.1 * ddV_boundary_CD;
 
         Vertex_boundary = 8., Vertex_boundary_FD = 8., Vertex_boundary_CD = 8.;
         dV_boundary = 8., dV_boundary_FD = 8., dV_boundary_CD = 8.;
@@ -945,9 +945,9 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     double P_nucCD_lboundary = 0., P_nucCD_uboundary = /* parameters. */beamE / 2;                      // CD nucleons (pFDpCD & nFDpCD)
 
     if (/* CutSettings. */apply_kinematical_cuts) {
-        P_nucFD_lboundary = /* CutManager. */.FD_nucleon_momentum_cut.GetLowerCut(), P_nucFD_uboundary = /* CutManager. */.FD_nucleon_momentum_cut.GetUpperCut() * 1.1;
+        P_nucFD_lboundary = /* CutManager. */FD_nucleon_momentum_cut.GetLowerCut(), P_nucFD_uboundary = /* CutManager. */FD_nucleon_momentum_cut.GetUpperCut() * 1.1;
         P_nucCD_lboundary = 0.4, P_nucCD_uboundary = 2.5;  // CD nucleons (pFDpCD & nFDpCD)
-        FDMomentum_lboundary = /* CutManager. */.FD_nucleon_momentum_cut.GetLowerCut() * 0.8, FDMomentum_uboundary = /* CutManager. */.FD_nucleon_momentum_cut.GetUpperCut() * 1.2;
+        FDMomentum_lboundary = /* CutManager. */FD_nucleon_momentum_cut.GetLowerCut() * 0.8, FDMomentum_uboundary = /* CutManager. */FD_nucleon_momentum_cut.GetUpperCut() * 1.2;
         // FD nucleons (1nFD, 1pFD,
         // pFDpCD and nFDpCD)
         /* FDMomentum_lboundary, FDMomentum_uboundary */
@@ -1085,11 +1085,11 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     MomentumResolution nRes("Neutron"), pRes("Proton");
 
     nRes.MomResInit(/* MomResSettings. */plot_and_fit_MomRes, /* MomResSettings. */Calculate_momResS2, /* MomResSettings. */Run_with_momResS2, /* parameters. */VaryingSampleName,
-                    path_definitions::PathDefinitions.NucleonCutsDirectory, /* parameters. */beamE, /* CutManager. */.MomRes_mu_cuts, /* CutManager. */.MomRes_sigma_cuts, /* CutManager. */.n_mom_th.GetLowerCut(),
+                    path_definitions::PathDefinitions.NucleonCutsDirectory, /* parameters. */beamE, /* CutManager. */MomRes_mu_cuts, /* CutManager. */MomRes_sigma_cuts, /* CutManager. */n_mom_th.GetLowerCut(),
                     path_definitions::PathDefinitions.MomentumResolutionDirectory, directories.Resolution_Directory_map["nRes_plots_1n_Directory"], /* MomResSettings. */DeltaSlices,
                     /* MomResSettings. */VaryingDelta, /* MomResSettings. */SmearMode, /* MomResSettings. */CorrMode, /* MomResSettings. */momRes_test);
     pRes.MomResInit(/* MomResSettings. */plot_and_fit_MomRes, /* MomResSettings. */Calculate_momResS2, /* MomResSettings. */Run_with_momResS2, /* parameters. */VaryingSampleName,
-                    path_definitions::PathDefinitions.NucleonCutsDirectory, /* parameters. */beamE, /* CutManager. */.MomRes_mu_cuts, /* CutManager. */.MomRes_sigma_cuts, /* CutManager. */.p_mom_th.GetLowerCut(),
+                    path_definitions::PathDefinitions.NucleonCutsDirectory, /* parameters. */beamE, /* CutManager. */MomRes_mu_cuts, /* CutManager. */MomRes_sigma_cuts, /* CutManager. */p_mom_th.GetLowerCut(),
                     path_definitions::PathDefinitions.MomentumResolutionDirectory, directories.Resolution_Directory_map["pRes_plots_1p_Directory"], /* MomResSettings. */DeltaSlices,
                     /* MomResSettings. */VaryingDelta, /* MomResSettings. */SmearMode, /* MomResSettings. */CorrMode, /* MomResSettings. */momRes_test, /* MomResSettings. */ForceSmallpResLimits);
 
@@ -8170,10 +8170,10 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                                     "01b_TL_P_e_used_in_AMaps", Momentum_lboundary, Momentum_uboundary, numTH1Dbins);
     hPlot1D hReco_Theta_e_AMaps =
         hPlot1D("1e cut", "FD", "Reco #theta_{e} used in AMaps", "Reco #theta_{e} used in AMaps", "#theta_{e} [#circ]", directories.AMaps_Directory_map["AMaps_1e_cut_Directory"],
-                "01c_Reco_Theta_e_used_in_AMaps", /* CutManager. */.ThetaFD_AMaps.GetLowerCut(), /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH1Dbins);
+                "01c_Reco_Theta_e_used_in_AMaps", /* CutManager. */ThetaFD_AMaps.GetLowerCut(), /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH1Dbins);
     hPlot1D hTL_Theta_e_AMaps =
         hPlot1D("1e cut", "FD", "TL #theta_{e} used in AMaps", "TL #theta_{e} used in AMaps", "#theta_{e} [#circ]", directories.AMaps_Directory_map["AMaps_1e_cut_Directory"],
-                "01d_TL_Theta_e_used_in_AMaps", /* CutManager. */.ThetaFD_AMaps.GetLowerCut(), /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH1Dbins);
+                "01d_TL_Theta_e_used_in_AMaps", /* CutManager. */ThetaFD_AMaps.GetLowerCut(), /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH1Dbins);
     hPlot1D hReco_Phi_e_AMaps = hPlot1D("1e cut", "FD", "Reco #phi_{e} used in AMaps", "Reco #phi_{e} used in AMaps", "#phi_{e} [#circ]",
                                         directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "01e_Reco_Phi_e_used_in_AMaps", Phi_lboundary, Phi_uboundary, numTH1Dbins);
     hPlot1D hTL_Phi_e_AMaps = hPlot1D("1e cut", "FD", "TL #phi_{e} used in AMaps", "TL #phi_{e} used in AMaps", "#phi_{e} [#circ]", directories.AMaps_Directory_map["AMaps_1e_cut_Directory"],
@@ -8181,21 +8181,21 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     hPlot2D hReco_P_e_vs_Reco_Theta_e_AMap =
         hPlot2D("", "", "Reco_P_e_vs_Reco_Theta_e_AMap", "Reco P_{e} vs. Reco #theta_{e} used in AMaps", "P_{e} [GeV/c]", "#theta_{e} [#circ]",
                 directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "01aa_Reco_P_e_vs_Reco_Theta_e_AMap", Momentum_lboundary, Momentum_uboundary,
-                /* CutManager. */.ThetaFD_AMaps.GetLowerCut(), /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                /* CutManager. */ThetaFD_AMaps.GetLowerCut(), /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_P_e_vs_Reco_Phi_e_AMap = hPlot2D("", "", "Reco_P_e_vs_Reco_Phi_e_AMap", "Reco P_{e} vs. Reco #phi_{e} used in AMaps", "P_{e} [GeV/c]", "#phi_{e} [#circ]",
                                                    directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "01ab_Reco_P_e_vs_Reco_Phi_e_AMap", Momentum_lboundary, Momentum_uboundary,
                                                    Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_P_e_vs_TL_Theta_e_AMap =
         hPlot2D("", "", "Reco_P_e_vs_TL_Theta_e_AMap", "Reco P_{e} vs. TL #theta_{e} used in AMaps", "P_{e} [GeV/c]", "#theta_{e} [#circ]",
-                directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "01ba_Reco_P_e_vs_TL_Theta_e_AMap", Momentum_lboundary, Momentum_uboundary, /* CutManager. */.ThetaFD_AMaps.GetLowerCut(),
-                /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "01ba_Reco_P_e_vs_TL_Theta_e_AMap", Momentum_lboundary, Momentum_uboundary, /* CutManager. */ThetaFD_AMaps.GetLowerCut(),
+                /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_P_e_vs_TL_Phi_e_AMap = hPlot2D("", "", "Reco_P_e_vs_TL_Phi_e_AMap", "Reco P_{e} vs. TL #phi_{e} used in AMaps", "P_{e} [GeV/c]", "#phi_{e} [#circ]",
                                                  directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "01bb_Reco_P_e_vs_TL_Phi_e_AMap", Momentum_lboundary, Momentum_uboundary,
                                                  Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hTL_P_e_vs_TL_Theta_e_AMap =
         hPlot2D("", "", "TL_P_e_vs_TL_Theta_e_AMap", "TL P_{e} vs. TL #theta_{e} used in AMaps", "P_{e} [GeV/c]", "#theta_{e} [#circ]",
-                directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "01ba_TL_P_e_vs_TL_Theta_e_AMap", Momentum_lboundary, Momentum_uboundary, /* CutManager. */.ThetaFD_AMaps.GetLowerCut(),
-                /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "01ba_TL_P_e_vs_TL_Theta_e_AMap", Momentum_lboundary, Momentum_uboundary, /* CutManager. */ThetaFD_AMaps.GetLowerCut(),
+                /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hTL_P_e_vs_TL_Phi_e_AMap =
         hPlot2D("", "", "TL_P_e_vs_TL_Phi_e_AMap", "TL P_{e} vs. TL #phi_{e} used in AMaps", "P_{e} [GeV/c]", "#phi_{e} [#circ]", directories.AMaps_Directory_map["AMaps_1e_cut_Directory"],
                 "01ab_TL_P_e_vs_TL_Phi_e_AMap", Momentum_lboundary, Momentum_uboundary, Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
@@ -8206,10 +8206,10 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                                       "02b_TL_P_pFD_used_in_AMaps", Momentum_lboundary, Momentum_uboundary, numTH1Dbins);
     hPlot1D hReco_Theta_pFD_AMaps =
         hPlot1D("1e cut", "FD", "Reco #theta_{pFD} used in AMaps", "Reco #theta_{pFD} used in AMaps", "#theta_{pFD} [#circ]", directories.AMaps_Directory_map["AMaps_1e_cut_Directory"],
-                "02c_Reco_Theta_pFD_used_in_AMaps", /* CutManager. */.ThetaFD_AMaps.GetLowerCut(), /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH1Dbins);
+                "02c_Reco_Theta_pFD_used_in_AMaps", /* CutManager. */ThetaFD_AMaps.GetLowerCut(), /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH1Dbins);
     hPlot1D hTL_Theta_pFD_AMaps =
         hPlot1D("1e cut", "FD", "TL #theta_{pFD} used in AMaps", "TL #theta_{pFD} used in AMaps", "#theta_{pFD} [#circ]", directories.AMaps_Directory_map["AMaps_1e_cut_Directory"],
-                "02d_TL_Theta_pFD_used_in_AMaps", /* CutManager. */.ThetaFD_AMaps.GetLowerCut(), /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH1Dbins);
+                "02d_TL_Theta_pFD_used_in_AMaps", /* CutManager. */ThetaFD_AMaps.GetLowerCut(), /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH1Dbins);
     hPlot1D hReco_Phi_pFD_AMaps = hPlot1D("1e cut", "FD", "Reco #phi_{pFD} used in AMaps", "Reco #phi_{pFD} used in AMaps", "#phi_{pFD} [#circ]",
                                           directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "01e_Reco_Phi_pFD_used_in_AMaps", -180, 180, numTH1Dbins);
     hPlot1D hTL_Phi_pFD_AMaps = hPlot1D("1e cut", "FD", "TL #phi_{pFD} used in AMaps", "TL #phi_{pFD} used in AMaps", "#phi_{pFD} [#circ]",
@@ -8217,14 +8217,14 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     hPlot2D hReco_P_pFD_vs_Reco_Theta_pFD_AMap =
         hPlot2D("", "", "Reco_P_pFD_vs_Reco_Theta_pFD_AMap", "Reco P_{pFD} vs. Reco #theta_{pFD} used in AMaps", "P_{pFD} [GeV/c]", "#theta_{pFD} [#circ]",
                 directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02aa_Reco_P_pFD_vs_Reco_Theta_pFD_AMap", Momentum_lboundary, Momentum_uboundary,
-                /* CutManager. */.ThetaFD_AMaps.GetLowerCut(), /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                /* CutManager. */ThetaFD_AMaps.GetLowerCut(), /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_P_pFD_vs_Reco_Phi_pFD_AMap = hPlot2D("", "", "Reco_P_pFD_vs_Reco_Phi_pFD_AMap", "Reco P_{pFD} vs. Reco #phi_{pFD} used in AMaps", "P_{pFD} [GeV/c]", "#phi_{pFD} [#circ]",
                                                        directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02ab_Reco_P_pFD_vs_Reco_Phi_pFD_AMap", Momentum_lboundary,
                                                        Momentum_uboundary, Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_P_pFD_vs_TL_Theta_pFD_AMap =
         hPlot2D("", "", "Reco_P_pFD_vs_TL_Theta_pFD_AMap", "Reco P_{pFD} vs. TL #theta_{pFD} used in AMaps", "P_{pFD} [GeV/c]", "#theta_{pFD} [#circ]",
                 directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02ac_Reco_P_pFD_vs_TL_Theta_pFD_AMap", Momentum_lboundary, Momentum_uboundary,
-                /* CutManager. */.ThetaFD_AMaps.GetLowerCut(), /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                /* CutManager. */ThetaFD_AMaps.GetLowerCut(), /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_P_pFD_vs_TL_Phi_pFD_AMap = hPlot2D("", "", "Reco_P_pFD_vs_TL_Phi_pFD_AMap", "Reco P_{pFD} vs. TL #phi_{pFD} used in AMaps", "P_{pFD} [GeV/c]", "#phi_{pFD} [#circ]",
                                                      directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02ad_Reco_P_pFD_vs_TL_Phi_pFD_AMap", Momentum_lboundary, Momentum_uboundary,
                                                      Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
@@ -8237,94 +8237,94 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     hPlot2D hReco_P_pFD_vs_Reco_Theta_e_AMap =
         hPlot2D("", "", "Reco_P_pFD_vs_Reco_Theta_e_AMap", "Reco P_{pFD} vs. Reco #theta_{e} used in AMaps", "P_{pFD} [GeV/c]", "#theta_{e} [#circ]",
                 directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02ag_Reco_P_pFD_vs_Reco_Theta_e_AMap", Momentum_lboundary, Momentum_uboundary,
-                /* CutManager. */.ThetaFD_AMaps.GetLowerCut(), /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                /* CutManager. */ThetaFD_AMaps.GetLowerCut(), /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_P_pFD_vs_Reco_Phi_e_AMap = hPlot2D("", "", "Reco_P_pFD_vs_Reco_Phi_e_AMap", "Reco P_{pFD} vs. Reco #phi_{e} used in AMaps", "P_{pFD} [GeV/c]", "#phi_{e} [#circ]",
                                                      directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02ah_Reco_P_pFD_vs_Reco_Phi_e_AMap", Momentum_lboundary, Momentum_uboundary,
                                                      Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_P_pFD_vs_TL_Theta_e_AMap =
         hPlot2D("", "", "Reco_P_pFD_vs_TL_Theta_e_AMap", "Reco P_{pFD} vs. TL #theta_{e} used in AMaps", "P_{pFD} [GeV/c]", "#theta_{e} [#circ]",
                 directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02ai_Reco_P_pFD_vs_TL_Theta_e_AMap", Momentum_lboundary, Momentum_uboundary,
-                /* CutManager. */.ThetaFD_AMaps.GetLowerCut(), /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                /* CutManager. */ThetaFD_AMaps.GetLowerCut(), /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_P_pFD_vs_TL_Phi_e_AMap = hPlot2D("", "", "Reco_P_pFD_vs_TL_Phi_e_AMap", "Reco P_{pFD} vs. TL #phi_{e} used in AMaps", "P_{pFD} [GeV/c]", "#phi_{e} [#circ]",
                                                    directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02aj_Reco_P_pFD_vs_TL_Phi_e_AMap", Momentum_lboundary, Momentum_uboundary,
                                                    Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hTL_P_pFD_vs_Reco_Theta_pFD_AMap =
         hPlot2D("", "", "TL_P_pFD_vs_Reco_Theta_pFD_AMap", "TL P_{pFD} vs. Reco #theta_{pFD} used in AMaps", "P_{pFD} [GeV/c]", "#theta_{pFD} [#circ]",
                 directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02ba_TL_P_pFD_vs_Reco_Theta_pFD_AMap", Momentum_lboundary, Momentum_uboundary,
-                /* CutManager. */.ThetaFD_AMaps.GetLowerCut(), /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                /* CutManager. */ThetaFD_AMaps.GetLowerCut(), /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hTL_P_pFD_vs_TL_Theta_pFD_AMap =
         hPlot2D("", "", "TL_P_pFD_vs_TL_Theta_pFD_AMap", "TL P_{pFD} vs. TL #theta_{pFD} used in AMaps", "P_{pFD} [GeV/c]", "#theta_{pFD} [#circ]",
                 directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02bb_TL_P_pFD_vs_TL_Theta_pFD_AMap", Momentum_lboundary, Momentum_uboundary,
-                /* CutManager. */.ThetaFD_AMaps.GetLowerCut(), /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                /* CutManager. */ThetaFD_AMaps.GetLowerCut(), /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hTL_P_pFD_vs_TL_Phi_pFD_AMap = hPlot2D("", "", "TL_P_pFD_vs_TL_Phi_pFD_AMap", "TL P_{pFD} vs. TL #phi_{pFD} used in AMaps", "P_{pFD} [GeV/c]", "#phi_{pFD} [#circ]",
                                                    directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02bc_TL_P_pFD_vs_TL_Phi_pFD_AMap", Momentum_lboundary, Momentum_uboundary,
                                                    Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hTL_P_pFD_vs_TL_P_e_AMap =
         hPlot2D("", "", "TL_P_pFD_vs_TL_P_e_AMap", "TL P_{pFD} vs. Reco P_{e} used in AMaps", "P_{pFD} [GeV/c]", "P_{e} [GeV/c]", directories.AMaps_Directory_map["AMaps_1e_cut_Directory"],
-                "02bd_TL_P_pFD_vs_TL_P_e_AMap", Momentum_lboundary, Momentum_uboundary, /* CutManager. */.ThetaFD_AMaps.GetLowerCut(), /* CutManager. */.ThetaFD_AMaps.GetUpperCut(),
+                "02bd_TL_P_pFD_vs_TL_P_e_AMap", Momentum_lboundary, Momentum_uboundary, /* CutManager. */ThetaFD_AMaps.GetLowerCut(), /* CutManager. */ThetaFD_AMaps.GetUpperCut(),
                 numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hTL_P_pFD_vs_Reco_Theta_e_AMap =
         hPlot2D("", "", "TL_P_pFD_vs_Reco_Theta_e_AMap", "TL P_{pFD} vs. Reco #theta_{e} used in AMaps", "P_{pFD} [GeV/c]", "#theta_{e} [#circ]",
                 directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02be_TL_P_pFD_vs_Reco_Theta_e_AMap", Momentum_lboundary, Momentum_uboundary,
-                /* CutManager. */.ThetaFD_AMaps.GetLowerCut(), /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                /* CutManager. */ThetaFD_AMaps.GetLowerCut(), /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hTL_P_pFD_vs_TL_Theta_e_AMap =
         hPlot2D("", "", "TL_P_pFD_vs_TL_Theta_e_AMap", "TL P_{pFD} vs. TL #theta_{e} used in AMaps", "P_{pFD} [GeV/c]", "#theta_{e} [#circ]",
-                directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02bf_TL_P_pFD_vs_TL_Theta_e_AMap", Momentum_lboundary, Momentum_uboundary, /* CutManager. */.ThetaFD_AMaps.GetLowerCut(),
-                /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02bf_TL_P_pFD_vs_TL_Theta_e_AMap", Momentum_lboundary, Momentum_uboundary, /* CutManager. */ThetaFD_AMaps.GetLowerCut(),
+                /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hTL_P_pFD_vs_TL_Phi_e_AMap = hPlot2D("", "", "TL_P_pFD_vs_TL_Phi_e_AMap", "TL P_{pFD} vs. TL #phi_{e} used in AMaps", "P_{pFD} [GeV/c]", "#phi_{e} [#circ]",
                                                  directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02bg_TL_P_pFD_vs_TL_Phi_e_AMap", Momentum_lboundary, Momentum_uboundary,
                                                  Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_Theta_pFD_vs_Reco_Phi_pFD_AMap =
         hPlot2D("", "", "Reco_Theta_pFD_vs_Reco_Phi_pFD_AMap", "Reco #theta_{pFD} vs. Reco #phi_{pFD} used in AMaps", "#theta_{pFD} [#circ]", "#phi_{pFD} [#circ]",
-                directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02ca_Reco_Theta_pFD_vs_Reco_Phi_pFD_AMap", /* CutManager. */.ThetaFD_AMaps.GetLowerCut(),
-                /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02ca_Reco_Theta_pFD_vs_Reco_Phi_pFD_AMap", /* CutManager. */ThetaFD_AMaps.GetLowerCut(),
+                /* CutManager. */ThetaFD_AMaps.GetUpperCut(), Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_Theta_pFD_vs_TL_Phi_pFD_AMap =
         hPlot2D("", "", "Reco_Theta_pFD_vs_TL_Phi_pFD_AMap", "Reco #theta_{pFD} vs. TL #phi_{pFD} used in AMaps", "#theta_{pFD} [#circ]", "#phi_{pFD} [#circ]",
-                directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02cb_Reco_Theta_pFD_vs_TL_Phi_pFD_AMap", /* CutManager. */.ThetaFD_AMaps.GetLowerCut(),
-                /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02cb_Reco_Theta_pFD_vs_TL_Phi_pFD_AMap", /* CutManager. */ThetaFD_AMaps.GetLowerCut(),
+                /* CutManager. */ThetaFD_AMaps.GetUpperCut(), Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_Theta_pFD_vs_Reco_P_e_AMap =
         hPlot2D("", "", "Reco_Theta_pFD_vs_Reco_P_e_AMap", "Reco #theta_{pFD} vs. Reco P_{e} used in AMaps", "#theta_{pFD} [#circ]", "P_{e} [GeV/c]",
-                directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02cc_Reco_Theta_pFD_vs_Reco_P_e_AMap", /* CutManager. */.ThetaFD_AMaps.GetLowerCut(),
-                /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), Momentum_lboundary, Momentum_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02cc_Reco_Theta_pFD_vs_Reco_P_e_AMap", /* CutManager. */ThetaFD_AMaps.GetLowerCut(),
+                /* CutManager. */ThetaFD_AMaps.GetUpperCut(), Momentum_lboundary, Momentum_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_Theta_pFD_vs_TL_P_e_AMap =
         hPlot2D("", "", "Reco_Theta_pFD_vs_TL_P_e_AMap", "Reco #theta_{pFD} vs. TL P_{e} used in AMaps", "#theta_{pFD} [#circ]", "P_{e} [GeV/c]",
-                directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02cd_Reco_Theta_pFD_vs_TL_P_e_AMap", /* CutManager. */.ThetaFD_AMaps.GetLowerCut(),
-                /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), Momentum_lboundary, Momentum_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02cd_Reco_Theta_pFD_vs_TL_P_e_AMap", /* CutManager. */ThetaFD_AMaps.GetLowerCut(),
+                /* CutManager. */ThetaFD_AMaps.GetUpperCut(), Momentum_lboundary, Momentum_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_Theta_pFD_vs_Reco_Theta_e_AMap = hPlot2D("", "", "Reco_Theta_pFD_vs_Reco_Theta_e_AMap", "Reco #theta_{pFD} vs. Reco #theta_{e} used in AMaps", "#theta_{pFD} [#circ]",
                                                            "#theta_{e} [#circ]", directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02ce_Reco_Theta_pFD_vs_Reco_Theta_e_AMap",
-                                                           /* CutManager. */.ThetaFD_AMaps.GetLowerCut(), /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), /* CutManager. */.ThetaFD_AMaps.GetLowerCut(),
-                                                           /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                                                           /* CutManager. */ThetaFD_AMaps.GetLowerCut(), /* CutManager. */ThetaFD_AMaps.GetUpperCut(), /* CutManager. */ThetaFD_AMaps.GetLowerCut(),
+                                                           /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_Theta_pFD_vs_Reco_Phi_e_AMap =
         hPlot2D("", "", "Reco_Theta_pFD_vs_Reco_Phi_e_AMap", "Reco #theta_{pFD} vs. Reco #phi_{e} used in AMaps", "#theta_{pFD} [#circ]", "#phi_{e} [#circ]",
-                directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02cf_Reco_Theta_pFD_vs_Reco_Phi_e_AMap", /* CutManager. */.ThetaFD_AMaps.GetLowerCut(),
-                /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02cf_Reco_Theta_pFD_vs_Reco_Phi_e_AMap", /* CutManager. */ThetaFD_AMaps.GetLowerCut(),
+                /* CutManager. */ThetaFD_AMaps.GetUpperCut(), Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_Theta_pFD_vs_TL_Theta_e_AMap = hPlot2D("", "", "Reco_Theta_pFD_vs_TL_Theta_e_AMap", "Reco #theta_{pFD} vs. TL #theta_{e} used in AMaps", "#theta_{pFD} [#circ]",
                                                          "#theta_{e} [#circ]", directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02cg_Reco_Theta_pFD_vs_TL_Theta_e_AMap",
-                                                         /* CutManager. */.ThetaFD_AMaps.GetLowerCut(), /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), /* CutManager. */.ThetaFD_AMaps.GetLowerCut(),
-                                                         /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                                                         /* CutManager. */ThetaFD_AMaps.GetLowerCut(), /* CutManager. */ThetaFD_AMaps.GetUpperCut(), /* CutManager. */ThetaFD_AMaps.GetLowerCut(),
+                                                         /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_Theta_pFD_vs_TL_Phi_e_AMap =
         hPlot2D("", "", "Reco_Theta_pFD_vs_TL_Phi_e_AMap", "Reco #theta_{pFD} vs. TL #phi_{e} used in AMaps", "#theta_{pFD} [#circ]", "#phi_{e} [#circ]",
-                directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02ch_Reco_Theta_pFD_vs_TL_Phi_e_AMap", /* CutManager. */.ThetaFD_AMaps.GetLowerCut(),
-                /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02ch_Reco_Theta_pFD_vs_TL_Phi_e_AMap", /* CutManager. */ThetaFD_AMaps.GetLowerCut(),
+                /* CutManager. */ThetaFD_AMaps.GetUpperCut(), Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hTL_Theta_pFD_vs_TL_Phi_pFD_AMap =
         hPlot2D("", "", "TL_Theta_pFD_vs_TL_Phi_pFD_AMap", "TL #theta_{pFD} vs. Reco #phi_{pFD} used in AMaps", "#theta_{pFD} [#circ]", "#phi_{pFD} [#circ]",
-                directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02da_TL_Theta_pFD_vs_TL_Phi_pFD_AMap", /* CutManager. */.ThetaFD_AMaps.GetLowerCut(),
-                /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02da_TL_Theta_pFD_vs_TL_Phi_pFD_AMap", /* CutManager. */ThetaFD_AMaps.GetLowerCut(),
+                /* CutManager. */ThetaFD_AMaps.GetUpperCut(), Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hTL_Theta_pFD_vs_TL_P_e_AMap =
         hPlot2D("", "", "TL_Theta_pFD_vs_TL_P_e_AMap", "TL #theta_{pFD} vs. Reco P_{e} used in AMaps", "#theta_{pFD} [#circ]", "P_{e} [GeV/c]",
-                directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02db_TL_Theta_pFD_vs_TL_P_e_AMap", /* CutManager. */.ThetaFD_AMaps.GetLowerCut(), /* CutManager. */.ThetaFD_AMaps.GetUpperCut(),
-                /* CutManager. */.ThetaFD_AMaps.GetLowerCut(), /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02db_TL_Theta_pFD_vs_TL_P_e_AMap", /* CutManager. */ThetaFD_AMaps.GetLowerCut(), /* CutManager. */ThetaFD_AMaps.GetUpperCut(),
+                /* CutManager. */ThetaFD_AMaps.GetLowerCut(), /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hTL_Theta_pFD_vs_Reco_Theta_e_AMap = hPlot2D("", "", "TL_Theta_pFD_vs_Reco_Theta_e_AMap", "TL #theta_{pFD} vs. Reco #theta_{e} used in AMaps", "#theta_{pFD} [#circ]",
                                                          "#theta_{e} [#circ]", directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02dc_TL_Theta_pFD_vs_Reco_Theta_e_AMap",
-                                                         /* CutManager. */.ThetaFD_AMaps.GetLowerCut(), /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), /* CutManager. */.ThetaFD_AMaps.GetLowerCut(),
-                                                         /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                                                         /* CutManager. */ThetaFD_AMaps.GetLowerCut(), /* CutManager. */ThetaFD_AMaps.GetUpperCut(), /* CutManager. */ThetaFD_AMaps.GetLowerCut(),
+                                                         /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hTL_Theta_pFD_vs_TL_Phi_e_AMap = hPlot2D("", "", "TL_Theta_pFD_vs_TL_Phi_e_AMap", "TL #theta_{pFD} vs. Reco #phi_{e} used in AMaps", "#theta_{pFD} [#circ]", "#phi_{e} [#circ]",
-                                                     directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02de_TL_Theta_pFD_vs_TL_Phi_e_AMap", /* CutManager. */.ThetaFD_AMaps.GetLowerCut(),
-                                                     /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                                                     directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02de_TL_Theta_pFD_vs_TL_Phi_e_AMap", /* CutManager. */ThetaFD_AMaps.GetLowerCut(),
+                                                     /* CutManager. */ThetaFD_AMaps.GetUpperCut(), Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hTL_Theta_pFD_vs_TL_Theta_e_AMap = hPlot2D("", "", "TL_Theta_pFD_vs_TL_Theta_e_AMap", "TL #theta_{pFD} vs. TL #theta_{e} used in AMaps", "#theta_{pFD} [#circ]",
                                                        "#theta_{e} [#circ]", directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02df_TL_Theta_pFD_vs_TL_Theta_e_AMap",
-                                                       /* CutManager. */.ThetaFD_AMaps.GetLowerCut(), /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), /* CutManager. */.ThetaFD_AMaps.GetLowerCut(),
-                                                       /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                                                       /* CutManager. */ThetaFD_AMaps.GetLowerCut(), /* CutManager. */ThetaFD_AMaps.GetUpperCut(), /* CutManager. */ThetaFD_AMaps.GetLowerCut(),
+                                                       /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_Phi_pFD_vs_Reco_Phi_pFD_AMap = hPlot2D("", "", "Reco_Phi_pFD_vs_Reco_Phi_pFD_AMap", "Reco #phi_{pFD} vs. Reco #phi_{pFD} used in AMaps", "#phi_{pFD} [#circ]",
                                                          "#phi_{pFD} [#circ]", directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02ea_Reco_Phi_pFD_vs_Reco_Phi_pFD_AMap",
                                                          Phi_lboundary, Phi_uboundary, Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
@@ -8339,15 +8339,15 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                                                    Momentum_lboundary, Momentum_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_Phi_pFD_vs_Reco_Theta_e_AMap =
         hPlot2D("", "", "Reco_Phi_pFD_vs_Reco_Theta_e_AMap", "Reco #phi_{pFD} vs. Reco #theta_{e} used in AMaps", "#phi_{pFD} [#circ]", "#theta_{e} [#circ]",
-                directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02ee_Reco_Phi_pFD_vs_Reco_Theta_e_AMap", Phi_lboundary, Phi_uboundary, /* CutManager. */.ThetaFD_AMaps.GetLowerCut(),
-                /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02ee_Reco_Phi_pFD_vs_Reco_Theta_e_AMap", Phi_lboundary, Phi_uboundary, /* CutManager. */ThetaFD_AMaps.GetLowerCut(),
+                /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_Phi_pFD_vs_Reco_Phi_e_AMap = hPlot2D("", "", "Reco_Phi_pFD_vs_Reco_Phi_e_AMap", "Reco #phi_{pFD} vs. Reco #phi_{e} used in AMaps", "#phi_{pFD} [#circ]", "#phi_{e} [#circ]",
                                                        directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02ef_Reco_Phi_pFD_vs_Reco_Phi_e_AMap", Phi_lboundary, Phi_uboundary,
                                                        Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_Phi_pFD_vs_TL_Theta_e_AMap =
         hPlot2D("", "", "Reco_Phi_pFD_vs_TL_Theta_e_AMap", "Reco #phi_{pFD} vs. TL #theta_{e} used in AMaps", "#phi_{pFD} [#circ]", "#theta_{e} [#circ]",
-                directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02eg_Reco_Phi_pFD_vs_TL_Theta_e_AMap", Phi_lboundary, Phi_uboundary, /* CutManager. */.ThetaFD_AMaps.GetLowerCut(),
-                /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02eg_Reco_Phi_pFD_vs_TL_Theta_e_AMap", Phi_lboundary, Phi_uboundary, /* CutManager. */ThetaFD_AMaps.GetLowerCut(),
+                /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_Phi_pFD_vs_TL_Phi_e_AMap = hPlot2D("", "", "Reco_Phi_pFD_vs_TL_Phi_e_AMap", "Reco #phi_{pFD} vs. TL #phi_{e} used in AMaps", "#phi_{pFD} [#circ]", "#phi_{e} [#circ]",
                                                      directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02ef_Reco_Phi_pFD_vs_TL_Phi_e_AMap", Phi_lboundary, Phi_uboundary,
                                                      Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
@@ -8356,16 +8356,16 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                                                      Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hTL_Phi_pFD_vs_TL_P_e_AMap =
         hPlot2D("", "", "TL_Phi_pFD_vs_TL_P_e_AMap", "TL #phi_{pFD} vs. Reco P_{e} used in AMaps", "#phi_{pFD} [#circ]", "P_{e} [GeV/c]",
-                directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02fb_TL_Phi_pFD_vs_TL_P_e_AMap", Phi_lboundary, Phi_uboundary, /* CutManager. */.ThetaFD_AMaps.GetLowerCut(),
-                /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02fb_TL_Phi_pFD_vs_TL_P_e_AMap", Phi_lboundary, Phi_uboundary, /* CutManager. */ThetaFD_AMaps.GetLowerCut(),
+                /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hTL_Phi_pFD_vs_Reco_Theta_e_AMap =
         hPlot2D("", "", "TL_Phi_pFD_vs_Reco_Theta_e_AMap", "TL #phi_{pFD} vs. Reco #theta_{e} used in AMaps", "#phi_{pFD} [#circ]", "#theta_{e} [#circ]",
-                directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02fc_TL_Phi_pFD_vs_Reco_Theta_e_AMap", Phi_lboundary, Phi_uboundary, /* CutManager. */.ThetaFD_AMaps.GetLowerCut(),
-                /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02fc_TL_Phi_pFD_vs_Reco_Theta_e_AMap", Phi_lboundary, Phi_uboundary, /* CutManager. */ThetaFD_AMaps.GetLowerCut(),
+                /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hTL_Phi_pFD_vs_TL_Theta_e_AMap =
         hPlot2D("", "", "TL_Phi_pFD_vs_TL_Theta_e_AMap", "TL #phi_{pFD} vs. TL #theta_{e} used in AMaps", "#phi_{pFD} [#circ]", "#theta_{e} [#circ]",
-                directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02fd_TL_Phi_pFD_vs_TL_Theta_e_AMap", Phi_lboundary, Phi_uboundary, /* CutManager. */.ThetaFD_AMaps.GetLowerCut(),
-                /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02fd_TL_Phi_pFD_vs_TL_Theta_e_AMap", Phi_lboundary, Phi_uboundary, /* CutManager. */ThetaFD_AMaps.GetLowerCut(),
+                /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hTL_Phi_pFD_vs_TL_Phi_e_AMap = hPlot2D("", "", "TL_Phi_pFD_vs_TL_Phi_e_AMap", "TL #phi_{pFD} vs. TL #phi_{e} used in AMaps", "#phi_{pFD} [#circ]", "#phi_{e} [#circ]",
                                                    directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02fh_TL_Phi_pFD_vs_TL_Phi_e_AMap", Phi_lboundary, Phi_uboundary, Phi_lboundary,
                                                    Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
@@ -8376,10 +8376,10 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                                       "03b_TL_P_nFD_used_in_AMaps", Momentum_lboundary, Momentum_uboundary, numTH1Dbins);
     hPlot1D hReco_Theta_nFD_AMaps =
         hPlot1D("1e cut", "FD", "Reco #theta_{nFD} used in AMaps", "Reco #theta_{nFD} used in AMaps", "#theta_{nFD} [#circ]", directories.AMaps_Directory_map["AMaps_1e_cut_Directory"],
-                "03c_Reco_Theta_nFD_used_in_AMaps", /* CutManager. */.ThetaFD_AMaps.GetLowerCut(), /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH1Dbins);
+                "03c_Reco_Theta_nFD_used_in_AMaps", /* CutManager. */ThetaFD_AMaps.GetLowerCut(), /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH1Dbins);
     hPlot1D hTL_Theta_nFD_AMaps =
         hPlot1D("1e cut", "FD", "TL #theta_{nFD} used in AMaps", "TL #theta_{nFD} used in AMaps", "#theta_{nFD} [#circ]", directories.AMaps_Directory_map["AMaps_1e_cut_Directory"],
-                "03d_TL_Theta_nFD_used_in_AMaps", /* CutManager. */.ThetaFD_AMaps.GetLowerCut(), /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH1Dbins);
+                "03d_TL_Theta_nFD_used_in_AMaps", /* CutManager. */ThetaFD_AMaps.GetLowerCut(), /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH1Dbins);
     hPlot1D hReco_Phi_nFD_AMaps = hPlot1D("1e cut", "FD", "Reco #phi_{nFD} used in AMaps", "Reco #phi_{nFD} used in AMaps", "#phi_{nFD} [#circ]",
                                           directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "01e_Reco_Phi_nFD_used_in_AMaps", -180, 180, numTH1Dbins);
     hPlot1D hTL_Phi_nFD_AMaps = hPlot1D("1e cut", "FD", "TL #phi_{nFD} used in AMaps", "TL #phi_{nFD} used in AMaps", "#phi_{nFD} [#circ]",
@@ -8387,14 +8387,14 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     hPlot2D hReco_P_nFD_vs_Reco_Theta_nFD_AMap =
         hPlot2D("", "", "Reco_P_nFD_vs_Reco_Theta_nFD_AMap", "Reco P_{nFD} vs. Reco #theta_{nFD} used in AMaps", "P_{nFD} [GeV/c]", "#theta_{nFD} [#circ]",
                 directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02aa_Reco_P_nFD_vs_Reco_Theta_nFD_AMap", Momentum_lboundary, Momentum_uboundary,
-                /* CutManager. */.ThetaFD_AMaps.GetLowerCut(), /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                /* CutManager. */ThetaFD_AMaps.GetLowerCut(), /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_P_nFD_vs_Reco_Phi_nFD_AMap = hPlot2D("", "", "Reco_P_nFD_vs_Reco_Phi_nFD_AMap", "Reco P_{nFD} vs. Reco #phi_{nFD} used in AMaps", "P_{nFD} [GeV/c]", "#phi_{nFD} [#circ]",
                                                        directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02ab_Reco_P_nFD_vs_Reco_Phi_nFD_AMap", Momentum_lboundary,
                                                        Momentum_uboundary, Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_P_nFD_vs_TL_Theta_nFD_AMap =
         hPlot2D("", "", "Reco_P_nFD_vs_TL_Theta_nFD_AMap", "Reco P_{nFD} vs. TL #theta_{nFD} used in AMaps", "P_{nFD} [GeV/c]", "#theta_{nFD} [#circ]",
                 directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02ac_Reco_P_nFD_vs_TL_Theta_nFD_AMap", Momentum_lboundary, Momentum_uboundary,
-                /* CutManager. */.ThetaFD_AMaps.GetLowerCut(), /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                /* CutManager. */ThetaFD_AMaps.GetLowerCut(), /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_P_nFD_vs_TL_Phi_nFD_AMap = hPlot2D("", "", "Reco_P_nFD_vs_TL_Phi_nFD_AMap", "Reco P_{nFD} vs. TL #phi_{nFD} used in AMaps", "P_{nFD} [GeV/c]", "#phi_{nFD} [#circ]",
                                                      directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02ad_Reco_P_nFD_vs_TL_Phi_nFD_AMap", Momentum_lboundary, Momentum_uboundary,
                                                      Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
@@ -8407,94 +8407,94 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     hPlot2D hReco_P_nFD_vs_Reco_Theta_e_AMap =
         hPlot2D("", "", "Reco_P_nFD_vs_Reco_Theta_e_AMap", "Reco P_{nFD} vs. Reco #theta_{e} used in AMaps", "P_{nFD} [GeV/c]", "#theta_{e} [#circ]",
                 directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02ag_Reco_P_nFD_vs_Reco_Theta_e_AMap", Momentum_lboundary, Momentum_uboundary,
-                /* CutManager. */.ThetaFD_AMaps.GetLowerCut(), /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                /* CutManager. */ThetaFD_AMaps.GetLowerCut(), /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_P_nFD_vs_Reco_Phi_e_AMap = hPlot2D("", "", "Reco_P_nFD_vs_Reco_Phi_e_AMap", "Reco P_{nFD} vs. Reco #phi_{e} used in AMaps", "P_{nFD} [GeV/c]", "#phi_{e} [#circ]",
                                                      directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02ah_Reco_P_nFD_vs_Reco_Phi_e_AMap", Momentum_lboundary, Momentum_uboundary,
                                                      Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_P_nFD_vs_TL_Theta_e_AMap =
         hPlot2D("", "", "Reco_P_nFD_vs_TL_Theta_e_AMap", "Reco P_{nFD} vs. TL #theta_{e} used in AMaps", "P_{nFD} [GeV/c]", "#theta_{e} [#circ]",
                 directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02ai_Reco_P_nFD_vs_TL_Theta_e_AMap", Momentum_lboundary, Momentum_uboundary,
-                /* CutManager. */.ThetaFD_AMaps.GetLowerCut(), /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                /* CutManager. */ThetaFD_AMaps.GetLowerCut(), /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_P_nFD_vs_TL_Phi_e_AMap = hPlot2D("", "", "Reco_P_nFD_vs_TL_Phi_e_AMap", "Reco P_{nFD} vs. TL #phi_{e} used in AMaps", "P_{nFD} [GeV/c]", "#phi_{e} [#circ]",
                                                    directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02aj_Reco_P_nFD_vs_TL_Phi_e_AMap", Momentum_lboundary, Momentum_uboundary,
                                                    Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hTL_P_nFD_vs_Reco_Theta_nFD_AMap =
         hPlot2D("", "", "TL_P_nFD_vs_Reco_Theta_nFD_AMap", "TL P_{nFD} vs. Reco #theta_{nFD} used in AMaps", "P_{nFD} [GeV/c]", "#theta_{nFD} [#circ]",
                 directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02ba_TL_P_nFD_vs_Reco_Theta_nFD_AMap", Momentum_lboundary, Momentum_uboundary,
-                /* CutManager. */.ThetaFD_AMaps.GetLowerCut(), /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                /* CutManager. */ThetaFD_AMaps.GetLowerCut(), /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hTL_P_nFD_vs_TL_Theta_nFD_AMap =
         hPlot2D("", "", "TL_P_nFD_vs_TL_Theta_nFD_AMap", "TL P_{nFD} vs. TL #theta_{nFD} used in AMaps", "P_{nFD} [GeV/c]", "#theta_{nFD} [#circ]",
                 directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02bb_TL_P_nFD_vs_TL_Theta_nFD_AMap", Momentum_lboundary, Momentum_uboundary,
-                /* CutManager. */.ThetaFD_AMaps.GetLowerCut(), /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                /* CutManager. */ThetaFD_AMaps.GetLowerCut(), /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hTL_P_nFD_vs_TL_Phi_nFD_AMap = hPlot2D("", "", "TL_P_nFD_vs_TL_Phi_nFD_AMap", "TL P_{nFD} vs. TL #phi_{nFD} used in AMaps", "P_{nFD} [GeV/c]", "#phi_{nFD} [#circ]",
                                                    directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02bc_TL_P_nFD_vs_TL_Phi_nFD_AMap", Momentum_lboundary, Momentum_uboundary,
                                                    Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hTL_P_nFD_vs_TL_P_e_AMap =
         hPlot2D("", "", "TL_P_nFD_vs_TL_P_e_AMap", "TL P_{nFD} vs. Reco P_{e} used in AMaps", "P_{nFD} [GeV/c]", "P_{e} [GeV/c]", directories.AMaps_Directory_map["AMaps_1e_cut_Directory"],
-                "02bd_TL_P_nFD_vs_TL_P_e_AMap", Momentum_lboundary, Momentum_uboundary, /* CutManager. */.ThetaFD_AMaps.GetLowerCut(), /* CutManager. */.ThetaFD_AMaps.GetUpperCut(),
+                "02bd_TL_P_nFD_vs_TL_P_e_AMap", Momentum_lboundary, Momentum_uboundary, /* CutManager. */ThetaFD_AMaps.GetLowerCut(), /* CutManager. */ThetaFD_AMaps.GetUpperCut(),
                 numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hTL_P_nFD_vs_Reco_Theta_e_AMap =
         hPlot2D("", "", "TL_P_nFD_vs_Reco_Theta_e_AMap", "TL P_{nFD} vs. Reco #theta_{e} used in AMaps", "P_{nFD} [GeV/c]", "#theta_{e} [#circ]",
                 directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02be_TL_P_nFD_vs_Reco_Theta_e_AMap", Momentum_lboundary, Momentum_uboundary,
-                /* CutManager. */.ThetaFD_AMaps.GetLowerCut(), /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                /* CutManager. */ThetaFD_AMaps.GetLowerCut(), /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hTL_P_nFD_vs_TL_Theta_e_AMap =
         hPlot2D("", "", "TL_P_nFD_vs_TL_Theta_e_AMap", "TL P_{nFD} vs. TL #theta_{e} used in AMaps", "P_{nFD} [GeV/c]", "#theta_{e} [#circ]",
-                directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02bf_TL_P_nFD_vs_TL_Theta_e_AMap", Momentum_lboundary, Momentum_uboundary, /* CutManager. */.ThetaFD_AMaps.GetLowerCut(),
-                /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02bf_TL_P_nFD_vs_TL_Theta_e_AMap", Momentum_lboundary, Momentum_uboundary, /* CutManager. */ThetaFD_AMaps.GetLowerCut(),
+                /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hTL_P_nFD_vs_TL_Phi_e_AMap = hPlot2D("", "", "TL_P_nFD_vs_TL_Phi_e_AMap", "TL P_{nFD} vs. TL #phi_{e} used in AMaps", "P_{nFD} [GeV/c]", "#phi_{e} [#circ]",
                                                  directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02bg_TL_P_nFD_vs_TL_Phi_e_AMap", Momentum_lboundary, Momentum_uboundary,
                                                  Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_Theta_nFD_vs_Reco_Phi_nFD_AMap =
         hPlot2D("", "", "Reco_Theta_nFD_vs_Reco_Phi_nFD_AMap", "Reco #theta_{nFD} vs. Reco #phi_{nFD} used in AMaps", "#theta_{nFD} [#circ]", "#phi_{nFD} [#circ]",
-                directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02ca_Reco_Theta_nFD_vs_Reco_Phi_nFD_AMap", /* CutManager. */.ThetaFD_AMaps.GetLowerCut(),
-                /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02ca_Reco_Theta_nFD_vs_Reco_Phi_nFD_AMap", /* CutManager. */ThetaFD_AMaps.GetLowerCut(),
+                /* CutManager. */ThetaFD_AMaps.GetUpperCut(), Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_Theta_nFD_vs_TL_Phi_nFD_AMap =
         hPlot2D("", "", "Reco_Theta_nFD_vs_TL_Phi_nFD_AMap", "Reco #theta_{nFD} vs. TL #phi_{nFD} used in AMaps", "#theta_{nFD} [#circ]", "#phi_{nFD} [#circ]",
-                directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02cb_Reco_Theta_nFD_vs_TL_Phi_nFD_AMap", /* CutManager. */.ThetaFD_AMaps.GetLowerCut(),
-                /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02cb_Reco_Theta_nFD_vs_TL_Phi_nFD_AMap", /* CutManager. */ThetaFD_AMaps.GetLowerCut(),
+                /* CutManager. */ThetaFD_AMaps.GetUpperCut(), Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_Theta_nFD_vs_Reco_P_e_AMap =
         hPlot2D("", "", "Reco_Theta_nFD_vs_Reco_P_e_AMap", "Reco #theta_{nFD} vs. Reco P_{e} used in AMaps", "#theta_{nFD} [#circ]", "P_{e} [GeV/c]",
-                directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02cc_Reco_Theta_nFD_vs_Reco_P_e_AMap", /* CutManager. */.ThetaFD_AMaps.GetLowerCut(),
-                /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), Momentum_lboundary, Momentum_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02cc_Reco_Theta_nFD_vs_Reco_P_e_AMap", /* CutManager. */ThetaFD_AMaps.GetLowerCut(),
+                /* CutManager. */ThetaFD_AMaps.GetUpperCut(), Momentum_lboundary, Momentum_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_Theta_nFD_vs_TL_P_e_AMap =
         hPlot2D("", "", "Reco_Theta_nFD_vs_TL_P_e_AMap", "Reco #theta_{nFD} vs. TL P_{e} used in AMaps", "#theta_{nFD} [#circ]", "P_{e} [GeV/c]",
-                directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02cd_Reco_Theta_nFD_vs_TL_P_e_AMap", /* CutManager. */.ThetaFD_AMaps.GetLowerCut(),
-                /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), Momentum_lboundary, Momentum_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02cd_Reco_Theta_nFD_vs_TL_P_e_AMap", /* CutManager. */ThetaFD_AMaps.GetLowerCut(),
+                /* CutManager. */ThetaFD_AMaps.GetUpperCut(), Momentum_lboundary, Momentum_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_Theta_nFD_vs_Reco_Theta_e_AMap = hPlot2D("", "", "Reco_Theta_nFD_vs_Reco_Theta_e_AMap", "Reco #theta_{nFD} vs. Reco #theta_{e} used in AMaps", "#theta_{nFD} [#circ]",
                                                            "#theta_{e} [#circ]", directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02ce_Reco_Theta_nFD_vs_Reco_Theta_e_AMap",
-                                                           /* CutManager. */.ThetaFD_AMaps.GetLowerCut(), /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), /* CutManager. */.ThetaFD_AMaps.GetLowerCut(),
-                                                           /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                                                           /* CutManager. */ThetaFD_AMaps.GetLowerCut(), /* CutManager. */ThetaFD_AMaps.GetUpperCut(), /* CutManager. */ThetaFD_AMaps.GetLowerCut(),
+                                                           /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_Theta_nFD_vs_Reco_Phi_e_AMap =
         hPlot2D("", "", "Reco_Theta_nFD_vs_Reco_Phi_e_AMap", "Reco #theta_{nFD} vs. Reco #phi_{e} used in AMaps", "#theta_{nFD} [#circ]", "#phi_{e} [#circ]",
-                directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02cf_Reco_Theta_nFD_vs_Reco_Phi_e_AMap", /* CutManager. */.ThetaFD_AMaps.GetLowerCut(),
-                /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02cf_Reco_Theta_nFD_vs_Reco_Phi_e_AMap", /* CutManager. */ThetaFD_AMaps.GetLowerCut(),
+                /* CutManager. */ThetaFD_AMaps.GetUpperCut(), Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_Theta_nFD_vs_TL_Theta_e_AMap = hPlot2D("", "", "Reco_Theta_nFD_vs_TL_Theta_e_AMap", "Reco #theta_{nFD} vs. TL #theta_{e} used in AMaps", "#theta_{nFD} [#circ]",
                                                          "#theta_{e} [#circ]", directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02cg_Reco_Theta_nFD_vs_TL_Theta_e_AMap",
-                                                         /* CutManager. */.ThetaFD_AMaps.GetLowerCut(), /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), /* CutManager. */.ThetaFD_AMaps.GetLowerCut(),
-                                                         /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                                                         /* CutManager. */ThetaFD_AMaps.GetLowerCut(), /* CutManager. */ThetaFD_AMaps.GetUpperCut(), /* CutManager. */ThetaFD_AMaps.GetLowerCut(),
+                                                         /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_Theta_nFD_vs_TL_Phi_e_AMap =
         hPlot2D("", "", "Reco_Theta_nFD_vs_TL_Phi_e_AMap", "Reco #theta_{nFD} vs. TL #phi_{e} used in AMaps", "#theta_{nFD} [#circ]", "#phi_{e} [#circ]",
-                directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02ch_Reco_Theta_nFD_vs_TL_Phi_e_AMap", /* CutManager. */.ThetaFD_AMaps.GetLowerCut(),
-                /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02ch_Reco_Theta_nFD_vs_TL_Phi_e_AMap", /* CutManager. */ThetaFD_AMaps.GetLowerCut(),
+                /* CutManager. */ThetaFD_AMaps.GetUpperCut(), Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hTL_Theta_nFD_vs_TL_Phi_nFD_AMap =
         hPlot2D("", "", "TL_Theta_nFD_vs_TL_Phi_nFD_AMap", "TL #theta_{nFD} vs. Reco #phi_{nFD} used in AMaps", "#theta_{nFD} [#circ]", "#phi_{nFD} [#circ]",
-                directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02da_TL_Theta_nFD_vs_TL_Phi_nFD_AMap", /* CutManager. */.ThetaFD_AMaps.GetLowerCut(),
-                /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02da_TL_Theta_nFD_vs_TL_Phi_nFD_AMap", /* CutManager. */ThetaFD_AMaps.GetLowerCut(),
+                /* CutManager. */ThetaFD_AMaps.GetUpperCut(), Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hTL_Theta_nFD_vs_TL_P_e_AMap =
         hPlot2D("", "", "TL_Theta_nFD_vs_TL_P_e_AMap", "TL #theta_{nFD} vs. Reco P_{e} used in AMaps", "#theta_{nFD} [#circ]", "P_{e} [GeV/c]",
-                directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02db_TL_Theta_nFD_vs_TL_P_e_AMap", /* CutManager. */.ThetaFD_AMaps.GetLowerCut(), /* CutManager. */.ThetaFD_AMaps.GetUpperCut(),
-                /* CutManager. */.ThetaFD_AMaps.GetLowerCut(), /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02db_TL_Theta_nFD_vs_TL_P_e_AMap", /* CutManager. */ThetaFD_AMaps.GetLowerCut(), /* CutManager. */ThetaFD_AMaps.GetUpperCut(),
+                /* CutManager. */ThetaFD_AMaps.GetLowerCut(), /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hTL_Theta_nFD_vs_Reco_Theta_e_AMap = hPlot2D("", "", "TL_Theta_nFD_vs_Reco_Theta_e_AMap", "TL #theta_{nFD} vs. Reco #theta_{e} used in AMaps", "#theta_{nFD} [#circ]",
                                                          "#theta_{e} [#circ]", directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02dc_TL_Theta_nFD_vs_Reco_Theta_e_AMap",
-                                                         /* CutManager. */.ThetaFD_AMaps.GetLowerCut(), /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), /* CutManager. */.ThetaFD_AMaps.GetLowerCut(),
-                                                         /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                                                         /* CutManager. */ThetaFD_AMaps.GetLowerCut(), /* CutManager. */ThetaFD_AMaps.GetUpperCut(), /* CutManager. */ThetaFD_AMaps.GetLowerCut(),
+                                                         /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hTL_Theta_nFD_vs_TL_Phi_e_AMap = hPlot2D("", "", "TL_Theta_nFD_vs_TL_Phi_e_AMap", "TL #theta_{nFD} vs. Reco #phi_{e} used in AMaps", "#theta_{nFD} [#circ]", "#phi_{e} [#circ]",
-                                                     directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02de_TL_Theta_nFD_vs_TL_Phi_e_AMap", /* CutManager. */.ThetaFD_AMaps.GetLowerCut(),
-                                                     /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                                                     directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02de_TL_Theta_nFD_vs_TL_Phi_e_AMap", /* CutManager. */ThetaFD_AMaps.GetLowerCut(),
+                                                     /* CutManager. */ThetaFD_AMaps.GetUpperCut(), Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hTL_Theta_nFD_vs_TL_Theta_e_AMap = hPlot2D("", "", "TL_Theta_nFD_vs_TL_Theta_e_AMap", "TL #theta_{nFD} vs. TL #theta_{e} used in AMaps", "#theta_{nFD} [#circ]",
                                                        "#theta_{e} [#circ]", directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02df_TL_Theta_nFD_vs_TL_Theta_e_AMap",
-                                                       /* CutManager. */.ThetaFD_AMaps.GetLowerCut(), /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), /* CutManager. */.ThetaFD_AMaps.GetLowerCut(),
-                                                       /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                                                       /* CutManager. */ThetaFD_AMaps.GetLowerCut(), /* CutManager. */ThetaFD_AMaps.GetUpperCut(), /* CutManager. */ThetaFD_AMaps.GetLowerCut(),
+                                                       /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_Phi_nFD_vs_Reco_Phi_nFD_AMap = hPlot2D("", "", "Reco_Phi_nFD_vs_Reco_Phi_nFD_AMap", "Reco #phi_{nFD} vs. Reco #phi_{nFD} used in AMaps", "#phi_{nFD} [#circ]",
                                                          "#phi_{nFD} [#circ]", directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02ea_Reco_Phi_nFD_vs_Reco_Phi_nFD_AMap",
                                                          Phi_lboundary, Phi_uboundary, Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
@@ -8509,15 +8509,15 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                                                    Momentum_lboundary, Momentum_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_Phi_nFD_vs_Reco_Theta_e_AMap =
         hPlot2D("", "", "Reco_Phi_nFD_vs_Reco_Theta_e_AMap", "Reco #phi_{nFD} vs. Reco #theta_{e} used in AMaps", "#phi_{nFD} [#circ]", "#theta_{e} [#circ]",
-                directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02ee_Reco_Phi_nFD_vs_Reco_Theta_e_AMap", Phi_lboundary, Phi_uboundary, /* CutManager. */.ThetaFD_AMaps.GetLowerCut(),
-                /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02ee_Reco_Phi_nFD_vs_Reco_Theta_e_AMap", Phi_lboundary, Phi_uboundary, /* CutManager. */ThetaFD_AMaps.GetLowerCut(),
+                /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_Phi_nFD_vs_Reco_Phi_e_AMap = hPlot2D("", "", "Reco_Phi_nFD_vs_Reco_Phi_e_AMap", "Reco #phi_{nFD} vs. Reco #phi_{e} used in AMaps", "#phi_{nFD} [#circ]", "#phi_{e} [#circ]",
                                                        directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02ef_Reco_Phi_nFD_vs_Reco_Phi_e_AMap", Phi_lboundary, Phi_uboundary,
                                                        Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_Phi_nFD_vs_TL_Theta_e_AMap =
         hPlot2D("", "", "Reco_Phi_nFD_vs_TL_Theta_e_AMap", "Reco #phi_{nFD} vs. TL #theta_{e} used in AMaps", "#phi_{nFD} [#circ]", "#theta_{e} [#circ]",
-                directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02eg_Reco_Phi_nFD_vs_TL_Theta_e_AMap", Phi_lboundary, Phi_uboundary, /* CutManager. */.ThetaFD_AMaps.GetLowerCut(),
-                /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02eg_Reco_Phi_nFD_vs_TL_Theta_e_AMap", Phi_lboundary, Phi_uboundary, /* CutManager. */ThetaFD_AMaps.GetLowerCut(),
+                /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_Phi_nFD_vs_TL_Phi_e_AMap = hPlot2D("", "", "Reco_Phi_nFD_vs_TL_Phi_e_AMap", "Reco #phi_{nFD} vs. TL #phi_{e} used in AMaps", "#phi_{nFD} [#circ]", "#phi_{e} [#circ]",
                                                      directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02ef_Reco_Phi_nFD_vs_TL_Phi_e_AMap", Phi_lboundary, Phi_uboundary,
                                                      Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
@@ -8526,16 +8526,16 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                                                      Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hTL_Phi_nFD_vs_TL_P_e_AMap =
         hPlot2D("", "", "TL_Phi_nFD_vs_TL_P_e_AMap", "TL #phi_{nFD} vs. Reco P_{e} used in AMaps", "#phi_{nFD} [#circ]", "P_{e} [GeV/c]",
-                directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02fb_TL_Phi_nFD_vs_TL_P_e_AMap", Phi_lboundary, Phi_uboundary, /* CutManager. */.ThetaFD_AMaps.GetLowerCut(),
-                /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02fb_TL_Phi_nFD_vs_TL_P_e_AMap", Phi_lboundary, Phi_uboundary, /* CutManager. */ThetaFD_AMaps.GetLowerCut(),
+                /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hTL_Phi_nFD_vs_Reco_Theta_e_AMap =
         hPlot2D("", "", "TL_Phi_nFD_vs_Reco_Theta_e_AMap", "TL #phi_{nFD} vs. Reco #theta_{e} used in AMaps", "#phi_{nFD} [#circ]", "#theta_{e} [#circ]",
-                directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02fc_TL_Phi_nFD_vs_Reco_Theta_e_AMap", Phi_lboundary, Phi_uboundary, /* CutManager. */.ThetaFD_AMaps.GetLowerCut(),
-                /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02fc_TL_Phi_nFD_vs_Reco_Theta_e_AMap", Phi_lboundary, Phi_uboundary, /* CutManager. */ThetaFD_AMaps.GetLowerCut(),
+                /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hTL_Phi_nFD_vs_TL_Theta_e_AMap =
         hPlot2D("", "", "TL_Phi_nFD_vs_TL_Theta_e_AMap", "TL #phi_{nFD} vs. TL #theta_{e} used in AMaps", "#phi_{nFD} [#circ]", "#theta_{e} [#circ]",
-                directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02fd_TL_Phi_nFD_vs_TL_Theta_e_AMap", Phi_lboundary, Phi_uboundary, /* CutManager. */.ThetaFD_AMaps.GetLowerCut(),
-                /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02fd_TL_Phi_nFD_vs_TL_Theta_e_AMap", Phi_lboundary, Phi_uboundary, /* CutManager. */ThetaFD_AMaps.GetLowerCut(),
+                /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hTL_Phi_nFD_vs_TL_Phi_e_AMap = hPlot2D("", "", "TL_Phi_nFD_vs_TL_Phi_e_AMap", "TL #phi_{nFD} vs. TL #phi_{e} used in AMaps", "#phi_{nFD} [#circ]", "#phi_{e} [#circ]",
                                                    directories.AMaps_Directory_map["AMaps_1e_cut_Directory"], "02fh_TL_Phi_nFD_vs_TL_Phi_e_AMap", Phi_lboundary, Phi_uboundary, Phi_lboundary,
                                                    Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
@@ -8559,10 +8559,10 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                                     "01b_TL_P_e_used_in_WMaps", Momentum_lboundary, Momentum_uboundary, numTH1Dbins);
     hPlot1D hReco_Theta_e_WMaps =
         hPlot1D("1e cut", "FD", "Reco #theta_{e} used in WMaps", "Reco #theta_{e} used in WMaps", "#theta_{e} [#circ]", directories.AMaps_Directory_map["WMaps_1e_cut_Directory"],
-                "01c_Reco_Theta_e_used_in_WMaps", /* CutManager. */.ThetaFD_AMaps.GetLowerCut(), /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH1Dbins);
+                "01c_Reco_Theta_e_used_in_WMaps", /* CutManager. */ThetaFD_AMaps.GetLowerCut(), /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH1Dbins);
     hPlot1D hTL_Theta_e_WMaps =
         hPlot1D("1e cut", "FD", "TL #theta_{e} used in WMaps", "TL #theta_{e} used in WMaps", "#theta_{e} [#circ]", directories.AMaps_Directory_map["WMaps_1e_cut_Directory"],
-                "01d_TL_Theta_e_used_in_WMaps", /* CutManager. */.ThetaFD_AMaps.GetLowerCut(), /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH1Dbins);
+                "01d_TL_Theta_e_used_in_WMaps", /* CutManager. */ThetaFD_AMaps.GetLowerCut(), /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH1Dbins);
     hPlot1D hReco_Phi_e_WMaps = hPlot1D("1e cut", "FD", "Reco #phi_{e} used in WMaps", "Reco #phi_{e} used in WMaps", "#phi_{e} [#circ]",
                                         directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "01e_Reco_Phi_e_used_in_WMaps", Phi_lboundary, Phi_uboundary, numTH1Dbins);
     hPlot1D hTL_Phi_e_WMaps = hPlot1D("1e cut", "FD", "TL #phi_{e} used in WMaps", "TL #phi_{e} used in WMaps", "#phi_{e} [#circ]", directories.AMaps_Directory_map["WMaps_1e_cut_Directory"],
@@ -8570,21 +8570,21 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     hPlot2D hReco_P_e_vs_Reco_Theta_e_WMap =
         hPlot2D("", "", "Reco_P_e_vs_Reco_Theta_e_WMaps", "Reco P_{e} vs. Reco #theta_{e} used in WMaps", "P_{e} [GeV/c]", "#theta_{e} [#circ]",
                 directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "01aa_Reco_P_e_vs_Reco_Theta_e_WMaps", Momentum_lboundary, Momentum_uboundary,
-                /* CutManager. */.ThetaFD_AMaps.GetLowerCut(), /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                /* CutManager. */ThetaFD_AMaps.GetLowerCut(), /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_P_e_vs_Reco_Phi_e_WMap = hPlot2D("", "", "Reco_P_e_vs_Reco_Phi_e_WMaps", "Reco P_{e} vs. Reco #phi_{e} used in WMaps", "P_{e} [GeV/c]", "#phi_{e} [#circ]",
                                                    directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "01ab_Reco_P_e_vs_Reco_Phi_e_WMaps", Momentum_lboundary, Momentum_uboundary,
                                                    Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_P_e_vs_TL_Theta_e_WMap =
         hPlot2D("", "", "Reco_P_e_vs_TL_Theta_e_WMaps", "Reco P_{e} vs. TL #theta_{e} used in WMaps", "P_{e} [GeV/c]", "#theta_{e} [#circ]",
                 directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "01ba_Reco_P_e_vs_TL_Theta_e_WMaps", Momentum_lboundary, Momentum_uboundary,
-                /* CutManager. */.ThetaFD_AMaps.GetLowerCut(), /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                /* CutManager. */ThetaFD_AMaps.GetLowerCut(), /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_P_e_vs_TL_Phi_e_WMap = hPlot2D("", "", "Reco_P_e_vs_TL_Phi_e_WMaps", "Reco P_{e} vs. TL #phi_{e} used in WMaps", "P_{e} [GeV/c]", "#phi_{e} [#circ]",
                                                  directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "01bb_Reco_P_e_vs_TL_Phi_e_WMaps", Momentum_lboundary, Momentum_uboundary,
                                                  Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hTL_P_e_vs_TL_Theta_e_WMap =
         hPlot2D("", "", "TL_P_e_vs_TL_Theta_e_WMap", "TL P_{e} vs. TL #theta_{e} used in WMaps", "P_{e} [GeV/c]", "#theta_{e} [#circ]",
-                directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "01ba_TL_P_e_vs_TL_Theta_e_WMap", Momentum_lboundary, Momentum_uboundary, /* CutManager. */.ThetaFD_AMaps.GetLowerCut(),
-                /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "01ba_TL_P_e_vs_TL_Theta_e_WMap", Momentum_lboundary, Momentum_uboundary, /* CutManager. */ThetaFD_AMaps.GetLowerCut(),
+                /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hTL_P_e_vs_TL_Phi_e_WMap =
         hPlot2D("", "", "TL_P_e_vs_TL_Phi_e_WMap", "TL P_{e} vs. TL #phi_{e} used in WMaps", "P_{e} [GeV/c]", "#phi_{e} [#circ]", directories.AMaps_Directory_map["WMaps_1e_cut_Directory"],
                 "01ab_TL_P_e_vs_TL_Phi_e_WMap", Momentum_lboundary, Momentum_uboundary, Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
@@ -8595,10 +8595,10 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                                       "02b_TL_P_pFD_used_in_WMaps", Momentum_lboundary, Momentum_uboundary, numTH1Dbins);
     hPlot1D hReco_Theta_pFD_WMaps =
         hPlot1D("1e cut", "FD", "Reco #theta_{pFD} used in WMaps", "Reco #theta_{pFD} used in WMaps", "#theta_{pFD} [#circ]", directories.AMaps_Directory_map["WMaps_1e_cut_Directory"],
-                "02c_Reco_Theta_pFD_used_in_WMaps", /* CutManager. */.ThetaFD_AMaps.GetLowerCut(), /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH1Dbins);
+                "02c_Reco_Theta_pFD_used_in_WMaps", /* CutManager. */ThetaFD_AMaps.GetLowerCut(), /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH1Dbins);
     hPlot1D hTL_Theta_pFD_WMaps =
         hPlot1D("1e cut", "FD", "TL #theta_{pFD} used in WMaps", "TL #theta_{pFD} used in WMaps", "#theta_{pFD} [#circ]", directories.AMaps_Directory_map["WMaps_1e_cut_Directory"],
-                "02d_TL_Theta_pFD_used_in_WMaps", /* CutManager. */.ThetaFD_AMaps.GetLowerCut(), /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH1Dbins);
+                "02d_TL_Theta_pFD_used_in_WMaps", /* CutManager. */ThetaFD_AMaps.GetLowerCut(), /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH1Dbins);
     hPlot1D hReco_Phi_pFD_WMaps = hPlot1D("1e cut", "FD", "Reco #phi_{pFD} used in WMaps", "Reco #phi_{pFD} used in WMaps", "#phi_{pFD} [#circ]",
                                           directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "01e_Reco_Phi_pFD_used_in_WMaps", -180, 180, numTH1Dbins);
     hPlot1D hTL_Phi_pFD_WMaps = hPlot1D("1e cut", "FD", "TL #phi_{pFD} used in WMaps", "TL #phi_{pFD} used in WMaps", "#phi_{pFD} [#circ]",
@@ -8606,14 +8606,14 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     hPlot2D hReco_P_pFD_vs_Reco_Theta_pFD_WMap =
         hPlot2D("", "", "Reco_P_pFD_vs_Reco_Theta_pFD_WMaps", "Reco P_{pFD} vs. Reco #theta_{pFD} used in WMaps", "P_{pFD} [GeV/c]", "#theta_{pFD} [#circ]",
                 directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02aa_Reco_P_pFD_vs_Reco_Theta_pFD_WMaps", Momentum_lboundary, Momentum_uboundary,
-                /* CutManager. */.ThetaFD_AMaps.GetLowerCut(), /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                /* CutManager. */ThetaFD_AMaps.GetLowerCut(), /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_P_pFD_vs_Reco_Phi_pFD_WMap = hPlot2D("", "", "Reco_P_pFD_vs_Reco_Phi_pFD_WMaps", "Reco P_{pFD} vs. Reco #phi_{pFD} used in WMaps", "P_{pFD} [GeV/c]", "#phi_{pFD} [#circ]",
                                                        directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02ab_Reco_P_pFD_vs_Reco_Phi_pFD_WMaps", Momentum_lboundary,
                                                        Momentum_uboundary, Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_P_pFD_vs_TL_Theta_pFD_WMap =
         hPlot2D("", "", "Reco_P_pFD_vs_TL_Theta_pFD_WMaps", "Reco P_{pFD} vs. TL #theta_{pFD} used in WMaps", "P_{pFD} [GeV/c]", "#theta_{pFD} [#circ]",
                 directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02ac_Reco_P_pFD_vs_TL_Theta_pFD_WMaps", Momentum_lboundary, Momentum_uboundary,
-                /* CutManager. */.ThetaFD_AMaps.GetLowerCut(), /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                /* CutManager. */ThetaFD_AMaps.GetLowerCut(), /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_P_pFD_vs_TL_Phi_pFD_WMap = hPlot2D("", "", "Reco_P_pFD_vs_TL_Phi_pFD_WMaps", "Reco P_{pFD} vs. TL #phi_{pFD} used in WMaps", "P_{pFD} [GeV/c]", "#phi_{pFD} [#circ]",
                                                      directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02ad_Reco_P_pFD_vs_TL_Phi_pFD_WMaps", Momentum_lboundary, Momentum_uboundary,
                                                      Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
@@ -8626,94 +8626,94 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     hPlot2D hReco_P_pFD_vs_Reco_Theta_e_WMap =
         hPlot2D("", "", "Reco_P_pFD_vs_Reco_Theta_e_WMaps", "Reco P_{pFD} vs. Reco #theta_{e} used in WMaps", "P_{pFD} [GeV/c]", "#theta_{e} [#circ]",
                 directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02ag_Reco_P_pFD_vs_Reco_Theta_e_WMaps", Momentum_lboundary, Momentum_uboundary,
-                /* CutManager. */.ThetaFD_AMaps.GetLowerCut(), /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                /* CutManager. */ThetaFD_AMaps.GetLowerCut(), /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_P_pFD_vs_Reco_Phi_e_WMap = hPlot2D("", "", "Reco_P_pFD_vs_Reco_Phi_e_WMaps", "Reco P_{pFD} vs. Reco #phi_{e} used in WMaps", "P_{pFD} [GeV/c]", "#phi_{e} [#circ]",
                                                      directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02ah_Reco_P_pFD_vs_Reco_Phi_e_WMaps", Momentum_lboundary, Momentum_uboundary,
                                                      Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_P_pFD_vs_TL_Theta_e_WMap =
         hPlot2D("", "", "Reco_P_pFD_vs_TL_Theta_e_WMaps", "Reco P_{pFD} vs. TL #theta_{e} used in WMaps", "P_{pFD} [GeV/c]", "#theta_{e} [#circ]",
                 directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02ai_Reco_P_pFD_vs_TL_Theta_e_WMaps", Momentum_lboundary, Momentum_uboundary,
-                /* CutManager. */.ThetaFD_AMaps.GetLowerCut(), /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                /* CutManager. */ThetaFD_AMaps.GetLowerCut(), /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_P_pFD_vs_TL_Phi_e_WMap = hPlot2D("", "", "Reco_P_pFD_vs_TL_Phi_e_WMaps", "Reco P_{pFD} vs. TL #phi_{e} used in WMaps", "P_{pFD} [GeV/c]", "#phi_{e} [#circ]",
                                                    directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02aj_Reco_P_pFD_vs_TL_Phi_e_WMaps", Momentum_lboundary, Momentum_uboundary,
                                                    Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hTL_P_pFD_vs_Reco_Theta_pFD_WMap =
         hPlot2D("", "", "TL_P_pFD_vs_Reco_Theta_pFD_WMaps", "TL P_{pFD} vs. Reco #theta_{pFD} used in WMaps", "P_{pFD} [GeV/c]", "#theta_{pFD} [#circ]",
                 directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02ba_TL_P_pFD_vs_Reco_Theta_pFD_WMaps", Momentum_lboundary, Momentum_uboundary,
-                /* CutManager. */.ThetaFD_AMaps.GetLowerCut(), /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                /* CutManager. */ThetaFD_AMaps.GetLowerCut(), /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hTL_P_pFD_vs_TL_Theta_pFD_WMap =
         hPlot2D("", "", "TL_P_pFD_vs_TL_Theta_pFD_WMaps", "TL P_{pFD} vs. TL #theta_{pFD} used in WMaps", "P_{pFD} [GeV/c]", "#theta_{pFD} [#circ]",
                 directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02bb_TL_P_pFD_vs_TL_Theta_pFD_WMaps", Momentum_lboundary, Momentum_uboundary,
-                /* CutManager. */.ThetaFD_AMaps.GetLowerCut(), /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                /* CutManager. */ThetaFD_AMaps.GetLowerCut(), /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hTL_P_pFD_vs_TL_Phi_pFD_WMap = hPlot2D("", "", "TL_P_pFD_vs_TL_Phi_pFD_WMaps", "TL P_{pFD} vs. TL #phi_{pFD} used in WMaps", "P_{pFD} [GeV/c]", "#phi_{pFD} [#circ]",
                                                    directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02bc_TL_P_pFD_vs_TL_Phi_pFD_WMaps", Momentum_lboundary, Momentum_uboundary,
                                                    Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hTL_P_pFD_vs_TL_P_e_WMap =
         hPlot2D("", "", "TL_P_pFD_vs_TL_P_e_WMaps", "TL P_{pFD} vs. Reco P_{e} used in WMaps", "P_{pFD} [GeV/c]", "P_{e} [GeV/c]", directories.AMaps_Directory_map["WMaps_1e_cut_Directory"],
-                "02bd_TL_P_pFD_vs_TL_P_e_WMaps", Momentum_lboundary, Momentum_uboundary, /* CutManager. */.ThetaFD_AMaps.GetLowerCut(), /* CutManager. */.ThetaFD_AMaps.GetUpperCut(),
+                "02bd_TL_P_pFD_vs_TL_P_e_WMaps", Momentum_lboundary, Momentum_uboundary, /* CutManager. */ThetaFD_AMaps.GetLowerCut(), /* CutManager. */ThetaFD_AMaps.GetUpperCut(),
                 numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hTL_P_pFD_vs_Reco_Theta_e_WMap =
         hPlot2D("", "", "TL_P_pFD_vs_Reco_Theta_e_WMaps", "TL P_{pFD} vs. Reco #theta_{e} used in WMaps", "P_{pFD} [GeV/c]", "#theta_{e} [#circ]",
                 directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02be_TL_P_pFD_vs_Reco_Theta_e_WMaps", Momentum_lboundary, Momentum_uboundary,
-                /* CutManager. */.ThetaFD_AMaps.GetLowerCut(), /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                /* CutManager. */ThetaFD_AMaps.GetLowerCut(), /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hTL_P_pFD_vs_TL_Theta_e_WMap =
         hPlot2D("", "", "TL_P_pFD_vs_TL_Theta_e_WMaps", "TL P_{pFD} vs. TL #theta_{e} used in WMaps", "P_{pFD} [GeV/c]", "#theta_{e} [#circ]",
                 directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02bf_TL_P_pFD_vs_TL_Theta_e_WMaps", Momentum_lboundary, Momentum_uboundary,
-                /* CutManager. */.ThetaFD_AMaps.GetLowerCut(), /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                /* CutManager. */ThetaFD_AMaps.GetLowerCut(), /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hTL_P_pFD_vs_TL_Phi_e_WMap = hPlot2D("", "", "TL_P_pFD_vs_TL_Phi_e_WMaps", "TL P_{pFD} vs. TL #phi_{e} used in WMaps", "P_{pFD} [GeV/c]", "#phi_{e} [#circ]",
                                                  directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02bg_TL_P_pFD_vs_TL_Phi_e_WMaps", Momentum_lboundary, Momentum_uboundary,
                                                  Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_Theta_pFD_vs_Reco_Phi_pFD_WMap =
         hPlot2D("", "", "Reco_Theta_pFD_vs_Reco_Phi_pFD_WMaps", "Reco #theta_{pFD} vs. Reco #phi_{pFD} used in WMaps", "#theta_{pFD} [#circ]", "#phi_{pFD} [#circ]",
-                directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02ca_Reco_Theta_pFD_vs_Reco_Phi_pFD_WMaps", /* CutManager. */.ThetaFD_AMaps.GetLowerCut(),
-                /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02ca_Reco_Theta_pFD_vs_Reco_Phi_pFD_WMaps", /* CutManager. */ThetaFD_AMaps.GetLowerCut(),
+                /* CutManager. */ThetaFD_AMaps.GetUpperCut(), Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_Theta_pFD_vs_TL_Phi_pFD_WMap =
         hPlot2D("", "", "Reco_Theta_pFD_vs_TL_Phi_pFD_WMaps", "Reco #theta_{pFD} vs. TL #phi_{pFD} used in WMaps", "#theta_{pFD} [#circ]", "#phi_{pFD} [#circ]",
-                directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02cb_Reco_Theta_pFD_vs_TL_Phi_pFD_WMaps", /* CutManager. */.ThetaFD_AMaps.GetLowerCut(),
-                /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02cb_Reco_Theta_pFD_vs_TL_Phi_pFD_WMaps", /* CutManager. */ThetaFD_AMaps.GetLowerCut(),
+                /* CutManager. */ThetaFD_AMaps.GetUpperCut(), Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_Theta_pFD_vs_Reco_P_e_WMap =
         hPlot2D("", "", "Reco_Theta_pFD_vs_Reco_P_e_WMaps", "Reco #theta_{pFD} vs. Reco P_{e} used in WMaps", "#theta_{pFD} [#circ]", "P_{e} [GeV/c]",
-                directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02cc_Reco_Theta_pFD_vs_Reco_P_e_WMaps", /* CutManager. */.ThetaFD_AMaps.GetLowerCut(),
-                /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), Momentum_lboundary, Momentum_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02cc_Reco_Theta_pFD_vs_Reco_P_e_WMaps", /* CutManager. */ThetaFD_AMaps.GetLowerCut(),
+                /* CutManager. */ThetaFD_AMaps.GetUpperCut(), Momentum_lboundary, Momentum_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_Theta_pFD_vs_TL_P_e_WMap =
         hPlot2D("", "", "Reco_Theta_pFD_vs_TL_P_e_WMaps", "Reco #theta_{pFD} vs. TL P_{e} used in WMaps", "#theta_{pFD} [#circ]", "P_{e} [GeV/c]",
-                directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02cd_Reco_Theta_pFD_vs_TL_P_e_WMaps", /* CutManager. */.ThetaFD_AMaps.GetLowerCut(),
-                /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), Momentum_lboundary, Momentum_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02cd_Reco_Theta_pFD_vs_TL_P_e_WMaps", /* CutManager. */ThetaFD_AMaps.GetLowerCut(),
+                /* CutManager. */ThetaFD_AMaps.GetUpperCut(), Momentum_lboundary, Momentum_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_Theta_pFD_vs_Reco_Theta_e_WMap = hPlot2D("", "", "Reco_Theta_pFD_vs_Reco_Theta_e_WMaps", "Reco #theta_{pFD} vs. Reco #theta_{e} used in WMaps", "#theta_{pFD} [#circ]",
                                                            "#theta_{e} [#circ]", directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02ce_Reco_Theta_pFD_vs_Reco_Theta_e_WMaps",
-                                                           /* CutManager. */.ThetaFD_AMaps.GetLowerCut(), /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), /* CutManager. */.ThetaFD_AMaps.GetLowerCut(),
-                                                           /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                                                           /* CutManager. */ThetaFD_AMaps.GetLowerCut(), /* CutManager. */ThetaFD_AMaps.GetUpperCut(), /* CutManager. */ThetaFD_AMaps.GetLowerCut(),
+                                                           /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_Theta_pFD_vs_Reco_Phi_e_WMap =
         hPlot2D("", "", "Reco_Theta_pFD_vs_Reco_Phi_e_WMaps", "Reco #theta_{pFD} vs. Reco #phi_{e} used in WMaps", "#theta_{pFD} [#circ]", "#phi_{e} [#circ]",
-                directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02cf_Reco_Theta_pFD_vs_Reco_Phi_e_WMaps", /* CutManager. */.ThetaFD_AMaps.GetLowerCut(),
-                /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02cf_Reco_Theta_pFD_vs_Reco_Phi_e_WMaps", /* CutManager. */ThetaFD_AMaps.GetLowerCut(),
+                /* CutManager. */ThetaFD_AMaps.GetUpperCut(), Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_Theta_pFD_vs_TL_Theta_e_WMap = hPlot2D("", "", "Reco_Theta_pFD_vs_TL_Theta_e_WMaps", "Reco #theta_{pFD} vs. TL #theta_{e} used in WMaps", "#theta_{pFD} [#circ]",
                                                          "#theta_{e} [#circ]", directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02cg_Reco_Theta_pFD_vs_TL_Theta_e_WMaps",
-                                                         /* CutManager. */.ThetaFD_AMaps.GetLowerCut(), /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), /* CutManager. */.ThetaFD_AMaps.GetLowerCut(),
-                                                         /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                                                         /* CutManager. */ThetaFD_AMaps.GetLowerCut(), /* CutManager. */ThetaFD_AMaps.GetUpperCut(), /* CutManager. */ThetaFD_AMaps.GetLowerCut(),
+                                                         /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_Theta_pFD_vs_TL_Phi_e_WMap =
         hPlot2D("", "", "Reco_Theta_pFD_vs_TL_Phi_e_WMaps", "Reco #theta_{pFD} vs. TL #phi_{e} used in WMaps", "#theta_{pFD} [#circ]", "#phi_{e} [#circ]",
-                directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02ch_Reco_Theta_pFD_vs_TL_Phi_e_WMaps", /* CutManager. */.ThetaFD_AMaps.GetLowerCut(),
-                /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02ch_Reco_Theta_pFD_vs_TL_Phi_e_WMaps", /* CutManager. */ThetaFD_AMaps.GetLowerCut(),
+                /* CutManager. */ThetaFD_AMaps.GetUpperCut(), Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hTL_Theta_pFD_vs_TL_Phi_pFD_WMap =
         hPlot2D("", "", "TL_Theta_pFD_vs_TL_Phi_pFD_WMaps", "TL #theta_{pFD} vs. Reco #phi_{pFD} used in WMaps", "#theta_{pFD} [#circ]", "#phi_{pFD} [#circ]",
-                directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02da_TL_Theta_pFD_vs_TL_Phi_pFD_WMaps", /* CutManager. */.ThetaFD_AMaps.GetLowerCut(),
-                /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02da_TL_Theta_pFD_vs_TL_Phi_pFD_WMaps", /* CutManager. */ThetaFD_AMaps.GetLowerCut(),
+                /* CutManager. */ThetaFD_AMaps.GetUpperCut(), Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hTL_Theta_pFD_vs_TL_P_e_WMap = hPlot2D("", "", "TL_Theta_pFD_vs_TL_P_e_WMaps", "TL #theta_{pFD} vs. Reco P_{e} used in WMaps", "#theta_{pFD} [#circ]", "P_{e} [GeV/c]",
-                                                   directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02db_TL_Theta_pFD_vs_TL_P_e_WMaps", /* CutManager. */.ThetaFD_AMaps.GetLowerCut(),
-                                                   /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), /* CutManager. */.ThetaFD_AMaps.GetLowerCut(), /* CutManager. */.ThetaFD_AMaps.GetUpperCut(),
+                                                   directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02db_TL_Theta_pFD_vs_TL_P_e_WMaps", /* CutManager. */ThetaFD_AMaps.GetLowerCut(),
+                                                   /* CutManager. */ThetaFD_AMaps.GetUpperCut(), /* CutManager. */ThetaFD_AMaps.GetLowerCut(), /* CutManager. */ThetaFD_AMaps.GetUpperCut(),
                                                    numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hTL_Theta_pFD_vs_Reco_Theta_e_WMap = hPlot2D("", "", "TL_Theta_pFD_vs_Reco_Theta_e_WMaps", "TL #theta_{pFD} vs. Reco #theta_{e} used in WMaps", "#theta_{pFD} [#circ]",
                                                          "#theta_{e} [#circ]", directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02dc_TL_Theta_pFD_vs_Reco_Theta_e_WMaps",
-                                                         /* CutManager. */.ThetaFD_AMaps.GetLowerCut(), /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), /* CutManager. */.ThetaFD_AMaps.GetLowerCut(),
-                                                         /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                                                         /* CutManager. */ThetaFD_AMaps.GetLowerCut(), /* CutManager. */ThetaFD_AMaps.GetUpperCut(), /* CutManager. */ThetaFD_AMaps.GetLowerCut(),
+                                                         /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hTL_Theta_pFD_vs_TL_Phi_e_WMap = hPlot2D("", "", "TL_Theta_pFD_vs_TL_Phi_e_WMaps", "TL #theta_{pFD} vs. Reco #phi_{e} used in WMaps", "#theta_{pFD} [#circ]", "#phi_{e} [#circ]",
-                                                     directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02de_TL_Theta_pFD_vs_TL_Phi_e_WMaps", /* CutManager. */.ThetaFD_AMaps.GetLowerCut(),
-                                                     /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                                                     directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02de_TL_Theta_pFD_vs_TL_Phi_e_WMaps", /* CutManager. */ThetaFD_AMaps.GetLowerCut(),
+                                                     /* CutManager. */ThetaFD_AMaps.GetUpperCut(), Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hTL_Theta_pFD_vs_TL_Theta_e_WMap = hPlot2D("", "", "TL_Theta_pFD_vs_TL_Theta_e_WMaps", "TL #theta_{pFD} vs. TL #theta_{e} used in WMaps", "#theta_{pFD} [#circ]",
                                                        "#theta_{e} [#circ]", directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02df_TL_Theta_pFD_vs_TL_Theta_e_WMaps",
-                                                       /* CutManager. */.ThetaFD_AMaps.GetLowerCut(), /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), /* CutManager. */.ThetaFD_AMaps.GetLowerCut(),
-                                                       /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                                                       /* CutManager. */ThetaFD_AMaps.GetLowerCut(), /* CutManager. */ThetaFD_AMaps.GetUpperCut(), /* CutManager. */ThetaFD_AMaps.GetLowerCut(),
+                                                       /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_Phi_pFD_vs_Reco_Phi_pFD_WMap = hPlot2D("", "", "Reco_Phi_pFD_vs_Reco_Phi_pFD_WMaps", "Reco #phi_{pFD} vs. Reco #phi_{pFD} used in WMaps", "#phi_{pFD} [#circ]",
                                                          "#phi_{pFD} [#circ]", directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02ea_Reco_Phi_pFD_vs_Reco_Phi_pFD_WMaps",
                                                          Phi_lboundary, Phi_uboundary, Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
@@ -8728,15 +8728,15 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                                                    Momentum_lboundary, Momentum_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_Phi_pFD_vs_Reco_Theta_e_WMap =
         hPlot2D("", "", "Reco_Phi_pFD_vs_Reco_Theta_e_WMaps", "Reco #phi_{pFD} vs. Reco #theta_{e} used in WMaps", "#phi_{pFD} [#circ]", "#theta_{e} [#circ]",
-                directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02ee_Reco_Phi_pFD_vs_Reco_Theta_e_WMaps", Phi_lboundary, Phi_uboundary, /* CutManager. */.ThetaFD_AMaps.GetLowerCut(),
-                /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02ee_Reco_Phi_pFD_vs_Reco_Theta_e_WMaps", Phi_lboundary, Phi_uboundary, /* CutManager. */ThetaFD_AMaps.GetLowerCut(),
+                /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_Phi_pFD_vs_Reco_Phi_e_WMap = hPlot2D("", "", "Reco_Phi_pFD_vs_Reco_Phi_e_WMaps", "Reco #phi_{pFD} vs. Reco #phi_{e} used in WMaps", "#phi_{pFD} [#circ]",
                                                        "#phi_{e} [#circ]", directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02ef_Reco_Phi_pFD_vs_Reco_Phi_e_WMaps", Phi_lboundary,
                                                        Phi_uboundary, Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_Phi_pFD_vs_TL_Theta_e_WMap =
         hPlot2D("", "", "Reco_Phi_pFD_vs_TL_Theta_e_WMaps", "Reco #phi_{pFD} vs. TL #theta_{e} used in WMaps", "#phi_{pFD} [#circ]", "#theta_{e} [#circ]",
-                directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02eg_Reco_Phi_pFD_vs_TL_Theta_e_WMaps", Phi_lboundary, Phi_uboundary, /* CutManager. */.ThetaFD_AMaps.GetLowerCut(),
-                /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02eg_Reco_Phi_pFD_vs_TL_Theta_e_WMaps", Phi_lboundary, Phi_uboundary, /* CutManager. */ThetaFD_AMaps.GetLowerCut(),
+                /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_Phi_pFD_vs_TL_Phi_e_WMap = hPlot2D("", "", "Reco_Phi_pFD_vs_TL_Phi_e_WMaps", "Reco #phi_{pFD} vs. TL #phi_{e} used in WMaps", "#phi_{pFD} [#circ]", "#phi_{e} [#circ]",
                                                      directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02ef_Reco_Phi_pFD_vs_TL_Phi_e_WMaps", Phi_lboundary, Phi_uboundary,
                                                      Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
@@ -8745,16 +8745,16 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                                                      Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hTL_Phi_pFD_vs_TL_P_e_WMap =
         hPlot2D("", "", "TL_Phi_pFD_vs_TL_P_e_WMaps", "TL #phi_{pFD} vs. Reco P_{e} used in WMaps", "#phi_{pFD} [#circ]", "P_{e} [GeV/c]",
-                directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02fb_TL_Phi_pFD_vs_TL_P_e_WMaps", Phi_lboundary, Phi_uboundary, /* CutManager. */.ThetaFD_AMaps.GetLowerCut(),
-                /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02fb_TL_Phi_pFD_vs_TL_P_e_WMaps", Phi_lboundary, Phi_uboundary, /* CutManager. */ThetaFD_AMaps.GetLowerCut(),
+                /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hTL_Phi_pFD_vs_Reco_Theta_e_WMap =
         hPlot2D("", "", "TL_Phi_pFD_vs_Reco_Theta_e_WMaps", "TL #phi_{pFD} vs. Reco #theta_{e} used in WMaps", "#phi_{pFD} [#circ]", "#theta_{e} [#circ]",
-                directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02fc_TL_Phi_pFD_vs_Reco_Theta_e_WMaps", Phi_lboundary, Phi_uboundary, /* CutManager. */.ThetaFD_AMaps.GetLowerCut(),
-                /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02fc_TL_Phi_pFD_vs_Reco_Theta_e_WMaps", Phi_lboundary, Phi_uboundary, /* CutManager. */ThetaFD_AMaps.GetLowerCut(),
+                /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hTL_Phi_pFD_vs_TL_Theta_e_WMap =
         hPlot2D("", "", "TL_Phi_pFD_vs_TL_Theta_e_WMaps", "TL #phi_{pFD} vs. TL #theta_{e} used in WMaps", "#phi_{pFD} [#circ]", "#theta_{e} [#circ]",
-                directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02fd_TL_Phi_pFD_vs_TL_Theta_e_WMaps", Phi_lboundary, Phi_uboundary, /* CutManager. */.ThetaFD_AMaps.GetLowerCut(),
-                /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02fd_TL_Phi_pFD_vs_TL_Theta_e_WMaps", Phi_lboundary, Phi_uboundary, /* CutManager. */ThetaFD_AMaps.GetLowerCut(),
+                /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hTL_Phi_pFD_vs_TL_Phi_e_WMap = hPlot2D("", "", "TL_Phi_pFD_vs_TL_Phi_e_WMaps", "TL #phi_{pFD} vs. TL #phi_{e} used in WMaps", "#phi_{pFD} [#circ]", "#phi_{e} [#circ]",
                                                    directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02fh_TL_Phi_pFD_vs_TL_Phi_e_WMaps", Phi_lboundary, Phi_uboundary,
                                                    Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
@@ -8765,10 +8765,10 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                                       "03b_TL_P_nFD_used_in_WMaps", Momentum_lboundary, Momentum_uboundary, numTH1Dbins);
     hPlot1D hReco_Theta_nFD_WMaps =
         hPlot1D("1e cut", "FD", "Reco #theta_{nFD} used in WMaps", "Reco #theta_{nFD} used in WMaps", "#theta_{nFD} [#circ]", directories.AMaps_Directory_map["WMaps_1e_cut_Directory"],
-                "03c_Reco_Theta_nFD_used_in_WMaps", /* CutManager. */.ThetaFD_AMaps.GetLowerCut(), /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH1Dbins);
+                "03c_Reco_Theta_nFD_used_in_WMaps", /* CutManager. */ThetaFD_AMaps.GetLowerCut(), /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH1Dbins);
     hPlot1D hTL_Theta_nFD_WMaps =
         hPlot1D("1e cut", "FD", "TL #theta_{nFD} used in WMaps", "TL #theta_{nFD} used in WMaps", "#theta_{nFD} [#circ]", directories.AMaps_Directory_map["WMaps_1e_cut_Directory"],
-                "03d_TL_Theta_nFD_used_in_WMaps", /* CutManager. */.ThetaFD_AMaps.GetLowerCut(), /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH1Dbins);
+                "03d_TL_Theta_nFD_used_in_WMaps", /* CutManager. */ThetaFD_AMaps.GetLowerCut(), /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH1Dbins);
     hPlot1D hReco_Phi_nFD_WMaps = hPlot1D("1e cut", "FD", "Reco #phi_{nFD} used in WMaps", "Reco #phi_{nFD} used in WMaps", "#phi_{nFD} [#circ]",
                                           directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "01e_Reco_Phi_nFD_used_in_WMaps", -180, 180, numTH1Dbins);
     hPlot1D hTL_Phi_nFD_WMaps = hPlot1D("1e cut", "FD", "TL #phi_{nFD} used in WMaps", "TL #phi_{nFD} used in WMaps", "#phi_{nFD} [#circ]",
@@ -8776,14 +8776,14 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     hPlot2D hReco_P_nFD_vs_Reco_Theta_nFD_WMap =
         hPlot2D("", "", "Reco_P_nFD_vs_Reco_Theta_nFD_WMaps", "Reco P_{nFD} vs. Reco #theta_{nFD} used in WMaps", "P_{nFD} [GeV/c]", "#theta_{nFD} [#circ]",
                 directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02aa_Reco_P_nFD_vs_Reco_Theta_nFD_WMaps", Momentum_lboundary, Momentum_uboundary,
-                /* CutManager. */.ThetaFD_AMaps.GetLowerCut(), /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                /* CutManager. */ThetaFD_AMaps.GetLowerCut(), /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_P_nFD_vs_Reco_Phi_nFD_WMap = hPlot2D("", "", "Reco_P_nFD_vs_Reco_Phi_nFD_WMaps", "Reco P_{nFD} vs. Reco #phi_{nFD} used in WMaps", "P_{nFD} [GeV/c]", "#phi_{nFD} [#circ]",
                                                        directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02ab_Reco_P_nFD_vs_Reco_Phi_nFD_WMaps", Momentum_lboundary,
                                                        Momentum_uboundary, Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_P_nFD_vs_TL_Theta_nFD_WMap =
         hPlot2D("", "", "Reco_P_nFD_vs_TL_Theta_nFD_WMaps", "Reco P_{nFD} vs. TL #theta_{nFD} used in WMaps", "P_{nFD} [GeV/c]", "#theta_{nFD} [#circ]",
                 directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02ac_Reco_P_nFD_vs_TL_Theta_nFD_WMaps", Momentum_lboundary, Momentum_uboundary,
-                /* CutManager. */.ThetaFD_AMaps.GetLowerCut(), /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                /* CutManager. */ThetaFD_AMaps.GetLowerCut(), /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_P_nFD_vs_TL_Phi_nFD_WMap = hPlot2D("", "", "Reco_P_nFD_vs_TL_Phi_nFD_WMaps", "Reco P_{nFD} vs. TL #phi_{nFD} used in WMaps", "P_{nFD} [GeV/c]", "#phi_{nFD} [#circ]",
                                                      directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02ad_Reco_P_nFD_vs_TL_Phi_nFD_WMaps", Momentum_lboundary, Momentum_uboundary,
                                                      Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
@@ -8796,94 +8796,94 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     hPlot2D hReco_P_nFD_vs_Reco_Theta_e_WMap =
         hPlot2D("", "", "Reco_P_nFD_vs_Reco_Theta_e_WMaps", "Reco P_{nFD} vs. Reco #theta_{e} used in WMaps", "P_{nFD} [GeV/c]", "#theta_{e} [#circ]",
                 directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02ag_Reco_P_nFD_vs_Reco_Theta_e_WMaps", Momentum_lboundary, Momentum_uboundary,
-                /* CutManager. */.ThetaFD_AMaps.GetLowerCut(), /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                /* CutManager. */ThetaFD_AMaps.GetLowerCut(), /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_P_nFD_vs_Reco_Phi_e_WMap = hPlot2D("", "", "Reco_P_nFD_vs_Reco_Phi_e_WMaps", "Reco P_{nFD} vs. Reco #phi_{e} used in WMaps", "P_{nFD} [GeV/c]", "#phi_{e} [#circ]",
                                                      directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02ah_Reco_P_nFD_vs_Reco_Phi_e_WMaps", Momentum_lboundary, Momentum_uboundary,
                                                      Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_P_nFD_vs_TL_Theta_e_WMap =
         hPlot2D("", "", "Reco_P_nFD_vs_TL_Theta_e_WMaps", "Reco P_{nFD} vs. TL #theta_{e} used in WMaps", "P_{nFD} [GeV/c]", "#theta_{e} [#circ]",
                 directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02ai_Reco_P_nFD_vs_TL_Theta_e_WMaps", Momentum_lboundary, Momentum_uboundary,
-                /* CutManager. */.ThetaFD_AMaps.GetLowerCut(), /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                /* CutManager. */ThetaFD_AMaps.GetLowerCut(), /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_P_nFD_vs_TL_Phi_e_WMap = hPlot2D("", "", "Reco_P_nFD_vs_TL_Phi_e_WMaps", "Reco P_{nFD} vs. TL #phi_{e} used in WMaps", "P_{nFD} [GeV/c]", "#phi_{e} [#circ]",
                                                    directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02aj_Reco_P_nFD_vs_TL_Phi_e_WMaps", Momentum_lboundary, Momentum_uboundary,
                                                    Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hTL_P_nFD_vs_Reco_Theta_nFD_WMap =
         hPlot2D("", "", "TL_P_nFD_vs_Reco_Theta_nFD_WMaps", "TL P_{nFD} vs. Reco #theta_{nFD} used in WMaps", "P_{nFD} [GeV/c]", "#theta_{nFD} [#circ]",
                 directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02ba_TL_P_nFD_vs_Reco_Theta_nFD_WMaps", Momentum_lboundary, Momentum_uboundary,
-                /* CutManager. */.ThetaFD_AMaps.GetLowerCut(), /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                /* CutManager. */ThetaFD_AMaps.GetLowerCut(), /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hTL_P_nFD_vs_TL_Theta_nFD_WMap =
         hPlot2D("", "", "TL_P_nFD_vs_TL_Theta_nFD_WMaps", "TL P_{nFD} vs. TL #theta_{nFD} used in WMaps", "P_{nFD} [GeV/c]", "#theta_{nFD} [#circ]",
                 directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02bb_TL_P_nFD_vs_TL_Theta_nFD_WMaps", Momentum_lboundary, Momentum_uboundary,
-                /* CutManager. */.ThetaFD_AMaps.GetLowerCut(), /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                /* CutManager. */ThetaFD_AMaps.GetLowerCut(), /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hTL_P_nFD_vs_TL_Phi_nFD_WMap = hPlot2D("", "", "TL_P_nFD_vs_TL_Phi_nFD_WMaps", "TL P_{nFD} vs. TL #phi_{nFD} used in WMaps", "P_{nFD} [GeV/c]", "#phi_{nFD} [#circ]",
                                                    directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02bc_TL_P_nFD_vs_TL_Phi_nFD_WMaps", Momentum_lboundary, Momentum_uboundary,
                                                    Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hTL_P_nFD_vs_TL_P_e_WMap =
         hPlot2D("", "", "TL_P_nFD_vs_TL_P_e_WMaps", "TL P_{nFD} vs. Reco P_{e} used in WMaps", "P_{nFD} [GeV/c]", "P_{e} [GeV/c]", directories.AMaps_Directory_map["WMaps_1e_cut_Directory"],
-                "02bd_TL_P_nFD_vs_TL_P_e_WMaps", Momentum_lboundary, Momentum_uboundary, /* CutManager. */.ThetaFD_AMaps.GetLowerCut(), /* CutManager. */.ThetaFD_AMaps.GetUpperCut(),
+                "02bd_TL_P_nFD_vs_TL_P_e_WMaps", Momentum_lboundary, Momentum_uboundary, /* CutManager. */ThetaFD_AMaps.GetLowerCut(), /* CutManager. */ThetaFD_AMaps.GetUpperCut(),
                 numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hTL_P_nFD_vs_Reco_Theta_e_WMap =
         hPlot2D("", "", "TL_P_nFD_vs_Reco_Theta_e_WMaps", "TL P_{nFD} vs. Reco #theta_{e} used in WMaps", "P_{nFD} [GeV/c]", "#theta_{e} [#circ]",
                 directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02be_TL_P_nFD_vs_Reco_Theta_e_WMaps", Momentum_lboundary, Momentum_uboundary,
-                /* CutManager. */.ThetaFD_AMaps.GetLowerCut(), /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                /* CutManager. */ThetaFD_AMaps.GetLowerCut(), /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hTL_P_nFD_vs_TL_Theta_e_WMap =
         hPlot2D("", "", "TL_P_nFD_vs_TL_Theta_e_WMaps", "TL P_{nFD} vs. TL #theta_{e} used in WMaps", "P_{nFD} [GeV/c]", "#theta_{e} [#circ]",
                 directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02bf_TL_P_nFD_vs_TL_Theta_e_WMaps", Momentum_lboundary, Momentum_uboundary,
-                /* CutManager. */.ThetaFD_AMaps.GetLowerCut(), /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                /* CutManager. */ThetaFD_AMaps.GetLowerCut(), /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hTL_P_nFD_vs_TL_Phi_e_WMap = hPlot2D("", "", "TL_P_nFD_vs_TL_Phi_e_WMaps", "TL P_{nFD} vs. TL #phi_{e} used in WMaps", "P_{nFD} [GeV/c]", "#phi_{e} [#circ]",
                                                  directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02bg_TL_P_nFD_vs_TL_Phi_e_WMaps", Momentum_lboundary, Momentum_uboundary,
                                                  Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_Theta_nFD_vs_Reco_Phi_nFD_WMap =
         hPlot2D("", "", "Reco_Theta_nFD_vs_Reco_Phi_nFD_WMaps", "Reco #theta_{nFD} vs. Reco #phi_{nFD} used in WMaps", "#theta_{nFD} [#circ]", "#phi_{nFD} [#circ]",
-                directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02ca_Reco_Theta_nFD_vs_Reco_Phi_nFD_WMaps", /* CutManager. */.ThetaFD_AMaps.GetLowerCut(),
-                /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02ca_Reco_Theta_nFD_vs_Reco_Phi_nFD_WMaps", /* CutManager. */ThetaFD_AMaps.GetLowerCut(),
+                /* CutManager. */ThetaFD_AMaps.GetUpperCut(), Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_Theta_nFD_vs_TL_Phi_nFD_WMap =
         hPlot2D("", "", "Reco_Theta_nFD_vs_TL_Phi_nFD_WMaps", "Reco #theta_{nFD} vs. TL #phi_{nFD} used in WMaps", "#theta_{nFD} [#circ]", "#phi_{nFD} [#circ]",
-                directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02cb_Reco_Theta_nFD_vs_TL_Phi_nFD_WMaps", /* CutManager. */.ThetaFD_AMaps.GetLowerCut(),
-                /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02cb_Reco_Theta_nFD_vs_TL_Phi_nFD_WMaps", /* CutManager. */ThetaFD_AMaps.GetLowerCut(),
+                /* CutManager. */ThetaFD_AMaps.GetUpperCut(), Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_Theta_nFD_vs_Reco_P_e_WMap =
         hPlot2D("", "", "Reco_Theta_nFD_vs_Reco_P_e_WMaps", "Reco #theta_{nFD} vs. Reco P_{e} used in WMaps", "#theta_{nFD} [#circ]", "P_{e} [GeV/c]",
-                directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02cc_Reco_Theta_nFD_vs_Reco_P_e_WMaps", /* CutManager. */.ThetaFD_AMaps.GetLowerCut(),
-                /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), Momentum_lboundary, Momentum_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02cc_Reco_Theta_nFD_vs_Reco_P_e_WMaps", /* CutManager. */ThetaFD_AMaps.GetLowerCut(),
+                /* CutManager. */ThetaFD_AMaps.GetUpperCut(), Momentum_lboundary, Momentum_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_Theta_nFD_vs_TL_P_e_WMap =
         hPlot2D("", "", "Reco_Theta_nFD_vs_TL_P_e_WMaps", "Reco #theta_{nFD} vs. TL P_{e} used in WMaps", "#theta_{nFD} [#circ]", "P_{e} [GeV/c]",
-                directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02cd_Reco_Theta_nFD_vs_TL_P_e_WMaps", /* CutManager. */.ThetaFD_AMaps.GetLowerCut(),
-                /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), Momentum_lboundary, Momentum_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02cd_Reco_Theta_nFD_vs_TL_P_e_WMaps", /* CutManager. */ThetaFD_AMaps.GetLowerCut(),
+                /* CutManager. */ThetaFD_AMaps.GetUpperCut(), Momentum_lboundary, Momentum_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_Theta_nFD_vs_Reco_Theta_e_WMap = hPlot2D("", "", "Reco_Theta_nFD_vs_Reco_Theta_e_WMaps", "Reco #theta_{nFD} vs. Reco #theta_{e} used in WMaps", "#theta_{nFD} [#circ]",
                                                            "#theta_{e} [#circ]", directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02ce_Reco_Theta_nFD_vs_Reco_Theta_e_WMaps",
-                                                           /* CutManager. */.ThetaFD_AMaps.GetLowerCut(), /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), /* CutManager. */.ThetaFD_AMaps.GetLowerCut(),
-                                                           /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                                                           /* CutManager. */ThetaFD_AMaps.GetLowerCut(), /* CutManager. */ThetaFD_AMaps.GetUpperCut(), /* CutManager. */ThetaFD_AMaps.GetLowerCut(),
+                                                           /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_Theta_nFD_vs_Reco_Phi_e_WMap =
         hPlot2D("", "", "Reco_Theta_nFD_vs_Reco_Phi_e_WMaps", "Reco #theta_{nFD} vs. Reco #phi_{e} used in WMaps", "#theta_{nFD} [#circ]", "#phi_{e} [#circ]",
-                directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02cf_Reco_Theta_nFD_vs_Reco_Phi_e_WMaps", /* CutManager. */.ThetaFD_AMaps.GetLowerCut(),
-                /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02cf_Reco_Theta_nFD_vs_Reco_Phi_e_WMaps", /* CutManager. */ThetaFD_AMaps.GetLowerCut(),
+                /* CutManager. */ThetaFD_AMaps.GetUpperCut(), Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_Theta_nFD_vs_TL_Theta_e_WMap = hPlot2D("", "", "Reco_Theta_nFD_vs_TL_Theta_e_WMaps", "Reco #theta_{nFD} vs. TL #theta_{e} used in WMaps", "#theta_{nFD} [#circ]",
                                                          "#theta_{e} [#circ]", directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02cg_Reco_Theta_nFD_vs_TL_Theta_e_WMaps",
-                                                         /* CutManager. */.ThetaFD_AMaps.GetLowerCut(), /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), /* CutManager. */.ThetaFD_AMaps.GetLowerCut(),
-                                                         /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                                                         /* CutManager. */ThetaFD_AMaps.GetLowerCut(), /* CutManager. */ThetaFD_AMaps.GetUpperCut(), /* CutManager. */ThetaFD_AMaps.GetLowerCut(),
+                                                         /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_Theta_nFD_vs_TL_Phi_e_WMap =
         hPlot2D("", "", "Reco_Theta_nFD_vs_TL_Phi_e_WMaps", "Reco #theta_{nFD} vs. TL #phi_{e} used in WMaps", "#theta_{nFD} [#circ]", "#phi_{e} [#circ]",
-                directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02ch_Reco_Theta_nFD_vs_TL_Phi_e_WMaps", /* CutManager. */.ThetaFD_AMaps.GetLowerCut(),
-                /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02ch_Reco_Theta_nFD_vs_TL_Phi_e_WMaps", /* CutManager. */ThetaFD_AMaps.GetLowerCut(),
+                /* CutManager. */ThetaFD_AMaps.GetUpperCut(), Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hTL_Theta_nFD_vs_TL_Phi_nFD_WMap =
         hPlot2D("", "", "TL_Theta_nFD_vs_TL_Phi_nFD_WMaps", "TL #theta_{nFD} vs. Reco #phi_{nFD} used in WMaps", "#theta_{nFD} [#circ]", "#phi_{nFD} [#circ]",
-                directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02da_TL_Theta_nFD_vs_TL_Phi_nFD_WMaps", /* CutManager. */.ThetaFD_AMaps.GetLowerCut(),
-                /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02da_TL_Theta_nFD_vs_TL_Phi_nFD_WMaps", /* CutManager. */ThetaFD_AMaps.GetLowerCut(),
+                /* CutManager. */ThetaFD_AMaps.GetUpperCut(), Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hTL_Theta_nFD_vs_TL_P_e_WMap = hPlot2D("", "", "TL_Theta_nFD_vs_TL_P_e_WMaps", "TL #theta_{nFD} vs. Reco P_{e} used in WMaps", "#theta_{nFD} [#circ]", "P_{e} [GeV/c]",
-                                                   directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02db_TL_Theta_nFD_vs_TL_P_e_WMaps", /* CutManager. */.ThetaFD_AMaps.GetLowerCut(),
-                                                   /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), /* CutManager. */.ThetaFD_AMaps.GetLowerCut(), /* CutManager. */.ThetaFD_AMaps.GetUpperCut(),
+                                                   directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02db_TL_Theta_nFD_vs_TL_P_e_WMaps", /* CutManager. */ThetaFD_AMaps.GetLowerCut(),
+                                                   /* CutManager. */ThetaFD_AMaps.GetUpperCut(), /* CutManager. */ThetaFD_AMaps.GetLowerCut(), /* CutManager. */ThetaFD_AMaps.GetUpperCut(),
                                                    numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hTL_Theta_nFD_vs_Reco_Theta_e_WMap = hPlot2D("", "", "TL_Theta_nFD_vs_Reco_Theta_e_WMaps", "TL #theta_{nFD} vs. Reco #theta_{e} used in WMaps", "#theta_{nFD} [#circ]",
                                                          "#theta_{e} [#circ]", directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02dc_TL_Theta_nFD_vs_Reco_Theta_e_WMaps",
-                                                         /* CutManager. */.ThetaFD_AMaps.GetLowerCut(), /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), /* CutManager. */.ThetaFD_AMaps.GetLowerCut(),
-                                                         /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                                                         /* CutManager. */ThetaFD_AMaps.GetLowerCut(), /* CutManager. */ThetaFD_AMaps.GetUpperCut(), /* CutManager. */ThetaFD_AMaps.GetLowerCut(),
+                                                         /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hTL_Theta_nFD_vs_TL_Phi_e_WMap = hPlot2D("", "", "TL_Theta_nFD_vs_TL_Phi_e_WMaps", "TL #theta_{nFD} vs. Reco #phi_{e} used in WMaps", "#theta_{nFD} [#circ]", "#phi_{e} [#circ]",
-                                                     directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02de_TL_Theta_nFD_vs_TL_Phi_e_WMaps", /* CutManager. */.ThetaFD_AMaps.GetLowerCut(),
-                                                     /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                                                     directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02de_TL_Theta_nFD_vs_TL_Phi_e_WMaps", /* CutManager. */ThetaFD_AMaps.GetLowerCut(),
+                                                     /* CutManager. */ThetaFD_AMaps.GetUpperCut(), Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hTL_Theta_nFD_vs_TL_Theta_e_WMap = hPlot2D("", "", "TL_Theta_nFD_vs_TL_Theta_e_WMaps", "TL #theta_{nFD} vs. TL #theta_{e} used in WMaps", "#theta_{nFD} [#circ]",
                                                        "#theta_{e} [#circ]", directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02df_TL_Theta_nFD_vs_TL_Theta_e_WMaps",
-                                                       /* CutManager. */.ThetaFD_AMaps.GetLowerCut(), /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), /* CutManager. */.ThetaFD_AMaps.GetLowerCut(),
-                                                       /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                                                       /* CutManager. */ThetaFD_AMaps.GetLowerCut(), /* CutManager. */ThetaFD_AMaps.GetUpperCut(), /* CutManager. */ThetaFD_AMaps.GetLowerCut(),
+                                                       /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_Phi_nFD_vs_Reco_Phi_nFD_WMap = hPlot2D("", "", "Reco_Phi_nFD_vs_Reco_Phi_nFD_WMaps", "Reco #phi_{nFD} vs. Reco #phi_{nFD} used in WMaps", "#phi_{nFD} [#circ]",
                                                          "#phi_{nFD} [#circ]", directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02ea_Reco_Phi_nFD_vs_Reco_Phi_nFD_WMaps",
                                                          Phi_lboundary, Phi_uboundary, Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
@@ -8898,15 +8898,15 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                                                    Momentum_lboundary, Momentum_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_Phi_nFD_vs_Reco_Theta_e_WMap =
         hPlot2D("", "", "Reco_Phi_nFD_vs_Reco_Theta_e_WMaps", "Reco #phi_{nFD} vs. Reco #theta_{e} used in WMaps", "#phi_{nFD} [#circ]", "#theta_{e} [#circ]",
-                directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02ee_Reco_Phi_nFD_vs_Reco_Theta_e_WMaps", Phi_lboundary, Phi_uboundary, /* CutManager. */.ThetaFD_AMaps.GetLowerCut(),
-                /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02ee_Reco_Phi_nFD_vs_Reco_Theta_e_WMaps", Phi_lboundary, Phi_uboundary, /* CutManager. */ThetaFD_AMaps.GetLowerCut(),
+                /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_Phi_nFD_vs_Reco_Phi_e_WMap = hPlot2D("", "", "Reco_Phi_nFD_vs_Reco_Phi_e_WMaps", "Reco #phi_{nFD} vs. Reco #phi_{e} used in WMaps", "#phi_{nFD} [#circ]",
                                                        "#phi_{e} [#circ]", directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02ef_Reco_Phi_nFD_vs_Reco_Phi_e_WMaps", Phi_lboundary,
                                                        Phi_uboundary, Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_Phi_nFD_vs_TL_Theta_e_WMap =
         hPlot2D("", "", "Reco_Phi_nFD_vs_TL_Theta_e_WMaps", "Reco #phi_{nFD} vs. TL #theta_{e} used in WMaps", "#phi_{nFD} [#circ]", "#theta_{e} [#circ]",
-                directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02eg_Reco_Phi_nFD_vs_TL_Theta_e_WMaps", Phi_lboundary, Phi_uboundary, /* CutManager. */.ThetaFD_AMaps.GetLowerCut(),
-                /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02eg_Reco_Phi_nFD_vs_TL_Theta_e_WMaps", Phi_lboundary, Phi_uboundary, /* CutManager. */ThetaFD_AMaps.GetLowerCut(),
+                /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hReco_Phi_nFD_vs_TL_Phi_e_WMap = hPlot2D("", "", "Reco_Phi_nFD_vs_TL_Phi_e_WMaps", "Reco #phi_{nFD} vs. TL #phi_{e} used in WMaps", "#phi_{nFD} [#circ]", "#phi_{e} [#circ]",
                                                      directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02ef_Reco_Phi_nFD_vs_TL_Phi_e_WMaps", Phi_lboundary, Phi_uboundary,
                                                      Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
@@ -8915,16 +8915,16 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                                                      Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hTL_Phi_nFD_vs_TL_P_e_WMap =
         hPlot2D("", "", "TL_Phi_nFD_vs_TL_P_e_WMaps", "TL #phi_{nFD} vs. Reco P_{e} used in WMaps", "#phi_{nFD} [#circ]", "P_{e} [GeV/c]",
-                directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02fb_TL_Phi_nFD_vs_TL_P_e_WMaps", Phi_lboundary, Phi_uboundary, /* CutManager. */.ThetaFD_AMaps.GetLowerCut(),
-                /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02fb_TL_Phi_nFD_vs_TL_P_e_WMaps", Phi_lboundary, Phi_uboundary, /* CutManager. */ThetaFD_AMaps.GetLowerCut(),
+                /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hTL_Phi_nFD_vs_Reco_Theta_e_WMap =
         hPlot2D("", "", "TL_Phi_nFD_vs_Reco_Theta_e_WMaps", "TL #phi_{nFD} vs. Reco #theta_{e} used in WMaps", "#phi_{nFD} [#circ]", "#theta_{e} [#circ]",
-                directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02fc_TL_Phi_nFD_vs_Reco_Theta_e_WMaps", Phi_lboundary, Phi_uboundary, /* CutManager. */.ThetaFD_AMaps.GetLowerCut(),
-                /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02fc_TL_Phi_nFD_vs_Reco_Theta_e_WMaps", Phi_lboundary, Phi_uboundary, /* CutManager. */ThetaFD_AMaps.GetLowerCut(),
+                /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hTL_Phi_nFD_vs_TL_Theta_e_WMap =
         hPlot2D("", "", "TL_Phi_nFD_vs_TL_Theta_e_WMaps", "TL #phi_{nFD} vs. TL #theta_{e} used in WMaps", "#phi_{nFD} [#circ]", "#theta_{e} [#circ]",
-                directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02fd_TL_Phi_nFD_vs_TL_Theta_e_WMaps", Phi_lboundary, Phi_uboundary, /* CutManager. */.ThetaFD_AMaps.GetLowerCut(),
-                /* CutManager. */.ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
+                directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02fd_TL_Phi_nFD_vs_TL_Theta_e_WMaps", Phi_lboundary, Phi_uboundary, /* CutManager. */ThetaFD_AMaps.GetLowerCut(),
+                /* CutManager. */ThetaFD_AMaps.GetUpperCut(), numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
     hPlot2D hTL_Phi_nFD_vs_TL_Phi_e_WMap = hPlot2D("", "", "TL_Phi_nFD_vs_TL_Phi_e_WMaps", "TL #phi_{nFD} vs. TL #phi_{e} used in WMaps", "#phi_{nFD} [#circ]", "#phi_{e} [#circ]",
                                                    directories.AMaps_Directory_map["WMaps_1e_cut_Directory"], "02fh_TL_Phi_nFD_vs_TL_Phi_e_WMaps", Phi_lboundary, Phi_uboundary,
                                                    Phi_lboundary, Phi_uboundary, numTH2Dbins_Nucleon_AMaps_Plots, numTH2Dbins_Nucleon_AMaps_Plots);
@@ -8996,7 +8996,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         new TH2D("R_{pFD} vs. P^{truth}_{pFD} - ZOOMIN (1p, FD)",
                  "R_{pFD} vs. P^{truth}_{pFD} - ZOOMIN (1p, FD);P^{truth}_{pFD} [GeV/c];"
                  "Resolution = (P^{truth}_{pFD} - P^{reco}_{pFD})/P^{truth}_{pFD}",
-                 numTH2Dbins_nRes_Plots, /* CutManager. */.FD_nucleon_momentum_cut.GetLowerCut(), /* CutManager. */.FD_nucleon_momentum_cut.GetUpperCut(), numTH2Dbins_nRes_Plots, -0.75, 0.75);
+                 numTH2Dbins_nRes_Plots, /* CutManager. */FD_nucleon_momentum_cut.GetLowerCut(), /* CutManager. */FD_nucleon_momentum_cut.GetUpperCut(), numTH2Dbins_nRes_Plots, -0.75, 0.75);
     TH2D *hP_pFD_Res_VS_TL_P_pFD_noKC_1p = new TH2D("R_{pFD} vs. P^{truth}_{pFD} no mom. KC (1p, FD)",
                                                     "R_{pFD} vs. P^{truth}_{pFD} no mom. KC (1p, FD);P^{truth}_{pFD} [GeV/c];"
                                                     "Resolution = (P^{truth}_{pFD} - P^{reco}_{pFD})/P^{truth}_{pFD}",
@@ -9009,7 +9009,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         new TH2D("R_{pFD} vs. P^{reco}_{pFD} - ZOOMIN (1p, FD)",
                  "R_{pFD} vs. P^{reco}_{pFD} - ZOOMIN (1p, FD);P^{reco}_{pFD} [GeV/c];"
                  "Resolution = (P^{truth}_{pFD} - P^{reco}_{pFD})/P^{truth}_{pFD}",
-                 numTH2Dbins_nRes_Plots, /* CutManager. */.FD_nucleon_momentum_cut.GetLowerCut(), /* CutManager. */.FD_nucleon_momentum_cut.GetUpperCut(), numTH2Dbins_nRes_Plots, -0.75, 0.75);
+                 numTH2Dbins_nRes_Plots, /* CutManager. */FD_nucleon_momentum_cut.GetLowerCut(), /* CutManager. */FD_nucleon_momentum_cut.GetUpperCut(), numTH2Dbins_nRes_Plots, -0.75, 0.75);
     TH2D *hP_pFD_Res_VS_Reco_P_pFD_noKC_1p = new TH2D("R_{pFD} vs. P^{reco}_{pFD} no mom. KC (1p, FD)",
                                                       "R_{pFD} vs. P^{reco}_{pFD} no mom. KC (1p, FD);P^{reco}_{pFD} [GeV/c];"
                                                       "Resolution = (P^{truth}_{pFD} - P^{reco}_{pFD})/P^{truth}_{pFD}",
@@ -9022,7 +9022,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         new TH2D("R_{pFD} vs. smeared P^{reco}_{pFD} - ZOOMIN (1p, FD)",
                  "R_{pFD} vs. smeared P^{reco}_{pFD} - ZOOMIN (1p, FD);Smeared P^{reco}_{pFD} [GeV/c];"
                  "Resolution = (P^{truth}_{pFD} - P^{reco}_{pFD})/P^{truth}_{pFD}",
-                 numTH2Dbins_nRes_Plots, /* CutManager. */.FD_nucleon_momentum_cut.GetLowerCut(), /* CutManager. */.FD_nucleon_momentum_cut.GetUpperCut(), numTH2Dbins_nRes_Plots, -0.75, 0.75);
+                 numTH2Dbins_nRes_Plots, /* CutManager. */FD_nucleon_momentum_cut.GetLowerCut(), /* CutManager. */FD_nucleon_momentum_cut.GetUpperCut(), numTH2Dbins_nRes_Plots, -0.75, 0.75);
     TH2D *hP_pFD_Res_VS_Smear_Reco_P_pFD_noKC_1p = new TH2D("R_{pFD} vs. smeared P^{reco}_{pFD} no mom. KC (1p, FD)",
                                                             "R_{pFD} vs. smeared P^{reco}_{pFD} no mom. KC (1p, FD);Smeared P^{reco}_{pFD} [GeV/c];"
                                                             "Resolution = (P^{truth}_{pFD} - P^{reco}_{pFD})/P^{truth}_{pFD}",
@@ -9117,7 +9117,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         new TH2D("R_{nFD} vs. P^{truth}_{nFD} - ZOOMIN (1n, FD)",
                  "R_{nFD} vs. P^{truth}_{nFD} - ZOOMIN (1n, FD);P^{truth}_{nFD} [GeV/c];"
                  "Resolution = (P^{truth}_{nFD} - P^{reco}_{nFD})/P^{truth}_{nFD}",
-                 numTH2Dbins_nRes_Plots, /* CutManager. */.FD_nucleon_momentum_cut.GetLowerCut(), /* CutManager. */.FD_nucleon_momentum_cut.GetUpperCut(), numTH2Dbins_nRes_Plots, -0.75, 0.75);
+                 numTH2Dbins_nRes_Plots, /* CutManager. */FD_nucleon_momentum_cut.GetLowerCut(), /* CutManager. */FD_nucleon_momentum_cut.GetUpperCut(), numTH2Dbins_nRes_Plots, -0.75, 0.75);
     TH2D *hP_nFD_Res_VS_TL_P_nFD_noKC_1n = new TH2D("R_{nFD} vs. P^{truth}_{nFD} no mom. KC (1n, FD)",
                                                     "R_{nFD} vs. P^{truth}_{nFD} no mom. KC (1n, FD);P^{truth}_{nFD} [GeV/c];"
                                                     "Resolution = (P^{truth}_{nFD} - P^{reco}_{nFD})/P^{truth}_{nFD}",
@@ -9130,7 +9130,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         new TH2D("R_{nFD} vs. P^{reco}_{nFD} - ZOOMIN (1n, FD)",
                  "R_{nFD} vs. P^{reco}_{nFD} - ZOOMIN (1n, FD);P^{reco}_{nFD} [GeV/c];"
                  "Resolution = (P^{truth}_{nFD} - P^{reco}_{nFD})/P^{truth}_{nFD}",
-                 numTH2Dbins_nRes_Plots, /* CutManager. */.FD_nucleon_momentum_cut.GetLowerCut(), /* CutManager. */.FD_nucleon_momentum_cut.GetUpperCut(), numTH2Dbins_nRes_Plots, -0.75, 0.75);
+                 numTH2Dbins_nRes_Plots, /* CutManager. */FD_nucleon_momentum_cut.GetLowerCut(), /* CutManager. */FD_nucleon_momentum_cut.GetUpperCut(), numTH2Dbins_nRes_Plots, -0.75, 0.75);
     TH2D *hP_nFD_Res_VS_Reco_P_nFD_noKC_1n = new TH2D("R_{nFD} vs. P^{reco}_{nFD} no mom. KC (1n, FD)",
                                                       "R_{nFD} vs. P^{reco}_{nFD} no mom. KC (1n, FD);P^{reco}_{nFD} [GeV/c];"
                                                       "Resolution = (P^{truth}_{nFD} - P^{reco}_{nFD})/P^{truth}_{nFD}",
@@ -9143,7 +9143,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         new TH2D("R_{nFD} vs. corrected P^{reco}_{nFD} - ZOOMIN (1n, FD)",
                  "R_{nFD} vs. corrected P^{reco}_{nFD} - ZOOMIN (1n, FD);Corrected P^{reco}_{nFD} [GeV/c];"
                  "Resolution = (P^{truth}_{nFD} - P^{reco}_{nFD})/P^{truth}_{nFD}",
-                 numTH2Dbins_nRes_Plots, /* CutManager. */.FD_nucleon_momentum_cut.GetLowerCut(), /* CutManager. */.FD_nucleon_momentum_cut.GetUpperCut(), numTH2Dbins_nRes_Plots, -0.75, 0.75);
+                 numTH2Dbins_nRes_Plots, /* CutManager. */FD_nucleon_momentum_cut.GetLowerCut(), /* CutManager. */FD_nucleon_momentum_cut.GetUpperCut(), numTH2Dbins_nRes_Plots, -0.75, 0.75);
     TH2D *hP_nFD_Res_VS_Corr_Reco_P_nFD_noKC_1n = new TH2D("R_{nFD} vs. corrected P^{reco}_{nFD} no mom. KC (1n, FD)",
                                                            "R_{nFD} vs. corrected P^{reco}_{nFD} no mom. KC (1n, FD);Corrected P^{reco}_{nFD} [GeV/c];"
                                                            "Resolution = (P^{truth}_{nFD} - P^{reco}_{nFD})/P^{truth}_{nFD}",
@@ -9555,7 +9555,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             // TODO: ask justin for these cuts for LH2 and C12 (and other elements)
             clasAna.readEcalSFPar((path_definitions::PathDefinitions.PIDCutsDirectory + "paramsSF_40Ca_x2.dat").c_str());
             // TODO: RECHECK WHAT ARE THE CUTS HERE:
-            /* CutManager. */.SF_cuts = DSCuts("SF", "FD", "Electron", "1e cut", 0.24865, clasAna.getEcalSFLowerCut(), clasAna.getEcalSFUpperCut());
+            /* CutManager. */SF_cuts = DSCuts("SF", "FD", "Electron", "1e cut", 0.24865, clasAna.getEcalSFLowerCut(), clasAna.getEcalSFUpperCut());
 
             clasAna.setEcalSFCuts();
         }
@@ -9571,13 +9571,13 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
         if (/* CutSettings. */apply_ECAL_fiducial_cuts) {
             // making f_ecalEdgeCuts = true (ECAL fiducial cuts)
-            /* CutManager. */.PCAL_edge_cuts = DSCuts("PCAL edge", "FD", "Electron", "1e cut", 0, clasAna.getEcalEdgeCuts());
+            /* CutManager. */PCAL_edge_cuts = DSCuts("PCAL edge", "FD", "Electron", "1e cut", 0, clasAna.getEcalEdgeCuts());
             clasAna.setEcalEdgeCuts();
         }
 
         if (/* CutSettings. */apply_Nphe_cut) {
             // making f_NpheCuts = true (HTCC cuts)
-            /* CutManager. */.Nphe_cuts_FD = DSCuts("Nphe", "FD", "Electron", "1e cut", 0, clasAna.getNpheCuts());
+            /* CutManager. */Nphe_cuts_FD = DSCuts("Nphe", "FD", "Electron", "1e cut", 0, clasAna.getNpheCuts());
             clasAna.setNpheCuts();
         }
 
@@ -9590,13 +9590,13 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                                        .c_str());  // load sample-appropreate cuts file from CutsDirectory
 
             /* Overwriting PID cuts according to /* parameters. */SampleName */
-            /* CutManager. */.UpdateChargedParticleChi2Cuts(clasAna);
-            // /* CutManager. */.Chi2_Proton_cuts_CD.SetCutPram(clasAna.GetPidCutMean(2212, "CD"), -clasAna.GetPidCutSigma(2212, "CD"), clasAna.GetPidCutSigma(2212, "CD"));
-            // /* CutManager. */.Chi2_Proton_cuts_FD.SetCutPram(clasAna.GetPidCutMean(2212, "FD"), -clasAna.GetPidCutSigma(2212, "FD"), clasAna.GetPidCutSigma(2212, "FD"));
-            // /* CutManager. */.Chi2_piplus_cuts_CD.SetCutPram(clasAna.GetPidCutMean(211, "CD"), -clasAna.GetPidCutSigma(211, "CD"), clasAna.GetPidCutSigma(211, "CD"));
-            // /* CutManager. */.Chi2_piplus_cuts_FD.SetCutPram(clasAna.GetPidCutMean(211, "FD"), -clasAna.GetPidCutSigma(211, "FD"), clasAna.GetPidCutSigma(211, "FD"));
-            // /* CutManager. */.Chi2_piminus_cuts_CD.SetCutPram(clasAna.GetPidCutMean(-211, "CD"), -clasAna.GetPidCutSigma(-211, "CD"), clasAna.GetPidCutSigma(-211, "CD"));
-            // /* CutManager. */.Chi2_piminus_cuts_FD.SetCutPram(clasAna.GetPidCutMean(-211, "FD"), -clasAna.GetPidCutSigma(-211, "FD"), clasAna.GetPidCutSigma(-211, "FD"));
+            /* CutManager. */UpdateChargedParticleChi2Cuts(clasAna);
+            // /* CutManager. */Chi2_Proton_cuts_CD.SetCutPram(clasAna.GetPidCutMean(2212, "CD"), -clasAna.GetPidCutSigma(2212, "CD"), clasAna.GetPidCutSigma(2212, "CD"));
+            // /* CutManager. */Chi2_Proton_cuts_FD.SetCutPram(clasAna.GetPidCutMean(2212, "FD"), -clasAna.GetPidCutSigma(2212, "FD"), clasAna.GetPidCutSigma(2212, "FD"));
+            // /* CutManager. */Chi2_piplus_cuts_CD.SetCutPram(clasAna.GetPidCutMean(211, "CD"), -clasAna.GetPidCutSigma(211, "CD"), clasAna.GetPidCutSigma(211, "CD"));
+            // /* CutManager. */Chi2_piplus_cuts_FD.SetCutPram(clasAna.GetPidCutMean(211, "FD"), -clasAna.GetPidCutSigma(211, "FD"), clasAna.GetPidCutSigma(211, "FD"));
+            // /* CutManager. */Chi2_piminus_cuts_CD.SetCutPram(clasAna.GetPidCutMean(-211, "CD"), -clasAna.GetPidCutSigma(-211, "CD"), clasAna.GetPidCutSigma(-211, "CD"));
+            // /* CutManager. */Chi2_piminus_cuts_FD.SetCutPram(clasAna.GetPidCutMean(-211, "FD"), -clasAna.GetPidCutSigma(-211, "FD"), clasAna.GetPidCutSigma(-211, "FD"));
 
             clasAna.setPidCuts();  // making f_pidCuts = true
         }
@@ -9611,40 +9611,40 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                 clasAna.setVertexCuts();  // making f_vertexCuts = true
             }
 
-            clasAna.setVzcuts(/* CutManager. */.Vz_cut.GetLowerCut(), /* CutManager. */.Vz_cut.GetUpperCut());          // setting Vz cuts for all (charged?) particles
-            clasAna.setVzcutsFD(/* CutManager. */.Vz_cut_FD.GetLowerCut(), /* CutManager. */.Vz_cut_FD.GetUpperCut());  // setting Vz cuts for all charged particles (FD only)
-            clasAna.setVzcutsCD(/* CutManager. */.Vz_cut_CD.GetLowerCut(), /* CutManager. */.Vz_cut_CD.GetUpperCut());  // setting Vz cuts for all charged particles (CD only)
+            clasAna.setVzcuts(/* CutManager. */Vz_cut.GetLowerCut(), /* CutManager. */Vz_cut.GetUpperCut());          // setting Vz cuts for all (charged?) particles
+            clasAna.setVzcutsFD(/* CutManager. */Vz_cut_FD.GetLowerCut(), /* CutManager. */Vz_cut_FD.GetUpperCut());  // setting Vz cuts for all charged particles (FD only)
+            clasAna.setVzcutsCD(/* CutManager. */Vz_cut_CD.GetLowerCut(), /* CutManager. */Vz_cut_CD.GetUpperCut());  // setting Vz cuts for all charged particles (CD only)
         }
 
         if (/* CutSettings. */apply_DC_e_fiducial_cuts || /* CutSettings. */apply_DC_fiducial_cuts) {
             if (/* CutSettings. */apply_DC_e_fiducial_cuts) {
                 // making f_e_DCEdgeCuts = true (DC fiducial cuts?)
-                /* CutManager. */.DC_e_edge_cuts = DSCuts("DC edge", "FD", "Electron", "1e cut", 0, clasAna.getDCEdgeCuts());
+                /* CutManager. */DC_e_edge_cuts = DSCuts("DC edge", "FD", "Electron", "1e cut", 0, clasAna.getDCEdgeCuts());
                 clasAna.set_e_DCEdgeCuts();
             }
 
             if (/* CutSettings. */apply_DC_fiducial_cuts) {
                 // making f_e_DCEdgeCuts = true (DC fiducial cuts?)
-                /* CutManager. */.DC_edge_cuts = DSCuts("DC edge", "FD", "Charged particles", "1e cut", 0, clasAna.getDCEdgeCuts());
+                /* CutManager. */DC_edge_cuts = DSCuts("DC edge", "FD", "Charged particles", "1e cut", 0, clasAna.getDCEdgeCuts());
                 clasAna.setDCEdgeCuts();
             }
         }
 
         if (/* CutSettings. */apply_dVz_cuts) {
             clasAna.setVertexCorrCuts();                                                                                 // making f_corr_vertexCuts = true
-            clasAna.setVertexCorrCutsLim(/* CutManager. */.dVz_cuts.GetLowerCut(), /* CutManager. */.dVz_cuts.GetUpperCut());          // setting dVz cuts (general)
-            clasAna.setVertexCorrCutsLimFD(/* CutManager. */.dVz_cuts_FD.GetLowerCut(), /* CutManager. */.dVz_cuts_FD.GetUpperCut());  // setting dVz cuts (FD only)
-            clasAna.setVertexCorrCutsLimCD(/* CutManager. */.dVz_cuts_CD.GetLowerCut(), /* CutManager. */.dVz_cuts_CD.GetUpperCut());  // setting dVz cuts (CD only)
+            clasAna.setVertexCorrCutsLim(/* CutManager. */dVz_cuts.GetLowerCut(), /* CutManager. */dVz_cuts.GetUpperCut());          // setting dVz cuts (general)
+            clasAna.setVertexCorrCutsLimFD(/* CutManager. */dVz_cuts_FD.GetLowerCut(), /* CutManager. */dVz_cuts_FD.GetUpperCut());  // setting dVz cuts (FD only)
+            clasAna.setVertexCorrCutsLimCD(/* CutManager. */dVz_cuts_CD.GetLowerCut(), /* CutManager. */dVz_cuts_CD.GetUpperCut());  // setting dVz cuts (CD only)
         }
 
         if (!/* CutSettings. */apply_nucleon_cuts) {
             /* Setting neutron momentum cut before beta fit (i.e., no cut!) */
-            /* CutManager. */.n_momentum_cuts_ABF_FD_n_from_ph = DSCuts("Momentum_cuts_ECAL", "FD-ECAL", "Neutron", "", 0, /* CutManager. */.n_mom_th.GetLowerCut(), 9999);
-            /* CutManager. */.n_momentum_cuts_ABF_FD_n_from_ph_apprax = DSCuts("Momentum_cuts_ECAL_apprax", "FD-ECAL_apprax", "Neutron", "", 0, /* CutManager. */.n_mom_th.GetLowerCut(), 9999);
+            /* CutManager. */n_momentum_cuts_ABF_FD_n_from_ph = DSCuts("Momentum_cuts_ECAL", "FD-ECAL", "Neutron", "", 0, /* CutManager. */n_mom_th.GetLowerCut(), 9999);
+            /* CutManager. */n_momentum_cuts_ABF_FD_n_from_ph_apprax = DSCuts("Momentum_cuts_ECAL_apprax", "FD-ECAL_apprax", "Neutron", "", 0, /* CutManager. */n_mom_th.GetLowerCut(), 9999);
 
             /* Setting variables to log beta fit parameters into (i.e., no cut!) */
-            /* CutManager. */.Beta_max_cut_ABF_FD_n_from_ph = DSCuts("Beta_cut_ECAL", "FD-ECAL", "", "nFDpCD", 1, -9999, 9999);
-            /* CutManager. */.Beta_max_cut_ABF_FD_n_from_ph_apprax = DSCuts("Beta_cut_ECAL_apprax", "FD-ECAL_apprax", "", "1n", 1, -9999, 9999);
+            /* CutManager. */Beta_max_cut_ABF_FD_n_from_ph = DSCuts("Beta_cut_ECAL", "FD-ECAL", "", "nFDpCD", 1, -9999, 9999);
+            /* CutManager. */Beta_max_cut_ABF_FD_n_from_ph_apprax = DSCuts("Beta_cut_ECAL_apprax", "FD-ECAL_apprax", "", "1n", 1, -9999, 9999);
         } else {
             std::cout << "\033[33m\n\nLoading fitted Beta cuts...\n\n\033[0m";
             clasAna.readInputParam((path_definitions::PathDefinitions.NucleonCutsDirectory + "Nucleon_Cuts_-_" + /* parameters. */SampleName + ".par")
@@ -9653,21 +9653,21 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             /* Setting nucleon cuts - only if NOT plotting efficiency plots! */
             if (/* ESSettings. */limless_mom_eff_plots || /* parameters. */is2GeVSample) {
                 /* If sample is with 2GeV beam energy, no fit is needed. */
-                /* CutManager. */.n_mom_th.SetUpperCut(/* parameters. */beamE);
-                /* CutManager. */.TL_n_mom_cuts.SetUpperCut(/* parameters. */beamE);
+                /* CutManager. */n_mom_th.SetUpperCut(/* parameters. */beamE);
+                /* CutManager. */TL_n_mom_cuts.SetUpperCut(/* parameters. */beamE);
             } else {
                 /* Else, load values from fit. */
                 if (/* CutSettings. */apply_nBeta_fit_cuts) {
-                    /* CutManager. */.n_mom_th.SetUpperCut(clasAna.getNeutronMomentumCut());
-                    /* CutManager. */.TL_n_mom_cuts.SetUpperCut(clasAna.getNeutronMomentumCut());
-                    /* CutManager. */.Beta_cut.SetUpperCut(clasAna.getNeutralBetaCut());  // Log values of beta fit cut (for monitoring)
-                    /* CutManager. */.Beta_cut.SetMean(clasAna.getNeutralBetaCutMean());  // Log values of beta fit cut (for monitoring)
+                    /* CutManager. */n_mom_th.SetUpperCut(clasAna.getNeutronMomentumCut());
+                    /* CutManager. */TL_n_mom_cuts.SetUpperCut(clasAna.getNeutronMomentumCut());
+                    /* CutManager. */Beta_cut.SetUpperCut(clasAna.getNeutralBetaCut());  // Log values of beta fit cut (for monitoring)
+                    /* CutManager. */Beta_cut.SetMean(clasAna.getNeutralBetaCutMean());  // Log values of beta fit cut (for monitoring)
                 }
             }
 
-            /* CutManager. */.dphi_p1_p2_2p.SetMean(clasAna.getdPhiCutMean());
-            /* CutManager. */.dphi_pFD_pCD_2p.SetMean(clasAna.getdPhiCutMean());
-            /* CutManager. */.dphi_pFD_pCD_pFDpCD.SetMean(clasAna.getdPhiCutMean());
+            /* CutManager. */dphi_p1_p2_2p.SetMean(clasAna.getdPhiCutMean());
+            /* CutManager. */dphi_pFD_pCD_2p.SetMean(clasAna.getdPhiCutMean());
+            /* CutManager. */dphi_pFD_pCD_pFDpCD.SetMean(clasAna.getdPhiCutMean());
         }
 
         clasAna.printParams();
@@ -9683,30 +9683,30 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                     clasAna.setVertexCuts();  // making f_vertexCuts = true
                 }
 
-                clasAna.setVzcuts(/* CutManager. */.Vz_cut.GetLowerCut(), /* CutManager. */.Vz_cut.GetUpperCut());          // setting Vz cuts for all (charged?) particles
-                clasAna.setVzcutsFD(/* CutManager. */.Vz_cut_FD.GetLowerCut(), /* CutManager. */.Vz_cut_FD.GetUpperCut());  // setting Vz cuts for all charged particles (FD only)
-                clasAna.setVzcutsCD(/* CutManager. */.Vz_cut_CD.GetLowerCut(), /* CutManager. */.Vz_cut_CD.GetUpperCut());  // setting Vz cuts for all charged particles (CD only)
+                clasAna.setVzcuts(/* CutManager. */Vz_cut.GetLowerCut(), /* CutManager. */Vz_cut.GetUpperCut());          // setting Vz cuts for all (charged?) particles
+                clasAna.setVzcutsFD(/* CutManager. */Vz_cut_FD.GetLowerCut(), /* CutManager. */Vz_cut_FD.GetUpperCut());  // setting Vz cuts for all charged particles (FD only)
+                clasAna.setVzcutsCD(/* CutManager. */Vz_cut_CD.GetLowerCut(), /* CutManager. */Vz_cut_CD.GetUpperCut());  // setting Vz cuts for all charged particles (CD only)
             }
 
             if (/* CutSettings. */apply_DC_e_fiducial_cuts || /* CutSettings. */apply_DC_fiducial_cuts) {
                 if (/* CutSettings. */apply_DC_e_fiducial_cuts) {
                     // making f_e_DCEdgeCuts = true (DC fiducial cuts?)
-                    /* CutManager. */.DC_e_edge_cuts = DSCuts("DC edge", "FD", "Electron", "1e cut", 0, clasAna.getDCEdgeCuts());
+                    /* CutManager. */DC_e_edge_cuts = DSCuts("DC edge", "FD", "Electron", "1e cut", 0, clasAna.getDCEdgeCuts());
                     clasAna.set_e_DCEdgeCuts();
                 }
 
                 if (/* CutSettings. */apply_DC_fiducial_cuts) {
                     // making f_e_DCEdgeCuts = true (DC fiducial cuts?)
-                    /* CutManager. */.DC_edge_cuts = DSCuts("DC edge", "FD", "Charged particles", "1e cut", 0, clasAna.getDCEdgeCuts());
+                    /* CutManager. */DC_edge_cuts = DSCuts("DC edge", "FD", "Charged particles", "1e cut", 0, clasAna.getDCEdgeCuts());
                     clasAna.setDCEdgeCuts();
                 }
             }
 
             if (/* CutSettings. */apply_dVz_cuts) {
                 clasAna.setVertexCorrCuts();                                                                                 // making f_corr_vertexCuts = true
-                clasAna.setVertexCorrCutsLim(/* CutManager. */.dVz_cuts.GetLowerCut(), /* CutManager. */.dVz_cuts.GetUpperCut());          // setting dVz cuts (general)
-                clasAna.setVertexCorrCutsLimFD(/* CutManager. */.dVz_cuts_FD.GetLowerCut(), /* CutManager. */.dVz_cuts_FD.GetUpperCut());  // setting dVz cuts (FD only)
-                clasAna.setVertexCorrCutsLimCD(/* CutManager. */.dVz_cuts_CD.GetLowerCut(), /* CutManager. */.dVz_cuts_CD.GetUpperCut());  // setting dVz cuts (CD only)
+                clasAna.setVertexCorrCutsLim(/* CutManager. */dVz_cuts.GetLowerCut(), /* CutManager. */dVz_cuts.GetUpperCut());          // setting dVz cuts (general)
+                clasAna.setVertexCorrCutsLimFD(/* CutManager. */dVz_cuts_FD.GetLowerCut(), /* CutManager. */dVz_cuts_FD.GetUpperCut());  // setting dVz cuts (FD only)
+                clasAna.setVertexCorrCutsLimCD(/* CutManager. */dVz_cuts_CD.GetLowerCut(), /* CutManager. */dVz_cuts_CD.GetUpperCut());  // setting dVz cuts (CD only)
             }
         }
 
@@ -9718,7 +9718,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                 // TODO: ask justin for these cuts for LH2 and C12 (and other elements)
                 clasAna.readEcalSFPar((path_definitions::PathDefinitions.PIDCutsDirectory + "paramsSF_40Ca_x2.dat").c_str());
                 // TODO: RECHECK WHAT ARE THE CUTS HERE:
-                /* CutManager. */.SF_cuts = DSCuts("SF", "FD", "Electron", "1e cut", 0.24865, clasAna.getEcalSFLowerCut(), clasAna.getEcalSFUpperCut());
+                /* CutManager. */SF_cuts = DSCuts("SF", "FD", "Electron", "1e cut", 0.24865, clasAna.getEcalSFLowerCut(), clasAna.getEcalSFUpperCut());
 
                 clasAna.setEcalSFCuts();
             }
@@ -9734,13 +9734,13 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
             if (/* CutSettings. */apply_ECAL_fiducial_cuts) {
                 // making f_ecalEdgeCuts = true (ECAL fiducial cuts)
-                /* CutManager. */.PCAL_edge_cuts = DSCuts("PCAL edge", "FD", "Electron", "1e cut", 0, clasAna.getEcalEdgeCuts());
+                /* CutManager. */PCAL_edge_cuts = DSCuts("PCAL edge", "FD", "Electron", "1e cut", 0, clasAna.getEcalEdgeCuts());
                 clasAna.setEcalEdgeCuts();
             }
 
             if (/* CutSettings. */apply_Nphe_cut) {
                 // making f_NpheCuts = true (HTCC cuts)
-                /* CutManager. */.Nphe_cuts_FD = DSCuts("Nphe", "FD", "Electron", "1e cut", 0, clasAna.getNpheCuts());
+                /* CutManager. */Nphe_cuts_FD = DSCuts("Nphe", "FD", "Electron", "1e cut", 0, clasAna.getNpheCuts());
                 clasAna.setNpheCuts();
             }
         }
@@ -9850,20 +9850,20 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         /* Configure particles within general momentum cuts (i.e. "identified particles") */
 
         // Charged particles' identification
-        std::vector<int> Electron_ind = pid.ChargedParticleID(electrons, /* CutManager. */.e_mom_th);
+        std::vector<int> Electron_ind = pid.ChargedParticleID(electrons, /* CutManager. */e_mom_th);
 
-        std::vector<int> IDed_Protons_ind = pid.ChargedParticleID(protons, /* CutManager. */.p_mom_th);  // indices of identified protons (i.e., within P_p th.)
-        std::vector<int> Protons_ind = pid.GetGoodProtons(/* CutSettings. */apply_nucleon_cuts, protons, IDed_Protons_ind, /* CutManager. */.Theta_p1_cuts_2p, /* CutManager. */.Theta_p2_cuts_2p,
-                                                          /* CutManager. */.dphi_pFD_pCD_2p);  // good identified protons (no sCTOFhp and no dCDaFDd)
+        std::vector<int> IDed_Protons_ind = pid.ChargedParticleID(protons, /* CutManager. */p_mom_th);  // indices of identified protons (i.e., within P_p th.)
+        std::vector<int> Protons_ind = pid.GetGoodProtons(/* CutSettings. */apply_nucleon_cuts, protons, IDed_Protons_ind, /* CutManager. */Theta_p1_cuts_2p, /* CutManager. */Theta_p2_cuts_2p,
+                                                          /* CutManager. */dphi_pFD_pCD_2p);  // good identified protons (no sCTOFhp and no dCDaFDd)
 
-        std::vector<int> Piplus_ind = pid.ChargedParticleID(piplus, /* CutManager. */.pip_mom_th);
-        std::vector<int> Piminus_ind = pid.ChargedParticleID(piminus, /* CutManager. */.pim_mom_th);
+        std::vector<int> Piplus_ind = pid.ChargedParticleID(piplus, /* CutManager. */pip_mom_th);
+        std::vector<int> Piminus_ind = pid.ChargedParticleID(piminus, /* CutManager. */pim_mom_th);
 
         // Charged particles for inclusive efficiency
         // Proton vectors for (e,e'Xp)Y efficiency
-        std::vector<int> All_Protons_ind = pid.ChargedParticleID(protons, /* CutManager. */.no_p_mom_th);  // indices of all protons (i.e., without P_p th.)
-        std::vector<int> All_gProtons_ind = pid.GetGoodProtons(/* CutSettings. */apply_nucleon_cuts, protons, All_Protons_ind, /* CutManager. */.Theta_p1_cuts_2p, /* CutManager. */.Theta_p2_cuts_2p,
-                                                               /* CutManager. */.dphi_pFD_pCD_2p);  // good protons (no sCTOFhp and no dCDaFDd) - WITHOUT mom. th.
+        std::vector<int> All_Protons_ind = pid.ChargedParticleID(protons, /* CutManager. */no_p_mom_th);  // indices of all protons (i.e., without P_p th.)
+        std::vector<int> All_gProtons_ind = pid.GetGoodProtons(/* CutSettings. */apply_nucleon_cuts, protons, All_Protons_ind, /* CutManager. */Theta_p1_cuts_2p, /* CutManager. */Theta_p2_cuts_2p,
+                                                               /* CutManager. */dphi_pFD_pCD_2p);  // good protons (no sCTOFhp and no dCDaFDd) - WITHOUT mom. th.
 
         // Neutral particles' identification (FD only; CD neutrals are ignored since they have to much background)
         /* Get FD neutrons and photons, according to the definitions: */
@@ -9876,7 +9876,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         /* Get FD neutrons and photons above momentum threshold (noNeutCuts): */
         // FD neutrons and photons by definition (after momentum th. only!):
         std::vector<int> NeutronsFD_ind_noNeutCuts, PhotonsFD_ind_noNeutCuts;
-        pid.FDNeutralParticleID(allParticles, NeutronsFD_ind_noNeutCuts, ReDef_FD_neutrons, /* CutManager. */.n_mom_th, PhotonsFD_ind_noNeutCuts, ReDef_FD_photons, /* CutManager. */.ph_mom_th,
+        pid.FDNeutralParticleID(allParticles, NeutronsFD_ind_noNeutCuts, ReDef_FD_neutrons, /* CutManager. */n_mom_th, PhotonsFD_ind_noNeutCuts, ReDef_FD_photons, /* CutManager. */ph_mom_th,
                                 /* CutSettings. */apply_nucleon_cuts);
         int NeutronsFD_ind_mom_max_noNeutCuts =
             pid.GetLnFDIndex(allParticles, NeutronsFD_ind_noNeutCuts, /* CutSettings. */apply_nucleon_cuts);  // Get index of FD neutron with maximal momentum (with only momentum th.)
@@ -9884,8 +9884,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         /* Get FD neutrons and photons above momentum threshold and after ECAL veto and after ECAL edge cuts: */
         // FD neutrons and photons by redefinition (after momentum th. & ECAL & edge cuts):
         std::vector<int> NeutronsFD_ind, PhotonsFD_ind;
-        pid.FDNeutralParticleID(allParticles, electrons, NeutronsFD_ind, ReDef_FD_neutrons, /* CutManager. */.n_mom_th, PhotonsFD_ind, ReDef_FD_photons, /* CutManager. */.ph_mom_th,
-                                /* CutManager. */.Neutron_veto_cut, /* parameters. */beamE, clasAna.getEcalEdgeCuts(), clasAna.getEcalEdgeCuts(), /* CutSettings. */apply_nucleon_cuts);
+        pid.FDNeutralParticleID(allParticles, electrons, NeutronsFD_ind, ReDef_FD_neutrons, /* CutManager. */n_mom_th, PhotonsFD_ind, ReDef_FD_photons, /* CutManager. */ph_mom_th,
+                                /* CutManager. */Neutron_veto_cut, /* parameters. */beamE, clasAna.getEcalEdgeCuts(), clasAna.getEcalEdgeCuts(), /* CutSettings. */apply_nucleon_cuts);
         int NeutronsFD_ind_mom_max =
             pid.GetLnFDIndex(allParticles, NeutronsFD_ind, /* CutSettings. */apply_nucleon_cuts);  // Get index of FD neutron with maximal momentum (with momentum th., ECAL edge, ECAL veto cuts)
 
@@ -9964,14 +9964,14 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         debugging::CodeDebugger.SafetyCheck_clas12ana_particles(__FILE__, __LINE__, /* CutSettings. */clas12ana_particles, allParticles, Nf);
 
         // Safety checks for FD protons:
-        debugging::CodeDebugger.SafetyCheck_FD_protons(__FILE__, __LINE__, Protons_ind, protons, /* CutManager. */.p_mom_th);
+        debugging::CodeDebugger.SafetyCheck_FD_protons(__FILE__, __LINE__, Protons_ind, protons, /* CutManager. */p_mom_th);
 
         // Safety checks for FD neutrons - checks for leading FD neutron
         debugging::CodeDebugger.SafetyCheck_Reco_leading_FD_neutron(__FILE__, __LINE__, /* CutSettings. */apply_nucleon_cuts, /* ESSettings. */ES_by_leading_FDneutron, NeutronsFD_ind_mom_max,
                                                                     allParticles, NeutronsFD_ind, pid);
 
         //  Safety checks for FD neutrons - checks for FD neutrons
-        debugging::CodeDebugger.SafetyCheck_FD_neutron(__FILE__, __LINE__, /* CutSettings. */apply_nucleon_cuts, allParticles, /* CutManager. */.n_mom_th, NeutronsFD_ind, pid);
+        debugging::CodeDebugger.SafetyCheck_FD_neutron(__FILE__, __LINE__, /* CutSettings. */apply_nucleon_cuts, allParticles, /* CutManager. */n_mom_th, NeutronsFD_ind, pid);
 
         // Some event counting
         if (electrons_det.size() == 1) { ++num_of_events_with_exactly_1e_from_file; }
@@ -10017,7 +10017,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         if (GoodProtonsMonitorPlots && basic_event_selection) {
             if (IDed_Protons_ind.size() == 2) { ++num_of_events_2p_wFakeProtons; }
 
-            pid.GPMonitoring(GoodProtonsMonitorPlots, protons, IDed_Protons_ind, Protons_ind, /* CutManager. */.Theta_p1_cuts_2p, /* CutManager. */.Theta_p2_cuts_2p, /* CutManager. */.dphi_p1_p2_2p, Weight);
+            pid.GPMonitoring(GoodProtonsMonitorPlots, protons, IDed_Protons_ind, Protons_ind, /* CutManager. */Theta_p1_cuts_2p, /* CutManager. */Theta_p2_cuts_2p, /* CutManager. */dphi_p1_p2_2p, Weight);
         }
 
         debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode);
@@ -10083,20 +10083,20 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                 double Particle_TL_Theta = acos((mcpbank->getPz()) / analysis_math::RadCalc(mcpbank->getPx(), mcpbank->getPy(), mcpbank->getPz())) * 180.0 / pi;
                 double Particle_TL_Phi = atan2(mcpbank->getPy(), mcpbank->getPx()) * 180.0 / pi;
 
-                bool inFD = ((Particle_TL_Theta >= /* CutManager. */.ThetaFD.GetLowerCut()) && (Particle_TL_Theta <= /* CutManager. */.ThetaFD.GetUpperCut()));
-                bool inCD = ((Particle_TL_Theta > /* CutManager. */.ThetaCD.GetLowerCut()) && (Particle_TL_Theta <= /* CutManager. */.ThetaCD.GetUpperCut()));
+                bool inFD = ((Particle_TL_Theta >= /* CutManager. */ThetaFD.GetLowerCut()) && (Particle_TL_Theta <= /* CutManager. */ThetaFD.GetUpperCut()));
+                bool inCD = ((Particle_TL_Theta > /* CutManager. */ThetaCD.GetLowerCut()) && (Particle_TL_Theta <= /* CutManager. */ThetaCD.GetUpperCut()));
 
                 if (particlePDGtmp == 11) {
-                    bool e_inFD = aMaps_master.IsInFDQuery((!TL_fiducial_cuts), /* CutManager. */.ThetaFD, "Electron", Particle_TL_Momentum, Particle_TL_Theta, Particle_TL_Phi);
+                    bool e_inFD = aMaps_master.IsInFDQuery((!TL_fiducial_cuts), /* CutManager. */ThetaFD, "Electron", Particle_TL_Momentum, Particle_TL_Theta, Particle_TL_Phi);
 
-                    if ((Particle_TL_Momentum >= /* CutManager. */.TL_e_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */.TL_e_mom_cuts.GetUpperCut())) {
+                    if ((Particle_TL_Momentum >= /* CutManager. */TL_e_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */TL_e_mom_cuts.GetUpperCut())) {
                         TL_Electron_mom_ind.push_back(i);
                     }
 
                     TL_Electron_ind.push_back(i);
 
                     if (inFD) {
-                        if ((Particle_TL_Momentum >= /* CutManager. */.TL_e_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */.TL_e_mom_cuts.GetUpperCut())) {
+                        if ((Particle_TL_Momentum >= /* CutManager. */TL_e_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */TL_e_mom_cuts.GetUpperCut())) {
                             TL_ElectronFD_mom_ind.push_back(i);
 
                             if (e_inFD) { TL_ElectronFD_wFC_mom_ind.push_back(i); }
@@ -10105,17 +10105,17 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                         TL_ElectronFD_ind.push_back(i);
                     }
                 } else if (particlePDGtmp == 2112) {
-                    bool n_inFD = aMaps_master.IsInFDQuery((!TL_fiducial_cuts), /* CutManager. */.ThetaFD, "Neutron", Particle_TL_Momentum, Particle_TL_Theta, Particle_TL_Phi,
+                    bool n_inFD = aMaps_master.IsInFDQuery((!TL_fiducial_cuts), /* CutManager. */ThetaFD, "Neutron", Particle_TL_Momentum, Particle_TL_Theta, Particle_TL_Phi,
                                                            /* ESSettings. */Calc_eff_overlapping_FC);
 
-                    if ((Particle_TL_Momentum >= /* CutManager. */.TL_n_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */.TL_n_mom_cuts.GetUpperCut())) {
+                    if ((Particle_TL_Momentum >= /* CutManager. */TL_n_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */TL_n_mom_cuts.GetUpperCut())) {
                         TL_Neutrons_mom_ind.push_back(i);
                     }
 
                     TL_Neutrons_ind.push_back(i);
 
                     if (inFD) {
-                        if ((Particle_TL_Momentum >= /* CutManager. */.TL_n_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */.TL_n_mom_cuts.GetUpperCut())) {
+                        if ((Particle_TL_Momentum >= /* CutManager. */TL_n_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */TL_n_mom_cuts.GetUpperCut())) {
                             TL_NeutronsFD_mom_ind.push_back(i);
 
                             if (Particle_TL_Momentum >= TL_IDed_Leading_nFD_momentum) {
@@ -10134,17 +10134,17 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                         }
                     }
                 } else if (particlePDGtmp == 2212) {
-                    bool p_inFD = aMaps_master.IsInFDQuery((!TL_fiducial_cuts), /* CutManager. */.ThetaFD, "Proton", Particle_TL_Momentum, Particle_TL_Theta, Particle_TL_Phi,
+                    bool p_inFD = aMaps_master.IsInFDQuery((!TL_fiducial_cuts), /* CutManager. */ThetaFD, "Proton", Particle_TL_Momentum, Particle_TL_Theta, Particle_TL_Phi,
                                                            /* ESSettings. */Calc_eff_overlapping_FC);
 
-                    if ((Particle_TL_Momentum >= /* CutManager. */.TL_p_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */.TL_p_mom_cuts.GetUpperCut())) {
+                    if ((Particle_TL_Momentum >= /* CutManager. */TL_p_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */TL_p_mom_cuts.GetUpperCut())) {
                         TL_Protons_mom_ind.push_back(i);
                     }
 
                     TL_Protons_ind.push_back(i);
 
                     if (inFD) {
-                        if ((Particle_TL_Momentum >= /* CutManager. */.TL_pFD_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */.TL_pFD_mom_cuts.GetUpperCut())) {
+                        if ((Particle_TL_Momentum >= /* CutManager. */TL_pFD_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */TL_pFD_mom_cuts.GetUpperCut())) {
                             TL_ProtonsFD_mom_ind.push_back(i);
 
                             if (p_inFD) { TL_ProtonsFD_wFC_mom_ind.push_back(i); }
@@ -10152,75 +10152,75 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
                         TL_ProtonsFD_ind.push_back(i);
                     } else if (inCD) {
-                        if ((Particle_TL_Momentum >= /* CutManager. */.TL_pCD_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */.TL_pCD_mom_cuts.GetUpperCut())) {
+                        if ((Particle_TL_Momentum >= /* CutManager. */TL_pCD_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */TL_pCD_mom_cuts.GetUpperCut())) {
                             TL_ProtonsCD_mom_ind.push_back(i);
                         }
 
                         TL_ProtonsCD_ind.push_back(i);
                     }
                 } else if (particlePDGtmp == 211) {
-                    if ((Particle_TL_Momentum >= /* CutManager. */.TL_pip_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */.TL_pip_mom_cuts.GetUpperCut())) {
+                    if ((Particle_TL_Momentum >= /* CutManager. */TL_pip_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */TL_pip_mom_cuts.GetUpperCut())) {
                         TL_piplus_mom_ind.push_back(i);
                     }
 
                     TL_piplus_ind.push_back(i);
 
                     if (inFD) {
-                        if ((Particle_TL_Momentum >= /* CutManager. */.TL_pipFD_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */.TL_pipFD_mom_cuts.GetUpperCut())) {
+                        if ((Particle_TL_Momentum >= /* CutManager. */TL_pipFD_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */TL_pipFD_mom_cuts.GetUpperCut())) {
                             TL_piplusFD_mom_ind.push_back(i);
                         }
 
                         TL_piplusFD_ind.push_back(i);
                     } else if (inCD) {
-                        if ((Particle_TL_Momentum >= /* CutManager. */.TL_pipCD_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */.TL_pipCD_mom_cuts.GetUpperCut())) {
+                        if ((Particle_TL_Momentum >= /* CutManager. */TL_pipCD_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */TL_pipCD_mom_cuts.GetUpperCut())) {
                             TL_piplusCD_mom_ind.push_back(i);
                         }
 
                         TL_piplusCD_ind.push_back(i);
                     }
                 } else if (particlePDGtmp == -211) {
-                    if ((Particle_TL_Momentum >= /* CutManager. */.TL_pim_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */.TL_pim_mom_cuts.GetUpperCut())) {
+                    if ((Particle_TL_Momentum >= /* CutManager. */TL_pim_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */TL_pim_mom_cuts.GetUpperCut())) {
                         TL_piminus_mom_ind.push_back(i);
                     }
 
                     TL_piminus_ind.push_back(i);
 
                     if (inFD) {
-                        if ((Particle_TL_Momentum >= /* CutManager. */.TL_pimFD_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */.TL_pimFD_mom_cuts.GetUpperCut())) {
+                        if ((Particle_TL_Momentum >= /* CutManager. */TL_pimFD_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */TL_pimFD_mom_cuts.GetUpperCut())) {
                             TL_piminusFD_mom_ind.push_back(i);
                         }
 
                         TL_piminusFD_ind.push_back(i);
                     } else if (inCD) {
-                        if ((Particle_TL_Momentum >= /* CutManager. */.TL_pimCD_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */.TL_pimCD_mom_cuts.GetUpperCut())) {
+                        if ((Particle_TL_Momentum >= /* CutManager. */TL_pimCD_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */TL_pimCD_mom_cuts.GetUpperCut())) {
                             TL_piminusCD_mom_ind.push_back(i);
                         }
 
                         TL_piminusCD_ind.push_back(i);
                     }
                 } else if (particlePDGtmp == 111) {
-                    if ((Particle_TL_Momentum >= /* CutManager. */.TL_pi0_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */.TL_pi0_mom_cuts.GetUpperCut())) {
+                    if ((Particle_TL_Momentum >= /* CutManager. */TL_pi0_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */TL_pi0_mom_cuts.GetUpperCut())) {
                         TL_pizero_mom_ind.push_back(i);
                     }
 
                     TL_pizero_ind.push_back(i);
 
                     if (inFD) {
-                        if ((Particle_TL_Momentum >= /* CutManager. */.TL_pi0_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */.TL_pi0_mom_cuts.GetUpperCut())) {
+                        if ((Particle_TL_Momentum >= /* CutManager. */TL_pi0_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */TL_pi0_mom_cuts.GetUpperCut())) {
                             TL_pi0FD_mom_ind.push_back(i);
                         }
 
                         TL_pi0FD_ind.push_back(i);
                     }
                 } else if (particlePDGtmp == 22) {
-                    if ((Particle_TL_Momentum >= /* CutManager. */.TL_ph_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */.TL_ph_mom_cuts.GetUpperCut())) {
+                    if ((Particle_TL_Momentum >= /* CutManager. */TL_ph_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */TL_ph_mom_cuts.GetUpperCut())) {
                         TL_Photons_mom_ind.push_back(i);
                     }
 
                     TL_Photons_ind.push_back(i);
 
                     if (inFD) {
-                        if ((Particle_TL_Momentum >= /* CutManager. */.TL_ph_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */.TL_ph_mom_cuts.GetUpperCut())) {
+                        if ((Particle_TL_Momentum >= /* CutManager. */TL_ph_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */TL_ph_mom_cuts.GetUpperCut())) {
                             TL_PhotonsFD_mom_ind.push_back(i);
                         }
 
@@ -10242,7 +10242,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                 Leading_TL_FDNeutron_Theta = acos((mcpbank->getPz()) / analysis_math::RadCalc(mcpbank->getPx(), mcpbank->getPy(), mcpbank->getPz())) * 180.0 / pi;
                 Leading_TL_FDNeutron_Phi = atan2(mcpbank->getPy(), mcpbank->getPx()) * 180.0 / pi;
 
-                Leading_Neutron_inFD_wFC = aMaps_master.IsInFDQuery((!TL_fiducial_cuts), /* CutManager. */.ThetaFD, "Neutron", Leading_TL_FDNeutron_Momentum, Leading_TL_FDNeutron_Theta,
+                Leading_Neutron_inFD_wFC = aMaps_master.IsInFDQuery((!TL_fiducial_cuts), /* CutManager. */ThetaFD, "Neutron", Leading_TL_FDNeutron_Momentum, Leading_TL_FDNeutron_Theta,
                                                                     Leading_TL_FDNeutron_Phi, /* ESSettings. */Calc_eff_overlapping_FC);
             } else {
                 Leading_Neutron_inFD_wFC = false;
@@ -10275,7 +10275,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             bool TL_FDneutrons_1p = (/* ESSettings. */Enable_FD_neutrons || (TL_NeutronsFD_mom_ind.size() == 0));  // no id. FD neutrons for ESSettings.Enable_FD_neutrons = false
             bool no_CDproton_1p = (TL_ProtonsCD_mom_ind.size() == 0);
             bool one_FDproton_1p = ((TL_ProtonsFD_mom_ind.size() == 1) &&
-                                    (TLKinCutsCheck(c12, /* CutSettings. */apply_kinematical_cuts, TL_ProtonsFD_mom_ind, /* CutManager. */.FD_nucleon_theta_cut, /* CutManager. */.FD_nucleon_momentum_cut)));
+                                    (TLKinCutsCheck(c12, /* CutSettings. */apply_kinematical_cuts, TL_ProtonsFD_mom_ind, /* CutManager. */FD_nucleon_theta_cut, /* CutManager. */FD_nucleon_momentum_cut)));
             bool FDproton_wFC_1p = (TL_ProtonsFD_mom_ind.size() == TL_ProtonsFD_wFC_mom_ind.size());  // id. FD proton is within fiducial cuts (wFC)
             TL_Event_Selection_1p = (TL_Basic_ES && TL_FDneutrons_1p && no_CDproton_1p && one_FDproton_1p && FDproton_wFC_1p);
 
@@ -10284,7 +10284,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             // (TL_IDed_Leading_nFD_ind != -1) -> ensures that we have at least one FD neutron in the event
             // (ESSettings.ES_by_leading_FDneutron || (TL_NeutronsFD_mom_ind.size() == 1)) -> ensures that we are looking at the leading nFD if ESSettings.ES_by_leading_FDneutron = true
             bool one_FDneutron_1n = (((/* ESSettings. */ES_by_leading_FDneutron || (TL_NeutronsFD_mom_ind.size() == 1)) && (TL_IDed_Leading_nFD_ind != -1)) &&
-                                     (TLKinCutsCheck(c12, /* CutSettings. */apply_kinematical_cuts, TL_IDed_Leading_nFD_ind, /* CutManager. */.FD_nucleon_theta_cut, /* CutManager. */.FD_nucleon_momentum_cut)));
+                                     (TLKinCutsCheck(c12, /* CutSettings. */apply_kinematical_cuts, TL_IDed_Leading_nFD_ind, /* CutManager. */FD_nucleon_theta_cut, /* CutManager. */FD_nucleon_momentum_cut)));
             bool no_protons_1n = ((TL_ProtonsCD_mom_ind.size() == 0) && (TL_ProtonsFD_mom_ind.size() == 0));
             bool FDneutron_wFC_1p = Leading_Neutron_inFD_wFC;  // leading nFD is within fiducial cuts (wFC)
             TL_Event_Selection_1n = (TL_Basic_ES && one_FDneutron_1n && no_protons_1n && FDneutron_wFC_1p);
@@ -10293,7 +10293,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             // pFDpCD = One id. FD proton & one id. CD proton:
             bool one_CDproton_pFDpCD = (TL_ProtonsCD_mom_ind.size() == 1);
             bool one_FDproton_pFDpCD = ((TL_ProtonsFD_mom_ind.size() == 1) &&
-                                        (TLKinCutsCheck(c12, /* CutSettings. */apply_kinematical_cuts, TL_ProtonsFD_mom_ind, /* CutManager. */.FD_nucleon_theta_cut, /* CutManager. */.FD_nucleon_momentum_cut)));
+                                        (TLKinCutsCheck(c12, /* CutSettings. */apply_kinematical_cuts, TL_ProtonsFD_mom_ind, /* CutManager. */FD_nucleon_theta_cut, /* CutManager. */FD_nucleon_momentum_cut)));
             bool TL_FDneutrons_pFDpCD = (/* ESSettings. */Enable_FD_neutrons || (TL_NeutronsFD_mom_ind.size() == 0));  // no id. FD neutrons for ESSettings.Enable_FD_neutrons = false
             bool FDproton_wFC_pFDpCD = (TL_ProtonsFD_mom_ind.size() == TL_ProtonsFD_wFC_mom_ind.size());         // id. FD proton is within fiducial cuts (wFC)
             TL_Event_Selection_pFDpCD = (TL_Basic_ES && one_CDproton_pFDpCD && one_FDproton_pFDpCD && TL_FDneutrons_pFDpCD && FDproton_wFC_pFDpCD);
@@ -10306,7 +10306,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             bool no_FDproton_nFDpCD = (TL_ProtonsFD_mom_ind.size() == 0);
             bool one_FDNeutron_nFDpCD =
                 (((/* ESSettings. */ES_by_leading_FDneutron || (TL_NeutronsFD_mom_ind.size() == 1)) && (TL_IDed_Leading_nFD_ind != -1)) &&
-                 (TLKinCutsCheck(c12, /* CutSettings. */apply_kinematical_cuts, TL_IDed_Leading_nFD_ind, /* CutManager. */.FD_nucleon_theta_cut, /* CutManager. */.FD_nucleon_momentum_cut)));
+                 (TLKinCutsCheck(c12, /* CutSettings. */apply_kinematical_cuts, TL_IDed_Leading_nFD_ind, /* CutManager. */FD_nucleon_theta_cut, /* CutManager. */FD_nucleon_momentum_cut)));
             bool FDneutron_wFC_nFDpCD = Leading_Neutron_inFD_wFC;  // leading nFD is within fiducial cuts (wFC)
             TL_Event_Selection_nFDpCD = (TL_Basic_ES && one_CDproton_nFDpCD && no_FDproton_nFDpCD && one_FDNeutron_nFDpCD && FDneutron_wFC_nFDpCD);
 
@@ -10320,14 +10320,14 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                 double Particle_TL_Theta = acos((mcpbank->getPz()) / analysis_math::RadCalc(mcpbank->getPx(), mcpbank->getPy(), mcpbank->getPz())) * 180.0 / pi;
                 double Particle_TL_Phi = atan2(mcpbank->getPy(), mcpbank->getPx()) * 180.0 / pi;
 
-                bool inFD = ((Particle_TL_Theta >= /* CutManager. */.ThetaFD.GetLowerCut()) && (Particle_TL_Theta <= /* CutManager. */.ThetaFD.GetUpperCut()));
-                bool inCD = ((Particle_TL_Theta > /* CutManager. */.ThetaCD.GetLowerCut()) && (Particle_TL_Theta <= /* CutManager. */.ThetaCD.GetUpperCut()));
+                bool inFD = ((Particle_TL_Theta >= /* CutManager. */ThetaFD.GetLowerCut()) && (Particle_TL_Theta <= /* CutManager. */ThetaFD.GetUpperCut()));
+                bool inCD = ((Particle_TL_Theta > /* CutManager. */ThetaCD.GetLowerCut()) && (Particle_TL_Theta <= /* CutManager. */ThetaCD.GetUpperCut()));
 
                 if (/* ESSettings. */fill_TL_plots) {
                     if (particlePDGtmp == 11) {
                         // is electron
                         if (TL_Event_Selection_1e_cut) {
-                            if ((Particle_TL_Momentum >= /* CutManager. */.TL_e_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */.TL_e_mom_cuts.GetUpperCut())) {
+                            if ((Particle_TL_Momentum >= /* CutManager. */TL_e_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */TL_e_mom_cuts.GetUpperCut())) {
                                 hP_e_AC_truth_1e_cut.hFill(Particle_TL_Momentum, Weight);
                                 hTheta_e_AC_truth_1e_cut.hFill(Particle_TL_Theta, Weight);
                                 hPhi_e_AC_truth_1e_cut.hFill(Particle_TL_Phi, Weight);
@@ -10346,7 +10346,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                         }
 
                         if (TL_Event_Selection_1p) {
-                            if ((Particle_TL_Momentum >= /* CutManager. */.TL_e_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */.TL_e_mom_cuts.GetUpperCut())) {
+                            if ((Particle_TL_Momentum >= /* CutManager. */TL_e_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */TL_e_mom_cuts.GetUpperCut())) {
                                 hP_e_AC_truth_1p.hFill(Particle_TL_Momentum, Weight);
                                 hTheta_e_AC_truth_1p.hFill(Particle_TL_Theta, Weight);
                                 hPhi_e_AC_truth_1p.hFill(Particle_TL_Phi, Weight);
@@ -10359,7 +10359,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                         }
 
                         if (TL_Event_Selection_1n) {
-                            if ((Particle_TL_Momentum >= /* CutManager. */.TL_e_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */.TL_e_mom_cuts.GetUpperCut())) {
+                            if ((Particle_TL_Momentum >= /* CutManager. */TL_e_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */TL_e_mom_cuts.GetUpperCut())) {
                                 hP_e_AC_truth_1n.hFill(Particle_TL_Momentum, Weight);
                                 hTheta_e_AC_truth_1n.hFill(Particle_TL_Theta, Weight);
                                 hPhi_e_AC_truth_1n.hFill(Particle_TL_Phi, Weight);
@@ -10372,7 +10372,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                         }
 
                         if (TL_Event_Selection_pFDpCD) {
-                            if ((Particle_TL_Momentum >= /* CutManager. */.TL_e_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */.TL_e_mom_cuts.GetUpperCut())) {
+                            if ((Particle_TL_Momentum >= /* CutManager. */TL_e_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */TL_e_mom_cuts.GetUpperCut())) {
                                 hP_e_AC_truth_pFDpCD.hFill(Particle_TL_Momentum, Weight);
                                 hTheta_e_AC_truth_pFDpCD.hFill(Particle_TL_Theta, Weight);
                                 hPhi_e_AC_truth_pFDpCD.hFill(Particle_TL_Phi, Weight);
@@ -10385,7 +10385,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                         }
 
                         if (TL_Event_Selection_nFDpCD) {
-                            if ((Particle_TL_Momentum >= /* CutManager. */.TL_e_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */.TL_e_mom_cuts.GetUpperCut())) {
+                            if ((Particle_TL_Momentum >= /* CutManager. */TL_e_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */TL_e_mom_cuts.GetUpperCut())) {
                                 hP_e_AC_truth_nFDpCD.hFill(Particle_TL_Momentum, Weight);
                                 hTheta_e_AC_truth_nFDpCD.hFill(Particle_TL_Theta, Weight);
                                 hPhi_e_AC_truth_nFDpCD.hFill(Particle_TL_Phi, Weight);
@@ -10398,11 +10398,11 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                         }
                     } else if (particlePDGtmp == 2112) {
                         // is neutron
-                        bool n_inFD = aMaps_master.IsInFDQuery((!TL_fiducial_cuts), /* CutManager. */.ThetaFD, "Neutron", Particle_TL_Momentum, Particle_TL_Theta, Particle_TL_Phi,
+                        bool n_inFD = aMaps_master.IsInFDQuery((!TL_fiducial_cuts), /* CutManager. */ThetaFD, "Neutron", Particle_TL_Momentum, Particle_TL_Theta, Particle_TL_Phi,
                                                                /* ESSettings. */Calc_eff_overlapping_FC);
 
                         if (TL_Event_Selection_1e_cut) {
-                            if ((Particle_TL_Momentum >= /* CutManager. */.TL_n_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */.TL_n_mom_cuts.GetUpperCut())) {
+                            if ((Particle_TL_Momentum >= /* CutManager. */TL_n_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */TL_n_mom_cuts.GetUpperCut())) {
                                 hP_n_AC_truth_1e_cut.hFill(Particle_TL_Momentum, Weight);
                                 hTheta_n_AC_truth_1e_cut.hFill(Particle_TL_Theta, Weight);
                                 hPhi_n_AC_truth_1e_cut.hFill(Particle_TL_Phi, Weight);
@@ -10427,7 +10427,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                         }
 
                         if (TL_Event_Selection_1p) {
-                            if ((Particle_TL_Momentum >= /* CutManager. */.TL_n_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */.TL_n_mom_cuts.GetUpperCut())) {
+                            if ((Particle_TL_Momentum >= /* CutManager. */TL_n_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */TL_n_mom_cuts.GetUpperCut())) {
                                 hP_n_AC_truth_1p.hFill(Particle_TL_Momentum, Weight);
                                 hTheta_n_AC_truth_1p.hFill(Particle_TL_Theta, Weight);
                                 hPhi_n_AC_truth_1p.hFill(Particle_TL_Phi, Weight);
@@ -10439,7 +10439,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                         }
 
                         if (TL_Event_Selection_1n) {
-                            if ((Particle_TL_Momentum >= /* CutManager. */.TL_n_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */.TL_n_mom_cuts.GetUpperCut())) {
+                            if ((Particle_TL_Momentum >= /* CutManager. */TL_n_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */TL_n_mom_cuts.GetUpperCut())) {
                                 hP_n_AC_truth_1n.hFill(Particle_TL_Momentum, Weight);
                                 hTheta_n_AC_truth_1n.hFill(Particle_TL_Theta, Weight);
                                 hPhi_n_AC_truth_1n.hFill(Particle_TL_Phi, Weight);
@@ -10483,7 +10483,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                         }
 
                         if (TL_Event_Selection_pFDpCD) {
-                            if ((Particle_TL_Momentum >= /* CutManager. */.TL_n_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */.TL_n_mom_cuts.GetUpperCut())) {
+                            if ((Particle_TL_Momentum >= /* CutManager. */TL_n_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */TL_n_mom_cuts.GetUpperCut())) {
                                 hP_n_AC_truth_pFDpCD.hFill(Particle_TL_Momentum, Weight);
                                 hTheta_n_AC_truth_pFDpCD.hFill(Particle_TL_Theta, Weight);
                                 hPhi_n_AC_truth_pFDpCD.hFill(Particle_TL_Phi, Weight);
@@ -10495,7 +10495,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                         }
 
                         if (TL_Event_Selection_nFDpCD) {
-                            if ((Particle_TL_Momentum >= /* CutManager. */.TL_n_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */.TL_n_mom_cuts.GetUpperCut())) {
+                            if ((Particle_TL_Momentum >= /* CutManager. */TL_n_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */TL_n_mom_cuts.GetUpperCut())) {
                                 hP_n_AC_truth_nFDpCD.hFill(Particle_TL_Momentum, Weight);
                                 hTheta_n_AC_truth_nFDpCD.hFill(Particle_TL_Theta, Weight);
                                 hPhi_n_AC_truth_nFDpCD.hFill(Particle_TL_Phi, Weight);
@@ -10531,11 +10531,11 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                         }
                     } else if (particlePDGtmp == 2212) {
                         // is proton
-                        bool p_inFD = aMaps_master.IsInFDQuery((!TL_fiducial_cuts), /* CutManager. */.ThetaFD, "Proton", Particle_TL_Momentum, Particle_TL_Theta, Particle_TL_Phi,
+                        bool p_inFD = aMaps_master.IsInFDQuery((!TL_fiducial_cuts), /* CutManager. */ThetaFD, "Proton", Particle_TL_Momentum, Particle_TL_Theta, Particle_TL_Phi,
                                                                /* ESSettings. */Calc_eff_overlapping_FC);
 
                         if (TL_Event_Selection_1e_cut) {
-                            if ((Particle_TL_Momentum >= /* CutManager. */.TL_p_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */.TL_p_mom_cuts.GetUpperCut())) {
+                            if ((Particle_TL_Momentum >= /* CutManager. */TL_p_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */TL_p_mom_cuts.GetUpperCut())) {
                                 hP_p_AC_truth_1e_cut.hFill(Particle_TL_Momentum, Weight);
                                 hTheta_p_AC_truth_1e_cut.hFill(Particle_TL_Theta, Weight);
                                 hPhi_p_AC_truth_1e_cut.hFill(Particle_TL_Phi, Weight);
@@ -10562,14 +10562,14 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                                 }
                             } else {
                                 // Inclusive proton efficiency plots WITH FD-CD overlap in theta
-                                if (((Particle_TL_Theta >= /* CutManager. */.ThetaFD.GetLowerCut()) && (Particle_TL_Theta <= 45)) &&
+                                if (((Particle_TL_Theta >= /* CutManager. */ThetaFD.GetLowerCut()) && (Particle_TL_Theta <= 45)) &&
                                     (!/* ESSettings. */Eff_calc_with_one_reco_electron || (electrons.size() == 1))) {
                                     // inclusive efficiency plots (FD protons)
                                     hP_p_truth_1e_cut_FD.hFill(Particle_TL_Momentum, Weight);
                                     hP_p_truth_1e_cut_FD_ZOOMIN.hFill(Particle_TL_Momentum, Weight);
                                 }
 
-                                if (((Particle_TL_Theta > 35) && (Particle_TL_Theta <= /* CutManager. */.ThetaCD.GetUpperCut())) &&
+                                if (((Particle_TL_Theta > 35) && (Particle_TL_Theta <= /* CutManager. */ThetaCD.GetUpperCut())) &&
                                     (!/* ESSettings. */Eff_calc_with_one_reco_electron || (electrons.size() == 1))) {
                                     // inclusive efficiency plots (CD protons)
                                     hP_p_truth_1e_cut_CD.hFill(Particle_TL_Momentum, Weight);
@@ -10579,7 +10579,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                         }
 
                         if (TL_Event_Selection_1p) {
-                            if ((Particle_TL_Momentum >= /* CutManager. */.TL_p_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */.TL_p_mom_cuts.GetUpperCut())) {
+                            if ((Particle_TL_Momentum >= /* CutManager. */TL_p_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */TL_p_mom_cuts.GetUpperCut())) {
                                 hP_p_AC_truth_1p.hFill(Particle_TL_Momentum, Weight);
                                 hTheta_p_AC_truth_1p.hFill(Particle_TL_Theta, Weight);
                                 hPhi_p_AC_truth_1p.hFill(Particle_TL_Phi, Weight);
@@ -10606,7 +10606,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                         }
 
                         if (TL_Event_Selection_1n) {
-                            if ((Particle_TL_Momentum >= /* CutManager. */.TL_p_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */.TL_p_mom_cuts.GetUpperCut())) {
+                            if ((Particle_TL_Momentum >= /* CutManager. */TL_p_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */TL_p_mom_cuts.GetUpperCut())) {
                                 hP_p_AC_truth_1n.hFill(Particle_TL_Momentum, Weight);
                                 hTheta_p_AC_truth_1n.hFill(Particle_TL_Theta, Weight);
                                 hPhi_p_AC_truth_1n.hFill(Particle_TL_Phi, Weight);
@@ -10654,7 +10654,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                         }
 
                         if (TL_Event_Selection_pFDpCD) {
-                            if ((Particle_TL_Momentum >= /* CutManager. */.TL_p_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */.TL_p_mom_cuts.GetUpperCut())) {
+                            if ((Particle_TL_Momentum >= /* CutManager. */TL_p_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */TL_p_mom_cuts.GetUpperCut())) {
                                 hP_p_AC_truth_pFDpCD.hFill(Particle_TL_Momentum, Weight);
                                 hTheta_p_AC_truth_pFDpCD.hFill(Particle_TL_Theta, Weight);
                                 hPhi_p_AC_truth_pFDpCD.hFill(Particle_TL_Phi, Weight);
@@ -10694,7 +10694,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                         }
 
                         if (TL_Event_Selection_nFDpCD) {
-                            if ((Particle_TL_Momentum >= /* CutManager. */.TL_p_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */.TL_p_mom_cuts.GetUpperCut())) {
+                            if ((Particle_TL_Momentum >= /* CutManager. */TL_p_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */TL_p_mom_cuts.GetUpperCut())) {
                                 hP_p_AC_truth_nFDpCD.hFill(Particle_TL_Momentum, Weight);
                                 hTheta_p_AC_truth_nFDpCD.hFill(Particle_TL_Theta, Weight);
                                 hPhi_p_AC_truth_nFDpCD.hFill(Particle_TL_Phi, Weight);
@@ -10732,7 +10732,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                     } else if (particlePDGtmp == 211) {
                         // is pi+
                         if (TL_Event_Selection_1e_cut) {
-                            if ((Particle_TL_Momentum >= /* CutManager. */.TL_pip_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */.TL_pip_mom_cuts.GetUpperCut())) {
+                            if ((Particle_TL_Momentum >= /* CutManager. */TL_pip_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */TL_pip_mom_cuts.GetUpperCut())) {
                                 hP_pip_AC_truth_1e_cut.hFill(Particle_TL_Momentum, Weight);
                                 hTheta_pip_AC_truth_1e_cut.hFill(Particle_TL_Theta, Weight);
                                 hPhi_pip_AC_truth_1e_cut.hFill(Particle_TL_Phi, Weight);
@@ -10760,7 +10760,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                         }
 
                         if (TL_Event_Selection_1p) {
-                            if ((Particle_TL_Momentum >= /* CutManager. */.TL_pip_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */.TL_pip_mom_cuts.GetUpperCut())) {
+                            if ((Particle_TL_Momentum >= /* CutManager. */TL_pip_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */TL_pip_mom_cuts.GetUpperCut())) {
                                 hP_pip_AC_truth_1p.hFill(Particle_TL_Momentum, Weight);
                                 hTheta_pip_AC_truth_1p.hFill(Particle_TL_Theta, Weight);
                                 hPhi_pip_AC_truth_1p.hFill(Particle_TL_Phi, Weight);
@@ -10772,7 +10772,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                         }
 
                         if (TL_Event_Selection_1n) {
-                            if ((Particle_TL_Momentum >= /* CutManager. */.TL_pip_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */.TL_pip_mom_cuts.GetUpperCut())) {
+                            if ((Particle_TL_Momentum >= /* CutManager. */TL_pip_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */TL_pip_mom_cuts.GetUpperCut())) {
                                 hP_pip_AC_truth_1n.hFill(Particle_TL_Momentum, Weight);
                                 hTheta_pip_AC_truth_1n.hFill(Particle_TL_Theta, Weight);
                                 hPhi_pip_AC_truth_1n.hFill(Particle_TL_Phi, Weight);
@@ -10820,7 +10820,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                         }
 
                         if (TL_Event_Selection_pFDpCD) {
-                            if ((Particle_TL_Momentum >= /* CutManager. */.TL_pip_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */.TL_pip_mom_cuts.GetUpperCut())) {
+                            if ((Particle_TL_Momentum >= /* CutManager. */TL_pip_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */TL_pip_mom_cuts.GetUpperCut())) {
                                 hP_pip_AC_truth_pFDpCD.hFill(Particle_TL_Momentum, Weight);
                                 hTheta_pip_AC_truth_pFDpCD.hFill(Particle_TL_Theta, Weight);
                                 hPhi_pip_AC_truth_pFDpCD.hFill(Particle_TL_Phi, Weight);
@@ -10832,7 +10832,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                         }
 
                         if (TL_Event_Selection_nFDpCD) {
-                            if ((Particle_TL_Momentum >= /* CutManager. */.TL_pip_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */.TL_pip_mom_cuts.GetUpperCut())) {
+                            if ((Particle_TL_Momentum >= /* CutManager. */TL_pip_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */TL_pip_mom_cuts.GetUpperCut())) {
                                 hP_pip_AC_truth_nFDpCD.hFill(Particle_TL_Momentum, Weight);
                                 hTheta_pip_AC_truth_nFDpCD.hFill(Particle_TL_Theta, Weight);
                                 hPhi_pip_AC_truth_nFDpCD.hFill(Particle_TL_Phi, Weight);
@@ -10845,7 +10845,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                     } else if (particlePDGtmp == -211) {
                         // is pi-
                         if (TL_Event_Selection_1e_cut) {
-                            if ((Particle_TL_Momentum >= /* CutManager. */.TL_pim_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */.TL_pim_mom_cuts.GetUpperCut())) {
+                            if ((Particle_TL_Momentum >= /* CutManager. */TL_pim_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */TL_pim_mom_cuts.GetUpperCut())) {
                                 hP_pim_AC_truth_1e_cut.hFill(Particle_TL_Momentum, Weight);
                                 hTheta_pim_AC_truth_1e_cut.hFill(Particle_TL_Theta, Weight);
                                 hPhi_pim_AC_truth_1e_cut.hFill(Particle_TL_Phi, Weight);
@@ -10873,7 +10873,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                         }
 
                         if (TL_Event_Selection_1p) {
-                            if ((Particle_TL_Momentum >= /* CutManager. */.TL_pim_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */.TL_pim_mom_cuts.GetUpperCut())) {
+                            if ((Particle_TL_Momentum >= /* CutManager. */TL_pim_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */TL_pim_mom_cuts.GetUpperCut())) {
                                 hP_pim_AC_truth_1p.hFill(Particle_TL_Momentum, Weight);
                                 hTheta_pim_AC_truth_1p.hFill(Particle_TL_Theta, Weight);
                                 hPhi_pim_AC_truth_1p.hFill(Particle_TL_Phi, Weight);
@@ -10885,7 +10885,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                         }
 
                         if (TL_Event_Selection_1n) {
-                            if ((Particle_TL_Momentum >= /* CutManager. */.TL_pim_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */.TL_pim_mom_cuts.GetUpperCut())) {
+                            if ((Particle_TL_Momentum >= /* CutManager. */TL_pim_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */TL_pim_mom_cuts.GetUpperCut())) {
                                 hP_pim_AC_truth_1n.hFill(Particle_TL_Momentum, Weight);
                                 hTheta_pim_AC_truth_1n.hFill(Particle_TL_Theta, Weight);
                                 hPhi_pim_AC_truth_1n.hFill(Particle_TL_Phi, Weight);
@@ -10933,7 +10933,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                         }
 
                         if (TL_Event_Selection_pFDpCD) {
-                            if ((Particle_TL_Momentum >= /* CutManager. */.TL_pim_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */.TL_pim_mom_cuts.GetUpperCut())) {
+                            if ((Particle_TL_Momentum >= /* CutManager. */TL_pim_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */TL_pim_mom_cuts.GetUpperCut())) {
                                 hP_pim_AC_truth_pFDpCD.hFill(Particle_TL_Momentum, Weight);
                                 hTheta_pim_AC_truth_pFDpCD.hFill(Particle_TL_Theta, Weight);
                                 hPhi_pim_AC_truth_pFDpCD.hFill(Particle_TL_Phi, Weight);
@@ -10945,7 +10945,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                         }
 
                         if (TL_Event_Selection_nFDpCD) {
-                            if ((Particle_TL_Momentum >= /* CutManager. */.TL_pim_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */.TL_pim_mom_cuts.GetUpperCut())) {
+                            if ((Particle_TL_Momentum >= /* CutManager. */TL_pim_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */TL_pim_mom_cuts.GetUpperCut())) {
                                 hP_pim_AC_truth_nFDpCD.hFill(Particle_TL_Momentum, Weight);
                                 hTheta_pim_AC_truth_nFDpCD.hFill(Particle_TL_Theta, Weight);
                                 hPhi_pim_AC_truth_nFDpCD.hFill(Particle_TL_Phi, Weight);
@@ -10958,7 +10958,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                     } else if (particlePDGtmp == 111) {
                         // is pi0
                         if (TL_Event_Selection_1e_cut) {
-                            if ((Particle_TL_Momentum >= /* CutManager. */.TL_pi0_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */.TL_pi0_mom_cuts.GetUpperCut())) {
+                            if ((Particle_TL_Momentum >= /* CutManager. */TL_pi0_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */TL_pi0_mom_cuts.GetUpperCut())) {
                                 hP_pi0_AC_truth_1e_cut.hFill(Particle_TL_Momentum, Weight);
                                 hTheta_pi0_AC_truth_1e_cut.hFill(Particle_TL_Theta, Weight);
                                 hPhi_pi0_AC_truth_1e_cut.hFill(Particle_TL_Phi, Weight);
@@ -10970,7 +10970,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                         }
 
                         if (TL_Event_Selection_1p) {
-                            if ((Particle_TL_Momentum >= /* CutManager. */.TL_pi0_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */.TL_pi0_mom_cuts.GetUpperCut())) {
+                            if ((Particle_TL_Momentum >= /* CutManager. */TL_pi0_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */TL_pi0_mom_cuts.GetUpperCut())) {
                                 hP_pi0_AC_truth_1p.hFill(Particle_TL_Momentum, Weight);
                                 hTheta_pi0_AC_truth_1p.hFill(Particle_TL_Theta, Weight);
                                 hPhi_pi0_AC_truth_1p.hFill(Particle_TL_Phi, Weight);
@@ -10982,7 +10982,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                         }
 
                         if (TL_Event_Selection_1n) {
-                            if ((Particle_TL_Momentum >= /* CutManager. */.TL_pi0_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */.TL_pi0_mom_cuts.GetUpperCut())) {
+                            if ((Particle_TL_Momentum >= /* CutManager. */TL_pi0_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */TL_pi0_mom_cuts.GetUpperCut())) {
                                 hP_pi0_AC_truth_1n.hFill(Particle_TL_Momentum, Weight);
                                 hTheta_pi0_AC_truth_1n.hFill(Particle_TL_Theta, Weight);
                                 hPhi_pi0_AC_truth_1n.hFill(Particle_TL_Phi, Weight);
@@ -10994,7 +10994,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                         }
 
                         if (TL_Event_Selection_pFDpCD) {
-                            if ((Particle_TL_Momentum >= /* CutManager. */.TL_pi0_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */.TL_pi0_mom_cuts.GetUpperCut())) {
+                            if ((Particle_TL_Momentum >= /* CutManager. */TL_pi0_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */TL_pi0_mom_cuts.GetUpperCut())) {
                                 hP_pi0_AC_truth_pFDpCD.hFill(Particle_TL_Momentum, Weight);
                                 hTheta_pi0_AC_truth_pFDpCD.hFill(Particle_TL_Theta, Weight);
                                 hPhi_pi0_AC_truth_pFDpCD.hFill(Particle_TL_Phi, Weight);
@@ -11006,7 +11006,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                         }
 
                         if (TL_Event_Selection_nFDpCD) {
-                            if ((Particle_TL_Momentum >= /* CutManager. */.TL_pi0_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */.TL_pi0_mom_cuts.GetUpperCut())) {
+                            if ((Particle_TL_Momentum >= /* CutManager. */TL_pi0_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */TL_pi0_mom_cuts.GetUpperCut())) {
                                 hP_pi0_AC_truth_nFDpCD.hFill(Particle_TL_Momentum, Weight);
                                 hTheta_pi0_AC_truth_nFDpCD.hFill(Particle_TL_Theta, Weight);
                                 hPhi_pi0_AC_truth_nFDpCD.hFill(Particle_TL_Phi, Weight);
@@ -11019,7 +11019,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                     } else if (particlePDGtmp == 22) {
                         // is photon
                         if (TL_Event_Selection_1e_cut) {
-                            if ((Particle_TL_Momentum >= /* CutManager. */.TL_ph_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */.TL_ph_mom_cuts.GetUpperCut())) {
+                            if ((Particle_TL_Momentum >= /* CutManager. */TL_ph_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */TL_ph_mom_cuts.GetUpperCut())) {
                                 hP_ph_AC_truth_1e_cut.hFill(Particle_TL_Momentum, Weight);
                                 hTheta_ph_AC_truth_1e_cut.hFill(Particle_TL_Theta, Weight);
                                 hPhi_ph_AC_truth_1e_cut.hFill(Particle_TL_Phi, Weight);
@@ -11036,7 +11036,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                                     hP_ph_truth_1e_cut_FD_ZOOMIN.hFill(Particle_TL_Momentum, Weight);
                                 }
                             } else {
-                                if (((Particle_TL_Theta >= /* CutManager. */.ThetaFD.GetLowerCut()) && (Particle_TL_Theta <= 35.)) &&
+                                if (((Particle_TL_Theta >= /* CutManager. */ThetaFD.GetLowerCut()) && (Particle_TL_Theta <= 35.)) &&
                                     (!/* ESSettings. */Eff_calc_with_one_reco_electron || (electrons.size() == 1))) {
                                     // inclusive efficiency plots (photons)
                                     hP_ph_truth_1e_cut_FD.hFill(Particle_TL_Momentum, Weight);
@@ -11046,7 +11046,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                         }
 
                         if (TL_Event_Selection_1p) {
-                            if ((Particle_TL_Momentum >= /* CutManager. */.TL_ph_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */.TL_ph_mom_cuts.GetUpperCut())) {
+                            if ((Particle_TL_Momentum >= /* CutManager. */TL_ph_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */TL_ph_mom_cuts.GetUpperCut())) {
                                 hP_ph_AC_truth_1p.hFill(Particle_TL_Momentum, Weight);
                                 hTheta_ph_AC_truth_1p.hFill(Particle_TL_Theta, Weight);
                                 hPhi_ph_AC_truth_1p.hFill(Particle_TL_Phi, Weight);
@@ -11070,7 +11070,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                         }
 
                         if (TL_Event_Selection_1n) {
-                            if ((Particle_TL_Momentum >= /* CutManager. */.TL_ph_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */.TL_ph_mom_cuts.GetUpperCut())) {
+                            if ((Particle_TL_Momentum >= /* CutManager. */TL_ph_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */TL_ph_mom_cuts.GetUpperCut())) {
                                 hP_ph_AC_truth_1n.hFill(Particle_TL_Momentum, Weight);
                                 hTheta_ph_AC_truth_1n.hFill(Particle_TL_Theta, Weight);
                                 hPhi_ph_AC_truth_1n.hFill(Particle_TL_Phi, Weight);
@@ -11094,7 +11094,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                         }
 
                         if (TL_Event_Selection_pFDpCD) {
-                            if ((Particle_TL_Momentum >= /* CutManager. */.TL_ph_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */.TL_ph_mom_cuts.GetUpperCut())) {
+                            if ((Particle_TL_Momentum >= /* CutManager. */TL_ph_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */TL_ph_mom_cuts.GetUpperCut())) {
                                 hP_ph_AC_truth_pFDpCD.hFill(Particle_TL_Momentum, Weight);
                                 hTheta_ph_AC_truth_pFDpCD.hFill(Particle_TL_Theta, Weight);
                                 hPhi_ph_AC_truth_pFDpCD.hFill(Particle_TL_Phi, Weight);
@@ -11118,7 +11118,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                         }
 
                         if (TL_Event_Selection_nFDpCD) {
-                            if ((Particle_TL_Momentum >= /* CutManager. */.TL_ph_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */.TL_ph_mom_cuts.GetUpperCut())) {
+                            if ((Particle_TL_Momentum >= /* CutManager. */TL_ph_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= /* CutManager. */TL_ph_mom_cuts.GetUpperCut())) {
                                 hP_ph_AC_truth_nFDpCD.hFill(Particle_TL_Momentum, Weight);
                                 hTheta_ph_AC_truth_nFDpCD.hFill(Particle_TL_Theta, Weight);
                                 hPhi_ph_AC_truth_nFDpCD.hFill(Particle_TL_Phi, Weight);
@@ -11156,7 +11156,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                 double Particle_TL_Theta = acos((mcpbank->getPz()) / analysis_math::RadCalc(mcpbank->getPx(), mcpbank->getPy(), mcpbank->getPz())) * 180.0 / pi;
                 double Particle_TL_Phi = atan2(mcpbank->getPy(), mcpbank->getPx()) * 180.0 / pi;
 
-                bool inFD_AMaps = ((Particle_TL_Theta >= /* CutManager. */.ThetaFD_AMaps.GetLowerCut()) && (Particle_TL_Theta <= /* CutManager. */.ThetaFD_AMaps.GetUpperCut()));
+                bool inFD_AMaps = ((Particle_TL_Theta >= /* CutManager. */ThetaFD_AMaps.GetLowerCut()) && (Particle_TL_Theta <= /* CutManager. */ThetaFD_AMaps.GetUpperCut()));
 
                 // Fill electron acceptance maps
                 if (/* AMapsSettings. */Generate_Electron_AMaps && TL_Event_Selection_1e_cut_AMaps && inFD_AMaps) {
@@ -11184,7 +11184,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                     if ((particlePDGtmp == 2212) && (!/* AMapsSettings. */AMaps_calc_with_one_reco_electron || (electrons.size() == 1))) {
                         /* Fill all TL FD proton acceptance maps */
 
-                        if ((Particle_TL_Momentum <= /* CutManager. */.TL_p_mom_cuts.GetUpperCut()) && (Particle_TL_Momentum >= /* CutManager. */.TL_p_mom_cuts.GetLowerCut())) {
+                        if ((Particle_TL_Momentum <= /* CutManager. */TL_p_mom_cuts.GetUpperCut()) && (Particle_TL_Momentum >= /* CutManager. */TL_p_mom_cuts.GetLowerCut())) {
                             // if id. TL proton
 
                             // Safety checks for TL protons (AMaps & WMaps)
@@ -11221,15 +11221,15 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                     } else if ((particlePDGtmp == 2212) && (!/* AMapsSettings. */AMaps_calc_with_one_reco_electron || (electrons.size() == 1))) {
                         /* Fill all TL FD proton efficiency maps */
 
-                        if ((Particle_TL_Momentum <= /* CutManager. */.TL_p_mom_cuts.GetUpperCut()) && (Particle_TL_Momentum >= /* CutManager. */.TL_p_mom_cuts.GetLowerCut())) {
+                        if ((Particle_TL_Momentum <= /* CutManager. */TL_p_mom_cuts.GetUpperCut()) && (Particle_TL_Momentum >= /* CutManager. */TL_p_mom_cuts.GetLowerCut())) {
                             // if id. TL proton
 
                             // Safety checks for TL protons (AMaps & WMaps)
                             debugging::CodeDebugger.SafetyCheck_AMaps_Truth_protons(__FILE__, __LINE__, particlePDGtmp, inFD_AMaps);
 
-                            bool FD_Theta_Cut_TL_protons = (Particle_TL_Theta <= /* CutManager. */.FD_nucleon_theta_cut.GetUpperCut());
+                            bool FD_Theta_Cut_TL_protons = (Particle_TL_Theta <= /* CutManager. */FD_nucleon_theta_cut.GetUpperCut());
                             bool FD_Momentum_Cut_TL_protons =
-                                ((Particle_TL_Momentum <= /* CutManager. */.FD_nucleon_momentum_cut.GetUpperCut()) && (Particle_TL_Momentum >= /* CutManager. */.FD_nucleon_momentum_cut.GetLowerCut()));
+                                ((Particle_TL_Momentum <= /* CutManager. */FD_nucleon_momentum_cut.GetUpperCut()) && (Particle_TL_Momentum >= /* CutManager. */FD_nucleon_momentum_cut.GetLowerCut()));
 
                             if (FD_Theta_Cut_TL_protons && FD_Momentum_Cut_TL_protons) {
                                 hTL_P_pFD_WMaps.hFill(Particle_TL_Momentum, Weight);
@@ -11261,10 +11261,10 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                 double Particle_TL_Theta = acos((mcpbank->getPz()) / analysis_math::RadCalc(mcpbank->getPx(), mcpbank->getPy(), mcpbank->getPz())) * 180.0 / pi;
                 double Particle_TL_Phi = atan2(mcpbank->getPy(), mcpbank->getPx()) * 180.0 / pi;
 
-                bool inFD = ((Particle_TL_Theta >= /* CutManager. */.ThetaFD.GetLowerCut()) && (Particle_TL_Theta <= /* CutManager. */.ThetaFD.GetUpperCut()));
-                bool inCD = ((Particle_TL_Theta > /* CutManager. */.ThetaCD.GetLowerCut()) && (Particle_TL_Theta <= /* CutManager. */.ThetaCD.GetUpperCut()));
+                bool inFD = ((Particle_TL_Theta >= /* CutManager. */ThetaFD.GetLowerCut()) && (Particle_TL_Theta <= /* CutManager. */ThetaFD.GetUpperCut()));
+                bool inCD = ((Particle_TL_Theta > /* CutManager. */ThetaCD.GetLowerCut()) && (Particle_TL_Theta <= /* CutManager. */ThetaCD.GetUpperCut()));
 
-                if ((Particle_TL_Momentum <= /* CutManager. */.TL_n_mom_cuts.GetUpperCut()) && (Particle_TL_Momentum >= /* CutManager. */.TL_n_mom_cuts.GetLowerCut())) {
+                if ((Particle_TL_Momentum <= /* CutManager. */TL_n_mom_cuts.GetUpperCut()) && (Particle_TL_Momentum >= /* CutManager. */TL_n_mom_cuts.GetLowerCut())) {
                     // if id. TL leading neutron
 
                     // Safety checks for TL neutrons (AMaps & WMaps)
@@ -11295,18 +11295,18 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                 double Particle_TL_Theta = acos((mcpbank->getPz()) / analysis_math::RadCalc(mcpbank->getPx(), mcpbank->getPy(), mcpbank->getPz())) * 180.0 / pi;
                 double Particle_TL_Phi = atan2(mcpbank->getPy(), mcpbank->getPx()) * 180.0 / pi;
 
-                bool inFD = ((Particle_TL_Theta >= /* CutManager. */.ThetaFD.GetLowerCut()) && (Particle_TL_Theta <= /* CutManager. */.ThetaFD.GetUpperCut()));
-                bool inCD = ((Particle_TL_Theta > /* CutManager. */.ThetaCD.GetLowerCut()) && (Particle_TL_Theta <= /* CutManager. */.ThetaCD.GetUpperCut()));
+                bool inFD = ((Particle_TL_Theta >= /* CutManager. */ThetaFD.GetLowerCut()) && (Particle_TL_Theta <= /* CutManager. */ThetaFD.GetUpperCut()));
+                bool inCD = ((Particle_TL_Theta > /* CutManager. */ThetaCD.GetLowerCut()) && (Particle_TL_Theta <= /* CutManager. */ThetaCD.GetUpperCut()));
 
-                if ((Particle_TL_Momentum <= /* CutManager. */.TL_n_mom_cuts.GetUpperCut()) && (Particle_TL_Momentum >= /* CutManager. */.TL_n_mom_cuts.GetLowerCut())) {
+                if ((Particle_TL_Momentum <= /* CutManager. */TL_n_mom_cuts.GetUpperCut()) && (Particle_TL_Momentum >= /* CutManager. */TL_n_mom_cuts.GetLowerCut())) {
                     // if id. TL leading neutron
 
                     // Safety checks for TL neutrons (AMaps & WMaps)
                     debugging::CodeDebugger.SafetyCheck_AMaps_Truth_neutrons(__FILE__, __LINE__, particlePDGtmp, inFD);
 
-                    bool FD_Theta_Cut_TL_neutrons = (Particle_TL_Theta <= /* CutManager. */.FD_nucleon_theta_cut.GetUpperCut());
+                    bool FD_Theta_Cut_TL_neutrons = (Particle_TL_Theta <= /* CutManager. */FD_nucleon_theta_cut.GetUpperCut());
                     bool FD_Momentum_Cut_TL_neutrons =
-                        ((Particle_TL_Momentum <= /* CutManager. */.FD_nucleon_momentum_cut.GetUpperCut()) && (Particle_TL_Momentum >= /* CutManager. */.FD_nucleon_momentum_cut.GetLowerCut()));
+                        ((Particle_TL_Momentum <= /* CutManager. */FD_nucleon_momentum_cut.GetUpperCut()) && (Particle_TL_Momentum >= /* CutManager. */FD_nucleon_momentum_cut.GetLowerCut()));
 
                     if (FD_Theta_Cut_TL_neutrons && FD_Momentum_Cut_TL_neutrons) {
                         hTL_P_nFD_WMaps.hFill(Particle_TL_Momentum, Weight);
@@ -11548,7 +11548,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         if (!/* ESSettings. */Rec_wTL_ES || TL_Event_Selection_inclusive) {
             for (clas12::region_part_ptr &e : electrons) {
                 // for (auto &e : electrons) {
-                bool e_Pass_FC = aMaps_master.IsInFDQuery((/* AMapsSettings. */Generate_Electron_AMaps || /* AMapsSettings. */Generate_Nucleon_AMaps), /* CutManager. */.ThetaFD, "Electron", e->getP(),
+                bool e_Pass_FC = aMaps_master.IsInFDQuery((/* AMapsSettings. */Generate_Electron_AMaps || /* AMapsSettings. */Generate_Nucleon_AMaps), /* CutManager. */ThetaFD, "Electron", e->getP(),
                                                           e->getTheta() * 180.0 / pi, e->getPhi() * 180.0 / pi);
 
                 if (!/* CutSettings. */apply_fiducial_cuts || e_Pass_FC) {
@@ -11560,7 +11560,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             // All protons BPID (CD & FD)
             for (auto &i : All_gProtons_ind) {
                 if (protons[i]->getRegion() == FD) {
-                    bool p_Pass_FC = aMaps_master.IsInFDQuery((/* AMapsSettings. */Generate_Electron_AMaps || /* AMapsSettings. */Generate_Nucleon_AMaps), /* CutManager. */.ThetaFD, "Proton",
+                    bool p_Pass_FC = aMaps_master.IsInFDQuery((/* AMapsSettings. */Generate_Electron_AMaps || /* AMapsSettings. */Generate_Nucleon_AMaps), /* CutManager. */ThetaFD, "Proton",
                                                               protons[i]->getP(), protons[i]->getTheta() * 180.0 / pi, protons[i]->getPhi() * 180.0 / pi, /* ESSettings. */Calc_eff_overlapping_FC);
 
                     if (!/* CutSettings. */apply_fiducial_cuts || p_Pass_FC) {
@@ -11582,9 +11582,9 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                 double NeutronTheta_1e_cut = allParticles[NeutronsFD_ind_max]->getTheta() * 180.0 / pi;
                 double NeutronPhi_1e_cut = allParticles[NeutronsFD_ind_max]->getPhi() * 180.0 / pi;
 
-                bool n_Pass_FC = aMaps_master.IsInFDQuery((/* AMapsSettings. */Generate_Electron_AMaps || /* AMapsSettings. */Generate_Nucleon_AMaps), /* CutManager. */.ThetaFD, "Neutron",
+                bool n_Pass_FC = aMaps_master.IsInFDQuery((/* AMapsSettings. */Generate_Electron_AMaps || /* AMapsSettings. */Generate_Nucleon_AMaps), /* CutManager. */ThetaFD, "Neutron",
                                                           NeutronMomentum_1e_cut, NeutronTheta_1e_cut, NeutronPhi_1e_cut, /* ESSettings. */Calc_eff_overlapping_FC);
-                bool NeutronPassVeto_Test = pid.NeutronECAL_Cut_Veto(allParticles, electrons, /* parameters. */beamE, NeutronsFD_ind_max, /* CutManager. */.Neutron_veto_cut.GetLowerCut());
+                bool NeutronPassVeto_Test = pid.NeutronECAL_Cut_Veto(allParticles, electrons, /* parameters. */beamE, NeutronsFD_ind_max, /* CutManager. */Neutron_veto_cut.GetLowerCut());
 
                 if ((!/* CutSettings. */apply_fiducial_cuts || n_Pass_FC) && NeutronPassVeto_Test) {
                     hP_LnFD_reco_BPID_1e_cut_FD.hFill(NeutronMomentum_1e_cut, Weight);
@@ -11600,9 +11600,9 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                 double NeutronTheta_1e_cut = allParticles[i]->getTheta() * 180.0 / pi;
                 double NeutronPhi_1e_cut = allParticles[i]->getPhi() * 180.0 / pi;
 
-                bool n_Pass_FC = aMaps_master.IsInFDQuery((/* AMapsSettings. */Generate_Electron_AMaps || /* AMapsSettings. */Generate_Nucleon_AMaps), /* CutManager. */.ThetaFD, "Neutron",
+                bool n_Pass_FC = aMaps_master.IsInFDQuery((/* AMapsSettings. */Generate_Electron_AMaps || /* AMapsSettings. */Generate_Nucleon_AMaps), /* CutManager. */ThetaFD, "Neutron",
                                                           NeutronMomentum_1e_cut, NeutronTheta_1e_cut, NeutronPhi_1e_cut, /* ESSettings. */Calc_eff_overlapping_FC);
-                bool NeutronPassVeto_Test = pid.NeutronECAL_Cut_Veto(allParticles, electrons, /* parameters. */beamE, i, /* CutManager. */.Neutron_veto_cut.GetLowerCut());
+                bool NeutronPassVeto_Test = pid.NeutronECAL_Cut_Veto(allParticles, electrons, /* parameters. */beamE, i, /* CutManager. */Neutron_veto_cut.GetLowerCut());
 
                 if ((!/* CutSettings. */apply_fiducial_cuts || n_Pass_FC) && NeutronPassVeto_Test) {
                     hP_nFD_reco_BPID_1e_cut_FD.hFill(NeutronMomentum_1e_cut, Weight);
@@ -11619,9 +11619,9 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                 double NeutronTheta_1e_cut = allParticles[NeutronsFD_ind_mom_max]->getTheta() * 180.0 / pi;
                 double NeutronPhi_1e_cut = allParticles[NeutronsFD_ind_mom_max]->getPhi() * 180.0 / pi;
 
-                bool n_Pass_FC = aMaps_master.IsInFDQuery((/* AMapsSettings. */Generate_Electron_AMaps || /* AMapsSettings. */Generate_Nucleon_AMaps), /* CutManager. */.ThetaFD, "Neutron",
+                bool n_Pass_FC = aMaps_master.IsInFDQuery((/* AMapsSettings. */Generate_Electron_AMaps || /* AMapsSettings. */Generate_Nucleon_AMaps), /* CutManager. */ThetaFD, "Neutron",
                                                           NeutronMomentum_1e_cut, NeutronTheta_1e_cut, NeutronPhi_1e_cut, /* ESSettings. */Calc_eff_overlapping_FC);
-                bool NeutronPassVeto_Test = pid.NeutronECAL_Cut_Veto(allParticles, electrons, /* parameters. */beamE, NeutronsFD_ind_mom_max, /* CutManager. */.Neutron_veto_cut.GetLowerCut());
+                bool NeutronPassVeto_Test = pid.NeutronECAL_Cut_Veto(allParticles, electrons, /* parameters. */beamE, NeutronsFD_ind_mom_max, /* CutManager. */Neutron_veto_cut.GetLowerCut());
 
                 if ((!/* CutSettings. */apply_fiducial_cuts || n_Pass_FC) && NeutronPassVeto_Test) {
                     hP_LnFD_reco_APID_1e_cut_FD.hFill(NeutronMomentum_1e_cut, Weight);
@@ -11637,9 +11637,9 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                 double NeutronTheta_1e_cut = allParticles[i]->getTheta() * 180.0 / pi;
                 double NeutronPhi_1e_cut = allParticles[i]->getPhi() * 180.0 / pi;
 
-                bool n_Pass_FC = aMaps_master.IsInFDQuery((/* AMapsSettings. */Generate_Electron_AMaps || /* AMapsSettings. */Generate_Nucleon_AMaps), /* CutManager. */.ThetaFD, "Neutron",
+                bool n_Pass_FC = aMaps_master.IsInFDQuery((/* AMapsSettings. */Generate_Electron_AMaps || /* AMapsSettings. */Generate_Nucleon_AMaps), /* CutManager. */ThetaFD, "Neutron",
                                                           NeutronMomentum_1e_cut, NeutronTheta_1e_cut, NeutronPhi_1e_cut, /* ESSettings. */Calc_eff_overlapping_FC);
-                bool NeutronPassVeto_Test = pid.NeutronECAL_Cut_Veto(allParticles, electrons, /* parameters. */beamE, i, /* CutManager. */.Neutron_veto_cut.GetLowerCut());
+                bool NeutronPassVeto_Test = pid.NeutronECAL_Cut_Veto(allParticles, electrons, /* parameters. */beamE, i, /* CutManager. */Neutron_veto_cut.GetLowerCut());
 
                 if ((!/* CutSettings. */apply_fiducial_cuts || n_Pass_FC) && NeutronPassVeto_Test) {
                     hP_nFD_reco_APID_1e_cut_FD.hFill(NeutronMomentum_1e_cut, Weight);
@@ -12295,7 +12295,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                 hdTheta_LnFD_e_VS_dPhi_LnFD_e_Electrons_BV_1e_cut.hFill(CalcdPhi1(LnFD_hit_Phi_1e_cut - e_hit_Phi_1e_cut), LnFD_hit_Theta_1e_cut - e_hit_Theta_1e_cut, Weight);
 
                 bool NeutronPassVeto_1e_cut =
-                    pid.NeutronECAL_Cut_Veto(allParticles, electrons, /* parameters. */beamE, NeutronsFD_ind_mom_max_noNeutCuts, /* CutManager. */.Neutron_veto_cut.GetLowerCut());
+                    pid.NeutronECAL_Cut_Veto(allParticles, electrons, /* parameters. */beamE, NeutronsFD_ind_mom_max_noNeutCuts, /* CutManager. */Neutron_veto_cut.GetLowerCut());
 
                 if (NeutronPassVeto_1e_cut) {
                     hdTheta_LnFD_e_VS_dPhi_LnFD_e_Electrons_AV_1e_cut.hFill(CalcdPhi1(LnFD_hit_Phi_1e_cut - e_hit_Phi_1e_cut), LnFD_hit_Theta_1e_cut - e_hit_Theta_1e_cut, Weight);
@@ -12343,7 +12343,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                     // subtracting the angles between the neutron hit and electron hit to see if we have fake neutrons:
                     hdTheta_nFD_e_VS_dPhi_nFD_e_Electrons_BV_1e_cut.hFill(CalcdPhi1(nFD_hit_Phi_1e_cut - e_hit_Phi_1e_cut), nFD_hit_Theta_1e_cut - e_hit_Theta_1e_cut, Weight);
 
-                    bool NeutronPassVeto_1e_cut = pid.NeutronECAL_Cut_Veto(allParticles, electrons, /* parameters. */beamE, i, /* CutManager. */.Neutron_veto_cut.GetLowerCut());
+                    bool NeutronPassVeto_1e_cut = pid.NeutronECAL_Cut_Veto(allParticles, electrons, /* parameters. */beamE, i, /* CutManager. */Neutron_veto_cut.GetLowerCut());
 
                     if (NeutronPassVeto_1e_cut) {
                         hdTheta_nFD_e_VS_dPhi_nFD_e_Electrons_AV_1e_cut.hFill(CalcdPhi1(nFD_hit_Phi_1e_cut - e_hit_Phi_1e_cut), nFD_hit_Theta_1e_cut - e_hit_Theta_1e_cut, Weight);
@@ -12435,7 +12435,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                         hdTheta_LnFD_p_VS_dPhi_LnFD_p_Protons_BV_1e_cut.hFill(CalcdPhi1(LnFD_hit_Phi_1e_cut - p_hit_Phi_1e_cut), LnFD_hit_Theta_1e_cut - p_hit_Theta_1e_cut, Weight);
 
                         bool NeutronPassVeto_1e_cut =
-                            pid.NeutronECAL_Cut_Veto(allParticles, electrons, /* parameters. */beamE, NeutronsFD_ind_mom_max_noNeutCuts, /* CutManager. */.Neutron_veto_cut.GetLowerCut());
+                            pid.NeutronECAL_Cut_Veto(allParticles, electrons, /* parameters. */beamE, NeutronsFD_ind_mom_max_noNeutCuts, /* CutManager. */Neutron_veto_cut.GetLowerCut());
 
                         if (NeutronPassVeto_1e_cut) {
                             hdTheta_LnFD_p_VS_dPhi_LnFD_p_Protons_AV_1e_cut.hFill(CalcdPhi1(LnFD_hit_Phi_1e_cut - p_hit_Phi_1e_cut), LnFD_hit_Theta_1e_cut - p_hit_Theta_1e_cut, Weight);
@@ -12486,7 +12486,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
                         hdTheta_nFD_p_VS_dPhi_nFD_p_Protons_BV_1e_cut.hFill(CalcdPhi1(nFD_hit_Phi_1e_cut - p_hit_Phi_1e_cut), nFD_hit_Theta_1e_cut - p_hit_Theta_1e_cut, Weight);
 
-                        bool NeutronPassVeto_1e_cut = pid.NeutronECAL_Cut_Veto(allParticles, electrons, /* parameters. */beamE, i, /* CutManager. */.Neutron_veto_cut.GetLowerCut());
+                        bool NeutronPassVeto_1e_cut = pid.NeutronECAL_Cut_Veto(allParticles, electrons, /* parameters. */beamE, i, /* CutManager. */Neutron_veto_cut.GetLowerCut());
 
                         if (NeutronPassVeto_1e_cut) {
                             hdTheta_nFD_p_VS_dPhi_nFD_p_Protons_AV_1e_cut.hFill(CalcdPhi1(nFD_hit_Phi_1e_cut - p_hit_Phi_1e_cut), nFD_hit_Theta_1e_cut - p_hit_Theta_1e_cut, Weight);
@@ -12519,7 +12519,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                 if (protons[i]->getRegion() == FD) {
                     double Reco_Proton_Momentum = protons[i]->getP();
 
-                    if ((Reco_Proton_Momentum <= /* CutManager. */.p_mom_th.GetUpperCut()) && (Reco_Proton_Momentum >= /* CutManager. */.p_mom_th.GetLowerCut())) {
+                    if ((Reco_Proton_Momentum <= /* CutManager. */p_mom_th.GetUpperCut()) && (Reco_Proton_Momentum >= /* CutManager. */p_mom_th.GetLowerCut())) {
                         // if id. reco proton
                         hProtonAMapBC.hFill(protons[i]->getPhi() * 180.0 / pi, protons[i]->getTheta() * 180.0 / pi, Weight);
                         hReco_P_pFD_AMaps.hFill(Reco_Proton_Momentum, Weight);
@@ -12551,15 +12551,15 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                 if ((allParticles[AMaps_NeutronsFD_fill_ind]->cal(n_detlayer_1e_cut)->getLv() > clasAna.getEcalEdgeCuts() &&
                      allParticles[AMaps_NeutronsFD_fill_ind]->cal(n_detlayer_1e_cut)->getLw() > clasAna.getEcalEdgeCuts())  // if neutron is within fiducial cuts
                 ) {
-                    bool NeutronPassVeto_1e_cut = pid.NeutronECAL_Cut_Veto(allParticles, electrons, /* parameters. */beamE, AMaps_NeutronsFD_fill_ind, /* CutManager. */.Neutron_veto_cut.GetLowerCut());
+                    bool NeutronPassVeto_1e_cut = pid.NeutronECAL_Cut_Veto(allParticles, electrons, /* parameters. */beamE, AMaps_NeutronsFD_fill_ind, /* CutManager. */Neutron_veto_cut.GetLowerCut());
 
                     // double Mom_neut_1e_cut = pid.GetFDNeutronP(allParticles[AMaps_NeutronsFD_fill_ind], true);  // if neutron is within fiducial cuts
                     double Mom_neut_1e_cut = pid.GetFDNeutronP(allParticles[AMaps_NeutronsFD_fill_ind], /* CutSettings. */apply_nucleon_cuts);
                     double Theta_neut_1e_cut = allParticles[AMaps_NeutronsFD_fill_ind]->getTheta() * 180.0 / pi;
                     double Phi_neut_1e_cut = allParticles[AMaps_NeutronsFD_fill_ind]->getPhi() * 180.0 / pi;
 
-                    if ((Mom_neut_1e_cut >= /* CutManager. */.n_mom_th.GetLowerCut()) && (Mom_neut_1e_cut <= /* parameters. */beamE))  // FOR nFD eff test!
-                    // if ((Mom_neut_1e_cut <= /* CutManager. */.n_mom_th.GetUpperCut()) && (Mom_neut_1e_cut >= /* CutManager. */.n_mom_th.GetLowerCut()))
+                    if ((Mom_neut_1e_cut >= /* CutManager. */n_mom_th.GetLowerCut()) && (Mom_neut_1e_cut <= /* parameters. */beamE))  // FOR nFD eff test!
+                    // if ((Mom_neut_1e_cut <= /* CutManager. */n_mom_th.GetUpperCut()) && (Mom_neut_1e_cut >= /* CutManager. */n_mom_th.GetLowerCut()))
                     {
                         // if id. reco leading neutron
 
@@ -12597,11 +12597,11 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                 if (protons[i]->getRegion() == FD) {
                     double Reco_Proton_Momentum = protons[i]->getP();
 
-                    if ((Reco_Proton_Momentum <= /* CutManager. */.p_mom_th.GetUpperCut()) && (Reco_Proton_Momentum >= /* CutManager. */.p_mom_th.GetLowerCut())) {
+                    if ((Reco_Proton_Momentum <= /* CutManager. */p_mom_th.GetUpperCut()) && (Reco_Proton_Momentum >= /* CutManager. */p_mom_th.GetLowerCut())) {
                         // if id. reco proton
-                        bool FD_Theta_Cut_Reco_protons = ((protons[i]->getTheta() * 180.0 / pi) <= /* CutManager. */.FD_nucleon_theta_cut.GetUpperCut());
+                        bool FD_Theta_Cut_Reco_protons = ((protons[i]->getTheta() * 180.0 / pi) <= /* CutManager. */FD_nucleon_theta_cut.GetUpperCut());
                         bool FD_Momentum_Cut_Reco_protons =
-                            ((Reco_Proton_Momentum <= /* CutManager. */.FD_nucleon_momentum_cut.GetUpperCut()) && (Reco_Proton_Momentum >= /* CutManager. */.FD_nucleon_momentum_cut.GetLowerCut()));
+                            ((Reco_Proton_Momentum <= /* CutManager. */FD_nucleon_momentum_cut.GetUpperCut()) && (Reco_Proton_Momentum >= /* CutManager. */FD_nucleon_momentum_cut.GetLowerCut()));
 
                         if (FD_Theta_Cut_Reco_protons && FD_Momentum_Cut_Reco_protons) {
                             hReco_P_pFD_WMaps.hFill(Reco_Proton_Momentum, Weight);
@@ -12635,19 +12635,19 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                 if ((allParticles[WMaps_NeutronsFD_fill_ind]->cal(n_detlayer_1e_cut)->getLv() > clasAna.getEcalEdgeCuts() &&
                      allParticles[WMaps_NeutronsFD_fill_ind]->cal(n_detlayer_1e_cut)->getLw() > clasAna.getEcalEdgeCuts())  // if neutron is within fiducial cuts
                 ) {
-                    bool NeutronPassVeto_1e_cut = pid.NeutronECAL_Cut_Veto(allParticles, electrons, /* parameters. */beamE, WMaps_NeutronsFD_fill_ind, /* CutManager. */.Neutron_veto_cut.GetLowerCut());
+                    bool NeutronPassVeto_1e_cut = pid.NeutronECAL_Cut_Veto(allParticles, electrons, /* parameters. */beamE, WMaps_NeutronsFD_fill_ind, /* CutManager. */Neutron_veto_cut.GetLowerCut());
 
                     double Mom_neut_1e_cut = pid.GetFDNeutronP(allParticles[WMaps_NeutronsFD_fill_ind], /* CutSettings. */apply_nucleon_cuts);
                     double Theta_neut_1e_cut = allParticles[WMaps_NeutronsFD_fill_ind]->getTheta() * 180.0 / pi;
                     double Phi_neut_1e_cut = allParticles[WMaps_NeutronsFD_fill_ind]->getPhi() * 180.0 / pi;
 
-                    if ((Mom_neut_1e_cut >= /* CutManager. */.n_mom_th.GetLowerCut()) && (Mom_neut_1e_cut <= /* parameters. */beamE))  // FOR nFD eff test!
-                    // if ((Mom_neut_1e_cut <= /* CutManager. */.n_mom_th.GetUpperCut()) && (Mom_neut_1e_cut >= /* CutManager. */.n_mom_th.GetLowerCut()))
+                    if ((Mom_neut_1e_cut >= /* CutManager. */n_mom_th.GetLowerCut()) && (Mom_neut_1e_cut <= /* parameters. */beamE))  // FOR nFD eff test!
+                    // if ((Mom_neut_1e_cut <= /* CutManager. */n_mom_th.GetUpperCut()) && (Mom_neut_1e_cut >= /* CutManager. */n_mom_th.GetLowerCut()))
                     {
                         // if id. reco leading neutron
-                        bool FD_Theta_Cut_Reco_neutrons = (Theta_neut_1e_cut <= /* CutManager. */.FD_nucleon_theta_cut.GetUpperCut());
+                        bool FD_Theta_Cut_Reco_neutrons = (Theta_neut_1e_cut <= /* CutManager. */FD_nucleon_theta_cut.GetUpperCut());
                         bool FD_Momentum_Cut_Reco_neutrons =
-                            ((Mom_neut_1e_cut <= /* CutManager. */.FD_nucleon_momentum_cut.GetUpperCut()) && (Mom_neut_1e_cut >= /* CutManager. */.FD_nucleon_momentum_cut.GetLowerCut()));
+                            ((Mom_neut_1e_cut <= /* CutManager. */FD_nucleon_momentum_cut.GetUpperCut()) && (Mom_neut_1e_cut >= /* CutManager. */FD_nucleon_momentum_cut.GetLowerCut()));
 
                         // if neutron passes ECAL veto and kinematical cuts:
                         if (NeutronPassVeto_1e_cut && FD_Theta_Cut_Reco_neutrons && FD_Momentum_Cut_Reco_neutrons) {
@@ -12666,9 +12666,9 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         }  // end of fill efficiency maps if
 
         // Fill neutron multiplicity plots (1e cut)
-        pid.FillNeutMultiPlots(allParticles, electrons, Weight, /* parameters. */beamE, /* CutManager. */.Neutron_veto_cut.GetLowerCutConst(), hNeut_Multi_By_clas12pid_BPID_BV_1e_cut_FD,
+        pid.FillNeutMultiPlots(allParticles, electrons, Weight, /* parameters. */beamE, /* CutManager. */Neutron_veto_cut.GetLowerCutConst(), hNeut_Multi_By_clas12pid_BPID_BV_1e_cut_FD,
                                hNeut_Multi_By_clas12pid_BPID_AV_1e_cut_FD, neutrons, hNeut_Multi_By_clas12pid_APID_BV_1e_cut_FD, hNeut_Multi_By_clas12pid_APID_AV_1e_cut_FD, neutrons);
-        pid.FillNeutMultiPlots(allParticles, electrons, Weight, /* parameters. */beamE, /* CutManager. */.Neutron_veto_cut.GetLowerCutConst(), hNeut_Multi_By_Redef_BPID_BV_1e_cut_FD,
+        pid.FillNeutMultiPlots(allParticles, electrons, Weight, /* parameters. */beamE, /* CutManager. */Neutron_veto_cut.GetLowerCutConst(), hNeut_Multi_By_Redef_BPID_BV_1e_cut_FD,
                                hNeut_Multi_By_Redef_BPID_AV_1e_cut_FD, ReDef_FD_neutrons, hNeut_Multi_By_Redef_APID_BV_1e_cut_FD, hNeut_Multi_By_Redef_APID_AV_1e_cut_FD, NeutronsFD_ind);
 
 #pragma endregion
@@ -12734,12 +12734,12 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
             // Setting kinematical cuts
             /* Protons have lower momentum threshold & we don't lose good protons -> proton smearing before kin cuts but after FC */
-            bool FD_Theta_Cut_1p = ((P_p_1p_3v.Theta() * 180.0 / pi) <= /* CutManager. */.FD_nucleon_theta_cut.GetUpperCut());
-            bool FD_Momentum_Cut_1p = ((P_p_1p_3v.Mag() <= /* CutManager. */.FD_nucleon_momentum_cut.GetUpperCut()) &&
-                                       (P_p_1p_3v.Mag() >= /* CutManager. */.FD_nucleon_momentum_cut.GetLowerCut()));  // Momentum kin cut after proton smearing
-            bool e_withinFC_1p = aMaps_master.IsInFDQuery((/* AMapsSettings. */Generate_Electron_AMaps || /* AMapsSettings. */Generate_Nucleon_AMaps), /* CutManager. */.ThetaFD, "Electron", P_e_1p_3v.Mag(),
+            bool FD_Theta_Cut_1p = ((P_p_1p_3v.Theta() * 180.0 / pi) <= /* CutManager. */FD_nucleon_theta_cut.GetUpperCut());
+            bool FD_Momentum_Cut_1p = ((P_p_1p_3v.Mag() <= /* CutManager. */FD_nucleon_momentum_cut.GetUpperCut()) &&
+                                       (P_p_1p_3v.Mag() >= /* CutManager. */FD_nucleon_momentum_cut.GetLowerCut()));  // Momentum kin cut after proton smearing
+            bool e_withinFC_1p = aMaps_master.IsInFDQuery((/* AMapsSettings. */Generate_Electron_AMaps || /* AMapsSettings. */Generate_Nucleon_AMaps), /* CutManager. */ThetaFD, "Electron", P_e_1p_3v.Mag(),
                                                           P_e_1p_3v.Theta() * 180.0 / pi, P_e_1p_3v.Phi() * 180.0 / pi);
-            bool p_withinFC_1p = aMaps_master.IsInFDQuery((/* AMapsSettings. */Generate_Electron_AMaps || /* AMapsSettings. */Generate_Nucleon_AMaps), /* CutManager. */.ThetaFD, "Proton", ProtonMomBKC_1p,
+            bool p_withinFC_1p = aMaps_master.IsInFDQuery((/* AMapsSettings. */Generate_Electron_AMaps || /* AMapsSettings. */Generate_Nucleon_AMaps), /* CutManager. */ThetaFD, "Proton", ProtonMomBKC_1p,
                                                           P_p_1p_3v.Theta() * 180.0 / pi, P_p_1p_3v.Phi() * 180.0 / pi, /* ESSettings. */Calc_eff_overlapping_FC);
 
             bool Pass_Kin_Cuts_1p =
@@ -13007,7 +13007,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                 }
 
                 // Fill neutron multiplicity plots (1p)
-                pid.FillNeutMultiPlots(allParticles, electrons, Weight_1p, /* parameters. */beamE, /* CutManager. */.Neutron_veto_cut.GetLowerCutConst(), hNeut_Multi_By_Redef_BPID_BV_1p_FD,
+                pid.FillNeutMultiPlots(allParticles, electrons, Weight_1p, /* parameters. */beamE, /* CutManager. */Neutron_veto_cut.GetLowerCutConst(), hNeut_Multi_By_Redef_BPID_BV_1p_FD,
                                        hNeut_Multi_By_Redef_BPID_AV_1p_FD, ReDef_FD_neutrons, hNeut_Multi_By_Redef_APID_BV_1p_FD, hNeut_Multi_By_Redef_APID_AV_1p_FD, NeutronsFD_ind);
 
                 // Fill W (1p)
@@ -13118,18 +13118,18 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                         // pRes good Proton cuts
                         bool pRes_TL_Pass_PIDCut = (pid_pRes == 2212);
 
-                        bool Reco_InFD = aMaps_master.IsInFDQuery((/* AMapsSettings. */Generate_Electron_AMaps || /* AMapsSettings. */Generate_Nucleon_AMaps), /* CutManager. */.ThetaFD, "Proton", RecoProtonP,
+                        bool Reco_InFD = aMaps_master.IsInFDQuery((/* AMapsSettings. */Generate_Electron_AMaps || /* AMapsSettings. */Generate_Nucleon_AMaps), /* CutManager. */ThetaFD, "Proton", RecoProtonP,
                                                                   RecoProtonTheta, RecoProtonPhi, false);
-                        bool TL_InFD = aMaps_master.IsInFDQuery((/* AMapsSettings. */Generate_Electron_AMaps || /* AMapsSettings. */Generate_Nucleon_AMaps), /* CutManager. */.ThetaFD, "Proton", TLProtonP,
+                        bool TL_InFD = aMaps_master.IsInFDQuery((/* AMapsSettings. */Generate_Electron_AMaps || /* AMapsSettings. */Generate_Nucleon_AMaps), /* CutManager. */ThetaFD, "Proton", TLProtonP,
                                                                 TLProtonTheta, TLProtonPhi, false);
                         bool pRes_Pass_FiducialCuts = (Reco_InFD && TL_InFD);
 
-                        bool Reco_Theta_kinCut = (RecoProtonTheta <= /* CutManager. */.FD_nucleon_theta_cut.GetUpperCut());
-                        bool TL_Theta_kinCuts = (TLProtonTheta <= /* CutManager. */.FD_nucleon_theta_cut.GetUpperCut());
+                        bool Reco_Theta_kinCut = (RecoProtonTheta <= /* CutManager. */FD_nucleon_theta_cut.GetUpperCut());
+                        bool TL_Theta_kinCuts = (TLProtonTheta <= /* CutManager. */FD_nucleon_theta_cut.GetUpperCut());
                         bool pRes_Pass_ThetaKinCut = (Reco_Theta_kinCut && TL_Theta_kinCuts);
 
-                        bool pRes_Reco_Pass_Proton_MomKinCut = ((RecoProtonP >= /* CutManager. */.p_mom_th.GetLowerCut()) && (RecoProtonP <= /* parameters. */beamE));
-                        bool pRes_TL_Pass_Proton_MomKinCut = ((TLProtonP >= /* CutManager. */.p_mom_th.GetLowerCut()) && (TLProtonP <= /* parameters. */beamE));
+                        bool pRes_Reco_Pass_Proton_MomKinCut = ((RecoProtonP >= /* CutManager. */p_mom_th.GetLowerCut()) && (RecoProtonP <= /* parameters. */beamE));
+                        bool pRes_TL_Pass_Proton_MomKinCut = ((TLProtonP >= /* CutManager. */p_mom_th.GetLowerCut()) && (TLProtonP <= /* parameters. */beamE));
 
                         // pRes matching cuts
                         double dPhiCut = 5., dThetaCut = 2.;  // TODO: add to a DSCuts variable
@@ -13184,8 +13184,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                         /* Res plots for thesis */
                         // TODO: figure out if these plots are needed
                         if (pRes_TL_Pass_PIDCut && pRes_Pass_FiducialCuts && pRes_Pass_ThetaKinCut &&
-                            ((RecoProtonP >= /* CutManager. */.p_mom_th.GetLowerCut()) && (RecoProtonP <= /* CutManager. */.p_mom_th.GetUpperCut())) &&
-                            ((TLProtonP >= /* CutManager. */.p_mom_th.GetLowerCut()) && (TLProtonP <= /* CutManager. */.p_mom_th.GetUpperCut()))) {
+                            ((RecoProtonP >= /* CutManager. */p_mom_th.GetLowerCut()) && (RecoProtonP <= /* CutManager. */p_mom_th.GetUpperCut())) &&
+                            ((TLProtonP >= /* CutManager. */p_mom_th.GetLowerCut()) && (TLProtonP <= /* CutManager. */p_mom_th.GetUpperCut()))) {
                             if (pRes_Pass_dThetaCut && pRes_Pass_dPhiCut) {
                                 double pResolution = (TLProtonP - RecoProtonP) / TLProtonP;
                                 hP_pFD_Res_VS_TL_P_pFD_noKC_1p->Fill(TLProtonP, pResolution, Weight);
@@ -13320,7 +13320,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                 hdTheta_n_e_VS_dPhi_n_e_Electrons_BV_1n.hFill(dPhi_hit_1n, dTheta_hit_1n, Weight_1n);
             }  // end of if neutron did not hit PCAL & hit either ECIN or ECOUT
 
-            bool NeutronPassVeto_1n = pid.NeutronECAL_Cut_Veto(allParticles, electrons, /* parameters. */beamE, n_ind_1n, /* CutManager. */.Neutron_veto_cut.GetLowerCut());
+            bool NeutronPassVeto_1n = pid.NeutronECAL_Cut_Veto(allParticles, electrons, /* parameters. */beamE, n_ind_1n, /* CutManager. */Neutron_veto_cut.GetLowerCut());
 
             /* Log vetoed neutron values (for self-consistency) */
             if (!NeutronPassVeto_1n) { hdTheta_n_e_VS_dPhi_n_e_Electrons_Vetoed_Neutrons_1n.hFill(dPhi_hit_1n, dTheta_hit_1n, Weight_1n); }
@@ -13331,14 +13331,14 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             /* Good neutrons are within momentum kin cuts (below l. KC -> efficiency; above u. KC -> beta fit) -> momentum kin cut before neutron shifting */
             /* We want to compare FD neutrons with FD protons in the same momentum region -> additional momentum kin cut after neutron shifting */
             /* Fiducial cuts -> after neutron shifting; because we want to match the corrected neutron momentum to the proton maps! */
-            bool FD_Theta_Cut_1n = ((P_n_1n_3v.Theta() * 180.0 / pi) <= /* CutManager. */.FD_nucleon_theta_cut.GetUpperCut());
-            bool FD_Momentum_Cut_BS_1n = ((NeutronMomBKC_1n <= /* CutManager. */.FD_nucleon_momentum_cut.GetUpperCut()) &&
-                                          (NeutronMomBKC_1n >= /* CutManager. */.FD_nucleon_momentum_cut.GetLowerCut()));  // Momentum kin cut before neutron shifting
-            bool FD_Momentum_Cut_AS_1n = ((P_n_1n_3v.Mag() <= /* CutManager. */.FD_nucleon_momentum_cut.GetUpperCut()) && (P_n_1n_3v.Mag() >= /* CutManager. */.FD_nucleon_momentum_cut.GetLowerCut()));
+            bool FD_Theta_Cut_1n = ((P_n_1n_3v.Theta() * 180.0 / pi) <= /* CutManager. */FD_nucleon_theta_cut.GetUpperCut());
+            bool FD_Momentum_Cut_BS_1n = ((NeutronMomBKC_1n <= /* CutManager. */FD_nucleon_momentum_cut.GetUpperCut()) &&
+                                          (NeutronMomBKC_1n >= /* CutManager. */FD_nucleon_momentum_cut.GetLowerCut()));  // Momentum kin cut before neutron shifting
+            bool FD_Momentum_Cut_AS_1n = ((P_n_1n_3v.Mag() <= /* CutManager. */FD_nucleon_momentum_cut.GetUpperCut()) && (P_n_1n_3v.Mag() >= /* CutManager. */FD_nucleon_momentum_cut.GetLowerCut()));
             // Additional momentum kin cut after neutron shifting
-            bool e_withinFC_1n = aMaps_master.IsInFDQuery((/* AMapsSettings. */Generate_Electron_AMaps || /* AMapsSettings. */Generate_Nucleon_AMaps), /* CutManager. */.ThetaFD, "Electron", P_e_1n_3v.Mag(),
+            bool e_withinFC_1n = aMaps_master.IsInFDQuery((/* AMapsSettings. */Generate_Electron_AMaps || /* AMapsSettings. */Generate_Nucleon_AMaps), /* CutManager. */ThetaFD, "Electron", P_e_1n_3v.Mag(),
                                                           P_e_1n_3v.Theta() * 180.0 / pi, P_e_1n_3v.Phi() * 180.0 / pi);
-            bool n_withinFC_1n = aMaps_master.IsInFDQuery((/* AMapsSettings. */Generate_Electron_AMaps || /* AMapsSettings. */Generate_Nucleon_AMaps), /* CutManager. */.ThetaFD, "Neutron", P_n_1n_3v.Mag(),
+            bool n_withinFC_1n = aMaps_master.IsInFDQuery((/* AMapsSettings. */Generate_Electron_AMaps || /* AMapsSettings. */Generate_Nucleon_AMaps), /* CutManager. */ThetaFD, "Neutron", P_n_1n_3v.Mag(),
                                                           P_n_1n_3v.Theta() * 180.0 / pi, P_n_1n_3v.Phi() * 180.0 / pi, /* ESSettings. */Calc_eff_overlapping_FC);
 
             bool Pass_Kin_Cuts_1n = ((!/* CutSettings. */apply_kinematical_cuts || (FD_Theta_Cut_1n && FD_Momentum_Cut_BS_1n && FD_Momentum_Cut_AS_1n)) &&
@@ -13847,7 +13847,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                 }
 
                 // Fill neutron multiplicity plots (1n)
-                pid.FillNeutMultiPlots(allParticles, electrons, Weight_1n, /* parameters. */beamE, /* CutManager. */.Neutron_veto_cut.GetLowerCutConst(), hNeut_Multi_By_Redef_BPID_BV_1n_FD,
+                pid.FillNeutMultiPlots(allParticles, electrons, Weight_1n, /* parameters. */beamE, /* CutManager. */Neutron_veto_cut.GetLowerCutConst(), hNeut_Multi_By_Redef_BPID_BV_1n_FD,
                                        hNeut_Multi_By_Redef_BPID_AV_1n_FD, ReDef_FD_neutrons, hNeut_Multi_By_Redef_APID_BV_1n_FD, hNeut_Multi_By_Redef_APID_AV_1n_FD, NeutronsFD_ind);
 
                 // Fill W (1n)
@@ -13974,18 +13974,18 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                         // nRes good neutron cuts
                         bool nRes_TL_Pass_PIDCut = (pid_nRes == 2112);
 
-                        bool Reco_InFD = aMaps_master.IsInFDQuery((/* AMapsSettings. */Generate_Electron_AMaps || /* AMapsSettings. */Generate_Nucleon_AMaps), /* CutManager. */.ThetaFD, "Neutron",
+                        bool Reco_InFD = aMaps_master.IsInFDQuery((/* AMapsSettings. */Generate_Electron_AMaps || /* AMapsSettings. */Generate_Nucleon_AMaps), /* CutManager. */ThetaFD, "Neutron",
                                                                   RecoNeutronP, RecoNeutronTheta, RecoNeutronPhi, false);
-                        bool TL_InFD = aMaps_master.IsInFDQuery((/* AMapsSettings. */Generate_Electron_AMaps || /* AMapsSettings. */Generate_Nucleon_AMaps), /* CutManager. */.ThetaFD, "Neutron", TLNeutronP,
+                        bool TL_InFD = aMaps_master.IsInFDQuery((/* AMapsSettings. */Generate_Electron_AMaps || /* AMapsSettings. */Generate_Nucleon_AMaps), /* CutManager. */ThetaFD, "Neutron", TLNeutronP,
                                                                 TLNeutronTheta, TLNeutronPhi, false);
                         bool nRes_Pass_FiducialCuts = (Reco_InFD && TL_InFD);
 
-                        bool Reco_Theta_kinCut = (RecoNeutronTheta <= /* CutManager. */.FD_nucleon_theta_cut.GetUpperCut());
-                        bool TL_Theta_kinCuts = (TLNeutronTheta <= /* CutManager. */.FD_nucleon_theta_cut.GetUpperCut());
+                        bool Reco_Theta_kinCut = (RecoNeutronTheta <= /* CutManager. */FD_nucleon_theta_cut.GetUpperCut());
+                        bool TL_Theta_kinCuts = (TLNeutronTheta <= /* CutManager. */FD_nucleon_theta_cut.GetUpperCut());
                         bool nRes_Pass_ThetaKinCut = (Reco_Theta_kinCut && TL_Theta_kinCuts);
 
-                        bool nRes_Reco_Pass_Neutron_MomKinCut = ((RecoNeutronP >= /* CutManager. */.n_mom_th.GetLowerCut()) && (RecoNeutronP <= /* CutManager. */.n_mom_th.GetUpperCut()));
-                        bool nRes_TL_Pass_Neutron_MomKinCut = ((TLNeutronP >= /* CutManager. */.n_mom_th.GetLowerCut()) && (TLNeutronP <= /* CutManager. */.n_mom_th.GetUpperCut()));
+                        bool nRes_Reco_Pass_Neutron_MomKinCut = ((RecoNeutronP >= /* CutManager. */n_mom_th.GetLowerCut()) && (RecoNeutronP <= /* CutManager. */n_mom_th.GetUpperCut()));
+                        bool nRes_TL_Pass_Neutron_MomKinCut = ((TLNeutronP >= /* CutManager. */n_mom_th.GetLowerCut()) && (TLNeutronP <= /* CutManager. */n_mom_th.GetUpperCut()));
 
                         // nRes matching cuts
                         double dPhiCut = 5., dThetaCut = 2.;  // TODO: add to a DSCuts variable
@@ -14158,8 +14158,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                         /* Res plots for thesis */
                         // TODO: figure out if these plots are needed
                         if (nRes_TL_Pass_PIDCut && nRes_Pass_FiducialCuts && nRes_Pass_ThetaKinCut &&
-                            ((RecoNeutronP >= /* CutManager. */.n_mom_th.GetLowerCut()) && (RecoNeutronP <= /* CutManager. */.n_mom_th.GetUpperCut())) &&
-                            ((TLNeutronP >= /* CutManager. */.n_mom_th.GetLowerCut()) && (TLNeutronP <= /* CutManager. */.n_mom_th.GetUpperCut()))) {
+                            ((RecoNeutronP >= /* CutManager. */n_mom_th.GetLowerCut()) && (RecoNeutronP <= /* CutManager. */n_mom_th.GetUpperCut())) &&
+                            ((TLNeutronP >= /* CutManager. */n_mom_th.GetLowerCut()) && (TLNeutronP <= /* CutManager. */n_mom_th.GetUpperCut()))) {
                             if (nRes_Pass_dThetaCut && nRes_Pass_dPhiCut) {
                                 double nResolution = (TLNeutronP - RecoNeutronP) / TLNeutronP;
                                 hP_nFD_Res_VS_TL_P_nFD_noKC_1n->Fill(TLNeutronP, nResolution, Weight);
@@ -14623,8 +14623,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             hdPhi_p1_p2_for_all_Theta_p1_p2_2p->Fill(dPhi_hit_2p, Weight);
             hdPhi_p1_p2_for_all_Theta_p1_p2_ZOOMIN_2p->Fill(dPhi_hit_2p, Weight);
 
-            if ((fabs(Theta_p1 - /* CutManager. */.Theta_p1_cuts_2p.GetMean()) < /* CutManager. */.Theta_p1_cuts_2p.GetUpperCut()) &&
-                (fabs(Theta_p2 - /* CutManager. */.Theta_p2_cuts_2p.GetMean()) < /* CutManager. */.Theta_p2_cuts_2p.GetUpperCut())) {
+            if ((fabs(Theta_p1 - /* CutManager. */Theta_p1_cuts_2p.GetMean()) < /* CutManager. */Theta_p1_cuts_2p.GetUpperCut()) &&
+                (fabs(Theta_p2 - /* CutManager. */Theta_p2_cuts_2p.GetMean()) < /* CutManager. */Theta_p2_cuts_2p.GetUpperCut())) {
                 hdPhi_p1_p2_for_small_dTheta_2p->Fill(dPhi_hit_2p, Weight);
                 hdPhi_p1_p2_for_small_dTheta_ZOOMIN_2p->Fill(dPhi_hit_2p, Weight);
             }
@@ -14652,8 +14652,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                 hdPhi_pFD_pCD_for_all_Theta_pFD_pCD_2p->Fill(dPhi_hit_pFDpCD_2p, Weight);
                 hdPhi_pFD_pCD_for_all_Theta_pFD_pCD_ZOOMIN_2p->Fill(dPhi_hit_pFDpCD_2p, Weight);
 
-                if ((fabs(Theta_pFD - /* CutManager. */.Theta_pFD_cuts_2p.GetMean()) < /* CutManager. */.Theta_pFD_cuts_2p.GetUpperCut()) &&
-                    (fabs(Theta_pCD - /* CutManager. */.Theta_pCD_cuts_2p.GetMean()) < /* CutManager. */.Theta_pCD_cuts_2p.GetUpperCut())) {
+                if ((fabs(Theta_pFD - /* CutManager. */Theta_pFD_cuts_2p.GetMean()) < /* CutManager. */Theta_pFD_cuts_2p.GetUpperCut()) &&
+                    (fabs(Theta_pCD - /* CutManager. */Theta_pCD_cuts_2p.GetMean()) < /* CutManager. */Theta_pCD_cuts_2p.GetUpperCut())) {
                     hdPhi_pFD_pCD_for_small_dTheta_2p->Fill(dPhi_hit_pFDpCD_2p, Weight);
                     hdPhi_pFD_pCD_for_small_dTheta_ZOOMIN_2p->Fill(dPhi_hit_pFDpCD_2p, Weight);
                 }
@@ -14885,14 +14885,14 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
             // Setting kinematical cuts
             /* Protons have lower momentum threshold & we don't lose good protons -> proton smearing before kin cuts */
-            bool FD_Theta_Cut_pFDpCD = ((P_pFD_pFDpCD_3v.Theta() * 180.0 / pi) <= /* CutManager. */.FD_nucleon_theta_cut.GetUpperCut());
+            bool FD_Theta_Cut_pFDpCD = ((P_pFD_pFDpCD_3v.Theta() * 180.0 / pi) <= /* CutManager. */FD_nucleon_theta_cut.GetUpperCut());
             bool FD_Momentum_Cut_pFDpCD =
-                ((P_pFD_pFDpCD_3v.Mag() <= /* CutManager. */.FD_nucleon_momentum_cut.GetUpperCut()) && (P_pFD_pFDpCD_3v.Mag() >= /* CutManager. */.FD_nucleon_momentum_cut.GetLowerCut()));
+                ((P_pFD_pFDpCD_3v.Mag() <= /* CutManager. */FD_nucleon_momentum_cut.GetUpperCut()) && (P_pFD_pFDpCD_3v.Mag() >= /* CutManager. */FD_nucleon_momentum_cut.GetLowerCut()));
             // Momentum kin cut after proton smearing
-            bool e_withinFC_pFDpCD = aMaps_master.IsInFDQuery((/* AMapsSettings. */Generate_Electron_AMaps || /* AMapsSettings. */Generate_Nucleon_AMaps), /* CutManager. */.ThetaFD, "Electron",
+            bool e_withinFC_pFDpCD = aMaps_master.IsInFDQuery((/* AMapsSettings. */Generate_Electron_AMaps || /* AMapsSettings. */Generate_Nucleon_AMaps), /* CutManager. */ThetaFD, "Electron",
                                                               P_e_pFDpCD_3v.Mag(), P_e_pFDpCD_3v.Theta() * 180.0 / pi, P_e_pFDpCD_3v.Phi() * 180.0 / pi);
             bool pFD_withinFC_pFDpCD =
-                aMaps_master.IsInFDQuery((/* AMapsSettings. */Generate_Electron_AMaps || /* AMapsSettings. */Generate_Nucleon_AMaps), /* CutManager. */.ThetaFD, "Proton", ProtonMomBKC_pFDpCD,
+                aMaps_master.IsInFDQuery((/* AMapsSettings. */Generate_Electron_AMaps || /* AMapsSettings. */Generate_Nucleon_AMaps), /* CutManager. */ThetaFD, "Proton", ProtonMomBKC_pFDpCD,
                                          P_pFD_pFDpCD_3v.Theta() * 180.0 / pi, P_pFD_pFDpCD_3v.Phi() * 180.0 / pi, /* ESSettings. */Calc_eff_overlapping_FC);
 
             bool Pass_Kin_Cuts_pFDpCD = ((!/* CutSettings. */apply_kinematical_cuts || (FD_Theta_Cut_pFDpCD && FD_Momentum_Cut_pFDpCD)) &&
@@ -15246,7 +15246,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                 hTheta_rel_VS_Phi_rel_pFDpCD->Fill(Phi_rel_pFDpCD, Theta_rel_pFDpCD, Weight_pFDpCD);
 
                 // Fill neutron multiplicity plots (pFDpCD)
-                pid.FillNeutMultiPlots(allParticles, electrons, Weight_pFDpCD, /* parameters. */beamE, /* CutManager. */.Neutron_veto_cut.GetLowerCutConst(), hNeut_Multi_By_Redef_BPID_BV_pFDpCD_FD,
+                pid.FillNeutMultiPlots(allParticles, electrons, Weight_pFDpCD, /* parameters. */beamE, /* CutManager. */Neutron_veto_cut.GetLowerCutConst(), hNeut_Multi_By_Redef_BPID_BV_pFDpCD_FD,
                                        hNeut_Multi_By_Redef_BPID_AV_pFDpCD_FD, ReDef_FD_neutrons, hNeut_Multi_By_Redef_APID_BV_pFDpCD_FD, hNeut_Multi_By_Redef_APID_AV_pFDpCD_FD,
                                        NeutronsFD_ind);
 
@@ -15331,8 +15331,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                 hdPhi_pFD_pCD_for_all_Theta_pFD_pCD_pFDpCD->Fill(dPhi_hit_pFDpCD, Weight_pFDpCD);
                 hdPhi_pFD_pCD_for_all_Theta_pFD_pCD_ZOOMIN_pFDpCD->Fill(dPhi_hit_pFDpCD, Weight_pFDpCD);
 
-                if ((fabs(Theta_pFD_pFDpCD - /* CutManager. */.Theta_pFD_cuts_pFDpCD.GetMean()) < /* CutManager. */.Theta_pFD_cuts_pFDpCD.GetUpperCut()) &&
-                    (fabs(Theta_pCD_pFDpCD - /* CutManager. */.Theta_pCD_cuts_pFDpCD.GetMean()) < /* CutManager. */.Theta_pCD_cuts_pFDpCD.GetUpperCut())) {
+                if ((fabs(Theta_pFD_pFDpCD - /* CutManager. */Theta_pFD_cuts_pFDpCD.GetMean()) < /* CutManager. */Theta_pFD_cuts_pFDpCD.GetUpperCut()) &&
+                    (fabs(Theta_pCD_pFDpCD - /* CutManager. */Theta_pCD_cuts_pFDpCD.GetMean()) < /* CutManager. */Theta_pCD_cuts_pFDpCD.GetUpperCut())) {
                     hdPhi_pFD_pCD_for_small_dTheta_pFDpCD->Fill(dPhi_hit_pFDpCD, Weight_pFDpCD);
                     hdPhi_pFD_pCD_for_small_dTheta_ZOOMIN_pFDpCD->Fill(dPhi_hit_pFDpCD, Weight_pFDpCD);
                 }
@@ -15699,7 +15699,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                 hdTheta_nFD_e_VS_dPhi_nFD_e_Electrons_BV_nFDpCD.hFill(dPhi_hit_e_nFD_nFDpCD, dTheta_hit_e_nFD_nFDpCD, Weight_nFDpCD);
             }  // end of if neutron did not hit PCAL & hit either ECIN or ECOUT
 
-            bool NeutronPassVeto_nFDpCD = pid.NeutronECAL_Cut_Veto(allParticles, electrons, /* parameters. */beamE, nFD_ind_nFDpCD, /* CutManager. */.Neutron_veto_cut.GetLowerCut());
+            bool NeutronPassVeto_nFDpCD = pid.NeutronECAL_Cut_Veto(allParticles, electrons, /* parameters. */beamE, nFD_ind_nFDpCD, /* CutManager. */Neutron_veto_cut.GetLowerCut());
 
             /* Log vetoed neutron values (for self-consistency) */
             if (!NeutronPassVeto_nFDpCD) { hdTheta_nFD_e_VS_dPhi_nFD_e_Electrons_Vetoed_Neutrons_nFDpCD.hFill(dPhi_hit_e_nFD_nFDpCD, dTheta_hit_e_nFD_nFDpCD, Weight_nFDpCD); }
@@ -15710,17 +15710,17 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             /* Good neutrons are within momentum kin cuts (below l. KC -> efficiency; above u. KC -> beta fit) -> momentum kin cut before neutron shifting */
             /* We want to compare FD neutrons with FD protons in the same momentum region -> additional momentum kin cut after neutron shifting */
             /* Fiducial cuts -> after neutron shifting; because we want to match the currected neutron momentum to the proton maps! */
-            bool FD_Theta_Cut_nFDpCD = ((P_nFD_nFDpCD_3v.Theta() * 180.0 / pi) <= /* CutManager. */.FD_nucleon_theta_cut.GetUpperCut());
+            bool FD_Theta_Cut_nFDpCD = ((P_nFD_nFDpCD_3v.Theta() * 180.0 / pi) <= /* CutManager. */FD_nucleon_theta_cut.GetUpperCut());
             bool FD_Momentum_Cut_BS_nFDpCD =
-                ((NeutronMomBKC_nFDpCD <= /* CutManager. */.FD_nucleon_momentum_cut.GetUpperCut()) && (NeutronMomBKC_nFDpCD >= /* CutManager. */.FD_nucleon_momentum_cut.GetLowerCut()));
+                ((NeutronMomBKC_nFDpCD <= /* CutManager. */FD_nucleon_momentum_cut.GetUpperCut()) && (NeutronMomBKC_nFDpCD >= /* CutManager. */FD_nucleon_momentum_cut.GetLowerCut()));
             // Momentum kin cut before neutron shifting
             bool FD_Momentum_Cut_AS_nFDpCD =
-                ((P_nFD_nFDpCD_3v.Mag() <= /* CutManager. */.FD_nucleon_momentum_cut.GetUpperCut()) && (P_nFD_nFDpCD_3v.Mag() >= /* CutManager. */.FD_nucleon_momentum_cut.GetLowerCut()));
+                ((P_nFD_nFDpCD_3v.Mag() <= /* CutManager. */FD_nucleon_momentum_cut.GetUpperCut()) && (P_nFD_nFDpCD_3v.Mag() >= /* CutManager. */FD_nucleon_momentum_cut.GetLowerCut()));
             // Additional momentum kin cut after neutron shifting
-            bool e_withinFC_nFDpCD = aMaps_master.IsInFDQuery((/* AMapsSettings. */Generate_Electron_AMaps || /* AMapsSettings. */Generate_Nucleon_AMaps), /* CutManager. */.ThetaFD, "Electron",
+            bool e_withinFC_nFDpCD = aMaps_master.IsInFDQuery((/* AMapsSettings. */Generate_Electron_AMaps || /* AMapsSettings. */Generate_Nucleon_AMaps), /* CutManager. */ThetaFD, "Electron",
                                                               P_e_nFDpCD_3v.Mag(), P_e_nFDpCD_3v.Theta() * 180.0 / pi, P_e_nFDpCD_3v.Phi() * 180.0 / pi);
             bool nFD_withinFC_nFDpCD =
-                aMaps_master.IsInFDQuery((/* AMapsSettings. */Generate_Electron_AMaps || /* AMapsSettings. */Generate_Nucleon_AMaps), /* CutManager. */.ThetaFD, "Neutron", P_nFD_nFDpCD_3v.Mag(),
+                aMaps_master.IsInFDQuery((/* AMapsSettings. */Generate_Electron_AMaps || /* AMapsSettings. */Generate_Nucleon_AMaps), /* CutManager. */ThetaFD, "Neutron", P_nFD_nFDpCD_3v.Mag(),
                                          P_nFD_nFDpCD_3v.Theta() * 180.0 / pi, P_nFD_nFDpCD_3v.Phi() * 180.0 / pi, /* ESSettings. */Calc_eff_overlapping_FC);
 
             bool Pass_Kin_Cuts_nFDpCD = ((!/* CutSettings. */apply_kinematical_cuts || (FD_Theta_Cut_nFDpCD && FD_Momentum_Cut_BS_nFDpCD && FD_Momentum_Cut_AS_nFDpCD)) &&
@@ -16118,7 +16118,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                 hTheta_rel_VS_Phi_rel_nFDpCD->Fill(Phi_rel_nFDpCD, Theta_rel_nFDpCD, Weight_nFDpCD);
 
                 // Fill neutron multiplicity plots (nFDpCD)
-                pid.FillNeutMultiPlots(allParticles, electrons, Weight_nFDpCD, /* parameters. */beamE, /* CutManager. */.Neutron_veto_cut.GetLowerCutConst(), hNeut_Multi_By_Redef_BPID_BV_nFDpCD_FD,
+                pid.FillNeutMultiPlots(allParticles, electrons, Weight_nFDpCD, /* parameters. */beamE, /* CutManager. */Neutron_veto_cut.GetLowerCutConst(), hNeut_Multi_By_Redef_BPID_BV_nFDpCD_FD,
                                        hNeut_Multi_By_Redef_BPID_AV_nFDpCD_FD, ReDef_FD_neutrons, hNeut_Multi_By_Redef_APID_BV_nFDpCD_FD, hNeut_Multi_By_Redef_APID_AV_nFDpCD_FD,
                                        NeutronsFD_ind);
 
@@ -16216,8 +16216,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                 hdphi_nFD_pCD_for_all_Theta_nFD_pCD_nFDpCD->Fill(dPhi_hit_e_nFD_nFDpCD, Weight_nFDpCD);
                 hdphi_nFD_pCD_for_all_Theta_nFD_pCD_ZOOMIN_nFDpCD->Fill(dPhi_hit_e_nFD_nFDpCD, Weight_nFDpCD);
 
-                if ((fabs(Theta_L_nFDpCD - /* CutManager. */.Theta_L_cuts_nFDpCD.GetMean()) < /* CutManager. */.Theta_L_cuts_nFDpCD.GetUpperCut()) &&
-                    (fabs(Theta_R_nFDpCD - /* CutManager. */.Theta_R_cuts_nFDpCD.GetMean()) < /* CutManager. */.Theta_R_cuts_nFDpCD.GetUpperCut())) {
+                if ((fabs(Theta_L_nFDpCD - /* CutManager. */Theta_L_cuts_nFDpCD.GetMean()) < /* CutManager. */Theta_L_cuts_nFDpCD.GetUpperCut()) &&
+                    (fabs(Theta_R_nFDpCD - /* CutManager. */Theta_R_cuts_nFDpCD.GetMean()) < /* CutManager. */Theta_R_cuts_nFDpCD.GetUpperCut())) {
                     hdphi_nFD_pCD_for_small_dTheta_nFDpCD->Fill(dPhi_hit_e_nFD_nFDpCD, Weight_nFDpCD);
                     hdphi_nFD_pCD_for_small_dTheta_ZOOMIN_nFDpCD->Fill(dPhi_hit_e_nFD_nFDpCD, Weight_nFDpCD);
                 }
@@ -16461,29 +16461,29 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         std::cout << "\033[33m\n\nPlotting Chi2 plots...\n\n\033[0m";
 
         // Finding Xmax
-        // /* CutManager. */.FindChi2Xmax();
-        /* CutManager. */.Chi2_Electron_cuts_FD.MeanFromHistogram = hChi2_Electron_1e_cut_FD.GetHistogram1D().GetBinCenter(hChi2_Electron_1e_cut_FD.GetHistogram1D().GetMaximumBin());
-        /* CutManager. */.Chi2_Proton_cuts_CD.MeanFromHistogram = hChi2_Proton_1e_cut_CD.GetHistogram1D().GetBinCenter(hChi2_Proton_1e_cut_CD.GetHistogram1D().GetMaximumBin());
-        /* CutManager. */.Chi2_Proton_cuts_FD.MeanFromHistogram = hChi2_Proton_1e_cut_FD.GetHistogram1D().GetBinCenter(hChi2_Proton_1e_cut_FD.GetHistogram1D().GetMaximumBin());
-        /* CutManager. */.Chi2_Kplus_cuts_CD.MeanFromHistogram = hChi2_Kplus_1e_cut_CD.GetHistogram1D().GetBinCenter(hChi2_Kplus_1e_cut_CD.GetHistogram1D().GetMaximumBin());
-        /* CutManager. */.Chi2_Kplus_cuts_FD.MeanFromHistogram = hChi2_Kplus_1e_cut_FD.GetHistogram1D().GetBinCenter(hChi2_Kplus_1e_cut_FD.GetHistogram1D().GetMaximumBin());
-        /* CutManager. */.Chi2_Kminus_cuts_CD.MeanFromHistogram = hChi2_Kminus_1e_cut_CD.GetHistogram1D().GetBinCenter(hChi2_Kminus_1e_cut_CD.GetHistogram1D().GetMaximumBin());
-        /* CutManager. */.Chi2_Kminus_cuts_FD.MeanFromHistogram = hChi2_Kminus_1e_cut_FD.GetHistogram1D().GetBinCenter(hChi2_Kminus_1e_cut_FD.GetHistogram1D().GetMaximumBin());
-        /* CutManager. */.Chi2_piplus_cuts_CD.MeanFromHistogram = hChi2_piplus_1e_cut_CD.GetHistogram1D().GetBinCenter(hChi2_piplus_1e_cut_CD.GetHistogram1D().GetMaximumBin());
-        /* CutManager. */.Chi2_piplus_cuts_FD.MeanFromHistogram = hChi2_piplus_1e_cut_FD.GetHistogram1D().GetBinCenter(hChi2_piplus_1e_cut_FD.GetHistogram1D().GetMaximumBin());
-        /* CutManager. */.Chi2_piminus_cuts_CD.MeanFromHistogram = hChi2_piminus_1e_cut_CD.GetHistogram1D().GetBinCenter(hChi2_piminus_1e_cut_CD.GetHistogram1D().GetMaximumBin());
-        /* CutManager. */.Chi2_piminus_cuts_FD.MeanFromHistogram = hChi2_piminus_1e_cut_FD.GetHistogram1D().GetBinCenter(hChi2_piminus_1e_cut_FD.GetHistogram1D().GetMaximumBin());
-        /* CutManager. */.Chi2_deuteron_cuts_CD.MeanFromHistogram = hChi2_deuteron_1e_cut_CD.GetHistogram1D().GetBinCenter(hChi2_deuteron_1e_cut_CD.GetHistogram1D().GetMaximumBin());
-        /* CutManager. */.Chi2_deuteron_cuts_FD.MeanFromHistogram = hChi2_deuteron_1e_cut_FD.GetHistogram1D().GetBinCenter(hChi2_deuteron_1e_cut_FD.GetHistogram1D().GetMaximumBin());
+        // /* CutManager. */FindChi2Xmax();
+        /* CutManager. */Chi2_Electron_cuts_FD.MeanFromHistogram = hChi2_Electron_1e_cut_FD.GetHistogram1D().GetBinCenter(hChi2_Electron_1e_cut_FD.GetHistogram1D().GetMaximumBin());
+        /* CutManager. */Chi2_Proton_cuts_CD.MeanFromHistogram = hChi2_Proton_1e_cut_CD.GetHistogram1D().GetBinCenter(hChi2_Proton_1e_cut_CD.GetHistogram1D().GetMaximumBin());
+        /* CutManager. */Chi2_Proton_cuts_FD.MeanFromHistogram = hChi2_Proton_1e_cut_FD.GetHistogram1D().GetBinCenter(hChi2_Proton_1e_cut_FD.GetHistogram1D().GetMaximumBin());
+        /* CutManager. */Chi2_Kplus_cuts_CD.MeanFromHistogram = hChi2_Kplus_1e_cut_CD.GetHistogram1D().GetBinCenter(hChi2_Kplus_1e_cut_CD.GetHistogram1D().GetMaximumBin());
+        /* CutManager. */Chi2_Kplus_cuts_FD.MeanFromHistogram = hChi2_Kplus_1e_cut_FD.GetHistogram1D().GetBinCenter(hChi2_Kplus_1e_cut_FD.GetHistogram1D().GetMaximumBin());
+        /* CutManager. */Chi2_Kminus_cuts_CD.MeanFromHistogram = hChi2_Kminus_1e_cut_CD.GetHistogram1D().GetBinCenter(hChi2_Kminus_1e_cut_CD.GetHistogram1D().GetMaximumBin());
+        /* CutManager. */Chi2_Kminus_cuts_FD.MeanFromHistogram = hChi2_Kminus_1e_cut_FD.GetHistogram1D().GetBinCenter(hChi2_Kminus_1e_cut_FD.GetHistogram1D().GetMaximumBin());
+        /* CutManager. */Chi2_piplus_cuts_CD.MeanFromHistogram = hChi2_piplus_1e_cut_CD.GetHistogram1D().GetBinCenter(hChi2_piplus_1e_cut_CD.GetHistogram1D().GetMaximumBin());
+        /* CutManager. */Chi2_piplus_cuts_FD.MeanFromHistogram = hChi2_piplus_1e_cut_FD.GetHistogram1D().GetBinCenter(hChi2_piplus_1e_cut_FD.GetHistogram1D().GetMaximumBin());
+        /* CutManager. */Chi2_piminus_cuts_CD.MeanFromHistogram = hChi2_piminus_1e_cut_CD.GetHistogram1D().GetBinCenter(hChi2_piminus_1e_cut_CD.GetHistogram1D().GetMaximumBin());
+        /* CutManager. */Chi2_piminus_cuts_FD.MeanFromHistogram = hChi2_piminus_1e_cut_FD.GetHistogram1D().GetBinCenter(hChi2_piminus_1e_cut_FD.GetHistogram1D().GetMaximumBin());
+        /* CutManager. */Chi2_deuteron_cuts_CD.MeanFromHistogram = hChi2_deuteron_1e_cut_CD.GetHistogram1D().GetBinCenter(hChi2_deuteron_1e_cut_CD.GetHistogram1D().GetMaximumBin());
+        /* CutManager. */Chi2_deuteron_cuts_FD.MeanFromHistogram = hChi2_deuteron_1e_cut_FD.GetHistogram1D().GetBinCenter(hChi2_deuteron_1e_cut_FD.GetHistogram1D().GetMaximumBin());
 
         //  Chi2 plots ----------------------------------------------------------------------------------------------------------------------------------------------------------
 
         // Chi2 plots (no #(e) cut)
         hChi2_Electron_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., 9999, 9999, 0, false);
-        hChi2_Proton_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., -/* CutManager. */.Chi2_Proton_cuts_CD.Cuts.at(2),
-                                     /* CutManager. */.Chi2_Proton_cuts_CD.Cuts.at(2), /* CutManager. */.Chi2_Proton_cuts_CD.Cuts.at(0), false);
-        hChi2_Proton_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., -/* CutManager. */.Chi2_Proton_cuts_FD.Cuts.at(2),
-                                     /* CutManager. */.Chi2_Proton_cuts_FD.Cuts.at(2), /* CutManager. */.Chi2_Proton_cuts_FD.Cuts.at(0), false);
+        hChi2_Proton_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., -/* CutManager. */Chi2_Proton_cuts_CD.Cuts.at(2),
+                                     /* CutManager. */Chi2_Proton_cuts_CD.Cuts.at(2), /* CutManager. */Chi2_Proton_cuts_CD.Cuts.at(0), false);
+        hChi2_Proton_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., -/* CutManager. */Chi2_Proton_cuts_FD.Cuts.at(2),
+                                     /* CutManager. */Chi2_Proton_cuts_FD.Cuts.at(2), /* CutManager. */Chi2_Proton_cuts_FD.Cuts.at(0), false);
 
         // Chi2 plots (1e cut)
         hChi2_Electron_1e_cut_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., 9999, 9999, 0, false);
@@ -16494,15 +16494,15 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             hChi2_Proton_1e_cut_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., 9999, 9999, 0, false);
         } else if (/* CutSettings. */apply_cuts && !/* CutSettings. */apply_chi2_cuts_1e_cut) {
             /* Do Gaussian fit if not applying chi2 cuts */
-            hChi2_Proton_1e_cut_CD.hDrawAndSaveWFit(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., /* CutManager. */.Chi2_Proton_cuts_CD.FitStdFactor,
-                                                    /* CutManager. */.Chi2_Proton_cuts_CD.Cuts.at(1), /* CutManager. */.Chi2_Proton_cuts_CD.Cuts.at(2), /* CutManager. */.Chi2_Proton_cuts_CD.Cuts.at(0), true);
-            hChi2_Proton_1e_cut_FD.hDrawAndSaveWFit(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., /* CutManager. */.Chi2_Proton_cuts_FD.FitStdFactor,
-                                                    /* CutManager. */.Chi2_Proton_cuts_FD.Cuts.at(1), /* CutManager. */.Chi2_Proton_cuts_FD.Cuts.at(2), /* CutManager. */.Chi2_Proton_cuts_FD.Cuts.at(0), true);
+            hChi2_Proton_1e_cut_CD.hDrawAndSaveWFit(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., /* CutManager. */Chi2_Proton_cuts_CD.FitStdFactor,
+                                                    /* CutManager. */Chi2_Proton_cuts_CD.Cuts.at(1), /* CutManager. */Chi2_Proton_cuts_CD.Cuts.at(2), /* CutManager. */Chi2_Proton_cuts_CD.Cuts.at(0), true);
+            hChi2_Proton_1e_cut_FD.hDrawAndSaveWFit(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., /* CutManager. */Chi2_Proton_cuts_FD.FitStdFactor,
+                                                    /* CutManager. */Chi2_Proton_cuts_FD.Cuts.at(1), /* CutManager. */Chi2_Proton_cuts_FD.Cuts.at(2), /* CutManager. */Chi2_Proton_cuts_FD.Cuts.at(0), true);
         } else if (/* CutSettings. */apply_cuts && /* CutSettings. */apply_chi2_cuts_1e_cut) {
-            hChi2_Proton_1e_cut_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., -/* CutManager. */.Chi2_Proton_cuts_CD.Cuts.at(2),
-                                                /* CutManager. */.Chi2_Proton_cuts_CD.Cuts.at(2), /* CutManager. */.Chi2_Proton_cuts_CD.Cuts.at(0), true);
-            hChi2_Proton_1e_cut_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., -/* CutManager. */.Chi2_Proton_cuts_FD.Cuts.at(2),
-                                                /* CutManager. */.Chi2_Proton_cuts_FD.Cuts.at(2), /* CutManager. */.Chi2_Proton_cuts_FD.Cuts.at(0), true);
+            hChi2_Proton_1e_cut_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., -/* CutManager. */Chi2_Proton_cuts_CD.Cuts.at(2),
+                                                /* CutManager. */Chi2_Proton_cuts_CD.Cuts.at(2), /* CutManager. */Chi2_Proton_cuts_CD.Cuts.at(0), true);
+            hChi2_Proton_1e_cut_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., -/* CutManager. */Chi2_Proton_cuts_FD.Cuts.at(2),
+                                                /* CutManager. */Chi2_Proton_cuts_FD.Cuts.at(2), /* CutManager. */Chi2_Proton_cuts_FD.Cuts.at(0), true);
         }
 
         if (!/* CutSettings. */apply_cuts && !/* CutSettings. */apply_chi2_cuts_1e_cut) {
@@ -16511,15 +16511,15 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             hChi2_Kplus_1e_cut_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., 9999, 9999, 0, false);
         } else if (/* CutSettings. */apply_cuts && !/* CutSettings. */apply_chi2_cuts_1e_cut) {
             /* Do Gaussian fit if not applying chi2 cuts */
-            hChi2_Kplus_1e_cut_CD.hDrawAndSaveWFit(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., /* CutManager. */.Chi2_Kplus_cuts_CD.FitStdFactor,
-                                                   /* CutManager. */.Chi2_Kplus_cuts_CD.Cuts.at(1), /* CutManager. */.Chi2_Kplus_cuts_CD.Cuts.at(2), /* CutManager. */.Chi2_Kplus_cuts_CD.Cuts.at(0), true);
-            hChi2_Kplus_1e_cut_FD.hDrawAndSaveWFit(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., /* CutManager. */.Chi2_Kplus_cuts_FD.FitStdFactor,
-                                                   /* CutManager. */.Chi2_Kplus_cuts_FD.Cuts.at(1), /* CutManager. */.Chi2_Kplus_cuts_FD.Cuts.at(2), /* CutManager. */.Chi2_Kplus_cuts_FD.Cuts.at(0), true);
+            hChi2_Kplus_1e_cut_CD.hDrawAndSaveWFit(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., /* CutManager. */Chi2_Kplus_cuts_CD.FitStdFactor,
+                                                   /* CutManager. */Chi2_Kplus_cuts_CD.Cuts.at(1), /* CutManager. */Chi2_Kplus_cuts_CD.Cuts.at(2), /* CutManager. */Chi2_Kplus_cuts_CD.Cuts.at(0), true);
+            hChi2_Kplus_1e_cut_FD.hDrawAndSaveWFit(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., /* CutManager. */Chi2_Kplus_cuts_FD.FitStdFactor,
+                                                   /* CutManager. */Chi2_Kplus_cuts_FD.Cuts.at(1), /* CutManager. */Chi2_Kplus_cuts_FD.Cuts.at(2), /* CutManager. */Chi2_Kplus_cuts_FD.Cuts.at(0), true);
         } else if (/* CutSettings. */apply_cuts && /* CutSettings. */apply_chi2_cuts_1e_cut) {
-            hChi2_Kplus_1e_cut_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., -/* CutManager. */.Chi2_Kplus_cuts_CD.Cuts.at(2),
-                                               /* CutManager. */.Chi2_Kplus_cuts_CD.Cuts.at(2), /* CutManager. */.Chi2_Kplus_cuts_CD.Cuts.at(0), true);
-            hChi2_Kplus_1e_cut_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., -/* CutManager. */.Chi2_Kplus_cuts_FD.Cuts.at(2),
-                                               /* CutManager. */.Chi2_Kplus_cuts_FD.Cuts.at(2), /* CutManager. */.Chi2_Kplus_cuts_FD.Cuts.at(0), true);
+            hChi2_Kplus_1e_cut_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., -/* CutManager. */Chi2_Kplus_cuts_CD.Cuts.at(2),
+                                               /* CutManager. */Chi2_Kplus_cuts_CD.Cuts.at(2), /* CutManager. */Chi2_Kplus_cuts_CD.Cuts.at(0), true);
+            hChi2_Kplus_1e_cut_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., -/* CutManager. */Chi2_Kplus_cuts_FD.Cuts.at(2),
+                                               /* CutManager. */Chi2_Kplus_cuts_FD.Cuts.at(2), /* CutManager. */Chi2_Kplus_cuts_FD.Cuts.at(0), true);
         }
 
         if (!/* CutSettings. */apply_cuts && !/* CutSettings. */apply_chi2_cuts_1e_cut) {
@@ -16528,15 +16528,15 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             hChi2_Kminus_1e_cut_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., 9999, 9999, 0, false);
         } else if (/* CutSettings. */apply_cuts && !/* CutSettings. */apply_chi2_cuts_1e_cut) {
             /* Do Gaussian fit if not applying chi2 cuts */
-            hChi2_Kminus_1e_cut_CD.hDrawAndSaveWFit(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., /* CutManager. */.Chi2_Kminus_cuts_CD.FitStdFactor,
-                                                    /* CutManager. */.Chi2_Kminus_cuts_CD.Cuts.at(1), /* CutManager. */.Chi2_Kminus_cuts_CD.Cuts.at(2), /* CutManager. */.Chi2_Kminus_cuts_CD.Cuts.at(0), true);
-            hChi2_Kminus_1e_cut_FD.hDrawAndSaveWFit(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., /* CutManager. */.Chi2_Kminus_cuts_FD.FitStdFactor,
-                                                    /* CutManager. */.Chi2_Kminus_cuts_FD.Cuts.at(1), /* CutManager. */.Chi2_Kminus_cuts_FD.Cuts.at(2), /* CutManager. */.Chi2_Kminus_cuts_FD.Cuts.at(0), true);
+            hChi2_Kminus_1e_cut_CD.hDrawAndSaveWFit(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., /* CutManager. */Chi2_Kminus_cuts_CD.FitStdFactor,
+                                                    /* CutManager. */Chi2_Kminus_cuts_CD.Cuts.at(1), /* CutManager. */Chi2_Kminus_cuts_CD.Cuts.at(2), /* CutManager. */Chi2_Kminus_cuts_CD.Cuts.at(0), true);
+            hChi2_Kminus_1e_cut_FD.hDrawAndSaveWFit(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., /* CutManager. */Chi2_Kminus_cuts_FD.FitStdFactor,
+                                                    /* CutManager. */Chi2_Kminus_cuts_FD.Cuts.at(1), /* CutManager. */Chi2_Kminus_cuts_FD.Cuts.at(2), /* CutManager. */Chi2_Kminus_cuts_FD.Cuts.at(0), true);
         } else if (/* CutSettings. */apply_cuts && /* CutSettings. */apply_chi2_cuts_1e_cut) {
-            hChi2_Kminus_1e_cut_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., -/* CutManager. */.Chi2_Kminus_cuts_CD.Cuts.at(2),
-                                                /* CutManager. */.Chi2_Kminus_cuts_CD.Cuts.at(2), /* CutManager. */.Chi2_Kminus_cuts_CD.Cuts.at(0), true);
-            hChi2_Kminus_1e_cut_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., -/* CutManager. */.Chi2_Kminus_cuts_FD.Cuts.at(2),
-                                                /* CutManager. */.Chi2_Kminus_cuts_FD.Cuts.at(2), /* CutManager. */.Chi2_Kminus_cuts_FD.Cuts.at(0), true);
+            hChi2_Kminus_1e_cut_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., -/* CutManager. */Chi2_Kminus_cuts_CD.Cuts.at(2),
+                                                /* CutManager. */Chi2_Kminus_cuts_CD.Cuts.at(2), /* CutManager. */Chi2_Kminus_cuts_CD.Cuts.at(0), true);
+            hChi2_Kminus_1e_cut_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., -/* CutManager. */Chi2_Kminus_cuts_FD.Cuts.at(2),
+                                                /* CutManager. */Chi2_Kminus_cuts_FD.Cuts.at(2), /* CutManager. */Chi2_Kminus_cuts_FD.Cuts.at(0), true);
         }
 
         if (!/* CutSettings. */apply_cuts && !/* CutSettings. */apply_chi2_cuts_1e_cut) {
@@ -16545,15 +16545,15 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             hChi2_piplus_1e_cut_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., 9999, 9999, 0, false);
         } else if (/* CutSettings. */apply_cuts && !/* CutSettings. */apply_chi2_cuts_1e_cut) {
             /* Do Gaussian fit if not applying chi2 cuts */
-            hChi2_piplus_1e_cut_CD.hDrawAndSaveWFit(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., /* CutManager. */.Chi2_piplus_cuts_CD.FitStdFactor,
-                                                    /* CutManager. */.Chi2_piplus_cuts_CD.Cuts.at(1), /* CutManager. */.Chi2_piplus_cuts_CD.Cuts.at(2), /* CutManager. */.Chi2_piplus_cuts_CD.Cuts.at(0), true);
-            hChi2_piplus_1e_cut_FD.hDrawAndSaveWFit(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., /* CutManager. */.Chi2_piplus_cuts_FD.FitStdFactor,
-                                                    /* CutManager. */.Chi2_piplus_cuts_FD.Cuts.at(1), /* CutManager. */.Chi2_piplus_cuts_FD.Cuts.at(2), /* CutManager. */.Chi2_piplus_cuts_FD.Cuts.at(0), true);
+            hChi2_piplus_1e_cut_CD.hDrawAndSaveWFit(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., /* CutManager. */Chi2_piplus_cuts_CD.FitStdFactor,
+                                                    /* CutManager. */Chi2_piplus_cuts_CD.Cuts.at(1), /* CutManager. */Chi2_piplus_cuts_CD.Cuts.at(2), /* CutManager. */Chi2_piplus_cuts_CD.Cuts.at(0), true);
+            hChi2_piplus_1e_cut_FD.hDrawAndSaveWFit(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., /* CutManager. */Chi2_piplus_cuts_FD.FitStdFactor,
+                                                    /* CutManager. */Chi2_piplus_cuts_FD.Cuts.at(1), /* CutManager. */Chi2_piplus_cuts_FD.Cuts.at(2), /* CutManager. */Chi2_piplus_cuts_FD.Cuts.at(0), true);
         } else if (/* CutSettings. */apply_cuts && /* CutSettings. */apply_chi2_cuts_1e_cut) {
-            hChi2_piplus_1e_cut_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., -/* CutManager. */.Chi2_piplus_cuts_CD.Cuts.at(2),
-                                                /* CutManager. */.Chi2_piplus_cuts_CD.Cuts.at(2), /* CutManager. */.Chi2_piplus_cuts_CD.Cuts.at(0), true);
-            hChi2_piplus_1e_cut_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., -/* CutManager. */.Chi2_piplus_cuts_FD.Cuts.at(2),
-                                                /* CutManager. */.Chi2_piplus_cuts_FD.Cuts.at(2), /* CutManager. */.Chi2_piplus_cuts_FD.Cuts.at(0), true);
+            hChi2_piplus_1e_cut_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., -/* CutManager. */Chi2_piplus_cuts_CD.Cuts.at(2),
+                                                /* CutManager. */Chi2_piplus_cuts_CD.Cuts.at(2), /* CutManager. */Chi2_piplus_cuts_CD.Cuts.at(0), true);
+            hChi2_piplus_1e_cut_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., -/* CutManager. */Chi2_piplus_cuts_FD.Cuts.at(2),
+                                                /* CutManager. */Chi2_piplus_cuts_FD.Cuts.at(2), /* CutManager. */Chi2_piplus_cuts_FD.Cuts.at(0), true);
         }
 
         if (!/* CutSettings. */apply_cuts && !/* CutSettings. */apply_chi2_cuts_1e_cut) {
@@ -16562,17 +16562,17 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             hChi2_piminus_1e_cut_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., 9999, 9999, 0, false);
         } else if (/* CutSettings. */apply_cuts && !/* CutSettings. */apply_chi2_cuts_1e_cut) {
             /* Do Gaussian fit if not applying chi2 cuts */
-            hChi2_piminus_1e_cut_CD.hDrawAndSaveWFit(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., /* CutManager. */.Chi2_piminus_cuts_CD.FitStdFactor,
-                                                     /* CutManager. */.Chi2_piminus_cuts_CD.Cuts.at(1), /* CutManager. */.Chi2_piminus_cuts_CD.Cuts.at(2), /* CutManager. */.Chi2_piminus_cuts_CD.Cuts.at(0),
+            hChi2_piminus_1e_cut_CD.hDrawAndSaveWFit(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., /* CutManager. */Chi2_piminus_cuts_CD.FitStdFactor,
+                                                     /* CutManager. */Chi2_piminus_cuts_CD.Cuts.at(1), /* CutManager. */Chi2_piminus_cuts_CD.Cuts.at(2), /* CutManager. */Chi2_piminus_cuts_CD.Cuts.at(0),
                                                      true);
-            hChi2_piminus_1e_cut_FD.hDrawAndSaveWFit(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., /* CutManager. */.Chi2_piminus_cuts_FD.FitStdFactor,
-                                                     /* CutManager. */.Chi2_piminus_cuts_FD.Cuts.at(1), /* CutManager. */.Chi2_piminus_cuts_FD.Cuts.at(2), /* CutManager. */.Chi2_piminus_cuts_FD.Cuts.at(0),
+            hChi2_piminus_1e_cut_FD.hDrawAndSaveWFit(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., /* CutManager. */Chi2_piminus_cuts_FD.FitStdFactor,
+                                                     /* CutManager. */Chi2_piminus_cuts_FD.Cuts.at(1), /* CutManager. */Chi2_piminus_cuts_FD.Cuts.at(2), /* CutManager. */Chi2_piminus_cuts_FD.Cuts.at(0),
                                                      true);
         } else if (/* CutSettings. */apply_cuts && /* CutSettings. */apply_chi2_cuts_1e_cut) {
-            hChi2_piminus_1e_cut_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., -/* CutManager. */.Chi2_piminus_cuts_CD.Cuts.at(2),
-                                                 /* CutManager. */.Chi2_piminus_cuts_CD.Cuts.at(2), /* CutManager. */.Chi2_piminus_cuts_CD.Cuts.at(0), true);
-            hChi2_piminus_1e_cut_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., -/* CutManager. */.Chi2_piminus_cuts_FD.Cuts.at(2),
-                                                 /* CutManager. */.Chi2_piminus_cuts_FD.Cuts.at(2), /* CutManager. */.Chi2_piminus_cuts_FD.Cuts.at(0), true);
+            hChi2_piminus_1e_cut_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., -/* CutManager. */Chi2_piminus_cuts_CD.Cuts.at(2),
+                                                 /* CutManager. */Chi2_piminus_cuts_CD.Cuts.at(2), /* CutManager. */Chi2_piminus_cuts_CD.Cuts.at(0), true);
+            hChi2_piminus_1e_cut_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., -/* CutManager. */Chi2_piminus_cuts_FD.Cuts.at(2),
+                                                 /* CutManager. */Chi2_piminus_cuts_FD.Cuts.at(2), /* CutManager. */Chi2_piminus_cuts_FD.Cuts.at(0), true);
         }
 
         if (!/* CutSettings. */apply_cuts && !/* CutSettings. */apply_chi2_cuts_1e_cut) {
@@ -16581,56 +16581,56 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             hChi2_deuteron_1e_cut_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., 9999, 9999, 0, false);
         } else if (/* CutSettings. */apply_cuts && !/* CutSettings. */apply_chi2_cuts_1e_cut) {
             /* Do Gaussian fit if not applying chi2 cuts */
-            hChi2_deuteron_1e_cut_CD.hDrawAndSaveWFit(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., /* CutManager. */.Chi2_deuteron_cuts_CD.FitStdFactor,
-                                                      /* CutManager. */.Chi2_deuteron_cuts_CD.Cuts.at(1), /* CutManager. */.Chi2_deuteron_cuts_CD.Cuts.at(2), /* CutManager. */.Chi2_deuteron_cuts_CD.Cuts.at(0),
+            hChi2_deuteron_1e_cut_CD.hDrawAndSaveWFit(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., /* CutManager. */Chi2_deuteron_cuts_CD.FitStdFactor,
+                                                      /* CutManager. */Chi2_deuteron_cuts_CD.Cuts.at(1), /* CutManager. */Chi2_deuteron_cuts_CD.Cuts.at(2), /* CutManager. */Chi2_deuteron_cuts_CD.Cuts.at(0),
                                                       true);
-            hChi2_deuteron_1e_cut_FD.hDrawAndSaveWFit(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., /* CutManager. */.Chi2_deuteron_cuts_FD.FitStdFactor,
-                                                      /* CutManager. */.Chi2_deuteron_cuts_FD.Cuts.at(1), /* CutManager. */.Chi2_deuteron_cuts_FD.Cuts.at(2), /* CutManager. */.Chi2_deuteron_cuts_FD.Cuts.at(0),
+            hChi2_deuteron_1e_cut_FD.hDrawAndSaveWFit(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., /* CutManager. */Chi2_deuteron_cuts_FD.FitStdFactor,
+                                                      /* CutManager. */Chi2_deuteron_cuts_FD.Cuts.at(1), /* CutManager. */Chi2_deuteron_cuts_FD.Cuts.at(2), /* CutManager. */Chi2_deuteron_cuts_FD.Cuts.at(0),
                                                       true);
         } else if (/* CutSettings. */apply_cuts && /* CutSettings. */apply_chi2_cuts_1e_cut) {
-            hChi2_deuteron_1e_cut_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., -/* CutManager. */.Chi2_deuteron_cuts_CD.Cuts.at(2),
-                                                  /* CutManager. */.Chi2_deuteron_cuts_CD.Cuts.at(2), /* CutManager. */.Chi2_deuteron_cuts_CD.Cuts.at(0), true);
-            hChi2_deuteron_1e_cut_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., -/* CutManager. */.Chi2_deuteron_cuts_FD.Cuts.at(2),
-                                                  /* CutManager. */.Chi2_deuteron_cuts_FD.Cuts.at(2), /* CutManager. */.Chi2_deuteron_cuts_FD.Cuts.at(0), true);
+            hChi2_deuteron_1e_cut_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., -/* CutManager. */Chi2_deuteron_cuts_CD.Cuts.at(2),
+                                                  /* CutManager. */Chi2_deuteron_cuts_CD.Cuts.at(2), /* CutManager. */Chi2_deuteron_cuts_CD.Cuts.at(0), true);
+            hChi2_deuteron_1e_cut_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., -/* CutManager. */Chi2_deuteron_cuts_FD.Cuts.at(2),
+                                                  /* CutManager. */Chi2_deuteron_cuts_FD.Cuts.at(2), /* CutManager. */Chi2_deuteron_cuts_FD.Cuts.at(0), true);
         }
 
         // Chi2 plots (1p)
         hChi2_Electron_1p_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., 9999, 9999, 0, false);
-        hChi2_Proton_1p_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., -/* CutManager. */.Chi2_Proton_cuts_CD.Cuts.at(2),
-                                        /* CutManager. */.Chi2_Proton_cuts_CD.Cuts.at(2), /* CutManager. */.Chi2_Proton_cuts_CD.Cuts.at(0), false);
-        hChi2_Proton_1p_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., -/* CutManager. */.Chi2_Proton_cuts_FD.Cuts.at(2),
-                                        /* CutManager. */.Chi2_Proton_cuts_FD.Cuts.at(2), /* CutManager. */.Chi2_Proton_cuts_FD.Cuts.at(0), false);
+        hChi2_Proton_1p_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., -/* CutManager. */Chi2_Proton_cuts_CD.Cuts.at(2),
+                                        /* CutManager. */Chi2_Proton_cuts_CD.Cuts.at(2), /* CutManager. */Chi2_Proton_cuts_CD.Cuts.at(0), false);
+        hChi2_Proton_1p_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., -/* CutManager. */Chi2_Proton_cuts_FD.Cuts.at(2),
+                                        /* CutManager. */Chi2_Proton_cuts_FD.Cuts.at(2), /* CutManager. */Chi2_Proton_cuts_FD.Cuts.at(0), false);
 
         // Chi2 plots (1n)
         hChi2_Electron_1n_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., 9999, 9999, 0, false);
-        hChi2_Proton_1n_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., -/* CutManager. */.Chi2_Proton_cuts_CD.Cuts.at(2),
-                                        /* CutManager. */.Chi2_Proton_cuts_CD.Cuts.at(2), /* CutManager. */.Chi2_Proton_cuts_CD.Cuts.at(0), false);
-        hChi2_Proton_1n_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., -/* CutManager. */.Chi2_Proton_cuts_FD.Cuts.at(2),
-                                        /* CutManager. */.Chi2_Proton_cuts_FD.Cuts.at(2), /* CutManager. */.Chi2_Proton_cuts_FD.Cuts.at(0), false);
+        hChi2_Proton_1n_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., -/* CutManager. */Chi2_Proton_cuts_CD.Cuts.at(2),
+                                        /* CutManager. */Chi2_Proton_cuts_CD.Cuts.at(2), /* CutManager. */Chi2_Proton_cuts_CD.Cuts.at(0), false);
+        hChi2_Proton_1n_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., -/* CutManager. */Chi2_Proton_cuts_FD.Cuts.at(2),
+                                        /* CutManager. */Chi2_Proton_cuts_FD.Cuts.at(2), /* CutManager. */Chi2_Proton_cuts_FD.Cuts.at(0), false);
 
         // Chi2 plots (2p)
         hChi2_Electron_2p_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., 9999, 9999, 0, false);
 
-        hChi2_Proton_2p_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., -/* CutManager. */.Chi2_Proton_cuts_CD.Cuts.at(2),
-                                        /* CutManager. */.Chi2_Proton_cuts_CD.Cuts.at(2), /* CutManager. */.Chi2_Proton_cuts_CD.Cuts.at(0), true);
-        hChi2_Proton_2p_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., -/* CutManager. */.Chi2_Proton_cuts_FD.Cuts.at(2),
-                                        /* CutManager. */.Chi2_Proton_cuts_FD.Cuts.at(2), /* CutManager. */.Chi2_Proton_cuts_FD.Cuts.at(0), true);
+        hChi2_Proton_2p_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., -/* CutManager. */Chi2_Proton_cuts_CD.Cuts.at(2),
+                                        /* CutManager. */Chi2_Proton_cuts_CD.Cuts.at(2), /* CutManager. */Chi2_Proton_cuts_CD.Cuts.at(0), true);
+        hChi2_Proton_2p_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., -/* CutManager. */Chi2_Proton_cuts_FD.Cuts.at(2),
+                                        /* CutManager. */Chi2_Proton_cuts_FD.Cuts.at(2), /* CutManager. */Chi2_Proton_cuts_FD.Cuts.at(0), true);
 
         // Chi2 plots (pFDpCD)
         hChi2_Electron_pFDpCD_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., 9999, 9999, 0, false);
 
-        hChi2_Proton_pFDpCD_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., -/* CutManager. */.Chi2_Proton_cuts_CD.Cuts.at(2),
-                                            /* CutManager. */.Chi2_Proton_cuts_CD.Cuts.at(2), /* CutManager. */.Chi2_Proton_cuts_CD.Cuts.at(0), true);
-        hChi2_Proton_pFDpCD_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., -/* CutManager. */.Chi2_Proton_cuts_FD.Cuts.at(2),
-                                            /* CutManager. */.Chi2_Proton_cuts_FD.Cuts.at(2), /* CutManager. */.Chi2_Proton_cuts_FD.Cuts.at(0), true);
+        hChi2_Proton_pFDpCD_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., -/* CutManager. */Chi2_Proton_cuts_CD.Cuts.at(2),
+                                            /* CutManager. */Chi2_Proton_cuts_CD.Cuts.at(2), /* CutManager. */Chi2_Proton_cuts_CD.Cuts.at(0), true);
+        hChi2_Proton_pFDpCD_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., -/* CutManager. */Chi2_Proton_cuts_FD.Cuts.at(2),
+                                            /* CutManager. */Chi2_Proton_cuts_FD.Cuts.at(2), /* CutManager. */Chi2_Proton_cuts_FD.Cuts.at(0), true);
 
         // Chi2 plots (nFDpCD)
         hChi2_Electron_nFDpCD_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., 9999, 9999, 0, false);
 
-        hChi2_Proton_nFDpCD_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., -/* CutManager. */.Chi2_Proton_cuts_CD.Cuts.at(2),
-                                            /* CutManager. */.Chi2_Proton_cuts_CD.Cuts.at(2), /* CutManager. */.Chi2_Proton_cuts_CD.Cuts.at(0), true);
-        hChi2_Proton_nFDpCD_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., -/* CutManager. */.Chi2_Proton_cuts_FD.Cuts.at(2),
-                                            /* CutManager. */.Chi2_Proton_cuts_FD.Cuts.at(2), /* CutManager. */.Chi2_Proton_cuts_FD.Cuts.at(0), true);
+        hChi2_Proton_nFDpCD_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., -/* CutManager. */Chi2_Proton_cuts_CD.Cuts.at(2),
+                                            /* CutManager. */Chi2_Proton_cuts_CD.Cuts.at(2), /* CutManager. */Chi2_Proton_cuts_CD.Cuts.at(0), true);
+        hChi2_Proton_nFDpCD_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Chi2_plots, true, 1., -/* CutManager. */Chi2_Proton_cuts_FD.Cuts.at(2),
+                                            /* CutManager. */Chi2_Proton_cuts_FD.Cuts.at(2), /* CutManager. */Chi2_Proton_cuts_FD.Cuts.at(0), true);
     } else {
         std::cout << "\033[33m\n\nChi2 plots are disabled by user.\n\n\033[0m";
     }
@@ -16648,24 +16648,24 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         // Vertex plots (1e cut, CD & FD)
         hVx_Electron_1e_cut_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., 9999, 9999, 0, false);
         hVy_Electron_1e_cut_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., 9999, 9999, 0, false);
-        hVz_Electron_1e_cut_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., /* CutManager. */.Vz_cut_FD.GetLowerCut(),
-                                            /* CutManager. */.Vz_cut_FD.GetUpperCut(), 0, false);
+        hVz_Electron_1e_cut_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., /* CutManager. */Vz_cut_FD.GetLowerCut(),
+                                            /* CutManager. */Vz_cut_FD.GetUpperCut(), 0, false);
         hVz_Electron_vs_P_e_1e_cut_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, true);
         hVz_Electron_vs_Theta_e_1e_cut_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, true);
         hVz_Electron_vs_Phi_e_1e_cut_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, true);
 
         hVx_Proton_1e_cut_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., 9999, 9999, 0, false);
         hVy_Proton_1e_cut_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., 9999, 9999, 0, false);
-        hVz_Proton_1e_cut_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., /* CutManager. */.Vz_cut_FD.GetLowerCut(),
-                                          /* CutManager. */.Vz_cut_FD.GetUpperCut(), 0, false);
+        hVz_Proton_1e_cut_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., /* CutManager. */Vz_cut_FD.GetLowerCut(),
+                                          /* CutManager. */Vz_cut_FD.GetUpperCut(), 0, false);
         hVz_Proton_vs_P_p_1e_cut_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, true);
         hVz_Proton_vs_Theta_p_1e_cut_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, true);
         hVz_Proton_vs_Phi_p_1e_cut_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, true);
 
         hVx_Proton_1e_cut_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., 9999, 9999, 0, false);
         hVy_Proton_1e_cut_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., 9999, 9999, 0, false);
-        hVz_Proton_1e_cut_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., /* CutManager. */.Vz_cut_CD.GetLowerCut(),
-                                          /* CutManager. */.Vz_cut_CD.GetUpperCut(), 0, false);
+        hVz_Proton_1e_cut_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., /* CutManager. */Vz_cut_CD.GetLowerCut(),
+                                          /* CutManager. */Vz_cut_CD.GetUpperCut(), 0, false);
         hVz_Proton_vs_P_p_1e_cut_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, true);
         hVz_Proton_vs_Theta_p_1e_cut_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, true);
         hVz_Proton_vs_Phi_p_1e_cut_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, true);
@@ -16674,62 +16674,62 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         hVx_Kplus_1e_cut_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., 9999, 9999, 0, false);
         hVy_Kplus_1e_cut_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., 9999, 9999, 0, false);
         hVy_Kplus_1e_cut_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., 9999, 9999, 0, false);
-        hVz_Kplus_1e_cut_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., /* CutManager. */.Vz_cut_CD.GetLowerCut(),
-                                         /* CutManager. */.Vz_cut_CD.GetUpperCut(), 0, false);
-        hVz_Kplus_1e_cut_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., /* CutManager. */.Vz_cut_FD.GetLowerCut(),
-                                         /* CutManager. */.Vz_cut_FD.GetUpperCut(), 0, false);
+        hVz_Kplus_1e_cut_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., /* CutManager. */Vz_cut_CD.GetLowerCut(),
+                                         /* CutManager. */Vz_cut_CD.GetUpperCut(), 0, false);
+        hVz_Kplus_1e_cut_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., /* CutManager. */Vz_cut_FD.GetLowerCut(),
+                                         /* CutManager. */Vz_cut_FD.GetUpperCut(), 0, false);
 
         hVx_Kminus_1e_cut_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., 9999, 9999, 0, false);
         hVx_Kminus_1e_cut_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., 9999, 9999, 0, false);
         hVy_Kminus_1e_cut_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., 9999, 9999, 0, false);
         hVy_Kminus_1e_cut_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., 9999, 9999, 0, false);
-        hVz_Kminus_1e_cut_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., /* CutManager. */.Vz_cut_CD.GetLowerCut(),
-                                          /* CutManager. */.Vz_cut_CD.GetUpperCut(), 0, false);
-        hVz_Kminus_1e_cut_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., /* CutManager. */.Vz_cut_FD.GetLowerCut(),
-                                          /* CutManager. */.Vz_cut_FD.GetUpperCut(), 0, false);
+        hVz_Kminus_1e_cut_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., /* CutManager. */Vz_cut_CD.GetLowerCut(),
+                                          /* CutManager. */Vz_cut_CD.GetUpperCut(), 0, false);
+        hVz_Kminus_1e_cut_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., /* CutManager. */Vz_cut_FD.GetLowerCut(),
+                                          /* CutManager. */Vz_cut_FD.GetUpperCut(), 0, false);
 
         hVx_piplus_1e_cut_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., 9999, 9999, 0, false);
         hVx_piplus_1e_cut_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., 9999, 9999, 0, false);
         hVy_piplus_1e_cut_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., 9999, 9999, 0, false);
         hVy_piplus_1e_cut_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., 9999, 9999, 0, false);
-        hVz_piplus_1e_cut_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., /* CutManager. */.Vz_cut_CD.GetLowerCut(),
-                                          /* CutManager. */.Vz_cut_CD.GetUpperCut(), 0, false);
-        hVz_piplus_1e_cut_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., /* CutManager. */.Vz_cut_FD.GetLowerCut(),
-                                          /* CutManager. */.Vz_cut_FD.GetUpperCut(), 0, false);
+        hVz_piplus_1e_cut_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., /* CutManager. */Vz_cut_CD.GetLowerCut(),
+                                          /* CutManager. */Vz_cut_CD.GetUpperCut(), 0, false);
+        hVz_piplus_1e_cut_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., /* CutManager. */Vz_cut_FD.GetLowerCut(),
+                                          /* CutManager. */Vz_cut_FD.GetUpperCut(), 0, false);
 
         hVx_piminus_1e_cut_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., 9999, 9999, 0, false);
         hVx_piminus_1e_cut_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., 9999, 9999, 0, false);
         hVy_piminus_1e_cut_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., 9999, 9999, 0, false);
         hVy_piminus_1e_cut_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., 9999, 9999, 0, false);
-        hVz_piminus_1e_cut_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., /* CutManager. */.Vz_cut_CD.GetLowerCut(),
-                                           /* CutManager. */.Vz_cut_CD.GetUpperCut(), 0, false);
-        hVz_piminus_1e_cut_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., /* CutManager. */.Vz_cut_FD.GetLowerCut(),
-                                           /* CutManager. */.Vz_cut_FD.GetUpperCut(), 0, false);
+        hVz_piminus_1e_cut_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., /* CutManager. */Vz_cut_CD.GetLowerCut(),
+                                           /* CutManager. */Vz_cut_CD.GetUpperCut(), 0, false);
+        hVz_piminus_1e_cut_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., /* CutManager. */Vz_cut_FD.GetLowerCut(),
+                                           /* CutManager. */Vz_cut_FD.GetUpperCut(), 0, false);
 
         hVx_Deuteron_1e_cut_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., 9999, 9999, 0, false);
         hVx_Deuteron_1e_cut_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., 9999, 9999, 0, false);
         hVy_Deuteron_1e_cut_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., 9999, 9999, 0, false);
         hVy_Deuteron_1e_cut_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., 9999, 9999, 0, false);
-        hVz_Deuteron_1e_cut_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., /* CutManager. */.Vz_cut_CD.GetLowerCut(),
-                                            /* CutManager. */.Vz_cut_CD.GetUpperCut(), 0, false);
-        hVz_Deuteron_1e_cut_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., /* CutManager. */.Vz_cut_FD.GetLowerCut(),
-                                            /* CutManager. */.Vz_cut_FD.GetUpperCut(), 0, false);
+        hVz_Deuteron_1e_cut_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., /* CutManager. */Vz_cut_CD.GetLowerCut(),
+                                            /* CutManager. */Vz_cut_CD.GetUpperCut(), 0, false);
+        hVz_Deuteron_1e_cut_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., /* CutManager. */Vz_cut_FD.GetLowerCut(),
+                                            /* CutManager. */Vz_cut_FD.GetUpperCut(), 0, false);
 
         //  dV plots ------------------------------------------------------------------------------------------------------------------------------------------------------------
 
         // dV plots (1e cut, CD & FD)
         hdVx_Proton_FD_1e_cut.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., 9999, 9999, 0, false);
         hdVy_Proton_FD_1e_cut.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., 9999, 9999, 0, false);
-        hdVz_Proton_FD_1e_cut.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., /* CutManager. */.dVz_cuts_FD.GetLowerCut(),
-                                           /* CutManager. */.dVz_cuts_FD.GetUpperCut(), 0, false);
+        hdVz_Proton_FD_1e_cut.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., /* CutManager. */dVz_cuts_FD.GetLowerCut(),
+                                           /* CutManager. */dVz_cuts_FD.GetUpperCut(), 0, false);
         hdVz_Proton_vs_P_p_1e_cut_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, true);
         hdVz_Proton_vs_Theta_p_1e_cut_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, true);
         hdVz_Proton_vs_Phi_p_1e_cut_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, true);
 
         hdVx_Proton_CD_1e_cut.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., 9999, 9999, 0, false);
         hdVy_Proton_CD_1e_cut.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., 9999, 9999, 0, false);
-        hdVz_Proton_CD_1e_cut.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., /* CutManager. */.dVz_cuts_CD.GetLowerCut(),
-                                           /* CutManager. */.dVz_cuts_CD.GetUpperCut(), 0, false);
+        hdVz_Proton_CD_1e_cut.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., /* CutManager. */dVz_cuts_CD.GetLowerCut(),
+                                           /* CutManager. */dVz_cuts_CD.GetUpperCut(), 0, false);
         hdVz_Proton_vs_P_p_1e_cut_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, true);
         hdVz_Proton_vs_Theta_p_1e_cut_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, true);
         hdVz_Proton_vs_Phi_p_1e_cut_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, true);
@@ -16738,90 +16738,90 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         hdVx_Kplus_FD_1e_cut.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., 9999, 9999, 0, false);
         hdVy_Kplus_CD_1e_cut.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., 9999, 9999, 0, false);
         hdVy_Kplus_FD_1e_cut.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., 9999, 9999, 0, false);
-        hdVz_Kplus_CD_1e_cut.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., /* CutManager. */.dVz_cuts_CD.GetLowerCut(),
-                                          /* CutManager. */.dVz_cuts_CD.GetUpperCut(), 0, false);
-        hdVz_Kplus_FD_1e_cut.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., /* CutManager. */.dVz_cuts_FD.GetLowerCut(),
-                                          /* CutManager. */.dVz_cuts_FD.GetUpperCut(), 0, false);
+        hdVz_Kplus_CD_1e_cut.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., /* CutManager. */dVz_cuts_CD.GetLowerCut(),
+                                          /* CutManager. */dVz_cuts_CD.GetUpperCut(), 0, false);
+        hdVz_Kplus_FD_1e_cut.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., /* CutManager. */dVz_cuts_FD.GetLowerCut(),
+                                          /* CutManager. */dVz_cuts_FD.GetUpperCut(), 0, false);
 
         hdVx_Kminus_CD_1e_cut.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., 9999, 9999, 0, false);
         hdVx_Kminus_FD_1e_cut.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., 9999, 9999, 0, false);
         hdVy_Kminus_CD_1e_cut.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., 9999, 9999, 0, false);
         hdVy_Kminus_FD_1e_cut.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., 9999, 9999, 0, false);
-        hdVz_Kminus_CD_1e_cut.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., /* CutManager. */.dVz_cuts_CD.GetLowerCut(),
-                                           /* CutManager. */.dVz_cuts_CD.GetUpperCut(), 0, false);
-        hdVz_Kminus_FD_1e_cut.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., /* CutManager. */.dVz_cuts_FD.GetLowerCut(),
-                                           /* CutManager. */.dVz_cuts_FD.GetUpperCut(), 0, false);
+        hdVz_Kminus_CD_1e_cut.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., /* CutManager. */dVz_cuts_CD.GetLowerCut(),
+                                           /* CutManager. */dVz_cuts_CD.GetUpperCut(), 0, false);
+        hdVz_Kminus_FD_1e_cut.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., /* CutManager. */dVz_cuts_FD.GetLowerCut(),
+                                           /* CutManager. */dVz_cuts_FD.GetUpperCut(), 0, false);
 
         hdVx_piplus_CD_1e_cut.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., 9999, 9999, 0, false);
         hdVx_piplus_FD_1e_cut.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., 9999, 9999, 0, false);
         hdVy_piplus_CD_1e_cut.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., 9999, 9999, 0, false);
         hdVy_piplus_FD_1e_cut.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., 9999, 9999, 0, false);
-        hdVz_piplus_CD_1e_cut.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., /* CutManager. */.dVz_cuts_CD.GetLowerCut(),
-                                           /* CutManager. */.dVz_cuts_CD.GetUpperCut(), 0, false);
-        hdVz_piplus_FD_1e_cut.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., /* CutManager. */.dVz_cuts_FD.GetLowerCut(),
-                                           /* CutManager. */.dVz_cuts_FD.GetUpperCut(), 0, false);
+        hdVz_piplus_CD_1e_cut.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., /* CutManager. */dVz_cuts_CD.GetLowerCut(),
+                                           /* CutManager. */dVz_cuts_CD.GetUpperCut(), 0, false);
+        hdVz_piplus_FD_1e_cut.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., /* CutManager. */dVz_cuts_FD.GetLowerCut(),
+                                           /* CutManager. */dVz_cuts_FD.GetUpperCut(), 0, false);
 
         hdVx_piminus_CD_1e_cut.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., 9999, 9999, 0, false);
         hdVx_piminus_FD_1e_cut.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., 9999, 9999, 0, false);
         hdVy_piminus_CD_1e_cut.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., 9999, 9999, 0, false);
         hdVy_piminus_FD_1e_cut.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., 9999, 9999, 0, false);
-        hdVz_piminus_CD_1e_cut.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., /* CutManager. */.dVz_cuts_CD.GetLowerCut(),
-                                            /* CutManager. */.dVz_cuts_CD.GetUpperCut(), 0, false);
-        hdVz_piminus_FD_1e_cut.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., /* CutManager. */.dVz_cuts_FD.GetLowerCut(),
-                                            /* CutManager. */.dVz_cuts_FD.GetUpperCut(), 0, false);
+        hdVz_piminus_CD_1e_cut.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., /* CutManager. */dVz_cuts_CD.GetLowerCut(),
+                                            /* CutManager. */dVz_cuts_CD.GetUpperCut(), 0, false);
+        hdVz_piminus_FD_1e_cut.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., /* CutManager. */dVz_cuts_FD.GetLowerCut(),
+                                            /* CutManager. */dVz_cuts_FD.GetUpperCut(), 0, false);
 
         hdVx_Deuteron_CD_1e_cut.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., 9999, 9999, 0, false);
         hdVx_Deuteron_FD_1e_cut.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., 9999, 9999, 0, false);
         hdVy_Deuteron_CD_1e_cut.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., 9999, 9999, 0, false);
         hdVy_Deuteron_FD_1e_cut.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., 9999, 9999, 0, false);
-        hdVz_Deuteron_CD_1e_cut.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., /* CutManager. */.dVz_cuts_CD.GetLowerCut(),
-                                             /* CutManager. */.dVz_cuts_CD.GetUpperCut(), 0, false);
-        hdVz_Deuteron_FD_1e_cut.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., /* CutManager. */.dVz_cuts_FD.GetLowerCut(),
-                                             /* CutManager. */.dVz_cuts_FD.GetUpperCut(), 0, false);
+        hdVz_Deuteron_CD_1e_cut.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., /* CutManager. */dVz_cuts_CD.GetLowerCut(),
+                                             /* CutManager. */dVz_cuts_CD.GetUpperCut(), 0, false);
+        hdVz_Deuteron_FD_1e_cut.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., /* CutManager. */dVz_cuts_FD.GetLowerCut(),
+                                             /* CutManager. */dVz_cuts_FD.GetUpperCut(), 0, false);
 
         // dV plots (1p, CD & FD)
         hdVx_1p.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., 9999, 9999, 0, false);
         hdVy_1p.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., 9999, 9999, 0, false);
-        hdVz_1p.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., /* CutManager. */.dVz_cuts_FD.GetLowerCut(), /* CutManager. */.dVz_cuts_FD.GetUpperCut(), 0,
+        hdVz_1p.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., /* CutManager. */dVz_cuts_FD.GetLowerCut(), /* CutManager. */dVz_cuts_FD.GetUpperCut(), 0,
                              false);
 
         // dV plots (1n, CD & FD)
         hdVx_1n.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., 9999, 9999, 0, false);
         hdVy_1n.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., 9999, 9999, 0, false);
-        hdVz_1n.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., /* CutManager. */.dVz_cuts_FD.GetLowerCut(), /* CutManager. */.dVz_cuts_FD.GetUpperCut(), 0,
+        hdVz_1n.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., /* CutManager. */dVz_cuts_FD.GetLowerCut(), /* CutManager. */dVz_cuts_FD.GetUpperCut(), 0,
                              false);
 
         // dV plots (2p, CD & FD)
         hdVx_2p.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., 9999, 9999, 0, false);
         hdVy_2p.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., 9999, 9999, 0, false);
-        hdVz_2p.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., /* CutManager. */.dVz_cuts.GetLowerCut(), /* CutManager. */.dVz_cuts.GetUpperCut(), 0, false);
+        hdVz_2p.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., /* CutManager. */dVz_cuts.GetLowerCut(), /* CutManager. */dVz_cuts.GetUpperCut(), 0, false);
 
         // dV plots (pFDpCD, CD & FD)
         hdVx_pFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., 9999, 9999, 0, false);
         hdVy_pFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., 9999, 9999, 0, false);
-        hdVz_pFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., /* CutManager. */.dVz_cuts.GetLowerCut(), /* CutManager. */.dVz_cuts.GetUpperCut(), 0,
+        hdVz_pFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., /* CutManager. */dVz_cuts.GetLowerCut(), /* CutManager. */dVz_cuts.GetUpperCut(), 0,
                                  false);
 
         hdVx_pFD_pFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., 9999, 9999, 0, false);
         hdVy_pFD_pFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., 9999, 9999, 0, false);
-        hdVz_pFD_pFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., /* CutManager. */.dVz_cuts_FD.GetLowerCut(),
-                                     /* CutManager. */.dVz_cuts_FD.GetUpperCut(), 0, false);
+        hdVz_pFD_pFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., /* CutManager. */dVz_cuts_FD.GetLowerCut(),
+                                     /* CutManager. */dVz_cuts_FD.GetUpperCut(), 0, false);
 
         hdVx_pCD_pFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., 9999, 9999, 0, false);
         hdVy_pCD_pFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., 9999, 9999, 0, false);
-        hdVz_pCD_pFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., /* CutManager. */.dVz_cuts_CD.GetLowerCut(),
-                                     /* CutManager. */.dVz_cuts_CD.GetUpperCut(), 0, false);
+        hdVz_pCD_pFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., /* CutManager. */dVz_cuts_CD.GetLowerCut(),
+                                     /* CutManager. */dVz_cuts_CD.GetUpperCut(), 0, false);
 
         // dV plots (nFDpCD, CD & FD)
         hdVx_nFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., 9999, 9999, 0, false);
         hdVy_nFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., 9999, 9999, 0, false);
-        hdVz_nFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., /* CutManager. */.dVz_cuts.GetLowerCut(), /* CutManager. */.dVz_cuts.GetUpperCut(), 0,
+        hdVz_nFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., /* CutManager. */dVz_cuts.GetLowerCut(), /* CutManager. */dVz_cuts.GetUpperCut(), 0,
                                  false);
 
         hdVx_pCD_nFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., 9999, 9999, 0, false);
         hdVy_pCD_nFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., 9999, 9999, 0, false);
-        hdVz_pCD_nFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., /* CutManager. */.dVz_cuts_CD.GetLowerCut(),
-                                     /* CutManager. */.dVz_cuts_CD.GetUpperCut(), 0, false);
+        hdVz_pCD_nFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Vertex_plots, true, 1., /* CutManager. */dVz_cuts_CD.GetLowerCut(),
+                                     /* CutManager. */dVz_cuts_CD.GetUpperCut(), 0, false);
     } else {
         std::cout << "\033[33m\n\nVertex plots are disabled by user.\n\n\033[0m";
     }
@@ -16970,31 +16970,31 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         hP_deuteron_1e_cut_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., 9999, 9999, 0, false);
         hP_deuteron_1e_cut_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., 9999, 9999, 0, false);
 
-        hP_LnFD_APID_1e_cut_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.n_mom_th.GetLowerCut(),
-                                            /* CutManager. */.n_mom_th.GetUpperCut(), 0, false);
-        hP_LnFD_APID_1e_cut_ZOOMOUT_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.n_mom_th.GetLowerCut(),
-                                                    /* CutManager. */.n_mom_th.GetUpperCut(), 0, false);
-        hP_LnFD_BPID_1e_cut_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.n_mom_th.GetLowerCut(),
-                                            /* CutManager. */.n_mom_th.GetUpperCut(), 0, false);
-        hP_LnFD_BPID_1e_cut_ZOOMOUT_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.n_mom_th.GetLowerCut(),
-                                                    /* CutManager. */.n_mom_th.GetUpperCut(), 0, false);
-        hP_LnFD_APIDandNS_1e_cut_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.n_mom_th.GetLowerCut(),
-                                                 /* CutManager. */.n_mom_th.GetUpperCut(), 0, false);
-        hP_LnFD_APIDandNS_1e_cut_ZOOMOUT_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.n_mom_th.GetLowerCut(),
-                                                         /* CutManager. */.n_mom_th.GetUpperCut(), 0, false);
+        hP_LnFD_APID_1e_cut_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */n_mom_th.GetLowerCut(),
+                                            /* CutManager. */n_mom_th.GetUpperCut(), 0, false);
+        hP_LnFD_APID_1e_cut_ZOOMOUT_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */n_mom_th.GetLowerCut(),
+                                                    /* CutManager. */n_mom_th.GetUpperCut(), 0, false);
+        hP_LnFD_BPID_1e_cut_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */n_mom_th.GetLowerCut(),
+                                            /* CutManager. */n_mom_th.GetUpperCut(), 0, false);
+        hP_LnFD_BPID_1e_cut_ZOOMOUT_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */n_mom_th.GetLowerCut(),
+                                                    /* CutManager. */n_mom_th.GetUpperCut(), 0, false);
+        hP_LnFD_APIDandNS_1e_cut_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */n_mom_th.GetLowerCut(),
+                                                 /* CutManager. */n_mom_th.GetUpperCut(), 0, false);
+        hP_LnFD_APIDandNS_1e_cut_ZOOMOUT_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */n_mom_th.GetLowerCut(),
+                                                         /* CutManager. */n_mom_th.GetUpperCut(), 0, false);
 
-        hP_nFD_APID_1e_cut_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.n_mom_th.GetLowerCut(),
-                                           /* CutManager. */.n_mom_th.GetUpperCut(), 0, false);
-        hP_nFD_APID_1e_cut_ZOOMOUT_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.n_mom_th.GetLowerCut(),
-                                                   /* CutManager. */.n_mom_th.GetUpperCut(), 0, false);
-        hP_nFD_BPID_1e_cut_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.n_mom_th.GetLowerCut(),
-                                           /* CutManager. */.n_mom_th.GetUpperCut(), 0, false);
-        hP_nFD_BPID_1e_cut_ZOOMOUT_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.n_mom_th.GetLowerCut(),
-                                                   /* CutManager. */.n_mom_th.GetUpperCut(), 0, false);
-        hP_nFD_APIDandNS_1e_cut_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.n_mom_th.GetLowerCut(),
-                                                /* CutManager. */.n_mom_th.GetUpperCut(), 0, false);
-        hP_nFD_APIDandNS_1e_cut_ZOOMOUT_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.n_mom_th.GetLowerCut(),
-                                                        /* CutManager. */.n_mom_th.GetUpperCut(), 0, false);
+        hP_nFD_APID_1e_cut_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */n_mom_th.GetLowerCut(),
+                                           /* CutManager. */n_mom_th.GetUpperCut(), 0, false);
+        hP_nFD_APID_1e_cut_ZOOMOUT_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */n_mom_th.GetLowerCut(),
+                                                   /* CutManager. */n_mom_th.GetUpperCut(), 0, false);
+        hP_nFD_BPID_1e_cut_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */n_mom_th.GetLowerCut(),
+                                           /* CutManager. */n_mom_th.GetUpperCut(), 0, false);
+        hP_nFD_BPID_1e_cut_ZOOMOUT_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */n_mom_th.GetLowerCut(),
+                                                   /* CutManager. */n_mom_th.GetUpperCut(), 0, false);
+        hP_nFD_APIDandNS_1e_cut_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */n_mom_th.GetLowerCut(),
+                                                /* CutManager. */n_mom_th.GetUpperCut(), 0, false);
+        hP_nFD_APIDandNS_1e_cut_ZOOMOUT_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */n_mom_th.GetLowerCut(),
+                                                        /* CutManager. */n_mom_th.GetUpperCut(), 0, false);
 
         // Reco momentum plots for momentum thresholds (1e cut)
         hP_e_reco_1e_cut_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., -9999, 9999, 0, false);
@@ -17051,112 +17051,112 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         hP_ph_vs_Theta_ph_reco_BPID_1e_cut_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, true);
 
         // Momentum plots (1p, CD & FD)
-        hP_e_APID_1p_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.e_mom_th.GetLowerCut(), /* CutManager. */.e_mom_th.GetUpperCut(),
+        hP_e_APID_1p_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */e_mom_th.GetLowerCut(), /* CutManager. */e_mom_th.GetUpperCut(),
                                      0, false);
-        hP_e_BPID_1p_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.e_mom_th.GetLowerCut(), /* CutManager. */.e_mom_th.GetUpperCut(),
+        hP_e_BPID_1p_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */e_mom_th.GetLowerCut(), /* CutManager. */e_mom_th.GetUpperCut(),
                                      0, false);
 
-        hP_p_APID_1p_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.p_mom_th.GetLowerCut(), /* CutManager. */.p_mom_th.GetUpperCut(),
+        hP_p_APID_1p_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */p_mom_th.GetLowerCut(), /* CutManager. */p_mom_th.GetUpperCut(),
                                      0, false);
-        hP_p_APIDandPS_1p_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.p_mom_th.GetLowerCut(),
-                                          /* CutManager. */.p_mom_th.GetUpperCut(), 0, false);
-        hP_p_BPID_1p_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.p_mom_th.GetLowerCut(), /* CutManager. */.p_mom_th.GetUpperCut(),
+        hP_p_APIDandPS_1p_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */p_mom_th.GetLowerCut(),
+                                          /* CutManager. */p_mom_th.GetUpperCut(), 0, false);
+        hP_p_BPID_1p_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */p_mom_th.GetLowerCut(), /* CutManager. */p_mom_th.GetUpperCut(),
                                      0, false);
-        hP_p_APID_1p_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.p_mom_th.GetLowerCut(), /* CutManager. */.p_mom_th.GetUpperCut(),
+        hP_p_APID_1p_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */p_mom_th.GetLowerCut(), /* CutManager. */p_mom_th.GetUpperCut(),
                                      0, false);
-        hP_p_APIDandPS_1p_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.p_mom_th.GetLowerCut(),
-                                          /* CutManager. */.p_mom_th.GetUpperCut(), 0, false);
-        hP_p_BPID_1p_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.p_mom_th.GetLowerCut(), /* CutManager. */.p_mom_th.GetUpperCut(),
+        hP_p_APIDandPS_1p_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */p_mom_th.GetLowerCut(),
+                                          /* CutManager. */p_mom_th.GetUpperCut(), 0, false);
+        hP_p_BPID_1p_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */p_mom_th.GetLowerCut(), /* CutManager. */p_mom_th.GetUpperCut(),
                                      0, false);
 
         if (!/* CutSettings. */apply_kinematical_cuts) {
-            hP_pFD_APID_1p.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.p_mom_th.GetLowerCut(),
-                                        /* CutManager. */.p_mom_th.GetUpperCut(), 0, false);
-            hP_pFD_APIDandPS_1p.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.p_mom_th.GetLowerCut(),
-                                             /* CutManager. */.p_mom_th.GetUpperCut(), 0, false);
+            hP_pFD_APID_1p.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */p_mom_th.GetLowerCut(),
+                                        /* CutManager. */p_mom_th.GetUpperCut(), 0, false);
+            hP_pFD_APIDandPS_1p.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */p_mom_th.GetLowerCut(),
+                                             /* CutManager. */p_mom_th.GetUpperCut(), 0, false);
         } else {
-            hP_pFD_APID_1p.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.FD_nucleon_momentum_cut.GetLowerCut(),
-                                        /* CutManager. */.FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
-            hP_pFD_APIDandPS_1p.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.FD_nucleon_momentum_cut.GetLowerCut(),
-                                             /* CutManager. */.FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
+            hP_pFD_APID_1p.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */FD_nucleon_momentum_cut.GetLowerCut(),
+                                        /* CutManager. */FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
+            hP_pFD_APIDandPS_1p.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */FD_nucleon_momentum_cut.GetLowerCut(),
+                                             /* CutManager. */FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
         }
 
-        hP_piplus_APID_1p_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.pip_mom_th.GetLowerCut(),
-                                          /* CutManager. */.pip_mom_th.GetUpperCut(), 0, false);
-        hP_piplus_BPID_1p_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.pip_mom_th.GetLowerCut(),
-                                          /* CutManager. */.pip_mom_th.GetUpperCut(), 0, false);
-        hP_piplus_APID_1p_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.pip_mom_th.GetLowerCut(),
-                                          /* CutManager. */.pip_mom_th.GetUpperCut(), 0, false);
-        hP_piplus_BPID_1p_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.pip_mom_th.GetLowerCut(),
-                                          /* CutManager. */.pip_mom_th.GetUpperCut(), 0, false);
+        hP_piplus_APID_1p_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */pip_mom_th.GetLowerCut(),
+                                          /* CutManager. */pip_mom_th.GetUpperCut(), 0, false);
+        hP_piplus_BPID_1p_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */pip_mom_th.GetLowerCut(),
+                                          /* CutManager. */pip_mom_th.GetUpperCut(), 0, false);
+        hP_piplus_APID_1p_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */pip_mom_th.GetLowerCut(),
+                                          /* CutManager. */pip_mom_th.GetUpperCut(), 0, false);
+        hP_piplus_BPID_1p_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */pip_mom_th.GetLowerCut(),
+                                          /* CutManager. */pip_mom_th.GetUpperCut(), 0, false);
 
-        hP_piminus_APID_1p_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.pim_mom_th.GetLowerCut(),
-                                           /* CutManager. */.pim_mom_th.GetUpperCut(), 0, false);
-        hP_piminus_BPID_1p_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.pim_mom_th.GetLowerCut(),
-                                           /* CutManager. */.pim_mom_th.GetUpperCut(), 0, false);
-        hP_piminus_APID_1p_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.pim_mom_th.GetLowerCut(),
-                                           /* CutManager. */.pim_mom_th.GetUpperCut(), 0, false);
-        hP_piminus_BPID_1p_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.pim_mom_th.GetLowerCut(),
-                                           /* CutManager. */.pim_mom_th.GetUpperCut(), 0, false);
+        hP_piminus_APID_1p_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */pim_mom_th.GetLowerCut(),
+                                           /* CutManager. */pim_mom_th.GetUpperCut(), 0, false);
+        hP_piminus_BPID_1p_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */pim_mom_th.GetLowerCut(),
+                                           /* CutManager. */pim_mom_th.GetUpperCut(), 0, false);
+        hP_piminus_APID_1p_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */pim_mom_th.GetLowerCut(),
+                                           /* CutManager. */pim_mom_th.GetUpperCut(), 0, false);
+        hP_piminus_BPID_1p_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */pim_mom_th.GetLowerCut(),
+                                           /* CutManager. */pim_mom_th.GetUpperCut(), 0, false);
 
-        hP_ph_APID_1p_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.ph_mom_th.GetLowerCut(),
-                                      /* CutManager. */.ph_mom_th.GetUpperCut(), 0, false);
-        hP_ph_BPID_1p_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.ph_mom_th.GetLowerCut(),
-                                      /* CutManager. */.ph_mom_th.GetUpperCut(), 0, false);
+        hP_ph_APID_1p_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */ph_mom_th.GetLowerCut(),
+                                      /* CutManager. */ph_mom_th.GetUpperCut(), 0, false);
+        hP_ph_BPID_1p_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */ph_mom_th.GetLowerCut(),
+                                      /* CutManager. */ph_mom_th.GetUpperCut(), 0, false);
 
-        hP_n_APID_1p_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.n_mom_th.GetLowerCut(), /* CutManager. */.n_mom_th.GetUpperCut(),
+        hP_n_APID_1p_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */n_mom_th.GetLowerCut(), /* CutManager. */n_mom_th.GetUpperCut(),
                                      0, false);
-        hP_n_BPID_1p_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.n_mom_th.GetLowerCut(), /* CutManager. */.n_mom_th.GetUpperCut(),
+        hP_n_BPID_1p_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */n_mom_th.GetLowerCut(), /* CutManager. */n_mom_th.GetUpperCut(),
                                      0, false);
 
         // Momentum plots (1n, CD & FD)
-        hP_e_APID_1n_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.e_mom_th.GetLowerCut(), /* CutManager. */.e_mom_th.GetUpperCut(),
+        hP_e_APID_1n_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */e_mom_th.GetLowerCut(), /* CutManager. */e_mom_th.GetUpperCut(),
                                      0, false);
-        hP_e_BPID_1n_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.e_mom_th.GetLowerCut(), /* CutManager. */.e_mom_th.GetUpperCut(),
+        hP_e_BPID_1n_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */e_mom_th.GetLowerCut(), /* CutManager. */e_mom_th.GetUpperCut(),
                                      0, false);
 
         if (!/* CutSettings. */apply_kinematical_cuts) {
-            hP_n_APID_1n_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.n_mom_th.GetLowerCut(),
-                                         /* CutManager. */.n_mom_th.GetUpperCut(), 0, false);
-            hP_n_APID_1n_ZOOMOUT_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.n_mom_th.GetLowerCut(),
-                                                 /* CutManager. */.n_mom_th.GetUpperCut(), 0, false);
-            hP_n_BPID_1n_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.n_mom_th.GetLowerCut(),
-                                         /* CutManager. */.n_mom_th.GetUpperCut(), 0, false);
-            hP_n_BPID_1n_ZOOMOUT_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.n_mom_th.GetLowerCut(),
-                                                 /* CutManager. */.n_mom_th.GetUpperCut(), 0, false);
-            hP_n_APIDandNS_1n_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.n_mom_th.GetLowerCut(),
-                                              /* CutManager. */.n_mom_th.GetUpperCut(), 0, false);
-            hP_n_APIDandNS_1n_ZOOMOUT_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.n_mom_th.GetLowerCut(),
-                                                      /* CutManager. */.n_mom_th.GetUpperCut(), 0, false);
-            hP_nFD_APID_1n.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.n_mom_th.GetLowerCut(),
-                                        /* CutManager. */.n_mom_th.GetUpperCut(), 0, false);
-            hP_nFD_APID_1n_ZOOMOUT.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.n_mom_th.GetLowerCut(),
-                                                /* CutManager. */.n_mom_th.GetUpperCut(), 0, false);
-            hP_nFD_APIDandNS_1n.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.n_mom_th.GetLowerCut(),
-                                             /* CutManager. */.n_mom_th.GetUpperCut(), 0, false);
-            hP_nFD_APIDandNS_1n_ZOOMOUT.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.n_mom_th.GetLowerCut(),
-                                                     /* CutManager. */.n_mom_th.GetUpperCut(), 0, false);
+            hP_n_APID_1n_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */n_mom_th.GetLowerCut(),
+                                         /* CutManager. */n_mom_th.GetUpperCut(), 0, false);
+            hP_n_APID_1n_ZOOMOUT_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */n_mom_th.GetLowerCut(),
+                                                 /* CutManager. */n_mom_th.GetUpperCut(), 0, false);
+            hP_n_BPID_1n_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */n_mom_th.GetLowerCut(),
+                                         /* CutManager. */n_mom_th.GetUpperCut(), 0, false);
+            hP_n_BPID_1n_ZOOMOUT_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */n_mom_th.GetLowerCut(),
+                                                 /* CutManager. */n_mom_th.GetUpperCut(), 0, false);
+            hP_n_APIDandNS_1n_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */n_mom_th.GetLowerCut(),
+                                              /* CutManager. */n_mom_th.GetUpperCut(), 0, false);
+            hP_n_APIDandNS_1n_ZOOMOUT_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */n_mom_th.GetLowerCut(),
+                                                      /* CutManager. */n_mom_th.GetUpperCut(), 0, false);
+            hP_nFD_APID_1n.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */n_mom_th.GetLowerCut(),
+                                        /* CutManager. */n_mom_th.GetUpperCut(), 0, false);
+            hP_nFD_APID_1n_ZOOMOUT.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */n_mom_th.GetLowerCut(),
+                                                /* CutManager. */n_mom_th.GetUpperCut(), 0, false);
+            hP_nFD_APIDandNS_1n.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */n_mom_th.GetLowerCut(),
+                                             /* CutManager. */n_mom_th.GetUpperCut(), 0, false);
+            hP_nFD_APIDandNS_1n_ZOOMOUT.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */n_mom_th.GetLowerCut(),
+                                                     /* CutManager. */n_mom_th.GetUpperCut(), 0, false);
         } else {
-            hP_n_APID_1n_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.FD_nucleon_momentum_cut.GetLowerCut(),
-                                         /* CutManager. */.FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
-            hP_n_APID_1n_ZOOMOUT_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.FD_nucleon_momentum_cut.GetLowerCut(),
-                                                 /* CutManager. */.FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
-            hP_n_BPID_1n_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.FD_nucleon_momentum_cut.GetLowerCut(),
-                                         /* CutManager. */.FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
-            hP_n_BPID_1n_ZOOMOUT_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.FD_nucleon_momentum_cut.GetLowerCut(),
-                                                 /* CutManager. */.FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
-            hP_n_APIDandNS_1n_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.FD_nucleon_momentum_cut.GetLowerCut(),
-                                              /* CutManager. */.FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
-            hP_n_APIDandNS_1n_ZOOMOUT_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.FD_nucleon_momentum_cut.GetLowerCut(),
-                                                      /* CutManager. */.FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
-            hP_nFD_APID_1n.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.FD_nucleon_momentum_cut.GetLowerCut(),
-                                        /* CutManager. */.FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
-            hP_nFD_APID_1n_ZOOMOUT.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.FD_nucleon_momentum_cut.GetLowerCut(),
-                                                /* CutManager. */.FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
-            hP_nFD_APIDandNS_1n.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.FD_nucleon_momentum_cut.GetLowerCut(),
-                                             /* CutManager. */.FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
-            hP_nFD_APIDandNS_1n_ZOOMOUT.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.FD_nucleon_momentum_cut.GetLowerCut(),
-                                                     /* CutManager. */.FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
+            hP_n_APID_1n_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */FD_nucleon_momentum_cut.GetLowerCut(),
+                                         /* CutManager. */FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
+            hP_n_APID_1n_ZOOMOUT_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */FD_nucleon_momentum_cut.GetLowerCut(),
+                                                 /* CutManager. */FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
+            hP_n_BPID_1n_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */FD_nucleon_momentum_cut.GetLowerCut(),
+                                         /* CutManager. */FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
+            hP_n_BPID_1n_ZOOMOUT_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */FD_nucleon_momentum_cut.GetLowerCut(),
+                                                 /* CutManager. */FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
+            hP_n_APIDandNS_1n_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */FD_nucleon_momentum_cut.GetLowerCut(),
+                                              /* CutManager. */FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
+            hP_n_APIDandNS_1n_ZOOMOUT_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */FD_nucleon_momentum_cut.GetLowerCut(),
+                                                      /* CutManager. */FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
+            hP_nFD_APID_1n.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */FD_nucleon_momentum_cut.GetLowerCut(),
+                                        /* CutManager. */FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
+            hP_nFD_APID_1n_ZOOMOUT.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */FD_nucleon_momentum_cut.GetLowerCut(),
+                                                /* CutManager. */FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
+            hP_nFD_APIDandNS_1n.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */FD_nucleon_momentum_cut.GetLowerCut(),
+                                             /* CutManager. */FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
+            hP_nFD_APIDandNS_1n_ZOOMOUT.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */FD_nucleon_momentum_cut.GetLowerCut(),
+                                                     /* CutManager. */FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
         }
 
         hP_nFD_vs_P_e_1n.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, true);
@@ -17172,154 +17172,154 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         hphi_nFD_vs_theta_e_1n.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, true);
         hphi_nFD_vs_phi_e_1n.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, true);
 
-        hP_p_APID_1n_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.p_mom_th.GetLowerCut(), /* CutManager. */.p_mom_th.GetUpperCut(),
+        hP_p_APID_1n_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */p_mom_th.GetLowerCut(), /* CutManager. */p_mom_th.GetUpperCut(),
                                      0, false);
-        hP_p_BPID_1n_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.p_mom_th.GetLowerCut(), /* CutManager. */.p_mom_th.GetUpperCut(),
+        hP_p_BPID_1n_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */p_mom_th.GetLowerCut(), /* CutManager. */p_mom_th.GetUpperCut(),
                                      0, false);
-        hP_p_APID_1n_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.p_mom_th.GetLowerCut(), /* CutManager. */.p_mom_th.GetUpperCut(),
+        hP_p_APID_1n_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */p_mom_th.GetLowerCut(), /* CutManager. */p_mom_th.GetUpperCut(),
                                      0, false);
-        hP_p_BPID_1n_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.p_mom_th.GetLowerCut(), /* CutManager. */.p_mom_th.GetUpperCut(),
+        hP_p_BPID_1n_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */p_mom_th.GetLowerCut(), /* CutManager. */p_mom_th.GetUpperCut(),
                                      0, false);
 
-        hP_piplus_APID_1n_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.pip_mom_th.GetLowerCut(),
-                                          /* CutManager. */.pip_mom_th.GetUpperCut(), 0, false);
-        hP_piplus_BPID_1n_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.pip_mom_th.GetLowerCut(),
-                                          /* CutManager. */.pip_mom_th.GetUpperCut(), 0, false);
-        hP_piplus_APID_1n_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.pip_mom_th.GetLowerCut(),
-                                          /* CutManager. */.pip_mom_th.GetUpperCut(), 0, false);
-        hP_piplus_BPID_1n_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.pip_mom_th.GetLowerCut(),
-                                          /* CutManager. */.pip_mom_th.GetUpperCut(), 0, false);
+        hP_piplus_APID_1n_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */pip_mom_th.GetLowerCut(),
+                                          /* CutManager. */pip_mom_th.GetUpperCut(), 0, false);
+        hP_piplus_BPID_1n_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */pip_mom_th.GetLowerCut(),
+                                          /* CutManager. */pip_mom_th.GetUpperCut(), 0, false);
+        hP_piplus_APID_1n_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */pip_mom_th.GetLowerCut(),
+                                          /* CutManager. */pip_mom_th.GetUpperCut(), 0, false);
+        hP_piplus_BPID_1n_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */pip_mom_th.GetLowerCut(),
+                                          /* CutManager. */pip_mom_th.GetUpperCut(), 0, false);
 
-        hP_piminus_APID_1n_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.pim_mom_th.GetLowerCut(),
-                                           /* CutManager. */.pim_mom_th.GetUpperCut(), 0, false);
-        hP_piminus_BPID_1n_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.pim_mom_th.GetLowerCut(),
-                                           /* CutManager. */.pim_mom_th.GetUpperCut(), 0, false);
-        hP_piminus_APID_1n_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.pim_mom_th.GetLowerCut(),
-                                           /* CutManager. */.pim_mom_th.GetUpperCut(), 0, false);
-        hP_piminus_BPID_1n_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.pim_mom_th.GetLowerCut(),
-                                           /* CutManager. */.pim_mom_th.GetUpperCut(), 0, false);
+        hP_piminus_APID_1n_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */pim_mom_th.GetLowerCut(),
+                                           /* CutManager. */pim_mom_th.GetUpperCut(), 0, false);
+        hP_piminus_BPID_1n_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */pim_mom_th.GetLowerCut(),
+                                           /* CutManager. */pim_mom_th.GetUpperCut(), 0, false);
+        hP_piminus_APID_1n_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */pim_mom_th.GetLowerCut(),
+                                           /* CutManager. */pim_mom_th.GetUpperCut(), 0, false);
+        hP_piminus_BPID_1n_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */pim_mom_th.GetLowerCut(),
+                                           /* CutManager. */pim_mom_th.GetUpperCut(), 0, false);
 
         if (!/* CutSettings. */apply_kinematical_cuts) {
-            hP_n_VN_BPID_1n_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.n_mom_th.GetLowerCut(),
-                                            /* CutManager. */.n_mom_th.GetUpperCut(), 0, false);
-            hP_n_VN_APID_1n_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.n_mom_th.GetLowerCut(),
-                                            /* CutManager. */.n_mom_th.GetUpperCut(), 0, false);
-            hP_n_Ph_BPID_1n_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.n_mom_th.GetLowerCut(),
-                                            /* CutManager. */.n_mom_th.GetUpperCut(), 0, false);
-            hP_n_Ph_APID_1n_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.n_mom_th.GetLowerCut(),
-                                            /* CutManager. */.n_mom_th.GetUpperCut(), 0, false);
+            hP_n_VN_BPID_1n_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */n_mom_th.GetLowerCut(),
+                                            /* CutManager. */n_mom_th.GetUpperCut(), 0, false);
+            hP_n_VN_APID_1n_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */n_mom_th.GetLowerCut(),
+                                            /* CutManager. */n_mom_th.GetUpperCut(), 0, false);
+            hP_n_Ph_BPID_1n_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */n_mom_th.GetLowerCut(),
+                                            /* CutManager. */n_mom_th.GetUpperCut(), 0, false);
+            hP_n_Ph_APID_1n_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */n_mom_th.GetLowerCut(),
+                                            /* CutManager. */n_mom_th.GetUpperCut(), 0, false);
         } else {
-            hP_n_VN_BPID_1n_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.FD_nucleon_momentum_cut.GetLowerCut(),
-                                            /* CutManager. */.FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
-            hP_n_VN_APID_1n_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.FD_nucleon_momentum_cut.GetLowerCut(),
-                                            /* CutManager. */.FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
-            hP_n_Ph_BPID_1n_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.FD_nucleon_momentum_cut.GetLowerCut(),
-                                            /* CutManager. */.FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
-            hP_n_Ph_APID_1n_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.FD_nucleon_momentum_cut.GetLowerCut(),
-                                            /* CutManager. */.FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
+            hP_n_VN_BPID_1n_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */FD_nucleon_momentum_cut.GetLowerCut(),
+                                            /* CutManager. */FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
+            hP_n_VN_APID_1n_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */FD_nucleon_momentum_cut.GetLowerCut(),
+                                            /* CutManager. */FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
+            hP_n_Ph_BPID_1n_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */FD_nucleon_momentum_cut.GetLowerCut(),
+                                            /* CutManager. */FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
+            hP_n_Ph_APID_1n_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */FD_nucleon_momentum_cut.GetLowerCut(),
+                                            /* CutManager. */FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
         }
 
-        hP_ph_APID_1n_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.ph_mom_th.GetLowerCut(),
-                                      /* CutManager. */.ph_mom_th.GetUpperCut(), 0, false);
-        hP_ph_BPID_1n_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.ph_mom_th.GetLowerCut(),
-                                      /* CutManager. */.ph_mom_th.GetUpperCut(), 0, false);
+        hP_ph_APID_1n_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */ph_mom_th.GetLowerCut(),
+                                      /* CutManager. */ph_mom_th.GetUpperCut(), 0, false);
+        hP_ph_BPID_1n_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */ph_mom_th.GetLowerCut(),
+                                      /* CutManager. */ph_mom_th.GetUpperCut(), 0, false);
 
         // Momentum plots (2p, CD & FD)
-        hP_e_APID_2p_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.e_mom_th.GetLowerCut(), /* CutManager. */.e_mom_th.GetUpperCut(),
+        hP_e_APID_2p_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */e_mom_th.GetLowerCut(), /* CutManager. */e_mom_th.GetUpperCut(),
                                      0, false);
-        hP_e_BPID_2p_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.e_mom_th.GetLowerCut(), /* CutManager. */.e_mom_th.GetUpperCut(),
-                                     0, false);
-
-        hP_p_APID_2p_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.p_mom_th.GetLowerCut(), /* CutManager. */.p_mom_th.GetUpperCut(),
-                                     0, false);
-        hP_p_BPID_2p_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.p_mom_th.GetLowerCut(), /* CutManager. */.p_mom_th.GetUpperCut(),
-                                     0, false);
-        hP_p_APID_2p_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.p_mom_th.GetLowerCut(), /* CutManager. */.p_mom_th.GetUpperCut(),
-                                     0, false);
-        hP_p_BPID_2p_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.p_mom_th.GetLowerCut(), /* CutManager. */.p_mom_th.GetUpperCut(),
+        hP_e_BPID_2p_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */e_mom_th.GetLowerCut(), /* CutManager. */e_mom_th.GetUpperCut(),
                                      0, false);
 
-        hP_piplus_APID_2p_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.pip_mom_th.GetLowerCut(),
-                                          /* CutManager. */.pip_mom_th.GetUpperCut(), 0, false);
-        hP_piplus_BPID_2p_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.pip_mom_th.GetLowerCut(),
-                                          /* CutManager. */.pip_mom_th.GetUpperCut(), 0, false);
-        hP_piplus_APID_2p_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.pip_mom_th.GetLowerCut(),
-                                          /* CutManager. */.pip_mom_th.GetUpperCut(), 0, false);
-        hP_piplus_BPID_2p_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.pip_mom_th.GetLowerCut(),
-                                          /* CutManager. */.pip_mom_th.GetUpperCut(), 0, false);
-
-        hP_piminus_APID_2p_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.pim_mom_th.GetLowerCut(),
-                                           /* CutManager. */.pim_mom_th.GetUpperCut(), 0, false);
-        hP_piminus_BPID_2p_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.pim_mom_th.GetLowerCut(),
-                                           /* CutManager. */.pim_mom_th.GetUpperCut(), 0, false);
-        hP_piminus_APID_2p_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.pim_mom_th.GetLowerCut(),
-                                           /* CutManager. */.pim_mom_th.GetUpperCut(), 0, false);
-        hP_piminus_BPID_2p_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.pim_mom_th.GetLowerCut(),
-                                           /* CutManager. */.pim_mom_th.GetUpperCut(), 0, false);
-
-        hP_ph_APID_2p_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.ph_mom_th.GetLowerCut(),
-                                      /* CutManager. */.ph_mom_th.GetUpperCut(), 0, false);
-        hP_ph_BPID_2p_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.ph_mom_th.GetLowerCut(),
-                                      /* CutManager. */.ph_mom_th.GetUpperCut(), 0, false);
-
-        hP_n_APID_2p_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.n_mom_th.GetLowerCut(), /* CutManager. */.n_mom_th.GetUpperCut(),
+        hP_p_APID_2p_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */p_mom_th.GetLowerCut(), /* CutManager. */p_mom_th.GetUpperCut(),
                                      0, false);
-        hP_n_BPID_2p_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.n_mom_th.GetLowerCut(), /* CutManager. */.n_mom_th.GetUpperCut(),
+        hP_p_BPID_2p_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */p_mom_th.GetLowerCut(), /* CutManager. */p_mom_th.GetUpperCut(),
+                                     0, false);
+        hP_p_APID_2p_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */p_mom_th.GetLowerCut(), /* CutManager. */p_mom_th.GetUpperCut(),
+                                     0, false);
+        hP_p_BPID_2p_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */p_mom_th.GetLowerCut(), /* CutManager. */p_mom_th.GetUpperCut(),
+                                     0, false);
+
+        hP_piplus_APID_2p_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */pip_mom_th.GetLowerCut(),
+                                          /* CutManager. */pip_mom_th.GetUpperCut(), 0, false);
+        hP_piplus_BPID_2p_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */pip_mom_th.GetLowerCut(),
+                                          /* CutManager. */pip_mom_th.GetUpperCut(), 0, false);
+        hP_piplus_APID_2p_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */pip_mom_th.GetLowerCut(),
+                                          /* CutManager. */pip_mom_th.GetUpperCut(), 0, false);
+        hP_piplus_BPID_2p_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */pip_mom_th.GetLowerCut(),
+                                          /* CutManager. */pip_mom_th.GetUpperCut(), 0, false);
+
+        hP_piminus_APID_2p_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */pim_mom_th.GetLowerCut(),
+                                           /* CutManager. */pim_mom_th.GetUpperCut(), 0, false);
+        hP_piminus_BPID_2p_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */pim_mom_th.GetLowerCut(),
+                                           /* CutManager. */pim_mom_th.GetUpperCut(), 0, false);
+        hP_piminus_APID_2p_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */pim_mom_th.GetLowerCut(),
+                                           /* CutManager. */pim_mom_th.GetUpperCut(), 0, false);
+        hP_piminus_BPID_2p_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */pim_mom_th.GetLowerCut(),
+                                           /* CutManager. */pim_mom_th.GetUpperCut(), 0, false);
+
+        hP_ph_APID_2p_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */ph_mom_th.GetLowerCut(),
+                                      /* CutManager. */ph_mom_th.GetUpperCut(), 0, false);
+        hP_ph_BPID_2p_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */ph_mom_th.GetLowerCut(),
+                                      /* CutManager. */ph_mom_th.GetUpperCut(), 0, false);
+
+        hP_n_APID_2p_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */n_mom_th.GetLowerCut(), /* CutManager. */n_mom_th.GetUpperCut(),
+                                     0, false);
+        hP_n_BPID_2p_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */n_mom_th.GetLowerCut(), /* CutManager. */n_mom_th.GetUpperCut(),
                                      0, false);
 
         // Momentum plots (pFDpCD, CD & FD)
-        hP_e_APID_pFDpCD_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.e_mom_th.GetLowerCut(),
-                                         /* CutManager. */.e_mom_th.GetUpperCut(), 0, false);
-        hP_e_BPID_pFDpCD_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.e_mom_th.GetLowerCut(),
-                                         /* CutManager. */.e_mom_th.GetUpperCut(), 0, false);
-        hP_p_APID_pFDpCD_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.p_mom_th.GetLowerCut(),
-                                         /* CutManager. */.p_mom_th.GetUpperCut(), 0, false);
-        hP_p_BPID_pFDpCD_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.p_mom_th.GetLowerCut(),
-                                         /* CutManager. */.p_mom_th.GetUpperCut(), 0, false);
+        hP_e_APID_pFDpCD_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */e_mom_th.GetLowerCut(),
+                                         /* CutManager. */e_mom_th.GetUpperCut(), 0, false);
+        hP_e_BPID_pFDpCD_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */e_mom_th.GetLowerCut(),
+                                         /* CutManager. */e_mom_th.GetUpperCut(), 0, false);
+        hP_p_APID_pFDpCD_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */p_mom_th.GetLowerCut(),
+                                         /* CutManager. */p_mom_th.GetUpperCut(), 0, false);
+        hP_p_BPID_pFDpCD_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */p_mom_th.GetLowerCut(),
+                                         /* CutManager. */p_mom_th.GetUpperCut(), 0, false);
 
         if (!/* CutSettings. */apply_kinematical_cuts) {
-            hP_p_APID_pFDpCD_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.p_mom_th.GetLowerCut(),
-                                             /* CutManager. */.p_mom_th.GetUpperCut(), 0, false);
-            hP_p_APIDandPS_pFDpCD_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.p_mom_th.GetLowerCut(),
-                                                  /* CutManager. */.p_mom_th.GetUpperCut(), 0, false);
-            hP_p_BPID_pFDpCD_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.p_mom_th.GetLowerCut(),
-                                             /* CutManager. */.p_mom_th.GetUpperCut(), 0, false);
+            hP_p_APID_pFDpCD_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */p_mom_th.GetLowerCut(),
+                                             /* CutManager. */p_mom_th.GetUpperCut(), 0, false);
+            hP_p_APIDandPS_pFDpCD_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */p_mom_th.GetLowerCut(),
+                                                  /* CutManager. */p_mom_th.GetUpperCut(), 0, false);
+            hP_p_BPID_pFDpCD_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */p_mom_th.GetLowerCut(),
+                                             /* CutManager. */p_mom_th.GetUpperCut(), 0, false);
         } else {
-            hP_p_APID_pFDpCD_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.FD_nucleon_momentum_cut.GetLowerCut(),
-                                             /* CutManager. */.FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
-            hP_p_APIDandPS_pFDpCD_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.FD_nucleon_momentum_cut.GetLowerCut(),
-                                                  /* CutManager. */.FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
-            hP_p_BPID_pFDpCD_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.FD_nucleon_momentum_cut.GetLowerCut(),
-                                             /* CutManager. */.FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
+            hP_p_APID_pFDpCD_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */FD_nucleon_momentum_cut.GetLowerCut(),
+                                             /* CutManager. */FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
+            hP_p_APIDandPS_pFDpCD_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */FD_nucleon_momentum_cut.GetLowerCut(),
+                                                  /* CutManager. */FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
+            hP_p_BPID_pFDpCD_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */FD_nucleon_momentum_cut.GetLowerCut(),
+                                             /* CutManager. */FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
         }
 
-        hP_piplus_APID_pFDpCD_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.pip_mom_th.GetLowerCut(),
-                                              /* CutManager. */.pip_mom_th.GetUpperCut(), 0, false);
-        hP_piplus_BPID_pFDpCD_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.pip_mom_th.GetLowerCut(),
-                                              /* CutManager. */.pip_mom_th.GetUpperCut(), 0, false);
-        hP_piplus_APID_pFDpCD_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.pip_mom_th.GetLowerCut(),
-                                              /* CutManager. */.pip_mom_th.GetUpperCut(), 0, false);
-        hP_piplus_BPID_pFDpCD_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.pip_mom_th.GetLowerCut(),
-                                              /* CutManager. */.pip_mom_th.GetUpperCut(), 0, false);
+        hP_piplus_APID_pFDpCD_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */pip_mom_th.GetLowerCut(),
+                                              /* CutManager. */pip_mom_th.GetUpperCut(), 0, false);
+        hP_piplus_BPID_pFDpCD_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */pip_mom_th.GetLowerCut(),
+                                              /* CutManager. */pip_mom_th.GetUpperCut(), 0, false);
+        hP_piplus_APID_pFDpCD_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */pip_mom_th.GetLowerCut(),
+                                              /* CutManager. */pip_mom_th.GetUpperCut(), 0, false);
+        hP_piplus_BPID_pFDpCD_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */pip_mom_th.GetLowerCut(),
+                                              /* CutManager. */pip_mom_th.GetUpperCut(), 0, false);
 
-        hP_piminus_APID_pFDpCD_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.pim_mom_th.GetLowerCut(),
-                                               /* CutManager. */.pim_mom_th.GetUpperCut(), 0, false);
-        hP_piminus_BPID_pFDpCD_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.pim_mom_th.GetLowerCut(),
-                                               /* CutManager. */.pim_mom_th.GetUpperCut(), 0, false);
-        hP_piminus_APID_pFDpCD_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.pim_mom_th.GetLowerCut(),
-                                               /* CutManager. */.pim_mom_th.GetUpperCut(), 0, false);
-        hP_piminus_BPID_pFDpCD_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.pim_mom_th.GetLowerCut(),
-                                               /* CutManager. */.pim_mom_th.GetUpperCut(), 0, false);
+        hP_piminus_APID_pFDpCD_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */pim_mom_th.GetLowerCut(),
+                                               /* CutManager. */pim_mom_th.GetUpperCut(), 0, false);
+        hP_piminus_BPID_pFDpCD_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */pim_mom_th.GetLowerCut(),
+                                               /* CutManager. */pim_mom_th.GetUpperCut(), 0, false);
+        hP_piminus_APID_pFDpCD_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */pim_mom_th.GetLowerCut(),
+                                               /* CutManager. */pim_mom_th.GetUpperCut(), 0, false);
+        hP_piminus_BPID_pFDpCD_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */pim_mom_th.GetLowerCut(),
+                                               /* CutManager. */pim_mom_th.GetUpperCut(), 0, false);
 
-        hP_ph_APID_pFDpCD_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.ph_mom_th.GetLowerCut(),
-                                          /* CutManager. */.ph_mom_th.GetUpperCut(), 0, false);
-        hP_ph_BPID_pFDpCD_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.ph_mom_th.GetLowerCut(),
-                                          /* CutManager. */.ph_mom_th.GetUpperCut(), 0, false);
+        hP_ph_APID_pFDpCD_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */ph_mom_th.GetLowerCut(),
+                                          /* CutManager. */ph_mom_th.GetUpperCut(), 0, false);
+        hP_ph_BPID_pFDpCD_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */ph_mom_th.GetLowerCut(),
+                                          /* CutManager. */ph_mom_th.GetUpperCut(), 0, false);
 
-        hP_n_APID_pFDpCD_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.n_mom_th.GetLowerCut(),
-                                         /* CutManager. */.n_mom_th.GetUpperCut(), 0, false);
-        hP_n_BPID_pFDpCD_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.n_mom_th.GetLowerCut(),
-                                         /* CutManager. */.n_mom_th.GetUpperCut(), 0, false);
+        hP_n_APID_pFDpCD_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */n_mom_th.GetLowerCut(),
+                                         /* CutManager. */n_mom_th.GetUpperCut(), 0, false);
+        hP_n_BPID_pFDpCD_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */n_mom_th.GetLowerCut(),
+                                         /* CutManager. */n_mom_th.GetUpperCut(), 0, false);
 
         // P_pFD vs. W plots (pFDpCD, FD)
         histPlotter2D(c1, hP_pFD_VS_W_pFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, Histogram_OutPDF, false, hP_pFD_VS_W_pFDpCD_Dir, "10_P_pFD_VS_W_pFDpCD");
@@ -17336,53 +17336,53 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         histPlotter2D(c1, hP_pCD_VS_W_DIS_pFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, Histogram_OutPDF, false, hP_pCD_VS_W_pFDpCD_Dir, "11d_P_pCD_VS_W_DIS_pFDpCD");
 
         // Momentum plots (nFDpCD, CD & FD)
-        hP_e_APID_nFDpCD_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.e_mom_th.GetLowerCut(),
-                                         /* CutManager. */.e_mom_th.GetUpperCut(), 0, false);
-        hP_e_BPID_nFDpCD_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.e_mom_th.GetLowerCut(),
-                                         /* CutManager. */.e_mom_th.GetUpperCut(), 0, false);
+        hP_e_APID_nFDpCD_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */e_mom_th.GetLowerCut(),
+                                         /* CutManager. */e_mom_th.GetUpperCut(), 0, false);
+        hP_e_BPID_nFDpCD_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */e_mom_th.GetLowerCut(),
+                                         /* CutManager. */e_mom_th.GetUpperCut(), 0, false);
 
-        hP_p_APID_nFDpCD_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.p_mom_th.GetLowerCut(),
-                                         /* CutManager. */.p_mom_th.GetUpperCut(), 0, false);
-        hP_p_BPID_nFDpCD_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.p_mom_th.GetLowerCut(),
-                                         /* CutManager. */.p_mom_th.GetUpperCut(), 0, false);
-        hP_p_APID_nFDpCD_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.FD_nucleon_momentum_cut.GetLowerCut(),
-                                         /* CutManager. */.FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
-        hP_p_BPID_nFDpCD_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.FD_nucleon_momentum_cut.GetLowerCut(),
-                                         /* CutManager. */.FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
+        hP_p_APID_nFDpCD_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */p_mom_th.GetLowerCut(),
+                                         /* CutManager. */p_mom_th.GetUpperCut(), 0, false);
+        hP_p_BPID_nFDpCD_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */p_mom_th.GetLowerCut(),
+                                         /* CutManager. */p_mom_th.GetUpperCut(), 0, false);
+        hP_p_APID_nFDpCD_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */FD_nucleon_momentum_cut.GetLowerCut(),
+                                         /* CutManager. */FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
+        hP_p_BPID_nFDpCD_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */FD_nucleon_momentum_cut.GetLowerCut(),
+                                         /* CutManager. */FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
 
-        hP_piplus_APID_nFDpCD_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.pip_mom_th.GetLowerCut(),
-                                              /* CutManager. */.pip_mom_th.GetUpperCut(), 0, false);
-        hP_piplus_BPID_nFDpCD_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.pip_mom_th.GetLowerCut(),
-                                              /* CutManager. */.pip_mom_th.GetUpperCut(), 0, false);
-        hP_piplus_APID_nFDpCD_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.pip_mom_th.GetLowerCut(),
-                                              /* CutManager. */.pip_mom_th.GetUpperCut(), 0, false);
-        hP_piplus_BPID_nFDpCD_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.pip_mom_th.GetLowerCut(),
-                                              /* CutManager. */.pip_mom_th.GetUpperCut(), 0, false);
+        hP_piplus_APID_nFDpCD_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */pip_mom_th.GetLowerCut(),
+                                              /* CutManager. */pip_mom_th.GetUpperCut(), 0, false);
+        hP_piplus_BPID_nFDpCD_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */pip_mom_th.GetLowerCut(),
+                                              /* CutManager. */pip_mom_th.GetUpperCut(), 0, false);
+        hP_piplus_APID_nFDpCD_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */pip_mom_th.GetLowerCut(),
+                                              /* CutManager. */pip_mom_th.GetUpperCut(), 0, false);
+        hP_piplus_BPID_nFDpCD_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */pip_mom_th.GetLowerCut(),
+                                              /* CutManager. */pip_mom_th.GetUpperCut(), 0, false);
 
-        hP_piminus_APID_nFDpCD_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.pim_mom_th.GetLowerCut(),
-                                               /* CutManager. */.pim_mom_th.GetUpperCut(), 0, false);
-        hP_piminus_BPID_nFDpCD_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.pim_mom_th.GetLowerCut(),
-                                               /* CutManager. */.pim_mom_th.GetUpperCut(), 0, false);
-        hP_piminus_APID_nFDpCD_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.pim_mom_th.GetLowerCut(),
-                                               /* CutManager. */.pim_mom_th.GetUpperCut(), 0, false);
-        hP_piminus_BPID_nFDpCD_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.pim_mom_th.GetLowerCut(),
-                                               /* CutManager. */.pim_mom_th.GetUpperCut(), 0, false);
+        hP_piminus_APID_nFDpCD_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */pim_mom_th.GetLowerCut(),
+                                               /* CutManager. */pim_mom_th.GetUpperCut(), 0, false);
+        hP_piminus_BPID_nFDpCD_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */pim_mom_th.GetLowerCut(),
+                                               /* CutManager. */pim_mom_th.GetUpperCut(), 0, false);
+        hP_piminus_APID_nFDpCD_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */pim_mom_th.GetLowerCut(),
+                                               /* CutManager. */pim_mom_th.GetUpperCut(), 0, false);
+        hP_piminus_BPID_nFDpCD_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */pim_mom_th.GetLowerCut(),
+                                               /* CutManager. */pim_mom_th.GetUpperCut(), 0, false);
 
-        hP_ph_APID_nFDpCD_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.ph_mom_th.GetLowerCut(),
-                                          /* CutManager. */.ph_mom_th.GetUpperCut(), 0, false);
-        hP_ph_BPID_nFDpCD_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.ph_mom_th.GetLowerCut(),
-                                          /* CutManager. */.ph_mom_th.GetUpperCut(), 0, false);
+        hP_ph_APID_nFDpCD_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */ph_mom_th.GetLowerCut(),
+                                          /* CutManager. */ph_mom_th.GetUpperCut(), 0, false);
+        hP_ph_BPID_nFDpCD_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */ph_mom_th.GetLowerCut(),
+                                          /* CutManager. */ph_mom_th.GetUpperCut(), 0, false);
 
         if (!/* CutSettings. */apply_kinematical_cuts) {
-            hP_n_APID_nFDpCD_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.n_mom_th.GetLowerCut(),
-                                             /* CutManager. */.n_mom_th.GetUpperCut(), 0, false);
-            hP_n_BPID_nFDpCD_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.n_mom_th.GetLowerCut(),
-                                             /* CutManager. */.n_mom_th.GetUpperCut(), 0, false);
+            hP_n_APID_nFDpCD_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */n_mom_th.GetLowerCut(),
+                                             /* CutManager. */n_mom_th.GetUpperCut(), 0, false);
+            hP_n_BPID_nFDpCD_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */n_mom_th.GetLowerCut(),
+                                             /* CutManager. */n_mom_th.GetUpperCut(), 0, false);
         } else {
-            hP_n_APID_nFDpCD_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.FD_nucleon_momentum_cut.GetLowerCut(),
-                                             /* CutManager. */.FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
-            hP_n_BPID_nFDpCD_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.FD_nucleon_momentum_cut.GetLowerCut(),
-                                             /* CutManager. */.FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
+            hP_n_APID_nFDpCD_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */FD_nucleon_momentum_cut.GetLowerCut(),
+                                             /* CutManager. */FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
+            hP_n_BPID_nFDpCD_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */FD_nucleon_momentum_cut.GetLowerCut(),
+                                             /* CutManager. */FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
         }
 
         // P_nFD vs. W plots (nFDpCD, FD)
@@ -17400,53 +17400,53 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         histPlotter2D(c1, hP_pCD_VS_W_DIS_nFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, Histogram_OutPDF, false, hP_pCD_VS_W_nFDpCD_Dir, "11d_P_pCD_VS_W_DIS_nFDpCD");
 
         // Leading and recoil momentum plots (2p)
-        hP_p_1_2p.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.p_mom_th.GetLowerCut(), /* CutManager. */.p_mom_th.GetUpperCut(), 0,
+        hP_p_1_2p.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */p_mom_th.GetLowerCut(), /* CutManager. */p_mom_th.GetUpperCut(), 0,
                                false);
-        hP_p_2_2p.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.p_mom_th.GetLowerCut(), /* CutManager. */.p_mom_th.GetUpperCut(), 0,
+        hP_p_2_2p.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */p_mom_th.GetLowerCut(), /* CutManager. */p_mom_th.GetUpperCut(), 0,
                                false);
 
         // Leading and recoil momentum plots (pFDpCD)
         if (!/* CutSettings. */apply_kinematical_cuts) {
-            hP_pFD_pFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.p_mom_th.GetLowerCut(),
-                                       /* CutManager. */.p_mom_th.GetUpperCut(), 0, false);
-            hP_pL_pFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.p_mom_th.GetLowerCut(), /* CutManager. */.p_mom_th.GetUpperCut(),
+            hP_pFD_pFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */p_mom_th.GetLowerCut(),
+                                       /* CutManager. */p_mom_th.GetUpperCut(), 0, false);
+            hP_pL_pFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */p_mom_th.GetLowerCut(), /* CutManager. */p_mom_th.GetUpperCut(),
                                       0, false);
         } else {
-            hP_pFD_pFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.FD_nucleon_momentum_cut.GetLowerCut(),
-                                       /* CutManager. */.FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
-            hP_pL_pFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.FD_nucleon_momentum_cut.GetLowerCut(),
-                                      /* CutManager. */.FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
+            hP_pFD_pFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */FD_nucleon_momentum_cut.GetLowerCut(),
+                                       /* CutManager. */FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
+            hP_pL_pFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */FD_nucleon_momentum_cut.GetLowerCut(),
+                                      /* CutManager. */FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
         }
 
-        hP_pCD_pFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.p_mom_th.GetLowerCut(), /* CutManager. */.p_mom_th.GetUpperCut(), 0,
+        hP_pCD_pFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */p_mom_th.GetLowerCut(), /* CutManager. */p_mom_th.GetUpperCut(), 0,
                                    false);
-        hP_pR_pFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.p_mom_th.GetLowerCut(), /* CutManager. */.p_mom_th.GetUpperCut(), 0,
+        hP_pR_pFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */p_mom_th.GetLowerCut(), /* CutManager. */p_mom_th.GetUpperCut(), 0,
                                   false);
 
         // Leading and recoil momentum plots (nFDpCD)
         if (!/* CutSettings. */apply_kinematical_cuts) {
-            hP_nFD_nFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.n_mom_th.GetLowerCut(),
-                                       /* CutManager. */.n_mom_th.GetUpperCut(), 0, false);
-            hP_nFD_nFDpCD_ZoomOut.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.n_mom_th.GetLowerCut(),
-                                               /* CutManager. */.n_mom_th.GetUpperCut(), 0, false);
-            hP_nL_nFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.n_mom_th.GetLowerCut(), /* CutManager. */.n_mom_th.GetUpperCut(),
+            hP_nFD_nFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */n_mom_th.GetLowerCut(),
+                                       /* CutManager. */n_mom_th.GetUpperCut(), 0, false);
+            hP_nFD_nFDpCD_ZoomOut.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */n_mom_th.GetLowerCut(),
+                                               /* CutManager. */n_mom_th.GetUpperCut(), 0, false);
+            hP_nL_nFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */n_mom_th.GetLowerCut(), /* CutManager. */n_mom_th.GetUpperCut(),
                                       0, false);
         } else {
-            hP_nFD_nFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.FD_nucleon_momentum_cut.GetLowerCut(),
-                                       /* CutManager. */.FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
-            hP_nFD_nFDpCD_ZoomOut.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.FD_nucleon_momentum_cut.GetLowerCut(),
-                                               /* CutManager. */.FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
-            hP_nL_nFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.FD_nucleon_momentum_cut.GetLowerCut(),
-                                      /* CutManager. */.FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
+            hP_nFD_nFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */FD_nucleon_momentum_cut.GetLowerCut(),
+                                       /* CutManager. */FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
+            hP_nFD_nFDpCD_ZoomOut.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */FD_nucleon_momentum_cut.GetLowerCut(),
+                                               /* CutManager. */FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
+            hP_nL_nFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */FD_nucleon_momentum_cut.GetLowerCut(),
+                                      /* CutManager. */FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
         }
 
-        hP_pCD_nFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.p_mom_th.GetLowerCut(), /* CutManager. */.p_mom_th.GetUpperCut(), 0,
+        hP_pCD_nFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */p_mom_th.GetLowerCut(), /* CutManager. */p_mom_th.GetUpperCut(), 0,
                                    false);
-        hP_nR_nFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.p_mom_th.GetLowerCut(), /* CutManager. */.p_mom_th.GetUpperCut(), 0,
+        hP_nR_nFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */p_mom_th.GetLowerCut(), /* CutManager. */p_mom_th.GetUpperCut(), 0,
                                   false);
 
         // Total and relative momenta (pFDpCD)
-        hP_tot_pFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.p_mom_th.GetLowerCut(), /* CutManager. */.p_mom_th.GetUpperCut(), 0,
+        hP_tot_pFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */p_mom_th.GetLowerCut(), /* CutManager. */p_mom_th.GetUpperCut(), 0,
                                    false);
         hP_rel_pFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., 9999, 9999, 0, false);
         hP_tot_vs_P_rel_pFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, true);
@@ -17458,7 +17458,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         hP_tot_minus_q_vs_q_pFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, true);
 
         // Total and relative momenta (nFDpCD)
-        hP_tot_nFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.p_mom_th.GetLowerCut(), /* CutManager. */.p_mom_th.GetUpperCut(), 0,
+        hP_tot_nFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */p_mom_th.GetLowerCut(), /* CutManager. */p_mom_th.GetUpperCut(), 0,
                                    false);
         hP_rel_nFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., 9999, 9999, 0, false);
         hP_tot_vs_P_rel_nFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, true);
@@ -17755,9 +17755,9 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     if (!/* CutSettings. */apply_nucleon_cuts && !/* parameters. */is2GeVSample) {
         /* If sample is with 2GeV beam energy, no fit is needed. */
-        fitter_functions::BetaFit(/* parameters. */SampleName, /* CutManager. */.Beta_max_cut_ABF_FD_n_from_ph, /* CutManager. */.n_momentum_cuts_ABF_FD_n_from_ph, hBeta_n_from_ph_01_1n_FD, plots,
+        fitter_functions::BetaFit(/* parameters. */SampleName, /* CutManager. */Beta_max_cut_ABF_FD_n_from_ph, /* CutManager. */n_momentum_cuts_ABF_FD_n_from_ph, hBeta_n_from_ph_01_1n_FD, plots,
                                   /* parameters. */beamE);
-        fitter_functions::BetaFitApprax(/* parameters. */SampleName, /* CutManager. */.Beta_max_cut_ABF_FD_n_from_ph_apprax, /* CutManager. */.n_momentum_cuts_ABF_FD_n_from_ph_apprax, hBeta_n_from_ph_01_1n_FD,
+        fitter_functions::BetaFitApprax(/* parameters. */SampleName, /* CutManager. */Beta_max_cut_ABF_FD_n_from_ph_apprax, /* CutManager. */n_momentum_cuts_ABF_FD_n_from_ph_apprax, hBeta_n_from_ph_01_1n_FD,
                                         plots, /* parameters. */beamE);
     }
 
@@ -18327,7 +18327,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                           true, sTheta_p_1p, "01_Theta_p_All_Int_1p", hTheta_p_All_Int_1p_Dir, "FD", kBlue, true, true, false, true, 9999, -1, 0, false);
         } else {
             histPlotter1D(c1, hTheta_p_All_Int_1p, norm_Angle_plots_master, true, Theta_p_1p_integral, "#theta_{p} of Outgoing FD Proton", "All Int., 1p", plots, Histogram_OutPDF, 2, false,
-                          true, sTheta_p_1p, "01_Theta_p_All_Int_1p", hTheta_p_All_Int_1p_Dir, "FD", kBlue, true, true, false, true, /* CutManager. */.FD_nucleon_theta_cut.GetUpperCut(), -1, 0,
+                          true, sTheta_p_1p, "01_Theta_p_All_Int_1p", hTheta_p_All_Int_1p_Dir, "FD", kBlue, true, true, false, true, /* CutManager. */FD_nucleon_theta_cut.GetUpperCut(), -1, 0,
                           false);
         }
 
@@ -18387,7 +18387,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                           true, sTheta_n_1n, "01_Theta_n_All_Int_1n", hTheta_n_All_Int_1n_Dir, "FD", kBlue, true, true, false, true, 9999, -1, 0, false);
         } else {
             histPlotter1D(c1, hTheta_n_All_Int_1n, norm_Angle_plots_master, true, Theta_n_1n_integral, "#theta_{n} of Outgoing FD Neutron", "All Int., 1n", plots, Histogram_OutPDF, 2, false,
-                          true, sTheta_n_1n, "01_Theta_n_All_Int_1n", hTheta_n_All_Int_1n_Dir, "FD", kBlue, true, true, false, true, /* CutManager. */.FD_nucleon_theta_cut.GetUpperCut(), -1, 0,
+                          true, sTheta_n_1n, "01_Theta_n_All_Int_1n", hTheta_n_All_Int_1n_Dir, "FD", kBlue, true, true, false, true, /* CutManager. */FD_nucleon_theta_cut.GetUpperCut(), -1, 0,
                           false);
         }
 
@@ -18603,8 +18603,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                       "#Delta#phi for small #Delta#theta_{1/2} = #theta_{1/2}-40#circ - ZOOMIN", "All Int., 2p", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2, false, true, sTheta_q_p_2p,
                       "03b_dPhi_p1_p2_for_small_dTheta_ZOOMIN_2p", hdPhi_p1_p2_for_small_dTheta_ZOOMIN_2p_Dir, "", kBlue, true, true, true, false);
 
-        //        /* CutManager. */.dphi_p1_p2_2p.SetMean(hdPhi_p1_p2_for_small_dTheta_2p->GetBinCenter(hdPhi_p1_p2_for_small_dTheta_2p->GetMaximumBin()));
-        /* CutManager. */.dphi_p1_p2_2p.SetMean(hdPhi_p1_p2_for_small_dTheta_ZOOMIN_2p->GetBinCenter(hdPhi_p1_p2_for_small_dTheta_ZOOMIN_2p->GetMaximumBin()));
+        //        /* CutManager. */dphi_p1_p2_2p.SetMean(hdPhi_p1_p2_for_small_dTheta_2p->GetBinCenter(hdPhi_p1_p2_for_small_dTheta_2p->GetMaximumBin()));
+        /* CutManager. */dphi_p1_p2_2p.SetMean(hdPhi_p1_p2_for_small_dTheta_ZOOMIN_2p->GetBinCenter(hdPhi_p1_p2_for_small_dTheta_ZOOMIN_2p->GetMaximumBin()));
 
         // dPhi_pFD_pCD for every Theta_pFD_pCD (2p, CD & FD) --------------------------------------------------------------------------------------------------------------
 
@@ -18633,8 +18633,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                       "#Delta#phi for small #Delta#theta_{pFD/pCD} = |#theta_{pFD/pCD}-40#circ| - ZOOMIN", "All Int., 2p", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2, false, true,
                       sTheta_q_p_2p, "07b_dPhi_pFD_pCD_for_small_dTheta_ZOOMIN_2p", hdPhi_pFD_pCD_for_small_dTheta_ZOOMIN_2p_Dir, "", kBlue, true, true, true, false);
 
-        //        /* CutManager. */.dphi_pFD_pCD_2p.SetMean(hdPhi_pFD_pCD_for_small_dTheta_2p->GetBinCenter(hdPhi_pFD_pCD_for_small_dTheta_2p->GetMaximumBin()));
-        /* CutManager. */.dphi_pFD_pCD_2p.SetMean(hdPhi_pFD_pCD_for_small_dTheta_ZOOMIN_2p->GetBinCenter(hdPhi_pFD_pCD_for_small_dTheta_ZOOMIN_2p->GetMaximumBin()));
+        //        /* CutManager. */dphi_pFD_pCD_2p.SetMean(hdPhi_pFD_pCD_for_small_dTheta_2p->GetBinCenter(hdPhi_pFD_pCD_for_small_dTheta_2p->GetMaximumBin()));
+        /* CutManager. */dphi_pFD_pCD_2p.SetMean(hdPhi_pFD_pCD_for_small_dTheta_ZOOMIN_2p->GetBinCenter(hdPhi_pFD_pCD_for_small_dTheta_ZOOMIN_2p->GetMaximumBin()));
 
         //  Ghost tracks handling (2p, CD only) ---------------------------------------------------------------------------------------------------------------------------------
 
@@ -18671,19 +18671,19 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         if (/* CutSettings. */apply_kinematical_cuts) {
             histPlotter1D(c1, hTheta_pFD_All_Int_pFDpCD_FD, norm_Angle_plots_master, true, Theta_pFD_All_Int_pFDpCD_integral, "#theta_{pFD} of FD proton", "All Int., pFDpCD", 0.06, 0.0425,
                           0.0425, plots, Histogram_OutPDF, 2, false, true, sTheta_pFD_pFDpCD_FD, "00_Theta_pFD_All_Int_pFDpCD", hTheta_pFD_All_Int_pFDpCD_FD_Dir, "", kBlue, true, true, true,
-                          false, true, (/* CutManager. */.FD_nucleon_theta_cut.GetUpperCut() - 5) / 2, (/* CutManager. */.FD_nucleon_theta_cut.GetUpperCut() + 5) / 2, false);
+                          false, true, (/* CutManager. */FD_nucleon_theta_cut.GetUpperCut() - 5) / 2, (/* CutManager. */FD_nucleon_theta_cut.GetUpperCut() + 5) / 2, false);
             histPlotter1D(c1, hTheta_pFD_QEL_pFDpCD_FD, norm_Angle_plots_master, true, Theta_pFD_QEL_pFDpCD_integral, "#theta_{pFD} of FD proton", "QEL Only, pFDpCD", 0.06, 0.0425, 0.0425,
                           plots, Histogram_OutPDF, 2, false, true, sTheta_pFD_pFDpCD_FD, "01_Theta_pFD_QEL_Only_pFDpCD", hTheta_pFD_QEL_pFDpCD_FD_Dir, "", kBlue, true, true, true, false,
-                          true, (/* CutManager. */.FD_nucleon_theta_cut.GetUpperCut() - 5) / 2, (/* CutManager. */.FD_nucleon_theta_cut.GetUpperCut() + 5) / 2, false);
+                          true, (/* CutManager. */FD_nucleon_theta_cut.GetUpperCut() - 5) / 2, (/* CutManager. */FD_nucleon_theta_cut.GetUpperCut() + 5) / 2, false);
             histPlotter1D(c1, hTheta_pFD_MEC_pFDpCD_FD, norm_Angle_plots_master, true, Theta_pFD_MEC_pFDpCD_integral, "#theta_{pFD} of FD proton", "MEC Only, pFDpCD", 0.06, 0.0425, 0.0425,
                           plots, Histogram_OutPDF, 2, false, true, sTheta_pFD_pFDpCD_FD, "02_Theta_pFD_MEC_Only_pFDpCD", hTheta_pFD_MEC_pFDpCD_FD_Dir, "", kBlue, true, true, true, false,
-                          true, (/* CutManager. */.FD_nucleon_theta_cut.GetUpperCut() - 5) / 2, (/* CutManager. */.FD_nucleon_theta_cut.GetUpperCut() + 5) / 2, false);
+                          true, (/* CutManager. */FD_nucleon_theta_cut.GetUpperCut() - 5) / 2, (/* CutManager. */FD_nucleon_theta_cut.GetUpperCut() + 5) / 2, false);
             histPlotter1D(c1, hTheta_pFD_RES_pFDpCD_FD, norm_Angle_plots_master, true, Theta_pFD_RES_pFDpCD_integral, "#theta_{pFD} of FD proton", "RES Only, pFDpCD", 0.06, 0.0425, 0.0425,
                           plots, Histogram_OutPDF, 2, false, true, sTheta_pFD_pFDpCD_FD, "03_Theta_pFD_RES_Only_pFDpCD", hTheta_pFD_RES_pFDpCD_FD_Dir, "", kBlue, true, true, true, false,
-                          true, (/* CutManager. */.FD_nucleon_theta_cut.GetUpperCut() - 5) / 2, (/* CutManager. */.FD_nucleon_theta_cut.GetUpperCut() + 5) / 2, false);
+                          true, (/* CutManager. */FD_nucleon_theta_cut.GetUpperCut() - 5) / 2, (/* CutManager. */FD_nucleon_theta_cut.GetUpperCut() + 5) / 2, false);
             histPlotter1D(c1, hTheta_pFD_DIS_pFDpCD_FD, norm_Angle_plots_master, true, Theta_pFD_DIS_pFDpCD_integral, "#theta_{pFD} of FD proton", "DIS Only, pFDpCD", 0.06, 0.0425, 0.0425,
                           plots, Histogram_OutPDF, 2, false, true, sTheta_pFD_pFDpCD_FD, "04_Theta_pFD_DIS_Only_pFDpCD", hTheta_pFD_DIS_pFDpCD_FD_Dir, "", kBlue, true, true, true, false,
-                          true, (/* CutManager. */.FD_nucleon_theta_cut.GetUpperCut() - 5) / 2, (/* CutManager. */.FD_nucleon_theta_cut.GetUpperCut() + 5) / 2, false);
+                          true, (/* CutManager. */FD_nucleon_theta_cut.GetUpperCut() - 5) / 2, (/* CutManager. */FD_nucleon_theta_cut.GetUpperCut() + 5) / 2, false);
         } else {
             histPlotter1D(c1, hTheta_pFD_All_Int_pFDpCD_FD, norm_Angle_plots_master, true, Theta_pFD_All_Int_pFDpCD_integral, "#theta_{pFD} of FD proton", "All Int., pFDpCD", 0.06, 0.0425,
                           0.0425, plots, Histogram_OutPDF, 2, false, true, sTheta_pFD_pFDpCD_FD, "00_Theta_pFD_All_Int_pFDpCD", hTheta_pFD_All_Int_pFDpCD_FD_Dir, "", kBlue, true, true, true,
@@ -19113,19 +19113,19 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         if (/* CutSettings. */apply_kinematical_cuts) {
             histPlotter1D(c1, hTheta_nFD_All_Int_nFDpCD_FD, norm_Angle_plots_master, true, Theta_nFD_All_Int_nFDpCD_integral, "#theta_{nFD} of FD neutron", "All Int., nFDpCD", 0.06, 0.0425,
                           0.0425, plots, Histogram_OutPDF, 2, false, true, sTheta_nFD_nFDpCD_FD, "00_Theta_nFD_All_Int_nFDpCD", hTheta_nFD_All_Int_nFDpCD_FD_Dir, "", kBlue, true, true, true,
-                          false, true, (/* CutManager. */.FD_nucleon_theta_cut.GetUpperCut() - 5) / 2, (/* CutManager. */.FD_nucleon_theta_cut.GetUpperCut() + 5) / 2, false);
+                          false, true, (/* CutManager. */FD_nucleon_theta_cut.GetUpperCut() - 5) / 2, (/* CutManager. */FD_nucleon_theta_cut.GetUpperCut() + 5) / 2, false);
             histPlotter1D(c1, hTheta_nFD_QEL_nFDpCD_FD, norm_Angle_plots_master, true, Theta_nFD_QEL_nFDpCD_integral, "#theta_{nFD} of FD neutron", "QEL Only, nFDpCD", 0.06, 0.0425, 0.0425,
                           plots, Histogram_OutPDF, 2, false, true, sTheta_nFD_nFDpCD_FD, "01_Theta_nFD_QEL_Only_nFDpCD", hTheta_nFD_QEL_nFDpCD_FD_Dir, "", kBlue, true, true, true, false,
-                          true, (/* CutManager. */.FD_nucleon_theta_cut.GetUpperCut() - 5) / 2, (/* CutManager. */.FD_nucleon_theta_cut.GetUpperCut() + 5) / 2, false);
+                          true, (/* CutManager. */FD_nucleon_theta_cut.GetUpperCut() - 5) / 2, (/* CutManager. */FD_nucleon_theta_cut.GetUpperCut() + 5) / 2, false);
             histPlotter1D(c1, hTheta_nFD_MEC_nFDpCD_FD, norm_Angle_plots_master, true, Theta_nFD_MEC_nFDpCD_integral, "#theta_{nFD} of FD neutron", "MEC Only, nFDpCD", 0.06, 0.0425, 0.0425,
                           plots, Histogram_OutPDF, 2, false, true, sTheta_nFD_nFDpCD_FD, "02_Theta_nFD_MEC_Only_nFDpCD", hTheta_nFD_MEC_nFDpCD_FD_Dir, "", kBlue, true, true, true, false,
-                          true, (/* CutManager. */.FD_nucleon_theta_cut.GetUpperCut() - 5) / 2, (/* CutManager. */.FD_nucleon_theta_cut.GetUpperCut() + 5) / 2, false);
+                          true, (/* CutManager. */FD_nucleon_theta_cut.GetUpperCut() - 5) / 2, (/* CutManager. */FD_nucleon_theta_cut.GetUpperCut() + 5) / 2, false);
             histPlotter1D(c1, hTheta_nFD_RES_nFDpCD_FD, norm_Angle_plots_master, true, Theta_nFD_RES_nFDpCD_integral, "#theta_{nFD} of FD neutron", "RES Only, nFDpCD", 0.06, 0.0425, 0.0425,
                           plots, Histogram_OutPDF, 2, false, true, sTheta_nFD_nFDpCD_FD, "03_Theta_nFD_RES_Only_nFDpCD", hTheta_nFD_RES_nFDpCD_FD_Dir, "", kBlue, true, true, true, false,
-                          true, (/* CutManager. */.FD_nucleon_theta_cut.GetUpperCut() - 5) / 2, (/* CutManager. */.FD_nucleon_theta_cut.GetUpperCut() + 5) / 2, false);
+                          true, (/* CutManager. */FD_nucleon_theta_cut.GetUpperCut() - 5) / 2, (/* CutManager. */FD_nucleon_theta_cut.GetUpperCut() + 5) / 2, false);
             histPlotter1D(c1, hTheta_nFD_DIS_nFDpCD_FD, norm_Angle_plots_master, true, Theta_nFD_DIS_nFDpCD_integral, "#theta_{nFD} of FD neutron", "DIS Only, nFDpCD", 0.06, 0.0425, 0.0425,
                           plots, Histogram_OutPDF, 2, false, true, sTheta_nFD_nFDpCD_FD, "04_Theta_nFD_DIS_Only_nFDpCD", hTheta_nFD_DIS_nFDpCD_FD_Dir, "", kBlue, true, true, true, false,
-                          true, (/* CutManager. */.FD_nucleon_theta_cut.GetUpperCut() - 5) / 2, (/* CutManager. */.FD_nucleon_theta_cut.GetUpperCut() + 5) / 2, false);
+                          true, (/* CutManager. */FD_nucleon_theta_cut.GetUpperCut() - 5) / 2, (/* CutManager. */FD_nucleon_theta_cut.GetUpperCut() + 5) / 2, false);
         } else {
             histPlotter1D(c1, hTheta_nFD_All_Int_nFDpCD_FD, norm_Angle_plots_master, true, Theta_nFD_All_Int_nFDpCD_integral, "#theta_{nFD} of FD neutron", "All Int., nFDpCD", 0.06, 0.0425,
                           0.0425, plots, Histogram_OutPDF, 2, false, true, sTheta_nFD_nFDpCD_FD, "00_Theta_nFD_All_Int_nFDpCD", hTheta_nFD_All_Int_nFDpCD_FD_Dir, "", kBlue, true, true, true,
@@ -21185,40 +21185,40 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         // Efficiency plots (1e cut, CD & FD)
 
         // Momentum efficiency plots (1e cut)
-        hP_e_AC_truth_1e_cut.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_e_mom_cuts.GetLowerCut(),
-                                          /* CutManager. */.TL_e_mom_cuts.GetUpperCut(), 0, false);
-        hP_e_BC_truth_1e_cut.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_e_mom_cuts.GetLowerCut(),
-                                          /* CutManager. */.TL_e_mom_cuts.GetUpperCut(), 0, false);
+        hP_e_AC_truth_1e_cut.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_e_mom_cuts.GetLowerCut(),
+                                          /* CutManager. */TL_e_mom_cuts.GetUpperCut(), 0, false);
+        hP_e_BC_truth_1e_cut.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_e_mom_cuts.GetLowerCut(),
+                                          /* CutManager. */TL_e_mom_cuts.GetUpperCut(), 0, false);
 
-        hP_n_AC_truth_1e_cut.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_n_mom_cuts.GetLowerCut(),
-                                          /* CutManager. */.TL_n_mom_cuts.GetUpperCut(), 0, false);
-        hP_n_BC_truth_1e_cut.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_n_mom_cuts.GetLowerCut(),
-                                          /* CutManager. */.TL_n_mom_cuts.GetUpperCut(), 0, false);
+        hP_n_AC_truth_1e_cut.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_n_mom_cuts.GetLowerCut(),
+                                          /* CutManager. */TL_n_mom_cuts.GetUpperCut(), 0, false);
+        hP_n_BC_truth_1e_cut.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_n_mom_cuts.GetLowerCut(),
+                                          /* CutManager. */TL_n_mom_cuts.GetUpperCut(), 0, false);
 
-        hP_p_AC_truth_1e_cut.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_p_mom_cuts.GetLowerCut(),
-                                          /* CutManager. */.TL_p_mom_cuts.GetUpperCut(), 0, false);
-        hP_p_BC_truth_1e_cut.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_p_mom_cuts.GetLowerCut(),
-                                          /* CutManager. */.TL_p_mom_cuts.GetUpperCut(), 0, false);
+        hP_p_AC_truth_1e_cut.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_p_mom_cuts.GetLowerCut(),
+                                          /* CutManager. */TL_p_mom_cuts.GetUpperCut(), 0, false);
+        hP_p_BC_truth_1e_cut.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_p_mom_cuts.GetLowerCut(),
+                                          /* CutManager. */TL_p_mom_cuts.GetUpperCut(), 0, false);
 
-        hP_pip_AC_truth_1e_cut.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_pip_mom_cuts.GetLowerCut(),
-                                            /* CutManager. */.TL_pip_mom_cuts.GetUpperCut(), 0, false);
-        hP_pip_BC_truth_1e_cut.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_pip_mom_cuts.GetLowerCut(),
-                                            /* CutManager. */.TL_pip_mom_cuts.GetUpperCut(), 0, false);
+        hP_pip_AC_truth_1e_cut.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_pip_mom_cuts.GetLowerCut(),
+                                            /* CutManager. */TL_pip_mom_cuts.GetUpperCut(), 0, false);
+        hP_pip_BC_truth_1e_cut.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_pip_mom_cuts.GetLowerCut(),
+                                            /* CutManager. */TL_pip_mom_cuts.GetUpperCut(), 0, false);
 
-        hP_pim_AC_truth_1e_cut.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_pim_mom_cuts.GetLowerCut(),
-                                            /* CutManager. */.TL_pim_mom_cuts.GetUpperCut(), 0, false);
-        hP_pim_BC_truth_1e_cut.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_pim_mom_cuts.GetLowerCut(),
-                                            /* CutManager. */.TL_pim_mom_cuts.GetUpperCut(), 0, false);
+        hP_pim_AC_truth_1e_cut.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_pim_mom_cuts.GetLowerCut(),
+                                            /* CutManager. */TL_pim_mom_cuts.GetUpperCut(), 0, false);
+        hP_pim_BC_truth_1e_cut.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_pim_mom_cuts.GetLowerCut(),
+                                            /* CutManager. */TL_pim_mom_cuts.GetUpperCut(), 0, false);
 
-        hP_pi0_AC_truth_1e_cut.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_pi0_mom_cuts.GetLowerCut(),
-                                            /* CutManager. */.TL_pi0_mom_cuts.GetUpperCut(), 0, false);
-        hP_pi0_BC_truth_1e_cut.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_pi0_mom_cuts.GetLowerCut(),
-                                            /* CutManager. */.TL_pi0_mom_cuts.GetUpperCut(), 0, false);
+        hP_pi0_AC_truth_1e_cut.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_pi0_mom_cuts.GetLowerCut(),
+                                            /* CutManager. */TL_pi0_mom_cuts.GetUpperCut(), 0, false);
+        hP_pi0_BC_truth_1e_cut.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_pi0_mom_cuts.GetLowerCut(),
+                                            /* CutManager. */TL_pi0_mom_cuts.GetUpperCut(), 0, false);
 
-        hP_ph_AC_truth_1e_cut.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_ph_mom_cuts.GetLowerCut(),
-                                           /* CutManager. */.TL_ph_mom_cuts.GetUpperCut(), 0, false);
-        hP_ph_BC_truth_1e_cut.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_ph_mom_cuts.GetLowerCut(),
-                                           /* CutManager. */.TL_ph_mom_cuts.GetUpperCut(), 0, false);
+        hP_ph_AC_truth_1e_cut.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_ph_mom_cuts.GetLowerCut(),
+                                           /* CutManager. */TL_ph_mom_cuts.GetUpperCut(), 0, false);
+        hP_ph_BC_truth_1e_cut.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_ph_mom_cuts.GetLowerCut(),
+                                           /* CutManager. */TL_ph_mom_cuts.GetUpperCut(), 0, false);
 
         // Theta efficiency plots (1e cut)
         hTheta_e_AC_truth_1e_cut.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Angle_plots_master, true, 1., 9999, 9999, 0, false);
@@ -21338,56 +21338,56 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         // Efficiency plots (1p, CD & FD)
 
         // Momentum efficiency plots (1p)
-        hP_e_AC_truth_1p.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_e_mom_cuts.GetLowerCut(),
-                                      /* CutManager. */.TL_e_mom_cuts.GetUpperCut(), 0, false);
-        hP_e_BC_truth_1p.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_e_mom_cuts.GetLowerCut(),
-                                      /* CutManager. */.TL_e_mom_cuts.GetUpperCut(), 0, false);
+        hP_e_AC_truth_1p.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_e_mom_cuts.GetLowerCut(),
+                                      /* CutManager. */TL_e_mom_cuts.GetUpperCut(), 0, false);
+        hP_e_BC_truth_1p.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_e_mom_cuts.GetLowerCut(),
+                                      /* CutManager. */TL_e_mom_cuts.GetUpperCut(), 0, false);
 
-        hP_n_AC_truth_1p.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_n_mom_cuts.GetLowerCut(),
-                                      /* CutManager. */.TL_n_mom_cuts.GetUpperCut(), 0, false);
-        hP_n_BC_truth_1p.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_n_mom_cuts.GetLowerCut(),
-                                      /* CutManager. */.TL_n_mom_cuts.GetUpperCut(), 0, false);
+        hP_n_AC_truth_1p.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_n_mom_cuts.GetLowerCut(),
+                                      /* CutManager. */TL_n_mom_cuts.GetUpperCut(), 0, false);
+        hP_n_BC_truth_1p.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_n_mom_cuts.GetLowerCut(),
+                                      /* CutManager. */TL_n_mom_cuts.GetUpperCut(), 0, false);
 
-        hP_p_AC_truth_1p.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_p_mom_cuts.GetLowerCut(),
-                                      /* CutManager. */.TL_p_mom_cuts.GetUpperCut(), 0, false);
-        hP_p_BC_truth_1p.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_p_mom_cuts.GetLowerCut(),
-                                      /* CutManager. */.TL_p_mom_cuts.GetUpperCut(), 0, false);
+        hP_p_AC_truth_1p.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_p_mom_cuts.GetLowerCut(),
+                                      /* CutManager. */TL_p_mom_cuts.GetUpperCut(), 0, false);
+        hP_p_BC_truth_1p.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_p_mom_cuts.GetLowerCut(),
+                                      /* CutManager. */TL_p_mom_cuts.GetUpperCut(), 0, false);
 
         if (!/* CutSettings. */apply_kinematical_cuts) {
-            hP_pFD_AC_truth_1p.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_p_mom_cuts.GetLowerCut(),
-                                            /* CutManager. */.TL_p_mom_cuts.GetUpperCut(), 0, false);
-            hP_pFD_BC_truth_1p.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_p_mom_cuts.GetLowerCut(),
-                                            /* CutManager. */.TL_p_mom_cuts.GetUpperCut(), 0, false);
+            hP_pFD_AC_truth_1p.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_p_mom_cuts.GetLowerCut(),
+                                            /* CutManager. */TL_p_mom_cuts.GetUpperCut(), 0, false);
+            hP_pFD_BC_truth_1p.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_p_mom_cuts.GetLowerCut(),
+                                            /* CutManager. */TL_p_mom_cuts.GetUpperCut(), 0, false);
         } else {
-            hP_pFD_AC_truth_1p.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.FD_nucleon_momentum_cut.GetLowerCut(),
-                                            /* CutManager. */.FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
-            hP_pFD_BC_truth_1p.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.FD_nucleon_momentum_cut.GetLowerCut(),
-                                            /* CutManager. */.FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
+            hP_pFD_AC_truth_1p.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */FD_nucleon_momentum_cut.GetLowerCut(),
+                                            /* CutManager. */FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
+            hP_pFD_BC_truth_1p.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */FD_nucleon_momentum_cut.GetLowerCut(),
+                                            /* CutManager. */FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
         }
 
-        hP_pip_AC_truth_1p.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_pip_mom_cuts.GetLowerCut(),
-                                        /* CutManager. */.TL_pip_mom_cuts.GetUpperCut(), 0, false);
-        hP_pip_BC_truth_1p.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_pip_mom_cuts.GetLowerCut(),
-                                        /* CutManager. */.TL_pip_mom_cuts.GetUpperCut(), 0, false);
+        hP_pip_AC_truth_1p.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_pip_mom_cuts.GetLowerCut(),
+                                        /* CutManager. */TL_pip_mom_cuts.GetUpperCut(), 0, false);
+        hP_pip_BC_truth_1p.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_pip_mom_cuts.GetLowerCut(),
+                                        /* CutManager. */TL_pip_mom_cuts.GetUpperCut(), 0, false);
 
-        hP_pim_AC_truth_1p.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_pim_mom_cuts.GetLowerCut(),
-                                        /* CutManager. */.TL_pim_mom_cuts.GetUpperCut(), 0, false);
-        hP_pim_BC_truth_1p.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_pim_mom_cuts.GetLowerCut(),
-                                        /* CutManager. */.TL_pim_mom_cuts.GetUpperCut(), 0, false);
+        hP_pim_AC_truth_1p.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_pim_mom_cuts.GetLowerCut(),
+                                        /* CutManager. */TL_pim_mom_cuts.GetUpperCut(), 0, false);
+        hP_pim_BC_truth_1p.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_pim_mom_cuts.GetLowerCut(),
+                                        /* CutManager. */TL_pim_mom_cuts.GetUpperCut(), 0, false);
 
-        hP_pi0_AC_truth_1p.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_pi0_mom_cuts.GetLowerCut(),
-                                        /* CutManager. */.TL_pi0_mom_cuts.GetUpperCut(), 0, false);
-        hP_pi0_BC_truth_1p.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_pi0_mom_cuts.GetLowerCut(),
-                                        /* CutManager. */.TL_pi0_mom_cuts.GetUpperCut(), 0, false);
+        hP_pi0_AC_truth_1p.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_pi0_mom_cuts.GetLowerCut(),
+                                        /* CutManager. */TL_pi0_mom_cuts.GetUpperCut(), 0, false);
+        hP_pi0_BC_truth_1p.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_pi0_mom_cuts.GetLowerCut(),
+                                        /* CutManager. */TL_pi0_mom_cuts.GetUpperCut(), 0, false);
 
-        hP_ph_AC_truth_1p.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_ph_mom_cuts.GetLowerCut(),
-                                       /* CutManager. */.TL_ph_mom_cuts.GetUpperCut(), 0, false);
-        hP_ph_BC_truth_1p.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_ph_mom_cuts.GetLowerCut(),
-                                       /* CutManager. */.TL_ph_mom_cuts.GetUpperCut(), 0, false);
-        hP_ph_AC_truth_1p_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_ph_mom_cuts.GetLowerCut(),
-                                          /* CutManager. */.TL_ph_mom_cuts.GetUpperCut(), 0, false);
-        hP_ph_BC_truth_1p_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_ph_mom_cuts.GetLowerCut(),
-                                          /* CutManager. */.TL_ph_mom_cuts.GetUpperCut(), 0, false);
+        hP_ph_AC_truth_1p.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_ph_mom_cuts.GetLowerCut(),
+                                       /* CutManager. */TL_ph_mom_cuts.GetUpperCut(), 0, false);
+        hP_ph_BC_truth_1p.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_ph_mom_cuts.GetLowerCut(),
+                                       /* CutManager. */TL_ph_mom_cuts.GetUpperCut(), 0, false);
+        hP_ph_AC_truth_1p_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_ph_mom_cuts.GetLowerCut(),
+                                          /* CutManager. */TL_ph_mom_cuts.GetUpperCut(), 0, false);
+        hP_ph_BC_truth_1p_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_ph_mom_cuts.GetLowerCut(),
+                                          /* CutManager. */TL_ph_mom_cuts.GetUpperCut(), 0, false);
 
         eff.DrawAndSaveACorrPlots(save_ACorr_data, /* parameters. */SampleName, hP_e_AC_truth_1p, hP_e_APID_1p_FD, plots, ACorr_data, ACorr_data_Dir);
         eff.DrawAndSaveACorrPlots(save_ACorr_data, /* parameters. */SampleName, hP_pFD_AC_truth_1p, hP_pFD_APID_1p, plots, ACorr_data, ACorr_data_Dir);
@@ -21462,86 +21462,86 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         // Efficiency plots (1n, CD & FD)
 
         // Momentum efficiency plots (1n)
-        hP_e_AC_truth_1n.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_e_mom_cuts.GetLowerCut(),
-                                      /* CutManager. */.TL_e_mom_cuts.GetUpperCut(), 0, false);
-        hP_e_BC_truth_1n.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_e_mom_cuts.GetLowerCut(),
-                                      /* CutManager. */.TL_e_mom_cuts.GetUpperCut(), 0, false);
+        hP_e_AC_truth_1n.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_e_mom_cuts.GetLowerCut(),
+                                      /* CutManager. */TL_e_mom_cuts.GetUpperCut(), 0, false);
+        hP_e_BC_truth_1n.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_e_mom_cuts.GetLowerCut(),
+                                      /* CutManager. */TL_e_mom_cuts.GetUpperCut(), 0, false);
 
-        hP_n_AC_truth_1n.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_n_mom_cuts.GetLowerCut(),
-                                      /* CutManager. */.TL_n_mom_cuts.GetUpperCut(), 0, false);
-        hP_n_BC_truth_1n.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_n_mom_cuts.GetLowerCut(),
-                                      /* CutManager. */.TL_n_mom_cuts.GetUpperCut(), 0, false);
+        hP_n_AC_truth_1n.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_n_mom_cuts.GetLowerCut(),
+                                      /* CutManager. */TL_n_mom_cuts.GetUpperCut(), 0, false);
+        hP_n_BC_truth_1n.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_n_mom_cuts.GetLowerCut(),
+                                      /* CutManager. */TL_n_mom_cuts.GetUpperCut(), 0, false);
 
         if (!/* CutSettings. */apply_kinematical_cuts) {
-            hP_nFD_AC_truth_1n.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_n_mom_cuts.GetLowerCut(),
-                                            /* CutManager. */.TL_n_mom_cuts.GetUpperCut(), 0, false);
-            hP_nFD_BC_truth_1n.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_n_mom_cuts.GetLowerCut(),
-                                            /* CutManager. */.TL_n_mom_cuts.GetUpperCut(), 0, false);
+            hP_nFD_AC_truth_1n.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_n_mom_cuts.GetLowerCut(),
+                                            /* CutManager. */TL_n_mom_cuts.GetUpperCut(), 0, false);
+            hP_nFD_BC_truth_1n.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_n_mom_cuts.GetLowerCut(),
+                                            /* CutManager. */TL_n_mom_cuts.GetUpperCut(), 0, false);
         } else {
-            hP_nFD_AC_truth_1n.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.FD_nucleon_momentum_cut.GetLowerCut(),
-                                            /* CutManager. */.FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
-            hP_nFD_BC_truth_1n.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.FD_nucleon_momentum_cut.GetLowerCut(),
-                                            /* CutManager. */.FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
+            hP_nFD_AC_truth_1n.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */FD_nucleon_momentum_cut.GetLowerCut(),
+                                            /* CutManager. */FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
+            hP_nFD_BC_truth_1n.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */FD_nucleon_momentum_cut.GetLowerCut(),
+                                            /* CutManager. */FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
         }
 
-        hP_p_AC_truth_1n.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_p_mom_cuts.GetLowerCut(),
-                                      /* CutManager. */.TL_p_mom_cuts.GetUpperCut(), 0, false);
-        hP_p_BC_truth_1n.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_p_mom_cuts.GetLowerCut(),
-                                      /* CutManager. */.TL_p_mom_cuts.GetUpperCut(), 0, false);
-        hP_p_AC_truth_1n_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_p_mom_cuts.GetLowerCut(),
-                                         /* CutManager. */.TL_p_mom_cuts.GetUpperCut(), 0, false);
-        hP_p_BC_truth_1n_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_p_mom_cuts.GetLowerCut(),
-                                         /* CutManager. */.TL_p_mom_cuts.GetUpperCut(), 0, false);
-        hP_p_AC_truth_1n_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_p_mom_cuts.GetLowerCut(),
-                                         /* CutManager. */.TL_p_mom_cuts.GetUpperCut(), 0, false);
-        hP_p_BC_truth_1n_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_p_mom_cuts.GetLowerCut(),
-                                         /* CutManager. */.TL_p_mom_cuts.GetUpperCut(), 0, false);
+        hP_p_AC_truth_1n.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_p_mom_cuts.GetLowerCut(),
+                                      /* CutManager. */TL_p_mom_cuts.GetUpperCut(), 0, false);
+        hP_p_BC_truth_1n.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_p_mom_cuts.GetLowerCut(),
+                                      /* CutManager. */TL_p_mom_cuts.GetUpperCut(), 0, false);
+        hP_p_AC_truth_1n_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_p_mom_cuts.GetLowerCut(),
+                                         /* CutManager. */TL_p_mom_cuts.GetUpperCut(), 0, false);
+        hP_p_BC_truth_1n_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_p_mom_cuts.GetLowerCut(),
+                                         /* CutManager. */TL_p_mom_cuts.GetUpperCut(), 0, false);
+        hP_p_AC_truth_1n_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_p_mom_cuts.GetLowerCut(),
+                                         /* CutManager. */TL_p_mom_cuts.GetUpperCut(), 0, false);
+        hP_p_BC_truth_1n_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_p_mom_cuts.GetLowerCut(),
+                                         /* CutManager. */TL_p_mom_cuts.GetUpperCut(), 0, false);
         hP_p_AC_truth_1n_undet.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., 9999, 9999, 0, false);
         hP_p_BC_truth_1n_undet.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., 9999, 9999, 0, false);
 
-        hP_pip_AC_truth_1n.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_pip_mom_cuts.GetLowerCut(),
-                                        /* CutManager. */.TL_pip_mom_cuts.GetUpperCut(), 0, false);
-        hP_pip_BC_truth_1n.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_pip_mom_cuts.GetLowerCut(),
-                                        /* CutManager. */.TL_pip_mom_cuts.GetUpperCut(), 0, false);
-        hP_pip_AC_truth_1n_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_pip_mom_cuts.GetLowerCut(),
-                                           /* CutManager. */.TL_pip_mom_cuts.GetUpperCut(), 0, false);
-        hP_pip_BC_truth_1n_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_pip_mom_cuts.GetLowerCut(),
-                                           /* CutManager. */.TL_pip_mom_cuts.GetUpperCut(), 0, false);
-        hP_pip_AC_truth_1n_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_pip_mom_cuts.GetLowerCut(),
-                                           /* CutManager. */.TL_pip_mom_cuts.GetUpperCut(), 0, false);
-        hP_pip_BC_truth_1n_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_pip_mom_cuts.GetLowerCut(),
-                                           /* CutManager. */.TL_pip_mom_cuts.GetUpperCut(), 0, false);
+        hP_pip_AC_truth_1n.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_pip_mom_cuts.GetLowerCut(),
+                                        /* CutManager. */TL_pip_mom_cuts.GetUpperCut(), 0, false);
+        hP_pip_BC_truth_1n.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_pip_mom_cuts.GetLowerCut(),
+                                        /* CutManager. */TL_pip_mom_cuts.GetUpperCut(), 0, false);
+        hP_pip_AC_truth_1n_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_pip_mom_cuts.GetLowerCut(),
+                                           /* CutManager. */TL_pip_mom_cuts.GetUpperCut(), 0, false);
+        hP_pip_BC_truth_1n_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_pip_mom_cuts.GetLowerCut(),
+                                           /* CutManager. */TL_pip_mom_cuts.GetUpperCut(), 0, false);
+        hP_pip_AC_truth_1n_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_pip_mom_cuts.GetLowerCut(),
+                                           /* CutManager. */TL_pip_mom_cuts.GetUpperCut(), 0, false);
+        hP_pip_BC_truth_1n_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_pip_mom_cuts.GetLowerCut(),
+                                           /* CutManager. */TL_pip_mom_cuts.GetUpperCut(), 0, false);
         hP_pip_AC_truth_1n_undet.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., 9999, 9999, 0, false);
         hP_pip_BC_truth_1n_undet.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., 9999, 9999, 0, false);
 
-        hP_pim_AC_truth_1n.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_pim_mom_cuts.GetLowerCut(),
-                                        /* CutManager. */.TL_pim_mom_cuts.GetUpperCut(), 0, false);
-        hP_pim_BC_truth_1n.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_pim_mom_cuts.GetLowerCut(),
-                                        /* CutManager. */.TL_pim_mom_cuts.GetUpperCut(), 0, false);
-        hP_pim_AC_truth_1n_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_pim_mom_cuts.GetLowerCut(),
-                                           /* CutManager. */.TL_pim_mom_cuts.GetUpperCut(), 0, false);
-        hP_pim_BC_truth_1n_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_pim_mom_cuts.GetLowerCut(),
-                                           /* CutManager. */.TL_pim_mom_cuts.GetUpperCut(), 0, false);
-        hP_pim_AC_truth_1n_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_pim_mom_cuts.GetLowerCut(),
-                                           /* CutManager. */.TL_pim_mom_cuts.GetUpperCut(), 0, false);
-        hP_pim_BC_truth_1n_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_pim_mom_cuts.GetLowerCut(),
-                                           /* CutManager. */.TL_pim_mom_cuts.GetUpperCut(), 0, false);
+        hP_pim_AC_truth_1n.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_pim_mom_cuts.GetLowerCut(),
+                                        /* CutManager. */TL_pim_mom_cuts.GetUpperCut(), 0, false);
+        hP_pim_BC_truth_1n.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_pim_mom_cuts.GetLowerCut(),
+                                        /* CutManager. */TL_pim_mom_cuts.GetUpperCut(), 0, false);
+        hP_pim_AC_truth_1n_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_pim_mom_cuts.GetLowerCut(),
+                                           /* CutManager. */TL_pim_mom_cuts.GetUpperCut(), 0, false);
+        hP_pim_BC_truth_1n_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_pim_mom_cuts.GetLowerCut(),
+                                           /* CutManager. */TL_pim_mom_cuts.GetUpperCut(), 0, false);
+        hP_pim_AC_truth_1n_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_pim_mom_cuts.GetLowerCut(),
+                                           /* CutManager. */TL_pim_mom_cuts.GetUpperCut(), 0, false);
+        hP_pim_BC_truth_1n_CD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_pim_mom_cuts.GetLowerCut(),
+                                           /* CutManager. */TL_pim_mom_cuts.GetUpperCut(), 0, false);
         hP_pim_AC_truth_1n_undet.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., 9999, 9999, 0, false);
         hP_pim_BC_truth_1n_undet.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., 9999, 9999, 0, false);
 
-        hP_pi0_AC_truth_1n.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_pi0_mom_cuts.GetLowerCut(),
-                                        /* CutManager. */.TL_pi0_mom_cuts.GetUpperCut(), 0, false);
-        hP_pi0_BC_truth_1n.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_pi0_mom_cuts.GetLowerCut(),
-                                        /* CutManager. */.TL_pi0_mom_cuts.GetUpperCut(), 0, false);
+        hP_pi0_AC_truth_1n.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_pi0_mom_cuts.GetLowerCut(),
+                                        /* CutManager. */TL_pi0_mom_cuts.GetUpperCut(), 0, false);
+        hP_pi0_BC_truth_1n.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_pi0_mom_cuts.GetLowerCut(),
+                                        /* CutManager. */TL_pi0_mom_cuts.GetUpperCut(), 0, false);
 
-        hP_ph_AC_truth_1n.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_ph_mom_cuts.GetLowerCut(),
-                                       /* CutManager. */.TL_ph_mom_cuts.GetUpperCut(), 0, false);
-        hP_ph_BC_truth_1n.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_ph_mom_cuts.GetLowerCut(),
-                                       /* CutManager. */.TL_ph_mom_cuts.GetUpperCut(), 0, false);
-        hP_ph_AC_truth_1n_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_ph_mom_cuts.GetLowerCut(),
-                                          /* CutManager. */.TL_ph_mom_cuts.GetUpperCut(), 0, false);
-        hP_ph_BC_truth_1n_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_ph_mom_cuts.GetLowerCut(),
-                                          /* CutManager. */.TL_ph_mom_cuts.GetUpperCut(), 0, false);
+        hP_ph_AC_truth_1n.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_ph_mom_cuts.GetLowerCut(),
+                                       /* CutManager. */TL_ph_mom_cuts.GetUpperCut(), 0, false);
+        hP_ph_BC_truth_1n.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_ph_mom_cuts.GetLowerCut(),
+                                       /* CutManager. */TL_ph_mom_cuts.GetUpperCut(), 0, false);
+        hP_ph_AC_truth_1n_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_ph_mom_cuts.GetLowerCut(),
+                                          /* CutManager. */TL_ph_mom_cuts.GetUpperCut(), 0, false);
+        hP_ph_BC_truth_1n_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_ph_mom_cuts.GetLowerCut(),
+                                          /* CutManager. */TL_ph_mom_cuts.GetUpperCut(), 0, false);
 
         eff.DrawAndSaveACorrPlots(save_ACorr_data, /* parameters. */SampleName, hP_e_AC_truth_1n, hP_e_APID_1n_FD, plots, ACorr_data, ACorr_data_Dir);
         eff.DrawAndSaveACorrPlots(save_ACorr_data, /* parameters. */SampleName, hP_nFD_AC_truth_1n, hP_nFD_APIDandNS_1n, plots, ACorr_data, ACorr_data_Dir);
@@ -21652,61 +21652,61 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         // Efficiency plots (pFDpCD, CD & FD)
 
         // Momentum efficiency plots (pFDpCD)
-        hP_e_AC_truth_pFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_e_mom_cuts.GetLowerCut(),
-                                          /* CutManager. */.TL_e_mom_cuts.GetUpperCut(), 0, false);
-        hP_e_BC_truth_pFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_e_mom_cuts.GetLowerCut(),
-                                          /* CutManager. */.TL_e_mom_cuts.GetUpperCut(), 0, false);
+        hP_e_AC_truth_pFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_e_mom_cuts.GetLowerCut(),
+                                          /* CutManager. */TL_e_mom_cuts.GetUpperCut(), 0, false);
+        hP_e_BC_truth_pFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_e_mom_cuts.GetLowerCut(),
+                                          /* CutManager. */TL_e_mom_cuts.GetUpperCut(), 0, false);
 
-        hP_n_AC_truth_pFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_n_mom_cuts.GetLowerCut(),
-                                          /* CutManager. */.TL_n_mom_cuts.GetUpperCut(), 0, false);
-        hP_n_BC_truth_pFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_n_mom_cuts.GetLowerCut(),
-                                          /* CutManager. */.TL_n_mom_cuts.GetUpperCut(), 0, false);
+        hP_n_AC_truth_pFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_n_mom_cuts.GetLowerCut(),
+                                          /* CutManager. */TL_n_mom_cuts.GetUpperCut(), 0, false);
+        hP_n_BC_truth_pFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_n_mom_cuts.GetLowerCut(),
+                                          /* CutManager. */TL_n_mom_cuts.GetUpperCut(), 0, false);
 
-        hP_p_AC_truth_pFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_p_mom_cuts.GetLowerCut(),
-                                          /* CutManager. */.TL_p_mom_cuts.GetUpperCut(), 0, false);
-        hP_p_BC_truth_pFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_p_mom_cuts.GetLowerCut(),
-                                          /* CutManager. */.TL_p_mom_cuts.GetUpperCut(), 0, false);
+        hP_p_AC_truth_pFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_p_mom_cuts.GetLowerCut(),
+                                          /* CutManager. */TL_p_mom_cuts.GetUpperCut(), 0, false);
+        hP_p_BC_truth_pFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_p_mom_cuts.GetLowerCut(),
+                                          /* CutManager. */TL_p_mom_cuts.GetUpperCut(), 0, false);
 
         if (!/* CutSettings. */apply_kinematical_cuts) {
-            hP_pFD_AC_truth_pFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_p_mom_cuts.GetLowerCut(),
-                                                /* CutManager. */.TL_p_mom_cuts.GetUpperCut(), 0, false);
-            hP_pFD_BC_truth_pFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_p_mom_cuts.GetLowerCut(),
-                                                /* CutManager. */.TL_p_mom_cuts.GetUpperCut(), 0, false);
+            hP_pFD_AC_truth_pFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_p_mom_cuts.GetLowerCut(),
+                                                /* CutManager. */TL_p_mom_cuts.GetUpperCut(), 0, false);
+            hP_pFD_BC_truth_pFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_p_mom_cuts.GetLowerCut(),
+                                                /* CutManager. */TL_p_mom_cuts.GetUpperCut(), 0, false);
         } else {
-            hP_pFD_AC_truth_pFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.FD_nucleon_momentum_cut.GetLowerCut(),
-                                                /* CutManager. */.FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
-            hP_pFD_BC_truth_pFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.FD_nucleon_momentum_cut.GetLowerCut(),
-                                                /* CutManager. */.FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
+            hP_pFD_AC_truth_pFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */FD_nucleon_momentum_cut.GetLowerCut(),
+                                                /* CutManager. */FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
+            hP_pFD_BC_truth_pFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */FD_nucleon_momentum_cut.GetLowerCut(),
+                                                /* CutManager. */FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
         }
 
-        hP_pCD_AC_truth_pFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_p_mom_cuts.GetLowerCut(),
-                                            /* CutManager. */.TL_p_mom_cuts.GetUpperCut(), 0, false);
-        hP_pCD_BC_truth_pFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_p_mom_cuts.GetLowerCut(),
-                                            /* CutManager. */.TL_p_mom_cuts.GetUpperCut(), 0, false);
+        hP_pCD_AC_truth_pFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_p_mom_cuts.GetLowerCut(),
+                                            /* CutManager. */TL_p_mom_cuts.GetUpperCut(), 0, false);
+        hP_pCD_BC_truth_pFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_p_mom_cuts.GetLowerCut(),
+                                            /* CutManager. */TL_p_mom_cuts.GetUpperCut(), 0, false);
 
-        hP_pip_AC_truth_pFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_pip_mom_cuts.GetLowerCut(),
-                                            /* CutManager. */.TL_pip_mom_cuts.GetUpperCut(), 0, false);
-        hP_pip_BC_truth_pFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_pip_mom_cuts.GetLowerCut(),
-                                            /* CutManager. */.TL_pip_mom_cuts.GetUpperCut(), 0, false);
+        hP_pip_AC_truth_pFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_pip_mom_cuts.GetLowerCut(),
+                                            /* CutManager. */TL_pip_mom_cuts.GetUpperCut(), 0, false);
+        hP_pip_BC_truth_pFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_pip_mom_cuts.GetLowerCut(),
+                                            /* CutManager. */TL_pip_mom_cuts.GetUpperCut(), 0, false);
 
-        hP_pim_AC_truth_pFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_pim_mom_cuts.GetLowerCut(),
-                                            /* CutManager. */.TL_pim_mom_cuts.GetUpperCut(), 0, false);
-        hP_pim_BC_truth_pFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_pim_mom_cuts.GetLowerCut(),
-                                            /* CutManager. */.TL_pim_mom_cuts.GetUpperCut(), 0, false);
+        hP_pim_AC_truth_pFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_pim_mom_cuts.GetLowerCut(),
+                                            /* CutManager. */TL_pim_mom_cuts.GetUpperCut(), 0, false);
+        hP_pim_BC_truth_pFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_pim_mom_cuts.GetLowerCut(),
+                                            /* CutManager. */TL_pim_mom_cuts.GetUpperCut(), 0, false);
 
-        hP_pi0_AC_truth_pFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_pi0_mom_cuts.GetLowerCut(),
-                                            /* CutManager. */.TL_pi0_mom_cuts.GetUpperCut(), 0, false);
-        hP_pi0_BC_truth_pFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_pi0_mom_cuts.GetLowerCut(),
-                                            /* CutManager. */.TL_pi0_mom_cuts.GetUpperCut(), 0, false);
+        hP_pi0_AC_truth_pFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_pi0_mom_cuts.GetLowerCut(),
+                                            /* CutManager. */TL_pi0_mom_cuts.GetUpperCut(), 0, false);
+        hP_pi0_BC_truth_pFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_pi0_mom_cuts.GetLowerCut(),
+                                            /* CutManager. */TL_pi0_mom_cuts.GetUpperCut(), 0, false);
 
-        hP_ph_AC_truth_pFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_ph_mom_cuts.GetLowerCut(),
-                                           /* CutManager. */.TL_ph_mom_cuts.GetUpperCut(), 0, false);
-        hP_ph_BC_truth_pFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_ph_mom_cuts.GetLowerCut(),
-                                           /* CutManager. */.TL_ph_mom_cuts.GetUpperCut(), 0, false);
-        hP_ph_AC_truth_pFDpCD_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_ph_mom_cuts.GetLowerCut(),
-                                              /* CutManager. */.TL_ph_mom_cuts.GetUpperCut(), 0, false);
-        hP_ph_BC_truth_pFDpCD_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_ph_mom_cuts.GetLowerCut(),
-                                              /* CutManager. */.TL_ph_mom_cuts.GetUpperCut(), 0, false);
+        hP_ph_AC_truth_pFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_ph_mom_cuts.GetLowerCut(),
+                                           /* CutManager. */TL_ph_mom_cuts.GetUpperCut(), 0, false);
+        hP_ph_BC_truth_pFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_ph_mom_cuts.GetLowerCut(),
+                                           /* CutManager. */TL_ph_mom_cuts.GetUpperCut(), 0, false);
+        hP_ph_AC_truth_pFDpCD_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_ph_mom_cuts.GetLowerCut(),
+                                              /* CutManager. */TL_ph_mom_cuts.GetUpperCut(), 0, false);
+        hP_ph_BC_truth_pFDpCD_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_ph_mom_cuts.GetLowerCut(),
+                                              /* CutManager. */TL_ph_mom_cuts.GetUpperCut(), 0, false);
 
         // Acceptance correction plots (pFDpCD, CD & FD):
         eff.DrawAndSaveACorrPlots(save_ACorr_data, /* parameters. */SampleName, hP_e_AC_truth_pFDpCD, hP_e_APID_pFDpCD_FD, plots, ACorr_data, ACorr_data_Dir);
@@ -21793,73 +21793,73 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         // Efficiency plots (nFDpCD, CD & FD)
 
         // Momentum efficiency plots (nFDpCD)
-        hP_e_AC_truth_nFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_e_mom_cuts.GetLowerCut(),
-                                          /* CutManager. */.TL_e_mom_cuts.GetUpperCut(), 0, false);
-        hP_e_BC_truth_nFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_e_mom_cuts.GetLowerCut(),
-                                          /* CutManager. */.TL_e_mom_cuts.GetUpperCut(), 0, false);
+        hP_e_AC_truth_nFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_e_mom_cuts.GetLowerCut(),
+                                          /* CutManager. */TL_e_mom_cuts.GetUpperCut(), 0, false);
+        hP_e_BC_truth_nFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_e_mom_cuts.GetLowerCut(),
+                                          /* CutManager. */TL_e_mom_cuts.GetUpperCut(), 0, false);
 
-        hP_n_AC_truth_nFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_n_mom_cuts.GetLowerCut(),
-                                          /* CutManager. */.TL_n_mom_cuts.GetUpperCut(), 0, false);
-        hP_n_BC_truth_nFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_n_mom_cuts.GetLowerCut(),
-                                          /* CutManager. */.TL_n_mom_cuts.GetUpperCut(), 0, false);
-
-        if (!/* CutSettings. */apply_kinematical_cuts) {
-            hP_nFD_AC_truth_nFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_n_mom_cuts.GetLowerCut(),
-                                                /* CutManager. */.TL_n_mom_cuts.GetUpperCut(), 0, false);
-            hP_nFD_BC_truth_nFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_n_mom_cuts.GetLowerCut(),
-                                                /* CutManager. */.TL_n_mom_cuts.GetUpperCut(), 0, false);
-        } else {
-            hP_nFD_AC_truth_nFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.FD_nucleon_momentum_cut.GetLowerCut(),
-                                                /* CutManager. */.FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
-            hP_nFD_BC_truth_nFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.FD_nucleon_momentum_cut.GetLowerCut(),
-                                                /* CutManager. */.FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
-        }
-
-        hP_p_AC_truth_nFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_p_mom_cuts.GetLowerCut(),
-                                          /* CutManager. */.TL_p_mom_cuts.GetUpperCut(), 0, false);
-        hP_p_BC_truth_nFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_p_mom_cuts.GetLowerCut(),
-                                          /* CutManager. */.TL_p_mom_cuts.GetUpperCut(), 0, false);
+        hP_n_AC_truth_nFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_n_mom_cuts.GetLowerCut(),
+                                          /* CutManager. */TL_n_mom_cuts.GetUpperCut(), 0, false);
+        hP_n_BC_truth_nFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_n_mom_cuts.GetLowerCut(),
+                                          /* CutManager. */TL_n_mom_cuts.GetUpperCut(), 0, false);
 
         if (!/* CutSettings. */apply_kinematical_cuts) {
-            hP_pFD_AC_truth_nFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_p_mom_cuts.GetLowerCut(),
-                                                /* CutManager. */.TL_p_mom_cuts.GetUpperCut(), 0, false);
-            hP_pFD_BC_truth_nFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_p_mom_cuts.GetLowerCut(),
-                                                /* CutManager. */.TL_p_mom_cuts.GetUpperCut(), 0, false);
+            hP_nFD_AC_truth_nFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_n_mom_cuts.GetLowerCut(),
+                                                /* CutManager. */TL_n_mom_cuts.GetUpperCut(), 0, false);
+            hP_nFD_BC_truth_nFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_n_mom_cuts.GetLowerCut(),
+                                                /* CutManager. */TL_n_mom_cuts.GetUpperCut(), 0, false);
         } else {
-            hP_pFD_AC_truth_nFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.FD_nucleon_momentum_cut.GetLowerCut(),
-                                                /* CutManager. */.FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
-            hP_pFD_BC_truth_nFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.FD_nucleon_momentum_cut.GetLowerCut(),
-                                                /* CutManager. */.FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
+            hP_nFD_AC_truth_nFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */FD_nucleon_momentum_cut.GetLowerCut(),
+                                                /* CutManager. */FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
+            hP_nFD_BC_truth_nFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */FD_nucleon_momentum_cut.GetLowerCut(),
+                                                /* CutManager. */FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
         }
 
-        hP_pCD_AC_truth_nFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_p_mom_cuts.GetLowerCut(),
-                                            /* CutManager. */.TL_p_mom_cuts.GetUpperCut(), 0, false);
-        hP_pCD_BC_truth_nFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_p_mom_cuts.GetLowerCut(),
-                                            /* CutManager. */.TL_p_mom_cuts.GetUpperCut(), 0, false);
+        hP_p_AC_truth_nFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_p_mom_cuts.GetLowerCut(),
+                                          /* CutManager. */TL_p_mom_cuts.GetUpperCut(), 0, false);
+        hP_p_BC_truth_nFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_p_mom_cuts.GetLowerCut(),
+                                          /* CutManager. */TL_p_mom_cuts.GetUpperCut(), 0, false);
 
-        hP_pip_AC_truth_nFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_pip_mom_cuts.GetLowerCut(),
-                                            /* CutManager. */.TL_pip_mom_cuts.GetUpperCut(), 0, false);
-        hP_pip_BC_truth_nFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_pip_mom_cuts.GetLowerCut(),
-                                            /* CutManager. */.TL_pip_mom_cuts.GetUpperCut(), 0, false);
+        if (!/* CutSettings. */apply_kinematical_cuts) {
+            hP_pFD_AC_truth_nFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_p_mom_cuts.GetLowerCut(),
+                                                /* CutManager. */TL_p_mom_cuts.GetUpperCut(), 0, false);
+            hP_pFD_BC_truth_nFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_p_mom_cuts.GetLowerCut(),
+                                                /* CutManager. */TL_p_mom_cuts.GetUpperCut(), 0, false);
+        } else {
+            hP_pFD_AC_truth_nFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */FD_nucleon_momentum_cut.GetLowerCut(),
+                                                /* CutManager. */FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
+            hP_pFD_BC_truth_nFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */FD_nucleon_momentum_cut.GetLowerCut(),
+                                                /* CutManager. */FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
+        }
 
-        hP_pim_AC_truth_nFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_pim_mom_cuts.GetLowerCut(),
-                                            /* CutManager. */.TL_pim_mom_cuts.GetUpperCut(), 0, false);
-        hP_pim_BC_truth_nFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_pim_mom_cuts.GetLowerCut(),
-                                            /* CutManager. */.TL_pim_mom_cuts.GetUpperCut(), 0, false);
+        hP_pCD_AC_truth_nFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_p_mom_cuts.GetLowerCut(),
+                                            /* CutManager. */TL_p_mom_cuts.GetUpperCut(), 0, false);
+        hP_pCD_BC_truth_nFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_p_mom_cuts.GetLowerCut(),
+                                            /* CutManager. */TL_p_mom_cuts.GetUpperCut(), 0, false);
 
-        hP_pi0_AC_truth_nFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_pi0_mom_cuts.GetLowerCut(),
-                                            /* CutManager. */.TL_pi0_mom_cuts.GetUpperCut(), 0, false);
-        hP_pi0_BC_truth_nFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_pi0_mom_cuts.GetLowerCut(),
-                                            /* CutManager. */.TL_pi0_mom_cuts.GetUpperCut(), 0, false);
+        hP_pip_AC_truth_nFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_pip_mom_cuts.GetLowerCut(),
+                                            /* CutManager. */TL_pip_mom_cuts.GetUpperCut(), 0, false);
+        hP_pip_BC_truth_nFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_pip_mom_cuts.GetLowerCut(),
+                                            /* CutManager. */TL_pip_mom_cuts.GetUpperCut(), 0, false);
 
-        hP_ph_AC_truth_nFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_ph_mom_cuts.GetLowerCut(),
-                                           /* CutManager. */.TL_ph_mom_cuts.GetUpperCut(), 0, false);
-        hP_ph_BC_truth_nFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_ph_mom_cuts.GetLowerCut(),
-                                           /* CutManager. */.TL_ph_mom_cuts.GetUpperCut(), 0, false);
-        hP_ph_AC_truth_nFDpCD_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_ph_mom_cuts.GetLowerCut(),
-                                              /* CutManager. */.TL_ph_mom_cuts.GetUpperCut(), 0, false);
-        hP_ph_BC_truth_nFDpCD_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.TL_ph_mom_cuts.GetLowerCut(),
-                                              /* CutManager. */.TL_ph_mom_cuts.GetUpperCut(), 0, false);
+        hP_pim_AC_truth_nFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_pim_mom_cuts.GetLowerCut(),
+                                            /* CutManager. */TL_pim_mom_cuts.GetUpperCut(), 0, false);
+        hP_pim_BC_truth_nFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_pim_mom_cuts.GetLowerCut(),
+                                            /* CutManager. */TL_pim_mom_cuts.GetUpperCut(), 0, false);
+
+        hP_pi0_AC_truth_nFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_pi0_mom_cuts.GetLowerCut(),
+                                            /* CutManager. */TL_pi0_mom_cuts.GetUpperCut(), 0, false);
+        hP_pi0_BC_truth_nFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_pi0_mom_cuts.GetLowerCut(),
+                                            /* CutManager. */TL_pi0_mom_cuts.GetUpperCut(), 0, false);
+
+        hP_ph_AC_truth_nFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_ph_mom_cuts.GetLowerCut(),
+                                           /* CutManager. */TL_ph_mom_cuts.GetUpperCut(), 0, false);
+        hP_ph_BC_truth_nFDpCD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_ph_mom_cuts.GetLowerCut(),
+                                           /* CutManager. */TL_ph_mom_cuts.GetUpperCut(), 0, false);
+        hP_ph_AC_truth_nFDpCD_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_ph_mom_cuts.GetLowerCut(),
+                                              /* CutManager. */TL_ph_mom_cuts.GetUpperCut(), 0, false);
+        hP_ph_BC_truth_nFDpCD_FD.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */TL_ph_mom_cuts.GetLowerCut(),
+                                              /* CutManager. */TL_ph_mom_cuts.GetUpperCut(), 0, false);
 
         eff.DrawAndSaveACorrPlots(save_ACorr_data, /* parameters. */SampleName, hP_e_AC_truth_nFDpCD, hP_e_APID_nFDpCD_FD, plots, ACorr_data, ACorr_data_Dir);
         eff.DrawAndSaveACorrPlots(save_ACorr_data, /* parameters. */SampleName, hP_nFD_AC_truth_nFDpCD, hP_n_APID_nFDpCD_FD, plots, ACorr_data, ACorr_data_Dir);
@@ -22029,14 +22029,14 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         hTL_P_e_vs_TL_Phi_e_AMap.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, true);
 
         hProtonAMapBC.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, true);
-        hReco_P_pFD_AMaps.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.p_mom_th.GetLowerCut(),
-                                       /* CutManager. */.p_mom_th.GetUpperCut(), 0, false);
+        hReco_P_pFD_AMaps.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */p_mom_th.GetLowerCut(),
+                                       /* CutManager. */p_mom_th.GetUpperCut(), 0, false);
         hReco_P_pFD_vs_Reco_Theta_pFD_AMap.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, true);
         hReco_P_pFD_vs_Reco_Phi_pFD_AMap.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, true);
         hReco_P_pFD_vs_Reco_P_e_AMap.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, true);
         hReco_P_pFD_vs_Reco_Theta_e_AMap.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, true);
         hReco_P_pFD_vs_Reco_Phi_e_AMap.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, true);
-        hTL_P_pFD_AMaps.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.p_mom_th.GetLowerCut(), /* CutManager. */.p_mom_th.GetUpperCut(),
+        hTL_P_pFD_AMaps.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */p_mom_th.GetLowerCut(), /* CutManager. */p_mom_th.GetUpperCut(),
                                      0, false);
         hTL_P_pFD_vs_TL_Theta_pFD_AMap.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, true);
         hTL_P_pFD_vs_TL_Phi_pFD_AMap.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, true);
@@ -22045,14 +22045,14 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         hTL_P_pFD_vs_TL_Phi_e_AMap.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, true);
 
         hNeutronAMapBC.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, true);
-        hReco_P_nFD_AMaps.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.n_mom_th.GetLowerCut(),
-                                       /* CutManager. */.n_mom_th.GetUpperCut(), 0, false);
+        hReco_P_nFD_AMaps.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */n_mom_th.GetLowerCut(),
+                                       /* CutManager. */n_mom_th.GetUpperCut(), 0, false);
         hReco_P_nFD_vs_Reco_Theta_nFD_AMap.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, true);
         hReco_P_nFD_vs_Reco_Phi_nFD_AMap.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, true);
         hReco_P_nFD_vs_Reco_P_e_AMap.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, true);
         hReco_P_nFD_vs_Reco_Theta_e_AMap.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, true);
         hReco_P_nFD_vs_Reco_Phi_e_AMap.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, true);
-        hTL_P_nFD_AMaps.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.n_mom_th.GetLowerCut(), /* CutManager. */.n_mom_th.GetUpperCut(),
+        hTL_P_nFD_AMaps.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */n_mom_th.GetLowerCut(), /* CutManager. */n_mom_th.GetUpperCut(),
                                      0, false);
         hTL_P_nFD_vs_TL_Theta_nFD_AMap.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, true);
         hTL_P_nFD_vs_TL_Phi_nFD_AMap.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, true);
@@ -22080,30 +22080,30 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         hTL_P_e_vs_TL_Theta_e_WMap.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, true);
         hTL_P_e_vs_TL_Phi_e_WMap.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, true);
 
-        hReco_P_pFD_WMaps.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.FD_nucleon_momentum_cut.GetLowerCut(),
-                                       /* CutManager. */.FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
+        hReco_P_pFD_WMaps.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */FD_nucleon_momentum_cut.GetLowerCut(),
+                                       /* CutManager. */FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
         hReco_P_pFD_vs_Reco_Theta_pFD_WMap.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, true);
         hReco_P_pFD_vs_Reco_Phi_pFD_WMap.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, true);
         hReco_P_pFD_vs_Reco_P_e_WMap.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, true);
         hReco_P_pFD_vs_Reco_Theta_e_WMap.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, true);
         hReco_P_pFD_vs_Reco_Phi_e_WMap.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, true);
-        hTL_P_pFD_WMaps.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.FD_nucleon_momentum_cut.GetLowerCut(),
-                                     /* CutManager. */.FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
+        hTL_P_pFD_WMaps.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */FD_nucleon_momentum_cut.GetLowerCut(),
+                                     /* CutManager. */FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
         hTL_P_pFD_vs_TL_Theta_pFD_WMap.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, true);
         hTL_P_pFD_vs_TL_Phi_pFD_WMap.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, true);
         hTL_P_pFD_vs_TL_P_e_WMap.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, true);
         hTL_P_pFD_vs_TL_Theta_e_WMap.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, true);
         hTL_P_pFD_vs_TL_Phi_e_WMap.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, true);
 
-        hReco_P_nFD_WMaps.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.FD_nucleon_momentum_cut.GetLowerCut(),
-                                       /* CutManager. */.FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
+        hReco_P_nFD_WMaps.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */FD_nucleon_momentum_cut.GetLowerCut(),
+                                       /* CutManager. */FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
         hReco_P_nFD_vs_Reco_Theta_nFD_WMap.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, true);
         hReco_P_nFD_vs_Reco_Phi_nFD_WMap.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, true);
         hReco_P_nFD_vs_Reco_P_e_WMap.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, true);
         hReco_P_nFD_vs_Reco_Theta_e_WMap.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, true);
         hReco_P_nFD_vs_Reco_Phi_e_WMap.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, true);
-        hTL_P_nFD_WMaps.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */.FD_nucleon_momentum_cut.GetLowerCut(),
-                                     /* CutManager. */.FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
+        hTL_P_nFD_WMaps.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, norm_Momentum_plots, true, 1., /* CutManager. */FD_nucleon_momentum_cut.GetLowerCut(),
+                                     /* CutManager. */FD_nucleon_momentum_cut.GetUpperCut(), 0, false);
         hTL_P_nFD_vs_TL_Theta_nFD_WMap.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, true);
         hTL_P_nFD_vs_TL_Phi_nFD_WMap.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, true);
         hTL_P_nFD_vs_TL_P_e_WMap.hDrawAndSave(/* parameters. */SampleName, c1, plots, Histogram_OutPDF, true);
@@ -22380,8 +22380,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         (!/* CutSettings. */only_preselection_cuts && !/* CutSettings. */only_electron_quality_cuts) &&
         // Do not log PID cuts if running in only preselection or only electron qulity cuts mode
         !/* CutSettings. */apply_chi2_cuts_1e_cut) {
-        DSCuts chi2cuts[] = {/* CutManager. */.Chi2_Proton_cuts_CD, /* CutManager. */.Chi2_Proton_cuts_FD,  /* CutManager. */.Chi2_piplus_cuts_CD,
-                             /* CutManager. */.Chi2_piplus_cuts_FD, /* CutManager. */.Chi2_piminus_cuts_CD, /* CutManager. */.Chi2_piminus_cuts_FD};
+        DSCuts chi2cuts[] = {/* CutManager. */Chi2_Proton_cuts_CD, /* CutManager. */Chi2_Proton_cuts_FD,  /* CutManager. */Chi2_piplus_cuts_CD,
+                             /* CutManager. */Chi2_piplus_cuts_FD, /* CutManager. */Chi2_piminus_cuts_CD, /* CutManager. */Chi2_piminus_cuts_FD};
         int chi2cuts_length = 6;
 
         ofstream FittedPIDCuts;
@@ -22393,7 +22393,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         FittedPIDCuts << "# CLAS12 analysis cuts and parameters file (after chi2 Gaussian fit) #\n";
         FittedPIDCuts << "######################################################################\n";
         FittedPIDCuts << "\n# Cuts are fitted for - " + /* parameters. */SampleName << "\n";
-        FittedPIDCuts << "\n# pid cuts by detector (pid:mean:sigma) - sigma_CD=" << /* CutManager. */.Chi2_Proton_cuts_CD.FitStdFactor << ";sigma_FD=" << /* CutManager. */.Chi2_Proton_cuts_FD.FitStdFactor
+        FittedPIDCuts << "\n# pid cuts by detector (pid:mean:sigma) - sigma_CD=" << /* CutManager. */Chi2_Proton_cuts_CD.FitStdFactor << ";sigma_FD=" << /* CutManager. */Chi2_Proton_cuts_FD.FitStdFactor
                       << ":\n";
 
         for (int i = 0; i < chi2cuts_length; i++) {
@@ -22419,12 +22419,12 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                      << "\n\n";
 
         // Neutron momentum cuts
-        Nucleon_Cuts << "# Neutron momentum cuts (pid:mean:sigma) - sigma_FD=" << /* CutManager. */.n_mom_th.FitStdFactor << ":\n";
+        Nucleon_Cuts << "# Neutron momentum cuts (pid:mean:sigma) - sigma_FD=" << /* CutManager. */n_mom_th.FitStdFactor << ":\n";
 
-        Nucleon_Cuts << /* CutManager. */.n_mom_th.GetCutVariable() << "\t\t\t" << /* CutManager. */.n_mom_th.GetPartPDG() << ":" << /* CutManager. */.n_mom_th.Cuts.at(0) << ":"
-                     << /* CutManager. */.n_mom_th.GetLowerCut() << ":" << /* CutManager. */.n_mom_th.GetRegion() << "\n\n";
+        Nucleon_Cuts << /* CutManager. */n_mom_th.GetCutVariable() << "\t\t\t" << /* CutManager. */n_mom_th.GetPartPDG() << ":" << /* CutManager. */n_mom_th.Cuts.at(0) << ":"
+                     << /* CutManager. */n_mom_th.GetLowerCut() << ":" << /* CutManager. */n_mom_th.GetRegion() << "\n\n";
 
-        DSCuts Neutron_Momentum_Cuts[] = {/* CutManager. */.n_momentum_cuts_ABF_FD_n_from_ph, /* CutManager. */.n_momentum_cuts_ABF_FD_n_from_ph_apprax};
+        DSCuts Neutron_Momentum_Cuts[] = {/* CutManager. */n_momentum_cuts_ABF_FD_n_from_ph, /* CutManager. */n_momentum_cuts_ABF_FD_n_from_ph_apprax};
         int Neutron_Momentum_Cuts_length = 2;
 
         for (int i = 0; i < Neutron_Momentum_Cuts_length; i++) {
@@ -22440,12 +22440,12 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         }
 
         // Proton CD-FD double detection dPhi_p1_p2 cuts
-        Nucleon_Cuts << "# Proton CD-FD double detection dPhi cuts (pid:mean:sigma) - sigma=" << /* CutManager. */.dphi_p1_p2_2p.FitStdFactor << ":\n";
+        Nucleon_Cuts << "# Proton CD-FD double detection dPhi cuts (pid:mean:sigma) - sigma=" << /* CutManager. */dphi_p1_p2_2p.FitStdFactor << ":\n";
 
-        Nucleon_Cuts << /* CutManager. */.dphi_p1_p2_2p.GetCutVariable() << "\t\t\t" << /* CutManager. */.dphi_p1_p2_2p.GetPartPDG() << ":" << /* CutManager. */.dphi_p1_p2_2p.GetMean() << ":"
-                     << /* CutManager. */.dphi_p1_p2_2p.GetUpperCut() << ":" << /* CutManager. */.dphi_p1_p2_2p.GetRegion() << "\n";
-        Nucleon_Cuts << /* CutManager. */.dphi_pFD_pCD_2p.GetCutVariable() << "\t\t" << /* CutManager. */.dphi_pFD_pCD_2p.GetPartPDG() << ":" << /* CutManager. */.dphi_pFD_pCD_2p.GetMean() << ":"
-                     << /* CutManager. */.dphi_pFD_pCD_2p.GetUpperCut() << ":" << /* CutManager. */.dphi_pFD_pCD_2p.GetRegion() << "\n";
+        Nucleon_Cuts << /* CutManager. */dphi_p1_p2_2p.GetCutVariable() << "\t\t\t" << /* CutManager. */dphi_p1_p2_2p.GetPartPDG() << ":" << /* CutManager. */dphi_p1_p2_2p.GetMean() << ":"
+                     << /* CutManager. */dphi_p1_p2_2p.GetUpperCut() << ":" << /* CutManager. */dphi_p1_p2_2p.GetRegion() << "\n";
+        Nucleon_Cuts << /* CutManager. */dphi_pFD_pCD_2p.GetCutVariable() << "\t\t" << /* CutManager. */dphi_pFD_pCD_2p.GetPartPDG() << ":" << /* CutManager. */dphi_pFD_pCD_2p.GetMean() << ":"
+                     << /* CutManager. */dphi_pFD_pCD_2p.GetUpperCut() << ":" << /* CutManager. */dphi_pFD_pCD_2p.GetRegion() << "\n";
 
         Nucleon_Cuts << "\n";
 
@@ -22734,8 +22734,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     myLogFile << "#Photo-electrons (Nphe) cuts (electrons only, FD)\n";
     myLogFile << "===========================================================================\n\n";
 
-    myLogFile << "Nphe_lower_cut:" << std::setw(59) << /* CutManager. */.Nphe_cuts_FD.GetLowerCut() << "\n";
-    myLogFile << "Nphe_upper_cut:" << std::setw(59) << /* CutManager. */.Nphe_cuts_FD.GetUpperCut() << "\n\n";
+    myLogFile << "Nphe_lower_cut:" << std::setw(59) << /* CutManager. */Nphe_cuts_FD.GetLowerCut() << "\n";
+    myLogFile << "Nphe_upper_cut:" << std::setw(59) << /* CutManager. */Nphe_cuts_FD.GetUpperCut() << "\n\n";
 
     // Chi2 cuts
     myLogFile << "\n===========================================================================\n";
@@ -22745,147 +22745,147 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     myLogFile << "\n-- Electrons --------------------------------------------------------------" << "\n\n";
 
     myLogFile << "\n-- Electrons in FD (1e cut) -----------------------------------------------" << "\n";
-    myLogFile << "Chi2 lower cut:" << std::setw(59) << /* CutManager. */.Chi2_Electron_cuts_FD.GetLowerCut() << "\n";
-    myLogFile << "Chi2 upper cut:" << std::setw(59) << /* CutManager. */.Chi2_Electron_cuts_FD.GetUpperCut() << "\n";
-    myLogFile << "Chi2 hist mean:" << std::setw(59) << /* CutManager. */.Chi2_Electron_cuts_FD.MeanFromHistogram << "\n\n";
+    myLogFile << "Chi2 lower cut:" << std::setw(59) << /* CutManager. */Chi2_Electron_cuts_FD.GetLowerCut() << "\n";
+    myLogFile << "Chi2 upper cut:" << std::setw(59) << /* CutManager. */Chi2_Electron_cuts_FD.GetUpperCut() << "\n";
+    myLogFile << "Chi2 hist mean:" << std::setw(59) << /* CutManager. */Chi2_Electron_cuts_FD.MeanFromHistogram << "\n\n";
 
     // Chi2_Proton
     myLogFile << "\n\n-- Protons ----------------------------------------------------------------" << "\n\n";
 
     myLogFile << "\n-- Protons in CD (1e cut) -------------------------------------------------" << "\n";
-    myLogFile << "Chi2 std factor:" << std::setw(58) << /* CutManager. */.Chi2_Proton_cuts_CD.GetStdFactor() << "\n";
-    myLogFile << "Chi2 fit std:" << std::setw(61) << /* CutManager. */.Chi2_Proton_cuts_CD.GetUpperCut() / /* CutManager. */.Chi2_Proton_cuts_CD.GetStdFactor() << "\n";
-    myLogFile << "Chi2 fit mean:" << std::setw(60) << /* CutManager. */.Chi2_Proton_cuts_CD.GetMean() << "\n";
-    myLogFile << "Chi2 hist mean:" << std::setw(59) << /* CutManager. */.Chi2_Proton_cuts_CD.MeanFromHistogram << "\n";
-    myLogFile << "Chi2 lower cut:" << std::setw(59) << /* CutManager. */.Chi2_Proton_cuts_CD.GetLowerCut() << "\n";
-    myLogFile << "Chi2 upper cut:" << std::setw(59) << /* CutManager. */.Chi2_Proton_cuts_CD.GetUpperCut() << "\n\n";
+    myLogFile << "Chi2 std factor:" << std::setw(58) << /* CutManager. */Chi2_Proton_cuts_CD.GetStdFactor() << "\n";
+    myLogFile << "Chi2 fit std:" << std::setw(61) << /* CutManager. */Chi2_Proton_cuts_CD.GetUpperCut() / /* CutManager. */Chi2_Proton_cuts_CD.GetStdFactor() << "\n";
+    myLogFile << "Chi2 fit mean:" << std::setw(60) << /* CutManager. */Chi2_Proton_cuts_CD.GetMean() << "\n";
+    myLogFile << "Chi2 hist mean:" << std::setw(59) << /* CutManager. */Chi2_Proton_cuts_CD.MeanFromHistogram << "\n";
+    myLogFile << "Chi2 lower cut:" << std::setw(59) << /* CutManager. */Chi2_Proton_cuts_CD.GetLowerCut() << "\n";
+    myLogFile << "Chi2 upper cut:" << std::setw(59) << /* CutManager. */Chi2_Proton_cuts_CD.GetUpperCut() << "\n\n";
 
     myLogFile << "\n-- Protons in FD (1e cut) -------------------------------------------------" << "\n";
-    myLogFile << "Chi2 std factor:" << std::setw(58) << /* CutManager. */.Chi2_Proton_cuts_FD.GetStdFactor() << "\n";
-    myLogFile << "Chi2 fit std:" << std::setw(61) << /* CutManager. */.Chi2_Proton_cuts_FD.GetUpperCut() / /* CutManager. */.Chi2_Proton_cuts_FD.GetStdFactor() << "\n";
-    myLogFile << "Chi2 fit mean:" << std::setw(60) << /* CutManager. */.Chi2_Proton_cuts_FD.GetMean() << "\n";
-    myLogFile << "Chi2 hist mean:" << std::setw(59) << /* CutManager. */.Chi2_Proton_cuts_FD.MeanFromHistogram << "\n";
-    myLogFile << "Chi2 lower cut:" << std::setw(59) << /* CutManager. */.Chi2_Proton_cuts_FD.GetLowerCut() << "\n";
-    myLogFile << "Chi2 upper cut:" << std::setw(59) << /* CutManager. */.Chi2_Proton_cuts_FD.GetUpperCut() << "\n\n";
+    myLogFile << "Chi2 std factor:" << std::setw(58) << /* CutManager. */Chi2_Proton_cuts_FD.GetStdFactor() << "\n";
+    myLogFile << "Chi2 fit std:" << std::setw(61) << /* CutManager. */Chi2_Proton_cuts_FD.GetUpperCut() / /* CutManager. */Chi2_Proton_cuts_FD.GetStdFactor() << "\n";
+    myLogFile << "Chi2 fit mean:" << std::setw(60) << /* CutManager. */Chi2_Proton_cuts_FD.GetMean() << "\n";
+    myLogFile << "Chi2 hist mean:" << std::setw(59) << /* CutManager. */Chi2_Proton_cuts_FD.MeanFromHistogram << "\n";
+    myLogFile << "Chi2 lower cut:" << std::setw(59) << /* CutManager. */Chi2_Proton_cuts_FD.GetLowerCut() << "\n";
+    myLogFile << "Chi2 upper cut:" << std::setw(59) << /* CutManager. */Chi2_Proton_cuts_FD.GetUpperCut() << "\n\n";
 
     // Chi2_Kplus
     myLogFile << "\n-- K+ ---------------------------------------------------------------------" << "\n\n";
 
     myLogFile << "\n-- Kplus in CD (1e cut) ---------------------------------------------------" << "\n";
-    myLogFile << "Chi2 std factor:" << std::setw(58) << /* CutManager. */.Chi2_Kplus_cuts_CD.GetStdFactor() << "\n";
-    myLogFile << "Chi2 fit std:" << std::setw(61) << /* CutManager. */.Chi2_Kplus_cuts_CD.GetUpperCut() / /* CutManager. */.Chi2_Kplus_cuts_CD.GetStdFactor() << "\n";
-    myLogFile << "Chi2 fit mean:" << std::setw(60) << /* CutManager. */.Chi2_Kplus_cuts_CD.GetMean() << "\n";
-    myLogFile << "Chi2 hist mean:" << std::setw(59) << /* CutManager. */.Chi2_Kplus_cuts_CD.MeanFromHistogram << "\n";
-    myLogFile << "Chi2 lower cut:" << std::setw(59) << /* CutManager. */.Chi2_Kplus_cuts_CD.GetLowerCut() << "\n";
-    myLogFile << "Chi2 upper cut:" << std::setw(59) << /* CutManager. */.Chi2_Kplus_cuts_CD.GetUpperCut() << "\n\n";
+    myLogFile << "Chi2 std factor:" << std::setw(58) << /* CutManager. */Chi2_Kplus_cuts_CD.GetStdFactor() << "\n";
+    myLogFile << "Chi2 fit std:" << std::setw(61) << /* CutManager. */Chi2_Kplus_cuts_CD.GetUpperCut() / /* CutManager. */Chi2_Kplus_cuts_CD.GetStdFactor() << "\n";
+    myLogFile << "Chi2 fit mean:" << std::setw(60) << /* CutManager. */Chi2_Kplus_cuts_CD.GetMean() << "\n";
+    myLogFile << "Chi2 hist mean:" << std::setw(59) << /* CutManager. */Chi2_Kplus_cuts_CD.MeanFromHistogram << "\n";
+    myLogFile << "Chi2 lower cut:" << std::setw(59) << /* CutManager. */Chi2_Kplus_cuts_CD.GetLowerCut() << "\n";
+    myLogFile << "Chi2 upper cut:" << std::setw(59) << /* CutManager. */Chi2_Kplus_cuts_CD.GetUpperCut() << "\n\n";
 
     myLogFile << "\n-- Kplus in FD (1e cut) ---------------------------------------------------" << "\n";
-    myLogFile << "Chi2 std factor:" << std::setw(58) << /* CutManager. */.Chi2_Kplus_cuts_FD.GetStdFactor() << "\n";
-    myLogFile << "Chi2 fit std:" << std::setw(61) << /* CutManager. */.Chi2_Kplus_cuts_FD.GetUpperCut() / /* CutManager. */.Chi2_Kplus_cuts_FD.GetStdFactor() << "\n";
-    myLogFile << "Chi2 fit mean:" << std::setw(60) << /* CutManager. */.Chi2_Kplus_cuts_FD.GetMean() << "\n";
-    myLogFile << "Chi2 hist mean:" << std::setw(59) << /* CutManager. */.Chi2_Kplus_cuts_FD.MeanFromHistogram << "\n";
-    myLogFile << "Chi2 lower cut:" << std::setw(59) << /* CutManager. */.Chi2_Kplus_cuts_FD.GetLowerCut() << "\n";
-    myLogFile << "Chi2 upper cut:" << std::setw(59) << /* CutManager. */.Chi2_Kplus_cuts_FD.GetUpperCut() << "\n\n";
+    myLogFile << "Chi2 std factor:" << std::setw(58) << /* CutManager. */Chi2_Kplus_cuts_FD.GetStdFactor() << "\n";
+    myLogFile << "Chi2 fit std:" << std::setw(61) << /* CutManager. */Chi2_Kplus_cuts_FD.GetUpperCut() / /* CutManager. */Chi2_Kplus_cuts_FD.GetStdFactor() << "\n";
+    myLogFile << "Chi2 fit mean:" << std::setw(60) << /* CutManager. */Chi2_Kplus_cuts_FD.GetMean() << "\n";
+    myLogFile << "Chi2 hist mean:" << std::setw(59) << /* CutManager. */Chi2_Kplus_cuts_FD.MeanFromHistogram << "\n";
+    myLogFile << "Chi2 lower cut:" << std::setw(59) << /* CutManager. */Chi2_Kplus_cuts_FD.GetLowerCut() << "\n";
+    myLogFile << "Chi2 upper cut:" << std::setw(59) << /* CutManager. */Chi2_Kplus_cuts_FD.GetUpperCut() << "\n\n";
 
     // Chi2_Kminus
     myLogFile << "\n-- K- ---------------------------------------------------------------------" << "\n\n";
 
     myLogFile << "\n-- Kminus in CD (1e cut) --------------------------------------------------" << "\n";
-    myLogFile << "Chi2 std factor:" << std::setw(58) << /* CutManager. */.Chi2_Kminus_cuts_CD.GetStdFactor() << "\n";
-    myLogFile << "Chi2 fit std:" << std::setw(61) << /* CutManager. */.Chi2_Kminus_cuts_CD.GetUpperCut() / /* CutManager. */.Chi2_Kminus_cuts_CD.GetStdFactor() << "\n";
-    myLogFile << "Chi2 fit mean:" << std::setw(60) << /* CutManager. */.Chi2_Kminus_cuts_CD.GetMean() << "\n";
-    myLogFile << "Chi2 hist mean:" << std::setw(59) << /* CutManager. */.Chi2_Kminus_cuts_CD.MeanFromHistogram << "\n";
-    myLogFile << "Chi2 lower cut:" << std::setw(59) << /* CutManager. */.Chi2_Kminus_cuts_CD.GetLowerCut() << "\n";
-    myLogFile << "Chi2 upper cut:" << std::setw(59) << /* CutManager. */.Chi2_Kminus_cuts_CD.GetUpperCut() << "\n\n";
+    myLogFile << "Chi2 std factor:" << std::setw(58) << /* CutManager. */Chi2_Kminus_cuts_CD.GetStdFactor() << "\n";
+    myLogFile << "Chi2 fit std:" << std::setw(61) << /* CutManager. */Chi2_Kminus_cuts_CD.GetUpperCut() / /* CutManager. */Chi2_Kminus_cuts_CD.GetStdFactor() << "\n";
+    myLogFile << "Chi2 fit mean:" << std::setw(60) << /* CutManager. */Chi2_Kminus_cuts_CD.GetMean() << "\n";
+    myLogFile << "Chi2 hist mean:" << std::setw(59) << /* CutManager. */Chi2_Kminus_cuts_CD.MeanFromHistogram << "\n";
+    myLogFile << "Chi2 lower cut:" << std::setw(59) << /* CutManager. */Chi2_Kminus_cuts_CD.GetLowerCut() << "\n";
+    myLogFile << "Chi2 upper cut:" << std::setw(59) << /* CutManager. */Chi2_Kminus_cuts_CD.GetUpperCut() << "\n\n";
 
     myLogFile << "\n-- Kminus in FD (1e cut) --------------------------------------------------" << "\n";
-    myLogFile << "Chi2 std factor:" << std::setw(58) << /* CutManager. */.Chi2_Kminus_cuts_FD.GetStdFactor() << "\n";
-    myLogFile << "Chi2 fit std:" << std::setw(61) << /* CutManager. */.Chi2_Kminus_cuts_FD.GetUpperCut() / /* CutManager. */.Chi2_Kminus_cuts_FD.GetStdFactor() << "\n";
-    myLogFile << "Chi2 fit mean:" << std::setw(60) << /* CutManager. */.Chi2_Kminus_cuts_FD.GetMean() << "\n";
-    myLogFile << "Chi2 hist mean:" << std::setw(59) << /* CutManager. */.Chi2_Kminus_cuts_FD.MeanFromHistogram << "\n";
-    myLogFile << "Chi2 lower cut:" << std::setw(59) << /* CutManager. */.Chi2_Kminus_cuts_FD.GetLowerCut() << "\n";
-    myLogFile << "Chi2 upper cut:" << std::setw(59) << /* CutManager. */.Chi2_Kminus_cuts_FD.GetUpperCut() << "\n\n";
+    myLogFile << "Chi2 std factor:" << std::setw(58) << /* CutManager. */Chi2_Kminus_cuts_FD.GetStdFactor() << "\n";
+    myLogFile << "Chi2 fit std:" << std::setw(61) << /* CutManager. */Chi2_Kminus_cuts_FD.GetUpperCut() / /* CutManager. */Chi2_Kminus_cuts_FD.GetStdFactor() << "\n";
+    myLogFile << "Chi2 fit mean:" << std::setw(60) << /* CutManager. */Chi2_Kminus_cuts_FD.GetMean() << "\n";
+    myLogFile << "Chi2 hist mean:" << std::setw(59) << /* CutManager. */Chi2_Kminus_cuts_FD.MeanFromHistogram << "\n";
+    myLogFile << "Chi2 lower cut:" << std::setw(59) << /* CutManager. */Chi2_Kminus_cuts_FD.GetLowerCut() << "\n";
+    myLogFile << "Chi2 upper cut:" << std::setw(59) << /* CutManager. */Chi2_Kminus_cuts_FD.GetUpperCut() << "\n\n";
 
     // Chi2_piplus
     myLogFile << "\n-- pi+ --------------------------------------------------------------------" << "\n\n";
 
     myLogFile << "\n-- piplus in CD (1e cut) --------------------------------------------------" << "\n";
-    myLogFile << "Chi2 std factor:" << std::setw(58) << /* CutManager. */.Chi2_piplus_cuts_CD.GetStdFactor() << "\n";
-    myLogFile << "Chi2 fit std:" << std::setw(61) << /* CutManager. */.Chi2_piplus_cuts_CD.GetUpperCut() / /* CutManager. */.Chi2_piplus_cuts_CD.GetStdFactor() << "\n";
-    myLogFile << "Chi2 fit mean:" << std::setw(60) << /* CutManager. */.Chi2_piplus_cuts_CD.GetMean() << "\n";
-    myLogFile << "Chi2 hist mean:" << std::setw(59) << /* CutManager. */.Chi2_piplus_cuts_CD.MeanFromHistogram << "\n";
-    myLogFile << "Chi2 lower cut:" << std::setw(59) << /* CutManager. */.Chi2_piplus_cuts_CD.GetLowerCut() << "\n";
-    myLogFile << "Chi2 upper cut:" << std::setw(59) << /* CutManager. */.Chi2_piplus_cuts_CD.GetUpperCut() << "\n\n";
+    myLogFile << "Chi2 std factor:" << std::setw(58) << /* CutManager. */Chi2_piplus_cuts_CD.GetStdFactor() << "\n";
+    myLogFile << "Chi2 fit std:" << std::setw(61) << /* CutManager. */Chi2_piplus_cuts_CD.GetUpperCut() / /* CutManager. */Chi2_piplus_cuts_CD.GetStdFactor() << "\n";
+    myLogFile << "Chi2 fit mean:" << std::setw(60) << /* CutManager. */Chi2_piplus_cuts_CD.GetMean() << "\n";
+    myLogFile << "Chi2 hist mean:" << std::setw(59) << /* CutManager. */Chi2_piplus_cuts_CD.MeanFromHistogram << "\n";
+    myLogFile << "Chi2 lower cut:" << std::setw(59) << /* CutManager. */Chi2_piplus_cuts_CD.GetLowerCut() << "\n";
+    myLogFile << "Chi2 upper cut:" << std::setw(59) << /* CutManager. */Chi2_piplus_cuts_CD.GetUpperCut() << "\n\n";
 
     myLogFile << "\n-- piplus in FD (1e cut) --------------------------------------------------" << "\n";
-    myLogFile << "Chi2 std factor:" << std::setw(58) << /* CutManager. */.Chi2_piplus_cuts_FD.GetStdFactor() << "\n";
-    myLogFile << "Chi2 fit std:" << std::setw(61) << /* CutManager. */.Chi2_piplus_cuts_FD.GetUpperCut() / /* CutManager. */.Chi2_piplus_cuts_FD.GetStdFactor() << "\n";
-    myLogFile << "Chi2 fit mean:" << std::setw(60) << /* CutManager. */.Chi2_piplus_cuts_FD.GetMean() << "\n";
-    myLogFile << "Chi2 hist mean:" << std::setw(59) << /* CutManager. */.Chi2_piplus_cuts_FD.MeanFromHistogram << "\n";
-    myLogFile << "Chi2 lower cut:" << std::setw(59) << /* CutManager. */.Chi2_piplus_cuts_FD.GetLowerCut() << "\n";
-    myLogFile << "Chi2 upper cut:" << std::setw(59) << /* CutManager. */.Chi2_piplus_cuts_FD.GetUpperCut() << "\n\n";
+    myLogFile << "Chi2 std factor:" << std::setw(58) << /* CutManager. */Chi2_piplus_cuts_FD.GetStdFactor() << "\n";
+    myLogFile << "Chi2 fit std:" << std::setw(61) << /* CutManager. */Chi2_piplus_cuts_FD.GetUpperCut() / /* CutManager. */Chi2_piplus_cuts_FD.GetStdFactor() << "\n";
+    myLogFile << "Chi2 fit mean:" << std::setw(60) << /* CutManager. */Chi2_piplus_cuts_FD.GetMean() << "\n";
+    myLogFile << "Chi2 hist mean:" << std::setw(59) << /* CutManager. */Chi2_piplus_cuts_FD.MeanFromHistogram << "\n";
+    myLogFile << "Chi2 lower cut:" << std::setw(59) << /* CutManager. */Chi2_piplus_cuts_FD.GetLowerCut() << "\n";
+    myLogFile << "Chi2 upper cut:" << std::setw(59) << /* CutManager. */Chi2_piplus_cuts_FD.GetUpperCut() << "\n\n";
 
     // Chi2_piminus
     myLogFile << "\n-- pi- --------------------------------------------------------------------" << "\n\n";
 
     myLogFile << "\n-- piminus in CD (1e cut) -------------------------------------------------" << "\n";
-    myLogFile << "Chi2 std factor:" << std::setw(58) << /* CutManager. */.Chi2_piminus_cuts_CD.GetStdFactor() << "\n";
-    myLogFile << "Chi2 fit std:" << std::setw(61) << /* CutManager. */.Chi2_piminus_cuts_CD.GetUpperCut() / /* CutManager. */.Chi2_piminus_cuts_CD.GetStdFactor() << "\n";
-    myLogFile << "Chi2 fit mean:" << std::setw(60) << /* CutManager. */.Chi2_piminus_cuts_CD.GetMean() << "\n";
-    myLogFile << "Chi2 hist mean:" << std::setw(59) << /* CutManager. */.Chi2_piminus_cuts_CD.MeanFromHistogram << "\n";
-    myLogFile << "Chi2 lower cut:" << std::setw(59) << /* CutManager. */.Chi2_piminus_cuts_CD.GetLowerCut() << "\n";
-    myLogFile << "Chi2 upper cut:" << std::setw(59) << /* CutManager. */.Chi2_piminus_cuts_CD.GetUpperCut() << "\n\n";
+    myLogFile << "Chi2 std factor:" << std::setw(58) << /* CutManager. */Chi2_piminus_cuts_CD.GetStdFactor() << "\n";
+    myLogFile << "Chi2 fit std:" << std::setw(61) << /* CutManager. */Chi2_piminus_cuts_CD.GetUpperCut() / /* CutManager. */Chi2_piminus_cuts_CD.GetStdFactor() << "\n";
+    myLogFile << "Chi2 fit mean:" << std::setw(60) << /* CutManager. */Chi2_piminus_cuts_CD.GetMean() << "\n";
+    myLogFile << "Chi2 hist mean:" << std::setw(59) << /* CutManager. */Chi2_piminus_cuts_CD.MeanFromHistogram << "\n";
+    myLogFile << "Chi2 lower cut:" << std::setw(59) << /* CutManager. */Chi2_piminus_cuts_CD.GetLowerCut() << "\n";
+    myLogFile << "Chi2 upper cut:" << std::setw(59) << /* CutManager. */Chi2_piminus_cuts_CD.GetUpperCut() << "\n\n";
 
     myLogFile << "\n-- piminus in FD (1e cut) -------------------------------------------------" << "\n";
-    myLogFile << "Chi2 std factor:" << std::setw(58) << /* CutManager. */.Chi2_piminus_cuts_FD.GetStdFactor() << "\n";
-    myLogFile << "Chi2 fit std:" << std::setw(61) << /* CutManager. */.Chi2_piminus_cuts_FD.GetUpperCut() / /* CutManager. */.Chi2_piminus_cuts_FD.GetStdFactor() << "\n";
-    myLogFile << "Chi2 fit mean:" << std::setw(60) << /* CutManager. */.Chi2_piminus_cuts_FD.GetMean() << "\n";
-    myLogFile << "Chi2 hist mean:" << std::setw(59) << /* CutManager. */.Chi2_piminus_cuts_FD.MeanFromHistogram << "\n";
-    myLogFile << "Chi2 lower cut:" << std::setw(59) << /* CutManager. */.Chi2_piminus_cuts_FD.GetLowerCut() << "\n";
-    myLogFile << "Chi2 upper cut:" << std::setw(59) << /* CutManager. */.Chi2_piminus_cuts_FD.GetUpperCut() << "\n\n";
+    myLogFile << "Chi2 std factor:" << std::setw(58) << /* CutManager. */Chi2_piminus_cuts_FD.GetStdFactor() << "\n";
+    myLogFile << "Chi2 fit std:" << std::setw(61) << /* CutManager. */Chi2_piminus_cuts_FD.GetUpperCut() / /* CutManager. */Chi2_piminus_cuts_FD.GetStdFactor() << "\n";
+    myLogFile << "Chi2 fit mean:" << std::setw(60) << /* CutManager. */Chi2_piminus_cuts_FD.GetMean() << "\n";
+    myLogFile << "Chi2 hist mean:" << std::setw(59) << /* CutManager. */Chi2_piminus_cuts_FD.MeanFromHistogram << "\n";
+    myLogFile << "Chi2 lower cut:" << std::setw(59) << /* CutManager. */Chi2_piminus_cuts_FD.GetLowerCut() << "\n";
+    myLogFile << "Chi2 upper cut:" << std::setw(59) << /* CutManager. */Chi2_piminus_cuts_FD.GetUpperCut() << "\n\n";
 
     // Chi2_deuteron
     myLogFile << "\n-- deuteron ---------------------------------------------------------------" << "\n\n";
 
     myLogFile << "\n-- deuteron in CD (1e cut) -------------------------------------------------" << "\n";
-    myLogFile << "Chi2 std factor:" << std::setw(58) << /* CutManager. */.Chi2_deuteron_cuts_CD.GetStdFactor() << "\n";
-    myLogFile << "Chi2 fit std:" << std::setw(61) << /* CutManager. */.Chi2_deuteron_cuts_CD.GetUpperCut() / /* CutManager. */.Chi2_deuteron_cuts_CD.GetStdFactor() << "\n";
-    myLogFile << "Chi2 fit mean:" << std::setw(60) << /* CutManager. */.Chi2_deuteron_cuts_CD.GetMean() << "\n";
-    myLogFile << "Chi2 hist mean:" << std::setw(59) << /* CutManager. */.Chi2_deuteron_cuts_CD.MeanFromHistogram << "\n";
-    myLogFile << "Chi2 lower cut:" << std::setw(59) << /* CutManager. */.Chi2_deuteron_cuts_CD.GetLowerCut() << "\n";
-    myLogFile << "Chi2 upper cut:" << std::setw(59) << /* CutManager. */.Chi2_deuteron_cuts_CD.GetUpperCut() << "\n\n";
+    myLogFile << "Chi2 std factor:" << std::setw(58) << /* CutManager. */Chi2_deuteron_cuts_CD.GetStdFactor() << "\n";
+    myLogFile << "Chi2 fit std:" << std::setw(61) << /* CutManager. */Chi2_deuteron_cuts_CD.GetUpperCut() / /* CutManager. */Chi2_deuteron_cuts_CD.GetStdFactor() << "\n";
+    myLogFile << "Chi2 fit mean:" << std::setw(60) << /* CutManager. */Chi2_deuteron_cuts_CD.GetMean() << "\n";
+    myLogFile << "Chi2 hist mean:" << std::setw(59) << /* CutManager. */Chi2_deuteron_cuts_CD.MeanFromHistogram << "\n";
+    myLogFile << "Chi2 lower cut:" << std::setw(59) << /* CutManager. */Chi2_deuteron_cuts_CD.GetLowerCut() << "\n";
+    myLogFile << "Chi2 upper cut:" << std::setw(59) << /* CutManager. */Chi2_deuteron_cuts_CD.GetUpperCut() << "\n\n";
 
     myLogFile << "\n-- deuteron in FD (1e cut) -------------------------------------------------" << "\n";
-    myLogFile << "Chi2 std factor:" << std::setw(58) << /* CutManager. */.Chi2_deuteron_cuts_FD.GetStdFactor() << "\n";
-    myLogFile << "Chi2 fit std:" << std::setw(61) << /* CutManager. */.Chi2_deuteron_cuts_FD.GetUpperCut() / /* CutManager. */.Chi2_deuteron_cuts_FD.GetStdFactor() << "\n";
-    myLogFile << "Chi2 fit mean:" << std::setw(60) << /* CutManager. */.Chi2_deuteron_cuts_FD.GetMean() << "\n";
-    myLogFile << "Chi2 hist mean:" << std::setw(59) << /* CutManager. */.Chi2_deuteron_cuts_FD.MeanFromHistogram << "\n";
-    myLogFile << "Chi2 lower cut:" << std::setw(59) << /* CutManager. */.Chi2_deuteron_cuts_FD.GetLowerCut() << "\n";
-    myLogFile << "Chi2 upper cut:" << std::setw(59) << /* CutManager. */.Chi2_deuteron_cuts_FD.GetUpperCut() << "\n\n";
+    myLogFile << "Chi2 std factor:" << std::setw(58) << /* CutManager. */Chi2_deuteron_cuts_FD.GetStdFactor() << "\n";
+    myLogFile << "Chi2 fit std:" << std::setw(61) << /* CutManager. */Chi2_deuteron_cuts_FD.GetUpperCut() / /* CutManager. */Chi2_deuteron_cuts_FD.GetStdFactor() << "\n";
+    myLogFile << "Chi2 fit mean:" << std::setw(60) << /* CutManager. */Chi2_deuteron_cuts_FD.GetMean() << "\n";
+    myLogFile << "Chi2 hist mean:" << std::setw(59) << /* CutManager. */Chi2_deuteron_cuts_FD.MeanFromHistogram << "\n";
+    myLogFile << "Chi2 lower cut:" << std::setw(59) << /* CutManager. */Chi2_deuteron_cuts_FD.GetLowerCut() << "\n";
+    myLogFile << "Chi2 upper cut:" << std::setw(59) << /* CutManager. */Chi2_deuteron_cuts_FD.GetUpperCut() << "\n\n";
 
     // Vertex cuts (CD & FD)
     myLogFile << "\n===========================================================================\n";
     myLogFile << "V cuts (CD & FD)\n";
     myLogFile << "===========================================================================\n\n";
 
-    myLogFile << "Vz_cut.GetUpperCut() = " << /* CutManager. */.Vz_cut.GetUpperCut() << "\n";
-    myLogFile << "Vz_cut.GetLowerCut() = " << /* CutManager. */.Vz_cut.GetLowerCut() << "\n\n";
-    myLogFile << "Vz_cut_FD.GetUpperCut() = " << /* CutManager. */.Vz_cut_FD.GetUpperCut() << "\n";
-    myLogFile << "Vz_cut_FD.GetLowerCut() = " << /* CutManager. */.Vz_cut_FD.GetLowerCut() << "\n\n";
-    myLogFile << "Vz_cut_CD.GetUpperCut() = " << /* CutManager. */.Vz_cut_CD.GetUpperCut() << "\n";
-    myLogFile << "Vz_cut_CD.GetLowerCut() = " << /* CutManager. */.Vz_cut_CD.GetLowerCut() << "\n\n";
+    myLogFile << "Vz_cut.GetUpperCut() = " << /* CutManager. */Vz_cut.GetUpperCut() << "\n";
+    myLogFile << "Vz_cut.GetLowerCut() = " << /* CutManager. */Vz_cut.GetLowerCut() << "\n\n";
+    myLogFile << "Vz_cut_FD.GetUpperCut() = " << /* CutManager. */Vz_cut_FD.GetUpperCut() << "\n";
+    myLogFile << "Vz_cut_FD.GetLowerCut() = " << /* CutManager. */Vz_cut_FD.GetLowerCut() << "\n\n";
+    myLogFile << "Vz_cut_CD.GetUpperCut() = " << /* CutManager. */Vz_cut_CD.GetUpperCut() << "\n";
+    myLogFile << "Vz_cut_CD.GetLowerCut() = " << /* CutManager. */Vz_cut_CD.GetLowerCut() << "\n\n";
 
     // dV cuts (CD & FD)
     myLogFile << "\n===========================================================================\n";
     myLogFile << "dV cuts (CD & FD)\n";
     myLogFile << "===========================================================================\n\n";
 
-    myLogFile << "dVz_cuts.GetUpperCut() = " << /* CutManager. */.dVz_cuts.GetUpperCut() << "\n";
-    myLogFile << "dVz_cuts.GetLowerCut() = " << /* CutManager. */.dVz_cuts.GetLowerCut() << "\n\n";
-    myLogFile << "dVz_cuts_FD.GetUpperCut() = " << /* CutManager. */.dVz_cuts_FD.GetUpperCut() << "\n";
-    myLogFile << "dVz_cuts_FD.GetLowerCut() = " << /* CutManager. */.dVz_cuts_FD.GetLowerCut() << "\n\n";
-    myLogFile << "dVz_cuts_CD.GetUpperCut() = " << /* CutManager. */.dVz_cuts_CD.GetUpperCut() << "\n";
-    myLogFile << "dVz_cuts_CD.GetLowerCut() = " << /* CutManager. */.dVz_cuts_CD.GetLowerCut() << "\n\n";
+    myLogFile << "dVz_cuts.GetUpperCut() = " << /* CutManager. */dVz_cuts.GetUpperCut() << "\n";
+    myLogFile << "dVz_cuts.GetLowerCut() = " << /* CutManager. */dVz_cuts.GetLowerCut() << "\n\n";
+    myLogFile << "dVz_cuts_FD.GetUpperCut() = " << /* CutManager. */dVz_cuts_FD.GetUpperCut() << "\n";
+    myLogFile << "dVz_cuts_FD.GetLowerCut() = " << /* CutManager. */dVz_cuts_FD.GetLowerCut() << "\n\n";
+    myLogFile << "dVz_cuts_CD.GetUpperCut() = " << /* CutManager. */dVz_cuts_CD.GetUpperCut() << "\n";
+    myLogFile << "dVz_cuts_CD.GetLowerCut() = " << /* CutManager. */dVz_cuts_CD.GetLowerCut() << "\n\n";
 
     // Sampling Fraction (SF) cuts (electrons only, FD)
     myLogFile << "\n===========================================================================\n";
@@ -22908,12 +22908,12 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     myLogFile << "Momentum thresholds {min, max}\n";
     myLogFile << "===========================================================================\n";
 
-    myLogFile << "e_mom_th = {" << /* CutManager. */.e_mom_th.GetLowerCut() << ", " << /* CutManager. */.e_mom_th.GetUpperCut() << "}\n";
-    myLogFile << "n_mom_th = {" << /* CutManager. */.n_mom_th.GetLowerCut() << ", " << /* CutManager. */.n_mom_th.GetUpperCut() << "}\n";
-    myLogFile << "p_mom_th = {" << /* CutManager. */.p_mom_th.GetLowerCut() << ", " << /* CutManager. */.p_mom_th.GetUpperCut() << "}\n";
-    myLogFile << "ph_mom_th = {" << /* CutManager. */.ph_mom_th.GetLowerCut() << ", " << /* CutManager. */.ph_mom_th.GetUpperCut() << "}\n";
-    myLogFile << "pip_mom_th = {" << /* CutManager. */.pip_mom_th.GetLowerCut() << ", " << /* CutManager. */.pip_mom_th.GetUpperCut() << "}\n";
-    myLogFile << "pim_mom_th = {" << /* CutManager. */.pim_mom_th.GetLowerCut() << ", " << /* CutManager. */.pim_mom_th.GetUpperCut() << "}\n";
+    myLogFile << "e_mom_th = {" << /* CutManager. */e_mom_th.GetLowerCut() << ", " << /* CutManager. */e_mom_th.GetUpperCut() << "}\n";
+    myLogFile << "n_mom_th = {" << /* CutManager. */n_mom_th.GetLowerCut() << ", " << /* CutManager. */n_mom_th.GetUpperCut() << "}\n";
+    myLogFile << "p_mom_th = {" << /* CutManager. */p_mom_th.GetLowerCut() << ", " << /* CutManager. */p_mom_th.GetUpperCut() << "}\n";
+    myLogFile << "ph_mom_th = {" << /* CutManager. */ph_mom_th.GetLowerCut() << ", " << /* CutManager. */ph_mom_th.GetUpperCut() << "}\n";
+    myLogFile << "pip_mom_th = {" << /* CutManager. */pip_mom_th.GetLowerCut() << ", " << /* CutManager. */pip_mom_th.GetUpperCut() << "}\n";
+    myLogFile << "pim_mom_th = {" << /* CutManager. */pim_mom_th.GetLowerCut() << ", " << /* CutManager. */pim_mom_th.GetUpperCut() << "}\n";
 
     // Momentum cuts
     myLogFile << "\n===========================================================================\n";
@@ -22921,74 +22921,74 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     myLogFile << "===========================================================================\n";
 
     myLogFile << "\n-- Momentum cuts (1n, FD only) --------------------------------------------" << "\n";
-    myLogFile << "Neutrons (n_momentum_cuts - ECAL):\t\t{" << /* CutManager. */.n_momentum_cuts_ABF_FD_n_from_ph.GetLowerCut() << ", " << /* CutManager. */.n_momentum_cuts_ABF_FD_n_from_ph.GetUpperCut()
+    myLogFile << "Neutrons (n_momentum_cuts - ECAL):\t\t{" << /* CutManager. */n_momentum_cuts_ABF_FD_n_from_ph.GetLowerCut() << ", " << /* CutManager. */n_momentum_cuts_ABF_FD_n_from_ph.GetUpperCut()
               << "}\n";
-    myLogFile << "Neutrons (n_momentum_cuts - ECAL apprax):\t{" << /* CutManager. */.n_momentum_cuts_ABF_FD_n_from_ph_apprax.GetLowerCut() << ", "
-              << /* CutManager. */.n_momentum_cuts_ABF_FD_n_from_ph_apprax.GetUpperCut() << "}\n";
+    myLogFile << "Neutrons (n_momentum_cuts - ECAL apprax):\t{" << /* CutManager. */n_momentum_cuts_ABF_FD_n_from_ph_apprax.GetLowerCut() << ", "
+              << /* CutManager. */n_momentum_cuts_ABF_FD_n_from_ph_apprax.GetUpperCut() << "}\n";
 
     // TL Momentum thresholds
     myLogFile << "\n===========================================================================\n";
     myLogFile << "TL Momentum thresholds {min, max}\n";
     myLogFile << "===========================================================================\n";
 
-    myLogFile << "TL_e_mom_cuts:\t{" << /* CutManager. */.TL_e_mom_cuts.GetLowerCut() << ", " << /* CutManager. */.TL_e_mom_cuts.GetUpperCut() << "}\n";
-    myLogFile << "TL_n_mom_cuts:\t{" << /* CutManager. */.TL_n_mom_cuts.GetLowerCut() << ", " << /* CutManager. */.TL_n_mom_cuts.GetUpperCut() << "}\n";
-    myLogFile << "TL_p_mom_cuts:\t{" << /* CutManager. */.TL_p_mom_cuts.GetLowerCut() << ", " << /* CutManager. */.TL_p_mom_cuts.GetUpperCut() << "}\n";
-    myLogFile << "TL_pFD_mom_cuts:\t{" << /* CutManager. */.TL_pFD_mom_cuts.GetLowerCut() << ", " << /* CutManager. */.TL_pFD_mom_cuts.GetUpperCut() << "}\n";
-    myLogFile << "TL_pCD_mom_cuts:\t{" << /* CutManager. */.TL_pCD_mom_cuts.GetLowerCut() << ", " << /* CutManager. */.TL_pCD_mom_cuts.GetUpperCut() << "}\n";
-    myLogFile << "TL_pip_mom_cuts:\t{" << /* CutManager. */.TL_pip_mom_cuts.GetLowerCut() << ", " << /* CutManager. */.TL_pip_mom_cuts.GetUpperCut() << "}\n";
-    myLogFile << "TL_pipFD_mom_cuts:\t{" << /* CutManager. */.TL_pipFD_mom_cuts.GetLowerCut() << ", " << /* CutManager. */.TL_pipFD_mom_cuts.GetUpperCut() << "}\n";
-    myLogFile << "TL_pipCD_mom_cuts:\t{" << /* CutManager. */.TL_pipCD_mom_cuts.GetLowerCut() << ", " << /* CutManager. */.TL_pipCD_mom_cuts.GetUpperCut() << "}\n";
-    myLogFile << "TL_pim_mom_cuts:\t{" << /* CutManager. */.TL_pim_mom_cuts.GetLowerCut() << ", " << /* CutManager. */.TL_pim_mom_cuts.GetUpperCut() << "}\n";
-    myLogFile << "TL_pimFD_mom_cuts:\t{" << /* CutManager. */.TL_pimFD_mom_cuts.GetLowerCut() << ", " << /* CutManager. */.TL_pimFD_mom_cuts.GetUpperCut() << "}\n";
-    myLogFile << "TL_pimCD_mom_cuts:\t{" << /* CutManager. */.TL_pimCD_mom_cuts.GetLowerCut() << ", " << /* CutManager. */.TL_pimCD_mom_cuts.GetUpperCut() << "}\n";
-    myLogFile << "TL_pi0_mom_cuts:\t{" << /* CutManager. */.TL_pi0_mom_cuts.GetLowerCut() << ", " << /* CutManager. */.TL_pi0_mom_cuts.GetUpperCut() << "}\n";
-    myLogFile << "TL_ph_mom_cuts:\t{" << /* CutManager. */.TL_ph_mom_cuts.GetLowerCut() << ", " << /* CutManager. */.TL_ph_mom_cuts.GetUpperCut() << "}\n\n";
+    myLogFile << "TL_e_mom_cuts:\t{" << /* CutManager. */TL_e_mom_cuts.GetLowerCut() << ", " << /* CutManager. */TL_e_mom_cuts.GetUpperCut() << "}\n";
+    myLogFile << "TL_n_mom_cuts:\t{" << /* CutManager. */TL_n_mom_cuts.GetLowerCut() << ", " << /* CutManager. */TL_n_mom_cuts.GetUpperCut() << "}\n";
+    myLogFile << "TL_p_mom_cuts:\t{" << /* CutManager. */TL_p_mom_cuts.GetLowerCut() << ", " << /* CutManager. */TL_p_mom_cuts.GetUpperCut() << "}\n";
+    myLogFile << "TL_pFD_mom_cuts:\t{" << /* CutManager. */TL_pFD_mom_cuts.GetLowerCut() << ", " << /* CutManager. */TL_pFD_mom_cuts.GetUpperCut() << "}\n";
+    myLogFile << "TL_pCD_mom_cuts:\t{" << /* CutManager. */TL_pCD_mom_cuts.GetLowerCut() << ", " << /* CutManager. */TL_pCD_mom_cuts.GetUpperCut() << "}\n";
+    myLogFile << "TL_pip_mom_cuts:\t{" << /* CutManager. */TL_pip_mom_cuts.GetLowerCut() << ", " << /* CutManager. */TL_pip_mom_cuts.GetUpperCut() << "}\n";
+    myLogFile << "TL_pipFD_mom_cuts:\t{" << /* CutManager. */TL_pipFD_mom_cuts.GetLowerCut() << ", " << /* CutManager. */TL_pipFD_mom_cuts.GetUpperCut() << "}\n";
+    myLogFile << "TL_pipCD_mom_cuts:\t{" << /* CutManager. */TL_pipCD_mom_cuts.GetLowerCut() << ", " << /* CutManager. */TL_pipCD_mom_cuts.GetUpperCut() << "}\n";
+    myLogFile << "TL_pim_mom_cuts:\t{" << /* CutManager. */TL_pim_mom_cuts.GetLowerCut() << ", " << /* CutManager. */TL_pim_mom_cuts.GetUpperCut() << "}\n";
+    myLogFile << "TL_pimFD_mom_cuts:\t{" << /* CutManager. */TL_pimFD_mom_cuts.GetLowerCut() << ", " << /* CutManager. */TL_pimFD_mom_cuts.GetUpperCut() << "}\n";
+    myLogFile << "TL_pimCD_mom_cuts:\t{" << /* CutManager. */TL_pimCD_mom_cuts.GetLowerCut() << ", " << /* CutManager. */TL_pimCD_mom_cuts.GetUpperCut() << "}\n";
+    myLogFile << "TL_pi0_mom_cuts:\t{" << /* CutManager. */TL_pi0_mom_cuts.GetLowerCut() << ", " << /* CutManager. */TL_pi0_mom_cuts.GetUpperCut() << "}\n";
+    myLogFile << "TL_ph_mom_cuts:\t{" << /* CutManager. */TL_ph_mom_cuts.GetLowerCut() << ", " << /* CutManager. */TL_ph_mom_cuts.GetUpperCut() << "}\n\n";
 
     // Beta cut (1n, FD)
     myLogFile << "\n===========================================================================\n";
     myLogFile << "Beta cut (1n, FD)\n";
     myLogFile << "===========================================================================\n\n";
 
-    myLogFile << "Beta_cut.GetUpperCut() (1 fit std) = " << /* CutManager. */.Beta_cut.GetUpperCut() << "\n";
-    myLogFile << "Beta_cut.GetMean() = " << /* CutManager. */.Beta_cut.GetMean() << "\n\n";
+    myLogFile << "Beta_cut.GetUpperCut() (1 fit std) = " << /* CutManager. */Beta_cut.GetUpperCut() << "\n";
+    myLogFile << "Beta_cut.GetMean() = " << /* CutManager. */Beta_cut.GetMean() << "\n\n";
 
     // Nucleon kinematical cuts (FD)
     myLogFile << "\n===========================================================================\n";
     myLogFile << "Nucleon kinematical cuts (FD)\n";
     myLogFile << "===========================================================================\n\n";
 
-    myLogFile << "FD_nucleon_theta_cut.GetUpperCut() = " << /* CutManager. */.FD_nucleon_theta_cut.GetUpperCut() << "\n";
-    myLogFile << "FD_nucleon_theta_cut.GetLowerCut() = " << /* CutManager. */.FD_nucleon_theta_cut.GetLowerCut() << "\n\n";
+    myLogFile << "FD_nucleon_theta_cut.GetUpperCut() = " << /* CutManager. */FD_nucleon_theta_cut.GetUpperCut() << "\n";
+    myLogFile << "FD_nucleon_theta_cut.GetLowerCut() = " << /* CutManager. */FD_nucleon_theta_cut.GetLowerCut() << "\n\n";
 
-    myLogFile << "FD_nucleon_momentum_cut.GetUpperCut() = " << /* CutManager. */.FD_nucleon_momentum_cut.GetUpperCut() << "\n";
-    myLogFile << "FD_nucleon_momentum_cut.GetLowerCut() = " << /* CutManager. */.FD_nucleon_momentum_cut.GetLowerCut() << "\n\n";
+    myLogFile << "FD_nucleon_momentum_cut.GetUpperCut() = " << /* CutManager. */FD_nucleon_momentum_cut.GetUpperCut() << "\n";
+    myLogFile << "FD_nucleon_momentum_cut.GetLowerCut() = " << /* CutManager. */FD_nucleon_momentum_cut.GetLowerCut() << "\n\n";
 
-    myLogFile << "MomRes_mu_cuts.GetUpperCut() = " << /* CutManager. */.MomRes_mu_cuts.GetUpperCut() << "\n";
-    myLogFile << "MomRes_mu_cuts.GetLowerCut() = " << /* CutManager. */.MomRes_mu_cuts.GetLowerCut() << "\n";
-    myLogFile << "MomRes_sigma_cuts.GetUpperCut() = " << /* CutManager. */.MomRes_sigma_cuts.GetUpperCut() << "\n";
-    myLogFile << "MomRes_sigma_cuts.GetLowerCut() = " << /* CutManager. */.MomRes_sigma_cuts.GetLowerCut() << "\n\n";
+    myLogFile << "MomRes_mu_cuts.GetUpperCut() = " << /* CutManager. */MomRes_mu_cuts.GetUpperCut() << "\n";
+    myLogFile << "MomRes_mu_cuts.GetLowerCut() = " << /* CutManager. */MomRes_mu_cuts.GetLowerCut() << "\n";
+    myLogFile << "MomRes_sigma_cuts.GetUpperCut() = " << /* CutManager. */MomRes_sigma_cuts.GetUpperCut() << "\n";
+    myLogFile << "MomRes_sigma_cuts.GetLowerCut() = " << /* CutManager. */MomRes_sigma_cuts.GetLowerCut() << "\n\n";
 
     // Neutron veto cut (1n & nFDpCD, FD)
     myLogFile << "\n===========================================================================\n";
     myLogFile << "Neutron veto cut (1n & nFDpCD, FD)\n";
     myLogFile << "===========================================================================\n\n";
 
-    myLogFile << "Neutron_veto_cut.GetLowerCut() = " << /* CutManager. */.Neutron_veto_cut.GetLowerCut() << "\n\n";
+    myLogFile << "Neutron_veto_cut.GetLowerCut() = " << /* CutManager. */Neutron_veto_cut.GetLowerCut() << "\n\n";
 
     // Ghost tracks handling (2p, CD & FD)
     myLogFile << "\n===========================================================================\n";
     myLogFile << "Ghost tracks handling (2p, CD & FD)\n";
     myLogFile << "===========================================================================\n\n";
 
-    myLogFile << "Theta_p1_cuts_2p = " << /* CutManager. */.Theta_p1_cuts_2p.GetUpperCut() << "\n";
-    myLogFile << "Theta_p1_cuts_2p mean = " << /* CutManager. */.Theta_p1_cuts_2p.GetMean() << "\n";
-    myLogFile << "Theta_p2_cuts_2p = " << /* CutManager. */.Theta_p2_cuts_2p.GetUpperCut() << "\n";
-    myLogFile << "Theta_p2_cuts_2p mean = " << /* CutManager. */.Theta_p2_cuts_2p.GetMean() << "\n";
-    myLogFile << "dphi_p1_p2_2p.GetUpperCut() = " << /* CutManager. */.dphi_p1_p2_2p.GetUpperCut() << "\n";
-    myLogFile << "dphi_p1_p2_2p.GetMean() = " << /* CutManager. */.dphi_p1_p2_2p.GetMean() << "\n\n";
-    myLogFile << "dphi_pFD_pCD_2p.GetUpperCut() = " << /* CutManager. */.dphi_pFD_pCD_2p.GetUpperCut() << "\n";
-    myLogFile << "dphi_pFD_pCD_2p.GetMean() = " << /* CutManager. */.dphi_pFD_pCD_2p.GetMean() << "\n\n";
+    myLogFile << "Theta_p1_cuts_2p = " << /* CutManager. */Theta_p1_cuts_2p.GetUpperCut() << "\n";
+    myLogFile << "Theta_p1_cuts_2p mean = " << /* CutManager. */Theta_p1_cuts_2p.GetMean() << "\n";
+    myLogFile << "Theta_p2_cuts_2p = " << /* CutManager. */Theta_p2_cuts_2p.GetUpperCut() << "\n";
+    myLogFile << "Theta_p2_cuts_2p mean = " << /* CutManager. */Theta_p2_cuts_2p.GetMean() << "\n";
+    myLogFile << "dphi_p1_p2_2p.GetUpperCut() = " << /* CutManager. */dphi_p1_p2_2p.GetUpperCut() << "\n";
+    myLogFile << "dphi_p1_p2_2p.GetMean() = " << /* CutManager. */dphi_p1_p2_2p.GetMean() << "\n\n";
+    myLogFile << "dphi_pFD_pCD_2p.GetUpperCut() = " << /* CutManager. */dphi_pFD_pCD_2p.GetUpperCut() << "\n";
+    myLogFile << "dphi_pFD_pCD_2p.GetMean() = " << /* CutManager. */dphi_pFD_pCD_2p.GetMean() << "\n\n";
 
     // momRes correction and smearing coefficients
     myLogFile << "\n===========================================================================\n";
@@ -23161,15 +23161,15 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         myLogFile << "content of FittedPIDCuts.par file\n";
         myLogFile << "===========================================================================\n\n";
 
-        DSCuts chi2cuts[] = {/* CutManager. */.Chi2_Proton_cuts_CD, /* CutManager. */.Chi2_Proton_cuts_FD,  /* CutManager. */.Chi2_piplus_cuts_CD,
-                             /* CutManager. */.Chi2_piplus_cuts_FD, /* CutManager. */.Chi2_piminus_cuts_CD, /* CutManager. */.Chi2_piminus_cuts_FD};
+        DSCuts chi2cuts[] = {/* CutManager. */Chi2_Proton_cuts_CD, /* CutManager. */Chi2_Proton_cuts_FD,  /* CutManager. */Chi2_piplus_cuts_CD,
+                             /* CutManager. */Chi2_piplus_cuts_FD, /* CutManager. */Chi2_piminus_cuts_CD, /* CutManager. */Chi2_piminus_cuts_FD};
         int chi2cuts_length = 6;
 
         myLogFile << "######################################################################\n";
         myLogFile << "# CLAS12 analysis cuts and parameters file (after chi2 Gaussian fit) #\n";
         myLogFile << "######################################################################\n";
         myLogFile << "\n";
-        myLogFile << "# pid cuts by detector (pid:mean:sigma) - sigma_CD=" << /* CutManager. */.Chi2_Proton_cuts_CD.FitStdFactor << ";sigma_FD=" << /* CutManager. */.Chi2_Proton_cuts_FD.FitStdFactor
+        myLogFile << "# pid cuts by detector (pid:mean:sigma) - sigma_CD=" << /* CutManager. */Chi2_Proton_cuts_CD.FitStdFactor << ";sigma_FD=" << /* CutManager. */Chi2_Proton_cuts_FD.FitStdFactor
                   << ":\n";
 
         for (int i = 0; i < chi2cuts_length; i++) {
