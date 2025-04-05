@@ -2,9 +2,9 @@
 // Created by alons on 05/04/2025.
 //
 
-// #ifndef TRUTHANALYSER_H
-// #define TRUTHANALYSER_H
-#ifdef TRUTHANALYSER_H
+// #ifndef TRUTHANALYZER_H
+// #define TRUTHANALYZER_H
+#ifdef TRUTHANALYZER_H
 
     #include <TCanvas.h>
     #include <TFile.h>
@@ -23,14 +23,14 @@
 
 // using namespace std;
 
-class TruthAnalyser : public gst {
+class TruthAnalyzer : public gst {
    private:
    public:
-    // TruthAnalyser constructor ----------------------------------------------------------------------------------------------------------------------------------------
+    // TruthAnalyzer constructor ----------------------------------------------------------------------------------------------------------------------------------------
 
-    TruthAnalyser();
+    TruthAnalyzer();
 
-    ~TruthAnalyser() = default;
+    ~TruthAnalyzer() = default;
 };
 
-#endif  // TRUTHANALYSER_H
+#endif  // TRUTHANALYZER_H

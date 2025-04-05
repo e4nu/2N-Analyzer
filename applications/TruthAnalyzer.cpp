@@ -1,11 +1,11 @@
 
-#ifndef TRUTHANALYSER_H
-#define TRUTHANALYSER_H
+#ifndef TRUTHANALYZER_H
+#define TRUTHANALYZER_H
 
 #include "TruthAnalyzer.h"
 
-// TruthAnalyser constructor ----------------------------------------------------------------------------------------------------------------------------------------
+// TruthAnalyzer constructor ----------------------------------------------------------------------------------------------------------------------------------------
 
-TruthAnalyser::TruthAnalyser() : gst() { Loop(); }
+TruthAnalyzer::TruthAnalyzer() : gst() { Loop(); }
 
-#endif  // TRUTHANALYSER_H
+#endif  // TRUTHANALYZER_H
