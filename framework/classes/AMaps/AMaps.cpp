@@ -369,7 +369,7 @@ AMaps::AMaps(const std::string &AcceptanceMapsDirectory, const std::string &Samp
              const bool &Nucleon_single_slice_test, const vector<int> &TestSlices) {
     AMaps_Mode = AMapsMode;
 
-    std::string MapsPrefix = (basic_tools::basic_tools::FindSubstring(AMaps_Mode, "AMaps")) ? "AMap" : "WMap";
+    std::string MapsPrefix = (basic_tools::FindSubstring(AMaps_Mode, "AMaps")) ? "AMap" : "WMap";
 
     std::cout << "\n\nSetting iso samp names\n";
     std::string BeamE_str = basic_tools::GetBeamEnergyFromDouble(beamE);
