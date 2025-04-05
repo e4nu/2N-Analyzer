@@ -2,19 +2,19 @@
 #define RECOANALYSER_H
 
 #pragma region /* Includes */
-#include "RecoAnalyzer.h"
+#include "RecoAnalyser.h"
 #pragma endregion
 
-// RecoAnalyzer constructor ---------------------------------------------------------------------------------------------------------------------------------------------
+// RecoAnalyser constructor ---------------------------------------------------------------------------------------------------------------------------------------------
 
-RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string &AnalyzeFileSample, const std::string &AnalyzeFile) {
+RecoAnalyser::RecoAnalyser(const std::string &AnalyzeFilePath, const std::string &AnalyzeFileSample, const std::string &AnalyzeFile) {
     debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode);
 
     std::cout << "\033[33m\n\n===========================================================================\n\033[0m";
-    std::cout << "\033[33m\t\t\tDetector simulation Analyzer\n\033[0m";
+    std::cout << "\033[33m\t\t\tDetector simulation Analyser\n\033[0m";
     std::cout << "\033[33m===========================================================================\n\n\033[0m";
 
-    std::string AnalyzerVersion = "Version 1.10";
+    std::string AnalyserVersion = "Version 1.10";
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Code setup                                                                                                                                                      //
@@ -11753,7 +11753,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
         // Testing cuts
         /* Testing SF cuts */
-        double EoP_e = (electrons[0]->cal(clas12::PCAL)->getEnergy() + electrons[0]->cal(ECIN)->getEnergy() + electrons[0]->cal(ECOUT)->getEnergy()) / P_e_1e_cut;
+        double EoP_e = (electrons[0]->cal(clas12::PCAL)->getEnergy() + electrons[0]->cal(clas12::ECIN)->getEnergy() + electrons[0]->cal(clas12::ECOUT)->getEnergy()) / P_e_1e_cut;
 
         if (!/* CutSettings. */apply_cuts) {
             /* SF plots before cuts */

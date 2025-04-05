@@ -1,6 +1,6 @@
 
-#ifndef AnalyzeR_TRUTHLEVELAnalyzeR_H
-#define AnalyzeR_TRUTHLEVELAnalyzeR_H
+#ifndef Analyser_TRUTHLEVELANALYSER_H
+#define Analyser_TRUTHLEVELANALYSER_H
 
 #include <TROOT.h>
 #include <TChain.h>
@@ -437,4 +437,4 @@ Int_t gst::Cut(Long64_t entry) {
 }
 //</editor-fold>
 
-#endif //AnalyzeR_TRUTHLEVELAnalyzeR_H
+#endif //Analyser_TRUTHLEVELANALYSER_H

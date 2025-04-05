@@ -21,7 +21,7 @@ void gst::Loop() {
     //    auto start = std::chrono::system_clock::now(); // Start counting running time
 
     std::cout << "\n\n===========================================================================\n";
-    std::cout << "\t\t\tTruth level Analyzer\n";
+    std::cout << "\t\t\tTruth level Analyser\n";
     std::cout << "===========================================================================\n\n";
 
     //  Code setup
@@ -7126,17 +7126,17 @@ void gst::Loop() {
     //    TCanvas *c1 = new TCanvas("canvas", "canvas", 1500, 1250);
     //    TCanvas *c1 = new TCanvas("canvas", "canvas", 1500, 1150);
     TCanvas *c1 = new TCanvas("canvas", "canvas", 2000, 1500);
-    //    TCanvas("canvas", "canvas", 1650, 1150); // original TruthLevelAnalyzer.c
+    //    TCanvas("canvas", "canvas", 1650, 1150); // original TruthLevelAnalyser.c
     c1->cd();
     c1->SetGrid();
     c1->SetBottomMargin(0.15);
-    //    c1->SetBottomMargin(0.1275); // original TruthLevelAnalyzer.c
+    //    c1->SetBottomMargin(0.1275); // original TruthLevelAnalyser.c
     //    c1->SetBottomMargin(0.125);
     //    c1->SetBottomMargin(0.115); // original
 
     if (wider_margin) {
         c1->SetLeftMargin(0.15);
-        //        c1->SetLeftMargin(0.1275); // original TruthLevelAnalyzer.c
+        //        c1->SetLeftMargin(0.1275); // original TruthLevelAnalyser.c
         c1->SetRightMargin(0.1275);
     }
     //</editor-fold>

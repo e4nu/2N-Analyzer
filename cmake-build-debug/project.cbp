@@ -49,7 +49,7 @@
 					<Add directory="/home/alon/project/macros"/>
 					<Add directory="/home/alon/project/setup"/>
 					<Add directory="/home/alon/project/setup/CLAS12DAnalysis"/>
-					<Add directory="/home/alon/project/setup/CLAS12DAnalysis/CLAS12DAnalyzer"/>
+					<Add directory="/home/alon/project/setup/CLAS12DAnalysis/CLAS12DAnalyser"/>
 					<Add directory="/home/alon/project/setup/CLAS12DAnalysis/CLAS12DASettings"/>
 					<Add directory="/home/alon/project/setup/CLAS12DAnalysis/CLAS12DHistograms"/>
 					<Add directory="/home/alon/project/source"/>
@@ -105,7 +105,7 @@
 					<Add directory="/home/alon/project/macros"/>
 					<Add directory="/home/alon/project/setup"/>
 					<Add directory="/home/alon/project/setup/CLAS12DAnalysis"/>
-					<Add directory="/home/alon/project/setup/CLAS12DAnalysis/CLAS12DAnalyzer"/>
+					<Add directory="/home/alon/project/setup/CLAS12DAnalysis/CLAS12DAnalyser"/>
 					<Add directory="/home/alon/project/setup/CLAS12DAnalysis/CLAS12DASettings"/>
 					<Add directory="/home/alon/project/setup/CLAS12DAnalysis/CLAS12DHistograms"/>
 					<Add directory="/home/alon/project/source"/>
@@ -150,10 +150,10 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/alon/project/Old_Analyzers/DetectorSimulationAnalyzer.C">
+		<Unit filename="/home/alon/project/Old_Analysers/DetectorSimulationAnalyser.C">
 			<Option target="project"/>
 		</Unit>
-		<Unit filename="/home/alon/project/Old_Analyzers/TruthLevelAnalyzer.c">
+		<Unit filename="/home/alon/project/Old_Analysers/TruthLevelAnalyser.c">
 			<Option target="project"/>
 		</Unit>
 		<Unit filename="/home/alon/project/TempInclude/Classes/HistogramsTemp/HistogramsTemp.cpp">
@@ -246,10 +246,10 @@
 		<Unit filename="/home/alon/project/setup/CLAS12DAnalysis/CLAS12DASettings/CLAS12DASettings.h">
 			<Option target="project"/>
 		</Unit>
-		<Unit filename="/home/alon/project/setup/CLAS12DAnalysis/CLAS12DAnalyzer/CLAS12DAnalyzer.cpp">
+		<Unit filename="/home/alon/project/setup/CLAS12DAnalysis/CLAS12DAnalyser/CLAS12DAnalyser.cpp">
 			<Option target="project"/>
 		</Unit>
-		<Unit filename="/home/alon/project/setup/CLAS12DAnalysis/CLAS12DAnalyzer/CLAS12DAnalyzer.h">
+		<Unit filename="/home/alon/project/setup/CLAS12DAnalysis/CLAS12DAnalyser/CLAS12DAnalyser.h">
 			<Option target="project"/>
 		</Unit>
 		<Unit filename="/home/alon/project/setup/CLAS12DAnalysis/CLAS12DHistograms/CLAS12DHistograms.cpp">
@@ -258,7 +258,7 @@
 		<Unit filename="/home/alon/project/setup/CLAS12DAnalysis/CLAS12DHistograms/CLAS12DHistograms.h">
 			<Option target="project"/>
 		</Unit>
-		<Unit filename="/home/alon/project/setup/TruthLevelAnalyzer.h">
+		<Unit filename="/home/alon/project/setup/TruthLevelAnalyser.h">
 			<Option target="project"/>
 		</Unit>
 		<Unit filename="/home/alon/project/setup/codeSetup.h">
@@ -285,10 +285,10 @@
 		<Unit filename="/home/alon/project/source/classes/DSCuts/DSCuts.h">
 			<Option target="project"/>
 		</Unit>
-		<Unit filename="/home/alon/project/source/classes/DataAnalyzer/DataAnalyzer.cpp">
+		<Unit filename="/home/alon/project/source/classes/DataAnalyser/DataAnalyser.cpp">
 			<Option target="project"/>
 		</Unit>
-		<Unit filename="/home/alon/project/source/classes/DataAnalyzer/DataAnalyzer.h">
+		<Unit filename="/home/alon/project/source/classes/DataAnalyser/DataAnalyser.h">
 			<Option target="project"/>
 		</Unit>
 		<Unit filename="/home/alon/project/source/classes/Directories/Directories.cpp">
@@ -315,10 +315,10 @@
 		<Unit filename="/home/alon/project/source/classes/ParticleID/ParticleID.h">
 			<Option target="project"/>
 		</Unit>
-		<Unit filename="/home/alon/project/source/classes/RecoAnalyzer/RecoAnalyzer.cpp">
+		<Unit filename="/home/alon/project/source/classes/RecoAnalyser/RecoAnalyser.cpp">
 			<Option target="project"/>
 		</Unit>
-		<Unit filename="/home/alon/project/source/classes/RecoAnalyzer/RecoAnalyzer.h">
+		<Unit filename="/home/alon/project/source/classes/RecoAnalyser/RecoAnalyser.h">
 			<Option target="project"/>
 		</Unit>
 		<Unit filename="/home/alon/project/source/classes/Settings/CustomPlotsDirectory.cpp">

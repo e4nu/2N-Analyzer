@@ -14,7 +14,7 @@ using namespace clas12;
 
 
 /* About this file:
- * This is the first version of clas12ana that had beed used in my Analyzer.
+ * This is the first version of clas12ana that had beed used in my Analyser.
  * It is kept here for self-observation and comparison with other versions of clas12ana.
  * */
 

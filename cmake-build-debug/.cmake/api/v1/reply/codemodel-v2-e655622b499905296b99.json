@@ -27,7 +27,7 @@
 					[
 						0
 					],
-					"name" : "2N_Analyzer_e4nu",
+					"name" : "2N_Analyser_e4nu",
 					"targetIndexes" : 
 					[
 						0
@@ -49,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/Users/alon/Projects/2N-Analyzer_e4nu/cmake-build-debug",
-		"source" : "/Users/alon/Projects/2N-Analyzer_e4nu"
+		"build" : "/Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug",
+		"source" : "/Users/alon/Projects/2N-Analyser_e4nu"
 	},
 	"version" : 
 	{

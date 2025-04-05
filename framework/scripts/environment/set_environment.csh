@@ -17,21 +17,21 @@ echo ""
 unset DIR_2N_ANALYSIS_CODE
 # setenv DIR_2N_ANALYSIS_CODE $(pwd)
 setenv DIR_2N_ANALYSIS_CODE `pwd`
-# setenv DIR_2N_ANALYSIS_CODE /w/hallb-scshelf2102/clas12/asportes/2N-Analyzer
+# setenv DIR_2N_ANALYSIS_CODE /w/hallb-scshelf2102/clas12/asportes/2N-Analyser
 echo "${COLOR_START}DIR_2N_ANALYSIS_CODE:${COLOR_END} ${DIR_2N_ANALYSIS_CODE}"
 echo ""
 
 unset ANALYSIS_HOSTNAME
 # setenv DIR_2N_ANALYSIS_CODE $(pwd)
 setenv ANALYSIS_HOSTNAME `hostname`
-# setenv DIR_2N_ANALYSIS_CODE /w/hallb-scshelf2102/clas12/asportes/2N-Analyzer
+# setenv DIR_2N_ANALYSIS_CODE /w/hallb-scshelf2102/clas12/asportes/2N-Analyser
 echo "${COLOR_START}ANALYSIS_HOSTNAME:${COLOR_END} ${ANALYSIS_HOSTNAME}"
 echo ""
 
 unset JLAB_TESTER
 # setenv DIR_2N_ANALYSIS_CODE $(pwd)
 setenv JLAB_TESTER "jlab.org"
-# setenv DIR_2N_ANALYSIS_CODE /w/hallb-scshelf2102/clas12/asportes/2N-Analyzer
+# setenv DIR_2N_ANALYSIS_CODE /w/hallb-scshelf2102/clas12/asportes/2N-Analyser
 echo "${COLOR_START}JLAB_TESTER:${COLOR_END} ${JLAB_TESTER}"
 # echo ""
 

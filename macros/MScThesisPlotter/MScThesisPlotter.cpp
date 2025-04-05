@@ -16,7 +16,7 @@
 #include <TROOT.h>
 
 #define noFSRatio false
-#define FullAnalyzer false
+#define FullAnalyser false
 #define Independent1DHistDraw true
 #define Independent1DMomResDraw false
 #define Independent1DGraphDraw false
@@ -48,7 +48,7 @@ using namespace std;
 /* sudo mount -t drvfs E: /mnt/e */
 /* clas12root macros/MScThesisPlotter/MScThesisPlotter.cpp -b -q */
 
-/* root -l -b -q /Users/alon/Projects/2N-Analyzer/macros/MScThesisPlotter/MScThesisPlotter.cpp */
+/* root -l -b -q /Users/alon/Projects/2N-Analyser/macros/MScThesisPlotter/MScThesisPlotter.cpp */
 
 void MScThesisPlotter()
 {

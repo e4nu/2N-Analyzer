@@ -43,13 +43,13 @@ using namespace utilities;
 using namespace draw_and_save_functions;
     #pragma endregion
 
-class RecoAnalyzer {
+class RecoAnalyser {
    public:
-    // RecoAnalyzer constructor ---------------------------------------------------------------------------------------------------------------------------------------------
+    // RecoAnalyser constructor ---------------------------------------------------------------------------------------------------------------------------------------------
 
-    RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string &AnalyzeFileSample, const std::string &AnalyzeFile);
+    RecoAnalyser(const std::string &AnalyzeFilePath, const std::string &AnalyzeFileSample, const std::string &AnalyzeFile);
 
-    ~RecoAnalyzer() = default;
+    ~RecoAnalyser() = default;
 };
 
 #endif  // RECOANALYSER_H

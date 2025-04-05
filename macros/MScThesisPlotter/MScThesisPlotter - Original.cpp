@@ -18,7 +18,7 @@
 #include <TROOT.h>
 
 #define noFSRatio false
-#define FullAnalyzer false
+#define FullAnalyser false
 #define Independent1DHistDraw true
 #define Independent1DMomResDraw false
 #define Independent1DGraphDraw false

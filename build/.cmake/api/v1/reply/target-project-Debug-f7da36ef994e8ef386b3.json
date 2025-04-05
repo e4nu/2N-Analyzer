@@ -258,135 +258,135 @@
 				},
 				{
 					"backtrace" : 4,
-					"path" : "/Users/alon/Projects/2N-Analyzer_e4nu/."
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/."
 				},
 				{
 					"backtrace" : 5,
-					"path" : "/Users/alon/Projects/2N-Analyzer_e4nu/macros"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/macros"
 				},
 				{
 					"backtrace" : 6,
-					"path" : "/Users/alon/Projects/2N-Analyzer_e4nu/setup"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/setup"
 				},
 				{
 					"backtrace" : 7,
-					"path" : "/Users/alon/Projects/2N-Analyzer_e4nu/setup/CLAS12DAnalysis"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/setup/CLAS12DAnalysis"
 				},
 				{
 					"backtrace" : 8,
-					"path" : "/Users/alon/Projects/2N-Analyzer_e4nu/setup/CLAS12DAnalysis/CLAS12DAnalyzer"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/setup/CLAS12DAnalysis/CLAS12DAnalyser"
 				},
 				{
 					"backtrace" : 9,
-					"path" : "/Users/alon/Projects/2N-Analyzer_e4nu/setup/CLAS12DAnalysis/CLAS12DASettings"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/setup/CLAS12DAnalysis/CLAS12DASettings"
 				},
 				{
 					"backtrace" : 10,
-					"path" : "/Users/alon/Projects/2N-Analyzer_e4nu/setup/CLAS12DAnalysis/CLAS12DHistograms"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/setup/CLAS12DAnalysis/CLAS12DHistograms"
 				},
 				{
 					"backtrace" : 11,
-					"path" : "/Users/alon/Projects/2N-Analyzer_e4nu/framework"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework"
 				},
 				{
 					"backtrace" : 12,
-					"path" : "/Users/alon/Projects/2N-Analyzer_e4nu/framework/classes"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes"
 				},
 				{
 					"backtrace" : 13,
-					"path" : "/Users/alon/Projects/2N-Analyzer_e4nu/framework/classes/AMaps"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/AMaps"
 				},
 				{
 					"backtrace" : 14,
-					"path" : "/Users/alon/Projects/2N-Analyzer_e4nu/framework/classes/clas12ana"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/clas12ana"
 				},
 				{
 					"backtrace" : 15,
-					"path" : "/Users/alon/Projects/2N-Analyzer_e4nu/framework/classes/clas12ana/clas12ana_ver_1_myedit"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/clas12ana/clas12ana_ver_1_myedit"
 				},
 				{
 					"backtrace" : 16,
-					"path" : "/Users/alon/Projects/2N-Analyzer_e4nu/framework/classes/clas12ana/other"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/clas12ana/other"
 				},
 				{
 					"backtrace" : 17,
-					"path" : "/Users/alon/Projects/2N-Analyzer_e4nu/framework/classes/DEfficiency"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/DEfficiency"
 				},
 				{
 					"backtrace" : 18,
-					"path" : "/Users/alon/Projects/2N-Analyzer_e4nu/framework/classes/Directories"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/Directories"
 				},
 				{
 					"backtrace" : 19,
-					"path" : "/Users/alon/Projects/2N-Analyzer_e4nu/framework/classes/DSCuts"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/DSCuts"
 				},
 				{
 					"backtrace" : 20,
-					"path" : "/Users/alon/Projects/2N-Analyzer_e4nu/framework/classes/ExperimentParameters"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/ExperimentParameters"
 				},
 				{
 					"backtrace" : 21,
-					"path" : "/Users/alon/Projects/2N-Analyzer_e4nu/framework/classes/hData"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/hData"
 				},
 				{
 					"backtrace" : 22,
-					"path" : "/Users/alon/Projects/2N-Analyzer_e4nu/framework/classes/hPlots"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/hPlots"
 				},
 				{
 					"backtrace" : 23,
-					"path" : "/Users/alon/Projects/2N-Analyzer_e4nu/framework/classes/MomentumResolution"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/MomentumResolution"
 				},
 				{
 					"backtrace" : 24,
-					"path" : "/Users/alon/Projects/2N-Analyzer_e4nu/framework/classes/TargetParameters"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/TargetParameters"
 				},
 				{
 					"backtrace" : 25,
-					"path" : "/Users/alon/Projects/2N-Analyzer_e4nu/framework/classes/TLCuts"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/TLCuts"
 				},
 				{
 					"backtrace" : 26,
-					"path" : "/Users/alon/Projects/2N-Analyzer_e4nu/source/data"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/source/data"
 				},
 				{
 					"backtrace" : 27,
-					"path" : "/Users/alon/Projects/2N-Analyzer_e4nu/framework/functions"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/functions"
 				},
 				{
 					"backtrace" : 28,
-					"path" : "/Users/alon/Projects/2N-Analyzer_e4nu/framework/functions/AngleCalc"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/functions/AngleCalc"
 				},
 				{
 					"backtrace" : 29,
-					"path" : "/Users/alon/Projects/2N-Analyzer_e4nu/framework/functions/DrawAndSaveFunctions"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/functions/DrawAndSaveFunctions"
 				},
 				{
 					"backtrace" : 30,
-					"path" : "/Users/alon/Projects/2N-Analyzer_e4nu/framework/functions/EventProperties"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/functions/EventProperties"
 				},
 				{
 					"backtrace" : 31,
-					"path" : "/Users/alon/Projects/2N-Analyzer_e4nu/framework/functions/FitFunctions"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/functions/FitFunctions"
 				},
 				{
 					"backtrace" : 32,
-					"path" : "/Users/alon/Projects/2N-Analyzer_e4nu/framework/functions/Math_func"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/functions/Math_func"
 				},
 				{
 					"backtrace" : 33,
-					"path" : "/Users/alon/Projects/2N-Analyzer_e4nu/framework/functions/other"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/functions/other"
 				},
 				{
 					"backtrace" : 34,
-					"path" : "/Users/alon/Projects/2N-Analyzer_e4nu/framework/functions/PID_functions"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/functions/PID_functions"
 				},
 				{
 					"backtrace" : 35,
-					"path" : "/Users/alon/Projects/2N-Analyzer_e4nu/framework/other"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/other"
 				},
 				{
 					"backtrace" : 36,
-					"path" : "/Users/alon/Projects/2N-Analyzer_e4nu/framework/structures"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/structures"
 				}
 			],
 			"language" : "CXX",
@@ -436,135 +436,135 @@
 				},
 				{
 					"backtrace" : 4,
-					"path" : "/Users/alon/Projects/2N-Analyzer_e4nu/."
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/."
 				},
 				{
 					"backtrace" : 5,
-					"path" : "/Users/alon/Projects/2N-Analyzer_e4nu/macros"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/macros"
 				},
 				{
 					"backtrace" : 6,
-					"path" : "/Users/alon/Projects/2N-Analyzer_e4nu/setup"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/setup"
 				},
 				{
 					"backtrace" : 7,
-					"path" : "/Users/alon/Projects/2N-Analyzer_e4nu/setup/CLAS12DAnalysis"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/setup/CLAS12DAnalysis"
 				},
 				{
 					"backtrace" : 8,
-					"path" : "/Users/alon/Projects/2N-Analyzer_e4nu/setup/CLAS12DAnalysis/CLAS12DAnalyzer"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/setup/CLAS12DAnalysis/CLAS12DAnalyser"
 				},
 				{
 					"backtrace" : 9,
-					"path" : "/Users/alon/Projects/2N-Analyzer_e4nu/setup/CLAS12DAnalysis/CLAS12DASettings"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/setup/CLAS12DAnalysis/CLAS12DASettings"
 				},
 				{
 					"backtrace" : 10,
-					"path" : "/Users/alon/Projects/2N-Analyzer_e4nu/setup/CLAS12DAnalysis/CLAS12DHistograms"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/setup/CLAS12DAnalysis/CLAS12DHistograms"
 				},
 				{
 					"backtrace" : 11,
-					"path" : "/Users/alon/Projects/2N-Analyzer_e4nu/framework"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework"
 				},
 				{
 					"backtrace" : 12,
-					"path" : "/Users/alon/Projects/2N-Analyzer_e4nu/framework/classes"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes"
 				},
 				{
 					"backtrace" : 13,
-					"path" : "/Users/alon/Projects/2N-Analyzer_e4nu/framework/classes/AMaps"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/AMaps"
 				},
 				{
 					"backtrace" : 14,
-					"path" : "/Users/alon/Projects/2N-Analyzer_e4nu/framework/classes/clas12ana"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/clas12ana"
 				},
 				{
 					"backtrace" : 15,
-					"path" : "/Users/alon/Projects/2N-Analyzer_e4nu/framework/classes/clas12ana/clas12ana_ver_1_myedit"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/clas12ana/clas12ana_ver_1_myedit"
 				},
 				{
 					"backtrace" : 16,
-					"path" : "/Users/alon/Projects/2N-Analyzer_e4nu/framework/classes/clas12ana/other"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/clas12ana/other"
 				},
 				{
 					"backtrace" : 17,
-					"path" : "/Users/alon/Projects/2N-Analyzer_e4nu/framework/classes/DEfficiency"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/DEfficiency"
 				},
 				{
 					"backtrace" : 18,
-					"path" : "/Users/alon/Projects/2N-Analyzer_e4nu/framework/classes/Directories"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/Directories"
 				},
 				{
 					"backtrace" : 19,
-					"path" : "/Users/alon/Projects/2N-Analyzer_e4nu/framework/classes/DSCuts"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/DSCuts"
 				},
 				{
 					"backtrace" : 20,
-					"path" : "/Users/alon/Projects/2N-Analyzer_e4nu/framework/classes/ExperimentParameters"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/ExperimentParameters"
 				},
 				{
 					"backtrace" : 21,
-					"path" : "/Users/alon/Projects/2N-Analyzer_e4nu/framework/classes/hData"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/hData"
 				},
 				{
 					"backtrace" : 22,
-					"path" : "/Users/alon/Projects/2N-Analyzer_e4nu/framework/classes/hPlots"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/hPlots"
 				},
 				{
 					"backtrace" : 23,
-					"path" : "/Users/alon/Projects/2N-Analyzer_e4nu/framework/classes/MomentumResolution"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/MomentumResolution"
 				},
 				{
 					"backtrace" : 24,
-					"path" : "/Users/alon/Projects/2N-Analyzer_e4nu/framework/classes/TargetParameters"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/TargetParameters"
 				},
 				{
 					"backtrace" : 25,
-					"path" : "/Users/alon/Projects/2N-Analyzer_e4nu/framework/classes/TLCuts"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/classes/TLCuts"
 				},
 				{
 					"backtrace" : 26,
-					"path" : "/Users/alon/Projects/2N-Analyzer_e4nu/source/data"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/source/data"
 				},
 				{
 					"backtrace" : 27,
-					"path" : "/Users/alon/Projects/2N-Analyzer_e4nu/framework/functions"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/functions"
 				},
 				{
 					"backtrace" : 28,
-					"path" : "/Users/alon/Projects/2N-Analyzer_e4nu/framework/functions/AngleCalc"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/functions/AngleCalc"
 				},
 				{
 					"backtrace" : 29,
-					"path" : "/Users/alon/Projects/2N-Analyzer_e4nu/framework/functions/DrawAndSaveFunctions"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/functions/DrawAndSaveFunctions"
 				},
 				{
 					"backtrace" : 30,
-					"path" : "/Users/alon/Projects/2N-Analyzer_e4nu/framework/functions/EventProperties"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/functions/EventProperties"
 				},
 				{
 					"backtrace" : 31,
-					"path" : "/Users/alon/Projects/2N-Analyzer_e4nu/framework/functions/FitFunctions"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/functions/FitFunctions"
 				},
 				{
 					"backtrace" : 32,
-					"path" : "/Users/alon/Projects/2N-Analyzer_e4nu/framework/functions/Math_func"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/functions/Math_func"
 				},
 				{
 					"backtrace" : 33,
-					"path" : "/Users/alon/Projects/2N-Analyzer_e4nu/framework/functions/other"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/functions/other"
 				},
 				{
 					"backtrace" : 34,
-					"path" : "/Users/alon/Projects/2N-Analyzer_e4nu/framework/functions/PID_functions"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/functions/PID_functions"
 				},
 				{
 					"backtrace" : 35,
-					"path" : "/Users/alon/Projects/2N-Analyzer_e4nu/framework/other"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/other"
 				},
 				{
 					"backtrace" : 36,
-					"path" : "/Users/alon/Projects/2N-Analyzer_e4nu/framework/structures"
+					"path" : "/Users/alon/Projects/2N-Analyser_e4nu/framework/structures"
 				}
 			],
 			"language" : "C",
@@ -1027,7 +1027,7 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "Old_Analyzers/DetectorSimulationAnalyzer.C",
+			"path" : "Old_Analysers/DetectorSimulationAnalyser.C",
 			"sourceGroupIndex" : 1
 		},
 		{
@@ -1049,7 +1049,7 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 1,
-			"path" : "Old_Analyzers/TruthLevelAnalyzer.c",
+			"path" : "Old_Analysers/TruthLevelAnalyser.c",
 			"sourceGroupIndex" : 1
 		},
 		{
@@ -1093,12 +1093,12 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "framework/classes/DataAnalyzer/DataAnalyzer.cpp",
+			"path" : "framework/classes/DataAnalyser/DataAnalyser.cpp",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 1,
-			"path" : "framework/classes/DataAnalyzer/DataAnalyzer.h",
+			"path" : "framework/classes/DataAnalyser/DataAnalyser.h",
 			"sourceGroupIndex" : 0
 		},
 		{

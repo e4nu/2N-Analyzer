@@ -29,7 +29,7 @@ link_directories(
     $ENV{CLAS12ROOT}/lib
 )
 
-set(Analyzer 2N_Analyzer_e4nu)
+set(Analyser 2N_Analyser_e4nu)
 
 # message(STATUS "Including analysis directories...")
 set(FRAMEWORK_DIR ${CMAKE_CURRENT_SOURCE_DIR}/framework)
@@ -86,7 +86,7 @@ set(CLASSES_DIR ${FRAMEWORK_DIR}/classes)
 set(CLASSES_SUBDIRS 
     AMaps 
     clas12ana 
-    DataAnalyzer 
+    DataAnalyser 
     Debugger 
     DEfficiency 
     Directories 
@@ -127,17 +127,17 @@ foreach(dir ${STRUCTURES_DIR} ${NAMESPACES_DIR} ${CLASSES_DIR} ${APPS_DIR})
     endif()
 endforeach()
 
-add_executable(${Analyzer} main.cpp)
+add_executable(${Analyser} main.cpp)
 
 # link libraries (external libraries first, then project libraries)
-target_link_libraries(${Analyzer} PRIVATE 
+target_link_libraries(${Analyser} PRIVATE 
     ${ROOT_LIBRARIES} -lEG 
     -lHipo4
     -lClas12Banks -lClas12Root
     -L${CLAS12ROOT}/lib
 )
 
-target_link_libraries(${Analyzer} PRIVATE 
+target_link_libraries(${Analyser} PRIVATE 
     AnalysisDataStructures    
     AnalysisLibraries
     AnalysisTools
