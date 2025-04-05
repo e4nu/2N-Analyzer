@@ -9748,7 +9748,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
         /* All of these particles are with clas12ana cuts. Only cuts missing are momentum and beta(?) cuts - to be applied later */
         vector<region_part_ptr> neutrons, protons, Kplus, Kminus, piplus, piminus, electrons, deuterons, neutrals, otherpart;
-        pid.SetEventParticles(CutSettings.clas12ana_particles, clasAna, c12, neutrons, protons, Kplus, Kminus, piplus, piminus, electrons, deuterons, neutrals, otherpart);
+        pid.SetEventParticles(clas12ana_particles, clasAna, c12, neutrons, protons, Kplus, Kminus, piplus, piminus, electrons, deuterons, neutrals, otherpart);
 
         // if (clas12ana_particles) {
         //     // Get particle outside from clas12ana:
