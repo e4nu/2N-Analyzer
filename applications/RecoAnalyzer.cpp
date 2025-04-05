@@ -61,7 +61,6 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     // Event selection setup
     EventSelectionSettings ESSettings = EventSelectionSettings();
-    ESSettings.RefreshSettings();
     /* Settings to enable/disable specific FS plot calculations (Rec only): */
 
     /* Final states to analyse (1N & 2N) */
@@ -83,7 +82,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     // /* FD neutrals settings */
     // const bool Enable_FD_photons = false;  // keep as false to decrease RES & DIS
-    // const bool Enable_FD_neutrons = true;  // keep as false to increase eff. plots
+    // bool Enable_FD_neutrons = true;  // keep as false to increase eff. plots
     // const bool Count_FD_neurton_and_photon_hits = true;
 
     // // TODO: add this switch to event selection variables!
@@ -123,6 +122,9 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     */
 
     // Auto-disable variables
+    ESSettings.RefreshSettings();
+    // if (!ES_by_leading_FDneutron) { Enable_FD_neutrons = false; }
+
     AMapsSettings.RefreshSettings(parameters);
     // if (parameters.isData) { Generate_Electron_AMaps = Generate_Nucleon_AMaps = Generate_WMaps = false; }
 
