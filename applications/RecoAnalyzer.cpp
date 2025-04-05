@@ -9589,14 +9589,14 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             clasAna.readInputParam((path_definitions::PathDefinitions.PIDCutsDirectory + "Fitted_PID_Cuts_-_" + /* parameters. */SampleName + ".par")
                                        .c_str());  // load sample-appropreate cuts file from CutsDirectory
 
-            /* Overwriting PID cuts according to /* parameters. */SampleName */
-            /* CutManager. */UpdateChargedParticleChi2Cuts(clasAna);
-            // /* CutManager. */Chi2_Proton_cuts_CD.SetCutPram(clasAna.GetPidCutMean(2212, "CD"), -clasAna.GetPidCutSigma(2212, "CD"), clasAna.GetPidCutSigma(2212, "CD"));
-            // /* CutManager. */Chi2_Proton_cuts_FD.SetCutPram(clasAna.GetPidCutMean(2212, "FD"), -clasAna.GetPidCutSigma(2212, "FD"), clasAna.GetPidCutSigma(2212, "FD"));
-            // /* CutManager. */Chi2_piplus_cuts_CD.SetCutPram(clasAna.GetPidCutMean(211, "CD"), -clasAna.GetPidCutSigma(211, "CD"), clasAna.GetPidCutSigma(211, "CD"));
-            // /* CutManager. */Chi2_piplus_cuts_FD.SetCutPram(clasAna.GetPidCutMean(211, "FD"), -clasAna.GetPidCutSigma(211, "FD"), clasAna.GetPidCutSigma(211, "FD"));
-            // /* CutManager. */Chi2_piminus_cuts_CD.SetCutPram(clasAna.GetPidCutMean(-211, "CD"), -clasAna.GetPidCutSigma(-211, "CD"), clasAna.GetPidCutSigma(-211, "CD"));
-            // /* CutManager. */Chi2_piminus_cuts_FD.SetCutPram(clasAna.GetPidCutMean(-211, "FD"), -clasAna.GetPidCutSigma(-211, "FD"), clasAna.GetPidCutSigma(-211, "FD"));
+            /* Overwriting PID cuts according to parameters.SampleName */
+            // /* CutManager. */UpdateChargedParticleChi2Cuts(clasAna);
+            /* CutManager. */Chi2_Proton_cuts_CD.SetCutPram(clasAna.GetPidCutMean(2212, "CD"), -clasAna.GetPidCutSigma(2212, "CD"), clasAna.GetPidCutSigma(2212, "CD"));
+            /* CutManager. */Chi2_Proton_cuts_FD.SetCutPram(clasAna.GetPidCutMean(2212, "FD"), -clasAna.GetPidCutSigma(2212, "FD"), clasAna.GetPidCutSigma(2212, "FD"));
+            /* CutManager. */Chi2_piplus_cuts_CD.SetCutPram(clasAna.GetPidCutMean(211, "CD"), -clasAna.GetPidCutSigma(211, "CD"), clasAna.GetPidCutSigma(211, "CD"));
+            /* CutManager. */Chi2_piplus_cuts_FD.SetCutPram(clasAna.GetPidCutMean(211, "FD"), -clasAna.GetPidCutSigma(211, "FD"), clasAna.GetPidCutSigma(211, "FD"));
+            /* CutManager. */Chi2_piminus_cuts_CD.SetCutPram(clasAna.GetPidCutMean(-211, "CD"), -clasAna.GetPidCutSigma(-211, "CD"), clasAna.GetPidCutSigma(-211, "CD"));
+            /* CutManager. */Chi2_piminus_cuts_FD.SetCutPram(clasAna.GetPidCutMean(-211, "FD"), -clasAna.GetPidCutSigma(-211, "FD"), clasAna.GetPidCutSigma(-211, "FD"));
 
             clasAna.setPidCuts();  // making f_pidCuts = true
         }
@@ -11748,8 +11748,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
         // Testing electron cuts
         /* Here we plot cut histograms:
-         * If cuts are turned off (/* CutSettings. */apply_cuts == false) - we plot each cut parameter before and after the cut.
-         * If cuts are applied (/* CutSettings. */apply_cuts), we plot the parameters for the 1e cut only */
+         * If cuts are turned off (CutSettings.apply_cuts == false) - we plot each cut parameter before and after the cut.
+         * If cuts are applied (CutSettings.apply_cuts), we plot the parameters for the 1e cut only */
 
         // Testing cuts
         /* Testing SF cuts */
