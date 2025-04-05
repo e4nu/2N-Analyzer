@@ -9447,7 +9447,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     //                                                                         Code execution                                                                              //
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    #pragma region /* Code execution */
+#pragma region /* Code execution */
 
     debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode);
 
@@ -9496,17 +9496,16 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             clasAna.readInputParam((path_definitions::PathDefinitions.PIDCutsDirectory + "ana.par").c_str());
         } else if (apply_chi2_cuts_1e_cut) {
             std::cout << "\033[33m\nLoading fitted pid cuts...\n\n\033[0m";
-            clasAna.readInputParam((path_definitions::PathDefinitions.PIDCutsDirectory + "Fitted_PID_Cuts_-_" + SampleName + ".par")
-                                       .c_str());  // load sample-appropreate cuts file from CutsDirectory
+            clasAna.readInputParam(
+                (path_definitions::PathDefinitions.PIDCutsDirectory + "Fitted_PID_Cuts_-_" + SampleName + ".par").c_str());  // load sample-appropreate cuts file from CutsDirectory
 
             /* Overwriting PID cuts according to SampleName */
-            UpdateChargedParticleChi2Cuts(clasAna);
-            // Chi2_Proton_cuts_CD.SetCutPram(clasAna.GetPidCutMean(2212, "CD"), -clasAna.GetPidCutSigma(2212, "CD"), clasAna.GetPidCutSigma(2212, "CD"));
-            // Chi2_Proton_cuts_FD.SetCutPram(clasAna.GetPidCutMean(2212, "FD"), -clasAna.GetPidCutSigma(2212, "FD"), clasAna.GetPidCutSigma(2212, "FD"));
-            // Chi2_piplus_cuts_CD.SetCutPram(clasAna.GetPidCutMean(211, "CD"), -clasAna.GetPidCutSigma(211, "CD"), clasAna.GetPidCutSigma(211, "CD"));
-            // Chi2_piplus_cuts_FD.SetCutPram(clasAna.GetPidCutMean(211, "FD"), -clasAna.GetPidCutSigma(211, "FD"), clasAna.GetPidCutSigma(211, "FD"));
-            // Chi2_piminus_cuts_CD.SetCutPram(clasAna.GetPidCutMean(-211, "CD"), -clasAna.GetPidCutSigma(-211, "CD"), clasAna.GetPidCutSigma(-211, "CD"));
-            // Chi2_piminus_cuts_FD.SetCutPram(clasAna.GetPidCutMean(-211, "FD"), -clasAna.GetPidCutSigma(-211, "FD"), clasAna.GetPidCutSigma(-211, "FD"));
+            Chi2_Proton_cuts_CD.SetCutPram(clasAna.GetPidCutMean(2212, "CD"), -clasAna.GetPidCutSigma(2212, "CD"), clasAna.GetPidCutSigma(2212, "CD"));
+            Chi2_Proton_cuts_FD.SetCutPram(clasAna.GetPidCutMean(2212, "FD"), -clasAna.GetPidCutSigma(2212, "FD"), clasAna.GetPidCutSigma(2212, "FD"));
+            Chi2_piplus_cuts_CD.SetCutPram(clasAna.GetPidCutMean(211, "CD"), -clasAna.GetPidCutSigma(211, "CD"), clasAna.GetPidCutSigma(211, "CD"));
+            Chi2_piplus_cuts_FD.SetCutPram(clasAna.GetPidCutMean(211, "FD"), -clasAna.GetPidCutSigma(211, "FD"), clasAna.GetPidCutSigma(211, "FD"));
+            Chi2_piminus_cuts_CD.SetCutPram(clasAna.GetPidCutMean(-211, "CD"), -clasAna.GetPidCutSigma(-211, "CD"), clasAna.GetPidCutSigma(-211, "CD"));
+            Chi2_piminus_cuts_FD.SetCutPram(clasAna.GetPidCutMean(-211, "FD"), -clasAna.GetPidCutSigma(-211, "FD"), clasAna.GetPidCutSigma(-211, "FD"));
 
             clasAna.setPidCuts();  // making f_pidCuts = true
         }
@@ -9541,7 +9540,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         }
 
         if (apply_dVz_cuts) {
-            clasAna.setVertexCorrCuts();                                                                                 // making f_corr_vertexCuts = true
+            clasAna.setVertexCorrCuts();                                                           // making f_corr_vertexCuts = true
             clasAna.setVertexCorrCutsLim(dVz_cuts.GetLowerCut(), dVz_cuts.GetUpperCut());          // setting dVz cuts (general)
             clasAna.setVertexCorrCutsLimFD(dVz_cuts_FD.GetLowerCut(), dVz_cuts_FD.GetUpperCut());  // setting dVz cuts (FD only)
             clasAna.setVertexCorrCutsLimCD(dVz_cuts_CD.GetLowerCut(), dVz_cuts_CD.GetUpperCut());  // setting dVz cuts (CD only)
@@ -9557,8 +9556,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             Beta_max_cut_ABF_FD_n_from_ph_apprax = DSCuts("Beta_cut_ECAL_apprax", "FD-ECAL_apprax", "", "1n", 1, -9999, 9999);
         } else {
             std::cout << "\033[33m\n\nLoading fitted Beta cuts...\n\n\033[0m";
-            clasAna.readInputParam((path_definitions::PathDefinitions.NucleonCutsDirectory + "Nucleon_Cuts_-_" + SampleName + ".par")
-                                       .c_str());  // load sample-appropreate cuts file from CutsDirectory
+            clasAna.readInputParam(
+                (path_definitions::PathDefinitions.NucleonCutsDirectory + "Nucleon_Cuts_-_" + SampleName + ".par").c_str());  // load sample-appropreate cuts file from CutsDirectory
 
             /* Setting nucleon cuts - only if NOT plotting efficiency plots! */
             if (limless_mom_eff_plots || is2GeVSample) {
@@ -9613,7 +9612,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             }
 
             if (apply_dVz_cuts) {
-                clasAna.setVertexCorrCuts();                                                                                 // making f_corr_vertexCuts = true
+                clasAna.setVertexCorrCuts();                                                           // making f_corr_vertexCuts = true
                 clasAna.setVertexCorrCutsLim(dVz_cuts.GetLowerCut(), dVz_cuts.GetUpperCut());          // setting dVz cuts (general)
                 clasAna.setVertexCorrCutsLimFD(dVz_cuts_FD.GetLowerCut(), dVz_cuts_FD.GetUpperCut());  // setting dVz cuts (FD only)
                 clasAna.setVertexCorrCutsLimCD(dVz_cuts_CD.GetLowerCut(), dVz_cuts_CD.GetUpperCut());  // setting dVz cuts (CD only)
@@ -9779,23 +9778,21 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         /* Get FD neutrons and photons, according to the definitions: */
         // FD neutrons and photons to be set by definition - before momentum th. & any cuts:
         std::vector<int> ReDef_FD_neutrons, ReDef_FD_photons;
-        pid.ReDefFDNeutrals(allParticles, ReDef_FD_neutrons, ReDef_FD_photons);  // Get FD neutrons and photons, according to the definitions (ORIGINAL!)
-        int NeutronsFD_ind_max =
-            pid.GetLnFDIndex(allParticles, ReDef_FD_neutrons, apply_nucleon_cuts);  // Get index of FD neutron with maximal momentum (before momentum th. & any cuts)
+        pid.ReDefFDNeutrals(allParticles, ReDef_FD_neutrons, ReDef_FD_photons);                          // Get FD neutrons and photons, according to the definitions (ORIGINAL!)
+        int NeutronsFD_ind_max = pid.GetLnFDIndex(allParticles, ReDef_FD_neutrons, apply_nucleon_cuts);  // Get index of FD neutron with maximal momentum (before momentum th. & any cuts)
 
         /* Get FD neutrons and photons above momentum threshold (noNeutCuts): */
         // FD neutrons and photons by definition (after momentum th. only!):
         std::vector<int> NeutronsFD_ind_noNeutCuts, PhotonsFD_ind_noNeutCuts;
-        pid.FDNeutralParticleID(allParticles, NeutronsFD_ind_noNeutCuts, ReDef_FD_neutrons, n_mom_th, PhotonsFD_ind_noNeutCuts, ReDef_FD_photons, ph_mom_th,
-                                apply_nucleon_cuts);
+        pid.FDNeutralParticleID(allParticles, NeutronsFD_ind_noNeutCuts, ReDef_FD_neutrons, n_mom_th, PhotonsFD_ind_noNeutCuts, ReDef_FD_photons, ph_mom_th, apply_nucleon_cuts);
         int NeutronsFD_ind_mom_max_noNeutCuts =
             pid.GetLnFDIndex(allParticles, NeutronsFD_ind_noNeutCuts, apply_nucleon_cuts);  // Get index of FD neutron with maximal momentum (with only momentum th.)
 
         /* Get FD neutrons and photons above momentum threshold and after ECAL veto and after ECAL edge cuts: */
         // FD neutrons and photons by redefinition (after momentum th. & ECAL & edge cuts):
         std::vector<int> NeutronsFD_ind, PhotonsFD_ind;
-        pid.FDNeutralParticleID(allParticles, electrons, NeutronsFD_ind, ReDef_FD_neutrons, n_mom_th, PhotonsFD_ind, ReDef_FD_photons, ph_mom_th,
-                                Neutron_veto_cut, beamE, clasAna.getEcalEdgeCuts(), clasAna.getEcalEdgeCuts(), apply_nucleon_cuts);
+        pid.FDNeutralParticleID(allParticles, electrons, NeutronsFD_ind, ReDef_FD_neutrons, n_mom_th, PhotonsFD_ind, ReDef_FD_photons, ph_mom_th, Neutron_veto_cut, beamE,
+                                clasAna.getEcalEdgeCuts(), clasAna.getEcalEdgeCuts(), apply_nucleon_cuts);
         int NeutronsFD_ind_mom_max =
             pid.GetLnFDIndex(allParticles, NeutronsFD_ind, apply_nucleon_cuts);  // Get index of FD neutron with maximal momentum (with momentum th., ECAL edge, ECAL veto cuts)
 
@@ -9877,8 +9874,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         debugging::CodeDebugger.SafetyCheck_FD_protons(__FILE__, __LINE__, Protons_ind, protons, p_mom_th);
 
         // Safety checks for FD neutrons - checks for leading FD neutron
-        debugging::CodeDebugger.SafetyCheck_Reco_leading_FD_neutron(__FILE__, __LINE__, apply_nucleon_cuts, ES_by_leading_FDneutron, NeutronsFD_ind_mom_max,
-                                                                    allParticles, NeutronsFD_ind, pid);
+        debugging::CodeDebugger.SafetyCheck_Reco_leading_FD_neutron(__FILE__, __LINE__, apply_nucleon_cuts, ES_by_leading_FDneutron, NeutronsFD_ind_mom_max, allParticles, NeutronsFD_ind,
+                                                                    pid);
 
         //  Safety checks for FD neutrons - checks for FD neutrons
         debugging::CodeDebugger.SafetyCheck_FD_neutron(__FILE__, __LINE__, apply_nucleon_cuts, allParticles, n_mom_th, NeutronsFD_ind, pid);
@@ -9999,9 +9996,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                 if (particlePDGtmp == 11) {
                     bool e_inFD = aMaps_master.IsInFDQuery((!TL_fiducial_cuts), ThetaFD, "Electron", Particle_TL_Momentum, Particle_TL_Theta, Particle_TL_Phi);
 
-                    if ((Particle_TL_Momentum >= TL_e_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= TL_e_mom_cuts.GetUpperCut())) {
-                        TL_Electron_mom_ind.push_back(i);
-                    }
+                    if ((Particle_TL_Momentum >= TL_e_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= TL_e_mom_cuts.GetUpperCut())) { TL_Electron_mom_ind.push_back(i); }
 
                     TL_Electron_ind.push_back(i);
 
@@ -10015,12 +10010,9 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                         TL_ElectronFD_ind.push_back(i);
                     }
                 } else if (particlePDGtmp == 2112) {
-                    bool n_inFD = aMaps_master.IsInFDQuery((!TL_fiducial_cuts), ThetaFD, "Neutron", Particle_TL_Momentum, Particle_TL_Theta, Particle_TL_Phi,
-                                                           Calc_eff_overlapping_FC);
+                    bool n_inFD = aMaps_master.IsInFDQuery((!TL_fiducial_cuts), ThetaFD, "Neutron", Particle_TL_Momentum, Particle_TL_Theta, Particle_TL_Phi, Calc_eff_overlapping_FC);
 
-                    if ((Particle_TL_Momentum >= TL_n_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= TL_n_mom_cuts.GetUpperCut())) {
-                        TL_Neutrons_mom_ind.push_back(i);
-                    }
+                    if ((Particle_TL_Momentum >= TL_n_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= TL_n_mom_cuts.GetUpperCut())) { TL_Neutrons_mom_ind.push_back(i); }
 
                     TL_Neutrons_ind.push_back(i);
 
@@ -10044,12 +10036,9 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                         }
                     }
                 } else if (particlePDGtmp == 2212) {
-                    bool p_inFD = aMaps_master.IsInFDQuery((!TL_fiducial_cuts), ThetaFD, "Proton", Particle_TL_Momentum, Particle_TL_Theta, Particle_TL_Phi,
-                                                           Calc_eff_overlapping_FC);
+                    bool p_inFD = aMaps_master.IsInFDQuery((!TL_fiducial_cuts), ThetaFD, "Proton", Particle_TL_Momentum, Particle_TL_Theta, Particle_TL_Phi, Calc_eff_overlapping_FC);
 
-                    if ((Particle_TL_Momentum >= TL_p_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= TL_p_mom_cuts.GetUpperCut())) {
-                        TL_Protons_mom_ind.push_back(i);
-                    }
+                    if ((Particle_TL_Momentum >= TL_p_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= TL_p_mom_cuts.GetUpperCut())) { TL_Protons_mom_ind.push_back(i); }
 
                     TL_Protons_ind.push_back(i);
 
@@ -10062,77 +10051,55 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
                         TL_ProtonsFD_ind.push_back(i);
                     } else if (inCD) {
-                        if ((Particle_TL_Momentum >= TL_pCD_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= TL_pCD_mom_cuts.GetUpperCut())) {
-                            TL_ProtonsCD_mom_ind.push_back(i);
-                        }
+                        if ((Particle_TL_Momentum >= TL_pCD_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= TL_pCD_mom_cuts.GetUpperCut())) { TL_ProtonsCD_mom_ind.push_back(i); }
 
                         TL_ProtonsCD_ind.push_back(i);
                     }
                 } else if (particlePDGtmp == 211) {
-                    if ((Particle_TL_Momentum >= TL_pip_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= TL_pip_mom_cuts.GetUpperCut())) {
-                        TL_piplus_mom_ind.push_back(i);
-                    }
+                    if ((Particle_TL_Momentum >= TL_pip_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= TL_pip_mom_cuts.GetUpperCut())) { TL_piplus_mom_ind.push_back(i); }
 
                     TL_piplus_ind.push_back(i);
 
                     if (inFD) {
-                        if ((Particle_TL_Momentum >= TL_pipFD_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= TL_pipFD_mom_cuts.GetUpperCut())) {
-                            TL_piplusFD_mom_ind.push_back(i);
-                        }
+                        if ((Particle_TL_Momentum >= TL_pipFD_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= TL_pipFD_mom_cuts.GetUpperCut())) { TL_piplusFD_mom_ind.push_back(i); }
 
                         TL_piplusFD_ind.push_back(i);
                     } else if (inCD) {
-                        if ((Particle_TL_Momentum >= TL_pipCD_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= TL_pipCD_mom_cuts.GetUpperCut())) {
-                            TL_piplusCD_mom_ind.push_back(i);
-                        }
+                        if ((Particle_TL_Momentum >= TL_pipCD_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= TL_pipCD_mom_cuts.GetUpperCut())) { TL_piplusCD_mom_ind.push_back(i); }
 
                         TL_piplusCD_ind.push_back(i);
                     }
                 } else if (particlePDGtmp == -211) {
-                    if ((Particle_TL_Momentum >= TL_pim_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= TL_pim_mom_cuts.GetUpperCut())) {
-                        TL_piminus_mom_ind.push_back(i);
-                    }
+                    if ((Particle_TL_Momentum >= TL_pim_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= TL_pim_mom_cuts.GetUpperCut())) { TL_piminus_mom_ind.push_back(i); }
 
                     TL_piminus_ind.push_back(i);
 
                     if (inFD) {
-                        if ((Particle_TL_Momentum >= TL_pimFD_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= TL_pimFD_mom_cuts.GetUpperCut())) {
-                            TL_piminusFD_mom_ind.push_back(i);
-                        }
+                        if ((Particle_TL_Momentum >= TL_pimFD_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= TL_pimFD_mom_cuts.GetUpperCut())) { TL_piminusFD_mom_ind.push_back(i); }
 
                         TL_piminusFD_ind.push_back(i);
                     } else if (inCD) {
-                        if ((Particle_TL_Momentum >= TL_pimCD_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= TL_pimCD_mom_cuts.GetUpperCut())) {
-                            TL_piminusCD_mom_ind.push_back(i);
-                        }
+                        if ((Particle_TL_Momentum >= TL_pimCD_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= TL_pimCD_mom_cuts.GetUpperCut())) { TL_piminusCD_mom_ind.push_back(i); }
 
                         TL_piminusCD_ind.push_back(i);
                     }
                 } else if (particlePDGtmp == 111) {
-                    if ((Particle_TL_Momentum >= TL_pi0_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= TL_pi0_mom_cuts.GetUpperCut())) {
-                        TL_pizero_mom_ind.push_back(i);
-                    }
+                    if ((Particle_TL_Momentum >= TL_pi0_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= TL_pi0_mom_cuts.GetUpperCut())) { TL_pizero_mom_ind.push_back(i); }
 
                     TL_pizero_ind.push_back(i);
 
                     if (inFD) {
-                        if ((Particle_TL_Momentum >= TL_pi0_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= TL_pi0_mom_cuts.GetUpperCut())) {
-                            TL_pi0FD_mom_ind.push_back(i);
-                        }
+                        if ((Particle_TL_Momentum >= TL_pi0_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= TL_pi0_mom_cuts.GetUpperCut())) { TL_pi0FD_mom_ind.push_back(i); }
 
                         TL_pi0FD_ind.push_back(i);
                     }
                 } else if (particlePDGtmp == 22) {
-                    if ((Particle_TL_Momentum >= TL_ph_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= TL_ph_mom_cuts.GetUpperCut())) {
-                        TL_Photons_mom_ind.push_back(i);
-                    }
+                    if ((Particle_TL_Momentum >= TL_ph_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= TL_ph_mom_cuts.GetUpperCut())) { TL_Photons_mom_ind.push_back(i); }
 
                     TL_Photons_ind.push_back(i);
 
                     if (inFD) {
-                        if ((Particle_TL_Momentum >= TL_ph_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= TL_ph_mom_cuts.GetUpperCut())) {
-                            TL_PhotonsFD_mom_ind.push_back(i);
-                        }
+                        if ((Particle_TL_Momentum >= TL_ph_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= TL_ph_mom_cuts.GetUpperCut())) { TL_PhotonsFD_mom_ind.push_back(i); }
 
                         TL_PhotonsFD_ind.push_back(i);
                     }
@@ -10172,20 +10139,19 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             bool TL_Event_Selection_1e_cut = (TL_Event_Selection_1e_cut_AMaps && TL_ElectronFD_mom_ind.size() == TL_ElectronFD_wFC_mom_ind.size());
             // One id. FD electron above momentum threshold
             TL_Event_Selection_inclusive = TL_Event_Selection_1e_cut;
-            bool no_TL_pip = (TL_piplusFD_mom_ind.size() == 0 && TL_piplusCD_mom_ind.size() == 0);        // No pi+ above momentum threshold (CD & FD)
-            bool no_TL_pim = (TL_piminusFD_mom_ind.size() == 0 && TL_piminusCD_mom_ind.size() == 0);      // No pi- above momentum threshold (CD & FD)
-            bool no_TL_cPions = (no_TL_pip && no_TL_pim);                                                 // No id. cPions above momentum threshold
-            bool no_TL_OtherPart = (TL_OtherPart_ind.size() == 0);                                        // No other part. above momentum threshold
-            bool no_TL_FDpi0 = (Enable_FD_photons || (TL_pi0FD_mom_ind.size() == 0));          // No id. pi0 in the FD above momentum threshold
-            bool no_TL_FDPhotons = (Enable_FD_photons || (TL_PhotonsFD_mom_ind.size() == 0));  // No id. photons in the FD above momentum threshold
+            bool no_TL_pip = (TL_piplusFD_mom_ind.size() == 0 && TL_piplusCD_mom_ind.size() == 0);    // No pi+ above momentum threshold (CD & FD)
+            bool no_TL_pim = (TL_piminusFD_mom_ind.size() == 0 && TL_piminusCD_mom_ind.size() == 0);  // No pi- above momentum threshold (CD & FD)
+            bool no_TL_cPions = (no_TL_pip && no_TL_pim);                                             // No id. cPions above momentum threshold
+            bool no_TL_OtherPart = (TL_OtherPart_ind.size() == 0);                                    // No other part. above momentum threshold
+            bool no_TL_FDpi0 = (Enable_FD_photons || (TL_pi0FD_mom_ind.size() == 0));                 // No id. pi0 in the FD above momentum threshold
+            bool no_TL_FDPhotons = (Enable_FD_photons || (TL_PhotonsFD_mom_ind.size() == 0));         // No id. photons in the FD above momentum threshold
             bool TL_Basic_ES = (TL_Event_Selection_1e_cut && no_TL_cPions && no_TL_OtherPart && no_TL_FDpi0 && no_TL_FDPhotons);
 
             // Setting up 1p TL event selection
             // 1p = one id. FD proton (any or no FD neutrons, according to the value of Enable_FD_neutrons):
             bool TL_FDneutrons_1p = (Enable_FD_neutrons || (TL_NeutronsFD_mom_ind.size() == 0));  // no id. FD neutrons for Enable_FD_neutrons = false
             bool no_CDproton_1p = (TL_ProtonsCD_mom_ind.size() == 0);
-            bool one_FDproton_1p = ((TL_ProtonsFD_mom_ind.size() == 1) &&
-                                    (TLKinCutsCheck(c12, apply_kinematical_cuts, TL_ProtonsFD_mom_ind, FD_nucleon_theta_cut, FD_nucleon_momentum_cut)));
+            bool one_FDproton_1p = ((TL_ProtonsFD_mom_ind.size() == 1) && (TLKinCutsCheck(c12, apply_kinematical_cuts, TL_ProtonsFD_mom_ind, FD_nucleon_theta_cut, FD_nucleon_momentum_cut)));
             bool FDproton_wFC_1p = (TL_ProtonsFD_mom_ind.size() == TL_ProtonsFD_wFC_mom_ind.size());  // id. FD proton is within fiducial cuts (wFC)
             TL_Event_Selection_1p = (TL_Basic_ES && TL_FDneutrons_1p && no_CDproton_1p && one_FDproton_1p && FDproton_wFC_1p);
 
@@ -10202,10 +10168,10 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             // Setting up pFDpCD TL event selection
             // pFDpCD = One id. FD proton & one id. CD proton:
             bool one_CDproton_pFDpCD = (TL_ProtonsCD_mom_ind.size() == 1);
-            bool one_FDproton_pFDpCD = ((TL_ProtonsFD_mom_ind.size() == 1) &&
-                                        (TLKinCutsCheck(c12, apply_kinematical_cuts, TL_ProtonsFD_mom_ind, FD_nucleon_theta_cut, FD_nucleon_momentum_cut)));
-            bool TL_FDneutrons_pFDpCD = (Enable_FD_neutrons || (TL_NeutronsFD_mom_ind.size() == 0));  // no id. FD neutrons for Enable_FD_neutrons = false
-            bool FDproton_wFC_pFDpCD = (TL_ProtonsFD_mom_ind.size() == TL_ProtonsFD_wFC_mom_ind.size());         // id. FD proton is within fiducial cuts (wFC)
+            bool one_FDproton_pFDpCD =
+                ((TL_ProtonsFD_mom_ind.size() == 1) && (TLKinCutsCheck(c12, apply_kinematical_cuts, TL_ProtonsFD_mom_ind, FD_nucleon_theta_cut, FD_nucleon_momentum_cut)));
+            bool TL_FDneutrons_pFDpCD = (Enable_FD_neutrons || (TL_NeutronsFD_mom_ind.size() == 0));      // no id. FD neutrons for Enable_FD_neutrons = false
+            bool FDproton_wFC_pFDpCD = (TL_ProtonsFD_mom_ind.size() == TL_ProtonsFD_wFC_mom_ind.size());  // id. FD proton is within fiducial cuts (wFC)
             TL_Event_Selection_pFDpCD = (TL_Basic_ES && one_CDproton_pFDpCD && one_FDproton_pFDpCD && TL_FDneutrons_pFDpCD && FDproton_wFC_pFDpCD);
 
             // Setting up nFDpCD TL event selection
@@ -10214,9 +10180,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             // (ES_by_leading_FDneutron || (TL_NeutronsFD_mom_ind.size() == 1)) -> ensures that we are looking at the leading nFD if ES_by_leading_FDneutron = true
             bool one_CDproton_nFDpCD = (TL_ProtonsCD_mom_ind.size() == 1);
             bool no_FDproton_nFDpCD = (TL_ProtonsFD_mom_ind.size() == 0);
-            bool one_FDNeutron_nFDpCD =
-                (((ES_by_leading_FDneutron || (TL_NeutronsFD_mom_ind.size() == 1)) && (TL_IDed_Leading_nFD_ind != -1)) &&
-                 (TLKinCutsCheck(c12, apply_kinematical_cuts, TL_IDed_Leading_nFD_ind, FD_nucleon_theta_cut, FD_nucleon_momentum_cut)));
+            bool one_FDNeutron_nFDpCD = (((ES_by_leading_FDneutron || (TL_NeutronsFD_mom_ind.size() == 1)) && (TL_IDed_Leading_nFD_ind != -1)) &&
+                                         (TLKinCutsCheck(c12, apply_kinematical_cuts, TL_IDed_Leading_nFD_ind, FD_nucleon_theta_cut, FD_nucleon_momentum_cut)));
             bool FDneutron_wFC_nFDpCD = Leading_Neutron_inFD_wFC;  // leading nFD is within fiducial cuts (wFC)
             TL_Event_Selection_nFDpCD = (TL_Basic_ES && one_CDproton_nFDpCD && no_FDproton_nFDpCD && one_FDNeutron_nFDpCD && FDneutron_wFC_nFDpCD);
 
@@ -10308,8 +10273,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                         }
                     } else if (particlePDGtmp == 2112) {
                         // is neutron
-                        bool n_inFD = aMaps_master.IsInFDQuery((!TL_fiducial_cuts), ThetaFD, "Neutron", Particle_TL_Momentum, Particle_TL_Theta, Particle_TL_Phi,
-                                                               Calc_eff_overlapping_FC);
+                        bool n_inFD = aMaps_master.IsInFDQuery((!TL_fiducial_cuts), ThetaFD, "Neutron", Particle_TL_Momentum, Particle_TL_Theta, Particle_TL_Phi, Calc_eff_overlapping_FC);
 
                         if (TL_Event_Selection_1e_cut) {
                             if ((Particle_TL_Momentum >= TL_n_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= TL_n_mom_cuts.GetUpperCut())) {
@@ -10356,8 +10320,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
                                 if (  //
                                       // (TL_NeutronsFD_mom_ind.size() == 1) &&  // FOR nFD eff test!
-                                    n_inFD && (!Calc_1n_n_eff_with_smaller_theta || (Particle_TL_Theta <= 35.)) &&
-                                    (!Eff_calc_with_one_reco_electron || (electrons.size() == 1))  //
+                                    n_inFD && (!Calc_1n_n_eff_with_smaller_theta || (Particle_TL_Theta <= 35.)) && (!Eff_calc_with_one_reco_electron || (electrons.size() == 1))  //
                                 ) {
                                     // 1n efficiency plots (LnFD)
                                     if (ES_by_leading_FDneutron) {
@@ -10441,8 +10404,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                         }
                     } else if (particlePDGtmp == 2212) {
                         // is proton
-                        bool p_inFD = aMaps_master.IsInFDQuery((!TL_fiducial_cuts), ThetaFD, "Proton", Particle_TL_Momentum, Particle_TL_Theta, Particle_TL_Phi,
-                                                               Calc_eff_overlapping_FC);
+                        bool p_inFD = aMaps_master.IsInFDQuery((!TL_fiducial_cuts), ThetaFD, "Proton", Particle_TL_Momentum, Particle_TL_Theta, Particle_TL_Phi, Calc_eff_overlapping_FC);
 
                         if (TL_Event_Selection_1e_cut) {
                             if ((Particle_TL_Momentum >= TL_p_mom_cuts.GetLowerCut()) && (Particle_TL_Momentum <= TL_p_mom_cuts.GetUpperCut())) {
@@ -10472,15 +10434,13 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                                 }
                             } else {
                                 // Inclusive proton efficiency plots WITH FD-CD overlap in theta
-                                if (((Particle_TL_Theta >= ThetaFD.GetLowerCut()) && (Particle_TL_Theta <= 45)) &&
-                                    (!Eff_calc_with_one_reco_electron || (electrons.size() == 1))) {
+                                if (((Particle_TL_Theta >= ThetaFD.GetLowerCut()) && (Particle_TL_Theta <= 45)) && (!Eff_calc_with_one_reco_electron || (electrons.size() == 1))) {
                                     // inclusive efficiency plots (FD protons)
                                     hP_p_truth_1e_cut_FD.hFill(Particle_TL_Momentum, Weight);
                                     hP_p_truth_1e_cut_FD_ZOOMIN.hFill(Particle_TL_Momentum, Weight);
                                 }
 
-                                if (((Particle_TL_Theta > 35) && (Particle_TL_Theta <= ThetaCD.GetUpperCut())) &&
-                                    (!Eff_calc_with_one_reco_electron || (electrons.size() == 1))) {
+                                if (((Particle_TL_Theta > 35) && (Particle_TL_Theta <= ThetaCD.GetUpperCut())) && (!Eff_calc_with_one_reco_electron || (electrons.size() == 1))) {
                                     // inclusive efficiency plots (CD protons)
                                     hP_p_truth_1e_cut_CD.hFill(Particle_TL_Momentum, Weight);
                                     hP_p_truth_1e_cut_CD_ZOOMIN.hFill(Particle_TL_Momentum, Weight);
@@ -10946,8 +10906,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                                     hP_ph_truth_1e_cut_FD_ZOOMIN.hFill(Particle_TL_Momentum, Weight);
                                 }
                             } else {
-                                if (((Particle_TL_Theta >= ThetaFD.GetLowerCut()) && (Particle_TL_Theta <= 35.)) &&
-                                    (!Eff_calc_with_one_reco_electron || (electrons.size() == 1))) {
+                                if (((Particle_TL_Theta >= ThetaFD.GetLowerCut()) && (Particle_TL_Theta <= 35.)) && (!Eff_calc_with_one_reco_electron || (electrons.size() == 1))) {
                                     // inclusive efficiency plots (photons)
                                     hP_ph_truth_1e_cut_FD.hFill(Particle_TL_Momentum, Weight);
                                     hP_ph_truth_1e_cut_FD_ZOOMIN.hFill(Particle_TL_Momentum, Weight);
@@ -11157,8 +11116,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
             // Fill leading FD neutron acceptance maps
             int AMaps_NeutronsFD_fill_ind = (ES_by_leading_FDneutron && (TL_IDed_Leading_nFD_ind != -1) && (TL_IDed_Leading_nFD_momentum > 0)) ? TL_IDed_Leading_nFD_ind
-                                            : (TL_NeutronsFD_mom_ind.size() == 1)                                                                         ? TL_NeutronsFD_mom_ind.at(0)
-                                                                                                                                                          : -9999;
+                                            : (TL_NeutronsFD_mom_ind.size() == 1)                                                              ? TL_NeutronsFD_mom_ind.at(0)
+                                                                                                                                               : -9999;
 
             if (Generate_Nucleon_AMaps && TL_Event_Selection_1e_cut_AMaps && (!AMaps_calc_with_one_reco_electron || (electrons.size() == 1))) {
                 /* Fill leading TL FD neutron acceptance maps */
@@ -11215,8 +11174,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                     debugging::CodeDebugger.SafetyCheck_AMaps_Truth_neutrons(__FILE__, __LINE__, particlePDGtmp, inFD);
 
                     bool FD_Theta_Cut_TL_neutrons = (Particle_TL_Theta <= FD_nucleon_theta_cut.GetUpperCut());
-                    bool FD_Momentum_Cut_TL_neutrons =
-                        ((Particle_TL_Momentum <= FD_nucleon_momentum_cut.GetUpperCut()) && (Particle_TL_Momentum >= FD_nucleon_momentum_cut.GetLowerCut()));
+                    bool FD_Momentum_Cut_TL_neutrons = ((Particle_TL_Momentum <= FD_nucleon_momentum_cut.GetUpperCut()) && (Particle_TL_Momentum >= FD_nucleon_momentum_cut.GetLowerCut()));
 
                     if (FD_Theta_Cut_TL_neutrons && FD_Momentum_Cut_TL_neutrons) {
                         hTL_P_nFD_WMaps.hFill(Particle_TL_Momentum, Weight);
@@ -11458,8 +11416,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         if (!Rec_wTL_ES || TL_Event_Selection_inclusive) {
             for (clas12::region_part_ptr &e : electrons) {
                 // for (auto &e : electrons) {
-                bool e_Pass_FC = aMaps_master.IsInFDQuery((Generate_Electron_AMaps || Generate_Nucleon_AMaps), ThetaFD, "Electron", e->getP(),
-                                                          e->getTheta() * 180.0 / pi, e->getPhi() * 180.0 / pi);
+                bool e_Pass_FC =
+                    aMaps_master.IsInFDQuery((Generate_Electron_AMaps || Generate_Nucleon_AMaps), ThetaFD, "Electron", e->getP(), e->getTheta() * 180.0 / pi, e->getPhi() * 180.0 / pi);
 
                 if (!apply_fiducial_cuts || e_Pass_FC) {
                     hP_e_reco_1e_cut_FD.hFill(e->getP(), Weight), hP_e_reco_1e_cut_FD_ZOOMIN.hFill(e->getP(), Weight);
@@ -11470,8 +11428,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             // All protons BPID (CD & FD)
             for (auto &i : All_gProtons_ind) {
                 if (protons[i]->getRegion() == FD) {
-                    bool p_Pass_FC = aMaps_master.IsInFDQuery((Generate_Electron_AMaps || Generate_Nucleon_AMaps), ThetaFD, "Proton",
-                                                              protons[i]->getP(), protons[i]->getTheta() * 180.0 / pi, protons[i]->getPhi() * 180.0 / pi, Calc_eff_overlapping_FC);
+                    bool p_Pass_FC = aMaps_master.IsInFDQuery((Generate_Electron_AMaps || Generate_Nucleon_AMaps), ThetaFD, "Proton", protons[i]->getP(), protons[i]->getTheta() * 180.0 / pi,
+                                                              protons[i]->getPhi() * 180.0 / pi, Calc_eff_overlapping_FC);
 
                     if (!apply_fiducial_cuts || p_Pass_FC) {
                         hP_p_reco_1e_cut_FD.hFill(protons[i]->getP(), Weight), hP_p_reco_1e_cut_FD_ZOOMIN.hFill(protons[i]->getP(), Weight);
@@ -11492,8 +11450,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                 double NeutronTheta_1e_cut = allParticles[NeutronsFD_ind_max]->getTheta() * 180.0 / pi;
                 double NeutronPhi_1e_cut = allParticles[NeutronsFD_ind_max]->getPhi() * 180.0 / pi;
 
-                bool n_Pass_FC = aMaps_master.IsInFDQuery((Generate_Electron_AMaps || Generate_Nucleon_AMaps), ThetaFD, "Neutron",
-                                                          NeutronMomentum_1e_cut, NeutronTheta_1e_cut, NeutronPhi_1e_cut, Calc_eff_overlapping_FC);
+                bool n_Pass_FC = aMaps_master.IsInFDQuery((Generate_Electron_AMaps || Generate_Nucleon_AMaps), ThetaFD, "Neutron", NeutronMomentum_1e_cut, NeutronTheta_1e_cut,
+                                                          NeutronPhi_1e_cut, Calc_eff_overlapping_FC);
                 bool NeutronPassVeto_Test = pid.NeutronECAL_Cut_Veto(allParticles, electrons, beamE, NeutronsFD_ind_max, Neutron_veto_cut.GetLowerCut());
 
                 if ((!apply_fiducial_cuts || n_Pass_FC) && NeutronPassVeto_Test) {
@@ -11510,8 +11468,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                 double NeutronTheta_1e_cut = allParticles[i]->getTheta() * 180.0 / pi;
                 double NeutronPhi_1e_cut = allParticles[i]->getPhi() * 180.0 / pi;
 
-                bool n_Pass_FC = aMaps_master.IsInFDQuery((Generate_Electron_AMaps || Generate_Nucleon_AMaps), ThetaFD, "Neutron",
-                                                          NeutronMomentum_1e_cut, NeutronTheta_1e_cut, NeutronPhi_1e_cut, Calc_eff_overlapping_FC);
+                bool n_Pass_FC = aMaps_master.IsInFDQuery((Generate_Electron_AMaps || Generate_Nucleon_AMaps), ThetaFD, "Neutron", NeutronMomentum_1e_cut, NeutronTheta_1e_cut,
+                                                          NeutronPhi_1e_cut, Calc_eff_overlapping_FC);
                 bool NeutronPassVeto_Test = pid.NeutronECAL_Cut_Veto(allParticles, electrons, beamE, i, Neutron_veto_cut.GetLowerCut());
 
                 if ((!apply_fiducial_cuts || n_Pass_FC) && NeutronPassVeto_Test) {
@@ -11529,8 +11487,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                 double NeutronTheta_1e_cut = allParticles[NeutronsFD_ind_mom_max]->getTheta() * 180.0 / pi;
                 double NeutronPhi_1e_cut = allParticles[NeutronsFD_ind_mom_max]->getPhi() * 180.0 / pi;
 
-                bool n_Pass_FC = aMaps_master.IsInFDQuery((Generate_Electron_AMaps || Generate_Nucleon_AMaps), ThetaFD, "Neutron",
-                                                          NeutronMomentum_1e_cut, NeutronTheta_1e_cut, NeutronPhi_1e_cut, Calc_eff_overlapping_FC);
+                bool n_Pass_FC = aMaps_master.IsInFDQuery((Generate_Electron_AMaps || Generate_Nucleon_AMaps), ThetaFD, "Neutron", NeutronMomentum_1e_cut, NeutronTheta_1e_cut,
+                                                          NeutronPhi_1e_cut, Calc_eff_overlapping_FC);
                 bool NeutronPassVeto_Test = pid.NeutronECAL_Cut_Veto(allParticles, electrons, beamE, NeutronsFD_ind_mom_max, Neutron_veto_cut.GetLowerCut());
 
                 if ((!apply_fiducial_cuts || n_Pass_FC) && NeutronPassVeto_Test) {
@@ -11547,8 +11505,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                 double NeutronTheta_1e_cut = allParticles[i]->getTheta() * 180.0 / pi;
                 double NeutronPhi_1e_cut = allParticles[i]->getPhi() * 180.0 / pi;
 
-                bool n_Pass_FC = aMaps_master.IsInFDQuery((Generate_Electron_AMaps || Generate_Nucleon_AMaps), ThetaFD, "Neutron",
-                                                          NeutronMomentum_1e_cut, NeutronTheta_1e_cut, NeutronPhi_1e_cut, Calc_eff_overlapping_FC);
+                bool n_Pass_FC = aMaps_master.IsInFDQuery((Generate_Electron_AMaps || Generate_Nucleon_AMaps), ThetaFD, "Neutron", NeutronMomentum_1e_cut, NeutronTheta_1e_cut,
+                                                          NeutronPhi_1e_cut, Calc_eff_overlapping_FC);
                 bool NeutronPassVeto_Test = pid.NeutronECAL_Cut_Veto(allParticles, electrons, beamE, i, Neutron_veto_cut.GetLowerCut());
 
                 if ((!apply_fiducial_cuts || n_Pass_FC) && NeutronPassVeto_Test) {
@@ -11804,10 +11762,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             /* Leading FD Neutrons after mom. th. */
             hP_LnFD_APID_1e_cut_FD.hFill(pid.GetFDNeutronP(allParticles[NeutronsFD_ind_mom_max], apply_nucleon_cuts), Weight);
             hP_LnFD_APID_1e_cut_ZOOMOUT_FD.hFill(pid.GetFDNeutronP(allParticles[NeutronsFD_ind_mom_max], apply_nucleon_cuts), Weight);
-            hP_LnFD_APIDandNS_1e_cut_FD.hFill(nRes.NCorr(apply_nucleon_SmearAndCorr, pid.GetFDNeutronP(allParticles[NeutronsFD_ind_mom_max], apply_nucleon_cuts)),
-                                              Weight);
-            hP_LnFD_APIDandNS_1e_cut_ZOOMOUT_FD.hFill(
-                nRes.NCorr(apply_nucleon_SmearAndCorr, pid.GetFDNeutronP(allParticles[NeutronsFD_ind_mom_max], apply_nucleon_cuts)), Weight);
+            hP_LnFD_APIDandNS_1e_cut_FD.hFill(nRes.NCorr(apply_nucleon_SmearAndCorr, pid.GetFDNeutronP(allParticles[NeutronsFD_ind_mom_max], apply_nucleon_cuts)), Weight);
+            hP_LnFD_APIDandNS_1e_cut_ZOOMOUT_FD.hFill(nRes.NCorr(apply_nucleon_SmearAndCorr, pid.GetFDNeutronP(allParticles[NeutronsFD_ind_mom_max], apply_nucleon_cuts)), Weight);
         }
 
         if (NeutronsFD_ind_max != -1) {
@@ -11824,8 +11780,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             hP_nFD_APIDandNS_1e_cut_FD.hFill(nRes.NCorr(apply_nucleon_SmearAndCorr, pid.GetFDNeutronP(allParticles[i], apply_nucleon_cuts)), Weight);
             hP_nFD_APIDandNS_1e_cut_ZOOMOUT_FD.hFill(nRes.NCorr(apply_nucleon_SmearAndCorr, pid.GetFDNeutronP(allParticles[i], apply_nucleon_cuts)), Weight);
 
-            hBeta_vs_P_1e_cut_Neutrons_Only_FD_ByDef.hFill(nRes.NCorr(apply_nucleon_SmearAndCorr, pid.GetFDNeutronP(allParticles[i], apply_nucleon_cuts)),
-                                                           allParticles[i]->par()->getBeta(), Weight);
+            hBeta_vs_P_1e_cut_Neutrons_Only_FD_ByDef.hFill(nRes.NCorr(apply_nucleon_SmearAndCorr, pid.GetFDNeutronP(allParticles[i], apply_nucleon_cuts)), allParticles[i]->par()->getBeta(),
+                                                           Weight);
         }
 
         /* All FD Neutrons before mom. th. */
@@ -12204,8 +12160,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                 // subtracting the angles between the neutron hit and electron hit to see if we have fake neutrons:
                 hdTheta_LnFD_e_VS_dPhi_LnFD_e_Electrons_BV_1e_cut.hFill(CalcdPhi1(LnFD_hit_Phi_1e_cut - e_hit_Phi_1e_cut), LnFD_hit_Theta_1e_cut - e_hit_Theta_1e_cut, Weight);
 
-                bool NeutronPassVeto_1e_cut =
-                    pid.NeutronECAL_Cut_Veto(allParticles, electrons, beamE, NeutronsFD_ind_mom_max_noNeutCuts, Neutron_veto_cut.GetLowerCut());
+                bool NeutronPassVeto_1e_cut = pid.NeutronECAL_Cut_Veto(allParticles, electrons, beamE, NeutronsFD_ind_mom_max_noNeutCuts, Neutron_veto_cut.GetLowerCut());
 
                 if (NeutronPassVeto_1e_cut) {
                     hdTheta_LnFD_e_VS_dPhi_LnFD_e_Electrons_AV_1e_cut.hFill(CalcdPhi1(LnFD_hit_Phi_1e_cut - e_hit_Phi_1e_cut), LnFD_hit_Theta_1e_cut - e_hit_Theta_1e_cut, Weight);
@@ -12344,8 +12299,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                         // subtracting the angles between the neutron (n) hit and proton hit to see if we have fake neutrons:
                         hdTheta_LnFD_p_VS_dPhi_LnFD_p_Protons_BV_1e_cut.hFill(CalcdPhi1(LnFD_hit_Phi_1e_cut - p_hit_Phi_1e_cut), LnFD_hit_Theta_1e_cut - p_hit_Theta_1e_cut, Weight);
 
-                        bool NeutronPassVeto_1e_cut =
-                            pid.NeutronECAL_Cut_Veto(allParticles, electrons, beamE, NeutronsFD_ind_mom_max_noNeutCuts, Neutron_veto_cut.GetLowerCut());
+                        bool NeutronPassVeto_1e_cut = pid.NeutronECAL_Cut_Veto(allParticles, electrons, beamE, NeutronsFD_ind_mom_max_noNeutCuts, Neutron_veto_cut.GetLowerCut());
 
                         if (NeutronPassVeto_1e_cut) {
                             hdTheta_LnFD_p_VS_dPhi_LnFD_p_Protons_AV_1e_cut.hFill(CalcdPhi1(LnFD_hit_Phi_1e_cut - p_hit_Phi_1e_cut), LnFD_hit_Theta_1e_cut - p_hit_Theta_1e_cut, Weight);
@@ -12445,8 +12399,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
             // Filling neurton reco. Acceptance maps
             int AMaps_NeutronsFD_fill_ind = (ES_by_leading_FDneutron && (NeutronsFD_ind_mom_max != -1)) ? NeutronsFD_ind_mom_max
-                                            : (NeutronsFD_ind.size() == 1)                                         ? NeutronsFD_ind.at(0)
-                                                                                                                   : -9999;
+                                            : (NeutronsFD_ind.size() == 1)                              ? NeutronsFD_ind.at(0)
+                                                                                                        : -9999;
 
             if (AMaps_NeutronsFD_fill_ind >= 0) {
                 /* Fill leading reco FD neutron acceptance maps */
@@ -12529,8 +12483,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
             // Filling neurton reco. efficiency maps
             int WMaps_NeutronsFD_fill_ind = (ES_by_leading_FDneutron && (NeutronsFD_ind_mom_max != -1)) ? NeutronsFD_ind_mom_max
-                                            : (NeutronsFD_ind.size() == 1)                                         ? NeutronsFD_ind.at(0)
-                                                                                                                   : -9999;
+                                            : (NeutronsFD_ind.size() == 1)                              ? NeutronsFD_ind.at(0)
+                                                                                                        : -9999;
 
             if (WMaps_NeutronsFD_fill_ind >= 0) {
                 /* Fill leading reco FD neutron efficiency maps */
@@ -12556,8 +12510,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                     {
                         // if id. reco leading neutron
                         bool FD_Theta_Cut_Reco_neutrons = (Theta_neut_1e_cut <= FD_nucleon_theta_cut.GetUpperCut());
-                        bool FD_Momentum_Cut_Reco_neutrons =
-                            ((Mom_neut_1e_cut <= FD_nucleon_momentum_cut.GetUpperCut()) && (Mom_neut_1e_cut >= FD_nucleon_momentum_cut.GetLowerCut()));
+                        bool FD_Momentum_Cut_Reco_neutrons = ((Mom_neut_1e_cut <= FD_nucleon_momentum_cut.GetUpperCut()) && (Mom_neut_1e_cut >= FD_nucleon_momentum_cut.GetLowerCut()));
 
                         // if neutron passes ECAL veto and kinematical cuts:
                         if (NeutronPassVeto_1e_cut && FD_Theta_Cut_Reco_neutrons && FD_Momentum_Cut_Reco_neutrons) {
@@ -12578,8 +12531,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         // Fill neutron multiplicity plots (1e cut)
         pid.FillNeutMultiPlots(allParticles, electrons, Weight, beamE, Neutron_veto_cut.GetLowerCutConst(), hNeut_Multi_By_clas12pid_BPID_BV_1e_cut_FD,
                                hNeut_Multi_By_clas12pid_BPID_AV_1e_cut_FD, neutrons, hNeut_Multi_By_clas12pid_APID_BV_1e_cut_FD, hNeut_Multi_By_clas12pid_APID_AV_1e_cut_FD, neutrons);
-        pid.FillNeutMultiPlots(allParticles, electrons, Weight, beamE, Neutron_veto_cut.GetLowerCutConst(), hNeut_Multi_By_Redef_BPID_BV_1e_cut_FD,
-                               hNeut_Multi_By_Redef_BPID_AV_1e_cut_FD, ReDef_FD_neutrons, hNeut_Multi_By_Redef_APID_BV_1e_cut_FD, hNeut_Multi_By_Redef_APID_AV_1e_cut_FD, NeutronsFD_ind);
+        pid.FillNeutMultiPlots(allParticles, electrons, Weight, beamE, Neutron_veto_cut.GetLowerCutConst(), hNeut_Multi_By_Redef_BPID_BV_1e_cut_FD, hNeut_Multi_By_Redef_BPID_AV_1e_cut_FD,
+                               ReDef_FD_neutrons, hNeut_Multi_By_Redef_APID_BV_1e_cut_FD, hNeut_Multi_By_Redef_APID_AV_1e_cut_FD, NeutronsFD_ind);
 
 #pragma endregion
 
@@ -12613,11 +12566,11 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
             TVector3 P_e_1p_3v, q_1p_3v, P_p_1p_3v, P_T_e_1p_3v, P_T_p_1p_3v, dP_T_1p_3v, P_N_1p_3v;
 
-            P_e_1p_3v.SetMagThetaPhi(e_1p->getP(), e_1p->getTheta(), e_1p->getPhi());                                                          // electron 3 momentum
-            q_1p_3v = TVector3(Pvx - P_e_1p_3v.Px(), Pvy - P_e_1p_3v.Py(), Pvz - P_e_1p_3v.Pz());                                              // 3 momentum transfer
+            P_e_1p_3v.SetMagThetaPhi(e_1p->getP(), e_1p->getTheta(), e_1p->getPhi());                                              // electron 3 momentum
+            q_1p_3v = TVector3(Pvx - P_e_1p_3v.Px(), Pvy - P_e_1p_3v.Py(), Pvz - P_e_1p_3v.Pz());                                  // 3 momentum transfer
             P_p_1p_3v.SetMagThetaPhi(nRes.PSmear(apply_nucleon_SmearAndCorr, ProtonMomBKC_1p), p_1p->getTheta(), p_1p->getPhi());  // proton 3 momentum
-            P_T_e_1p_3v = TVector3(P_e_1p_3v.Px(), P_e_1p_3v.Py(), 0);                                                                         // electron transverse momentum
-            P_T_p_1p_3v = TVector3(P_p_1p_3v.Px(), P_p_1p_3v.Py(), 0);                                                                         // proton transverse momentum
+            P_T_e_1p_3v = TVector3(P_e_1p_3v.Px(), P_e_1p_3v.Py(), 0);                                                             // electron transverse momentum
+            P_T_p_1p_3v = TVector3(P_p_1p_3v.Px(), P_p_1p_3v.Py(), 0);                                                             // proton transverse momentum
 
             double E_e_1p = sqrt(m_e * m_e + P_e_1p_3v.Mag2()), E_p_1p = sqrt(m_p * m_p + P_p_1p_3v.Mag2()), Ecal_1p, dAlpha_T_1p, dPhi_T_1p;
             double omega_1p = beamE - E_e_1p, W_1p = sqrt((omega_1p + m_p) * (omega_1p + m_p) - q_1p_3v.Mag2());
@@ -12645,15 +12598,14 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             // Setting kinematical cuts
             /* Protons have lower momentum threshold & we don't lose good protons -> proton smearing before kin cuts but after FC */
             bool FD_Theta_Cut_1p = ((P_p_1p_3v.Theta() * 180.0 / pi) <= FD_nucleon_theta_cut.GetUpperCut());
-            bool FD_Momentum_Cut_1p = ((P_p_1p_3v.Mag() <= FD_nucleon_momentum_cut.GetUpperCut()) &&
-                                       (P_p_1p_3v.Mag() >= FD_nucleon_momentum_cut.GetLowerCut()));  // Momentum kin cut after proton smearing
-            bool e_withinFC_1p = aMaps_master.IsInFDQuery((Generate_Electron_AMaps || Generate_Nucleon_AMaps), ThetaFD, "Electron", P_e_1p_3v.Mag(),
-                                                          P_e_1p_3v.Theta() * 180.0 / pi, P_e_1p_3v.Phi() * 180.0 / pi);
-            bool p_withinFC_1p = aMaps_master.IsInFDQuery((Generate_Electron_AMaps || Generate_Nucleon_AMaps), ThetaFD, "Proton", ProtonMomBKC_1p,
-                                                          P_p_1p_3v.Theta() * 180.0 / pi, P_p_1p_3v.Phi() * 180.0 / pi, Calc_eff_overlapping_FC);
+            bool FD_Momentum_Cut_1p =
+                ((P_p_1p_3v.Mag() <= FD_nucleon_momentum_cut.GetUpperCut()) && (P_p_1p_3v.Mag() >= FD_nucleon_momentum_cut.GetLowerCut()));  // Momentum kin cut after proton smearing
+            bool e_withinFC_1p = aMaps_master.IsInFDQuery((Generate_Electron_AMaps || Generate_Nucleon_AMaps), ThetaFD, "Electron", P_e_1p_3v.Mag(), P_e_1p_3v.Theta() * 180.0 / pi,
+                                                          P_e_1p_3v.Phi() * 180.0 / pi);
+            bool p_withinFC_1p = aMaps_master.IsInFDQuery((Generate_Electron_AMaps || Generate_Nucleon_AMaps), ThetaFD, "Proton", ProtonMomBKC_1p, P_p_1p_3v.Theta() * 180.0 / pi,
+                                                          P_p_1p_3v.Phi() * 180.0 / pi, Calc_eff_overlapping_FC);
 
-            bool Pass_Kin_Cuts_1p =
-                ((!apply_kinematical_cuts || (FD_Theta_Cut_1p && FD_Momentum_Cut_1p)) && (!apply_fiducial_cuts || (e_withinFC_1p && p_withinFC_1p)));
+            bool Pass_Kin_Cuts_1p = ((!apply_kinematical_cuts || (FD_Theta_Cut_1p && FD_Momentum_Cut_1p)) && (!apply_fiducial_cuts || (e_withinFC_1p && p_withinFC_1p)));
 
             // Fillings 1p histograms -------------------------------------------------------------------------------------------------------------------------------
 
@@ -12917,8 +12869,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                 }
 
                 // Fill neutron multiplicity plots (1p)
-                pid.FillNeutMultiPlots(allParticles, electrons, Weight_1p, beamE, Neutron_veto_cut.GetLowerCutConst(), hNeut_Multi_By_Redef_BPID_BV_1p_FD,
-                                       hNeut_Multi_By_Redef_BPID_AV_1p_FD, ReDef_FD_neutrons, hNeut_Multi_By_Redef_APID_BV_1p_FD, hNeut_Multi_By_Redef_APID_AV_1p_FD, NeutronsFD_ind);
+                pid.FillNeutMultiPlots(allParticles, electrons, Weight_1p, beamE, Neutron_veto_cut.GetLowerCutConst(), hNeut_Multi_By_Redef_BPID_BV_1p_FD, hNeut_Multi_By_Redef_BPID_AV_1p_FD,
+                                       ReDef_FD_neutrons, hNeut_Multi_By_Redef_APID_BV_1p_FD, hNeut_Multi_By_Redef_APID_AV_1p_FD, NeutronsFD_ind);
 
                 // Fill W (1p)
                 FillByInt(hW_All_Int_1p, hW_QEL_1p, hW_MEC_1p, hW_RES_1p, hW_DIS_1p, qel, mec, res, dis, W_1p, Weight_1p);
@@ -13028,10 +12980,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                         // pRes good Proton cuts
                         bool pRes_TL_Pass_PIDCut = (pid_pRes == 2212);
 
-                        bool Reco_InFD = aMaps_master.IsInFDQuery((Generate_Electron_AMaps || Generate_Nucleon_AMaps), ThetaFD, "Proton", RecoProtonP,
-                                                                  RecoProtonTheta, RecoProtonPhi, false);
-                        bool TL_InFD = aMaps_master.IsInFDQuery((Generate_Electron_AMaps || Generate_Nucleon_AMaps), ThetaFD, "Proton", TLProtonP,
-                                                                TLProtonTheta, TLProtonPhi, false);
+                        bool Reco_InFD = aMaps_master.IsInFDQuery((Generate_Electron_AMaps || Generate_Nucleon_AMaps), ThetaFD, "Proton", RecoProtonP, RecoProtonTheta, RecoProtonPhi, false);
+                        bool TL_InFD = aMaps_master.IsInFDQuery((Generate_Electron_AMaps || Generate_Nucleon_AMaps), ThetaFD, "Proton", TLProtonP, TLProtonTheta, TLProtonPhi, false);
                         bool pRes_Pass_FiducialCuts = (Reco_InFD && TL_InFD);
 
                         bool Reco_Theta_kinCut = (RecoProtonTheta <= FD_nucleon_theta_cut.GetUpperCut());
@@ -13093,8 +13043,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
                         /* Res plots for thesis */
                         // TODO: figure out if these plots are needed
-                        if (pRes_TL_Pass_PIDCut && pRes_Pass_FiducialCuts && pRes_Pass_ThetaKinCut &&
-                            ((RecoProtonP >= p_mom_th.GetLowerCut()) && (RecoProtonP <= p_mom_th.GetUpperCut())) &&
+                        if (pRes_TL_Pass_PIDCut && pRes_Pass_FiducialCuts && pRes_Pass_ThetaKinCut && ((RecoProtonP >= p_mom_th.GetLowerCut()) && (RecoProtonP <= p_mom_th.GetUpperCut())) &&
                             ((TLProtonP >= p_mom_th.GetLowerCut()) && (TLProtonP <= p_mom_th.GetUpperCut()))) {
                             if (pRes_Pass_dThetaCut && pRes_Pass_dPhiCut) {
                                 double pResolution = (TLProtonP - RecoProtonP) / TLProtonP;
@@ -13161,9 +13110,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
             /* Safety check that we are looking at 1n */
             debugging::CodeDebugger.SafetyCheck_basic_event_selection(__FILE__, __LINE__, "1n", Kplus, Kminus, Piplus_ind, Piminus_ind, Electron_ind, deuterons);
-            debugging::CodeDebugger.SafetyCheck_1n(__FILE__, __LINE__, NeutronsFD_ind, e_1n, n_1n, Enable_FD_photons, PhotonsFD_ind, ES_by_leading_FDneutron, pid,
-                                                   allParticles, NeutronsFD_ind_mom_max, apply_nucleon_cuts, NeutronInPCAL_1n, NeutronInECIN_1n, NeutronInECOUT_1n,
-                                                   n_detlayer_1n);
+            debugging::CodeDebugger.SafetyCheck_1n(__FILE__, __LINE__, NeutronsFD_ind, e_1n, n_1n, Enable_FD_photons, PhotonsFD_ind, ES_by_leading_FDneutron, pid, allParticles,
+                                                   NeutronsFD_ind_mom_max, apply_nucleon_cuts, NeutronInPCAL_1n, NeutronInECIN_1n, NeutronInECOUT_1n, n_detlayer_1n);
 
             // Setting 1n analysis variables
             double NeutronMomBKC_1n = pid.GetFDNeutronP(n_1n, apply_nucleon_cuts);  // neutron momentum before shift for kin cuts
@@ -13242,17 +13190,17 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             /* We want to compare FD neutrons with FD protons in the same momentum region -> additional momentum kin cut after neutron shifting */
             /* Fiducial cuts -> after neutron shifting; because we want to match the corrected neutron momentum to the proton maps! */
             bool FD_Theta_Cut_1n = ((P_n_1n_3v.Theta() * 180.0 / pi) <= FD_nucleon_theta_cut.GetUpperCut());
-            bool FD_Momentum_Cut_BS_1n = ((NeutronMomBKC_1n <= FD_nucleon_momentum_cut.GetUpperCut()) &&
-                                          (NeutronMomBKC_1n >= FD_nucleon_momentum_cut.GetLowerCut()));  // Momentum kin cut before neutron shifting
+            bool FD_Momentum_Cut_BS_1n =
+                ((NeutronMomBKC_1n <= FD_nucleon_momentum_cut.GetUpperCut()) && (NeutronMomBKC_1n >= FD_nucleon_momentum_cut.GetLowerCut()));  // Momentum kin cut before neutron shifting
             bool FD_Momentum_Cut_AS_1n = ((P_n_1n_3v.Mag() <= FD_nucleon_momentum_cut.GetUpperCut()) && (P_n_1n_3v.Mag() >= FD_nucleon_momentum_cut.GetLowerCut()));
             // Additional momentum kin cut after neutron shifting
-            bool e_withinFC_1n = aMaps_master.IsInFDQuery((Generate_Electron_AMaps || Generate_Nucleon_AMaps), ThetaFD, "Electron", P_e_1n_3v.Mag(),
-                                                          P_e_1n_3v.Theta() * 180.0 / pi, P_e_1n_3v.Phi() * 180.0 / pi);
-            bool n_withinFC_1n = aMaps_master.IsInFDQuery((Generate_Electron_AMaps || Generate_Nucleon_AMaps), ThetaFD, "Neutron", P_n_1n_3v.Mag(),
-                                                          P_n_1n_3v.Theta() * 180.0 / pi, P_n_1n_3v.Phi() * 180.0 / pi, Calc_eff_overlapping_FC);
+            bool e_withinFC_1n = aMaps_master.IsInFDQuery((Generate_Electron_AMaps || Generate_Nucleon_AMaps), ThetaFD, "Electron", P_e_1n_3v.Mag(), P_e_1n_3v.Theta() * 180.0 / pi,
+                                                          P_e_1n_3v.Phi() * 180.0 / pi);
+            bool n_withinFC_1n = aMaps_master.IsInFDQuery((Generate_Electron_AMaps || Generate_Nucleon_AMaps), ThetaFD, "Neutron", P_n_1n_3v.Mag(), P_n_1n_3v.Theta() * 180.0 / pi,
+                                                          P_n_1n_3v.Phi() * 180.0 / pi, Calc_eff_overlapping_FC);
 
-            bool Pass_Kin_Cuts_1n = ((!apply_kinematical_cuts || (FD_Theta_Cut_1n && FD_Momentum_Cut_BS_1n && FD_Momentum_Cut_AS_1n)) &&
-                                     (!apply_fiducial_cuts || (e_withinFC_1n && n_withinFC_1n)));
+            bool Pass_Kin_Cuts_1n =
+                ((!apply_kinematical_cuts || (FD_Theta_Cut_1n && FD_Momentum_Cut_BS_1n && FD_Momentum_Cut_AS_1n)) && (!apply_fiducial_cuts || (e_withinFC_1n && n_withinFC_1n)));
 
             // Fillings 1n histograms -----------------------------------------------------------------------------------------------------------------------------------
 
@@ -13757,8 +13705,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                 }
 
                 // Fill neutron multiplicity plots (1n)
-                pid.FillNeutMultiPlots(allParticles, electrons, Weight_1n, beamE, Neutron_veto_cut.GetLowerCutConst(), hNeut_Multi_By_Redef_BPID_BV_1n_FD,
-                                       hNeut_Multi_By_Redef_BPID_AV_1n_FD, ReDef_FD_neutrons, hNeut_Multi_By_Redef_APID_BV_1n_FD, hNeut_Multi_By_Redef_APID_AV_1n_FD, NeutronsFD_ind);
+                pid.FillNeutMultiPlots(allParticles, electrons, Weight_1n, beamE, Neutron_veto_cut.GetLowerCutConst(), hNeut_Multi_By_Redef_BPID_BV_1n_FD, hNeut_Multi_By_Redef_BPID_AV_1n_FD,
+                                       ReDef_FD_neutrons, hNeut_Multi_By_Redef_APID_BV_1n_FD, hNeut_Multi_By_Redef_APID_AV_1n_FD, NeutronsFD_ind);
 
                 // Fill W (1n)
                 FillByInt(hW_All_Int_1n, hW_QEL_1n, hW_MEC_1n, hW_RES_1n, hW_DIS_1n, qel, mec, res, dis, W_1n, Weight_1n);
@@ -13884,10 +13832,9 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                         // nRes good neutron cuts
                         bool nRes_TL_Pass_PIDCut = (pid_nRes == 2112);
 
-                        bool Reco_InFD = aMaps_master.IsInFDQuery((Generate_Electron_AMaps || Generate_Nucleon_AMaps), ThetaFD, "Neutron",
-                                                                  RecoNeutronP, RecoNeutronTheta, RecoNeutronPhi, false);
-                        bool TL_InFD = aMaps_master.IsInFDQuery((Generate_Electron_AMaps || Generate_Nucleon_AMaps), ThetaFD, "Neutron", TLNeutronP,
-                                                                TLNeutronTheta, TLNeutronPhi, false);
+                        bool Reco_InFD =
+                            aMaps_master.IsInFDQuery((Generate_Electron_AMaps || Generate_Nucleon_AMaps), ThetaFD, "Neutron", RecoNeutronP, RecoNeutronTheta, RecoNeutronPhi, false);
+                        bool TL_InFD = aMaps_master.IsInFDQuery((Generate_Electron_AMaps || Generate_Nucleon_AMaps), ThetaFD, "Neutron", TLNeutronP, TLNeutronTheta, TLNeutronPhi, false);
                         bool nRes_Pass_FiducialCuts = (Reco_InFD && TL_InFD);
 
                         bool Reco_Theta_kinCut = (RecoNeutronTheta <= FD_nucleon_theta_cut.GetUpperCut());
@@ -14533,8 +14480,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             hdPhi_p1_p2_for_all_Theta_p1_p2_2p->Fill(dPhi_hit_2p, Weight);
             hdPhi_p1_p2_for_all_Theta_p1_p2_ZOOMIN_2p->Fill(dPhi_hit_2p, Weight);
 
-            if ((fabs(Theta_p1 - Theta_p1_cuts_2p.GetMean()) < Theta_p1_cuts_2p.GetUpperCut()) &&
-                (fabs(Theta_p2 - Theta_p2_cuts_2p.GetMean()) < Theta_p2_cuts_2p.GetUpperCut())) {
+            if ((fabs(Theta_p1 - Theta_p1_cuts_2p.GetMean()) < Theta_p1_cuts_2p.GetUpperCut()) && (fabs(Theta_p2 - Theta_p2_cuts_2p.GetMean()) < Theta_p2_cuts_2p.GetUpperCut())) {
                 hdPhi_p1_p2_for_small_dTheta_2p->Fill(dPhi_hit_2p, Weight);
                 hdPhi_p1_p2_for_small_dTheta_ZOOMIN_2p->Fill(dPhi_hit_2p, Weight);
             }
@@ -14562,8 +14508,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                 hdPhi_pFD_pCD_for_all_Theta_pFD_pCD_2p->Fill(dPhi_hit_pFDpCD_2p, Weight);
                 hdPhi_pFD_pCD_for_all_Theta_pFD_pCD_ZOOMIN_2p->Fill(dPhi_hit_pFDpCD_2p, Weight);
 
-                if ((fabs(Theta_pFD - Theta_pFD_cuts_2p.GetMean()) < Theta_pFD_cuts_2p.GetUpperCut()) &&
-                    (fabs(Theta_pCD - Theta_pCD_cuts_2p.GetMean()) < Theta_pCD_cuts_2p.GetUpperCut())) {
+                if ((fabs(Theta_pFD - Theta_pFD_cuts_2p.GetMean()) < Theta_pFD_cuts_2p.GetUpperCut()) && (fabs(Theta_pCD - Theta_pCD_cuts_2p.GetMean()) < Theta_pCD_cuts_2p.GetUpperCut())) {
                     hdPhi_pFD_pCD_for_small_dTheta_2p->Fill(dPhi_hit_pFDpCD_2p, Weight);
                     hdPhi_pFD_pCD_for_small_dTheta_ZOOMIN_2p->Fill(dPhi_hit_pFDpCD_2p, Weight);
                 }
@@ -14796,17 +14741,15 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             // Setting kinematical cuts
             /* Protons have lower momentum threshold & we don't lose good protons -> proton smearing before kin cuts */
             bool FD_Theta_Cut_pFDpCD = ((P_pFD_pFDpCD_3v.Theta() * 180.0 / pi) <= FD_nucleon_theta_cut.GetUpperCut());
-            bool FD_Momentum_Cut_pFDpCD =
-                ((P_pFD_pFDpCD_3v.Mag() <= FD_nucleon_momentum_cut.GetUpperCut()) && (P_pFD_pFDpCD_3v.Mag() >= FD_nucleon_momentum_cut.GetLowerCut()));
+            bool FD_Momentum_Cut_pFDpCD = ((P_pFD_pFDpCD_3v.Mag() <= FD_nucleon_momentum_cut.GetUpperCut()) && (P_pFD_pFDpCD_3v.Mag() >= FD_nucleon_momentum_cut.GetLowerCut()));
             // Momentum kin cut after proton smearing
-            bool e_withinFC_pFDpCD = aMaps_master.IsInFDQuery((Generate_Electron_AMaps || Generate_Nucleon_AMaps), ThetaFD, "Electron",
-                                                              P_e_pFDpCD_3v.Mag(), P_e_pFDpCD_3v.Theta() * 180.0 / pi, P_e_pFDpCD_3v.Phi() * 180.0 / pi);
-            bool pFD_withinFC_pFDpCD =
-                aMaps_master.IsInFDQuery((Generate_Electron_AMaps || Generate_Nucleon_AMaps), ThetaFD, "Proton", ProtonMomBKC_pFDpCD,
-                                         P_pFD_pFDpCD_3v.Theta() * 180.0 / pi, P_pFD_pFDpCD_3v.Phi() * 180.0 / pi, Calc_eff_overlapping_FC);
+            bool e_withinFC_pFDpCD = aMaps_master.IsInFDQuery((Generate_Electron_AMaps || Generate_Nucleon_AMaps), ThetaFD, "Electron", P_e_pFDpCD_3v.Mag(),
+                                                              P_e_pFDpCD_3v.Theta() * 180.0 / pi, P_e_pFDpCD_3v.Phi() * 180.0 / pi);
+            bool pFD_withinFC_pFDpCD = aMaps_master.IsInFDQuery((Generate_Electron_AMaps || Generate_Nucleon_AMaps), ThetaFD, "Proton", ProtonMomBKC_pFDpCD,
+                                                                P_pFD_pFDpCD_3v.Theta() * 180.0 / pi, P_pFD_pFDpCD_3v.Phi() * 180.0 / pi, Calc_eff_overlapping_FC);
 
-            bool Pass_Kin_Cuts_pFDpCD = ((!apply_kinematical_cuts || (FD_Theta_Cut_pFDpCD && FD_Momentum_Cut_pFDpCD)) &&
-                                         (!apply_fiducial_cuts || (e_withinFC_pFDpCD && pFD_withinFC_pFDpCD)));
+            bool Pass_Kin_Cuts_pFDpCD =
+                ((!apply_kinematical_cuts || (FD_Theta_Cut_pFDpCD && FD_Momentum_Cut_pFDpCD)) && (!apply_fiducial_cuts || (e_withinFC_pFDpCD && pFD_withinFC_pFDpCD)));
 
             //  Fillings pFDpCD histograms ------------------------------------------------------------------------------------------------------------------------------
 
@@ -15621,17 +15564,14 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             /* We want to compare FD neutrons with FD protons in the same momentum region -> additional momentum kin cut after neutron shifting */
             /* Fiducial cuts -> after neutron shifting; because we want to match the currected neutron momentum to the proton maps! */
             bool FD_Theta_Cut_nFDpCD = ((P_nFD_nFDpCD_3v.Theta() * 180.0 / pi) <= FD_nucleon_theta_cut.GetUpperCut());
-            bool FD_Momentum_Cut_BS_nFDpCD =
-                ((NeutronMomBKC_nFDpCD <= FD_nucleon_momentum_cut.GetUpperCut()) && (NeutronMomBKC_nFDpCD >= FD_nucleon_momentum_cut.GetLowerCut()));
+            bool FD_Momentum_Cut_BS_nFDpCD = ((NeutronMomBKC_nFDpCD <= FD_nucleon_momentum_cut.GetUpperCut()) && (NeutronMomBKC_nFDpCD >= FD_nucleon_momentum_cut.GetLowerCut()));
             // Momentum kin cut before neutron shifting
-            bool FD_Momentum_Cut_AS_nFDpCD =
-                ((P_nFD_nFDpCD_3v.Mag() <= FD_nucleon_momentum_cut.GetUpperCut()) && (P_nFD_nFDpCD_3v.Mag() >= FD_nucleon_momentum_cut.GetLowerCut()));
+            bool FD_Momentum_Cut_AS_nFDpCD = ((P_nFD_nFDpCD_3v.Mag() <= FD_nucleon_momentum_cut.GetUpperCut()) && (P_nFD_nFDpCD_3v.Mag() >= FD_nucleon_momentum_cut.GetLowerCut()));
             // Additional momentum kin cut after neutron shifting
-            bool e_withinFC_nFDpCD = aMaps_master.IsInFDQuery((Generate_Electron_AMaps || Generate_Nucleon_AMaps), ThetaFD, "Electron",
-                                                              P_e_nFDpCD_3v.Mag(), P_e_nFDpCD_3v.Theta() * 180.0 / pi, P_e_nFDpCD_3v.Phi() * 180.0 / pi);
-            bool nFD_withinFC_nFDpCD =
-                aMaps_master.IsInFDQuery((Generate_Electron_AMaps || Generate_Nucleon_AMaps), ThetaFD, "Neutron", P_nFD_nFDpCD_3v.Mag(),
-                                         P_nFD_nFDpCD_3v.Theta() * 180.0 / pi, P_nFD_nFDpCD_3v.Phi() * 180.0 / pi, Calc_eff_overlapping_FC);
+            bool e_withinFC_nFDpCD = aMaps_master.IsInFDQuery((Generate_Electron_AMaps || Generate_Nucleon_AMaps), ThetaFD, "Electron", P_e_nFDpCD_3v.Mag(),
+                                                              P_e_nFDpCD_3v.Theta() * 180.0 / pi, P_e_nFDpCD_3v.Phi() * 180.0 / pi);
+            bool nFD_withinFC_nFDpCD = aMaps_master.IsInFDQuery((Generate_Electron_AMaps || Generate_Nucleon_AMaps), ThetaFD, "Neutron", P_nFD_nFDpCD_3v.Mag(),
+                                                                P_nFD_nFDpCD_3v.Theta() * 180.0 / pi, P_nFD_nFDpCD_3v.Phi() * 180.0 / pi, Calc_eff_overlapping_FC);
 
             bool Pass_Kin_Cuts_nFDpCD = ((!apply_kinematical_cuts || (FD_Theta_Cut_nFDpCD && FD_Momentum_Cut_BS_nFDpCD && FD_Momentum_Cut_AS_nFDpCD)) &&
                                          (!apply_fiducial_cuts || (e_withinFC_nFDpCD && nFD_withinFC_nFDpCD)));
