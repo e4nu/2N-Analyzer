@@ -7,10 +7,10 @@
 #define FullAnalyzer true
 #define IndependentCanvasPDF false
 
-#include "../framework/namespaces/setup/path_definitions.h"
-#include "../framework/namespaces/setup/debugging.h"
 #include "../framework/namespaces/setup/analysis_samples/analysis_samples.h"
-// 
+#include "../framework/namespaces/setup/debugging.h"
+#include "../framework/namespaces/setup/path_definitions.h"
+//
 #include "../framework/namespaces/general_utilities/basic_tools.h"
 #include "../framework/namespaces/general_utilities/constants.h"
 #include "../framework/namespaces/plotters/PDF_canvas/PDF_canvas.h"
@@ -18,6 +18,7 @@
 // #include "../framework/classes/Debugger/Debugger.cpp"
 #include "../framework/classes/Directories/Directories.cpp"
 #include "../framework/classes/ExperimentParameters/ExperimentParameters.cpp"
+#include "../framework/functions/FillByInt.h"
 #include "../framework/functions/HistogramPlottingFunctions.h"
 //
 // #include "samples/Q2_testing_samples.h"
