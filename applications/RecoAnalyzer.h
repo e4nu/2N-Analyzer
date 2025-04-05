@@ -26,7 +26,7 @@
     // #include "../structures/MomentumResolutionSettings/MomentumResolutionSettings.h"
     // #include "../structures/RunParameters/RunParameters.h"
     // #include "../namespaces/printers/printers.h"
-    
+
     // Include classes:
     #include "../framework/classes/AMaps/AMaps.cpp"
     #include "../framework/classes/DEfficiency/DEfficiency.cpp"
@@ -38,18 +38,13 @@
     #include "../framework/classes/clas12ana/clas12ana.h"
     #include "../framework/classes/hPlots/hPlot1D.cpp"
     #include "../framework/classes/hPlots/hPlot2D.cpp"
-    
+
     // Include CLAS12 libraries:
     #include "../framework/includes/clas12_include.h"
+    #pragma endregion
 
-// #include "HipoChain.h"
-// #include "clas12reader.h"
-
-// using namespace std;
-// using namespace clas12;
 using namespace utilities;
 using namespace draw_and_save_functions;
-    #pragma endregion
 
 class RecoAnalyzer {
    public:
