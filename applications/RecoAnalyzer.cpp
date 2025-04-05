@@ -9738,16 +9738,16 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         ++num_of_events;  // logging Total #(events) in sample
 
         /* Particles outside clas12ana */
-        std::vector<clas12::region_part_ptr> allParticles_det = c12->getDetParticles();
-        std::vector<clas12::region_part_ptr> electrons_det = c12->getByID(11);
+        auto allParticles_det = c12->getDetParticles();
+        auto electrons_det = c12->getByID(11);
 
         clasAna.Run(c12);
 
         /* allParticles vector from clas12ana (my addition). Used mostly for 1n & nFDpCD.  */
-        std::vector<clas12::region_part_ptr> allParticles = clasAna.getParticles();
+        auto allParticles = clasAna.getParticles();
 
         /* All of these particles are with clas12ana cuts. Only cuts missing are momentum and beta(?) cuts - to be applied later */
-        std::vector<clas12::region_part_ptr> neutrons, protons, Kplus, Kminus, piplus, piminus, electrons, deuterons, neutrals, otherpart;
+        std::vector<region_part_ptr> neutrons, protons, Kplus, Kminus, piplus, piminus, electrons, deuterons, neutrals, otherpart;
         pid.SetEventParticles(clas12ana_particles, clasAna, c12, neutrons, protons, Kplus, Kminus, piplus, piminus, electrons, deuterons, neutrals, otherpart);
 
         // if (clas12ana_particles) {
