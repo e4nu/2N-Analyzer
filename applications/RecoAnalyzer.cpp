@@ -9838,7 +9838,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         std::vector<clas12::region_part_ptr> neutrons, protons, Kplus, Kminus, piplus, piminus, electrons, deuterons, neutrals, otherpart;
         // pid.SetEventParticles(CutSettings.clas12ana_particles, clasAna, c12, neutrons, protons, Kplus, Kminus, piplus, piminus, electrons, deuterons, neutrals, otherpart);
 
-        if (clas12ana_particles) {
+        if (CutSettings.clas12ana_particles) {
             // Get particle outside from clas12ana:
             neutrons = clasAna.getByPid(2112);  // Neutrons
             protons = clasAna.getByPid(2212);   // Protons
