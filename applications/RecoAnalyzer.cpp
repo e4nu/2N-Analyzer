@@ -1,52 +1,13 @@
-// #ifndef DATAANALYZER_H
-// #define DATAANALYZER_H
+#ifndef RECOANALYZER_H
+#define RECOANALYZER_H
 
 #pragma region /* Includes */
-// #include "../classes/DataAnalyzer/DataAnalyzer.cpp"
-
-// Include code setup:
-#include "../setup/codeSetup.h"
-
-// Include Libraries:
-#include "../framework/namespaces/fitters/fitter_functions.h"
-#include "../framework/namespaces/general_utilities/utilities.h"
-#include "../framework/namespaces/plotters/draw_and_save_functions/draw_and_save_functions.h"
-#include "../framework/namespaces/printers/printers.h"
-
-// // Include settings:
-// #include "../framework/structures/AcceptanceMapsSettings/AcceptanceMapsSettings.h"
-// #include "../framework/structures/AnalysisCutSettings/CutSettings.h"
-// #include "../framework/structures/CutValueManager/CutValueManager.h"
-// #include "../framework/structures/EventSelectionSettings/EventSelectionSettings.h"
-// #include "../framework/structures/MomentumResolutionSettings/MomentumResolutionSettings.h"
-// #include "../framework/structures/RunParameters/RunParameters.h"
-
-// Include tools:
-#include "../framework/classes/AMaps/AMaps.cpp"
-#include "../framework/classes/DEfficiency/DEfficiency.cpp"
-#include "../framework/classes/DSCuts/DSCuts.h"
-#include "../framework/classes/MomentumResolution/MomentumResolution.cpp"
-#include "../framework/classes/ParticleID/ParticleID.cpp"
-#include "../framework/classes/Settings/Settings.cpp"
-#include "../framework/classes/TLCuts/TLCuts.cpp"
-#include "../framework/classes/clas12ana/clas12ana.h"
-#include "../framework/classes/hPlots/hPlot1D.cpp"
-#include "../framework/classes/hPlots/hPlot2D.cpp"
-#include "../framework/functions/FillByInt.h"
-
-// Include CLAS12 tools:
-#include "../framework/includes/clas12_include.h"
-
-// #include "HipoChain.h"
-// #include "clas12reader.h"
-
-// using namespace clas12;
-using namespace code_setup;
-using namespace utilities;
-using namespace draw_and_save_functions;
+#include "RecoAnalyzer.h"
 #pragma endregion
 
-void RecoEventAnalyser(const std::string &AnalyzeFilePath, const std::string &AnalyzeFileSample, const std::string &AnalyzeFile) {
+// RecoAnalyzer constructor ---------------------------------------------------------------------------------------------------------------------------------------------
+
+RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string &AnalyzeFileSample, const std::string &AnalyzeFile) {
     debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode);
 
     std::cout << "\033[33m\n\n===========================================================================\n\033[0m";
@@ -23437,4 +23398,4 @@ void RecoEventAnalyser(const std::string &AnalyzeFilePath, const std::string &An
 #pragma endregion
 }
 
-// #endif  // DATAANALYZER_H
+#endif  // RECOANALYZER_H
