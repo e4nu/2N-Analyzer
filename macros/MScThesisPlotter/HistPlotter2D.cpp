@@ -479,7 +479,7 @@ void HistPlotter2D(TCanvas *HistogramCanvas, TList *MScThesisPlotsList, const ch
         } else {
             Histogram2D->SetStats(0);
 
-            //<editor-fold desc="Align Z axis of denominators and numerator">
+            #pragma region /* Align Z axis of denominators and numerator */
             if (!findSubstring(Histogram2D_Title, "Veto")) {
                 bool Equi_z_2D = false;
 
@@ -502,7 +502,7 @@ void HistPlotter2D(TCanvas *HistogramCanvas, TList *MScThesisPlotsList, const ch
                     FuncList->Clear();
                 }
             }
-            //</editor-fold>
+            #pragma endregion
 
             TitleAligner(Histogram2D, Histogram2D_Title, Histogram2D_xLabel, Histogram2D_yLabel,
                          "|#vec{P}_{tot}| = |#vec{P}_{nL} + #vec{P}_{nR}|", "P_{tot}");
@@ -582,7 +582,7 @@ void HistPlotter2D(TCanvas *HistogramCanvas, TList *MScThesisPlotsList, const ch
 
             Histogram2D->Draw("colz"), gPad->Update();
 
-            //<editor-fold desc="EquiLine2D for momentum 2D plots">
+            #pragma region /* EquiLine2D for momentum 2D plots */
             if (findSubstring(Histogram2D_Title, "P_{pFD} vs. P_{pCD}") || findSubstring(Histogram2D_Title, "P_{nFD} vs. P_{pCD}") ||
                 findSubstring(Histogram2D_Title, "P_{pL} vs. P_{pR}") || findSubstring(Histogram2D_Title, "P_{nL} vs. P_{nR}") ||
                 findSubstring(Histogram2D_Title, "P_{nucFD} vs. P_{nucCD}") || findSubstring(Histogram2D_Title, "P_{nucL} vs. P_{nucR}")) {
@@ -599,7 +599,7 @@ void HistPlotter2D(TCanvas *HistogramCanvas, TList *MScThesisPlotsList, const ch
                 TLegendEntry *EquiLine2D_entry = Legend->AddEntry(EquiLine2D, "y(x) = x", "l");
                 Legend->SetTextSize(0.03), Legend->SetTextAlign(12), Legend->Draw("same");
             }
-            //</editor-fold>
+            #pragma endregion
 
         }
     }

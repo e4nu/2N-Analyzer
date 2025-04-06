@@ -9,7 +9,7 @@
 
 // ResetHistograms function ----------------------------------------------------------------------------------------------------------------------------------------------
 
-//<editor-fold desc="ResetHistograms function">
+#pragma region /* ResetHistograms function */
 void DEfficiency::ResetHistograms() {
     Histogram1D_REC->Reset();
     RPlot_Clone_StatsTitle = "";
@@ -29,11 +29,11 @@ void DEfficiency::ResetHistograms() {
 
     EffAndACorr_SaveNamePath = "";
 }
-//</editor-fold>
+#pragma endregion
 
 // LoadHistograms function ----------------------------------------------------------------------------------------------------------------------------------------------
 
-//<editor-fold desc="LoadHistograms function">
+#pragma region /* LoadHistograms function */
 void DEfficiency::LoadHistograms(const std::string &SampleName, const hPlot1D &TLPlot, const hPlot1D &RPlot) {
     Histogram1D_REC = RPlot.GetHistogram();
     RPlot_Clone_StatsTitle = "reco. " + RPlot.GetHistogramStatTitle() + " - cloned";
@@ -54,9 +54,9 @@ void DEfficiency::LoadHistograms(const std::string &SampleName, const hPlot1D &T
     if (rebin_plots) { TLPlot_Clone_test_rebined->Rebin(2); }
     EffAndACorr_SaveNamePath = TLPlot.GetHistogram1DSaveNamePath();
 }
-//</editor-fold>
+#pragma endregion
 
-//<editor-fold desc="LoadHistograms function">
+#pragma region /* LoadHistograms function */
 void DEfficiency::LoadHistograms(const std::string &SampleName, const hPlot1D &TLPlot, TH1D *RPlot) {
     std::string StatsTitle = GetStatsTitle(RPlot->GetTitle());
 
@@ -79,13 +79,13 @@ void DEfficiency::LoadHistograms(const std::string &SampleName, const hPlot1D &T
 
     EffAndACorr_SaveNamePath = TLPlot.GetHistogram1DSaveNamePath();
 }
-//</editor-fold>
+#pragma endregion
 
 // DrawACorrHistograms function -----------------------------------------------------------------------------------------------------------------------------------------
 
-//<editor-fold desc="DrawACorrHistograms function">
+#pragma region /* DrawACorrHistograms function */
 void DEfficiency::DrawACorrHistograms(bool save_ACorr_data, const std::string &SampleName, TList *Histogram_list, TList *ACorr_data, std::string &ACorr_data_Dir) {
-    //<editor-fold desc="Canvas definitions">
+    #pragma region /* Canvas definitions */
     TCanvas *Canvas = new TCanvas("Canvas", "Canvas", 1000, 750);  // normal res
 
     Canvas->SetGrid();
@@ -94,7 +94,7 @@ void DEfficiency::DrawACorrHistograms(bool save_ACorr_data, const std::string &S
     Canvas->SetRightMargin(0.12);
 
     Canvas->cd();
-    //</editor-fold>
+    #pragma endregion
 
     std::string ACorrectionRecTitle = RPlot_Clone->GetTitle();
 
@@ -107,7 +107,7 @@ void DEfficiency::DrawACorrHistograms(bool save_ACorr_data, const std::string &S
 
     std::string ACorrectionXLabel = SetXLabel(ACorrectionRecTitle);
 
-    //<editor-fold desc="Setting y axis label">
+    #pragma region /* Setting y axis label */
     std::string xLabel_REC_temp = RPlot_Clone->GetXaxis()->GetTitle();
     std::string xLabel_REC = xLabel_REC_temp.substr(0, xLabel_REC_temp.find_last_of('[') - 1);
     std::string xLabel_Truth_temp = TLPlot_Clone->GetXaxis()->GetTitle();
@@ -115,14 +115,14 @@ void DEfficiency::DrawACorrHistograms(bool save_ACorr_data, const std::string &S
 
     std::string ACorrectionYLabel = string("#alpha = ") + "#frac{1}{#epsilon_{eff}} = " + xLabel_Truth + "/" + xLabel_REC + "^{rec}";
     //    std::string ACorrectionYLabel = "#epsilon_{eff} = " + xLabel_REC + "^{rec}" + "/" + xLabel_Truth;
-    //</editor-fold>
+    #pragma endregion
 
     std::string ACorrectionFS = GetFS(ACorrectionRecTitle);
 
     std::string ACorrectionSaveDir = SetSaveDir(ACorrectionRecTitle, EffAndACorr_SaveNamePath);
     std::string ACorrectionTestSaveDir = SetSaveDir(ACorrectionRecTitle, EffAndACorr_SaveNamePath, "test");
 
-    //<editor-fold desc="Setting save name">
+    #pragma region /* Setting save name */
     std::string sNameFlag;
 
     if (FindSubstring(SampleName, "sim")) {
@@ -140,7 +140,7 @@ void DEfficiency::DrawACorrHistograms(bool save_ACorr_data, const std::string &S
     std::string TLPlot_Clone_test_rebined_SaveName =
         ACorrectionTestSaveDir + sNameFlag + "02b_" + ACorrectionParticle + "_" + ACorrectionType + "_" + ACorrectionFS + "_" + "Truth_Clone_test_rebined.png";
     std::string ACorrection_plot_SaveName = ACorrectionSaveDir + sNameFlag + "_" + ACorrectionParticle + "_" + ACorrectionType + "_ACorrection_" + ACorrectionFS + ".png";
-    //</editor-fold>
+    #pragma endregion
 
     TH1D *ACorrection_plot = (TH1D *)TLPlot_Clone->Clone((ACorrectionParticle + " " + ACorrectionType + " #alpha" + " (" + ACorrectionFS + ")").c_str());
     ACorrection_plot->SetTitle((ACorrectionTitle + " acceptance correction #alpha = 1/#epsilon_{eff} (" + ACorrectionFS + ")").c_str());
@@ -164,7 +164,7 @@ void DEfficiency::DrawACorrHistograms(bool save_ACorr_data, const std::string &S
     //    DrawAndSaveHistogram1D(Canvas, Histogram_list, RPlot_Clone, 1, kBlue, true, true, true, RPlot_Clone_SaveName);
     //    DrawAndSaveHistogram1D(Canvas, Histogram_list, TLPlot_Clone, 1, kBlue, true, true, true, TLPlot_Clone_SaveName);
 
-    //<editor-fold desc="Plotting and saving ACorrection_plot">
+    #pragma region /* Plotting and saving ACorrection_plot */
     ACorrection_plot->SetLineStyle(1);
     ACorrection_plot->SetLineColor(kBlue);
     ACorrection_plot->SetStats(false);
@@ -188,9 +188,9 @@ void DEfficiency::DrawACorrHistograms(bool save_ACorr_data, const std::string &S
     Histogram_list->Add(ACorrection_plot);
     Canvas->SaveAs((ACorrection_plot_SaveName).c_str());
     Canvas->Clear();
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Save acceptance correction data">
+    #pragma region /* Save acceptance correction data */
     if (save_ACorr_data) {
         system(("rm -r " + ACorr_data_Dir).c_str());     // clear old ACorr_data_Dir
         system(("mkdir -p " + ACorr_data_Dir).c_str());  // recreate ACorr_data_Dir
@@ -223,35 +223,35 @@ void DEfficiency::DrawACorrHistograms(bool save_ACorr_data, const std::string &S
         ACorr_data->Add(ACorr_factor);
         Canvas->Clear();
     }
-    //</editor-fold>
+    #pragma endregion
 
     delete Canvas;
 }
-//</editor-fold>
+#pragma endregion
 
 // DrawAndSaveACorrPlots function ---------------------------------------------------------------------------------------------------------------------------------------
 
-//<editor-fold desc="DrawAndSaveACorrPlots function">
+#pragma region /* DrawAndSaveACorrPlots function */
 void DEfficiency::DrawAndSaveACorrPlots(bool save_ACorr_data, const std::string &SampleName, const hPlot1D &TLPlot, const hPlot1D &RPlot, TList *Histogram_list, TList *ACorr_data,
                                         std::string &ACorr_data_Dir) {
     LoadHistograms(SampleName, TLPlot, RPlot);
     DrawACorrHistograms(save_ACorr_data, SampleName, Histogram_list, ACorr_data, ACorr_data_Dir);
     //    ResetHistograms();
 }
-//</editor-fold>
+#pragma endregion
 
-//<editor-fold desc="DrawAndSaveACorrPlots function">
+#pragma region /* DrawAndSaveACorrPlots function */
 void DEfficiency::DrawAndSaveACorrPlots(bool save_ACorr_data, const std::string &SampleName, const hPlot1D &TLPlot, TH1D *RPlot, TList *Histogram_list, TList *ACorr_data,
                                         std::string &ACorr_data_Dir) {
     LoadHistograms(SampleName, TLPlot, RPlot);
     DrawACorrHistograms(save_ACorr_data, SampleName, Histogram_list, ACorr_data, ACorr_data_Dir);
     //    ResetHistograms();
 }
-//</editor-fold>
+#pragma endregion
 
 // DrawAndSaveHistogram1D function --------------------------------------------------------------------------------------------------------------------------------------
 
-//<editor-fold desc="DrawAndSaveHistogram1D function">
+#pragma region /* DrawAndSaveHistogram1D function */
 void DEfficiency::DrawAndSaveHistogram1D(TCanvas *HistCanvas, TList *Histogram_list, TFolder *Histogram_folder, TH1D *Histogram1D, int LineStyle, int kColor, bool ShowStats,
                                          bool PlotErrorbars, bool RebinPlots, const std::string &HistSaveDir) {
     // TODO: remove TList *Histogram_list from arguments if not needed
@@ -278,6 +278,6 @@ void DEfficiency::DrawAndSaveHistogram1D(TCanvas *HistCanvas, TList *Histogram_l
     HistCanvas->SaveAs(HistSaveDir.c_str());
     HistCanvas->Clear();
 }
-//</editor-fold>
+#pragma endregion
 
 #endif  // DEFFICIENCY_H

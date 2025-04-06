@@ -36,7 +36,7 @@ void fitexample() {
 
     TH1D *hpx = (TH1D *) f->Get("#beta of n from '#gamma' (1n, FD)");
 
-    //<editor-fold desc="Old 3">
+    #pragma region /* Old 3 */
     //create a function with 3 parameters in the range [-3,3]
     TF1 *func = new TF1("fit", FitFunction, 0, 2, 3);
     func->SetLineColor(kRed);
@@ -182,9 +182,9 @@ void fitexample() {
     FitParam->AddText(("Fit mean = " + to_string_with_precision(Mean, 3)).c_str());
     FitParam->AddText(("Cuts = std * " + to_string_with_precision(factor, 2)).c_str());
     FitParam->Draw("same");*/
-    //</editor-fold>
+    #pragma endregion
 
-//    //<editor-fold desc="Old 2">
+//    #pragma region /* Old 2 */
 //    //create a function with 3 parameters in the range [-3,3]
 //    TF1 *func = new
 ////    TF1("fit", FitFunction, 0.985, 1.04, 3);
@@ -294,9 +294,9 @@ void fitexample() {
 //    FitParam->AddText(("Fit mean = " + to_string_with_precision(Mean, 3)).c_str());
 //    FitParam->AddText(("Cuts = std * " + to_string_with_precision(factor, 2)).c_str());
 //    FitParam->Draw("same");*/
-//    //</editor-fold>
+//    #pragma endregion
 
-//    //<editor-fold desc="Old">
+//    #pragma region /* Old */
 //    //    //create a function with 3 parameters in the range [-3,3]
 ////    TF1 * func = new
 ////    TF1("fit", FitFunction, -3, 3, 3);
@@ -399,7 +399,7 @@ void fitexample() {
 //    FitParam->AddText(("Fit mean = " + to_string_with_precision(Mean, 3)).c_str());
 //    FitParam->AddText(("Cuts = std * " + to_string_with_precision(factor, 2)).c_str());
 //    FitParam->Draw("same");
-//    //</editor-fold>
+//    #pragma endregion
 }
 
 //void fitexample() {

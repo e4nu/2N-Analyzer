@@ -31,13 +31,13 @@
 #include <typeinfo>
 #include <vector>
 
-//<editor-fold desc="C12_simulation_6GeV_T5 (Old sample)">
+#pragma region /* C12_simulation_6GeV_T5 (Old sample) */
 vector<vector<double>> CustomElectronMomSliceLimits_C12_simulation_6GeV_T5 = {{0.4, 1.6}, {1.6, 2.2}, {2.2, 2.8}, {2.8, 4}, {4, 5}, {5, 6}};
-//</editor-fold>
+#pragma endregion
 
-//<editor-fold desc="C12x4_simulation_G18_Q204_6GeV (New sample (24M; 1-foil & 4-foil))">
+#pragma region /* C12x4_simulation_G18_Q204_6GeV (New sample (24M; 1-foil & 4-foil)) */
 
-//<editor-fold desc="v3 cuts">
+#pragma region /* v3 cuts */
 vector<vector<double>> CustomElectronMomSliceLimits_C12x4_simulation_G18_Q204_6GeV = {
     {0.00, 0.60}, {0.60, 0.80}, {0.80, 1.20}, {1.20, 1.60}, {1.60, 1.80}, {1.80, 2.00}, {2.00, 2.20}, {2.20, 2.40}, {2.40, 2.50}, {2.50, 2.60}, {2.60, 2.70}, {2.70, 2.80}, {2.80, 2.90},
     {2.90, 3.00}, {3.00, 3.10}, {3.10, 3.20}, {3.20, 3.30}, {3.30, 3.40}, {3.40, 3.50}, {3.50, 3.60}, {3.60, 3.65}, {3.65, 3.70}, {3.70, 3.75}, {3.75, 3.80}, {3.80, 3.85}, {3.85, 3.90},
@@ -143,9 +143,9 @@ vector <vector<double>> ElectronMomSliceLimits = {{0.0, 0.6},
                                                   {5.2, 6.0}};
 */
 
-//</editor-fold>
+#pragma endregion
 
-////<editor-fold desc="v2 cuts">
+//#pragma region /* v2 cuts */
 // vector <vector<double>> ElectronMomSliceLimits = {{0.,  0.6},
 //                                                   {0.6, 0.8},
 //                                                   {0.8, 1.2},
@@ -155,8 +155,8 @@ vector <vector<double>> ElectronMomSliceLimits = {{0.0, 0.6},
 //                                                   {2.8, 4},
 //                                                   {4,   5},
 //                                                   {5,   6}};
-////</editor-fold>
+//#pragma endregion
 
-//</editor-fold>
+#pragma endregion
 
 #endif  // CUSTOMSLICELIMITS_H

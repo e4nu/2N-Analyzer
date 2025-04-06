@@ -408,7 +408,7 @@ private:
     TH1D *el_vz_debug = new TH1D("el_vz_debug", "El vertex ", 100, -20, 10);
     TH1D *el_vz_p_debug = new TH1D("el_vz_p_debug", "El-proton vertex ", 100, -10, 10);
 
-    //<editor-fold desc="my debugging - multiplicity plots before cuts (= BC) - no #e cuts">
+    #pragma region /* my debugging - multiplicity plots before cuts (= BC) - no #e cuts */
     /* my debugging - multiplicity plots before cuts (= BC) - no #e cuts */
 //    TH2D *multi_p_vs_cpi_fd_BC_debug = new TH2D("multi_p_vs_cpi_fd_BC_debug",
 //                                                "#font[12]{#p} vs. #font[12]{##pi^{#pm}} BC (no #e cuts, FD);#font[12]{#p};#font[12]{##pi^{#pm}}", 10, 0, 10, 10, 0, 10);
@@ -423,9 +423,9 @@ private:
 //    TH1D *multi_cpi_fd_BC_debug = new TH1D("multi_cpi_fd_BC_debug", "#font[12]{##pi^{#pm}} BC (no #e cuts, FD);#font[12]{##pi^{#pm}}", 10, 0, 10);
 //    TH1D *multi_cpi_cd_BC_debug = new TH1D("multi_cpi_cd_BC_debug", "#font[12]{##pi^{#pm}} BC (no #e cuts, CD);#font[12]{##pi^{#pm}}", 10, 0, 10);
     TH1D *multi_cpi_BC_debug = new TH1D("multi_cpi_BC_debug", "#font[12]{##pi^{#pm}} BC (no #e cuts, CD & FD);#font[12]{##pi^{#pm}}", 10, 0, 10);
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="my debugging - multiplicity plots after cuts (= AC) - no #e cuts">
+    #pragma region /* my debugging - multiplicity plots after cuts (= AC) - no #e cuts */
     /* my debugging - multiplicity plots after cuts (= AC) - no #e cuts */
 //    TH2D *multi_p_vs_cpi_fd_AC_debug = new TH2D("multi_p_vs_cpi_fd_AC_debug",
 //                                                "#font[12]{#p} vs. #font[12]{##pi^{#pm}} AC (no #e cuts, FD);#font[12]{#p};#font[12]{##pi^{#pm}}", 10, 0, 10, 10, 0, 10);
@@ -440,9 +440,9 @@ private:
 //    TH1D *multi_cpi_fd_AC_debug = new TH1D("multi_cpi_fd_AC_debug", "#font[12]{##pi^{#pm}} AC (no #e cuts, FD);#font[12]{##pi^{#pm}}", 10, 0, 10);
 //    TH1D *multi_cpi_cd_AC_debug = new TH1D("multi_cpi_cd_AC_debug", "#font[12]{##pi^{#pm}} AC (no #e cuts, CD);#font[12]{##pi^{#pm}}", 10, 0, 10);
     TH1D *multi_cpi_AC_debug = new TH1D("multi_cpi_AC_debug", "#font[12]{##pi^{#pm}} AC (no #e cuts, CD & FD);#font[12]{##pi^{#pm}}", 10, 0, 10);
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="my debugging - multiplicity plots before cuts (= BC) - 1e cut">
+    #pragma region /* my debugging - multiplicity plots before cuts (= BC) - 1e cut */
     /* my debugging - multiplicity plots before cuts (= BC) - 1e cut */
 //    TH2D *multi_p_vs_cpi_1e_cut_fd_BC_debug = new TH2D("multi_p_vs_cpi_1e_cut_fd_BC_debug",
 //                                                       "#font[12]{#p} vs. #font[12]{##pi^{#pm}} BC (1e cut, FD);#font[12]{#p};#font[12]{##pi^{#pm}}",
@@ -459,9 +459,9 @@ private:
 //    TH1D *multi_cpi_1e_cut_fd_BC_debug = new TH1D("multi_cpi_1e_cut_fd_BC_debug", "#font[12]{##pi^{#pm}} BC (1e cut, FD);#font[12]{##pi^{#pm}}", 10, 0, 10);
 //    TH1D *multi_cpi_1e_cut_cd_BC_debug = new TH1D("multi_cpi_1e_cut_cd_BC_debug", "#font[12]{##pi^{#pm}} BC (1e cut, CD);#font[12]{##pi^{#pm}}", 10, 0, 10);
     TH1D *multi_cpi_1e_cut_BC_debug = new TH1D("multi_cpi_1e_cut_BC_debug", "#font[12]{##pi^{#pm}} BC (1e cut, CD & FD);#font[12]{##pi^{#pm}}", 10, 0, 10);
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="my debugging - multiplicity plots after cuts (= AC) - 1e cut">
+    #pragma region /* my debugging - multiplicity plots after cuts (= AC) - 1e cut */
     /* my debugging - multiplicity plots after cuts (= AC) - 1e cut */
 //    TH2D *multi_p_vs_cpi_1e_cut_fd_AC_debug = new TH2D("multi_p_vs_cpi_1e_cut_fd_AC_debug",
 //                                                       "#font[12]{#p} vs. #font[12]{##pi^{#pm}} AC (1e cut, FD);#font[12]{#p};#font[12]{##pi^{#pm}}",
@@ -478,7 +478,7 @@ private:
 //    TH1D *multi_cpi_1e_cut_fd_AC_debug = new TH1D("multi_cpi_1e_cut_fd_AC_debug", "#font[12]{##pi^{#pm}} AC (1e cut, FD);#font[12]{##pi^{#pm}}", 10, 0, 10);
 //    TH1D *multi_cpi_1e_cut_cd_AC_debug = new TH1D("multi_cpi_1e_cut_cd_AC_debug", "#font[12]{##pi^{#pm}} AC (1e cut, CD);#font[12]{##pi^{#pm}}", 10, 0, 10);
     TH1D *multi_cpi_1e_cut_AC_debug = new TH1D("multi_cpi_1e_cut_AC_debug", "#font[12]{##pi^{#pm}} AC (1e cut, CD & FD);#font[12]{##pi^{#pm}}", 10, 0, 10);
-    //</editor-fold>
+    #pragma endregion
 
     TH2D *dc_hit_map_a[4]; //3 regions
     TH2D *dc_hit_map_b[4]; //3 regions
@@ -665,7 +665,7 @@ void clas12ana::WriteDebugPlots() {
     el_vz_debug->Write();
     el_vz_p_debug->Write();
 
-    //<editor-fold desc="my debugging - multiplicity plots before and after cuts (no #e cuts)">
+    #pragma region /* my debugging - multiplicity plots before and after cuts (no #e cuts) */
 //    multi_p_vs_cpi_fd_BC_debug->Write();
 //    multi_p_vs_cpi_fd_AC_debug->Write();
 //    multi_p_vs_cpi_cd_BC_debug->Write();
@@ -684,9 +684,9 @@ void clas12ana::WriteDebugPlots() {
 //    multi_cpi_cd_AC_debug->Write();
     multi_cpi_BC_debug->Write();
     multi_cpi_AC_debug->Write();
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="my debugging - multiplicity plots before and after cuts (1e cut)">
+    #pragma region /* my debugging - multiplicity plots before and after cuts (1e cut) */
 //    multi_p_vs_cpi_1e_cut_fd_BC_debug->Write();
 //    multi_p_vs_cpi_1e_cut_fd_AC_debug->Write();
 //    multi_p_vs_cpi_1e_cut_cd_BC_debug->Write();
@@ -705,7 +705,7 @@ void clas12ana::WriteDebugPlots() {
 //    multi_cpi_1e_cut_cd_AC_debug->Write();
     multi_cpi_1e_cut_BC_debug->Write();
     multi_cpi_1e_cut_AC_debug->Write();
-    //</editor-fold>
+    #pragma endregion
 
     f_debugOut->Close();
 }
@@ -738,23 +738,23 @@ void clas12ana::Run(const std::unique_ptr<clas12::clas12reader> &c12) {
     auto piplus_det = c12->getByID(211);
     auto piminus_det = c12->getByID(-211);
 
-    //<editor-fold desc="Filling multiplicity plots before cuts (BC) - no #e cuts">
+    #pragma region /* Filling multiplicity plots before cuts (BC) - no #e cuts */
     multi_p_BC_debug->Fill(protons_det.size());
     multi_cpi_BC_debug->Fill(piplus_det.size() + piminus_det.size());
     multi_p_vs_cpi_BC_debug->Fill(protons_det.size(), piplus_det.size() + piminus_det.size());
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Filling multiplicity plots before cuts (BC) - 1e cut">
+    #pragma region /* Filling multiplicity plots before cuts (BC) - 1e cut */
     if (electrons_det.size() == 1) {
         multi_p_1e_cut_BC_debug->Fill(protons_det.size());
         multi_cpi_1e_cut_BC_debug->Fill(piplus_det.size() + piminus_det.size());
         multi_p_vs_cpi_1e_cut_BC_debug->Fill(protons_det.size(), piplus_det.size() + piminus_det.size());
     }
-    //</editor-fold>
+    #pragma endregion
 
     int nf_initial = particles.size();
 
-    //<editor-fold desc="Debugging print">
+    #pragma region /* Debugging print */
 //    auto protons_det = c12->getByID(2212);
 //    auto deuterons_det = c12->getByID(45);
 //    auto piplus_det = c12->getByID(211);
@@ -763,7 +763,7 @@ void clas12ana::Run(const std::unique_ptr<clas12::clas12reader> &c12) {
 //    auto kminus_det = c12->getByID(-321);
 //    auto z_det = c12->getByID(0);
 //    auto n_det = c12->getByID(2112);
-    //</editor-fold>
+    #pragma endregion
 
     /* ME: for any number of electrons */
     for (auto el = electrons_det.begin(); el != electrons_det.end();) {
@@ -825,11 +825,11 @@ void clas12ana::Run(const std::unique_ptr<clas12::clas12reader> &c12) {
         }
     }
 
-    //<editor-fold desc="My particle cut fix (2)">
+    #pragma region /* My particle cut fix (2) */
     if (electrons_det.size() == 1) //good trigger electron
     {
 
-//        //<editor-fold desc="Debugging print - START">
+//        #pragma region /* Debugging print - START */
 //        int op = particles.size() - electrons_det.size() - protons_det.size() - deuterons_det.size() - piplus_det.size() - piminus_det.size() - kplus_det.size() -
 //                 kminus_det.size() - (z_det.size() + n_det.size());
 //
@@ -843,7 +843,7 @@ void clas12ana::Run(const std::unique_ptr<clas12::clas12reader> &c12) {
 //        cout << "kminus_det.size() = " << kminus_det.size() << "\n";
 //        cout << "neutrals_det.size() = " << z_det.size() + n_det.size() << "\n";
 //        cout << "otherpart.size() = " << op << "\n\n";
-//        //</editor-fold>
+//        #pragma endregion
 
         if (debug_plots) { fillDCdebug(electrons_det[0], dc_hit_map_a); }
 
@@ -902,7 +902,7 @@ void clas12ana::Run(const std::unique_ptr<clas12::clas12reader> &c12) {
             }
         }// particle loop
 
-//        //<editor-fold desc="Debugging print - END">
+//        #pragma region /* Debugging print - END */
 //        cout << "#particles in event (END):\t" << electrons.size() + protons.size() + deuterons.size() + piplus.size() + piminus.size() + kplus.size() + kminus.size() +
 //                                                  neutrals.size() + otherpart.size() << "\n";
 //        cout << "electrons.size() = " << electrons.size() << "\n";
@@ -914,7 +914,7 @@ void clas12ana::Run(const std::unique_ptr<clas12::clas12reader> &c12) {
 //        cout << "kminus_det.size() = " << kminus.size() << "\n";
 //        cout << "neutrals_det.size() = " << neutrals.size() << "\n";
 //        cout << "otherpart.size() = " << otherpart.size() << "\n\n\n\n";
-//        //</editor-fold>
+//        #pragma endregion
 
 //        int nf_final = particles.size();
 
@@ -925,20 +925,20 @@ void clas12ana::Run(const std::unique_ptr<clas12::clas12reader> &c12) {
 //            }
 //        }
 
-        //<editor-fold desc="Filling multiplicity plots after cuts (AC) - 1e cut">
+        #pragma region /* Filling multiplicity plots after cuts (AC) - 1e cut */
         multi_p_1e_cut_AC_debug->Fill(protons.size());
         multi_cpi_1e_cut_AC_debug->Fill(piplus.size() + piminus.size());
         multi_p_vs_cpi_1e_cut_AC_debug->Fill(protons.size(), piplus.size() + piminus.size());
-        //</editor-fold>
+        #pragma endregion
 
     }// good electron loop
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Filling multiplicity plots after cuts (AC) - no #e cuts">
+    #pragma region /* Filling multiplicity plots after cuts (AC) - no #e cuts */
     multi_p_AC_debug->Fill(protons.size());
     multi_cpi_AC_debug->Fill(piplus.size() + piminus.size());
     multi_p_vs_cpi_AC_debug->Fill(protons.size(), piplus.size() + piminus.size());
-    //</editor-fold>
+    #pragma endregion
 
     event_mult = (piplus.size() + piminus.size() + kplus.size() + kminus.size() + deuterons.size());
 }

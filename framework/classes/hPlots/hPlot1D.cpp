@@ -100,7 +100,7 @@ hPlot1D::hPlot1D(std::string hst, std::string ht, std::string xat, double LowerX
                            HistogramNumberOfXBins, HistogramXAxisLimits.at(0), HistogramXAxisLimits.at(1));
 }
 
-//<editor-fold desc="histPlotter1D function (old)">
+#pragma region /* histPlotter1D function (old) */
 void hPlot1D::histPlotter1D(TCanvas *HistogramCanvas, TH1D *Histogram1D, bool normalize_Histogram, bool custom_normalization, double custom_normalization_factor,
                             std::string Histogram1DTitle, std::string Histogram1DTitleReactions, double titleSize, double labelSizex, double labelSizey, TList *Histogram_list,
                             const char *Histogram_OutPDF, int lineWidth, bool LogScalePlot, bool LinearScalePlot, THStack *Histogram1DStack, std::string Histogram1DSaveName,
@@ -276,9 +276,9 @@ void hPlot1D::histPlotter1D(TCanvas *HistogramCanvas, TH1D *Histogram1D, bool no
     HistogramCanvas->cd();
     HistogramCanvas->Clear();
 }
-//</editor-fold>
+#pragma endregion
 
-//<editor-fold desc="histPlotter1D function (old, stackless)">
+#pragma region /* histPlotter1D function (old, stackless) */
 void hPlot1D::histPlotter1D(TCanvas *HistogramCanvas, TH1D *Histogram1D, bool normalize_Histogram, bool custom_normalization, double custom_normalization_factor,
                             std::string Histogram1DTitle, std::string Histogram1DTitleReactions, double titleSize, double labelSizex, double labelSizey, TList *Histogram_list,
                             const char *Histogram_OutPDF, int lineWidth, bool LogScalePlot, bool LinearScalePlot, std::string Histogram1DSaveName, const std::string &Histogram1DSaveNamePath,
@@ -447,11 +447,11 @@ void hPlot1D::histPlotter1D(TCanvas *HistogramCanvas, TH1D *Histogram1D, bool no
     HistogramCanvas->cd();
     HistogramCanvas->Clear();
 }
-//</editor-fold>
+#pragma endregion
 
 // histPlotter1D function (unsymmetric cuts for SF plots) ---------------------------------------------------------------------------------------------------------------
 
-//<editor-fold desc="histPlotter1D function (unsymmetric cuts for SF plots)">
+#pragma region /* histPlotter1D function (unsymmetric cuts for SF plots) */
 void hPlot1D::histPlotter1D(TCanvas *HistogramCanvas, TH1D *Histogram1D, bool normalize_Histogram, bool custom_normalization, double custom_normalization_factor,
                             std::string Histogram1DTitle, std::string Histogram1DTitleReactions, TList *Histogram_list, const char *Histogram_OutPDF, int lineWidth, bool LogScalePlot,
                             bool LinearScalePlot, THStack *Histogram1DStack, std::string Histogram1DSaveName, std::string Histogram1DSaveNamePath, std::string finalState, int kColor = 1,
@@ -623,9 +623,9 @@ void hPlot1D::histPlotter1D(TCanvas *HistogramCanvas, TH1D *Histogram1D, bool no
     HistogramCanvas->cd();
     HistogramCanvas->Clear();
 }
-//</editor-fold>
+#pragma endregion
 
-//<editor-fold desc="histPlotter1D function (unsymmetric cuts for SF plots, stackless)">
+#pragma region /* histPlotter1D function (unsymmetric cuts for SF plots, stackless) */
 void hPlot1D::histPlotter1D(TCanvas *HistogramCanvas, TH1D *Histogram1D, bool normalize_Histogram, bool custom_normalization, double custom_normalization_factor,
                             std::string Histogram1DTitle, std::string Histogram1DTitleReactions, TList *Histogram_list, const char *Histogram_OutPDF, int lineWidth, bool LogScalePlot,
                             bool LinearScalePlot, std::string Histogram1DSaveName, const std::string &Histogram1DSaveNamePath, std::string finalState, bool showStats = true,
@@ -794,11 +794,11 @@ void hPlot1D::histPlotter1D(TCanvas *HistogramCanvas, TH1D *Histogram1D, bool no
     HistogramCanvas->cd();
     HistogramCanvas->Clear();
 }
-//</editor-fold>
+#pragma endregion
 
 // histPlotter1D function (one-sided cuts for Nphe plots) ---------------------------------------------------------------------------------------------------------------
 
-//<editor-fold desc="histPlotter1D function (one-sided cuts for Nphe plots)">
+#pragma region /* histPlotter1D function (one-sided cuts for Nphe plots) */
 void hPlot1D::histPlotter1D(TCanvas *HistogramCanvas, TH1D *Histogram1D, bool normalize_Histogram, bool custom_normalization, double custom_normalization_factor,
                             std::string Histogram1DTitle, std::string Histogram1DTitleReactions, TList *Histogram_list, const char *Histogram_OutPDF, int lineWidth, bool LogScalePlot,
                             bool LinearScalePlot, THStack *Histogram1DStack, std::string Histogram1DSaveName, std::string Histogram1DSaveNamePath, std::string finalState, int kColor = 1,
@@ -940,9 +940,9 @@ void hPlot1D::histPlotter1D(TCanvas *HistogramCanvas, TH1D *Histogram1D, bool no
     HistogramCanvas->cd();
     HistogramCanvas->Clear();
 }
-//</editor-fold>
+#pragma endregion
 
-//<editor-fold desc="histPlotter1D function (one-sided cuts for Nphe plots, stackless)">
+#pragma region /* histPlotter1D function (one-sided cuts for Nphe plots, stackless) */
 void hPlot1D::histPlotter1D(TCanvas *HistogramCanvas, TH1D *Histogram1D, bool normalize_Histogram, bool custom_normalization, double custom_normalization_factor,
                             std::string Histogram1DTitle, std::string Histogram1DTitleReactions, TList *Histogram_list, const char *Histogram_OutPDF, int lineWidth, bool LogScalePlot,
                             bool LinearScalePlot, std::string Histogram1DSaveName, const std::string &Histogram1DSaveNamePath, std::string finalState, bool showStats = true,
@@ -1120,11 +1120,11 @@ void hPlot1D::histPlotter1D(TCanvas *HistogramCanvas, TH1D *Histogram1D, bool no
     HistogramCanvas->cd();
     HistogramCanvas->Clear();
 }
-//</editor-fold>
+#pragma endregion
 
 // histPlotter1D function (unified) -------------------------------------------------------------------------------------------------------------------------------------
 
-//<editor-fold desc="histPlotter1D function (unified)">
+#pragma region /* histPlotter1D function (unified) */
 void hPlot1D::histPlotter1D(const std::string &SampleName, TCanvas *HistogramCanvas, TH1D *Histogram1D, bool normalize_Histogram, bool custom_normalization,
                             double custom_normalization_factor, TList *Histogram_list, const char *Histogram_OutPDF, THStack *Histogram1DStack, double plot_lower_cut = -9999,
                             double plot_upper_cut = 9999, double plot_Xmax = 0, bool plot_max = true) {
@@ -1310,9 +1310,9 @@ void hPlot1D::histPlotter1D(const std::string &SampleName, TCanvas *HistogramCan
     HistogramCanvas->cd();
     HistogramCanvas->Clear();
 }
-//</editor-fold>
+#pragma endregion
 
-//<editor-fold desc="histPlotter1D function (unified, stackless)">
+#pragma region /* histPlotter1D function (unified, stackless) */
 void hPlot1D::histPlotter1D(const std::string &SampleName, TCanvas *HistogramCanvas, TH1D *Histogram1D, bool normalize_Histogram, bool custom_normalization,
                             double custom_normalization_factor, TList *Histogram_list, const char *Histogram_OutPDF, double plot_lower_cut = -9999, double plot_upper_cut = 9999,
                             double plot_Xmax = 0, bool plot_max = true) {
@@ -1492,11 +1492,11 @@ void hPlot1D::histPlotter1D(const std::string &SampleName, TCanvas *HistogramCan
     HistogramCanvas->cd();
     HistogramCanvas->Clear();
 }
-//</editor-fold>
+#pragma endregion
 
 // histPlotter1DwFit function (unified) -------------------------------------------------------------------------------------------------------------------------------------
 
-//<editor-fold desc="histPlotter1DwFit function">
+#pragma region /* histPlotter1DwFit function */
 void hPlot1D::histPlotter1DwFit(std::string SampleName, TCanvas *HistogramCanvas, TH1D *Histogram1D, bool normalize_Histogram, bool custom_normalization, double custom_normalization_factor,
                                 std::string Histogram1DTitle, std::string Histogram1DTitleReactions, TList *Histogram_list, const char *Histogram_OutPDF, std::string Histogram1DSaveName,
                                 const std::string &Histogram1DSaveNamePath, std::string finalState, double &plot_Xmax, double &plot_lcut, double &plot_ucut, double factor,
@@ -1744,11 +1744,11 @@ void hPlot1D::histPlotter1DwFit(std::string SampleName, TCanvas *HistogramCanvas
     HistogramCanvas->cd();
     HistogramCanvas->Clear();
 }
-//</editor-fold>
+#pragma endregion
 
 // hDrawAndSave function ------------------------------------------------------------------------------------------------------------------------------------------------
 
-//<editor-fold desc="hDrawAndSave function">
+#pragma region /* hDrawAndSave function */
 void hPlot1D::hDrawAndSave(const std::string &SampleName, TCanvas *h1DCanvas, TList *hList, const char *Histogram_OutPDF, bool normHistogram, bool cNormalization,
                            double cNormalizationFactor, double plot_lower_cut = -9999, double plot_upper_cut = 9999, double plot_Xmax = 0, bool plotMax = false) {
     histPlotter1D(SampleName, h1DCanvas, Histogram1D, normHistogram, cNormalization, cNormalizationFactor, hList, Histogram_OutPDF, plot_lower_cut, plot_upper_cut, plot_Xmax, plotMax);
@@ -1759,22 +1759,22 @@ void hPlot1D::hDrawAndSave(TCanvas *h1DCanvas, TList *hList, const char *Histogr
                   Histogram1DTitleSizes.at(0), Histogram1DTitleSizes.at(1), Histogram1DTitleSizes.at(2), hList, Histogram_OutPDF, LineWidth, LogScalePlot, LinearScalePlot,
                   Histogram1DSaveName, Histogram1DSaveNamePath, Histogram1DTitles["FinalState"], CenterTitle, ShowStats, Title2, ShowPlotCuts, PlotCuts, PlotXmax, PlotHistogramMax);
 }
-//</editor-fold>
+#pragma endregion
 
 // hDrawAndSaveWFit function ------------------------------------------------------------------------------------------------------------------------------------------------
 
-//<editor-fold desc="hDrawAndSaveWFit function">
+#pragma region /* hDrawAndSaveWFit function */
 void hPlot1D::hDrawAndSaveWFit(const std::string &SampleName, TCanvas *h1DCanvas, TList *hList, const char *Histogram_OutPDF, bool normHistogram, bool cNormalization,
                                double cNormalizationFactor, double factor, double &plot_lower_cut, double &plot_upper_cut, double &plot_Xmax, bool plotMax = false) {
     histPlotter1DwFit(SampleName, h1DCanvas, Histogram1D, normHistogram, cNormalization, cNormalizationFactor, Histogram1DTitles["HistogramTitle"],
                       Histogram1DTitles["Histogram1DTitleReactions"], hList, Histogram_OutPDF, Histogram1DSaveName, Histogram1DSaveNamePath, Histogram1DTitles["FinalState"], plot_Xmax,
                       plot_lower_cut, plot_upper_cut, factor, plotMax);
 }
-//</editor-fold>
+#pragma endregion
 
 // FitFunction function ------------------------------------------------------------------------------------------------------------------------------------------------
 
-//<editor-fold desc="FitFunction function">
+#pragma region /* FitFunction function */
 Double_t hPlot1D::FitFunction(Double_t *v, Double_t *par) {
     Double_t arg = 0;
     if (par[2] != 0) arg = (v[0] - par[1]) / par[2];
@@ -1782,11 +1782,11 @@ Double_t hPlot1D::FitFunction(Double_t *v, Double_t *par) {
     Double_t fitval = par[0] * TMath::Exp(-0.5 * arg * arg);
     return fitval;
 }
-//</editor-fold>
+#pragma endregion
 
 // hLogEventCuts function ------------------------------------------------------------------------------------------------------------------------------------------------
 
-//<editor-fold desc="hLogEventCuts function">
+#pragma region /* hLogEventCuts function */
 void hPlot1D::hLogEventCuts(clas12::region_part_ptr Particle, double Lower_cut, double Upper_cut, double CutCenter = 0, double Weight = 1) {
     TVector3 P;
     P.SetMagThetaPhi(Particle->getP(), Particle->getTheta(), Particle->getPhi());
@@ -1801,6 +1801,6 @@ void hPlot1D::hLogEventCuts(clas12::region_part_ptr Particle, double Lower_cut, 
         if ((P.Mag() >= Lower_cut) && (P.Mag() <= Upper_cut)) { Histogram1D->Fill(P.Mag(), Weight); }
     }
 }
-//</editor-fold>
+#pragma endregion
 
 #endif  // HPLOT1D_H

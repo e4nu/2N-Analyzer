@@ -36,7 +36,7 @@ using namespace std;
 
 void StackPlot3(string &SampleName, TList *Histogram_list, hPlot1D const &Hist1, const std::string &Hist1_legened, hPlot1D const &Hist2, const std::string &Hist2_legened, hPlot1D const &Hist3,
                 const std::string &Hist3_legened) {
-    //<editor-fold desc="Canvas definitions">
+    #pragma region /* Canvas definitions */
     //    TCanvas *StackPlot4Canvas = new TCanvas("StackPlot4Canvas", "StackPlot4Canvas", 1000, 750); // normal res
     TCanvas *StackPlot4Canvas = new TCanvas("StackPlot4Canvas", "StackPlot4Canvas", 1000 * 2, 750 * 2);  // double res
 
@@ -47,7 +47,7 @@ void StackPlot3(string &SampleName, TList *Histogram_list, hPlot1D const &Hist1,
     StackPlot4Canvas->SetGrid();
 
     StackPlot4Canvas->cd();
-    //</editor-fold>
+    #pragma endregion
 
     THStack *HistogramStack = new THStack((Hist1.GetHistogramStatTitle()).c_str(), (Hist1.GetHistogramTitle() + ";" + Hist1.GetXaxisTitle() + ";").c_str());
 
@@ -71,7 +71,7 @@ void StackPlot3(string &SampleName, TList *Histogram_list, hPlot1D const &Hist1,
     //    Histogram3_Clone->Draw("hist err same");
     HistogramStack->Add(Histogram3_Clone);
 
-    //<editor-fold desc="setting sNameFlag">
+    #pragma region /* setting sNameFlag */
     std::string sNameFlag;
 
     if (findSubstring(SampleName, "sim")) {
@@ -79,7 +79,7 @@ void StackPlot3(string &SampleName, TList *Histogram_list, hPlot1D const &Hist1,
     } else if (findSubstring(SampleName, "data")) {
         sNameFlag = "d";
     }
-    //</editor-fold>
+    #pragma endregion
 
     double Histogram1D_integral;  // To be calculated only if normalize_Histogram
 

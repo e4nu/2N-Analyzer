@@ -9,7 +9,7 @@
 
 // Constructor ----------------------------------------------------------------------------------------------------------------------------------------------------------
 
-//<editor-fold desc="Constructor */
+#pragma region /* Constructor */
 Directories::Directories(const std::string &plots_path, const bool Clear_Old_Directories) {
     ClearOldDirectories = Clear_Old_Directories;
 
@@ -729,7 +729,7 @@ Directories::Directories(const std::string &plots_path, const bool Clear_Old_Dir
     Multiplicity_dir_map["Multiplicity_nFDpCD_Directory"] = Plots_Folder + "/" + Multiplicity_Parent_Directory + "/" + Find(Multiplicity_Daughter_Folders, "06_nFDpCD") + "/";
 #pragma endregion
 }
-//</editor-fold>
+#pragma endregion
 
 // Private methods ------------------------------------------------------------------------------------------------------------------------------------------------------
 

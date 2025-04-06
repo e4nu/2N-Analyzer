@@ -117,7 +117,7 @@ void process_events() {
     TCanvas *c1 = new TCanvas("c1", "c1", 1200, 900);
     c1->SetGrid();
 
-    //<editor-fold desc="Declaration of leaf types">
+    #pragma region /* Declaration of leaf types */
     // Declaration of leaf types
     Int_t iev;
     Int_t neu;
@@ -316,9 +316,9 @@ void process_events() {
     TBranch *b_vtxt;   //!
     TBranch *b_sumKEf;   //!
     TBranch *b_calresp0;   //!
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Setting branch pointers">
+    #pragma region /* Setting branch pointers */
     gst->SetBranchAddress("cc", &cc);
     gst->SetBranchAddress("qel", &qel);
     gst->SetBranchAddress("mec", &mec);
@@ -351,7 +351,7 @@ void process_events() {
     gst->SetBranchAddress("nfk0", &nfk0);
     gst->SetBranchAddress("nfem", &nfem);
     gst->SetBranchAddress("nfother", &nfother);
-    //</editor-fold>
+    #pragma endregion
 
     const long nevents = gst->GetEntries();
 
@@ -421,7 +421,7 @@ void process_events() {
 
             bool p_in_FD = (theta_p >= 5. && theta_p <= 40.);
 
-            //<editor-fold desc="1e1p plots">
+            #pragma region /* 1e1p plots */
             _1e1pX->Fill(omega); // omega for (e,e'p)X
 
             if (nf == 1) {
@@ -439,7 +439,7 @@ void process_events() {
             if (lp_in_FD && p_in_FD) {
                 _1eFD1pFDX->Fill(omega); // omega for (e,eFD'pFD)X
             }
-            //</editor-fold>
+            #pragma endregion
 
         }
 
@@ -489,7 +489,7 @@ void process_events() {
 
         if (numOfProt_mom == 1) {
 
-            //<editor-fold desc="1e1p w/ P_p th. plots">
+            #pragma region /* 1e1p w/ P_p th. plots */
             if (nf == nfp) {
                 _1e1p_wPpth->Fill(omega); // omega for (e,e'p) w/P_{p}#geq0.3 GeV
             }
@@ -507,9 +507,9 @@ void process_events() {
             if (lp_in_FD && p_mom_in_FD) {
                 _1eFD1pFDX_wPpth->Fill(omega); // omega for (e,eFD'pFD)X w/P_{p}#geq0.3 GeV
             }
-            //</editor-fold>
+            #pragma endregion
 
-            //<editor-fold desc="1e1p w/ P_p, P_ph and P_pi0 th. plots">
+            #pragma region /* 1e1p w/ P_p, P_ph and P_pi0 th. plots */
             if (numOfPi0_mom_FD == 0 && numOfPh_mom_FD == 0) {
                 _1e1p0pizeroFD0phFDX_wPpth_wPphth_wPpi0th->Fill(omega); // omega for (e,e'p)X w/P_{p}#geq0.3 GeV & no FD #pi^{0},#gamma
 
@@ -525,9 +525,9 @@ void process_events() {
                     _1eFD1pFD0pizeroFD0phFDX_wPpth_wPphth_wPpi0th->Fill(omega); // omega for (e,eFD'pFD)X w/P_{p}#geq0.3 GeV & no FD #pi^{0},#gamma
                 }
             }
-            //</editor-fold>
+            #pragma endregion
 
-            //<editor-fold desc="1e1p w/ P_p, P_ph, P_pi0 and P_cPi th. plots">
+            #pragma region /* 1e1p w/ P_p, P_ph, P_pi0 and P_cPi th. plots */
             if (numOfPi0_mom_FD == 0 && numOfPh_mom_FD == 0 && numOfPim_mom == 0 && numOfPip_mom == 0) {
                 _1e1p0pizeroFD0phFD0cPiX_wPpth_wPphth_wPpi0th_wKCpith->Fill(omega); // omega for (e,e'p)X w/P_{p}#geq0.3 GeV & no FD #pi^{0},#gamma
 
@@ -543,9 +543,9 @@ void process_events() {
                     _1eFD1pFD0pizeroFD0phFDcPiX_wPpth_wPphth_wPpi0th_wKCpith->Fill(omega); // omega for (e,eFD'pFD)X w/P_{p}#geq0.3 GeV & no FD #pi^{0},#gamma
                 }
             }
-            //</editor-fold>
+            #pragma endregion
 
-            //<editor-fold desc="1e1p w/ P_p, P_ph, P_pi0 and P_cPi th. plots">
+            #pragma region /* 1e1p w/ P_p, P_ph, P_pi0 and P_cPi th. plots */
             if ((numOfPi0_mom_FD == 0 && numOfPh_mom_FD == 0 && numOfPim_mom == 0 && numOfPip_mom == 0) &&
                 nf == nfp + nfpi0 + nfpip + nfpim + nfn + numOfPh) {
                 f_1e1p0pizeroFD0phFD0cPiXn_wPpth_wPphth_wPpi0th_wKCpith->Fill(omega); // omega for (e,e'p)X w/P_{p}#geq0.3 GeV & no FD #pi^{0},#gamma
@@ -562,7 +562,7 @@ void process_events() {
                     f_1eFD1pFD0pizeroFD0phFDcPiXn_wPpth_wPphth_wPpi0th_wKCpith->Fill(omega); // omega for (e,eFD'pFD)X w/P_{p}#geq0.3 GeV & no FD #pi^{0},#gamma
                 }
             }
-            //</editor-fold>
+            #pragma endregion
 
         }
 

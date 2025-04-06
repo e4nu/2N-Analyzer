@@ -26,7 +26,7 @@ using namespace std;
 
 // MCtoDATAcompare function ---------------------------------------------------------------------------------------------------------------------------------------------
 
-//<editor-fold desc="MCtoDATAcompare function">
+#pragma region /* MCtoDATAcompare function */
 void MCtoDATAcompare(int counter, TCanvas *Canvas, TCanvas *CanvasMulti, TH1D *MC_Histogram, TH1D *DATA_Histogram, std::string SaveDir) {
     Canvas->cd();
 
@@ -46,12 +46,12 @@ void MCtoDATAcompare(int counter, TCanvas *Canvas, TCanvas *CanvasMulti, TH1D *M
 
     for (int i = 2; i < 6; i++) {
 
-        //<editor-fold desc="Setting y range">
+        #pragma region /* Setting y range */
         MC_Histogram->GetYaxis()->SetRangeUser(0, i);
         DATA_Histogram->GetYaxis()->SetRangeUser(0, i);
-        //</editor-fold>
+        #pragma endregion
 
-        //<editor-fold desc="Saving MC_Histogram">
+        #pragma region /* Saving MC_Histogram */
         MC_Histogram->SetLineColor(kBlue);
         MC_Histogram->SetLineStyle(0);
         MC_Histogram->SetLineWidth(3);
@@ -68,9 +68,9 @@ void MCtoDATAcompare(int counter, TCanvas *Canvas, TCanvas *CanvasMulti, TH1D *M
                                                  FinalState + ".png")).c_str());
             }
         }
-        //</editor-fold>
+        #pragma endregion
 
-        //<editor-fold desc="Saving MC-DATA comparison">
+        #pragma region /* Saving MC-DATA comparison */
         DATA_Histogram->SetLineColor(kRed);
         DATA_Histogram->SetLineStyle(0);
         DATA_Histogram->SetLineWidth(2);
@@ -95,9 +95,9 @@ void MCtoDATAcompare(int counter, TCanvas *Canvas, TCanvas *CanvasMulti, TH1D *M
         }
 
         Canvas->Clear();
-        //</editor-fold>
+        #pragma endregion
 
-        //<editor-fold desc="Saving DATA_Histogram">
+        #pragma region /* Saving DATA_Histogram */
         DATA_Histogram->SetLineColor(kRed);
         DATA_Histogram->SetLineStyle(0);
         DATA_Histogram->SetLineWidth(2);
@@ -117,7 +117,7 @@ void MCtoDATAcompare(int counter, TCanvas *Canvas, TCanvas *CanvasMulti, TH1D *M
 
             Canvas->Clear();
         }
-        //</editor-fold>
+        #pragma endregion
 
 //        cout << "\n\nMC_Histogram->GetMaximum() = " << MC_Histogram->GetMaximum() << "\n";
 //        cout << "DATA_Histogram->GetMaximum() = " << DATA_Histogram->GetMaximum() << "\n";
@@ -127,11 +127,11 @@ void MCtoDATAcompare(int counter, TCanvas *Canvas, TCanvas *CanvasMulti, TH1D *M
 
 //    exit(0);
 }
-//</editor-fold>
+#pragma endregion
 
 // MCtoDATAcomp function ------------------------------------------------------------------------------------------------------------------------------------------------
 
-//<editor-fold desc="MCtoDATAcomp function">
+#pragma region /* MCtoDATAcomp function */
 void MCtoDATAcomp() {
     std::string SaveDir = "MC_to_DATA_comperison";
     system(("rm -r " + SaveDir).c_str());
@@ -143,7 +143,7 @@ void MCtoDATAcomp() {
     TFile *DATA_file = new TFile("C12x4_data_6GeV_run_015188_plots.root");
     if (!DATA_file) { cout << "\n\nDATAtoDATAcomp: DATA file not found! Exiting...\n", exit(0); }
 
-    //<editor-fold desc="Canvas definitions">
+    #pragma region /* Canvas definitions */
     int canvas_x = 1000, canvas_y = 750;
 
     TCanvas *Canvas = new TCanvas("Canvas", "Canvas", canvas_x, canvas_y); // normal res
@@ -162,7 +162,7 @@ void MCtoDATAcomp() {
     CanvasMulti->cd(3)->SetBottomMargin(0.14), CanvasMulti->cd(3)->SetLeftMargin(0.16), CanvasMulti->cd(3)->SetRightMargin(0.12);
 
     Canvas->cd();
-    //</editor-fold>
+    #pragma endregion
 
     int counter = 0;
 //    static TString classname("TH1D");
@@ -203,4 +203,4 @@ void MCtoDATAcomp() {
     cout << "\n";
 
 }
-//</editor-fold>
+#pragma endregion

@@ -39,7 +39,7 @@ void DrawAndSaveEfficiencyPlots(const std::string &SampleName, const hPlot1D &TL
     bool plot_errorbars = true;
     bool rebin_plots = false;
 
-    //<editor-fold desc="Canvas definitions">
+    #pragma region /* Canvas definitions */
     TCanvas *Canvas = new TCanvas("Canvas", "Canvas", 1000, 750);  // normal res
                                                                    //    TCanvas *Canvas = new TCanvas("canvas", "canvas", 2000, 1500); // high res
                                                                    //    TCanvas *Canvas = new TCanvas("canvas", "canvas", 1650, 1150);
@@ -53,9 +53,9 @@ void DrawAndSaveEfficiencyPlots(const std::string &SampleName, const hPlot1D &TL
     float DefStatX = gStyle->GetStatX(), DefStatY = gStyle->GetStatY();
 
     Canvas->cd();
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Cloning histograms">
+    #pragma region /* Cloning histograms */
     TH1D *Histogram1D_REC = RPlot.GetHistogram();
     std::string RPlot_Clone_StatsTitle = "reco. " + RPlot.GetHistogramStatTitle() + " - cloned";
     TH1D *RPlot_Clone = (TH1D *)Histogram1D_REC->Clone((RPlot_Clone_StatsTitle).c_str());
@@ -73,17 +73,17 @@ void DrawAndSaveEfficiencyPlots(const std::string &SampleName, const hPlot1D &TL
     std::string TLPlot_Clone_test_rebined_StatsTitle = "Truth " + TLPlot.GetHistogramStatTitle() + " - cloned test rebined";
     TH1D *TLPlot_Clone_test_rebined = (TH1D *)Histogram1D_Truth->Clone((TLPlot_Clone_test_rebined_StatsTitle).c_str());
     if (rebin_plots) { TLPlot_Clone_test_rebined->Rebin(2); }
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Setting particle">
+    #pragma region /* Setting particle */
     std::string EfficiencyRecTitle = RPlot_Clone->GetTitle();
     std::string EfficiencyParticle = data_processor::GetParticleName(EfficiencyRecTitle);
     std::string EfficiencyParticleDir = data_processor::GetParticleName(EfficiencyRecTitle, true);
     std::string EfficiencyParticleLC = data_processor::GetParticleNameLC(EfficiencyRecTitle);
     std::string EfficiencyParticleShort = data_processor::GetParticleNameShort(EfficiencyRecTitle);
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Setting region">
+    #pragma region /* Setting region */
     std::string EfficiencyParticleRegion = "", EfficiencyParticleRegionDir = "";
 
     std::string Region = RPlot.GetDetectorRegion();
@@ -92,9 +92,9 @@ void DrawAndSaveEfficiencyPlots(const std::string &SampleName, const hPlot1D &TL
         EfficiencyParticleRegion = Region + " ";
         EfficiencyParticleRegionDir = Region;
     }
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Setting title">
+    #pragma region /* Setting title */
     std::string EfficiencyType;
 
     if (basic_tools::FindSubstring(EfficiencyRecTitle, "momentum")) {  // for momentum efficiency plots
@@ -102,9 +102,9 @@ void DrawAndSaveEfficiencyPlots(const std::string &SampleName, const hPlot1D &TL
     }
 
     std::string EfficiencyTitle = EfficiencyParticleRegion + EfficiencyParticle + " " + EfficiencyType;
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Setting X axis label">
+    #pragma region /* Setting X axis label */
     std::string EfficiencyXLabel;
 
     if (basic_tools::FindSubstring(EfficiencyRecTitle, "momentum")) {  // for momentum efficiency plots
@@ -114,18 +114,18 @@ void DrawAndSaveEfficiencyPlots(const std::string &SampleName, const hPlot1D &TL
     } else if (basic_tools::FindSubstring(EfficiencyRecTitle, "#phi")) {  // for momentum efficiency plots
         EfficiencyXLabel = "#phi [Deg]";
     }
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Setting y axis label">
+    #pragma region /* Setting y axis label */
     std::string xLabel_REC_temp = RPlot_Clone->GetXaxis()->GetTitle();
     std::string xLabel_REC = xLabel_REC_temp.substr(0, xLabel_REC_temp.find_last_of('[') - 1);
     std::string xLabel_Truth_temp = TLPlot_Clone->GetXaxis()->GetTitle();
     std::string xLabel_Truth = xLabel_Truth_temp.substr(0, xLabel_Truth_temp.find_last_of('[') - 1);
 
     std::string EfficiencyYLabel = "#epsilon_{eff} = #frac{reco.}{truth}";
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Setting Final state">
+    #pragma region /* Setting Final state */
     std::string EfficiencyFS, EfficiencyFSDir;
 
     if (basic_tools::FindSubstring(EfficiencyRecTitle, "1e_cut") || basic_tools::FindSubstring(EfficiencyRecTitle, "1e cut") || basic_tools::FindSubstring(EfficiencyRecTitle, "1e Cut")) {
@@ -158,9 +158,9 @@ void DrawAndSaveEfficiencyPlots(const std::string &SampleName, const hPlot1D &TL
         EfficiencyFS = "nFDpCD";
         EfficiencyFSDir = EfficiencyFS;
     }
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Setting save directory">
+    #pragma region /* Setting save directory */
     std::string EfficiencySaveDir, EfficiencyTestSaveDir;
 
     if (basic_tools::FindSubstring(EfficiencyRecTitle, "Electron") || basic_tools::FindSubstring(EfficiencyRecTitle, "electron")) {
@@ -183,9 +183,9 @@ void DrawAndSaveEfficiencyPlots(const std::string &SampleName, const hPlot1D &TL
 
     system(("mkdir -p " + EfficiencySaveDir).c_str());
     system(("mkdir -p " + EfficiencyTestSaveDir).c_str());
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Setting save name">
+    #pragma region /* Setting save name */
     std::string sNameFlag;
 
     if (basic_tools::FindSubstring(SampleName, "sim")) {
@@ -204,7 +204,7 @@ void DrawAndSaveEfficiencyPlots(const std::string &SampleName, const hPlot1D &TL
         EfficiencyTestSaveDir + sNameFlag + "02b_" + EfficiencyParticleDir + "_" + EfficiencyType + "_" + EfficiencyFSDir + "_" + "Truth_Clone_test_rebined.png";
     std::string Efficiency_plot_SaveName =
         EfficiencySaveDir + sNameFlag + "_" + EfficiencyParticleRegionDir + +"_" + EfficiencyParticleDir + "_" + EfficiencyType + "_efficiency_" + EfficiencyFSDir + ".png";
-    //</editor-fold>
+    #pragma endregion
 
     TH1D *Efficiency_plot = (TH1D *)Histogram1D_REC->Clone((EfficiencyParticleRegion + EfficiencyParticle + " " + EfficiencyType + " #epsilon_{eff}" + " (" + EfficiencyFS + ")").c_str());
     Efficiency_plot->SetTitle((EfficiencyTitle + " efficiency #epsilon_{eff} (" + EfficiencyFS + ")").c_str());
@@ -215,7 +215,7 @@ void DrawAndSaveEfficiencyPlots(const std::string &SampleName, const hPlot1D &TL
     std::string TFolder_Name = Efficiency_plot_Name + " folder";
     TFolder *EfficiencyComponentPlots = new TFolder(TFolder_Name.c_str(), TFolder_Name.c_str());
 
-    //<editor-fold desc="Plotting and saving RPlot_Clone_test">
+    #pragma region /* Plotting and saving RPlot_Clone_test */
     RPlot_Clone_test->SetLineStyle(1);
     RPlot_Clone_test->SetLineColor(kBlue);
     RPlot_Clone_test->GetXaxis()->SetTitleSize(0.06);
@@ -233,9 +233,9 @@ void DrawAndSaveEfficiencyPlots(const std::string &SampleName, const hPlot1D &TL
 
     Canvas->SaveAs((RPlot_Clone_test_SaveName).c_str());
     Canvas->Clear();
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Plotting and saving TLPlot_Clone_test">
+    #pragma region /* Plotting and saving TLPlot_Clone_test */
     TLPlot_Clone_test->SetLineStyle(1);
     TLPlot_Clone_test->SetLineColor(kBlue);
     TLPlot_Clone_test->GetXaxis()->SetTitleSize(0.06);
@@ -253,9 +253,9 @@ void DrawAndSaveEfficiencyPlots(const std::string &SampleName, const hPlot1D &TL
 
     Canvas->SaveAs((TLPlot_Clone_test_SaveName).c_str());
     Canvas->Clear();
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Plotting and saving RPlot_Clone_test_rebined">
+    #pragma region /* Plotting and saving RPlot_Clone_test_rebined */
     RPlot_Clone_test_rebined->SetLineStyle(1);
     RPlot_Clone_test_rebined->SetLineColor(kBlue);
     RPlot_Clone_test_rebined->GetXaxis()->SetTitleSize(0.06);
@@ -273,9 +273,9 @@ void DrawAndSaveEfficiencyPlots(const std::string &SampleName, const hPlot1D &TL
 
     Canvas->SaveAs((RPlot_Clone_test_rebined_SaveName).c_str());
     Canvas->Clear();
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Plotting and saving TLPlot_Clone_test_rebined">
+    #pragma region /* Plotting and saving TLPlot_Clone_test_rebined */
     TLPlot_Clone_test_rebined->SetLineStyle(1);
     TLPlot_Clone_test_rebined->SetLineColor(kBlue);
     TLPlot_Clone_test_rebined->GetXaxis()->SetTitleSize(0.06);
@@ -293,9 +293,9 @@ void DrawAndSaveEfficiencyPlots(const std::string &SampleName, const hPlot1D &TL
 
     Canvas->SaveAs((TLPlot_Clone_test_rebined_SaveName).c_str());
     Canvas->Clear();
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Plotting and saving RPlot_Clone">
+    #pragma region /* Plotting and saving RPlot_Clone */
     RPlot_Clone->SetLineStyle(1);
     RPlot_Clone->SetLineColor(kBlue);
     RPlot_Clone->GetXaxis()->SetTitleSize(0.06);
@@ -318,9 +318,9 @@ void DrawAndSaveEfficiencyPlots(const std::string &SampleName, const hPlot1D &TL
 
     Canvas->SaveAs((RPlot_Clone_SaveName).c_str());
     Canvas->Clear();
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Plotting and saving TLPlot_Clone">
+    #pragma region /* Plotting and saving TLPlot_Clone */
     TLPlot_Clone->SetLineStyle(1);
     TLPlot_Clone->SetLineColor(kBlue);
     TLPlot_Clone->GetXaxis()->SetTitleSize(0.06);
@@ -343,9 +343,9 @@ void DrawAndSaveEfficiencyPlots(const std::string &SampleName, const hPlot1D &TL
 
     Canvas->SaveAs((TLPlot_Clone_SaveName).c_str());
     Canvas->Clear();
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Plotting and saving Efficiency_plot">
+    #pragma region /* Plotting and saving Efficiency_plot */
     Efficiency_plot->SetLineStyle(1);
     Efficiency_plot->SetLineColor(kBlue);
     Efficiency_plot->GetXaxis()->SetTitleSize(0.06);
@@ -389,7 +389,7 @@ void DrawAndSaveEfficiencyPlots(const std::string &SampleName, const hPlot1D &TL
     Canvas->SaveAs((Efficiency_plot_SaveName.substr(0, Efficiency_plot_SaveName.find_last_of(".png") - 3) + "_ZoomIn4.png").c_str());
 
     Canvas->Clear();
-    //</editor-fold>
+    #pragma endregion
 
     delete Canvas;
 }
@@ -398,7 +398,7 @@ void DrawAndSaveEfficiencyPlots(const std::string &SampleName, const hPlot1D &TL
     bool plot_errorbars = true;
     bool rebin_plots = false;
 
-    //<editor-fold desc="Canvas definitions">
+    #pragma region /* Canvas definitions */
     TCanvas *Canvas = new TCanvas("Canvas", "Canvas", 1000, 750);  // normal res
                                                                    //    TCanvas *Canvas = new TCanvas("canvas", "canvas", 2000, 1500); // high res
                                                                    //    TCanvas *Canvas = new TCanvas("canvas", "canvas", 1650, 1150);
@@ -411,16 +411,16 @@ void DrawAndSaveEfficiencyPlots(const std::string &SampleName, const hPlot1D &TL
     float DefStatX = gStyle->GetStatX(), DefStatY = gStyle->GetStatY();
 
     Canvas->cd();
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Setting particle">
+    #pragma region /* Setting particle */
     std::string EfficiencyRecTitle = RPlot->GetTitle();
     std::string EfficiencyParticle = data_processor::GetParticleName(EfficiencyRecTitle);
     std::string EfficiencyParticleLC = data_processor::GetParticleNameLC(EfficiencyRecTitle);
     std::string EfficiencyParticleShort = data_processor::GetParticleNameShort(EfficiencyRecTitle);
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Setting Final state">
+    #pragma region /* Setting Final state */
     std::string EfficiencyFS;
 
     if (basic_tools::FindSubstring(EfficiencyRecTitle, "1e_cut") || basic_tools::FindSubstring(EfficiencyRecTitle, "1e cut") || basic_tools::FindSubstring(EfficiencyRecTitle, "1e Cut")) {
@@ -440,9 +440,9 @@ void DrawAndSaveEfficiencyPlots(const std::string &SampleName, const hPlot1D &TL
     } else if (basic_tools::FindSubstring(EfficiencyRecTitle, "nFDpCD")) {
         EfficiencyFS = "nFDpCD";
     }
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Setting stats box title">
+    #pragma region /* Setting stats box title */
     std::string EfficiencyStatsType;
 
     if (basic_tools::FindSubstring(EfficiencyRecTitle, "#theta")) {  // for momentum efficiency plots
@@ -454,9 +454,9 @@ void DrawAndSaveEfficiencyPlots(const std::string &SampleName, const hPlot1D &TL
     //    if (basic_tools::FindSubstring(EfficiencyRecTitle, "ZOOMIN")) { EfficiencyStatsType = EfficiencyStatsType + " - ZOOMIN"; }
 
     std::string EfficiencyStatsTitle = EfficiencyStatsType + " (" + EfficiencyFS + ")";
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Cloning histograms">
+    #pragma region /* Cloning histograms */
     std::string RPlot_Clone_StatsTitle = "reco. " + EfficiencyStatsTitle + " - cloned";
     TH1D *RPlot_Clone = (TH1D *)RPlot->Clone((RPlot_Clone_StatsTitle).c_str());
     std::string RPlot_Clone_test_StatsTitle = "reco. " + EfficiencyStatsTitle + " - cloned test";
@@ -473,9 +473,9 @@ void DrawAndSaveEfficiencyPlots(const std::string &SampleName, const hPlot1D &TL
     std::string TLPlot_Clone_test_rebined_StatsTitle = "Truth " + TLPlot.GetHistogramStatTitle() + " - cloned test rebined";
     TH1D *TLPlot_Clone_test_rebined = (TH1D *)Histogram1D_Truth->Clone((TLPlot_Clone_test_rebined_StatsTitle).c_str());
     if (rebin_plots) { TLPlot_Clone_test_rebined->Rebin(2); }
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Setting title">
+    #pragma region /* Setting title */
     std::string EfficiencyType, EfficiencyTitle;
 
     if (basic_tools::FindSubstring(EfficiencyRecTitle, "momentum")) {  // for momentum efficiency plots
@@ -493,9 +493,9 @@ void DrawAndSaveEfficiencyPlots(const std::string &SampleName, const hPlot1D &TL
     }
 
     //    std::string EfficiencyTitle = EfficiencyParticle + " " + EfficiencyType;
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Setting X axis label">
+    #pragma region /* Setting X axis label */
     std::string EfficiencyXLabel;
 
     if (basic_tools::FindSubstring(EfficiencyRecTitle, "momentum")) {  // for momentum efficiency plots
@@ -507,9 +507,9 @@ void DrawAndSaveEfficiencyPlots(const std::string &SampleName, const hPlot1D &TL
         EfficiencyXLabel = EfficiencyTitle + " [Deg]";
         //        EfficiencyXLabel = "#phi [Deg]";
     }
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Setting y axis label">
+    #pragma region /* Setting y axis label */
     std::string xLabel_REC_temp = RPlot_Clone->GetXaxis()->GetTitle();
     std::string xLabel_REC = xLabel_REC_temp.substr(0, xLabel_REC_temp.find_last_of('[') - 1);
     std::string xLabel_Truth_temp = TLPlot_Clone->GetXaxis()->GetTitle();
@@ -520,9 +520,9 @@ void DrawAndSaveEfficiencyPlots(const std::string &SampleName, const hPlot1D &TL
     //    std::string EfficiencyYLabel = "#epsilon_{eff} = recotruth";
     //    std::string EfficiencyYLabel = "#epsilon_{eff} = " + xLabel_REC + "^{rec}" + "/" + xLabel_Truth;
     //    std::string EfficiencyYLabel = "#epsilon_{eff} = " + xLabel_REC + "/" + xLabel_Truth;
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Setting save directory">
+    #pragma region /* Setting save directory */
     std::string EfficiencySaveDir, EfficiencyTestSaveDir;
 
     if (basic_tools::FindSubstring(EfficiencyRecTitle, "Electron") || basic_tools::FindSubstring(EfficiencyRecTitle, "electron")) {
@@ -545,9 +545,9 @@ void DrawAndSaveEfficiencyPlots(const std::string &SampleName, const hPlot1D &TL
 
     system(("mkdir -p " + EfficiencySaveDir).c_str());
     system(("mkdir -p " + EfficiencyTestSaveDir).c_str());
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Setting save name">
+    #pragma region /* Setting save name */
     std::string sNameFlag;
 
     if (basic_tools::FindSubstring(SampleName, "sim")) {
@@ -570,7 +570,7 @@ void DrawAndSaveEfficiencyPlots(const std::string &SampleName, const hPlot1D &TL
     //    std::string TLPlot_Clone_SaveName = EfficiencySaveDir + sNameFlag + "_" + EfficiencyParticle + "_" + EfficiencyType + "_" + EfficiencyFS + "_" + "Truth_Clone.png";
     //    std::string TLPlot_Clone_test_SaveName = EfficiencyTestSaveDir + sNameFlag + "_" + EfficiencyParticle + "_" + EfficiencyType + "_" + EfficiencyFS + "_" + "Truth_Clone_test.png";
     //    std::string Efficiency_plot_SaveName = EfficiencySaveDir + sNameFlag + "_" + EfficiencyParticle + "_" + EfficiencyType + "_efficiency_" + EfficiencyFS + ".png";
-    //</editor-fold>
+    #pragma endregion
 
     TH1D *Efficiency_plot = (TH1D *)RPlot_Clone->Clone((EfficiencyParticle + " " + EfficiencyType + " #epsilon_{eff}" + " (" + EfficiencyFS + ")").c_str());
     Efficiency_plot->SetTitle((EfficiencyTitle + " efficiency #epsilon_{eff} (" + EfficiencyFS + ")").c_str());
@@ -581,7 +581,7 @@ void DrawAndSaveEfficiencyPlots(const std::string &SampleName, const hPlot1D &TL
     std::string TFolder_Name = Efficiency_plot_Name + " folder";
     TFolder *EfficiencyComponentPlots = new TFolder(TFolder_Name.c_str(), TFolder_Name.c_str());
 
-    //<editor-fold desc="Plotting and saving RPlot_Clone_test">
+    #pragma region /* Plotting and saving RPlot_Clone_test */
     RPlot_Clone_test->SetLineStyle(1);
     RPlot_Clone_test->SetLineColor(kBlue);
     RPlot_Clone_test->SetStats(1);
@@ -600,9 +600,9 @@ void DrawAndSaveEfficiencyPlots(const std::string &SampleName, const hPlot1D &TL
 
     Canvas->SaveAs((RPlot_Clone_test_SaveName).c_str());
     Canvas->Clear();
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Plotting and saving TLPlot_Clone_test">
+    #pragma region /* Plotting and saving TLPlot_Clone_test */
     TLPlot_Clone_test->SetLineStyle(1);
     TLPlot_Clone_test->SetLineColor(kBlue);
     TLPlot_Clone_test->Draw();
@@ -612,9 +612,9 @@ void DrawAndSaveEfficiencyPlots(const std::string &SampleName, const hPlot1D &TL
 
     Canvas->SaveAs((TLPlot_Clone_test_SaveName).c_str());
     Canvas->Clear();
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Plotting and saving RPlot_Clone_test_rebined">
+    #pragma region /* Plotting and saving RPlot_Clone_test_rebined */
     RPlot_Clone_test_rebined->SetLineStyle(1);
     RPlot_Clone_test_rebined->SetLineColor(kBlue);
     RPlot_Clone_test_rebined->SetStats(1);
@@ -633,9 +633,9 @@ void DrawAndSaveEfficiencyPlots(const std::string &SampleName, const hPlot1D &TL
 
     Canvas->SaveAs((RPlot_Clone_test_rebined_SaveName).c_str());
     Canvas->Clear();
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Plotting and saving TLPlot_Clone_test_rebined">
+    #pragma region /* Plotting and saving TLPlot_Clone_test_rebined */
     TLPlot_Clone_test_rebined->SetLineStyle(1);
     TLPlot_Clone_test_rebined->SetLineColor(kBlue);
     TLPlot_Clone_test_rebined->Draw();
@@ -645,9 +645,9 @@ void DrawAndSaveEfficiencyPlots(const std::string &SampleName, const hPlot1D &TL
 
     Canvas->SaveAs((TLPlot_Clone_test_rebined_SaveName).c_str());
     Canvas->Clear();
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Plotting and saving RPlot_Clone">
+    #pragma region /* Plotting and saving RPlot_Clone */
     RPlot_Clone->SetLineStyle(1);
     RPlot_Clone->SetLineColor(kBlue);
     RPlot_Clone->SetStats(1);
@@ -671,9 +671,9 @@ void DrawAndSaveEfficiencyPlots(const std::string &SampleName, const hPlot1D &TL
 
     Canvas->SaveAs((RPlot_Clone_SaveName).c_str());
     Canvas->Clear();
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Plotting and saving TLPlot_Clone">
+    #pragma region /* Plotting and saving TLPlot_Clone */
     TLPlot_Clone->SetLineStyle(1);
     TLPlot_Clone->SetLineColor(kBlue);
 
@@ -687,9 +687,9 @@ void DrawAndSaveEfficiencyPlots(const std::string &SampleName, const hPlot1D &TL
 
     Canvas->SaveAs((TLPlot_Clone_SaveName).c_str());
     Canvas->Clear();
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Plotting and saving Efficiency_plot">
+    #pragma region /* Plotting and saving Efficiency_plot */
     Efficiency_plot->SetLineStyle(1);
     Efficiency_plot->SetLineColor(kBlue);
     Efficiency_plot->GetXaxis()->SetTitleSize(0.06);
@@ -725,7 +725,7 @@ void DrawAndSaveEfficiencyPlots(const std::string &SampleName, const hPlot1D &TL
     Canvas->SaveAs((Efficiency_plot_SaveName.substr(0, Efficiency_plot_SaveName.find_last_of(".png") - 3) + "_ZoomIn4.png").c_str());
 
     Canvas->Clear();
-    //</editor-fold>
+    #pragma endregion
 
     delete Canvas;
 }

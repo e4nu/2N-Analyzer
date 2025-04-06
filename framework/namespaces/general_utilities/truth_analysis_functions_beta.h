@@ -39,7 +39,7 @@
 using namespace lists;
 
 namespace truth_analysis_functions {
-//<editor-fold desc="Particle vectors">
+#pragma region /* Particle vectors */
 /* Particle index vectors */
 vector<int> TL_Electron_ind, TL_Neutrons_ind, TL_Protons_ind, TL_piplus_ind, TL_piminus_ind, TL_pizero_ind, TL_Photons_ind, TL_OtherPart_ind;
 
@@ -51,9 +51,9 @@ vector<int> TL_Electron_mom_ind, TL_Neutrons_mom_ind, TL_Protons_mom_ind, TL_pip
 
 /* Particle index vectors (for FD particles above momentum threshold) */
 vector<int> TL_ElectronFD_mom_ind, TL_NeutronsFD_mom_ind, TL_ProtonsFD_mom_ind, TL_ProtonsCD_mom_ind, TL_pi0FD_mom_ind, TL_PhotonsFD_mom_ind;
-//</editor-fold>
+#pragma endregion
 
-//<editor-fold desc="Basic event selection variables">
+#pragma region /* Basic event selection variables */
 /* Setting up basic TL event selection */
 bool no_TL_cPions, no_TL_OtherPart, no_TL_FDpi0, no_TL_FDPhotons, TL_Event_Selection_1e_cut, TL_Basic_ES;
 
@@ -68,9 +68,9 @@ bool one_FDproton_pFDpCD, one_CDproton_pFDpCD;
 
 /* Setting up nFDpCD TL event selection */
 bool one_FDNeutron_nFDpCD, one_proton_nFDpCD, no_FDproton_nFDpCD, one_CDproton_nFDpCD;
-//</editor-fold>
+#pragma endregion
 
-//<editor-fold desc="Event selection variables">
+#pragma region /* Event selection variables */
 // 1p = one id. FD proton:
 bool TL_Event_Selection_1p;
 
@@ -82,7 +82,7 @@ bool TL_Event_Selection_pFDpCD;
 
 // nFDpCD = One id. FD neutron & one id. CD proton:
 bool TL_Event_Selection_nFDpCD;
-//</editor-fold>
+#pragma endregion
 
 };  // namespace truth_analysis_functions
 

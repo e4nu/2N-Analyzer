@@ -41,14 +41,14 @@ double GetFDNeutronP(region_part_ptr& Neutron, bool apply_nucleon_cuts) {
     double Momentum;
 
     if (apply_nucleon_cuts) {
-        //<editor-fold desc="Get for ver. neutrons & calculate for 'photons'">
+        #pragma region /* Get for ver. neutrons & calculate for 'photons' */
         int ParticlePDG = Neutron->par()->getPid();
 
         if (ParticlePDG == 2112) {
             /* Momentum for neutrons - get from file. */
             Momentum = Neutron->getP();
 
-            //        //<editor-fold desc="how neutron momentum is calculated in clas12">
+            //        #pragma region /* how neutron momentum is calculated in clas12 */
             //        TVector3 P_n;
             //        P_n.SetMagThetaPhi(Neutron->getP(), Neutron->getTheta(), Neutron->getPhi());
             //        double E_n = sqrt( constants::m_n *  constants::m_n + P_n.Mag2());
@@ -65,7 +65,7 @@ double GetFDNeutronP(region_part_ptr& Neutron, bool apply_nucleon_cuts) {
             //        double Velocity_n = Path_n / Time_from_Beta_n;
             //        double Gamma_n = 1 / sqrt(1 - (Velocity_n * Velocity_n) / (constants::c * constants::c));
             //        double Momentum_n =  constants::m_n * Beta_n * Gamma_n; // how neutron momentum is calculated in clas12
-            //        //</editor-fold>
+            //        #pragma endregion
 
         } else if (ParticlePDG == 22) {
             /* Momentum for "photons" - calculate. */
@@ -88,12 +88,12 @@ double GetFDNeutronP(region_part_ptr& Neutron, bool apply_nucleon_cuts) {
 
             Momentum = constants::m_n * Beta_ph * Gamma_ph;
         }
-        //</editor-fold>
+        #pragma endregion
 
     } else {
-        //<editor-fold desc="Get momentum for both neutrons and photons from file">
+        #pragma region /* Get momentum for both neutrons and photons from file */
         Momentum = Neutron->par()->getP();
-        //</editor-fold>
+        #pragma endregion
     }
 
     return Momentum;

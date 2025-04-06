@@ -59,7 +59,7 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot1D &pFDpCD_Plo
     bool plot_errorbars = true;
     bool rebin_plots = false;
 
-    //<editor-fold desc="Canvas definitions">
+    #pragma region /* Canvas definitions */
     TCanvas *Canvas = new TCanvas("Canvas", "Canvas", 1000, 750);  // normal res
     Canvas->SetGrid();
 
@@ -88,9 +88,9 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot1D &pFDpCD_Plo
     CanvasMulti->cd(3)->SetRightMargin(0.12);
 
     Canvas->cd();
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Cloning histograms">
+    #pragma region /* Cloning histograms */
     TH1D *Histogram1D_nFDpCD = nFDpCD_Plot.GetHistogram();
     std::string FSRatioFSNumerator = data_processor::GetFS(Histogram1D_nFDpCD->GetTitle());
     std::string nFDpCD_Plot_Clone_StatsTitle = "FSR " + nFDpCD_Plot.GetHistogramStatTitle() + " - cloned (" + FSRatioFSNumerator + ")";
@@ -110,9 +110,9 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot1D &pFDpCD_Plo
     std::string pFDpCD_Plot_Clone_test_rebined_StatsTitle = "FSR " + pFDpCD_Plot.GetHistogramStatTitle() + " - cloned test rebined (" + FSRatioFSDenominator + ")";
     TH1D *pFDpCD_Plot_Clone_test_rebined = (TH1D *)Histogram1D_pFDpCD->Clone((pFDpCD_Plot_Clone_test_rebined_StatsTitle).c_str());
     if (rebin_plots) { pFDpCD_Plot_Clone_test_rebined->Rebin(2); }
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Setting variables">
+    #pragma region /* Setting variables */
     std::string FSRatioRecTitle = nFDpCD_Plot_Clone->GetTitle();
 
     std::string FSRatioParticle = data_processor::GetParticleName(FSRatioRecTitle);
@@ -140,7 +140,7 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot1D &pFDpCD_Plo
     SettingSaveNames(SampleName, FSRatioType, FSRatioParticle, FSRatioSaveDir, FSRatioTestSaveDir, FSRatioPlotsT, nFDpCD_Plot_Clone_SaveName, nFDpCD_Plot_Clone_test_SaveName,
                      nFDpCD_Plot_Clone_test_rebined_SaveName, pFDpCD_Plot_Clone_SaveName, pFDpCD_Plot_Clone_test_SaveName, pFDpCD_Plot_Clone_test_rebined_SaveName, sNameFlag,
                      FSRatio_plot_1D_SaveName, FSRatioDRegion, FSRatioFS);
-    //</editor-fold>
+    #pragma endregion
 
     TH1D *FSRatio_plot_1D = (TH1D *)nFDpCD_Plot_Clone->Clone((FSRatioParticle + " " + FSRatioType + " FSRatio (" + FSTopology + ")").c_str());
 
@@ -158,7 +158,7 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot1D &pFDpCD_Plo
     FSRatio_plot_1D->GetYaxis()->SetTitle((FSRatioYLabel).c_str());
     FSRatio_plot_1D->GetXaxis()->SetTitle((FSRatioXLabel).c_str());
 
-    //<editor-fold desc="Plotting and saving nFDpCD_Plot_Clone_test">
+    #pragma region /* Plotting and saving nFDpCD_Plot_Clone_test */
     nFDpCD_Plot_Clone_test->SetLineStyle(1);
     nFDpCD_Plot_Clone_test->SetLineColor(kBlue);
     nFDpCD_Plot_Clone_test->Draw();
@@ -168,9 +168,9 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot1D &pFDpCD_Plo
 
     Canvas->SaveAs((nFDpCD_Plot_Clone_test_SaveName).c_str());
     Canvas->Clear();
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Plotting and saving pFDpCD_Plot_Clone_test">
+    #pragma region /* Plotting and saving pFDpCD_Plot_Clone_test */
     pFDpCD_Plot_Clone_test->SetLineStyle(1);
     pFDpCD_Plot_Clone_test->SetLineColor(kBlue);
     pFDpCD_Plot_Clone_test->Draw();
@@ -180,9 +180,9 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot1D &pFDpCD_Plo
 
     Canvas->SaveAs((pFDpCD_Plot_Clone_test_SaveName).c_str());
     Canvas->Clear();
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Plotting and saving nFDpCD_Plot_Clone_test_rebined">
+    #pragma region /* Plotting and saving nFDpCD_Plot_Clone_test_rebined */
     nFDpCD_Plot_Clone_test_rebined->SetLineStyle(1);
     nFDpCD_Plot_Clone_test_rebined->SetLineColor(kBlue);
     nFDpCD_Plot_Clone_test_rebined->Draw();
@@ -192,9 +192,9 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot1D &pFDpCD_Plo
 
     Canvas->SaveAs((nFDpCD_Plot_Clone_test_rebined_SaveName).c_str());
     Canvas->Clear();
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Plotting and saving pFDpCD_Plot_Clone_test_rebined">
+    #pragma region /* Plotting and saving pFDpCD_Plot_Clone_test_rebined */
     pFDpCD_Plot_Clone_test_rebined->SetLineStyle(1);
     pFDpCD_Plot_Clone_test_rebined->SetLineColor(kBlue);
     pFDpCD_Plot_Clone_test_rebined->Draw();
@@ -204,9 +204,9 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot1D &pFDpCD_Plo
 
     Canvas->SaveAs((pFDpCD_Plot_Clone_test_rebined_SaveName).c_str());
     Canvas->Clear();
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Plotting and saving nFDpCD_Plot_Clone">
+    #pragma region /* Plotting and saving nFDpCD_Plot_Clone */
     nFDpCD_Plot_Clone->SetLineStyle(1);
     nFDpCD_Plot_Clone->SetLineColor(kBlue);
 
@@ -225,9 +225,9 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot1D &pFDpCD_Plo
     nFDpCD_Plot_Clone->SetLineWidth(3);
     nFDpCD_Plot_Clone->Draw();
     nFDpCD_Plot_Clone->SetStats(1);
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Plotting and saving pFDpCD_Plot_Clone">
+    #pragma region /* Plotting and saving pFDpCD_Plot_Clone */
     Canvas->cd();
     pFDpCD_Plot_Clone->SetLineStyle(1);
     pFDpCD_Plot_Clone->SetLineColor(kBlue);
@@ -247,9 +247,9 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot1D &pFDpCD_Plo
     pFDpCD_Plot_Clone->SetLineWidth(3);
     pFDpCD_Plot_Clone->Draw();
     pFDpCD_Plot_Clone->SetStats(1);
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Plotting and saving FSRatio_plot_1D">
+    #pragma region /* Plotting and saving FSRatio_plot_1D */
     Canvas->cd();
     FSRatio_plot_1D->SetLineStyle(1);
     FSRatio_plot_1D->SetLineColor(kBlue);
@@ -316,7 +316,7 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot1D &pFDpCD_Plo
     //    cout << "\n\n\nFSRatioType = " << FSRatioType << "\n\n\n";
     //    cout << "\n\n\nFSRatioRecTitle = " << FSRatioRecTitle << "\n\n\n";
     //    cout << "\n\n\nFSRatio_plot_1D_SaveName = " << FSRatio_plot_1D_SaveName << "\n\n\n";
-    //</editor-fold>
+    #pragma endregion
 
     delete Canvas;
     delete CanvasMulti;
@@ -326,7 +326,7 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot1D &pFDpCD_Plo
     bool plot_errorbars = true;
     bool rebin_plots = false;
 
-    //<editor-fold desc="Canvas definitions">
+    #pragma region /* Canvas definitions */
     TCanvas *Canvas = new TCanvas("Canvas", "Canvas", 1000, 750);  // normal res
                                                                    //    TCanvas *Canvas = new TCanvas("canvas", "canvas", 2000, 1500); // high res
                                                                    //    TCanvas *Canvas = new TCanvas("canvas", "canvas", 1650, 1150);
@@ -359,21 +359,21 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot1D &pFDpCD_Plo
     CanvasMulti->cd(3)->SetRightMargin(0.12);
 
     Canvas->cd();
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Setting variables">
+    #pragma region /* Setting variables */
     std::string FSRatioRecTitle = nFDpCD_Plot->GetTitle();
 
     std::string FSRatioParticle = data_processor::GetParticleName(FSRatioRecTitle);
     std::string FSRatioParticleLC = data_processor::GetParticleNameLC(FSRatioRecTitle);
     std::string FSRatioParticleShort = data_processor::GetParticleNameShort(FSRatioRecTitle);
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Setting stats box title">
+    #pragma region /* Setting stats box title */
     std::string FSRatioStatsTitle = SetStatsTitle(FSRatioRecTitle);
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Cloning histograms">
+    #pragma region /* Cloning histograms */
     std::string FSRatioFSNumerator = data_processor::GetFS(nFDpCD_Plot->GetTitle());
     std::string nFDpCD_Plot_Clone_StatsTitle = "FSR " + FSRatioStatsTitle + " - cloned (" + FSRatioFSNumerator + ")";
     TH1D *nFDpCD_Plot_Clone = (TH1D *)nFDpCD_Plot->Clone((nFDpCD_Plot_Clone_StatsTitle).c_str());
@@ -392,33 +392,33 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot1D &pFDpCD_Plo
     std::string pFDpCD_Plot_Clone_test_rebined_StatsTitle = "FSR " + pFDpCD_Plot.GetHistogramStatTitle() + " - cloned test rebined (" + FSRatioFSDenominator + ")";
     TH1D *pFDpCD_Plot_Clone_test_rebined = (TH1D *)Histogram1D_pFDpCD->Clone((pFDpCD_Plot_Clone_test_rebined_StatsTitle).c_str());
     if (rebin_plots) { pFDpCD_Plot_Clone_test_rebined->Rebin(2); }
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Setting title">
+    #pragma region /* Setting title */
     std::string FSRatioType = data_processor::GetType(FSRatioRecTitle);
     std::string FSRatioPlotsT = "FSRatio";
     std::string FSRatioDRegion = data_processor::GetDRegion(FSRatioRecTitle);
     std::string FSRatioTitle = data_processor::GetFSRTitle(FSRatioRecTitle, FSRatioPlotsT);
     std::string FSRatioFS = data_processor::GetFS(FSRatioRecTitle);
     std::string FSTopology = data_processor::GetTopology(FSRatioRecTitle);
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Setting X axis label">
+    #pragma region /* Setting X axis label */
     std::string FSRatioXLabel = SetXAxisTitle(FSRatioRecTitle);
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Setting y axis label">
+    #pragma region /* Setting y axis label */
     std::string FSRatioYLabel = SetYAxisTitle("FSRatio", FSRatioFS, nFDpCD_Plot_Clone->GetXaxis()->GetTitle(), pFDpCD_Plot_Clone->GetXaxis()->GetTitle());
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Setting save directory">
+    #pragma region /* Setting save directory */
     std::string FSRatioSaveDir, FSRatioTestSaveDir;
     SetFSRatioSaveDir(FSRatioSaveDir, FSRatioTestSaveDir, FSRatioRecTitle, FSRatioFS, pFDpCD_Plot.GetHistogram1DSaveNamePath(), FSRatioPlotsT, FSRatioDRegion, FSRatioParticle,
                       FSRatioParticleLC, FSRatioParticleShort, FSRatioType);
 
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Setting save name">
+    #pragma region /* Setting save name */
     std::string nFDpCD_Plot_Clone_SaveName, nFDpCD_Plot_Clone_test_SaveName, nFDpCD_Plot_Clone_test_rebined_SaveName;
     std::string pFDpCD_Plot_Clone_SaveName, pFDpCD_Plot_Clone_test_SaveName, pFDpCD_Plot_Clone_test_rebined_SaveName;
     std::string sNameFlag, FSRatio_plot_1D_SaveName;
@@ -426,7 +426,7 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot1D &pFDpCD_Plo
     SettingSaveNames(SampleName, FSRatioType, FSRatioParticle, FSRatioSaveDir, FSRatioTestSaveDir, FSRatioPlotsT, nFDpCD_Plot_Clone_SaveName, nFDpCD_Plot_Clone_test_SaveName,
                      nFDpCD_Plot_Clone_test_rebined_SaveName, pFDpCD_Plot_Clone_SaveName, pFDpCD_Plot_Clone_test_SaveName, pFDpCD_Plot_Clone_test_rebined_SaveName, sNameFlag,
                      FSRatio_plot_1D_SaveName, FSRatioDRegion, FSRatioFS);
-    //</editor-fold>
+    #pragma endregion
 
     TH1D *FSRatio_plot_1D = (TH1D *)nFDpCD_Plot_Clone->Clone((FSRatioParticle + " " + FSRatioType + " FSRatio (" + FSTopology + ")").c_str());
     FSRatio_plot_1D->SetTitle((FSRatioTitle + " nFDpCD/pFDpCD").c_str());
@@ -438,7 +438,7 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot1D &pFDpCD_Plo
     if (FSTopology == "2N") { TFolder_Name = TFolder_Name + " (" + FSRatioDRegion + ")"; }
     TFolder *FSRatio_plot_1D_TFolder = new TFolder(TFolder_Name.c_str(), TFolder_Name.c_str());
 
-    //<editor-fold desc="Plotting and saving nFDpCD_Plot_Clone_test">
+    #pragma region /* Plotting and saving nFDpCD_Plot_Clone_test */
     nFDpCD_Plot_Clone_test->SetLineStyle(1);
     nFDpCD_Plot_Clone_test->SetLineColor(kBlue);
     nFDpCD_Plot_Clone_test->SetStats(1);
@@ -457,9 +457,9 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot1D &pFDpCD_Plo
 
     Canvas->SaveAs((nFDpCD_Plot_Clone_test_SaveName).c_str());
     Canvas->Clear();
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Plotting and saving pFDpCD_Plot_Clone_test">
+    #pragma region /* Plotting and saving pFDpCD_Plot_Clone_test */
     pFDpCD_Plot_Clone_test->SetLineStyle(1);
     pFDpCD_Plot_Clone_test->SetLineColor(kBlue);
     pFDpCD_Plot_Clone_test->Draw();
@@ -469,9 +469,9 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot1D &pFDpCD_Plo
 
     Canvas->SaveAs((pFDpCD_Plot_Clone_test_SaveName).c_str());
     Canvas->Clear();
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Plotting and saving nFDpCD_Plot_Clone_test_rebined">
+    #pragma region /* Plotting and saving nFDpCD_Plot_Clone_test_rebined */
     nFDpCD_Plot_Clone_test_rebined->SetLineStyle(1);
     nFDpCD_Plot_Clone_test_rebined->SetLineColor(kBlue);
     nFDpCD_Plot_Clone_test_rebined->SetStats(1);
@@ -490,9 +490,9 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot1D &pFDpCD_Plo
 
     Canvas->SaveAs((nFDpCD_Plot_Clone_test_rebined_SaveName).c_str());
     Canvas->Clear();
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Plotting and saving pFDpCD_Plot_Clone_test_rebined">
+    #pragma region /* Plotting and saving pFDpCD_Plot_Clone_test_rebined */
     pFDpCD_Plot_Clone_test_rebined->SetLineStyle(1);
     pFDpCD_Plot_Clone_test_rebined->SetLineColor(kBlue);
     pFDpCD_Plot_Clone_test_rebined->Draw();
@@ -502,9 +502,9 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot1D &pFDpCD_Plo
 
     Canvas->SaveAs((pFDpCD_Plot_Clone_test_rebined_SaveName).c_str());
     Canvas->Clear();
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Plotting and saving nFDpCD_Plot_Clone">
+    #pragma region /* Plotting and saving nFDpCD_Plot_Clone */
     nFDpCD_Plot_Clone->SetLineStyle(1);
     nFDpCD_Plot_Clone->SetLineColor(kBlue);
     nFDpCD_Plot_Clone->SetStats(1);
@@ -533,9 +533,9 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot1D &pFDpCD_Plo
     nFDpCD_Plot_Clone->SetLineWidth(3);
     nFDpCD_Plot_Clone->Draw();
     nFDpCD_Plot_Clone->SetStats(1);
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Plotting and saving pFDpCD_Plot_Clone">
+    #pragma region /* Plotting and saving pFDpCD_Plot_Clone */
     Canvas->cd();
     pFDpCD_Plot_Clone->SetLineStyle(1);
     pFDpCD_Plot_Clone->SetLineColor(kBlue);
@@ -555,9 +555,9 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot1D &pFDpCD_Plo
     pFDpCD_Plot_Clone->SetLineWidth(3);
     pFDpCD_Plot_Clone->Draw();
     pFDpCD_Plot_Clone->SetStats(1);
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Plotting and saving FSRatio_plot_1D">
+    #pragma region /* Plotting and saving FSRatio_plot_1D */
     Canvas->cd();
     FSRatio_plot_1D->SetLineStyle(1);
     FSRatio_plot_1D->SetLineColor(kBlue);
@@ -642,7 +642,7 @@ void DrawAndSaveFSRatio(const std::string &SampleName, TH1D *pFDpCD_Plot, const 
     bool plot_errorbars = true;
     bool rebin_plots = false;
 
-    //<editor-fold desc="Canvas definitions">
+    #pragma region /* Canvas definitions */
     TCanvas *Canvas = new TCanvas("Canvas", "Canvas", 1000, 750);  // normal res
                                                                    //    TCanvas *Canvas = new TCanvas("canvas", "canvas", 2000, 1500); // high res
                                                                    //    TCanvas *Canvas = new TCanvas("canvas", "canvas", 1650, 1150);
@@ -675,9 +675,9 @@ void DrawAndSaveFSRatio(const std::string &SampleName, TH1D *pFDpCD_Plot, const 
     CanvasMulti->cd(3)->SetRightMargin(0.12);
 
     Canvas->cd();
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Setting variables">
+    #pragma region /* Setting variables */
     std::string FSRatioRecTitle = nFDpCD_Plot->GetTitle();
 
     std::string FSRatioParticle = data_processor::GetParticleName(FSRatioRecTitle);
@@ -685,13 +685,13 @@ void DrawAndSaveFSRatio(const std::string &SampleName, TH1D *pFDpCD_Plot, const 
     std::string FSRatioParticleShort = data_processor::GetParticleNameShort(FSRatioRecTitle);
     std::string FSRatioFS = data_processor::GetFS(FSRatioRecTitle);
     std::string FSTopology = data_processor::GetTopology(FSRatioRecTitle);
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Setting stats box title">
+    #pragma region /* Setting stats box title */
     std::string FSRatioStatsTitle = SetStatsTitle(FSRatioRecTitle);
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Cloning histograms">
+    #pragma region /* Cloning histograms */
     std::string FSRatioFSNumerator = data_processor::GetFS(nFDpCD_Plot->GetTitle());
     std::string nFDpCD_Plot_Clone_StatsTitle = "FSR " + FSRatioStatsTitle + " " + FSTopology + " - cloned (" + FSRatioFSNumerator + ")";
     TH1D *nFDpCD_Plot_Clone = (TH1D *)nFDpCD_Plot->Clone((nFDpCD_Plot_Clone_StatsTitle).c_str());
@@ -709,30 +709,30 @@ void DrawAndSaveFSRatio(const std::string &SampleName, TH1D *pFDpCD_Plot, const 
     std::string pFDpCD_Plot_Clone_test_rebined_StatsTitle = "FSR " + FSRatioStatsTitle + " " + FSTopology + " - cloned test rebined (" + FSRatioFSDenominator + ")";
     TH1D *pFDpCD_Plot_Clone_test_rebined = (TH1D *)pFDpCD_Plot->Clone((pFDpCD_Plot_Clone_test_rebined_StatsTitle).c_str());
     if (rebin_plots) { pFDpCD_Plot_Clone_test_rebined->Rebin(2); }
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Setting title">
+    #pragma region /* Setting title */
     std::string FSRatioType = data_processor::GetType(FSRatioRecTitle);
     std::string FSRatioPlotsT = "FSRatio";
     std::string FSRatioDRegion = data_processor::GetDRegion(FSRatioRecTitle);
     std::string FSRatioTitle = data_processor::GetFSRTitle(FSRatioRecTitle, FSRatioPlotsT);
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Setting X axis label">
+    #pragma region /* Setting X axis label */
     std::string FSRatioXLabel = SetXAxisTitle(FSRatioRecTitle);
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Setting y axis label">
+    #pragma region /* Setting y axis label */
     std::string FSRatioYLabel = SetYAxisTitle("FSRatio", FSRatioFS, nFDpCD_Plot_Clone->GetXaxis()->GetTitle(), pFDpCD_Plot_Clone->GetXaxis()->GetTitle());
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Setting save directory">
+    #pragma region /* Setting save directory */
     std::string FSRatioSaveDir, FSRatioTestSaveDir;
     SetFSRatioSaveDir(FSRatioSaveDir, FSRatioTestSaveDir, FSRatioRecTitle, FSRatioFS, pFDpCD_PlotSaveNamePath, FSRatioPlotsT, FSRatioDRegion, FSRatioParticle, FSRatioParticleLC,
                       FSRatioParticleShort, FSRatioType);
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Setting save name">
+    #pragma region /* Setting save name */
     std::string nFDpCD_Plot_Clone_SaveName, nFDpCD_Plot_Clone_test_SaveName, nFDpCD_Plot_Clone_test_rebined_SaveName;
     std::string pFDpCD_Plot_Clone_SaveName, pFDpCD_Plot_Clone_test_SaveName, pFDpCD_Plot_Clone_test_rebined_SaveName;
     std::string sNameFlag, FSRatio_plot_1D_SaveName;
@@ -740,7 +740,7 @@ void DrawAndSaveFSRatio(const std::string &SampleName, TH1D *pFDpCD_Plot, const 
     SettingSaveNames(SampleName, FSRatioType, FSRatioParticle, FSRatioSaveDir, FSRatioTestSaveDir, FSRatioPlotsT, nFDpCD_Plot_Clone_SaveName, nFDpCD_Plot_Clone_test_SaveName,
                      nFDpCD_Plot_Clone_test_rebined_SaveName, pFDpCD_Plot_Clone_SaveName, pFDpCD_Plot_Clone_test_SaveName, pFDpCD_Plot_Clone_test_rebined_SaveName, sNameFlag,
                      FSRatio_plot_1D_SaveName, FSRatioDRegion, FSRatioFS);
-    //</editor-fold>
+    #pragma endregion
 
     TH1D *FSRatio_plot_1D = (TH1D *)nFDpCD_Plot_Clone->Clone((FSRatioParticle + " " + FSRatioType + " FSRatio (" + FSTopology + ")").c_str());
     FSRatio_plot_1D->SetTitle((FSRatioTitle + " nFDpCD/pFDpCD").c_str());
@@ -761,7 +761,7 @@ void DrawAndSaveFSRatio(const std::string &SampleName, TH1D *pFDpCD_Plot, const 
     //        cout << "\n\nExiting...\n\n", exit(0);
     //    }
 
-    //<editor-fold desc="Plotting and saving nFDpCD_Plot_Clone_test">
+    #pragma region /* Plotting and saving nFDpCD_Plot_Clone_test */
     nFDpCD_Plot_Clone_test->SetLineStyle(1);
     nFDpCD_Plot_Clone_test->SetLineColor(kBlue);
     nFDpCD_Plot_Clone_test->SetStats(1);
@@ -780,9 +780,9 @@ void DrawAndSaveFSRatio(const std::string &SampleName, TH1D *pFDpCD_Plot, const 
 
     Canvas->SaveAs((nFDpCD_Plot_Clone_test_SaveName).c_str());
     Canvas->Clear();
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Plotting and saving pFDpCD_Plot_Clone_test">
+    #pragma region /* Plotting and saving pFDpCD_Plot_Clone_test */
     pFDpCD_Plot_Clone_test->SetLineStyle(1);
     pFDpCD_Plot_Clone_test->SetLineColor(kBlue);
     pFDpCD_Plot_Clone_test->Draw();
@@ -792,9 +792,9 @@ void DrawAndSaveFSRatio(const std::string &SampleName, TH1D *pFDpCD_Plot, const 
 
     Canvas->SaveAs((pFDpCD_Plot_Clone_test_SaveName).c_str());
     Canvas->Clear();
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Plotting and saving nFDpCD_Plot_Clone_test_rebined">
+    #pragma region /* Plotting and saving nFDpCD_Plot_Clone_test_rebined */
     nFDpCD_Plot_Clone_test_rebined->SetLineStyle(1);
     nFDpCD_Plot_Clone_test_rebined->SetLineColor(kBlue);
     nFDpCD_Plot_Clone_test_rebined->SetStats(1);
@@ -813,9 +813,9 @@ void DrawAndSaveFSRatio(const std::string &SampleName, TH1D *pFDpCD_Plot, const 
 
     Canvas->SaveAs((nFDpCD_Plot_Clone_test_rebined_SaveName).c_str());
     Canvas->Clear();
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Plotting and saving pFDpCD_Plot_Clone_test_rebined">
+    #pragma region /* Plotting and saving pFDpCD_Plot_Clone_test_rebined */
     pFDpCD_Plot_Clone_test_rebined->SetLineStyle(1);
     pFDpCD_Plot_Clone_test_rebined->SetLineColor(kBlue);
     pFDpCD_Plot_Clone_test_rebined->Draw();
@@ -825,9 +825,9 @@ void DrawAndSaveFSRatio(const std::string &SampleName, TH1D *pFDpCD_Plot, const 
 
     Canvas->SaveAs((pFDpCD_Plot_Clone_test_rebined_SaveName).c_str());
     Canvas->Clear();
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Plotting and saving nFDpCD_Plot_Clone">
+    #pragma region /* Plotting and saving nFDpCD_Plot_Clone */
     nFDpCD_Plot_Clone->SetLineStyle(1);
     nFDpCD_Plot_Clone->SetLineColor(kBlue);
     nFDpCD_Plot_Clone->SetStats(1);
@@ -856,9 +856,9 @@ void DrawAndSaveFSRatio(const std::string &SampleName, TH1D *pFDpCD_Plot, const 
     nFDpCD_Plot_Clone->SetLineWidth(3);
     nFDpCD_Plot_Clone->Draw();
     nFDpCD_Plot_Clone->SetStats(1);
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Plotting and saving pFDpCD_Plot_Clone">
+    #pragma region /* Plotting and saving pFDpCD_Plot_Clone */
     Canvas->cd();
     pFDpCD_Plot_Clone->SetLineStyle(1);
     pFDpCD_Plot_Clone->SetLineColor(kBlue);
@@ -879,9 +879,9 @@ void DrawAndSaveFSRatio(const std::string &SampleName, TH1D *pFDpCD_Plot, const 
     pFDpCD_Plot_Clone->SetLineWidth(3);
     pFDpCD_Plot_Clone->Draw();
     pFDpCD_Plot_Clone->SetStats(1);
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Plotting and saving FSRatio_plot_1D">
+    #pragma region /* Plotting and saving FSRatio_plot_1D */
     Canvas->cd();
     FSRatio_plot_1D->SetLineStyle(1);
     FSRatio_plot_1D->SetLineColor(kBlue);
@@ -956,7 +956,7 @@ void DrawAndSaveFSRatio(const std::string &SampleName, TH1D *pFDpCD_Plot, const 
     //    cout << "\n\n\nFSRatioType = " << FSRatioType << "\n\n\n";
     //    cout << "\n\n\nFSRatioRecTitle = " << FSRatioRecTitle << "\n\n\n";
     //    cout << "\n\n\nFSRatio_plot_1D_SaveName = " << FSRatio_plot_1D_SaveName << "\n\n\n";
-    //</editor-fold>
+    #pragma endregion
 
     delete Canvas;
     delete CanvasMulti;
@@ -967,7 +967,7 @@ void DrawAndSaveFSRatio(const std::string &SampleName, TH1D *pFDpCD_Plot, const 
 void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot2D &pFDpCD_Plot, const hPlot2D &nFDpCD_Plot, TList *Histogram_list) {
     bool plot_errorbars = true;
 
-    //<editor-fold desc="Canvas definitions">
+    #pragma region /* Canvas definitions */
     TCanvas *Canvas = new TCanvas("Canvas", "Canvas", 1000, 750);  // normal res
     Canvas->SetGrid();
 
@@ -996,9 +996,9 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot2D &pFDpCD_Plo
     CanvasMulti->cd(3)->SetRightMargin(0.12);
 
     Canvas->cd();
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Cloning histograms">
+    #pragma region /* Cloning histograms */
     TH2D *Histogram2D_nFDpCD = nFDpCD_Plot.GetHistogram();
     std::string FSRatioFSNumerator = data_processor::GetFS(Histogram2D_nFDpCD->GetTitle());
 
@@ -1026,9 +1026,9 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot2D &pFDpCD_Plo
         pFDpCD_Plot_Clone->SetMaximum(Zmax);
         nFDpCD_Plot_Clone->SetMaximum(Zmax);
     }
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Setting variables">
+    #pragma region /* Setting variables */
     std::string FSRatioRecTitle = nFDpCD_Plot_Clone->GetTitle();
 
     std::string FSRatioParticle = data_processor::GetParticleName(FSRatioRecTitle);
@@ -1056,7 +1056,7 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot2D &pFDpCD_Plo
     SettingSaveNames(SampleName, FSRatioType, FSRatioParticle, FSRatioSaveDir, FSRatioTestSaveDir, FSRatioPlotsT, nFDpCD_Plot_Clone_SaveName, nFDpCD_Plot_Clone_test_SaveName,
                      nFDpCD_Plot_Clone_test_rebined_SaveName, pFDpCD_Plot_Clone_SaveName, pFDpCD_Plot_Clone_test_SaveName, pFDpCD_Plot_Clone_test_rebined_SaveName, sNameFlag,
                      FSRatio_plot_2D_SaveName, FSRatioDRegion, FSRatioFS);
-    //</editor-fold>
+    #pragma endregion
 
     TH2D *FSRatio_plot_2D = (TH2D *)nFDpCD_Plot_Clone->Clone((FSRatioParticle + " " + FSRatioType + " FSRatio (" + FSTopology + ")").c_str());
     FSRatio_plot_2D->SetTitle((FSRatioTitle + " nFDpCD/pFDpCD").c_str());
@@ -1068,7 +1068,7 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot2D &pFDpCD_Plo
     if (FSTopology == "2N") { TFolder_Name = TFolder_Name + " (" + FSRatioDRegion + ")"; }
     TFolder *FSRatio_plot_2D_TFolder = new TFolder(TFolder_Name.c_str(), TFolder_Name.c_str());
 
-    //<editor-fold desc="Plotting and saving nFDpCD_Plot_Clone_test">
+    #pragma region /* Plotting and saving nFDpCD_Plot_Clone_test */
     nFDpCD_Plot_Clone_test->SetStats(1);
     nFDpCD_Plot_Clone_test->GetXaxis()->SetTitleSize(0.06);
     nFDpCD_Plot_Clone_test->GetXaxis()->SetLabelSize(0.0425);
@@ -1083,9 +1083,9 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot2D &pFDpCD_Plo
 
     Canvas->SaveAs((nFDpCD_Plot_Clone_test_SaveName).c_str());
     Canvas->Clear();
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Plotting and saving pFDpCD_Plot_Clone_test">
+    #pragma region /* Plotting and saving pFDpCD_Plot_Clone_test */
     pFDpCD_Plot_Clone_test->Draw("colz");
     pFDpCD_Plot_Clone_test->SetStats(1);
     FSRatio_plot_2D_TFolder->Add(pFDpCD_Plot_Clone_test);
@@ -1093,9 +1093,9 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot2D &pFDpCD_Plo
 
     Canvas->SaveAs((pFDpCD_Plot_Clone_test_SaveName).c_str());
     Canvas->Clear();
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Plotting and saving nFDpCD_Plot_Clone_test_rebined">
+    #pragma region /* Plotting and saving nFDpCD_Plot_Clone_test_rebined */
     nFDpCD_Plot_Clone_test_rebined->Draw("colz");
     nFDpCD_Plot_Clone_test_rebined->SetStats(1);
     FSRatio_plot_2D_TFolder->Add(nFDpCD_Plot_Clone_test_rebined);
@@ -1103,9 +1103,9 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot2D &pFDpCD_Plo
 
     Canvas->SaveAs((nFDpCD_Plot_Clone_test_rebined_SaveName).c_str());
     Canvas->Clear();
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Plotting and saving pFDpCD_Plot_Clone_test_rebined">
+    #pragma region /* Plotting and saving pFDpCD_Plot_Clone_test_rebined */
     pFDpCD_Plot_Clone_test_rebined->Draw("colz");
     pFDpCD_Plot_Clone_test_rebined->SetStats(1);
     FSRatio_plot_2D_TFolder->Add(pFDpCD_Plot_Clone_test_rebined);
@@ -1113,9 +1113,9 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot2D &pFDpCD_Plo
 
     Canvas->SaveAs((pFDpCD_Plot_Clone_test_rebined_SaveName).c_str());
     Canvas->Clear();
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Plotting and saving nFDpCD_Plot_Clone">
+    #pragma region /* Plotting and saving nFDpCD_Plot_Clone */
     nFDpCD_Plot_Clone->Draw("colz");
 
     if (FSRatioType == "P_nucFD_vs_P_nucCD" || FSRatioType == "P_nucL_vs_P_nucR") {
@@ -1166,9 +1166,9 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot2D &pFDpCD_Plo
     }
 
     nFDpCD_Plot_Clone->SetStats(1);
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Plotting and saving pFDpCD_Plot_Clone">
+    #pragma region /* Plotting and saving pFDpCD_Plot_Clone */
     Canvas->cd();
     pFDpCD_Plot_Clone->Draw("colz");
 
@@ -1220,9 +1220,9 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot2D &pFDpCD_Plo
     }
 
     pFDpCD_Plot_Clone->SetStats(1);
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Plotting and saving FSRatio_plot_2D">
+    #pragma region /* Plotting and saving FSRatio_plot_2D */
     Canvas->cd();
     FSRatio_plot_2D->Divide(pFDpCD_Plot_Clone);
     FSRatio_plot_2D->SetStats(0);
@@ -1278,7 +1278,7 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot2D &pFDpCD_Plo
     FSRatio_plot_2D->SetMinimum(0.1);
     CanvasMulti->SaveAs((FSRatio_plot_2D_SaveName.substr(0, FSRatio_plot_2D_SaveName.find_last_of(".png") - 3) + "_RegularM.png").c_str());
     CanvasMulti->Clear();
-    //</editor-fold>
+    #pragma endregion
 
     //    cout << "\n\n\nFSRatioType = " << FSRatioType << "\n\n\n";
     //    cout << "\n\n\nFSRatioRecTitle = " << FSRatioRecTitle << "\n\n\n";
@@ -1292,7 +1292,7 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot2D &pFDpCD_Plo
     bool plot_errorbars = true;
     bool rebin_plots = false;
 
-    //<editor-fold desc="Canvas definitions">
+    #pragma region /* Canvas definitions */
     TCanvas *Canvas = new TCanvas("Canvas", "Canvas", 1000, 750);  // normal res
                                                                    //    TCanvas *Canvas = new TCanvas("canvas", "canvas", 2000, 1500); // high res
                                                                    //    TCanvas *Canvas = new TCanvas("canvas", "canvas", 1650, 1150);
@@ -1325,21 +1325,21 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot2D &pFDpCD_Plo
     CanvasMulti->cd(3)->SetRightMargin(0.12);
 
     Canvas->cd();
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Setting variables">
+    #pragma region /* Setting variables */
     std::string FSRatioRecTitle = nFDpCD_Plot->GetTitle();
 
     std::string FSRatioParticle = data_processor::GetParticleName(FSRatioRecTitle);
     std::string FSRatioParticleLC = data_processor::GetParticleNameLC(FSRatioRecTitle);
     std::string FSRatioParticleShort = data_processor::GetParticleNameShort(FSRatioRecTitle);
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Setting stats box title">
+    #pragma region /* Setting stats box title */
     std::string FSRatioStatsTitle = SetStatsTitle(FSRatioRecTitle);
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Cloning histograms">
+    #pragma region /* Cloning histograms */
     std::string FSRatioFSNumerator = data_processor::GetFS(nFDpCD_Plot->GetTitle());
     std::string nFDpCD_Plot_Clone_StatsTitle = "FSR " + FSRatioStatsTitle + " - cloned (" + FSRatioFSNumerator + ")";
     TH2D *nFDpCD_Plot_Clone = (TH2D *)nFDpCD_Plot->Clone((nFDpCD_Plot_Clone_StatsTitle).c_str());
@@ -1365,32 +1365,32 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot2D &pFDpCD_Plo
         pFDpCD_Plot_Clone->SetMaximum(Zmax);
         nFDpCD_Plot_Clone->SetMaximum(Zmax);
     }
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Setting title">
+    #pragma region /* Setting title */
     std::string FSRatioType = data_processor::GetType(FSRatioRecTitle);
     std::string FSRatioPlotsT = "FSRatio";
     std::string FSRatioDRegion = data_processor::GetDRegion(FSRatioRecTitle);
     std::string FSRatioTitle = data_processor::GetFSRTitle(FSRatioRecTitle, FSRatioPlotsT);
     std::string FSRatioFS = data_processor::GetFS(FSRatioRecTitle);
     std::string FSTopology = data_processor::GetTopology(FSRatioRecTitle);
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Setting X axis label">
+    #pragma region /* Setting X axis label */
     std::string FSRatioXLabel = SetXAxisTitle(FSRatioRecTitle);
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Setting y axis label">
+    #pragma region /* Setting y axis label */
     std::string FSRatioYLabel = SetYAxisTitle("FSRatio", FSRatioFS, nFDpCD_Plot_Clone->GetXaxis()->GetTitle(), pFDpCD_Plot_Clone->GetXaxis()->GetTitle(), FSRatioRecTitle);
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Setting save directory">
+    #pragma region /* Setting save directory */
     std::string FSRatioSaveDir, FSRatioTestSaveDir;
     SetFSRatioSaveDir(FSRatioSaveDir, FSRatioTestSaveDir, FSRatioRecTitle, FSRatioFS, pFDpCD_Plot.GetHistogram2DSaveNamePath(), FSRatioPlotsT, FSRatioDRegion, FSRatioParticle,
                       FSRatioParticleLC, FSRatioParticleShort, FSRatioType);
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Setting save name">
+    #pragma region /* Setting save name */
     std::string nFDpCD_Plot_Clone_SaveName, nFDpCD_Plot_Clone_test_SaveName, nFDpCD_Plot_Clone_test_rebined_SaveName;
     std::string pFDpCD_Plot_Clone_SaveName, pFDpCD_Plot_Clone_test_SaveName, pFDpCD_Plot_Clone_test_rebined_SaveName;
     std::string sNameFlag, FSRatio_plot_2D_SaveName;
@@ -1398,7 +1398,7 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot2D &pFDpCD_Plo
     SettingSaveNames(SampleName, FSRatioType, FSRatioParticle, FSRatioSaveDir, FSRatioTestSaveDir, FSRatioPlotsT, nFDpCD_Plot_Clone_SaveName, nFDpCD_Plot_Clone_test_SaveName,
                      nFDpCD_Plot_Clone_test_rebined_SaveName, pFDpCD_Plot_Clone_SaveName, pFDpCD_Plot_Clone_test_SaveName, pFDpCD_Plot_Clone_test_rebined_SaveName, sNameFlag,
                      FSRatio_plot_2D_SaveName, FSRatioDRegion, FSRatioFS);
-    //</editor-fold>
+    #pragma endregion
 
     TH2D *FSRatio_plot_2D = (TH2D *)nFDpCD_Plot_Clone->Clone((FSRatioParticle + " " + FSRatioType + " FSRatio (" + FSTopology + ")").c_str());
     FSRatio_plot_2D->SetTitle((FSRatioTitle + " nFDpCD/pFDpCD").c_str());
@@ -1410,7 +1410,7 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot2D &pFDpCD_Plo
     if (FSTopology == "2N") { TFolder_Name = TFolder_Name + " (" + FSRatioDRegion + ")"; }
     TFolder *FSRatio_plot_2D_TFolder = new TFolder(TFolder_Name.c_str(), TFolder_Name.c_str());
 
-    //<editor-fold desc="Plotting and saving nFDpCD_Plot_Clone_test">
+    #pragma region /* Plotting and saving nFDpCD_Plot_Clone_test */
     nFDpCD_Plot_Clone_test->GetXaxis()->SetTitleSize(0.06);
     nFDpCD_Plot_Clone_test->GetXaxis()->SetLabelSize(0.0425);
     nFDpCD_Plot_Clone_test->GetXaxis()->CenterTitle(true);
@@ -1424,9 +1424,9 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot2D &pFDpCD_Plo
 
     Canvas->SaveAs((nFDpCD_Plot_Clone_test_SaveName).c_str());
     Canvas->Clear();
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Plotting and saving pFDpCD_Plot_Clone_test">
+    #pragma region /* Plotting and saving pFDpCD_Plot_Clone_test */
     pFDpCD_Plot_Clone_test->Draw("colz");
     pFDpCD_Plot_Clone_test->SetStats(1);
     FSRatio_plot_2D_TFolder->Add(pFDpCD_Plot_Clone_test);
@@ -1434,9 +1434,9 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot2D &pFDpCD_Plo
 
     Canvas->SaveAs((pFDpCD_Plot_Clone_test_SaveName).c_str());
     Canvas->Clear();
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Plotting and saving nFDpCD_Plot_Clone_test_rebined">
+    #pragma region /* Plotting and saving nFDpCD_Plot_Clone_test_rebined */
     nFDpCD_Plot_Clone_test_rebined->GetXaxis()->SetTitleSize(0.06);
     nFDpCD_Plot_Clone_test_rebined->GetXaxis()->SetLabelSize(0.0425);
     nFDpCD_Plot_Clone_test_rebined->GetXaxis()->CenterTitle(true);
@@ -1450,9 +1450,9 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot2D &pFDpCD_Plo
 
     Canvas->SaveAs((nFDpCD_Plot_Clone_test_rebined_SaveName).c_str());
     Canvas->Clear();
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Plotting and saving pFDpCD_Plot_Clone_test_rebined">
+    #pragma region /* Plotting and saving pFDpCD_Plot_Clone_test_rebined */
     pFDpCD_Plot_Clone_test_rebined->Draw("colz");
     pFDpCD_Plot_Clone_test_rebined->SetStats(1);
     FSRatio_plot_2D_TFolder->Add(pFDpCD_Plot_Clone_test_rebined);
@@ -1460,9 +1460,9 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot2D &pFDpCD_Plo
 
     Canvas->SaveAs((pFDpCD_Plot_Clone_test_rebined_SaveName).c_str());
     Canvas->Clear();
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Plotting and saving nFDpCD_Plot_Clone">
+    #pragma region /* Plotting and saving nFDpCD_Plot_Clone */
     nFDpCD_Plot_Clone->GetXaxis()->SetTitleSize(0.06);
     nFDpCD_Plot_Clone->GetXaxis()->SetLabelSize(0.0425);
     nFDpCD_Plot_Clone->GetXaxis()->CenterTitle(true);
@@ -1481,9 +1481,9 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot2D &pFDpCD_Plo
     CanvasMulti->cd(1);
     nFDpCD_Plot_Clone->Draw("colz");
     nFDpCD_Plot_Clone->SetStats(1);
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Plotting and saving pFDpCD_Plot_Clone">
+    #pragma region /* Plotting and saving pFDpCD_Plot_Clone */
     Canvas->cd();
     pFDpCD_Plot_Clone->Draw("colz");
     pFDpCD_Plot_Clone->SetStats(1);
@@ -1496,9 +1496,9 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot2D &pFDpCD_Plo
     CanvasMulti->cd(2);
     pFDpCD_Plot_Clone->Draw("colz");
     pFDpCD_Plot_Clone->SetStats(1);
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Plotting and saving FSRatio_plot_2D">
+    #pragma region /* Plotting and saving FSRatio_plot_2D */
     Canvas->cd();
     FSRatio_plot_2D->GetXaxis()->SetTitleSize(0.06);
     FSRatio_plot_2D->GetXaxis()->SetLabelSize(0.0425);
@@ -1527,7 +1527,7 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot2D &pFDpCD_Plo
     FSRatio_plot_2D->SetMinimum(0.1);
     CanvasMulti->SaveAs((FSRatio_plot_2D_SaveName.substr(0, FSRatio_plot_2D_SaveName.find_last_of(".png") - 3) + "_RegularM.png").c_str());
     CanvasMulti->Clear();
-    //</editor-fold>
+    #pragma endregion
 
     //    cout << "\n\n\nFSRatioType = " << FSRatioType << "\n\n\n";
     //    cout << "\n\n\nFSRatioRecTitle = " << FSRatioRecTitle << "\n\n\n";
@@ -1541,7 +1541,7 @@ void DrawAndSaveFSRatio(const std::string &SampleName, TH2D *pFDpCD_Plot, const 
     bool plot_errorbars = false;
     bool rebin_plots = false;
 
-    //<editor-fold desc="Canvas definitions">
+    #pragma region /* Canvas definitions */
     TCanvas *Canvas = new TCanvas("Canvas", "Canvas", 1000, 750);  // normal res
                                                                    //    TCanvas *Canvas = new TCanvas("canvas", "canvas", 2000, 1500); // high res
                                                                    //    TCanvas *Canvas = new TCanvas("canvas", "canvas", 1650, 1150);
@@ -1574,9 +1574,9 @@ void DrawAndSaveFSRatio(const std::string &SampleName, TH2D *pFDpCD_Plot, const 
     CanvasMulti->cd(3)->SetRightMargin(0.12);
 
     Canvas->cd();
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Setting variables">
+    #pragma region /* Setting variables */
     std::string FSRatioRecTitle = nFDpCD_Plot->GetTitle();
 
     std::string FSRatioParticle = data_processor::GetParticleName(FSRatioRecTitle);
@@ -1584,9 +1584,9 @@ void DrawAndSaveFSRatio(const std::string &SampleName, TH2D *pFDpCD_Plot, const 
     std::string FSRatioParticleShort = data_processor::GetParticleNameShort(FSRatioRecTitle);
     std::string FSRatioStatsTitle = SetStatsTitle(FSRatioRecTitle);
     std::string FSTopology = data_processor::GetTopology(FSRatioRecTitle);
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Cloning histograms">
+    #pragma region /* Cloning histograms */
     std::string FSRatioFSNumerator = data_processor::GetFS(nFDpCD_Plot->GetTitle());
     std::string nFDpCD_Plot_Clone_StatsTitle = "FSR " + FSRatioStatsTitle + " - cloned (" + FSRatioFSNumerator + ")";
     TH2D *nFDpCD_Plot_Clone = (TH2D *)nFDpCD_Plot->Clone((nFDpCD_Plot_Clone_StatsTitle).c_str());
@@ -1611,31 +1611,31 @@ void DrawAndSaveFSRatio(const std::string &SampleName, TH2D *pFDpCD_Plot, const 
         pFDpCD_Plot_Clone->SetMaximum(Zmax);
         nFDpCD_Plot_Clone->SetMaximum(Zmax);
     }
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Setting title">
+    #pragma region /* Setting title */
     std::string FSRatioType = data_processor::GetType(FSRatioRecTitle);
     std::string FSRatioPlotsT = "FSRatio";
     std::string FSRatioDRegion = data_processor::GetDRegion(FSRatioRecTitle);
     std::string FSRatioTitle = data_processor::GetFSRTitle(FSRatioRecTitle, FSRatioPlotsT);
     std::string FSRatioFS = data_processor::GetFS(FSRatioRecTitle);
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Setting X axis label">
+    #pragma region /* Setting X axis label */
     std::string FSRatioXLabel = SetXAxisTitle(FSRatioRecTitle);
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Setting y axis label">
+    #pragma region /* Setting y axis label */
     std::string FSRatioYLabel = SetYAxisTitle("FSRatio", FSRatioFS, nFDpCD_Plot_Clone->GetXaxis()->GetTitle(), pFDpCD_Plot_Clone->GetXaxis()->GetTitle(), FSRatioRecTitle);
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Setting save directory">
+    #pragma region /* Setting save directory */
     std::string FSRatioSaveDir, FSRatioTestSaveDir;
     SetFSRatioSaveDir(FSRatioSaveDir, FSRatioTestSaveDir, FSRatioRecTitle, FSRatioFS, pFDpCD_PlotSaveNamePath, FSRatioPlotsT, FSRatioDRegion, FSRatioParticle, FSRatioParticleLC,
                       FSRatioParticleShort, FSRatioType);
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Setting save name">
+    #pragma region /* Setting save name */
     std::string nFDpCD_Plot_Clone_SaveName, nFDpCD_Plot_Clone_test_SaveName, nFDpCD_Plot_Clone_test_rebined_SaveName;
     std::string pFDpCD_Plot_Clone_SaveName, pFDpCD_Plot_Clone_test_SaveName, pFDpCD_Plot_Clone_test_rebined_SaveName;
     std::string sNameFlag, FSRatio_plot_2D_SaveName;
@@ -1643,7 +1643,7 @@ void DrawAndSaveFSRatio(const std::string &SampleName, TH2D *pFDpCD_Plot, const 
     SettingSaveNames(SampleName, FSRatioType, FSRatioParticle, FSRatioSaveDir, FSRatioTestSaveDir, FSRatioPlotsT, nFDpCD_Plot_Clone_SaveName, nFDpCD_Plot_Clone_test_SaveName,
                      nFDpCD_Plot_Clone_test_rebined_SaveName, pFDpCD_Plot_Clone_SaveName, pFDpCD_Plot_Clone_test_SaveName, pFDpCD_Plot_Clone_test_rebined_SaveName, sNameFlag,
                      FSRatio_plot_2D_SaveName, FSRatioDRegion, FSRatioFS);
-    //</editor-fold>
+    #pragma endregion
 
     TH2D *FSRatio_plot_2D = (TH2D *)nFDpCD_Plot_Clone->Clone((FSRatioParticle + " " + FSRatioType + " FSRatio (" + FSTopology + ")").c_str());
     FSRatio_plot_2D->SetTitle((FSRatioTitle + " nFDpCD/pFDpCD").c_str());
@@ -1655,7 +1655,7 @@ void DrawAndSaveFSRatio(const std::string &SampleName, TH2D *pFDpCD_Plot, const 
     if (FSTopology == "2N") { TFolder_Name = TFolder_Name + " (" + FSRatioDRegion + ")"; }
     TFolder *FSRatio_plot_2D_TFolder = new TFolder(TFolder_Name.c_str(), TFolder_Name.c_str());
 
-    //<editor-fold desc="Plotting and saving nFDpCD_Plot_Clone_test">
+    #pragma region /* Plotting and saving nFDpCD_Plot_Clone_test */
     nFDpCD_Plot_Clone_test->GetXaxis()->SetTitleSize(0.06);
     nFDpCD_Plot_Clone_test->GetXaxis()->SetLabelSize(0.0425);
     nFDpCD_Plot_Clone_test->GetXaxis()->CenterTitle(true);
@@ -1669,9 +1669,9 @@ void DrawAndSaveFSRatio(const std::string &SampleName, TH2D *pFDpCD_Plot, const 
 
     Canvas->SaveAs((nFDpCD_Plot_Clone_test_SaveName).c_str());
     Canvas->Clear();
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Plotting and saving pFDpCD_Plot_Clone_test">
+    #pragma region /* Plotting and saving pFDpCD_Plot_Clone_test */
     pFDpCD_Plot_Clone_test->Draw("colz");
     pFDpCD_Plot_Clone_test->SetStats(1);
     FSRatio_plot_2D_TFolder->Add(pFDpCD_Plot_Clone_test);
@@ -1679,9 +1679,9 @@ void DrawAndSaveFSRatio(const std::string &SampleName, TH2D *pFDpCD_Plot, const 
 
     Canvas->SaveAs((pFDpCD_Plot_Clone_test_SaveName).c_str());
     Canvas->Clear();
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Plotting and saving nFDpCD_Plot_Clone_test_rebined">
+    #pragma region /* Plotting and saving nFDpCD_Plot_Clone_test_rebined */
     nFDpCD_Plot_Clone_test_rebined->SetStats(1);
     nFDpCD_Plot_Clone_test_rebined->GetXaxis()->SetTitleSize(0.06);
     nFDpCD_Plot_Clone_test_rebined->GetXaxis()->SetLabelSize(0.0425);
@@ -1696,9 +1696,9 @@ void DrawAndSaveFSRatio(const std::string &SampleName, TH2D *pFDpCD_Plot, const 
 
     Canvas->SaveAs((nFDpCD_Plot_Clone_test_rebined_SaveName).c_str());
     Canvas->Clear();
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Plotting and saving pFDpCD_Plot_Clone_test_rebined">
+    #pragma region /* Plotting and saving pFDpCD_Plot_Clone_test_rebined */
     pFDpCD_Plot_Clone_test_rebined->Draw("colz");
     pFDpCD_Plot_Clone_test_rebined->SetStats(1);
     FSRatio_plot_2D_TFolder->Add(pFDpCD_Plot_Clone_test_rebined);
@@ -1706,9 +1706,9 @@ void DrawAndSaveFSRatio(const std::string &SampleName, TH2D *pFDpCD_Plot, const 
 
     Canvas->SaveAs((pFDpCD_Plot_Clone_test_rebined_SaveName).c_str());
     Canvas->Clear();
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Plotting and saving nFDpCD_Plot_Clone">
+    #pragma region /* Plotting and saving nFDpCD_Plot_Clone */
     nFDpCD_Plot_Clone->SetStats(1);
 
     nFDpCD_Plot_Clone->GetXaxis()->SetTitleSize(0.06);
@@ -1729,9 +1729,9 @@ void DrawAndSaveFSRatio(const std::string &SampleName, TH2D *pFDpCD_Plot, const 
     CanvasMulti->cd(1);
     nFDpCD_Plot_Clone->Draw("colz");
     nFDpCD_Plot_Clone->SetStats(1);
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Plotting and saving pFDpCD_Plot_Clone">
+    #pragma region /* Plotting and saving pFDpCD_Plot_Clone */
     Canvas->cd();
     pFDpCD_Plot_Clone->Draw("colz");
     pFDpCD_Plot_Clone->SetStats(1);
@@ -1744,9 +1744,9 @@ void DrawAndSaveFSRatio(const std::string &SampleName, TH2D *pFDpCD_Plot, const 
     CanvasMulti->cd(2);
     pFDpCD_Plot_Clone->Draw("colz");
     pFDpCD_Plot_Clone->SetStats(1);
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Plotting and saving FSRatio_plot_2D">
+    #pragma region /* Plotting and saving FSRatio_plot_2D */
     Canvas->cd();
     FSRatio_plot_2D->GetXaxis()->SetTitleSize(0.06);
     FSRatio_plot_2D->GetXaxis()->SetLabelSize(0.0425);
@@ -1775,7 +1775,7 @@ void DrawAndSaveFSRatio(const std::string &SampleName, TH2D *pFDpCD_Plot, const 
     FSRatio_plot_2D->SetMinimum(0.1);
     CanvasMulti->SaveAs((FSRatio_plot_2D_SaveName.substr(0, FSRatio_plot_2D_SaveName.find_last_of(".png") - 3) + "_RegularM.png").c_str());
     CanvasMulti->Clear();
-    //</editor-fold>
+    #pragma endregion
 
     //    cout << "\n\n\nFSRatioType = " << FSRatioType << "\n\n\n";
     //    cout << "\n\n\nFSRatioRecTitle = " << FSRatioRecTitle << "\n\n\n";

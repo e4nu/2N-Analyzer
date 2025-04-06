@@ -56,7 +56,7 @@ void BetaFit(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Momentum_c
     double W_yLLim = -0.1, W_yULim = 0.1, W_xLLim = 0.9, W_xULim = 1.;
     double deltaPRel_UncertaintyU = 0.2, deltaPRel_UncertaintyL = 0.1;
 
-    //<editor-fold desc="Canvas definitions">
+    #pragma region /* Canvas definitions */
     TCanvas *Canvas = new TCanvas("Canvas", "Canvas", 1000 * 2, 750 * 2);  // normal res
     Canvas->SetGrid();
     Canvas->SetBottomMargin(0.14);
@@ -67,9 +67,9 @@ void BetaFit(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Momentum_c
     float DefStatX = gStyle->GetStatX(), DefStatY = gStyle->GetStatY();
 
     Canvas->cd();
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Setting sNameFlag">
+    #pragma region /* Setting sNameFlag */
     std::string sNameFlag;
 
     if (basic_tools::FindSubstring(SampleName, "sim")) {
@@ -77,20 +77,20 @@ void BetaFit(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Momentum_c
     } else if (basic_tools::FindSubstring(SampleName, "data")) {
         sNameFlag = "d";
     }
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Setting particle">
+    #pragma region /* Setting particle */
     std::string BetaParticle = data_processor::GetParticleName(BetaPlot.GetHistogramTitle());
     std::string BetaParticleShort = data_processor::GetParticleNameShort(BetaPlot.GetHistogramTitle());
 
-    //<editor-fold desc="Setting histogram">
+    #pragma region /* Setting histogram */
     TH1D *hBeta = BetaPlot.GetHistogram();
     TH1D *hBeta_Clone = (TH1D *)hBeta->Clone((BetaPlot.GetHistogramStatTitle() + " - fitted").c_str());
     Int_t Color = hBeta_Clone->GetLineColor();
-    //</editor-fold>
+    #pragma endregion
 
     if (hBeta_Clone->Integral() != 0.) {
-        //<editor-fold desc="Preforming a fit">
+        #pragma region /* Preforming a fit */
         TF1 *func = new TF1("fit", FitFunction, 0, 2, 3);  // create a function with 3 parameters in the range [-3,3]
         func->SetLineColor(kRed);
 
@@ -137,9 +137,9 @@ void BetaFit(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Momentum_c
 
         Beta_cut.SetUpperCut(fit->GetParameter(2));
         Beta_cut.SetMean(fit->GetParameter(1));
-        //</editor-fold>
+        #pragma endregion
 
-        //<editor-fold desc="Drawing fit parameters and saving">
+        #pragma region /* Drawing fit parameters and saving */
         double x_1_Cut_legend = gStyle->GetStatX(), y_1_Cut_legend = gStyle->GetStatY() - 0.2;
         double x_2_Cut_legend = gStyle->GetStatX() - 0.2, y_2_Cut_legend = gStyle->GetStatY() - 0.3;
 
@@ -164,9 +164,9 @@ void BetaFit(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Momentum_c
         Canvas->SaveAs(hBeta_CloneSaveDir);
 
         Canvas->Clear();
-        //</editor-fold>
+        #pragma endregion
 
-        //<editor-fold desc="Plot deltaP as function of beta">
+        #pragma region /* Plot deltaP as function of beta */
         std::string deltaPStatsTitle = "#deltaP_{" + BetaParticleShort + "} (" + BetaPlot.GetFinalState() + ")";
         std::string deltaPTitle = BetaParticle + " momentum uncertainty #deltaP_{" + BetaParticleShort + "} (" + BetaPlot.GetFinalState() + ")";
         std::string deltaPfunc = to_string(m_n * FitStd) + "/ ( (1 - x*x) * sqrt(1 - x*x) )";
@@ -206,9 +206,9 @@ void BetaFit(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Momentum_c
         Canvas->SaveAs(deltaPSaveDir);
 
         Canvas->Clear();
-        //</editor-fold>
+        #pragma endregion
 
-        //<editor-fold desc="Solve deltaP/P for beta in range 0.9<=beta<1">
+        #pragma region /* Solve deltaP/P for beta in range 0.9<=beta<1 */
         double Beta_Max, P_Beta_Max, Beta_Min, P_Beta_Min;
         double Beta_Max_sol[3], Beta_Min_sol[3];
 
@@ -246,9 +246,9 @@ void BetaFit(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Momentum_c
         cout << "P(Beta_Min) = " << P_Beta_Min << "\n\n";
 
         Momentum_cuts.SetUpperCut(P_Beta_Max);
-        //</editor-fold>
+        #pragma endregion
 
-        //<editor-fold desc="Plot deltaP/P as function of beta">
+        #pragma region /* Plot deltaP/P as function of beta */
         std::string Rel_deltaPStatsTitle = "#deltaP_{" + BetaParticleShort + "} (" + BetaPlot.GetFinalState() + ")";
         std::string Rel_deltaPTitle = BetaParticle + " relative uncertainty #deltaP_{" + BetaParticleShort + "}/P_{" + BetaParticleShort + "}" + " (" + BetaPlot.GetFinalState() + ")";
         std::string Rel_deltaPfunc = to_string(FitStd) + "/ ( (1 - x*x) * x )";
@@ -309,9 +309,9 @@ void BetaFit(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Momentum_c
         const char *Rel_deltaPSaveDir = Rel_deltaPSaveNameDir.c_str();
         Canvas->SaveAs(Rel_deltaPSaveDir);
         Canvas->Clear();
-        //</editor-fold>
+        #pragma endregion
 
-        //<editor-fold desc="Plot w as function of beta">
+        #pragma region /* Plot w as function of beta */
         std::string WStatsTitle = "W(#beta) (" + BetaPlot.GetFinalState() + ")";
         std::string WTitle = "The W(#beta) function (" + BetaPlot.GetFinalState() + ")";
         std::string W_Maxfunc = "x*x*x - x + " + to_string(FitStd / deltaPRel_UncertaintyU);
@@ -366,7 +366,7 @@ void BetaFit(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Momentum_c
         const char *WSaveDir = WSaveNameDir.c_str();
         Canvas->SaveAs(WSaveDir);
         Canvas->Clear();
-        //</editor-fold>
+        #pragma endregion
 
     } else {
         Momentum_cuts.SetUpperCut(beamE);
@@ -381,7 +381,7 @@ void BetaFitApprax(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Mome
 
     system(("mkdir -p " + BetaPlot.GetHistogram1DSaveNamePath() + "Approximated_beta/").c_str());
 
-    //<editor-fold desc="Canvas definitions">
+    #pragma region /* Canvas definitions */
     TCanvas *Canvas = new TCanvas("Canvas", "Canvas", 1000 * 2, 750 * 2);  // normal res
     Canvas->SetGrid();
     Canvas->SetBottomMargin(0.14);
@@ -393,7 +393,7 @@ void BetaFitApprax(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Mome
 
     Canvas->cd();
 
-    //<editor-fold desc="Setting sNameFlag">
+    #pragma region /* Setting sNameFlag */
     std::string sNameFlag;
 
     if (basic_tools::FindSubstring(SampleName, "sim")) {
@@ -401,20 +401,20 @@ void BetaFitApprax(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Mome
     } else if (basic_tools::FindSubstring(SampleName, "data")) {
         sNameFlag = "d";
     }
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Setting particle">
+    #pragma region /* Setting particle */
     std::string BetaParticle = data_processor::GetParticleName(BetaPlot.GetHistogramTitle());
     std::string BetaParticleShort = data_processor::GetParticleNameShort(BetaPlot.GetHistogramTitle());
 
-    //<editor-fold desc="Setting histogram">
+    #pragma region /* Setting histogram */
     TH1D *hBeta = BetaPlot.GetHistogram();
     TH1D *hBeta_Clone = (TH1D *)hBeta->Clone((BetaPlot.GetHistogramStatTitle() + " - fitted").c_str());
     Int_t Color = hBeta_Clone->GetLineColor();
-    //</editor-fold>
+    #pragma endregion
 
     if (hBeta_Clone->Integral() != 0.) {
-        //<editor-fold desc="Preforming a fit">
+        #pragma region /* Preforming a fit */
         TF1 *func = new TF1("fit", FitFunction, 0, 2, 3);  // create a function with 3 parameters in the range [-3,3]
         func->SetLineColor(kRed);
 
@@ -459,9 +459,9 @@ void BetaFitApprax(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Mome
         double FitStd = fit->GetParameter(2);   // get p2
 
         Beta_cut.SetUpperCut(fit->GetParameter(2));
-        //</editor-fold>
+        #pragma endregion
 
-        //<editor-fold desc="Drawing fit parameters and saving">
+        #pragma region /* Drawing fit parameters and saving */
         double x_1_Cut_legend = gStyle->GetStatX(), y_1_Cut_legend = gStyle->GetStatY() - 0.2;
         double x_2_Cut_legend = gStyle->GetStatX() - 0.2, y_2_Cut_legend = gStyle->GetStatY() - 0.3;
 
@@ -486,9 +486,9 @@ void BetaFitApprax(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Mome
         Canvas->SaveAs(hBeta_CloneSaveDir);
 
         Canvas->Clear();
-        //</editor-fold>
+        #pragma endregion
 
-        //<editor-fold desc="Plot deltaP as function of beta">
+        #pragma region /* Plot deltaP as function of beta */
         std::string deltaPStatsTitle = "#deltaP_{" + BetaParticleShort + "} (" + BetaPlot.GetFinalState() + ")";
         std::string deltaPTitle = BetaParticle + " momentum uncertainty #deltaP_{" + BetaParticleShort + "} (" + BetaPlot.GetFinalState() + ")";
         std::string deltaPfunc = to_string(m_n * FitStd) + "/ ( (1 - x*x) * sqrt(1 - x*x) )";
@@ -529,9 +529,9 @@ void BetaFitApprax(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Mome
         Canvas->SaveAs(deltaPSaveDir);
 
         Canvas->Clear();
-        //</editor-fold>
+        #pragma endregion
 
-        //<editor-fold desc="Solve deltaP/P for beta in range 0.9<=beta<1">
+        #pragma region /* Solve deltaP/P for beta in range 0.9<=beta<1 */
         double Beta_Max_Apprax, P_Beta_Max_Apprax, Beta_Min_Apprax, P_Beta_Min_Apprax;
 
         cout << "\nSolutions for deltaP/P = 20%:\n";
@@ -554,9 +554,9 @@ void BetaFitApprax(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Mome
         //        exit(0);
 
         Momentum_cuts.SetUpperCut(P_Beta_Max_Apprax);
-        //</editor-fold>
+        #pragma endregion
 
-        //<editor-fold desc="Plot deltaP/P as function of beta">
+        #pragma region /* Plot deltaP/P as function of beta */
         std::string Rel_deltaPStatsTitle = "#deltaP_{" + BetaParticleShort + "} (" + BetaPlot.GetFinalState() + ")";
         std::string Rel_deltaPTitle =
             BetaParticle + " relative uncertainty #deltaP_{" + BetaParticleShort + "}/P_{" + BetaParticleShort + "}" + " (apprax. ," + BetaPlot.GetFinalState() + ")";
@@ -619,7 +619,7 @@ void BetaFitApprax(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Mome
         const char *Rel_deltaPSaveDir = Rel_deltaPSaveNameDir.c_str();
         Canvas->SaveAs(Rel_deltaPSaveDir);
         Canvas->Clear();
-        //</editor-fold>
+        #pragma endregion
 
     } else {
         Momentum_cuts.SetUpperCut(beamE);

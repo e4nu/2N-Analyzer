@@ -129,7 +129,7 @@ void ConfigSampleChain() {
     // Other ROOT files
     // ==================================================================================================================================================================
 
-    //////<editor-fold desc="root files">
+    ////#pragma region /* root files */
     // AnalyzeFilePath = "home/alon/project";
     // AnalyzeFileSample = "Downloads";
     // AnalyzeFileDir = "/" + AnalyzeFilePath + "/" + AnalyzeFileSample + "/";
@@ -137,13 +137,13 @@ void ConfigSampleChain() {
     ////AnalyzeFile = AnalyzeFileDir + "/" + "e_on_1000060120_2222MeV_em.gst.root";
     ////AnalyzeFile = "./e_on_1000060120_598636MeV.gst.root";
 
-    ////<editor-fold desc="SuSAv2 fix for thesis">
+    //#pragma region /* SuSAv2 fix for thesis */
     // AnalyzeFilePath = "home/alon/project";
     // AnalyzeFileSample = "Downloads";
     // AnalyzeFileDir = "/" + AnalyzeFilePath + "/" + AnalyzeFileSample + "/";
     ////AnalyzeFile = AnalyzeFileDir + "/" + "12C_2222GeV_GTEST19_10b_00_000.root"; // Original problem
     // AnalyzeFile = AnalyzeFileDir + "/" + "e_on_1000060120_EMMEC_test_myBranch.root"; // Initial fix with 1M events (myBranch)
-    ////</editor-fold>
+    //#pragma endregion
 
     // AnalyzeFilePath = "mnt/d/e4nu/hipo_data_files";
     // AnalyzeFileSample = "recon_qe_GENIE_C_598636MeV_Q2_0_4_test_1";

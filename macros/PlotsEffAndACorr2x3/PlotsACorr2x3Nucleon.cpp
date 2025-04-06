@@ -26,7 +26,7 @@ using namespace std;
 void PlotsACorr2x3Nucleon(string SampleName) {
     cout << "\nSaving acceptance correction plots for Nucleons...\n\n";
 
-    //<editor-fold desc="Setting file">
+    #pragma region /* Setting file */
     TFile *f;
 
     if (findSubstring(SampleName, "C12_simulation_6GeV_T5_first_10")) {
@@ -120,16 +120,16 @@ void PlotsACorr2x3Nucleon(string SampleName) {
             f = new TFile("plots_C12_simulation_G18_2GeV_-03_ALL_CUTS_wNC_wFDph_Eff2/reconhipo_plots.root");
         }
     }
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Setting CanvasACorr2x3Nucleon">
+    #pragma region /* Setting CanvasACorr2x3Nucleon */
     TCanvas *CanvasACorr2x3Nucleon = new TCanvas("CanvasACorr2x3Nucleon", "CanvasACorr2x3Nucleon", 1000 * 3, 750 * 2); // normal res
 
 //    CanvasACorr2x3Nucleon->cd();
 //    CanvasACorr2x3Nucleon->Divide(3, 2);
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Momentum acceptance correction plots">
+    #pragma region /* Momentum acceptance correction plots */
     std::string MomACorrSaveName = "./01_Nucleon_Mom_ACorr_" + SampleName + ".png";
 
     CanvasACorr2x3Nucleon->Divide(3, 2);
@@ -225,9 +225,9 @@ void PlotsACorr2x3Nucleon(string SampleName) {
 
     CanvasACorr2x3Nucleon->SaveAs(MomACorrSaveName.c_str());
     CanvasACorr2x3Nucleon->Clear();
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Theta acceptance correction plots">
+    #pragma region /* Theta acceptance correction plots */
     std::string ThetaACorrSaveName = "./02_Nucleon_Theta_ACorr_" + SampleName + ".png";
 
     CanvasACorr2x3Nucleon->Divide(3, 2);
@@ -319,9 +319,9 @@ void PlotsACorr2x3Nucleon(string SampleName) {
 
     CanvasACorr2x3Nucleon->SaveAs(ThetaACorrSaveName.c_str());
     CanvasACorr2x3Nucleon->Clear();
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Phi acceptance correction plots">
+    #pragma region /* Phi acceptance correction plots */
     std::string PhiACorrSaveName = "./03_Nucleon_Phi_ACorr_" + SampleName + ".png";
 
     CanvasACorr2x3Nucleon->Divide(3, 2);
@@ -415,17 +415,17 @@ void PlotsACorr2x3Nucleon(string SampleName) {
 
     CanvasACorr2x3Nucleon->SaveAs(PhiACorrSaveName.c_str());
     CanvasACorr2x3Nucleon->Clear();
-    //</editor-fold>
+    #pragma endregion
 
     cout << "\n";
 
 }
 
-////<editor-fold desc="GOOD OLD">
+//#pragma region /* GOOD OLD */
 //void PlotsACorr2x3Nucleon(string SampleName) {
 //    cout << "\nSaving acceptance correction plots for Nucleons...\n\n";
 //
-//    //<editor-fold desc="Setting file">
+//    #pragma region /* Setting file */
 //    TFile *f;
 //
 //    if (findSubstring(SampleName, "C12_simulation_6GeV_T5_first_10")) {
@@ -519,16 +519,16 @@ void PlotsACorr2x3Nucleon(string SampleName) {
 //            f = new TFile("plots_C12_simulation_G18_2GeV_-03_ALL_CUTS_wNC_wFDph_Eff2/reconhipo_plots.root");
 //        }
 //    }
-//    //</editor-fold>
+//    #pragma endregion
 //
-//    //<editor-fold desc="Setting CanvasACorr2x3Nucleon">
+//    #pragma region /* Setting CanvasACorr2x3Nucleon */
 //    TCanvas *CanvasACorr2x3Nucleon = new TCanvas("CanvasACorr2x3Nucleon", "CanvasACorr2x3Nucleon", 1000 * 3, 750 * 2); // normal res
 //
 ////    CanvasACorr2x3Nucleon->cd();
 ////    CanvasACorr2x3Nucleon->Divide(3, 2);
-//    //</editor-fold>
+//    #pragma endregion
 //
-//    //<editor-fold desc="Momentum acceptance correction plots">
+//    #pragma region /* Momentum acceptance correction plots */
 //    std::string MomACorrSaveName = "./01_Nucleon_Mom_ACorr_" + SampleName + ".png";
 //
 //    CanvasACorr2x3Nucleon->Divide(3, 2);
@@ -620,9 +620,9 @@ void PlotsACorr2x3Nucleon(string SampleName) {
 //
 //    CanvasACorr2x3Nucleon->SaveAs(MomACorrSaveName.c_str());
 //    CanvasACorr2x3Nucleon->Clear();
-//    //</editor-fold>
+//    #pragma endregion
 //
-//    //<editor-fold desc="Theta acceptance correction plots">
+//    #pragma region /* Theta acceptance correction plots */
 //    std::string ThetaACorrSaveName = "./02_Nucleon_Theta_ACorr_" + SampleName + ".png";
 //
 //    CanvasACorr2x3Nucleon->Divide(3, 2);
@@ -714,9 +714,9 @@ void PlotsACorr2x3Nucleon(string SampleName) {
 //
 //    CanvasACorr2x3Nucleon->SaveAs(ThetaACorrSaveName.c_str());
 //    CanvasACorr2x3Nucleon->Clear();
-//    //</editor-fold>
+//    #pragma endregion
 //
-//    //<editor-fold desc="Phi acceptance correction plots">
+//    #pragma region /* Phi acceptance correction plots */
 //    std::string PhiACorrSaveName = "./03_Nucleon_Phi_ACorr_" + SampleName + ".png";
 //
 //    CanvasACorr2x3Nucleon->Divide(3, 2);
@@ -810,10 +810,10 @@ void PlotsACorr2x3Nucleon(string SampleName) {
 //
 //    CanvasACorr2x3Nucleon->SaveAs(PhiACorrSaveName.c_str());
 //    CanvasACorr2x3Nucleon->Clear();
-//    //</editor-fold>
+//    #pragma endregion
 //
 //    cout << "\n";
 //
 //}
-////</editor-fold>
+//#pragma endregion
 

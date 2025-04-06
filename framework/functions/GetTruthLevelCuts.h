@@ -44,7 +44,7 @@ void GetTruthLevelCuts(const std::string &SampleName, bool calculate_truth_level
         auto mcpbank = c12->mcparts();
         const Int_t Ngen = mcpbank->getRows();
 
-        //<editor-fold desc="Particle counting">
+        #pragma region /* Particle counting */
         /* Particle index vectors */
         vector<int> TL_Electron_ind, TL_Neutrons_ind, TL_Protons_ind, TL_piplus_ind, TL_piminus_ind, TL_pizero_ind, TL_Photons_ind, TL_OtherPart_ind;
 
@@ -156,7 +156,7 @@ void GetTruthLevelCuts(const std::string &SampleName, bool calculate_truth_level
                 TL_OtherPart_ind.push_back(i);
             }
         }
-        //</editor-fold>
+        #pragma endregion
 
         /* Setting up basic TL event selection */
         bool no_TL_cPions = (TL_piplus_mom_ind.size() == 0 && TL_piminus_mom_ind.size() == 0);                    // No id. cPions above momentum threshold

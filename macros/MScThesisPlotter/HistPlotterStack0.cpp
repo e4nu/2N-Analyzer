@@ -26,7 +26,7 @@ using namespace std;
 
 // MCtoDATAcompareHistograms function ---------------------------------------------------------------------------------------------------------------------------------------------
 
-//<editor-fold desc="MCtoDATAcompareHistograms function">
+#pragma region /* MCtoDATAcompareHistograms function */
 void MCtoDATAcompareHistograms(int HistogramCounter, TCanvas *Canvas, TCanvas *CanvasMulti, TH1D *MC_Histogram, TH1D *DATA_Histogram, std::string SaveDirHistograms) {
     Canvas->cd();
 
@@ -50,7 +50,7 @@ void MCtoDATAcompareHistograms(int HistogramCounter, TCanvas *Canvas, TCanvas *C
         MC_Histogram->SetStats(0);
         DATA_Histogram->SetStats(0);
 
-        //<editor-fold desc="Saving MC_Histogram">
+        #pragma region /* Saving MC_Histogram */
         MC_Histogram->SetLineColor(kBlue);
         MC_Histogram->SetLineStyle(0);
         MC_Histogram->SetLineWidth(3);
@@ -66,9 +66,9 @@ void MCtoDATAcompareHistograms(int HistogramCounter, TCanvas *Canvas, TCanvas *C
                                                       FinalState + ".png")).c_str());
             }
         }
-        //</editor-fold>
+        #pragma endregion
 
-        //<editor-fold desc="Saving MC-DATA comparison">
+        #pragma region /* Saving MC-DATA comparison */
         DATA_Histogram->SetLineColor(kRed);
         DATA_Histogram->SetLineStyle(0);
         DATA_Histogram->SetLineWidth(2);
@@ -92,9 +92,9 @@ void MCtoDATAcompareHistograms(int HistogramCounter, TCanvas *Canvas, TCanvas *C
         }
 
         Canvas->Clear();
-        //</editor-fold>
+        #pragma endregion
 
-        //<editor-fold desc="Saving DATA_Histogram">
+        #pragma region /* Saving DATA_Histogram */
         DATA_Histogram->SetLineColor(kRed);
         DATA_Histogram->SetLineStyle(0);
         DATA_Histogram->SetLineWidth(2);
@@ -113,7 +113,7 @@ void MCtoDATAcompareHistograms(int HistogramCounter, TCanvas *Canvas, TCanvas *C
 
             Canvas->Clear();
         }
-        //</editor-fold>
+        #pragma endregion
 
 //        cout << "\n\nMC_Histogram->GetMaximum() = " << MC_Histogram->GetMaximum() << "\n";
 //        cout << "DATA_Histogram->GetMaximum() = " << DATA_Histogram->GetMaximum() << "\n";
@@ -122,11 +122,11 @@ void MCtoDATAcompareHistograms(int HistogramCounter, TCanvas *Canvas, TCanvas *C
 //    exit(0);
 
     }}
-//</editor-fold>
+#pragma endregion
 
 // MCtoDATAcompareRatios function ---------------------------------------------------------------------------------------------------------------------------------------------
 
-//<editor-fold desc="MCtoDATAcompareRatios function">
+#pragma region /* MCtoDATAcompareRatios function */
 void MCtoDATAcompareRatios(int RatioCounter, TCanvas *Canvas, TCanvas *CanvasMulti, TH1D *MC_Histogram, TH1D *DATA_Histogram, std::string SaveDirRatios) {
     Canvas->cd();
 
@@ -146,12 +146,12 @@ void MCtoDATAcompareRatios(int RatioCounter, TCanvas *Canvas, TCanvas *CanvasMul
 
     for (int i = 2; i < 6; i++) {
 
-        //<editor-fold desc="Setting y range">
+        #pragma region /* Setting y range */
         MC_Histogram->GetYaxis()->SetRangeUser(0, i);
         DATA_Histogram->GetYaxis()->SetRangeUser(0, i);
-        //</editor-fold>
+        #pragma endregion
 
-        //<editor-fold desc="Saving MC_Histogram">
+        #pragma region /* Saving MC_Histogram */
         MC_Histogram->SetLineColor(kBlue);
         MC_Histogram->SetLineStyle(0);
         MC_Histogram->SetLineWidth(3);
@@ -168,9 +168,9 @@ void MCtoDATAcompareRatios(int RatioCounter, TCanvas *Canvas, TCanvas *CanvasMul
                                                        FinalState + ".png")).c_str());
             }
         }
-        //</editor-fold>
+        #pragma endregion
 
-        //<editor-fold desc="Saving MC-DATA comparison">
+        #pragma region /* Saving MC-DATA comparison */
         DATA_Histogram->SetLineColor(kRed);
         DATA_Histogram->SetLineStyle(0);
         DATA_Histogram->SetLineWidth(2);
@@ -195,9 +195,9 @@ void MCtoDATAcompareRatios(int RatioCounter, TCanvas *Canvas, TCanvas *CanvasMul
         }
 
         Canvas->Clear();
-        //</editor-fold>
+        #pragma endregion
 
-        //<editor-fold desc="Saving DATA_Histogram">
+        #pragma region /* Saving DATA_Histogram */
         DATA_Histogram->SetLineColor(kRed);
         DATA_Histogram->SetLineStyle(0);
         DATA_Histogram->SetLineWidth(2);
@@ -217,7 +217,7 @@ void MCtoDATAcompareRatios(int RatioCounter, TCanvas *Canvas, TCanvas *CanvasMul
 
             Canvas->Clear();
         }
-        //</editor-fold>
+        #pragma endregion
 
 //        cout << "\n\nMC_Histogram->GetMaximum() = " << MC_Histogram->GetMaximum() << "\n";
 //        cout << "DATA_Histogram->GetMaximum() = " << DATA_Histogram->GetMaximum() << "\n";
@@ -227,11 +227,11 @@ void MCtoDATAcompareRatios(int RatioCounter, TCanvas *Canvas, TCanvas *CanvasMul
 
 //    exit(0);
 }
-//</editor-fold>
+#pragma endregion
 
 // MCtoDATAcomp function ------------------------------------------------------------------------------------------------------------------------------------------------
 
-//<editor-fold desc="MCtoDATAcomp function">
+#pragma region /* MCtoDATAcomp function */
 void MCtoDATAcomp() {
     std::string SaveDirRatios = "MC_to_DATA_comperison";
     std::string SaveDirHistograms = "MC_to_DATA_comperison/Histograms";
@@ -248,7 +248,7 @@ void MCtoDATAcomp() {
     TFile *DATA_file = new TFile("C12x4_data_6GeV_run_015188_plots.root");
     if (!DATA_file) { cout << "\n\nDATAtoDATAcomp: DATA file not found! Exiting...\n", exit(0); }
 
-    //<editor-fold desc="Canvas definitions">
+    #pragma region /* Canvas definitions */
     int canvas_x = 1000, canvas_y = 750;
 
     TCanvas *Canvas = new TCanvas("Canvas", "Canvas", canvas_x, canvas_y); // normal res
@@ -267,7 +267,7 @@ void MCtoDATAcomp() {
     CanvasMulti->cd(3)->SetBottomMargin(0.14), CanvasMulti->cd(3)->SetLeftMargin(0.16), CanvasMulti->cd(3)->SetRightMargin(0.12);
 
     Canvas->cd();
-    //</editor-fold>
+    #pragma endregion
 
     int RatioCounter = 0, HistogramCounter = 0;
     static TString classname("TH1D");
@@ -353,4 +353,4 @@ void MCtoDATAcomp() {
     cout << "\n";
 
 }
-//</editor-fold>
+#pragma endregion

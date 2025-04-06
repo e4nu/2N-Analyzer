@@ -95,7 +95,7 @@ bool IsProton(const std::string &source) {
 
 void MomResDebug() {
 
-    //<editor-fold desc="Initial stuff">
+    #pragma region /* Initial stuff */
     TCanvas *c = new TCanvas("c1", "c2", 1000 * 1.25, 750 * 1.25); // normal res
     c->cd()->SetGrid();
     c->cd()->SetBottomMargin(0.14), c->cd()->SetLeftMargin(0.16), c->cd()->SetRightMargin(0.16), c->cd()->SetTopMargin(0.12);
@@ -110,7 +110,7 @@ void MomResDebug() {
 //    const char *filename = "C12x4_simulation_G18_Q204_6GeV_S03ACNC_momResS1_Eff1"
 //                           "/Neutron_resolution_plots_-_C12x4_simulation_G18_Q204_6GeV.root";
     vector < TH1D * > MomResSlices = SliceLoader(filename, SliceNumbers);
-    //</editor-fold>
+    #pragma endregion
 
     DSCuts FD_nucleon_momentum_cut = DSCuts("FD nucleon momentum cut", "FD", "", "pFDpCD & nFDpCD", 0, 1., 2.5); // new upper cut, following Larry meeting (10/08/23)
     DSCuts FD_nucleon_momentum_cut_nRes = DSCuts("FD nucleon momentum cut", "FD", "", "pFDpCD & nFDpCD", 0, 1., 2.2); // new upper cut, following Larry meeting (10/08/23)
@@ -148,9 +148,9 @@ void MomResDebug() {
                 FitUlim = 0.75, FitLlim = -0.75;
 //                FitUlim = 1., FitLlim = -1.;
 
-//                //<editor-fold desc="Original">
+//                #pragma region /* Original */
 //                FitUlim = 1., FitLlim = -1.;
-//                //</editor-fold>
+//                #pragma endregion
             } else if (isProton) {
                 FitUlim = 0.5, FitLlim = -0.5;
             }
@@ -189,10 +189,10 @@ void MomResDebug() {
                 func->SetParLimits(2, 0.00001, 0.2); // Sigma limits
 //                func->SetParLimits(2, 0.00001, 0.35); // Sigma limits
 
-                //                //<editor-fold desc="Original">
+                //                #pragma region /* Original */
 //                func->SetParLimits(1, -1.5, 1.5); // Mean limits
 //                func->SetParLimits(2, 0.001, 0.35); // Sigma limits
-//                //</editor-fold>
+//                #pragma endregion
 
             } else if (isProton) {
                 func->SetParLimits(1, -1.5, 1.5); // Mean limits
@@ -299,8 +299,8 @@ void MomResDebug() {
     nRes.PolyFitter(MomentumType, 3, "Corr", "noKC", Reco_FitParam_Corr_pol3);
     nRes.PolyFitter(MomentumType, 3, "Corr", "wKC", Reco_FitParam_Corr_pol3_wKC);
 
-    //    //<editor-fold desc="Final stuff">
+    //    #pragma region /* Final stuff */
 //    DrawAndSave(c, MomResDebugSaveDir, MomResSlices, SliceNumbers);
-//    //</editor-fold>
+//    #pragma endregion
 
 }

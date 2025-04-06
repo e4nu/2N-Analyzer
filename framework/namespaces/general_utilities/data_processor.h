@@ -573,7 +573,7 @@ void SetFSRatioSaveDir(std::string &SaveDir, std::string &TestSaveDir, const std
             Histogram1DSaveNamePathOriginal.substr(0, Histogram1DSaveNamePathOriginal.find(FStoFind) - 1) + "/FS_2D_hist_ratios/FS_" + Type + "_ratio_plots" + FSTopology;
     }
 
-    //<editor-fold desc="original">
+    #pragma region /* original */
     //    std::string Histogram1DSaveNamePath = Histogram1DSaveNamePathOriginal.substr(0, Histogram1DSaveNamePathOriginal.find("05_pFDpCD") - 1) + "/FS_" + Type + "_ratio_plots";
 
     /*
@@ -583,7 +583,7 @@ void SetFSRatioSaveDir(std::string &SaveDir, std::string &TestSaveDir, const std
     Histogram1DSaveNamePath = Histogram1DSaveNamePathOriginal.substr(0, Histogram1DSaveNamePathOriginal.find("05_pFDpCD") - 1) + "/06a_FS_" + Type + "_ratio_plots";
     }
     */
-    //</editor-fold>
+    #pragma endregion
 
     SetSaveDir(SaveDir, TestSaveDir, RecTitle, Histogram1DSaveNamePath, PlotsT, DRegion, Particle, ParticleLC, ParticleShort, Type);
 }

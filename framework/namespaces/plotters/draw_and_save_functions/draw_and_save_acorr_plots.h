@@ -42,7 +42,7 @@ void DrawAndSaveACorrPlots(bool save_ACorr_data, const std::string &SampleName, 
     bool plot_errorbars = true;
     bool rebin_plots = false;
 
-    //<editor-fold desc="Canvas definitions">
+    #pragma region /* Canvas definitions */
     TCanvas *Canvas = new TCanvas("Canvas", "Canvas", 1000, 750);  // normal res
                                                                    //    TCanvas *Canvas = new TCanvas("canvas", "canvas", 2000, 1500); // high res
                                                                    //    TCanvas *Canvas = new TCanvas("canvas", "canvas", 1650, 1150);
@@ -56,9 +56,9 @@ void DrawAndSaveACorrPlots(bool save_ACorr_data, const std::string &SampleName, 
     float DefStatX = gStyle->GetStatX(), DefStatY = gStyle->GetStatY();
 
     Canvas->cd();
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Cloning histograms">
+    #pragma region /* Cloning histograms */
     TH1D *Histogram1D_REC = RPlot.GetHistogram();
     std::string RPlot_Clone_StatsTitle = "reco. " + RPlot.GetHistogramStatTitle() + " - cloned";
     TH1D *RPlot_Clone = (TH1D *)Histogram1D_REC->Clone((RPlot_Clone_StatsTitle).c_str());
@@ -76,16 +76,16 @@ void DrawAndSaveACorrPlots(bool save_ACorr_data, const std::string &SampleName, 
     std::string TLPlot_Clone_test_rebined_StatsTitle = "Truth " + TLPlot.GetHistogramStatTitle() + " - cloned test rebined";
     TH1D *TLPlot_Clone_test_rebined = (TH1D *)Histogram1D_Truth->Clone((TLPlot_Clone_test_rebined_StatsTitle).c_str());
     if (rebin_plots) { TLPlot_Clone_test_rebined->Rebin(2); }
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Setting particle">
+    #pragma region /* Setting particle */
     std::string ACorrectionRecTitle = RPlot_Clone->GetTitle();
     std::string ACorrectionParticle = data_processor::GetParticleName(ACorrectionRecTitle);
     std::string ACorrectionParticleLC = data_processor::GetParticleNameLC(ACorrectionRecTitle);
     std::string ACorrectionParticleShort = data_processor::GetParticleNameShort(ACorrectionRecTitle);
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Setting title">
+    #pragma region /* Setting title */
     std::string ACorrectionType;
 
     if (basic_tools::FindSubstring(ACorrectionRecTitle, "momentum")) {  // for momentum ACorrection plots
@@ -93,9 +93,9 @@ void DrawAndSaveACorrPlots(bool save_ACorr_data, const std::string &SampleName, 
     }
 
     std::string ACorrectionTitle = ACorrectionParticle + " " + ACorrectionType;
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Setting X axis label">
+    #pragma region /* Setting X axis label */
     std::string ACorrectionXLabel;
 
     if (basic_tools::FindSubstring(ACorrectionRecTitle, "momentum")) {  // for momentum ACorrection plots
@@ -105,9 +105,9 @@ void DrawAndSaveACorrPlots(bool save_ACorr_data, const std::string &SampleName, 
     } else if (basic_tools::FindSubstring(ACorrectionRecTitle, "#phi")) {  // for momentum ACorrection plots
         ACorrectionXLabel = "#phi [Deg]";
     }
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Setting y axis label">
+    #pragma region /* Setting y axis label */
     std::string xLabel_REC_temp = RPlot_Clone->GetXaxis()->GetTitle();
     std::string xLabel_REC = xLabel_REC_temp.substr(0, xLabel_REC_temp.find_last_of('[') - 1);
     std::string xLabel_Truth_temp = TLPlot_Clone->GetXaxis()->GetTitle();
@@ -115,9 +115,9 @@ void DrawAndSaveACorrPlots(bool save_ACorr_data, const std::string &SampleName, 
 
     std::string ACorrectionYLabel = string("#alpha = ") + "#frac{1}{#epsilon_{eff}} = " + xLabel_Truth + "/" + xLabel_REC + "^{rec}";
     //    std::string ACorrectionYLabel = "#epsilon_{eff} = " + xLabel_REC + "^{rec}" + "/" + xLabel_Truth;
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Setting Final state">
+    #pragma region /* Setting Final state */
     std::string ACorrectionFS;
 
     if (basic_tools::FindSubstring(ACorrectionRecTitle, "1e_cut") || basic_tools::FindSubstring(ACorrectionRecTitle, "1e cut") || basic_tools::FindSubstring(ACorrectionRecTitle, "1e Cut")) {
@@ -137,9 +137,9 @@ void DrawAndSaveACorrPlots(bool save_ACorr_data, const std::string &SampleName, 
     } else if (basic_tools::FindSubstring(ACorrectionRecTitle, "nFDpCD")) {
         ACorrectionFS = "nFDpCD";
     }
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Setting save directory">
+    #pragma region /* Setting save directory */
     std::string ACorrectionSaveDir, ACorrectionTestSaveDir;
 
     if (basic_tools::FindSubstring(ACorrectionRecTitle, "Electron") || basic_tools::FindSubstring(ACorrectionRecTitle, "electron")) {
@@ -162,9 +162,9 @@ void DrawAndSaveACorrPlots(bool save_ACorr_data, const std::string &SampleName, 
 
     system(("mkdir -p " + ACorrectionSaveDir).c_str());
     system(("mkdir -p " + ACorrectionTestSaveDir).c_str());
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Setting save name">
+    #pragma region /* Setting save name */
     std::string sNameFlag;
 
     if (basic_tools::FindSubstring(SampleName, "sim")) {
@@ -182,7 +182,7 @@ void DrawAndSaveACorrPlots(bool save_ACorr_data, const std::string &SampleName, 
     std::string TLPlot_Clone_test_rebined_SaveName =
         ACorrectionTestSaveDir + sNameFlag + "02b_" + ACorrectionParticle + "_" + ACorrectionType + "_" + ACorrectionFS + "_" + "Truth_Clone_test_rebined.png";
     std::string ACorrection_plot_SaveName = ACorrectionSaveDir + sNameFlag + "_" + ACorrectionParticle + "_" + ACorrectionType + "_ACorrection_" + ACorrectionFS + ".png";
-    //</editor-fold>
+    #pragma endregion
 
     TH1D *ACorrection_plot = (TH1D *)TLPlot_Clone->Clone((ACorrectionParticle + " " + ACorrectionType + " #alpha" + " (" + ACorrectionFS + ")").c_str());
     //    TH1D *ACorrection_plot = (TH1D *) RPlot_Clone->Clone((ACorrectionParticle + " " + ACorrectionType + " #epsilon_{eff}" + " (" + ACorrectionFS + ")").c_str());
@@ -190,7 +190,7 @@ void DrawAndSaveACorrPlots(bool save_ACorr_data, const std::string &SampleName, 
     ACorrection_plot->GetYaxis()->SetTitle((ACorrectionYLabel).c_str());
     ACorrection_plot->GetXaxis()->SetTitle((ACorrectionXLabel).c_str());
 
-    //<editor-fold desc="Plotting and saving RPlot_Clone_test">
+    #pragma region /* Plotting and saving RPlot_Clone_test */
     RPlot_Clone_test->SetLineStyle(1);
     RPlot_Clone_test->SetLineColor(kBlue);
     RPlot_Clone_test->Draw();
@@ -199,9 +199,9 @@ void DrawAndSaveACorrPlots(bool save_ACorr_data, const std::string &SampleName, 
 
     Canvas->SaveAs((RPlot_Clone_test_SaveName).c_str());
     Canvas->Clear();
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Plotting and saving TLPlot_Clone_test">
+    #pragma region /* Plotting and saving TLPlot_Clone_test */
     TLPlot_Clone_test->SetLineStyle(1);
     TLPlot_Clone_test->SetLineColor(kBlue);
     TLPlot_Clone_test->Draw();
@@ -210,9 +210,9 @@ void DrawAndSaveACorrPlots(bool save_ACorr_data, const std::string &SampleName, 
 
     Canvas->SaveAs((TLPlot_Clone_test_SaveName).c_str());
     Canvas->Clear();
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Plotting and saving RPlot_Clone_test_rebined">
+    #pragma region /* Plotting and saving RPlot_Clone_test_rebined */
     RPlot_Clone_test_rebined->SetLineStyle(1);
     RPlot_Clone_test_rebined->SetLineColor(kBlue);
     RPlot_Clone_test_rebined->Draw();
@@ -221,9 +221,9 @@ void DrawAndSaveACorrPlots(bool save_ACorr_data, const std::string &SampleName, 
 
     Canvas->SaveAs((RPlot_Clone_test_rebined_SaveName).c_str());
     Canvas->Clear();
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Plotting and saving TLPlot_Clone_test_rebined">
+    #pragma region /* Plotting and saving TLPlot_Clone_test_rebined */
     TLPlot_Clone_test_rebined->SetLineStyle(1);
     TLPlot_Clone_test_rebined->SetLineColor(kBlue);
     TLPlot_Clone_test_rebined->Draw();
@@ -232,9 +232,9 @@ void DrawAndSaveACorrPlots(bool save_ACorr_data, const std::string &SampleName, 
 
     Canvas->SaveAs((TLPlot_Clone_test_rebined_SaveName).c_str());
     Canvas->Clear();
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Plotting and saving RPlot_Clone">
+    #pragma region /* Plotting and saving RPlot_Clone */
     RPlot_Clone->SetLineStyle(1);
     RPlot_Clone->SetLineColor(kBlue);
 
@@ -247,9 +247,9 @@ void DrawAndSaveACorrPlots(bool save_ACorr_data, const std::string &SampleName, 
 
     Canvas->SaveAs((RPlot_Clone_SaveName).c_str());
     Canvas->Clear();
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Plotting and saving TLPlot_Clone">
+    #pragma region /* Plotting and saving TLPlot_Clone */
     TLPlot_Clone->SetLineStyle(1);
     TLPlot_Clone->SetLineColor(kBlue);
 
@@ -262,9 +262,9 @@ void DrawAndSaveACorrPlots(bool save_ACorr_data, const std::string &SampleName, 
 
     Canvas->SaveAs((TLPlot_Clone_SaveName).c_str());
     Canvas->Clear();
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Plotting and saving ACorrection_plot">
+    #pragma region /* Plotting and saving ACorrection_plot */
     ACorrection_plot->SetLineStyle(1);
     ACorrection_plot->SetLineColor(kBlue);
 
@@ -278,9 +278,9 @@ void DrawAndSaveACorrPlots(bool save_ACorr_data, const std::string &SampleName, 
     Histogram_list->Add(ACorrection_plot);
     Canvas->SaveAs((ACorrection_plot_SaveName).c_str());
     Canvas->Clear();
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Save acceptance correction data">
+    #pragma region /* Save acceptance correction data */
     if (save_ACorr_data) {
         system(("rm -r " + ACorr_data_Dir).c_str());     // clear old ACorr_data_Dir
         system(("mkdir -p " + ACorr_data_Dir).c_str());  // recreate ACorr_data_Dir
@@ -316,7 +316,7 @@ void DrawAndSaveACorrPlots(bool save_ACorr_data, const std::string &SampleName, 
         ACorr_data->Add(ACorr_factor);
         //        Canvas->SaveAs((ACorr_factor_SaveName).c_str());
         Canvas->Clear();
-    }  //</editor-fold>
+    }  #pragma endregion
 
     delete Canvas;
 }
@@ -326,7 +326,7 @@ void DrawAndSaveACorrPlots(bool save_ACorr_data, const std::string &SampleName, 
     bool plot_errorbars = true;
     bool rebin_plots = false;
 
-    //<editor-fold desc="Canvas definitions">
+    #pragma region /* Canvas definitions */
     TCanvas *Canvas = new TCanvas("Canvas", "Canvas", 1000, 750);  // normal res
                                                                    //    TCanvas *Canvas = new TCanvas("canvas", "canvas", 2000, 1500); // high res
                                                                    //    TCanvas *Canvas = new TCanvas("canvas", "canvas", 1650, 1150);
@@ -339,16 +339,16 @@ void DrawAndSaveACorrPlots(bool save_ACorr_data, const std::string &SampleName, 
     float DefStatX = gStyle->GetStatX(), DefStatY = gStyle->GetStatY();
 
     Canvas->cd();
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Setting particle">
+    #pragma region /* Setting particle */
     std::string ACorrectionRecTitle = RPlot->GetTitle();
     std::string ACorrectionParticle = data_processor::GetParticleName(ACorrectionRecTitle);
     std::string ACorrectionParticleLC = data_processor::GetParticleNameLC(ACorrectionRecTitle);
     std::string ACorrectionParticleShort = data_processor::GetParticleNameShort(ACorrectionRecTitle);
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Setting Final state">
+    #pragma region /* Setting Final state */
     std::string ACorrectionFS;
 
     if (basic_tools::FindSubstring(ACorrectionRecTitle, "1e_cut") || basic_tools::FindSubstring(ACorrectionRecTitle, "1e cut") || basic_tools::FindSubstring(ACorrectionRecTitle, "1e Cut")) {
@@ -368,9 +368,9 @@ void DrawAndSaveACorrPlots(bool save_ACorr_data, const std::string &SampleName, 
     } else if (basic_tools::FindSubstring(ACorrectionRecTitle, "nFDpCD")) {
         ACorrectionFS = "nFDpCD";
     }
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Setting stats box title">
+    #pragma region /* Setting stats box title */
     std::string ACorrectionStatsType;
 
     if (basic_tools::FindSubstring(ACorrectionRecTitle, "#theta")) {  // for momentum ACorrection plots
@@ -380,9 +380,9 @@ void DrawAndSaveACorrPlots(bool save_ACorr_data, const std::string &SampleName, 
     }
 
     std::string ACorrectionStatsTitle = ACorrectionStatsType + " (" + ACorrectionFS + ")";
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Cloning histograms">
+    #pragma region /* Cloning histograms */
     std::string RPlot_Clone_StatsTitle = "reco. " + ACorrectionStatsTitle + " - cloned";
     TH1D *RPlot_Clone = (TH1D *)RPlot->Clone((RPlot_Clone_StatsTitle).c_str());
     std::string RPlot_Clone_test_StatsTitle = "reco. " + ACorrectionStatsTitle + " - cloned test";
@@ -399,9 +399,9 @@ void DrawAndSaveACorrPlots(bool save_ACorr_data, const std::string &SampleName, 
     std::string TLPlot_Clone_test_rebined_StatsTitle = "Truth " + TLPlot.GetHistogramStatTitle() + " - cloned test rebined";
     TH1D *TLPlot_Clone_test_rebined = (TH1D *)Histogram1D_Truth->Clone((TLPlot_Clone_test_rebined_StatsTitle).c_str());
     if (rebin_plots) { TLPlot_Clone_test_rebined->Rebin(2); }
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Setting title">
+    #pragma region /* Setting title */
     std::string ACorrectionType, ACorrectionTitle;
 
     if (basic_tools::FindSubstring(ACorrectionRecTitle, "momentum")) {  // for momentum ACorrection plots
@@ -419,9 +419,9 @@ void DrawAndSaveACorrPlots(bool save_ACorr_data, const std::string &SampleName, 
     }
 
     //    std::string ACorrectionTitle = ACorrectionParticle + " " + ACorrectionType;
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Setting X axis label">
+    #pragma region /* Setting X axis label */
     std::string ACorrectionXLabel;
 
     if (basic_tools::FindSubstring(ACorrectionRecTitle, "momentum")) {  // for momentum ACorrection plots
@@ -433,9 +433,9 @@ void DrawAndSaveACorrPlots(bool save_ACorr_data, const std::string &SampleName, 
         ACorrectionXLabel = ACorrectionTitle + " [Deg]";
         //        ACorrectionXLabel = "#phi [Deg]";
     }
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Setting y axis label">
+    #pragma region /* Setting y axis label */
     std::string xLabel_REC_temp = RPlot_Clone->GetXaxis()->GetTitle();
     std::string xLabel_REC = xLabel_REC_temp.substr(0, xLabel_REC_temp.find_last_of('[') - 1);
     std::string xLabel_Truth_temp = TLPlot_Clone->GetXaxis()->GetTitle();
@@ -443,9 +443,9 @@ void DrawAndSaveACorrPlots(bool save_ACorr_data, const std::string &SampleName, 
 
     std::string ACorrectionYLabel = string("#alpha = ") + "#frac{1}{#epsilon_{eff}} = " + xLabel_Truth + "/" + xLabel_REC + "^{rec}";
     //    std::string ACorrectionYLabel = "#epsilon_{eff} = " + xLabel_REC + "^{rec}" + "/" + xLabel_Truth;
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Setting save directory">
+    #pragma region /* Setting save directory */
     std::string ACorrectionSaveDir, ACorrectionTestSaveDir;
 
     if (basic_tools::FindSubstring(ACorrectionRecTitle, "Electron") || basic_tools::FindSubstring(ACorrectionRecTitle, "electron")) {
@@ -468,9 +468,9 @@ void DrawAndSaveACorrPlots(bool save_ACorr_data, const std::string &SampleName, 
 
     system(("mkdir -p " + ACorrectionSaveDir).c_str());
     system(("mkdir -p " + ACorrectionTestSaveDir).c_str());
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Setting save name">
+    #pragma region /* Setting save name */
     std::string sNameFlag;
 
     if (basic_tools::FindSubstring(SampleName, "sim")) {
@@ -488,7 +488,7 @@ void DrawAndSaveACorrPlots(bool save_ACorr_data, const std::string &SampleName, 
     std::string TLPlot_Clone_test_rebined_SaveName =
         ACorrectionTestSaveDir + sNameFlag + "02b_" + ACorrectionParticle + "_" + ACorrectionType + "_" + ACorrectionFS + "_" + "Truth_Clone_test_rebined.png";
     std::string ACorrection_plot_SaveName = ACorrectionSaveDir + sNameFlag + "_" + ACorrectionParticle + "_" + ACorrectionType + "_ACorrection_" + ACorrectionFS + ".png";
-    //</editor-fold>
+    #pragma endregion
 
     TH1D *ACorrection_plot = (TH1D *)TLPlot_Clone->Clone((ACorrectionParticle + " " + ACorrectionType + " #alpha" + " (" + ACorrectionFS + ")").c_str());
     //    TH1D *ACorrection_plot = (TH1D *) RPlot_Clone->Clone((ACorrectionParticle + " " + ACorrectionType + " #epsilon_{eff}" + " (" + ACorrectionFS + ")").c_str());
@@ -496,7 +496,7 @@ void DrawAndSaveACorrPlots(bool save_ACorr_data, const std::string &SampleName, 
     ACorrection_plot->GetYaxis()->SetTitle((ACorrectionYLabel).c_str());
     ACorrection_plot->GetXaxis()->SetTitle((ACorrectionXLabel).c_str());
 
-    //<editor-fold desc="Plotting and saving RPlot_Clone_test">
+    #pragma region /* Plotting and saving RPlot_Clone_test */
     RPlot_Clone_test->SetLineStyle(1);
     RPlot_Clone_test->SetLineColor(kBlue);
     RPlot_Clone_test->SetStats(1);
@@ -514,9 +514,9 @@ void DrawAndSaveACorrPlots(bool save_ACorr_data, const std::string &SampleName, 
 
     Canvas->SaveAs((RPlot_Clone_test_SaveName).c_str());
     Canvas->Clear();
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Plotting and saving TLPlot_Clone_test">
+    #pragma region /* Plotting and saving TLPlot_Clone_test */
     TLPlot_Clone_test->SetLineStyle(1);
     TLPlot_Clone_test->SetLineColor(kBlue);
     TLPlot_Clone_test->Draw();
@@ -525,9 +525,9 @@ void DrawAndSaveACorrPlots(bool save_ACorr_data, const std::string &SampleName, 
 
     Canvas->SaveAs((TLPlot_Clone_test_SaveName).c_str());
     Canvas->Clear();
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Plotting and saving RPlot_Clone_test_rebined">
+    #pragma region /* Plotting and saving RPlot_Clone_test_rebined */
     RPlot_Clone_test_rebined->SetLineStyle(1);
     RPlot_Clone_test_rebined->SetLineColor(kBlue);
     RPlot_Clone_test_rebined->SetStats(1);
@@ -545,9 +545,9 @@ void DrawAndSaveACorrPlots(bool save_ACorr_data, const std::string &SampleName, 
 
     Canvas->SaveAs((RPlot_Clone_test_rebined_SaveName).c_str());
     Canvas->Clear();
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Plotting and saving TLPlot_Clone_test_rebined">
+    #pragma region /* Plotting and saving TLPlot_Clone_test_rebined */
     TLPlot_Clone_test_rebined->SetLineStyle(1);
     TLPlot_Clone_test_rebined->SetLineColor(kBlue);
     TLPlot_Clone_test_rebined->Draw();
@@ -556,9 +556,9 @@ void DrawAndSaveACorrPlots(bool save_ACorr_data, const std::string &SampleName, 
 
     Canvas->SaveAs((TLPlot_Clone_test_rebined_SaveName).c_str());
     Canvas->Clear();
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Plotting and saving RPlot_Clone">
+    #pragma region /* Plotting and saving RPlot_Clone */
     RPlot_Clone->SetLineStyle(1);
     RPlot_Clone->SetLineColor(kBlue);
     RPlot_Clone->SetStats(1);
@@ -581,9 +581,9 @@ void DrawAndSaveACorrPlots(bool save_ACorr_data, const std::string &SampleName, 
 
     Canvas->SaveAs((RPlot_Clone_SaveName).c_str());
     Canvas->Clear();
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Plotting and saving TLPlot_Clone">
+    #pragma region /* Plotting and saving TLPlot_Clone */
     TLPlot_Clone->SetLineStyle(1);
     TLPlot_Clone->SetLineColor(kBlue);
 
@@ -596,9 +596,9 @@ void DrawAndSaveACorrPlots(bool save_ACorr_data, const std::string &SampleName, 
 
     Canvas->SaveAs((TLPlot_Clone_SaveName).c_str());
     Canvas->Clear();
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Plotting and saving ACorrection_plot">
+    #pragma region /* Plotting and saving ACorrection_plot */
     ACorrection_plot->SetLineStyle(1);
     ACorrection_plot->SetLineColor(kBlue);
 
@@ -621,9 +621,9 @@ void DrawAndSaveACorrPlots(bool save_ACorr_data, const std::string &SampleName, 
     Histogram_list->Add(ACorrection_plot);
     Canvas->SaveAs((ACorrection_plot_SaveName).c_str());
     Canvas->Clear();
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Save acceptance correction data">
+    #pragma region /* Save acceptance correction data */
     if (save_ACorr_data) {
         system(("rm -r " + ACorr_data_Dir).c_str());     // clear old ACorr_data_Dir
         system(("mkdir -p " + ACorr_data_Dir).c_str());  // recreate ACorr_data_Dir
@@ -659,7 +659,7 @@ void DrawAndSaveACorrPlots(bool save_ACorr_data, const std::string &SampleName, 
         ACorr_data->Add(ACorr_factor);
         //        Canvas->SaveAs((ACorr_factor_SaveName).c_str());
         Canvas->Clear();
-    }  //</editor-fold>
+    }  #pragma endregion
 
     delete Canvas;
 }

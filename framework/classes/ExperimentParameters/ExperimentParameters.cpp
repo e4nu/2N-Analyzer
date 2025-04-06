@@ -5,7 +5,7 @@
 
 // Constructor ----------------------------------------------------------------------------------------------------------------------------------------
 
-//<editor-fold desc="Constructor">
+#pragma region /* Constructor */
 ExperimentParameters::ExperimentParameters(const std::string &AnalyzeFilePath, const std::string &AnalyzeFileSample) {
     SampleName = ConfigureSampleName(AnalyzeFilePath, AnalyzeFileSample);
     BeamEnergy = GetBeamEnergyFromString(SampleName);
@@ -49,11 +49,11 @@ ExperimentParameters::ExperimentParameters(const std::string &AnalyzeFilePath, c
         TotalBaryonNumber_A = TotalChargeNumber_Z = StrangeQuarksNumber_L = IsomerNumber_I = 0;
     }
 }
-//</editor-fold>
+#pragma endregion
 
 // ConfigureSampleName function -----------------------------------------------------------------------------------------------------------------------------------------
 
-//<editor-fold desc="ConfigureSampleName function">
+#pragma region /* ConfigureSampleName function */
 string ExperimentParameters::ConfigureSampleName(const std::string &AnalyzeFilePath, const std::string &AnalyzeFileSample) {
     std::string sName = "unknown_sample_598636MeV";  // to set beamE = 5.98636 by default;
 
@@ -1729,7 +1729,7 @@ string ExperimentParameters::ConfigureSampleName(const std::string &AnalyzeFileP
         }
     }
 
-    //<editor-fold desc="Safety checks">
+    #pragma region /* Safety checks */
     if (!BeamAt2GeV && !BeamAt4GeV && !BeamAt6GeV) {
         cout << "\n\nConfigureSampleName: beam energy unknown! Configured variables are:\n";
         cout << "AnalyzeFilePath = " << AnalyzeFilePath << "\n";
@@ -1775,7 +1775,7 @@ string ExperimentParameters::ConfigureSampleName(const std::string &AnalyzeFileP
         cout << "DataSample = " << DataSample << "\n";
         cout << "Exiting...\n", exit(0);
     }
-    //</editor-fold>
+    #pragma endregion
 
     ConfigureVaryingSampleName(sName);
     ConfigureVz_cuts(sName);
@@ -1783,11 +1783,11 @@ string ExperimentParameters::ConfigureSampleName(const std::string &AnalyzeFileP
 
     return sName;
 }
-//</editor-fold>
+#pragma endregion
 
 // ConfigureVaryingSampleName function -----------------------------------------------------------------------------------------------------------------------------------------
 
-//<editor-fold desc="ConfigureVaryingSampleName function">
+#pragma region /* ConfigureVaryingSampleName function */
 void ExperimentParameters::ConfigureVaryingSampleName(const std::string &sn) {  // TODO: change this to VaryingSampleName of the appropriate data. currently the same for all data.
     if (FindSubstring(sn, "sim") || (FindSubstring(sn, "Uniform") || FindSubstring(sn, "iniform") || FindSubstring(sn, "Isotrop") || FindSubstring(sn, "isotrop"))) {  // Sample is simulation
         //        VaryingSampleName = SampleName;
@@ -1799,11 +1799,11 @@ void ExperimentParameters::ConfigureVaryingSampleName(const std::string &sn) {  
         cout << "\n\n\nExperimentParameters::ConfigureVaryingSampleName: sample can't be configured! Exiting...\n", exit(0);
     }
 }
-//</editor-fold>
+#pragma endregion
 
 // ConfigureVz_cuts function -----------------------------------------------------------------------------------------------------------------------------------------
 
-//<editor-fold desc="ConfigureVz_cuts function">
+#pragma region /* ConfigureVz_cuts function */
 void ExperimentParameters::ConfigureVz_cuts(const std::string &sn) {
     if (FindSubstring(sn, "Uniform")) {  // Sample is uniform simulation
         if (FindSubstring(sn, "2070MeV")) {
@@ -1985,11 +1985,11 @@ void ExperimentParameters::ConfigureVz_cuts(const std::string &sn) {
         Vz_cuts_CD = DSCuts("Vertex z component", "CD", "", "1e cut", 0, -5, 5);
     }
 }
-//</editor-fold>
+#pragma endregion
 
 // ConfigureVz_cuts function -----------------------------------------------------------------------------------------------------------------------------------------
 
-//<editor-fold desc="ConfigureVz_cuts function">
+#pragma region /* ConfigureVz_cuts function */
 void ExperimentParameters::ConfiguredVz_cuts(const std::string &sn) {
     if (FindSubstring(sn, "Uniform")) {  // Sample is uniform simulation
         if (FindSubstring(sn, "2070MeV")) {
@@ -2170,11 +2170,11 @@ void ExperimentParameters::ConfiguredVz_cuts(const std::string &sn) {
         dVz_cuts_CD = DSCuts("dVz", "CD", "", "1e cut", 0, -8, 4);
     }
 }
-//</editor-fold>
+#pragma endregion
 
 // ConfigureBeamEnergy function -----------------------------------------------------------------------------------------------------------------------------------------
 
-//<editor-fold desc="ConfigureBeamEnergy function">
+#pragma region /* ConfigureBeamEnergy function */
 double ExperimentParameters::ConfigureBeamEnergy(const std::string &sn) {
     // return GetBeamEnergyFromString(sn);
 
@@ -2193,17 +2193,17 @@ double ExperimentParameters::ConfigureBeamEnergy(const std::string &sn) {
 
     return be;
 }
-//</editor-fold>
+#pragma endregion
 
 // GetBeamEnergy function -----------------------------------------------------------------------------------------------------------------------------------------
 
-//<editor-fold desc="GetBeamEnergy function">
+#pragma region /* GetBeamEnergy function */
 double ExperimentParameters::GetBeamEnergy() { return BeamEnergy; }
-//</editor-fold>
+#pragma endregion
 
 // AddToHipoChain function ----------------------------------------------------------------------------------------------------------------------------------------
 
-//<editor-fold desc="Description">
+#pragma region /* Description */
 // This is the old function used to add runs to the HipoChain
 void ExperimentParameters::AddToHipoChain(HipoChain &chain, const std::string &sn, const std::string &AnalyzeFilePath, const std::string &AnalyzeFileSample, const std::string &AnalyzeFile) {
     bool PrintOut = true;
@@ -2255,11 +2255,11 @@ void ExperimentParameters::AddToHipoChain(HipoChain &chain, const std::string &s
         if (PrintOut) { cout << AnalyzeFile << " directory added to HipoChain!\n\n"; }
     }
 }
-//</editor-fold>
+#pragma endregion
 
 // AddToHipoChainFromList function ----------------------------------------------------------------------------------------------------------------------------------------
 
-//<editor-fold desc="Description">
+#pragma region /* Description */
 void ExperimentParameters::AddToHipoChainFromList(HipoChain &chain, const std::string &sn, const std::string &AnalyzeFilePath, const std::string &AnalyzeFileSample,
                                                   const std::string &AnalyzeFile) {
     bool PrintOut = true;
@@ -2394,6 +2394,6 @@ void ExperimentParameters::AddToHipoChainFromList(HipoChain &chain, const std::s
         if (PrintOut) { cout << AnalyzeFile << " directory added to HipoChain!\n\n"; }
     }
 }
-//</editor-fold>
+#pragma endregion
 
 #endif  // EXPERIMENTPARAMETERS_H

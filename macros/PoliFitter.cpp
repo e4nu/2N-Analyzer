@@ -113,16 +113,16 @@ Double_t FitFunction(Double_t *v, Double_t *par) {
 
 void PoliFitter() {
 
-//    //<editor-fold desc="Original">
+//    #pragma region /* Original */
 //    Double_t x[] = {1, 2, 3, 4, 5, 6, 7, 8};
 //    Double_t y[] = {35, 57, 25, 22, 55, 47, 89, 44};
 //    TGraph *g = new TGraph((sizeof(x) / sizeof(Double_t)), x, y);
 //    TF1 *f = new TF1("f", "[2] * x * x + [1] * x + [0]");
 //    g->Fit(f);
 //    g->Draw("AL");
-//    //</editor-fold>
+//    #pragma endregion
 
-//    //<editor-fold desc="First good">
+//    #pragma region /* First good */
 //    Double_t x[] = {1, 2, 3, 4, 5, 6, 7, 8};
 //    Double_t y[] = {35, 57, 25, 22, 55, 47, 89, 44};
 //
@@ -156,9 +156,9 @@ void PoliFitter() {
 ////    FitParam->AddText(("Fit C = " + to_string_with_precision(C, 8)).c_str());
 ////    ((TText *) FitParam->GetListOfLines()->Last())->SetTextColor(kRed);
 //    FitParam->Draw("same");
-//    //</editor-fold>
+//    #pragma endregion
 
-    //<editor-fold desc="First good">
+    #pragma region /* First good */
     Double_t x[] = {1, 2, 3, 4, 5, 6, 7, 8};
     Double_t y[] = {35, 57, 25, 22, 55, 47, 89, 44};
 
@@ -230,9 +230,9 @@ void PoliFitter() {
 ////    FitParam->AddText(("Fit C = " + to_string_with_precision(C, 8)).c_str());
 ////    ((TText *) FitParam->GetListOfLines()->Last())->SetTextColor(kRed);
 //    FitParam->Draw("same");
-    //</editor-fold>
+    #pragma endregion
 
-//    //<editor-fold desc="Old stuff">
+//    #pragma region /* Old stuff */
 //    cout << "\n\n";
 //
 //    //    TFile *f = new TFile("plots_C12_simulation_6GeV_T5_first_10_-_ALL_CUTS/recon_qe_GENIE_C_598636MeV_Q2_0_5_test_5_first_10_plots.root");
@@ -257,7 +257,7 @@ void PoliFitter() {
 //    double W_yLLim = -0.1, W_yULim = 0.1, W_xLLim = 0.9, W_xULim = 1.;
 //    double deltaPRel_UncertaintyU = 0.2, deltaPRel_UncertaintyL = 0.1;
 //
-//    //<editor-fold desc="Canvas definitions">
+//    #pragma region /* Canvas definitions */
 //    TCanvas *Canvas = new TCanvas("Canvas", "Canvas", 1000, 750); // normal res
 //    Canvas->SetGrid();
 //    Canvas->SetBottomMargin(0.14);
@@ -268,9 +268,9 @@ void PoliFitter() {
 //    float DefStatX = gStyle->GetStatX(), DefStatY = gStyle->GetStatY();
 //
 //    Canvas->cd();
-//    //</editor-fold>
+//    #pragma endregion
 //
-//    //<editor-fold desc="Setting sNameFlag">
+//    #pragma region /* Setting sNameFlag */
 //    std::string sNameFlag;
 //
 //    if (findSubstring(SampleName, "sim")) {
@@ -278,9 +278,9 @@ void PoliFitter() {
 //    } else if (findSubstring(SampleName, "data")) {
 //        sNameFlag = "d";
 //    }
-//    //</editor-fold>
+//    #pragma endregion
 //
-//    //<editor-fold desc="Setting particle">
+//    #pragma region /* Setting particle */
 //    std::string BetaTitle = "Neutron #beta from 'photons'";
 //
 //    std::string BetaParticle, BetaParticleShort;
@@ -311,13 +311,13 @@ void PoliFitter() {
 //        BetaParticle = "Photon";
 //        BetaParticleShort = "#gamma";
 //    }
-//    //</editor-fold>
+//    #pragma endregion
 //
-//    //<editor-fold desc="Setting final State">
+//    #pragma region /* Setting final State */
 //    std::string BetaFinalState = "1n";
-//    //</editor-fold>
+//    #pragma endregion
 //
-//    //<editor-fold desc="Setting histogram and preforming a fit">
+//    #pragma region /* Setting histogram and preforming a fit */
 //    TH1D *hpx = (TH1D *) f->Get("#beta of n from '#gamma' (1n, FD)");
 //    TH1D *hBeta_Clone = (TH1D *) hpx->Clone("#beta of n from '#gamma' - fitted");
 //    Int_t Color = hBeta_Clone->GetLineColor();
@@ -389,9 +389,9 @@ void PoliFitter() {
 //    double FitStd = fit->GetParameter(2); // get p2
 //
 //    Beta_cut.SetUpperCut(fit->GetParameter(2));
-//    //</editor-fold>
+//    #pragma endregion
 //
-//    //<editor-fold desc="Drawing fit parameters and saving">
+//    #pragma region /* Drawing fit parameters and saving */
 //    double x_1_Corr_legend = gStyle->GetStatX(), y_1_Corr_legend = gStyle->GetStatY() - 0.2;
 //    double x_2_Corr_legend = gStyle->GetStatX() - 0.2, y_2_Corr_legend = gStyle->GetStatY() - 0.3;
 //
@@ -414,9 +414,9 @@ void PoliFitter() {
 //    Canvas->SaveAs(hBeta_CloneSaveDir);
 //
 //    Canvas->Clear();
-//    //</editor-fold>
+//    #pragma endregion
 //
-//    //<editor-fold desc="Plot deltaP as function of beta">
+//    #pragma region /* Plot deltaP as function of beta */
 //    std::string deltaPStatsTitle = "#deltaP_{" + BetaParticleShort + "} (" + BetaFinalState + ")";
 //    std::string deltaPTitle = BetaParticle + " momentum uncertainty #deltaP_{" + BetaParticleShort + "} (" + BetaFinalState + ")";
 //    std::string deltaPfunc = to_string(m_n * FitStd) + "/ ( (1 - x*x) * sqrt(1 - x*x) )";
@@ -453,9 +453,9 @@ void PoliFitter() {
 //    Canvas->SaveAs(deltaPSaveDir);
 //
 //    Canvas->Clear();
-//    //</editor-fold>
+//    #pragma endregion
 //
-//    //<editor-fold desc="Solve deltaP/P for beta in range 0.9<=beta<1">
+//    #pragma region /* Solve deltaP/P for beta in range 0.9<=beta<1 */
 //    double Beta_Max, P_Beta_Max, Beta_Min, P_Beta_Min;
 //    double Beta_Max_sol[3], Beta_Min_sol[3];
 //
@@ -493,9 +493,9 @@ void PoliFitter() {
 //    cout << "P(Beta_Min) = " << P_Beta_Min << "\n\n";
 //
 //    n_momentum_cuts.SetUpperCut(P_Beta_Max);
-//    //</editor-fold>
+//    #pragma endregion
 //
-//    //<editor-fold desc="Plot deltaP/P as function of beta">
+//    #pragma region /* Plot deltaP/P as function of beta */
 //    std::string Rel_deltaPStatsTitle = "#deltaP_{" + BetaParticleShort + "} (" + BetaFinalState + ")";
 //    std::string Rel_deltaPTitle = BetaParticle + " relative uncertainty #deltaP_{" + BetaParticleShort + "}/P_{" + BetaParticleShort + "} (" + BetaFinalState + ")";
 //    std::string Rel_deltaPfunc = to_string(FitStd) + "/ ( (1 - x*x) * x )";
@@ -574,9 +574,9 @@ void PoliFitter() {
 //    const char *Rel_deltaPSaveDir = Rel_deltaPSaveNameDir.c_str();
 //    Canvas->SaveAs(Rel_deltaPSaveDir);
 //    Canvas->Clear();
-//    //</editor-fold>
+//    #pragma endregion
 //
-//    //<editor-fold desc="Plot w as function of beta">
+//    #pragma region /* Plot w as function of beta */
 //    std::string WStatsTitle = "W(#beta) (" + BetaFinalState + ")";
 //    std::string WTitle = "The W(#beta) function (" + BetaFinalState + ")";
 //    std::string W_Maxfunc = "x*x*x - x + " + to_string(FitStd / deltaPRel_UncertaintyU);
@@ -629,7 +629,7 @@ void PoliFitter() {
 //    const char *WSaveDir = WSaveNameDir.c_str();
 //    Canvas->SaveAs(WSaveDir);
 //    Canvas->Clear();
-//    //</editor-fold>
-//    //</editor-fold>
+//    #pragma endregion
+//    #pragma endregion
 
 }

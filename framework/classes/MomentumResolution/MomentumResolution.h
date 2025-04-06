@@ -96,21 +96,21 @@ class MomentumResolution {
 
     std::string ResSlicePlots_OutFile0;
 
-    //<editor-fold desc="Random number generators">
+    #pragma region /* Random number generators */
     std::string RandomNumGenerator = "TRandom3";  // TRandom3 by default
 
     TRandom1 *Rand1 = new TRandom1();
     TRandom2 *Rand2 = new TRandom2();
     TRandom3 *Rand3 = new TRandom3();
-    //</editor-fold>
+    #pragma endregion
 
     double delta, deltaFactor = 1.;
     int TL_NumberOfSlices = 0, Reco_NumberOfSlices = 0;
 
-    //<editor-fold desc="Correction and smear fit variables">
+    #pragma region /* Correction and smear fit variables */
     /* General vector structure:   {{A, B, ...}, {A_Err, B_Err, ...}, {ChiSquare_Smear_pol2_wKC, NDF_Smear_pol2_wKC},} */
 
-    //<editor-fold desc="Correction and smear fit variables">
+    #pragma region /* Correction and smear fit variables */
     vector<vector<double>> TL_FitParam_Smear_pol1, Reco_FitParam_Smear_pol1;
     vector<vector<double>> TL_FitParam_Smear_pol1_wKC, Reco_FitParam_Smear_pol1_wKC;
 
@@ -128,9 +128,9 @@ class MomentumResolution {
 
     vector<vector<double>> TL_FitParam_Corr_pol3, Reco_FitParam_Corr_pol3;
     vector<vector<double>> TL_FitParam_Corr_pol3_wKC, Reco_FitParam_Corr_pol3_wKC;
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Loaded correction and smear fit variables">
+    #pragma region /* Loaded correction and smear fit variables */
     std::string Loaded_Std_coefficients_path;
     vector<double> Loaded_Smear_coefficients_values;
     vector<string> Loaded_Smear_coefficients_names;
@@ -152,9 +152,9 @@ class MomentumResolution {
     vector<vector<double>> Loaded_TL_FitParam_Corr_pol2_wKC, Loaded_Reco_FitParam_Corr_pol2_wKC;
     vector<vector<double>> Loaded_TL_FitParam_Corr_pol3, Loaded_Reco_FitParam_Corr_pol3;
     vector<vector<double>> Loaded_TL_FitParam_Corr_pol3_wKC, Loaded_Reco_FitParam_Corr_pol3_wKC;
-    //</editor-fold>
+    #pragma endregion
 
-    //</editor-fold>
+    #pragma endregion
 
     double Neutron_Momentum_cut = 9999.;  // from clas12ana
     std::string SName;

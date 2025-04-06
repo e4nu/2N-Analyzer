@@ -227,7 +227,7 @@ public :
 
 #ifdef gst_cxx
 
-//<editor-fold desc="void gst::Init(TTree *tree)">
+#pragma region /* void gst::Init(TTree *tree) */
 
 //TFile *f;
 
@@ -435,6 +435,6 @@ Int_t gst::Cut(Long64_t entry) {
 // returns -1 otherwise.
    return 1;
 }
-//</editor-fold>
+#pragma endregion
 
 #endif //Analyzer_TRUTHLEVELANALYZER_H

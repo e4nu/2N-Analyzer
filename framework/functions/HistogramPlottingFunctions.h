@@ -19,7 +19,7 @@ using namespace utilities;
 
 // histPlotter1D function (old) -----------------------------------------------------------------------------------------------------------------------------------------
 
-//<editor-fold desc="histPlotter1D function (old)">
+#pragma region /* histPlotter1D function (old) */
 void histPlotter1D(TCanvas *HistogramCanvas,            // The canvas
                    TH1D *Histogram1D,                   // The histogram
                    bool normalize_Histogram,            // Normalize histogram or not
@@ -206,9 +206,9 @@ void histPlotter1D(TCanvas *HistogramCanvas,            // The canvas
     HistogramCanvas->cd();
     HistogramCanvas->Clear();
 }
-//</editor-fold>
+#pragma endregion
 
-//<editor-fold desc="histPlotter1D function (old, stackless)">
+#pragma region /* histPlotter1D function (old, stackless) */
 void histPlotter1D(TCanvas *HistogramCanvas,            // The canvas
                    TH1D *Histogram1D,                   // The histogram
                    bool normalize_Histogram,            // Normalize histogram or not
@@ -379,11 +379,11 @@ void histPlotter1D(TCanvas *HistogramCanvas,            // The canvas
     HistogramCanvas->cd();
     HistogramCanvas->Clear();
 }
-//</editor-fold>
+#pragma endregion
 
 // histPlotter1D function (unsymmetric cuts for SF plots) ---------------------------------------------------------------------------------------------------------------
 
-//<editor-fold desc="histPlotter1D function (unsymmetric cuts for SF plots)">
+#pragma region /* histPlotter1D function (unsymmetric cuts for SF plots) */
 void histPlotter1D(TCanvas *HistogramCanvas,            // The canvas
                    TH1D *Histogram1D,                   // The histogram
                    bool normalize_Histogram,            // Normalize histogram or not
@@ -584,9 +584,9 @@ void histPlotter1D(TCanvas *HistogramCanvas,            // The canvas
     HistogramCanvas->cd();
     HistogramCanvas->Clear();
 }
-//</editor-fold>
+#pragma endregion
 
-//<editor-fold desc="histPlotter1D function (unsymmetric cuts for SF plots, stackless)">
+#pragma region /* histPlotter1D function (unsymmetric cuts for SF plots, stackless) */
 void histPlotter1D(TCanvas *HistogramCanvas,            // The canvas
                    TH1D *Histogram1D,                   // The histogram
                    bool normalize_Histogram,            // Normalize histogram or not
@@ -759,11 +759,11 @@ void histPlotter1D(TCanvas *HistogramCanvas,            // The canvas
     HistogramCanvas->cd();
     HistogramCanvas->Clear();
 }
-//</editor-fold>
+#pragma endregion
 
 // histPlotter1D function (one-sided cuts for Nphe plots) ---------------------------------------------------------------------------------------------------------------
 
-//<editor-fold desc="histPlotter1D function (one-sided cuts for Nphe plots)">
+#pragma region /* histPlotter1D function (one-sided cuts for Nphe plots) */
 void histPlotter1D(TCanvas *HistogramCanvas,            // The canvas
                    TH1D *Histogram1D,                   // The histogram
                    bool normalize_Histogram,            // Normalize histogram or not
@@ -965,9 +965,9 @@ void histPlotter1D(TCanvas *HistogramCanvas,            // The canvas
     HistogramCanvas->cd();
     HistogramCanvas->Clear();
 }
-//</editor-fold>
+#pragma endregion
 
-//<editor-fold desc="histPlotter1D function (one-sided cuts for Nphe plots, stackless)">
+#pragma region /* histPlotter1D function (one-sided cuts for Nphe plots, stackless) */
 void histPlotter1D(TCanvas *HistogramCanvas,            // The canvas
                    TH1D *Histogram1D,                   // The histogram
                    bool normalize_Histogram,            // Normalize histogram or not
@@ -1143,11 +1143,11 @@ void histPlotter1D(TCanvas *HistogramCanvas,            // The canvas
     HistogramCanvas->cd();
     HistogramCanvas->Clear();
 }
-//</editor-fold>
+#pragma endregion
 
 // histPlotter1D function (Chi2 for separate plots) ---------------------------------------------------------------------------------------------------------------------
 
-//<editor-fold desc="histPlotter1D function (Chi2 for separate plots)">
+#pragma region /* histPlotter1D function (Chi2 for separate plots) */
 void histPlotter1D(TCanvas *HistogramCanvas1,           // canvas c1 of other histograms
                    TCanvas *HistogramCanvas,            // canvas c2 of chi2 histograms
                    TH1D *Histogram1D,                   // The histogram
@@ -1319,9 +1319,9 @@ void histPlotter1D(TCanvas *HistogramCanvas1,           // canvas c1 of other hi
 
     HistogramCanvas1->cd();
 }
-//</editor-fold>
+#pragma endregion
 
-//<editor-fold desc="histPlotter1D function (Chi2 for separate plots, stackless)">
+#pragma region /* histPlotter1D function (Chi2 for separate plots, stackless) */
 void histPlotter1D(TCanvas *HistogramCanvas1,           // canvas c1 of other histograms
                    TCanvas *HistogramCanvas,            // canvas c2 of chi2 histograms
                    TH1D *Histogram1D,                   // The histogram
@@ -1481,11 +1481,11 @@ void histPlotter1D(TCanvas *HistogramCanvas1,           // canvas c1 of other hi
 
     HistogramCanvas1->cd();
 }
-//</editor-fold>
+#pragma endregion
 
 // histPlotter1D function (applying all Chi2 cuts) ----------------------------------------------------------------------------------------------------------------------
 
-//<editor-fold desc="histPlotter1D function (applying all Chi2 cuts)">
+#pragma region /* histPlotter1D function (applying all Chi2 cuts) */
 void histPlotter1D(TCanvas *HistogramCanvas1,           // canvas c1 of other histograms
                    TCanvas *HistogramCanvas,            // canvas c2 of chi2 histograms
                    TH1D *Histogram1D,                   // The histogram
@@ -1673,9 +1673,9 @@ void histPlotter1D(TCanvas *HistogramCanvas1,           // canvas c1 of other hi
 
     HistogramCanvas1->cd();
 }
-//</editor-fold>
+#pragma endregion
 
-//<editor-fold desc="histPlotter1D function (applying all Chi2 cuts, stackless)">
+#pragma region /* histPlotter1D function (applying all Chi2 cuts, stackless) */
 void histPlotter1D(TCanvas *HistogramCanvas1,           // canvas c1 of other histograms
                    TCanvas *HistogramCanvas,            // canvas c2 of chi2 histograms
                    TH1D *Histogram1D,                   // The histogram
@@ -1837,7 +1837,7 @@ void histPlotter1D(TCanvas *HistogramCanvas1,           // canvas c1 of other hi
 
     HistogramCanvas1->cd();
 }
-//</editor-fold>
+#pragma endregion
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                 histPlotter1DwFit function                                                                          //
@@ -1845,7 +1845,7 @@ void histPlotter1D(TCanvas *HistogramCanvas1,           // canvas c1 of other hi
 
 // histPlotter1DwFit function (old) -------------------------------------------------------------------------------------------------------------------------------------
 
-////<editor-fold desc="FitFunction function">
+//#pragma region /* FitFunction function */
 ///* FitFunction is used for custom plot fits */
 //
 // Double_t FitFunction(Double_t *v, Double_t *par) {
@@ -1855,9 +1855,9 @@ void histPlotter1D(TCanvas *HistogramCanvas1,           // canvas c1 of other hi
 //    Double_t fitval = par[0] * TMath::Exp(-0.5 * arg * arg);
 //    return fitval;
 //}
-////</editor-fold>
+//#pragma endregion
 
-//<editor-fold desc="histPlotter1DwFit function (old)">
+#pragma region /* histPlotter1DwFit function (old) */
 /* histPlotter1DwFit is used for chi2 plots with fit */
 void histPlotter1DwFit(TCanvas *HistogramCanvas, TH1D *Histogram1D, bool normalize_Histogram, bool custom_normalization, double custom_normalization_factor, std::string Histogram1DTitle,
                        std::string Histogram1DTitleReactions, TList *Histogram_list, const char *Histogram_OutPDF, std::string Histogram1DSaveName, const std::string &Histogram1DSaveNamePath,
@@ -2057,7 +2057,7 @@ void histPlotter1DwFit(TCanvas *HistogramCanvas, TH1D *Histogram1D, bool normali
     HistogramCanvas->cd();
     HistogramCanvas->Clear();
 }
-//</editor-fold>
+#pragma endregion
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                   stackPlotter1D function                                                                            //
@@ -2065,7 +2065,7 @@ void histPlotter1DwFit(TCanvas *HistogramCanvas, TH1D *Histogram1D, bool normali
 
 // stackPlotter1D function (regular) -----------------------------------------------------------------------------------------------------------------------------------------
 
-//<editor-fold desc="stackPlotter1D (regular)">
+#pragma region /* stackPlotter1D (regular) */
 void stackPlotter1D(TCanvas *HistogramCanvas, THStack *Histogram1DStack, bool normalize_Histogram, std::string Histogram1DTitle, std::string Histogram1DTitleReactions, TList *Histogram_list,
                     const char *Histogram_OutPDF, TH1D *H1D_All_Int, TH1D *H1D_QEL, TH1D *H1D_MEC, TH1D *H1D_RES, TH1D *H1D_DIS, std::string Histogram1DStackSaveName,
                     std::string Histogram1DStackSaveNamePath, std::string finalState) {
@@ -2187,7 +2187,7 @@ void stackPlotter1D(TCanvas *HistogramCanvas, THStack *Histogram1DStack, bool no
     HistogramCanvas->cd();
     HistogramCanvas->Clear();
 }
-//</editor-fold>
+#pragma endregion
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                                                   histPlotter2D function                                                                            //
@@ -2195,7 +2195,7 @@ void stackPlotter1D(TCanvas *HistogramCanvas, THStack *Histogram1DStack, bool no
 
 // histPlotter2D function (regular) -------------------------------------------------------------------------------------------------------------
 
-//<editor-fold desc="histPlotter2D function (regular)">
+#pragma region /* histPlotter2D function (regular) */
 void histPlotter2D(TCanvas *HistogramCanvas, TH2D *Histogram2D, double titleSize, bool centerTitle, double labelSizex, double labelSizey, double labelSizez, TList *Histogram_list,
                    const char *Histogram_OutPDF, bool zLogScalePlot, std::string Histogram1DSaveNameDir, std::string Histogram1DSaveName, bool ShowStats = true) {
     float DefStatX = gStyle->GetStatX(), DefStatY = gStyle->GetStatY();
@@ -2249,11 +2249,11 @@ void histPlotter2D(TCanvas *HistogramCanvas, TH2D *Histogram2D, double titleSize
     HistogramCanvas->cd();
     HistogramCanvas->Clear();
 }
-//</editor-fold>
+#pragma endregion
 
 // histPlotter2D function (Beta vs. P plots, all particles) -------------------------------------------------------------------------------------------------------------
 
-//<editor-fold desc="histPlotter2D function (Beta vs. P plots, all particles)">
+#pragma region /* histPlotter2D function (Beta vs. P plots, all particles) */
 void histPlotter2D(TCanvas *HistogramCanvas, TH2D *Histogram2D, double titleSize, bool centerTitle, double labelSizex, double labelSizey, double labelSizez, TList *Histogram_list,
                    const char *Histogram_OutPDF, bool zLogScalePlot, std::string Histogram1DSaveNameDir, std::string Histogram1DSaveName, TF1 *Beta_function1, TF1 *Beta_function2, TF1 *Beta_function3,
                    TF1 *Beta_function4, TF1 *Beta_function5, TF1 *Beta_function6, TF1 *Beta_function7, TF1 *Beta_function8, TF1 *Beta_function9) {
@@ -2311,11 +2311,11 @@ void histPlotter2D(TCanvas *HistogramCanvas, TH2D *Histogram2D, double titleSize
     HistogramCanvas->cd();
     HistogramCanvas->Clear();
 }
-//</editor-fold>
+#pragma endregion
 
 // histPlotter2D function (Beta vs. P plots, single particle) -----------------------------------------------------------------------------------------------------------
 
-//<editor-fold desc="histPlotter2D function (Beta vs. P plots, single particle)">
+#pragma region /* histPlotter2D function (Beta vs. P plots, single particle) */
 void histPlotter2D(TCanvas *HistogramCanvas, TH2D *Histogram2D, double titleSize, bool centerTitle, double labelSizex, double labelSizey, double labelSizez, TList *Histogram_list,
                    const char *Histogram_OutPDF, bool zLogScalePlot, std::string Histogram1DSaveNameDir, std::string Histogram1DSaveName, TF1 *Beta_function1, std::string particle1, bool plot_legend) {
     float DefStatX = gStyle->GetStatX(), DefStatY = gStyle->GetStatY();
@@ -2374,11 +2374,11 @@ void histPlotter2D(TCanvas *HistogramCanvas, TH2D *Histogram2D, double titleSize
     HistogramCanvas->cd();
     HistogramCanvas->Clear();
 }
-//</editor-fold>
+#pragma endregion
 
 // histPlotter2D function (Beta vs. P plots, by charge) -----------------------------------------------------------------------------------------------------------------
 
-//<editor-fold desc="histPlotter2D function (Beta vs. P plots, by charge)">
+#pragma region /* histPlotter2D function (Beta vs. P plots, by charge) */
 void histPlotter2D(TCanvas *HistogramCanvas, TH2D *Histogram2D, double titleSize, bool centerTitle, double labelSizex, double labelSizey, double labelSizez, TList *Histogram_list,
                    const char *Histogram_OutPDF, bool zLogScalePlot, std::string Histogram1DSaveNameDir, std::string Histogram1DSaveName, TF1 *Beta_function1, std::string particle1, TF1 *Beta_function2,
                    std::string particle2, TF1 *Beta_function3, std::string particle3, bool plot_legend) {
@@ -2444,6 +2444,6 @@ void histPlotter2D(TCanvas *HistogramCanvas, TH2D *Histogram2D, double titleSize
     HistogramCanvas->cd();
     HistogramCanvas->Clear();
 }
-//</editor-fold>
+#pragma endregion
 
 #endif  // HISTOGRAMPLOTTINGFUNCTIONS_H

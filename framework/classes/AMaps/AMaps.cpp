@@ -9,7 +9,7 @@
 
 // AMaps constructors ---------------------------------------------------------------------------------------------------------------------------------------------------
 
-//<editor-fold desc="AMaps generation constructor">
+#pragma region /* AMaps generation constructor */
 AMaps::AMaps(const std::string &SampleName, const std::string &P_e_bin_profile, const std::string &P_nuc_bin_profile, double beamE, const std::string &AMapsMode, const std::string &SavePath,
              int nOfNucMomBins, int nOfElecMomBins, int hnsNumOfXBins, int hnsNumOfYBins, int hesNumOfXBins, int hesNumOfYBins) {
     AcceptanceMapsBC_OutFile0 = SavePath + "/" + "AcceptanceMapsBC.pdf";
@@ -29,7 +29,7 @@ AMaps::AMaps(const std::string &SampleName, const std::string &P_e_bin_profile, 
     NumberNucOfMomSlices = nOfNucMomBins;
     NumberElecOfMomSlices = nOfElecMomBins;
 
-    //<editor-fold desc="Setting saving directories">
+    #pragma region /* Setting saving directories */
     std::string SavePathAMapsBC = AMapSavePath + "00b_AMaps_BC_from_class/";
     system(("mkdir -p " + SavePathAMapsBC).c_str());
 
@@ -66,9 +66,9 @@ AMaps::AMaps(const std::string &SampleName, const std::string &P_e_bin_profile, 
     std::string AMapSavePathGeneratedAMapCopy = AMapSavePath + "05_Generated_maps/";
     system(("mkdir -p " + AMapSavePathGeneratedAMapCopy).c_str());
     AMapCopySavePath = AMapSavePathGeneratedAMapCopy;
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Setting AMapsMode_TitleAddition">
+    #pragma region /* Setting AMapsMode_TitleAddition */
     std::string AMapsMode_TitleAddition;
 
     if (AMaps_Mode != "") {
@@ -76,12 +76,12 @@ AMaps::AMaps(const std::string &SampleName, const std::string &P_e_bin_profile, 
     } else {
         AMapsMode_TitleAddition = "";
     }
-    //</editor-fold>
+    #pragma endregion
 
     SetBins(P_nuc_bin_profile, beamE);
     SetElectronBins(P_e_bin_profile, beamE);
 
-    //<editor-fold desc="Reco theta VS phi BC">
+    #pragma region /* Reco theta VS phi BC */
     std::string hStatsTitleAMapBCElectron = "Electron_AMap_BC", hTitleAMapBCElectron = "Electron AMap BC", hSaveNameAMapBCElectron = "01_e_AMap_BC";
     reco_theta_e_VS_phi_e_BC = hPlot2D(AMapsMode_TitleAddition, "", hStatsTitleAMapBCElectron, hTitleAMapBCElectron, "#phi_{e} [#circ]", "#theta_{e} [#circ]", SavePathAMapsBC,
                                        hSaveNameAMapBCElectron, hBinLowerXLim, hBinUpperXLim, hBinLowerYLim, hBinUpperYLim, HistElectronSliceNumOfXBins, HistElectronSliceNumOfYBins);
@@ -97,9 +97,9 @@ AMaps::AMaps(const std::string &SampleName, const std::string &P_e_bin_profile, 
     std::string hStatsTitleAMapBCNucleon = "Nucleon_AMap_BC", hTitleAMapBCNucleon = "Nucleon AMap BC", hSaveNameAMapBCNucleon = "04_nuc_AMap_BC";
     reco_theta_nuc_VS_phi_nuc_BC = hPlot2D(AMapsMode_TitleAddition, "", hStatsTitleAMapBCNucleon, hTitleAMapBCNucleon, "#phi_{nuc} [#circ]", "#theta_{nuc} [#circ]", SavePathAMapsBC,
                                            hSaveNameAMapBCNucleon, hBinLowerXLim, hBinUpperXLim, hBinLowerYLim, hBinUpperYLim, HistNucSliceNumOfXBins, HistNucSliceNumOfYBins);
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Setting electron histograms">
+    #pragma region /* Setting electron histograms */
     for (int i = 0; i < ElectronMomSliceLimits.size(); i++) {
         double BinLowerLim = ElectronMomSliceLimits.at(i).at(0), BinUpperLim = ElectronMomSliceLimits.at(i).at(1);
 
@@ -112,9 +112,9 @@ AMaps::AMaps(const std::string &SampleName, const std::string &P_e_bin_profile, 
 
         std::string BinDensity = " (" + to_string(HistElectronSliceNumOfXBins) + "x" + to_string(HistElectronSliceNumOfYBins) + ")";
 
-        //<editor-fold desc="Setting electron Acceptance maps">
+        #pragma region /* Setting electron Acceptance maps */
 
-        //<editor-fold desc="Electron TL hit map">
+        #pragma region /* Electron TL hit map */
         std::string hStatsTitleTLElectron = "TL P_{e} bin for " + basic_tools::ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{e}#leq" +
                                             basic_tools::ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c]";
         std::string hTitleTLElectron = "TL P_{e} bin for " + basic_tools::ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{e}#leq" +
@@ -125,9 +125,9 @@ AMaps::AMaps(const std::string &SampleName, const std::string &P_e_bin_profile, 
                                           hSaveNameTLElectron, hBinLowerXLim, hBinUpperXLim, hBinLowerYLim, hBinUpperYLim, HistElectronSliceNumOfXBins, HistElectronSliceNumOfYBins);
         truth_theta_e_VS_phi_e_BySlice.push_back(hPBinTLElectron);
         truth_e_BySlice.push_back(hPBinTLElectron.GetHistogram2D());
-        //</editor-fold>
+        #pragma endregion
 
-        //<editor-fold desc="Electron Reco. Acceptance maps">
+        #pragma region /* Electron Reco. Acceptance maps */
         std::string hStatsTitleRecoElectron = "Reco P_{e} bin for " + basic_tools::ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{e}#leq" +
                                               basic_tools::ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c]";
         std::string hTitleRecoElectron = "Reco P_{e} bin for " + basic_tools::ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{e}#leq" +
@@ -138,9 +138,9 @@ AMaps::AMaps(const std::string &SampleName, const std::string &P_e_bin_profile, 
                                             hSaveNameRecoElectron, hBinLowerXLim, hBinUpperXLim, hBinLowerYLim, hBinUpperYLim, HistElectronSliceNumOfXBins, HistElectronSliceNumOfYBins);
         reco_theta_e_VS_phi_e_BySlice.push_back(hPBinRecoElectron);
         reco_e_BySlice.push_back(hPBinRecoElectron.GetHistogram2D());
-        //</editor-fold>
+        #pragma endregion
 
-        //<editor-fold desc="Electron Reco./TL Ratio">
+        #pragma region /* Electron Reco./TL Ratio */
         std::string hStatsTitleRecoToTLRatioElectron = "Electron Reco/TL ratio for " + basic_tools::ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{e}#leq" +
                                                        basic_tools::ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c]";
         std::string hTitleRecoToTLRatioElectron = "Electron Reco/TL ratio for " + basic_tools::ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{e}#leq" +
@@ -152,9 +152,9 @@ AMaps::AMaps(const std::string &SampleName, const std::string &P_e_bin_profile, 
                     hSaveNameRecoToTLRatioElectron, hBinLowerXLim, hBinUpperXLim, hBinLowerYLim, hBinUpperYLim, HistElectronSliceNumOfXBins, HistElectronSliceNumOfYBins);
         acceptance_eff_e_BySlice.push_back(hPBinRecoToTLRatioElectron);
         acc_eff_e_BySlice.push_back(hPBinRecoToTLRatioElectron.GetHistogram2D());
-        //</editor-fold>
+        #pragma endregion
 
-        //<editor-fold desc="Electron separate AMaps">
+        #pragma region /* Electron separate AMaps */
         std::string hStatsTitleSepAMapsElectron = "Electron AMap for " + basic_tools::ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{e}#leq" +
                                                   basic_tools::ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c] and (Reco./TL)#geq" +
                                                   basic_tools::ToStringWithPrecision(Charged_particle_min_Ratio, 2);
@@ -168,15 +168,15 @@ AMaps::AMaps(const std::string &SampleName, const std::string &P_e_bin_profile, 
                     hSaveNameSepAMapsElectron, hBinLowerXLim, hBinUpperXLim, hBinLowerYLim, hBinUpperYLim, HistElectronSliceNumOfXBins, HistElectronSliceNumOfYBins);
         filtered_reco_theta_e_VS_phi_e_BySlice.push_back(hPBinSepAMapsElectron);
         filtered_reco_e_BySlice.push_back(hPBinSepAMapsElectron.GetHistogram2D());
-        //</editor-fold>
+        #pragma endregion
 
-        //</editor-fold>
+        #pragma endregion
     }
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Setting nucleon histograms">
+    #pragma region /* Setting nucleon histograms */
 
-    //<editor-fold desc="Setting nucleon slice histograms">
+    #pragma region /* Setting nucleon slice histograms */
     for (int i = 0; i < NucleonMomSliceLimits.size(); i++) {
         double BinLowerLim = NucleonMomSliceLimits.at(i).at(0), BinUpperLim = NucleonMomSliceLimits.at(i).at(1);
 
@@ -189,9 +189,9 @@ AMaps::AMaps(const std::string &SampleName, const std::string &P_e_bin_profile, 
 
         std::string BinDensity = " (" + to_string(HistNucSliceNumOfXBins) + "x" + to_string(HistNucSliceNumOfYBins) + ")";
 
-        //<editor-fold desc="Setting proton Acceptance maps">
+        #pragma region /* Setting proton Acceptance maps */
 
-        //<editor-fold desc="Proton TL Acceptance maps">
+        #pragma region /* Proton TL Acceptance maps */
         std::string hStatsTitleTLProton = "TL P_{p} bin for " + basic_tools::ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{p}#leq" +
                                           basic_tools::ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c]";
         std::string hTitleTLProton = "TL P_{p} bin for " + basic_tools::ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{p}#leq" +
@@ -202,9 +202,9 @@ AMaps::AMaps(const std::string &SampleName, const std::string &P_e_bin_profile, 
                                         hBinLowerXLim, hBinUpperXLim, hBinLowerYLim, hBinUpperYLim, HistNucSliceNumOfXBins, HistNucSliceNumOfYBins);
         truth_theta_p_VS_phi_p_BySlice.push_back(hPBinTLProton);
         truth_p_BySlice.push_back(hPBinTLProton.GetHistogram2D());
-        //</editor-fold>
+        #pragma endregion
 
-        //<editor-fold desc="Proton Reco. Acceptance maps">
+        #pragma region /* Proton Reco. Acceptance maps */
         std::string hStatsTitleRecoProton = "Reco P_{p} bin for " + basic_tools::ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{p}#leq" +
                                             basic_tools::ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c]";
         std::string hTitleRecoProton = "Reco P_{p} bin for " + basic_tools::ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{p}#leq" +
@@ -215,9 +215,9 @@ AMaps::AMaps(const std::string &SampleName, const std::string &P_e_bin_profile, 
                                           hSaveNameRecoProton, hBinLowerXLim, hBinUpperXLim, hBinLowerYLim, hBinUpperYLim, HistNucSliceNumOfXBins, HistNucSliceNumOfYBins);
         reco_theta_p_VS_phi_p_BySlice.push_back(hPBinRecoProton);
         reco_p_BySlice.push_back(hPBinRecoProton.GetHistogram2D());
-        //</editor-fold>
+        #pragma endregion
 
-        //<editor-fold desc="Proton Reco./TL Ratio">
+        #pragma region /* Proton Reco./TL Ratio */
         std::string hStatsTitleRecoToTLRatioProton = "Proton Reco/TL ratio for " + basic_tools::ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{p}#leq" +
                                                      basic_tools::ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c]";
         std::string hTitleRecoToTLRatioProton = "Proton Reco/TL ratio for " + basic_tools::ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{p}#leq" +
@@ -229,9 +229,9 @@ AMaps::AMaps(const std::string &SampleName, const std::string &P_e_bin_profile, 
                     hSaveNameRecoToTLRatioProton, hBinLowerXLim, hBinUpperXLim, hBinLowerYLim, hBinUpperYLim, HistNucSliceNumOfXBins, HistNucSliceNumOfYBins);
         acceptance_eff_p_BySlice.push_back(hPBinRecoToTLRatioProton);
         acc_eff_p_BySlice.push_back(hPBinRecoToTLRatioProton.GetHistogram2D());
-        //</editor-fold>
+        #pragma endregion
 
-        //<editor-fold desc="Proton separate AMaps">
+        #pragma region /* Proton separate AMaps */
         std::string hStatsTitleSepAMapsProton = "Proton AMap for " + basic_tools::ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{p}#leq" +
                                                 basic_tools::ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c] and (Reco./TL)#geq" +
                                                 basic_tools::ToStringWithPrecision(Charged_particle_min_Ratio, 2);
@@ -245,13 +245,13 @@ AMaps::AMaps(const std::string &SampleName, const std::string &P_e_bin_profile, 
                     hSaveNameSepAMapsProton, hBinLowerXLim, hBinUpperXLim, hBinLowerYLim, hBinUpperYLim, HistNucSliceNumOfXBins, HistNucSliceNumOfYBins);
         filtered_reco_theta_p_VS_phi_p_BySlice.push_back(hPBinSepAMapsProton);
         filtered_reco_p_BySlice.push_back(hPBinSepAMapsProton.GetHistogram2D());
-        //</editor-fold>
+        #pragma endregion
 
-        //</editor-fold>
+        #pragma endregion
 
-        //<editor-fold desc="Setting neutron Acceptance maps">
+        #pragma region /* Setting neutron Acceptance maps */
 
-        //<editor-fold desc="Neutron TL Acceptance maps">
+        #pragma region /* Neutron TL Acceptance maps */
         std::string hStatsTitleTLNeutron = "TL P_{n} bin for " + basic_tools::ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{n}#leq" +
                                            basic_tools::ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c]";
         std::string hTitleTLNeutron = "TL P_{n} bin for " + basic_tools::ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{n}#leq" +
@@ -262,9 +262,9 @@ AMaps::AMaps(const std::string &SampleName, const std::string &P_e_bin_profile, 
                                          hSaveNameTLNeutron, hBinLowerXLim, hBinUpperXLim, hBinLowerYLim, hBinUpperYLim, HistNucSliceNumOfXBins, HistNucSliceNumOfYBins);
         truth_theta_n_VS_phi_n_BySlice.push_back(hPBinTLNeutron);
         truth_n_BySlice.push_back(hPBinTLNeutron.GetHistogram2D());
-        //</editor-fold>
+        #pragma endregion
 
-        //<editor-fold desc="Neutron Reco. Acceptance maps">
+        #pragma region /* Neutron Reco. Acceptance maps */
         std::string hStatsTitleRecoNeutron = "Reco P_{n} bin for " + basic_tools::ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{n}#leq" +
                                              basic_tools::ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c]";
         std::string hTitleRecoNeutron = "Reco P_{n} bin for " + basic_tools::ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{n}#leq" +
@@ -275,9 +275,9 @@ AMaps::AMaps(const std::string &SampleName, const std::string &P_e_bin_profile, 
                                            hSaveNameRecoNeutron, hBinLowerXLim, hBinUpperXLim, hBinLowerYLim, hBinUpperYLim, HistNucSliceNumOfXBins, HistNucSliceNumOfYBins);
         reco_theta_n_VS_phi_n_BySlice.push_back(hPBinRecoNeutron);
         reco_n_BySlice.push_back(hPBinRecoNeutron.GetHistogram2D());
-        //</editor-fold>
+        #pragma endregion
 
-        //<editor-fold desc="Neutron Reco./TL Ratio">
+        #pragma region /* Neutron Reco./TL Ratio */
         std::string hStatsTitleRecoToTLRatioNeutron = "Neutron Reco/TL ratio for " + basic_tools::ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{n}#leq" +
                                                       basic_tools::ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c]";
         std::string hTitleRecoToTLRatioNeutron = "Neutron Reco/TL ratio for " + basic_tools::ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{n}#leq" +
@@ -289,9 +289,9 @@ AMaps::AMaps(const std::string &SampleName, const std::string &P_e_bin_profile, 
                     hSaveNameRecoToTLRatioNeutron, hBinLowerXLim, hBinUpperXLim, hBinLowerYLim, hBinUpperYLim, HistNucSliceNumOfXBins, HistNucSliceNumOfYBins);
         acceptance_eff_n_BySlice.push_back(hPBinRecoToTLRatioNeutron);
         acc_eff_n_BySlice.push_back(hPBinRecoToTLRatioNeutron.GetHistogram2D());
-        //</editor-fold>
+        #pragma endregion
 
-        //<editor-fold desc="Neutron separate AMaps">
+        #pragma region /* Neutron separate AMaps */
         std::string hStatsTitleSepAMapsNeutron = "Neutron AMap for " + basic_tools::ToStringWithPrecision(BinLowerLim, 2) + "#leqP^{truth}_{n}#leq" +
                                                  basic_tools::ToStringWithPrecision(BinUpperLim, BinUpperLimPrecision) + " [GeV/c] and (Reco./TL)#geq" +
                                                  basic_tools::ToStringWithPrecision(Neutral_particle_min_Ratio, 2);
@@ -305,37 +305,37 @@ AMaps::AMaps(const std::string &SampleName, const std::string &P_e_bin_profile, 
                     hSaveNameSepAMapsNeutron, hBinLowerXLim, hBinUpperXLim, hBinLowerYLim, hBinUpperYLim, HistNucSliceNumOfXBins, HistNucSliceNumOfYBins);
         filtered_reco_theta_n_VS_phi_n_BySlice.push_back(hPBinSepAMapsNeutron);
         filtered_reco_n_BySlice.push_back(hPBinSepAMapsNeutron.GetHistogram2D());
-        //</editor-fold>
+        #pragma endregion
 
-        //</editor-fold>
+        #pragma endregion
     }
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Setting neutron Acceptance maps">
+    #pragma region /* Setting neutron Acceptance maps */
 
-    //<editor-fold desc="Neutron TL Acceptance maps">
+    #pragma region /* Neutron TL Acceptance maps */
     std::string hStatsTitleTLNeutron = "TL Neutron Hit Map", hTitleTLNeutron = "TL Neutron Hit Map", hSaveNameTLNeutron = "TL_n_AMap";
     truth_theta_n_VS_phi_n = hPlot2D(AMapsMode_TitleAddition, "", hStatsTitleTLNeutron, hTitleTLNeutron, "#phi_{n} [#circ]", "#theta_{n} [#circ]", AMapSavePathTLNeutron, hSaveNameTLNeutron,
                                      hBinLowerXLim, hBinUpperXLim, hBinLowerYLim, hBinUpperYLim, HistNucSliceNumOfXBins, HistNucSliceNumOfYBins);
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Neutron Reco. Acceptance maps">
+    #pragma region /* Neutron Reco. Acceptance maps */
     std::string hStatsTitleRecoNeutron = "Reco Neutron Hit Map", hTitleRecoNeutron = "Reco Neutron Hit Map", hSaveNameRecoNeutron = "Reco_n_AMap";
     reco_theta_n_VS_phi_n = hPlot2D(AMapsMode_TitleAddition, "", hStatsTitleRecoNeutron, hTitleRecoNeutron, "#phi_{n} [#circ]", "#theta_{n} [#circ]", AMapSavePathRecoNeutron,
                                     hSaveNameRecoNeutron, hBinLowerXLim, hBinUpperXLim, hBinLowerYLim, hBinUpperYLim, HistNucSliceNumOfXBins, HistNucSliceNumOfYBins);
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Neutron Reco./TL Ratio">
+    #pragma region /* Neutron Reco./TL Ratio */
     std::string hStatsTitleRecoToTLNeutron = "Neutron Reco/TL ratio", hTitleRecoToTLNeutron = "Neutron Reco/TL ratio", hSaveNameRecoToTLNeutron = "Neutron_Ratio";
     acceptance_eff_n = hPlot2D(AMapsMode_TitleAddition, "", hStatsTitleRecoToTLNeutron, hTitleRecoToTLNeutron, "#phi_{n} [#circ]", "#theta_{n} [#circ]", AMapSavePathRecoToTLNeutron,
                                hSaveNameRecoToTLNeutron, hBinLowerXLim, hBinUpperXLim, hBinLowerYLim, hBinUpperYLim, HistNucSliceNumOfXBins, HistNucSliceNumOfYBins);
-    //</editor-fold>
+    #pragma endregion
 
-    //</editor-fold>
+    #pragma endregion
 
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Finalized acceptance maps">
+    #pragma region /* Finalized acceptance maps */
     std::string hStatsTitleAMapElectron = "Electron_AMap";
     std::string hTitleAMapElectron = "Electron AMap for (Reco./TL)#geq" + basic_tools::ToStringWithPrecision(Charged_particle_min_Ratio, 2);
     std::string hSaveNameAMapElectron = "01_e_AMap";
@@ -360,11 +360,11 @@ AMaps::AMaps(const std::string &SampleName, const std::string &P_e_bin_profile, 
     std::string hSaveNameAMapNucleon = "04_nuc_AMap";
     filtered_reco_theta_nuc_VS_phi_nuc = hPlot2D(AMapsMode_TitleAddition, "", hStatsTitleAMapNucleon, hTitleAMapNucleon, "#phi_{nuc} [#circ]", "#theta_{nuc} [#circ]", AMapSavePathAMap,
                                                  hSaveNameAMapNucleon, hBinLowerXLim, hBinUpperXLim, hBinLowerYLim, hBinUpperYLim, HistNucSliceNumOfXBins, HistNucSliceNumOfYBins);
-    //</editor-fold>
+    #pragma endregion
 }
-//</editor-fold>
+#pragma endregion
 
-//<editor-fold desc="AMaps loading constructor">
+#pragma region /* AMaps loading constructor */
 AMaps::AMaps(const std::string &AcceptanceMapsDirectory, const std::string &SampleName, const double &beamE, const std::string &AMapsMode, const bool &Electron_single_slice_test,
              const bool &Nucleon_single_slice_test, const vector<int> &TestSlices) {
     AMaps_Mode = AMapsMode;
@@ -433,11 +433,11 @@ AMaps::AMaps(const std::string &AcceptanceMapsDirectory, const std::string &Samp
     e_single_slice_test = Electron_single_slice_test, nuc_single_slice_test = Nucleon_single_slice_test;
     Slices2Test = TestSlices;
 }
-//</editor-fold>
+#pragma endregion
 
 // SetBins functions ----------------------------------------------------------------------------------------------------------------------------------------------------
 
-//<editor-fold desc="SetBins function">
+#pragma region /* SetBins function */
 void AMaps::SetBins(const std::string &P_nuc_bin_profile, double beamE) {
     bool InvertedPrintOut = false;
     bool RegPrintOut = false;
@@ -526,9 +526,9 @@ void AMaps::SetBins(const std::string &P_nuc_bin_profile, double beamE) {
         cout << "Exiting...", exit(0);
     }
 }
-//</editor-fold>
+#pragma endregion
 
-//<editor-fold desc="SetElectronBins function">
+#pragma region /* SetElectronBins function */
 void AMaps::SetElectronBins(const std::string &P_e_bin_profile, double beamE) {
     bool InvertedPrintOut = false;
     bool RegPrintOut = false;
@@ -699,9 +699,9 @@ void AMaps::SetElectronBins(const std::string &P_e_bin_profile, double beamE) {
         cout << "Exiting...", exit(0);
     }
 }
-//</editor-fold>
+#pragma endregion
 
-//<editor-fold desc="SetBins function (old)">
+#pragma region /* SetBins function (old) */
 void AMaps::SetBins(double beamE, double nOfMomBins) {
     double BinUpperLim = beamE;
 
@@ -728,11 +728,11 @@ void AMaps::SetBins(double beamE, double nOfMomBins) {
         }
     }
 }
-//</editor-fold>
+#pragma endregion
 
 // isElectron function --------------------------------------------------------------------------------------------------------------------------------------------------
 
-//<editor-fold desc="isElectron function">
+#pragma region /* isElectron function */
 bool AMaps::isElectron(const std::string &SampleType) {
     if (SampleType == "Electron" || SampleType == "electron") {
         return true;
@@ -740,11 +740,11 @@ bool AMaps::isElectron(const std::string &SampleType) {
         return false;
     }
 }
-//</editor-fold>
+#pragma endregion
 
 // isProton function ----------------------------------------------------------------------------------------------------------------------------------------------------
 
-//<editor-fold desc="isProton function">
+#pragma region /* isProton function */
 bool AMaps::isProton(const std::string &SampleType) {
     if (SampleType == "Proton" || SampleType == "proton") {
         return true;
@@ -752,11 +752,11 @@ bool AMaps::isProton(const std::string &SampleType) {
         return false;
     }
 }
-//</editor-fold>
+#pragma endregion
 
 // isNeutron function ---------------------------------------------------------------------------------------------------------------------------------------------------
 
-//<editor-fold desc="isNeutron function">
+#pragma region /* isNeutron function */
 bool AMaps::isNeutron(const std::string &SampleType) {
     if (SampleType == "Neutron" || SampleType == "neutron") {
         return true;
@@ -764,11 +764,11 @@ bool AMaps::isNeutron(const std::string &SampleType) {
         return false;
     }
 }
-//</editor-fold>
+#pragma endregion
 
 // isTL function --------------------------------------------------------------------------------------------------------------------------------------------------------
 
-//<editor-fold desc="isTL function">
+#pragma region /* isTL function */
 bool AMaps::isTL(const std::string &SampleType) {
     if (SampleType == "Truth" || SampleType == "truth" || SampleType == "TL" || SampleType == "truth level" || SampleType == "truth-level" || SampleType == "Truth-Level") {
         return true;
@@ -776,11 +776,11 @@ bool AMaps::isTL(const std::string &SampleType) {
         return false;
     }
 }
-//</editor-fold>
+#pragma endregion
 
 // isReco function --------------------------------------------------------------------------------------------------------------------------------------------------------
 
-//<editor-fold desc="isReco function">
+#pragma region /* isReco function */
 bool AMaps::isReco(const std::string &SampleType) {
     if (SampleType == "reco" || SampleType == "Reco" || SampleType == "Reconstruction") {
         return true;
@@ -788,11 +788,11 @@ bool AMaps::isReco(const std::string &SampleType) {
         return false;
     }
 }
-//</editor-fold>
+#pragma endregion
 
 // hFillHitMaps function ------------------------------------------------------------------------------------------------------------------------------------------------
 
-//<editor-fold desc="hFillHitMaps function">
+#pragma region /* hFillHitMaps function */
 void AMaps::hFillHitMaps(const std::string &SampleType, const std::string &particle, double Momentum, double Theta, double Phi, double Weight) {
     bool is_e = isElectron(particle), is_p = isProton(particle), is_n = isNeutron(particle);
     bool is_TL = isTL(SampleType), is_Reco = isReco(SampleType);
@@ -800,7 +800,7 @@ void AMaps::hFillHitMaps(const std::string &SampleType, const std::string &parti
     bool TL_e_PrintOut = false, TL_p_PrintOut = false, TL_n_PrintOut = false;
     bool Reco_e_PrintOut = false, Reco_p_PrintOut = false, Reco_n_PrintOut = false;
 
-    //<editor-fold desc="Safety checks (AMaps::hFillHitMaps)">
+    #pragma region /* Safety checks (AMaps::hFillHitMaps) */
     if (is_e && is_p && is_n) { cout << "\n\nAMaps::hFillHitMaps: particle can't all particles! Exiting...\n", exit(0); }
     if (!is_e && !is_p && !is_n) { cout << "\n\nAMaps::hFillHitMaps: particle must be an electron, proton or neutron! Exiting...\n", exit(0); }
     if (is_e && is_p) { cout << "\n\nAMaps::hFillHitMaps: particle can't be both electrons and protons! Exiting...\n", exit(0); }
@@ -809,7 +809,7 @@ void AMaps::hFillHitMaps(const std::string &SampleType, const std::string &parti
 
     if (is_TL && is_Reco) { cout << "\n\nAMaps::hFillHitMaps: particle can't be both TL and Reco! Exiting...\n", exit(0); }
     if (!is_TL && !is_Reco) { cout << "\n\nAMaps::hFillHitMaps: particle must be either TL and Reco! Exiting...\n", exit(0); }
-    //</editor-fold>
+    #pragma endregion
 
     if (is_TL) {
         if (is_e) {  // electrons are charged -> look for correct momentum slice!
@@ -830,11 +830,11 @@ void AMaps::hFillHitMaps(const std::string &SampleType, const std::string &parti
                         cout << "Phi = " << Phi << "\n";
                     }
 
-                    //<editor-fold desc="Safety checks (AMaps::hFillHitMaps)">
+                    #pragma region /* Safety checks (AMaps::hFillHitMaps) */
                     if (ElectronMomSliceLimits.at(i).at(0) > ElectronMomSliceLimits.at(i).at(1)) {
                         cout << "\n\nAMaps::hFillHitMaps: electron momentum slice limits were set incorrectly! Exiting...\n", exit(0);
                     }
-                    //</editor-fold>
+                    #pragma endregion
 
                     break;  // no need to keep the loop going after filling histogram
                 }
@@ -857,11 +857,11 @@ void AMaps::hFillHitMaps(const std::string &SampleType, const std::string &parti
                         cout << "Phi = " << Phi << "\n";
                     }
 
-                    //<editor-fold desc="Safety checks (AMaps::hFillHitMaps)">
+                    #pragma region /* Safety checks (AMaps::hFillHitMaps) */
                     if (NucleonMomSliceLimits.at(i).at(0) > NucleonMomSliceLimits.at(i).at(1)) {
                         cout << "\n\nAMaps::hFillHitMaps: nucleon momentum slice limits were set incorrectly! Exiting...\n", exit(0);
                     }
-                    //</editor-fold>
+                    #pragma endregion
 
                     break;  // no need to keep the loop going after filling histogram
                 }
@@ -886,11 +886,11 @@ void AMaps::hFillHitMaps(const std::string &SampleType, const std::string &parti
                         cout << "Phi = " << Phi << "\n";
                     }
 
-                    //<editor-fold desc="Safety checks (AMaps::hFillHitMaps)">
+                    #pragma region /* Safety checks (AMaps::hFillHitMaps) */
                     if (NucleonMomSliceLimits.at(i).at(0) > NucleonMomSliceLimits.at(i).at(1)) {
                         cout << "\n\nAMaps::hFillHitMaps: nucleon momentum slice limits were set incorrectly! Exiting...\n", exit(0);
                     }
-                    //</editor-fold>
+                    #pragma endregion
 
                     break;  // no need to keep the loop going after filling histogram
                 }
@@ -925,11 +925,11 @@ void AMaps::hFillHitMaps(const std::string &SampleType, const std::string &parti
                         cout << "Phi = " << Phi << "\n";
                     }
 
-                    //<editor-fold desc="Safety checks (AMaps::hFillHitMaps)">
+                    #pragma region /* Safety checks (AMaps::hFillHitMaps) */
                     if (ElectronMomSliceLimits.at(i).at(0) > ElectronMomSliceLimits.at(i).at(1)) {
                         cout << "\n\nAMaps::hFillHitMaps: electron momentum slice limits were set incorrectly! Exiting...\n", exit(0);
                     }
-                    //</editor-fold>
+                    #pragma endregion
 
                     break;  // no need to keep the loop going after filling histogram
                 }
@@ -956,11 +956,11 @@ void AMaps::hFillHitMaps(const std::string &SampleType, const std::string &parti
                         cout << "Phi = " << Phi << "\n";
                     }
 
-                    //<editor-fold desc="Safety checks (AMaps::hFillHitMaps)">
+                    #pragma region /* Safety checks (AMaps::hFillHitMaps) */
                     if (NucleonMomSliceLimits.at(i).at(0) > NucleonMomSliceLimits.at(i).at(1)) {
                         cout << "\n\nAMaps::hFillHitMaps: nucleon momentum slice limits were set incorrectly! Exiting...\n", exit(0);
                     }
-                    //</editor-fold>
+                    #pragma endregion
 
                     break;  // no need to keep the loop going after filling histogram
                 }
@@ -991,11 +991,11 @@ void AMaps::hFillHitMaps(const std::string &SampleType, const std::string &parti
                         cout << "Phi = " << Phi << "\n";
                     }
 
-                    //<editor-fold desc="Safety checks (AMaps::hFillHitMaps)">
+                    #pragma region /* Safety checks (AMaps::hFillHitMaps) */
                     if (NucleonMomSliceLimits.at(i).at(0) > NucleonMomSliceLimits.at(i).at(1)) {
                         cout << "\n\nAMaps::hFillHitMaps: nucleon momentum slice limits were set incorrectly! Exiting...\n", exit(0);
                     }
-                    //</editor-fold>
+                    #pragma endregion
 
                     break;  // no need to keep the loop going after filling histogram
                 }
@@ -1011,11 +1011,11 @@ void AMaps::hFillHitMaps(const std::string &SampleType, const std::string &parti
         }
     }
 }
-//</editor-fold>
+#pragma endregion
 
 // CalcAMapsRatio function --------------------------------------------------------------------------------------------------------------------------------------------
 
-//<editor-fold desc="CalcAMapsRatio function">
+#pragma region /* CalcAMapsRatio function */
 void AMaps::CalcAMapsRatio() {
     if (calc_Electron_RecoToTL_Ratio) {
         cout << "\n\nCalculating electron acceptance efficiency...";
@@ -1043,11 +1043,11 @@ void AMaps::CalcAMapsRatio() {
         cout << " done!\n";
     }
 }
-//</editor-fold>
+#pragma endregion
 
 // GenerateSeparateCPartAMaps function ----------------------------------------------------------------------------------------------------------------------------------
 
-//<editor-fold desc="GenerateSeparateCPartAMaps function">
+#pragma region /* GenerateSeparateCPartAMaps function */
 void AMaps::GenerateSeparateCPartAMaps(double cP_minR) {
     // Generate electron map matrices
     for (int bin = 0; bin < ElectronMomSliceLimits.size(); bin++) {
@@ -1060,7 +1060,7 @@ void AMaps::GenerateSeparateCPartAMaps(double cP_minR) {
         // TODO: move from here
         if (AMaps_Mode == "AMaps") { acceptance_eff_e_BySlice.at(bin).ApplyZMaxLim(1.2); }
 
-        //<editor-fold desc="Fill e_AMap_Slices">
+        #pragma region /* Fill e_AMap_Slices */
         vector<vector<int>> e_AMap_slice;
         vector<vector<double>> e_WMap_slice;
 
@@ -1084,7 +1084,7 @@ void AMaps::GenerateSeparateCPartAMaps(double cP_minR) {
 
         e_AMap_Slices.push_back(e_AMap_slice);
         e_WMap_Slices.push_back(e_WMap_slice);
-        //</editor-fold>
+        #pragma endregion
     }
 
     // Generate proton map matrices
@@ -1098,7 +1098,7 @@ void AMaps::GenerateSeparateCPartAMaps(double cP_minR) {
         // TODO: move from here
         if (AMaps_Mode == "AMaps") { acceptance_eff_p_BySlice.at(bin).ApplyZMaxLim(1.2); }
 
-        //<editor-fold desc="Fill p_AMap_Slices">
+        #pragma region /* Fill p_AMap_Slices */
         vector<vector<int>> p_AMap_slice;
         vector<vector<double>> p_WMap_slice;
 
@@ -1122,14 +1122,14 @@ void AMaps::GenerateSeparateCPartAMaps(double cP_minR) {
 
         p_AMap_Slices.push_back(p_AMap_slice);
         p_WMap_Slices.push_back(p_WMap_slice);
-        //</editor-fold>
+        #pragma endregion
     }
 }
-//</editor-fold>
+#pragma endregion
 
 // GenerateCPartAMaps function ------------------------------------------------------------------------------------------------------------------------------------------
 
-//<editor-fold desc="GenerateCPartAMaps function">
+#pragma region /* GenerateCPartAMaps function */
 void AMaps::GenerateCPartAMaps(double cP_minR) {
     GenerateSeparateCPartAMaps(cP_minR);
 
@@ -1167,11 +1167,11 @@ void AMaps::GenerateCPartAMaps(double cP_minR) {
         p_AMap.push_back(p_AMap_col);
     }
 }
-//</editor-fold>
+#pragma endregion
 
 // GenerateNPartAMaps function ------------------------------------------------------------------------------------------------------------------------------------------
 
-//<editor-fold desc="GenerateNPartAMaps function">
+#pragma region /* GenerateNPartAMaps function */
 void AMaps::GenerateNPartAMaps(double nP_minR) {
     for (int bin = 0; bin < NucleonMomSliceLimits.size(); bin++) {
         for (int i = 0; i < (HistNucSliceNumOfXBins + 1); i++) {
@@ -1185,7 +1185,7 @@ void AMaps::GenerateNPartAMaps(double nP_minR) {
             acceptance_eff_n_BySlice.at(bin).ApplyZMaxLim(1.2);
         }
 
-        //<editor-fold desc="Fill p_AMap_Slices">
+        #pragma region /* Fill p_AMap_Slices */
         vector<vector<int>> n_AMap_slice;
         vector<vector<double>> n_WMap_slice;
 
@@ -1209,7 +1209,7 @@ void AMaps::GenerateNPartAMaps(double nP_minR) {
 
         n_AMap_Slices.push_back(n_AMap_slice);
         n_WMap_Slices.push_back(n_WMap_slice);
-        //</editor-fold>
+        #pragma endregion
     }
 
     // TODO: recheck if need n_AMap and n_WMap if we're moving to neutron maps by momentum slices
@@ -1277,11 +1277,11 @@ void AMaps::GenerateNPartAMaps(double nP_minR) {
     }
     */
 }
-//</editor-fold>
+#pragma endregion
 
 // GenerateNucleonAMap function -----------------------------------------------------------------------------------------------------------------------------------------
 
-//<editor-fold desc="GenerateNucleonAMap function">
+#pragma region /* GenerateNucleonAMap function */
 void AMaps::GenerateNucleonAMap() {
     for (int i = 0; i < (HistNucSliceNumOfXBins + 1); i++) {
         for (int j = 0; j < (HistNucSliceNumOfYBins + 1); j++) {
@@ -1330,11 +1330,11 @@ void AMaps::GenerateNucleonAMap() {
         nuc_WMap_Slices.push_back(nuc_slice);  // TODO: figure out if really need these!
     }
 }
-//</editor-fold>
+#pragma endregion
 
 // SaveHitMaps function -------------------------------------------------------------------------------------------------------------------------------------------------
 
-//<editor-fold desc="SaveHitMaps function">
+#pragma region /* SaveHitMaps function */
 
 // TODO: separate into AMaps and WMaps
 
@@ -1387,7 +1387,7 @@ void AMaps::SaveHitMaps(const std::string &SampleName, const std::string &Accept
 
     if (PrintOut) { ++testNumber, cout << "\n\n\nTEST " << testNumber << "\n"; }
 
-    //<editor-fold desc="Save electron slices">fileExists
+    #pragma region /* Save electron slices */fileExists
     for (int Slice = 0; Slice < ElectronMomSliceLimits.size(); Slice++) {
         std::ofstream e_AMap_TempFile, e_WMap_TempFile;
 
@@ -1433,11 +1433,11 @@ void AMaps::SaveHitMaps(const std::string &SampleName, const std::string &Accept
         system(("cp " + AMapSliceElectronSavePath + AMapTempFileName + " " + AMapSliceElectronSavePathCopy + AMapTempFileName).c_str());
         system(("cp " + WMapSliceElectronSavePath + WMapTempFileName + " " + WMapSliceElectronSavePathCopy + WMapTempFileName).c_str());
     }
-    //</editor-fold>
+    #pragma endregion
 
     if (PrintOut) { ++testNumber, cout << "\n\n\nTEST " << testNumber << "\n"; }
 
-    //<editor-fold desc="Save proton, neutron & nucleon slices">
+    #pragma region /* Save proton, neutron & nucleon slices */
     for (int Slice = 0; Slice < NucleonMomSliceLimits.size(); Slice++) {
         std::ofstream p_AMap_TempFile, p_WMap_TempFile, n_AMap_TempFile, n_WMap_TempFile, nuc_AMap_TempFile, nuc_WMap_TempFile;
 
@@ -1535,11 +1535,11 @@ void AMaps::SaveHitMaps(const std::string &SampleName, const std::string &Accept
         system(("cp " + AMapSliceNucleonSavePath + NucleonAMapTempFileName + " " + AMapSliceNucleonSavePathCopy + NucleonAMapTempFileName).c_str());
         system(("cp " + WMapSliceNucleonSavePath + NucleonWMapTempFileName + " " + WMapSliceNucleonSavePathCopy + NucleonWMapTempFileName).c_str());
     }
-    //</editor-fold>
+    #pragma endregion
 
     if (PrintOut) { ++testNumber, cout << "\n\n\nTEST " << testNumber << "\n"; }
 
-    //<editor-fold desc="Save combined maps">
+    #pragma region /* Save combined maps */
     // TODO: figure out rather or not to keep these combind maps!
     std::ofstream e_AMap_file, p_AMap_file, n_AMap_file, nuc_AMap_file;
 
@@ -1623,9 +1623,9 @@ void AMaps::SaveHitMaps(const std::string &SampleName, const std::string &Accept
     system(("cp " + AcceptanceMapsDirectory + SampleName + "/p_" + AMaps_Mode + "_file.par " + AMapCopySavePath).c_str());
     system(("cp " + AcceptanceMapsDirectory + SampleName + "/n_" + AMaps_Mode + "_file.par " + AMapCopySavePath).c_str());
     system(("cp " + AcceptanceMapsDirectory + SampleName + "/nuc_" + AMaps_Mode + "_file.par " + AMapCopySavePath).c_str());
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Slice limits">
+    #pragma region /* Slice limits */
     std::ofstream e_slice_limits, p_slice_limits, n_slice_limits, nuc_slice_limits;
 
     // e_slice_limits.open(AMapSliceElectronSavePath + "e_slice_limits.par");
@@ -1670,13 +1670,13 @@ void AMaps::SaveHitMaps(const std::string &SampleName, const std::string &Accept
     system(("cp " + WMapSliceProtonSavePath + "p_slice_limits.par " + WMapSliceProtonSavePathCopy).c_str());
     system(("cp " + WMapSliceNeutronSavePath + "n_slice_limits.par " + WMapSliceNeutronSavePathCopy).c_str());
     system(("cp " + WMapSliceNucleonSavePath + "nuc_slice_limits.par " + WMapSliceNucleonSavePathCopy).c_str());
-    //</editor-fold>
+    #pragma endregion
 }
-//</editor-fold>
+#pragma endregion
 
 // DrawAndSaveHitMapsPDFs function ------------------------------------------------------------------------------------------------------------------------------------------
 
-//<editor-fold desc="DrawAndSaveHitMapsPDFs function">
+#pragma region /* DrawAndSaveHitMapsPDFs function */
 void AMaps::DrawAndSaveHitMapsPDFs(vector<TH1 *> HistoList, const std::string &PDFfileName) {
     TCanvas *myText_temp = new TCanvas("myText_temp", "myText_temp", pixelx, pixely);
     TCanvas *myCanvas_temp = new TCanvas("myCanvas_temp", "myCanvas_temp", pixelx, pixely);
@@ -1715,11 +1715,11 @@ void AMaps::DrawAndSaveHitMapsPDFs(vector<TH1 *> HistoList, const std::string &P
     delete myText_temp;
     delete myCanvas_temp;
 }
-//</editor-fold>
+#pragma endregion
 
 // DrawAndSaveHitMaps function ------------------------------------------------------------------------------------------------------------------------------------------
 
-//<editor-fold desc="DrawAndSaveHitMaps function">
+#pragma region /* DrawAndSaveHitMaps function */
 void AMaps::DrawAndSaveHitMaps(const std::string &SampleName, TCanvas *h1DCanvas, const std::string &AcceptanceMapsDirectory) {
     cout << "\n\nProcessing maps...\n";
 
@@ -1816,7 +1816,7 @@ void AMaps::DrawAndSaveHitMaps(const std::string &SampleName, TCanvas *h1DCanvas
     DrawAndSaveHitMapsPDFs(acc_eff_n_BySlice, acceptance_eff_n_BySlice[0].GetHistogram2DSaveNamePath() + "acceptance_eff_n_BySlice.pdf");
     DrawAndSaveHitMapsPDFs(filtered_reco_n_BySlice, filtered_reco_theta_n_VS_phi_n_BySlice[0].GetHistogram2DSaveNamePath() + "filtered_reco_theta_n_VS_phi_n_BySlice.pdf");
 
-    //<editor-fold desc="Save TL Acceptance maps to plots directory">
+    #pragma region /* Save TL Acceptance maps to plots directory */
     cout << "\n\nSaving acceptance maps to plots directory...";
     /* Acceptance maps BC */
     TFile *AMapsBC_plots_path_fout = new TFile((AMapSavePath + "/" + AMapsBC_prefix + SampleName + ".root").c_str(), "recreate");
@@ -1859,11 +1859,11 @@ void AMaps::DrawAndSaveHitMaps(const std::string &SampleName, TCanvas *h1DCanvas
     AcceptanceMaps->Write();
     AMaps_plots_path_fout->Write();
     AMaps_plots_path_fout->Close();
-    //</editor-fold>
+    #pragma endregion
 
     cout << "done!\n";
 
-    //<editor-fold desc="Save TL Acceptance maps to reference Acceptance maps directory">
+    #pragma region /* Save TL Acceptance maps to reference Acceptance maps directory */
     cout << "\n\nSaving acceptance maps to reference Acceptance maps directory...";
 
     /* Acceptance maps BC */
@@ -1913,15 +1913,15 @@ void AMaps::DrawAndSaveHitMaps(const std::string &SampleName, TCanvas *h1DCanvas
     AMaps_ref_AMaps_fout->Write();
     AMaps_ref_AMaps_fout->Close();
     system(("cp " + AMapSavePath + "/" + AMaps_prefix + SampleName + ".root" + " " + AMapCopySavePath).c_str());
-    //</editor-fold>
+    #pragma endregion
 
     cout << "done!\n\n\n";
 }
-//</editor-fold>
+#pragma endregion
 
 // HistCounter function -------------------------------------------------------------------------------------------------------------------------------------------------
 
-//<editor-fold desc="HistCounter function">
+#pragma region /* HistCounter function */
 int AMaps::HistCounter(const char *fname) {
     bool PrintHistInfo = false;
 
@@ -1949,11 +1949,11 @@ int AMaps::HistCounter(const char *fname) {
 
     return total;
 }
-//</editor-fold>
+#pragma endregion
 
 // SetHistBinsFromHistTitle function ------------------------------------------------------------------------------------------------------------------------------------
 
-//<editor-fold desc="SetHistBinsFromHistTitle function">
+#pragma region /* SetHistBinsFromHistTitle function */
 void AMaps::SetHistBinsFromHistTitle(TH2D *Histogram2D) {
     bool PrintOut = false;
 
@@ -1973,11 +1973,11 @@ void AMaps::SetHistBinsFromHistTitle(TH2D *Histogram2D) {
         cout << "HistNucSliceNumOfYBins = " << HistNucSliceNumOfYBins << "\n\n";
     }
 }
-//</editor-fold>
+#pragma endregion
 
 // SetSlicesFromHistTitle function --------------------------------------------------------------------------------------------------------------------------------------
 
-//<editor-fold desc="SetSlicesFromHistTitle function">
+#pragma region /* SetSlicesFromHistTitle function */
 void AMaps::SetSlicesFromHistTitle(TH2D *Histogram2D, const std::string &Particle) {
     bool PrintOut = false;
 
@@ -2005,9 +2005,9 @@ void AMaps::SetSlicesFromHistTitle(TH2D *Histogram2D, const std::string &Particl
         cout << "SliceUpperLim = " << SliceUpperLim << "\n\n";
     }
 }
-//</editor-fold>
+#pragma endregion
 
-//<editor-fold desc="SetSlicesFromHistTitle function (original)">
+#pragma region /* SetSlicesFromHistTitle function (original) */
 void AMaps::SetSlicesFromHistTitle(TH2D *Histogram2D, vector<vector<double>> MomBinsLimits) {
     bool PrintOut = false;
 
@@ -2032,15 +2032,15 @@ void AMaps::SetSlicesFromHistTitle(TH2D *Histogram2D, vector<vector<double>> Mom
         cout << "MomBinsLimitsTemp.size() = " << MomBinsLimitsTemp.size() << "\n\n";
     }
 }
-//</editor-fold>
+#pragma endregion
 
 // ReadHitMaps function -------------------------------------------------------------------------------------------------------------------------------------------------
 
-//<editor-fold desc="ReadHitMaps function">
+#pragma region /* ReadHitMaps function */
 void AMaps::ReadHitMaps(const std::string &AcceptanceMapsDirectory, const std::string &SampleName) {
     bool PrintKeys = false;
 
-    //<editor-fold desc="Load AMapsBC">
+    #pragma region /* Load AMapsBC */
     std::string AMapsBC_RootFile_FileName = AcceptanceMapsDirectory + "/" + SampleName + "/" + AMapsBC_prefix + SampleName + ".root";
     TFile *AMapsBC_RootFile = new TFile(AMapsBC_RootFile_FileName.c_str());
     if (!AMapsBC_RootFile) { cout << "\n\nAMaps::ReadHitMaps: could not load AMapsBC root file! Exiting...\n", exit(0); }
@@ -2062,9 +2062,9 @@ void AMaps::ReadHitMaps(const std::string &AcceptanceMapsDirectory, const std::s
             reco_theta_nuc_VS_phi_nuc_BC.SetHistogram2D(TempHist);
         }
     }
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Load Hit_Maps_TL">
+    #pragma region /* Load Hit_Maps_TL */
     std::string Hit_Maps_TL_RootFile_FileName = AcceptanceMapsDirectory + "/" + SampleName + "/" + AMap_TL_prefix + SampleName + ".root";
     TFile *Hit_Maps_TL_RootFile = new TFile(Hit_Maps_TL_RootFile_FileName.c_str());
     if (!Hit_Maps_TL_RootFile) { cout << "\n\nAMaps::ReadHitMaps: could not load Hit_Maps_TL root file! Exiting...\n", exit(0); }
@@ -2093,9 +2093,9 @@ void AMaps::ReadHitMaps(const std::string &AcceptanceMapsDirectory, const std::s
 
         ++counter;
     }
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Load Hit_Maps_Reco">
+    #pragma region /* Load Hit_Maps_Reco */
     std::string Hit_Maps_Reco_RootFile_FileName = AcceptanceMapsDirectory + "/" + SampleName + "/" + AMap_Reco_prefix + SampleName + ".root";
     TFile *Hit_Maps_Reco_RootFile = new TFile(Hit_Maps_Reco_RootFile_FileName.c_str());
     if (!Hit_Maps_Reco_RootFile) { cout << "\n\nAMaps::ReadHitMaps: could not load Hit_Maps_Reco root file! Exiting...\n", exit(0); }
@@ -2117,9 +2117,9 @@ void AMaps::ReadHitMaps(const std::string &AcceptanceMapsDirectory, const std::s
             reco_theta_n_VS_phi_n.SetHistogram2D(TempHist);
         }
     }
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Load Hit_Maps_Ratio">
+    #pragma region /* Load Hit_Maps_Ratio */
     std::string Hit_Maps_Ratio_RootFile_FileName = AcceptanceMapsDirectory + "/" + SampleName + "/" + AMap_Ratio_prefix + SampleName + ".root";
     TFile *Hit_Maps_Ratio_RootFile = new TFile(Hit_Maps_Ratio_RootFile_FileName.c_str());
     if (!Hit_Maps_Ratio_RootFile) { cout << "\n\nAMaps::ReadHitMaps: could not load Hit_Maps_Ratio root file! Exiting...\n", exit(0); }
@@ -2141,9 +2141,9 @@ void AMaps::ReadHitMaps(const std::string &AcceptanceMapsDirectory, const std::s
             acceptance_eff_n.SetHistogram2D(TempHist);
         }
     }
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Load cPart_Sep_AMaps">
+    #pragma region /* Load cPart_Sep_AMaps */
     std::string cPart_Sep_AMaps_RootFile_FileName = AcceptanceMapsDirectory + "/" + SampleName + "/" + cPart_Sep_AMaps_prefix + SampleName + ".root";
     TFile *cPart_Sep_AMaps_RootFile = new TFile(cPart_Sep_AMaps_RootFile_FileName.c_str());
     if (!cPart_Sep_AMaps_RootFile) { cout << "\n\nAMaps::ReadHitMaps: could not load cPart_Sep_AMaps root file! Exiting...\n", exit(0); }
@@ -2163,9 +2163,9 @@ void AMaps::ReadHitMaps(const std::string &AcceptanceMapsDirectory, const std::s
             filtered_reco_theta_p_VS_phi_p_BySlice.push_back(Temp2DHist);
         }
     }
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Load AMaps">
+    #pragma region /* Load AMaps */
     std::string AMaps_RootFile_FileName = AcceptanceMapsDirectory + "/" + SampleName + "/" + AMaps_prefix + SampleName + ".root";
     TFile *AMaps_RootFile = new TFile(AMaps_RootFile_FileName.c_str());
     if (!AMaps_RootFile) { cout << "\n\nAMaps::ReadHitMaps: could not load AMaps root file! Exiting...\n", exit(0); }
@@ -2181,15 +2181,15 @@ void AMaps::ReadHitMaps(const std::string &AcceptanceMapsDirectory, const std::s
 
     LoadedNucleonAMap = (TH2D *)AMaps_RootFile->Get("Nucleon_AMap");
     if (!LoadedNucleonAMap) { cout << "\n\nAMaps::ReadHitMaps: could not load Nucleon_AMap from root file! Exiting...\n", exit(0); }
-    //</editor-fold>
+    #pragma endregion
 
     cout << "\n\nAcceptance maps loaded!\n\n";
 }
-//</editor-fold>
+#pragma endregion
 
 // ReadAMapLimits function ----------------------------------------------------------------------------------------------------------------------------------------------
 
-//<editor-fold desc="ReadAMapLimits function">
+#pragma region /* ReadAMapLimits function */
 void AMaps::ReadAMapLimits(const char *filename, vector<vector<double>> &Loaded_particle_limits) {
     ifstream infile;
     infile.open(filename);
@@ -2220,11 +2220,11 @@ void AMaps::ReadAMapLimits(const char *filename, vector<vector<double>> &Loaded_
         cout << "\n\nAMaps::ReadAMap: file not found! Target file was set to:\n" << filename << "\nExiting...\n\n", exit(0);
     }
 }
-//</editor-fold>
+#pragma endregion
 
 // ReadAMapSlices function (AMaps) --------------------------------------------------------------------------------------------------------------------------------------
 
-//<editor-fold desc="ReadAMapSlices function (AMaps)">
+#pragma region /* ReadAMapSlices function (AMaps) */
 void AMaps::ReadAMapSlices(const std::string &SampleName, const std::string &AcceptanceMapsDirectory, const std::string &Particle, const vector<vector<double>> &Loaded_particle_limits,
                            vector<vector<vector<int>>> &Loaded_Particle_AMap_Slices) {
     std::string ParticleShort;
@@ -2252,11 +2252,11 @@ void AMaps::ReadAMapSlices(const std::string &SampleName, const std::string &Acc
         Loaded_Particle_AMap_Slices.push_back(Loaded_Particle_AMap_TempSlice);
     }
 }
-//</editor-fold>
+#pragma endregion
 
 // ReadWMapSlices function (WMaps) --------------------------------------------------------------------------------------------------------------------------------------
 
-//<editor-fold desc="ReadWMapSlices function (WMaps)">
+#pragma region /* ReadWMapSlices function (WMaps) */
 void AMaps::ReadWMapSlices(const std::string &SampleName, const std::string &AcceptanceMapsDirectory, const std::string &Particle, const vector<vector<double>> &Loaded_particle_limits,
                            vector<vector<vector<double>>> &Loaded_Particle_WMap_Slices) {
     std::string ParticleShort;
@@ -2282,11 +2282,11 @@ void AMaps::ReadWMapSlices(const std::string &SampleName, const std::string &Acc
         Loaded_Particle_WMap_Slices.push_back(Loaded_Particle_WMap_TempSlice);
     }
 }
-//</editor-fold>
+#pragma endregion
 
 // ReadAMap function (AMaps) --------------------------------------------------------------------------------------------------------------------------------------------
 
-//<editor-fold desc="ReadAMap function (AMaps)">
+#pragma region /* ReadAMap function (AMaps) */
 /* A function that reads AMaps */
 void AMaps::ReadAMap(const char *filename, vector<vector<int>> &Loaded_particle_AMap) {
     bool PrintOut = false;
@@ -2342,11 +2342,11 @@ void AMaps::ReadAMap(const char *filename, vector<vector<int>> &Loaded_particle_
         cout << "\n\nAMaps::ReadAMap: file:\n" << filename << "\nwas not found! Exiting...\n\n", exit(0);
     }
 }
-//</editor-fold>
+#pragma endregion
 
 // ReadWMap function (WMaps) --------------------------------------------------------------------------------------------------------------------------------------------
 
-//<editor-fold desc="ReadWMap function (WMaps)">
+#pragma region /* ReadWMap function (WMaps) */
 /* A function that reads WMaps */
 
 void AMaps::ReadWMap(const char *filename, vector<vector<double>> &Loaded_particle_WMaps) {
@@ -2379,11 +2379,11 @@ void AMaps::ReadWMap(const char *filename, vector<vector<double>> &Loaded_partic
         cout << "\n\nAMaps::ReadWMap: file:\n" << filename << "\nwas not found! Exiting...\n\n", exit(0);
     }
 }
-//</editor-fold>
+#pragma endregion
 
 // MatchAngToHitMap function --------------------------------------------------------------------------------------------------------------------------------------------
 
-//<editor-fold desc="MatchAngToHitMap function (original with neutron FC 'bug')">
+#pragma region /* MatchAngToHitMap function (original with neutron FC 'bug') */
 bool AMaps::MatchAngToHitMap(const std::string &Particle, double Momentum, double Theta, double Phi, bool NucleonOverlappingFC) {
     int e_InitialSlice = 0, e_FinalSlice = Loaded_ElectronMomSliceLimits.size();
     int p_InitialSlice = 0, p_FinalSlice = Loaded_NucleonMomSliceLimits.size(), n_InitialSlice = 0, n_FinalSlice = Loaded_NucleonMomSliceLimits.size();
@@ -2492,9 +2492,9 @@ bool AMaps::MatchAngToHitMap(const std::string &Particle, double Momentum, doubl
 
     return false;
 }
-//</editor-fold>
+#pragma endregion
 
-////<editor-fold desc="MatchAngToHitMap function (original after neutron FC 'bug' fix)">
+//#pragma region /* MatchAngToHitMap function (original after neutron FC 'bug' fix) */
 // bool AMaps::MatchAngToHitMap(const std::string &Particle, double Momentum, double Theta, double Phi, bool NucleonOverlappingFC) {
 //     int e_InitialSlice = 0, e_FinalSlice = Loaded_ElectronMomSliceLimits.size();
 //     int p_InitialSlice = 0, p_FinalSlice = Loaded_NucleonMomSliceLimits.size(), n_InitialSlice = 0, n_FinalSlice = Loaded_NucleonMomSliceLimits.size();
@@ -2623,11 +2623,11 @@ bool AMaps::MatchAngToHitMap(const std::string &Particle, double Momentum, doubl
 //
 //     return false;
 // }
-////</editor-fold>
+//#pragma endregion
 
 // GetWeight function ---------------------------------------------------------------------------------------------------------------------------------------------------
 
-//<editor-fold desc="GetWeight function">
+#pragma region /* GetWeight function */
 double AMaps::GetWeight(bool apply_kinematical_weights, const std::string &Particle, double Momentum, double Theta, double Phi) {
     bool PrintOut = false;
 
@@ -2737,11 +2737,11 @@ double AMaps::GetWeight(bool apply_kinematical_weights, const std::string &Parti
         return 1;
     }
 }
-//</editor-fold>
+#pragma endregion
 
 // IsInFDQuery function -------------------------------------------------------------------------------------------------------------------------------------------------
 
-//<editor-fold desc="IsInFDQuery function">
+#pragma region /* IsInFDQuery function */
 bool AMaps::IsInFDQuery(bool Generate_AMaps, const DSCuts &ThetaFD, const std::string &Particle, double Momentum, double Theta, double Phi, bool NucleonOverlappingFC) {
     bool inFDQuery, part_inSomeSector;
 
@@ -2755,6 +2755,6 @@ bool AMaps::IsInFDQuery(bool Generate_AMaps, const DSCuts &ThetaFD, const std::s
 
     return inFDQuery;
 }
-//</editor-fold>
+#pragma endregion
 
 #endif  // AMAPS_H

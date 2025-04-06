@@ -33,26 +33,26 @@ using namespace constants;
 class ParticleID {
    public:
     // TODO: move from here!
-    //<editor-fold desc="Good protons monitoring histograms">
+    #pragma region /* Good protons monitoring histograms */
     //  Theta_p1_p2 vs. TOF1-TOF2 plots (2p, CD only) ------------------------------------------------------------------------------------------------------------------------
 
-    //<editor-fold desc="Theta_p1_p2 vs. TOF1-TOF2 plots (2p, CD only)">
+    #pragma region /* Theta_p1_p2 vs. TOF1-TOF2 plots (2p, CD only) */
     hPlot2D hdTheta_pi_pj_VS_ToFi_ToFj_BC_2idp_2p, hdTheta_pi_pj_VS_ToFi_ToFj_RE_2idp_2p;
     hPlot2D hdTheta_pi_pj_VS_ToFi_ToFj_BC_3idp_2p, hdTheta_pi_pj_VS_ToFi_ToFj_AE_3idp_2p;
     hPlot2D hdTheta_pi_pj_VS_ToFi_ToFj_BC_4idp_2p, hdTheta_pi_pj_VS_ToFi_ToFj_AE_4idp_2p;
-    //</editor-fold>
+    #pragma endregion
 
     // Theta_p1_p2 vs. position1-position2 plots (2p, CD only) --------------------------------------------------------------------------------------------------------------
 
-    //<editor-fold desc="Theta_p1_p2 vs. position1-position2 plots (2p, CD only)">
+    #pragma region /* Theta_p1_p2 vs. position1-position2 plots (2p, CD only) */
     hPlot2D hTheta_pi_pj_VS_Posi_Posj_BC_2idp_2p, hTheta_pi_pj_VS_Posi_Posj_RE_2idp_2p;
     hPlot2D hTheta_pi_pj_VS_Posi_Posj_BC_3idp_2p, hTheta_pi_pj_VS_Posi_Posj_AE_3idp_2p;
     hPlot2D hTheta_pi_pj_VS_Posi_Posj_BC_4idp_2p, hTheta_pi_pj_VS_Posi_Posj_AE_4idp_2p;
-    //</editor-fold>
+    #pragma endregion
 
     // Theta_p1_vs_Theta_p2 for Theta_p1_p2 < 20 (2p, CD & FD) --------------------------------------------------------------------------------------------------------------
 
-    //<editor-fold desc="Theta_p1_vs_Theta_p2 for Theta_p1_p2 < 20 (2p, CD & FD)">
+    #pragma region /* Theta_p1_vs_Theta_p2 for Theta_p1_p2 < 20 (2p, CD & FD) */
     TH2D *hTheta_pi_vs_theta_pj_for_Theta_pi_pj_20_BC_2idp_2p;
     std::string hTheta_pi_vs_theta_pj_for_Theta_pi_pj_20_BC_2idp_2p_Dir;
 
@@ -70,11 +70,11 @@ class ParticleID {
 
     TH2D *hTheta_pi_vs_theta_pj_for_Theta_pi_pj_20_AE_4idp_2p;
     std::string hTheta_pi_vs_theta_pj_for_Theta_pi_pj_20_AE_4idp_2p_Dir;
-    //</editor-fold>
+    #pragma endregion
 
     // Theta_p1_vs_Theta_p2 for every Theta_p1_p2 (2p, CD & FD) -------------------------------------------------------------------------------------------------------------
 
-    //<editor-fold desc="Theta_p1_vs_Theta_p2 for every Theta_p1_p2 (2p, CD & FD)">
+    #pragma region /* Theta_p1_vs_Theta_p2 for every Theta_p1_p2 (2p, CD & FD) */
     TH2D *hTheta_pi_vs_theta_pj_forall_Theta_pi_pj_BC_2idp_2p;
     std::string hTheta_pi_vs_theta_pj_forall_Theta_pi_pj_BC_2idp_2p_Dir;
 
@@ -92,7 +92,7 @@ class ParticleID {
 
     TH2D *hTheta_pi_vs_theta_pj_forall_Theta_pi_pj_AE_4idp_2p;
     std::string hTheta_pi_vs_theta_pj_forall_Theta_pi_pj_AE_4idp_2p_Dir;
-    //</editor-fold>
+    #pragma endregion
 
     /* Counting variables for good protons monitoring */
     int num_of_RM_2p_events_sCTOFhp = 0, num_of_AD_2p_events_from_3p_sCTOFhp = 0, num_of_AD_2p_events_from_4p_sCTOFhp = 0;
@@ -101,7 +101,7 @@ class ParticleID {
     int num_of_AD_2p_events_from_Xp_dCDaFDd = 0;  // events with 5p or more
 
     int num_of_AD_2p_events_from_mixed_sCTOFhp_dCDaFDd = 0;  // events with mixed sCTOFhp dCDaFDd
-    //</editor-fold>
+    #pragma endregion
 
     // Default constructor ---------------------------------------------------------------------------------------------------------------------------
 

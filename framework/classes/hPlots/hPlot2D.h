@@ -107,16 +107,16 @@ class hPlot2D {
 
     // histPlotter2D function -------------------------------------------------------------------------------------------------------------------------------------------
 
-    //<editor-fold desc="histPlotter2D function (regular)">
+    #pragma region /* histPlotter2D function (regular) */
     /* histPlotter2D function (regular) */
     void histPlotter2D(const std::string &SampleName, TCanvas *HistogramCanvas, TH2D *Histogram2D, TList *Histogram_list, const char *Histogram_OutPDF, std::string Histogram2DSaveNameDir,
                        std::string Histogram2DSaveName, bool showStats = true);
 
     /* Corresponding hDrawAndSave function (regular) */
     void hDrawAndSave(const std::string &SampleName, TCanvas *h2DCanvas, TList *hList, const char *Histogram_OutPDF, bool showStats = false);
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="histPlotter2D function (Beta vs. P plots, all particles)">
+    #pragma region /* histPlotter2D function (Beta vs. P plots, all particles) */
     /* histPlotter2D function (Beta vs. P plots, all particles) */
     void histPlotter2D(const std::string &SampleName, TCanvas *HistogramCanvas, TH2D *Histogram2D, TList *Histogram_list, const char *Histogram_OutPDF, std::string Histogram2DSaveNameDir,
                        std::string Histogram2DSaveName, TF1 *Beta_function1, TF1 *Beta_function2, TF1 *Beta_function3, TF1 *Beta_function4, TF1 *Beta_function5, TF1 *Beta_function6,
@@ -125,9 +125,9 @@ class hPlot2D {
     /* Corresponding hDrawAndSave function (Beta vs. P plots, all particles) */
     void hDrawAndSave(const std::string &SampleName, TCanvas *h2DCanvas, TList *hList, const char *Histogram_OutPDF, TF1 *Beta_function1, TF1 *Beta_function2, TF1 *Beta_function3,
                       TF1 *Beta_function4, TF1 *Beta_function5, TF1 *Beta_function6, TF1 *Beta_function7, TF1 *Beta_function8, TF1 *Beta_function, bool showStats = true);
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="histPlotter2D function (Beta vs. P plots, single particle)">
+    #pragma region /* histPlotter2D function (Beta vs. P plots, single particle) */
     /* histPlotter2D function (Beta vs. P plots, single particle) */
     void histPlotter2D(const std::string &SampleName, TCanvas *HistogramCanvas, TH2D *Histogram2D, TList *Histogram_list, const char *Histogram_OutPDF, std::string Histogram2DSaveNameDir,
                        std::string Histogram2DSaveName, TF1 *Beta_function1, std::string particle1, bool showStats = true, bool plot_legend = true);
@@ -135,9 +135,9 @@ class hPlot2D {
     /* Corresponding hDrawAndSave function (Beta vs. P plots, single particle) */
     void hDrawAndSave(const std::string &SampleName, TCanvas *h2DCanvas, TList *hList, const char *Histogram_OutPDF, TF1 *Beta_function1, std::string particle1, bool showStats,
                       bool plot_legend = true);
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="histPlotter2D function (Beta vs. P plots, 3 particles (by charge))">
+    #pragma region /* histPlotter2D function (Beta vs. P plots, 3 particles (by charge)) */
     /* histPlotter2D function (Beta vs. P plots, 3 particles (by charge)) */
     void histPlotter2D(const std::string &SampleName, TCanvas *HistogramCanvas, TH2D *Histogram2D, TList *Histogram_list, const char *Histogram_OutPDF, std::string Histogram2DSaveNameDir,
                        std::string Histogram2DSaveName, TF1 *Beta_function1, std::string particle1, TF1 *Beta_function2, std::string particle2, TF1 *Beta_function3, std::string particle3,
@@ -146,7 +146,7 @@ class hPlot2D {
     /* Corresponding hDrawAndSave function (Beta vs. P plots, 3 particles (by charge)) */
     void hDrawAndSave(const std::string &SampleName, TCanvas *h2DCanvas, TList *hList, const char *Histogram_OutPDF, TF1 *Beta_function1, std::string particle1, TF1 *Beta_function2,
                       std::string particle2, TF1 *Beta_function3, std::string particle3, bool showStats = true, bool plot_legend = true);
-    //</editor-fold>
+    #pragma endregion
 
     // hDivision function -----------------------------------------------------------------------------------------------------------------------------------------------
 

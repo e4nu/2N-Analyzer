@@ -26,7 +26,7 @@ using namespace std;
 void PlotsACorr2x3Electron(string SampleName) {
     cout << "\nSaving acceptance correction plots for Electrons...\n\n";
 
-    //<editor-fold desc="Setting file">
+    #pragma region /* Setting file */
     TFile *f;
 
     if (findSubstring(SampleName, "C12_simulation_6GeV_T5_first_10")) {
@@ -120,16 +120,16 @@ void PlotsACorr2x3Electron(string SampleName) {
             f = new TFile("plots_C12_simulation_G18_2GeV_-03_ALL_CUTS_wNC_wFDph_Eff2/reconhipo_plots.root");
         }
     }
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Setting CanvasACorr2x3Electron">
+    #pragma region /* Setting CanvasACorr2x3Electron */
     TCanvas *CanvasACorr2x3Electron = new TCanvas("CanvasACorr2x3Electron", "CanvasACorr2x3Electron", 1000 * 3, 750 * 2); // normal res
 
 //    CanvasACorr2x3Electron->cd();
 //    CanvasACorr2x3Electron->Divide(3, 2);
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Momentum acceptance correction plots">
+    #pragma region /* Momentum acceptance correction plots */
     std::string MomACorrSaveName = "./01_Electron_Mom_ACorr_" + SampleName + ".png";
 
     CanvasACorr2x3Electron->Divide(3, 2);
@@ -229,9 +229,9 @@ void PlotsACorr2x3Electron(string SampleName) {
 
     CanvasACorr2x3Electron->SaveAs(MomACorrSaveName.c_str());
     CanvasACorr2x3Electron->Clear();
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Theta acceptance correction plots">
+    #pragma region /* Theta acceptance correction plots */
     std::string ThetaACorrSaveName = "./02_Electron_Theta_ACorr_" + SampleName + ".png";
 
     CanvasACorr2x3Electron->Divide(3, 2);
@@ -327,9 +327,9 @@ void PlotsACorr2x3Electron(string SampleName) {
 
     CanvasACorr2x3Electron->SaveAs(ThetaACorrSaveName.c_str());
     CanvasACorr2x3Electron->Clear();
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Phi acceptance correction plots">
+    #pragma region /* Phi acceptance correction plots */
     std::string PhiACorrSaveName = "./03_Electron_Phi_ACorr_" + SampleName + ".png";
 
     CanvasACorr2x3Electron->Divide(3, 2);
@@ -427,17 +427,17 @@ void PlotsACorr2x3Electron(string SampleName) {
 
     CanvasACorr2x3Electron->SaveAs(PhiACorrSaveName.c_str());
     CanvasACorr2x3Electron->Clear();
-    //</editor-fold>
+    #pragma endregion
 
     cout << "\n";
 
 }
 
-////<editor-fold desc="GOOD OLD">
+//#pragma region /* GOOD OLD */
 //void PlotsACorr2x3Electron(string SampleName) {
 //    cout << "\nSaving acceptance correction plots for Electrons...\n\n";
 //
-//    //<editor-fold desc="Setting file">
+//    #pragma region /* Setting file */
 //    TFile *f;
 //
 //    if (findSubstring(SampleName, "C12_simulation_6GeV_T5_first_10")) {
@@ -513,16 +513,16 @@ void PlotsACorr2x3Electron(string SampleName) {
 //            f = new TFile("plots_C12_simulation_6GeV_T5_-03_ALL_CUTS_wNC_wFDph_Eff2/recon_qe_GENIE_C_598636MeV_Q2_0_5_test_5_plots.root");
 //        }
 //    }
-//    //</editor-fold>
+//    #pragma endregion
 //
-//    //<editor-fold desc="Setting CanvasACorr2x3Electron">
+//    #pragma region /* Setting CanvasACorr2x3Electron */
 //    TCanvas *CanvasACorr2x3Electron = new TCanvas("CanvasACorr2x3Electron", "CanvasACorr2x3Electron", 1000 * 3, 750 * 2); // normal res
 //
 ////    CanvasACorr2x3Electron->cd();
 ////    CanvasACorr2x3Electron->Divide(3, 2);
-//    //</editor-fold>
+//    #pragma endregion
 //
-//    //<editor-fold desc="Momentum acceptance correction plots">
+//    #pragma region /* Momentum acceptance correction plots */
 //    std::string MomACorrSaveName = "./01_Electron_Mom_ACorr_" + SampleName + ".png";
 //
 //    CanvasACorr2x3Electron->Divide(3, 2);
@@ -618,9 +618,9 @@ void PlotsACorr2x3Electron(string SampleName) {
 //
 //    CanvasACorr2x3Electron->SaveAs(MomACorrSaveName.c_str());
 //    CanvasACorr2x3Electron->Clear();
-//    //</editor-fold>
+//    #pragma endregion
 //
-//    //<editor-fold desc="Theta acceptance correction plots">
+//    #pragma region /* Theta acceptance correction plots */
 //    std::string ThetaACorrSaveName = "./02_Electron_Theta_ACorr_" + SampleName + ".png";
 //
 //    CanvasACorr2x3Electron->Divide(3, 2);
@@ -716,9 +716,9 @@ void PlotsACorr2x3Electron(string SampleName) {
 //
 //    CanvasACorr2x3Electron->SaveAs(ThetaACorrSaveName.c_str());
 //    CanvasACorr2x3Electron->Clear();
-//    //</editor-fold>
+//    #pragma endregion
 //
-//    //<editor-fold desc="Phi acceptance correction plots">
+//    #pragma region /* Phi acceptance correction plots */
 //    std::string PhiACorrSaveName = "./03_Electron_Phi_ACorr_" + SampleName + ".png";
 //
 //    CanvasACorr2x3Electron->Divide(3, 2);
@@ -816,10 +816,10 @@ void PlotsACorr2x3Electron(string SampleName) {
 //
 //    CanvasACorr2x3Electron->SaveAs(PhiACorrSaveName.c_str());
 //    CanvasACorr2x3Electron->Clear();
-//    //</editor-fold>
+//    #pragma endregion
 //
 //    cout << "\n";
 //
 //}
-////</editor-fold>
+//#pragma endregion
 

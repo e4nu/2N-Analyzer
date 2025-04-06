@@ -30,13 +30,13 @@
 using namespace std;
 
 void PlotsEff2x3(string SampleName, const hPlot1D &REC_Plot_1p_hist, const hPlot1D &TL_Plot_1p_hist, const hPlot1D &REC_Plot_1n_hist, const hPlot1D &TL_Plot_1n_hist, std::string SavePath) {
-    //<editor-fold desc="Canvas definitions">
+    #pragma region /* Canvas definitions */
     TCanvas *Canvas2x6 = new TCanvas("Canvas2x6", "Canvas2x6", 1000 * 2, 750 * 3);  // normal res
 
     float DefStatX = gStyle->GetStatX(), DefStatY = gStyle->GetStatY();
 
     Canvas2x6->Divide(2, 3);
-    //</editor-fold>
+    #pragma endregion
 
     TH1D *REC_Plot_1p = REC_Plot_1p_hist.GetHistogram();
     std::string REC_Plot_1p_Clone_StatsTitle = "reco. " + REC_Plot_1p_hist.GetHistogramStatTitle() + " - cloned";
@@ -86,11 +86,11 @@ void PlotsEff2x3(string SampleName, const hPlot1D &REC_Plot_1p_hist, const hPlot
     TH1D *Eff_Plot_1n_Clone = (TH1D *)Eff_Plot_1n->Clone((Eff_Plot_1n_Clone_StatsTitle).c_str());
     //    REC_Plot_1p_Clone->Rebin(2);
 
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Setting title">
+    #pragma region /* Setting title */
 
-    //<editor-fold desc="Setting sNameFlag">
+    #pragma region /* Setting sNameFlag */
     std::string sNameFlag;
 
     if (findSubstring(SampleName, "sim")) {
@@ -98,9 +98,9 @@ void PlotsEff2x3(string SampleName, const hPlot1D &REC_Plot_1p_hist, const hPlot
     } else if (findSubstring(SampleName, "data")) {
         sNameFlag = "d";
     }
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Canvas definitions">
+    #pragma region /* Canvas definitions */
     if (!REC_Plot_1p) { cout << "\n\nEmpty hist\n\n\n"; }
     if (!TL_Plot_1p) { cout << "\n\nEmpty hist\n\n\n"; }
     if (!REC_Plot_1n) { cout << "\n\nEmpty hist\n\n\n"; }
@@ -150,7 +150,7 @@ void PlotsEff2x3(string SampleName, const hPlot1D &REC_Plot_1p_hist, const hPlot
 
     Canvas2x6->SaveAs(saveName.c_str());
     Canvas2x6->Clear();
-    //</editor-fold>
+    #pragma endregion
 
     std::string SaveDir = SavePath + sNameFlag + BetaPlot.GetHistogram1DSaveName() + "_fitted.png";
     const char *hBeta_CloneSaveDir = SaveDir.c_str();
