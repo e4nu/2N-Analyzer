@@ -14814,10 +14814,10 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             /* Declaring Determining particle vectors: */
             clas12::region_part_ptr pCD_pFDpCD, pFD_pFDpCD;
 
-            if (protons[Protons_ind.at(0)]->getRegion() == FD) {
-                pFD_pFDpCD = protons[Protons_ind.at(0)], pCD_pFDpCD = protons[Protons_ind.at(1)];
-            } else if (protons[Protons_ind.at(0)]->getRegion() == CD) {
-                pCD_pFDpCD = protons[Protons_ind.at(0)], pFD_pFDpCD = protons[Protons_ind.at(1)];
+            if (p_first_pFDpCD->getRegion() == FD) {
+                pFD_pFDpCD = p_first_pFDpCD, pCD_pFDpCD = p_second_pFDpCD;
+            } else if (p_first_pFDpCD->getRegion() == CD) {
+                pCD_pFDpCD = p_first_pFDpCD, pFD_pFDpCD = p_second_pFDpCD;
             }
 
             // Safety checks (pFDpCD)
@@ -14849,12 +14849,12 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             P_e_pFDpCD_3v.SetMagThetaPhi(e_pFDpCD->getP(), e_pFDpCD->getTheta(), e_pFDpCD->getPhi());              // electron 3 momentum
             q_pFDpCD_3v = TVector3(Pvx - P_e_pFDpCD_3v.Px(), Pvy - P_e_pFDpCD_3v.Py(), Pvz - P_e_pFDpCD_3v.Pz());  // 3 momentum transfer
             P_T_e_pFDpCD_3v = TVector3(P_e_pFDpCD_3v.Px(), P_e_pFDpCD_3v.Py(), 0);                                 // electron transverse momentum
-            P_pFD_pFDpCD_3v.SetMagThetaPhi(nRes.PSmear(CutSettings.apply_nucleon_SmearAndCorr, ProtonMomBKC_pFDpCD), pFD_pFDpCD->getTheta(),
-                                           pFD_pFDpCD->getPhi());                                              // pFD 3 momentum
-            P_pCD_pFDpCD_3v.SetMagThetaPhi(pCD_pFDpCD->getP(), pCD_pFDpCD->getTheta(), pCD_pFDpCD->getPhi());  // pCD 3 momentum
+            P_pFD_pFDpCD_3v.SetMagThetaPhi(nRes.PSmear(CutSettings.apply_nucleon_SmearAndCorr, ProtonMomBKC_pFDpCD), pFD_pFDpCD->getTheta(), pFD_pFDpCD->getPhi());  // pFD 3 momentum
+            P_pCD_pFDpCD_3v.SetMagThetaPhi(pCD_pFDpCD->getP(), pCD_pFDpCD->getTheta(), pCD_pFDpCD->getPhi());                                                        // pCD 3 momentum
 
             double E_e_pFDpCD = sqrt(m_e * m_e + P_e_pFDpCD_3v.Mag2()), omega_pFDpCD = parameters.beamE - E_e_pFDpCD;
             double W_pFDpCD = sqrt((omega_pFDpCD + m_p) * (omega_pFDpCD + m_p) - q_pFDpCD_3v.Mag2());
+            double E_pFD_pFDpCD = sqrt(constants::m_p * constants::m_p + P_pFD_pFDpCD_3v.Mag2()), E_pCD_pFDpCD = sqrt(constants::m_p * constants::m_p + P_pCD_pFDpCD_3v.Mag2());
             double E_pL_pFDpCD, E_pR_pFDpCD;
             double Theta_p_e_p_tot_pFDpCD, Theta_q_p_tot_pFDpCD, Theta_P_pL_minus_q_pR_pFDpCD, Theta_q_p_L_pFDpCD, Theta_q_p_R_pFDpCD, Theta_q_pFD_pFDpCD, Theta_q_pCD_pFDpCD;
             double dAlpha_T_L_pFDpCD, dAlpha_T_tot_pFDpCD, dPhi_T_L_pFDpCD, dPhi_T_tot_pFDpCD, Ecal_pFDpCD;
@@ -14862,12 +14862,19 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             double Vx_e_pFDpCD = e_pFDpCD->par()->getVx(), Vy_e_pFDpCD = e_pFDpCD->par()->getVy(), Vz_e_pFDpCD = e_pFDpCD->par()->getVz();
 
             /* Setting Q2 */
-            TLorentzVector e_out_pFDpCD, Q_pFDpCD;
-            double Q2_pFDpCD;
-            e_out_pFDpCD.SetPxPyPzE(e_pFDpCD->par()->getPx(), e_pFDpCD->par()->getPy(), e_pFDpCD->par()->getPz(), E_e_pFDpCD);
-            Q_pFDpCD = beam - e_out_pFDpCD;  // definition of 4-momentum transfer
-            Q2_pFDpCD = fabs(Q_pFDpCD.Mag2());
-            double xB_pFDpCD = Q2_pFDpCD / (2 * m_p * omega_pFDpCD);  // TODO: ask Adi which mass should I use here
+            TLorentzVector e_out_pFDpCD(P_e_pFDpCD_3v, E_e_pFDpCD);
+            double Q2_pFDpCD = analysis_physics::CalcQ2(beam, e_out_pFDpCD);
+            double xB_pFDpCD = analysis_physics::CalcxB(beam, e_out_pFDpCD, omega_pFDpCD, constants::m_p);
+            TVector3 P_miss_1N_pFDpCD_3v = CalcPmiss1N3v(P_pFD_pFDpCD_3v, q_pFDpCD_3v);                       // Missing momentum (1N)
+            double E_miss_1N_pFDpCD = CalcEmiss1N(omega_pFDpCD, E_pFD_pFDpCD, constants::m_p);                // Missing energy (1N)
+            TVector3 P_miss_2N_pFDpCD_3v = CalcPmiss2N3v(P_pFD_pFDpCD_3v, P_pCD_pFDpCD_3v, q_pFDpCD_3v);      // Missing momentum (2N)
+            double E_miss_1N_pFDpCD = CalcEmiss1N(omega_pFDpCD, E_pFD_pFDpCD, E_pCD_pFDpCD, constants::m_p);  // Missing energy (2N)
+            // TLorentzVector e_out_pFDpCD, Q_pFDpCD;
+            // double Q2_pFDpCD;
+            // e_out_pFDpCD.SetPxPyPzE(e_pFDpCD->par()->getPx(), e_pFDpCD->par()->getPy(), e_pFDpCD->par()->getPz(), E_e_pFDpCD);
+            // Q_pFDpCD = beam - e_out_pFDpCD;  // definition of 4-momentum transfer
+            // Q2_pFDpCD = fabs(Q_pFDpCD.Mag2());
+            // double xB_pFDpCD = Q2_pFDpCD / (2 * m_p * omega_pFDpCD);
 
             // Determining leading, recoil protons and their angles (pFDpCD)
             /* Determining leading and recoil particles (leading = particle with greater momentum) */
@@ -15618,19 +15625,27 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
             double E_e_nFDpCD = sqrt(m_e * m_e + P_e_nFDpCD_3v.Mag2()), omega_nFDpCD = parameters.beamE - E_e_nFDpCD;
             double W_nFDpCD = sqrt((omega_nFDpCD + m_p) * (omega_nFDpCD + m_p) - q_nFDpCD_3v.Mag2());
-            double E_nFD_nFDpCD, E_pCD_nFDpCD, E_nL_nFDpCD, E_nR_nFDpCD;
+            double E_nFD_nFDpCD = sqrt(constants::m_n * constants::m_n + P_nFD_nFDpCD_3v.Mag2()), E_pCD_nFDpCD = sqrt(constants::m_p * constants::m_p + P_pCD_nFDpCD_3v.Mag2());
+            double E_nL_nFDpCD, E_nR_nFDpCD;
             double Theta_p_e_p_tot_nFDpCD, Theta_q_p_tot_nFDpCD, Theta_P_nL_minus_q_nR_nFDpCD, Theta_q_p_L_nFDpCD, Theta_q_p_R_nFDpCD, Theta_q_nFD_nFDpCD, Theta_q_pCD_nFDpCD;
             double dAlpha_T_L_nFDpCD, dAlpha_T_tot_nFDpCD, dPhi_T_L_nFDpCD, dPhi_T_tot_nFDpCD, Ecal_nFDpCD;
             double EoP_e_nFDpCD = (e_nFDpCD->cal(PCAL)->getEnergy() + e_nFDpCD->cal(ECIN)->getEnergy() + e_nFDpCD->cal(ECOUT)->getEnergy()) / P_e_nFDpCD_3v.Mag();
             double Vx_e_nFDpCD = e_nFDpCD->par()->getVx(), Vy_e_nFDpCD = e_nFDpCD->par()->getVy(), Vz_e_nFDpCD = e_nFDpCD->par()->getVz();
 
             /* Setting Q2 */
-            TLorentzVector e_out_nFDpCD, Q_nFDpCD;
-            double Q2_nFDpCD;
-            e_out_nFDpCD.SetPxPyPzE(e_nFDpCD->par()->getPx(), e_nFDpCD->par()->getPy(), e_nFDpCD->par()->getPz(), E_e_nFDpCD);
-            Q_nFDpCD = beam - e_out_nFDpCD;  // definition of 4-momentum transfer
-            Q2_nFDpCD = fabs(Q_nFDpCD.Mag2());
-            double xB_nFDpCD = Q2_nFDpCD / (2 * m_p * omega_nFDpCD);  // TODO: ask Adi which mass should I use here
+            TLorentzVector e_out_nFDpCD(P_e_nFDpCD_3v, E_e_nFDpCD);
+            double Q2_nFDpCD = analysis_physics::CalcQ2(beam, e_out_nFDpCD);
+            double xB_nFDpCD = analysis_physics::CalcxB(beam, e_out_nFDpCD, omega_nFDpCD, constants::m_p);
+            TVector3 P_miss_1N_nFDpCD_3v = CalcPmiss1N3v(P_nFD_nFDpCD_3v, q_nFDpCD_3v);                       // Missing momentum (1N)
+            double E_miss_1N_nFDpCD = CalcEmiss1N(omega_nFDpCD, E_nFD_nFDpCD, constants::m_p);                // Missing energy (1N)
+            TVector3 P_miss_2N_nFDpCD_3v = CalcPmiss2N3v(P_nFD_nFDpCD_3v, P_pCD_nFDpCD_3v, q_nFDpCD_3v);      // Missing momentum (2N)
+            double E_miss_1N_nFDpCD = CalcEmiss1N(omega_nFDpCD, E_nFD_nFDpCD, E_pCD_nFDpCD, constants::m_p);  // Missing energy (2N)
+            // TLorentzVector e_out_nFDpCD, Q_nFDpCD;
+            // double Q2_nFDpCD;
+            // e_out_nFDpCD.SetPxPyPzE(e_nFDpCD->par()->getPx(), e_nFDpCD->par()->getPy(), e_nFDpCD->par()->getPz(), E_e_nFDpCD);
+            // Q_nFDpCD = beam - e_out_nFDpCD;  // definition of 4-momentum transfer
+            // Q2_nFDpCD = fabs(Q_nFDpCD.Mag2());
+            // double xB_nFDpCD = Q2_nFDpCD / (2 * m_p * omega_nFDpCD);  // TODO: ask Adi which mass should I use here
 
             // Determining leading, recoil protons and their angles (nFDpCD)
             double m_L, m_R;  // Leading and recoil nucleon masses
