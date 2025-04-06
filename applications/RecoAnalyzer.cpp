@@ -955,6 +955,10 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         /* FDMomentum_lboundary, FDMomentum_uboundary */
     }
 
+    /* Reaction monitoring boundries */
+    const double xB_lboundary = 0.;
+    const double xB_uboundary = 1.5;
+
     /* W boundries */
     const double W_lboundary = 0.35;
     const double W_uboundary = 1.1 * sqrt((parameters.beamE + m_p) * (parameters.beamE + m_p) - parameters.beamE * parameters.beamE);  // Default
@@ -2071,19 +2075,19 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                 "01b_P_pFD_APIDandPS_1p_FD", FDMomentum_lboundary, FDMomentum_uboundary, numTH1Dbins);
 
     TH2D *hP_pFD_APIDandPS_VS_W_1p =
-        new TH2D("FD proton momentum APID vs. W (All Int., 1p)", "FD proton momentum APID vs. W (All Int., 1p);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];P_{p} [GeV/c]",
+        new TH2D("FD proton momentum APID vs. W (All Int., 1p)", "FD proton momentum APID vs. W (All Int., 1p);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];P_{p} [GeV/c]",
                  numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
     TH2D *hP_pFD_APIDandPS_VS_W_QEL_1p =
-        new TH2D("FD proton momentum APID vs. W (QE Only, 1p)", "FD proton momentum APID vs. W (QE Only, 1p);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];P_{p} [GeV/c]",
+        new TH2D("FD proton momentum APID vs. W (QE Only, 1p)", "FD proton momentum APID vs. W (QE Only, 1p);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];P_{p} [GeV/c]",
                  numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
     TH2D *hP_pFD_APIDandPS_VS_W_MEC_1p =
-        new TH2D("FD proton momentum APID vs. W (MEC Only, 1p)", "FD proton momentum APID vs. W (MEC Only, 1p);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];P_{p} [GeV/c]",
+        new TH2D("FD proton momentum APID vs. W (MEC Only, 1p)", "FD proton momentum APID vs. W (MEC Only, 1p);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];P_{p} [GeV/c]",
                  numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
     TH2D *hP_pFD_APIDandPS_VS_W_RES_1p =
-        new TH2D("FD proton momentum APID vs. W (RES Only, 1p)", "FD proton momentum APID vs. W (RES Only, 1p);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];P_{p} [GeV/c]",
+        new TH2D("FD proton momentum APID vs. W (RES Only, 1p)", "FD proton momentum APID vs. W (RES Only, 1p);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];P_{p} [GeV/c]",
                  numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
     TH2D *hP_pFD_APIDandPS_VS_W_DIS_1p =
-        new TH2D("FD proton momentum APID vs. W (DIS Only, 1p)", "FD proton momentum APID vs. W (DIS Only, 1p);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];P_{p} [GeV/c]",
+        new TH2D("FD proton momentum APID vs. W (DIS Only, 1p)", "FD proton momentum APID vs. W (DIS Only, 1p);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];P_{p} [GeV/c]",
                  numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
     std::string hP_pFD_APIDandPS_VS_W_1p_Dir = directories.Momentum_transfer_dir_map["Analysis_plots_momentum_1p_Directory"];
 
@@ -2183,19 +2187,19 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                                            Phi_uboundary, numTH2Dbins_Mom_Plots, numTH2Dbins_Mom_Plots);
 
     TH2D *hP_nFD_APIDandNS_VS_W_1n = new TH2D("Leading FD neutron momentum APID&NC vs. W (All Int., 1n)",
-                                              "Leading FD neutron momentum APID&NC vs. W (All Int., 1n);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];P_{n} [GeV/c]",
+                                              "Leading FD neutron momentum APID&NC vs. W (All Int., 1n);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];P_{n} [GeV/c]",
                                               numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
     TH2D *hP_nFD_APIDandNS_VS_W_QEL_1n = new TH2D("Leading FD neutron momentum APID&NC vs. W (QE Only, 1n)",
-                                                  "Leading FD neutron momentum APID&NC vs. W (QE Only, 1n);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];P_{n} [GeV/c]",
+                                                  "Leading FD neutron momentum APID&NC vs. W (QE Only, 1n);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];P_{n} [GeV/c]",
                                                   numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
     TH2D *hP_nFD_APIDandNS_VS_W_MEC_1n = new TH2D("Leading FD neutron momentum APID&NC vs. W (MEC Only, 1n)",
-                                                  "Leading FD neutron momentum APID&NC vs. W (MEC Only, 1n);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];P_{n} [GeV/c]",
+                                                  "Leading FD neutron momentum APID&NC vs. W (MEC Only, 1n);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];P_{n} [GeV/c]",
                                                   numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
     TH2D *hP_nFD_APIDandNS_VS_W_RES_1n = new TH2D("Leading FD neutron momentum APID&NC vs. W (RES Only, 1n)",
-                                                  "Leading FD neutron momentum APID&NC vs. W (RES Only, 1n);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];P_{n} [GeV/c]",
+                                                  "Leading FD neutron momentum APID&NC vs. W (RES Only, 1n);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];P_{n} [GeV/c]",
                                                   numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
     TH2D *hP_nFD_APIDandNS_VS_W_DIS_1n = new TH2D("Leading FD neutron momentum APID&NC vs. W (DIS Only, 1n)",
-                                                  "Leading FD neutron momentum APID&NC vs. W (DIS Only, 1n);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];P_{n} [GeV/c]",
+                                                  "Leading FD neutron momentum APID&NC vs. W (DIS Only, 1n);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];P_{n} [GeV/c]",
                                                   numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
     std::string hP_nFD_APIDandNS_VS_W_1n_Dir = directories.Momentum_transfer_dir_map["Analysis_plots_momentum_1n_Directory"];
 
@@ -2413,36 +2417,36 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                 "05_P_pFD_vs_P_pCD", P_nucFD_lboundary, P_nucFD_uboundary, P_nucCD_lboundary, P_nucCD_uboundary, numTH2Dbins_Mom_Plots, numTH2Dbins_Mom_Plots);
 
     TH2D *hP_pFD_VS_W_pFDpCD =
-        new TH2D("FD proton momentum vs. W (All Int., pFDpCD)", "FD proton momentum vs. W (All Int., pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];P_{pFD} [GeV/c]",
+        new TH2D("FD proton momentum vs. W (All Int., pFDpCD)", "FD proton momentum vs. W (All Int., pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];P_{pFD} [GeV/c]",
                  numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, P_nucFD_lboundary, P_nucFD_uboundary);
     TH2D *hP_pFD_VS_W_QEL_pFDpCD =
-        new TH2D("FD proton momentum vs. W (QE Only, pFDpCD)", "FD proton momentum vs. W (QE Only, pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];P_{pFD} [GeV/c]",
+        new TH2D("FD proton momentum vs. W (QE Only, pFDpCD)", "FD proton momentum vs. W (QE Only, pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];P_{pFD} [GeV/c]",
                  numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, P_nucFD_lboundary, P_nucFD_uboundary);
     TH2D *hP_pFD_VS_W_MEC_pFDpCD =
-        new TH2D("FD proton momentum vs. W (MEC Only, pFDpCD)", "FD proton momentum vs. W (MEC Only, pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];P_{pFD} [GeV/c]",
+        new TH2D("FD proton momentum vs. W (MEC Only, pFDpCD)", "FD proton momentum vs. W (MEC Only, pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];P_{pFD} [GeV/c]",
                  numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, P_nucFD_lboundary, P_nucFD_uboundary);
     TH2D *hP_pFD_VS_W_RES_pFDpCD =
-        new TH2D("FD proton momentum vs. W (RES Only, pFDpCD)", "FD proton momentum vs. W (RES Only, pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];P_{pFD} [GeV/c]",
+        new TH2D("FD proton momentum vs. W (RES Only, pFDpCD)", "FD proton momentum vs. W (RES Only, pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];P_{pFD} [GeV/c]",
                  numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, P_nucFD_lboundary, P_nucFD_uboundary);
     TH2D *hP_pFD_VS_W_DIS_pFDpCD =
-        new TH2D("FD proton momentum vs. W (DIS Only, pFDpCD)", "FD proton momentum vs. W (DIS Only, pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];P_{pFD} [GeV/c]",
+        new TH2D("FD proton momentum vs. W (DIS Only, pFDpCD)", "FD proton momentum vs. W (DIS Only, pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];P_{pFD} [GeV/c]",
                  numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, P_nucFD_lboundary, P_nucFD_uboundary);
     std::string hP_pFD_VS_W_pFDpCD_Dir = directories.Momentum_dir_map["Analysis_plots_momentum_pFDpCD_Directory"];
 
     TH2D *hP_pCD_VS_W_pFDpCD =
-        new TH2D("CD proton momentum vs. W (All Int., pFDpCD)", "CD proton momentum vs. W (All Int., pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];P_{pCD} [GeV/c]",
+        new TH2D("CD proton momentum vs. W (All Int., pFDpCD)", "CD proton momentum vs. W (All Int., pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];P_{pCD} [GeV/c]",
                  numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, P_nucCD_lboundary, P_nucCD_uboundary);
     TH2D *hP_pCD_VS_W_QEL_pFDpCD =
-        new TH2D("CD proton momentum vs. W (QE Only, pFDpCD)", "CD proton momentum vs. W (QE Only, pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];P_{pCD} [GeV/c]",
+        new TH2D("CD proton momentum vs. W (QE Only, pFDpCD)", "CD proton momentum vs. W (QE Only, pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];P_{pCD} [GeV/c]",
                  numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, P_nucCD_lboundary, P_nucCD_uboundary);
     TH2D *hP_pCD_VS_W_MEC_pFDpCD =
-        new TH2D("CD proton momentum vs. W (MEC Only, pFDpCD)", "CD proton momentum vs. W (MEC Only, pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];P_{pCD} [GeV/c]",
+        new TH2D("CD proton momentum vs. W (MEC Only, pFDpCD)", "CD proton momentum vs. W (MEC Only, pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];P_{pCD} [GeV/c]",
                  numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, P_nucCD_lboundary, P_nucCD_uboundary);
     TH2D *hP_pCD_VS_W_RES_pFDpCD =
-        new TH2D("CD proton momentum vs. W (RES Only, pFDpCD)", "CD proton momentum vs. W (RES Only, pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];P_{pCD} [GeV/c]",
+        new TH2D("CD proton momentum vs. W (RES Only, pFDpCD)", "CD proton momentum vs. W (RES Only, pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];P_{pCD} [GeV/c]",
                  numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, P_nucCD_lboundary, P_nucCD_uboundary);
     TH2D *hP_pCD_VS_W_DIS_pFDpCD =
-        new TH2D("CD proton momentum vs. W (DIS Only, pFDpCD)", "CD proton momentum vs. W (DIS Only, pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];P_{pCD} [GeV/c]",
+        new TH2D("CD proton momentum vs. W (DIS Only, pFDpCD)", "CD proton momentum vs. W (DIS Only, pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];P_{pCD} [GeV/c]",
                  numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, P_nucCD_lboundary, P_nucCD_uboundary);
     std::string hP_pCD_VS_W_pFDpCD_Dir = directories.Momentum_dir_map["Analysis_plots_momentum_pFDpCD_Directory"];
 
@@ -2494,49 +2498,51 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                                                directories.Momentum_dir_map["Analysis_plots_momentum_nFDpCD_Directory"], "05i_phi_nFD_vs_phi_e", Phi_lboundary, Phi_uboundary, Phi_lboundary,
                                                Phi_uboundary, numTH2Dbins_Mom_Plots, numTH2Dbins_Mom_Plots);
 
-    TH2D *hP_nFD_VS_W_nFDpCD =
-        new TH2D("FD neutron momentum vs. W (All Int., nFDpCD)", "FD neutron momentum vs. W (All Int., nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];P_{nFD} [GeV/c]",
-                 numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, P_nucFD_lboundary, P_nucFD_uboundary);
+    TH2D *hP_nFD_VS_W_nFDpCD = new TH2D("FD neutron momentum vs. W (All Int., nFDpCD)",
+                                        "FD neutron momentum vs. W (All Int., nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];P_{nFD} [GeV/c]",
+                                        numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, P_nucFD_lboundary, P_nucFD_uboundary);
     TH2D *hP_nFD_VS_W_QEL_nFDpCD =
-        new TH2D("FD neutron momentum vs. W (QE Only, nFDpCD)", "FD neutron momentum vs. W (QE Only, nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];P_{nFD} [GeV/c]",
+        new TH2D("FD neutron momentum vs. W (QE Only, nFDpCD)", "FD neutron momentum vs. W (QE Only, nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];P_{nFD} [GeV/c]",
                  numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, P_nucFD_lboundary, P_nucFD_uboundary);
-    TH2D *hP_nFD_VS_W_MEC_nFDpCD =
-        new TH2D("FD neutron momentum vs. W (MEC Only, nFDpCD)", "FD neutron momentum vs. W (MEC Only, nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];P_{nFD} [GeV/c]",
-                 numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, P_nucFD_lboundary, P_nucFD_uboundary);
-    TH2D *hP_nFD_VS_W_RES_nFDpCD =
-        new TH2D("FD neutron momentum vs. W (RES Only, nFDpCD)", "FD neutron momentum vs. W (RES Only, nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];P_{nFD} [GeV/c]",
-                 numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, P_nucFD_lboundary, P_nucFD_uboundary);
-    TH2D *hP_nFD_VS_W_DIS_nFDpCD =
-        new TH2D("FD neutron momentum vs. W (DIS Only, nFDpCD)", "FD neutron momentum vs. W (DIS Only, nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];P_{nFD} [GeV/c]",
-                 numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, P_nucFD_lboundary, P_nucFD_uboundary);
+    TH2D *hP_nFD_VS_W_MEC_nFDpCD = new TH2D("FD neutron momentum vs. W (MEC Only, nFDpCD)",
+                                            "FD neutron momentum vs. W (MEC Only, nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];P_{nFD} [GeV/c]",
+                                            numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, P_nucFD_lboundary, P_nucFD_uboundary);
+    TH2D *hP_nFD_VS_W_RES_nFDpCD = new TH2D("FD neutron momentum vs. W (RES Only, nFDpCD)",
+                                            "FD neutron momentum vs. W (RES Only, nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];P_{nFD} [GeV/c]",
+                                            numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, P_nucFD_lboundary, P_nucFD_uboundary);
+    TH2D *hP_nFD_VS_W_DIS_nFDpCD = new TH2D("FD neutron momentum vs. W (DIS Only, nFDpCD)",
+                                            "FD neutron momentum vs. W (DIS Only, nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];P_{nFD} [GeV/c]",
+                                            numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, P_nucFD_lboundary, P_nucFD_uboundary);
     std::string hP_nFD_VS_W_nFDpCD_Dir = directories.Momentum_dir_map["Analysis_plots_momentum_nFDpCD_Directory"];
 
     TH2D *hP_pCD_VS_W_nFDpCD =
-        new TH2D("CD proton momentum vs. W (All Int., nFDpCD)", "CD proton momentum vs. W (All Int., nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];P_{pCD} [GeV/c]",
+        new TH2D("CD proton momentum vs. W (All Int., nFDpCD)", "CD proton momentum vs. W (All Int., nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];P_{pCD} [GeV/c]",
                  numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, P_nucCD_lboundary, P_nucCD_uboundary);
     TH2D *hP_pCD_VS_W_QEL_nFDpCD =
-        new TH2D("CD proton momentum vs. W (QE Only, nFDpCD)", "CD proton momentum vs. W (QE Only, nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];P_{pCD} [GeV/c]",
+        new TH2D("CD proton momentum vs. W (QE Only, nFDpCD)", "CD proton momentum vs. W (QE Only, nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];P_{pCD} [GeV/c]",
                  numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, P_nucCD_lboundary, P_nucCD_uboundary);
     TH2D *hP_pCD_VS_W_MEC_nFDpCD =
-        new TH2D("CD proton momentum vs. W (MEC Only, nFDpCD)", "CD proton momentum vs. W (MEC Only, nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];P_{pCD} [GeV/c]",
+        new TH2D("CD proton momentum vs. W (MEC Only, nFDpCD)", "CD proton momentum vs. W (MEC Only, nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];P_{pCD} [GeV/c]",
                  numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, P_nucCD_lboundary, P_nucCD_uboundary);
     TH2D *hP_pCD_VS_W_RES_nFDpCD =
-        new TH2D("CD proton momentum vs. W (RES Only, nFDpCD)", "CD proton momentum vs. W (RES Only, nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];P_{pCD} [GeV/c]",
+        new TH2D("CD proton momentum vs. W (RES Only, nFDpCD)", "CD proton momentum vs. W (RES Only, nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];P_{pCD} [GeV/c]",
                  numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, P_nucCD_lboundary, P_nucCD_uboundary);
     TH2D *hP_pCD_VS_W_DIS_nFDpCD =
-        new TH2D("CD proton momentum vs. W (DIS Only, nFDpCD)", "CD proton momentum vs. W (DIS Only, nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];P_{pCD} [GeV/c]",
+        new TH2D("CD proton momentum vs. W (DIS Only, nFDpCD)", "CD proton momentum vs. W (DIS Only, nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];P_{pCD} [GeV/c]",
                  numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, P_nucCD_lboundary, P_nucCD_uboundary);
     std::string hP_pCD_VS_W_nFDpCD_Dir = directories.Momentum_dir_map["Analysis_plots_momentum_nFDpCD_Directory"];
 
     // Total and relative nucleon momenta (pFDpCD)
-    hPlot1D hP_tot_pFDpCD = hPlot1D("pFDpCD", "", "Total nucleon momentum (3-vector)", "Total nucleon 3-momentum", "|#vec{P}_{tot}| = |#vec{P}_{pL} + #vec{P}_{pR}| [GeV/c]",
+    hPlot1D hP_tot_pFDpCD = hPlot1D("pFDpCD", "", "Total nucleon momentum (3-vector)", "Total nucleon 3-momentum", "|#font[62]{P}_{tot}| = |#font[62]{P}_{pL} + #font[62]{P}_{pR}| [GeV/c]",
                                     directories.Momentum_dir_map["Analysis_plots_momentum_pFDpCD_Directory"], "02a_P_tot_pFDpCD", Momentum_lboundary, Momentum_uboundary, numTH1Dbins);
-    hPlot1D hP_rel_pFDpCD = hPlot1D("pFDpCD", "", "Relative nucleon momentum (3-vector)", "Relative nucleon 3-momentum", "|#vec{P}_{rel}| = |#vec{P}_{pL} - #vec{P}_{pR}|/2 [GeV/c]",
-                                    directories.Momentum_dir_map["Analysis_plots_momentum_pFDpCD_Directory"], "02b_P_rel_pFDpCD", CDMomentum_lboundary, CDMomentum_uboundary, numTH1Dbins);
+    hPlot1D hP_rel_pFDpCD =
+        hPlot1D("pFDpCD", "", "Relative nucleon momentum (3-vector)", "Relative nucleon 3-momentum", "|#font[62]{P}_{rel}| = |#font[62]{P}_{pL} - #font[62]{P}_{pR}|/2 [GeV/c]",
+                directories.Momentum_dir_map["Analysis_plots_momentum_pFDpCD_Directory"], "02b_P_rel_pFDpCD", CDMomentum_lboundary, CDMomentum_uboundary, numTH1Dbins);
     hPlot2D hP_tot_vs_P_rel_pFDpCD =
-        hPlot2D("pFDpCD", "", "|#vec{P}_{tot}| vs. |#vec{P}_{rel}|", "|#vec{P}_{tot}| vs. |#vec{P}_{rel}|", "|#vec{P}_{tot}| = |#vec{P}_{pL} + #vec{P}_{pR}| [GeV/c]",
-                "|#vec{P}_{rel}| = |#vec{P}_{pL} - #vec{P}_{pR}|/2 [GeV/c]", directories.Momentum_dir_map["Analysis_plots_momentum_pFDpCD_Directory"], "02c_P_tot_vs_P_rel",
-                Momentum_lboundary, Momentum_uboundary, Momentum_lboundary, Momentum_uboundary, numTH2Dbins, numTH2Dbins);
+        hPlot2D("pFDpCD", "", "|#font[62]{P}_{tot}| vs. |#font[62]{P}_{rel}|", "|#font[62]{P}_{tot}| vs. |#font[62]{P}_{rel}|",
+                "|#font[62]{P}_{tot}| = |#font[62]{P}_{pL} + #font[62]{P}_{pR}| [GeV/c]", "|#font[62]{P}_{rel}| = |#font[62]{P}_{pL} - #font[62]{P}_{pR}|/2 [GeV/c]",
+                directories.Momentum_dir_map["Analysis_plots_momentum_pFDpCD_Directory"], "02c_P_tot_vs_P_rel", Momentum_lboundary, Momentum_uboundary, Momentum_lboundary,
+                Momentum_uboundary, numTH2Dbins, numTH2Dbins);
 
     hPlot1D hP_tot_mu_pFDpCD = hPlot1D("pFDpCD", "", "Total nucleon momentum (4-vector)", "Total nucleon 4-momentum", "P_{tot}^{#mu} = (P_{pL}^{#mu} + P_{pR}^{#mu}) [GeV/c]",
                                        directories.Momentum_dir_map["Analysis_plots_momentum_pFDpCD_Directory"], "02d_P_tot_pFDpCD", Momentum_lboundary, Momentum_uboundary, numTH1Dbins);
@@ -2550,27 +2556,31 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     //                                                   Momentum_lboundary, Momentum_uboundary, Momentum_lboundary, Momentum_uboundary, numTH2Dbins, numTH2Dbins);
 
     hPlot1D hP_tot_minus_q_pFDpCD =
-        hPlot1D("pFDpCD", "", "#vec{P}_{tot}-#vec{q} distribution", "#vec{P}_{tot}-#vec{q} distribution", "|#vec{P}_{tot} - #vec{q}| = |#vec{P}_{pL} + #vec{P}_{pR}- #vec{q}| [GeV/c]",
+        hPlot1D("pFDpCD", "", "#font[62]{P}_{tot}-#font[62]{q} distribution", "#font[62]{P}_{tot}-#font[62]{q} distribution",
+                "|#font[62]{P}_{tot} - #font[62]{q}| = |#font[62]{P}_{pL} + #font[62]{P}_{pR}- #font[62]{q}| [GeV/c]",
                 directories.Momentum_dir_map["Analysis_plots_momentum_pFDpCD_Directory"], "06_P_tot_minus_q_pFDpCD", Momentum_lboundary, Momentum_uboundary, numTH1Dbins);
 
-    hPlot2D hP_tot_minus_q_vs_P_tot_pFDpCD =
-        hPlot2D("pFDpCD", "", "#vec{P}_{tot}-#vec{q} vs. #vec{P}_{tot}", "#vec{P}_{tot}-#vec{q} vs. #vec{P}_{tot}", "|#vec{P}_{tot}| = |#vec{P}_{nL} + #vec{P}_{nR}| [GeV/c]",
-                "|#vec{P}_{tot} - #vec{q}| = |#vec{P}_{nL} + #vec{P}_{nR}- #vec{q}| [GeV/c]", directories.Momentum_dir_map["Analysis_plots_momentum_pFDpCD_Directory"],
-                "07a_P_tot_minus_q_vs_P_tot_pFDpCD", Momentum_lboundary, Momentum_uboundary, Momentum_lboundary, Momentum_uboundary, numTH2Dbins, numTH2Dbins);
-    hPlot2D hP_tot_minus_q_vs_q_pFDpCD =
-        hPlot2D("pFDpCD", "", "|#vec{P}_{tot} - #vec{q}| vs. |#vec{q}|", "|#vec{P}_{tot} - #vec{q}| vs. |#vec{q}|", "|#vec{q}| [GeV/c]",
-                "|#vec{P}_{tot} - #vec{q}| = |#vec{P}_{nL} + #vec{P}_{nR}- #vec{q}| [GeV/c]", directories.Momentum_dir_map["Analysis_plots_momentum_pFDpCD_Directory"],
-                "07b_P_tot_minus_q_vs_q_pFDpCD", Momentum_lboundary, Momentum_uboundary, Momentum_lboundary, Momentum_uboundary, numTH2Dbins, numTH2Dbins);
+    hPlot2D hP_tot_minus_q_vs_P_tot_pFDpCD = hPlot2D("pFDpCD", "", "#font[62]{P}_{tot}-#font[62]{q} vs. #font[62]{P}_{tot}", "#font[62]{P}_{tot}-#font[62]{q} vs. #font[62]{P}_{tot}",
+                                                     "|#font[62]{P}_{tot}| = |#font[62]{P}_{nL} + #font[62]{P}_{nR}| [GeV/c]",
+                                                     "|#font[62]{P}_{tot} - #font[62]{q}| = |#font[62]{P}_{nL} + #font[62]{P}_{nR}- #font[62]{q}| [GeV/c]",
+                                                     directories.Momentum_dir_map["Analysis_plots_momentum_pFDpCD_Directory"], "07a_P_tot_minus_q_vs_P_tot_pFDpCD", Momentum_lboundary,
+                                                     Momentum_uboundary, Momentum_lboundary, Momentum_uboundary, numTH2Dbins, numTH2Dbins);
+    hPlot2D hP_tot_minus_q_vs_q_pFDpCD = hPlot2D("pFDpCD", "", "|#font[62]{P}_{tot} - #font[62]{q}| vs. |#font[62]{q}|", "|#font[62]{P}_{tot} - #font[62]{q}| vs. |#font[62]{q}|",
+                                                 "|#font[62]{q}| [GeV/c]", "|#font[62]{P}_{tot} - #font[62]{q}| = |#font[62]{P}_{nL} + #font[62]{P}_{nR}- #font[62]{q}| [GeV/c]",
+                                                 directories.Momentum_dir_map["Analysis_plots_momentum_pFDpCD_Directory"], "07b_P_tot_minus_q_vs_q_pFDpCD", Momentum_lboundary,
+                                                 Momentum_uboundary, Momentum_lboundary, Momentum_uboundary, numTH2Dbins, numTH2Dbins);
 
     // Total and Relative nucleon momenta (nFDpCD)
-    hPlot1D hP_tot_nFDpCD = hPlot1D("nFDpCD", "", "Total nucleon momentum (3-vector)", "Total nucleon 3-momentum", "|#vec{P}_{tot}| = |#vec{P}_{nL} + #vec{P}_{nR}| [GeV/c]",
+    hPlot1D hP_tot_nFDpCD = hPlot1D("nFDpCD", "", "Total nucleon momentum (3-vector)", "Total nucleon 3-momentum", "|#font[62]{P}_{tot}| = |#font[62]{P}_{nL} + #font[62]{P}_{nR}| [GeV/c]",
                                     directories.Momentum_dir_map["Analysis_plots_momentum_nFDpCD_Directory"], "02a_P_tot_nFDpCD", Momentum_lboundary, Momentum_uboundary, numTH1Dbins);
-    hPlot1D hP_rel_nFDpCD = hPlot1D("nFDpCD", "", "Relative nucleon momentum (3-vector)", "Relative nucleon 3-momentum", "|#vec{P}_{rel}| = |#vec{P}_{nL} - #vec{P}_{nR}|/2 [GeV/c]",
-                                    directories.Momentum_dir_map["Analysis_plots_momentum_nFDpCD_Directory"], "02b_P_rel_nFDpCD", CDMomentum_lboundary, CDMomentum_uboundary, numTH1Dbins);
+    hPlot1D hP_rel_nFDpCD =
+        hPlot1D("nFDpCD", "", "Relative nucleon momentum (3-vector)", "Relative nucleon 3-momentum", "|#font[62]{P}_{rel}| = |#font[62]{P}_{nL} - #font[62]{P}_{nR}|/2 [GeV/c]",
+                directories.Momentum_dir_map["Analysis_plots_momentum_nFDpCD_Directory"], "02b_P_rel_nFDpCD", CDMomentum_lboundary, CDMomentum_uboundary, numTH1Dbins);
     hPlot2D hP_tot_vs_P_rel_nFDpCD =
-        hPlot2D("nFDpCD", "", "|#vec{P}_{tot}| vs. |#vec{P}_{rel}|", "|#vec{P}_{tot}| vs. |#vec{P}_{rel}|", "|#vec{P}_{tot}| = |#vec{P}_{nL} + #vec{P}_{nR}| [GeV/c]",
-                "|#vec{P}_{rel}| = |#vec{P}_{nL} - #vec{P}_{nR}|/2 [GeV/c]", directories.Momentum_dir_map["Analysis_plots_momentum_nFDpCD_Directory"], "02c_P_tot_vs_P_rel",
-                Momentum_lboundary, Momentum_uboundary, Momentum_lboundary, Momentum_uboundary, numTH2Dbins, numTH2Dbins);
+        hPlot2D("nFDpCD", "", "|#font[62]{P}_{tot}| vs. |#font[62]{P}_{rel}|", "|#font[62]{P}_{tot}| vs. |#font[62]{P}_{rel}|",
+                "|#font[62]{P}_{tot}| = |#font[62]{P}_{nL} + #font[62]{P}_{nR}| [GeV/c]", "|#font[62]{P}_{rel}| = |#font[62]{P}_{nL} - #font[62]{P}_{nR}|/2 [GeV/c]",
+                directories.Momentum_dir_map["Analysis_plots_momentum_nFDpCD_Directory"], "02c_P_tot_vs_P_rel", Momentum_lboundary, Momentum_uboundary, Momentum_lboundary,
+                Momentum_uboundary, numTH2Dbins, numTH2Dbins);
 
     hPlot1D hP_tot_mu_nFDpCD = hPlot1D("nFDpCD", "", "Total nucleon momentum (4-vector)", "Total nucleon 4-momentum", "P_{tot}^{#mu} = (P_{nL}^{#mu} + P_{nR}^{#mu}) [GeV/c]",
                                        directories.Momentum_dir_map["Analysis_plots_momentum_nFDpCD_Directory"], "02d_P_tot_nFDpCD", Momentum_lboundary, Momentum_uboundary, numTH1Dbins);
@@ -2583,17 +2593,19 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                                                    "02f_P_tot_vs_P_rel", Momentum_lboundary, Momentum_uboundary, -CDMomentum_uboundary, CDMomentum_lboundary, numTH2Dbins, numTH2Dbins);
 
     hPlot1D hP_tot_minus_q_nFDpCD =
-        hPlot1D("nFDpCD", "", "#vec{P}_{tot}-#vec{q} distribution", "#vec{P}_{tot}-#vec{q} distribution", "|#vec{P}_{tot} - #vec{q}| = |#vec{P}_{nL} + #vec{P}_{nR}- #vec{q}| [GeV/c]",
+        hPlot1D("nFDpCD", "", "#font[62]{P}_{tot}-#font[62]{q} distribution", "#font[62]{P}_{tot}-#font[62]{q} distribution",
+                "|#font[62]{P}_{tot} - #font[62]{q}| = |#font[62]{P}_{nL} + #font[62]{P}_{nR}- #font[62]{q}| [GeV/c]",
                 directories.Momentum_dir_map["Analysis_plots_momentum_nFDpCD_Directory"], "06_P_tot_minus_q_nFDpCD", Momentum_lboundary, Momentum_uboundary, numTH1Dbins);
 
-    hPlot2D hP_tot_minus_q_vs_P_tot_nFDpCD =
-        hPlot2D("nFDpCD", "", "#vec{P}_{tot}-#vec{q} vs. #vec{P}_{tot}", "#vec{P}_{tot}-#vec{q} vs. #vec{P}_{tot}", "|#vec{P}_{tot}| = |#vec{P}_{nL} + #vec{P}_{nR}| [GeV/c]",
-                "|#vec{P}_{tot} - #vec{q}| = |#vec{P}_{nL} + #vec{P}_{nR}- #vec{q}| [GeV/c]", directories.Momentum_dir_map["Analysis_plots_momentum_nFDpCD_Directory"],
-                "07a_P_tot_minus_q_vs_P_tot_nFDpCD", Momentum_lboundary, Momentum_uboundary, Momentum_lboundary, Momentum_uboundary, numTH2Dbins, numTH2Dbins);
-    hPlot2D hP_tot_minus_q_vs_q_nFDpCD =
-        hPlot2D("nFDpCD", "", "|#vec{P}_{tot} - #vec{q}| vs. |#vec{q}|", "|#vec{P}_{tot} - #vec{q}| vs. |#vec{q}|", "|#vec{q}| [GeV/c]",
-                "|#vec{P}_{tot} - #vec{q}| = |#vec{P}_{nL} + #vec{P}_{nR}- #vec{q}| [GeV/c]", directories.Momentum_dir_map["Analysis_plots_momentum_nFDpCD_Directory"],
-                "07b_P_tot_minus_q_vs_q_nFDpCD", Momentum_lboundary, Momentum_uboundary, Momentum_lboundary, Momentum_uboundary, numTH2Dbins, numTH2Dbins);
+    hPlot2D hP_tot_minus_q_vs_P_tot_nFDpCD = hPlot2D("nFDpCD", "", "#font[62]{P}_{tot}-#font[62]{q} vs. #font[62]{P}_{tot}", "#font[62]{P}_{tot}-#font[62]{q} vs. #font[62]{P}_{tot}",
+                                                     "|#font[62]{P}_{tot}| = |#font[62]{P}_{nL} + #font[62]{P}_{nR}| [GeV/c]",
+                                                     "|#font[62]{P}_{tot} - #font[62]{q}| = |#font[62]{P}_{nL} + #font[62]{P}_{nR}- #font[62]{q}| [GeV/c]",
+                                                     directories.Momentum_dir_map["Analysis_plots_momentum_nFDpCD_Directory"], "07a_P_tot_minus_q_vs_P_tot_nFDpCD", Momentum_lboundary,
+                                                     Momentum_uboundary, Momentum_lboundary, Momentum_uboundary, numTH2Dbins, numTH2Dbins);
+    hPlot2D hP_tot_minus_q_vs_q_nFDpCD = hPlot2D("nFDpCD", "", "|#font[62]{P}_{tot} - #font[62]{q}| vs. |#font[62]{q}|", "|#font[62]{P}_{tot} - #font[62]{q}| vs. |#font[62]{q}|",
+                                                 "|#font[62]{q}| [GeV/c]", "|#font[62]{P}_{tot} - #font[62]{q}| = |#font[62]{P}_{nL} + #font[62]{P}_{nR}- #font[62]{q}| [GeV/c]",
+                                                 directories.Momentum_dir_map["Analysis_plots_momentum_nFDpCD_Directory"], "07b_P_tot_minus_q_vs_q_nFDpCD", Momentum_lboundary,
+                                                 Momentum_uboundary, Momentum_lboundary, Momentum_uboundary, numTH2Dbins, numTH2Dbins);
 
     // Leading and recoil nucleon momentum plots (pFDpCD)
     hPlot1D hP_pL_pFDpCD = hPlot1D("pFDpCD", "", "Leading proton momentum", "Leading proton momentum", "P_{pL} [GeV/c]",
@@ -2616,6 +2628,414 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     //                                           Momentum_lboundary, Momentum_uboundary, Momentum_lboundary, Momentum_uboundary, numTH2Dbins, numTH2Dbins);
 
 #pragma endregion
+
+#pragma endregion
+
+    // ======================================================================================================================================================================
+    // W histograms
+    // ======================================================================================================================================================================
+
+#pragma region /* Reaction monitoring */
+
+    // Reaction monitoring plots (pFDpCD, CD & FD)
+    THStack *sP_miss_1N_pFDpCD =
+        new THStack("P^{1N}_{miss} distribution (All Int., pFDpCD)", "P^{1N}_{miss} distribution (pFDpCD);P^{1N}_{miss} = |#font[62]{P}_{pFD} - #font[62]{q}| [GeV/c];");
+    TH1D *hP_miss_1N_All_Int_pFDpCD =
+        new TH1D("P^{1N}_{miss} distribution (All Int., pFDpCD)", "P^{1N}_{miss} distribution (All Int., pFDpCD);P^{1N}_{miss} = |#font[62]{P}_{pFD} - #font[62]{q}| [GeV/c];", numTH1Dbins,
+                 FDMomentum_lboundary, FDMomentum_uboundary);
+    TH1D *hP_miss_1N_QEL_pFDpCD =
+        new TH1D("P^{1N}_{miss} distribution (QEL only, pFDpCD)", "P^{1N}_{miss} distribution (QEL only, pFDpCD);P^{1N}_{miss} = |#font[62]{P}_{pFD} - #font[62]{q}| [GeV/c];", numTH1Dbins,
+                 FDMomentum_lboundary, FDMomentum_uboundary);
+    TH1D *hP_miss_1N_MEC_pFDpCD =
+        new TH1D("P^{1N}_{miss} distribution (MEC only, pFDpCD)", "P^{1N}_{miss} distribution (MEC only, pFDpCD);P^{1N}_{miss} = |#font[62]{P}_{pFD} - #font[62]{q}| [GeV/c];", numTH1Dbins,
+                 FDMomentum_lboundary, FDMomentum_uboundary);
+    TH1D *hP_miss_1N_RES_pFDpCD =
+        new TH1D("P^{1N}_{miss} distribution (RES only, pFDpCD)", "P^{1N}_{miss} distribution (RES only, pFDpCD);P^{1N}_{miss} = |#font[62]{P}_{pFD} - #font[62]{q}| [GeV/c];", numTH1Dbins,
+                 FDMomentum_lboundary, FDMomentum_uboundary);
+    TH1D *hP_miss_1N_DIS_pFDpCD =
+        new TH1D("P^{1N}_{miss} distribution (DIS only, pFDpCD)", "P^{1N}_{miss} distribution (DIS only, pFDpCD);P^{1N}_{miss} = |#font[62]{P}_{pFD} - #font[62]{q}| [GeV/c];", numTH1Dbins,
+                 FDMomentum_lboundary, FDMomentum_uboundary);
+    std::string sP_miss_1N_pFDpCD_Dir = directories.RecMon_dir_map["RecMon_pFDpCD_Directory"];
+    std::string hP_miss_1N_All_Int_pFDpCD_Dir = directories.RecMon_dir_map["RecMon_pFDpCD_Directory"];
+    std::string hP_miss_1N_QEL_pFDpCD_Dir = directories.RecMon_dir_map["RecMon_pFDpCD_Directory"];
+    std::string hP_miss_1N_MEC_pFDpCD_Dir = directories.RecMon_dir_map["RecMon_pFDpCD_Directory"];
+    std::string hP_miss_1N_RES_pFDpCD_Dir = directories.RecMon_dir_map["RecMon_pFDpCD_Directory"];
+    std::string hP_miss_1N_DIS_pFDpCD_Dir = directories.RecMon_dir_map["RecMon_pFDpCD_Directory"];
+
+    THStack *sE_miss_1N_pFDpCD = new THStack("E^{1N}_{miss} distribution (All Int., pFDpCD)", "E^{1N}_{miss} distribution (pFDpCD);E^{1N}_{miss} = #omega - T_{pFD} [GeV];");
+    TH1D *hE_miss_1N_All_Int_pFDpCD = new TH1D("E^{1N}_{miss} distribution (All Int., pFDpCD)", "E^{1N}_{miss} distribution (All Int., pFDpCD);E^{1N}_{miss} = #omega - T_{pFD} [GeV];",
+                                               numTH1Dbins, FDMomentum_lboundary, FDMomentum_uboundary);
+    TH1D *hE_miss_1N_QEL_pFDpCD = new TH1D("E^{1N}_{miss} distribution (QEL only, pFDpCD)", "E^{1N}_{miss} distribution (QEL only, pFDpCD);E^{1N}_{miss} = #omega - T_{pFD} [GeV];",
+                                           numTH1Dbins, FDMomentum_lboundary, FDMomentum_uboundary);
+    TH1D *hE_miss_1N_MEC_pFDpCD = new TH1D("E^{1N}_{miss} distribution (MEC only, pFDpCD)", "E^{1N}_{miss} distribution (MEC only, pFDpCD);E^{1N}_{miss} = #omega - T_{pFD} [GeV];",
+                                           numTH1Dbins, FDMomentum_lboundary, FDMomentum_uboundary);
+    TH1D *hE_miss_1N_RES_pFDpCD = new TH1D("E^{1N}_{miss} distribution (RES only, pFDpCD)", "E^{1N}_{miss} distribution (RES only, pFDpCD);E^{1N}_{miss} = #omega - T_{pFD} [GeV];",
+                                           numTH1Dbins, FDMomentum_lboundary, FDMomentum_uboundary);
+    TH1D *hE_miss_1N_DIS_pFDpCD = new TH1D("E^{1N}_{miss} distribution (DIS only, pFDpCD)", "E^{1N}_{miss} distribution (DIS only, pFDpCD);E^{1N}_{miss} = #omega - T_{pFD} [GeV];",
+                                           numTH1Dbins, FDMomentum_lboundary, FDMomentum_uboundary);
+    std::string sE_miss_1N_pFDpCD_Dir = directories.RecMon_dir_map["RecMon_pFDpCD_Directory"];
+    std::string hE_miss_1N_All_Int_pFDpCD_Dir = directories.RecMon_dir_map["RecMon_pFDpCD_Directory"];
+    std::string hE_miss_1N_QEL_pFDpCD_Dir = directories.RecMon_dir_map["RecMon_pFDpCD_Directory"];
+    std::string hE_miss_1N_MEC_pFDpCD_Dir = directories.RecMon_dir_map["RecMon_pFDpCD_Directory"];
+    std::string hE_miss_1N_RES_pFDpCD_Dir = directories.RecMon_dir_map["RecMon_pFDpCD_Directory"];
+    std::string hE_miss_1N_DIS_pFDpCD_Dir = directories.RecMon_dir_map["RecMon_pFDpCD_Directory"];
+
+    THStack *sP_miss_2N_pFDpCD =
+        new THStack("P^{2N}_{miss} distribution (All Int., pFDpCD)", "P^{2N}_{miss} distribution (pFDpCD);P^{2N}_{miss} = |#font[62]{P}_{pFD} + #font[62]{P}_{pCD} - #font[62]{q}| [GeV/c];");
+    TH1D *hP_miss_2N_All_Int_pFDpCD = new TH1D("P^{2N}_{miss} distribution (All Int., pFDpCD)",
+                                               "P^{2N}_{miss} distribution (All Int., pFDpCD);P^{2N}_{miss} = |#font[62]{P}_{pFD} + #font[62]{P}_{pCD} - #font[62]{q}| [GeV/c];", numTH1Dbins,
+                                               FDMomentum_lboundary, FDMomentum_uboundary);
+    TH1D *hP_miss_2N_QEL_pFDpCD = new TH1D("P^{2N}_{miss} distribution (QEL only, pFDpCD)",
+                                           "P^{2N}_{miss} distribution (QEL only, pFDpCD);P^{2N}_{miss} = |#font[62]{P}_{pFD} + #font[62]{P}_{pCD} - #font[62]{q}| [GeV/c];", numTH1Dbins,
+                                           FDMomentum_lboundary, FDMomentum_uboundary);
+    TH1D *hP_miss_2N_MEC_pFDpCD = new TH1D("P^{2N}_{miss} distribution (MEC only, pFDpCD)",
+                                           "P^{2N}_{miss} distribution (MEC only, pFDpCD);P^{2N}_{miss} = |#font[62]{P}_{pFD} + #font[62]{P}_{pCD} - #font[62]{q}| [GeV/c];", numTH1Dbins,
+                                           FDMomentum_lboundary, FDMomentum_uboundary);
+    TH1D *hP_miss_2N_RES_pFDpCD = new TH1D("P^{2N}_{miss} distribution (RES only, pFDpCD)",
+                                           "P^{2N}_{miss} distribution (RES only, pFDpCD);P^{2N}_{miss} = |#font[62]{P}_{pFD} + #font[62]{P}_{pCD} - #font[62]{q}| [GeV/c];", numTH1Dbins,
+                                           FDMomentum_lboundary, FDMomentum_uboundary);
+    TH1D *hP_miss_2N_DIS_pFDpCD = new TH1D("P^{2N}_{miss} distribution (DIS only, pFDpCD)",
+                                           "P^{2N}_{miss} distribution (DIS only, pFDpCD);P^{2N}_{miss} = |#font[62]{P}_{pFD} + #font[62]{P}_{pCD} - #font[62]{q}| [GeV/c];", numTH1Dbins,
+                                           FDMomentum_lboundary, FDMomentum_uboundary);
+    std::string sP_miss_2N_pFDpCD_Dir = directories.RecMon_dir_map["RecMon_pFDpCD_Directory"];
+    std::string hP_miss_2N_All_Int_pFDpCD_Dir = directories.RecMon_dir_map["RecMon_pFDpCD_Directory"];
+    std::string hP_miss_2N_QEL_pFDpCD_Dir = directories.RecMon_dir_map["RecMon_pFDpCD_Directory"];
+    std::string hP_miss_2N_MEC_pFDpCD_Dir = directories.RecMon_dir_map["RecMon_pFDpCD_Directory"];
+    std::string hP_miss_2N_RES_pFDpCD_Dir = directories.RecMon_dir_map["RecMon_pFDpCD_Directory"];
+    std::string hP_miss_2N_DIS_pFDpCD_Dir = directories.RecMon_dir_map["RecMon_pFDpCD_Directory"];
+
+    THStack *sE_miss_2N_pFDpCD = new THStack("E^{2N}_{miss} distribution (All Int., pFDpCD)", "E^{2N}_{miss} distribution (pFDpCD);E^{2N}_{miss} = #omega - T_{pFD} - T_{pCD} [GeV];");
+    TH1D *hE_miss_2N_All_Int_pFDpCD =
+        new TH1D("E^{2N}_{miss} distribution (All Int., pFDpCD)", "E^{2N}_{miss} distribution (All Int., pFDpCD);E^{2N}_{miss} = #omega - T_{pFD} - T_{pCD} [GeV];", numTH1Dbins,
+                 FDMomentum_lboundary, FDMomentum_uboundary);
+    TH1D *hE_miss_2N_QEL_pFDpCD = new TH1D("E^{2N}_{miss} distribution (QEL only, pFDpCD)", "E^{2N}_{miss} distribution (QEL only, pFDpCD);E^{2N}_{miss} = #omega - T_{pFD} - T_{pCD} [GeV];",
+                                           numTH1Dbins, FDMomentum_lboundary, FDMomentum_uboundary);
+    TH1D *hE_miss_2N_MEC_pFDpCD = new TH1D("E^{2N}_{miss} distribution (MEC only, pFDpCD)", "E^{2N}_{miss} distribution (MEC only, pFDpCD);E^{2N}_{miss} = #omega - T_{pFD} - T_{pCD} [GeV];",
+                                           numTH1Dbins, FDMomentum_lboundary, FDMomentum_uboundary);
+    TH1D *hE_miss_2N_RES_pFDpCD = new TH1D("E^{2N}_{miss} distribution (RES only, pFDpCD)", "E^{2N}_{miss} distribution (RES only, pFDpCD);E^{2N}_{miss} = #omega - T_{pFD} - T_{pCD} [GeV];",
+                                           numTH1Dbins, FDMomentum_lboundary, FDMomentum_uboundary);
+    TH1D *hE_miss_2N_DIS_pFDpCD = new TH1D("E^{2N}_{miss} distribution (DIS only, pFDpCD)", "E^{2N}_{miss} distribution (DIS only, pFDpCD);E^{2N}_{miss} = #omega - T_{pFD} - T_{pCD} [GeV];",
+                                           numTH1Dbins, FDMomentum_lboundary, FDMomentum_uboundary);
+    std::string sE_miss_2N_pFDpCD_Dir = directories.RecMon_dir_map["RecMon_pFDpCD_Directory"];
+    std::string hE_miss_2N_All_Int_pFDpCD_Dir = directories.RecMon_dir_map["RecMon_pFDpCD_Directory"];
+    std::string hE_miss_2N_QEL_pFDpCD_Dir = directories.RecMon_dir_map["RecMon_pFDpCD_Directory"];
+    std::string hE_miss_2N_MEC_pFDpCD_Dir = directories.RecMon_dir_map["RecMon_pFDpCD_Directory"];
+    std::string hE_miss_2N_RES_pFDpCD_Dir = directories.RecMon_dir_map["RecMon_pFDpCD_Directory"];
+    std::string hE_miss_2N_DIS_pFDpCD_Dir = directories.RecMon_dir_map["RecMon_pFDpCD_Directory"];
+
+    THStack *sxB_pFDpCD = new THStack("x_{B} distribution (All Int., pFDpCD)", "x_{B} distribution (pFDpCD);x_{B};");
+    TH1D *hxB_All_Int_pFDpCD = new TH1D("x_{B} distribution (All Int., pFDpCD)", "x_{B} distribution (All Int., pFDpCD);x_{B};", numTH1Dbins, xB_lboundary, xB_uboundary);
+    TH1D *hxB_QEL_pFDpCD = new TH1D("x_{B} distribution (QEL only, pFDpCD)", "x_{B} distribution (QEL only, pFDpCD);x_{B};", numTH1Dbins, xB_lboundary, xB_uboundary);
+    TH1D *hxB_MEC_pFDpCD = new TH1D("x_{B} distribution (MEC only, pFDpCD)", "x_{B} distribution (MEC only, pFDpCD);x_{B};", numTH1Dbins, xB_lboundary, xB_uboundary);
+    TH1D *hxB_RES_pFDpCD = new TH1D("x_{B} distribution (RES only, pFDpCD)", "x_{B} distribution (RES only, pFDpCD);x_{B};", numTH1Dbins, xB_lboundary, xB_uboundary);
+    TH1D *hxB_DIS_pFDpCD = new TH1D("x_{B} distribution (DIS only, pFDpCD)", "x_{B} distribution (DIS only, pFDpCD);x_{B};", numTH1Dbins, xB_lboundary, xB_uboundary);
+    std::string sxB_pFDpCD_Dir = directories.RecMon_dir_map["RecMon_pFDpCD_Directory"];
+    std::string hxB_All_Int_pFDpCD_Dir = directories.RecMon_dir_map["RecMon_pFDpCD_Directory"];
+    std::string hxB_QEL_pFDpCD_Dir = directories.RecMon_dir_map["RecMon_pFDpCD_Directory"];
+    std::string hxB_MEC_pFDpCD_Dir = directories.RecMon_dir_map["RecMon_pFDpCD_Directory"];
+    std::string hxB_RES_pFDpCD_Dir = directories.RecMon_dir_map["RecMon_pFDpCD_Directory"];
+    std::string hxB_DIS_pFDpCD_Dir = directories.RecMon_dir_map["RecMon_pFDpCD_Directory"];
+
+    THStack *stheta_q_pFDpCD = new THStack("#theta_{q} distribution (All Int., pFDpCD)", "#theta_{q} distribution (pFDpCD);#theta_{q} [#circ];");
+    TH1D *htheta_q_All_Int_pFDpCD =
+        new TH1D("#theta_{q} distribution (All Int., pFDpCD)", "#theta_{q} distribution (All Int., pFDpCD);#theta_{q} [#circ];", numTH1Dbins, Theta_lboundary_FD, Theta_uboundary_FD);
+    TH1D *htheta_q_QEL_pFDpCD =
+        new TH1D("#theta_{q} distribution (QEL only, pFDpCD)", "#theta_{q} distribution (QEL only, pFDpCD);#theta_{q} [#circ];", numTH1Dbins, Theta_lboundary_FD, Theta_uboundary_FD);
+    TH1D *htheta_q_MEC_pFDpCD =
+        new TH1D("#theta_{q} distribution (MEC only, pFDpCD)", "#theta_{q} distribution (MEC only, pFDpCD);#theta_{q} [#circ];", numTH1Dbins, Theta_lboundary_FD, Theta_uboundary_FD);
+    TH1D *htheta_q_RES_pFDpCD =
+        new TH1D("#theta_{q} distribution (RES only, pFDpCD)", "#theta_{q} distribution (RES only, pFDpCD);#theta_{q} [#circ];", numTH1Dbins, Theta_lboundary_FD, Theta_uboundary_FD);
+    TH1D *htheta_q_DIS_pFDpCD =
+        new TH1D("#theta_{q} distribution (DIS only, pFDpCD)", "#theta_{q} distribution (DIS only, pFDpCD);#theta_{q} [#circ];", numTH1Dbins, Theta_lboundary_FD, Theta_uboundary_FD);
+    std::string stheta_q_pFDpCD_Dir = directories.RecMon_dir_map["RecMon_pFDpCD_Directory"];
+    std::string htheta_q_All_Int_pFDpCD_Dir = directories.RecMon_dir_map["RecMon_pFDpCD_Directory"];
+    std::string htheta_q_QEL_pFDpCD_Dir = directories.RecMon_dir_map["RecMon_pFDpCD_Directory"];
+    std::string htheta_q_MEC_pFDpCD_Dir = directories.RecMon_dir_map["RecMon_pFDpCD_Directory"];
+    std::string htheta_q_RES_pFDpCD_Dir = directories.RecMon_dir_map["RecMon_pFDpCD_Directory"];
+    std::string htheta_q_DIS_pFDpCD_Dir = directories.RecMon_dir_map["RecMon_pFDpCD_Directory"];
+
+#pragma endregion
+
+    // ======================================================================================================================================================================
+    // W histograms
+    // ======================================================================================================================================================================
+
+#pragma region /* W histograms */
+
+    // W histograms
+
+    // W plots (1e cut, CD & FD)
+    THStack *sW_1e_cut = new THStack("W distribution (All Int., 1e Cut)", "W distribution (1e Cut);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];");
+    TH1D *hW_All_Int_1e_cut = new TH1D("W distribution (All Int., 1e Cut)", "W distribution (All Int., 1e Cut);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];",
+                                       numTH1Dbins_W_Plots, W_lboundary, W_uboundary);
+    TH1D *hW_QEL_1e_cut = new TH1D("W distribution (QEL only, 1e Cut)", "W distribution (QEL only, 1e Cut);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];",
+                                   numTH1Dbins_W_Plots, W_lboundary, W_uboundary);
+    TH1D *hW_MEC_1e_cut = new TH1D("W distribution (MEC only, 1e Cut)", "W distribution (MEC only, 1e Cut);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];",
+                                   numTH1Dbins_W_Plots, W_lboundary, W_uboundary);
+    TH1D *hW_RES_1e_cut = new TH1D("W distribution (RES only, 1e Cut)", "W distribution (RES only, 1e Cut);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];",
+                                   numTH1Dbins_W_Plots, W_lboundary, W_uboundary);
+    TH1D *hW_DIS_1e_cut = new TH1D("W distribution (DIS only, 1e Cut)", "W distribution (DIS only, 1e Cut);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];",
+                                   numTH1Dbins_W_Plots, W_lboundary, W_uboundary);
+    std::string sW_1e_cut_Dir = directories.W_dir_map["W_1e_cut_Directory"];
+    std::string hW_All_Int_1e_cut_Dir = directories.W_dir_map["W_1e_cut_Directory"];
+    std::string hW_QEL_1e_cut_Dir = directories.W_dir_map["W_1e_cut_Directory"];
+    std::string hW_MEC_1e_cut_Dir = directories.W_dir_map["W_1e_cut_Directory"];
+    std::string hW_RES_1e_cut_Dir = directories.W_dir_map["W_1e_cut_Directory"];
+    std::string hW_DIS_1e_cut_Dir = directories.W_dir_map["W_1e_cut_Directory"];
+
+    TH2D *hW_VS_q_3v_1e_cut =
+        new TH2D("W vs. |#font[62]{q}| (All Int., 1e Cut)", "W vs. |#font[62]{q}| (All Int., 1e Cut);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];q [GeV/c]",
+                 numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
+    TH2D *hW_VS_q_3v_QEL_1e_cut =
+        new TH2D("W vs. |#font[62]{q}| (QE Only, 1e Cut)", "W vs. |#font[62]{q}| (QE Only, 1e Cut);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];q [GeV/c]",
+                 numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
+    TH2D *hW_VS_q_3v_MEC_1e_cut =
+        new TH2D("W vs. |#font[62]{q}| (MEC Only, 1e Cut)", "W vs. |#font[62]{q}| (MEC Only, 1e Cut);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];q [GeV/c]",
+                 numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
+    TH2D *hW_VS_q_3v_RES_1e_cut =
+        new TH2D("W vs. |#font[62]{q}| (RES Only, 1e Cut)", "W vs. |#font[62]{q}| (RES Only, 1e Cut);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];q [GeV/c]",
+                 numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
+    TH2D *hW_VS_q_3v_DIS_1e_cut =
+        new TH2D("W vs. |#font[62]{q}| (DIS Only, 1e Cut)", "W vs. |#font[62]{q}| (DIS Only, 1e Cut);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];q [GeV/c]",
+                 numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
+    std::string hW_VS_q_3v_1e_cut_Dir = directories.W_dir_map["W_1e_cut_Directory"];
+
+    TH2D *hW_VS_omega_1e_cut = new TH2D("W vs. #omega (All Int., 1e Cut)", "W vs. #omega (All Int., 1e Cut);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];#omega [GeV]",
+                                        numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
+    TH2D *hW_VS_omega_QEL_1e_cut = new TH2D("W vs. #omega (QE Only, 1e Cut)", "W vs. #omega (QE Only, 1e Cut);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];#omega [GeV]",
+                                            numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
+    TH2D *hW_VS_omega_MEC_1e_cut = new TH2D("W vs. #omega (MEC Only, 1e Cut)", "W vs. #omega (MEC Only, 1e Cut);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];#omega [GeV]",
+                                            numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
+    TH2D *hW_VS_omega_RES_1e_cut = new TH2D("W vs. #omega (RES Only, 1e Cut)", "W vs. #omega (RES Only, 1e Cut);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];#omega [GeV]",
+                                            numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
+    TH2D *hW_VS_omega_DIS_1e_cut = new TH2D("W vs. #omega (DIS Only, 1e Cut)", "W vs. #omega (DIS Only, 1e Cut);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];#omega [GeV]",
+                                            numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
+    std::string hW_VS_omega_1e_cut_Dir = directories.W_dir_map["W_1e_cut_Directory"];
+
+    // W plots (1p, CD & FD)
+    THStack *sW_1p = new THStack("W distribution (All Int., 1p)", "W distribution (1p);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];");
+    TH1D *hW_All_Int_1p = new TH1D("W distribution (All Int., 1p)", "W distribution (All Int., 1p);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];", numTH1Dbins_W_Plots,
+                                   W_lboundary, W_uboundary);
+    TH1D *hW_QEL_1p = new TH1D("W distribution (QEL only, 1p)", "W distribution (QEL only, 1p);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];", numTH1Dbins_W_Plots,
+                               W_lboundary, W_uboundary);
+    TH1D *hW_MEC_1p = new TH1D("W distribution (MEC only, 1p)", "W distribution (MEC only, 1p);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];", numTH1Dbins_W_Plots,
+                               W_lboundary, W_uboundary);
+    TH1D *hW_RES_1p = new TH1D("W distribution (RES only, 1p)", "W distribution (RES only, 1p);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];", numTH1Dbins_W_Plots,
+                               W_lboundary, W_uboundary);
+    TH1D *hW_DIS_1p = new TH1D("W distribution (DIS only, 1p)", "W distribution (DIS only, 1p);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];", numTH1Dbins_W_Plots,
+                               W_lboundary, W_uboundary);
+    std::string sW_1p_Dir = directories.W_dir_map["W_1p_Directory"];
+    std::string hW_All_Int_1p_Dir = directories.W_dir_map["W_1p_Directory"];
+    std::string hW_QEL_1p_Dir = directories.W_dir_map["W_1p_Directory"];
+    std::string hW_MEC_1p_Dir = directories.W_dir_map["W_1p_Directory"];
+    std::string hW_RES_1p_Dir = directories.W_dir_map["W_1p_Directory"];
+    std::string hW_DIS_1p_Dir = directories.W_dir_map["W_1p_Directory"];
+
+    TH2D *hW_VS_q_3v_1p = new TH2D("W vs. |#font[62]{q}| (All Int., 1p)", "W vs. |#font[62]{q}| (All Int., 1p);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];q [GeV/c]",
+                                   numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
+    TH2D *hW_VS_q_3v_QEL_1p = new TH2D("W vs. |#font[62]{q}| (QE Only, 1p)", "W vs. |#font[62]{q}| (QE Only, 1p);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];q [GeV/c]",
+                                       numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
+    TH2D *hW_VS_q_3v_MEC_1p = new TH2D("W vs. |#font[62]{q}| (MEC Only, 1p)", "W vs. |#font[62]{q}| (MEC Only, 1p);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];q [GeV/c]",
+                                       numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
+    TH2D *hW_VS_q_3v_RES_1p = new TH2D("W vs. |#font[62]{q}| (RES Only, 1p)", "W vs. |#font[62]{q}| (RES Only, 1p);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];q [GeV/c]",
+                                       numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
+    TH2D *hW_VS_q_3v_DIS_1p = new TH2D("W vs. |#font[62]{q}| (DIS Only, 1p)", "W vs. |#font[62]{q}| (DIS Only, 1p);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];q [GeV/c]",
+                                       numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
+    std::string hW_VS_q_3v_1p_Dir = directories.W_dir_map["W_1p_Directory"];
+
+    TH2D *hW_VS_omega_1p = new TH2D("W vs. #omega (All Int., 1p)", "W vs. #omega (All Int., 1p);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];#omega [GeV]",
+                                    numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
+    TH2D *hW_VS_omega_QEL_1p = new TH2D("W vs. #omega (QE Only, 1p)", "W vs. #omega (QE Only, 1p);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];#omega [GeV]",
+                                        numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
+    TH2D *hW_VS_omega_MEC_1p = new TH2D("W vs. #omega (MEC Only, 1p)", "W vs. #omega (MEC Only, 1p);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];#omega [GeV]",
+                                        numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
+    TH2D *hW_VS_omega_RES_1p = new TH2D("W vs. #omega (RES Only, 1p)", "W vs. #omega (RES Only, 1p);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];#omega [GeV]",
+                                        numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
+    TH2D *hW_VS_omega_DIS_1p = new TH2D("W vs. #omega (DIS Only, 1p)", "W vs. #omega (DIS Only, 1p);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];#omega [GeV]",
+                                        numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
+    std::string hW_VS_omega_1p_Dir = directories.W_dir_map["W_1p_Directory"];
+
+    // W plots (1n, CD & FD)
+    THStack *sW_1n = new THStack("W distribution (All Int., 1n)", "W distribution (1n);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];");
+    TH1D *hW_All_Int_1n = new TH1D("W distribution (All Int., 1n)", "W distribution (All Int., 1n);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];", numTH1Dbins_W_Plots,
+                                   W_lboundary, W_uboundary);
+    TH1D *hW_QEL_1n = new TH1D("W distribution (QEL only, 1n)", "W distribution (QEL only, 1n);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];", numTH1Dbins_W_Plots,
+                               W_lboundary, W_uboundary);
+    TH1D *hW_MEC_1n = new TH1D("W distribution (MEC only, 1n)", "W distribution (MEC only, 1n);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];", numTH1Dbins_W_Plots,
+                               W_lboundary, W_uboundary);
+    TH1D *hW_RES_1n = new TH1D("W distribution (RES only, 1n)", "W distribution (RES only, 1n);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];", numTH1Dbins_W_Plots,
+                               W_lboundary, W_uboundary);
+    TH1D *hW_DIS_1n = new TH1D("W distribution (DIS only, 1n)", "W distribution (DIS only, 1n);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];", numTH1Dbins_W_Plots,
+                               W_lboundary, W_uboundary);
+    std::string sW_1n_Dir = directories.W_dir_map["W_1n_Directory"];
+    std::string hW_All_Int_1n_Dir = directories.W_dir_map["W_1n_Directory"];
+    std::string hW_QEL_1n_Dir = directories.W_dir_map["W_1n_Directory"];
+    std::string hW_MEC_1n_Dir = directories.W_dir_map["W_1n_Directory"];
+    std::string hW_RES_1n_Dir = directories.W_dir_map["W_1n_Directory"];
+    std::string hW_DIS_1n_Dir = directories.W_dir_map["W_1n_Directory"];
+
+    TH2D *hW_VS_q_3v_1n = new TH2D("W vs. |#font[62]{q}| (All Int., 1n)", "W vs. |#font[62]{q}| (All Int., 1n);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];q [GeV/c]",
+                                   numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
+    TH2D *hW_VS_q_3v_QEL_1n = new TH2D("W vs. |#font[62]{q}| (QE Only, 1n)", "W vs. |#font[62]{q}| (QE Only, 1n);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];q [GeV/c]",
+                                       numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
+    TH2D *hW_VS_q_3v_MEC_1n = new TH2D("W vs. |#font[62]{q}| (MEC Only, 1n)", "W vs. |#font[62]{q}| (MEC Only, 1n);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];q [GeV/c]",
+                                       numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
+    TH2D *hW_VS_q_3v_RES_1n = new TH2D("W vs. |#font[62]{q}| (RES Only, 1n)", "W vs. |#font[62]{q}| (RES Only, 1n);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];q [GeV/c]",
+                                       numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
+    TH2D *hW_VS_q_3v_DIS_1n = new TH2D("W vs. |#font[62]{q}| (DIS Only, 1n)", "W vs. |#font[62]{q}| (DIS Only, 1n);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];q [GeV/c]",
+                                       numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
+    std::string hW_VS_q_3v_1n_Dir = directories.W_dir_map["W_1n_Directory"];
+
+    TH2D *hW_VS_omega_1n = new TH2D("W vs. #omega (All Int., 1n)", "W vs. #omega (All Int., 1n);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];#omega [GeV]",
+                                    numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
+    TH2D *hW_VS_omega_QEL_1n = new TH2D("W vs. #omega (QE Only, 1n)", "W vs. #omega (QE Only, 1n);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];#omega [GeV]",
+                                        numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
+    TH2D *hW_VS_omega_MEC_1n = new TH2D("W vs. #omega (MEC Only, 1n)", "W vs. #omega (MEC Only, 1n);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];#omega [GeV]",
+                                        numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
+    TH2D *hW_VS_omega_RES_1n = new TH2D("W vs. #omega (RES Only, 1n)", "W vs. #omega (RES Only, 1n);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];#omega [GeV]",
+                                        numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
+    TH2D *hW_VS_omega_DIS_1n = new TH2D("W vs. #omega (DIS Only, 1n)", "W vs. #omega (DIS Only, 1n);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];#omega [GeV]",
+                                        numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
+    std::string hW_VS_omega_1n_Dir = directories.W_dir_map["W_1n_Directory"];
+
+    // W plots (2p, CD & FD)
+    THStack *sW_2p = new THStack("W distribution (All Int., 2p)", "W distribution (2p);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];");
+    TH1D *hW_All_Int_2p = new TH1D("W distribution (All Int., 2p)", "W distribution (All Int., 2p);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];", numTH1Dbins_W_Plots,
+                                   W_lboundary, W_uboundary);
+    TH1D *hW_QEL_2p = new TH1D("W distribution (QEL only, 2p)", "W distribution (QEL only, 2p);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];", numTH1Dbins_W_Plots,
+                               W_lboundary, W_uboundary);
+    TH1D *hW_MEC_2p = new TH1D("W distribution (MEC only, 2p)", "W distribution (MEC only, 2p);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];", numTH1Dbins_W_Plots,
+                               W_lboundary, W_uboundary);
+    TH1D *hW_RES_2p = new TH1D("W distribution (RES only, 2p)", "W distribution (RES only, 2p);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];", numTH1Dbins_W_Plots,
+                               W_lboundary, W_uboundary);
+    TH1D *hW_DIS_2p = new TH1D("W distribution (DIS only, 2p)", "W distribution (DIS only, 2p);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];", numTH1Dbins_W_Plots,
+                               W_lboundary, W_uboundary);
+    std::string sW_2p_Dir = directories.W_dir_map["W_2p_Directory"];
+    std::string hW_All_Int_2p_Dir = directories.W_dir_map["W_2p_Directory"];
+    std::string hW_QEL_2p_Dir = directories.W_dir_map["W_2p_Directory"];
+    std::string hW_MEC_2p_Dir = directories.W_dir_map["W_2p_Directory"];
+    std::string hW_RES_2p_Dir = directories.W_dir_map["W_2p_Directory"];
+    std::string hW_DIS_2p_Dir = directories.W_dir_map["W_2p_Directory"];
+
+    TH2D *hW_VS_q_3v_2p = new TH2D("W vs. |#font[62]{q}| (All Int., 2p)", "W vs. |#font[62]{q}| (All Int., 2p);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];q [GeV/c]",
+                                   numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
+    TH2D *hW_VS_q_3v_QEL_2p = new TH2D("W vs. |#font[62]{q}| (QE Only, 2p)", "W vs. |#font[62]{q}| (QE Only, 2p);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];q [GeV/c]",
+                                       numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
+    TH2D *hW_VS_q_3v_MEC_2p = new TH2D("W vs. |#font[62]{q}| (MEC Only, 2p)", "W vs. |#font[62]{q}| (MEC Only, 2p);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];q [GeV/c]",
+                                       numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
+    TH2D *hW_VS_q_3v_RES_2p = new TH2D("W vs. |#font[62]{q}| (RES Only, 2p)", "W vs. |#font[62]{q}| (RES Only, 2p);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];q [GeV/c]",
+                                       numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
+    TH2D *hW_VS_q_3v_DIS_2p = new TH2D("W vs. |#font[62]{q}| (DIS Only, 2p)", "W vs. |#font[62]{q}| (DIS Only, 2p);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];q [GeV/c]",
+                                       numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
+    std::string hW_VS_q_3v_2p_Dir = directories.W_dir_map["W_2p_Directory"];
+
+    TH2D *hW_VS_omega_2p = new TH2D("W vs. #omega (All Int., 2p)", "W vs. #omega (All Int., 2p);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];#omega [GeV]",
+                                    numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
+    TH2D *hW_VS_omega_QEL_2p = new TH2D("W vs. #omega (QE Only, 2p)", "W vs. #omega (QE Only, 2p);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];#omega [GeV]",
+                                        numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
+    TH2D *hW_VS_omega_MEC_2p = new TH2D("W vs. #omega (MEC Only, 2p)", "W vs. #omega (MEC Only, 2p);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];#omega [GeV]",
+                                        numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
+    TH2D *hW_VS_omega_RES_2p = new TH2D("W vs. #omega (RES Only, 2p)", "W vs. #omega (RES Only, 2p);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];#omega [GeV]",
+                                        numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
+    TH2D *hW_VS_omega_DIS_2p = new TH2D("W vs. #omega (DIS Only, 2p)", "W vs. #omega (DIS Only, 2p);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];#omega [GeV]",
+                                        numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
+    std::string hW_VS_omega_2p_Dir = directories.W_dir_map["W_2p_Directory"];
+
+    // W plots (pFDpCD, CD & FD)
+    THStack *sW_pFDpCD = new THStack("W distribution (All Int., pFDpCD)", "W distribution (pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];");
+    TH1D *hW_All_Int_pFDpCD = new TH1D("W distribution (All Int., pFDpCD)", "W distribution (All Int., pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];",
+                                       numTH1Dbins_W_Plots, W_lboundary, W_uboundary);
+    TH1D *hW_QEL_pFDpCD = new TH1D("W distribution (QEL only, pFDpCD)", "W distribution (QEL only, pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];",
+                                   numTH1Dbins_W_Plots, W_lboundary, W_uboundary);
+    TH1D *hW_MEC_pFDpCD = new TH1D("W distribution (MEC only, pFDpCD)", "W distribution (MEC only, pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];",
+                                   numTH1Dbins_W_Plots, W_lboundary, W_uboundary);
+    TH1D *hW_RES_pFDpCD = new TH1D("W distribution (RES only, pFDpCD)", "W distribution (RES only, pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];",
+                                   numTH1Dbins_W_Plots, W_lboundary, W_uboundary);
+    TH1D *hW_DIS_pFDpCD = new TH1D("W distribution (DIS only, pFDpCD)", "W distribution (DIS only, pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];",
+                                   numTH1Dbins_W_Plots, W_lboundary, W_uboundary);
+    std::string sW_pFDpCD_Dir = directories.W_dir_map["W_pFDpCD_Directory"];
+    std::string hW_All_Int_pFDpCD_Dir = directories.W_dir_map["W_pFDpCD_Directory"];
+    std::string hW_QEL_pFDpCD_Dir = directories.W_dir_map["W_pFDpCD_Directory"];
+    std::string hW_MEC_pFDpCD_Dir = directories.W_dir_map["W_pFDpCD_Directory"];
+    std::string hW_RES_pFDpCD_Dir = directories.W_dir_map["W_pFDpCD_Directory"];
+    std::string hW_DIS_pFDpCD_Dir = directories.W_dir_map["W_pFDpCD_Directory"];
+
+    TH2D *hW_VS_q_3v_pFDpCD =
+        new TH2D("W vs. |#font[62]{q}| (All Int., pFDpCD)", "W vs. |#font[62]{q}| (All Int., pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];q [GeV/c]",
+                 numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
+    TH2D *hW_VS_q_3v_QEL_pFDpCD =
+        new TH2D("W vs. |#font[62]{q}| (QE Only, pFDpCD)", "W vs. |#font[62]{q}| (QE Only, pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];q [GeV/c]",
+                 numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
+    TH2D *hW_VS_q_3v_MEC_pFDpCD =
+        new TH2D("W vs. |#font[62]{q}| (MEC Only, pFDpCD)", "W vs. |#font[62]{q}| (MEC Only, pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];q [GeV/c]",
+                 numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
+    TH2D *hW_VS_q_3v_RES_pFDpCD =
+        new TH2D("W vs. |#font[62]{q}| (RES Only, pFDpCD)", "W vs. |#font[62]{q}| (RES Only, pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];q [GeV/c]",
+                 numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
+    TH2D *hW_VS_q_3v_DIS_pFDpCD =
+        new TH2D("W vs. |#font[62]{q}| (DIS Only, pFDpCD)", "W vs. |#font[62]{q}| (DIS Only, pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];q [GeV/c]",
+                 numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
+    std::string hW_VS_q_3v_pFDpCD_Dir = directories.W_dir_map["W_pFDpCD_Directory"];
+
+    TH2D *hW_VS_omega_pFDpCD = new TH2D("W vs. #omega (All Int., pFDpCD)", "W vs. #omega (All Int., pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];#omega [GeV]",
+                                        numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
+    TH2D *hW_VS_omega_QEL_pFDpCD = new TH2D("W vs. #omega (QE Only, pFDpCD)", "W vs. #omega (QE Only, pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];#omega [GeV]",
+                                            numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
+    TH2D *hW_VS_omega_MEC_pFDpCD = new TH2D("W vs. #omega (MEC Only, pFDpCD)", "W vs. #omega (MEC Only, pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];#omega [GeV]",
+                                            numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
+    TH2D *hW_VS_omega_RES_pFDpCD = new TH2D("W vs. #omega (RES Only, pFDpCD)", "W vs. #omega (RES Only, pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];#omega [GeV]",
+                                            numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
+    TH2D *hW_VS_omega_DIS_pFDpCD = new TH2D("W vs. #omega (DIS Only, pFDpCD)", "W vs. #omega (DIS Only, pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];#omega [GeV]",
+                                            numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
+    std::string hW_VS_omega_pFDpCD_Dir = directories.W_dir_map["W_pFDpCD_Directory"];
+
+    // W plots (nFDpCD, CD & FD)
+    THStack *sW_nFDpCD = new THStack("W distribution (All Int., nFDpCD)", "W distribution (nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];");
+    TH1D *hW_All_Int_nFDpCD = new TH1D("W distribution (All Int., nFDpCD)", "W distribution (All Int., nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];",
+                                       numTH1Dbins_W_Plots, W_lboundary, W_uboundary);
+    TH1D *hW_QEL_nFDpCD = new TH1D("W distribution (QEL only, nFDpCD)", "W distribution (QEL only, nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];",
+                                   numTH1Dbins_W_Plots, W_lboundary, W_uboundary);
+    TH1D *hW_MEC_nFDpCD = new TH1D("W distribution (MEC only, nFDpCD)", "W distribution (MEC only, nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];",
+                                   numTH1Dbins_W_Plots, W_lboundary, W_uboundary);
+    TH1D *hW_RES_nFDpCD = new TH1D("W distribution (RES only, nFDpCD)", "W distribution (RES only, nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];",
+                                   numTH1Dbins_W_Plots, W_lboundary, W_uboundary);
+    TH1D *hW_DIS_nFDpCD = new TH1D("W distribution (DIS only, nFDpCD)", "W distribution (DIS only, nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];",
+                                   numTH1Dbins_W_Plots, W_lboundary, W_uboundary);
+    std::string sW_nFDpCD_Dir = directories.W_dir_map["W_nFDpCD_Directory"];
+    std::string hW_All_Int_nFDpCD_Dir = directories.W_dir_map["W_nFDpCD_Directory"];
+    std::string hW_QEL_nFDpCD_Dir = directories.W_dir_map["W_nFDpCD_Directory"];
+    std::string hW_MEC_nFDpCD_Dir = directories.W_dir_map["W_nFDpCD_Directory"];
+    std::string hW_RES_nFDpCD_Dir = directories.W_dir_map["W_nFDpCD_Directory"];
+    std::string hW_DIS_nFDpCD_Dir = directories.W_dir_map["W_nFDpCD_Directory"];
+
+    TH2D *hW_VS_q_3v_nFDpCD =
+        new TH2D("W vs. |#font[62]{q}| (All Int., nFDpCD)", "W vs. |#font[62]{q}| (All Int., nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];q [GeV/c]",
+                 numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
+    TH2D *hW_VS_q_3v_QEL_nFDpCD =
+        new TH2D("W vs. |#font[62]{q}| (QE Only, nFDpCD)", "W vs. |#font[62]{q}| (QE Only, nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];q [GeV/c]",
+                 numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
+    TH2D *hW_VS_q_3v_MEC_nFDpCD =
+        new TH2D("W vs. |#font[62]{q}| (MEC Only, nFDpCD)", "W vs. |#font[62]{q}| (MEC Only, nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];q [GeV/c]",
+                 numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
+    TH2D *hW_VS_q_3v_RES_nFDpCD =
+        new TH2D("W vs. |#font[62]{q}| (RES Only, nFDpCD)", "W vs. |#font[62]{q}| (RES Only, nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];q [GeV/c]",
+                 numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
+    TH2D *hW_VS_q_3v_DIS_nFDpCD =
+        new TH2D("W vs. |#font[62]{q}| (DIS Only, nFDpCD)", "W vs. |#font[62]{q}| (DIS Only, nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];q [GeV/c]",
+                 numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
+    std::string hW_VS_q_3v_nFDpCD_Dir = directories.W_dir_map["W_nFDpCD_Directory"];
+
+    TH2D *hW_VS_omega_nFDpCD = new TH2D("W vs. #omega (All Int., nFDpCD)", "W vs. #omega (All Int., nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];#omega [GeV]",
+                                        numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
+    TH2D *hW_VS_omega_QEL_nFDpCD = new TH2D("W vs. #omega (QE Only, nFDpCD)", "W vs. #omega (QE Only, nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];#omega [GeV]",
+                                            numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
+    TH2D *hW_VS_omega_MEC_nFDpCD = new TH2D("W vs. #omega (MEC Only, nFDpCD)", "W vs. #omega (MEC Only, nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];#omega [GeV]",
+                                            numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
+    TH2D *hW_VS_omega_RES_nFDpCD = new TH2D("W vs. #omega (RES Only, nFDpCD)", "W vs. #omega (RES Only, nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];#omega [GeV]",
+                                            numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
+    TH2D *hW_VS_omega_DIS_nFDpCD = new TH2D("W vs. #omega (DIS Only, nFDpCD)", "W vs. #omega (DIS Only, nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];#omega [GeV]",
+                                            numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
+    std::string hW_VS_omega_nFDpCD_Dir = directories.W_dir_map["W_nFDpCD_Directory"];
 
 #pragma endregion
 
@@ -3064,289 +3484,6 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 #pragma endregion
 
     // ======================================================================================================================================================================
-    // W histograms
-    // ======================================================================================================================================================================
-
-#pragma region /* W histograms */
-
-    // W histograms
-
-    // W plots (1e cut, CD & FD)
-    THStack *sW_1e_cut = new THStack("W distribution (All Int., 1e Cut)", "W distribution (1e Cut);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];");
-    TH1D *hW_All_Int_1e_cut = new TH1D("W distribution (All Int., 1e Cut)", "W distribution (All Int., 1e Cut);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];",
-                                       numTH1Dbins_W_Plots, W_lboundary, W_uboundary);
-    TH1D *hW_QEL_1e_cut = new TH1D("W distribution (QEL only, 1e Cut)", "W distribution (QEL only, 1e Cut);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];", numTH1Dbins_W_Plots,
-                                   W_lboundary, W_uboundary);
-    TH1D *hW_MEC_1e_cut = new TH1D("W distribution (MEC only, 1e Cut)", "W distribution (MEC only, 1e Cut);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];", numTH1Dbins_W_Plots,
-                                   W_lboundary, W_uboundary);
-    TH1D *hW_RES_1e_cut = new TH1D("W distribution (RES only, 1e Cut)", "W distribution (RES only, 1e Cut);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];", numTH1Dbins_W_Plots,
-                                   W_lboundary, W_uboundary);
-    TH1D *hW_DIS_1e_cut = new TH1D("W distribution (DIS only, 1e Cut)", "W distribution (DIS only, 1e Cut);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];", numTH1Dbins_W_Plots,
-                                   W_lboundary, W_uboundary);
-    std::string sW_1e_cut_Dir = directories.W_dir_map["W_1e_cut_Directory"];
-    std::string hW_All_Int_1e_cut_Dir = directories.W_dir_map["W_1e_cut_Directory"];
-    std::string hW_QEL_1e_cut_Dir = directories.W_dir_map["W_1e_cut_Directory"];
-    std::string hW_MEC_1e_cut_Dir = directories.W_dir_map["W_1e_cut_Directory"];
-    std::string hW_RES_1e_cut_Dir = directories.W_dir_map["W_1e_cut_Directory"];
-    std::string hW_DIS_1e_cut_Dir = directories.W_dir_map["W_1e_cut_Directory"];
-
-    TH2D *hW_VS_q_3v_1e_cut =
-        new TH2D("W vs. |#font[62]{q}| (All Int., 1e Cut)", "W vs. |#font[62]{q}| (All Int., 1e Cut);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];q [GeV/c]",
-                 numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
-    TH2D *hW_VS_q_3v_QEL_1e_cut =
-        new TH2D("W vs. |#font[62]{q}| (QE Only, 1e Cut)", "W vs. |#font[62]{q}| (QE Only, 1e Cut);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];q [GeV/c]",
-                 numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
-    TH2D *hW_VS_q_3v_MEC_1e_cut =
-        new TH2D("W vs. |#font[62]{q}| (MEC Only, 1e Cut)", "W vs. |#font[62]{q}| (MEC Only, 1e Cut);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];q [GeV/c]",
-                 numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
-    TH2D *hW_VS_q_3v_RES_1e_cut =
-        new TH2D("W vs. |#font[62]{q}| (RES Only, 1e Cut)", "W vs. |#font[62]{q}| (RES Only, 1e Cut);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];q [GeV/c]",
-                 numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
-    TH2D *hW_VS_q_3v_DIS_1e_cut =
-        new TH2D("W vs. |#font[62]{q}| (DIS Only, 1e Cut)", "W vs. |#font[62]{q}| (DIS Only, 1e Cut);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];q [GeV/c]",
-                 numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
-    std::string hW_VS_q_3v_1e_cut_Dir = directories.W_dir_map["W_1e_cut_Directory"];
-
-    TH2D *hW_VS_omega_1e_cut = new TH2D("W vs. #omega (All Int., 1e Cut)", "W vs. #omega (All Int., 1e Cut);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];#omega [GeV]",
-                                        numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
-    TH2D *hW_VS_omega_QEL_1e_cut = new TH2D("W vs. #omega (QE Only, 1e Cut)", "W vs. #omega (QE Only, 1e Cut);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];#omega [GeV]",
-                                            numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
-    TH2D *hW_VS_omega_MEC_1e_cut = new TH2D("W vs. #omega (MEC Only, 1e Cut)", "W vs. #omega (MEC Only, 1e Cut);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];#omega [GeV]",
-                                            numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
-    TH2D *hW_VS_omega_RES_1e_cut = new TH2D("W vs. #omega (RES Only, 1e Cut)", "W vs. #omega (RES Only, 1e Cut);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];#omega [GeV]",
-                                            numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
-    TH2D *hW_VS_omega_DIS_1e_cut = new TH2D("W vs. #omega (DIS Only, 1e Cut)", "W vs. #omega (DIS Only, 1e Cut);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];#omega [GeV]",
-                                            numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
-    std::string hW_VS_omega_1e_cut_Dir = directories.W_dir_map["W_1e_cut_Directory"];
-
-    // W plots (1p, CD & FD)
-    THStack *sW_1p = new THStack("W distribution (All Int., 1p)", "W distribution (1p);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];");
-    TH1D *hW_All_Int_1p =
-        new TH1D("W distribution (All Int., 1p)", "W distribution (All Int., 1p);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];", numTH1Dbins_W_Plots, W_lboundary, W_uboundary);
-    TH1D *hW_QEL_1p =
-        new TH1D("W distribution (QEL only, 1p)", "W distribution (QEL only, 1p);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];", numTH1Dbins_W_Plots, W_lboundary, W_uboundary);
-    TH1D *hW_MEC_1p =
-        new TH1D("W distribution (MEC only, 1p)", "W distribution (MEC only, 1p);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];", numTH1Dbins_W_Plots, W_lboundary, W_uboundary);
-    TH1D *hW_RES_1p =
-        new TH1D("W distribution (RES only, 1p)", "W distribution (RES only, 1p);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];", numTH1Dbins_W_Plots, W_lboundary, W_uboundary);
-    TH1D *hW_DIS_1p =
-        new TH1D("W distribution (DIS only, 1p)", "W distribution (DIS only, 1p);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];", numTH1Dbins_W_Plots, W_lboundary, W_uboundary);
-    std::string sW_1p_Dir = directories.W_dir_map["W_1p_Directory"];
-    std::string hW_All_Int_1p_Dir = directories.W_dir_map["W_1p_Directory"];
-    std::string hW_QEL_1p_Dir = directories.W_dir_map["W_1p_Directory"];
-    std::string hW_MEC_1p_Dir = directories.W_dir_map["W_1p_Directory"];
-    std::string hW_RES_1p_Dir = directories.W_dir_map["W_1p_Directory"];
-    std::string hW_DIS_1p_Dir = directories.W_dir_map["W_1p_Directory"];
-
-    TH2D *hW_VS_q_3v_1p = new TH2D("W vs. |#font[62]{q}| (All Int., 1p)", "W vs. |#font[62]{q}| (All Int., 1p);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];q [GeV/c]",
-                                   numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
-    TH2D *hW_VS_q_3v_QEL_1p = new TH2D("W vs. |#font[62]{q}| (QE Only, 1p)", "W vs. |#font[62]{q}| (QE Only, 1p);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];q [GeV/c]",
-                                       numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
-    TH2D *hW_VS_q_3v_MEC_1p = new TH2D("W vs. |#font[62]{q}| (MEC Only, 1p)", "W vs. |#font[62]{q}| (MEC Only, 1p);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];q [GeV/c]",
-                                       numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
-    TH2D *hW_VS_q_3v_RES_1p = new TH2D("W vs. |#font[62]{q}| (RES Only, 1p)", "W vs. |#font[62]{q}| (RES Only, 1p);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];q [GeV/c]",
-                                       numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
-    TH2D *hW_VS_q_3v_DIS_1p = new TH2D("W vs. |#font[62]{q}| (DIS Only, 1p)", "W vs. |#font[62]{q}| (DIS Only, 1p);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];q [GeV/c]",
-                                       numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
-    std::string hW_VS_q_3v_1p_Dir = directories.W_dir_map["W_1p_Directory"];
-
-    TH2D *hW_VS_omega_1p = new TH2D("W vs. #omega (All Int., 1p)", "W vs. #omega (All Int., 1p);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];#omega [GeV]",
-                                    numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
-    TH2D *hW_VS_omega_QEL_1p = new TH2D("W vs. #omega (QE Only, 1p)", "W vs. #omega (QE Only, 1p);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];#omega [GeV]",
-                                        numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
-    TH2D *hW_VS_omega_MEC_1p = new TH2D("W vs. #omega (MEC Only, 1p)", "W vs. #omega (MEC Only, 1p);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];#omega [GeV]",
-                                        numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
-    TH2D *hW_VS_omega_RES_1p = new TH2D("W vs. #omega (RES Only, 1p)", "W vs. #omega (RES Only, 1p);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];#omega [GeV]",
-                                        numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
-    TH2D *hW_VS_omega_DIS_1p = new TH2D("W vs. #omega (DIS Only, 1p)", "W vs. #omega (DIS Only, 1p);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];#omega [GeV]",
-                                        numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
-    std::string hW_VS_omega_1p_Dir = directories.W_dir_map["W_1p_Directory"];
-
-    // W plots (1n, CD & FD)
-    THStack *sW_1n = new THStack("W distribution (All Int., 1n)", "W distribution (1n);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];");
-    TH1D *hW_All_Int_1n =
-        new TH1D("W distribution (All Int., 1n)", "W distribution (All Int., 1n);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];", numTH1Dbins_W_Plots, W_lboundary, W_uboundary);
-    TH1D *hW_QEL_1n =
-        new TH1D("W distribution (QEL only, 1n)", "W distribution (QEL only, 1n);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];", numTH1Dbins_W_Plots, W_lboundary, W_uboundary);
-    TH1D *hW_MEC_1n =
-        new TH1D("W distribution (MEC only, 1n)", "W distribution (MEC only, 1n);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];", numTH1Dbins_W_Plots, W_lboundary, W_uboundary);
-    TH1D *hW_RES_1n =
-        new TH1D("W distribution (RES only, 1n)", "W distribution (RES only, 1n);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];", numTH1Dbins_W_Plots, W_lboundary, W_uboundary);
-    TH1D *hW_DIS_1n =
-        new TH1D("W distribution (DIS only, 1n)", "W distribution (DIS only, 1n);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];", numTH1Dbins_W_Plots, W_lboundary, W_uboundary);
-    std::string sW_1n_Dir = directories.W_dir_map["W_1n_Directory"];
-    std::string hW_All_Int_1n_Dir = directories.W_dir_map["W_1n_Directory"];
-    std::string hW_QEL_1n_Dir = directories.W_dir_map["W_1n_Directory"];
-    std::string hW_MEC_1n_Dir = directories.W_dir_map["W_1n_Directory"];
-    std::string hW_RES_1n_Dir = directories.W_dir_map["W_1n_Directory"];
-    std::string hW_DIS_1n_Dir = directories.W_dir_map["W_1n_Directory"];
-
-    TH2D *hW_VS_q_3v_1n = new TH2D("W vs. |#font[62]{q}| (All Int., 1n)", "W vs. |#font[62]{q}| (All Int., 1n);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];q [GeV/c]",
-                                   numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
-    TH2D *hW_VS_q_3v_QEL_1n = new TH2D("W vs. |#font[62]{q}| (QE Only, 1n)", "W vs. |#font[62]{q}| (QE Only, 1n);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];q [GeV/c]",
-                                       numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
-    TH2D *hW_VS_q_3v_MEC_1n = new TH2D("W vs. |#font[62]{q}| (MEC Only, 1n)", "W vs. |#font[62]{q}| (MEC Only, 1n);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];q [GeV/c]",
-                                       numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
-    TH2D *hW_VS_q_3v_RES_1n = new TH2D("W vs. |#font[62]{q}| (RES Only, 1n)", "W vs. |#font[62]{q}| (RES Only, 1n);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];q [GeV/c]",
-                                       numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
-    TH2D *hW_VS_q_3v_DIS_1n = new TH2D("W vs. |#font[62]{q}| (DIS Only, 1n)", "W vs. |#font[62]{q}| (DIS Only, 1n);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];q [GeV/c]",
-                                       numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
-    std::string hW_VS_q_3v_1n_Dir = directories.W_dir_map["W_1n_Directory"];
-
-    TH2D *hW_VS_omega_1n = new TH2D("W vs. #omega (All Int., 1n)", "W vs. #omega (All Int., 1n);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];#omega [GeV]",
-                                    numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
-    TH2D *hW_VS_omega_QEL_1n = new TH2D("W vs. #omega (QE Only, 1n)", "W vs. #omega (QE Only, 1n);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];#omega [GeV]",
-                                        numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
-    TH2D *hW_VS_omega_MEC_1n = new TH2D("W vs. #omega (MEC Only, 1n)", "W vs. #omega (MEC Only, 1n);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];#omega [GeV]",
-                                        numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
-    TH2D *hW_VS_omega_RES_1n = new TH2D("W vs. #omega (RES Only, 1n)", "W vs. #omega (RES Only, 1n);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];#omega [GeV]",
-                                        numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
-    TH2D *hW_VS_omega_DIS_1n = new TH2D("W vs. #omega (DIS Only, 1n)", "W vs. #omega (DIS Only, 1n);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];#omega [GeV]",
-                                        numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
-    std::string hW_VS_omega_1n_Dir = directories.W_dir_map["W_1n_Directory"];
-
-    // W plots (2p, CD & FD)
-    THStack *sW_2p = new THStack("W distribution (All Int., 2p)", "W distribution (2p);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];");
-    TH1D *hW_All_Int_2p =
-        new TH1D("W distribution (All Int., 2p)", "W distribution (All Int., 2p);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];", numTH1Dbins_W_Plots, W_lboundary, W_uboundary);
-    TH1D *hW_QEL_2p =
-        new TH1D("W distribution (QEL only, 2p)", "W distribution (QEL only, 2p);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];", numTH1Dbins_W_Plots, W_lboundary, W_uboundary);
-    TH1D *hW_MEC_2p =
-        new TH1D("W distribution (MEC only, 2p)", "W distribution (MEC only, 2p);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];", numTH1Dbins_W_Plots, W_lboundary, W_uboundary);
-    TH1D *hW_RES_2p =
-        new TH1D("W distribution (RES only, 2p)", "W distribution (RES only, 2p);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];", numTH1Dbins_W_Plots, W_lboundary, W_uboundary);
-    TH1D *hW_DIS_2p =
-        new TH1D("W distribution (DIS only, 2p)", "W distribution (DIS only, 2p);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];", numTH1Dbins_W_Plots, W_lboundary, W_uboundary);
-    std::string sW_2p_Dir = directories.W_dir_map["W_2p_Directory"];
-    std::string hW_All_Int_2p_Dir = directories.W_dir_map["W_2p_Directory"];
-    std::string hW_QEL_2p_Dir = directories.W_dir_map["W_2p_Directory"];
-    std::string hW_MEC_2p_Dir = directories.W_dir_map["W_2p_Directory"];
-    std::string hW_RES_2p_Dir = directories.W_dir_map["W_2p_Directory"];
-    std::string hW_DIS_2p_Dir = directories.W_dir_map["W_2p_Directory"];
-
-    TH2D *hW_VS_q_3v_2p = new TH2D("W vs. |#font[62]{q}| (All Int., 2p)", "W vs. |#font[62]{q}| (All Int., 2p);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];q [GeV/c]",
-                                   numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
-    TH2D *hW_VS_q_3v_QEL_2p = new TH2D("W vs. |#font[62]{q}| (QE Only, 2p)", "W vs. |#font[62]{q}| (QE Only, 2p);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];q [GeV/c]",
-                                       numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
-    TH2D *hW_VS_q_3v_MEC_2p = new TH2D("W vs. |#font[62]{q}| (MEC Only, 2p)", "W vs. |#font[62]{q}| (MEC Only, 2p);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];q [GeV/c]",
-                                       numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
-    TH2D *hW_VS_q_3v_RES_2p = new TH2D("W vs. |#font[62]{q}| (RES Only, 2p)", "W vs. |#font[62]{q}| (RES Only, 2p);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];q [GeV/c]",
-                                       numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
-    TH2D *hW_VS_q_3v_DIS_2p = new TH2D("W vs. |#font[62]{q}| (DIS Only, 2p)", "W vs. |#font[62]{q}| (DIS Only, 2p);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];q [GeV/c]",
-                                       numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
-    std::string hW_VS_q_3v_2p_Dir = directories.W_dir_map["W_2p_Directory"];
-
-    TH2D *hW_VS_omega_2p = new TH2D("W vs. #omega (All Int., 2p)", "W vs. #omega (All Int., 2p);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];#omega [GeV]",
-                                    numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
-    TH2D *hW_VS_omega_QEL_2p = new TH2D("W vs. #omega (QE Only, 2p)", "W vs. #omega (QE Only, 2p);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];#omega [GeV]",
-                                        numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
-    TH2D *hW_VS_omega_MEC_2p = new TH2D("W vs. #omega (MEC Only, 2p)", "W vs. #omega (MEC Only, 2p);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];#omega [GeV]",
-                                        numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
-    TH2D *hW_VS_omega_RES_2p = new TH2D("W vs. #omega (RES Only, 2p)", "W vs. #omega (RES Only, 2p);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];#omega [GeV]",
-                                        numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
-    TH2D *hW_VS_omega_DIS_2p = new TH2D("W vs. #omega (DIS Only, 2p)", "W vs. #omega (DIS Only, 2p);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];#omega [GeV]",
-                                        numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
-    std::string hW_VS_omega_2p_Dir = directories.W_dir_map["W_2p_Directory"];
-
-    // W plots (pFDpCD, CD & FD)
-    THStack *sW_pFDpCD = new THStack("W distribution (All Int., pFDpCD)", "W distribution (pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];");
-    TH1D *hW_All_Int_pFDpCD = new TH1D("W distribution (All Int., pFDpCD)", "W distribution (All Int., pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];",
-                                       numTH1Dbins_W_Plots, W_lboundary, W_uboundary);
-    TH1D *hW_QEL_pFDpCD = new TH1D("W distribution (QEL only, pFDpCD)", "W distribution (QEL only, pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];", numTH1Dbins_W_Plots,
-                                   W_lboundary, W_uboundary);
-    TH1D *hW_MEC_pFDpCD = new TH1D("W distribution (MEC only, pFDpCD)", "W distribution (MEC only, pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];", numTH1Dbins_W_Plots,
-                                   W_lboundary, W_uboundary);
-    TH1D *hW_RES_pFDpCD = new TH1D("W distribution (RES only, pFDpCD)", "W distribution (RES only, pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];", numTH1Dbins_W_Plots,
-                                   W_lboundary, W_uboundary);
-    TH1D *hW_DIS_pFDpCD = new TH1D("W distribution (DIS only, pFDpCD)", "W distribution (DIS only, pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];", numTH1Dbins_W_Plots,
-                                   W_lboundary, W_uboundary);
-    std::string sW_pFDpCD_Dir = directories.W_dir_map["W_pFDpCD_Directory"];
-    std::string hW_All_Int_pFDpCD_Dir = directories.W_dir_map["W_pFDpCD_Directory"];
-    std::string hW_QEL_pFDpCD_Dir = directories.W_dir_map["W_pFDpCD_Directory"];
-    std::string hW_MEC_pFDpCD_Dir = directories.W_dir_map["W_pFDpCD_Directory"];
-    std::string hW_RES_pFDpCD_Dir = directories.W_dir_map["W_pFDpCD_Directory"];
-    std::string hW_DIS_pFDpCD_Dir = directories.W_dir_map["W_pFDpCD_Directory"];
-
-    TH2D *hW_VS_q_3v_pFDpCD =
-        new TH2D("W vs. |#font[62]{q}| (All Int., pFDpCD)", "W vs. |#font[62]{q}| (All Int., pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];q [GeV/c]",
-                 numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
-    TH2D *hW_VS_q_3v_QEL_pFDpCD =
-        new TH2D("W vs. |#font[62]{q}| (QE Only, pFDpCD)", "W vs. |#font[62]{q}| (QE Only, pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];q [GeV/c]",
-                 numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
-    TH2D *hW_VS_q_3v_MEC_pFDpCD =
-        new TH2D("W vs. |#font[62]{q}| (MEC Only, pFDpCD)", "W vs. |#font[62]{q}| (MEC Only, pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];q [GeV/c]",
-                 numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
-    TH2D *hW_VS_q_3v_RES_pFDpCD =
-        new TH2D("W vs. |#font[62]{q}| (RES Only, pFDpCD)", "W vs. |#font[62]{q}| (RES Only, pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];q [GeV/c]",
-                 numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
-    TH2D *hW_VS_q_3v_DIS_pFDpCD =
-        new TH2D("W vs. |#font[62]{q}| (DIS Only, pFDpCD)", "W vs. |#font[62]{q}| (DIS Only, pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];q [GeV/c]",
-                 numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
-    std::string hW_VS_q_3v_pFDpCD_Dir = directories.W_dir_map["W_pFDpCD_Directory"];
-
-    TH2D *hW_VS_omega_pFDpCD = new TH2D("W vs. #omega (All Int., pFDpCD)", "W vs. #omega (All Int., pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];#omega [GeV]",
-                                        numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
-    TH2D *hW_VS_omega_QEL_pFDpCD = new TH2D("W vs. #omega (QE Only, pFDpCD)", "W vs. #omega (QE Only, pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];#omega [GeV]",
-                                            numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
-    TH2D *hW_VS_omega_MEC_pFDpCD = new TH2D("W vs. #omega (MEC Only, pFDpCD)", "W vs. #omega (MEC Only, pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];#omega [GeV]",
-                                            numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
-    TH2D *hW_VS_omega_RES_pFDpCD = new TH2D("W vs. #omega (RES Only, pFDpCD)", "W vs. #omega (RES Only, pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];#omega [GeV]",
-                                            numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
-    TH2D *hW_VS_omega_DIS_pFDpCD = new TH2D("W vs. #omega (DIS Only, pFDpCD)", "W vs. #omega (DIS Only, pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];#omega [GeV]",
-                                            numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
-    std::string hW_VS_omega_pFDpCD_Dir = directories.W_dir_map["W_pFDpCD_Directory"];
-
-    // W plots (nFDpCD, CD & FD)
-    THStack *sW_nFDpCD = new THStack("W distribution (All Int., nFDpCD)", "W distribution (nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];");
-    TH1D *hW_All_Int_nFDpCD = new TH1D("W distribution (All Int., nFDpCD)", "W distribution (All Int., nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];",
-                                       numTH1Dbins_W_Plots, W_lboundary, W_uboundary);
-    TH1D *hW_QEL_nFDpCD = new TH1D("W distribution (QEL only, nFDpCD)", "W distribution (QEL only, nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];", numTH1Dbins_W_Plots,
-                                   W_lboundary, W_uboundary);
-    TH1D *hW_MEC_nFDpCD = new TH1D("W distribution (MEC only, nFDpCD)", "W distribution (MEC only, nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];", numTH1Dbins_W_Plots,
-                                   W_lboundary, W_uboundary);
-    TH1D *hW_RES_nFDpCD = new TH1D("W distribution (RES only, nFDpCD)", "W distribution (RES only, nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];", numTH1Dbins_W_Plots,
-                                   W_lboundary, W_uboundary);
-    TH1D *hW_DIS_nFDpCD = new TH1D("W distribution (DIS only, nFDpCD)", "W distribution (DIS only, nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];", numTH1Dbins_W_Plots,
-                                   W_lboundary, W_uboundary);
-    std::string sW_nFDpCD_Dir = directories.W_dir_map["W_nFDpCD_Directory"];
-    std::string hW_All_Int_nFDpCD_Dir = directories.W_dir_map["W_nFDpCD_Directory"];
-    std::string hW_QEL_nFDpCD_Dir = directories.W_dir_map["W_nFDpCD_Directory"];
-    std::string hW_MEC_nFDpCD_Dir = directories.W_dir_map["W_nFDpCD_Directory"];
-    std::string hW_RES_nFDpCD_Dir = directories.W_dir_map["W_nFDpCD_Directory"];
-    std::string hW_DIS_nFDpCD_Dir = directories.W_dir_map["W_nFDpCD_Directory"];
-
-    TH2D *hW_VS_q_3v_nFDpCD =
-        new TH2D("W vs. |#font[62]{q}| (All Int., nFDpCD)", "W vs. |#font[62]{q}| (All Int., nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];q [GeV/c]",
-                 numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
-    TH2D *hW_VS_q_3v_QEL_nFDpCD =
-        new TH2D("W vs. |#font[62]{q}| (QE Only, nFDpCD)", "W vs. |#font[62]{q}| (QE Only, nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];q [GeV/c]",
-                 numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
-    TH2D *hW_VS_q_3v_MEC_nFDpCD =
-        new TH2D("W vs. |#font[62]{q}| (MEC Only, nFDpCD)", "W vs. |#font[62]{q}| (MEC Only, nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];q [GeV/c]",
-                 numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
-    TH2D *hW_VS_q_3v_RES_nFDpCD =
-        new TH2D("W vs. |#font[62]{q}| (RES Only, nFDpCD)", "W vs. |#font[62]{q}| (RES Only, nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];q [GeV/c]",
-                 numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
-    TH2D *hW_VS_q_3v_DIS_nFDpCD =
-        new TH2D("W vs. |#font[62]{q}| (DIS Only, nFDpCD)", "W vs. |#font[62]{q}| (DIS Only, nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];q [GeV/c]",
-                 numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
-    std::string hW_VS_q_3v_nFDpCD_Dir = directories.W_dir_map["W_nFDpCD_Directory"];
-
-    TH2D *hW_VS_omega_nFDpCD = new TH2D("W vs. #omega (All Int., nFDpCD)", "W vs. #omega (All Int., nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];#omega [GeV]",
-                                        numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
-    TH2D *hW_VS_omega_QEL_nFDpCD = new TH2D("W vs. #omega (QE Only, nFDpCD)", "W vs. #omega (QE Only, nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];#omega [GeV]",
-                                            numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
-    TH2D *hW_VS_omega_MEC_nFDpCD = new TH2D("W vs. #omega (MEC Only, nFDpCD)", "W vs. #omega (MEC Only, nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];#omega [GeV]",
-                                            numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
-    TH2D *hW_VS_omega_RES_nFDpCD = new TH2D("W vs. #omega (RES Only, nFDpCD)", "W vs. #omega (RES Only, nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];#omega [GeV]",
-                                            numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
-    TH2D *hW_VS_omega_DIS_nFDpCD = new TH2D("W vs. #omega (DIS Only, nFDpCD)", "W vs. #omega (DIS Only, nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];#omega [GeV]",
-                                            numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
-    std::string hW_VS_omega_nFDpCD_Dir = directories.W_dir_map["W_nFDpCD_Directory"];
-
-#pragma endregion
-
-    // ======================================================================================================================================================================
     // Angle histograms
     // ======================================================================================================================================================================
 
@@ -3391,8 +3528,9 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     TH2D *hTheta_e_VS_P_e_1p_FD = new TH2D("#theta_{e} vs. P_{e} (All Int., 1p)", "#theta_{e} vs. P_{e} (All Int., 1p);P_{e} [GeV/c];#theta_{e} [#circ]", numTH2Dbins_Ang_Plots, 0,
                                            parameters.beamE * 1.1, numTH2Dbins_Ang_Plots, Theta_lboundary_FD, Theta_uboundary_FD);
-    TH2D *hTheta_e_VS_W_1p_FD = new TH2D("#theta_{e} vs. W (All Int., 1p)", "#theta_{e} vs. W (All Int., 1p);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];#theta_{e} [#circ]",
-                                         numTH2Dbins_Ang_Plots, W_lboundary, W_uboundary, numTH2Dbins_Ang_Plots, Theta_lboundary_FD, Theta_uboundary_FD);
+    TH2D *hTheta_e_VS_W_1p_FD =
+        new TH2D("#theta_{e} vs. W (All Int., 1p)", "#theta_{e} vs. W (All Int., 1p);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];#theta_{e} [#circ]",
+                 numTH2Dbins_Ang_Plots, W_lboundary, W_uboundary, numTH2Dbins_Ang_Plots, Theta_lboundary_FD, Theta_uboundary_FD);
     std::string hTheta_e_VS_P_e_1p_FD_Dir = directories.Angle_dir_map["Theta_e_1p_Directory"];
     std::string hTheta_e_VS_W_1p_FD_Dir = directories.Angle_dir_map["Theta_e_1p_Directory"];
 
@@ -3415,8 +3553,9 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     TH2D *hTheta_e_VS_P_e_1n_FD = new TH2D("#theta_{e} vs. P_{e} (All Int., 1n)", "#theta_{e} vs. P_{e} (All Int., 1n);P_{e} [GeV/c];#theta_{e} [#circ]", numTH2Dbins_Ang_Plots, 0,
                                            parameters.beamE * 1.1, numTH2Dbins_Ang_Plots, Theta_lboundary_FD, Theta_uboundary_FD);
-    TH2D *hTheta_e_VS_W_1n_FD = new TH2D("#theta_{e} vs. W (All Int., 1n)", "#theta_{e} vs. W (All Int., 1n);W = #sqrt{(#omega + m_{n})^{2} - #vec{q}^{2}}  [GeV/c^{2}];#theta_{e} [#circ]",
-                                         numTH2Dbins_Ang_Plots, W_lboundary, W_uboundary, numTH2Dbins_Ang_Plots, Theta_lboundary_FD, Theta_uboundary_FD);
+    TH2D *hTheta_e_VS_W_1n_FD =
+        new TH2D("#theta_{e} vs. W (All Int., 1n)", "#theta_{e} vs. W (All Int., 1n);W = #sqrt{(#omega + m_{n})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];#theta_{e} [#circ]",
+                 numTH2Dbins_Ang_Plots, W_lboundary, W_uboundary, numTH2Dbins_Ang_Plots, Theta_lboundary_FD, Theta_uboundary_FD);
     std::string hTheta_e_VS_P_e_1n_FD_Dir = directories.Angle_dir_map["Theta_e_1n_Directory"];
     std::string hTheta_e_VS_W_1n_FD_Dir = directories.Angle_dir_map["Theta_e_1n_Directory"];
 
@@ -3457,7 +3596,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     TH2D *hTheta_e_VS_P_e_pFDpCD_FD = new TH2D("#theta_{e} vs. P_{e} (All Int., pFDpCD)", "#theta_{e} vs. P_{e} (All Int., pFDpCD);P_{e} [GeV/c];#theta_{e} [#circ]", numTH2Dbins_Ang_Plots,
                                                0, parameters.beamE * 1.1, numTH2Dbins_Ang_Plots, Theta_lboundary_FD, Theta_uboundary_FD);
     TH2D *hTheta_e_VS_W_pFDpCD_FD =
-        new TH2D("#theta_{e} vs. W (All Int., pFDpCD)", "#theta_{e} vs. W (All Int., pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];#theta_{e} [#circ]",
+        new TH2D("#theta_{e} vs. W (All Int., pFDpCD)", "#theta_{e} vs. W (All Int., pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];#theta_{e} [#circ]",
                  numTH2Dbins_Ang_Plots, W_lboundary, W_uboundary, numTH2Dbins_Ang_Plots, Theta_lboundary_FD, Theta_uboundary_FD);
     std::string hTheta_e_VS_P_e_pFDpCD_FD_Dir = directories.Angle_dir_map["Theta_e_pFDpCD_Directory"];
     std::string hTheta_e_VS_W_pFDpCD_FD_Dir = directories.Angle_dir_map["Theta_e_pFDpCD_Directory"];
@@ -3482,7 +3621,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     TH2D *hTheta_e_VS_P_e_nFDpCD_FD = new TH2D("#theta_{e} vs. P_{e} (All Int., nFDpCD)", "#theta_{e} vs. P_{e} (All Int., nFDpCD);P_{e} [GeV/c];#theta_{e} [#circ]", numTH2Dbins_Ang_Plots,
                                                0, parameters.beamE * 1.1, numTH2Dbins_Ang_Plots, Theta_lboundary_FD, Theta_uboundary_FD);
     TH2D *hTheta_e_VS_W_nFDpCD_FD =
-        new TH2D("#theta_{e} vs. W (All Int., nFDpCD)", "#theta_{e} vs. W (All Int., nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];#theta_{e} [#circ]",
+        new TH2D("#theta_{e} vs. W (All Int., nFDpCD)", "#theta_{e} vs. W (All Int., nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];#theta_{e} [#circ]",
                  numTH2Dbins_Ang_Plots, W_lboundary, W_uboundary, numTH2Dbins_Ang_Plots, Theta_lboundary_FD, Theta_uboundary_FD);
     std::string hTheta_e_VS_P_e_nFDpCD_FD_Dir = directories.Angle_dir_map["Theta_e_nFDpCD_Directory"];
     std::string hTheta_e_VS_W_nFDpCD_FD_Dir = directories.Angle_dir_map["Theta_e_nFDpCD_Directory"];
@@ -3520,7 +3659,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     TH2D *hPhi_e_VS_P_e_1p_FD = new TH2D("#phi_{e} vs. P_{e} (All Int., 1p)", "#phi_{e} vs. P_{e} (All Int., 1p);P_{e} [GeV/c];#phi_{e} [#circ]", numTH2Dbins_Ang_Plots, 0,
                                          parameters.beamE * 1.1, numTH2Dbins_Ang_Plots, Phi_lboundary, Phi_uboundary);
-    TH2D *hPhi_e_VS_W_1p_FD = new TH2D("#phi_{e} vs. W (All Int., 1p)", "#phi_{e} vs. W (All Int., 1p);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];#phi_{e} [#circ]",
+    TH2D *hPhi_e_VS_W_1p_FD = new TH2D("#phi_{e} vs. W (All Int., 1p)", "#phi_{e} vs. W (All Int., 1p);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];#phi_{e} [#circ]",
                                        numTH2Dbins_Ang_Plots, W_lboundary, W_uboundary, numTH2Dbins_Ang_Plots, Phi_lboundary, Phi_uboundary);
     std::string hPhi_e_VS_P_e_1p_FD_Dir = directories.Angle_dir_map["Phi_e_1p_Directory"];
     std::string hPhi_e_VS_W_1p_FD_Dir = directories.Angle_dir_map["Phi_e_1p_Directory"];
@@ -3544,7 +3683,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     TH2D *hPhi_e_VS_P_e_1n_FD = new TH2D("#phi_{e} vs. P_{e} (All Int., 1n)", "#phi_{e} vs. P_{e} (All Int., 1n);P_{e} [GeV/c];#phi_{e} [#circ]", numTH2Dbins_Ang_Plots, 0,
                                          parameters.beamE * 1.1, numTH2Dbins_Ang_Plots, Phi_lboundary, Phi_uboundary);
-    TH2D *hPhi_e_VS_W_1n_FD = new TH2D("#phi_{e} vs. W (All Int., 1n)", "#phi_{e} vs. W (All Int., 1n);W = #sqrt{(#omega + m_{n})^{2} - #vec{q}^{2}}  [GeV/c^{2}];#phi_{e} [#circ]",
+    TH2D *hPhi_e_VS_W_1n_FD = new TH2D("#phi_{e} vs. W (All Int., 1n)", "#phi_{e} vs. W (All Int., 1n);W = #sqrt{(#omega + m_{n})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];#phi_{e} [#circ]",
                                        numTH2Dbins_Ang_Plots, W_lboundary, W_uboundary, numTH2Dbins_Ang_Plots, Phi_lboundary, Phi_uboundary);
     std::string hPhi_e_VS_P_e_1n_FD_Dir = directories.Angle_dir_map["Phi_e_1n_Directory"];
     std::string hPhi_e_VS_W_1n_FD_Dir = directories.Angle_dir_map["Phi_e_1n_Directory"];
@@ -3586,8 +3725,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     TH2D *hPhi_e_VS_P_e_pFDpCD_FD = new TH2D("#phi_{e} vs. P_{e} (All Int., pFDpCD)", "#phi_{e} vs. P_{e} (All Int., pFDpCD);P_{e} [GeV/c];#phi_{e} [#circ]", numTH2Dbins_Ang_Plots, 0,
                                              parameters.beamE * 1.1, numTH2Dbins_Ang_Plots, Phi_lboundary, Phi_uboundary);
     TH2D *hPhi_e_VS_W_pFDpCD_FD =
-        new TH2D("#phi_{e} vs. W (All Int., pFDpCD)", "#phi_{e} vs. W (All Int., pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];#phi_{e} [#circ]", numTH2Dbins_Ang_Plots,
-                 W_lboundary, W_uboundary, numTH2Dbins_Ang_Plots, Phi_lboundary, Phi_uboundary);
+        new TH2D("#phi_{e} vs. W (All Int., pFDpCD)", "#phi_{e} vs. W (All Int., pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];#phi_{e} [#circ]",
+                 numTH2Dbins_Ang_Plots, W_lboundary, W_uboundary, numTH2Dbins_Ang_Plots, Phi_lboundary, Phi_uboundary);
     std::string hPhi_e_VS_P_e_pFDpCD_FD_Dir = directories.Angle_dir_map["Phi_e_pFDpCD_Directory"];
     std::string hPhi_e_VS_W_pFDpCD_FD_Dir = directories.Angle_dir_map["Phi_e_pFDpCD_Directory"];
 
@@ -3611,8 +3750,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     TH2D *hPhi_e_VS_P_e_nFDpCD_FD = new TH2D("#phi_{e} vs. P_{e} (All Int., nFDpCD)", "#phi_{e} vs. P_{e} (All Int., nFDpCD);P_{e} [GeV/c];#phi_{e} [#circ]", numTH2Dbins_Ang_Plots, 0,
                                              parameters.beamE * 1.1, numTH2Dbins_Ang_Plots, Phi_lboundary, Phi_uboundary);
     TH2D *hPhi_e_VS_W_nFDpCD_FD =
-        new TH2D("#phi_{e} vs. W (All Int., nFDpCD)", "#phi_{e} vs. W (All Int., nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];#phi_{e} [#circ]", numTH2Dbins_Ang_Plots,
-                 W_lboundary, W_uboundary, numTH2Dbins_Ang_Plots, Phi_lboundary, Phi_uboundary);
+        new TH2D("#phi_{e} vs. W (All Int., nFDpCD)", "#phi_{e} vs. W (All Int., nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];#phi_{e} [#circ]",
+                 numTH2Dbins_Ang_Plots, W_lboundary, W_uboundary, numTH2Dbins_Ang_Plots, Phi_lboundary, Phi_uboundary);
     std::string hPhi_e_VS_P_e_nFDpCD_FD_Dir = directories.Angle_dir_map["Phi_e_nFDpCD_Directory"];
     std::string hPhi_e_VS_W_nFDpCD_FD_Dir = directories.Angle_dir_map["Phi_e_nFDpCD_Directory"];
 
@@ -3745,7 +3884,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     TH2D *hTheta_p_VS_P_p_1p_FD = new TH2D("#theta_{p} vs. P_{p} (All Int., 1p, FD)", "#theta_{p} vs. P_{p} (All Int., 1p, FD);P_{p} [GeV/c];#theta_{p} [#circ]", numTH2Dbins_Ang_Plots, 0,
                                            parameters.beamE * 1.1, numTH2Dbins_Ang_Plots, Theta_lboundary_FD, Theta_uboundary_FD);
     TH2D *hTheta_p_VS_W_1p_FD =
-        new TH2D("#theta_{p} vs. W (All Int., 1p, FD)", "#theta_{p} vs. W (All Int., 1p, FD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];#theta_{p} [#circ]",
+        new TH2D("#theta_{p} vs. W (All Int., 1p, FD)", "#theta_{p} vs. W (All Int., 1p, FD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];#theta_{p} [#circ]",
                  numTH2Dbins_Ang_Plots, W_lboundary, W_uboundary, numTH2Dbins_Ang_Plots, Theta_lboundary_FD, Theta_uboundary_FD);
     std::string hTheta_p_VS_P_p_1p_FD_Dir = directories.Angle_dir_map["Theta_p_1p_Directory"];
     std::string hTheta_p_VS_W_1p_FD_Dir = directories.Angle_dir_map["Theta_p_1p_Directory"];
@@ -3768,40 +3907,41 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     // Theta_p_e_p_p (1p, FD only) ----------------------------------------------------------------------------------------------------------------------------------------
 
     // Theta_p_e_p_p (1p, FD only)
-    THStack *sTheta_p_e_p_p_1p =
-        new THStack("#theta_{#vec{P}_{e},#vec{P}_{p}} (All Int., 1p, FD)",
-                    "#theta_{#vec{P}_{e},#vec{P}_{p}} - Opening Angle Between #vec{P}_{e} and #vec{P}_{p} (All Int., 1p, FD);#theta_{#vec{P}_{e},#vec{P}_{p}} [#circ];");
-    TH1D *hTheta_p_e_p_p_1p = new TH1D("#theta_{#vec{P}_{e},#vec{P}_{p}} (All Int., 1p, FD)",
-                                       "#theta_{#vec{P}_{e},#vec{P}_{p}} - Opening Angle Between #vec{P}_{e} and #vec{P}_{p} (All Int., 1p, FD);"
-                                       "#theta_{#vec{P}_{e},#vec{P}_{p}} [#circ];",
+    THStack *sTheta_p_e_p_p_1p = new THStack(
+        "#theta_{#font[62]{P}_{e},#font[62]{P}_{p}} (All Int., 1p, FD)",
+        "#theta_{#font[62]{P}_{e},#font[62]{P}_{p}} - Opening Angle Between #font[62]{P}_{e} and #font[62]{P}_{p} (All Int., 1p, FD);#theta_{#font[62]{P}_{e},#font[62]{P}_{p}} [#circ];");
+    TH1D *hTheta_p_e_p_p_1p = new TH1D("#theta_{#font[62]{P}_{e},#font[62]{P}_{p}} (All Int., 1p, FD)",
+                                       "#theta_{#font[62]{P}_{e},#font[62]{P}_{p}} - Opening Angle Between #font[62]{P}_{e} and #font[62]{P}_{p} (All Int., 1p, FD);"
+                                       "#theta_{#font[62]{P}_{e},#font[62]{P}_{p}} [#circ];",
                                        numTH1Dbins_Ang_Plots, 0, 180);
     std::string hTheta_p_e_p_p_1p_Dir = directories.Angle_dir_map["Opening_angle_1p_Directory"];
 
     // Theta_q_p (1p, FD only) ----------------------------------------------------------------------------------------------------------------------------------------------
 
     // Theta_q_p (1p, FD only)
-    THStack *sTheta_q_p_p_1p = new THStack("#theta_{#vec{q},#vec{P}_{p}} (All Int., 1p, FD)",
-                                           "#theta_{#vec{q},#vec{P}_{p}} - Opening Angle Between #vec{q} and #vec{P}_{p} (All Int., 1p, FD);#theta_{#vec{q},#vec{P}_{p}} [#circ];");
-    TH1D *hTheta_q_p_p_1p = new TH1D("#theta_{#vec{q},#vec{P}_{p}} (All Int., 1p, FD)",
-                                     "#theta_{#vec{q},#vec{P}_{p}} - Opening Angle Between #vec{q} and #vec{P}_{p} (All Int., 1p, FD);"
-                                     "#theta_{#vec{q},#vec{P}_{p}} [#circ];",
+    THStack *sTheta_q_p_p_1p =
+        new THStack("#theta_{#font[62]{q},#font[62]{P}_{p}} (All Int., 1p, FD)",
+                    "#theta_{#font[62]{q},#font[62]{P}_{p}} - Opening Angle Between #font[62]{q} and #font[62]{P}_{p} (All Int., 1p, FD);#theta_{#font[62]{q},#font[62]{P}_{p}} [#circ];");
+    TH1D *hTheta_q_p_p_1p = new TH1D("#theta_{#font[62]{q},#font[62]{P}_{p}} (All Int., 1p, FD)",
+                                     "#theta_{#font[62]{q},#font[62]{P}_{p}} - Opening Angle Between #font[62]{q} and #font[62]{P}_{p} (All Int., 1p, FD);"
+                                     "#theta_{#font[62]{q},#font[62]{P}_{p}} [#circ];",
                                      numTH1Dbins_Ang_Plots, 0, 180);
     std::string hTheta_q_p_p_1p_Dir = directories.Angle_dir_map["Opening_angle_1p_Directory"];
 
     // Theta_q_p_p vs. |P_p|/|q| (1p, FD only) -------------------------------------------------------------------------------------------------------------------------------
 
     // Theta_q_p_p vs. |P_p|/|q| (1p, FD only)
-    TH2D *hTheta_q_p_p_vs_p_p_q_1p = new TH2D("#theta_{#vec{q},#vec{P}_{p}} vs. r=|P_{p}|/|q| (All Int., 1p, FD)",
-                                              "#theta_{#vec{q},#vec{P}_{p}} vs. r=|#vec{P_{p}}|/|#vec{q}| (All Int., 1p, FD);r;#theta_{#vec{q},#vec{P}_{p}}", numTH2Dbins_Ang_Plots, 0, 1.05,
-                                              numTH2Dbins_Ang_Plots, 0, 180);
+    TH2D *hTheta_q_p_p_vs_p_p_q_1p = new TH2D("#theta_{#font[62]{q},#font[62]{P}_{p}} vs. r=|P_{p}|/|q| (All Int., 1p, FD)",
+                                              "#theta_{#font[62]{q},#font[62]{P}_{p}} vs. r=|#font[62]{P_{p}}|/|#font[62]{q}| (All Int., 1p, FD);r;#theta_{#font[62]{q},#font[62]{P}_{p}}",
+                                              numTH2Dbins_Ang_Plots, 0, 1.05, numTH2Dbins_Ang_Plots, 0, 180);
     std::string hTheta_q_p_p_vs_p_p_q_1p_Dir = directories.Angle_dir_map["Opening_angle_1p_Directory"];
 
     // Theta_q_p_p vs. |p_N|/|q| (1p, FD only) -------------------------------------------------------------------------------------------------------------------------------
 
     // Theta_q_p_p vs. |p_N|/|q| (1p, FD only)
-    TH2D *hTheta_q_p_p_vs_p_N_q_1p = new TH2D("#theta_{#vec{q},#vec{P}_{p}} vs. r=|P_{N}|/|q| (All Int., 1p, FD)",
-                                              "#theta_{#vec{q},#vec{P}_{p}} vs. r=|#vec{P_{N}}|/|#vec{q}| (All Int., 1p, FD);r;#theta_{#vec{q},#vec{P}_{p}}", numTH2Dbins_Ang_Plots, 0, 1.05,
-                                              numTH2Dbins_Ang_Plots, 0, 180);
+    TH2D *hTheta_q_p_p_vs_p_N_q_1p = new TH2D("#theta_{#font[62]{q},#font[62]{P}_{p}} vs. r=|P_{N}|/|q| (All Int., 1p, FD)",
+                                              "#theta_{#font[62]{q},#font[62]{P}_{p}} vs. r=|#font[62]{P_{N}}|/|#font[62]{q}| (All Int., 1p, FD);r;#theta_{#font[62]{q},#font[62]{P}_{p}}",
+                                              numTH2Dbins_Ang_Plots, 0, 1.05, numTH2Dbins_Ang_Plots, 0, 180);
     std::string hTheta_q_p_p_vs_p_N_q_1p_Dir = directories.Angle_dir_map["Opening_angle_1p_Directory"];
 
     // Other angle plots (1n)
@@ -3817,7 +3957,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     TH2D *hTheta_n_VS_P_n_1n_FD = new TH2D("#theta_{n} vs. P_{n} (All Int., 1n, FD)", "#theta_{n} vs. P_{n} (All Int., 1n, FD);P_{n} [GeV/c];#theta_{n} [#circ]", numTH2Dbins_Ang_Plots, 0,
                                            parameters.beamE * 1.1, numTH2Dbins_Ang_Plots, Theta_lboundary_FD, Theta_uboundary_FD);
     TH2D *hTheta_n_VS_W_1n_FD =
-        new TH2D("#theta_{n} vs. W (All Int., 1n, FD)", "#theta_{n} vs. W (All Int., 1n, FD);W = #sqrt{(#omega + m_{n})^{2} - #vec{q}^{2}}  [GeV/c^{2}];#theta_{n} [#circ]",
+        new TH2D("#theta_{n} vs. W (All Int., 1n, FD)", "#theta_{n} vs. W (All Int., 1n, FD);W = #sqrt{(#omega + m_{n})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];#theta_{n} [#circ]",
                  numTH2Dbins_Ang_Plots, W_lboundary, W_uboundary, numTH2Dbins_Ang_Plots, Theta_lboundary_FD, Theta_uboundary_FD);
     std::string hTheta_n_VS_P_n_1n_FD_Dir = directories.Angle_dir_map["Theta_n_1n_Directory"];
     std::string hTheta_n_VS_W_1n_FD_Dir = directories.Angle_dir_map["Theta_n_1n_Directory"];
@@ -3841,40 +3981,41 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     // Theta_p_e_p_n (1n, FD only) ------------------------------------------------------------------------------------------------------------------------------------------
 
     // Theta_p_e_p_n (1n, FD only)
-    THStack *sTheta_p_e_p_n_1n =
-        new THStack("#theta_{#vec{P}_{e},#vec{P}_{n}} (All Int., 1n, FD)",
-                    "#theta_{#vec{P}_{e},#vec{P}_{n}} - Opening Angle Between #vec{P}_{e} and #vec{P}_{n} (All Int., 1n, FD);#theta_{#vec{P}_{e},#vec{P}_{n}} [#circ];");
-    TH1D *hTheta_p_e_p_n_1n = new TH1D("#theta_{#vec{P}_{e},#vec{P}_{n}} (All Int., 1n, FD)",
-                                       "#theta_{#vec{P}_{e},#vec{P}_{n}} - Opening Angle Between #vec{P}_{e} and #vec{P}_{n} (All Int., 1n, FD);"
-                                       "#theta_{#vec{P}_{e},#vec{P}_{n}} [#circ];",
+    THStack *sTheta_p_e_p_n_1n = new THStack(
+        "#theta_{#font[62]{P}_{e},#font[62]{P}_{n}} (All Int., 1n, FD)",
+        "#theta_{#font[62]{P}_{e},#font[62]{P}_{n}} - Opening Angle Between #font[62]{P}_{e} and #font[62]{P}_{n} (All Int., 1n, FD);#theta_{#font[62]{P}_{e},#font[62]{P}_{n}} [#circ];");
+    TH1D *hTheta_p_e_p_n_1n = new TH1D("#theta_{#font[62]{P}_{e},#font[62]{P}_{n}} (All Int., 1n, FD)",
+                                       "#theta_{#font[62]{P}_{e},#font[62]{P}_{n}} - Opening Angle Between #font[62]{P}_{e} and #font[62]{P}_{n} (All Int., 1n, FD);"
+                                       "#theta_{#font[62]{P}_{e},#font[62]{P}_{n}} [#circ];",
                                        numTH1Dbins_Ang_Plots, 0, 180);
     std::string hTheta_p_e_p_n_1n_Dir = directories.Angle_dir_map["Opening_angle_1n_Directory"];
 
     // Theta_q_p_n (1n, FD only) --------------------------------------------------------------------------------------------------------------------------------------------
 
     // Theta_q_p_n (1n, FD only)
-    THStack *sTheta_q_p_n_1n = new THStack("#theta_{#vec{q},#vec{P}_{n}} (All Int., 1n, FD)",
-                                           "#theta_{#vec{q},#vec{P}_{n}} - Opening Angle Between #vec{q} and #vec{P}_{n} (All Int., 1n, FD);#theta_{#vec{q},#vec{P}_{n}} [#circ];");
-    TH1D *hTheta_q_p_n_1n = new TH1D("#theta_{#vec{q},#vec{P}_{n}} (All Int., 1n, FD)",
-                                     "#theta_{#vec{q},#vec{P}_{n}} - Opening Angle Between #vec{q} and #vec{P}_{n} (All Int., 1n, FD);"
-                                     "#theta_{#vec{q},#vec{P}_{n}} [#circ];",
+    THStack *sTheta_q_p_n_1n =
+        new THStack("#theta_{#font[62]{q},#font[62]{P}_{n}} (All Int., 1n, FD)",
+                    "#theta_{#font[62]{q},#font[62]{P}_{n}} - Opening Angle Between #font[62]{q} and #font[62]{P}_{n} (All Int., 1n, FD);#theta_{#font[62]{q},#font[62]{P}_{n}} [#circ];");
+    TH1D *hTheta_q_p_n_1n = new TH1D("#theta_{#font[62]{q},#font[62]{P}_{n}} (All Int., 1n, FD)",
+                                     "#theta_{#font[62]{q},#font[62]{P}_{n}} - Opening Angle Between #font[62]{q} and #font[62]{P}_{n} (All Int., 1n, FD);"
+                                     "#theta_{#font[62]{q},#font[62]{P}_{n}} [#circ];",
                                      numTH1Dbins_Ang_Plots, 0, 180);
     std::string hTheta_q_p_n_1n_Dir = directories.Angle_dir_map["Opening_angle_1n_Directory"];
 
     // Theta_q_p_n vs. |p_n|/|q| (1n, FD only) ------------------------------------------------------------------------------------------------------------------------------
 
     // Theta_q_p_n vs. |p_n|/|q| (1n, FD only)
-    TH2D *hTheta_q_p_n_vs_p_n_q_1n = new TH2D("#theta_{#vec{q},#vec{P}_{n}} vs. r=|P_{n}|/|q| (All Int., 1n, FD)",
-                                              "#theta_{#vec{q},#vec{P}_{n}} vs. r=|#vec{P}_{n}|/|#vec{q}| (All Int., 1n, FD);r;#theta_{#vec{q},#vec{P}_{n}}", numTH2Dbins_Ang_Plots, 0, 1.05,
-                                              numTH2Dbins_Ang_Plots, 0, 180);
+    TH2D *hTheta_q_p_n_vs_p_n_q_1n = new TH2D("#theta_{#font[62]{q},#font[62]{P}_{n}} vs. r=|P_{n}|/|q| (All Int., 1n, FD)",
+                                              "#theta_{#font[62]{q},#font[62]{P}_{n}} vs. r=|#font[62]{P}_{n}|/|#font[62]{q}| (All Int., 1n, FD);r;#theta_{#font[62]{q},#font[62]{P}_{n}}",
+                                              numTH2Dbins_Ang_Plots, 0, 1.05, numTH2Dbins_Ang_Plots, 0, 180);
     std::string hTheta_q_p_n_vs_p_n_q_1n_Dir = directories.Angle_dir_map["Opening_angle_1n_Directory"];
 
     // Theta_q_p_n vs. |p_N|/|q| (1n, FD only) ------------------------------------------------------------------------------------------------------------------------------
 
     // Theta_q_p_n vs. |p_N|/|q| (1n, FD only)
-    TH2D *hTheta_q_p_n_vs_p_N_q_1n = new TH2D("#theta_{#vec{q},#vec{P}_{n}} vs. r=|P_{N}|/|q| (All Int., 1n, FD)",
-                                              "#theta_{#vec{q},#vec{P}_{n}} vs. r=|#vec{P_{N}}|/|#vec{q}| (All Int., 1n, FD);r;#theta_{#vec{q},#vec{P}_{n}}", numTH2Dbins_Ang_Plots, 0, 1.05,
-                                              numTH2Dbins_Ang_Plots, 0, 180);
+    TH2D *hTheta_q_p_n_vs_p_N_q_1n = new TH2D("#theta_{#font[62]{q},#font[62]{P}_{n}} vs. r=|P_{N}|/|q| (All Int., 1n, FD)",
+                                              "#theta_{#font[62]{q},#font[62]{P}_{n}} vs. r=|#font[62]{P_{N}}|/|#font[62]{q}| (All Int., 1n, FD);r;#theta_{#font[62]{q},#font[62]{P}_{n}}",
+                                              numTH2Dbins_Ang_Plots, 0, 1.05, numTH2Dbins_Ang_Plots, 0, 180);
     std::string hTheta_q_p_n_vs_p_N_q_1n_Dir = directories.Angle_dir_map["Opening_angle_1n_Directory"];
 
     // Neutron veto plots (1n) ----------------------------------------------------------------------------------------------------------------------------------------------
@@ -3911,13 +4052,15 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     // Theta_p_e_p_tot (2p, CD & FD) ----------------------------------------------------------------------------------------------------------------------------------------
 
     // Theta_p_e_p_tot (2p, CD & FD)
-    THStack *sTheta_p_e_p_tot_2p = new THStack("#theta_{#vec{P}_{e},#vec{P}_{tot}} (All Int., 2p)",
-                                               "#theta_{#vec{P}_{e},#vec{P}_{tot}} - Opening Angle Between #vec{P}_{e} and #vec{P}_{tot}=#vec{P}_{1}+#vec{P}_{2} (All Int., "
-                                               "2p);#theta_{#vec{P}_{e},#vec{P}_{tot}} [#circ];");
-    TH1D *hTheta_p_e_p_tot_2p = new TH1D("#theta_{#vec{P}_{e},#vec{P}_{tot}} (All Int., 2p)",
-                                         "#theta_{#vec{P}_{e},#vec{P}_{tot}} - Opening Angle Between #vec{P}_{e} and #vec{P}_{tot}=#vec{P}_{1}+#vec{P}_{2} (All Int., 2p);"
-                                         "#theta_{#vec{P}_{e},#vec{P}_{tot}} [#circ];",
-                                         numTH1Dbins_Ang_Plots, 0, 180);
+    THStack *sTheta_p_e_p_tot_2p =
+        new THStack("#theta_{#font[62]{P}_{e},#font[62]{P}_{tot}} (All Int., 2p)",
+                    "#theta_{#font[62]{P}_{e},#font[62]{P}_{tot}} - Opening Angle Between #font[62]{P}_{e} and #font[62]{P}_{tot}=#font[62]{P}_{1}+#font[62]{P}_{2} (All Int., "
+                    "2p);#theta_{#font[62]{P}_{e},#font[62]{P}_{tot}} [#circ];");
+    TH1D *hTheta_p_e_p_tot_2p =
+        new TH1D("#theta_{#font[62]{P}_{e},#font[62]{P}_{tot}} (All Int., 2p)",
+                 "#theta_{#font[62]{P}_{e},#font[62]{P}_{tot}} - Opening Angle Between #font[62]{P}_{e} and #font[62]{P}_{tot}=#font[62]{P}_{1}+#font[62]{P}_{2} (All Int., 2p);"
+                 "#theta_{#font[62]{P}_{e},#font[62]{P}_{tot}} [#circ];",
+                 numTH1Dbins_Ang_Plots, 0, 180);
     std::string hTheta_p_e_p_tot_2p_Dir = directories.Angle_dir_map["Opening_angle_2p_Directory"];
 
     // Theta_q_p (2p, CD & FD) ----------------------------------------------------------------------------------------------------------------------------------------------
@@ -3925,24 +4068,28 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     // Theta_q_p (2p, CD & FD)
 
     // Theta_q_p_tot (CD & FD)
-    THStack *sTheta_q_p_tot_2p =
-        new THStack("#theta_{#vec{q},#vec{P}_{tot}} (All Int., 2p)",
-                    "#theta_{#vec{q},#vec{P}_{tot}} - Opening Angle Between #vec{q} and #vec{P}_{tot}=#vec{P}_{1}+#vec{P}_{2} (All Int., 2p);#theta_{#vec{q},#vec{P}_{tot}} [#circ];");
-    TH1D *hTheta_q_p_tot_2p = new TH1D("#theta_{#vec{q},#vec{P}_{tot}} (All Int., 2p)",
-                                       "#theta_{#vec{q},#vec{P}_{tot}} - Opening Angle Between #vec{q} and #vec{P}_{tot}=#vec{P}_{1}+#vec{P}_{2} (All Int., 2p);"
-                                       "#theta_{#vec{q},#vec{P}_{tot}} [#circ];",
-                                       numTH1Dbins_Ang_Plots, 0, 180);
+    THStack *sTheta_q_p_tot_2p = new THStack("#theta_{#font[62]{q},#font[62]{P}_{tot}} (All Int., 2p)",
+                                             "#theta_{#font[62]{q},#font[62]{P}_{tot}} - Opening Angle Between #font[62]{q} and #font[62]{P}_{tot}=#font[62]{P}_{1}+#font[62]{P}_{2} (All "
+                                             "Int., 2p);#theta_{#font[62]{q},#font[62]{P}_{tot}} [#circ];");
+    TH1D *hTheta_q_p_tot_2p =
+        new TH1D("#theta_{#font[62]{q},#font[62]{P}_{tot}} (All Int., 2p)",
+                 "#theta_{#font[62]{q},#font[62]{P}_{tot}} - Opening Angle Between #font[62]{q} and #font[62]{P}_{tot}=#font[62]{P}_{1}+#font[62]{P}_{2} (All Int., 2p);"
+                 "#theta_{#font[62]{q},#font[62]{P}_{tot}} [#circ];",
+                 numTH1Dbins_Ang_Plots, 0, 180);
     std::string hTheta_q_p_tot_2p_Dir = directories.Angle_dir_map["Opening_angle_2p_Directory"];
 
     // Theta_q_p_L and Theta_q_p_R (2p, CD & FD)
     THStack *sTheta_q_p_2p =
-        new THStack("#theta_{#vec{q},#vec{P}} (All Int., 2p)", "#theta_{#vec{q},#vec{P}} - Opening Angle Between #vec{q} and #vec{P} (All Int., 2p);#theta_{#vec{q},#vec{P}} [#circ];");
+        new THStack("#theta_{#font[62]{q},#font[62]{P}} (All Int., 2p)",
+                    "#theta_{#font[62]{q},#font[62]{P}} - Opening Angle Between #font[62]{q} and #font[62]{P} (All Int., 2p);#theta_{#font[62]{q},#font[62]{P}} [#circ];");
     TH1D *hTheta_q_p_L_2p =
-        new TH1D("#theta_{#vec{q},#vec{P}_{1}} (All Int., 2p)",
-                 "#theta_{#vec{q},#vec{P}_{1}} - Opening Angle Between #vec{q} and leading proton #vec{P}_{1} (All Int., 2p);#theta_{#vec{q},#vec{P}_{1}}", numTH1Dbins_Ang_Plots, 0, 180);
+        new TH1D("#theta_{#font[62]{q},#font[62]{P}_{1}} (All Int., 2p)",
+                 "#theta_{#font[62]{q},#font[62]{P}_{1}} - Opening Angle Between #font[62]{q} and leading proton #font[62]{P}_{1} (All Int., 2p);#theta_{#font[62]{q},#font[62]{P}_{1}}",
+                 numTH1Dbins_Ang_Plots, 0, 180);
     TH1D *hTheta_q_p_R_2p =
-        new TH1D("#theta_{#vec{q},#vec{P}_{2}} (All Int., 2p)",
-                 "#theta_{#vec{q},#vec{P}_{2}} - Opening Angle Between #vec{q} and recoil proton #vec{P}_{2} (All Int., 2p);#theta_{#vec{q},#vec{P}_{2}}", numTH1Dbins_Ang_Plots, 0, 180);
+        new TH1D("#theta_{#font[62]{q},#font[62]{P}_{2}} (All Int., 2p)",
+                 "#theta_{#font[62]{q},#font[62]{P}_{2}} - Opening Angle Between #font[62]{q} and recoil proton #font[62]{P}_{2} (All Int., 2p);#theta_{#font[62]{q},#font[62]{P}_{2}}",
+                 numTH1Dbins_Ang_Plots, 0, 180);
     std::string hTheta_q_p_L_2p_Dir = directories.Angle_dir_map["Opening_angle_2p_Directory"];
     std::string hTheta_q_p_R_2p_Dir = directories.Angle_dir_map["Opening_angle_2p_Directory"];
 
@@ -3950,8 +4097,9 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     // Theta_q_p_tot (CD & FD)
     TH2D *hTheta_q_p_L_vs_p_L_q_2p =
-        new TH2D("#theta_{#vec{q},#vec{P}_{1}} vs. r_{1} (All Int., 2p)", "#theta_{#vec{q},#vec{P}_{1}} vs. r_{1}=|#vec{P_{1}}|/|#vec{q}| (All Int., 2p);r_{1};#theta_{#vec{q},#vec{P}_{1}}",
-                 numTH2Dbins_Ang_Plots, 0, 1.05, numTH2Dbins_Ang_Plots, 0, 180);
+        new TH2D("#theta_{#font[62]{q},#font[62]{P}_{1}} vs. r_{1} (All Int., 2p)",
+                 "#theta_{#font[62]{q},#font[62]{P}_{1}} vs. r_{1}=|#font[62]{P_{1}}|/|#font[62]{q}| (All Int., 2p);r_{1};#theta_{#font[62]{q},#font[62]{P}_{1}}", numTH2Dbins_Ang_Plots, 0,
+                 1.05, numTH2Dbins_Ang_Plots, 0, 180);
     std::string hTheta_q_p_L_vs_p_L_q_2p_Dir = directories.Angle_dir_map["Opening_angle_2p_Directory"];
 
     // Theta_p1_p2 (2p, CD & FD) --------------------------------------------------------------------------------------------------------------------------------------------
@@ -3979,7 +4127,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     // Theta_p1_p2 vs. W (CD & FD)
     TH2D *hTheta_p1_p2_vs_W_2p = new TH2D("#theta_{p_{1},p_{2}} vs. W (All Int., 2p)",
-                                          "#theta_{p_{1},p_{2}} vs. W (All Int., 2p);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];#theta_{p_{1},p_{2}} [#circ];",
+                                          "#theta_{p_{1},p_{2}} vs. W (All Int., 2p);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];#theta_{p_{1},p_{2}} [#circ];",
                                           numTH2Dbins_Ang_Plots, W_lboundary, W_uboundary, numTH2Dbins_Ang_Plots, 0, 180);
     std::string hTheta_p1_p2_vs_W_2p_Dir = directories.Angle_dir_map["Opening_angle_2p_Directory"];
 
@@ -4142,9 +4290,9 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     TH2D *hTheta_pFD_VS_P_pFD_pFDpCD_FD = new TH2D("#theta_{pFD} vs. P_{pFD} (All Int., pFDpCD, FD)", "#theta_{pFD} vs. P_{pFD} (All Int., pFDpCD, FD);P_{pFD} [GeV/c];#theta_{pFD} [#circ]",
                                                    numTH2Dbins_Ang_Plots, 0, parameters.beamE * 1.1, numTH2Dbins_Ang_Plots, Theta_lboundary_FD, Theta_uboundary_FD);
-    TH2D *hTheta_pFD_VS_W_pFDpCD_FD =
-        new TH2D("#theta_{pFD} vs. W (All Int., pFDpCD, FD)", "#theta_{pFD} vs. W (All Int., pFDpCD, FD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];#theta_{pFD} [#circ]",
-                 numTH2Dbins_Ang_Plots, W_lboundary, W_uboundary, numTH2Dbins_Ang_Plots, Theta_lboundary_FD, Theta_uboundary_FD);
+    TH2D *hTheta_pFD_VS_W_pFDpCD_FD = new TH2D("#theta_{pFD} vs. W (All Int., pFDpCD, FD)",
+                                               "#theta_{pFD} vs. W (All Int., pFDpCD, FD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];#theta_{pFD} [#circ]",
+                                               numTH2Dbins_Ang_Plots, W_lboundary, W_uboundary, numTH2Dbins_Ang_Plots, Theta_lboundary_FD, Theta_uboundary_FD);
     std::string hTheta_pFD_VS_P_pFD_pFDpCD_FD_Dir = directories.Angle_dir_map["Theta_pFD_pFDpCD_Directory"];
     std::string hTheta_pFD_VS_W_pFDpCD_FD_Dir = directories.Angle_dir_map["Theta_pFD_pFDpCD_Directory"];
 
@@ -4172,7 +4320,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     TH2D *hPhi_pFD_VS_P_pFD_pFDpCD_FD = new TH2D("#phi_{pFD} vs. P_{pFD} (All Int., pFDpCD, FD)", "#phi_{pFD} vs. P_{pFD} (All Int., pFDpCD, FD);P_{pFD} [GeV/c];#phi_{pFD} [#circ]",
                                                  numTH2Dbins_Ang_Plots, 0, parameters.beamE * 1.1, numTH2Dbins_Ang_Plots, Phi_lboundary, Phi_uboundary);
     TH2D *hPhi_pFD_VS_W_pFDpCD_FD = new TH2D("#phi_{pFD} vs. W (All Int., pFDpCD, FD)",
-                                             "#phi_{pFD} vs. W (All Int., pFDpCD, FD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];"
+                                             "#phi_{pFD} vs. W (All Int., pFDpCD, FD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];"
                                              "#phi_{pFD} [#circ]",
                                              numTH2Dbins_Ang_Plots, W_lboundary, W_uboundary, numTH2Dbins_Ang_Plots, Phi_lboundary, Phi_uboundary);
     std::string hPhi_pFD_VS_P_pFD_pFDpCD_FD_Dir = directories.Angle_dir_map["Phi_pFD_pFDpCD_Directory"];
@@ -4204,9 +4352,9 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     TH2D *hTheta_pCD_VS_P_pCD_pFDpCD_CD = new TH2D("#theta_{pCD} vs. P_{pCD} (All Int., pFDpCD, CD)", "#theta_{pCD} vs. P_{pCD} (All Int., pFDpCD, CD);P_{pCD} [GeV/c];#theta_{pCD} [#circ]",
                                                    numTH2Dbins_Ang_Plots, 0, parameters.beamE * 1.1, numTH2Dbins_Ang_Plots, 30, 155);
-    TH2D *hTheta_pCD_VS_W_pFDpCD_CD =
-        new TH2D("#theta_{pCD} vs. W (All Int., pFDpCD, CD)", "#theta_{pCD} vs. W (All Int., pFDpCD, CD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];#theta_{pCD} [#circ]",
-                 numTH2Dbins_Ang_Plots, W_lboundary, W_uboundary, numTH2Dbins_Ang_Plots, 30, 155);
+    TH2D *hTheta_pCD_VS_W_pFDpCD_CD = new TH2D("#theta_{pCD} vs. W (All Int., pFDpCD, CD)",
+                                               "#theta_{pCD} vs. W (All Int., pFDpCD, CD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];#theta_{pCD} [#circ]",
+                                               numTH2Dbins_Ang_Plots, W_lboundary, W_uboundary, numTH2Dbins_Ang_Plots, 30, 155);
     std::string hTheta_pCD_VS_P_pCD_pFDpCD_CD_Dir = directories.Angle_dir_map["Theta_pCD_pFDpCD_Directory"];
     std::string hTheta_pCD_VS_W_pFDpCD_CD_Dir = directories.Angle_dir_map["Theta_pCD_pFDpCD_Directory"];
 
@@ -4234,7 +4382,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     TH2D *hPhi_pCD_VS_P_pCD_pFDpCD_CD = new TH2D("#phi_{pCD} vs. P_{pCD} (All Int., pFDpCD, CD)", "#phi_{pCD} vs. P_{pCD} (All Int., pFDpCD, CD);P_{pCD} [GeV/c];#phi_{pCD} [#circ]",
                                                  numTH2Dbins_Ang_Plots, 0, parameters.beamE * 1.1, numTH2Dbins_Ang_Plots, Phi_lboundary, Phi_uboundary);
     TH2D *hPhi_pCD_VS_W_pFDpCD_CD =
-        new TH2D("#phi_{pCD} vs. W (All Int., pFDpCD, CD)", "#phi_{pCD} vs. W (All Int., pFDpCD, CD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];#phi_{pCD} [#circ]",
+        new TH2D("#phi_{pCD} vs. W (All Int., pFDpCD, CD)", "#phi_{pCD} vs. W (All Int., pFDpCD, CD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];#phi_{pCD} [#circ]",
                  numTH2Dbins_Ang_Plots, W_lboundary, W_uboundary, numTH2Dbins_Ang_Plots, Phi_lboundary, Phi_uboundary);
     std::string hPhi_pCD_VS_P_pCD_pFDpCD_CD_Dir = directories.Angle_dir_map["Phi_pCD_pFDpCD_Directory"];
     std::string hPhi_pCD_VS_W_pFDpCD_CD_Dir = directories.Angle_dir_map["Phi_pCD_pFDpCD_Directory"];
@@ -4270,9 +4418,9 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     TH2D *hTheta_tot_VS_P_tot_pFDpCD = new TH2D("#theta_{tot} vs. P_{tot} (All Int., pFDpCD, CD)", "#theta_{tot} vs. P_{tot} (All Int., pFDpCD, CD);P_{tot} [GeV/c];#theta_{tot} [#circ]",
                                                 numTH2Dbins_Ang_Plots, 0, parameters.beamE * 1.1, numTH2Dbins_Ang_Plots, Opening_Ang_narrow_lboundary, Opening_Ang_narrow_uboundary);
-    TH2D *hTheta_tot_VS_W_pFDpCD =
-        new TH2D("#theta_{tot} vs. W (All Int., pFDpCD, CD)", "#theta_{tot} vs. W (All Int., pFDpCD, CD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];#theta_{tot} [#circ]",
-                 numTH2Dbins_Ang_Plots, W_lboundary, W_uboundary, numTH2Dbins_Ang_Plots, Opening_Ang_narrow_lboundary, Opening_Ang_narrow_uboundary);
+    TH2D *hTheta_tot_VS_W_pFDpCD = new TH2D("#theta_{tot} vs. W (All Int., pFDpCD, CD)",
+                                            "#theta_{tot} vs. W (All Int., pFDpCD, CD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];#theta_{tot} [#circ]",
+                                            numTH2Dbins_Ang_Plots, W_lboundary, W_uboundary, numTH2Dbins_Ang_Plots, Opening_Ang_narrow_lboundary, Opening_Ang_narrow_uboundary);
     std::string hTheta_tot_VS_P_tot_pFDpCD_Dir = directories.Angle_dir_map["Theta_tot_pFDpCD_Directory"];
     std::string hTheta_tot_VS_W_pFDpCD_Dir = directories.Angle_dir_map["Theta_tot_pFDpCD_Directory"];
 
@@ -4300,7 +4448,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     TH2D *hPhi_tot_VS_P_tot_pFDpCD = new TH2D("#phi_{tot} vs. P_{tot} (All Int., pFDpCD, CD)", "#phi_{tot} vs. P_{tot} (All Int., pFDpCD, CD);P_{tot} [GeV/c];#phi_{tot} [#circ]",
                                               numTH2Dbins_Ang_Plots, 0, parameters.beamE * 1.1, numTH2Dbins_Ang_Plots, Phi_lboundary, Phi_uboundary);
     TH2D *hPhi_tot_VS_W_pFDpCD =
-        new TH2D("#phi_{tot} vs. W (All Int., pFDpCD, CD)", "#phi_{tot} vs. W (All Int., pFDpCD, CD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];#phi_{tot} [#circ]",
+        new TH2D("#phi_{tot} vs. W (All Int., pFDpCD, CD)", "#phi_{tot} vs. W (All Int., pFDpCD, CD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];#phi_{tot} [#circ]",
                  numTH2Dbins_Ang_Plots, W_lboundary, W_uboundary, numTH2Dbins_Ang_Plots, Phi_lboundary, Phi_uboundary);
     std::string hPhi_tot_VS_P_tot_pFDpCD_Dir = directories.Angle_dir_map["Phi_tot_pFDpCD_Directory"];
     std::string hPhi_tot_VS_W_pFDpCD_Dir = directories.Angle_dir_map["Phi_tot_pFDpCD_Directory"];
@@ -4332,9 +4480,9 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     TH2D *hTheta_rel_VS_P_rel_pFDpCD = new TH2D("#theta_{rel} vs. P_{rel} (All Int., pFDpCD, CD)", "#theta_{rel} vs. P_{rel} (All Int., pFDpCD, CD);P_{rel} [GeV/c];#theta_{rel} [#circ]",
                                                 numTH2Dbins_Ang_Plots, 0, parameters.beamE * 1.1, numTH2Dbins_Ang_Plots, 30, 155);
-    TH2D *hTheta_rel_VS_W_pFDpCD =
-        new TH2D("#theta_{rel} vs. W (All Int., pFDpCD, CD)", "#theta_{rel} vs. W (All Int., pFDpCD, CD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];#theta_{rel} [#circ]",
-                 numTH2Dbins_Ang_Plots, W_lboundary, W_uboundary, numTH2Dbins_Ang_Plots, 30, 155);
+    TH2D *hTheta_rel_VS_W_pFDpCD = new TH2D("#theta_{rel} vs. W (All Int., pFDpCD, CD)",
+                                            "#theta_{rel} vs. W (All Int., pFDpCD, CD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];#theta_{rel} [#circ]",
+                                            numTH2Dbins_Ang_Plots, W_lboundary, W_uboundary, numTH2Dbins_Ang_Plots, 30, 155);
     std::string hTheta_rel_VS_P_rel_pFDpCD_Dir = directories.Angle_dir_map["Theta_rel_pFDpCD_Directory"];
     std::string hTheta_rel_VS_W_pFDpCD_Dir = directories.Angle_dir_map["Theta_rel_pFDpCD_Directory"];
 
@@ -4362,7 +4510,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     TH2D *hPhi_rel_VS_P_rel_pFDpCD = new TH2D("#phi_{rel} vs. P_{rel} (All Int., pFDpCD, CD)", "#phi_{rel} vs. P_{rel} (All Int., pFDpCD, CD);P_{rel} [GeV/c];#phi_{rel} [#circ]",
                                               numTH2Dbins_Ang_Plots, 0, parameters.beamE * 1.1, numTH2Dbins_Ang_Plots, Phi_lboundary, Phi_uboundary);
     TH2D *hPhi_rel_VS_W_pFDpCD =
-        new TH2D("#phi_{rel} vs. W (All Int., pFDpCD, CD)", "#phi_{rel} vs. W (All Int., pFDpCD, CD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];#phi_{rel} [#circ]",
+        new TH2D("#phi_{rel} vs. W (All Int., pFDpCD, CD)", "#phi_{rel} vs. W (All Int., pFDpCD, CD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];#phi_{rel} [#circ]",
                  numTH2Dbins_Ang_Plots, W_lboundary, W_uboundary, numTH2Dbins_Ang_Plots, Phi_lboundary, Phi_uboundary);
     std::string hPhi_rel_VS_P_rel_pFDpCD_Dir = directories.Angle_dir_map["Phi_rel_pFDpCD_Directory"];
     std::string hPhi_rel_VS_W_pFDpCD_Dir = directories.Angle_dir_map["Phi_rel_pFDpCD_Directory"];
@@ -4378,21 +4526,23 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     // Theta_p_e_p_tot (pFDpCD, CD & FD) ------------------------------------------------------------------------------------------------------------------------------------
 
     // Theta_p_e_p_tot (pFDpCD, CD & FD)
-    THStack *sTheta_p_e_p_tot_pFDpCD = new THStack("#theta_{#vec{P}_{e},#vec{P}_{tot}} (All Int., pFDpCD)",
-                                                   "#theta_{#vec{P}_{e},#vec{P}_{tot}} - Opening Angle Between #vec{P}_{e} and #vec{P}_{tot}=#vec{P}_{pFD}+#vec{P}_{pCD} "
-                                                   "(All Int., pFDpCD);#theta_{#vec{P}_{e},#vec{P}_{tot}} [#circ];");
-    TH1D *hTheta_p_e_p_tot_pFDpCD = new TH1D("#theta_{#vec{P}_{e},#vec{P}_{tot}} (All Int., pFDpCD)",
-                                             "#theta_{#vec{P}_{e},#vec{P}_{tot}} - Opening Angle Between #vec{P}_{e} and #vec{P}_{tot}=#vec{P}_{pFD}+#vec{P}_{pCD} "
-                                             "(All Int., pFDpCD);#theta_{#vec{P}_{e},#vec{P}_{tot}} [#circ];",
-                                             numTH1Dbins_Ang_Plots, Opening_Ang_narrow_lboundary, Opening_Ang_narrow_uboundary);
+    THStack *sTheta_p_e_p_tot_pFDpCD =
+        new THStack("#theta_{#font[62]{P}_{e},#font[62]{P}_{tot}} (All Int., pFDpCD)",
+                    "#theta_{#font[62]{P}_{e},#font[62]{P}_{tot}} - Opening Angle Between #font[62]{P}_{e} and #font[62]{P}_{tot}=#font[62]{P}_{pFD}+#font[62]{P}_{pCD} "
+                    "(All Int., pFDpCD);#theta_{#font[62]{P}_{e},#font[62]{P}_{tot}} [#circ];");
+    TH1D *hTheta_p_e_p_tot_pFDpCD =
+        new TH1D("#theta_{#font[62]{P}_{e},#font[62]{P}_{tot}} (All Int., pFDpCD)",
+                 "#theta_{#font[62]{P}_{e},#font[62]{P}_{tot}} - Opening Angle Between #font[62]{P}_{e} and #font[62]{P}_{tot}=#font[62]{P}_{pFD}+#font[62]{P}_{pCD} "
+                 "(All Int., pFDpCD);#theta_{#font[62]{P}_{e},#font[62]{P}_{tot}} [#circ];",
+                 numTH1Dbins_Ang_Plots, Opening_Ang_narrow_lboundary, Opening_Ang_narrow_uboundary);
     std::string hTheta_p_e_p_tot_pFDpCD_Dir = directories.Angle_dir_map["Opening_angles_pFDpCD_Directory"];
 
     // Theta_p_e_p_tot vs. W (pFDpCD, CD & FD) ------------------------------------------------------------------------------------------------------------------------------
 
     // Theta_p_e_p_tot vs. W (pFDpCD)
-    TH2D *hTheta_p_e_p_tot_vs_W_pFDpCD = new TH2D("#theta_{#vec{P}_{e},#vec{P}_{tot}} vs. W (All Int., pFDpCD)",
-                                                  "#theta_{#vec{P}_{e},#vec{P}_{tot}} vs. W (All Int., pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];"
-                                                  "#theta_{#vec{P}_{e},#vec{P}_{tot}} [#circ];",
+    TH2D *hTheta_p_e_p_tot_vs_W_pFDpCD = new TH2D("#theta_{#font[62]{P}_{e},#font[62]{P}_{tot}} vs. W (All Int., pFDpCD)",
+                                                  "#theta_{#font[62]{P}_{e},#font[62]{P}_{tot}} vs. W (All Int., pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];"
+                                                  "#theta_{#font[62]{P}_{e},#font[62]{P}_{tot}} [#circ];",
                                                   numTH2Dbins_Ang_Plots, W_lboundary, W_uboundary, numTH2Dbins_Ang_Plots, Opening_Ang_narrow_lboundary, Opening_Ang_narrow_uboundary);
     std::string hTheta_p_e_p_tot_vs_W_pFDpCD_Dir = directories.Angle_dir_map["Opening_angles_pFDpCD_Directory"];
 
@@ -4401,56 +4551,60 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     // Theta_q_p (pFDpCD, CD & FD)
 
     // Theta_q_p_tot (CD & FD)
-    THStack *sTheta_q_p_tot_pFDpCD = new THStack("#theta_{#vec{q},#vec{P}_{tot}} (All Int., pFDpCD)",
-                                                 "#theta_{#vec{q},#vec{P}_{tot}} - Opening Angle Between #vec{q} and #vec{P}_{tot}=#vec{P}_{pFD}+#vec{P}_{pCD} "
-                                                 "(All Int., pFDpCD);#theta_{#vec{q},#vec{P}_{tot}} [#circ];");
-    TH1D *hTheta_q_p_tot_pFDpCD = new TH1D("#theta_{#vec{q},#vec{P}_{tot}} (All Int., pFDpCD)",
-                                           "#theta_{#vec{q},#vec{P}_{tot}} - Opening Angle Between #vec{q} and #vec{P}_{tot}=#vec{P}_{pFD}+#vec{P}_{pCD} "
-                                           "(All Int., pFDpCD);#theta_{#vec{q},#vec{P}_{tot}} [#circ];",
+    THStack *sTheta_q_p_tot_pFDpCD = new THStack("#theta_{#font[62]{q},#font[62]{P}_{tot}} (All Int., pFDpCD)",
+                                                 "#theta_{#font[62]{q},#font[62]{P}_{tot}} - Opening Angle Between #font[62]{q} and #font[62]{P}_{tot}=#font[62]{P}_{pFD}+#font[62]{P}_{pCD} "
+                                                 "(All Int., pFDpCD);#theta_{#font[62]{q},#font[62]{P}_{tot}} [#circ];");
+    TH1D *hTheta_q_p_tot_pFDpCD = new TH1D("#theta_{#font[62]{q},#font[62]{P}_{tot}} (All Int., pFDpCD)",
+                                           "#theta_{#font[62]{q},#font[62]{P}_{tot}} - Opening Angle Between #font[62]{q} and #font[62]{P}_{tot}=#font[62]{P}_{pFD}+#font[62]{P}_{pCD} "
+                                           "(All Int., pFDpCD);#theta_{#font[62]{q},#font[62]{P}_{tot}} [#circ];",
                                            numTH1Dbins_Ang_Plots, Opening_Ang_narrow_lboundary, Opening_Ang_narrow_uboundary);
     std::string hTheta_q_p_tot_pFDpCD_Dir = directories.Angle_dir_map["Opening_angles_pFDpCD_Directory"];
 
     // Theta_q_p_max (CD & FD)
-    TH1D *hTheta_q_p_max_pFDpCD = new TH1D("#theta_{#vec{q},#vec{P}_{max}} (All Int., pFDpCD)",
-                                           "#theta_{#vec{q},#vec{P}_{max}} - Opening Angle Between #vec{q} and #vec{P}_{max} "
-                                           "(All Int., pFDpCD);#theta_{#vec{q},#vec{P}_{max}} [#circ];",
+    TH1D *hTheta_q_p_max_pFDpCD = new TH1D("#theta_{#font[62]{q},#font[62]{P}_{max}} (All Int., pFDpCD)",
+                                           "#theta_{#font[62]{q},#font[62]{P}_{max}} - Opening Angle Between #font[62]{q} and #font[62]{P}_{max} "
+                                           "(All Int., pFDpCD);#theta_{#font[62]{q},#font[62]{P}_{max}} [#circ];",
                                            numTH1Dbins_Ang_Plots, Opening_Ang_narrow_lboundary, Opening_Ang_narrow_uboundary);
     std::string hTheta_q_p_max_pFDpCD_Dir = directories.Angle_dir_map["Opening_angles_pFDpCD_Directory"];
 
     // Theta_P_pL_minus_q_pR and Theta_q_p_R (pFDpCD, CD & FD)
-    THStack *sTheta_P_pL_minus_q_pR_pFDpCD = new THStack("#theta_{#vec{P}_{pL}-#vec{q},#vec{P}_{pR}} (All Int., pFDpCD)",
-                                                         "#theta_{#vec{P}_{pL}-#vec{q},#vec{P}_{pR}} - Opening Angle Between #vec{P}_{pL}-#vec{q} and #vec{P}_{pR} (All Int., pFDpCD);"
-                                                         "#theta_{#vec{P}_{pL}-#vec{q},#vec{P}_{pR}} [#circ];");
-    TH1D *hTheta_P_pL_minus_q_pR_pFDpCD = new TH1D("#theta_{#vec{P}_{pL}-#vec{q},#vec{P}_{pR}} (All Int., pFDpCD)",
-                                                   "#theta_{#vec{P}_{pL}-#vec{q},#vec{P}_{pR}} - Opening Angle Between #vec{P}_{pL}-#vec{q} and #vec{P}_{pR} (All Int., pFDpCD)"
-                                                   ";#theta_{#vec{P}_{pL}-#vec{q},#vec{P}_{pR}} [#circ]",
-                                                   numTH1Dbins_Ang_Plots, Opening_Ang_wide_lboundary, Opening_Ang_wide_uboundary);
+    THStack *sTheta_P_pL_minus_q_pR_pFDpCD =
+        new THStack("#theta_{#font[62]{P}_{pL}-#font[62]{q},#font[62]{P}_{pR}} (All Int., pFDpCD)",
+                    "#theta_{#font[62]{P}_{pL}-#font[62]{q},#font[62]{P}_{pR}} - Opening Angle Between #font[62]{P}_{pL}-#font[62]{q} and #font[62]{P}_{pR} (All Int., pFDpCD);"
+                    "#theta_{#font[62]{P}_{pL}-#font[62]{q},#font[62]{P}_{pR}} [#circ];");
+    TH1D *hTheta_P_pL_minus_q_pR_pFDpCD =
+        new TH1D("#theta_{#font[62]{P}_{pL}-#font[62]{q},#font[62]{P}_{pR}} (All Int., pFDpCD)",
+                 "#theta_{#font[62]{P}_{pL}-#font[62]{q},#font[62]{P}_{pR}} - Opening Angle Between #font[62]{P}_{pL}-#font[62]{q} and #font[62]{P}_{pR} (All Int., pFDpCD)"
+                 ";#theta_{#font[62]{P}_{pL}-#font[62]{q},#font[62]{P}_{pR}} [#circ]",
+                 numTH1Dbins_Ang_Plots, Opening_Ang_wide_lboundary, Opening_Ang_wide_uboundary);
     std::string hTheta_P_pL_minus_q_pR_pFDpCD_Dir = directories.Angle_dir_map["Opening_angles_pFDpCD_Directory"];
 
     // Theta_q_p_L and Theta_q_p_R (pFDpCD, CD & FD)
-    THStack *sTheta_q_p_L_R_pFDpCD = new THStack("#theta_{#vec{q},#vec{P}} (All Int., pFDpCD)",
-                                                 "#theta_{#vec{q},#vec{P}} - Opening Angle Between #vec{q} and #vec{P} (All Int., pFDpCD);#theta_{#vec{q},#vec{P}} [#circ];");
-    TH1D *hTheta_q_p_L_pFDpCD = new TH1D("#theta_{#vec{q},#vec{P}_{pL}} (All Int., pFDpCD)",
-                                         "#theta_{#vec{q},#vec{P}_{pL}} - Opening Angle Between #vec{q} and Leading Proton #vec{P}_{pL} (All Int., pFDpCD)"
-                                         ";#theta_{#vec{q},#vec{P}_{pL}} [#circ]",
+    THStack *sTheta_q_p_L_R_pFDpCD =
+        new THStack("#theta_{#font[62]{q},#font[62]{P}} (All Int., pFDpCD)",
+                    "#theta_{#font[62]{q},#font[62]{P}} - Opening Angle Between #font[62]{q} and #font[62]{P} (All Int., pFDpCD);#theta_{#font[62]{q},#font[62]{P}} [#circ];");
+    TH1D *hTheta_q_p_L_pFDpCD = new TH1D("#theta_{#font[62]{q},#font[62]{P}_{pL}} (All Int., pFDpCD)",
+                                         "#theta_{#font[62]{q},#font[62]{P}_{pL}} - Opening Angle Between #font[62]{q} and Leading Proton #font[62]{P}_{pL} (All Int., pFDpCD)"
+                                         ";#theta_{#font[62]{q},#font[62]{P}_{pL}} [#circ]",
                                          numTH1Dbins_Ang_Plots, Opening_Ang_narrow_lboundary, Opening_Ang_narrow_uboundary);
-    TH1D *hTheta_q_p_R_pFDpCD = new TH1D("#theta_{#vec{q},#vec{P}_{pR}} (All Int., pFDpCD)",
-                                         "#theta_{#vec{q},#vec{P}_{pR}} - Opening Angle Between #vec{q} and Recoil Proton #vec{P}_{pR} (All Int., pFDpCD)"
-                                         ";#theta_{#vec{q},#vec{P}_{pR}} [#circ]",
+    TH1D *hTheta_q_p_R_pFDpCD = new TH1D("#theta_{#font[62]{q},#font[62]{P}_{pR}} (All Int., pFDpCD)",
+                                         "#theta_{#font[62]{q},#font[62]{P}_{pR}} - Opening Angle Between #font[62]{q} and Recoil Proton #font[62]{P}_{pR} (All Int., pFDpCD)"
+                                         ";#theta_{#font[62]{q},#font[62]{P}_{pR}} [#circ]",
                                          numTH1Dbins_Ang_Plots, 0, 180);
     std::string hTheta_q_p_L_pFDpCD_Dir = directories.Angle_dir_map["Opening_angles_pFDpCD_Directory"];
     std::string hTheta_q_p_R_pFDpCD_Dir = directories.Angle_dir_map["Opening_angles_pFDpCD_Directory"];
 
     // Theta_q_pFD and Theta_q_pCD (pFDpCD, CD & FD)
-    THStack *sTheta_q_p_pFDpCD = new THStack("#theta_{#vec{q},#vec{P}} (All Int., pFDpCD)",
-                                             "#theta_{#vec{q},#vec{P}} - Opening Angle Between #vec{q} and #vec{P} (All Int., pFDpCD);#theta_{#vec{q},#vec{P}} [#circ];");
-    TH1D *hTheta_q_pFD_pFDpCD = new TH1D("#theta_{#vec{q},#vec{P}_{pFD}} (All Int., pFDpCD)",
-                                         "#theta_{#vec{q},#vec{P}_{pFD}} - Opening Angle Between #vec{q} and FD Proton #vec{P}_{pFD} (All Int., pFDpCD)"
-                                         ";#theta_{#vec{q},#vec{P}_{pFD}} [#circ]",
+    THStack *sTheta_q_p_pFDpCD =
+        new THStack("#theta_{#font[62]{q},#font[62]{P}} (All Int., pFDpCD)",
+                    "#theta_{#font[62]{q},#font[62]{P}} - Opening Angle Between #font[62]{q} and #font[62]{P} (All Int., pFDpCD);#theta_{#font[62]{q},#font[62]{P}} [#circ];");
+    TH1D *hTheta_q_pFD_pFDpCD = new TH1D("#theta_{#font[62]{q},#font[62]{P}_{pFD}} (All Int., pFDpCD)",
+                                         "#theta_{#font[62]{q},#font[62]{P}_{pFD}} - Opening Angle Between #font[62]{q} and FD Proton #font[62]{P}_{pFD} (All Int., pFDpCD)"
+                                         ";#theta_{#font[62]{q},#font[62]{P}_{pFD}} [#circ]",
                                          numTH1Dbins_Ang_Plots, Opening_Ang_narrow_lboundary, Opening_Ang_narrow_uboundary);
-    TH1D *hTheta_q_pCD_pFDpCD = new TH1D("#theta_{#vec{q},#vec{P}_{pCD}} (All Int., pFDpCD)",
-                                         "#theta_{#vec{q},#vec{P}_{pCD}} - Opening Angle Between #vec{q} and CD Proton #vec{P}_{pCD} (All Int., pFDpCD)"
-                                         ";#theta_{#vec{q},#vec{P}_{pCD}} [#circ]",
+    TH1D *hTheta_q_pCD_pFDpCD = new TH1D("#theta_{#font[62]{q},#font[62]{P}_{pCD}} (All Int., pFDpCD)",
+                                         "#theta_{#font[62]{q},#font[62]{P}_{pCD}} - Opening Angle Between #font[62]{q} and CD Proton #font[62]{P}_{pCD} (All Int., pFDpCD)"
+                                         ";#theta_{#font[62]{q},#font[62]{P}_{pCD}} [#circ]",
                                          numTH1Dbins_Ang_Plots, 0, 180);
     std::string hTheta_q_pFD_pFDpCD_Dir = directories.Angle_dir_map["Opening_angles_pFDpCD_Directory"];
     std::string hTheta_q_pCD_pFDpCD_Dir = directories.Angle_dir_map["Opening_angles_pFDpCD_Directory"];
@@ -4458,44 +4612,45 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     // Theta_q_p_tot vs. W (pFDpCD, CD & FD) --------------------------------------------------------------------------------------------------------------------------------
 
     // Theta_q_p_tot vs. W (CD & FD)
-    TH2D *hTheta_q_p_tot_vs_W_pFDpCD = new TH2D("#theta_{#vec{q},#vec{P}_{tot}} vs. W (All Int., pFDpCD)",
-                                                "#theta_{#vec{q},#vec{P}_{tot}} vs. W (All Int., pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];"
-                                                "#theta_{#vec{q},#vec{P}_{tot}} [#circ];",
+    TH2D *hTheta_q_p_tot_vs_W_pFDpCD = new TH2D("#theta_{#font[62]{q},#font[62]{P}_{tot}} vs. W (All Int., pFDpCD)",
+                                                "#theta_{#font[62]{q},#font[62]{P}_{tot}} vs. W (All Int., pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];"
+                                                "#theta_{#font[62]{q},#font[62]{P}_{tot}} [#circ];",
                                                 numTH2Dbins_Ang_Plots, W_lboundary, W_uboundary, numTH2Dbins_Ang_Plots, Opening_Ang_narrow_lboundary, Opening_Ang_narrow_uboundary);
     std::string hTheta_q_p_tot_vs_W_pFDpCD_Dir = directories.Angle_dir_map["Opening_angles_pFDpCD_Directory"];
 
     // Theta_P_pL_minus_q_pR vs. W (CD & FD)
-    TH2D *hTheta_P_pL_minus_q_pR_vs_W_pFDpCD = new TH2D("#theta_{#vec{P}_{pL}-#vec{q},#vec{P}_{pR}} vs. W (All Int., pFDpCD)",
-                                                        "#theta_{#vec{P}_{pL}-#vec{q},#vec{P}_{pR}} vs. W (All Int., pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];"
-                                                        "#theta_{#vec{P}_{pL}-#vec{q},#vec{P}_{pR}} [#circ];",
-                                                        numTH2Dbins_Ang_Plots, W_lboundary, W_uboundary, numTH2Dbins_Ang_Plots, Opening_Ang_wide_lboundary, Opening_Ang_wide_uboundary);
+    TH2D *hTheta_P_pL_minus_q_pR_vs_W_pFDpCD =
+        new TH2D("#theta_{#font[62]{P}_{pL}-#font[62]{q},#font[62]{P}_{pR}} vs. W (All Int., pFDpCD)",
+                 "#theta_{#font[62]{P}_{pL}-#font[62]{q},#font[62]{P}_{pR}} vs. W (All Int., pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];"
+                 "#theta_{#font[62]{P}_{pL}-#font[62]{q},#font[62]{P}_{pR}} [#circ];",
+                 numTH2Dbins_Ang_Plots, W_lboundary, W_uboundary, numTH2Dbins_Ang_Plots, Opening_Ang_wide_lboundary, Opening_Ang_wide_uboundary);
     std::string hTheta_P_pL_minus_q_pR_vs_W_pFDpCD_Dir = directories.Angle_dir_map["Opening_angles_pFDpCD_Directory"];
 
     // Theta_q_p_L vs. W (CD & FD)
-    TH2D *hTheta_q_p_L_vs_W_pFDpCD = new TH2D("#theta_{#vec{q},#vec{P}_{pL}} vs. W (All Int., pFDpCD)",
-                                              "#theta_{#vec{q},#vec{P}_{pL}} vs. W (All Int., pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];"
-                                              "#theta_{#vec{q},#vec{P}_{pL}} [#circ];",
+    TH2D *hTheta_q_p_L_vs_W_pFDpCD = new TH2D("#theta_{#font[62]{q},#font[62]{P}_{pL}} vs. W (All Int., pFDpCD)",
+                                              "#theta_{#font[62]{q},#font[62]{P}_{pL}} vs. W (All Int., pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];"
+                                              "#theta_{#font[62]{q},#font[62]{P}_{pL}} [#circ];",
                                               numTH2Dbins_Ang_Plots, W_lboundary, W_uboundary, numTH2Dbins_Ang_Plots, Opening_Ang_narrow_lboundary, Opening_Ang_narrow_uboundary);
     std::string hTheta_q_p_L_vs_W_pFDpCD_Dir = directories.Angle_dir_map["Opening_angles_pFDpCD_Directory"];
 
     // Theta_q_p_R vs. W (CD & FD)
-    TH2D *hTheta_q_p_R_vs_W_pFDpCD = new TH2D("#theta_{#vec{q},#vec{P}_{pR}} vs. W (All Int., pFDpCD)",
-                                              "#theta_{#vec{q},#vec{P}_{pR}} vs. W (All Int., pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];"
-                                              "#theta_{#vec{q},#vec{P}_{pR}} [#circ];",
+    TH2D *hTheta_q_p_R_vs_W_pFDpCD = new TH2D("#theta_{#font[62]{q},#font[62]{P}_{pR}} vs. W (All Int., pFDpCD)",
+                                              "#theta_{#font[62]{q},#font[62]{P}_{pR}} vs. W (All Int., pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];"
+                                              "#theta_{#font[62]{q},#font[62]{P}_{pR}} [#circ];",
                                               numTH2Dbins_Ang_Plots, W_lboundary, W_uboundary, numTH2Dbins_Ang_Plots, 0, 180);
     std::string hTheta_q_p_R_vs_W_pFDpCD_Dir = directories.Angle_dir_map["Opening_angles_pFDpCD_Directory"];
 
     // Theta_q_pFD vs. W (CD & FD)
-    TH2D *hTheta_q_pFD_vs_W_pFDpCD = new TH2D("#theta_{#vec{q},#vec{P}_{pFD}} vs. W (All Int., pFDpCD)",
-                                              "#theta_{#vec{q},#vec{P}_{pFD}} vs. W (All Int., pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];"
-                                              "#theta_{#vec{q},#vec{P}_{pFD}} [#circ];",
+    TH2D *hTheta_q_pFD_vs_W_pFDpCD = new TH2D("#theta_{#font[62]{q},#font[62]{P}_{pFD}} vs. W (All Int., pFDpCD)",
+                                              "#theta_{#font[62]{q},#font[62]{P}_{pFD}} vs. W (All Int., pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];"
+                                              "#theta_{#font[62]{q},#font[62]{P}_{pFD}} [#circ];",
                                               numTH2Dbins_Ang_Plots, W_lboundary, W_uboundary, numTH2Dbins_Ang_Plots, Opening_Ang_narrow_lboundary, Opening_Ang_narrow_uboundary);
     std::string hTheta_q_pFD_vs_W_pFDpCD_Dir = directories.Angle_dir_map["Opening_angles_pFDpCD_Directory"];
 
     // Theta_q_pCD vs. W (CD & FD)
-    TH2D *hTheta_q_pCD_vs_W_pFDpCD = new TH2D("#theta_{#vec{q},#vec{P}_{pCD}} vs. W (All Int., pFDpCD)",
-                                              "#theta_{#vec{q},#vec{P}_{pCD}} vs. W (All Int., pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];"
-                                              "#theta_{#vec{q},#vec{P}_{pCD}} [#circ];",
+    TH2D *hTheta_q_pCD_vs_W_pFDpCD = new TH2D("#theta_{#font[62]{q},#font[62]{P}_{pCD}} vs. W (All Int., pFDpCD)",
+                                              "#theta_{#font[62]{q},#font[62]{P}_{pCD}} vs. W (All Int., pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];"
+                                              "#theta_{#font[62]{q},#font[62]{P}_{pCD}} [#circ];",
                                               numTH2Dbins_Ang_Plots, W_lboundary, W_uboundary, numTH2Dbins_Ang_Plots, 0, 180);
     std::string hTheta_q_pCD_vs_W_pFDpCD_Dir = directories.Angle_dir_map["Opening_angles_pFDpCD_Directory"];
 
@@ -4504,25 +4659,25 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     // Theta_q_p vs |P_p|/|q| (CD & FD)
 
     // Theta_q_p_L vs |P_p_L|/|q|
-    TH2D *hTheta_q_p_L_vs_p_L_q_pFDpCD = new TH2D("#theta_{#vec{q},#vec{P}_{pL}} vs. r_{pL} (All Int., pFDpCD)",
-                                                  "#theta_{#vec{q},#vec{P}_{pL}} vs. r_{pL}=|#vec{P}_{pL}|/|#vec{q}| (All Int., pFDpCD);"
-                                                  "r_{pL};#theta_{#vec{q},#vec{P}_{pL}} [#circ]",
+    TH2D *hTheta_q_p_L_vs_p_L_q_pFDpCD = new TH2D("#theta_{#font[62]{q},#font[62]{P}_{pL}} vs. r_{pL} (All Int., pFDpCD)",
+                                                  "#theta_{#font[62]{q},#font[62]{P}_{pL}} vs. r_{pL}=|#font[62]{P}_{pL}|/|#font[62]{q}| (All Int., pFDpCD);"
+                                                  "r_{pL};#theta_{#font[62]{q},#font[62]{P}_{pL}} [#circ]",
                                                   numTH2Dbins_Ang_Plots, 0, 1.05, numTH2Dbins_Ang_Plots, Opening_Ang_narrow_lboundary, Opening_Ang_narrow_uboundary);
     std::string hTheta_q_p_L_vs_p_L_q_pFDpCD_Dir = directories.Angle_dir_map["Opening_angles_pFDpCD_Directory"];
 
     // Theta_q_p vs Theta_q_p (pFDpCD, CD & FD) -------------------------------------------------------------------------------------------------------------------------
 
     // Theta_q_p_L vs Theta_q_p_R
-    TH2D *hTheta_q_p_L_vs_Theta_q_p_R_pFDpCD = new TH2D("#theta_{#vec{q},#vec{P}_{pL}} vs. #theta_{#vec{q},#vec{P}_{pR}} (All Int., pFDpCD)",
-                                                        "#theta_{#vec{q},#vec{P}_{pL}} vs. #theta_{#vec{q},#vec{P}_{pR}} (All Int., pFDpCD);"
-                                                        "#theta_{#vec{q},#vec{P}_{pL}};#theta_{#vec{q},#vec{P}_{pR}} [#circ]",
+    TH2D *hTheta_q_p_L_vs_Theta_q_p_R_pFDpCD = new TH2D("#theta_{#font[62]{q},#font[62]{P}_{pL}} vs. #theta_{#font[62]{q},#font[62]{P}_{pR}} (All Int., pFDpCD)",
+                                                        "#theta_{#font[62]{q},#font[62]{P}_{pL}} vs. #theta_{#font[62]{q},#font[62]{P}_{pR}} (All Int., pFDpCD);"
+                                                        "#theta_{#font[62]{q},#font[62]{P}_{pL}};#theta_{#font[62]{q},#font[62]{P}_{pR}} [#circ]",
                                                         numTH2Dbins_Ang_Plots, Opening_Ang_narrow_lboundary, Opening_Ang_narrow_uboundary, numTH2Dbins_Ang_Plots, 0, 180);
     std::string hTheta_q_p_L_vs_Theta_q_p_R_pFDpCD_Dir = directories.Angle_dir_map["Opening_angles_pFDpCD_Directory"];
 
     // Theta_q_pFD vs Theta_q_pCD
-    TH2D *hTheta_q_pFD_vs_Theta_q_pCD_pFDpCD = new TH2D("#theta_{#vec{q},#vec{P}_{pFD}} vs. #theta_{#vec{q},#vec{P}_{pCD}} (All Int., pFDpCD)",
-                                                        "#theta_{#vec{q},#vec{P}_{pFD}} vs. #theta_{#vec{q},#vec{P}_{pCD}} (All Int., pFDpCD);"
-                                                        "#theta_{#vec{q},#vec{P}_{pFD}} [#circ];#theta_{#vec{q},#vec{P}_{pCD}} [#circ]",
+    TH2D *hTheta_q_pFD_vs_Theta_q_pCD_pFDpCD = new TH2D("#theta_{#font[62]{q},#font[62]{P}_{pFD}} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (All Int., pFDpCD)",
+                                                        "#theta_{#font[62]{q},#font[62]{P}_{pFD}} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (All Int., pFDpCD);"
+                                                        "#theta_{#font[62]{q},#font[62]{P}_{pFD}} [#circ];#theta_{#font[62]{q},#font[62]{P}_{pCD}} [#circ]",
                                                         numTH2Dbins_Ang_Plots, Opening_Ang_narrow_lboundary, Opening_Ang_narrow_uboundary, numTH2Dbins_Ang_Plots, 0, 180);
     std::string hTheta_q_pFD_vs_Theta_q_pCD_pFDpCD_Dir = directories.Angle_dir_map["Opening_angles_pFDpCD_Directory"];
 
@@ -4551,7 +4706,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     // Theta_pFD_pCD vs. W (CD & FD)
     TH2D *hTheta_pFD_pCD_vs_W_pFDpCD = new TH2D("#theta_{pFD,pCD} vs. W (All Int., pFDpCD)",
-                                                "#theta_{pFD,pCD} vs. W (All Int., pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];#theta_{pFD,pCD} [#circ];",
+                                                "#theta_{pFD,pCD} vs. W (All Int., pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];#theta_{pFD,pCD} [#circ];",
                                                 numTH2Dbins_Ang_Plots, W_lboundary, W_uboundary, numTH2Dbins_Ang_Plots, 0, 180);
     std::string hTheta_pFD_pCD_vs_W_pFDpCD_Dir = directories.Angle_dir_map["Opening_angles_pFDpCD_Directory"];
 
@@ -4655,9 +4810,9 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     TH2D *hTheta_nFD_VS_P_nFD_nFDpCD_FD = new TH2D("#theta_{nFD} vs. P_{nFD} (All Int., nFDpCD, FD)", "#theta_{nFD} vs. P_{nFD} (All Int., nFDpCD, FD);P_{nFD} [GeV/c];#theta_{nFD} [#circ]",
                                                    numTH2Dbins_Ang_Plots, 0, parameters.beamE * 1.1, numTH2Dbins_Ang_Plots, Theta_lboundary_FD, Theta_uboundary_FD);
-    TH2D *hTheta_nFD_VS_W_nFDpCD_FD =
-        new TH2D("#theta_{nFD} vs. W (All Int., nFDpCD, FD)", "#theta_{nFD} vs. W (All Int., nFDpCD, FD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];#theta_{nFD} [#circ]",
-                 numTH2Dbins_Ang_Plots, W_lboundary, W_uboundary, numTH2Dbins_Ang_Plots, Theta_lboundary_FD, Theta_uboundary_FD);
+    TH2D *hTheta_nFD_VS_W_nFDpCD_FD = new TH2D("#theta_{nFD} vs. W (All Int., nFDpCD, FD)",
+                                               "#theta_{nFD} vs. W (All Int., nFDpCD, FD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];#theta_{nFD} [#circ]",
+                                               numTH2Dbins_Ang_Plots, W_lboundary, W_uboundary, numTH2Dbins_Ang_Plots, Theta_lboundary_FD, Theta_uboundary_FD);
     std::string hTheta_nFD_VS_P_nFD_nFDpCD_FD_Dir = directories.Angle_dir_map["Theta_nFD_nFDpCD_Directory"];
     std::string hTheta_nFD_VS_W_nFDpCD_FD_Dir = directories.Angle_dir_map["Theta_nFD_nFDpCD_Directory"];
 
@@ -4685,7 +4840,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     TH2D *hPhi_nFD_VS_P_nFD_nFDpCD_FD = new TH2D("#phi_{nFD} vs. P_{nFD} (All Int., nFDpCD, FD)", "#phi_{nFD} vs. P_{nFD} (All Int., nFDpCD, FD);P_{nFD} [GeV/c];#phi_{nFD} [#circ]",
                                                  numTH2Dbins_Ang_Plots, 0, parameters.beamE * 1.1, numTH2Dbins_Ang_Plots, Phi_lboundary, Phi_uboundary);
     TH2D *hPhi_nFD_VS_W_nFDpCD_FD =
-        new TH2D("#phi_{nFD} vs. W (All Int., nFDpCD, FD)", "#phi_{nFD} vs. W (All Int., nFDpCD, FD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];#phi_{nFD} [#circ]",
+        new TH2D("#phi_{nFD} vs. W (All Int., nFDpCD, FD)", "#phi_{nFD} vs. W (All Int., nFDpCD, FD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];#phi_{nFD} [#circ]",
                  numTH2Dbins_Ang_Plots, W_lboundary, W_uboundary, numTH2Dbins_Ang_Plots, Phi_lboundary, Phi_uboundary);
     std::string hPhi_nFD_VS_P_nFD_nFDpCD_FD_Dir = directories.Angle_dir_map["Phi_nFD_nFDpCD_Directory"];
     std::string hPhi_nFD_VS_W_nFDpCD_FD_Dir = directories.Angle_dir_map["Phi_nFD_nFDpCD_Directory"];
@@ -4716,9 +4871,9 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     TH2D *hTheta_pCD_VS_P_pCD_nFDpCD_CD = new TH2D("#theta_{pCD} vs. P_{pCD} (All Int., nFDpCD, CD)", "#theta_{pCD} vs. P_{pCD} (All Int., nFDpCD, CD);P_{pCD} [GeV/c];#theta_{pCD} [#circ]",
                                                    numTH2Dbins_Ang_Plots, 0, parameters.beamE * 1.1, numTH2Dbins_Ang_Plots, 30, 155);
-    TH2D *hTheta_pCD_VS_W_nFDpCD_CD =
-        new TH2D("#theta_{pCD} vs. W (All Int., nFDpCD, CD)", "#theta_{pCD} vs. W (All Int., nFDpCD, CD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];#theta_{pCD} [#circ]",
-                 numTH2Dbins_Ang_Plots, W_lboundary, W_uboundary, numTH2Dbins_Ang_Plots, 30, 155);
+    TH2D *hTheta_pCD_VS_W_nFDpCD_CD = new TH2D("#theta_{pCD} vs. W (All Int., nFDpCD, CD)",
+                                               "#theta_{pCD} vs. W (All Int., nFDpCD, CD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];#theta_{pCD} [#circ]",
+                                               numTH2Dbins_Ang_Plots, W_lboundary, W_uboundary, numTH2Dbins_Ang_Plots, 30, 155);
     std::string hTheta_pCD_VS_P_pCD_nFDpCD_CD_Dir = directories.Angle_dir_map["Theta_pCD_nFDpCD_Directory"];
     std::string hTheta_pCD_VS_W_nFDpCD_CD_Dir = directories.Angle_dir_map["Theta_pCD_nFDpCD_Directory"];
 
@@ -4746,7 +4901,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     TH2D *hPhi_pCD_VS_P_pCD_nFDpCD_CD = new TH2D("#phi_{pCD} vs. P_{pCD} (All Int., nFDpCD, CD)", "#phi_{pCD} vs. P_{pCD} (All Int., nFDpCD, CD);P_{pCD} [GeV/c];#phi_{pCD} [#circ]",
                                                  numTH2Dbins_Ang_Plots, 0, parameters.beamE * 1.1, numTH2Dbins_Ang_Plots, Phi_lboundary, Phi_uboundary);
     TH2D *hPhi_pCD_VS_W_nFDpCD_CD =
-        new TH2D("#phi_{pCD} vs. W (All Int., nFDpCD, CD)", "#phi_{pCD} vs. W (All Int., nFDpCD, CD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];#phi_{pCD} [#circ]",
+        new TH2D("#phi_{pCD} vs. W (All Int., nFDpCD, CD)", "#phi_{pCD} vs. W (All Int., nFDpCD, CD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];#phi_{pCD} [#circ]",
                  numTH2Dbins_Ang_Plots, W_lboundary, W_uboundary, numTH2Dbins_Ang_Plots, Phi_lboundary, Phi_uboundary);
     std::string hPhi_pCD_VS_P_pCD_nFDpCD_CD_Dir = directories.Angle_dir_map["Phi_pCD_nFDpCD_Directory"];
     std::string hPhi_pCD_VS_W_nFDpCD_CD_Dir = directories.Angle_dir_map["Phi_pCD_nFDpCD_Directory"];
@@ -4782,9 +4937,9 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     TH2D *hTheta_tot_VS_P_tot_nFDpCD = new TH2D("#theta_{tot} vs. P_{tot} (All Int., nFDpCD, CD)", "#theta_{tot} vs. P_{tot} (All Int., nFDpCD, CD);P_{tot} [GeV/c];#theta_{tot} [#circ]",
                                                 numTH2Dbins_Ang_Plots, 0, parameters.beamE * 1.1, numTH2Dbins_Ang_Plots, Opening_Ang_narrow_lboundary, Opening_Ang_narrow_uboundary);
-    TH2D *hTheta_tot_VS_W_nFDpCD =
-        new TH2D("#theta_{tot} vs. W (All Int., nFDpCD, CD)", "#theta_{tot} vs. W (All Int., nFDpCD, CD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];#theta_{tot} [#circ]",
-                 numTH2Dbins_Ang_Plots, W_lboundary, W_uboundary, numTH2Dbins_Ang_Plots, Opening_Ang_narrow_lboundary, Opening_Ang_narrow_uboundary);
+    TH2D *hTheta_tot_VS_W_nFDpCD = new TH2D("#theta_{tot} vs. W (All Int., nFDpCD, CD)",
+                                            "#theta_{tot} vs. W (All Int., nFDpCD, CD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];#theta_{tot} [#circ]",
+                                            numTH2Dbins_Ang_Plots, W_lboundary, W_uboundary, numTH2Dbins_Ang_Plots, Opening_Ang_narrow_lboundary, Opening_Ang_narrow_uboundary);
     std::string hTheta_tot_VS_P_tot_nFDpCD_Dir = directories.Angle_dir_map["Theta_tot_nFDpCD_Directory"];
     std::string hTheta_tot_VS_W_nFDpCD_Dir = directories.Angle_dir_map["Theta_tot_nFDpCD_Directory"];
 
@@ -4812,7 +4967,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     TH2D *hPhi_tot_VS_P_tot_nFDpCD = new TH2D("#phi_{tot} vs. P_{tot} (All Int., nFDpCD, CD)", "#phi_{tot} vs. P_{tot} (All Int., nFDpCD, CD);P_{tot} [GeV/c];#phi_{tot} [#circ]",
                                               numTH2Dbins_Ang_Plots, 0, parameters.beamE * 1.1, numTH2Dbins_Ang_Plots, Phi_lboundary, Phi_uboundary);
     TH2D *hPhi_tot_VS_W_nFDpCD =
-        new TH2D("#phi_{tot} vs. W (All Int., nFDpCD, CD)", "#phi_{tot} vs. W (All Int., nFDpCD, CD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];#phi_{tot} [#circ]",
+        new TH2D("#phi_{tot} vs. W (All Int., nFDpCD, CD)", "#phi_{tot} vs. W (All Int., nFDpCD, CD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];#phi_{tot} [#circ]",
                  numTH2Dbins_Ang_Plots, W_lboundary, W_uboundary, numTH2Dbins_Ang_Plots, Phi_lboundary, Phi_uboundary);
     std::string hPhi_tot_VS_P_tot_nFDpCD_Dir = directories.Angle_dir_map["Phi_tot_nFDpCD_Directory"];
     std::string hPhi_tot_VS_W_nFDpCD_Dir = directories.Angle_dir_map["Phi_tot_nFDpCD_Directory"];
@@ -4844,9 +4999,9 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     TH2D *hTheta_rel_VS_P_rel_nFDpCD = new TH2D("#theta_{rel} vs. P_{rel} (All Int., nFDpCD, CD)", "#theta_{rel} vs. P_{rel} (All Int., nFDpCD, CD);P_{rel} [GeV/c];#theta_{rel} [#circ]",
                                                 numTH2Dbins_Ang_Plots, 0, parameters.beamE * 1.1, numTH2Dbins_Ang_Plots, 30, 155);
-    TH2D *hTheta_rel_VS_W_nFDpCD =
-        new TH2D("#theta_{rel} vs. W (All Int., nFDpCD, CD)", "#theta_{rel} vs. W (All Int., nFDpCD, CD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];#theta_{rel} [#circ]",
-                 numTH2Dbins_Ang_Plots, W_lboundary, W_uboundary, numTH2Dbins_Ang_Plots, 30, 155);
+    TH2D *hTheta_rel_VS_W_nFDpCD = new TH2D("#theta_{rel} vs. W (All Int., nFDpCD, CD)",
+                                            "#theta_{rel} vs. W (All Int., nFDpCD, CD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];#theta_{rel} [#circ]",
+                                            numTH2Dbins_Ang_Plots, W_lboundary, W_uboundary, numTH2Dbins_Ang_Plots, 30, 155);
     std::string hTheta_rel_VS_P_rel_nFDpCD_Dir = directories.Angle_dir_map["Theta_rel_nFDpCD_Directory"];
     std::string hTheta_rel_VS_W_nFDpCD_Dir = directories.Angle_dir_map["Theta_rel_nFDpCD_Directory"];
 
@@ -4874,7 +5029,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     TH2D *hPhi_rel_VS_P_rel_nFDpCD = new TH2D("#phi_{rel} vs. P_{rel} (All Int., nFDpCD, CD)", "#phi_{rel} vs. P_{rel} (All Int., nFDpCD, CD);P_{rel} [GeV/c];#phi_{rel} [#circ]",
                                               numTH2Dbins_Ang_Plots, 0, parameters.beamE * 1.1, numTH2Dbins_Ang_Plots, Phi_lboundary, Phi_uboundary);
     TH2D *hPhi_rel_VS_W_nFDpCD =
-        new TH2D("#phi_{rel} vs. W (All Int., nFDpCD, CD)", "#phi_{rel} vs. W (All Int., nFDpCD, CD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];#phi_{rel} [#circ]",
+        new TH2D("#phi_{rel} vs. W (All Int., nFDpCD, CD)", "#phi_{rel} vs. W (All Int., nFDpCD, CD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];#phi_{rel} [#circ]",
                  numTH2Dbins_Ang_Plots, W_lboundary, W_uboundary, numTH2Dbins_Ang_Plots, Phi_lboundary, Phi_uboundary);
     std::string hPhi_rel_VS_P_rel_nFDpCD_Dir = directories.Angle_dir_map["Phi_rel_nFDpCD_Directory"];
     std::string hPhi_rel_VS_W_nFDpCD_Dir = directories.Angle_dir_map["Phi_rel_nFDpCD_Directory"];
@@ -4890,21 +5045,23 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     // Theta_p_e_p_tot (nFDpCD, CD & FD) ------------------------------------------------------------------------------------------------------------------------------------
 
     // Theta_p_e_p_tot (nFDpCD, CD & FD)
-    THStack *sTheta_p_e_p_tot_nFDpCD = new THStack("#theta_{#vec{P}_{e},#vec{P}_{tot}} (All Int., nFDpCD)",
-                                                   "#theta_{#vec{P}_{e},#vec{P}_{tot}} - Opening Angle Between #vec{P}_{e} and #vec{P}_{tot}=#vec{P}_{nFD}+#vec{P}_{pCD} "
-                                                   "(All Int., nFDpCD);#theta_{#vec{P}_{e},#vec{P}_{tot}} [#circ];");
-    TH1D *hTheta_p_e_p_tot_nFDpCD = new TH1D("#theta_{#vec{P}_{e},#vec{P}_{tot}} (All Int., nFDpCD)",
-                                             "#theta_{#vec{P}_{e},#vec{P}_{tot}} - Opening Angle Between #vec{P}_{e} and #vec{P}_{tot}=#vec{P}_{nFD}+#vec{P}_{pCD} "
-                                             "(All Int., nFDpCD);#theta_{#vec{P}_{e},#vec{P}_{tot}} [#circ];",
-                                             numTH1Dbins_Ang_Plots, Opening_Ang_narrow_lboundary, Opening_Ang_narrow_uboundary);
+    THStack *sTheta_p_e_p_tot_nFDpCD =
+        new THStack("#theta_{#font[62]{P}_{e},#font[62]{P}_{tot}} (All Int., nFDpCD)",
+                    "#theta_{#font[62]{P}_{e},#font[62]{P}_{tot}} - Opening Angle Between #font[62]{P}_{e} and #font[62]{P}_{tot}=#font[62]{P}_{nFD}+#font[62]{P}_{pCD} "
+                    "(All Int., nFDpCD);#theta_{#font[62]{P}_{e},#font[62]{P}_{tot}} [#circ];");
+    TH1D *hTheta_p_e_p_tot_nFDpCD =
+        new TH1D("#theta_{#font[62]{P}_{e},#font[62]{P}_{tot}} (All Int., nFDpCD)",
+                 "#theta_{#font[62]{P}_{e},#font[62]{P}_{tot}} - Opening Angle Between #font[62]{P}_{e} and #font[62]{P}_{tot}=#font[62]{P}_{nFD}+#font[62]{P}_{pCD} "
+                 "(All Int., nFDpCD);#theta_{#font[62]{P}_{e},#font[62]{P}_{tot}} [#circ];",
+                 numTH1Dbins_Ang_Plots, Opening_Ang_narrow_lboundary, Opening_Ang_narrow_uboundary);
     std::string hTheta_p_e_p_tot_nFDpCD_Dir = directories.Angle_dir_map["Opening_angles_nFDpCD_Directory"];
 
     // Theta_p_e_p_tot vs. W (nFDpCD, CD & FD) ------------------------------------------------------------------------------------------------------------------------------
 
     // Theta_p_e_p_tot vs. W (nFDpCD)
-    TH2D *hTheta_p_e_p_tot_vs_W_nFDpCD = new TH2D("#theta_{#vec{P}_{e},#vec{P}_{tot}} vs. W (All Int., nFDpCD)",
-                                                  "#theta_{#vec{P}_{e},#vec{P}_{tot}} vs. W (All Int., nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];"
-                                                  "#theta_{#vec{P}_{e},#vec{P}_{tot}} [#circ];",
+    TH2D *hTheta_p_e_p_tot_vs_W_nFDpCD = new TH2D("#theta_{#font[62]{P}_{e},#font[62]{P}_{tot}} vs. W (All Int., nFDpCD)",
+                                                  "#theta_{#font[62]{P}_{e},#font[62]{P}_{tot}} vs. W (All Int., nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];"
+                                                  "#theta_{#font[62]{P}_{e},#font[62]{P}_{tot}} [#circ];",
                                                   numTH2Dbins_Ang_Plots, W_lboundary, W_uboundary, numTH2Dbins_Ang_Plots, Opening_Ang_narrow_lboundary, Opening_Ang_narrow_uboundary);
     std::string hTheta_p_e_p_tot_vs_W_nFDpCD_Dir = directories.Angle_dir_map["Opening_angles_nFDpCD_Directory"];
 
@@ -4913,49 +5070,52 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     // Theta_q_p (nFDpCD, CD & FD)
 
     // Theta_q_p_tot (CD & FD)
-    THStack *sTheta_q_p_tot_nFDpCD = new THStack("#theta_{#vec{q},#vec{P}_{tot}} (All Int., nFDpCD)",
-                                                 "#theta_{#vec{q},#vec{P}_{tot}} - Opening Angle Between #vec{q} and #vec{P}_{tot}=#vec{P}_{nFD}+#vec{P}_{pCD} "
-                                                 "(All Int., nFDpCD);#theta_{#vec{q},#vec{P}_{tot}} [#circ];");
-    TH1D *hTheta_q_p_tot_nFDpCD = new TH1D("#theta_{#vec{q},#vec{P}_{tot}} (All Int., nFDpCD)",
-                                           "#theta_{#vec{q},#vec{P}_{tot}} - Opening Angle Between #vec{q} and #vec{P}_{tot}=#vec{P}_{nFD}+#vec{P}_{pCD} "
-                                           "(All Int., nFDpCD);#theta_{#vec{q},#vec{P}_{tot}} [#circ];",
+    THStack *sTheta_q_p_tot_nFDpCD = new THStack("#theta_{#font[62]{q},#font[62]{P}_{tot}} (All Int., nFDpCD)",
+                                                 "#theta_{#font[62]{q},#font[62]{P}_{tot}} - Opening Angle Between #font[62]{q} and #font[62]{P}_{tot}=#font[62]{P}_{nFD}+#font[62]{P}_{pCD} "
+                                                 "(All Int., nFDpCD);#theta_{#font[62]{q},#font[62]{P}_{tot}} [#circ];");
+    TH1D *hTheta_q_p_tot_nFDpCD = new TH1D("#theta_{#font[62]{q},#font[62]{P}_{tot}} (All Int., nFDpCD)",
+                                           "#theta_{#font[62]{q},#font[62]{P}_{tot}} - Opening Angle Between #font[62]{q} and #font[62]{P}_{tot}=#font[62]{P}_{nFD}+#font[62]{P}_{pCD} "
+                                           "(All Int., nFDpCD);#theta_{#font[62]{q},#font[62]{P}_{tot}} [#circ];",
                                            numTH1Dbins_Ang_Plots, Opening_Ang_narrow_lboundary, Opening_Ang_narrow_uboundary);
     std::string hTheta_q_p_tot_nFDpCD_Dir = directories.Angle_dir_map["Opening_angles_nFDpCD_Directory"];
 
     // Theta_P_nL_minus_q_nR and Theta_q_p_R (nFDpCD, CD & FD)
-    THStack *sTheta_P_nL_minus_q_nR_nFDpCD = new THStack("#theta_{#vec{P}_{nL}-#vec{q},#vec{P}_{nR}} (All Int., nFDpCD)",
-                                                         "#theta_{#vec{P}_{nL}-#vec{q},#vec{P}_{nR}} - Opening Angle Between #vec{P}_L-#vec{q} and #vec{P}_R (All Int., nFDpCD);"
-                                                         "#theta_{#vec{P}_{nL}-#vec{q},#vec{P}_{nR}} [#circ];");
-    TH1D *hTheta_P_nL_minus_q_nR_nFDpCD = new TH1D("#theta_{#vec{P}_{nL}-#vec{q},#vec{P}_{nR}} (All Int., nFDpCD)",
-                                                   "#theta_{#vec{P}_{nL}-#vec{q},#vec{P}_{nR}} - Opening Angle Between #vec{q} and #vec{P}_{nL} (All Int., nFDpCD)"
-                                                   ";#theta_{#vec{P}_{nL}-#vec{q},#vec{P}_{nR}} [#circ]",
+    THStack *sTheta_P_nL_minus_q_nR_nFDpCD =
+        new THStack("#theta_{#font[62]{P}_{nL}-#font[62]{q},#font[62]{P}_{nR}} (All Int., nFDpCD)",
+                    "#theta_{#font[62]{P}_{nL}-#font[62]{q},#font[62]{P}_{nR}} - Opening Angle Between #font[62]{P}_L-#font[62]{q} and #font[62]{P}_R (All Int., nFDpCD);"
+                    "#theta_{#font[62]{P}_{nL}-#font[62]{q},#font[62]{P}_{nR}} [#circ];");
+    TH1D *hTheta_P_nL_minus_q_nR_nFDpCD = new TH1D("#theta_{#font[62]{P}_{nL}-#font[62]{q},#font[62]{P}_{nR}} (All Int., nFDpCD)",
+                                                   "#theta_{#font[62]{P}_{nL}-#font[62]{q},#font[62]{P}_{nR}} - Opening Angle Between #font[62]{q} and #font[62]{P}_{nL} (All Int., nFDpCD)"
+                                                   ";#theta_{#font[62]{P}_{nL}-#font[62]{q},#font[62]{P}_{nR}} [#circ]",
                                                    numTH1Dbins_Ang_Plots, Opening_Ang_wide_lboundary, Opening_Ang_wide_uboundary);
     std::string hTheta_P_nL_minus_q_nR_nFDpCD_Dir = directories.Angle_dir_map["Opening_angles_nFDpCD_Directory"];
 
     // Theta_q_p_L and Theta_q_p_R (nFDpCD, CD & FD)
-    THStack *sTheta_q_p_L_R_nFDpCD = new THStack("#theta_{#vec{q},#vec{P}} (All Int., nFDpCD)",
-                                                 "#theta_{#vec{q},#vec{P}} - Opening Angle Between #vec{q} and #vec{P} (All Int., nFDpCD);#theta_{#vec{q},#vec{P}} [#circ];");
-    TH1D *hTheta_q_p_L_nFDpCD = new TH1D("#theta_{#vec{q},#vec{P}_{nL}} (All Int., nFDpCD)",
-                                         "#theta_{#vec{q},#vec{P}_{nL}} - Opening Angle Between #vec{q} and Leading Nucleon #vec{P}_{nL} (All Int., nFDpCD);"
-                                         "#theta_{#vec{q},#vec{P}_{nL}} [#circ]",
+    THStack *sTheta_q_p_L_R_nFDpCD =
+        new THStack("#theta_{#font[62]{q},#font[62]{P}} (All Int., nFDpCD)",
+                    "#theta_{#font[62]{q},#font[62]{P}} - Opening Angle Between #font[62]{q} and #font[62]{P} (All Int., nFDpCD);#theta_{#font[62]{q},#font[62]{P}} [#circ];");
+    TH1D *hTheta_q_p_L_nFDpCD = new TH1D("#theta_{#font[62]{q},#font[62]{P}_{nL}} (All Int., nFDpCD)",
+                                         "#theta_{#font[62]{q},#font[62]{P}_{nL}} - Opening Angle Between #font[62]{q} and Leading Nucleon #font[62]{P}_{nL} (All Int., nFDpCD);"
+                                         "#theta_{#font[62]{q},#font[62]{P}_{nL}} [#circ]",
                                          numTH1Dbins_Ang_Plots, Opening_Ang_narrow_lboundary, Opening_Ang_narrow_uboundary);
-    TH1D *hTheta_q_p_R_nFDpCD = new TH1D("#theta_{#vec{q},#vec{P}_{nR}} (All Int., nFDpCD)",
-                                         "#theta_{#vec{q},#vec{P}_{nR}} - Opening Angle Between #vec{q} and Recoil Nucleon #vec{P}_{nR} (All Int., nFDpCD);"
-                                         "#theta_{#vec{q},#vec{P}_{nR}} [#circ]",
+    TH1D *hTheta_q_p_R_nFDpCD = new TH1D("#theta_{#font[62]{q},#font[62]{P}_{nR}} (All Int., nFDpCD)",
+                                         "#theta_{#font[62]{q},#font[62]{P}_{nR}} - Opening Angle Between #font[62]{q} and Recoil Nucleon #font[62]{P}_{nR} (All Int., nFDpCD);"
+                                         "#theta_{#font[62]{q},#font[62]{P}_{nR}} [#circ]",
                                          numTH1Dbins_Ang_Plots, 0, 180);
     std::string hTheta_q_p_L_nFDpCD_Dir = directories.Angle_dir_map["Opening_angles_nFDpCD_Directory"];
     std::string hTheta_q_p_R_nFDpCD_Dir = directories.Angle_dir_map["Opening_angles_nFDpCD_Directory"];
 
     // Theta_q_nFD and Theta_q_pCD (nFDpCD, CD & FD)
-    THStack *sTheta_q_p_nFDpCD = new THStack("#theta_{#vec{q},#vec{P}} (All Int., nFDpCD)",
-                                             "#theta_{#vec{q},#vec{P}} - Opening Angle Between #vec{q} and #vec{P} (All Int., nFDpCD);#theta_{#vec{q},#vec{P}} [#circ];");
-    TH1D *hTheta_q_nFD_nFDpCD = new TH1D("#theta_{#vec{q},#vec{P}_{nFD}} (All Int., nFDpCD)",
-                                         "#theta_{#vec{q},#vec{P}_{nFD}} - Opening Angle Between #vec{q} and FD Neutron #vec{P}_{nFD} (All Int., nFDpCD);"
-                                         "#theta_{#vec{q},#vec{P}_{nFD}} [#circ]",
+    THStack *sTheta_q_p_nFDpCD =
+        new THStack("#theta_{#font[62]{q},#font[62]{P}} (All Int., nFDpCD)",
+                    "#theta_{#font[62]{q},#font[62]{P}} - Opening Angle Between #font[62]{q} and #font[62]{P} (All Int., nFDpCD);#theta_{#font[62]{q},#font[62]{P}} [#circ];");
+    TH1D *hTheta_q_nFD_nFDpCD = new TH1D("#theta_{#font[62]{q},#font[62]{P}_{nFD}} (All Int., nFDpCD)",
+                                         "#theta_{#font[62]{q},#font[62]{P}_{nFD}} - Opening Angle Between #font[62]{q} and FD Neutron #font[62]{P}_{nFD} (All Int., nFDpCD);"
+                                         "#theta_{#font[62]{q},#font[62]{P}_{nFD}} [#circ]",
                                          numTH1Dbins_Ang_Plots, Opening_Ang_narrow_lboundary, Opening_Ang_narrow_uboundary);
-    TH1D *hTheta_q_pCD_nFDpCD = new TH1D("#theta_{#vec{q},#vec{P}_{pCD}} (All Int., nFDpCD)",
-                                         "#theta_{#vec{q},#vec{P}_{pCD}} - Opening Angle Between #vec{q} and CD Proton #vec{P}_{pCD} (All Int., nFDpCD);"
-                                         "#theta_{#vec{q},#vec{P}_{pCD}} [#circ]",
+    TH1D *hTheta_q_pCD_nFDpCD = new TH1D("#theta_{#font[62]{q},#font[62]{P}_{pCD}} (All Int., nFDpCD)",
+                                         "#theta_{#font[62]{q},#font[62]{P}_{pCD}} - Opening Angle Between #font[62]{q} and CD Proton #font[62]{P}_{pCD} (All Int., nFDpCD);"
+                                         "#theta_{#font[62]{q},#font[62]{P}_{pCD}} [#circ]",
                                          numTH1Dbins_Ang_Plots, 0, 180);
     std::string hTheta_q_nFD_nFDpCD_Dir = directories.Angle_dir_map["Opening_angles_nFDpCD_Directory"];
     std::string hTheta_q_pCD_nFDpCD_Dir = directories.Angle_dir_map["Opening_angles_nFDpCD_Directory"];
@@ -4963,69 +5123,70 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     // Theta_q_p_tot vs. W (nFDpCD, CD & FD) --------------------------------------------------------------------------------------------------------------------------------
 
     // Theta_nFD_pCD vs. W (CD & FD)
-    TH2D *hTheta_q_p_tot_vs_W_nFDpCD = new TH2D("#theta_{#vec{q},#vec{P}_{tot}} vs. W (All Int., nFDpCD)",
-                                                "#theta_{#vec{q},#vec{P}_{tot}} vs. W (All Int., nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];"
-                                                "#theta_{#vec{q},#vec{P}_{tot}} [#circ];",
+    TH2D *hTheta_q_p_tot_vs_W_nFDpCD = new TH2D("#theta_{#font[62]{q},#font[62]{P}_{tot}} vs. W (All Int., nFDpCD)",
+                                                "#theta_{#font[62]{q},#font[62]{P}_{tot}} vs. W (All Int., nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];"
+                                                "#theta_{#font[62]{q},#font[62]{P}_{tot}} [#circ];",
                                                 numTH2Dbins_Ang_Plots, W_lboundary, W_uboundary, numTH2Dbins_Ang_Plots, Opening_Ang_narrow_lboundary, Opening_Ang_narrow_uboundary);
     std::string hTheta_q_p_tot_vs_W_nFDpCD_Dir = directories.Angle_dir_map["Opening_angles_nFDpCD_Directory"];
 
     // Theta_P_nL_minus_q_nR vs. W (CD & FD)
-    TH2D *hTheta_P_nL_minus_q_nR_vs_W_nFDpCD = new TH2D("#theta_{#vec{P}_{nL}-#vec{q},#vec{P}_{nR}} vs. W (All Int., nFDpCD)",
-                                                        "#theta_{#vec{P}_{nL}-#vec{q},#vec{P}_{nR}} vs. W (All Int., nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];"
-                                                        "#theta_{#vec{P}_{nL}-#vec{q},#vec{P}_{nR}} [#circ];",
-                                                        numTH2Dbins_Ang_Plots, W_lboundary, W_uboundary, numTH2Dbins_Ang_Plots, Opening_Ang_wide_lboundary, Opening_Ang_wide_uboundary);
+    TH2D *hTheta_P_nL_minus_q_nR_vs_W_nFDpCD =
+        new TH2D("#theta_{#font[62]{P}_{nL}-#font[62]{q},#font[62]{P}_{nR}} vs. W (All Int., nFDpCD)",
+                 "#theta_{#font[62]{P}_{nL}-#font[62]{q},#font[62]{P}_{nR}} vs. W (All Int., nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];"
+                 "#theta_{#font[62]{P}_{nL}-#font[62]{q},#font[62]{P}_{nR}} [#circ];",
+                 numTH2Dbins_Ang_Plots, W_lboundary, W_uboundary, numTH2Dbins_Ang_Plots, Opening_Ang_wide_lboundary, Opening_Ang_wide_uboundary);
     std::string hTheta_P_nL_minus_q_nR_vs_W_nFDpCD_Dir = directories.Angle_dir_map["Opening_angles_nFDpCD_Directory"];
 
     // Theta_q_p_L vs. W (CD & FD)
-    TH2D *hTheta_q_p_L_vs_W_nFDpCD = new TH2D("#theta_{#vec{q},#vec{P}_{nL}} vs. W (All Int., nFDpCD)",
-                                              "#theta_{#vec{q},#vec{P}_{nL}} vs. W (All Int., nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];"
-                                              "#theta_{#vec{q},#vec{P}_{nL}} [#circ];",
+    TH2D *hTheta_q_p_L_vs_W_nFDpCD = new TH2D("#theta_{#font[62]{q},#font[62]{P}_{nL}} vs. W (All Int., nFDpCD)",
+                                              "#theta_{#font[62]{q},#font[62]{P}_{nL}} vs. W (All Int., nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];"
+                                              "#theta_{#font[62]{q},#font[62]{P}_{nL}} [#circ];",
                                               numTH2Dbins_Ang_Plots, W_lboundary, W_uboundary, numTH2Dbins_Ang_Plots, Opening_Ang_narrow_lboundary, Opening_Ang_narrow_uboundary);
     std::string hTheta_q_p_L_vs_W_nFDpCD_Dir = directories.Angle_dir_map["Opening_angles_nFDpCD_Directory"];
 
     // Theta_q_p_R vs. W (CD & FD)
-    TH2D *hTheta_q_p_R_vs_W_nFDpCD = new TH2D("#theta_{#vec{q},#vec{P}_{nR}} vs. W (All Int., nFDpCD)",
-                                              "#theta_{#vec{q},#vec{P}_{nR}} vs. W (All Int., nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];"
-                                              "#theta_{#vec{q},#vec{P}_{nR}} [#circ];",
+    TH2D *hTheta_q_p_R_vs_W_nFDpCD = new TH2D("#theta_{#font[62]{q},#font[62]{P}_{nR}} vs. W (All Int., nFDpCD)",
+                                              "#theta_{#font[62]{q},#font[62]{P}_{nR}} vs. W (All Int., nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];"
+                                              "#theta_{#font[62]{q},#font[62]{P}_{nR}} [#circ];",
                                               numTH2Dbins_Ang_Plots, W_lboundary, W_uboundary, numTH2Dbins_Ang_Plots, 0, 180);
     std::string hTheta_q_p_R_vs_W_nFDpCD_Dir = directories.Angle_dir_map["Opening_angles_nFDpCD_Directory"];
 
     // Theta_q_nFD vs. W (CD & FD)
-    TH2D *hTheta_q_nFD_vs_W_nFDpCD = new TH2D("#theta_{#vec{q},#vec{P}_{nFD}} vs. W (All Int., nFDpCD)",
-                                              "#theta_{#vec{q},#vec{P}_{nFD}} vs. W (All Int., nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];"
-                                              "#theta_{#vec{q},#vec{P}_{nFD}} [#circ];",
+    TH2D *hTheta_q_nFD_vs_W_nFDpCD = new TH2D("#theta_{#font[62]{q},#font[62]{P}_{nFD}} vs. W (All Int., nFDpCD)",
+                                              "#theta_{#font[62]{q},#font[62]{P}_{nFD}} vs. W (All Int., nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];"
+                                              "#theta_{#font[62]{q},#font[62]{P}_{nFD}} [#circ];",
                                               numTH2Dbins_Ang_Plots, W_lboundary, W_uboundary, numTH2Dbins_Ang_Plots, Opening_Ang_narrow_lboundary, Opening_Ang_narrow_uboundary);
     std::string hTheta_q_nFD_vs_W_nFDpCD_Dir = directories.Angle_dir_map["Opening_angles_nFDpCD_Directory"];
 
     // Theta_q_pCD vs. W (CD & FD)
-    TH2D *hTheta_q_pCD_vs_W_nFDpCD = new TH2D("#theta_{#vec{q},#vec{P}_{pCD}} vs. W (All Int., nFDpCD)",
-                                              "#theta_{#vec{q},#vec{P}_{pCD}} vs. W (All Int., nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];"
-                                              "#theta_{#vec{q},#vec{P}_{pCD}} [#circ];",
+    TH2D *hTheta_q_pCD_vs_W_nFDpCD = new TH2D("#theta_{#font[62]{q},#font[62]{P}_{pCD}} vs. W (All Int., nFDpCD)",
+                                              "#theta_{#font[62]{q},#font[62]{P}_{pCD}} vs. W (All Int., nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];"
+                                              "#theta_{#font[62]{q},#font[62]{P}_{pCD}} [#circ];",
                                               numTH2Dbins_Ang_Plots, W_lboundary, W_uboundary, numTH2Dbins_Ang_Plots, 0, 180);
     std::string hTheta_q_pCD_vs_W_nFDpCD_Dir = directories.Angle_dir_map["Opening_angles_nFDpCD_Directory"];
 
     // Theta_q_p_L vs |P_L|/|q| (nFDpCD, CD & FD) ---------------------------------------------------------------------------------------------------------------------------
 
     // Theta_q_p vs |P_p|/|q| (CD & FD)
-    TH2D *hTheta_q_p_L_vs_p_L_q_nFDpCD = new TH2D("#theta_{#vec{q},#vec{P}_{nL}} vs. r_{nL} (All Int., nFDpCD)",
-                                                  "#theta_{#vec{q},#vec{P}_{nL}} vs. r_{nL}=|#vec{P}_{nL}|/|#vec{q}| (All Int., nFDpCD);"
-                                                  "r_{nFD};#theta_{#vec{q},#vec{P}_{nFD}} [#circ]",
+    TH2D *hTheta_q_p_L_vs_p_L_q_nFDpCD = new TH2D("#theta_{#font[62]{q},#font[62]{P}_{nL}} vs. r_{nL} (All Int., nFDpCD)",
+                                                  "#theta_{#font[62]{q},#font[62]{P}_{nL}} vs. r_{nL}=|#font[62]{P}_{nL}|/|#font[62]{q}| (All Int., nFDpCD);"
+                                                  "r_{nFD};#theta_{#font[62]{q},#font[62]{P}_{nFD}} [#circ]",
                                                   numTH2Dbins_Ang_Plots, 0, 1.05, numTH2Dbins_Ang_Plots, Opening_Ang_narrow_lboundary, Opening_Ang_narrow_uboundary);
     std::string hTheta_q_p_L_vs_p_L_q_nFDpCD_Dir = directories.Angle_dir_map["Opening_angles_nFDpCD_Directory"];
 
     // Theta_q_p vs Theta_q_p (nFDpCD, CD & FD) -------------------------------------------------------------------------------------------------------------------------
 
     // Theta_q_p_L vs Theta_q_p_R
-    TH2D *hTheta_q_p_L_vs_Theta_q_p_R_nFDpCD = new TH2D("#theta_{#vec{q},#vec{P}_{nL}} vs. #theta_{#vec{q},#vec{P}_{nR}} (All Int., nFDpCD)",
-                                                        "#theta_{#vec{q},#vec{P}_{nL}} vs. #theta_{#vec{q},#vec{P}_{nR}} (All Int., nFDpCD);"
-                                                        "#theta_{#vec{q},#vec{P}_{nL}};#theta_{#vec{q},#vec{P}_{nR}} [#circ]",
+    TH2D *hTheta_q_p_L_vs_Theta_q_p_R_nFDpCD = new TH2D("#theta_{#font[62]{q},#font[62]{P}_{nL}} vs. #theta_{#font[62]{q},#font[62]{P}_{nR}} (All Int., nFDpCD)",
+                                                        "#theta_{#font[62]{q},#font[62]{P}_{nL}} vs. #theta_{#font[62]{q},#font[62]{P}_{nR}} (All Int., nFDpCD);"
+                                                        "#theta_{#font[62]{q},#font[62]{P}_{nL}};#theta_{#font[62]{q},#font[62]{P}_{nR}} [#circ]",
                                                         numTH2Dbins_Ang_Plots, Opening_Ang_narrow_lboundary, Opening_Ang_narrow_uboundary, numTH2Dbins_Ang_Plots, 0, 180);
     std::string hTheta_q_p_L_vs_Theta_q_p_R_nFDpCD_Dir = directories.Angle_dir_map["Opening_angles_nFDpCD_Directory"];
 
     // Theta_q_nFD vs Theta_q_pCD
-    TH2D *hTheta_q_nFD_vs_Theta_q_pCD_nFDpCD = new TH2D("#theta_{#vec{q},#vec{P}_{nFD}} vs. #theta_{#vec{q},#vec{P}_{pCD}} (All Int., nFDpCD)",
-                                                        "#theta_{#vec{q},#vec{P}_{nFD}} vs. #theta_{#vec{q},#vec{P}_{pCD}} (All Int., nFDpCD);"
-                                                        "#theta_{#vec{q},#vec{P}_{nFD}} [#circ];#theta_{#vec{q},#vec{P}_{pCD}} [#circ]",
+    TH2D *hTheta_q_nFD_vs_Theta_q_pCD_nFDpCD = new TH2D("#theta_{#font[62]{q},#font[62]{P}_{nFD}} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (All Int., nFDpCD)",
+                                                        "#theta_{#font[62]{q},#font[62]{P}_{nFD}} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (All Int., nFDpCD);"
+                                                        "#theta_{#font[62]{q},#font[62]{P}_{nFD}} [#circ];#theta_{#font[62]{q},#font[62]{P}_{pCD}} [#circ]",
                                                         numTH2Dbins_Ang_Plots, Opening_Ang_narrow_lboundary, Opening_Ang_narrow_uboundary, numTH2Dbins_Ang_Plots, 0, 180);
     std::string hTheta_q_nFD_vs_Theta_q_pCD_nFDpCD_Dir = directories.Angle_dir_map["Opening_angles_nFDpCD_Directory"];
 
@@ -5054,7 +5215,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     // Theta_nFD_pCD vs. W (CD & FD)
     TH2D *hTheta_nFD_pCD_vs_W_nFDpCD = new TH2D("#theta_{nFD,pCD} vs. W (All Int., nFDpCD)",
-                                                "#theta_{nFD,pCD} vs. W (All Int., nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];#theta_{nFD,pCD} [#circ];",
+                                                "#theta_{nFD,pCD} vs. W (All Int., nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];#theta_{nFD,pCD} [#circ];",
                                                 numTH2Dbins_Ang_Plots, W_lboundary, W_uboundary, numTH2Dbins_Ang_Plots, 0, 180);
     std::string hTheta_nFD_pCD_vs_W_nFDpCD_Dir = directories.Angle_dir_map["Opening_angles_nFDpCD_Directory"];
 
@@ -5197,16 +5358,20 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         new TH1D("q = |#font[62]{q}| (DIS Only, 1e Cut, FD)", "q = |#font[62]{q}| (DIS Only, 1e Cut, FD);q [GeV/c];", numTH1Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
     std::string hq_3v_1e_cut_Dir = directories.Momentum_transfer_dir_map["Momentum_transfer_1e_cut_Directory"];
 
-    TH2D *hQ2_VS_W_1e_cut = new TH2D("Q^{2} vs. W (All Int., 1e Cut)", "Q^{2} vs. W (All Int., 1e Cut);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];Q^{2} [GeV^{2}/c^{2}]",
+    TH2D *hQ2_VS_W_1e_cut = new TH2D("Q^{2} vs. W (All Int., 1e Cut)", "Q^{2} vs. W (All Int., 1e Cut);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];Q^{2} [GeV^{2}/c^{2}]",
                                      numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
-    TH2D *hQ2_VS_W_QEL_1e_cut = new TH2D("Q^{2} vs. W (QE Only, 1e Cut)", "Q^{2} vs. W (QE Only, 1e Cut);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];Q^{2} [GeV^{2}/c^{2}]",
-                                         numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
-    TH2D *hQ2_VS_W_MEC_1e_cut = new TH2D("Q^{2} vs. W (MEC Only, 1e Cut)", "Q^{2} vs. W (MEC Only, 1e Cut);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];Q^{2} [GeV^{2}/c^{2}]",
-                                         numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
-    TH2D *hQ2_VS_W_RES_1e_cut = new TH2D("Q^{2} vs. W (RES Only, 1e Cut)", "Q^{2} vs. W (RES Only, 1e Cut);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];Q^{2} [GeV^{2}/c^{2}]",
-                                         numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
-    TH2D *hQ2_VS_W_DIS_1e_cut = new TH2D("Q^{2} vs. W (DIS Only, 1e Cut)", "Q^{2} vs. W (DIS Only, 1e Cut);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];Q^{2} [GeV^{2}/c^{2}]",
-                                         numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
+    TH2D *hQ2_VS_W_QEL_1e_cut =
+        new TH2D("Q^{2} vs. W (QE Only, 1e Cut)", "Q^{2} vs. W (QE Only, 1e Cut);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];Q^{2} [GeV^{2}/c^{2}]",
+                 numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
+    TH2D *hQ2_VS_W_MEC_1e_cut =
+        new TH2D("Q^{2} vs. W (MEC Only, 1e Cut)", "Q^{2} vs. W (MEC Only, 1e Cut);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];Q^{2} [GeV^{2}/c^{2}]",
+                 numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
+    TH2D *hQ2_VS_W_RES_1e_cut =
+        new TH2D("Q^{2} vs. W (RES Only, 1e Cut)", "Q^{2} vs. W (RES Only, 1e Cut);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];Q^{2} [GeV^{2}/c^{2}]",
+                 numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
+    TH2D *hQ2_VS_W_DIS_1e_cut =
+        new TH2D("Q^{2} vs. W (DIS Only, 1e Cut)", "Q^{2} vs. W (DIS Only, 1e Cut);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];Q^{2} [GeV^{2}/c^{2}]",
+                 numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
     std::string hQ2_VS_W_1e_cut_Dir = directories.Momentum_transfer_dir_map["Momentum_transfer_1e_cut_Directory"];
 
     TH2D *hQ2_VS_q_3v_1e_cut = new TH2D("Q^{2} vs. |#font[62]{q}| (All Int., 1e Cut)", "Q^{2} vs. |#font[62]{q}| (All Int., 1e Cut);q [GeV/c];Q^{2} [GeV^{2}/c^{2}]",
@@ -5266,15 +5431,15 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         new TH1D("q = |#font[62]{q}| (DIS Only, 1p, FD)", "q = |#font[62]{q}| (DIS Only, 1p, FD);q [GeV/c];", numTH1Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
     std::string hq_3v_1p_Dir = directories.Momentum_transfer_dir_map["Momentum_transfer_1p_Directory"];
 
-    TH2D *hQ2_VS_W_1p = new TH2D("Q^{2} vs. W (All Int., 1p)", "Q^{2} vs. W (All Int., 1p);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];Q^{2} [GeV^{2}/c^{2}]",
+    TH2D *hQ2_VS_W_1p = new TH2D("Q^{2} vs. W (All Int., 1p)", "Q^{2} vs. W (All Int., 1p);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];Q^{2} [GeV^{2}/c^{2}]",
                                  numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
-    TH2D *hQ2_VS_W_QEL_1p = new TH2D("Q^{2} vs. W (QE Only, 1p)", "Q^{2} vs. W (QE Only, 1p);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];Q^{2} [GeV^{2}/c^{2}]",
+    TH2D *hQ2_VS_W_QEL_1p = new TH2D("Q^{2} vs. W (QE Only, 1p)", "Q^{2} vs. W (QE Only, 1p);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];Q^{2} [GeV^{2}/c^{2}]",
                                      numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
-    TH2D *hQ2_VS_W_MEC_1p = new TH2D("Q^{2} vs. W (MEC Only, 1p)", "Q^{2} vs. W (MEC Only, 1p);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];Q^{2} [GeV^{2}/c^{2}]",
+    TH2D *hQ2_VS_W_MEC_1p = new TH2D("Q^{2} vs. W (MEC Only, 1p)", "Q^{2} vs. W (MEC Only, 1p);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];Q^{2} [GeV^{2}/c^{2}]",
                                      numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
-    TH2D *hQ2_VS_W_RES_1p = new TH2D("Q^{2} vs. W (RES Only, 1p)", "Q^{2} vs. W (RES Only, 1p);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];Q^{2} [GeV^{2}/c^{2}]",
+    TH2D *hQ2_VS_W_RES_1p = new TH2D("Q^{2} vs. W (RES Only, 1p)", "Q^{2} vs. W (RES Only, 1p);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];Q^{2} [GeV^{2}/c^{2}]",
                                      numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
-    TH2D *hQ2_VS_W_DIS_1p = new TH2D("Q^{2} vs. W (DIS Only, 1p)", "Q^{2} vs. W (DIS Only, 1p);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];Q^{2} [GeV^{2}/c^{2}]",
+    TH2D *hQ2_VS_W_DIS_1p = new TH2D("Q^{2} vs. W (DIS Only, 1p)", "Q^{2} vs. W (DIS Only, 1p);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];Q^{2} [GeV^{2}/c^{2}]",
                                      numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
     std::string hQ2_VS_W_1p_Dir = directories.Momentum_transfer_dir_map["Momentum_transfer_1p_Directory"];
 
@@ -5335,15 +5500,15 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     TH1D *hq_3v_1n = new TH1D("q = |#font[62]{q}| (1n, FD)", "q = |#font[62]{q}| (1n, FD);q [GeV/c];", numTH1Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
     std::string hq_3v_1n_Dir = directories.Momentum_transfer_dir_map["Momentum_transfer_1n_Directory"];
 
-    TH2D *hQ2_VS_W_1n = new TH2D("Q^{2} vs. W (All Int., 1n)", "Q^{2} vs. W (All Int., 1n);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];Q^{2} [GeV^{2}/c^{2}]",
+    TH2D *hQ2_VS_W_1n = new TH2D("Q^{2} vs. W (All Int., 1n)", "Q^{2} vs. W (All Int., 1n);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];Q^{2} [GeV^{2}/c^{2}]",
                                  numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
-    TH2D *hQ2_VS_W_QEL_1n = new TH2D("Q^{2} vs. W (QE Only, 1n)", "Q^{2} vs. W (QE Only, 1n);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];Q^{2} [GeV^{2}/c^{2}]",
+    TH2D *hQ2_VS_W_QEL_1n = new TH2D("Q^{2} vs. W (QE Only, 1n)", "Q^{2} vs. W (QE Only, 1n);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];Q^{2} [GeV^{2}/c^{2}]",
                                      numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
-    TH2D *hQ2_VS_W_MEC_1n = new TH2D("Q^{2} vs. W (MEC Only, 1n)", "Q^{2} vs. W (MEC Only, 1n);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];Q^{2} [GeV^{2}/c^{2}]",
+    TH2D *hQ2_VS_W_MEC_1n = new TH2D("Q^{2} vs. W (MEC Only, 1n)", "Q^{2} vs. W (MEC Only, 1n);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];Q^{2} [GeV^{2}/c^{2}]",
                                      numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
-    TH2D *hQ2_VS_W_RES_1n = new TH2D("Q^{2} vs. W (RES Only, 1n)", "Q^{2} vs. W (RES Only, 1n);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];Q^{2} [GeV^{2}/c^{2}]",
+    TH2D *hQ2_VS_W_RES_1n = new TH2D("Q^{2} vs. W (RES Only, 1n)", "Q^{2} vs. W (RES Only, 1n);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];Q^{2} [GeV^{2}/c^{2}]",
                                      numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
-    TH2D *hQ2_VS_W_DIS_1n = new TH2D("Q^{2} vs. W (DIS Only, 1n)", "Q^{2} vs. W (DIS Only, 1n);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];Q^{2} [GeV^{2}/c^{2}]",
+    TH2D *hQ2_VS_W_DIS_1n = new TH2D("Q^{2} vs. W (DIS Only, 1n)", "Q^{2} vs. W (DIS Only, 1n);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];Q^{2} [GeV^{2}/c^{2}]",
                                      numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
     std::string hQ2_VS_W_1n_Dir = directories.Momentum_transfer_dir_map["Momentum_transfer_1n_Directory"];
 
@@ -5404,15 +5569,15 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         new TH1D("q = |#font[62]{q}| (DIS Only, 2p, FD)", "q = |#font[62]{q}| (DIS Only, 2p, FD);q [GeV/c];", numTH1Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
     std::string hq_3v_2p_Dir = directories.Momentum_transfer_dir_map["Momentum_transfer_2p_Directory"];
 
-    TH2D *hQ2_VS_W_2p = new TH2D("Q^{2} vs. W (All Int., 2p)", "Q^{2} vs. W (All Int., 2p);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];Q^{2} [GeV^{2}/c^{2}]",
+    TH2D *hQ2_VS_W_2p = new TH2D("Q^{2} vs. W (All Int., 2p)", "Q^{2} vs. W (All Int., 2p);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];Q^{2} [GeV^{2}/c^{2}]",
                                  numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
-    TH2D *hQ2_VS_W_QEL_2p = new TH2D("Q^{2} vs. W (QE Only, 2p)", "Q^{2} vs. W (QE Only, 2p);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];Q^{2} [GeV^{2}/c^{2}]",
+    TH2D *hQ2_VS_W_QEL_2p = new TH2D("Q^{2} vs. W (QE Only, 2p)", "Q^{2} vs. W (QE Only, 2p);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];Q^{2} [GeV^{2}/c^{2}]",
                                      numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
-    TH2D *hQ2_VS_W_MEC_2p = new TH2D("Q^{2} vs. W (MEC Only, 2p)", "Q^{2} vs. W (MEC Only, 2p);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];Q^{2} [GeV^{2}/c^{2}]",
+    TH2D *hQ2_VS_W_MEC_2p = new TH2D("Q^{2} vs. W (MEC Only, 2p)", "Q^{2} vs. W (MEC Only, 2p);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];Q^{2} [GeV^{2}/c^{2}]",
                                      numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
-    TH2D *hQ2_VS_W_RES_2p = new TH2D("Q^{2} vs. W (RES Only, 2p)", "Q^{2} vs. W (RES Only, 2p);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];Q^{2} [GeV^{2}/c^{2}]",
+    TH2D *hQ2_VS_W_RES_2p = new TH2D("Q^{2} vs. W (RES Only, 2p)", "Q^{2} vs. W (RES Only, 2p);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];Q^{2} [GeV^{2}/c^{2}]",
                                      numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
-    TH2D *hQ2_VS_W_DIS_2p = new TH2D("Q^{2} vs. W (DIS Only, 2p)", "Q^{2} vs. W (DIS Only, 2p);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];Q^{2} [GeV^{2}/c^{2}]",
+    TH2D *hQ2_VS_W_DIS_2p = new TH2D("Q^{2} vs. W (DIS Only, 2p)", "Q^{2} vs. W (DIS Only, 2p);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];Q^{2} [GeV^{2}/c^{2}]",
                                      numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
     std::string hQ2_VS_W_2p_Dir = directories.Momentum_transfer_dir_map["Momentum_transfer_2p_Directory"];
 
@@ -5477,16 +5642,20 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         new TH1D("q = |#font[62]{q}| (DIS Only, pFDpCD, FD)", "q = |#font[62]{q}| (DIS Only, pFDpCD, FD);q [GeV/c];", numTH1Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
     std::string hq_3v_pFDpCD_Dir = directories.Momentum_transfer_dir_map["Momentum_transfer_pFDpCD_Directory"];
 
-    TH2D *hQ2_VS_W_pFDpCD = new TH2D("Q^{2} vs. W (All Int., pFDpCD)", "Q^{2} vs. W (All Int., pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];Q^{2} [GeV^{2}/c^{2}]",
+    TH2D *hQ2_VS_W_pFDpCD = new TH2D("Q^{2} vs. W (All Int., pFDpCD)", "Q^{2} vs. W (All Int., pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];Q^{2} [GeV^{2}/c^{2}]",
                                      numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
-    TH2D *hQ2_VS_W_QEL_pFDpCD = new TH2D("Q^{2} vs. W (QE Only, pFDpCD)", "Q^{2} vs. W (QE Only, pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];Q^{2} [GeV^{2}/c^{2}]",
-                                         numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
-    TH2D *hQ2_VS_W_MEC_pFDpCD = new TH2D("Q^{2} vs. W (MEC Only, pFDpCD)", "Q^{2} vs. W (MEC Only, pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];Q^{2} [GeV^{2}/c^{2}]",
-                                         numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
-    TH2D *hQ2_VS_W_RES_pFDpCD = new TH2D("Q^{2} vs. W (RES Only, pFDpCD)", "Q^{2} vs. W (RES Only, pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];Q^{2} [GeV^{2}/c^{2}]",
-                                         numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
-    TH2D *hQ2_VS_W_DIS_pFDpCD = new TH2D("Q^{2} vs. W (DIS Only, pFDpCD)", "Q^{2} vs. W (DIS Only, pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];Q^{2} [GeV^{2}/c^{2}]",
-                                         numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
+    TH2D *hQ2_VS_W_QEL_pFDpCD =
+        new TH2D("Q^{2} vs. W (QE Only, pFDpCD)", "Q^{2} vs. W (QE Only, pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];Q^{2} [GeV^{2}/c^{2}]",
+                 numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
+    TH2D *hQ2_VS_W_MEC_pFDpCD =
+        new TH2D("Q^{2} vs. W (MEC Only, pFDpCD)", "Q^{2} vs. W (MEC Only, pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];Q^{2} [GeV^{2}/c^{2}]",
+                 numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
+    TH2D *hQ2_VS_W_RES_pFDpCD =
+        new TH2D("Q^{2} vs. W (RES Only, pFDpCD)", "Q^{2} vs. W (RES Only, pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];Q^{2} [GeV^{2}/c^{2}]",
+                 numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
+    TH2D *hQ2_VS_W_DIS_pFDpCD =
+        new TH2D("Q^{2} vs. W (DIS Only, pFDpCD)", "Q^{2} vs. W (DIS Only, pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];Q^{2} [GeV^{2}/c^{2}]",
+                 numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
     std::string hQ2_VS_W_pFDpCD_Dir = directories.Momentum_transfer_dir_map["Momentum_transfer_pFDpCD_Directory"];
 
     TH2D *hQ2_VS_q_3v_pFDpCD = new TH2D("Q^{2} vs. |#font[62]{q}| (All Int., pFDpCD)", "Q^{2} vs. |#font[62]{q}| (All Int., pFDpCD);q [GeV/c];Q^{2} [GeV^{2}/c^{2}]",
@@ -5550,16 +5719,20 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         new TH1D("q = |#font[62]{q}| (DIS Only, nFDpCD, FD)", "q = |#font[62]{q}| (DIS Only, nFDpCD, FD);q [GeV/c];", numTH1Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
     std::string hq_3v_nFDpCD_Dir = directories.Momentum_transfer_dir_map["Momentum_transfer_nFDpCD_Directory"];
 
-    TH2D *hQ2_VS_W_nFDpCD = new TH2D("Q^{2} vs. W (All Int., nFDpCD)", "Q^{2} vs. W (All Int., nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];Q^{2} [GeV^{2}/c^{2}]",
+    TH2D *hQ2_VS_W_nFDpCD = new TH2D("Q^{2} vs. W (All Int., nFDpCD)", "Q^{2} vs. W (All Int., nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];Q^{2} [GeV^{2}/c^{2}]",
                                      numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
-    TH2D *hQ2_VS_W_QEL_nFDpCD = new TH2D("Q^{2} vs. W (QE Only, nFDpCD)", "Q^{2} vs. W (QE Only, nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];Q^{2} [GeV^{2}/c^{2}]",
-                                         numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
-    TH2D *hQ2_VS_W_MEC_nFDpCD = new TH2D("Q^{2} vs. W (MEC Only, nFDpCD)", "Q^{2} vs. W (MEC Only, nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];Q^{2} [GeV^{2}/c^{2}]",
-                                         numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
-    TH2D *hQ2_VS_W_RES_nFDpCD = new TH2D("Q^{2} vs. W (RES Only, nFDpCD)", "Q^{2} vs. W (RES Only, nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];Q^{2} [GeV^{2}/c^{2}]",
-                                         numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
-    TH2D *hQ2_VS_W_DIS_nFDpCD = new TH2D("Q^{2} vs. W (DIS Only, nFDpCD)", "Q^{2} vs. W (DIS Only, nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];Q^{2} [GeV^{2}/c^{2}]",
-                                         numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
+    TH2D *hQ2_VS_W_QEL_nFDpCD =
+        new TH2D("Q^{2} vs. W (QE Only, nFDpCD)", "Q^{2} vs. W (QE Only, nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];Q^{2} [GeV^{2}/c^{2}]",
+                 numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
+    TH2D *hQ2_VS_W_MEC_nFDpCD =
+        new TH2D("Q^{2} vs. W (MEC Only, nFDpCD)", "Q^{2} vs. W (MEC Only, nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];Q^{2} [GeV^{2}/c^{2}]",
+                 numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
+    TH2D *hQ2_VS_W_RES_nFDpCD =
+        new TH2D("Q^{2} vs. W (RES Only, nFDpCD)", "Q^{2} vs. W (RES Only, nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];Q^{2} [GeV^{2}/c^{2}]",
+                 numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
+    TH2D *hQ2_VS_W_DIS_nFDpCD =
+        new TH2D("Q^{2} vs. W (DIS Only, nFDpCD)", "Q^{2} vs. W (DIS Only, nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];Q^{2} [GeV^{2}/c^{2}]",
+                 numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
     std::string hQ2_VS_W_nFDpCD_Dir = directories.Momentum_transfer_dir_map["Momentum_transfer_nFDpCD_Directory"];
 
     TH2D *hQ2_VS_q_3v_nFDpCD = new TH2D("Q^{2} vs. |#font[62]{q}| (All Int., nFDpCD)", "Q^{2} vs. |#font[62]{q}| (All Int., nFDpCD);q [GeV/c];Q^{2} [GeV^{2}/c^{2}]",
@@ -6449,9 +6622,9 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     std::string hEcal_vs_dP_T_tot_pFDpCD_Dir = directories.Ecal_dir_map["Ecal_rec_vs_TKI_pFDpCD_Directory"];
 
     // Ecal vs. W (pFDpCD)
-    TH2D *hEcal_vs_W_pFDpCD =
-        new TH2D("E_{cal} vs. W (All Int., pFDpCD)", "E_{cal} vs. W (All Int., pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];E_{cal} = E_{e} + T_{pFD} + T_{pCD} [GeV];",
-                 numTH2Dbins_E_cal_Plots, W_lboundary, W_uboundary, numTH2Dbins_E_cal_Plots, 0, parameters.beamE * 1.35);
+    TH2D *hEcal_vs_W_pFDpCD = new TH2D("E_{cal} vs. W (All Int., pFDpCD)",
+                                       "E_{cal} vs. W (All Int., pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];E_{cal} = E_{e} + T_{pFD} + T_{pCD} [GeV];",
+                                       numTH2Dbins_E_cal_Plots, W_lboundary, W_uboundary, numTH2Dbins_E_cal_Plots, 0, parameters.beamE * 1.35);
     std::string hEcal_vs_W_pFDpCD_Dir = directories.Ecal_dir_map["Ecal_stack_pFDpCD_Directory"];
 
     // Ecal reconstruction histograms (nFDpCD)
@@ -6579,9 +6752,9 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     std::string hEcal_vs_dP_T_tot_nFDpCD_Dir = directories.Ecal_dir_map["Ecal_rec_vs_TKI_nFDpCD_Directory"];
 
     // Ecal vs. W (nFDpCD)
-    TH2D *hEcal_vs_W_nFDpCD =
-        new TH2D("E_{cal} vs. W (All Int., nFDpCD)", "E_{cal} vs. W (All Int., nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];E_{cal} = E_{e} + T_{nFD} + T_{pCD} [GeV];",
-                 numTH2Dbins_E_cal_Plots, W_lboundary, W_uboundary, numTH2Dbins_E_cal_Plots, 0, parameters.beamE * 1.35);
+    TH2D *hEcal_vs_W_nFDpCD = new TH2D("E_{cal} vs. W (All Int., nFDpCD)",
+                                       "E_{cal} vs. W (All Int., nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];E_{cal} = E_{e} + T_{nFD} + T_{pCD} [GeV];",
+                                       numTH2Dbins_E_cal_Plots, W_lboundary, W_uboundary, numTH2Dbins_E_cal_Plots, 0, parameters.beamE * 1.35);
     std::string hEcal_vs_W_nFDpCD_Dir = directories.Ecal_dir_map["Ecal_stack_nFDpCD_Directory"];
 
 #pragma endregion
@@ -6594,7 +6767,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     // TKI histograms (1p)
     THStack *sdP_T_1p = new THStack("#deltaP_{T} vs. #deltaP_{T,tot} (1p)", "#deltaP_{T,L} vs. #deltaP_{T,tot} (1p);#deltaP_{T} [GeV/c]");
-    TH1D *hdP_T_1p = new TH1D("#deltaP_{T} (1p)", "#deltaP_{T} histogram (1p);#deltaP_{T} = |#vec{p}_{T,e} + #vec{p}_{T,p}| [GeV/c]", numTH1Dbins_TKI_dP_T_Plots, 0, dP_T_boundary);
+    TH1D *hdP_T_1p = new TH1D("#deltaP_{T} (1p)", "#deltaP_{T} histogram (1p);#deltaP_{T} = |#font[62]{p}_{T,e} + #font[62]{p}_{T,p}| [GeV/c]", numTH1Dbins_TKI_dP_T_Plots, 0, dP_T_boundary);
     std::string hdP_T_1p_Dir = directories.TKI_dir_map["dP_T_1p_Directory"];
 
     THStack *sdAlpha_T_1p = new THStack("#delta#alpha_{T} & #delta#alpha_{T,tot} (1p)", "#delta#alpha_{T,L} vs. #delta#alpha_{T,tot} (1p);#delta#alpha_{T} [#circ]");
@@ -6611,7 +6784,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     // TKI histograms (1n)
     THStack *sdP_T_1n = new THStack("#deltaP_{T} vs. #deltaP_{T,tot} (1n)", "#deltaP_{T,L} vs. #deltaP_{T,tot} (1n);#deltaP_{T} [GeV/c]");
-    TH1D *hdP_T_1n = new TH1D("#deltaP_{T} (1n)", "#deltaP_{T} histogram (1n);#deltaP_{T} = |#vec{p}_{T,e} + #vec{p}_{T,n}| [GeV/c]", numTH1Dbins_TKI_dP_T_Plots, 0, dP_T_boundary);
+    TH1D *hdP_T_1n = new TH1D("#deltaP_{T} (1n)", "#deltaP_{T} histogram (1n);#deltaP_{T} = |#font[62]{p}_{T,e} + #font[62]{p}_{T,n}| [GeV/c]", numTH1Dbins_TKI_dP_T_Plots, 0, dP_T_boundary);
     std::string hdP_T_1n_Dir = directories.TKI_dir_map["dP_T_1n_Directory"];
 
     THStack *sdAlpha_T_1n = new THStack("#delta#alpha_{T} & #delta#alpha_{T,tot} (1n)", "#delta#alpha_{T,L} vs. #delta#alpha_{T,tot} (1n);#delta#alpha_{T} [#circ]");
@@ -6628,9 +6801,9 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     // TKI histograms (2p)
     THStack *sdP_T_2p = new THStack("#deltaP_{T,L} & #deltaP_{T,tot} (2p)", "#deltaP_{T,L} vs. #deltaP_{T,tot} (2p);#deltaP_{T} [GeV/c]");
-    TH1D *hdP_T_L_2p =
-        new TH1D("#deltaP_{T,L} (2p)", "#deltaP_{T,L} by Leading Proton (2p);#deltaP_{T,L} = |#vec{p}_{T,e} + #vec{p}_{T,1}| [GeV/c]", numTH1Dbins_TKI_dP_T_Plots, 0, dP_T_boundary);
-    TH1D *hdP_T_tot_2p = new TH1D("#deltaP_{T,tot} (2p)", "#deltaP_{T,tot} by Momentum Sum (2p);#deltaP_{T,tot} = |#vec{p}_{T,e} + #vec{p}_{T,1} + #vec{p}_{T,2}| [GeV/c]",
+    TH1D *hdP_T_L_2p = new TH1D("#deltaP_{T,L} (2p)", "#deltaP_{T,L} by Leading Proton (2p);#deltaP_{T,L} = |#font[62]{p}_{T,e} + #font[62]{p}_{T,1}| [GeV/c]", numTH1Dbins_TKI_dP_T_Plots, 0,
+                                dP_T_boundary);
+    TH1D *hdP_T_tot_2p = new TH1D("#deltaP_{T,tot} (2p)", "#deltaP_{T,tot} by Momentum Sum (2p);#deltaP_{T,tot} = |#font[62]{p}_{T,e} + #font[62]{p}_{T,1} + #font[62]{p}_{T,2}| [GeV/c]",
                                   numTH1Dbins_TKI_dP_T_Plots, 0, dP_T_boundary);
     std::string hdP_T_L_2p_Dir = directories.TKI_dir_map["dP_T_2p_Directory"];
     std::string hdP_T_tot_2p_Dir = directories.TKI_dir_map["dP_T_2p_Directory"];
@@ -6661,21 +6834,25 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     // TKI plots (pFDpCD)
     THStack *sdP_T_pFDpCD = new THStack("#deltaP_{T,L} & #deltaP_{T,tot} (pFDpCD)", "#deltaP_{T,L} vs. #deltaP_{T,tot} (pFDpCD);#deltaP_{T} [GeV/c]");
     THStack *sdP_T_tot_pFDpCD = new THStack("#deltaP_{T,tot} stack (pFDpCD)", "#deltaP_{T,tot} stack (pFDpCD);#deltaP_{T,tot} [GeV/c]");
-    TH1D *hdP_T_L_pFDpCD =
-        new TH1D("#deltaP_{T,L} (pFDpCD)", "#deltaP_{T,L} by leading proton (pFDpCD);#deltaP_{T,L} = |#vec{p}_{T,e} + #vec{p}_{T,pL}| [GeV/c]", numTH1Dbins_TKI_dP_T_Plots, 0, dP_T_boundary);
-    TH1D *hdP_T_tot_pFDpCD = new TH1D("#deltaP_{T,tot} (pFDpCD)", "#deltaP_{T,tot} by Momentum Sum (pFDpCD);#deltaP_{T,tot} = |#vec{p}_{T,e} + #vec{p}_{T,pFD} + #vec{p}_{T,pCD}| [GeV/c]",
-                                      numTH1Dbins_TKI_dP_T_Plots, 0, dP_T_boundary);
-    TH1D *hdP_T_tot_QEL_Only_pFDpCD =
-        new TH1D("#deltaP_{T,tot} (QE Only, pFDpCD)", "#deltaP_{T,tot} by Momentum Sum (QE Only, pFDpCD);#deltaP_{T,tot} = |#vec{p}_{T,e} + #vec{p}_{T,pFD} + #vec{p}_{T,pCD}| [GeV/c]",
+    TH1D *hdP_T_L_pFDpCD = new TH1D("#deltaP_{T,L} (pFDpCD)", "#deltaP_{T,L} by leading proton (pFDpCD);#deltaP_{T,L} = |#font[62]{p}_{T,e} + #font[62]{p}_{T,pL}| [GeV/c]",
+                                    numTH1Dbins_TKI_dP_T_Plots, 0, dP_T_boundary);
+    TH1D *hdP_T_tot_pFDpCD =
+        new TH1D("#deltaP_{T,tot} (pFDpCD)", "#deltaP_{T,tot} by Momentum Sum (pFDpCD);#deltaP_{T,tot} = |#font[62]{p}_{T,e} + #font[62]{p}_{T,pFD} + #font[62]{p}_{T,pCD}| [GeV/c]",
                  numTH1Dbins_TKI_dP_T_Plots, 0, dP_T_boundary);
+    TH1D *hdP_T_tot_QEL_Only_pFDpCD = new TH1D(
+        "#deltaP_{T,tot} (QE Only, pFDpCD)", "#deltaP_{T,tot} by Momentum Sum (QE Only, pFDpCD);#deltaP_{T,tot} = |#font[62]{p}_{T,e} + #font[62]{p}_{T,pFD} + #font[62]{p}_{T,pCD}| [GeV/c]",
+        numTH1Dbins_TKI_dP_T_Plots, 0, dP_T_boundary);
     TH1D *hdP_T_tot_MEC_Only_pFDpCD =
-        new TH1D("#deltaP_{T,tot} (MEC Only, pFDpCD)", "#deltaP_{T,tot} by Momentum Sum (MEC Only, pFDpCD);#deltaP_{T,tot} = |#vec{p}_{T,e} + #vec{p}_{T,pFD} + #vec{p}_{T,pCD}| [GeV/c]",
+        new TH1D("#deltaP_{T,tot} (MEC Only, pFDpCD)",
+                 "#deltaP_{T,tot} by Momentum Sum (MEC Only, pFDpCD);#deltaP_{T,tot} = |#font[62]{p}_{T,e} + #font[62]{p}_{T,pFD} + #font[62]{p}_{T,pCD}| [GeV/c]",
                  numTH1Dbins_TKI_dP_T_Plots, 0, dP_T_boundary);
     TH1D *hdP_T_tot_RES_Only_pFDpCD =
-        new TH1D("#deltaP_{T,tot} (RES Only, pFDpCD)", "#deltaP_{T,tot} by Momentum Sum (RES Only, pFDpCD);#deltaP_{T,tot} = |#vec{p}_{T,e} + #vec{p}_{T,pFD} + #vec{p}_{T,pCD}| [GeV/c]",
+        new TH1D("#deltaP_{T,tot} (RES Only, pFDpCD)",
+                 "#deltaP_{T,tot} by Momentum Sum (RES Only, pFDpCD);#deltaP_{T,tot} = |#font[62]{p}_{T,e} + #font[62]{p}_{T,pFD} + #font[62]{p}_{T,pCD}| [GeV/c]",
                  numTH1Dbins_TKI_dP_T_Plots, 0, dP_T_boundary);
     TH1D *hdP_T_tot_DIS_Only_pFDpCD =
-        new TH1D("#deltaP_{T,tot} (DIS Only, pFDpCD)", "#deltaP_{T,tot} by Momentum Sum (DIS Only, pFDpCD);#deltaP_{T,tot} = |#vec{p}_{T,e} + #vec{p}_{T,pFD} + #vec{p}_{T,pCD}| [GeV/c]",
+        new TH1D("#deltaP_{T,tot} (DIS Only, pFDpCD)",
+                 "#deltaP_{T,tot} by Momentum Sum (DIS Only, pFDpCD);#deltaP_{T,tot} = |#font[62]{p}_{T,e} + #font[62]{p}_{T,pFD} + #font[62]{p}_{T,pCD}| [GeV/c]",
                  numTH1Dbins_TKI_dP_T_Plots, 0, dP_T_boundary);
     std::string hdP_T_L_pFDpCD_Dir = directories.TKI_dir_map["dP_T_pFDpCD_Directory"];
     std::string hdP_T_tot_pFDpCD_Dir = directories.TKI_dir_map["dP_T_pFDpCD_Directory"];
@@ -6713,21 +6890,21 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     // TKI vs. W (pFDpCD)
     TH2D *hdP_T_L_vs_W_pFDpCD = new TH2D("#deltaP_{T,L} vs. W (All Int., pFDpCD)",
-                                         "#deltaP_{T,L} vs. W (All Int., pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];"
-                                         "#deltaP_{T,L} = |#vec{p}_{T,e} + #vec{p}_{T,pL}| [GeV/c];",
+                                         "#deltaP_{T,L} vs. W (All Int., pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];"
+                                         "#deltaP_{T,L} = |#font[62]{p}_{T,e} + #font[62]{p}_{T,pL}| [GeV/c];",
                                          numTH2Dbins_TKI_Plots, W_lboundary, W_uboundary, numTH2Dbins_TKI_Plots, 0, dP_T_boundary);
     TH2D *hdP_T_tot_vs_W_pFDpCD = new TH2D("#deltaP_{T,tot} vs. W (All Int., pFDpCD)",
-                                           "#deltaP_{T,tot} vs. W (All Int., pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];"
-                                           "#deltaP_{T,tot} = |#vec{p}_{T,e} + #vec{p}_{T,pFD} + #vec{p}_{T,pCD}| [GeV/c];",
+                                           "#deltaP_{T,tot} vs. W (All Int., pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];"
+                                           "#deltaP_{T,tot} = |#font[62]{p}_{T,e} + #font[62]{p}_{T,pFD} + #font[62]{p}_{T,pCD}| [GeV/c];",
                                            numTH2Dbins_TKI_Plots, W_lboundary, W_uboundary, numTH2Dbins_TKI_Plots, 0, dP_T_boundary);
     std::string hdP_T_L_vs_W_pFDpCD_Dir = directories.TKI_dir_map["dP_T_pFDpCD_Directory"];
     std::string hdP_T_tot_vs_W_pFDpCD_Dir = directories.TKI_dir_map["dP_T_pFDpCD_Directory"];
 
     TH2D *hdAlpha_T_L_vs_W_pFDpCD = new TH2D("#delta#alpha_{T,L} vs. W (All Int., pFDpCD)",
-                                             "#delta#alpha_{T,L} vs. W (All Int., pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];#delta#alpha_{T,L} [#circ];",
+                                             "#delta#alpha_{T,L} vs. W (All Int., pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];#delta#alpha_{T,L} [#circ];",
                                              numTH2Dbins_TKI_Plots, W_lboundary, W_uboundary, numTH2Dbins_TKI_Plots, 0, 180);
     TH2D *hdAlpha_T_tot_vs_W_pFDpCD = new TH2D("#delta#alpha_{T,tot} vs. W (All Int., pFDpCD)",
-                                               "#delta#alpha_{T,tot} vs. W (All Int., pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];#delta#alpha_{T,tot} [#circ];",
+                                               "#delta#alpha_{T,tot} vs. W (All Int., pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];#delta#alpha_{T,tot} [#circ];",
                                                numTH2Dbins_TKI_Plots, W_lboundary, W_uboundary, numTH2Dbins_TKI_Plots, 0, 180);
     std::string hdAlpha_T_L_vs_W_pFDpCD_Dir = directories.TKI_dir_map["dAlpha_T_pFDpCD_Directory"];
     std::string hdAlpha_T_tot_vs_W_pFDpCD_Dir = directories.TKI_dir_map["dAlpha_T_pFDpCD_Directory"];
@@ -6737,21 +6914,25 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     // TKI plots (nFDpCD)
     THStack *sdP_T_nFDpCD = new THStack("#deltaP_{T,L} & #deltaP_{T,tot} (nFDpCD)", "#deltaP_{T,L} vs. #deltaP_{T,tot} (nFDpCD);#deltaP_{T} [GeV/c]");
     THStack *sdP_T_tot_nFDpCD = new THStack("#deltaP_{T,tot} stack (nFDpCD)", "#deltaP_{T,tot} stack (nFDpCD);#deltaP_{T,tot} [GeV/c]");
-    TH1D *hdP_T_L_nFDpCD = new TH1D("#deltaP_{T,L} (nFDpCD)", "#deltaP_{T,L} by leading nucleon (nFDpCD);#deltaP_{T,L} = |#vec{p}_{T,e} + #vec{p}_{T,nL}| [GeV/c]",
+    TH1D *hdP_T_L_nFDpCD = new TH1D("#deltaP_{T,L} (nFDpCD)", "#deltaP_{T,L} by leading nucleon (nFDpCD);#deltaP_{T,L} = |#font[62]{p}_{T,e} + #font[62]{p}_{T,nL}| [GeV/c]",
                                     numTH1Dbins_TKI_dP_T_Plots, 0, dP_T_boundary);
-    TH1D *hdP_T_tot_nFDpCD = new TH1D("#deltaP_{T,tot} (nFDpCD)", "#deltaP_{T,tot} by Momentum Sum (nFDpCD);#deltaP_{T,tot} = |#vec{p}_{T,e} + #vec{p}_{T,nFD} + #vec{p}_{T,pCD}| [GeV/c]",
-                                      numTH1Dbins_TKI_dP_T_Plots, 0, dP_T_boundary);
-    TH1D *hdP_T_tot_QEL_Only_nFDpCD =
-        new TH1D("#deltaP_{T,tot} (QE Only, nFDpCD)", "#deltaP_{T,tot} by Momentum Sum (QE Only, nFDpCD);#deltaP_{T,tot} = |#vec{p}_{T,e} + #vec{p}_{T,pFD} + #vec{p}_{T,pCD}| [GeV/c]",
+    TH1D *hdP_T_tot_nFDpCD =
+        new TH1D("#deltaP_{T,tot} (nFDpCD)", "#deltaP_{T,tot} by Momentum Sum (nFDpCD);#deltaP_{T,tot} = |#font[62]{p}_{T,e} + #font[62]{p}_{T,nFD} + #font[62]{p}_{T,pCD}| [GeV/c]",
                  numTH1Dbins_TKI_dP_T_Plots, 0, dP_T_boundary);
+    TH1D *hdP_T_tot_QEL_Only_nFDpCD = new TH1D(
+        "#deltaP_{T,tot} (QE Only, nFDpCD)", "#deltaP_{T,tot} by Momentum Sum (QE Only, nFDpCD);#deltaP_{T,tot} = |#font[62]{p}_{T,e} + #font[62]{p}_{T,pFD} + #font[62]{p}_{T,pCD}| [GeV/c]",
+        numTH1Dbins_TKI_dP_T_Plots, 0, dP_T_boundary);
     TH1D *hdP_T_tot_MEC_Only_nFDpCD =
-        new TH1D("#deltaP_{T,tot} (MEC Only, nFDpCD)", "#deltaP_{T,tot} by Momentum Sum (MEC Only, nFDpCD);#deltaP_{T,tot} = |#vec{p}_{T,e} + #vec{p}_{T,pFD} + #vec{p}_{T,pCD}| [GeV/c]",
+        new TH1D("#deltaP_{T,tot} (MEC Only, nFDpCD)",
+                 "#deltaP_{T,tot} by Momentum Sum (MEC Only, nFDpCD);#deltaP_{T,tot} = |#font[62]{p}_{T,e} + #font[62]{p}_{T,pFD} + #font[62]{p}_{T,pCD}| [GeV/c]",
                  numTH1Dbins_TKI_dP_T_Plots, 0, dP_T_boundary);
     TH1D *hdP_T_tot_RES_Only_nFDpCD =
-        new TH1D("#deltaP_{T,tot} (RES Only, nFDpCD)", "#deltaP_{T,tot} by Momentum Sum (RES Only, nFDpCD);#deltaP_{T,tot} = |#vec{p}_{T,e} + #vec{p}_{T,pFD} + #vec{p}_{T,pCD}| [GeV/c]",
+        new TH1D("#deltaP_{T,tot} (RES Only, nFDpCD)",
+                 "#deltaP_{T,tot} by Momentum Sum (RES Only, nFDpCD);#deltaP_{T,tot} = |#font[62]{p}_{T,e} + #font[62]{p}_{T,pFD} + #font[62]{p}_{T,pCD}| [GeV/c]",
                  numTH1Dbins_TKI_dP_T_Plots, 0, dP_T_boundary);
     TH1D *hdP_T_tot_DIS_Only_nFDpCD =
-        new TH1D("#deltaP_{T,tot} (DIS Only, nFDpCD)", "#deltaP_{T,tot} by Momentum Sum (DIS Only, nFDpCD);#deltaP_{T,tot} = |#vec{p}_{T,e} + #vec{p}_{T,pFD} + #vec{p}_{T,pCD}| [GeV/c]",
+        new TH1D("#deltaP_{T,tot} (DIS Only, nFDpCD)",
+                 "#deltaP_{T,tot} by Momentum Sum (DIS Only, nFDpCD);#deltaP_{T,tot} = |#font[62]{p}_{T,e} + #font[62]{p}_{T,pFD} + #font[62]{p}_{T,pCD}| [GeV/c]",
                  numTH1Dbins_TKI_dP_T_Plots, 0, dP_T_boundary);
     std::string hdP_T_L_nFDpCD_Dir = directories.TKI_dir_map["dP_T_nFDpCD_Directory"];
     std::string hdP_T_tot_nFDpCD_Dir = directories.TKI_dir_map["dP_T_nFDpCD_Directory"];
@@ -6789,21 +6970,21 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     // TKI vs. W (nFDpCD)
     TH2D *hdP_T_L_vs_W_nFDpCD = new TH2D("#deltaP_{T,L} vs. W (All Int., nFDpCD)",
-                                         "#deltaP_{T,L} vs. W (All Int., nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];"
-                                         "#deltaP_{T,L} = |#vec{p}_{T,e} + #vec{p}_{T,nL}| [GeV/c];",
+                                         "#deltaP_{T,L} vs. W (All Int., nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];"
+                                         "#deltaP_{T,L} = |#font[62]{p}_{T,e} + #font[62]{p}_{T,nL}| [GeV/c];",
                                          numTH2Dbins_TKI_Plots, W_lboundary, W_uboundary, numTH2Dbins_TKI_Plots, 0, dP_T_boundary);
     TH2D *hdP_T_tot_vs_W_nFDpCD = new TH2D("#deltaP_{T,tot} vs. W (All Int., nFDpCD)",
-                                           "#deltaP_{T,tot} vs. W (All Int., nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];"
-                                           "#deltaP_{T,tot} = |#vec{p}_{T,e} + #vec{p}_{T,nFD} + #vec{p}_{T,pCD}| [GeV/c];",
+                                           "#deltaP_{T,tot} vs. W (All Int., nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];"
+                                           "#deltaP_{T,tot} = |#font[62]{p}_{T,e} + #font[62]{p}_{T,nFD} + #font[62]{p}_{T,pCD}| [GeV/c];",
                                            numTH2Dbins_TKI_Plots, W_lboundary, W_uboundary, numTH2Dbins_TKI_Plots, 0, dP_T_boundary);
     std::string hdP_T_L_vs_W_nFDpCD_Dir = directories.TKI_dir_map["dP_T_nFDpCD_Directory"];
     std::string hdP_T_tot_vs_W_nFDpCD_Dir = directories.TKI_dir_map["dP_T_nFDpCD_Directory"];
 
     TH2D *hdAlpha_T_L_vs_W_nFDpCD = new TH2D("#delta#alpha_{T,L} vs. W (All Int., nFDpCD)",
-                                             "#delta#alpha_{T,L} vs. W (All Int., nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];#delta#alpha_{T,L} [#circ];",
+                                             "#delta#alpha_{T,L} vs. W (All Int., nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];#delta#alpha_{T,L} [#circ];",
                                              numTH2Dbins_TKI_Plots, W_lboundary, W_uboundary, numTH2Dbins_TKI_Plots, 0, 180);
     TH2D *hdAlpha_T_tot_vs_W_nFDpCD = new TH2D("#delta#alpha_{T,tot} vs. W (All Int., nFDpCD)",
-                                               "#delta#alpha_{T,tot} vs. W (All Int., nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #vec{q}^{2}}  [GeV/c^{2}];#delta#alpha_{T,tot} [#circ];",
+                                               "#delta#alpha_{T,tot} vs. W (All Int., nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];#delta#alpha_{T,tot} [#circ];",
                                                numTH2Dbins_TKI_Plots, W_lboundary, W_uboundary, numTH2Dbins_TKI_Plots, 0, 180);
     std::string hdAlpha_T_L_vs_W_nFDpCD_Dir = directories.TKI_dir_map["dAlpha_T_nFDpCD_Directory"];
     std::string hdAlpha_T_tot_vs_W_nFDpCD_Dir = directories.TKI_dir_map["dAlpha_T_nFDpCD_Directory"];
@@ -18385,18 +18566,18 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         // Theta_p_e_p_tot (1p, CD & FD)
         double Theta_p_e_p_p_1p_integral = hTheta_p_e_p_p_1p->Integral();
 
-        histPlotter1D(c1, hTheta_p_e_p_p_1p, norm_Angle_plots_master, true, Theta_p_e_p_p_1p_integral, "#theta_{#vec{P}_{e},#vec{P}_{p}} - Opening Angle Between #vec{P}_{e} and #vec{P}_{p}",
-                      "All Int., 1p", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2, false, true, sTheta_p_e_p_p_1p, "01_Theta_p_e_p_p_All_Int_1p", hTheta_p_e_p_p_1p_Dir, "FD", kBlue,
-                      true, true, true, false);
+        histPlotter1D(c1, hTheta_p_e_p_p_1p, norm_Angle_plots_master, true, Theta_p_e_p_p_1p_integral,
+                      "#theta_{#font[62]{P}_{e},#font[62]{P}_{p}} - Opening Angle Between #font[62]{P}_{e} and #font[62]{P}_{p}", "All Int., 1p", 0.06, 0.0425, 0.0425, plots,
+                      Histogram_OutPDF, 2, false, true, sTheta_p_e_p_p_1p, "01_Theta_p_e_p_p_All_Int_1p", hTheta_p_e_p_p_1p_Dir, "FD", kBlue, true, true, true, false);
 
         //  Theta_q_p_p (1p, FD only) ---------------------------------------------------------------------------------------------------------------------------------------------
 
         // Theta_q_p_p (1p, FD only)
         double Theta_q_p_p_1p_1p_integral = hTheta_q_p_p_1p->Integral();
 
-        histPlotter1D(c1, hTheta_q_p_p_1p, norm_Angle_plots_master, true, Theta_q_p_p_1p_1p_integral, "#theta_{#vec{q},#vec{P}_{p}} - Opening Angle Between #vec{q} and #vec{P}_{p}",
-                      "All Int., 1p", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2, false, true, sTheta_q_p_p_1p, "02_Theta_q_p_p_All_Int_1p", hTheta_q_p_p_1p_Dir, "FD", kBlue, true,
-                      true, true, false);
+        histPlotter1D(c1, hTheta_q_p_p_1p, norm_Angle_plots_master, true, Theta_q_p_p_1p_1p_integral,
+                      "#theta_{#font[62]{q},#font[62]{P}_{p}} - Opening Angle Between #font[62]{q} and #font[62]{P}_{p}", "All Int., 1p", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2,
+                      false, true, sTheta_q_p_p_1p, "02_Theta_q_p_p_All_Int_1p", hTheta_q_p_p_1p_Dir, "FD", kBlue, true, true, true, false);
 
         //  Theta_q_p_p vs. |P_p|/|q| (1p, FD only) -------------------------------------------------------------------------------------------------------------------------------
 
@@ -18445,18 +18626,18 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         // Theta_p_e_p_tot (1n, CD & FD)
         double Theta_p_e_p_n_1n_integral = hTheta_p_e_p_n_1n->Integral();
 
-        histPlotter1D(c1, hTheta_p_e_p_n_1n, norm_Angle_plots_master, true, Theta_p_e_p_n_1n_integral, "#theta_{#vec{P}_{e},#vec{P}_{n}} - Opening Angle Between #vec{P}_{e} and #vec{P}_{n}",
-                      "All Int., 1n", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2, false, true, sTheta_p_e_p_n_1n, "01_Theta_p_e_p_n_All_Int_1n", hTheta_p_e_p_n_1n_Dir, "FD", kBlue,
-                      true, true, true, false);
+        histPlotter1D(c1, hTheta_p_e_p_n_1n, norm_Angle_plots_master, true, Theta_p_e_p_n_1n_integral,
+                      "#theta_{#font[62]{P}_{e},#font[62]{P}_{n}} - Opening Angle Between #font[62]{P}_{e} and #font[62]{P}_{n}", "All Int., 1n", 0.06, 0.0425, 0.0425, plots,
+                      Histogram_OutPDF, 2, false, true, sTheta_p_e_p_n_1n, "01_Theta_p_e_p_n_All_Int_1n", hTheta_p_e_p_n_1n_Dir, "FD", kBlue, true, true, true, false);
 
         //  Theta_q_p_n (1n, FD only) -------------------------------------------------------------------------------------------------------------------------------------------
 
         // Theta_q_p_n (1n, FD only)
         double Theta_q_p_n_1n_1n_integral = hTheta_q_p_n_1n->Integral();
 
-        histPlotter1D(c1, hTheta_q_p_n_1n, norm_Angle_plots_master, true, Theta_q_p_n_1n_1n_integral, "#theta_{#vec{q},#vec{P}_{n}} - Opening Angle Between #vec{q} and #vec{P}_{n}",
-                      "All Int., 1n", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2, false, true, sTheta_q_p_n_1n, "02_Theta_q_p_n_All_Int_1n", hTheta_q_p_n_1n_Dir, "FD", kBlue, true,
-                      true, true, false);
+        histPlotter1D(c1, hTheta_q_p_n_1n, norm_Angle_plots_master, true, Theta_q_p_n_1n_1n_integral,
+                      "#theta_{#font[62]{q},#font[62]{P}_{n}} - Opening Angle Between #font[62]{q} and #font[62]{P}_{n}", "All Int., 1n", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2,
+                      false, true, sTheta_q_p_n_1n, "02_Theta_q_p_n_All_Int_1n", hTheta_q_p_n_1n_Dir, "FD", kBlue, true, true, true, false);
 
         //  Theta_q_p_n vs. |p_n|/|q| (1n, FD only) -----------------------------------------------------------------------------------------------------------------------------
 
@@ -18476,8 +18657,9 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         double Theta_p_e_p_tot_2p_integral = hTheta_p_e_p_tot_2p->Integral();
 
         histPlotter1D(c1, hTheta_p_e_p_tot_2p, norm_Angle_plots_master, true, Theta_p_e_p_tot_2p_integral,
-                      "#theta_{#vec{P}_{e},#vec{P}_{tot}} - Opening Angle Between #vec{P}_{e} and #vec{P}_{tot}=#vec{P}_{1}+#vec{P}_{2}", "All Int., 2p", 0.06, 0.0425, 0.0425, plots,
-                      Histogram_OutPDF, 2, false, true, sTheta_p_e_p_tot_2p, "01_Theta_p_e_p_tot_All_Int_2p", hTheta_p_e_p_tot_2p_Dir, "", kBlue, true, true, true, false);
+                      "#theta_{#font[62]{P}_{e},#font[62]{P}_{tot}} - Opening Angle Between #font[62]{P}_{e} and #font[62]{P}_{tot}=#font[62]{P}_{1}+#font[62]{P}_{2}", "All Int., 2p", 0.06,
+                      0.0425, 0.0425, plots, Histogram_OutPDF, 2, false, true, sTheta_p_e_p_tot_2p, "01_Theta_p_e_p_tot_All_Int_2p", hTheta_p_e_p_tot_2p_Dir, "", kBlue, true, true, true,
+                      false);
 
         // Theta_q_p (2p, CD & FD) ----------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -18485,18 +18667,18 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         double Theta_q_p_tot_2p_integral = hTheta_q_p_tot_2p->Integral();
 
         histPlotter1D(c1, hTheta_q_p_tot_2p, norm_Angle_plots_master, true, Theta_q_p_tot_2p_integral,
-                      "#theta_{#vec{q},#vec{P}_{tot}} - Opening Angle Between #vec{q} and #vec{P}_{tot}=#vec{P}_{1}+#vec{P}_{2}", "All Int., 2p", 0.06, 0.0425, 0.0425, plots,
-                      Histogram_OutPDF, 2, false, true, sTheta_q_p_2p, "02_Theta_q_p_tot_All_Int_2p", hTheta_q_p_tot_2p_Dir, "", kBlue, true, true, true, false);
+                      "#theta_{#font[62]{q},#font[62]{P}_{tot}} - Opening Angle Between #font[62]{q} and #font[62]{P}_{tot}=#font[62]{P}_{1}+#font[62]{P}_{2}", "All Int., 2p", 0.06, 0.0425,
+                      0.0425, plots, Histogram_OutPDF, 2, false, true, sTheta_q_p_2p, "02_Theta_q_p_tot_All_Int_2p", hTheta_q_p_tot_2p_Dir, "", kBlue, true, true, true, false);
 
         // Theta_q_p_L and Theta_q_p_R (2p, CD & FD)
         double Theta_q_p_L_2p_integral = hTheta_q_p_L_2p->Integral(), Theta_q_p_R_2p_integral = hTheta_q_p_R_2p->Integral();
 
         histPlotter1D(c1, hTheta_q_p_L_2p, norm_Angle_plots_master, true, Theta_q_p_L_2p_integral,
-                      "#theta_{#vec{q},#vec{P}_{1}} - Opening Angle Between #vec{q} and leading proton #vec{P}_{1}", "All Int., 2p", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2, false,
-                      true, sTheta_q_p_2p, "03_Theta_q_p_1_All_Int_2p", hTheta_q_p_L_2p_Dir, "", kBlue, true, true, true, false);
+                      "#theta_{#font[62]{q},#font[62]{P}_{1}} - Opening Angle Between #font[62]{q} and leading proton #font[62]{P}_{1}", "All Int., 2p", 0.06, 0.0425, 0.0425, plots,
+                      Histogram_OutPDF, 2, false, true, sTheta_q_p_2p, "03_Theta_q_p_1_All_Int_2p", hTheta_q_p_L_2p_Dir, "", kBlue, true, true, true, false);
         histPlotter1D(c1, hTheta_q_p_R_2p, norm_Angle_plots_master, true, Theta_q_p_R_2p_integral,
-                      "#theta_{#vec{q},#vec{P}_{2}} - Opening Angle Between #vec{q} and recoil proton #vec{P}_{2}", "All Int., 2p", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2, false,
-                      true, sTheta_q_p_2p, "03_Theta_q_p_2_All_Int_2p", hTheta_q_p_R_2p_Dir, "", kBlue, true, true, true, false);
+                      "#theta_{#font[62]{q},#font[62]{P}_{2}} - Opening Angle Between #font[62]{q} and recoil proton #font[62]{P}_{2}", "All Int., 2p", 0.06, 0.0425, 0.0425, plots,
+                      Histogram_OutPDF, 2, false, true, sTheta_q_p_2p, "03_Theta_q_p_2_All_Int_2p", hTheta_q_p_R_2p_Dir, "", kBlue, true, true, true, false);
 
         // Theta_q_p_L vs |P_L|/|q| (2p, CD & FD) -------------------------------------------------------------------------------------------------------------------------------
 
@@ -18955,8 +19137,9 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         double Theta_p_e_p_tot_pFDpCD_integral = hTheta_p_e_p_tot_pFDpCD->Integral();
 
         histPlotter1D(c1, hTheta_p_e_p_tot_pFDpCD, norm_Angle_plots_master, true, Theta_p_e_p_tot_pFDpCD_integral,
-                      "#theta_{#vec{P}_{e},#vec{P}_{tot}} - Opening Angle Between #vec{P}_{e} and #vec{P}_{tot}=#vec{P}_{pFD}+#vec{P}_{pCD}", "All Int., pFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      Histogram_OutPDF, 2, false, true, sTheta_p_e_p_tot_pFDpCD, "01a_Theta_p_e_p_tot_All_Int_pFDpCD", hTheta_p_e_p_tot_pFDpCD_Dir, "", kBlue, true, true, true, false);
+                      "#theta_{#font[62]{P}_{e},#font[62]{P}_{tot}} - Opening Angle Between #font[62]{P}_{e} and #font[62]{P}_{tot}=#font[62]{P}_{pFD}+#font[62]{P}_{pCD}",
+                      "All Int., pFDpCD", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2, false, true, sTheta_p_e_p_tot_pFDpCD, "01a_Theta_p_e_p_tot_All_Int_pFDpCD",
+                      hTheta_p_e_p_tot_pFDpCD_Dir, "", kBlue, true, true, true, false);
 
         // Theta_pFD_pCD vs. W (pFDpCD, CD & FD) --------------------------------------------------------------------------------------------------------------------------------
 
@@ -18970,15 +19153,17 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         double Theta_q_p_tot_pFDpCD_integral = hTheta_q_p_tot_pFDpCD->Integral();
 
         histPlotter1D(c1, hTheta_q_p_tot_pFDpCD, norm_Angle_plots_master, true, Theta_q_p_tot_pFDpCD_integral,
-                      "#theta_{#vec{q},#vec{P}_{tot}} - Opening Angle Between #vec{q} and #vec{P}_{tot}=#vec{P}_{pFD}+#vec{P}_{pCD}", "All Int., pFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      Histogram_OutPDF, 2, false, true, sTheta_q_p_L_R_pFDpCD, "02a_Theta_q_p_tot_All_Int_pFDpCD", hTheta_q_p_tot_pFDpCD_Dir, "", kBlue, true, true, true, false);
+                      "#theta_{#font[62]{q},#font[62]{P}_{tot}} - Opening Angle Between #font[62]{q} and #font[62]{P}_{tot}=#font[62]{P}_{pFD}+#font[62]{P}_{pCD}", "All Int., pFDpCD", 0.06,
+                      0.0425, 0.0425, plots, Histogram_OutPDF, 2, false, true, sTheta_q_p_L_R_pFDpCD, "02a_Theta_q_p_tot_All_Int_pFDpCD", hTheta_q_p_tot_pFDpCD_Dir, "", kBlue, true, true,
+                      true, false);
 
         // Theta_q_p_max (pFDpCD, CD & FD)
         double Theta_q_p_max_pFDpCD_integral = hTheta_q_p_max_pFDpCD->Integral();
 
         histPlotter1D(c1, hTheta_q_p_max_pFDpCD, norm_Angle_plots_master, true, Theta_q_p_max_pFDpCD_integral,
-                      "#theta_{#vec{q},#vec{P}_{max}} - Opening Angle Between #vec{q} and #vec{P}_{max}=#vec{P}_{pFD}+#vec{P}_{pCD}", "All Int., pFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      Histogram_OutPDF, 2, false, true, sTheta_q_p_L_R_pFDpCD, "02aa_Theta_q_p_max_All_Int_pFDpCD", hTheta_q_p_max_pFDpCD_Dir, "", kBlue, true, true, true, false);
+                      "#theta_{#font[62]{q},#font[62]{P}_{max}} - Opening Angle Between #font[62]{q} and #font[62]{P}_{max}=#font[62]{P}_{pFD}+#font[62]{P}_{pCD}", "All Int., pFDpCD", 0.06,
+                      0.0425, 0.0425, plots, Histogram_OutPDF, 2, false, true, sTheta_q_p_L_R_pFDpCD, "02aa_Theta_q_p_max_All_Int_pFDpCD", hTheta_q_p_max_pFDpCD_Dir, "", kBlue, true, true,
+                      true, false);
 
         // hTheta_q_p_tot vs. W_pFDpCD (pFDpCD, CD & FD)
         histPlotter2D(c1, hTheta_q_p_tot_vs_W_pFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, Histogram_OutPDF, false, hTheta_q_p_tot_vs_W_pFDpCD_Dir, "02b_Theta_q_p_tot_vs_W_pFDpCD");
@@ -18999,8 +19184,9 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         double Theta_P_pL_minus_q_pR_integral = hTheta_P_pL_minus_q_pR_pFDpCD->Integral();
 
         histPlotter1D(c1, hTheta_P_pL_minus_q_pR_pFDpCD, norm_Angle_plots_master, true, Theta_P_pL_minus_q_pR_integral,
-                      "#theta_{#vec{P}_{pL}-#vec{q},#vec{P}_{pR}} - Opening Angle Between #vec{P}_{pL}-#vec{q} and #vec{P}_{pR}", "All Int., pFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      Histogram_OutPDF, 2, false, true, sTheta_q_p_L_R_pFDpCD, "06a_Theta_P_pL_minus_q_pR_pFDpCD", hTheta_P_pL_minus_q_pR_pFDpCD_Dir, "", kBlue, true, true, true, false);
+                      "#theta_{#font[62]{P}_{pL}-#font[62]{q},#font[62]{P}_{pR}} - Opening Angle Between #font[62]{P}_{pL}-#font[62]{q} and #font[62]{P}_{pR}", "All Int., pFDpCD", 0.06,
+                      0.0425, 0.0425, plots, Histogram_OutPDF, 2, false, true, sTheta_q_p_L_R_pFDpCD, "06a_Theta_P_pL_minus_q_pR_pFDpCD", hTheta_P_pL_minus_q_pR_pFDpCD_Dir, "", kBlue, true,
+                      true, true, false);
         histPlotter2D(c1, hTheta_P_pL_minus_q_pR_vs_W_pFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, Histogram_OutPDF, false, hTheta_P_pL_minus_q_pR_vs_W_pFDpCD_Dir,
                       "06b_hTheta_P_pL_minus_q_pR_vs_W_pFDpCD");
 
@@ -19008,21 +19194,21 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         double Theta_q_p_L_pFDpCD_integral = hTheta_q_p_L_pFDpCD->Integral(), Theta_q_p_R_pFDpCD_integral = hTheta_q_p_R_pFDpCD->Integral();
 
         histPlotter1D(c1, hTheta_q_p_L_pFDpCD, norm_Angle_plots_master, true, Theta_q_p_L_pFDpCD_integral,
-                      "#theta_{#vec{q},#vec{P}_{pL}} - Opening Angle Between #vec{q} and Leading Proton #vec{P}_{pFD}", "All Int., pFDpCD", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2,
-                      false, true, sTheta_q_p_L_R_pFDpCD, "03a_Theta_q_pL_All_Int_pFDpCD", hTheta_q_p_L_pFDpCD_Dir, "", kBlue, true, true, true, false);
+                      "#theta_{#font[62]{q},#font[62]{P}_{pL}} - Opening Angle Between #font[62]{q} and Leading Proton #font[62]{P}_{pFD}", "All Int., pFDpCD", 0.06, 0.0425, 0.0425, plots,
+                      Histogram_OutPDF, 2, false, true, sTheta_q_p_L_R_pFDpCD, "03a_Theta_q_pL_All_Int_pFDpCD", hTheta_q_p_L_pFDpCD_Dir, "", kBlue, true, true, true, false);
         histPlotter1D(c1, hTheta_q_p_R_pFDpCD, norm_Angle_plots_master, true, Theta_q_p_R_pFDpCD_integral,
-                      "#theta_{#vec{q},#vec{P}_{pR}} - Opening Angle Between #vec{q} and Recoil Proton #vec{P}_{pCD}", "All Int., pFDpCD", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2,
-                      false, true, sTheta_q_p_L_R_pFDpCD, "03b_Theta_q_pR_All_Int_pFDpCD", hTheta_q_p_R_pFDpCD_Dir, "", kBlue, true, true, true, false);
+                      "#theta_{#font[62]{q},#font[62]{P}_{pR}} - Opening Angle Between #font[62]{q} and Recoil Proton #font[62]{P}_{pCD}", "All Int., pFDpCD", 0.06, 0.0425, 0.0425, plots,
+                      Histogram_OutPDF, 2, false, true, sTheta_q_p_L_R_pFDpCD, "03b_Theta_q_pR_All_Int_pFDpCD", hTheta_q_p_R_pFDpCD_Dir, "", kBlue, true, true, true, false);
 
         // Theta_q_pFD and Theta_q_pCD (pFDpCD, CD & FD)
         double Theta_q_pFD_pFDpCD_integral = hTheta_q_pFD_pFDpCD->Integral(), Theta_q_pCD_pFDpCD_integral = hTheta_q_pCD_pFDpCD->Integral();
 
         histPlotter1D(c1, hTheta_q_pFD_pFDpCD, norm_Angle_plots_master, true, Theta_q_pFD_pFDpCD_integral,
-                      "#theta_{#vec{q},#vec{P}_{pFD}} - Opening Angle Between #vec{q} and FD Proton #vec{P}_{pFD}", "All Int., pFDpCD", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2,
-                      false, true, sTheta_q_p_pFDpCD, "03c_Theta_q_pFD_All_Int_pFDpCD", hTheta_q_pFD_pFDpCD_Dir, "", kBlue, true, true, true, false);
+                      "#theta_{#font[62]{q},#font[62]{P}_{pFD}} - Opening Angle Between #font[62]{q} and FD Proton #font[62]{P}_{pFD}", "All Int., pFDpCD", 0.06, 0.0425, 0.0425, plots,
+                      Histogram_OutPDF, 2, false, true, sTheta_q_p_pFDpCD, "03c_Theta_q_pFD_All_Int_pFDpCD", hTheta_q_pFD_pFDpCD_Dir, "", kBlue, true, true, true, false);
         histPlotter1D(c1, hTheta_q_pCD_pFDpCD, norm_Angle_plots_master, true, Theta_q_pCD_pFDpCD_integral,
-                      "#theta_{#vec{q},#vec{P}_{pCD}} - Opening Angle Between #vec{q} and CD Proton #vec{P}_{pCD}", "All Int., pFDpCD", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2,
-                      false, true, sTheta_q_p_pFDpCD, "03d_Theta_q_pCD_All_Int_pFDpCD", hTheta_q_pCD_pFDpCD_Dir, "", kBlue, true, true, true, false);
+                      "#theta_{#font[62]{q},#font[62]{P}_{pCD}} - Opening Angle Between #font[62]{q} and CD Proton #font[62]{P}_{pCD}", "All Int., pFDpCD", 0.06, 0.0425, 0.0425, plots,
+                      Histogram_OutPDF, 2, false, true, sTheta_q_p_pFDpCD, "03d_Theta_q_pCD_All_Int_pFDpCD", hTheta_q_pCD_pFDpCD_Dir, "", kBlue, true, true, true, false);
 
         // Theta_q_p vs |P_p|/|q| (pFDpCD, CD & FD) ---------------------------------------------------------------------------------------------------------------------------
 
@@ -19393,8 +19579,9 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         double Theta_p_e_p_tot_nFDpCD_integral = hTheta_p_e_p_tot_nFDpCD->Integral();
 
         histPlotter1D(c1, hTheta_p_e_p_tot_nFDpCD, norm_Angle_plots_master, true, Theta_p_e_p_tot_nFDpCD_integral,
-                      "#theta_{#vec{P}_{e},#vec{P}_{tot}} - Opening Angle Between #vec{P}_{e} and #vec{P}_{tot}=#vec{P}_{nFD}+#vec{P}_{pCD}", "All Int., nFDpCD", 0.06, 0.0425, .0425, plots,
-                      Histogram_OutPDF, 2, false, true, sTheta_p_e_p_tot_nFDpCD, "01a_Theta_p_e_p_tot_All_Int_nFDpCD", hTheta_p_e_p_tot_nFDpCD_Dir, "", kBlue, true, true, true, false);
+                      "#theta_{#font[62]{P}_{e},#font[62]{P}_{tot}} - Opening Angle Between #font[62]{P}_{e} and #font[62]{P}_{tot}=#font[62]{P}_{nFD}+#font[62]{P}_{pCD}",
+                      "All Int., nFDpCD", 0.06, 0.0425, .0425, plots, Histogram_OutPDF, 2, false, true, sTheta_p_e_p_tot_nFDpCD, "01a_Theta_p_e_p_tot_All_Int_nFDpCD",
+                      hTheta_p_e_p_tot_nFDpCD_Dir, "", kBlue, true, true, true, false);
 
         // Theta_p_e_p_tot vs. W (nFDpCD, CD & FD) --------------------------------------------------------------------------------------------------------------------------------
 
@@ -19409,8 +19596,9 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         double Theta_q_p_tot_nFDpCD_integral = hTheta_q_p_tot_nFDpCD->Integral();
 
         histPlotter1D(c1, hTheta_q_p_tot_nFDpCD, norm_Angle_plots_master, true, Theta_q_p_tot_nFDpCD_integral,
-                      "#theta_{#vec{q},#vec{P}_{tot}} - Opening Angle Between #vec{q} and #vec{P}_{tot}=#vec{P}_{nFD}+#vec{P}_{pCD}", "All Int., nFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      Histogram_OutPDF, 2, false, true, sTheta_q_p_L_R_nFDpCD, "02a_Theta_q_p_tot_All_Int_nFDpCD", hTheta_q_p_tot_nFDpCD_Dir, "", kBlue, true, true, true, false);
+                      "#theta_{#font[62]{q},#font[62]{P}_{tot}} - Opening Angle Between #font[62]{q} and #font[62]{P}_{tot}=#font[62]{P}_{nFD}+#font[62]{P}_{pCD}", "All Int., nFDpCD", 0.06,
+                      0.0425, 0.0425, plots, Histogram_OutPDF, 2, false, true, sTheta_q_p_L_R_nFDpCD, "02a_Theta_q_p_tot_All_Int_nFDpCD", hTheta_q_p_tot_nFDpCD_Dir, "", kBlue, true, true,
+                      true, false);
 
         // hTheta_q_p_tot vs. W (nFDpCD, CD & FD)
         histPlotter2D(c1, hTheta_q_p_tot_vs_W_nFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, Histogram_OutPDF, false, hTheta_q_p_tot_vs_W_nFDpCD_Dir, "02b_Theta_q_p_tot_vs_W_nFDpCD");
@@ -19431,8 +19619,9 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         double Theta_P_nL_minus_q_nR_integral = hTheta_P_nL_minus_q_nR_nFDpCD->Integral();
 
         histPlotter1D(c1, hTheta_P_nL_minus_q_nR_nFDpCD, norm_Angle_plots_master, true, Theta_P_nL_minus_q_nR_integral,
-                      "#theta_{#vec{P}_{nL}-#vec{q},#vec{P}_{nR}} - Opening Angle Between #vec{P}_{nL}-#vec{q} and #vec{P}_{nR}", "All Int., nFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      Histogram_OutPDF, 2, false, true, sTheta_q_p_L_R_nFDpCD, "06a_Theta_P_nL_minus_q_nR_nFDpCD", hTheta_P_nL_minus_q_nR_nFDpCD_Dir, "", kBlue, true, true, true, false);
+                      "#theta_{#font[62]{P}_{nL}-#font[62]{q},#font[62]{P}_{nR}} - Opening Angle Between #font[62]{P}_{nL}-#font[62]{q} and #font[62]{P}_{nR}", "All Int., nFDpCD", 0.06,
+                      0.0425, 0.0425, plots, Histogram_OutPDF, 2, false, true, sTheta_q_p_L_R_nFDpCD, "06a_Theta_P_nL_minus_q_nR_nFDpCD", hTheta_P_nL_minus_q_nR_nFDpCD_Dir, "", kBlue, true,
+                      true, true, false);
         histPlotter2D(c1, hTheta_P_nL_minus_q_nR_vs_W_nFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, Histogram_OutPDF, false, hTheta_P_nL_minus_q_nR_vs_W_nFDpCD_Dir,
                       "06b_hTheta_P_nL_minus_q_nR_vs_W_nFDpCD");
 
@@ -19440,21 +19629,21 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         double Theta_q_p_L_nFDpCD_integral = hTheta_q_p_L_nFDpCD->Integral(), Theta_q_p_R_nFDpCD_integral = hTheta_q_p_R_nFDpCD->Integral();
 
         histPlotter1D(c1, hTheta_q_p_L_nFDpCD, norm_Angle_plots_master, true, Theta_q_p_L_nFDpCD_integral,
-                      "#theta_{#vec{q},#vec{P}_{nL}} - Opening Angle Between #vec{q} and Leading Nucleon #vec{P}_{nL}", "All Int., nFDpCD", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2,
-                      false, true, sTheta_q_p_L_R_nFDpCD, "03a_Theta_q_nL_All_Int_nFDpCD", hTheta_q_p_L_nFDpCD_Dir, "", kBlue, true, true, true, false);
+                      "#theta_{#font[62]{q},#font[62]{P}_{nL}} - Opening Angle Between #font[62]{q} and Leading Nucleon #font[62]{P}_{nL}", "All Int., nFDpCD", 0.06, 0.0425, 0.0425, plots,
+                      Histogram_OutPDF, 2, false, true, sTheta_q_p_L_R_nFDpCD, "03a_Theta_q_nL_All_Int_nFDpCD", hTheta_q_p_L_nFDpCD_Dir, "", kBlue, true, true, true, false);
         histPlotter1D(c1, hTheta_q_p_R_nFDpCD, norm_Angle_plots_master, true, Theta_q_p_R_nFDpCD_integral,
-                      "#theta_{#vec{q},#vec{P}_{nR}} - Opening Angle Between #vec{q} and Recoil Nucleon #vec{P}_{nR}", "All Int., nFDpCD", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2,
-                      false, true, sTheta_q_p_L_R_nFDpCD, "03b_Theta_q_nR_All_Int_nFDpCD", hTheta_q_p_R_nFDpCD_Dir, "", kBlue, true, true, true, false);
+                      "#theta_{#font[62]{q},#font[62]{P}_{nR}} - Opening Angle Between #font[62]{q} and Recoil Nucleon #font[62]{P}_{nR}", "All Int., nFDpCD", 0.06, 0.0425, 0.0425, plots,
+                      Histogram_OutPDF, 2, false, true, sTheta_q_p_L_R_nFDpCD, "03b_Theta_q_nR_All_Int_nFDpCD", hTheta_q_p_R_nFDpCD_Dir, "", kBlue, true, true, true, false);
 
         // Theta_q_nFD and Theta_q_pCD (nFDpCD, CD & FD)
         double Theta_q_nFD_nFDpCD_integral = hTheta_q_nFD_nFDpCD->Integral(), Theta_q_pCD_nFDpCD_integral = hTheta_q_pCD_nFDpCD->Integral();
 
         histPlotter1D(c1, hTheta_q_nFD_nFDpCD, norm_Angle_plots_master, true, Theta_q_nFD_nFDpCD_integral,
-                      "#theta_{#vec{q},#vec{P}_{nFD}} - Opening Angle Between #vec{q} and FD Neutron #vec{P}_{nFD}", "All Int., nFDpCD", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2,
-                      false, true, sTheta_q_p_L_R_nFDpCD, "03c_Theta_q_nFD_All_Int_nFDpCD", hTheta_q_nFD_nFDpCD_Dir, "", kBlue, true, true, true, false);
+                      "#theta_{#font[62]{q},#font[62]{P}_{nFD}} - Opening Angle Between #font[62]{q} and FD Neutron #font[62]{P}_{nFD}", "All Int., nFDpCD", 0.06, 0.0425, 0.0425, plots,
+                      Histogram_OutPDF, 2, false, true, sTheta_q_p_L_R_nFDpCD, "03c_Theta_q_nFD_All_Int_nFDpCD", hTheta_q_nFD_nFDpCD_Dir, "", kBlue, true, true, true, false);
         histPlotter1D(c1, hTheta_q_pCD_nFDpCD, norm_Angle_plots_master, true, Theta_q_pCD_nFDpCD_integral,
-                      "#theta_{#vec{q},#vec{P}_{pCD}} - Opening Angle Between #vec{q} and CD Proton #vec{P}_{pCD}", "All Int., nFDpCD", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2,
-                      false, true, sTheta_q_p_L_R_nFDpCD, "03d_Theta_q_pCD_All_Int_nFDpCD", hTheta_q_pCD_nFDpCD_Dir, "", kBlue, true, true, true, false);
+                      "#theta_{#font[62]{q},#font[62]{P}_{pCD}} - Opening Angle Between #font[62]{q} and CD Proton #font[62]{P}_{pCD}", "All Int., nFDpCD", 0.06, 0.0425, 0.0425, plots,
+                      Histogram_OutPDF, 2, false, true, sTheta_q_p_L_R_nFDpCD, "03d_Theta_q_pCD_All_Int_nFDpCD", hTheta_q_pCD_nFDpCD_Dir, "", kBlue, true, true, true, false);
 
         //  Theta_q_p_L vs |P_L|/|q| (nFDpCD, CD & FD)
         //  -------------------------------------------------------------------------------------------------------------------------------
