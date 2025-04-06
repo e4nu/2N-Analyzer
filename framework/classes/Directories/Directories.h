@@ -6,12 +6,12 @@
 // #define DIRECTORIES_H
 #ifdef DIRECTORIES_H
 
-#include <algorithm>
-#include <iostream>
-#include <map>
-#include <vector>
+    #include <algorithm>
+    #include <iostream>
+    #include <map>
+    #include <vector>
 
-#include "../../namespaces/general_utilities/utilities.h"
+    #include "../../namespaces/general_utilities/utilities.h"
 
 using namespace utilities;
 
@@ -67,27 +67,21 @@ class Directories {
     std::string SF_Parent_Directory = "01_Cuts_plots/04_SF_plots";
     vector<string> SF_Daughter_Folders = {
         "",
-        //                                               "01_1e_cut",
         "01_1e_cut/01_SF_plots",
         "01_1e_cut/02_SF_VS_P_e_plots",
 
-        //                                               "02_1p",
         "02_1p/01_SF_plots",
         "02_1p/02_SF_VS_P_e_plots",
 
-        //                                               "03_1n",
         "03_1n/01_SF_plots",
         "03_1n/02_SF_VS_P_e_plots",
 
-        //                                               "04_2p",
         "04_2p/01_SF_plots",
         "04_2p/02_SF_VS_P_e_plots",
 
-        //                                               "05_pFDpCD",
         "05_pFDpCD/01_SF_plots",
         "05_pFDpCD/02_SF_VS_P_e_plots",
 
-        //                                               "06_nFDpCD",
         "06_nFDpCD/01_SF_plots",
         "06_nFDpCD/02_SF_VS_P_e_plots",
     };

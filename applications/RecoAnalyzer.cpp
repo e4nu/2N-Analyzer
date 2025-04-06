@@ -12749,17 +12749,23 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
             double E_e_1p = sqrt(m_e * m_e + P_e_1p_3v.Mag2()), E_p_1p = sqrt(m_p * m_p + P_p_1p_3v.Mag2()), Ecal_1p, dAlpha_T_1p, dPhi_T_1p;
             double omega_1p = parameters.beamE - E_e_1p, W_1p = sqrt((omega_1p + m_p) * (omega_1p + m_p) - q_1p_3v.Mag2());
+            double E_p_1p = sqrt(constants::m_p * constants::m_p + P_p_1p_3v.Mag2());
             double Theta_p_e_p_p_1p, Theta_q_p_p_1p;
             double EoP_e_1p = (e_1p->cal(clas12::PCAL)->getEnergy() + e_1p->cal(ECIN)->getEnergy() + e_1p->cal(ECOUT)->getEnergy()) / P_e_1p_3v.Mag();
             double Vx_e_1p = e_1p->par()->getVx(), Vy_e_1p = e_1p->par()->getVy(), Vz_e_1p = e_1p->par()->getVz();
 
             /* Setting Q2 (1p) */
-            TLorentzVector e_out_1p, Q_1p;
-            double Q2_1p;
-            e_out_1p.SetPxPyPzE(e_1p->par()->getPx(), e_1p->par()->getPy(), e_1p->par()->getPz(), E_e_1p);
-            Q_1p = beam - e_out_1p;  // definition of 4-momentum transfer
-            Q2_1p = fabs(Q_1p.Mag2());
-            double xB_1p = Q2_1p / (2 * m_p * omega_1p);
+            TLorentzVector e_out_1p(P_e_1p_3v, E_e_1p);
+            double Q2_1p = analysis_physics::CalcQ2(beam, e_out_1p);
+            double xB_1p = analysis_physics::CalcxB(beam, e_out_1p, omega_1p, constants::m_p);
+            TVector3 P_miss_1N_1p_3v = CalcPmiss1N3v(P_p_1p_3v, q_1p_3v);         // Missing momentum (1N)
+            double E_miss_1N_1p = CalcEmiss1N(omega_1p, E_p_1p, constants::m_p);  // Missing energy (1N)
+            // TLorentzVector e_out_1p, Q_1p;
+            // double Q2_1p;
+            // e_out_1p.SetPxPyPzE(e_1p->par()->getPx(), e_1p->par()->getPy(), e_1p->par()->getPz(), E_e_1p);
+            // Q_1p = beam - e_out_1p;  // definition of 4-momentum transfer
+            // Q2_1p = fabs(Q_1p.Mag2());
+            // double xB_1p = Q2_1p / (2 * m_p * omega_1p);
 
             /* Setting particle angles (1p) */
             double Theta_e_1p = e_1p->getTheta() * 180.0 / pi, Phi_e_1p = e_1p->getPhi() * 180.0 / pi;  // Theta_e_1p, Phi_e_1p in deg
@@ -13307,17 +13313,22 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
             double E_e_1n = sqrt(m_e * m_e + P_e_1n_3v.Mag2()), E_n_1n = sqrt(m_n * m_n + P_n_1n_3v.Mag2()), Ecal_1n, dAlpha_T_1n, dPhi_T_1n;
             double omega_1n = parameters.beamE - E_e_1n, W_1n = sqrt((omega_1n + m_n) * (omega_1n + m_n) - q_1n_3v.Mag2());
+            double E_n_1n = sqrt(constants::m_n * constants::m_n + P_n_1n_3v.Mag2());
             double Theta_p_e_p_n_1n, Theta_q_p_n_1n;
             double EoP_e_1n = (e_1n->cal(clas12::PCAL)->getEnergy() + e_1n->cal(ECIN)->getEnergy() + e_1n->cal(ECOUT)->getEnergy()) / P_e_1n_3v.Mag();
             double Vx_e_1n = e_1n->par()->getVx(), Vy_e_1n = e_1n->par()->getVy(), Vz_e_1n = e_1n->par()->getVz();
 
             /* Setting Q2 (1n) */
-            TLorentzVector e_out_1n, Q_1n;
-            double Q2_1n;
-            e_out_1n.SetPxPyPzE(e_1n->par()->getPx(), e_1n->par()->getPy(), e_1n->par()->getPz(), E_e_1n);
-            Q_1n = beam - e_out_1n;  // definition of 4-momentum transfer
-            Q2_1n = fabs(Q_1n.Mag2());
-            double xB_1n = Q2_1n / (2 * m_n * omega_1n);
+            TLorentzVector e_out_1n(P_e_1n_3v, E_e_1n);
+            double Q2_1n = analysis_physics::CalcQ2(beam, e_out_1n);
+            double xB_1n = analysis_physics::CalcxB(beam, e_out_1n, omega_1n, constants::m_p);
+            TVector3 P_miss_1N_1n_3v = CalcPmiss1N3v(P_n_1n_3v, q_1n_3v);         // Missing momentum (1N)
+            double E_miss_1N_1n = CalcEmiss1N(omega_1n, E_n_1n, constants::m_p);  // Missing energy (1N)
+            // double Q2_1n;
+            // e_out_1n.SetPxPyPzE(e_1n->par()->getPx(), e_1n->par()->getPy(), e_1n->par()->getPz(), E_e_1n);
+            // Q_1n = beam - e_out_1n;  // definition of 4-momentum transfer
+            // Q2_1n = fabs(Q_1n.Mag2());
+            // double xB_1n = Q2_1n / (2 * m_n * omega_1n);
 
             /* Setting particle angles (1n) */
             double Theta_e_1n = e_1n->getTheta() * 180.0 / pi, Phi_e_1n = e_1n->getPhi() * 180.0 / pi;  // Theta_e_1n, Phi_e_1n in deg
@@ -14868,7 +14879,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             TVector3 P_miss_1N_pFDpCD_3v = CalcPmiss1N3v(P_pFD_pFDpCD_3v, q_pFDpCD_3v);                       // Missing momentum (1N)
             double E_miss_1N_pFDpCD = CalcEmiss1N(omega_pFDpCD, E_pFD_pFDpCD, constants::m_p);                // Missing energy (1N)
             TVector3 P_miss_2N_pFDpCD_3v = CalcPmiss2N3v(P_pFD_pFDpCD_3v, P_pCD_pFDpCD_3v, q_pFDpCD_3v);      // Missing momentum (2N)
-            double E_miss_1N_pFDpCD = CalcEmiss1N(omega_pFDpCD, E_pFD_pFDpCD, E_pCD_pFDpCD, constants::m_p);  // Missing energy (2N)
+            double E_miss_2N_pFDpCD = CalcEmiss2N(omega_pFDpCD, E_pFD_pFDpCD, E_pCD_pFDpCD, constants::m_p);  // Missing energy (2N)
             // TLorentzVector e_out_pFDpCD, Q_pFDpCD;
             // double Q2_pFDpCD;
             // e_out_pFDpCD.SetPxPyPzE(e_pFDpCD->par()->getPx(), e_pFDpCD->par()->getPy(), e_pFDpCD->par()->getPz(), E_e_pFDpCD);
@@ -15639,7 +15650,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             TVector3 P_miss_1N_nFDpCD_3v = CalcPmiss1N3v(P_nFD_nFDpCD_3v, q_nFDpCD_3v);                       // Missing momentum (1N)
             double E_miss_1N_nFDpCD = CalcEmiss1N(omega_nFDpCD, E_nFD_nFDpCD, constants::m_p);                // Missing energy (1N)
             TVector3 P_miss_2N_nFDpCD_3v = CalcPmiss2N3v(P_nFD_nFDpCD_3v, P_pCD_nFDpCD_3v, q_nFDpCD_3v);      // Missing momentum (2N)
-            double E_miss_1N_nFDpCD = CalcEmiss1N(omega_nFDpCD, E_nFD_nFDpCD, E_pCD_nFDpCD, constants::m_p);  // Missing energy (2N)
+            double E_miss_2N_nFDpCD = CalcEmiss2N(omega_nFDpCD, E_nFD_nFDpCD, E_pCD_nFDpCD, constants::m_p);  // Missing energy (2N)
             // TLorentzVector e_out_nFDpCD, Q_nFDpCD;
             // double Q2_nFDpCD;
             // e_out_nFDpCD.SetPxPyPzE(e_nFDpCD->par()->getPx(), e_nFDpCD->par()->getPy(), e_nFDpCD->par()->getPz(), E_e_nFDpCD);
