@@ -2339,7 +2339,7 @@ void AMaps::ReadAMap(const char *filename, vector<vector<int>> &Loaded_particle_
             }
         }
     } else {
-        cout << "\n\nAMaps::ReadAMap: Warning! file:\n" << filename << "\nwas not found! Exiting...\n\n", exit(0);
+        cout << "\n\nAMaps::ReadAMap: Warning! file:\n" << filename << "\nwas not found! Exiting...\n\n";
         // cout << "\n\nAMaps::ReadAMap: file:\n" << filename << "\nwas not found! Exiting...\n\n", exit(0);
     }
 }
