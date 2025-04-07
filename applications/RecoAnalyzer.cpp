@@ -3296,6 +3296,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
 #pragma region /* 1D Q2 distribution (pFDpCD) */
 // NOTE: these plots are taken from the momentum transfer histograms section
+std::string sQ2_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
 #pragma endregion
 
 #pragma region /* 2D Q2 distribution (pFDpCD) */
@@ -13732,7 +13733,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             P_T_e_1p_3v = TVector3(P_e_1p_3v.Px(), P_e_1p_3v.Py(), 0);                                                                         // electron transverse momentum
             P_T_p_1p_3v = TVector3(P_p_1p_3v.Px(), P_p_1p_3v.Py(), 0);                                                                         // proton transverse momentum
 
-            double E_e_1p = sqrt(m_e * m_e + P_e_1p_3v.Mag2()), E_p_1p = sqrt(m_p * m_p + P_p_1p_3v.Mag2()), Ecal_1p, dAlpha_T_1p, dPhi_T_1p;
+            double E_e_1p = sqrt(m_e * m_e + P_e_1p_3v.Mag2()), Ecal_1p, dAlpha_T_1p, dPhi_T_1p;
             double omega_1p = parameters.beamE - E_e_1p, W_1p = sqrt((omega_1p + m_p) * (omega_1p + m_p) - q_1p_3v.Mag2());
             double E_p_1p = sqrt(constants::m_p * constants::m_p + P_p_1p_3v.Mag2());
             double Theta_p_e_p_p_1p, Theta_q_p_p_1p;
@@ -14296,7 +14297,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             P_T_e_1n_3v = TVector3(P_e_1n_3v.Px(), P_e_1n_3v.Py(), 0);  // electron t. momentum
             P_T_n_1n_3v = TVector3(P_n_1n_3v.Px(), P_n_1n_3v.Py(), 0);  // neutron t. momentum
 
-            double E_e_1n = sqrt(m_e * m_e + P_e_1n_3v.Mag2()), E_n_1n = sqrt(m_n * m_n + P_n_1n_3v.Mag2()), Ecal_1n, dAlpha_T_1n, dPhi_T_1n;
+            double E_e_1n = sqrt(m_e * m_e + P_e_1n_3v.Mag2()), Ecal_1n, dAlpha_T_1n, dPhi_T_1n;
             double omega_1n = parameters.beamE - E_e_1n, W_1n = sqrt((omega_1n + m_n) * (omega_1n + m_n) - q_1n_3v.Mag2());
             double E_n_1n = sqrt(constants::m_n * constants::m_n + P_n_1n_3v.Mag2());
             double Theta_p_e_p_n_1n, Theta_q_p_n_1n;
@@ -19008,7 +19009,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                       "04fd_E_miss_2N_VS_theta_q_pCD_DIS_1e_cut");
 
         // Q2 plots (pFDpCD, CD & FD)
-        double Q2_pFDpCD_integral = hQ2_All_Int_pFDpCD->Integral();
+        double Q2_pFDpCD_integral = hQ2_pFDpCD->Integral();
 
         histPlotter1D(c1, hQ2_pFDpCD, norm_ReacMon_plots, true, Q2_pFDpCD_integral, "Q^{2} distribution", "All Int., pFDpCD", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2, false, true,
                       sQ2_pFDpCD, "05_Q2_All_Int_pFDpCD", hQ2_pFDpCD_Dir_ReacMon, "", kBlue, true, true, true, false);
