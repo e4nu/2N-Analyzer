@@ -40,7 +40,7 @@ struct AcceptanceMapsSettings {
         if (parameters.isData) { Generate_Electron_AMaps = Generate_Nucleon_AMaps = Generate_WMaps = false; }
 
         if (Generate_Electron_AMaps && Generate_Nucleon_AMaps) {
-            std::cout << "\n\nGenerate AMaps: Generate_Electron_AMaps and Generate_Nucleon_AMaps can't be true at the same time! Exiting...";
+            std::cout << "\n\nAcceptanceMapsSettings::RefreshSettings: Generate_Electron_AMaps and Generate_Nucleon_AMaps can't be true at the same time! Exiting...";
             exit(0);
         }
 

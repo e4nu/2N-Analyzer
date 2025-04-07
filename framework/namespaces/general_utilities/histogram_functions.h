@@ -1,9 +1,9 @@
 //
-// Created by Alon Sportes on 07/06/2023.
+// Created by Alon Sportes on 07/04/2025.
 //
 
-#ifndef FillByInt1D_H
-#define FillByInt1D_H
+#ifndef HISTOGRAM_FUNCTIONS_H
+#define HISTOGRAM_FUNCTIONS_H
 
 #include <TApplication.h>
 #include <TCanvas.h>
@@ -29,6 +29,10 @@
 #include <typeinfo>
 #include <vector>
 
+namespace histogram_functions {
+
+// FillByInt1D function -------------------------------------------------------------------------------------------------------------------------------------------------
+
 void FillByInt1D(TH1D *H1D_All_Int, TH1D *H1D_QEL, TH1D *H1D_MEC, TH1D *H1D_RES, TH1D *H1D_DIS, bool qel, bool mec, bool res, bool dis, double Variable, double Weight) {
     H1D_All_Int->Fill(Variable, Weight);
 
@@ -42,6 +46,8 @@ void FillByInt1D(TH1D *H1D_All_Int, TH1D *H1D_QEL, TH1D *H1D_MEC, TH1D *H1D_RES,
         H1D_DIS->Fill(Variable, Weight);
     }
 }
+
+// FillByInt2D function -------------------------------------------------------------------------------------------------------------------------------------------------
 
 void FillByInt2D(TH2D *H1D_All_Int, TH2D *H1D_QEL, TH2D *H1D_MEC, TH2D *H1D_RES, TH2D *H1D_DIS, bool qel, bool mec, bool res, bool dis, double Variable_x, double Variable_y, double Weight) {
     H1D_All_Int->Fill(Variable_x, Variable_y, Weight);
@@ -57,4 +63,6 @@ void FillByInt2D(TH2D *H1D_All_Int, TH2D *H1D_QEL, TH2D *H1D_MEC, TH2D *H1D_RES,
     }
 }
 
-#endif  // FillByInt1D_H
+};  // namespace histogram_functions
+
+#endif  // HISTOGRAM_FUNCTIONS_H
