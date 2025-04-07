@@ -3295,8 +3295,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 #pragma endregion
 
 #pragma region /* 1D Q2 distribution (pFDpCD) */
-// NOTE: these plots are taken from the momentum transfer histograms section
-std::string sQ2_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    // NOTE: these plots are taken from the momentum transfer histograms section
+    std::string sQ2_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
 #pragma endregion
 
 #pragma region /* 2D Q2 distribution (pFDpCD) */
