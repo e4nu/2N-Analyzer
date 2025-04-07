@@ -182,14 +182,14 @@ Directories::Directories(const std::string &plots_path, const bool Clear_Old_Dir
 #pragma endregion
 
 #pragma region /* Reaction monitoring plots directories */
-    for (string folders_name : RecMon_Daughter_Folders) { MakeDirectory(create_RecMon_Dir, RecMon_Parent_Directory, folders_name, false, Plots_Folder); }
+    for (string folders_name : ReacMon_Daughter_Folders) { MakeDirectory(create_ReacMon_Dir, ReacMon_Parent_Directory, folders_name, false, Plots_Folder); }
 
-    RecMon_dir_map["RecMon_1e_cut_Directory"] = Plots_Folder + "/" + RecMon_Parent_Directory + "/" + Find(RecMon_Daughter_Folders, "01_1e_cut") + "/";
-    RecMon_dir_map["RecMon_1p_Directory"] = Plots_Folder + "/" + RecMon_Parent_Directory + "/" + Find(RecMon_Daughter_Folders, "02_1p") + "/";
-    RecMon_dir_map["RecMon_1n_Directory"] = Plots_Folder + "/" + RecMon_Parent_Directory + "/" + Find(RecMon_Daughter_Folders, "03_1n") + "/";
-    RecMon_dir_map["RecMon_2p_Directory"] = Plots_Folder + "/" + RecMon_Parent_Directory + "/" + Find(RecMon_Daughter_Folders, "04_2p") + "/";
-    RecMon_dir_map["RecMon_pFDpCD_Directory"] = Plots_Folder + "/" + RecMon_Parent_Directory + "/" + Find(RecMon_Daughter_Folders, "05_pFDpCD") + "/";
-    RecMon_dir_map["RecMon_nFDpCD_Directory"] = Plots_Folder + "/" + RecMon_Parent_Directory + "/" + Find(RecMon_Daughter_Folders, "06_nFDpCD") + "/";
+    ReacMon_dir_map["ReacMon_1e_cut_Directory"] = Plots_Folder + "/" + ReacMon_Parent_Directory + "/" + Find(ReacMon_Daughter_Folders, "01_1e_cut") + "/";
+    ReacMon_dir_map["ReacMon_1p_Directory"] = Plots_Folder + "/" + ReacMon_Parent_Directory + "/" + Find(ReacMon_Daughter_Folders, "02_1p") + "/";
+    ReacMon_dir_map["ReacMon_1n_Directory"] = Plots_Folder + "/" + ReacMon_Parent_Directory + "/" + Find(ReacMon_Daughter_Folders, "03_1n") + "/";
+    ReacMon_dir_map["ReacMon_2p_Directory"] = Plots_Folder + "/" + ReacMon_Parent_Directory + "/" + Find(ReacMon_Daughter_Folders, "04_2p") + "/";
+    ReacMon_dir_map["ReacMon_pFDpCD_Directory"] = Plots_Folder + "/" + ReacMon_Parent_Directory + "/" + Find(ReacMon_Daughter_Folders, "05_pFDpCD") + "/";
+    ReacMon_dir_map["ReacMon_nFDpCD_Directory"] = Plots_Folder + "/" + ReacMon_Parent_Directory + "/" + Find(ReacMon_Daughter_Folders, "06_nFDpCD") + "/";
 #pragma endregion
 
 #pragma region /* W plots directories */

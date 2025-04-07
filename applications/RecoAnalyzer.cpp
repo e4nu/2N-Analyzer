@@ -956,8 +956,10 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     }
 
     /* Reaction monitoring boundries */
-    const double xB_lboundary = 0.;
-    const double xB_uboundary = 1.5;
+    double P_miss_lboundary = P_nucFD_lboundary, P_miss_uboundary = P_nucFD_uboundary;
+    double E_miss_lboundary = P_miss_lboundary, E_miss_uboundary = P_miss_uboundary;
+    const double xB_lboundary = 0., xB_uboundary = 1.5;
+    double theta_q_lboundary = 0., theta_q_uboundary = 180.;
 
     /* W boundries */
     const double W_lboundary = 0.35;
@@ -2637,122 +2639,1045 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
 #pragma region /* Reaction monitoring */
 
-    // Reaction monitoring plots (pFDpCD, CD & FD)
+#pragma region /* Reaction monitoring plots (pFDpCD, CD & FD) */
+
+#pragma region /* 1D P_miss_1N distribution (pFDpCD) */
+
+    // P_miss_1N = |P_pFD - q|
+
     THStack *sP_miss_1N_pFDpCD =
         new THStack("P^{1N}_{miss} distribution (All Int., pFDpCD)", "P^{1N}_{miss} distribution (pFDpCD);P^{1N}_{miss} = |#font[62]{P}_{pFD} - #font[62]{q}| [GeV/c];");
     TH1D *hP_miss_1N_All_Int_pFDpCD =
         new TH1D("P^{1N}_{miss} distribution (All Int., pFDpCD)", "P^{1N}_{miss} distribution (All Int., pFDpCD);P^{1N}_{miss} = |#font[62]{P}_{pFD} - #font[62]{q}| [GeV/c];", numTH1Dbins,
-                 FDMomentum_lboundary, FDMomentum_uboundary);
+                 P_miss_lboundary, P_miss_uboundary);
     TH1D *hP_miss_1N_QEL_pFDpCD =
         new TH1D("P^{1N}_{miss} distribution (QEL only, pFDpCD)", "P^{1N}_{miss} distribution (QEL only, pFDpCD);P^{1N}_{miss} = |#font[62]{P}_{pFD} - #font[62]{q}| [GeV/c];", numTH1Dbins,
-                 FDMomentum_lboundary, FDMomentum_uboundary);
+                 P_miss_lboundary, P_miss_uboundary);
     TH1D *hP_miss_1N_MEC_pFDpCD =
         new TH1D("P^{1N}_{miss} distribution (MEC only, pFDpCD)", "P^{1N}_{miss} distribution (MEC only, pFDpCD);P^{1N}_{miss} = |#font[62]{P}_{pFD} - #font[62]{q}| [GeV/c];", numTH1Dbins,
-                 FDMomentum_lboundary, FDMomentum_uboundary);
+                 P_miss_lboundary, P_miss_uboundary);
     TH1D *hP_miss_1N_RES_pFDpCD =
         new TH1D("P^{1N}_{miss} distribution (RES only, pFDpCD)", "P^{1N}_{miss} distribution (RES only, pFDpCD);P^{1N}_{miss} = |#font[62]{P}_{pFD} - #font[62]{q}| [GeV/c];", numTH1Dbins,
-                 FDMomentum_lboundary, FDMomentum_uboundary);
+                 P_miss_lboundary, P_miss_uboundary);
     TH1D *hP_miss_1N_DIS_pFDpCD =
         new TH1D("P^{1N}_{miss} distribution (DIS only, pFDpCD)", "P^{1N}_{miss} distribution (DIS only, pFDpCD);P^{1N}_{miss} = |#font[62]{P}_{pFD} - #font[62]{q}| [GeV/c];", numTH1Dbins,
-                 FDMomentum_lboundary, FDMomentum_uboundary);
-    std::string sP_miss_1N_pFDpCD_Dir = directories.RecMon_dir_map["RecMon_pFDpCD_Directory"];
-    std::string hP_miss_1N_All_Int_pFDpCD_Dir = directories.RecMon_dir_map["RecMon_pFDpCD_Directory"];
-    std::string hP_miss_1N_QEL_pFDpCD_Dir = directories.RecMon_dir_map["RecMon_pFDpCD_Directory"];
-    std::string hP_miss_1N_MEC_pFDpCD_Dir = directories.RecMon_dir_map["RecMon_pFDpCD_Directory"];
-    std::string hP_miss_1N_RES_pFDpCD_Dir = directories.RecMon_dir_map["RecMon_pFDpCD_Directory"];
-    std::string hP_miss_1N_DIS_pFDpCD_Dir = directories.RecMon_dir_map["RecMon_pFDpCD_Directory"];
+                 P_miss_lboundary, P_miss_uboundary);
+    std::string sP_miss_1N_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hP_miss_1N_All_Int_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hP_miss_1N_QEL_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hP_miss_1N_MEC_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hP_miss_1N_RES_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hP_miss_1N_DIS_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+#pragma endregion
 
+#pragma region /* 2D P_miss_1N distribution (pFDpCD) */
+    // 2D P_miss_1N vs. E_miss_1N distribution (pFDpCD)
+    TH2D *hP_miss_1N_VS_E_miss_1N_All_Int_pFDpCD =
+        new TH2D("P^{1N}_{miss} vs. E^{1N}_{miss} (All Int., pFDpCD)",
+                 "P^{1N}_{miss} vs. E^{1N}_{miss} (All Int., pFDpCD);P^{1N}_{miss} = |#font[62]{P}_{pFD} - #font[62]{q}| [GeV/c];E^{1N}_{miss} = #omega - T_{pFD} [GeV]", numTH2Dbins,
+                 P_miss_lboundary, P_miss_uboundary, numTH2Dbins, E_miss_lboundary, E_miss_uboundary);
+    TH2D *hP_miss_1N_VS_E_miss_1N_QEL_pFDpCD =
+        new TH2D("P^{1N}_{miss} vs. E^{1N}_{miss} (QEL only, pFDpCD)",
+                 "P^{1N}_{miss} vs. E^{1N}_{miss} (QEL only, pFDpCD);P^{1N}_{miss} = |#font[62]{P}_{pFD} - #font[62]{q}| [GeV/c];E^{1N}_{miss} = #omega - T_{pFD} [GeV]", numTH2Dbins,
+                 P_miss_lboundary, P_miss_uboundary, numTH2Dbins, E_miss_lboundary, E_miss_uboundary);
+    TH2D *hP_miss_1N_VS_E_miss_1N_MEC_pFDpCD =
+        new TH2D("P^{1N}_{miss} vs. E^{1N}_{miss} (MEC only, pFDpCD)",
+                 "P^{1N}_{miss} vs. E^{1N}_{miss} (MEC only, pFDpCD);P^{1N}_{miss} = |#font[62]{P}_{pFD} - #font[62]{q}| [GeV/c];E^{1N}_{miss} = #omega - T_{pFD} [GeV]", numTH2Dbins,
+                 P_miss_lboundary, P_miss_uboundary, numTH2Dbins, E_miss_lboundary, E_miss_uboundary);
+    TH2D *hP_miss_1N_VS_E_miss_1N_RES_pFDpCD =
+        new TH2D("P^{1N}_{miss} vs. E^{1N}_{miss} (RES only, pFDpCD)",
+                 "P^{1N}_{miss} vs. E^{1N}_{miss} (RES only, pFDpCD);P^{1N}_{miss} = |#font[62]{P}_{pFD} - #font[62]{q}| [GeV/c];E^{1N}_{miss} = #omega - T_{pFD} [GeV]", numTH2Dbins,
+                 P_miss_lboundary, P_miss_uboundary, numTH2Dbins, E_miss_lboundary, E_miss_uboundary);
+    TH2D *hP_miss_1N_VS_E_miss_1N_DIS_pFDpCD =
+        new TH2D("P^{1N}_{miss} vs. E^{1N}_{miss} (DIS only, pFDpCD)",
+                 "P^{1N}_{miss} vs. E^{1N}_{miss} (DIS only, pFDpCD);P^{1N}_{miss} = |#font[62]{P}_{pFD} - #font[62]{q}| [GeV/c];E^{1N}_{miss} = #omega - T_{pFD} [GeV]", numTH2Dbins,
+                 P_miss_lboundary, P_miss_uboundary, numTH2Dbins, E_miss_lboundary, E_miss_uboundary);
+    std::string hP_miss_1N_VS_E_miss_1N_All_Int_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hP_miss_1N_VS_E_miss_1N_QEL_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hP_miss_1N_VS_E_miss_1N_MEC_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hP_miss_1N_VS_E_miss_1N_RES_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hP_miss_1N_VS_E_miss_1N_DIS_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+
+    // 2D P_miss_1N vs. P_miss_2N distribution (pFDpCD)
+    TH2D *hP_miss_1N_VS_P_miss_2N_All_Int_pFDpCD = new TH2D("P^{1N}_{miss} vs. P^{2N}_{miss} (All Int., pFDpCD)",
+                                                            "P^{1N}_{miss} vs. P^{2N}_{miss} (All Int., pFDpCD);P^{1N}_{miss} = |#font[62]{P}_{pFD} - #font[62]{q}| [GeV/c];P^{2N}_{miss} = "
+                                                            "|#font[62]{P}_{pFD} + #font[62]{P}_{pCD} - #font[62]{q}| [GeV/c]",
+                                                            numTH2Dbins, P_miss_lboundary, P_miss_uboundary, numTH2Dbins, P_miss_lboundary, P_miss_uboundary);
+    TH2D *hP_miss_1N_VS_P_miss_2N_QEL_pFDpCD = new TH2D("P^{1N}_{miss} vs. P^{2N}_{miss} (QEL only, pFDpCD)",
+                                                        "P^{1N}_{miss} vs. P^{2N}_{miss} (QEL only, pFDpCD);P^{1N}_{miss} = |#font[62]{P}_{pFD} - #font[62]{q}| [GeV/c];P^{2N}_{miss} = "
+                                                        "|#font[62]{P}_{pFD} + #font[62]{P}_{pCD} - #font[62]{q}| [GeV/c]",
+                                                        numTH2Dbins, P_miss_lboundary, P_miss_uboundary, numTH2Dbins, P_miss_lboundary, P_miss_uboundary);
+    TH2D *hP_miss_1N_VS_P_miss_2N_MEC_pFDpCD = new TH2D("P^{1N}_{miss} vs. P^{2N}_{miss} (MEC only, pFDpCD)",
+                                                        "P^{1N}_{miss} vs. P^{2N}_{miss} (MEC only, pFDpCD);P^{1N}_{miss} = |#font[62]{P}_{pFD} - #font[62]{q}| [GeV/c];P^{2N}_{miss} = "
+                                                        "|#font[62]{P}_{pFD} + #font[62]{P}_{pCD} - #font[62]{q}| [GeV/c]",
+                                                        numTH2Dbins, P_miss_lboundary, P_miss_uboundary, numTH2Dbins, P_miss_lboundary, P_miss_uboundary);
+    TH2D *hP_miss_1N_VS_P_miss_2N_RES_pFDpCD = new TH2D("P^{1N}_{miss} vs. P^{2N}_{miss} (RES only, pFDpCD)",
+                                                        "P^{1N}_{miss} vs. P^{2N}_{miss} (RES only, pFDpCD);P^{1N}_{miss} = |#font[62]{P}_{pFD} - #font[62]{q}| [GeV/c];P^{2N}_{miss} = "
+                                                        "|#font[62]{P}_{pFD} + #font[62]{P}_{pCD} - #font[62]{q}| [GeV/c]",
+                                                        numTH2Dbins, P_miss_lboundary, P_miss_uboundary, numTH2Dbins, P_miss_lboundary, P_miss_uboundary);
+    TH2D *hP_miss_1N_VS_P_miss_2N_DIS_pFDpCD = new TH2D("P^{1N}_{miss} vs. P^{2N}_{miss} (DIS only, pFDpCD)",
+                                                        "P^{1N}_{miss} vs. P^{2N}_{miss} (DIS only, pFDpCD);P^{1N}_{miss} = |#font[62]{P}_{pFD} - #font[62]{q}| [GeV/c];P^{2N}_{miss} = "
+                                                        "|#font[62]{P}_{pFD} + #font[62]{P}_{pCD} - #font[62]{q}| [GeV/c]",
+                                                        numTH2Dbins, P_miss_lboundary, P_miss_uboundary, numTH2Dbins, P_miss_lboundary, P_miss_uboundary);
+    std::string hP_miss_1N_VS_P_miss_2N_All_Int_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hP_miss_1N_VS_P_miss_2N_QEL_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hP_miss_1N_VS_P_miss_2N_MEC_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hP_miss_1N_VS_P_miss_2N_RES_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hP_miss_1N_VS_P_miss_2N_DIS_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+
+    // 2D P_miss_1N vs. E_miss_2N distribution (pFDpCD)
+    TH2D *hP_miss_1N_VS_E_miss_2N_All_Int_pFDpCD =
+        new TH2D("P^{1N}_{miss} vs. E^{2N}_{miss} (All Int., pFDpCD)",
+                 "P^{1N}_{miss} vs. E^{2N}_{miss} (All Int., pFDpCD);P^{1N}_{miss} = |#font[62]{P}_{pFD} - #font[62]{q}| [GeV/c];E^{2N}_{miss} = #omega - T_{pFD} - T_{pCD} [GeV]",
+                 numTH2Dbins, P_miss_lboundary, P_miss_uboundary, numTH2Dbins, E_miss_lboundary, E_miss_uboundary);
+    TH2D *hP_miss_1N_VS_E_miss_2N_QEL_pFDpCD =
+        new TH2D("P^{1N}_{miss} vs. E^{2N}_{miss} (QEL only, pFDpCD)",
+                 "P^{1N}_{miss} vs. E^{2N}_{miss} (QEL only, pFDpCD);P^{1N}_{miss} = |#font[62]{P}_{pFD} - #font[62]{q}| [GeV/c];E^{2N}_{miss} = #omega - T_{pFD} - T_{pCD} [GeV]",
+                 numTH2Dbins, P_miss_lboundary, P_miss_uboundary, numTH2Dbins, E_miss_lboundary, E_miss_uboundary);
+    TH2D *hP_miss_1N_VS_E_miss_2N_MEC_pFDpCD =
+        new TH2D("P^{1N}_{miss} vs. E^{2N}_{miss} (MEC only, pFDpCD)",
+                 "P^{1N}_{miss} vs. E^{2N}_{miss} (MEC only, pFDpCD);P^{1N}_{miss} = |#font[62]{P}_{pFD} - #font[62]{q}| [GeV/c];E^{2N}_{miss} = #omega - T_{pFD} - T_{pCD} [GeV]",
+                 numTH2Dbins, P_miss_lboundary, P_miss_uboundary, numTH2Dbins, E_miss_lboundary, E_miss_uboundary);
+    TH2D *hP_miss_1N_VS_E_miss_2N_RES_pFDpCD =
+        new TH2D("P^{1N}_{miss} vs. E^{2N}_{miss} (RES only, pFDpCD)",
+                 "P^{1N}_{miss} vs. E^{2N}_{miss} (RES only, pFDpCD);P^{1N}_{miss} = |#font[62]{P}_{pFD} - #font[62]{q}| [GeV/c];E^{2N}_{miss} = #omega - T_{pFD} - T_{pCD} [GeV]",
+                 numTH2Dbins, P_miss_lboundary, P_miss_uboundary, numTH2Dbins, E_miss_lboundary, E_miss_uboundary);
+    TH2D *hP_miss_1N_VS_E_miss_2N_DIS_pFDpCD =
+        new TH2D("P^{1N}_{miss} vs. E^{2N}_{miss} (DIS only, pFDpCD)",
+                 "P^{1N}_{miss} vs. E^{2N}_{miss} (DIS only, pFDpCD);P^{1N}_{miss} = |#font[62]{P}_{pFD} - #font[62]{q}| [GeV/c];E^{2N}_{miss} = #omega - T_{pFD} - T_{pCD} [GeV]",
+                 numTH2Dbins, P_miss_lboundary, P_miss_uboundary, numTH2Dbins, E_miss_lboundary, E_miss_uboundary);
+    std::string hP_miss_1N_VS_E_miss_2N_All_Int_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hP_miss_1N_VS_E_miss_2N_QEL_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hP_miss_1N_VS_E_miss_2N_MEC_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hP_miss_1N_VS_E_miss_2N_RES_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hP_miss_1N_VS_E_miss_2N_DIS_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+
+    // 2D P_miss_1N vs. Q2 distribution (pFDpCD)
+    TH2D *hP_miss_1N_VS_Q2_All_Int_pFDpCD =
+        new TH2D("P^{1N}_{miss} vs. Q^{2} (All Int., pFDpCD)", "P^{1N}_{miss} vs. Q^{2} (All Int., pFDpCD);P^{1N}_{miss} = |#font[62]{P}_{pFD} - #font[62]{q}| [GeV/c];Q^{2} [GeV^{2}/c^{2}]",
+                 numTH2Dbins, P_miss_lboundary, P_miss_uboundary, numTH2Dbins, Q2_lboundary_FD, Q2_uboundary_FD);
+    TH2D *hP_miss_1N_VS_Q2_QEL_pFDpCD =
+        new TH2D("P^{1N}_{miss} vs. Q^{2} (QEL only, pFDpCD)", "P^{1N}_{miss} vs. Q^{2} (QEL only, pFDpCD);P^{1N}_{miss} = |#font[62]{P}_{pFD} - #font[62]{q}| [GeV/c];Q^{2} [GeV^{2}/c^{2}]",
+                 numTH2Dbins, P_miss_lboundary, P_miss_uboundary, numTH2Dbins, Q2_lboundary_FD, Q2_uboundary_FD);
+    TH2D *hP_miss_1N_VS_Q2_MEC_pFDpCD =
+        new TH2D("P^{1N}_{miss} vs. Q^{2} (MEC only, pFDpCD)", "P^{1N}_{miss} vs. Q^{2} (MEC only, pFDpCD);P^{1N}_{miss} = |#font[62]{P}_{pFD} - #font[62]{q}| [GeV/c];Q^{2} [GeV^{2}/c^{2}]",
+                 numTH2Dbins, P_miss_lboundary, P_miss_uboundary, numTH2Dbins, Q2_lboundary_FD, Q2_uboundary_FD);
+    TH2D *hP_miss_1N_VS_Q2_RES_pFDpCD =
+        new TH2D("P^{1N}_{miss} vs. Q^{2} (RES only, pFDpCD)", "P^{1N}_{miss} vs. Q^{2} (RES only, pFDpCD);P^{1N}_{miss} = |#font[62]{P}_{pFD} - #font[62]{q}| [GeV/c];Q^{2} [GeV^{2}/c^{2}]",
+                 numTH2Dbins, P_miss_lboundary, P_miss_uboundary, numTH2Dbins, Q2_lboundary_FD, Q2_uboundary_FD);
+    TH2D *hP_miss_1N_VS_Q2_DIS_pFDpCD =
+        new TH2D("P^{1N}_{miss} vs. Q^{2} (DIS only, pFDpCD)", "P^{1N}_{miss} vs. Q^{2} (DIS only, pFDpCD);P^{1N}_{miss} = |#font[62]{P}_{pFD} - #font[62]{q}| [GeV/c];Q^{2} [GeV^{2}/c^{2}]",
+                 numTH2Dbins, P_miss_lboundary, P_miss_uboundary, numTH2Dbins, Q2_lboundary_FD, Q2_uboundary_FD);
+    std::string hP_miss_1N_VS_Q2_All_Int_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hP_miss_1N_VS_Q2_QEL_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hP_miss_1N_VS_Q2_MEC_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hP_miss_1N_VS_Q2_RES_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hP_miss_1N_VS_Q2_DIS_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+
+    // 2D P_miss_1N vs. xB distribution (pFDpCD)
+    TH2D *hP_miss_1N_VS_xB_All_Int_pFDpCD =
+        new TH2D("P^{1N}_{miss} vs. x_{B} (All Int., pFDpCD)", "P^{1N}_{miss} vs. x_{B} (All Int., pFDpCD);P^{1N}_{miss} = |#font[62]{P}_{pFD} - #font[62]{q}| [GeV/c];x_{B}", numTH2Dbins,
+                 P_miss_lboundary, P_miss_uboundary, numTH2Dbins, xB_lboundary, xB_uboundary);
+    TH2D *hP_miss_1N_VS_xB_QEL_pFDpCD =
+        new TH2D("P^{1N}_{miss} vs. x_{B} (QEL only, pFDpCD)", "P^{1N}_{miss} vs. x_{B} (QEL only, pFDpCD);P^{1N}_{miss} = |#font[62]{P}_{pFD} - #font[62]{q}| [GeV/c];x_{B}", numTH2Dbins,
+                 P_miss_lboundary, P_miss_uboundary, numTH2Dbins, xB_lboundary, xB_uboundary);
+    TH2D *hP_miss_1N_VS_xB_MEC_pFDpCD =
+        new TH2D("P^{1N}_{miss} vs. x_{B} (MEC only, pFDpCD)", "P^{1N}_{miss} vs. x_{B} (MEC only, pFDpCD);P^{1N}_{miss} = |#font[62]{P}_{pFD} - #font[62]{q}| [GeV/c];x_{B}", numTH2Dbins,
+                 P_miss_lboundary, P_miss_uboundary, numTH2Dbins, xB_lboundary, xB_uboundary);
+    TH2D *hP_miss_1N_VS_xB_RES_pFDpCD =
+        new TH2D("P^{1N}_{miss} vs. x_{B} (RES only, pFDpCD)", "P^{1N}_{miss} vs. x_{B} (RES only, pFDpCD);P^{1N}_{miss} = |#font[62]{P}_{pFD} - #font[62]{q}| [GeV/c];x_{B}", numTH2Dbins,
+                 P_miss_lboundary, P_miss_uboundary, numTH2Dbins, xB_lboundary, xB_uboundary);
+    TH2D *hP_miss_1N_VS_xB_DIS_pFDpCD =
+        new TH2D("P^{1N}_{miss} vs. x_{B} (DIS only, pFDpCD)", "P^{1N}_{miss} vs. x_{B} (DIS only, pFDpCD);P^{1N}_{miss} = |#font[62]{P}_{pFD} - #font[62]{q}| [GeV/c];x_{B}", numTH2Dbins,
+                 P_miss_lboundary, P_miss_uboundary, numTH2Dbins, xB_lboundary, xB_uboundary);
+    std::string hP_miss_1N_VS_xB_All_Int_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hP_miss_1N_VS_xB_QEL_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hP_miss_1N_VS_xB_MEC_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hP_miss_1N_VS_xB_RES_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hP_miss_1N_VS_xB_DIS_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+
+    // 2D P_miss_1N vs. theta_q distribution (pFDpCD)
+    TH2D *hP_miss_1N_VS_theta_q_All_Int_pFDpCD = new TH2D("P^{1N}_{miss} vs. #theta_{q} (All Int., pFDpCD)",
+                                                          "P^{1N}_{miss} vs. #theta_{q} (All Int., pFDpCD);P^{1N}_{miss} = |#font[62]{P}_{pFD} - #font[62]{q}| [GeV/c];#theta_{q} [#circ]",
+                                                          numTH2Dbins, P_miss_lboundary, P_miss_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    TH2D *hP_miss_1N_VS_theta_q_QEL_pFDpCD = new TH2D("P^{1N}_{miss} vs. #theta_{q} (QEL only, pFDpCD)",
+                                                      "P^{1N}_{miss} vs. #theta_{q} (QEL only, pFDpCD);P^{1N}_{miss} = |#font[62]{P}_{pFD} - #font[62]{q}| [GeV/c];#theta_{q} [#circ]",
+                                                      numTH2Dbins, P_miss_lboundary, P_miss_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    TH2D *hP_miss_1N_VS_theta_q_MEC_pFDpCD = new TH2D("P^{1N}_{miss} vs. #theta_{q} (MEC only, pFDpCD)",
+                                                      "P^{1N}_{miss} vs. #theta_{q} (MEC only, pFDpCD);P^{1N}_{miss} = |#font[62]{P}_{pFD} - #font[62]{q}| [GeV/c];#theta_{q} [#circ]",
+                                                      numTH2Dbins, P_miss_lboundary, P_miss_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    TH2D *hP_miss_1N_VS_theta_q_RES_pFDpCD = new TH2D("P^{1N}_{miss} vs. #theta_{q} (RES only, pFDpCD)",
+                                                      "P^{1N}_{miss} vs. #theta_{q} (RES only, pFDpCD);P^{1N}_{miss} = |#font[62]{P}_{pFD} - #font[62]{q}| [GeV/c];#theta_{q} [#circ]",
+                                                      numTH2Dbins, P_miss_lboundary, P_miss_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    TH2D *hP_miss_1N_VS_theta_q_DIS_pFDpCD = new TH2D("P^{1N}_{miss} vs. #theta_{q} (DIS only, pFDpCD)",
+                                                      "P^{1N}_{miss} vs. #theta_{q} (DIS only, pFDpCD);P^{1N}_{miss} = |#font[62]{P}_{pFD} - #font[62]{q}| [GeV/c];#theta_{q} [#circ]",
+                                                      numTH2Dbins, P_miss_lboundary, P_miss_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    std::string hP_miss_1N_VS_theta_q_All_Int_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hP_miss_1N_VS_theta_q_QEL_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hP_miss_1N_VS_theta_q_MEC_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hP_miss_1N_VS_theta_q_RES_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hP_miss_1N_VS_theta_q_DIS_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+
+    // 2D P_miss_1N vs. theta_q_pFD distribution (pFDpCD)
+    TH2D *hP_miss_1N_VS_theta_q_pFD_All_Int_pFDpCD = new TH2D("P^{1N}_{miss} vs. #theta_{#font[62]{q},#font[62]{P}_{pFD}} (All Int., pFDpCD)",
+                                                              "P^{1N}_{miss} vs. #theta_{#font[62]{q},#font[62]{P}_{pFD}} (All Int., pFDpCD);P^{1N}_{miss} = |#font[62]{P}_{pFD} - "
+                                                              "#font[62]{q}| [GeV/c];#theta_{#font[62]{q},#font[62]{P}_{pFD}} [#circ]",
+                                                              numTH2Dbins, P_miss_lboundary, P_miss_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    TH2D *hP_miss_1N_VS_theta_q_pFD_QEL_pFDpCD = new TH2D("P^{1N}_{miss} vs. #theta_{#font[62]{q},#font[62]{P}_{pFD}} (QEL only, pFDpCD)",
+                                                          "P^{1N}_{miss} vs. #theta_{#font[62]{q},#font[62]{P}_{pFD}} (QEL only, pFDpCD);P^{1N}_{miss} = |#font[62]{P}_{pFD} - #font[62]{q}| "
+                                                          "[GeV/c];#theta_{#font[62]{q},#font[62]{P}_{pFD}} [#circ]",
+                                                          numTH2Dbins, P_miss_lboundary, P_miss_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    TH2D *hP_miss_1N_VS_theta_q_pFD_MEC_pFDpCD = new TH2D("P^{1N}_{miss} vs. #theta_{#font[62]{q},#font[62]{P}_{pFD}} (MEC only, pFDpCD)",
+                                                          "P^{1N}_{miss} vs. #theta_{#font[62]{q},#font[62]{P}_{pFD}} (MEC only, pFDpCD);P^{1N}_{miss} = |#font[62]{P}_{pFD} - #font[62]{q}| "
+                                                          "[GeV/c];#theta_{#font[62]{q},#font[62]{P}_{pFD}} [#circ]",
+                                                          numTH2Dbins, P_miss_lboundary, P_miss_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    TH2D *hP_miss_1N_VS_theta_q_pFD_RES_pFDpCD = new TH2D("P^{1N}_{miss} vs. #theta_{#font[62]{q},#font[62]{P}_{pFD}} (RES only, pFDpCD)",
+                                                          "P^{1N}_{miss} vs. #theta_{#font[62]{q},#font[62]{P}_{pFD}} (RES only, pFDpCD);P^{1N}_{miss} = |#font[62]{P}_{pFD} - #font[62]{q}| "
+                                                          "[GeV/c];#theta_{#font[62]{q},#font[62]{P}_{pFD}} [#circ]",
+                                                          numTH2Dbins, P_miss_lboundary, P_miss_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    TH2D *hP_miss_1N_VS_theta_q_pFD_DIS_pFDpCD = new TH2D("P^{1N}_{miss} vs. #theta_{#font[62]{q},#font[62]{P}_{pFD}} (DIS only, pFDpCD)",
+                                                          "P^{1N}_{miss} vs. #theta_{#font[62]{q},#font[62]{P}_{pFD}} (DIS only, pFDpCD);P^{1N}_{miss} = |#font[62]{P}_{pFD} - #font[62]{q}| "
+                                                          "[GeV/c];#theta_{#font[62]{q},#font[62]{P}_{pFD}} [#circ]",
+                                                          numTH2Dbins, P_miss_lboundary, P_miss_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    std::string hP_miss_1N_VS_theta_q_pFD_All_Int_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hP_miss_1N_VS_theta_q_pFD_QEL_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hP_miss_1N_VS_theta_q_pFD_MEC_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hP_miss_1N_VS_theta_q_pFD_RES_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hP_miss_1N_VS_theta_q_pFD_DIS_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+
+    // 2D P_miss_1N vs. theta_q_pCD distribution (pFDpCD)
+    TH2D *hP_miss_1N_VS_theta_q_pCD_All_Int_pFDpCD = new TH2D("P^{1N}_{miss} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (All Int., pFDpCD)",
+                                                              "P^{1N}_{miss} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (All Int., pFDpCD);P^{1N}_{miss} = |#font[62]{P}_{pFD} - "
+                                                              "#font[62]{q}| [GeV/c];#theta_{#font[62]{q},#font[62]{P}_{pCD}} [#circ]",
+                                                              numTH2Dbins, P_miss_lboundary, P_miss_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    TH2D *hP_miss_1N_VS_theta_q_pCD_QEL_pFDpCD = new TH2D("P^{1N}_{miss} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (QEL only, pFDpCD)",
+                                                          "P^{1N}_{miss} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (QEL only, pFDpCD);P^{1N}_{miss} = |#font[62]{P}_{pFD} - #font[62]{q}| "
+                                                          "[GeV/c];#theta_{#font[62]{q},#font[62]{P}_{pCD}} [#circ]",
+                                                          numTH2Dbins, P_miss_lboundary, P_miss_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    TH2D *hP_miss_1N_VS_theta_q_pCD_MEC_pFDpCD = new TH2D("P^{1N}_{miss} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (MEC only, pFDpCD)",
+                                                          "P^{1N}_{miss} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (MEC only, pFDpCD);P^{1N}_{miss} = |#font[62]{P}_{pFD} - #font[62]{q}| "
+                                                          "[GeV/c];#theta_{#font[62]{q},#font[62]{P}_{pCD}} [#circ]",
+                                                          numTH2Dbins, P_miss_lboundary, P_miss_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    TH2D *hP_miss_1N_VS_theta_q_pCD_RES_pFDpCD = new TH2D("P^{1N}_{miss} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (RES only, pFDpCD)",
+                                                          "P^{1N}_{miss} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (RES only, pFDpCD);P^{1N}_{miss} = |#font[62]{P}_{pFD} - #font[62]{q}| "
+                                                          "[GeV/c];#theta_{#font[62]{q},#font[62]{P}_{pCD}} [#circ]",
+                                                          numTH2Dbins, P_miss_lboundary, P_miss_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    TH2D *hP_miss_1N_VS_theta_q_pCD_DIS_pFDpCD = new TH2D("P^{1N}_{miss} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (DIS only, pFDpCD)",
+                                                          "P^{1N}_{miss} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (DIS only, pFDpCD);P^{1N}_{miss} = |#font[62]{P}_{pFD} - #font[62]{q}| "
+                                                          "[GeV/c];#theta_{#font[62]{q},#font[62]{P}_{pCD}} [#circ]",
+                                                          numTH2Dbins, P_miss_lboundary, P_miss_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    std::string hP_miss_1N_VS_theta_q_pCD_All_Int_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hP_miss_1N_VS_theta_q_pCD_QEL_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hP_miss_1N_VS_theta_q_pCD_MEC_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hP_miss_1N_VS_theta_q_pCD_RES_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hP_miss_1N_VS_theta_q_pCD_DIS_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+#pragma endregion
+
+#pragma region /* 1D E_miss_1N distribution (pFDpCD) */
+    // E_miss_1N = omega - T_pFD
     THStack *sE_miss_1N_pFDpCD = new THStack("E^{1N}_{miss} distribution (All Int., pFDpCD)", "E^{1N}_{miss} distribution (pFDpCD);E^{1N}_{miss} = #omega - T_{pFD} [GeV];");
     TH1D *hE_miss_1N_All_Int_pFDpCD = new TH1D("E^{1N}_{miss} distribution (All Int., pFDpCD)", "E^{1N}_{miss} distribution (All Int., pFDpCD);E^{1N}_{miss} = #omega - T_{pFD} [GeV];",
-                                               numTH1Dbins, FDMomentum_lboundary, FDMomentum_uboundary);
+                                               numTH1Dbins, E_miss_lboundary, E_miss_uboundary);
     TH1D *hE_miss_1N_QEL_pFDpCD = new TH1D("E^{1N}_{miss} distribution (QEL only, pFDpCD)", "E^{1N}_{miss} distribution (QEL only, pFDpCD);E^{1N}_{miss} = #omega - T_{pFD} [GeV];",
-                                           numTH1Dbins, FDMomentum_lboundary, FDMomentum_uboundary);
+                                           numTH1Dbins, E_miss_lboundary, E_miss_uboundary);
     TH1D *hE_miss_1N_MEC_pFDpCD = new TH1D("E^{1N}_{miss} distribution (MEC only, pFDpCD)", "E^{1N}_{miss} distribution (MEC only, pFDpCD);E^{1N}_{miss} = #omega - T_{pFD} [GeV];",
-                                           numTH1Dbins, FDMomentum_lboundary, FDMomentum_uboundary);
+                                           numTH1Dbins, E_miss_lboundary, E_miss_uboundary);
     TH1D *hE_miss_1N_RES_pFDpCD = new TH1D("E^{1N}_{miss} distribution (RES only, pFDpCD)", "E^{1N}_{miss} distribution (RES only, pFDpCD);E^{1N}_{miss} = #omega - T_{pFD} [GeV];",
-                                           numTH1Dbins, FDMomentum_lboundary, FDMomentum_uboundary);
+                                           numTH1Dbins, E_miss_lboundary, E_miss_uboundary);
     TH1D *hE_miss_1N_DIS_pFDpCD = new TH1D("E^{1N}_{miss} distribution (DIS only, pFDpCD)", "E^{1N}_{miss} distribution (DIS only, pFDpCD);E^{1N}_{miss} = #omega - T_{pFD} [GeV];",
-                                           numTH1Dbins, FDMomentum_lboundary, FDMomentum_uboundary);
-    std::string sE_miss_1N_pFDpCD_Dir = directories.RecMon_dir_map["RecMon_pFDpCD_Directory"];
-    std::string hE_miss_1N_All_Int_pFDpCD_Dir = directories.RecMon_dir_map["RecMon_pFDpCD_Directory"];
-    std::string hE_miss_1N_QEL_pFDpCD_Dir = directories.RecMon_dir_map["RecMon_pFDpCD_Directory"];
-    std::string hE_miss_1N_MEC_pFDpCD_Dir = directories.RecMon_dir_map["RecMon_pFDpCD_Directory"];
-    std::string hE_miss_1N_RES_pFDpCD_Dir = directories.RecMon_dir_map["RecMon_pFDpCD_Directory"];
-    std::string hE_miss_1N_DIS_pFDpCD_Dir = directories.RecMon_dir_map["RecMon_pFDpCD_Directory"];
+                                           numTH1Dbins, E_miss_lboundary, E_miss_uboundary);
+    std::string sE_miss_1N_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hE_miss_1N_All_Int_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hE_miss_1N_QEL_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hE_miss_1N_MEC_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hE_miss_1N_RES_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hE_miss_1N_DIS_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+#pragma endregion
 
+#pragma region /* 2D E_miss_1N distribution (pFDpCD) */
+    // 2D E_miss_1N vs. P_miss_2N distribution (pFDpCD)
+    TH2D *hE_miss_1N_VS_P_miss_2N_All_Int_pFDpCD = new TH2D("E^{1N}_{miss} vs. P^{2N}_{miss} (All Int., pFDpCD)",
+                                                            "E^{1N}_{miss} vs. P^{2N}_{miss} (All Int., pFDpCD);E^{1N}_{miss} = #omega - T_{pFD} [GeV];P^{2N}_{miss} = "
+                                                            "|#font[62]{P}_{pFD} + #font[62]{P}_{pCD} - #font[62]{q}| [GeV/c]",
+                                                            numTH2Dbins, E_miss_lboundary, E_miss_uboundary, numTH2Dbins, P_miss_lboundary, P_miss_uboundary);
+    TH2D *hE_miss_1N_VS_P_miss_2N_QEL_pFDpCD = new TH2D("E^{1N}_{miss} vs. P^{2N}_{miss} (QEL only, pFDpCD)",
+                                                        "E^{1N}_{miss} vs. P^{2N}_{miss} (QEL only, pFDpCD);E^{1N}_{miss} = #omega - T_{pFD} [GeV];P^{2N}_{miss} = "
+                                                        "|#font[62]{P}_{pFD} + #font[62]{P}_{pCD} - #font[62]{q}| [GeV/c]",
+                                                        numTH2Dbins, E_miss_lboundary, E_miss_uboundary, numTH2Dbins, P_miss_lboundary, P_miss_uboundary);
+    TH2D *hE_miss_1N_VS_P_miss_2N_MEC_pFDpCD = new TH2D("E^{1N}_{miss} vs. P^{2N}_{miss} (MEC only, pFDpCD)",
+                                                        "E^{1N}_{miss} vs. P^{2N}_{miss} (MEC only, pFDpCD);E^{1N}_{miss} = #omega - T_{pFD} [GeV];P^{2N}_{miss} = "
+                                                        "|#font[62]{P}_{pFD} + #font[62]{P}_{pCD} - #font[62]{q}| [GeV/c]",
+                                                        numTH2Dbins, E_miss_lboundary, E_miss_uboundary, numTH2Dbins, P_miss_lboundary, P_miss_uboundary);
+    TH2D *hE_miss_1N_VS_P_miss_2N_RES_pFDpCD = new TH2D("E^{1N}_{miss} vs. P^{2N}_{miss} (RES only, pFDpCD)",
+                                                        "E^{1N}_{miss} vs. P^{2N}_{miss} (RES only, pFDpCD);E^{1N}_{miss} = #omega - T_{pFD} [GeV];P^{2N}_{miss} = "
+                                                        "|#font[62]{P}_{pFD} + #font[62]{P}_{pCD} - #font[62]{q}| [GeV/c]",
+                                                        numTH2Dbins, E_miss_lboundary, E_miss_uboundary, numTH2Dbins, P_miss_lboundary, P_miss_uboundary);
+    TH2D *hE_miss_1N_VS_P_miss_2N_DIS_pFDpCD = new TH2D("E^{1N}_{miss} vs. P^{2N}_{miss} (DIS only, pFDpCD)",
+                                                        "E^{1N}_{miss} vs. P^{2N}_{miss} (DIS only, pFDpCD);E^{1N}_{miss} = #omega - T_{pFD} [GeV];P^{2N}_{miss} = "
+                                                        "|#font[62]{P}_{pFD} + #font[62]{P}_{pCD} - #font[62]{q}| [GeV/c]",
+                                                        numTH2Dbins, E_miss_lboundary, E_miss_uboundary, numTH2Dbins, P_miss_lboundary, P_miss_uboundary);
+    std::string hE_miss_1N_VS_P_miss_2N_All_Int_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hE_miss_1N_VS_P_miss_2N_QEL_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hE_miss_1N_VS_P_miss_2N_MEC_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hE_miss_1N_VS_P_miss_2N_RES_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hE_miss_1N_VS_P_miss_2N_DIS_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+
+    // 2D E_miss_1N vs. E_miss_2N distribution (pFDpCD)
+    TH2D *hE_miss_1N_VS_E_miss_2N_All_Int_pFDpCD =
+        new TH2D("E^{1N}_{miss} vs. E^{2N}_{miss} (All Int., pFDpCD)",
+                 "E^{1N}_{miss} vs. E^{2N}_{miss} (All Int., pFDpCD);E^{1N}_{miss} = #omega - T_{pFD} [GeV];E^{2N}_{miss} = #omega - T_{pFD} - T_{pCD} [GeV]",
+                 numTH2Dbins, E_miss_lboundary, E_miss_uboundary, numTH2Dbins, E_miss_lboundary, E_miss_uboundary);
+    TH2D *hE_miss_1N_VS_E_miss_2N_QEL_pFDpCD =
+        new TH2D("E^{1N}_{miss} vs. E^{2N}_{miss} (QEL only, pFDpCD)",
+                 "E^{1N}_{miss} vs. E^{2N}_{miss} (QEL only, pFDpCD);E^{1N}_{miss} = #omega - T_{pFD} [GeV];E^{2N}_{miss} = #omega - T_{pFD} - T_{pCD} [GeV]",
+                 numTH2Dbins, E_miss_lboundary, E_miss_uboundary, numTH2Dbins, E_miss_lboundary, E_miss_uboundary);
+    TH2D *hE_miss_1N_VS_E_miss_2N_MEC_pFDpCD =
+        new TH2D("E^{1N}_{miss} vs. E^{2N}_{miss} (MEC only, pFDpCD)",
+                 "E^{1N}_{miss} vs. E^{2N}_{miss} (MEC only, pFDpCD);E^{1N}_{miss} = #omega - T_{pFD} [GeV];E^{2N}_{miss} = #omega - T_{pFD} - T_{pCD} [GeV]",
+                 numTH2Dbins, E_miss_lboundary, E_miss_uboundary, numTH2Dbins, E_miss_lboundary, E_miss_uboundary);
+    TH2D *hE_miss_1N_VS_E_miss_2N_RES_pFDpCD =
+        new TH2D("E^{1N}_{miss} vs. E^{2N}_{miss} (RES only, pFDpCD)",
+                 "E^{1N}_{miss} vs. E^{2N}_{miss} (RES only, pFDpCD);E^{1N}_{miss} = #omega - T_{pFD} [GeV];E^{2N}_{miss} = #omega - T_{pFD} - T_{pCD} [GeV]",
+                 numTH2Dbins, E_miss_lboundary, E_miss_uboundary, numTH2Dbins, E_miss_lboundary, E_miss_uboundary);
+    TH2D *hE_miss_1N_VS_E_miss_2N_DIS_pFDpCD =
+        new TH2D("E^{1N}_{miss} vs. E^{2N}_{miss} (DIS only, pFDpCD)",
+                 "E^{1N}_{miss} vs. E^{2N}_{miss} (DIS only, pFDpCD);E^{1N}_{miss} = #omega - T_{pFD} [GeV];E^{2N}_{miss} = #omega - T_{pFD} - T_{pCD} [GeV]",
+                 numTH2Dbins, E_miss_lboundary, E_miss_uboundary, numTH2Dbins, E_miss_lboundary, E_miss_uboundary);
+    std::string hE_miss_1N_VS_E_miss_2N_All_Int_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hE_miss_1N_VS_E_miss_2N_QEL_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hE_miss_1N_VS_E_miss_2N_MEC_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hE_miss_1N_VS_E_miss_2N_RES_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hE_miss_1N_VS_E_miss_2N_DIS_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+
+    // 2D E_miss_1N vs. Q2 distribution (pFDpCD)
+    TH2D *hE_miss_1N_VS_Q2_All_Int_pFDpCD =
+        new TH2D("E^{1N}_{miss} vs. Q^{2} (All Int., pFDpCD)", "E^{1N}_{miss} vs. Q^{2} (All Int., pFDpCD);E^{1N}_{miss} = #omega - T_{pFD} [GeV];Q^{2} [GeV^{2}/c^{2}]",
+                 numTH2Dbins, E_miss_lboundary, E_miss_uboundary, numTH2Dbins, Q2_lboundary_FD, Q2_uboundary_FD);
+    TH2D *hE_miss_1N_VS_Q2_QEL_pFDpCD =
+        new TH2D("E^{1N}_{miss} vs. Q^{2} (QEL only, pFDpCD)", "E^{1N}_{miss} vs. Q^{2} (QEL only, pFDpCD);E^{1N}_{miss} = #omega - T_{pFD} [GeV];Q^{2} [GeV^{2}/c^{2}]",
+                 numTH2Dbins, E_miss_lboundary, E_miss_uboundary, numTH2Dbins, Q2_lboundary_FD, Q2_uboundary_FD);
+    TH2D *hE_miss_1N_VS_Q2_MEC_pFDpCD =
+        new TH2D("E^{1N}_{miss} vs. Q^{2} (MEC only, pFDpCD)", "E^{1N}_{miss} vs. Q^{2} (MEC only, pFDpCD);E^{1N}_{miss} = #omega - T_{pFD} [GeV];Q^{2} [GeV^{2}/c^{2}]",
+                 numTH2Dbins, E_miss_lboundary, E_miss_uboundary, numTH2Dbins, Q2_lboundary_FD, Q2_uboundary_FD);
+    TH2D *hE_miss_1N_VS_Q2_RES_pFDpCD =
+        new TH2D("E^{1N}_{miss} vs. Q^{2} (RES only, pFDpCD)", "E^{1N}_{miss} vs. Q^{2} (RES only, pFDpCD);E^{1N}_{miss} = #omega - T_{pFD} [GeV];Q^{2} [GeV^{2}/c^{2}]",
+                 numTH2Dbins, E_miss_lboundary, E_miss_uboundary, numTH2Dbins, Q2_lboundary_FD, Q2_uboundary_FD);
+    TH2D *hE_miss_1N_VS_Q2_DIS_pFDpCD =
+        new TH2D("E^{1N}_{miss} vs. Q^{2} (DIS only, pFDpCD)", "E^{1N}_{miss} vs. Q^{2} (DIS only, pFDpCD);E^{1N}_{miss} = #omega - T_{pFD} [GeV];Q^{2} [GeV^{2}/c^{2}]",
+                 numTH2Dbins, E_miss_lboundary, E_miss_uboundary, numTH2Dbins, Q2_lboundary_FD, Q2_uboundary_FD);
+    std::string hE_miss_1N_VS_Q2_All_Int_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hE_miss_1N_VS_Q2_QEL_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hE_miss_1N_VS_Q2_MEC_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hE_miss_1N_VS_Q2_RES_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hE_miss_1N_VS_Q2_DIS_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+
+    // 2D E_miss_1N vs. xB distribution (pFDpCD)
+    TH2D *hE_miss_1N_VS_xB_All_Int_pFDpCD =
+        new TH2D("E^{1N}_{miss} vs. x_{B} (All Int., pFDpCD)", "E^{1N}_{miss} vs. x_{B} (All Int., pFDpCD);E^{1N}_{miss} = #omega - T_{pFD} [GeV];x_{B}", numTH2Dbins,
+                 E_miss_lboundary, E_miss_uboundary, numTH2Dbins, xB_lboundary, xB_uboundary);
+    TH2D *hE_miss_1N_VS_xB_QEL_pFDpCD =
+        new TH2D("E^{1N}_{miss} vs. x_{B} (QEL only, pFDpCD)", "E^{1N}_{miss} vs. x_{B} (QEL only, pFDpCD);E^{1N}_{miss} = #omega - T_{pFD} [GeV];x_{B}", numTH2Dbins,
+                 E_miss_lboundary, E_miss_uboundary, numTH2Dbins, xB_lboundary, xB_uboundary);
+    TH2D *hE_miss_1N_VS_xB_MEC_pFDpCD =
+        new TH2D("E^{1N}_{miss} vs. x_{B} (MEC only, pFDpCD)", "E^{1N}_{miss} vs. x_{B} (MEC only, pFDpCD);E^{1N}_{miss} = #omega - T_{pFD} [GeV];x_{B}", numTH2Dbins,
+                 E_miss_lboundary, E_miss_uboundary, numTH2Dbins, xB_lboundary, xB_uboundary);
+    TH2D *hE_miss_1N_VS_xB_RES_pFDpCD =
+        new TH2D("E^{1N}_{miss} vs. x_{B} (RES only, pFDpCD)", "E^{1N}_{miss} vs. x_{B} (RES only, pFDpCD);E^{1N}_{miss} = #omega - T_{pFD} [GeV];x_{B}", numTH2Dbins,
+                 E_miss_lboundary, E_miss_uboundary, numTH2Dbins, xB_lboundary, xB_uboundary);
+    TH2D *hE_miss_1N_VS_xB_DIS_pFDpCD =
+        new TH2D("E^{1N}_{miss} vs. x_{B} (DIS only, pFDpCD)", "E^{1N}_{miss} vs. x_{B} (DIS only, pFDpCD);E^{1N}_{miss} = #omega - T_{pFD} [GeV];x_{B}", numTH2Dbins,
+                 E_miss_lboundary, E_miss_uboundary, numTH2Dbins, xB_lboundary, xB_uboundary);
+    std::string hE_miss_1N_VS_xB_All_Int_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hE_miss_1N_VS_xB_QEL_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hE_miss_1N_VS_xB_MEC_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hE_miss_1N_VS_xB_RES_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hE_miss_1N_VS_xB_DIS_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+
+    // 2D E_miss_1N vs. theta_q distribution (pFDpCD)
+    TH2D *hE_miss_1N_VS_theta_q_All_Int_pFDpCD = new TH2D("E^{1N}_{miss} vs. #theta_{q} (All Int., pFDpCD)",
+                                                          "E^{1N}_{miss} vs. #theta_{q} (All Int., pFDpCD);E^{1N}_{miss} = #omega - T_{pFD} [GeV];#theta_{q} [#circ]",
+                                                          numTH2Dbins, E_miss_lboundary, E_miss_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    TH2D *hE_miss_1N_VS_theta_q_QEL_pFDpCD = new TH2D("E^{1N}_{miss} vs. #theta_{q} (QEL only, pFDpCD)",
+                                                      "E^{1N}_{miss} vs. #theta_{q} (QEL only, pFDpCD);E^{1N}_{miss} = #omega - T_{pFD} [GeV];#theta_{q} [#circ]",
+                                                      numTH2Dbins, E_miss_lboundary, E_miss_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    TH2D *hE_miss_1N_VS_theta_q_MEC_pFDpCD = new TH2D("E^{1N}_{miss} vs. #theta_{q} (MEC only, pFDpCD)",
+                                                      "E^{1N}_{miss} vs. #theta_{q} (MEC only, pFDpCD);E^{1N}_{miss} = #omega - T_{pFD} [GeV];#theta_{q} [#circ]",
+                                                      numTH2Dbins, E_miss_lboundary, E_miss_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    TH2D *hE_miss_1N_VS_theta_q_RES_pFDpCD = new TH2D("E^{1N}_{miss} vs. #theta_{q} (RES only, pFDpCD)",
+                                                      "E^{1N}_{miss} vs. #theta_{q} (RES only, pFDpCD);E^{1N}_{miss} = #omega - T_{pFD} [GeV];#theta_{q} [#circ]",
+                                                      numTH2Dbins, E_miss_lboundary, E_miss_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    TH2D *hE_miss_1N_VS_theta_q_DIS_pFDpCD = new TH2D("E^{1N}_{miss} vs. #theta_{q} (DIS only, pFDpCD)",
+                                                      "E^{1N}_{miss} vs. #theta_{q} (DIS only, pFDpCD);E^{1N}_{miss} = #omega - T_{pFD} [GeV];#theta_{q} [#circ]",
+                                                      numTH2Dbins, E_miss_lboundary, E_miss_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    std::string hE_miss_1N_VS_theta_q_All_Int_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hE_miss_1N_VS_theta_q_QEL_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hE_miss_1N_VS_theta_q_MEC_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hE_miss_1N_VS_theta_q_RES_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hE_miss_1N_VS_theta_q_DIS_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+
+    // 2D E_miss_1N vs. theta_q_pFD distribution (pFDpCD)
+    TH2D *hE_miss_1N_VS_theta_q_pFD_All_Int_pFDpCD = new TH2D("E^{1N}_{miss} vs. #theta_{#font[62]{q},#font[62]{P}_{pFD}} (All Int., pFDpCD)",
+                                                              "E^{1N}_{miss} vs. #theta_{#font[62]{q},#font[62]{P}_{pFD}} (All Int., pFDpCD);E^{1N}_{miss} = |#font[62]{P}_{pFD} - "
+                                                              "#font[62]{q}| [GeV/c];#theta_{#font[62]{q},#font[62]{P}_{pFD}} [#circ]",
+                                                              numTH2Dbins, E_miss_lboundary, E_miss_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    TH2D *hE_miss_1N_VS_theta_q_pFD_QEL_pFDpCD = new TH2D("E^{1N}_{miss} vs. #theta_{#font[62]{q},#font[62]{P}_{pFD}} (QEL only, pFDpCD)",
+                                                          "E^{1N}_{miss} vs. #theta_{#font[62]{q},#font[62]{P}_{pFD}} (QEL only, pFDpCD);E^{1N}_{miss} = |#font[62]{P}_{pFD} - #font[62]{q}| "
+                                                          "[GeV/c];#theta_{#font[62]{q},#font[62]{P}_{pFD}} [#circ]",
+                                                          numTH2Dbins, E_miss_lboundary, E_miss_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    TH2D *hE_miss_1N_VS_theta_q_pFD_MEC_pFDpCD = new TH2D("E^{1N}_{miss} vs. #theta_{#font[62]{q},#font[62]{P}_{pFD}} (MEC only, pFDpCD)",
+                                                          "E^{1N}_{miss} vs. #theta_{#font[62]{q},#font[62]{P}_{pFD}} (MEC only, pFDpCD);E^{1N}_{miss} = |#font[62]{P}_{pFD} - #font[62]{q}| "
+                                                          "[GeV/c];#theta_{#font[62]{q},#font[62]{P}_{pFD}} [#circ]",
+                                                          numTH2Dbins, E_miss_lboundary, E_miss_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    TH2D *hE_miss_1N_VS_theta_q_pFD_RES_pFDpCD = new TH2D("E^{1N}_{miss} vs. #theta_{#font[62]{q},#font[62]{P}_{pFD}} (RES only, pFDpCD)",
+                                                          "E^{1N}_{miss} vs. #theta_{#font[62]{q},#font[62]{P}_{pFD}} (RES only, pFDpCD);E^{1N}_{miss} = |#font[62]{P}_{pFD} - #font[62]{q}| "
+                                                          "[GeV/c];#theta_{#font[62]{q},#font[62]{P}_{pFD}} [#circ]",
+                                                          numTH2Dbins, E_miss_lboundary, E_miss_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    TH2D *hE_miss_1N_VS_theta_q_pFD_DIS_pFDpCD = new TH2D("E^{1N}_{miss} vs. #theta_{#font[62]{q},#font[62]{P}_{pFD}} (DIS only, pFDpCD)",
+                                                          "E^{1N}_{miss} vs. #theta_{#font[62]{q},#font[62]{P}_{pFD}} (DIS only, pFDpCD);E^{1N}_{miss} = |#font[62]{P}_{pFD} - #font[62]{q}| "
+                                                          "[GeV/c];#theta_{#font[62]{q},#font[62]{P}_{pFD}} [#circ]",
+                                                          numTH2Dbins, E_miss_lboundary, E_miss_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    std::string hE_miss_1N_VS_theta_q_pFD_All_Int_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hE_miss_1N_VS_theta_q_pFD_QEL_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hE_miss_1N_VS_theta_q_pFD_MEC_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hE_miss_1N_VS_theta_q_pFD_RES_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hE_miss_1N_VS_theta_q_pFD_DIS_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+
+    // 2D E_miss_1N vs. theta_q_pCD distribution (pFDpCD)
+    TH2D *hE_miss_1N_VS_theta_q_pCD_All_Int_pFDpCD = new TH2D("E^{1N}_{miss} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (All Int., pFDpCD)",
+                                                              "E^{1N}_{miss} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (All Int., pFDpCD);E^{1N}_{miss} = |#font[62]{P}_{pFD} - "
+                                                              "#font[62]{q}| [GeV/c];#theta_{#font[62]{q},#font[62]{P}_{pCD}} [#circ]",
+                                                              numTH2Dbins, E_miss_lboundary, E_miss_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    TH2D *hE_miss_1N_VS_theta_q_pCD_QEL_pFDpCD = new TH2D("E^{1N}_{miss} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (QEL only, pFDpCD)",
+                                                          "E^{1N}_{miss} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (QEL only, pFDpCD);E^{1N}_{miss} = |#font[62]{P}_{pFD} - #font[62]{q}| "
+                                                          "[GeV/c];#theta_{#font[62]{q},#font[62]{P}_{pCD}} [#circ]",
+                                                          numTH2Dbins, E_miss_lboundary, E_miss_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    TH2D *hE_miss_1N_VS_theta_q_pCD_MEC_pFDpCD = new TH2D("E^{1N}_{miss} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (MEC only, pFDpCD)",
+                                                          "E^{1N}_{miss} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (MEC only, pFDpCD);E^{1N}_{miss} = |#font[62]{P}_{pFD} - #font[62]{q}| "
+                                                          "[GeV/c];#theta_{#font[62]{q},#font[62]{P}_{pCD}} [#circ]",
+                                                          numTH2Dbins, E_miss_lboundary, E_miss_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    TH2D *hE_miss_1N_VS_theta_q_pCD_RES_pFDpCD = new TH2D("E^{1N}_{miss} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (RES only, pFDpCD)",
+                                                          "E^{1N}_{miss} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (RES only, pFDpCD);E^{1N}_{miss} = |#font[62]{P}_{pFD} - #font[62]{q}| "
+                                                          "[GeV/c];#theta_{#font[62]{q},#font[62]{P}_{pCD}} [#circ]",
+                                                          numTH2Dbins, E_miss_lboundary, E_miss_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    TH2D *hE_miss_1N_VS_theta_q_pCD_DIS_pFDpCD = new TH2D("E^{1N}_{miss} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (DIS only, pFDpCD)",
+                                                          "E^{1N}_{miss} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (DIS only, pFDpCD);E^{1N}_{miss} = |#font[62]{P}_{pFD} - #font[62]{q}| "
+                                                          "[GeV/c];#theta_{#font[62]{q},#font[62]{P}_{pCD}} [#circ]",
+                                                          numTH2Dbins, E_miss_lboundary, E_miss_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    std::string hE_miss_1N_VS_theta_q_pCD_All_Int_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hE_miss_1N_VS_theta_q_pCD_QEL_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hE_miss_1N_VS_theta_q_pCD_MEC_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hE_miss_1N_VS_theta_q_pCD_RES_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hE_miss_1N_VS_theta_q_pCD_DIS_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+#pragma endregion
+
+#pragma region /* 1D P_miss_2N distribution (pFDpCD) */
+    // P_miss_2N = |P_pFD + P_pCD - q|
     THStack *sP_miss_2N_pFDpCD =
         new THStack("P^{2N}_{miss} distribution (All Int., pFDpCD)", "P^{2N}_{miss} distribution (pFDpCD);P^{2N}_{miss} = |#font[62]{P}_{pFD} + #font[62]{P}_{pCD} - #font[62]{q}| [GeV/c];");
     TH1D *hP_miss_2N_All_Int_pFDpCD = new TH1D("P^{2N}_{miss} distribution (All Int., pFDpCD)",
                                                "P^{2N}_{miss} distribution (All Int., pFDpCD);P^{2N}_{miss} = |#font[62]{P}_{pFD} + #font[62]{P}_{pCD} - #font[62]{q}| [GeV/c];", numTH1Dbins,
-                                               FDMomentum_lboundary, FDMomentum_uboundary);
+                                               P_miss_lboundary, P_miss_uboundary);
     TH1D *hP_miss_2N_QEL_pFDpCD = new TH1D("P^{2N}_{miss} distribution (QEL only, pFDpCD)",
                                            "P^{2N}_{miss} distribution (QEL only, pFDpCD);P^{2N}_{miss} = |#font[62]{P}_{pFD} + #font[62]{P}_{pCD} - #font[62]{q}| [GeV/c];", numTH1Dbins,
-                                           FDMomentum_lboundary, FDMomentum_uboundary);
+                                           P_miss_lboundary, P_miss_uboundary);
     TH1D *hP_miss_2N_MEC_pFDpCD = new TH1D("P^{2N}_{miss} distribution (MEC only, pFDpCD)",
                                            "P^{2N}_{miss} distribution (MEC only, pFDpCD);P^{2N}_{miss} = |#font[62]{P}_{pFD} + #font[62]{P}_{pCD} - #font[62]{q}| [GeV/c];", numTH1Dbins,
-                                           FDMomentum_lboundary, FDMomentum_uboundary);
+                                           P_miss_lboundary, P_miss_uboundary);
     TH1D *hP_miss_2N_RES_pFDpCD = new TH1D("P^{2N}_{miss} distribution (RES only, pFDpCD)",
                                            "P^{2N}_{miss} distribution (RES only, pFDpCD);P^{2N}_{miss} = |#font[62]{P}_{pFD} + #font[62]{P}_{pCD} - #font[62]{q}| [GeV/c];", numTH1Dbins,
-                                           FDMomentum_lboundary, FDMomentum_uboundary);
+                                           P_miss_lboundary, P_miss_uboundary);
     TH1D *hP_miss_2N_DIS_pFDpCD = new TH1D("P^{2N}_{miss} distribution (DIS only, pFDpCD)",
                                            "P^{2N}_{miss} distribution (DIS only, pFDpCD);P^{2N}_{miss} = |#font[62]{P}_{pFD} + #font[62]{P}_{pCD} - #font[62]{q}| [GeV/c];", numTH1Dbins,
-                                           FDMomentum_lboundary, FDMomentum_uboundary);
-    std::string sP_miss_2N_pFDpCD_Dir = directories.RecMon_dir_map["RecMon_pFDpCD_Directory"];
-    std::string hP_miss_2N_All_Int_pFDpCD_Dir = directories.RecMon_dir_map["RecMon_pFDpCD_Directory"];
-    std::string hP_miss_2N_QEL_pFDpCD_Dir = directories.RecMon_dir_map["RecMon_pFDpCD_Directory"];
-    std::string hP_miss_2N_MEC_pFDpCD_Dir = directories.RecMon_dir_map["RecMon_pFDpCD_Directory"];
-    std::string hP_miss_2N_RES_pFDpCD_Dir = directories.RecMon_dir_map["RecMon_pFDpCD_Directory"];
-    std::string hP_miss_2N_DIS_pFDpCD_Dir = directories.RecMon_dir_map["RecMon_pFDpCD_Directory"];
+                                           P_miss_lboundary, P_miss_uboundary);
+    std::string sP_miss_2N_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hP_miss_2N_All_Int_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hP_miss_2N_QEL_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hP_miss_2N_MEC_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hP_miss_2N_RES_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hP_miss_2N_DIS_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+#pragma endregion
 
+#pragma region /* 2D P_miss_2N distribution (pFDpCD) */
+    // 2D P_miss_2N vs. E_miss_2N distribution (pFDpCD)
+    TH2D *hP_miss_2N_VS_E_miss_2N_All_Int_pFDpCD =
+        new TH2D("P^{2N}_{miss} vs. E^{2N}_{miss} (All Int., pFDpCD)",
+                 "P^{2N}_{miss} vs. E^{2N}_{miss} (All Int., pFDpCD);P^{2N}_{miss} = |#font[62]{P}_{pFD} + #font[62]{P}_{pCD} - #font[62]{q}| [GeV/c];E^{2N}_{miss} = #omega - T_{pFD} - T_{pCD} [GeV]",
+                 numTH2Dbins, P_miss_lboundary, P_miss_uboundary, numTH2Dbins, E_miss_lboundary, E_miss_uboundary);
+    TH2D *hP_miss_2N_VS_E_miss_2N_QEL_pFDpCD =
+        new TH2D("P^{2N}_{miss} vs. E^{2N}_{miss} (QEL only, pFDpCD)",
+                 "P^{2N}_{miss} vs. E^{2N}_{miss} (QEL only, pFDpCD);P^{2N}_{miss} = |#font[62]{P}_{pFD} + #font[62]{P}_{pCD} - #font[62]{q}| [GeV/c];E^{2N}_{miss} = #omega - T_{pFD} - T_{pCD} [GeV]",
+                 numTH2Dbins, P_miss_lboundary, P_miss_uboundary, numTH2Dbins, E_miss_lboundary, E_miss_uboundary);
+    TH2D *hP_miss_2N_VS_E_miss_2N_MEC_pFDpCD =
+        new TH2D("P^{2N}_{miss} vs. E^{2N}_{miss} (MEC only, pFDpCD)",
+                 "P^{2N}_{miss} vs. E^{2N}_{miss} (MEC only, pFDpCD);P^{2N}_{miss} = |#font[62]{P}_{pFD} + #font[62]{P}_{pCD} - #font[62]{q}| [GeV/c];E^{2N}_{miss} = #omega - T_{pFD} - T_{pCD} [GeV]",
+                 numTH2Dbins, P_miss_lboundary, P_miss_uboundary, numTH2Dbins, E_miss_lboundary, E_miss_uboundary);
+    TH2D *hP_miss_2N_VS_E_miss_2N_RES_pFDpCD =
+        new TH2D("P^{2N}_{miss} vs. E^{2N}_{miss} (RES only, pFDpCD)",
+                 "P^{2N}_{miss} vs. E^{2N}_{miss} (RES only, pFDpCD);P^{2N}_{miss} = |#font[62]{P}_{pFD} + #font[62]{P}_{pCD} - #font[62]{q}| [GeV/c];E^{2N}_{miss} = #omega - T_{pFD} - T_{pCD} [GeV]",
+                 numTH2Dbins, P_miss_lboundary, P_miss_uboundary, numTH2Dbins, E_miss_lboundary, E_miss_uboundary);
+    TH2D *hP_miss_2N_VS_E_miss_2N_DIS_pFDpCD =
+        new TH2D("P^{2N}_{miss} vs. E^{2N}_{miss} (DIS only, pFDpCD)",
+                 "P^{2N}_{miss} vs. E^{2N}_{miss} (DIS only, pFDpCD);P^{2N}_{miss} = |#font[62]{P}_{pFD} + #font[62]{P}_{pCD} - #font[62]{q}| [GeV/c];E^{2N}_{miss} = #omega - T_{pFD} - T_{pCD} [GeV]",
+                 numTH2Dbins, P_miss_lboundary, P_miss_uboundary, numTH2Dbins, E_miss_lboundary, E_miss_uboundary);
+    std::string hP_miss_2N_VS_E_miss_2N_All_Int_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hP_miss_2N_VS_E_miss_2N_QEL_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hP_miss_2N_VS_E_miss_2N_MEC_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hP_miss_2N_VS_E_miss_2N_RES_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hP_miss_2N_VS_E_miss_2N_DIS_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+
+    // 2D P_miss_2N vs. Q2 distribution (pFDpCD)
+    TH2D *hP_miss_2N_VS_Q2_All_Int_pFDpCD =
+        new TH2D("P^{2N}_{miss} vs. Q^{2} (All Int., pFDpCD)", "P^{2N}_{miss} vs. Q^{2} (All Int., pFDpCD);P^{2N}_{miss} = |#font[62]{P}_{pFD} + #font[62]{P}_{pCD} - #font[62]{q}| [GeV/c];Q^{2} [GeV^{2}/c^{2}]",
+                 numTH2Dbins, P_miss_lboundary, P_miss_uboundary, numTH2Dbins, Q2_lboundary_FD, Q2_uboundary_FD);
+    TH2D *hP_miss_2N_VS_Q2_QEL_pFDpCD =
+        new TH2D("P^{2N}_{miss} vs. Q^{2} (QEL only, pFDpCD)", "P^{2N}_{miss} vs. Q^{2} (QEL only, pFDpCD);P^{2N}_{miss} = |#font[62]{P}_{pFD} + #font[62]{P}_{pCD} - #font[62]{q}| [GeV/c];Q^{2} [GeV^{2}/c^{2}]",
+                 numTH2Dbins, P_miss_lboundary, P_miss_uboundary, numTH2Dbins, Q2_lboundary_FD, Q2_uboundary_FD);
+    TH2D *hP_miss_2N_VS_Q2_MEC_pFDpCD =
+        new TH2D("P^{2N}_{miss} vs. Q^{2} (MEC only, pFDpCD)", "P^{2N}_{miss} vs. Q^{2} (MEC only, pFDpCD);P^{2N}_{miss} = |#font[62]{P}_{pFD} + #font[62]{P}_{pCD} - #font[62]{q}| [GeV/c];Q^{2} [GeV^{2}/c^{2}]",
+                 numTH2Dbins, P_miss_lboundary, P_miss_uboundary, numTH2Dbins, Q2_lboundary_FD, Q2_uboundary_FD);
+    TH2D *hP_miss_2N_VS_Q2_RES_pFDpCD =
+        new TH2D("P^{2N}_{miss} vs. Q^{2} (RES only, pFDpCD)", "P^{2N}_{miss} vs. Q^{2} (RES only, pFDpCD);P^{2N}_{miss} = |#font[62]{P}_{pFD} + #font[62]{P}_{pCD} - #font[62]{q}| [GeV/c];Q^{2} [GeV^{2}/c^{2}]",
+                 numTH2Dbins, P_miss_lboundary, P_miss_uboundary, numTH2Dbins, Q2_lboundary_FD, Q2_uboundary_FD);
+    TH2D *hP_miss_2N_VS_Q2_DIS_pFDpCD =
+        new TH2D("P^{2N}_{miss} vs. Q^{2} (DIS only, pFDpCD)", "P^{2N}_{miss} vs. Q^{2} (DIS only, pFDpCD);P^{2N}_{miss} = |#font[62]{P}_{pFD} + #font[62]{P}_{pCD} - #font[62]{q}| [GeV/c];Q^{2} [GeV^{2}/c^{2}]",
+                 numTH2Dbins, P_miss_lboundary, P_miss_uboundary, numTH2Dbins, Q2_lboundary_FD, Q2_uboundary_FD);
+    std::string hP_miss_2N_VS_Q2_All_Int_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hP_miss_2N_VS_Q2_QEL_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hP_miss_2N_VS_Q2_MEC_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hP_miss_2N_VS_Q2_RES_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hP_miss_2N_VS_Q2_DIS_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+
+    // 2D P_miss_2N vs. xB distribution (pFDpCD)
+    TH2D *hP_miss_2N_VS_xB_All_Int_pFDpCD =
+        new TH2D("P^{2N}_{miss} vs. x_{B} (All Int., pFDpCD)", "P^{2N}_{miss} vs. x_{B} (All Int., pFDpCD);P^{2N}_{miss} = |#font[62]{P}_{pFD} + #font[62]{P}_{pCD} - #font[62]{q}| [GeV/c];x_{B}", numTH2Dbins,
+                 P_miss_lboundary, P_miss_uboundary, numTH2Dbins, xB_lboundary, xB_uboundary);
+    TH2D *hP_miss_2N_VS_xB_QEL_pFDpCD =
+        new TH2D("P^{2N}_{miss} vs. x_{B} (QEL only, pFDpCD)", "P^{2N}_{miss} vs. x_{B} (QEL only, pFDpCD);P^{2N}_{miss} = |#font[62]{P}_{pFD} + #font[62]{P}_{pCD} - #font[62]{q}| [GeV/c];x_{B}", numTH2Dbins,
+                 P_miss_lboundary, P_miss_uboundary, numTH2Dbins, xB_lboundary, xB_uboundary);
+    TH2D *hP_miss_2N_VS_xB_MEC_pFDpCD =
+        new TH2D("P^{2N}_{miss} vs. x_{B} (MEC only, pFDpCD)", "P^{2N}_{miss} vs. x_{B} (MEC only, pFDpCD);P^{2N}_{miss} = |#font[62]{P}_{pFD} + #font[62]{P}_{pCD} - #font[62]{q}| [GeV/c];x_{B}", numTH2Dbins,
+                 P_miss_lboundary, P_miss_uboundary, numTH2Dbins, xB_lboundary, xB_uboundary);
+    TH2D *hP_miss_2N_VS_xB_RES_pFDpCD =
+        new TH2D("P^{2N}_{miss} vs. x_{B} (RES only, pFDpCD)", "P^{2N}_{miss} vs. x_{B} (RES only, pFDpCD);P^{2N}_{miss} = |#font[62]{P}_{pFD} + #font[62]{P}_{pCD} - #font[62]{q}| [GeV/c];x_{B}", numTH2Dbins,
+                 P_miss_lboundary, P_miss_uboundary, numTH2Dbins, xB_lboundary, xB_uboundary);
+    TH2D *hP_miss_2N_VS_xB_DIS_pFDpCD =
+        new TH2D("P^{2N}_{miss} vs. x_{B} (DIS only, pFDpCD)", "P^{2N}_{miss} vs. x_{B} (DIS only, pFDpCD);P^{2N}_{miss} = |#font[62]{P}_{pFD} + #font[62]{P}_{pCD} - #font[62]{q}| [GeV/c];x_{B}", numTH2Dbins,
+                 P_miss_lboundary, P_miss_uboundary, numTH2Dbins, xB_lboundary, xB_uboundary);
+    std::string hP_miss_2N_VS_xB_All_Int_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hP_miss_2N_VS_xB_QEL_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hP_miss_2N_VS_xB_MEC_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hP_miss_2N_VS_xB_RES_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hP_miss_2N_VS_xB_DIS_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+
+    // 2D P_miss_2N vs. theta_q distribution (pFDpCD)
+    TH2D *hP_miss_2N_VS_theta_q_All_Int_pFDpCD = new TH2D("P^{2N}_{miss} vs. #theta_{q} (All Int., pFDpCD)",
+                                                          "P^{2N}_{miss} vs. #theta_{q} (All Int., pFDpCD);P^{2N}_{miss} = |#font[62]{P}_{pFD} + #font[62]{P}_{pCD} - #font[62]{q}| [GeV/c];#theta_{q} [#circ]",
+                                                          numTH2Dbins, P_miss_lboundary, P_miss_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    TH2D *hP_miss_2N_VS_theta_q_QEL_pFDpCD = new TH2D("P^{2N}_{miss} vs. #theta_{q} (QEL only, pFDpCD)",
+                                                      "P^{2N}_{miss} vs. #theta_{q} (QEL only, pFDpCD);P^{2N}_{miss} = |#font[62]{P}_{pFD} + #font[62]{P}_{pCD} - #font[62]{q}| [GeV/c];#theta_{q} [#circ]",
+                                                      numTH2Dbins, P_miss_lboundary, P_miss_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    TH2D *hP_miss_2N_VS_theta_q_MEC_pFDpCD = new TH2D("P^{2N}_{miss} vs. #theta_{q} (MEC only, pFDpCD)",
+                                                      "P^{2N}_{miss} vs. #theta_{q} (MEC only, pFDpCD);P^{2N}_{miss} = |#font[62]{P}_{pFD} + #font[62]{P}_{pCD} - #font[62]{q}| [GeV/c];#theta_{q} [#circ]",
+                                                      numTH2Dbins, P_miss_lboundary, P_miss_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    TH2D *hP_miss_2N_VS_theta_q_RES_pFDpCD = new TH2D("P^{2N}_{miss} vs. #theta_{q} (RES only, pFDpCD)",
+                                                      "P^{2N}_{miss} vs. #theta_{q} (RES only, pFDpCD);P^{2N}_{miss} = |#font[62]{P}_{pFD} + #font[62]{P}_{pCD} - #font[62]{q}| [GeV/c];#theta_{q} [#circ]",
+                                                      numTH2Dbins, P_miss_lboundary, P_miss_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    TH2D *hP_miss_2N_VS_theta_q_DIS_pFDpCD = new TH2D("P^{2N}_{miss} vs. #theta_{q} (DIS only, pFDpCD)",
+                                                      "P^{2N}_{miss} vs. #theta_{q} (DIS only, pFDpCD);P^{2N}_{miss} = |#font[62]{P}_{pFD} + #font[62]{P}_{pCD} - #font[62]{q}| [GeV/c];#theta_{q} [#circ]",
+                                                      numTH2Dbins, P_miss_lboundary, P_miss_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    std::string hP_miss_2N_VS_theta_q_All_Int_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hP_miss_2N_VS_theta_q_QEL_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hP_miss_2N_VS_theta_q_MEC_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hP_miss_2N_VS_theta_q_RES_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hP_miss_2N_VS_theta_q_DIS_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+
+    // 2D P_miss_2N vs. theta_q_pFD distribution (pFDpCD)
+    TH2D *hP_miss_2N_VS_theta_q_pFD_All_Int_pFDpCD = new TH2D("P^{2N}_{miss} vs. #theta_{#font[62]{q},#font[62]{P}_{pFD}} (All Int., pFDpCD)",
+                                                              "P^{2N}_{miss} vs. #theta_{#font[62]{q},#font[62]{P}_{pFD}} (All Int., pFDpCD);P^{2N}_{miss} = |#font[62]{P}_{pFD} - "
+                                                              "#font[62]{q}| [GeV/c];#theta_{#font[62]{q},#font[62]{P}_{pFD}} [#circ]",
+                                                              numTH2Dbins, P_miss_lboundary, P_miss_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    TH2D *hP_miss_2N_VS_theta_q_pFD_QEL_pFDpCD = new TH2D("P^{2N}_{miss} vs. #theta_{#font[62]{q},#font[62]{P}_{pFD}} (QEL only, pFDpCD)",
+                                                          "P^{2N}_{miss} vs. #theta_{#font[62]{q},#font[62]{P}_{pFD}} (QEL only, pFDpCD);P^{2N}_{miss} = |#font[62]{P}_{pFD} - #font[62]{q}| "
+                                                          "[GeV/c];#theta_{#font[62]{q},#font[62]{P}_{pFD}} [#circ]",
+                                                          numTH2Dbins, P_miss_lboundary, P_miss_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    TH2D *hP_miss_2N_VS_theta_q_pFD_MEC_pFDpCD = new TH2D("P^{2N}_{miss} vs. #theta_{#font[62]{q},#font[62]{P}_{pFD}} (MEC only, pFDpCD)",
+                                                          "P^{2N}_{miss} vs. #theta_{#font[62]{q},#font[62]{P}_{pFD}} (MEC only, pFDpCD);P^{2N}_{miss} = |#font[62]{P}_{pFD} - #font[62]{q}| "
+                                                          "[GeV/c];#theta_{#font[62]{q},#font[62]{P}_{pFD}} [#circ]",
+                                                          numTH2Dbins, P_miss_lboundary, P_miss_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    TH2D *hP_miss_2N_VS_theta_q_pFD_RES_pFDpCD = new TH2D("P^{2N}_{miss} vs. #theta_{#font[62]{q},#font[62]{P}_{pFD}} (RES only, pFDpCD)",
+                                                          "P^{2N}_{miss} vs. #theta_{#font[62]{q},#font[62]{P}_{pFD}} (RES only, pFDpCD);P^{2N}_{miss} = |#font[62]{P}_{pFD} - #font[62]{q}| "
+                                                          "[GeV/c];#theta_{#font[62]{q},#font[62]{P}_{pFD}} [#circ]",
+                                                          numTH2Dbins, P_miss_lboundary, P_miss_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    TH2D *hP_miss_2N_VS_theta_q_pFD_DIS_pFDpCD = new TH2D("P^{2N}_{miss} vs. #theta_{#font[62]{q},#font[62]{P}_{pFD}} (DIS only, pFDpCD)",
+                                                          "P^{2N}_{miss} vs. #theta_{#font[62]{q},#font[62]{P}_{pFD}} (DIS only, pFDpCD);P^{2N}_{miss} = |#font[62]{P}_{pFD} - #font[62]{q}| "
+                                                          "[GeV/c];#theta_{#font[62]{q},#font[62]{P}_{pFD}} [#circ]",
+                                                          numTH2Dbins, P_miss_lboundary, P_miss_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    std::string hP_miss_2N_VS_theta_q_pFD_All_Int_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hP_miss_2N_VS_theta_q_pFD_QEL_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hP_miss_2N_VS_theta_q_pFD_MEC_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hP_miss_2N_VS_theta_q_pFD_RES_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hP_miss_2N_VS_theta_q_pFD_DIS_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+
+    // 2D P_miss_2N vs. theta_q_pCD distribution (pFDpCD)
+    TH2D *hP_miss_2N_VS_theta_q_pCD_All_Int_pFDpCD = new TH2D("P^{2N}_{miss} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (All Int., pFDpCD)",
+                                                              "P^{2N}_{miss} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (All Int., pFDpCD);P^{2N}_{miss} = |#font[62]{P}_{pFD} - "
+                                                              "#font[62]{q}| [GeV/c];#theta_{#font[62]{q},#font[62]{P}_{pCD}} [#circ]",
+                                                              numTH2Dbins, P_miss_lboundary, P_miss_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    TH2D *hP_miss_2N_VS_theta_q_pCD_QEL_pFDpCD = new TH2D("P^{2N}_{miss} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (QEL only, pFDpCD)",
+                                                          "P^{2N}_{miss} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (QEL only, pFDpCD);P^{2N}_{miss} = |#font[62]{P}_{pFD} - #font[62]{q}| "
+                                                          "[GeV/c];#theta_{#font[62]{q},#font[62]{P}_{pCD}} [#circ]",
+                                                          numTH2Dbins, P_miss_lboundary, P_miss_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    TH2D *hP_miss_2N_VS_theta_q_pCD_MEC_pFDpCD = new TH2D("P^{2N}_{miss} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (MEC only, pFDpCD)",
+                                                          "P^{2N}_{miss} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (MEC only, pFDpCD);P^{2N}_{miss} = |#font[62]{P}_{pFD} - #font[62]{q}| "
+                                                          "[GeV/c];#theta_{#font[62]{q},#font[62]{P}_{pCD}} [#circ]",
+                                                          numTH2Dbins, P_miss_lboundary, P_miss_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    TH2D *hP_miss_2N_VS_theta_q_pCD_RES_pFDpCD = new TH2D("P^{2N}_{miss} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (RES only, pFDpCD)",
+                                                          "P^{2N}_{miss} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (RES only, pFDpCD);P^{2N}_{miss} = |#font[62]{P}_{pFD} - #font[62]{q}| "
+                                                          "[GeV/c];#theta_{#font[62]{q},#font[62]{P}_{pCD}} [#circ]",
+                                                          numTH2Dbins, P_miss_lboundary, P_miss_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    TH2D *hP_miss_2N_VS_theta_q_pCD_DIS_pFDpCD = new TH2D("P^{2N}_{miss} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (DIS only, pFDpCD)",
+                                                          "P^{2N}_{miss} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (DIS only, pFDpCD);P^{2N}_{miss} = |#font[62]{P}_{pFD} - #font[62]{q}| "
+                                                          "[GeV/c];#theta_{#font[62]{q},#font[62]{P}_{pCD}} [#circ]",
+                                                          numTH2Dbins, P_miss_lboundary, P_miss_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    std::string hP_miss_2N_VS_theta_q_pCD_All_Int_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hP_miss_2N_VS_theta_q_pCD_QEL_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hP_miss_2N_VS_theta_q_pCD_MEC_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hP_miss_2N_VS_theta_q_pCD_RES_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hP_miss_2N_VS_theta_q_pCD_DIS_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+#pragma endregion
+
+#pragma region /* 1D E_miss_2N distribution (pFDpCD) */
+    // E_miss_2N = omega - T_pFD - T_pCD
     THStack *sE_miss_2N_pFDpCD = new THStack("E^{2N}_{miss} distribution (All Int., pFDpCD)", "E^{2N}_{miss} distribution (pFDpCD);E^{2N}_{miss} = #omega - T_{pFD} - T_{pCD} [GeV];");
     TH1D *hE_miss_2N_All_Int_pFDpCD =
         new TH1D("E^{2N}_{miss} distribution (All Int., pFDpCD)", "E^{2N}_{miss} distribution (All Int., pFDpCD);E^{2N}_{miss} = #omega - T_{pFD} - T_{pCD} [GeV];", numTH1Dbins,
-                 FDMomentum_lboundary, FDMomentum_uboundary);
+                 E_miss_lboundary, E_miss_uboundary);
     TH1D *hE_miss_2N_QEL_pFDpCD = new TH1D("E^{2N}_{miss} distribution (QEL only, pFDpCD)", "E^{2N}_{miss} distribution (QEL only, pFDpCD);E^{2N}_{miss} = #omega - T_{pFD} - T_{pCD} [GeV];",
-                                           numTH1Dbins, FDMomentum_lboundary, FDMomentum_uboundary);
+                                           numTH1Dbins, E_miss_lboundary, E_miss_uboundary);
     TH1D *hE_miss_2N_MEC_pFDpCD = new TH1D("E^{2N}_{miss} distribution (MEC only, pFDpCD)", "E^{2N}_{miss} distribution (MEC only, pFDpCD);E^{2N}_{miss} = #omega - T_{pFD} - T_{pCD} [GeV];",
-                                           numTH1Dbins, FDMomentum_lboundary, FDMomentum_uboundary);
+                                           numTH1Dbins, E_miss_lboundary, E_miss_uboundary);
     TH1D *hE_miss_2N_RES_pFDpCD = new TH1D("E^{2N}_{miss} distribution (RES only, pFDpCD)", "E^{2N}_{miss} distribution (RES only, pFDpCD);E^{2N}_{miss} = #omega - T_{pFD} - T_{pCD} [GeV];",
-                                           numTH1Dbins, FDMomentum_lboundary, FDMomentum_uboundary);
+                                           numTH1Dbins, E_miss_lboundary, E_miss_uboundary);
     TH1D *hE_miss_2N_DIS_pFDpCD = new TH1D("E^{2N}_{miss} distribution (DIS only, pFDpCD)", "E^{2N}_{miss} distribution (DIS only, pFDpCD);E^{2N}_{miss} = #omega - T_{pFD} - T_{pCD} [GeV];",
-                                           numTH1Dbins, FDMomentum_lboundary, FDMomentum_uboundary);
-    std::string sE_miss_2N_pFDpCD_Dir = directories.RecMon_dir_map["RecMon_pFDpCD_Directory"];
-    std::string hE_miss_2N_All_Int_pFDpCD_Dir = directories.RecMon_dir_map["RecMon_pFDpCD_Directory"];
-    std::string hE_miss_2N_QEL_pFDpCD_Dir = directories.RecMon_dir_map["RecMon_pFDpCD_Directory"];
-    std::string hE_miss_2N_MEC_pFDpCD_Dir = directories.RecMon_dir_map["RecMon_pFDpCD_Directory"];
-    std::string hE_miss_2N_RES_pFDpCD_Dir = directories.RecMon_dir_map["RecMon_pFDpCD_Directory"];
-    std::string hE_miss_2N_DIS_pFDpCD_Dir = directories.RecMon_dir_map["RecMon_pFDpCD_Directory"];
+                                           numTH1Dbins, E_miss_lboundary, E_miss_uboundary);
+    std::string sE_miss_2N_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hE_miss_2N_All_Int_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hE_miss_2N_QEL_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hE_miss_2N_MEC_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hE_miss_2N_RES_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hE_miss_2N_DIS_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+#pragma endregion
 
+#pragma region /* 2D E_miss_2N distribution (pFDpCD) */
+    // 2D E_miss_2N vs. Q2 distribution (pFDpCD)
+    TH2D *hE_miss_2N_VS_Q2_All_Int_pFDpCD =
+        new TH2D("E^{2N}_{miss} vs. Q^{2} (All Int., pFDpCD)", "E^{2N}_{miss} vs. Q^{2} (All Int., pFDpCD);E^{2N}_{miss} = #omega - T_{pFD} - T_{pCD} [GeV];Q^{2} [GeV^{2}/c^{2}]",
+                 numTH2Dbins, E_miss_lboundary, E_miss_uboundary, numTH2Dbins, Q2_lboundary_FD, Q2_uboundary_FD);
+    TH2D *hE_miss_2N_VS_Q2_QEL_pFDpCD =
+        new TH2D("E^{2N}_{miss} vs. Q^{2} (QEL only, pFDpCD)", "E^{2N}_{miss} vs. Q^{2} (QEL only, pFDpCD);E^{2N}_{miss} = #omega - T_{pFD} - T_{pCD} [GeV];Q^{2} [GeV^{2}/c^{2}]",
+                 numTH2Dbins, E_miss_lboundary, E_miss_uboundary, numTH2Dbins, Q2_lboundary_FD, Q2_uboundary_FD);
+    TH2D *hE_miss_2N_VS_Q2_MEC_pFDpCD =
+        new TH2D("E^{2N}_{miss} vs. Q^{2} (MEC only, pFDpCD)", "E^{2N}_{miss} vs. Q^{2} (MEC only, pFDpCD);E^{2N}_{miss} = #omega - T_{pFD} - T_{pCD} [GeV];Q^{2} [GeV^{2}/c^{2}]",
+                 numTH2Dbins, E_miss_lboundary, E_miss_uboundary, numTH2Dbins, Q2_lboundary_FD, Q2_uboundary_FD);
+    TH2D *hE_miss_2N_VS_Q2_RES_pFDpCD =
+        new TH2D("E^{2N}_{miss} vs. Q^{2} (RES only, pFDpCD)", "E^{2N}_{miss} vs. Q^{2} (RES only, pFDpCD);E^{2N}_{miss} = #omega - T_{pFD} - T_{pCD} [GeV];Q^{2} [GeV^{2}/c^{2}]",
+                 numTH2Dbins, E_miss_lboundary, E_miss_uboundary, numTH2Dbins, Q2_lboundary_FD, Q2_uboundary_FD);
+    TH2D *hE_miss_2N_VS_Q2_DIS_pFDpCD =
+        new TH2D("E^{2N}_{miss} vs. Q^{2} (DIS only, pFDpCD)", "E^{2N}_{miss} vs. Q^{2} (DIS only, pFDpCD);E^{2N}_{miss} = #omega - T_{pFD} - T_{pCD} [GeV];Q^{2} [GeV^{2}/c^{2}]",
+                 numTH2Dbins, E_miss_lboundary, E_miss_uboundary, numTH2Dbins, Q2_lboundary_FD, Q2_uboundary_FD);
+    std::string hE_miss_2N_VS_Q2_All_Int_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hE_miss_2N_VS_Q2_QEL_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hE_miss_2N_VS_Q2_MEC_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hE_miss_2N_VS_Q2_RES_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hE_miss_2N_VS_Q2_DIS_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+
+    // 2D E_miss_2N vs. xB distribution (pFDpCD)
+    TH2D *hE_miss_2N_VS_xB_All_Int_pFDpCD =
+        new TH2D("E^{2N}_{miss} vs. x_{B} (All Int., pFDpCD)", "E^{2N}_{miss} vs. x_{B} (All Int., pFDpCD);E^{2N}_{miss} = #omega - T_{pFD} - T_{pCD} [GeV];x_{B}", numTH2Dbins,
+                 E_miss_lboundary, E_miss_uboundary, numTH2Dbins, xB_lboundary, xB_uboundary);
+    TH2D *hE_miss_2N_VS_xB_QEL_pFDpCD =
+        new TH2D("E^{2N}_{miss} vs. x_{B} (QEL only, pFDpCD)", "E^{2N}_{miss} vs. x_{B} (QEL only, pFDpCD);E^{2N}_{miss} = #omega - T_{pFD} - T_{pCD} [GeV];x_{B}", numTH2Dbins,
+                 E_miss_lboundary, E_miss_uboundary, numTH2Dbins, xB_lboundary, xB_uboundary);
+    TH2D *hE_miss_2N_VS_xB_MEC_pFDpCD =
+        new TH2D("E^{2N}_{miss} vs. x_{B} (MEC only, pFDpCD)", "E^{2N}_{miss} vs. x_{B} (MEC only, pFDpCD);E^{2N}_{miss} = #omega - T_{pFD} - T_{pCD} [GeV];x_{B}", numTH2Dbins,
+                 E_miss_lboundary, E_miss_uboundary, numTH2Dbins, xB_lboundary, xB_uboundary);
+    TH2D *hE_miss_2N_VS_xB_RES_pFDpCD =
+        new TH2D("E^{2N}_{miss} vs. x_{B} (RES only, pFDpCD)", "E^{2N}_{miss} vs. x_{B} (RES only, pFDpCD);E^{2N}_{miss} = #omega - T_{pFD} - T_{pCD} [GeV];x_{B}", numTH2Dbins,
+                 E_miss_lboundary, E_miss_uboundary, numTH2Dbins, xB_lboundary, xB_uboundary);
+    TH2D *hE_miss_2N_VS_xB_DIS_pFDpCD =
+        new TH2D("E^{2N}_{miss} vs. x_{B} (DIS only, pFDpCD)", "E^{2N}_{miss} vs. x_{B} (DIS only, pFDpCD);E^{2N}_{miss} = #omega - T_{pFD} - T_{pCD} [GeV];x_{B}", numTH2Dbins,
+                 E_miss_lboundary, E_miss_uboundary, numTH2Dbins, xB_lboundary, xB_uboundary);
+    std::string hE_miss_2N_VS_xB_All_Int_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hE_miss_2N_VS_xB_QEL_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hE_miss_2N_VS_xB_MEC_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hE_miss_2N_VS_xB_RES_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hE_miss_2N_VS_xB_DIS_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+
+    // 2D E_miss_2N vs. theta_q distribution (pFDpCD)
+    TH2D *hE_miss_2N_VS_theta_q_All_Int_pFDpCD = new TH2D("E^{2N}_{miss} vs. #theta_{q} (All Int., pFDpCD)",
+                                                          "E^{2N}_{miss} vs. #theta_{q} (All Int., pFDpCD);E^{2N}_{miss} = #omega - T_{pFD} - T_{pCD} [GeV];#theta_{q} [#circ]",
+                                                          numTH2Dbins, E_miss_lboundary, E_miss_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    TH2D *hE_miss_2N_VS_theta_q_QEL_pFDpCD = new TH2D("E^{2N}_{miss} vs. #theta_{q} (QEL only, pFDpCD)",
+                                                      "E^{2N}_{miss} vs. #theta_{q} (QEL only, pFDpCD);E^{2N}_{miss} = #omega - T_{pFD} - T_{pCD} [GeV];#theta_{q} [#circ]",
+                                                      numTH2Dbins, E_miss_lboundary, E_miss_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    TH2D *hE_miss_2N_VS_theta_q_MEC_pFDpCD = new TH2D("E^{2N}_{miss} vs. #theta_{q} (MEC only, pFDpCD)",
+                                                      "E^{2N}_{miss} vs. #theta_{q} (MEC only, pFDpCD);E^{2N}_{miss} = #omega - T_{pFD} - T_{pCD} [GeV];#theta_{q} [#circ]",
+                                                      numTH2Dbins, E_miss_lboundary, E_miss_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    TH2D *hE_miss_2N_VS_theta_q_RES_pFDpCD = new TH2D("E^{2N}_{miss} vs. #theta_{q} (RES only, pFDpCD)",
+                                                      "E^{2N}_{miss} vs. #theta_{q} (RES only, pFDpCD);E^{2N}_{miss} = #omega - T_{pFD} - T_{pCD} [GeV];#theta_{q} [#circ]",
+                                                      numTH2Dbins, E_miss_lboundary, E_miss_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    TH2D *hE_miss_2N_VS_theta_q_DIS_pFDpCD = new TH2D("E^{2N}_{miss} vs. #theta_{q} (DIS only, pFDpCD)",
+                                                      "E^{2N}_{miss} vs. #theta_{q} (DIS only, pFDpCD);E^{2N}_{miss} = #omega - T_{pFD} - T_{pCD} [GeV];#theta_{q} [#circ]",
+                                                      numTH2Dbins, E_miss_lboundary, E_miss_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    std::string hE_miss_2N_VS_theta_q_All_Int_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hE_miss_2N_VS_theta_q_QEL_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hE_miss_2N_VS_theta_q_MEC_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hE_miss_2N_VS_theta_q_RES_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hE_miss_2N_VS_theta_q_DIS_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+
+    // 2D E_miss_2N vs. theta_q_pFD distribution (pFDpCD)
+    TH2D *hE_miss_2N_VS_theta_q_pFD_All_Int_pFDpCD = new TH2D("E^{2N}_{miss} vs. #theta_{#font[62]{q},#font[62]{P}_{pFD}} (All Int., pFDpCD)",
+                                                              "E^{2N}_{miss} vs. #theta_{#font[62]{q},#font[62]{P}_{pFD}} (All Int., pFDpCD);E^{2N}_{miss} = |#font[62]{P}_{pFD} - "
+                                                              "#font[62]{q}| [GeV/c];#theta_{#font[62]{q},#font[62]{P}_{pFD}} [#circ]",
+                                                              numTH2Dbins, E_miss_lboundary, E_miss_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    TH2D *hE_miss_2N_VS_theta_q_pFD_QEL_pFDpCD = new TH2D("E^{2N}_{miss} vs. #theta_{#font[62]{q},#font[62]{P}_{pFD}} (QEL only, pFDpCD)",
+                                                          "E^{2N}_{miss} vs. #theta_{#font[62]{q},#font[62]{P}_{pFD}} (QEL only, pFDpCD);E^{2N}_{miss} = |#font[62]{P}_{pFD} - #font[62]{q}| "
+                                                          "[GeV/c];#theta_{#font[62]{q},#font[62]{P}_{pFD}} [#circ]",
+                                                          numTH2Dbins, E_miss_lboundary, E_miss_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    TH2D *hE_miss_2N_VS_theta_q_pFD_MEC_pFDpCD = new TH2D("E^{2N}_{miss} vs. #theta_{#font[62]{q},#font[62]{P}_{pFD}} (MEC only, pFDpCD)",
+                                                          "E^{2N}_{miss} vs. #theta_{#font[62]{q},#font[62]{P}_{pFD}} (MEC only, pFDpCD);E^{2N}_{miss} = |#font[62]{P}_{pFD} - #font[62]{q}| "
+                                                          "[GeV/c];#theta_{#font[62]{q},#font[62]{P}_{pFD}} [#circ]",
+                                                          numTH2Dbins, E_miss_lboundary, E_miss_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    TH2D *hE_miss_2N_VS_theta_q_pFD_RES_pFDpCD = new TH2D("E^{2N}_{miss} vs. #theta_{#font[62]{q},#font[62]{P}_{pFD}} (RES only, pFDpCD)",
+                                                          "E^{2N}_{miss} vs. #theta_{#font[62]{q},#font[62]{P}_{pFD}} (RES only, pFDpCD);E^{2N}_{miss} = |#font[62]{P}_{pFD} - #font[62]{q}| "
+                                                          "[GeV/c];#theta_{#font[62]{q},#font[62]{P}_{pFD}} [#circ]",
+                                                          numTH2Dbins, E_miss_lboundary, E_miss_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    TH2D *hE_miss_2N_VS_theta_q_pFD_DIS_pFDpCD = new TH2D("E^{2N}_{miss} vs. #theta_{#font[62]{q},#font[62]{P}_{pFD}} (DIS only, pFDpCD)",
+                                                          "E^{2N}_{miss} vs. #theta_{#font[62]{q},#font[62]{P}_{pFD}} (DIS only, pFDpCD);E^{2N}_{miss} = |#font[62]{P}_{pFD} - #font[62]{q}| "
+                                                          "[GeV/c];#theta_{#font[62]{q},#font[62]{P}_{pFD}} [#circ]",
+                                                          numTH2Dbins, E_miss_lboundary, E_miss_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    std::string hE_miss_2N_VS_theta_q_pFD_All_Int_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hE_miss_2N_VS_theta_q_pFD_QEL_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hE_miss_2N_VS_theta_q_pFD_MEC_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hE_miss_2N_VS_theta_q_pFD_RES_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hE_miss_2N_VS_theta_q_pFD_DIS_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+
+    // 2D E_miss_2N vs. theta_q_pCD distribution (pFDpCD)
+    TH2D *hE_miss_2N_VS_theta_q_pCD_All_Int_pFDpCD = new TH2D("E^{2N}_{miss} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (All Int., pFDpCD)",
+                                                              "E^{2N}_{miss} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (All Int., pFDpCD);E^{2N}_{miss} = |#font[62]{P}_{pFD} - "
+                                                              "#font[62]{q}| [GeV/c];#theta_{#font[62]{q},#font[62]{P}_{pCD}} [#circ]",
+                                                              numTH2Dbins, E_miss_lboundary, E_miss_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    TH2D *hE_miss_2N_VS_theta_q_pCD_QEL_pFDpCD = new TH2D("E^{2N}_{miss} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (QEL only, pFDpCD)",
+                                                          "E^{2N}_{miss} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (QEL only, pFDpCD);E^{2N}_{miss} = |#font[62]{P}_{pFD} - #font[62]{q}| "
+                                                          "[GeV/c];#theta_{#font[62]{q},#font[62]{P}_{pCD}} [#circ]",
+                                                          numTH2Dbins, E_miss_lboundary, E_miss_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    TH2D *hE_miss_2N_VS_theta_q_pCD_MEC_pFDpCD = new TH2D("E^{2N}_{miss} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (MEC only, pFDpCD)",
+                                                          "E^{2N}_{miss} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (MEC only, pFDpCD);E^{2N}_{miss} = |#font[62]{P}_{pFD} - #font[62]{q}| "
+                                                          "[GeV/c];#theta_{#font[62]{q},#font[62]{P}_{pCD}} [#circ]",
+                                                          numTH2Dbins, E_miss_lboundary, E_miss_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    TH2D *hE_miss_2N_VS_theta_q_pCD_RES_pFDpCD = new TH2D("E^{2N}_{miss} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (RES only, pFDpCD)",
+                                                          "E^{2N}_{miss} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (RES only, pFDpCD);E^{2N}_{miss} = |#font[62]{P}_{pFD} - #font[62]{q}| "
+                                                          "[GeV/c];#theta_{#font[62]{q},#font[62]{P}_{pCD}} [#circ]",
+                                                          numTH2Dbins, E_miss_lboundary, E_miss_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    TH2D *hE_miss_2N_VS_theta_q_pCD_DIS_pFDpCD = new TH2D("E^{2N}_{miss} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (DIS only, pFDpCD)",
+                                                          "E^{2N}_{miss} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (DIS only, pFDpCD);E^{2N}_{miss} = |#font[62]{P}_{pFD} - #font[62]{q}| "
+                                                          "[GeV/c];#theta_{#font[62]{q},#font[62]{P}_{pCD}} [#circ]",
+                                                          numTH2Dbins, E_miss_lboundary, E_miss_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    std::string hE_miss_2N_VS_theta_q_pCD_All_Int_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hE_miss_2N_VS_theta_q_pCD_QEL_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hE_miss_2N_VS_theta_q_pCD_MEC_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hE_miss_2N_VS_theta_q_pCD_RES_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hE_miss_2N_VS_theta_q_pCD_DIS_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+#pragma endregion
+
+#pragma region /* 1D Q2 distribution (pFDpCD) */
+// NOTE: these plots are taken from the momentum transfer histograms section
+#pragma endregion
+
+#pragma region /* 2D Q2 distribution (pFDpCD) */
+    // 2D Q2 vs. xB distribution (pFDpCD)
+    TH2D *hQ2_VS_xB_All_Int_pFDpCD =
+        new TH2D("Q^{2} vs. x_{B} (All Int., pFDpCD)", "Q^{2} vs. x_{B} (All Int., pFDpCD);Q^{2} [GeV^{2}/c^{2}];x_{B}", numTH2Dbins,
+                 Q2_lboundary_FD, Q2_uboundary_FD, numTH2Dbins, xB_lboundary, xB_uboundary);
+    TH2D *hQ2_VS_xB_QEL_pFDpCD =
+        new TH2D("Q^{2} vs. x_{B} (QEL only, pFDpCD)", "Q^{2} vs. x_{B} (QEL only, pFDpCD);Q^{2} [GeV^{2}/c^{2}];x_{B}", numTH2Dbins,
+                 Q2_lboundary_FD, Q2_uboundary_FD, numTH2Dbins, xB_lboundary, xB_uboundary);
+    TH2D *hQ2_VS_xB_MEC_pFDpCD =
+        new TH2D("Q^{2} vs. x_{B} (MEC only, pFDpCD)", "Q^{2} vs. x_{B} (MEC only, pFDpCD);Q^{2} [GeV^{2}/c^{2}];x_{B}", numTH2Dbins,
+                 Q2_lboundary_FD, Q2_uboundary_FD, numTH2Dbins, xB_lboundary, xB_uboundary);
+    TH2D *hQ2_VS_xB_RES_pFDpCD =
+        new TH2D("Q^{2} vs. x_{B} (RES only, pFDpCD)", "Q^{2} vs. x_{B} (RES only, pFDpCD);Q^{2} [GeV^{2}/c^{2}];x_{B}", numTH2Dbins,
+                 Q2_lboundary_FD, Q2_uboundary_FD, numTH2Dbins, xB_lboundary, xB_uboundary);
+    TH2D *hQ2_VS_xB_DIS_pFDpCD =
+        new TH2D("Q^{2} vs. x_{B} (DIS only, pFDpCD)", "Q^{2} vs. x_{B} (DIS only, pFDpCD);Q^{2} [GeV^{2}/c^{2}];x_{B}", numTH2Dbins,
+                 Q2_lboundary_FD, Q2_uboundary_FD, numTH2Dbins, xB_lboundary, xB_uboundary);
+    std::string hQ2_VS_xB_All_Int_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hQ2_VS_xB_QEL_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hQ2_VS_xB_MEC_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hQ2_VS_xB_RES_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hQ2_VS_xB_DIS_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+
+    // 2D Q2 vs. theta_q distribution (pFDpCD)
+    TH2D *hQ2_VS_theta_q_All_Int_pFDpCD = new TH2D("Q^{2} vs. #theta_{q} (All Int., pFDpCD)",
+                                                          "Q^{2} vs. #theta_{q} (All Int., pFDpCD);Q^{2} [GeV^{2}/c^{2}];#theta_{q} [#circ]",
+                                                          numTH2Dbins, Q2_lboundary_FD, Q2_uboundary_FD, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    TH2D *hQ2_VS_theta_q_QEL_pFDpCD = new TH2D("Q^{2} vs. #theta_{q} (QEL only, pFDpCD)",
+                                                      "Q^{2} vs. #theta_{q} (QEL only, pFDpCD);Q^{2} [GeV^{2}/c^{2}];#theta_{q} [#circ]",
+                                                      numTH2Dbins, Q2_lboundary_FD, Q2_uboundary_FD, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    TH2D *hQ2_VS_theta_q_MEC_pFDpCD = new TH2D("Q^{2} vs. #theta_{q} (MEC only, pFDpCD)",
+                                                      "Q^{2} vs. #theta_{q} (MEC only, pFDpCD);Q^{2} [GeV^{2}/c^{2}];#theta_{q} [#circ]",
+                                                      numTH2Dbins, Q2_lboundary_FD, Q2_uboundary_FD, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    TH2D *hQ2_VS_theta_q_RES_pFDpCD = new TH2D("Q^{2} vs. #theta_{q} (RES only, pFDpCD)",
+                                                      "Q^{2} vs. #theta_{q} (RES only, pFDpCD);Q^{2} [GeV^{2}/c^{2}];#theta_{q} [#circ]",
+                                                      numTH2Dbins, Q2_lboundary_FD, Q2_uboundary_FD, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    TH2D *hQ2_VS_theta_q_DIS_pFDpCD = new TH2D("Q^{2} vs. #theta_{q} (DIS only, pFDpCD)",
+                                                      "Q^{2} vs. #theta_{q} (DIS only, pFDpCD);Q^{2} [GeV^{2}/c^{2}];#theta_{q} [#circ]",
+                                                      numTH2Dbins, Q2_lboundary_FD, Q2_uboundary_FD, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    std::string hQ2_VS_theta_q_All_Int_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hQ2_VS_theta_q_QEL_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hQ2_VS_theta_q_MEC_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hQ2_VS_theta_q_RES_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hQ2_VS_theta_q_DIS_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+
+    // 2D Q2 vs. theta_q_pFD distribution (pFDpCD)
+    TH2D *hQ2_VS_theta_q_pFD_All_Int_pFDpCD = new TH2D("Q^{2} vs. #theta_{#font[62]{q},#font[62]{P}_{pFD}} (All Int., pFDpCD)",
+                                                              "Q^{2} vs. #theta_{#font[62]{q},#font[62]{P}_{pFD}} (All Int., pFDpCD);Q^{2} = |#font[62]{P}_{pFD} - "
+                                                              "#font[62]{q}| [GeV/c];#theta_{#font[62]{q},#font[62]{P}_{pFD}} [#circ]",
+                                                              numTH2Dbins, Q2_lboundary_FD, Q2_uboundary_FD, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    TH2D *hQ2_VS_theta_q_pFD_QEL_pFDpCD = new TH2D("Q^{2} vs. #theta_{#font[62]{q},#font[62]{P}_{pFD}} (QEL only, pFDpCD)",
+                                                          "Q^{2} vs. #theta_{#font[62]{q},#font[62]{P}_{pFD}} (QEL only, pFDpCD);Q^{2} = |#font[62]{P}_{pFD} - #font[62]{q}| "
+                                                          "[GeV/c];#theta_{#font[62]{q},#font[62]{P}_{pFD}} [#circ]",
+                                                          numTH2Dbins, Q2_lboundary_FD, Q2_uboundary_FD, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    TH2D *hQ2_VS_theta_q_pFD_MEC_pFDpCD = new TH2D("Q^{2} vs. #theta_{#font[62]{q},#font[62]{P}_{pFD}} (MEC only, pFDpCD)",
+                                                          "Q^{2} vs. #theta_{#font[62]{q},#font[62]{P}_{pFD}} (MEC only, pFDpCD);Q^{2} = |#font[62]{P}_{pFD} - #font[62]{q}| "
+                                                          "[GeV/c];#theta_{#font[62]{q},#font[62]{P}_{pFD}} [#circ]",
+                                                          numTH2Dbins, Q2_lboundary_FD, Q2_uboundary_FD, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    TH2D *hQ2_VS_theta_q_pFD_RES_pFDpCD = new TH2D("Q^{2} vs. #theta_{#font[62]{q},#font[62]{P}_{pFD}} (RES only, pFDpCD)",
+                                                          "Q^{2} vs. #theta_{#font[62]{q},#font[62]{P}_{pFD}} (RES only, pFDpCD);Q^{2} = |#font[62]{P}_{pFD} - #font[62]{q}| "
+                                                          "[GeV/c];#theta_{#font[62]{q},#font[62]{P}_{pFD}} [#circ]",
+                                                          numTH2Dbins, Q2_lboundary_FD, Q2_uboundary_FD, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    TH2D *hQ2_VS_theta_q_pFD_DIS_pFDpCD = new TH2D("Q^{2} vs. #theta_{#font[62]{q},#font[62]{P}_{pFD}} (DIS only, pFDpCD)",
+                                                          "Q^{2} vs. #theta_{#font[62]{q},#font[62]{P}_{pFD}} (DIS only, pFDpCD);Q^{2} = |#font[62]{P}_{pFD} - #font[62]{q}| "
+                                                          "[GeV/c];#theta_{#font[62]{q},#font[62]{P}_{pFD}} [#circ]",
+                                                          numTH2Dbins, Q2_lboundary_FD, Q2_uboundary_FD, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    std::string hQ2_VS_theta_q_pFD_All_Int_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hQ2_VS_theta_q_pFD_QEL_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hQ2_VS_theta_q_pFD_MEC_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hQ2_VS_theta_q_pFD_RES_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hQ2_VS_theta_q_pFD_DIS_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+
+    // 2D Q2 vs. theta_q_pCD distribution (pFDpCD)
+    TH2D *hQ2_VS_theta_q_pCD_All_Int_pFDpCD = new TH2D("Q^{2} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (All Int., pFDpCD)",
+                                                              "Q^{2} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (All Int., pFDpCD);Q^{2} = |#font[62]{P}_{pFD} - "
+                                                              "#font[62]{q}| [GeV/c];#theta_{#font[62]{q},#font[62]{P}_{pCD}} [#circ]",
+                                                              numTH2Dbins, Q2_lboundary_FD, Q2_uboundary_FD, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    TH2D *hQ2_VS_theta_q_pCD_QEL_pFDpCD = new TH2D("Q^{2} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (QEL only, pFDpCD)",
+                                                          "Q^{2} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (QEL only, pFDpCD);Q^{2} = |#font[62]{P}_{pFD} - #font[62]{q}| "
+                                                          "[GeV/c];#theta_{#font[62]{q},#font[62]{P}_{pCD}} [#circ]",
+                                                          numTH2Dbins, Q2_lboundary_FD, Q2_uboundary_FD, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    TH2D *hQ2_VS_theta_q_pCD_MEC_pFDpCD = new TH2D("Q^{2} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (MEC only, pFDpCD)",
+                                                          "Q^{2} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (MEC only, pFDpCD);Q^{2} = |#font[62]{P}_{pFD} - #font[62]{q}| "
+                                                          "[GeV/c];#theta_{#font[62]{q},#font[62]{P}_{pCD}} [#circ]",
+                                                          numTH2Dbins, Q2_lboundary_FD, Q2_uboundary_FD, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    TH2D *hQ2_VS_theta_q_pCD_RES_pFDpCD = new TH2D("Q^{2} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (RES only, pFDpCD)",
+                                                          "Q^{2} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (RES only, pFDpCD);Q^{2} = |#font[62]{P}_{pFD} - #font[62]{q}| "
+                                                          "[GeV/c];#theta_{#font[62]{q},#font[62]{P}_{pCD}} [#circ]",
+                                                          numTH2Dbins, Q2_lboundary_FD, Q2_uboundary_FD, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    TH2D *hQ2_VS_theta_q_pCD_DIS_pFDpCD = new TH2D("Q^{2} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (DIS only, pFDpCD)",
+                                                          "Q^{2} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (DIS only, pFDpCD);Q^{2} = |#font[62]{P}_{pFD} - #font[62]{q}| "
+                                                          "[GeV/c];#theta_{#font[62]{q},#font[62]{P}_{pCD}} [#circ]",
+                                                          numTH2Dbins, Q2_lboundary_FD, Q2_uboundary_FD, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    std::string hQ2_VS_theta_q_pCD_All_Int_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hQ2_VS_theta_q_pCD_QEL_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hQ2_VS_theta_q_pCD_MEC_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hQ2_VS_theta_q_pCD_RES_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hQ2_VS_theta_q_pCD_DIS_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+#pragma endregion
+
+#pragma region /* 1D xB distribution (pFDpCD) */
+    // x_B = Q^2 / (2 * m_N * nu)
     THStack *sxB_pFDpCD = new THStack("x_{B} distribution (All Int., pFDpCD)", "x_{B} distribution (pFDpCD);x_{B};");
     TH1D *hxB_All_Int_pFDpCD = new TH1D("x_{B} distribution (All Int., pFDpCD)", "x_{B} distribution (All Int., pFDpCD);x_{B};", numTH1Dbins, xB_lboundary, xB_uboundary);
     TH1D *hxB_QEL_pFDpCD = new TH1D("x_{B} distribution (QEL only, pFDpCD)", "x_{B} distribution (QEL only, pFDpCD);x_{B};", numTH1Dbins, xB_lboundary, xB_uboundary);
     TH1D *hxB_MEC_pFDpCD = new TH1D("x_{B} distribution (MEC only, pFDpCD)", "x_{B} distribution (MEC only, pFDpCD);x_{B};", numTH1Dbins, xB_lboundary, xB_uboundary);
     TH1D *hxB_RES_pFDpCD = new TH1D("x_{B} distribution (RES only, pFDpCD)", "x_{B} distribution (RES only, pFDpCD);x_{B};", numTH1Dbins, xB_lboundary, xB_uboundary);
     TH1D *hxB_DIS_pFDpCD = new TH1D("x_{B} distribution (DIS only, pFDpCD)", "x_{B} distribution (DIS only, pFDpCD);x_{B};", numTH1Dbins, xB_lboundary, xB_uboundary);
-    std::string sxB_pFDpCD_Dir = directories.RecMon_dir_map["RecMon_pFDpCD_Directory"];
-    std::string hxB_All_Int_pFDpCD_Dir = directories.RecMon_dir_map["RecMon_pFDpCD_Directory"];
-    std::string hxB_QEL_pFDpCD_Dir = directories.RecMon_dir_map["RecMon_pFDpCD_Directory"];
-    std::string hxB_MEC_pFDpCD_Dir = directories.RecMon_dir_map["RecMon_pFDpCD_Directory"];
-    std::string hxB_RES_pFDpCD_Dir = directories.RecMon_dir_map["RecMon_pFDpCD_Directory"];
-    std::string hxB_DIS_pFDpCD_Dir = directories.RecMon_dir_map["RecMon_pFDpCD_Directory"];
+    std::string sxB_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hxB_All_Int_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hxB_QEL_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hxB_MEC_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hxB_RES_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hxB_DIS_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
 
     THStack *stheta_q_pFDpCD = new THStack("#theta_{q} distribution (All Int., pFDpCD)", "#theta_{q} distribution (pFDpCD);#theta_{q} [#circ];");
     TH1D *htheta_q_All_Int_pFDpCD =
-        new TH1D("#theta_{q} distribution (All Int., pFDpCD)", "#theta_{q} distribution (All Int., pFDpCD);#theta_{q} [#circ];", numTH1Dbins, Theta_lboundary_FD, Theta_uboundary_FD);
+        new TH1D("#theta_{q} distribution (All Int., pFDpCD)", "#theta_{q} distribution (All Int., pFDpCD);#theta_{q} [#circ];", numTH1Dbins, theta_q_lboundary, theta_q_uboundary);
     TH1D *htheta_q_QEL_pFDpCD =
-        new TH1D("#theta_{q} distribution (QEL only, pFDpCD)", "#theta_{q} distribution (QEL only, pFDpCD);#theta_{q} [#circ];", numTH1Dbins, Theta_lboundary_FD, Theta_uboundary_FD);
+        new TH1D("#theta_{q} distribution (QEL only, pFDpCD)", "#theta_{q} distribution (QEL only, pFDpCD);#theta_{q} [#circ];", numTH1Dbins, theta_q_lboundary, theta_q_uboundary);
     TH1D *htheta_q_MEC_pFDpCD =
-        new TH1D("#theta_{q} distribution (MEC only, pFDpCD)", "#theta_{q} distribution (MEC only, pFDpCD);#theta_{q} [#circ];", numTH1Dbins, Theta_lboundary_FD, Theta_uboundary_FD);
+        new TH1D("#theta_{q} distribution (MEC only, pFDpCD)", "#theta_{q} distribution (MEC only, pFDpCD);#theta_{q} [#circ];", numTH1Dbins, theta_q_lboundary, theta_q_uboundary);
     TH1D *htheta_q_RES_pFDpCD =
-        new TH1D("#theta_{q} distribution (RES only, pFDpCD)", "#theta_{q} distribution (RES only, pFDpCD);#theta_{q} [#circ];", numTH1Dbins, Theta_lboundary_FD, Theta_uboundary_FD);
+        new TH1D("#theta_{q} distribution (RES only, pFDpCD)", "#theta_{q} distribution (RES only, pFDpCD);#theta_{q} [#circ];", numTH1Dbins, theta_q_lboundary, theta_q_uboundary);
     TH1D *htheta_q_DIS_pFDpCD =
-        new TH1D("#theta_{q} distribution (DIS only, pFDpCD)", "#theta_{q} distribution (DIS only, pFDpCD);#theta_{q} [#circ];", numTH1Dbins, Theta_lboundary_FD, Theta_uboundary_FD);
-    std::string stheta_q_pFDpCD_Dir = directories.RecMon_dir_map["RecMon_pFDpCD_Directory"];
-    std::string htheta_q_All_Int_pFDpCD_Dir = directories.RecMon_dir_map["RecMon_pFDpCD_Directory"];
-    std::string htheta_q_QEL_pFDpCD_Dir = directories.RecMon_dir_map["RecMon_pFDpCD_Directory"];
-    std::string htheta_q_MEC_pFDpCD_Dir = directories.RecMon_dir_map["RecMon_pFDpCD_Directory"];
-    std::string htheta_q_RES_pFDpCD_Dir = directories.RecMon_dir_map["RecMon_pFDpCD_Directory"];
-    std::string htheta_q_DIS_pFDpCD_Dir = directories.RecMon_dir_map["RecMon_pFDpCD_Directory"];
+        new TH1D("#theta_{q} distribution (DIS only, pFDpCD)", "#theta_{q} distribution (DIS only, pFDpCD);#theta_{q} [#circ];", numTH1Dbins, theta_q_lboundary, theta_q_uboundary);
+    std::string stheta_q_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string htheta_q_All_Int_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string htheta_q_QEL_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string htheta_q_MEC_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string htheta_q_RES_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string htheta_q_DIS_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+
+#pragma endregion
+
+#pragma region /* 2D xB distribution (pFDpCD) */
+    // 2D xB vs. theta_q distribution (pFDpCD)
+    TH2D *hxB_VS_theta_q_All_Int_pFDpCD = new TH2D("x_{B} vs. #theta_{q} (All Int., pFDpCD)",
+                                                          "x_{B} vs. #theta_{q} (All Int., pFDpCD);x_{B};#theta_{q} [#circ]",
+                                                          numTH2Dbins, xB_lboundary, xB_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    TH2D *hxB_VS_theta_q_QEL_pFDpCD = new TH2D("x_{B} vs. #theta_{q} (QEL only, pFDpCD)",
+                                                      "x_{B} vs. #theta_{q} (QEL only, pFDpCD);x_{B};#theta_{q} [#circ]",
+                                                      numTH2Dbins, xB_lboundary, xB_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    TH2D *hxB_VS_theta_q_MEC_pFDpCD = new TH2D("x_{B} vs. #theta_{q} (MEC only, pFDpCD)",
+                                                      "x_{B} vs. #theta_{q} (MEC only, pFDpCD);x_{B};#theta_{q} [#circ]",
+                                                      numTH2Dbins, xB_lboundary, xB_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    TH2D *hxB_VS_theta_q_RES_pFDpCD = new TH2D("x_{B} vs. #theta_{q} (RES only, pFDpCD)",
+                                                      "x_{B} vs. #theta_{q} (RES only, pFDpCD);x_{B};#theta_{q} [#circ]",
+                                                      numTH2Dbins, xB_lboundary, xB_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    TH2D *hxB_VS_theta_q_DIS_pFDpCD = new TH2D("x_{B} vs. #theta_{q} (DIS only, pFDpCD)",
+                                                      "x_{B} vs. #theta_{q} (DIS only, pFDpCD);x_{B};#theta_{q} [#circ]",
+                                                      numTH2Dbins, xB_lboundary, xB_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    std::string hxB_VS_theta_q_All_Int_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hxB_VS_theta_q_QEL_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hxB_VS_theta_q_MEC_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hxB_VS_theta_q_RES_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hxB_VS_theta_q_DIS_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+
+    // 2D xB vs. theta_q_pFD distribution (pFDpCD)
+    TH2D *hxB_VS_theta_q_pFD_All_Int_pFDpCD = new TH2D("x_{B} vs. #theta_{#font[62]{q},#font[62]{P}_{pFD}} (All Int., pFDpCD)",
+                                                              "x_{B} vs. #theta_{#font[62]{q},#font[62]{P}_{pFD}} (All Int., pFDpCD);x_{B};#theta_{#font[62]{q},#font[62]{P}_{pFD}} [#circ]",
+                                                              numTH2Dbins, xB_lboundary, xB_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    TH2D *hxB_VS_theta_q_pFD_QEL_pFDpCD = new TH2D("x_{B} vs. #theta_{#font[62]{q},#font[62]{P}_{pFD}} (QEL only, pFDpCD)",
+                                                          "x_{B} vs. #theta_{#font[62]{q},#font[62]{P}_{pFD}} (QEL only, pFDpCD);x_{B};#theta_{#font[62]{q},#font[62]{P}_{pFD}} [#circ]",
+                                                          numTH2Dbins, xB_lboundary, xB_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    TH2D *hxB_VS_theta_q_pFD_MEC_pFDpCD = new TH2D("x_{B} vs. #theta_{#font[62]{q},#font[62]{P}_{pFD}} (MEC only, pFDpCD)",
+                                                          "x_{B} vs. #theta_{#font[62]{q},#font[62]{P}_{pFD}} (MEC only, pFDpCD);x_{B};#theta_{#font[62]{q},#font[62]{P}_{pFD}} [#circ]",
+                                                          numTH2Dbins, xB_lboundary, xB_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    TH2D *hxB_VS_theta_q_pFD_RES_pFDpCD = new TH2D("x_{B} vs. #theta_{#font[62]{q},#font[62]{P}_{pFD}} (RES only, pFDpCD)",
+                                                          "x_{B} vs. #theta_{#font[62]{q},#font[62]{P}_{pFD}} (RES only, pFDpCD);x_{B};#theta_{#font[62]{q},#font[62]{P}_{pFD}} [#circ]",
+                                                          numTH2Dbins, xB_lboundary, xB_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    TH2D *hxB_VS_theta_q_pFD_DIS_pFDpCD = new TH2D("x_{B} vs. #theta_{#font[62]{q},#font[62]{P}_{pFD}} (DIS only, pFDpCD)",
+                                                          "x_{B} vs. #theta_{#font[62]{q},#font[62]{P}_{pFD}} (DIS only, pFDpCD);x_{B};#theta_{#font[62]{q},#font[62]{P}_{pFD}} [#circ]",
+                                                          numTH2Dbins, xB_lboundary, xB_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    std::string hxB_VS_theta_q_pFD_All_Int_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hxB_VS_theta_q_pFD_QEL_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hxB_VS_theta_q_pFD_MEC_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hxB_VS_theta_q_pFD_RES_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hxB_VS_theta_q_pFD_DIS_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+
+    // 2D xB vs. theta_q_pCD distribution (pFDpCD)
+    TH2D *hxB_VS_theta_q_pCD_All_Int_pFDpCD = new TH2D("x_{B} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (All Int., pFDpCD)",
+                                                              "x_{B} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (All Int., pFDpCD);x_{B};#theta_{#font[62]{q},#font[62]{P}_{pCD}} [#circ]",
+                                                              numTH2Dbins, xB_lboundary, xB_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    TH2D *hxB_VS_theta_q_pCD_QEL_pFDpCD = new TH2D("x_{B} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (QEL only, pFDpCD)",
+                                                          "x_{B} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (QEL only, pFDpCD);x_{B};#theta_{#font[62]{q},#font[62]{P}_{pCD}} [#circ]",
+                                                          numTH2Dbins, xB_lboundary, xB_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    TH2D *hxB_VS_theta_q_pCD_MEC_pFDpCD = new TH2D("x_{B} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (MEC only, pFDpCD)",
+                                                          "x_{B} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (MEC only, pFDpCD);x_{B};#theta_{#font[62]{q},#font[62]{P}_{pCD}} [#circ]",
+                                                          numTH2Dbins, xB_lboundary, xB_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    TH2D *hxB_VS_theta_q_pCD_RES_pFDpCD = new TH2D("x_{B} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (RES only, pFDpCD)",
+                                                          "x_{B} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (RES only, pFDpCD);x_{B};#theta_{#font[62]{q},#font[62]{P}_{pCD}} [#circ]",
+                                                          numTH2Dbins, xB_lboundary, xB_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    TH2D *hxB_VS_theta_q_pCD_DIS_pFDpCD = new TH2D("x_{B} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (DIS only, pFDpCD)",
+                                                          "x_{B} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (DIS only, pFDpCD);x_{B};#theta_{#font[62]{q},#font[62]{P}_{pCD}} [#circ]",
+                                                          numTH2Dbins, xB_lboundary, xB_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    std::string hxB_VS_theta_q_pCD_All_Int_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hxB_VS_theta_q_pCD_QEL_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hxB_VS_theta_q_pCD_MEC_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hxB_VS_theta_q_pCD_RES_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string hxB_VS_theta_q_pCD_DIS_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+#pragma endregion
+
+#pragma region /* 1D theta_q distribution (pFDpCD) */
+// NOTE: these plots are taken from the angle histograms section
+#pragma endregion
+
+#pragma region /* 2D theta_q distribution (pFDpCD) */
+    // 2D theta_q vs. theta_q_pFD distribution (pFDpCD)
+    TH2D *htheta_q_VS_theta_q_pFD_All_Int_pFDpCD = new TH2D("#theta_{q} vs. #theta_{#font[62]{q},#font[62]{P}_{pFD}} (All Int., pFDpCD)",
+                                                              "#theta_{q} vs. #theta_{#font[62]{q},#font[62]{P}_{pFD}} (All Int., pFDpCD);#theta_{q} [#circ];#theta_{#font[62]{q},#font[62]{P}_{pFD}} [#circ]",
+                                                              numTH2Dbins, theta_q_lboundary, theta_q_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    TH2D *htheta_q_VS_theta_q_pFD_QEL_pFDpCD = new TH2D("#theta_{q} vs. #theta_{#font[62]{q},#font[62]{P}_{pFD}} (QEL only, pFDpCD)",
+                                                          "#theta_{q} vs. #theta_{#font[62]{q},#font[62]{P}_{pFD}} (QEL only, pFDpCD);#theta_{q} [#circ];#theta_{#font[62]{q},#font[62]{P}_{pFD}} [#circ]",
+                                                          numTH2Dbins, theta_q_lboundary, theta_q_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    TH2D *htheta_q_VS_theta_q_pFD_MEC_pFDpCD = new TH2D("#theta_{q} vs. #theta_{#font[62]{q},#font[62]{P}_{pFD}} (MEC only, pFDpCD)",
+                                                          "#theta_{q} vs. #theta_{#font[62]{q},#font[62]{P}_{pFD}} (MEC only, pFDpCD);#theta_{q} [#circ];#theta_{#font[62]{q},#font[62]{P}_{pFD}} [#circ]",
+                                                          numTH2Dbins, theta_q_lboundary, theta_q_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    TH2D *htheta_q_VS_theta_q_pFD_RES_pFDpCD = new TH2D("#theta_{q} vs. #theta_{#font[62]{q},#font[62]{P}_{pFD}} (RES only, pFDpCD)",
+                                                          "#theta_{q} vs. #theta_{#font[62]{q},#font[62]{P}_{pFD}} (RES only, pFDpCD);#theta_{q} [#circ];#theta_{#font[62]{q},#font[62]{P}_{pFD}} [#circ]",
+                                                          numTH2Dbins, theta_q_lboundary, theta_q_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    TH2D *htheta_q_VS_theta_q_pFD_DIS_pFDpCD = new TH2D("#theta_{q} vs. #theta_{#font[62]{q},#font[62]{P}_{pFD}} (DIS only, pFDpCD)",
+                                                          "#theta_{q} vs. #theta_{#font[62]{q},#font[62]{P}_{pFD}} (DIS only, pFDpCD);#theta_{q} [#circ];#theta_{#font[62]{q},#font[62]{P}_{pFD}} [#circ]",
+                                                          numTH2Dbins, theta_q_lboundary, theta_q_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    std::string htheta_q_VS_theta_q_pFD_All_Int_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string htheta_q_VS_theta_q_pFD_QEL_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string htheta_q_VS_theta_q_pFD_MEC_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string htheta_q_VS_theta_q_pFD_RES_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string htheta_q_VS_theta_q_pFD_DIS_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+
+    // 2D theta_q vs. theta_q_pCD distribution (pFDpCD)
+    TH2D *htheta_q_VS_theta_q_pCD_All_Int_pFDpCD = new TH2D("#theta_{q} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (All Int., pFDpCD)",
+                                                              "#theta_{q} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (All Int., pFDpCD);#theta_{q} [#circ];#theta_{#font[62]{q},#font[62]{P}_{pCD}} [#circ]",
+                                                              numTH2Dbins, theta_q_lboundary, theta_q_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    TH2D *htheta_q_VS_theta_q_pCD_QEL_pFDpCD = new TH2D("#theta_{q} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (QEL only, pFDpCD)",
+                                                          "#theta_{q} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (QEL only, pFDpCD);#theta_{q} [#circ];#theta_{#font[62]{q},#font[62]{P}_{pCD}} [#circ]",
+                                                          numTH2Dbins, theta_q_lboundary, theta_q_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    TH2D *htheta_q_VS_theta_q_pCD_MEC_pFDpCD = new TH2D("#theta_{q} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (MEC only, pFDpCD)",
+                                                          "#theta_{q} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (MEC only, pFDpCD);#theta_{q} [#circ];#theta_{#font[62]{q},#font[62]{P}_{pCD}} [#circ]",
+                                                          numTH2Dbins, theta_q_lboundary, theta_q_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    TH2D *htheta_q_VS_theta_q_pCD_RES_pFDpCD = new TH2D("#theta_{q} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (RES only, pFDpCD)",
+                                                          "#theta_{q} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (RES only, pFDpCD);#theta_{q} [#circ];#theta_{#font[62]{q},#font[62]{P}_{pCD}} [#circ]",
+                                                          numTH2Dbins, theta_q_lboundary, theta_q_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    TH2D *htheta_q_VS_theta_q_pCD_DIS_pFDpCD = new TH2D("#theta_{q} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (DIS only, pFDpCD)",
+                                                          "#theta_{q} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (DIS only, pFDpCD);#theta_{q} [#circ];#theta_{#font[62]{q},#font[62]{P}_{pCD}} [#circ]",
+                                                          numTH2Dbins, theta_q_lboundary, theta_q_uboundary, numTH2Dbins, theta_q_lboundary, theta_q_uboundary);
+    std::string htheta_q_VS_theta_q_pCD_All_Int_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string htheta_q_VS_theta_q_pCD_QEL_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string htheta_q_VS_theta_q_pCD_MEC_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string htheta_q_VS_theta_q_pCD_RES_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string htheta_q_VS_theta_q_pCD_DIS_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+#pragma endregion
+
+#pragma region /* 1D theta_q_pFD distribution (pFDpCD) */
+// NOTE: these plots are taken from the angle histograms section
+#pragma endregion
+
+#pragma region /* 2D theta_q_pFD distribution (pFDpCD) */
+    // 2D theta_q_pFD vs. theta_q_pCD distribution (pFDpCD)
+    TH2D *htheta_q_pFD_VS_theta_q_pCD_All_Int_pFDpCD = new TH2D("#theta_{#font[62]{q},#font[62]{P}_{pFD}} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (All Int., pFDpCD)",
+                                                              "#theta_{#font[62]{q},#font[62]{P}_{pFD}} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (All Int., pFDpCD);#theta_{#font[62]{q},#font[62]{P}_{pFD}} [#circ];#theta_{#font[62]{q},#font[62]{P}_{pCD}} [#circ]",
+                                                              numTH2Dbins, theta_q_pFD_lboundary, theta_q_pFD_uboundary, numTH2Dbins, theta_q_pFD_lboundary, theta_q_pFD_uboundary);
+    TH2D *htheta_q_pFD_VS_theta_q_pCD_QEL_pFDpCD = new TH2D("#theta_{#font[62]{q},#font[62]{P}_{pFD}} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (QEL only, pFDpCD)",
+                                                          "#theta_{#font[62]{q},#font[62]{P}_{pFD}} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (QEL only, pFDpCD);#theta_{#font[62]{q},#font[62]{P}_{pFD}} [#circ];#theta_{#font[62]{q},#font[62]{P}_{pCD}} [#circ]",
+                                                          numTH2Dbins, theta_q_pFD_lboundary, theta_q_pFD_uboundary, numTH2Dbins, theta_q_pFD_lboundary, theta_q_pFD_uboundary);
+    TH2D *htheta_q_pFD_VS_theta_q_pCD_MEC_pFDpCD = new TH2D("#theta_{#font[62]{q},#font[62]{P}_{pFD}} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (MEC only, pFDpCD)",
+                                                          "#theta_{#font[62]{q},#font[62]{P}_{pFD}} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (MEC only, pFDpCD);#theta_{#font[62]{q},#font[62]{P}_{pFD}} [#circ];#theta_{#font[62]{q},#font[62]{P}_{pCD}} [#circ]",
+                                                          numTH2Dbins, theta_q_pFD_lboundary, theta_q_pFD_uboundary, numTH2Dbins, theta_q_pFD_lboundary, theta_q_pFD_uboundary);
+    TH2D *htheta_q_pFD_VS_theta_q_pCD_RES_pFDpCD = new TH2D("#theta_{#font[62]{q},#font[62]{P}_{pFD}} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (RES only, pFDpCD)",
+                                                          "#theta_{#font[62]{q},#font[62]{P}_{pFD}} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (RES only, pFDpCD);#theta_{#font[62]{q},#font[62]{P}_{pFD}} [#circ];#theta_{#font[62]{q},#font[62]{P}_{pCD}} [#circ]",
+                                                          numTH2Dbins, theta_q_pFD_lboundary, theta_q_pFD_uboundary, numTH2Dbins, theta_q_pFD_lboundary, theta_q_pFD_uboundary);
+    TH2D *htheta_q_pFD_VS_theta_q_pCD_DIS_pFDpCD = new TH2D("#theta_{#font[62]{q},#font[62]{P}_{pFD}} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (DIS only, pFDpCD)",
+                                                          "#theta_{#font[62]{q},#font[62]{P}_{pFD}} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (DIS only, pFDpCD);#theta_{#font[62]{q},#font[62]{P}_{pFD}} [#circ];#theta_{#font[62]{q},#font[62]{P}_{pCD}} [#circ]",
+                                                          numTH2Dbins, theta_q_pFD_lboundary, theta_q_pFD_uboundary, numTH2Dbins, theta_q_pFD_lboundary, theta_q_pFD_uboundary);
+    std::string htheta_q_pFD_VS_theta_q_pCD_All_Int_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string htheta_q_pFD_VS_theta_q_pCD_QEL_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string htheta_q_pFD_VS_theta_q_pCD_MEC_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string htheta_q_pFD_VS_theta_q_pCD_RES_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+    std::string htheta_q_pFD_VS_theta_q_pCD_DIS_pFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
+#pragma endregion
+
+#pragma region /* 1D theta_q_pCD distribution (pFDpCD) */
+// NOTE: these plots are taken from the angle histograms section
+#pragma endregion
 
 #pragma endregion
 
@@ -3927,6 +4852,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                                      "#theta_{#font[62]{q},#font[62]{P}_{p}} [#circ];",
                                      numTH1Dbins_Ang_Plots, 0, 180);
     std::string hTheta_q_p_p_1p_Dir = directories.Angle_dir_map["Opening_angle_1p_Directory"];
+    std::string hTheta_q_p_p_1p_Dir_ReacMon = directories.ReacMon_dir_map["ReacMon_1p_Directory"];
 
     // Theta_q_p_p vs. |P_p|/|q| (1p, FD only) -------------------------------------------------------------------------------------------------------------------------------
 
@@ -4001,6 +4927,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                                      "#theta_{#font[62]{q},#font[62]{P}_{n}} [#circ];",
                                      numTH1Dbins_Ang_Plots, 0, 180);
     std::string hTheta_q_p_n_1n_Dir = directories.Angle_dir_map["Opening_angle_1n_Directory"];
+    std::string hTheta_q_p_n_1n_Dir_ReacMon = directories.ReacMon_dir_map["ReacMon_1n_Directory"];
 
     // Theta_q_p_n vs. |p_n|/|q| (1n, FD only) ------------------------------------------------------------------------------------------------------------------------------
 
@@ -4607,7 +5534,9 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                                          ";#theta_{#font[62]{q},#font[62]{P}_{pCD}} [#circ]",
                                          numTH1Dbins_Ang_Plots, 0, 180);
     std::string hTheta_q_pFD_pFDpCD_Dir = directories.Angle_dir_map["Opening_angles_pFDpCD_Directory"];
+    std::string hTheta_q_pFD_pFDpCD_Dir_ReacMon = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
     std::string hTheta_q_pCD_pFDpCD_Dir = directories.Angle_dir_map["Opening_angles_pFDpCD_Directory"];
+    std::string hTheta_q_pCD_pFDpCD_Dir_ReacMon = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
 
     // Theta_q_p_tot vs. W (pFDpCD, CD & FD) --------------------------------------------------------------------------------------------------------------------------------
 
@@ -5118,7 +6047,9 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                                          "#theta_{#font[62]{q},#font[62]{P}_{pCD}} [#circ]",
                                          numTH1Dbins_Ang_Plots, 0, 180);
     std::string hTheta_q_nFD_nFDpCD_Dir = directories.Angle_dir_map["Opening_angles_nFDpCD_Directory"];
+    std::string hTheta_q_nFD_nFDpCD_Dir_ReacMon = directories.ReacMon_dir_map["ReacMon_nFDpCD_Directory"];
     std::string hTheta_q_pCD_nFDpCD_Dir = directories.Angle_dir_map["Opening_angles_nFDpCD_Directory"];
+    std::string hTheta_q_pCD_nFDpCD_Dir_ReacMon = directories.ReacMon_dir_map["ReacMon_nFDpCD_Directory"];
 
     // Theta_q_p_tot vs. W (nFDpCD, CD & FD) --------------------------------------------------------------------------------------------------------------------------------
 
@@ -5418,6 +6349,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     TH1D *hQ2_RES_1p = new TH1D("Q^{2} (RES Only, 1p, FD)", "Q^{2} (RES Only, 1p, FD);Q^{2} [GeV^{2}/c^{2}];", numTH1Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
     TH1D *hQ2_DIS_1p = new TH1D("Q^{2} (DIS Only, 1p, FD)", "Q^{2} (DIS Only, 1p, FD);Q^{2} [GeV^{2}/c^{2}];", numTH1Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
     std::string hQ2_1p_Dir = directories.Momentum_transfer_dir_map["Momentum_transfer_1p_Directory"];
+    std::string hQ2_1p_Dir_ReacMon = directories.ReacMon_dir_map["ReacMon_1p_Directory"];
 
     THStack *sq_3v_1p = new THStack("q = |#font[62]{q}| (1p, CD & FD)", "q = |#font[62]{q}| Histogram (1p, CD & FD);q [GeV/c];");
     TH1D *hq_3v_1p = new TH1D("q = |#font[62]{q}| (1p, FD)", "q = |#font[62]{q}| (1p, FD);q [GeV/c];", numTH1Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
@@ -5495,6 +6427,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     TH1D *hq_3v_DIS_1n =
         new TH1D("q = |#font[62]{q}| (DIS Only, 1n, FD)", "q = |#font[62]{q}| (DIS Only, 1n, FD);q [GeV/c];", numTH1Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
     std::string hQ2_1n_Dir = directories.Momentum_transfer_dir_map["Momentum_transfer_1n_Directory"];
+    std::string hQ2_1n_Dir_ReacMon = directories.ReacMon_dir_map["ReacMon_1n_Directory"];
 
     THStack *sq_3v_1n = new THStack("q = |#font[62]{q}| (1n, CD & FD)", "q = |#font[62]{q}| Histogram (1n, CD & FD);q [GeV/c];");
     TH1D *hq_3v_1n = new TH1D("q = |#font[62]{q}| (1n, FD)", "q = |#font[62]{q}| (1n, FD);q [GeV/c];", numTH1Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
@@ -5629,6 +6562,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     TH1D *hQ2_DIS_pFDpCD =
         new TH1D("Q^{2} (DIS Only, pFDpCD, FD)", "Q^{2} (DIS Only, pFDpCD, FD);Q^{2} [GeV^{2}/c^{2}];", numTH1Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
     std::string hQ2_pFDpCD_Dir = directories.Momentum_transfer_dir_map["Momentum_transfer_pFDpCD_Directory"];
+    std::string hQ2_pFDpCD_Dir_ReacMon = directories.ReacMon_dir_map["ReacMon_pFDpCD_Directory"];
 
     THStack *sq_3v_pFDpCD = new THStack("q = |#font[62]{q}| (pFDpCD, CD & FD)", "q = |#font[62]{q}| Histogram (pFDpCD, CD & FD);q [GeV/c];");
     TH1D *hq_3v_pFDpCD = new TH1D("q = |#font[62]{q}| (pFDpCD, FD)", "q = |#font[62]{q}| (pFDpCD, FD);q [GeV/c];", numTH1Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
@@ -5706,6 +6640,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     TH1D *hQ2_DIS_nFDpCD =
         new TH1D("Q^{2} (DIS Only, nFDpCD, FD)", "Q^{2} (DIS Only, nFDpCD, FD);Q^{2} [GeV^{2}/c^{2}];", numTH1Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
     std::string hQ2_nFDpCD_Dir = directories.Momentum_transfer_dir_map["Momentum_transfer_nFDpCD_Directory"];
+    std::string hQ2_nFDpCD_Dir_ReacMon = directories.ReacMon_dir_map["ReacMon_nFDpCD_Directory"];
 
     THStack *sq_3v_nFDpCD = new THStack("q = |#font[62]{q}| (nFDpCD, CD & FD)", "q = |#font[62]{q}| Histogram (nFDpCD, CD & FD);q [GeV/c];");
     TH1D *hq_3v_nFDpCD = new TH1D("q = |#font[62]{q}| (nFDpCD, FD)", "q = |#font[62]{q}| (nFDpCD, FD);q [GeV/c];", numTH1Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);

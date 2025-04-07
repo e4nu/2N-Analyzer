@@ -116,9 +116,9 @@ class Directories {
     #pragma endregion
 
     #pragma region /* Reaction monitoring plots directories */
-    bool create_RecMon_Dir = true;
-    std::string RecMon_Parent_Directory = "02_Rec_Mon_plots";
-    vector<string> RecMon_Daughter_Folders = {"", "02_1p", "03_1n", "04_2p", "05_pFDpCD", "06_nFDpCD"};
+    bool create_ReacMon_Dir = true;
+    std::string ReacMon_Parent_Directory = "02_Rec_Mon_plots";
+    vector<string> ReacMon_Daughter_Folders = {"", "02_1p", "03_1n", "04_2p", "05_pFDpCD", "06_nFDpCD"};
     #pragma endregion
 
     #pragma region /* W plots directories */
@@ -571,7 +571,7 @@ class Directories {
     map<string, string> Fiducial_dir_map;
     map<string, string> Momentum_dir_map;
 
-    map<string, string> RecMon_dir_map;
+    map<string, string> ReacMon_dir_map;
     map<string, string> W_dir_map;
     map<string, string> Beta_dir_map;
     map<string, string> Angle_dir_map;
