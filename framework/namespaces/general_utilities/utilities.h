@@ -172,7 +172,7 @@ void FillHistogramByProcess(double Variable, TH1D *Histogram_All_Int, TH1D *Hist
 // GetHistogramEntries function -----------------------------------------------------------------------------------------------------------------------------------------
 
 double GetHistogramEntriesFromVector(const std::vector<TObject *> &HistoList, const std::string &searchString, const std::string &searchStringOption = "name") {
-    if (TH1 *Histogram = GetHistogramFromVector(HistoList, searchString, searchStringOption)) { return Histogram->GetEntries(); }
+    if (TObject *Histogram = GetHistogramFromVector(HistoList, searchString, searchStringOption)) { return Histogram->GetEntries(); }
     return -1;  // Return -1 if no match is found
 }
 
