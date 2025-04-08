@@ -2837,9 +2837,9 @@ double AMaps::GetWeight(bool apply_kinematical_weights, const std::string &Parti
 
 #pragma region /* IsInFDQuery function */
 bool AMaps::IsInFDQuery(bool Generate_AMaps, const DSCuts &ThetaFD, const std::string &Particle, double Momentum, double Theta, double Phi, bool NucleonOverlappingFC) {
-    std::string DebuggeBaseString = "AMaps::IsInFDQuery: " + Particle + " with momentum: " + basic_tools::ToStringWithPrecision(Momentum, 2) +
+    std::string DebuggingBaseString = "AMaps::IsInFDQuery: " + Particle + " with momentum: " + basic_tools::ToStringWithPrecision(Momentum, 2) +
                                     " GeV/c, theta: " + basic_tools::ToStringWithPrecision(Theta, 2) + " rad, phi: " + basic_tools::ToStringWithPrecision(Phi, 2) + " deg";
-    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps, DebuggeBaseString + " - Start");
+    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps, (DebuggingBaseString + " - Start"));
 
     bool inFDQuery, part_inSomeSector;
 
@@ -2851,7 +2851,7 @@ bool AMaps::IsInFDQuery(bool Generate_AMaps, const DSCuts &ThetaFD, const std::s
 
     inFDQuery = (part_inSomeSector && (Theta >= ThetaFD.GetLowerCutConst()) && (Theta <= ThetaFD.GetUpperCutConst()));
 
-    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps, DebuggeBaseString + " - End");
+    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps, (DebuggingBaseString + " - End"));
 
     return inFDQuery;
 }
