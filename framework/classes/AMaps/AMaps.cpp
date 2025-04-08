@@ -2497,8 +2497,8 @@ bool AMaps::MatchAngToHitMap(const std::string &Particle, double Momentum, doubl
                             if ((Phi >= PhiLowerLimTemp) && (Phi < PhiUpperLimTemp)) {
                                 if (NucleonOverlappingFC) {
                                     if (debugging_settings::DebuggerMode) {
-                                        std::cout << "\n\nLoaded_nuc_AMap_Slices.at(Slice).size() = " << Loaded_nuc_AMap_Slices.at(Slice) << "\n";
-                                        std::cout << "Loaded_nuc_AMap_Slices.at(Slice).at(" << i << ").size() = " << Loaded_nuc_AMap_Slices.at(Slice).at(i) << "\n\n";
+                                        std::cout << "\n\nLoaded_nuc_AMap_Slices.at(Slice).size() = " << Loaded_nuc_AMap_Slices.at(Slice).size() << "\n";
+                                        std::cout << "Loaded_nuc_AMap_Slices.at(Slice).at(" << i << ").size() = " << Loaded_nuc_AMap_Slices.at(Slice).at(i).size() << "\n\n";
                                     }
 
                                     if (Loaded_nuc_AMap_Slices.at(Slice).at(i).at(j) != 0) {
