@@ -522,7 +522,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     // TList definition -----------------------------------------------------------------------------------------------------------------------------------------------------
 
-    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode);
+    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps);
 
     // TList definition
     /* Definition of plots TLists used to save all plots to .root file. */
@@ -534,7 +534,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     // TFile definition -----------------------------------------------------------------------------------------------------------------------------------------------------
 
-    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode);
+    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps);
 
     // TFile definition
     /* Definition of plots TFile used to save all plots to .pdf file. */
@@ -545,7 +545,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     // Plot selector --------------------------------------------------------------------------------------------------------------------------------------------------------
 
-    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode);
+    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps);
 
     // Plot selector
     /* Here are boolean variables used to turn ON/OFF the different plots of the code.
@@ -795,7 +795,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     // Normalization setup -----------------------------------------------------------------------------------------------------------------------------------------------
 
-    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode);
+    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps);
 
     // Normalization setup
     /* Here are boolean variables used to turn ON/OFF the different plot normalizations of the code.
@@ -823,7 +823,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     // Delete setup ------------------------------------------------------------------------------------------------------------------------------------------------------
 
-    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode);
+    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps);
 
     // Delete setup
     /* Clear files from previous runs (to prevent mix fo plots from different codes). */
@@ -853,7 +853,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     // Histogram setup ---------------------------------------------------------------------------------------------------------------------------------------------------
 
-    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode);
+    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps);
 
     // Histogram setup
     /* Histogram boundary variables. Used to unify histograms to the same boundaries. */
@@ -1036,7 +1036,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     // Acceptance maps generation -------------------------------------------------------------------------------------------------------------------------------------------
 
-    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode);
+    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps);
 
     // Acceptance maps generation
     /* Acceptance maps are handled completely by the AMaps class */
@@ -1063,7 +1063,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                              AMapsSettings.Nucleon_single_slice_test, AMapsSettings.TestSlices);
     }
 
-    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode);
+    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps);
 
     if (AMapsSettings.Generate_WMaps) {
         wMaps_master =
@@ -1082,7 +1082,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     // Acceptance correction data -------------------------------------------------------------------------------------------------------------------------------------------
 
-    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode);
+    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps);
 
     // Acceptance correction
     /* Neutron resolution fits is handled completely by the MomentumResolution class */
@@ -1103,7 +1103,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     // Neutron resolution & proton smearing ---------------------------------------------------------------------------------------------------------------------------------
 
-    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode);
+    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps);
 
     // Neutron resolution
     /* Neutron resolution fits is handled completely by the MomentumResolution class */
@@ -1134,7 +1134,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     // Debugging setup ---------------------------------------------------------------------------------------------------------------------------------------------------
 
-    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode);
+    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps);
 
     // Debugging setup
     /* Saving a printout of the number of particles in nEvents2print events. Used for clas12ana debugging. */
@@ -1195,7 +1195,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
 #pragma region /* Cut parameters plots */
 
-    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode);
+    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps);
 
     // Cut parameters plots
 
@@ -10774,7 +10774,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     //  Setting beam particle's momentum
     //  ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode);
+    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps);
 
     // Setting beam particle's momentum
     double Pv = parameters.beamE, Pvx = 0., Pvy = 0., Pvz = Pv;  // Assuming momentum of incoming lepton is in the z direction
@@ -10823,7 +10823,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     std::cout << "\033[33m\n\nLooping over chain files...\n\n\033[0m";
 
-    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode);
+    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps);
 
     while (chain.Next()) {
 #pragma region /* Event setup */
@@ -10831,7 +10831,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps, "Event setup - start");
 
         // loop over events
-        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode);
+        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps);
 
         ++num_of_events;  // logging Total #(events) in sample
 
@@ -15389,7 +15389,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
             //  Fillings 2p histograms ---------------------------------------------------------------------------------------------------------------------------------
 
-            debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode);
+            debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps);
 
             // Fillings 2p histograms
             ++num_of_events_2p;
