@@ -8,12 +8,12 @@
 
 #include <iostream>
 
-#include "../../structures/AcceptanceMapsSettings/AcceptanceMapsSettings.h"
-#include "../../structures/AnalysisCutSettings/AnalysisCutSettings.h"
-#include "../../structures/CutValueManager/CutValueManager.h"
-#include "../../structures/EventSelectionSettings/EventSelectionSettings.h"
-#include "../../structures/MomentumResolutionSettings/MomentumResolutionSettings.h"
-#include "../../structures/RunParameters/RunParameters.h"
+#include "../../structures/RecoAnalyserSettings/AcceptanceMapsSettings.h"
+#include "../../structures/RecoAnalyserSettings/AnalysisCutSettings.h"
+#include "../../structures/RecoAnalyserSettings/CutValueManager.h"
+#include "../../structures/RecoAnalyserSettings/EventSelectionSettings.h"
+#include "../../structures/RecoAnalyserSettings/MomentumResolutionSettings.h"
+#include "../../structures/RecoAnalyserSettings/RunParameters.h"
 
 namespace printers {
 

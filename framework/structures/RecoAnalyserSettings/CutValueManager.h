@@ -17,7 +17,7 @@
 #include "../../classes/hPlots/hPlot1D.cpp"
 
 // Include settings:
-#include "../EventSelectionSettings/EventSelectionSettings.h"
+#include "../EventSelectionSettings.h"
 
 struct CutValueManager {
     // Cut declarations -----------------------------------------------------------------------------------------------------------------------------------------------------

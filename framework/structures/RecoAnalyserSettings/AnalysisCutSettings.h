@@ -7,13 +7,18 @@
 
 #include <iostream>
 
+// Include settings:
+#include "../AcceptanceMapsSettings.h"
+#include "../EventSelectionSettings.h"
+#include "../MomentumResolutionSettings.h"
+#include "../RunParameters.h"
+
+// Include libraries:
+#include "../../namespaces/setup/path_definitions.h"
+
+// Include classes:
 #include "../../classes/ExperimentParameters/ExperimentParameters.cpp"
 #include "../../classes/Settings/Settings.cpp"
-#include "../../namespaces/setup/path_definitions.h"
-#include "../AcceptanceMapsSettings/AcceptanceMapsSettings.h"
-#include "../EventSelectionSettings/EventSelectionSettings.h"
-#include "../MomentumResolutionSettings/MomentumResolutionSettings.h"
-#include "../RunParameters/RunParameters.h"
 
 struct AnalysisCutSettings {
     // Cuts setup
@@ -56,31 +61,43 @@ struct AnalysisCutSettings {
 
     // Constructor with default values
     AnalysisCutSettings()
-        : apply_cuts(true),
+        // Cuts setup:
+        : apply_cuts(false),
         // : apply_cuts(true),
           clas12ana_particles(true),
           only_preselection_cuts(false),
           only_electron_quality_cuts(false),
+
+          // Preselection cuts (event cuts):
           apply_preselection_cuts(true),
           apply_Vz_e_cuts(true),
           apply_Vz_cuts(true),
           apply_dVz_cuts(true),
           apply_DC_e_fiducial_cuts(true),
           apply_DC_fiducial_cuts(true),
+
+          // Electron quality cuts:
           apply_electron_quality_cuts(true),
           apply_Nphe_cut(true),
           apply_ECAL_SF_cuts(true),
           apply_ECAL_P_cuts(false),
           apply_ECAL_fiducial_cuts(true),
           apply_Electron_beta_cut(true),
+
+          // Chi2 cuts (= PID cuts):
           apply_chi2_cuts_1e_cut(true),
+
+          // Nucleon cuts:
           apply_nucleon_cuts(false),
+
+          // Physical cuts:
           apply_nucleon_physical_cuts(false),
           apply_nBeta_fit_cuts(true),
           apply_fiducial_cuts(false),
           apply_kinematical_cuts(false),
           apply_kinematical_weights(false),
           apply_nucleon_SmearAndCorr(false),
+          
           custom_cuts_naming(true) {}
 
     void RefreshSettings(const RunParameters& parameters, EventSelectionSettings& ESSettings, AcceptanceMapsSettings& AMapsSettings, MomentumResolutionSettings& MomResSettings) {

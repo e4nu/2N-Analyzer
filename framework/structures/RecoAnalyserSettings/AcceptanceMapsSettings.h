@@ -7,8 +7,11 @@
 
 #include <iostream>
 
+// Include settings:
+#include "../RunParameters.h"
+
+// Include libraries:
 #include "../../namespaces/general_utilities/basic_tools.h"
-#include "../RunParameters/RunParameters.h"
 
 struct AcceptanceMapsSettings {
     bool Generate_Electron_AMaps;  // Generate electron acceptance maps
@@ -25,8 +28,8 @@ struct AcceptanceMapsSettings {
 
     AcceptanceMapsSettings()
         : Generate_Electron_AMaps(false),
-          Generate_Nucleon_AMaps(true),
-          Generate_WMaps(true),
+          Generate_Nucleon_AMaps(false),
+          Generate_WMaps(false),
           AMaps_calc_with_one_reco_electron(true),
 
           P_e_bin_profile("uniform_P_e_bins"),
