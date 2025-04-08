@@ -42,7 +42,7 @@
     #else
         #include "../hPlots/hPlot1D.cpp"
     #endif
-    
+
     // Include CLAS12 libraries:
     #include "../../includes/clas12_include.h"
 
@@ -96,7 +96,7 @@ class MomentumResolution {
 
     std::string ResSlicePlots_OutFile0;
 
-    #pragma region /* Random number generators */
+    #pragma region                                /* Random number generators */
     std::string RandomNumGenerator = "TRandom3";  // TRandom3 by default
 
     TRandom1 *Rand1 = new TRandom1();

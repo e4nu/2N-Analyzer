@@ -19,13 +19,13 @@
     #include "../framework/namespaces/plotters/draw_and_save_functions/draw_and_save_functions.h"
 
     // Include settings:
+    #include "../framework/namespaces/printers/printers.h"
     #include "../framework/structures/AcceptanceMapsSettings/AcceptanceMapsSettings.h"
     #include "../framework/structures/AnalysisCutSettings/AnalysisCutSettings.h"
     #include "../framework/structures/CutValueManager/CutValueManager.h"
     #include "../framework/structures/EventSelectionSettings/EventSelectionSettings.h"
     #include "../framework/structures/MomentumResolutionSettings/MomentumResolutionSettings.h"
     #include "../framework/structures/RunParameters/RunParameters.h"
-    #include "../framework/namespaces/printers/printers.h"
 
     // Include classes:
     #include "../framework/classes/AMaps/AMaps.cpp"

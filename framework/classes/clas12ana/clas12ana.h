@@ -213,7 +213,7 @@ class clas12ana : public clas12reader {
     std::vector<region_part_ptr> getByPid(std::vector<region_part_ptr> particles, int pid);
     //  std::vector<region_part_ptr> getByPidChi2(int pid, double chi2);
 
-    #pragma region /* My addition (methods) */
+#pragma region                                          /* My addition (methods) */
     double getEcalSFUpperCut() { return SF_max_cut; };  // My addition
 
     double getEcalSFLowerCut() { return SF_min_cut; };  // My addition
@@ -279,7 +279,7 @@ class clas12ana : public clas12reader {
     }
 
     void FillECALHitMap(region_part_ptr p);  // My addition
-                                             #pragma endregion
+#pragma endregion
 
    private:
     std::vector<region_part_ptr> electrons;
@@ -432,7 +432,7 @@ class clas12ana : public clas12reader {
     TH2D *dc_hit_map_a_pion[4];  // 3 regions
     TH2D *dc_hit_map_b_pion[4];  // 3 regions
 
-    #pragma region /* My addition (attributes) */
+#pragma region                                  /* My addition (attributes) */
     std::vector<region_part_ptr> allparticles;  // My addition
 
     bool f_NpheCuts = false;  // My addition
@@ -450,7 +450,7 @@ class clas12ana : public clas12reader {
 
     double dc_edge_cut = 10;  // My addition (from Larry)
 
-    #pragma region /* my debugging - multiplicity plots before cuts (= BC) - no #e cuts */
+#pragma region /* my debugging - multiplicity plots before cuts (= BC) - no #e cuts */
     /* my debugging - multiplicity plots before cuts (= BC) - no #e cuts */
     //    TH2D *multi_p_vs_cpi_fd_BC_debug = new TH2D("multi_p_vs_cpi_fd_BC_debug",
     //                                                "#font[12]{#p} vs. #font[12]{##pi^{#pm}} BC (no #e cuts, FD);#font[12]{#p};#font[12]{##pi^{#pm}}", 10, 0, 10, 10, 0, 10);
@@ -464,9 +464,9 @@ class clas12ana : public clas12reader {
     //    TH1D *multi_cpi_fd_BC_debug = new TH1D("multi_cpi_fd_BC_debug", "#font[12]{##pi^{#pm}} BC (no #e cuts, FD);#font[12]{##pi^{#pm}}", 10, 0, 10);
     //    TH1D *multi_cpi_cd_BC_debug = new TH1D("multi_cpi_cd_BC_debug", "#font[12]{##pi^{#pm}} BC (no #e cuts, CD);#font[12]{##pi^{#pm}}", 10, 0, 10);
     TH1D *multi_cpi_BC_debug = new TH1D("multi_cpi_BC_debug", "#font[12]{##pi^{#pm}} BC (no #e cuts, CD & FD);#font[12]{##pi^{#pm}}", 10, 0, 10);
-    #pragma endregion
+#pragma endregion
 
-    #pragma region /* my debugging - multiplicity plots after cuts (= AC) - no #e cuts */
+#pragma region /* my debugging - multiplicity plots after cuts (= AC) - no #e cuts */
     /* my debugging - multiplicity plots after cuts (= AC) - no #e cuts */
     //    TH2D *multi_p_vs_cpi_fd_AC_debug = new TH2D("multi_p_vs_cpi_fd_AC_debug",
     //                                                "#font[12]{#p} vs. #font[12]{##pi^{#pm}} AC (no #e cuts, FD);#font[12]{#p};#font[12]{##pi^{#pm}}", 10, 0, 10, 10, 0, 10);
@@ -480,9 +480,9 @@ class clas12ana : public clas12reader {
     //    TH1D *multi_cpi_fd_AC_debug = new TH1D("multi_cpi_fd_AC_debug", "#font[12]{##pi^{#pm}} AC (no #e cuts, FD);#font[12]{##pi^{#pm}}", 10, 0, 10);
     //    TH1D *multi_cpi_cd_AC_debug = new TH1D("multi_cpi_cd_AC_debug", "#font[12]{##pi^{#pm}} AC (no #e cuts, CD);#font[12]{##pi^{#pm}}", 10, 0, 10);
     TH1D *multi_cpi_AC_debug = new TH1D("multi_cpi_AC_debug", "#font[12]{##pi^{#pm}} AC (no #e cuts, CD & FD);#font[12]{##pi^{#pm}}", 10, 0, 10);
-    #pragma endregion
+#pragma endregion
 
-    #pragma region /* my debugging - multiplicity plots before cuts (= BC) - 1e cut */
+#pragma region /* my debugging - multiplicity plots before cuts (= BC) - 1e cut */
     /* my debugging - multiplicity plots before cuts (= BC) - 1e cut */
     //    TH2D *multi_p_vs_cpi_1e_cut_fd_BC_debug = new TH2D("multi_p_vs_cpi_1e_cut_fd_BC_debug",
     //                                                       "#font[12]{#p} vs. #font[12]{##pi^{#pm}} BC (1e cut, FD);#font[12]{#p};#font[12]{##pi^{#pm}}",
@@ -498,9 +498,9 @@ class clas12ana : public clas12reader {
     //    TH1D *multi_cpi_1e_cut_fd_BC_debug = new TH1D("multi_cpi_1e_cut_fd_BC_debug", "#font[12]{##pi^{#pm}} BC (1e cut, FD);#font[12]{##pi^{#pm}}", 10, 0, 10);
     //    TH1D *multi_cpi_1e_cut_cd_BC_debug = new TH1D("multi_cpi_1e_cut_cd_BC_debug", "#font[12]{##pi^{#pm}} BC (1e cut, CD);#font[12]{##pi^{#pm}}", 10, 0, 10);
     TH1D *multi_cpi_1e_cut_BC_debug = new TH1D("multi_cpi_1e_cut_BC_debug", "#font[12]{##pi^{#pm}} BC (1e cut, CD & FD);#font[12]{##pi^{#pm}}", 10, 0, 10);
-    #pragma endregion
+#pragma endregion
 
-    #pragma region /* my debugging - multiplicity plots after cuts (= AC) - 1e cut */
+#pragma region /* my debugging - multiplicity plots after cuts (= AC) - 1e cut */
     /* my debugging - multiplicity plots after cuts (= AC) - 1e cut */
     //    TH2D *multi_p_vs_cpi_1e_cut_fd_AC_debug = new TH2D("multi_p_vs_cpi_1e_cut_fd_AC_debug",
     //                                                       "#font[12]{#p} vs. #font[12]{##pi^{#pm}} AC (1e cut, FD);#font[12]{#p};#font[12]{##pi^{#pm}}",
@@ -516,11 +516,11 @@ class clas12ana : public clas12reader {
     //    TH1D *multi_cpi_1e_cut_fd_AC_debug = new TH1D("multi_cpi_1e_cut_fd_AC_debug", "#font[12]{##pi^{#pm}} AC (1e cut, FD);#font[12]{##pi^{#pm}}", 10, 0, 10);
     //    TH1D *multi_cpi_1e_cut_cd_AC_debug = new TH1D("multi_cpi_1e_cut_cd_AC_debug", "#font[12]{##pi^{#pm}} AC (1e cut, CD);#font[12]{##pi^{#pm}}", 10, 0, 10);
     TH1D *multi_cpi_1e_cut_AC_debug = new TH1D("multi_cpi_1e_cut_AC_debug", "#font[12]{##pi^{#pm}} AC (1e cut, CD & FD);#font[12]{##pi^{#pm}}", 10, 0, 10);
-    #pragma endregion
+#pragma endregion
 
-    #pragma region /* Hit maps for efficiency plots (My addition) */
+#pragma region /* Hit maps for efficiency plots (My addition) */
 
-    #pragma region /* Original */
+#pragma region /* Original */
     // TODO: delete these plots
     TH2D *hTheta_e_vs_Phi_e_fiducial_cuts_map_ECAL =
         new TH2D("Electron_fiducial_cuts_map_ECAL", "#theta_{e} vs. #phi_{e};#phi_{e} [Deg];#theta_{e} [Deg]", 250, -180, 180, 250, 0, 50);  // My addition
@@ -534,14 +534,14 @@ class clas12ana : public clas12reader {
         new TH2D("hit_map_ECAL_no_fiducial_cuts", "ECAL #theta vs. #phi - no fiducial cuts;#phi [Deg];#theta [Deg]", 250, -180, 180, 250, 0, 50);  // My addition
     TH2D *hTheta_vs_Phi_hit_map_ECAL_w_fiducial_cuts =
         new TH2D("hit_map_ECAL_w_fiducial_cuts", "ECAL #theta vs. #phi - with fiducial cuts;#phi [Deg];#theta [Deg]", 250, -180, 180, 250, 0, 50);  // My addition
-    #pragma endregion
+#pragma endregion
 
     TH2D *hAng_hit_map_electrons = new TH2D("Electron_AMap", "Electron hit map with ECAL & DC fiducial cuts;#phi [Deg];#theta [Deg]", 250, -180, 180, 250, 0, 50);  // My addition
     TH2D *hAng_hit_map_protons = new TH2D("Protons_hit_map", "Protons hit map with DC fiducial cuts;#phi [Deg];#theta [Deg]", 250, -180, 180, 250, 0, 50);          // My addition
     TH2D *hAng_hit_map_neutrons = new TH2D("Neutrons_hit_map", "Neutrons hit map (no fiducial cuts);#phi [Deg];#theta [Deg]", 250, -180, 180, 250, 0, 50);          // My addition
-    #pragma endregion
+#pragma endregion
 
-    #pragma endregion
+#pragma endregion
 };
 
 void clas12ana::Clear() {
@@ -570,39 +570,39 @@ void clas12ana::Run(const std::unique_ptr<clas12::clas12reader> &c12) {
     auto particles = c12->getDetParticles();  // particles is now a std::vector of particles for this event
     auto electrons_det = c12->getByID(11);
 
-    #pragma region /* My addition */
+#pragma region /* My addition */
     auto protons_det = c12->getByID(2212);
     auto piplus_det = c12->getByID(211);
     auto piminus_det = c12->getByID(-211);
 
-    #pragma region /* Filling multiplicity plots before cuts (BC) - no #e cuts */
+#pragma region /* Filling multiplicity plots before cuts (BC) - no #e cuts */
     multi_p_BC_debug->Fill(protons_det.size());
     multi_cpi_BC_debug->Fill(piplus_det.size() + piminus_det.size());
     multi_p_vs_cpi_BC_debug->Fill(protons_det.size(), piplus_det.size() + piminus_det.size());
-    #pragma endregion
+#pragma endregion
 
-    #pragma region /* Filling multiplicity plots before cuts (BC) - 1e cut */
+#pragma region /* Filling multiplicity plots before cuts (BC) - 1e cut */
     if (electrons_det.size() == 1) {
         multi_p_1e_cut_BC_debug->Fill(protons_det.size());
         multi_cpi_1e_cut_BC_debug->Fill(piplus_det.size() + piminus_det.size());
         multi_p_vs_cpi_1e_cut_BC_debug->Fill(protons_det.size(), piplus_det.size() + piminus_det.size());
     }
-    #pragma endregion
+#pragma endregion
 
     int nf_initial = particles.size();
 
-    #pragma region /* Debugging print */
-    //    auto protons_det = c12->getByID(2212);
-    //    auto deuterons_det = c12->getByID(45);
-    //    auto piplus_det = c12->getByID(211);
-    //    auto piminus_det = c12->getByID(-211);
-    //    auto kplus_det = c12->getByID(321);
-    //    auto kminus_det = c12->getByID(-321);
-    //    auto z_det = c12->getByID(0);
-    //    auto n_det = c12->getByID(2112);
-    #pragma endregion
+#pragma region /* Debugging print */
+//    auto protons_det = c12->getByID(2212);
+//    auto deuterons_det = c12->getByID(45);
+//    auto piplus_det = c12->getByID(211);
+//    auto piminus_det = c12->getByID(-211);
+//    auto kplus_det = c12->getByID(321);
+//    auto kminus_det = c12->getByID(-321);
+//    auto z_det = c12->getByID(0);
+//    auto n_det = c12->getByID(2112);
+#pragma endregion
 
-    #pragma endregion
+#pragma endregion
 
     /* ME: for any number of electrons */
     for (auto el = electrons_det.begin(); el != electrons_det.end();) {
@@ -801,11 +801,11 @@ void clas12ana::Run(const std::unique_ptr<clas12::clas12reader> &c12) {
         //        cout << "otherpart.size() = " << otherpart.size() << "\n\n\n\n";
         //        #pragma endregion
 
-        #pragma region /* Filling multiplicity plots after cuts (AC) - 1e cut */
+#pragma region /* Filling multiplicity plots after cuts (AC) - 1e cut */
         multi_p_1e_cut_AC_debug->Fill(protons.size());
         multi_cpi_1e_cut_AC_debug->Fill(piplus.size() + piminus.size());
         multi_p_vs_cpi_1e_cut_AC_debug->Fill(protons.size(), piplus.size() + piminus.size());
-        #pragma endregion
+#pragma endregion
     }  // good electron loop
 }
 
@@ -965,7 +965,7 @@ bool clas12ana::checkEcalSFCuts(region_part_ptr p) {
     //        return false;
     //    #pragma endregion
 
-    #pragma region /* My addition */
+#pragma region /* My addition */
     if (p->par()->getPid() == 11) {
         double sampling_frac = getSF(p);
 
@@ -975,7 +975,7 @@ bool clas12ana::checkEcalSFCuts(region_part_ptr p) {
             return false;
     } else
         return false;
-    #pragma endregion
+#pragma endregion
 }
 
 bool clas12ana::checkEcalPCuts(region_part_ptr p) {
@@ -1551,13 +1551,13 @@ void clas12ana::InitDebugPlots() {
 void clas12ana::WriteDebugPlots() {
     TFile *f_debugOut = new TFile(debug_fileName, "RECREATE");
 
-    #pragma region /* My addition */
+#pragma region                                             /* My addition */
     hTheta_e_vs_Phi_e_fiducial_cuts_map_ECAL->Write();     // My addition
     hTheta_p_vs_Phi_p_AMap_DC_NO_CUTS->Write();            // My addition
     hTheta_p_vs_Phi_p_AMap_DC_WITH_CUTS->Write();          // My addition
     hTheta_vs_Phi_hit_map_ECAL_no_fiducial_cuts->Write();  // My addition
     hTheta_vs_Phi_hit_map_ECAL_w_fiducial_cuts->Write();   // My addition
-    #pragma endregion
+#pragma endregion
 
     for (int i = 1; i <= 6; i++) {
         sf_p_debug_b[i]->Write();
@@ -1621,7 +1621,7 @@ void clas12ana::WriteDebugPlots() {
     el_vz_debug->Write();
     el_vz_p_debug->Write();
 
-    #pragma region /* my debugging - multiplicity plots before and after cuts (no #e cuts) */
+#pragma region /* my debugging - multiplicity plots before and after cuts (no #e cuts) */
     //    multi_p_vs_cpi_fd_BC_debug->Write();
     //    multi_p_vs_cpi_fd_AC_debug->Write();
     //    multi_p_vs_cpi_cd_BC_debug->Write();
@@ -1640,9 +1640,9 @@ void clas12ana::WriteDebugPlots() {
     //    multi_cpi_cd_AC_debug->Write();
     multi_cpi_BC_debug->Write();
     multi_cpi_AC_debug->Write();
-    #pragma endregion
+#pragma endregion
 
-    #pragma region /* my debugging - multiplicity plots before and after cuts (1e cut) */
+#pragma region /* my debugging - multiplicity plots before and after cuts (1e cut) */
     //    multi_p_vs_cpi_1e_cut_fd_BC_debug->Write();
     //    multi_p_vs_cpi_1e_cut_fd_AC_debug->Write();
     //    multi_p_vs_cpi_1e_cut_cd_BC_debug->Write();
@@ -1661,18 +1661,18 @@ void clas12ana::WriteDebugPlots() {
     //    multi_cpi_1e_cut_cd_AC_debug->Write();
     multi_cpi_1e_cut_BC_debug->Write();
     multi_cpi_1e_cut_AC_debug->Write();
-    #pragma endregion
+#pragma endregion
 
     f_debugOut->Close();
 
-    #pragma region /* write hit_map_ref file (my addition) */
+#pragma region /* write hit_map_ref file (my addition) */
     TFile *hit_map_ref_Out = new TFile(hit_map_ref_Out_filename, "RECREATE");
     hAng_hit_map_electrons->Write();  // My addition
     hAng_hit_map_protons->Write();    // My addition
     hAng_hit_map_neutrons->Write();   // My addition
 
     hit_map_ref_Out->Close();
-    #pragma endregion
+#pragma endregion
 }
 
 void clas12ana::FillECALHitMap(region_part_ptr p) {

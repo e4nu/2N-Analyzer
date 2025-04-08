@@ -1,5 +1,7 @@
 #define gst_cxx
 
+#include "gst.h"
+
 #include <TCanvas.h>
 #include <TFile.h>
 #include <TH2.h>
@@ -13,8 +15,6 @@
 #include <iostream>
 #include <string>
 
-#include "gst.h"
-
 // using namespace std;
 
 void gst::Loop() {
@@ -27,11 +27,11 @@ void gst::Loop() {
     //  Code setup
     //  =====================================================================================================================================================================
 
-    #pragma region /* Code setup */
+#pragma region /* Code setup */
 
     //  Creating plots directories --------------------------------------------------------------------------------------------------------------------------------------------------------
 
-    #pragma region /* Creating plots directories */
+#pragma region /* Creating plots directories */
     std::cout << "Creating plots directories...\n\n";
 
     system(("rm -r " + path_definitions::PathDefinitions.WorkingDirectory + "plots").c_str());  // clear old stuff in Parent_Folder
@@ -78,18 +78,18 @@ void gst::Loop() {
     system(("mkdir -p " + path_definitions::PathDefinitions.WorkingDirectory + "plots/phi_histograms").c_str());
 
     system(("mkdir -p " + path_definitions::PathDefinitions.WorkingDirectory + "plots/theta_histograms").c_str());
-    #pragma endregion
+#pragma endregion
 
     //  FSI setup --------------------------------------------------------------------------------------------------------------------------------------------------------
 
-    #pragma region /* FSI setup */
+#pragma region                      /* FSI setup */
     bool FSI_status;                // true == with FSI; false == no FSI
     bool custom_FSI_status = true;  // set as true by default
 
     int ni_selection;  // 3 for G18; 2 for SuSAv2
                        //    int ni_selection = 2; // 3 for G18; 2 for SuSAv2
 
-    #pragma region /* Input processing (to determine custom_FSI_status) */
+#pragma region /* Input processing (to determine custom_FSI_status) */
     std::string loadedInput = fChain->GetCurrentFile()->GetName();
     std::string filePath = loadedInput.substr(0, loadedInput.find_last_of("/") + 1);
     std::string fileInput = loadedInput.substr(loadedInput.find_last_of("/") + 1);
@@ -104,27 +104,27 @@ void gst::Loop() {
         custom_FSI_status = false;  // and custom_FSI_status is set to be false
     }
 
-    //    if (fileInput.find("wfsi") <= fileInput[fileInput.size() - 1]) {
-    ////        std::cout << "\n";
-    ////        std::cout << "\n";
-    ////        std::cout << "wfsi is in fileInput! Setting custom_FSI_status == true." << "\n";  // and no change to custom_FSI_status
-    ////        std::cout << "\n";
-    //    } else if (fileInput.find("nofsi") <= fileInput[fileInput.size() - 1]) {
-    ////        std::cout << "\n";
-    //        std::cout << "\n";
-    //        std::cout << "nofsi is in fileInput! Setting custom_FSI_status == false." << "\n";
-    //        std::cout << "\n";
-    //
-    //        custom_FSI_status = false; // and custom_FSI_status is set to be false
-    //    } else {
-    ////        std::cout << "\n";
-    //        std::cout << "\n";
-    //        std::cout << "Could not figure FSI status. FSI is kept ON." << "\n";
-    //        std::cout << "\n";
-    //    }
-    #pragma endregion
+//    if (fileInput.find("wfsi") <= fileInput[fileInput.size() - 1]) {
+////        std::cout << "\n";
+////        std::cout << "\n";
+////        std::cout << "wfsi is in fileInput! Setting custom_FSI_status == true." << "\n";  // and no change to custom_FSI_status
+////        std::cout << "\n";
+//    } else if (fileInput.find("nofsi") <= fileInput[fileInput.size() - 1]) {
+////        std::cout << "\n";
+//        std::cout << "\n";
+//        std::cout << "nofsi is in fileInput! Setting custom_FSI_status == false." << "\n";
+//        std::cout << "\n";
+//
+//        custom_FSI_status = false; // and custom_FSI_status is set to be false
+//    } else {
+////        std::cout << "\n";
+//        std::cout << "\n";
+//        std::cout << "Could not figure FSI status. FSI is kept ON." << "\n";
+//        std::cout << "\n";
+//    }
+#pragma endregion
 
-    #pragma region /* Input processing (to determine ni_selection) */
+#pragma region /* Input processing (to determine ni_selection) */
     std::string tune;
 
     if (fileInput.find("G18") <= fileInput[fileInput.size() - 1]) {
@@ -156,9 +156,9 @@ void gst::Loop() {
         ni_selection = 2;
         tune = "unknown";
     }
-    #pragma endregion
+#pragma endregion
 
-    #pragma region /* Set FSI according to setting mode */
+#pragma region /* Set FSI according to setting mode */
     if (file_name == "12C_056GeV_G18_10a_02_11a" || file_name == "12C_0961GeV_G18_10a_02_11a" || file_name == "C12_1161GeV_EM+MEC_G18_02a_00_000_Q2_0_1" ||
         file_name == "12C_1299GeV_G18_10a_02_11a" || file_name == "12C_2222GeV_G18_10a_02_11a" || file_name == "12C_2222GeV_GTEST19_10b_00_000" ||
         file_name == "adi_11_1000060120_2222_fsi.gst" || file_name == "GENIE_with_fsi") {
@@ -168,9 +168,9 @@ void gst::Loop() {
     } else if (file_name == "general_file") {
         FSI_status = custom_FSI_status;
     }
-    #pragma endregion
+#pragma endregion
 
-    #pragma region /* FSI indicator */
+#pragma region /* FSI indicator */
     std::cout << "\n";
     std::cout << "\n";
     std::cout << "-- Execution variables ----------------------------------------------------\n";
@@ -188,13 +188,13 @@ void gst::Loop() {
     std::cout << "fileInput:\t" << fileInput << "\n";
     std::cout << "\n";
     std::cout << "\n";
-    #pragma endregion
+#pragma endregion
 
-    #pragma endregion
+#pragma endregion
 
     // Plot setup --------------------------------------------------------------------------------------------------------------------------------------------------------
 
-    #pragma region /* Plot setup */
+#pragma region /* Plot setup */
     bool lowest_nentries = true;
     int custom_nentries;
 
@@ -205,16 +205,16 @@ void gst::Loop() {
     }
 
     bool wider_margin = true;
-    #pragma endregion
+#pragma endregion
 
     // Calculation setup -------------------------------------------------------------------------------------------------------------------------------------------------
 
-    #pragma region /* Calculation setup */
+#pragma region /* Calculation setup */
     bool calculate_2n = true, calculate_2p = true, calculate_1n1p = true, calculate_MicroBooNE = true;
 
     bool BEnergyToNucleusCon = false;  // For QEL ONLY!!!
 
-    #pragma region /* Simulation parameters extraction (assuming all entries have the same parameters) */
+#pragma region /* Simulation parameters extraction (assuming all entries have the same parameters) */
     if (fChain == 0) return;
 
     Long64_t nbytes0 = 0, nb0 = 0;
@@ -228,7 +228,7 @@ void gst::Loop() {
         nb0 = fChain->GetEntry(jentry0);
         nbytes0 += nb0;
 
-        #pragma region /* Energy selector (to nucleus; relevant to QEL only) */
+#pragma region /* Energy selector (to nucleus; relevant to QEL only) */
         switch (tgt) {
             case 1000020040:  // He4
                 BEnergyToNucleus = 0.0150;
@@ -297,9 +297,9 @@ void gst::Loop() {
         }
 
         BeamEnergy = Ev;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Probe selector */
+#pragma region /* Probe selector */
         Probe_pdg = neu;
 
         switch (Probe_pdg) {
@@ -324,7 +324,7 @@ void gst::Loop() {
             default:  // In case tgt does not correspond to any the above pdg codes - no BE considerations
                 Probe = "Unknown";
         }
-        #pragma endregion
+#pragma endregion
 
         std::cout << "Event parameters (*)\n";
         std::cout << "---------------------------------------------------------------------------\n";
@@ -336,13 +336,13 @@ void gst::Loop() {
         std::cout << "\n";
         std::cout << "\n";
     }
-    #pragma endregion
+#pragma endregion
 
-    #pragma endregion
+#pragma endregion
 
     // Plot selector --------------------------------------------------------------------------------------------------------------------------------------------------------
 
-    #pragma region /* Plot selector */
+#pragma region /* Plot selector */
     bool Theta_plots = true, Phi_plots = true;
 
     bool Energy_histogram_plots = true;
@@ -357,11 +357,11 @@ void gst::Loop() {
     bool momentum_plots = true;
 
     bool MicroBooNE_plots = true;
-    #pragma endregion
+#pragma endregion
 
     // Normalization setup -----------------------------------------------------------------------------------------------------------------------------------------------
 
-    #pragma region /* Normalization setup */
+#pragma region /* Normalization setup */
     bool normalize_master = false;
 
     bool normalized_theta_lp_plots = true;
@@ -433,14 +433,14 @@ void gst::Loop() {
         normalized_E_lp_RES_plots = false;
         normalized_E_lp_DIS_plots = false;
     }
-    #pragma endregion
+#pragma endregion
 
     // Delete setup ------------------------------------------------------------------------------------------------------------------------------------------------------
 
-    #pragma region /* Delete setup */
+#pragma region /* Delete setup */
     bool delete_png_files = true, delete_root_files = true, delete_txt_files = true;
 
-    #pragma region /* Deleting files by cases */
+#pragma region /* Deleting files by cases */
     if (delete_png_files == true && delete_root_files == false) {
         std::cout << "\n";
         std::cout << "Clearing old plots...\n";
@@ -465,47 +465,47 @@ void gst::Loop() {
         std::cout << "No files were cleared.\n";
         std::cout << "\n";
     }
-    #pragma endregion
+#pragma endregion
 
-    #pragma endregion
+#pragma endregion
 
     // TList setup ----------------------------------------------------------------------------------------------------------------------------------------------------------
 
-    #pragma region /* TList name setup */
+#pragma region                                                                                                /* TList name setup */
     std::string listName = path_definitions::PathDefinitions.plots_path + plotsInput + plots_TList_FileType;  // TODO: add if-else to choose plotsInput or file_name
     const char *TListName = listName.c_str();
-    #pragma endregion
+#pragma endregion
 
     // Momentum thresholds --------------------------------------------------------------------------------------------------------------------------------------------------
 
-    #pragma region /* Momentum thresholds (2p) */
+#pragma region /* Momentum thresholds (2p) */
     double P_lp_upper_lim_2p = -1, P_lp_lower_lim_2p = -1;
     double P_p1_upper_lim_2p = -1, P_p1_lower_lim_2p = 0.3;
     double P_p2_upper_lim_2p = -1, P_p2_lower_lim_2p = 0.3;
-    #pragma endregion
+#pragma endregion
 
-    #pragma region /* Momentum thresholds (1n1p) */
+#pragma region /* Momentum thresholds (1n1p) */
     double P_lp_upper_lim_1n1p = -1, P_lp_lower_lim_1n1p = -1;
     double P_p_upper_lim_1n1p = -1, P_p_lower_lim_1n1p = 0.3;
     double P_n_upper_lim_1n1p = -1, P_n_lower_lim_1n1p = 0.3;
-    #pragma endregion
+#pragma endregion
 
-    #pragma region /* Momentum thresholds (2p, MicroBooNE) */
+#pragma region /* Momentum thresholds (2p, MicroBooNE) */
     double P_lp_upper_lim_MicroBooNE = 1.2, P_lp_lower_lim_MicroBooNE = 0.1;
     double P_L_upper_lim_MicroBooNE = 1.0, P_L_lower_lim_MicroBooNE = 0.3;
     double P_R_upper_lim_MicroBooNE = 1.0, P_R_lower_lim_MicroBooNE = 0.3;
     double P_pion_upper_lim_MicroBooNE = 0.065;
-    #pragma endregion
+#pragma endregion
 
     // Histogram limits ---------------------------------------------------------------------------------------------------------------------------------------------------
 
-    #pragma region /* Histogram limits */
+#pragma region /* Histogram limits */
 
-    #pragma region /* Histogram limits for every case */
+#pragma region /* Histogram limits for every case */
 
-    #pragma region /* Theta histograms */
+#pragma region /* Theta histograms */
 
-    #pragma region /* Theta histograms (2p) */
+#pragma region /* Theta histograms (2p) */
     theta_lp_upper_lim_2p = 60;
     theta_lp_lower_lim_2p = 0;
     theta_p1_upper_lim_2p = 190;
@@ -514,9 +514,9 @@ void gst::Loop() {
     theta_p2_lower_lim_2p = -10;
     dtheta_upper_lim_2p = 190;
     dtheta_lower_lim_2p = -10;
-    #pragma endregion
+#pragma endregion
 
-    #pragma region /* Theta histograms (1n1p) */
+#pragma region /* Theta histograms (1n1p) */
     theta_lp_upper_lim_1n1p = 60;
     theta_lp_lower_lim_1n1p = 0;
     theta_p_upper_lim_1n1p = 190;
@@ -525,13 +525,13 @@ void gst::Loop() {
     theta_n_lower_lim_1n1p = -10;
     dtheta_upper_lim_1n1p = 190;
     dtheta_lower_lim_1n1p = -10;
-    #pragma endregion
+#pragma endregion
 
-    #pragma endregion
+#pragma endregion
 
-    #pragma region /* Phi histograms */
+#pragma region /* Phi histograms */
 
-    #pragma region /* Phi histograms (2p) */
+#pragma region /* Phi histograms (2p) */
     phi_lp_upper_lim_2p = 200;
     phi_lp_lower_lim_2p = -200;
     phi_p1_upper_lim_2p = 200;
@@ -540,9 +540,9 @@ void gst::Loop() {
     phi_p2_lower_lim_2p = -200;
     dphi_upper_lim_2p = 360;
     dphi_lower_lim_2p = -360;
-    #pragma endregion
+#pragma endregion
 
-    #pragma region /* Phi histograms (1n1p) */
+#pragma region /* Phi histograms (1n1p) */
     phi_lp_upper_lim_1n1p = 200;
     phi_lp_lower_lim_1n1p = -200;
     phi_p_upper_lim_1n1p = 200;
@@ -551,27 +551,27 @@ void gst::Loop() {
     phi_n_lower_lim_1n1p = -200;
     dphi_upper_lim_1n1p = 360;
     dphi_lower_lim_1n1p = -360;
-    #pragma endregion
+#pragma endregion
 
-    #pragma endregion
+#pragma endregion
 
-    #pragma region /* MicroBooNE plots */
+#pragma region /* MicroBooNE plots */
 
-    #pragma region /* MicroBooNE gamma plots (unweighted) */
+#pragma region /* MicroBooNE gamma plots (unweighted) */
     Gamma_Lab_upper_lim = 1;
     Gamma_Lab_lower_lim = -1;
     Gamma_mu_p_tot_upper_lim = 1;
     Gamma_mu_p_tot_lower_lim = -1;
-    #pragma endregion
+#pragma endregion
 
-    #pragma region /* MicroBooNE gamma plots (Q4 weighted) */
+#pragma region /* MicroBooNE gamma plots (Q4 weighted) */
     Gamma_Lab_weighted_upper_lim = 1;
     Gamma_Lab_weighted_lower_lim = -1;
     Gamma_mu_p_tot_weighted_upper_lim = 1;
     Gamma_mu_p_tot_weighted_lower_lim = -1;
-    #pragma endregion
+#pragma endregion
 
-    #pragma region /* MicroBooNE gamma plots (no pions, for every interaction) */
+#pragma region /* MicroBooNE gamma plots (no pions, for every interaction) */
     Gamma_Lab_noPions_All_Int_upper_lim = 1;
     Gamma_Lab_noPions_All_Int_lower_lim = -1;
     Gamma_Lab_noPions_All_Int_weighted_upper_lim = 1;
@@ -592,9 +592,9 @@ void gst::Loop() {
     Gamma_Lab_noPions_DIS_lower_lim = -1;
     Gamma_Lab_noPions_DIS_weighted_upper_lim = 1;
     Gamma_Lab_noPions_DIS_weighted_lower_lim = -1;
-    #pragma endregion
+#pragma endregion
 
-    #pragma region /* MicroBooNE dP_T plots */
+#pragma region /* MicroBooNE dP_T plots */
     if (FSI_status == true) {
         dP_T_hist_upper_lim = 2;
         dP_T_hist_lower_lim = 0;
@@ -606,9 +606,9 @@ void gst::Loop() {
         dP_T_hist_weighted_upper_lim = 2;
         dP_T_hist_weighted_lower_lim = 0;
     }
-    #pragma endregion
+#pragma endregion
 
-    #pragma region /* MicroBooNE momentum plots (for self-examination) */
+#pragma region /* MicroBooNE momentum plots (for self-examination) */
     P_L_hist_upper_lim = 3.0;
     P_L_hist_lower_lim = 0;
     P_R_hist_upper_lim = 3.0;
@@ -617,20 +617,20 @@ void gst::Loop() {
     P_lp_hist_lower_lim = 0;
     P_pion_hist_upper_lim = 0.1;
     P_pion_hist_lower_lim = 0;
-    #pragma endregion
+#pragma endregion
 
-    #pragma endregion
+#pragma endregion
 
-    #pragma endregion
+#pragma endregion
 
-    #pragma region /* Histogram limits by cases */
+#pragma region /* Histogram limits by cases */
 
     if (file_name == "12C_056GeV_G18_10a_02_11a") {
-        #pragma region /* 12C_056GeV_G18_10a_02_11a histogram limits */
+#pragma region /* 12C_056GeV_G18_10a_02_11a histogram limits */
 
-        #pragma region /* Energy histograms */
+#pragma region /* Energy histograms */
 
-        #pragma region /* Energy histograms (2p) */
+#pragma region /* Energy histograms (2p) */
         fsEl_upper_lim_2p = 0.6;
         fsEl_lower_lim_2p = 0;
         fsEl_QEL_upper_lim_2p = 0.6;
@@ -645,9 +645,9 @@ void gst::Loop() {
         fsEl_VS_theta_lp_lower_lim_2p_x = 0;
         fsEl_VS_theta_lp_upper_lim_2p_y = 0.6;
         fsEl_VS_theta_lp_lower_lim_2p_y = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy histograms (1n1p) */
+#pragma region /* Energy histograms (1n1p) */
         fsEl_upper_lim_1n1p = 0.6;
         fsEl_lower_lim_1n1p = 0;
         fsEl_QEL_upper_lim_1n1p = 0.6;
@@ -662,15 +662,15 @@ void gst::Loop() {
         fsEl_VS_theta_lp_lower_lim_1n1p_x = 0;
         fsEl_VS_theta_lp_upper_lim_1n1p_y = 0.6;
         fsEl_VS_theta_lp_lower_lim_1n1p_y = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms */
+#pragma region /* Energy Transfer histograms */
 
-        #pragma region /* Energy Transfer histograms (all interactions) */
+#pragma region /* Energy Transfer histograms (all interactions) */
 
-        #pragma region /* Energy Transfer histograms (all interactions, 2p) */
+#pragma region /* Energy Transfer histograms (all interactions, 2p) */
         E_Trans_all_ang_all_int_upper_lim_2p = 0.6;
         E_Trans_all_ang_all_int_lower_lim_2p = 0;
         E_Trans15_all_upper_lim_2p = 0.6;
@@ -679,9 +679,9 @@ void gst::Loop() {
         E_Trans45_all_lower_lim_2p = 0;
         E_Trans90_all_upper_lim_2p = 0.6;
         E_Trans90_all_lower_lim_2p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (all interactions, 1n1p) */
+#pragma region /* Energy Transfer histograms (all interactions, 1n1p) */
         E_Trans_all_ang_all_int_upper_lim_1n1p = 0.6;
         E_Trans_all_ang_all_int_lower_lim_1n1p = 0;
         E_Trans15_all_upper_lim_1n1p = 0.6;
@@ -690,101 +690,101 @@ void gst::Loop() {
         E_Trans45_all_lower_lim_1n1p = 0;
         E_Trans90_all_upper_lim_1n1p = 0.6;
         E_Trans90_all_lower_lim_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (QEL only) */
+#pragma region /* Energy Transfer histograms (QEL only) */
 
-        #pragma region /* Energy Transfer histograms (QEL only, 2p) */
+#pragma region /* Energy Transfer histograms (QEL only, 2p) */
         E_Trans15_QEL_upper_lim_2p = 0.6;
         E_Trans15_QEL_lower_lim_2p = 0;
         E_Trans45_QEL_upper_lim_2p = 0.6;
         E_Trans45_QEL_lower_lim_2p = 0;
         E_Trans90_QEL_upper_lim_2p = 0.6;
         E_Trans90_QEL_lower_lim_2p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (QEL only, 1n1p) */
+#pragma region /* Energy Transfer histograms (QEL only, 1n1p) */
         E_Trans15_QEL_upper_lim_1n1p = 0.6;
         E_Trans15_QEL_lower_lim_1n1p = 0;
         E_Trans45_QEL_upper_lim_1n1p = 0.6;
         E_Trans45_QEL_lower_lim_1n1p = 0;
         E_Trans90_QEL_upper_lim_1n1p = 0.6;
         E_Trans90_QEL_lower_lim_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (MEC only) */
+#pragma region /* Energy Transfer histograms (MEC only) */
 
-        #pragma region /* Energy Transfer histograms (MEC only, 2p) */
+#pragma region /* Energy Transfer histograms (MEC only, 2p) */
         E_Trans15_MEC_upper_lim_2p = 0.6;
         E_Trans15_MEC_lower_lim_2p = 0;
         E_Trans45_MEC_upper_lim_2p = 0.6;
         E_Trans45_MEC_lower_lim_2p = 0;
         E_Trans90_MEC_upper_lim_2p = 0.6;
         E_Trans90_MEC_lower_lim_2p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (MEC only, 1n1p) */
+#pragma region /* Energy Transfer histograms (MEC only, 1n1p) */
         E_Trans15_MEC_upper_lim_1n1p = 0.6;
         E_Trans15_MEC_lower_lim_1n1p = 0;
         E_Trans45_MEC_upper_lim_1n1p = 0.6;
         E_Trans45_MEC_lower_lim_1n1p = 0;
         E_Trans90_MEC_upper_lim_1n1p = 0.6;
         E_Trans90_MEC_lower_lim_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (RES only) */
+#pragma region /* Energy Transfer histograms (RES only) */
 
-        #pragma region /* Energy Transfer histograms (RES only, 2p) */
+#pragma region /* Energy Transfer histograms (RES only, 2p) */
         E_Trans15_RES_upper_lim_2p = 0.6;
         E_Trans15_RES_lower_lim_2p = 0;
         E_Trans45_RES_upper_lim_2p = 0.6;
         E_Trans45_RES_lower_lim_2p = 0;
         E_Trans90_RES_upper_lim_2p = 0.6;
         E_Trans90_RES_lower_lim_2p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (RES only, 1n1p) */
+#pragma region /* Energy Transfer histograms (RES only, 1n1p) */
         E_Trans15_RES_upper_lim_1n1p = 0.6;
         E_Trans15_RES_lower_lim_1n1p = 0;
         E_Trans45_RES_upper_lim_1n1p = 0.6;
         E_Trans45_RES_lower_lim_1n1p = 0;
         E_Trans90_RES_upper_lim_1n1p = 0.6;
         E_Trans90_RES_lower_lim_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (DIS only) */
+#pragma region /* Energy Transfer histograms (DIS only) */
 
-        #pragma region /* Energy Transfer histograms (DIS only, 2p) */
+#pragma region /* Energy Transfer histograms (DIS only, 2p) */
         E_Trans15_DIS_upper_lim_2p = 0.6;
         E_Trans15_DIS_lower_lim_2p = 0;
         E_Trans45_DIS_upper_lim_2p = 0.6;
         E_Trans45_DIS_lower_lim_2p = 0;
         E_Trans90_DIS_upper_lim_2p = 0.6;
         E_Trans90_DIS_lower_lim_2p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (DIS only, 1n1p) */
+#pragma region /* Energy Transfer histograms (DIS only, 1n1p) */
         E_Trans15_DIS_upper_lim_1n1p = 0.6;
         E_Trans15_DIS_lower_lim_1n1p = 0;
         E_Trans45_DIS_upper_lim_1n1p = 0.6;
         E_Trans45_DIS_lower_lim_1n1p = 0;
         E_Trans90_DIS_upper_lim_1n1p = 0.6;
         E_Trans90_DIS_lower_lim_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Inclusive Energy Transfer histograms */
+#pragma region /* Inclusive Energy Transfer histograms */
         E_Trans15_all_inclusive_upper_lim = 0.11;
         E_Trans15_all_inclusive_lower_lim = 0;
         E_Trans15_QEL_inclusive_upper_lim = 0.11;
@@ -831,11 +831,11 @@ void gst::Loop() {
         E_Trans_VS_q3_MEC_lower_lim_x_1n1p = 0;
         E_Trans_VS_q3_MEC_upper_lim_y_1n1p = 0.6;
         E_Trans_VS_q3_MEC_lower_lim_y_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* E_cal restoration histograms */
+#pragma region /* E_cal restoration histograms */
 
-        #pragma region /* E_cal range */
+#pragma region /* E_cal range */
         E_cal_QEL_upper_lim_range = 0.65;
         E_cal_QEL_lower_lim_range = 0.45;
         E_cal_MEC_upper_lim_range = 0.65;
@@ -844,9 +844,9 @@ void gst::Loop() {
         E_cal_RES_lower_lim_range = 0.45;
         E_cal_DIS_upper_lim_range = 0.65;
         E_cal_DIS_lower_lim_range = 0.45;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* E_cal restoration histograms (2p) */
+#pragma region /* E_cal restoration histograms (2p) */
         if (BEnergyToNucleusCon == true) {
             E_cal_QEL_upper_lim_2p = E_cal_QEL_upper_lim_range + 2 * BEnergyToNucleus;
             E_cal_QEL_lower_lim_2p = E_cal_QEL_lower_lim_range + 2 * BEnergyToNucleus;
@@ -866,9 +866,9 @@ void gst::Loop() {
             E_cal_DIS_upper_lim_2p = E_cal_DIS_upper_lim_range;
             E_cal_DIS_lower_lim_2p = E_cal_DIS_lower_lim_range;
         }
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* E_cal restoration histograms (1n1p) */
+#pragma region /* E_cal restoration histograms (1n1p) */
         if (BEnergyToNucleusCon == true) {
             E_cal_QEL_upper_lim_1n1p = E_cal_QEL_upper_lim_range + 2 * BEnergyToNucleus;
             E_cal_QEL_lower_lim_1n1p = E_cal_QEL_lower_lim_range + 2 * BEnergyToNucleus;
@@ -888,39 +888,39 @@ void gst::Loop() {
             E_cal_DIS_upper_lim_1n1p = E_cal_DIS_upper_lim_range;
             E_cal_DIS_lower_lim_1n1p = E_cal_DIS_lower_lim_range;
         }
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Momentum histograms */
+#pragma region /* Momentum histograms */
 
-        #pragma region /* Momentum histograms (2p) */
+#pragma region /* Momentum histograms (2p) */
         P_L_hist_upper_lim_2p = 1.5;
         P_L_hist_lower_lim_2p = 0;
         P_R_hist_upper_lim_2p = 1.5;
         P_R_hist_lower_lim_2p = 0;
         P_lp_hist_upper_lim_2p = 1.5;
         P_lp_hist_lower_lim_2p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Momentum histograms (1n1p) */
+#pragma region /* Momentum histograms (1n1p) */
         P_p_hist_upper_lim_1n1p = 1.5;
         P_p_hist_lower_lim_1n1p = 0;
         P_n_hist_upper_lim_1n1p = 1.5;
         P_n_hist_lower_lim_1n1p = 0;
         P_lp_hist_upper_lim_1n1p = 1.5;
         P_lp_hist_lower_lim_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
     } else if (file_name == "12C_0961GeV_G18_10a_02_11a") {
-        #pragma region /* 12C_0961GeV_G18_10a_02_11a histogram limits */
+#pragma region /* 12C_0961GeV_G18_10a_02_11a histogram limits */
 
-        #pragma region /* Energy histograms */
+#pragma region /* Energy histograms */
 
-        #pragma region /* Energy histograms (2p) */
+#pragma region /* Energy histograms (2p) */
         fsEl_upper_lim_2p = 1.0;
         fsEl_lower_lim_2p = 0;
         fsEl_QEL_upper_lim_2p = 1.0;
@@ -935,9 +935,9 @@ void gst::Loop() {
         fsEl_VS_theta_lp_lower_lim_2p_x = 0;
         fsEl_VS_theta_lp_upper_lim_2p_y = 1.0;
         fsEl_VS_theta_lp_lower_lim_2p_y = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy histograms (1n1p) */
+#pragma region /* Energy histograms (1n1p) */
         fsEl_upper_lim_1n1p = 1.0;
         fsEl_lower_lim_1n1p = 0;
         fsEl_QEL_upper_lim_1n1p = 1.0;
@@ -952,15 +952,15 @@ void gst::Loop() {
         fsEl_VS_theta_lp_lower_lim_1n1p_x = 0;
         fsEl_VS_theta_lp_upper_lim_1n1p_y = 1.0;
         fsEl_VS_theta_lp_lower_lim_1n1p_y = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms */
+#pragma region /* Energy Transfer histograms */
 
-        #pragma region /* Energy Transfer histograms (all interactions) */
+#pragma region /* Energy Transfer histograms (all interactions) */
 
-        #pragma region /* Energy Transfer histograms (all interactions, 2p) */
+#pragma region /* Energy Transfer histograms (all interactions, 2p) */
         E_Trans_all_ang_all_int_upper_lim_2p = 0.7;
         E_Trans_all_ang_all_int_lower_lim_2p = 0;
         E_Trans15_all_upper_lim_2p = 0.7;
@@ -969,9 +969,9 @@ void gst::Loop() {
         E_Trans45_all_lower_lim_2p = 0;
         E_Trans90_all_upper_lim_2p = 0.7;
         E_Trans90_all_lower_lim_2p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (all interactions, 1n1p) */
+#pragma region /* Energy Transfer histograms (all interactions, 1n1p) */
         E_Trans_all_ang_all_int_upper_lim_1n1p = 0.7;
         E_Trans_all_ang_all_int_lower_lim_1n1p = 0;
         E_Trans15_all_upper_lim_1n1p = 0.7;
@@ -980,101 +980,101 @@ void gst::Loop() {
         E_Trans45_all_lower_lim_1n1p = 0;
         E_Trans90_all_upper_lim_1n1p = 0.7;
         E_Trans90_all_lower_lim_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (QEL only) */
+#pragma region /* Energy Transfer histograms (QEL only) */
 
-        #pragma region /* Energy Transfer histograms (QEL only, 2p) */
+#pragma region /* Energy Transfer histograms (QEL only, 2p) */
         E_Trans15_QEL_upper_lim_2p = 0.7;
         E_Trans15_QEL_lower_lim_2p = 0;
         E_Trans45_QEL_upper_lim_2p = 0.7;
         E_Trans45_QEL_lower_lim_2p = 0;
         E_Trans90_QEL_upper_lim_2p = 0.7;
         E_Trans90_QEL_lower_lim_2p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (QEL only, 1n1p) */
+#pragma region /* Energy Transfer histograms (QEL only, 1n1p) */
         E_Trans15_QEL_upper_lim_1n1p = 0.7;
         E_Trans15_QEL_lower_lim_1n1p = 0;
         E_Trans45_QEL_upper_lim_1n1p = 0.7;
         E_Trans45_QEL_lower_lim_1n1p = 0;
         E_Trans90_QEL_upper_lim_1n1p = 0.7;
         E_Trans90_QEL_lower_lim_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (MEC only) */
+#pragma region /* Energy Transfer histograms (MEC only) */
 
-        #pragma region /* Energy Transfer histograms (MEC only, 2p) */
+#pragma region /* Energy Transfer histograms (MEC only, 2p) */
         E_Trans15_MEC_upper_lim_2p = 0.7;
         E_Trans15_MEC_lower_lim_2p = 0;
         E_Trans45_MEC_upper_lim_2p = 0.7;
         E_Trans45_MEC_lower_lim_2p = 0;
         E_Trans90_MEC_upper_lim_2p = 0.7;
         E_Trans90_MEC_lower_lim_2p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (MEC only, 1n1p) */
+#pragma region /* Energy Transfer histograms (MEC only, 1n1p) */
         E_Trans15_MEC_upper_lim_1n1p = 0.7;
         E_Trans15_MEC_lower_lim_1n1p = 0;
         E_Trans45_MEC_upper_lim_1n1p = 0.7;
         E_Trans45_MEC_lower_lim_1n1p = 0;
         E_Trans90_MEC_upper_lim_1n1p = 0.7;
         E_Trans90_MEC_lower_lim_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (RES only) */
+#pragma region /* Energy Transfer histograms (RES only) */
 
-        #pragma region /* Energy Transfer histograms (RES only, 2p) */
+#pragma region /* Energy Transfer histograms (RES only, 2p) */
         E_Trans15_RES_upper_lim_2p = 0.7;
         E_Trans15_RES_lower_lim_2p = 0;
         E_Trans45_RES_upper_lim_2p = 0.7;
         E_Trans45_RES_lower_lim_2p = 0;
         E_Trans90_RES_upper_lim_2p = 0.7;
         E_Trans90_RES_lower_lim_2p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (RES only, 1n1p) */
+#pragma region /* Energy Transfer histograms (RES only, 1n1p) */
         E_Trans15_RES_upper_lim_1n1p = 0.7;
         E_Trans15_RES_lower_lim_1n1p = 0;
         E_Trans45_RES_upper_lim_1n1p = 0.7;
         E_Trans45_RES_lower_lim_1n1p = 0;
         E_Trans90_RES_upper_lim_1n1p = 0.7;
         E_Trans90_RES_lower_lim_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (DIS only) */
+#pragma region /* Energy Transfer histograms (DIS only) */
 
-        #pragma region /* Energy Transfer histograms (DIS only, 2p) */
+#pragma region /* Energy Transfer histograms (DIS only, 2p) */
         E_Trans15_DIS_upper_lim_2p = 0.7;
         E_Trans15_DIS_lower_lim_2p = 0;
         E_Trans45_DIS_upper_lim_2p = 0.7;
         E_Trans45_DIS_lower_lim_2p = 0;
         E_Trans90_DIS_upper_lim_2p = 0.7;
         E_Trans90_DIS_lower_lim_2p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (DIS only, 1n1p) */
+#pragma region /* Energy Transfer histograms (DIS only, 1n1p) */
         E_Trans15_DIS_upper_lim_1n1p = 0.7;
         E_Trans15_DIS_lower_lim_1n1p = 0;
         E_Trans45_DIS_upper_lim_1n1p = 0.7;
         E_Trans45_DIS_lower_lim_1n1p = 0;
         E_Trans90_DIS_upper_lim_1n1p = 0.7;
         E_Trans90_DIS_lower_lim_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Inclusive Energy Transfer histograms */
+#pragma region /* Inclusive Energy Transfer histograms */
         E_Trans15_all_inclusive_upper_lim = 0.75;
         E_Trans15_all_inclusive_lower_lim = 0;
         E_Trans15_QEL_inclusive_upper_lim = 0.75;
@@ -1121,11 +1121,11 @@ void gst::Loop() {
         E_Trans_VS_q3_MEC_lower_lim_x_1n1p = 0;
         E_Trans_VS_q3_MEC_upper_lim_y_1n1p = 1.0;
         E_Trans_VS_q3_MEC_lower_lim_y_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* E_cal restoration histograms */
+#pragma region /* E_cal restoration histograms */
 
-        #pragma region /* E_cal range */
+#pragma region /* E_cal range */
         E_cal_QEL_upper_lim_range = 1.1;
         E_cal_QEL_lower_lim_range = 0.8;
         E_cal_MEC_upper_lim_range = 1.1;
@@ -1134,9 +1134,9 @@ void gst::Loop() {
         E_cal_RES_lower_lim_range = 0.8;
         E_cal_DIS_upper_lim_range = 1.1;
         E_cal_DIS_lower_lim_range = 0.8;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* E_cal restoration histograms (2p) */
+#pragma region /* E_cal restoration histograms (2p) */
         if (BEnergyToNucleusCon == true) {
             E_cal_QEL_upper_lim_2p = E_cal_QEL_upper_lim_range + 2 * BEnergyToNucleus;
             E_cal_QEL_lower_lim_2p = E_cal_QEL_lower_lim_range + 2 * BEnergyToNucleus;
@@ -1156,9 +1156,9 @@ void gst::Loop() {
             E_cal_DIS_upper_lim_2p = E_cal_DIS_upper_lim_range;
             E_cal_DIS_lower_lim_2p = E_cal_DIS_lower_lim_range;
         }
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* E_cal restoration histograms (1n1p) */
+#pragma region /* E_cal restoration histograms (1n1p) */
         if (BEnergyToNucleusCon == true) {
             E_cal_QEL_upper_lim_1n1p = E_cal_QEL_upper_lim_range + 2 * BEnergyToNucleus;
             E_cal_QEL_lower_lim_1n1p = E_cal_QEL_lower_lim_range + 2 * BEnergyToNucleus;
@@ -1178,14 +1178,14 @@ void gst::Loop() {
             E_cal_DIS_upper_lim_1n1p = E_cal_DIS_upper_lim_range;
             E_cal_DIS_lower_lim_1n1p = E_cal_DIS_lower_lim_range;
         }
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Momentum histograms */
+#pragma region /* Momentum histograms */
 
-        //        todo: whay is BEnergyToNucleusCon used here? find out.
-        #pragma region /* Momentum histograms (2p) */
+//        todo: whay is BEnergyToNucleusCon used here? find out.
+#pragma region /* Momentum histograms (2p) */
         if (BEnergyToNucleusCon == true) {
             P_L_hist_upper_lim_2p = 1.5;
             P_L_hist_lower_lim_2p = 0;
@@ -1201,26 +1201,26 @@ void gst::Loop() {
             P_lp_hist_upper_lim_2p = 1.5;
             P_lp_hist_lower_lim_2p = 0;
         }
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Momentum histograms (1n1p) */
+#pragma region /* Momentum histograms (1n1p) */
         P_p_hist_upper_lim_1n1p = 1.5;
         P_p_hist_lower_lim_1n1p = 0;
         P_n_hist_upper_lim_1n1p = 1.5;
         P_n_hist_lower_lim_1n1p = 0;
         P_lp_hist_upper_lim_1n1p = 1.5;
         P_lp_hist_lower_lim_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
     } else if (file_name == "C12_1161GeV_EM+MEC_G18_02a_00_000_Q2_0_1") {
-        #pragma region /* C12_1161GeV_EM+MEC_G18_02a_00_000_Q2_0_1 histogram limits */
+#pragma region /* C12_1161GeV_EM+MEC_G18_02a_00_000_Q2_0_1 histogram limits */
 
-        #pragma region /* Energy histograms */
+#pragma region /* Energy histograms */
 
-        #pragma region /* Energy histograms (2p) */
+#pragma region /* Energy histograms (2p) */
         fsEl_upper_lim_2p = 1.2;
         fsEl_lower_lim_2p = 0;
         fsEl_QEL_upper_lim_2p = 1.2;
@@ -1235,9 +1235,9 @@ void gst::Loop() {
         fsEl_VS_theta_lp_lower_lim_2p_x = 0;
         fsEl_VS_theta_lp_upper_lim_2p_y = 1.2;
         fsEl_VS_theta_lp_lower_lim_2p_y = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy histograms (1n1p) */
+#pragma region /* Energy histograms (1n1p) */
         fsEl_upper_lim_1n1p = 2.21;
         fsEl_lower_lim_1n1p = 1;
         fsEl_QEL_upper_lim_1n1p = 1.2;
@@ -1252,15 +1252,15 @@ void gst::Loop() {
         fsEl_VS_theta_lp_lower_lim_1n1p_x = 0;
         fsEl_VS_theta_lp_upper_lim_1n1p_y = 1.2;
         fsEl_VS_theta_lp_lower_lim_1n1p_y = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms */
+#pragma region /* Energy Transfer histograms */
 
-        #pragma region /* Energy Transfer histograms (all interactions) */
+#pragma region /* Energy Transfer histograms (all interactions) */
 
-        #pragma region /* Energy Transfer histograms (all interactions, 2p) */
+#pragma region /* Energy Transfer histograms (all interactions, 2p) */
         E_Trans_all_ang_all_int_upper_lim_2p = 2.0;
         E_Trans_all_ang_all_int_lower_lim_2p = 0;
         E_Trans15_all_upper_lim_2p = 2.0;
@@ -1269,9 +1269,9 @@ void gst::Loop() {
         E_Trans45_all_lower_lim_2p = 0;
         E_Trans90_all_upper_lim_2p = 2.0;
         E_Trans90_all_lower_lim_2p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (all interactions, 1n1p) */
+#pragma region /* Energy Transfer histograms (all interactions, 1n1p) */
         E_Trans_all_ang_all_int_upper_lim_1n1p = 2.0;
         E_Trans_all_ang_all_int_lower_lim_1n1p = 0;
         E_Trans15_all_upper_lim_1n1p = 2.0;
@@ -1280,101 +1280,101 @@ void gst::Loop() {
         E_Trans45_all_lower_lim_1n1p = 0;
         E_Trans90_all_upper_lim_1n1p = 2.0;
         E_Trans90_all_lower_lim_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (QEL only) */
+#pragma region /* Energy Transfer histograms (QEL only) */
 
-        #pragma region /* Energy Transfer histograms (QEL only, 2p) */
+#pragma region /* Energy Transfer histograms (QEL only, 2p) */
         E_Trans15_QEL_upper_lim_2p = 2;
         E_Trans15_QEL_lower_lim_2p = 0;
         E_Trans45_QEL_upper_lim_2p = 2;
         E_Trans45_QEL_lower_lim_2p = 0;
         E_Trans90_QEL_upper_lim_2p = 2;
         E_Trans90_QEL_lower_lim_2p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (QEL only, 1n1p) */
+#pragma region /* Energy Transfer histograms (QEL only, 1n1p) */
         E_Trans15_QEL_upper_lim_1n1p = 2;
         E_Trans15_QEL_lower_lim_1n1p = 0;
         E_Trans45_QEL_upper_lim_1n1p = 2;
         E_Trans45_QEL_lower_lim_1n1p = 0;
         E_Trans90_QEL_upper_lim_1n1p = 2;
         E_Trans90_QEL_lower_lim_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (MEC only) */
+#pragma region /* Energy Transfer histograms (MEC only) */
 
-        #pragma region /* Energy Transfer histograms (MEC only, 2p) */
+#pragma region /* Energy Transfer histograms (MEC only, 2p) */
         E_Trans15_MEC_upper_lim_2p = 2;
         E_Trans15_MEC_lower_lim_2p = 0;
         E_Trans45_MEC_upper_lim_2p = 2;
         E_Trans45_MEC_lower_lim_2p = 0;
         E_Trans90_MEC_upper_lim_2p = 2;
         E_Trans90_MEC_lower_lim_2p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (MEC only, 1n1p) */
+#pragma region /* Energy Transfer histograms (MEC only, 1n1p) */
         E_Trans15_MEC_upper_lim_1n1p = 2;
         E_Trans15_MEC_lower_lim_1n1p = 0;
         E_Trans45_MEC_upper_lim_1n1p = 2;
         E_Trans45_MEC_lower_lim_1n1p = 0;
         E_Trans90_MEC_upper_lim_1n1p = 2;
         E_Trans90_MEC_lower_lim_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (RES only) */
+#pragma region /* Energy Transfer histograms (RES only) */
 
-        #pragma region /* Energy Transfer histograms (RES only, 2p) */
+#pragma region /* Energy Transfer histograms (RES only, 2p) */
         E_Trans15_RES_upper_lim_2p = 2;
         E_Trans15_RES_lower_lim_2p = 0;
         E_Trans45_RES_upper_lim_2p = 2;
         E_Trans45_RES_lower_lim_2p = 0;
         E_Trans90_RES_upper_lim_2p = 2;
         E_Trans90_RES_lower_lim_2p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (RES only, 1n1p) */
+#pragma region /* Energy Transfer histograms (RES only, 1n1p) */
         E_Trans15_RES_upper_lim_1n1p = 2;
         E_Trans15_RES_lower_lim_1n1p = 0;
         E_Trans45_RES_upper_lim_1n1p = 2;
         E_Trans45_RES_lower_lim_1n1p = 0;
         E_Trans90_RES_upper_lim_1n1p = 2;
         E_Trans90_RES_lower_lim_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (DIS only) */
+#pragma region /* Energy Transfer histograms (DIS only) */
 
-        #pragma region /* Energy Transfer histograms (DIS only) */
+#pragma region /* Energy Transfer histograms (DIS only) */
         E_Trans15_DIS_upper_lim_2p = 2;
         E_Trans15_DIS_lower_lim_2p = 0;
         E_Trans45_DIS_upper_lim_2p = 2;
         E_Trans45_DIS_lower_lim_2p = 0;
         E_Trans90_DIS_upper_lim_2p = 2;
         E_Trans90_DIS_lower_lim_2p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (DIS only) */
+#pragma region /* Energy Transfer histograms (DIS only) */
         E_Trans15_DIS_upper_lim_1n1p = 2;
         E_Trans15_DIS_lower_lim_1n1p = 0;
         E_Trans45_DIS_upper_lim_1n1p = 2;
         E_Trans45_DIS_lower_lim_1n1p = 0;
         E_Trans90_DIS_upper_lim_1n1p = 2;
         E_Trans90_DIS_lower_lim_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Inclusive Energy Transfer histograms */
+#pragma region /* Inclusive Energy Transfer histograms */
         E_Trans15_all_inclusive_upper_lim = 1.2;
         E_Trans15_all_inclusive_lower_lim = 0;
         E_Trans15_QEL_inclusive_upper_lim = 1.2;
@@ -1421,11 +1421,11 @@ void gst::Loop() {
         E_Trans_VS_q3_MEC_lower_lim_x_1n1p = 0;
         E_Trans_VS_q3_MEC_upper_lim_y_1n1p = 1.2;
         E_Trans_VS_q3_MEC_lower_lim_y_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* E_cal restoration histograms */
+#pragma region /* E_cal restoration histograms */
 
-        #pragma region /* E_cal range */
+#pragma region /* E_cal range */
         E_cal_QEL_upper_lim_range = 1.2;
         E_cal_QEL_lower_lim_range = 0;
         E_cal_MEC_upper_lim_range = 1.2;
@@ -1434,9 +1434,9 @@ void gst::Loop() {
         E_cal_RES_lower_lim_range = 0;
         E_cal_DIS_upper_lim_range = 1.2;
         E_cal_DIS_lower_lim_range = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* E_cal restoration histograms (2p) */
+#pragma region /* E_cal restoration histograms (2p) */
         if (BEnergyToNucleusCon == true) {
             E_cal_QEL_upper_lim_2p = E_cal_QEL_upper_lim_range + 2 * BEnergyToNucleus;
             E_cal_QEL_lower_lim_2p = E_cal_QEL_lower_lim_range + 2 * BEnergyToNucleus;
@@ -1456,9 +1456,9 @@ void gst::Loop() {
             E_cal_DIS_upper_lim_2p = E_cal_DIS_upper_lim_range;
             E_cal_DIS_lower_lim_2p = E_cal_DIS_lower_lim_range;
         }
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* E_cal restoration histograms (1n1p) */
+#pragma region /* E_cal restoration histograms (1n1p) */
         if (BEnergyToNucleusCon == true) {
             E_cal_QEL_upper_lim_1n1p = E_cal_QEL_upper_lim_range + 2 * BEnergyToNucleus;
             E_cal_QEL_lower_lim_1n1p = E_cal_QEL_lower_lim_range + 2 * BEnergyToNucleus;
@@ -1478,39 +1478,39 @@ void gst::Loop() {
             E_cal_DIS_upper_lim_1n1p = E_cal_DIS_upper_lim_range;
             E_cal_DIS_lower_lim_1n1p = E_cal_DIS_lower_lim_range;
         }
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Momentum histograms */
+#pragma region /* Momentum histograms */
 
-        #pragma region /* Momentum histograms (2p) */
+#pragma region /* Momentum histograms (2p) */
         P_L_hist_upper_lim_2p = 1.2;
         P_L_hist_lower_lim_2p = 0;
         P_R_hist_upper_lim_2p = 1.2;
         P_R_hist_lower_lim_2p = 0;
         P_lp_hist_upper_lim_2p = 1.2;
         P_lp_hist_lower_lim_2p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Momentum histograms (1n1p) */
+#pragma region /* Momentum histograms (1n1p) */
         P_p_hist_upper_lim_1n1p = 1.2;
         P_p_hist_lower_lim_1n1p = 0;
         P_n_hist_upper_lim_1n1p = 1.2;
         P_n_hist_lower_lim_1n1p = 0;
         P_lp_hist_upper_lim_1n1p = 1.2;
         P_lp_hist_lower_lim_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
     } else if (file_name == "12C_1299GeV_G18_10a_02_11a") {
-        #pragma region /* 12C_1299GeV_G18_10a_02_11a histogram limits */
+#pragma region /* 12C_1299GeV_G18_10a_02_11a histogram limits */
 
-        #pragma region /* Energy histograms */
+#pragma region /* Energy histograms */
 
-        #pragma region /* Energy histograms (2p) */
+#pragma region /* Energy histograms (2p) */
         fsEl_upper_lim_2p = 1.3;
         fsEl_lower_lim_2p = 0;
         fsEl_QEL_upper_lim_2p = 1.3;
@@ -1525,9 +1525,9 @@ void gst::Loop() {
         fsEl_VS_theta_lp_lower_lim_2p_x = 0;
         fsEl_VS_theta_lp_upper_lim_2p_y = 1.3;
         fsEl_VS_theta_lp_lower_lim_2p_y = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy histograms (1n1p) */
+#pragma region /* Energy histograms (1n1p) */
         fsEl_upper_lim_1n1p = 1.3;
         fsEl_lower_lim_1n1p = 0;
         fsEl_QEL_upper_lim_1n1p = 1.3;
@@ -1542,15 +1542,15 @@ void gst::Loop() {
         fsEl_VS_theta_lp_lower_lim_1n1p_x = 0;
         fsEl_VS_theta_lp_upper_lim_1n1p_y = 1.3;
         fsEl_VS_theta_lp_lower_lim_1n1p_y = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms */
+#pragma region /* Energy Transfer histograms */
 
-        #pragma region /* Energy Transfer histograms (all interactions) */
+#pragma region /* Energy Transfer histograms (all interactions) */
 
-        #pragma region /* Energy Transfer histograms (all interactions, 2p) */
+#pragma region /* Energy Transfer histograms (all interactions, 2p) */
         E_Trans_all_ang_all_int_upper_lim_2p = 0.8;
         E_Trans_all_ang_all_int_lower_lim_2p = 0;
         E_Trans15_all_upper_lim_2p = 0.8;
@@ -1559,9 +1559,9 @@ void gst::Loop() {
         E_Trans45_all_lower_lim_2p = 0;
         E_Trans90_all_upper_lim_2p = 0.8;
         E_Trans90_all_lower_lim_2p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (all interactions, 1n1p) */
+#pragma region /* Energy Transfer histograms (all interactions, 1n1p) */
         E_Trans_all_ang_all_int_upper_lim_1n1p = 0.8;
         E_Trans_all_ang_all_int_lower_lim_1n1p = 0;
         E_Trans15_all_upper_lim_1n1p = 0.8;
@@ -1570,101 +1570,101 @@ void gst::Loop() {
         E_Trans45_all_lower_lim_1n1p = 0;
         E_Trans90_all_upper_lim_1n1p = 0.8;
         E_Trans90_all_lower_lim_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (QEL only) */
+#pragma region /* Energy Transfer histograms (QEL only) */
 
-        #pragma region /* Energy Transfer histograms (QEL only, 2p) */
+#pragma region /* Energy Transfer histograms (QEL only, 2p) */
         E_Trans15_QEL_upper_lim_2p = 0.8;
         E_Trans15_QEL_lower_lim_2p = 0;
         E_Trans45_QEL_upper_lim_2p = 0.8;
         E_Trans45_QEL_lower_lim_2p = 0;
         E_Trans90_QEL_upper_lim_2p = 0.8;
         E_Trans90_QEL_lower_lim_2p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (QEL only, 1n1p) */
+#pragma region /* Energy Transfer histograms (QEL only, 1n1p) */
         E_Trans15_QEL_upper_lim_1n1p = 0.8;
         E_Trans15_QEL_lower_lim_1n1p = 0;
         E_Trans45_QEL_upper_lim_1n1p = 0.8;
         E_Trans45_QEL_lower_lim_1n1p = 0;
         E_Trans90_QEL_upper_lim_1n1p = 0.8;
         E_Trans90_QEL_lower_lim_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (MEC only) */
+#pragma region /* Energy Transfer histograms (MEC only) */
 
-        #pragma region /* Energy Transfer histograms (MEC only, 2p) */
+#pragma region /* Energy Transfer histograms (MEC only, 2p) */
         E_Trans15_MEC_upper_lim_2p = 0.8;
         E_Trans15_MEC_lower_lim_2p = 0;
         E_Trans45_MEC_upper_lim_2p = 0.8;
         E_Trans45_MEC_lower_lim_2p = 0;
         E_Trans90_MEC_upper_lim_2p = 0.8;
         E_Trans90_MEC_lower_lim_2p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (MEC only, 1n1p) */
+#pragma region /* Energy Transfer histograms (MEC only, 1n1p) */
         E_Trans15_MEC_upper_lim_1n1p = 0.8;
         E_Trans15_MEC_lower_lim_1n1p = 0;
         E_Trans45_MEC_upper_lim_1n1p = 0.8;
         E_Trans45_MEC_lower_lim_1n1p = 0;
         E_Trans90_MEC_upper_lim_1n1p = 0.8;
         E_Trans90_MEC_lower_lim_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (RES only) */
+#pragma region /* Energy Transfer histograms (RES only) */
 
-        #pragma region /* Energy Transfer histograms (RES only, 2p) */
+#pragma region /* Energy Transfer histograms (RES only, 2p) */
         E_Trans15_RES_upper_lim_2p = 0.8;
         E_Trans15_RES_lower_lim_2p = 0;
         E_Trans45_RES_upper_lim_2p = 0.8;
         E_Trans45_RES_lower_lim_2p = 0;
         E_Trans90_RES_upper_lim_2p = 0.8;
         E_Trans90_RES_lower_lim_2p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (RES only, 1n1p) */
+#pragma region /* Energy Transfer histograms (RES only, 1n1p) */
         E_Trans15_RES_upper_lim_1n1p = 0.8;
         E_Trans15_RES_lower_lim_1n1p = 0;
         E_Trans45_RES_upper_lim_1n1p = 0.8;
         E_Trans45_RES_lower_lim_1n1p = 0;
         E_Trans90_RES_upper_lim_1n1p = 0.8;
         E_Trans90_RES_lower_lim_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (DIS only) */
+#pragma region /* Energy Transfer histograms (DIS only) */
 
-        #pragma region /* Energy Transfer histograms (DIS only, 2p) */
+#pragma region /* Energy Transfer histograms (DIS only, 2p) */
         E_Trans15_DIS_upper_lim_2p = 0.8;
         E_Trans15_DIS_lower_lim_2p = 0;
         E_Trans45_DIS_upper_lim_2p = 0.8;
         E_Trans45_DIS_lower_lim_2p = 0;
         E_Trans90_DIS_upper_lim_2p = 0.8;
         E_Trans90_DIS_lower_lim_2p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (DIS only, 1n1p) */
+#pragma region /* Energy Transfer histograms (DIS only, 1n1p) */
         E_Trans15_DIS_upper_lim_1n1p = 0.8;
         E_Trans15_DIS_lower_lim_1n1p = 0;
         E_Trans45_DIS_upper_lim_1n1p = 0.8;
         E_Trans45_DIS_lower_lim_1n1p = 0;
         E_Trans90_DIS_upper_lim_1n1p = 0.8;
         E_Trans90_DIS_lower_lim_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Inclusive Energy Transfer histograms */
+#pragma region /* Inclusive Energy Transfer histograms */
         E_Trans15_all_inclusive_upper_lim = 1.3;
         E_Trans15_all_inclusive_lower_lim = 0;
         E_Trans15_QEL_inclusive_upper_lim = 1.3;
@@ -1711,11 +1711,11 @@ void gst::Loop() {
         E_Trans_VS_q3_MEC_lower_lim_x_1n1p = 0;
         E_Trans_VS_q3_MEC_upper_lim_y_1n1p = 1.4;
         E_Trans_VS_q3_MEC_lower_lim_y_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* E_cal restoration histograms */
+#pragma region /* E_cal restoration histograms */
 
-        #pragma region /* E_cal range */
+#pragma region /* E_cal range */
         E_cal_QEL_upper_lim_range = 1.4;
         E_cal_QEL_lower_lim_range = 1.15;
         E_cal_MEC_upper_lim_range = 1.4;
@@ -1724,9 +1724,9 @@ void gst::Loop() {
         E_cal_RES_lower_lim_range = 1.15;
         E_cal_DIS_upper_lim_range = 1.4;
         E_cal_DIS_lower_lim_range = 1.15;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* E_cal restoration histograms (2p) */
+#pragma region /* E_cal restoration histograms (2p) */
         if (BEnergyToNucleusCon == true) {
             E_cal_QEL_upper_lim_2p = E_cal_QEL_upper_lim_range + 2 * BEnergyToNucleus;
             E_cal_QEL_lower_lim_2p = E_cal_QEL_lower_lim_range + 2 * BEnergyToNucleus;
@@ -1746,9 +1746,9 @@ void gst::Loop() {
             E_cal_DIS_upper_lim_2p = E_cal_DIS_upper_lim_range;
             E_cal_DIS_lower_lim_2p = E_cal_DIS_lower_lim_range;
         }
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* E_cal restoration histograms (1n1p) */
+#pragma region /* E_cal restoration histograms (1n1p) */
         if (BEnergyToNucleusCon == true) {
             E_cal_QEL_upper_lim_1n1p = E_cal_QEL_upper_lim_range + 2 * BEnergyToNucleus;
             E_cal_QEL_lower_lim_1n1p = E_cal_QEL_lower_lim_range + 2 * BEnergyToNucleus;
@@ -1768,39 +1768,39 @@ void gst::Loop() {
             E_cal_DIS_upper_lim_1n1p = E_cal_DIS_upper_lim_range;
             E_cal_DIS_lower_lim_1n1p = E_cal_DIS_lower_lim_range;
         }
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Momentum histograms */
+#pragma region /* Momentum histograms */
 
-        #pragma region /* Momentum histograms (2p) */
+#pragma region /* Momentum histograms (2p) */
         P_L_hist_upper_lim_2p = 1.5;
         P_L_hist_lower_lim_2p = 0;
         P_R_hist_upper_lim_2p = 1.5;
         P_R_hist_lower_lim_2p = 0;
         P_lp_hist_upper_lim_2p = 1.5;
         P_lp_hist_lower_lim_2p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Momentum histograms (1n1p) */
+#pragma region /* Momentum histograms (1n1p) */
         P_p_hist_upper_lim_1n1p = 1.5;
         P_p_hist_lower_lim_1n1p = 0;
         P_n_hist_upper_lim_1n1p = 1.5;
         P_n_hist_lower_lim_1n1p = 0;
         P_lp_hist_upper_lim_1n1p = 1.5;
         P_lp_hist_lower_lim_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
     } else if (file_name == "12C_2222GeV_G18_10a_02_11a") {
-        #pragma region /* 12C_2222GeV_G18_10a_02_11a histogram limits */
+#pragma region /* 12C_2222GeV_G18_10a_02_11a histogram limits */
 
-        #pragma region /* Energy histograms */
+#pragma region /* Energy histograms */
 
-        #pragma region /* Energy histograms (2p) */
+#pragma region /* Energy histograms (2p) */
         if (FSI_status == true) {
             fsEl_upper_lim_2p = 2.21;
             fsEl_lower_lim_2p = 1;
@@ -1832,9 +1832,9 @@ void gst::Loop() {
             fsEl_VS_theta_lp_upper_lim_2p_y = 2.3;
             fsEl_VS_theta_lp_lower_lim_2p_y = 0;
         }
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy histograms (1n1p) */
+#pragma region /* Energy histograms (1n1p) */
         if (FSI_status == true) {
             fsEl_upper_lim_1n1p = 2.3;
             fsEl_lower_lim_1n1p = 1;
@@ -1866,15 +1866,15 @@ void gst::Loop() {
             fsEl_VS_theta_lp_upper_lim_1n1p_y = 2.3;
             fsEl_VS_theta_lp_lower_lim_1n1p_y = 0;
         }
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms */
+#pragma region /* Energy Transfer histograms */
 
-        #pragma region /* Energy Transfer histograms (all interactions) */
+#pragma region /* Energy Transfer histograms (all interactions) */
 
-        #pragma region /* Energy Transfer histograms (all interactions, 2p) */
+#pragma region /* Energy Transfer histograms (all interactions, 2p) */
         E_Trans_all_ang_all_int_upper_lim_2p = 1.7;
         E_Trans_all_ang_all_int_lower_lim_2p = 0;
         E_Trans15_all_upper_lim_2p = 1.7;
@@ -1883,9 +1883,9 @@ void gst::Loop() {
         E_Trans45_all_lower_lim_2p = 0;
         E_Trans90_all_upper_lim_2p = 1.7;
         E_Trans90_all_lower_lim_2p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (all interactions, 1n1p) */
+#pragma region /* Energy Transfer histograms (all interactions, 1n1p) */
         E_Trans_all_ang_all_int_upper_lim_1n1p = 1.7;
         E_Trans_all_ang_all_int_lower_lim_1n1p = 0;
         E_Trans15_all_upper_lim_1n1p = 1.7;
@@ -1894,101 +1894,101 @@ void gst::Loop() {
         E_Trans45_all_lower_lim_1n1p = 0;
         E_Trans90_all_upper_lim_1n1p = 1.7;
         E_Trans90_all_lower_lim_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (QEL only) */
+#pragma region /* Energy Transfer histograms (QEL only) */
 
-        #pragma region /* Energy Transfer histograms (QEL only, 2p) */
+#pragma region /* Energy Transfer histograms (QEL only, 2p) */
         E_Trans15_QEL_upper_lim_2p = 1.7;
         E_Trans15_QEL_lower_lim_2p = 0;
         E_Trans45_QEL_upper_lim_2p = 1.7;
         E_Trans45_QEL_lower_lim_2p = 0;
         E_Trans90_QEL_upper_lim_2p = 1.7;
         E_Trans90_QEL_lower_lim_2p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (QEL only, 1n1p) */
+#pragma region /* Energy Transfer histograms (QEL only, 1n1p) */
         E_Trans15_QEL_upper_lim_1n1p = 1.7;
         E_Trans15_QEL_lower_lim_1n1p = 0;
         E_Trans45_QEL_upper_lim_1n1p = 1.7;
         E_Trans45_QEL_lower_lim_1n1p = 0;
         E_Trans90_QEL_upper_lim_1n1p = 1.7;
         E_Trans90_QEL_lower_lim_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (MEC only) */
+#pragma region /* Energy Transfer histograms (MEC only) */
 
-        #pragma region /* Energy Transfer histograms (MEC only, 2p) */
+#pragma region /* Energy Transfer histograms (MEC only, 2p) */
         E_Trans15_MEC_upper_lim_2p = 1.7;
         E_Trans15_MEC_lower_lim_2p = 0;
         E_Trans45_MEC_upper_lim_2p = 1.7;
         E_Trans45_MEC_lower_lim_2p = 0;
         E_Trans90_MEC_upper_lim_2p = 1.7;
         E_Trans90_MEC_lower_lim_2p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (MEC only, 1n1p) */
+#pragma region /* Energy Transfer histograms (MEC only, 1n1p) */
         E_Trans15_MEC_upper_lim_1n1p = 1.7;
         E_Trans15_MEC_lower_lim_1n1p = 0;
         E_Trans45_MEC_upper_lim_1n1p = 1.7;
         E_Trans45_MEC_lower_lim_1n1p = 0;
         E_Trans90_MEC_upper_lim_1n1p = 1.7;
         E_Trans90_MEC_lower_lim_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (RES only) */
+#pragma region /* Energy Transfer histograms (RES only) */
 
-        #pragma region /* Energy Transfer histograms (RES only, 2p) */
+#pragma region /* Energy Transfer histograms (RES only, 2p) */
         E_Trans15_RES_upper_lim_2p = 1.7;
         E_Trans15_RES_lower_lim_2p = 0;
         E_Trans45_RES_upper_lim_2p = 1.7;
         E_Trans45_RES_lower_lim_2p = 0;
         E_Trans90_RES_upper_lim_2p = 1.7;
         E_Trans90_RES_lower_lim_2p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (RES only, 1n1p) */
+#pragma region /* Energy Transfer histograms (RES only, 1n1p) */
         E_Trans15_RES_upper_lim_1n1p = 1.7;
         E_Trans15_RES_lower_lim_1n1p = 0;
         E_Trans45_RES_upper_lim_1n1p = 1.7;
         E_Trans45_RES_lower_lim_1n1p = 0;
         E_Trans90_RES_upper_lim_1n1p = 1.7;
         E_Trans90_RES_lower_lim_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (DIS only) */
+#pragma region /* Energy Transfer histograms (DIS only) */
 
-        #pragma region /* Energy Transfer histograms (DIS only, 2p) */
+#pragma region /* Energy Transfer histograms (DIS only, 2p) */
         E_Trans15_DIS_upper_lim_2p = 1.7;
         E_Trans15_DIS_lower_lim_2p = 0;
         E_Trans45_DIS_upper_lim_2p = 1.7;
         E_Trans45_DIS_lower_lim_2p = 0;
         E_Trans90_DIS_upper_lim_2p = 1.7;
         E_Trans90_DIS_lower_lim_2p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (DIS only, 1n1p) */
+#pragma region /* Energy Transfer histograms (DIS only, 1n1p) */
         E_Trans15_DIS_upper_lim_1n1p = 1.7;
         E_Trans15_DIS_lower_lim_1n1p = 0;
         E_Trans45_DIS_upper_lim_1n1p = 1.7;
         E_Trans45_DIS_lower_lim_1n1p = 0;
         E_Trans90_DIS_upper_lim_1n1p = 1.7;
         E_Trans90_DIS_lower_lim_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Inclusive Energy Transfer histograms */
+#pragma region /* Inclusive Energy Transfer histograms */
         E_Trans15_all_inclusive_upper_lim = 2.3;
         E_Trans15_all_inclusive_lower_lim = 0;
         E_Trans15_QEL_inclusive_upper_lim = 2.3;
@@ -2035,11 +2035,11 @@ void gst::Loop() {
         E_Trans_VS_q3_MEC_lower_lim_x_1n1p = 0;
         E_Trans_VS_q3_MEC_upper_lim_y_1n1p = 2.3;
         E_Trans_VS_q3_MEC_lower_lim_y_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* E_cal restoration histograms */
+#pragma region /* E_cal restoration histograms */
 
-        #pragma region /* E_cal range */
+#pragma region /* E_cal range */
         E_cal_QEL_upper_lim_range = 2.35;
         E_cal_QEL_lower_lim_range = 2.11;
         E_cal_MEC_upper_lim_range = 2.35;
@@ -2048,9 +2048,9 @@ void gst::Loop() {
         E_cal_RES_lower_lim_range = 2.11;
         E_cal_DIS_upper_lim_range = 2.35;
         E_cal_DIS_lower_lim_range = 2.11;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* E_cal restoration histograms (2p) */
+#pragma region /* E_cal restoration histograms (2p) */
         if (BEnergyToNucleusCon == true) {
             E_cal_QEL_upper_lim_2p = E_cal_QEL_upper_lim_range + 2 * BEnergyToNucleus;
             E_cal_QEL_lower_lim_2p = E_cal_QEL_lower_lim_range + 2 * BEnergyToNucleus;
@@ -2070,9 +2070,9 @@ void gst::Loop() {
             E_cal_DIS_upper_lim_2p = E_cal_DIS_upper_lim_range;
             E_cal_DIS_lower_lim_2p = E_cal_DIS_lower_lim_range;
         }
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* E_cal restoration histograms (1n1p) */
+#pragma region /* E_cal restoration histograms (1n1p) */
         if (BEnergyToNucleusCon == true) {
             E_cal_QEL_upper_lim_1n1p = E_cal_QEL_upper_lim_range + 2 * BEnergyToNucleus;
             E_cal_QEL_lower_lim_1n1p = E_cal_QEL_lower_lim_range + 2 * BEnergyToNucleus;
@@ -2092,39 +2092,39 @@ void gst::Loop() {
             E_cal_DIS_upper_lim_1n1p = E_cal_DIS_upper_lim_range;
             E_cal_DIS_lower_lim_1n1p = E_cal_DIS_lower_lim_range;
         }
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Momentum histograms */
+#pragma region /* Momentum histograms */
 
-        #pragma region /* Momentum histograms (2p) */
+#pragma region /* Momentum histograms (2p) */
         P_L_hist_upper_lim_2p = 2.3;
         P_L_hist_lower_lim_2p = 0;
         P_R_hist_upper_lim_2p = 2.3;
         P_R_hist_lower_lim_2p = 0;
         P_lp_hist_upper_lim_2p = 2.3;
         P_lp_hist_lower_lim_2p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Momentum histograms (1n1p) */
+#pragma region /* Momentum histograms (1n1p) */
         P_p_hist_upper_lim_1n1p = 2.3;
         P_p_hist_lower_lim_1n1p = 0;
         P_n_hist_upper_lim_1n1p = 2.3;
         P_n_hist_lower_lim_1n1p = 0;
         P_lp_hist_upper_lim_1n1p = 2.3;
         P_lp_hist_lower_lim_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
     } else if (file_name == "GENIE_with_fsi") {
-        #pragma region /* GENIE_with_fsi histogram limits */
+#pragma region /* GENIE_with_fsi histogram limits */
 
-        #pragma region /* Energy histograms */
+#pragma region /* Energy histograms */
 
-        #pragma region /* Energy histograms (2p) */
+#pragma region /* Energy histograms (2p) */
         if (FSI_status == true) {
             fsEl_upper_lim_2p = 2.21;
             fsEl_lower_lim_2p = 1;
@@ -2156,9 +2156,9 @@ void gst::Loop() {
             fsEl_VS_theta_lp_upper_lim_2p_y = 2.3;
             fsEl_VS_theta_lp_lower_lim_2p_y = 0;
         }
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy histograms (1n1p) */
+#pragma region /* Energy histograms (1n1p) */
         if (FSI_status == true) {
             fsEl_upper_lim_1n1p = 2.3;
             fsEl_lower_lim_1n1p = 1;
@@ -2190,15 +2190,15 @@ void gst::Loop() {
             fsEl_VS_theta_lp_upper_lim_1n1p_y = 2.3;
             fsEl_VS_theta_lp_lower_lim_1n1p_y = 0;
         }
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms */
+#pragma region /* Energy Transfer histograms */
 
-        #pragma region /* Energy Transfer histograms (all interactions) */
+#pragma region /* Energy Transfer histograms (all interactions) */
 
-        #pragma region /* Energy Transfer histograms (all interactions, 2p) */
+#pragma region /* Energy Transfer histograms (all interactions, 2p) */
         E_Trans_all_ang_all_int_upper_lim_2p = 1.7;
         E_Trans_all_ang_all_int_lower_lim_2p = 0;
         E_Trans15_all_upper_lim_2p = 1.7;
@@ -2207,9 +2207,9 @@ void gst::Loop() {
         E_Trans45_all_lower_lim_2p = 0;
         E_Trans90_all_upper_lim_2p = 1.7;
         E_Trans90_all_lower_lim_2p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (all interactions, 1n1p) */
+#pragma region /* Energy Transfer histograms (all interactions, 1n1p) */
         E_Trans_all_ang_all_int_upper_lim_1n1p = 1.7;
         E_Trans_all_ang_all_int_lower_lim_1n1p = 0;
         E_Trans15_all_upper_lim_1n1p = 1.7;
@@ -2218,101 +2218,101 @@ void gst::Loop() {
         E_Trans45_all_lower_lim_1n1p = 0;
         E_Trans90_all_upper_lim_1n1p = 1.7;
         E_Trans90_all_lower_lim_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (QEL only) */
+#pragma region /* Energy Transfer histograms (QEL only) */
 
-        #pragma region /* Energy Transfer histograms (QEL only, 2p) */
+#pragma region /* Energy Transfer histograms (QEL only, 2p) */
         E_Trans15_QEL_upper_lim_2p = 1.7;
         E_Trans15_QEL_lower_lim_2p = 0;
         E_Trans45_QEL_upper_lim_2p = 1.7;
         E_Trans45_QEL_lower_lim_2p = 0;
         E_Trans90_QEL_upper_lim_2p = 1.7;
         E_Trans90_QEL_lower_lim_2p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (QEL only, 1n1p) */
+#pragma region /* Energy Transfer histograms (QEL only, 1n1p) */
         E_Trans15_QEL_upper_lim_1n1p = 1.7;
         E_Trans15_QEL_lower_lim_1n1p = 0;
         E_Trans45_QEL_upper_lim_1n1p = 1.7;
         E_Trans45_QEL_lower_lim_1n1p = 0;
         E_Trans90_QEL_upper_lim_1n1p = 1.7;
         E_Trans90_QEL_lower_lim_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (MEC only) */
+#pragma region /* Energy Transfer histograms (MEC only) */
 
-        #pragma region /* Energy Transfer histograms (MEC only, 2p) */
+#pragma region /* Energy Transfer histograms (MEC only, 2p) */
         E_Trans15_MEC_upper_lim_2p = 1.7;
         E_Trans15_MEC_lower_lim_2p = 0;
         E_Trans45_MEC_upper_lim_2p = 1.7;
         E_Trans45_MEC_lower_lim_2p = 0;
         E_Trans90_MEC_upper_lim_2p = 1.7;
         E_Trans90_MEC_lower_lim_2p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (MEC only, 1n1p) */
+#pragma region /* Energy Transfer histograms (MEC only, 1n1p) */
         E_Trans15_MEC_upper_lim_1n1p = 1.7;
         E_Trans15_MEC_lower_lim_1n1p = 0;
         E_Trans45_MEC_upper_lim_1n1p = 1.7;
         E_Trans45_MEC_lower_lim_1n1p = 0;
         E_Trans90_MEC_upper_lim_1n1p = 1.7;
         E_Trans90_MEC_lower_lim_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (RES only) */
+#pragma region /* Energy Transfer histograms (RES only) */
 
-        #pragma region /* Energy Transfer histograms (RES only, 2p) */
+#pragma region /* Energy Transfer histograms (RES only, 2p) */
         E_Trans15_RES_upper_lim_2p = 1.7;
         E_Trans15_RES_lower_lim_2p = 0;
         E_Trans45_RES_upper_lim_2p = 1.7;
         E_Trans45_RES_lower_lim_2p = 0;
         E_Trans90_RES_upper_lim_2p = 1.7;
         E_Trans90_RES_lower_lim_2p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (RES only, 1n1p) */
+#pragma region /* Energy Transfer histograms (RES only, 1n1p) */
         E_Trans15_RES_upper_lim_1n1p = 1.7;
         E_Trans15_RES_lower_lim_1n1p = 0;
         E_Trans45_RES_upper_lim_1n1p = 1.7;
         E_Trans45_RES_lower_lim_1n1p = 0;
         E_Trans90_RES_upper_lim_1n1p = 1.7;
         E_Trans90_RES_lower_lim_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (DIS only) */
+#pragma region /* Energy Transfer histograms (DIS only) */
 
-        #pragma region /* Energy Transfer histograms (DIS only, 2p) */
+#pragma region /* Energy Transfer histograms (DIS only, 2p) */
         E_Trans15_DIS_upper_lim_2p = 1.7;
         E_Trans15_DIS_lower_lim_2p = 0;
         E_Trans45_DIS_upper_lim_2p = 1.7;
         E_Trans45_DIS_lower_lim_2p = 0;
         E_Trans90_DIS_upper_lim_2p = 1.7;
         E_Trans90_DIS_lower_lim_2p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (DIS only, 1n1p) */
+#pragma region /* Energy Transfer histograms (DIS only, 1n1p) */
         E_Trans15_DIS_upper_lim_1n1p = 1.7;
         E_Trans15_DIS_lower_lim_1n1p = 0;
         E_Trans45_DIS_upper_lim_1n1p = 1.7;
         E_Trans45_DIS_lower_lim_1n1p = 0;
         E_Trans90_DIS_upper_lim_1n1p = 1.7;
         E_Trans90_DIS_lower_lim_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Inclusive Energy Transfer histograms */
+#pragma region /* Inclusive Energy Transfer histograms */
         E_Trans15_all_inclusive_upper_lim = 2.3;
         E_Trans15_all_inclusive_lower_lim = 0;
         E_Trans15_QEL_inclusive_upper_lim = 2.3;
@@ -2359,11 +2359,11 @@ void gst::Loop() {
         E_Trans_VS_q3_MEC_lower_lim_x_1n1p = 0;
         E_Trans_VS_q3_MEC_upper_lim_y_1n1p = 2.3;
         E_Trans_VS_q3_MEC_lower_lim_y_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* E_cal restoration histograms */
+#pragma region /* E_cal restoration histograms */
 
-        #pragma region /* E_cal range */
+#pragma region /* E_cal range */
         E_cal_QEL_upper_lim_range = 2.35;
         E_cal_QEL_lower_lim_range = 2.11;
         E_cal_MEC_upper_lim_range = 2.35;
@@ -2372,9 +2372,9 @@ void gst::Loop() {
         E_cal_RES_lower_lim_range = 2.11;
         E_cal_DIS_upper_lim_range = 2.35;
         E_cal_DIS_lower_lim_range = 2.11;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* E_cal restoration histograms (2p) */
+#pragma region /* E_cal restoration histograms (2p) */
         if (BEnergyToNucleusCon == true) {
             E_cal_QEL_upper_lim_2p = E_cal_QEL_upper_lim_range + 2 * BEnergyToNucleus;
             E_cal_QEL_lower_lim_2p = E_cal_QEL_lower_lim_range + 2 * BEnergyToNucleus;
@@ -2394,9 +2394,9 @@ void gst::Loop() {
             E_cal_DIS_upper_lim_2p = E_cal_DIS_upper_lim_range;
             E_cal_DIS_lower_lim_2p = E_cal_DIS_lower_lim_range;
         }
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* E_cal restoration histograms (1n1p) */
+#pragma region /* E_cal restoration histograms (1n1p) */
         if (BEnergyToNucleusCon == true) {
             E_cal_QEL_upper_lim_1n1p = E_cal_QEL_upper_lim_range + 2 * BEnergyToNucleus;
             E_cal_QEL_lower_lim_1n1p = E_cal_QEL_lower_lim_range + 2 * BEnergyToNucleus;
@@ -2416,39 +2416,39 @@ void gst::Loop() {
             E_cal_DIS_upper_lim_1n1p = E_cal_DIS_upper_lim_range;
             E_cal_DIS_lower_lim_1n1p = E_cal_DIS_lower_lim_range;
         }
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Momentum histograms */
+#pragma region /* Momentum histograms */
 
-        #pragma region /* Momentum histograms (2p) */
+#pragma region /* Momentum histograms (2p) */
         P_L_hist_upper_lim_2p = 2.3;
         P_L_hist_lower_lim_2p = 0;
         P_R_hist_upper_lim_2p = 2.3;
         P_R_hist_lower_lim_2p = 0;
         P_lp_hist_upper_lim_2p = 2.3;
         P_lp_hist_lower_lim_2p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Momentum histograms (1n1p) */
+#pragma region /* Momentum histograms (1n1p) */
         P_p_hist_upper_lim_1n1p = 2.3;
         P_p_hist_lower_lim_1n1p = 0;
         P_n_hist_upper_lim_1n1p = 2.3;
         P_n_hist_lower_lim_1n1p = 0;
         P_lp_hist_upper_lim_1n1p = 2.3;
         P_lp_hist_lower_lim_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
     } else if (file_name == "GENIE_no_fsi") {
-        #pragma region /* GENIE_no_fsi histogram limits */
+#pragma region /* GENIE_no_fsi histogram limits */
 
-        #pragma region /* Energy histograms */
+#pragma region /* Energy histograms */
 
-        #pragma region /* Energy histograms (2p) */
+#pragma region /* Energy histograms (2p) */
         if (FSI_status == true) {
             fsEl_upper_lim_2p = 2.21;
             fsEl_lower_lim_2p = 1;
@@ -2480,9 +2480,9 @@ void gst::Loop() {
             fsEl_VS_theta_lp_upper_lim_2p_y = 2.3;
             fsEl_VS_theta_lp_lower_lim_2p_y = 0;
         }
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy histograms (1n1p) */
+#pragma region /* Energy histograms (1n1p) */
         if (FSI_status == true) {
             fsEl_upper_lim_1n1p = 2.3;
             fsEl_lower_lim_1n1p = 1;
@@ -2528,15 +2528,15 @@ void gst::Loop() {
             //                fsEl_VS_theta_lp_upper_lim_1n1p_y = 2.3;
             //                fsEl_VS_theta_lp_lower_lim_1n1p_y = 0;
         }
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms */
+#pragma region /* Energy Transfer histograms */
 
-        #pragma region /* Energy Transfer histograms (all interactions) */
+#pragma region /* Energy Transfer histograms (all interactions) */
 
-        #pragma region /* Energy Transfer histograms (all interactions, 2p) */
+#pragma region /* Energy Transfer histograms (all interactions, 2p) */
         E_Trans_all_ang_all_int_upper_lim_2p = 1.7;
         E_Trans_all_ang_all_int_lower_lim_2p = 0;
         E_Trans15_all_upper_lim_2p = 1.7;
@@ -2545,9 +2545,9 @@ void gst::Loop() {
         E_Trans45_all_lower_lim_2p = 0;
         E_Trans90_all_upper_lim_2p = 1.7;
         E_Trans90_all_lower_lim_2p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (all interactions, 1n1p) */
+#pragma region /* Energy Transfer histograms (all interactions, 1n1p) */
         E_Trans_all_ang_all_int_upper_lim_1n1p = 1.7;
         E_Trans_all_ang_all_int_lower_lim_1n1p = 0;
         E_Trans15_all_upper_lim_1n1p = 1.7;
@@ -2556,101 +2556,101 @@ void gst::Loop() {
         E_Trans45_all_lower_lim_1n1p = 0;
         E_Trans90_all_upper_lim_1n1p = 1.7;
         E_Trans90_all_lower_lim_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (QEL only) */
+#pragma region /* Energy Transfer histograms (QEL only) */
 
-        #pragma region /* Energy Transfer histograms (QEL only, 2p) */
+#pragma region /* Energy Transfer histograms (QEL only, 2p) */
         E_Trans15_QEL_upper_lim_2p = 1.7;
         E_Trans15_QEL_lower_lim_2p = 0;
         E_Trans45_QEL_upper_lim_2p = 1.7;
         E_Trans45_QEL_lower_lim_2p = 0;
         E_Trans90_QEL_upper_lim_2p = 1.7;
         E_Trans90_QEL_lower_lim_2p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (QEL only, 1n1p) */
+#pragma region /* Energy Transfer histograms (QEL only, 1n1p) */
         E_Trans15_QEL_upper_lim_1n1p = 1.7;
         E_Trans15_QEL_lower_lim_1n1p = 0;
         E_Trans45_QEL_upper_lim_1n1p = 1.7;
         E_Trans45_QEL_lower_lim_1n1p = 0;
         E_Trans90_QEL_upper_lim_1n1p = 1.7;
         E_Trans90_QEL_lower_lim_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (MEC only) */
+#pragma region /* Energy Transfer histograms (MEC only) */
 
-        #pragma region /* Energy Transfer histograms (MEC only, 2p) */
+#pragma region /* Energy Transfer histograms (MEC only, 2p) */
         E_Trans15_MEC_upper_lim_2p = 1.7;
         E_Trans15_MEC_lower_lim_2p = 0;
         E_Trans45_MEC_upper_lim_2p = 1.7;
         E_Trans45_MEC_lower_lim_2p = 0;
         E_Trans90_MEC_upper_lim_2p = 1.7;
         E_Trans90_MEC_lower_lim_2p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (MEC only, 1n1p) */
+#pragma region /* Energy Transfer histograms (MEC only, 1n1p) */
         E_Trans15_MEC_upper_lim_1n1p = 1.7;
         E_Trans15_MEC_lower_lim_1n1p = 0;
         E_Trans45_MEC_upper_lim_1n1p = 1.7;
         E_Trans45_MEC_lower_lim_1n1p = 0;
         E_Trans90_MEC_upper_lim_1n1p = 1.7;
         E_Trans90_MEC_lower_lim_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (RES only) */
+#pragma region /* Energy Transfer histograms (RES only) */
 
-        #pragma region /* Energy Transfer histograms (RES only, 2p) */
+#pragma region /* Energy Transfer histograms (RES only, 2p) */
         E_Trans15_RES_upper_lim_2p = 1.7;
         E_Trans15_RES_lower_lim_2p = 0;
         E_Trans45_RES_upper_lim_2p = 1.7;
         E_Trans45_RES_lower_lim_2p = 0;
         E_Trans90_RES_upper_lim_2p = 1.7;
         E_Trans90_RES_lower_lim_2p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (RES only, 1n1p) */
+#pragma region /* Energy Transfer histograms (RES only, 1n1p) */
         E_Trans15_RES_upper_lim_1n1p = 1.7;
         E_Trans15_RES_lower_lim_1n1p = 0;
         E_Trans45_RES_upper_lim_1n1p = 1.7;
         E_Trans45_RES_lower_lim_1n1p = 0;
         E_Trans90_RES_upper_lim_1n1p = 1.7;
         E_Trans90_RES_lower_lim_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (DIS only) */
+#pragma region /* Energy Transfer histograms (DIS only) */
 
-        #pragma region /* Energy Transfer histograms (DIS only, 2p) */
+#pragma region /* Energy Transfer histograms (DIS only, 2p) */
         E_Trans15_DIS_upper_lim_2p = 1.7;
         E_Trans15_DIS_lower_lim_2p = 0;
         E_Trans45_DIS_upper_lim_2p = 1.7;
         E_Trans45_DIS_lower_lim_2p = 0;
         E_Trans90_DIS_upper_lim_2p = 1.7;
         E_Trans90_DIS_lower_lim_2p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (DIS only, 1n1p) */
+#pragma region /* Energy Transfer histograms (DIS only, 1n1p) */
         E_Trans15_DIS_upper_lim_1n1p = 1.7;
         E_Trans15_DIS_lower_lim_1n1p = 0;
         E_Trans45_DIS_upper_lim_1n1p = 1.7;
         E_Trans45_DIS_lower_lim_1n1p = 0;
         E_Trans90_DIS_upper_lim_1n1p = 1.7;
         E_Trans90_DIS_lower_lim_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Inclusive Energy Transfer histograms */
+#pragma region /* Inclusive Energy Transfer histograms */
         E_Trans15_all_inclusive_upper_lim = 2.3;
         E_Trans15_all_inclusive_lower_lim = 0;
         E_Trans15_QEL_inclusive_upper_lim = 2.3;
@@ -2697,11 +2697,11 @@ void gst::Loop() {
         E_Trans_VS_q3_MEC_lower_lim_x_1n1p = 0;
         E_Trans_VS_q3_MEC_upper_lim_y_1n1p = 2.3;
         E_Trans_VS_q3_MEC_lower_lim_y_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* E_cal restoration histograms */
+#pragma region /* E_cal restoration histograms */
 
-        #pragma region /* E_cal range */
+#pragma region /* E_cal range */
         E_cal_QEL_upper_lim_range = 2.35;
         E_cal_QEL_lower_lim_range = 2.11;
         E_cal_MEC_upper_lim_range = 2.35;
@@ -2710,9 +2710,9 @@ void gst::Loop() {
         E_cal_RES_lower_lim_range = 2.11;
         E_cal_DIS_upper_lim_range = 2.35;
         E_cal_DIS_lower_lim_range = 2.11;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* E_cal restoration histograms (2p) */
+#pragma region /* E_cal restoration histograms (2p) */
         if (BEnergyToNucleusCon == true) {
             E_cal_QEL_upper_lim_2p = E_cal_QEL_upper_lim_range + 2 * BEnergyToNucleus;
             E_cal_QEL_lower_lim_2p = E_cal_QEL_lower_lim_range + 2 * BEnergyToNucleus;
@@ -2732,9 +2732,9 @@ void gst::Loop() {
             E_cal_DIS_upper_lim_2p = E_cal_DIS_upper_lim_range;
             E_cal_DIS_lower_lim_2p = E_cal_DIS_lower_lim_range;
         }
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* E_cal restoration histograms (1n1p) */
+#pragma region /* E_cal restoration histograms (1n1p) */
         if (BEnergyToNucleusCon == true) {
             E_cal_QEL_upper_lim_1n1p = E_cal_QEL_upper_lim_range + 2 * BEnergyToNucleus;
             E_cal_QEL_lower_lim_1n1p = E_cal_QEL_lower_lim_range + 2 * BEnergyToNucleus;
@@ -2754,39 +2754,39 @@ void gst::Loop() {
             E_cal_DIS_upper_lim_1n1p = E_cal_DIS_upper_lim_range;
             E_cal_DIS_lower_lim_1n1p = E_cal_DIS_lower_lim_range;
         }
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Momentum histograms */
+#pragma region /* Momentum histograms */
 
-        #pragma region /* Momentum histograms (2p) */
+#pragma region /* Momentum histograms (2p) */
         P_L_hist_upper_lim_2p = 2.3;
         P_L_hist_lower_lim_2p = 0;
         P_R_hist_upper_lim_2p = 2.3;
         P_R_hist_lower_lim_2p = 0;
         P_lp_hist_upper_lim_2p = 2.3;
         P_lp_hist_lower_lim_2p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Momentum histograms (1n1p) */
+#pragma region /* Momentum histograms (1n1p) */
         P_p_hist_upper_lim_1n1p = 2.3;
         P_p_hist_lower_lim_1n1p = 0;
         P_n_hist_upper_lim_1n1p = 2.3;
         P_n_hist_lower_lim_1n1p = 0;
         P_lp_hist_upper_lim_1n1p = 2.3;
         P_lp_hist_lower_lim_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
     } else if (file_name == "12C_2222GeV_GTEST19_10b_00_000") {
-        #pragma region /* 12C_2222GeV_GTEST19_10b_00_000 histogram limits */
+#pragma region /* 12C_2222GeV_GTEST19_10b_00_000 histogram limits */
 
-        #pragma region /* Energy histograms */
+#pragma region /* Energy histograms */
 
-        #pragma region /* Energy histograms (2p) */
+#pragma region /* Energy histograms (2p) */
         if (FSI_status == true) {
             fsEl_upper_lim_2p = 2.21;
             fsEl_lower_lim_2p = 1;
@@ -2818,9 +2818,9 @@ void gst::Loop() {
             fsEl_VS_theta_lp_upper_lim_2p_y = 2.3;
             fsEl_VS_theta_lp_lower_lim_2p_y = 0;
         }
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy histograms (1n1p) */
+#pragma region /* Energy histograms (1n1p) */
         if (FSI_status == true) {
             fsEl_upper_lim_1n1p = 2.3;
             fsEl_lower_lim_1n1p = 1;
@@ -2852,15 +2852,15 @@ void gst::Loop() {
             fsEl_VS_theta_lp_upper_lim_1n1p_y = 2.3;
             fsEl_VS_theta_lp_lower_lim_1n1p_y = 0;
         }
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms */
+#pragma region /* Energy Transfer histograms */
 
-        #pragma region /* Energy Transfer histograms (all interactions) */
+#pragma region /* Energy Transfer histograms (all interactions) */
 
-        #pragma region /* Energy Transfer histograms (all interactions, 2p) */
+#pragma region /* Energy Transfer histograms (all interactions, 2p) */
         E_Trans_all_ang_all_int_upper_lim_2p = 1.7;
         E_Trans_all_ang_all_int_lower_lim_2p = 0;
         E_Trans15_all_upper_lim_2p = 1.7;
@@ -2869,9 +2869,9 @@ void gst::Loop() {
         E_Trans45_all_lower_lim_2p = 0;
         E_Trans90_all_upper_lim_2p = 1.7;
         E_Trans90_all_lower_lim_2p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (all interactions, 1n1p) */
+#pragma region /* Energy Transfer histograms (all interactions, 1n1p) */
         E_Trans_all_ang_all_int_upper_lim_1n1p = 1.7;
         E_Trans_all_ang_all_int_lower_lim_1n1p = 0;
         E_Trans15_all_upper_lim_1n1p = 1.7;
@@ -2880,101 +2880,101 @@ void gst::Loop() {
         E_Trans45_all_lower_lim_1n1p = 0;
         E_Trans90_all_upper_lim_1n1p = 1.7;
         E_Trans90_all_lower_lim_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (QEL only) */
+#pragma region /* Energy Transfer histograms (QEL only) */
 
-        #pragma region /* Energy Transfer histograms (QEL only, 2p) */
+#pragma region /* Energy Transfer histograms (QEL only, 2p) */
         E_Trans15_QEL_upper_lim_2p = 1.7;
         E_Trans15_QEL_lower_lim_2p = 0;
         E_Trans45_QEL_upper_lim_2p = 1.7;
         E_Trans45_QEL_lower_lim_2p = 0;
         E_Trans90_QEL_upper_lim_2p = 1.7;
         E_Trans90_QEL_lower_lim_2p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (QEL only, 1n1p) */
+#pragma region /* Energy Transfer histograms (QEL only, 1n1p) */
         E_Trans15_QEL_upper_lim_1n1p = 1.7;
         E_Trans15_QEL_lower_lim_1n1p = 0;
         E_Trans45_QEL_upper_lim_1n1p = 1.7;
         E_Trans45_QEL_lower_lim_1n1p = 0;
         E_Trans90_QEL_upper_lim_1n1p = 1.7;
         E_Trans90_QEL_lower_lim_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (MEC only) */
+#pragma region /* Energy Transfer histograms (MEC only) */
 
-        #pragma region /* Energy Transfer histograms (MEC only, 2p) */
+#pragma region /* Energy Transfer histograms (MEC only, 2p) */
         E_Trans15_MEC_upper_lim_2p = 1.7;
         E_Trans15_MEC_lower_lim_2p = 0;
         E_Trans45_MEC_upper_lim_2p = 1.7;
         E_Trans45_MEC_lower_lim_2p = 0;
         E_Trans90_MEC_upper_lim_2p = 1.7;
         E_Trans90_MEC_lower_lim_2p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (MEC only, 1n1p) */
+#pragma region /* Energy Transfer histograms (MEC only, 1n1p) */
         E_Trans15_MEC_upper_lim_1n1p = 1.7;
         E_Trans15_MEC_lower_lim_1n1p = 0;
         E_Trans45_MEC_upper_lim_1n1p = 1.7;
         E_Trans45_MEC_lower_lim_1n1p = 0;
         E_Trans90_MEC_upper_lim_1n1p = 1.7;
         E_Trans90_MEC_lower_lim_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (RES only) */
+#pragma region /* Energy Transfer histograms (RES only) */
 
-        #pragma region /* Energy Transfer histograms (RES only, 2p) */
+#pragma region /* Energy Transfer histograms (RES only, 2p) */
         E_Trans15_RES_upper_lim_2p = 1.7;
         E_Trans15_RES_lower_lim_2p = 0;
         E_Trans45_RES_upper_lim_2p = 1.7;
         E_Trans45_RES_lower_lim_2p = 0;
         E_Trans90_RES_upper_lim_2p = 1.7;
         E_Trans90_RES_lower_lim_2p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (RES only, 1n1p) */
+#pragma region /* Energy Transfer histograms (RES only, 1n1p) */
         E_Trans15_RES_upper_lim_1n1p = 1.7;
         E_Trans15_RES_lower_lim_1n1p = 0;
         E_Trans45_RES_upper_lim_1n1p = 1.7;
         E_Trans45_RES_lower_lim_1n1p = 0;
         E_Trans90_RES_upper_lim_1n1p = 1.7;
         E_Trans90_RES_lower_lim_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (DIS only) */
+#pragma region /* Energy Transfer histograms (DIS only) */
 
-        #pragma region /* Energy Transfer histograms (DIS only, 2p) */
+#pragma region /* Energy Transfer histograms (DIS only, 2p) */
         E_Trans15_DIS_upper_lim_2p = 1.7;
         E_Trans15_DIS_lower_lim_2p = 0;
         E_Trans45_DIS_upper_lim_2p = 1.7;
         E_Trans45_DIS_lower_lim_2p = 0;
         E_Trans90_DIS_upper_lim_2p = 1.7;
         E_Trans90_DIS_lower_lim_2p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (DIS only, 1n1p) */
+#pragma region /* Energy Transfer histograms (DIS only, 1n1p) */
         E_Trans15_DIS_upper_lim_1n1p = 1.7;
         E_Trans15_DIS_lower_lim_1n1p = 0;
         E_Trans45_DIS_upper_lim_1n1p = 1.7;
         E_Trans45_DIS_lower_lim_1n1p = 0;
         E_Trans90_DIS_upper_lim_1n1p = 1.7;
         E_Trans90_DIS_lower_lim_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Inclusive Energy Transfer histograms */
+#pragma region /* Inclusive Energy Transfer histograms */
         E_Trans15_all_inclusive_upper_lim = 2.3;
         E_Trans15_all_inclusive_lower_lim = 0;
         E_Trans15_QEL_inclusive_upper_lim = 2.3;
@@ -3021,11 +3021,11 @@ void gst::Loop() {
         E_Trans_VS_q3_MEC_lower_lim_x_1n1p = 0;
         E_Trans_VS_q3_MEC_upper_lim_y_1n1p = 2.3;
         E_Trans_VS_q3_MEC_lower_lim_y_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* E_cal restoration histograms */
+#pragma region /* E_cal restoration histograms */
 
-        #pragma region /* E_cal range */
+#pragma region /* E_cal range */
         E_cal_QEL_upper_lim_range = 2.35;
         E_cal_QEL_lower_lim_range = 2.11;
         E_cal_MEC_upper_lim_range = 2.35;
@@ -3034,9 +3034,9 @@ void gst::Loop() {
         E_cal_RES_lower_lim_range = 2.11;
         E_cal_DIS_upper_lim_range = 2.35;
         E_cal_DIS_lower_lim_range = 2.11;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* E_cal restoration histograms (2p) */
+#pragma region /* E_cal restoration histograms (2p) */
         if (BEnergyToNucleusCon == true) {
             E_cal_QEL_upper_lim_2p = E_cal_QEL_upper_lim_range + 2 * BEnergyToNucleus;
             E_cal_QEL_lower_lim_2p = E_cal_QEL_lower_lim_range + 2 * BEnergyToNucleus;
@@ -3056,9 +3056,9 @@ void gst::Loop() {
             E_cal_DIS_upper_lim_2p = E_cal_DIS_upper_lim_range;
             E_cal_DIS_lower_lim_2p = E_cal_DIS_lower_lim_range;
         }
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* E_cal restoration histograms (1n1p) */
+#pragma region /* E_cal restoration histograms (1n1p) */
         if (BEnergyToNucleusCon == true) {
             E_cal_QEL_upper_lim_1n1p = E_cal_QEL_upper_lim_range + 2 * BEnergyToNucleus;
             E_cal_QEL_lower_lim_1n1p = E_cal_QEL_lower_lim_range + 2 * BEnergyToNucleus;
@@ -3078,39 +3078,39 @@ void gst::Loop() {
             E_cal_DIS_upper_lim_1n1p = E_cal_DIS_upper_lim_range;
             E_cal_DIS_lower_lim_1n1p = E_cal_DIS_lower_lim_range;
         }
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Momentum histograms */
+#pragma region /* Momentum histograms */
 
-        #pragma region /* Momentum histograms (2p) */
+#pragma region /* Momentum histograms (2p) */
         P_L_hist_upper_lim_2p = 2.3;
         P_L_hist_lower_lim_2p = 0;
         P_R_hist_upper_lim_2p = 2.3;
         P_R_hist_lower_lim_2p = 0;
         P_lp_hist_upper_lim_2p = 2.3;
         P_lp_hist_lower_lim_2p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Momentum histograms (1n1p) */
+#pragma region /* Momentum histograms (1n1p) */
         P_p_hist_upper_lim_1n1p = 2.3;
         P_p_hist_lower_lim_1n1p = 0;
         P_n_hist_upper_lim_1n1p = 2.3;
         P_n_hist_lower_lim_1n1p = 0;
         P_lp_hist_upper_lim_1n1p = 2.3;
         P_lp_hist_lower_lim_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
     } else if (file_name == "adi_11_1000060120_2222_fsi.gst") {
-        #pragma region /* adi_11_1000060120_2222_fsi.gst histogram limits */
+#pragma region /* adi_11_1000060120_2222_fsi.gst histogram limits */
 
-        #pragma region /* Energy histograms */
+#pragma region /* Energy histograms */
 
-        #pragma region /* Energy histograms (2p) */
+#pragma region /* Energy histograms (2p) */
         if (FSI_status == true) {
             fsEl_upper_lim_2p = 2.21;
             fsEl_lower_lim_2p = 1;
@@ -3142,9 +3142,9 @@ void gst::Loop() {
             fsEl_VS_theta_lp_upper_lim_2p_y = 2.3;
             fsEl_VS_theta_lp_lower_lim_2p_y = 0;
         }
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy histograms (1n1p) */
+#pragma region /* Energy histograms (1n1p) */
         if (FSI_status == true) {
             fsEl_upper_lim_1n1p = 2.3;
             fsEl_lower_lim_1n1p = 1;
@@ -3176,15 +3176,15 @@ void gst::Loop() {
             fsEl_VS_theta_lp_upper_lim_1n1p_y = 2.3;
             fsEl_VS_theta_lp_lower_lim_1n1p_y = 0;
         }
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms */
+#pragma region /* Energy Transfer histograms */
 
-        #pragma region /* Energy Transfer histograms (all interactions) */
+#pragma region /* Energy Transfer histograms (all interactions) */
 
-        #pragma region /* Energy Transfer histograms (all interactions, 2p) */
+#pragma region /* Energy Transfer histograms (all interactions, 2p) */
         E_Trans_all_ang_all_int_upper_lim_2p = 1.7;
         E_Trans_all_ang_all_int_lower_lim_2p = 0;
         E_Trans15_all_upper_lim_2p = 1.7;
@@ -3193,9 +3193,9 @@ void gst::Loop() {
         E_Trans45_all_lower_lim_2p = 0;
         E_Trans90_all_upper_lim_2p = 1.7;
         E_Trans90_all_lower_lim_2p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (all interactions, 1n1p) */
+#pragma region /* Energy Transfer histograms (all interactions, 1n1p) */
         E_Trans_all_ang_all_int_upper_lim_1n1p = 1.7;
         E_Trans_all_ang_all_int_lower_lim_1n1p = 0;
         E_Trans15_all_upper_lim_1n1p = 1.7;
@@ -3204,101 +3204,101 @@ void gst::Loop() {
         E_Trans45_all_lower_lim_1n1p = 0;
         E_Trans90_all_upper_lim_1n1p = 1.7;
         E_Trans90_all_lower_lim_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (QEL only) */
+#pragma region /* Energy Transfer histograms (QEL only) */
 
-        #pragma region /* Energy Transfer histograms (QEL only, 2p) */
+#pragma region /* Energy Transfer histograms (QEL only, 2p) */
         E_Trans15_QEL_upper_lim_2p = 1.7;
         E_Trans15_QEL_lower_lim_2p = 0;
         E_Trans45_QEL_upper_lim_2p = 1.7;
         E_Trans45_QEL_lower_lim_2p = 0;
         E_Trans90_QEL_upper_lim_2p = 1.7;
         E_Trans90_QEL_lower_lim_2p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (QEL only, 1n1p) */
+#pragma region /* Energy Transfer histograms (QEL only, 1n1p) */
         E_Trans15_QEL_upper_lim_1n1p = 1.7;
         E_Trans15_QEL_lower_lim_1n1p = 0;
         E_Trans45_QEL_upper_lim_1n1p = 1.7;
         E_Trans45_QEL_lower_lim_1n1p = 0;
         E_Trans90_QEL_upper_lim_1n1p = 1.7;
         E_Trans90_QEL_lower_lim_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (MEC only) */
+#pragma region /* Energy Transfer histograms (MEC only) */
 
-        #pragma region /* Energy Transfer histograms (MEC only, 2p) */
+#pragma region /* Energy Transfer histograms (MEC only, 2p) */
         E_Trans15_MEC_upper_lim_2p = 1.7;
         E_Trans15_MEC_lower_lim_2p = 0;
         E_Trans45_MEC_upper_lim_2p = 1.7;
         E_Trans45_MEC_lower_lim_2p = 0;
         E_Trans90_MEC_upper_lim_2p = 1.7;
         E_Trans90_MEC_lower_lim_2p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (MEC only, 1n1p) */
+#pragma region /* Energy Transfer histograms (MEC only, 1n1p) */
         E_Trans15_MEC_upper_lim_1n1p = 1.7;
         E_Trans15_MEC_lower_lim_1n1p = 0;
         E_Trans45_MEC_upper_lim_1n1p = 1.7;
         E_Trans45_MEC_lower_lim_1n1p = 0;
         E_Trans90_MEC_upper_lim_1n1p = 1.7;
         E_Trans90_MEC_lower_lim_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (RES only) */
+#pragma region /* Energy Transfer histograms (RES only) */
 
-        #pragma region /* Energy Transfer histograms (RES only, 2p) */
+#pragma region /* Energy Transfer histograms (RES only, 2p) */
         E_Trans15_RES_upper_lim_2p = 1.7;
         E_Trans15_RES_lower_lim_2p = 0;
         E_Trans45_RES_upper_lim_2p = 1.7;
         E_Trans45_RES_lower_lim_2p = 0;
         E_Trans90_RES_upper_lim_2p = 1.7;
         E_Trans90_RES_lower_lim_2p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (RES only, 1n1p) */
+#pragma region /* Energy Transfer histograms (RES only, 1n1p) */
         E_Trans15_RES_upper_lim_1n1p = 1.7;
         E_Trans15_RES_lower_lim_1n1p = 0;
         E_Trans45_RES_upper_lim_1n1p = 1.7;
         E_Trans45_RES_lower_lim_1n1p = 0;
         E_Trans90_RES_upper_lim_1n1p = 1.7;
         E_Trans90_RES_lower_lim_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (DIS only) */
+#pragma region /* Energy Transfer histograms (DIS only) */
 
-        #pragma region /* Energy Transfer histograms (DIS only, 2p) */
+#pragma region /* Energy Transfer histograms (DIS only, 2p) */
         E_Trans15_DIS_upper_lim_2p = 1.7;
         E_Trans15_DIS_lower_lim_2p = 0;
         E_Trans45_DIS_upper_lim_2p = 1.7;
         E_Trans45_DIS_lower_lim_2p = 0;
         E_Trans90_DIS_upper_lim_2p = 1.7;
         E_Trans90_DIS_lower_lim_2p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (DIS only, 1n1p) */
+#pragma region /* Energy Transfer histograms (DIS only, 1n1p) */
         E_Trans15_DIS_upper_lim_1n1p = 1.7;
         E_Trans15_DIS_lower_lim_1n1p = 0;
         E_Trans45_DIS_upper_lim_1n1p = 1.7;
         E_Trans45_DIS_lower_lim_1n1p = 0;
         E_Trans90_DIS_upper_lim_1n1p = 1.7;
         E_Trans90_DIS_lower_lim_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Inclusive Energy Transfer histograms */
+#pragma region /* Inclusive Energy Transfer histograms */
         E_Trans15_all_inclusive_upper_lim = 2.3;
         E_Trans15_all_inclusive_lower_lim = 0;
         E_Trans15_QEL_inclusive_upper_lim = 2.3;
@@ -3345,11 +3345,11 @@ void gst::Loop() {
         E_Trans_VS_q3_MEC_lower_lim_x_1n1p = 0;
         E_Trans_VS_q3_MEC_upper_lim_y_1n1p = 2.3;
         E_Trans_VS_q3_MEC_lower_lim_y_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* E_cal restoration histograms */
+#pragma region /* E_cal restoration histograms */
 
-        #pragma region /* E_cal range */
+#pragma region /* E_cal range */
         E_cal_QEL_upper_lim_range = 2.35;
         E_cal_QEL_lower_lim_range = 2.11;
         E_cal_MEC_upper_lim_range = 2.35;
@@ -3358,9 +3358,9 @@ void gst::Loop() {
         E_cal_RES_lower_lim_range = 2.11;
         E_cal_DIS_upper_lim_range = 2.35;
         E_cal_DIS_lower_lim_range = 2.11;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* E_cal restoration histograms (2p) */
+#pragma region /* E_cal restoration histograms (2p) */
         if (BEnergyToNucleusCon == true) {
             E_cal_QEL_upper_lim_2p = E_cal_QEL_upper_lim_range + 2 * BEnergyToNucleus;
             E_cal_QEL_lower_lim_2p = E_cal_QEL_lower_lim_range + 2 * BEnergyToNucleus;
@@ -3380,9 +3380,9 @@ void gst::Loop() {
             E_cal_DIS_upper_lim_2p = E_cal_DIS_upper_lim_range;
             E_cal_DIS_lower_lim_2p = E_cal_DIS_lower_lim_range;
         }
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* E_cal restoration histograms (1n1p) */
+#pragma region /* E_cal restoration histograms (1n1p) */
         if (BEnergyToNucleusCon == true) {
             E_cal_QEL_upper_lim_1n1p = E_cal_QEL_upper_lim_range + 2 * BEnergyToNucleus;
             E_cal_QEL_lower_lim_1n1p = E_cal_QEL_lower_lim_range + 2 * BEnergyToNucleus;
@@ -3402,39 +3402,39 @@ void gst::Loop() {
             E_cal_DIS_upper_lim_1n1p = E_cal_DIS_upper_lim_range;
             E_cal_DIS_lower_lim_1n1p = E_cal_DIS_lower_lim_range;
         }
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Momentum histograms */
+#pragma region /* Momentum histograms */
 
-        #pragma region /* Momentum histograms (2p) */
+#pragma region /* Momentum histograms (2p) */
         P_L_hist_upper_lim_2p = 2.3;
         P_L_hist_lower_lim_2p = 0;
         P_R_hist_upper_lim_2p = 2.3;
         P_R_hist_lower_lim_2p = 0;
         P_lp_hist_upper_lim_2p = 2.3;
         P_lp_hist_lower_lim_2p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Momentum histograms (1n1p) */
+#pragma region /* Momentum histograms (1n1p) */
         P_p_hist_upper_lim_1n1p = 2.3;
         P_p_hist_lower_lim_1n1p = 0;
         P_n_hist_upper_lim_1n1p = 2.3;
         P_n_hist_lower_lim_1n1p = 0;
         P_lp_hist_upper_lim_1n1p = 2.3;
         P_lp_hist_lower_lim_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
     } else if (file_name == "asportes_11_1000060120_2222_nofsi_10M.gst") {
-        #pragma region /* asportes_11_1000060120_2222_nofsi_10M.gst histogram limits */
+#pragma region /* asportes_11_1000060120_2222_nofsi_10M.gst histogram limits */
 
-        #pragma region /* Energy histograms */
+#pragma region /* Energy histograms */
 
-        #pragma region /* Energy histograms (2p) */
+#pragma region /* Energy histograms (2p) */
         if (FSI_status == true) {
             fsEl_upper_lim_2p = 2.21;
             fsEl_lower_lim_2p = 1;
@@ -3466,9 +3466,9 @@ void gst::Loop() {
             fsEl_VS_theta_lp_upper_lim_2p_y = 2.3;
             fsEl_VS_theta_lp_lower_lim_2p_y = 0;
         }
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy histograms (1n1p) */
+#pragma region /* Energy histograms (1n1p) */
         if (FSI_status == true) {
             fsEl_upper_lim_1n1p = 2.3;
             fsEl_lower_lim_1n1p = 1;
@@ -3500,15 +3500,15 @@ void gst::Loop() {
             fsEl_VS_theta_lp_upper_lim_1n1p_y = 2.3;
             fsEl_VS_theta_lp_lower_lim_1n1p_y = 0;
         }
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms */
+#pragma region /* Energy Transfer histograms */
 
-        #pragma region /* Energy Transfer histograms (all interactions) */
+#pragma region /* Energy Transfer histograms (all interactions) */
 
-        #pragma region /* Energy Transfer histograms (all interactions, 2p) */
+#pragma region /* Energy Transfer histograms (all interactions, 2p) */
         E_Trans_all_ang_all_int_upper_lim_2p = 1.7;
         E_Trans_all_ang_all_int_lower_lim_2p = 0;
         E_Trans15_all_upper_lim_2p = 1.7;
@@ -3517,9 +3517,9 @@ void gst::Loop() {
         E_Trans45_all_lower_lim_2p = 0;
         E_Trans90_all_upper_lim_2p = 1.7;
         E_Trans90_all_lower_lim_2p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (all interactions, 1n1p) */
+#pragma region /* Energy Transfer histograms (all interactions, 1n1p) */
         E_Trans_all_ang_all_int_upper_lim_1n1p = 1.7;
         E_Trans_all_ang_all_int_lower_lim_1n1p = 0;
         E_Trans15_all_upper_lim_1n1p = 1.7;
@@ -3528,101 +3528,101 @@ void gst::Loop() {
         E_Trans45_all_lower_lim_1n1p = 0;
         E_Trans90_all_upper_lim_1n1p = 1.7;
         E_Trans90_all_lower_lim_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (QEL only) */
+#pragma region /* Energy Transfer histograms (QEL only) */
 
-        #pragma region /* Energy Transfer histograms (QEL only, 2p) */
+#pragma region /* Energy Transfer histograms (QEL only, 2p) */
         E_Trans15_QEL_upper_lim_2p = 1.7;
         E_Trans15_QEL_lower_lim_2p = 0;
         E_Trans45_QEL_upper_lim_2p = 1.7;
         E_Trans45_QEL_lower_lim_2p = 0;
         E_Trans90_QEL_upper_lim_2p = 1.7;
         E_Trans90_QEL_lower_lim_2p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (QEL only, 1n1p) */
+#pragma region /* Energy Transfer histograms (QEL only, 1n1p) */
         E_Trans15_QEL_upper_lim_1n1p = 1.7;
         E_Trans15_QEL_lower_lim_1n1p = 0;
         E_Trans45_QEL_upper_lim_1n1p = 1.7;
         E_Trans45_QEL_lower_lim_1n1p = 0;
         E_Trans90_QEL_upper_lim_1n1p = 1.7;
         E_Trans90_QEL_lower_lim_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (MEC only) */
+#pragma region /* Energy Transfer histograms (MEC only) */
 
-        #pragma region /* Energy Transfer histograms (MEC only, 2p) */
+#pragma region /* Energy Transfer histograms (MEC only, 2p) */
         E_Trans15_MEC_upper_lim_2p = 1.7;
         E_Trans15_MEC_lower_lim_2p = 0;
         E_Trans45_MEC_upper_lim_2p = 1.7;
         E_Trans45_MEC_lower_lim_2p = 0;
         E_Trans90_MEC_upper_lim_2p = 1.7;
         E_Trans90_MEC_lower_lim_2p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (MEC only, 1n1p) */
+#pragma region /* Energy Transfer histograms (MEC only, 1n1p) */
         E_Trans15_MEC_upper_lim_1n1p = 1.7;
         E_Trans15_MEC_lower_lim_1n1p = 0;
         E_Trans45_MEC_upper_lim_1n1p = 1.7;
         E_Trans45_MEC_lower_lim_1n1p = 0;
         E_Trans90_MEC_upper_lim_1n1p = 1.7;
         E_Trans90_MEC_lower_lim_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (RES only) */
+#pragma region /* Energy Transfer histograms (RES only) */
 
-        #pragma region /* Energy Transfer histograms (RES only, 2p) */
+#pragma region /* Energy Transfer histograms (RES only, 2p) */
         E_Trans15_RES_upper_lim_2p = 1.7;
         E_Trans15_RES_lower_lim_2p = 0;
         E_Trans45_RES_upper_lim_2p = 1.7;
         E_Trans45_RES_lower_lim_2p = 0;
         E_Trans90_RES_upper_lim_2p = 1.7;
         E_Trans90_RES_lower_lim_2p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (RES only, 1n1p) */
+#pragma region /* Energy Transfer histograms (RES only, 1n1p) */
         E_Trans15_RES_upper_lim_1n1p = 1.7;
         E_Trans15_RES_lower_lim_1n1p = 0;
         E_Trans45_RES_upper_lim_1n1p = 1.7;
         E_Trans45_RES_lower_lim_1n1p = 0;
         E_Trans90_RES_upper_lim_1n1p = 1.7;
         E_Trans90_RES_lower_lim_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (DIS only) */
+#pragma region /* Energy Transfer histograms (DIS only) */
 
-        #pragma region /* Energy Transfer histograms (DIS only, 2p) */
+#pragma region /* Energy Transfer histograms (DIS only, 2p) */
         E_Trans15_DIS_upper_lim_2p = 1.7;
         E_Trans15_DIS_lower_lim_2p = 0;
         E_Trans45_DIS_upper_lim_2p = 1.7;
         E_Trans45_DIS_lower_lim_2p = 0;
         E_Trans90_DIS_upper_lim_2p = 1.7;
         E_Trans90_DIS_lower_lim_2p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (DIS only, 1n1p) */
+#pragma region /* Energy Transfer histograms (DIS only, 1n1p) */
         E_Trans15_DIS_upper_lim_1n1p = 1.7;
         E_Trans15_DIS_lower_lim_1n1p = 0;
         E_Trans45_DIS_upper_lim_1n1p = 1.7;
         E_Trans45_DIS_lower_lim_1n1p = 0;
         E_Trans90_DIS_upper_lim_1n1p = 1.7;
         E_Trans90_DIS_lower_lim_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Inclusive Energy Transfer histograms */
+#pragma region /* Inclusive Energy Transfer histograms */
         E_Trans15_all_inclusive_upper_lim = 2.3;
         E_Trans15_all_inclusive_lower_lim = 0;
         E_Trans15_QEL_inclusive_upper_lim = 2.3;
@@ -3669,11 +3669,11 @@ void gst::Loop() {
         E_Trans_VS_q3_MEC_lower_lim_x_1n1p = 0;
         E_Trans_VS_q3_MEC_upper_lim_y_1n1p = 2.3;
         E_Trans_VS_q3_MEC_lower_lim_y_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* E_cal restoration histograms */
+#pragma region /* E_cal restoration histograms */
 
-        #pragma region /* E_cal range */
+#pragma region /* E_cal range */
         E_cal_QEL_upper_lim_range = 2.35;
         E_cal_QEL_lower_lim_range = 2.11;
         E_cal_MEC_upper_lim_range = 2.35;
@@ -3682,9 +3682,9 @@ void gst::Loop() {
         E_cal_RES_lower_lim_range = 2.11;
         E_cal_DIS_upper_lim_range = 2.35;
         E_cal_DIS_lower_lim_range = 2.11;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* E_cal restoration histograms (2p) */
+#pragma region /* E_cal restoration histograms (2p) */
         if (BEnergyToNucleusCon == true) {
             E_cal_QEL_upper_lim_2p = E_cal_QEL_upper_lim_range + 2 * BEnergyToNucleus;
             E_cal_QEL_lower_lim_2p = E_cal_QEL_lower_lim_range + 2 * BEnergyToNucleus;
@@ -3704,9 +3704,9 @@ void gst::Loop() {
             E_cal_DIS_upper_lim_2p = E_cal_DIS_upper_lim_range;
             E_cal_DIS_lower_lim_2p = E_cal_DIS_lower_lim_range;
         }
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* E_cal restoration histograms (1n1p) */
+#pragma region /* E_cal restoration histograms (1n1p) */
         if (BEnergyToNucleusCon == true) {
             E_cal_QEL_upper_lim_1n1p = E_cal_QEL_upper_lim_range + 2 * BEnergyToNucleus;
             E_cal_QEL_lower_lim_1n1p = E_cal_QEL_lower_lim_range + 2 * BEnergyToNucleus;
@@ -3726,37 +3726,37 @@ void gst::Loop() {
             E_cal_DIS_upper_lim_1n1p = E_cal_DIS_upper_lim_range;
             E_cal_DIS_lower_lim_1n1p = E_cal_DIS_lower_lim_range;
         }
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Momentum histograms */
+#pragma region /* Momentum histograms */
 
-        #pragma region /* Momentum histograms (2p) */
+#pragma region /* Momentum histograms (2p) */
         P_L_hist_upper_lim_2p = 2.3;
         P_L_hist_lower_lim_2p = 0;
         P_R_hist_upper_lim_2p = 2.3;
         P_R_hist_lower_lim_2p = 0;
         P_lp_hist_upper_lim_2p = 2.3;
         P_lp_hist_lower_lim_2p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Momentum histograms (1n1p) */
+#pragma region /* Momentum histograms (1n1p) */
         P_p_hist_upper_lim_1n1p = 2.3;
         P_p_hist_lower_lim_1n1p = 0;
         P_n_hist_upper_lim_1n1p = 2.3;
         P_n_hist_lower_lim_1n1p = 0;
         P_lp_hist_upper_lim_1n1p = 2.3;
         P_lp_hist_lower_lim_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
     } else if (file_name == "40Ar_BNBFluxGeV_EM+MEC_G18_02a_00_000_Q2_0_0") {
-        #pragma region /* 40Ar_BNBFluxGeV_EM+MEC_G18_02a_00_000_Q2_0_0 histogram limits */
+#pragma region /* 40Ar_BNBFluxGeV_EM+MEC_G18_02a_00_000_Q2_0_0 histogram limits */
 
-        #pragma region /* Energy histograms (2p) */
+#pragma region /* Energy histograms (2p) */
         fsEl_upper_lim_2p = 3;
         fsEl_lower_lim_2p = 0;
         fsEl_QEL_upper_lim_2p = 3;
@@ -3771,9 +3771,9 @@ void gst::Loop() {
         fsEl_VS_theta_lp_lower_lim_2p_x = 0;
         fsEl_VS_theta_lp_upper_lim_2p_y = 3;
         fsEl_VS_theta_lp_lower_lim_2p_y = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy histograms (1n1p) */
+#pragma region /* Energy histograms (1n1p) */
         fsEl_upper_lim_1n1p = 2.21;
         fsEl_lower_lim_1n1p = 1;
         fsEl_QEL_upper_lim_1n1p = 3;
@@ -3788,9 +3788,9 @@ void gst::Loop() {
         fsEl_VS_theta_lp_lower_lim_1n1p_x = 0;
         fsEl_VS_theta_lp_upper_lim_1n1p_y = 3;
         fsEl_VS_theta_lp_lower_lim_1n1p_y = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (all interactions, 2p) */
+#pragma region /* Energy Transfer histograms (all interactions, 2p) */
         E_Trans_all_ang_all_int_upper_lim_2p = 3.0;
         E_Trans_all_ang_all_int_lower_lim_2p = 0;
         E_Trans15_all_upper_lim_2p = 3.0;
@@ -3799,9 +3799,9 @@ void gst::Loop() {
         E_Trans45_all_lower_lim_2p = 0;
         E_Trans90_all_upper_lim_2p = 3.0;
         E_Trans90_all_lower_lim_2p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (all interactions, 1n1p) */
+#pragma region /* Energy Transfer histograms (all interactions, 1n1p) */
         E_Trans_all_ang_all_int_upper_lim_1n1p = 3.0;
         E_Trans_all_ang_all_int_lower_lim_1n1p = 0;
         E_Trans15_all_upper_lim_1n1p = 3.0;
@@ -3810,81 +3810,81 @@ void gst::Loop() {
         E_Trans45_all_lower_lim_1n1p = 0;
         E_Trans90_all_upper_lim_1n1p = 3.0;
         E_Trans90_all_lower_lim_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (QEL only, 2p) */
+#pragma region /* Energy Transfer histograms (QEL only, 2p) */
         E_Trans15_QEL_upper_lim_2p = 3.0;
         E_Trans15_QEL_lower_lim_2p = 0;
         E_Trans45_QEL_upper_lim_2p = 3.0;
         E_Trans45_QEL_lower_lim_2p = 0;
         E_Trans90_QEL_upper_lim_2p = 3.0;
         E_Trans90_QEL_lower_lim_2p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (QEL only, 1n1p) */
+#pragma region /* Energy Transfer histograms (QEL only, 1n1p) */
         E_Trans15_QEL_upper_lim_1n1p = 3.0;
         E_Trans15_QEL_lower_lim_1n1p = 0;
         E_Trans45_QEL_upper_lim_1n1p = 3.0;
         E_Trans45_QEL_lower_lim_1n1p = 0;
         E_Trans90_QEL_upper_lim_1n1p = 3.0;
         E_Trans90_QEL_lower_lim_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (MEC only, 2p) */
+#pragma region /* Energy Transfer histograms (MEC only, 2p) */
         E_Trans15_MEC_upper_lim_2p = 3.0;
         E_Trans15_MEC_lower_lim_2p = 0;
         E_Trans45_MEC_upper_lim_2p = 3.0;
         E_Trans45_MEC_lower_lim_2p = 0;
         E_Trans90_MEC_upper_lim_2p = 3.0;
         E_Trans90_MEC_lower_lim_2p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (MEC only, 1n1p) */
+#pragma region /* Energy Transfer histograms (MEC only, 1n1p) */
         E_Trans15_MEC_upper_lim_1n1p = 3.0;
         E_Trans15_MEC_lower_lim_1n1p = 0;
         E_Trans45_MEC_upper_lim_1n1p = 3.0;
         E_Trans45_MEC_lower_lim_1n1p = 0;
         E_Trans90_MEC_upper_lim_1n1p = 3.0;
         E_Trans90_MEC_lower_lim_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (RES only, 2p) */
+#pragma region /* Energy Transfer histograms (RES only, 2p) */
         E_Trans15_RES_upper_lim_2p = 3.0;
         E_Trans15_RES_lower_lim_2p = 0;
         E_Trans45_RES_upper_lim_2p = 3.0;
         E_Trans45_RES_lower_lim_2p = 0;
         E_Trans90_RES_upper_lim_2p = 3.0;
         E_Trans90_RES_lower_lim_2p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (RES only, 1n1p) */
+#pragma region /* Energy Transfer histograms (RES only, 1n1p) */
         E_Trans15_RES_upper_lim_1n1p = 3.0;
         E_Trans15_RES_lower_lim_1n1p = 0;
         E_Trans45_RES_upper_lim_1n1p = 3.0;
         E_Trans45_RES_lower_lim_1n1p = 0;
         E_Trans90_RES_upper_lim_1n1p = 3.0;
         E_Trans90_RES_lower_lim_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (DIS only, 2p) */
+#pragma region /* Energy Transfer histograms (DIS only, 2p) */
         E_Trans15_DIS_upper_lim_2p = 3.0;
         E_Trans15_DIS_lower_lim_2p = 0;
         E_Trans45_DIS_upper_lim_2p = 3.0;
         E_Trans45_DIS_lower_lim_2p = 0;
         E_Trans90_DIS_upper_lim_2p = 3.0;
         E_Trans90_DIS_lower_lim_2p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (DIS only, 1n1p) */
+#pragma region /* Energy Transfer histograms (DIS only, 1n1p) */
         E_Trans15_DIS_upper_lim_1n1p = 3.0;
         E_Trans15_DIS_lower_lim_1n1p = 0;
         E_Trans45_DIS_upper_lim_1n1p = 3.0;
         E_Trans45_DIS_lower_lim_1n1p = 0;
         E_Trans90_DIS_upper_lim_1n1p = 3.0;
         E_Trans90_DIS_lower_lim_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Inclusive Energy Transfer histograms */
+#pragma region /* Inclusive Energy Transfer histograms */
         E_Trans15_all_inclusive_upper_lim = 3;
         E_Trans15_all_inclusive_lower_lim = 0;
         E_Trans15_QEL_inclusive_upper_lim = 3;
@@ -3931,9 +3931,9 @@ void gst::Loop() {
         E_Trans_VS_q3_MEC_lower_lim_x_1n1p = 0;
         E_Trans_VS_q3_MEC_upper_lim_y_1n1p = 3;
         E_Trans_VS_q3_MEC_lower_lim_y_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* E_cal restoration histograms (2p) */
+#pragma region /* E_cal restoration histograms (2p) */
         E_cal_QEL_upper_lim_2p = 3.1;
         E_cal_QEL_lower_lim_2p = 3.1;
         E_cal_MEC_upper_lim_2p = 3.1;
@@ -3942,9 +3942,9 @@ void gst::Loop() {
         E_cal_RES_lower_lim_2p = 3.1;
         E_cal_DIS_upper_lim_2p = 3.1;
         E_cal_DIS_lower_lim_2p = 3.1;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* E_cal restoration histograms (1n1p) */
+#pragma region /* E_cal restoration histograms (1n1p) */
         E_cal_QEL_upper_lim_1n1p = 3.1;
         E_cal_QEL_lower_lim_1n1p = 3.1;
         E_cal_MEC_upper_lim_1n1p = 3.1;
@@ -3953,31 +3953,31 @@ void gst::Loop() {
         E_cal_RES_lower_lim_1n1p = 3.1;
         E_cal_DIS_upper_lim_1n1p = 3.1;
         E_cal_DIS_lower_lim_1n1p = 3.1;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Momentum histograms (2p) */
+#pragma region /* Momentum histograms (2p) */
         P_L_hist_upper_lim_2p = 3.0;
         P_L_hist_lower_lim_2p = 0;
         P_R_hist_upper_lim_2p = 3.0;
         P_R_hist_lower_lim_2p = 0;
         P_lp_hist_upper_lim_2p = 3.0;
         P_lp_hist_lower_lim_2p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Momentum histograms (1n1p) */
+#pragma region /* Momentum histograms (1n1p) */
         P_p_hist_upper_lim_1n1p = 3.0;
         P_p_hist_lower_lim_1n1p = 0;
         P_n_hist_upper_lim_1n1p = 3.0;
         P_n_hist_lower_lim_1n1p = 0;
         P_lp_hist_upper_lim_1n1p = 3.0;
         P_lp_hist_lower_lim_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
     } else if (file_name == "56Fe_1299GeV_G18_10a_02_11a") {
-        #pragma region /* 56Fe_1299GeV_G18_10a_02_11a histogram limits */
+#pragma region /* 56Fe_1299GeV_G18_10a_02_11a histogram limits */
 
-        #pragma region /* Energy histograms (2p) */
+#pragma region /* Energy histograms (2p) */
         fsEl_upper_lim_2p = 1.3;
         fsEl_lower_lim_2p = 0;
         fsEl_QEL_upper_lim_2p = 1.3;
@@ -3992,9 +3992,9 @@ void gst::Loop() {
         fsEl_VS_theta_lp_lower_lim_2p_x = 0;
         fsEl_VS_theta_lp_upper_lim_2p_y = 1.3;
         fsEl_VS_theta_lp_lower_lim_2p_y = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy histograms (1n1p) */
+#pragma region /* Energy histograms (1n1p) */
         fsEl_upper_lim_1n1p = 2.21;
         fsEl_lower_lim_1n1p = 1;
         fsEl_QEL_upper_lim_1n1p = 1.3;
@@ -4009,9 +4009,9 @@ void gst::Loop() {
         fsEl_VS_theta_lp_lower_lim_1n1p_x = 0;
         fsEl_VS_theta_lp_upper_lim_1n1p_y = 1.3;
         fsEl_VS_theta_lp_lower_lim_1n1p_y = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (all interactions, 2p) */
+#pragma region /* Energy Transfer histograms (all interactions, 2p) */
         E_Trans_all_ang_all_int_upper_lim_2p = 1.3;
         E_Trans_all_ang_all_int_lower_lim_2p = 0;
         E_Trans15_all_upper_lim_2p = 1.3;
@@ -4020,9 +4020,9 @@ void gst::Loop() {
         E_Trans45_all_lower_lim_2p = 0;
         E_Trans90_all_upper_lim_2p = 1.3;
         E_Trans90_all_lower_lim_2p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (all interactions, 1n1p) */
+#pragma region /* Energy Transfer histograms (all interactions, 1n1p) */
         E_Trans_all_ang_all_int_upper_lim_1n1p = 1.3;
         E_Trans_all_ang_all_int_lower_lim_1n1p = 0;
         E_Trans15_all_upper_lim_1n1p = 1.3;
@@ -4031,81 +4031,81 @@ void gst::Loop() {
         E_Trans45_all_lower_lim_1n1p = 0;
         E_Trans90_all_upper_lim_1n1p = 1.3;
         E_Trans90_all_lower_lim_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (QEL only, 2p) */
+#pragma region /* Energy Transfer histograms (QEL only, 2p) */
         E_Trans15_QEL_upper_lim_2p = 1.3;
         E_Trans15_QEL_lower_lim_2p = 0;
         E_Trans45_QEL_upper_lim_2p = 1.3;
         E_Trans45_QEL_lower_lim_2p = 0;
         E_Trans90_QEL_upper_lim_2p = 1.3;
         E_Trans90_QEL_lower_lim_2p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (QEL only, 1n1p) */
+#pragma region /* Energy Transfer histograms (QEL only, 1n1p) */
         E_Trans15_QEL_upper_lim_1n1p = 1.3;
         E_Trans15_QEL_lower_lim_1n1p = 0;
         E_Trans45_QEL_upper_lim_1n1p = 1.3;
         E_Trans45_QEL_lower_lim_1n1p = 0;
         E_Trans90_QEL_upper_lim_1n1p = 1.3;
         E_Trans90_QEL_lower_lim_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (MEC only, 2p) */
+#pragma region /* Energy Transfer histograms (MEC only, 2p) */
         E_Trans15_MEC_upper_lim_2p = 1.3;
         E_Trans15_MEC_lower_lim_2p = 0;
         E_Trans45_MEC_upper_lim_2p = 1.3;
         E_Trans45_MEC_lower_lim_2p = 0;
         E_Trans90_MEC_upper_lim_2p = 1.3;
         E_Trans90_MEC_lower_lim_2p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (MEC only, 1n1p) */
+#pragma region /* Energy Transfer histograms (MEC only, 1n1p) */
         E_Trans15_MEC_upper_lim_1n1p = 1.3;
         E_Trans15_MEC_lower_lim_1n1p = 0;
         E_Trans45_MEC_upper_lim_1n1p = 1.3;
         E_Trans45_MEC_lower_lim_1n1p = 0;
         E_Trans90_MEC_upper_lim_1n1p = 1.3;
         E_Trans90_MEC_lower_lim_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (RES only, 2p) */
+#pragma region /* Energy Transfer histograms (RES only, 2p) */
         E_Trans15_RES_upper_lim_2p = 1.3;
         E_Trans15_RES_lower_lim_2p = 0;
         E_Trans45_RES_upper_lim_2p = 1.3;
         E_Trans45_RES_lower_lim_2p = 0;
         E_Trans90_RES_upper_lim_2p = 1.3;
         E_Trans90_RES_lower_lim_2p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (RES only, 1n1p) */
+#pragma region /* Energy Transfer histograms (RES only, 1n1p) */
         E_Trans15_RES_upper_lim_1n1p = 1.3;
         E_Trans15_RES_lower_lim_1n1p = 0;
         E_Trans45_RES_upper_lim_1n1p = 1.3;
         E_Trans45_RES_lower_lim_1n1p = 0;
         E_Trans90_RES_upper_lim_1n1p = 1.3;
         E_Trans90_RES_lower_lim_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (DIS only, 2p) */
+#pragma region /* Energy Transfer histograms (DIS only, 2p) */
         E_Trans15_DIS_upper_lim_2p = 1.3;
         E_Trans15_DIS_lower_lim_2p = 0;
         E_Trans45_DIS_upper_lim_2p = 1.3;
         E_Trans45_DIS_lower_lim_2p = 0;
         E_Trans90_DIS_upper_lim_2p = 1.3;
         E_Trans90_DIS_lower_lim_2p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (DIS only, 1n1p) */
+#pragma region /* Energy Transfer histograms (DIS only, 1n1p) */
         E_Trans15_DIS_upper_lim_1n1p = 1.3;
         E_Trans15_DIS_lower_lim_1n1p = 0;
         E_Trans45_DIS_upper_lim_1n1p = 1.3;
         E_Trans45_DIS_lower_lim_1n1p = 0;
         E_Trans90_DIS_upper_lim_1n1p = 1.3;
         E_Trans90_DIS_lower_lim_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Inclusive Energy Transfer histograms */
+#pragma region /* Inclusive Energy Transfer histograms */
         E_Trans15_all_inclusive_upper_lim = 1.3;
         E_Trans15_all_inclusive_lower_lim = 0;
         E_Trans15_QEL_inclusive_upper_lim = 1.3;
@@ -4152,9 +4152,9 @@ void gst::Loop() {
         E_Trans_VS_q3_MEC_lower_lim_x_1n1p = 0;
         E_Trans_VS_q3_MEC_upper_lim_y_1n1p = 1.4;
         E_Trans_VS_q3_MEC_lower_lim_y_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* E_cal restoration histograms (2p) */
+#pragma region /* E_cal restoration histograms (2p) */
         E_cal_QEL_upper_lim_2p = 1.5;
         E_cal_QEL_lower_lim_2p = 1.5;
         E_cal_MEC_upper_lim_2p = 1.5;
@@ -4163,9 +4163,9 @@ void gst::Loop() {
         E_cal_RES_lower_lim_2p = 1.5;
         E_cal_DIS_upper_lim_2p = 1.5;
         E_cal_DIS_lower_lim_2p = 1.5;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* E_cal restoration histograms (1n1p) */
+#pragma region /* E_cal restoration histograms (1n1p) */
         E_cal_QEL_upper_lim_1n1p = 1.5;
         E_cal_QEL_lower_lim_1n1p = 1.5;
         E_cal_MEC_upper_lim_1n1p = 1.5;
@@ -4174,33 +4174,33 @@ void gst::Loop() {
         E_cal_RES_lower_lim_1n1p = 1.5;
         E_cal_DIS_upper_lim_1n1p = 1.5;
         E_cal_DIS_lower_lim_1n1p = 1.5;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Momentum histograms (2p) */
+#pragma region /* Momentum histograms (2p) */
         P_L_hist_upper_lim_2p = 1.3;
         P_L_hist_lower_lim_2p = 0;
         P_R_hist_upper_lim_2p = 1.3;
         P_R_hist_lower_lim_2p = 0;
         P_lp_hist_upper_lim_2p = 1.3;
         P_lp_hist_lower_lim_2p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Momentum histograms (1n1p) */
+#pragma region /* Momentum histograms (1n1p) */
         P_p_hist_upper_lim_1n1p = 1.3;
         P_p_hist_lower_lim_1n1p = 0;
         P_n_hist_upper_lim_1n1p = 1.3;
         P_n_hist_lower_lim_1n1p = 0;
         P_lp_hist_upper_lim_1n1p = 1.3;
         P_lp_hist_lower_lim_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
     } else if (file_name == "general_file") {
-        #pragma region /* 12C_2222GeV_GTEST19_10b_00_000 histogram limits */
+#pragma region /* 12C_2222GeV_GTEST19_10b_00_000 histogram limits */
 
-        #pragma region /* Energy histograms */
+#pragma region /* Energy histograms */
 
-        #pragma region /* Energy histograms (2p) */
+#pragma region /* Energy histograms (2p) */
         if (FSI_status == true) {
             fsEl_upper_lim_2p = 2.21;
             fsEl_lower_lim_2p = 1;
@@ -4232,9 +4232,9 @@ void gst::Loop() {
             fsEl_VS_theta_lp_upper_lim_2p_y = 2.3;
             fsEl_VS_theta_lp_lower_lim_2p_y = 0;
         }
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy histograms (1n1p) */
+#pragma region /* Energy histograms (1n1p) */
         if (FSI_status == true) {
             fsEl_upper_lim_1n1p = 2.3;
             fsEl_lower_lim_1n1p = 1;
@@ -4266,15 +4266,15 @@ void gst::Loop() {
             fsEl_VS_theta_lp_upper_lim_1n1p_y = 2.3;
             fsEl_VS_theta_lp_lower_lim_1n1p_y = 0;
         }
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms */
+#pragma region /* Energy Transfer histograms */
 
-        #pragma region /* Energy Transfer histograms (all interactions) */
+#pragma region /* Energy Transfer histograms (all interactions) */
 
-        #pragma region /* Energy Transfer histograms (all interactions, 2p) */
+#pragma region /* Energy Transfer histograms (all interactions, 2p) */
         E_Trans_all_ang_all_int_upper_lim_2p = 1.7;
         E_Trans_all_ang_all_int_lower_lim_2p = 0;
         E_Trans15_all_upper_lim_2p = 1.7;
@@ -4283,9 +4283,9 @@ void gst::Loop() {
         E_Trans45_all_lower_lim_2p = 0;
         E_Trans90_all_upper_lim_2p = 1.7;
         E_Trans90_all_lower_lim_2p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (all interactions, 1n1p) */
+#pragma region /* Energy Transfer histograms (all interactions, 1n1p) */
         E_Trans_all_ang_all_int_upper_lim_1n1p = 1.7;
         E_Trans_all_ang_all_int_lower_lim_1n1p = 0;
         E_Trans15_all_upper_lim_1n1p = 1.7;
@@ -4294,101 +4294,101 @@ void gst::Loop() {
         E_Trans45_all_lower_lim_1n1p = 0;
         E_Trans90_all_upper_lim_1n1p = 1.7;
         E_Trans90_all_lower_lim_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (QEL only) */
+#pragma region /* Energy Transfer histograms (QEL only) */
 
-        #pragma region /* Energy Transfer histograms (QEL only, 2p) */
+#pragma region /* Energy Transfer histograms (QEL only, 2p) */
         E_Trans15_QEL_upper_lim_2p = 1.7;
         E_Trans15_QEL_lower_lim_2p = 0;
         E_Trans45_QEL_upper_lim_2p = 1.7;
         E_Trans45_QEL_lower_lim_2p = 0;
         E_Trans90_QEL_upper_lim_2p = 1.7;
         E_Trans90_QEL_lower_lim_2p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (QEL only, 1n1p) */
+#pragma region /* Energy Transfer histograms (QEL only, 1n1p) */
         E_Trans15_QEL_upper_lim_1n1p = 1.7;
         E_Trans15_QEL_lower_lim_1n1p = 0;
         E_Trans45_QEL_upper_lim_1n1p = 1.7;
         E_Trans45_QEL_lower_lim_1n1p = 0;
         E_Trans90_QEL_upper_lim_1n1p = 1.7;
         E_Trans90_QEL_lower_lim_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (MEC only) */
+#pragma region /* Energy Transfer histograms (MEC only) */
 
-        #pragma region /* Energy Transfer histograms (MEC only, 2p) */
+#pragma region /* Energy Transfer histograms (MEC only, 2p) */
         E_Trans15_MEC_upper_lim_2p = 1.7;
         E_Trans15_MEC_lower_lim_2p = 0;
         E_Trans45_MEC_upper_lim_2p = 1.7;
         E_Trans45_MEC_lower_lim_2p = 0;
         E_Trans90_MEC_upper_lim_2p = 1.7;
         E_Trans90_MEC_lower_lim_2p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (MEC only, 1n1p) */
+#pragma region /* Energy Transfer histograms (MEC only, 1n1p) */
         E_Trans15_MEC_upper_lim_1n1p = 1.7;
         E_Trans15_MEC_lower_lim_1n1p = 0;
         E_Trans45_MEC_upper_lim_1n1p = 1.7;
         E_Trans45_MEC_lower_lim_1n1p = 0;
         E_Trans90_MEC_upper_lim_1n1p = 1.7;
         E_Trans90_MEC_lower_lim_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (RES only) */
+#pragma region /* Energy Transfer histograms (RES only) */
 
-        #pragma region /* Energy Transfer histograms (RES only, 2p) */
+#pragma region /* Energy Transfer histograms (RES only, 2p) */
         E_Trans15_RES_upper_lim_2p = 1.7;
         E_Trans15_RES_lower_lim_2p = 0;
         E_Trans45_RES_upper_lim_2p = 1.7;
         E_Trans45_RES_lower_lim_2p = 0;
         E_Trans90_RES_upper_lim_2p = 1.7;
         E_Trans90_RES_lower_lim_2p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (RES only, 1n1p) */
+#pragma region /* Energy Transfer histograms (RES only, 1n1p) */
         E_Trans15_RES_upper_lim_1n1p = 1.7;
         E_Trans15_RES_lower_lim_1n1p = 0;
         E_Trans45_RES_upper_lim_1n1p = 1.7;
         E_Trans45_RES_lower_lim_1n1p = 0;
         E_Trans90_RES_upper_lim_1n1p = 1.7;
         E_Trans90_RES_lower_lim_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (DIS only) */
+#pragma region /* Energy Transfer histograms (DIS only) */
 
-        #pragma region /* Energy Transfer histograms (DIS only, 2p) */
+#pragma region /* Energy Transfer histograms (DIS only, 2p) */
         E_Trans15_DIS_upper_lim_2p = 1.7;
         E_Trans15_DIS_lower_lim_2p = 0;
         E_Trans45_DIS_upper_lim_2p = 1.7;
         E_Trans45_DIS_lower_lim_2p = 0;
         E_Trans90_DIS_upper_lim_2p = 1.7;
         E_Trans90_DIS_lower_lim_2p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy Transfer histograms (DIS only, 1n1p) */
+#pragma region /* Energy Transfer histograms (DIS only, 1n1p) */
         E_Trans15_DIS_upper_lim_1n1p = 1.7;
         E_Trans15_DIS_lower_lim_1n1p = 0;
         E_Trans45_DIS_upper_lim_1n1p = 1.7;
         E_Trans45_DIS_lower_lim_1n1p = 0;
         E_Trans90_DIS_upper_lim_1n1p = 1.7;
         E_Trans90_DIS_lower_lim_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Inclusive Energy Transfer histograms */
+#pragma region /* Inclusive Energy Transfer histograms */
         E_Trans15_all_inclusive_upper_lim = 2.3;
         E_Trans15_all_inclusive_lower_lim = 0;
         E_Trans15_QEL_inclusive_upper_lim = 2.3;
@@ -4435,11 +4435,11 @@ void gst::Loop() {
         E_Trans_VS_q3_MEC_lower_lim_x_1n1p = 0;
         E_Trans_VS_q3_MEC_upper_lim_y_1n1p = 2.3;
         E_Trans_VS_q3_MEC_lower_lim_y_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* E_cal restoration histograms */
+#pragma region /* E_cal restoration histograms */
 
-        #pragma region /* E_cal range */
+#pragma region /* E_cal range */
         E_cal_QEL_upper_lim_range = 2.35;
         E_cal_QEL_lower_lim_range = 2.11;
         E_cal_MEC_upper_lim_range = 2.35;
@@ -4448,9 +4448,9 @@ void gst::Loop() {
         E_cal_RES_lower_lim_range = 2.11;
         E_cal_DIS_upper_lim_range = 2.35;
         E_cal_DIS_lower_lim_range = 2.11;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* E_cal restoration histograms (2p) */
+#pragma region /* E_cal restoration histograms (2p) */
         if (BEnergyToNucleusCon == true) {
             E_cal_QEL_upper_lim_2p = E_cal_QEL_upper_lim_range + 2 * BEnergyToNucleus;
             E_cal_QEL_lower_lim_2p = E_cal_QEL_lower_lim_range + 2 * BEnergyToNucleus;
@@ -4470,9 +4470,9 @@ void gst::Loop() {
             E_cal_DIS_upper_lim_2p = E_cal_DIS_upper_lim_range;
             E_cal_DIS_lower_lim_2p = E_cal_DIS_lower_lim_range;
         }
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* E_cal restoration histograms (1n1p) */
+#pragma region /* E_cal restoration histograms (1n1p) */
         if (BEnergyToNucleusCon == true) {
             E_cal_QEL_upper_lim_1n1p = E_cal_QEL_upper_lim_range + 2 * BEnergyToNucleus;
             E_cal_QEL_lower_lim_1n1p = E_cal_QEL_lower_lim_range + 2 * BEnergyToNucleus;
@@ -4492,33 +4492,33 @@ void gst::Loop() {
             E_cal_DIS_upper_lim_1n1p = E_cal_DIS_upper_lim_range;
             E_cal_DIS_lower_lim_1n1p = E_cal_DIS_lower_lim_range;
         }
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Momentum histograms */
+#pragma region /* Momentum histograms */
 
-        #pragma region /* Momentum histograms (2p) */
+#pragma region /* Momentum histograms (2p) */
         P_L_hist_upper_lim_2p = 2.3;
         P_L_hist_lower_lim_2p = 0;
         P_R_hist_upper_lim_2p = 2.3;
         P_R_hist_lower_lim_2p = 0;
         P_lp_hist_upper_lim_2p = 2.3;
         P_lp_hist_lower_lim_2p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Momentum histograms (1n1p) */
+#pragma region /* Momentum histograms (1n1p) */
         P_p_hist_upper_lim_1n1p = 2.3;
         P_p_hist_lower_lim_1n1p = 0;
         P_n_hist_upper_lim_1n1p = 2.3;
         P_n_hist_lower_lim_1n1p = 0;
         P_lp_hist_upper_lim_1n1p = 2.3;
         P_lp_hist_lower_lim_1n1p = 0;
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
         //        #pragma region /* general_file histogram limits */
         //
@@ -4879,13 +4879,13 @@ void gst::Loop() {
         //        #pragma endregion
     }
 
-    #pragma endregion
+#pragma endregion
 
-    #pragma endregion
+#pragma endregion
 
     // Creating directories -------------------------------------------------------------------------------------------------------------------------------------------------
 
-    #pragma region /* Creating directories */
+#pragma region /* Creating directories */
 
     system(("mkdir -p " + path_definitions::PathDefinitions.WorkingDirectory + "plots").c_str());
     system(("mkdir -p " + path_definitions::PathDefinitions.WorkingDirectory + "plots/theta_histograms").c_str());
@@ -4895,11 +4895,11 @@ void gst::Loop() {
     system(("mkdir -p " + path_definitions::PathDefinitions.WorkingDirectory + "plots/momentum_histograms/2p").c_str());
     system(("mkdir -p " + path_definitions::PathDefinitions.WorkingDirectory + "plots/momentum_histograms/1n1p").c_str());
 
-    #pragma endregion
+#pragma endregion
 
     // Saving setup to log file -------------------------------------------------------------------------------------------------------------------------------------------
 
-    #pragma region /* Saving setup to log file */
+#pragma region /* Saving setup to log file */
     if (delete_txt_files == true) {
         system(("find " + path_definitions::PathDefinitions.WorkingDirectory + "plots -type f -iname '*.txt' -delete").c_str());  // Delete existing .txt files
     }
@@ -5023,14 +5023,14 @@ void gst::Loop() {
     myLogFile << "\n";
 
     myLogFile.close();
-    #pragma endregion
+#pragma endregion
 
-    #pragma endregion
+#pragma endregion
 
     // Histogram definitions:
     // =======================================================================================================================================================================
 
-    #pragma region /* Histogram definitions */
+#pragma region /* Histogram definitions */
 
     std::cout << "\n";
     std::cout << "Defining histograms...\n";
@@ -5038,7 +5038,7 @@ void gst::Loop() {
 
     // Theta histograms -----------------------------------------------------------------------------------
 
-    #pragma region /* Theta histograms */
+#pragma region /* Theta histograms */
     THStack *ThetaStack = new THStack("#theta_{l} stack (2p & 1n1p)", "#theta_{l} of Outgoing Lepton (All Interactions, 2p and 1n1p);#theta_{l} [Deg];");
 
     TH1D *theta_lp_2p = new TH1D("#theta_{l} (2p)", ";#theta_{l} [Deg];", 100, theta_lp_lower_lim_2p, theta_lp_upper_lim_2p);
@@ -5054,11 +5054,11 @@ void gst::Loop() {
     TH1D *theta_lp_inclusive = new TH1D("#theta_{l} (inclusive)", ";#theta_{l} [Deg];", 100, theta_lp_lower_lim_1n1p, theta_lp_upper_lim_1n1p);
 
     TH2D *theta_lp_VS_phi_lp = new TH2D("#theta_{l} VS #phi_{l} (inclusive)", ";#phi_{l} [Deg];#theta_{l} [Deg]", 250, phi_lp_lower_lim_2p, phi_lp_upper_lim_2p, 250, 0, 50);
-    #pragma endregion
+#pragma endregion
 
     // Phi histograms -------------------------------------------------------------------------------------
 
-    #pragma region /* Phi histograms */
+#pragma region /* Phi histograms */
     THStack *PhiStack = new THStack("#phi_{l} stack (2p & 1n1p)", "#phi_{l} of Outgoing Lepton (All Interactions, 2p and 1n1p);#phi_{l} [Deg];");
 
     TH1D *phi_lp_2p = new TH1D("#phi_{l} (2p)", ";#phi_{l} [Deg];", 100, phi_lp_lower_lim_2p, phi_lp_upper_lim_2p);
@@ -5072,11 +5072,11 @@ void gst::Loop() {
     TH1D *dphi_1n1p = new TH1D("#Delta#phi (1n1p)", ";#Delta#phi} [Deg];", 100, dphi_lower_lim_1n1p, dphi_upper_lim_1n1p);
 
     TH1D *phi_lp_inclusive = new TH1D("#phi_{l} (inclusive)", ";#phi_{l} [Deg];", 100, phi_lp_lower_lim_1n1p, phi_lp_upper_lim_1n1p);
-    #pragma endregion
+#pragma endregion
 
     // Energy histograms ----------------------------------------------------------------------------------
 
-    #pragma region /* Energy histograms */
+#pragma region /* Energy histograms */
     THStack *EnergyStack = new THStack("E_{l} stack (2p & 1n1p)", "Final State E_{l} (All Interactions, 2p and 1n1p);E_{l} [GeV]");
 
     TH1D *fsEl_2p = new TH1D("Final State E_{l} (2p)", ";E_{l} [GeV]", 100, fsEl_lower_lim_2p, fsEl_upper_lim_2p);
@@ -5103,11 +5103,11 @@ void gst::Loop() {
     TH2D *fsEl_VS_theta_lp_MEC_only_1n1p = new TH2D("Stat (MEC only, 1n1p)", ";#theta_{l} [Deg];E_{l} [GeV]", 200, fsEl_VS_theta_lp_lower_lim_1n1p_x, fsEl_VS_theta_lp_upper_lim_1n1p_x, 200,
                                                     fsEl_VS_theta_lp_lower_lim_1n1p_y, fsEl_VS_theta_lp_upper_lim_1n1p_y);
 
-    #pragma endregion
+#pragma endregion
 
     // Energy Transfer histograms (all interactions) ------------------------------------------------------
 
-    #pragma region /* Energy Transfer histograms (all interactions) */
+#pragma region /* Energy Transfer histograms (all interactions) */
     // TODO: IPS plots - these plots are for IPS poster. Rename them to fit the code.
     //    THStack *Energy_Transfer_all_int_15_Stack_2p = new
     //    THStack("ET around 15 degrees Stack (all interactions, 2p)",
@@ -5168,11 +5168,11 @@ void gst::Loop() {
     TH1D *E_Trans90_all_1n1p = new TH1D("ET around 90 degrees (all interactions, 1n1p)",
                                         "Energy Transfer (E_{#nu}-E_{l}) in the Angle Range 89 #leq #theta_{l} #leq 91 (All Interactions, 1n1p);E_{#nu}-E_{l} [GeV]", 100,
                                         E_Trans90_all_lower_lim_1n1p, E_Trans90_all_upper_lim_1n1p);
-    #pragma endregion
+#pragma endregion
 
     // Energy Transfer histograms (QEL only) --------------------------------------------------------------
 
-    #pragma region /* Energy Transfer histograms (QEL only) */
+#pragma region /* Energy Transfer histograms (QEL only) */
     THStack *Energy_Transfer_QEL_Int_Stack_2p =
         new THStack("Energy_Transfer_QEL_Int_Stack_2p", "Energy Transfer (E_{#nu}-E_{l}) for different #theta_{l} (QEL only, 2p);E_{#nu}-E_{l} [GeV]");
     THStack *Energy_Transfer_QEL_Int_Stack_1n1p =
@@ -5197,11 +5197,11 @@ void gst::Loop() {
     TH1D *E_Trans90_QEL_1n1p =
         new TH1D("ET around 90 degrees (QEL Only, 1n1p)", "Energy Transfer (E_{#nu}-E_{l}) in the Angle Range 89 #leq #theta_{l} #leq 91 (QEL Only, 1n1p);E_{#nu}-E_{l} [GeV]", 100,
                  E_Trans90_QEL_lower_lim_1n1p, E_Trans90_QEL_upper_lim_1n1p);
-    #pragma endregion
+#pragma endregion
 
     // Energy Transfer histograms (MEC only) --------------------------------------------------------------
 
-    #pragma region /* Energy Transfer histograms (MEC only) */
+#pragma region /* Energy Transfer histograms (MEC only) */
     THStack *Energy_Transfer_MEC_Int_Stack_2p =
         new THStack("Energy_Transfer_MEC_Int_Stack_2p", "Energy Transfer (E_{#nu}-E_{l}) for different #theta_{l} (MEC only, 2p);E_{#nu}-E_{l} [GeV]");
     THStack *Energy_Transfer_MEC_Int_Stack_1n1p =
@@ -5226,11 +5226,11 @@ void gst::Loop() {
     TH1D *E_Trans90_MEC_1n1p =
         new TH1D("ET around 90 degrees (MEC Only, 1n1p)", "Energy Transfer (E_{#nu}-E_{l}) in the Angle Range 89 [Deg] #leq #theta_{l} #leq 91 [Deg] (MEC Only, 1n1p);E_{#nu}-E_{l} [GeV]",
                  100, E_Trans90_MEC_lower_lim_1n1p, E_Trans90_MEC_upper_lim_1n1p);
-    #pragma endregion
+#pragma endregion
 
     // Energy Transfer histograms (RES only) --------------------------------------------------------------
 
-    #pragma region /* Energy Transfer histograms (RES only) */
+#pragma region /* Energy Transfer histograms (RES only) */
     THStack *Energy_Transfer_RES_Int_Stack_2p =
         new THStack("Energy_Transfer_RES_Int_Stack_2p", "Energy Transfer (E_{#nu}-E_{l}) for different #theta_{l} (RES only, 2p);E_{#nu}-E_{l} [GeV]");
     THStack *Energy_Transfer_RES_Int_Stack_1n1p =
@@ -5255,11 +5255,11 @@ void gst::Loop() {
     TH1D *E_Trans90_RES_1n1p =
         new TH1D("ET around 90 degrees (RES Only, 1n1p)", "Energy Transfer (E_{#nu}-E_{l}) in the Angle Range 89 #leq #theta_{l} #leq 91 (RES Only, 1n1p);E_{#nu}-E_{l} [GeV]", 100,
                  E_Trans90_RES_lower_lim_1n1p, E_Trans90_RES_upper_lim_1n1p);
-    #pragma endregion
+#pragma endregion
 
     // Energy Transfer histograms (DIS interactions) ------------------------------------------------------
 
-    #pragma region /* Energy Transfer histograms (DIS interactions) */
+#pragma region /* Energy Transfer histograms (DIS interactions) */
     THStack *Energy_Transfer_DIS_Int_Stack_2p =
         new THStack("Energy_Transfer_DIS_Int_Stack_2p", "Energy Transfer (E_{#nu}-E_{l}) for different #theta_{l} (DIS only, 2p);E_{#nu}-E_{l} [GeV]");
     THStack *Energy_Transfer_DIS_Int_Stack_1n1p =
@@ -5284,11 +5284,11 @@ void gst::Loop() {
     TH1D *E_Trans90_DIS_1n1p =
         new TH1D("ET around 90 degrees (DIS Only, 1n1p)", "Energy Transfer (E_{#nu}-E_{l}) in the Angle Range 89 #leq #theta_{l} #leq 91 (DIS Only, 1n1p);E_{#nu}-E_{l} [GeV]", 100,
                  E_Trans90_DIS_lower_lim_1n1p, E_Trans90_DIS_upper_lim_1n1p);
-    #pragma endregion
+#pragma endregion
 
     // Inclusive Energy Transfer histograms ---------------------------------------------------------------
 
-    #pragma region /* Inclusive Energy Transfer histograms */
+#pragma region /* Inclusive Energy Transfer histograms */
     THStack *Energy_Transfer_all_int_15_inclusive_Stack = new THStack("Energy_Transfer_all_int_15_inclusive_Stack", ";E_{#nu}-E_{l} [GeV]");
 
     TH1D *E_Trans15_all_inclusive =
@@ -5331,7 +5331,7 @@ void gst::Loop() {
         new TH2D("ET around #omega VS q_{3} (MEC Only, 1n1p)", "Energy Transfer (E_{#nu}-E_{l}) vs q_{3} (MEC Only, 1n1p);q_{3} = |p_{v,3} - p_{l,3}| [GeV/c];#omega = E_{v} - E_{l} [GeV]",
                  200, E_Trans_VS_q3_MEC_lower_lim_x_1n1p, E_Trans_VS_q3_MEC_upper_lim_x_1n1p, 200, E_Trans_VS_q3_MEC_lower_lim_y_1n1p, E_Trans_VS_q3_MEC_upper_lim_y_1n1p);
 
-    #pragma region /* Inclusive Energy Transfer histograms - limits & titles by cases */
+#pragma region /* Inclusive Energy Transfer histograms - limits & titles by cases */
     if (Target_nucleus == "12C") {
         E_Trans15_all_inclusive->SetTitle("Energy Transfer (E_{#nu}-E_{l}) in the Angle Range 14 #leq #theta_{l} #leq 16 (All Interactions, ^{12}C(e,e'))");
         E_Trans15_QEL_inclusive->SetTitle("Energy Transfer (E_{#nu}-E_{l}) in the Angle Range 14 #leq #theta_{l} #leq 16 (QEL Only, ^{12}C(e,e'))");
@@ -5363,16 +5363,16 @@ void gst::Loop() {
         E_Trans_VS_q_QEL_inclusive->SetTitle("Energy Transfer (E_{#nu}-E_{l}) vs |q| (QEL Only, ^{56}Fe(e,e'))");
         E_Trans_VS_q_MEC_inclusive->SetTitle("Energy Transfer (E_{#nu}-E_{l}) vs |q| (MEC Only, ^{56}Fe(e,e'))");
     }
-    #pragma endregion
+#pragma endregion
 
-    #pragma endregion
+#pragma endregion
 
-    // E_cal restoration histograms -----------------------------------------------------------------------
+// E_cal restoration histograms -----------------------------------------------------------------------
 
-    // Old plots:
+// Old plots:
 
-    // TODO: remove title and fix xlabel according to BEnergy for QEL case (confirm w/ Adi)
-    #pragma region /* E_cal restoration histograms - old plots */
+// TODO: remove title and fix xlabel according to BEnergy for QEL case (confirm w/ Adi)
+#pragma region /* E_cal restoration histograms - old plots */
     TH1D *E_cal_MEC_2n;
     TH1D *E_cal_QEL_2p, *E_cal_MEC_2p, *E_cal_RES_2p, *E_cal_DIS_2p, *E_cal_QEL_1n1p, *E_cal_MEC_1n1p, *E_cal_RES_1n1p, *E_cal_DIS_1n1p;
     THStack *E_cal_QEL_Stack, *E_cal_MEC_Stack_1n1p_and_2p, *E_cal_MEC_Stack_2p_and_2n, *E_cal_RES_Stack, *E_cal_DIS_Stack;
@@ -5438,11 +5438,11 @@ void gst::Loop() {
                                   E_cal_RES_upper_lim_2p);
     TH1D *hEcal_DIS_2p = new TH1D("Truth-level E_{cal} (DIS only, 2p)", "Truth-level E_{cal} (DIS only, 2p);E_{cal} = E_{l} + T_{p_{1}} + T_{p_{2}} [GeV] [GeV]", 100, E_cal_DIS_lower_lim_2p,
                                   E_cal_DIS_upper_lim_2p);
-    #pragma endregion
+#pragma endregion
 
     // E_cal VS other variables (all interactions, 2p):
 
-    #pragma region /* E_cal restoration histograms - E_cal VS other variables (all interactions, 2p) */
+#pragma region /* E_cal restoration histograms - E_cal VS other variables (all interactions, 2p) */
     TH2D *E_cal_VS_theta_lp_all_int_2p = new TH2D("E_{cal} vs #theta_{l} (all interactions, 2p)",
                                                   "E_{cal} vs #theta_{l} (All Interactions, 2p);#theta_{l} [Deg];E_{cal} = E_{l} + T_{p1} + T_{p2} [GeV]", 200, 0.0, 120, 200, 2.12, 2.3);
     TH2D *E_cal_VS_Q2_all_int_2p =
@@ -5453,11 +5453,11 @@ void gst::Loop() {
                                                   "E_{cal} vs #theta_{p2} (All Interactions, 2p);#theta_{p2} [Deg];E_{cal} = E_{l} + T_{p1} + T_{p2} [GeV]", 200, -10, 190, 200, 2.12, 2.3);
     TH2D *E_cal_VS_dtheta_all_int_2p =
         new TH2D("E_{cal} vs #gamma (all interactions, 2p)", "E_{cal} vs #gamma (All Interactions, 2p);#gamma} [Deg];E_{cal} = E_{l} + T_{p1} + T_{p2} [GeV]", 200, -10, 180, 200, 2.12, 2.3);
-    #pragma endregion
+#pragma endregion
 
     // E_cal VS other variables (QEL only, 2p):
 
-    #pragma region /* E_cal restoration histograms - E_cal VS other variables (QEL only, 2p) */
+#pragma region /* E_cal restoration histograms - E_cal VS other variables (QEL only, 2p) */
     TH2D *E_cal_VS_theta_lp_QEL_only_2p =
         new TH2D("E_{cal} vs #theta_{l} (QEL Only, 2p)", "E_{cal} vs #theta_{l} (QEL Only, 2p);#theta_{l} [Deg];E_{cal} = E_{l} + T_{p1} + T_{p2} [GeV]", 200, 0.0, 180, 200, 2.12, 2.23);
     TH2D *E_cal_VS_Q2_QEL_only_2p =
@@ -5477,11 +5477,11 @@ void gst::Loop() {
         new TH2D("E_{cal} vs #theta_{p2} (QEL Only, 2p)", "E_{cal} vs #theta_{p2} (QEL Only, 2p);#theta_{p2} [Deg];E_{cal} = E_{l} + T_{p1} + T_{p2} [GeV]", 200, -10, 190, 200, 2.12, 2.23);
     TH2D *E_cal_VS_dtheta_QEL_only_2p =
         new TH2D("E_{cal} vs #gamma (QEL Only, 2p)", "E_{cal} vs #gamma (QEL Only, 2p);#gamma} [Deg];E_{cal} = E_{l} + T_{p1} + T_{p2} [GeV]", 200, -10, 180, 200, 2.12, 2.23);
-    #pragma endregion
+#pragma endregion
 
     // E_cal VS other variables (QEL only, 1n1p):
 
-    #pragma region /* E_cal restoration histograms - E_cal VS other variables (QEL only, 1n1p) */
+#pragma region /* E_cal restoration histograms - E_cal VS other variables (QEL only, 1n1p) */
     TH2D *E_cal_VS_theta_lp_QEL_1n1p =
         new TH2D("E_{cal} vs #theta_{l} (QEL Only, 1n1p)", "E_{cal} vs #theta_{l} (QEL Only, 1n1p);#theta_{l} [Deg];E_{cal} = E_{l} + T_{p} + T_{n} [GeV]", 200, 0.0, 180, 200, 2.12, 2.23);
     TH2D *E_cal_VS_Q2_QEL_only_1n1p =
@@ -5502,11 +5502,11 @@ void gst::Loop() {
         new TH2D("E_{cal} vs #theta_{n} (QEL Only, 1n1p)", "E_{cal} vs #theta_{n} (QEL Only, 1n1p);#theta_{n} [Deg];E_{cal} = E_{l} + T_{p} + T_{n} [GeV]", 200, -10, 190, 200, 2.12, 2.23);
     TH2D *E_cal_VS_dtheta_QEL_only_1n1p =
         new TH2D("E_{cal} vs #gamma (QEL Only, 1n1p)", "E_{cal} vs #gamma (QEL Only, 1n1p);#gamma} [Deg];E_{cal} = E_{l} + T_{p} + T_{n} [GeV]", 200, -10, 180, 200, 2.12, 2.23);
-    #pragma endregion
+#pragma endregion
 
     // Momentum histograms -----------------------------------------------------------------------------
 
-    #pragma region /* Momentum histograms */
+#pragma region /* Momentum histograms */
     THStack *MomentumStack_2p = new THStack("Momentum Stack (2p)", "Momentum Histogram Stack (All Interactions, 2p);Momentum} [GeV]");
     THStack *MomentumStack_1n1p = new THStack("Momentum Stack (1n1p)", "Momentum Histogram Stack (All Interactions, 1n1p);Momentum} [GeV]");
 
@@ -5519,7 +5519,7 @@ void gst::Loop() {
     TH1D *P_lp_hist_1n1p = new TH1D("P_{l} (all interactions, 1n1p)", ";P_{l} [GeV/c]", 100, P_lp_hist_lower_lim_1n1p, P_lp_hist_upper_lim_1n1p);
 
     TH1D *P_lp_hist_inclusive = new TH1D("P_{l} (all interactions, inc.)", ";P_{l} [GeV/c]", 250, 0, 7);
-    #pragma endregion
+#pragma endregion
 
     // MicroBooNE histogram reconstruction -------------------------------------------------------------
 
@@ -5527,21 +5527,21 @@ void gst::Loop() {
     THStack *gamma_Lab_Stack, *gamma_mu_p_tot_Stack, dP_T_Stack;
     THStack *gamma_Lab_weighted_Stack, *gamma_mu_p_tot_weighted_Stack, dP_T_Stack_weighted;
 
-    #pragma region /* MicroBooNE histogram reconstruction - MicroBooNE gamma plots (unweighted) */
+#pragma region /* MicroBooNE histogram reconstruction - MicroBooNE gamma plots (unweighted) */
     TH1D *gamma_Lab_hist = new TH1D("cos(#gamma_{Lab})", "cos(#gamma_{Lab}) Histogram;cos(#gamma_{Lab})", 8, Gamma_Lab_lower_lim, Gamma_Lab_upper_lim);
     TH1D *gamma_mu_p_tot =
         new TH1D("cos(#gamma_{#mu,p_{L}+p_{R}})", "cos(#gamma_{#mu,p_{L}+p_{R}}) Histogram;cos(#gamma_{#mu,p_{L}+p_{R}})", 8, Gamma_mu_p_tot_lower_lim, Gamma_mu_p_tot_upper_lim);
-    #pragma endregion
+#pragma endregion
 
-    #pragma region /* MicroBooNE histogram reconstruction - MicroBooNE gamma plots (Q4 weighted) */
+#pragma region /* MicroBooNE histogram reconstruction - MicroBooNE gamma plots (Q4 weighted) */
     TH1D *gamma_Lab_hist_weighted =
         new TH1D("cos(#gamma_{Lab}) (Q^{4} weighted)", "cos(#gamma_{Lab}) Histogram (Q^{4} weighted);cos(#gamma_{Lab})", 8, Gamma_Lab_weighted_lower_lim, Gamma_Lab_weighted_upper_lim);
 
     TH1D *gamma_mu_p_tot_weighted = new TH1D("cos(#gamma_{#mu,p_{L}+p_{R}}) (Q^{4} weighted)", "cos(#gamma_{#mu,p_{L}+p_{R}}) Histogram (Q^{4} weighted);cos(#gamma_{#mu,p_{L}+p_{R}})", 8,
                                              Gamma_mu_p_tot_weighted_lower_lim, Gamma_mu_p_tot_weighted_upper_lim);
-    #pragma endregion
+#pragma endregion
 
-    #pragma region /* MicroBooNE histogram reconstruction - MicroBooNE gamma plots (no pions, for every interaction) */
+#pragma region /* MicroBooNE histogram reconstruction - MicroBooNE gamma plots (no pions, for every interaction) */
     TH1D *gamma_Lab_all_hist = new TH1D("cos(#gamma_{Lab}) -all interactions", "cos(#gamma_{Lab}) Histogram -all interactions;cos(#gamma_{Lab})", 8, Gamma_Lab_noPions_All_Int_lower_lim,
                                         Gamma_Lab_noPions_All_Int_upper_lim);
     TH1D *gamma_Lab_all_hist_weighted = new TH1D("cos(#gamma_{Lab}) -all interactions (Q^{4} weighted)", "cos(#gamma_{Lab}) Histogram -all interactions (Q^{4} weighted);cos(#gamma_{Lab})",
@@ -5566,15 +5566,15 @@ void gst::Loop() {
         new TH1D("cos(#gamma_{Lab}) - DIS Only", "cos(#gamma_{Lab}) Histogram - DIS Only;cos(#gamma_{Lab})", 8, Gamma_Lab_noPions_DIS_lower_lim, Gamma_Lab_noPions_DIS_upper_lim);
     TH1D *gamma_Lab_DIS_hist_weighted = new TH1D("cos(#gamma_{Lab}) - DIS Only (Q^{4} weighted)", "cos(#gamma_{Lab}) Histogram - DIS Only (Q^{4} weighted);cos(#gamma_{Lab})", 8,
                                                  Gamma_Lab_noPions_DIS_weighted_lower_lim, Gamma_Lab_noPions_DIS_weighted_upper_lim);
-    #pragma endregion
+#pragma endregion
 
-    #pragma region /* MicroBooNE histogram reconstruction - MicroBooNE dP_T plots (unweighted and Q4 weighted) */
+#pragma region /* MicroBooNE histogram reconstruction - MicroBooNE dP_T plots (unweighted and Q4 weighted) */
     TH1D *dP_T_hist = new TH1D("#deltaP_{T}", ";#deltaP_{T} = |#bf{P}_{l,T} + #bf{P}_{L,T} + #bf{P}_{R,T}| [GeV/c]", 100, dP_T_hist_lower_lim, dP_T_hist_upper_lim);
     TH1D *dP_T_hist_weighted =
         new TH1D("#deltaP_{T} (Q^{4} weighted)", ";#deltaP_{T} = |#bf{P}_{l,T} + #bf{P}_{L,T} + #bf{P}_{R,T}| [GeV/c]", 100, dP_T_hist_weighted_lower_lim, dP_T_hist_weighted_upper_lim);
-    #pragma endregion
+#pragma endregion
 
-    #pragma region /* MicroBooNE momentum plots (for self-examination) */
+#pragma region /* MicroBooNE momentum plots (for self-examination) */
     THStack *MomentumStack_MicroBooNE = new THStack("Momentum Stack (MicroBooNE)", ";Momentum [GeV]");
 
     TH1D *P_L_hist = new TH1D("P_{L}", "Momentum of Leading Proton (P_{L});P_{L} [GeV/c]", 100, P_L_hist_lower_lim, P_L_hist_upper_lim);
@@ -5589,13 +5589,13 @@ void gst::Loop() {
     std::string dP_T_weighted_title = "#deltaP_{T} Histogram (" + file_name + ", Q^{4} weighted)";
     const char *dP_T_weighted_Title = dP_T_weighted_title.c_str();
     dP_T_hist_weighted->SetTitle(dP_T_weighted_Title);
-    #pragma endregion
+#pragma endregion
 
     // List definition ---------------------------------------------------------------------------------
 
     TList *plots = new TList();
 
-    #pragma endregion
+#pragma endregion
 
     // List definition ---------------------------------------------------------------------------------
 
@@ -5605,7 +5605,7 @@ void gst::Loop() {
     //  Code execution
     // =======================================================================================================================================================================
 
-    #pragma region /* Code execution */
+#pragma region /* Code execution */
     if (fChain == 0) return;
 
     Long64_t nentries;
@@ -5673,7 +5673,7 @@ void gst::Loop() {
         //  Inclusive calculations
         //  ================================================================================================
 
-        #pragma region /* Inclusive calculations */
+#pragma region /* Inclusive calculations */
         //      Energy transfer VS q3,q calculations:
         double q3 = abs(pzv - pzl);
         double q = analysis_math::RadCalc(pxv - pxl, pyv - pyl, pzv - pzl);
@@ -5707,18 +5707,18 @@ void gst::Loop() {
                 if (Theta_lp_inclusive >= 14.0 && Theta_lp_inclusive <= 16.0) { E_Trans15_DIS_inclusive->Fill(Ev - El); }
             }
         }
-        #pragma endregion
+#pragma endregion
 
         //  2n FS calculations
         //  ================================================================================================
 
-        #pragma region /* 2n FS calculations */
+#pragma region /* 2n FS calculations */
         if (calculate_2n == true) {
             //          Calculations with FSI turned ON:
             if (FSI_status == true) {
                 if (nfp == 0 && nfn == 2 && nf == 2) {  // See if there are 2FS protons and 2FS hadrons (2n)
 
-                    #pragma region /* Proton selector (2n) */
+#pragma region /* Proton selector (2n) */
                     for (int i = 0; i < nf; i++) {
                         if (pdgf[i] == 2112) {
                             ++NeutronCounter_2n;
@@ -5742,7 +5742,7 @@ void gst::Loop() {
                             }
                         }
                     }
-                    #pragma endregion
+#pragma endregion
 
                     //                  Momentum of first proton in Ef[]:
                     double P_n1_2n = analysis_math::RadCalc(pxf[Neutron_1_ind_2n], pyf[Neutron_1_ind_2n], pzf[Neutron_1_ind_2n]);
@@ -5984,19 +5984,19 @@ void gst::Loop() {
                 }
             }
         }
-        #pragma endregion
+#pragma endregion
 
         //  2p FS calculations
         //  ================================================================================================
 
-        #pragma region /* 2p FS calculations */
+#pragma region /* 2p FS calculations */
         if (calculate_2p == true) {
             //          Calculations with FSI turned ON:
             if (FSI_status == true) {
                 //                if (nfp == 2 && nfpip == 0 && nfpim == 0 && nfkp == 0 && nfkm == 0 && nfk0 == 0) { // See if there are 2FS protons and 2FS hadrons (2pXnXpi0)
                 if (nfp == 2 && nfn == 0 && nf == 2) {  // See if there are 2FS protons and 2FS hadrons (2p)
 
-                    #pragma region /* Proton selector (2p) */
+#pragma region /* Proton selector (2p) */
                     for (int i = 0; i < nf; i++) {
                         if (pdgf[i] == 2212) {
                             ++ProtonCounter_2p;
@@ -6021,7 +6021,7 @@ void gst::Loop() {
                         //                            }
                         //                        }
                     }
-                    #pragma endregion
+#pragma endregion
 
                     //                  Momentum of first proton in Ef[]:
                     double P_p1_2p = analysis_math::RadCalc(pxf[Proton_1_ind_2p], pyf[Proton_1_ind_2p], pzf[Proton_1_ind_2p]);
@@ -6056,7 +6056,7 @@ void gst::Loop() {
                                                  (P_p1_2p * P_p2_2p));
                         dtheta_2p->Fill(d_theta_2p * 180.0 / 3.14159265359);
 
-                        #pragma region /* P_L & P_R selector */
+#pragma region                                                             /* P_L & P_R selector */
                         if (Ef[Proton_1_ind_2p] >= Ef[Proton_2_ind_2p]) {  // If Proton_1_ind_2p is the leading proton and Proton_2_ind_2p is the recoil
 
                             //                          Leading proton:
@@ -6116,7 +6116,7 @@ void gst::Loop() {
                                 E_cal_VS_theta_p1_QEL_only_2p->Fill(theta_p2 * 180.0 / 3.14159265359, E_cal_2p);
                             }
                         }
-                        #pragma endregion
+#pragma endregion
 
                         E_Trans_VS_q3_all_2p->Fill(q3, Ev - El);
 
@@ -6157,7 +6157,7 @@ void gst::Loop() {
                             E_Trans90_all_2p->Fill(Ev - El);
                         }
 
-                        #pragma region /* Histogram fill by reaction (2p) */
+#pragma region /* Histogram fill by reaction (2p) */
                         if (qel == true) {
                             gamma_Lab_QEL_hist->Fill(cos(d_theta_2p));
                             gamma_Lab_QEL_hist_weighted->Fill(cos(d_theta_2p), Q2 * Q2);
@@ -6241,7 +6241,7 @@ void gst::Loop() {
 
                             fsEl_DIS_2p->Fill(El);
                         }
-                        #pragma endregion
+#pragma endregion
 
                         // TODO: IPS plots - these plots are for IPS poster. Rename them to fit the code.
                         hEcal_all_int_2p->Fill(E_cal_2p);
@@ -6260,7 +6260,7 @@ void gst::Loop() {
             } else if (FSI_status == false) {
                 if (nip == 2 && nin == 0 && ni == ni_selection) {  // See if there are 2FS protons and 2FS hadrons (2p)
 
-                    #pragma region /* Proton selector (2p) */
+#pragma region /* Proton selector (2p) */
                     for (int i = 0; i < ni; i++) {
                         if (pdgi[i] == 2212) {
                             ++ProtonCounter_2p;
@@ -6279,7 +6279,7 @@ void gst::Loop() {
                             }
                         }
                     }
-                    #pragma endregion
+#pragma endregion
 
                     //                  Momentum of first proton in Ei[]:
                     double P_p1_2p = analysis_math::RadCalc(pxi[Proton_1_ind_2p], pyi[Proton_1_ind_2p], pzi[Proton_1_ind_2p]);
@@ -6313,7 +6313,7 @@ void gst::Loop() {
                                                  (P_p1_2p * P_p2_2p));
                         dtheta_2p->Fill(d_theta_2p * 180.0 / 3.14159265359);
 
-                        #pragma region /* P_L & P_R selector */
+#pragma region                                                             /* P_L & P_R selector */
                         if (Ei[Proton_1_ind_2p] >= Ei[Proton_2_ind_2p]) {  // If Proton_1_ind_2p is the leading proton and Proton_2_ind_2p is the recoil
 
                             //                          Leading proton:
@@ -6372,7 +6372,7 @@ void gst::Loop() {
                                 E_cal_VS_theta_p1_QEL_only_2p->Fill(theta_p2 * 180.0 / 3.14159265359, E_cal_2p);
                             }
                         }
-                        #pragma endregion
+#pragma endregion
 
                         E_Trans_VS_q3_all_2p->Fill(q3, Ev - El);
 
@@ -6414,7 +6414,7 @@ void gst::Loop() {
                             E_Trans90_all_2p->Fill(Ev - El);
                         }
 
-                        #pragma region /* Histogram fill by reaction (2p) */
+#pragma region /* Histogram fill by reaction (2p) */
                         if (qel == true) {
                             gamma_Lab_QEL_hist->Fill(cos(d_theta_2p));
                             gamma_Lab_QEL_hist_weighted->Fill(cos(d_theta_2p), Q2 * Q2);
@@ -6498,23 +6498,23 @@ void gst::Loop() {
 
                             fsEl_DIS_2p->Fill(El);
                         }
-                        #pragma endregion
+#pragma endregion
                     }
                 }
             }
         }
-        #pragma endregion
+#pragma endregion
 
         //  1n1p calculations
         //  ================================================================================================
 
-        #pragma region /* 1n1p FS calculations */
+#pragma region /* 1n1p FS calculations */
         if (calculate_1n1p == true) {
             //          Calculations with FSI turned ON:
             if (FSI_status == true) {
                 if (nfp == 1 && nfn == 1 && nf == 2) {  // See if there 1FS p and n; and 2FS hadrons (1n1p)
 
-                    #pragma region /* Proton & Neutron selector */
+#pragma region /* Proton & Neutron selector */
                     for (int i = 0; i < nf; i++) {
                         if (pdgf[i] == 2212) {
                             ++ProtonCounter_1n1p;
@@ -6532,7 +6532,7 @@ void gst::Loop() {
                             }
                         }
                     }
-                    #pragma endregion
+#pragma endregion
 
                     //                  Proton momentum:
                     double P_p_1n1p = analysis_math::RadCalc(pxf[Proton_ind_1n1p], pyf[Proton_ind_1n1p], pzf[Proton_ind_1n1p]);
@@ -6571,30 +6571,30 @@ void gst::Loop() {
 
                         E_Trans_VS_q3_all_1n1p->Fill(q3, Ev - El);
 
-                        #pragma region /* Momentum histograms fill (1n1p) */
+#pragma region /* Momentum histograms fill (1n1p) */
                         P_p_hist_1n1p->Fill(P_p_1n1p);
                         P_n_hist_1n1p->Fill(P_n_1n1p);
                         P_lp_hist_1n1p->Fill(P_lp_1n1p);
-                        #pragma endregion
+#pragma endregion
 
-                        #pragma region /* Theta histograms fill (1n1p) */
+#pragma region /* Theta histograms fill (1n1p) */
                         theta_p_1n1p->Fill(theta_p);
                         theta_n_1n1p->Fill(theta_n);
                         dtheta_1n1p->Fill(d_theta_1n1p * 180.0 / 3.14159265359);
-                        #pragma endregion
+#pragma endregion
 
-                        #pragma region /* Phi histograms fill (1n1p) */
+#pragma region /* Phi histograms fill (1n1p) */
                         phi_p_1n1p->Fill(phi_p);
                         phi_n_1n1p->Fill(phi_n);
                         dphi_1n1p->Fill(d_phi_1n1p * 180.0 / 3.14159265359);
-                        #pragma endregion
+#pragma endregion
 
-                        #pragma region /* Energy histograms fill (1n1p) */
+#pragma region /* Energy histograms fill (1n1p) */
                         theta_lp_1n1p->Fill(Theta_lp_1n1p);
                         phi_lp_1n1p->Fill(atan2(pyl, pxl) * 180.0 / 3.14159265359);
                         fsEl_VS_theta_lp_all_int_1n1p->Fill(Theta_lp_1n1p, El);
                         fsEl_1n1p->Fill(El);
-                        #pragma endregion
+#pragma endregion
 
                         // TODO: IPS plots - these plots are for IPS poster. Rename them to fit the code.
                         E_Trans_all_ang_all_int_1n1p->Fill(Ev - El);
@@ -6617,7 +6617,7 @@ void gst::Loop() {
                             E_Trans90_all_1n1p->Fill(Ev - El);
                         }
 
-                        #pragma region /* Histogram fill by reaction (1n1p) */
+#pragma region /* Histogram fill by reaction (1n1p) */
                         if (qel == true) {
                             if (Theta_lp_1n1p >= 14.0 && Theta_lp_1n1p <= 16.0) {
                                 E_Trans15_QEL_1n1p->Fill(Ev - El);
@@ -6685,14 +6685,14 @@ void gst::Loop() {
 
                             fsEl_DIS_1n1p->Fill(El);
                         }
-                        #pragma endregion
+#pragma endregion
                     }
                 }
                 //          Calculations with FSI turned OFF:
             } else if (FSI_status == false) {
                 if (nip == 1 && nin == 1 && ni == ni_selection) {  // See if there 1FS p and n; and 2FS hadrons (1n1p)
 
-                    #pragma region /* Proton & Neutron selector */
+#pragma region /* Proton & Neutron selector */
                     for (int i = 0; i < ni; i++) {
                         if (pdgi[i] == 2212) {
                             ++ProtonCounter_1n1p;
@@ -6710,7 +6710,7 @@ void gst::Loop() {
                             }
                         }
                     }
-                    #pragma endregion
+#pragma endregion
 
                     //                  Proton momentum:
                     double P_p_1n1p = analysis_math::RadCalc(pxi[Proton_ind_1n1p], pyi[Proton_ind_1n1p], pzi[Proton_ind_1n1p]);
@@ -6748,30 +6748,30 @@ void gst::Loop() {
 
                         E_Trans_VS_q3_all_1n1p->Fill(q3, Ev - El);
 
-                        #pragma region /* Momentum histograms fill (1n1p) */
+#pragma region /* Momentum histograms fill (1n1p) */
                         P_p_hist_1n1p->Fill(P_p_1n1p);
                         P_n_hist_1n1p->Fill(P_n_1n1p);
                         P_lp_hist_1n1p->Fill(P_lp_1n1p);
-                        #pragma endregion
+#pragma endregion
 
-                        #pragma region /* Theta histograms fill (1n1p) */
+#pragma region /* Theta histograms fill (1n1p) */
                         theta_p_1n1p->Fill(theta_p);
                         theta_n_1n1p->Fill(theta_n);
                         dtheta_1n1p->Fill(d_theta_1n1p * 180.0 / 3.14159265359);
-                        #pragma endregion
+#pragma endregion
 
-                        #pragma region /* Phi histograms fill (1n1p) */
+#pragma region /* Phi histograms fill (1n1p) */
                         phi_p_1n1p->Fill(phi_p);
                         phi_n_1n1p->Fill(phi_n);
                         dphi_1n1p->Fill(d_phi_1n1p * 180.0 / 3.14159265359);
-                        #pragma endregion
+#pragma endregion
 
-                        #pragma region /* Energy histograms fill (1n1p) */
+#pragma region /* Energy histograms fill (1n1p) */
                         theta_lp_1n1p->Fill(Theta_lp_1n1p);
                         phi_lp_1n1p->Fill(atan2(pyl, pxl) * 180.0 / 3.14159265359);
                         fsEl_VS_theta_lp_all_int_1n1p->Fill(Theta_lp_1n1p, El);
                         fsEl_1n1p->Fill(El);
-                        #pragma endregion
+#pragma endregion
 
                         // TODO: IPS plots - these plots are for IPS poster. Rename them to fit the code.
                         E_Trans_all_ang_all_int_1n1p->Fill(Ev - El);
@@ -6794,7 +6794,7 @@ void gst::Loop() {
                             E_Trans90_all_1n1p->Fill(Ev - El);
                         }
 
-                        #pragma region /* Histogram fill by reaction (1n1p) */
+#pragma region /* Histogram fill by reaction (1n1p) */
                         if (qel == true) {
                             if (Theta_lp_1n1p >= 14.0 && Theta_lp_1n1p <= 16.0) {
                                 E_Trans15_QEL_1n1p->Fill(Ev - El);
@@ -6862,22 +6862,22 @@ void gst::Loop() {
 
                             fsEl_DIS_1n1p->Fill(El);
                         }
-                        #pragma endregion
+#pragma endregion
                     }
                 }
             }
         }
-        #pragma endregion
+#pragma endregion
 
         //  MicroBooNE calculations
         //  ================================================================================================
 
-        #pragma region /* MicroBooNE calculations */
+#pragma region /* MicroBooNE calculations */
         if (calculate_MicroBooNE == true) {
             if (FSI_status == true) {          // Calculations with FSI turned ON
                 if (nfp == 2 && nfpi0 == 0) {  // 2p with no pi0 (according to "no neutral pions of any momentum" and "any number of neutrons")
 
-                    #pragma region /* Proton selector (MicroBooNE) */
+#pragma region /* Proton selector (MicroBooNE) */
                     for (int i = 0; i < nf; i++) {
                         if (pdgf[i] == 2212) {
                             ++ProtonCounter_article;
@@ -6888,7 +6888,7 @@ void gst::Loop() {
                             }
                         }
                     }
-                    #pragma endregion
+#pragma endregion
 
                     //                  Lepton (muon) momentum modulus:
                     double P_lp_f = sqrt(pxl * pxl + pyl * pyl + pzl * pzl);
@@ -6936,11 +6936,11 @@ void gst::Loop() {
                             dP_T_hist->Fill(P_T);
                             dP_T_hist_weighted->Fill(P_T, Q2 * Q2);
 
-                            #pragma region /* MicroBooNE momentum plots fill (no charged pions case) */
+#pragma region /* MicroBooNE momentum plots fill (no charged pions case) */
                             P_R_hist->Fill(P_R);
                             P_L_hist->Fill(P_L);
                             P_lp_hist->Fill(P_lp_f);
-                            #pragma endregion
+#pragma endregion
                         } else {  // In events with pions
                             for (int i = 0; i < nf; i++) {
                                 if (abs(pdgf[i]) == 211) {  // The abs() for either pi+ or pi-
@@ -6976,12 +6976,12 @@ void gst::Loop() {
                                         dP_T_hist->Fill(P_T);
                                         dP_T_hist_weighted->Fill(P_T, Q2 * Q2);
 
-                                        #pragma region /* MicroBooNE momentum plots (with charged pions case) */
+#pragma region /* MicroBooNE momentum plots (with charged pions case) */
                                         P_R_hist->Fill(P_R);
                                         P_L_hist->Fill(P_L);
                                         P_lp_hist->Fill(P_lp_f);
                                         P_pion_hist->Fill(P_pion);
-                                        #pragma endregion
+#pragma endregion
                                     }
                                 }
                             }
@@ -6991,7 +6991,7 @@ void gst::Loop() {
             } else if (FSI_status == false) {  // Calculations with FSI turned OFF
                 if (nip == 2 && nipi0 == 0) {  // 2p with no pi0 (according to "no neutral pions of any momentum" and "any number of neutrons")
 
-                    #pragma region /* Proton selector (MicroBooNE) */
+#pragma region /* Proton selector (MicroBooNE) */
                     for (int i = 0; i < ni; i++) {
                         if (pdgi[i] == 2212) {
                             ++ProtonCounter_article;
@@ -7002,7 +7002,7 @@ void gst::Loop() {
                             }
                         }
                     }
-                    #pragma endregion
+#pragma endregion
 
                     //                  Lepton (muon) momentum modulus:
                     double P_lp_i = sqrt(pxl * pxl + pyl * pyl + pzl * pzl);
@@ -7015,12 +7015,12 @@ void gst::Loop() {
                     double P_R = fmin(analysis_math::RadCalc(pxi[Proton_1_ind_article], pyi[Proton_1_ind_article], pzi[Proton_1_ind_article]),
                                       analysis_math::RadCalc(pxi[Proton_2_ind_article], pyi[Proton_2_ind_article], pzi[Proton_2_ind_article]));
 
-                    #pragma region /* MicroBooNE momentum plots (with charged pions case) */
+#pragma region /* MicroBooNE momentum plots (with charged pions case) */
                     P_R_hist->Fill(P_R);
                     P_L_hist->Fill(P_L);
                     P_lp_hist->Fill(P_lp_i);
-                    //                    P_pion_hist->Fill(P_pion);
-                    #pragma endregion
+//                    P_pion_hist->Fill(P_pion);
+#pragma endregion
 
                     if ((P_lp_i >= P_lp_lower_lim_MicroBooNE && P_lp_i <= P_lp_upper_lim_MicroBooNE) && (P_L >= P_L_lower_lim_MicroBooNE && P_L <= P_L_upper_lim_MicroBooNE) &&
                         (P_R >= P_R_lower_lim_MicroBooNE && P_R <= P_R_upper_lim_MicroBooNE)) {
@@ -7113,14 +7113,14 @@ void gst::Loop() {
             }
         }
 
-        #pragma endregion
+#pragma endregion
     }
-    #pragma endregion
+#pragma endregion
 
     //  Canvas definitions
     // =======================================================================================================================================================================
 
-    #pragma region /* Canvas definitions */
+#pragma region /* Canvas definitions */
 
     //    TCanvas *c1 = new TCanvas("canvas", "canvas", 1500, 1000); // original
     //    TCanvas *c1 = new TCanvas("canvas", "canvas", 1500, 1250);
@@ -7139,12 +7139,12 @@ void gst::Loop() {
         //        c1->SetLeftMargin(0.1275); // original TruthLevelAnalyzer.c
         c1->SetRightMargin(0.1275);
     }
-    #pragma endregion
+#pragma endregion
 
     //  Histograms plots
     // =======================================================================================================================================================================
 
-    #pragma region /* Histograms plots */
+#pragma region /* Histograms plots */
 
     //  Theta histograms
     //  ===================================================================================================
@@ -7160,17 +7160,17 @@ void gst::Loop() {
         //      Normalization factor:
         double theta_lp_integral = theta_lp_2p->Integral() + theta_lp_1n1p->Integral();
 
-        #pragma region /* Theta of outgoing lepton histogram (2p) */
+#pragma region /* Theta of outgoing lepton histogram (2p) */
         histPlotter1D(c1, theta_lp_2p, normalized_theta_lp_plots, true, theta_lp_integral, "#theta_{l} of Outgoing Lepton", "All Interactions", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF,
                       2, true, true, ThetaStack, "Theta_of_lepton", "plots/theta_histograms/", "2p", kBlue, true, true, true);
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Theta of outgoing lepton histogram (1n1p) */
+#pragma region /* Theta of outgoing lepton histogram (1n1p) */
         histPlotter1D(c1, theta_lp_1n1p, normalized_theta_lp_plots, true, theta_lp_integral, "#theta_{l} of Outgoing Lepton", "All Interactions", 0.06, 0.0425, 0.0425, plots,
                       Histogram_OutPDF, 2, true, true, ThetaStack, "Theta_of_lepton", "plots/theta_histograms/", "1n1p", kRed, true, true, true);
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Theta of outgoing lepton histogram (stack) */
+#pragma region /* Theta of outgoing lepton histogram (stack) */
         ThetaStack->Draw("nostack");
         ThetaStack->GetHistogram()->GetXaxis()->SetTitleSize(0.06);
         ThetaStack->GetHistogram()->GetXaxis()->SetLabelSize(0.0425);
@@ -7198,43 +7198,43 @@ void gst::Loop() {
         c1->SetLogy(0);
         c1->SaveAs("plots/theta_histograms/Theta_of_lepton_stack_linear_scale.png");
         c1->Clear();
-        #pragma endregion
+#pragma endregion
 
         //  Theta of nucleon 1 histogram ----------------------------------------------------------------------
 
-        #pragma region /* Theta of Proton 1 histogram (2p) */
+#pragma region /* Theta of Proton 1 histogram (2p) */
         histPlotter1D(c1, theta_p1_2p, normalized_theta_p1_plots, true, 1., "#theta_{p1} of Proton 1", "All Interactions", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2, false, true,
                       ThetaStack, "Theta_of_proton_1", "plots/theta_histograms/", "2p", kBlue, true, false, true);
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Theta of Proton histogram (1n1p) */
+#pragma region /* Theta of Proton histogram (1n1p) */
         histPlotter1D(c1, theta_p_1n1p, normalized_theta_p_plots, true, 1., "#theta_{p} of Scattered Proton", "All Interactions", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2, false,
                       true, ThetaStack, "Theta_of_proton", "plots/theta_histograms/", "1n1p", kRed, true, false, true);
-        #pragma endregion
+#pragma endregion
 
         //  Theta of nucleon 2 histogram ---------------------------------------------------------------------
 
-        #pragma region /* Theta of Proton 2 histogram (2p) */
+#pragma region /* Theta of Proton 2 histogram (2p) */
         histPlotter1D(c1, theta_p2_2p, normalized_theta_p2_plots, true, 1., "#theta_{p2} of Proton 2", "All Interactions", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2, false, true,
                       ThetaStack, "Theta_of_proton_2", "plots/theta_histograms/", "2p", kBlue, true, false, true);
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Theta of Neutron histogram (1n1p) */
+#pragma region /* Theta of Neutron histogram (1n1p) */
         histPlotter1D(c1, theta_n_1n1p, normalized_theta_p_plots, true, 1., "#theta_{n} of Scattered Neutron", "All Interactions", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2, false,
                       true, ThetaStack, "Theta_of_neutron", "plots/theta_histograms/", "1n1p", kRed, true, false, true);
-        #pragma endregion
+#pragma endregion
 
         //  dTheta and dPhi histograms ----------------------------------------------------------------------------------
 
-        #pragma region /* dTheta histogram (2p) */
+#pragma region /* dTheta histogram (2p) */
         histPlotter1D(c1, dtheta_2p, normalized_dtheta_2p_plots, true, 1., "#gamma = #theta_{p1} - #theta_{p2} of Scattered Protons", "All Interactions", 0.06, 0.0425, 0.0425, plots,
                       Histogram_OutPDF, 2, false, true, ThetaStack, "gamma_of_protons", "plots/theta_histograms/", "2p", kBlue, true, false, true);
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* dTheta histogram (1n1p) */
+#pragma region /* dTheta histogram (1n1p) */
         histPlotter1D(c1, dtheta_1n1p, normalized_dtheta_1n1p_plots, true, 1., "#gamma = #theta_{p} - #theta_{n} of Scattered Nucleons", "All Interactions", 0.06, 0.0425, 0.0425, plots,
                       Histogram_OutPDF, 2, false, true, ThetaStack, "gamma_of_nucleons", "plots/theta_histograms/", "1n1p", kRed, true, false, true);
-        #pragma endregion
+#pragma endregion
 
         histPlotter1D(c1, theta_lp_inclusive, false, true, 1., "#theta_{l} (inclusive)", "inclusive", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2, false, true, ThetaStack,
                       "theta_lp_inclusive", "plots/", "inclusive", kBlue, true, false, true);
@@ -7271,17 +7271,17 @@ void gst::Loop() {
         //      Normalization factor:
         double phi_lp_integral = phi_lp_2p->Integral() + phi_lp_1n1p->Integral();
 
-        #pragma region /* Phi of outgoing lepton histogram (2p) */
+#pragma region /* Phi of outgoing lepton histogram (2p) */
         histPlotter1D(c1, phi_lp_2p, normalized_phi_lp_plots, true, phi_lp_integral, "#phi_{l} of Outgoing Lepton", "All Interactions", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2,
                       false, true, PhiStack, "Phi_of_lepton", "plots/phi_histograms/", "2p", kBlue, true, true, true);
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Phi of outgoing lepton histogram (1n1p) */
+#pragma region /* Phi of outgoing lepton histogram (1n1p) */
         histPlotter1D(c1, phi_lp_1n1p, normalized_phi_lp_plots, true, phi_lp_integral, "#phi_{l} of Outgoing Lepton", "All Interactions", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2,
                       false, true, PhiStack, "Phi_of_lepton", "plots/phi_histograms/", "1n1p", kRed, true, true, true);
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Phi of outgoing lepton histogram (stack) */
+#pragma region /* Phi of outgoing lepton histogram (stack) */
         PhiStack->Draw("nostack");
         PhiStack->GetHistogram()->GetXaxis()->SetTitleSize(0.06);
         PhiStack->GetHistogram()->GetXaxis()->SetLabelSize(0.0425);
@@ -7299,43 +7299,43 @@ void gst::Loop() {
         c1->SetLogy(0);
         c1->SaveAs("plots/phi_histograms/Phi_of_lepton_stack.png");
         c1->Clear();
-        #pragma endregion
+#pragma endregion
 
         //  Phi of nucleon 1 histogram ------------------------------------------------------------------------
 
-        #pragma region /* Phi of Proton 1 histogram (2p) */
+#pragma region /* Phi of Proton 1 histogram (2p) */
         histPlotter1D(c1, phi_p1_2p, normalized_phi_p1_plots, true, 1., "#phi_{p1} of Scattered Proton 1", "All Interactions", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2, false, true,
                       PhiStack, "Phi_of_proton_1", "plots/phi_histograms/", "2p", kBlue, true, false, true);
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Phi of Proton histogram (1n1p) */
+#pragma region /* Phi of Proton histogram (1n1p) */
         histPlotter1D(c1, phi_p_1n1p, normalized_phi_p_plots, true, 1., "#phi_{p} of Scattered Proton", "All Interactions", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2, false, true,
                       PhiStack, "Phi_of_proton", "plots/phi_histograms/", "1n1p", kRed, true, false, true);
-        #pragma endregion
+#pragma endregion
 
         //  Phi of nucleon 2 histogram ------------------------------------------------------------------------
 
-        #pragma region /* Phi of Proton 2 histogram (2p) */
+#pragma region /* Phi of Proton 2 histogram (2p) */
         histPlotter1D(c1, phi_p2_2p, normalized_phi_p2_plots, true, 1., "#phi_{p2} of Scattered Proton 2", "All Interactions", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2, false, true,
                       PhiStack, "Phi_of_proton_2", "plots/phi_histograms/", "2p", kBlue, true, false, true);
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Phi of Neutron histogram (1n1p) */
+#pragma region /* Phi of Neutron histogram (1n1p) */
         histPlotter1D(c1, phi_n_1n1p, normalized_phi_p_plots, true, 1., "#phi_{n} of Scattered Neutron", "All Interactions", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2, false, true,
                       PhiStack, "Phi_of_neutron", "plots/phi_histograms/", "1n1p", kRed, true, false, true);
-        #pragma endregion
+#pragma endregion
 
         //  dPhi histograms ----------------------------------------------------------------------------------
 
-        #pragma region /* dPhi histogram (2p) */
+#pragma region /* dPhi histogram (2p) */
         histPlotter1D(c1, dphi_2p, normalized_dphi_2p_plots, true, 1., "#Delta#phi = #phi_{p1} - #phi_{p2} of Scattered Protons", "All Interactions", 0.06, 0.0425, 0.0425, plots,
                       Histogram_OutPDF, 2, false, true, PhiStack, "dPhi_of_protons", "plots/phi_histograms/", "2p", kBlue, true, false, true);
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* dPhi histogram (1n1p) */
+#pragma region /* dPhi histogram (1n1p) */
         histPlotter1D(c1, dphi_1n1p, normalized_dphi_1n1p_plots, true, 1., "#Delta#phi = #phi_{p} - #phi_{n} of Scattered Nucleons", "All Interactions", 0.06, 0.0425, 0.0425, plots,
                       Histogram_OutPDF, 2, false, true, PhiStack, "dPhi_of_protons", "plots/phi_histograms/", "1n1p", kRed, true, false, true);
-        #pragma endregion
+#pragma endregion
 
         histPlotter1D(c1, phi_lp_inclusive, false, true, 1., "#phi_{l} (inclusive)", "inclusive", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2, false, true, PhiStack, "phi_lp_inclusive",
                       "plots/", "inclusive", kBlue, true, false, true);
@@ -7355,65 +7355,65 @@ void gst::Loop() {
         //      Normalization factor:
         double fsEl_integral = fsEl_2p->Integral() + fsEl_1n1p->Integral();
 
-        #pragma region /* El histograms (2p) */
+#pragma region /* El histograms (2p) */
 
-        #pragma region /* El histograms (all interactions, 2p) */
+#pragma region /* El histograms (all interactions, 2p) */
         histPlotter1D(c1, fsEl_2p, normalized_E_lp_all_int_plots, true, fsEl_integral, "Final State E_{l}", "All Interactions", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2, true, true,
                       EnergyStack, "Final_State_El", "plots/Energy_histograms/El_histograms/all_interactions/", "2p", kBlue, true, true, true);
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* El histograms (QEL only, 2p) */
+#pragma region /* El histograms (QEL only, 2p) */
         histPlotter1D(c1, fsEl_QEL_2p, normalized_E_lp_QEL_plots, true, fsEl_integral, "Final State E_{l}", "QEL Only", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2, true, true,
                       EnergyStack, "Final_State_El_QEL", "plots/Energy_histograms/El_histograms/QEL_only/", "2p", kBlue, true, false, true);
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* El histograms (MEC only, 2p) */
+#pragma region /* El histograms (MEC only, 2p) */
         histPlotter1D(c1, fsEl_MEC_2p, normalized_E_lp_MEC_plots, true, fsEl_integral, "Final State E_{l}", "MEC Only", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2, true, true,
                       EnergyStack, "Final_State_El_MEC", "plots/Energy_histograms/El_histograms/MEC_only/", "2p", kBlue, true, false, true);
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* El histograms (RES only, 2p) */
+#pragma region /* El histograms (RES only, 2p) */
         histPlotter1D(c1, fsEl_RES_2p, normalized_E_lp_RES_plots, true, fsEl_integral, "Final State E_{l}", "RES Only", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2, false, true,
                       EnergyStack, "Final_State_El_RES", "plots/Energy_histograms/El_histograms/RES_only/", "2p", kBlue, true, false, true);
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* El histograms (DIS, 2p) */
+#pragma region /* El histograms (DIS, 2p) */
         histPlotter1D(c1, fsEl_DIS_2p, normalized_E_lp_DIS_plots, true, fsEl_integral, "Final State E_{l}", "DIS Only", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2, false, true,
                       EnergyStack, "Final_State_El_DIS", "plots/Energy_histograms/El_histograms/DIS_only/", "2p", kBlue, true, false, true);
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* El histograms (1n1p) */
+#pragma region /* El histograms (1n1p) */
 
-        #pragma region /* El histograms (all interaction, 1n1p) */
+#pragma region /* El histograms (all interaction, 1n1p) */
         histPlotter1D(c1, fsEl_1n1p, normalized_E_lp_all_int_plots, true, fsEl_integral, "Final State E_{l}", "All Interactions", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2, true,
                       true, EnergyStack, "Final_State_El", "plots/Energy_histograms/El_histograms/all_interactions/", "1n1p", kRed, true, true, true);
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* El histograms (QEL only, 1n1p) */
+#pragma region /* El histograms (QEL only, 1n1p) */
         histPlotter1D(c1, fsEl_QEL_1n1p, normalized_E_lp_QEL_plots, true, fsEl_integral, "Final State E_{l}", "QEL Only", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2, true, true,
                       EnergyStack, "Final_State_El_QEL", "plots/Energy_histograms/El_histograms/QEL_only/", "1n1p", kRed, true, false, true);
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* El histograms (MEC only, 1n1p) */
+#pragma region /* El histograms (MEC only, 1n1p) */
         histPlotter1D(c1, fsEl_MEC_1n1p, normalized_E_lp_MEC_plots, true, fsEl_integral, "Final State E_{l}", "MEC Only", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2, true, true,
                       EnergyStack, "Final_State_El_MEC", "plots/Energy_histograms/El_histograms/MEC_only/", "1n1p", kRed, true, false, true);
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* El histograms (RES only, 1n1p) */
+#pragma region /* El histograms (RES only, 1n1p) */
         histPlotter1D(c1, fsEl_RES_1n1p, normalized_E_lp_RES_plots, true, fsEl_integral, "Final State E_{l}", "RES Only", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2, false, true,
                       EnergyStack, "Final_State_El_RES", "plots/Energy_histograms/El_histograms/RES_only/", "1n1p", kRed, true, false, true);
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* El histograms (DIS, 1n1p) */
+#pragma region /* El histograms (DIS, 1n1p) */
         histPlotter1D(c1, fsEl_DIS_1n1p, normalized_E_lp_DIS_plots, true, fsEl_integral, "Final State E_{l}", "DIS Only", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2, false, true,
                       EnergyStack, "Final_State_El_DIS", "plots/Energy_histograms/El_histograms/DIS_only/", "1n1p", kRed, true, false, true);
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* El histograms (all interactions, stack) */
+#pragma region /* El histograms (all interactions, stack) */
         EnergyStack->Draw("nostack");
         EnergyStack->GetHistogram()->GetXaxis()->SetTitleSize(0.06);
         EnergyStack->GetHistogram()->GetXaxis()->SetLabelSize(0.0425);
@@ -7441,7 +7441,7 @@ void gst::Loop() {
         c1->SetLogy(0);
         c1->SaveAs("plots/Energy_histograms/El_histograms/Final_State_El_linear_scale.png");
         c1->Clear();
-        #pragma endregion
+#pragma endregion
 
         //  Final State E_{l} vs #theta_{l} histogram ---------------------------------------------------------
 
@@ -7449,9 +7449,9 @@ void gst::Loop() {
         ;
         //        double set_Max_z = 1.5;
 
-        #pragma region /* Final State E_{l} vs #theta_{l} histogram (2p) */
+#pragma region /* Final State E_{l} vs #theta_{l} histogram (2p) */
 
-        #pragma region /* Final State E_{l} vs #theta_{l} histogram (all interactions, 2p) */
+#pragma region /* Final State E_{l} vs #theta_{l} histogram (all interactions, 2p) */
         double factor_El_VS_theta_lp_all_int_2p = 1.;
 
         if (normalized_E_lp_plots) {
@@ -7480,9 +7480,9 @@ void gst::Loop() {
         c1->SetLogz(0);
         c1->SaveAs("plots/Energy_histograms/El_VS_theta_l/all_interactions/El_VS_theta_lp_histogram_all_int_linear_scale_2p.png");
         c1->Clear();
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Final State E_{l} vs #theta_{l} histogram (QEL only, 2p) */
+#pragma region /* Final State E_{l} vs #theta_{l} histogram (QEL only, 2p) */
         double factor_El_VS_theta_lp_QEL_only_2p = 1.;
 
         if (normalized_E_lp_plots) {
@@ -7511,9 +7511,9 @@ void gst::Loop() {
         c1->SetLogz(0);
         c1->SaveAs("plots/Energy_histograms/El_VS_theta_l/QEL_only/El_VS_theta_lp_histogram_QEL_only_linear_scale_2p.png");
         c1->Clear();
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Final State E_{l} vs #theta_{l} histogram (MEC only, 2p) */
+#pragma region /* Final State E_{l} vs #theta_{l} histogram (MEC only, 2p) */
         double factor_El_VS_theta_lp_MEC_only_2p = 1.;
 
         if (normalized_E_lp_plots) {
@@ -7542,13 +7542,13 @@ void gst::Loop() {
         c1->SetLogz(0);
         c1->SaveAs("plots/Energy_histograms/El_VS_theta_l/MEC_only/El_VS_theta_lp_histogram_MEC_only_linear_scale_2p.png");
         c1->Clear();
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Final State E_{l} vs #theta_{l} histogram (1n1p) */
+#pragma region /* Final State E_{l} vs #theta_{l} histogram (1n1p) */
 
-        #pragma region /* Final State E_{l} vs #theta_{l} histogram (all interactions, 1n1p) */
+#pragma region /* Final State E_{l} vs #theta_{l} histogram (all interactions, 1n1p) */
         double factor_El_VS_theta_lp_all_int_1n1p = 1.;
 
         if (normalized_E_lp_plots) {
@@ -7577,9 +7577,9 @@ void gst::Loop() {
         c1->SetLogz(0);
         c1->SaveAs("plots/Energy_histograms/El_VS_theta_l/all_interactions/El_VS_theta_lp_histogram_all_int_linear_scale_1n1p.png");
         c1->Clear();
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Final State E_{l} vs #theta_{l} histogram (QEL only, 1n1p) */
+#pragma region /* Final State E_{l} vs #theta_{l} histogram (QEL only, 1n1p) */
         double factor_El_VS_theta_lp_QEL_only_1n1p = 1.;
 
         if (normalized_E_lp_plots) {
@@ -7608,9 +7608,9 @@ void gst::Loop() {
         c1->SetLogz(0);
         c1->SaveAs("plots/Energy_histograms/El_VS_theta_l/QEL_only/El_VS_theta_lp_histogram_QEL_only_linear_scale_1n1p.png");
         c1->Clear();
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Final State E_{l} vs #theta_{l} histogram (MEC only, 1n1p) */
+#pragma region /* Final State E_{l} vs #theta_{l} histogram (MEC only, 1n1p) */
         double factor_El_VS_theta_lp_MEC_only_1n1p = 1.;
 
         if (normalized_E_lp_plots) {
@@ -7639,15 +7639,15 @@ void gst::Loop() {
         c1->SetLogz(0);
         c1->SaveAs("plots/Energy_histograms/El_VS_theta_l/MEC_only/El_VS_theta_lp_histogram_MEC_only_linear_scale_1n1p.png");
         c1->Clear();
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
     }
 
     // Energy transfer histograms (all interactions)
     // ====================================================================================================
 
-    #pragma region /* Energy transfer histograms (all interactions) - normalization factors */
+#pragma region /* Energy transfer histograms (all interactions) - normalization factors */
 
     //  Normalization factors:
 
@@ -7665,7 +7665,7 @@ void gst::Loop() {
 
     double E_Trans15_DIS_integral_2p = E_Trans15_DIS_2p->Integral();      // MOVE TO OTHER PLACE
     double E_Trans15_DIS_integral_1n1p = E_Trans15_DIS_1n1p->Integral();  // MOVE TO OTHER PLACE
-    #pragma endregion
+#pragma endregion
 
     if (ET_all_plots) {
         std::cout << "\n";
@@ -7675,7 +7675,7 @@ void gst::Loop() {
 
         //  Energy transfer (Ev-El) for every theta_{l} --------------------------------------------------------
 
-        #pragma region /* Energy transfer (Ev-El) for every theta_{l} (2p) */
+#pragma region /* Energy transfer (Ev-El) for every theta_{l} (2p) */
         //        histPlotter1D(c1, E_Trans_all_ang_all_int_2p, normalized_E_Trans_all_ang_all_int_plots, false, 1., "Energy Transfer (E_{#nu}-E_{l}) for every angle",
         //                      "All Interactions", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 3, true, true, Energy_Transfer_all_int_15_Stack_2p,
         //                      "Energy_transfer_Ev-El_all_Deg_all_interactions", "plots/Energy_transfer_histograms/Energy_transfer_histograms_all_interactions/", "2p", kBlack,
@@ -7727,9 +7727,9 @@ void gst::Loop() {
         stackPlotter1D(c1, sE_Trans_all_ang_2p, normalized_E_Trans_all_ang_all_int_plots, "#omega for every #theta_{l'}", "2p", plots, Histogram_OutPDF, E_Trans_all_ang_all_int_2p,
                        E_Trans_all_ang_QEL_2p, E_Trans_all_ang_MEC_2p, E_Trans_all_ang_RES_2p, E_Trans_all_ang_DIS_2p, "01_ET_All_Ang_stack",
                        "plots/Energy_transfer_histograms/ET_All_Ang_2p/", "");
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy transfer (Ev-El) for every theta_{l} (1n1p) */
+#pragma region /* Energy transfer (Ev-El) for every theta_{l} (1n1p) */
         histPlotter1D(c1, E_Trans_all_ang_all_int_1n1p, normalized_E_Trans_all_ang_all_int_plots, false, 1., "#omega for every #theta_{l'}", "All Interactions", 0.06, 0.0425, 0.0425, plots,
                       Histogram_OutPDF, 3, true, true, sE_Trans_all_ang_1n1p, "Energy_transfer_Ev-El_all_Deg_all_interactions", "plots/Energy_transfer_histograms/ET_All_Ang_1n1p/", "1n1p",
                       kBlack, true, true, true);
@@ -7750,7 +7750,7 @@ void gst::Loop() {
         stackPlotter1D(c1, sE_Trans_all_ang_1n1p, normalized_E_Trans_all_ang_all_int_plots, "#omega for every #theta_{l'}", "1n1p", plots, Histogram_OutPDF, E_Trans_all_ang_all_int_1n1p,
                        E_Trans_all_ang_QEL_1n1p, E_Trans_all_ang_MEC_1n1p, E_Trans_all_ang_RES_1n1p, E_Trans_all_ang_DIS_1n1p, "01_ET_All_Ang_stack",
                        "plots/Energy_transfer_histograms/ET_All_Ang_1n1p/", "");
-        #pragma endregion
+#pragma endregion
 
         //  Energy transfer (Ev-El) in the angle range 14[Deg] <= theta_{l} <= 16[Deg] (all interactions) ------
 
@@ -7778,9 +7778,9 @@ void gst::Loop() {
         E_Trans15_all_2p->SetLineStyle(5);
         Energy_Transfer_all_int_15_Stack_2p->Add(E_Trans15_all_2p);
         c1->Clear();
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy transfer (Ev-El) in the angle range 14[Deg] <= theta_{l} <= 16[Deg] (all interactions, 1n1p) */
+#pragma region /* Energy transfer (Ev-El) in the angle range 14[Deg] <= theta_{l} <= 16[Deg] (all interactions, 1n1p) */
         if (normalized_E_Trans15_plots) {
             E_Trans15_all_1n1p->SetTitle("Energy Transfer (E_{#nu}-E_{l}) in the Angle Range 14 #leq #theta_{l} #leq 16 (All Interactions, 1n1p) - Normalized");
             E_Trans15_all_1n1p->GetXaxis()->SetTitle("E_{#nu}-E_{l} [GeV]");
@@ -7805,11 +7805,11 @@ void gst::Loop() {
         E_Trans15_all_1n1p->SetLineStyle(5);
         Energy_Transfer_all_int_15_Stack_1n1p->Add(E_Trans15_all_1n1p);
         c1->Clear();
-        #pragma endregion
+#pragma endregion
 
         //  Energy transfer Ev-El in the angle range 44[Deg] <= theta_{l} <= 46[Deg] (all interactions) --------
 
-        #pragma region /* Energy transfer Ev-El in the angle range 44[Deg] <= theta_{l} <= 46[Deg] (all interactions, 2p) */
+#pragma region /* Energy transfer Ev-El in the angle range 44[Deg] <= theta_{l} <= 46[Deg] (all interactions, 2p) */
         E_Trans45_all_2p->Draw();
         plots->Add(E_Trans45_all_2p);
         E_Trans45_all_2p->SetLineWidth(2);
@@ -7824,9 +7824,9 @@ void gst::Loop() {
         E_Trans45_all_2p->SetLineWidth(3);
         E_Trans45_all_2p->SetLineStyle(4);
         c1->Clear();
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy transfer Ev-El in the angle range 44[Deg] <= theta_{l} <= 46[Deg] (all interactions, 1n1p) */
+#pragma region /* Energy transfer Ev-El in the angle range 44[Deg] <= theta_{l} <= 46[Deg] (all interactions, 1n1p) */
         E_Trans45_all_1n1p->Draw();
         plots->Add(E_Trans45_all_1n1p);
         E_Trans45_all_1n1p->SetLineWidth(2);
@@ -7840,11 +7840,11 @@ void gst::Loop() {
         E_Trans45_all_1n1p->SetLineWidth(3);
         E_Trans45_all_1n1p->SetLineStyle(4);
         c1->Clear();
-        #pragma endregion
+#pragma endregion
 
         //  Energy transfer Ev-El in the angle range 89[Deg] <= theta_{l} <= 91[Deg] (all interactions) --------
 
-        #pragma region /* Energy transfer Ev-El in the angle range 89[Deg] <= theta_{l} <= 91[Deg] (all interactions, 2p) */
+#pragma region /* Energy transfer Ev-El in the angle range 89[Deg] <= theta_{l} <= 91[Deg] (all interactions, 2p) */
         E_Trans90_all_2p->Draw();
         plots->Add(E_Trans90_all_2p);
         E_Trans90_all_2p->SetLineWidth(2);
@@ -7858,9 +7858,9 @@ void gst::Loop() {
         E_Trans90_all_2p->SetLineWidth(3);
         E_Trans90_all_2p->SetLineStyle(6);
         c1->Clear();
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy transfer Ev-El in the angle range 89[Deg] <= theta_{l} <= 91[Deg] (all interactions, 1n1p) */
+#pragma region /* Energy transfer Ev-El in the angle range 89[Deg] <= theta_{l} <= 91[Deg] (all interactions, 1n1p) */
         E_Trans90_all_1n1p->Draw();
         plots->Add(E_Trans90_all_1n1p);
         E_Trans90_all_1n1p->SetLineWidth(2);
@@ -7874,7 +7874,7 @@ void gst::Loop() {
         E_Trans90_all_1n1p->SetLineWidth(3);
         E_Trans90_all_1n1p->SetLineStyle(6);
         c1->Clear();
-        #pragma endregion
+#pragma endregion
 
         // Energy transfer Ev-El stack (all interactions) -----------------------------------------------------
 
@@ -7899,7 +7899,7 @@ void gst::Loop() {
 
         //  Energy transfer Ev-El in the angle range 14[Deg] <= theta_{l} <= 16[Deg] (QEL only) ----------------
 
-        #pragma region /* Energy transfer Ev-El in the angle range 14[Deg] <= theta_{l} <= 16[Deg] (QEL only, 2p) */
+#pragma region /* Energy transfer Ev-El in the angle range 14[Deg] <= theta_{l} <= 16[Deg] (QEL only, 2p) */
         if (normalized_E_Trans15_plots) {
             E_Trans15_QEL_2p->SetTitle("Energy Transfer (E_{#nu}-E_{l}) in the Angle Range 14 #leq #theta_{l} #leq 16 (QEL Only, 2p) - Normalized");
             E_Trans15_QEL_2p->GetXaxis()->SetTitle("E_{#nu}-E_{l} [GeV]");
@@ -7924,9 +7924,9 @@ void gst::Loop() {
         E_Trans15_QEL_2p->SetLineColor(kAzure + 10);
         Energy_Transfer_all_int_15_Stack_2p->Add(E_Trans15_QEL_2p);
         c1->Clear();
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy transfer Ev-El in the angle range 14[Deg] <= theta_{l} <= 16[Deg] (QEL only, 1n1p) */
+#pragma region /* Energy transfer Ev-El in the angle range 14[Deg] <= theta_{l} <= 16[Deg] (QEL only, 1n1p) */
         if (normalized_E_Trans15_plots) {
             E_Trans15_QEL_1n1p->SetTitle("Energy Transfer (E_{#nu}-E_{l}) in the Angle Range 14 #leq #theta_{l} #leq 16 (QEL Only, 1n1p) - Normalized");
             E_Trans15_QEL_1n1p->GetYaxis()->SetTitle("Probability (%)");
@@ -7951,11 +7951,11 @@ void gst::Loop() {
         //        E_Trans15_QEL_1n1p->SetLineStyle(2);
         Energy_Transfer_all_int_15_Stack_1n1p->Add(E_Trans15_QEL_1n1p);
         c1->Clear();
-        #pragma endregion
+#pragma endregion
 
         //  Energy transfer Ev-El in the angle range 44[Deg] <= theta_{l} <= 46[Deg] (QEL only) ----------------
 
-        #pragma region /* Energy transfer Ev-El in the angle range 44[Deg] <= theta_{l} <= 46[Deg] (QEL only, 2p) */
+#pragma region /* Energy transfer Ev-El in the angle range 44[Deg] <= theta_{l} <= 46[Deg] (QEL only, 2p) */
         E_Trans45_QEL_2p->Draw();
         plots->Add(E_Trans45_QEL_2p);
         E_Trans45_QEL_2p->SetLineWidth(2);
@@ -7968,9 +7968,9 @@ void gst::Loop() {
         E_Trans45_QEL_2p->SetStats(0);
         E_Trans45_QEL_2p->SetLineColor(kAzure + 10);
         c1->Clear();
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy transfer Ev-El in the angle range 44[Deg] <= theta_{l} <= 46[Deg] (QEL only, 1n1p) */
+#pragma region /* Energy transfer Ev-El in the angle range 44[Deg] <= theta_{l} <= 46[Deg] (QEL only, 1n1p) */
         E_Trans45_QEL_1n1p->Draw();
         plots->Add(E_Trans45_QEL_1n1p);
         E_Trans45_QEL_1n1p->SetLineWidth(2);
@@ -7984,11 +7984,11 @@ void gst::Loop() {
         E_Trans45_QEL_1n1p->SetLineColor(kAzure + 10);
         E_Trans45_QEL_1n1p->SetLineStyle(2);
         c1->Clear();
-        #pragma endregion
+#pragma endregion
 
         //  Energy transfer Ev-El in the angle range 89[Deg] <= theta_{l} <= 91[Deg] (QEL only) ----------------
 
-        #pragma region /* Energy transfer Ev-El in the angle range 89[Deg] <= theta_{l} <= 91[Deg] (QEL only, 2p) */
+#pragma region /* Energy transfer Ev-El in the angle range 89[Deg] <= theta_{l} <= 91[Deg] (QEL only, 2p) */
         E_Trans90_QEL_2p->Draw();
         plots->Add(E_Trans90_QEL_2p);
         E_Trans90_QEL_2p->SetLineWidth(2);
@@ -8001,9 +8001,9 @@ void gst::Loop() {
         E_Trans90_QEL_2p->SetStats(0);
         E_Trans90_QEL_2p->SetLineColor(kAzure + 10);
         c1->Clear();
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy transfer Ev-El in the angle range 89[Deg] <= theta_{l} <= 91[Deg] (QEL only, 1n1p) */
+#pragma region /* Energy transfer Ev-El in the angle range 89[Deg] <= theta_{l} <= 91[Deg] (QEL only, 1n1p) */
         E_Trans90_QEL_1n1p->Draw();
         plots->Add(E_Trans90_QEL_1n1p);
         E_Trans90_QEL_1n1p->SetLineWidth(2);
@@ -8017,11 +8017,11 @@ void gst::Loop() {
         E_Trans90_QEL_1n1p->SetLineColor(kAzure + 10);
         E_Trans90_QEL_1n1p->SetLineStyle(2);
         c1->Clear();
-        #pragma endregion
+#pragma endregion
 
         //  Energy transfer Ev-El stack of angles (QEL only) -------------------------------------------------------------
 
-        #pragma region /* Energy transfer Ev-El stack of angles (QEL only, 2p) */
+#pragma region /* Energy transfer Ev-El stack of angles (QEL only, 2p) */
         Energy_Transfer_QEL_Int_Stack_2p->Draw("nostack");
         Energy_Transfer_QEL_Int_Stack_2p->GetHistogram()->GetXaxis()->SetTitleSize(0.06);
         Energy_Transfer_QEL_Int_Stack_2p->GetHistogram()->GetXaxis()->SetLabelSize(0.0425);
@@ -8041,9 +8041,9 @@ void gst::Loop() {
         c1->SetLogy(0);
         c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_QEL_only/Energy_transfer_Ev-El_QEL_only_Stack_linear_scale_2p.png");
         c1->Clear();
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy transfer Ev-El stack of angles (QEL only, 1n1p) */
+#pragma region /* Energy transfer Ev-El stack of angles (QEL only, 1n1p) */
         Energy_Transfer_QEL_Int_Stack_1n1p->Draw("nostack");
         Energy_Transfer_QEL_Int_Stack_1n1p->GetHistogram()->GetXaxis()->SetTitleSize(0.06);
         Energy_Transfer_QEL_Int_Stack_1n1p->GetHistogram()->GetXaxis()->SetLabelSize(0.0425);
@@ -8063,7 +8063,7 @@ void gst::Loop() {
         c1->SetLogy(0);
         c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_QEL_only/Energy_transfer_Ev-El_QEL_only_Stack_linear_scale_1n1p.png");
         c1->Clear();
-        #pragma endregion
+#pragma endregion
     }
 
     // Energy transfer histograms (MEC only)
@@ -8077,7 +8077,7 @@ void gst::Loop() {
 
         //  Energy transfer Ev-El in the angle range 14[Deg] <= theta_{l} <= 16[Deg] (MEC only) ------------------
 
-        #pragma region /* Energy transfer Ev-El in the angle range 14[Deg] <= theta_{l} <= 16[Deg] (MEC only, 2p) */
+#pragma region /* Energy transfer Ev-El in the angle range 14[Deg] <= theta_{l} <= 16[Deg] (MEC only, 2p) */
         if (normalized_E_Trans15_plots) {
             E_Trans15_MEC_2p->SetTitle("Energy Transfer (E_{#nu}-E_{l}) in the Angle Range 14 #leq #theta_{l} #leq 16 (MEC Only, 2p) - Normalized");
             E_Trans15_MEC_2p->GetYaxis()->SetTitle("Probability (%)");
@@ -8101,9 +8101,9 @@ void gst::Loop() {
         E_Trans15_MEC_2p->SetLineColor(kOrange + 10);
         Energy_Transfer_all_int_15_Stack_2p->Add(E_Trans15_MEC_2p);
         c1->Clear();
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy transfer Ev-El in the angle range 14[Deg] <= theta_{l} <= 16[Deg] (MEC only, 1n1p) */
+#pragma region /* Energy transfer Ev-El in the angle range 14[Deg] <= theta_{l} <= 16[Deg] (MEC only, 1n1p) */
         if (normalized_E_Trans15_plots) {
             E_Trans15_MEC_1n1p->SetTitle("Energy Transfer (E_{#nu}-E_{l}) in the Angle Range 14 #leq #theta_{l} #leq 16 (MEC Only, 1n1p) - Normalized");
             E_Trans15_MEC_1n1p->GetXaxis()->SetTitle("E_{#nu}-E_{l} [GeV]");
@@ -8129,11 +8129,11 @@ void gst::Loop() {
         //        E_Trans15_MEC_1n1p->SetLineStyle(2);
         Energy_Transfer_all_int_15_Stack_1n1p->Add(E_Trans15_MEC_1n1p);
         c1->Clear();
-        #pragma endregion
+#pragma endregion
 
         //  Energy transfer Ev-El in the angle range 44[Deg] <= theta_{l} <= 46[Deg] (MEC only) ------------------
 
-        #pragma region /* Energy transfer Ev-El in the angle range 44[Deg] <= theta_{l} <= 46[Deg] (MEC only, 2p) */
+#pragma region /* Energy transfer Ev-El in the angle range 44[Deg] <= theta_{l} <= 46[Deg] (MEC only, 2p) */
         E_Trans45_MEC_2p->Draw();
         plots->Add(E_Trans45_MEC_2p);
         E_Trans45_MEC_2p->SetLineWidth(2);
@@ -8146,9 +8146,9 @@ void gst::Loop() {
         E_Trans45_MEC_2p->SetStats(0);
         E_Trans45_MEC_2p->SetLineColor(kOrange + 10);
         c1->Clear();
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy transfer Ev-El in the angle range 44[Deg] <= theta_{l} <= 46[Deg] (MEC only, 1n1p) */
+#pragma region /* Energy transfer Ev-El in the angle range 44[Deg] <= theta_{l} <= 46[Deg] (MEC only, 1n1p) */
         E_Trans15_MEC_1n1p->Draw();
         plots->Add(E_Trans15_MEC_1n1p);
         E_Trans15_MEC_1n1p->SetLineWidth(2);
@@ -8162,11 +8162,11 @@ void gst::Loop() {
         E_Trans45_MEC_1n1p->SetLineColor(kOrange + 10);
         E_Trans45_MEC_1n1p->SetLineStyle(2);
         c1->Clear();
-        #pragma endregion
+#pragma endregion
 
         //  Energy transfer Ev-El in the angle range 89[Deg] <= theta_{l} <= 91[Deg] (MEC only) ------------------
 
-        #pragma region /* Energy transfer Ev-El in the angle range 89[Deg] <= theta_{l} <= 91[Deg] (MEC only, 2p) */
+#pragma region /* Energy transfer Ev-El in the angle range 89[Deg] <= theta_{l} <= 91[Deg] (MEC only, 2p) */
         E_Trans90_MEC_2p->Draw();
         plots->Add(E_Trans90_MEC_2p);
         E_Trans90_MEC_2p->SetLineWidth(2);
@@ -8179,9 +8179,9 @@ void gst::Loop() {
         E_Trans90_MEC_2p->SetStats(0);
         E_Trans90_MEC_2p->SetLineColor(kOrange + 10);
         c1->Clear();
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy transfer Ev-El in the angle range 89[Deg] <= theta_{l} <= 91[Deg] (MEC only, 1n1p) */
+#pragma region /* Energy transfer Ev-El in the angle range 89[Deg] <= theta_{l} <= 91[Deg] (MEC only, 1n1p) */
         E_Trans90_MEC_1n1p->Draw();
         plots->Add(E_Trans90_MEC_1n1p);
         E_Trans90_MEC_1n1p->SetLineWidth(2);
@@ -8195,11 +8195,11 @@ void gst::Loop() {
         E_Trans90_MEC_1n1p->SetLineColor(kOrange + 10);
         E_Trans90_MEC_1n1p->SetLineStyle(2);
         c1->Clear();
-        #pragma endregion
+#pragma endregion
 
         //  Energy transfer Ev-El stack of angles (MEC only) -------------------------------------------------------------
 
-        #pragma region /* Energy transfer Ev-El stack of angles (MEC only, 2p) */
+#pragma region /* Energy transfer Ev-El stack of angles (MEC only, 2p) */
         Energy_Transfer_MEC_Int_Stack_2p->Draw("nostack");
         Energy_Transfer_MEC_Int_Stack_2p->GetHistogram()->GetXaxis()->SetTitleSize(0.06);
         Energy_Transfer_MEC_Int_Stack_2p->GetHistogram()->GetXaxis()->SetLabelSize(0.0425);
@@ -8220,9 +8220,9 @@ void gst::Loop() {
         c1->SetLogy(0);
         c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_MEC_only/Energy_transfer_Ev-El_MEC_only_Stack_linear_scale_2p.png");
         c1->Clear();
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy transfer Ev-El stack of angles (MEC only, 1n1p) */
+#pragma region /* Energy transfer Ev-El stack of angles (MEC only, 1n1p) */
         Energy_Transfer_MEC_Int_Stack_1n1p->Draw("nostack");
         Energy_Transfer_MEC_Int_Stack_1n1p->GetHistogram()->GetXaxis()->SetTitleSize(0.06);
         Energy_Transfer_MEC_Int_Stack_1n1p->GetHistogram()->GetXaxis()->SetLabelSize(0.0425);
@@ -8243,7 +8243,7 @@ void gst::Loop() {
         c1->SetLogy(0);
         c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_MEC_only/Energy_transfer_Ev-El_MEC_only_Stack_linear_scale_1n1p.png");
         c1->Clear();
-        #pragma endregion
+#pragma endregion
     }
 
     // Energy transfer histograms (RES only)
@@ -8257,7 +8257,7 @@ void gst::Loop() {
 
         //  Energy transfer Ev-El in the angle range 14[Deg] <= theta_{l} <= 16[Deg] (RES only) ----------------
 
-        #pragma region /* Energy transfer Ev-El in the angle range 14[Deg] <= theta_{l} <= 16[Deg] (RES only, 2p) */
+#pragma region /* Energy transfer Ev-El in the angle range 14[Deg] <= theta_{l} <= 16[Deg] (RES only, 2p) */
         if (normalized_E_Trans15_plots) {
             E_Trans15_RES_2p->SetTitle("Energy Transfer (E_{#nu}-E_{l}) in the Angle Range 14 #leq #theta_{l} #leq 16 (RES Only, 2p) - Normalized");
             E_Trans15_RES_2p->GetYaxis()->SetTitle("Probability (%)");
@@ -8281,9 +8281,9 @@ void gst::Loop() {
         E_Trans15_RES_2p->SetLineColor(kGreen);
         Energy_Transfer_all_int_15_Stack_2p->Add(E_Trans15_RES_2p);
         c1->Clear();
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy transfer Ev-El in the angle range 14[Deg] <= theta_{l} <= 16[Deg] (RES only, 1n1p) */
+#pragma region /* Energy transfer Ev-El in the angle range 14[Deg] <= theta_{l} <= 16[Deg] (RES only, 1n1p) */
         if (normalized_E_Trans15_plots) {
             E_Trans15_RES_1n1p->SetTitle("Energy Transfer (E_{#nu}-E_{l}) in the Angle Range 14 #leq #theta_{l} #leq 16 (RES Only, 1n1p) - Normalized");
             E_Trans15_RES_1n1p->GetXaxis()->SetTitle("E_{#nu}-E_{l} [GeV]");
@@ -8309,11 +8309,11 @@ void gst::Loop() {
         //        E_Trans15_RES_1n1p->SetLineStyle(2);
         Energy_Transfer_all_int_15_Stack_1n1p->Add(E_Trans15_RES_1n1p);
         c1->Clear();
-        #pragma endregion
+#pragma endregion
 
         //  Energy transfer Ev-El in the angle range 44[Deg] <= theta_{l} <= 46[Deg] (RES only) ----------------
 
-        #pragma region /* Energy transfer Ev-El in the angle range 44[Deg] <= theta_{l} <= 46[Deg] (RES only, 2p) */
+#pragma region /* Energy transfer Ev-El in the angle range 44[Deg] <= theta_{l} <= 46[Deg] (RES only, 2p) */
         E_Trans45_RES_2p->Draw();
         plots->Add(E_Trans45_RES_2p);
         E_Trans45_RES_2p->SetLineWidth(2);
@@ -8326,9 +8326,9 @@ void gst::Loop() {
         E_Trans45_RES_2p->SetStats(0);
         E_Trans45_RES_2p->SetLineColor(kGreen);
         c1->Clear();
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy transfer Ev-El in the angle range 44[Deg] <= theta_{l} <= 46[Deg] (RES only, 1n1p) */
+#pragma region /* Energy transfer Ev-El in the angle range 44[Deg] <= theta_{l} <= 46[Deg] (RES only, 1n1p) */
         E_Trans45_RES_1n1p->Draw();
         plots->Add(E_Trans45_RES_1n1p);
         E_Trans45_RES_1n1p->SetLineWidth(2);
@@ -8342,11 +8342,11 @@ void gst::Loop() {
         E_Trans45_RES_1n1p->SetLineColor(kGreen);
         E_Trans45_RES_1n1p->SetLineStyle(2);
         c1->Clear();
-        #pragma endregion
+#pragma endregion
 
         //  Energy transfer Ev-El in the angle range 89[Deg] <= theta_{l} <= 91[Deg] (RES only) -----------------
 
-        #pragma region /* Energy transfer Ev-El in the angle range 89[Deg] <= theta_{l} <= 91[Deg] (RES only, 2p) */
+#pragma region /* Energy transfer Ev-El in the angle range 89[Deg] <= theta_{l} <= 91[Deg] (RES only, 2p) */
         E_Trans90_RES_2p->Draw();
         plots->Add(E_Trans90_RES_2p);
         E_Trans90_RES_2p->SetLineWidth(2);
@@ -8359,9 +8359,9 @@ void gst::Loop() {
         E_Trans90_RES_2p->SetStats(0);
         E_Trans90_RES_2p->SetLineColor(kGreen);
         c1->Clear();
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy transfer Ev-El in the angle range 89[Deg] <= theta_{l} <= 91[Deg] (RES only, 1n1p) */
+#pragma region /* Energy transfer Ev-El in the angle range 89[Deg] <= theta_{l} <= 91[Deg] (RES only, 1n1p) */
         E_Trans90_RES_1n1p->Draw();
         plots->Add(E_Trans90_RES_1n1p);
         E_Trans90_RES_1n1p->SetLineWidth(2);
@@ -8375,11 +8375,11 @@ void gst::Loop() {
         E_Trans90_RES_1n1p->SetLineColor(kGreen);
         E_Trans90_RES_1n1p->SetLineStyle(2);
         c1->Clear();
-        #pragma endregion
+#pragma endregion
 
         //  Energy transfer Ev-El stack of angles (RES only) -------------------------------------------------------------
 
-        #pragma region /* Energy transfer Ev-El stack of angles (RES only, 2p) */
+#pragma region /* Energy transfer Ev-El stack of angles (RES only, 2p) */
         Energy_Transfer_RES_Int_Stack_2p->Draw("nostack");
         Energy_Transfer_RES_Int_Stack_2p->GetHistogram()->GetXaxis()->SetTitleSize(0.06);
         Energy_Transfer_RES_Int_Stack_2p->GetHistogram()->GetXaxis()->SetLabelSize(0.0425);
@@ -8400,9 +8400,9 @@ void gst::Loop() {
         c1->SetLogy(0);
         c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_RES_only/Energy_transfer_Ev-El_RES_only_Stack_linear_scale_2p.png");
         c1->Clear();
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy transfer Ev-El stack of angles (RES only, 1n1p) */
+#pragma region /* Energy transfer Ev-El stack of angles (RES only, 1n1p) */
         Energy_Transfer_RES_Int_Stack_1n1p->Draw("nostack");
         Energy_Transfer_RES_Int_Stack_1n1p->GetHistogram()->GetXaxis()->SetTitleSize(0.06);
         Energy_Transfer_RES_Int_Stack_1n1p->GetHistogram()->GetXaxis()->SetLabelSize(0.0425);
@@ -8423,7 +8423,7 @@ void gst::Loop() {
         c1->SetLogy(0);
         c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_RES_only/Energy_transfer_Ev-El_RES_only_Stack_linear_scale_1n1p.png");
         c1->Clear();
-        #pragma endregion
+#pragma endregion
     }
 
     // Energy transfer histograms (DIS only)
@@ -8437,7 +8437,7 @@ void gst::Loop() {
 
         //  Energy transfer Ev-El in the angle range 14[Deg] <= theta_{l} <= 16[Deg] (DIS only) ----------------
 
-        #pragma region /* Energy transfer Ev-El in the angle range 14[Deg] <= theta_{l} <= 16[Deg] (DIS only, 2p) */
+#pragma region /* Energy transfer Ev-El in the angle range 14[Deg] <= theta_{l} <= 16[Deg] (DIS only, 2p) */
         if (normalized_E_Trans15_plots) {
             E_Trans15_DIS_2p->SetTitle("Energy Transfer (E_{#nu}-E_{l}) in the Angle Range 14 #leq #theta_{l} #leq 16 (DIS Only, 2p) - Normalized");
             E_Trans15_DIS_2p->GetYaxis()->SetTitle("Probability (%)");
@@ -8461,9 +8461,9 @@ void gst::Loop() {
         E_Trans15_DIS_2p->SetLineColor(kMagenta);
         Energy_Transfer_all_int_15_Stack_2p->Add(E_Trans15_DIS_2p);
         c1->Clear();
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy transfer Ev-El in the angle range 14[Deg] <= theta_{l} <= 16[Deg] (DIS only, 1n1p) */
+#pragma region /* Energy transfer Ev-El in the angle range 14[Deg] <= theta_{l} <= 16[Deg] (DIS only, 1n1p) */
         if (normalized_E_Trans15_plots) {
             E_Trans15_DIS_1n1p->SetTitle("Energy Transfer (E_{#nu}-E_{l}) in the Angle Range 14 #leq #theta_{l} #leq 16 (DIS Only, 1n1p) - Normalized");
             E_Trans15_DIS_1n1p->GetXaxis()->SetTitle("E_{#nu}-E_{l} [GeV]");
@@ -8489,11 +8489,11 @@ void gst::Loop() {
         //        E_Trans15_DIS_1n1p->SetLineStyle(2);
         Energy_Transfer_all_int_15_Stack_1n1p->Add(E_Trans15_DIS_1n1p);
         c1->Clear();
-        #pragma endregion
+#pragma endregion
 
         //  Energy transfer Ev-El in the angle range 44[Deg] <= theta_{l} <= 46[Deg] (DIS only) ----------------
 
-        #pragma region /* Energy transfer Ev-El in the angle range 44[Deg] <= theta_{l} <= 46[Deg] (DIS only, 2p) */
+#pragma region /* Energy transfer Ev-El in the angle range 44[Deg] <= theta_{l} <= 46[Deg] (DIS only, 2p) */
         E_Trans45_DIS_2p->Draw();
         plots->Add(E_Trans45_DIS_2p);
         E_Trans45_DIS_2p->SetLineWidth(2);
@@ -8506,9 +8506,9 @@ void gst::Loop() {
         E_Trans45_DIS_2p->SetStats(0);
         E_Trans45_DIS_2p->SetLineColor(kMagenta);
         c1->Clear();
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy transfer Ev-El in the angle range 44[Deg] <= theta_{l} <= 46[Deg] (DIS only, 1n1p) */
+#pragma region /* Energy transfer Ev-El in the angle range 44[Deg] <= theta_{l} <= 46[Deg] (DIS only, 1n1p) */
         E_Trans45_DIS_1n1p->Draw();
         plots->Add(E_Trans45_DIS_1n1p);
         E_Trans45_DIS_1n1p->SetLineWidth(2);
@@ -8522,11 +8522,11 @@ void gst::Loop() {
         E_Trans45_DIS_1n1p->SetLineColor(kMagenta);
         E_Trans45_DIS_1n1p->SetLineStyle(2);
         c1->Clear();
-        #pragma endregion
+#pragma endregion
 
         //  Energy transfer Ev-El in the angle range 89[Deg] <= theta_{l} <= 91[Deg] (DIS only) ----------------
 
-        #pragma region /* Energy transfer Ev-El in the angle range 89[Deg] <= theta_{l} <= 91[Deg] (DIS only, 2p) */
+#pragma region /* Energy transfer Ev-El in the angle range 89[Deg] <= theta_{l} <= 91[Deg] (DIS only, 2p) */
         E_Trans90_DIS_2p->Draw();
         plots->Add(E_Trans90_DIS_2p);
         E_Trans90_DIS_2p->SetLineWidth(2);
@@ -8539,9 +8539,9 @@ void gst::Loop() {
         E_Trans90_DIS_2p->SetStats(0);
         E_Trans90_DIS_2p->SetLineColor(kMagenta);
         c1->Clear();
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy transfer Ev-El in the angle range 89[Deg] <= theta_{l} <= 91[Deg] (DIS only, 1n1p) */
+#pragma region /* Energy transfer Ev-El in the angle range 89[Deg] <= theta_{l} <= 91[Deg] (DIS only, 1n1p) */
         E_Trans90_DIS_1n1p->Draw();
         plots->Add(E_Trans90_DIS_1n1p);
         E_Trans90_DIS_1n1p->SetLineWidth(2);
@@ -8555,11 +8555,11 @@ void gst::Loop() {
         E_Trans90_DIS_1n1p->SetLineColor(kMagenta);
         E_Trans90_DIS_1n1p->SetLineStyle(2);
         c1->Clear();
-        #pragma endregion
+#pragma endregion
 
         //  Energy transfer Ev-El stack of angles (DIS only) -------------------------------------------------------------
 
-        #pragma region /* Energy transfer Ev-El stack of angles (DIS only, 2p) */
+#pragma region /* Energy transfer Ev-El stack of angles (DIS only, 2p) */
         Energy_Transfer_DIS_Int_Stack_2p->Draw("nostack");
         Energy_Transfer_DIS_Int_Stack_2p->GetHistogram()->GetXaxis()->SetTitleSize(0.06);
         Energy_Transfer_DIS_Int_Stack_2p->GetHistogram()->GetXaxis()->SetLabelSize(0.0425);
@@ -8580,9 +8580,9 @@ void gst::Loop() {
         c1->SetLogy(0);
         c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_DIS_only/Energy_transfer_Ev-El_DIS_only_Stack_linear_scale_2p.png");
         c1->Clear();
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Energy transfer Ev-El stack of angles (DIS only, 1n1p) */
+#pragma region /* Energy transfer Ev-El stack of angles (DIS only, 1n1p) */
         Energy_Transfer_DIS_Int_Stack_1n1p->Draw("nostack");
         Energy_Transfer_DIS_Int_Stack_1n1p->GetHistogram()->GetXaxis()->SetTitleSize(0.06);
         Energy_Transfer_DIS_Int_Stack_1n1p->GetHistogram()->GetXaxis()->SetLabelSize(0.0425);
@@ -8603,7 +8603,7 @@ void gst::Loop() {
         c1->SetLogy(0);
         c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_DIS_only/Energy_transfer_Ev-El_DIS_only_Stack_linear_scale_1n1p.png");
         c1->Clear();
-        #pragma endregion
+#pragma endregion
     }
 
     // Energy transfer stacks (around 15, 45 and 90 + all interactions) - histogram for every angle
@@ -8617,7 +8617,7 @@ void gst::Loop() {
 
         //  Energy transfer around 15 deg stack (2p only) ------------------------------------------------------
 
-        #pragma region /* Energy transfer around 15 deg stack (2p only) */
+#pragma region /* Energy transfer around 15 deg stack (2p only) */
         //        Energy_Transfer_all_int_15_Stack_2p->Draw("nostack");
         //        Energy_Transfer_all_int_15_Stack_2p->GetHistogram()->GetXaxis()->SetTitleSize(0.06);
         //        Energy_Transfer_all_int_15_Stack_2p->GetHistogram()->GetXaxis()->SetLabelSize(0.0425);
@@ -8656,7 +8656,7 @@ void gst::Loop() {
         stackPlotter1D(c1, Energy_Transfer_all_int_15_Stack_2p, normalized_E_Trans15_plots, "#omega around #theta_{l'} = 15#circ", "2p", plots, Histogram_OutPDF, E_Trans15_all_2p,
                        E_Trans15_QEL_2p, E_Trans15_MEC_2p, E_Trans15_RES_2p, E_Trans15_DIS_2p, "Energy_transfer_histogram_15_Stack_linear_scale", "plots/Energy_transfer_histograms/", "");
 
-        #pragma endregion
+#pragma endregion
 
         //  Energy transfer around 15 deg stack (1n1p only) ----------------------------------------------------
 
@@ -8714,7 +8714,7 @@ void gst::Loop() {
 
         //  E_cal_QEL restoration ------------------------------------------------------------------------------
 
-        #pragma region /* E_cal_QEL restoration (2p & 1n1p) */
+#pragma region /* E_cal_QEL restoration (2p & 1n1p) */
         double E_cal_QEL_integral = E_cal_QEL_2p->Integral() + E_cal_QEL_1n1p->Integral();
 
         histPlotter1D(c1, E_cal_QEL_2p, normalized_E_cal_plots, true, E_cal_QEL_integral, "E_{cal} Histogram", "QEL Only", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2, false, true,
@@ -8722,9 +8722,9 @@ void gst::Loop() {
 
         histPlotter1D(c1, E_cal_QEL_1n1p, normalized_E_cal_plots, true, E_cal_QEL_integral, "E_{cal} Histogram", "QEL Only", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2, false, true,
                       E_cal_QEL_Stack, "E_cal_restoration_QEL_only", "plots/E_cal_restorations/", "1n1p", kRed, true, true, true);
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* E_cal_QEL restoration (stack) */
+#pragma region /* E_cal_QEL restoration (stack) */
         E_cal_QEL_Stack->Draw("nostack");
         E_cal_QEL_Stack->GetHistogram()->GetXaxis()->SetTitleSize(0.06);
         E_cal_QEL_Stack->GetHistogram()->GetXaxis()->SetLabelSize(0.0425);
@@ -8752,11 +8752,11 @@ void gst::Loop() {
         plots->Add(E_cal_QEL_Stack);
         c1->SaveAs("plots/E_cal_restorations/E_cal_restoration_stack_QEL_only.png");
         c1->Clear();
-        #pragma endregion
+#pragma endregion
 
         //  E_cal_MEC restoration ------------------------------------------------------------------------------
 
-        #pragma region /* E_cal_MEC restoration (2n, 2p & 1n1p) */
+#pragma region /* E_cal_MEC restoration (2n, 2p & 1n1p) */
         double E_cal_MEC_1n1p_and_2p_integral = E_cal_MEC_2p->Integral() + E_cal_MEC_1n1p->Integral();
         double E_cal_MEC_2p_and_2n_integral = E_cal_MEC_2p->Integral() + E_cal_MEC_2n->Integral();
 
@@ -8769,9 +8769,9 @@ void gst::Loop() {
 
         histPlotter1D(c1, E_cal_MEC_1n1p, normalized_E_cal_plots, true, E_cal_MEC_1n1p_and_2p_integral, "E_{cal} Histogram", "MEC Only", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2,
                       false, true, E_cal_MEC_Stack_1n1p_and_2p, "E_cal_restoration_MEC_only", "plots/E_cal_restorations/", "1n1p", kRed, true, true, true);
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* E_cal_MEC restoration (stack of 2p and 1n1p) */
+#pragma region /* E_cal_MEC restoration (stack of 2p and 1n1p) */
         E_cal_MEC_Stack_1n1p_and_2p->Draw("nostack");
         E_cal_MEC_Stack_1n1p_and_2p->GetHistogram()->GetXaxis()->SetTitleSize(0.06);
         E_cal_MEC_Stack_1n1p_and_2p->GetHistogram()->GetXaxis()->SetLabelSize(0.0425);
@@ -8799,9 +8799,9 @@ void gst::Loop() {
         plots->Add(E_cal_MEC_Stack_1n1p_and_2p);
         c1->SaveAs("plots/E_cal_restorations/E_cal_restoration_stack_MEC_only_1n1p_and_2p.png");
         c1->Clear();
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* E_cal_MEC restoration (stack of 2p and 2n) */
+#pragma region /* E_cal_MEC restoration (stack of 2p and 2n) */
         E_cal_MEC_Stack_2p_and_2n->Draw("nostack");
         E_cal_MEC_Stack_2p_and_2n->GetHistogram()->GetXaxis()->SetTitleSize(0.06);
         E_cal_MEC_Stack_2p_and_2n->GetHistogram()->GetXaxis()->SetLabelSize(0.0425);
@@ -8829,11 +8829,11 @@ void gst::Loop() {
         plots->Add(E_cal_MEC_Stack_2p_and_2n);
         c1->SaveAs("plots/E_cal_restorations/E_cal_restoration_stack_MEC_only_2p_and_2n.png");
         c1->Clear();
-        #pragma endregion
+#pragma endregion
 
         //  E_cal_RES restoration ------------------------------------------------------------------------------
 
-        #pragma region /* E_cal_RES restoration (2p & 1n1p) */
+#pragma region /* E_cal_RES restoration (2p & 1n1p) */
         double E_cal_RES_integral = E_cal_RES_2p->Integral() + E_cal_RES_1n1p->Integral();
 
         histPlotter1D(c1, E_cal_RES_2p, normalized_E_cal_plots, true, E_cal_RES_integral, "E_{cal} Histogram", "RES Only", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2, false, true,
@@ -8841,9 +8841,9 @@ void gst::Loop() {
 
         histPlotter1D(c1, E_cal_RES_1n1p, normalized_E_cal_plots, true, E_cal_RES_integral, "E_{cal} Histogram", "RES Only", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2, false, true,
                       E_cal_RES_Stack, "E_cal_restoration_RES_only", "plots/E_cal_restorations/", "1n1p", kRed, true, true, true);
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* E_cal_RES restoration (stack) */
+#pragma region /* E_cal_RES restoration (stack) */
         E_cal_RES_Stack->Draw("nostack");
         E_cal_RES_Stack->GetHistogram()->GetXaxis()->SetTitleSize(0.06);
         E_cal_RES_Stack->GetHistogram()->GetXaxis()->SetLabelSize(0.0425);
@@ -8861,11 +8861,11 @@ void gst::Loop() {
         plots->Add(E_cal_RES_Stack);
         c1->SaveAs("plots/E_cal_restorations/E_cal_restoration_stack_RES_only.png");
         c1->Clear();
-        #pragma endregion
+#pragma endregion
 
         //  E_cal_DIS restoration ------------------------------------------------------------------------------
 
-        #pragma region /* E_cal_DIS restoration (2p & 1n1p) */
+#pragma region /* E_cal_DIS restoration (2p & 1n1p) */
         double E_cal_DIS_integral = E_cal_DIS_2p->Integral() + E_cal_DIS_1n1p->Integral();
 
         histPlotter1D(c1, E_cal_DIS_2p, normalized_E_cal_plots, true, E_cal_DIS_integral, "E_{cal} Histogram", "DIS Only", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2, false, true,
@@ -8873,9 +8873,9 @@ void gst::Loop() {
 
         histPlotter1D(c1, E_cal_DIS_1n1p, normalized_E_cal_plots, true, E_cal_DIS_integral, "E_{cal} Histogram", "DIS Only", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2, false, true,
                       E_cal_DIS_Stack, "E_cal_restoration_DIS_only", "plots/E_cal_restorations/", "1n1p", kRed, true, true, true);
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* E_cal_DIS restoration (stack) */
+#pragma region /* E_cal_DIS restoration (stack) */
         E_cal_DIS_Stack->Draw("nostack");
         E_cal_DIS_Stack->GetHistogram()->GetXaxis()->SetTitleSize(0.06);
         E_cal_DIS_Stack->GetHistogram()->GetXaxis()->SetLabelSize(0.0425);
@@ -8893,7 +8893,7 @@ void gst::Loop() {
         plots->Add(E_cal_DIS_Stack);
         c1->SaveAs("plots/E_cal_restorations/E_cal_restoration_stack_DIS_only.png");
         c1->Clear();
-        #pragma endregion
+#pragma endregion
 
         // TODO: IPS plots - these plots are for IPS poster. Rename them to fit the code.
         //  -----------------------------------------------------------------------------------------------------
@@ -8923,7 +8923,7 @@ void gst::Loop() {
         std::cout << "Plotting other E_cal restoration histograms...\n";
         std::cout << "\n";
 
-        #pragma region /* Other E_cal plots (all interactions, 2p) */
+#pragma region /* Other E_cal plots (all interactions, 2p) */
         E_cal_VS_theta_lp_all_int_2p->Draw("colz");
         plots->Add(E_cal_VS_theta_lp_all_int_2p);
         E_cal_VS_theta_lp_all_int_2p->SetStats(0);
@@ -9010,9 +9010,9 @@ void gst::Loop() {
         c1->SetLogz(0);
         c1->SaveAs("plots/E_cal_restorations/Other/all_interactions/2p/E_cal_vs_dtheta_QEL_only_linear_scale_2p.png");
         c1->Clear();
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Other E_cal plots (QEL only, 2p) */
+#pragma region /* Other E_cal plots (QEL only, 2p) */
         E_cal_VS_theta_lp_QEL_only_2p->Draw("colz");
         plots->Add(E_cal_VS_theta_lp_QEL_only_2p);
         E_cal_VS_theta_lp_QEL_only_2p->SetStats(0);
@@ -9121,9 +9121,9 @@ void gst::Loop() {
         c1->SetLogz(0);
         c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/2p/E_cal_vs_dtheta_QEL_only_linear_scale_2p.png");
         c1->Clear();
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Other E_cal plots (QEL only, 1n1p) */
+#pragma region /* Other E_cal plots (QEL only, 1n1p) */
         E_cal_VS_theta_lp_QEL_1n1p->Draw("colz");
         plots->Add(E_cal_VS_theta_lp_QEL_1n1p);
         E_cal_VS_theta_lp_QEL_1n1p->SetStats(0);
@@ -9232,13 +9232,13 @@ void gst::Loop() {
         c1->SetLogz(0);
         c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/1n1p/E_cal_vs_dtheta_QEL_only_linear_scale_1n1p.png");
         c1->Clear();
-        #pragma endregion
+#pragma endregion
     }
 
     // One commend plots ----------------------------------------------------------------------------------
 
     if (other_E_cal_plots) {
-        #pragma region /* One commend plots - Q2 */
+#pragma region /* One commend plots - Q2 */
 
         //  Q2 -all interactions (2p):
 
@@ -9263,9 +9263,9 @@ void gst::Loop() {
         fChain->Draw("El + Ef[0] + Ef[1] - 0.938272 - 0.939565:Q2>>h1(100, 0.0, 3.6, 100, 2.12, 2.23)", "nf==2 && nfn==1 && nfp == 1 && qel", "colz");
         c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/E_cal_vs_Q2_QEL_only_1n1p.png");
         c1->Clear();
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* One commend plots - Theta_l */
+#pragma region /* One commend plots - Theta_l */
 
         // Theta_l -all interactions (2p):
 
@@ -9294,7 +9294,7 @@ void gst::Loop() {
                      "nf==2 && nfn==1 && nfp == 1 && qel", "colz");
         c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/E_cal_vs_theta_lp_QEL_only_1n1p.png");
         c1->Clear();
-        #pragma endregion
+#pragma endregion
     }
 
     // Momentum histograms
@@ -9306,7 +9306,7 @@ void gst::Loop() {
         std::cout << "Plotting momentum histograms for 2p and 1n1p...\n";
         std::cout << "\n";
 
-        #pragma region /* Momentum histograms (2p) */
+#pragma region /* Momentum histograms (2p) */
         histPlotter1D(c1, P_L_hist_2p, normalized_P_L_plots, false, 1., "Momentum Histogram of Leading Proton P_{L} = P_{p1}", "all interactions", 0.06, 0.0425, 0.0425, plots,
                       Histogram_OutPDF, 2, false, true, MomentumStack_2p, "P_L_histogram", "plots/momentum_histograms/2p/", "2p", kBlue, true, true, true);
 
@@ -9315,9 +9315,9 @@ void gst::Loop() {
 
         histPlotter1D(c1, P_lp_hist_2p, normalized_P_R_plots, false, 1., "Momentum Histogram of Outgoing Lepton P_{l}", "all interactions", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2,
                       false, true, MomentumStack_2p, "P_lp_histogram", "plots/momentum_histograms/2p/", "2p", kGreen, true, true, true);
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Momentum histograms (1n1p) */
+#pragma region /* Momentum histograms (1n1p) */
         histPlotter1D(c1, P_p_hist_1n1p, normalized_P_L_plots, false, 1., "Momentum Histogram of Scattered Proton P_{p}", "all interactions", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF,
                       2, false, true, MomentumStack_1n1p, "P_p_histogram", "plots/momentum_histograms/1n1p/", "1n1p", kBlue, true, true, true);
 
@@ -9326,12 +9326,12 @@ void gst::Loop() {
 
         histPlotter1D(c1, P_lp_hist_1n1p, normalized_P_R_plots, false, 1., "Momentum Histogram of Outgoing Lepton P_{l}", "all interactions", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF,
                       2, false, true, MomentumStack_1n1p, "P_lp_histogram", "plots/momentum_histograms/1n1p/", "1n1p", kGreen, true, true, true);
-        #pragma endregion
+#pragma endregion
 
         histPlotter1D(c1, P_lp_hist_inclusive, false, false, 1., "P_{l} (all interactions)", "inclusive", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2, false, true, MomentumStack_1n1p,
                       "P_lp_hist", "plots/", "inclusive", kBlue, true, true, true);
 
-        #pragma region /* Momentum histogram stack (2p) */
+#pragma region /* Momentum histogram stack (2p) */
         MomentumStack_2p->Draw("nostack");
         MomentumStack_2p->GetHistogram()->GetXaxis()->SetTitleSize(0.06);
         MomentumStack_2p->GetHistogram()->GetXaxis()->SetLabelSize(0.0425);
@@ -9350,9 +9350,9 @@ void gst::Loop() {
         plots->Add(MomentumStack_2p);
         c1->SaveAs("plots/momentum_histograms/Momentum_stack_2p.png");
         c1->Clear();
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Momentum histogram stack (1n1p) */`
+#pragma region /* Momentum histogram stack (1n1p) */`
         MomentumStack_1n1p->Draw("nostack");
         MomentumStack_1n1p->GetHistogram()->GetXaxis()->SetTitleSize(0.06);
         MomentumStack_1n1p->GetHistogram()->GetXaxis()->SetLabelSize(0.0425);
@@ -9371,7 +9371,7 @@ void gst::Loop() {
         plots->Add(MomentumStack_1n1p);
         c1->SaveAs("plots/momentum_histograms/Momentum_stack_1n1p.png");
         c1->Clear();
-        #pragma endregion
+#pragma endregion
     }
 
     // MicroBooNE article histogram reconstructions
@@ -9938,12 +9938,12 @@ void gst::Loop() {
         c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_VS_q3/Energy_transfer_Ev-El_VS_q3_MEC_linear_scale_1n1p.png");
         c1->Clear();
     }
-    #pragma endregion.q
+#pragma endregion.q
 
     // Saving histogram list and finishing execution
     // =======================================================================================================================================================================
 
-    #pragma region /* Saving histogram list and finishing execution */
+#pragma region /* Saving histogram list and finishing execution */
     std::cout << "\n";
     std::cout << "\n";
     std::cout << "Saving histogram list...\n";
@@ -9973,5 +9973,5 @@ void gst::Loop() {
     std::cout << "ni:\t\t" << ni_selection << "\n";
     std::cout << "Tune:\t\t" << tune << "\n";
     std::cout << "Settings mode:\t'" << file_name << "'\n";
-    #pragma endregion
+#pragma endregion
 }

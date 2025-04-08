@@ -15,7 +15,7 @@ TLCuts::TLCuts(const std::string &SampleName, bool calculate_truth_level, bool E
         auto mcpbank = c12->mcparts();
         const Int_t Ngen = mcpbank->getRows();
 
-        #pragma region /* Particle counting */
+#pragma region /* Particle counting */
         for (Int_t i = 0; i < Ngen; i++) {
             mcpbank->setEntry(i);
 
@@ -111,9 +111,9 @@ TLCuts::TLCuts(const std::string &SampleName, bool calculate_truth_level, bool E
                 TL_OtherPart_ind.push_back(i);
             }
         }
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Selection setup */
+#pragma region /* Selection setup */
         /* Setting up basic TL event selection */
         no_TL_cPions = (TL_piplus_mom_ind.size() == 0 && TL_piminus_mom_ind.size() == 0);                    // No id. cPions above momentum threshold
         no_TL_OtherPart = (TL_OtherPart_ind.size() == 0);                                                    // No other part. above momentum threshold
@@ -153,7 +153,7 @@ TLCuts::TLCuts(const std::string &SampleName, bool calculate_truth_level, bool E
 
         // nFDpCD = One id. FD neutron & one id. CD proton:
         TL_Event_Selection_nFDpCD = (TL_Basic_ES && one_FDNeutron_nFDpCD && one_proton_nFDpCD && no_FDproton_nFDpCD && one_CDproton_nFDpCD);
-        #pragma endregion
+#pragma endregion
     }
 }
 

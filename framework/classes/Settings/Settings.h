@@ -6,7 +6,7 @@
 // #define SETTINGS_H
 #ifdef SETTINGS_H
 
-#include "CustomPlotsDirectory.cpp"
+    #include "CustomPlotsDirectory.cpp"
 
 class Settings : public CustomPlotsDirectory {
    private:

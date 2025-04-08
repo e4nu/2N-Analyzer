@@ -133,11 +133,11 @@ void ParticleID::FDNeutralParticleID(vector<region_part_ptr> allParticles, vecto
         bool Neutron_with_ECOUT_hit = (allParticles[i]->cal(clas12::ECOUT)->getDetector() == 7);  // ECOUT hit
         auto Neutron_ECAL_detlayer = Neutron_with_ECIN_hit ? clas12::ECIN : clas12::ECOUT;        // find first layer of hit
 
-        #pragma region /* Safety checks */
+#pragma region /* Safety checks */
         if (!((NeutralPDG == 22) || (NeutralPDG == 2112))) { cout << "\n\nFDNeutralParticleID (Neutrons): neutron PDG is not 2112 or 22 (" << NeutralPDG << "). Exiting...\n\n", exit(0); }
 
         if (Neutron_with_PCAL_hit) { cout << "\n\nFDNeutralParticleID (Neutrons): redefined neutron is in the PCAL!! Exiting...\n\n", exit(0); }
-        #pragma endregion
+#pragma endregion
 
         bool Neutron_pass_momentum_th = (Momentum >= Neutron_momentum_th.GetLowerCutConst() && Momentum <= Neutron_momentum_th.GetUpperCutConst());
         bool Neutron_pass_ECAL_veto, Neutron_pass_ECAL_edge_cuts;
@@ -158,9 +158,9 @@ void ParticleID::FDNeutralParticleID(vector<region_part_ptr> allParticles, vecto
 
         int NeutralPDG = allParticles[i]->par()->getPid();
 
-        #pragma region /* Safety check */
+#pragma region /* Safety check */
         if (NeutralPDG != 22) { cout << "\n\nFDNeutralParticleID (Photons): photon PDG is not 22 (" << NeutralPDG << "). Exiting...\n\n", exit(0); }
-        #pragma endregion
+#pragma endregion
 
         double Momentum = allParticles[i]->getP();
 
@@ -182,9 +182,9 @@ void ParticleID::FDNeutralParticleID(vector<region_part_ptr> allParticles, vecto
 
         int NeutralPDG = allParticles[i]->par()->getPid();
 
-        #pragma region /* Safety check */
+#pragma region /* Safety check */
         if (!((NeutralPDG == 22) || (NeutralPDG == 2112))) { cout << "\n\nFDNeutralParticleID (Neutrons): neutron PDG is not 2112 or 22 (" << NeutralPDG << "). Exiting...\n\n", exit(0); }
-        #pragma endregion
+#pragma endregion
 
         double Momentum = GetFDNeutronP(allParticles[i], apply_nucleon_cuts);
 
@@ -197,9 +197,9 @@ void ParticleID::FDNeutralParticleID(vector<region_part_ptr> allParticles, vecto
 
         int NeutralPDG = allParticles[i]->par()->getPid();
 
-        #pragma region /* Safety check */
+#pragma region /* Safety check */
         if (NeutralPDG != 22) { cout << "\n\nFDNeutralParticleID (Photons): photon PDG is not 22 (" << NeutralPDG << "). Exiting...\n\n", exit(0); }
-        #pragma endregion
+#pragma endregion
 
         double Momentum = allParticles[i]->getP();
 
@@ -222,11 +222,11 @@ int ParticleID::GetLnFDIndex(vector<region_part_ptr> allParticles, vector<int> &
         double P_temp = GetFDNeutronP(allParticles[i], apply_nucleon_cuts);
         int NeutralPDG_temp = allParticles[i]->par()->getPid();
 
-        #pragma region /* Safety check */
+#pragma region /* Safety check */
         if (!((NeutralPDG_temp == 22) || (NeutralPDG_temp == 2112))) {
             cout << "\n\nFDNeutralParticleID (Neutrons): neutron PDG is not 2112 or 22 (" << NeutralPDG_temp << "). Exiting...\n\n", exit(0);
         }
-        #pragma endregion
+#pragma endregion
 
         if (P_temp >= P_max) {
             P_max = P_temp;
@@ -276,22 +276,22 @@ int ParticleID::GetCorrLnFDIndex(MomentumResolution &nRes, vector<region_part_pt
         double P_temp = GetFDNeutronP(allParticles[FD_Neutrons_within_th.at(i)], apply_nucleon_cuts);
         int NeutralPDG_temp = allParticles[FD_Neutrons_within_th.at(i)]->par()->getPid();
 
-        #pragma region /* Safety check */
+#pragma region /* Safety check */
         if (!((NeutralPDG_temp == 22) || (NeutralPDG_temp == 2112))) {
             cout << "\n\nFDNeutralParticleID (Neutrons): neutron PDG is not 2112 or 22 (" << NeutralPDG_temp << "). Exiting...\n\n", exit(0);
         }
-        #pragma endregion
+#pragma endregion
 
         double P_temp_ACorr = nRes.NCorr(apply_nucleon_SmearAndCorr, P_temp);
 
         FD_Neutrons_within_th_ACorr.push_back(P_temp_ACorr);
     }
 
-    #pragma region /* Safety check */
+#pragma region /* Safety check */
     if (FD_Neutrons_within_th.size() != FD_Neutrons_within_th_ACorr.size()) {
         cout << "\n\nParticleID::GetCorrLnFDIndex: FD_Neutrons_within_th_ACorr have been filled incorrectly! Exiting...\n", exit(0);
     }
-    #pragma endregion
+#pragma endregion
 
     for (int j = 0; j < FD_Neutrons_within_th_ACorr.size(); j++) {  // Identify the leading neutron after correction
         double P_temp_ACorr = FD_Neutrons_within_th_ACorr.at(j);
@@ -365,7 +365,7 @@ double ParticleID::GetFDNeutronP(region_part_ptr &Neutron, const bool &apply_nuc
     double Momentum;
 
     if (apply_nucleon_cuts) {
-        #pragma region /* Get for ver. neutrons & calculate for 'photons' */
+#pragma region /* Get for ver. neutrons & calculate for 'photons' */
         int ParticlePDG = Neutron->par()->getPid();
 
         if (ParticlePDG == 2112) {
@@ -412,12 +412,12 @@ double ParticleID::GetFDNeutronP(region_part_ptr &Neutron, const bool &apply_nuc
 
             Momentum = m_n * Beta_ph * Gamma_ph;
         }
-        #pragma endregion
+#pragma endregion
 
     } else {
-        #pragma region /* Get momentum for both neutrons and photons from file */
+#pragma region /* Get momentum for both neutrons and photons from file */
         Momentum = Neutron->par()->getP();
-        #pragma endregion
+#pragma endregion
     }
 
     return Momentum;
@@ -488,7 +488,7 @@ vector<int> ParticleID::GetFDPhotons(vector<region_part_ptr> &allParticles, cons
 
 // GetGoodParticles functions --------------------------------------------------------------------------------------------------------------------
 
-#pragma region /* GetGoodParticles functions */
+#pragma region                                                               /* GetGoodParticles functions */
 vector<int> ParticleID::GetGoodParticles(vector<region_part_ptr> &Particle,  // particle
                                          const DSCuts &Momentum_cuts         // corresponding momentum cuts
 ) {
@@ -559,22 +559,22 @@ vector<int> ParticleID::GetGoodProtons(const bool &apply_nucleon_cuts, vector<re
         if (GoodProt) { GoodProtons.push_back(IDProtons_ind.at(i)); }
     }
 
-    #pragma region /* Safety checks */
+#pragma region /* Safety checks */
     if (!apply_nucleon_cuts && (GoodProtons.size() != IDProtons_ind.size())) {
         cout << "\n\nGetGoodProtons(): GoodProtons and IDProtons_ind are not the same withot neucleon cut! exiting...\n\n", exit(0);
     }
 
     if (GoodProtons.size() > IDProtons_ind.size()) { cout << "\n\nGetGoodProtons(): GoodProtons.size() can't be greater than IDProtons_ind.size()! exiting...\n\n", exit(0); }
-    #pragma endregion
+#pragma endregion
 
-    #pragma region /* Monitoring printout */
+#pragma region /* Monitoring printout */
     if (TwoCutsPrintout && Cut_sCTOFhp && Cut_dCDaFDd) {
         cout << "\n\nGetGoodProtons(): We have a duble cut!\n";
         cout << "IDProtons_ind.size() = " << IDProtons_ind.size() << "\n";
         cout << "GoodProtons.size() = " << GoodProtons.size() << "\n\n\n";
     }
-    //    if (Cut_sCTOFhp && Cut_dCDaFDd) { cout << "\n\nGetGoodProtons(): We have a duble cut! exiting...\n\n", exit(0); }
-    #pragma endregion
+//    if (Cut_sCTOFhp && Cut_dCDaFDd) { cout << "\n\nGetGoodProtons(): We have a duble cut! exiting...\n\n", exit(0); }
+#pragma endregion
 
     return GoodProtons;
 }
@@ -585,11 +585,11 @@ void ParticleID::SetGPMonitoringPlots(const bool &GoodProtonsMonitorPlots, std::
     if (GoodProtonsMonitorPlots) {
         // Monitoring histograms definitions ------------------------------------------------------------------------------------------------------------------------------------
 
-        #pragma region /* Monitoring histograms definitions */
+#pragma region /* Monitoring histograms definitions */
 
         // Theta_p1_p2 vs. TOF1-TOF2 plots (2p, CD only) ------------------------------------------------------------------------------------------------------------------------
 
-        #pragma region /* Theta_p1_p2 vs. TOF1-TOF2 plots (2p, CD only) */
+#pragma region /* Theta_p1_p2 vs. TOF1-TOF2 plots (2p, CD only) */
         hdTheta_pi_pj_VS_ToFi_ToFj_BC_2idp_2p =
             hPlot2D("2p", "CD-CTOF", "#theta_{p_{i},p_{j}} vs. ToF_{i}-ToF_{j} for 2 id. p. BC", "#theta_{p_{i},p_{j}} vs. ToF_{i}-ToF_{j} between proton pairs for 2 id. protons BC",
                     "#theta_{p_{i},p_{j}} [Deg]", "ToF_{i}-ToF_{j} [ns]", CToF_hits_monitoring_2p_Directory, "01a_Theta_pi_pj_VS_ToFi-ToFj_2idp_BC_2p", 0, 180, -3, 3, 150, 150);
@@ -608,11 +608,11 @@ void ParticleID::SetGPMonitoringPlots(const bool &GoodProtonsMonitorPlots, std::
         hdTheta_pi_pj_VS_ToFi_ToFj_AE_4idp_2p =
             hPlot2D("2p", "CD-CTOF", "#theta_{p_{i},p_{j}} vs. ToF_{i}-ToF_{j} for 4 id. p. AE", "#theta_{p_{i},p_{j}} vs. ToF_{i}-ToF_{j} between proton pairs for 4 id. protons AE",
                     "#theta_{p_{i},p_{j}} [Deg]", "ToF_{i}-ToF_{j} [ns]", CToF_hits_monitoring_2p_Directory, "03b_Theta_pi_pj_VS_ToFi-ToFj_4idp_RE_2p", 0, 180, -3, 3, 150, 150);
-        #pragma endregion
+#pragma endregion
 
         // Theta_p1_p2 vs. position1-position2 plots (2p, CD only) --------------------------------------------------------------------------------------------------------------
 
-        #pragma region /* Theta_p1_p2 vs. position1-position2 plots (2p, CD only) */
+#pragma region /* Theta_p1_p2 vs. position1-position2 plots (2p, CD only) */
         hTheta_pi_pj_VS_Posi_Posj_BC_2idp_2p =
             hPlot2D("2p", "CD-CTOF", "#theta_{p_{i},p_{j}} vs. Position_{i}-Position_{j} for 2 id. p. BC",
                     "#theta_{p_{i},p_{j}} vs. Position_{i}-Position_{j} between proton pairs for 2 id. protons BC", "#theta_{p_{i},p_{j}} [Deg]", "Position_{i}-Position_{j} [cm]",
@@ -637,11 +637,11 @@ void ParticleID::SetGPMonitoringPlots(const bool &GoodProtonsMonitorPlots, std::
             hPlot2D("2p", "CD-CTOF", "#theta_{p_{i},p_{j}} vs. Position_{i}-Position_{j} for 4 id. p. AE",
                     "#theta_{p_{i},p_{j}} vs. Position_{i}-Position_{j} between proton pairs for 4 id. protons AE", "#theta_{p_{i},p_{j}} [Deg]", "Position_{i}-Position_{j} [cm]",
                     CToF_hits_monitoring_2p_Directory, "06b_Theta_pi_pj_VS_Posi-Posj_4idp_RE_2p", 0, 180, 0, 100, 150, 150);
-        #pragma endregion
+#pragma endregion
 
         // Theta_p1_vs_Theta_p2 for Theta_p1_p2 < 20 (2p, CD & FD) --------------------------------------------------------------------------------------------------------------
 
-        #pragma region /* Theta_p1_vs_Theta_p2 for Theta_p1_p2 < 20 (2p, CD & FD) */
+#pragma region /* Theta_p1_vs_Theta_p2 for Theta_p1_p2 < 20 (2p, CD & FD) */
         hTheta_pi_vs_theta_pj_for_Theta_pi_pj_20_BC_2idp_2p =
             new TH2D("#theta_{p_{i}} vs. #theta_{p_{j}} for #theta_{p_{i},p_{j}}<20#circ  for 2 id. p. BC (All Int., 2p)",
                      "#theta_{p_{i}} vs. #theta_{p_{j}} for #theta_{p_{i},p_{j}}<20#circ between proton pairs for 2 id. protons BC (All Int., 2p);#theta_{p_{j}} [Deg];#theta_{p_{i}} [Deg];",
@@ -677,11 +677,11 @@ void ParticleID::SetGPMonitoringPlots(const bool &GoodProtonsMonitorPlots, std::
                      "#theta_{p_{i}} vs. #theta_{p_{j}} for #theta_{p_{i},p_{j}}<20#circ between proton pairs for 4 id. protons AE (All Int., 2p);#theta_{p_{j}} [Deg];#theta_{p_{i}} [Deg];",
                      150, 30, 50, 150, 30, 50);
         hTheta_pi_vs_theta_pj_for_Theta_pi_pj_20_AE_4idp_2p_Dir = Double_detection_monitoring_2p_Directory;
-        #pragma endregion
+#pragma endregion
 
         // Theta_p1_vs_Theta_p2 for every Theta_p1_p2 (2p, CD & FD) -------------------------------------------------------------------------------------------------------------
 
-        #pragma region /* Theta_p1_vs_Theta_p2 for Theta_p1_p2 < 20 (2p, CD & FD) */
+#pragma region /* Theta_p1_vs_Theta_p2 for Theta_p1_p2 < 20 (2p, CD & FD) */
         hTheta_pi_vs_theta_pj_forall_Theta_pi_pj_BC_2idp_2p = new TH2D(
             "#theta_{p_{i}} vs. #theta_{p_{j}} #forall#theta_{p_{i},p_{j}} for 2 id. p. BC (All Int., 2p)",
             "#theta_{p_{i}} vs. #theta_{p_{j}} for every #theta_{p_{i},p_{j}}<20#circ between proton pairs for 2 id. protons BC (All Int., 2p);#theta_{p_{j}} [Deg];#theta_{p_{i}} [Deg];",
@@ -717,9 +717,9 @@ void ParticleID::SetGPMonitoringPlots(const bool &GoodProtonsMonitorPlots, std::
             "#theta_{p_{i}} vs. #theta_{p_{j}} for every #theta_{p_{i},p_{j}}<20#circ between proton pairs for 4 id. protons AE (All Int., 2p);#theta_{p_{j}} [Deg];#theta_{p_{i}} [Deg];",
             150, 30, 50, 150, 30, 50);
         hTheta_pi_vs_theta_pj_forall_Theta_pi_pj_AE_4idp_2p_Dir = Double_detection_monitoring_2p_Directory;
-        #pragma endregion
+#pragma endregion
 
-        #pragma endregion
+#pragma endregion
     }
 }
 #pragma endregion

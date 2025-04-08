@@ -16,7 +16,7 @@ void CustomPlotsDirectory::ConfigureStatuses(const bool &apply_cuts, const bool 
                                              const bool &plot_and_fit_MomRes, const bool &VaryingDelta, const bool &Calculate_momResS2, const bool &Run_in_momResS2, const bool &nRes_test,
                                              const bool &Rec_wTL_ES, const bool &ZoomIn_On_mom_th_plots) {
     if (Custom_cuts_naming) {
-        #pragma region /* Status additions */
+#pragma region /* Status additions */
         if (!clas12ana_particles) { Clas12ana_particles_status = "_no_clas12ana"; }
 
         if (only_preselection_cuts) { Preselection_Cuts_Status = "_Preselection_Cuts"; }
@@ -142,7 +142,7 @@ void CustomPlotsDirectory::ConfigureStatuses(const bool &apply_cuts, const bool 
         } else {
             Additional_Status = "";
         }
-        #pragma endregion
+#pragma endregion
     }
 
     Added_PreStatuses = Clas12ana_particles_status + Preselection_Cuts_Status + Electron_Quality_Cuts_Status;

@@ -1729,7 +1729,7 @@ string ExperimentParameters::ConfigureSampleName(const std::string &AnalyzeFileP
         }
     }
 
-    #pragma region /* Safety checks */
+#pragma region /* Safety checks */
     if (!BeamAt2GeV && !BeamAt4GeV && !BeamAt6GeV) {
         cout << "\n\nConfigureSampleName: beam energy unknown! Configured variables are:\n";
         cout << "AnalyzeFilePath = " << AnalyzeFilePath << "\n";
@@ -1775,7 +1775,7 @@ string ExperimentParameters::ConfigureSampleName(const std::string &AnalyzeFileP
         cout << "DataSample = " << DataSample << "\n";
         cout << "Exiting...\n", exit(0);
     }
-    #pragma endregion
+#pragma endregion
 
     ConfigureVaryingSampleName(sName);
     ConfigureVz_cuts(sName);
@@ -1787,7 +1787,7 @@ string ExperimentParameters::ConfigureSampleName(const std::string &AnalyzeFileP
 
 // ConfigureVaryingSampleName function -----------------------------------------------------------------------------------------------------------------------------------------
 
-#pragma region /* ConfigureVaryingSampleName function */
+#pragma region                                                                  /* ConfigureVaryingSampleName function */
 void ExperimentParameters::ConfigureVaryingSampleName(const std::string &sn) {  // TODO: change this to VaryingSampleName of the appropriate data. currently the same for all data.
     if (FindSubstring(sn, "sim") || (FindSubstring(sn, "Uniform") || FindSubstring(sn, "iniform") || FindSubstring(sn, "Isotrop") || FindSubstring(sn, "isotrop"))) {  // Sample is simulation
         //        VaryingSampleName = SampleName;

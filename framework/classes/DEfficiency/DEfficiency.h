@@ -30,7 +30,10 @@
     #include <typeinfo>
     #include <vector>
 
+    // Include libraries:
     #include "../../namespaces/general_utilities/utilities.h"
+
+    // Include classes:
     #include "../hPlots/hPlot1D.cpp"
 
 using namespace utilities;

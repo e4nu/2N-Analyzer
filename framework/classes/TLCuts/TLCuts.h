@@ -30,9 +30,14 @@
     #include <typeinfo>
     #include <vector>
 
-    #include "../../includes/clas12_include.h"
+    // Include libraries:
     #include "../../namespaces/general_utilities/utilities.h"
+
+    // Include classes:
     #include "../DSCuts/DSCuts.h"
+
+    // Include CLAS12 libraries:
+    #include "../../includes/clas12_include.h"
 
 using namespace utilities;
 
