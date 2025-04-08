@@ -49,15 +49,15 @@ int main() {
         if (AnalyzeFilePath_v.size() > 1) { gDirectory->Clear(); }
     }
 
-    cout << "\033[33m#(Analyzed samples):\033[0m\t\t" << Num_of_Analyzed_samples << "\n";
+    cout << "\033[33m#(Analyzed samples):\033[0m\t" << Num_of_Analyzed_samples << "\n";
 
     auto end = std::chrono::system_clock::now();
     auto elapsed_time_seconds = std::chrono::duration_cast<std::chrono::seconds>(end - start);
     double elapsed_time_minutes = elapsed_time_seconds.count() / 60;
 
     if (elapsed_time_seconds.count() < 60) {
-        std::cout << "\033[33mRunning time:\033[0m\t" << elapsed_time_seconds.count() << " seconds\n\n";
+        std::cout << "\033[33mRunning time:\033[0m\t\t" << elapsed_time_seconds.count() << " seconds\n\n";
     } else {
-        std::cout << "\033[33mRunning time:\033[0m\t" << basic_tools::ToStringWithPrecision(elapsed_time_minutes, 3) << " minutes\n\n";
+        std::cout << "\033[33mRunning time:\033[0m\t\t" << basic_tools::ToStringWithPrecision(elapsed_time_minutes, 3) << " minutes\n\n";
     }
 }

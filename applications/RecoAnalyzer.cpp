@@ -619,8 +619,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     /* Final state ratio plots */
     bool FSR_1D_plots, FSR_2D_plots;  // FSR_2D_plots is disabled below if HipoChainLength is 2 or lower
 
-    bool TestRun = true;       // set as false for a full run
-    bool ApplyLimiter = true;  // set as false for a full run
+    bool TestRun = false;       // set as false for a full run
+    bool ApplyLimiter = false;  // set as false for a full run
     int Limiter = 1000000;
 
     // Set enabled plots
@@ -3547,7 +3547,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 #pragma region /* 2D theta_q_pFD distribution (pFDpCD) */
     // 2D theta_q_pFD vs. theta_q_pCD distribution (pFDpCD)
     TH2D *htheta_q_pFD_VS_theta_q_pCD_All_Int_pFDpCD =
-        new TH2D("#theta_{#font[62]{q},#font[62]{P}_{pFD}} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (All Int., pFDpCD)",
+        new TH2D("#theta_{#font[62]{q},#font[62]{P}_{pFD}} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} ReacMon (All Int., pFDpCD)",
                  "#theta_{#font[62]{q},#font[62]{P}_{pFD}} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (All Int., "
                  "pFDpCD);#theta_{#font[62]{q},#font[62]{P}_{pFD}} [#circ];#theta_{#font[62]{q},#font[62]{P}_{pCD}} [#circ]",
                  numTH2Dbins_ReacMon_plots, theta_q_lboundary, theta_q_uboundary, numTH2Dbins_ReacMon_plots, theta_q_lboundary, theta_q_uboundary);
@@ -4461,7 +4461,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 #pragma region /* 2D theta_q_nFD distribution (nFDpCD) */
     // 2D theta_q_nFD vs. theta_q_pCD distribution (nFDpCD)
     TH2D *htheta_q_nFD_VS_theta_q_pCD_All_Int_nFDpCD =
-        new TH2D("#theta_{#font[62]{q},#font[62]{P}_{nFD}} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (All Int., nFDpCD)",
+        new TH2D("#theta_{#font[62]{q},#font[62]{P}_{nFD}} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} ReacMon (All Int., nFDpCD)",
                  "#theta_{#font[62]{q},#font[62]{P}_{nFD}} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (All Int., "
                  "nFDpCD);#theta_{#font[62]{q},#font[62]{P}_{nFD}} [#circ];#theta_{#font[62]{q},#font[62]{P}_{pCD}} [#circ]",
                  numTH2Dbins_ReacMon_plots, theta_q_lboundary, theta_q_uboundary, numTH2Dbins_ReacMon_plots, theta_q_lboundary, theta_q_uboundary);
