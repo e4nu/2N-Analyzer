@@ -545,7 +545,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     // Histogram vector definition -----------------------------------------------------------------------------------------------------------------------------------------------------
     /* Definition of plots vector used to plot histograms into a PFD file. */
-    vector<TH1 *> HistoList;
+    vector<TObject *> HistoList;
 
     std::string HistoListPDFFileName = run_plots_path + "/" + parameters.SampleName + ".pdf";
     char FileName[HistoListPDFFileName.length()];

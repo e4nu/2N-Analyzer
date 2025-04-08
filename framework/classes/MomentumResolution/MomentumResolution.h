@@ -94,7 +94,7 @@ class MomentumResolution {
     TFolder *FittedRecoProtonResSlicesMean = new TFolder("Fitted reco proton resolution slice mean", "Fitted reco proton resolution slice mean");
     TFolder *FittedRecoProtonResSlicesWidth = new TFolder("Fitted reco proton resolution slice width", "Fitted reco proton resolution slice width");
 
-    vector<TH1 *> MomResHistoList;
+    vector<TObject *> MomResHistoList;
 
     std::string MomResHistoListPDFFileName;
     char MomResFileName[1000], temp_name[300], temp_title[300];

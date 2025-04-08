@@ -136,7 +136,7 @@ void TitleAligner(TH1D *simHistogram, TH1D *dataHistogram, const std::string &or
 
 // GetHistogramFromVector function --------------------------------------------------------------------------------------------------------------------------------------
 
-TH1 *GetHistogramFromVector(const std::vector<TH1 *> &HistoList, const std::string &searchString, const std::string &searchStringOption = "name") {
+TH1 *GetHistogramFromVector(const std::vector<TObject *> &HistoList, const std::string &searchString, const std::string &searchStringOption = "name") {
     for (const auto &hist : HistoList) {
         if (!hist) continue;
 
@@ -171,7 +171,7 @@ void FillHistogramByProcess(double Variable, TH1D *Histogram_All_Int, TH1D *Hist
 
 // GetHistogramEntries function -----------------------------------------------------------------------------------------------------------------------------------------
 
-double GetHistogramEntriesFromVector(const std::vector<TH1 *> &HistoList, const std::string &searchString, const std::string &searchStringOption = "name") {
+double GetHistogramEntriesFromVector(const std::vector<TObject *> &HistoList, const std::string &searchString, const std::string &searchStringOption = "name") {
     if (TH1 *Histogram = GetHistogramFromVector(HistoList, searchString, searchStringOption)) { return Histogram->GetEntries(); }
     return -1;  // Return -1 if no match is found
 }

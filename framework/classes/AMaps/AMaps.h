@@ -69,21 +69,21 @@ class AMaps {
     /* Truth-level theta VS phi */
     vector<hPlot2D> truth_theta_e_VS_phi_e_BySlice, truth_theta_p_VS_phi_p_BySlice, truth_theta_n_VS_phi_n_BySlice;
     hPlot2D truth_theta_n_VS_phi_n;
-    vector<TH1 *> truth_e_BySlice, truth_p_BySlice, truth_n_BySlice;
+    vector<TObject *> truth_e_BySlice, truth_p_BySlice, truth_n_BySlice;
 
     /* Reco. Acceptance maps */
     vector<hPlot2D> reco_theta_e_VS_phi_e_BySlice, reco_theta_p_VS_phi_p_BySlice, reco_theta_n_VS_phi_n_BySlice;
     hPlot2D reco_theta_n_VS_phi_n;
-    vector<TH1 *> reco_e_BySlice, reco_p_BySlice, reco_n_BySlice;
+    vector<TObject *> reco_e_BySlice, reco_p_BySlice, reco_n_BySlice;
 
     /* Reco./TL ratio maps */
     vector<hPlot2D> acceptance_eff_e_BySlice, acceptance_eff_p_BySlice, acceptance_eff_n_BySlice;
     hPlot2D acceptance_eff_n;
-    vector<TH1 *> acc_eff_e_BySlice, acc_eff_p_BySlice, acc_eff_n_BySlice;
+    vector<TObject *> acc_eff_e_BySlice, acc_eff_p_BySlice, acc_eff_n_BySlice;
 
     /* Separated acceptance & weight maps (= reco. above ratio th.) */
     vector<hPlot2D> filtered_reco_theta_e_VS_phi_e_BySlice, filtered_reco_theta_p_VS_phi_p_BySlice, filtered_reco_theta_n_VS_phi_n_BySlice;  // separated AMaps for each slice
-    vector<TH1 *> filtered_reco_e_BySlice, filtered_reco_p_BySlice, filtered_reco_n_BySlice;
+    vector<TObject *> filtered_reco_e_BySlice, filtered_reco_p_BySlice, filtered_reco_n_BySlice;
 
     /* Acceptance maps (= reco. above ratio th.) */
     hPlot2D filtered_reco_theta_e_VS_phi_e;  // combined electron AMap
@@ -138,12 +138,12 @@ class AMaps {
     std::string cPart_Sep_AMaps_prefix = "04_cPart_Sep_AMaps_-_";
     std::string AMaps_prefix = "05_AMaps_-_";
 
-    vector<TH1 *> AMapsBC_HistoList;
-    vector<TH1 *> AMap_TL_HistoList;
-    vector<TH1 *> AMap_Reco_HistoList;
-    vector<TH1 *> AMap_Ratio_HistoList;
-    vector<TH1 *> cPart_Sep_AMaps_HistoList;
-    vector<TH1 *> AMaps_HistoList;
+    vector<TObject *> AMapsBC_HistoList;
+    vector<TObject *> AMap_TL_HistoList;
+    vector<TObject *> AMap_Reco_HistoList;
+    vector<TObject *> AMap_Ratio_HistoList;
+    vector<TObject *> cPart_Sep_AMaps_HistoList;
+    vector<TObject *> AMaps_HistoList;
 
     vector<vector<double>> Loaded_ElectronMomSliceLimits;
     vector<vector<double>> Loaded_NucleonMomSliceLimits;
@@ -254,7 +254,7 @@ class AMaps {
 
     // DrawAndSaveHitMaps function ------------------------------------------------------------------------------------------------------------------------------------------
 
-    void DrawAndSaveHitMapsPDFs(vector<TH1 *> HistoList, const std::string &PDFfileName);
+    void DrawAndSaveHitMapsPDFs(vector<TObject *> HistoList, const std::string &PDFfileName);
 
     // DrawAndSaveHitMaps function ------------------------------------------------------------------------------------------------------------------------------------------
 

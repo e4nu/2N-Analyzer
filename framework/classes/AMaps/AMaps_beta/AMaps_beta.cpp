@@ -867,7 +867,7 @@ void AMaps::SaveToTXTFiles(const std::string &SampleName, const std::string &Acc
 // DrawAndSaveHitMapsPDFs function ------------------------------------------------------------------------------------------------------------------------------------------
 
 #pragma region /* DrawAndSaveHitMapsPDFs function */
-void AMaps::DrawAndSaveHitMapsPDFs(vector<TH1 *> HistoList, const std::string &PDFfileName) {
+void AMaps::DrawAndSaveHitMapsPDFs(vector<TObject *> HistoList, const std::string &PDFfileName) {
     TCanvas *myText_temp = new TCanvas("myText_temp", "myText_temp", pixelx, pixely);
     TCanvas *myCanvas_temp = new TCanvas("myCanvas_temp", "myCanvas_temp", pixelx, pixely);
 
