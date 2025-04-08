@@ -8,10 +8,10 @@
 #include <iostream>
 
 // Include settings:
-#include "../AcceptanceMapsSettings.h"
-#include "../EventSelectionSettings.h"
-#include "../MomentumResolutionSettings.h"
-#include "../RunParameters.h"
+#include "AcceptanceMapsSettings.h"
+#include "EventSelectionSettings.h"
+#include "MomentumResolutionSettings.h"
+#include "RunParameters.h"
 
 // Include libraries:
 #include "../../namespaces/setup/path_definitions.h"

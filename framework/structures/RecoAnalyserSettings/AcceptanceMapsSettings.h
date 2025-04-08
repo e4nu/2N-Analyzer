@@ -8,7 +8,7 @@
 #include <iostream>
 
 // Include settings:
-#include "../RunParameters.h"
+#include "RunParameters.h"
 
 // Include libraries:
 #include "../../namespaces/general_utilities/basic_tools.h"

@@ -17,9 +17,9 @@
     #include "../framework/namespaces/fitters/fitter_functions.h"
     #include "../framework/namespaces/general_utilities/utilities.h"
     #include "../framework/namespaces/plotters/draw_and_save_functions/draw_and_save_functions.h"
+    #include "../framework/namespaces/printers/printers.h"
 
     // Include settings:
-    #include "../framework/namespaces/printers/printers.h"
     #include "../framework/structures/RecoAnalyserSettings/AcceptanceMapsSettings.h"
     #include "../framework/structures/RecoAnalyserSettings/AnalysisCutSettings.h"
     #include "../framework/structures/RecoAnalyserSettings/CutValueManager.h"
