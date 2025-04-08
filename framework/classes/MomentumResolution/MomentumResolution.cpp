@@ -56,7 +56,7 @@ void MomentumResolution::MomResInit(const bool &plot_and_fit_MomRes, const bool 
                                     const std::string &SmearM, const std::string &CorrM, const bool &momRes_test, const bool &ForceSmallpResLimits, const bool &FitDebugging) {
     if (isNeutron) {
         if (plot_and_fit_MomRes) {
-            ResSlicePlots_OutFile0 = SavePath + "/" + "Neutron_ResSlicePlots.pdf";
+            MomResHistoListPDFFileName = SavePath + "/" + "Neutron_ResSlicePlots.pdf";
 
             SetMomResCalculations(SampleName, NucleonCutsDirectory, beamE, MomRes_mu_cuts, MomRes_sigma_cuts, ParticleMomTh, Calculate_momResS2, Run_with_momResS2,
                                   MomentumResolutionDirectory, SavePath, DeltaSlices, VaryingDelta, SmearM, CorrM, momRes_test, false, FitDebugging);
@@ -140,7 +140,7 @@ void MomentumResolution::MomResInit(const bool &plot_and_fit_MomRes, const bool 
         }
     } else if (isProton) {
         if (plot_and_fit_MomRes) {
-            ResSlicePlots_OutFile0 = SavePath + "/" + "Proton_ResSlicePlots.pdf";
+            MomResHistoListPDFFileName = SavePath + "/" + "Proton_ResSlicePlots.pdf";
 
             SetMomResCalculations(SampleName, NucleonCutsDirectory, beamE, MomRes_mu_cuts, MomRes_sigma_cuts, ParticleMomTh, Calculate_momResS2, Run_with_momResS2,
                                   MomentumResolutionDirectory, SavePath, DeltaSlices, VaryingDelta, SmearM, CorrM, momRes_test, ForceSmallpResLimits, FitDebugging);
@@ -1238,7 +1238,7 @@ void MomentumResolution::PolyFitter(const std::string &MomentumType, const int &
 #pragma region /* DrawAndSaveResSlices function */
 void MomentumResolution::DrawAndSaveResSlices(const std::string &SampleName, TCanvas *h1DCanvas, const std::string &plots_path, const std::string &MomentumResolutionDirectory) {
     std::string SampleNameTemp = SampleName;
-    const char *ResSlicePlots_OutFile = ResSlicePlots_OutFile0.c_str();
+    const char *ResSlicePlots_OutFile = MomResHistoListPDFFileName.c_str();
 
     if (isNeutron) {
         ResSlicePlots->Add(FittedTLNeutronResSlices), ResSlicePlots->Add(FittedTLNeutronResSlicesWidth), ResSlicePlots->Add(FittedTLNeutronResSlicesMean);
@@ -1248,11 +1248,9 @@ void MomentumResolution::DrawAndSaveResSlices(const std::string &SampleName, TCa
         ResSlicePlots->Add(FittedRecoProtonResSlices), ResSlicePlots->Add(FittedRecoProtonResSlicesWidth), ResSlicePlots->Add(FittedRecoProtonResSlicesMean);
     }
 
-    for (int i = 0; i < TL_NumberOfSlices; i++) { ResTLMomSlices.at(i).hDrawAndSave(SampleNameTemp, h1DCanvas, ResSlicePlots, ResSlicePlots_OutFile, false, true, 1., 9999, 9999, 0, false); }
+    for (int i = 0; i < TL_NumberOfSlices; i++) { ResTLMomSlices.at(i).hDrawAndSave(SampleNameTemp, h1DCanvas, ResSlicePlots, MomResHistoList, false, true, 1., 9999, 9999, 0, false); }
 
-    for (int i = 0; i < Reco_NumberOfSlices; i++) {
-        ResRecoMomSlices.at(i).hDrawAndSave(SampleNameTemp, h1DCanvas, ResSlicePlots, ResSlicePlots_OutFile, false, true, 1., 9999, 9999, 0, false);
-    }
+    for (int i = 0; i < Reco_NumberOfSlices; i++) { ResRecoMomSlices.at(i).hDrawAndSave(SampleNameTemp, h1DCanvas, ResSlicePlots, MomResHistoList, false, true, 1., 9999, 9999, 0, false); }
 
     /* Save res and fitted res plots to plots directory: */
     TFile *PlotsFolder_fout = new TFile((plots_path + "/" + MomResParticle + "_resolution_plots_-_" + SampleName + ".root").c_str(), "recreate");

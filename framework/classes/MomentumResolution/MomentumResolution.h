@@ -94,7 +94,10 @@ class MomentumResolution {
     TFolder *FittedRecoProtonResSlicesMean = new TFolder("Fitted reco proton resolution slice mean", "Fitted reco proton resolution slice mean");
     TFolder *FittedRecoProtonResSlicesWidth = new TFolder("Fitted reco proton resolution slice width", "Fitted reco proton resolution slice width");
 
-    std::string ResSlicePlots_OutFile0;
+    vector<TH1 *> MomResHistoList;
+
+    std::string MomResHistoListPDFFileName;
+    char MomResFileName[1000], temp_name[300], temp_title[300];
 
     #pragma region                                /* Random number generators */
     std::string RandomNumGenerator = "TRandom3";  // TRandom3 by default
