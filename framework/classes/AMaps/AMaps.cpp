@@ -1704,7 +1704,8 @@ void AMaps::DrawAndSaveHitMapsPDFs(vector<TObject *> HistoList, const std::strin
             gPad->Update();
 
             gPad->Update();
-            TPaletteAxis *palette = (TPaletteAxis *)HistoList[i]->GetListOfFunctions()->FindObject("palette");
+            TPaletteAxis *palette = (TPaletteAxis *)hist->GetListOfFunctions()->FindObject("palette");
+            // TPaletteAxis *palette = (TPaletteAxis *)HistoList[i]->GetListOfFunctions()->FindObject("palette");
             if (palette) { palette->SetY2NDC(0.55), gPad->Modified(), gPad->Update(); }
         }
 

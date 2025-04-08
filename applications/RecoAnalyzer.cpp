@@ -22837,10 +22837,6 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                 DrawAndSaveFSRatio(parameters.SampleName, hTheta_pFD_pCD_vs_W_pFDpCD, hTheta_pFD_pCD_vs_W_pFDpCD_Dir, hTheta_nFD_pCD_vs_W_nFDpCD, plots);
             }
         }
-
-        CanvasPDF->cd();
-        CanvasPDF->Print(Form("%s]", HistoList));  // Close the PDF file
-        c1->cd();
     } else {
         std::cout << "\033[33m\n\nAngle plots are disabled by user.\n\n\033[0m";
     }
