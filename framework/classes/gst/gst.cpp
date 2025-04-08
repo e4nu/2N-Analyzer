@@ -5595,6 +5595,16 @@ void gst::Loop() {
 
     TList *plots = new TList();
 
+    // Histogram vector definition -----------------------------------------------------------------------------------------------------------------------------------------------------
+    /* Definition of plots vector used to plot histograms into a PFD file. */
+    vector<TH1 *> HistoList;
+
+    std::string HistoListPDFFileName = run_plots_path + "/" + parameters.SampleName + ".pdf";
+    char FileName[HistoListPDFFileName.length()];
+
+    char temp_name[300];
+    char temp_title[300];
+
 #pragma endregion
 
     // List definition ---------------------------------------------------------------------------------
@@ -7161,13 +7171,13 @@ void gst::Loop() {
         double theta_lp_integral = theta_lp_2p->Integral() + theta_lp_1n1p->Integral();
 
 #pragma region /* Theta of outgoing lepton histogram (2p) */
-        histPlotter1D(c1, theta_lp_2p, normalized_theta_lp_plots, true, theta_lp_integral, "#theta_{l} of Outgoing Lepton", "All Interactions", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF,
+        histPlotter1D(c1, theta_lp_2p, normalized_theta_lp_plots, true, theta_lp_integral, "#theta_{l} of Outgoing Lepton", "All Interactions", 0.06, 0.0425, 0.0425, plots, HistoList,
                       2, true, true, ThetaStack, "Theta_of_lepton", "plots/theta_histograms/", "2p", kBlue, true, true, true);
 #pragma endregion
 
 #pragma region /* Theta of outgoing lepton histogram (1n1p) */
         histPlotter1D(c1, theta_lp_1n1p, normalized_theta_lp_plots, true, theta_lp_integral, "#theta_{l} of Outgoing Lepton", "All Interactions", 0.06, 0.0425, 0.0425, plots,
-                      Histogram_OutPDF, 2, true, true, ThetaStack, "Theta_of_lepton", "plots/theta_histograms/", "1n1p", kRed, true, true, true);
+                      HistoList, 2, true, true, ThetaStack, "Theta_of_lepton", "plots/theta_histograms/", "1n1p", kRed, true, true, true);
 #pragma endregion
 
 #pragma region /* Theta of outgoing lepton histogram (stack) */
@@ -7203,24 +7213,24 @@ void gst::Loop() {
         //  Theta of nucleon 1 histogram ----------------------------------------------------------------------
 
 #pragma region /* Theta of Proton 1 histogram (2p) */
-        histPlotter1D(c1, theta_p1_2p, normalized_theta_p1_plots, true, 1., "#theta_{p1} of Proton 1", "All Interactions", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2, false, true,
+        histPlotter1D(c1, theta_p1_2p, normalized_theta_p1_plots, true, 1., "#theta_{p1} of Proton 1", "All Interactions", 0.06, 0.0425, 0.0425, plots, HistoList, 2, false, true,
                       ThetaStack, "Theta_of_proton_1", "plots/theta_histograms/", "2p", kBlue, true, false, true);
 #pragma endregion
 
 #pragma region /* Theta of Proton histogram (1n1p) */
-        histPlotter1D(c1, theta_p_1n1p, normalized_theta_p_plots, true, 1., "#theta_{p} of Scattered Proton", "All Interactions", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2, false,
+        histPlotter1D(c1, theta_p_1n1p, normalized_theta_p_plots, true, 1., "#theta_{p} of Scattered Proton", "All Interactions", 0.06, 0.0425, 0.0425, plots, HistoList, 2, false,
                       true, ThetaStack, "Theta_of_proton", "plots/theta_histograms/", "1n1p", kRed, true, false, true);
 #pragma endregion
 
         //  Theta of nucleon 2 histogram ---------------------------------------------------------------------
 
 #pragma region /* Theta of Proton 2 histogram (2p) */
-        histPlotter1D(c1, theta_p2_2p, normalized_theta_p2_plots, true, 1., "#theta_{p2} of Proton 2", "All Interactions", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2, false, true,
+        histPlotter1D(c1, theta_p2_2p, normalized_theta_p2_plots, true, 1., "#theta_{p2} of Proton 2", "All Interactions", 0.06, 0.0425, 0.0425, plots, HistoList, 2, false, true,
                       ThetaStack, "Theta_of_proton_2", "plots/theta_histograms/", "2p", kBlue, true, false, true);
 #pragma endregion
 
 #pragma region /* Theta of Neutron histogram (1n1p) */
-        histPlotter1D(c1, theta_n_1n1p, normalized_theta_p_plots, true, 1., "#theta_{n} of Scattered Neutron", "All Interactions", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2, false,
+        histPlotter1D(c1, theta_n_1n1p, normalized_theta_p_plots, true, 1., "#theta_{n} of Scattered Neutron", "All Interactions", 0.06, 0.0425, 0.0425, plots, HistoList, 2, false,
                       true, ThetaStack, "Theta_of_neutron", "plots/theta_histograms/", "1n1p", kRed, true, false, true);
 #pragma endregion
 
@@ -7228,15 +7238,15 @@ void gst::Loop() {
 
 #pragma region /* dTheta histogram (2p) */
         histPlotter1D(c1, dtheta_2p, normalized_dtheta_2p_plots, true, 1., "#gamma = #theta_{p1} - #theta_{p2} of Scattered Protons", "All Interactions", 0.06, 0.0425, 0.0425, plots,
-                      Histogram_OutPDF, 2, false, true, ThetaStack, "gamma_of_protons", "plots/theta_histograms/", "2p", kBlue, true, false, true);
+                      HistoList, 2, false, true, ThetaStack, "gamma_of_protons", "plots/theta_histograms/", "2p", kBlue, true, false, true);
 #pragma endregion
 
 #pragma region /* dTheta histogram (1n1p) */
         histPlotter1D(c1, dtheta_1n1p, normalized_dtheta_1n1p_plots, true, 1., "#gamma = #theta_{p} - #theta_{n} of Scattered Nucleons", "All Interactions", 0.06, 0.0425, 0.0425, plots,
-                      Histogram_OutPDF, 2, false, true, ThetaStack, "gamma_of_nucleons", "plots/theta_histograms/", "1n1p", kRed, true, false, true);
+                      HistoList, 2, false, true, ThetaStack, "gamma_of_nucleons", "plots/theta_histograms/", "1n1p", kRed, true, false, true);
 #pragma endregion
 
-        histPlotter1D(c1, theta_lp_inclusive, false, true, 1., "#theta_{l} (inclusive)", "inclusive", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2, false, true, ThetaStack,
+        histPlotter1D(c1, theta_lp_inclusive, false, true, 1., "#theta_{l} (inclusive)", "inclusive", 0.06, 0.0425, 0.0425, plots, HistoList, 2, false, true, ThetaStack,
                       "theta_lp_inclusive", "plots/", "inclusive", kBlue, true, false, true);
 
         theta_lp_VS_phi_lp->SetTitleSize(0.06, "xyz");
@@ -7272,12 +7282,12 @@ void gst::Loop() {
         double phi_lp_integral = phi_lp_2p->Integral() + phi_lp_1n1p->Integral();
 
 #pragma region /* Phi of outgoing lepton histogram (2p) */
-        histPlotter1D(c1, phi_lp_2p, normalized_phi_lp_plots, true, phi_lp_integral, "#phi_{l} of Outgoing Lepton", "All Interactions", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2,
+        histPlotter1D(c1, phi_lp_2p, normalized_phi_lp_plots, true, phi_lp_integral, "#phi_{l} of Outgoing Lepton", "All Interactions", 0.06, 0.0425, 0.0425, plots, HistoList, 2,
                       false, true, PhiStack, "Phi_of_lepton", "plots/phi_histograms/", "2p", kBlue, true, true, true);
 #pragma endregion
 
 #pragma region /* Phi of outgoing lepton histogram (1n1p) */
-        histPlotter1D(c1, phi_lp_1n1p, normalized_phi_lp_plots, true, phi_lp_integral, "#phi_{l} of Outgoing Lepton", "All Interactions", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2,
+        histPlotter1D(c1, phi_lp_1n1p, normalized_phi_lp_plots, true, phi_lp_integral, "#phi_{l} of Outgoing Lepton", "All Interactions", 0.06, 0.0425, 0.0425, plots, HistoList, 2,
                       false, true, PhiStack, "Phi_of_lepton", "plots/phi_histograms/", "1n1p", kRed, true, true, true);
 #pragma endregion
 
@@ -7304,24 +7314,24 @@ void gst::Loop() {
         //  Phi of nucleon 1 histogram ------------------------------------------------------------------------
 
 #pragma region /* Phi of Proton 1 histogram (2p) */
-        histPlotter1D(c1, phi_p1_2p, normalized_phi_p1_plots, true, 1., "#phi_{p1} of Scattered Proton 1", "All Interactions", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2, false, true,
+        histPlotter1D(c1, phi_p1_2p, normalized_phi_p1_plots, true, 1., "#phi_{p1} of Scattered Proton 1", "All Interactions", 0.06, 0.0425, 0.0425, plots, HistoList, 2, false, true,
                       PhiStack, "Phi_of_proton_1", "plots/phi_histograms/", "2p", kBlue, true, false, true);
 #pragma endregion
 
 #pragma region /* Phi of Proton histogram (1n1p) */
-        histPlotter1D(c1, phi_p_1n1p, normalized_phi_p_plots, true, 1., "#phi_{p} of Scattered Proton", "All Interactions", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2, false, true,
+        histPlotter1D(c1, phi_p_1n1p, normalized_phi_p_plots, true, 1., "#phi_{p} of Scattered Proton", "All Interactions", 0.06, 0.0425, 0.0425, plots, HistoList, 2, false, true,
                       PhiStack, "Phi_of_proton", "plots/phi_histograms/", "1n1p", kRed, true, false, true);
 #pragma endregion
 
         //  Phi of nucleon 2 histogram ------------------------------------------------------------------------
 
 #pragma region /* Phi of Proton 2 histogram (2p) */
-        histPlotter1D(c1, phi_p2_2p, normalized_phi_p2_plots, true, 1., "#phi_{p2} of Scattered Proton 2", "All Interactions", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2, false, true,
+        histPlotter1D(c1, phi_p2_2p, normalized_phi_p2_plots, true, 1., "#phi_{p2} of Scattered Proton 2", "All Interactions", 0.06, 0.0425, 0.0425, plots, HistoList, 2, false, true,
                       PhiStack, "Phi_of_proton_2", "plots/phi_histograms/", "2p", kBlue, true, false, true);
 #pragma endregion
 
 #pragma region /* Phi of Neutron histogram (1n1p) */
-        histPlotter1D(c1, phi_n_1n1p, normalized_phi_p_plots, true, 1., "#phi_{n} of Scattered Neutron", "All Interactions", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2, false, true,
+        histPlotter1D(c1, phi_n_1n1p, normalized_phi_p_plots, true, 1., "#phi_{n} of Scattered Neutron", "All Interactions", 0.06, 0.0425, 0.0425, plots, HistoList, 2, false, true,
                       PhiStack, "Phi_of_neutron", "plots/phi_histograms/", "1n1p", kRed, true, false, true);
 #pragma endregion
 
@@ -7329,15 +7339,15 @@ void gst::Loop() {
 
 #pragma region /* dPhi histogram (2p) */
         histPlotter1D(c1, dphi_2p, normalized_dphi_2p_plots, true, 1., "#Delta#phi = #phi_{p1} - #phi_{p2} of Scattered Protons", "All Interactions", 0.06, 0.0425, 0.0425, plots,
-                      Histogram_OutPDF, 2, false, true, PhiStack, "dPhi_of_protons", "plots/phi_histograms/", "2p", kBlue, true, false, true);
+                      HistoList, 2, false, true, PhiStack, "dPhi_of_protons", "plots/phi_histograms/", "2p", kBlue, true, false, true);
 #pragma endregion
 
 #pragma region /* dPhi histogram (1n1p) */
         histPlotter1D(c1, dphi_1n1p, normalized_dphi_1n1p_plots, true, 1., "#Delta#phi = #phi_{p} - #phi_{n} of Scattered Nucleons", "All Interactions", 0.06, 0.0425, 0.0425, plots,
-                      Histogram_OutPDF, 2, false, true, PhiStack, "dPhi_of_protons", "plots/phi_histograms/", "1n1p", kRed, true, false, true);
+                      HistoList, 2, false, true, PhiStack, "dPhi_of_protons", "plots/phi_histograms/", "1n1p", kRed, true, false, true);
 #pragma endregion
 
-        histPlotter1D(c1, phi_lp_inclusive, false, true, 1., "#phi_{l} (inclusive)", "inclusive", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2, false, true, PhiStack, "phi_lp_inclusive",
+        histPlotter1D(c1, phi_lp_inclusive, false, true, 1., "#phi_{l} (inclusive)", "inclusive", 0.06, 0.0425, 0.0425, plots, HistoList, 2, false, true, PhiStack, "phi_lp_inclusive",
                       "plots/", "inclusive", kBlue, true, false, true);
     }
 
@@ -7358,27 +7368,27 @@ void gst::Loop() {
 #pragma region /* El histograms (2p) */
 
 #pragma region /* El histograms (all interactions, 2p) */
-        histPlotter1D(c1, fsEl_2p, normalized_E_lp_all_int_plots, true, fsEl_integral, "Final State E_{l}", "All Interactions", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2, true, true,
+        histPlotter1D(c1, fsEl_2p, normalized_E_lp_all_int_plots, true, fsEl_integral, "Final State E_{l}", "All Interactions", 0.06, 0.0425, 0.0425, plots, HistoList, 2, true, true,
                       EnergyStack, "Final_State_El", "plots/Energy_histograms/El_histograms/all_interactions/", "2p", kBlue, true, true, true);
 #pragma endregion
 
 #pragma region /* El histograms (QEL only, 2p) */
-        histPlotter1D(c1, fsEl_QEL_2p, normalized_E_lp_QEL_plots, true, fsEl_integral, "Final State E_{l}", "QEL Only", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2, true, true,
+        histPlotter1D(c1, fsEl_QEL_2p, normalized_E_lp_QEL_plots, true, fsEl_integral, "Final State E_{l}", "QEL Only", 0.06, 0.0425, 0.0425, plots, HistoList, 2, true, true,
                       EnergyStack, "Final_State_El_QEL", "plots/Energy_histograms/El_histograms/QEL_only/", "2p", kBlue, true, false, true);
 #pragma endregion
 
 #pragma region /* El histograms (MEC only, 2p) */
-        histPlotter1D(c1, fsEl_MEC_2p, normalized_E_lp_MEC_plots, true, fsEl_integral, "Final State E_{l}", "MEC Only", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2, true, true,
+        histPlotter1D(c1, fsEl_MEC_2p, normalized_E_lp_MEC_plots, true, fsEl_integral, "Final State E_{l}", "MEC Only", 0.06, 0.0425, 0.0425, plots, HistoList, 2, true, true,
                       EnergyStack, "Final_State_El_MEC", "plots/Energy_histograms/El_histograms/MEC_only/", "2p", kBlue, true, false, true);
 #pragma endregion
 
 #pragma region /* El histograms (RES only, 2p) */
-        histPlotter1D(c1, fsEl_RES_2p, normalized_E_lp_RES_plots, true, fsEl_integral, "Final State E_{l}", "RES Only", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2, false, true,
+        histPlotter1D(c1, fsEl_RES_2p, normalized_E_lp_RES_plots, true, fsEl_integral, "Final State E_{l}", "RES Only", 0.06, 0.0425, 0.0425, plots, HistoList, 2, false, true,
                       EnergyStack, "Final_State_El_RES", "plots/Energy_histograms/El_histograms/RES_only/", "2p", kBlue, true, false, true);
 #pragma endregion
 
 #pragma region /* El histograms (DIS, 2p) */
-        histPlotter1D(c1, fsEl_DIS_2p, normalized_E_lp_DIS_plots, true, fsEl_integral, "Final State E_{l}", "DIS Only", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2, false, true,
+        histPlotter1D(c1, fsEl_DIS_2p, normalized_E_lp_DIS_plots, true, fsEl_integral, "Final State E_{l}", "DIS Only", 0.06, 0.0425, 0.0425, plots, HistoList, 2, false, true,
                       EnergyStack, "Final_State_El_DIS", "plots/Energy_histograms/El_histograms/DIS_only/", "2p", kBlue, true, false, true);
 #pragma endregion
 
@@ -7387,27 +7397,27 @@ void gst::Loop() {
 #pragma region /* El histograms (1n1p) */
 
 #pragma region /* El histograms (all interaction, 1n1p) */
-        histPlotter1D(c1, fsEl_1n1p, normalized_E_lp_all_int_plots, true, fsEl_integral, "Final State E_{l}", "All Interactions", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2, true,
+        histPlotter1D(c1, fsEl_1n1p, normalized_E_lp_all_int_plots, true, fsEl_integral, "Final State E_{l}", "All Interactions", 0.06, 0.0425, 0.0425, plots, HistoList, 2, true,
                       true, EnergyStack, "Final_State_El", "plots/Energy_histograms/El_histograms/all_interactions/", "1n1p", kRed, true, true, true);
 #pragma endregion
 
 #pragma region /* El histograms (QEL only, 1n1p) */
-        histPlotter1D(c1, fsEl_QEL_1n1p, normalized_E_lp_QEL_plots, true, fsEl_integral, "Final State E_{l}", "QEL Only", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2, true, true,
+        histPlotter1D(c1, fsEl_QEL_1n1p, normalized_E_lp_QEL_plots, true, fsEl_integral, "Final State E_{l}", "QEL Only", 0.06, 0.0425, 0.0425, plots, HistoList, 2, true, true,
                       EnergyStack, "Final_State_El_QEL", "plots/Energy_histograms/El_histograms/QEL_only/", "1n1p", kRed, true, false, true);
 #pragma endregion
 
 #pragma region /* El histograms (MEC only, 1n1p) */
-        histPlotter1D(c1, fsEl_MEC_1n1p, normalized_E_lp_MEC_plots, true, fsEl_integral, "Final State E_{l}", "MEC Only", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2, true, true,
+        histPlotter1D(c1, fsEl_MEC_1n1p, normalized_E_lp_MEC_plots, true, fsEl_integral, "Final State E_{l}", "MEC Only", 0.06, 0.0425, 0.0425, plots, HistoList, 2, true, true,
                       EnergyStack, "Final_State_El_MEC", "plots/Energy_histograms/El_histograms/MEC_only/", "1n1p", kRed, true, false, true);
 #pragma endregion
 
 #pragma region /* El histograms (RES only, 1n1p) */
-        histPlotter1D(c1, fsEl_RES_1n1p, normalized_E_lp_RES_plots, true, fsEl_integral, "Final State E_{l}", "RES Only", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2, false, true,
+        histPlotter1D(c1, fsEl_RES_1n1p, normalized_E_lp_RES_plots, true, fsEl_integral, "Final State E_{l}", "RES Only", 0.06, 0.0425, 0.0425, plots, HistoList, 2, false, true,
                       EnergyStack, "Final_State_El_RES", "plots/Energy_histograms/El_histograms/RES_only/", "1n1p", kRed, true, false, true);
 #pragma endregion
 
 #pragma region /* El histograms (DIS, 1n1p) */
-        histPlotter1D(c1, fsEl_DIS_1n1p, normalized_E_lp_DIS_plots, true, fsEl_integral, "Final State E_{l}", "DIS Only", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2, false, true,
+        histPlotter1D(c1, fsEl_DIS_1n1p, normalized_E_lp_DIS_plots, true, fsEl_integral, "Final State E_{l}", "DIS Only", 0.06, 0.0425, 0.0425, plots, HistoList, 2, false, true,
                       EnergyStack, "Final_State_El_DIS", "plots/Energy_histograms/El_histograms/DIS_only/", "1n1p", kRed, true, false, true);
 #pragma endregion
 
@@ -7677,77 +7687,77 @@ void gst::Loop() {
 
 #pragma region /* Energy transfer (Ev-El) for every theta_{l} (2p) */
         //        histPlotter1D(c1, E_Trans_all_ang_all_int_2p, normalized_E_Trans_all_ang_all_int_plots, false, 1., "Energy Transfer (E_{#nu}-E_{l}) for every angle",
-        //                      "All Interactions", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 3, true, true, Energy_Transfer_all_int_15_Stack_2p,
+        //                      "All Interactions", 0.06, 0.0425, 0.0425, plots, HistoList, 3, true, true, Energy_Transfer_all_int_15_Stack_2p,
         //                      "Energy_transfer_Ev-El_all_Deg_all_interactions", "plots/Energy_transfer_histograms/Energy_transfer_histograms_all_interactions/", "2p", kBlack,
         //                      true, false, true);
         // TODO: IPS plots - these plots are for IPS poster. Rename them to fit the code.
         //        histPlotter1D(c1, E_Trans_all_ang_all_int_2p, normalized_E_Trans_all_ang_all_int_plots, false, 1., "Energy Transfer #omega for every #theta_{l'} (2p)",
-        //                      "All Interactions", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 3, false, true, sE_Trans_all_ang_2p, "Energy_transfer_Ev-El_all_Deg_all_interactions",
+        //                      "All Interactions", 0.06, 0.0425, 0.0425, plots, HistoList, 3, false, true, sE_Trans_all_ang_2p, "Energy_transfer_Ev-El_all_Deg_all_interactions",
         //                      "plots/Energy_transfer_histograms/ET_All_Ang_2p/", "2p", kBlack, true, true, true);
         //
         //        histPlotter1D(c1, E_Trans_all_ang_QEL_2p, normalized_E_Trans_all_ang_all_int_plots, false, 1., "Energy Transfer #omega for every #theta_{l'}", "QEL only", 0.06,
-        //                      0.0425, 0.0425, plots, Histogram_OutPDF, 2, false, true, sE_Trans_all_ang_2p, "Energy_transfer_Ev-El_all_Deg_QEL_only",
+        //                      0.0425, 0.0425, plots, HistoList, 2, false, true, sE_Trans_all_ang_2p, "Energy_transfer_Ev-El_all_Deg_QEL_only",
         //                      "plots/Energy_transfer_histograms/ET_All_Ang_2p/", "2p", kBlack, true, true, true);
         //        histPlotter1D(c1, E_Trans_all_ang_MEC_2p, normalized_E_Trans_all_ang_all_int_plots, false, 1., "Energy Transfer #omega for every #theta_{l'}", "MEC only", 0.06,
-        //                      0.0425, 0.0425, plots, Histogram_OutPDF, 2, false, true, sE_Trans_all_ang_2p, "Energy_transfer_Ev-El_all_Deg_MEC_only",
+        //                      0.0425, 0.0425, plots, HistoList, 2, false, true, sE_Trans_all_ang_2p, "Energy_transfer_Ev-El_all_Deg_MEC_only",
         //                      "plots/Energy_transfer_histograms/ET_All_Ang_2p/", "2p", kBlack, true, true, true);
         //        histPlotter1D(c1, E_Trans_all_ang_RES_2p, normalized_E_Trans_all_ang_all_int_plots, false, 1., "Energy Transfer #omega for every #theta_{l'}", "RES only", 0.06,
-        //                      0.0425, 0.0425, plots, Histogram_OutPDF, 2, false, true, sE_Trans_all_ang_2p, "Energy_transfer_Ev-El_all_Deg_RES_only",
+        //                      0.0425, 0.0425, plots, HistoList, 2, false, true, sE_Trans_all_ang_2p, "Energy_transfer_Ev-El_all_Deg_RES_only",
         //                      "plots/Energy_transfer_histograms/ET_All_Ang_2p/", "2p", kBlack, true, true, true);
         //        histPlotter1D(c1, E_Trans_all_ang_DIS_2p, normalized_E_Trans_all_ang_all_int_plots, false, 1., "Energy Transfer #omega for every #theta_{l'}", "DIS only", 0.06,
-        //                      0.0425, 0.0425, plots, Histogram_OutPDF, 2, false, true, sE_Trans_all_ang_2p, "Energy_transfer_Ev-El_all_Deg_DIS_only",
+        //                      0.0425, 0.0425, plots, HistoList, 2, false, true, sE_Trans_all_ang_2p, "Energy_transfer_Ev-El_all_Deg_DIS_only",
         //                      "plots/Energy_transfer_histograms/ET_All_Ang_2p/", "2p", kBlack, true, true, true);
         //
         //        stackPlotter1D(c1, sE_Trans_all_ang_2p, normalized_E_Trans_all_ang_all_int_plots, "Energy Transfer #omega for every #theta_{l'}", "2p", plots,
         //                       E_Trans_all_ang_all_int_2p, E_Trans_all_ang_QEL_2p, E_Trans_all_ang_MEC_2p, E_Trans_all_ang_RES_2p, E_Trans_all_ang_DIS_2p, "01_ET_All_Ang_stack",
         //                       "plots/Energy_transfer_histograms/ET_All_Ang_2p/", "");
         histPlotter1D(c1, E_Trans_all_ang_all_int_2p, normalized_E_Trans_all_ang_all_int_plots, false, 1., "#omega for every #theta_{l'}", "All Interactions", 0.06, 0.0425, 0.0425, plots,
-                      Histogram_OutPDF, 3, false, true, sE_Trans_all_ang_2p, "Energy_transfer_Ev-El_all_Deg_all_interactions",
+                      HistoList, 3, false, true, sE_Trans_all_ang_2p, "Energy_transfer_Ev-El_all_Deg_all_interactions",
                       //                      "plots/Energy_transfer_histograms/ET_All_Ang_2p/", "2pXnX#pi^{0}", kBlack, true, true, true);
                       "plots/Energy_transfer_histograms/ET_All_Ang_2p/", "2p", kBlack, true, true, true);
 
         histPlotter1D(c1, E_Trans_all_ang_QEL_2p, normalized_E_Trans_all_ang_all_int_plots, false, 1., "#omega for every #theta_{l'}", "QEL only", 0.06, 0.0425, 0.0425, plots,
-                      Histogram_OutPDF, 2, false, true, sE_Trans_all_ang_2p, "Energy_transfer_Ev-El_all_Deg_QEL_only",
+                      HistoList, 2, false, true, sE_Trans_all_ang_2p, "Energy_transfer_Ev-El_all_Deg_QEL_only",
                       //                      "plots/Energy_transfer_histograms/ET_All_Ang_2p/", "2pXnX#pi^{0}", kBlack, true, true, true);
                       "plots/Energy_transfer_histograms/ET_All_Ang_2p/", "2p", kBlack, true, true, true);
         histPlotter1D(c1, E_Trans_all_ang_MEC_2p, normalized_E_Trans_all_ang_all_int_plots, false, 1., "#omega for every #theta_{l'}", "MEC only", 0.06, 0.0425, 0.0425, plots,
-                      Histogram_OutPDF, 2, false, true, sE_Trans_all_ang_2p, "Energy_transfer_Ev-El_all_Deg_MEC_only",
+                      HistoList, 2, false, true, sE_Trans_all_ang_2p, "Energy_transfer_Ev-El_all_Deg_MEC_only",
                       //                      "plots/Energy_transfer_histograms/ET_All_Ang_2p/", "2pXnX#pi^{0}", kBlack, true, true, true);
                       "plots/Energy_transfer_histograms/ET_All_Ang_2p/", "2p", kBlack, true, true, true);
         histPlotter1D(c1, E_Trans_all_ang_RES_2p, normalized_E_Trans_all_ang_all_int_plots, false, 1., "#omega for every #theta_{l'}", "RES only", 0.06, 0.0425, 0.0425, plots,
-                      Histogram_OutPDF, 2, false, true, sE_Trans_all_ang_2p, "Energy_transfer_Ev-El_all_Deg_RES_only",
+                      HistoList, 2, false, true, sE_Trans_all_ang_2p, "Energy_transfer_Ev-El_all_Deg_RES_only",
                       //                      "plots/Energy_transfer_histograms/ET_All_Ang_2p/", "2pXnX#pi^{0}", kBlack, true, true, true);
                       "plots/Energy_transfer_histograms/ET_All_Ang_2p/", "2p", kBlack, true, true, true);
         histPlotter1D(c1, E_Trans_all_ang_DIS_2p, normalized_E_Trans_all_ang_all_int_plots, false, 1., "#omega for every #theta_{l'}", "DIS only", 0.06, 0.0425, 0.0425, plots,
-                      Histogram_OutPDF, 2, false, true, sE_Trans_all_ang_2p, "Energy_transfer_Ev-El_all_Deg_DIS_only",
+                      HistoList, 2, false, true, sE_Trans_all_ang_2p, "Energy_transfer_Ev-El_all_Deg_DIS_only",
                       //                      "plots/Energy_transfer_histograms/ET_All_Ang_2p/", "2pXnX#pi^{0}", kBlack, true, true, true);
                       "plots/Energy_transfer_histograms/ET_All_Ang_2p/", "2p", kBlack, true, true, true);
 
         //        stackPlotter1D(c1, sE_Trans_all_ang_2p, normalized_E_Trans_all_ang_all_int_plots, "#omega for every #theta_{l'}", "2pXnX#pi^{0}", plots,
-        stackPlotter1D(c1, sE_Trans_all_ang_2p, normalized_E_Trans_all_ang_all_int_plots, "#omega for every #theta_{l'}", "2p", plots, Histogram_OutPDF, E_Trans_all_ang_all_int_2p,
+        stackPlotter1D(c1, sE_Trans_all_ang_2p, normalized_E_Trans_all_ang_all_int_plots, "#omega for every #theta_{l'}", "2p", plots, HistoList, E_Trans_all_ang_all_int_2p,
                        E_Trans_all_ang_QEL_2p, E_Trans_all_ang_MEC_2p, E_Trans_all_ang_RES_2p, E_Trans_all_ang_DIS_2p, "01_ET_All_Ang_stack",
                        "plots/Energy_transfer_histograms/ET_All_Ang_2p/", "");
 #pragma endregion
 
 #pragma region /* Energy transfer (Ev-El) for every theta_{l} (1n1p) */
         histPlotter1D(c1, E_Trans_all_ang_all_int_1n1p, normalized_E_Trans_all_ang_all_int_plots, false, 1., "#omega for every #theta_{l'}", "All Interactions", 0.06, 0.0425, 0.0425, plots,
-                      Histogram_OutPDF, 3, true, true, sE_Trans_all_ang_1n1p, "Energy_transfer_Ev-El_all_Deg_all_interactions", "plots/Energy_transfer_histograms/ET_All_Ang_1n1p/", "1n1p",
+                      HistoList, 3, true, true, sE_Trans_all_ang_1n1p, "Energy_transfer_Ev-El_all_Deg_all_interactions", "plots/Energy_transfer_histograms/ET_All_Ang_1n1p/", "1n1p",
                       kBlack, true, true, true);
 
         histPlotter1D(c1, E_Trans_all_ang_QEL_1n1p, normalized_E_Trans_all_ang_all_int_plots, false, 1., "#omega for every #theta_{l'}", "QEL only", 0.06, 0.0425, 0.0425, plots,
-                      Histogram_OutPDF, 2, false, true, sE_Trans_all_ang_1n1p, "Energy_transfer_Ev-El_all_Deg_QEL_only", "plots/Energy_transfer_histograms/ET_All_Ang_1n1p/", "1n1p", kBlack,
+                      HistoList, 2, false, true, sE_Trans_all_ang_1n1p, "Energy_transfer_Ev-El_all_Deg_QEL_only", "plots/Energy_transfer_histograms/ET_All_Ang_1n1p/", "1n1p", kBlack,
                       true, true, true);
         histPlotter1D(c1, E_Trans_all_ang_MEC_1n1p, normalized_E_Trans_all_ang_all_int_plots, false, 1., "#omega for every #theta_{l'}", "MEC only", 0.06, 0.0425, 0.0425, plots,
-                      Histogram_OutPDF, 2, false, true, sE_Trans_all_ang_1n1p, "Energy_transfer_Ev-El_all_Deg_MEC_only", "plots/Energy_transfer_histograms/ET_All_Ang_1n1p/", "1n1p", kBlack,
+                      HistoList, 2, false, true, sE_Trans_all_ang_1n1p, "Energy_transfer_Ev-El_all_Deg_MEC_only", "plots/Energy_transfer_histograms/ET_All_Ang_1n1p/", "1n1p", kBlack,
                       true, true, true);
         histPlotter1D(c1, E_Trans_all_ang_RES_1n1p, normalized_E_Trans_all_ang_all_int_plots, false, 1., "#omega for every #theta_{l'}", "RES only", 0.06, 0.0425, 0.0425, plots,
-                      Histogram_OutPDF, 2, false, true, sE_Trans_all_ang_1n1p, "Energy_transfer_Ev-El_all_Deg_RES_only", "plots/Energy_transfer_histograms/ET_All_Ang_1n1p/", "1n1p", kBlack,
+                      HistoList, 2, false, true, sE_Trans_all_ang_1n1p, "Energy_transfer_Ev-El_all_Deg_RES_only", "plots/Energy_transfer_histograms/ET_All_Ang_1n1p/", "1n1p", kBlack,
                       true, true, true);
         histPlotter1D(c1, E_Trans_all_ang_DIS_1n1p, normalized_E_Trans_all_ang_all_int_plots, false, 1., "#omega for every #theta_{l'}", "DIS only", 0.06, 0.0425, 0.0425, plots,
-                      Histogram_OutPDF, 2, false, true, sE_Trans_all_ang_1n1p, "Energy_transfer_Ev-El_all_Deg_DIS_only", "plots/Energy_transfer_histograms/ET_All_Ang_1n1p/", "1n1p", kBlack,
+                      HistoList, 2, false, true, sE_Trans_all_ang_1n1p, "Energy_transfer_Ev-El_all_Deg_DIS_only", "plots/Energy_transfer_histograms/ET_All_Ang_1n1p/", "1n1p", kBlack,
                       true, true, true);
 
-        stackPlotter1D(c1, sE_Trans_all_ang_1n1p, normalized_E_Trans_all_ang_all_int_plots, "#omega for every #theta_{l'}", "1n1p", plots, Histogram_OutPDF, E_Trans_all_ang_all_int_1n1p,
+        stackPlotter1D(c1, sE_Trans_all_ang_1n1p, normalized_E_Trans_all_ang_all_int_plots, "#omega for every #theta_{l'}", "1n1p", plots, HistoList, E_Trans_all_ang_all_int_1n1p,
                        E_Trans_all_ang_QEL_1n1p, E_Trans_all_ang_MEC_1n1p, E_Trans_all_ang_RES_1n1p, E_Trans_all_ang_DIS_1n1p, "01_ET_All_Ang_stack",
                        "plots/Energy_transfer_histograms/ET_All_Ang_1n1p/", "");
 #pragma endregion
@@ -8652,8 +8662,8 @@ void gst::Loop() {
 
         // TODO: IPS plots - these plots are for IPS poster. Rename them to fit the code.
         //        stackPlotter1D(c1, Energy_Transfer_all_int_15_Stack_2p, normalized_E_Trans15_plots, "Energy transfer #omega around #theta_{l'}=15#circ", "2pXnX#pi^{0}", plots,
-        //        Histogram_OutPDF,
-        stackPlotter1D(c1, Energy_Transfer_all_int_15_Stack_2p, normalized_E_Trans15_plots, "#omega around #theta_{l'} = 15#circ", "2p", plots, Histogram_OutPDF, E_Trans15_all_2p,
+        //        HistoList,
+        stackPlotter1D(c1, Energy_Transfer_all_int_15_Stack_2p, normalized_E_Trans15_plots, "#omega around #theta_{l'} = 15#circ", "2p", plots, HistoList, E_Trans15_all_2p,
                        E_Trans15_QEL_2p, E_Trans15_MEC_2p, E_Trans15_RES_2p, E_Trans15_DIS_2p, "Energy_transfer_histogram_15_Stack_linear_scale", "plots/Energy_transfer_histograms/", "");
 
 #pragma endregion
@@ -8696,7 +8706,7 @@ void gst::Loop() {
         //        c1->Clear();
 
         // TODO: IPS plots - these plots are for IPS poster. Rename them to fit the code.
-        stackPlotter1D(c1, Energy_Transfer_all_int_15_Stack_1n1p, normalized_E_Trans15_plots, "#omega around #theta_{l'} = 15#circ", "1n1p", plots, Histogram_OutPDF, E_Trans15_all_1n1p,
+        stackPlotter1D(c1, Energy_Transfer_all_int_15_Stack_1n1p, normalized_E_Trans15_plots, "#omega around #theta_{l'} = 15#circ", "1n1p", plots, HistoList, E_Trans15_all_1n1p,
                        E_Trans15_QEL_1n1p, E_Trans15_MEC_1n1p, E_Trans15_RES_1n1p, E_Trans15_DIS_1n1p, "Energy_transfer_histogram_15_Stack_linear_scale", "plots/Energy_transfer_histograms/",
                        "");
 
@@ -8717,10 +8727,10 @@ void gst::Loop() {
 #pragma region /* E_cal_QEL restoration (2p & 1n1p) */
         double E_cal_QEL_integral = E_cal_QEL_2p->Integral() + E_cal_QEL_1n1p->Integral();
 
-        histPlotter1D(c1, E_cal_QEL_2p, normalized_E_cal_plots, true, E_cal_QEL_integral, "E_{cal} Histogram", "QEL Only", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2, false, true,
+        histPlotter1D(c1, E_cal_QEL_2p, normalized_E_cal_plots, true, E_cal_QEL_integral, "E_{cal} Histogram", "QEL Only", 0.06, 0.0425, 0.0425, plots, HistoList, 2, false, true,
                       E_cal_QEL_Stack, "E_cal_restoration_QEL_only", "plots/E_cal_restorations/", "2p", kBlue, true, true, true);
 
-        histPlotter1D(c1, E_cal_QEL_1n1p, normalized_E_cal_plots, true, E_cal_QEL_integral, "E_{cal} Histogram", "QEL Only", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2, false, true,
+        histPlotter1D(c1, E_cal_QEL_1n1p, normalized_E_cal_plots, true, E_cal_QEL_integral, "E_{cal} Histogram", "QEL Only", 0.06, 0.0425, 0.0425, plots, HistoList, 2, false, true,
                       E_cal_QEL_Stack, "E_cal_restoration_QEL_only", "plots/E_cal_restorations/", "1n1p", kRed, true, true, true);
 #pragma endregion
 
@@ -8760,14 +8770,14 @@ void gst::Loop() {
         double E_cal_MEC_1n1p_and_2p_integral = E_cal_MEC_2p->Integral() + E_cal_MEC_1n1p->Integral();
         double E_cal_MEC_2p_and_2n_integral = E_cal_MEC_2p->Integral() + E_cal_MEC_2n->Integral();
 
-        histPlotter1D(c1, E_cal_MEC_2n, normalized_E_cal_plots, true, E_cal_MEC_2p_and_2n_integral, "E_{cal} Histogram", "MEC Only", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 4, false,
+        histPlotter1D(c1, E_cal_MEC_2n, normalized_E_cal_plots, true, E_cal_MEC_2p_and_2n_integral, "E_{cal} Histogram", "MEC Only", 0.06, 0.0425, 0.0425, plots, HistoList, 4, false,
                       true, E_cal_MEC_Stack_2p_and_2n, "E_cal_restoration_MEC_only", "plots/E_cal_restorations/", "2n", kGreen, true, true, true);
 
-        histPlotter1D(c1, E_cal_MEC_2p, normalized_E_cal_plots, true, E_cal_MEC_1n1p_and_2p_integral, "E_{cal} Histogram", "MEC Only", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2,
+        histPlotter1D(c1, E_cal_MEC_2p, normalized_E_cal_plots, true, E_cal_MEC_1n1p_and_2p_integral, "E_{cal} Histogram", "MEC Only", 0.06, 0.0425, 0.0425, plots, HistoList, 2,
                       false, true, E_cal_MEC_Stack_1n1p_and_2p, "E_cal_restoration_MEC_only", "plots/E_cal_restorations/", "2p", kBlue, true, true, true);
         E_cal_MEC_Stack_2p_and_2n->Add(E_cal_MEC_2p);
 
-        histPlotter1D(c1, E_cal_MEC_1n1p, normalized_E_cal_plots, true, E_cal_MEC_1n1p_and_2p_integral, "E_{cal} Histogram", "MEC Only", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2,
+        histPlotter1D(c1, E_cal_MEC_1n1p, normalized_E_cal_plots, true, E_cal_MEC_1n1p_and_2p_integral, "E_{cal} Histogram", "MEC Only", 0.06, 0.0425, 0.0425, plots, HistoList, 2,
                       false, true, E_cal_MEC_Stack_1n1p_and_2p, "E_cal_restoration_MEC_only", "plots/E_cal_restorations/", "1n1p", kRed, true, true, true);
 #pragma endregion
 
@@ -8836,10 +8846,10 @@ void gst::Loop() {
 #pragma region /* E_cal_RES restoration (2p & 1n1p) */
         double E_cal_RES_integral = E_cal_RES_2p->Integral() + E_cal_RES_1n1p->Integral();
 
-        histPlotter1D(c1, E_cal_RES_2p, normalized_E_cal_plots, true, E_cal_RES_integral, "E_{cal} Histogram", "RES Only", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2, false, true,
+        histPlotter1D(c1, E_cal_RES_2p, normalized_E_cal_plots, true, E_cal_RES_integral, "E_{cal} Histogram", "RES Only", 0.06, 0.0425, 0.0425, plots, HistoList, 2, false, true,
                       E_cal_RES_Stack, "E_cal_restoration_RES_only", "plots/E_cal_restorations/", "2p", kBlue, true, true, true);
 
-        histPlotter1D(c1, E_cal_RES_1n1p, normalized_E_cal_plots, true, E_cal_RES_integral, "E_{cal} Histogram", "RES Only", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2, false, true,
+        histPlotter1D(c1, E_cal_RES_1n1p, normalized_E_cal_plots, true, E_cal_RES_integral, "E_{cal} Histogram", "RES Only", 0.06, 0.0425, 0.0425, plots, HistoList, 2, false, true,
                       E_cal_RES_Stack, "E_cal_restoration_RES_only", "plots/E_cal_restorations/", "1n1p", kRed, true, true, true);
 #pragma endregion
 
@@ -8868,10 +8878,10 @@ void gst::Loop() {
 #pragma region /* E_cal_DIS restoration (2p & 1n1p) */
         double E_cal_DIS_integral = E_cal_DIS_2p->Integral() + E_cal_DIS_1n1p->Integral();
 
-        histPlotter1D(c1, E_cal_DIS_2p, normalized_E_cal_plots, true, E_cal_DIS_integral, "E_{cal} Histogram", "DIS Only", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2, false, true,
+        histPlotter1D(c1, E_cal_DIS_2p, normalized_E_cal_plots, true, E_cal_DIS_integral, "E_{cal} Histogram", "DIS Only", 0.06, 0.0425, 0.0425, plots, HistoList, 2, false, true,
                       E_cal_DIS_Stack, "E_cal_restoration_DIS_only", "plots/E_cal_restorations/", "2p", kBlue, true, true, true);
 
-        histPlotter1D(c1, E_cal_DIS_1n1p, normalized_E_cal_plots, true, E_cal_DIS_integral, "E_{cal} Histogram", "DIS Only", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2, false, true,
+        histPlotter1D(c1, E_cal_DIS_1n1p, normalized_E_cal_plots, true, E_cal_DIS_integral, "E_{cal} Histogram", "DIS Only", 0.06, 0.0425, 0.0425, plots, HistoList, 2, false, true,
                       E_cal_DIS_Stack, "E_cal_restoration_DIS_only", "plots/E_cal_restorations/", "1n1p", kRed, true, true, true);
 #pragma endregion
 
@@ -8897,21 +8907,21 @@ void gst::Loop() {
 
         // TODO: IPS plots - these plots are for IPS poster. Rename them to fit the code.
         //  -----------------------------------------------------------------------------------------------------
-        histPlotter1D(c1, hEcal_all_int_2p, normalized_E_cal_plots, false, 1., "Truth-level E_{cal}", "All Int.", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 3, false, true, sEcal_2p,
+        histPlotter1D(c1, hEcal_all_int_2p, normalized_E_cal_plots, false, 1., "Truth-level E_{cal}", "All Int.", 0.06, 0.0425, 0.0425, plots, HistoList, 3, false, true, sEcal_2p,
                       "01_E_cal_all_int", "plots/E_cal_restorations/All_Int_Stack_IPS/", "2p", kBlack, true, true, true);
 
-        histPlotter1D(c1, hEcal_QEL_2p, normalized_E_cal_plots, false, 1., "Truth-level E_{cal}", "QEL only", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2, false, true, sEcal_2p,
+        histPlotter1D(c1, hEcal_QEL_2p, normalized_E_cal_plots, false, 1., "Truth-level E_{cal}", "QEL only", 0.06, 0.0425, 0.0425, plots, HistoList, 2, false, true, sEcal_2p,
                       "02_E_cal_QEL_only", "plots/E_cal_restorations/All_Int_Stack_IPS/", "2p", kBlack, true, true, true);
-        histPlotter1D(c1, hEcal_MEC_2p, normalized_E_cal_plots, false, 1., "Truth-level E_{cal}", "MEC only", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2, false, true, sEcal_2p,
+        histPlotter1D(c1, hEcal_MEC_2p, normalized_E_cal_plots, false, 1., "Truth-level E_{cal}", "MEC only", 0.06, 0.0425, 0.0425, plots, HistoList, 2, false, true, sEcal_2p,
                       "03_E_cal_MEC_only", "plots/E_cal_restorations/All_Int_Stack_IPS/", "2p", kBlack, true, true, true);
-        histPlotter1D(c1, hEcal_RES_2p, normalized_E_cal_plots, false, 1., "Truth-level E_{cal}", "RES only", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2, false, true, sEcal_2p,
+        histPlotter1D(c1, hEcal_RES_2p, normalized_E_cal_plots, false, 1., "Truth-level E_{cal}", "RES only", 0.06, 0.0425, 0.0425, plots, HistoList, 2, false, true, sEcal_2p,
                       "04_E_cal_RES_only", "plots/E_cal_restorations/All_Int_Stack_IPS/", "2p", kBlack, true, true, true);
-        histPlotter1D(c1, hEcal_DIS_2p, normalized_E_cal_plots, false, 1., "Truth-level E_{cal}", "DIS only", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2, false, true, sEcal_2p,
+        histPlotter1D(c1, hEcal_DIS_2p, normalized_E_cal_plots, false, 1., "Truth-level E_{cal}", "DIS only", 0.06, 0.0425, 0.0425, plots, HistoList, 2, false, true, sEcal_2p,
                       "05_E_cal_DIS_only", "plots/E_cal_restorations/All_Int_Stack_IPS/", "2p", kBlack, true, true, true);
 
-        //        stackPlotter1D(c1, sEcal_2p, normalized_E_cal_plots, "Truth-level E_{cal}", "2pXnX#pi^{0}", plots, Histogram_OutPDF,  hEcal_all_int_2p, hEcal_QEL_2p, hEcal_MEC_2p,
+        //        stackPlotter1D(c1, sEcal_2p, normalized_E_cal_plots, "Truth-level E_{cal}", "2pXnX#pi^{0}", plots, HistoList,  hEcal_all_int_2p, hEcal_QEL_2p, hEcal_MEC_2p,
         //        hEcal_RES_2p, hEcal_DIS_2p,
-        stackPlotter1D(c1, sEcal_2p, normalized_E_cal_plots, "Truth-level E_{cal}", "2p", plots, Histogram_OutPDF, hEcal_all_int_2p, hEcal_QEL_2p, hEcal_MEC_2p, hEcal_RES_2p, hEcal_DIS_2p,
+        stackPlotter1D(c1, sEcal_2p, normalized_E_cal_plots, "Truth-level E_{cal}", "2p", plots, HistoList, hEcal_all_int_2p, hEcal_QEL_2p, hEcal_MEC_2p, hEcal_RES_2p, hEcal_DIS_2p,
                        "00_E_cal_stack", "plots/E_cal_restorations/All_Int_Stack_IPS/", "");
     }
 
@@ -9308,27 +9318,27 @@ void gst::Loop() {
 
 #pragma region /* Momentum histograms (2p) */
         histPlotter1D(c1, P_L_hist_2p, normalized_P_L_plots, false, 1., "Momentum Histogram of Leading Proton P_{L} = P_{p1}", "all interactions", 0.06, 0.0425, 0.0425, plots,
-                      Histogram_OutPDF, 2, false, true, MomentumStack_2p, "P_L_histogram", "plots/momentum_histograms/2p/", "2p", kBlue, true, true, true);
+                      HistoList, 2, false, true, MomentumStack_2p, "P_L_histogram", "plots/momentum_histograms/2p/", "2p", kBlue, true, true, true);
 
         histPlotter1D(c1, P_R_hist_2p, normalized_P_R_plots, false, 1., "Momentum Histogram of Recoil Proton P_{R} = P_{p2}", "all interactions", 0.06, 0.0425, 0.0425, plots,
-                      Histogram_OutPDF, 2, false, true, MomentumStack_2p, "P_R_histogram", "plots/momentum_histograms/2p/", "2p", kRed, true, true, true);
+                      HistoList, 2, false, true, MomentumStack_2p, "P_R_histogram", "plots/momentum_histograms/2p/", "2p", kRed, true, true, true);
 
-        histPlotter1D(c1, P_lp_hist_2p, normalized_P_R_plots, false, 1., "Momentum Histogram of Outgoing Lepton P_{l}", "all interactions", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2,
+        histPlotter1D(c1, P_lp_hist_2p, normalized_P_R_plots, false, 1., "Momentum Histogram of Outgoing Lepton P_{l}", "all interactions", 0.06, 0.0425, 0.0425, plots, HistoList, 2,
                       false, true, MomentumStack_2p, "P_lp_histogram", "plots/momentum_histograms/2p/", "2p", kGreen, true, true, true);
 #pragma endregion
 
 #pragma region /* Momentum histograms (1n1p) */
-        histPlotter1D(c1, P_p_hist_1n1p, normalized_P_L_plots, false, 1., "Momentum Histogram of Scattered Proton P_{p}", "all interactions", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF,
+        histPlotter1D(c1, P_p_hist_1n1p, normalized_P_L_plots, false, 1., "Momentum Histogram of Scattered Proton P_{p}", "all interactions", 0.06, 0.0425, 0.0425, plots, HistoList,
                       2, false, true, MomentumStack_1n1p, "P_p_histogram", "plots/momentum_histograms/1n1p/", "1n1p", kBlue, true, true, true);
 
-        histPlotter1D(c1, P_n_hist_1n1p, normalized_P_R_plots, false, 1., "Momentum Histogram of Scattered Neutron P_{n}", "all interactions", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF,
+        histPlotter1D(c1, P_n_hist_1n1p, normalized_P_R_plots, false, 1., "Momentum Histogram of Scattered Neutron P_{n}", "all interactions", 0.06, 0.0425, 0.0425, plots, HistoList,
                       2, false, true, MomentumStack_1n1p, "P_n_histogram", "plots/momentum_histograms/1n1p/", "1n1p", kRed, true, true, true);
 
-        histPlotter1D(c1, P_lp_hist_1n1p, normalized_P_R_plots, false, 1., "Momentum Histogram of Outgoing Lepton P_{l}", "all interactions", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF,
+        histPlotter1D(c1, P_lp_hist_1n1p, normalized_P_R_plots, false, 1., "Momentum Histogram of Outgoing Lepton P_{l}", "all interactions", 0.06, 0.0425, 0.0425, plots, HistoList,
                       2, false, true, MomentumStack_1n1p, "P_lp_histogram", "plots/momentum_histograms/1n1p/", "1n1p", kGreen, true, true, true);
 #pragma endregion
 
-        histPlotter1D(c1, P_lp_hist_inclusive, false, false, 1., "P_{l} (all interactions)", "inclusive", 0.06, 0.0425, 0.0425, plots, Histogram_OutPDF, 2, false, true, MomentumStack_1n1p,
+        histPlotter1D(c1, P_lp_hist_inclusive, false, false, 1., "P_{l} (all interactions)", "inclusive", 0.06, 0.0425, 0.0425, plots, HistoList, 2, false, true, MomentumStack_1n1p,
                       "P_lp_hist", "plots/", "inclusive", kBlue, true, true, true);
 
 #pragma region /* Momentum histogram stack (2p) */

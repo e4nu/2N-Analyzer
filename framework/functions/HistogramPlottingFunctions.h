@@ -6,7 +6,7 @@
 #define HISTOGRAMPLOTTINGFUNCTIONS_H
 
 #if IndependentCanvasPDF
-#include "../includes/CanvasPDF/CanvasPDF.h"
+    #include "../includes/CanvasPDF/CanvasPDF.h"
 #endif
 
 #include "../namespaces/general_utilities/utilities.h"
@@ -19,16 +19,16 @@ using namespace utilities;
 
 // histPlotter1D function (old) -----------------------------------------------------------------------------------------------------------------------------------------
 
-#pragma region /* histPlotter1D function (old) */
+#pragma region                                          /* histPlotter1D function (old) */
 void histPlotter1D(TCanvas *HistogramCanvas,            // The canvas
                    TH1D *Histogram1D,                   // The histogram
                    bool normalize_Histogram,            // Normalize histogram or not
                    bool custom_normalization,           // Normalize histogram or not
                    double custom_normalization_factor,  // Normalize histogram or not
-                   std::string Histogram1DTitle, std::string Histogram1DTitleReactions, double titleSize, double labelSizex, double labelSizey, TList *Histogram_list, const char *Histogram_OutPDF,
-                   int lineWidth, bool LogScalePlot, bool LinearScalePlot, THStack *Histogram1DStack, std::string Histogram1DSaveName, const std::string &Histogram1DSaveNamePath, std::string finalState,
-                   int kColor = 1, bool centerTitle = true, bool AddToStack = false, bool ShowStats = true, bool title2 = false, bool apply_plot_cuts = false, double plot_cuts = 0,
-                   double plot_Xmax = 0, bool plot_max = true) {
+                   std::string Histogram1DTitle, std::string Histogram1DTitleReactions, double titleSize, double labelSizex, double labelSizey, TList *Histogram_list,
+                   vector<TH1 *> &HistoList, int lineWidth, bool LogScalePlot, bool LinearScalePlot, THStack *Histogram1DStack, std::string Histogram1DSaveName,
+                   const std::string &Histogram1DSaveNamePath, std::string finalState, int kColor = 1, bool centerTitle = true, bool AddToStack = false, bool ShowStats = true,
+                   bool title2 = false, bool apply_plot_cuts = false, double plot_cuts = 0, double plot_Xmax = 0, bool plot_max = true) {
     //  Normalization factor:
     double Histogram1D_integral;  // To be calculated only if normalize_Histogram
     double x_1 = 0.18, y_1 = 0.3, x_2 = 0.86, y_2 = 0.7;
@@ -164,14 +164,7 @@ void histPlotter1D(TCanvas *HistogramCanvas,            // The canvas
         const char *SaveDir = Histogram1DSaveNameDir.c_str();
         HistogramCanvas->SaveAs(SaveDir);
 
-        // CanvasPDF->cd(CanvasPDF_ind);
-        // HistogramCanvas->DrawClonePad();
-        // CopyPadContent((TPad *)HistogramCanvas->cd(), (TPad *)CanvasPDF->cd(CanvasPDF_ind));
-        // CanvasPDF->Print(Histogram_OutPDF);
-        HistogramCanvas->Print(Form("%s[", Histogram_OutPDF));  // Open the PDF file
-        HistogramCanvas->Print(Histogram_OutPDF);
-        HistogramCanvas->Print(Form("%s]", Histogram_OutPDF));  // Close the PDF file
-                                                                // ++CanvasPDF_ind;
+        HistoList.push_back(Histogram1D);
     }
 
     if (LinearScalePlot) {
@@ -187,14 +180,7 @@ void histPlotter1D(TCanvas *HistogramCanvas,            // The canvas
         const char *SaveDir = Histogram1DSaveNameDir.c_str();
         HistogramCanvas->SaveAs(SaveDir);
 
-        // CanvasPDF->cd(CanvasPDF_ind);
-        // HistogramCanvas->DrawClonePad();
-        // CopyPadContent((TPad *)HistogramCanvas->cd(), (TPad *)CanvasPDF->cd(CanvasPDF_ind));
-        // CanvasPDF->Print(Histogram_OutPDF);
-        HistogramCanvas->Print(Form("%s[", Histogram_OutPDF));  // Open the PDF file
-        HistogramCanvas->Print(Histogram_OutPDF);
-        HistogramCanvas->Print(Form("%s]", Histogram_OutPDF));  // Close the PDF file
-                                                                // ++CanvasPDF_ind;
+        HistoList.push_back(Histogram1D);
     }
 
     if (AddToStack) {
@@ -208,15 +194,16 @@ void histPlotter1D(TCanvas *HistogramCanvas,            // The canvas
 }
 #pragma endregion
 
-#pragma region /* histPlotter1D function (old, stackless) */
+#pragma region                                          /* histPlotter1D function (old, stackless) */
 void histPlotter1D(TCanvas *HistogramCanvas,            // The canvas
                    TH1D *Histogram1D,                   // The histogram
                    bool normalize_Histogram,            // Normalize histogram or not
                    bool custom_normalization,           // Normalize histogram or not
                    double custom_normalization_factor,  // Normalize histogram or not
-                   std::string Histogram1DTitle, std::string Histogram1DTitleReactions, double titleSize, double labelSizex, double labelSizey, TList *Histogram_list, const char *Histogram_OutPDF,
-                   int lineWidth, bool LogScalePlot, bool LinearScalePlot, std::string Histogram1DSaveName, const std::string &Histogram1DSaveNamePath, std::string finalState, bool centerTitle = true,
-                   bool ShowStats = true, bool title2 = false, bool apply_plot_cuts = false, double plot_cuts = 0, double plot_Xmax = 0, bool plot_max = true) {
+                   std::string Histogram1DTitle, std::string Histogram1DTitleReactions, double titleSize, double labelSizex, double labelSizey, TList *Histogram_list,
+                   vector<TH1 *> &HistoList, int lineWidth, bool LogScalePlot, bool LinearScalePlot, std::string Histogram1DSaveName, const std::string &Histogram1DSaveNamePath,
+                   std::string finalState, bool centerTitle = true, bool ShowStats = true, bool title2 = false, bool apply_plot_cuts = false, double plot_cuts = 0, double plot_Xmax = 0,
+                   bool plot_max = true) {
     double Histogram1D_integral;  // To be calculated only if normalize_Histogram
     double x_1 = 0.18, y_1 = 0.3, x_2 = 0.86, y_2 = 0.7;
     double diplayTextSize = 0.1;
@@ -343,14 +330,7 @@ void histPlotter1D(TCanvas *HistogramCanvas,            // The canvas
         const char *SaveDir = Histogram1DSaveNameDir.c_str();
         HistogramCanvas->SaveAs(SaveDir);
 
-        // CanvasPDF->cd(CanvasPDF_ind);
-        // HistogramCanvas->DrawClonePad();
-        // CopyPadContent((TPad *)HistogramCanvas->cd(), (TPad *)CanvasPDF->cd(CanvasPDF_ind));
-        // CanvasPDF->Print(Histogram_OutPDF);
-        HistogramCanvas->Print(Form("%s[", Histogram_OutPDF));  // Open the PDF file
-        HistogramCanvas->Print(Histogram_OutPDF);
-        HistogramCanvas->Print(Form("%s]", Histogram_OutPDF));  // Close the PDF file
-                                                                // ++CanvasPDF_ind;
+        HistoList.push_back(Histogram1D);
     }
 
     if (LinearScalePlot) {
@@ -366,14 +346,7 @@ void histPlotter1D(TCanvas *HistogramCanvas,            // The canvas
         const char *SaveDir = Histogram1DSaveNameDir.c_str();
         HistogramCanvas->SaveAs(SaveDir);
 
-        // CanvasPDF->cd(CanvasPDF_ind);
-        // HistogramCanvas->DrawClonePad();
-        // CopyPadContent((TPad *)HistogramCanvas->cd(), (TPad *)CanvasPDF->cd(CanvasPDF_ind));
-        // CanvasPDF->Print(Histogram_OutPDF);
-        HistogramCanvas->Print(Form("%s[", Histogram_OutPDF));  // Open the PDF file
-        HistogramCanvas->Print(Histogram_OutPDF);
-        HistogramCanvas->Print(Form("%s]", Histogram_OutPDF));  // Close the PDF file
-                                                                // ++CanvasPDF_ind;
+        HistoList.push_back(Histogram1D);
     }
 
     HistogramCanvas->cd();
@@ -383,16 +356,16 @@ void histPlotter1D(TCanvas *HistogramCanvas,            // The canvas
 
 // histPlotter1D function (unsymmetric cuts for SF plots) ---------------------------------------------------------------------------------------------------------------
 
-#pragma region /* histPlotter1D function (unsymmetric cuts for SF plots) */
+#pragma region                                          /* histPlotter1D function (unsymmetric cuts for SF plots) */
 void histPlotter1D(TCanvas *HistogramCanvas,            // The canvas
                    TH1D *Histogram1D,                   // The histogram
                    bool normalize_Histogram,            // Normalize histogram or not
                    bool custom_normalization,           // Normalize histogram or not
                    double custom_normalization_factor,  // Normalize histogram or not
-                   std::string Histogram1DTitle, std::string Histogram1DTitleReactions, TList *Histogram_list, const char *Histogram_OutPDF, int lineWidth, bool LogScalePlot, bool LinearScalePlot,
-                   THStack *Histogram1DStack, std::string Histogram1DSaveName, const std::string &Histogram1DSaveNamePath, std::string finalState, int kColor = 1, bool AddToStack = false,
-                   bool ShowStats = true, bool title2 = false, bool apply_plot_cuts = false, double plot_upper_cut = 0, double plot_lower_cut = 0, double plot_Xmax = 0,
-                   bool plot_max = true) {
+                   std::string Histogram1DTitle, std::string Histogram1DTitleReactions, TList *Histogram_list, vector<TH1 *> &HistoList, int lineWidth, bool LogScalePlot,
+                   bool LinearScalePlot, THStack *Histogram1DStack, std::string Histogram1DSaveName, const std::string &Histogram1DSaveNamePath, std::string finalState, int kColor = 1,
+                   bool AddToStack = false, bool ShowStats = true, bool title2 = false, bool apply_plot_cuts = false, double plot_upper_cut = 0, double plot_lower_cut = 0,
+                   double plot_Xmax = 0, bool plot_max = true) {
     //  Normalization factor:
     double Histogram1D_integral;  // To be calculated only if normalize_Histogram
     double x_1 = 0.18, y_1 = 0.3, x_2 = 0.86, y_2 = 0.7;
@@ -542,14 +515,7 @@ void histPlotter1D(TCanvas *HistogramCanvas,            // The canvas
         const char *SaveDir = Histogram1DSaveNameDir.c_str();
         HistogramCanvas->SaveAs(SaveDir);
 
-        // CanvasPDF->cd(CanvasPDF_ind);
-        // HistogramCanvas->DrawClonePad();
-        // CopyPadContent((TPad *)HistogramCanvas->cd(), (TPad *)CanvasPDF->cd(CanvasPDF_ind));
-        // CanvasPDF->Print(Histogram_OutPDF);
-        HistogramCanvas->Print(Form("%s[", Histogram_OutPDF));  // Open the PDF file
-        HistogramCanvas->Print(Histogram_OutPDF);
-        HistogramCanvas->Print(Form("%s]", Histogram_OutPDF));  // Close the PDF file
-                                                                // ++CanvasPDF_ind;
+        HistoList.push_back(Histogram1D);
     }
 
     if (LinearScalePlot) {
@@ -565,14 +531,7 @@ void histPlotter1D(TCanvas *HistogramCanvas,            // The canvas
         const char *SaveDir = Histogram1DSaveNameDir.c_str();
         HistogramCanvas->SaveAs(SaveDir);
 
-        // CanvasPDF->cd(CanvasPDF_ind);
-        // HistogramCanvas->DrawClonePad();
-        // CopyPadContent((TPad *)HistogramCanvas->cd(), (TPad *)CanvasPDF->cd(CanvasPDF_ind));
-        // CanvasPDF->Print(Histogram_OutPDF);
-        HistogramCanvas->Print(Form("%s[", Histogram_OutPDF));  // Open the PDF file
-        HistogramCanvas->Print(Histogram_OutPDF);
-        HistogramCanvas->Print(Form("%s]", Histogram_OutPDF));  // Close the PDF file
-                                                                // ++CanvasPDF_ind;
+        HistoList.push_back(Histogram1D);
     }
 
     if (AddToStack) {
@@ -586,15 +545,15 @@ void histPlotter1D(TCanvas *HistogramCanvas,            // The canvas
 }
 #pragma endregion
 
-#pragma region /* histPlotter1D function (unsymmetric cuts for SF plots, stackless) */
+#pragma region                                          /* histPlotter1D function (unsymmetric cuts for SF plots, stackless) */
 void histPlotter1D(TCanvas *HistogramCanvas,            // The canvas
                    TH1D *Histogram1D,                   // The histogram
                    bool normalize_Histogram,            // Normalize histogram or not
                    bool custom_normalization,           // Normalize histogram or not
                    double custom_normalization_factor,  // Normalize histogram or not
-                   std::string Histogram1DTitle, std::string Histogram1DTitleReactions, TList *Histogram_list, const char *Histogram_OutPDF, int lineWidth, bool LogScalePlot, bool LinearScalePlot,
-                   std::string Histogram1DSaveName, const std::string &Histogram1DSaveNamePath, std::string finalState, bool ShowStats = true, bool title2 = false, bool apply_plot_cuts = false,
-                   double plot_upper_cut = 0, double plot_lower_cut = 0, double plot_Xmax = 0, bool plot_max = true) {
+                   std::string Histogram1DTitle, std::string Histogram1DTitleReactions, TList *Histogram_list, vector<TH1 *> &HistoList, int lineWidth, bool LogScalePlot,
+                   bool LinearScalePlot, std::string Histogram1DSaveName, const std::string &Histogram1DSaveNamePath, std::string finalState, bool ShowStats = true, bool title2 = false,
+                   bool apply_plot_cuts = false, double plot_upper_cut = 0, double plot_lower_cut = 0, double plot_Xmax = 0, bool plot_max = true) {
     double Histogram1D_integral;  // To be calculated only if normalize_Histogram
     double x_1 = 0.18, y_1 = 0.3, x_2 = 0.86, y_2 = 0.7;
     double diplayTextSize = 0.1;
@@ -723,14 +682,7 @@ void histPlotter1D(TCanvas *HistogramCanvas,            // The canvas
         const char *SaveDir = Histogram1DSaveNameDir.c_str();
         HistogramCanvas->SaveAs(SaveDir);
 
-        // CanvasPDF->cd(CanvasPDF_ind);
-        // HistogramCanvas->DrawClonePad();
-        // CopyPadContent((TPad *)HistogramCanvas->cd(), (TPad *)CanvasPDF->cd(CanvasPDF_ind));
-        // CanvasPDF->Print(Histogram_OutPDF);
-        HistogramCanvas->Print(Form("%s[", Histogram_OutPDF));  // Open the PDF file
-        HistogramCanvas->Print(Histogram_OutPDF);
-        HistogramCanvas->Print(Form("%s]", Histogram_OutPDF));  // Close the PDF file
-                                                                // ++CanvasPDF_ind;
+        HistoList.push_back(Histogram1D);
     }
 
     if (LinearScalePlot) {
@@ -746,14 +698,7 @@ void histPlotter1D(TCanvas *HistogramCanvas,            // The canvas
         const char *SaveDir = Histogram1DSaveNameDir.c_str();
         HistogramCanvas->SaveAs(SaveDir);
 
-        // CanvasPDF->cd(CanvasPDF_ind);
-        // HistogramCanvas->DrawClonePad();
-        // CopyPadContent((TPad *)HistogramCanvas->cd(), (TPad *)CanvasPDF->cd(CanvasPDF_ind));
-        // CanvasPDF->Print(Histogram_OutPDF);
-        HistogramCanvas->Print(Form("%s[", Histogram_OutPDF));  // Open the PDF file
-        HistogramCanvas->Print(Histogram_OutPDF);
-        HistogramCanvas->Print(Form("%s]", Histogram_OutPDF));  // Close the PDF file
-                                                                // ++CanvasPDF_ind;
+        HistoList.push_back(Histogram1D);
     }
 
     HistogramCanvas->cd();
@@ -763,15 +708,15 @@ void histPlotter1D(TCanvas *HistogramCanvas,            // The canvas
 
 // histPlotter1D function (one-sided cuts for Nphe plots) ---------------------------------------------------------------------------------------------------------------
 
-#pragma region /* histPlotter1D function (one-sided cuts for Nphe plots) */
+#pragma region                                          /* histPlotter1D function (one-sided cuts for Nphe plots) */
 void histPlotter1D(TCanvas *HistogramCanvas,            // The canvas
                    TH1D *Histogram1D,                   // The histogram
                    bool normalize_Histogram,            // Normalize histogram or not
                    bool custom_normalization,           // Normalize histogram or not
                    double custom_normalization_factor,  // Normalize histogram or not
-                   std::string Histogram1DTitle, std::string Histogram1DTitleReactions, TList *Histogram_list, const char *Histogram_OutPDF, int lineWidth, bool LogScalePlot, bool LinearScalePlot,
-                   THStack *Histogram1DStack, std::string Histogram1DSaveName, const std::string &Histogram1DSaveNamePath, std::string finalState, int kColor = 1, bool AddToStack = false,
-                   bool ShowStats = true, bool title2 = false, bool apply_plot_cuts = false, double plot_cut = 0, double plot_Xmax = 0, bool plot_max = true) {
+                   std::string Histogram1DTitle, std::string Histogram1DTitleReactions, TList *Histogram_list, vector<TH1 *> &HistoList, int lineWidth, bool LogScalePlot,
+                   bool LinearScalePlot, THStack *Histogram1DStack, std::string Histogram1DSaveName, const std::string &Histogram1DSaveNamePath, std::string finalState, int kColor = 1,
+                   bool AddToStack = false, bool ShowStats = true, bool title2 = false, bool apply_plot_cuts = false, double plot_cut = 0, double plot_Xmax = 0, bool plot_max = true) {
     //  Normalization factor:
     double Histogram1D_integral;  // To be calculated only if normalize_Histogram
     double x_1 = 0.18, y_1 = 0.3, x_2 = 0.86, y_2 = 0.7;
@@ -900,29 +845,13 @@ void histPlotter1D(TCanvas *HistogramCanvas,            // The canvas
             std::string Histogram1DSaveNameDir = Histogram1DSaveNamePath + Histogram1DSaveName + "_log_scale.png";
             const char *SaveDir = Histogram1DSaveNameDir.c_str();
             HistogramCanvas->SaveAs(SaveDir);
-
-            // CanvasPDF->cd(CanvasPDF_ind);
-            // HistogramCanvas->DrawClonePad();
-            // CopyPadContent((TPad *)HistogramCanvas->cd(), (TPad *)CanvasPDF->cd(CanvasPDF_ind));
-            // CanvasPDF->Print(Histogram_OutPDF);
-            HistogramCanvas->Print(Form("%s[", Histogram_OutPDF));  // Open the PDF file
-            HistogramCanvas->Print(Histogram_OutPDF);
-            HistogramCanvas->Print(Form("%s]", Histogram_OutPDF));  // Close the PDF file
-                                                                    // ++CanvasPDF_ind;
         } else {
             std::string Histogram1DSaveNameDir = Histogram1DSaveNamePath + Histogram1DSaveName + "_log_scale_" + finalState + ".png";
             const char *SaveDir = Histogram1DSaveNameDir.c_str();
             HistogramCanvas->SaveAs(SaveDir);
-
-            // CanvasPDF->cd(CanvasPDF_ind);
-            // HistogramCanvas->DrawClonePad();
-            // CopyPadContent((TPad *)HistogramCanvas->cd(), (TPad *)CanvasPDF->cd(CanvasPDF_ind));
-            // CanvasPDF->Print(Histogram_OutPDF);
-            HistogramCanvas->Print(Form("%s[", Histogram_OutPDF));  // Open the PDF file
-            HistogramCanvas->Print(Histogram_OutPDF);
-            HistogramCanvas->Print(Form("%s]", Histogram_OutPDF));  // Close the PDF file
-                                                                    // ++CanvasPDF_ind;
         }
+
+        HistoList.push_back(Histogram1D);
     }
 
     if (LinearScalePlot) {
@@ -931,29 +860,13 @@ void histPlotter1D(TCanvas *HistogramCanvas,            // The canvas
             std::string Histogram1DSaveNameDir = Histogram1DSaveNamePath + Histogram1DSaveName + "_linear_scale.png";
             const char *SaveDir = Histogram1DSaveNameDir.c_str();
             HistogramCanvas->SaveAs(SaveDir);
-
-            // CanvasPDF->cd(CanvasPDF_ind);
-            // HistogramCanvas->DrawClonePad();
-            // CopyPadContent((TPad *)HistogramCanvas->cd(), (TPad *)CanvasPDF->cd(CanvasPDF_ind));
-            // CanvasPDF->Print(Histogram_OutPDF);
-            HistogramCanvas->Print(Form("%s[", Histogram_OutPDF));  // Open the PDF file
-            HistogramCanvas->Print(Histogram_OutPDF);
-            HistogramCanvas->Print(Form("%s]", Histogram_OutPDF));  // Close the PDF file
-                                                                    // ++CanvasPDF_ind;
         } else {
             std::string Histogram1DSaveNameDir = Histogram1DSaveNamePath + Histogram1DSaveName + "_linear_scale_" + finalState + ".png";
             const char *SaveDir = Histogram1DSaveNameDir.c_str();
             HistogramCanvas->SaveAs(SaveDir);
-
-            // CanvasPDF->cd(CanvasPDF_ind);
-            // HistogramCanvas->DrawClonePad();
-            // CopyPadContent((TPad *)HistogramCanvas->cd(), (TPad *)CanvasPDF->cd(CanvasPDF_ind));
-            // CanvasPDF->Print(Histogram_OutPDF);
-            HistogramCanvas->Print(Form("%s[", Histogram_OutPDF));  // Open the PDF file
-            HistogramCanvas->Print(Histogram_OutPDF);
-            HistogramCanvas->Print(Form("%s]", Histogram_OutPDF));  // Close the PDF file
-                                                                    // ++CanvasPDF_ind;
         }
+
+        HistoList.push_back(Histogram1D);
     }
 
     if (AddToStack) {
@@ -967,15 +880,15 @@ void histPlotter1D(TCanvas *HistogramCanvas,            // The canvas
 }
 #pragma endregion
 
-#pragma region /* histPlotter1D function (one-sided cuts for Nphe plots, stackless) */
+#pragma region                                          /* histPlotter1D function (one-sided cuts for Nphe plots, stackless) */
 void histPlotter1D(TCanvas *HistogramCanvas,            // The canvas
                    TH1D *Histogram1D,                   // The histogram
                    bool normalize_Histogram,            // Normalize histogram or not
                    bool custom_normalization,           // Normalize histogram or not
                    double custom_normalization_factor,  // Normalize histogram or not
-                   std::string Histogram1DTitle, std::string Histogram1DTitleReactions, TList *Histogram_list, const char *Histogram_OutPDF, int lineWidth, bool LogScalePlot, bool LinearScalePlot,
-                   std::string Histogram1DSaveName, const std::string &Histogram1DSaveNamePath, std::string finalState, bool ShowStats = true, bool title2 = false, bool apply_plot_cuts = false,
-                   double plot_cut = 0, double plot_Xmax = 0, bool plot_max = true) {
+                   std::string Histogram1DTitle, std::string Histogram1DTitleReactions, TList *Histogram_list, vector<TH1 *> &HistoList, int lineWidth, bool LogScalePlot,
+                   bool LinearScalePlot, std::string Histogram1DSaveName, const std::string &Histogram1DSaveNamePath, std::string finalState, bool ShowStats = true, bool title2 = false,
+                   bool apply_plot_cuts = false, double plot_cut = 0, double plot_Xmax = 0, bool plot_max = true) {
     double Histogram1D_integral;  // To be calculated only if normalize_Histogram
     double x_1 = 0.18, y_1 = 0.3, x_2 = 0.86, y_2 = 0.7;
     double diplayTextSize = 0.1;
@@ -1084,29 +997,13 @@ void histPlotter1D(TCanvas *HistogramCanvas,            // The canvas
             std::string Histogram1DSaveNameDir = Histogram1DSaveNamePath + Histogram1DSaveName + "_log_scale.png";
             const char *SaveDir = Histogram1DSaveNameDir.c_str();
             HistogramCanvas->SaveAs(SaveDir);
-
-            // CanvasPDF->cd(CanvasPDF_ind);
-            // HistogramCanvas->DrawClonePad();
-            // CopyPadContent((TPad *)HistogramCanvas->cd(), (TPad *)CanvasPDF->cd(CanvasPDF_ind));
-            // CanvasPDF->Print(Histogram_OutPDF);
-            HistogramCanvas->Print(Form("%s[", Histogram_OutPDF));  // Open the PDF file
-            HistogramCanvas->Print(Histogram_OutPDF);
-            HistogramCanvas->Print(Form("%s]", Histogram_OutPDF));  // Close the PDF file
-                                                                    // ++CanvasPDF_ind;
         } else {
             std::string Histogram1DSaveNameDir = Histogram1DSaveNamePath + Histogram1DSaveName + "_log_scale_" + finalState + ".png";
             const char *SaveDir = Histogram1DSaveNameDir.c_str();
             HistogramCanvas->SaveAs(SaveDir);
-
-            // CanvasPDF->cd(CanvasPDF_ind);
-            // HistogramCanvas->DrawClonePad();
-            // CopyPadContent((TPad *)HistogramCanvas->cd(), (TPad *)CanvasPDF->cd(CanvasPDF_ind));
-            // CanvasPDF->Print(Histogram_OutPDF);
-            HistogramCanvas->Print(Form("%s[", Histogram_OutPDF));  // Open the PDF file
-            HistogramCanvas->Print(Histogram_OutPDF);
-            HistogramCanvas->Print(Form("%s]", Histogram_OutPDF));  // Close the PDF file
-                                                                    // ++CanvasPDF_ind;
         }
+
+        HistoList.push_back(Histogram1D);
     }
 
     if (LinearScalePlot) {
@@ -1115,29 +1012,13 @@ void histPlotter1D(TCanvas *HistogramCanvas,            // The canvas
             std::string Histogram1DSaveNameDir = Histogram1DSaveNamePath + Histogram1DSaveName + "_linear_scale.png";
             const char *SaveDir = Histogram1DSaveNameDir.c_str();
             HistogramCanvas->SaveAs(SaveDir);
-
-            // CanvasPDF->cd(CanvasPDF_ind);
-            // HistogramCanvas->DrawClonePad();
-            // CopyPadContent((TPad *)HistogramCanvas->cd(), (TPad *)CanvasPDF->cd(CanvasPDF_ind));
-            // CanvasPDF->Print(Histogram_OutPDF);
-            HistogramCanvas->Print(Form("%s[", Histogram_OutPDF));  // Open the PDF file
-            HistogramCanvas->Print(Histogram_OutPDF);
-            HistogramCanvas->Print(Form("%s]", Histogram_OutPDF));  // Close the PDF file
-                                                                    // ++CanvasPDF_ind;
         } else {
             std::string Histogram1DSaveNameDir = Histogram1DSaveNamePath + Histogram1DSaveName + "_linear_scale_" + finalState + ".png";
             const char *SaveDir = Histogram1DSaveNameDir.c_str();
             HistogramCanvas->SaveAs(SaveDir);
-
-            // CanvasPDF->cd(CanvasPDF_ind);
-            // HistogramCanvas->DrawClonePad();
-            // CopyPadContent((TPad *)HistogramCanvas->cd(), (TPad *)CanvasPDF->cd(CanvasPDF_ind));
-            // CanvasPDF->Print(Histogram_OutPDF);
-            HistogramCanvas->Print(Form("%s[", Histogram_OutPDF));  // Open the PDF file
-            HistogramCanvas->Print(Histogram_OutPDF);
-            HistogramCanvas->Print(Form("%s]", Histogram_OutPDF));  // Close the PDF file
-                                                                    // ++CanvasPDF_ind;
         }
+
+        HistoList.push_back(Histogram1D);
     }
 
     HistogramCanvas->cd();
@@ -1147,7 +1028,7 @@ void histPlotter1D(TCanvas *HistogramCanvas,            // The canvas
 
 // histPlotter1D function (Chi2 for separate plots) ---------------------------------------------------------------------------------------------------------------------
 
-#pragma region /* histPlotter1D function (Chi2 for separate plots) */
+#pragma region                                          /* histPlotter1D function (Chi2 for separate plots) */
 void histPlotter1D(TCanvas *HistogramCanvas1,           // canvas c1 of other histograms
                    TCanvas *HistogramCanvas,            // canvas c2 of chi2 histograms
                    TH1D *Histogram1D,                   // The histogram
@@ -1155,7 +1036,7 @@ void histPlotter1D(TCanvas *HistogramCanvas1,           // canvas c1 of other hi
                    bool custom_normalization,           // Normalize histogram or not
                    double custom_normalization_factor,  // Normalize histogram or not
                    std::string Histogram1DTitle1, std::string Histogram1DTitle2, std::string Histogram1DTitle3, std::string Particle, double titleSize, double labelSizex, double labelSizey,
-                   TList *Histogram_list, const char *Histogram_OutPDF, int lineWidth, bool LogScalePlot, bool LinearScalePlot, THStack *Histogram1DStack, std::string Histogram1DSaveName,
+                   TList *Histogram_list, vector<TH1 *> &HistoList, int lineWidth, bool LogScalePlot, bool LinearScalePlot, THStack *Histogram1DStack, std::string Histogram1DSaveName,
                    const std::string &Histogram1DSaveNamePath, int kColor = 1, bool centerTitle = true, bool AddToStack = false, bool ShowStats = true, bool title2 = false,
                    bool apply_plot_cuts = false, double plot_cuts = 0, double plot_Xmax = 0, bool plot_max = true) {
     double TitleFontSize = gStyle->GetTitleFontSize();
@@ -1174,7 +1055,7 @@ void histPlotter1D(TCanvas *HistogramCanvas1,           // canvas c1 of other hi
     if (normalize_Histogram) {
         std::string title = Histogram1DTitle1 + " (" + Histogram1DTitle2 + ", " + Histogram1DTitle3 + ")" + " - Normalized";
         std::string HistogramTitle = "#splitline{" + title + "}{        (|#chi^{2}_{" + Particle + "," + Histogram1DTitle3 + "} - #bar{#chi^{2}}_{" + Particle + "," + Histogram1DTitle3 +
-                                "}| #leq " + ToStringWithPrecision(plot_cuts) + ")}";
+                                     "}| #leq " + ToStringWithPrecision(plot_cuts) + ")}";
         Histogram1D->SetTitle(HistogramTitle.c_str());
         Histogram1D->GetYaxis()->SetTitle("Probability (%)");
         gStyle->SetTitleFontSize(0.04);
@@ -1280,14 +1161,7 @@ void histPlotter1D(TCanvas *HistogramCanvas1,           // canvas c1 of other hi
         const char *SaveDir = Histogram1DSaveNameDir.c_str();
         HistogramCanvas->SaveAs(SaveDir);
 
-        // CanvasPDF->cd(CanvasPDF_ind);
-        HistogramCanvas->DrawClonePad();
-        // CopyPadContent((TPad *)HistogramCanvas->cd(), (TPad *)CanvasPDF->cd(CanvasPDF_ind));
-        // CanvasPDF->Print(Histogram_OutPDF);
-        HistogramCanvas->Print(Form("%s[", Histogram_OutPDF));  // Open the PDF file
-        HistogramCanvas->Print(Histogram_OutPDF);
-        HistogramCanvas->Print(Form("%s]", Histogram_OutPDF));  // Close the PDF file
-                                                                // ++CanvasPDF_ind;
+        HistoList.push_back(Histogram1D);
     }
 
     if (LinearScalePlot) {
@@ -1296,14 +1170,7 @@ void histPlotter1D(TCanvas *HistogramCanvas1,           // canvas c1 of other hi
         const char *SaveDir = Histogram1DSaveNameDir.c_str();
         HistogramCanvas->SaveAs(SaveDir);
 
-        // CanvasPDF->cd(CanvasPDF_ind);
-        HistogramCanvas->DrawClonePad();
-        // CopyPadContent((TPad *)HistogramCanvas->cd(), (TPad *)CanvasPDF->cd(CanvasPDF_ind));
-        // CanvasPDF->Print(Histogram_OutPDF);
-        HistogramCanvas->Print(Form("%s[", Histogram_OutPDF));  // Open the PDF file
-        HistogramCanvas->Print(Histogram_OutPDF);
-        HistogramCanvas->Print(Form("%s]", Histogram_OutPDF));  // Close the PDF file
-                                                                // ++CanvasPDF_ind;
+        HistoList.push_back(Histogram1D);
     }
 
     if (AddToStack) {
@@ -1321,7 +1188,7 @@ void histPlotter1D(TCanvas *HistogramCanvas1,           // canvas c1 of other hi
 }
 #pragma endregion
 
-#pragma region /* histPlotter1D function (Chi2 for separate plots, stackless) */
+#pragma region                                          /* histPlotter1D function (Chi2 for separate plots, stackless) */
 void histPlotter1D(TCanvas *HistogramCanvas1,           // canvas c1 of other histograms
                    TCanvas *HistogramCanvas,            // canvas c2 of chi2 histograms
                    TH1D *Histogram1D,                   // The histogram
@@ -1329,7 +1196,7 @@ void histPlotter1D(TCanvas *HistogramCanvas1,           // canvas c1 of other hi
                    bool custom_normalization,           // Normalize histogram or not
                    double custom_normalization_factor,  // Normalize histogram or not
                    std::string Histogram1DTitle1, std::string Histogram1DTitle2, std::string Histogram1DTitle3, std::string Particle, double titleSize, double labelSizex, double labelSizey,
-                   TList *Histogram_list, const char *Histogram_OutPDF, int lineWidth, bool LogScalePlot, bool LinearScalePlot, std::string Histogram1DSaveName,
+                   TList *Histogram_list, vector<TH1 *> &HistoList, int lineWidth, bool LogScalePlot, bool LinearScalePlot, std::string Histogram1DSaveName,
                    const std::string &Histogram1DSaveNamePath, bool centerTitle = true, bool ShowStats = true, bool title2 = false, bool apply_plot_cuts = false, double plot_cuts = 0,
                    double plot_Xmax = 0, bool plot_max = true) {
     double TitleFontSize = gStyle->GetTitleFontSize();
@@ -1348,7 +1215,7 @@ void histPlotter1D(TCanvas *HistogramCanvas1,           // canvas c1 of other hi
     if (normalize_Histogram) {
         std::string title = Histogram1DTitle1 + " (" + Histogram1DTitle2 + ", " + Histogram1DTitle3 + ")" + " - Normalized";
         std::string HistogramTitle = "#splitline{" + title + "}{        (|#chi^{2}_{" + Particle + "," + Histogram1DTitle3 + "} - #bar{#chi^{2}}_{" + Particle + "," + Histogram1DTitle3 +
-                                "}| #leq " + ToStringWithPrecision(plot_cuts) + ")}";
+                                     "}| #leq " + ToStringWithPrecision(plot_cuts) + ")}";
         Histogram1D->SetTitle(HistogramTitle.c_str());
         Histogram1D->GetYaxis()->SetTitle("Probability (%)");
         gStyle->SetTitleFontSize(0.04);
@@ -1448,14 +1315,7 @@ void histPlotter1D(TCanvas *HistogramCanvas1,           // canvas c1 of other hi
         const char *SaveDir = Histogram1DSaveNameDir.c_str();
         HistogramCanvas->SaveAs(SaveDir);
 
-        // CanvasPDF->cd(CanvasPDF_ind);
-        HistogramCanvas->DrawClonePad();
-        // CopyPadContent((TPad *)HistogramCanvas->cd(), (TPad *)CanvasPDF->cd(CanvasPDF_ind));
-        // CanvasPDF->Print(Histogram_OutPDF);
-        HistogramCanvas->Print(Form("%s[", Histogram_OutPDF));  // Open the PDF file
-        HistogramCanvas->Print(Histogram_OutPDF);
-        HistogramCanvas->Print(Form("%s]", Histogram_OutPDF));  // Close the PDF file
-                                                                // ++CanvasPDF_ind;
+        HistoList.push_back(Histogram1D);
     }
 
     if (LinearScalePlot) {
@@ -1464,14 +1324,7 @@ void histPlotter1D(TCanvas *HistogramCanvas1,           // canvas c1 of other hi
         const char *SaveDir = Histogram1DSaveNameDir.c_str();
         HistogramCanvas->SaveAs(SaveDir);
 
-        // CanvasPDF->cd(CanvasPDF_ind);
-        HistogramCanvas->DrawClonePad();
-        // CopyPadContent((TPad *)HistogramCanvas->cd(), (TPad *)CanvasPDF->cd(CanvasPDF_ind));
-        // CanvasPDF->Print(Histogram_OutPDF);
-        HistogramCanvas->Print(Form("%s[", Histogram_OutPDF));  // Open the PDF file
-        HistogramCanvas->Print(Histogram_OutPDF);
-        HistogramCanvas->Print(Form("%s]", Histogram_OutPDF));  // Close the PDF file
-                                                                // ++CanvasPDF_ind;
+        HistoList.push_back(Histogram1D);
     }
 
     HistogramCanvas->cd();
@@ -1485,17 +1338,17 @@ void histPlotter1D(TCanvas *HistogramCanvas1,           // canvas c1 of other hi
 
 // histPlotter1D function (applying all Chi2 cuts) ----------------------------------------------------------------------------------------------------------------------
 
-#pragma region /* histPlotter1D function (applying all Chi2 cuts) */
+#pragma region                                          /* histPlotter1D function (applying all Chi2 cuts) */
 void histPlotter1D(TCanvas *HistogramCanvas1,           // canvas c1 of other histograms
                    TCanvas *HistogramCanvas,            // canvas c2 of chi2 histograms
                    TH1D *Histogram1D,                   // The histogram
                    bool normalize_Histogram,            // Normalize histogram or not
                    bool custom_normalization,           // Normalize histogram or not
                    double custom_normalization_factor,  // Normalize histogram or not
-                   std::string Histogram1DTitle1, std::string Histogram1DTitle2, std::string Histogram1DTitle3, std::string Particle1, std::string Particle2, double titleSize, double labelSizex, double labelSizey,
-                   TList *Histogram_list, const char *Histogram_OutPDF, int lineWidth, bool LogScalePlot, bool LinearScalePlot, THStack *Histogram1DStack, std::string Histogram1DSaveName,
-                   const std::string &Histogram1DSaveNamePath, int kColor = 1, bool centerTitle = true, bool AddToStack = false, bool ShowStats = true, bool title2 = false,
-                   bool apply_plot_cuts = false, double plot_cuts1 = 0, double plot_Xmax1 = 0, double plot_cuts2 = 0, double plot_Xmax2 = 0, bool plot_max = true) {
+                   std::string Histogram1DTitle1, std::string Histogram1DTitle2, std::string Histogram1DTitle3, std::string Particle1, std::string Particle2, double titleSize,
+                   double labelSizex, double labelSizey, TList *Histogram_list, vector<TH1 *> &HistoList, int lineWidth, bool LogScalePlot, bool LinearScalePlot, THStack *Histogram1DStack,
+                   std::string Histogram1DSaveName, const std::string &Histogram1DSaveNamePath, int kColor = 1, bool centerTitle = true, bool AddToStack = false, bool ShowStats = true,
+                   bool title2 = false, bool apply_plot_cuts = false, double plot_cuts1 = 0, double plot_Xmax1 = 0, double plot_cuts2 = 0, double plot_Xmax2 = 0, bool plot_max = true) {
     double TitleFontSize = gStyle->GetTitleFontSize();
     HistogramCanvas->cd();
 
@@ -1530,8 +1383,8 @@ void histPlotter1D(TCanvas *HistogramCanvas1,           // canvas c1 of other hi
     if (normalize_Histogram) {
         std::string title = Histogram1DTitle1 + " (" + Histogram1DTitle2 + ", " + Histogram1DTitle3 + ")" + " - Normalized";
         std::string HistogramTitle = "#splitline{" + title + "}{" + "(|#chi^{2}_{" + Particle1 + "," + Histogram1DTitle3 + "} - (#chi^{2}_{" + Particle1 + "," + Histogram1DTitle3 +
-                                "})_{max}| #leq " + ToStringWithPrecision(plot_cuts1) + ", " + "|#chi^{2}_{" + Particle2 + "," + Histogram1DTitle3 + "} -(#chi^{2}_{" + Particle2 + "," +
-                                Histogram1DTitle3 + "})_{max}| #leq " + ToStringWithPrecision(plot_cuts2) + ")}";
+                                     "})_{max}| #leq " + ToStringWithPrecision(plot_cuts1) + ", " + "|#chi^{2}_{" + Particle2 + "," + Histogram1DTitle3 + "} -(#chi^{2}_{" + Particle2 + "," +
+                                     Histogram1DTitle3 + "})_{max}| #leq " + ToStringWithPrecision(plot_cuts2) + ")}";
         Histogram1D->SetTitle(HistogramTitle.c_str());
         Histogram1D->GetYaxis()->SetTitle("Probability (%)");
         gStyle->SetTitleFontSize(0.04);
@@ -1634,14 +1487,7 @@ void histPlotter1D(TCanvas *HistogramCanvas1,           // canvas c1 of other hi
         const char *SaveDir = Histogram1DSaveNameDir.c_str();
         HistogramCanvas->SaveAs(SaveDir);
 
-        // CanvasPDF->cd(CanvasPDF_ind);
-        HistogramCanvas->DrawClonePad();
-        // CopyPadContent((TPad *)HistogramCanvas->cd(), (TPad *)CanvasPDF->cd(CanvasPDF_ind));
-        // CanvasPDF->Print(Histogram_OutPDF);
-        HistogramCanvas->Print(Form("%s[", Histogram_OutPDF));  // Open the PDF file
-        HistogramCanvas->Print(Histogram_OutPDF);
-        HistogramCanvas->Print(Form("%s]", Histogram_OutPDF));  // Close the PDF file
-                                                                // ++CanvasPDF_ind;
+        HistoList.push_back(Histogram1D);
     }
 
     if (LinearScalePlot) {
@@ -1650,14 +1496,7 @@ void histPlotter1D(TCanvas *HistogramCanvas1,           // canvas c1 of other hi
         const char *SaveDir = Histogram1DSaveNameDir.c_str();
         HistogramCanvas->SaveAs(SaveDir);
 
-        // CanvasPDF->cd(CanvasPDF_ind);
-        HistogramCanvas->DrawClonePad();
-        // CopyPadContent((TPad *)HistogramCanvas->cd(), (TPad *)CanvasPDF->cd(CanvasPDF_ind));
-        // CanvasPDF->Print(Histogram_OutPDF);
-        HistogramCanvas->Print(Form("%s[", Histogram_OutPDF));  // Open the PDF file
-        HistogramCanvas->Print(Histogram_OutPDF);
-        HistogramCanvas->Print(Form("%s]", Histogram_OutPDF));  // Close the PDF file
-                                                                // ++CanvasPDF_ind;
+        HistoList.push_back(Histogram1D);
     }
 
     if (AddToStack) {
@@ -1675,17 +1514,17 @@ void histPlotter1D(TCanvas *HistogramCanvas1,           // canvas c1 of other hi
 }
 #pragma endregion
 
-#pragma region /* histPlotter1D function (applying all Chi2 cuts, stackless) */
+#pragma region                                          /* histPlotter1D function (applying all Chi2 cuts, stackless) */
 void histPlotter1D(TCanvas *HistogramCanvas1,           // canvas c1 of other histograms
                    TCanvas *HistogramCanvas,            // canvas c2 of chi2 histograms
                    TH1D *Histogram1D,                   // The histogram
                    bool normalize_Histogram,            // Normalize histogram or not
                    bool custom_normalization,           // Normalize histogram or not
                    double custom_normalization_factor,  // Normalize histogram or not
-                   std::string Histogram1DTitle1, std::string Histogram1DTitle2, std::string Histogram1DTitle3, std::string Particle1, std::string Particle2, double titleSize, double labelSizex, double labelSizey,
-                   TList *Histogram_list, const char *Histogram_OutPDF, int lineWidth, bool LogScalePlot, bool LinearScalePlot, std::string Histogram1DSaveName,
-                   const std::string &Histogram1DSaveNamePath, bool centerTitle = true, bool ShowStats = true, bool title2 = false, bool apply_plot_cuts = false, double plot_cuts1 = 0,
-                   double plot_Xmax1 = 0, double plot_cuts2 = 0, double plot_Xmax2 = 0, bool plot_max = true) {
+                   std::string Histogram1DTitle1, std::string Histogram1DTitle2, std::string Histogram1DTitle3, std::string Particle1, std::string Particle2, double titleSize,
+                   double labelSizex, double labelSizey, TList *Histogram_list, vector<TH1 *> &HistoList, int lineWidth, bool LogScalePlot, bool LinearScalePlot,
+                   std::string Histogram1DSaveName, const std::string &Histogram1DSaveNamePath, bool centerTitle = true, bool ShowStats = true, bool title2 = false,
+                   bool apply_plot_cuts = false, double plot_cuts1 = 0, double plot_Xmax1 = 0, double plot_cuts2 = 0, double plot_Xmax2 = 0, bool plot_max = true) {
     double TitleFontSize = gStyle->GetTitleFontSize();
     HistogramCanvas->cd();
 
@@ -1702,8 +1541,8 @@ void histPlotter1D(TCanvas *HistogramCanvas1,           // canvas c1 of other hi
     if (normalize_Histogram) {
         std::string title = Histogram1DTitle1 + " (" + Histogram1DTitle2 + ", " + Histogram1DTitle3 + ")" + " - Normalized";
         std::string HistogramTitle = "#splitline{" + title + "}{" + "(|#chi^{2}_{" + Particle1 + "," + Histogram1DTitle3 + "} - (#chi^{2}_{" + Particle1 + "," + Histogram1DTitle3 +
-                                "})_{max}| #leq " + ToStringWithPrecision(plot_cuts1) + ", " + "|#chi^{2}_{" + Particle2 + "," + Histogram1DTitle3 + "} -(#chi^{2}_{" + Particle2 + "," +
-                                Histogram1DTitle3 + "})_{max}| #leq " + ToStringWithPrecision(plot_cuts2) + ")}";
+                                     "})_{max}| #leq " + ToStringWithPrecision(plot_cuts1) + ", " + "|#chi^{2}_{" + Particle2 + "," + Histogram1DTitle3 + "} -(#chi^{2}_{" + Particle2 + "," +
+                                     Histogram1DTitle3 + "})_{max}| #leq " + ToStringWithPrecision(plot_cuts2) + ")}";
         Histogram1D->SetTitle(HistogramTitle.c_str());
         Histogram1D->GetYaxis()->SetTitle("Probability (%)");
         gStyle->SetTitleFontSize(0.04);
@@ -1804,14 +1643,7 @@ void histPlotter1D(TCanvas *HistogramCanvas1,           // canvas c1 of other hi
         const char *SaveDir = Histogram1DSaveNameDir.c_str();
         HistogramCanvas->SaveAs(SaveDir);
 
-        // CanvasPDF->cd(CanvasPDF_ind);
-        HistogramCanvas->DrawClonePad();
-        // CopyPadContent((TPad *)HistogramCanvas->cd(), (TPad *)CanvasPDF->cd(CanvasPDF_ind));
-        // CanvasPDF->Print(Histogram_OutPDF);
-        HistogramCanvas->Print(Form("%s[", Histogram_OutPDF));  // Open the PDF file
-        HistogramCanvas->Print(Histogram_OutPDF);
-        HistogramCanvas->Print(Form("%s]", Histogram_OutPDF));  // Close the PDF file
-                                                                // ++CanvasPDF_ind;
+        HistoList.push_back(Histogram1D);
     }
 
     if (LinearScalePlot) {
@@ -1820,14 +1652,7 @@ void histPlotter1D(TCanvas *HistogramCanvas1,           // canvas c1 of other hi
         const char *SaveDir = Histogram1DSaveNameDir.c_str();
         HistogramCanvas->SaveAs(SaveDir);
 
-        // CanvasPDF->cd(CanvasPDF_ind);
-        HistogramCanvas->DrawClonePad();
-        // CopyPadContent((TPad *)HistogramCanvas->cd(), (TPad *)CanvasPDF->cd(CanvasPDF_ind));
-        // CanvasPDF->Print(Histogram_OutPDF);
-        HistogramCanvas->Print(Form("%s[", Histogram_OutPDF));  // Open the PDF file
-        HistogramCanvas->Print(Histogram_OutPDF);
-        HistogramCanvas->Print(Form("%s]", Histogram_OutPDF));  // Close the PDF file
-                                                                // ++CanvasPDF_ind;
+        HistoList.push_back(Histogram1D);
     }
 
     HistogramCanvas->cd();
@@ -1845,7 +1670,7 @@ void histPlotter1D(TCanvas *HistogramCanvas1,           // canvas c1 of other hi
 
 // histPlotter1DwFit function (old) -------------------------------------------------------------------------------------------------------------------------------------
 
-//#pragma region /* FitFunction function */
+// #pragma region /* FitFunction function */
 ///* FitFunction is used for custom plot fits */
 //
 // Double_t FitFunction(Double_t *v, Double_t *par) {
@@ -1855,12 +1680,12 @@ void histPlotter1D(TCanvas *HistogramCanvas1,           // canvas c1 of other hi
 //    Double_t fitval = par[0] * TMath::Exp(-0.5 * arg * arg);
 //    return fitval;
 //}
-//#pragma endregion
+// #pragma endregion
 
 #pragma region /* histPlotter1DwFit function (old) */
 /* histPlotter1DwFit is used for chi2 plots with fit */
 void histPlotter1DwFit(TCanvas *HistogramCanvas, TH1D *Histogram1D, bool normalize_Histogram, bool custom_normalization, double custom_normalization_factor, std::string Histogram1DTitle,
-                       std::string Histogram1DTitleReactions, TList *Histogram_list, const char *Histogram_OutPDF, std::string Histogram1DSaveName, const std::string &Histogram1DSaveNamePath,
+                       std::string Histogram1DTitleReactions, TList *Histogram_list, vector<TH1 *> &HistoList, std::string Histogram1DSaveName, const std::string &Histogram1DSaveNamePath,
                        std::string finalState, double &plot_Xmax, double &plot_lcut, double &plot_ucut, double factor, bool plot_max = true, std::string particle = "") {
     double Histogram1D_integral;  // To be calculated only if normalize_Histogram
     double x_1 = 0.18, y_1 = 0.3, x_2 = 0.86, y_2 = 0.7;
@@ -2028,14 +1853,7 @@ void histPlotter1DwFit(TCanvas *HistogramCanvas, TH1D *Histogram1D, bool normali
         const char *SaveDir = Histogram1DSaveNameDir.c_str();
         HistogramCanvas->SaveAs(SaveDir);
 
-        // CanvasPDF->cd(CanvasPDF_ind);
-        // HistogramCanvas->DrawClonePad();
-        // CopyPadContent((TPad *)HistogramCanvas->cd(), (TPad *)CanvasPDF->cd(CanvasPDF_ind));
-        // CanvasPDF->Print(Histogram_OutPDF);
-        HistogramCanvas->Print(Form("%s[", Histogram_OutPDF));  // Open the PDF file
-        HistogramCanvas->Print(Histogram_OutPDF);
-        HistogramCanvas->Print(Form("%s]", Histogram_OutPDF));  // Close the PDF file
-                                                                // ++CanvasPDF_ind;
+        HistoList.push_back(Histogram1D);
     }
 
     if (LinearScalePlot) {
@@ -2044,14 +1862,7 @@ void histPlotter1DwFit(TCanvas *HistogramCanvas, TH1D *Histogram1D, bool normali
         const char *SaveDir = Histogram1DSaveNameDir.c_str();
         HistogramCanvas->SaveAs(SaveDir);
 
-        // CanvasPDF->cd(CanvasPDF_ind);
-        // HistogramCanvas->DrawClonePad();
-        // CopyPadContent((TPad *)HistogramCanvas->cd(), (TPad *)CanvasPDF->cd(CanvasPDF_ind));
-        // CanvasPDF->Print(Histogram_OutPDF);
-        HistogramCanvas->Print(Form("%s[", Histogram_OutPDF));  // Open the PDF file
-        HistogramCanvas->Print(Histogram_OutPDF);
-        HistogramCanvas->Print(Form("%s]", Histogram_OutPDF));  // Close the PDF file
-                                                                // ++CanvasPDF_ind;
+        HistoList.push_back(Histogram1D);
     }
 
     HistogramCanvas->cd();
@@ -2067,7 +1878,7 @@ void histPlotter1DwFit(TCanvas *HistogramCanvas, TH1D *Histogram1D, bool normali
 
 #pragma region /* stackPlotter1D (regular) */
 void stackPlotter1D(TCanvas *HistogramCanvas, THStack *Histogram1DStack, bool normalize_Histogram, std::string Histogram1DTitle, std::string Histogram1DTitleReactions, TList *Histogram_list,
-                    const char *Histogram_OutPDF, TH1D *H1D_All_Int, TH1D *H1D_QEL, TH1D *H1D_MEC, TH1D *H1D_RES, TH1D *H1D_DIS, std::string Histogram1DStackSaveName,
+                    vector<TH1 *> &HistoList, TH1D *H1D_All_Int, TH1D *H1D_QEL, TH1D *H1D_MEC, TH1D *H1D_RES, TH1D *H1D_DIS, std::string Histogram1DStackSaveName,
                     std::string Histogram1DStackSaveNamePath, std::string finalState) {
     //  Normalization factor:
     double Histogram1D_integral;  // To be calculated only if normalize_Histogram
@@ -2163,25 +1974,11 @@ void stackPlotter1D(TCanvas *HistogramCanvas, THStack *Histogram1DStack, bool no
     if (finalState == "") {
         HistogramCanvas->SaveAs((Histogram1DStackSaveNamePath + Histogram1DStackSaveName + "_" + Histogram1DTitleReactions + ".png").c_str());
 
-        // CanvasPDF->cd(CanvasPDF_ind);
-        // HistogramCanvas->DrawClonePad();
-        // CopyPadContent((TPad *)HistogramCanvas->cd(), (TPad *)CanvasPDF->cd(CanvasPDF_ind));
-        // CanvasPDF->Print(Histogram_OutPDF);
-        HistogramCanvas->Print(Form("%s[", Histogram_OutPDF));  // Open the PDF file
-        HistogramCanvas->Print(Histogram_OutPDF);
-        HistogramCanvas->Print(Form("%s]", Histogram_OutPDF));  // Close the PDF file
-                                                                // ++CanvasPDF_ind;
+        HistoList.push_back(Histogram1D);
     } else {
         HistogramCanvas->SaveAs((Histogram1DStackSaveNamePath + Histogram1DStackSaveName + "_" + Histogram1DTitleReactions + "_" + finalState + ".png").c_str());
 
-        // CanvasPDF->cd(CanvasPDF_ind);
-        // HistogramCanvas->DrawClonePad();
-        // CopyPadContent((TPad *)HistogramCanvas->cd(), (TPad *)CanvasPDF->cd(CanvasPDF_ind));
-        // CanvasPDF->Print(Histogram_OutPDF);
-        HistogramCanvas->Print(Form("%s[", Histogram_OutPDF));  // Open the PDF file
-        HistogramCanvas->Print(Histogram_OutPDF);
-        HistogramCanvas->Print(Form("%s]", Histogram_OutPDF));  // Close the PDF file
-                                                                // ++CanvasPDF_ind;
+        HistoList.push_back(Histogram1D);
     }
 
     HistogramCanvas->cd();
@@ -2197,7 +1994,7 @@ void stackPlotter1D(TCanvas *HistogramCanvas, THStack *Histogram1DStack, bool no
 
 #pragma region /* histPlotter2D function (regular) */
 void histPlotter2D(TCanvas *HistogramCanvas, TH2D *Histogram2D, double titleSize, bool centerTitle, double labelSizex, double labelSizey, double labelSizez, TList *Histogram_list,
-                   const char *Histogram_OutPDF, bool zLogScalePlot, std::string Histogram1DSaveNameDir, std::string Histogram1DSaveName, bool ShowStats = true) {
+                   vector<TH1 *> &HistoList, bool zLogScalePlot, std::string Histogram1DSaveNameDir, std::string Histogram1DSaveName, bool ShowStats = true) {
     float DefStatX = gStyle->GetStatX(), DefStatY = gStyle->GetStatY();
     double x_1 = 0.18, y_1 = 0.3, x_2 = 0.86, y_2 = 0.7;
     double diplayTextSize = 0.1;
@@ -2221,30 +2018,29 @@ void histPlotter2D(TCanvas *HistogramCanvas, TH2D *Histogram2D, double titleSize
         displayText->Draw();
     } else if (Histogram2D->Integral() != 0.) {
         Histogram2D->Draw("colz");
+
+        gPad->Update();
+        TPaletteAxis *palette = (TPaletteAxis *)HistoList[i]->GetListOfFunctions()->FindObject("palette");
+        if (palette) { palette->SetY2NDC(0.55), gPad->Modified(), gPad->Update(); }
     }
 
     if (zLogScalePlot) {
         HistogramCanvas->SetLogz(1);
+
+        HistoList.push_back(Histogram2D);
     } else if (zLogScalePlot == false) {
         HistogramCanvas->SetLogz(0);
+
+        HistoList.push_back(Histogram2D);
     }
 
     if (!ShowStats) { Histogram2D->SetStats(0); }
 
-    gStyle->SetStatX(0.98); // gStyle->SetStatX(0.87);
+    gStyle->SetStatX(0.98);  // gStyle->SetStatX(0.87);
     gStyle->SetStatY(0.875);
     HistogramCanvas->SaveAs((Histogram1DSaveNameDir + Histogram1DSaveName + ".png").c_str());
     gStyle->SetStatX(DefStatX);
     gStyle->SetStatY(DefStatY);
-
-    // CanvasPDF->cd(CanvasPDF_ind);
-    // HistogramCanvas->DrawClonePad();
-    // CopyPadContent((TPad *)HistogramCanvas->cd(), (TPad *)CanvasPDF->cd(CanvasPDF_ind));
-    // CanvasPDF->Print(Histogram_OutPDF);
-    HistogramCanvas->Print(Form("%s[", Histogram_OutPDF));  // Open the PDF file
-    HistogramCanvas->Print(Histogram_OutPDF);
-    HistogramCanvas->Print(Form("%s]", Histogram_OutPDF));  // Close the PDF file
-    // ++CanvasPDF_ind;
 
     HistogramCanvas->cd();
     HistogramCanvas->Clear();
@@ -2255,8 +2051,8 @@ void histPlotter2D(TCanvas *HistogramCanvas, TH2D *Histogram2D, double titleSize
 
 #pragma region /* histPlotter2D function (Beta vs. P plots, all particles) */
 void histPlotter2D(TCanvas *HistogramCanvas, TH2D *Histogram2D, double titleSize, bool centerTitle, double labelSizex, double labelSizey, double labelSizez, TList *Histogram_list,
-                   const char *Histogram_OutPDF, bool zLogScalePlot, std::string Histogram1DSaveNameDir, std::string Histogram1DSaveName, TF1 *Beta_function1, TF1 *Beta_function2, TF1 *Beta_function3,
-                   TF1 *Beta_function4, TF1 *Beta_function5, TF1 *Beta_function6, TF1 *Beta_function7, TF1 *Beta_function8, TF1 *Beta_function9) {
+                   vector<TH1 *> &HistoList, bool zLogScalePlot, std::string Histogram1DSaveNameDir, std::string Histogram1DSaveName, TF1 *Beta_function1, TF1 *Beta_function2,
+                   TF1 *Beta_function3, TF1 *Beta_function4, TF1 *Beta_function5, TF1 *Beta_function6, TF1 *Beta_function7, TF1 *Beta_function8, TF1 *Beta_function9) {
     float DefStatX = gStyle->GetStatX(), DefStatY = gStyle->GetStatY();
     double x_1 = 0.18, y_1 = 0.3, x_2 = 0.86, y_2 = 0.7;
     double diplayTextSize = 0.1;
@@ -2280,6 +2076,10 @@ void histPlotter2D(TCanvas *HistogramCanvas, TH2D *Histogram2D, double titleSize
     } else if (Histogram2D->Integral() != 0.) {
         Histogram2D->Draw("colz");
 
+        gPad->Update();
+        TPaletteAxis *palette = (TPaletteAxis *)HistoList[i]->GetListOfFunctions()->FindObject("palette");
+        if (palette) { palette->SetY2NDC(0.55), gPad->Modified(), gPad->Update(); }
+
         Beta_function1->Draw("same");
         Beta_function2->Draw("same");
         Beta_function3->Draw("same");
@@ -2293,20 +2093,13 @@ void histPlotter2D(TCanvas *HistogramCanvas, TH2D *Histogram2D, double titleSize
 
     if (zLogScalePlot) { HistogramCanvas->SetLogz(1); }
 
-    gStyle->SetStatX(0.98); // gStyle->SetStatX(0.87);
-    gStyle->SetStatY(0.935); // gStyle->SetStatY(0.4);
+    gStyle->SetStatX(0.98);   // gStyle->SetStatX(0.87);
+    gStyle->SetStatY(0.935);  // gStyle->SetStatY(0.4);
     HistogramCanvas->SaveAs((Histogram1DSaveNameDir + Histogram1DSaveName).c_str());
     gStyle->SetStatX(DefStatX);
     gStyle->SetStatY(DefStatY);
 
-    // CanvasPDF->cd(CanvasPDF_ind);
-    // HistogramCanvas->DrawClonePad();
-    // CopyPadContent((TPad *)HistogramCanvas->cd(), (TPad *)CanvasPDF->cd(CanvasPDF_ind));
-    // CanvasPDF->Print(Histogram_OutPDF);
-    HistogramCanvas->Print(Form("%s[", Histogram_OutPDF));  // Open the PDF file
-    HistogramCanvas->Print(Histogram_OutPDF);
-    HistogramCanvas->Print(Form("%s]", Histogram_OutPDF));  // Close the PDF file
-    // ++CanvasPDF_ind;
+    HistoList.push_back(Histogram2D);
 
     HistogramCanvas->cd();
     HistogramCanvas->Clear();
@@ -2317,7 +2110,8 @@ void histPlotter2D(TCanvas *HistogramCanvas, TH2D *Histogram2D, double titleSize
 
 #pragma region /* histPlotter2D function (Beta vs. P plots, single particle) */
 void histPlotter2D(TCanvas *HistogramCanvas, TH2D *Histogram2D, double titleSize, bool centerTitle, double labelSizex, double labelSizey, double labelSizez, TList *Histogram_list,
-                   const char *Histogram_OutPDF, bool zLogScalePlot, std::string Histogram1DSaveNameDir, std::string Histogram1DSaveName, TF1 *Beta_function1, std::string particle1, bool plot_legend) {
+                   vector<TH1 *> &HistoList, bool zLogScalePlot, std::string Histogram1DSaveNameDir, std::string Histogram1DSaveName, TF1 *Beta_function1, std::string particle1,
+                   bool plot_legend) {
     float DefStatX = gStyle->GetStatX(), DefStatY = gStyle->GetStatY();
     double x_1 = 0.165, y_1 = 0.3, x_2 = 0.865, y_2 = 0.7;
     double diplayTextSize = 0.1;
@@ -2341,6 +2135,10 @@ void histPlotter2D(TCanvas *HistogramCanvas, TH2D *Histogram2D, double titleSize
         displayText->Draw();
     } else if (Histogram2D->Integral() != 0.) {
         Histogram2D->Draw("colz");
+
+        gPad->Update();
+        TPaletteAxis *palette = (TPaletteAxis *)HistoList[i]->GetListOfFunctions()->FindObject("palette");
+        if (palette) { palette->SetY2NDC(0.55), gPad->Modified(), gPad->Update(); }
 
         Beta_function1->SetLineColor(kRed);
         Beta_function1->Draw("same");
@@ -2356,20 +2154,13 @@ void histPlotter2D(TCanvas *HistogramCanvas, TH2D *Histogram2D, double titleSize
 
     if (zLogScalePlot) { HistogramCanvas->SetLogz(1); }
 
-    gStyle->SetStatX(0.98); // gStyle->SetStatX(0.87);
-    gStyle->SetStatY(0.935); // gStyle->SetStatY(0.4);
+    gStyle->SetStatX(0.98);   // gStyle->SetStatX(0.87);
+    gStyle->SetStatY(0.935);  // gStyle->SetStatY(0.4);
     HistogramCanvas->SaveAs((Histogram1DSaveNameDir + Histogram1DSaveName).c_str());
     gStyle->SetStatX(DefStatX);
     gStyle->SetStatY(DefStatY);
 
-    // CanvasPDF->cd(CanvasPDF_ind);
-    // HistogramCanvas->DrawClonePad();
-    // CopyPadContent((TPad *)HistogramCanvas->cd(), (TPad *)CanvasPDF->cd(CanvasPDF_ind));
-    // CanvasPDF->Print(Histogram_OutPDF);
-    HistogramCanvas->Print(Form("%s[", Histogram_OutPDF));  // Open the PDF file
-    HistogramCanvas->Print(Histogram_OutPDF);
-    HistogramCanvas->Print(Form("%s]", Histogram_OutPDF));  // Close the PDF file
-    // ++CanvasPDF_ind;
+    HistoList.push_back(Histogram2D);
 
     HistogramCanvas->cd();
     HistogramCanvas->Clear();
@@ -2380,8 +2171,8 @@ void histPlotter2D(TCanvas *HistogramCanvas, TH2D *Histogram2D, double titleSize
 
 #pragma region /* histPlotter2D function (Beta vs. P plots, by charge) */
 void histPlotter2D(TCanvas *HistogramCanvas, TH2D *Histogram2D, double titleSize, bool centerTitle, double labelSizex, double labelSizey, double labelSizez, TList *Histogram_list,
-                   const char *Histogram_OutPDF, bool zLogScalePlot, std::string Histogram1DSaveNameDir, std::string Histogram1DSaveName, TF1 *Beta_function1, std::string particle1, TF1 *Beta_function2,
-                   std::string particle2, TF1 *Beta_function3, std::string particle3, bool plot_legend) {
+                   vector<TH1 *> &HistoList, bool zLogScalePlot, std::string Histogram1DSaveNameDir, std::string Histogram1DSaveName, TF1 *Beta_function1, std::string particle1,
+                   TF1 *Beta_function2, std::string particle2, TF1 *Beta_function3, std::string particle3, bool plot_legend) {
     float DefStatX = gStyle->GetStatX(), DefStatY = gStyle->GetStatY();
     double x_1 = 0.165, y_1 = 0.3, x_2 = 0.865, y_2 = 0.7;
     double diplayTextSize = 0.1;
@@ -2405,6 +2196,10 @@ void histPlotter2D(TCanvas *HistogramCanvas, TH2D *Histogram2D, double titleSize
         displayText->Draw();
     } else if (Histogram2D->Integral() != 0.) {
         Histogram2D->Draw("colz");
+
+        gPad->Update();
+        TPaletteAxis *palette = (TPaletteAxis *)HistoList[i]->GetListOfFunctions()->FindObject("palette");
+        if (palette) { palette->SetY2NDC(0.55), gPad->Modified(), gPad->Update(); }
 
         Beta_function1->SetLineColor(kBlue);
         Beta_function1->Draw("same");
@@ -2426,20 +2221,13 @@ void histPlotter2D(TCanvas *HistogramCanvas, TH2D *Histogram2D, double titleSize
 
     if (zLogScalePlot) { HistogramCanvas->SetLogz(1); }
 
-    gStyle->SetStatX(0.98); // gStyle->SetStatX(0.87);
-    gStyle->SetStatY(0.935); // gStyle->SetStatY(0.4);
+    gStyle->SetStatX(0.98);   // gStyle->SetStatX(0.87);
+    gStyle->SetStatY(0.935);  // gStyle->SetStatY(0.4);
     HistogramCanvas->SaveAs((Histogram1DSaveNameDir + Histogram1DSaveName).c_str());
     gStyle->SetStatX(DefStatX);
     gStyle->SetStatY(DefStatY);
 
-    // CanvasPDF->cd(CanvasPDF_ind);
-    // HistogramCanvas->DrawClonePad();
-    // CopyPadContent((TPad *)HistogramCanvas->cd(), (TPad *)CanvasPDF->cd(CanvasPDF_ind));
-    // CanvasPDF->Print(Histogram_OutPDF);
-    HistogramCanvas->Print(Form("%s[", Histogram_OutPDF));  // Open the PDF file
-    HistogramCanvas->Print(Histogram_OutPDF);
-    HistogramCanvas->Print(Form("%s]", Histogram_OutPDF));  // Close the PDF file
-    // ++CanvasPDF_ind;
+    HistoList.push_back(Histogram2D);
 
     HistogramCanvas->cd();
     HistogramCanvas->Clear();
