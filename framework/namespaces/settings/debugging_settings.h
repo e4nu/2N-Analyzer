@@ -8,8 +8,17 @@
 #include <iostream>
 
 namespace debugging_settings {
-const bool DebuggerMode = true;
-const bool OnlyPrintNamedTesterSteps = false;
+
+// General debugging ----------------------------------------------------------------------------------------------------------------------------------------------------
+
+const bool DebuggerMode = true; // true = Debugger mode (master switch), false = Normal mode
+const bool OnlyPrintNamedTesterSteps = (DebuggerMode && false);
+
+// Acceptance maps and weight maps debugging ----------------------------------------------------------------------------------------------------------------------------
+
+const bool AMapsDebuggerMode = (DebuggerMode && true);
+
+// Proton veto debugging ------------------------------------------------------------------------------------------------------------------------------------------------
 
 const bool GoodProtonsMonitorPlots = true;
 

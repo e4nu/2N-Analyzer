@@ -2464,6 +2464,11 @@ bool AMaps::MatchAngToHitMap(const std::string &Particle, double Momentum, doubl
                             double PhiUpperLimTemp = PhiLowerLimTemp + dPhiTemp;
 
                             if ((Phi >= PhiLowerLimTemp) && (Phi < PhiUpperLimTemp)) {
+                                if (debugging_settings::DebuggerMode) {
+                                    std::cout << "\n\nLoaded_e_AMap_Slices.at(Slice) = " << Loaded_e_AMap_Slices.at(Slice) << "\n";
+                                    std::cout << "Loaded_e_AMap_Slices.at(Slice).at(" << i << ") = " << Loaded_e_AMap_Slices.at(Slice).at(i) << "\n\n";
+                                }
+
                                 if (Loaded_e_AMap_Slices.at(Slice).at(i).at(j) != 0) {
                                     return true;
                                 } else {
@@ -2491,12 +2496,22 @@ bool AMaps::MatchAngToHitMap(const std::string &Particle, double Momentum, doubl
 
                             if ((Phi >= PhiLowerLimTemp) && (Phi < PhiUpperLimTemp)) {
                                 if (NucleonOverlappingFC) {
+                                    if (debugging_settings::DebuggerMode) {
+                                        std::cout << "\n\nLoaded_nuc_AMap_Slices.at(Slice) = " << Loaded_nuc_AMap_Slices.at(Slice) << "\n";
+                                        std::cout << "Loaded_nuc_AMap_Slices.at(Slice).at(" << i << ") = " << Loaded_nuc_AMap_Slices.at(Slice).at(i) << "\n\n";
+                                    }
+
                                     if (Loaded_nuc_AMap_Slices.at(Slice).at(i).at(j) != 0) {
                                         return true;
                                     } else {
                                         return false;
                                     }
                                 } else {
+                                    if (debugging_settings::DebuggerMode) {
+                                        std::cout << "\n\nLoaded_p_AMap_Slices.at(Slice) = " << Loaded_p_AMap_Slices.at(Slice) << "\n";
+                                        std::cout << "Loaded_p_AMap_Slices.at(Slice).at(" << i << ") = " << Loaded_p_AMap_Slices.at(Slice).at(i) << "\n\n";
+                                    }
+
                                     if (Loaded_p_AMap_Slices.at(Slice).at(i).at(j) != 0) {
                                         return true;
                                     } else {
@@ -2525,12 +2540,22 @@ bool AMaps::MatchAngToHitMap(const std::string &Particle, double Momentum, doubl
 
                             if ((Phi >= PhiLowerLimTemp) && (Phi < PhiUpperLimTemp)) {
                                 if (NucleonOverlappingFC) {
+                                    if (debugging_settings::DebuggerMode) {
+                                        std::cout << "\n\nLoaded_nuc_AMap_Slices.at(Slice) = " << Loaded_nuc_AMap_Slices.at(Slice) << "\n";
+                                        std::cout << "Loaded_nuc_AMap_Slices.at(Slice).at(" << i << ") = " << Loaded_nuc_AMap_Slices.at(Slice).at(i) << "\n\n";
+                                    }
+
                                     if (Loaded_nuc_AMap_Slices.at(Slice).at(i).at(j) != 0) {
                                         return true;
                                     } else {
                                         return false;
                                     }
                                 } else {
+                                    if (debugging_settings::DebuggerMode) {
+                                        std::cout << "\n\nLoaded_n_AMap_Slices.at(Slice) = " << Loaded_n_AMap_Slices.at(Slice) << "\n";
+                                        std::cout << "Loaded_n_AMap_Slices.at(Slice).at(" << i << ") = " << Loaded_n_AMap_Slices.at(Slice).at(i) << "\n\n";
+                                    }
+
                                     if (Loaded_n_AMap_Slices.at(Slice).at(i).at(j) != 0) {
                                         return true;
                                     } else {
