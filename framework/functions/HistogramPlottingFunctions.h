@@ -1974,11 +1974,11 @@ void stackPlotter1D(TCanvas *HistogramCanvas, THStack *Histogram1DStack, bool no
     if (finalState == "") {
         HistogramCanvas->SaveAs((Histogram1DStackSaveNamePath + Histogram1DStackSaveName + "_" + Histogram1DTitleReactions + ".png").c_str());
 
-        HistoList.push_back(Histogram1D);
+        HistoList.push_back(Histogram1DStack);
     } else {
         HistogramCanvas->SaveAs((Histogram1DStackSaveNamePath + Histogram1DStackSaveName + "_" + Histogram1DTitleReactions + "_" + finalState + ".png").c_str());
 
-        HistoList.push_back(Histogram1D);
+        HistoList.push_back(Histogram1DStack);
     }
 
     HistogramCanvas->cd();
@@ -2020,7 +2020,7 @@ void histPlotter2D(TCanvas *HistogramCanvas, TH2D *Histogram2D, double titleSize
         Histogram2D->Draw("colz");
 
         gPad->Update();
-        TPaletteAxis *palette = (TPaletteAxis *)HistoList[i]->GetListOfFunctions()->FindObject("palette");
+        TPaletteAxis *palette = (TPaletteAxis *)Histogram2D->GetListOfFunctions()->FindObject("palette");
         if (palette) { palette->SetY2NDC(0.55), gPad->Modified(), gPad->Update(); }
     }
 
@@ -2077,7 +2077,7 @@ void histPlotter2D(TCanvas *HistogramCanvas, TH2D *Histogram2D, double titleSize
         Histogram2D->Draw("colz");
 
         gPad->Update();
-        TPaletteAxis *palette = (TPaletteAxis *)HistoList[i]->GetListOfFunctions()->FindObject("palette");
+        TPaletteAxis *palette = (TPaletteAxis *)Histogram2D->GetListOfFunctions()->FindObject("palette");
         if (palette) { palette->SetY2NDC(0.55), gPad->Modified(), gPad->Update(); }
 
         Beta_function1->Draw("same");
@@ -2137,7 +2137,7 @@ void histPlotter2D(TCanvas *HistogramCanvas, TH2D *Histogram2D, double titleSize
         Histogram2D->Draw("colz");
 
         gPad->Update();
-        TPaletteAxis *palette = (TPaletteAxis *)HistoList[i]->GetListOfFunctions()->FindObject("palette");
+        TPaletteAxis *palette = (TPaletteAxis *)Histogram2D->GetListOfFunctions()->FindObject("palette");
         if (palette) { palette->SetY2NDC(0.55), gPad->Modified(), gPad->Update(); }
 
         Beta_function1->SetLineColor(kRed);
@@ -2198,7 +2198,7 @@ void histPlotter2D(TCanvas *HistogramCanvas, TH2D *Histogram2D, double titleSize
         Histogram2D->Draw("colz");
 
         gPad->Update();
-        TPaletteAxis *palette = (TPaletteAxis *)HistoList[i]->GetListOfFunctions()->FindObject("palette");
+        TPaletteAxis *palette = (TPaletteAxis *)Histogram2D->GetListOfFunctions()->FindObject("palette");
         if (palette) { palette->SetY2NDC(0.55), gPad->Modified(), gPad->Update(); }
 
         Beta_function1->SetLineColor(kBlue);

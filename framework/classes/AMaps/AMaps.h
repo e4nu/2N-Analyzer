@@ -138,6 +138,13 @@ class AMaps {
     std::string cPart_Sep_AMaps_prefix = "04_cPart_Sep_AMaps_-_";
     std::string AMaps_prefix = "05_AMaps_-_";
 
+    vector<TH1 *> AMapsBC_HistoList;
+    vector<TH1 *> AMap_TL_HistoList;
+    vector<TH1 *> AMap_Reco_HistoList;
+    vector<TH1 *> AMap_Ratio_HistoList;
+    vector<TH1 *> cPart_Sep_AMaps_HistoList;
+    vector<TH1 *> AMaps_HistoList;
+
     vector<vector<double>> Loaded_ElectronMomSliceLimits;
     vector<vector<double>> Loaded_NucleonMomSliceLimits;
 
