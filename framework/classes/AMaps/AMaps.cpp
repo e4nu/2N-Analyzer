@@ -2349,16 +2349,19 @@ void AMaps::ReadAMap(const char *filename, vector<vector<int>> &Loaded_particle_
 
 #pragma region /* ReadWMap function (WMaps) */
 /* A function that reads WMaps */
+void AMaps::ReadWMap(const char *filename, vector<vector<double>> &Loaded_particle_WMap) {
+    bool PrintOut = false;
 
-void AMaps::ReadWMap(const char *filename, vector<vector<double>> &Loaded_particle_WMaps) {
     ifstream infile;
     infile.open(filename);
 
     if (infile.is_open()) {
         std::string tp;
+        int lineNumber = 0;  // Track line number
 
         // getline(infile, tp) = read data from file object and put it into string.
         while (getline(infile, tp)) {
+            lineNumber++;  // Increment line number for each line read
             stringstream ss(tp);
             std::string parameter, parameter2;
             ss >> parameter;  // get cut identifier
@@ -2371,15 +2374,66 @@ void AMaps::ReadWMap(const char *filename, vector<vector<double>> &Loaded_partic
                 std::string LineEntry;
                 vector<double> col;
 
-                while (getline(ss2, LineEntry, ':')) { col.push_back(stod(LineEntry)); }
+                if (PrintOut) {
+                    cout << "\n\nfilename = " << filename << "\n";
+                    cout << "parameter = " << parameter << "\n";
+                    cout << "parameter2 = " << parameter2 << "\n";
+                    cout << "LineEntry = " << LineEntry << "\n\n";
+                }
 
-                Loaded_particle_WMaps.push_back(col);
+                while (getline(ss2, LineEntry, ':')) {
+                    if (LineEntry.empty()) {
+                        cerr << "AMaps::ReadWMap: Error! Empty entry at line " << lineNumber << " in file:\n"
+                             << filename << ":\n"
+                             << "   -> " << tp << "\nAborting...",
+                            exit(0);  // Abort if there are empty entries from "::"
+                    }
+
+                    try {
+                        col.push_back(stoi(LineEntry));  // Convert string to int safely
+                    } catch (const std::invalid_argument &e) { cerr << "Invalid double found in file " << filename << ": " << LineEntry << "\n"; } catch (const std::out_of_range &e) {
+                        cerr << "Double out of range in file " << filename << ": " << LineEntry << "\n";
+                    }
+                }
+
+                Loaded_particle_WMap.push_back(col);
             }
         }
     } else {
-        cout << "\n\nAMaps::ReadWMap: file:\n" << filename << "\nwas not found! Exiting...\n\n", exit(0);
+        cout << "\n\nWMaps::ReadWMap: Warning! file:\n" << filename << "\nwas not found! Exiting...\n\n";
+        // cout << "\n\nWMaps::ReadWMap: file:\n" << filename << "\nwas not found! Exiting...\n\n", exit(0);
     }
 }
+// void AMaps::ReadWMap(const char *filename, vector<vector<double>> &Loaded_particle_WMaps) {
+//     ifstream infile;
+//     infile.open(filename);
+
+//     if (infile.is_open()) {
+//         std::string tp;
+
+//         // getline(infile, tp) = read data from file object and put it into string.
+//         while (getline(infile, tp)) {
+//             stringstream ss(tp);
+//             std::string parameter, parameter2;
+//             ss >> parameter;  // get cut identifier
+
+//             if (basic_tools::FindSubstring(parameter, "Weight")) {
+//                 // get cut values
+//                 ss >> parameter2;
+//                 stringstream ss2(parameter2);
+
+//                 std::string LineEntry;
+//                 vector<double> col;
+
+//                 while (getline(ss2, LineEntry, ':')) { col.push_back(stod(LineEntry)); }
+
+//                 Loaded_particle_WMaps.push_back(col);
+//             }
+//         }
+//     } else {
+//         cout << "\n\nAMaps::ReadWMap: file:\n" << filename << "\nwas not found! Exiting...\n\n", exit(0);
+//     }
+// }
 #pragma endregion
 
 // MatchAngToHitMap function --------------------------------------------------------------------------------------------------------------------------------------------

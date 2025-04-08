@@ -55,8 +55,8 @@ void ConfigSampleChain() {
     /* C12 4.02962GeV - run 015778 (ifarm DATA files - C12 DATA files) */
     Config_C12_4GeV_samples(AnalyzeFilePath_v, AnalyzeFileSample_v, AnalyzeFileDir_v, AnalyzeFile_v, AnalyzeFilePath, AnalyzeFileSample, AnalyzeFileDir, AnalyzeFile);
 
-    // /* C12x4 5.98636GeV - run 015188 (ifarm DATA files - C12x4 DATA files) */
-    Config_C12_6GeV_samples(AnalyzeFilePath_v, AnalyzeFileSample_v, AnalyzeFileDir_v, AnalyzeFile_v, AnalyzeFilePath, AnalyzeFileSample, AnalyzeFileDir, AnalyzeFile);
+    // // /* C12x4 5.98636GeV - run 015188 (ifarm DATA files - C12x4 DATA files) */
+    // Config_C12_6GeV_samples(AnalyzeFilePath_v, AnalyzeFileSample_v, AnalyzeFileDir_v, AnalyzeFile_v, AnalyzeFilePath, AnalyzeFileSample, AnalyzeFileDir, AnalyzeFile);
 
     // Ar40 -------------------------------------------------------------------------------------------------------------------------------------------------------------
 
