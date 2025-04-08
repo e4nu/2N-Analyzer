@@ -81,18 +81,28 @@ class Debugger {
 
     // PrintStepTester function ---------------------------------------------------------------------------------------------------------------------------------------------
 
-    void PrintStepTester(const char *FILE, const int LINE, const bool &DebuggerMode, const std::string &StepName = "") {
+    void PrintStepTester(const char *FILE, const int LINE, const bool &DebuggerMode, const bool &OnlyPrintNamedTesterSteps, const std::string &StepName = "") {
         if (DebuggerMode) {
-            std::cerr << "\033[31m\n\nStep-by-step tester is enabled:" << std::endl;
-            std::cerr << "Test number " << StepTester << std::endl;
+            if (OnlyPrintNamedTesterSteps) {
+                if (StepName != "") {
+                    std::cerr << "\033[31m\n\nStep-by-step tester is enabled:" << std::endl;
+                    std::cerr << "Test number " << StepTester << std::endl;
+                    std::cerr << "\033[31mFile:\033[0m " << FILE << "\033[31m, Line:\033[0m " << LINE << "\033[31m, Step: \033[0m" << StepName << "\n\n\033[0m" << std::endl;
 
-            if (StepName == "") {
-                std::cerr << "\033[31mFile: \033[0m" << FILE << "\033[31m, Line: \033[0m" << LINE << "\n\n\033[0m" << std::endl;
+                    ++StepTester;
+                }
             } else {
-                std::cerr << "\033[31mFile: " << FILE << "\033[31m, Line: " << LINE << "\033[31m, Step: \033[0m" << StepName << "\n\n\033[0m" << std::endl;
-            }
+                std::cerr << "\033[31m\n\nStep-by-step tester is enabled:" << std::endl;
+                std::cerr << "Test number " << StepTester << std::endl;
 
-            ++StepTester;
+                if (StepName == "") {
+                    std::cerr << "\033[31mFile: \033[0m" << FILE << "\033[31m, Line: \033[0m" << LINE << "\n\n\033[0m" << std::endl;
+                } else {
+                    std::cerr << "\033[31mFile: " << FILE << "\033[31m, Line: " << LINE << "\033[31m, Step: \033[0m" << StepName << "\n\n\033[0m" << std::endl;
+                }
+
+                ++StepTester;
+            }
         }
     }
 

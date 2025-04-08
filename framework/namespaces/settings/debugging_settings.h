@@ -9,6 +9,7 @@
 
 namespace debugging_settings {
 const bool DebuggerMode = true;
+const bool OnlyPrintNamedTesterSteps = false;
 
 const bool GoodProtonsMonitorPlots = true;
 
