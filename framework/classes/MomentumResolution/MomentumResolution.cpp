@@ -1819,10 +1819,12 @@ void MomentumResolution::ReadResDataParam(const char *filename, const bool &Calc
 #pragma endregion
             }
         }
-    } else {
-        std::cout << "\033[35m\n\nMomentumResolution::ReadResDataParam:\033[36m Warning!\033[0m file:\n" << filename << "\nwas not found!\n\n";
-        // std::cout << "\n\nMomentumResolution::ReadResDataParam: file not found! Exiting...\n\n", exit(0);
     }
+    // else {
+    //     std::cout << "\n\nMomentumResolution::ReadResDataParam: file not found! Exiting...\n\n", exit(0);
+    // }
+
+    std::cout << "\033[35m\n\nMomentumResolution::ReadResDataParam:\033[36m Warning!\033[0m file:\n" << filename << "\nwas not found!\n\n";
 }
 #pragma endregion
 

@@ -2338,10 +2338,12 @@ void AMaps::ReadAMap(const char *filename, vector<vector<int>> &Loaded_particle_
                 Loaded_particle_AMap.push_back(col);
             }
         }
-    } else {
-        std::cout << "\033[35m\n\nAMaps::ReadAMap:\033[36m Warning!\033[0m file:\n" << filename << "\nwas not found!\n\n";
-        // std::cout << "\n\nAMaps::ReadAMap: file:\n" << filename << "\nwas not found! Exiting...\n\n", exit(0);
     }
+    // else {
+    //     std::cout << "\n\nAMaps::ReadAMap: file:\n" << filename << "\nwas not found! Exiting...\n\n", exit(0);
+    // }
+
+    std::cout << "\033[35m\n\nAMaps::ReadAMap:\033[36m Warning!\033[0m file:\n" << filename << "\nwas not found!\n\n";
 }
 #pragma endregion
 
@@ -2399,10 +2401,12 @@ void AMaps::ReadWMap(const char *filename, vector<vector<double>> &Loaded_partic
                 Loaded_particle_WMap.push_back(col);
             }
         }
-    } else {
-        std::cout << "\033[35m\n\nAMaps::ReadWMap:\033[36m Warning!\033[0m file:\n" << filename << "\nwas not found!\n\n";
-        // std::cout << "\n\nWMaps::ReadWMap: file:\n" << filename << "\nwas not found! Exiting...\n\n", exit(0);
     }
+    // else {
+    //     std::cout << "\n\nWMaps::ReadWMap: file:\n" << filename << "\nwas not found! Exiting...\n\n", exit(0);
+    // }
+
+    std::cout << "\033[35m\n\nAMaps::ReadWMap:\033[36m Warning!\033[0m file:\n" << filename << "\nwas not found!\n\n";
 }
 // void AMaps::ReadWMap(const char *filename, vector<vector<double>> &Loaded_particle_WMaps) {
 //     ifstream infile;
@@ -2500,7 +2504,7 @@ bool AMaps::MatchAngToHitMap(const std::string &Particle, double Momentum, doubl
                                 if (NucleonOverlappingFC) {
                                     if (debugging_settings::DebuggerMode) {
                                         std::cout << "\n\nLoaded_nuc_AMap_Slices.at(Slice).size() = " << Loaded_nuc_AMap_Slices.at(Slice).size() << "\n";
-                                        std::cout << "Loaded_nuc_AMap_Slices.at(Slice).at(" << i << ").size() = " << Loaded_nuc_AMap_Slices.at(Slice).at(i) << "\n";
+                                        std::cout << "Loaded_nuc_AMap_Slices.at(Slice).at(" << i << ").size() = " << Loaded_nuc_AMap_Slices.at(Slice).at(i).size() << "\n";
                                         std::cout << "Loaded_NucleonMomSliceLimits.at(Slice).at(0) = " << Loaded_NucleonMomSliceLimits.at(Slice).at(0) << "\n";
                                         std::cout << "Loaded_NucleonMomSliceLimits.at(Slice).at(1) = " << Loaded_NucleonMomSliceLimits.at(Slice).at(1) << "\n\n";
                                     }
