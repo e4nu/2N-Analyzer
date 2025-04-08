@@ -2339,7 +2339,7 @@ void AMaps::ReadAMap(const char *filename, vector<vector<int>> &Loaded_particle_
             }
         }
     } else {
-        cout << "\n\nAMaps::ReadAMap: Warning! file:\n" << filename << "\nwas not found! Exiting...\n\n";
+        cout << "\033[31m\n\nAMaps::ReadAMap: Warning! file:\n" << filename << "\nwas not found! Exiting...\n\n\033[0m";
         // cout << "\n\nAMaps::ReadAMap: file:\n" << filename << "\nwas not found! Exiting...\n\n", exit(0);
     }
 }
@@ -2400,7 +2400,7 @@ void AMaps::ReadWMap(const char *filename, vector<vector<double>> &Loaded_partic
             }
         }
     } else {
-        cout << "\n\nWMaps::ReadWMap: Warning! file:\n" << filename << "\nwas not found! Exiting...\n\n";
+        cout << "\033[31m\n\nWMaps::ReadWMap: Warning! file:\n" << filename << "\nwas not found! Exiting...\n\n\033[0m";
         // cout << "\n\nWMaps::ReadWMap: file:\n" << filename << "\nwas not found! Exiting...\n\n", exit(0);
     }
 }
