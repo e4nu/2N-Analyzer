@@ -524,10 +524,12 @@ void MomentumResolution::ReadInputParam(const char *filename) {
                 if (pid != "") { Neutron_Momentum_cut = par.at(1); }
             }
         }
-    } else {
-        std::cout << "\033[35m\n\nMomentumResolution::ReadInputParam:\033[36m Warning!\033[0m file:\n" << filename << "\nwas not found!\n\n";
-        // std::cout << "MomentumResolution::ReadInputParam: Parameter file didn't read in:\n" << filename << endl;
     }
+    // else {
+    //     std::cout << "MomentumResolution::ReadInputParam: Parameter file didn't read in:\n" << filename << endl;
+    // }
+
+    std::cout << "\033[35m\n\nMomentumResolution::ReadInputParam:\033[36m Warning!\033[0m file:\n" << filename << "\nwas not found!\n\n";
 }
 #pragma endregion
 
