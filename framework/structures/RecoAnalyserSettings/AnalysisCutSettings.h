@@ -7,14 +7,14 @@
 
 #include <iostream>
 
+// Include libraries:
+#include "../../namespaces/setup/path_definitions.h"
+
 // Include settings:
 #include "AcceptanceMapsSettings.h"
 #include "EventSelectionSettings.h"
 #include "MomentumResolutionSettings.h"
 #include "RunParameters.h"
-
-// Include libraries:
-#include "../../namespaces/setup/path_definitions.h"
 
 // Include classes:
 #include "../../classes/ExperimentParameters/ExperimentParameters.cpp"

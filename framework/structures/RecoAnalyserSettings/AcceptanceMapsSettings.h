@@ -7,11 +7,11 @@
 
 #include <iostream>
 
-// Include settings:
-#include "RunParameters.h"
-
 // Include libraries:
 #include "../../namespaces/general_utilities/basic_tools.h"
+
+// Include settings:
+#include "RunParameters.h"
 
 struct AcceptanceMapsSettings {
     bool Generate_Electron_AMaps;  // Generate electron acceptance maps
