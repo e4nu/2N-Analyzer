@@ -136,7 +136,7 @@ void TitleAligner(TH1D *simHistogram, TH1D *dataHistogram, const std::string &or
 
 // GetHistogramFromVector function --------------------------------------------------------------------------------------------------------------------------------------
 
-TH1 *GetHistogramFromVector(const std::vector<TObject *> &HistoList, const std::string &searchString, const std::string &searchStringOption = "name") {
+TObject *GetHistogramFromVector(const std::vector<TObject *> &HistoList, const std::string &searchString, const std::string &searchStringOption = "name") {
     for (const auto &hist : HistoList) {
         if (!hist) continue;
 
