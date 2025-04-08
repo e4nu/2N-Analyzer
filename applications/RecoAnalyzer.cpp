@@ -12,7 +12,7 @@
 // RecoAnalyzer constructor ---------------------------------------------------------------------------------------------------------------------------------------------
 
 RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string &AnalyzeFileSample, const std::string &AnalyzeFile) {
-    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode);
+    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, "Start of code");
 
     std::cout << "\033[33m\n\n===========================================================================\n\033[0m";
     std::cout << "\033[33m\t\t\tDetector simulation analyser\n\033[0m";
@@ -31,6 +31,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     // ======================================================================================================================================================================
     // Input processing
     // ======================================================================================================================================================================
+
+    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, "Input processing - start");
 
     // Input processing
     /* Initial input processing of loaded files (given by AnalyzeFile) */
@@ -57,9 +59,13 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     // const bool is4GeVSample = Experiment.IsBeamAt4GeV();
     // const bool is6GeVSample = Experiment.IsBeamAt6GeV();
 
+    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, "Input processing - end");
+
     // ======================================================================================================================================================================
     // Event selection setup
     // ======================================================================================================================================================================
+
+    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, "Event selection setup - start");
 
     // Event selection setup
     EventSelectionSettings ESSettings = EventSelectionSettings();
@@ -142,11 +148,13 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     MomResSettings.RefreshSettings();
     // if (plot_and_fit_MomRes && (Calculate_momResS2 || Run_with_momResS2)) { ForceSmallpResLimits = false; }
 
+    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, "Event selection setup - end");
+
     // ======================================================================================================================================================================
     // Cut setup
     // ======================================================================================================================================================================
 
-    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode);
+    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, "Cut setup - start");
 
     // Cut setup ---------------------------------------------------------------------------------------------------------------------------------------------------------
     AnalysisCutSettings CutSettings = AnalysisCutSettings();
@@ -487,11 +495,13 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     // DSCuts MomRes_sigma_cuts = DSCuts("MomRes_sigma_cuts", "FD", "", "Protons and neutrons", 0, FD_nucleon_momentum_cut.GetLowerCut(), 2.2);
     // // Adi meeting after (29/01/24)
 
+    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, "Cut setup - end");
+
     // ======================================================================================================================================================================
     // Other setup
     // ======================================================================================================================================================================
 
-    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode);
+    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, "Other setup - start");
 
     //  Directory settings ------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -1164,13 +1174,15 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         EventPrint << "#event upper bound:\t\t" << nEvents2print << "\n\n\n\033[0m";
     }
 
+    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, "Other setup - end");
+
 #pragma endregion
 
     // Histogram definitions ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #pragma region /* Histogram definitions */
 
-    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode);
+    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, "Histogram definitions - start");
 
     // Histogram definitions
     /* Histogram definitions and setup. */
@@ -10519,19 +10531,23 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     std::cout << "\033[33m done.\n\n\033[0m";
 
+    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, "Histogram definitions - end");
+
 #pragma endregion
 
     // Code execution ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #pragma region /* Code execution */
 
-    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode);
+    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, "Code execution - start");
 
     // Code execution
     std::cout << "\033[33m\nReading target parameter files...\n\n\033[0m";
 
     // Setting and loading cuts (via clas12ana)
     clas12ana clasAna;
+
+    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, "Setting and loading cuts (via clas12ana) - start");
 
     if (CutSettings.apply_cuts) {
         // Cuts on electrons only:
@@ -10732,6 +10748,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         }
     }
 
+    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, "Setting and loading cuts (via clas12ana) - end");
+
     // Setting HipoChain
     std::cout << "\033[33m\n\nSetting HipoChain...\n\n\033[0m";
 
@@ -10809,6 +10827,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     while (chain.Next()) {
 #pragma region /* Event setup */
+
+        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, "Event setup - start");
 
         // loop over events
         debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode);
@@ -11036,13 +11056,15 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             pid.GPMonitoring(GoodProtonsMonitorPlots, protons, IDed_Protons_ind, Protons_ind, CutManager.Theta_p1_cuts_2p, CutManager.Theta_p2_cuts_2p, CutManager.dphi_p1_p2_2p, Weight);
         }
 
-        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode);
+        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, "Event setup - end");
 
 #pragma endregion
 
         //  Filling truth level histograms (lundfile loop) ----------------------------------------------------------------------------------------------------------------------
 
 #pragma region /* Truth-level events */
+
+        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, "Truth-level events - start");
 
         // TODO: confirm that the TL kin cuts are working!
 
@@ -12341,13 +12363,15 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             }
         }
 
+        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, "Truth-level events - end");
+
 #pragma endregion
 
         //  Fill All particles (All e) plots ------------------------------------------------------------------------------------------------------------------------------------
 
 #pragma region /* Reco. All e events */
 
-        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode);
+        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, "Reco. All e events - start");
 
         // All particles plots
         /* Declaration of electron variables for all particles analysis.
@@ -12493,13 +12517,15 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             }
         }  // end of loop over deuterons vector
 
+        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, "Reco. All e events - end");
+
 #pragma endregion
 
         //  1e cut --------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-#pragma region /* Reco. 1e cut */
+#pragma region /* Reco. 1e cut events */
 
-        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode);
+        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, "Reco. 1e cut events - start");
 
         // 1e cut
         /* Here we apply electron cut on everything that follows (1p, nFDpCD, 1e2p and 2p) */
@@ -12842,22 +12868,26 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         hPhi_e_1e_cut_FD->Fill(Phi_e, Weight);
         hTheta_e_VS_Phi_e_1e_cut_FD->Fill(Phi_e, Theta_e, Weight);
 
-        hE_e_VS_Theta_e_All_Int_1e_cut_FD->Fill(Theta_e, E_e_1e_cut, Weight);
-        hE_e_All_Int_1e_cut_FD->Fill(E_e_1e_cut, Weight);
+        FillByInt1D(hE_e_All_Int_1e_cut_FD, hE_e_QEL_1e_cut_FD, hE_e_MEC_1e_cut_FD, hE_e_RES_1e_cut_FD, hE_e_DIS_1e_cut_FD, qel, mec, res, dis, E_e_1e_cut, Weight);
+        FillByInt2D(hE_e_VS_Theta_e_All_Int_1e_cut_FD, hE_e_VS_Theta_e_QEL_1e_cut_FD, hE_e_VS_Theta_e_MEC_1e_cut_FD, hE_e_VS_Theta_e_RES_1e_cut_FD, hE_e_VS_Theta_e_DIS_1e_cut_FD, qel, mec,
+                    res, dis, Theta_e, E_e_1e_cut, Weight);
 
-        if (qel) {
-            hE_e_QEL_1e_cut_FD->Fill(E_e_1e_cut, Weight);
-            hE_e_VS_Theta_e_QEL_1e_cut_FD->Fill(Theta_e, E_e_1e_cut, Weight);
-        } else if (mec) {
-            hE_e_MEC_1e_cut_FD->Fill(E_e_1e_cut, Weight);
-            hE_e_VS_Theta_e_MEC_1e_cut_FD->Fill(Theta_e, E_e_1e_cut, Weight);
-        } else if (res) {
-            hE_e_RES_1e_cut_FD->Fill(E_e_1e_cut, Weight);
-            hE_e_VS_Theta_e_RES_1e_cut_FD->Fill(Theta_e, E_e_1e_cut, Weight);
-        } else if (dis) {
-            hE_e_DIS_1e_cut_FD->Fill(E_e_1e_cut, Weight);
-            hE_e_VS_Theta_e_DIS_1e_cut_FD->Fill(Theta_e, E_e_1e_cut, Weight);
-        }
+        // hE_e_All_Int_1e_cut_FD->Fill(E_e_1e_cut, Weight);
+        // hE_e_VS_Theta_e_All_Int_1e_cut_FD->Fill(Theta_e, E_e_1e_cut, Weight);
+
+        // if (qel) {
+        //     hE_e_QEL_1e_cut_FD->Fill(E_e_1e_cut, Weight);
+        //     hE_e_VS_Theta_e_QEL_1e_cut_FD->Fill(Theta_e, E_e_1e_cut, Weight);
+        // } else if (mec) {
+        //     hE_e_MEC_1e_cut_FD->Fill(E_e_1e_cut, Weight);
+        //     hE_e_VS_Theta_e_MEC_1e_cut_FD->Fill(Theta_e, E_e_1e_cut, Weight);
+        // } else if (res) {
+        //     hE_e_RES_1e_cut_FD->Fill(E_e_1e_cut, Weight);
+        //     hE_e_VS_Theta_e_RES_1e_cut_FD->Fill(Theta_e, E_e_1e_cut, Weight);
+        // } else if (dis) {
+        //     hE_e_DIS_1e_cut_FD->Fill(E_e_1e_cut, Weight);
+        //     hE_e_VS_Theta_e_DIS_1e_cut_FD->Fill(Theta_e, E_e_1e_cut, Weight);
+        // }
 
         // Fill Proton plots (1e cut, CD & FD)
         for (clas12::region_part_ptr &p : protons) {
@@ -12946,53 +12976,67 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
         // Fill W (1e cut, CD & FD)
         FillByInt1D(hW_All_Int_1e_cut, hW_QEL_1e_cut, hW_MEC_1e_cut, hW_RES_1e_cut, hW_DIS_1e_cut, qel, mec, res, dis, W_1e_cut, Weight_1e_cut);
-        hW_VS_q_3v_1e_cut->Fill(W_1e_cut, q_1e_cut_3v.Mag(), Weight_1e_cut);
-        hW_VS_omega_1e_cut->Fill(W_1e_cut, omega_1e_cut, Weight_1e_cut);
 
-        if (qel) {
-            hW_VS_q_3v_QEL_1e_cut->Fill(W_1e_cut, q_1e_cut_3v.Mag(), Weight_1e_cut);
-            hW_VS_omega_QEL_1e_cut->Fill(W_1e_cut, omega_1e_cut, Weight_1e_cut);
-        } else if (mec) {
-            hW_VS_q_3v_MEC_1e_cut->Fill(W_1e_cut, q_1e_cut_3v.Mag(), Weight_1e_cut);
-            hW_VS_omega_MEC_1e_cut->Fill(W_1e_cut, omega_1e_cut, Weight_1e_cut);
-        } else if (res) {
-            hW_VS_q_3v_RES_1e_cut->Fill(W_1e_cut, q_1e_cut_3v.Mag(), Weight_1e_cut);
-            hW_VS_omega_RES_1e_cut->Fill(W_1e_cut, omega_1e_cut, Weight_1e_cut);
-        } else if (dis) {
-            hW_VS_q_3v_DIS_1e_cut->Fill(W_1e_cut, q_1e_cut_3v.Mag(), Weight_1e_cut);
-            hW_VS_omega_DIS_1e_cut->Fill(W_1e_cut, omega_1e_cut, Weight_1e_cut);
-        }
+        FillByInt2D(hW_VS_q_3v_1e_cut, hW_VS_q_3v_QEL_1e_cut, hW_VS_q_3v_MEC_1e_cut, hW_VS_q_3v_RES_1e_cut, hW_VS_q_3v_DIS_1e_cut, qel, mec, res, dis, W_1e_cut, q_1e_cut_3v.Mag(),
+                    Weight_1e_cut);
+        FillByInt2D(hW_VS_omega_1e_cut, hW_VS_omega_QEL_1e_cut, hW_VS_omega_MEC_1e_cut, hW_VS_omega_RES_1e_cut, hW_VS_omega_DIS_1e_cut, qel, mec, res, dis, W_1e_cut, omega_1e_cut,
+                    Weight_1e_cut);
+
+        // hW_VS_q_3v_1e_cut->Fill(W_1e_cut, q_1e_cut_3v.Mag(), Weight_1e_cut);
+        // hW_VS_omega_1e_cut->Fill(W_1e_cut, omega_1e_cut, Weight_1e_cut);
+
+        // if (qel) {
+        //     hW_VS_q_3v_QEL_1e_cut->Fill(W_1e_cut, q_1e_cut_3v.Mag(), Weight_1e_cut);
+        //     hW_VS_omega_QEL_1e_cut->Fill(W_1e_cut, omega_1e_cut, Weight_1e_cut);
+        // } else if (mec) {
+        //     hW_VS_q_3v_MEC_1e_cut->Fill(W_1e_cut, q_1e_cut_3v.Mag(), Weight_1e_cut);
+        //     hW_VS_omega_MEC_1e_cut->Fill(W_1e_cut, omega_1e_cut, Weight_1e_cut);
+        // } else if (res) {
+        //     hW_VS_q_3v_RES_1e_cut->Fill(W_1e_cut, q_1e_cut_3v.Mag(), Weight_1e_cut);
+        //     hW_VS_omega_RES_1e_cut->Fill(W_1e_cut, omega_1e_cut, Weight_1e_cut);
+        // } else if (dis) {
+        //     hW_VS_q_3v_DIS_1e_cut->Fill(W_1e_cut, q_1e_cut_3v.Mag(), Weight_1e_cut);
+        //     hW_VS_omega_DIS_1e_cut->Fill(W_1e_cut, omega_1e_cut, Weight_1e_cut);
+        // }
 
         // Fill momentum transfer plots (1e cut, CD & FD)
         FillByInt1D(hQ2_1e_cut, hQ2_QEL_1e_cut, hQ2_MEC_1e_cut, hQ2_RES_1e_cut, hQ2_DIS_1e_cut, qel, mec, res, dis, Q2_1e_cut, Weight);
         FillByInt1D(hq_3v_1e_cut, hq_3v_QEL_1e_cut, hq_3v_MEC_1e_cut, hq_3v_RES_1e_cut, hq_3v_DIS_1e_cut, qel, mec, res, dis, q_1e_cut_3v.Mag(), Weight);
 
-        hQ2_VS_W_1e_cut->Fill(W_1e_cut, Q2_1e_cut, Weight_1e_cut);
-        hQ2_VS_q_3v_1e_cut->Fill(q_1e_cut_3v.Mag(), Q2_1e_cut, Weight_1e_cut);
-        hQ2_VS_omega_1e_cut->Fill(omega_1e_cut, Q2_1e_cut, Weight_1e_cut);
-        hq_3v_VS_omega_1e_cut->Fill(omega_1e_cut, q_1e_cut_3v.Mag(), Weight_1e_cut);
+        FillByInt2D(hQ2_VS_W_1e_cut, hQ2_VS_W_QEL_1e_cut, hQ2_VS_W_MEC_1e_cut, hQ2_VS_W_RES_1e_cut, hQ2_VS_W_DIS_1e_cut, qel, mec, res, dis, W_1e_cut, Q2_1e_cut, Weight_1e_cut);
+        FillByInt2D(hQ2_VS_q_3v_1e_cut, hQ2_VS_q_3v_QEL_1e_cut, hQ2_VS_q_3v_MEC_1e_cut, hQ2_VS_q_3v_RES_1e_cut, hQ2_VS_q_3v_DIS_1e_cut, qel, mec, res, dis, q_1e_cut_3v.Mag(), Q2_1e_cut,
+                    Weight_1e_cut);
+        FillByInt2D(hQ2_VS_omega_1e_cut, hQ2_VS_omega_QEL_1e_cut, hQ2_VS_omega_MEC_1e_cut, hQ2_VS_omega_RES_1e_cut, hQ2_VS_omega_DIS_1e_cut, qel, mec, res, dis, omega_1e_cut, Q2_1e_cut,
+                    Weight_1e_cut);
+        FillByInt2D(hq_3v_VS_omega_1e_cut, hq_3v_VS_omega_QEL_1e_cut, hq_3v_VS_omega_MEC_1e_cut, hq_3v_VS_omega_RES_1e_cut, hq_3v_VS_omega_DIS_1e_cut, qel, mec, res, dis, omega_1e_cut,
+                    q_1e_cut_3v.Mag(), Weight_1e_cut);
 
-        if (qel) {
-            hQ2_VS_W_QEL_1e_cut->Fill(W_1e_cut, Q2_1e_cut, Weight_1e_cut);
-            hQ2_VS_q_3v_QEL_1e_cut->Fill(q_1e_cut_3v.Mag(), Q2_1e_cut, Weight_1e_cut);
-            hQ2_VS_omega_QEL_1e_cut->Fill(omega_1e_cut, Q2_1e_cut, Weight_1e_cut);
-            hq_3v_VS_omega_QEL_1e_cut->Fill(omega_1e_cut, q_1e_cut_3v.Mag(), Weight_1e_cut);
-        } else if (mec) {
-            hQ2_VS_W_MEC_1e_cut->Fill(W_1e_cut, Q2_1e_cut, Weight_1e_cut);
-            hQ2_VS_q_3v_MEC_1e_cut->Fill(q_1e_cut_3v.Mag(), Q2_1e_cut, Weight_1e_cut);
-            hQ2_VS_omega_MEC_1e_cut->Fill(omega_1e_cut, Q2_1e_cut, Weight_1e_cut);
-            hq_3v_VS_omega_MEC_1e_cut->Fill(omega_1e_cut, q_1e_cut_3v.Mag(), Weight_1e_cut);
-        } else if (res) {
-            hQ2_VS_W_RES_1e_cut->Fill(W_1e_cut, Q2_1e_cut, Weight_1e_cut);
-            hQ2_VS_q_3v_RES_1e_cut->Fill(q_1e_cut_3v.Mag(), Q2_1e_cut, Weight_1e_cut);
-            hQ2_VS_omega_RES_1e_cut->Fill(omega_1e_cut, Q2_1e_cut, Weight_1e_cut);
-            hq_3v_VS_omega_RES_1e_cut->Fill(omega_1e_cut, q_1e_cut_3v.Mag(), Weight_1e_cut);
-        } else if (dis) {
-            hQ2_VS_W_DIS_1e_cut->Fill(W_1e_cut, Q2_1e_cut, Weight_1e_cut);
-            hQ2_VS_q_3v_DIS_1e_cut->Fill(q_1e_cut_3v.Mag(), Q2_1e_cut, Weight_1e_cut);
-            hQ2_VS_omega_DIS_1e_cut->Fill(omega_1e_cut, Q2_1e_cut, Weight_1e_cut);
-            hq_3v_VS_omega_DIS_1e_cut->Fill(omega_1e_cut, q_1e_cut_3v.Mag(), Weight_1e_cut);
-        }
+        // hQ2_VS_W_1e_cut->Fill(W_1e_cut, Q2_1e_cut, Weight_1e_cut);
+        // hQ2_VS_q_3v_1e_cut->Fill(q_1e_cut_3v.Mag(), Q2_1e_cut, Weight_1e_cut);
+        // hQ2_VS_omega_1e_cut->Fill(omega_1e_cut, Q2_1e_cut, Weight_1e_cut);
+        // hq_3v_VS_omega_1e_cut->Fill(omega_1e_cut, q_1e_cut_3v.Mag(), Weight_1e_cut);
+
+        // if (qel) {
+        //     hQ2_VS_W_QEL_1e_cut->Fill(W_1e_cut, Q2_1e_cut, Weight_1e_cut);
+        //     hQ2_VS_q_3v_QEL_1e_cut->Fill(q_1e_cut_3v.Mag(), Q2_1e_cut, Weight_1e_cut);
+        //     hQ2_VS_omega_QEL_1e_cut->Fill(omega_1e_cut, Q2_1e_cut, Weight_1e_cut);
+        //     hq_3v_VS_omega_QEL_1e_cut->Fill(omega_1e_cut, q_1e_cut_3v.Mag(), Weight_1e_cut);
+        // } else if (mec) {
+        //     hQ2_VS_W_MEC_1e_cut->Fill(W_1e_cut, Q2_1e_cut, Weight_1e_cut);
+        //     hQ2_VS_q_3v_MEC_1e_cut->Fill(q_1e_cut_3v.Mag(), Q2_1e_cut, Weight_1e_cut);
+        //     hQ2_VS_omega_MEC_1e_cut->Fill(omega_1e_cut, Q2_1e_cut, Weight_1e_cut);
+        //     hq_3v_VS_omega_MEC_1e_cut->Fill(omega_1e_cut, q_1e_cut_3v.Mag(), Weight_1e_cut);
+        // } else if (res) {
+        //     hQ2_VS_W_RES_1e_cut->Fill(W_1e_cut, Q2_1e_cut, Weight_1e_cut);
+        //     hQ2_VS_q_3v_RES_1e_cut->Fill(q_1e_cut_3v.Mag(), Q2_1e_cut, Weight_1e_cut);
+        //     hQ2_VS_omega_RES_1e_cut->Fill(omega_1e_cut, Q2_1e_cut, Weight_1e_cut);
+        //     hq_3v_VS_omega_RES_1e_cut->Fill(omega_1e_cut, q_1e_cut_3v.Mag(), Weight_1e_cut);
+        // } else if (dis) {
+        //     hQ2_VS_W_DIS_1e_cut->Fill(W_1e_cut, Q2_1e_cut, Weight_1e_cut);
+        //     hQ2_VS_q_3v_DIS_1e_cut->Fill(q_1e_cut_3v.Mag(), Q2_1e_cut, Weight_1e_cut);
+        //     hQ2_VS_omega_DIS_1e_cut->Fill(omega_1e_cut, Q2_1e_cut, Weight_1e_cut);
+        //     hq_3v_VS_omega_DIS_1e_cut->Fill(omega_1e_cut, q_1e_cut_3v.Mag(), Weight_1e_cut);
+        // }
 
         // Fill Beta vs. P for other particles (1e cut, CD & FD)
 
@@ -13695,13 +13739,15 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         pid.FillNeutMultiPlots(allParticles, electrons, Weight, parameters.beamE, CutManager.Neutron_veto_cut.GetLowerCutConst(), hNeut_Multi_By_Redef_BPID_BV_1e_cut_FD,
                                hNeut_Multi_By_Redef_BPID_AV_1e_cut_FD, ReDef_FD_neutrons, hNeut_Multi_By_Redef_APID_BV_1e_cut_FD, hNeut_Multi_By_Redef_APID_AV_1e_cut_FD, NeutronsFD_ind);
 
+        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, "Reco. 1e cut events - end");
+
 #pragma endregion
 
         //  1p (FD only) --------------------------------------------------------------------------------------------------------------------------------------------------------
 
 #pragma region /* Reco. 1p (FD only) events */
 
-        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode);
+        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, "Reco. 1p (FD only) events - start");
 
         // 1p (FD only)
         /* 1p event selection: 1p = Protons_ind.size() = 1 in the FD, any number of FD neutrons and any number of other neutrals and particles with pdg=0.*/
@@ -14235,13 +14281,15 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             }  // end of pass kinematical cuts (1p) if
         }  // end of 1p cuts if
 
+        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, "Reco. 1p (FD only) events - end");
+
 #pragma endregion
 
         //  1n (FD only) --------------------------------------------------------------------------------------------------------------------------------------------------------
 
 #pragma region /* Reco. 1n (FD only) events */
 
-        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode);
+        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, "Reco. 1n (FD only) events - start");
 
         // 1n (FD only)
         /* 1n event selection: 1n = any number of id. FD neutrons (we look at the leading nFD), with no charged particles (except electrons) and any number of other
@@ -15214,11 +15262,16 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             }  // end of NeutronPassVeto_1n is true (i.e. if neutron did not hit PCAL & hit either ECIN or ECOUT) & pass kinematical cuts (1n) if
         }  // end of 1n cuts if
 
+        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, "Reco. 1n (FD only) events - end");
+
 #pragma endregion
 
         //  1e2pXy (or (e,e'pp)X) -----------------------------------------------------------------------------------------------------------------------------------------------
 
 #pragma region /* Reco. 1e2pXy (or (e,e'pp)X) events */
+
+        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, "Reco. 1e2pXy (or (e,e'pp)X) events - start");
+
         // 1e2pXy
         if (Np == 2) {
             // 2p and everything else is allowed
@@ -15238,11 +15291,15 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             }
         }
 
+        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, "Reco. 1e2pXy (or (e,e'pp)X) events - end");
+
 #pragma endregion
 
         //  2p (FD & CD) --------------------------------------------------------------------------------------------------------------------------------------------------------
 
 #pragma region /* Reco. 2p (FD & CD) events */
+
+        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, "Reco. 2p (FD & CD) events - start");
 
         // 2p (FD & CD)
         /* 2p event selection: 2p = Protons_ind.size() = 2, any id. FD neutrons and any number of other neutrals and particles with pdg=0. */
@@ -15764,13 +15821,15 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             }
         }  // end of 2p cuts if
 
+        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, "Reco. 2p (FD & CD) events - end");
+
 #pragma endregion
 
         //  pFDpCD --------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 #pragma region /* Reco. pFDpCD events */
 
-        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode);
+        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, "Reco. pFDpCD events - start");
 
         // pFDpCD
 
@@ -16618,13 +16677,15 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             }
         }  // end of 1epFDpCD & pFDpCD cuts if
 
+        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, "Reco. pFDpCD events - end");
+
 #pragma endregion
 
         //  nFDpCD --------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 #pragma region /* Reco. nFDpCD events */
 
-        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode);
+        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, "Reco. nFDpCD events - start");
 
         // nFDpCD
 
@@ -17513,11 +17574,13 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             }
         }  // end of 1enFDpCD & nFDpCD cuts if
 
-        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode);
+        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, "Reco. nFDpCD events - end");
 
 #pragma endregion
     }  // end of while
     // </editor-fold>
+
+    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, "Code execution - end");
 
 #pragma endregion
 

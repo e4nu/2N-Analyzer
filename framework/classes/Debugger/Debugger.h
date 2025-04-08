@@ -2,12 +2,12 @@
 // #define DEBUGGER_H
 #ifdef DEBUGGER_H
 
-#include <iostream>
+    #include <iostream>
 
-#include "../../namespaces/general_utilities/utilities.h"
-//
-#include "../DSCuts/DSCuts.h"
-#include "../ParticleID/ParticleID.cpp"
+    #include "../../namespaces/general_utilities/utilities.h"
+    //
+    #include "../DSCuts/DSCuts.h"
+    #include "../ParticleID/ParticleID.cpp"
 
 using namespace utilities;
 
@@ -81,11 +81,17 @@ class Debugger {
 
     // PrintStepTester function ---------------------------------------------------------------------------------------------------------------------------------------------
 
-    void PrintStepTester(const char *FILE, const int LINE, const bool &DebuggerMode) {
+    void PrintStepTester(const char *FILE, const int LINE, const bool &DebuggerMode, const std::string &StepName = "") {
         if (DebuggerMode) {
             std::cerr << "\033[31m\n\nStep-by-step tester is enabled:" << std::endl;
             std::cerr << "Test number " << StepTester << std::endl;
-            std::cerr << "File: " << FILE << ", Line: " << LINE << "\n\n\033[0m" << std::endl;
+
+            if (StepName == "") {
+                std::cerr << "File: " << FILE << ", Line: " << LINE << "\n\n\033[0m" << std::endl;
+            } else {
+                std::cerr << "File: " << FILE << ", Line: " << LINE << ", Step: " << StepName << "\n\n\033[0m" << std::endl;
+            }
+
             ++StepTester;
         }
     }
