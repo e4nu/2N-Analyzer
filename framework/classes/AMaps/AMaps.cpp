@@ -1692,18 +1692,21 @@ void AMaps::DrawAndSaveHitMapsPDFs(vector<TObject *> HistoList, const std::strin
         myCanvas_temp->cd()->SetGrid();
         myCanvas_temp->cd()->SetBottomMargin(0.14), myCanvas_temp->cd()->SetLeftMargin(0.16), myCanvas_temp->cd()->SetRightMargin(0.12);
 
-        HistoList[i]->Draw("colz");
+        if (TH1 *hist = dynamic_cast<TH1 *>(HistoList[i])) {
+            HistoList[i]->Draw("colz");
 
-        HistoList[i]->SetStats(1);
-        gStyle->SetOptStat("ourmen");
-        gStyle->SetStatX(0.98);   // gStyle->SetStatX(0.87);
-        gStyle->SetStatY(0.935);  // gStyle->SetStatY(0.875);
-        gPad->Modified();
-        gPad->Update();
+            hist->SetStats(1);
+            // HistoList[i]->SetStats(1);
+            gStyle->SetOptStat("ourmen");
+            gStyle->SetStatX(0.98);   // gStyle->SetStatX(0.87);
+            gStyle->SetStatY(0.935);  // gStyle->SetStatY(0.875);
+            gPad->Modified();
+            gPad->Update();
 
-        gPad->Update();
-        TPaletteAxis *palette = (TPaletteAxis *)HistoList[i]->GetListOfFunctions()->FindObject("palette");
-        if (palette) { palette->SetY2NDC(0.55), gPad->Modified(), gPad->Update(); }
+            gPad->Update();
+            TPaletteAxis *palette = (TPaletteAxis *)HistoList[i]->GetListOfFunctions()->FindObject("palette");
+            if (palette) { palette->SetY2NDC(0.55), gPad->Modified(), gPad->Update(); }
+        }
 
         myCanvas_temp->Print(fileName, "pdf");
         myCanvas_temp->Clear();

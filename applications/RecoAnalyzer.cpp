@@ -21254,26 +21254,6 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     if (Angle_plots_master) {
         std::cout << "\033[33m\n\nPlotting Angle histograms...\n\n\033[0m";
 
-        CanvasPDF->Print(Form("%s[", HistoList));  // Open the PDF file
-        CanvasPDF->cd();
-
-        TLatex text;
-        text.SetTextSize(0.05);
-        text.DrawLatex(0.2, 0.9, "Angle histograms");
-        // text.DrawLatex(0.2, 0.8, "No Cuts");
-
-        // Force canvas to recognize modifications
-        CanvasPDF->Modified();
-        CanvasPDF->Update();
-
-        // Save the current canvas content to the PDF
-        CanvasPDF->Print(HistoList);
-
-        // End the multi-page PDF
-        CanvasPDF->Print(Form("%s]", HistoList));  // Close the PDF file
-        CanvasPDF->Print(Form("%s[", HistoList));  // Open the PDF file
-        c1->cd();
-
         //  Theta_e plots (FD only) ---------------------------------------------------------------------------------------------------------------------------------------------
 
         // Theta_e plots (no #(e) cut, FD)
