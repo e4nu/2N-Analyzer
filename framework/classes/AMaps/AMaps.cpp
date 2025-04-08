@@ -371,20 +371,20 @@ AMaps::AMaps(const std::string &AcceptanceMapsDirectory, const std::string &Samp
 
     std::string MapsPrefix = (basic_tools::FindSubstring(AMaps_Mode, "AMaps")) ? "AMap" : "WMap";
 
-    std::std::cout << "\n\nSetting iso samp names\n";
+    std::cout << "\n\nSetting iso samp names\n";
     std::string BeamE_str = basic_tools::GetBeamEnergyFromDouble(beamE);
     std::string Electron_source_folder = "Uniform_1e_sample_" + BeamE_str;
     std::string Proton_source_folder = "Uniform_ep_sample_" + BeamE_str;
     std::string Neutron_source_folder = "Uniform_en_sample_" + BeamE_str;
 
-    std::std::cout << "\n\nLoad slices and their limits\n";
+    std::cout << "\n\nLoad slices and their limits\n";
     /* Load slices and their limits */
     ReadAMapLimits((AcceptanceMapsDirectory + Electron_source_folder + "/e_" + MapsPrefix + "_by_slice/e_slice_limits.par").c_str(), Loaded_ElectronMomSliceLimits);
     ReadAMapLimits((AcceptanceMapsDirectory + Proton_source_folder + "/p_" + MapsPrefix + "_by_slice/p_slice_limits.par").c_str(), Loaded_NucleonMomSliceLimits);
     // ReadAMapLimits((AcceptanceMapsDirectory + SampleName + "/e_AMap_by_slice/e_slice_limits.par").c_str(), Loaded_ElectronMomSliceLimits);
     // ReadAMapLimits((AcceptanceMapsDirectory + SampleName + "/p_AMap_by_slice/p_slice_limits.par").c_str(), Loaded_NucleonMomSliceLimits);
 
-    std::std::cout << "\n\nLoad separate maps\n";
+    std::cout << "\n\nLoad separate maps\n";
     /* Load separate maps */
     if (MapsPrefix == "AMap") {
         ReadAMapSlices(Electron_source_folder, AcceptanceMapsDirectory, "Electron", Loaded_ElectronMomSliceLimits, Loaded_e_AMap_Slices);
@@ -416,7 +416,7 @@ AMaps::AMaps(const std::string &AcceptanceMapsDirectory, const std::string &Samp
     // ReadWMapSlices(SampleName, AcceptanceMapsDirectory, "Neutron", Loaded_NucleonMomSliceLimits, Loaded_n_WMap_Slices);
     // ReadAMapSlices(SampleName, AcceptanceMapsDirectory, "Nucleon", Loaded_NucleonMomSliceLimits, Loaded_nuc_AMap_Slices);
 
-    // std::std::cout << "\n\nLoad combined maps\n";
+    // std::cout << "\n\nLoad combined maps\n";
     // /* Load combined maps */
     // // TODO: figure out what to do with these
     // ReadAMap((AcceptanceMapsDirectory + SampleName + "/e_AMap_file.par").c_str(), Loaded_e_AMap);
@@ -2245,7 +2245,7 @@ void AMaps::ReadAMapSlices(const std::string &SampleName, const std::string &Acc
         std::string TempFileName = ParticleShort + "_AMap_by_slice/" + ParticleShort + "_AMap_file_from_" + basic_tools::ToStringWithPrecision(Loaded_particle_limits.at(Slice).at(0), 2) +
                                    "_to_" + basic_tools::ToStringWithPrecision(Loaded_particle_limits.at(Slice).at(1), 2) + ".par";
 
-        std::std::cout << "\n\nReading " << Particle << " map: " << TempFileName << "\n";
+        std::cout << "\n\nReading " << Particle << " map: " << TempFileName << "\n";
 
         ReadAMap((AcceptanceMapsDirectory + SampleName + "/" + TempFileName).c_str(), Loaded_Particle_AMap_TempSlice);
 
