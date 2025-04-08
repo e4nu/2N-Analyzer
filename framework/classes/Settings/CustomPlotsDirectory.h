@@ -26,7 +26,7 @@ class CustomPlotsDirectory {
 
     std::string Added_PreStatuses, Added_Statuses;
 
-    std::string Global_Run_Status = "ChainRunV9_R1_1n_inEvent_AReF_ReacMonTest";
+    std::string Global_Run_Status = "ChainRunV9_R1_1n_inEvent_AReF_ReacMonTest_w1n1p";
 
    public:
     // Default constructor ---------------------------------------------------------------------------------------------------------------------------------------------
