@@ -2468,7 +2468,7 @@ bool AMaps::MatchAngToHitMap(const std::string &Particle, double Momentum, doubl
                             double PhiUpperLimTemp = PhiLowerLimTemp + dPhiTemp;
 
                             if ((Phi >= PhiLowerLimTemp) && (Phi < PhiUpperLimTemp)) {
-                                if (debugging_settings::DebuggerMode) {
+                                if (debugging_settings::AMapsDebuggerMode) {
                                     std::cout << "\n\nLoaded_e_AMap_Slices.at(Slice).size() = " << Loaded_e_AMap_Slices.at(Slice).size() << "\n";
                                     std::cout << "Loaded_e_AMap_Slices.at(Slice).at(" << i << ").size() = " << Loaded_e_AMap_Slices.at(Slice).at(i).size() << "\n";
                                     std::cout << "Loaded_ElectronMomSliceLimits.at(Slice).at(0) = " << Loaded_ElectronMomSliceLimits.at(Slice).at(0) << "\n";
@@ -2502,7 +2502,7 @@ bool AMaps::MatchAngToHitMap(const std::string &Particle, double Momentum, doubl
 
                             if ((Phi >= PhiLowerLimTemp) && (Phi < PhiUpperLimTemp)) {
                                 if (NucleonOverlappingFC) {
-                                    if (debugging_settings::DebuggerMode) {
+                                    if (debugging_settings::AMapsDebuggerMode) {
                                         std::cout << "\n\nLoaded_nuc_AMap_Slices.at(Slice).size() = " << Loaded_nuc_AMap_Slices.at(Slice).size() << "\n";
                                         std::cout << "Loaded_nuc_AMap_Slices.at(Slice).at(" << i << ").size() = " << Loaded_nuc_AMap_Slices.at(Slice).at(i).size() << "\n";
                                         std::cout << "Loaded_NucleonMomSliceLimits.at(Slice).at(0) = " << Loaded_NucleonMomSliceLimits.at(Slice).at(0) << "\n";
@@ -2515,7 +2515,7 @@ bool AMaps::MatchAngToHitMap(const std::string &Particle, double Momentum, doubl
                                         return false;
                                     }
                                 } else {
-                                    if (debugging_settings::DebuggerMode) {
+                                    if (debugging_settings::AMapsDebuggerMode) {
                                         std::cout << "\n\nLoaded_p_AMap_Slices.at(Slice).size() = " << Loaded_p_AMap_Slices.at(Slice).size() << "\n";
                                         std::cout << "Loaded_p_AMap_Slices.at(Slice).at(" << i << ").size() = " << Loaded_p_AMap_Slices.at(Slice).at(i).size() << "\n";
                                         std::cout << "Loaded_NucleonMomSliceLimits.at(Slice).at(0) = " << Loaded_NucleonMomSliceLimits.at(Slice).at(0) << "\n";
@@ -2550,7 +2550,7 @@ bool AMaps::MatchAngToHitMap(const std::string &Particle, double Momentum, doubl
 
                             if ((Phi >= PhiLowerLimTemp) && (Phi < PhiUpperLimTemp)) {
                                 if (NucleonOverlappingFC) {
-                                    if (debugging_settings::DebuggerMode) {
+                                    if (debugging_settings::AMapsDebuggerMode) {
                                         std::cout << "\n\nLoaded_nuc_AMap_Slices.at(Slice).size() = " << Loaded_nuc_AMap_Slices.at(Slice).size() << "\n";
                                         std::cout << "Loaded_nuc_AMap_Slices.at(Slice).at(" << i << ").size() = " << Loaded_nuc_AMap_Slices.at(Slice).at(i).size() << "\n";
                                         std::cout << "Loaded_NucleonMomSliceLimits.at(Slice).at(0) = " << Loaded_NucleonMomSliceLimits.at(Slice).at(0) << "\n";
@@ -2563,7 +2563,7 @@ bool AMaps::MatchAngToHitMap(const std::string &Particle, double Momentum, doubl
                                         return false;
                                     }
                                 } else {
-                                    if (debugging_settings::DebuggerMode) {
+                                    if (debugging_settings::AMapsDebuggerMode) {
                                         std::cout << "\n\nLoaded_n_AMap_Slices.at(Slice).size() = " << Loaded_n_AMap_Slices.at(Slice).size() << "\n";
                                         std::cout << "Loaded_n_AMap_Slices.at(Slice).at(" << i << ").size() = " << Loaded_n_AMap_Slices.at(Slice).at(i).size() << "\n";
                                         std::cout << "Loaded_NucleonMomSliceLimits.at(Slice).at(0) = " << Loaded_NucleonMomSliceLimits.at(Slice).at(0) << "\n";
