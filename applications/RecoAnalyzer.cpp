@@ -12534,6 +12534,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
         // Applying 1e cuts
         /* Applying rough 1e cut */
+        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, "Applying 1e cuts - start");
+
         if (Ne != 1) { continue; }  // the rough 1e cut
 
         if (ApplyLimiter && (num_of_events > Limiter)) { break; }  // FOR nFD eff test!
@@ -12558,6 +12560,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         // events counts (1e cut)
         ++num_of_events_with_exactly_1e;  // logging #(events) w/ exactly 1e (after beta cut)
 
+        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, "Applying 1e cuts - end");
+
         // events counts with protons (1e cut)
         if (processID == 1.) {
             ++num_of_QEL_events_1e_cut;
@@ -12574,6 +12578,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         }
 
         /* Electron 1e cut variables definitions */
+        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, "Electron 1e cut variables definitions - start");
+
         TVector3 P_e_1e_cut_3v, q_1e_cut_3v;
         TLorentzVector e_out_1e_cut, Q_1e_cut;
 
@@ -12589,6 +12595,9 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         double Theta_e = P_e_1e_cut_3v.Theta() * 180.0 / pi, Phi_e = P_e_1e_cut_3v.Phi() * 180.0 / pi;  // Theta_e, Phi_e in deg
         double Vx_e = electrons[0]->par()->getVx(), Vy_e = electrons[0]->par()->getVy(), Vz_e = electrons[0]->par()->getVz();
         double Weight_1e_cut = Weight;
+
+        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, "Electron 1e cut variables definitions - end");
+        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, "Fill 1e cut histograms - start");
 
         // Fill momentum threshold plots (1e cut, CD & FD)
         if (!ESSettings.Rec_wTL_ES || TL_Event_Selection_inclusive) {
@@ -13739,6 +13748,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         pid.FillNeutMultiPlots(allParticles, electrons, Weight, parameters.beamE, CutManager.Neutron_veto_cut.GetLowerCutConst(), hNeut_Multi_By_Redef_BPID_BV_1e_cut_FD,
                                hNeut_Multi_By_Redef_BPID_AV_1e_cut_FD, ReDef_FD_neutrons, hNeut_Multi_By_Redef_APID_BV_1e_cut_FD, hNeut_Multi_By_Redef_APID_AV_1e_cut_FD, NeutronsFD_ind);
 
+        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, "Fill 1e cut histograms - end");
         debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, "Reco. 1e cut events - end");
 
 #pragma endregion
@@ -13966,6 +13976,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                 hTheta_e_VS_Phi_e_1p_FD->Fill(Phi_e_1p, Theta_e_1p, Weight_1p);
                 hTheta_e_VS_P_e_1p_FD->Fill(P_e_1p_3v.Mag(), Theta_e_1p, Weight_1p);
                 hTheta_e_VS_W_1p_FD->Fill(W_1p, Theta_e_1p, Weight_1p);
+
+                FillByInt1D(hQ2_1p, hQ2_QEL_1p, hQ2_MEC_1p, hQ2_RES_1p, hQ2_DIS_1p, qel, mec, res, dis, Q2_1p, Weight_1p);
 
                 hE_e_All_Int_1p_FD->Fill(E_e_1p, Weight_1p);
                 hE_e_VS_Theta_e_All_Int_1p_FD->Fill(Theta_e_1p, E_e_1p, Weight_1p);

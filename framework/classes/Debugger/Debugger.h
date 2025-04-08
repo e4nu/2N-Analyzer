@@ -87,9 +87,9 @@ class Debugger {
             std::cerr << "Test number " << StepTester << std::endl;
 
             if (StepName == "") {
-                std::cerr << "File: " << FILE << ", Line: " << LINE << "\n\n\033[0m" << std::endl;
+                std::cerr << "\033[31mFile: \033[0m" << FILE << "\033[31m, Line: \033[0m" << LINE << "\n\n\033[0m" << std::endl;
             } else {
-                std::cerr << "File: " << FILE << ", Line: " << LINE << ", Step: " << StepName << "\n\n\033[0m" << std::endl;
+                std::cerr << "\033[31mFile: " << FILE << "\033[31m, Line: " << LINE << "\033[31m, Step: \033[0m" << StepName << "\n\n\033[0m" << std::endl;
             }
 
             ++StepTester;
