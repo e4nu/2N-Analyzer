@@ -24,9 +24,11 @@
 #include <typeinfo>
 #include <vector>
 
+// Include libraries:
 #include "../../framework/classes/AMaps/AMaps.cpp"
-#include "../../framework/namespaces/general_utilities/utilities/utilities.h"
-//
+#include "../../framework/namespaces/general_utilities/utilities.h"
+
+// Include CLAS12 libraries:
 #include "HipoChain.h"
 #include "clas12reader.h"
 
