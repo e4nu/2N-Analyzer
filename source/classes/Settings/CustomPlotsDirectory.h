@@ -27,7 +27,7 @@ class CustomPlotsDirectory {
 
     string Added_PreStatuses, Added_Statuses;
 
-    string Global_Run_Status = "ChainRunV10_R2_Regen_AMaps";
+    string Global_Run_Status = "ChainRunVxxx10_R2_Regen_AMaps";
     // string Global_Run_Status = "ChainRunV7_R3_effTest_Rec_wTL_ES_1n_inEvent";
     // string Global_Run_Status = "ChainRunV7_R3_effTest_old";
     // string Global_Run_Status = "ChainRunV7_R3_effTest_1n_inEvent";
