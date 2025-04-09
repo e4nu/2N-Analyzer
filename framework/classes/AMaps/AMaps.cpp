@@ -454,7 +454,7 @@ AMaps::AMaps(const std::string &AcceptanceMapsDirectory, const std::string &Samp
 // This function sets the momentum slices for the nucleons (protons and neutrons).
 void AMaps::SetBins(const std::string &P_nuc_bin_profile, double beamE) {
     bool InvertedPrintOut = false;
-    bool RegPrintOut = true;
+    bool RegPrintOut = false;
 
     if (P_nuc_bin_profile == "equi_inverted_P_nuc") {
         double InvertedPLowerLim = (1 / beamE);
