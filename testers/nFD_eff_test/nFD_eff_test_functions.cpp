@@ -20,22 +20,16 @@
 #include <typeinfo>
 #include <vector>
 
-// #define IndependentCanvasPDF false
+// Include libraries:
+#include "../../framework/namespaces/general_utilities/utilities.h"
 
-// #include "../framework/classes/ParticleID/ParticleID.cpp"
-#include "../../framework/constants.h"
-#include "../../framework/namespaces/general_utilities/utilities/utilities.h"
-//
-// #include "HipoChain.h"
-// #include "clas12reader.h"
+// Include classes:
+#include "../../framework/classes/AMaps/AMaps.cpp"
 
+// Include CLAS12 libraries:
 #include "../../framework/includes/clas12_include.h"
 
-// using namespace std;
-// using namespace clas12;
 using namespace utilities;
-
-#include "../../framework/classes/AMaps/AMaps.cpp"
 
 #pragma region /* CheckForECALHits function */
 void CheckForECALHits(bool& ParticleInPCAL, bool& ParticleInECIN, bool& ParticleInECOUT, short& Neutron_ECAL_detlayer, vector<region_part_ptr>& allParticles, const int& i) {

@@ -53,6 +53,8 @@ void nFD_eff_test() {
 
     bool ConstrainTLmom = false;
 
+    bool plot_tester_histograms = false;
+
     // bool plot_AMaps = false;
     bool plot_AMaps = true;
 
@@ -91,7 +93,8 @@ void nFD_eff_test() {
                     std::string ConstrainedE_status = ConstrainedE ? "_CE" : "";
 
                     std::string OutFolderName = OutFolderName_prefix + OutFolderName_ver_status + Ebeam_status + samples_status + neutFD_redef_status + ECAL_veto_status +
-                                           PCAL_neutral_veto_status + rc_factor_status + nPart_veto_radius_status + Good_nFD_status + Bad_nFD_status + ConstrainedE_status + General_status;
+                                                PCAL_neutral_veto_status + rc_factor_status + nPart_veto_radius_status + Good_nFD_status + Bad_nFD_status + ConstrainedE_status +
+                                                General_status;
 
                     std::string OutFileName = OutFolderName;
 
@@ -1391,9 +1394,7 @@ void nFD_eff_test() {
                             // bool PassMomTh = true;
                             bool PassMomTh = (Particle_TL_Momentum >= 0.4);
 
-                            if (PassMomTh) {
-                                aMaps_master.hFillMaps("TL", "Neutron", Particle_TL_Momentum, Particle_TL_Theta, Particle_TL_Phi, weight);
-                            }  // end of if id. TL leading neutron
+                            if (PassMomTh) { aMaps_master.hFillMaps("TL", "Neutron", Particle_TL_Momentum, Particle_TL_Theta, Particle_TL_Phi, weight); }  // end of if id. TL leading neutron
                         }
 #pragma endregion
 
@@ -1726,8 +1727,8 @@ void nFD_eff_test() {
                                     CalcdPhi1(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI), reco_P_nFD.Theta() * 180 / M_PI - reco_P_e.Theta() * 180 / M_PI, weight);
                                 h_reco_P_LnFD_VS_reco_theta_LnFD_minus_reco_theta_e_ECALveto_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI - reco_P_e.Theta() * 180 / M_PI, reco_P_nFD.Mag(),
                                                                                                           weight);
-                                h_reco_P_LnFD_VS_reco_phi_LnFD_minus_reco_phi_e_ECALveto_1e_cut->Fill(CalcdPhi1(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI), reco_P_nFD.Mag(),
-                                                                                                      weight);
+                                h_reco_P_LnFD_VS_reco_phi_LnFD_minus_reco_phi_e_ECALveto_1e_cut->Fill(CalcdPhi1(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI),
+                                                                                                      reco_P_nFD.Mag(), weight);
                             }
 
                             TVector3 v_nhit(neutrons_FD_ECALveto[i]->cal(detlayer)->getX(), neutrons_FD_ECALveto[i]->cal(detlayer)->getY(), neutrons_FD_ECALveto[i]->cal(detlayer)->getZ());
@@ -1889,8 +1890,8 @@ void nFD_eff_test() {
                                     CalcdPhi1(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI), reco_P_nFD.Theta() * 180 / M_PI - reco_P_e.Theta() * 180 / M_PI, weight);
                                 h_reco_P_LnFD_VS_reco_theta_LnFD_minus_reco_theta_e_ECALveto_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI - reco_P_e.Theta() * 180 / M_PI, reco_P_nFD.Mag(),
                                                                                                           weight);
-                                h_reco_P_LnFD_VS_reco_phi_LnFD_minus_reco_phi_e_ECALveto_1e_cut->Fill(CalcdPhi1(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI), reco_P_nFD.Mag(),
-                                                                                                      weight);
+                                h_reco_P_LnFD_VS_reco_phi_LnFD_minus_reco_phi_e_ECALveto_1e_cut->Fill(CalcdPhi1(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI),
+                                                                                                      reco_P_nFD.Mag(), weight);
                             }
 
                             TVector3 v_nhit(neutrons_FD_ECALveto[i]->cal(detlayer)->getX(), neutrons_FD_ECALveto[i]->cal(detlayer)->getY(), neutrons_FD_ECALveto[i]->cal(detlayer)->getZ());
@@ -2295,581 +2296,584 @@ void nFD_eff_test() {
 
 #pragma region /* General histograms */
 
+                    if (plot_tester_histograms) {
 #pragma region /* Print electron cuts plots */
-                    // TCanvas* myCanvas_electron_cuts = new TCanvas("myPage_electron_cuts", "myPage_electron_cuts", pixelx, pixely);
-                    TCanvas* myCanvas_electron_cuts = new TCanvas("myPage_electron_cuts", "myPage_electron_cuts", pixelx, pixely);
+                        // TCanvas* myCanvas_electron_cuts = new TCanvas("myPage_electron_cuts", "myPage_electron_cuts", pixelx, pixely);
+                        TCanvas* myCanvas_electron_cuts = new TCanvas("myPage_electron_cuts", "myPage_electron_cuts", pixelx, pixely);
 
-                    std::string electron_cuts_PDF_fileName = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/electron_cuts.pdf";
-                    char fileName_electron_cuts[electron_cuts_PDF_fileName.length()];
-                    sprintf(fileName_electron_cuts, "%s[", electron_cuts_PDF_fileName.c_str());
-                    myText->SaveAs(fileName_electron_cuts);
-                    sprintf(fileName_electron_cuts, "%s", electron_cuts_PDF_fileName.c_str());
+                        std::string electron_cuts_PDF_fileName = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/electron_cuts.pdf";
+                        char fileName_electron_cuts[electron_cuts_PDF_fileName.length()];
+                        sprintf(fileName_electron_cuts, "%s[", electron_cuts_PDF_fileName.c_str());
+                        myText->SaveAs(fileName_electron_cuts);
+                        sprintf(fileName_electron_cuts, "%s", electron_cuts_PDF_fileName.c_str());
 
-                    /////////////////////////////////////
-                    // CND Neutron Information
-                    /////////////////////////////////////
-                    myText->cd();
+                        /////////////////////////////////////
+                        // CND Neutron Information
+                        /////////////////////////////////////
+                        myText->cd();
 
-                    text.DrawLatex(0.05, 0.9, "Uniform sample of (e,e'n) events (truth-level)");
+                        text.DrawLatex(0.05, 0.9, "Uniform sample of (e,e'n) events (truth-level)");
 
-                    if (FindSubstring(InputFiles, "2070MeV")) {
-                        text.DrawLatex(0.2, 0.8, "Beam energy: 2070MeV");
-                    } else if (FindSubstring(InputFiles, "4029MeV")) {
-                        text.DrawLatex(0.2, 0.8, "Beam energy: 4029MeV");
-                    } else if (FindSubstring(InputFiles, "5986MeV")) {
-                        text.DrawLatex(0.2, 0.8, "Beam energy: 5986MeV");
-                    }
-
-                    if (ConstrainedE) {
-                        text.DrawLatex(0.05, 0.7, "ConstrainedE = yes");
-                    } else {
-                        text.DrawLatex(0.05, 0.7, "ConstrainedE = no");
-                    }
-
-                    text.DrawLatex(0.05, 0.6, ("apply_ECAL_veto = " + BoolToString(apply_ECAL_veto)).c_str());
-                    text.DrawLatex(0.05, 0.55, ("cPart_veto_radius = " + ToStringWithPrecision(cPart_veto_radius, 0)).c_str());
-
-                    text.DrawLatex(0.05, 0.45, ("apply_PCAL_neutral_veto = " + BoolToString(apply_PCAL_neutral_veto)).c_str());
-                    text.DrawLatex(0.05, 0.4, ("nPart_veto_radius = " + ToStringWithPrecision(nPart_veto_radius, 0)).c_str());
-
-                    myText->Print(fileName_electron_cuts, "pdf");
-                    myText->Clear();
-
-                    for (int i = 0; i < HistoList_electron_cuts.size(); i++) {
-                        for (int j = 0; j < HistSubjects.size(); j++) {
-                            if (FirstPrint.at(j) && FindSubstring(HistoList_electron_cuts[i]->GetTitle(), HistSubjects.at(j))) {
-                                myText->cd();
-                                titles.DrawLatex(0.3, 0.5, HistSubjects2.at(j).c_str());
-                                myText->Print(fileName_electron_cuts, "pdf");
-                                myText->Clear();
-
-                                myCanvas_electron_cuts->cd(1);
-                                FirstPrint.at(j) = false;
-                                break;
-                            }
+                        if (FindSubstring(InputFiles, "2070MeV")) {
+                            text.DrawLatex(0.2, 0.8, "Beam energy: 2070MeV");
+                        } else if (FindSubstring(InputFiles, "4029MeV")) {
+                            text.DrawLatex(0.2, 0.8, "Beam energy: 4029MeV");
+                        } else if (FindSubstring(InputFiles, "5986MeV")) {
+                            text.DrawLatex(0.2, 0.8, "Beam energy: 5986MeV");
                         }
 
-                        // electron_cuts_PDF_fileName->Divide(2,1);
-
-                        myCanvas_electron_cuts->cd();
-
-                        myCanvas_electron_cuts->cd()->SetGrid();
-                        myCanvas_electron_cuts->cd()->SetBottomMargin(0.14), myCanvas_electron_cuts->cd()->SetLeftMargin(0.16), myCanvas_electron_cuts->cd()->SetRightMargin(0.12);
-
-                        HistoList_electron_cuts[i]->GetYaxis()->SetTitleOffset(1.5);
-                        HistoList_electron_cuts[i]->GetXaxis()->SetTitleOffset(1.1);
-
-                        gPad->SetRightMargin(0.23);
-
-                        // // Set the PDF title and header for the bookmark
-                        // std::string Title = HistoList_electron_cuts[i]->GetTitle();
-                        // gStyle->SetTitlePS(Title.c_str());  // This sets the title in metadata
-                        //                                     // gStyle->SetHeaderPS(("[ /Title " + Title + " /DOCVIEW pdfmark").c_str());  // Adds a PDF title
-                        // gStyle->SetHeaderPS(("[ /Page " + to_string(i + 1) + " /View [/Fit] /Title (myTitle) ] /OUT pdfmark").c_str());
-
-                        if (HistoList_electron_cuts[i]->InheritsFrom("TH1D")) {
-                            HistoList_electron_cuts[i]->Draw();
-                        } else if (HistoList_electron_cuts[i]->InheritsFrom("TH2D")) {
-                            HistoList_electron_cuts[i]->Draw("colz");
-
-                            if (HistoList_electron_cuts[i]->GetEntries() != 0) {
-                                gPad->Update();
-                                TPaletteAxis* palette = (TPaletteAxis*)HistoList_electron_cuts[i]->GetListOfFunctions()->FindObject("palette");
-                                palette->SetY2NDC(0.55);
-                                gPad->Modified();
-                                gPad->Update();
-                            }
+                        if (ConstrainedE) {
+                            text.DrawLatex(0.05, 0.7, "ConstrainedE = yes");
+                        } else {
+                            text.DrawLatex(0.05, 0.7, "ConstrainedE = no");
                         }
 
-                        myCanvas_electron_cuts->Print(fileName_electron_cuts, "pdf");
-                        myCanvas_electron_cuts->Clear();
-                    }
+                        text.DrawLatex(0.05, 0.6, ("apply_ECAL_veto = " + BoolToString(apply_ECAL_veto)).c_str());
+                        text.DrawLatex(0.05, 0.55, ("cPart_veto_radius = " + ToStringWithPrecision(cPart_veto_radius, 0)).c_str());
 
-                    sprintf(fileName_electron_cuts, "%s]", electron_cuts_PDF_fileName.c_str());
-                    myCanvas_electron_cuts->Print(fileName_electron_cuts, "pdf");
+                        text.DrawLatex(0.05, 0.45, ("apply_PCAL_neutral_veto = " + BoolToString(apply_PCAL_neutral_veto)).c_str());
+                        text.DrawLatex(0.05, 0.4, ("nPart_veto_radius = " + ToStringWithPrecision(nPart_veto_radius, 0)).c_str());
 
-#pragma endregion
+                        myText->Print(fileName_electron_cuts, "pdf");
+                        myText->Clear();
 
-#pragma region /* Print raw plots */
-                    // TCanvas* myCanvas_raw = new TCanvas("myPage_raw", "myPage_raw", pixelx, pixely);
-                    TCanvas* myCanvas_raw = new TCanvas("myPage_raw", "myPage_raw", pixelx, pixely);
+                        for (int i = 0; i < HistoList_electron_cuts.size(); i++) {
+                            for (int j = 0; j < HistSubjects.size(); j++) {
+                                if (FirstPrint.at(j) && FindSubstring(HistoList_electron_cuts[i]->GetTitle(), HistSubjects.at(j))) {
+                                    myText->cd();
+                                    titles.DrawLatex(0.3, 0.5, HistSubjects2.at(j).c_str());
+                                    myText->Print(fileName_electron_cuts, "pdf");
+                                    myText->Clear();
 
-                    std::string raw_PDF_fileName = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/raw_nFD_plots.pdf";
-                    char fileName_raw[raw_PDF_fileName.length()];
-                    sprintf(fileName_raw, "%s[", raw_PDF_fileName.c_str());
-                    myText->SaveAs(fileName_raw);
-                    sprintf(fileName_raw, "%s", raw_PDF_fileName.c_str());
-
-                    /////////////////////////////////////
-                    // CND Neutron Information
-                    /////////////////////////////////////
-                    myText->cd();
-
-                    text.DrawLatex(0.05, 0.9, "Uniform sample of (e,e'n) events (truth-level)");
-
-                    if (FindSubstring(InputFiles, "2070MeV")) {
-                        text.DrawLatex(0.2, 0.8, "Beam energy: 2070MeV");
-                    } else if (FindSubstring(InputFiles, "4029MeV")) {
-                        text.DrawLatex(0.2, 0.8, "Beam energy: 4029MeV");
-                    } else if (FindSubstring(InputFiles, "5986MeV")) {
-                        text.DrawLatex(0.2, 0.8, "Beam energy: 5986MeV");
-                    }
-
-                    if (ConstrainedE) {
-                        text.DrawLatex(0.05, 0.7, "ConstrainedE = yes");
-                    } else {
-                        text.DrawLatex(0.05, 0.7, "ConstrainedE = no");
-                    }
-
-                    text.DrawLatex(0.05, 0.6, ("apply_ECAL_veto = " + BoolToString(apply_ECAL_veto)).c_str());
-                    text.DrawLatex(0.05, 0.55, ("cPart_veto_radius = " + ToStringWithPrecision(cPart_veto_radius, 0)).c_str());
-
-                    text.DrawLatex(0.05, 0.45, ("apply_PCAL_neutral_veto = " + BoolToString(apply_PCAL_neutral_veto)).c_str());
-                    text.DrawLatex(0.05, 0.4, ("nPart_veto_radius = " + ToStringWithPrecision(nPart_veto_radius, 0)).c_str());
-
-                    myText->Print(fileName_raw, "pdf");
-                    myText->Clear();
-
-                    for (int i = 0; i < HistoList_raw.size(); i++) {
-                        for (int j = 0; j < HistSubjects.size(); j++) {
-                            if (FirstPrint.at(j) && FindSubstring(HistoList_raw[i]->GetTitle(), HistSubjects.at(j))) {
-                                myText->cd();
-                                titles.DrawLatex(0.3, 0.5, HistSubjects2.at(j).c_str());
-                                myText->Print(fileName_raw, "pdf");
-                                myText->Clear();
-
-                                myCanvas_raw->cd(1);
-                                FirstPrint.at(j) = false;
-                                break;
+                                    myCanvas_electron_cuts->cd(1);
+                                    FirstPrint.at(j) = false;
+                                    break;
+                                }
                             }
-                        }
 
-                        // raw_PDF_fileName->Divide(2,1);
+                            // electron_cuts_PDF_fileName->Divide(2,1);
 
-                        myCanvas_raw->cd();
+                            myCanvas_electron_cuts->cd();
 
-                        myCanvas_raw->cd()->SetGrid();
-                        myCanvas_raw->cd()->SetBottomMargin(0.14), myCanvas_raw->cd()->SetLeftMargin(0.16), myCanvas_raw->cd()->SetRightMargin(0.12);
+                            myCanvas_electron_cuts->cd()->SetGrid();
+                            myCanvas_electron_cuts->cd()->SetBottomMargin(0.14), myCanvas_electron_cuts->cd()->SetLeftMargin(0.16), myCanvas_electron_cuts->cd()->SetRightMargin(0.12);
 
-                        HistoList_raw[i]->GetYaxis()->SetTitleOffset(1.5);
-                        HistoList_raw[i]->GetXaxis()->SetTitleOffset(1.1);
-
-                        gPad->SetRightMargin(0.23);
-
-                        // // Set the PDF title and header for the bookmark
-                        // std::string Title = HistoList_raw[i]->GetTitle();
-                        // gStyle->SetTitlePS(Title.c_str());  // This sets the title in metadata
-                        //                                     // gStyle->SetHeaderPS(("[ /Title " + Title + " /DOCVIEW pdfmark").c_str());  // Adds a PDF title
-                        // gStyle->SetHeaderPS(("[ /Page " + to_string(i + 1) + " /View [/Fit] /Title (myTitle) ] /OUT pdfmark").c_str());
-
-                        if (HistoList_raw[i]->InheritsFrom("TH1D")) {
-                            HistoList_raw[i]->Draw();
-                        } else if (HistoList_raw[i]->InheritsFrom("TH2D")) {
-                            HistoList_raw[i]->Draw("colz");
-
-                            if (HistoList_raw[i]->GetEntries() != 0) {
-                                gPad->Update();
-                                TPaletteAxis* palette = (TPaletteAxis*)HistoList_raw[i]->GetListOfFunctions()->FindObject("palette");
-                                palette->SetY2NDC(0.55);
-                                gPad->Modified();
-                                gPad->Update();
-                            }
-                        }
-
-                        myCanvas_raw->Print(fileName_raw, "pdf");
-                        myCanvas_raw->Clear();
-                    }
-
-                    sprintf(fileName_raw, "%s]", raw_PDF_fileName.c_str());
-                    myCanvas_raw->Print(fileName_raw, "pdf");
-
-#pragma endregion
-
-#pragma region /* Print clas12reco plots */
-                    // TCanvas* myCanvas_clas12reco = new TCanvas("myPage_clas12reco", "myPage_clas12reco", pixelx, pixely);
-                    TCanvas* myCanvas_clas12reco = new TCanvas("myPage_clas12reco", "myPage_clas12reco", pixelx, pixely);
-
-                    std::string clas12reco_PDF_fileName = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/clas12reco_nFD_plots.pdf";
-                    char fileName_clas12reco[clas12reco_PDF_fileName.length()];
-                    sprintf(fileName_clas12reco, "%s[", clas12reco_PDF_fileName.c_str());
-                    myText->SaveAs(fileName_clas12reco);
-                    sprintf(fileName_clas12reco, "%s", clas12reco_PDF_fileName.c_str());
-
-                    /////////////////////////////////////
-                    // CND Neutron Information
-                    /////////////////////////////////////
-                    myText->cd();
-
-                    text.DrawLatex(0.05, 0.9, "Uniform sample of (e,e'n) events (truth-level)");
-
-                    if (FindSubstring(InputFiles, "2070MeV")) {
-                        text.DrawLatex(0.2, 0.8, "Beam energy: 2070MeV");
-                    } else if (FindSubstring(InputFiles, "4029MeV")) {
-                        text.DrawLatex(0.2, 0.8, "Beam energy: 4029MeV");
-                    } else if (FindSubstring(InputFiles, "5986MeV")) {
-                        text.DrawLatex(0.2, 0.8, "Beam energy: 5986MeV");
-                    }
-
-                    if (ConstrainedE) {
-                        text.DrawLatex(0.05, 0.7, "ConstrainedE = yes");
-                    } else {
-                        text.DrawLatex(0.05, 0.7, "ConstrainedE = no");
-                    }
-
-                    text.DrawLatex(0.05, 0.6, ("apply_ECAL_veto = " + BoolToString(apply_ECAL_veto)).c_str());
-                    text.DrawLatex(0.05, 0.55, ("cPart_veto_radius = " + ToStringWithPrecision(cPart_veto_radius, 0)).c_str());
-
-                    text.DrawLatex(0.05, 0.45, ("apply_PCAL_neutral_veto = " + BoolToString(apply_PCAL_neutral_veto)).c_str());
-                    text.DrawLatex(0.05, 0.4, ("nPart_veto_radius = " + ToStringWithPrecision(nPart_veto_radius, 0)).c_str());
-
-                    myText->Print(fileName_clas12reco, "pdf");
-                    myText->Clear();
-
-                    for (int i = 0; i < HistoList_clas12reco.size(); i++) {
-                        for (int j = 0; j < HistSubjects.size(); j++) {
-                            if (FirstPrint.at(j) && FindSubstring(HistoList_clas12reco[i]->GetTitle(), HistSubjects.at(j))) {
-                                myText->cd();
-                                titles.DrawLatex(0.3, 0.5, HistSubjects2.at(j).c_str());
-                                myText->Print(fileName_clas12reco, "pdf");
-                                myText->Clear();
-
-                                myCanvas_clas12reco->cd(1);
-                                FirstPrint.at(j) = false;
-                                break;
-                            }
-                        }
-
-                        // clas12reco_PDF_fileName->Divide(2,1);
-
-                        myCanvas_clas12reco->cd();
-
-                        myCanvas_clas12reco->cd()->SetGrid();
-                        myCanvas_clas12reco->cd()->SetBottomMargin(0.14), myCanvas_clas12reco->cd()->SetLeftMargin(0.16), myCanvas_clas12reco->cd()->SetRightMargin(0.12);
-
-                        HistoList_clas12reco[i]->GetYaxis()->SetTitleOffset(1.5);
-                        HistoList_clas12reco[i]->GetXaxis()->SetTitleOffset(1.1);
-
-                        gPad->SetRightMargin(0.23);
-
-                        // // Set the PDF title and header for the bookmark
-                        // std::string Title = HistoList_clas12reco[i]->GetTitle();
-                        // gStyle->SetTitlePS(Title.c_str());  // This sets the title in metadata
-                        //                                     // gStyle->SetHeaderPS(("[ /Title " + Title + " /DOCVIEW pdfmark").c_str());  // Adds a PDF title
-                        // gStyle->SetHeaderPS(("[ /Page " + to_string(i + 1) + " /View [/Fit] /Title (myTitle) ] /OUT pdfmark").c_str());
-
-                        if (HistoList_clas12reco[i]->InheritsFrom("TH1D")) {
-                            HistoList_clas12reco[i]->Draw();
-                        } else if (HistoList_clas12reco[i]->InheritsFrom("TH2D")) {
-                            HistoList_clas12reco[i]->Draw("colz");
-
-                            if (HistoList_clas12reco[i]->GetEntries() != 0) {
-                                gPad->Update();
-                                TPaletteAxis* palette = (TPaletteAxis*)HistoList_clas12reco[i]->GetListOfFunctions()->FindObject("palette");
-                                palette->SetY2NDC(0.55);
-                                gPad->Modified();
-                                gPad->Update();
-                            }
-                        }
-
-                        myCanvas_clas12reco->Print(fileName_clas12reco, "pdf");
-                        myCanvas_clas12reco->Clear();
-                    }
-
-                    sprintf(fileName_clas12reco, "%s]", clas12reco_PDF_fileName.c_str());
-                    myCanvas_clas12reco->Print(fileName_clas12reco, "pdf");
-
-#pragma endregion
-
-#pragma region /* Print redef plots */
-                    // TCanvas* myCanvas_redef = new TCanvas("myPage_redef", "myPage_redef", pixelx, pixely);
-                    TCanvas* myCanvas_redef = new TCanvas("myPage_redef", "myPage_redef", pixelx, pixely);
-
-                    std::string redef_PDF_fileName = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/redef_nFD_plots.pdf";
-                    char fileName_redef[redef_PDF_fileName.length()];
-                    sprintf(fileName_redef, "%s[", redef_PDF_fileName.c_str());
-                    myText->SaveAs(fileName_redef);
-                    sprintf(fileName_redef, "%s", redef_PDF_fileName.c_str());
-
-                    /////////////////////////////////////
-                    // CND Neutron Information
-                    /////////////////////////////////////
-                    myText->cd();
-
-                    text.DrawLatex(0.05, 0.9, "Uniform sample of (e,e'n) events (truth-level)");
-
-                    if (FindSubstring(InputFiles, "2070MeV")) {
-                        text.DrawLatex(0.2, 0.8, "Beam energy: 2070MeV");
-                    } else if (FindSubstring(InputFiles, "4029MeV")) {
-                        text.DrawLatex(0.2, 0.8, "Beam energy: 4029MeV");
-                    } else if (FindSubstring(InputFiles, "5986MeV")) {
-                        text.DrawLatex(0.2, 0.8, "Beam energy: 5986MeV");
-                    }
-
-                    if (ConstrainedE) {
-                        text.DrawLatex(0.05, 0.7, "ConstrainedE = yes");
-                    } else {
-                        text.DrawLatex(0.05, 0.7, "ConstrainedE = no");
-                    }
-
-                    text.DrawLatex(0.05, 0.6, ("apply_ECAL_veto = " + BoolToString(apply_ECAL_veto)).c_str());
-                    text.DrawLatex(0.05, 0.55, ("cPart_veto_radius = " + ToStringWithPrecision(cPart_veto_radius, 0)).c_str());
-
-                    text.DrawLatex(0.05, 0.45, ("apply_PCAL_neutral_veto = " + BoolToString(apply_PCAL_neutral_veto)).c_str());
-                    text.DrawLatex(0.05, 0.4, ("nPart_veto_radius = " + ToStringWithPrecision(nPart_veto_radius, 0)).c_str());
-
-                    myText->Print(fileName_redef, "pdf");
-                    myText->Clear();
-
-                    for (int i = 0; i < HistoList_redef.size(); i++) {
-                        for (int j = 0; j < HistSubjects.size(); j++) {
-                            if (FirstPrint.at(j) && FindSubstring(HistoList_redef[i]->GetTitle(), HistSubjects.at(j))) {
-                                myText->cd();
-                                titles.DrawLatex(0.3, 0.5, HistSubjects2.at(j).c_str());
-                                myText->Print(fileName_redef, "pdf");
-                                myText->Clear();
-
-                                myCanvas_redef->cd(1);
-                                FirstPrint.at(j) = false;
-                                break;
-                            }
-                        }
-
-                        // redef_PDF_fileName->Divide(2,1);
-
-                        myCanvas_redef->cd();
-
-                        myCanvas_redef->cd()->SetGrid();
-                        myCanvas_redef->cd()->SetBottomMargin(0.14), myCanvas_redef->cd()->SetLeftMargin(0.16), myCanvas_redef->cd()->SetRightMargin(0.12);
-
-                        HistoList_redef[i]->GetYaxis()->SetTitleOffset(1.5);
-                        HistoList_redef[i]->GetXaxis()->SetTitleOffset(1.1);
-
-                        gPad->SetRightMargin(0.23);
-
-                        // // Set the PDF title and header for the bookmark
-                        // std::string Title = HistoList_redef[i]->GetTitle();
-                        // gStyle->SetTitlePS(Title.c_str());  // This sets the title in metadata
-                        //                                     // gStyle->SetHeaderPS(("[ /Title " + Title + " /DOCVIEW pdfmark").c_str());  // Adds a PDF title
-                        // gStyle->SetHeaderPS(("[ /Page " + to_string(i + 1) + " /View [/Fit] /Title (myTitle) ] /OUT pdfmark").c_str());
-
-                        if (HistoList_redef[i]->InheritsFrom("TH1D")) {
-                            HistoList_redef[i]->Draw();
-                        } else if (HistoList_redef[i]->InheritsFrom("TH2D")) {
-                            HistoList_redef[i]->Draw("colz");
-
-                            if (HistoList_redef[i]->GetEntries() != 0) {
-                                gPad->Update();
-                                TPaletteAxis* palette = (TPaletteAxis*)HistoList_redef[i]->GetListOfFunctions()->FindObject("palette");
-                                palette->SetY2NDC(0.55);
-                                gPad->Modified();
-                                gPad->Update();
-                            }
-                        }
-
-                        myCanvas_redef->Print(fileName_redef, "pdf");
-                        myCanvas_redef->Clear();
-                    }
-
-                    sprintf(fileName_redef, "%s]", redef_PDF_fileName.c_str());
-                    myCanvas_redef->Print(fileName_redef, "pdf");
-
-#pragma endregion
-
-#pragma region /* Print neutron plots */
-                    TCanvas* myCanvas = new TCanvas("myPage", "myPage", pixelx, pixely);
-
-                    std::string nFD_eff_test_PDF_fileName = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/" + OutFileName + ".pdf";
-                    char fileName[nFD_eff_test_PDF_fileName.length()];
-                    sprintf(fileName, "%s[", nFD_eff_test_PDF_fileName.c_str());
-                    myText->SaveAs(fileName);
-                    sprintf(fileName, "%s", nFD_eff_test_PDF_fileName.c_str());
-
-                    /////////////////////////////////////
-                    // CND Neutron Information
-                    /////////////////////////////////////
-                    myText->cd();
-
-                    text.DrawLatex(0.05, 0.9, "Uniform sample of (e,e'n) events (truth-level)");
-
-                    if (FindSubstring(InputFiles, "2070MeV")) {
-                        text.DrawLatex(0.2, 0.8, "Beam energy: 2070MeV");
-                    } else if (FindSubstring(InputFiles, "4029MeV")) {
-                        text.DrawLatex(0.2, 0.8, "Beam energy: 4029MeV");
-                    } else if (FindSubstring(InputFiles, "5986MeV")) {
-                        text.DrawLatex(0.2, 0.8, "Beam energy: 5986MeV");
-                    }
-
-                    if (ConstrainedE) {
-                        text.DrawLatex(0.05, 0.7, "ConstrainedE = yes");
-                    } else {
-                        text.DrawLatex(0.05, 0.7, "ConstrainedE = no");
-                    }
-
-                    text.DrawLatex(0.05, 0.6, ("apply_ECAL_veto = " + BoolToString(apply_ECAL_veto)).c_str());
-                    text.DrawLatex(0.05, 0.55, ("cPart_veto_radius = " + ToStringWithPrecision(cPart_veto_radius, 0)).c_str());
-
-                    text.DrawLatex(0.05, 0.45, ("apply_PCAL_neutral_veto = " + BoolToString(apply_PCAL_neutral_veto)).c_str());
-                    text.DrawLatex(0.05, 0.4, ("nPart_veto_radius = " + ToStringWithPrecision(nPart_veto_radius, 0)).c_str());
-
-                    myText->Print(fileName, "pdf");
-                    myText->Clear();
-
-                    for (int i = 0; i < HistoList.size(); i++) {
-                        for (int j = 0; j < HistSubjects.size(); j++) {
-                            if (FirstPrint.at(j) && FindSubstring(HistoList[i]->GetTitle(), HistSubjects.at(j))) {
-                                myText->cd();
-                                titles.DrawLatex(0.3, 0.5, HistSubjects2.at(j).c_str());
-                                myText->Print(fileName, "pdf");
-                                myText->Clear();
-
-                                myCanvas->cd(1);
-                                FirstPrint.at(j) = false;
-                                break;
-                            }
-                        }
-
-                        myCanvas->cd();
-
-                        myCanvas->cd()->SetGrid();
-                        myCanvas->cd()->SetBottomMargin(0.14), myCanvas->cd()->SetLeftMargin(0.16), myCanvas->cd()->SetRightMargin(0.12);
-
-                        HistoList[i]->GetYaxis()->SetTitleOffset(1.5);
-                        HistoList[i]->GetXaxis()->SetTitleOffset(1.1);
-
-                        gPad->SetRightMargin(0.23);
-
-                        // // Set the PDF title and header for the bookmark
-                        // std::string Title = HistoList[i]->GetTitle();
-                        // gStyle->SetTitlePS(Title.c_str());  // This sets the title in metadata
-                        //                                     // gStyle->SetHeaderPS(("[ /Title " + Title + " /DOCVIEW pdfmark").c_str());  // Adds a PDF title
-                        // gStyle->SetHeaderPS(("[ /Page " + to_string(i + 1) + " /View [/Fit] /Title (myTitle) ] /OUT pdfmark").c_str());
-
-                        if (HistoList[i]->InheritsFrom("TH1D")) {
-                            HistoList[i]->Draw();
-                        } else if (HistoList[i]->InheritsFrom("TH2D")) {
-                            // if (FindSubstring(HistoList[i]->GetTitle(), "#Delta#theta_{nFD,e} vs. #Delta#phi_{nFD,e} in 1e cut")) {
-                            //     gPad->SetRightMargin(0.225);
-                            // } else {
-                            //     gPad->SetRightMargin(0.05);
-                            // }
-
-                            HistoList[i]->Draw("colz");
-
-                            if (HistoList[i]->GetEntries() != 0) {
-                                gPad->Update();
-                                TPaletteAxis* palette = (TPaletteAxis*)HistoList[i]->GetListOfFunctions()->FindObject("palette");
-                                palette->SetY2NDC(0.55);
-                                gPad->Modified();
-                                gPad->Update();
-                            }
-                        }
-
-                        myCanvas->Print(fileName, "pdf");
-                        myCanvas->Clear();
-                    }
-
-                    sprintf(fileName, "%s]", nFD_eff_test_PDF_fileName.c_str());
-                    myCanvas->Print(fileName, "pdf");
-#pragma endregion
-
-#pragma region /* Print eff plots */
-                    vector<vector<TH1*>> HistoList_eff_plots;
-
-                    TH1D* h_eff_P_nFD_1e_cut_demominator = (TH1D*)h_truth_P_nFD_ECALveto_1e_cut->Clone((std::string(h_truth_P_nFD_ECALveto_1e_cut->GetName()) + "_demominator").c_str());
-                    // TH1D* h_eff_P_nFD_1e_cut_demominator = (TH1D*)h_truth_P_n_1e_cut->Clone((std::string(h_truth_P_n_1e_cut->GetName()) + "_demominator").c_str());
-
-                    TH1D* h_eff_P_nFD_ECALveto_1e_cut_numerator = (TH1D*)h_reco_P_nFD_ECALveto_1e_cut->Clone((std::string(h_reco_P_nFD_ECALveto_1e_cut->GetName()) + "_numerator").c_str());
-                    TH1D* h_eff_P_nFD_ECALveto_1e_cut = (TH1D*)h_eff_P_nFD_ECALveto_1e_cut_numerator->Clone("eff_P_nFD_ECALveto_1e_cut");
-                    h_eff_P_nFD_ECALveto_1e_cut->Divide(h_eff_P_nFD_1e_cut_demominator);
-                    h_eff_P_nFD_ECALveto_1e_cut->SetTitle(h_eff_P_nFD_ECALveto_1e_cut->GetName());
-                    HistoList_eff_plots.push_back({h_eff_P_nFD_ECALveto_1e_cut_numerator, h_eff_P_nFD_1e_cut_demominator, h_eff_P_nFD_ECALveto_1e_cut});
-
-                    TH1D* h_eff_P_nFD_matched_1e_cut_numerator = (TH1D*)h_reco_P_nFD_matched_1e_cut->Clone((std::string(h_reco_P_nFD_matched_1e_cut->GetName()) + "_numerator").c_str());
-                    TH1D* h_eff_P_nFD_matched_1e_cut = (TH1D*)h_eff_P_nFD_matched_1e_cut_numerator->Clone("eff_P_nFD_matched_1e_cut");
-                    h_eff_P_nFD_matched_1e_cut->Divide(h_eff_P_nFD_1e_cut_demominator);
-                    h_eff_P_nFD_matched_1e_cut->SetTitle(h_eff_P_nFD_matched_1e_cut->GetName());
-                    HistoList_eff_plots.push_back({h_eff_P_nFD_matched_1e_cut_numerator, h_eff_P_nFD_1e_cut_demominator, h_eff_P_nFD_matched_1e_cut});
-
-                    // TCanvas* myCanvas_eff_plots = new TCanvas("myPage_eff_plots", "myPage_eff_plots", pixelx, pixely);
-                    TCanvas* myCanvas_eff_plots = new TCanvas("myPage_eff_plots", "myPage_eff_plots", pixelx * 3, pixely);
-                    // TCanvas* myCanvas_eff_plots = new TCanvas("myPage_eff_plots", "myPage_eff_plots", pixelx * 3 * 2, pixely * 2);
-
-                    std::string eff_plots_PDF_fileName = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/eff_plots.pdf";
-                    char fileName_eff_plots[eff_plots_PDF_fileName.length()];
-                    sprintf(fileName_eff_plots, "%s[", eff_plots_PDF_fileName.c_str());
-                    myText->SaveAs(fileName_eff_plots);
-                    sprintf(fileName_eff_plots, "%s", eff_plots_PDF_fileName.c_str());
-
-                    myCanvas_eff_plots->cd();
-                    gPad->Update();
-                    // myText->cd();
-                    text.DrawLatex(0.2, 0.9, "Uniform sample of (e,e'n) events (truth-level)");
-                    if (FindSubstring(InputFiles, "2070MeV")) {
-                        text.DrawLatex(0.2, 0.7, "Beam energy: 2070MeV");
-                    } else if (FindSubstring(InputFiles, "4029MeV")) {
-                        text.DrawLatex(0.2, 0.7, "Beam energy: 4029MeV");
-                    } else if (FindSubstring(InputFiles, "5986MeV")) {
-                        text.DrawLatex(0.2, 0.7, "Beam energy: 5986MeV");
-                    }
-                    myCanvas_eff_plots->Print(fileName_eff_plots, "pdf");
-                    myCanvas_eff_plots->Clear();
-                    // myText->Print(fileName_eff_plots, "pdf");
-                    // myText->Clear();
-
-                    for (int i = 0; i < HistoList_eff_plots.size(); i++) {
-                        // for (int j = 0; j < HistSubjects.size(); j++) {
-                        //     if (FirstPrint.at(j) && FindSubstring(HistoList_eff_plots[i]->GetTitle(), HistSubjects.at(j))) {
-                        //         myText->cd();
-                        //         titles.DrawLatex(0.3, 0.5, HistSubjects2.at(j).c_str());
-                        //         myText->Print(fileName_eff_plots, "pdf");
-                        //         myText->Clear();
-
-                        //         myCanvas_eff_plots->cd(1);
-                        //         FirstPrint.at(j) = false;
-                        //         break;
-                        //     }
-                        // }
-
-                        myCanvas_eff_plots->Divide(3, 1);
-
-                        for (int j = 0; j < HistoList_eff_plots[i].size(); j++) {
-                            myCanvas_eff_plots->cd(j + 1);
-
-                            myCanvas_eff_plots->cd(j + 1)->SetGrid();
-                            myCanvas_eff_plots->cd(j + 1)->SetBottomMargin(0.14), myCanvas_eff_plots->cd(j + 1)->SetLeftMargin(0.16), myCanvas_eff_plots->cd(j + 1)->SetRightMargin(0.12);
-
-                            HistoList_eff_plots[i][j]->GetYaxis()->SetTitleOffset(1.5);
-                            HistoList_eff_plots[i][j]->GetXaxis()->SetTitleOffset(1.1);
+                            HistoList_electron_cuts[i]->GetYaxis()->SetTitleOffset(1.5);
+                            HistoList_electron_cuts[i]->GetXaxis()->SetTitleOffset(1.1);
 
                             gPad->SetRightMargin(0.23);
 
-                            if (HistoList_eff_plots[i][j]->InheritsFrom("TH1D")) {
-                                HistoList_eff_plots[i][j]->Draw();
-                            } else if (HistoList_eff_plots[i][j]->InheritsFrom("TH2D")) {
-                                HistoList_eff_plots[i][j]->Draw("colz");
+                            // // Set the PDF title and header for the bookmark
+                            // std::string Title = HistoList_electron_cuts[i]->GetTitle();
+                            // gStyle->SetTitlePS(Title.c_str());  // This sets the title in metadata
+                            //                                     // gStyle->SetHeaderPS(("[ /Title " + Title + " /DOCVIEW pdfmark").c_str());  // Adds a PDF title
+                            // gStyle->SetHeaderPS(("[ /Page " + to_string(i + 1) + " /View [/Fit] /Title (myTitle) ] /OUT pdfmark").c_str());
 
-                                if (HistoList_eff_plots[i][j]->GetEntries() != 0) {
+                            if (HistoList_electron_cuts[i]->InheritsFrom("TH1D")) {
+                                HistoList_electron_cuts[i]->Draw();
+                            } else if (HistoList_electron_cuts[i]->InheritsFrom("TH2D")) {
+                                HistoList_electron_cuts[i]->Draw("colz");
+
+                                if (HistoList_electron_cuts[i]->GetEntries() != 0) {
                                     gPad->Update();
-                                    TPaletteAxis* palette = (TPaletteAxis*)HistoList_eff_plots[i][j]->GetListOfFunctions()->FindObject("palette");
+                                    TPaletteAxis* palette = (TPaletteAxis*)HistoList_electron_cuts[i]->GetListOfFunctions()->FindObject("palette");
                                     palette->SetY2NDC(0.55);
                                     gPad->Modified();
                                     gPad->Update();
                                 }
                             }
+
+                            myCanvas_electron_cuts->Print(fileName_electron_cuts, "pdf");
+                            myCanvas_electron_cuts->Clear();
                         }
 
-                        myCanvas_eff_plots->Print(fileName_eff_plots, "pdf");
-                        myCanvas_eff_plots->Clear();
-                    }
-
-                    sprintf(fileName_eff_plots, "%s]", eff_plots_PDF_fileName.c_str());
-                    myCanvas_eff_plots->Print(fileName_eff_plots, "pdf");
+                        sprintf(fileName_electron_cuts, "%s]", electron_cuts_PDF_fileName.c_str());
+                        myCanvas_electron_cuts->Print(fileName_electron_cuts, "pdf");
 
 #pragma endregion
 
-                    outFile->cd();
-                    for (int i = 0; i < HistoList.size(); i++) { HistoList[i]->Write(); }
-                    outFile->Close();
+#pragma region /* Print raw plots */
+                        // TCanvas* myCanvas_raw = new TCanvas("myPage_raw", "myPage_raw", pixelx, pixely);
+                        TCanvas* myCanvas_raw = new TCanvas("myPage_raw", "myPage_raw", pixelx, pixely);
+
+                        std::string raw_PDF_fileName = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/raw_nFD_plots.pdf";
+                        char fileName_raw[raw_PDF_fileName.length()];
+                        sprintf(fileName_raw, "%s[", raw_PDF_fileName.c_str());
+                        myText->SaveAs(fileName_raw);
+                        sprintf(fileName_raw, "%s", raw_PDF_fileName.c_str());
+
+                        /////////////////////////////////////
+                        // CND Neutron Information
+                        /////////////////////////////////////
+                        myText->cd();
+
+                        text.DrawLatex(0.05, 0.9, "Uniform sample of (e,e'n) events (truth-level)");
+
+                        if (FindSubstring(InputFiles, "2070MeV")) {
+                            text.DrawLatex(0.2, 0.8, "Beam energy: 2070MeV");
+                        } else if (FindSubstring(InputFiles, "4029MeV")) {
+                            text.DrawLatex(0.2, 0.8, "Beam energy: 4029MeV");
+                        } else if (FindSubstring(InputFiles, "5986MeV")) {
+                            text.DrawLatex(0.2, 0.8, "Beam energy: 5986MeV");
+                        }
+
+                        if (ConstrainedE) {
+                            text.DrawLatex(0.05, 0.7, "ConstrainedE = yes");
+                        } else {
+                            text.DrawLatex(0.05, 0.7, "ConstrainedE = no");
+                        }
+
+                        text.DrawLatex(0.05, 0.6, ("apply_ECAL_veto = " + BoolToString(apply_ECAL_veto)).c_str());
+                        text.DrawLatex(0.05, 0.55, ("cPart_veto_radius = " + ToStringWithPrecision(cPart_veto_radius, 0)).c_str());
+
+                        text.DrawLatex(0.05, 0.45, ("apply_PCAL_neutral_veto = " + BoolToString(apply_PCAL_neutral_veto)).c_str());
+                        text.DrawLatex(0.05, 0.4, ("nPart_veto_radius = " + ToStringWithPrecision(nPart_veto_radius, 0)).c_str());
+
+                        myText->Print(fileName_raw, "pdf");
+                        myText->Clear();
+
+                        for (int i = 0; i < HistoList_raw.size(); i++) {
+                            for (int j = 0; j < HistSubjects.size(); j++) {
+                                if (FirstPrint.at(j) && FindSubstring(HistoList_raw[i]->GetTitle(), HistSubjects.at(j))) {
+                                    myText->cd();
+                                    titles.DrawLatex(0.3, 0.5, HistSubjects2.at(j).c_str());
+                                    myText->Print(fileName_raw, "pdf");
+                                    myText->Clear();
+
+                                    myCanvas_raw->cd(1);
+                                    FirstPrint.at(j) = false;
+                                    break;
+                                }
+                            }
+
+                            // raw_PDF_fileName->Divide(2,1);
+
+                            myCanvas_raw->cd();
+
+                            myCanvas_raw->cd()->SetGrid();
+                            myCanvas_raw->cd()->SetBottomMargin(0.14), myCanvas_raw->cd()->SetLeftMargin(0.16), myCanvas_raw->cd()->SetRightMargin(0.12);
+
+                            HistoList_raw[i]->GetYaxis()->SetTitleOffset(1.5);
+                            HistoList_raw[i]->GetXaxis()->SetTitleOffset(1.1);
+
+                            gPad->SetRightMargin(0.23);
+
+                            // // Set the PDF title and header for the bookmark
+                            // std::string Title = HistoList_raw[i]->GetTitle();
+                            // gStyle->SetTitlePS(Title.c_str());  // This sets the title in metadata
+                            //                                     // gStyle->SetHeaderPS(("[ /Title " + Title + " /DOCVIEW pdfmark").c_str());  // Adds a PDF title
+                            // gStyle->SetHeaderPS(("[ /Page " + to_string(i + 1) + " /View [/Fit] /Title (myTitle) ] /OUT pdfmark").c_str());
+
+                            if (HistoList_raw[i]->InheritsFrom("TH1D")) {
+                                HistoList_raw[i]->Draw();
+                            } else if (HistoList_raw[i]->InheritsFrom("TH2D")) {
+                                HistoList_raw[i]->Draw("colz");
+
+                                if (HistoList_raw[i]->GetEntries() != 0) {
+                                    gPad->Update();
+                                    TPaletteAxis* palette = (TPaletteAxis*)HistoList_raw[i]->GetListOfFunctions()->FindObject("palette");
+                                    palette->SetY2NDC(0.55);
+                                    gPad->Modified();
+                                    gPad->Update();
+                                }
+                            }
+
+                            myCanvas_raw->Print(fileName_raw, "pdf");
+                            myCanvas_raw->Clear();
+                        }
+
+                        sprintf(fileName_raw, "%s]", raw_PDF_fileName.c_str());
+                        myCanvas_raw->Print(fileName_raw, "pdf");
+
+#pragma endregion
+
+#pragma region /* Print clas12reco plots */
+                        // TCanvas* myCanvas_clas12reco = new TCanvas("myPage_clas12reco", "myPage_clas12reco", pixelx, pixely);
+                        TCanvas* myCanvas_clas12reco = new TCanvas("myPage_clas12reco", "myPage_clas12reco", pixelx, pixely);
+
+                        std::string clas12reco_PDF_fileName = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/clas12reco_nFD_plots.pdf";
+                        char fileName_clas12reco[clas12reco_PDF_fileName.length()];
+                        sprintf(fileName_clas12reco, "%s[", clas12reco_PDF_fileName.c_str());
+                        myText->SaveAs(fileName_clas12reco);
+                        sprintf(fileName_clas12reco, "%s", clas12reco_PDF_fileName.c_str());
+
+                        /////////////////////////////////////
+                        // CND Neutron Information
+                        /////////////////////////////////////
+                        myText->cd();
+
+                        text.DrawLatex(0.05, 0.9, "Uniform sample of (e,e'n) events (truth-level)");
+
+                        if (FindSubstring(InputFiles, "2070MeV")) {
+                            text.DrawLatex(0.2, 0.8, "Beam energy: 2070MeV");
+                        } else if (FindSubstring(InputFiles, "4029MeV")) {
+                            text.DrawLatex(0.2, 0.8, "Beam energy: 4029MeV");
+                        } else if (FindSubstring(InputFiles, "5986MeV")) {
+                            text.DrawLatex(0.2, 0.8, "Beam energy: 5986MeV");
+                        }
+
+                        if (ConstrainedE) {
+                            text.DrawLatex(0.05, 0.7, "ConstrainedE = yes");
+                        } else {
+                            text.DrawLatex(0.05, 0.7, "ConstrainedE = no");
+                        }
+
+                        text.DrawLatex(0.05, 0.6, ("apply_ECAL_veto = " + BoolToString(apply_ECAL_veto)).c_str());
+                        text.DrawLatex(0.05, 0.55, ("cPart_veto_radius = " + ToStringWithPrecision(cPart_veto_radius, 0)).c_str());
+
+                        text.DrawLatex(0.05, 0.45, ("apply_PCAL_neutral_veto = " + BoolToString(apply_PCAL_neutral_veto)).c_str());
+                        text.DrawLatex(0.05, 0.4, ("nPart_veto_radius = " + ToStringWithPrecision(nPart_veto_radius, 0)).c_str());
+
+                        myText->Print(fileName_clas12reco, "pdf");
+                        myText->Clear();
+
+                        for (int i = 0; i < HistoList_clas12reco.size(); i++) {
+                            for (int j = 0; j < HistSubjects.size(); j++) {
+                                if (FirstPrint.at(j) && FindSubstring(HistoList_clas12reco[i]->GetTitle(), HistSubjects.at(j))) {
+                                    myText->cd();
+                                    titles.DrawLatex(0.3, 0.5, HistSubjects2.at(j).c_str());
+                                    myText->Print(fileName_clas12reco, "pdf");
+                                    myText->Clear();
+
+                                    myCanvas_clas12reco->cd(1);
+                                    FirstPrint.at(j) = false;
+                                    break;
+                                }
+                            }
+
+                            // clas12reco_PDF_fileName->Divide(2,1);
+
+                            myCanvas_clas12reco->cd();
+
+                            myCanvas_clas12reco->cd()->SetGrid();
+                            myCanvas_clas12reco->cd()->SetBottomMargin(0.14), myCanvas_clas12reco->cd()->SetLeftMargin(0.16), myCanvas_clas12reco->cd()->SetRightMargin(0.12);
+
+                            HistoList_clas12reco[i]->GetYaxis()->SetTitleOffset(1.5);
+                            HistoList_clas12reco[i]->GetXaxis()->SetTitleOffset(1.1);
+
+                            gPad->SetRightMargin(0.23);
+
+                            // // Set the PDF title and header for the bookmark
+                            // std::string Title = HistoList_clas12reco[i]->GetTitle();
+                            // gStyle->SetTitlePS(Title.c_str());  // This sets the title in metadata
+                            //                                     // gStyle->SetHeaderPS(("[ /Title " + Title + " /DOCVIEW pdfmark").c_str());  // Adds a PDF title
+                            // gStyle->SetHeaderPS(("[ /Page " + to_string(i + 1) + " /View [/Fit] /Title (myTitle) ] /OUT pdfmark").c_str());
+
+                            if (HistoList_clas12reco[i]->InheritsFrom("TH1D")) {
+                                HistoList_clas12reco[i]->Draw();
+                            } else if (HistoList_clas12reco[i]->InheritsFrom("TH2D")) {
+                                HistoList_clas12reco[i]->Draw("colz");
+
+                                if (HistoList_clas12reco[i]->GetEntries() != 0) {
+                                    gPad->Update();
+                                    TPaletteAxis* palette = (TPaletteAxis*)HistoList_clas12reco[i]->GetListOfFunctions()->FindObject("palette");
+                                    palette->SetY2NDC(0.55);
+                                    gPad->Modified();
+                                    gPad->Update();
+                                }
+                            }
+
+                            myCanvas_clas12reco->Print(fileName_clas12reco, "pdf");
+                            myCanvas_clas12reco->Clear();
+                        }
+
+                        sprintf(fileName_clas12reco, "%s]", clas12reco_PDF_fileName.c_str());
+                        myCanvas_clas12reco->Print(fileName_clas12reco, "pdf");
+
+#pragma endregion
+
+#pragma region /* Print redef plots */
+                        // TCanvas* myCanvas_redef = new TCanvas("myPage_redef", "myPage_redef", pixelx, pixely);
+                        TCanvas* myCanvas_redef = new TCanvas("myPage_redef", "myPage_redef", pixelx, pixely);
+
+                        std::string redef_PDF_fileName = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/redef_nFD_plots.pdf";
+                        char fileName_redef[redef_PDF_fileName.length()];
+                        sprintf(fileName_redef, "%s[", redef_PDF_fileName.c_str());
+                        myText->SaveAs(fileName_redef);
+                        sprintf(fileName_redef, "%s", redef_PDF_fileName.c_str());
+
+                        /////////////////////////////////////
+                        // CND Neutron Information
+                        /////////////////////////////////////
+                        myText->cd();
+
+                        text.DrawLatex(0.05, 0.9, "Uniform sample of (e,e'n) events (truth-level)");
+
+                        if (FindSubstring(InputFiles, "2070MeV")) {
+                            text.DrawLatex(0.2, 0.8, "Beam energy: 2070MeV");
+                        } else if (FindSubstring(InputFiles, "4029MeV")) {
+                            text.DrawLatex(0.2, 0.8, "Beam energy: 4029MeV");
+                        } else if (FindSubstring(InputFiles, "5986MeV")) {
+                            text.DrawLatex(0.2, 0.8, "Beam energy: 5986MeV");
+                        }
+
+                        if (ConstrainedE) {
+                            text.DrawLatex(0.05, 0.7, "ConstrainedE = yes");
+                        } else {
+                            text.DrawLatex(0.05, 0.7, "ConstrainedE = no");
+                        }
+
+                        text.DrawLatex(0.05, 0.6, ("apply_ECAL_veto = " + BoolToString(apply_ECAL_veto)).c_str());
+                        text.DrawLatex(0.05, 0.55, ("cPart_veto_radius = " + ToStringWithPrecision(cPart_veto_radius, 0)).c_str());
+
+                        text.DrawLatex(0.05, 0.45, ("apply_PCAL_neutral_veto = " + BoolToString(apply_PCAL_neutral_veto)).c_str());
+                        text.DrawLatex(0.05, 0.4, ("nPart_veto_radius = " + ToStringWithPrecision(nPart_veto_radius, 0)).c_str());
+
+                        myText->Print(fileName_redef, "pdf");
+                        myText->Clear();
+
+                        for (int i = 0; i < HistoList_redef.size(); i++) {
+                            for (int j = 0; j < HistSubjects.size(); j++) {
+                                if (FirstPrint.at(j) && FindSubstring(HistoList_redef[i]->GetTitle(), HistSubjects.at(j))) {
+                                    myText->cd();
+                                    titles.DrawLatex(0.3, 0.5, HistSubjects2.at(j).c_str());
+                                    myText->Print(fileName_redef, "pdf");
+                                    myText->Clear();
+
+                                    myCanvas_redef->cd(1);
+                                    FirstPrint.at(j) = false;
+                                    break;
+                                }
+                            }
+
+                            // redef_PDF_fileName->Divide(2,1);
+
+                            myCanvas_redef->cd();
+
+                            myCanvas_redef->cd()->SetGrid();
+                            myCanvas_redef->cd()->SetBottomMargin(0.14), myCanvas_redef->cd()->SetLeftMargin(0.16), myCanvas_redef->cd()->SetRightMargin(0.12);
+
+                            HistoList_redef[i]->GetYaxis()->SetTitleOffset(1.5);
+                            HistoList_redef[i]->GetXaxis()->SetTitleOffset(1.1);
+
+                            gPad->SetRightMargin(0.23);
+
+                            // // Set the PDF title and header for the bookmark
+                            // std::string Title = HistoList_redef[i]->GetTitle();
+                            // gStyle->SetTitlePS(Title.c_str());  // This sets the title in metadata
+                            //                                     // gStyle->SetHeaderPS(("[ /Title " + Title + " /DOCVIEW pdfmark").c_str());  // Adds a PDF title
+                            // gStyle->SetHeaderPS(("[ /Page " + to_string(i + 1) + " /View [/Fit] /Title (myTitle) ] /OUT pdfmark").c_str());
+
+                            if (HistoList_redef[i]->InheritsFrom("TH1D")) {
+                                HistoList_redef[i]->Draw();
+                            } else if (HistoList_redef[i]->InheritsFrom("TH2D")) {
+                                HistoList_redef[i]->Draw("colz");
+
+                                if (HistoList_redef[i]->GetEntries() != 0) {
+                                    gPad->Update();
+                                    TPaletteAxis* palette = (TPaletteAxis*)HistoList_redef[i]->GetListOfFunctions()->FindObject("palette");
+                                    palette->SetY2NDC(0.55);
+                                    gPad->Modified();
+                                    gPad->Update();
+                                }
+                            }
+
+                            myCanvas_redef->Print(fileName_redef, "pdf");
+                            myCanvas_redef->Clear();
+                        }
+
+                        sprintf(fileName_redef, "%s]", redef_PDF_fileName.c_str());
+                        myCanvas_redef->Print(fileName_redef, "pdf");
+
+#pragma endregion
+
+#pragma region /* Print neutron plots */
+                        TCanvas* myCanvas = new TCanvas("myPage", "myPage", pixelx, pixely);
+
+                        std::string nFD_eff_test_PDF_fileName = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/" + OutFileName + ".pdf";
+                        char fileName[nFD_eff_test_PDF_fileName.length()];
+                        sprintf(fileName, "%s[", nFD_eff_test_PDF_fileName.c_str());
+                        myText->SaveAs(fileName);
+                        sprintf(fileName, "%s", nFD_eff_test_PDF_fileName.c_str());
+
+                        /////////////////////////////////////
+                        // CND Neutron Information
+                        /////////////////////////////////////
+                        myText->cd();
+
+                        text.DrawLatex(0.05, 0.9, "Uniform sample of (e,e'n) events (truth-level)");
+
+                        if (FindSubstring(InputFiles, "2070MeV")) {
+                            text.DrawLatex(0.2, 0.8, "Beam energy: 2070MeV");
+                        } else if (FindSubstring(InputFiles, "4029MeV")) {
+                            text.DrawLatex(0.2, 0.8, "Beam energy: 4029MeV");
+                        } else if (FindSubstring(InputFiles, "5986MeV")) {
+                            text.DrawLatex(0.2, 0.8, "Beam energy: 5986MeV");
+                        }
+
+                        if (ConstrainedE) {
+                            text.DrawLatex(0.05, 0.7, "ConstrainedE = yes");
+                        } else {
+                            text.DrawLatex(0.05, 0.7, "ConstrainedE = no");
+                        }
+
+                        text.DrawLatex(0.05, 0.6, ("apply_ECAL_veto = " + BoolToString(apply_ECAL_veto)).c_str());
+                        text.DrawLatex(0.05, 0.55, ("cPart_veto_radius = " + ToStringWithPrecision(cPart_veto_radius, 0)).c_str());
+
+                        text.DrawLatex(0.05, 0.45, ("apply_PCAL_neutral_veto = " + BoolToString(apply_PCAL_neutral_veto)).c_str());
+                        text.DrawLatex(0.05, 0.4, ("nPart_veto_radius = " + ToStringWithPrecision(nPart_veto_radius, 0)).c_str());
+
+                        myText->Print(fileName, "pdf");
+                        myText->Clear();
+
+                        for (int i = 0; i < HistoList.size(); i++) {
+                            for (int j = 0; j < HistSubjects.size(); j++) {
+                                if (FirstPrint.at(j) && FindSubstring(HistoList[i]->GetTitle(), HistSubjects.at(j))) {
+                                    myText->cd();
+                                    titles.DrawLatex(0.3, 0.5, HistSubjects2.at(j).c_str());
+                                    myText->Print(fileName, "pdf");
+                                    myText->Clear();
+
+                                    myCanvas->cd(1);
+                                    FirstPrint.at(j) = false;
+                                    break;
+                                }
+                            }
+
+                            myCanvas->cd();
+
+                            myCanvas->cd()->SetGrid();
+                            myCanvas->cd()->SetBottomMargin(0.14), myCanvas->cd()->SetLeftMargin(0.16), myCanvas->cd()->SetRightMargin(0.12);
+
+                            HistoList[i]->GetYaxis()->SetTitleOffset(1.5);
+                            HistoList[i]->GetXaxis()->SetTitleOffset(1.1);
+
+                            gPad->SetRightMargin(0.23);
+
+                            // // Set the PDF title and header for the bookmark
+                            // std::string Title = HistoList[i]->GetTitle();
+                            // gStyle->SetTitlePS(Title.c_str());  // This sets the title in metadata
+                            //                                     // gStyle->SetHeaderPS(("[ /Title " + Title + " /DOCVIEW pdfmark").c_str());  // Adds a PDF title
+                            // gStyle->SetHeaderPS(("[ /Page " + to_string(i + 1) + " /View [/Fit] /Title (myTitle) ] /OUT pdfmark").c_str());
+
+                            if (HistoList[i]->InheritsFrom("TH1D")) {
+                                HistoList[i]->Draw();
+                            } else if (HistoList[i]->InheritsFrom("TH2D")) {
+                                // if (FindSubstring(HistoList[i]->GetTitle(), "#Delta#theta_{nFD,e} vs. #Delta#phi_{nFD,e} in 1e cut")) {
+                                //     gPad->SetRightMargin(0.225);
+                                // } else {
+                                //     gPad->SetRightMargin(0.05);
+                                // }
+
+                                HistoList[i]->Draw("colz");
+
+                                if (HistoList[i]->GetEntries() != 0) {
+                                    gPad->Update();
+                                    TPaletteAxis* palette = (TPaletteAxis*)HistoList[i]->GetListOfFunctions()->FindObject("palette");
+                                    palette->SetY2NDC(0.55);
+                                    gPad->Modified();
+                                    gPad->Update();
+                                }
+                            }
+
+                            myCanvas->Print(fileName, "pdf");
+                            myCanvas->Clear();
+                        }
+
+                        sprintf(fileName, "%s]", nFD_eff_test_PDF_fileName.c_str());
+                        myCanvas->Print(fileName, "pdf");
+#pragma endregion
+
+#pragma region /* Print eff plots */
+                        vector<vector<TH1*>> HistoList_eff_plots;
+
+                        TH1D* h_eff_P_nFD_1e_cut_demominator = (TH1D*)h_truth_P_nFD_ECALveto_1e_cut->Clone((std::string(h_truth_P_nFD_ECALveto_1e_cut->GetName()) + "_demominator").c_str());
+                        // TH1D* h_eff_P_nFD_1e_cut_demominator = (TH1D*)h_truth_P_n_1e_cut->Clone((std::string(h_truth_P_n_1e_cut->GetName()) + "_demominator").c_str());
+
+                        TH1D* h_eff_P_nFD_ECALveto_1e_cut_numerator =
+                            (TH1D*)h_reco_P_nFD_ECALveto_1e_cut->Clone((std::string(h_reco_P_nFD_ECALveto_1e_cut->GetName()) + "_numerator").c_str());
+                        TH1D* h_eff_P_nFD_ECALveto_1e_cut = (TH1D*)h_eff_P_nFD_ECALveto_1e_cut_numerator->Clone("eff_P_nFD_ECALveto_1e_cut");
+                        h_eff_P_nFD_ECALveto_1e_cut->Divide(h_eff_P_nFD_1e_cut_demominator);
+                        h_eff_P_nFD_ECALveto_1e_cut->SetTitle(h_eff_P_nFD_ECALveto_1e_cut->GetName());
+                        HistoList_eff_plots.push_back({h_eff_P_nFD_ECALveto_1e_cut_numerator, h_eff_P_nFD_1e_cut_demominator, h_eff_P_nFD_ECALveto_1e_cut});
+
+                        TH1D* h_eff_P_nFD_matched_1e_cut_numerator = (TH1D*)h_reco_P_nFD_matched_1e_cut->Clone((std::string(h_reco_P_nFD_matched_1e_cut->GetName()) + "_numerator").c_str());
+                        TH1D* h_eff_P_nFD_matched_1e_cut = (TH1D*)h_eff_P_nFD_matched_1e_cut_numerator->Clone("eff_P_nFD_matched_1e_cut");
+                        h_eff_P_nFD_matched_1e_cut->Divide(h_eff_P_nFD_1e_cut_demominator);
+                        h_eff_P_nFD_matched_1e_cut->SetTitle(h_eff_P_nFD_matched_1e_cut->GetName());
+                        HistoList_eff_plots.push_back({h_eff_P_nFD_matched_1e_cut_numerator, h_eff_P_nFD_1e_cut_demominator, h_eff_P_nFD_matched_1e_cut});
+
+                        // TCanvas* myCanvas_eff_plots = new TCanvas("myPage_eff_plots", "myPage_eff_plots", pixelx, pixely);
+                        TCanvas* myCanvas_eff_plots = new TCanvas("myPage_eff_plots", "myPage_eff_plots", pixelx * 3, pixely);
+                        // TCanvas* myCanvas_eff_plots = new TCanvas("myPage_eff_plots", "myPage_eff_plots", pixelx * 3 * 2, pixely * 2);
+
+                        std::string eff_plots_PDF_fileName = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/eff_plots.pdf";
+                        char fileName_eff_plots[eff_plots_PDF_fileName.length()];
+                        sprintf(fileName_eff_plots, "%s[", eff_plots_PDF_fileName.c_str());
+                        myText->SaveAs(fileName_eff_plots);
+                        sprintf(fileName_eff_plots, "%s", eff_plots_PDF_fileName.c_str());
+
+                        myCanvas_eff_plots->cd();
+                        gPad->Update();
+                        // myText->cd();
+                        text.DrawLatex(0.2, 0.9, "Uniform sample of (e,e'n) events (truth-level)");
+                        if (FindSubstring(InputFiles, "2070MeV")) {
+                            text.DrawLatex(0.2, 0.7, "Beam energy: 2070MeV");
+                        } else if (FindSubstring(InputFiles, "4029MeV")) {
+                            text.DrawLatex(0.2, 0.7, "Beam energy: 4029MeV");
+                        } else if (FindSubstring(InputFiles, "5986MeV")) {
+                            text.DrawLatex(0.2, 0.7, "Beam energy: 5986MeV");
+                        }
+                        myCanvas_eff_plots->Print(fileName_eff_plots, "pdf");
+                        myCanvas_eff_plots->Clear();
+                        // myText->Print(fileName_eff_plots, "pdf");
+                        // myText->Clear();
+
+                        for (int i = 0; i < HistoList_eff_plots.size(); i++) {
+                            // for (int j = 0; j < HistSubjects.size(); j++) {
+                            //     if (FirstPrint.at(j) && FindSubstring(HistoList_eff_plots[i]->GetTitle(), HistSubjects.at(j))) {
+                            //         myText->cd();
+                            //         titles.DrawLatex(0.3, 0.5, HistSubjects2.at(j).c_str());
+                            //         myText->Print(fileName_eff_plots, "pdf");
+                            //         myText->Clear();
+
+                            //         myCanvas_eff_plots->cd(1);
+                            //         FirstPrint.at(j) = false;
+                            //         break;
+                            //     }
+                            // }
+
+                            myCanvas_eff_plots->Divide(3, 1);
+
+                            for (int j = 0; j < HistoList_eff_plots[i].size(); j++) {
+                                myCanvas_eff_plots->cd(j + 1);
+
+                                myCanvas_eff_plots->cd(j + 1)->SetGrid();
+                                myCanvas_eff_plots->cd(j + 1)->SetBottomMargin(0.14), myCanvas_eff_plots->cd(j + 1)->SetLeftMargin(0.16), myCanvas_eff_plots->cd(j + 1)->SetRightMargin(0.12);
+
+                                HistoList_eff_plots[i][j]->GetYaxis()->SetTitleOffset(1.5);
+                                HistoList_eff_plots[i][j]->GetXaxis()->SetTitleOffset(1.1);
+
+                                gPad->SetRightMargin(0.23);
+
+                                if (HistoList_eff_plots[i][j]->InheritsFrom("TH1D")) {
+                                    HistoList_eff_plots[i][j]->Draw();
+                                } else if (HistoList_eff_plots[i][j]->InheritsFrom("TH2D")) {
+                                    HistoList_eff_plots[i][j]->Draw("colz");
+
+                                    if (HistoList_eff_plots[i][j]->GetEntries() != 0) {
+                                        gPad->Update();
+                                        TPaletteAxis* palette = (TPaletteAxis*)HistoList_eff_plots[i][j]->GetListOfFunctions()->FindObject("palette");
+                                        palette->SetY2NDC(0.55);
+                                        gPad->Modified();
+                                        gPad->Update();
+                                    }
+                                }
+                            }
+
+                            myCanvas_eff_plots->Print(fileName_eff_plots, "pdf");
+                            myCanvas_eff_plots->Clear();
+                        }
+
+                        sprintf(fileName_eff_plots, "%s]", eff_plots_PDF_fileName.c_str());
+                        myCanvas_eff_plots->Print(fileName_eff_plots, "pdf");
+
+#pragma endregion
+
+                        outFile->cd();
+                        for (int i = 0; i < HistoList.size(); i++) { HistoList[i]->Write(); }
+                        outFile->Close();
+                    }
 
 #pragma endregion
 
