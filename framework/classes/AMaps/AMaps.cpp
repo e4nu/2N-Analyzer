@@ -413,7 +413,7 @@ AMaps::AMaps(const std::string &AcceptanceMapsDirectory, const std::string &Samp
         ReadAMapSlices(Electron_source_folder, AcceptanceMapsDirectory, "Electron", Loaded_ElectronMomSliceLimits, Loaded_e_AMap_Slices);
         ReadAMapSlices(Proton_source_folder, AcceptanceMapsDirectory, "Proton", Loaded_NucleonMomSliceLimits, Loaded_p_AMap_Slices);
         ReadAMapSlices(Neutron_source_folder, AcceptanceMapsDirectory, "Neutron", Loaded_NucleonMomSliceLimits, Loaded_n_AMap_Slices);
-        ReadAMapSlices(SampleName, AcceptanceMapsDirectory, "Nucleon", Loaded_NucleonMomSliceLimits, Loaded_nuc_AMap_Slices);  // TODO: figure out what to do with these
+        // ReadAMapSlices(SampleName, AcceptanceMapsDirectory, "Nucleon", Loaded_NucleonMomSliceLimits, Loaded_nuc_AMap_Slices);  // TODO: figure out what to do with these
     } else {
         ReadWMapSlices(Electron_source_folder, AcceptanceMapsDirectory, "Electron", Loaded_ElectronMomSliceLimits, Loaded_e_WMap_Slices);  // TODO: figure out what to do with these
         ReadWMapSlices(Proton_source_folder, AcceptanceMapsDirectory, "Proton", Loaded_NucleonMomSliceLimits, Loaded_p_WMap_Slices);       // TODO: figure out what to do with these
