@@ -1072,7 +1072,7 @@ void AMaps::GenerateFilteredRecoMaps(double cP_minR, double nP_minR) {
     if (basic_tools::FindSubstring(SName, "Uniform_ep_sample_") || basic_tools::FindSubstring(SName, "Uniform_en_sample_")) {
         for (int bin = 0; bin < NucleonMomSliceLimits.size(); bin++) {
             // Generate filtered reco. proton maps
-            if (basic_tools::FindSubstring(SName, "Uniform_en_sample_")) {
+            if (basic_tools::FindSubstring(SName, "Uniform_ep_sample_")) {
                 for (int i = 0; i < (HistNucSliceNumOfXBins + 1); i++) {
                     for (int j = 0; j < (HistNucSliceNumOfYBins + 1); j++) {
                         if (acceptance_eff_p_BySlice.at(bin).GetHistogram2D()->GetBinContent(i, j) < cP_minR) { filtered_reco_theta_p_VS_phi_p_BySlice.at(bin).hFillByBin(i, j, 0); }
@@ -1084,12 +1084,6 @@ void AMaps::GenerateFilteredRecoMaps(double cP_minR, double nP_minR) {
             if (basic_tools::FindSubstring(SName, "Uniform_en_sample_")) {
                 for (int i = 0; i < (HistNucSliceNumOfXBins + 1); i++) {
                     for (int j = 0; j < (HistNucSliceNumOfYBins + 1); j++) {
-
-                        std::cout << "\n\ni = " << i << "\n";
-                        std::cout << "\n\nj = " << j << "\n";
-                    
-                    
-                    
                         if (acceptance_eff_n_BySlice.at(bin).GetHistogram2D()->GetBinContent(i, j) < nP_minR) { filtered_reco_theta_n_VS_phi_n_BySlice.at(bin).hFillByBin(i, j, 0); }
                     }
                 }
@@ -1325,18 +1319,20 @@ void AMaps::GenerateCPartAMaps(double cP_minR) {
         }
     }
 
-    for (int i = 0; i < HistNucSliceNumOfYBins; i++) {
-        vector<int> p_AMap_col;
+    if (basic_tools::FindSubstring(SName, "Uniform_ep_sample_")) {
+        for (int i = 0; i < HistNucSliceNumOfYBins; i++) {
+            vector<int> p_AMap_col;
 
-        for (int j = 0; j < HistNucSliceNumOfXBins; j++) {
-            if (filtered_reco_theta_p_VS_phi_p.GetHistogram2D()->GetBinContent(j + 1, i + 1) >= cP_minR) {
-                p_AMap_col.push_back(1);
-            } else {
-                p_AMap_col.push_back(0);
+            for (int j = 0; j < HistNucSliceNumOfXBins; j++) {
+                if (filtered_reco_theta_p_VS_phi_p.GetHistogram2D()->GetBinContent(j + 1, i + 1) >= cP_minR) {
+                    p_AMap_col.push_back(1);
+                } else {
+                    p_AMap_col.push_back(0);
+                }
             }
-        }
 
-        p_AMap.push_back(p_AMap_col);
+            p_AMap.push_back(p_AMap_col);
+        }
     }
 }
 #pragma endregion
@@ -1345,109 +1341,111 @@ void AMaps::GenerateCPartAMaps(double cP_minR) {
 
 #pragma region /* GenerateNPartAMaps function */
 void AMaps::GenerateNPartAMaps(double nP_minR) {
-    for (int bin = 0; bin < NucleonMomSliceLimits.size(); bin++) {
+    if (basic_tools::FindSubstring(SName, "Uniform_en_sample_")) {
+        for (int bin = 0; bin < NucleonMomSliceLimits.size(); bin++) {
+            for (int i = 0; i < (HistNucSliceNumOfXBins + 1); i++) {
+                for (int j = 0; j < (HistNucSliceNumOfYBins + 1); j++) {
+                    if (acceptance_eff_n_BySlice.at(bin).GetHistogram2D()->GetBinContent(i, j) < nP_minR) { filtered_reco_theta_n_VS_phi_n_BySlice.at(bin).hFillByBin(i, j, 0); }
+                }
+            }
+
+            if (AMaps_Mode == "AMaps") {
+                // TODO: move from here
+                acceptance_eff_n_BySlice.at(bin).ApplyZMaxLim(1.2);
+            }
+
+#pragma region /* Fill p_AMap_Slices */
+            vector<vector<int>> n_AMap_slice;
+            vector<vector<double>> n_WMap_slice;
+
+            for (int i = 0; i < HistNucSliceNumOfYBins; i++) {
+                vector<int> n_AMap_slice_col;
+                vector<double> n_WMap_slice_col;
+
+                for (int j = 0; j < HistNucSliceNumOfXBins; j++) {
+                    if (acceptance_eff_n_BySlice.at(bin).GetHistogram2D()->GetBinContent(j + 1, i + 1) >= nP_minR) {
+                        n_AMap_slice_col.push_back(1);
+                        n_WMap_slice_col.push_back(acceptance_eff_n_BySlice.at(bin).GetHistogram2D()->GetBinContent(j + 1, i + 1));
+                    } else {
+                        n_AMap_slice_col.push_back(0);
+                        n_WMap_slice_col.push_back(0);
+                    }
+                }
+
+                n_AMap_slice.push_back(n_AMap_slice_col);
+                n_WMap_slice.push_back(n_WMap_slice_col);
+            }
+
+            n_AMap_Slices.push_back(n_AMap_slice);
+            n_WMap_Slices.push_back(n_WMap_slice);
+#pragma endregion
+        }
+
+        // TODO: recheck if need n_AMap and n_WMap if we're moving to neutron maps by momentum slices
+        for (int i = 0; i < HistNucSliceNumOfYBins; i++) {
+            vector<int> n_AMap_col;
+            vector<double> n_WMap_col;
+
+            for (int j = 0; j < HistNucSliceNumOfXBins; j++) {
+                if (acceptance_eff_n.GetHistogram2D()->GetBinContent(j + 1, i + 1) >= nP_minR) {
+                    n_AMap_col.push_back(1);
+                    n_WMap_col.push_back(acceptance_eff_n.GetHistogram2D()->GetBinContent(j + 1, i + 1));
+                } else {
+                    n_AMap_col.push_back(0);
+                    n_WMap_col.push_back(0);
+                }
+            }
+
+            n_AMap.push_back(n_AMap_col);
+            n_WMap.push_back(n_WMap_col);
+        }
+
+        // Fill finalized neutron maps
+        // TODO: recheck if filtered_reco_theta_n_VS_phi_n should be here
+        for (int bin = 0; bin < NucleonMomSliceLimits.size(); bin++) { filtered_reco_theta_n_VS_phi_n_BySlice.push_back(filtered_reco_theta_n_VS_phi_n); }
+
+        /*
         for (int i = 0; i < (HistNucSliceNumOfXBins + 1); i++) {
             for (int j = 0; j < (HistNucSliceNumOfYBins + 1); j++) {
-                if (acceptance_eff_n_BySlice.at(bin).GetHistogram2D()->GetBinContent(i, j) < nP_minR) { filtered_reco_theta_n_VS_phi_n_BySlice.at(bin).hFillByBin(i, j, 0); }
+                if (acceptance_eff_n.GetHistogram2D()->GetBinContent(i, j) < nP_minR) {
+                    filtered_reco_theta_n_VS_phi_n.hFillByBin(i, j, 0);
+
+                    for (int bin = 0; bin < NucleonMomSliceLimits.size(); bin++) { filtered_reco_theta_n_VS_phi_n_BySlice.at(bin).hFillByBin(i, j, 0); }
+                }
             }
         }
 
         if (AMaps_Mode == "AMaps") {
-            // TODO: move from here
-            acceptance_eff_n_BySlice.at(bin).ApplyZMaxLim(1.2);
+            for (int bin = 0; bin < NucleonMomSliceLimits.size(); bin++) { acceptance_eff_n_BySlice.at(bin).ApplyZMaxLim(1.2); }
+
+            acceptance_eff_n.ApplyZMaxLim(1.2);
         }
 
-#pragma region /* Fill p_AMap_Slices */
-        vector<vector<int>> n_AMap_slice;
-        vector<vector<double>> n_WMap_slice;
-
         for (int i = 0; i < HistNucSliceNumOfYBins; i++) {
-            vector<int> n_AMap_slice_col;
-            vector<double> n_WMap_slice_col;
+            vector<int> n_AMap_col;
+            vector<double> n_WMap_col;
 
             for (int j = 0; j < HistNucSliceNumOfXBins; j++) {
-                if (acceptance_eff_n_BySlice.at(bin).GetHistogram2D()->GetBinContent(j + 1, i + 1) >= nP_minR) {
-                    n_AMap_slice_col.push_back(1);
-                    n_WMap_slice_col.push_back(acceptance_eff_n_BySlice.at(bin).GetHistogram2D()->GetBinContent(j + 1, i + 1));
+                if (acceptance_eff_n.GetHistogram2D()->GetBinContent(j + 1, i + 1) >= nP_minR) {
+                    n_AMap_col.push_back(1);
+                    n_WMap_col.push_back(acceptance_eff_n.GetHistogram2D()->GetBinContent(j + 1, i + 1));
                 } else {
-                    n_AMap_slice_col.push_back(0);
-                    n_WMap_slice_col.push_back(0);
+                    n_AMap_col.push_back(0);
+                    n_WMap_col.push_back(0);
                 }
             }
 
-            n_AMap_slice.push_back(n_AMap_slice_col);
-            n_WMap_slice.push_back(n_WMap_slice_col);
+            n_AMap.push_back(n_AMap_col);
+            n_WMap.push_back(n_WMap_col);
         }
 
-        n_AMap_Slices.push_back(n_AMap_slice);
-        n_WMap_Slices.push_back(n_WMap_slice);
-#pragma endregion
-    }
-
-    // TODO: recheck if need n_AMap and n_WMap if we're moving to neutron maps by momentum slices
-    for (int i = 0; i < HistNucSliceNumOfYBins; i++) {
-        vector<int> n_AMap_col;
-        vector<double> n_WMap_col;
-
-        for (int j = 0; j < HistNucSliceNumOfXBins; j++) {
-            if (acceptance_eff_n.GetHistogram2D()->GetBinContent(j + 1, i + 1) >= nP_minR) {
-                n_AMap_col.push_back(1);
-                n_WMap_col.push_back(acceptance_eff_n.GetHistogram2D()->GetBinContent(j + 1, i + 1));
-            } else {
-                n_AMap_col.push_back(0);
-                n_WMap_col.push_back(0);
-            }
+        for (int bin = 0; bin < NucleonMomSliceLimits.size(); bin++) {
+            filtered_reco_theta_n_VS_phi_n_BySlice.push_back(filtered_reco_theta_n_VS_phi_n);
+            n_AMap_Slices.push_back(n_AMap);
+            n_WMap_Slices.push_back(n_WMap);
         }
-
-        n_AMap.push_back(n_AMap_col);
-        n_WMap.push_back(n_WMap_col);
+        */
     }
-
-    // Fill finalized neutron maps
-    // TODO: recheck if filtered_reco_theta_n_VS_phi_n should be here
-    for (int bin = 0; bin < NucleonMomSliceLimits.size(); bin++) { filtered_reco_theta_n_VS_phi_n_BySlice.push_back(filtered_reco_theta_n_VS_phi_n); }
-
-    /*
-    for (int i = 0; i < (HistNucSliceNumOfXBins + 1); i++) {
-        for (int j = 0; j < (HistNucSliceNumOfYBins + 1); j++) {
-            if (acceptance_eff_n.GetHistogram2D()->GetBinContent(i, j) < nP_minR) {
-                filtered_reco_theta_n_VS_phi_n.hFillByBin(i, j, 0);
-
-                for (int bin = 0; bin < NucleonMomSliceLimits.size(); bin++) { filtered_reco_theta_n_VS_phi_n_BySlice.at(bin).hFillByBin(i, j, 0); }
-            }
-        }
-    }
-
-    if (AMaps_Mode == "AMaps") {
-        for (int bin = 0; bin < NucleonMomSliceLimits.size(); bin++) { acceptance_eff_n_BySlice.at(bin).ApplyZMaxLim(1.2); }
-
-        acceptance_eff_n.ApplyZMaxLim(1.2);
-    }
-
-    for (int i = 0; i < HistNucSliceNumOfYBins; i++) {
-        vector<int> n_AMap_col;
-        vector<double> n_WMap_col;
-
-        for (int j = 0; j < HistNucSliceNumOfXBins; j++) {
-            if (acceptance_eff_n.GetHistogram2D()->GetBinContent(j + 1, i + 1) >= nP_minR) {
-                n_AMap_col.push_back(1);
-                n_WMap_col.push_back(acceptance_eff_n.GetHistogram2D()->GetBinContent(j + 1, i + 1));
-            } else {
-                n_AMap_col.push_back(0);
-                n_WMap_col.push_back(0);
-            }
-        }
-
-        n_AMap.push_back(n_AMap_col);
-        n_WMap.push_back(n_WMap_col);
-    }
-
-    for (int bin = 0; bin < NucleonMomSliceLimits.size(); bin++) {
-        filtered_reco_theta_n_VS_phi_n_BySlice.push_back(filtered_reco_theta_n_VS_phi_n);
-        n_AMap_Slices.push_back(n_AMap);
-        n_WMap_Slices.push_back(n_WMap);
-    }
-    */
 }
 #pragma endregion
 
@@ -2211,7 +2209,7 @@ void AMaps::DrawAndSaveMaps(const std::string &SampleName, TCanvas *h1DCanvas, c
         DrawAndSaveMapsPDFs(filtered_reco_p_BySlice, filtered_reco_theta_p_VS_phi_p_BySlice[0].GetHistogram2DSaveNamePath() + "filtered_reco_theta_p_VS_phi_p_BySlice.pdf");
     }
 
-    if (basic_tools::FindSubstring(SName, "Uniform_ep_sample_")) {
+    if (basic_tools::FindSubstring(SName, "Uniform_en_sample_")) {
         /* Acceptance maps BC */
         reco_theta_n_VS_phi_n_BC.hDrawAndSave(SName, h1DCanvas, AcceptanceMapsBC, AMapsBC_HistoList, true);
 
