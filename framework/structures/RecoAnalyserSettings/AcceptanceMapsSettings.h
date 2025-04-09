@@ -28,7 +28,7 @@ struct AcceptanceMapsSettings {
 
     AcceptanceMapsSettings()
         : Generate_Electron_AMaps(false),
-          Generate_Nucleon_AMaps(true),
+          Generate_Nucleon_AMaps(false),
           Generate_WMaps(false),
           AMaps_calc_with_one_reco_electron(true),
 
