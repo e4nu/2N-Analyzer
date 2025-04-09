@@ -11750,6 +11750,11 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps);
 
     while (chain.Next()) {
+        Tstring LoopFileName = chain.GetFileName();
+        std::string LoopFileName_str = LoopFileName.Data();
+
+        if (basic_tools::FindSubstring(LoopFileName_str, "1e_sample_4029MeV_1054")) { continue; }
+
 #pragma region /* Event setup */
 
         debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps, "Event setup - start");
@@ -16944,11 +16949,14 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                                          (!CutSettings.apply_fiducial_cuts || (e_withinFC_pFDpCD && pFD_withinFC_pFDpCD)));
 
             // Setting reaction monitoring cuts
-            bool P_miss_in_QE_range_pFDpCD = (P_miss_1N_pFDpCD_3v.Mag() >= CutManager.P_miss_1N_QE_range.GetLowerCut() && P_miss_1N_pFDpCD_3v.Mag() <= CutManager.P_miss_1N_QE_range.GetUpperCut());
+            bool P_miss_in_QE_range_pFDpCD =
+                (P_miss_1N_pFDpCD_3v.Mag() >= CutManager.P_miss_1N_QE_range.GetLowerCut() && P_miss_1N_pFDpCD_3v.Mag() <= CutManager.P_miss_1N_QE_range.GetUpperCut());
             bool E_miss_in_QE_range_pFDpCD = (E_miss_1N_pFDpCD >= CutManager.E_miss_1N_QE_range.GetLowerCut() && E_miss_1N_pFDpCD <= CutManager.E_miss_1N_QE_range.GetUpperCut());
 
-            bool P_miss_in_MECandSRC_range_pFDpCD = (P_miss_1N_pFDpCD_3v.Mag() >= CutManager.P_miss_1N_MECandSRC_range.GetLowerCut() && P_miss_1N_pFDpCD_3v.Mag() <= CutManager.P_miss_1N_MECandSRC_range.GetUpperCut());
-            bool E_miss_in_MECandSRC_range_pFDpCD = (E_miss_1N_pFDpCD >= CutManager.E_miss_1N_MECandSRC_range.GetLowerCut() && E_miss_1N_pFDpCD <= CutManager.E_miss_1N_MECandSRC_range.GetUpperCut());
+            bool P_miss_in_MECandSRC_range_pFDpCD =
+                (P_miss_1N_pFDpCD_3v.Mag() >= CutManager.P_miss_1N_MECandSRC_range.GetLowerCut() && P_miss_1N_pFDpCD_3v.Mag() <= CutManager.P_miss_1N_MECandSRC_range.GetUpperCut());
+            bool E_miss_in_MECandSRC_range_pFDpCD =
+                (E_miss_1N_pFDpCD >= CutManager.E_miss_1N_MECandSRC_range.GetLowerCut() && E_miss_1N_pFDpCD <= CutManager.E_miss_1N_MECandSRC_range.GetUpperCut());
 
             bool xB_in_QE_range_pFDpCD = (xB_pFDpCD >= CutManager.xB_cut.GetLowerCut() && xB_pFDpCD <= CutManager.xB_cut.GetUpperCut());  // TODO: confirm that this is the QE range!
 
@@ -17894,11 +17902,14 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                                          (!CutSettings.apply_fiducial_cuts || (e_withinFC_nFDpCD && nFD_withinFC_nFDpCD)));
 
             // Setting reaction monitoring cuts
-            bool P_miss_in_QE_range_nFDpCD = (P_miss_1N_nFDpCD_3v.Mag() >= CutManager.P_miss_1N_QE_range.GetLowerCut() && P_miss_1N_nFDpCD_3v.Mag() <= CutManager.P_miss_1N_QE_range.GetUpperCut());
+            bool P_miss_in_QE_range_nFDpCD =
+                (P_miss_1N_nFDpCD_3v.Mag() >= CutManager.P_miss_1N_QE_range.GetLowerCut() && P_miss_1N_nFDpCD_3v.Mag() <= CutManager.P_miss_1N_QE_range.GetUpperCut());
             bool E_miss_in_QE_range_nFDpCD = (E_miss_1N_nFDpCD >= CutManager.E_miss_1N_QE_range.GetLowerCut() && E_miss_1N_nFDpCD <= CutManager.E_miss_1N_QE_range.GetUpperCut());
 
-            bool P_miss_in_MECandSRC_range_nFDpCD = (P_miss_1N_nFDpCD_3v.Mag() >= CutManager.P_miss_1N_MECandSRC_range.GetLowerCut() && P_miss_1N_nFDpCD_3v.Mag() <= CutManager.P_miss_1N_MECandSRC_range.GetUpperCut());
-            bool E_miss_in_MECandSRC_range_nFDpCD = (E_miss_1N_nFDpCD >= CutManager.E_miss_1N_MECandSRC_range.GetLowerCut() && E_miss_1N_nFDpCD <= CutManager.E_miss_1N_MECandSRC_range.GetUpperCut());
+            bool P_miss_in_MECandSRC_range_nFDpCD =
+                (P_miss_1N_nFDpCD_3v.Mag() >= CutManager.P_miss_1N_MECandSRC_range.GetLowerCut() && P_miss_1N_nFDpCD_3v.Mag() <= CutManager.P_miss_1N_MECandSRC_range.GetUpperCut());
+            bool E_miss_in_MECandSRC_range_nFDpCD =
+                (E_miss_1N_nFDpCD >= CutManager.E_miss_1N_MECandSRC_range.GetLowerCut() && E_miss_1N_nFDpCD <= CutManager.E_miss_1N_MECandSRC_range.GetUpperCut());
 
             bool xB_in_QE_range_nFDpCD = (xB_nFDpCD >= CutManager.xB_cut.GetLowerCut() && xB_nFDpCD <= CutManager.xB_cut.GetUpperCut());  // TODO: confirm that this is the QE range!
 
