@@ -108,8 +108,6 @@ class AMaps {
     vector<vector<double>> n_WMap;
     vector<vector<vector<double>>> n_WMap_Slices;
 
-    bool calc_Electron_RecoToTL_Ratio = true, calc_Proton_RecoToTL_Ratio = true, calc_Neutron_RecoToTL_Ratio = true;
-
     double Charged_particle_min_Ratio = 0.7;
     double Neutral_particle_min_Ratio = 0.2;
 
@@ -223,17 +221,25 @@ class AMaps {
 
     bool isReco(const std::string &SampleType);
 
-    // hFillHitMaps function ------------------------------------------------------------------------------------------------------------------------------------------------
+    // hFillMaps function ------------------------------------------------------------------------------------------------------------------------------------------------
 
-    void hFillHitMaps(const std::string &SampleType, const std::string &particle, double Momentum, double Theta, double Phi, double Weight);
+    void hFillMaps(const std::string &SampleType, const std::string &particle, double Momentum, double Theta, double Phi, double Weight);
 
-    // CalcAMapsRatio function --------------------------------------------------------------------------------------------------------------------------------------------
+    // CalcAcceptanceEfficiency function --------------------------------------------------------------------------------------------------------------------------------------------
 
-    void CalcAMapsRatio();
+    void CalcAcceptanceEfficiency();
 
-    // GenerateSeparateCPartAMaps function ----------------------------------------------------------------------------------------------------------------------------------
+    // GenerateFilteredRecoMaps function ----------------------------------------------------------------------------------------------------------------------------------
 
-    void GenerateSeparateCPartAMaps(double cP_minR);
+    void GenerateFilteredRecoMaps(double cP_minR, double nP_minR);
+
+    // GenerateMapMatrices function ----------------------------------------------------------------------------------------------------------------------------------
+
+    void GenerateMapMatrices(double cP_minR, double nP_minR);
+
+    // GenerateFilteredRecoCPartMaps function ----------------------------------------------------------------------------------------------------------------------------------
+
+    void GenerateFilteredRecoCPartMaps(double cP_minR);
 
     // GenerateCPartAMaps function ------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -252,13 +258,17 @@ class AMaps {
 
     void SaveHitMaps(const std::string &SampleName, const std::string &AcceptanceMapsDirectory);
 
-    // DrawAndSaveHitMaps function ------------------------------------------------------------------------------------------------------------------------------------------
+    // SaveMaps function -------------------------------------------------------------------------------------------------------------------------------------------------
 
-    void DrawAndSaveHitMapsPDFs(vector<TObject *> HistoList, const std::string &PDFfileName);
+    void SaveMaps(const std::string &SampleName, const std::string &AcceptanceMapsDirectory);
 
-    // DrawAndSaveHitMaps function ------------------------------------------------------------------------------------------------------------------------------------------
+    // DrawAndSaveMaps function ------------------------------------------------------------------------------------------------------------------------------------------
 
-    void DrawAndSaveHitMaps(const std::string &SampleName, TCanvas *h1DCanvas, const std::string &AcceptanceMapsDirectory);
+    void DrawAndSaveMapsPDFs(vector<TObject *> HistoList, const std::string &PDFfileName);
+
+    // DrawAndSaveMaps function ------------------------------------------------------------------------------------------------------------------------------------------
+
+    void DrawAndSaveMaps(const std::string &SampleName, TCanvas *h1DCanvas, const std::string &AcceptanceMapsDirectory);
 
     // HistCounter function -------------------------------------------------------------------------------------------------------------------------------------------------
 

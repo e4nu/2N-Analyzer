@@ -1392,7 +1392,7 @@ void nFD_eff_test() {
                             bool PassMomTh = (Particle_TL_Momentum >= 0.4);
 
                             if (PassMomTh) {
-                                aMaps_master.hFillHitMaps("TL", "Neutron", Particle_TL_Momentum, Particle_TL_Theta, Particle_TL_Phi, weight);
+                                aMaps_master.hFillMaps("TL", "Neutron", Particle_TL_Momentum, Particle_TL_Theta, Particle_TL_Phi, weight);
                             }  // end of if id. TL leading neutron
                         }
 #pragma endregion
@@ -1608,7 +1608,7 @@ void nFD_eff_test() {
 
                             if (PassMomTh && PassECALeadgeCuts && NeutronPassVeto_1e_cut && PassPhi_nFDCuts)  // FOR nFD eff test!
                             {
-                                aMaps_master.hFillHitMaps("Reco", "Neutron", Mom_neut_1e_cut, Theta_neut_1e_cut, Phi_neut_1e_cut, weight);
+                                aMaps_master.hFillMaps("Reco", "Neutron", Mom_neut_1e_cut, Theta_neut_1e_cut, Phi_neut_1e_cut, weight);
                             }  // end of if id. reco leading neutron
                         }
 
@@ -2288,7 +2288,7 @@ void nFD_eff_test() {
                         myCanvas_aMaps->cd();
                         myCanvas_aMaps->SetBottomMargin(0.14), myCanvas_aMaps->SetLeftMargin(0.16), myCanvas_aMaps->SetRightMargin(0.12);
 
-                        aMaps_master.DrawAndSaveHitMaps(SampleName, myCanvas_aMaps, OutputDirAMapsMaps);
+                        aMaps_master.DrawAndSaveMaps(SampleName, myCanvas_aMaps, OutputDirAMapsMaps);
                     }
 
 #pragma endregion

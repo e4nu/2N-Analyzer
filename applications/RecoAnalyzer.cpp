@@ -13138,7 +13138,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                         hTL_P_e_AMaps.hFill(Particle_TL_Momentum, Weight);
                         hTL_P_e_vs_TL_Theta_e_AMap.hFill(Particle_TL_Momentum, Particle_TL_Theta, Weight);
                         hTL_P_e_vs_TL_Phi_e_AMap.hFill(Particle_TL_Momentum, Particle_TL_Phi, Weight);
-                        aMaps_master.hFillHitMaps("TL", "Electron", Particle_TL_Momentum, Particle_TL_Theta, Particle_TL_Phi, Weight);
+                        aMaps_master.hFillMaps("TL", "Electron", Particle_TL_Momentum, Particle_TL_Theta, Particle_TL_Phi, Weight);
                     }
                 }
 
@@ -13160,7 +13160,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                             hTL_P_pFD_vs_TL_P_e_AMap.hFill(Particle_TL_Momentum, Electron_TL_Momentum, Weight);
                             hTL_P_pFD_vs_TL_Theta_e_AMap.hFill(Particle_TL_Momentum, Electron_TL_Theta, Weight);
                             hTL_P_pFD_vs_TL_Phi_e_AMap.hFill(Particle_TL_Momentum, Electron_TL_Phi, Weight);
-                            aMaps_master.hFillHitMaps("TL", "Proton", Particle_TL_Momentum, Particle_TL_Theta, Particle_TL_Phi, Weight);
+                            aMaps_master.hFillMaps("TL", "Proton", Particle_TL_Momentum, Particle_TL_Theta, Particle_TL_Phi, Weight);
                         }  // end of if id. TL proton
                     }
                 }
@@ -13181,7 +13181,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                         hTL_P_e_WMaps.hFill(Particle_TL_Momentum, Weight);
                         hTL_P_e_vs_TL_Theta_e_WMap.hFill(Particle_TL_Momentum, Particle_TL_Theta, Weight);
                         hTL_P_e_vs_TL_Phi_e_WMap.hFill(Particle_TL_Momentum, Particle_TL_Phi, Weight);
-                        wMaps_master.hFillHitMaps("TL", "Electron", Particle_TL_Momentum, Particle_TL_Theta, Particle_TL_Phi, Weight);
+                        wMaps_master.hFillMaps("TL", "Electron", Particle_TL_Momentum, Particle_TL_Theta, Particle_TL_Phi, Weight);
                     } else if ((particlePDGtmp == 2212) && (!AMapsSettings.AMaps_calc_with_one_reco_electron || (electrons.size() == 1))) {
                         /* Fill all TL FD proton efficiency maps */
 
@@ -13202,7 +13202,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                                 hTL_P_pFD_vs_TL_P_e_WMap.hFill(Particle_TL_Momentum, Electron_TL_Momentum, Weight);
                                 hTL_P_pFD_vs_TL_Theta_e_WMap.hFill(Particle_TL_Momentum, Electron_TL_Theta, Weight);
                                 hTL_P_pFD_vs_TL_Phi_e_WMap.hFill(Particle_TL_Momentum, Electron_TL_Phi, Weight);
-                                wMaps_master.hFillHitMaps("TL", "Proton", Particle_TL_Momentum, Particle_TL_Theta, Particle_TL_Phi, Weight);
+                                wMaps_master.hFillMaps("TL", "Proton", Particle_TL_Momentum, Particle_TL_Theta, Particle_TL_Phi, Weight);
                             }
                         }  // end of if id. TL proton
                     }
@@ -13244,7 +13244,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                     hTL_P_nFD_vs_TL_P_e_AMap.hFill(Particle_TL_Momentum, Electron_TL_Momentum, Weight);
                     hTL_P_nFD_vs_TL_Theta_e_AMap.hFill(Particle_TL_Momentum, Electron_TL_Theta, Weight);
                     hTL_P_nFD_vs_TL_Phi_e_AMap.hFill(Particle_TL_Momentum, Electron_TL_Phi, Weight);
-                    aMaps_master.hFillHitMaps("TL", "Neutron", Particle_TL_Momentum, Particle_TL_Theta, Particle_TL_Phi, Weight);
+                    aMaps_master.hFillMaps("TL", "Neutron", Particle_TL_Momentum, Particle_TL_Theta, Particle_TL_Phi, Weight);
                 }  // end of if id. TL leading neutron
             }
 
@@ -13281,7 +13281,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                         hTL_P_nFD_vs_TL_P_e_WMap.hFill(Particle_TL_Momentum, Electron_TL_Momentum, Weight);
                         hTL_P_nFD_vs_TL_Theta_e_WMap.hFill(Particle_TL_Momentum, Electron_TL_Theta, Weight);
                         hTL_P_nFD_vs_TL_Phi_e_WMap.hFill(Particle_TL_Momentum, Electron_TL_Phi, Weight);
-                        wMaps_master.hFillHitMaps("TL", "Neutron", Particle_TL_Momentum, Particle_TL_Theta, Particle_TL_Phi, Weight);
+                        wMaps_master.hFillMaps("TL", "Neutron", Particle_TL_Momentum, Particle_TL_Theta, Particle_TL_Phi, Weight);
                     }
                 }  // end of if id. TL leading neutron
             }
@@ -14518,7 +14518,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                 hReco_P_e_AMaps.hFill(P_e_1e_cut, Weight);
                 hReco_P_e_vs_Reco_Theta_e_AMap.hFill(P_e_1e_cut, Theta_e, Weight);
                 hReco_P_e_vs_Reco_Phi_e_AMap.hFill(P_e_1e_cut, Phi_e, Weight);
-                aMaps_master.hFillHitMaps("Reco", "Electron", P_e_1e_cut, Theta_e, Phi_e, Weight);
+                aMaps_master.hFillMaps("Reco", "Electron", P_e_1e_cut, Theta_e, Phi_e, Weight);
             }
         }
 
@@ -14539,7 +14539,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                         hReco_P_pFD_vs_Reco_P_e_AMap.hFill(Reco_Proton_Momentum, P_e_1e_cut, Weight);
                         hReco_P_pFD_vs_Reco_Theta_e_AMap.hFill(Reco_Proton_Momentum, Theta_e, Weight);
                         hReco_P_pFD_vs_Reco_Phi_e_AMap.hFill(Reco_Proton_Momentum, Phi_e, Weight);
-                        aMaps_master.hFillHitMaps("Reco", "Proton", Reco_Proton_Momentum, protons[i]->getTheta() * 180.0 / pi, protons[i]->getPhi() * 180.0 / pi, Weight);
+                        aMaps_master.hFillMaps("Reco", "Proton", Reco_Proton_Momentum, protons[i]->getTheta() * 180.0 / pi, protons[i]->getPhi() * 180.0 / pi, Weight);
                     }  // end of if id. reco proton
                 }
             }
@@ -14585,7 +14585,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                             hReco_P_nFD_vs_Reco_P_e_AMap.hFill(Mom_neut_1e_cut, P_e_1e_cut, Weight);
                             hReco_P_nFD_vs_Reco_Theta_e_AMap.hFill(Mom_neut_1e_cut, Theta_e, Weight);
                             hReco_P_nFD_vs_Reco_Phi_e_AMap.hFill(Mom_neut_1e_cut, Phi_e, Weight);
-                            aMaps_master.hFillHitMaps("Reco", "Neutron", Mom_neut_1e_cut, Theta_neut_1e_cut, Phi_neut_1e_cut, Weight);
+                            aMaps_master.hFillMaps("Reco", "Neutron", Mom_neut_1e_cut, Theta_neut_1e_cut, Phi_neut_1e_cut, Weight);
                         }  // end of if pass neutron ECAL veto
                     }  // end of if id. reco leading neutron
                 }  // end of if neutron is within fiducial cuts
@@ -14601,7 +14601,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                 hElectronAMapBCwKC.hFill(Phi_e, Theta_e, Weight);
                 hReco_P_e_vs_Reco_Theta_e_WMap.hFill(P_e_1e_cut, Theta_e, Weight);
                 hReco_P_e_vs_Reco_Phi_e_WMap.hFill(P_e_1e_cut, Phi_e, Weight);
-                wMaps_master.hFillHitMaps("Reco", "Electron", P_e_1e_cut, Theta_e, Phi_e, Weight);
+                wMaps_master.hFillMaps("Reco", "Electron", P_e_1e_cut, Theta_e, Phi_e, Weight);
             }
 
             // Filling proton reco. efficiency maps
@@ -14624,7 +14624,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                             hReco_P_pFD_vs_Reco_P_e_WMap.hFill(Reco_Proton_Momentum, P_e_1e_cut, Weight);
                             hReco_P_pFD_vs_Reco_Theta_e_WMap.hFill(Reco_Proton_Momentum, Theta_e, Weight);
                             hReco_P_pFD_vs_Reco_Phi_e_WMap.hFill(Reco_Proton_Momentum, Phi_e, Weight);
-                            wMaps_master.hFillHitMaps("Reco", "Proton", Reco_Proton_Momentum, protons[i]->getTheta() * 180.0 / pi, protons[i]->getPhi() * 180.0 / pi, Weight);
+                            wMaps_master.hFillMaps("Reco", "Proton", Reco_Proton_Momentum, protons[i]->getTheta() * 180.0 / pi, protons[i]->getPhi() * 180.0 / pi, Weight);
                         }
                     }  // end of if id. reco proton
                 }
@@ -14673,7 +14673,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                             hReco_P_nFD_vs_Reco_P_e_WMap.hFill(Mom_neut_1e_cut, P_e_1e_cut, Weight);
                             hReco_P_nFD_vs_Reco_Theta_e_WMap.hFill(Mom_neut_1e_cut, Theta_e, Weight);
                             hReco_P_nFD_vs_Reco_Phi_e_WMap.hFill(Mom_neut_1e_cut, Phi_e, Weight);
-                            wMaps_master.hFillHitMaps("Reco", "Neutron", Mom_neut_1e_cut, Theta_neut_1e_cut, Phi_neut_1e_cut, Weight);
+                            wMaps_master.hFillMaps("Reco", "Neutron", Mom_neut_1e_cut, Theta_neut_1e_cut, Phi_neut_1e_cut, Weight);
                         }  // end of if pass neutron ECAL veto
                     }  // end of if id. reco leading neutron
                 }  // end of if neutron is within fiducial cuts
@@ -25297,7 +25297,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         hNucleonAMapBC.hDrawAndSave(parameters.SampleName, c1, plots, HistoList, true);
 
         // Acceptance maps plots (1e cut)
-        aMaps_master.DrawAndSaveHitMaps(parameters.SampleName, c1, path_definitions::PathDefinitions.AcceptanceMapsDirectory);
+        aMaps_master.DrawAndSaveMaps(parameters.SampleName, c1, path_definitions::PathDefinitions.AcceptanceMapsDirectory);
     } else {
         std::cout << "\033[33m\n\nAcceptance maps plots are disabled by user.\n\n\033[0m";
     }
@@ -25346,7 +25346,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         hTL_P_nFD_vs_TL_Phi_e_WMap.hDrawAndSave(parameters.SampleName, c1, plots, HistoList, true);
 
         // Efficiency maps plots (1e cut)
-        wMaps_master.DrawAndSaveHitMaps(parameters.SampleName, c1, path_definitions::PathDefinitions.AcceptanceWeightsDirectory);
+        wMaps_master.DrawAndSaveMaps(parameters.SampleName, c1, path_definitions::PathDefinitions.AcceptanceWeightsDirectory);
     } else {
         std::cout << "\033[33m\n\nEfficiency maps plots are disabled by user.\n\n\033[0m";
     }

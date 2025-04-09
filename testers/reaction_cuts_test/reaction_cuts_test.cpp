@@ -30,7 +30,7 @@
 #include "HipoChain.h"
 #include "clas12reader.h"
 
-// using namespace std;
+using namespace utilities;
 
 void reaction_cuts_test() {
     cout << "\n\nInitiating reaction_cuts.cpp\n";
@@ -67,7 +67,9 @@ void reaction_cuts_test() {
 
     bool ConstrainTLmom = false;
 
-    bool plot_AMaps = false;
+    bool save_tester_plots = false;
+
+    bool plot_AMaps = true;
     // bool plot_AMaps = true;
 
     std::string OutFolderName_prefix = "reaction_cuts";
@@ -101,7 +103,8 @@ void reaction_cuts_test() {
                     std::string ConstrainedE_status = ConstrainedE ? "_CE" : "";
 
                     std::string OutFolderName = OutFolderName_prefix + OutFolderName_ver_status + Ebeam_status + samples_status + neutFD_redef_status + ECAL_veto_status +
-                                           PCAL_neutral_veto_status + rc_factor_status + nPart_veto_radius_status + Good_nFD_status + Bad_nFD_status + ConstrainedE_status + General_status;
+                                                PCAL_neutral_veto_status + rc_factor_status + nPart_veto_radius_status + Good_nFD_status + Bad_nFD_status + ConstrainedE_status +
+                                                General_status;
 
                     std::string OutFileName = OutFolderName;
 
@@ -116,7 +119,7 @@ void reaction_cuts_test() {
 
                     std::string BaseDir = "/cache/clas12/rg-m/production/pass1/2gev/C/dst/recon";
                     std::string InputFiles = BaseDir + "/015664/*.hipo", SampleName = "C12_data_2GeV_run_015664";
-                    
+
                     TString Beam_energy_TString = "2070MeV";
 
                     // std::string BaseDir = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples";
@@ -678,347 +681,392 @@ void reaction_cuts_test() {
 
 #pragma endregion
 
-// #pragma region /* matched */
-//                     HistSubjects.push_back("matched");
-//                     HistSubjects2.push_back("matched");
-//                     FirstPrint.push_back(true);
+                    // #pragma region /* matched */
+                    //                     HistSubjects.push_back("matched");
+                    //                     HistSubjects2.push_back("matched");
+                    //                     FirstPrint.push_back(true);
 
-// #pragma region /* Base histograms (matched) */
-//                     TH1D* h_reco_P_nFD_matched_1e_cut = new TH1D("reco_P_nFD_matched_1e_cut", "P^{reco}_{nFD} in 1e cut (matched);P^{reco}_{nFD} [GeV/c];Counts", 50, 0, P_upperLim);
-//                     HistoList.push_back(h_reco_P_nFD_matched_1e_cut);
-//                     TH1D* h_truth_P_nFD_matched_1e_cut = new TH1D("truth_P_nFD_matched_1e_cut", "P^{truth}_{nFD} in 1e cut (matched);P^{truth}_{nFD} [GeV/c];Counts", 50, 0, P_upperLim);
-//                     HistoList.push_back(h_truth_P_nFD_matched_1e_cut);
-//                     TH1D* h_reco_theta_nFD_matched_1e_cut =
-//                         new TH1D("reco_theta_nFD_matched_1e_cut", "#theta^{reco}_{nFD} in 1e cut (matched);#theta^{reco}_{nFD} [#circ];Counts", 50, 0, 45.);
-//                     HistoList.push_back(h_reco_theta_nFD_matched_1e_cut);
-//                     TH1D* h_truth_theta_nFD_matched_1e_cut =
-//                         new TH1D("truth_theta_nFD_matched_1e_cut", "#theta^{truth}_{nFD} in 1e cut (matched);#theta^{truth}_{nFD} [#circ];Counts", 50, 0, 45.);
-//                     HistoList.push_back(h_truth_theta_nFD_matched_1e_cut);
-//                     TH1D* h_reco_phi_nFD_matched_1e_cut = new TH1D("reco_phi_nFD_matched_1e_cut", "#phi^{reco}_{nFD} in 1e cut (matched);#phi^{reco}_{nFD} [#circ];Counts", 50, -180, 180.);
-//                     HistoList.push_back(h_reco_phi_nFD_matched_1e_cut);
-//                     TH1D* h_truth_phi_nFD_matched_1e_cut =
-//                         new TH1D("truth_phi_nFD_matched_1e_cut", "#phi^{truth}_{nFD} in 1e cut (matched);#phi^{truth}_{nFD} [#circ];Counts", 50, -180, 180.);
-//                     HistoList.push_back(h_truth_phi_nFD_matched_1e_cut);
-//                     TH2D* h_reco_theta_nFD_matched_VS_reco_phi_nFD_matched_1e_cut =
-//                         new TH2D("reco_theta_nFD_matched_VS_reco_phi_nFD_matched_1e_cut",
-//                                  "#theta^{reco}_{nFD} vs. #phi^{reco}_{nFD} in 1e cut (matched);#phi^{reco}_{nFD} [#circ];#theta^{reco}_{nFD} [#circ]", 100, -180., 180., 100, 0, 50.);
-//                     HistoList.push_back(h_reco_theta_nFD_matched_VS_reco_phi_nFD_matched_1e_cut);
-//                     TH2D* h_truth_theta_nFD_matched_VS_truth_phi_nFD_matched_1e_cut =
-//                         new TH2D("truth_theta_nFD_matched_VS_truth_phi_nFD_matched_1e_cut",
-//                                  "#theta^{truth}_{nFD} vs. #phi^{truth}_{nFD} in 1e cut (matched);#phi^{truth}_{nFD} [#circ];#theta^{truth}_{nFD} [#circ]", 100, -180., 180., 100, 0, 50.);
-//                     HistoList.push_back(h_truth_theta_nFD_matched_VS_truth_phi_nFD_matched_1e_cut);
+                    // #pragma region /* Base histograms (matched) */
+                    //                     TH1D* h_reco_P_nFD_matched_1e_cut = new TH1D("reco_P_nFD_matched_1e_cut", "P^{reco}_{nFD} in 1e cut (matched);P^{reco}_{nFD} [GeV/c];Counts", 50,
+                    //                     0, P_upperLim); HistoList.push_back(h_reco_P_nFD_matched_1e_cut); TH1D* h_truth_P_nFD_matched_1e_cut = new TH1D("truth_P_nFD_matched_1e_cut",
+                    //                     "P^{truth}_{nFD} in 1e cut (matched);P^{truth}_{nFD} [GeV/c];Counts", 50, 0, P_upperLim); HistoList.push_back(h_truth_P_nFD_matched_1e_cut); TH1D*
+                    //                     h_reco_theta_nFD_matched_1e_cut =
+                    //                         new TH1D("reco_theta_nFD_matched_1e_cut", "#theta^{reco}_{nFD} in 1e cut (matched);#theta^{reco}_{nFD} [#circ];Counts", 50, 0, 45.);
+                    //                     HistoList.push_back(h_reco_theta_nFD_matched_1e_cut);
+                    //                     TH1D* h_truth_theta_nFD_matched_1e_cut =
+                    //                         new TH1D("truth_theta_nFD_matched_1e_cut", "#theta^{truth}_{nFD} in 1e cut (matched);#theta^{truth}_{nFD} [#circ];Counts", 50, 0, 45.);
+                    //                     HistoList.push_back(h_truth_theta_nFD_matched_1e_cut);
+                    //                     TH1D* h_reco_phi_nFD_matched_1e_cut = new TH1D("reco_phi_nFD_matched_1e_cut", "#phi^{reco}_{nFD} in 1e cut (matched);#phi^{reco}_{nFD}
+                    //                     [#circ];Counts", 50, -180, 180.); HistoList.push_back(h_reco_phi_nFD_matched_1e_cut); TH1D* h_truth_phi_nFD_matched_1e_cut =
+                    //                         new TH1D("truth_phi_nFD_matched_1e_cut", "#phi^{truth}_{nFD} in 1e cut (matched);#phi^{truth}_{nFD} [#circ];Counts", 50, -180, 180.);
+                    //                     HistoList.push_back(h_truth_phi_nFD_matched_1e_cut);
+                    //                     TH2D* h_reco_theta_nFD_matched_VS_reco_phi_nFD_matched_1e_cut =
+                    //                         new TH2D("reco_theta_nFD_matched_VS_reco_phi_nFD_matched_1e_cut",
+                    //                                  "#theta^{reco}_{nFD} vs. #phi^{reco}_{nFD} in 1e cut (matched);#phi^{reco}_{nFD} [#circ];#theta^{reco}_{nFD} [#circ]", 100, -180.,
+                    //                                  180., 100, 0, 50.);
+                    //                     HistoList.push_back(h_reco_theta_nFD_matched_VS_reco_phi_nFD_matched_1e_cut);
+                    //                     TH2D* h_truth_theta_nFD_matched_VS_truth_phi_nFD_matched_1e_cut =
+                    //                         new TH2D("truth_theta_nFD_matched_VS_truth_phi_nFD_matched_1e_cut",
+                    //                                  "#theta^{truth}_{nFD} vs. #phi^{truth}_{nFD} in 1e cut (matched);#phi^{truth}_{nFD} [#circ];#theta^{truth}_{nFD} [#circ]", 100, -180.,
+                    //                                  180., 100, 0, 50.);
+                    //                     HistoList.push_back(h_truth_theta_nFD_matched_VS_truth_phi_nFD_matched_1e_cut);
 
-//                     TH1D* h_reco_P_LnFD_matched_1e_cut = new TH1D("reco_P_LnFD_matched_1e_cut", "P^{reco}_{LnFD} in 1e cut (matched);P^{reco}_{LnFD} [GeV/c];Counts", 50, 0, P_upperLim);
-//                     HistoList.push_back(h_reco_P_LnFD_matched_1e_cut);
-//                     TH1D* h_truth_P_LnFD_matched_1e_cut = new TH1D("truth_P_LnFD_matched_1e_cut", "P^{truth}_{LnFD} in 1e cut (matched);P^{truth}_{LnFD} [GeV/c];Counts", 50, 0, P_upperLim);
-//                     HistoList.push_back(h_truth_P_LnFD_matched_1e_cut);
-//                     TH1D* h_reco_theta_LnFD_matched_1e_cut =
-//                         new TH1D("reco_theta_LnFD_matched_1e_cut", "#theta^{reco}_{LnFD} in 1e cut (matched);#theta^{reco}_{LnFD} [#circ];Counts", 50, 0, 45.);
-//                     HistoList.push_back(h_reco_theta_LnFD_matched_1e_cut);
-//                     TH1D* h_truth_theta_LnFD_matched_1e_cut =
-//                         new TH1D("truth_theta_LnFD_matched_1e_cut", "#theta^{truth}_{LnFD} in 1e cut (matched);#theta^{truth}_{LnFD} [#circ];Counts", 50, 0, 45.);
-//                     HistoList.push_back(h_truth_theta_LnFD_matched_1e_cut);
-//                     TH1D* h_reco_phi_LnFD_matched_1e_cut =
-//                         new TH1D("reco_phi_LnFD_matched_1e_cut", "#phi^{reco}_{LnFD} in 1e cut (matched);#phi^{reco}_{LnFD} [#circ];Counts", 50, -180, 180.);
-//                     HistoList.push_back(h_reco_phi_LnFD_matched_1e_cut);
-//                     TH1D* h_truth_phi_LnFD_matched_1e_cut =
-//                         new TH1D("truth_phi_LnFD_matched_1e_cut", "#phi^{truth}_{LnFD} in 1e cut (matched);#phi^{truth}_{LnFD} [#circ];Counts", 50, -180, 180.);
-//                     HistoList.push_back(h_truth_phi_LnFD_matched_1e_cut);
-//                     TH2D* h_reco_theta_LnFD_matched_VS_reco_phi_LnFD_matched_1e_cut =
-//                         new TH2D("reco_theta_LnFD_matched_VS_reco_phi_LnFD_matched_1e_cut",
-//                                  "#theta^{reco}_{LnFD} vs. #phi^{reco}_{LnFD} in 1e cut (matched);#phi^{reco}_{LnFD} [#circ];#theta^{reco}_{LnFD} [#circ]", 100, -180., 180., 100, 0, 50.);
-//                     HistoList.push_back(h_reco_theta_LnFD_matched_VS_reco_phi_LnFD_matched_1e_cut);
-//                     TH2D* h_truth_theta_LnFD_matched_VS_truth_phi_LnFD_matched_1e_cut = new TH2D(
-//                         "truth_theta_LnFD_matched_VS_truth_phi_LnFD_matched_1e_cut",
-//                         "#theta^{truth}_{LnFD} vs. #phi^{truth}_{LnFD} in 1e cut (matched);#phi^{truth}_{LnFD} [#circ];#theta^{truth}_{LnFD} [#circ]", 100, -180., 180., 100, 0, 50.);
-//                     HistoList.push_back(h_truth_theta_LnFD_matched_VS_truth_phi_LnFD_matched_1e_cut);
+                    //                     TH1D* h_reco_P_LnFD_matched_1e_cut = new TH1D("reco_P_LnFD_matched_1e_cut", "P^{reco}_{LnFD} in 1e cut (matched);P^{reco}_{LnFD} [GeV/c];Counts",
+                    //                     50, 0, P_upperLim); HistoList.push_back(h_reco_P_LnFD_matched_1e_cut); TH1D* h_truth_P_LnFD_matched_1e_cut = new
+                    //                     TH1D("truth_P_LnFD_matched_1e_cut", "P^{truth}_{LnFD} in 1e cut (matched);P^{truth}_{LnFD} [GeV/c];Counts", 50, 0, P_upperLim);
+                    //                     HistoList.push_back(h_truth_P_LnFD_matched_1e_cut);
+                    //                     TH1D* h_reco_theta_LnFD_matched_1e_cut =
+                    //                         new TH1D("reco_theta_LnFD_matched_1e_cut", "#theta^{reco}_{LnFD} in 1e cut (matched);#theta^{reco}_{LnFD} [#circ];Counts", 50, 0, 45.);
+                    //                     HistoList.push_back(h_reco_theta_LnFD_matched_1e_cut);
+                    //                     TH1D* h_truth_theta_LnFD_matched_1e_cut =
+                    //                         new TH1D("truth_theta_LnFD_matched_1e_cut", "#theta^{truth}_{LnFD} in 1e cut (matched);#theta^{truth}_{LnFD} [#circ];Counts", 50, 0, 45.);
+                    //                     HistoList.push_back(h_truth_theta_LnFD_matched_1e_cut);
+                    //                     TH1D* h_reco_phi_LnFD_matched_1e_cut =
+                    //                         new TH1D("reco_phi_LnFD_matched_1e_cut", "#phi^{reco}_{LnFD} in 1e cut (matched);#phi^{reco}_{LnFD} [#circ];Counts", 50, -180, 180.);
+                    //                     HistoList.push_back(h_reco_phi_LnFD_matched_1e_cut);
+                    //                     TH1D* h_truth_phi_LnFD_matched_1e_cut =
+                    //                         new TH1D("truth_phi_LnFD_matched_1e_cut", "#phi^{truth}_{LnFD} in 1e cut (matched);#phi^{truth}_{LnFD} [#circ];Counts", 50, -180, 180.);
+                    //                     HistoList.push_back(h_truth_phi_LnFD_matched_1e_cut);
+                    //                     TH2D* h_reco_theta_LnFD_matched_VS_reco_phi_LnFD_matched_1e_cut =
+                    //                         new TH2D("reco_theta_LnFD_matched_VS_reco_phi_LnFD_matched_1e_cut",
+                    //                                  "#theta^{reco}_{LnFD} vs. #phi^{reco}_{LnFD} in 1e cut (matched);#phi^{reco}_{LnFD} [#circ];#theta^{reco}_{LnFD} [#circ]", 100, -180.,
+                    //                                  180., 100, 0, 50.);
+                    //                     HistoList.push_back(h_reco_theta_LnFD_matched_VS_reco_phi_LnFD_matched_1e_cut);
+                    //                     TH2D* h_truth_theta_LnFD_matched_VS_truth_phi_LnFD_matched_1e_cut = new TH2D(
+                    //                         "truth_theta_LnFD_matched_VS_truth_phi_LnFD_matched_1e_cut",
+                    //                         "#theta^{truth}_{LnFD} vs. #phi^{truth}_{LnFD} in 1e cut (matched);#phi^{truth}_{LnFD} [#circ];#theta^{truth}_{LnFD} [#circ]", 100, -180.,
+                    //                         180., 100, 0, 50.);
+                    //                     HistoList.push_back(h_truth_theta_LnFD_matched_VS_truth_phi_LnFD_matched_1e_cut);
 
-//                     TH1D* h_Edep_ECAL_matched_1e_cut = new TH1D("Edep_ECAL_matched_1e_cut", "E^{ECAL}_{dep} in 1e cut (matched);E^{ECAL}_{dep} [GeV];Counts", 50, 0., 0.5);
-//                     HistoList.push_back(h_Edep_ECAL_matched_1e_cut);
-//                     TH1D* h_beta_n_matched_1e_cut = new TH1D("beta_n_matched_1e_cut", "#beta_{nFD} in 1e cut (matched);#beta_{nFD};Counts", 50, 0.3, 1.1);
-//                     HistoList.push_back(h_beta_n_matched_1e_cut);
-//                     TH2D* h_Edep_ECAL_VS_beta_n_matched_1e_cut =
-//                         new TH2D("Edep_ECAL_VS_beta_n_matched_1e_cut", "E^{ECAL}_{dep} vs. #beta_{nFD} in 1e cut (matched);#beta_{nFD};E^{ECAL}_{dep} [GeV]", 100, 0.3, 1.1, 100, 0., 0.5);
-//                     HistoList.push_back(h_Edep_ECAL_VS_beta_n_matched_1e_cut);
+                    //                     TH1D* h_Edep_ECAL_matched_1e_cut = new TH1D("Edep_ECAL_matched_1e_cut", "E^{ECAL}_{dep} in 1e cut (matched);E^{ECAL}_{dep} [GeV];Counts", 50, 0.,
+                    //                     0.5); HistoList.push_back(h_Edep_ECAL_matched_1e_cut); TH1D* h_beta_n_matched_1e_cut = new TH1D("beta_n_matched_1e_cut", "#beta_{nFD} in 1e cut
+                    //                     (matched);#beta_{nFD};Counts", 50, 0.3, 1.1); HistoList.push_back(h_beta_n_matched_1e_cut); TH2D* h_Edep_ECAL_VS_beta_n_matched_1e_cut =
+                    //                         new TH2D("Edep_ECAL_VS_beta_n_matched_1e_cut", "E^{ECAL}_{dep} vs. #beta_{nFD} in 1e cut (matched);#beta_{nFD};E^{ECAL}_{dep} [GeV]", 100,
+                    //                         0.3, 1.1, 100, 0., 0.5);
+                    //                     HistoList.push_back(h_Edep_ECAL_VS_beta_n_matched_1e_cut);
 
-//                     TH2D* h_reco_P_e_VS_P_nFD_matched_1e_cut =
-//                         new TH2D("reco_P_e_VS_P_nFD_matched_1e_cut", "P^{reco}_{e} vs. P^{reco}_{nFD} in 1e cut (matched);P^{reco}_{e} [GeV/c];P^{reco}_{nFD} [GeV/c]", 100, 0., Ebeam * 2.,
-//                                  100, 0., Ebeam * 3.);
-//                     HistoList.push_back(h_reco_P_e_VS_P_nFD_matched_1e_cut);
-//                     TH2D* h_reco_theta_e_VS_P_nFD_matched_1e_cut =
-//                         new TH2D("reco_theta_e_VS_P_nFD_matched_1e_cut", "#theta^{reco}_{e} vs. P^{reco}_{nFD} in 1e cut (matched);#theta^{reco}_{e} [#circ];P^{reco}_{nFD} [GeV/c]", 100, 0,
-//                                  45., 100, 0., Ebeam * 3.);
-//                     HistoList.push_back(h_reco_theta_e_VS_P_nFD_matched_1e_cut);
-//                     TH2D* h_reco_phi_e_VS_P_nFD_matched_1e_cut =
-//                         new TH2D("reco_phi_e_VS_P_nFD_matched_1e_cut", "#phi^{reco}_{e} vs. P^{reco}_{nFD} in 1e cut (matched);#phi^{reco}_{e} [#circ];P^{reco}_{nFD} [GeV/c]", 100, -180.,
-//                                  180., 100, 0., Ebeam * 3.);
-//                     HistoList.push_back(h_reco_phi_e_VS_P_nFD_matched_1e_cut);
-//                     TH2D* h_reco_P_e_VS_theta_nFD_matched_1e_cut =
-//                         new TH2D("reco_P_e_VS_theta_nFD_matched_1e_cut", "P^{reco}_{e} vs. #theta^{reco}_{nFD} in 1e cut (matched);P^{reco}_{e} [GeV/c];#theta^{reco}_{nFD} [#circ]", 100, 0.,
-//                                  P_upperLim, 100, 0, 45.);
-//                     HistoList.push_back(h_reco_P_e_VS_theta_nFD_matched_1e_cut);
-//                     TH2D* h_reco_theta_e_VS_theta_nFD_matched_1e_cut =
-//                         new TH2D("reco_theta_e_VS_theta_nFD_matched_1e_cut",
-//                                  "#theta^{reco}_{e} vs. #theta^{reco}_{nFD} in 1e cut (matched);#theta^{reco}_{e} [#circ];#theta^{reco}_{nFD} [#circ]", 100, 0, 45., 100, 0, 45.);
-//                     HistoList.push_back(h_reco_theta_e_VS_theta_nFD_matched_1e_cut);
-//                     TH2D* h_reco_phi_e_VS_theta_nFD_matched_1e_cut =
-//                         new TH2D("reco_phi_e_VS_theta_nFD_matched_1e_cut", "#phi^{reco}_{e} vs. #theta^{reco}_{nFD} in 1e cut (matched);#phi^{reco}_{e} [#circ];#theta^{reco}_{nFD} [#circ]",
-//                                  100, -180., 180., 100, 0, 45.);
-//                     HistoList.push_back(h_reco_phi_e_VS_theta_nFD_matched_1e_cut);
-//                     TH2D* h_reco_P_e_VS_phi_nFD_matched_1e_cut =
-//                         new TH2D("reco_P_e_VS_phi_nFD_matched_1e_cut", "P^{reco}_{e} vs. #phi^{reco}_{nFD} in 1e cut (matched);P^{reco}_{e} [GeV/c];#phi^{reco}_{nFD} [#circ]", 100, 0.,
-//                                  P_upperLim, 100, -180., 180.);
-//                     HistoList.push_back(h_reco_P_e_VS_phi_nFD_matched_1e_cut);
-//                     TH2D* h_reco_theta_e_VS_phi_nFD_matched_1e_cut =
-//                         new TH2D("reco_phi_e_VS_phi_nFD_matched_1e_cut", "#theta^{reco}_{e} vs. #phi^{reco}_{nFD} in 1e cut (matched);#theta^{reco}_{e} [#circ];#phi^{reco}_{nFD} [#circ]",
-//                                  100, 0, 45., 100, -180., 180.);
-//                     HistoList.push_back(h_reco_theta_e_VS_phi_nFD_matched_1e_cut);
-//                     TH2D* h_reco_phi_e_VS_phi_nFD_matched_1e_cut =
-//                         new TH2D("reco_phi_e_VS_phi_nFD_matched_1e_cut", "#phi^{reco}_{e} vs. #phi^{reco}_{nFD} in 1e cut (matched);#phi^{reco}_{e} [#circ];#phi^{reco}_{nFD} [#circ]", 100,
-//                                  -180., 180., 100, -180., 180.);
-//                     HistoList.push_back(h_reco_phi_e_VS_phi_nFD_matched_1e_cut);
-//                     TH2D* h_reco_theta_nFD_matched_VS_P_nFD_matched_1e_cut =
-//                         new TH2D("reco_theta_nFD_matched_VS_P_nFD_matched_1e_cut",
-//                                  "#theta^{reco}_{nFD} vs. P^{reco}_{nFD} in 1e cut (matched);#theta^{reco}_{nFD} [#circ];P^{reco}_{nFD} [GeV/c]", 100, 0., 45., 100, 0., Ebeam * 3.);
-//                     HistoList.push_back(h_reco_theta_nFD_matched_VS_P_nFD_matched_1e_cut);
-//                     TH1D* h_reco_nFD_multi_matched_1e_cut = new TH1D("reco_nFD_multi_matched_1e_cut", "reco nFD multiplicity in 1e cut (matched);nFD multiplicity;Counts", 9, 1, 10);
-//                     HistoList.push_back(h_reco_nFD_multi_matched_1e_cut);
-//                     TH2D* h_reco_nFD_multi_VS_reco_P_nFD_matched_1e_cut =
-//                         new TH2D("reco_nFD_multi_VS_reco_P_nFD_matched_1e_cut", "reco nFD multiplicity vs. P^{reco}_{nFD} in 1e cut (matched);P^{reco}_{nFD} [GeV/c];nFD multiplicity", 100,
-//                                  0., Ebeam * 3., 9, 1, 10);
-//                     HistoList.push_back(h_reco_nFD_multi_VS_reco_P_nFD_matched_1e_cut);
-// #pragma endregion
+                    //                     TH2D* h_reco_P_e_VS_P_nFD_matched_1e_cut =
+                    //                         new TH2D("reco_P_e_VS_P_nFD_matched_1e_cut", "P^{reco}_{e} vs. P^{reco}_{nFD} in 1e cut (matched);P^{reco}_{e} [GeV/c];P^{reco}_{nFD} [GeV/c]",
+                    //                         100, 0., Ebeam * 2.,
+                    //                                  100, 0., Ebeam * 3.);
+                    //                     HistoList.push_back(h_reco_P_e_VS_P_nFD_matched_1e_cut);
+                    //                     TH2D* h_reco_theta_e_VS_P_nFD_matched_1e_cut =
+                    //                         new TH2D("reco_theta_e_VS_P_nFD_matched_1e_cut", "#theta^{reco}_{e} vs. P^{reco}_{nFD} in 1e cut (matched);#theta^{reco}_{e}
+                    //                         [#circ];P^{reco}_{nFD} [GeV/c]", 100, 0,
+                    //                                  45., 100, 0., Ebeam * 3.);
+                    //                     HistoList.push_back(h_reco_theta_e_VS_P_nFD_matched_1e_cut);
+                    //                     TH2D* h_reco_phi_e_VS_P_nFD_matched_1e_cut =
+                    //                         new TH2D("reco_phi_e_VS_P_nFD_matched_1e_cut", "#phi^{reco}_{e} vs. P^{reco}_{nFD} in 1e cut (matched);#phi^{reco}_{e} [#circ];P^{reco}_{nFD}
+                    //                         [GeV/c]", 100, -180.,
+                    //                                  180., 100, 0., Ebeam * 3.);
+                    //                     HistoList.push_back(h_reco_phi_e_VS_P_nFD_matched_1e_cut);
+                    //                     TH2D* h_reco_P_e_VS_theta_nFD_matched_1e_cut =
+                    //                         new TH2D("reco_P_e_VS_theta_nFD_matched_1e_cut", "P^{reco}_{e} vs. #theta^{reco}_{nFD} in 1e cut (matched);P^{reco}_{e}
+                    //                         [GeV/c];#theta^{reco}_{nFD} [#circ]", 100, 0.,
+                    //                                  P_upperLim, 100, 0, 45.);
+                    //                     HistoList.push_back(h_reco_P_e_VS_theta_nFD_matched_1e_cut);
+                    //                     TH2D* h_reco_theta_e_VS_theta_nFD_matched_1e_cut =
+                    //                         new TH2D("reco_theta_e_VS_theta_nFD_matched_1e_cut",
+                    //                                  "#theta^{reco}_{e} vs. #theta^{reco}_{nFD} in 1e cut (matched);#theta^{reco}_{e} [#circ];#theta^{reco}_{nFD} [#circ]", 100, 0, 45.,
+                    //                                  100, 0, 45.);
+                    //                     HistoList.push_back(h_reco_theta_e_VS_theta_nFD_matched_1e_cut);
+                    //                     TH2D* h_reco_phi_e_VS_theta_nFD_matched_1e_cut =
+                    //                         new TH2D("reco_phi_e_VS_theta_nFD_matched_1e_cut", "#phi^{reco}_{e} vs. #theta^{reco}_{nFD} in 1e cut (matched);#phi^{reco}_{e}
+                    //                         [#circ];#theta^{reco}_{nFD} [#circ]",
+                    //                                  100, -180., 180., 100, 0, 45.);
+                    //                     HistoList.push_back(h_reco_phi_e_VS_theta_nFD_matched_1e_cut);
+                    //                     TH2D* h_reco_P_e_VS_phi_nFD_matched_1e_cut =
+                    //                         new TH2D("reco_P_e_VS_phi_nFD_matched_1e_cut", "P^{reco}_{e} vs. #phi^{reco}_{nFD} in 1e cut (matched);P^{reco}_{e} [GeV/c];#phi^{reco}_{nFD}
+                    //                         [#circ]", 100, 0.,
+                    //                                  P_upperLim, 100, -180., 180.);
+                    //                     HistoList.push_back(h_reco_P_e_VS_phi_nFD_matched_1e_cut);
+                    //                     TH2D* h_reco_theta_e_VS_phi_nFD_matched_1e_cut =
+                    //                         new TH2D("reco_phi_e_VS_phi_nFD_matched_1e_cut", "#theta^{reco}_{e} vs. #phi^{reco}_{nFD} in 1e cut (matched);#theta^{reco}_{e}
+                    //                         [#circ];#phi^{reco}_{nFD} [#circ]",
+                    //                                  100, 0, 45., 100, -180., 180.);
+                    //                     HistoList.push_back(h_reco_theta_e_VS_phi_nFD_matched_1e_cut);
+                    //                     TH2D* h_reco_phi_e_VS_phi_nFD_matched_1e_cut =
+                    //                         new TH2D("reco_phi_e_VS_phi_nFD_matched_1e_cut", "#phi^{reco}_{e} vs. #phi^{reco}_{nFD} in 1e cut (matched);#phi^{reco}_{e}
+                    //                         [#circ];#phi^{reco}_{nFD} [#circ]", 100,
+                    //                                  -180., 180., 100, -180., 180.);
+                    //                     HistoList.push_back(h_reco_phi_e_VS_phi_nFD_matched_1e_cut);
+                    //                     TH2D* h_reco_theta_nFD_matched_VS_P_nFD_matched_1e_cut =
+                    //                         new TH2D("reco_theta_nFD_matched_VS_P_nFD_matched_1e_cut",
+                    //                                  "#theta^{reco}_{nFD} vs. P^{reco}_{nFD} in 1e cut (matched);#theta^{reco}_{nFD} [#circ];P^{reco}_{nFD} [GeV/c]", 100, 0., 45., 100,
+                    //                                  0., Ebeam * 3.);
+                    //                     HistoList.push_back(h_reco_theta_nFD_matched_VS_P_nFD_matched_1e_cut);
+                    //                     TH1D* h_reco_nFD_multi_matched_1e_cut = new TH1D("reco_nFD_multi_matched_1e_cut", "reco nFD multiplicity in 1e cut (matched);nFD
+                    //                     multiplicity;Counts", 9, 1, 10); HistoList.push_back(h_reco_nFD_multi_matched_1e_cut); TH2D* h_reco_nFD_multi_VS_reco_P_nFD_matched_1e_cut =
+                    //                         new TH2D("reco_nFD_multi_VS_reco_P_nFD_matched_1e_cut", "reco nFD multiplicity vs. P^{reco}_{nFD} in 1e cut (matched);P^{reco}_{nFD}
+                    //                         [GeV/c];nFD multiplicity", 100,
+                    //                                  0., Ebeam * 3., 9, 1, 10);
+                    //                     HistoList.push_back(h_reco_nFD_multi_VS_reco_P_nFD_matched_1e_cut);
+                    // #pragma endregion
 
-//                     // TH2D* h_reco_P_nFD_VS_reco_L_ECAL_matched_1e_cut =
-//                     //     new TH2D("reco_P_nFD_VS_reco_L_ECAL_matched_1e_cut", "P^{reco}_{nFD} vs. L^{reco}_{nFD,ECAL} in 1e cut (matched);L^{reco}_{nFD,ECAL} [cm];P^{reco}_{nFD} [#circ]",
-//                     //     100, 700.,
-//                     //              850., 100, 0., Ebeam * 3.);
-//                     // HistoList.push_back(h_reco_P_nFD_VS_reco_L_ECAL_matched_1e_cut);
-//                     // TH2D* h_reco_theta_nFD_VS_reco_L_ECAL_matched_1e_cut =
-//                     //     new TH2D("reco_theta_nFD_VS_reco_L_ECAL_matched_1e_cut",
-//                     //              "#theta^{reco}_{nFD} vs. L^{reco}_{nFD,ECAL} in 1e cut (matched);L^{reco}_{nFD,ECAL} [cm];#theta^{reco}_{nFD} [#circ]", 100, 700., 850., 100, 0., 45.);
-//                     // HistoList.push_back(h_reco_theta_nFD_VS_reco_L_ECAL_matched_1e_cut);
-//                     // TH2D* h_reco_phi_nFD_VS_reco_L_ECAL_matched_1e_cut =
-//                     //     new TH2D("reco_phi_nFD_VS_reco_L_ECAL_matched_1e_cut", "#phi^{reco}_{nFD} vs. L^{reco}_{nFD,ECAL} in 1e cut (matched);L^{reco}_{nFD,ECAL} [cm];#phi^{reco}_{nFD}
-//                     //     [#circ]",
-//                     //              100, 700., 850., 100, -180., 180.);
-//                     // HistoList.push_back(h_reco_phi_nFD_VS_reco_L_ECAL_matched_1e_cut);
-//                     // TH2D* h_reco_P_nFD_VS_ToF_nFD_fromFile_ECAL_matched_1e_cut =
-//                     //     new TH2D("reco_P_nFD_VS_ToF_nFD_fromFile_ECAL_matched_1e_cut",
-//                     //              "P^{reco}_{nFD} vs. t^{reco}_{ToF,nFD,ECAL} in 1e cut (matched);t^{reco}_{ToF,nFD,ECAL} [ns];P^{reco}_{nFD} [#circ]", 100, 15., 75., 100, 0., Ebeam * 3.);
-//                     // HistoList.push_back(h_reco_P_nFD_VS_ToF_nFD_fromFile_ECAL_matched_1e_cut);
-//                     // TH2D* h_reco_theta_nFD_VS_ToF_nFD_fromFile_ECAL_matched_1e_cut =
-//                     //     new TH2D("reco_theta_nFD_VS_ToF_nFD_fromFile_ECAL_matched_1e_cut",
-//                     //              "#theta^{reco}_{nFD} vs. t^{reco}_{ToF,nFD,ECAL} in 1e cut (matched);t^{reco}_{ToF,nFD,ECAL} [ns];#theta^{reco}_{nFD} [#circ]", 100, 15., 75., 100,
-//                     //              0., 45.);
-//                     // HistoList.push_back(h_reco_theta_nFD_VS_ToF_nFD_fromFile_ECAL_matched_1e_cut);
-//                     // TH2D* h_reco_phi_nFD_VS_ToF_nFD_fromFile_ECAL_matched_1e_cut =
-//                     //     new TH2D("reco_phi_nFD_VS_ToF_nFD_fromFile_ECAL_matched_1e_cut",
-//                     //              "#phi^{reco}_{nFD} vs. t^{reco}_{ToF,nFD,ECAL} in 1e cut (matched);t^{reco}_{ToF,nFD,ECAL} [ns];#phi^{reco}_{nFD} [#circ]", 100, 15., 75., 100, -180.,
-//                     //              180.);
-//                     // HistoList.push_back(h_reco_phi_nFD_VS_ToF_nFD_fromFile_ECAL_matched_1e_cut);
-//                     // // TH2D* h_reco_P_nFD_VS_eff_L_ECAL_matched_1e_cut =
-//                     // //     new TH2D("reco_P_nFD_VS_eff_L_ECAL_matched_1e_cut",
-//                     // //              "P^{reco}_{nFD} vs. L^{eff}_{nFD,ECAL} in 1e cut (matched);L^{eff}_{nFD,ECAL} = c#beta^{truth}t^{#beta^{reco}_{nFD}}_{ToF} [cm];P^{reco}_{nFD}
-//                     // [#circ]", 100,
-//                     // //              700., 850., 100, 0., Ebeam * 3.);
-//                     // // HistoList.push_back(h_reco_P_nFD_VS_eff_L_ECAL_matched_1e_cut);
-//                     // // TH2D* h_reco_theta_nFD_VS_eff_L_ECAL_matched_1e_cut =
-//                     // //     new TH2D("reco_theta_nFD_VS_eff_L_ECAL_matched_1e_cut",
-//                     // //              "#theta^{reco}_{nFD} vs. L^{eff}_{nFD,ECAL} in 1e cut (matched);L^{eff}_{nFD,ECAL} = c#beta^{truth}t^{#beta^{reco}_{nFD}}_{ToF}
-//                     // [cm];#theta^{reco}_{nFD}
-//                     // [#circ]",
-//                     // //              100, 700., 850., 100, 0., 45.);
-//                     // // HistoList.push_back(h_reco_theta_nFD_VS_eff_L_ECAL_matched_1e_cut);
-//                     // // TH2D* h_reco_phi_nFD_VS_eff_L_ECAL_matched_1e_cut =
-//                     // //     new TH2D("reco_phi_nFD_VS_eff_L_ECAL_matched_1e_cut",
-//                     // //              "#phi^{reco}_{nFD} vs. L^{eff}_{nFD,ECAL} in 1e cut (matched);L^{eff}_{nFD,ECAL} = c#beta^{truth}t^{#beta^{reco}_{nFD}}_{ToF} [cm];#phi^{reco}_{nFD}
-//                     // [#circ]",
-//                     // //              100, 700., 850., 100, -180., 180.);
-//                     // // HistoList.push_back(h_reco_phi_nFD_VS_eff_L_ECAL_matched_1e_cut);
+                    //                     // TH2D* h_reco_P_nFD_VS_reco_L_ECAL_matched_1e_cut =
+                    //                     //     new TH2D("reco_P_nFD_VS_reco_L_ECAL_matched_1e_cut", "P^{reco}_{nFD} vs. L^{reco}_{nFD,ECAL} in 1e cut (matched);L^{reco}_{nFD,ECAL}
+                    //                     [cm];P^{reco}_{nFD} [#circ]",
+                    //                     //     100, 700.,
+                    //                     //              850., 100, 0., Ebeam * 3.);
+                    //                     // HistoList.push_back(h_reco_P_nFD_VS_reco_L_ECAL_matched_1e_cut);
+                    //                     // TH2D* h_reco_theta_nFD_VS_reco_L_ECAL_matched_1e_cut =
+                    //                     //     new TH2D("reco_theta_nFD_VS_reco_L_ECAL_matched_1e_cut",
+                    //                     //              "#theta^{reco}_{nFD} vs. L^{reco}_{nFD,ECAL} in 1e cut (matched);L^{reco}_{nFD,ECAL} [cm];#theta^{reco}_{nFD} [#circ]", 100, 700.,
+                    //                     850., 100, 0., 45.);
+                    //                     // HistoList.push_back(h_reco_theta_nFD_VS_reco_L_ECAL_matched_1e_cut);
+                    //                     // TH2D* h_reco_phi_nFD_VS_reco_L_ECAL_matched_1e_cut =
+                    //                     //     new TH2D("reco_phi_nFD_VS_reco_L_ECAL_matched_1e_cut", "#phi^{reco}_{nFD} vs. L^{reco}_{nFD,ECAL} in 1e cut (matched);L^{reco}_{nFD,ECAL}
+                    //                     [cm];#phi^{reco}_{nFD}
+                    //                     //     [#circ]",
+                    //                     //              100, 700., 850., 100, -180., 180.);
+                    //                     // HistoList.push_back(h_reco_phi_nFD_VS_reco_L_ECAL_matched_1e_cut);
+                    //                     // TH2D* h_reco_P_nFD_VS_ToF_nFD_fromFile_ECAL_matched_1e_cut =
+                    //                     //     new TH2D("reco_P_nFD_VS_ToF_nFD_fromFile_ECAL_matched_1e_cut",
+                    //                     //              "P^{reco}_{nFD} vs. t^{reco}_{ToF,nFD,ECAL} in 1e cut (matched);t^{reco}_{ToF,nFD,ECAL} [ns];P^{reco}_{nFD} [#circ]",
+                    //                     100, 15., 75., 100, 0., Ebeam * 3.);
+                    //                     // HistoList.push_back(h_reco_P_nFD_VS_ToF_nFD_fromFile_ECAL_matched_1e_cut);
+                    //                     // TH2D* h_reco_theta_nFD_VS_ToF_nFD_fromFile_ECAL_matched_1e_cut =
+                    //                     //     new TH2D("reco_theta_nFD_VS_ToF_nFD_fromFile_ECAL_matched_1e_cut",
+                    //                     //              "#theta^{reco}_{nFD} vs. t^{reco}_{ToF,nFD,ECAL} in 1e cut (matched);t^{reco}_{ToF,nFD,ECAL} [ns];#theta^{reco}_{nFD} [#circ]",
+                    //                     100, 15., 75., 100,
+                    //                     //              0., 45.);
+                    //                     // HistoList.push_back(h_reco_theta_nFD_VS_ToF_nFD_fromFile_ECAL_matched_1e_cut);
+                    //                     // TH2D* h_reco_phi_nFD_VS_ToF_nFD_fromFile_ECAL_matched_1e_cut =
+                    //                     //     new TH2D("reco_phi_nFD_VS_ToF_nFD_fromFile_ECAL_matched_1e_cut",
+                    //                     //              "#phi^{reco}_{nFD} vs. t^{reco}_{ToF,nFD,ECAL} in 1e cut (matched);t^{reco}_{ToF,nFD,ECAL} [ns];#phi^{reco}_{nFD} [#circ]",
+                    //                     100, 15., 75., 100, -180.,
+                    //                     //              180.);
+                    //                     // HistoList.push_back(h_reco_phi_nFD_VS_ToF_nFD_fromFile_ECAL_matched_1e_cut);
+                    //                     // // TH2D* h_reco_P_nFD_VS_eff_L_ECAL_matched_1e_cut =
+                    //                     // //     new TH2D("reco_P_nFD_VS_eff_L_ECAL_matched_1e_cut",
+                    //                     // //              "P^{reco}_{nFD} vs. L^{eff}_{nFD,ECAL} in 1e cut (matched);L^{eff}_{nFD,ECAL} = c#beta^{truth}t^{#beta^{reco}_{nFD}}_{ToF}
+                    //                     [cm];P^{reco}_{nFD}
+                    //                     // [#circ]", 100,
+                    //                     // //              700., 850., 100, 0., Ebeam * 3.);
+                    //                     // // HistoList.push_back(h_reco_P_nFD_VS_eff_L_ECAL_matched_1e_cut);
+                    //                     // // TH2D* h_reco_theta_nFD_VS_eff_L_ECAL_matched_1e_cut =
+                    //                     // //     new TH2D("reco_theta_nFD_VS_eff_L_ECAL_matched_1e_cut",
+                    //                     // //              "#theta^{reco}_{nFD} vs. L^{eff}_{nFD,ECAL} in 1e cut (matched);L^{eff}_{nFD,ECAL} = c#beta^{truth}t^{#beta^{reco}_{nFD}}_{ToF}
+                    //                     // [cm];#theta^{reco}_{nFD}
+                    //                     // [#circ]",
+                    //                     // //              100, 700., 850., 100, 0., 45.);
+                    //                     // // HistoList.push_back(h_reco_theta_nFD_VS_eff_L_ECAL_matched_1e_cut);
+                    //                     // // TH2D* h_reco_phi_nFD_VS_eff_L_ECAL_matched_1e_cut =
+                    //                     // //     new TH2D("reco_phi_nFD_VS_eff_L_ECAL_matched_1e_cut",
+                    //                     // //              "#phi^{reco}_{nFD} vs. L^{eff}_{nFD,ECAL} in 1e cut (matched);L^{eff}_{nFD,ECAL} = c#beta^{truth}t^{#beta^{reco}_{nFD}}_{ToF}
+                    //                     [cm];#phi^{reco}_{nFD}
+                    //                     // [#circ]",
+                    //                     // //              100, 700., 850., 100, -180., 180.);
+                    //                     // // HistoList.push_back(h_reco_phi_nFD_VS_eff_L_ECAL_matched_1e_cut);
 
-//                     // TH2D* h_reco_P_nFD_VS_reco_L_ECIN_matched_1e_cut =
-//                     //     new TH2D("reco_P_nFD_VS_reco_L_ECIN_matched_1e_cut", "P^{reco}_{nFD} vs. L^{reco}_{nFD,ECIN} in 1e cut (matched);L^{reco}_{nFD,ECIN} [cm];P^{reco}_{nFD} [#circ]",
-//                     //     100, 700.,
-//                     //              850., 100, 0., Ebeam * 3.);
-//                     // HistoList.push_back(h_reco_P_nFD_VS_reco_L_ECIN_matched_1e_cut);
-//                     // TH2D* h_reco_theta_nFD_VS_reco_L_ECIN_matched_1e_cut =
-//                     //     new TH2D("reco_theta_nFD_VS_reco_L_ECIN_matched_1e_cut",
-//                     //              "#theta^{reco}_{nFD} vs. L^{reco}_{nFD,ECIN} in 1e cut (matched);L^{reco}_{nFD,ECIN} [cm];#theta^{reco}_{nFD} [#circ]", 100, 700., 850., 100, 0., 45.);
-//                     // HistoList.push_back(h_reco_theta_nFD_VS_reco_L_ECIN_matched_1e_cut);
-//                     // TH2D* h_reco_phi_nFD_VS_reco_L_ECIN_matched_1e_cut =
-//                     //     new TH2D("reco_phi_nFD_VS_reco_L_ECIN_matched_1e_cut", "#phi^{reco}_{nFD} vs. L^{reco}_{nFD,ECIN} in 1e cut (matched);L^{reco}_{nFD,ECIN} [cm];#phi^{reco}_{nFD}
-//                     //     [#circ]",
-//                     //              100, 700., 850., 100, -180., 180.);
-//                     // HistoList.push_back(h_reco_phi_nFD_VS_reco_L_ECIN_matched_1e_cut);
-//                     // TH2D* h_reco_P_nFD_VS_ToF_nFD_fromFile_ECIN_matched_1e_cut =
-//                     //     new TH2D("reco_P_nFD_VS_ToF_nFD_fromFile_ECIN_matched_1e_cut",
-//                     //              "P^{reco}_{nFD} vs. t^{reco}_{ToF,nFD,ECIN} in 1e cut (matched);t^{reco}_{ToF,nFD,ECIN} [ns];P^{reco}_{nFD} [#circ]", 100, 15., 75., 100, 0., Ebeam * 3.);
-//                     // HistoList.push_back(h_reco_P_nFD_VS_ToF_nFD_fromFile_ECIN_matched_1e_cut);
-//                     // TH2D* h_reco_theta_nFD_VS_ToF_nFD_fromFile_ECIN_matched_1e_cut =
-//                     //     new TH2D("reco_theta_nFD_VS_ToF_nFD_fromFile_ECIN_matched_1e_cut",
-//                     //              "#theta^{reco}_{nFD} vs. t^{reco}_{ToF,nFD,ECIN} in 1e cut (matched);t^{reco}_{ToF,nFD,ECIN} [ns];#theta^{reco}_{nFD} [#circ]", 100, 15., 75., 100,
-//                     //              0., 45.);
-//                     // HistoList.push_back(h_reco_theta_nFD_VS_ToF_nFD_fromFile_ECIN_matched_1e_cut);
-//                     // TH2D* h_reco_phi_nFD_VS_ToF_nFD_fromFile_ECIN_matched_1e_cut =
-//                     //     new TH2D("reco_phi_nFD_VS_ToF_nFD_fromFile_ECIN_matched_1e_cut",
-//                     //              "#phi^{reco}_{nFD} vs. t^{reco}_{ToF,nFD,ECIN} in 1e cut (matched);t^{reco}_{ToF,nFD,ECIN} [ns];#phi^{reco}_{nFD} [#circ]", 100, 15., 75., 100, -180.,
-//                     //              180.);
-//                     // HistoList.push_back(h_reco_phi_nFD_VS_ToF_nFD_fromFile_ECIN_matched_1e_cut);
-//                     // // TH2D* h_reco_P_nFD_VS_eff_L_ECIN_matched_1e_cut =
-//                     // //     new TH2D("reco_P_nFD_VS_eff_L_ECIN_matched_1e_cut",
-//                     // //              "P^{reco}_{nFD} vs. L^{eff}_{nFD,ECIN} in 1e cut (matched);L^{eff}_{nFD,ECIN} = c#beta^{truth}t^{#beta^{reco}_{nFD}}_{ToF} [cm];P^{reco}_{nFD}
-//                     // [#circ]", 100,
-//                     // //              700., 850., 100, 0., Ebeam * 3.);
-//                     // // HistoList.push_back(h_reco_P_nFD_VS_eff_L_ECIN_matched_1e_cut);
-//                     // // TH2D* h_reco_theta_nFD_VS_eff_L_ECIN_matched_1e_cut =
-//                     // //     new TH2D("reco_theta_nFD_VS_eff_L_ECIN_matched_1e_cut",
-//                     // //              "#theta^{reco}_{nFD} vs. L^{eff}_{nFD,ECIN} in 1e cut (matched);L^{eff}_{nFD,ECIN} = c#beta^{truth}t^{#beta^{reco}_{nFD}}_{ToF}
-//                     // [cm];#theta^{reco}_{nFD}
-//                     // [#circ]",
-//                     // //              100, 700., 850., 100, 0., 45.);
-//                     // // HistoList.push_back(h_reco_theta_nFD_VS_eff_L_ECIN_matched_1e_cut);
-//                     // // TH2D* h_reco_phi_nFD_VS_eff_L_ECIN_matched_1e_cut =
-//                     // //     new TH2D("reco_phi_nFD_VS_eff_L_ECIN_matched_1e_cut",
-//                     // //              "#phi^{reco}_{nFD} vs. L^{eff}_{nFD,ECIN} in 1e cut (matched);L^{eff}_{nFD,ECIN} = c#beta^{truth}t^{#beta^{reco}_{nFD}}_{ToF} [cm];#phi^{reco}_{nFD}
-//                     // [#circ]",
-//                     // //              100, 700., 850., 100, -180., 180.);
-//                     // // HistoList.push_back(h_reco_phi_nFD_VS_eff_L_ECIN_matched_1e_cut);
+                    //                     // TH2D* h_reco_P_nFD_VS_reco_L_ECIN_matched_1e_cut =
+                    //                     //     new TH2D("reco_P_nFD_VS_reco_L_ECIN_matched_1e_cut", "P^{reco}_{nFD} vs. L^{reco}_{nFD,ECIN} in 1e cut (matched);L^{reco}_{nFD,ECIN}
+                    //                     [cm];P^{reco}_{nFD} [#circ]",
+                    //                     //     100, 700.,
+                    //                     //              850., 100, 0., Ebeam * 3.);
+                    //                     // HistoList.push_back(h_reco_P_nFD_VS_reco_L_ECIN_matched_1e_cut);
+                    //                     // TH2D* h_reco_theta_nFD_VS_reco_L_ECIN_matched_1e_cut =
+                    //                     //     new TH2D("reco_theta_nFD_VS_reco_L_ECIN_matched_1e_cut",
+                    //                     //              "#theta^{reco}_{nFD} vs. L^{reco}_{nFD,ECIN} in 1e cut (matched);L^{reco}_{nFD,ECIN} [cm];#theta^{reco}_{nFD} [#circ]", 100, 700.,
+                    //                     850., 100, 0., 45.);
+                    //                     // HistoList.push_back(h_reco_theta_nFD_VS_reco_L_ECIN_matched_1e_cut);
+                    //                     // TH2D* h_reco_phi_nFD_VS_reco_L_ECIN_matched_1e_cut =
+                    //                     //     new TH2D("reco_phi_nFD_VS_reco_L_ECIN_matched_1e_cut", "#phi^{reco}_{nFD} vs. L^{reco}_{nFD,ECIN} in 1e cut (matched);L^{reco}_{nFD,ECIN}
+                    //                     [cm];#phi^{reco}_{nFD}
+                    //                     //     [#circ]",
+                    //                     //              100, 700., 850., 100, -180., 180.);
+                    //                     // HistoList.push_back(h_reco_phi_nFD_VS_reco_L_ECIN_matched_1e_cut);
+                    //                     // TH2D* h_reco_P_nFD_VS_ToF_nFD_fromFile_ECIN_matched_1e_cut =
+                    //                     //     new TH2D("reco_P_nFD_VS_ToF_nFD_fromFile_ECIN_matched_1e_cut",
+                    //                     //              "P^{reco}_{nFD} vs. t^{reco}_{ToF,nFD,ECIN} in 1e cut (matched);t^{reco}_{ToF,nFD,ECIN} [ns];P^{reco}_{nFD} [#circ]",
+                    //                     100, 15., 75., 100, 0., Ebeam * 3.);
+                    //                     // HistoList.push_back(h_reco_P_nFD_VS_ToF_nFD_fromFile_ECIN_matched_1e_cut);
+                    //                     // TH2D* h_reco_theta_nFD_VS_ToF_nFD_fromFile_ECIN_matched_1e_cut =
+                    //                     //     new TH2D("reco_theta_nFD_VS_ToF_nFD_fromFile_ECIN_matched_1e_cut",
+                    //                     //              "#theta^{reco}_{nFD} vs. t^{reco}_{ToF,nFD,ECIN} in 1e cut (matched);t^{reco}_{ToF,nFD,ECIN} [ns];#theta^{reco}_{nFD} [#circ]",
+                    //                     100, 15., 75., 100,
+                    //                     //              0., 45.);
+                    //                     // HistoList.push_back(h_reco_theta_nFD_VS_ToF_nFD_fromFile_ECIN_matched_1e_cut);
+                    //                     // TH2D* h_reco_phi_nFD_VS_ToF_nFD_fromFile_ECIN_matched_1e_cut =
+                    //                     //     new TH2D("reco_phi_nFD_VS_ToF_nFD_fromFile_ECIN_matched_1e_cut",
+                    //                     //              "#phi^{reco}_{nFD} vs. t^{reco}_{ToF,nFD,ECIN} in 1e cut (matched);t^{reco}_{ToF,nFD,ECIN} [ns];#phi^{reco}_{nFD} [#circ]",
+                    //                     100, 15., 75., 100, -180.,
+                    //                     //              180.);
+                    //                     // HistoList.push_back(h_reco_phi_nFD_VS_ToF_nFD_fromFile_ECIN_matched_1e_cut);
+                    //                     // // TH2D* h_reco_P_nFD_VS_eff_L_ECIN_matched_1e_cut =
+                    //                     // //     new TH2D("reco_P_nFD_VS_eff_L_ECIN_matched_1e_cut",
+                    //                     // //              "P^{reco}_{nFD} vs. L^{eff}_{nFD,ECIN} in 1e cut (matched);L^{eff}_{nFD,ECIN} = c#beta^{truth}t^{#beta^{reco}_{nFD}}_{ToF}
+                    //                     [cm];P^{reco}_{nFD}
+                    //                     // [#circ]", 100,
+                    //                     // //              700., 850., 100, 0., Ebeam * 3.);
+                    //                     // // HistoList.push_back(h_reco_P_nFD_VS_eff_L_ECIN_matched_1e_cut);
+                    //                     // // TH2D* h_reco_theta_nFD_VS_eff_L_ECIN_matched_1e_cut =
+                    //                     // //     new TH2D("reco_theta_nFD_VS_eff_L_ECIN_matched_1e_cut",
+                    //                     // //              "#theta^{reco}_{nFD} vs. L^{eff}_{nFD,ECIN} in 1e cut (matched);L^{eff}_{nFD,ECIN} = c#beta^{truth}t^{#beta^{reco}_{nFD}}_{ToF}
+                    //                     // [cm];#theta^{reco}_{nFD}
+                    //                     // [#circ]",
+                    //                     // //              100, 700., 850., 100, 0., 45.);
+                    //                     // // HistoList.push_back(h_reco_theta_nFD_VS_eff_L_ECIN_matched_1e_cut);
+                    //                     // // TH2D* h_reco_phi_nFD_VS_eff_L_ECIN_matched_1e_cut =
+                    //                     // //     new TH2D("reco_phi_nFD_VS_eff_L_ECIN_matched_1e_cut",
+                    //                     // //              "#phi^{reco}_{nFD} vs. L^{eff}_{nFD,ECIN} in 1e cut (matched);L^{eff}_{nFD,ECIN} = c#beta^{truth}t^{#beta^{reco}_{nFD}}_{ToF}
+                    //                     [cm];#phi^{reco}_{nFD}
+                    //                     // [#circ]",
+                    //                     // //              100, 700., 850., 100, -180., 180.);
+                    //                     // // HistoList.push_back(h_reco_phi_nFD_VS_eff_L_ECIN_matched_1e_cut);
 
-//                     // TH2D* h_reco_P_nFD_VS_reco_L_ECOUT_matched_1e_cut =
-//                     //     new TH2D("reco_P_nFD_VS_reco_L_ECOUT_matched_1e_cut", "P^{reco}_{nFD} vs. L^{reco}_{nFD,ECOUT} in 1e cut (matched);L^{reco}_{nFD,ECOUT} [cm];P^{reco}_{nFD}
-//                     //     [#circ]", 100,
-//                     //              700., 850., 100, 0., Ebeam * 3.);
-//                     // HistoList.push_back(h_reco_P_nFD_VS_reco_L_ECOUT_matched_1e_cut);
-//                     // TH2D* h_reco_theta_nFD_VS_reco_L_ECOUT_matched_1e_cut =
-//                     //     new TH2D("reco_theta_nFD_VS_reco_L_ECOUT_matched_1e_cut",
-//                     //              "#theta^{reco}_{nFD} vs. L^{reco}_{nFD,ECOUT} in 1e cut (matched);L^{reco}_{nFD,ECOUT} [cm];#theta^{reco}_{nFD} [#circ]", 100, 700., 850., 100, 0., 45.);
-//                     // HistoList.push_back(h_reco_theta_nFD_VS_reco_L_ECOUT_matched_1e_cut);
-//                     // TH2D* h_reco_phi_nFD_VS_reco_L_ECOUT_matched_1e_cut =
-//                     //     new TH2D("reco_phi_nFD_VS_reco_L_ECOUT_matched_1e_cut", "#phi^{reco}_{nFD} vs. L^{reco}_{nFD,ECOUT} in 1e cut (matched);L^{reco}_{nFD,ECOUT} [cm];#phi^{reco}_{nFD}
-//                     //     [#circ]",
-//                     //              100, 700., 850., 100, -180., 180.);
-//                     // HistoList.push_back(h_reco_phi_nFD_VS_reco_L_ECOUT_matched_1e_cut);
-//                     // TH2D* h_reco_P_nFD_VS_ToF_nFD_fromFile_ECOUT_matched_1e_cut =
-//                     //     new TH2D("reco_P_nFD_VS_ToF_nFD_fromFile_ECOUT_matched_1e_cut",
-//                     //              "P^{reco}_{nFD} vs. t^{reco}_{ToF,nFD,ECOUT} in 1e cut (matched);t^{reco}_{ToF,nFD,ECOUT} [ns];P^{reco}_{nFD} [#circ]", 100, 15., 75., 100, 0., Ebeam
-//                     //              * 3.);
-//                     // HistoList.push_back(h_reco_P_nFD_VS_ToF_nFD_fromFile_ECOUT_matched_1e_cut);
-//                     // TH2D* h_reco_theta_nFD_VS_ToF_nFD_fromFile_ECOUT_matched_1e_cut =
-//                     //     new TH2D("reco_theta_nFD_VS_ToF_nFD_fromFile_ECOUT_matched_1e_cut",
-//                     //              "#theta^{reco}_{nFD} vs. t^{reco}_{ToF,nFD,ECOUT} in 1e cut (matched);t^{reco}_{ToF,nFD,ECOUT} [ns];#theta^{reco}_{nFD} [#circ]", 100, 15., 75., 100,
-//                     //              0., 45.);
-//                     // HistoList.push_back(h_reco_theta_nFD_VS_ToF_nFD_fromFile_ECOUT_matched_1e_cut);
-//                     // TH2D* h_reco_phi_nFD_VS_ToF_nFD_fromFile_ECOUT_matched_1e_cut =
-//                     //     new TH2D("reco_phi_nFD_VS_ToF_nFD_fromFile_ECOUT_matched_1e_cut",
-//                     //              "#phi^{reco}_{nFD} vs. t^{reco}_{ToF,nFD,ECOUT} in 1e cut (matched);t^{reco}_{ToF,nFD,ECOUT} [ns];#phi^{reco}_{nFD} [#circ]", 100, 15., 75., 100, -180.,
-//                     //              180.);
-//                     // HistoList.push_back(h_reco_phi_nFD_VS_ToF_nFD_fromFile_ECOUT_matched_1e_cut);
-//                     // // TH2D* h_reco_P_nFD_VS_eff_L_ECOUT_matched_1e_cut =
-//                     // //     new TH2D("reco_P_nFD_VS_eff_L_ECOUT_matched_1e_cut",
-//                     // //              "P^{reco}_{nFD} vs. L^{eff}_{nFD,ECOUT} in 1e cut (matched);L^{eff}_{nFD,ECOUT} = c#beta^{truth}t^{#beta^{reco}_{nFD}}_{ToF} [cm];P^{reco}_{nFD}
-//                     // [#circ]", 100,
-//                     // //              700., 850., 100, 0., Ebeam * 3.);
-//                     // // HistoList.push_back(h_reco_P_nFD_VS_eff_L_ECOUT_matched_1e_cut);
-//                     // // TH2D* h_reco_theta_nFD_VS_eff_L_ECOUT_matched_1e_cut =
-//                     // //     new TH2D("reco_theta_nFD_VS_eff_L_ECOUT_matched_1e_cut",
-//                     // //              "#theta^{reco}_{nFD} vs. L^{eff}_{nFD,ECOUT} in 1e cut (matched);L^{eff}_{nFD,ECOUT} = c#beta^{truth}t^{#beta^{reco}_{nFD}}_{ToF}
-//                     // [cm];#theta^{reco}_{nFD}
-//                     // //              [#circ]", 100, 700., 850., 100, 0., 45.);
-//                     // // HistoList.push_back(h_reco_theta_nFD_VS_eff_L_ECOUT_matched_1e_cut);
-//                     // // TH2D* h_reco_phi_nFD_VS_eff_L_ECOUT_matched_1e_cut =
-//                     // //     new TH2D("reco_phi_nFD_VS_eff_L_ECOUT_matched_1e_cut",
-//                     // //              "#phi^{reco}_{nFD} vs. L^{eff}_{nFD,ECOUT} in 1e cut (matched);L^{eff}_{nFD,ECOUT} = c#beta^{truth}t^{#beta^{reco}_{nFD}}_{ToF} [cm];#phi^{reco}_{nFD}
-//                     // [#circ]",
-//                     // //              100, 700., 850., 100, -180., 180.);
-//                     // // HistoList.push_back(h_reco_phi_nFD_VS_eff_L_ECOUT_matched_1e_cut);
+                    //                     // TH2D* h_reco_P_nFD_VS_reco_L_ECOUT_matched_1e_cut =
+                    //                     //     new TH2D("reco_P_nFD_VS_reco_L_ECOUT_matched_1e_cut", "P^{reco}_{nFD} vs. L^{reco}_{nFD,ECOUT} in 1e cut (matched);L^{reco}_{nFD,ECOUT}
+                    //                     [cm];P^{reco}_{nFD}
+                    //                     //     [#circ]", 100,
+                    //                     //              700., 850., 100, 0., Ebeam * 3.);
+                    //                     // HistoList.push_back(h_reco_P_nFD_VS_reco_L_ECOUT_matched_1e_cut);
+                    //                     // TH2D* h_reco_theta_nFD_VS_reco_L_ECOUT_matched_1e_cut =
+                    //                     //     new TH2D("reco_theta_nFD_VS_reco_L_ECOUT_matched_1e_cut",
+                    //                     //              "#theta^{reco}_{nFD} vs. L^{reco}_{nFD,ECOUT} in 1e cut (matched);L^{reco}_{nFD,ECOUT} [cm];#theta^{reco}_{nFD} [#circ]", 100,
+                    //                     700., 850., 100, 0., 45.);
+                    //                     // HistoList.push_back(h_reco_theta_nFD_VS_reco_L_ECOUT_matched_1e_cut);
+                    //                     // TH2D* h_reco_phi_nFD_VS_reco_L_ECOUT_matched_1e_cut =
+                    //                     //     new TH2D("reco_phi_nFD_VS_reco_L_ECOUT_matched_1e_cut", "#phi^{reco}_{nFD} vs. L^{reco}_{nFD,ECOUT} in 1e cut (matched);L^{reco}_{nFD,ECOUT}
+                    //                     [cm];#phi^{reco}_{nFD}
+                    //                     //     [#circ]",
+                    //                     //              100, 700., 850., 100, -180., 180.);
+                    //                     // HistoList.push_back(h_reco_phi_nFD_VS_reco_L_ECOUT_matched_1e_cut);
+                    //                     // TH2D* h_reco_P_nFD_VS_ToF_nFD_fromFile_ECOUT_matched_1e_cut =
+                    //                     //     new TH2D("reco_P_nFD_VS_ToF_nFD_fromFile_ECOUT_matched_1e_cut",
+                    //                     //              "P^{reco}_{nFD} vs. t^{reco}_{ToF,nFD,ECOUT} in 1e cut (matched);t^{reco}_{ToF,nFD,ECOUT} [ns];P^{reco}_{nFD} [#circ]",
+                    //                     100, 15., 75., 100, 0., Ebeam
+                    //                     //              * 3.);
+                    //                     // HistoList.push_back(h_reco_P_nFD_VS_ToF_nFD_fromFile_ECOUT_matched_1e_cut);
+                    //                     // TH2D* h_reco_theta_nFD_VS_ToF_nFD_fromFile_ECOUT_matched_1e_cut =
+                    //                     //     new TH2D("reco_theta_nFD_VS_ToF_nFD_fromFile_ECOUT_matched_1e_cut",
+                    //                     //              "#theta^{reco}_{nFD} vs. t^{reco}_{ToF,nFD,ECOUT} in 1e cut (matched);t^{reco}_{ToF,nFD,ECOUT} [ns];#theta^{reco}_{nFD} [#circ]",
+                    //                     100, 15., 75., 100,
+                    //                     //              0., 45.);
+                    //                     // HistoList.push_back(h_reco_theta_nFD_VS_ToF_nFD_fromFile_ECOUT_matched_1e_cut);
+                    //                     // TH2D* h_reco_phi_nFD_VS_ToF_nFD_fromFile_ECOUT_matched_1e_cut =
+                    //                     //     new TH2D("reco_phi_nFD_VS_ToF_nFD_fromFile_ECOUT_matched_1e_cut",
+                    //                     //              "#phi^{reco}_{nFD} vs. t^{reco}_{ToF,nFD,ECOUT} in 1e cut (matched);t^{reco}_{ToF,nFD,ECOUT} [ns];#phi^{reco}_{nFD} [#circ]",
+                    //                     100, 15., 75., 100, -180.,
+                    //                     //              180.);
+                    //                     // HistoList.push_back(h_reco_phi_nFD_VS_ToF_nFD_fromFile_ECOUT_matched_1e_cut);
+                    //                     // // TH2D* h_reco_P_nFD_VS_eff_L_ECOUT_matched_1e_cut =
+                    //                     // //     new TH2D("reco_P_nFD_VS_eff_L_ECOUT_matched_1e_cut",
+                    //                     // //              "P^{reco}_{nFD} vs. L^{eff}_{nFD,ECOUT} in 1e cut (matched);L^{eff}_{nFD,ECOUT} = c#beta^{truth}t^{#beta^{reco}_{nFD}}_{ToF}
+                    //                     [cm];P^{reco}_{nFD}
+                    //                     // [#circ]", 100,
+                    //                     // //              700., 850., 100, 0., Ebeam * 3.);
+                    //                     // // HistoList.push_back(h_reco_P_nFD_VS_eff_L_ECOUT_matched_1e_cut);
+                    //                     // // TH2D* h_reco_theta_nFD_VS_eff_L_ECOUT_matched_1e_cut =
+                    //                     // //     new TH2D("reco_theta_nFD_VS_eff_L_ECOUT_matched_1e_cut",
+                    //                     // //              "#theta^{reco}_{nFD} vs. L^{eff}_{nFD,ECOUT} in 1e cut (matched);L^{eff}_{nFD,ECOUT} =
+                    //                     c#beta^{truth}t^{#beta^{reco}_{nFD}}_{ToF}
+                    //                     // [cm];#theta^{reco}_{nFD}
+                    //                     // //              [#circ]", 100, 700., 850., 100, 0., 45.);
+                    //                     // // HistoList.push_back(h_reco_theta_nFD_VS_eff_L_ECOUT_matched_1e_cut);
+                    //                     // // TH2D* h_reco_phi_nFD_VS_eff_L_ECOUT_matched_1e_cut =
+                    //                     // //     new TH2D("reco_phi_nFD_VS_eff_L_ECOUT_matched_1e_cut",
+                    //                     // //              "#phi^{reco}_{nFD} vs. L^{eff}_{nFD,ECOUT} in 1e cut (matched);L^{eff}_{nFD,ECOUT} = c#beta^{truth}t^{#beta^{reco}_{nFD}}_{ToF}
+                    //                     [cm];#phi^{reco}_{nFD}
+                    //                     // [#circ]",
+                    //                     // //              100, 700., 850., 100, -180., 180.);
+                    //                     // // HistoList.push_back(h_reco_phi_nFD_VS_eff_L_ECOUT_matched_1e_cut);
 
-//                     TH1D* h_reco_theta_nFD_minus_reco_theta_e_matched_1e_cut =
-//                         new TH1D("reco_theta_nFD_minus_reco_theta_e_matched_1e_cut",
-//                                  "#Delta#theta^{reco}_{nFD,e} in 1e cut (matched);#Delta#theta^{reco}_{nFD,e} = #theta^{reco}_{nFD} - #theta^{reco}_{e} [#circ];Counts", 50, -25., 10.);
-//                     HistoList.push_back(h_reco_theta_nFD_minus_reco_theta_e_matched_1e_cut);
-//                     TH1D* h_reco_phi_nFD_minus_reco_phi_e_matched_1e_cut =
-//                         new TH1D("reco_phi_nFD_minus_reco_phi_e_matched_1e_cut",
-//                                  "#Delta#phi^{reco}_{nFD,e} in 1e cut (matched);#Delta#phi^{reco}_{nFD,e} = |#phi^{reco}_{nFD} - #phi^{reco}_{e}| [#circ];Counts", 50, -180., 180.);
-//                     HistoList.push_back(h_reco_phi_nFD_minus_reco_phi_e_matched_1e_cut);
-//                     TH2D* h_reco_theta_nFD_minus_reco_theta_e_VS_reco_phi_nFD_minus_reco_phi_e_matched_1e_cut =
-//                         new TH2D("reco_theta_nFD_minus_reco_theta_e_VS_reco_phi_nFD_minus_reco_phi_e_matched_1e_cut",
-//                                  "#Delta#theta^{reco}_{nFD,e} vs. #Delta#phi^{reco}_{nFD,e} in 1e cut (matched);#Delta#phi^{reco}_{nFD,e} = |#phi^{reco}_{nFD} - #phi^{reco}_{e}| "
-//                                  "[#circ];#Delta#theta^{reco}_{nFD,e} = #theta^{reco}_{nFD} - #theta^{reco}_{e} [#circ]",
-//                                  100, -180., 180., 100, -25., 10.);
-//                     HistoList.push_back(h_reco_theta_nFD_minus_reco_theta_e_VS_reco_phi_nFD_minus_reco_phi_e_matched_1e_cut);
-//                     TH2D* h_reco_P_nFD_VS_reco_theta_nFD_minus_reco_theta_e_matched_1e_cut =
-//                         new TH2D("reco_P_nFD_VS_reco_theta_nFD_minus_reco_theta_e_matched_1e_cut",
-//                                  "P^{reco}_{nFD} vs. #Delta#theta^{reco}_{nFD,e} in 1e cut (matched);#Delta#theta^{reco}_{nFD,e} = #theta^{reco}_{nFD} - #theta^{reco}_{e} "
-//                                  "[#circ];P^{reco}_{nFD} [GeV/c]",
-//                                  100, -25., 10., 100, 0., Ebeam * 3.);
-//                     HistoList.push_back(h_reco_P_nFD_VS_reco_theta_nFD_minus_reco_theta_e_matched_1e_cut);
-//                     TH2D* h_reco_P_nFD_VS_reco_phi_nFD_minus_reco_phi_e_matched_1e_cut = new TH2D(
-//                         "reco_P_nFD_VS_reco_phi_nFD_minus_reco_phi_e_matched_1e_cut",
-//                         "P^{reco}_{nFD} vs. #Delta#phi^{reco}_{nFD,e} in 1e cut (matched);#Delta#phi^{reco}_{nFD,e} = |#phi^{reco}_{nFD} - #phi^{reco}_{e}| [#circ];P^{reco}_{nFD} [GeV/c]",
-//                         100, -180., 180., 100, 0., Ebeam * 3.);
-//                     HistoList.push_back(h_reco_P_nFD_VS_reco_phi_nFD_minus_reco_phi_e_matched_1e_cut);
+                    //                     TH1D* h_reco_theta_nFD_minus_reco_theta_e_matched_1e_cut =
+                    //                         new TH1D("reco_theta_nFD_minus_reco_theta_e_matched_1e_cut",
+                    //                                  "#Delta#theta^{reco}_{nFD,e} in 1e cut (matched);#Delta#theta^{reco}_{nFD,e} = #theta^{reco}_{nFD} - #theta^{reco}_{e}
+                    //                                  [#circ];Counts", 50, -25., 10.);
+                    //                     HistoList.push_back(h_reco_theta_nFD_minus_reco_theta_e_matched_1e_cut);
+                    //                     TH1D* h_reco_phi_nFD_minus_reco_phi_e_matched_1e_cut =
+                    //                         new TH1D("reco_phi_nFD_minus_reco_phi_e_matched_1e_cut",
+                    //                                  "#Delta#phi^{reco}_{nFD,e} in 1e cut (matched);#Delta#phi^{reco}_{nFD,e} = |#phi^{reco}_{nFD} - #phi^{reco}_{e}| [#circ];Counts", 50,
+                    //                                  -180., 180.);
+                    //                     HistoList.push_back(h_reco_phi_nFD_minus_reco_phi_e_matched_1e_cut);
+                    //                     TH2D* h_reco_theta_nFD_minus_reco_theta_e_VS_reco_phi_nFD_minus_reco_phi_e_matched_1e_cut =
+                    //                         new TH2D("reco_theta_nFD_minus_reco_theta_e_VS_reco_phi_nFD_minus_reco_phi_e_matched_1e_cut",
+                    //                                  "#Delta#theta^{reco}_{nFD,e} vs. #Delta#phi^{reco}_{nFD,e} in 1e cut (matched);#Delta#phi^{reco}_{nFD,e} = |#phi^{reco}_{nFD} -
+                    //                                  #phi^{reco}_{e}| "
+                    //                                  "[#circ];#Delta#theta^{reco}_{nFD,e} = #theta^{reco}_{nFD} - #theta^{reco}_{e} [#circ]",
+                    //                                  100, -180., 180., 100, -25., 10.);
+                    //                     HistoList.push_back(h_reco_theta_nFD_minus_reco_theta_e_VS_reco_phi_nFD_minus_reco_phi_e_matched_1e_cut);
+                    //                     TH2D* h_reco_P_nFD_VS_reco_theta_nFD_minus_reco_theta_e_matched_1e_cut =
+                    //                         new TH2D("reco_P_nFD_VS_reco_theta_nFD_minus_reco_theta_e_matched_1e_cut",
+                    //                                  "P^{reco}_{nFD} vs. #Delta#theta^{reco}_{nFD,e} in 1e cut (matched);#Delta#theta^{reco}_{nFD,e} = #theta^{reco}_{nFD} -
+                    //                                  #theta^{reco}_{e} "
+                    //                                  "[#circ];P^{reco}_{nFD} [GeV/c]",
+                    //                                  100, -25., 10., 100, 0., Ebeam * 3.);
+                    //                     HistoList.push_back(h_reco_P_nFD_VS_reco_theta_nFD_minus_reco_theta_e_matched_1e_cut);
+                    //                     TH2D* h_reco_P_nFD_VS_reco_phi_nFD_minus_reco_phi_e_matched_1e_cut = new TH2D(
+                    //                         "reco_P_nFD_VS_reco_phi_nFD_minus_reco_phi_e_matched_1e_cut",
+                    //                         "P^{reco}_{nFD} vs. #Delta#phi^{reco}_{nFD,e} in 1e cut (matched);#Delta#phi^{reco}_{nFD,e} = |#phi^{reco}_{nFD} - #phi^{reco}_{e}|
+                    //                         [#circ];P^{reco}_{nFD} [GeV/c]", 100, -180., 180., 100, 0., Ebeam * 3.);
+                    //                     HistoList.push_back(h_reco_P_nFD_VS_reco_phi_nFD_minus_reco_phi_e_matched_1e_cut);
 
-//                     TH1D* h_v_dist_nFD_matched_1e_cut = new TH1D("v_dist_nFD_matched_1e_cut", "v_dist in 1e cut (matched);v_dist [cm];Counts", 50, 0., 1000.);
-//                     HistoList.push_back(h_v_dist_nFD_matched_1e_cut);
-//                     TH2D* h_v_dist_nFD_VS_reco_P_nFD_matched_1e_cut = new TH2D(
-//                         "v_dist_nFD_VS_reco_P_nFD_matched_1e_cut", "v_dist vs. P^{reco}_{nFD} in 1e cut (matched);v_dist [cm];P^{reco}_{nFD} [GeV/c]", 100, 0., 1000., 100, 0., Ebeam * 3.);
-//                     HistoList.push_back(h_v_dist_nFD_VS_reco_P_nFD_matched_1e_cut);
-//                     TH2D* h_v_dist_nFD_VS_reco_P_e_matched_1e_cut =
-//                         new TH2D("v_dist_nFD_VS_reco_P_e_matched_1e_cut", "v_dist vs. P^{reco}_{e} in 1e cut (matched);v_dist [cm];P^{reco}_{e} [GeV/c]", 100, 0., 1000., 100, 0., Ebeam);
-//                     HistoList.push_back(h_v_dist_nFD_VS_reco_P_e_matched_1e_cut);
-//                     TH2D* h_v_dist_nFD_VS_reco_phi_nFD_minus_reco_phi_e_matched_1e_cut =
-//                         new TH2D("v_dist_nFD_VS_reco_phi_nFD_minus_reco_phi_e_matched_1e_cut",
-//                                  "v_dist vs. #Delta#phi^{reco}_{nFD,e} in 1e cut (matched);v_dist [cm];#Delta#phi^{reco}_{nFD,e} = |#phi^{reco}_{nFD} - #phi^{reco}_{e}| [#circ]", 100, 0.,
-//                                  1000., 100, -180., 180.);
-//                     HistoList.push_back(h_v_dist_nFD_VS_reco_phi_nFD_minus_reco_phi_e_matched_1e_cut);
+                    //                     TH1D* h_v_dist_nFD_matched_1e_cut = new TH1D("v_dist_nFD_matched_1e_cut", "v_dist in 1e cut (matched);v_dist [cm];Counts", 50, 0., 1000.);
+                    //                     HistoList.push_back(h_v_dist_nFD_matched_1e_cut);
+                    //                     TH2D* h_v_dist_nFD_VS_reco_P_nFD_matched_1e_cut = new TH2D(
+                    //                         "v_dist_nFD_VS_reco_P_nFD_matched_1e_cut", "v_dist vs. P^{reco}_{nFD} in 1e cut (matched);v_dist [cm];P^{reco}_{nFD} [GeV/c]", 100, 0., 1000.,
+                    //                         100, 0., Ebeam * 3.);
+                    //                     HistoList.push_back(h_v_dist_nFD_VS_reco_P_nFD_matched_1e_cut);
+                    //                     TH2D* h_v_dist_nFD_VS_reco_P_e_matched_1e_cut =
+                    //                         new TH2D("v_dist_nFD_VS_reco_P_e_matched_1e_cut", "v_dist vs. P^{reco}_{e} in 1e cut (matched);v_dist [cm];P^{reco}_{e} [GeV/c]", 100, 0.,
+                    //                         1000., 100, 0., Ebeam);
+                    //                     HistoList.push_back(h_v_dist_nFD_VS_reco_P_e_matched_1e_cut);
+                    //                     TH2D* h_v_dist_nFD_VS_reco_phi_nFD_minus_reco_phi_e_matched_1e_cut =
+                    //                         new TH2D("v_dist_nFD_VS_reco_phi_nFD_minus_reco_phi_e_matched_1e_cut",
+                    //                                  "v_dist vs. #Delta#phi^{reco}_{nFD,e} in 1e cut (matched);v_dist [cm];#Delta#phi^{reco}_{nFD,e} = |#phi^{reco}_{nFD} -
+                    //                                  #phi^{reco}_{e}| [#circ]", 100, 0., 1000., 100, -180., 180.);
+                    //                     HistoList.push_back(h_v_dist_nFD_VS_reco_phi_nFD_minus_reco_phi_e_matched_1e_cut);
 
-//                     TH2D* h_Edep_ECAL_VS_reco_P_nFD_matched_1e_cut =
-//                         new TH2D("Edep_ECAL_VS_reco_P_nFD_matched_1e_cut", "E^{ECAL}_{dep} vs. P^{reco}_{nFD} in 1e cut (matched);P^{reco}_{nFD} [GeV/c];E^{ECAL}_{dep} [GeV]", 100, 0.,
-//                                  Ebeam * 3., 100, 0., 0.5);
-//                     HistoList.push_back(h_Edep_ECAL_VS_reco_P_nFD_matched_1e_cut);
-//                     TH2D* h_Edep_ECAL_VS_reco_phi_nFD_minus_reco_phi_e_matched_1e_cut = new TH2D(
-//                         "Edep_ECAL_VS_reco_phi_nFD_minus_reco_phi_e_matched_1e_cut",
-//                         "E^{ECAL}_{dep} vs. #Delta#phi^{reco}_{nFD,e} in 1e cut (matched);#Delta#phi^{reco}_{nFD,e} = |#phi^{reco}_{nFD} - #phi^{reco}_{e}| [#circ]];E^{ECAL}_{dep} [GeV]",
-//                         100, -180., 180., 100, 0., 0.5);
-//                     HistoList.push_back(h_Edep_ECAL_VS_reco_phi_nFD_minus_reco_phi_e_matched_1e_cut);
+                    //                     TH2D* h_Edep_ECAL_VS_reco_P_nFD_matched_1e_cut =
+                    //                         new TH2D("Edep_ECAL_VS_reco_P_nFD_matched_1e_cut", "E^{ECAL}_{dep} vs. P^{reco}_{nFD} in 1e cut (matched);P^{reco}_{nFD} [GeV/c];E^{ECAL}_{dep}
+                    //                         [GeV]", 100, 0.,
+                    //                                  Ebeam * 3., 100, 0., 0.5);
+                    //                     HistoList.push_back(h_Edep_ECAL_VS_reco_P_nFD_matched_1e_cut);
+                    //                     TH2D* h_Edep_ECAL_VS_reco_phi_nFD_minus_reco_phi_e_matched_1e_cut = new TH2D(
+                    //                         "Edep_ECAL_VS_reco_phi_nFD_minus_reco_phi_e_matched_1e_cut",
+                    //                         "E^{ECAL}_{dep} vs. #Delta#phi^{reco}_{nFD,e} in 1e cut (matched);#Delta#phi^{reco}_{nFD,e} = |#phi^{reco}_{nFD} - #phi^{reco}_{e}|
+                    //                         [#circ]];E^{ECAL}_{dep} [GeV]", 100, -180., 180., 100, 0., 0.5);
+                    //                     HistoList.push_back(h_Edep_ECAL_VS_reco_phi_nFD_minus_reco_phi_e_matched_1e_cut);
 
-//                     TH2D* h_beta_n_VS_reco_P_nFD_matched_1e_cut = new TH2D(
-//                         "beta_n_VS_reco_P_nFD_matched_1e_cut", "#beta_{nFD} vs. P^{reco}_{nFD} in 1e cut (matched);P^{reco}_{nFD} [GeV/c];#beta_{nFD}", 100, 0., Ebeam * 3., 100, 0.3, 1.1);
-//                     HistoList.push_back(h_beta_n_VS_reco_P_nFD_matched_1e_cut);
-//                     TH2D* h_beta_n_VS_reco_phi_nFD_minus_reco_phi_e_matched_1e_cut =
-//                         new TH2D("beta_n_VS_reco_phi_nFD_minus_reco_phi_e_matched_1e_cut",
-//                                  "#beta_{nFD} vs. #Delta#phi^{reco}_{nFD,e} in 1e cut (matched);#Delta#phi^{reco}_{nFD,e} = |#phi^{reco}_{nFD} - #phi^{reco}_{e}| [#circ]];#beta_{nFD}", 100,
-//                                  -180., 180., 100, 0.3, 1.1);
-//                     HistoList.push_back(h_beta_n_VS_reco_phi_nFD_minus_reco_phi_e_matched_1e_cut);
+                    //                     TH2D* h_beta_n_VS_reco_P_nFD_matched_1e_cut = new TH2D(
+                    //                         "beta_n_VS_reco_P_nFD_matched_1e_cut", "#beta_{nFD} vs. P^{reco}_{nFD} in 1e cut (matched);P^{reco}_{nFD} [GeV/c];#beta_{nFD}", 100, 0., Ebeam
+                    //                         * 3., 100, 0.3, 1.1);
+                    //                     HistoList.push_back(h_beta_n_VS_reco_P_nFD_matched_1e_cut);
+                    //                     TH2D* h_beta_n_VS_reco_phi_nFD_minus_reco_phi_e_matched_1e_cut =
+                    //                         new TH2D("beta_n_VS_reco_phi_nFD_minus_reco_phi_e_matched_1e_cut",
+                    //                                  "#beta_{nFD} vs. #Delta#phi^{reco}_{nFD,e} in 1e cut (matched);#Delta#phi^{reco}_{nFD,e} = |#phi^{reco}_{nFD} - #phi^{reco}_{e}|
+                    //                                  [#circ]];#beta_{nFD}", 100, -180., 180., 100, 0.3, 1.1);
+                    //                     HistoList.push_back(h_beta_n_VS_reco_phi_nFD_minus_reco_phi_e_matched_1e_cut);
 
-// #pragma endregion
+                    // #pragma endregion
 
 #pragma endregion
 
-// #pragma region /* Prepare AMaps */
+                    // #pragma region /* Prepare AMaps */
 
-//                     const std::string OutputDirAMapsPlots = OutputDir + "/01_AMaps_Plots/";
-//                     system(("rm -rf " + OutputDirAMapsPlots).c_str());
-//                     system(("mkdir -p " + OutputDirAMapsPlots).c_str());
+                    //                     const std::string OutputDirAMapsPlots = OutputDir + "/01_AMaps_Plots/";
+                    //                     system(("rm -rf " + OutputDirAMapsPlots).c_str());
+                    //                     system(("mkdir -p " + OutputDirAMapsPlots).c_str());
 
-//                     const std::string OutputDirAMapsMaps = OutputDir + "/02_AMaps_Maps/";
-//                     system(("rm -rf " + OutputDirAMapsMaps).c_str());
-//                     system(("mkdir -p " + OutputDirAMapsMaps).c_str());
+                    //                     const std::string OutputDirAMapsMaps = OutputDir + "/02_AMaps_Maps/";
+                    //                     system(("rm -rf " + OutputDirAMapsMaps).c_str());
+                    //                     system(("mkdir -p " + OutputDirAMapsMaps).c_str());
 
-//                     const std::string P_e_bin_profile = "uniform_P_e_bins";      // {reformat_e_bins , varying_P_e_bins , uniform_P_e_bins, equi_inverted_P_e}
-//                     const std::string P_nuc_bin_profile = "uniform_P_nuc_bins";  // {equi_inverted_P_nuc , varying_P_nuc_bins , uniform_P_nuc_bins}
+                    //                     const std::string P_e_bin_profile = "uniform_P_e_bins";      // {reformat_e_bins , varying_P_e_bins , uniform_P_e_bins, equi_inverted_P_e}
+                    //                     const std::string P_nuc_bin_profile = "uniform_P_nuc_bins";  // {equi_inverted_P_nuc , varying_P_nuc_bins , uniform_P_nuc_bins}
 
-//                     double beamE = Ebeam;
+                    //                     double beamE = Ebeam;
 
-//                     int NumberNucOfMomSlices = 15, NumberElecOfMomSlices = 15, HistElectronSliceNumOfXBins = 100, HistNucSliceNumOfXBins = 100;
+                    //                     int NumberNucOfMomSlices = 15, NumberElecOfMomSlices = 15, HistElectronSliceNumOfXBins = 100, HistNucSliceNumOfXBins = 100;
 
-//                     AMaps aMaps_master;
+                    //                     AMaps aMaps_master;
 
-//                     aMaps_master = AMaps(SampleName, P_e_bin_profile, P_nuc_bin_profile, beamE, "AMaps", OutputDirAMapsPlots, NumberNucOfMomSlices, NumberElecOfMomSlices,
-//                                          HistNucSliceNumOfXBins, HistNucSliceNumOfXBins, HistElectronSliceNumOfXBins, HistElectronSliceNumOfXBins);
+                    //                     aMaps_master = AMaps(SampleName, P_e_bin_profile, P_nuc_bin_profile, beamE, "AMaps", OutputDirAMapsPlots, NumberNucOfMomSlices,
+                    //                     NumberElecOfMomSlices,
+                    //                                          HistNucSliceNumOfXBins, HistNucSliceNumOfXBins, HistElectronSliceNumOfXBins, HistElectronSliceNumOfXBins);
 
-// #pragma endregion
+                    // #pragma endregion
 
                     int counter = 0;
 
@@ -1184,113 +1232,116 @@ void reaction_cuts_test() {
                         //  1e cut (truth)
                         //  =======================================================================================================================================================================
 
-// #pragma region /* 1e cut (truth) */
+                        // #pragma region /* 1e cut (truth) */
 
-//                         double TL_IDed_Leading_nFD_momentum = -1;  // Leading nFD with momentum thresholds
-//                         int TL_IDed_Leading_nFD_ind = -1;          // Leading nFD with momentum thresholds
+                        //                         double TL_IDed_Leading_nFD_momentum = -1;  // Leading nFD with momentum thresholds
+                        //                         int TL_IDed_Leading_nFD_ind = -1;          // Leading nFD with momentum thresholds
 
-//                         double Truth_beta_nFD;
-//                         double Truth_theta_nFD;
+                        //                         double Truth_beta_nFD;
+                        //                         double Truth_theta_nFD;
 
-//                         bool TLpassCuts = true;
+                        //                         bool TLpassCuts = true;
 
-//                         vector<int> truth_NeutronsFD;
+                        //                         vector<int> truth_NeutronsFD;
 
-//                         for (Int_t i = 0; i < Ngen; i++) {
-//                             mcpbank->setEntry(i);
+                        //                         for (Int_t i = 0; i < Ngen; i++) {
+                        //                             mcpbank->setEntry(i);
 
-//                             auto pid_temp = mcpbank->getPid();
+                        //                             auto pid_temp = mcpbank->getPid();
 
-//                             auto p = mcpbank->getP();
-//                             auto px = mcpbank->getPx();
-//                             auto py = mcpbank->getPy();
-//                             auto pz = mcpbank->getPz();
+                        //                             auto p = mcpbank->getP();
+                        //                             auto px = mcpbank->getPx();
+                        //                             auto py = mcpbank->getPy();
+                        //                             auto pz = mcpbank->getPz();
 
-//                             // bool PassMomTh = true;
-//                             bool PassMomTh = (p >= 0.4);
+                        //                             // bool PassMomTh = true;
+                        //                             bool PassMomTh = (p >= 0.4);
 
-//                             if (ConstrainTLmom && (pid_temp == 2112 && p > 2.)) {
-//                                 TLpassCuts = false;
-//                                 continue;
-//                             }
+                        //                             if (ConstrainTLmom && (pid_temp == 2112 && p > 2.)) {
+                        //                                 TLpassCuts = false;
+                        //                                 continue;
+                        //                             }
 
-//                             if (pid_temp == 11) {
-//                                 TVector3 truth_P_e;
-//                                 truth_P_e.SetXYZ(px, py, pz);
+                        //                             if (pid_temp == 11) {
+                        //                                 TVector3 truth_P_e;
+                        //                                 truth_P_e.SetXYZ(px, py, pz);
 
-//                                 h_truth_P_e_1e_cut->Fill(truth_P_e.Mag(), weight);
-//                                 h_truth_theta_e_1e_cut->Fill(truth_P_e.Theta() * 180 / M_PI, weight);
-//                                 h_truth_phi_e_1e_cut->Fill(truth_P_e.Phi() * 180 / M_PI, weight);
-//                                 h_truth_theta_e_VS_truth_phi_e_1e_cut->Fill(truth_P_e.Phi() * 180 / M_PI, truth_P_e.Theta() * 180 / M_PI, weight);
-//                             } else if (pid_temp == 2112) {
-//                                 TVector3 truth_P_n;
-//                                 truth_P_n.SetXYZ(px, py, pz);
+                        //                                 h_truth_P_e_1e_cut->Fill(truth_P_e.Mag(), weight);
+                        //                                 h_truth_theta_e_1e_cut->Fill(truth_P_e.Theta() * 180 / M_PI, weight);
+                        //                                 h_truth_phi_e_1e_cut->Fill(truth_P_e.Phi() * 180 / M_PI, weight);
+                        //                                 h_truth_theta_e_VS_truth_phi_e_1e_cut->Fill(truth_P_e.Phi() * 180 / M_PI, truth_P_e.Theta() * 180 / M_PI, weight);
+                        //                             } else if (pid_temp == 2112) {
+                        //                                 TVector3 truth_P_n;
+                        //                                 truth_P_n.SetXYZ(px, py, pz);
 
-//                                 h_truth_P_n_1e_cut->Fill(truth_P_n.Mag(), weight);
-//                                 h_truth_theta_n_1e_cut->Fill(truth_P_n.Theta() * 180 / M_PI, weight);
-//                                 h_truth_phi_n_1e_cut->Fill(truth_P_n.Phi() * 180 / M_PI, weight);
-//                                 h_truth_theta_n_VS_truth_phi_n_1e_cut->Fill(truth_P_n.Phi() * 180 / M_PI, truth_P_n.Theta() * 180 / M_PI, weight);
+                        //                                 h_truth_P_n_1e_cut->Fill(truth_P_n.Mag(), weight);
+                        //                                 h_truth_theta_n_1e_cut->Fill(truth_P_n.Theta() * 180 / M_PI, weight);
+                        //                                 h_truth_phi_n_1e_cut->Fill(truth_P_n.Phi() * 180 / M_PI, weight);
+                        //                                 h_truth_theta_n_VS_truth_phi_n_1e_cut->Fill(truth_P_n.Phi() * 180 / M_PI, truth_P_n.Theta() * 180 / M_PI, weight);
 
-//                                 Truth_theta_nFD = truth_P_n.Theta() * 180 / M_PI;
+                        //                                 Truth_theta_nFD = truth_P_n.Theta() * 180 / M_PI;
 
-//                                 if ((Truth_theta_nFD >= 5.) && (Truth_theta_nFD <= 35.)) {
-//                                     if (truth_P_n.Mag() >= TL_IDed_Leading_nFD_momentum) {
-//                                         TL_IDed_Leading_nFD_momentum = truth_P_n.Mag();
-//                                         TL_IDed_Leading_nFD_ind = i;
-//                                     }
+                        //                                 if ((Truth_theta_nFD >= 5.) && (Truth_theta_nFD <= 35.)) {
+                        //                                     if (truth_P_n.Mag() >= TL_IDed_Leading_nFD_momentum) {
+                        //                                         TL_IDed_Leading_nFD_momentum = truth_P_n.Mag();
+                        //                                         TL_IDed_Leading_nFD_ind = i;
+                        //                                     }
 
-//                                     double truth_E_nFD = sqrt(m_n * m_n + truth_P_n.Mag2());
-//                                     Truth_beta_nFD = truth_P_n.Mag() / truth_E_nFD;
+                        //                                     double truth_E_nFD = sqrt(m_n * m_n + truth_P_n.Mag2());
+                        //                                     Truth_beta_nFD = truth_P_n.Mag() / truth_E_nFD;
 
-//                                     h_truth_P_nFD_clas12_1e_cut->Fill(truth_P_n.Mag(), weight);
-//                                     h_truth_theta_nFD_clas12_1e_cut->Fill(truth_P_n.Theta() * 180 / M_PI, weight);
-//                                     h_truth_phi_nFD_clas12_1e_cut->Fill(truth_P_n.Phi() * 180 / M_PI, weight);
-//                                     h_truth_theta_nFD_clas12_VS_truth_phi_nFD_clas12_1e_cut->Fill(truth_P_n.Phi() * 180 / M_PI, truth_P_n.Theta() * 180 / M_PI, weight);
+                        //                                     h_truth_P_nFD_clas12_1e_cut->Fill(truth_P_n.Mag(), weight);
+                        //                                     h_truth_theta_nFD_clas12_1e_cut->Fill(truth_P_n.Theta() * 180 / M_PI, weight);
+                        //                                     h_truth_phi_nFD_clas12_1e_cut->Fill(truth_P_n.Phi() * 180 / M_PI, weight);
+                        //                                     h_truth_theta_nFD_clas12_VS_truth_phi_nFD_clas12_1e_cut->Fill(truth_P_n.Phi() * 180 / M_PI, truth_P_n.Theta() * 180 / M_PI,
+                        //                                     weight);
 
-//                                     h_truth_P_nFD_redef_1e_cut->Fill(truth_P_n.Mag(), weight);
-//                                     h_truth_theta_nFD_redef_1e_cut->Fill(truth_P_n.Theta() * 180 / M_PI, weight);
-//                                     h_truth_phi_nFD_redef_1e_cut->Fill(truth_P_n.Phi() * 180 / M_PI, weight);
-//                                     h_truth_theta_nFD_redef_VS_truth_phi_nFD_redef_1e_cut->Fill(truth_P_n.Phi() * 180 / M_PI, truth_P_n.Theta() * 180 / M_PI, weight);
+                        //                                     h_truth_P_nFD_redef_1e_cut->Fill(truth_P_n.Mag(), weight);
+                        //                                     h_truth_theta_nFD_redef_1e_cut->Fill(truth_P_n.Theta() * 180 / M_PI, weight);
+                        //                                     h_truth_phi_nFD_redef_1e_cut->Fill(truth_P_n.Phi() * 180 / M_PI, weight);
+                        //                                     h_truth_theta_nFD_redef_VS_truth_phi_nFD_redef_1e_cut->Fill(truth_P_n.Phi() * 180 / M_PI, truth_P_n.Theta() * 180 / M_PI,
+                        //                                     weight);
 
-//                                     if (PassMomTh) {
-//                                         truth_NeutronsFD.push_back(i);
+                        //                                     if (PassMomTh) {
+                        //                                         truth_NeutronsFD.push_back(i);
 
-//                                         h_truth_P_nFD_ECALveto_1e_cut->Fill(truth_P_n.Mag(), weight);
-//                                         h_truth_theta_nFD_ECALveto_1e_cut->Fill(truth_P_n.Theta() * 180 / M_PI, weight);
-//                                         h_truth_phi_nFD_ECALveto_1e_cut->Fill(truth_P_n.Phi() * 180 / M_PI, weight);
-//                                         h_truth_theta_nFD_ECALveto_VS_truth_phi_nFD_ECALveto_1e_cut->Fill(truth_P_n.Phi() * 180 / M_PI, truth_P_n.Theta() * 180 / M_PI, weight);
-//                                     }
-//                                 }
-//                             }
-//                         }
+                        //                                         h_truth_P_nFD_ECALveto_1e_cut->Fill(truth_P_n.Mag(), weight);
+                        //                                         h_truth_theta_nFD_ECALveto_1e_cut->Fill(truth_P_n.Theta() * 180 / M_PI, weight);
+                        //                                         h_truth_phi_nFD_ECALveto_1e_cut->Fill(truth_P_n.Phi() * 180 / M_PI, weight);
+                        //                                         h_truth_theta_nFD_ECALveto_VS_truth_phi_nFD_ECALveto_1e_cut->Fill(truth_P_n.Phi() * 180 / M_PI, truth_P_n.Theta() * 180 /
+                        //                                         M_PI, weight);
+                        //                                     }
+                        //                                 }
+                        //                             }
+                        //                         }
 
-//                         if (ConstrainTLmom && !TLpassCuts) { continue; }
+                        //                         if (ConstrainTLmom && !TLpassCuts) { continue; }
 
-//                         // if (truth_NeutronsFD.size() != 1) {
-//                         //     cout << "\n\nError! truth_NeutronsFD size is not 1! Aborting...\n";
-//                         //     cout << "truth_NeutronsFD.size() = " << truth_NeutronsFD.size() << "\n";
-//                         //     cout << "Truth_theta_nFD = " << Truth_theta_nFD << "\nAborting...\n\n", exit(0);
-//                         // }
-//                         if (truth_NeutronsFD.size() != 1) { continue; }
+                        //                         // if (truth_NeutronsFD.size() != 1) {
+                        //                         //     cout << "\n\nError! truth_NeutronsFD size is not 1! Aborting...\n";
+                        //                         //     cout << "truth_NeutronsFD.size() = " << truth_NeutronsFD.size() << "\n";
+                        //                         //     cout << "Truth_theta_nFD = " << Truth_theta_nFD << "\nAborting...\n\n", exit(0);
+                        //                         // }
+                        //                         if (truth_NeutronsFD.size() != 1) { continue; }
 
-//                         // Fill leading FD neutron acceptance maps
-//                         if ((TL_IDed_Leading_nFD_ind != -1) && (TL_IDed_Leading_nFD_momentum > 0)) {
-//                             mcpbank->setEntry(TL_IDed_Leading_nFD_ind);
+                        //                         // Fill leading FD neutron acceptance maps
+                        //                         if ((TL_IDed_Leading_nFD_ind != -1) && (TL_IDed_Leading_nFD_momentum > 0)) {
+                        //                             mcpbank->setEntry(TL_IDed_Leading_nFD_ind);
 
-//                             int particlePDGtmp = mcpbank->getPid();
+                        //                             int particlePDGtmp = mcpbank->getPid();
 
-//                             double Particle_TL_Momentum = RadCalc(mcpbank->getPx(), mcpbank->getPy(), mcpbank->getPz());
-//                             double Particle_TL_Theta = acos((mcpbank->getPz()) / RadCalc(mcpbank->getPx(), mcpbank->getPy(), mcpbank->getPz())) * 180.0 / pi;
-//                             double Particle_TL_Phi = atan2(mcpbank->getPy(), mcpbank->getPx()) * 180.0 / pi;
+                        //                             double Particle_TL_Momentum = RadCalc(mcpbank->getPx(), mcpbank->getPy(), mcpbank->getPz());
+                        //                             double Particle_TL_Theta = acos((mcpbank->getPz()) / RadCalc(mcpbank->getPx(), mcpbank->getPy(), mcpbank->getPz())) * 180.0 / pi;
+                        //                             double Particle_TL_Phi = atan2(mcpbank->getPy(), mcpbank->getPx()) * 180.0 / pi;
 
-//                             // bool PassMomTh = true;
-//                             bool PassMomTh = (Particle_TL_Momentum >= 0.4);
+                        //                             // bool PassMomTh = true;
+                        //                             bool PassMomTh = (Particle_TL_Momentum >= 0.4);
 
-//                             if (PassMomTh) {
-//                                 aMaps_master.hFillHitMaps("TL", "Neutron", Particle_TL_Momentum, Particle_TL_Theta, Particle_TL_Phi, weight);
-//                             }  // end of if id. TL leading neutron
-//                         }
-// #pragma endregion
+                        //                             if (PassMomTh) {
+                        //                                 aMaps_master.hFillMaps("TL", "Neutron", Particle_TL_Momentum, Particle_TL_Theta, Particle_TL_Phi, weight);
+                        //                             }  // end of if id. TL leading neutron
+                        //                         }
+                        // #pragma endregion
 
                         //  Setting up neutrals
                         //  ---------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1503,7 +1554,7 @@ void reaction_cuts_test() {
 
                             if (PassMomTh && PassECALeadgeCuts && NeutronPassVeto_1e_cut && PassPhi_nFDCuts)  // FOR nFD eff test!
                             {
-                                aMaps_master.hFillHitMaps("Reco", "Neutron", Mom_neut_1e_cut, Theta_neut_1e_cut, Phi_neut_1e_cut, weight);
+                                aMaps_master.hFillMaps("Reco", "Neutron", Mom_neut_1e_cut, Theta_neut_1e_cut, Phi_neut_1e_cut, weight);
                             }  // end of if id. reco leading neutron
                         }
 
@@ -1621,8 +1672,8 @@ void reaction_cuts_test() {
                                     CalcdPhi1(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI), reco_P_nFD.Theta() * 180 / M_PI - reco_P_e.Theta() * 180 / M_PI, weight);
                                 h_reco_P_LnFD_VS_reco_theta_LnFD_minus_reco_theta_e_ECALveto_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI - reco_P_e.Theta() * 180 / M_PI, reco_P_nFD.Mag(),
                                                                                                           weight);
-                                h_reco_P_LnFD_VS_reco_phi_LnFD_minus_reco_phi_e_ECALveto_1e_cut->Fill(CalcdPhi1(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI), reco_P_nFD.Mag(),
-                                                                                                      weight);
+                                h_reco_P_LnFD_VS_reco_phi_LnFD_minus_reco_phi_e_ECALveto_1e_cut->Fill(CalcdPhi1(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI),
+                                                                                                      reco_P_nFD.Mag(), weight);
                             }
 
                             TVector3 v_nhit(neutrons_FD_ECALveto[i]->cal(detlayer)->getX(), neutrons_FD_ECALveto[i]->cal(detlayer)->getY(), neutrons_FD_ECALveto[i]->cal(detlayer)->getZ());
@@ -1784,8 +1835,8 @@ void reaction_cuts_test() {
                                     CalcdPhi1(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI), reco_P_nFD.Theta() * 180 / M_PI - reco_P_e.Theta() * 180 / M_PI, weight);
                                 h_reco_P_LnFD_VS_reco_theta_LnFD_minus_reco_theta_e_ECALveto_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI - reco_P_e.Theta() * 180 / M_PI, reco_P_nFD.Mag(),
                                                                                                           weight);
-                                h_reco_P_LnFD_VS_reco_phi_LnFD_minus_reco_phi_e_ECALveto_1e_cut->Fill(CalcdPhi1(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI), reco_P_nFD.Mag(),
-                                                                                                      weight);
+                                h_reco_P_LnFD_VS_reco_phi_LnFD_minus_reco_phi_e_ECALveto_1e_cut->Fill(CalcdPhi1(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI),
+                                                                                                      reco_P_nFD.Mag(), weight);
                             }
 
                             TVector3 v_nhit(neutrons_FD_ECALveto[i]->cal(detlayer)->getX(), neutrons_FD_ECALveto[i]->cal(detlayer)->getY(), neutrons_FD_ECALveto[i]->cal(detlayer)->getZ());
@@ -2183,588 +2234,591 @@ void reaction_cuts_test() {
                         myCanvas_aMaps->cd();
                         myCanvas_aMaps->SetBottomMargin(0.14), myCanvas_aMaps->SetLeftMargin(0.16), myCanvas_aMaps->SetRightMargin(0.12);
 
-                        aMaps_master.DrawAndSaveHitMaps(SampleName, myCanvas_aMaps, OutputDirAMapsMaps);
+                        aMaps_master.DrawAndSaveMaps(SampleName, myCanvas_aMaps, OutputDirAMapsMaps);
                     }
 
 #pragma endregion
 
 #pragma region /* General histograms */
 
+                    if (save_tester_plots) {
 #pragma region /* Print electron cuts plots */
-                    // TCanvas* myCanvas_electron_cuts = new TCanvas("myPage_electron_cuts", "myPage_electron_cuts", pixelx, pixely);
-                    TCanvas* myCanvas_electron_cuts = new TCanvas("myPage_electron_cuts", "myPage_electron_cuts", pixelx, pixely);
+                        // TCanvas* myCanvas_electron_cuts = new TCanvas("myPage_electron_cuts", "myPage_electron_cuts", pixelx, pixely);
+                        TCanvas* myCanvas_electron_cuts = new TCanvas("myPage_electron_cuts", "myPage_electron_cuts", pixelx, pixely);
 
-                    std::string electron_cuts_PDF_fileName = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/electron_cuts.pdf";
-                    char fileName_electron_cuts[electron_cuts_PDF_fileName.length()];
-                    sprintf(fileName_electron_cuts, "%s[", electron_cuts_PDF_fileName.c_str());
-                    myText->SaveAs(fileName_electron_cuts);
-                    sprintf(fileName_electron_cuts, "%s", electron_cuts_PDF_fileName.c_str());
+                        std::string electron_cuts_PDF_fileName = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/electron_cuts.pdf";
+                        char fileName_electron_cuts[electron_cuts_PDF_fileName.length()];
+                        sprintf(fileName_electron_cuts, "%s[", electron_cuts_PDF_fileName.c_str());
+                        myText->SaveAs(fileName_electron_cuts);
+                        sprintf(fileName_electron_cuts, "%s", electron_cuts_PDF_fileName.c_str());
 
-                    /////////////////////////////////////
-                    // CND Neutron Information
-                    /////////////////////////////////////
-                    myText->cd();
+                        /////////////////////////////////////
+                        // CND Neutron Information
+                        /////////////////////////////////////
+                        myText->cd();
 
-                    text.DrawLatex(0.05, 0.9, "Uniform sample of (e,e'n) events (truth-level)");
+                        text.DrawLatex(0.05, 0.9, "Uniform sample of (e,e'n) events (truth-level)");
 
-                    if (FindSubstring(InputFiles, "2070MeV")) {
-                        text.DrawLatex(0.2, 0.8, "Beam energy: 2070MeV");
-                    } else if (FindSubstring(InputFiles, "4029MeV")) {
-                        text.DrawLatex(0.2, 0.8, "Beam energy: 4029MeV");
-                    } else if (FindSubstring(InputFiles, "5986MeV")) {
-                        text.DrawLatex(0.2, 0.8, "Beam energy: 5986MeV");
-                    }
-
-                    if (ConstrainedE) {
-                        text.DrawLatex(0.05, 0.7, "ConstrainedE = yes");
-                    } else {
-                        text.DrawLatex(0.05, 0.7, "ConstrainedE = no");
-                    }
-
-                    text.DrawLatex(0.05, 0.6, ("apply_ECAL_veto = " + BoolToString(apply_ECAL_veto)).c_str());
-                    text.DrawLatex(0.05, 0.55, ("cPart_veto_radius = " + ToStringWithPrecision(cPart_veto_radius, 0)).c_str());
-
-                    text.DrawLatex(0.05, 0.45, ("apply_PCAL_neutral_veto = " + BoolToString(apply_PCAL_neutral_veto)).c_str());
-                    text.DrawLatex(0.05, 0.4, ("nPart_veto_radius = " + ToStringWithPrecision(nPart_veto_radius, 0)).c_str());
-
-                    myText->Print(fileName_electron_cuts, "pdf");
-                    myText->Clear();
-
-                    for (int i = 0; i < HistoList_electron_cuts.size(); i++) {
-                        for (int j = 0; j < HistSubjects.size(); j++) {
-                            if (FirstPrint.at(j) && FindSubstring(HistoList_electron_cuts[i]->GetTitle(), HistSubjects.at(j))) {
-                                myText->cd();
-                                titles.DrawLatex(0.3, 0.5, HistSubjects2.at(j).c_str());
-                                myText->Print(fileName_electron_cuts, "pdf");
-                                myText->Clear();
-
-                                myCanvas_electron_cuts->cd(1);
-                                FirstPrint.at(j) = false;
-                                break;
-                            }
+                        if (FindSubstring(InputFiles, "2070MeV")) {
+                            text.DrawLatex(0.2, 0.8, "Beam energy: 2070MeV");
+                        } else if (FindSubstring(InputFiles, "4029MeV")) {
+                            text.DrawLatex(0.2, 0.8, "Beam energy: 4029MeV");
+                        } else if (FindSubstring(InputFiles, "5986MeV")) {
+                            text.DrawLatex(0.2, 0.8, "Beam energy: 5986MeV");
                         }
 
-                        // electron_cuts_PDF_fileName->Divide(2,1);
-
-                        myCanvas_electron_cuts->cd();
-
-                        myCanvas_electron_cuts->cd()->SetGrid();
-                        myCanvas_electron_cuts->cd()->SetBottomMargin(0.14), myCanvas_electron_cuts->cd()->SetLeftMargin(0.16), myCanvas_electron_cuts->cd()->SetRightMargin(0.12);
-
-                        HistoList_electron_cuts[i]->GetYaxis()->SetTitleOffset(1.5);
-                        HistoList_electron_cuts[i]->GetXaxis()->SetTitleOffset(1.1);
-
-                        gPad->SetRightMargin(0.23);
-
-                        // // Set the PDF title and header for the bookmark
-                        // std::string Title = HistoList_electron_cuts[i]->GetTitle();
-                        // gStyle->SetTitlePS(Title.c_str());  // This sets the title in metadata
-                        //                                     // gStyle->SetHeaderPS(("[ /Title " + Title + " /DOCVIEW pdfmark").c_str());  // Adds a PDF title
-                        // gStyle->SetHeaderPS(("[ /Page " + to_string(i + 1) + " /View [/Fit] /Title (myTitle) ] /OUT pdfmark").c_str());
-
-                        if (HistoList_electron_cuts[i]->InheritsFrom("TH1D")) {
-                            HistoList_electron_cuts[i]->Draw();
-                        } else if (HistoList_electron_cuts[i]->InheritsFrom("TH2D")) {
-                            HistoList_electron_cuts[i]->Draw("colz");
-
-                            if (HistoList_electron_cuts[i]->GetEntries() != 0) {
-                                gPad->Update();
-                                TPaletteAxis* palette = (TPaletteAxis*)HistoList_electron_cuts[i]->GetListOfFunctions()->FindObject("palette");
-                                palette->SetY2NDC(0.55);
-                                gPad->Modified();
-                                gPad->Update();
-                            }
+                        if (ConstrainedE) {
+                            text.DrawLatex(0.05, 0.7, "ConstrainedE = yes");
+                        } else {
+                            text.DrawLatex(0.05, 0.7, "ConstrainedE = no");
                         }
 
-                        myCanvas_electron_cuts->Print(fileName_electron_cuts, "pdf");
-                        myCanvas_electron_cuts->Clear();
-                    }
+                        text.DrawLatex(0.05, 0.6, ("apply_ECAL_veto = " + BoolToString(apply_ECAL_veto)).c_str());
+                        text.DrawLatex(0.05, 0.55, ("cPart_veto_radius = " + ToStringWithPrecision(cPart_veto_radius, 0)).c_str());
 
-                    sprintf(fileName_electron_cuts, "%s]", electron_cuts_PDF_fileName.c_str());
-                    myCanvas_electron_cuts->Print(fileName_electron_cuts, "pdf");
+                        text.DrawLatex(0.05, 0.45, ("apply_PCAL_neutral_veto = " + BoolToString(apply_PCAL_neutral_veto)).c_str());
+                        text.DrawLatex(0.05, 0.4, ("nPart_veto_radius = " + ToStringWithPrecision(nPart_veto_radius, 0)).c_str());
 
-#pragma endregion
+                        myText->Print(fileName_electron_cuts, "pdf");
+                        myText->Clear();
 
-#pragma region /* Print raw plots */
-                    // TCanvas* myCanvas_raw = new TCanvas("myPage_raw", "myPage_raw", pixelx, pixely);
-                    TCanvas* myCanvas_raw = new TCanvas("myPage_raw", "myPage_raw", pixelx, pixely);
+                        for (int i = 0; i < HistoList_electron_cuts.size(); i++) {
+                            for (int j = 0; j < HistSubjects.size(); j++) {
+                                if (FirstPrint.at(j) && FindSubstring(HistoList_electron_cuts[i]->GetTitle(), HistSubjects.at(j))) {
+                                    myText->cd();
+                                    titles.DrawLatex(0.3, 0.5, HistSubjects2.at(j).c_str());
+                                    myText->Print(fileName_electron_cuts, "pdf");
+                                    myText->Clear();
 
-                    std::string raw_PDF_fileName = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/raw_nFD_plots.pdf";
-                    char fileName_raw[raw_PDF_fileName.length()];
-                    sprintf(fileName_raw, "%s[", raw_PDF_fileName.c_str());
-                    myText->SaveAs(fileName_raw);
-                    sprintf(fileName_raw, "%s", raw_PDF_fileName.c_str());
-
-                    /////////////////////////////////////
-                    // CND Neutron Information
-                    /////////////////////////////////////
-                    myText->cd();
-
-                    text.DrawLatex(0.05, 0.9, "Uniform sample of (e,e'n) events (truth-level)");
-
-                    if (FindSubstring(InputFiles, "2070MeV")) {
-                        text.DrawLatex(0.2, 0.8, "Beam energy: 2070MeV");
-                    } else if (FindSubstring(InputFiles, "4029MeV")) {
-                        text.DrawLatex(0.2, 0.8, "Beam energy: 4029MeV");
-                    } else if (FindSubstring(InputFiles, "5986MeV")) {
-                        text.DrawLatex(0.2, 0.8, "Beam energy: 5986MeV");
-                    }
-
-                    if (ConstrainedE) {
-                        text.DrawLatex(0.05, 0.7, "ConstrainedE = yes");
-                    } else {
-                        text.DrawLatex(0.05, 0.7, "ConstrainedE = no");
-                    }
-
-                    text.DrawLatex(0.05, 0.6, ("apply_ECAL_veto = " + BoolToString(apply_ECAL_veto)).c_str());
-                    text.DrawLatex(0.05, 0.55, ("cPart_veto_radius = " + ToStringWithPrecision(cPart_veto_radius, 0)).c_str());
-
-                    text.DrawLatex(0.05, 0.45, ("apply_PCAL_neutral_veto = " + BoolToString(apply_PCAL_neutral_veto)).c_str());
-                    text.DrawLatex(0.05, 0.4, ("nPart_veto_radius = " + ToStringWithPrecision(nPart_veto_radius, 0)).c_str());
-
-                    myText->Print(fileName_raw, "pdf");
-                    myText->Clear();
-
-                    for (int i = 0; i < HistoList_raw.size(); i++) {
-                        for (int j = 0; j < HistSubjects.size(); j++) {
-                            if (FirstPrint.at(j) && FindSubstring(HistoList_raw[i]->GetTitle(), HistSubjects.at(j))) {
-                                myText->cd();
-                                titles.DrawLatex(0.3, 0.5, HistSubjects2.at(j).c_str());
-                                myText->Print(fileName_raw, "pdf");
-                                myText->Clear();
-
-                                myCanvas_raw->cd(1);
-                                FirstPrint.at(j) = false;
-                                break;
+                                    myCanvas_electron_cuts->cd(1);
+                                    FirstPrint.at(j) = false;
+                                    break;
+                                }
                             }
-                        }
 
-                        // raw_PDF_fileName->Divide(2,1);
+                            // electron_cuts_PDF_fileName->Divide(2,1);
 
-                        myCanvas_raw->cd();
+                            myCanvas_electron_cuts->cd();
 
-                        myCanvas_raw->cd()->SetGrid();
-                        myCanvas_raw->cd()->SetBottomMargin(0.14), myCanvas_raw->cd()->SetLeftMargin(0.16), myCanvas_raw->cd()->SetRightMargin(0.12);
+                            myCanvas_electron_cuts->cd()->SetGrid();
+                            myCanvas_electron_cuts->cd()->SetBottomMargin(0.14), myCanvas_electron_cuts->cd()->SetLeftMargin(0.16), myCanvas_electron_cuts->cd()->SetRightMargin(0.12);
 
-                        HistoList_raw[i]->GetYaxis()->SetTitleOffset(1.5);
-                        HistoList_raw[i]->GetXaxis()->SetTitleOffset(1.1);
-
-                        gPad->SetRightMargin(0.23);
-
-                        // // Set the PDF title and header for the bookmark
-                        // std::string Title = HistoList_raw[i]->GetTitle();
-                        // gStyle->SetTitlePS(Title.c_str());  // This sets the title in metadata
-                        //                                     // gStyle->SetHeaderPS(("[ /Title " + Title + " /DOCVIEW pdfmark").c_str());  // Adds a PDF title
-                        // gStyle->SetHeaderPS(("[ /Page " + to_string(i + 1) + " /View [/Fit] /Title (myTitle) ] /OUT pdfmark").c_str());
-
-                        if (HistoList_raw[i]->InheritsFrom("TH1D")) {
-                            HistoList_raw[i]->Draw();
-                        } else if (HistoList_raw[i]->InheritsFrom("TH2D")) {
-                            HistoList_raw[i]->Draw("colz");
-
-                            if (HistoList_raw[i]->GetEntries() != 0) {
-                                gPad->Update();
-                                TPaletteAxis* palette = (TPaletteAxis*)HistoList_raw[i]->GetListOfFunctions()->FindObject("palette");
-                                palette->SetY2NDC(0.55);
-                                gPad->Modified();
-                                gPad->Update();
-                            }
-                        }
-
-                        myCanvas_raw->Print(fileName_raw, "pdf");
-                        myCanvas_raw->Clear();
-                    }
-
-                    sprintf(fileName_raw, "%s]", raw_PDF_fileName.c_str());
-                    myCanvas_raw->Print(fileName_raw, "pdf");
-
-#pragma endregion
-
-#pragma region /* Print clas12reco plots */
-                    // TCanvas* myCanvas_clas12reco = new TCanvas("myPage_clas12reco", "myPage_clas12reco", pixelx, pixely);
-                    TCanvas* myCanvas_clas12reco = new TCanvas("myPage_clas12reco", "myPage_clas12reco", pixelx, pixely);
-
-                    std::string clas12reco_PDF_fileName = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/clas12reco_nFD_plots.pdf";
-                    char fileName_clas12reco[clas12reco_PDF_fileName.length()];
-                    sprintf(fileName_clas12reco, "%s[", clas12reco_PDF_fileName.c_str());
-                    myText->SaveAs(fileName_clas12reco);
-                    sprintf(fileName_clas12reco, "%s", clas12reco_PDF_fileName.c_str());
-
-                    /////////////////////////////////////
-                    // CND Neutron Information
-                    /////////////////////////////////////
-                    myText->cd();
-
-                    text.DrawLatex(0.05, 0.9, "Uniform sample of (e,e'n) events (truth-level)");
-
-                    if (FindSubstring(InputFiles, "2070MeV")) {
-                        text.DrawLatex(0.2, 0.8, "Beam energy: 2070MeV");
-                    } else if (FindSubstring(InputFiles, "4029MeV")) {
-                        text.DrawLatex(0.2, 0.8, "Beam energy: 4029MeV");
-                    } else if (FindSubstring(InputFiles, "5986MeV")) {
-                        text.DrawLatex(0.2, 0.8, "Beam energy: 5986MeV");
-                    }
-
-                    if (ConstrainedE) {
-                        text.DrawLatex(0.05, 0.7, "ConstrainedE = yes");
-                    } else {
-                        text.DrawLatex(0.05, 0.7, "ConstrainedE = no");
-                    }
-
-                    text.DrawLatex(0.05, 0.6, ("apply_ECAL_veto = " + BoolToString(apply_ECAL_veto)).c_str());
-                    text.DrawLatex(0.05, 0.55, ("cPart_veto_radius = " + ToStringWithPrecision(cPart_veto_radius, 0)).c_str());
-
-                    text.DrawLatex(0.05, 0.45, ("apply_PCAL_neutral_veto = " + BoolToString(apply_PCAL_neutral_veto)).c_str());
-                    text.DrawLatex(0.05, 0.4, ("nPart_veto_radius = " + ToStringWithPrecision(nPart_veto_radius, 0)).c_str());
-
-                    myText->Print(fileName_clas12reco, "pdf");
-                    myText->Clear();
-
-                    for (int i = 0; i < HistoList_clas12reco.size(); i++) {
-                        for (int j = 0; j < HistSubjects.size(); j++) {
-                            if (FirstPrint.at(j) && FindSubstring(HistoList_clas12reco[i]->GetTitle(), HistSubjects.at(j))) {
-                                myText->cd();
-                                titles.DrawLatex(0.3, 0.5, HistSubjects2.at(j).c_str());
-                                myText->Print(fileName_clas12reco, "pdf");
-                                myText->Clear();
-
-                                myCanvas_clas12reco->cd(1);
-                                FirstPrint.at(j) = false;
-                                break;
-                            }
-                        }
-
-                        // clas12reco_PDF_fileName->Divide(2,1);
-
-                        myCanvas_clas12reco->cd();
-
-                        myCanvas_clas12reco->cd()->SetGrid();
-                        myCanvas_clas12reco->cd()->SetBottomMargin(0.14), myCanvas_clas12reco->cd()->SetLeftMargin(0.16), myCanvas_clas12reco->cd()->SetRightMargin(0.12);
-
-                        HistoList_clas12reco[i]->GetYaxis()->SetTitleOffset(1.5);
-                        HistoList_clas12reco[i]->GetXaxis()->SetTitleOffset(1.1);
-
-                        gPad->SetRightMargin(0.23);
-
-                        // // Set the PDF title and header for the bookmark
-                        // std::string Title = HistoList_clas12reco[i]->GetTitle();
-                        // gStyle->SetTitlePS(Title.c_str());  // This sets the title in metadata
-                        //                                     // gStyle->SetHeaderPS(("[ /Title " + Title + " /DOCVIEW pdfmark").c_str());  // Adds a PDF title
-                        // gStyle->SetHeaderPS(("[ /Page " + to_string(i + 1) + " /View [/Fit] /Title (myTitle) ] /OUT pdfmark").c_str());
-
-                        if (HistoList_clas12reco[i]->InheritsFrom("TH1D")) {
-                            HistoList_clas12reco[i]->Draw();
-                        } else if (HistoList_clas12reco[i]->InheritsFrom("TH2D")) {
-                            HistoList_clas12reco[i]->Draw("colz");
-
-                            if (HistoList_clas12reco[i]->GetEntries() != 0) {
-                                gPad->Update();
-                                TPaletteAxis* palette = (TPaletteAxis*)HistoList_clas12reco[i]->GetListOfFunctions()->FindObject("palette");
-                                palette->SetY2NDC(0.55);
-                                gPad->Modified();
-                                gPad->Update();
-                            }
-                        }
-
-                        myCanvas_clas12reco->Print(fileName_clas12reco, "pdf");
-                        myCanvas_clas12reco->Clear();
-                    }
-
-                    sprintf(fileName_clas12reco, "%s]", clas12reco_PDF_fileName.c_str());
-                    myCanvas_clas12reco->Print(fileName_clas12reco, "pdf");
-
-#pragma endregion
-
-#pragma region /* Print redef plots */
-                    // TCanvas* myCanvas_redef = new TCanvas("myPage_redef", "myPage_redef", pixelx, pixely);
-                    TCanvas* myCanvas_redef = new TCanvas("myPage_redef", "myPage_redef", pixelx, pixely);
-
-                    std::string redef_PDF_fileName = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/redef_nFD_plots.pdf";
-                    char fileName_redef[redef_PDF_fileName.length()];
-                    sprintf(fileName_redef, "%s[", redef_PDF_fileName.c_str());
-                    myText->SaveAs(fileName_redef);
-                    sprintf(fileName_redef, "%s", redef_PDF_fileName.c_str());
-
-                    /////////////////////////////////////
-                    // CND Neutron Information
-                    /////////////////////////////////////
-                    myText->cd();
-
-                    text.DrawLatex(0.05, 0.9, "Uniform sample of (e,e'n) events (truth-level)");
-
-                    if (FindSubstring(InputFiles, "2070MeV")) {
-                        text.DrawLatex(0.2, 0.8, "Beam energy: 2070MeV");
-                    } else if (FindSubstring(InputFiles, "4029MeV")) {
-                        text.DrawLatex(0.2, 0.8, "Beam energy: 4029MeV");
-                    } else if (FindSubstring(InputFiles, "5986MeV")) {
-                        text.DrawLatex(0.2, 0.8, "Beam energy: 5986MeV");
-                    }
-
-                    if (ConstrainedE) {
-                        text.DrawLatex(0.05, 0.7, "ConstrainedE = yes");
-                    } else {
-                        text.DrawLatex(0.05, 0.7, "ConstrainedE = no");
-                    }
-
-                    text.DrawLatex(0.05, 0.6, ("apply_ECAL_veto = " + BoolToString(apply_ECAL_veto)).c_str());
-                    text.DrawLatex(0.05, 0.55, ("cPart_veto_radius = " + ToStringWithPrecision(cPart_veto_radius, 0)).c_str());
-
-                    text.DrawLatex(0.05, 0.45, ("apply_PCAL_neutral_veto = " + BoolToString(apply_PCAL_neutral_veto)).c_str());
-                    text.DrawLatex(0.05, 0.4, ("nPart_veto_radius = " + ToStringWithPrecision(nPart_veto_radius, 0)).c_str());
-
-                    myText->Print(fileName_redef, "pdf");
-                    myText->Clear();
-
-                    for (int i = 0; i < HistoList_redef.size(); i++) {
-                        for (int j = 0; j < HistSubjects.size(); j++) {
-                            if (FirstPrint.at(j) && FindSubstring(HistoList_redef[i]->GetTitle(), HistSubjects.at(j))) {
-                                myText->cd();
-                                titles.DrawLatex(0.3, 0.5, HistSubjects2.at(j).c_str());
-                                myText->Print(fileName_redef, "pdf");
-                                myText->Clear();
-
-                                myCanvas_redef->cd(1);
-                                FirstPrint.at(j) = false;
-                                break;
-                            }
-                        }
-
-                        // redef_PDF_fileName->Divide(2,1);
-
-                        myCanvas_redef->cd();
-
-                        myCanvas_redef->cd()->SetGrid();
-                        myCanvas_redef->cd()->SetBottomMargin(0.14), myCanvas_redef->cd()->SetLeftMargin(0.16), myCanvas_redef->cd()->SetRightMargin(0.12);
-
-                        HistoList_redef[i]->GetYaxis()->SetTitleOffset(1.5);
-                        HistoList_redef[i]->GetXaxis()->SetTitleOffset(1.1);
-
-                        gPad->SetRightMargin(0.23);
-
-                        // // Set the PDF title and header for the bookmark
-                        // std::string Title = HistoList_redef[i]->GetTitle();
-                        // gStyle->SetTitlePS(Title.c_str());  // This sets the title in metadata
-                        //                                     // gStyle->SetHeaderPS(("[ /Title " + Title + " /DOCVIEW pdfmark").c_str());  // Adds a PDF title
-                        // gStyle->SetHeaderPS(("[ /Page " + to_string(i + 1) + " /View [/Fit] /Title (myTitle) ] /OUT pdfmark").c_str());
-
-                        if (HistoList_redef[i]->InheritsFrom("TH1D")) {
-                            HistoList_redef[i]->Draw();
-                        } else if (HistoList_redef[i]->InheritsFrom("TH2D")) {
-                            HistoList_redef[i]->Draw("colz");
-
-                            if (HistoList_redef[i]->GetEntries() != 0) {
-                                gPad->Update();
-                                TPaletteAxis* palette = (TPaletteAxis*)HistoList_redef[i]->GetListOfFunctions()->FindObject("palette");
-                                palette->SetY2NDC(0.55);
-                                gPad->Modified();
-                                gPad->Update();
-                            }
-                        }
-
-                        myCanvas_redef->Print(fileName_redef, "pdf");
-                        myCanvas_redef->Clear();
-                    }
-
-                    sprintf(fileName_redef, "%s]", redef_PDF_fileName.c_str());
-                    myCanvas_redef->Print(fileName_redef, "pdf");
-
-#pragma endregion
-
-#pragma region /* Print neutron plots */
-                    TCanvas* myCanvas = new TCanvas("myPage", "myPage", pixelx, pixely);
-
-                    std::string nFD_eff_test_PDF_fileName = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/" + OutFileName + ".pdf";
-                    char fileName[nFD_eff_test_PDF_fileName.length()];
-                    sprintf(fileName, "%s[", nFD_eff_test_PDF_fileName.c_str());
-                    myText->SaveAs(fileName);
-                    sprintf(fileName, "%s", nFD_eff_test_PDF_fileName.c_str());
-
-                    /////////////////////////////////////
-                    // CND Neutron Information
-                    /////////////////////////////////////
-                    myText->cd();
-
-                    text.DrawLatex(0.05, 0.9, "Uniform sample of (e,e'n) events (truth-level)");
-
-                    if (FindSubstring(InputFiles, "2070MeV")) {
-                        text.DrawLatex(0.2, 0.8, "Beam energy: 2070MeV");
-                    } else if (FindSubstring(InputFiles, "4029MeV")) {
-                        text.DrawLatex(0.2, 0.8, "Beam energy: 4029MeV");
-                    } else if (FindSubstring(InputFiles, "5986MeV")) {
-                        text.DrawLatex(0.2, 0.8, "Beam energy: 5986MeV");
-                    }
-
-                    if (ConstrainedE) {
-                        text.DrawLatex(0.05, 0.7, "ConstrainedE = yes");
-                    } else {
-                        text.DrawLatex(0.05, 0.7, "ConstrainedE = no");
-                    }
-
-                    text.DrawLatex(0.05, 0.6, ("apply_ECAL_veto = " + BoolToString(apply_ECAL_veto)).c_str());
-                    text.DrawLatex(0.05, 0.55, ("cPart_veto_radius = " + ToStringWithPrecision(cPart_veto_radius, 0)).c_str());
-
-                    text.DrawLatex(0.05, 0.45, ("apply_PCAL_neutral_veto = " + BoolToString(apply_PCAL_neutral_veto)).c_str());
-                    text.DrawLatex(0.05, 0.4, ("nPart_veto_radius = " + ToStringWithPrecision(nPart_veto_radius, 0)).c_str());
-
-                    myText->Print(fileName, "pdf");
-                    myText->Clear();
-
-                    for (int i = 0; i < HistoList.size(); i++) {
-                        for (int j = 0; j < HistSubjects.size(); j++) {
-                            if (FirstPrint.at(j) && FindSubstring(HistoList[i]->GetTitle(), HistSubjects.at(j))) {
-                                myText->cd();
-                                titles.DrawLatex(0.3, 0.5, HistSubjects2.at(j).c_str());
-                                myText->Print(fileName, "pdf");
-                                myText->Clear();
-
-                                myCanvas->cd(1);
-                                FirstPrint.at(j) = false;
-                                break;
-                            }
-                        }
-
-                        myCanvas->cd();
-
-                        myCanvas->cd()->SetGrid();
-                        myCanvas->cd()->SetBottomMargin(0.14), myCanvas->cd()->SetLeftMargin(0.16), myCanvas->cd()->SetRightMargin(0.12);
-
-                        HistoList[i]->GetYaxis()->SetTitleOffset(1.5);
-                        HistoList[i]->GetXaxis()->SetTitleOffset(1.1);
-
-                        gPad->SetRightMargin(0.23);
-
-                        // // Set the PDF title and header for the bookmark
-                        // std::string Title = HistoList[i]->GetTitle();
-                        // gStyle->SetTitlePS(Title.c_str());  // This sets the title in metadata
-                        //                                     // gStyle->SetHeaderPS(("[ /Title " + Title + " /DOCVIEW pdfmark").c_str());  // Adds a PDF title
-                        // gStyle->SetHeaderPS(("[ /Page " + to_string(i + 1) + " /View [/Fit] /Title (myTitle) ] /OUT pdfmark").c_str());
-
-                        if (HistoList[i]->InheritsFrom("TH1D")) {
-                            HistoList[i]->Draw();
-                        } else if (HistoList[i]->InheritsFrom("TH2D")) {
-                            // if (FindSubstring(HistoList[i]->GetTitle(), "#Delta#theta_{nFD,e} vs. #Delta#phi_{nFD,e} in 1e cut")) {
-                            //     gPad->SetRightMargin(0.225);
-                            // } else {
-                            //     gPad->SetRightMargin(0.05);
-                            // }
-
-                            HistoList[i]->Draw("colz");
-
-                            if (HistoList[i]->GetEntries() != 0) {
-                                gPad->Update();
-                                TPaletteAxis* palette = (TPaletteAxis*)HistoList[i]->GetListOfFunctions()->FindObject("palette");
-                                palette->SetY2NDC(0.55);
-                                gPad->Modified();
-                                gPad->Update();
-                            }
-                        }
-
-                        myCanvas->Print(fileName, "pdf");
-                        myCanvas->Clear();
-                    }
-
-                    sprintf(fileName, "%s]", nFD_eff_test_PDF_fileName.c_str());
-                    myCanvas->Print(fileName, "pdf");
-#pragma endregion
-
-#pragma region /* Print eff plots */
-                    vector<vector<TH1*>> HistoList_eff_plots;
-
-                    TH1D* h_eff_P_nFD_1e_cut_demominator = (TH1D*)h_truth_P_nFD_ECALveto_1e_cut->Clone((std::string(h_truth_P_nFD_ECALveto_1e_cut->GetName()) + "_demominator").c_str());
-                    // TH1D* h_eff_P_nFD_1e_cut_demominator = (TH1D*)h_truth_P_n_1e_cut->Clone((std::string(h_truth_P_n_1e_cut->GetName()) + "_demominator").c_str());
-
-                    TH1D* h_eff_P_nFD_ECALveto_1e_cut_numerator = (TH1D*)h_reco_P_nFD_ECALveto_1e_cut->Clone((std::string(h_reco_P_nFD_ECALveto_1e_cut->GetName()) + "_numerator").c_str());
-                    TH1D* h_eff_P_nFD_ECALveto_1e_cut = (TH1D*)h_eff_P_nFD_ECALveto_1e_cut_numerator->Clone("eff_P_nFD_ECALveto_1e_cut");
-                    h_eff_P_nFD_ECALveto_1e_cut->Divide(h_eff_P_nFD_1e_cut_demominator);
-                    h_eff_P_nFD_ECALveto_1e_cut->SetTitle(h_eff_P_nFD_ECALveto_1e_cut->GetName());
-                    HistoList_eff_plots.push_back({h_eff_P_nFD_ECALveto_1e_cut_numerator, h_eff_P_nFD_1e_cut_demominator, h_eff_P_nFD_ECALveto_1e_cut});
-
-                    TH1D* h_eff_P_nFD_matched_1e_cut_numerator = (TH1D*)h_reco_P_nFD_matched_1e_cut->Clone((std::string(h_reco_P_nFD_matched_1e_cut->GetName()) + "_numerator").c_str());
-                    TH1D* h_eff_P_nFD_matched_1e_cut = (TH1D*)h_eff_P_nFD_matched_1e_cut_numerator->Clone("eff_P_nFD_matched_1e_cut");
-                    h_eff_P_nFD_matched_1e_cut->Divide(h_eff_P_nFD_1e_cut_demominator);
-                    h_eff_P_nFD_matched_1e_cut->SetTitle(h_eff_P_nFD_matched_1e_cut->GetName());
-                    HistoList_eff_plots.push_back({h_eff_P_nFD_matched_1e_cut_numerator, h_eff_P_nFD_1e_cut_demominator, h_eff_P_nFD_matched_1e_cut});
-
-                    // TCanvas* myCanvas_eff_plots = new TCanvas("myPage_eff_plots", "myPage_eff_plots", pixelx, pixely);
-                    TCanvas* myCanvas_eff_plots = new TCanvas("myPage_eff_plots", "myPage_eff_plots", pixelx * 3, pixely);
-                    // TCanvas* myCanvas_eff_plots = new TCanvas("myPage_eff_plots", "myPage_eff_plots", pixelx * 3 * 2, pixely * 2);
-
-                    std::string eff_plots_PDF_fileName = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/eff_plots.pdf";
-                    char fileName_eff_plots[eff_plots_PDF_fileName.length()];
-                    sprintf(fileName_eff_plots, "%s[", eff_plots_PDF_fileName.c_str());
-                    myText->SaveAs(fileName_eff_plots);
-                    sprintf(fileName_eff_plots, "%s", eff_plots_PDF_fileName.c_str());
-
-                    myCanvas_eff_plots->cd();
-                    gPad->Update();
-                    // myText->cd();
-                    text.DrawLatex(0.2, 0.9, "Uniform sample of (e,e'n) events (truth-level)");
-                    if (FindSubstring(InputFiles, "2070MeV")) {
-                        text.DrawLatex(0.2, 0.7, "Beam energy: 2070MeV");
-                    } else if (FindSubstring(InputFiles, "4029MeV")) {
-                        text.DrawLatex(0.2, 0.7, "Beam energy: 4029MeV");
-                    } else if (FindSubstring(InputFiles, "5986MeV")) {
-                        text.DrawLatex(0.2, 0.7, "Beam energy: 5986MeV");
-                    }
-                    myCanvas_eff_plots->Print(fileName_eff_plots, "pdf");
-                    myCanvas_eff_plots->Clear();
-                    // myText->Print(fileName_eff_plots, "pdf");
-                    // myText->Clear();
-
-                    for (int i = 0; i < HistoList_eff_plots.size(); i++) {
-                        // for (int j = 0; j < HistSubjects.size(); j++) {
-                        //     if (FirstPrint.at(j) && FindSubstring(HistoList_eff_plots[i]->GetTitle(), HistSubjects.at(j))) {
-                        //         myText->cd();
-                        //         titles.DrawLatex(0.3, 0.5, HistSubjects2.at(j).c_str());
-                        //         myText->Print(fileName_eff_plots, "pdf");
-                        //         myText->Clear();
-
-                        //         myCanvas_eff_plots->cd(1);
-                        //         FirstPrint.at(j) = false;
-                        //         break;
-                        //     }
-                        // }
-
-                        myCanvas_eff_plots->Divide(3, 1);
-
-                        for (int j = 0; j < HistoList_eff_plots[i].size(); j++) {
-                            myCanvas_eff_plots->cd(j + 1);
-
-                            myCanvas_eff_plots->cd(j + 1)->SetGrid();
-                            myCanvas_eff_plots->cd(j + 1)->SetBottomMargin(0.14), myCanvas_eff_plots->cd(j + 1)->SetLeftMargin(0.16), myCanvas_eff_plots->cd(j + 1)->SetRightMargin(0.12);
-
-                            HistoList_eff_plots[i][j]->GetYaxis()->SetTitleOffset(1.5);
-                            HistoList_eff_plots[i][j]->GetXaxis()->SetTitleOffset(1.1);
+                            HistoList_electron_cuts[i]->GetYaxis()->SetTitleOffset(1.5);
+                            HistoList_electron_cuts[i]->GetXaxis()->SetTitleOffset(1.1);
 
                             gPad->SetRightMargin(0.23);
 
-                            if (HistoList_eff_plots[i][j]->InheritsFrom("TH1D")) {
-                                HistoList_eff_plots[i][j]->Draw();
-                            } else if (HistoList_eff_plots[i][j]->InheritsFrom("TH2D")) {
-                                HistoList_eff_plots[i][j]->Draw("colz");
+                            // // Set the PDF title and header for the bookmark
+                            // std::string Title = HistoList_electron_cuts[i]->GetTitle();
+                            // gStyle->SetTitlePS(Title.c_str());  // This sets the title in metadata
+                            //                                     // gStyle->SetHeaderPS(("[ /Title " + Title + " /DOCVIEW pdfmark").c_str());  // Adds a PDF title
+                            // gStyle->SetHeaderPS(("[ /Page " + to_string(i + 1) + " /View [/Fit] /Title (myTitle) ] /OUT pdfmark").c_str());
 
-                                if (HistoList_eff_plots[i][j]->GetEntries() != 0) {
+                            if (HistoList_electron_cuts[i]->InheritsFrom("TH1D")) {
+                                HistoList_electron_cuts[i]->Draw();
+                            } else if (HistoList_electron_cuts[i]->InheritsFrom("TH2D")) {
+                                HistoList_electron_cuts[i]->Draw("colz");
+
+                                if (HistoList_electron_cuts[i]->GetEntries() != 0) {
                                     gPad->Update();
-                                    TPaletteAxis* palette = (TPaletteAxis*)HistoList_eff_plots[i][j]->GetListOfFunctions()->FindObject("palette");
+                                    TPaletteAxis* palette = (TPaletteAxis*)HistoList_electron_cuts[i]->GetListOfFunctions()->FindObject("palette");
                                     palette->SetY2NDC(0.55);
                                     gPad->Modified();
                                     gPad->Update();
                                 }
                             }
+
+                            myCanvas_electron_cuts->Print(fileName_electron_cuts, "pdf");
+                            myCanvas_electron_cuts->Clear();
                         }
 
-                        myCanvas_eff_plots->Print(fileName_eff_plots, "pdf");
-                        myCanvas_eff_plots->Clear();
-                    }
-
-                    sprintf(fileName_eff_plots, "%s]", eff_plots_PDF_fileName.c_str());
-                    myCanvas_eff_plots->Print(fileName_eff_plots, "pdf");
+                        sprintf(fileName_electron_cuts, "%s]", electron_cuts_PDF_fileName.c_str());
+                        myCanvas_electron_cuts->Print(fileName_electron_cuts, "pdf");
 
 #pragma endregion
 
-                    outFile->cd();
-                    for (int i = 0; i < HistoList.size(); i++) { HistoList[i]->Write(); }
-                    outFile->Close();
+#pragma region /* Print raw plots */
+                        // TCanvas* myCanvas_raw = new TCanvas("myPage_raw", "myPage_raw", pixelx, pixely);
+                        TCanvas* myCanvas_raw = new TCanvas("myPage_raw", "myPage_raw", pixelx, pixely);
+
+                        std::string raw_PDF_fileName = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/raw_nFD_plots.pdf";
+                        char fileName_raw[raw_PDF_fileName.length()];
+                        sprintf(fileName_raw, "%s[", raw_PDF_fileName.c_str());
+                        myText->SaveAs(fileName_raw);
+                        sprintf(fileName_raw, "%s", raw_PDF_fileName.c_str());
+
+                        /////////////////////////////////////
+                        // CND Neutron Information
+                        /////////////////////////////////////
+                        myText->cd();
+
+                        text.DrawLatex(0.05, 0.9, "Uniform sample of (e,e'n) events (truth-level)");
+
+                        if (FindSubstring(InputFiles, "2070MeV")) {
+                            text.DrawLatex(0.2, 0.8, "Beam energy: 2070MeV");
+                        } else if (FindSubstring(InputFiles, "4029MeV")) {
+                            text.DrawLatex(0.2, 0.8, "Beam energy: 4029MeV");
+                        } else if (FindSubstring(InputFiles, "5986MeV")) {
+                            text.DrawLatex(0.2, 0.8, "Beam energy: 5986MeV");
+                        }
+
+                        if (ConstrainedE) {
+                            text.DrawLatex(0.05, 0.7, "ConstrainedE = yes");
+                        } else {
+                            text.DrawLatex(0.05, 0.7, "ConstrainedE = no");
+                        }
+
+                        text.DrawLatex(0.05, 0.6, ("apply_ECAL_veto = " + BoolToString(apply_ECAL_veto)).c_str());
+                        text.DrawLatex(0.05, 0.55, ("cPart_veto_radius = " + ToStringWithPrecision(cPart_veto_radius, 0)).c_str());
+
+                        text.DrawLatex(0.05, 0.45, ("apply_PCAL_neutral_veto = " + BoolToString(apply_PCAL_neutral_veto)).c_str());
+                        text.DrawLatex(0.05, 0.4, ("nPart_veto_radius = " + ToStringWithPrecision(nPart_veto_radius, 0)).c_str());
+
+                        myText->Print(fileName_raw, "pdf");
+                        myText->Clear();
+
+                        for (int i = 0; i < HistoList_raw.size(); i++) {
+                            for (int j = 0; j < HistSubjects.size(); j++) {
+                                if (FirstPrint.at(j) && FindSubstring(HistoList_raw[i]->GetTitle(), HistSubjects.at(j))) {
+                                    myText->cd();
+                                    titles.DrawLatex(0.3, 0.5, HistSubjects2.at(j).c_str());
+                                    myText->Print(fileName_raw, "pdf");
+                                    myText->Clear();
+
+                                    myCanvas_raw->cd(1);
+                                    FirstPrint.at(j) = false;
+                                    break;
+                                }
+                            }
+
+                            // raw_PDF_fileName->Divide(2,1);
+
+                            myCanvas_raw->cd();
+
+                            myCanvas_raw->cd()->SetGrid();
+                            myCanvas_raw->cd()->SetBottomMargin(0.14), myCanvas_raw->cd()->SetLeftMargin(0.16), myCanvas_raw->cd()->SetRightMargin(0.12);
+
+                            HistoList_raw[i]->GetYaxis()->SetTitleOffset(1.5);
+                            HistoList_raw[i]->GetXaxis()->SetTitleOffset(1.1);
+
+                            gPad->SetRightMargin(0.23);
+
+                            // // Set the PDF title and header for the bookmark
+                            // std::string Title = HistoList_raw[i]->GetTitle();
+                            // gStyle->SetTitlePS(Title.c_str());  // This sets the title in metadata
+                            //                                     // gStyle->SetHeaderPS(("[ /Title " + Title + " /DOCVIEW pdfmark").c_str());  // Adds a PDF title
+                            // gStyle->SetHeaderPS(("[ /Page " + to_string(i + 1) + " /View [/Fit] /Title (myTitle) ] /OUT pdfmark").c_str());
+
+                            if (HistoList_raw[i]->InheritsFrom("TH1D")) {
+                                HistoList_raw[i]->Draw();
+                            } else if (HistoList_raw[i]->InheritsFrom("TH2D")) {
+                                HistoList_raw[i]->Draw("colz");
+
+                                if (HistoList_raw[i]->GetEntries() != 0) {
+                                    gPad->Update();
+                                    TPaletteAxis* palette = (TPaletteAxis*)HistoList_raw[i]->GetListOfFunctions()->FindObject("palette");
+                                    palette->SetY2NDC(0.55);
+                                    gPad->Modified();
+                                    gPad->Update();
+                                }
+                            }
+
+                            myCanvas_raw->Print(fileName_raw, "pdf");
+                            myCanvas_raw->Clear();
+                        }
+
+                        sprintf(fileName_raw, "%s]", raw_PDF_fileName.c_str());
+                        myCanvas_raw->Print(fileName_raw, "pdf");
+
+#pragma endregion
+
+#pragma region /* Print clas12reco plots */
+                        // TCanvas* myCanvas_clas12reco = new TCanvas("myPage_clas12reco", "myPage_clas12reco", pixelx, pixely);
+                        TCanvas* myCanvas_clas12reco = new TCanvas("myPage_clas12reco", "myPage_clas12reco", pixelx, pixely);
+
+                        std::string clas12reco_PDF_fileName = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/clas12reco_nFD_plots.pdf";
+                        char fileName_clas12reco[clas12reco_PDF_fileName.length()];
+                        sprintf(fileName_clas12reco, "%s[", clas12reco_PDF_fileName.c_str());
+                        myText->SaveAs(fileName_clas12reco);
+                        sprintf(fileName_clas12reco, "%s", clas12reco_PDF_fileName.c_str());
+
+                        /////////////////////////////////////
+                        // CND Neutron Information
+                        /////////////////////////////////////
+                        myText->cd();
+
+                        text.DrawLatex(0.05, 0.9, "Uniform sample of (e,e'n) events (truth-level)");
+
+                        if (FindSubstring(InputFiles, "2070MeV")) {
+                            text.DrawLatex(0.2, 0.8, "Beam energy: 2070MeV");
+                        } else if (FindSubstring(InputFiles, "4029MeV")) {
+                            text.DrawLatex(0.2, 0.8, "Beam energy: 4029MeV");
+                        } else if (FindSubstring(InputFiles, "5986MeV")) {
+                            text.DrawLatex(0.2, 0.8, "Beam energy: 5986MeV");
+                        }
+
+                        if (ConstrainedE) {
+                            text.DrawLatex(0.05, 0.7, "ConstrainedE = yes");
+                        } else {
+                            text.DrawLatex(0.05, 0.7, "ConstrainedE = no");
+                        }
+
+                        text.DrawLatex(0.05, 0.6, ("apply_ECAL_veto = " + BoolToString(apply_ECAL_veto)).c_str());
+                        text.DrawLatex(0.05, 0.55, ("cPart_veto_radius = " + ToStringWithPrecision(cPart_veto_radius, 0)).c_str());
+
+                        text.DrawLatex(0.05, 0.45, ("apply_PCAL_neutral_veto = " + BoolToString(apply_PCAL_neutral_veto)).c_str());
+                        text.DrawLatex(0.05, 0.4, ("nPart_veto_radius = " + ToStringWithPrecision(nPart_veto_radius, 0)).c_str());
+
+                        myText->Print(fileName_clas12reco, "pdf");
+                        myText->Clear();
+
+                        for (int i = 0; i < HistoList_clas12reco.size(); i++) {
+                            for (int j = 0; j < HistSubjects.size(); j++) {
+                                if (FirstPrint.at(j) && FindSubstring(HistoList_clas12reco[i]->GetTitle(), HistSubjects.at(j))) {
+                                    myText->cd();
+                                    titles.DrawLatex(0.3, 0.5, HistSubjects2.at(j).c_str());
+                                    myText->Print(fileName_clas12reco, "pdf");
+                                    myText->Clear();
+
+                                    myCanvas_clas12reco->cd(1);
+                                    FirstPrint.at(j) = false;
+                                    break;
+                                }
+                            }
+
+                            // clas12reco_PDF_fileName->Divide(2,1);
+
+                            myCanvas_clas12reco->cd();
+
+                            myCanvas_clas12reco->cd()->SetGrid();
+                            myCanvas_clas12reco->cd()->SetBottomMargin(0.14), myCanvas_clas12reco->cd()->SetLeftMargin(0.16), myCanvas_clas12reco->cd()->SetRightMargin(0.12);
+
+                            HistoList_clas12reco[i]->GetYaxis()->SetTitleOffset(1.5);
+                            HistoList_clas12reco[i]->GetXaxis()->SetTitleOffset(1.1);
+
+                            gPad->SetRightMargin(0.23);
+
+                            // // Set the PDF title and header for the bookmark
+                            // std::string Title = HistoList_clas12reco[i]->GetTitle();
+                            // gStyle->SetTitlePS(Title.c_str());  // This sets the title in metadata
+                            //                                     // gStyle->SetHeaderPS(("[ /Title " + Title + " /DOCVIEW pdfmark").c_str());  // Adds a PDF title
+                            // gStyle->SetHeaderPS(("[ /Page " + to_string(i + 1) + " /View [/Fit] /Title (myTitle) ] /OUT pdfmark").c_str());
+
+                            if (HistoList_clas12reco[i]->InheritsFrom("TH1D")) {
+                                HistoList_clas12reco[i]->Draw();
+                            } else if (HistoList_clas12reco[i]->InheritsFrom("TH2D")) {
+                                HistoList_clas12reco[i]->Draw("colz");
+
+                                if (HistoList_clas12reco[i]->GetEntries() != 0) {
+                                    gPad->Update();
+                                    TPaletteAxis* palette = (TPaletteAxis*)HistoList_clas12reco[i]->GetListOfFunctions()->FindObject("palette");
+                                    palette->SetY2NDC(0.55);
+                                    gPad->Modified();
+                                    gPad->Update();
+                                }
+                            }
+
+                            myCanvas_clas12reco->Print(fileName_clas12reco, "pdf");
+                            myCanvas_clas12reco->Clear();
+                        }
+
+                        sprintf(fileName_clas12reco, "%s]", clas12reco_PDF_fileName.c_str());
+                        myCanvas_clas12reco->Print(fileName_clas12reco, "pdf");
+
+#pragma endregion
+
+#pragma region /* Print redef plots */
+                        // TCanvas* myCanvas_redef = new TCanvas("myPage_redef", "myPage_redef", pixelx, pixely);
+                        TCanvas* myCanvas_redef = new TCanvas("myPage_redef", "myPage_redef", pixelx, pixely);
+
+                        std::string redef_PDF_fileName = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/redef_nFD_plots.pdf";
+                        char fileName_redef[redef_PDF_fileName.length()];
+                        sprintf(fileName_redef, "%s[", redef_PDF_fileName.c_str());
+                        myText->SaveAs(fileName_redef);
+                        sprintf(fileName_redef, "%s", redef_PDF_fileName.c_str());
+
+                        /////////////////////////////////////
+                        // CND Neutron Information
+                        /////////////////////////////////////
+                        myText->cd();
+
+                        text.DrawLatex(0.05, 0.9, "Uniform sample of (e,e'n) events (truth-level)");
+
+                        if (FindSubstring(InputFiles, "2070MeV")) {
+                            text.DrawLatex(0.2, 0.8, "Beam energy: 2070MeV");
+                        } else if (FindSubstring(InputFiles, "4029MeV")) {
+                            text.DrawLatex(0.2, 0.8, "Beam energy: 4029MeV");
+                        } else if (FindSubstring(InputFiles, "5986MeV")) {
+                            text.DrawLatex(0.2, 0.8, "Beam energy: 5986MeV");
+                        }
+
+                        if (ConstrainedE) {
+                            text.DrawLatex(0.05, 0.7, "ConstrainedE = yes");
+                        } else {
+                            text.DrawLatex(0.05, 0.7, "ConstrainedE = no");
+                        }
+
+                        text.DrawLatex(0.05, 0.6, ("apply_ECAL_veto = " + BoolToString(apply_ECAL_veto)).c_str());
+                        text.DrawLatex(0.05, 0.55, ("cPart_veto_radius = " + ToStringWithPrecision(cPart_veto_radius, 0)).c_str());
+
+                        text.DrawLatex(0.05, 0.45, ("apply_PCAL_neutral_veto = " + BoolToString(apply_PCAL_neutral_veto)).c_str());
+                        text.DrawLatex(0.05, 0.4, ("nPart_veto_radius = " + ToStringWithPrecision(nPart_veto_radius, 0)).c_str());
+
+                        myText->Print(fileName_redef, "pdf");
+                        myText->Clear();
+
+                        for (int i = 0; i < HistoList_redef.size(); i++) {
+                            for (int j = 0; j < HistSubjects.size(); j++) {
+                                if (FirstPrint.at(j) && FindSubstring(HistoList_redef[i]->GetTitle(), HistSubjects.at(j))) {
+                                    myText->cd();
+                                    titles.DrawLatex(0.3, 0.5, HistSubjects2.at(j).c_str());
+                                    myText->Print(fileName_redef, "pdf");
+                                    myText->Clear();
+
+                                    myCanvas_redef->cd(1);
+                                    FirstPrint.at(j) = false;
+                                    break;
+                                }
+                            }
+
+                            // redef_PDF_fileName->Divide(2,1);
+
+                            myCanvas_redef->cd();
+
+                            myCanvas_redef->cd()->SetGrid();
+                            myCanvas_redef->cd()->SetBottomMargin(0.14), myCanvas_redef->cd()->SetLeftMargin(0.16), myCanvas_redef->cd()->SetRightMargin(0.12);
+
+                            HistoList_redef[i]->GetYaxis()->SetTitleOffset(1.5);
+                            HistoList_redef[i]->GetXaxis()->SetTitleOffset(1.1);
+
+                            gPad->SetRightMargin(0.23);
+
+                            // // Set the PDF title and header for the bookmark
+                            // std::string Title = HistoList_redef[i]->GetTitle();
+                            // gStyle->SetTitlePS(Title.c_str());  // This sets the title in metadata
+                            //                                     // gStyle->SetHeaderPS(("[ /Title " + Title + " /DOCVIEW pdfmark").c_str());  // Adds a PDF title
+                            // gStyle->SetHeaderPS(("[ /Page " + to_string(i + 1) + " /View [/Fit] /Title (myTitle) ] /OUT pdfmark").c_str());
+
+                            if (HistoList_redef[i]->InheritsFrom("TH1D")) {
+                                HistoList_redef[i]->Draw();
+                            } else if (HistoList_redef[i]->InheritsFrom("TH2D")) {
+                                HistoList_redef[i]->Draw("colz");
+
+                                if (HistoList_redef[i]->GetEntries() != 0) {
+                                    gPad->Update();
+                                    TPaletteAxis* palette = (TPaletteAxis*)HistoList_redef[i]->GetListOfFunctions()->FindObject("palette");
+                                    palette->SetY2NDC(0.55);
+                                    gPad->Modified();
+                                    gPad->Update();
+                                }
+                            }
+
+                            myCanvas_redef->Print(fileName_redef, "pdf");
+                            myCanvas_redef->Clear();
+                        }
+
+                        sprintf(fileName_redef, "%s]", redef_PDF_fileName.c_str());
+                        myCanvas_redef->Print(fileName_redef, "pdf");
+
+#pragma endregion
+
+#pragma region /* Print neutron plots */
+                        TCanvas* myCanvas = new TCanvas("myPage", "myPage", pixelx, pixely);
+
+                        std::string nFD_eff_test_PDF_fileName = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/" + OutFileName + ".pdf";
+                        char fileName[nFD_eff_test_PDF_fileName.length()];
+                        sprintf(fileName, "%s[", nFD_eff_test_PDF_fileName.c_str());
+                        myText->SaveAs(fileName);
+                        sprintf(fileName, "%s", nFD_eff_test_PDF_fileName.c_str());
+
+                        /////////////////////////////////////
+                        // CND Neutron Information
+                        /////////////////////////////////////
+                        myText->cd();
+
+                        text.DrawLatex(0.05, 0.9, "Uniform sample of (e,e'n) events (truth-level)");
+
+                        if (FindSubstring(InputFiles, "2070MeV")) {
+                            text.DrawLatex(0.2, 0.8, "Beam energy: 2070MeV");
+                        } else if (FindSubstring(InputFiles, "4029MeV")) {
+                            text.DrawLatex(0.2, 0.8, "Beam energy: 4029MeV");
+                        } else if (FindSubstring(InputFiles, "5986MeV")) {
+                            text.DrawLatex(0.2, 0.8, "Beam energy: 5986MeV");
+                        }
+
+                        if (ConstrainedE) {
+                            text.DrawLatex(0.05, 0.7, "ConstrainedE = yes");
+                        } else {
+                            text.DrawLatex(0.05, 0.7, "ConstrainedE = no");
+                        }
+
+                        text.DrawLatex(0.05, 0.6, ("apply_ECAL_veto = " + BoolToString(apply_ECAL_veto)).c_str());
+                        text.DrawLatex(0.05, 0.55, ("cPart_veto_radius = " + ToStringWithPrecision(cPart_veto_radius, 0)).c_str());
+
+                        text.DrawLatex(0.05, 0.45, ("apply_PCAL_neutral_veto = " + BoolToString(apply_PCAL_neutral_veto)).c_str());
+                        text.DrawLatex(0.05, 0.4, ("nPart_veto_radius = " + ToStringWithPrecision(nPart_veto_radius, 0)).c_str());
+
+                        myText->Print(fileName, "pdf");
+                        myText->Clear();
+
+                        for (int i = 0; i < HistoList.size(); i++) {
+                            for (int j = 0; j < HistSubjects.size(); j++) {
+                                if (FirstPrint.at(j) && FindSubstring(HistoList[i]->GetTitle(), HistSubjects.at(j))) {
+                                    myText->cd();
+                                    titles.DrawLatex(0.3, 0.5, HistSubjects2.at(j).c_str());
+                                    myText->Print(fileName, "pdf");
+                                    myText->Clear();
+
+                                    myCanvas->cd(1);
+                                    FirstPrint.at(j) = false;
+                                    break;
+                                }
+                            }
+
+                            myCanvas->cd();
+
+                            myCanvas->cd()->SetGrid();
+                            myCanvas->cd()->SetBottomMargin(0.14), myCanvas->cd()->SetLeftMargin(0.16), myCanvas->cd()->SetRightMargin(0.12);
+
+                            HistoList[i]->GetYaxis()->SetTitleOffset(1.5);
+                            HistoList[i]->GetXaxis()->SetTitleOffset(1.1);
+
+                            gPad->SetRightMargin(0.23);
+
+                            // // Set the PDF title and header for the bookmark
+                            // std::string Title = HistoList[i]->GetTitle();
+                            // gStyle->SetTitlePS(Title.c_str());  // This sets the title in metadata
+                            //                                     // gStyle->SetHeaderPS(("[ /Title " + Title + " /DOCVIEW pdfmark").c_str());  // Adds a PDF title
+                            // gStyle->SetHeaderPS(("[ /Page " + to_string(i + 1) + " /View [/Fit] /Title (myTitle) ] /OUT pdfmark").c_str());
+
+                            if (HistoList[i]->InheritsFrom("TH1D")) {
+                                HistoList[i]->Draw();
+                            } else if (HistoList[i]->InheritsFrom("TH2D")) {
+                                // if (FindSubstring(HistoList[i]->GetTitle(), "#Delta#theta_{nFD,e} vs. #Delta#phi_{nFD,e} in 1e cut")) {
+                                //     gPad->SetRightMargin(0.225);
+                                // } else {
+                                //     gPad->SetRightMargin(0.05);
+                                // }
+
+                                HistoList[i]->Draw("colz");
+
+                                if (HistoList[i]->GetEntries() != 0) {
+                                    gPad->Update();
+                                    TPaletteAxis* palette = (TPaletteAxis*)HistoList[i]->GetListOfFunctions()->FindObject("palette");
+                                    palette->SetY2NDC(0.55);
+                                    gPad->Modified();
+                                    gPad->Update();
+                                }
+                            }
+
+                            myCanvas->Print(fileName, "pdf");
+                            myCanvas->Clear();
+                        }
+
+                        sprintf(fileName, "%s]", nFD_eff_test_PDF_fileName.c_str());
+                        myCanvas->Print(fileName, "pdf");
+#pragma endregion
+
+#pragma region /* Print eff plots */
+                        vector<vector<TH1*>> HistoList_eff_plots;
+
+                        TH1D* h_eff_P_nFD_1e_cut_demominator = (TH1D*)h_truth_P_nFD_ECALveto_1e_cut->Clone((std::string(h_truth_P_nFD_ECALveto_1e_cut->GetName()) + "_demominator").c_str());
+                        // TH1D* h_eff_P_nFD_1e_cut_demominator = (TH1D*)h_truth_P_n_1e_cut->Clone((std::string(h_truth_P_n_1e_cut->GetName()) + "_demominator").c_str());
+
+                        TH1D* h_eff_P_nFD_ECALveto_1e_cut_numerator =
+                            (TH1D*)h_reco_P_nFD_ECALveto_1e_cut->Clone((std::string(h_reco_P_nFD_ECALveto_1e_cut->GetName()) + "_numerator").c_str());
+                        TH1D* h_eff_P_nFD_ECALveto_1e_cut = (TH1D*)h_eff_P_nFD_ECALveto_1e_cut_numerator->Clone("eff_P_nFD_ECALveto_1e_cut");
+                        h_eff_P_nFD_ECALveto_1e_cut->Divide(h_eff_P_nFD_1e_cut_demominator);
+                        h_eff_P_nFD_ECALveto_1e_cut->SetTitle(h_eff_P_nFD_ECALveto_1e_cut->GetName());
+                        HistoList_eff_plots.push_back({h_eff_P_nFD_ECALveto_1e_cut_numerator, h_eff_P_nFD_1e_cut_demominator, h_eff_P_nFD_ECALveto_1e_cut});
+
+                        TH1D* h_eff_P_nFD_matched_1e_cut_numerator = (TH1D*)h_reco_P_nFD_matched_1e_cut->Clone((std::string(h_reco_P_nFD_matched_1e_cut->GetName()) + "_numerator").c_str());
+                        TH1D* h_eff_P_nFD_matched_1e_cut = (TH1D*)h_eff_P_nFD_matched_1e_cut_numerator->Clone("eff_P_nFD_matched_1e_cut");
+                        h_eff_P_nFD_matched_1e_cut->Divide(h_eff_P_nFD_1e_cut_demominator);
+                        h_eff_P_nFD_matched_1e_cut->SetTitle(h_eff_P_nFD_matched_1e_cut->GetName());
+                        HistoList_eff_plots.push_back({h_eff_P_nFD_matched_1e_cut_numerator, h_eff_P_nFD_1e_cut_demominator, h_eff_P_nFD_matched_1e_cut});
+
+                        // TCanvas* myCanvas_eff_plots = new TCanvas("myPage_eff_plots", "myPage_eff_plots", pixelx, pixely);
+                        TCanvas* myCanvas_eff_plots = new TCanvas("myPage_eff_plots", "myPage_eff_plots", pixelx * 3, pixely);
+                        // TCanvas* myCanvas_eff_plots = new TCanvas("myPage_eff_plots", "myPage_eff_plots", pixelx * 3 * 2, pixely * 2);
+
+                        std::string eff_plots_PDF_fileName = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output/" + OutFolderName + "/eff_plots.pdf";
+                        char fileName_eff_plots[eff_plots_PDF_fileName.length()];
+                        sprintf(fileName_eff_plots, "%s[", eff_plots_PDF_fileName.c_str());
+                        myText->SaveAs(fileName_eff_plots);
+                        sprintf(fileName_eff_plots, "%s", eff_plots_PDF_fileName.c_str());
+
+                        myCanvas_eff_plots->cd();
+                        gPad->Update();
+                        // myText->cd();
+                        text.DrawLatex(0.2, 0.9, "Uniform sample of (e,e'n) events (truth-level)");
+                        if (FindSubstring(InputFiles, "2070MeV")) {
+                            text.DrawLatex(0.2, 0.7, "Beam energy: 2070MeV");
+                        } else if (FindSubstring(InputFiles, "4029MeV")) {
+                            text.DrawLatex(0.2, 0.7, "Beam energy: 4029MeV");
+                        } else if (FindSubstring(InputFiles, "5986MeV")) {
+                            text.DrawLatex(0.2, 0.7, "Beam energy: 5986MeV");
+                        }
+                        myCanvas_eff_plots->Print(fileName_eff_plots, "pdf");
+                        myCanvas_eff_plots->Clear();
+                        // myText->Print(fileName_eff_plots, "pdf");
+                        // myText->Clear();
+
+                        for (int i = 0; i < HistoList_eff_plots.size(); i++) {
+                            // for (int j = 0; j < HistSubjects.size(); j++) {
+                            //     if (FirstPrint.at(j) && FindSubstring(HistoList_eff_plots[i]->GetTitle(), HistSubjects.at(j))) {
+                            //         myText->cd();
+                            //         titles.DrawLatex(0.3, 0.5, HistSubjects2.at(j).c_str());
+                            //         myText->Print(fileName_eff_plots, "pdf");
+                            //         myText->Clear();
+
+                            //         myCanvas_eff_plots->cd(1);
+                            //         FirstPrint.at(j) = false;
+                            //         break;
+                            //     }
+                            // }
+
+                            myCanvas_eff_plots->Divide(3, 1);
+
+                            for (int j = 0; j < HistoList_eff_plots[i].size(); j++) {
+                                myCanvas_eff_plots->cd(j + 1);
+
+                                myCanvas_eff_plots->cd(j + 1)->SetGrid();
+                                myCanvas_eff_plots->cd(j + 1)->SetBottomMargin(0.14), myCanvas_eff_plots->cd(j + 1)->SetLeftMargin(0.16), myCanvas_eff_plots->cd(j + 1)->SetRightMargin(0.12);
+
+                                HistoList_eff_plots[i][j]->GetYaxis()->SetTitleOffset(1.5);
+                                HistoList_eff_plots[i][j]->GetXaxis()->SetTitleOffset(1.1);
+
+                                gPad->SetRightMargin(0.23);
+
+                                if (HistoList_eff_plots[i][j]->InheritsFrom("TH1D")) {
+                                    HistoList_eff_plots[i][j]->Draw();
+                                } else if (HistoList_eff_plots[i][j]->InheritsFrom("TH2D")) {
+                                    HistoList_eff_plots[i][j]->Draw("colz");
+
+                                    if (HistoList_eff_plots[i][j]->GetEntries() != 0) {
+                                        gPad->Update();
+                                        TPaletteAxis* palette = (TPaletteAxis*)HistoList_eff_plots[i][j]->GetListOfFunctions()->FindObject("palette");
+                                        palette->SetY2NDC(0.55);
+                                        gPad->Modified();
+                                        gPad->Update();
+                                    }
+                                }
+                            }
+
+                            myCanvas_eff_plots->Print(fileName_eff_plots, "pdf");
+                            myCanvas_eff_plots->Clear();
+                        }
+
+                        sprintf(fileName_eff_plots, "%s]", eff_plots_PDF_fileName.c_str());
+                        myCanvas_eff_plots->Print(fileName_eff_plots, "pdf");
+
+#pragma endregion
+
+                        outFile->cd();
+                        for (int i = 0; i < HistoList.size(); i++) { HistoList[i]->Write(); }
+                        outFile->Close();
+                    }
 
 #pragma endregion
 
