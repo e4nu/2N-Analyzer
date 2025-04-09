@@ -11750,11 +11750,6 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps);
 
     while (chain.Next()) {
-        TString LoopFileName = chain.CurrentFileName();
-        std::string LoopFileName_str = LoopFileName.Data();
-
-        if (basic_tools::FindSubstring(LoopFileName_str, "1e_sample_4029MeV_1054")) { continue; }
-
 #pragma region /* Event setup */
 
         debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps, "Event setup - start");
