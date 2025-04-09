@@ -406,8 +406,6 @@ AMaps::AMaps(const std::string &AcceptanceMapsDirectory, const std::string &Samp
     /* Load slices and their limits */
     ReadAMapLimits((AcceptanceMapsDirectory + Electron_source_folder + "/e_" + MapsPrefix + "_by_slice/e_slice_limits.par").c_str(), Loaded_ElectronMomSliceLimits);
     ReadAMapLimits((AcceptanceMapsDirectory + Proton_source_folder + "/p_" + MapsPrefix + "_by_slice/p_slice_limits.par").c_str(), Loaded_NucleonMomSliceLimits);
-    // ReadAMapLimits((AcceptanceMapsDirectory + SampleName + "/e_AMap_by_slice/e_slice_limits.par").c_str(), Loaded_ElectronMomSliceLimits);
-    // ReadAMapLimits((AcceptanceMapsDirectory + SampleName + "/p_AMap_by_slice/p_slice_limits.par").c_str(), Loaded_NucleonMomSliceLimits);
 
     std::cout << "\n\nLoad separate maps\n";
     /* Load separate maps */
@@ -416,44 +414,16 @@ AMaps::AMaps(const std::string &AcceptanceMapsDirectory, const std::string &Samp
         ReadAMapSlices(Proton_source_folder, AcceptanceMapsDirectory, "Proton", Loaded_NucleonMomSliceLimits, Loaded_p_AMap_Slices);
         ReadAMapSlices(Neutron_source_folder, AcceptanceMapsDirectory, "Neutron", Loaded_NucleonMomSliceLimits, Loaded_n_AMap_Slices);
         ReadAMapSlices(SampleName, AcceptanceMapsDirectory, "Nucleon", Loaded_NucleonMomSliceLimits, Loaded_nuc_AMap_Slices);  // TODO: figure out what to do with these
-
-        // TODO: verify that [0] is x and [0][0] is y
-        HistElectronSliceNumOfXBins = Loaded_e_AMap_Slices[0].size();     // 100 by Default
-        HistElectronSliceNumOfYBins = Loaded_e_AMap_Slices[0][0].size();  // 100 by Default
-        HistNucSliceNumOfXBins = Loaded_p_AMap_Slices[0].size();          // 75 by Default
-        HistNucSliceNumOfYBins = Loaded_p_AMap_Slices[0][0].size();       // 75 by Default
     } else {
         ReadWMapSlices(Electron_source_folder, AcceptanceMapsDirectory, "Electron", Loaded_ElectronMomSliceLimits, Loaded_e_WMap_Slices);  // TODO: figure out what to do with these
         ReadWMapSlices(Proton_source_folder, AcceptanceMapsDirectory, "Proton", Loaded_NucleonMomSliceLimits, Loaded_p_WMap_Slices);       // TODO: figure out what to do with these
         ReadWMapSlices(Neutron_source_folder, AcceptanceMapsDirectory, "Neutron", Loaded_NucleonMomSliceLimits, Loaded_n_WMap_Slices);     // TODO: figure out what to do with these
-
-        // TODO: verify that [0] is x and [0][0] is y
-        HistElectronSliceNumOfXBins = Loaded_e_WMap_Slices[0].size();     // 100 by Default
-        HistElectronSliceNumOfYBins = Loaded_e_WMap_Slices[0][0].size();  // 100 by Default
-        HistNucSliceNumOfXBins = Loaded_p_WMap_Slices[0].size();          // 75 by Default
-        HistNucSliceNumOfYBins = Loaded_p_WMap_Slices[0][0].size();       // 75 by Default
     }
-    // ReadAMapSlices(SampleName, AcceptanceMapsDirectory, "Electron", Loaded_ElectronMomSliceLimits, Loaded_e_AMap_Slices);
-    // ReadWMapSlices(SampleName, AcceptanceMapsDirectory, "Electron", Loaded_ElectronMomSliceLimits, Loaded_e_WMap_Slices);
-    // ReadAMapSlices(SampleName, AcceptanceMapsDirectory, "Proton", Loaded_NucleonMomSliceLimits, Loaded_p_AMap_Slices);
-    // ReadWMapSlices(SampleName, AcceptanceMapsDirectory, "Proton", Loaded_NucleonMomSliceLimits, Loaded_p_WMap_Slices);
-    // ReadAMapSlices(SampleName, AcceptanceMapsDirectory, "Neutron", Loaded_NucleonMomSliceLimits, Loaded_n_AMap_Slices);
-    // ReadWMapSlices(SampleName, AcceptanceMapsDirectory, "Neutron", Loaded_NucleonMomSliceLimits, Loaded_n_WMap_Slices);
-    // ReadAMapSlices(SampleName, AcceptanceMapsDirectory, "Nucleon", Loaded_NucleonMomSliceLimits, Loaded_nuc_AMap_Slices);
 
-    // std::cout << "\n\nLoad combined maps\n";
-    // /* Load combined maps */
-    // // TODO: figure out what to do with these
-    // ReadAMap((AcceptanceMapsDirectory + SampleName + "/e_AMap_file.par").c_str(), Loaded_e_AMap);
-    // ReadAMap((AcceptanceMapsDirectory + SampleName + "/p_AMap_file.par").c_str(), Loaded_p_AMap);
-    // ReadAMap((AcceptanceMapsDirectory + SampleName + "/n_AMap_file.par").c_str(), Loaded_n_AMap);
-    // ReadAMap((AcceptanceMapsDirectory + SampleName + "/nuc_AMap_file.par").c_str(), Loaded_nuc_AMap);
-
-    // // TODO: verify that [0] is x and [0][0] is y
-    // HistElectronSliceNumOfXBins = Loaded_e_AMap_Slices[0].size();     // 100 by Default
-    // HistElectronSliceNumOfYBins = Loaded_e_AMap_Slices[0][0].size();  // 100 by Default
-    // HistNucSliceNumOfXBins = Loaded_p_AMap_Slices[0].size();          // 75 by Default
-    // HistNucSliceNumOfYBins = Loaded_p_AMap_Slices[0][0].size();       // 75 by Default
+    HistElectronSliceNumOfYBins = Loaded_e_AMap_Slices[0].size();     // 100 by Default
+    HistElectronSliceNumOfXBins = Loaded_e_AMap_Slices[0][0].size();  // 100 by Default
+    HistNucSliceNumOfYBins = Loaded_p_AMap_Slices[0].size();          // 75 by Default
+    HistNucSliceNumOfXBins = Loaded_p_AMap_Slices[0][0].size();       // 75 by Default
 
     e_single_slice_test = Electron_single_slice_test, nuc_single_slice_test = Nucleon_single_slice_test;
     Slices2Test = TestSlices;
