@@ -1939,7 +1939,6 @@ void nFD_eff_test() {
                             }
 
                             double phi_nFD_minus_reco_phi_e = CalcdPhi1(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI);
-                            double phi_nFD_minus_reco_phi_e = CalcdPhi1(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI);
                         }
 
                         if (neutrons_FD_ECALveto.size() != 0) { h_reco_nFD_multi_ECALveto_1e_cut->Fill(neutrons_FD_ECALveto.size(), weight); }
