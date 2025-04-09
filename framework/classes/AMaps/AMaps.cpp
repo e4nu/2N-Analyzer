@@ -3245,12 +3245,11 @@ bool AMaps::IsInFDQuery(bool Generate_AMaps, const DSCuts &ThetaFD, const std::s
 
     bool inFDQuery, part_inSomeSector;
 
-    part_inSomeSector = true;
-    // if (!Generate_AMaps) {
-    //     part_inSomeSector = MatchAngToHitMap(Particle, Momentum, Theta, Phi, NucleonOverlappingFC);
-    // } else {
-    //     part_inSomeSector = true;
-    // }
+    if (!Generate_AMaps) {
+        part_inSomeSector = MatchAngToHitMap(Particle, Momentum, Theta, Phi, NucleonOverlappingFC);
+    } else {
+        part_inSomeSector = true;
+    }
 
     inFDQuery = (part_inSomeSector && (Theta >= ThetaFD.GetLowerCutConst()) && (Theta <= ThetaFD.GetUpperCutConst()));
 
