@@ -62,7 +62,7 @@ struct AnalysisCutSettings {
     // Constructor with default values
     AnalysisCutSettings()
         // Cuts setup:
-        : apply_cuts(false),
+        : apply_cuts(true),
         // : apply_cuts(true),
           clas12ana_particles(true),
           only_preselection_cuts(false),
@@ -85,7 +85,7 @@ struct AnalysisCutSettings {
           apply_Electron_beta_cut(true),
 
           // Chi2 cuts (= PID cuts):
-          apply_chi2_cuts_1e_cut(true),
+          apply_chi2_cuts_1e_cut(false),
 
           // Nucleon cuts:
           apply_nucleon_cuts(false),
