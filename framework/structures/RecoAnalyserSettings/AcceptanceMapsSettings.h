@@ -27,9 +27,9 @@ struct AcceptanceMapsSettings {
     std::vector<int> TestSlices;      // {ElectronTestSlice, ProtonTestSlice, NeutronTestSlice}
 
     AcceptanceMapsSettings()
-        : Generate_Electron_AMaps(false),
-          Generate_Nucleon_AMaps(false),
-          Generate_WMaps(false),
+        : Generate_Electron_AMaps(true),
+          Generate_Nucleon_AMaps(true),
+          Generate_WMaps(true),
           AMaps_calc_with_one_reco_electron(true),
 
           P_e_bin_profile("uniform_P_e_bins"),
@@ -42,15 +42,15 @@ struct AcceptanceMapsSettings {
     void RefreshSettings(const RunParameters& parameters) {
         if (parameters.isData) { Generate_Electron_AMaps = Generate_Nucleon_AMaps = Generate_WMaps = false; }
 
-        if (Generate_Electron_AMaps && Generate_Nucleon_AMaps) {
-            std::cout << "\n\nAcceptanceMapsSettings::RefreshSettings: Generate_Electron_AMaps and Generate_Nucleon_AMaps can't be true at the same time! Exiting...";
-            exit(0);
-        }
-
         if (Generate_Electron_AMaps && !basic_tools::FindSubstring(parameters.SampleName, "Uniform_1e")) { Generate_Electron_AMaps = false; }
 
         if (Generate_Nucleon_AMaps && (!basic_tools::FindSubstring(parameters.SampleName, "Uniform_ep")) && !basic_tools::FindSubstring(parameters.SampleName, "Uniform_en")) {
             Generate_Nucleon_AMaps = false;
+        }
+
+        if (Generate_Electron_AMaps && Generate_Nucleon_AMaps) {
+            std::cout << "\n\nAcceptanceMapsSettings::RefreshSettings: Generate_Electron_AMaps and Generate_Nucleon_AMaps can't be true at the same time! Exiting...";
+            exit(0);
         }
     }
 };
