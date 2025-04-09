@@ -27,7 +27,7 @@ struct AcceptanceMapsSettings {
     std::vector<int> TestSlices;      // {ElectronTestSlice, ProtonTestSlice, NeutronTestSlice}
 
     AcceptanceMapsSettings()
-        : Generate_Electron_AMaps(false),
+        : Generate_Electron_AMaps(true),
           Generate_Nucleon_AMaps(false),
           Generate_WMaps(false),
           AMaps_calc_with_one_reco_electron(true),

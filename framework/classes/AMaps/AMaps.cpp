@@ -1069,11 +1069,6 @@ void AMaps::GenerateFilteredRecoMaps(double cP_minR, double nP_minR) {
         }
     }
 
-
-    std::cout << "\n\nNucleonMomSliceLimits.size() = " << NucleonMomSliceLimits.size() << "\n";
-    std::cout << "\n\nacceptance_eff_n_BySlice.size() = " << acceptance_eff_n_BySlice.size() << "\n";
-
-
     if (basic_tools::FindSubstring(SName, "Uniform_ep_sample_") || basic_tools::FindSubstring(SName, "Uniform_en_sample_")) {
         for (int bin = 0; bin < NucleonMomSliceLimits.size(); bin++) {
             // Generate filtered reco. proton maps
@@ -1089,6 +1084,12 @@ void AMaps::GenerateFilteredRecoMaps(double cP_minR, double nP_minR) {
             if (basic_tools::FindSubstring(SName, "Uniform_en_sample_")) {
                 for (int i = 0; i < (HistNucSliceNumOfXBins + 1); i++) {
                     for (int j = 0; j < (HistNucSliceNumOfYBins + 1); j++) {
+
+                        std::cout << "\n\ni = " << i << "\n";
+                        std::cout << "\n\nj = " << j << "\n";
+                    
+                    
+                    
                         if (acceptance_eff_n_BySlice.at(bin).GetHistogram2D()->GetBinContent(i, j) < nP_minR) { filtered_reco_theta_n_VS_phi_n_BySlice.at(bin).hFillByBin(i, j, 0); }
                     }
                 }
