@@ -1058,6 +1058,9 @@ void AMaps::CalcAcceptanceEfficiency() {
 
 #pragma region /* GenerateFilteredRecoMaps function (G3b) */
 void AMaps::GenerateFilteredRecoMaps(double cP_minR, double nP_minR) {
+    std::cout << "\n\nSName = " << SName << "\n";
+    std::cout << "\n\nbasic_tools::FindSubstring(SName, 'Uniform_en_sample_') = " << basic_tools::FindSubstring(SName, "Uniform_en_sample_") << "\n";
+
     // Generate filtered reco. electron maps
     if (basic_tools::FindSubstring(SName, "Uniform_1e_sample_")) {
         for (int bin = 0; bin < ElectronMomSliceLimits.size(); bin++) {
