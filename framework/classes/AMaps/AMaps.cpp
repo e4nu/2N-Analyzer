@@ -1071,6 +1071,7 @@ void AMaps::GenerateFilteredRecoMaps(double cP_minR, double nP_minR) {
 
 
     std::cout << "\n\nNucleonMomSliceLimits.size() = " << NucleonMomSliceLimits.size() << "\n";
+    std::cout << "\n\nacceptance_eff_n_BySlice.size() = " << acceptance_eff_n_BySlice.size() << "\n";
 
 
     if (basic_tools::FindSubstring(SName, "Uniform_ep_sample_") || basic_tools::FindSubstring(SName, "Uniform_en_sample_")) {
