@@ -26,32 +26,38 @@ AMaps::AMaps(const std::string &SampleName, const std::string &P_e_bin_profile, 
     std::string SavePathAMapsBC = AMapSavePath + "00b_AMaps_BC_from_class/";
     system(("mkdir -p " + SavePathAMapsBC).c_str());
 
-    std::string AMapSavePathTLElectron = SavePath + "01a_Electron_TL_Hit_Maps/";
-    system(("mkdir -p " + AMapSavePathTLElectron).c_str());
-    std::string AMapSavePathRecoElectron = SavePath + "01b_Electron_Reco_Hit_Maps/";
-    system(("mkdir -p " + AMapSavePathRecoElectron).c_str());
-    std::string AMapSavePathRecoToTLElectron = SavePath + "01c_Electron_RecoToTL_Ratio/";
-    system(("mkdir -p " + AMapSavePathRecoToTLElectron).c_str());
-    std::string AMapSavePathSepAMapsElectron = AMapSavePath + "01d_Electron_Separate_AMaps/";
-    system(("mkdir -p " + AMapSavePathSepAMapsElectron).c_str());
+    if (basic_tools::FindSubstring(SName, "Uniform_1e_sample_")) {
+        std::string AMapSavePathTLElectron = SavePath + "01a_Electron_TL_Hit_Maps/";
+        system(("mkdir -p " + AMapSavePathTLElectron).c_str());
+        std::string AMapSavePathRecoElectron = SavePath + "01b_Electron_Reco_Hit_Maps/";
+        system(("mkdir -p " + AMapSavePathRecoElectron).c_str());
+        std::string AMapSavePathRecoToTLElectron = SavePath + "01c_Electron_RecoToTL_Ratio/";
+        system(("mkdir -p " + AMapSavePathRecoToTLElectron).c_str());
+        std::string AMapSavePathSepAMapsElectron = AMapSavePath + "01d_Electron_Separate_AMaps/";
+        system(("mkdir -p " + AMapSavePathSepAMapsElectron).c_str());
+    }
 
-    std::string AMapSavePathTLProton = SavePath + "02a_Proton_TL_Hit_Maps/";
-    system(("mkdir -p " + AMapSavePathTLProton).c_str());
-    std::string AMapSavePathRecoProton = SavePath + "02b_Proton_Reco_Hit_Maps/";
-    system(("mkdir -p " + AMapSavePathRecoProton).c_str());
-    std::string AMapSavePathRecoToTLProton = SavePath + "02c_Proton_RecoToTL_Ratio/";
-    system(("mkdir -p " + AMapSavePathRecoToTLProton).c_str());
-    std::string AMapSavePathSepAMapsProton = AMapSavePath + "02d_Proton_Separate_AMaps/";
-    system(("mkdir -p " + AMapSavePathSepAMapsProton).c_str());
+    if (basic_tools::FindSubstring(SName, "Uniform_ep_sample_")) {
+        std::string AMapSavePathTLProton = SavePath + "02a_Proton_TL_Hit_Maps/";
+        system(("mkdir -p " + AMapSavePathTLProton).c_str());
+        std::string AMapSavePathRecoProton = SavePath + "02b_Proton_Reco_Hit_Maps/";
+        system(("mkdir -p " + AMapSavePathRecoProton).c_str());
+        std::string AMapSavePathRecoToTLProton = SavePath + "02c_Proton_RecoToTL_Ratio/";
+        system(("mkdir -p " + AMapSavePathRecoToTLProton).c_str());
+        std::string AMapSavePathSepAMapsProton = AMapSavePath + "02d_Proton_Separate_AMaps/";
+        system(("mkdir -p " + AMapSavePathSepAMapsProton).c_str());
+    }
 
-    std::string AMapSavePathTLNeutron = SavePath + "03a_Neutron_TL_Hit_Maps/";
-    system(("mkdir -p " + AMapSavePathTLNeutron).c_str());
-    std::string AMapSavePathRecoNeutron = SavePath + "03b_Neutron_Reco_Hit_Maps/";
-    system(("mkdir -p " + AMapSavePathRecoNeutron).c_str());
-    std::string AMapSavePathRecoToTLNeutron = SavePath + "03c_Neutron_RecoToTL_Ratio/";
-    system(("mkdir -p " + AMapSavePathRecoToTLNeutron).c_str());
-    std::string AMapSavePathSepAMapsNeutron = AMapSavePath + "03d_Neutron_Separate_AMaps/";
-    system(("mkdir -p " + AMapSavePathSepAMapsNeutron).c_str());
+    if (basic_tools::FindSubstring(SName, "Uniform_en_sample_")) {
+        std::string AMapSavePathTLNeutron = SavePath + "03a_Neutron_TL_Hit_Maps/";
+        system(("mkdir -p " + AMapSavePathTLNeutron).c_str());
+        std::string AMapSavePathRecoNeutron = SavePath + "03b_Neutron_Reco_Hit_Maps/";
+        system(("mkdir -p " + AMapSavePathRecoNeutron).c_str());
+        std::string AMapSavePathRecoToTLNeutron = SavePath + "03c_Neutron_RecoToTL_Ratio/";
+        system(("mkdir -p " + AMapSavePathRecoToTLNeutron).c_str());
+        std::string AMapSavePathSepAMapsNeutron = AMapSavePath + "03d_Neutron_Separate_AMaps/";
+        system(("mkdir -p " + AMapSavePathSepAMapsNeutron).c_str());
+    }
 
     std::string AMapSavePathAMap = AMapSavePath + "04_Finalized_AMaps/";
     system(("mkdir -p " + AMapSavePathAMap).c_str());
