@@ -16943,10 +16943,27 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             bool Pass_Kin_Cuts_pFDpCD = ((!CutSettings.apply_kinematical_cuts || (FD_Theta_Cut_pFDpCD && FD_Momentum_Cut_pFDpCD)) &&
                                          (!CutSettings.apply_fiducial_cuts || (e_withinFC_pFDpCD && pFD_withinFC_pFDpCD)));
 
+            // Setting reaction monitoring cuts
+            bool P_miss_in_QE_range_pFDpCD = (P_miss_1N_pFDpCD_3v >= P_miss_1N_QE_range.GetLowerCut() && P_miss_1N_pFDpCD_3v <= P_miss_1N_QE_range.GetUpperCut());
+            bool E_miss_in_QE_range_pFDpCD = (E_miss_1N_pFDpCD >= E_miss_1N_QE_range.GetLowerCut() && E_miss_1N_pFDpCD <= E_miss_1N_QE_range.GetUpperCut());
+
+            bool P_miss_in_MECandSRC_range_pFDpCD = (P_miss_1N_pFDpCD_3v >= P_miss_1N_MECandSRC_range.GetLowerCut() && P_miss_1N_pFDpCD_3v <= P_miss_1N_MECandSRC_range.GetUpperCut());
+            bool E_miss_in_MECandSRC_range_pFDpCD = (E_miss_1N_pFDpCD >= E_miss_1N_MECandSRC_range.GetLowerCut() && E_miss_1N_pFDpCD <= E_miss_1N_MECandSRC_range.GetUpperCut());
+
+            bool xB_in_QE_range_pFDpCD = (xB_pFDpCD >= xB_cut.GetLowerCut() && xB_pFDpCD <= xB_cut.GetUpperCut());  // TODO: confirm that this is the QE range!
+
+            bool theta_q_pCD_in_lower_FSI_range_pFDpCD = (Theta_q_pCD_pFDpCD >= Theta_q_pCD_cut.GetLowerCut() && Theta_q_pCD_pFDpCD <= Theta_q_pCD_cut.GetUpperCut());
+
+            bool Pass_ReacMon_cuts_pFDpCD =
+                ((!CutSettings.apply_P_miss_in_QE_range_cuts || P_miss_in_QE_range_pFDpCD) && (!CutSettings.apply_E_miss_in_QE_range_cuts || E_miss_in_QE_range_pFDpCD) &&
+                 (!CutSettings.apply_P_miss_in_MECandSRC_range_cuts || P_miss_in_MECandSRC_range_pFDpCD) &&
+                 (!CutSettings.apply_E_miss_in_MECandSRC_range_cuts || E_miss_in_MECandSRC_range_pFDpCD) && (!CutSettings.apply_xB_in_QE_range_cuts || xB_in_QE_range_pFDpCD) &&
+                 (!CutSettings.apply_theta_q_pCD_in_lower_FSI_range_cut || theta_q_pCD_in_lower_FSI_range_pFDpCD));
+
             //  Fillings pFDpCD histograms ------------------------------------------------------------------------------------------------------------------------------
 
             // Fillings pFDpCD histograms
-            if (Pass_Kin_Cuts_pFDpCD) {
+            if (Pass_Kin_Cuts_pFDpCD && Pass_ReacMon_cuts_pFDpCD) {
                 ++num_of_events_pFDpCD;
 
                 // Filling cut parameters histograms (pFDpCD)
@@ -17876,10 +17893,27 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             bool Pass_Kin_Cuts_nFDpCD = ((!CutSettings.apply_kinematical_cuts || (FD_Theta_Cut_nFDpCD && FD_Momentum_Cut_BS_nFDpCD && FD_Momentum_Cut_AS_nFDpCD)) &&
                                          (!CutSettings.apply_fiducial_cuts || (e_withinFC_nFDpCD && nFD_withinFC_nFDpCD)));
 
+            // Setting reaction monitoring cuts
+            bool P_miss_in_QE_range_nFDpCD = (P_miss_1N_nFDpCD_3v >= P_miss_1N_QE_range.GetLowerCut() && P_miss_1N_nFDpCD_3v <= P_miss_1N_QE_range.GetUpperCut());
+            bool E_miss_in_QE_range_nFDpCD = (E_miss_1N_nFDpCD >= E_miss_1N_QE_range.GetLowerCut() && E_miss_1N_nFDpCD <= E_miss_1N_QE_range.GetUpperCut());
+
+            bool P_miss_in_MECandSRC_range_nFDpCD = (P_miss_1N_nFDpCD_3v >= P_miss_1N_MECandSRC_range.GetLowerCut() && P_miss_1N_nFDpCD_3v <= P_miss_1N_MECandSRC_range.GetUpperCut());
+            bool E_miss_in_MECandSRC_range_nFDpCD = (E_miss_1N_nFDpCD >= E_miss_1N_MECandSRC_range.GetLowerCut() && E_miss_1N_nFDpCD <= E_miss_1N_MECandSRC_range.GetUpperCut());
+
+            bool xB_in_QE_range_nFDpCD = (xB_nFDpCD >= xB_cut.GetLowerCut() && xB_nFDpCD <= xB_cut.GetUpperCut());  // TODO: confirm that this is the QE range!
+
+            bool theta_q_pCD_in_lower_FSI_range_nFDpCD = (Theta_q_pCD_nFDpCD >= Theta_q_pCD_cut.GetLowerCut() && Theta_q_pCD_nFDpCD <= Theta_q_pCD_cut.GetUpperCut());
+
+            bool Pass_ReacMon_cuts_nFDpCD =
+                ((!CutSettings.apply_P_miss_in_QE_range_cuts || P_miss_in_QE_range_nFDpCD) && (!CutSettings.apply_E_miss_in_QE_range_cuts || E_miss_in_QE_range_nFDpCD) &&
+                 (!CutSettings.apply_P_miss_in_MECandSRC_range_cuts || P_miss_in_MECandSRC_range_nFDpCD) &&
+                 (!CutSettings.apply_E_miss_in_MECandSRC_range_cuts || E_miss_in_MECandSRC_range_nFDpCD) && (!CutSettings.apply_xB_in_QE_range_cuts || xB_in_QE_range_nFDpCD) &&
+                 (!CutSettings.apply_theta_q_pCD_in_lower_FSI_range_cut || theta_q_pCD_in_lower_FSI_range_nFDpCD));
+
             //  Fillings nFDpCD histograms ------------------------------------------------------------------------------------------------------------------------------
 
             // Fillings nFDpCD histograms
-            if (NeutronPassVeto_nFDpCD && Pass_Kin_Cuts_nFDpCD) {
+            if (NeutronPassVeto_nFDpCD && Pass_Kin_Cuts_nFDpCD && Pass_ReacMon_cuts_nFDpCD) {
                 ++num_of_events_nFDpCD_AV;
 
                 // Filling cut parameters histograms (nFDpCD)
@@ -25928,6 +25962,14 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     myLogFile << "apply_kinematical_weights = " << basic_tools::BoolToString(CutSettings.apply_kinematical_weights) << "\n";
     myLogFile << "apply_nucleon_SmearAndCorr = " << basic_tools::BoolToString(CutSettings.apply_nucleon_SmearAndCorr) << "\n\n";
 
+    myLogFile << "apply_reaction_monitoring_cuts:\033[0m\t" << basic_tools::BoolToString(CutSettings.apply_reaction_monitoring_cuts) << "\n";
+    myLogFile << "apply_P_miss_in_QE_range_cuts:\033[0m\t" << basic_tools::BoolToString(CutSettings.apply_P_miss_in_QE_range_cuts) << "\n";
+    myLogFile << "apply_E_miss_in_QE_range_cuts:\033[0m\t" << basic_tools::BoolToString(CutSettings.apply_E_miss_in_QE_range_cuts) << "\n";
+    myLogFile << "apply_P_miss_in_MECandSRC_range_cuts:\033[0m\t" << basic_tools::BoolToString(CutSettings.apply_P_miss_in_MECandSRC_range_cuts) << "\n";
+    myLogFile << "apply_E_miss_in_MECandSRC_range_cuts:\033[0m\t" << basic_tools::BoolToString(CutSettings.apply_E_miss_in_MECandSRC_range_cuts) << "\n";
+    myLogFile << "apply_xB_in_QE_range_cuts:\033[0m\t" << basic_tools::BoolToString(CutSettings.apply_xB_in_QE_range_cuts) << "\n";
+    myLogFile << "apply_theta_q_pCD_in_lower_FSI_range_cut:\033[0m\t" << basic_tools::BoolToString(CutSettings.apply_theta_q_pCD_in_lower_FSI_range_cut) << "\n\n";
+
     // cuts
 
     // #Photo-electrons (Nphe) cuts (electrons only, FD)
@@ -26169,6 +26211,23 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     myLogFile << "MomRes_mu_cuts.GetLowerCut() = " << CutManager.MomRes_mu_cuts.GetLowerCut() << "\n";
     myLogFile << "MomRes_sigma_cuts.GetUpperCut() = " << CutManager.MomRes_sigma_cuts.GetUpperCut() << "\n";
     myLogFile << "MomRes_sigma_cuts.GetLowerCut() = " << CutManager.MomRes_sigma_cuts.GetLowerCut() << "\n\n";
+
+    myLogFile << "P_miss_1N_QE_range.GetUpperCut() = " << CutManager.P_miss_1N_QE_range.GetUpperCut() << "\n";
+    myLogFile << "P_miss_1N_QE_range.GetLowerCut() = " << CutManager.P_miss_1N_QE_range.GetLowerCut() << "\n";
+    myLogFile << "E_miss_1N_QE_range.GetUpperCut() = " << CutManager.E_miss_1N_QE_range.GetUpperCut() << "\n";
+    myLogFile << "E_miss_1N_QE_range.GetLowerCut() = " << CutManager.E_miss_1N_QE_range.GetLowerCut() << "\n";
+    myLogFile << "P_miss_1N_MECandSRC_range.GetUpperCut() = " << CutManager.P_miss_1N_MECandSRC_range.GetUpperCut() << "\n";
+    myLogFile << "P_miss_1N_MECandSRC_range.GetLowerCut() = " << CutManager.P_miss_1N_MECandSRC_range.GetLowerCut() << "\n";
+    myLogFile << "E_miss_1N_MECandSRC_range.GetUpperCut() = " << CutManager.E_miss_1N_MECandSRC_range.GetUpperCut() << "\n";
+    myLogFile << "E_miss_1N_MECandSRC_range.GetLowerCut() = " << CutManager.E_miss_1N_MECandSRC_range.GetLowerCut() << "\n";
+    myLogFile << "P_miss_1N_OtherReacAndFSI_range.GetUpperCut() = " << CutManager.P_miss_1N_OtherReacAndFSI_range.GetUpperCut() << "\n";
+    myLogFile << "P_miss_1N_OtherReacAndFSI_range.GetLowerCut() = " << CutManager.P_miss_1N_OtherReacAndFSI_range.GetLowerCut() << "\n";
+    myLogFile << "E_miss_1N_OtherReacAndFSI_range.GetUpperCut() = " << CutManager.E_miss_1N_OtherReacAndFSI_range.GetUpperCut() << "\n";
+    myLogFile << "E_miss_1N_OtherReacAndFSI_range.GetLowerCut() = " << CutManager.E_miss_1N_OtherReacAndFSI_range.GetLowerCut() << "\n";
+    myLogFile << "xB_cut.GetUpperCut() = " << CutManager.xB_cut.GetUpperCut() << "\n";
+    myLogFile << "xB_cut.GetLowerCut() = " << CutManager.xB_cut.GetLowerCut() << "\n";
+    myLogFile << "Theta_q_pCD_cut.GetUpperCut() = " << CutManager.Theta_q_pCD_cut.GetUpperCut() << "\n";
+    myLogFile << "Theta_q_pCD_cut.GetLowerCut() = " << CutManager.Theta_q_pCD_cut.GetLowerCut() << "\n\n";
 
     // Neutron veto cut (1n & nFDpCD, FD)
     myLogFile << "\n===========================================================================\n";

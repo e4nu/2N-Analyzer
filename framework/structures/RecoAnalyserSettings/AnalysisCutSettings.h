@@ -57,13 +57,22 @@ struct AnalysisCutSettings {
     bool apply_kinematical_weights;
     bool apply_nucleon_SmearAndCorr;
 
+    // Reaction monitoring cuts
+    bool apply_reaction_monitoring_cuts;  // master ON/OFF switch for reaction monitoring cuts
+    bool apply_P_miss_in_QE_range_cuts;
+    bool apply_E_miss_in_QE_range_cuts;
+    bool apply_P_miss_in_MECandSRC_range_cuts;
+    bool apply_E_miss_in_MECandSRC_range_cuts;
+    bool apply_xB_in_QE_range_cuts;
+    bool apply_theta_q_pCD_in_lower_FSI_range_cut;
+
     const bool custom_cuts_naming;  // Enable custom cuts naming
 
     // Constructor with default values
     AnalysisCutSettings()
         // Cuts setup:
         : apply_cuts(true),
-        // : apply_cuts(true),
+          // : apply_cuts(true),
           clas12ana_particles(true),
           only_preselection_cuts(false),
           only_electron_quality_cuts(false),
@@ -97,7 +106,15 @@ struct AnalysisCutSettings {
           apply_kinematical_cuts(false),
           apply_kinematical_weights(false),
           apply_nucleon_SmearAndCorr(false),
-          
+
+          apply_reaction_monitoring_cuts(false),
+          apply_P_miss_in_QE_range_cuts(false),
+          apply_E_miss_in_QE_range_cuts(false),
+          apply_P_miss_in_MECandSRC_range_cuts(false),
+          apply_E_miss_in_MECandSRC_range_cuts(false),
+          apply_xB_in_QE_range_cuts(false),
+          apply_theta_q_pCD_in_lower_FSI_range_cut(false),
+
           custom_cuts_naming(true) {}
 
     void RefreshSettings(const RunParameters& parameters, EventSelectionSettings& ESSettings, AcceptanceMapsSettings& AMapsSettings, MomentumResolutionSettings& MomResSettings) {
@@ -144,8 +161,14 @@ struct AnalysisCutSettings {
 
         if (!apply_nucleon_physical_cuts) {
             apply_nBeta_fit_cuts = apply_fiducial_cuts = apply_kinematical_cuts = apply_kinematical_weights = apply_nucleon_SmearAndCorr = false;
+            apply_reaction_monitoring_cuts = false;
         } else {
             if (MomResSettings.Calculate_momResS2) { apply_nucleon_SmearAndCorr = true; }
+        }
+
+        if (!apply_reaction_monitoring_cuts) {
+            apply_P_miss_in_QE_range_cuts = apply_E_miss_in_QE_range_cuts = apply_P_miss_in_MECandSRC_range_cuts = apply_E_miss_in_MECandSRC_range_cuts = false;
+            apply_xB_in_QE_range_cuts = apply_theta_q_pCD_in_lower_FSI_range_cut = false;
         }
 
         if (AMapsSettings.Generate_WMaps) { apply_fiducial_cuts = false; }

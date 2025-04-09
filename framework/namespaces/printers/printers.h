@@ -69,6 +69,14 @@ void RecoCutsPrintOut(const std::string& workingDirectory, const std::string& ru
     std::cout << "\033[33mapply_kinematical_cuts:\033[0m\t\t" << basic_tools::BoolToString(CutSettings.apply_kinematical_cuts) << "\n";
     std::cout << "\033[33mapply_kinematical_weights:\033[0m\t" << basic_tools::BoolToString(CutSettings.apply_kinematical_weights) << "\n";
     std::cout << "\033[33mapply_nucleon_SmearAndCorr:\033[0m\t" << basic_tools::BoolToString(CutSettings.apply_nucleon_SmearAndCorr) << "\n\n";
+    
+    std::cout << "\033[33mapply_reaction_monitoring_cuts:\033[0m\t" << basic_tools::BoolToString(CutSettings.apply_reaction_monitoring_cuts) << "\n";
+    std::cout << "\033[33mapply_P_miss_in_QE_range_cuts:\033[0m\t" << basic_tools::BoolToString(CutSettings.apply_P_miss_in_QE_range_cuts) << "\n";
+    std::cout << "\033[33mapply_E_miss_in_QE_range_cuts:\033[0m\t" << basic_tools::BoolToString(CutSettings.apply_E_miss_in_QE_range_cuts) << "\n";
+    std::cout << "\033[33mapply_P_miss_in_MECandSRC_range_cuts:\033[0m\t" << basic_tools::BoolToString(CutSettings.apply_P_miss_in_MECandSRC_range_cuts) << "\n";
+    std::cout << "\033[33mapply_E_miss_in_MECandSRC_range_cuts:\033[0m\t" << basic_tools::BoolToString(CutSettings.apply_E_miss_in_MECandSRC_range_cuts) << "\n";
+    std::cout << "\033[33mapply_xB_in_QE_range_cuts:\033[0m\t" << basic_tools::BoolToString(CutSettings.apply_xB_in_QE_range_cuts) << "\n\n";
+    std::cout << "\033[33mapply_theta_q_pCD_in_lower_FSI_range_cut:\033[0m\t" << basic_tools::BoolToString(CutSettings.apply_theta_q_pCD_in_lower_FSI_range_cut) << "\n\n";
 }
 
 };  // namespace printers

@@ -149,6 +149,24 @@ struct CutValueManager {
     DSCuts MomRes_sigma_cuts = DSCuts("MomRes_sigma_cuts", "FD", "", "Protons and neutrons", 0, FD_nucleon_momentum_cut.GetLowerCut(), 2.2);
     // Adi meeting after (29/01/24)
 
+    /* Cut for 2N reaction monitoring */
+    // Cut disscussed in the e4nu collaboration meeting at JLab (March 2025)
+    // P_miss_1N cuts:
+    DSCuts P_miss_1N_QE_range = DSCuts("P_miss_1N QE range", "", "", "Protons and neutrons", 0, 0., 0.25);
+    DSCuts P_miss_1N_MECandSRC_range = DSCuts("P_miss_1N QE range", "", "", "Protons and neutrons", 0, 0.3, 0.6);
+    DSCuts P_miss_1N_OtherReacAndFSI_range = DSCuts("P_miss_1N QE range", "", "", "Protons and neutrons", 0, 1., 9999);
+
+    // E_miss_1N cuts:
+    DSCuts E_miss_1N_QE_range = DSCuts("E_miss_1N QE range", "", "", "Protons and neutrons", 0, 0., 0.05);
+    DSCuts E_miss_1N_MECandSRC_range = DSCuts("E_miss_1N QE range", "", "", "Protons and neutrons", 0, 0.06, 0.2);  // TODO: get range from Larry!
+    DSCuts E_miss_1N_OtherReacAndFSI_range = DSCuts("E_miss_1N QE range", "", "", "Protons and neutrons", 0, 0.5, 9999);
+
+    // xB cuts:
+    DSCuts xB_cut = DSCuts("xB range", "", "", "Protons and neutrons", 0, 1., 9999); // To kill RES or DIS events
+
+    // Theta_q_pCD cuts:
+    DSCuts Theta_q_pCD_cut = DSCuts("xB QE range", "", "", "Protons and neutrons", 0, 0., 40.); // Gives lower FSI
+
     CutValueManager(ExperimentParameters &Experiment, const EventSelectionSettings &ESSettings) {
         Vz_cut = Experiment.GetVz_cuts();
         Vz_cut_FD = Experiment.GetVz_cuts_FD();
