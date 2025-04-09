@@ -41,6 +41,7 @@
     #include "../hPlots/hPlot2D.cpp"
     #include "CustomSliceLimits.h"
 
+using namespace debugging;
 using namespace utilities;
 
 class AMaps {
