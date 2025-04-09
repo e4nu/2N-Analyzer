@@ -1082,11 +1082,11 @@ void AMaps::GenerateFilteredRecoMaps(double cP_minR, double nP_minR) {
 
             // Generate filtered reco. neutron maps
             if (basic_tools::FindSubstring(SName, "Uniform_en_sample_")) {
-                for (int i = 0; i < (HistNucSliceNumOfXBins + 1); i++) {
-                    for (int j = 0; j < (HistNucSliceNumOfYBins + 1); j++) {
-                        if (acceptance_eff_n_BySlice.at(bin).GetHistogram2D()->GetBinContent(i, j) < nP_minR) { filtered_reco_theta_n_VS_phi_n_BySlice.at(bin).hFillByBin(i, j, 0); }
-                    }
-                }
+                // for (int i = 0; i < (HistNucSliceNumOfXBins + 1); i++) {
+                //     for (int j = 0; j < (HistNucSliceNumOfYBins + 1); j++) {
+                //         if (acceptance_eff_n_BySlice.at(bin).GetHistogram2D()->GetBinContent(i, j) < nP_minR) { filtered_reco_theta_n_VS_phi_n_BySlice.at(bin).hFillByBin(i, j, 0); }
+                //     }
+                // }
             }
         }
     }
