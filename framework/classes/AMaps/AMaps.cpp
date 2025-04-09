@@ -454,7 +454,7 @@ AMaps::AMaps(const std::string &AcceptanceMapsDirectory, const std::string &Samp
 // This function sets the momentum slices for the nucleons (protons and neutrons).
 void AMaps::SetBins(const std::string &P_nuc_bin_profile, double beamE) {
     bool InvertedPrintOut = false;
-    bool RegPrintOut = false;
+    bool RegPrintOut = true;
 
     if (P_nuc_bin_profile == "equi_inverted_P_nuc") {
         double InvertedPLowerLim = (1 / beamE);
@@ -1058,9 +1058,6 @@ void AMaps::CalcAcceptanceEfficiency() {
 
 #pragma region /* GenerateFilteredRecoMaps function (G3b) */
 void AMaps::GenerateFilteredRecoMaps(double cP_minR, double nP_minR) {
-    std::cout << "\n\nSName = " << SName << "\n";
-    std::cout << "\n\nbasic_tools::FindSubstring(SName, 'Uniform_en_sample_') = " << basic_tools::FindSubstring(SName, "Uniform_en_sample_") << "\n";
-
     // Generate filtered reco. electron maps
     if (basic_tools::FindSubstring(SName, "Uniform_1e_sample_")) {
         for (int bin = 0; bin < ElectronMomSliceLimits.size(); bin++) {
