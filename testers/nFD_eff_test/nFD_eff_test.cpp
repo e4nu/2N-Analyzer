@@ -29,17 +29,17 @@ void nFD_eff_test() {
 
     // vector<double> Ebeam_v = {2.07052};
     // vector<vector<bool>> Ebeam_bool_v = {{true, false, false}};
-    // vector<double> Ebeam_v = {4.02962};
-    // vector<vector<bool>> Ebeam_bool_v = {{false, true, false}};
+    vector<double> Ebeam_v = {4.02962};
+    vector<vector<bool>> Ebeam_bool_v = {{false, true, false}};
     // vector<double> Ebeam_v = {5.98636};
     // vector<vector<bool>> Ebeam_bool_v = {{false, false, true}};
-    vector<double> Ebeam_v = {2.07052, 4.02962, 5.98636};
-    vector<vector<bool>> Ebeam_bool_v = {{true, false, false}, {false, true, false}, {false, false, true}};
+    // vector<double> Ebeam_v = {2.07052, 4.02962, 5.98636};
+    // vector<vector<bool>> Ebeam_bool_v = {{true, false, false}, {false, true, false}, {false, false, true}};
 
     // int Limiter = 25000000;  // 2500 files
     // int Limiter = 10000000;  // 1000 files
-    // int Limiter = 1000000;  // 100 files
-    int Limiter = 100000;  // 10 files
+    int Limiter = 1000000;  // 100 files
+    // int Limiter = 100000;  // 10 files
     // int Limiter = 10000; // 1 file
 
     bool apply_neutFD_redef = true;
@@ -117,9 +117,11 @@ void nFD_eff_test() {
                         SampleName = "Uniform_en_sample_2070MeV";
                         Beam_energy_TString = "2070MeV";
                     } else if (Is4GeV) {
-                        InputFiles = use_ConstPn_samples ? (BaseDir + "/4029MeV_ConstPn/OutPut_en/reconhipo/*.hipo") : (BaseDir + "/4029MeV/OutPut_en/reconhipo/*.hipo");
+                        InputFiles = use_ConstPn_samples ? (BaseDir + "/4029MeV_ConstPn/OutPut_1e/reconhipo/*.hipo") : (BaseDir + "/4029MeV/OutPut_1e/reconhipo/*.hipo");
+                        // InputFiles = use_ConstPn_samples ? (BaseDir + "/4029MeV_ConstPn/OutPut_en/reconhipo/*.hipo") : (BaseDir + "/4029MeV/OutPut_en/reconhipo/*.hipo");
 
-                        SampleName = "Uniform_en_sample_4029MeV";
+                        SampleName = "Uniform_1e_sample_4029MeV";
+                        // SampleName = "Uniform_en_sample_4029MeV";
                         Beam_energy_TString = "4029MeV";
                     } else if (Is6GeV) {
                         // InputFiles = use_ConstPn_samples ? (BaseDir + "/5986MeV_ConstPn_lH2/OutPut_en/reconhipo/*.hipo") : (BaseDir + "/5986MeV/OutPut_en/reconhipo/*.hipo");
@@ -1137,7 +1139,7 @@ void nFD_eff_test() {
 
                     // ParticleID PID;
 
-                    bool SkipFile;
+                    // bool SkipFile;
 
                     while (chain.Next() == true) {
                         // Display completed
@@ -1145,8 +1147,8 @@ void nFD_eff_test() {
                         if ((counter % 1000000) == 0) { std::cerr << "\n" << counter / 1000000 << " million completed"; }
                         if ((counter % 100000) == 0) { std::cerr << "."; }
 
-                        if (counter > Limiter) { SkipFile = chain.ReallyNextFile(); }
-                        // if (counter > Limiter) { break; }
+                        // if (counter > Limiter) { SkipFile = chain.ReallyNextFile(); }
+                        if (counter > Limiter) { break; }
 
                         // SkipFile = chain.ReallyNextFile();
 
