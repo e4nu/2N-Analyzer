@@ -106,7 +106,8 @@ string ExperimentParameters::ConfigureSampleName(const std::string &AnalyzeFileP
                 }
             } else if (FindSubstring(AnalyzeFilePath, "4029MeV")) {                                                                            /* 4GeV samples
                                                                                                                                                   NOTE: here '4029MeV' has to be in the sample path! */
-                if (AnalyzeFilePath == "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/4029MeV/OutPut_1e") {  // Uniform 1e, simulation, 4GeV, ifarm
+                if (AnalyzeFilePath == "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/4029MeV_2/OutPut_1e") {  // Uniform 1e, simulation, 4GeV, ifarm
+                // if (AnalyzeFilePath == "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/4029MeV/OutPut_1e") {  // Uniform 1e, simulation, 4GeV, ifarm
                     if (AnalyzeFileSample == "reconhipo") {
                         BeamAt4GeV = SimulationSample = true;
                         sName = "Uniform_1e_sample_4029MeV";

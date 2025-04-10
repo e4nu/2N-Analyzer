@@ -129,7 +129,8 @@ void Config_Uniform_ep_2GeV_samples(std::vector<std::string> &AnalyzeFilePath_v,
 void Config_Uniform_1e_4GeV_samples(std::vector<std::string> &AnalyzeFilePath_v, std::vector<std::string> &AnalyzeFileSample_v, std::vector<std::string> &AnalyzeFileDir_v,
                                     std::vector<std::string> &AnalyzeFile_v, std::string &AnalyzeFilePath, std::string &AnalyzeFileSample, std::string &AnalyzeFileDir,
                                     std::string &AnalyzeFile) {
-    std::string AnalyzeFilePath0 = "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/4029MeV/OutPut_1e";
+    std::string AnalyzeFilePath0 = "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/4029MeV_2/OutPut_1e";
+    // std::string AnalyzeFilePath0 = "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples/4029MeV/OutPut_1e";
     std::string AnalyzeFileSample0 = "reconhipo";
     std::string AnalyzeFileDir0 = "/" + AnalyzeFilePath0 + "/" + AnalyzeFileSample0 + "/";
     std::string AnalyzeFile0 = AnalyzeFileDir0 + "*.hipo";  // all files

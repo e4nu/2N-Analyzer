@@ -11351,19 +11351,19 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     bool SkipFile = false;
 
-    // while (chain.Next()) {
-    while (true) {
-        try {
-            if (!chain.Next()) { break; };  // This might throw, so it must be in try
+    while (chain.Next()) {
+    // while (true) {
+    //     try {
+    //         if (!chain.Next()) { break; };  // This might throw, so it must be in try
 
-            // if (SkipFile) {
-            //     if (chain.ReallyNextFile()) {
-            //         SkipFile = false;  // reset flag after skipping
-            //         continue;
-            //     } else {
-            //         break;
-            //     }
-            // }
+    //         // if (SkipFile) {
+    //         //     if (chain.ReallyNextFile()) {
+    //         //         SkipFile = false;  // reset flag after skipping
+    //         //         continue;
+    //         //     } else {
+    //         //         break;
+    //         //     }
+    //         // }
 
 #pragma region /* Good file loop */
 
@@ -18309,25 +18309,25 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
 #pragma endregion
 
-        } catch (const std::exception &e) {
-            ++num_of_files;
+        // } catch (const std::exception &e) {
+        //     ++num_of_files;
 
-            TString FileToSkip = chain.CurrentFileName();
-            SkippedHipoChainFiles.push_back(FileToSkip);
+        //     TString FileToSkip = chain.CurrentFileName();
+        //     SkippedHipoChainFiles.push_back(FileToSkip);
 
-            std::cerr << "\033[35m\n\nRecoAnalyzer::RecoAnalyzer:\033[36m Warning!\033[0m Could not loop over hipo file:\n"
-                      << FileToSkip << "\nAdded to list of Skipped files. Moving to next file in chain.\n\n";
+        //     std::cerr << "\033[35m\n\nRecoAnalyzer::RecoAnalyzer:\033[36m Warning!\033[0m Could not loop over hipo file:\n"
+        //               << FileToSkip << "\nAdded to list of Skipped files. Moving to next file in chain.\n\n";
 
-            SkipFile = chain.ReallyNextFile();
+        //     SkipFile = chain.ReallyNextFile();
 
-            if (chain.Next())
+        //     if (chain.Next())
 
-            // continue;  // Continue to next file or event
+        //     // continue;  // Continue to next file or event
 
-            // if (chain.ReallyNextFile()) {
-            //     continue;  // Continue to next file
-            // }
-        }
+        //     // if (chain.ReallyNextFile()) {
+        //     //     continue;  // Continue to next file
+        //     // }
+        // }
     }  // end of while
     // </editor-fold>
 
