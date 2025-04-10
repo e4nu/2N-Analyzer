@@ -32,9 +32,9 @@ struct AcceptanceMapsSettings {
     // int NumberNucOfMomSlices = 15, NumberElecOfMomSlices = 15, HistElectronSliceNumOfXBins = 100, HistNucSliceNumOfXBins = 100;
 
     AcceptanceMapsSettings()
-        : Generate_Electron_AMaps(true),
-          Generate_Nucleon_AMaps(true),
-          Generate_WMaps(true),
+        : Generate_Electron_AMaps(false),
+          Generate_Nucleon_AMaps(false),
+          Generate_WMaps(false),
           AMaps_calc_with_one_reco_electron(true),
 
           P_e_bin_profile("uniform_P_e_bins"),
