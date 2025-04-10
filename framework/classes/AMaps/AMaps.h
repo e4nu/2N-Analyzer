@@ -241,7 +241,7 @@ class AMaps {
 
     // GenerateExtendedElectronMapMatrices function ----------------------------------------------------------------------------------------------------------------------------------
 
-    void GenerateExtendedElectronMapMatrices();
+    void GenerateExtendedElectronMapMatrices(const vector<vector<vector<int>>> &ref_e_AMap_Slices);
 
     // GenerateFilteredRecoCPartMaps function ----------------------------------------------------------------------------------------------------------------------------------
 
