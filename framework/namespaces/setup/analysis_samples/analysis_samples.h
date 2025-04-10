@@ -92,7 +92,7 @@ void ConfigSampleChain() {
     // Config_Uniform_ep_4GeV_samples(AnalyzeFilePath_v, AnalyzeFileSample_v, AnalyzeFileDir_v, AnalyzeFile_v, AnalyzeFilePath, AnalyzeFileSample, AnalyzeFileDir, AnalyzeFile);
 
     // // /* Uniform samples @ 6GeV */
-    // Config_Uniform_1e_6GeV_samples(AnalyzeFilePath_v, AnalyzeFileSample_v, AnalyzeFileDir_v, AnalyzeFile_v, AnalyzeFilePath, AnalyzeFileSample, AnalyzeFileDir, AnalyzeFile);
+    Config_Uniform_1e_6GeV_samples(AnalyzeFilePath_v, AnalyzeFileSample_v, AnalyzeFileDir_v, AnalyzeFile_v, AnalyzeFilePath, AnalyzeFileSample, AnalyzeFileDir, AnalyzeFile);
     // Config_Uniform_en_6GeV_samples(AnalyzeFilePath_v, AnalyzeFileSample_v, AnalyzeFileDir_v, AnalyzeFile_v, AnalyzeFilePath, AnalyzeFileSample, AnalyzeFileDir, AnalyzeFile);
     // Config_Uniform_ep_6GeV_samples(AnalyzeFilePath_v, AnalyzeFileSample_v, AnalyzeFileDir_v, AnalyzeFile_v, AnalyzeFilePath, AnalyzeFileSample, AnalyzeFileDir, AnalyzeFile);
 

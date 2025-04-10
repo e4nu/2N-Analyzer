@@ -28,7 +28,7 @@ struct AcceptanceMapsSettings {
     std::vector<int> TestSlices;      // {ElectronTestSlice, ProtonTestSlice, NeutronTestSlice}
 
     /* Set Bins by case */
-    int NumberNucOfMomSlices = 15, NumberElecOfMomSlices = 45, HistElectronSliceNumOfXBins = 120, HistNucSliceNumOfXBins = 120;
+    int NumberNucOfMomSlices = 15, NumberElecOfMomSlices = 60, HistElectronSliceNumOfXBins = 120, HistNucSliceNumOfXBins = 120;
     // int NumberNucOfMomSlices = 15, NumberElecOfMomSlices = 15, HistElectronSliceNumOfXBins = 100, HistNucSliceNumOfXBins = 100;
 
     AcceptanceMapsSettings()
