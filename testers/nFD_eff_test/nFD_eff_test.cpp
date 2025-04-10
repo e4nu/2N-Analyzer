@@ -1139,12 +1139,17 @@ void nFD_eff_test() {
 
                     // ParticleID PID;
 
-                    // bool SkipFile;
+                    bool SkipFile = false;
 
                     // while (chain.Next() == true) {
                     while (true) {
                         try {
                             if (!chain.Next()) { break; };  // This might throw, so it must be in try
+
+                            if (SkipFile) {
+                                bool advance = chain.CurrentFileName();
+                                continue;
+                            }
 
 #pragma region /* File loop */
                             // Display completed
@@ -2231,12 +2236,12 @@ void nFD_eff_test() {
                             std::cerr << "\033[35m\n\nRecoAnalyzer::RecoAnalyzer:\033[36m Warning!\033[0m Could not loop over hipo file:\n"
                                       << FileToSkip << "\nAdded to list of Skipped files.\n";
 
-                            bool SkipFile = chain.ReallyNextFile();
+                            bool SkipFile = true;
+                            // bool SkipFile = chain.ReallyNextFile();
 
                             if (SkipFile) {
                                 std::cerr << "Moving to next file in chain.\n\n";
-                            } else {
-                                break;
+                                continue;
                             }
 
                             // continue;  // Continue to next file or event
