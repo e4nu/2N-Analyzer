@@ -1147,7 +1147,7 @@ void nFD_eff_test() {
                             if (!chain.Next()) { break; };  // This might throw, so it must be in try
 
                             if (SkipFile) {
-                                bool advance = chain.CurrentFileName();
+                                bool advance = chain.Next();
                                 continue;
                             }
 
