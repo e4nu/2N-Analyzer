@@ -1146,10 +1146,12 @@ void nFD_eff_test() {
                     // while (chain.Next() == true) {
                     while (true) {
                         if (SkipFile) {
-                            std::cerr << "\033[35mSkipFile = " << SkipFile << "\033[0m\n";
+                            std::cerr << "\033[35m\nSkipFile = " << SkipFile << "\033[0m\n\n";
 
                             bool advance = chain.ReallyNextFile();
                             SkipFile = false;
+
+                            continue;
                         }
 
                         try {
