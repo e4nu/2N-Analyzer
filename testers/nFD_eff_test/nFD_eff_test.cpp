@@ -2253,7 +2253,7 @@ void nFD_eff_test() {
                                 
                                 continue;
 
-                                bool advance = chain.Next();
+                                bool advance2 = chain.Next();
                             }
 
                             // continue;  // Continue to next file or event
