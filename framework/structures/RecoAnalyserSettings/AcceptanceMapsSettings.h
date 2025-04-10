@@ -47,8 +47,10 @@ struct AcceptanceMapsSettings {
     void RefreshSettingsByParameters(const RunParameters& parameters) {
         if (parameters.isData) { Generate_Electron_AMaps = Generate_Nucleon_AMaps = Generate_WMaps = false; }
 
+        // Don't generate electron AMaps if the samples is not Uniform_1e_[...]
         if (Generate_Electron_AMaps && !basic_tools::FindSubstring(parameters.SampleName, "Uniform_1e")) { Generate_Electron_AMaps = false; }
 
+        // Don't generate nucleon AMaps if the samples is not Uniform_ep/en_[...]
         if (Generate_Nucleon_AMaps && (!basic_tools::FindSubstring(parameters.SampleName, "Uniform_ep")) && !basic_tools::FindSubstring(parameters.SampleName, "Uniform_en")) {
             Generate_Nucleon_AMaps = false;
         }
