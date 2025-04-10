@@ -74,7 +74,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     AnalysisCutSettings CutSettings = AnalysisCutSettings();
 
     CutSettings.RefreshSettings(parameters, ESSettings, AMapsSettings, MomResSettings);
-    
+
     /* Save plots to custom-named folders, to allow multi-sample runs at once. */
     std::string run_plots_path = path_definitions::PathDefinitions.plots_path;
     std::string run_plots_log_save_Directory = path_definitions::plots_log_save_Directory;
@@ -645,7 +645,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     /* Acceptance maps are handled completely by the AMaps class */
     std::cout << "\033[33m\nSetting Acceptance maps...\033[0m";
 
-    AMapsSettings.RefreshSettingsByEventSelection(ESSettings,AMaps_plots,WMaps_plots);
+    AMapsSettings.RefreshSettingsByEventSelection(ESSettings, AMaps_plots, WMaps_plots);
 
     // if (!ESSettings.calculate_truth_level) { AMapsSettings.Generate_WMaps = false; }
 
@@ -662,7 +662,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     if (AMapsSettings.Generate_Electron_AMaps || AMapsSettings.Generate_Nucleon_AMaps) {
         aMaps_master =
             AMaps(parameters.SampleName, AMapsSettings.P_e_bin_profile, AMapsSettings.P_nuc_bin_profile, parameters.beamE, "AMaps", directories.AMaps_dir_map["AMaps_1e_cut_Directory"],
-                  AMapsSettings.NumberNucOfMomSlices, AMapsSettings.NumberElecOfMomSlices, AMapsSettings.HistNucSliceNumOfXBins, AMapsSettings.HistNucSliceNumOfXBins, AMapsSettings.HistElectronSliceNumOfXBins, AMapsSettings.HistElectronSliceNumOfXBins);
+                  AMapsSettings.NumberNucOfMomSlices, AMapsSettings.NumberElecOfMomSlices, AMapsSettings.HistNucSliceNumOfXBins, AMapsSettings.HistNucSliceNumOfXBins,
+                  AMapsSettings.HistElectronSliceNumOfXBins, AMapsSettings.HistElectronSliceNumOfXBins);
     } else {
         aMaps_master = AMaps(path_definitions::PathDefinitions.AcceptanceMapsDirectory, parameters.VaryingSampleName, parameters.beamE, "AMaps", AMapsSettings.Electron_single_slice_test,
                              AMapsSettings.Nucleon_single_slice_test, AMapsSettings.TestSlices);
@@ -673,7 +674,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     // if (AMapsSettings.Generate_WMaps) {
     //     wMaps_master =
     //         AMaps(parameters.SampleName, AMapsSettings.P_e_bin_profile, AMapsSettings.P_nuc_bin_profile, parameters.beamE, "WMaps", directories.AMaps_dir_map["WMaps_1e_cut_Directory"],
-    //               AMapsSettings.NumberNucOfMomSlices, AMapsSettings.NumberElecOfMomSlices, AMapsSettings.HistNucSliceNumOfXBins, AMapsSettings.HistNucSliceNumOfXBins, AMapsSettings.HistElectronSliceNumOfXBins, AMapsSettings.HistElectronSliceNumOfXBins);
+    //               AMapsSettings.NumberNucOfMomSlices, AMapsSettings.NumberElecOfMomSlices, AMapsSettings.HistNucSliceNumOfXBins, AMapsSettings.HistNucSliceNumOfXBins,
+    //               AMapsSettings.HistElectronSliceNumOfXBins, AMapsSettings.HistElectronSliceNumOfXBins);
     // } else {
     //     wMaps_master = AMaps(path_definitions::PathDefinitions.AcceptanceWeightsDirectory, parameters.VaryingSampleName, parameters.beamE, "WMaps",
     //     AMapsSettings.Electron_single_slice_test,
@@ -11347,10 +11349,21 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     int num_of_files = 0;
 
+    bool SkipFile = false;
+
     // while (chain.Next()) {
     while (true) {
         try {
-            if (!chain.Next()) { break; }
+            if (!chain.Next()) break;  // This might throw, so it must be in try
+
+            if (SkipFile) {
+                if (chain.ReallyNextFile()) {
+                    SkipFile = false;  // reset flag after skipping
+                    continue;
+                } else {
+                    break;
+                }
+            }
 
 #pragma region /* Good file loop */
 
@@ -18306,12 +18319,15 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                       << FileToSkip << "\nAdded to list of Skipped files. Moving to next file in chain.\n\n";
 
             std::cerr << "\033[35m\n\nRecoAnalyzer::RecoAnalyzer:\033[36m num_of_files:\033[0m " << num_of_files << "\n\n";
-            
+
+            SkipFile = true;
+            continue;
+    
             // continue;  // Continue to next file or event
 
-            if (chain.ReallyNextFile()) {
-                continue;  // Continue to next file
-            }
+            // if (chain.ReallyNextFile()) {
+            //     continue;  // Continue to next file
+            // }
         }
     }  // end of while
     // </editor-fold>
