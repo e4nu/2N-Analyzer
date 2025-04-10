@@ -1145,6 +1145,13 @@ void nFD_eff_test() {
 
                     // while (chain.Next() == true) {
                     while (true) {
+                        if (SkipFile) {
+                            std::cerr << "SkipFile = " << SkipFile << "\n";
+
+                            bool advance = chain.ReallyNextFile();
+                            continue;
+                        }
+
                         try {
                             if (!chain.Next()) { break; };  // This might throw, so it must be in try
 
@@ -2235,7 +2242,7 @@ void nFD_eff_test() {
 #pragma endregion
                         } catch (const std::exception& e) {
                             ++number_of_files;
-                            
+
                             TString FileToSkip = chain.CurrentFileName();
                             // SkippedHipoChainFiles.push_back(FileToSkip);
 
@@ -2250,12 +2257,10 @@ void nFD_eff_test() {
                             if (SkipFile) {
                                 std::cerr << "Moving to next file in chain.\n\n";
                                 bool advance2 = chain.Next();
-                                
-                                bool advance = chain.ReallyNextFile();
-                                
-                                continue;
 
-                                
+                                bool advance = chain.ReallyNextFile();
+
+                                continue;
                             }
 
                             // continue;  // Continue to next file or event
