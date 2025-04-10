@@ -14,7 +14,11 @@
 #include <TH1.h>
 #include <TH2.h>
 #include <TLatex.h>
+#include <TList.h>
 #include <TLorentzVector.h>
+#include <TObject.h>
+#include <TPad.h>
+#include <TPaletteAxis.h>
 #include <TROOT.h>
 #include <TStyle.h>
 #include <TTree.h>
@@ -26,8 +30,12 @@
 #include <iostream>
 #include <map>
 #include <sstream>
+#include <string>
 #include <typeinfo>
 #include <vector>
+
+// Include settings:
+#include "basic_tools.h"
 
 namespace histogram_functions {
 
