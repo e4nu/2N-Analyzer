@@ -1650,25 +1650,22 @@ void AMaps::SaveMaps(const std::string &SampleName, const std::string &Acceptanc
 
         if (PrintOut) { ++testNumber, std::cout << "\n\n\nTEST " << testNumber << "\n"; }
 
-#pragma region /* Slice limits */
-        std::ofstream e_slice_limits;
+// #pragma region /* Slice limits */
+//         std::ofstream e_slice_limits;
 
-        e_slice_limits = std::ofstream(AMapSliceExtendedElectronSavePath + "e_slice_limits.par");  // Opens in overwrite mode
+//         e_slice_limits = std::ofstream(AMapSliceExtendedElectronSavePath + "e_slice_limits.par");  // Opens in overwrite mode
 
-        if (PrintOut) { ++testNumber, std::cout << "\n\n\nTEST " << testNumber << "\n"; }
+//         if (PrintOut) { ++testNumber, std::cout << "\n\n\nTEST " << testNumber << "\n"; }
 
-        for (int Slice = 0; Slice < ElectronMomSliceLimits.size(); Slice++) {
-            e_slice_limits << "e_slice_" << (Slice + 1) << "\t" << ElectronMomSliceLimits.at(Slice).at(0) << ":" << ElectronMomSliceLimits.at(Slice).at(1) << "\n";
-        }
+//         for (int Slice = 0; Slice < ElectronMomSliceLimits.size(); Slice++) {
+//             e_slice_limits << "e_slice_" << (Slice + 1) << "\t" << ElectronMomSliceLimits.at(Slice).at(0) << ":" << ElectronMomSliceLimits.at(Slice).at(1) << "\n";
+//         }
 
-        e_slice_limits << "\n";
+//         e_slice_limits << "\n";
 
-        e_slice_limits.close();
+//         e_slice_limits.close();
 
-        system(("cp " + AMapSliceExtendedElectronSavePath + "e_slice_limits.par " + AMapSliceExtendedElectronSavePathCopy).c_str());
-
-        system(("cp " + WMapSliceExtendedElectronSavePath + "e_slice_limits.par " + WMapSliceExtendedElectronSavePathCopy).c_str());
-#pragma endregion
+//         system(("cp " + AMapSliceExtendedElectronSavePath + "e_slice_limits.par " + AMapSliceExtendedElectronSavePathCopy).c_str());
 
 #pragma endregion
     }
