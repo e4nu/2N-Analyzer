@@ -11345,6 +11345,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps);
 
+    int num_of_files = 0;
+
     // while (chain.Next()) {
     while (true) {
         try {
@@ -18295,12 +18297,16 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 #pragma endregion
 
         } catch (const std::exception &e) {
+            ++num_of_files;
+
             TString FileToSkip = chain.CurrentFileName();
             SkippedHipoChainFiles.push_back(FileToSkip);
 
             std::cerr << "\033[35m\n\nRecoAnalyzer::RecoAnalyzer:\033[36m Warning!\033[0m Could not loop over hipo file:\n"
-                      << FileToSkip << "\nAdded to list of Skipped files. Moving to next file in chain.\n";
+                      << FileToSkip << "\nAdded to list of Skipped files. Moving to next file in chain.\n\n";
 
+            std::cerr << "\033[35m\n\nRecoAnalyzer::RecoAnalyzer:\033[36m num_of_files:\033[0m " << num_of_files << "\n\n";
+            
             continue;  // Continue to next file or event
         }
     }  // end of while
