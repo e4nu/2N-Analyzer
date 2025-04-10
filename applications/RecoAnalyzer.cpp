@@ -11077,7 +11077,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         if (CutSettings.apply_ECAL_SF_cuts) {
             // making f_ecalSFCuts = true
             // TODO: ask justin what are these cuts:
-            // TODO: ask justin for these cuts for LH2 and MainCanvas2 (and other elements)
+            // TODO: ask justin for these cuts for LH2 and C12 (and other elements)
             clasAna.readEcalSFPar((path_definitions::PathDefinitions.PIDCutsDirectory + "paramsSF_40Ca_x2.dat").c_str());
             // TODO: RECHECK WHAT ARE THE CUTS HERE:
             CutManager.SF_cuts = DSCuts("SF", "FD", "Electron", "1e cut", 0.24865, clasAna.getEcalSFLowerCut(), clasAna.getEcalSFUpperCut());
@@ -11088,7 +11088,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         if (CutSettings.apply_ECAL_P_cuts) {
             // making f_ecalSFCuts = true
             // TODO: ask justin what are these cuts:
-            // TODO: ask justin for these cuts for LH2 and MainCanvas2 (and other elements)
+            // TODO: ask justin for these cuts for LH2 and C12 (and other elements)
             clasAna.readEcalPPar((path_definitions::PathDefinitions.PIDCutsDirectory + "paramsPI_40Ca_x2.dat").c_str());
 
             clasAna.setEcalPCuts();
@@ -11240,7 +11240,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             if (CutSettings.apply_ECAL_SF_cuts) {
                 // making f_ecalSFCuts = true
                 // TODO: ask justin what are these cuts:
-                // TODO: ask justin for these cuts for LH2 and MainCanvas2 (and other elements)
+                // TODO: ask justin for these cuts for LH2 and C12 (and other elements)
                 clasAna.readEcalSFPar((path_definitions::PathDefinitions.PIDCutsDirectory + "paramsSF_40Ca_x2.dat").c_str());
                 // TODO: RECHECK WHAT ARE THE CUTS HERE:
                 CutManager.SF_cuts = DSCuts("SF", "FD", "Electron", "1e cut", 0.24865, clasAna.getEcalSFLowerCut(), clasAna.getEcalSFUpperCut());
@@ -11251,7 +11251,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             if (CutSettings.apply_ECAL_P_cuts) {
                 // making f_ecalSFCuts = true
                 // TODO: ask justin what are these cuts:
-                // TODO: ask justin for these cuts for LH2 and MainCanvas2 (and other elements)
+                // TODO: ask justin for these cuts for LH2 and C12 (and other elements)
                 clasAna.readEcalPPar((path_definitions::PathDefinitions.PIDCutsDirectory + "paramsPI_40Ca_x2.dat").c_str());
 
                 clasAna.setEcalPCuts();
@@ -11281,8 +11281,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     // utilities::AddToHipoChain(chain, parameters.SampleName, AnalyzeFilePath, AnalyzeFileSample, AnalyzeFile);
     chain.SetReaderTags({0});
     int HipoChainLength = chain.GetNFiles();
-    auto config_MainCanvas2 = chain.GetMainCanvas2Reader();
-    auto &MainCanvas2 = chain.MainCanvas2ref();
+    auto config_c12 = chain.GetC12Reader();
+    auto &c12 = chain.C12ref();
 
     auto db = TDatabasePDG::Instance();
     chain.db()->turnOffQADB();
@@ -11382,17 +11382,17 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         ++num_of_events;  // logging Total #(events) in sample
 
         /* Particles outside clas12ana */
-        std::vector<clas12::region_part_ptr> allParticles_det = MainCanvas2->getDetParticles();
-        std::vector<clas12::region_part_ptr> electrons_det = MainCanvas2->getByID(11);
+        std::vector<clas12::region_part_ptr> allParticles_det = c12->getDetParticles();
+        std::vector<clas12::region_part_ptr> electrons_det = c12->getByID(11);
 
-        clasAna.Run(MainCanvas2);
+        clasAna.Run(c12);
 
         /* allParticles vector from clas12ana (my addition). Used mostly for 1n & nFDpCD.  */
         std::vector<clas12::region_part_ptr> allParticles = clasAna.getParticles();
 
         /* All of these particles are with clas12ana cuts. Only cuts missing are momentum and beta(?) cuts - to be applied later */
         std::vector<clas12::region_part_ptr> neutrons, protons, Kplus, Kminus, piplus, piminus, electrons, deuterons, neutrals, otherpart;
-        // pid.SetEventParticles(CutSettings.clas12ana_particles, clasAna, MainCanvas2, neutrons, protons, Kplus, Kminus, piplus, piminus, electrons, deuterons, neutrals, otherpart);
+        // pid.SetEventParticles(CutSettings.clas12ana_particles, clasAna, c12, neutrons, protons, Kplus, Kminus, piplus, piminus, electrons, deuterons, neutrals, otherpart);
 
         if (CutSettings.clas12ana_particles) {
             // Get particle outside from clas12ana:
@@ -11409,17 +11409,17 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             otherpart = clasAna.getByPid(311);  // Other particles
         } else {
             // Get particle outside of clas12ana:
-            neutrons = MainCanvas2->getByID(2112);  // Neutrons
-            protons = MainCanvas2->getByID(2212);   // Protons
-            Kplus = MainCanvas2->getByID(321);      // K+
-            Kminus = MainCanvas2->getByID(-321);    // K-
-            piplus = MainCanvas2->getByID(211);     // pi+
-            piminus = MainCanvas2->getByID(-211);   // pi-
-            electrons = MainCanvas2->getByID(11);   // Electrons
+            neutrons = c12->getByID(2112);  // Neutrons
+            protons = c12->getByID(2212);   // Protons
+            Kplus = c12->getByID(321);      // K+
+            Kminus = c12->getByID(-321);    // K-
+            piplus = c12->getByID(211);     // pi+
+            piminus = c12->getByID(-211);   // pi-
+            electrons = c12->getByID(11);   // Electrons
 
-            deuterons = MainCanvas2->getByID(45);   // Deuterons
-            neutrals = MainCanvas2->getByID(0);     // Unidentified
-            otherpart = MainCanvas2->getByID(311);  // Other particles
+            deuterons = c12->getByID(45);   // Deuterons
+            neutrals = c12->getByID(0);     // Unidentified
+            otherpart = c12->getByID(311);  // Other particles
         }
 
         int Nn = neutrons.size(), Np = protons.size(), Nkp = Kplus.size(), Nkm = Kminus.size(), Npip = piplus.size(), Npim = piminus.size(), Ne = electrons.size();
@@ -11522,7 +11522,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
         // Process ID
         bool qel = false, mec = false, res = false, dis = false;
-        double processID = MainCanvas2->mcevent()->getWeight();  // code = 1.,2.,3.,4. = type = qel, mec, res, dis
+        double processID = c12->mcevent()->getWeight();  // code = 1.,2.,3.,4. = type = qel, mec, res, dis
 
         if (processID == 1.) {
             ++num_of_QEL_events;
@@ -11576,7 +11576,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         if (PrintEvents)  // TODO: add to debugger class?
         {
             bool EventPrintSelection = (Ne == Ne_in_event && Nf >= Nf_in_event);
-            int event = MainCanvas2->runconfig()->getEvent();
+            int event = c12->runconfig()->getEvent();
 
             if (EventPrintSelection) {
                 if (event < (nEvents2print + 1)) {
@@ -11622,8 +11622,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
         if (ESSettings.calculate_truth_level && (!ESSettings.TL_plots_only_for_NC || CutSettings.apply_nucleon_cuts) && parameters.isMC) {
             // run only for CLAS12 simulation & AFTER beta fit
-            mcpar_ptr mcpbank = MainCanvas2->mcparts();
-            // auto mcpbank = MainCanvas2->mcparts();
+            mcpar_ptr mcpbank = c12->mcparts();
+            // auto mcpbank = c12->mcparts();
             const Int_t Ngen = mcpbank->getRows();
 
             bool TL_fiducial_cuts;
@@ -11860,8 +11860,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             // 1p = one id. FD proton (any or no FD neutrons, according to the value of ESSettings.Enable_FD_neutrons):
             bool TL_FDneutrons_1p = (ESSettings.Enable_FD_neutrons || (TL_NeutronsFD_mom_ind.size() == 0));  // no id. FD neutrons for ESSettings.Enable_FD_neutrons = false
             bool no_CDproton_1p = (TL_ProtonsCD_mom_ind.size() == 0);
-            bool one_FDproton_1p = ((TL_ProtonsFD_mom_ind.size() == 1) && (TLKinCutsCheck(MainCanvas2, CutSettings.apply_kinematical_cuts, TL_ProtonsFD_mom_ind,
-                                                                                          CutManager.FD_nucleon_theta_cut, CutManager.FD_nucleon_momentum_cut)));
+            bool one_FDproton_1p = ((TL_ProtonsFD_mom_ind.size() == 1) &&
+                                    (TLKinCutsCheck(c12, CutSettings.apply_kinematical_cuts, TL_ProtonsFD_mom_ind, CutManager.FD_nucleon_theta_cut, CutManager.FD_nucleon_momentum_cut)));
             bool FDproton_wFC_1p = (TL_ProtonsFD_mom_ind.size() == TL_ProtonsFD_wFC_mom_ind.size());  // id. FD proton is within fiducial cuts (wFC)
             TL_Event_Selection_1p = (TL_Basic_ES && TL_FDneutrons_1p && no_CDproton_1p && one_FDproton_1p && FDproton_wFC_1p);
 
@@ -11869,9 +11869,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             // 1n = X number of id. FD neutron (we look at the leading nFD) & no id. protons:
             // (TL_IDed_Leading_nFD_ind != -1) -> ensures that we have at least one FD neutron in the event
             // (ESSettings.ES_by_leading_FDneutron || (TL_NeutronsFD_mom_ind.size() == 1)) -> ensures that we are looking at the leading nFD if ESSettings.ES_by_leading_FDneutron = true
-            bool one_FDneutron_1n =
-                (((ESSettings.ES_by_leading_FDneutron || (TL_NeutronsFD_mom_ind.size() == 1)) && (TL_IDed_Leading_nFD_ind != -1)) &&
-                 (TLKinCutsCheck(MainCanvas2, CutSettings.apply_kinematical_cuts, TL_IDed_Leading_nFD_ind, CutManager.FD_nucleon_theta_cut, CutManager.FD_nucleon_momentum_cut)));
+            bool one_FDneutron_1n = (((ESSettings.ES_by_leading_FDneutron || (TL_NeutronsFD_mom_ind.size() == 1)) && (TL_IDed_Leading_nFD_ind != -1)) &&
+                                     (TLKinCutsCheck(c12, CutSettings.apply_kinematical_cuts, TL_IDed_Leading_nFD_ind, CutManager.FD_nucleon_theta_cut, CutManager.FD_nucleon_momentum_cut)));
             bool no_protons_1n = ((TL_ProtonsCD_mom_ind.size() == 0) && (TL_ProtonsFD_mom_ind.size() == 0));
             bool FDneutron_wFC_1p = Leading_Neutron_inFD_wFC;  // leading nFD is within fiducial cuts (wFC)
             TL_Event_Selection_1n = (TL_Basic_ES && one_FDneutron_1n && no_protons_1n && FDneutron_wFC_1p);
@@ -11879,8 +11878,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             // Setting up pFDpCD TL event selection
             // pFDpCD = One id. FD proton & one id. CD proton:
             bool one_CDproton_pFDpCD = (TL_ProtonsCD_mom_ind.size() == 1);
-            bool one_FDproton_pFDpCD = ((TL_ProtonsFD_mom_ind.size() == 1) && (TLKinCutsCheck(MainCanvas2, CutSettings.apply_kinematical_cuts, TL_ProtonsFD_mom_ind,
-                                                                                              CutManager.FD_nucleon_theta_cut, CutManager.FD_nucleon_momentum_cut)));
+            bool one_FDproton_pFDpCD = ((TL_ProtonsFD_mom_ind.size() == 1) &&
+                                        (TLKinCutsCheck(c12, CutSettings.apply_kinematical_cuts, TL_ProtonsFD_mom_ind, CutManager.FD_nucleon_theta_cut, CutManager.FD_nucleon_momentum_cut)));
             bool TL_FDneutrons_pFDpCD = (ESSettings.Enable_FD_neutrons || (TL_NeutronsFD_mom_ind.size() == 0));  // no id. FD neutrons for ESSettings.Enable_FD_neutrons = false
             bool FDproton_wFC_pFDpCD = (TL_ProtonsFD_mom_ind.size() == TL_ProtonsFD_wFC_mom_ind.size());         // id. FD proton is within fiducial cuts (wFC)
             TL_Event_Selection_pFDpCD = (TL_Basic_ES && one_CDproton_pFDpCD && one_FDproton_pFDpCD && TL_FDneutrons_pFDpCD && FDproton_wFC_pFDpCD);
@@ -11893,7 +11892,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             bool no_FDproton_nFDpCD = (TL_ProtonsFD_mom_ind.size() == 0);
             bool one_FDNeutron_nFDpCD =
                 (((ESSettings.ES_by_leading_FDneutron || (TL_NeutronsFD_mom_ind.size() == 1)) && (TL_IDed_Leading_nFD_ind != -1)) &&
-                 (TLKinCutsCheck(MainCanvas2, CutSettings.apply_kinematical_cuts, TL_IDed_Leading_nFD_ind, CutManager.FD_nucleon_theta_cut, CutManager.FD_nucleon_momentum_cut)));
+                 (TLKinCutsCheck(c12, CutSettings.apply_kinematical_cuts, TL_IDed_Leading_nFD_ind, CutManager.FD_nucleon_theta_cut, CutManager.FD_nucleon_momentum_cut)));
             bool FDneutron_wFC_nFDpCD = Leading_Neutron_inFD_wFC;  // leading nFD is within fiducial cuts (wFC)
             TL_Event_Selection_nFDpCD = (TL_Basic_ES && one_CDproton_nFDpCD && no_FDproton_nFDpCD && one_FDNeutron_nFDpCD && FDneutron_wFC_nFDpCD);
 
@@ -14737,7 +14736,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
                 // Fill resolution histograms (1p)
                 if (MomResSettings.plot_and_fit_MomRes) {
-                    mcpar_ptr mcpbank_pRes = MainCanvas2->mcparts();
+                    mcpar_ptr mcpbank_pRes = c12->mcparts();
                     const Int_t Ngen_pRes = mcpbank_pRes->getRows();
 
                     int Proton_match_counter = 0;
@@ -15602,7 +15601,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
                 // Fill resolution histograms (1n)
                 if (MomResSettings.plot_and_fit_MomRes) {
-                    mcpar_ptr mcpbank_nRes = MainCanvas2->mcparts();
+                    mcpar_ptr mcpbank_nRes = c12->mcparts();
                     const Int_t Ngen_nRes = mcpbank_nRes->getRows();
 
                     int Neutron_match_counter = 0;
@@ -15678,7 +15677,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                                 bool ECOUT_HIT = (n_1n->cal(clas12::ECOUT)->getDetector() == 7);  // ECOUT hit
                                 auto Detlayer_1n = ECIN_HIT ? clas12::ECIN : clas12::ECOUT;       // determine the earliest layer of the neutral hit
 
-                                double t_start = MainCanvas2->event()->getStartTime();  // Event start time
+                                double t_start = c12->event()->getStartTime();  // Event start time
 
                                 double Reco_L = n_1n->getPath();                                           // Reco neutron path
                                 double Reco_beta = n_1n->par()->getBeta();                                 // Reco neutron beta
@@ -19452,7 +19451,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                 DrawAndSaveFSRatio(parameters.SampleName, hP_tot_minus_q_pFDpCD, hP_tot_minus_q_nFDpCD, plots);
             }
 
-            if (FSR_2D_plots && parameters.SampleName != "MainCanvas2_simulation_6GeV_T5_first_10") {
+            if (FSR_2D_plots && parameters.SampleName != "C12_simulation_6GeV_T5_first_10") {
                 DrawAndSaveFSRatio(parameters.SampleName, hP_pL_vs_P_pR_pFDpCD, hP_nL_vs_P_nR_nFDpCD, plots);
                 DrawAndSaveFSRatio(parameters.SampleName, hP_pFD_vs_P_pCD_pFDpCD, hP_nFD_vs_P_pCD_nFDpCD, plots);
                 DrawAndSaveFSRatio(parameters.SampleName, hP_tot_vs_P_rel_pFDpCD, hP_tot_vs_P_rel_nFDpCD, plots);
@@ -22611,7 +22610,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                 DrawAndSaveFSRatio(parameters.SampleName, hTheta_pFD_pCD_All_Int_pFDpCD, hTheta_pFD_pCD_All_Int_pFDpCD_Dir, hTheta_nFD_pCD_All_Int_nFDpCD, plots);
             }
 
-            if (FSR_2D_plots && parameters.SampleName != "MainCanvas2_simulation_6GeV_T5_first_10") {
+            if (FSR_2D_plots && parameters.SampleName != "C12_simulation_6GeV_T5_first_10") {
                 DrawAndSaveFSRatio(parameters.SampleName, hTheta_e_VS_P_e_pFDpCD_FD, hTheta_e_VS_P_e_pFDpCD_FD_Dir, hTheta_e_VS_P_e_nFDpCD_FD, plots);
                 DrawAndSaveFSRatio(parameters.SampleName, hTheta_e_VS_W_pFDpCD_FD, hTheta_e_VS_W_pFDpCD_FD_Dir, hTheta_e_VS_W_nFDpCD_FD, plots);
                 DrawAndSaveFSRatio(parameters.SampleName, hPhi_e_VS_P_e_pFDpCD_FD, hPhi_e_VS_P_e_pFDpCD_FD_Dir, hPhi_e_VS_P_e_nFDpCD_FD, plots);
@@ -23083,7 +23082,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         if (CutSettings.apply_nucleon_cuts) {
             if (FSR_1D_plots) { DrawAndSaveFSRatio(parameters.SampleName, hQ2_pFDpCD, hQ2_pFDpCD_Dir, hQ2_nFDpCD, plots); }
 
-            if (FSR_2D_plots && parameters.SampleName != "MainCanvas2_simulation_6GeV_T5_first_10") {
+            if (FSR_2D_plots && parameters.SampleName != "C12_simulation_6GeV_T5_first_10") {
                 DrawAndSaveFSRatio(parameters.SampleName, hQ2_VS_W_pFDpCD, hQ2_VS_W_pFDpCD_Dir, hQ2_VS_W_nFDpCD, plots);
             }
         }
@@ -23368,7 +23367,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         if (CutSettings.apply_nucleon_cuts) {
             if (FSR_1D_plots) { DrawAndSaveFSRatio(parameters.SampleName, hE_e_All_Int_pFDpCD_FD, hE_e_All_Int_pFDpCD_FD_Dir, hE_e_All_Int_nFDpCD_FD, plots); }
 
-            if (FSR_2D_plots && parameters.SampleName != "MainCanvas2_simulation_6GeV_T5_first_10") {
+            if (FSR_2D_plots && parameters.SampleName != "C12_simulation_6GeV_T5_first_10") {
                 DrawAndSaveFSRatio(parameters.SampleName, hE_e_VS_Theta_e_All_Int_pFDpCD_FD, hE_e_VS_Theta_e_All_Int_pFDpCD_FD_Dir, hE_e_VS_Theta_e_All_Int_nFDpCD_FD, plots);
             }
 
@@ -23960,7 +23959,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         if (CutSettings.apply_nucleon_cuts) {
             if (FSR_1D_plots) { DrawAndSaveFSRatio(parameters.SampleName, hEcal_All_Int_pFDpCD, hEcal_All_Int_pFDpCD_Dir, hEcal_All_Int_nFDpCD, plots); }
 
-            if (FSR_2D_plots && parameters.SampleName != "MainCanvas2_simulation_6GeV_T5_first_10") {
+            if (FSR_2D_plots && parameters.SampleName != "C12_simulation_6GeV_T5_first_10") {
                 DrawAndSaveFSRatio(parameters.SampleName, hEcal_vs_dP_T_L_pFDpCD, hEcal_vs_dP_T_L_pFDpCD_Dir, hEcal_vs_dP_T_L_nFDpCD, plots);
                 DrawAndSaveFSRatio(parameters.SampleName, hEcal_vs_dP_T_tot_pFDpCD, hEcal_vs_dP_T_tot_pFDpCD_Dir, hEcal_vs_dP_T_tot_nFDpCD, plots);
                 DrawAndSaveFSRatio(parameters.SampleName, hEcal_vs_dAlpha_T_L_pFDpCD, hEcal_vs_dAlpha_T_L_pFDpCD_Dir, hEcal_vs_dAlpha_T_L_nFDpCD, plots);
@@ -24167,7 +24166,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                 DrawAndSaveFSRatio(parameters.SampleName, hdPhi_T_tot_pFDpCD, hdPhi_T_tot_pFDpCD_Dir, hdPhi_T_tot_nFDpCD, plots);
             }
 
-            if (FSR_2D_plots && parameters.SampleName != "MainCanvas2_simulation_6GeV_T5_first_10") {
+            if (FSR_2D_plots && parameters.SampleName != "C12_simulation_6GeV_T5_first_10") {
                 DrawAndSaveFSRatio(parameters.SampleName, hdP_T_L_vs_dAlpha_T_L_pFDpCD, hdP_T_L_vs_dAlpha_T_L_pFDpCD_Dir, hdP_T_L_vs_dAlpha_T_L_nFDpCD, plots);
                 DrawAndSaveFSRatio(parameters.SampleName, hdP_T_tot_vs_dAlpha_T_tot_pFDpCD, hdP_T_tot_vs_dAlpha_T_tot_pFDpCD_Dir, hdP_T_tot_vs_dAlpha_T_tot_nFDpCD, plots);
                 DrawAndSaveFSRatio(parameters.SampleName, hdP_T_L_vs_W_pFDpCD, hdP_T_L_vs_W_pFDpCD_Dir, hdP_T_L_vs_W_nFDpCD, plots);
@@ -25404,8 +25403,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     TextCanvas->cd();
 
     titles.DrawLatex(0.05, 0.90, "2N analyzer output");
-    text.DrawLatex(0.05, 0.80, SampleName.c_str());
-    text.DrawLatex(0.05, 0.75, VaringSampleName.c_str());
+    text.DrawLatex(0.05, 0.80, parameters.SampleName.c_str());
+    text.DrawLatex(0.05, 0.75, parameters.VaringSampleName.c_str());
     text.DrawLatex(0.2, 0.65, ("Beam energy: " + basic_tools::ToStringWithPrecision(parameters.beamE, 3) + " [GeV]").c_str());
 
     TextCanvas->Print(Histogram_OutPDF_fileName_char, "pdf");
