@@ -1151,7 +1151,7 @@ void nFD_eff_test() {
                             if (SkipFile) {
                                 std::cerr << "SkipFile = " << SkipFile << "\n";
 
-                                bool advance = chain.NextFile();
+                                bool advance = chain.ReallyNextFile();
                                 continue;
                             }
 
