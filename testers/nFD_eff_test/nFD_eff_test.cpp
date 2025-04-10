@@ -2231,9 +2231,13 @@ void nFD_eff_test() {
                             std::cerr << "\033[35m\n\nRecoAnalyzer::RecoAnalyzer:\033[36m Warning!\033[0m Could not loop over hipo file:\n"
                                       << FileToSkip << "\nAdded to list of Skipped files.\n";
 
-                            SkipFile = chain.ReallyNextFile();
+                            bool SkipFile = chain.ReallyNextFile();
 
-                            if (SkipFile) { std::cerr << "Moving to next file in chain.\n\n"; }
+                            if (SkipFile) {
+                                std::cerr << "Moving to next file in chain.\n\n";
+                            } else {
+                                break;
+                            }
 
                             // continue;  // Continue to next file or event
 
