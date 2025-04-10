@@ -2226,7 +2226,7 @@ void nFD_eff_test() {
 #pragma endregion
                         } catch (const std::exception& e) {
                             TString FileToSkip = chain.CurrentFileName();
-                            SkippedHipoChainFiles.push_back(FileToSkip);
+                            // SkippedHipoChainFiles.push_back(FileToSkip);
 
                             std::cerr << "\033[35m\n\nRecoAnalyzer::RecoAnalyzer:\033[36m Warning!\033[0m Could not loop over hipo file:\n"
                                       << FileToSkip << "\nAdded to list of Skipped files.\n";
