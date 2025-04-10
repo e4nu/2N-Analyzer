@@ -1149,7 +1149,9 @@ void nFD_eff_test() {
                             if (!chain.Next()) { break; };  // This might throw, so it must be in try
 
                             if (SkipFile) {
-                                bool advance = chain.Next();
+                                std::cerr << "SkipFile = " << SkipFile << "\n";
+
+                                bool advance = chain.NextFile();
                                 continue;
                             }
 
