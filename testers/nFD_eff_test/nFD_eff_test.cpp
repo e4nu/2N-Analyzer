@@ -2249,11 +2249,13 @@ void nFD_eff_test() {
 
                             if (SkipFile) {
                                 std::cerr << "Moving to next file in chain.\n\n";
+                                bool advance2 = chain.Next();
+                                
                                 bool advance = chain.ReallyNextFile();
                                 
                                 continue;
 
-                                bool advance2 = chain.Next();
+                                
                             }
 
                             // continue;  // Continue to next file or event
