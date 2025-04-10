@@ -1145,9 +1145,10 @@ void nFD_eff_test() {
                         if ((counter % 1000000) == 0) { std::cerr << "\n" << counter / 1000000 << " million completed"; }
                         if ((counter % 100000) == 0) { std::cerr << "."; }
 
-                        if (counter > Limiter) { break; }
+                        if (counter > Limiter) { SkipFile = chain.ReallyNextFile(); }
+                        // if (counter > Limiter) { break; }
 
-                        SkipFile = chain.ReallyNextFile();
+                        // SkipFile = chain.ReallyNextFile();
 
                         // get particles by type
                         auto allParticles = c12->getDetParticles();
