@@ -1148,12 +1148,12 @@ void nFD_eff_test() {
                         try {
                             if (!chain.Next()) { break; };  // This might throw, so it must be in try
 
-                            if (SkipFile) {
-                                std::cerr << "SkipFile = " << SkipFile << "\n";
+                            // if (SkipFile) {
+                            //     std::cerr << "SkipFile = " << SkipFile << "\n";
 
-                                bool advance = chain.ReallyNextFile();
-                                continue;
-                            }
+                            //     bool advance = chain.ReallyNextFile();
+                            //     continue;
+                            // }
 
 #pragma region /* File loop */
                             // Display completed
