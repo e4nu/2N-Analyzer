@@ -411,6 +411,7 @@ AMaps::AMaps(const std::string &AcceptanceMapsDirectory, const std::string &Samp
     /* Load separate maps */
     if (MapsPrefix == "AMap") {
         ReadAMapSlices(Electron_source_folder, AcceptanceMapsDirectory, "Electron", Loaded_ElectronMomSliceLimits, Loaded_e_AMap_Slices);
+        ReadAMapSlices(Electron_source_folder, AcceptanceMapsDirectory, "Electron", Loaded_ElectronMomSliceLimits, Loaded_e_AMap_Slices_extended, true);
         ReadAMapSlices(Proton_source_folder, AcceptanceMapsDirectory, "Proton", Loaded_NucleonMomSliceLimits, Loaded_p_AMap_Slices);
         ReadAMapSlices(Neutron_source_folder, AcceptanceMapsDirectory, "Neutron", Loaded_NucleonMomSliceLimits, Loaded_n_AMap_Slices);
         // ReadAMapSlices(SampleName, AcceptanceMapsDirectory, "Nucleon", Loaded_NucleonMomSliceLimits, Loaded_nuc_AMap_Slices);  // TODO: figure out what to do with these
@@ -2733,24 +2734,16 @@ void AMaps::ReadAMapLimits(const char *filename, vector<vector<double>> &Loaded_
 
 #pragma region /* ReadAMapSlices function (AMaps) */
 void AMaps::ReadAMapSlices(const std::string &SampleName, const std::string &AcceptanceMapsDirectory, const std::string &Particle, const vector<vector<double>> &Loaded_particle_limits,
-                           vector<vector<vector<int>>> &Loaded_Particle_AMap_Slices) {
-    std::string ParticleShort;
-
-    if (isElectron(Particle)) {
-        ParticleShort = "e";
-    } else if (isProton(Particle)) {
-        ParticleShort = "p";
-    } else if (isNeutron(Particle)) {
-        ParticleShort = "n";
-    } else {
-        ParticleShort = "nuc";
-    }
+                           vector<vector<vector<int>>> &Loaded_Particle_AMap_Slices, const bool Load_extended_e_AMaps) {
+    std::string ExtendedMaps = (Load_extended_e_AMaps) ? "_extended" : "";
+    std::string ParticleShort = (isElectron(Particle)) ? "e" : (isProton(Particle)) ? "p" : (isNeutron(Particle)) ? "n" : "nuc";
 
     for (int Slice = 0; Slice < Loaded_particle_limits.size(); Slice++) {
         vector<vector<int>> Loaded_Particle_AMap_TempSlice;
 
-        std::string TempFileName = ParticleShort + "_AMap_by_slice/" + ParticleShort + "_AMap_file_from_" + basic_tools::ToStringWithPrecision(Loaded_particle_limits.at(Slice).at(0), 2) +
-                                   "_to_" + basic_tools::ToStringWithPrecision(Loaded_particle_limits.at(Slice).at(1), 2) + ".par";
+        std::string TempFileName = ParticleShort + ExtendedMaps + "_AMap_by_slice/" + ParticleShort + "_AMap_file_from_" +
+                                   basic_tools::ToStringWithPrecision(Loaded_particle_limits.at(Slice).at(0), 2) + "_to_" +
+                                   basic_tools::ToStringWithPrecision(Loaded_particle_limits.at(Slice).at(1), 2) + ".par";
 
         std::cout << "\n\nReading " << Particle << " map: " << TempFileName << "\n";
 
@@ -2950,7 +2943,7 @@ void AMaps::ReadWMap(const char *filename, vector<vector<double>> &Loaded_partic
 // MatchAngToHitMap function --------------------------------------------------------------------------------------------------------------------------------------------
 
 #pragma region /* MatchAngToHitMap function (original with neutron FC 'bug') */
-bool AMaps::MatchAngToHitMap(const std::string &Particle, double Momentum, double Theta, double Phi, bool NucleonOverlappingFC) {
+bool AMaps::MatchAngToHitMap(const std::string &Particle, double Momentum, double Theta, double Phi, bool NucleonOverlappingFC, bool UseExtendedElectronMaps) {
     int e_InitialSlice = 0, e_FinalSlice = Loaded_ElectronMomSliceLimits.size();
     int p_InitialSlice = 0, p_FinalSlice = Loaded_NucleonMomSliceLimits.size(), n_InitialSlice = 0, n_FinalSlice = Loaded_NucleonMomSliceLimits.size();
 
@@ -2982,10 +2975,18 @@ bool AMaps::MatchAngToHitMap(const std::string &Particle, double Momentum, doubl
                                     std::cout << "Loaded_ElectronMomSliceLimits.at(Slice).at(1) = " << Loaded_ElectronMomSliceLimits.at(Slice).at(1) << "\n\n";
                                 }
 
-                                if (Loaded_e_AMap_Slices.at(Slice).at(i).at(j) != 0) {
-                                    return true;
+                                if (UseExtendedElectronMaps) {
+                                    if (Loaded_e_AMap_Slices_extended.at(Slice).at(i).at(j) != 0) {
+                                        return true;
+                                    } else {
+                                        return false;
+                                    }
                                 } else {
-                                    return false;
+                                    if (Loaded_e_AMap_Slices.at(Slice).at(i).at(j) != 0) {
+                                        return true;
+                                    } else {
+                                        return false;
+                                    }
                                 }
                             }  // end of find right phi if
                         }
@@ -3343,7 +3344,8 @@ double AMaps::GetWeight(bool apply_kinematical_weights, const std::string &Parti
 // IsInFDQuery function -------------------------------------------------------------------------------------------------------------------------------------------------
 
 #pragma region /* IsInFDQuery function */
-bool AMaps::IsInFDQuery(bool Generate_AMaps, const DSCuts &ThetaFD, const std::string &Particle, double Momentum, double Theta, double Phi, bool NucleonOverlappingFC) {
+bool AMaps::IsInFDQuery(bool Generate_AMaps, const DSCuts &ThetaFD, const std::string &Particle, double Momentum, double Theta, double Phi, bool NucleonOverlappingFC,
+                        bool UseExtendedElectronMaps) {
     std::string DebuggingBaseString = "AMaps::IsInFDQuery: " + Particle + " with momentum: " + basic_tools::ToStringWithPrecision(Momentum, 2) +
                                       " GeV/c, theta: " + basic_tools::ToStringWithPrecision(Theta, 2) + " rad, phi: " + basic_tools::ToStringWithPrecision(Phi, 2) + " deg";
     debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps, (DebuggingBaseString + " - Start"));
@@ -3351,7 +3353,7 @@ bool AMaps::IsInFDQuery(bool Generate_AMaps, const DSCuts &ThetaFD, const std::s
     bool inFDQuery, part_inSomeSector;
 
     if (!Generate_AMaps) {
-        part_inSomeSector = MatchAngToHitMap(Particle, Momentum, Theta, Phi, NucleonOverlappingFC);
+        part_inSomeSector = MatchAngToHitMap(Particle, Momentum, Theta, Phi, NucleonOverlappingFC, UseExtendedElectronMaps);
     } else {
         part_inSomeSector = true;
     }

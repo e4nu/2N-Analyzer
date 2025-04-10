@@ -150,6 +150,7 @@ class AMaps {
 
     /* Loaded acceptance maps */
     vector<vector<int>> Loaded_e_AMap;
+    vector<vector<vector<int>>> Loaded_e_AMap_Slices_extended;
     vector<vector<vector<int>>> Loaded_e_AMap_Slices;
     vector<vector<int>> Loaded_p_AMap;
     vector<vector<vector<int>>> Loaded_p_AMap_Slices;
@@ -301,7 +302,7 @@ class AMaps {
     // ReadAMapSlices function ----------------------------------------------------------------------------------------------------------------------------------------------------
 
     void ReadAMapSlices(const std::string &SampleName, const std::string &AcceptanceMapsDirectory, const std::string &Particle, const vector<vector<double>> &Loaded_particle_limits,
-                        vector<vector<vector<int>>> &Loaded_Particle_AMap_Slices);
+                        vector<vector<vector<int>>> &Loaded_Particle_AMap_Slices, const bool Load_extended_e_AMaps = false);
 
     // ReadAMapSlices function ----------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -318,7 +319,7 @@ class AMaps {
 
     // MatchAngToHitMap function --------------------------------------------------------------------------------------------------------------------------------------------
 
-    bool MatchAngToHitMap(const std::string &Particle, double Momentum, double Theta, double Phi, bool NucleonOverlappingFC = true);
+    bool MatchAngToHitMap(const std::string &Particle, double Momentum, double Theta, double Phi, bool NucleonOverlappingFC = true, bool UseExtendedElectronMaps = false);
 
     // GetWeight function ---------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -326,7 +327,8 @@ class AMaps {
 
     // IsInFDQuery function -------------------------------------------------------------------------------------------------------------------------------------------------
 
-    bool IsInFDQuery(bool Generate_AMaps, const DSCuts &ThetaFD, const std::string &Particle, double Momentum, double Theta, double Phi, bool NucleonOverlappingFC = true);
+    bool IsInFDQuery(bool Generate_AMaps, const DSCuts &ThetaFD, const std::string &Particle, double Momentum, double Theta, double Phi, bool NucleonOverlappingFC = true,
+                     bool UseExtendedElectronMaps = false);
 
     // Other methods --------------------------------------------------------------------------------------------------------------------------------------------------------
 
