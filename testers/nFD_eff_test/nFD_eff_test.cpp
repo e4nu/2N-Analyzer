@@ -1141,6 +1141,8 @@ void nFD_eff_test() {
 
                     bool SkipFile = false;
 
+                    int number_of_files = 0;
+
                     // while (chain.Next() == true) {
                     while (true) {
                         try {
@@ -2230,11 +2232,15 @@ void nFD_eff_test() {
 
 #pragma endregion
                         } catch (const std::exception& e) {
+                            ++number_of_files;
+                            
                             TString FileToSkip = chain.CurrentFileName();
                             // SkippedHipoChainFiles.push_back(FileToSkip);
 
                             std::cerr << "\033[35m\n\nRecoAnalyzer::RecoAnalyzer:\033[36m Warning!\033[0m Could not loop over hipo file:\n"
                                       << FileToSkip << "\nAdded to list of Skipped files.\n";
+
+                            std::cerr << "number_of_files = " << number_of_files << "\n";
 
                             bool SkipFile = true;
                             // bool SkipFile = chain.ReallyNextFile();
