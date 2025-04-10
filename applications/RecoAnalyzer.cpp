@@ -18307,7 +18307,11 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
             std::cerr << "\033[35m\n\nRecoAnalyzer::RecoAnalyzer:\033[36m num_of_files:\033[0m " << num_of_files << "\n\n";
             
-            continue;  // Continue to next file or event
+            // continue;  // Continue to next file or event
+
+            if (chain.ReallyNextFile()) {
+                continue;  // Continue to next file
+            }
         }
     }  // end of while
     // </editor-fold>
