@@ -82,12 +82,12 @@ void ConfigSampleChain() {
     // Uniform samples --------------------------------------------------------------------------------------------------------------------------------------------------
 
     // // /* Uniform samples @ 2GeV */
-    // // Config_Uniform_1e_2GeV_samples(AnalyzeFilePath_v, AnalyzeFileSample_v, AnalyzeFileDir_v, AnalyzeFile_v, AnalyzeFilePath, AnalyzeFileSample, AnalyzeFileDir, AnalyzeFile);
+    Config_Uniform_1e_2GeV_samples(AnalyzeFilePath_v, AnalyzeFileSample_v, AnalyzeFileDir_v, AnalyzeFile_v, AnalyzeFilePath, AnalyzeFileSample, AnalyzeFileDir, AnalyzeFile);
     // Config_Uniform_en_2GeV_samples(AnalyzeFilePath_v, AnalyzeFileSample_v, AnalyzeFileDir_v, AnalyzeFile_v, AnalyzeFilePath, AnalyzeFileSample, AnalyzeFileDir, AnalyzeFile);
     // Config_Uniform_ep_2GeV_samples(AnalyzeFilePath_v, AnalyzeFileSample_v, AnalyzeFileDir_v, AnalyzeFile_v, AnalyzeFilePath, AnalyzeFileSample, AnalyzeFileDir, AnalyzeFile);
 
     // // /* Uniform samples @ 4GeV */
-    Config_Uniform_1e_4GeV_samples(AnalyzeFilePath_v, AnalyzeFileSample_v, AnalyzeFileDir_v, AnalyzeFile_v, AnalyzeFilePath, AnalyzeFileSample, AnalyzeFileDir, AnalyzeFile);
+    // Config_Uniform_1e_4GeV_samples(AnalyzeFilePath_v, AnalyzeFileSample_v, AnalyzeFileDir_v, AnalyzeFile_v, AnalyzeFilePath, AnalyzeFileSample, AnalyzeFileDir, AnalyzeFile);
     // Config_Uniform_en_4GeV_samples(AnalyzeFilePath_v, AnalyzeFileSample_v, AnalyzeFileDir_v, AnalyzeFile_v, AnalyzeFilePath, AnalyzeFileSample, AnalyzeFileDir, AnalyzeFile);
     // Config_Uniform_ep_4GeV_samples(AnalyzeFilePath_v, AnalyzeFileSample_v, AnalyzeFileDir_v, AnalyzeFile_v, AnalyzeFilePath, AnalyzeFileSample, AnalyzeFileDir, AnalyzeFile);
 
