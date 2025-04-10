@@ -2249,6 +2249,7 @@ void nFD_eff_test() {
 
                             if (SkipFile) {
                                 std::cerr << "Moving to next file in chain.\n\n";
+                                bool advance = chain.ReallyNextFile();
                                 continue;
                             }
 
