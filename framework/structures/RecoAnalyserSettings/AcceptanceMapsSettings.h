@@ -11,6 +11,7 @@
 #include "../../namespaces/general_utilities/basic_tools.h"
 
 // Include settings:
+#include "EventSelectionSettings.h"
 #include "RunParameters.h"
 
 struct AcceptanceMapsSettings {

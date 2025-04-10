@@ -18295,7 +18295,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 #pragma endregion
 
         } catch (const std::exception &e) {
-            TString FileToSkip = CurrentFileName();
+            TString FileToSkip = chain.CurrentFileName();
             SkippedHipoChainFiles.push_back(FileToSkip);
 
             std::cerr << "\033[35m\n\nRecoAnalyzer::RecoAnalyzer:\033[36m Warning!\033[0m Could not loop over hipo file:\n"
@@ -25348,7 +25348,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         std::cout << "\033[33m\n\nSaving skipped hipo files...\n\n\033[0m";
 
         // Saving skipped hipo files list
-        basic_tools::LogSkippedHipoFiles(SkippedHipoChainFiles, HipoChainLength, run_skipped_files_list_save_Directory);
+        basic_tools::LogSkippedHipoFiles(SkippedHipoChainFiles, HipoChainLength, run_skipped_files_list_save_Directory.c_str());
     } else {
         std::cout << "\033[33m\n\nNo skipped hipo files...\n\n\033[0m";
     }
