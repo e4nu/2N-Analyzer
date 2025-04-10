@@ -1137,6 +1137,8 @@ void nFD_eff_test() {
 
                     // ParticleID PID;
 
+                    bool SkipFile;
+
                     while (chain.Next() == true) {
                         // Display completed
                         ++counter;
