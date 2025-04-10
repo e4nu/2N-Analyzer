@@ -1149,7 +1149,7 @@ void nFD_eff_test() {
                             std::cerr << "\033[35mSkipFile = " << SkipFile << "\033[0m\n";
 
                             bool advance = chain.ReallyNextFile();
-                            continue;
+                            SkipFile = false;
                         }
 
                         try {
