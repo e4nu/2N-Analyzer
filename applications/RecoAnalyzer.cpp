@@ -25404,7 +25404,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     titles.DrawLatex(0.05, 0.90, "2N analyzer output");
     text.DrawLatex(0.05, 0.80, parameters.SampleName.c_str());
-    text.DrawLatex(0.05, 0.75, parameters.VaringSampleName.c_str());
+    text.DrawLatex(0.05, 0.75, parameters.VaryingSampleName.c_str());
     text.DrawLatex(0.2, 0.65, ("Beam energy: " + basic_tools::ToStringWithPrecision(parameters.beamE, 3) + " [GeV]").c_str());
 
     TextCanvas->Print(Histogram_OutPDF_fileName_char, "pdf");
