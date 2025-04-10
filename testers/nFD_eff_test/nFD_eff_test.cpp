@@ -1146,7 +1146,7 @@ void nFD_eff_test() {
                     // while (chain.Next() == true) {
                     while (true) {
                         if (SkipFile) {
-                            std::cerr << "SkipFile = " << SkipFile << "\n";
+                            std::cerr << "\033[35mSkipFile = " << SkipFile << "\033[0m\n";
 
                             bool advance = chain.ReallyNextFile();
                             continue;
@@ -2254,16 +2254,16 @@ void nFD_eff_test() {
                             bool SkipFile = true;
                             // bool SkipFile = chain.ReallyNextFile();
 
-                            if (SkipFile) {
-                                std::cerr << "Moving to next file in chain.\n\n";
-                                bool advance2 = chain.Next();
+                            // if (SkipFile) {
+                            //     std::cerr << "Moving to next file in chain.\n\n";
+                            //     bool advance2 = chain.Next();
 
-                                bool advance = chain.ReallyNextFile();
+                            //     bool advance = chain.ReallyNextFile();
 
-                                continue;
-                            }
+                            //     continue;
+                            // }
 
-                            // continue;  // Continue to next file or event
+                            continue;  // Continue to next file or event
 
                             // if (chain.ReallyNextFile()) {
                             //     continue;  // Continue to next file
