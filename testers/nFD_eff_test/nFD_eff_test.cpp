@@ -1145,6 +1145,8 @@ void nFD_eff_test() {
 
                         if (counter > Limiter) { break; }
 
+                        SkipFile = chain.ReallyNextFile();
+
                         // get particles by type
                         auto allParticles = c12->getDetParticles();
                         auto electrons = c12->getByID(11);

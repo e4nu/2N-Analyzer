@@ -11356,14 +11356,14 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         try {
             if (!chain.Next()) { break; };  // This might throw, so it must be in try
 
-            if (SkipFile) {
-                if (chain.ReallyNextFile()) {
-                    SkipFile = false;  // reset flag after skipping
-                    continue;
-                } else {
-                    break;
-                }
-            }
+            // if (SkipFile) {
+            //     if (chain.ReallyNextFile()) {
+            //         SkipFile = false;  // reset flag after skipping
+            //         continue;
+            //     } else {
+            //         break;
+            //     }
+            // }
 
 #pragma region /* Good file loop */
 
@@ -18318,8 +18318,9 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             std::cerr << "\033[35m\n\nRecoAnalyzer::RecoAnalyzer:\033[36m Warning!\033[0m Could not loop over hipo file:\n"
                       << FileToSkip << "\nAdded to list of Skipped files. Moving to next file in chain.\n\n";
 
-            SkipFile = true;
-            continue;
+            SkipFile = chain.ReallyNextFile();
+
+            if (chain.Next())
 
             // continue;  // Continue to next file or event
 
