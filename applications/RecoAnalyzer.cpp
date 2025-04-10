@@ -11347,12 +11347,15 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps);
 
+    /*
     int num_of_files = 0;
 
     bool SkipFile = false;
+    */
 
     while (chain.Next()) {
-    // while (true) {
+    /*
+     // while (true) {
     //     try {
     //         if (!chain.Next()) { break; };  // This might throw, so it must be in try
 
@@ -11364,6 +11367,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     //         //         break;
     //         //     }
     //         // }
+    */
 
 #pragma region /* Good file loop */
 
@@ -18309,7 +18313,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
 #pragma endregion
 
-        // } catch (const std::exception &e) {
+    /*
+         // } catch (const std::exception &e) {
         //     ++num_of_files;
 
         //     TString FileToSkip = chain.CurrentFileName();
@@ -18328,6 +18333,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         //     //     continue;  // Continue to next file
         //     // }
         // }
+    */
     }  // end of while
     // </editor-fold>
 

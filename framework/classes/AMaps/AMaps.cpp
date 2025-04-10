@@ -1109,6 +1109,8 @@ void AMaps::GenerateMapMatrices(double cP_minR, double nP_minR) {
             e_AMap_Slices.push_back(e_AMap_slice);
             e_WMap_Slices.push_back(e_WMap_slice);
         }
+
+        e_AMap_Slices_extended = e_AMap_Slices;
     }
 
     if (basic_tools::FindSubstring(SName, "Uniform_ep_sample_") || basic_tools::FindSubstring(SName, "Uniform_en_sample_")) {
@@ -1177,6 +1179,33 @@ void AMaps::GenerateMapMatrices(double cP_minR, double nP_minR) {
 
                 n_AMap_Slices.push_back(n_AMap_slice);
                 n_WMap_Slices.push_back(n_WMap_slice);
+            }
+        }
+    }
+}
+#pragma endregion
+
+// GenerateExtendedElectronMapMatrices function ----------------------------------------------------------------------------------------------------------------------------------
+
+#pragma region /* GenerateExtendedElectronMapMatrices function (G3c) */
+void AMaps::GenerateExtendedElectronMapMatrices() {
+    // Generate extended electron map matrices
+    if (basic_tools::FindSubstring(SName, "Uniform_1e_sample_")) {
+        for (int bin = 0; bin < ElectronMomSliceLimits.size(); bin++) {
+            //
+            for (int i = 0; i < HistElectronSliceNumOfYBins; i++) {
+                for (int j = 0; j < HistElectronSliceNumOfXBins; j++) {
+                    //
+                    if (e_AMap_Slices.at(bin).at(i).at(j) == 1) {
+                        if ((i - 1) >= 0) { e_AMap_Slices_extended.at(bin).at(i - 1).at(j) = 1; }
+
+                        if ((i + 1) < HistElectronSliceNumOfYBins) { e_AMap_Slices_extended.at(bin).at(i + 1).at(j) = 1; }
+
+                        if ((j - 1) >= 0) { e_AMap_Slices_extended.at(bin).at(i).at(j - 1) = 1; }
+
+                        if ((j + 1) < HistElectronSliceNumOfXBins) { e_AMap_Slices_extended.at(bin).at(i).at(j + 1) = 1; }
+                    }
+                }
             }
         }
     }
@@ -1433,7 +1462,7 @@ void AMaps::GenerateNPartAMaps(double nP_minR) {
 
 // GenerateNucleonAMap function -----------------------------------------------------------------------------------------------------------------------------------------
 
-#pragma region /* GenerateNucleonAMap function - old (G3c) */
+#pragma region /* GenerateNucleonAMap function - old (G3d) */
 void AMaps::GenerateNucleonAMap() {
     for (int i = 0; i < (HistNucSliceNumOfXBins + 1); i++) {
         for (int j = 0; j < (HistNucSliceNumOfYBins + 1); j++) {
@@ -1486,7 +1515,7 @@ void AMaps::GenerateNucleonAMap() {
 
 // SaveMaps function -------------------------------------------------------------------------------------------------------------------------------------------------
 
-#pragma region /* SaveMaps function (G3d) */
+#pragma region /* SaveMaps function (G3e) */
 
 // TODO: separate into AMaps and WMaps
 
@@ -1496,6 +1525,7 @@ void AMaps::SaveMaps(const std::string &SampleName, const std::string &Acceptanc
     int testNumber = 0;
 
     if (basic_tools::FindSubstring(SName, "Uniform_1e_sample_")) {
+#pragma region /* Regular electron maps */
         std::string AMapSliceElectronSavePath = AcceptanceMapsDirectory + SampleName + "/e_" + AMaps_Mode + "_by_slice/";
         system(("mkdir -p " + AMapSliceElectronSavePath).c_str());
         std::string WMapSliceElectronSavePath = AcceptanceMapsDirectory + SampleName + "/e_WMap_by_slice/";
@@ -1574,6 +1604,72 @@ void AMaps::SaveMaps(const std::string &SampleName, const std::string &Acceptanc
         system(("cp " + AMapSliceElectronSavePath + "e_slice_limits.par " + AMapSliceElectronSavePathCopy).c_str());
 
         system(("cp " + WMapSliceElectronSavePath + "e_slice_limits.par " + WMapSliceElectronSavePathCopy).c_str());
+#pragma endregion
+
+#pragma endregion
+
+#pragma region /* Extended electron maps */
+        std::string AMapSliceExtendedElectronSavePath = AcceptanceMapsDirectory + SampleName + "/e_extended_" + AMaps_Mode + "_by_slice/";
+        system(("mkdir -p " + AMapSliceExtendedElectronSavePath).c_str());
+        std::string AMapSliceExtendedElectronSavePathCopy = AMapCopySavePath + "/e_extended_" + AMaps_Mode + "_by_slice/";
+        system(("mkdir -p " + AMapSliceExtendedElectronSavePathCopy).c_str());
+
+        if (PrintOut) { ++testNumber, std::cout << "\n\n\nTEST " << testNumber << "\n"; }
+
+        /* Save extended electron slices */
+        for (int Slice = 0; Slice < ElectronMomSliceLimits.size(); Slice++) {
+            std::ofstream e_AMap_TempFile, e_WMap_TempFile;
+
+            std::string AMapTempFileName = "e_" + AMaps_Mode + "_file_from_" + basic_tools::ToStringWithPrecision(ElectronMomSliceLimits.at(Slice).at(0), 2) + "_to_" +
+                                           basic_tools::ToStringWithPrecision(ElectronMomSliceLimits.at(Slice).at(1), 2) + ".par";
+
+            e_AMap_TempFile = std::ofstream(AMapSliceExtendedElectronSavePath + AMapTempFileName);  // Opens in overwrite mode
+
+            e_AMap_TempFile << "Lower_P_lim:\t" << ElectronMomSliceLimits.at(Slice).at(0) << "\n";
+            e_AMap_TempFile << "Upper_P_lim:\t" << ElectronMomSliceLimits.at(Slice).at(1) << "\n";
+            e_AMap_TempFile << "\n";
+
+            for (int i = 0; i < HistElectronSliceNumOfYBins; i++) {
+                e_AMap_TempFile << "Line\t";
+
+                for (int j = 0; j < HistElectronSliceNumOfXBins; j++) {
+                    if (j != HistElectronSliceNumOfXBins - 1) {
+                        e_AMap_TempFile << e_AMap_Slices_extended.at(Slice).at(i).at(j) << ":";
+                    } else {
+                        e_AMap_TempFile << e_AMap_Slices_extended.at(Slice).at(i).at(j);
+                    }
+                }
+
+                e_AMap_TempFile << "\n";
+            }
+
+            e_AMap_TempFile.close();
+
+            system(("cp " + AMapSliceExtendedElectronSavePath + AMapTempFileName + " " + AMapSliceExtendedElectronSavePathCopy + AMapTempFileName).c_str());
+        }
+
+        if (PrintOut) { ++testNumber, std::cout << "\n\n\nTEST " << testNumber << "\n"; }
+
+#pragma region /* Slice limits */
+        std::ofstream e_slice_limits;
+
+        e_slice_limits = std::ofstream(AMapSliceExtendedElectronSavePath + "e_slice_limits.par");  // Opens in overwrite mode
+
+        if (PrintOut) { ++testNumber, std::cout << "\n\n\nTEST " << testNumber << "\n"; }
+
+        for (int Slice = 0; Slice < ElectronMomSliceLimits.size(); Slice++) {
+            e_slice_limits << "e_slice_" << (Slice + 1) << "\t" << ElectronMomSliceLimits.at(Slice).at(0) << ":" << ElectronMomSliceLimits.at(Slice).at(1) << "\n";
+        }
+
+        e_slice_limits << "\n";
+
+        e_slice_limits.close();
+
+        system(("cp " + AMapSliceExtendedElectronSavePath + "e_slice_limits.par " + AMapSliceExtendedElectronSavePathCopy).c_str());
+
+        system(("cp " + WMapSliceExtendedElectronSavePath + "e_slice_limits.par " + WMapSliceExtendedElectronSavePathCopy).c_str());
+#pragma endregion
+
 #pragma endregion
     }
 
@@ -2140,6 +2236,7 @@ void AMaps::DrawAndSaveMaps(const std::string &SampleName, TCanvas *h1DCanvas, c
 
     std::cout << "\n\nGenerating map matrices...\n";
     GenerateMapMatrices(Charged_particle_min_Ratio, Neutral_particle_min_Ratio);
+    GenerateExtendedElectronMapMatrices();
     // GenerateCPartAMaps(Charged_particle_min_Ratio);
     // GenerateNPartAMaps(Neutral_particle_min_Ratio);
     // GenerateNucleonAMap();

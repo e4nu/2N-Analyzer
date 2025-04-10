@@ -95,6 +95,7 @@ class AMaps {
     /* Acceptance maps */
     vector<vector<int>> e_AMap;
     vector<vector<vector<int>>> e_AMap_Slices;
+    vector<vector<vector<int>>> e_AMap_Slices_extended;
     vector<vector<int>> p_AMap;
     vector<vector<vector<int>>> p_AMap_Slices;
     vector<vector<int>> n_AMap;
@@ -234,9 +235,13 @@ class AMaps {
 
     void GenerateFilteredRecoMaps(double cP_minR, double nP_minR);
 
-    // GenerateMapMatrices function ----------------------------------------------------------------------------------------------------------------------------------
+    // GenerateMapMatrices function --------------------------------------------------------------------------------------------------------
 
     void GenerateMapMatrices(double cP_minR, double nP_minR);
+
+    // GenerateExtendedElectronMapMatrices function ----------------------------------------------------------------------------------------------------------------------------------
+
+    void GenerateExtendedElectronMapMatrices();
 
     // GenerateFilteredRecoCPartMaps function ----------------------------------------------------------------------------------------------------------------------------------
 
