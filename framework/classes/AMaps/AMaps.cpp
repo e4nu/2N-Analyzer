@@ -2247,7 +2247,7 @@ void AMaps::DrawAndSaveMaps(const std::string &SampleName, TCanvas *h1DCanvas, c
     std::cout << "\n\nGenerating map matrices...\n";
     GenerateMapMatrices(Charged_particle_min_Ratio, Neutral_particle_min_Ratio);
     GenerateExtendedElectronMapMatrices(e_AMap_Slices);           // First extension by e_AMap_Slices
-    GenerateExtendedElectronMapMatrices(e_AMap_Slices_extended);  // First extension by e_AMap_Slices_extended
+    // GenerateExtendedElectronMapMatrices(e_AMap_Slices_extended);  // Second extension by e_AMap_Slices_extended
 
     std::cout << "\n\nSaving maps...\n";
     SaveMaps(SampleName, AcceptanceMapsDirectory);
