@@ -22,19 +22,22 @@
 
 struct AnalysisCutSettings {
     // Cuts setup
+    /* Settings that allow to disable/enable every cut individually */
+
+    // clas12ana cuts ---------------------------------------------------------------------------------------------------------------------------------------------------
     bool apply_cuts;                  // master ON/OFF switch for applying cuts
     bool clas12ana_particles;         // TODO: move from here!
     bool only_preselection_cuts;      // keep as false for regular runs!
     bool only_electron_quality_cuts;  // keep as false for regular runs!
 
-    // Preselection cuts (event cuts)
+    /* Preselection cuts (event cuts) */
     bool apply_preselection_cuts;        // master ON/OFF switch for preselection cuts
     bool apply_Vz_e_cuts;                // Electron vertex cuts
     bool apply_Vz_cuts, apply_dVz_cuts;  // Vertex cuts
     bool apply_DC_e_fiducial_cuts;       // Electron DC fiducial (edge) cuts
     bool apply_DC_fiducial_cuts;         // DC fiducial (edge) cuts
 
-    // Electron quality cuts
+    /* Electron quality cuts */
     bool apply_electron_quality_cuts;  // master ON/OFF switch for eQC
     bool apply_Nphe_cut;               // Number of photo-electrons in HTCC cut
     bool apply_ECAL_SF_cuts;           // SF cut on both E_deb AND P_e
@@ -42,22 +45,23 @@ struct AnalysisCutSettings {
     bool apply_ECAL_fiducial_cuts;     // ECAL edge cuts for other charged particles
     bool apply_Electron_beta_cut;      // Electron beta cut
 
-    // Chi2 cuts (= PID cuts)
+    /* Chi2 cuts (= PID cuts) */
     bool apply_chi2_cuts_1e_cut;
 
-    // Nucleon cuts
+    // My analysis cuts ---------------------------------------------------------------------------------------------------------------------------------------------------
+    /* Nucleon cuts */
     bool apply_nucleon_cuts;  // set as true to get good protons and calculate upper neutron momentum th.
 
-    // Physical cuts
-    // TODO: automate adding upper mom. th. to nucleon cuts (for nRes calc)
+    /* Physical cuts */
     bool apply_nucleon_physical_cuts;  // nucleon physical cuts master
-    bool apply_nBeta_fit_cuts;         // apply neutron upper mom. th.
+    // TODO: automate adding upper mom. th. to nucleon cuts (for nRes calc)
+    bool apply_nBeta_fit_cuts;  // apply neutron upper mom. th.
     bool apply_fiducial_cuts;
     bool apply_kinematical_cuts;
     bool apply_kinematical_weights;
     bool apply_nucleon_SmearAndCorr;
 
-    // Reaction monitoring cuts
+    /* Reaction monitoring cuts */
     bool apply_reaction_monitoring_cuts;  // master ON/OFF switch for reaction monitoring cuts
     bool apply_P_miss_in_QE_range_cuts;
     bool apply_E_miss_in_QE_range_cuts;
@@ -107,6 +111,7 @@ struct AnalysisCutSettings {
           apply_kinematical_weights(false),
           apply_nucleon_SmearAndCorr(false),
 
+          // Reaction monitoring cuts:
           apply_reaction_monitoring_cuts(false),
           apply_P_miss_in_QE_range_cuts(false),
           apply_E_miss_in_QE_range_cuts(false),
@@ -175,7 +180,9 @@ struct AnalysisCutSettings {
 
         if (!MomResSettings.VaryingDelta) { apply_nucleon_SmearAndCorr = false; }
 
-        if (parameters.isData) { ESSettings.calculate_truth_level = AMapsSettings.Generate_WMaps = MomResSettings.plot_and_fit_MomRes = MomResSettings.momRes_test = false; }
+        if (parameters.isData) { 
+            // no TL calculation, AMap/WMap generation nor nRes calculation when running on data
+            ESSettings.calculate_truth_level = AMapsSettings.Generate_WMaps = MomResSettings.plot_and_fit_MomRes = MomResSettings.momRes_test = false; }
 
         if (!ESSettings.calculate_truth_level) { AMapsSettings.AMaps_calc_with_one_reco_electron = ESSettings.fill_TL_plots = ESSettings.Rec_wTL_ES = false; }
 

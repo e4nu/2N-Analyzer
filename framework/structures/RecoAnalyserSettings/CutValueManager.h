@@ -20,11 +20,6 @@
 #include "../../classes/hPlots/hPlot1D.cpp"
 
 struct CutValueManager {
-    // Cut declarations -----------------------------------------------------------------------------------------------------------------------------------------------------
-
-    // Cuts declarations
-    /* Log cut values to be used later when applying them. */
-
     // clas12ana cuts ---------------------------------------------------------------------------------------------------------------------------------------------------
 
     // clas12ana cuts
@@ -64,6 +59,7 @@ struct CutValueManager {
 
     /* Sampling Fraction (SF) cuts (electrons only, FD) */
     DSCuts SF_cuts;
+    DSCuts P_cuts;
 
     /* PCAL edge cuts (fiducial cuts, electrons only, FD) */
     DSCuts PCAL_edge_cuts;
@@ -92,6 +88,7 @@ struct CutValueManager {
     DSCuts n_momentum_cuts_ABF_FD_n_from_ph_apprax;  // Approximated max. momentum, obtained by taking Beta=1, such that deltaBeta/Beta=deltaBeta.
 
     /* Truth-level momentum cuts */
+    // TODO: remove pion mom. th. separation by CD and FD. It's useless (according to Adi)
     DSCuts TL_e_mom_cuts = DSCuts("Momentum", "", "Electron", "", 0, e_mom_th.GetLowerCut(), e_mom_th.GetUpperCut());
     DSCuts TL_n_mom_cuts = DSCuts("Momentum", "", "Neutrons", "", 0, n_mom_th.GetLowerCut(), n_mom_th.GetUpperCut());
     DSCuts TL_p_mom_cuts = DSCuts("Momentum", "", "Proton", "", 0, p_mom_th.GetLowerCut(), p_mom_th.GetUpperCut());
@@ -144,10 +141,8 @@ struct CutValueManager {
     //    DSCuts FD_nucleon_momentum_cut = DSCuts("FD nucleon momentum cut", "FD", "", "Protons and neutrons", 0, 1., 3.); // Larry meeting (10/08/23)
     DSCuts FD_nucleon_momentum_cut = DSCuts("FD nucleon momentum cut", "FD", "", "Protons and neutrons", 0, 1., 2.5);  // E4nu meeting (29/01/24)
 
-    DSCuts MomRes_mu_cuts = DSCuts("MomRes_mu_cuts", "FD", "", "Protons and neutrons", 0, FD_nucleon_momentum_cut.GetLowerCut(), 2.2);
-    // E4nu meeting (29/01/24)
-    DSCuts MomRes_sigma_cuts = DSCuts("MomRes_sigma_cuts", "FD", "", "Protons and neutrons", 0, FD_nucleon_momentum_cut.GetLowerCut(), 2.2);
-    // Adi meeting after (29/01/24)
+    DSCuts MomRes_mu_cuts = DSCuts("MomRes_mu_cuts", "FD", "", "Protons and neutrons", 0, FD_nucleon_momentum_cut.GetLowerCut(), 2.2);        // E4nu meeting (29/01/24)
+    DSCuts MomRes_sigma_cuts = DSCuts("MomRes_sigma_cuts", "FD", "", "Protons and neutrons", 0, FD_nucleon_momentum_cut.GetLowerCut(), 2.2);  // Adi meeting after (29/01/24)
 
     /* Cut for 2N reaction monitoring */
     // Cut disscussed in the e4nu collaboration meeting at JLab (March 2025)
@@ -162,10 +157,10 @@ struct CutValueManager {
     DSCuts E_miss_1N_OtherReacAndFSI_range = DSCuts("E_miss_1N QE range", "", "", "Protons and neutrons", 0, 0.5, 9999);
 
     // xB cuts:
-    DSCuts xB_cut = DSCuts("xB range", "", "", "Protons and neutrons", 0, 1., 9999); // To kill RES or DIS events
+    DSCuts xB_cut = DSCuts("xB range", "", "", "Protons and neutrons", 0, 1., 9999);  // To kill RES or DIS events
 
     // Theta_q_pCD cuts:
-    DSCuts Theta_q_pCD_cut = DSCuts("xB QE range", "", "", "Protons and neutrons", 0, 0., 40.); // Gives lower FSI
+    DSCuts Theta_q_pCD_cut = DSCuts("xB QE range", "", "", "Protons and neutrons", 0, 0., 40.);  // Gives lower FSI
 
     CutValueManager(ExperimentParameters &Experiment, const EventSelectionSettings &ESSettings) {
         Vz_cut = Experiment.GetVz_cuts();

@@ -10,7 +10,7 @@
 struct EventSelectionSettings {
     // Settings to enable/disable specific FS plot calculations (Rec only):
 
-    // Final states to Analyze (1N & 2N):
+    // Final states to analyze (1N & 2N):
     const bool calculate_1p;
     const bool calculate_1n;
     const bool calculate_2p;
@@ -30,6 +30,7 @@ struct EventSelectionSettings {
 
     const bool limless_mom_eff_plots;
 
+    /* FD neutrals settings */
     const bool Enable_FD_photons;  // keep as false to decrease RES & DIS
     bool Enable_FD_neutrons;       // keep as false to increase eff. plots
     const bool Count_FD_neurton_and_photon_hits;

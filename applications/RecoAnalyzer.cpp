@@ -46,18 +46,6 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     /* Configure and get run parameters */
     ExperimentParameters Experiment(AnalyzeFilePath, AnalyzeFileSample);
     RunParameters parameters = RunParameters(Experiment, AnalyzeFilePath, AnalyzeFileSample);
-    // ExperimentParameters Experiment(AnalyzeFilePath, AnalyzeFileSample);
-    // const std::string SampleName = Experiment.ConfigureSampleName(AnalyzeFilePath, AnalyzeFileSample);  // Configure SampleName from input
-    // const std::string VaryingSampleName = Experiment.GetVaryingSampleName();                            // Get VaryingSampleName (configured from SampleName) - for data runs!
-    // const double beamE = Experiment.GetBeamEnergy();                                                    // Configure beam energy from SampleName
-    // const std::string Target = Experiment.GetTargetElement();                                           // Configure target (element) from SampleName
-    // const int TargetPDG = Experiment.GetTargetElementPDG();                                             // Configure target PDG from SampleName
-    // const bool isLocal = Experiment.SLocal();
-    // const bool isMC = Experiment.SSample();
-    // const bool isData = Experiment.DSample();
-    // const bool is2GeVSample = Experiment.IsBeamAt2GeV();
-    // const bool is4GeVSample = Experiment.IsBeamAt4GeV();
-    // const bool is6GeVSample = Experiment.IsBeamAt6GeV();
 
     debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps, "Input processing - end");
 
@@ -67,86 +55,13 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps, "Event selection setup - start");
 
-    // Event selection setup
     EventSelectionSettings ESSettings = EventSelectionSettings();
-    /* Settings to enable/disable specific FS plot calculations (Rec only): */
-
-    /* Final states to analyse (1N & 2N) */
-    // const bool calculate_1p = true, calculate_1n = true;
-    // const bool calculate_2p = true, calculate_pFDpCD = true, calculate_nFDpCD = true;
-
-    // /* Truth level calculation setup */
-    // bool calculate_truth_level = true;  // TL master ON/OFF switch
-    // bool TL_plots_only_for_NC = false;  // TL plots only AFTER beta fit
-    // bool fill_TL_plots = true;
-    // bool ZoomIn_On_mom_th_plots = false;          // momentum th. efficiencies with zoomin
-    // bool Eff_calc_with_one_reco_electron = true;  // keep as true in normal runs
-    // bool Calc_inc_eff_with_varying_theta = false;
-    // bool Calc_1n_n_eff_with_smaller_theta = false;
-    // bool Calc_eff_overlapping_FC = true;  // keep as true in normal runs
-    // bool Rec_wTL_ES = true;               // Calculate efficiency - force TL event selection on reco. plots
-
-    // const bool limless_mom_eff_plots = false;
-
-    // /* FD neutrals settings */
-    // const bool Enable_FD_photons = false;  // keep as false to decrease RES & DIS
-    // bool Enable_FD_neutrons = true;  // keep as false to increase eff. plots
-    // const bool Count_FD_neurton_and_photon_hits = true;
-
-    // // TODO: add this switch to event selection variables!
-    // const bool ES_by_leading_FDneutron = true;
-
-    /* Acceptance maps setup */
     AcceptanceMapsSettings AMapsSettings = AcceptanceMapsSettings();
-    // bool Generate_Electron_AMaps = false;  // Generate electron acceptance maps
-    // bool Generate_Nucleon_AMaps = true;    // Generate nucleon acceptance maps
-    // bool Generate_WMaps = true;            // Generate efficiency maps
-    // bool AMaps_calc_with_one_reco_electron = true;
-    // const std::string P_e_bin_profile = "uniform_P_e_bins";      // {reformat_e_bins , varying_P_e_bins , uniform_P_e_bins, equi_inverted_P_e}
-    // const std::string P_nuc_bin_profile = "uniform_P_nuc_bins";  // {equi_inverted_P_nuc , varying_P_nuc_bins , uniform_P_nuc_bins}
-    // bool Electron_single_slice_test = false;                     // keep as false for normal runs!
-    // bool Nucleon_single_slice_test = false;                      // keep as false for normal runs!
-    // vector<int> TestSlices = {1, 1, 1};                          // {ElectronTestSlice, ProtonTestSlice, NeutronTestSlice}
-
-    /* Neutron resolution setup */
     MomentumResolutionSettings MomResSettings = MomentumResolutionSettings();
-    // // TODO: align neutron and proton momRes calculations!
-    // bool plot_and_fit_MomRes = false;  // Generate nRes plots
-    // bool Calculate_momResS2 = false;   // Calculate momResS2 variables
-    // const double DeltaSlices = 0.05;
-    // const bool VaryingDelta = true;    // 1st momResS1 w/ VaryingDelta = false
-    // bool ForceSmallpResLimits = true;  // 1st momResS1 w/ VaryingDelta = false
-    // const std::string SmearMode = "pol1_wKC";
-    // const std::string CorrMode = "pol1_wKC";
-    // bool Run_with_momResS2 = true;  // Smear w/ momResS2 & correct w/ momResS1
-    // bool momRes_test = false;       // false by default
-    /*
-    MomRes run order guide:
-    1. momResS1 calculation 1:
-                           1a:  VaryingDelta = false  , plot_and_fit_MomRes = true  , Calculate_momResS2 = false , Run_with_momResS2 = false
-                           1b:  VaryingDelta = true , plot_and_fit_MomRes = true  , Calculate_momResS2 = false , Run_with_momResS2 = false
-    3. momResS2 calculation:    VaryingDelta = true , plot_and_fit_MomRes = true  , Calculate_momResS2 = true  , Run_with_momResS2 = false
-    4. momResS2 run:            VaryingDelta = true , plot_and_fit_MomRes = false , Calculate_momResS2 = false , Run_with_momResS2 = true
-    */
 
-    // Auto-disable variables
     ESSettings.RefreshSettings();
-    // if (!ES_by_leading_FDneutron) { Enable_FD_neutrons = false; }
-
-    AMapsSettings.RefreshSettings(parameters);
-    // if (parameters.isData) { Generate_Electron_AMaps = Generate_Nucleon_AMaps = Generate_WMaps = false; }
-
-    // if (Generate_Electron_AMaps && Generate_Nucleon_AMaps) {
-    //     std::cout << "\n\nGenerate AMaps: Generate_Electron_AMaps and Generate_Nucleon_AMaps can't be true at the same time! Exiting...", exit(0);
-    // }
-
-    // if (Generate_Electron_AMaps && !basic_tools::FindSubstring(parameters.SampleName, "Uniform_1e")) { Generate_Electron_AMaps = false; }
-
-    // if (Generate_Nucleon_AMaps && (!basic_tools::FindSubstring(parameters.SampleName, "Uniform_ep")) && !basic_tools::FindSubstring(parameters.SampleName, "Uniform_en")) {
-    // Generate_Nucleon_AMaps = false; }
-
+    AMapsSettings.RefreshSettingsByParameters(parameters);
     MomResSettings.RefreshSettings();
-    // if (plot_and_fit_MomRes && (Calculate_momResS2 || Run_with_momResS2)) { ForceSmallpResLimits = false; }
 
     debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps, "Event selection setup - end");
 
@@ -156,345 +71,22 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps, "Cut setup - start");
 
-    // Cut setup ---------------------------------------------------------------------------------------------------------------------------------------------------------
     AnalysisCutSettings CutSettings = AnalysisCutSettings();
-    // // Cuts setup
-    // /* Settings that allow to disable/enable every cut individually */
 
-    // // clas12ana cuts ---------------------------------------------------------------------------------------------------------------------------------------------------
-    // bool apply_cuts = true;                   // master ON/OFF switch for applying cuts
-    // bool clas12ana_particles = true;          // TODO: move form here!
-    // bool only_preselection_cuts = false;      // keep as false for regular runs!
-    // bool only_electron_quality_cuts = false;  // keep as false for regular runs!
-
-    // /* Preselection cuts (event cuts) */
-    // bool apply_preselection_cuts = true;               // master ON/OFF switch for preselection cuts
-    // bool apply_Vz_e_cuts = true;                       // Electron vertex cuts
-    // bool apply_Vz_cuts = true, apply_dVz_cuts = true;  // Vertex cuts
-    // bool apply_DC_e_fiducial_cuts = true;              // Electron DC fiducial (edge) cuts
-    // bool apply_DC_fiducial_cuts = true;                // DC fiducial (edge) cuts
-
-    // /* Electron quality cuts */
-    // bool apply_electron_quality_cuts = true;  // master ON/OFF switch for eQC
-    // bool apply_Nphe_cut = true;               // Number of photo-electrons in HTCC cut
-    // bool apply_ECAL_SF_cuts = true;           // SF cut on both E_deb AND P_e
-    // bool apply_ECAL_P_cuts = false;           // SF cut on P_e (keep as false for now!)
-    // bool apply_ECAL_fiducial_cuts = true;     // ECAL edge cuts for other charged particles
-    // bool apply_Electron_beta_cut = true;      // Electron beta cut
-
-    // /* Chi2 cuts (= PID cuts) */
-    // bool apply_chi2_cuts_1e_cut = true;
-
-    // // My analysis cuts ---------------------------------------------------------------------------------------------------------------------------------------------------
-    // /* Nucleon cuts */
-    // bool apply_nucleon_cuts = false;  // set as true to get good protons and calculate upper neutron momentum th.
-
-    // /* Physical cuts */
-    // bool apply_nucleon_physical_cuts = false;  // nucleon physical cuts master
-    // // TODO: automate adding upper mom. th. to nucleon cuts (for nRes calc)
-    // bool apply_nBeta_fit_cuts = true;  // apply neutron upper mom. th.
-    // bool apply_fiducial_cuts = false;
-    // bool apply_kinematical_cuts = false;
-    // bool apply_kinematical_weights = false;
-    // bool apply_nucleon_SmearAndCorr = false;
-
-    // Custom cuts naming & print out execution variables
     CutSettings.RefreshSettings(parameters, ESSettings, AMapsSettings, MomResSettings);
-    // // Auto-disable variables
-    // if (only_preselection_cuts || only_electron_quality_cuts) {
-    //     AnalysisCutSettings = false;
-    // } else {
-    //     if (AMapsSettings.Generate_Electron_AMaps) {
-    //         AnalysisCutSettings = false;  // Electron acceptance maps (for fuducial cuts) should not use any electron PID or pre-selection cuts!
-    //     }
-
-    //     if (AMapsSettings.Generate_Nucleon_AMaps) {
-    //         AnalysisCutSettings = true;
-
-    //         apply_preselection_cuts = true;
-    //         apply_Vz_e_cuts = true, apply_Vz_cuts = apply_dVz_cuts = false;
-    //         apply_DC_e_fiducial_cuts = true, apply_DC_fiducial_cuts = false;
-
-    //         apply_electron_quality_cuts = apply_Nphe_cut = apply_ECAL_SF_cuts = true;
-    //         apply_ECAL_P_cuts = false;
-    //         apply_ECAL_fiducial_cuts = apply_Electron_beta_cut = true;
-
-    //         apply_chi2_cuts_1e_cut = false;
-    //     }
-    // }
-
-    // if (!AnalysisCutSettings) {
-    //     if (!only_preselection_cuts) { apply_preselection_cuts = false; }
-
-    //     if (!only_electron_quality_cuts) { apply_electron_quality_cuts = false; }
-
-    //     apply_chi2_cuts_1e_cut = apply_nucleon_cuts = false;
-
-    //     // AMapsSettings.Generate_Electron_AMaps = true;
-    // }
-
-    // if (!apply_preselection_cuts) { apply_Vz_e_cuts = apply_Vz_cuts = apply_dVz_cuts = apply_DC_e_fiducial_cuts = apply_DC_fiducial_cuts = false; }
-
-    // if (!apply_electron_quality_cuts) { apply_Nphe_cut = apply_ECAL_SF_cuts = apply_ECAL_P_cuts = apply_ECAL_fiducial_cuts = apply_Electron_beta_cut = false; }
-    // // else
-    // // {
-    // //     apply_Nphe_cut = apply_ECAL_SF_cuts = apply_ECAL_fiducial_cuts = apply_Electron_beta_cut = true;
-    // //     // apply_Nphe_cut = apply_ECAL_SF_cuts = apply_ECAL_P_cuts = apply_ECAL_fiducial_cuts = apply_Electron_beta_cut = true;
-    // // }
-
-    // if (!apply_chi2_cuts_1e_cut) { apply_nucleon_cuts = false; }
-
-    // if (!apply_nucleon_cuts) { AMapsSettings.Generate_WMaps = apply_nucleon_physical_cuts = false; }
-
-    // if (!apply_nucleon_physical_cuts) {
-    //     apply_nBeta_fit_cuts = apply_fiducial_cuts = apply_kinematical_cuts = apply_kinematical_weights = apply_nucleon_SmearAndCorr = false;
-    // } else {
-    //     if (Calculate_momResS2) { apply_nucleon_SmearAndCorr = true; }
-    // }
-
-    // if (AMapsSettings.Generate_WMaps) { apply_fiducial_cuts = false; }
-
-    // if (!VaryingDelta) { apply_nucleon_SmearAndCorr = false; }
-
-    // if (parameters.isData) {
-    //     // no TL calculation, AMap,WMap generation nor nRes calculation when running on data
-    //     ESSettings.calculate_truth_level = AMapsSettings.Generate_WMaps = plot_and_fit_MomRes = momRes_test = false;
-    // }
-
-    // if (!ESSettings.calculate_truth_level) { AMapsSettings.AMaps_calc_with_one_reco_electron = ESSettings.fill_TL_plots = ESSettings.Rec_wTL_ES = false; }
-
-    // if (ESSettings.Rec_wTL_ES) {
-    //     /* if ESSettings.Rec_wTL_ES = true, there are no momentum thresholds, and we get an infinite loop in the nRes slice calculations!
-    //        Additionally, there is no need to calculate the resolution and efficiency in the same time! */
-    //     plot_and_fit_MomRes = false;
-    // } else if (!ESSettings.Rec_wTL_ES) {
-    //     /* if ESSettings.Rec_wTL_ES = false, keep fiducial cuts with the overlapping maps! (safety measure) */
-    //     ESSettings.Calc_eff_overlapping_FC = true;
-    // }
-
-    // if (!plot_and_fit_MomRes) { Calculate_momResS2 = false; }
-
-    // if ((Calculate_momResS2 && Run_with_momResS2)  // Don't run calculate momResS2 and run on it at the same time
-    //     || (Calculate_momResS2 && !VaryingDelta)   // Don't run calculate momResS2 and small momentum slices at the same time
-    // ) {
-    //     std::cout << "\033[33m\n\nmomRes order error! Exiting...\n\n", exit(0);
-    // }
-
-    // Custom cuts naming
-
+    
     /* Save plots to custom-named folders, to allow multi-sample runs at once. */
     std::string run_plots_path = path_definitions::PathDefinitions.plots_path;
     std::string run_plots_log_save_Directory = path_definitions::plots_log_save_Directory;
     std::string run_skipped_files_list_save_Directory = path_definitions::skipped_files_list_save_Directory;
     CutSettings.CustomNamingRefresh(settings, AMapsSettings, MomResSettings, ESSettings, parameters, run_plots_path, run_plots_log_save_Directory, run_skipped_files_list_save_Directory);
-    // const bool custom_cuts_naming = true;
-    // std::string run_plots_path = path_definitions::PathDefinitions.plots_path;
-    // std::string run_plots_log_save_Directory = path_definitions::plots_log_save_Directory;
-    // settings.SetCustomCutsNaming(custom_cuts_naming);
-    // settings.ConfigureStatuses(AnalysisCutSettings, clas12ana_particles, only_preselection_cuts, apply_chi2_cuts_1e_cut, only_electron_quality_cuts, apply_nucleon_cuts,
-    // ESSettings.Enable_FD_photons,
-    //                            apply_nucleon_SmearAndCorr, apply_kinematical_cuts, apply_kinematical_weights, apply_fiducial_cuts,
-    //                            (AMapsSettings.Generate_Electron_AMaps || AMapsSettings.Generate_Nucleon_AMaps), plot_and_fit_MomRes, VaryingDelta,
-    //                            Calculate_momResS2, Run_with_momResS2, momRes_test, ESSettings.Rec_wTL_ES,
-    //                            ESSettings.ZoomIn_On_mom_th_plots);
-    // settings.SetPaths(path_definitions::PathDefinitions.WorkingDirectory, parameters.SampleName, run_plots_path, AnalysisCutSettings, apply_chi2_cuts_1e_cut, apply_nucleon_cuts);
-    // settings.GetPlotsPath(run_plots_path);
-    // settings.GetPlotsLogSaveDirectory(run_plots_log_save_Directory);
 
     // Print out execution variables
     printers::RecoCutsPrintOut(path_definitions::PathDefinitions.WorkingDirectory, run_plots_path, AnalyzeFilePath, AnalyzeFileSample, AnalyzeFile, file_name, parameters, CutSettings);
-    // /* Print out execution variables (for self observation) */
-    // std::cout << "\033[33m-- Execution variables ----------------------------------------------------\n";
-    // std::cout << "\033[33mWorkingDirectory:\033[0m\t" << path_definitions::PathDefinitions.WorkingDirectory << "\n";
-    // std::cout << "\033[33mrun_plots_path:\033[0m\t\t" << run_plots_path << "\n\n";
-
-    // std::cout << "\033[33mAnalyzeFilePath:\033[0m\t" << "/" << AnalyzeFilePath << "/" << "\n";
-    // std::cout << "\033[33mAnalyzeFileSample:\033[0m\t" << "/" << AnalyzeFileSample << "/" << "\n";
-    // std::cout << "\033[33mAnalyzeFile:\033[0m\t\t" << AnalyzeFile << "\n";
-    // std::cout << "\033[33mSettings mode:\033[0m\t\t'" << file_name << "'\n\n";
-
-    // std::cout << "\033[33mSampleName:\033[0m\t\t" << parameters.SampleName << "\n";
-    // std::cout << "\033[33mVaryingSampleName:\033[0m\t" << parameters.VaryingSampleName << "\n";
-    // std::cout << "\033[33mTarget:\033[0m\t\t\t" << parameters.Target << " (PDG: " << parameters.TargetPDG << ")\n";
-    // std::cout << "\033[33mBeam Energy:\033[0m\t\t" << parameters.beamE << " [GeV]\n\n\n\n";
-
-    // // Cuts output
-    // /* Print out the cuts within the run (for self-observation) */
-    // if (!CutSettings.apply_cuts) {
-    //     std::cout << "\033[33mCuts are disabled:\n";
-    // } else {
-    //     std::cout << "\033[33mCuts are enabled:\n";
-    // }
-
-    // std::cout << "\033[33mapply_cuts:\033[0m\t\t\t" << basic_tools::BoolToString(CutSettings.apply_cuts) << "\n";
-    // std::cout << "\033[33mclas12ana_particles:\033[0m\t\t" << basic_tools::BoolToString(CutSettings.clas12ana_particles) << "\n";  // TODO: move form here!
-    // std::cout << "\033[33monly_preselection_cuts:\033[0m\t\t" << basic_tools::BoolToString(CutSettings.only_preselection_cuts) << "\n";
-    // std::cout << "\033[33monly_electron_quality_cuts:\033[0m\t" << basic_tools::BoolToString(CutSettings.only_electron_quality_cuts) << "\n\n";
-
-    // std::cout << "\033[33mapply_preselection_cuts:\033[0m\t" << basic_tools::BoolToString(CutSettings.apply_preselection_cuts) << "\n";
-    // std::cout << "\033[33mapply_Vz_e_cuts:\033[0m\t\t" << basic_tools::BoolToString(CutSettings.apply_Vz_e_cuts) << "\n";
-    // std::cout << "\033[33mapply_Vz_cuts:\033[0m\t\t\t" << basic_tools::BoolToString(CutSettings.apply_Vz_cuts) << "\n";
-    // std::cout << "\033[33mCutSettings.apply_dVz_cuts:\033[0m\t\t\t" << basic_tools::BoolToString(CutSettings.apply_dVz_cuts) << "\n";
-    // std::cout << "\033[33mapply_DC_e_fiducial_cuts:\033[0m\t" << basic_tools::BoolToString(CutSettings.apply_DC_e_fiducial_cuts) << "\n";
-    // std::cout << "\033[33mapply_DC_fiducial_cuts:\033[0m\t\t" << basic_tools::BoolToString(CutSettings.apply_DC_fiducial_cuts) << "\n\n";
-
-    // std::cout << "\033[33mapply_electron_quality_cuts:\033[0m\t" << basic_tools::BoolToString(CutSettings.apply_electron_quality_cuts) << "\n";
-    // std::cout << "\033[33mapply_Nphe_cut:\033[0m\t\t\t" << basic_tools::BoolToString(CutSettings.apply_Nphe_cut) << "\n";
-    // std::cout << "\033[33mapply_ECAL_SF_cuts:\033[0m\t\t" << basic_tools::BoolToString(CutSettings.apply_ECAL_SF_cuts) << "\n";
-    // std::cout << "\033[33mapply_ECAL_P_cuts:\033[0m\t\t" << basic_tools::BoolToString(CutSettings.apply_ECAL_P_cuts) << "\n";
-    // std::cout << "\033[33mapply_ECAL_fiducial_cuts:\033[0m\t" << basic_tools::BoolToString(CutSettings.apply_ECAL_fiducial_cuts) << "\n";
-    // std::cout << "\033[33mapply_Electron_beta_cut:\033[0m\t" << basic_tools::BoolToString(CutSettings.apply_Electron_beta_cut) << "\n\n";
-
-    // std::cout << "\033[33mapply_chi2_cuts_1e_cut:\033[0m\t\t" << basic_tools::BoolToString(CutSettings.apply_chi2_cuts_1e_cut) << "\n";
-
-    // std::cout << "\033[33mapply_nucleon_cuts:\033[0m\t\t" << basic_tools::BoolToString(CutSettings.apply_nucleon_cuts) << "\n\n";
-
-    // std::cout << "\033[33mapply_nucleon_physical_cuts:\033[0m\t" << basic_tools::BoolToString(CutSettings.apply_nucleon_physical_cuts) << "\n";
-    // std::cout << "\033[33mapply_nBeta_fit_cuts:\033[0m\t\t" << basic_tools::BoolToString(CutSettings.apply_nBeta_fit_cuts) << "\n";
-    // std::cout << "\033[33mapply_fiducial_cuts:\033[0m\t\t" << basic_tools::BoolToString(CutSettings.apply_fiducial_cuts) << "\n";
-    // std::cout << "\033[33mapply_kinematical_cuts:\033[0m\t\t" << basic_tools::BoolToString(CutSettings.apply_kinematical_cuts) << "\n";
-    // std::cout << "\033[33mapply_kinematical_weights:\033[0m\t" << basic_tools::BoolToString(CutSettings.apply_kinematical_weights) << "\n";
-    // std::cout << "\033[33mapply_nucleon_SmearAndCorr:\033[0m\t" << basic_tools::BoolToString(CutSettings.apply_nucleon_SmearAndCorr) << "\n\n";
 
     // Cut declarations -----------------------------------------------------------------------------------------------------------------------------------------------------
 
     CutValueManager CutManager = CutValueManager(Experiment, ESSettings);
-
-    // Cuts declarations
-    /* Log cut values to be used later when applying them. */
-
-    // clas12ana cuts ---------------------------------------------------------------------------------------------------------------------------------------------------
-
-    // // clas12ana cuts
-    // /* Number of Photo-electrons (Nphe) cuts (electrons only, FD) */
-    // DSCuts Nphe_cuts_FD;
-
-    // /* Chi2 cuts. NOTES:
-    //  * Values for mean and sigma are filled from fit variables (overating these values later).
-    //  * Upper cut lim (Cuts.at(2)) is the same as the sigma that is used in clas12ana to apply PID cuts */
-    // DSCuts Chi2_Electron_cuts_CD = DSCuts("Chi2", "CD", "Electron", "1e cut", 0, -9999, 9999);
-    // DSCuts Chi2_Electron_cuts_FD = DSCuts("Chi2", "FD", "Electron", "1e cut", 0, -9999, 9999);
-
-    // DSCuts Chi2_Proton_cuts_CD = DSCuts("Chi2", "CD", "Proton", "1e cut", 0, -9999, 9999);
-    // DSCuts Chi2_Proton_cuts_FD = DSCuts("Chi2", "FD", "Proton", "1e cut", 0, -9999, 9999);
-
-    // DSCuts Chi2_piplus_cuts_CD = DSCuts("Chi2", "CD", "piplus", "1e cut", 0, -9999, 9999);
-    // DSCuts Chi2_piplus_cuts_FD = DSCuts("Chi2", "FD", "piplus", "1e cut", 0, -9999, 9999);
-
-    // DSCuts Chi2_piminus_cuts_CD = DSCuts("Chi2", "CD", "piminus", "1e cut", 0, -9999, 9999);
-    // DSCuts Chi2_piminus_cuts_FD = DSCuts("Chi2", "FD", "piminus", "1e cut", 0, -9999, 9999);
-
-    // // Kaon PID cuts
-    // /* Kaon pid cuts. Not really applied in our analysis. */
-    // DSCuts Chi2_Kplus_cuts_CD = DSCuts("Chi2", "CD", "Kplus", "1e cut", 0, -9999, 9999);
-    // DSCuts Chi2_Kplus_cuts_FD = DSCuts("Chi2", "FD", "Kplus", "1e cut", 0, -9999, 9999);
-    // DSCuts Chi2_Kminus_cuts_CD = DSCuts("Chi2", "CD", "Kminus", "1e cut", 0, -9999, 9999);
-    // DSCuts Chi2_Kminus_cuts_FD = DSCuts("Chi2", "FD", "Kminus", "1e cut", 0, -9999, 9999);
-
-    // // Deuteron PID cuts
-    // /* Deuteron pid cuts. Not really applied in our analysis. */
-    // DSCuts Chi2_deuteron_cuts_CD = DSCuts("Chi2", "CD", "deuteron", "1e cut", 0, -9999, 9999);
-    // DSCuts Chi2_deuteron_cuts_FD = DSCuts("Chi2", "FD", "deuteron", "1e cut", 0, -9999, 9999);
-
-    // /* Vertex cuts */
-    // DSCuts Vz_cut = Experiment.GetVz_cuts(), Vz_cut_FD = Experiment.GetVz_cuts_FD(), Vz_cut_CD = Experiment.GetVz_cuts_CD();
-    // DSCuts dVz_cuts = Experiment.GetdVz_cuts(), dVz_cuts_FD = Experiment.GetdVz_cuts_FD(), dVz_cuts_CD = Experiment.GetdVz_cuts_CD();
-
-    // /* Sampling Fraction (SF) cuts (electrons only, FD) */
-    // DSCuts SF_cuts;
-    // //    DSCuts P_cuts;
-
-    // /* PCAL edge cuts (fiducial cuts ,electrons only, FD) */
-    // DSCuts PCAL_edge_cuts;
-
-    // /* DC edge cuts (fiducial cuts ,electrons only, FD) */
-    // DSCuts DC_e_edge_cuts, DC_edge_cuts;
-
-    // // Reco particles momentum thresholds
-    // /* Momentum thresholds (declarations) */
-    // DSCuts e_mom_th = DSCuts("Momentum_th", "", "Electron", "", 0, -9999, 9999);
-    // DSCuts no_p_mom_th = DSCuts("Momentum_th", "", "Proton", "", 0, -9999, 9999);  // (no) momentum thresholds for (e,e'Xp)Y efficiency
-    // DSCuts pip_mom_th = DSCuts("Momentum_th", "", "Piplus", "", 0, 0.2, 9999);
-    // DSCuts pim_mom_th = DSCuts("Momentum_th", "", "Piplus", "", 0, 0.2, 9999);
-    // DSCuts ph_mom_th = DSCuts("Momentum_th", "", "Photons", "", 0, 0.3, 9999);
-
-    // DSCuts p_mom_th, n_mom_th;  // Nucleons momentum thresholds for PID
-
-    // if (ESSettings.limless_mom_eff_plots) {
-    //     /* If we enforce TL cuts, don't use momentum thresholds on nucleons. */
-    //     p_mom_th = DSCuts("Momentum_th", "", "Protons", "", 0, -9999, 9999), n_mom_th = DSCuts("Momentum_th", "", "Neutrons", "", 0, -9999, 9999);
-    // } else {
-    //     /* If we don't enforce TL cuts, use momentum thresholds on nucleons. */
-    //     p_mom_th = DSCuts("Momentum_th", "", "Protons", "", 0, 0.4, 9999), n_mom_th = DSCuts("Momentum_th", "", "Neutrons", "", 0, 0.4, 9999);
-    // }
-
-    // // Other cuts -------------------------------------------------------------------------------------------------------------------------------------------------------
-
-    // // Other cuts
-    // /* Neutron beta cuts (1n & nFDpCD, FD only) */
-    // DSCuts Beta_max_cut_ABF_FD_n_from_ph, Beta_max_cut_ABF_FD_n_from_ph_apprax;
-
-    // /* Neutron momentum cuts (1n & nFDpCD, FD only) */
-    // DSCuts n_momentum_cuts_ABF_FD_n_from_ph;         // ABF = After Beta Fit. These are momentum cuts to logged to the fitted cuts file.
-    // DSCuts n_momentum_cuts_ABF_FD_n_from_ph_apprax;  // Approximated max. momentum, obtained by taking Beta=1, such that deltaBeta/Beta=deltaBeta.
-
-    // /* Truth-level momentum cuts */
-    // // TODO: remove pion mom. th. separation by CD and FD. It's useless (according to Adi)
-    // DSCuts TL_e_mom_cuts = DSCuts("Momentum", "", "Electron", "", 0, e_mom_th.GetLowerCut(), e_mom_th.GetUpperCut());
-    // DSCuts TL_n_mom_cuts = DSCuts("Momentum", "", "Neutrons", "", 0, n_mom_th.GetLowerCut(), n_mom_th.GetUpperCut());
-    // DSCuts TL_p_mom_cuts = DSCuts("Momentum", "", "Proton", "", 0, p_mom_th.GetLowerCut(), p_mom_th.GetUpperCut());
-    // DSCuts TL_pFD_mom_cuts = DSCuts("Momentum", "FD", "Proton", "", 0, p_mom_th.GetLowerCut(), p_mom_th.GetUpperCut());
-    // DSCuts TL_pCD_mom_cuts = DSCuts("Momentum", "CD", "Proton", "", 0, p_mom_th.GetLowerCut(), p_mom_th.GetUpperCut());
-    // DSCuts TL_pip_mom_cuts = DSCuts("Momentum", "", "Piplus", "", 0, pip_mom_th.GetLowerCut(), pip_mom_th.GetUpperCut());
-    // DSCuts TL_pipFD_mom_cuts = DSCuts("Momentum", "FD", "Piplus", "", 0, pip_mom_th.GetLowerCut(), pip_mom_th.GetUpperCut());
-    // DSCuts TL_pipCD_mom_cuts = DSCuts("Momentum", "CD", "Piplus", "", 0, pip_mom_th.GetLowerCut(), pip_mom_th.GetUpperCut());
-    // DSCuts TL_pim_mom_cuts = DSCuts("Momentum", "", "Piminus", "", 0, pim_mom_th.GetLowerCut(), pim_mom_th.GetUpperCut());
-    // DSCuts TL_pimFD_mom_cuts = DSCuts("Momentum", "FD", "Piminus", "", 0, pim_mom_th.GetLowerCut(), pim_mom_th.GetUpperCut());
-    // DSCuts TL_pimCD_mom_cuts = DSCuts("Momentum", "CD", "Piminus", "", 0, pim_mom_th.GetLowerCut(), pim_mom_th.GetUpperCut());
-    // DSCuts TL_pi0_mom_cuts = DSCuts("Momentum", "", "Pizero", "", 0, analysis_math::GetPi0MomTh(ph_mom_th.GetUpperCut()), 9999);
-    // DSCuts TL_ph_mom_cuts = DSCuts("Momentum", "", "Photons", "", 0, ph_mom_th.GetLowerCut(), ph_mom_th.GetUpperCut());
-
-    // /* FD & CD theta range */
-    // DSCuts ThetaFD = DSCuts("Theta FD", "FD", "", "", 1, 5., 40.);
-    // DSCuts ThetaCD = DSCuts("Theta CD", "CD", "", "", 1, 40., 135.);
-
-    // /* FD & CD theta range (for AMaps) */
-    // DSCuts ThetaFD_AMaps = DSCuts("Theta FD", "FD", "", "", 1, 5., 45.);
-
-    // /* Beta cut (1n, FD) */
-    // DSCuts Beta_cut = DSCuts("Beta_nuc", "FD", "", "1n", 1, 0, 9999);
-
-    // /* Neutron veto cut (1n & nFDpCD, FD) */
-    // DSCuts Neutron_veto_cut = DSCuts("Neutron veto", "FD", "", "1n", 0, 100, 9999);
-
-    // /* Ghost tracks handling (2p & pFDpCD, CD & FD) */
-    // DSCuts Theta_p1_cuts_2p = DSCuts("Theta_p1", "", "Proton", "2p", 40., -9999, 5.);
-    // DSCuts Theta_p2_cuts_2p = DSCuts("Theta_p2", "", "Proton", "2p", 40., -9999, 5.);
-    // DSCuts dphi_p1_p2_2p = DSCuts("dPhi_p1_p2", "", "Proton", "2p", 0, -9999, 15.);
-
-    // DSCuts Theta_pFD_cuts_2p = DSCuts("Theta_p1 leading", "", "Proton", "2p", Theta_p1_cuts_2p.GetMean(), -9999, Theta_p1_cuts_2p.GetUpperCut());
-    // DSCuts Theta_pCD_cuts_2p = DSCuts("Theta_p2 recoil", "", "Proton", "2p", Theta_p2_cuts_2p.GetMean(), -9999, Theta_p2_cuts_2p.GetUpperCut());
-    // DSCuts dphi_pFD_pCD_2p = DSCuts("dPhi_pFD_pCD", "", "Proton", "2p", dphi_p1_p2_2p.GetMean(), -9999, dphi_p1_p2_2p.GetUpperCut());
-
-    // DSCuts Theta_pFD_cuts_pFDpCD = DSCuts("Theta_pFD", "", "Proton", "pFDpCD", Theta_p1_cuts_2p.GetMean(), -9999, Theta_p1_cuts_2p.GetUpperCut());
-    // DSCuts Theta_pCD_cuts_pFDpCD = DSCuts("Theta_pCD", "", "Proton", "pFDpCD", Theta_p2_cuts_2p.GetMean(), -9999, Theta_p2_cuts_2p.GetUpperCut());
-    // DSCuts dphi_pFD_pCD_pFDpCD = DSCuts("dPhi_pFD_pCD", "", "Proton", "pFDpCD", dphi_p1_p2_2p.GetMean(), -9999, dphi_p1_p2_2p.GetUpperCut());
-
-    // DSCuts Theta_L_cuts_nFDpCD = DSCuts("Theta_L", "", "", "nFDpCD", Theta_p1_cuts_2p.GetMean(), -9999, Theta_p1_cuts_2p.GetUpperCut());
-    // DSCuts Theta_R_cuts_nFDpCD = DSCuts("Theta_R", "", "", "nFDpCD", Theta_p2_cuts_2p.GetMean(), -9999, Theta_p2_cuts_2p.GetUpperCut());
-    // DSCuts dphi_L_R_nFDpCD = DSCuts("dphi_L_R", "", "", "nFDpCD", dphi_p1_p2_2p.GetMean(), -9999, dphi_p1_p2_2p.GetUpperCut());
-
-    // /* reco. kinematic cuts (based on nucleons' efficiency) */
-    // DSCuts FD_nucleon_theta_cut = DSCuts("FD Nucleon theta cut", "FD", "", "", 0, 0, 32.);
-    // //    DSCuts Nucleon_momentum_cut = DSCuts("Nucleon momentum cut", "FD", "", "", 0, n_mom_th.GetLowerCut(), n_mom_th.GetUpperCut());
-    // //    DSCuts FD_nucleon_momentum_cut = DSCuts("FD nucleon momentum cut", "FD", "", "Protons and neutrons", 0, 1., 4.); // Original mom. KC
-    // //    DSCuts FD_nucleon_momentum_cut = DSCuts("FD nucleon momentum cut", "FD", "", "Protons and neutrons", 0, 1., 3.); // Larry meeting (10/08/23)
-    // DSCuts FD_nucleon_momentum_cut = DSCuts("FD nucleon momentum cut", "FD", "", "Protons and neutrons", 0, 1., 2.5);  // E4nu meeting (29/01/24)
-
-    // DSCuts MomRes_mu_cuts = DSCuts("MomRes_mu_cuts", "FD", "", "Protons and neutrons", 0, FD_nucleon_momentum_cut.GetLowerCut(), 2.2);
-    // // E4nu meeting (29/01/24)
-    // DSCuts MomRes_sigma_cuts = DSCuts("MomRes_sigma_cuts", "FD", "", "Protons and neutrons", 0, FD_nucleon_momentum_cut.GetLowerCut(), 2.2);
-    // // Adi meeting after (29/01/24)
 
     debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps, "Cut setup - end");
 
@@ -1053,14 +645,16 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     /* Acceptance maps are handled completely by the AMaps class */
     std::cout << "\033[33m\nSetting Acceptance maps...\033[0m";
 
-    if (!ESSettings.calculate_truth_level) { AMapsSettings.Generate_WMaps = false; }
+    AMapsSettings.RefreshSettingsByEventSelection(ESSettings,AMaps_plots,WMaps_plots);
 
-    if (!AMapsSettings.Generate_Electron_AMaps && !AMapsSettings.Generate_Nucleon_AMaps) { AMaps_plots = false; }
+    // if (!ESSettings.calculate_truth_level) { AMapsSettings.Generate_WMaps = false; }
 
-    if (!AMapsSettings.Generate_WMaps) { WMaps_plots = false; }
+    // if (!AMapsSettings.Generate_Electron_AMaps && !AMapsSettings.Generate_Nucleon_AMaps) { AMaps_plots = false; }
 
-    /* Set Bins by case */
-    int NumberNucOfMomSlices = 15, NumberElecOfMomSlices = 15, HistElectronSliceNumOfXBins = 100, HistNucSliceNumOfXBins = 100;
+    // if (!AMapsSettings.Generate_WMaps) { WMaps_plots = false; }
+
+    // /* Set Bins by case */
+    // int NumberNucOfMomSlices = 15, NumberElecOfMomSlices = 15, HistElectronSliceNumOfXBins = 100, HistNucSliceNumOfXBins = 100;
 
     AMaps aMaps_master, wMaps_master;
     // TODO: UPDATE AMaps loading constructor electron histogram's number of bins
@@ -1068,7 +662,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     if (AMapsSettings.Generate_Electron_AMaps || AMapsSettings.Generate_Nucleon_AMaps) {
         aMaps_master =
             AMaps(parameters.SampleName, AMapsSettings.P_e_bin_profile, AMapsSettings.P_nuc_bin_profile, parameters.beamE, "AMaps", directories.AMaps_dir_map["AMaps_1e_cut_Directory"],
-                  NumberNucOfMomSlices, NumberElecOfMomSlices, HistNucSliceNumOfXBins, HistNucSliceNumOfXBins, HistElectronSliceNumOfXBins, HistElectronSliceNumOfXBins);
+                  AMapsSettings.NumberNucOfMomSlices, AMapsSettings.NumberElecOfMomSlices, AMapsSettings.HistNucSliceNumOfXBins, AMapsSettings.HistNucSliceNumOfXBins, AMapsSettings.HistElectronSliceNumOfXBins, AMapsSettings.HistElectronSliceNumOfXBins);
     } else {
         aMaps_master = AMaps(path_definitions::PathDefinitions.AcceptanceMapsDirectory, parameters.VaryingSampleName, parameters.beamE, "AMaps", AMapsSettings.Electron_single_slice_test,
                              AMapsSettings.Nucleon_single_slice_test, AMapsSettings.TestSlices);
@@ -1079,7 +673,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     // if (AMapsSettings.Generate_WMaps) {
     //     wMaps_master =
     //         AMaps(parameters.SampleName, AMapsSettings.P_e_bin_profile, AMapsSettings.P_nuc_bin_profile, parameters.beamE, "WMaps", directories.AMaps_dir_map["WMaps_1e_cut_Directory"],
-    //               NumberNucOfMomSlices, NumberElecOfMomSlices, HistNucSliceNumOfXBins, HistNucSliceNumOfXBins, HistElectronSliceNumOfXBins, HistElectronSliceNumOfXBins);
+    //               AMapsSettings.NumberNucOfMomSlices, AMapsSettings.NumberElecOfMomSlices, AMapsSettings.HistNucSliceNumOfXBins, AMapsSettings.HistNucSliceNumOfXBins, AMapsSettings.HistElectronSliceNumOfXBins, AMapsSettings.HistElectronSliceNumOfXBins);
     // } else {
     //     wMaps_master = AMaps(path_definitions::PathDefinitions.AcceptanceWeightsDirectory, parameters.VaryingSampleName, parameters.beamE, "WMaps",
     //     AMapsSettings.Electron_single_slice_test,
@@ -26675,12 +26269,17 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         std::string zip_input_path = run_plots_path;
         std::string zip_input = run_plots_path + "/" + zip_filename;
         std::string zip_output_path = run_plots_path;
+        // std::cout << "\n\nMaking zip file...\n";
+        // std::cout << "zip_filename: " << zip_filename << "\n";
+        // std::cout << "zip_input_path: " << zip_input_path << "\n";
+        // std::cout << "zip_input: " << zip_input << "\n";
+        // std::cout << "zip_output_path: " << zip_output_path << "\n";
+        system(("zip -r " + zip_input + " " + zip_output_path).c_str());
         std::cout << "\n\nMaking zip file...\n";
         std::cout << "zip_filename: " << zip_filename << "\n";
         std::cout << "zip_input_path: " << zip_input_path << "\n";
         std::cout << "zip_input: " << zip_input << "\n";
         std::cout << "zip_output_path: " << zip_output_path << "\n";
-        system(("zip -r " + zip_input + " " + zip_output_path).c_str());
         // system(("mv -r " + run_plots_path + "/" + settings.GetRun_dir_name() + "/" + settings.GetRun_dir_name() + ".zip " + run_plots_path).c_str());
     }
 

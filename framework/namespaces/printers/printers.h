@@ -21,6 +21,8 @@ namespace printers {
 
 void RecoCutsPrintOut(const std::string& workingDirectory, const std::string& run_plots_path, const std::string& AnalyzeFilePath, const std::string& AnalyzeFileSample,
                       const std::string& AnalyzeFile, const std::string& file_name, const RunParameters& parameters, const AnalysisCutSettings& CutSettings) {
+    /* Print out the cuts within the run (for self-observation) */
+
     std::cout << "\033[33m-- Execution variables ----------------------------------------------------\n";
     std::cout << "\033[33mWorkingDirectory:\033[0m\t" << workingDirectory << "\n";
     std::cout << "\033[33mrun_plots_path:\033[0m\t\t" << run_plots_path << "\n\n";
@@ -69,7 +71,7 @@ void RecoCutsPrintOut(const std::string& workingDirectory, const std::string& ru
     std::cout << "\033[33mapply_kinematical_cuts:\033[0m\t\t" << basic_tools::BoolToString(CutSettings.apply_kinematical_cuts) << "\n";
     std::cout << "\033[33mapply_kinematical_weights:\033[0m\t" << basic_tools::BoolToString(CutSettings.apply_kinematical_weights) << "\n";
     std::cout << "\033[33mapply_nucleon_SmearAndCorr:\033[0m\t" << basic_tools::BoolToString(CutSettings.apply_nucleon_SmearAndCorr) << "\n\n";
-    
+
     std::cout << "\033[33mapply_reaction_monitoring_cuts:\033[0m\t" << basic_tools::BoolToString(CutSettings.apply_reaction_monitoring_cuts) << "\n";
     std::cout << "\033[33mapply_P_miss_in_QE_range_cuts:\033[0m\t" << basic_tools::BoolToString(CutSettings.apply_P_miss_in_QE_range_cuts) << "\n";
     std::cout << "\033[33mapply_E_miss_in_QE_range_cuts:\033[0m\t" << basic_tools::BoolToString(CutSettings.apply_E_miss_in_QE_range_cuts) << "\n";

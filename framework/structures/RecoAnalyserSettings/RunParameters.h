@@ -24,11 +24,11 @@ struct RunParameters {
     const bool is6GeVSample;
 
     RunParameters(ExperimentParameters& Experiment, const std::string& AnalyzeFilePath, const std::string& AnalyzeFileSample)
-        : SampleName(Experiment.ConfigureSampleName(AnalyzeFilePath, AnalyzeFileSample)),
-          VaryingSampleName(Experiment.GetVaryingSampleName()),
-          beamE(Experiment.GetBeamEnergy()),
-          Target(Experiment.GetTargetElement()),
-          TargetPDG(Experiment.GetTargetElementPDG()),
+        : SampleName(Experiment.ConfigureSampleName(AnalyzeFilePath, AnalyzeFileSample)),  // Configure SampleName from input
+          VaryingSampleName(Experiment.GetVaryingSampleName()),                            // Get VaryingSampleName (configured from SampleName) - for data runs!
+          beamE(Experiment.GetBeamEnergy()),                                               // Configure beam energy from SampleName
+          Target(Experiment.GetTargetElement()),                                           // Configure target (element) from SampleName
+          TargetPDG(Experiment.GetTargetElementPDG()),                                     // Configure target PDG from SampleName
           isLocal(Experiment.SLocal()),
           isMC(Experiment.SSample()),
           isData(Experiment.DSample()),
