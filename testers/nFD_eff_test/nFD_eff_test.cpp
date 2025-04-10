@@ -2251,7 +2251,7 @@ void nFD_eff_test() {
 
                             std::cerr << "number_of_files = " << number_of_files << "\n";
 
-                            bool SkipFile = true;
+                            SkipFile = true;
                             // bool SkipFile = chain.ReallyNextFile();
 
                             // if (SkipFile) {
