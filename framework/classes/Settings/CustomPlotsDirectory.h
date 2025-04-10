@@ -11,6 +11,7 @@ class CustomPlotsDirectory {
     std::string Plots_path;
     std::string Run_dir_name;
     std::string Plots_log_save_Directory;
+    std::string Skipped_files_list_save_Directory;
 
     std::string Stage0_prefix = "_S00_NO_CUTS";  // Stage 0 - no cuts
     std::string Stage1_prefix = "_S01ACwoChi2";  // Stage 1 - with cuts except PID (chi2) cuts
@@ -62,6 +63,10 @@ class CustomPlotsDirectory {
 
     void GetPlotsLogSaveDirectory(string &plots_log_save_Directory) {
         if (Custom_cuts_naming) { plots_log_save_Directory = Plots_log_save_Directory; }
+    }
+
+    void GetSkippedHipoFilesLogSaveDirectory(string &skipped_files_list_save_Directory) {
+        if (Custom_cuts_naming) { skipped_files_list_save_Directory = Skipped_files_list_save_Directory; }
     }
 
     std::string GetPreselection_Cuts_Status() { return Preselection_Cuts_Status; }

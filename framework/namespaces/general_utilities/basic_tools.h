@@ -173,6 +173,34 @@ bool fileExists(const char *filename) {
     return file.good();
 }
 
+// LogSkippedHipoFiles function -----------------------------------------------------------------------------------------------------------------------------------------
+
+// This function logs the skipped HIPO files to a text file.
+void LogSkippedHipoFiles(std::vector<TString> SkippedHipoChainFiles, const int &HipoChainLength, const char *filename) {
+    std::ofstream outFile(filename);
+
+    if (outFile.is_open()) {
+        outFile << "\n===========================================================================\n";
+        outFile << "Skipped HIPO files\n";
+        outFile << "===========================================================================\n\n";
+
+        outFile << "Total number of files in chain: " << HipoChainLength << "\n";
+        outFile << "Number of skipped files: " << SkippedHipoChainFiles.size() << "\n\n";
+
+        outFile << "-- Skipped files list -----------------------------------------------------\n\n";
+
+        for (const auto &fname : SkippedHipoChainFiles) { outFile << fname << std::endl; }
+
+        outFile << "\n";
+
+        outFile.close();
+
+        std::cout << "\033[32mSkipped file list saved to:\033[0m\n" << filename << std::endl;
+    } else {
+        std::cerr << "\033[31mbasic_tools::LogSkippedHipoFiles: ERROR! Failed to open file:\033[0m\n" << filename << "\n\033[31mfor writing!\033[0m\n";
+    }
+}
+
 };  // namespace basic_tools
 
 #endif  // BASIC_TOOLS_H

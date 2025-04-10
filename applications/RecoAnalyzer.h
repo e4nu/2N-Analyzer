@@ -53,6 +53,12 @@ class RecoAnalyzer {
     RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string &AnalyzeFileSample, const std::string &AnalyzeFile);
 
     ~RecoAnalyzer() = default;
+
+    private:
+    
+    // RecoAnalyzer private members -----------------------------------------------------------------------------------------------------------------------------------------
+    
+    std::vector<TString> SkippedHipoChainFiles;
 };
 
 #endif  // RECOANALYZER_H
