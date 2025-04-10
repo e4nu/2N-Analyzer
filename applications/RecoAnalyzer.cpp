@@ -11354,7 +11354,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     // while (chain.Next()) {
     while (true) {
         try {
-            if (!chain.Next()) break;  // This might throw, so it must be in try
+            if (!chain.Next()) { break; };  // This might throw, so it must be in try
 
             if (SkipFile) {
                 if (chain.ReallyNextFile()) {
@@ -18318,11 +18318,9 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             std::cerr << "\033[35m\n\nRecoAnalyzer::RecoAnalyzer:\033[36m Warning!\033[0m Could not loop over hipo file:\n"
                       << FileToSkip << "\nAdded to list of Skipped files. Moving to next file in chain.\n\n";
 
-            std::cerr << "\033[35m\n\nRecoAnalyzer::RecoAnalyzer:\033[36m num_of_files:\033[0m " << num_of_files << "\n\n";
-
             SkipFile = true;
             continue;
-    
+
             // continue;  // Continue to next file or event
 
             // if (chain.ReallyNextFile()) {
