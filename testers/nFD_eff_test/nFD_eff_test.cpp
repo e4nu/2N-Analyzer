@@ -29,17 +29,17 @@ void nFD_eff_test() {
 
     // vector<double> Ebeam_v = {2.07052};
     // vector<vector<bool>> Ebeam_bool_v = {{true, false, false}};
-    vector<double> Ebeam_v = {4.02962};
-    vector<vector<bool>> Ebeam_bool_v = {{false, true, false}};
+    // vector<double> Ebeam_v = {4.02962};
+    // vector<vector<bool>> Ebeam_bool_v = {{false, true, false}};
     // vector<double> Ebeam_v = {5.98636};
     // vector<vector<bool>> Ebeam_bool_v = {{false, false, true}};
-    // vector<double> Ebeam_v = {2.07052, 4.02962, 5.98636};
-    // vector<vector<bool>> Ebeam_bool_v = {{true, false, false}, {false, true, false}, {false, false, true}};
+    vector<double> Ebeam_v = {2.07052, 4.02962, 5.98636};
+    vector<vector<bool>> Ebeam_bool_v = {{true, false, false}, {false, true, false}, {false, false, true}};
 
     // int Limiter = 25000000;  // 2500 files
     // int Limiter = 10000000;  // 1000 files
-    int Limiter = 1000000;  // 100 files
-    // int Limiter = 100000;  // 10 files
+    // int Limiter = 1000000;  // 100 files
+    int Limiter = 100000;  // 10 files
     // int Limiter = 10000; // 1 file
 
     bool apply_neutFD_redef = true;
@@ -117,11 +117,9 @@ void nFD_eff_test() {
                         SampleName = "Uniform_en_sample_2070MeV";
                         Beam_energy_TString = "2070MeV";
                     } else if (Is4GeV) {
-                        InputFiles = use_ConstPn_samples ? (BaseDir + "/4029MeV_ConstPn/OutPut_1e/reconhipo/*.hipo") : (BaseDir + "/4029MeV/OutPut_1e/reconhipo/*.hipo");
-                        // InputFiles = use_ConstPn_samples ? (BaseDir + "/4029MeV_ConstPn/OutPut_en/reconhipo/*.hipo") : (BaseDir + "/4029MeV/OutPut_en/reconhipo/*.hipo");
+                        InputFiles = use_ConstPn_samples ? (BaseDir + "/4029MeV_ConstPn/OutPut_en/reconhipo/*.hipo") : (BaseDir + "/4029MeV/OutPut_en/reconhipo/*.hipo");
 
-                        SampleName = "Uniform_1e_sample_4029MeV";
-                        // SampleName = "Uniform_en_sample_4029MeV";
+                        SampleName = "Uniform_en_sample_4029MeV";
                         Beam_energy_TString = "4029MeV";
                     } else if (Is6GeV) {
                         // InputFiles = use_ConstPn_samples ? (BaseDir + "/5986MeV_ConstPn_lH2/OutPut_en/reconhipo/*.hipo") : (BaseDir + "/5986MeV/OutPut_en/reconhipo/*.hipo");
@@ -1139,1140 +1137,1067 @@ void nFD_eff_test() {
 
                     // ParticleID PID;
 
-                    bool SkipFile = false;
+                    while (chain.Next() == true) {
+                        // Display completed
+                        ++counter;
+                        if ((counter % 1000000) == 0) { std::cerr << "\n" << counter / 1000000 << " million completed"; }
+                        if ((counter % 100000) == 0) { std::cerr << "."; }
 
-                    int number_of_files = 0;
+                        if (counter > Limiter) { break; }
 
-                    // while (chain.Next() == true) {
-                    while (true) {
-                        // bool advance = chain.ReallyNextFile();
+                        // get particles by type
+                        auto allParticles = c12->getDetParticles();
+                        auto electrons = c12->getByID(11);
 
-                        if (SkipFile) {
-                            std::cerr << "\033[35m\nSkipFile = " << SkipFile << "\033[0m\n\n";
+                        if (electrons.size() != 1) { continue; }
 
-                            bool advance = chain.ReallyNextFile();
-                            SkipFile = false;
+                        double weight = 1;
 
-                            continue;
+                        double starttime = c12->event()->getStartTime();
+
+                        TVector3 P_b(0, 0, Ebeam);
+
+                        TVector3 reco_P_e;
+                        reco_P_e.SetMagThetaPhi(electrons[0]->getP(), electrons[0]->getTheta(), electrons[0]->getPhi());
+
+                        double vtz_e = electrons[0]->par()->getVz();
+
+                        TVector3 P_q = P_b - reco_P_e;
+
+                        double nu = Ebeam - reco_P_e.Mag();
+                        double QSq = P_q.Mag2() - (nu * nu);
+                        double xB = QSq / (2 * m_n * nu);
+                        double WSq = (m_n * m_n) - QSq + (2 * nu * m_n);
+                        double theta_e = reco_P_e.Theta() * 180 / M_PI;
+                        double EoP_e = (electrons[0]->cal(clas12::PCAL)->getEnergy() + electrons[0]->cal(ECIN)->getEnergy() + electrons[0]->cal(ECOUT)->getEnergy()) / reco_P_e.Mag();
+                        double E_PCALoP_e = electrons[0]->cal(clas12::PCAL)->getEnergy() / reco_P_e.Mag();
+                        double E_ECINoP_e = electrons[0]->cal(clas12::ECIN)->getEnergy() / reco_P_e.Mag();
+                        double Edep_PCAL = electrons[0]->cal(clas12::PCAL)->getEnergy();
+                        double Edep_EC = electrons[0]->cal(clas12::ECIN)->getEnergy() + electrons[0]->cal(clas12::ECOUT)->getEnergy();
+
+                        bool ElectronInPCAL = (electrons[0]->cal(clas12::PCAL)->getDetector() == 7);                                  // PCAL hit
+                        bool ElectronInECIN = (electrons[0]->cal(clas12::ECIN)->getDetector() == 7);                                  // ECIN hit
+                        bool ElectronInECOUT = (electrons[0]->cal(clas12::ECOUT)->getDetector() == 7);                                // ECOUT hit
+                        auto Electron_ECAL_detlayer = ElectronInPCAL ? clas12::PCAL : ElectronInECIN ? clas12::ECIN : clas12::ECOUT;  // find first layer of hit
+
+                        //  =======================================================================================================================================================================
+                        //  Get truth electron variables
+                        //  =======================================================================================================================================================================
+
+                        double Truth_theta_e, Truth_phi_e, Truth_phi_nFD;
+
+                        auto c12 = chain.GetC12Reader();
+                        auto mceve = c12->mcevent();
+                        auto mcpbank = c12->mcparts();
+                        const Int_t Ngen = mcpbank->getRows();
+
+                        for (Int_t i = 0; i < Ngen; i++) {
+                            mcpbank->setEntry(i);
+
+                            auto pid_temp = mcpbank->getPid();
+
+                            auto Truth_theta_temp = mcpbank->getTheta() * 180 / M_PI;
+                            auto Truth_phi_temp = mcpbank->getPhi() * 180 / M_PI;
+
+                            // cout << "\n\nTruth_theta_temp = " << Truth_theta_temp << "\n\n";
+
+                            if (pid_temp == 11) {
+                                Truth_theta_e = Truth_theta_temp, Truth_phi_e = Truth_phi_temp;
+                            } else if (pid_temp == 2112) {
+                                Truth_phi_nFD = Truth_phi_temp;
+                            }
                         }
 
-                        try {
-                            if (!chain.Next()) { break; };  // This might throw, so it must be in try
-
-                            // if (SkipFile) {
-                            //     std::cerr << "SkipFile = " << SkipFile << "\n";
-
-                            //     bool advance = chain.ReallyNextFile();
-                            //     continue;
-                            // }
-
-#pragma region /* File loop */
-                            // Display completed
-                            ++counter;
-                            if ((counter % 1000000) == 0) { std::cerr << "\n" << counter / 1000000 << " million completed"; }
-                            if ((counter % 100000) == 0) { std::cerr << "."; }
-
-                            // if (counter > Limiter) { SkipFile = chain.ReallyNextFile(); }
-                            if (counter > Limiter) { break; }
-
-                            // SkipFile = chain.ReallyNextFile();
-
-                            // get particles by type
-                            auto allParticles = c12->getDetParticles();
-                            auto electrons = c12->getByID(11);
-
-                            if (electrons.size() != 1) { continue; }
-
-                            double weight = 1;
-
-                            double starttime = c12->event()->getStartTime();
-
-                            TVector3 P_b(0, 0, Ebeam);
-
-                            TVector3 reco_P_e;
-                            reco_P_e.SetMagThetaPhi(electrons[0]->getP(), electrons[0]->getTheta(), electrons[0]->getPhi());
-
-                            double vtz_e = electrons[0]->par()->getVz();
-
-                            TVector3 P_q = P_b - reco_P_e;
-
-                            double nu = Ebeam - reco_P_e.Mag();
-                            double QSq = P_q.Mag2() - (nu * nu);
-                            double xB = QSq / (2 * m_n * nu);
-                            double WSq = (m_n * m_n) - QSq + (2 * nu * m_n);
-                            double theta_e = reco_P_e.Theta() * 180 / M_PI;
-                            double EoP_e = (electrons[0]->cal(clas12::PCAL)->getEnergy() + electrons[0]->cal(ECIN)->getEnergy() + electrons[0]->cal(ECOUT)->getEnergy()) / reco_P_e.Mag();
-                            double E_PCALoP_e = electrons[0]->cal(clas12::PCAL)->getEnergy() / reco_P_e.Mag();
-                            double E_ECINoP_e = electrons[0]->cal(clas12::ECIN)->getEnergy() / reco_P_e.Mag();
-                            double Edep_PCAL = electrons[0]->cal(clas12::PCAL)->getEnergy();
-                            double Edep_EC = electrons[0]->cal(clas12::ECIN)->getEnergy() + electrons[0]->cal(clas12::ECOUT)->getEnergy();
-
-                            bool ElectronInPCAL = (electrons[0]->cal(clas12::PCAL)->getDetector() == 7);                                  // PCAL hit
-                            bool ElectronInECIN = (electrons[0]->cal(clas12::ECIN)->getDetector() == 7);                                  // ECIN hit
-                            bool ElectronInECOUT = (electrons[0]->cal(clas12::ECOUT)->getDetector() == 7);                                // ECOUT hit
-                            auto Electron_ECAL_detlayer = ElectronInPCAL ? clas12::PCAL : ElectronInECIN ? clas12::ECIN : clas12::ECOUT;  // find first layer of hit
-
-                            //  =======================================================================================================================================================================
-                            //  Get truth electron variables
-                            //  =======================================================================================================================================================================
-
-                            double Truth_theta_e, Truth_phi_e, Truth_phi_nFD;
-
-                            auto c12 = chain.GetC12Reader();
-                            auto mceve = c12->mcevent();
-                            auto mcpbank = c12->mcparts();
-                            const Int_t Ngen = mcpbank->getRows();
-
-                            for (Int_t i = 0; i < Ngen; i++) {
-                                mcpbank->setEntry(i);
-
-                                auto pid_temp = mcpbank->getPid();
-
-                                auto Truth_theta_temp = mcpbank->getTheta() * 180 / M_PI;
-                                auto Truth_phi_temp = mcpbank->getPhi() * 180 / M_PI;
-
-                                // cout << "\n\nTruth_theta_temp = " << Truth_theta_temp << "\n\n";
-
-                                if (pid_temp == 11) {
-                                    Truth_theta_e = Truth_theta_temp, Truth_phi_e = Truth_phi_temp;
-                                } else if (pid_temp == 2112) {
-                                    Truth_phi_nFD = Truth_phi_temp;
-                                }
-                            }
-
-                            //  =======================================================================================================================================================================
-                            //  1e cut (reco)
-                            //  =======================================================================================================================================================================
+                        //  =======================================================================================================================================================================
+                        //  1e cut (reco)
+                        //  =======================================================================================================================================================================
 
 #pragma region /* 1e cut (reco) */
 
-                            //  Electron PID cuts
-                            //  -----------------------------------------------------------------------------------------------------------------------------------------------------
+                        //  Electron PID cuts
+                        //  -----------------------------------------------------------------------------------------------------------------------------------------------------
 
 #pragma region /* Electron PID cuts */
 
-                            h_Vz_e_BC_1e_cut->Fill(electrons[0]->par()->getVz(), weight);
-                            bool bad_Vz_e_CutCond = (electrons[0]->par()->getVz() < -4. || electrons[0]->par()->getVz() > -2.);
-                            // bool bad_Vz_e_CutCond = (electrons[0]->par()->getVz() < -6. || electrons[0]->par()->getVz() > 0.);
-                            if (!bad_Vz_e_CutCond) { h_Vz_e_AC_1e_cut->Fill(electrons[0]->par()->getVz(), weight); }
+                        h_Vz_e_BC_1e_cut->Fill(electrons[0]->par()->getVz(), weight);
+                        bool bad_Vz_e_CutCond = (electrons[0]->par()->getVz() < -4. || electrons[0]->par()->getVz() > -2.);
+                        // bool bad_Vz_e_CutCond = (electrons[0]->par()->getVz() < -6. || electrons[0]->par()->getVz() > 0.);
+                        if (!bad_Vz_e_CutCond) { h_Vz_e_AC_1e_cut->Fill(electrons[0]->par()->getVz(), weight); }
 
-                            fillDCdebug(electrons[0], h_dc_electron_hit_map_BC_1e_cut, weight);
-                            bool bad_DC_edge_CutCond = (!DCEdgeCuts(electrons[0]));
-                            if (!bad_DC_edge_CutCond) { fillDCdebug(electrons[0], h_dc_electron_hit_map_AC_1e_cut, weight); }
+                        fillDCdebug(electrons[0], h_dc_electron_hit_map_BC_1e_cut, weight);
+                        bool bad_DC_edge_CutCond = (!DCEdgeCuts(electrons[0]));
+                        if (!bad_DC_edge_CutCond) { fillDCdebug(electrons[0], h_dc_electron_hit_map_AC_1e_cut, weight); }
 
-                            h_nphe_BC_1e_cut->Fill(electrons[0]->che(clas12::HTCC)->getNphe(), weight);
-                            bool bad_nphe_CutCond = (electrons[0]->che(clas12::HTCC)->getNphe() <= 2);
-                            if (!bad_nphe_CutCond) { h_nphe_AC_1e_cut->Fill(electrons[0]->che(clas12::HTCC)->getNphe(), weight); }
+                        h_nphe_BC_1e_cut->Fill(electrons[0]->che(clas12::HTCC)->getNphe(), weight);
+                        bool bad_nphe_CutCond = (electrons[0]->che(clas12::HTCC)->getNphe() <= 2);
+                        if (!bad_nphe_CutCond) { h_nphe_AC_1e_cut->Fill(electrons[0]->che(clas12::HTCC)->getNphe(), weight); }
 
-                            h_Edep_PCAL_VS_EC_BC_1e_cut->Fill(Edep_PCAL, Edep_EC, weight);
-                            bool bad_Edep_PCAL_CutCond = (Edep_PCAL <= 0.06);
-                            if (!bad_Edep_PCAL_CutCond) { h_Edep_PCAL_VS_EC_AC_1e_cut->Fill(Edep_PCAL, Edep_EC, weight); }
+                        h_Edep_PCAL_VS_EC_BC_1e_cut->Fill(Edep_PCAL, Edep_EC, weight);
+                        bool bad_Edep_PCAL_CutCond = (Edep_PCAL <= 0.06);
+                        if (!bad_Edep_PCAL_CutCond) { h_Edep_PCAL_VS_EC_AC_1e_cut->Fill(Edep_PCAL, Edep_EC, weight); }
 
-                            h_SF_VS_P_e_BC_1e_cut->Fill(reco_P_e.Mag(), EoP_e, weight);
-                            bool bad_SF_CutCond = (EoP_e < 0.2 || EoP_e > 0.28);
-                            if (!bad_SF_CutCond) { h_SF_VS_P_e_AC_1e_cut->Fill(reco_P_e.Mag(), EoP_e, weight); }
+                        h_SF_VS_P_e_BC_1e_cut->Fill(reco_P_e.Mag(), EoP_e, weight);
+                        bool bad_SF_CutCond = (EoP_e < 0.2 || EoP_e > 0.28);
+                        if (!bad_SF_CutCond) { h_SF_VS_P_e_AC_1e_cut->Fill(reco_P_e.Mag(), EoP_e, weight); }
 
-                            h_SF_VS_Lv_BC_1e_cut->Fill(electrons[0]->cal(clas12::PCAL)->getLv(), EoP_e, weight);
-                            h_SF_VS_Lw_BC_1e_cut->Fill(electrons[0]->cal(clas12::PCAL)->getLw(), EoP_e, weight);
-                            h_SF_VS_Lu_BC_1e_cut->Fill(electrons[0]->cal(clas12::PCAL)->getLu(), EoP_e, weight);
-                            bool bad_PCAL_edge_CutCond = (electrons[0]->cal(clas12::PCAL)->getLv() < 14. || electrons[0]->cal(clas12::PCAL)->getLw() < 14.);
-                            if (!bad_PCAL_edge_CutCond) {
-                                h_SF_VS_Lv_AC_1e_cut->Fill(electrons[0]->cal(clas12::PCAL)->getLv(), EoP_e, weight);
-                                h_SF_VS_Lw_AC_1e_cut->Fill(electrons[0]->cal(clas12::PCAL)->getLw(), EoP_e, weight);
-                                h_SF_VS_Lu_AC_1e_cut->Fill(electrons[0]->cal(clas12::PCAL)->getLu(), EoP_e, weight);
-                            }
+                        h_SF_VS_Lv_BC_1e_cut->Fill(electrons[0]->cal(clas12::PCAL)->getLv(), EoP_e, weight);
+                        h_SF_VS_Lw_BC_1e_cut->Fill(electrons[0]->cal(clas12::PCAL)->getLw(), EoP_e, weight);
+                        h_SF_VS_Lu_BC_1e_cut->Fill(electrons[0]->cal(clas12::PCAL)->getLu(), EoP_e, weight);
+                        bool bad_PCAL_edge_CutCond = (electrons[0]->cal(clas12::PCAL)->getLv() < 14. || electrons[0]->cal(clas12::PCAL)->getLw() < 14.);
+                        if (!bad_PCAL_edge_CutCond) {
+                            h_SF_VS_Lv_AC_1e_cut->Fill(electrons[0]->cal(clas12::PCAL)->getLv(), EoP_e, weight);
+                            h_SF_VS_Lw_AC_1e_cut->Fill(electrons[0]->cal(clas12::PCAL)->getLw(), EoP_e, weight);
+                            h_SF_VS_Lu_AC_1e_cut->Fill(electrons[0]->cal(clas12::PCAL)->getLu(), EoP_e, weight);
+                        }
 
-                            h_E_PCALoP_e_VS_E_PCALoP_e_BC_1e_cut->Fill(E_PCALoP_e, E_ECINoP_e, weight);
-                            bool bad_diag_CutCond = (!checkEcalDiagCuts(electrons[0]));
-                            if (!bad_diag_CutCond) { h_E_PCALoP_e_VS_E_PCALoP_e_AC_1e_cut->Fill(E_PCALoP_e, E_ECINoP_e, weight); }
+                        h_E_PCALoP_e_VS_E_PCALoP_e_BC_1e_cut->Fill(E_PCALoP_e, E_ECINoP_e, weight);
+                        bool bad_diag_CutCond = (!checkEcalDiagCuts(electrons[0]));
+                        if (!bad_diag_CutCond) { h_E_PCALoP_e_VS_E_PCALoP_e_AC_1e_cut->Fill(E_PCALoP_e, E_ECINoP_e, weight); }
 
-                            if (bad_Vz_e_CutCond) { continue; }
-                            if (bad_DC_edge_CutCond) { continue; }
+                        if (bad_Vz_e_CutCond) { continue; }
+                        if (bad_DC_edge_CutCond) { continue; }
 
-                            if (bad_nphe_CutCond) { continue; }
-                            if (bad_Edep_PCAL_CutCond) { continue; }
-                            if (bad_SF_CutCond) { continue; }
-                            if (bad_PCAL_edge_CutCond) { continue; }
-                            if (bad_diag_CutCond) { continue; }
+                        if (bad_nphe_CutCond) { continue; }
+                        if (bad_Edep_PCAL_CutCond) { continue; }
+                        if (bad_SF_CutCond) { continue; }
+                        if (bad_PCAL_edge_CutCond) { continue; }
+                        if (bad_diag_CutCond) { continue; }
 
-                            // Force the electron to be in the expected region of phase space:
-                            if (ConstrainedE && (fabs(reco_P_e.Mag() - Ebeam) > 0.01 * Ebeam * 2)) { continue; }  // The resolution (sigma/P) is less than 1%, so I take twice that
-                            // if (ConstrainedE && (fabs(reco_P_e.Mag() - Ebeam) > 0.2)) { continue; }
-                            if (ConstrainedE && (fabs((reco_P_e.Theta() * 180 / M_PI) - Truth_theta_e) > 2.)) { continue; }
-                            if (ConstrainedE && (fabs((reco_P_e.Phi() * 180 / M_PI) - Truth_phi_e) > 5.)) { continue; }
-                            if (ConstrainedE && (CalcdPhi1(fabs(GetPhi_e(Beam_energy_TString, Truth_phi_nFD) - (reco_P_e.Phi() * 180 / M_PI))) > 5.)) { continue; }
+                        // Force the electron to be in the expected region of phase space:
+                        if (ConstrainedE && (fabs(reco_P_e.Mag() - Ebeam) > 0.01 * Ebeam * 2)) { continue; }  // The resolution (sigma/P) is less than 1%, so I take twice that
+                        // if (ConstrainedE && (fabs(reco_P_e.Mag() - Ebeam) > 0.2)) { continue; }
+                        if (ConstrainedE && (fabs((reco_P_e.Theta() * 180 / M_PI) - Truth_theta_e) > 2.)) { continue; }
+                        if (ConstrainedE && (fabs((reco_P_e.Phi() * 180 / M_PI) - Truth_phi_e) > 5.)) { continue; }
+                        if (ConstrainedE && (CalcdPhi1(fabs(GetPhi_e(Beam_energy_TString, Truth_phi_nFD) - (reco_P_e.Phi() * 180 / M_PI))) > 5.)) { continue; }
 
-                            // if (fabs(Truth_phi_nFD) < 30.) {
-                            //     cout << "\n\n==========================================================\n";
-                            //     cout << "Truth_phi_nFD = " << Truth_phi_nFD << "\n";
-                            //     cout << "Truth_phi_e = " << Truth_phi_e << "\n";
-                            //     cout << "GetPhi_e(Beam_energy_TString, Truth_phi_nFD) = " << GetPhi_e(Beam_energy_TString, Truth_phi_nFD) << "\n";
-                            //     cout << "reco_P_e.Phi() * 180 / M_PI = " << reco_P_e.Phi() * 180 / M_PI << "\n";
-                            //     cout << "fabs(GetPhi_e(Beam_energy_TString, Truth_phi_nFD) - reco_P_e.Phi() * 180 / M_PI) = "
-                            //          << fabs(GetPhi_e(Beam_energy_TString, Truth_phi_nFD) - reco_P_e.Phi() * 180 / M_PI) << "\n\n";
-                            //     cout << "CalcdPhi1(fabs(GetPhi_e(Beam_energy_TString, Truth_phi_nFD) - reco_P_e.Phi() * 180 / M_PI)) = "
-                            //          << CalcdPhi1(fabs(GetPhi_e(Beam_energy_TString, Truth_phi_nFD) - reco_P_e.Phi() * 180 / M_PI)) << "\n\n";
-                            // }
+                        // if (fabs(Truth_phi_nFD) < 30.) {
+                        //     cout << "\n\n==========================================================\n";
+                        //     cout << "Truth_phi_nFD = " << Truth_phi_nFD << "\n";
+                        //     cout << "Truth_phi_e = " << Truth_phi_e << "\n";
+                        //     cout << "GetPhi_e(Beam_energy_TString, Truth_phi_nFD) = " << GetPhi_e(Beam_energy_TString, Truth_phi_nFD) << "\n";
+                        //     cout << "reco_P_e.Phi() * 180 / M_PI = " << reco_P_e.Phi() * 180 / M_PI << "\n";
+                        //     cout << "fabs(GetPhi_e(Beam_energy_TString, Truth_phi_nFD) - reco_P_e.Phi() * 180 / M_PI) = "
+                        //          << fabs(GetPhi_e(Beam_energy_TString, Truth_phi_nFD) - reco_P_e.Phi() * 180 / M_PI) << "\n\n";
+                        //     cout << "CalcdPhi1(fabs(GetPhi_e(Beam_energy_TString, Truth_phi_nFD) - reco_P_e.Phi() * 180 / M_PI)) = "
+                        //          << CalcdPhi1(fabs(GetPhi_e(Beam_energy_TString, Truth_phi_nFD) - reco_P_e.Phi() * 180 / M_PI)) << "\n\n";
+                        // }
 
-                            h_reco_P_e_1e_cut->Fill(reco_P_e.Mag(), weight);
-                            h_reco_theta_e_1e_cut->Fill(reco_P_e.Theta() * 180 / M_PI, weight);
-                            h_reco_phi_e_1e_cut->Fill(reco_P_e.Phi() * 180 / M_PI, weight);
-                            h_reco_theta_e_VS_reco_phi_e_1e_cut->Fill(reco_P_e.Phi() * 180 / M_PI, reco_P_e.Theta() * 180 / M_PI, weight);
+                        h_reco_P_e_1e_cut->Fill(reco_P_e.Mag(), weight);
+                        h_reco_theta_e_1e_cut->Fill(reco_P_e.Theta() * 180 / M_PI, weight);
+                        h_reco_phi_e_1e_cut->Fill(reco_P_e.Phi() * 180 / M_PI, weight);
+                        h_reco_theta_e_VS_reco_phi_e_1e_cut->Fill(reco_P_e.Phi() * 180 / M_PI, reco_P_e.Theta() * 180 / M_PI, weight);
 #pragma endregion
 
-                            //  =======================================================================================================================================================================
-                            //  1e cut (truth)
-                            //  =======================================================================================================================================================================
+                        //  =======================================================================================================================================================================
+                        //  1e cut (truth)
+                        //  =======================================================================================================================================================================
 
 #pragma region /* 1e cut (truth) */
 
-                            double TL_IDed_Leading_nFD_momentum = -1;  // Leading nFD with momentum thresholds
-                            int TL_IDed_Leading_nFD_ind = -1;          // Leading nFD with momentum thresholds
+                        double TL_IDed_Leading_nFD_momentum = -1;  // Leading nFD with momentum thresholds
+                        int TL_IDed_Leading_nFD_ind = -1;          // Leading nFD with momentum thresholds
 
-                            double Truth_beta_nFD;
-                            double Truth_theta_nFD;
+                        double Truth_beta_nFD;
+                        double Truth_theta_nFD;
 
-                            bool TLpassCuts = true;
+                        bool TLpassCuts = true;
 
-                            vector<int> truth_NeutronsFD;
+                        vector<int> truth_NeutronsFD;
 
-                            for (Int_t i = 0; i < Ngen; i++) {
-                                mcpbank->setEntry(i);
+                        for (Int_t i = 0; i < Ngen; i++) {
+                            mcpbank->setEntry(i);
 
-                                auto pid_temp = mcpbank->getPid();
+                            auto pid_temp = mcpbank->getPid();
 
-                                auto p = mcpbank->getP();
-                                auto px = mcpbank->getPx();
-                                auto py = mcpbank->getPy();
-                                auto pz = mcpbank->getPz();
+                            auto p = mcpbank->getP();
+                            auto px = mcpbank->getPx();
+                            auto py = mcpbank->getPy();
+                            auto pz = mcpbank->getPz();
 
-                                // bool PassMomTh = true;
-                                bool PassMomTh = (p >= 0.4);
+                            // bool PassMomTh = true;
+                            bool PassMomTh = (p >= 0.4);
 
-                                if (ConstrainTLmom && (pid_temp == 2112 && p > 2.)) {
-                                    TLpassCuts = false;
-                                    continue;
-                                }
+                            if (ConstrainTLmom && (pid_temp == 2112 && p > 2.)) {
+                                TLpassCuts = false;
+                                continue;
+                            }
 
-                                if (pid_temp == 11) {
-                                    TVector3 truth_P_e;
-                                    truth_P_e.SetXYZ(px, py, pz);
+                            if (pid_temp == 11) {
+                                TVector3 truth_P_e;
+                                truth_P_e.SetXYZ(px, py, pz);
 
-                                    h_truth_P_e_1e_cut->Fill(truth_P_e.Mag(), weight);
-                                    h_truth_theta_e_1e_cut->Fill(truth_P_e.Theta() * 180 / M_PI, weight);
-                                    h_truth_phi_e_1e_cut->Fill(truth_P_e.Phi() * 180 / M_PI, weight);
-                                    h_truth_theta_e_VS_truth_phi_e_1e_cut->Fill(truth_P_e.Phi() * 180 / M_PI, truth_P_e.Theta() * 180 / M_PI, weight);
-                                } else if (pid_temp == 2112) {
-                                    TVector3 truth_P_n;
-                                    truth_P_n.SetXYZ(px, py, pz);
+                                h_truth_P_e_1e_cut->Fill(truth_P_e.Mag(), weight);
+                                h_truth_theta_e_1e_cut->Fill(truth_P_e.Theta() * 180 / M_PI, weight);
+                                h_truth_phi_e_1e_cut->Fill(truth_P_e.Phi() * 180 / M_PI, weight);
+                                h_truth_theta_e_VS_truth_phi_e_1e_cut->Fill(truth_P_e.Phi() * 180 / M_PI, truth_P_e.Theta() * 180 / M_PI, weight);
+                            } else if (pid_temp == 2112) {
+                                TVector3 truth_P_n;
+                                truth_P_n.SetXYZ(px, py, pz);
 
-                                    h_truth_P_n_1e_cut->Fill(truth_P_n.Mag(), weight);
-                                    h_truth_theta_n_1e_cut->Fill(truth_P_n.Theta() * 180 / M_PI, weight);
-                                    h_truth_phi_n_1e_cut->Fill(truth_P_n.Phi() * 180 / M_PI, weight);
-                                    h_truth_theta_n_VS_truth_phi_n_1e_cut->Fill(truth_P_n.Phi() * 180 / M_PI, truth_P_n.Theta() * 180 / M_PI, weight);
+                                h_truth_P_n_1e_cut->Fill(truth_P_n.Mag(), weight);
+                                h_truth_theta_n_1e_cut->Fill(truth_P_n.Theta() * 180 / M_PI, weight);
+                                h_truth_phi_n_1e_cut->Fill(truth_P_n.Phi() * 180 / M_PI, weight);
+                                h_truth_theta_n_VS_truth_phi_n_1e_cut->Fill(truth_P_n.Phi() * 180 / M_PI, truth_P_n.Theta() * 180 / M_PI, weight);
 
-                                    Truth_theta_nFD = truth_P_n.Theta() * 180 / M_PI;
+                                Truth_theta_nFD = truth_P_n.Theta() * 180 / M_PI;
 
-                                    if ((Truth_theta_nFD >= 5.) && (Truth_theta_nFD <= 35.)) {
-                                        if (truth_P_n.Mag() >= TL_IDed_Leading_nFD_momentum) {
-                                            TL_IDed_Leading_nFD_momentum = truth_P_n.Mag();
-                                            TL_IDed_Leading_nFD_ind = i;
-                                        }
+                                if ((Truth_theta_nFD >= 5.) && (Truth_theta_nFD <= 35.)) {
+                                    if (truth_P_n.Mag() >= TL_IDed_Leading_nFD_momentum) {
+                                        TL_IDed_Leading_nFD_momentum = truth_P_n.Mag();
+                                        TL_IDed_Leading_nFD_ind = i;
+                                    }
 
-                                        double truth_E_nFD = sqrt(m_n * m_n + truth_P_n.Mag2());
-                                        Truth_beta_nFD = truth_P_n.Mag() / truth_E_nFD;
+                                    double truth_E_nFD = sqrt(m_n * m_n + truth_P_n.Mag2());
+                                    Truth_beta_nFD = truth_P_n.Mag() / truth_E_nFD;
 
-                                        h_truth_P_nFD_clas12_1e_cut->Fill(truth_P_n.Mag(), weight);
-                                        h_truth_theta_nFD_clas12_1e_cut->Fill(truth_P_n.Theta() * 180 / M_PI, weight);
-                                        h_truth_phi_nFD_clas12_1e_cut->Fill(truth_P_n.Phi() * 180 / M_PI, weight);
-                                        h_truth_theta_nFD_clas12_VS_truth_phi_nFD_clas12_1e_cut->Fill(truth_P_n.Phi() * 180 / M_PI, truth_P_n.Theta() * 180 / M_PI, weight);
+                                    h_truth_P_nFD_clas12_1e_cut->Fill(truth_P_n.Mag(), weight);
+                                    h_truth_theta_nFD_clas12_1e_cut->Fill(truth_P_n.Theta() * 180 / M_PI, weight);
+                                    h_truth_phi_nFD_clas12_1e_cut->Fill(truth_P_n.Phi() * 180 / M_PI, weight);
+                                    h_truth_theta_nFD_clas12_VS_truth_phi_nFD_clas12_1e_cut->Fill(truth_P_n.Phi() * 180 / M_PI, truth_P_n.Theta() * 180 / M_PI, weight);
 
-                                        h_truth_P_nFD_redef_1e_cut->Fill(truth_P_n.Mag(), weight);
-                                        h_truth_theta_nFD_redef_1e_cut->Fill(truth_P_n.Theta() * 180 / M_PI, weight);
-                                        h_truth_phi_nFD_redef_1e_cut->Fill(truth_P_n.Phi() * 180 / M_PI, weight);
-                                        h_truth_theta_nFD_redef_VS_truth_phi_nFD_redef_1e_cut->Fill(truth_P_n.Phi() * 180 / M_PI, truth_P_n.Theta() * 180 / M_PI, weight);
+                                    h_truth_P_nFD_redef_1e_cut->Fill(truth_P_n.Mag(), weight);
+                                    h_truth_theta_nFD_redef_1e_cut->Fill(truth_P_n.Theta() * 180 / M_PI, weight);
+                                    h_truth_phi_nFD_redef_1e_cut->Fill(truth_P_n.Phi() * 180 / M_PI, weight);
+                                    h_truth_theta_nFD_redef_VS_truth_phi_nFD_redef_1e_cut->Fill(truth_P_n.Phi() * 180 / M_PI, truth_P_n.Theta() * 180 / M_PI, weight);
 
-                                        if (PassMomTh) {
-                                            truth_NeutronsFD.push_back(i);
+                                    if (PassMomTh) {
+                                        truth_NeutronsFD.push_back(i);
 
-                                            h_truth_P_nFD_ECALveto_1e_cut->Fill(truth_P_n.Mag(), weight);
-                                            h_truth_theta_nFD_ECALveto_1e_cut->Fill(truth_P_n.Theta() * 180 / M_PI, weight);
-                                            h_truth_phi_nFD_ECALveto_1e_cut->Fill(truth_P_n.Phi() * 180 / M_PI, weight);
-                                            h_truth_theta_nFD_ECALveto_VS_truth_phi_nFD_ECALveto_1e_cut->Fill(truth_P_n.Phi() * 180 / M_PI, truth_P_n.Theta() * 180 / M_PI, weight);
-                                        }
+                                        h_truth_P_nFD_ECALveto_1e_cut->Fill(truth_P_n.Mag(), weight);
+                                        h_truth_theta_nFD_ECALveto_1e_cut->Fill(truth_P_n.Theta() * 180 / M_PI, weight);
+                                        h_truth_phi_nFD_ECALveto_1e_cut->Fill(truth_P_n.Phi() * 180 / M_PI, weight);
+                                        h_truth_theta_nFD_ECALveto_VS_truth_phi_nFD_ECALveto_1e_cut->Fill(truth_P_n.Phi() * 180 / M_PI, truth_P_n.Theta() * 180 / M_PI, weight);
                                     }
                                 }
                             }
+                        }
 
-                            if (ConstrainTLmom && !TLpassCuts) { continue; }
+                        if (ConstrainTLmom && !TLpassCuts) { continue; }
 
-                            // if (truth_NeutronsFD.size() != 1) {
-                            //     cout << "\n\nError! truth_NeutronsFD size is not 1! Aborting...\n";
-                            //     cout << "truth_NeutronsFD.size() = " << truth_NeutronsFD.size() << "\n";
-                            //     cout << "Truth_theta_nFD = " << Truth_theta_nFD << "\nAborting...\n\n", exit(0);
-                            // }
-                            if (truth_NeutronsFD.size() != 1) { continue; }
+                        // if (truth_NeutronsFD.size() != 1) {
+                        //     cout << "\n\nError! truth_NeutronsFD size is not 1! Aborting...\n";
+                        //     cout << "truth_NeutronsFD.size() = " << truth_NeutronsFD.size() << "\n";
+                        //     cout << "Truth_theta_nFD = " << Truth_theta_nFD << "\nAborting...\n\n", exit(0);
+                        // }
+                        if (truth_NeutronsFD.size() != 1) { continue; }
 
-                            // Fill leading FD neutron acceptance maps
-                            if ((TL_IDed_Leading_nFD_ind != -1) && (TL_IDed_Leading_nFD_momentum > 0)) {
-                                mcpbank->setEntry(TL_IDed_Leading_nFD_ind);
+                        // Fill leading FD neutron acceptance maps
+                        if ((TL_IDed_Leading_nFD_ind != -1) && (TL_IDed_Leading_nFD_momentum > 0)) {
+                            mcpbank->setEntry(TL_IDed_Leading_nFD_ind);
 
-                                int particlePDGtmp = mcpbank->getPid();
+                            int particlePDGtmp = mcpbank->getPid();
 
-                                double Particle_TL_Momentum = RadCalc(mcpbank->getPx(), mcpbank->getPy(), mcpbank->getPz());
-                                double Particle_TL_Theta = acos((mcpbank->getPz()) / RadCalc(mcpbank->getPx(), mcpbank->getPy(), mcpbank->getPz())) * 180.0 / pi;
-                                double Particle_TL_Phi = atan2(mcpbank->getPy(), mcpbank->getPx()) * 180.0 / pi;
+                            double Particle_TL_Momentum = RadCalc(mcpbank->getPx(), mcpbank->getPy(), mcpbank->getPz());
+                            double Particle_TL_Theta = acos((mcpbank->getPz()) / RadCalc(mcpbank->getPx(), mcpbank->getPy(), mcpbank->getPz())) * 180.0 / pi;
+                            double Particle_TL_Phi = atan2(mcpbank->getPy(), mcpbank->getPx()) * 180.0 / pi;
 
-                                // bool PassMomTh = true;
-                                bool PassMomTh = (Particle_TL_Momentum >= 0.4);
+                            // bool PassMomTh = true;
+                            bool PassMomTh = (Particle_TL_Momentum >= 0.4);
 
-                                if (PassMomTh) {
-                                    aMaps_master.hFillMaps("TL", "Neutron", Particle_TL_Momentum, Particle_TL_Theta, Particle_TL_Phi, weight);
-                                }  // end of if id. TL leading neutron
-                            }
+                            if (PassMomTh) { aMaps_master.hFillMaps("TL", "Neutron", Particle_TL_Momentum, Particle_TL_Theta, Particle_TL_Phi, weight); }  // end of if id. TL leading neutron
+                        }
 #pragma endregion
 
-                            //  Setting up neutrals
-                            //  ---------------------------------------------------------------------------------------------------------------------------------------------------
+                        //  Setting up neutrals
+                        //  ---------------------------------------------------------------------------------------------------------------------------------------------------
 
 #pragma region /* Setting up neutrals (RAW) */
-                            vector<region_part_ptr> neutrons;
-                            vector<region_part_ptr> photons;
+                        vector<region_part_ptr> neutrons;
+                        vector<region_part_ptr> photons;
 
-                            for (int i = 0; i < allParticles.size(); i++) {
-                                int pid_temp = allParticles[i]->par()->getPid();
+                        for (int i = 0; i < allParticles.size(); i++) {
+                            int pid_temp = allParticles[i]->par()->getPid();
 
-                                if (pid_temp == 2112) { neutrons.push_back(allParticles[i]); }
-                                if (pid_temp == 22) { photons.push_back(allParticles[i]); }
-                            }
+                            if (pid_temp == 2112) { neutrons.push_back(allParticles[i]); }
+                            if (pid_temp == 22) { photons.push_back(allParticles[i]); }
+                        }
 
-                            for (int i = 0; i < neutrons.size(); i++) {
-                                TVector3 reco_P_n;
-                                reco_P_n.SetMagThetaPhi(neutrons[i]->getP(), neutrons[i]->getTheta(), neutrons[i]->getPhi());
+                        for (int i = 0; i < neutrons.size(); i++) {
+                            TVector3 reco_P_n;
+                            reco_P_n.SetMagThetaPhi(neutrons[i]->getP(), neutrons[i]->getTheta(), neutrons[i]->getPhi());
 
-                                h_reco_P_n_1e_cut->Fill(reco_P_n.Mag(), weight);
-                                h_reco_theta_n_1e_cut->Fill(reco_P_n.Theta() * 180 / M_PI, weight);
-                                h_reco_phi_n_1e_cut->Fill(reco_P_n.Phi() * 180 / M_PI, weight);
-                                h_reco_theta_n_VS_reco_phi_n_1e_cut->Fill(reco_P_n.Phi() * 180 / M_PI, reco_P_n.Theta() * 180 / M_PI, weight);
-                            }
+                            h_reco_P_n_1e_cut->Fill(reco_P_n.Mag(), weight);
+                            h_reco_theta_n_1e_cut->Fill(reco_P_n.Theta() * 180 / M_PI, weight);
+                            h_reco_phi_n_1e_cut->Fill(reco_P_n.Phi() * 180 / M_PI, weight);
+                            h_reco_theta_n_VS_reco_phi_n_1e_cut->Fill(reco_P_n.Phi() * 180 / M_PI, reco_P_n.Theta() * 180 / M_PI, weight);
+                        }
 #pragma endregion
 
-                            //  Setting up FD neutrals (clas12reco)
-                            //  -----------------------------------------------------------------------------------------------------------------------------------
+                        //  Setting up FD neutrals (clas12reco)
+                        //  -----------------------------------------------------------------------------------------------------------------------------------
 
 #pragma region /* Setting up FD neutrals (clas12reco) */
-                            vector<region_part_ptr> neutrons_FD_clas12;
-                            vector<region_part_ptr> photons_FD_clas12;
+                        vector<region_part_ptr> neutrons_FD_clas12;
+                        vector<region_part_ptr> photons_FD_clas12;
 
-                            for (int i = 0; i < allParticles.size(); i++) {
-                                int pid_temp = allParticles[i]->par()->getPid();
+                        for (int i = 0; i < allParticles.size(); i++) {
+                            int pid_temp = allParticles[i]->par()->getPid();
 
-                                if (pid_temp == 2112 && allParticles[i]->getRegion() == FD) { neutrons_FD_clas12.push_back(allParticles[i]); }
-                                if (pid_temp == 22 && allParticles[i]->getRegion() == FD) { photons_FD_clas12.push_back(allParticles[i]); }
-                            }
+                            if (pid_temp == 2112 && allParticles[i]->getRegion() == FD) { neutrons_FD_clas12.push_back(allParticles[i]); }
+                            if (pid_temp == 22 && allParticles[i]->getRegion() == FD) { photons_FD_clas12.push_back(allParticles[i]); }
+                        }
 
-                            for (int i = 0; i < neutrons_FD_clas12.size(); i++) {
-                                TVector3 reco_P_nFD;
-                                reco_P_nFD.SetMagThetaPhi(CalcPnFD(neutrons_FD_clas12[i], electrons[0], starttime), neutrons_FD_clas12[i]->getTheta(), neutrons_FD_clas12[i]->getPhi());
-                                // reco_P_nFD.SetMagThetaPhi(neutrons_FD_clas12[i]->getP(), neutrons_FD_clas12[i]->getTheta(), neutrons_FD_clas12[i]->getPhi());
+                        for (int i = 0; i < neutrons_FD_clas12.size(); i++) {
+                            TVector3 reco_P_nFD;
+                            reco_P_nFD.SetMagThetaPhi(CalcPnFD(neutrons_FD_clas12[i], electrons[0], starttime), neutrons_FD_clas12[i]->getTheta(), neutrons_FD_clas12[i]->getPhi());
+                            // reco_P_nFD.SetMagThetaPhi(neutrons_FD_clas12[i]->getP(), neutrons_FD_clas12[i]->getTheta(), neutrons_FD_clas12[i]->getPhi());
 
-                                h_reco_P_nFD_clas12_1e_cut->Fill(reco_P_nFD.Mag(), weight);
-                                h_reco_theta_nFD_clas12_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI, weight);
-                                h_reco_phi_nFD_clas12_1e_cut->Fill(reco_P_nFD.Phi() * 180 / M_PI, weight);
-                                h_reco_theta_nFD_clas12_VS_reco_phi_nFD_clas12_1e_cut->Fill(reco_P_nFD.Phi() * 180 / M_PI, reco_P_nFD.Theta() * 180 / M_PI, weight);
-                                h_reco_P_e_VS_P_nFD_clas12_1e_cut->Fill(reco_P_e.Mag(), reco_P_nFD.Mag(), weight);
-                                h_reco_theta_nFD_clas12_VS_P_nFD_clas12_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI, reco_P_nFD.Mag(), weight);
-                            }
+                            h_reco_P_nFD_clas12_1e_cut->Fill(reco_P_nFD.Mag(), weight);
+                            h_reco_theta_nFD_clas12_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI, weight);
+                            h_reco_phi_nFD_clas12_1e_cut->Fill(reco_P_nFD.Phi() * 180 / M_PI, weight);
+                            h_reco_theta_nFD_clas12_VS_reco_phi_nFD_clas12_1e_cut->Fill(reco_P_nFD.Phi() * 180 / M_PI, reco_P_nFD.Theta() * 180 / M_PI, weight);
+                            h_reco_P_e_VS_P_nFD_clas12_1e_cut->Fill(reco_P_e.Mag(), reco_P_nFD.Mag(), weight);
+                            h_reco_theta_nFD_clas12_VS_P_nFD_clas12_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI, reco_P_nFD.Mag(), weight);
+                        }
 
 #pragma endregion
 
-                            //  Setting up FD neutrals (redef)
-                            //  ----------------------------------------------------------------------------------------------------------------------------------------
+                        //  Setting up FD neutrals (redef)
+                        //  ----------------------------------------------------------------------------------------------------------------------------------------
 
 #pragma region /* Setting up FD neutrals (redef) */
-                            vector<region_part_ptr> neutrons_FD_redef;
-                            vector<region_part_ptr> photons_FD_redef;
+                        vector<region_part_ptr> neutrons_FD_redef;
+                        vector<region_part_ptr> photons_FD_redef;
 
-                            for (int i = 0; i < allParticles.size(); i++) {
-                                int pid_temp = allParticles[i]->par()->getPid();
+                        for (int i = 0; i < allParticles.size(); i++) {
+                            int pid_temp = allParticles[i]->par()->getPid();
 
-                                if ((allParticles[i]->par()->getCharge() == 0) && (allParticles[i]->getRegion() == FD) && (pid_temp != 0)) {  // If particle is neutral and in the FD
+                            if ((allParticles[i]->par()->getCharge() == 0) && (allParticles[i]->getRegion() == FD) && (pid_temp != 0)) {  // If particle is neutral and in the FD
 
-                                    bool ParticleInPCAL = (allParticles[i]->cal(clas12::PCAL)->getDetector() == 7);    // PCAL hit
-                                    bool ParticleInECIN = (allParticles[i]->cal(clas12::ECIN)->getDetector() == 7);    // ECIN hit
-                                    bool ParticleInECOUT = (allParticles[i]->cal(clas12::ECOUT)->getDetector() == 7);  // ECOUT hit
-                                    auto Neutron_ECAL_detlayer = ParticleInECIN ? clas12::ECIN : clas12::ECOUT;        // find first layer of hit
+                                bool ParticleInPCAL = (allParticles[i]->cal(clas12::PCAL)->getDetector() == 7);    // PCAL hit
+                                bool ParticleInECIN = (allParticles[i]->cal(clas12::ECIN)->getDetector() == 7);    // ECIN hit
+                                bool ParticleInECOUT = (allParticles[i]->cal(clas12::ECOUT)->getDetector() == 7);  // ECOUT hit
+                                auto Neutron_ECAL_detlayer = ParticleInECIN ? clas12::ECIN : clas12::ECOUT;        // find first layer of hit
 
+                                if ((pid_temp == 2112) || (pid_temp == 22)) {
+                                    if (ParticleInPCAL) {
+                                        if (pid_temp == 22) { photons_FD_redef.push_back(allParticles[i]); }
+                                    } else if (!ParticleInPCAL) {  // if there is a neutron or a 'photon' without a PCAL hit
+                                        if (ParticleInECIN || ParticleInECOUT) { neutrons_FD_redef.push_back(allParticles[i]); }
+                                    }
+                                }  // end of clas12root neutron or 'photon' if
+                            }  // end of neutral and in the FD if
+                        }
+
+                        for (int i = 0; i < neutrons_FD_redef.size(); i++) {
+                            bool ParticleInPCAL = (neutrons_FD_redef[i]->cal(clas12::PCAL)->getDetector() == 7);    // PCAL hit
+                            bool ParticleInECIN = (neutrons_FD_redef[i]->cal(clas12::ECIN)->getDetector() == 7);    // ECIN hit
+                            bool ParticleInECOUT = (neutrons_FD_redef[i]->cal(clas12::ECOUT)->getDetector() == 7);  // ECOUT hit
+                            if (ParticleInPCAL) { cout << "\n\nError! neutrons_FD_redef is in the PCAL! Aborting...\n\n", exit(0); }
+
+                            double Beta_ph = neutrons_FD_redef[i]->par()->getBeta();
+                            double Gamma_ph = 1 / sqrt(1 - (Beta_ph * Beta_ph));
+                            double Momentum = m_n * Beta_ph * Gamma_ph;
+
+                            TVector3 reco_P_nFD;
+                            reco_P_nFD.SetMagThetaPhi(CalcPnFD(neutrons_FD_redef[i], electrons[0], starttime), neutrons_FD_redef[i]->getTheta(), neutrons_FD_redef[i]->getPhi());
+
+                            h_reco_P_nFD_redef_1e_cut->Fill(reco_P_nFD.Mag(), weight);
+                            h_reco_theta_nFD_redef_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI, weight);
+                            h_reco_phi_nFD_redef_1e_cut->Fill(reco_P_nFD.Phi() * 180 / M_PI, weight);
+                            h_reco_theta_nFD_redef_VS_reco_phi_nFD_redef_1e_cut->Fill(reco_P_nFD.Phi() * 180 / M_PI, reco_P_nFD.Theta() * 180 / M_PI, weight);
+                            h_reco_P_e_VS_P_nFD_redef_1e_cut->Fill(reco_P_e.Mag(), reco_P_nFD.Mag(), weight);
+                            h_reco_theta_nFD_redef_VS_P_nFD_redef_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI, reco_P_nFD.Mag(), weight);
+                        }
+#pragma endregion
+
+                        //  Setting up FD neutrals (ECALveto)
+                        //  ----------------------------------------------------------------------------------------------------------------------------------------
+
+#pragma region /* Setting up FD neutrals (ECALveto) */
+                        double P_max = -1;
+                        int NeutronsFD_ind_mom_max = -1;
+
+                        vector<region_part_ptr> neutrons_FD_ECALveto;
+                        vector<int> neutrons_FD_ECALveto_ind;
+
+                        for (int i = 0; i < allParticles.size(); i++) {
+                            int pid_temp = allParticles[i]->par()->getPid();
+
+                            if ((allParticles[i]->par()->getCharge() == 0) && (allParticles[i]->getRegion() == FD) && (pid_temp != 0)) {  // If particle is neutral and in the FD
+                                bool ParticleInPCAL = (allParticles[i]->cal(clas12::PCAL)->getDetector() == 7);                           // PCAL hit
+                                bool ParticleInECIN = (allParticles[i]->cal(clas12::ECIN)->getDetector() == 7);                           // ECIN hit
+                                bool ParticleInECOUT = (allParticles[i]->cal(clas12::ECOUT)->getDetector() == 7);                         // ECOUT hit
+                                auto Neutron_ECAL_detlayer = ParticleInECIN ? clas12::ECIN : clas12::ECOUT;                               // find first layer of hit
+
+                                if (apply_neutFD_redef) {
                                     if ((pid_temp == 2112) || (pid_temp == 22)) {
                                         if (ParticleInPCAL) {
                                             if (pid_temp == 22) { photons_FD_redef.push_back(allParticles[i]); }
                                         } else if (!ParticleInPCAL) {  // if there is a neutron or a 'photon' without a PCAL hit
-                                            if (ParticleInECIN || ParticleInECOUT) { neutrons_FD_redef.push_back(allParticles[i]); }
+                                            if (ParticleInECIN || ParticleInECOUT) {
+                                                double Momentum = CalcPnFD(allParticles[i], electrons[0], starttime);
+
+                                                double Path_nFD = CalcPathnFD(allParticles[i], electrons[0]);
+                                                double reco_ToF_nFD = CalcToFnFD(allParticles[i], starttime);
+
+                                                // bool PassMomTh = true;
+                                                bool PassMomTh = (Momentum >= 0.4);
+                                                bool PassECALeadgeCuts =
+                                                    (allParticles[i]->cal(Neutron_ECAL_detlayer)->getLv() > 14. && allParticles[i]->cal(Neutron_ECAL_detlayer)->getLw() > 14.);
+                                                bool PassVeto = NeutronECAL_Cut_Veto(allParticles, electrons, Ebeam, i, apply_PCAL_neutral_veto, cPart_veto_radius, nPart_veto_radius);
+
+                                                bool PassPhi_nFDCuts = true;
+                                                int nFD_nSector = allParticles[i]->cal(Neutron_ECAL_detlayer)->getSector();
+                                                int e_nSector = electrons[0]->cal(Electron_ECAL_detlayer)->getSector();
+                                                if (OnlyGood_nFD) { PassPhi_nFDCuts = (abs(nFD_nSector - e_nSector) == 3); }
+                                                if (OnlyBad_nFD) { PassPhi_nFDCuts = !(abs(nFD_nSector - e_nSector) == 3); }
+
+                                                if (PassMomTh && PassECALeadgeCuts && (!apply_ECAL_veto || PassVeto) && PassPhi_nFDCuts) {
+                                                    if (Momentum >= P_max) {
+                                                        P_max = Momentum;
+                                                        NeutronsFD_ind_mom_max = i;
+                                                    }
+
+                                                    neutrons_FD_ECALveto.push_back(allParticles[i]);
+                                                    neutrons_FD_ECALveto_ind.push_back(i);
+                                                }  // end of clas12root neutron or 'photon' if
+                                            }
                                         }
                                     }  // end of clas12root neutron or 'photon' if
-                                }  // end of neutral and in the FD if
-                            }
+                                } else {
+                                    if (pid_temp == 2112) {
+                                        double Momentum = CalcPnFD(allParticles[i], electrons[0], starttime);
 
-                            for (int i = 0; i < neutrons_FD_redef.size(); i++) {
-                                bool ParticleInPCAL = (neutrons_FD_redef[i]->cal(clas12::PCAL)->getDetector() == 7);    // PCAL hit
-                                bool ParticleInECIN = (neutrons_FD_redef[i]->cal(clas12::ECIN)->getDetector() == 7);    // ECIN hit
-                                bool ParticleInECOUT = (neutrons_FD_redef[i]->cal(clas12::ECOUT)->getDetector() == 7);  // ECOUT hit
-                                if (ParticleInPCAL) { cout << "\n\nError! neutrons_FD_redef is in the PCAL! Aborting...\n\n", exit(0); }
+                                        double Path_nFD = CalcPathnFD(allParticles[i], electrons[0]);
+                                        double reco_ToF_nFD = CalcToFnFD(allParticles[i], starttime);
 
-                                double Beta_ph = neutrons_FD_redef[i]->par()->getBeta();
-                                double Gamma_ph = 1 / sqrt(1 - (Beta_ph * Beta_ph));
-                                double Momentum = m_n * Beta_ph * Gamma_ph;
+                                        // bool PassMomTh = true;
+                                        bool PassMomTh = (Momentum >= 0.4);
+                                        bool PassECALeadgeCuts = (allParticles[i]->cal(Neutron_ECAL_detlayer)->getLv() > 14. && allParticles[i]->cal(Neutron_ECAL_detlayer)->getLw() > 14.);
 
-                                TVector3 reco_P_nFD;
-                                reco_P_nFD.SetMagThetaPhi(CalcPnFD(neutrons_FD_redef[i], electrons[0], starttime), neutrons_FD_redef[i]->getTheta(), neutrons_FD_redef[i]->getPhi());
-
-                                h_reco_P_nFD_redef_1e_cut->Fill(reco_P_nFD.Mag(), weight);
-                                h_reco_theta_nFD_redef_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI, weight);
-                                h_reco_phi_nFD_redef_1e_cut->Fill(reco_P_nFD.Phi() * 180 / M_PI, weight);
-                                h_reco_theta_nFD_redef_VS_reco_phi_nFD_redef_1e_cut->Fill(reco_P_nFD.Phi() * 180 / M_PI, reco_P_nFD.Theta() * 180 / M_PI, weight);
-                                h_reco_P_e_VS_P_nFD_redef_1e_cut->Fill(reco_P_e.Mag(), reco_P_nFD.Mag(), weight);
-                                h_reco_theta_nFD_redef_VS_P_nFD_redef_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI, reco_P_nFD.Mag(), weight);
-                            }
-#pragma endregion
-
-                            //  Setting up FD neutrals (ECALveto)
-                            //  ----------------------------------------------------------------------------------------------------------------------------------------
-
-#pragma region /* Setting up FD neutrals (ECALveto) */
-                            double P_max = -1;
-                            int NeutronsFD_ind_mom_max = -1;
-
-                            vector<region_part_ptr> neutrons_FD_ECALveto;
-                            vector<int> neutrons_FD_ECALveto_ind;
-
-                            for (int i = 0; i < allParticles.size(); i++) {
-                                int pid_temp = allParticles[i]->par()->getPid();
-
-                                if ((allParticles[i]->par()->getCharge() == 0) && (allParticles[i]->getRegion() == FD) && (pid_temp != 0)) {  // If particle is neutral and in the FD
-                                    bool ParticleInPCAL = (allParticles[i]->cal(clas12::PCAL)->getDetector() == 7);                           // PCAL hit
-                                    bool ParticleInECIN = (allParticles[i]->cal(clas12::ECIN)->getDetector() == 7);                           // ECIN hit
-                                    bool ParticleInECOUT = (allParticles[i]->cal(clas12::ECOUT)->getDetector() == 7);                         // ECOUT hit
-                                    auto Neutron_ECAL_detlayer = ParticleInECIN ? clas12::ECIN : clas12::ECOUT;                               // find first layer of hit
-
-                                    if (apply_neutFD_redef) {
-                                        if ((pid_temp == 2112) || (pid_temp == 22)) {
-                                            if (ParticleInPCAL) {
-                                                if (pid_temp == 22) { photons_FD_redef.push_back(allParticles[i]); }
-                                            } else if (!ParticleInPCAL) {  // if there is a neutron or a 'photon' without a PCAL hit
-                                                if (ParticleInECIN || ParticleInECOUT) {
-                                                    double Momentum = CalcPnFD(allParticles[i], electrons[0], starttime);
-
-                                                    double Path_nFD = CalcPathnFD(allParticles[i], electrons[0]);
-                                                    double reco_ToF_nFD = CalcToFnFD(allParticles[i], starttime);
-
-                                                    // bool PassMomTh = true;
-                                                    bool PassMomTh = (Momentum >= 0.4);
-                                                    bool PassECALeadgeCuts =
-                                                        (allParticles[i]->cal(Neutron_ECAL_detlayer)->getLv() > 14. && allParticles[i]->cal(Neutron_ECAL_detlayer)->getLw() > 14.);
-                                                    bool PassVeto = NeutronECAL_Cut_Veto(allParticles, electrons, Ebeam, i, apply_PCAL_neutral_veto, cPart_veto_radius, nPart_veto_radius);
-
-                                                    bool PassPhi_nFDCuts = true;
-                                                    int nFD_nSector = allParticles[i]->cal(Neutron_ECAL_detlayer)->getSector();
-                                                    int e_nSector = electrons[0]->cal(Electron_ECAL_detlayer)->getSector();
-                                                    if (OnlyGood_nFD) { PassPhi_nFDCuts = (abs(nFD_nSector - e_nSector) == 3); }
-                                                    if (OnlyBad_nFD) { PassPhi_nFDCuts = !(abs(nFD_nSector - e_nSector) == 3); }
-
-                                                    if (PassMomTh && PassECALeadgeCuts && (!apply_ECAL_veto || PassVeto) && PassPhi_nFDCuts) {
-                                                        if (Momentum >= P_max) {
-                                                            P_max = Momentum;
-                                                            NeutronsFD_ind_mom_max = i;
-                                                        }
-
-                                                        neutrons_FD_ECALveto.push_back(allParticles[i]);
-                                                        neutrons_FD_ECALveto_ind.push_back(i);
-                                                    }  // end of clas12root neutron or 'photon' if
-                                                }
+                                        if (PassMomTh && PassECALeadgeCuts) {
+                                            if (Momentum >= P_max) {
+                                                P_max = Momentum;
+                                                NeutronsFD_ind_mom_max = i;
                                             }
+
+                                            neutrons_FD_ECALveto.push_back(allParticles[i]);
+                                            neutrons_FD_ECALveto_ind.push_back(i);
                                         }  // end of clas12root neutron or 'photon' if
-                                    } else {
-                                        if (pid_temp == 2112) {
-                                            double Momentum = CalcPnFD(allParticles[i], electrons[0], starttime);
-
-                                            double Path_nFD = CalcPathnFD(allParticles[i], electrons[0]);
-                                            double reco_ToF_nFD = CalcToFnFD(allParticles[i], starttime);
-
-                                            // bool PassMomTh = true;
-                                            bool PassMomTh = (Momentum >= 0.4);
-                                            bool PassECALeadgeCuts =
-                                                (allParticles[i]->cal(Neutron_ECAL_detlayer)->getLv() > 14. && allParticles[i]->cal(Neutron_ECAL_detlayer)->getLw() > 14.);
-
-                                            if (PassMomTh && PassECALeadgeCuts) {
-                                                if (Momentum >= P_max) {
-                                                    P_max = Momentum;
-                                                    NeutronsFD_ind_mom_max = i;
-                                                }
-
-                                                neutrons_FD_ECALveto.push_back(allParticles[i]);
-                                                neutrons_FD_ECALveto_ind.push_back(i);
-                                            }  // end of clas12root neutron or 'photon' if
-                                        }
                                     }
-                                }  // end of neutral and in the FD if
+                                }
+                            }  // end of neutral and in the FD if
+                        }
+
+                        if (neutrons_FD_ECALveto.size() != neutrons_FD_ECALveto_ind.size()) {
+                            cout << "\n\nError! neutrons_FD_ECALveto.size() is different from neutrons_FD_ECALveto_ind.size()! Aborting...\n\n", exit(0);
+                        }
+
+                        if (NeutronsFD_ind_mom_max != -1) {
+                            bool ParticleInPCAL = (allParticles[NeutronsFD_ind_mom_max]->cal(clas12::PCAL)->getDetector() == 7);    // PCAL hit
+                            bool ParticleInECIN = (allParticles[NeutronsFD_ind_mom_max]->cal(clas12::ECIN)->getDetector() == 7);    // ECIN hit
+                            bool ParticleInECOUT = (allParticles[NeutronsFD_ind_mom_max]->cal(clas12::ECOUT)->getDetector() == 7);  // ECOUT hit
+                            auto Neutron_ECAL_detlayer = ParticleInECIN ? clas12::ECIN : clas12::ECOUT;                             // find first layer of hit
+
+                            double Mom_neut_1e_cut = CalcPnFD(allParticles[NeutronsFD_ind_mom_max], electrons[0], starttime);
+                            double Theta_neut_1e_cut = allParticles[NeutronsFD_ind_mom_max]->getTheta() * 180.0 / pi;
+                            double Phi_neut_1e_cut = allParticles[NeutronsFD_ind_mom_max]->getPhi() * 180.0 / pi;
+
+                            // bool PassMomTh = true;
+                            bool PassMomTh = (Mom_neut_1e_cut >= 0.4);
+                            bool PassECALeadgeCuts = (allParticles[NeutronsFD_ind_mom_max]->cal(Neutron_ECAL_detlayer)->getLv() > 14. &&
+                                                      allParticles[NeutronsFD_ind_mom_max]->cal(Neutron_ECAL_detlayer)->getLw() > 14.);
+                            bool NeutronPassVeto_1e_cut =
+                                NeutronECAL_Cut_Veto(allParticles, electrons, Ebeam, NeutronsFD_ind_mom_max, apply_PCAL_neutral_veto, cPart_veto_radius, nPart_veto_radius);
+
+                            bool PassPhi_nFDCuts = true;
+                            int nFD_nSector = allParticles[NeutronsFD_ind_mom_max]->cal(Neutron_ECAL_detlayer)->getSector();
+                            int e_nSector = electrons[0]->cal(Electron_ECAL_detlayer)->getSector();
+                            if (OnlyGood_nFD) { PassPhi_nFDCuts = (abs(nFD_nSector - e_nSector) == 3); }
+                            if (OnlyBad_nFD) { PassPhi_nFDCuts = !(abs(nFD_nSector - e_nSector) == 3); }
+
+                            if (PassMomTh && PassECALeadgeCuts && NeutronPassVeto_1e_cut && PassPhi_nFDCuts)  // FOR nFD eff test!
+                            {
+                                aMaps_master.hFillMaps("Reco", "Neutron", Mom_neut_1e_cut, Theta_neut_1e_cut, Phi_neut_1e_cut, weight);
+                            }  // end of if id. reco leading neutron
+                        }
+
+                        for (int i = 0; i < neutrons_FD_ECALveto.size(); i++) {
+                            bool ParticleInPCAL = (neutrons_FD_ECALveto[i]->cal(clas12::PCAL)->getDetector() == 7);         // PCAL hit
+                            bool ParticleInECIN = (neutrons_FD_ECALveto[i]->cal(clas12::ECIN)->getDetector() == 7);         // ECIN hit
+                            bool ParticleInECOUT = (neutrons_FD_ECALveto[i]->cal(clas12::ECOUT)->getDetector() == 7);       // ECOUT hit
+                            auto detlayer = ParticleInPCAL ? clas12::PCAL : ParticleInECIN ? clas12::ECIN : clas12::ECOUT;  // determine the earliest layer of the neutral hit
+                            if (apply_neutFD_redef && ParticleInPCAL) { cout << "\n\nError! neutrons_FD_ECALveto is in the PCAL! Aborting...\n\n", exit(0); }
+
+                            double Path_nFD = CalcPathnFD(neutrons_FD_ECALveto[i], electrons[0]);
+                            double reco_ToF_nFD = CalcToFnFD(neutrons_FD_ECALveto[i], starttime);
+                            double reco_Beta_nFD = Path_nFD / (reco_ToF_nFD * c);
+                            double Edep_ECAL_nFD =
+                                neutrons_FD_ECALveto[i]->cal(clas12::PCAL)->getEnergy() + neutrons_FD_ECALveto[i]->cal(ECIN)->getEnergy() + neutrons_FD_ECALveto[i]->cal(ECOUT)->getEnergy();
+
+                            TVector3 reco_P_nFD;
+                            reco_P_nFD.SetMagThetaPhi(CalcPnFD(neutrons_FD_ECALveto[i], electrons[0], starttime), neutrons_FD_ECALveto[i]->getTheta(), neutrons_FD_ECALveto[i]->getPhi());
+
+                            if ((reco_P_nFD.Mag() > P_max) && (neutrons_FD_ECALveto_ind.at(i) != NeutronsFD_ind_mom_max)) {
+                                cout << "\n\nError! P_max is is not of the leading neutron!\n";
+                                cout << "P_max = " << P_max << "\n";
+                                cout << "reco_P_nFD.Mag() = " << reco_P_nFD.Mag() << "\n";
+                                cout << "Aborting...\n\n", exit(0);
                             }
 
-                            if (neutrons_FD_ECALveto.size() != neutrons_FD_ECALveto_ind.size()) {
-                                cout << "\n\nError! neutrons_FD_ECALveto.size() is different from neutrons_FD_ECALveto_ind.size()! Aborting...\n\n", exit(0);
+                            h_reco_P_nFD_ECALveto_1e_cut->Fill(reco_P_nFD.Mag(), weight);
+                            h_reco_theta_nFD_ECALveto_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI, weight);
+                            h_reco_phi_nFD_ECALveto_1e_cut->Fill(reco_P_nFD.Phi() * 180 / M_PI, weight);
+                            h_reco_theta_nFD_ECALveto_VS_reco_phi_nFD_ECALveto_1e_cut->Fill(reco_P_nFD.Phi() * 180 / M_PI, reco_P_nFD.Theta() * 180 / M_PI, weight);
+
+                            if (neutrons_FD_ECALveto_ind.at(i) == NeutronsFD_ind_mom_max) {
+                                h_reco_P_LnFD_ECALveto_1e_cut->Fill(reco_P_nFD.Mag(), weight);
+                                h_reco_theta_LnFD_ECALveto_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI, weight);
+                                h_reco_phi_LnFD_ECALveto_1e_cut->Fill(reco_P_nFD.Phi() * 180 / M_PI, weight);
+                                h_reco_theta_LnFD_ECALveto_VS_reco_phi_LnFD_ECALveto_1e_cut->Fill(reco_P_nFD.Phi() * 180 / M_PI, reco_P_nFD.Theta() * 180 / M_PI, weight);
                             }
 
-                            if (NeutronsFD_ind_mom_max != -1) {
-                                bool ParticleInPCAL = (allParticles[NeutronsFD_ind_mom_max]->cal(clas12::PCAL)->getDetector() == 7);    // PCAL hit
-                                bool ParticleInECIN = (allParticles[NeutronsFD_ind_mom_max]->cal(clas12::ECIN)->getDetector() == 7);    // ECIN hit
-                                bool ParticleInECOUT = (allParticles[NeutronsFD_ind_mom_max]->cal(clas12::ECOUT)->getDetector() == 7);  // ECOUT hit
-                                auto Neutron_ECAL_detlayer = ParticleInECIN ? clas12::ECIN : clas12::ECOUT;                             // find first layer of hit
+                            h_Edep_ECAL_nFD_ECALveto_1e_cut->Fill(Edep_ECAL_nFD, weight);
+                            h_beta_nFD_ECALveto_1e_cut->Fill(reco_Beta_nFD, weight);
+                            h_Edep_ECAL_nFD_VS_beta_nFD_ECALveto_1e_cut->Fill(reco_Beta_nFD, Edep_ECAL_nFD, weight);
 
-                                double Mom_neut_1e_cut = CalcPnFD(allParticles[NeutronsFD_ind_mom_max], electrons[0], starttime);
-                                double Theta_neut_1e_cut = allParticles[NeutronsFD_ind_mom_max]->getTheta() * 180.0 / pi;
-                                double Phi_neut_1e_cut = allParticles[NeutronsFD_ind_mom_max]->getPhi() * 180.0 / pi;
-
-                                // bool PassMomTh = true;
-                                bool PassMomTh = (Mom_neut_1e_cut >= 0.4);
-                                bool PassECALeadgeCuts = (allParticles[NeutronsFD_ind_mom_max]->cal(Neutron_ECAL_detlayer)->getLv() > 14. &&
-                                                          allParticles[NeutronsFD_ind_mom_max]->cal(Neutron_ECAL_detlayer)->getLw() > 14.);
-                                bool NeutronPassVeto_1e_cut =
-                                    NeutronECAL_Cut_Veto(allParticles, electrons, Ebeam, NeutronsFD_ind_mom_max, apply_PCAL_neutral_veto, cPart_veto_radius, nPart_veto_radius);
-
-                                bool PassPhi_nFDCuts = true;
-                                int nFD_nSector = allParticles[NeutronsFD_ind_mom_max]->cal(Neutron_ECAL_detlayer)->getSector();
-                                int e_nSector = electrons[0]->cal(Electron_ECAL_detlayer)->getSector();
-                                if (OnlyGood_nFD) { PassPhi_nFDCuts = (abs(nFD_nSector - e_nSector) == 3); }
-                                if (OnlyBad_nFD) { PassPhi_nFDCuts = !(abs(nFD_nSector - e_nSector) == 3); }
-
-                                if (PassMomTh && PassECALeadgeCuts && NeutronPassVeto_1e_cut && PassPhi_nFDCuts)  // FOR nFD eff test!
-                                {
-                                    aMaps_master.hFillMaps("Reco", "Neutron", Mom_neut_1e_cut, Theta_neut_1e_cut, Phi_neut_1e_cut, weight);
-                                }  // end of if id. reco leading neutron
+                            if (neutrons_FD_ECALveto_ind.at(i) == NeutronsFD_ind_mom_max) {
+                                h_Edep_ECAL_LnFD_ECALveto_1e_cut->Fill(Edep_ECAL_nFD, weight);
+                                h_beta_LnFD_ECALveto_1e_cut->Fill(reco_Beta_nFD, weight);
+                                h_Edep_ECAL_LnFD_VS_beta_LnFD_ECALveto_1e_cut->Fill(reco_Beta_nFD, Edep_ECAL_nFD, weight);
                             }
 
-                            for (int i = 0; i < neutrons_FD_ECALveto.size(); i++) {
-                                bool ParticleInPCAL = (neutrons_FD_ECALveto[i]->cal(clas12::PCAL)->getDetector() == 7);         // PCAL hit
-                                bool ParticleInECIN = (neutrons_FD_ECALveto[i]->cal(clas12::ECIN)->getDetector() == 7);         // ECIN hit
-                                bool ParticleInECOUT = (neutrons_FD_ECALveto[i]->cal(clas12::ECOUT)->getDetector() == 7);       // ECOUT hit
-                                auto detlayer = ParticleInPCAL ? clas12::PCAL : ParticleInECIN ? clas12::ECIN : clas12::ECOUT;  // determine the earliest layer of the neutral hit
-                                if (apply_neutFD_redef && ParticleInPCAL) { cout << "\n\nError! neutrons_FD_ECALveto is in the PCAL! Aborting...\n\n", exit(0); }
+                            h_reco_P_e_VS_P_nFD_ECALveto_1e_cut->Fill(reco_P_e.Mag(), reco_P_nFD.Mag(), weight);
+                            h_reco_theta_e_VS_P_nFD_ECALveto_1e_cut->Fill(reco_P_e.Theta() * 180 / M_PI, reco_P_nFD.Mag(), weight);
+                            h_reco_phi_e_VS_P_nFD_ECALveto_1e_cut->Fill(reco_P_e.Phi() * 180 / M_PI, reco_P_nFD.Mag(), weight);
+                            h_reco_P_e_VS_theta_nFD_ECALveto_1e_cut->Fill(reco_P_e.Mag(), reco_P_nFD.Theta() * 180 / M_PI, weight);
+                            h_reco_theta_e_VS_theta_nFD_ECALveto_1e_cut->Fill(reco_P_e.Theta() * 180 / M_PI, reco_P_nFD.Theta() * 180 / M_PI, weight);
+                            h_reco_phi_e_VS_theta_nFD_ECALveto_1e_cut->Fill(reco_P_e.Phi() * 180 / M_PI, reco_P_nFD.Theta() * 180 / M_PI, weight);
+                            h_reco_P_e_VS_phi_nFD_ECALveto_1e_cut->Fill(reco_P_e.Mag(), reco_P_nFD.Phi() * 180 / M_PI, weight);
+                            h_reco_theta_e_VS_phi_nFD_ECALveto_1e_cut->Fill(reco_P_e.Theta() * 180 / M_PI, reco_P_nFD.Phi() * 180 / M_PI, weight);
+                            h_reco_phi_e_VS_phi_nFD_ECALveto_1e_cut->Fill(reco_P_e.Phi() * 180 / M_PI, reco_P_nFD.Phi() * 180 / M_PI, weight);
+                            h_reco_theta_nFD_ECALveto_VS_P_nFD_ECALveto_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI, reco_P_nFD.Mag(), weight);
+                            h_reco_nFD_multi_VS_reco_P_nFD_ECALveto_1e_cut->Fill(reco_P_nFD.Mag(), neutrons_FD_ECALveto.size(), weight);
 
-                                double Path_nFD = CalcPathnFD(neutrons_FD_ECALveto[i], electrons[0]);
-                                double reco_ToF_nFD = CalcToFnFD(neutrons_FD_ECALveto[i], starttime);
-                                double reco_Beta_nFD = Path_nFD / (reco_ToF_nFD * c);
-                                double Edep_ECAL_nFD = neutrons_FD_ECALveto[i]->cal(clas12::PCAL)->getEnergy() + neutrons_FD_ECALveto[i]->cal(ECIN)->getEnergy() +
-                                                       neutrons_FD_ECALveto[i]->cal(ECOUT)->getEnergy();
+                            if (neutrons_FD_ECALveto_ind.at(i) == NeutronsFD_ind_mom_max) {
+                                h_reco_P_e_VS_P_LnFD_ECALveto_1e_cut->Fill(reco_P_e.Mag(), reco_P_nFD.Mag(), weight);
+                                h_reco_theta_e_VS_P_LnFD_ECALveto_1e_cut->Fill(reco_P_e.Theta() * 180 / M_PI, reco_P_nFD.Mag(), weight);
+                                h_reco_phi_e_VS_P_LnFD_ECALveto_1e_cut->Fill(reco_P_e.Phi() * 180 / M_PI, reco_P_nFD.Mag(), weight);
+                                h_reco_P_e_VS_theta_LnFD_ECALveto_1e_cut->Fill(reco_P_e.Mag(), reco_P_nFD.Theta() * 180 / M_PI, weight);
+                                h_reco_theta_e_VS_theta_LnFD_ECALveto_1e_cut->Fill(reco_P_e.Theta() * 180 / M_PI, reco_P_nFD.Theta() * 180 / M_PI, weight);
+                                h_reco_phi_e_VS_theta_LnFD_ECALveto_1e_cut->Fill(reco_P_e.Phi() * 180 / M_PI, reco_P_nFD.Theta() * 180 / M_PI, weight);
+                                h_reco_P_e_VS_phi_LnFD_ECALveto_1e_cut->Fill(reco_P_e.Mag(), reco_P_nFD.Phi() * 180 / M_PI, weight);
+                                h_reco_theta_e_VS_phi_LnFD_ECALveto_1e_cut->Fill(reco_P_e.Theta() * 180 / M_PI, reco_P_nFD.Phi() * 180 / M_PI, weight);
+                                h_reco_phi_e_VS_phi_LnFD_ECALveto_1e_cut->Fill(reco_P_e.Phi() * 180 / M_PI, reco_P_nFD.Phi() * 180 / M_PI, weight);
+                                h_reco_theta_LnFD_ECALveto_VS_P_LnFD_ECALveto_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI, reco_P_nFD.Mag(), weight);
+                                h_reco_LnFD_multi_VS_reco_P_LnFD_ECALveto_1e_cut->Fill(reco_P_nFD.Mag(), neutrons_FD_ECALveto.size(), weight);
+                            }
 
-                                TVector3 reco_P_nFD;
-                                reco_P_nFD.SetMagThetaPhi(CalcPnFD(neutrons_FD_ECALveto[i], electrons[0], starttime), neutrons_FD_ECALveto[i]->getTheta(), neutrons_FD_ECALveto[i]->getPhi());
+                            // if (ParticleInECIN || ParticleInECOUT) {
+                            //     h_reco_P_nFD_VS_reco_L_ECAL_ECALveto_1e_cut->Fill(Path_nFD, reco_P_nFD.Mag(), weight);
+                            //     h_reco_theta_nFD_VS_reco_L_ECAL_ECALveto_1e_cut->Fill(Path_nFD, reco_P_nFD.Theta() * 180 / M_PI, weight);
+                            //     h_reco_phi_nFD_VS_reco_L_ECAL_ECALveto_1e_cut->Fill(Path_nFD, reco_P_nFD.Phi() * 180 / M_PI, weight);
+                            //     h_reco_P_nFD_VS_ToF_nFD_fromFile_ECAL_ECALveto_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Mag(), weight);
+                            //     h_reco_theta_nFD_VS_ToF_nFD_fromFile_ECAL_ECALveto_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Theta() * 180 / M_PI, weight);
+                            //     h_reco_phi_nFD_VS_ToF_nFD_fromFile_ECAL_ECALveto_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Phi() * 180 / M_PI, weight);
 
-                                if ((reco_P_nFD.Mag() > P_max) && (neutrons_FD_ECALveto_ind.at(i) != NeutronsFD_ind_mom_max)) {
-                                    cout << "\n\nError! P_max is is not of the leading neutron!\n";
-                                    cout << "P_max = " << P_max << "\n";
-                                    cout << "reco_P_nFD.Mag() = " << reco_P_nFD.Mag() << "\n";
-                                    cout << "Aborting...\n\n", exit(0);
-                                }
+                            //     if (ParticleInECIN) {
+                            //         h_reco_P_nFD_VS_reco_L_ECIN_ECALveto_1e_cut->Fill(Path_nFD, reco_P_nFD.Mag(), weight);
+                            //         h_reco_theta_nFD_VS_reco_L_ECIN_ECALveto_1e_cut->Fill(Path_nFD, reco_P_nFD.Theta() * 180 / M_PI, weight);
+                            //         h_reco_phi_nFD_VS_reco_L_ECIN_ECALveto_1e_cut->Fill(Path_nFD, reco_P_nFD.Phi() * 180 / M_PI, weight);
+                            //         h_reco_P_nFD_VS_ToF_nFD_fromFile_ECIN_ECALveto_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Mag(), weight);
+                            //         h_reco_theta_nFD_VS_ToF_nFD_fromFile_ECIN_ECALveto_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Theta() * 180 / M_PI, weight);
+                            //         h_reco_phi_nFD_VS_ToF_nFD_fromFile_ECIN_ECALveto_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Phi() * 180 / M_PI, weight);
+                            //     }
 
-                                h_reco_P_nFD_ECALveto_1e_cut->Fill(reco_P_nFD.Mag(), weight);
-                                h_reco_theta_nFD_ECALveto_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI, weight);
-                                h_reco_phi_nFD_ECALveto_1e_cut->Fill(reco_P_nFD.Phi() * 180 / M_PI, weight);
-                                h_reco_theta_nFD_ECALveto_VS_reco_phi_nFD_ECALveto_1e_cut->Fill(reco_P_nFD.Phi() * 180 / M_PI, reco_P_nFD.Theta() * 180 / M_PI, weight);
+                            //     if (ParticleInECOUT) {
+                            //         h_reco_P_nFD_VS_reco_L_ECOUT_ECALveto_1e_cut->Fill(Path_nFD, reco_P_nFD.Mag(), weight);
+                            //         h_reco_theta_nFD_VS_reco_L_ECOUT_ECALveto_1e_cut->Fill(Path_nFD, reco_P_nFD.Theta() * 180 / M_PI, weight);
+                            //         h_reco_phi_nFD_VS_reco_L_ECOUT_ECALveto_1e_cut->Fill(Path_nFD, reco_P_nFD.Phi() * 180 / M_PI, weight);
+                            //         h_reco_P_nFD_VS_ToF_nFD_fromFile_ECOUT_ECALveto_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Mag(), weight);
+                            //         h_reco_theta_nFD_VS_ToF_nFD_fromFile_ECOUT_ECALveto_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Theta() * 180 / M_PI, weight);
+                            //         h_reco_phi_nFD_VS_ToF_nFD_fromFile_ECOUT_ECALveto_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Phi() * 180 / M_PI, weight);
+                            //     }
+                            // }
 
-                                if (neutrons_FD_ECALveto_ind.at(i) == NeutronsFD_ind_mom_max) {
-                                    h_reco_P_LnFD_ECALveto_1e_cut->Fill(reco_P_nFD.Mag(), weight);
-                                    h_reco_theta_LnFD_ECALveto_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI, weight);
-                                    h_reco_phi_LnFD_ECALveto_1e_cut->Fill(reco_P_nFD.Phi() * 180 / M_PI, weight);
-                                    h_reco_theta_LnFD_ECALveto_VS_reco_phi_LnFD_ECALveto_1e_cut->Fill(reco_P_nFD.Phi() * 180 / M_PI, reco_P_nFD.Theta() * 180 / M_PI, weight);
-                                }
-
-                                h_Edep_ECAL_nFD_ECALveto_1e_cut->Fill(Edep_ECAL_nFD, weight);
-                                h_beta_nFD_ECALveto_1e_cut->Fill(reco_Beta_nFD, weight);
-                                h_Edep_ECAL_nFD_VS_beta_nFD_ECALveto_1e_cut->Fill(reco_Beta_nFD, Edep_ECAL_nFD, weight);
-
-                                if (neutrons_FD_ECALveto_ind.at(i) == NeutronsFD_ind_mom_max) {
-                                    h_Edep_ECAL_LnFD_ECALveto_1e_cut->Fill(Edep_ECAL_nFD, weight);
-                                    h_beta_LnFD_ECALveto_1e_cut->Fill(reco_Beta_nFD, weight);
-                                    h_Edep_ECAL_LnFD_VS_beta_LnFD_ECALveto_1e_cut->Fill(reco_Beta_nFD, Edep_ECAL_nFD, weight);
-                                }
-
-                                h_reco_P_e_VS_P_nFD_ECALveto_1e_cut->Fill(reco_P_e.Mag(), reco_P_nFD.Mag(), weight);
-                                h_reco_theta_e_VS_P_nFD_ECALveto_1e_cut->Fill(reco_P_e.Theta() * 180 / M_PI, reco_P_nFD.Mag(), weight);
-                                h_reco_phi_e_VS_P_nFD_ECALveto_1e_cut->Fill(reco_P_e.Phi() * 180 / M_PI, reco_P_nFD.Mag(), weight);
-                                h_reco_P_e_VS_theta_nFD_ECALveto_1e_cut->Fill(reco_P_e.Mag(), reco_P_nFD.Theta() * 180 / M_PI, weight);
-                                h_reco_theta_e_VS_theta_nFD_ECALveto_1e_cut->Fill(reco_P_e.Theta() * 180 / M_PI, reco_P_nFD.Theta() * 180 / M_PI, weight);
-                                h_reco_phi_e_VS_theta_nFD_ECALveto_1e_cut->Fill(reco_P_e.Phi() * 180 / M_PI, reco_P_nFD.Theta() * 180 / M_PI, weight);
-                                h_reco_P_e_VS_phi_nFD_ECALveto_1e_cut->Fill(reco_P_e.Mag(), reco_P_nFD.Phi() * 180 / M_PI, weight);
-                                h_reco_theta_e_VS_phi_nFD_ECALveto_1e_cut->Fill(reco_P_e.Theta() * 180 / M_PI, reco_P_nFD.Phi() * 180 / M_PI, weight);
-                                h_reco_phi_e_VS_phi_nFD_ECALveto_1e_cut->Fill(reco_P_e.Phi() * 180 / M_PI, reco_P_nFD.Phi() * 180 / M_PI, weight);
-                                h_reco_theta_nFD_ECALveto_VS_P_nFD_ECALveto_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI, reco_P_nFD.Mag(), weight);
-                                h_reco_nFD_multi_VS_reco_P_nFD_ECALveto_1e_cut->Fill(reco_P_nFD.Mag(), neutrons_FD_ECALveto.size(), weight);
-
-                                if (neutrons_FD_ECALveto_ind.at(i) == NeutronsFD_ind_mom_max) {
-                                    h_reco_P_e_VS_P_LnFD_ECALveto_1e_cut->Fill(reco_P_e.Mag(), reco_P_nFD.Mag(), weight);
-                                    h_reco_theta_e_VS_P_LnFD_ECALveto_1e_cut->Fill(reco_P_e.Theta() * 180 / M_PI, reco_P_nFD.Mag(), weight);
-                                    h_reco_phi_e_VS_P_LnFD_ECALveto_1e_cut->Fill(reco_P_e.Phi() * 180 / M_PI, reco_P_nFD.Mag(), weight);
-                                    h_reco_P_e_VS_theta_LnFD_ECALveto_1e_cut->Fill(reco_P_e.Mag(), reco_P_nFD.Theta() * 180 / M_PI, weight);
-                                    h_reco_theta_e_VS_theta_LnFD_ECALveto_1e_cut->Fill(reco_P_e.Theta() * 180 / M_PI, reco_P_nFD.Theta() * 180 / M_PI, weight);
-                                    h_reco_phi_e_VS_theta_LnFD_ECALveto_1e_cut->Fill(reco_P_e.Phi() * 180 / M_PI, reco_P_nFD.Theta() * 180 / M_PI, weight);
-                                    h_reco_P_e_VS_phi_LnFD_ECALveto_1e_cut->Fill(reco_P_e.Mag(), reco_P_nFD.Phi() * 180 / M_PI, weight);
-                                    h_reco_theta_e_VS_phi_LnFD_ECALveto_1e_cut->Fill(reco_P_e.Theta() * 180 / M_PI, reco_P_nFD.Phi() * 180 / M_PI, weight);
-                                    h_reco_phi_e_VS_phi_LnFD_ECALveto_1e_cut->Fill(reco_P_e.Phi() * 180 / M_PI, reco_P_nFD.Phi() * 180 / M_PI, weight);
-                                    h_reco_theta_LnFD_ECALveto_VS_P_LnFD_ECALveto_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI, reco_P_nFD.Mag(), weight);
-                                    h_reco_LnFD_multi_VS_reco_P_LnFD_ECALveto_1e_cut->Fill(reco_P_nFD.Mag(), neutrons_FD_ECALveto.size(), weight);
-                                }
-
-                                // if (ParticleInECIN || ParticleInECOUT) {
-                                //     h_reco_P_nFD_VS_reco_L_ECAL_ECALveto_1e_cut->Fill(Path_nFD, reco_P_nFD.Mag(), weight);
-                                //     h_reco_theta_nFD_VS_reco_L_ECAL_ECALveto_1e_cut->Fill(Path_nFD, reco_P_nFD.Theta() * 180 / M_PI, weight);
-                                //     h_reco_phi_nFD_VS_reco_L_ECAL_ECALveto_1e_cut->Fill(Path_nFD, reco_P_nFD.Phi() * 180 / M_PI, weight);
-                                //     h_reco_P_nFD_VS_ToF_nFD_fromFile_ECAL_ECALveto_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Mag(), weight);
-                                //     h_reco_theta_nFD_VS_ToF_nFD_fromFile_ECAL_ECALveto_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Theta() * 180 / M_PI, weight);
-                                //     h_reco_phi_nFD_VS_ToF_nFD_fromFile_ECAL_ECALveto_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Phi() * 180 / M_PI, weight);
-
-                                //     if (ParticleInECIN) {
-                                //         h_reco_P_nFD_VS_reco_L_ECIN_ECALveto_1e_cut->Fill(Path_nFD, reco_P_nFD.Mag(), weight);
-                                //         h_reco_theta_nFD_VS_reco_L_ECIN_ECALveto_1e_cut->Fill(Path_nFD, reco_P_nFD.Theta() * 180 / M_PI, weight);
-                                //         h_reco_phi_nFD_VS_reco_L_ECIN_ECALveto_1e_cut->Fill(Path_nFD, reco_P_nFD.Phi() * 180 / M_PI, weight);
-                                //         h_reco_P_nFD_VS_ToF_nFD_fromFile_ECIN_ECALveto_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Mag(), weight);
-                                //         h_reco_theta_nFD_VS_ToF_nFD_fromFile_ECIN_ECALveto_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Theta() * 180 / M_PI, weight);
-                                //         h_reco_phi_nFD_VS_ToF_nFD_fromFile_ECIN_ECALveto_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Phi() * 180 / M_PI, weight);
-                                //     }
-
-                                //     if (ParticleInECOUT) {
-                                //         h_reco_P_nFD_VS_reco_L_ECOUT_ECALveto_1e_cut->Fill(Path_nFD, reco_P_nFD.Mag(), weight);
-                                //         h_reco_theta_nFD_VS_reco_L_ECOUT_ECALveto_1e_cut->Fill(Path_nFD, reco_P_nFD.Theta() * 180 / M_PI, weight);
-                                //         h_reco_phi_nFD_VS_reco_L_ECOUT_ECALveto_1e_cut->Fill(Path_nFD, reco_P_nFD.Phi() * 180 / M_PI, weight);
-                                //         h_reco_P_nFD_VS_ToF_nFD_fromFile_ECOUT_ECALveto_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Mag(), weight);
-                                //         h_reco_theta_nFD_VS_ToF_nFD_fromFile_ECOUT_ECALveto_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Theta() * 180 / M_PI, weight);
-                                //         h_reco_phi_nFD_VS_ToF_nFD_fromFile_ECOUT_ECALveto_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Phi() * 180 / M_PI, weight);
-                                //     }
-                                // }
-
-                                h_reco_theta_nFD_minus_reco_theta_e_ECALveto_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI - reco_P_e.Theta() * 180 / M_PI, weight);
-                                h_reco_phi_nFD_minus_reco_phi_e_ECALveto_1e_cut->Fill(CalcdPhi1(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI), weight);
-                                h_reco_theta_nFD_minus_reco_theta_e_VS_reco_phi_nFD_minus_reco_phi_e_ECALveto_1e_cut->Fill(
-                                    CalcdPhi1(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI), reco_P_nFD.Theta() * 180 / M_PI - reco_P_e.Theta() * 180 / M_PI, weight);
-                                h_reco_P_nFD_VS_reco_theta_nFD_minus_reco_theta_e_ECALveto_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI - reco_P_e.Theta() * 180 / M_PI, reco_P_nFD.Mag(),
-                                                                                                        weight);
-                                h_reco_P_nFD_VS_reco_phi_nFD_minus_reco_phi_e_ECALveto_1e_cut->Fill(CalcdPhi1(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI), reco_P_nFD.Mag(),
+                            h_reco_theta_nFD_minus_reco_theta_e_ECALveto_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI - reco_P_e.Theta() * 180 / M_PI, weight);
+                            h_reco_phi_nFD_minus_reco_phi_e_ECALveto_1e_cut->Fill(CalcdPhi1(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI), weight);
+                            h_reco_theta_nFD_minus_reco_theta_e_VS_reco_phi_nFD_minus_reco_phi_e_ECALveto_1e_cut->Fill(
+                                CalcdPhi1(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI), reco_P_nFD.Theta() * 180 / M_PI - reco_P_e.Theta() * 180 / M_PI, weight);
+                            h_reco_P_nFD_VS_reco_theta_nFD_minus_reco_theta_e_ECALveto_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI - reco_P_e.Theta() * 180 / M_PI, reco_P_nFD.Mag(),
                                                                                                     weight);
-
-                                if (neutrons_FD_ECALveto_ind.at(i) == NeutronsFD_ind_mom_max) {
-                                    h_reco_theta_LnFD_minus_reco_theta_e_ECALveto_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI - reco_P_e.Theta() * 180 / M_PI, weight);
-                                    h_reco_phi_LnFD_minus_reco_phi_e_ECALveto_1e_cut->Fill(CalcdPhi1(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI), weight);
-                                    h_reco_theta_LnFD_minus_reco_theta_e_VS_reco_phi_LnFD_minus_reco_phi_e_ECALveto_1e_cut->Fill(
-                                        CalcdPhi1(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI), reco_P_nFD.Theta() * 180 / M_PI - reco_P_e.Theta() * 180 / M_PI, weight);
-                                    h_reco_P_LnFD_VS_reco_theta_LnFD_minus_reco_theta_e_ECALveto_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI - reco_P_e.Theta() * 180 / M_PI,
-                                                                                                              reco_P_nFD.Mag(), weight);
-                                    h_reco_P_LnFD_VS_reco_phi_LnFD_minus_reco_phi_e_ECALveto_1e_cut->Fill(CalcdPhi1(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI),
-                                                                                                          reco_P_nFD.Mag(), weight);
-                                }
-
-                                TVector3 v_nhit(neutrons_FD_ECALveto[i]->cal(detlayer)->getX(), neutrons_FD_ECALveto[i]->cal(detlayer)->getY(),
-                                                neutrons_FD_ECALveto[i]->cal(detlayer)->getZ());
-
-                                for (int j = 0; j < allParticles.size(); j++) {
-                                    if (allParticles[j]->par()->getCharge() == 0) {
-                                        bool neutral_hit_PCAL = (allParticles[j]->cal(clas12::PCAL)->getDetector() == 7);
-
-                                        TVector3 v_neutral_hit;  // v_neutral_hit = location of neutral particle hit
-
-                                        if (neutral_hit_PCAL && (allParticles[j]->cal(clas12::PCAL)->getZ() != 0)) {
-                                            v_neutral_hit.SetXYZ(allParticles[j]->cal(clas12::PCAL)->getX(), allParticles[j]->cal(clas12::PCAL)->getY(),
-                                                                 allParticles[j]->cal(clas12::PCAL)->getZ());
-                                            TVector3 v_dist = v_nhit - v_neutral_hit;
-
-                                            h_v_dist_nFD_ECALveto_1e_cut->Fill(v_dist.Mag(), weight);
-                                            h_v_dist_nFD_VS_reco_P_nFD_ECALveto_1e_cut->Fill(v_dist.Mag(), reco_P_nFD.Mag(), weight);
-                                            h_v_dist_nFD_VS_reco_P_e_ECALveto_1e_cut->Fill(v_dist.Mag(), reco_P_e.Mag(), weight);
-                                            h_v_dist_nFD_VS_reco_phi_nFD_minus_reco_phi_e_ECALveto_1e_cut->Fill(
-                                                v_dist.Mag(), CalcdPhi1(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI), weight);
-
-                                            if (neutrons_FD_ECALveto_ind.at(i) == NeutronsFD_ind_mom_max) {
-                                                h_v_dist_LnFD_ECALveto_1e_cut->Fill(v_dist.Mag(), weight);
-                                                h_v_dist_LnFD_VS_reco_P_LnFD_ECALveto_1e_cut->Fill(v_dist.Mag(), reco_P_nFD.Mag(), weight);
-                                                h_v_dist_LnFD_VS_reco_P_e_ECALveto_1e_cut->Fill(v_dist.Mag(), reco_P_e.Mag(), weight);
-                                                h_v_dist_LnFD_VS_reco_phi_LnFD_minus_reco_phi_e_ECALveto_1e_cut->Fill(
-                                                    v_dist.Mag(), CalcdPhi1(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI), weight);
-                                            }
-                                        }
-                                    }
-                                }
-
-                                h_Edep_ECAL_VS_reco_P_nFD_ECALveto_1e_cut->Fill(reco_P_nFD.Mag(), Edep_ECAL_nFD, weight);
-                                h_Edep_ECAL_VS_reco_phi_nFD_minus_reco_phi_e_ECALveto_1e_cut->Fill(CalcdPhi1(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI), Edep_ECAL_nFD,
-                                                                                                   weight);
-                                h_beta_n_VS_reco_P_nFD_ECALveto_1e_cut->Fill(reco_P_nFD.Mag(), reco_Beta_nFD, weight);
-                                h_beta_n_VS_reco_phi_nFD_minus_reco_phi_e_ECALveto_1e_cut->Fill(CalcdPhi1(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI), reco_Beta_nFD,
+                            h_reco_P_nFD_VS_reco_phi_nFD_minus_reco_phi_e_ECALveto_1e_cut->Fill(CalcdPhi1(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI), reco_P_nFD.Mag(),
                                                                                                 weight);
 
-                                if (neutrons_FD_ECALveto_ind.at(i) == NeutronsFD_ind_mom_max) {
-                                    h_Edep_ECAL_VS_reco_P_LnFD_ECALveto_1e_cut->Fill(reco_P_nFD.Mag(), Edep_ECAL_nFD, weight);
-                                    h_Edep_ECAL_VS_reco_phi_LnFD_minus_reco_phi_e_ECALveto_1e_cut->Fill(CalcdPhi1(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI), Edep_ECAL_nFD,
-                                                                                                        weight);
-                                    h_beta_n_VS_reco_P_LnFD_ECALveto_1e_cut->Fill(reco_P_nFD.Mag(), reco_Beta_nFD, weight);
-                                    h_beta_n_VS_reco_phi_LnFD_minus_reco_phi_e_ECALveto_1e_cut->Fill(CalcdPhi1(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI), reco_Beta_nFD,
-                                                                                                     weight);
-                                }
+                            if (neutrons_FD_ECALveto_ind.at(i) == NeutronsFD_ind_mom_max) {
+                                h_reco_theta_LnFD_minus_reco_theta_e_ECALveto_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI - reco_P_e.Theta() * 180 / M_PI, weight);
+                                h_reco_phi_LnFD_minus_reco_phi_e_ECALveto_1e_cut->Fill(CalcdPhi1(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI), weight);
+                                h_reco_theta_LnFD_minus_reco_theta_e_VS_reco_phi_LnFD_minus_reco_phi_e_ECALveto_1e_cut->Fill(
+                                    CalcdPhi1(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI), reco_P_nFD.Theta() * 180 / M_PI - reco_P_e.Theta() * 180 / M_PI, weight);
+                                h_reco_P_LnFD_VS_reco_theta_LnFD_minus_reco_theta_e_ECALveto_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI - reco_P_e.Theta() * 180 / M_PI, reco_P_nFD.Mag(),
+                                                                                                          weight);
+                                h_reco_P_LnFD_VS_reco_phi_LnFD_minus_reco_phi_e_ECALveto_1e_cut->Fill(CalcdPhi1(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI),
+                                                                                                      reco_P_nFD.Mag(), weight);
                             }
 
-                            for (int i = 0; i < neutrons_FD_ECALveto.size(); i++) {
-                                bool ParticleInPCAL = (neutrons_FD_ECALveto[i]->cal(clas12::PCAL)->getDetector() == 7);         // PCAL hit
-                                bool ParticleInECIN = (neutrons_FD_ECALveto[i]->cal(clas12::ECIN)->getDetector() == 7);         // ECIN hit
-                                bool ParticleInECOUT = (neutrons_FD_ECALveto[i]->cal(clas12::ECOUT)->getDetector() == 7);       // ECOUT hit
-                                auto detlayer = ParticleInPCAL ? clas12::PCAL : ParticleInECIN ? clas12::ECIN : clas12::ECOUT;  // determine the earliest layer of the neutral hit
-                                if (apply_neutFD_redef && ParticleInPCAL) { cout << "\n\nError! neutrons_FD_ECALveto is in the PCAL! Aborting...\n\n", exit(0); }
+                            TVector3 v_nhit(neutrons_FD_ECALveto[i]->cal(detlayer)->getX(), neutrons_FD_ECALveto[i]->cal(detlayer)->getY(), neutrons_FD_ECALveto[i]->cal(detlayer)->getZ());
 
-                                double Path_nFD = CalcPathnFD(neutrons_FD_ECALveto[i], electrons[0]);
-                                double reco_ToF_nFD = CalcToFnFD(neutrons_FD_ECALveto[i], starttime);
-                                double reco_Beta_nFD = Path_nFD / (reco_ToF_nFD * c);
-                                double Edep_ECAL_nFD = neutrons_FD_ECALveto[i]->cal(clas12::PCAL)->getEnergy() + neutrons_FD_ECALveto[i]->cal(ECIN)->getEnergy() +
-                                                       neutrons_FD_ECALveto[i]->cal(ECOUT)->getEnergy();
+                            for (int j = 0; j < allParticles.size(); j++) {
+                                if (allParticles[j]->par()->getCharge() == 0) {
+                                    bool neutral_hit_PCAL = (allParticles[j]->cal(clas12::PCAL)->getDetector() == 7);
 
-                                TVector3 reco_P_nFD;
-                                reco_P_nFD.SetMagThetaPhi(CalcPnFD(neutrons_FD_ECALveto[i], electrons[0], starttime), neutrons_FD_ECALveto[i]->getTheta(), neutrons_FD_ECALveto[i]->getPhi());
+                                    TVector3 v_neutral_hit;  // v_neutral_hit = location of neutral particle hit
 
-                                if ((reco_P_nFD.Mag() > P_max) && (neutrons_FD_ECALveto_ind.at(i) != NeutronsFD_ind_mom_max)) {
-                                    cout << "\n\nError! P_max is is not of the leading neutron!\n";
-                                    cout << "P_max = " << P_max << "\n";
-                                    cout << "reco_P_nFD.Mag() = " << reco_P_nFD.Mag() << "\n";
-                                    cout << "Aborting...\n\n", exit(0);
-                                }
+                                    if (neutral_hit_PCAL && (allParticles[j]->cal(clas12::PCAL)->getZ() != 0)) {
+                                        v_neutral_hit.SetXYZ(allParticles[j]->cal(clas12::PCAL)->getX(), allParticles[j]->cal(clas12::PCAL)->getY(),
+                                                             allParticles[j]->cal(clas12::PCAL)->getZ());
+                                        TVector3 v_dist = v_nhit - v_neutral_hit;
 
-                                h_reco_P_nFD_ECALveto_1e_cut->Fill(reco_P_nFD.Mag(), weight);
-                                h_reco_theta_nFD_ECALveto_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI, weight);
-                                h_reco_phi_nFD_ECALveto_1e_cut->Fill(reco_P_nFD.Phi() * 180 / M_PI, weight);
-                                h_reco_theta_nFD_ECALveto_VS_reco_phi_nFD_ECALveto_1e_cut->Fill(reco_P_nFD.Phi() * 180 / M_PI, reco_P_nFD.Theta() * 180 / M_PI, weight);
+                                        h_v_dist_nFD_ECALveto_1e_cut->Fill(v_dist.Mag(), weight);
+                                        h_v_dist_nFD_VS_reco_P_nFD_ECALveto_1e_cut->Fill(v_dist.Mag(), reco_P_nFD.Mag(), weight);
+                                        h_v_dist_nFD_VS_reco_P_e_ECALveto_1e_cut->Fill(v_dist.Mag(), reco_P_e.Mag(), weight);
+                                        h_v_dist_nFD_VS_reco_phi_nFD_minus_reco_phi_e_ECALveto_1e_cut->Fill(v_dist.Mag(),
+                                                                                                            CalcdPhi1(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI), weight);
 
-                                if (neutrons_FD_ECALveto_ind.at(i) == NeutronsFD_ind_mom_max) {
-                                    h_reco_P_LnFD_ECALveto_1e_cut->Fill(reco_P_nFD.Mag(), weight);
-                                    h_reco_theta_LnFD_ECALveto_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI, weight);
-                                    h_reco_phi_LnFD_ECALveto_1e_cut->Fill(reco_P_nFD.Phi() * 180 / M_PI, weight);
-                                    h_reco_theta_LnFD_ECALveto_VS_reco_phi_LnFD_ECALveto_1e_cut->Fill(reco_P_nFD.Phi() * 180 / M_PI, reco_P_nFD.Theta() * 180 / M_PI, weight);
-                                }
-
-                                h_Edep_ECAL_nFD_ECALveto_1e_cut->Fill(Edep_ECAL_nFD, weight);
-                                h_beta_nFD_ECALveto_1e_cut->Fill(reco_Beta_nFD, weight);
-                                h_Edep_ECAL_nFD_VS_beta_nFD_ECALveto_1e_cut->Fill(reco_Beta_nFD, Edep_ECAL_nFD, weight);
-
-                                if (neutrons_FD_ECALveto_ind.at(i) == NeutronsFD_ind_mom_max) {
-                                    h_Edep_ECAL_LnFD_ECALveto_1e_cut->Fill(Edep_ECAL_nFD, weight);
-                                    h_beta_LnFD_ECALveto_1e_cut->Fill(reco_Beta_nFD, weight);
-                                    h_Edep_ECAL_LnFD_VS_beta_LnFD_ECALveto_1e_cut->Fill(reco_Beta_nFD, Edep_ECAL_nFD, weight);
-                                }
-
-                                h_reco_P_e_VS_P_nFD_ECALveto_1e_cut->Fill(reco_P_e.Mag(), reco_P_nFD.Mag(), weight);
-                                h_reco_theta_e_VS_P_nFD_ECALveto_1e_cut->Fill(reco_P_e.Theta() * 180 / M_PI, reco_P_nFD.Mag(), weight);
-                                h_reco_phi_e_VS_P_nFD_ECALveto_1e_cut->Fill(reco_P_e.Phi() * 180 / M_PI, reco_P_nFD.Mag(), weight);
-                                h_reco_P_e_VS_theta_nFD_ECALveto_1e_cut->Fill(reco_P_e.Mag(), reco_P_nFD.Theta() * 180 / M_PI, weight);
-                                h_reco_theta_e_VS_theta_nFD_ECALveto_1e_cut->Fill(reco_P_e.Theta() * 180 / M_PI, reco_P_nFD.Theta() * 180 / M_PI, weight);
-                                h_reco_phi_e_VS_theta_nFD_ECALveto_1e_cut->Fill(reco_P_e.Phi() * 180 / M_PI, reco_P_nFD.Theta() * 180 / M_PI, weight);
-                                h_reco_P_e_VS_phi_nFD_ECALveto_1e_cut->Fill(reco_P_e.Mag(), reco_P_nFD.Phi() * 180 / M_PI, weight);
-                                h_reco_theta_e_VS_phi_nFD_ECALveto_1e_cut->Fill(reco_P_e.Theta() * 180 / M_PI, reco_P_nFD.Phi() * 180 / M_PI, weight);
-                                h_reco_phi_e_VS_phi_nFD_ECALveto_1e_cut->Fill(reco_P_e.Phi() * 180 / M_PI, reco_P_nFD.Phi() * 180 / M_PI, weight);
-                                h_reco_theta_nFD_ECALveto_VS_P_nFD_ECALveto_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI, reco_P_nFD.Mag(), weight);
-                                h_reco_nFD_multi_VS_reco_P_nFD_ECALveto_1e_cut->Fill(reco_P_nFD.Mag(), neutrons_FD_ECALveto.size(), weight);
-
-                                if (neutrons_FD_ECALveto_ind.at(i) == NeutronsFD_ind_mom_max) {
-                                    h_reco_P_e_VS_P_LnFD_ECALveto_1e_cut->Fill(reco_P_e.Mag(), reco_P_nFD.Mag(), weight);
-                                    h_reco_theta_e_VS_P_LnFD_ECALveto_1e_cut->Fill(reco_P_e.Theta() * 180 / M_PI, reco_P_nFD.Mag(), weight);
-                                    h_reco_phi_e_VS_P_LnFD_ECALveto_1e_cut->Fill(reco_P_e.Phi() * 180 / M_PI, reco_P_nFD.Mag(), weight);
-                                    h_reco_P_e_VS_theta_LnFD_ECALveto_1e_cut->Fill(reco_P_e.Mag(), reco_P_nFD.Theta() * 180 / M_PI, weight);
-                                    h_reco_theta_e_VS_theta_LnFD_ECALveto_1e_cut->Fill(reco_P_e.Theta() * 180 / M_PI, reco_P_nFD.Theta() * 180 / M_PI, weight);
-                                    h_reco_phi_e_VS_theta_LnFD_ECALveto_1e_cut->Fill(reco_P_e.Phi() * 180 / M_PI, reco_P_nFD.Theta() * 180 / M_PI, weight);
-                                    h_reco_P_e_VS_phi_LnFD_ECALveto_1e_cut->Fill(reco_P_e.Mag(), reco_P_nFD.Phi() * 180 / M_PI, weight);
-                                    h_reco_theta_e_VS_phi_LnFD_ECALveto_1e_cut->Fill(reco_P_e.Theta() * 180 / M_PI, reco_P_nFD.Phi() * 180 / M_PI, weight);
-                                    h_reco_phi_e_VS_phi_LnFD_ECALveto_1e_cut->Fill(reco_P_e.Phi() * 180 / M_PI, reco_P_nFD.Phi() * 180 / M_PI, weight);
-                                    h_reco_theta_LnFD_ECALveto_VS_P_LnFD_ECALveto_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI, reco_P_nFD.Mag(), weight);
-                                    h_reco_LnFD_multi_VS_reco_P_LnFD_ECALveto_1e_cut->Fill(reco_P_nFD.Mag(), neutrons_FD_ECALveto.size(), weight);
-                                }
-
-                                // if (ParticleInECIN || ParticleInECOUT) {
-                                //     h_reco_P_nFD_VS_reco_L_ECAL_ECALveto_1e_cut->Fill(Path_nFD, reco_P_nFD.Mag(), weight);
-                                //     h_reco_theta_nFD_VS_reco_L_ECAL_ECALveto_1e_cut->Fill(Path_nFD, reco_P_nFD.Theta() * 180 / M_PI, weight);
-                                //     h_reco_phi_nFD_VS_reco_L_ECAL_ECALveto_1e_cut->Fill(Path_nFD, reco_P_nFD.Phi() * 180 / M_PI, weight);
-                                //     h_reco_P_nFD_VS_ToF_nFD_fromFile_ECAL_ECALveto_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Mag(), weight);
-                                //     h_reco_theta_nFD_VS_ToF_nFD_fromFile_ECAL_ECALveto_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Theta() * 180 / M_PI, weight);
-                                //     h_reco_phi_nFD_VS_ToF_nFD_fromFile_ECAL_ECALveto_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Phi() * 180 / M_PI, weight);
-
-                                //     if (ParticleInECIN) {
-                                //         h_reco_P_nFD_VS_reco_L_ECIN_ECALveto_1e_cut->Fill(Path_nFD, reco_P_nFD.Mag(), weight);
-                                //         h_reco_theta_nFD_VS_reco_L_ECIN_ECALveto_1e_cut->Fill(Path_nFD, reco_P_nFD.Theta() * 180 / M_PI, weight);
-                                //         h_reco_phi_nFD_VS_reco_L_ECIN_ECALveto_1e_cut->Fill(Path_nFD, reco_P_nFD.Phi() * 180 / M_PI, weight);
-                                //         h_reco_P_nFD_VS_ToF_nFD_fromFile_ECIN_ECALveto_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Mag(), weight);
-                                //         h_reco_theta_nFD_VS_ToF_nFD_fromFile_ECIN_ECALveto_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Theta() * 180 / M_PI, weight);
-                                //         h_reco_phi_nFD_VS_ToF_nFD_fromFile_ECIN_ECALveto_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Phi() * 180 / M_PI, weight);
-                                //     }
-
-                                //     if (ParticleInECOUT) {
-                                //         h_reco_P_nFD_VS_reco_L_ECOUT_ECALveto_1e_cut->Fill(Path_nFD, reco_P_nFD.Mag(), weight);
-                                //         h_reco_theta_nFD_VS_reco_L_ECOUT_ECALveto_1e_cut->Fill(Path_nFD, reco_P_nFD.Theta() * 180 / M_PI, weight);
-                                //         h_reco_phi_nFD_VS_reco_L_ECOUT_ECALveto_1e_cut->Fill(Path_nFD, reco_P_nFD.Phi() * 180 / M_PI, weight);
-                                //         h_reco_P_nFD_VS_ToF_nFD_fromFile_ECOUT_ECALveto_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Mag(), weight);
-                                //         h_reco_theta_nFD_VS_ToF_nFD_fromFile_ECOUT_ECALveto_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Theta() * 180 / M_PI, weight);
-                                //         h_reco_phi_nFD_VS_ToF_nFD_fromFile_ECOUT_ECALveto_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Phi() * 180 / M_PI, weight);
-                                //     }
-                                // }
-
-                                h_reco_theta_nFD_minus_reco_theta_e_ECALveto_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI - reco_P_e.Theta() * 180 / M_PI, weight);
-                                h_reco_phi_nFD_minus_reco_phi_e_ECALveto_1e_cut->Fill(CalcdPhi1(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI), weight);
-                                h_reco_theta_nFD_minus_reco_theta_e_VS_reco_phi_nFD_minus_reco_phi_e_ECALveto_1e_cut->Fill(
-                                    CalcdPhi1(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI), reco_P_nFD.Theta() * 180 / M_PI - reco_P_e.Theta() * 180 / M_PI, weight);
-                                h_reco_P_nFD_VS_reco_theta_nFD_minus_reco_theta_e_ECALveto_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI - reco_P_e.Theta() * 180 / M_PI, reco_P_nFD.Mag(),
-                                                                                                        weight);
-                                h_reco_P_nFD_VS_reco_phi_nFD_minus_reco_phi_e_ECALveto_1e_cut->Fill(CalcdPhi1(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI), reco_P_nFD.Mag(),
-                                                                                                    weight);
-
-                                if (neutrons_FD_ECALveto_ind.at(i) == NeutronsFD_ind_mom_max) {
-                                    h_reco_theta_LnFD_minus_reco_theta_e_ECALveto_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI - reco_P_e.Theta() * 180 / M_PI, weight);
-                                    h_reco_phi_LnFD_minus_reco_phi_e_ECALveto_1e_cut->Fill(CalcdPhi1(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI), weight);
-                                    h_reco_theta_LnFD_minus_reco_theta_e_VS_reco_phi_LnFD_minus_reco_phi_e_ECALveto_1e_cut->Fill(
-                                        CalcdPhi1(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI), reco_P_nFD.Theta() * 180 / M_PI - reco_P_e.Theta() * 180 / M_PI, weight);
-                                    h_reco_P_LnFD_VS_reco_theta_LnFD_minus_reco_theta_e_ECALveto_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI - reco_P_e.Theta() * 180 / M_PI,
-                                                                                                              reco_P_nFD.Mag(), weight);
-                                    h_reco_P_LnFD_VS_reco_phi_LnFD_minus_reco_phi_e_ECALveto_1e_cut->Fill(CalcdPhi1(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI),
-                                                                                                          reco_P_nFD.Mag(), weight);
-                                }
-
-                                TVector3 v_nhit(neutrons_FD_ECALveto[i]->cal(detlayer)->getX(), neutrons_FD_ECALveto[i]->cal(detlayer)->getY(),
-                                                neutrons_FD_ECALveto[i]->cal(detlayer)->getZ());
-
-                                for (int j = 0; j < allParticles.size(); j++) {
-                                    if (allParticles[j]->par()->getCharge() == 0) {
-                                        bool neutral_hit_PCAL = (allParticles[j]->cal(clas12::PCAL)->getDetector() == 7);
-
-                                        TVector3 v_neutral_hit;  // v_neutral_hit = location of neutral particle hit
-
-                                        if (neutral_hit_PCAL && (allParticles[j]->cal(clas12::PCAL)->getZ() != 0)) {
-                                            v_neutral_hit.SetXYZ(allParticles[j]->cal(clas12::PCAL)->getX(), allParticles[j]->cal(clas12::PCAL)->getY(),
-                                                                 allParticles[j]->cal(clas12::PCAL)->getZ());
-                                            TVector3 v_dist = v_nhit - v_neutral_hit;
-
-                                            h_v_dist_nFD_ECALveto_1e_cut->Fill(v_dist.Mag(), weight);
-                                            h_v_dist_nFD_VS_reco_P_nFD_ECALveto_1e_cut->Fill(v_dist.Mag(), reco_P_nFD.Mag(), weight);
-                                            h_v_dist_nFD_VS_reco_P_e_ECALveto_1e_cut->Fill(v_dist.Mag(), reco_P_e.Mag(), weight);
-                                            h_v_dist_nFD_VS_reco_phi_nFD_minus_reco_phi_e_ECALveto_1e_cut->Fill(
+                                        if (neutrons_FD_ECALveto_ind.at(i) == NeutronsFD_ind_mom_max) {
+                                            h_v_dist_LnFD_ECALveto_1e_cut->Fill(v_dist.Mag(), weight);
+                                            h_v_dist_LnFD_VS_reco_P_LnFD_ECALveto_1e_cut->Fill(v_dist.Mag(), reco_P_nFD.Mag(), weight);
+                                            h_v_dist_LnFD_VS_reco_P_e_ECALveto_1e_cut->Fill(v_dist.Mag(), reco_P_e.Mag(), weight);
+                                            h_v_dist_LnFD_VS_reco_phi_LnFD_minus_reco_phi_e_ECALveto_1e_cut->Fill(
                                                 v_dist.Mag(), CalcdPhi1(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI), weight);
-
-                                            if (neutrons_FD_ECALveto_ind.at(i) == NeutronsFD_ind_mom_max) {
-                                                h_v_dist_LnFD_ECALveto_1e_cut->Fill(v_dist.Mag(), weight);
-                                                h_v_dist_LnFD_VS_reco_P_LnFD_ECALveto_1e_cut->Fill(v_dist.Mag(), reco_P_nFD.Mag(), weight);
-                                                h_v_dist_LnFD_VS_reco_P_e_ECALveto_1e_cut->Fill(v_dist.Mag(), reco_P_e.Mag(), weight);
-                                                h_v_dist_LnFD_VS_reco_phi_LnFD_minus_reco_phi_e_ECALveto_1e_cut->Fill(
-                                                    v_dist.Mag(), CalcdPhi1(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI), weight);
-                                            }
                                         }
                                     }
                                 }
-
-                                h_Edep_ECAL_VS_reco_P_nFD_ECALveto_1e_cut->Fill(reco_P_nFD.Mag(), Edep_ECAL_nFD, weight);
-                                h_Edep_ECAL_VS_reco_phi_nFD_minus_reco_phi_e_ECALveto_1e_cut->Fill(CalcdPhi1(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI), Edep_ECAL_nFD,
-                                                                                                   weight);
-                                h_beta_n_VS_reco_P_nFD_ECALveto_1e_cut->Fill(reco_P_nFD.Mag(), reco_Beta_nFD, weight);
-                                h_beta_n_VS_reco_phi_nFD_minus_reco_phi_e_ECALveto_1e_cut->Fill(CalcdPhi1(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI), reco_Beta_nFD,
-                                                                                                weight);
-
-                                if (neutrons_FD_ECALveto_ind.at(i) == NeutronsFD_ind_mom_max) {
-                                    h_Edep_ECAL_VS_reco_P_LnFD_ECALveto_1e_cut->Fill(reco_P_nFD.Mag(), Edep_ECAL_nFD, weight);
-                                    h_Edep_ECAL_VS_reco_phi_LnFD_minus_reco_phi_e_ECALveto_1e_cut->Fill(CalcdPhi1(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI), Edep_ECAL_nFD,
-                                                                                                        weight);
-                                    h_beta_n_VS_reco_P_LnFD_ECALveto_1e_cut->Fill(reco_P_nFD.Mag(), reco_Beta_nFD, weight);
-                                    h_beta_n_VS_reco_phi_LnFD_minus_reco_phi_e_ECALveto_1e_cut->Fill(CalcdPhi1(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI), reco_Beta_nFD,
-                                                                                                     weight);
-                                }
-
-                                double phi_nFD_minus_reco_phi_e = CalcdPhi1(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI);
                             }
 
-                            if (neutrons_FD_ECALveto.size() != 0) { h_reco_nFD_multi_ECALveto_1e_cut->Fill(neutrons_FD_ECALveto.size(), weight); }
+                            h_Edep_ECAL_VS_reco_P_nFD_ECALveto_1e_cut->Fill(reco_P_nFD.Mag(), Edep_ECAL_nFD, weight);
+                            h_Edep_ECAL_VS_reco_phi_nFD_minus_reco_phi_e_ECALveto_1e_cut->Fill(CalcdPhi1(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI), Edep_ECAL_nFD, weight);
+                            h_beta_n_VS_reco_P_nFD_ECALveto_1e_cut->Fill(reco_P_nFD.Mag(), reco_Beta_nFD, weight);
+                            h_beta_n_VS_reco_phi_nFD_minus_reco_phi_e_ECALveto_1e_cut->Fill(CalcdPhi1(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI), reco_Beta_nFD, weight);
+
+                            if (neutrons_FD_ECALveto_ind.at(i) == NeutronsFD_ind_mom_max) {
+                                h_Edep_ECAL_VS_reco_P_LnFD_ECALveto_1e_cut->Fill(reco_P_nFD.Mag(), Edep_ECAL_nFD, weight);
+                                h_Edep_ECAL_VS_reco_phi_LnFD_minus_reco_phi_e_ECALveto_1e_cut->Fill(CalcdPhi1(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI), Edep_ECAL_nFD,
+                                                                                                    weight);
+                                h_beta_n_VS_reco_P_LnFD_ECALveto_1e_cut->Fill(reco_P_nFD.Mag(), reco_Beta_nFD, weight);
+                                h_beta_n_VS_reco_phi_LnFD_minus_reco_phi_e_ECALveto_1e_cut->Fill(CalcdPhi1(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI), reco_Beta_nFD,
+                                                                                                 weight);
+                            }
+                        }
+
+                        for (int i = 0; i < neutrons_FD_ECALveto.size(); i++) {
+                            bool ParticleInPCAL = (neutrons_FD_ECALveto[i]->cal(clas12::PCAL)->getDetector() == 7);         // PCAL hit
+                            bool ParticleInECIN = (neutrons_FD_ECALveto[i]->cal(clas12::ECIN)->getDetector() == 7);         // ECIN hit
+                            bool ParticleInECOUT = (neutrons_FD_ECALveto[i]->cal(clas12::ECOUT)->getDetector() == 7);       // ECOUT hit
+                            auto detlayer = ParticleInPCAL ? clas12::PCAL : ParticleInECIN ? clas12::ECIN : clas12::ECOUT;  // determine the earliest layer of the neutral hit
+                            if (apply_neutFD_redef && ParticleInPCAL) { cout << "\n\nError! neutrons_FD_ECALveto is in the PCAL! Aborting...\n\n", exit(0); }
+
+                            double Path_nFD = CalcPathnFD(neutrons_FD_ECALveto[i], electrons[0]);
+                            double reco_ToF_nFD = CalcToFnFD(neutrons_FD_ECALveto[i], starttime);
+                            double reco_Beta_nFD = Path_nFD / (reco_ToF_nFD * c);
+                            double Edep_ECAL_nFD =
+                                neutrons_FD_ECALveto[i]->cal(clas12::PCAL)->getEnergy() + neutrons_FD_ECALveto[i]->cal(ECIN)->getEnergy() + neutrons_FD_ECALveto[i]->cal(ECOUT)->getEnergy();
+
+                            TVector3 reco_P_nFD;
+                            reco_P_nFD.SetMagThetaPhi(CalcPnFD(neutrons_FD_ECALveto[i], electrons[0], starttime), neutrons_FD_ECALveto[i]->getTheta(), neutrons_FD_ECALveto[i]->getPhi());
+
+                            if ((reco_P_nFD.Mag() > P_max) && (neutrons_FD_ECALveto_ind.at(i) != NeutronsFD_ind_mom_max)) {
+                                cout << "\n\nError! P_max is is not of the leading neutron!\n";
+                                cout << "P_max = " << P_max << "\n";
+                                cout << "reco_P_nFD.Mag() = " << reco_P_nFD.Mag() << "\n";
+                                cout << "Aborting...\n\n", exit(0);
+                            }
+
+                            h_reco_P_nFD_ECALveto_1e_cut->Fill(reco_P_nFD.Mag(), weight);
+                            h_reco_theta_nFD_ECALveto_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI, weight);
+                            h_reco_phi_nFD_ECALveto_1e_cut->Fill(reco_P_nFD.Phi() * 180 / M_PI, weight);
+                            h_reco_theta_nFD_ECALveto_VS_reco_phi_nFD_ECALveto_1e_cut->Fill(reco_P_nFD.Phi() * 180 / M_PI, reco_P_nFD.Theta() * 180 / M_PI, weight);
+
+                            if (neutrons_FD_ECALveto_ind.at(i) == NeutronsFD_ind_mom_max) {
+                                h_reco_P_LnFD_ECALveto_1e_cut->Fill(reco_P_nFD.Mag(), weight);
+                                h_reco_theta_LnFD_ECALveto_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI, weight);
+                                h_reco_phi_LnFD_ECALveto_1e_cut->Fill(reco_P_nFD.Phi() * 180 / M_PI, weight);
+                                h_reco_theta_LnFD_ECALveto_VS_reco_phi_LnFD_ECALveto_1e_cut->Fill(reco_P_nFD.Phi() * 180 / M_PI, reco_P_nFD.Theta() * 180 / M_PI, weight);
+                            }
+
+                            h_Edep_ECAL_nFD_ECALveto_1e_cut->Fill(Edep_ECAL_nFD, weight);
+                            h_beta_nFD_ECALveto_1e_cut->Fill(reco_Beta_nFD, weight);
+                            h_Edep_ECAL_nFD_VS_beta_nFD_ECALveto_1e_cut->Fill(reco_Beta_nFD, Edep_ECAL_nFD, weight);
+
+                            if (neutrons_FD_ECALveto_ind.at(i) == NeutronsFD_ind_mom_max) {
+                                h_Edep_ECAL_LnFD_ECALveto_1e_cut->Fill(Edep_ECAL_nFD, weight);
+                                h_beta_LnFD_ECALveto_1e_cut->Fill(reco_Beta_nFD, weight);
+                                h_Edep_ECAL_LnFD_VS_beta_LnFD_ECALveto_1e_cut->Fill(reco_Beta_nFD, Edep_ECAL_nFD, weight);
+                            }
+
+                            h_reco_P_e_VS_P_nFD_ECALveto_1e_cut->Fill(reco_P_e.Mag(), reco_P_nFD.Mag(), weight);
+                            h_reco_theta_e_VS_P_nFD_ECALveto_1e_cut->Fill(reco_P_e.Theta() * 180 / M_PI, reco_P_nFD.Mag(), weight);
+                            h_reco_phi_e_VS_P_nFD_ECALveto_1e_cut->Fill(reco_P_e.Phi() * 180 / M_PI, reco_P_nFD.Mag(), weight);
+                            h_reco_P_e_VS_theta_nFD_ECALveto_1e_cut->Fill(reco_P_e.Mag(), reco_P_nFD.Theta() * 180 / M_PI, weight);
+                            h_reco_theta_e_VS_theta_nFD_ECALveto_1e_cut->Fill(reco_P_e.Theta() * 180 / M_PI, reco_P_nFD.Theta() * 180 / M_PI, weight);
+                            h_reco_phi_e_VS_theta_nFD_ECALveto_1e_cut->Fill(reco_P_e.Phi() * 180 / M_PI, reco_P_nFD.Theta() * 180 / M_PI, weight);
+                            h_reco_P_e_VS_phi_nFD_ECALveto_1e_cut->Fill(reco_P_e.Mag(), reco_P_nFD.Phi() * 180 / M_PI, weight);
+                            h_reco_theta_e_VS_phi_nFD_ECALveto_1e_cut->Fill(reco_P_e.Theta() * 180 / M_PI, reco_P_nFD.Phi() * 180 / M_PI, weight);
+                            h_reco_phi_e_VS_phi_nFD_ECALveto_1e_cut->Fill(reco_P_e.Phi() * 180 / M_PI, reco_P_nFD.Phi() * 180 / M_PI, weight);
+                            h_reco_theta_nFD_ECALveto_VS_P_nFD_ECALveto_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI, reco_P_nFD.Mag(), weight);
+                            h_reco_nFD_multi_VS_reco_P_nFD_ECALveto_1e_cut->Fill(reco_P_nFD.Mag(), neutrons_FD_ECALveto.size(), weight);
+
+                            if (neutrons_FD_ECALveto_ind.at(i) == NeutronsFD_ind_mom_max) {
+                                h_reco_P_e_VS_P_LnFD_ECALveto_1e_cut->Fill(reco_P_e.Mag(), reco_P_nFD.Mag(), weight);
+                                h_reco_theta_e_VS_P_LnFD_ECALveto_1e_cut->Fill(reco_P_e.Theta() * 180 / M_PI, reco_P_nFD.Mag(), weight);
+                                h_reco_phi_e_VS_P_LnFD_ECALveto_1e_cut->Fill(reco_P_e.Phi() * 180 / M_PI, reco_P_nFD.Mag(), weight);
+                                h_reco_P_e_VS_theta_LnFD_ECALveto_1e_cut->Fill(reco_P_e.Mag(), reco_P_nFD.Theta() * 180 / M_PI, weight);
+                                h_reco_theta_e_VS_theta_LnFD_ECALveto_1e_cut->Fill(reco_P_e.Theta() * 180 / M_PI, reco_P_nFD.Theta() * 180 / M_PI, weight);
+                                h_reco_phi_e_VS_theta_LnFD_ECALveto_1e_cut->Fill(reco_P_e.Phi() * 180 / M_PI, reco_P_nFD.Theta() * 180 / M_PI, weight);
+                                h_reco_P_e_VS_phi_LnFD_ECALveto_1e_cut->Fill(reco_P_e.Mag(), reco_P_nFD.Phi() * 180 / M_PI, weight);
+                                h_reco_theta_e_VS_phi_LnFD_ECALveto_1e_cut->Fill(reco_P_e.Theta() * 180 / M_PI, reco_P_nFD.Phi() * 180 / M_PI, weight);
+                                h_reco_phi_e_VS_phi_LnFD_ECALveto_1e_cut->Fill(reco_P_e.Phi() * 180 / M_PI, reco_P_nFD.Phi() * 180 / M_PI, weight);
+                                h_reco_theta_LnFD_ECALveto_VS_P_LnFD_ECALveto_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI, reco_P_nFD.Mag(), weight);
+                                h_reco_LnFD_multi_VS_reco_P_LnFD_ECALveto_1e_cut->Fill(reco_P_nFD.Mag(), neutrons_FD_ECALveto.size(), weight);
+                            }
+
+                            // if (ParticleInECIN || ParticleInECOUT) {
+                            //     h_reco_P_nFD_VS_reco_L_ECAL_ECALveto_1e_cut->Fill(Path_nFD, reco_P_nFD.Mag(), weight);
+                            //     h_reco_theta_nFD_VS_reco_L_ECAL_ECALveto_1e_cut->Fill(Path_nFD, reco_P_nFD.Theta() * 180 / M_PI, weight);
+                            //     h_reco_phi_nFD_VS_reco_L_ECAL_ECALveto_1e_cut->Fill(Path_nFD, reco_P_nFD.Phi() * 180 / M_PI, weight);
+                            //     h_reco_P_nFD_VS_ToF_nFD_fromFile_ECAL_ECALveto_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Mag(), weight);
+                            //     h_reco_theta_nFD_VS_ToF_nFD_fromFile_ECAL_ECALveto_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Theta() * 180 / M_PI, weight);
+                            //     h_reco_phi_nFD_VS_ToF_nFD_fromFile_ECAL_ECALveto_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Phi() * 180 / M_PI, weight);
+
+                            //     if (ParticleInECIN) {
+                            //         h_reco_P_nFD_VS_reco_L_ECIN_ECALveto_1e_cut->Fill(Path_nFD, reco_P_nFD.Mag(), weight);
+                            //         h_reco_theta_nFD_VS_reco_L_ECIN_ECALveto_1e_cut->Fill(Path_nFD, reco_P_nFD.Theta() * 180 / M_PI, weight);
+                            //         h_reco_phi_nFD_VS_reco_L_ECIN_ECALveto_1e_cut->Fill(Path_nFD, reco_P_nFD.Phi() * 180 / M_PI, weight);
+                            //         h_reco_P_nFD_VS_ToF_nFD_fromFile_ECIN_ECALveto_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Mag(), weight);
+                            //         h_reco_theta_nFD_VS_ToF_nFD_fromFile_ECIN_ECALveto_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Theta() * 180 / M_PI, weight);
+                            //         h_reco_phi_nFD_VS_ToF_nFD_fromFile_ECIN_ECALveto_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Phi() * 180 / M_PI, weight);
+                            //     }
+
+                            //     if (ParticleInECOUT) {
+                            //         h_reco_P_nFD_VS_reco_L_ECOUT_ECALveto_1e_cut->Fill(Path_nFD, reco_P_nFD.Mag(), weight);
+                            //         h_reco_theta_nFD_VS_reco_L_ECOUT_ECALveto_1e_cut->Fill(Path_nFD, reco_P_nFD.Theta() * 180 / M_PI, weight);
+                            //         h_reco_phi_nFD_VS_reco_L_ECOUT_ECALveto_1e_cut->Fill(Path_nFD, reco_P_nFD.Phi() * 180 / M_PI, weight);
+                            //         h_reco_P_nFD_VS_ToF_nFD_fromFile_ECOUT_ECALveto_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Mag(), weight);
+                            //         h_reco_theta_nFD_VS_ToF_nFD_fromFile_ECOUT_ECALveto_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Theta() * 180 / M_PI, weight);
+                            //         h_reco_phi_nFD_VS_ToF_nFD_fromFile_ECOUT_ECALveto_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Phi() * 180 / M_PI, weight);
+                            //     }
+                            // }
+
+                            h_reco_theta_nFD_minus_reco_theta_e_ECALveto_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI - reco_P_e.Theta() * 180 / M_PI, weight);
+                            h_reco_phi_nFD_minus_reco_phi_e_ECALveto_1e_cut->Fill(CalcdPhi1(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI), weight);
+                            h_reco_theta_nFD_minus_reco_theta_e_VS_reco_phi_nFD_minus_reco_phi_e_ECALveto_1e_cut->Fill(
+                                CalcdPhi1(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI), reco_P_nFD.Theta() * 180 / M_PI - reco_P_e.Theta() * 180 / M_PI, weight);
+                            h_reco_P_nFD_VS_reco_theta_nFD_minus_reco_theta_e_ECALveto_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI - reco_P_e.Theta() * 180 / M_PI, reco_P_nFD.Mag(),
+                                                                                                    weight);
+                            h_reco_P_nFD_VS_reco_phi_nFD_minus_reco_phi_e_ECALveto_1e_cut->Fill(CalcdPhi1(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI), reco_P_nFD.Mag(),
+                                                                                                weight);
+
+                            if (neutrons_FD_ECALveto_ind.at(i) == NeutronsFD_ind_mom_max) {
+                                h_reco_theta_LnFD_minus_reco_theta_e_ECALveto_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI - reco_P_e.Theta() * 180 / M_PI, weight);
+                                h_reco_phi_LnFD_minus_reco_phi_e_ECALveto_1e_cut->Fill(CalcdPhi1(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI), weight);
+                                h_reco_theta_LnFD_minus_reco_theta_e_VS_reco_phi_LnFD_minus_reco_phi_e_ECALveto_1e_cut->Fill(
+                                    CalcdPhi1(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI), reco_P_nFD.Theta() * 180 / M_PI - reco_P_e.Theta() * 180 / M_PI, weight);
+                                h_reco_P_LnFD_VS_reco_theta_LnFD_minus_reco_theta_e_ECALveto_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI - reco_P_e.Theta() * 180 / M_PI, reco_P_nFD.Mag(),
+                                                                                                          weight);
+                                h_reco_P_LnFD_VS_reco_phi_LnFD_minus_reco_phi_e_ECALveto_1e_cut->Fill(CalcdPhi1(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI),
+                                                                                                      reco_P_nFD.Mag(), weight);
+                            }
+
+                            TVector3 v_nhit(neutrons_FD_ECALveto[i]->cal(detlayer)->getX(), neutrons_FD_ECALveto[i]->cal(detlayer)->getY(), neutrons_FD_ECALveto[i]->cal(detlayer)->getZ());
+
+                            for (int j = 0; j < allParticles.size(); j++) {
+                                if (allParticles[j]->par()->getCharge() == 0) {
+                                    bool neutral_hit_PCAL = (allParticles[j]->cal(clas12::PCAL)->getDetector() == 7);
+
+                                    TVector3 v_neutral_hit;  // v_neutral_hit = location of neutral particle hit
+
+                                    if (neutral_hit_PCAL && (allParticles[j]->cal(clas12::PCAL)->getZ() != 0)) {
+                                        v_neutral_hit.SetXYZ(allParticles[j]->cal(clas12::PCAL)->getX(), allParticles[j]->cal(clas12::PCAL)->getY(),
+                                                             allParticles[j]->cal(clas12::PCAL)->getZ());
+                                        TVector3 v_dist = v_nhit - v_neutral_hit;
+
+                                        h_v_dist_nFD_ECALveto_1e_cut->Fill(v_dist.Mag(), weight);
+                                        h_v_dist_nFD_VS_reco_P_nFD_ECALveto_1e_cut->Fill(v_dist.Mag(), reco_P_nFD.Mag(), weight);
+                                        h_v_dist_nFD_VS_reco_P_e_ECALveto_1e_cut->Fill(v_dist.Mag(), reco_P_e.Mag(), weight);
+                                        h_v_dist_nFD_VS_reco_phi_nFD_minus_reco_phi_e_ECALveto_1e_cut->Fill(v_dist.Mag(),
+                                                                                                            CalcdPhi1(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI), weight);
+
+                                        if (neutrons_FD_ECALveto_ind.at(i) == NeutronsFD_ind_mom_max) {
+                                            h_v_dist_LnFD_ECALveto_1e_cut->Fill(v_dist.Mag(), weight);
+                                            h_v_dist_LnFD_VS_reco_P_LnFD_ECALveto_1e_cut->Fill(v_dist.Mag(), reco_P_nFD.Mag(), weight);
+                                            h_v_dist_LnFD_VS_reco_P_e_ECALveto_1e_cut->Fill(v_dist.Mag(), reco_P_e.Mag(), weight);
+                                            h_v_dist_LnFD_VS_reco_phi_LnFD_minus_reco_phi_e_ECALveto_1e_cut->Fill(
+                                                v_dist.Mag(), CalcdPhi1(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI), weight);
+                                        }
+                                    }
+                                }
+                            }
+
+                            h_Edep_ECAL_VS_reco_P_nFD_ECALveto_1e_cut->Fill(reco_P_nFD.Mag(), Edep_ECAL_nFD, weight);
+                            h_Edep_ECAL_VS_reco_phi_nFD_minus_reco_phi_e_ECALveto_1e_cut->Fill(CalcdPhi1(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI), Edep_ECAL_nFD, weight);
+                            h_beta_n_VS_reco_P_nFD_ECALveto_1e_cut->Fill(reco_P_nFD.Mag(), reco_Beta_nFD, weight);
+                            h_beta_n_VS_reco_phi_nFD_minus_reco_phi_e_ECALveto_1e_cut->Fill(CalcdPhi1(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI), reco_Beta_nFD, weight);
+
+                            if (neutrons_FD_ECALveto_ind.at(i) == NeutronsFD_ind_mom_max) {
+                                h_Edep_ECAL_VS_reco_P_LnFD_ECALveto_1e_cut->Fill(reco_P_nFD.Mag(), Edep_ECAL_nFD, weight);
+                                h_Edep_ECAL_VS_reco_phi_LnFD_minus_reco_phi_e_ECALveto_1e_cut->Fill(CalcdPhi1(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI), Edep_ECAL_nFD,
+                                                                                                    weight);
+                                h_beta_n_VS_reco_P_LnFD_ECALveto_1e_cut->Fill(reco_P_nFD.Mag(), reco_Beta_nFD, weight);
+                                h_beta_n_VS_reco_phi_LnFD_minus_reco_phi_e_ECALveto_1e_cut->Fill(CalcdPhi1(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI), reco_Beta_nFD,
+                                                                                                 weight);
+                            }
+
+                            double phi_nFD_minus_reco_phi_e = CalcdPhi1(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI);
+                        }
+
+                        if (neutrons_FD_ECALveto.size() != 0) { h_reco_nFD_multi_ECALveto_1e_cut->Fill(neutrons_FD_ECALveto.size(), weight); }
 #pragma endregion
 
-                            //  Setting up FD neutrals (matched)
-                            //  -----------------------------------------------------------------------------------------------------------------------------------------
+                        //  Setting up FD neutrals (matched)
+                        //  -----------------------------------------------------------------------------------------------------------------------------------------
 
 #pragma region /* Setting up FD neutrals (matched) */
-                            vector<region_part_ptr> neutrons_FD_matched;
+                        vector<region_part_ptr> neutrons_FD_matched;
 
-                            double tl_P;
+                        double tl_P;
 
-                            for (int i = 0; i < allParticles.size(); i++) {
-                                int pid_temp = allParticles[i]->par()->getPid();
+                        for (int i = 0; i < allParticles.size(); i++) {
+                            int pid_temp = allParticles[i]->par()->getPid();
 
-                                /*
-                                if (pid_temp == 2112 && allParticles[i]->getRegion() == FD) {
-                                    bool ParticleInPCAL = (allParticles[i]->cal(clas12::PCAL)->getDetector() == 7);    // PCAL hit
-                                    bool ParticleInECIN = (allParticles[i]->cal(clas12::ECIN)->getDetector() == 7);    // ECIN hit
-                                    bool ParticleInECOUT = (allParticles[i]->cal(clas12::ECOUT)->getDetector() == 7);  // ECOUT hit
-                                    auto Neutron_ECAL_detlayer = ParticleInECIN ? clas12::ECIN : clas12::ECOUT;        // find first layer of hit
+                            /*
+                            if (pid_temp == 2112 && allParticles[i]->getRegion() == FD) {
+                                bool ParticleInPCAL = (allParticles[i]->cal(clas12::PCAL)->getDetector() == 7);    // PCAL hit
+                                bool ParticleInECIN = (allParticles[i]->cal(clas12::ECIN)->getDetector() == 7);    // ECIN hit
+                                bool ParticleInECOUT = (allParticles[i]->cal(clas12::ECOUT)->getDetector() == 7);  // ECOUT hit
+                                auto Neutron_ECAL_detlayer = ParticleInECIN ? clas12::ECIN : clas12::ECOUT;        // find first layer of hit
 
-                                    // double Momentum = allParticles[i]->par()->getP();
-                                    double Momentum = CalcPnFD(allParticles[i], electrons[0], starttime);
+                                // double Momentum = allParticles[i]->par()->getP();
+                                double Momentum = CalcPnFD(allParticles[i], electrons[0], starttime);
 
-                                    bool PassMomTh = true;
-                                    // bool PassMomTh = (Momentum >= 0.4);
-                                    // bool PassECALeadgeCuts = true;
-                                    bool PassECALeadgeCuts = (allParticles[i]->cal(Neutron_ECAL_detlayer)->getLv() > 14. && allParticles[i]->cal(Neutron_ECAL_detlayer)->getLw() > 14.);
-                                    // bool PassVeto = true;
-                                    bool PassVeto = NeutronECAL_Cut_Veto(allParticles, electrons, Ebeam, i, 100,apply_PCAL_neutral_veto, rc_factor ,nPart_veto_radius);
+                                bool PassMomTh = true;
+                                // bool PassMomTh = (Momentum >= 0.4);
+                                // bool PassECALeadgeCuts = true;
+                                bool PassECALeadgeCuts = (allParticles[i]->cal(Neutron_ECAL_detlayer)->getLv() > 14. && allParticles[i]->cal(Neutron_ECAL_detlayer)->getLw() > 14.);
+                                // bool PassVeto = true;
+                                bool PassVeto = NeutronECAL_Cut_Veto(allParticles, electrons, Ebeam, i, 100,apply_PCAL_neutral_veto, rc_factor ,nPart_veto_radius);
 
-                                    if (PassMomTh && PassECALeadgeCuts && PassVeto) {
-                                        for (int j = 0; j < truth_NeutronsFD.size(); j++) {
-                                            mcpbank->setEntry(truth_NeutronsFD.at(j));
+                                if (PassMomTh && PassECALeadgeCuts && PassVeto) {
+                                    for (int j = 0; j < truth_NeutronsFD.size(); j++) {
+                                        mcpbank->setEntry(truth_NeutronsFD.at(j));
 
-                                            double tl__P = mcpbank->getP();
-                                            double tl_Theta = mcpbank->getTheta() * 180 / M_PI;
-                                            double tl_Phi = mcpbank->getPhi() * 180 / M_PI;
+                                        double tl__P = mcpbank->getP();
+                                        double tl_Theta = mcpbank->getTheta() * 180 / M_PI;
+                                        double tl_Phi = mcpbank->getPhi() * 180 / M_PI;
 
-                                            double reco_Theta = allParticles[i]->getTheta() * 180 / M_PI;
-                                            double reco_Phi = allParticles[i]->getPhi() * 180 / M_PI;
+                                        double reco_Theta = allParticles[i]->getTheta() * 180 / M_PI;
+                                        double reco_Phi = allParticles[i]->getPhi() * 180 / M_PI;
 
-                                            bool thetaCut = (fabs(tl_Theta - reco_Theta) <= 2.);
-                                            bool phiCut = (fabs(tl_Phi - reco_Phi) <= 5.);
+                                        bool thetaCut = (fabs(tl_Theta - reco_Theta) <= 2.);
+                                        bool phiCut = (fabs(tl_Phi - reco_Phi) <= 5.);
 
-                                            double tl_E_nFD = sqrt(m_n * m_n + tl_P * tl_P);
+                                        double tl_E_nFD = sqrt(m_n * m_n + tl_P * tl_P);
 
-                                            if (thetaCut && phiCut) {
-                                                tl_P = tl__P;
-                                                neutrons_FD_matched.push_back(allParticles[i]);
+                                        if (thetaCut && phiCut) {
+                                            tl_P = tl__P;
+                                            neutrons_FD_matched.push_back(allParticles[i]);
 
-                                                h_truth_P_nFD_matched_1e_cut->Fill(tl_P, weight);
-                                                h_truth_theta_nFD_matched_1e_cut->Fill(tl_Theta, weight);
-                                                h_truth_phi_nFD_matched_1e_cut->Fill(tl_Phi, weight);
-                                                h_truth_theta_nFD_matched_VS_truth_phi_nFD_matched_1e_cut->Fill(tl_Phi, tl_Theta, weight);
+                                            h_truth_P_nFD_matched_1e_cut->Fill(tl_P, weight);
+                                            h_truth_theta_nFD_matched_1e_cut->Fill(tl_Theta, weight);
+                                            h_truth_phi_nFD_matched_1e_cut->Fill(tl_Phi, weight);
+                                            h_truth_theta_nFD_matched_VS_truth_phi_nFD_matched_1e_cut->Fill(tl_Phi, tl_Theta, weight);
+                                        }
+                                    }
+                                }  // end of clas12root neutron or 'photon' if
+                            }  // end of clas12root neutron or 'photon' if
+                            */
+
+                            if ((allParticles[i]->par()->getCharge() == 0) && (allParticles[i]->getRegion() == FD) && (pid_temp != 0)) {  // If particle is neutral and in the FD
+                                bool ParticleInPCAL = (allParticles[i]->cal(clas12::PCAL)->getDetector() == 7);                           // PCAL hit
+                                bool ParticleInECIN = (allParticles[i]->cal(clas12::ECIN)->getDetector() == 7);                           // ECIN hit
+                                bool ParticleInECOUT = (allParticles[i]->cal(clas12::ECOUT)->getDetector() == 7);                         // ECOUT hit
+                                auto Neutron_ECAL_detlayer = ParticleInECIN ? clas12::ECIN : clas12::ECOUT;                               // find first layer of hit
+
+                                if (apply_neutFD_redef) {
+                                    if ((pid_temp == 2112) || (pid_temp == 22)) {
+                                        if (!ParticleInPCAL) {  // if there is a neutron or a 'photon' without a PCAL hit
+                                            if (ParticleInECIN || ParticleInECOUT) {
+                                                double Momentum = CalcPnFD(allParticles[i], electrons[0], starttime);
+
+                                                // bool PassMomTh = true;
+                                                bool PassMomTh = (Momentum >= 0.4);
+                                                bool PassECALeadgeCuts =
+                                                    (allParticles[i]->cal(Neutron_ECAL_detlayer)->getLv() > 14. && allParticles[i]->cal(Neutron_ECAL_detlayer)->getLw() > 14.);
+                                                bool PassVeto = NeutronECAL_Cut_Veto(allParticles, electrons, Ebeam, i, apply_PCAL_neutral_veto, cPart_veto_radius, nPart_veto_radius);
+
+                                                bool PassPhi_nFDCuts = true;
+                                                int nFD_nSector = allParticles[i]->cal(Neutron_ECAL_detlayer)->getSector();
+                                                int e_nSector = electrons[0]->cal(Electron_ECAL_detlayer)->getSector();
+                                                if (OnlyGood_nFD) { PassPhi_nFDCuts = (abs(nFD_nSector - e_nSector) == 3); }
+                                                if (OnlyBad_nFD) { PassPhi_nFDCuts = !(abs(nFD_nSector - e_nSector) == 3); }
+
+                                                if (PassMomTh && PassECALeadgeCuts && (!apply_ECAL_veto || PassVeto) && PassPhi_nFDCuts) {
+                                                    for (int j = 0; j < truth_NeutronsFD.size(); j++) {
+                                                        mcpbank->setEntry(truth_NeutronsFD.at(j));
+
+                                                        double tl__P = mcpbank->getP();
+                                                        double tl_Theta = mcpbank->getTheta() * 180 / M_PI;
+                                                        double tl_Phi = mcpbank->getPhi() * 180 / M_PI;
+
+                                                        double reco_Theta = allParticles[i]->getTheta() * 180 / M_PI;
+                                                        double reco_Phi = allParticles[i]->getPhi() * 180 / M_PI;
+
+                                                        bool thetaCut = (fabs(tl_Theta - reco_Theta) <= 2.);
+                                                        bool phiCut = (fabs(tl_Phi - reco_Phi) <= 5.);
+
+                                                        double tl_E_nFD = sqrt(m_n * m_n + tl_P * tl_P);
+
+                                                        if (thetaCut && phiCut) {
+                                                            tl_P = tl__P;
+                                                            neutrons_FD_matched.push_back(allParticles[i]);
+
+                                                            h_truth_P_nFD_matched_1e_cut->Fill(tl_P, weight);
+                                                            h_truth_theta_nFD_matched_1e_cut->Fill(tl_Theta, weight);
+                                                            h_truth_phi_nFD_matched_1e_cut->Fill(tl_Phi, weight);
+                                                            h_truth_theta_nFD_matched_VS_truth_phi_nFD_matched_1e_cut->Fill(tl_Phi, tl_Theta, weight);
+                                                        }
+                                                    }
+                                                }  // end of clas12root neutron or 'photon' if
                                             }
                                         }
                                     }  // end of clas12root neutron or 'photon' if
-                                }  // end of clas12root neutron or 'photon' if
-                                */
+                                } else {
+                                    if (pid_temp == 2112) {
+                                        double Momentum = CalcPnFD(allParticles[i], electrons[0], starttime);
 
-                                if ((allParticles[i]->par()->getCharge() == 0) && (allParticles[i]->getRegion() == FD) && (pid_temp != 0)) {  // If particle is neutral and in the FD
-                                    bool ParticleInPCAL = (allParticles[i]->cal(clas12::PCAL)->getDetector() == 7);                           // PCAL hit
-                                    bool ParticleInECIN = (allParticles[i]->cal(clas12::ECIN)->getDetector() == 7);                           // ECIN hit
-                                    bool ParticleInECOUT = (allParticles[i]->cal(clas12::ECOUT)->getDetector() == 7);                         // ECOUT hit
-                                    auto Neutron_ECAL_detlayer = ParticleInECIN ? clas12::ECIN : clas12::ECOUT;                               // find first layer of hit
+                                        // bool PassMomTh = true;
+                                        bool PassMomTh = (Momentum >= 0.4);
+                                        bool PassECALeadgeCuts = (allParticles[i]->cal(Neutron_ECAL_detlayer)->getLv() > 14. && allParticles[i]->cal(Neutron_ECAL_detlayer)->getLw() > 14.);
 
-                                    if (apply_neutFD_redef) {
-                                        if ((pid_temp == 2112) || (pid_temp == 22)) {
-                                            if (!ParticleInPCAL) {  // if there is a neutron or a 'photon' without a PCAL hit
-                                                if (ParticleInECIN || ParticleInECOUT) {
-                                                    double Momentum = CalcPnFD(allParticles[i], electrons[0], starttime);
+                                        if (PassMomTh && PassECALeadgeCuts) {
+                                            for (int j = 0; j < truth_NeutronsFD.size(); j++) {
+                                                mcpbank->setEntry(truth_NeutronsFD.at(j));
 
-                                                    // bool PassMomTh = true;
-                                                    bool PassMomTh = (Momentum >= 0.4);
-                                                    bool PassECALeadgeCuts =
-                                                        (allParticles[i]->cal(Neutron_ECAL_detlayer)->getLv() > 14. && allParticles[i]->cal(Neutron_ECAL_detlayer)->getLw() > 14.);
-                                                    bool PassVeto = NeutronECAL_Cut_Veto(allParticles, electrons, Ebeam, i, apply_PCAL_neutral_veto, cPart_veto_radius, nPart_veto_radius);
+                                                double tl__P = mcpbank->getP();
+                                                double tl_Theta = mcpbank->getTheta() * 180 / M_PI;
+                                                double tl_Phi = mcpbank->getPhi() * 180 / M_PI;
 
-                                                    bool PassPhi_nFDCuts = true;
-                                                    int nFD_nSector = allParticles[i]->cal(Neutron_ECAL_detlayer)->getSector();
-                                                    int e_nSector = electrons[0]->cal(Electron_ECAL_detlayer)->getSector();
-                                                    if (OnlyGood_nFD) { PassPhi_nFDCuts = (abs(nFD_nSector - e_nSector) == 3); }
-                                                    if (OnlyBad_nFD) { PassPhi_nFDCuts = !(abs(nFD_nSector - e_nSector) == 3); }
+                                                double reco_Theta = allParticles[i]->getTheta() * 180 / M_PI;
+                                                double reco_Phi = allParticles[i]->getPhi() * 180 / M_PI;
 
-                                                    if (PassMomTh && PassECALeadgeCuts && (!apply_ECAL_veto || PassVeto) && PassPhi_nFDCuts) {
-                                                        for (int j = 0; j < truth_NeutronsFD.size(); j++) {
-                                                            mcpbank->setEntry(truth_NeutronsFD.at(j));
+                                                bool thetaCut = (fabs(tl_Theta - reco_Theta) <= 2.);
+                                                bool phiCut = (fabs(tl_Phi - reco_Phi) <= 5.);
 
-                                                            double tl__P = mcpbank->getP();
-                                                            double tl_Theta = mcpbank->getTheta() * 180 / M_PI;
-                                                            double tl_Phi = mcpbank->getPhi() * 180 / M_PI;
+                                                double tl_E_nFD = sqrt(m_n * m_n + tl_P * tl_P);
 
-                                                            double reco_Theta = allParticles[i]->getTheta() * 180 / M_PI;
-                                                            double reco_Phi = allParticles[i]->getPhi() * 180 / M_PI;
+                                                if (thetaCut && phiCut) {
+                                                    tl_P = tl__P;
+                                                    neutrons_FD_matched.push_back(allParticles[i]);
 
-                                                            bool thetaCut = (fabs(tl_Theta - reco_Theta) <= 2.);
-                                                            bool phiCut = (fabs(tl_Phi - reco_Phi) <= 5.);
-
-                                                            double tl_E_nFD = sqrt(m_n * m_n + tl_P * tl_P);
-
-                                                            if (thetaCut && phiCut) {
-                                                                tl_P = tl__P;
-                                                                neutrons_FD_matched.push_back(allParticles[i]);
-
-                                                                h_truth_P_nFD_matched_1e_cut->Fill(tl_P, weight);
-                                                                h_truth_theta_nFD_matched_1e_cut->Fill(tl_Theta, weight);
-                                                                h_truth_phi_nFD_matched_1e_cut->Fill(tl_Phi, weight);
-                                                                h_truth_theta_nFD_matched_VS_truth_phi_nFD_matched_1e_cut->Fill(tl_Phi, tl_Theta, weight);
-                                                            }
-                                                        }
-                                                    }  // end of clas12root neutron or 'photon' if
+                                                    h_truth_P_nFD_matched_1e_cut->Fill(tl_P, weight);
+                                                    h_truth_theta_nFD_matched_1e_cut->Fill(tl_Theta, weight);
+                                                    h_truth_phi_nFD_matched_1e_cut->Fill(tl_Phi, weight);
+                                                    h_truth_theta_nFD_matched_VS_truth_phi_nFD_matched_1e_cut->Fill(tl_Phi, tl_Theta, weight);
                                                 }
                                             }
                                         }  // end of clas12root neutron or 'photon' if
-                                    } else {
-                                        if (pid_temp == 2112) {
-                                            double Momentum = CalcPnFD(allParticles[i], electrons[0], starttime);
-
-                                            // bool PassMomTh = true;
-                                            bool PassMomTh = (Momentum >= 0.4);
-                                            bool PassECALeadgeCuts =
-                                                (allParticles[i]->cal(Neutron_ECAL_detlayer)->getLv() > 14. && allParticles[i]->cal(Neutron_ECAL_detlayer)->getLw() > 14.);
-
-                                            if (PassMomTh && PassECALeadgeCuts) {
-                                                for (int j = 0; j < truth_NeutronsFD.size(); j++) {
-                                                    mcpbank->setEntry(truth_NeutronsFD.at(j));
-
-                                                    double tl__P = mcpbank->getP();
-                                                    double tl_Theta = mcpbank->getTheta() * 180 / M_PI;
-                                                    double tl_Phi = mcpbank->getPhi() * 180 / M_PI;
-
-                                                    double reco_Theta = allParticles[i]->getTheta() * 180 / M_PI;
-                                                    double reco_Phi = allParticles[i]->getPhi() * 180 / M_PI;
-
-                                                    bool thetaCut = (fabs(tl_Theta - reco_Theta) <= 2.);
-                                                    bool phiCut = (fabs(tl_Phi - reco_Phi) <= 5.);
-
-                                                    double tl_E_nFD = sqrt(m_n * m_n + tl_P * tl_P);
-
-                                                    if (thetaCut && phiCut) {
-                                                        tl_P = tl__P;
-                                                        neutrons_FD_matched.push_back(allParticles[i]);
-
-                                                        h_truth_P_nFD_matched_1e_cut->Fill(tl_P, weight);
-                                                        h_truth_theta_nFD_matched_1e_cut->Fill(tl_Theta, weight);
-                                                        h_truth_phi_nFD_matched_1e_cut->Fill(tl_Phi, weight);
-                                                        h_truth_theta_nFD_matched_VS_truth_phi_nFD_matched_1e_cut->Fill(tl_Phi, tl_Theta, weight);
-                                                    }
-                                                }
-                                            }  // end of clas12root neutron or 'photon' if
-                                        }
-                                    }
-                                }  // end of neutral and in the FD if
-                            }
-
-                            for (int i = 0; i < neutrons_FD_matched.size(); i++) {
-                                bool ParticleInPCAL = (neutrons_FD_matched[i]->cal(clas12::PCAL)->getDetector() == 7);    // PCAL hit
-                                bool ParticleInECIN = (neutrons_FD_matched[i]->cal(clas12::ECIN)->getDetector() == 7);    // ECIN hit
-                                bool ParticleInECOUT = (neutrons_FD_matched[i]->cal(clas12::ECOUT)->getDetector() == 7);  // ECOUT hit
-                                if (apply_neutFD_redef && ParticleInPCAL) { cout << "\n\nError! neutrons_FD_matched is in the PCAL! Aborting...\n\n", exit(0); }
-                                auto detlayer = ParticleInPCAL ? clas12::PCAL : ParticleInECIN ? clas12::ECIN : clas12::ECOUT;  // determine the earliest layer of the neutral hit
-
-                                double Path_nFD = CalcPathnFD(neutrons_FD_matched[i], electrons[0]);
-                                double reco_ToF_nFD = CalcToFnFD(neutrons_FD_matched[i], starttime);
-                                double reco_Beta_nFD = Path_nFD / (reco_ToF_nFD * c);
-                                double Edep_ECAL_nFD =
-                                    neutrons_FD_matched[i]->cal(clas12::PCAL)->getEnergy() + neutrons_FD_matched[i]->cal(ECIN)->getEnergy() + neutrons_FD_matched[i]->cal(ECOUT)->getEnergy();
-
-                                TVector3 reco_P_nFD;
-                                reco_P_nFD.SetMagThetaPhi(tl_P, neutrons_FD_matched[i]->getTheta(), neutrons_FD_matched[i]->getPhi());
-
-                                h_reco_P_nFD_matched_1e_cut->Fill(reco_P_nFD.Mag(), weight);
-                                h_reco_theta_nFD_matched_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI, weight);
-                                h_reco_phi_nFD_matched_1e_cut->Fill(reco_P_nFD.Phi() * 180 / M_PI, weight);
-                                h_reco_theta_nFD_matched_VS_reco_phi_nFD_matched_1e_cut->Fill(reco_P_nFD.Phi() * 180 / M_PI, reco_P_nFD.Theta() * 180 / M_PI, weight);
-                                h_Edep_ECAL_matched_1e_cut->Fill(Edep_ECAL_nFD, weight);
-                                h_beta_n_matched_1e_cut->Fill(reco_Beta_nFD, weight);
-                                h_Edep_ECAL_VS_beta_n_matched_1e_cut->Fill(reco_Beta_nFD, Edep_ECAL_nFD, weight);
-                                h_reco_P_e_VS_P_nFD_matched_1e_cut->Fill(reco_P_e.Mag(), reco_P_nFD.Mag(), weight);
-                                h_reco_theta_e_VS_P_nFD_matched_1e_cut->Fill(reco_P_e.Theta() * 180 / M_PI, reco_P_nFD.Mag(), weight);
-                                h_reco_phi_e_VS_P_nFD_matched_1e_cut->Fill(reco_P_e.Phi() * 180 / M_PI, reco_P_nFD.Mag(), weight);
-                                h_reco_P_e_VS_theta_nFD_matched_1e_cut->Fill(reco_P_e.Mag(), reco_P_nFD.Theta() * 180 / M_PI, weight);
-                                h_reco_theta_e_VS_theta_nFD_matched_1e_cut->Fill(reco_P_e.Theta() * 180 / M_PI, reco_P_nFD.Theta() * 180 / M_PI, weight);
-                                h_reco_phi_e_VS_theta_nFD_matched_1e_cut->Fill(reco_P_e.Phi() * 180 / M_PI, reco_P_nFD.Theta() * 180 / M_PI, weight);
-                                h_reco_P_e_VS_phi_nFD_matched_1e_cut->Fill(reco_P_e.Mag(), reco_P_nFD.Phi() * 180 / M_PI, weight);
-                                h_reco_theta_e_VS_phi_nFD_matched_1e_cut->Fill(reco_P_e.Theta() * 180 / M_PI, reco_P_nFD.Phi() * 180 / M_PI, weight);
-                                h_reco_phi_e_VS_phi_nFD_matched_1e_cut->Fill(reco_P_e.Phi() * 180 / M_PI, reco_P_nFD.Phi() * 180 / M_PI, weight);
-                                h_reco_theta_nFD_matched_VS_P_nFD_matched_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI, reco_P_nFD.Mag(), weight);
-                                h_reco_nFD_multi_VS_reco_P_nFD_matched_1e_cut->Fill(reco_P_nFD.Mag(), neutrons_FD_matched.size(), weight);
-
-                                // if (ParticleInECIN || ParticleInECOUT) {
-                                //     h_reco_P_nFD_VS_reco_L_ECAL_matched_1e_cut->Fill(Path_nFD, reco_P_nFD.Mag(), weight);
-                                //     h_reco_theta_nFD_VS_reco_L_ECAL_matched_1e_cut->Fill(Path_nFD, reco_P_nFD.Theta() * 180 / M_PI, weight);
-                                //     h_reco_phi_nFD_VS_reco_L_ECAL_matched_1e_cut->Fill(Path_nFD, reco_P_nFD.Phi() * 180 / M_PI, weight);
-                                //     h_reco_P_nFD_VS_ToF_nFD_fromFile_ECAL_matched_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Mag(), weight);
-                                //     h_reco_theta_nFD_VS_ToF_nFD_fromFile_ECAL_matched_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Theta() * 180 / M_PI, weight);
-                                //     h_reco_phi_nFD_VS_ToF_nFD_fromFile_ECAL_matched_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Phi() * 180 / M_PI, weight);
-
-                                //     if (ParticleInECIN) {
-                                //         h_reco_P_nFD_VS_reco_L_ECIN_matched_1e_cut->Fill(Path_nFD, reco_P_nFD.Mag(), weight);
-                                //         h_reco_theta_nFD_VS_reco_L_ECIN_matched_1e_cut->Fill(Path_nFD, reco_P_nFD.Theta() * 180 / M_PI, weight);
-                                //         h_reco_phi_nFD_VS_reco_L_ECIN_matched_1e_cut->Fill(Path_nFD, reco_P_nFD.Phi() * 180 / M_PI, weight);
-                                //         h_reco_P_nFD_VS_ToF_nFD_fromFile_ECIN_matched_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Mag(), weight);
-                                //         h_reco_theta_nFD_VS_ToF_nFD_fromFile_ECIN_matched_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Theta() * 180 / M_PI, weight);
-                                //         h_reco_phi_nFD_VS_ToF_nFD_fromFile_ECIN_matched_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Phi() * 180 / M_PI, weight);
-                                //     }
-
-                                //     if (ParticleInECOUT) {
-                                //         h_reco_P_nFD_VS_reco_L_ECOUT_matched_1e_cut->Fill(Path_nFD, reco_P_nFD.Mag(), weight);
-                                //         h_reco_theta_nFD_VS_reco_L_ECOUT_matched_1e_cut->Fill(Path_nFD, reco_P_nFD.Theta() * 180 / M_PI, weight);
-                                //         h_reco_phi_nFD_VS_reco_L_ECOUT_matched_1e_cut->Fill(Path_nFD, reco_P_nFD.Phi() * 180 / M_PI, weight);
-                                //         h_reco_P_nFD_VS_ToF_nFD_fromFile_ECOUT_matched_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Mag(), weight);
-                                //         h_reco_theta_nFD_VS_ToF_nFD_fromFile_ECOUT_matched_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Theta() * 180 / M_PI, weight);
-                                //         h_reco_phi_nFD_VS_ToF_nFD_fromFile_ECOUT_matched_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Phi() * 180 / M_PI, weight);
-                                //     }
-                                // }
-
-                                h_reco_theta_nFD_minus_reco_theta_e_matched_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI - reco_P_e.Theta() * 180 / M_PI, weight);
-                                h_reco_phi_nFD_minus_reco_phi_e_matched_1e_cut->Fill(CalcdPhi1(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI), weight);
-                                h_reco_theta_nFD_minus_reco_theta_e_VS_reco_phi_nFD_minus_reco_phi_e_matched_1e_cut->Fill(
-                                    CalcdPhi1(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI), reco_P_nFD.Theta() * 180 / M_PI - reco_P_e.Theta() * 180 / M_PI, weight);
-                                h_reco_P_nFD_VS_reco_theta_nFD_minus_reco_theta_e_matched_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI - reco_P_e.Theta() * 180 / M_PI, reco_P_nFD.Mag(),
-                                                                                                       weight);
-                                h_reco_P_nFD_VS_reco_phi_nFD_minus_reco_phi_e_matched_1e_cut->Fill(CalcdPhi1(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI), reco_P_nFD.Mag(),
-                                                                                                   weight);
-
-                                TVector3 v_nhit(neutrons_FD_matched[i]->cal(detlayer)->getX(), neutrons_FD_matched[i]->cal(detlayer)->getY(), neutrons_FD_matched[i]->cal(detlayer)->getZ());
-
-                                for (int j = 0; j < allParticles.size(); j++) {
-                                    if (allParticles[j]->par()->getCharge() == 0) {
-                                        bool neutral_hit_PCAL = (allParticles[j]->cal(clas12::PCAL)->getDetector() == 7);
-
-                                        TVector3 v_neutral_hit;  // v_neutral_hit = location of neutral particle hit
-
-                                        if (neutral_hit_PCAL && (allParticles[j]->cal(clas12::PCAL)->getZ() != 0)) {
-                                            v_neutral_hit.SetXYZ(allParticles[j]->cal(clas12::PCAL)->getX(), allParticles[j]->cal(clas12::PCAL)->getY(),
-                                                                 allParticles[j]->cal(clas12::PCAL)->getZ());
-                                            TVector3 v_dist = v_nhit - v_neutral_hit;
-
-                                            h_v_dist_nFD_matched_1e_cut->Fill(v_dist.Mag(), weight);
-                                            h_v_dist_nFD_VS_reco_P_nFD_matched_1e_cut->Fill(v_dist.Mag(), reco_P_nFD.Mag(), weight);
-                                            h_v_dist_nFD_VS_reco_P_e_matched_1e_cut->Fill(v_dist.Mag(), reco_P_e.Mag(), weight);
-                                            h_v_dist_nFD_VS_reco_phi_nFD_minus_reco_phi_e_matched_1e_cut->Fill(
-                                                v_dist.Mag(), CalcdPhi1(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI), weight);
-                                        }
                                     }
                                 }
+                            }  // end of neutral and in the FD if
+                        }
 
-                                h_Edep_ECAL_VS_reco_P_nFD_matched_1e_cut->Fill(reco_P_nFD.Mag(), Edep_ECAL_nFD, weight);
-                                h_Edep_ECAL_VS_reco_phi_nFD_minus_reco_phi_e_matched_1e_cut->Fill(CalcdPhi1(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI), Edep_ECAL_nFD,
-                                                                                                  weight);
-                                h_beta_n_VS_reco_P_nFD_matched_1e_cut->Fill(reco_P_nFD.Mag(), reco_Beta_nFD, weight);
-                                h_beta_n_VS_reco_phi_nFD_minus_reco_phi_e_matched_1e_cut->Fill(CalcdPhi1(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI), reco_Beta_nFD, weight);
+                        for (int i = 0; i < neutrons_FD_matched.size(); i++) {
+                            bool ParticleInPCAL = (neutrons_FD_matched[i]->cal(clas12::PCAL)->getDetector() == 7);    // PCAL hit
+                            bool ParticleInECIN = (neutrons_FD_matched[i]->cal(clas12::ECIN)->getDetector() == 7);    // ECIN hit
+                            bool ParticleInECOUT = (neutrons_FD_matched[i]->cal(clas12::ECOUT)->getDetector() == 7);  // ECOUT hit
+                            if (apply_neutFD_redef && ParticleInPCAL) { cout << "\n\nError! neutrons_FD_matched is in the PCAL! Aborting...\n\n", exit(0); }
+                            auto detlayer = ParticleInPCAL ? clas12::PCAL : ParticleInECIN ? clas12::ECIN : clas12::ECOUT;  // determine the earliest layer of the neutral hit
+
+                            double Path_nFD = CalcPathnFD(neutrons_FD_matched[i], electrons[0]);
+                            double reco_ToF_nFD = CalcToFnFD(neutrons_FD_matched[i], starttime);
+                            double reco_Beta_nFD = Path_nFD / (reco_ToF_nFD * c);
+                            double Edep_ECAL_nFD =
+                                neutrons_FD_matched[i]->cal(clas12::PCAL)->getEnergy() + neutrons_FD_matched[i]->cal(ECIN)->getEnergy() + neutrons_FD_matched[i]->cal(ECOUT)->getEnergy();
+
+                            TVector3 reco_P_nFD;
+                            reco_P_nFD.SetMagThetaPhi(tl_P, neutrons_FD_matched[i]->getTheta(), neutrons_FD_matched[i]->getPhi());
+
+                            h_reco_P_nFD_matched_1e_cut->Fill(reco_P_nFD.Mag(), weight);
+                            h_reco_theta_nFD_matched_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI, weight);
+                            h_reco_phi_nFD_matched_1e_cut->Fill(reco_P_nFD.Phi() * 180 / M_PI, weight);
+                            h_reco_theta_nFD_matched_VS_reco_phi_nFD_matched_1e_cut->Fill(reco_P_nFD.Phi() * 180 / M_PI, reco_P_nFD.Theta() * 180 / M_PI, weight);
+                            h_Edep_ECAL_matched_1e_cut->Fill(Edep_ECAL_nFD, weight);
+                            h_beta_n_matched_1e_cut->Fill(reco_Beta_nFD, weight);
+                            h_Edep_ECAL_VS_beta_n_matched_1e_cut->Fill(reco_Beta_nFD, Edep_ECAL_nFD, weight);
+                            h_reco_P_e_VS_P_nFD_matched_1e_cut->Fill(reco_P_e.Mag(), reco_P_nFD.Mag(), weight);
+                            h_reco_theta_e_VS_P_nFD_matched_1e_cut->Fill(reco_P_e.Theta() * 180 / M_PI, reco_P_nFD.Mag(), weight);
+                            h_reco_phi_e_VS_P_nFD_matched_1e_cut->Fill(reco_P_e.Phi() * 180 / M_PI, reco_P_nFD.Mag(), weight);
+                            h_reco_P_e_VS_theta_nFD_matched_1e_cut->Fill(reco_P_e.Mag(), reco_P_nFD.Theta() * 180 / M_PI, weight);
+                            h_reco_theta_e_VS_theta_nFD_matched_1e_cut->Fill(reco_P_e.Theta() * 180 / M_PI, reco_P_nFD.Theta() * 180 / M_PI, weight);
+                            h_reco_phi_e_VS_theta_nFD_matched_1e_cut->Fill(reco_P_e.Phi() * 180 / M_PI, reco_P_nFD.Theta() * 180 / M_PI, weight);
+                            h_reco_P_e_VS_phi_nFD_matched_1e_cut->Fill(reco_P_e.Mag(), reco_P_nFD.Phi() * 180 / M_PI, weight);
+                            h_reco_theta_e_VS_phi_nFD_matched_1e_cut->Fill(reco_P_e.Theta() * 180 / M_PI, reco_P_nFD.Phi() * 180 / M_PI, weight);
+                            h_reco_phi_e_VS_phi_nFD_matched_1e_cut->Fill(reco_P_e.Phi() * 180 / M_PI, reco_P_nFD.Phi() * 180 / M_PI, weight);
+                            h_reco_theta_nFD_matched_VS_P_nFD_matched_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI, reco_P_nFD.Mag(), weight);
+                            h_reco_nFD_multi_VS_reco_P_nFD_matched_1e_cut->Fill(reco_P_nFD.Mag(), neutrons_FD_matched.size(), weight);
+
+                            // if (ParticleInECIN || ParticleInECOUT) {
+                            //     h_reco_P_nFD_VS_reco_L_ECAL_matched_1e_cut->Fill(Path_nFD, reco_P_nFD.Mag(), weight);
+                            //     h_reco_theta_nFD_VS_reco_L_ECAL_matched_1e_cut->Fill(Path_nFD, reco_P_nFD.Theta() * 180 / M_PI, weight);
+                            //     h_reco_phi_nFD_VS_reco_L_ECAL_matched_1e_cut->Fill(Path_nFD, reco_P_nFD.Phi() * 180 / M_PI, weight);
+                            //     h_reco_P_nFD_VS_ToF_nFD_fromFile_ECAL_matched_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Mag(), weight);
+                            //     h_reco_theta_nFD_VS_ToF_nFD_fromFile_ECAL_matched_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Theta() * 180 / M_PI, weight);
+                            //     h_reco_phi_nFD_VS_ToF_nFD_fromFile_ECAL_matched_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Phi() * 180 / M_PI, weight);
+
+                            //     if (ParticleInECIN) {
+                            //         h_reco_P_nFD_VS_reco_L_ECIN_matched_1e_cut->Fill(Path_nFD, reco_P_nFD.Mag(), weight);
+                            //         h_reco_theta_nFD_VS_reco_L_ECIN_matched_1e_cut->Fill(Path_nFD, reco_P_nFD.Theta() * 180 / M_PI, weight);
+                            //         h_reco_phi_nFD_VS_reco_L_ECIN_matched_1e_cut->Fill(Path_nFD, reco_P_nFD.Phi() * 180 / M_PI, weight);
+                            //         h_reco_P_nFD_VS_ToF_nFD_fromFile_ECIN_matched_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Mag(), weight);
+                            //         h_reco_theta_nFD_VS_ToF_nFD_fromFile_ECIN_matched_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Theta() * 180 / M_PI, weight);
+                            //         h_reco_phi_nFD_VS_ToF_nFD_fromFile_ECIN_matched_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Phi() * 180 / M_PI, weight);
+                            //     }
+
+                            //     if (ParticleInECOUT) {
+                            //         h_reco_P_nFD_VS_reco_L_ECOUT_matched_1e_cut->Fill(Path_nFD, reco_P_nFD.Mag(), weight);
+                            //         h_reco_theta_nFD_VS_reco_L_ECOUT_matched_1e_cut->Fill(Path_nFD, reco_P_nFD.Theta() * 180 / M_PI, weight);
+                            //         h_reco_phi_nFD_VS_reco_L_ECOUT_matched_1e_cut->Fill(Path_nFD, reco_P_nFD.Phi() * 180 / M_PI, weight);
+                            //         h_reco_P_nFD_VS_ToF_nFD_fromFile_ECOUT_matched_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Mag(), weight);
+                            //         h_reco_theta_nFD_VS_ToF_nFD_fromFile_ECOUT_matched_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Theta() * 180 / M_PI, weight);
+                            //         h_reco_phi_nFD_VS_ToF_nFD_fromFile_ECOUT_matched_1e_cut->Fill(reco_ToF_nFD, reco_P_nFD.Phi() * 180 / M_PI, weight);
+                            //     }
+                            // }
+
+                            h_reco_theta_nFD_minus_reco_theta_e_matched_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI - reco_P_e.Theta() * 180 / M_PI, weight);
+                            h_reco_phi_nFD_minus_reco_phi_e_matched_1e_cut->Fill(CalcdPhi1(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI), weight);
+                            h_reco_theta_nFD_minus_reco_theta_e_VS_reco_phi_nFD_minus_reco_phi_e_matched_1e_cut->Fill(
+                                CalcdPhi1(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI), reco_P_nFD.Theta() * 180 / M_PI - reco_P_e.Theta() * 180 / M_PI, weight);
+                            h_reco_P_nFD_VS_reco_theta_nFD_minus_reco_theta_e_matched_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI - reco_P_e.Theta() * 180 / M_PI, reco_P_nFD.Mag(), weight);
+                            h_reco_P_nFD_VS_reco_phi_nFD_minus_reco_phi_e_matched_1e_cut->Fill(CalcdPhi1(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI), reco_P_nFD.Mag(),
+                                                                                               weight);
+
+                            TVector3 v_nhit(neutrons_FD_matched[i]->cal(detlayer)->getX(), neutrons_FD_matched[i]->cal(detlayer)->getY(), neutrons_FD_matched[i]->cal(detlayer)->getZ());
+
+                            for (int j = 0; j < allParticles.size(); j++) {
+                                if (allParticles[j]->par()->getCharge() == 0) {
+                                    bool neutral_hit_PCAL = (allParticles[j]->cal(clas12::PCAL)->getDetector() == 7);
+
+                                    TVector3 v_neutral_hit;  // v_neutral_hit = location of neutral particle hit
+
+                                    if (neutral_hit_PCAL && (allParticles[j]->cal(clas12::PCAL)->getZ() != 0)) {
+                                        v_neutral_hit.SetXYZ(allParticles[j]->cal(clas12::PCAL)->getX(), allParticles[j]->cal(clas12::PCAL)->getY(),
+                                                             allParticles[j]->cal(clas12::PCAL)->getZ());
+                                        TVector3 v_dist = v_nhit - v_neutral_hit;
+
+                                        h_v_dist_nFD_matched_1e_cut->Fill(v_dist.Mag(), weight);
+                                        h_v_dist_nFD_VS_reco_P_nFD_matched_1e_cut->Fill(v_dist.Mag(), reco_P_nFD.Mag(), weight);
+                                        h_v_dist_nFD_VS_reco_P_e_matched_1e_cut->Fill(v_dist.Mag(), reco_P_e.Mag(), weight);
+                                        h_v_dist_nFD_VS_reco_phi_nFD_minus_reco_phi_e_matched_1e_cut->Fill(v_dist.Mag(),
+                                                                                                           CalcdPhi1(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI), weight);
+                                    }
+                                }
                             }
 
-                            if (neutrons_FD_matched.size() != 0) { h_reco_nFD_multi_matched_1e_cut->Fill(neutrons_FD_matched.size(), weight); }
-#pragma endregion
-
-#pragma endregion
-
-#pragma endregion
-                        } catch (const std::exception& e) {
-                            ++number_of_files;
-
-                            TString FileToSkip = chain.CurrentFileName();
-                            // SkippedHipoChainFiles.push_back(FileToSkip);
-
-                            std::cerr << "\033[35m\n\nRecoAnalyzer::RecoAnalyzer:\033[36m Warning!\033[0m Could not loop over hipo file:\n"
-                                      << FileToSkip << "\nAdded to list of Skipped files.\n";
-
-                            std::cerr << "number_of_files = " << number_of_files << "\n";
-
-                            SkipFile = true;
-                            // bool SkipFile = chain.ReallyNextFile();
-
-                            // if (SkipFile) {
-                            //     std::cerr << "Moving to next file in chain.\n\n";
-                            //     bool advance2 = chain.Next();
-
-                            //     bool advance = chain.ReallyNextFile();
-
-                            //     continue;
-                            // }
-
-                            continue;  // Continue to next file or event
-
-                            // if (chain.ReallyNextFile()) {
-                            //     continue;  // Continue to next file
-                            // }
+                            h_Edep_ECAL_VS_reco_P_nFD_matched_1e_cut->Fill(reco_P_nFD.Mag(), Edep_ECAL_nFD, weight);
+                            h_Edep_ECAL_VS_reco_phi_nFD_minus_reco_phi_e_matched_1e_cut->Fill(CalcdPhi1(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI), Edep_ECAL_nFD, weight);
+                            h_beta_n_VS_reco_P_nFD_matched_1e_cut->Fill(reco_P_nFD.Mag(), reco_Beta_nFD, weight);
+                            h_beta_n_VS_reco_phi_nFD_minus_reco_phi_e_matched_1e_cut->Fill(CalcdPhi1(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI), reco_Beta_nFD, weight);
                         }
+
+                        if (neutrons_FD_matched.size() != 0) { h_reco_nFD_multi_matched_1e_cut->Fill(neutrons_FD_matched.size(), weight); }
+#pragma endregion
+
+#pragma endregion
                     }
 
 #pragma region /* Organize histograms */
