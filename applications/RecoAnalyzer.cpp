@@ -25417,22 +25417,29 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         MainCanvas->cd();
 
         MainCanvas->cd()->SetGrid();
-        MainCanvas->cd()->SetBottomMargin(0.14), MainCanvas->cd()->SetLeftMargin(0.16), MainCanvas->cd()->SetRightMargin(0.12);
+        MainCanvas->cd()->SetBottomMargin(0.14);
+        MainCanvas->cd()->SetLeftMargin(0.16);
+        MainCanvas->cd()->SetRightMargin(0.12);
 
-        HistoList[i]->GetYaxis()->SetTitleOffset(1.5);
-        HistoList[i]->GetXaxis()->SetTitleOffset(1.1);
+        if (HistoList[i]->InheritsFrom("TH1")) {
+            TH1 *h1 = dynamic_cast<TH1 *>(HistoList[i]);
+            h1->GetYaxis()->SetTitleOffset(1.5);
+            h1->GetXaxis()->SetTitleOffset(1.1);
+            gPad->SetRightMargin(0.23);
 
-        gPad->SetRightMargin(0.23);
+            if (HistoList[i]->InheritsFrom("TH1D") || HistoList[i]->InheritsFrom("THStack")) { h1->Draw(); }
 
-        if (HistoList[i]->InheritsFrom("TH1D") || HistoList[i]->InheritsFrom("THStack")) {
-            HistoList[i]->Draw();
-        } else if (HistoList[i]->InheritsFrom("TH2D")) {
-            HistoList[i]->Draw("colz");
+        } else if (HistoList[i]->InheritsFrom("TH2")) {
+            TH2 *h2 = dynamic_cast<TH2 *>(HistoList[i]);
+            h2->GetYaxis()->SetTitleOffset(1.5);
+            h2->GetXaxis()->SetTitleOffset(1.1);
+            gPad->SetRightMargin(0.23);
+            h2->Draw("colz");
 
-            if (HistoList[i]->GetEntries() != 0) {
+            if (h2->GetEntries() != 0) {
                 gPad->Update();
-                TPaletteAxis *palette = (TPaletteAxis *)HistoList[i]->GetListOfFunctions()->FindObject("palette");
-                palette->SetY2NDC(0.65);
+                TPaletteAxis *palette = (TPaletteAxis *)h2->GetListOfFunctions()->FindObject("palette");
+                if (palette) palette->SetY2NDC(0.65);
                 gPad->Modified();
                 gPad->Update();
             }
@@ -25442,7 +25449,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         MainCanvas->Clear();
     }
 
-    sprintf(Histogram_OutPDF_fileName_char, "%s]", electron_cuts_PDF_fileName.c_str());
+    sprintf(Histogram_OutPDF_fileName_char, "%s]", Histogram_OutPDF_fileName_str.c_str());
     MainCanvas->Print(Histogram_OutPDF_fileName_char, "pdf");
 
     // Saving histogram list and finishing execution ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
