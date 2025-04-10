@@ -1145,6 +1145,8 @@ void nFD_eff_test() {
 
                     // while (chain.Next() == true) {
                     while (true) {
+                        bool advance = chain.ReallyNextFile();
+                        
                         if (SkipFile) {
                             std::cerr << "\033[35m\nSkipFile = " << SkipFile << "\033[0m\n\n";
 
