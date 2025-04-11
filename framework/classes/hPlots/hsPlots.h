@@ -26,21 +26,6 @@ myPlots.Fill(1.5, 45, 90);
 */
 
 class hsPlots {
-   private:
-    // SliceLimits: 2D vector of slice limits, each inner vector contains two elements: [lower_limit, upper_limit]
-    std::vector<std::vector<double>> SliceLimits;
-
-    // SlicedHistoList: vector of histograms, each histogram corresponds to a slice defined in SliceLimits
-    std::vector<TH1*> SlicedHistoList;
-
-    // histoType: type of histogram (TH1D or TH2D)
-    // This is used to determine how to create the histograms in the constructor
-    HistoType histoType;
-
-    // FindSliceIndex function ------------------------------------------------------------------------------------------------------------------------------------------
-
-    int FindSliceIndex(double value);
-
    public:
     enum HistoType { TH1D_TYPE, TH2D_TYPE };
 
@@ -61,6 +46,21 @@ class hsPlots {
     // GetSlicedHistoList function --------------------------------------------------------------------------------------------------------------------------------------
 
     std::vector<TH1*> GetSlicedHistoList() const;
+
+   private:
+    // SliceLimits: 2D vector of slice limits, each inner vector contains two elements: [lower_limit, upper_limit]
+    std::vector<std::vector<double>> SliceLimits;
+
+    // SlicedHistoList: vector of histograms, each histogram corresponds to a slice defined in SliceLimits
+    std::vector<TH1*> SlicedHistoList;
+
+    // histoType: type of histogram (TH1D or TH2D)
+    // This is used to determine how to create the histograms in the constructor
+    HistoType histoType;
+
+    // FindSliceIndex function ------------------------------------------------------------------------------------------------------------------------------------------
+
+    int FindSliceIndex(double value);
 };
 
 #endif  // HSPLOTS_H
