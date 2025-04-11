@@ -22,13 +22,18 @@
 hsPlots::hsPlots(const std::vector<std::vector<double>>& sliceLimits, HistoType type, std::vector<TObject*>& HistoList, const std::string& baseName, const std::string& titleTemplate,
                  int nbinsX, double xlow, double xup, int nbinsY, double ylow, double yup)
     : SliceLimits(sliceLimits), histoType(type) {
+    bool PrintOut = false;
+
     int count = 0;
 
-    std::cout << "hsPlots constructor: SliceLimits.size() = " << SliceLimits.size() << std::endl;
-    std::cout << "hsPlots constructor: histoType = " << histoType << std::endl;
-    std::cout << "hsPlots constructor: baseName = " << baseName << std::endl;
-    std::cout << "hsPlots constructor: titleTemplate = " << titleTemplate << std::endl;
-
+    if (PrintOut) {
+        std::cout << "hsPlots constructor: SliceLimits.size() = " << SliceLimits.size() << std::endl;
+        std::cout << "hsPlots constructor: histoType = " << histoType << std::endl;
+        std::cout << "hsPlots constructor: baseName = " << baseName << std::endl;
+        std::cout << "hsPlots constructor: titleTemplate = " << titleTemplate << std::endl;
+    }
+    
+    // Create histograms based on the provided slice limits
     for (const auto& range : SliceLimits) {
         if (range.size() != 2) {
             std::cerr << "Invalid slice range at index " << count << std::endl;
@@ -103,16 +108,11 @@ void hsPlots::SaveHistograms(const std::string& outputDir, const std::string& ba
 
     canvas->Print((pdfFile + "[").c_str());  // Open multipage PDF
 
-    std::cout << "\n\nSlicedHistoList.size() =  " << SlicedHistoList.size() << std::endl;
-
     for (size_t i = 0; i < SlicedHistoList.size(); ++i) {
         canvas->cd();
         canvas->Clear();
 
         TH1* hist = SlicedHistoList[i];
-
-        std::cout << "Histogram [" << i << "] class: " << hist->ClassName() << ", entries: " << hist->GetEntries() << std::endl;
-        std::cout << "SlicedHistoList [" << i << "] class: " << SlicedHistoList[i]->ClassName() << ", entries: " << SlicedHistoList[i]->GetEntries() << std::endl;
 
         if (hist->GetEntries() == 0) {
             std::cout << "Skipping empty histogram [" << i << "]" << std::endl;
