@@ -404,7 +404,7 @@ AMaps::AMaps(const std::string &AcceptanceMapsDirectory, const std::string &Samp
 
     std::cout << "\n\nLoad slices and their limits\n";
     /* Load slices and their limits */
-    ReadAMapLimits((AcceptanceMapsDirectory + Electron_source_folder + "/e_" + MapsPrefix + "_by_slice/e_slice_limits.par").c_str(), Loaded_ElectronMomSliceLimits);
+    ReadAMapLimits((AcceptanceMapsDirectory + Electron_source_folder + "/e_" + MapsPrefix + "s_by_slice/e_slice_limits.par").c_str(), Loaded_ElectronMomSliceLimits);
     ReadAMapLimits((AcceptanceMapsDirectory + Proton_source_folder + "/p_" + MapsPrefix + "_by_slice/p_slice_limits.par").c_str(), Loaded_NucleonMomSliceLimits);
 
     std::cout << "\n\nLoad separate maps\n";
