@@ -2842,11 +2842,11 @@ void AMaps::ReadAMap(const char *filename, vector<vector<int>> &Loaded_particle_
             }
         }
     }
-    // else {
-    //     std::cout << "\n\nAMaps::ReadAMap: file:\n" << filename << "\nwas not found! Exiting...\n\n", exit(0);
-    // }
+    else {
+        std::cout << "\n\nAMaps::ReadAMap: ERROR! file:\n" << filename << "\nwas not found! Exiting...\n\n", exit(0);
+    }
 
-    std::cout << "\033[35m\n\nAMaps::ReadAMap:\033[36m Warning!\033[0m file:\n" << filename << "\nwas not found!\n\n";
+    // std::cout << "\033[35m\n\nAMaps::ReadAMap:\033[36m Warning!\033[0m file:\n" << filename << "\nwas not found!\n\n";
 }
 #pragma endregion
 
