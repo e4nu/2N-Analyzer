@@ -1,7 +1,7 @@
 #!/bin/bash
 
-COLOR_START='\033[35m'
-COLOR_END='\033[0m'
+expert COLOR_START='\033[35m'
+expert COLOR_END='\033[0m'
 
 echo ""
 echo "${COLOR_START}=======================================================================${COLOR_END}"
