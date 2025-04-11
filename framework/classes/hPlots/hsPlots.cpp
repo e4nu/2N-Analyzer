@@ -104,7 +104,7 @@ void hsPlots::SaveHistograms(const std::string& outputDir, const std::string& ba
         TH1* hist = SlicedHistoList[i];
 
         std::cout << "Histogram [" << i << "] class: " << hist->ClassName() << ", entries: " << hist->GetEntries() << std::endl;
-        std::cout << "SlicedHistoList [" << i << "] class: " << SlicedHistoList->ClassName() << ", entries: " << SlicedHistoList->GetEntries() << std::endl;
+        std::cout << "SlicedHistoList [" << i << "] class: " << SlicedHistoList[i]->ClassName() << ", entries: " << SlicedHistoList[i]->GetEntries() << std::endl;
 
         if (hist->GetEntries() == 0) {
             std::cout << "Skipping empty histogram [" << i << "]" << std::endl;
