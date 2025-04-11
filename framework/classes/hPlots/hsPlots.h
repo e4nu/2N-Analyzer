@@ -6,9 +6,12 @@
 // #define HSPLOTS_H
 #ifdef HSPLOTS_H
 
+    #include <TCanvas.h>
+    #include <TClass.h>
     #include <TH1.h>
     #include <TH1D.h>
     #include <TH2D.h>
+    #include <TString.h>
 
     #include <iostream>
     #include <sstream>
@@ -46,6 +49,10 @@ class hsPlots {
     // GetSlicedHistoList function --------------------------------------------------------------------------------------------------------------------------------------
 
     std::vector<TH1*> GetSlicedHistoList() const;
+
+    // SaveHistograms function -------------------------------------------------------------------------------------------------------------------------------------
+
+    void SaveHistograms(const std::string& outputDir, const std::string& baseFileName) const;
 
    private:
     // SliceLimits: 2D vector of slice limits, each inner vector contains two elements: [lower_limit, upper_limit]

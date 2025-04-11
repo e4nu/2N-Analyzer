@@ -109,16 +109,7 @@ void DrawAndSaveHistogramsToPDF(TCanvas *MainCanvas, const std::vector<TObject *
         MainCanvas->cd()->SetLeftMargin(0.16);
         MainCanvas->cd()->SetRightMargin(0.12);
 
-        if (HistoList[i]->InheritsFrom("TH1")) {
-            TH1 *h1 = dynamic_cast<TH1 *>(HistoList[i]);
-            if (!h1) continue;
-            h1->GetYaxis()->SetTitleOffset(1.5);
-            h1->GetXaxis()->SetTitleOffset(1.1);
-            gPad->SetRightMargin(0.23);
-
-            h1->Draw();
-
-        } else if (HistoList[i]->InheritsFrom("TH2")) {
+        if (HistoList[i]->InheritsFrom("TH2")) {
             TH2 *h2 = dynamic_cast<TH2 *>(HistoList[i]);
             if (!h2) continue;
             h2->GetYaxis()->SetTitleOffset(1.5);
@@ -134,6 +125,14 @@ void DrawAndSaveHistogramsToPDF(TCanvas *MainCanvas, const std::vector<TObject *
                 gPad->Modified();
                 gPad->Update();
             }
+        } else if (HistoList[i]->InheritsFrom("TH1")) {
+            TH1 *h1 = dynamic_cast<TH1 *>(HistoList[i]);
+            if (!h1) continue;
+            h1->GetYaxis()->SetTitleOffset(1.5);
+            h1->GetXaxis()->SetTitleOffset(1.1);
+            gPad->SetRightMargin(0.23);
+
+            h1->Draw();
         }
 
         MainCanvas->Print(Histogram_OutPDF_fileName_char, "pdf");

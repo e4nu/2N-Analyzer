@@ -83,6 +83,54 @@ void hsPlots::Fill(double sliceVar, double x, double y, double weight) {
     }
 }
 
+// SaveHistograms function ---------------------------------------------------------------------------------------------------------------------------------------------
+
+// This function saves the histograms to a multipage PDF file and individual PNG files.
+// It takes the output directory and base file name as parameters.
+void hsPlots::SaveHistograms(const std::string& outputDir, const std::string& baseFileName) const {
+    std::string pdfFile = outputDir + "/" + baseFileName + ".pdf";
+    TCanvas* canvas = new TCanvas("canvas", "Histogram Canvas", 800, 600);
+    canvas->cd()->SetGrid();
+    canvas->cd()->SetBottomMargin(0.14);
+    canvas->cd()->SetLeftMargin(0.18);
+    canvas->cd()->SetRightMargin(0.12);
+
+    canvas->Print((pdfFile + "[").c_str());  // Open multipage PDF
+
+    for (size_t i = 0; i < SlicedHistoList.size(); ++i) {
+        canvas->cd();
+        canvas->Clear();
+
+        TH1* hist = SlicedHistoList[i];
+        if (hist->InheritsFrom(TH2D::Class())) {
+            TH2D* h2 = (TH2D*)hist;
+            h2->GetXaxis()->SetTitleSize(0.06);
+            h2->GetXaxis()->SetLabelSize(0.0425);
+            h2->GetXaxis()->CenterTitle(true);
+            h2->GetYaxis()->SetTitleSize(0.06);
+            h2->GetYaxis()->SetLabelSize(0.0425);
+            h2->GetYaxis()->CenterTitle(true);
+            h2->Draw("colz");
+        } else if (hist->InheritsFrom(TH1D::Class())) {
+            TH1D* h1 = (TH1D*)hist;
+            h1->GetXaxis()->SetTitleSize(0.06);
+            h1->GetXaxis()->SetLabelSize(0.0425);
+            h1->GetXaxis()->CenterTitle(true);
+            h1->GetYaxis()->SetTitleSize(0.06);
+            h1->GetYaxis()->SetLabelSize(0.0425);
+            h1->GetYaxis()->CenterTitle(true);
+            h1->Draw("hist");
+        }
+
+        canvas->Print(pdfFile.c_str());  // Save histogram to PDF
+        std::string pngName = outputDir + "/" + baseFileName + "_" + std::to_string(i) + ".png";
+        canvas->Print(pngName.c_str());  // Save histogram to PNG
+    }
+
+    canvas->Print((pdfFile + "]").c_str());  // Close multipage PDF
+    delete canvas;
+}
+
 // GetSlicedHistoList function ------------------------------------------------------------------------------------------------------------------------------------------
 
 std::vector<TH1*> hsPlots::GetSlicedHistoList() const { return SlicedHistoList; }
