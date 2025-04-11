@@ -32,7 +32,7 @@ hsPlots::hsPlots(const std::vector<std::vector<double>>& sliceLimits, HistoType 
         std::cout << "hsPlots constructor: baseName = " << baseName << std::endl;
         std::cout << "hsPlots constructor: titleTemplate = " << titleTemplate << std::endl;
     }
-    
+
     // Create histograms based on the provided slice limits
     for (const auto& range : SliceLimits) {
         if (range.size() != 2) {
