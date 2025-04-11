@@ -76,7 +76,6 @@ struct AnalysisCutSettings {
     AnalysisCutSettings()
         // Cuts setup:
         : apply_cuts(true),
-          // : apply_cuts(true),
           clas12ana_particles(true),
           only_preselection_cuts(false),
           only_electron_quality_cuts(false),
