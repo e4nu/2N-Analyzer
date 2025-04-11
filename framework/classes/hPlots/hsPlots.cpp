@@ -100,6 +100,9 @@ void hsPlots::Fill(double sliceVar, double x, double y, double weight) {
 // It takes the output directory and base file name as parameters.
 void hsPlots::SaveHistograms(const std::string& outputDir, const std::string& baseFileName) const {
     std::string pdfFile = outputDir + "/" + baseFileName + ".pdf";
+    std::string pngFileBase = outputDir + "/png_plots/";
+    system(("mkdir -p " + pngFileBase).c_str());  // Create output directory if it doesn't exist
+    
     TCanvas* canvas = new TCanvas("canvas", "Histogram Canvas", 800, 600);
     canvas->cd()->SetGrid();
     canvas->cd()->SetBottomMargin(0.14);
@@ -114,10 +117,10 @@ void hsPlots::SaveHistograms(const std::string& outputDir, const std::string& ba
 
         TH1* hist = SlicedHistoList[i];
 
-        if (hist->GetEntries() == 0) {
-            std::cout << "Skipping empty histogram [" << i << "]" << std::endl;
-            continue;
-        }
+        // if (hist->GetEntries() == 0) {
+        //     std::cout << "Skipping empty histogram [" << i << "]" << std::endl;
+        //     continue;
+        // }
 
         hist->GetXaxis()->SetTitleSize(0.06);
         hist->GetXaxis()->SetLabelSize(0.0425);
@@ -136,7 +139,7 @@ void hsPlots::SaveHistograms(const std::string& outputDir, const std::string& ba
         canvas->Print(pdfFile.c_str());
 
         // Save PNG (single underscore version)
-        std::string pngName = outputDir + "/" + baseFileName + "_" + std::to_string(i) + ".png";
+        std::string pngName = pngFileBase + "/" + baseFileName + "_" + std::to_string(i) + ".png";
         canvas->SaveAs(pngName.c_str());
     }
 
