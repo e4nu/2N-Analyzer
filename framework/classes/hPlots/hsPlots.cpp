@@ -136,25 +136,25 @@ void hsPlots::SaveHistograms(const std::string& outputDir, const std::string& ba
         canvas->Clear();
 
         TH1* hist = SlicedHistoList[i];
-        if (SlicedHistoList[i]->InheritsFrom(TH2D::Class())) {
-            TH2D* h2 = (TH2D*)SlicedHistoList[i];
-            h2->GetXaxis()->SetTitleSize(0.06);
-            h2->GetXaxis()->SetLabelSize(0.0425);
-            h2->GetXaxis()->CenterTitle(true);
-            h2->GetYaxis()->SetTitleSize(0.06);
-            h2->GetYaxis()->SetLabelSize(0.0425);
-            h2->GetYaxis()->CenterTitle(true);
-            h2->Draw("colz");
+        if (SlicedHistoList[i]->InheritsFrom("TH2D")) {
+            // TH2D* h2 = (TH2D*)SlicedHistoList[i];
+            SlicedHistoList[i]->GetXaxis()->SetTitleSize(0.06);
+            SlicedHistoList[i]->GetXaxis()->SetLabelSize(0.0425);
+            SlicedHistoList[i]->GetXaxis()->CenterTitle(true);
+            SlicedHistoList[i]->GetYaxis()->SetTitleSize(0.06);
+            SlicedHistoList[i]->GetYaxis()->SetLabelSize(0.0425);
+            SlicedHistoList[i]->GetYaxis()->CenterTitle(true);
+            SlicedHistoList[i]->Draw("colz");
             canvas->SaveAs((outputDir + "/" + baseFileName + "__" + std::to_string(i) + ".png").c_str());
-        } else if (SlicedHistoList[i]->InheritsFrom(TH1D::Class())) {
-            TH1D* h1 = (TH1D*)SlicedHistoList[i];
-            h1->GetXaxis()->SetTitleSize(0.06);
-            h1->GetXaxis()->SetLabelSize(0.0425);
-            h1->GetXaxis()->CenterTitle(true);
-            h1->GetYaxis()->SetTitleSize(0.06);
-            h1->GetYaxis()->SetLabelSize(0.0425);
-            h1->GetYaxis()->CenterTitle(true);
-            h1->Draw("hist");
+        } else if (SlicedHistoList[i]->InheritsFrom("TH1D")) {
+            // TH1D* h1 = (TH1D*)SlicedHistoList[i];
+            SlicedHistoList[i]->GetXaxis()->SetTitleSize(0.06);
+            SlicedHistoList[i]->GetXaxis()->SetLabelSize(0.0425);
+            SlicedHistoList[i]->GetXaxis()->CenterTitle(true);
+            SlicedHistoList[i]->GetYaxis()->SetTitleSize(0.06);
+            SlicedHistoList[i]->GetYaxis()->SetLabelSize(0.0425);
+            SlicedHistoList[i]->GetYaxis()->CenterTitle(true);
+            SlicedHistoList[i]->Draw("hist");
             canvas->SaveAs((outputDir + "/" + baseFileName + "__" + std::to_string(i) + ".png").c_str());
         }
     }
