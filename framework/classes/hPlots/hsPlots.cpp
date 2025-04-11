@@ -97,6 +97,8 @@ void hsPlots::SaveHistograms(const std::string& outputDir, const std::string& ba
 
     canvas->Print((pdfFile + "[").c_str());  // Open multipage PDF
 
+    std::cout << "\n\nSlicedHistoList.size() =  " << SlicedHistoList.size() << std::endl;
+
     for (size_t i = 0; i < SlicedHistoList.size(); ++i) {
         canvas->cd();
         canvas->Clear();
