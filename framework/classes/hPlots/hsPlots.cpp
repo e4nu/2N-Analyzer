@@ -96,7 +96,7 @@ void hsPlots::SaveHistograms(const std::string& outputDir, const std::string& ba
     canvas->cd()->SetRightMargin(0.12);
 
     canvas->Print((pdfFile + "[").c_str());  // Open multipage PDF
-
+    
     for (size_t i = 0; i < SlicedHistoList.size(); ++i) {
         canvas->cd();
         canvas->Clear();
@@ -111,6 +111,7 @@ void hsPlots::SaveHistograms(const std::string& outputDir, const std::string& ba
             h2->GetYaxis()->SetLabelSize(0.0425);
             h2->GetYaxis()->CenterTitle(true);
             h2->Draw("colz");
+            canvas->SaveAs((outputDir + "/" + baseFileName + "_" + std::to_string(i) + ".png").c_str());
         } else if (hist->InheritsFrom(TH1D::Class())) {
             TH1D* h1 = (TH1D*)hist;
             h1->GetXaxis()->SetTitleSize(0.06);
@@ -120,6 +121,7 @@ void hsPlots::SaveHistograms(const std::string& outputDir, const std::string& ba
             h1->GetYaxis()->SetLabelSize(0.0425);
             h1->GetYaxis()->CenterTitle(true);
             h1->Draw("hist");
+            canvas->SaveAs((outputDir + "/" + baseFileName + "_" + std::to_string(i) + ".png").c_str());
         }
 
         canvas->Print(pdfFile.c_str());  // Save histogram to PDF
