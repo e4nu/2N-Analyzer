@@ -46,7 +46,7 @@ using namespace utilities;
 
 class AMaps {
    private:
-    std::string AMaps_Mode = "AMaps";
+    std::string Maps_Mode = "AMaps";
 
     /* Acceptance maps from class and before cuts (to be compared with one generated with the file) */
     hPlot2D reco_theta_e_VS_phi_e_BC, reco_theta_p_VS_phi_p_BC, reco_theta_n_VS_phi_n_BC, reco_theta_nuc_VS_phi_nuc_BC;
