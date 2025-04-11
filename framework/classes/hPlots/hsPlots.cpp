@@ -136,7 +136,7 @@ void hsPlots::SaveHistograms(const std::string& outputDir, const std::string& ba
         canvas->Clear();
 
         TH1* hist = SlicedHistoList[i];
-        if (SlicedHistoList[i]->InheritsFrom("TH2D")) {
+        if (SlicedHistoList[i]->InheritsFrom("TH2")) {
             // TH2D* h2 = (TH2D*)SlicedHistoList[i];
             SlicedHistoList[i]->GetXaxis()->SetTitleSize(0.06);
             SlicedHistoList[i]->GetXaxis()->SetLabelSize(0.0425);
@@ -149,7 +149,7 @@ void hsPlots::SaveHistograms(const std::string& outputDir, const std::string& ba
             std::cout << "SlicedHistoList[i]->GetEntries() (TH2D) == " << SlicedHistoList[i]->GetEntries() << std::endl;
             
             canvas->SaveAs((outputDir + "/" + baseFileName + "__" + std::to_string(i) + ".png").c_str());
-        } else if (SlicedHistoList[i]->InheritsFrom("TH1D")) {
+        } else if (SlicedHistoList[i]->InheritsFrom("TH1")) {
             // TH1D* h1 = (TH1D*)SlicedHistoList[i];
             SlicedHistoList[i]->GetXaxis()->SetTitleSize(0.06);
             SlicedHistoList[i]->GetXaxis()->SetLabelSize(0.0425);
