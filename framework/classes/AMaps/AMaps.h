@@ -342,9 +342,9 @@ class AMaps {
 
     double GetCPartMinRatio() { return Charged_particle_min_Ratio; }
 
-    double GetNucleonMomSliceLimitsSize() { return NucleonMomSliceLimits.size(); }
+    int GetElectronMomSliceLimitsSize() { return ElectronMomSliceLimits.size(); }
 
-    double GetElectronNucleonMomSliceLimitsSize() { return ElectronMomSliceLimits.size(); }
+    int GetNucleonMomSliceLimitsSize() { return NucleonMomSliceLimits.size(); }
 
     int GetHistElectronSliceNumOfXBins() { return HistElectronSliceNumOfXBins; }
 
@@ -357,6 +357,10 @@ class AMaps {
     vector<vector<double>> GetElectronMomSliceLimits() { return ElectronMomSliceLimits; }
 
     vector<vector<double>> GetNucleonMomSliceLimits() { return NucleonMomSliceLimits; }
+
+    vector<vector<double>> GetLoadedElectronMomSliceLimits() { return Loaded_ElectronMomSliceLimits; }
+
+    vector<vector<double>> GetLoadedNucleonMomSliceLimits() { return Loaded_NucleonMomSliceLimits; }
 };
 
 #endif  // AMAPS_H
