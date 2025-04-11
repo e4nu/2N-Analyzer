@@ -16,7 +16,7 @@ constexpr double m_Kzero = 0.497614;
 constexpr double m_piplus = 0.13957;
 constexpr double m_piminus = 0.13957;
 constexpr double m_pizero = 0.134977;
-constexpr double m_e = 0.000510999;
+constexpr double m_e = 0.000511;
 constexpr double m_d = 1.8756;
 
 // Speed of light in vacuum (in cm/ns):

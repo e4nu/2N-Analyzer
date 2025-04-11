@@ -345,6 +345,18 @@ class AMaps {
     double GetNucleonMomSliceLimitsSize() { return NucleonMomSliceLimits.size(); }
 
     double GetElectronNucleonMomSliceLimitsSize() { return ElectronMomSliceLimits.size(); }
+
+    int GetHistElectronSliceNumOfXBins() { return HistElectronSliceNumOfXBins; }
+
+    int GetHistElectronSliceNumOfYBins() { return HistElectronSliceNumOfYBins; }
+
+    int GetHistNucSliceNumOfXBins() { return HistNucSliceNumOfXBins; }
+
+    int GetHistNucSliceNumOfYBins() { return HistNucSliceNumOfYBins; }
+
+    vector<vector<double>> GetElectronMomSliceLimits() { return ElectronMomSliceLimits; }
+
+    vector<vector<double>> GetNucleonMomSliceLimits() { return NucleonMomSliceLimits; }
 };
 
 #endif  // AMAPS_H
