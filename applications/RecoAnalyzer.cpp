@@ -25387,7 +25387,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     // Saving histograms to PDF file ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    histogram_functions::DrawAndSaveHistogramsToPDF(MainCanvas, HistoList, Histogram_OutPDF_fileName_str, Histogram_OutPDF_fileName_char, SampleName, VaryingSampleName, beamE);
+    histogram_functions::DrawAndSaveHistogramsToPDF(MainCanvas, HistoList, Histogram_OutPDF_fileName_str, Histogram_OutPDF_fileName_char, patameters.SampleName, patameters.VaryingSampleName, patameters.beamE);
 
     // // Create the output PDFs
     // int pixelx = 1980;
