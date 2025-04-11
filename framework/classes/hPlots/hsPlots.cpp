@@ -102,70 +102,37 @@ void hsPlots::SaveHistograms(const std::string& outputDir, const std::string& ba
         canvas->Clear();
 
         TH1* hist = SlicedHistoList[i];
-        if (hist->InheritsFrom(TH2D::Class())) {
-            TH2D* h2 = (TH2D*)hist;
-            h2->GetXaxis()->SetTitleSize(0.06);
-            h2->GetXaxis()->SetLabelSize(0.0425);
-            h2->GetXaxis()->CenterTitle(true);
-            h2->GetYaxis()->SetTitleSize(0.06);
-            h2->GetYaxis()->SetLabelSize(0.0425);
-            h2->GetYaxis()->CenterTitle(true);
-            h2->Draw("colz");
-        } else if (hist->InheritsFrom(TH1D::Class())) {
-            TH1D* h1 = (TH1D*)hist;
-            h1->GetXaxis()->SetTitleSize(0.06);
-            h1->GetXaxis()->SetLabelSize(0.0425);
-            h1->GetXaxis()->CenterTitle(true);
-            h1->GetYaxis()->SetTitleSize(0.06);
-            h1->GetYaxis()->SetLabelSize(0.0425);
-            h1->GetYaxis()->CenterTitle(true);
-            h1->Draw();
+
+        std::cout << "Histogram [" << i << "] class: " << hist->ClassName() << ", entries: " << hist->GetEntries() << std::endl;
+        std::cout << "SlicedHistoList [" << i << "] class: " << SlicedHistoList->ClassName() << ", entries: " << SlicedHistoList->GetEntries() << std::endl;
+
+        if (hist->GetEntries() == 0) {
+            std::cout << "Skipping empty histogram [" << i << "]" << std::endl;
+            continue;
         }
 
-        canvas->Print(pdfFile.c_str());  // Save histogram to PDF
+        hist->GetXaxis()->SetTitleSize(0.06);
+        hist->GetXaxis()->SetLabelSize(0.0425);
+        hist->GetXaxis()->CenterTitle(true);
+        hist->GetYaxis()->SetTitleSize(0.06);
+        hist->GetYaxis()->SetLabelSize(0.0425);
+        hist->GetYaxis()->CenterTitle(true);
+
+        if (hist->InheritsFrom("TH2")) {
+            hist->Draw("colz");
+        } else if (hist->InheritsFrom("TH1")) {
+            hist->Draw("hist");
+        }
+
+        // Save to PDF page
+        canvas->Print(pdfFile.c_str());
+
+        // Save PNG (single underscore version)
         std::string pngName = outputDir + "/" + baseFileName + "_" + std::to_string(i) + ".png";
-        canvas->Print(pngName.c_str());  // Save histogram to PNG
+        canvas->SaveAs(pngName.c_str());
     }
 
     canvas->Print((pdfFile + "]").c_str());  // Close multipage PDF
-
-    std::cout << "\n\nHistograms saved to pdf file." << std::endl;
-
-    for (size_t i = 0; i < SlicedHistoList.size(); ++i) {
-        canvas->cd();
-        canvas->Clear();
-
-        TH1* hist = SlicedHistoList[i];
-        if (SlicedHistoList[i]->InheritsFrom("TH2")) {
-            // TH2D* h2 = (TH2D*)SlicedHistoList[i];
-            SlicedHistoList[i]->GetXaxis()->SetTitleSize(0.06);
-            SlicedHistoList[i]->GetXaxis()->SetLabelSize(0.0425);
-            SlicedHistoList[i]->GetXaxis()->CenterTitle(true);
-            SlicedHistoList[i]->GetYaxis()->SetTitleSize(0.06);
-            SlicedHistoList[i]->GetYaxis()->SetLabelSize(0.0425);
-            SlicedHistoList[i]->GetYaxis()->CenterTitle(true);
-            SlicedHistoList[i]->Draw("colz");
-            
-            std::cout << "SlicedHistoList[i]->GetEntries() (TH2D) == " << SlicedHistoList[i]->GetEntries() << std::endl;
-            
-            canvas->SaveAs((outputDir + "/" + baseFileName + "__" + std::to_string(i) + ".png").c_str());
-        } else if (SlicedHistoList[i]->InheritsFrom("TH1")) {
-            // TH1D* h1 = (TH1D*)SlicedHistoList[i];
-            SlicedHistoList[i]->GetXaxis()->SetTitleSize(0.06);
-            SlicedHistoList[i]->GetXaxis()->SetLabelSize(0.0425);
-            SlicedHistoList[i]->GetXaxis()->CenterTitle(true);
-            SlicedHistoList[i]->GetYaxis()->SetTitleSize(0.06);
-            SlicedHistoList[i]->GetYaxis()->SetLabelSize(0.0425);
-            SlicedHistoList[i]->GetYaxis()->CenterTitle(true);
-            SlicedHistoList[i]->Draw("hist");
-
-            std::cout << "SlicedHistoList[i]->GetEntries() (TH1D) == " << SlicedHistoList[i]->GetEntries() << std::endl;
-
-            canvas->SaveAs((outputDir + "/" + baseFileName + "__" + std::to_string(i) + ".png").c_str());
-        }
-    }
-
-    std::cout << "Histograms saved to png files." << std::endl;
 
     delete canvas;
 }
