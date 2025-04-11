@@ -394,8 +394,6 @@ AMaps::AMaps(const std::string &AcceptanceMapsDirectory, const std::string &Samp
              const bool &Nucleon_single_slice_test, const vector<int> &TestSlices) {
     AMaps_Mode = AMapsMode;
 
-    std::string MapsPrefix = (basic_tools::FindSubstring(AMaps_Mode, "AMaps")) ? "AMap" : "WMap";
-
     std::cout << "\n\nSetting iso samp names\n";
     std::string BeamE_str = basic_tools::GetBeamEnergyFromDouble(beamE);
     std::string Electron_source_folder = "Uniform_1e_sample_" + BeamE_str;
@@ -404,12 +402,12 @@ AMaps::AMaps(const std::string &AcceptanceMapsDirectory, const std::string &Samp
 
     std::cout << "\n\nLoad slices and their limits\n";
     /* Load slices and their limits */
-    ReadAMapLimits((AcceptanceMapsDirectory + Electron_source_folder + "/e_" + MapsPrefix + "s_by_slice/e_slice_limits.par").c_str(), Loaded_ElectronMomSliceLimits);
-    ReadAMapLimits((AcceptanceMapsDirectory + Proton_source_folder + "/p_" + MapsPrefix + "_by_slice/p_slice_limits.par").c_str(), Loaded_NucleonMomSliceLimits);
+    ReadAMapLimits((AcceptanceMapsDirectory + Electron_source_folder + "/e_" + AMaps_Mode + "_by_slice/e_slice_limits.par").c_str(), Loaded_ElectronMomSliceLimits);
+    ReadAMapLimits((AcceptanceMapsDirectory + Proton_source_folder + "/p_" + AMaps_Mode + "_by_slice/p_slice_limits.par").c_str(), Loaded_NucleonMomSliceLimits);
 
     std::cout << "\n\nLoad separate maps\n";
     /* Load separate maps */
-    if (MapsPrefix == "AMap") {
+    if (AMaps_Mode == "AMaps") {
         ReadAMapSlices(Electron_source_folder, AcceptanceMapsDirectory, "Electron", Loaded_ElectronMomSliceLimits, Loaded_e_AMap_Slices);
         ReadAMapSlices(Electron_source_folder, AcceptanceMapsDirectory, "Electron", Loaded_ElectronMomSliceLimits, Loaded_e_AMap_Slices_extended, true);
         ReadAMapSlices(Proton_source_folder, AcceptanceMapsDirectory, "Proton", Loaded_NucleonMomSliceLimits, Loaded_p_AMap_Slices);
@@ -2908,36 +2906,6 @@ void AMaps::ReadWMap(const char *filename, vector<vector<double>> &Loaded_partic
 
     std::cout << "\033[35m\n\nAMaps::ReadWMap:\033[36m Warning!\033[0m file:\n" << filename << "\nwas not found!\n\n";
 }
-// void AMaps::ReadWMap(const char *filename, vector<vector<double>> &Loaded_particle_WMaps) {
-//     ifstream infile;
-//     infile.open(filename);
-
-//     if (infile.is_open()) {
-//         std::string tp;
-
-//         // getline(infile, tp) = read data from file object and put it into string.
-//         while (getline(infile, tp)) {
-//             stringstream ss(tp);
-//             std::string parameter, parameter2;
-//             ss >> parameter;  // get cut identifier
-
-//             if (basic_tools::FindSubstring(parameter, "Weight")) {
-//                 // get cut values
-//                 ss >> parameter2;
-//                 stringstream ss2(parameter2);
-
-//                 std::string LineEntry;
-//                 vector<double> col;
-
-//                 while (getline(ss2, LineEntry, ':')) { col.push_back(stod(LineEntry)); }
-
-//                 Loaded_particle_WMaps.push_back(col);
-//             }
-//         }
-//     } else {
-//         std::cout << "\n\nAMaps::ReadWMap: file:\n" << filename << "\nwas not found! Exiting...\n\n", exit(0);
-//     }
-// }
 #pragma endregion
 
 // MatchAngToHitMap function --------------------------------------------------------------------------------------------------------------------------------------------
@@ -3095,137 +3063,6 @@ bool AMaps::MatchAngToHitMap(const std::string &Particle, double Momentum, doubl
     return false;
 }
 #pragma endregion
-
-// #pragma region /* MatchAngToHitMap function (original after neutron FC 'bug' fix) */
-//  bool AMaps::MatchAngToHitMap(const std::string &Particle, double Momentum, double Theta, double Phi, bool NucleonOverlappingFC) {
-//      int e_InitialSlice = 0, e_FinalSlice = Loaded_ElectronMomSliceLimits.size();
-//      int p_InitialSlice = 0, p_FinalSlice = Loaded_NucleonMomSliceLimits.size(), n_InitialSlice = 0, n_FinalSlice = Loaded_NucleonMomSliceLimits.size();
-//
-//      int e_TestSlice = Slices2Test.at(0), p_TestSlice = Slices2Test.at(1), n_TestSlice = Slices2Test.at(2);
-//
-//      if (e_single_slice_test) { e_InitialSlice = e_TestSlice - 1, e_FinalSlice = e_TestSlice; }
-//
-//      if (nuc_single_slice_test) { p_InitialSlice = p_TestSlice - 1, p_FinalSlice = p_TestSlice, n_InitialSlice = n_TestSlice - 1, n_FinalSlice = n_TestSlice; }
-//
-//      if (isElectron(Particle)) {
-//          for (int Slice = e_InitialSlice; Slice < e_FinalSlice; Slice++) {
-//              if (Momentum >= Loaded_ElectronMomSliceLimits.at(Slice).at(0) && Momentum <= Loaded_ElectronMomSliceLimits.at(Slice).at(1)) {
-//                  for (int i = 0; i < HistElectronSliceNumOfYBins; i++) {
-//                      double dThetaTemp = (hBinUpperYLim - hBinLowerYLim) / HistElectronSliceNumOfYBins;
-//                      double ThetaLowerLimTemp = hBinLowerYLim + i * dThetaTemp;
-//                      double ThetaUpperLimTemp = ThetaLowerLimTemp + dThetaTemp;
-//
-//                      if ((Theta >= ThetaLowerLimTemp) && (Theta < ThetaUpperLimTemp)) {
-//                          for (int j = 0; j < HistElectronSliceNumOfXBins; j++) {
-//                              double dPhiTemp = (hBinUpperXLim - hBinLowerXLim) / HistElectronSliceNumOfXBins;
-//                              double PhiLowerLimTemp = hBinLowerXLim + j * dPhiTemp;
-//                              double PhiUpperLimTemp = PhiLowerLimTemp + dPhiTemp;
-//
-//                              if ((Phi >= PhiLowerLimTemp) && (Phi < PhiUpperLimTemp)) {
-//                                  if (Loaded_e_AMap_Slices.at(Slice).at(i).at(j) != 0) {
-//                                      return true;
-//                                  } else {
-//                                      return false;
-//                                  }
-//                              } // end of find right phi if
-//                          }
-//                      } // end of find right theta if
-//                  }
-//              } // end of if the right momentum
-//          }
-//      } else if (isProton(Particle)) {
-//          for (int Slice = p_InitialSlice; Slice < p_FinalSlice; Slice++) {
-//              if (Momentum >= Loaded_NucleonMomSliceLimits.at(Slice).at(0) && Momentum <= Loaded_NucleonMomSliceLimits.at(Slice).at(1)) {
-//                  for (int i = 0; i < HistNucSliceNumOfYBins; i++) {
-//                      double dThetaTemp = (hBinUpperYLim - hBinLowerYLim) / (HistNucSliceNumOfYBins);
-//                      double ThetaLowerLimTemp = hBinLowerYLim + i * dThetaTemp;
-//                      double ThetaUpperLimTemp = ThetaLowerLimTemp + dThetaTemp;
-//
-//                      if ((Theta >= ThetaLowerLimTemp) && (Theta < ThetaUpperLimTemp)) {
-//                          for (int j = 0; j < HistNucSliceNumOfXBins; j++) {
-//                              double dPhiTemp = (hBinUpperXLim - hBinLowerXLim) / (HistNucSliceNumOfXBins);
-//                              double PhiLowerLimTemp = hBinLowerXLim + j * dPhiTemp;
-//                              double PhiUpperLimTemp = PhiLowerLimTemp + dPhiTemp;
-//
-//                              if ((Phi >= PhiLowerLimTemp) && (Phi < PhiUpperLimTemp)) {
-//                                  if (NucleonOverlappingFC) {
-//                                      if (Loaded_nuc_AMap_Slices.at(Slice).at(i).at(j) != 0) {
-//                                          return true;
-//                                      } else {
-//                                          return false;
-//                                      }
-//                                  } else {
-//                                      if (Loaded_p_AMap_Slices.at(Slice).at(i).at(j) != 0) {
-//                                          return true;
-//                                      } else {
-//                                          return false;
-//                                      }
-//                                  }
-//                              } // end of find right phi if
-//                          }
-//                      } // end of find right theta if
-//                  }
-//              } // end of if the right momentum
-//          }
-//      } else if (isNeutron(Particle)) {
-//          if (NucleonOverlappingFC) {
-//              for (int Slice = n_InitialSlice; Slice < n_FinalSlice; Slice++) {
-//                  if (Momentum >= Loaded_NucleonMomSliceLimits.at(Slice).at(0) && Momentum <= Loaded_NucleonMomSliceLimits.at(Slice).at(1)) {
-//                      for (int i = 0; i < HistNucSliceNumOfYBins; i++) {
-//                          double dThetaTemp = (hBinUpperYLim - hBinLowerYLim) / (HistNucSliceNumOfYBins);
-//                          double ThetaLowerLimTemp = hBinLowerYLim + i * dThetaTemp;
-//                          double ThetaUpperLimTemp = ThetaLowerLimTemp + dThetaTemp;
-//
-//                          if ((Theta >= ThetaLowerLimTemp) && (Theta < ThetaUpperLimTemp)) {
-//                              for (int j = 0; j < HistNucSliceNumOfXBins; j++) {
-//                                  double dPhiTemp = (hBinUpperXLim - hBinLowerXLim) / (HistNucSliceNumOfXBins);
-//                                  double PhiLowerLimTemp = hBinLowerXLim + j * dPhiTemp;
-//                                  double PhiUpperLimTemp = PhiLowerLimTemp + dPhiTemp;
-//
-//                                  if ((Phi >= PhiLowerLimTemp) && (Phi < PhiUpperLimTemp)) {
-//                                      if (Loaded_nuc_AMap_Slices.at(Slice).at(i).at(j) != 0) {
-//                                          return true;
-//                                      } else {
-//                                          return false;
-//                                      }
-//                                  } // end of find right phi if
-//                              }
-//                          } // end of find right theta if
-//                      }
-//                  } // end of if the right momentum
-//              }
-//          } else {
-//              /* If we're not applying overlapping fiducial cuts (in momRes calculations, for example),
-//                 then don't look for momentum based cuts, since neutron momentum can be greater than beamE (bad
-//                 neutrons with P_n > beamE will be cut later!) */
-//
-//              for (int i = 0; i < HistNucSliceNumOfYBins; i++) {
-//                  double dThetaTemp = (hBinUpperYLim - hBinLowerYLim) / (HistNucSliceNumOfYBins);
-//                  double ThetaLowerLimTemp = hBinLowerYLim + i * dThetaTemp;
-//                  double ThetaUpperLimTemp = ThetaLowerLimTemp + dThetaTemp;
-//
-//                  if ((Theta >= ThetaLowerLimTemp) && (Theta < ThetaUpperLimTemp)) {
-//                      for (int j = 0; j < HistNucSliceNumOfXBins; j++) {
-//                          double dPhiTemp = (hBinUpperXLim - hBinLowerXLim) / (HistNucSliceNumOfXBins);
-//                          double PhiLowerLimTemp = hBinLowerXLim + j * dPhiTemp;
-//                          double PhiUpperLimTemp = PhiLowerLimTemp + dPhiTemp;
-//
-//                          if ((Phi >= PhiLowerLimTemp) && (Phi < PhiUpperLimTemp)) {
-//                              if (Loaded_n_AMap.at(i).at(j) != 0) {
-//                                  return true;
-//                              } else {
-//                                  return false;
-//                              }
-//                          } // end of find right phi if
-//                      }
-//                  } // end of find right theta if
-//              }
-//          }
-//      } // end of if Particle
-//
-//      return false;
-//  }
-// #pragma endregion
 
 // GetWeight function ---------------------------------------------------------------------------------------------------------------------------------------------------
 
