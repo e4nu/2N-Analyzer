@@ -1,7 +1,10 @@
 #!/bin/bash
 
-expert COLOR_START='\033[35m'
-expert COLOR_END='\033[0m'
+unset COLOR_START
+setenv COLOR_START '\033[35m'
+
+unset COLOR_END
+setenv COLOR_END '\033[0m'
 
 echo ""
 echo "${COLOR_START}=======================================================================${COLOR_END}"
