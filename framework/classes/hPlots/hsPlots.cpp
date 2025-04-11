@@ -23,6 +23,12 @@ hsPlots::hsPlots(const std::vector<std::vector<double>>& sliceLimits, HistoType 
                  int nbinsX, double xlow, double xup, int nbinsY, double ylow, double yup)
     : SliceLimits(sliceLimits), histoType(type) {
     int count = 0;
+
+    std::cout << "hsPlots constructor: SliceLimits.size() = " << SliceLimits.size() << std::endl;
+    std::cout << "hsPlots constructor: histoType = " << histoType << std::endl;
+    std::cout << "hsPlots constructor: baseName = " << baseName << std::endl;
+    std::cout << "hsPlots constructor: titleTemplate = " << titleTemplate << std::endl;
+
     for (const auto& range : SliceLimits) {
         if (range.size() != 2) {
             std::cerr << "Invalid slice range at index " << count << std::endl;
