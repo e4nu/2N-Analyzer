@@ -145,6 +145,9 @@ void hsPlots::SaveHistograms(const std::string& outputDir, const std::string& ba
             SlicedHistoList[i]->GetYaxis()->SetLabelSize(0.0425);
             SlicedHistoList[i]->GetYaxis()->CenterTitle(true);
             SlicedHistoList[i]->Draw("colz");
+            
+            std::cout << "SlicedHistoList[i]->GetEntries() (TH2D) == " << SlicedHistoList[i]->GetEntries() << std::endl;
+            
             canvas->SaveAs((outputDir + "/" + baseFileName + "__" + std::to_string(i) + ".png").c_str());
         } else if (SlicedHistoList[i]->InheritsFrom("TH1D")) {
             // TH1D* h1 = (TH1D*)SlicedHistoList[i];
@@ -155,6 +158,9 @@ void hsPlots::SaveHistograms(const std::string& outputDir, const std::string& ba
             SlicedHistoList[i]->GetYaxis()->SetLabelSize(0.0425);
             SlicedHistoList[i]->GetYaxis()->CenterTitle(true);
             SlicedHistoList[i]->Draw("hist");
+
+            std::cout << "SlicedHistoList[i]->GetEntries() (TH1D) == " << SlicedHistoList[i]->GetEntries() << std::endl;
+
             canvas->SaveAs((outputDir + "/" + baseFileName + "__" + std::to_string(i) + ".png").c_str());
         }
     }
