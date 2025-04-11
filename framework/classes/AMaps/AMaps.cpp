@@ -2747,7 +2747,7 @@ void AMaps::ReadAMapSlices(const std::string &SampleName, const std::string &Acc
                                    basic_tools::ToStringWithPrecision(Loaded_particle_limits.at(Slice).at(0), 2) + "_to_" +
                                    basic_tools::ToStringWithPrecision(Loaded_particle_limits.at(Slice).at(1), 2) + ".par";
 
-        std::cout << "\n\nReading " << Particle << " map: " << TempFileName << "\n";
+        std::cout << "Reading " << Particle << " map: " << TempFileName << "\n";
 
         ReadAMap((AcceptanceMapsDirectory + SampleName + "/" + TempFileName).c_str(), Loaded_Particle_AMap_TempSlice);
 
@@ -2842,11 +2842,11 @@ void AMaps::ReadAMap(const char *filename, vector<vector<int>> &Loaded_particle_
             }
         }
     }
-    else {
-        std::cout << "\n\nAMaps::ReadAMap: ERROR! file:\n" << filename << "\nwas not found! Exiting...\n\n", exit(0);
-    }
+    // else {
+    //     std::cout << "\n\nAMaps::ReadAMap: ERROR! file:\n" << filename << "\nwas not found! Exiting...\n\n", exit(0);
+    // }
 
-    // std::cout << "\033[35m\n\nAMaps::ReadAMap:\033[36m Warning!\033[0m file:\n" << filename << "\nwas not found!\n\n";
+    std::cout << "\033[35m\n\nAMaps::ReadAMap:\033[36m Warning!\033[0m file:\n" << filename << "\nwas not found!\n\n";
 }
 #pragma endregion
 
