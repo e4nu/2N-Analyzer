@@ -426,6 +426,10 @@ AMaps::AMaps(const std::string &AcceptanceMapsDirectory, const std::string &Samp
 
     e_single_slice_test = Electron_single_slice_test, nuc_single_slice_test = Nucleon_single_slice_test;
     Slices2Test = TestSlices;
+
+    if (Loaded_ElectronMomSliceLimits.size() == 0) { std::cout << "\033[35m\n\nAMaps::AMaps:\033[36m Warning!\033[0m no electron slice limits were loaded!\n\n"; }
+
+    if (Loaded_NucleonMomSliceLimits.size() == 0) { std::cout << "\033[35m\n\nAMaps::AMaps:\033[36m Warning!\033[0m no nucleon slice limits were loaded!\n\n"; }
 }
 #pragma endregion
 
@@ -2772,8 +2776,9 @@ void AMaps::ReadWMapSlices(const std::string &SampleName, const std::string &Acc
     for (int Slice = 0; Slice < Loaded_particle_limits.size(); Slice++) {
         vector<vector<double>> Loaded_Particle_WMap_TempSlice;
 
-        std::string TempFileName = ParticleShort + "_" + Maps_Mode + "_by_slice/" + ParticleShort + "_" + Maps_Mode + "_file_from_" + basic_tools::ToStringWithPrecision(Loaded_particle_limits.at(Slice).at(0), 2) +
-                                   "_to_" + basic_tools::ToStringWithPrecision(Loaded_particle_limits.at(Slice).at(1), 2) + ".par";
+        std::string TempFileName = ParticleShort + "_" + Maps_Mode + "_by_slice/" + ParticleShort + "_" + Maps_Mode + "_file_from_" +
+                                   basic_tools::ToStringWithPrecision(Loaded_particle_limits.at(Slice).at(0), 2) + "_to_" +
+                                   basic_tools::ToStringWithPrecision(Loaded_particle_limits.at(Slice).at(1), 2) + ".par";
 
         ReadWMap((AcceptanceMapsDirectory + SampleName + "/" + TempFileName).c_str(), Loaded_Particle_WMap_TempSlice);
 
