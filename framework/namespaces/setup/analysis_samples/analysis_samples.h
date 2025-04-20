@@ -13,6 +13,7 @@
 
 namespace analysis_samples {
 using namespace data_samples;
+using namespace simulation_samples;
 using namespace uniform_samples;
 
 std::vector<std::string> AnalyzeFilePath_v, AnalyzeFileSample_v, AnalyzeFileDir_v, AnalyzeFile_v;
