@@ -8,6 +8,7 @@
 #include <iostream>
 
 #include "data_samples.h"
+#include "simulation_samples.h"
 #include "uniform_samples.h"
 
 namespace analysis_samples {
@@ -86,8 +87,8 @@ void ConfigSampleChain() {
     // Config_Uniform_en_2GeV_samples(AnalyzeFilePath_v, AnalyzeFileSample_v, AnalyzeFileDir_v, AnalyzeFile_v, AnalyzeFilePath, AnalyzeFileSample, AnalyzeFileDir, AnalyzeFile);
     // Config_Uniform_ep_2GeV_samples(AnalyzeFilePath_v, AnalyzeFileSample_v, AnalyzeFileDir_v, AnalyzeFile_v, AnalyzeFilePath, AnalyzeFileSample, AnalyzeFileDir, AnalyzeFile);
 
-    // // /* Uniform samples @ 4GeV */ 
-    Config_Uniform_1e_4GeV_samples(AnalyzeFilePath_v, AnalyzeFileSample_v, AnalyzeFileDir_v, AnalyzeFile_v, AnalyzeFilePath, AnalyzeFileSample, AnalyzeFileDir, AnalyzeFile);
+    // // /* Uniform samples @ 4GeV */
+    // Config_Uniform_1e_4GeV_samples(AnalyzeFilePath_v, AnalyzeFileSample_v, AnalyzeFileDir_v, AnalyzeFile_v, AnalyzeFilePath, AnalyzeFileSample, AnalyzeFileDir, AnalyzeFile);
     // Config_Uniform_en_4GeV_samples(AnalyzeFilePath_v, AnalyzeFileSample_v, AnalyzeFileDir_v, AnalyzeFile_v, AnalyzeFilePath, AnalyzeFileSample, AnalyzeFileDir, AnalyzeFile);
     // Config_Uniform_ep_4GeV_samples(AnalyzeFilePath_v, AnalyzeFileSample_v, AnalyzeFileDir_v, AnalyzeFile_v, AnalyzeFilePath, AnalyzeFileSample, AnalyzeFileDir, AnalyzeFile);
 
@@ -95,6 +96,24 @@ void ConfigSampleChain() {
     // Config_Uniform_1e_6GeV_samples(AnalyzeFilePath_v, AnalyzeFileSample_v, AnalyzeFileDir_v, AnalyzeFile_v, AnalyzeFilePath, AnalyzeFileSample, AnalyzeFileDir, AnalyzeFile);
     // Config_Uniform_en_6GeV_samples(AnalyzeFilePath_v, AnalyzeFileSample_v, AnalyzeFileDir_v, AnalyzeFile_v, AnalyzeFilePath, AnalyzeFileSample, AnalyzeFileDir, AnalyzeFile);
     // Config_Uniform_ep_6GeV_samples(AnalyzeFilePath_v, AnalyzeFileSample_v, AnalyzeFileDir_v, AnalyzeFile_v, AnalyzeFilePath, AnalyzeFileSample, AnalyzeFileDir, AnalyzeFile);
+
+    // Simulation samples -----------------------------------------------------------------------------------------------------------------------------------------------
+
+    /* C12 G18 2GeV */
+    Config_C12_G18_2GeV_samples(AnalyzeFilePath_v, AnalyzeFileSample_v, AnalyzeFileDir_v, AnalyzeFile_v, AnalyzeFilePath, AnalyzeFileSample, AnalyzeFileDir, AnalyzeFile,false); // no FC
+    Config_C12_G18_2GeV_samples(AnalyzeFilePath_v, AnalyzeFileSample_v, AnalyzeFileDir_v, AnalyzeFile_v, AnalyzeFilePath, AnalyzeFileSample, AnalyzeFileDir, AnalyzeFile,true); // with FC
+
+    // /* C12 G18 4GeV */
+    // Config_C12_G18_4GeV_samples(AnalyzeFilePath_v, AnalyzeFileSample_v, AnalyzeFileDir_v, AnalyzeFile_v, AnalyzeFilePath, AnalyzeFileSample, AnalyzeFileDir, AnalyzeFile, false); // no FC
+    // Config_C12_G18_4GeV_samples(AnalyzeFilePath_v, AnalyzeFileSample_v, AnalyzeFileDir_v, AnalyzeFile_v, AnalyzeFilePath, AnalyzeFileSample, AnalyzeFileDir, AnalyzeFile, true); // with FC
+
+    // /* C12 SuSa 2GeV */
+    // Config_C12_SuSa_2GeV_samples(AnalyzeFilePath_v, AnalyzeFileSample_v, AnalyzeFileDir_v, AnalyzeFile_v, AnalyzeFilePath, AnalyzeFileSample, AnalyzeFileDir, AnalyzeFile, false); // no FC
+    // Config_C12_SuSa_2GeV_samples(AnalyzeFilePath_v, AnalyzeFileSample_v, AnalyzeFileDir_v, AnalyzeFile_v, AnalyzeFilePath, AnalyzeFileSample, AnalyzeFileDir, AnalyzeFile, true); // with FC
+
+    // /* C12 SuSa 4GeV */
+    // Config_C12_SuSa_4GeV_samples(AnalyzeFilePath_v, AnalyzeFileSample_v, AnalyzeFileDir_v, AnalyzeFile_v, AnalyzeFilePath, AnalyzeFileSample, AnalyzeFileDir, AnalyzeFile,false); // no FC
+    // Config_C12_SuSa_4GeV_samples(AnalyzeFilePath_v, AnalyzeFileSample_v, AnalyzeFileDir_v, AnalyzeFile_v, AnalyzeFilePath, AnalyzeFileSample, AnalyzeFileDir, AnalyzeFile,true); // with FC
 
     // Small Q2 test samples --------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -137,13 +156,13 @@ void ConfigSampleChain() {
     ////AnalyzeFile = AnalyzeFileDir + "/" + "e_on_1000060120_2222MeV_em.gst.root";
     ////AnalyzeFile = "./e_on_1000060120_598636MeV.gst.root";
 
-    //#pragma region /* SuSAv2 fix for thesis */
-    // AnalyzeFilePath = "home/alon/project";
-    // AnalyzeFileSample = "Downloads";
-    // AnalyzeFileDir = "/" + AnalyzeFilePath + "/" + AnalyzeFileSample + "/";
+    // #pragma region /* SuSAv2 fix for thesis */
+    //  AnalyzeFilePath = "home/alon/project";
+    //  AnalyzeFileSample = "Downloads";
+    //  AnalyzeFileDir = "/" + AnalyzeFilePath + "/" + AnalyzeFileSample + "/";
     ////AnalyzeFile = AnalyzeFileDir + "/" + "12C_2222GeV_GTEST19_10b_00_000.root"; // Original problem
     // AnalyzeFile = AnalyzeFileDir + "/" + "e_on_1000060120_EMMEC_test_myBranch.root"; // Initial fix with 1M events (myBranch)
-    //#pragma endregion
+    // #pragma endregion
 
     // AnalyzeFilePath = "mnt/d/e4nu/hipo_data_files";
     // AnalyzeFileSample = "recon_qe_GENIE_C_598636MeV_Q2_0_4_test_1";
