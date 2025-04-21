@@ -55,7 +55,7 @@ ExperimentParameters::ExperimentParameters(const std::string &AnalyzeFilePath, c
 
 #pragma region /* ConfigureSampleName function */
 string ExperimentParameters::ConfigureSampleName(const std::string &AnalyzeFilePath, const std::string &AnalyzeFileSample) {
-    std::string sName = "unknown_sample_598636MeV";  // to set beamE = 5.98636 by default;
+    std::string sName = "UNKNOWN_SAMPLE";
 
     if (basic_tools::FindSubstring(AnalyzeFilePath, "Uniform_e-p-n_samples")) {  // Uniform samples
         if (basic_tools::FindSubstring(AnalyzeFilePath, "OutPut_Tester_e_Tester_e"))
