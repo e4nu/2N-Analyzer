@@ -81,6 +81,36 @@ void RecoCutsPrintOut(const std::string& workingDirectory, const std::string& ru
     std::cout << "\033[33mapply_theta_q_pCD_in_lower_FSI_range_cut:\033[0m\t" << basic_tools::BoolToString(CutSettings.apply_theta_q_pCD_in_lower_FSI_range_cut) << "\n\n";
 }
 
+// SavePlotsToZipFile function ------------------------------------------------------------------------------------------------------------------------------------------
+
+void SavePlotsToZipFile(const bool& Save_Plots_folder_to_zip_files, const bool& zipping_print_out, const std::string& directory_path, const std::string& base_filename) {
+    bool PrintOut = false;
+
+    if (Save_Plots_folder_to_zip_files) {
+        std::cout << "\n\nSaving plots folder to zip file...\n";
+
+        std::string zip_filename = base_filename + ".zip";
+        std::string zip_command;
+
+        if (zipping_print_out) {
+            zip_command = "cd " + directory_path + " && zip -r " + zip_filename + " ./*";
+        } else {
+            zip_command = "cd " + directory_path + " && zip -rq " + zip_filename + " ./*";
+        }
+
+        system(zip_command.c_str());
+
+        if (PrintOut) {
+            std::cout << "\n\nMaking zip file...\n";
+            std::cout << "zip_filename: " << zip_filename << "\n";
+            std::cout << "zip_command: " << zip_command << "\n";
+        }
+    } else {
+        std::cout << "\n\nSaving plots folder to zip file is disabled...\n";
+        return;
+    }
+}
+
 };  // namespace printers
 
 #endif  // PRINTERS_H

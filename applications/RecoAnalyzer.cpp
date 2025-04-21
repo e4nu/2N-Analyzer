@@ -111,6 +111,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     Directories directories = Directories(Plots_Folder, Clear_Old_Directories);
 
     bool Save_Plots_folder_to_zip_files = true;
+    bool zipping_print_out = (Save_Plots_folder_to_zip_files && false);
+
     std::cout << "\033[33m done.\n\n\033[0m";
 
     // TList definition -----------------------------------------------------------------------------------------------------------------------------------------------------
@@ -25387,7 +25389,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     // Saving histograms to PDF file ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    histogram_functions::DrawAndSaveHistogramsToPDF(MainCanvas, HistoList, Histogram_OutPDF_fileName_str, Histogram_OutPDF_fileName_char, parameters.SampleName, parameters.VaryingSampleName, parameters.beamE);
+    histogram_functions::DrawAndSaveHistogramsToPDF(MainCanvas, HistoList, Histogram_OutPDF_fileName_str, Histogram_OutPDF_fileName_char, parameters.SampleName, parameters.VaryingSampleName,
+                                                    parameters.beamE);
 
     // // Create the output PDFs
     // int pixelx = 1980;
@@ -25706,6 +25709,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     myLogFile << "Clear_Old_Directories = " << basic_tools::BoolToString(Clear_Old_Directories) << "\n\n";
 
     myLogFile << "Save_Plots_folder_to_zip_files = " << basic_tools::BoolToString(Save_Plots_folder_to_zip_files) << "\n";
+    myLogFile << "zipping_print_out = " << basic_tools::BoolToString(zipping_print_out) << "\n";
 
     // Plot selector
     myLogFile << "\n===========================================================================\n";
@@ -26474,31 +26478,46 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         if (ApplyLimiter) { std::cout << "\033[31m\n\nNOTE: running code with a limiter on number of events!\n\n\033[0m"; }
     }
 
-    if (Save_Plots_folder_to_zip_files) {
-        // TODO: this saves the plots folder in multiple folders in the save path - fix!
+    printers::SavePlotsToZipFile(Save_Plots_folder_to_zip_files, zipping_print_out, run_plots_path, settings.GetRun_dir_name());
 
-        // std::cout << "\n\nrun_plots_path: " << run_plots_path << "\n";
-        // std::cout << "settings.GetRun_dir_name(): " << settings.GetRun_dir_name() << "\n";
-        // exit(0);
-        std::string zip_filename = settings.GetRun_dir_name() + ".zip";
-        std::string zip_input_path = run_plots_path;
-        std::string zip_input = run_plots_path + "/" + zip_filename;
-        std::string zip_output_path = run_plots_path;
-        std::string zip_command = "zip -r " + zip_input + " " + zip_output_path;
-        // std::cout << "\n\nMaking zip file...\n";
-        // std::cout << "zip_filename: " << zip_filename << "\n";
-        // std::cout << "zip_input_path: " << zip_input_path << "\n";
-        // std::cout << "zip_input: " << zip_input << "\n";
-        // std::cout << "zip_output_path: " << zip_output_path << "\n";
-        system(zip_command.c_str());
-        std::cout << "\n\nMaking zip file...\n";
-        std::cout << "zip_filename: " << zip_filename << "\n";
-        std::cout << "zip_input_path: " << zip_input_path << "\n";
-        std::cout << "zip_input: " << zip_input << "\n";
-        std::cout << "zip_output_path: " << zip_output_path << "\n";
-        std::cout << "zip_command: " << zip_command << "\n";
-        // system(("mv -r " + run_plots_path + "/" + settings.GetRun_dir_name() + "/" + settings.GetRun_dir_name() + ".zip " + run_plots_path).c_str());
-    }
+    /*     // if (Save_Plots_folder_to_zip_files) {
+        //     std::string zip_filename = settings.GetRun_dir_name() + ".zip";
+        //     std::string zip_command = "cd " + run_plots_path + " && zip -r " + zip_filename + " ./*";
+
+        //     std::cout << "\n\nMaking zip file...\n";
+        //     std::cout << "zip_filename: " << zip_filename << "\n";
+        //     std::cout << "zip_command: " << zip_command << "\n";
+
+        //     system(zip_command.c_str());
+        // }
+
+        // if (Save_Plots_folder_to_zip_files) {
+        //     // TODO: this saves the plots folder in multiple folders in the save path - fix!
+
+        //     // std::cout << "\n\nrun_plots_path: " << run_plots_path << "\n";
+        //     // std::cout << "settings.GetRun_dir_name(): " << settings.GetRun_dir_name() << "\n";
+        //     // exit(0);
+
+        //     std::string zip_filename = settings.GetRun_dir_name() + ".zip";
+        //     // std::string zip_input_path = run_plots_path;
+        //     // std::string zip_input = run_plots_path + "/" + zip_filename;
+        //     // std::string zip_output_path = run_plots_path;
+        //     std::string zip_command = "zip -r " + zip_filename + " ./*";
+        //     // std::string zip_command = "zip -r " + zip_input + " " + zip_output_path;
+
+        //     system(("cd " + run_plots_path).c_str());
+        //     system(zip_command.c_str());
+        //     system(("cd " + path_definitions::PathDefinitions.WorkingDirectory).c_str());
+
+        //     std::cout << "\n\nMaking zip file...\n";
+        //     std::cout << "zip_filename: " << zip_filename << "\n";
+        //     // std::cout << "zip_input_path: " << zip_input_path << "\n";
+        //     // std::cout << "zip_input: " << zip_input << "\n";
+        //     // std::cout << "zip_output_path: " << zip_output_path << "\n";
+        //     std::cout << "zip_command: " << zip_command << "\n";
+        //     // system(("mv -r " + run_plots_path + "/" + settings.GetRun_dir_name() + "/" + settings.GetRun_dir_name() + ".zip " + run_plots_path).c_str());
+        // }
+     */
 
 #pragma endregion
 }

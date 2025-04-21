@@ -20,9 +20,9 @@ void Config_C12_G18_2GeV_samples(std::vector<std::string> &AnalyzeFilePath_v, st
                                  std::vector<std::string> &AnalyzeFile_v, std::string &AnalyzeFilePath, std::string &AnalyzeFileSample, std::string &AnalyzeFileDir, std::string &AnalyzeFile,
                                  const bool &wFC = false) {
     if (wFC) {
-        AnalyzeFilePath = "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/C12/G18_10a_00_000/2070MeV_Q2_0_02_wFC";
+        AnalyzeFilePath = "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/GENIE_Reco_Samples/C12/G18_10a_00_000/2070MeV_Q2_0_02_wFC";
     } else {
-        AnalyzeFilePath = "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/C12/G18_10a_00_000/2070MeV_Q2_0_02";
+        AnalyzeFilePath = "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/GENIE_Reco_Samples/C12/G18_10a_00_000/2070MeV_Q2_0_02";
     }
 
     AnalyzeFileSample = "reconhipo";
@@ -39,9 +39,9 @@ void Config_C12_G18_4GeV_samples(std::vector<std::string> &AnalyzeFilePath_v, st
                                  std::vector<std::string> &AnalyzeFile_v, std::string &AnalyzeFilePath, std::string &AnalyzeFileSample, std::string &AnalyzeFileDir, std::string &AnalyzeFile,
                                  const bool &wFC = false) {
     if (wFC) {
-        AnalyzeFilePath = "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/C12/G18_10a_00_000/4029MeV_Q2_0_25_wFC";
+        AnalyzeFilePath = "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/GENIE_Reco_Samples/C12/G18_10a_00_000/4029MeV_Q2_0_25_wFC";
     } else {
-        AnalyzeFilePath = "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/C12/G18_10a_00_000/4029MeV_Q2_0_25";
+        AnalyzeFilePath = "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/GENIE_Reco_Samples/C12/G18_10a_00_000/4029MeV_Q2_0_25";
     }
 
     AnalyzeFileSample = "reconhipo";
@@ -62,9 +62,9 @@ void Config_C12_SuSa_2GeV_samples(std::vector<std::string> &AnalyzeFilePath_v, s
                                   std::vector<std::string> &AnalyzeFile_v, std::string &AnalyzeFilePath, std::string &AnalyzeFileSample, std::string &AnalyzeFileDir,
                                   std::string &AnalyzeFile, const bool &wFC = false) {
     if (wFC) {
-        AnalyzeFilePath = "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/C12/GEM21_11a_00_000/2070MeV_Q2_0_02_wFC";
+        AnalyzeFilePath = "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/GENIE_Reco_Samples/C12/GEM21_11a_00_000/2070MeV_Q2_0_02_wFC";
     } else {
-        AnalyzeFilePath = "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/C12/GEM21_11a_00_000/2070MeV_Q2_0_02";
+        AnalyzeFilePath = "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/GENIE_Reco_Samples/C12/GEM21_11a_00_000/2070MeV_Q2_0_02";
     }
 
     AnalyzeFileSample = "reconhipo";
@@ -81,9 +81,9 @@ void Config_C12_SuSa_4GeV_samples(std::vector<std::string> &AnalyzeFilePath_v, s
                                   std::vector<std::string> &AnalyzeFile_v, std::string &AnalyzeFilePath, std::string &AnalyzeFileSample, std::string &AnalyzeFileDir,
                                   std::string &AnalyzeFile, const bool &wFC = false) {
     if (wFC) {
-        AnalyzeFilePath = "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/C12/GEM21_11a_00_000/4029MeV_Q2_0_25_wFC";
+        AnalyzeFilePath = "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/GENIE_Reco_Samples/C12/GEM21_11a_00_000/4029MeV_Q2_0_25_wFC";
     } else {
-        AnalyzeFilePath = "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/C12/GEM21_11a_00_000/4029MeV_Q2_0_25";
+        AnalyzeFilePath = "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/GENIE_Reco_Samples/C12/GEM21_11a_00_000/4029MeV_Q2_0_25";
     }
 
     AnalyzeFileSample = "reconhipo";

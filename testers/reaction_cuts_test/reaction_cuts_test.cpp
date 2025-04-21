@@ -124,7 +124,7 @@ void reaction_cuts_test() {
 
                     TString Beam_energy_TString = "2070MeV";
 
-                    // std::string BaseDir = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco/Uniform_e-p-n_samples";
+                    // std::string BaseDir = "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/Uniform_e-p-n_samples";
                     // std::string InputFiles, SampleName;
                     // TString Beam_energy_TString;
 
