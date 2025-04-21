@@ -26480,45 +26480,6 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     printers::SavePlotsToZipFile(Save_Plots_folder_to_zip_files, zipping_print_out, run_plots_path, settings.GetRun_dir_name());
 
-    /*     // if (Save_Plots_folder_to_zip_files) {
-        //     std::string zip_filename = settings.GetRun_dir_name() + ".zip";
-        //     std::string zip_command = "cd " + run_plots_path + " && zip -r " + zip_filename + " ./*";
-
-        //     std::cout << "\n\nMaking zip file...\n";
-        //     std::cout << "zip_filename: " << zip_filename << "\n";
-        //     std::cout << "zip_command: " << zip_command << "\n";
-
-        //     system(zip_command.c_str());
-        // }
-
-        // if (Save_Plots_folder_to_zip_files) {
-        //     // TODO: this saves the plots folder in multiple folders in the save path - fix!
-
-        //     // std::cout << "\n\nrun_plots_path: " << run_plots_path << "\n";
-        //     // std::cout << "settings.GetRun_dir_name(): " << settings.GetRun_dir_name() << "\n";
-        //     // exit(0);
-
-        //     std::string zip_filename = settings.GetRun_dir_name() + ".zip";
-        //     // std::string zip_input_path = run_plots_path;
-        //     // std::string zip_input = run_plots_path + "/" + zip_filename;
-        //     // std::string zip_output_path = run_plots_path;
-        //     std::string zip_command = "zip -r " + zip_filename + " ./*";
-        //     // std::string zip_command = "zip -r " + zip_input + " " + zip_output_path;
-
-        //     system(("cd " + run_plots_path).c_str());
-        //     system(zip_command.c_str());
-        //     system(("cd " + path_definitions::PathDefinitions.WorkingDirectory).c_str());
-
-        //     std::cout << "\n\nMaking zip file...\n";
-        //     std::cout << "zip_filename: " << zip_filename << "\n";
-        //     // std::cout << "zip_input_path: " << zip_input_path << "\n";
-        //     // std::cout << "zip_input: " << zip_input << "\n";
-        //     // std::cout << "zip_output_path: " << zip_output_path << "\n";
-        //     std::cout << "zip_command: " << zip_command << "\n";
-        //     // system(("mv -r " + run_plots_path + "/" + settings.GetRun_dir_name() + "/" + settings.GetRun_dir_name() + ".zip " + run_plots_path).c_str());
-        // }
-     */
-
 #pragma endregion
 }
 
