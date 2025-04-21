@@ -1691,7 +1691,7 @@ void nFD_eff_test() {
             if (HistoList_electron_cuts[i]->GetEntries() != 0) {
                 gPad->Update();
                 TPaletteAxis* palette = (TPaletteAxis*)HistoList_electron_cuts[i]->GetListOfFunctions()->FindObject("palette");
-                palette->SetY2NDC(0.75);
+                palette->SetY2NDC(0.65);
                 gPad->Modified();
                 gPad->Update();
             }
@@ -1774,7 +1774,7 @@ void nFD_eff_test() {
             if (HistoList[i]->GetEntries() != 0) {
                 gPad->Update();
                 TPaletteAxis* palette = (TPaletteAxis*)HistoList[i]->GetListOfFunctions()->FindObject("palette");
-                palette->SetY2NDC(0.75);
+                palette->SetY2NDC(0.65);
                 gPad->Modified();
                 gPad->Update();
             }
@@ -1870,7 +1870,7 @@ void nFD_eff_test() {
                 if (HistoList_eff_plots[i][j]->GetEntries() != 0) {
                     gPad->Update();
                     TPaletteAxis* palette = (TPaletteAxis*)HistoList_eff_plots[i][j]->GetListOfFunctions()->FindObject("palette");
-                    palette->SetY2NDC(0.75);
+                    palette->SetY2NDC(0.65);
                     gPad->Modified();
                     gPad->Update();
                 }

@@ -8,8 +8,15 @@
 #include <iostream>
 
 struct DataSample {
-    std::string SampleDir;
+    std::string SampleFilePath;
+    std::string SampleFileName;
+    std::string SampleFileDir;
+    std::string SampleFile;
     std::string SampleName;
+
+
+
+    
     std::vector<std::string> SampleRuns;
 };
 
