@@ -672,6 +672,14 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                              AMapsSettings.Nucleon_single_slice_test, AMapsSettings.TestSlices);
     }
 
+    vector<vector<double>> ElectronMomSliceLimits = (!AMapsSettings.Generate_Electron_AMaps && (aMaps_master.GetLoadedElectronMomSliceLimits().size() > 0))
+                                                        ? aMaps_master.GetLoadedElectronMomSliceLimits()
+                                                        : aMaps_master.GetElectronMomSliceLimits();
+
+    vector<vector<double>> NucleonMomSliceLimits = (!AMapsSettings.Generate_Nucleon_AMaps && (aMaps_master.GetLoadedNucleonMomSliceLimits().size() > 0))
+                                                       ? aMaps_master.GetLoadedNucleonMomSliceLimits()
+                                                       : aMaps_master.GetNucleonMomSliceLimits();
+
     debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps);
 
     // if (AMapsSettings.Generate_WMaps) {
@@ -5122,6 +5130,10 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     TH2D *hTheta_e_VS_Phi_e_1e_cut_FD = new TH2D("#theta_{e} vs. #phi_{e} (1e Cut, FD)", "#theta_{e} vs. #phi_{e} (1e Cut, FD);#phi_{e} [#circ];#theta_{e} [#circ]",
                                                  numTH2Dbins_Electron_Ang_Plots, Phi_lboundary, Phi_uboundary, numTH2Dbins_Electron_Ang_Plots, Theta_lboundary_FD, Theta_uboundary_FD);
     std::string hTheta_e_VS_Phi_e_1e_cut_FD_Dir = directories.Angle_dir_map["Theta_e_VS_Phi_e_1e_cut_Directory"];
+
+    hsPlots hTheta_e_VS_Phi_e_BySliceOf_P_e = hsPlots(ElectronMomSliceLimits, hsPlots::TH2D_TYPE, HistoList, "theta_e_VS_phi_e_BySliceOf_P_e", "#theta_{e} vs. #phi_{e} in slices of P_{e}",
+                                                      numTH2Dbins_Electron_Ang_Plots, Phi_lboundary, Phi_uboundary, numTH2Dbins_Electron_Ang_Plots, Theta_lboundary_FD, Theta_uboundary_FD);
+    std::string hTheta_e_VS_Phi_e_BySliceOf_P_e_Dir = directories.Angle_dir_map["Theta_e_VS_Phi_e_1e_cut_Directory"];
 
     /* Theta_e vs. Phi_e histograms (1p) */
     TH2D *hTheta_e_VS_Phi_e_1p_FD = new TH2D("#theta_{e} vs. #phi_{e} (All Int., 1p, FD)", "#theta_{e} vs. #phi_{e} (All Int., 1p, FD);#phi_{e} [#circ];#theta_{e} [#circ]",
@@ -13433,6 +13445,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         hTheta_e_1e_cut_FD->Fill(Theta_e, Weight);
         hPhi_e_1e_cut_FD->Fill(Phi_e, Weight);
         hTheta_e_VS_Phi_e_1e_cut_FD->Fill(Phi_e, Theta_e, Weight);
+        hTheta_e_VS_Phi_e_BySliceOf_P_e.Fill(P_e_1e_cut, Phi_e, Theta_e, Weight);
 
         FillByInt1D(hE_e_All_Int_1e_cut_FD, hE_e_QEL_1e_cut_FD, hE_e_MEC_1e_cut_FD, hE_e_RES_1e_cut_FD, hE_e_DIS_1e_cut_FD, qel, mec, res, dis, E_e_1e_cut, Weight);
         FillByInt2D(hE_e_VS_Theta_e_All_Int_1e_cut_FD, hE_e_VS_Theta_e_QEL_1e_cut_FD, hE_e_VS_Theta_e_MEC_1e_cut_FD, hE_e_VS_Theta_e_RES_1e_cut_FD, hE_e_VS_Theta_e_DIS_1e_cut_FD, qel, mec,
@@ -21312,6 +21325,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         // Theta_e vs. Phi_e plots (1e cut, FD)
         histPlotter2D(MainCanvas, hTheta_e_VS_Phi_e_1e_cut_FD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hTheta_e_VS_Phi_e_1e_cut_FD_Dir,
                       "Theta_e_VS_Phi_e_All_Int_1e_cut_FD");
+
+        hTheta_e_VS_Phi_e_BySliceOf_P_e.SaveHistograms(hTheta_e_VS_Phi_e_BySliceOf_P_e_Dir, "Theta_e_VS_Phi_e_BySliceOf_P_e");
 
         // Theta_e vs. Phi_e plots (1p, FD)
         histPlotter2D(MainCanvas, hTheta_e_VS_Phi_e_1p_FD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hTheta_e_VS_Phi_e_1p_FD_Dir, "Theta_e_VS_Phi_e_All_Int_1p_FD");

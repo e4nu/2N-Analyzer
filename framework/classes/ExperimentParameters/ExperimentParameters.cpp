@@ -88,8 +88,7 @@ string ExperimentParameters::ConfigureSampleName(const std::string &AnalyzeFileP
             if (basic_tools::FindSubstring(AnalyzeFilePath, "2070MeV")) {
                 /* 2GeV samples
                 NOTE: here '2070MeV' has to be in the sample path! */
-                if (AnalyzeFilePath ==
-                    "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/Uniform_e-p-n_samples/2070MeV/OutPut_1e") {  // Uniform 1e, simulation, 2GeV, ifarm
+                if (AnalyzeFilePath == "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/Uniform_e-p-n_samples/2070MeV/OutPut_1e") {  // Uniform 1e, simulation, 2GeV, ifarm
                     if (AnalyzeFileSample == "reconhipo") {
                         BeamAt2GeV = SimulationSample = true;
                         sName = "Uniform_1e_sample_2070MeV";
@@ -136,8 +135,7 @@ string ExperimentParameters::ConfigureSampleName(const std::string &AnalyzeFileP
             } else if (basic_tools::FindSubstring(AnalyzeFilePath, "5986MeV")) {
                 /* 6GeV samples
                 NOTE: here '5986MeV' has to be in the sample path! */
-                if (AnalyzeFilePath ==
-                    "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/Uniform_e-p-n_samples/5986MeV/OutPut_1e") {  // Uniform 1e, simulation, 6GeV, ifarm
+                if (AnalyzeFilePath == "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/Uniform_e-p-n_samples/5986MeV/OutPut_1e") {  // Uniform 1e, simulation, 6GeV, ifarm
                     if (AnalyzeFileSample == "reconhipo") {
                         BeamAt6GeV = SimulationSample = true;
                         sName = "Uniform_1e_sample_5986MeV";
@@ -280,58 +278,67 @@ string ExperimentParameters::ConfigureSampleName(const std::string &AnalyzeFileP
                 }
             }
 
-        } else if (basic_tools::FindSubstring(AnalyzeFilePath, "2N_Analysis_Reco_Samples")) {                                            // Simulation samples
+        } else if (basic_tools::FindSubstring(AnalyzeFilePath, "2N_Analysis_Reco_Samples")) {                                                               // Simulation samples
             if (basic_tools::FindSubstring(AnalyzeFilePath, "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/GENIE_Reco_Samples/C12")) {  // C12 simulation samples
                 if (basic_tools::FindSubstring(AnalyzeFilePath,
-                                               "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/GENIE_Reco_Samples/C12/G18_10a_00_000")) {             // C12, G18, simulation samples
-                    if (AnalyzeFilePath == "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/GENIE_Reco_Samples/C12/G18_10a_00_000/2070MeV_Q2_0_02") {  // C12, G18, simulation, 2GeV, ifarm
+                                               "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/GENIE_Reco_Samples/C12/G18_10a_00_000")) {  // C12, G18, simulation samples
+                    if (AnalyzeFilePath ==
+                        "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/GENIE_Reco_Samples/C12/G18_10a_00_000/2070MeV_Q2_0_02") {  // C12, G18, simulation, 2GeV, ifarm
                         if (AnalyzeFileSample == "reconhipo") {
                             BeamAt2GeV = SimulationSample = true;
-                            sName = "C12_simulation_G18_2070MeV_Q2_0_02";
+                            sName = "C12_simulation_G18_Q2_0_02_2070MeV";
                         }
                     } else if (AnalyzeFilePath ==
-                               "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/GENIE_Reco_Samples/C12/G18_10a_00_000/4029MeV_Q2_0_25") {  // C12, G18, simulation, 4GeV, ifarm
+                               "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/GENIE_Reco_Samples/C12/G18_10a_00_000/4029MeV_Q2_0_25") {  // C12, G18, simulation, 4GeV,
+                                                                                                                                                             // ifarm
                         if (AnalyzeFileSample == "reconhipo") {
                             BeamAt4GeV = SimulationSample = true;
-                            sName = "C12_simulation_G18_4029MeV_Q2_0_25";
+                            sName = "C12_simulation_G18_Q2_0_25_4029MeV";
                         }
                     } else if (AnalyzeFilePath ==
-                               "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/GENIE_Reco_Samples/C12/G18_10a_00_000/2070MeV_Q2_0_02_wFC") {  // C12, G18, simulation, 2GeV, ifarm
+                               "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/GENIE_Reco_Samples/C12/G18_10a_00_000/2070MeV_Q2_0_02_wFC") {  // C12, G18, simulation,
+                                                                                                                                                                 // 2GeV, ifarm
                         if (AnalyzeFileSample == "reconhipo") {
                             BeamAt2GeV = SimulationSample = true;
-                            sName = "C12_simulation_G18_2070MeV_Q2_0_02_wFC";
+                            sName = "C12_simulation_G18_Q2_0_02_2070MeV_wFC";
                         }
                     } else if (AnalyzeFilePath ==
-                               "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/GENIE_Reco_Samples/C12/G18_10a_00_000/4029MeV_Q2_0_25_wFC") {  // C12, G18, simulation, 4GeV, ifarm
+                               "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/GENIE_Reco_Samples/C12/G18_10a_00_000/4029MeV_Q2_0_25_wFC") {  // C12, G18, simulation,
+                                                                                                                                                                 // 4GeV, ifarm
                         if (AnalyzeFileSample == "reconhipo") {
                             BeamAt4GeV = SimulationSample = true;
-                            sName = "C12_simulation_G18_4029MeV_Q2_0_25_wFC";
+                            sName = "C12_simulation_G18_Q2_0_25_4029MeV_wFC";
                         }
                     }
-                } else if (basic_tools::FindSubstring(AnalyzeFilePath,
-                                                      "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/GENIE_Reco_Samples/C12/GEM21_11a_00_000")) {      // C12, SuSa, simulation samples
-                    if (AnalyzeFilePath == "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/GENIE_Reco_Samples/C12/GEM21_11a_00_000/2070MeV_Q2_0_02") {  // C12, SuSa, simulation, 2GeV, ifarm
+                } else if (basic_tools::FindSubstring(
+                               AnalyzeFilePath,
+                               "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/GENIE_Reco_Samples/C12/GEM21_11a_00_000")) {  // C12, SuSa, simulation samples
+                    if (AnalyzeFilePath ==
+                        "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/GENIE_Reco_Samples/C12/GEM21_11a_00_000/2070MeV_Q2_0_02") {  // C12, SuSa, simulation, 2GeV, ifarm
                         if (AnalyzeFileSample == "reconhipo") {
                             BeamAt2GeV = SimulationSample = true;
-                            sName = "C12_simulation_SuSa_2070MeV_Q2_0_02";
+                            sName = "C12_simulation_SuSa_Q2_0_02_2070MeV";
                         }
                     } else if (AnalyzeFilePath ==
-                               "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/GENIE_Reco_Samples/C12/GEM21_11a_00_000/4029MeV_Q2_0_25") {  // C12, SuSa, simulation, 4GeV, ifarm
+                               "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/GENIE_Reco_Samples/C12/GEM21_11a_00_000/4029MeV_Q2_0_25") {  // C12, SuSa, simulation, 4GeV,
+                                                                                                                                                               // ifarm
                         if (AnalyzeFileSample == "reconhipo") {
                             BeamAt4GeV = SimulationSample = true;
-                            sName = "C12_simulation_SuSa_4029MeV_Q2_0_25";
+                            sName = "C12_simulation_SuSa_Q2_0_25_4029MeV";
                         }
                     } else if (AnalyzeFilePath ==
-                               "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/GENIE_Reco_Samples/C12/GEM21_11a_00_000/2070MeV_Q2_0_02_wFC") {  // C12, SuSa, simulation, 2GeV, ifarm
+                               "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/GENIE_Reco_Samples/C12/GEM21_11a_00_000/2070MeV_Q2_0_02_wFC") {  // C12, SuSa, simulation,
+                                                                                                                                                                   // 2GeV, ifarm
                         if (AnalyzeFileSample == "reconhipo") {
                             BeamAt2GeV = SimulationSample = true;
-                            sName = "C12_simulation_SuSa_2070MeV_Q2_0_02_wFC";
+                            sName = "C12_simulation_SuSa_Q2_0_02_2070MeV_wFC";
                         }
                     } else if (AnalyzeFilePath ==
-                               "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/GENIE_Reco_Samples/C12/GEM21_11a_00_000/4029MeV_Q2_0_25_wFC") {  // C12, SuSa, simulation, 4GeV, ifarm
+                               "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/GENIE_Reco_Samples/C12/GEM21_11a_00_000/4029MeV_Q2_0_25_wFC") {  // C12, SuSa, simulation,
+                                                                                                                                                                   // 4GeV, ifarm
                         if (AnalyzeFileSample == "reconhipo") {
                             BeamAt4GeV = SimulationSample = true;
-                            sName = "C12_simulation_SuSa_4029MeV_Q2_0_25_wFC";
+                            sName = "C12_simulation_SuSa_Q2_0_25_4029MeV_wFC";
                         }
                     }
                 }
@@ -469,39 +476,22 @@ void ExperimentParameters::ConfigureVz_cuts(const std::string &sn) {
             Vz_cuts = DSCuts("Vertex z component", "", "", "1e cut", 0, -5, 5);
             Vz_cuts_FD = DSCuts("Vertex z component", "FD", "", "1e cut", 0, -5, 5);
             Vz_cuts_CD = DSCuts("Vertex z component", "CD", "", "1e cut", 0, -2, 1);
-            /*             } else if (basic_tools::FindSubstring(sn, "C12_simulation_G18_Q2") && basic_tools::FindSubstring(sn, "4GeV")) {  // 1-foil (Q2 study)
-                            Vz_cuts = DSCuts("Vertex z component", "", "", "1e cut", 0, -3.5, 2.5);
-                            Vz_cuts_FD = DSCuts("Vertex z component", "FD", "", "1e cut", 0, -3.5, 2.5);
-                            Vz_cuts_CD = DSCuts("Vertex z component", "CD", "", "1e cut", 0, -1.5, 0.5);
-                        } else if (basic_tools::FindSubstring(sn, "C12_simulation_SuSa_Q2") && basic_tools::FindSubstring(sn, "4GeV")) {  // 1-foil (Q2 study)
-                            Vz_cuts = DSCuts("Vertex z component", "", "", "1e cut", 0, -3.5, 2.5);
-                            Vz_cuts_FD = DSCuts("Vertex z component", "FD", "", "1e cut", 0, -3.5, 2.5);
-                            Vz_cuts_CD = DSCuts("Vertex z component", "CD", "", "1e cut", 0, -1.5, 0.5);
-                        } else if (basic_tools::FindSubstring(sn, "Ar40_simulation_G18_Q2") && basic_tools::FindSubstring(sn, "6GeV")) {  // argon (Q2 study)
-                            Vz_cuts = DSCuts("Vertex z component", "", "", "1e cut", 0, -8.5, -2.5);
-                            Vz_cuts_FD = DSCuts("Vertex z component", "FD", "", "1e cut", 0, -8.5, -2.5);
-                            Vz_cuts_CD = DSCuts("Vertex z component", "CD", "", "1e cut", 0, -6.5, -4);
-                        } else if (basic_tools::FindSubstring(sn, "Ar40_simulation_SuSa_Q2") && basic_tools::FindSubstring(sn, "6GeV")) {  // argon (Q2 study)
-                            Vz_cuts = DSCuts("Vertex z component", "", "", "1e cut", 0, -8.5, -2.5);
-                            Vz_cuts_FD = DSCuts("Vertex z component", "FD", "", "1e cut", 0, -8.5, -2.5);
-                            Vz_cuts_CD = DSCuts("Vertex z component", "CD", "", "1e cut", 0, -6.5, -4);
-             */
-        } else if (sn == "C12_simulation_G18_2070MeV_Q2_0_02" || sn == "C12_simulation_G18_2070MeV_Q2_0_02_wFC") {
-            Vz_cuts = DSCuts("Vertex z component", "", "", "1e cut", 0, -5, 5);
-            Vz_cuts_FD = DSCuts("Vertex z component", "FD", "", "1e cut", 0, -5, 5);
-            Vz_cuts_CD = DSCuts("Vertex z component", "CD", "", "1e cut", 0, -5, 5);
-        } else if (sn == "C12_simulation_G18_4029MeV_Q2_0_25" || sn == "C12_simulation_G18_4029MeV_Q2_0_25_wFC") {
-            Vz_cuts = DSCuts("Vertex z component", "", "", "1e cut", 0, -5, 5);
-            Vz_cuts_FD = DSCuts("Vertex z component", "FD", "", "1e cut", 0, -5, 5);
-            Vz_cuts_CD = DSCuts("Vertex z component", "CD", "", "1e cut", 0, -5, 5);
-        } else if (sn == "C12_simulation_SuSa_2070MeV_Q2_0_02" || sn == "C12_simulation_SuSa_2070MeV_Q2_0_02_wFC") {
-            Vz_cuts = DSCuts("Vertex z component", "", "", "1e cut", 0, -5, 5);
-            Vz_cuts_FD = DSCuts("Vertex z component", "FD", "", "1e cut", 0, -5, 5);
-            Vz_cuts_CD = DSCuts("Vertex z component", "CD", "", "1e cut", 0, -5, 5);
-        } else if (sn == "C12_simulation_SuSa_4029MeV_Q2_0_25" || sn == "C12_simulation_SuSa_4029MeV_Q2_0_25_wFC") {
-            Vz_cuts = DSCuts("Vertex z component", "", "", "1e cut", 0, -5, 5);
-            Vz_cuts_FD = DSCuts("Vertex z component", "FD", "", "1e cut", 0, -5, 5);
-            Vz_cuts_CD = DSCuts("Vertex z component", "CD", "", "1e cut", 0, -5, 5);
+        } else if (sn == "C12_simulation_G18_Q2_0_02_2070MeV" || sn == "C12_simulation_G18_Q2_0_02_2070MeV_wFC") {
+            Vz_cuts = DSCuts("Vertex z component", "", "", "1e cut", 0, -5, 4);
+            Vz_cuts_FD = DSCuts("Vertex z component", "FD", "", "1e cut", 0, -5, 4);
+            Vz_cuts_CD = DSCuts("Vertex z component", "CD", "", "1e cut", 0, -2, 1);
+        } else if (sn == "C12_simulation_G18_Q2_0_25_4029MeV" || sn == "C12_simulation_G18_Q2_0_25_4029MeV_wFC") {
+            Vz_cuts = DSCuts("Vertex z component", "", "", "1e cut", 0, -5, 4);
+            Vz_cuts_FD = DSCuts("Vertex z component", "FD", "", "1e cut", 0, -5, 4);
+            Vz_cuts_CD = DSCuts("Vertex z component", "CD", "", "1e cut", 0, -2, 1);
+        } else if (sn == "C12_simulation_SuSa_Q2_0_02_2070MeV" || sn == "C12_simulation_SuSa_Q2_0_02_2070MeV_wFC") {
+            Vz_cuts = DSCuts("Vertex z component", "", "", "1e cut", 0, -5, 4);
+            Vz_cuts_FD = DSCuts("Vertex z component", "FD", "", "1e cut", 0, -5, 4);
+            Vz_cuts_CD = DSCuts("Vertex z component", "CD", "", "1e cut", 0, -2, 1);
+        } else if (sn == "C12_simulation_SuSa_Q2_0_25_4029MeV" || sn == "C12_simulation_SuSa_Q2_0_25_4029MeV_wFC") {
+            Vz_cuts = DSCuts("Vertex z component", "", "", "1e cut", 0, -5, 4);
+            Vz_cuts_FD = DSCuts("Vertex z component", "FD", "", "1e cut", 0, -5, 4);
+            Vz_cuts_CD = DSCuts("Vertex z component", "CD", "", "1e cut", 0, -2, 1);
         }
     } else if (basic_tools::FindSubstring(sn, "data")) {  // Sample is data
         if (sn == "Ar40_data_2GeV_run_015672") {
@@ -576,9 +566,9 @@ void ExperimentParameters::ConfigureVz_cuts(const std::string &sn) {
 }
 #pragma endregion
 
-// ConfigureVz_cuts function -----------------------------------------------------------------------------------------------------------------------------------------
+// ConfiguredVz_cuts function -------------------------------------------------------------------------------------------------------------------------------------------
 
-#pragma region /* ConfigureVz_cuts function */
+#pragma region /* ConfiguredVz_cuts function */
 void ExperimentParameters::ConfiguredVz_cuts(const std::string &sn) {
     if (basic_tools::FindSubstring(sn, "Uniform")) {  // Sample is uniform simulation
         if (basic_tools::FindSubstring(sn, "2070MeV")) {
@@ -660,38 +650,22 @@ void ExperimentParameters::ConfiguredVz_cuts(const std::string &sn) {
             dVz_cuts = DSCuts("dVz", "", "", "1e cut", 0, -5, 4);
             dVz_cuts_FD = DSCuts("dVz", "FD", "", "1e cut", 0, -5, 4);
             dVz_cuts_CD = DSCuts("dVz", "CD", "", "1e cut", 0, -5, 4);
-        } else if (basic_tools::FindSubstring(sn, "C12_simulation_G18_Q2") && basic_tools::FindSubstring(sn, "4GeV")) {  // 1-foil (Q2 study)
-            dVz_cuts = DSCuts("dVz", "", "", "1e cut", 0, -2.5, 2.5);
-            dVz_cuts_FD = DSCuts("dVz", "FD", "", "1e cut", 0, -2.5, 2.5);
-            dVz_cuts_CD = DSCuts("dVz", "CD", "", "1e cut", 0, -2.5, 2.5);
-        } else if (basic_tools::FindSubstring(sn, "C12_simulation_SuSa_Q2") && basic_tools::FindSubstring(sn, "4GeV")) {  // 1-foil (Q2 study)
-            dVz_cuts = DSCuts("dVz", "", "", "1e cut", 0, -2.5, 2.5);
-            dVz_cuts_FD = DSCuts("dVz", "FD", "", "1e cut", 0, -2.5, 2.5);
-            dVz_cuts_CD = DSCuts("dVz", "CD", "", "1e cut", 0, -2.5, 2.5);
-        } else if (basic_tools::FindSubstring(sn, "Ar40_simulation_G18_Q2") && basic_tools::FindSubstring(sn, "6GeV")) {  // argon (Q2 study)
-            dVz_cuts = DSCuts("dVz", "", "", "1e cut", 0, -2.5, 2.5);
-            dVz_cuts_FD = DSCuts("dVz", "FD", "", "1e cut", 0, -2.5, 2.5);
-            dVz_cuts_CD = DSCuts("dVz", "CD", "", "1e cut", 0, -2.5, 2.5);
-        } else if (basic_tools::FindSubstring(sn, "Ar40_simulation_SuSa_Q2") && basic_tools::FindSubstring(sn, "6GeV")) {  // argon (Q2 study)
-            dVz_cuts = DSCuts("dVz", "", "", "1e cut", 0, -2.5, 2.5);
-            dVz_cuts_FD = DSCuts("dVz", "FD", "", "1e cut", 0, -2.5, 2.5);
-            dVz_cuts_CD = DSCuts("dVz", "CD", "", "1e cut", 0, -2.5, 2.5);
-        } else if (sn == "C12_simulation_G18_2070MeV_Q2_0_02" || sn == "C12_simulation_G18_2070MeV_Q2_0_02_wFC") {
-            dVz_cuts = DSCuts("dVz", "", "", "1e cut", 0, -8, 4);
-            dVz_cuts_FD = DSCuts("dVz", "FD", "", "1e cut", 0, -8, 4);
-            dVz_cuts_CD = DSCuts("dVz", "CD", "", "1e cut", 0, -8, 4);
-        } else if (sn == "C12_simulation_G18_4029MeV_Q2_0_25" || sn == "C12_simulation_G18_4029MeV_Q2_0_25_wFC") {
-            dVz_cuts = DSCuts("dVz", "", "", "1e cut", 0, -8, 4);
-            dVz_cuts_FD = DSCuts("dVz", "FD", "", "1e cut", 0, -8, 4);
-            dVz_cuts_CD = DSCuts("dVz", "CD", "", "1e cut", 0, -8, 4);
-        } else if (sn == "C12_simulation_SuSa_2070MeV_Q2_0_02" || sn == "C12_simulation_SuSa_2070MeV_Q2_0_02_wFC") {
-            dVz_cuts = DSCuts("dVz", "", "", "1e cut", 0, -8, 4);
-            dVz_cuts_FD = DSCuts("dVz", "FD", "", "1e cut", 0, -8, 4);
-            dVz_cuts_CD = DSCuts("dVz", "CD", "", "1e cut", 0, -8, 4);
-        } else if (sn == "C12_simulation_SuSa_4029MeV_Q2_0_25" || sn == "C12_simulation_SuSa_4029MeV_Q2_0_25_wFC") {
-            dVz_cuts = DSCuts("dVz", "", "", "1e cut", 0, -8, 4);
-            dVz_cuts_FD = DSCuts("dVz", "FD", "", "1e cut", 0, -8, 4);
-            dVz_cuts_CD = DSCuts("dVz", "CD", "", "1e cut", 0, -8, 4);
+        } else if (sn == "C12_simulation_G18_Q2_0_02_2070MeV" || sn == "C12_simulation_G18_Q2_0_02_2070MeV_wFC") {
+            dVz_cuts = DSCuts("dVz", "", "", "1e cut", 0, -6, 6);
+            dVz_cuts_FD = DSCuts("dVz", "FD", "", "1e cut", 0, -6, 6);
+            dVz_cuts_CD = DSCuts("dVz", "CD", "", "1e cut", 0, -4, 4);
+        } else if (sn == "C12_simulation_G18_Q2_0_25_4029MeV" || sn == "C12_simulation_G18_Q2_0_25_4029MeV_wFC") {
+            dVz_cuts = DSCuts("dVz", "", "", "1e cut", 0, -6, 6);
+            dVz_cuts_FD = DSCuts("dVz", "FD", "", "1e cut", 0, -6, 6);
+            dVz_cuts_CD = DSCuts("dVz", "CD", "", "1e cut", 0, -4, 4);
+        } else if (sn == "C12_simulation_SuSa_Q2_0_02_2070MeV" || sn == "C12_simulation_SuSa_Q2_0_02_2070MeV_wFC") {
+            dVz_cuts = DSCuts("dVz", "", "", "1e cut", 0, -6, 6);
+            dVz_cuts_FD = DSCuts("dVz", "FD", "", "1e cut", 0, -6, 6);
+            dVz_cuts_CD = DSCuts("dVz", "CD", "", "1e cut", 0, -4, 4);
+        } else if (sn == "C12_simulation_SuSa_Q2_0_25_4029MeV" || sn == "C12_simulation_SuSa_Q2_0_25_4029MeV_wFC") {
+            dVz_cuts = DSCuts("dVz", "", "", "1e cut", 0, -6, 6);
+            dVz_cuts_FD = DSCuts("dVz", "FD", "", "1e cut", 0, -6, 6);
+            dVz_cuts_CD = DSCuts("dVz", "CD", "", "1e cut", 0, -4, 4);
         }
     } else if (basic_tools::FindSubstring(sn, "data")) {  // Sample is data
         if (sn == "Ar40_data_2GeV_run_015672") {

@@ -38,6 +38,7 @@
     #include "../framework/classes/clas12ana/clas12ana.h"
     #include "../framework/classes/hPlots/hPlot1D.cpp"
     #include "../framework/classes/hPlots/hPlot2D.cpp"
+    #include "../framework/classes/hPlots/hsPlots.cpp"
 
     // Include CLAS12 libraries:
     #include "../framework/includes/clas12_include.h"

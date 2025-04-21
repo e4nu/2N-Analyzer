@@ -103,7 +103,7 @@ void hsPlots::SaveHistograms(const std::string& outputDir, const std::string& ba
     std::string pngFileBase = outputDir + "/png_plots/";
     system(("mkdir -p " + pngFileBase).c_str());  // Create output directory if it doesn't exist
     
-    TCanvas* canvas = new TCanvas("canvas", "Histogram Canvas", 800, 600);
+    TCanvas* canvas = new TCanvas("canvas", "Histogram Canvas", 1000, 750);
     canvas->cd()->SetGrid();
     canvas->cd()->SetBottomMargin(0.14);
     canvas->cd()->SetLeftMargin(0.18);

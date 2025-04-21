@@ -27,7 +27,7 @@ class CustomPlotsDirectory {
 
     std::string Added_PreStatuses, Added_Statuses;
 
-    std::string Global_Run_Status = "ChainRunV12_R1";
+    std::string Global_Run_Status = "ChainRunV12_R2";
 
    public:
     // Default constructor ---------------------------------------------------------------------------------------------------------------------------------------------
