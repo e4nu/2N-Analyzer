@@ -87,7 +87,7 @@ void SavePlotsToZipFile(const bool& Save_Plots_folder_to_zip_files, const bool& 
     bool PrintOut = false;
 
     if (Save_Plots_folder_to_zip_files) {
-        std::cout << "\n\nSaving plots folder to zip file...\n";
+        std::cout << "\n\n\033[33mSaving plots folder to zip file...\n\033[0m";
 
         std::string zip_filename = base_filename + ".zip";
         std::string zip_command;
@@ -106,7 +106,7 @@ void SavePlotsToZipFile(const bool& Save_Plots_folder_to_zip_files, const bool& 
             std::cout << "zip_command: " << zip_command << "\n";
         }
     } else {
-        std::cout << "\n\nSaving plots folder to zip file is disabled...\n";
+        std::cout << "\n\n\033[33mSaving plots folder to zip file is disabled...\n\033[0m";
         return;
     }
 }

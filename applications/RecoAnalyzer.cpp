@@ -215,8 +215,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     /* Final state ratio plots */
     bool FSR_1D_plots, FSR_2D_plots;  // FSR_2D_plots is disabled below if HipoChainLength is 2 or lower
 
-    bool TestRun = true;       // set as false for a full run
-    bool ApplyLimiter = true;  // set as false for a full run
+    bool TestRun = false;       // set as false for a full run
+    bool ApplyLimiter = false;  // set as false for a full run
     int Limiter = 100000;
 
     // Set enabled plots
@@ -26464,7 +26464,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     std::cout << "\033[33mSampleName:\t\t" << parameters.SampleName << "\n\033[0m";
     std::cout << "\033[33mVaryingSampleName:\t" << parameters.VaryingSampleName << "\n\n\033[0m";
 
-    std::cout << "\033[33mAnalysisCutSettings:\t\t'" << basic_tools::BoolToString(CutSettings.apply_cuts) << "'\n\033[0m";
+    std::cout << "\033[33mapply_cuts:\t\t'" << basic_tools::BoolToString(CutSettings.apply_cuts) << "'\n\033[0m";
     std::cout << "\033[33mSettings mode:\t\t'" << file_name << "'\n\n\033[0m";
 
     std::cout << "\033[33mBeam Energy:\t\t" << parameters.beamE << " [GeV]\n\033[0m";
