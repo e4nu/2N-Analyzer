@@ -24,6 +24,14 @@ hsPlots::hsPlots(const std::vector<std::vector<double>>& sliceLimits, HistoType 
     : SliceLimits(sliceLimits), histoType(type) {
     bool PrintOut = false;
 
+    // Add an additional slice to account for momentum (of any other slice variable) resolution effects that cause it to be greater than the upper threshold (BeamE for momentum):
+    if (!SliceLimits.empty() && SliceLimits.back().size() == 2) {
+        SliceLimits.push_back({SliceLimits.back()[1], 9999});
+    } else {
+        std::cerr << "hsPlots constructor: ERROR: Cannot append last slice. SliceLimits is empty or malformed.\n";
+        exit(1);
+    }
+
     auto slice_var_pair = basic_tools::splitVarAndUnits(slice_var);  // Slice variable = slice_var_pair.first and [units] = slice_var_pair.second
 
     int count = 0;
