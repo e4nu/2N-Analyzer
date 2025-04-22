@@ -7,9 +7,6 @@
 
 #include "hsPlots.h"
 
-#include <iostream>
-#include <sstream>
-
 // hsPlots constructor --------------------------------------------------------------------------------------------------------------------------------------------------
 
 // Constructor to initialize the hsPlots object
@@ -178,6 +175,9 @@ void hsPlots::Fill(double sliceVar, double x, double y, double weight) {
 // This function saves the histograms to a multipage PDF file and individual PNG files.
 // It takes the output directory and base file name as parameters.
 void hsPlots::SaveHistograms(const std::string& outputDir, const std::string& baseFileName) const {
+    double x_1 = 0.18, y_1 = 0.3, x_2 = 0.86, y_2 = 0.7;
+    double diplayTextSize = 0.1;
+
     std::string PDF_File = outputDir + "/" + baseFileName + ".pdf";
     std::string PNG_Files_Base_Directory = outputDir + "/PNG_plots_" + baseFileName + "/";
     system(("mkdir -p " + PNG_Files_Base_Directory).c_str());  // Create output directory if it doesn't exist
@@ -210,10 +210,35 @@ void hsPlots::SaveHistograms(const std::string& outputDir, const std::string& ba
         hist->GetYaxis()->CenterTitle(true);
 
         if (hist->InheritsFrom("TH2")) {
+            if (hist->Integral() == 0. || hist->GetEntries() == 0) {
+                DrawEmptyHistogramNotice(x_1, y_1, x_2, y_2, diplayTextSize);
+                // TPaveText* displayText = new TPaveText(x_1, y_1, x_2, y_2, "NDC");
+                // displayText->SetTextSize(diplayTextSize);
+                // displayText->SetFillColor(0);
+                // displayText->AddText("Empty histogram");
+                // displayText->SetTextAlign(22);
+                // displayText->Draw();
+            }
+
             hist->Draw("colz");
         } else if (hist->InheritsFrom("TH1")) {
-            hist->Draw("hist");
+            if (hist->Integral() == 0. || hist->GetEntries() == 0) {
+                DrawEmptyHistogramNotice(x_1, y_1, x_2, y_2, diplayTextSize);
+                // TPaveText* displayText = new TPaveText(x_1, y_1, x_2, y_2, "NDC");
+                // displayText->SetTextSize(diplayTextSize);
+                // displayText->SetFillColor(0);
+                // displayText->AddText("Empty histogram");
+                // displayText->SetTextAlign(22);
+                // displayText->Draw();
+            }
+
+            hist->Draw();
         }
+        // if (hist->InheritsFrom("TH2")) {
+        //     hist->Draw("colz");
+        // } else if (hist->InheritsFrom("TH1")) {
+        //     hist->Draw("hist");
+        // }
 
         // Save to PDF page
         canvas->Print(PDF_File.c_str());

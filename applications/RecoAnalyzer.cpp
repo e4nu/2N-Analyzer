@@ -25496,7 +25496,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     //         if (h2->GetEntries() != 0) {
     //             gPad->Update();
     //             TPaletteAxis *palette = (TPaletteAxis *)h2->GetListOfFunctions()->FindObject("palette");
-    //             if (palette) palette->SetY2NDC(0.65);
+    //             if (palette) palette->SetY2NDC(0.60);
     //             gPad->Modified();
     //             gPad->Update();
     //         }

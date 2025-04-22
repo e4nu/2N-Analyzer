@@ -68,6 +68,18 @@ class hsPlots {
     // FindSliceIndex function ------------------------------------------------------------------------------------------------------------------------------------------
 
     int FindSliceIndex(double value);
+
+    // DrawEmptyHistogramNotice function --------------------------------------------------------------------------------------------------------------------------------
+
+    // This function saves some reusable code. It is also defined in histograms_functions, yet it is placed here to avoid include errors
+    void DrawEmptyHistogramNotice(double x_1, double y_1, double x_2, double y_2, double diplayTextSize = 0.1) {
+        TPaveText* displayText = new TPaveText(x_1, y_1, x_2, y_2, "NDC");
+        displayText->SetTextSize(diplayTextSize);
+        displayText->SetFillColor(0);
+        displayText->AddText("Empty histogram");
+        displayText->SetTextAlign(22);
+        displayText->Draw();
+    }
 };
 
 #endif  // HSPLOTS_H
