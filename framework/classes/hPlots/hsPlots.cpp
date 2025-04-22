@@ -41,8 +41,10 @@ hsPlots::hsPlots(const std::vector<std::vector<double>>& sliceLimits, HistoType 
         }
 
         std::ostringstream name, title;
-        name << baseName << "_slice_" << count;
-        title << "#splitline{ " << titleTemplate << " }{ (" << range[0] << " to " << range[1] << ") }";
+        name << baseName << "_slice_from_" << basic_tools::ToStringWithPrecision(range.at(0), 2) << "_to_" << basic_tools::ToStringWithPrecision(range.at(1), 2);
+        // name << baseName << "_slice_" << count;
+        title << "#splitline{ " << titleTemplate << " }{ (" << basic_tools::ToStringWithPrecision(range.at(0), 2) << " to " << basic_tools::ToStringWithPrecision(range.at(1), 2) << ") }";
+        // title << "#splitline{ " << titleTemplate << " }{ (" << range[0] << " to " << range[1] << ") }";
 
         if (histoType == TH1D_TYPE) {
             SlicedHistoList.push_back(new TH1D(name.str().c_str(), title.str().c_str(), nbinsX, xlow, xup));
@@ -99,17 +101,18 @@ void hsPlots::Fill(double sliceVar, double x, double y, double weight) {
 // This function saves the histograms to a multipage PDF file and individual PNG files.
 // It takes the output directory and base file name as parameters.
 void hsPlots::SaveHistograms(const std::string& outputDir, const std::string& baseFileName) const {
-    std::string pdfFile = outputDir + "/" + baseFileName + ".pdf";
-    std::string pngFileBase = outputDir + "/png_plots/";
-    system(("mkdir -p " + pngFileBase).c_str());  // Create output directory if it doesn't exist
-    
+    std::string PDF_File = outputDir + "/" + baseFileName + ".pdf";
+    std::string PNG_Files_Base_Directory = outputDir + "/PNG_plots_" + baseFileName + "/";
+    system(("mkdir -p " + PNG_Files_Base_Directory).c_str());  // Create output directory if it doesn't exist
+
     TCanvas* canvas = new TCanvas("canvas", "Histogram Canvas", 1000, 750);
     canvas->cd()->SetGrid();
+    canvas->cd()->SetTopMargin(0.14);
     canvas->cd()->SetBottomMargin(0.14);
     canvas->cd()->SetLeftMargin(0.18);
     canvas->cd()->SetRightMargin(0.12);
 
-    canvas->Print((pdfFile + "[").c_str());  // Open multipage PDF
+    canvas->Print((PDF_File + "[").c_str());  // Open multipage PDF
 
     for (size_t i = 0; i < SlicedHistoList.size(); ++i) {
         canvas->cd();
@@ -136,14 +139,14 @@ void hsPlots::SaveHistograms(const std::string& outputDir, const std::string& ba
         }
 
         // Save to PDF page
-        canvas->Print(pdfFile.c_str());
+        canvas->Print(PDF_File.c_str());
 
         // Save PNG (single underscore version)
-        std::string pngName = pngFileBase + "/" + baseFileName + "_" + std::to_string(i) + ".png";
-        canvas->SaveAs(pngName.c_str());
+        std::string PNG_File = PNG_Files_Base_Directory + "/" + std::to_string(i) + "_" + hist->GetName() + ".png";
+        canvas->SaveAs(PNG_File.c_str());
     }
 
-    canvas->Print((pdfFile + "]").c_str());  // Close multipage PDF
+    canvas->Print((PDF_File + "]").c_str());  // Close multipage PDF
 
     delete canvas;
 }
