@@ -34,8 +34,8 @@ class hsPlots {
 
     // hsPlots constructor ----------------------------------------------------------------------------------------------------------------------------------------------
 
-    hsPlots(const std::vector<std::vector<double>>& sliceLimits, HistoType type, std::vector<TObject*>& HistoList, const std::string& baseName, const std::string& titleTemplate, int nbinsX,
-            double xlow, double xup, int nbinsY, double ylow, double yup);
+    hsPlots(const std::vector<std::vector<double>>& sliceLimits, HistoType type, std::vector<TObject*>& HistoList, const std::string& baseName, const std::string& titleTemplate,
+            const int& nbinsX, const double& xlow, const double& xup, const int& nbinsY, const double& ylow, const double& yup, std::string slice_var);
 
     // hsPlots Destructor -----------------------------------------------------------------------------------------------------------------------------------------------
 

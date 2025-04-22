@@ -20,9 +20,11 @@
 // The constructor also takes a vector of TObject pointers (HistoList) to store the created histograms.
 // The histograms are named using the base name and the slice index, and the titles are generated using the title template and the slice limits.
 hsPlots::hsPlots(const std::vector<std::vector<double>>& sliceLimits, HistoType type, std::vector<TObject*>& HistoList, const std::string& baseName, const std::string& titleTemplate,
-                 int nbinsX, double xlow, double xup, int nbinsY, double ylow, double yup)
+                 const int& nbinsX, const double& xlow, const double& xup, const int& nbinsY, const double& ylow, const double& yup, std::string slice_var)
     : SliceLimits(sliceLimits), histoType(type) {
     bool PrintOut = false;
+
+    auto slice_var_pair = basic_tools::splitVarAndUnits(slice_var);  // Slice variable = slice_var_pair.first and [units] = slice_var_pair.second
 
     int count = 0;
 
@@ -31,6 +33,8 @@ hsPlots::hsPlots(const std::vector<std::vector<double>>& sliceLimits, HistoType 
         std::cout << "hsPlots constructor: histoType = " << histoType << std::endl;
         std::cout << "hsPlots constructor: baseName = " << baseName << std::endl;
         std::cout << "hsPlots constructor: titleTemplate = " << titleTemplate << std::endl;
+        std::cout << "hsPlots constructor: slice_var_pair.first = " << slice_var_pair.first << std::endl;
+        std::cout << "hsPlots constructor: slice_var_pair.second = " << slice_var_pair.second << std::endl;
     }
 
     // Create histograms based on the provided slice limits
@@ -43,7 +47,8 @@ hsPlots::hsPlots(const std::vector<std::vector<double>>& sliceLimits, HistoType 
         std::ostringstream name, title;
         name << baseName << "_slice_from_" << basic_tools::ToStringWithPrecision(range.at(0), 2) << "_to_" << basic_tools::ToStringWithPrecision(range.at(1), 2);
         // name << baseName << "_slice_" << count;
-        title << "#splitline{ " << titleTemplate << " }{ (" << basic_tools::ToStringWithPrecision(range.at(0), 2) << " to " << basic_tools::ToStringWithPrecision(range.at(1), 2) << ") }";
+        title << "#splitline{ " << titleTemplate << " }{ " << basic_tools::ToStringWithPrecision(range.at(0), 2) << "#leq" << slice_var_pair.first << "#leq"
+              << basic_tools::ToStringWithPrecision(range.at(1), 2) << " " + slice_var_pair.second + " }";
         // title << "#splitline{ " << titleTemplate << " }{ (" << range[0] << " to " << range[1] << ") }";
 
         if (histoType == TH1D_TYPE) {

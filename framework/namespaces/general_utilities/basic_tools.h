@@ -12,12 +12,15 @@
 #include <sys/socket.h>
 #include <unistd.h>  // for getcwd
 
+#include <algorithm>
+#include <cctype>
 #include <cstdlib>  // for getenv
 #include <cstring>  // for strtok, strcpy
 #include <fstream>
 #include <iostream>
 #include <sstream>  // for std::ostringstream
 #include <string>
+#include <utility>
 
 namespace basic_tools {
 
@@ -130,6 +133,31 @@ std::string ToStringWithPrecision(const A a_value, const int n = 2) {
 // FindSubstring function -----------------------------------------------------------------------------------------------------------------------------------------------
 
 inline bool FindSubstring(const std::string &string1, const std::string &string2) { return string1.find(string2) != std::string::npos; }
+
+// trim function --------------------------------------------------------------------------------------------------------------------------------------------------------
+
+// A function that trims leading and trailing spaces from a string
+std::string trim(const std::string &str) {
+    size_t first = str.find_first_not_of(" \t");
+    if (first == std::string::npos) return "";
+    size_t last = str.find_last_not_of(" \t");
+    return str.substr(first, last - first + 1);
+}
+
+// splitVarAndUnits function --------------------------------------------------------------------------------------------------------------------------------------------
+
+// A function that splits a string of the form "<var> [<units>]" into a pair: {"<var>", "[<units>]"}
+std::pair<std::string, std::string> splitVarAndUnits(const std::string& input) {
+    size_t bracketPos = input.find('[');
+    if (bracketPos == std::string::npos) {
+        return {trim(input), ""};  // No units found
+    }
+
+    std::string var = input.substr(0, bracketPos);
+    std::string units = input.substr(bracketPos);
+
+    return {trim(var), trim(units)};
+}
 
 // GetBeamEnergyFromString function -------------------------------------------------------------------------------------------------------------------------------------
 

@@ -4128,16 +4128,16 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     // W histograms
 
     // W plots (1e cut, CD & FD)
-    THStack *sW_1e_cut = new THStack("W distribution (All Int., 1e Cut)", "W distribution (1e Cut);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];");
-    TH1D *hW_All_Int_1e_cut = new TH1D("W distribution (All Int., 1e Cut)", "W distribution (All Int., 1e Cut);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];",
+    THStack *sW_1e_cut = new THStack("W distribution (All Int., 1e cut)", "W distribution (1e cut);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];");
+    TH1D *hW_All_Int_1e_cut = new TH1D("W distribution (All Int., 1e cut)", "W distribution (All Int., 1e cut);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];",
                                        numTH1Dbins_W_Plots, W_lboundary, W_uboundary);
-    TH1D *hW_QEL_1e_cut = new TH1D("W distribution (QEL only, 1e Cut)", "W distribution (QEL only, 1e Cut);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];",
+    TH1D *hW_QEL_1e_cut = new TH1D("W distribution (QEL only, 1e cut)", "W distribution (QEL only, 1e cut);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];",
                                    numTH1Dbins_W_Plots, W_lboundary, W_uboundary);
-    TH1D *hW_MEC_1e_cut = new TH1D("W distribution (MEC only, 1e Cut)", "W distribution (MEC only, 1e Cut);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];",
+    TH1D *hW_MEC_1e_cut = new TH1D("W distribution (MEC only, 1e cut)", "W distribution (MEC only, 1e cut);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];",
                                    numTH1Dbins_W_Plots, W_lboundary, W_uboundary);
-    TH1D *hW_RES_1e_cut = new TH1D("W distribution (RES only, 1e Cut)", "W distribution (RES only, 1e Cut);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];",
+    TH1D *hW_RES_1e_cut = new TH1D("W distribution (RES only, 1e cut)", "W distribution (RES only, 1e cut);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];",
                                    numTH1Dbins_W_Plots, W_lboundary, W_uboundary);
-    TH1D *hW_DIS_1e_cut = new TH1D("W distribution (DIS only, 1e Cut)", "W distribution (DIS only, 1e Cut);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];",
+    TH1D *hW_DIS_1e_cut = new TH1D("W distribution (DIS only, 1e cut)", "W distribution (DIS only, 1e cut);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];",
                                    numTH1Dbins_W_Plots, W_lboundary, W_uboundary);
     std::string sW_1e_cut_Dir = directories.W_dir_map["W_1e_cut_Directory"];
     std::string hW_All_Int_1e_cut_Dir = directories.W_dir_map["W_1e_cut_Directory"];
@@ -4147,31 +4147,31 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     std::string hW_DIS_1e_cut_Dir = directories.W_dir_map["W_1e_cut_Directory"];
 
     TH2D *hW_VS_q_3v_1e_cut =
-        new TH2D("W vs. |#font[62]{q}| (All Int., 1e Cut)", "W vs. |#font[62]{q}| (All Int., 1e Cut);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];q [GeV/c]",
+        new TH2D("W vs. |#font[62]{q}| (All Int., 1e cut)", "W vs. |#font[62]{q}| (All Int., 1e cut);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];q [GeV/c]",
                  numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
     TH2D *hW_VS_q_3v_QEL_1e_cut =
-        new TH2D("W vs. |#font[62]{q}| (QE Only, 1e Cut)", "W vs. |#font[62]{q}| (QE Only, 1e Cut);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];q [GeV/c]",
+        new TH2D("W vs. |#font[62]{q}| (QE Only, 1e cut)", "W vs. |#font[62]{q}| (QE Only, 1e cut);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];q [GeV/c]",
                  numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
     TH2D *hW_VS_q_3v_MEC_1e_cut =
-        new TH2D("W vs. |#font[62]{q}| (MEC Only, 1e Cut)", "W vs. |#font[62]{q}| (MEC Only, 1e Cut);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];q [GeV/c]",
+        new TH2D("W vs. |#font[62]{q}| (MEC Only, 1e cut)", "W vs. |#font[62]{q}| (MEC Only, 1e cut);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];q [GeV/c]",
                  numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
     TH2D *hW_VS_q_3v_RES_1e_cut =
-        new TH2D("W vs. |#font[62]{q}| (RES Only, 1e Cut)", "W vs. |#font[62]{q}| (RES Only, 1e Cut);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];q [GeV/c]",
+        new TH2D("W vs. |#font[62]{q}| (RES Only, 1e cut)", "W vs. |#font[62]{q}| (RES Only, 1e cut);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];q [GeV/c]",
                  numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
     TH2D *hW_VS_q_3v_DIS_1e_cut =
-        new TH2D("W vs. |#font[62]{q}| (DIS Only, 1e Cut)", "W vs. |#font[62]{q}| (DIS Only, 1e Cut);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];q [GeV/c]",
+        new TH2D("W vs. |#font[62]{q}| (DIS Only, 1e cut)", "W vs. |#font[62]{q}| (DIS Only, 1e cut);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];q [GeV/c]",
                  numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
     std::string hW_VS_q_3v_1e_cut_Dir = directories.W_dir_map["W_1e_cut_Directory"];
 
-    TH2D *hW_VS_omega_1e_cut = new TH2D("W vs. #omega (All Int., 1e Cut)", "W vs. #omega (All Int., 1e Cut);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];#omega [GeV]",
+    TH2D *hW_VS_omega_1e_cut = new TH2D("W vs. #omega (All Int., 1e cut)", "W vs. #omega (All Int., 1e cut);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];#omega [GeV]",
                                         numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
-    TH2D *hW_VS_omega_QEL_1e_cut = new TH2D("W vs. #omega (QE Only, 1e Cut)", "W vs. #omega (QE Only, 1e Cut);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];#omega [GeV]",
+    TH2D *hW_VS_omega_QEL_1e_cut = new TH2D("W vs. #omega (QE Only, 1e cut)", "W vs. #omega (QE Only, 1e cut);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];#omega [GeV]",
                                             numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
-    TH2D *hW_VS_omega_MEC_1e_cut = new TH2D("W vs. #omega (MEC Only, 1e Cut)", "W vs. #omega (MEC Only, 1e Cut);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];#omega [GeV]",
+    TH2D *hW_VS_omega_MEC_1e_cut = new TH2D("W vs. #omega (MEC Only, 1e cut)", "W vs. #omega (MEC Only, 1e cut);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];#omega [GeV]",
                                             numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
-    TH2D *hW_VS_omega_RES_1e_cut = new TH2D("W vs. #omega (RES Only, 1e Cut)", "W vs. #omega (RES Only, 1e Cut);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];#omega [GeV]",
+    TH2D *hW_VS_omega_RES_1e_cut = new TH2D("W vs. #omega (RES Only, 1e cut)", "W vs. #omega (RES Only, 1e cut);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];#omega [GeV]",
                                             numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
-    TH2D *hW_VS_omega_DIS_1e_cut = new TH2D("W vs. #omega (DIS Only, 1e Cut)", "W vs. #omega (DIS Only, 1e Cut);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];#omega [GeV]",
+    TH2D *hW_VS_omega_DIS_1e_cut = new TH2D("W vs. #omega (DIS Only, 1e cut)", "W vs. #omega (DIS Only, 1e cut);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];#omega [GeV]",
                                             numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
     std::string hW_VS_omega_1e_cut_Dir = directories.W_dir_map["W_1e_cut_Directory"];
 
@@ -4869,7 +4869,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     // Theta_e histograms (1e cut)
     TH1D *hTheta_e_1e_cut_FD =
-        new TH1D("#theta_{e} (1e Cut, FD)", "#theta_{e} of Outgoing Electron (1e Cut, FD);#theta_{e} [#circ];", numTH1Dbins_Ang_Plots, Theta_lboundary_FD, Theta_uboundary_FD);
+        new TH1D("#theta_{e} (1e cut, FD)", "#theta_{e} of Outgoing Electron (1e cut, FD);#theta_{e} [#circ];", numTH1Dbins_Ang_Plots, Theta_lboundary_FD, Theta_uboundary_FD);
     std::string hTheta_e_1e_cut_FD_Dir = directories.Angle_dir_map["Theta_e_1e_cut_Directory"];
 
     // Theta_e histograms (1p)
@@ -5000,7 +5000,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     std::string hPhi_e_All_e_FD_Dir = directories.Angle_dir_map["Phi_e_All_e_Directory"];
 
     // Phi_e histograms (1e cut)
-    TH1D *hPhi_e_1e_cut_FD = new TH1D("#phi_{e} (1e Cut, FD)", "#phi_{e} of Outgoing Electron (All Int., 1e Cut, FD);#phi_{e} [#circ];", numTH1Dbins_Ang_Plots, Phi_lboundary, Phi_uboundary);
+    TH1D *hPhi_e_1e_cut_FD = new TH1D("#phi_{e} (1e cut, FD)", "#phi_{e} of Outgoing Electron (All Int., 1e cut, FD);#phi_{e} [#circ];", numTH1Dbins_Ang_Plots, Phi_lboundary, Phi_uboundary);
     std::string hPhi_e_1e_cut_FD_Dir = directories.Angle_dir_map["Phi_e_1e_cut_Directory"];
 
     // Phi_e histograms (1p)
@@ -5127,13 +5127,39 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     std::string hTheta_e_VS_Phi_e_All_e_FD_Dir = directories.Angle_dir_map["Theta_e_VS_Phi_e_All_e_Directory"];
 
     /* Theta_e vs. Phi_e histograms (1e cut) */
-    TH2D *hTheta_e_VS_Phi_e_1e_cut_FD = new TH2D("#theta_{e} vs. #phi_{e} (1e Cut, FD)", "#theta_{e} vs. #phi_{e} (1e Cut, FD);#phi_{e} [#circ];#theta_{e} [#circ]",
+    TH2D *hTheta_e_VS_Phi_e_1e_cut_FD = new TH2D("#theta_{e} vs. #phi_{e} (1e cut, FD)", "#theta_{e} vs. #phi_{e} (1e cut, FD);#phi_{e} [#circ];#theta_{e} [#circ]",
                                                  numTH2Dbins_Electron_Ang_Plots, Phi_lboundary, Phi_uboundary, numTH2Dbins_Electron_Ang_Plots, Theta_lboundary_FD, Theta_uboundary_FD);
     std::string hTheta_e_VS_Phi_e_1e_cut_FD_Dir = directories.Angle_dir_map["Theta_e_VS_Phi_e_1e_cut_Directory"];
 
-    hsPlots hTheta_e_VS_Phi_e_BySliceOf_P_e = hsPlots(ElectronMomSliceLimits, hsPlots::TH2D_TYPE, HistoList, "theta_e_VS_phi_e_BySliceOf_P_e", "#theta_{e} vs. #phi_{e} in slices of P_{e}",
-                                                      numTH2Dbins_Electron_Ang_Plots, Phi_lboundary, Phi_uboundary, numTH2Dbins_Electron_Ang_Plots, Theta_lboundary_FD, Theta_uboundary_FD);
-    std::string hTheta_e_VS_Phi_e_BySliceOf_P_e_Dir = directories.Angle_dir_map["Theta_e_VS_Phi_e_1e_cut_Directory"];
+    hsPlots hTheta_e_VS_Phi_e_BySliceOf_P_e_All_Int_1e_cut_FD =
+        hsPlots(ElectronMomSliceLimits, hsPlots::TH2D_TYPE, HistoList, "Theta_e_VS_Phi_e_BySliceOf_P_e_All_Int_1e_cut_FD",
+                "#theta_{e} vs. #phi_{e} in slices of P_{e} (All Int., 1e cut, FD);#phi_{e} [#circ];#theta_{e} [#circ]", numTH2Dbins_Electron_Ang_Plots, Phi_lboundary, Phi_uboundary,
+                numTH2Dbins_Electron_Ang_Plots, Theta_lboundary_FD, Theta_uboundary_FD, "P_{e} [GeV/c]");
+    std::string hTheta_e_VS_Phi_e_BySliceOf_P_e_All_Int_1e_cut_FD_Dir = directories.Angle_dir_map["Theta_e_VS_Phi_e_1e_cut_Directory"];
+
+    hsPlots hTheta_e_VS_Phi_e_BySliceOf_P_e_QEL_1e_cut_FD =
+        hsPlots(ElectronMomSliceLimits, hsPlots::TH2D_TYPE, HistoList, "Theta_e_VS_Phi_e_BySliceOf_P_e_QEL_1e_cut_FD",
+                "#theta_{e} vs. #phi_{e} in slices of P_{e} (QEL only, 1e cut, FD);#phi_{e} [#circ];#theta_{e} [#circ]", numTH2Dbins_Electron_Ang_Plots, Phi_lboundary, Phi_uboundary,
+                numTH2Dbins_Electron_Ang_Plots, Theta_lboundary_FD, Theta_uboundary_FD, "P_{e} [GeV/c]");
+    std::string hTheta_e_VS_Phi_e_BySliceOf_P_e_QEL_1e_cut_FD_Dir = directories.Angle_dir_map["Theta_e_VS_Phi_e_1e_cut_Directory"];
+
+    hsPlots hTheta_e_VS_Phi_e_BySliceOf_P_e_MEC_1e_cut_FD =
+        hsPlots(ElectronMomSliceLimits, hsPlots::TH2D_TYPE, HistoList, "Theta_e_VS_Phi_e_BySliceOf_P_e_MEC_1e_cut_FD",
+                "#theta_{e} vs. #phi_{e} in slices of P_{e} (MEC only, 1e cut, FD);#phi_{e} [#circ];#theta_{e} [#circ]", numTH2Dbins_Electron_Ang_Plots, Phi_lboundary, Phi_uboundary,
+                numTH2Dbins_Electron_Ang_Plots, Theta_lboundary_FD, Theta_uboundary_FD, "P_{e} [GeV/c]");
+    std::string hTheta_e_VS_Phi_e_BySliceOf_P_e_MEC_1e_cut_FD_Dir = directories.Angle_dir_map["Theta_e_VS_Phi_e_1e_cut_Directory"];
+
+    hsPlots hTheta_e_VS_Phi_e_BySliceOf_P_e_RES_1e_cut_FD =
+        hsPlots(ElectronMomSliceLimits, hsPlots::TH2D_TYPE, HistoList, "Theta_e_VS_Phi_e_BySliceOf_P_e_RES_1e_cut_FD",
+                "#theta_{e} vs. #phi_{e} in slices of P_{e} (RES only, 1e cut, FD);#phi_{e} [#circ];#theta_{e} [#circ]", numTH2Dbins_Electron_Ang_Plots, Phi_lboundary, Phi_uboundary,
+                numTH2Dbins_Electron_Ang_Plots, Theta_lboundary_FD, Theta_uboundary_FD, "P_{e} [GeV/c]");
+    std::string hTheta_e_VS_Phi_e_BySliceOf_P_e_RES_1e_cut_FD_Dir = directories.Angle_dir_map["Theta_e_VS_Phi_e_1e_cut_Directory"];
+
+    hsPlots hTheta_e_VS_Phi_e_BySliceOf_P_e_DIS_1e_cut_FD =
+        hsPlots(ElectronMomSliceLimits, hsPlots::TH2D_TYPE, HistoList, "Theta_e_VS_Phi_e_BySliceOf_P_e_DIS_1e_cut_FD",
+                "#theta_{e} vs. #phi_{e} in slices of P_{e} (DIS only, 1e cut, FD);#phi_{e} [#circ];#theta_{e} [#circ]", numTH2Dbins_Electron_Ang_Plots, Phi_lboundary, Phi_uboundary,
+                numTH2Dbins_Electron_Ang_Plots, Theta_lboundary_FD, Theta_uboundary_FD, "P_{e} [GeV/c]");
+    std::string hTheta_e_VS_Phi_e_BySliceOf_P_e_DIS_1e_cut_FD_Dir = directories.Angle_dir_map["Theta_e_VS_Phi_e_1e_cut_Directory"];
 
     /* Theta_e vs. Phi_e histograms (1p) */
     TH2D *hTheta_e_VS_Phi_e_1p_FD = new TH2D("#theta_{e} vs. #phi_{e} (All Int., 1p, FD)", "#theta_{e} vs. #phi_{e} (All Int., 1p, FD);#phi_{e} [#circ];#theta_{e} [#circ]",
@@ -6707,79 +6733,79 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     std::string hq_3v_All_e_Dir = directories.Momentum_transfer_dir_map["Momentum_transfer_All_e_Directory"];
 
     // Momentum transfer histograms (1e cut)
-    THStack *sQ2_1e_cut = new THStack("Q^{2} (1e Cut ,CD & FD)", "Q^{2} Histogram (1e Cut, CD & FD);Q^{2} [GeV^{2}/c^{2}];");
-    TH1D *hQ2_1e_cut = new TH1D("Q^{2} (1e Cut, FD)", "Q^{2} (1e Cut, FD);Q^{2} [GeV^{2}/c^{2}];", numTH1Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
+    THStack *sQ2_1e_cut = new THStack("Q^{2} (1e cut ,CD & FD)", "Q^{2} Histogram (1e cut, CD & FD);Q^{2} [GeV^{2}/c^{2}];");
+    TH1D *hQ2_1e_cut = new TH1D("Q^{2} (1e cut, FD)", "Q^{2} (1e cut, FD);Q^{2} [GeV^{2}/c^{2}];", numTH1Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
     TH1D *hQ2_QEL_1e_cut =
-        new TH1D("Q^{2} (QE Only, 1e Cut, FD)", "Q^{2} (QE Only, 1e Cut, FD);Q^{2} [GeV^{2}/c^{2}];", numTH1Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
+        new TH1D("Q^{2} (QE Only, 1e cut, FD)", "Q^{2} (QE Only, 1e cut, FD);Q^{2} [GeV^{2}/c^{2}];", numTH1Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
     TH1D *hQ2_MEC_1e_cut =
-        new TH1D("Q^{2} (MEC Only, 1e Cut, FD)", "Q^{2} (MEC Only, 1e Cut, FD);Q^{2} [GeV^{2}/c^{2}];", numTH1Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
+        new TH1D("Q^{2} (MEC Only, 1e cut, FD)", "Q^{2} (MEC Only, 1e cut, FD);Q^{2} [GeV^{2}/c^{2}];", numTH1Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
     TH1D *hQ2_RES_1e_cut =
-        new TH1D("Q^{2} (RES Only, 1e Cut, FD)", "Q^{2} (RES Only, 1e Cut, FD);Q^{2} [GeV^{2}/c^{2}];", numTH1Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
+        new TH1D("Q^{2} (RES Only, 1e cut, FD)", "Q^{2} (RES Only, 1e cut, FD);Q^{2} [GeV^{2}/c^{2}];", numTH1Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
     TH1D *hQ2_DIS_1e_cut =
-        new TH1D("Q^{2} (DIS Only, 1e Cut, FD)", "Q^{2} (DIS Only, 1e Cut, FD);Q^{2} [GeV^{2}/c^{2}];", numTH1Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
+        new TH1D("Q^{2} (DIS Only, 1e cut, FD)", "Q^{2} (DIS Only, 1e cut, FD);Q^{2} [GeV^{2}/c^{2}];", numTH1Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
     std::string hQ2_1e_cut_Dir = directories.Momentum_transfer_dir_map["Momentum_transfer_1e_cut_Directory"];
 
-    THStack *sq_3v_1e_cut = new THStack("q = |#font[62]{q}| (1e Cut, CD & FD)", "q = |#font[62]{q}| Histogram (1e Cut, CD & FD);q [GeV/c];");
-    TH1D *hq_3v_1e_cut = new TH1D("q = |#font[62]{q}| (1e Cut, FD)", "q = |#font[62]{q}| (1e Cut, FD);q [GeV/c];", numTH1Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
+    THStack *sq_3v_1e_cut = new THStack("q = |#font[62]{q}| (1e cut, CD & FD)", "q = |#font[62]{q}| Histogram (1e cut, CD & FD);q [GeV/c];");
+    TH1D *hq_3v_1e_cut = new TH1D("q = |#font[62]{q}| (1e cut, FD)", "q = |#font[62]{q}| (1e cut, FD);q [GeV/c];", numTH1Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
     TH1D *hq_3v_QEL_1e_cut =
-        new TH1D("q = |#font[62]{q}| (QE Only, 1e Cut, FD)", "q = |#font[62]{q}| (QE Only, 1e Cut, FD);q [GeV/c];", numTH1Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
+        new TH1D("q = |#font[62]{q}| (QE Only, 1e cut, FD)", "q = |#font[62]{q}| (QE Only, 1e cut, FD);q [GeV/c];", numTH1Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
     TH1D *hq_3v_MEC_1e_cut =
-        new TH1D("q = |#font[62]{q}| (MEC Only, 1e Cut, FD)", "q = |#font[62]{q}| (MEC Only, 1e Cut, FD);q [GeV/c];", numTH1Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
+        new TH1D("q = |#font[62]{q}| (MEC Only, 1e cut, FD)", "q = |#font[62]{q}| (MEC Only, 1e cut, FD);q [GeV/c];", numTH1Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
     TH1D *hq_3v_RES_1e_cut =
-        new TH1D("q = |#font[62]{q}| (RES Only, 1e Cut, FD)", "q = |#font[62]{q}| (RES Only, 1e Cut, FD);q [GeV/c];", numTH1Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
+        new TH1D("q = |#font[62]{q}| (RES Only, 1e cut, FD)", "q = |#font[62]{q}| (RES Only, 1e cut, FD);q [GeV/c];", numTH1Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
     TH1D *hq_3v_DIS_1e_cut =
-        new TH1D("q = |#font[62]{q}| (DIS Only, 1e Cut, FD)", "q = |#font[62]{q}| (DIS Only, 1e Cut, FD);q [GeV/c];", numTH1Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
+        new TH1D("q = |#font[62]{q}| (DIS Only, 1e cut, FD)", "q = |#font[62]{q}| (DIS Only, 1e cut, FD);q [GeV/c];", numTH1Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
     std::string hq_3v_1e_cut_Dir = directories.Momentum_transfer_dir_map["Momentum_transfer_1e_cut_Directory"];
 
-    TH2D *hQ2_VS_W_1e_cut = new TH2D("Q^{2} vs. W (All Int., 1e Cut)", "Q^{2} vs. W (All Int., 1e Cut);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];Q^{2} [GeV^{2}/c^{2}]",
+    TH2D *hQ2_VS_W_1e_cut = new TH2D("Q^{2} vs. W (All Int., 1e cut)", "Q^{2} vs. W (All Int., 1e cut);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];Q^{2} [GeV^{2}/c^{2}]",
                                      numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
     TH2D *hQ2_VS_W_QEL_1e_cut =
-        new TH2D("Q^{2} vs. W (QE Only, 1e Cut)", "Q^{2} vs. W (QE Only, 1e Cut);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];Q^{2} [GeV^{2}/c^{2}]",
+        new TH2D("Q^{2} vs. W (QE Only, 1e cut)", "Q^{2} vs. W (QE Only, 1e cut);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];Q^{2} [GeV^{2}/c^{2}]",
                  numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
     TH2D *hQ2_VS_W_MEC_1e_cut =
-        new TH2D("Q^{2} vs. W (MEC Only, 1e Cut)", "Q^{2} vs. W (MEC Only, 1e Cut);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];Q^{2} [GeV^{2}/c^{2}]",
+        new TH2D("Q^{2} vs. W (MEC Only, 1e cut)", "Q^{2} vs. W (MEC Only, 1e cut);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];Q^{2} [GeV^{2}/c^{2}]",
                  numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
     TH2D *hQ2_VS_W_RES_1e_cut =
-        new TH2D("Q^{2} vs. W (RES Only, 1e Cut)", "Q^{2} vs. W (RES Only, 1e Cut);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];Q^{2} [GeV^{2}/c^{2}]",
+        new TH2D("Q^{2} vs. W (RES Only, 1e cut)", "Q^{2} vs. W (RES Only, 1e cut);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];Q^{2} [GeV^{2}/c^{2}]",
                  numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
     TH2D *hQ2_VS_W_DIS_1e_cut =
-        new TH2D("Q^{2} vs. W (DIS Only, 1e Cut)", "Q^{2} vs. W (DIS Only, 1e Cut);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];Q^{2} [GeV^{2}/c^{2}]",
+        new TH2D("Q^{2} vs. W (DIS Only, 1e cut)", "Q^{2} vs. W (DIS Only, 1e cut);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];Q^{2} [GeV^{2}/c^{2}]",
                  numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
     std::string hQ2_VS_W_1e_cut_Dir = directories.Momentum_transfer_dir_map["Momentum_transfer_1e_cut_Directory"];
 
-    TH2D *hQ2_VS_q_3v_1e_cut = new TH2D("Q^{2} vs. |#font[62]{q}| (All Int., 1e Cut)", "Q^{2} vs. |#font[62]{q}| (All Int., 1e Cut);q [GeV/c];Q^{2} [GeV^{2}/c^{2}]",
+    TH2D *hQ2_VS_q_3v_1e_cut = new TH2D("Q^{2} vs. |#font[62]{q}| (All Int., 1e cut)", "Q^{2} vs. |#font[62]{q}| (All Int., 1e cut);q [GeV/c];Q^{2} [GeV^{2}/c^{2}]",
                                         numTH2Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD, numTH2Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
-    TH2D *hQ2_VS_q_3v_QEL_1e_cut = new TH2D("Q^{2} vs. |#font[62]{q}| (QE Only, 1e Cut)", "Q^{2} vs. |#font[62]{q}| (QE Only, 1e Cut);q [GeV/c];Q^{2} [GeV^{2}/c^{2}]",
+    TH2D *hQ2_VS_q_3v_QEL_1e_cut = new TH2D("Q^{2} vs. |#font[62]{q}| (QE Only, 1e cut)", "Q^{2} vs. |#font[62]{q}| (QE Only, 1e cut);q [GeV/c];Q^{2} [GeV^{2}/c^{2}]",
                                             numTH2Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD, numTH2Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
-    TH2D *hQ2_VS_q_3v_MEC_1e_cut = new TH2D("Q^{2} vs. |#font[62]{q}| (MEC Only, 1e Cut)", "Q^{2} vs. |#font[62]{q}| (MEC Only, 1e Cut);q [GeV/c];Q^{2} [GeV^{2}/c^{2}]",
+    TH2D *hQ2_VS_q_3v_MEC_1e_cut = new TH2D("Q^{2} vs. |#font[62]{q}| (MEC Only, 1e cut)", "Q^{2} vs. |#font[62]{q}| (MEC Only, 1e cut);q [GeV/c];Q^{2} [GeV^{2}/c^{2}]",
                                             numTH2Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD, numTH2Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
-    TH2D *hQ2_VS_q_3v_RES_1e_cut = new TH2D("Q^{2} vs. |#font[62]{q}| (RES Only, 1e Cut)", "Q^{2} vs. |#font[62]{q}| (RES Only, 1e Cut);q [GeV/c];Q^{2} [GeV^{2}/c^{2}]",
+    TH2D *hQ2_VS_q_3v_RES_1e_cut = new TH2D("Q^{2} vs. |#font[62]{q}| (RES Only, 1e cut)", "Q^{2} vs. |#font[62]{q}| (RES Only, 1e cut);q [GeV/c];Q^{2} [GeV^{2}/c^{2}]",
                                             numTH2Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD, numTH2Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
-    TH2D *hQ2_VS_q_3v_DIS_1e_cut = new TH2D("Q^{2} vs. |#font[62]{q}| (DIS Only, 1e Cut)", "Q^{2} vs. |#font[62]{q}| (DIS Only, 1e Cut);q [GeV/c];Q^{2} [GeV^{2}/c^{2}]",
+    TH2D *hQ2_VS_q_3v_DIS_1e_cut = new TH2D("Q^{2} vs. |#font[62]{q}| (DIS Only, 1e cut)", "Q^{2} vs. |#font[62]{q}| (DIS Only, 1e cut);q [GeV/c];Q^{2} [GeV^{2}/c^{2}]",
                                             numTH2Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD, numTH2Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
     std::string hQ2_VS_q_3v_1e_cut_Dir = directories.Momentum_transfer_dir_map["Momentum_transfer_1e_cut_Directory"];
 
-    TH2D *hQ2_VS_omega_1e_cut = new TH2D("Q^{2} vs. #omega (All Int., 1e Cut)", "Q^{2} vs. #omega (All Int., 1e Cut);#omega [GeV];Q^{2} [GeV^{2}/c^{2}]", numTH2Dbins_Momentum_transfer_plots,
+    TH2D *hQ2_VS_omega_1e_cut = new TH2D("Q^{2} vs. #omega (All Int., 1e cut)", "Q^{2} vs. #omega (All Int., 1e cut);#omega [GeV];Q^{2} [GeV^{2}/c^{2}]", numTH2Dbins_Momentum_transfer_plots,
                                          Q2_lboundary_FD, Q2_uboundary_FD, numTH2Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
-    TH2D *hQ2_VS_omega_QEL_1e_cut = new TH2D("Q^{2} vs. #omega (QE Only, 1e Cut)", "Q^{2} vs. #omega (QE Only, 1e Cut);#omega [GeV];Q^{2} [GeV^{2}/c^{2}]",
+    TH2D *hQ2_VS_omega_QEL_1e_cut = new TH2D("Q^{2} vs. #omega (QE Only, 1e cut)", "Q^{2} vs. #omega (QE Only, 1e cut);#omega [GeV];Q^{2} [GeV^{2}/c^{2}]",
                                              numTH2Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD, numTH2Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
-    TH2D *hQ2_VS_omega_MEC_1e_cut = new TH2D("Q^{2} vs. #omega (MEC Only, 1e Cut)", "Q^{2} vs. #omega (MEC Only, 1e Cut);#omega [GeV];Q^{2} [GeV^{2}/c^{2}]",
+    TH2D *hQ2_VS_omega_MEC_1e_cut = new TH2D("Q^{2} vs. #omega (MEC Only, 1e cut)", "Q^{2} vs. #omega (MEC Only, 1e cut);#omega [GeV];Q^{2} [GeV^{2}/c^{2}]",
                                              numTH2Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD, numTH2Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
-    TH2D *hQ2_VS_omega_RES_1e_cut = new TH2D("Q^{2} vs. #omega (RES Only, 1e Cut)", "Q^{2} vs. #omega (RES Only, 1e Cut);#omega [GeV];Q^{2} [GeV^{2}/c^{2}]",
+    TH2D *hQ2_VS_omega_RES_1e_cut = new TH2D("Q^{2} vs. #omega (RES Only, 1e cut)", "Q^{2} vs. #omega (RES Only, 1e cut);#omega [GeV];Q^{2} [GeV^{2}/c^{2}]",
                                              numTH2Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD, numTH2Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
-    TH2D *hQ2_VS_omega_DIS_1e_cut = new TH2D("Q^{2} vs. #omega (DIS Only, 1e Cut)", "Q^{2} vs. #omega (DIS Only, 1e Cut);#omega [GeV];Q^{2} [GeV^{2}/c^{2}]",
+    TH2D *hQ2_VS_omega_DIS_1e_cut = new TH2D("Q^{2} vs. #omega (DIS Only, 1e cut)", "Q^{2} vs. #omega (DIS Only, 1e cut);#omega [GeV];Q^{2} [GeV^{2}/c^{2}]",
                                              numTH2Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD, numTH2Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
     std::string hQ2_VS_omega_1e_cut_Dir = directories.Momentum_transfer_dir_map["Momentum_transfer_1e_cut_Directory"];
 
-    TH2D *hq_3v_VS_omega_1e_cut = new TH2D("|#font[62]{q}| vs. #omega (All Int., 1e Cut)", "|#font[62]{q}| vs. #omega (All Int., 1e Cut);#omega [GeV];q [GeV/c]",
+    TH2D *hq_3v_VS_omega_1e_cut = new TH2D("|#font[62]{q}| vs. #omega (All Int., 1e cut)", "|#font[62]{q}| vs. #omega (All Int., 1e cut);#omega [GeV];q [GeV/c]",
                                            numTH2Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD, numTH2Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
-    TH2D *hq_3v_VS_omega_QEL_1e_cut = new TH2D("|#font[62]{q}| vs. #omega (QE Only, 1e Cut)", "|#font[62]{q}| vs. #omega (QE Only, 1e Cut);#omega [GeV];q [GeV/c]",
+    TH2D *hq_3v_VS_omega_QEL_1e_cut = new TH2D("|#font[62]{q}| vs. #omega (QE Only, 1e cut)", "|#font[62]{q}| vs. #omega (QE Only, 1e cut);#omega [GeV];q [GeV/c]",
                                                numTH2Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD, numTH2Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
-    TH2D *hq_3v_VS_omega_MEC_1e_cut = new TH2D("|#font[62]{q}| vs. #omega (MEC Only, 1e Cut)", "|#font[62]{q}| vs. #omega (MEC Only, 1e Cut);#omega [GeV];q [GeV/c]",
+    TH2D *hq_3v_VS_omega_MEC_1e_cut = new TH2D("|#font[62]{q}| vs. #omega (MEC Only, 1e cut)", "|#font[62]{q}| vs. #omega (MEC Only, 1e cut);#omega [GeV];q [GeV/c]",
                                                numTH2Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD, numTH2Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
-    TH2D *hq_3v_VS_omega_RES_1e_cut = new TH2D("|#font[62]{q}| vs. #omega (RES Only, 1e Cut)", "|#font[62]{q}| vs. #omega (RES Only, 1e Cut);#omega [GeV];q [GeV/c]",
+    TH2D *hq_3v_VS_omega_RES_1e_cut = new TH2D("|#font[62]{q}| vs. #omega (RES Only, 1e cut)", "|#font[62]{q}| vs. #omega (RES Only, 1e cut);#omega [GeV];q [GeV/c]",
                                                numTH2Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD, numTH2Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
-    TH2D *hq_3v_VS_omega_DIS_1e_cut = new TH2D("|#font[62]{q}| vs. #omega (DIS Only, 1e Cut)", "|#font[62]{q}| vs. #omega (DIS Only, 1e Cut);#omega [GeV];q [GeV/c]",
+    TH2D *hq_3v_VS_omega_DIS_1e_cut = new TH2D("|#font[62]{q}| vs. #omega (DIS Only, 1e cut)", "|#font[62]{q}| vs. #omega (DIS Only, 1e cut);#omega [GeV];q [GeV/c]",
                                                numTH2Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD, numTH2Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
     std::string hq_3v_VS_omega_1e_cut_Dir = directories.Momentum_transfer_dir_map["Momentum_transfer_1e_cut_Directory"];
 
@@ -7158,10 +7184,10 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     // E_e plots (1e cut)
     /* Energy (E_e) histograms (1e cut, CD & FD) */
-    THStack *sE_e_1e_cut = new THStack("E_{e} (1e Cut)", "E_{e} Histogram (1e Cut);E_{e} [GeV]");
+    THStack *sE_e_1e_cut = new THStack("E_{e} (1e cut)", "E_{e} Histogram (1e cut);E_{e} [GeV]");
     std::string sE_e_1e_cut_Dir = directories.E_e_dir_map["E_e_All_Int_1e_cut_stack_Directory"];
 
-    TH1D *hE_e_All_Int_1e_cut_FD = new TH1D("E_{e} (1e Cut)", "E_{e} Histogram (All Int., 1e Cut);E_{e} [GeV]", numTH1Dbins_E_e_Plots, 0, parameters.beamE * 1.1);
+    TH1D *hE_e_All_Int_1e_cut_FD = new TH1D("E_{e} (1e cut)", "E_{e} Histogram (All Int., 1e cut);E_{e} [GeV]", numTH1Dbins_E_e_Plots, 0, parameters.beamE * 1.1);
     TH1D *hE_e_QEL_1e_cut_FD = new TH1D("E_{e} (QEL Only, 1e cut)", "E_{e} Histogram (QEL Only, 1e cut);E_{e} [GeV]", numTH1Dbins_E_e_Plots, 0, parameters.beamE * 1.1);
     TH1D *hE_e_MEC_1e_cut_FD = new TH1D("E_{e} (MEC Only, 1e cut)", "E_{e} Histogram (MEC Only, 1e cut);E_{e} [GeV]", numTH1Dbins_E_e_Plots, 0, parameters.beamE * 1.1);
     TH1D *hE_e_RES_1e_cut_FD = new TH1D("E_{e} (RES Only, 1e cut)", "E_{e} Histogram (RES Only, 1e cut);E_{e} [GeV]", numTH1Dbins_E_e_Plots, 0, parameters.beamE * 1.1);
@@ -7172,7 +7198,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     std::string hE_e_RES_1e_cut_FD_Dir = directories.E_e_dir_map["E_e_All_Int_1e_cut_Directory"];
     std::string hE_e_DIS_1e_cut_FD_Dir = directories.E_e_dir_map["E_e_All_Int_1e_cut_Directory"];
 
-    TH2D *hE_e_VS_Theta_e_All_Int_1e_cut_FD = new TH2D("E_{e} vs. #theta_{e} (All Int., 1e Cut)", "E_{e} vs. #theta_{e} (All Int., 1e Cut);#theta_{e} [#circ];E_{e} [GeV]",
+    TH2D *hE_e_VS_Theta_e_All_Int_1e_cut_FD = new TH2D("E_{e} vs. #theta_{e} (All Int., 1e cut)", "E_{e} vs. #theta_{e} (All Int., 1e cut);#theta_{e} [#circ];E_{e} [GeV]",
                                                        numTH2Dbins_E_e_Plots, 0, 50, numTH2Dbins_E_e_Plots, 0, parameters.beamE * 1.1);
     TH2D *hE_e_VS_Theta_e_QEL_1e_cut_FD = new TH2D("E_{e} vs. #theta_{e} (QEL Only, 1e cut)", "E_{e} vs. #theta_{e} (QEL Only, 1e cut);#theta_{e} [#circ];E_{e} [GeV]", numTH2Dbins_E_e_Plots,
                                                    0, 50, numTH2Dbins_E_e_Plots, 0, parameters.beamE * 1.1);
@@ -13445,7 +13471,9 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         hTheta_e_1e_cut_FD->Fill(Theta_e, Weight);
         hPhi_e_1e_cut_FD->Fill(Phi_e, Weight);
         hTheta_e_VS_Phi_e_1e_cut_FD->Fill(Phi_e, Theta_e, Weight);
-        hTheta_e_VS_Phi_e_BySliceOf_P_e.Fill(P_e_1e_cut, Phi_e, Theta_e, Weight);
+        // hTheta_e_VS_Phi_e_BySliceOf_P_e_All_Int_1e_cut_FD.Fill(P_e_1e_cut, Phi_e, Theta_e, Weight);
+        FillByInthsPlots(hTheta_e_VS_Phi_e_BySliceOf_P_e_All_Int_1e_cut_FD, hTheta_e_VS_Phi_e_BySliceOf_P_e_QEL_1e_cut_FD, hTheta_e_VS_Phi_e_BySliceOf_P_e_MEC_1e_cut_FD,
+                         hTheta_e_VS_Phi_e_BySliceOf_P_e_RES_1e_cut_FD, hTheta_e_VS_Phi_e_BySliceOf_P_e_DIS_1e_cut_FD, qel, mec, res, dis, P_e_1e_cut, Phi_e, Theta_e, Weight);
 
         FillByInt1D(hE_e_All_Int_1e_cut_FD, hE_e_QEL_1e_cut_FD, hE_e_MEC_1e_cut_FD, hE_e_RES_1e_cut_FD, hE_e_DIS_1e_cut_FD, qel, mec, res, dis, E_e_1e_cut, Weight);
         FillByInt2D(hE_e_VS_Theta_e_All_Int_1e_cut_FD, hE_e_VS_Theta_e_QEL_1e_cut_FD, hE_e_VS_Theta_e_MEC_1e_cut_FD, hE_e_VS_Theta_e_RES_1e_cut_FD, hE_e_VS_Theta_e_DIS_1e_cut_FD, qel, mec,
@@ -20586,18 +20614,18 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         // W plots (1e cut, CD & FD)
         double W_1e_cut_integral = hW_All_Int_1e_cut->Integral();
 
-        histPlotter1D(MainCanvas, hW_All_Int_1e_cut, norm_W_plots, true, W_1e_cut_integral, "W distribution", "All Int., 1e Cut", 0.06, 0.0425, 0.0425, plots, HistoList, 2, false, true,
+        histPlotter1D(MainCanvas, hW_All_Int_1e_cut, norm_W_plots, true, W_1e_cut_integral, "W distribution", "All Int., 1e cut", 0.06, 0.0425, 0.0425, plots, HistoList, 2, false, true,
                       sW_1e_cut, "00_W_All_Int_1e_cut", hW_All_Int_1e_cut_Dir, "", kBlue, true, true, true, false);
-        histPlotter1D(MainCanvas, hW_QEL_1e_cut, norm_W_plots, true, W_1e_cut_integral, "W distribution", "QEL only, 1e Cut", 0.06, 0.0425, 0.0425, plots, HistoList, 2, false, true,
+        histPlotter1D(MainCanvas, hW_QEL_1e_cut, norm_W_plots, true, W_1e_cut_integral, "W distribution", "QEL only, 1e cut", 0.06, 0.0425, 0.0425, plots, HistoList, 2, false, true,
                       sW_1e_cut, "01_W_QEL_only_1e_cut", hW_QEL_1e_cut_Dir, "", kBlue, true, true, true, false);
-        histPlotter1D(MainCanvas, hW_MEC_1e_cut, norm_W_plots, true, W_1e_cut_integral, "W distribution", "MEC only, 1e Cut", 0.06, 0.0425, 0.0425, plots, HistoList, 2, false, true,
+        histPlotter1D(MainCanvas, hW_MEC_1e_cut, norm_W_plots, true, W_1e_cut_integral, "W distribution", "MEC only, 1e cut", 0.06, 0.0425, 0.0425, plots, HistoList, 2, false, true,
                       sW_1e_cut, "02_W_MEC_only_1e_cut", hW_MEC_1e_cut_Dir, "", kBlue, true, true, true, false);
-        histPlotter1D(MainCanvas, hW_RES_1e_cut, norm_W_plots, true, W_1e_cut_integral, "W distribution", "RES only, 1e Cut", 0.06, 0.0425, 0.0425, plots, HistoList, 2, false, true,
+        histPlotter1D(MainCanvas, hW_RES_1e_cut, norm_W_plots, true, W_1e_cut_integral, "W distribution", "RES only, 1e cut", 0.06, 0.0425, 0.0425, plots, HistoList, 2, false, true,
                       sW_1e_cut, "03_W_RES_only_1e_cut", hW_RES_1e_cut_Dir, "", kBlue, true, true, true, false);
-        histPlotter1D(MainCanvas, hW_DIS_1e_cut, norm_W_plots, true, W_1e_cut_integral, "W distribution", "DIS only, 1e Cut", 0.06, 0.0425, 0.0425, plots, HistoList, 2, false, true,
+        histPlotter1D(MainCanvas, hW_DIS_1e_cut, norm_W_plots, true, W_1e_cut_integral, "W distribution", "DIS only, 1e cut", 0.06, 0.0425, 0.0425, plots, HistoList, 2, false, true,
                       sW_1e_cut, "04_W_DIS_only_1e_cut", hW_DIS_1e_cut_Dir, "", kBlue, true, true, true, false);
 
-        stackPlotter1D(MainCanvas, sW_1e_cut, norm_W_plots, "W distribution", "1e Cut", plots, HistoList, hW_All_Int_1e_cut, hW_QEL_1e_cut, hW_MEC_1e_cut, hW_RES_1e_cut, hW_DIS_1e_cut,
+        stackPlotter1D(MainCanvas, sW_1e_cut, norm_W_plots, "W distribution", "1e cut", plots, HistoList, hW_All_Int_1e_cut, hW_QEL_1e_cut, hW_MEC_1e_cut, hW_RES_1e_cut, hW_DIS_1e_cut,
                        "05_W_Stack_1e_cut", sW_1e_cut_Dir, "");
 
         // W vs. q_3v plots (1e cut, FD)
@@ -21060,7 +21088,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         // Theta_e plots (1e cut, FD)
         double Theta_e_1e_integral = hTheta_e_1e_cut_FD->Integral();
 
-        histPlotter1D(MainCanvas, hTheta_e_1e_cut_FD, norm_Angle_plots_master, true, Theta_e_1e_integral, "#theta_{e} of Outgoing Electron", "All Int., 1e Cut", 0.06, 0.0425, 0.0425, plots,
+        histPlotter1D(MainCanvas, hTheta_e_1e_cut_FD, norm_Angle_plots_master, true, Theta_e_1e_integral, "#theta_{e} of Outgoing Electron", "All Int., 1e cut", 0.06, 0.0425, 0.0425, plots,
                       HistoList, 2, false, true, sTheta_e, "Theta_e_All_Int_1e_cut", hTheta_e_1e_cut_FD_Dir, "FD", kBlue, true, true, true, false, true, 17.5, 22.5, false);
 
         // Theta_e plots (1p, FD)
@@ -21201,7 +21229,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         // Phi_e plots (1e cut, FD)
         double Phi_e_1e_integral = hPhi_e_1e_cut_FD->Integral();
 
-        histPlotter1D(MainCanvas, hPhi_e_1e_cut_FD, norm_Angle_plots_master, true, Phi_e_1e_integral, "#phi_{e} of Outgoing Electron", "1e Cut", 0.06, 0.0425, 0.0425, plots, HistoList, 2,
+        histPlotter1D(MainCanvas, hPhi_e_1e_cut_FD, norm_Angle_plots_master, true, Phi_e_1e_integral, "#phi_{e} of Outgoing Electron", "1e cut", 0.06, 0.0425, 0.0425, plots, HistoList, 2,
                       false, true, sPhi_e, "Phi_e_All_Int_1e_cut", hPhi_e_1e_cut_FD_Dir, "FD", kBlue, true, true, true);
 
         // Phi_e plots (1p, FD)
@@ -21326,7 +21354,11 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         histPlotter2D(MainCanvas, hTheta_e_VS_Phi_e_1e_cut_FD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hTheta_e_VS_Phi_e_1e_cut_FD_Dir,
                       "Theta_e_VS_Phi_e_All_Int_1e_cut_FD");
 
-        hTheta_e_VS_Phi_e_BySliceOf_P_e.SaveHistograms(hTheta_e_VS_Phi_e_BySliceOf_P_e_Dir, "Theta_e_VS_Phi_e_BySliceOf_P_e");
+        hTheta_e_VS_Phi_e_BySliceOf_P_e_All_Int_1e_cut_FD.SaveHistograms(hTheta_e_VS_Phi_e_BySliceOf_P_e_All_Int_1e_cut_FD_Dir, "Theta_e_VS_Phi_e_BySliceOf_P_e_All_Int_1e_cut_FD");
+        hTheta_e_VS_Phi_e_BySliceOf_P_e_QEL_1e_cut_FD.SaveHistograms(hTheta_e_VS_Phi_e_BySliceOf_P_e_QEL_1e_cut_FD_Dir, "Theta_e_VS_Phi_e_BySliceOf_P_e_QEL_1e_cut_FD");
+        hTheta_e_VS_Phi_e_BySliceOf_P_e_MEC_1e_cut_FD.SaveHistograms(hTheta_e_VS_Phi_e_BySliceOf_P_e_MEC_1e_cut_FD_Dir, "Theta_e_VS_Phi_e_BySliceOf_P_e_MEC_1e_cut_FD");
+        hTheta_e_VS_Phi_e_BySliceOf_P_e_RES_1e_cut_FD.SaveHistograms(hTheta_e_VS_Phi_e_BySliceOf_P_e_RES_1e_cut_FD_Dir, "Theta_e_VS_Phi_e_BySliceOf_P_e_RES_1e_cut_FD");
+        hTheta_e_VS_Phi_e_BySliceOf_P_e_DIS_1e_cut_FD.SaveHistograms(hTheta_e_VS_Phi_e_BySliceOf_P_e_DIS_1e_cut_FD_Dir, "Theta_e_VS_Phi_e_BySliceOf_P_e_DIS_1e_cut_FD");
 
         // Theta_e vs. Phi_e plots (1p, FD)
         histPlotter2D(MainCanvas, hTheta_e_VS_Phi_e_1p_FD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hTheta_e_VS_Phi_e_1p_FD_Dir, "Theta_e_VS_Phi_e_All_Int_1p_FD");
@@ -23120,7 +23152,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         // E_e plots (1e cut, FD)
         double E_e_1e_cut_All_Int_integral = hE_e_All_Int_1e_cut_FD->Integral();
 
-        histPlotter1D(MainCanvas, hE_e_All_Int_1e_cut_FD, norm_E_e_plots, true, E_e_1e_cut_All_Int_integral, "E_{e} Histogram", "1e Cut", 0.06, 0.0425, 0.0425, plots, HistoList, 2, false,
+        histPlotter1D(MainCanvas, hE_e_All_Int_1e_cut_FD, norm_E_e_plots, true, E_e_1e_cut_All_Int_integral, "E_{e} Histogram", "1e cut", 0.06, 0.0425, 0.0425, plots, HistoList, 2, false,
                       true, sE_e_1e_cut, "01_E_e_1e_cut", hE_e_All_Int_1e_cut_FD_Dir, "", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hE_e_QEL_1e_cut_FD, norm_E_e_plots, true, E_e_1e_cut_All_Int_integral, "E_{e} Histogram", "QEL Only, 1e_cut", 0.06, 0.0425, 0.0425, plots, HistoList, 2,
                       false, true, sE_e_1e_cut, "01_E_e_QEL_Only_1e_cut", hE_e_QEL_1e_cut_FD_Dir, "", kBlue, true, true, true);
