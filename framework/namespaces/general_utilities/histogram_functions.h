@@ -80,7 +80,9 @@ void FillByInt2D(TH2D *H1D_All_Int, TH2D *H1D_QEL, TH2D *H1D_MEC, TH2D *H1D_RES,
 
 void FillByInthsPlots(hsPlots &hsPlots_All_Int, hsPlots &hsPlots_QEL, hsPlots &hsPlots_MEC, hsPlots &hsPlots_RES, hsPlots &hsPlots_DIS, hsPlots::HistoType type, const bool &qel,
                       const bool &mec, const bool &res, const bool &dis, const double &Slice_variable, const double &Variable_x, const double &Variable_y, const double &Weight = 1.0) {
-    std::cout << "\n\nFill all int start\n\n";
+    bool PrintOut = true;
+
+    if (PrintOut) { std::cout << "\n\nFill all int start\n\n"; }
 
     if (type == hsPlots::TH1D_TYPE) {
         hsPlots_All_Int.Fill(Slice_variable, Variable_x, Weight);
@@ -88,10 +90,10 @@ void FillByInthsPlots(hsPlots &hsPlots_All_Int, hsPlots &hsPlots_QEL, hsPlots &h
         hsPlots_All_Int.Fill(Slice_variable, Variable_x, Variable_y, Weight);
     }
 
-    std::cout << "\n\nFill all int end\n\n";
+    if (PrintOut) { std::cout << "\n\nFill all int end\n\n"; }
 
     if (qel) {
-        std::cout << "\n\nFill QEL start\n\n";
+        if (PrintOut) { std::cout << "\n\nFill QEL start\n\n"; }
 
         if (type == hsPlots::TH1D_TYPE) {
             hsPlots_QEL.Fill(Slice_variable, Variable_x, Weight);
@@ -99,10 +101,10 @@ void FillByInthsPlots(hsPlots &hsPlots_All_Int, hsPlots &hsPlots_QEL, hsPlots &h
             hsPlots_QEL.Fill(Slice_variable, Variable_x, Variable_y, Weight);
         }
 
-        std::cout << "\n\nFill QEL end\n\n";
+        if (PrintOut) { std::cout << "\n\nFill QEL end\n\n"; }
 
     } else if (mec) {
-        std::cout << "\n\nFill MEC start\n\n";
+        if (PrintOut) { std::cout << "\n\nFill MEC start\n\n"; }
 
         if (type == hsPlots::TH1D_TYPE) {
             hsPlots_MEC.Fill(Slice_variable, Variable_x, Weight);
@@ -110,10 +112,10 @@ void FillByInthsPlots(hsPlots &hsPlots_All_Int, hsPlots &hsPlots_QEL, hsPlots &h
             hsPlots_MEC.Fill(Slice_variable, Variable_x, Variable_y, Weight);
         }
 
-        std::cout << "\n\nFill MEC end\n\n";
+        if (PrintOut) { std::cout << "\n\nFill MEC end\n\n"; }
 
     } else if (res) {
-        std::cout << "\n\nFill RES start\n\n";
+        if (PrintOut) { std::cout << "\n\nFill RES start\n\n"; }
 
         if (type == hsPlots::TH1D_TYPE) {
             hsPlots_RES.Fill(Slice_variable, Variable_x, Weight);
@@ -121,10 +123,10 @@ void FillByInthsPlots(hsPlots &hsPlots_All_Int, hsPlots &hsPlots_QEL, hsPlots &h
             hsPlots_RES.Fill(Slice_variable, Variable_x, Variable_y, Weight);
         }
 
-        std::cout << "\n\nFill RES end\n\n";
+        if (PrintOut) { std::cout << "\n\nFill RES end\n\n"; }
 
     } else if (dis) {
-        std::cout << "\n\nFill DIS start\n\n";
+        if (PrintOut) { std::cout << "\n\nFill DIS start\n\n"; }
 
         if (type == hsPlots::TH1D_TYPE) {
             hsPlots_DIS.Fill(Slice_variable, Variable_x, Weight);
@@ -132,7 +134,7 @@ void FillByInthsPlots(hsPlots &hsPlots_All_Int, hsPlots &hsPlots_QEL, hsPlots &h
             hsPlots_DIS.Fill(Slice_variable, Variable_x, Variable_y, Weight);
         }
 
-        std::cout << "\n\nFill DIS end\n\n";
+        if (PrintOut) { std::cout << "\n\nFill DIS end\n\n"; }
     }
 }
 
