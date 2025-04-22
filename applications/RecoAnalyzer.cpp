@@ -12,7 +12,7 @@
 // RecoAnalyzer constructor ---------------------------------------------------------------------------------------------------------------------------------------------
 
 RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string &AnalyzeFileSample, const std::string &AnalyzeFile) {
-    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps, "Start of code");
+    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, debugging::DebuggerMode, debugging::OnlyPrintNamedTesterSteps, "Start of code");
 
     std::cout << "\033[33m\n\n===========================================================================\n\033[0m";
     std::cout << "\033[33m\t\t\tDetector simulation analyser\n\033[0m";
@@ -32,7 +32,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     // Input processing
     // ======================================================================================================================================================================
 
-    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps, "Input processing - start");
+    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, debugging::DebuggerMode, debugging::OnlyPrintNamedTesterSteps, "Input processing - start");
 
     // Input processing
     /* Initial input processing of loaded files (given by AnalyzeFile) */
@@ -47,13 +47,13 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     ExperimentParameters Experiment(AnalyzeFilePath, AnalyzeFileSample);
     RunParameters parameters = RunParameters(Experiment, AnalyzeFilePath, AnalyzeFileSample);
 
-    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps, "Input processing - end");
+    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, debugging::DebuggerMode, debugging::OnlyPrintNamedTesterSteps, "Input processing - end");
 
     // ======================================================================================================================================================================
     // Event selection setup
     // ======================================================================================================================================================================
 
-    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps, "Event selection setup - start");
+    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, debugging::DebuggerMode, debugging::OnlyPrintNamedTesterSteps, "Event selection setup - start");
 
     EventSelectionSettings ESSettings = EventSelectionSettings();
     AcceptanceMapsSettings AMapsSettings = AcceptanceMapsSettings();
@@ -63,13 +63,13 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     AMapsSettings.RefreshSettingsByParameters(parameters);
     MomResSettings.RefreshSettings();
 
-    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps, "Event selection setup - end");
+    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, debugging::DebuggerMode, debugging::OnlyPrintNamedTesterSteps, "Event selection setup - end");
 
     // ======================================================================================================================================================================
     // Cut setup
     // ======================================================================================================================================================================
 
-    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps, "Cut setup - start");
+    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, debugging::DebuggerMode, debugging::OnlyPrintNamedTesterSteps, "Cut setup - start");
 
     AnalysisCutSettings CutSettings = AnalysisCutSettings();
 
@@ -88,13 +88,13 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     CutValueManager CutManager = CutValueManager(Experiment, ESSettings);
 
-    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps, "Cut setup - end");
+    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, debugging::DebuggerMode, debugging::OnlyPrintNamedTesterSteps, "Cut setup - end");
 
     // ======================================================================================================================================================================
     // Other setup
     // ======================================================================================================================================================================
 
-    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps, "Other setup - start");
+    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, debugging::DebuggerMode, debugging::OnlyPrintNamedTesterSteps, "Other setup - start");
 
     //  Directory settings ------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -117,7 +117,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     // TList definition -----------------------------------------------------------------------------------------------------------------------------------------------------
 
-    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps);
+    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, debugging::DebuggerMode, debugging::OnlyPrintNamedTesterSteps);
 
     // TList definition
     /* Definition of plots TLists used to save all plots to .root file. */
@@ -129,7 +129,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     // TFile definition -----------------------------------------------------------------------------------------------------------------------------------------------------
 
-    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps);
+    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, debugging::DebuggerMode, debugging::OnlyPrintNamedTesterSteps);
 
     // TFile definition
     /* Definition of plots TFile used to save all plots to .pdf file. */
@@ -151,7 +151,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     // Plot selector --------------------------------------------------------------------------------------------------------------------------------------------------------
 
-    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps);
+    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, debugging::DebuggerMode, debugging::OnlyPrintNamedTesterSteps);
 
     // Plot selector
     /* Here are boolean variables used to turn ON/OFF the different plots of the code.
@@ -401,7 +401,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     // Normalization setup -----------------------------------------------------------------------------------------------------------------------------------------------
 
-    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps);
+    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, debugging::DebuggerMode, debugging::OnlyPrintNamedTesterSteps);
 
     // Normalization setup
     /* Here are boolean variables used to turn ON/OFF the different plot normalizations of the code.
@@ -429,7 +429,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     // Delete setup ------------------------------------------------------------------------------------------------------------------------------------------------------
 
-    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps);
+    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, debugging::DebuggerMode, debugging::OnlyPrintNamedTesterSteps);
 
     // Delete setup
     /* Clear files from previous runs (to prevent mix fo plots from different codes). */
@@ -459,7 +459,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     // Histogram setup ---------------------------------------------------------------------------------------------------------------------------------------------------
 
-    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps);
+    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, debugging::DebuggerMode, debugging::OnlyPrintNamedTesterSteps);
 
     // Histogram setup
     /* Histogram boundary variables. Used to unify histograms to the same boundaries. */
@@ -642,7 +642,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     // Acceptance maps generation -------------------------------------------------------------------------------------------------------------------------------------------
 
-    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps);
+    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, debugging::DebuggerMode, debugging::OnlyPrintNamedTesterSteps);
 
     // Acceptance maps generation
     /* Acceptance maps are handled completely by the AMaps class */
@@ -680,7 +680,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                                                        ? aMaps_master.GetLoadedNucleonMomSliceLimits()
                                                        : aMaps_master.GetNucleonMomSliceLimits();
 
-    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps);
+    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, debugging::DebuggerMode, debugging::OnlyPrintNamedTesterSteps);
 
     // if (AMapsSettings.Generate_WMaps) {
     //     wMaps_master =
@@ -701,7 +701,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     // Acceptance correction data -------------------------------------------------------------------------------------------------------------------------------------------
 
-    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps);
+    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, debugging::DebuggerMode, debugging::OnlyPrintNamedTesterSteps);
 
     // Acceptance correction
     /* Neutron resolution fits is handled completely by the MomentumResolution class */
@@ -722,7 +722,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     // Neutron resolution & proton smearing ---------------------------------------------------------------------------------------------------------------------------------
 
-    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps);
+    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, debugging::DebuggerMode, debugging::OnlyPrintNamedTesterSteps);
 
     // Neutron resolution
     /* Neutron resolution fits is handled completely by the MomentumResolution class */
@@ -753,7 +753,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     // Debugging setup ---------------------------------------------------------------------------------------------------------------------------------------------------
 
-    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps);
+    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, debugging::DebuggerMode, debugging::OnlyPrintNamedTesterSteps);
 
     // Debugging setup
     /* Saving a printout of the number of particles in nEvents2print events. Used for clas12ana debugging. */
@@ -793,7 +793,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         EventPrint << "#event upper bound:\t\t" << nEvents2print << "\n\n\n\033[0m";
     }
 
-    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps, "Other setup - end");
+    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, debugging::DebuggerMode, debugging::OnlyPrintNamedTesterSteps, "Other setup - end");
 
 #pragma endregion
 
@@ -801,7 +801,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
 #pragma region /* Histogram definitions */
 
-    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps, "Histogram definitions - start");
+    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, debugging::DebuggerMode, debugging::OnlyPrintNamedTesterSteps, "Histogram definitions - start");
 
     // Histogram definitions
     /* Histogram definitions and setup. */
@@ -814,7 +814,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
 #pragma region /* Cut parameters plots */
 
-    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps);
+    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, debugging::DebuggerMode, debugging::OnlyPrintNamedTesterSteps);
 
     // Cut parameters plots
 
@@ -11094,7 +11094,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     std::cout << "\033[33m done.\n\n\033[0m";
 
-    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps, "Histogram definitions - end");
+    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, debugging::DebuggerMode, debugging::OnlyPrintNamedTesterSteps, "Histogram definitions - end");
 
 #pragma endregion
 
@@ -11102,7 +11102,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
 #pragma region /* Code execution */
 
-    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps, "Code execution - start");
+    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, debugging::DebuggerMode, debugging::OnlyPrintNamedTesterSteps, "Code execution - start");
 
     // Code execution
     std::cout << "\033[33m\nReading target parameter files...\n\n\033[0m";
@@ -11110,7 +11110,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     // Setting and loading cuts (via clas12ana)
     clas12ana clasAna;
 
-    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps, "Setting and loading cuts (via clas12ana) - start");
+    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, debugging::DebuggerMode, debugging::OnlyPrintNamedTesterSteps, "Setting and loading cuts (via clas12ana) - start");
 
     if (CutSettings.apply_cuts) {
         // Cuts on electrons only:
@@ -11311,7 +11311,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         }
     }
 
-    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps, "Setting and loading cuts (via clas12ana) - end");
+    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, debugging::DebuggerMode, debugging::OnlyPrintNamedTesterSteps, "Setting and loading cuts (via clas12ana) - end");
 
     // Setting HipoChain
     std::cout << "\033[33m\n\nSetting HipoChain...\n\n\033[0m";
@@ -11337,7 +11337,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     //  Setting beam particle's momentum
     //  ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps);
+    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, debugging::DebuggerMode, debugging::OnlyPrintNamedTesterSteps);
 
     // Setting beam particle's momentum
     double Pv = parameters.beamE, Pvx = 0., Pvy = 0., Pvz = Pv;  // Assuming momentum of incoming lepton is in the z direction
@@ -11386,7 +11386,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     std::cout << "\033[33m\n\nLooping over chain files...\n\n\033[0m";
 
-    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps);
+    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, debugging::DebuggerMode, debugging::OnlyPrintNamedTesterSteps);
 
     /*
     int num_of_files = 0;
@@ -11414,10 +11414,10 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
 #pragma region /* Event setup */
 
-        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps, "Event setup - start");
+        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, debugging::DebuggerMode, debugging::OnlyPrintNamedTesterSteps, "Event setup - start");
 
         // loop over events
-        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps);
+        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, debugging::DebuggerMode, debugging::OnlyPrintNamedTesterSteps);
 
         ++num_of_events;  // logging Total #(events) in sample
 
@@ -11642,7 +11642,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             pid.GPMonitoring(GoodProtonsMonitorPlots, protons, IDed_Protons_ind, Protons_ind, CutManager.Theta_p1_cuts_2p, CutManager.Theta_p2_cuts_2p, CutManager.dphi_p1_p2_2p, Weight);
         }
 
-        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps, "Event setup - end");
+        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, debugging::DebuggerMode, debugging::OnlyPrintNamedTesterSteps, "Event setup - end");
 
 #pragma endregion
 
@@ -11650,7 +11650,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
 #pragma region /* Truth-level events */
 
-        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps, "Truth-level events - start");
+        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, debugging::DebuggerMode, debugging::OnlyPrintNamedTesterSteps, "Truth-level events - start");
 
         // TODO: confirm that the TL kin cuts are working!
 
@@ -12950,7 +12950,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             // }
         }
 
-        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps, "Truth-level events - end");
+        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, debugging::DebuggerMode, debugging::OnlyPrintNamedTesterSteps, "Truth-level events - end");
 
 #pragma endregion
 
@@ -12958,7 +12958,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
 #pragma region /* Reco. All e events */
 
-        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps, "Reco. All e events - start");
+        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, debugging::DebuggerMode, debugging::OnlyPrintNamedTesterSteps, "Reco. All e events - start");
 
         // All particles plots
         /* Declaration of electron variables for all particles analysis.
@@ -13104,7 +13104,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             }
         }  // end of loop over deuterons vector
 
-        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps, "Reco. All e events - end");
+        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, debugging::DebuggerMode, debugging::OnlyPrintNamedTesterSteps, "Reco. All e events - end");
 
 #pragma endregion
 
@@ -13112,7 +13112,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
 #pragma region /* Reco. 1e cut events */
 
-        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps, "Reco. 1e cut events - start");
+        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, debugging::DebuggerMode, debugging::OnlyPrintNamedTesterSteps, "Reco. 1e cut events - start");
 
         // 1e cut
         /* Here we apply electron cut on everything that follows (1p, nFDpCD, 1e2p and 2p) */
@@ -13121,7 +13121,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
         // Applying 1e cuts
         /* Applying rough 1e cut */
-        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps, "Applying 1e cuts - start");
+        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, debugging::DebuggerMode, debugging::OnlyPrintNamedTesterSteps, "Applying 1e cuts - start");
 
         if (Ne != 1) { continue; }  // the rough 1e cut
 
@@ -13147,7 +13147,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         // events counts (1e cut)
         ++num_of_events_with_exactly_1e;  // logging #(events) w/ exactly 1e (after beta cut)
 
-        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps, "Applying 1e cuts - end");
+        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, debugging::DebuggerMode, debugging::OnlyPrintNamedTesterSteps, "Applying 1e cuts - end");
 
         // events counts with protons (1e cut)
         if (processID == 1.) {
@@ -13165,7 +13165,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         }
 
         /* Electron 1e cut variables definitions */
-        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps, "Electron 1e cut variables definitions - start");
+        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, debugging::DebuggerMode, debugging::OnlyPrintNamedTesterSteps, "Electron 1e cut variables definitions - start");
 
         TVector3 P_e_1e_cut_3v, q_1e_cut_3v;
         TLorentzVector e_out_1e_cut, Q_1e_cut;
@@ -13183,8 +13183,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         double Vx_e = electrons[0]->par()->getVx(), Vy_e = electrons[0]->par()->getVy(), Vz_e = electrons[0]->par()->getVz();
         double Weight_1e_cut = Weight;
 
-        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps, "Electron 1e cut variables definitions - end");
-        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps, "Fill 1e cut histograms - start");
+        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, debugging::DebuggerMode, debugging::OnlyPrintNamedTesterSteps, "Electron 1e cut variables definitions - end");
+        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, debugging::DebuggerMode, debugging::OnlyPrintNamedTesterSteps, "Fill 1e cut histograms - start");
 
         // Fill momentum threshold plots (1e cut, CD & FD)
         if (!ESSettings.Rec_wTL_ES || TL_Event_Selection_inclusive) {
@@ -13341,7 +13341,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             }
         }
 
-        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps);
+        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, debugging::DebuggerMode, debugging::OnlyPrintNamedTesterSteps);
 
         // FD Neutron and photon detection probability (1e cut, CD & FD)
         if (ESSettings.Count_FD_neurton_and_photon_hits) {
@@ -13396,7 +13396,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
          * If cuts are turned off (CutSettings.apply_cuts == false) - we plot each cut parameter before and after the cut.
          * If cuts are applied (CutSettings.apply_cuts), we plot the parameters for the 1e cut only */
 
-        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps);
+        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, debugging::DebuggerMode, debugging::OnlyPrintNamedTesterSteps);
 
         // Testing cuts
         /* Testing SF cuts */
@@ -13414,7 +13414,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             hSF_1e_cut_BC_FD.hFill(EoP_e, Weight), hSF_VS_P_e_1e_cut_BC_FD.hFill(P_e_1e_cut, EoP_e, Weight);
         }
 
-        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps);
+        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, debugging::DebuggerMode, debugging::OnlyPrintNamedTesterSteps);
 
         /* Testing fiducial cuts */
         if (!CutSettings.apply_cuts) {
@@ -13451,7 +13451,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         }
 
         // Filling 1e cut plots
-        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps);
+        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, debugging::DebuggerMode, debugging::OnlyPrintNamedTesterSteps);
 
         // Fill Electron plots (1e cut, FD only)
         hChi2_Electron_1e_cut_FD.hFill(electrons[0]->par()->getChi2Pid(), Weight);
@@ -13472,8 +13472,14 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         hPhi_e_1e_cut_FD->Fill(Phi_e, Weight);
         hTheta_e_VS_Phi_e_1e_cut_FD->Fill(Phi_e, Theta_e, Weight);
         // hTheta_e_VS_Phi_e_BySliceOf_P_e_All_Int_1e_cut_FD.Fill(P_e_1e_cut, Phi_e, Theta_e, Weight);
+        
+        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, debugging::DebuggerMode, debugging::OnlyPrintNamedTesterSteps, "FillByInthsPlots - start");
+
         FillByInthsPlots(hTheta_e_VS_Phi_e_BySliceOf_P_e_All_Int_1e_cut_FD, hTheta_e_VS_Phi_e_BySliceOf_P_e_QEL_1e_cut_FD, hTheta_e_VS_Phi_e_BySliceOf_P_e_MEC_1e_cut_FD,
-                         hTheta_e_VS_Phi_e_BySliceOf_P_e_RES_1e_cut_FD, hTheta_e_VS_Phi_e_BySliceOf_P_e_DIS_1e_cut_FD, hsPlots::TH2D_TYPE, qel, mec, res, dis, P_e_1e_cut, Phi_e, Theta_e, Weight);
+                         hTheta_e_VS_Phi_e_BySliceOf_P_e_RES_1e_cut_FD, hTheta_e_VS_Phi_e_BySliceOf_P_e_DIS_1e_cut_FD, hsPlots::TH2D_TYPE, qel, mec, res, dis, P_e_1e_cut, Phi_e, Theta_e,
+                         Weight);
+
+        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, debugging::DebuggerMode, debugging::OnlyPrintNamedTesterSteps, "FillByInthsPlots - end");
 
         FillByInt1D(hE_e_All_Int_1e_cut_FD, hE_e_QEL_1e_cut_FD, hE_e_MEC_1e_cut_FD, hE_e_RES_1e_cut_FD, hE_e_DIS_1e_cut_FD, qel, mec, res, dis, E_e_1e_cut, Weight);
         FillByInt2D(hE_e_VS_Theta_e_All_Int_1e_cut_FD, hE_e_VS_Theta_e_QEL_1e_cut_FD, hE_e_VS_Theta_e_MEC_1e_cut_FD, hE_e_VS_Theta_e_RES_1e_cut_FD, hE_e_VS_Theta_e_DIS_1e_cut_FD, qel, mec,
@@ -13497,7 +13503,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         // }
 
         // Fill Proton plots (1e cut, CD & FD)
-        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps);
+        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, debugging::DebuggerMode, debugging::OnlyPrintNamedTesterSteps);
         for (clas12::region_part_ptr &p : protons) {
             // for (auto &p : protons) {
             if (p->getRegion() == CD) {
@@ -13546,10 +13552,10 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         }  // end of loop over protons vector
 
         // Fill Neutron plots (1e cut, CD & FD)
-        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps);
+        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, debugging::DebuggerMode, debugging::OnlyPrintNamedTesterSteps);
 
         // Leading FD Neutrons
-        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps);
+        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, debugging::DebuggerMode, debugging::OnlyPrintNamedTesterSteps);
         if (NeutronsFD_ind_mom_max != -1) {
             /* Leading FD Neutrons after mom. th. */
             hP_LnFD_APID_1e_cut_FD.hFill(pid.GetFDNeutronP(allParticles[NeutronsFD_ind_mom_max], CutSettings.apply_nucleon_cuts), Weight);
@@ -13568,7 +13574,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
         // All FD Neutrons
         /* All FD Neutrons after mom. th. */
-        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps);
+        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, debugging::DebuggerMode, debugging::OnlyPrintNamedTesterSteps);
         for (int &i : NeutronsFD_ind) {
             hP_nFD_APID_1e_cut_FD.hFill(pid.GetFDNeutronP(allParticles[i], CutSettings.apply_nucleon_cuts), Weight);
             hP_nFD_APID_1e_cut_ZOOMOUT_FD.hFill(pid.GetFDNeutronP(allParticles[i], CutSettings.apply_nucleon_cuts), Weight);
@@ -13580,7 +13586,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         }
 
         /* All FD Neutrons before mom. th. */
-        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps);
+        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, debugging::DebuggerMode, debugging::OnlyPrintNamedTesterSteps);
         for (int &i : ReDef_FD_neutrons) {
             hP_nFD_BPID_1e_cut_FD.hFill(pid.GetFDNeutronP(allParticles[i], CutSettings.apply_nucleon_cuts), Weight);
             hP_nFD_BPID_1e_cut_ZOOMOUT_FD.hFill(pid.GetFDNeutronP(allParticles[i], CutSettings.apply_nucleon_cuts), Weight);
@@ -13651,7 +13657,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         // }
 
         // Fill Beta vs. P for other particles (1e cut, CD & FD)
-        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps);
+        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, debugging::DebuggerMode, debugging::OnlyPrintNamedTesterSteps);
 
         // All particles Beta vs. P plots (no #(electron) cut, CD & FD)
         for (int i = 0; i < allParticles.size(); i++) {
@@ -14352,8 +14358,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         pid.FillNeutMultiPlots(allParticles, electrons, Weight, parameters.beamE, CutManager.Neutron_veto_cut.GetLowerCutConst(), hNeut_Multi_By_Redef_BPID_BV_1e_cut_FD,
                                hNeut_Multi_By_Redef_BPID_AV_1e_cut_FD, ReDef_FD_neutrons, hNeut_Multi_By_Redef_APID_BV_1e_cut_FD, hNeut_Multi_By_Redef_APID_AV_1e_cut_FD, NeutronsFD_ind);
 
-        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps, "Fill 1e cut histograms - end");
-        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps, "Reco. 1e cut events - end");
+        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, debugging::DebuggerMode, debugging::OnlyPrintNamedTesterSteps, "Fill 1e cut histograms - end");
+        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, debugging::DebuggerMode, debugging::OnlyPrintNamedTesterSteps, "Reco. 1e cut events - end");
 
 #pragma endregion
 
@@ -14361,7 +14367,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
 #pragma region /* Reco. 1p (FD only) events */
 
-        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps, "Reco. 1p (FD only) events - start");
+        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, debugging::DebuggerMode, debugging::OnlyPrintNamedTesterSteps, "Reco. 1p (FD only) events - start");
 
         // 1p (FD only)
         /* 1p event selection: 1p = Protons_ind.size() = 1 in the FD, any number of FD neutrons and any number of other neutrals and particles with pdg=0.*/
@@ -14899,7 +14905,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             }  // end of pass kinematical cuts (1p) if
         }  // end of 1p cuts if
 
-        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps, "Reco. 1p (FD only) events - end");
+        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, debugging::DebuggerMode, debugging::OnlyPrintNamedTesterSteps, "Reco. 1p (FD only) events - end");
 
 #pragma endregion
 
@@ -14907,7 +14913,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
 #pragma region /* Reco. 1n (FD only) events */
 
-        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps, "Reco. 1n (FD only) events - start");
+        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, debugging::DebuggerMode, debugging::OnlyPrintNamedTesterSteps, "Reco. 1n (FD only) events - start");
 
         // 1n (FD only)
         /* 1n event selection: 1n = any number of id. FD neutrons (we look at the leading nFD), with no charged particles (except electrons) and any number of other
@@ -15882,7 +15888,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             }  // end of NeutronPassVeto_1n is true (i.e. if neutron did not hit PCAL & hit either ECIN or ECOUT) & pass kinematical cuts (1n) if
         }  // end of 1n cuts if
 
-        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps, "Reco. 1n (FD only) events - end");
+        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, debugging::DebuggerMode, debugging::OnlyPrintNamedTesterSteps, "Reco. 1n (FD only) events - end");
 
 #pragma endregion
 
@@ -15890,7 +15896,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
 #pragma region /* Reco. 1e2pXy (or (e,e'pp)X) events */
 
-        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps, "Reco. 1e2pXy (or (e,e'pp)X) events - start");
+        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, debugging::DebuggerMode, debugging::OnlyPrintNamedTesterSteps, "Reco. 1e2pXy (or (e,e'pp)X) events - start");
 
         // 1e2pXy
         if (Np == 2) {
@@ -15911,7 +15917,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             }
         }
 
-        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps, "Reco. 1e2pXy (or (e,e'pp)X) events - end");
+        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, debugging::DebuggerMode, debugging::OnlyPrintNamedTesterSteps, "Reco. 1e2pXy (or (e,e'pp)X) events - end");
 
 #pragma endregion
 
@@ -15919,7 +15925,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
 #pragma region /* Reco. 2p (FD & CD) events */
 
-        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps, "Reco. 2p (FD & CD) events - start");
+        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, debugging::DebuggerMode, debugging::OnlyPrintNamedTesterSteps, "Reco. 2p (FD & CD) events - start");
 
         // 2p (FD & CD)
         /* 2p event selection: 2p = Protons_ind.size() = 2, any id. FD neutrons and any number of other neutrals and particles with pdg=0. */
@@ -15984,7 +15990,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
             //  Fillings 2p histograms ---------------------------------------------------------------------------------------------------------------------------------
 
-            debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps);
+            debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, debugging::DebuggerMode, debugging::OnlyPrintNamedTesterSteps);
 
             // Fillings 2p histograms
             ++num_of_events_2p;
@@ -16441,7 +16447,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             }
         }  // end of 2p cuts if
 
-        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps, "Reco. 2p (FD & CD) events - end");
+        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, debugging::DebuggerMode, debugging::OnlyPrintNamedTesterSteps, "Reco. 2p (FD & CD) events - end");
 
 #pragma endregion
 
@@ -16449,7 +16455,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
 #pragma region /* Reco. pFDpCD events */
 
-        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps, "Reco. pFDpCD events - start");
+        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, debugging::DebuggerMode, debugging::OnlyPrintNamedTesterSteps, "Reco. pFDpCD events - start");
 
         // pFDpCD
 
@@ -17318,7 +17324,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             }
         }  // end of 1epFDpCD & pFDpCD cuts if
 
-        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps, "Reco. pFDpCD events - end");
+        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, debugging::DebuggerMode, debugging::OnlyPrintNamedTesterSteps, "Reco. pFDpCD events - end");
 
 #pragma endregion
 
@@ -17326,7 +17332,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
 #pragma region /* Reco. nFDpCD events */
 
-        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps, "Reco. nFDpCD events - start");
+        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, debugging::DebuggerMode, debugging::OnlyPrintNamedTesterSteps, "Reco. nFDpCD events - start");
 
         // nFDpCD
 
@@ -18333,7 +18339,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             }
         }  // end of 1enFDpCD & nFDpCD cuts if
 
-        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps, "Reco. nFDpCD events - end");
+        debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, debugging::DebuggerMode, debugging::OnlyPrintNamedTesterSteps, "Reco. nFDpCD events - end");
 
 #pragma endregion
 
@@ -18363,7 +18369,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     }  // end of while
     // </editor-fold>
 
-    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, DebuggerMode, OnlyPrintNamedTesterSteps, "Code execution - end");
+    debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, debugging::DebuggerMode, debugging::OnlyPrintNamedTesterSteps, "Code execution - end");
 
 #pragma endregion
 

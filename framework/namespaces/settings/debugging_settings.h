@@ -11,7 +11,7 @@ namespace debugging_settings {
 
 // General debugging ----------------------------------------------------------------------------------------------------------------------------------------------------
 
-const bool DebuggerMode = false; // true = Debugger mode (master switch), false = Normal mode
+const bool DebuggerMode = true; // true = Debugger mode (master switch), false = Normal mode
 const bool OnlyPrintNamedTesterSteps = (DebuggerMode && true);
 
 // Acceptance maps and weight maps debugging ----------------------------------------------------------------------------------------------------------------------------
