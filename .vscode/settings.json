@@ -194,7 +194,7 @@
     "workbench.tree.indent": 20,
     "C_Cpp.errorSquiggles": "disabled",
     "cmake.configureOnEdit": false,
-    "cmake.configureOnOpen": true
+    "cmake.configureOnOpen": false
     // "betterFolding.showFoldedBodyLinesCount": false,
     // "betterFolding.showFoldedBrackets": true
 }
