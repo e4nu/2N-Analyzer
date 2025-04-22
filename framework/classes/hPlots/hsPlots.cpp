@@ -90,6 +90,8 @@ int hsPlots::FindSliceIndex(double value) {
 
 // Fill the histogram with the given x, y values and weight
 void hsPlots::Fill(double sliceVar, double x, double y, double weight) {
+    bool PrintOut = true;
+
     int index = FindSliceIndex(sliceVar);
 
     // Check if slice index is valid:
@@ -101,14 +103,17 @@ void hsPlots::Fill(double sliceVar, double x, double y, double weight) {
         exit(1);
     }
 
-    for (size_t i = 0; i < SlicedHistoList.size(); ++i) {
-        std::cout << "Index " << i << ": ";
-        if (!SlicedHistoList[i])
-            std::cout << "nullptr\n";
-        else
-            std::cout << SlicedHistoList[i]->ClassName() << "\n";
+    if (PrintOut) {
+        for (size_t i = 0; i < SlicedHistoList.size(); ++i) {
+            std::cout << "Index " << i << ": ";
+            if (!SlicedHistoList[i]) {
+                std::cout << "nullptr\n";
+            } else {
+                std::cout << SlicedHistoList[i]->ClassName() << "\n";
+            }
+        }
     }
-
+    
     if (!SlicedHistoList[index]) {
         std::cerr << "\033[31m\n\nhsPlots::Fill: ERROR: Histogram at index = " << index << " is null!\n";
         std::cerr << "Aborting...\033[0m\n";
