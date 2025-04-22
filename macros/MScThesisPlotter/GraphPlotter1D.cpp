@@ -90,13 +90,13 @@ void GraphPlotter1D(TList *MScThesisPlotsList, const char *filename, const char 
     c1->cd()->SetGrid(), c1->cd()->SetBottomMargin(0.14), c1->cd()->SetLeftMargin(0.18), c1->cd()->SetRightMargin(0.12), c1->cd()->SetTopMargin(0.12), c1->cd();
 
     TFile *file = new TFile(filename);
-    if (!file) { cout << "\nInvalid file! Exiting...\n", exit(0); }
+    if (!file) { cout << "\nInvalid file! Aborting...\n", exit(1); }
 
     TFolder *momResDir = (TFolder *) file->Get(filenameDir);
-    if (!momResDir) { cout << "\nInvalid folder! Exiting...\n", exit(0); }
+    if (!momResDir) { cout << "\nInvalid folder! Aborting...\n", exit(1); }
 
     TGraph *Graph1D = (TGraph *) momResDir->FindObject(Graph1DNameCopy.c_str());
-    if (!Graph1D) { cout << "\nInvalid graph! Exiting...\n", exit(0); }
+    if (!Graph1D) { cout << "\nInvalid graph! Aborting...\n", exit(1); }
 
     double Legend_x1_BaseLine = gStyle->GetStatX(), Legend_y1_BaseLine = gStyle->GetStatY(); // Top right
     double Legend_x2_BaseLine = gStyle->GetStatX(), Legend_y2_BaseLine = gStyle->GetStatY(); // Bottom left

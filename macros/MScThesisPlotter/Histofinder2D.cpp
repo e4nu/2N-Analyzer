@@ -59,7 +59,7 @@ TH2D *Histofinder2D(TFile *file, const char *Histogram2DNameSubstring) {
 
     if (!HistogramFound) {
         cout << "\n\nHistofinder2D: could not find histogram!\n";
-        exit(0);
+        exit(1);
 
         return Histogram2D;
     } else {
@@ -131,7 +131,7 @@ TH2D *Histofinder2D(TFile *file, const char *Histogram2DNameSubstring, const boo
     if (!HistogramFound) {
         cout << "\n\nHistofinder2D: could not find histogram!\n";
         cout << "Histogram2DNameSubstring = " << Histogram2DNameSubstring << "\n";
-        exit(0);
+        exit(1);
 
         return Histogram2D;
     } else {

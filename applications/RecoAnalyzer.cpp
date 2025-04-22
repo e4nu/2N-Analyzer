@@ -11525,28 +11525,28 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         // Safety checks
         for (int &i : ReDef_FD_neutrons) {
             if (!((allParticles[i]->par()->getPid() == 2112) || (allParticles[i]->par()->getPid() == 22))) {
-                std::cout << "\033[33m\n\nReDef_FD_neutrons: A neutron PDG is not 2112 or 22 (" << allParticles[i]->par()->getPid() << ")! Exiting...\n\n", exit(0);
+                std::cout << "\033[33m\n\nReDef_FD_neutrons: A neutron PDG is not 2112 or 22 (" << allParticles[i]->par()->getPid() << ")! Aborting...\n\n", exit(1);
             }
 
             bool NeutronInPCAL_test = (allParticles[i]->cal(clas12::PCAL)->getDetector() == 7);    // PCAL hit
             bool NeutronInECIN_test = (allParticles[i]->cal(clas12::ECIN)->getDetector() == 7);    // ECIN hit
             bool NeutronInECOUT_test = (allParticles[i]->cal(clas12::ECOUT)->getDetector() == 7);  // ECIN hit
 
-            if (NeutronInPCAL_test) { std::cout << "\033[33m\n\nReDef_FD_neutrons test: a neutron have been found with a PCAL hit! Exiting...\n\n", exit(0); }
+            if (NeutronInPCAL_test) { std::cout << "\033[33m\n\nReDef_FD_neutrons test: a neutron have been found with a PCAL hit! Aborting...\n\n", exit(1); }
 
             if (!(NeutronInECIN_test || NeutronInECOUT_test)) {
-                std::cout << "\033[33m\n\nReDef_FD_neutrons test: a neutron have been found without either ECIN or ECOUT hit! Exiting...\n\n", exit(0);
+                std::cout << "\033[33m\n\nReDef_FD_neutrons test: a neutron have been found without either ECIN or ECOUT hit! Aborting...\n\n", exit(1);
             }
         }
 
         for (int &i : ReDef_FD_photons) {
             if (allParticles[i]->par()->getPid() != 22) {
-                std::cout << "\033[33m\n\nReDef_FD_photons test: A photon PDG is not 2112 or 22 (" << allParticles[i]->par()->getPid() << ")! Exiting...\n\n", exit(0);
+                std::cout << "\033[33m\n\nReDef_FD_photons test: A photon PDG is not 2112 or 22 (" << allParticles[i]->par()->getPid() << ")! Aborting...\n\n", exit(1);
             }
 
             bool PhotonInPCAL_test = (allParticles[i]->cal(clas12::PCAL)->getDetector() == 7);  // PCAL hit
 
-            if (!PhotonInPCAL_test) { std::cout << "\033[33m\n\n1n: a photon have been found without a PCAL hit! Exiting...\n\n", exit(0); }
+            if (!PhotonInPCAL_test) { std::cout << "\033[33m\n\n1n: a photon have been found without a PCAL hit! Aborting...\n\n", exit(1); }
         }
 
         // Setting up event selection
@@ -15242,8 +15242,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                         bool inECOUTtmp = (allParticles[i]->cal(clas12::ECOUT)->getDetector() == 7);  // ECOUT hit
 
                         if (PDGtmp == 22) {
-                            if (!(allParticles[i]->getRegion() == FD)) { std::cout << "\033[33m\n\nBeta_n_1n: neutron is not in FD! Exiting...\n\n", exit(0); }
-                            if (!(!inPCALtmp && (inECINtmp || inECOUTtmp))) { std::cout << "\033[33m\n\nBeta_n_1n: photon is not a neutron! Exiting...\n\n", exit(0); }
+                            if (!(allParticles[i]->getRegion() == FD)) { std::cout << "\033[33m\n\nBeta_n_1n: neutron is not in FD! Aborting...\n\n", exit(1); }
+                            if (!(!inPCALtmp && (inECINtmp || inECOUTtmp))) { std::cout << "\033[33m\n\nBeta_n_1n: photon is not a neutron! Aborting...\n\n", exit(1); }
 
                             // Filling beta of neutrons from 'photons' - all sectors
                             hBeta_n_from_ph_01_1n_FD.hFill(allParticles[i]->par()->getBeta());
@@ -15279,8 +15279,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                     bool inECOUTtmp = (allParticles[n_ind_1n]->cal(clas12::ECOUT)->getDetector() == 7);  // ECOUT hit
 
                     if (PDGtmp == 22) {
-                        if (!(allParticles[n_ind_1n]->getRegion() == FD)) { std::cout << "\033[33m\n\nBeta_n_1n: neutron is not in FD! Exiting...\n\n", exit(0); }
-                        if (!(!inPCALtmp && (inECINtmp || inECOUTtmp))) { std::cout << "\033[33m\n\nBeta_n_1n: photon is not a neutron! Exiting...\n\n", exit(0); }
+                        if (!(allParticles[n_ind_1n]->getRegion() == FD)) { std::cout << "\033[33m\n\nBeta_n_1n: neutron is not in FD! Aborting...\n\n", exit(1); }
+                        if (!(!inPCALtmp && (inECINtmp || inECOUTtmp))) { std::cout << "\033[33m\n\nBeta_n_1n: photon is not a neutron! Aborting...\n\n", exit(1); }
 
                         // Filling beta of neutrons from 'photons' - all sectors
                         hBeta_n_from_ph_01_1n_FD.hFill(allParticles[n_ind_1n]->par()->getBeta());
@@ -15938,7 +15938,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
             // Safety checks (2p)
             /* Safety check that we are looking at 2p */
-            if (Protons_ind.size() != 2) { std::cout << "\033[33m\n\n2p: Protons_ind.size() is different than 2! Exiting...\n\n", exit(0); }
+            if (Protons_ind.size() != 2) { std::cout << "\033[33m\n\n2p: Protons_ind.size() is different than 2! Aborting...\n\n", exit(1); }
 
             debugging::CodeDebugger.SafetyCheck_basic_event_selection(__FILE__, __LINE__, "2p", Kplus, Kminus, Piplus_ind, Piminus_ind, Electron_ind, deuterons);
 
@@ -16501,18 +16501,18 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
             // Safety checks (pFDpCD)
             /* Safety check that we are looking at pFDpCD */
-            if (e_pFDpCD->getRegion() != FD) { std::cout << "\033[33m\n\npFDpCD: Electron is not in the FD! Exiting...\n\n", exit(0); }
-            if (pFD_pFDpCD->getRegion() != FD) { std::cout << "\033[33m\n\npFDpCD: nFD is not in the FD! Exiting...\n\n", exit(0); }
-            if (pCD_pFDpCD->getRegion() != CD) { std::cout << "\033[33m\n\npFDpCD: pCD is not in the CD! Exiting...\n\n", exit(0); }
-            if (Protons_ind.size() != 2) { std::cout << "\033[33m\n\npFDpCD: Protons_ind.size() is different than 2! Exiting...\n\n", exit(0); }
+            if (e_pFDpCD->getRegion() != FD) { std::cout << "\033[33m\n\npFDpCD: Electron is not in the FD! Aborting...\n\n", exit(1); }
+            if (pFD_pFDpCD->getRegion() != FD) { std::cout << "\033[33m\n\npFDpCD: nFD is not in the FD! Aborting...\n\n", exit(1); }
+            if (pCD_pFDpCD->getRegion() != CD) { std::cout << "\033[33m\n\npFDpCD: pCD is not in the CD! Aborting...\n\n", exit(1); }
+            if (Protons_ind.size() != 2) { std::cout << "\033[33m\n\npFDpCD: Protons_ind.size() is different than 2! Aborting...\n\n", exit(1); }
 
             if (protons[Protons_ind.at(0)]->getRegion() == protons[Protons_ind.at(1)]->getRegion()) {
-                std::cout << "\033[33m\n\npFDpCD: Protons are in the same region! Exiting...\n\n", exit(0);
+                std::cout << "\033[33m\n\npFDpCD: Protons are in the same region! Aborting...\n\n", exit(1);
             }
 
-            if (e_pFDpCD->getRegion() != FD) { std::cout << "\033[33m\n\npFDpCD: Electron is not in the FD! Exiting...\n\n", exit(0); }
-            if (pFD_pFDpCD->getRegion() != FD) { std::cout << "\033[33m\n\npFDpCD: pFD is not in the FD! Exiting...\n\n", exit(0); }
-            if (pCD_pFDpCD->getRegion() != CD) { std::cout << "\033[33m\n\npFDpCD: pCD is not in the CD! Exiting...\n\n", exit(0); }
+            if (e_pFDpCD->getRegion() != FD) { std::cout << "\033[33m\n\npFDpCD: Electron is not in the FD! Aborting...\n\n", exit(1); }
+            if (pFD_pFDpCD->getRegion() != FD) { std::cout << "\033[33m\n\npFDpCD: pFD is not in the FD! Aborting...\n\n", exit(1); }
+            if (pCD_pFDpCD->getRegion() != CD) { std::cout << "\033[33m\n\npFDpCD: pCD is not in the CD! Aborting...\n\n", exit(1); }
 
             debugging::CodeDebugger.SafetyCheck_basic_event_selection(__FILE__, __LINE__, "pFDpCD", Kplus, Kminus, Piplus_ind, Piminus_ind, Electron_ind, deuterons);
 
@@ -17370,31 +17370,31 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             // Safety checks (nFDpCD)
             /* Safety check that we are looking at nFDpCD */
             // TODO: reorgenize these Safety checks
-            if (e_nFDpCD->getRegion() != FD) { std::cout << "\033[33m\n\nnFDpCD: Electron is not in the FD! Exiting...\n\n", exit(0); }
-            if (nFD_nFDpCD->getRegion() != FD) { std::cout << "\033[33m\n\nnFDpCD: nFD is not in the FD! Exiting...\n\n", exit(0); }
-            if (pCD_nFDpCD->getRegion() != CD) { std::cout << "\033[33m\n\nnFDpCD: pCD is not in the CD! Exiting...\n\n", exit(0); }
+            if (e_nFDpCD->getRegion() != FD) { std::cout << "\033[33m\n\nnFDpCD: Electron is not in the FD! Aborting...\n\n", exit(1); }
+            if (nFD_nFDpCD->getRegion() != FD) { std::cout << "\033[33m\n\nnFDpCD: nFD is not in the FD! Aborting...\n\n", exit(1); }
+            if (pCD_nFDpCD->getRegion() != CD) { std::cout << "\033[33m\n\nnFDpCD: pCD is not in the CD! Aborting...\n\n", exit(1); }
 
             if (!(ESSettings.Enable_FD_photons || (PhotonsFD_ind.size() == 0))) {
-                std::cout << "\033[33m\n\nnFDpCD: PhotonsFD_ind.size() is non-zero (" << PhotonsFD_ind.size() << ")! Exiting...\n\n", exit(0);
+                std::cout << "\033[33m\n\nnFDpCD: PhotonsFD_ind.size() is non-zero (" << PhotonsFD_ind.size() << ")! Aborting...\n\n", exit(1);
             }
 
-            if (Protons_ind.size() != 1) { std::cout << "\033[33m\n\nnFDpCD: Protons_ind.size() is different than 2! Exiting...\n\n", exit(0); }
+            if (Protons_ind.size() != 1) { std::cout << "\033[33m\n\nnFDpCD: Protons_ind.size() is different than 2! Aborting...\n\n", exit(1); }
 
             debugging::CodeDebugger.SafetyCheck_basic_event_selection(__FILE__, __LINE__, "nFDpCD", Kplus, Kminus, Piplus_ind, Piminus_ind, Electron_ind, deuterons);
 
             for (int &i : NeutronsFD_ind) {
                 bool NeutronInPCAL_nFDpCD = (allParticles[i]->cal(clas12::PCAL)->getDetector() == 7);  // PCAL hit
-                if (NeutronInPCAL_nFDpCD) { std::cout << "\033[33m\n\nnFDpCD: a neutron have been found with a PCAL hit! Exiting...\n\n", exit(0); }
+                if (NeutronInPCAL_nFDpCD) { std::cout << "\033[33m\n\nnFDpCD: a neutron have been found with a PCAL hit! Aborting...\n\n", exit(1); }
                 if (!((allParticles[i]->par()->getPid() == 2112) || (allParticles[i]->par()->getPid() == 22))) {
-                    std::cout << "\033[33m\n\nnFDpCD: A neutron PDG is not 2112 or 22 (" << allParticles[i]->par()->getPid() << ")! Exiting...\n\n", exit(0);
+                    std::cout << "\033[33m\n\nnFDpCD: A neutron PDG is not 2112 or 22 (" << allParticles[i]->par()->getPid() << ")! Aborting...\n\n", exit(1);
                 }
             }
 
             for (int &i : PhotonsFD_ind) {
                 bool PhotonInPCAL_nFDpCD = (allParticles[i]->cal(clas12::PCAL)->getDetector() == 7);  // PCAL hit
-                if (!PhotonInPCAL_nFDpCD) { std::cout << "\033[33m\n\nnFDpCD: a photon have been found without a PCAL hit! Exiting...\n\n", exit(0); }
+                if (!PhotonInPCAL_nFDpCD) { std::cout << "\033[33m\n\nnFDpCD: a photon have been found without a PCAL hit! Aborting...\n\n", exit(1); }
                 if (allParticles[i]->par()->getPid() != 22) {
-                    std::cout << "\033[33m\n\nnFDpCD: A photon PDG is not 2112 or 22 (" << allParticles[i]->par()->getPid() << ")! Exiting...\n\n", exit(0);
+                    std::cout << "\033[33m\n\nnFDpCD: A photon PDG is not 2112 or 22 (" << allParticles[i]->par()->getPid() << ")! Aborting...\n\n", exit(1);
                 }
             }
 
@@ -17499,12 +17499,12 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
             // Safety check (nFDpCD)
             /* Safety check that we are looking at good neutron (BEFORE VETO!!!) */
-            if (nFD_nFDpCD->getRegion() != FD) { std::cout << "\033[33m\n\nnFDpCD: neutron is not in FD! Exiting...\n\n", exit(0); }
+            if (nFD_nFDpCD->getRegion() != FD) { std::cout << "\033[33m\n\nnFDpCD: neutron is not in FD! Aborting...\n\n", exit(1); }
             if (!((NeutronPDG_nFDpCD == 22) || (NeutronPDG_nFDpCD == 2112))) {
-                std::cout << "\033[33m\n\nnFDpCD: neutral PDG is not 2112 or 22 (" << NeutronPDG_nFDpCD << ")! Exiting...\n\n", exit(0);
+                std::cout << "\033[33m\n\nnFDpCD: neutral PDG is not 2112 or 22 (" << NeutronPDG_nFDpCD << ")! Aborting...\n\n", exit(1);
             }
-            if (NeutronInPCAL_nFDpCD) { std::cout << "\033[33m\n\nnFDpCD: neutron hit in PCAL! Exiting...\n\n", exit(0); }
-            if (!(NeutronInECIN_nFDpCD || NeutronInECOUT_nFDpCD)) { std::cout << "\033[33m\n\nnFDpCD: no neutron hit in ECIN or ECOUT! Exiting...\n\n", exit(0); }
+            if (NeutronInPCAL_nFDpCD) { std::cout << "\033[33m\n\nnFDpCD: neutron hit in PCAL! Aborting...\n\n", exit(1); }
+            if (!(NeutronInECIN_nFDpCD || NeutronInECOUT_nFDpCD)) { std::cout << "\033[33m\n\nnFDpCD: no neutron hit in ECIN or ECOUT! Aborting...\n\n", exit(1); }
 
             TVector3 n_hit_nFDpCD_3v, e_hit_nFDpCD_3v;
 

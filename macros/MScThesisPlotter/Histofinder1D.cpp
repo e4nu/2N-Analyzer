@@ -72,7 +72,7 @@ TH1D *Histofinder1D(TFile *file, const char *Histogram1DNameSubstring, const boo
         cout << "\n\nHistofinder1D: could not find histogram!\n";
         cout << "TLmom = " << TLmom << "\n";
         cout << "Histogram1DNameSubstring = " << Histogram1DNameSubstring << "\n";
-        exit(0);
+        exit(1);
 
         return Histogram1D;
     } else {

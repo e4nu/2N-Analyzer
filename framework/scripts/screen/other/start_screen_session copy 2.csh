@@ -26,5 +26,5 @@ else
     # If stay_open is not empty, close the screen session after running the command
     screen -dmS "${session_name}" tcsh -c "source ~/.cshrc;${command}; exit"
     # screen -dmS "${session_name}" tcsh -c "${command}; exit"
-    echo "${COLOR_START}Screen session ${COLOR_END}'${session_name}'${COLOR_START} started with command:${COLOR_END} ${command}${COLOR_START}. Exiting after completion.${COLOR_END}"
+    echo "${COLOR_START}Screen session ${COLOR_END}'${session_name}'${COLOR_START} started with command:${COLOR_END} ${command}${COLOR_START}. Aborting after completion.${COLOR_END}"
 endif

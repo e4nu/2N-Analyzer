@@ -1800,7 +1800,7 @@ string ExperimentParameters::ConfigureSampleName(const std::string &AnalyzeFileP
         cout << "BeamAt2GeV = " << BeamAt2GeV << "\n";
         cout << "BeamAt4GeV = " << BeamAt4GeV << "\n";
         cout << "BeamAt6GeV = " << BeamAt6GeV << "\n";
-        cout << "Exiting...\n", exit(0);
+        cout << "Aborting...\n", exit(1);
     }
 
     if (BeamAt2GeV && BeamAt4GeV && BeamAt6GeV) {
@@ -1812,7 +1812,7 @@ string ExperimentParameters::ConfigureSampleName(const std::string &AnalyzeFileP
         cout << "BeamAt6GeV = " << BeamAt6GeV << "\n";
         cout << "SimulationSample = " << SimulationSample << "\n";
         cout << "DataSample = " << DataSample << "\n";
-        cout << "Exiting...\n", exit(0);
+        cout << "Aborting...\n", exit(1);
     }
 
     if (SimulationSample && DataSample) {
@@ -1824,7 +1824,7 @@ string ExperimentParameters::ConfigureSampleName(const std::string &AnalyzeFileP
         cout << "BeamAt6GeV = " << BeamAt6GeV << "\n";
         cout << "SimulationSample = " << SimulationSample << "\n";
         cout << "DataSample = " << DataSample << "\n";
-        cout << "Exiting...\n", exit(0);
+        cout << "Aborting...\n", exit(1);
     }
 
     if (!SimulationSample && !DataSample) {
@@ -1836,7 +1836,7 @@ string ExperimentParameters::ConfigureSampleName(const std::string &AnalyzeFileP
         cout << "BeamAt6GeV = " << BeamAt6GeV << "\n";
         cout << "SimulationSample = " << SimulationSample << "\n";
         cout << "DataSample = " << DataSample << "\n";
-        cout << "Exiting...\n", exit(0);
+        cout << "Aborting...\n", exit(1);
     }
 #pragma endregion
 
@@ -1860,7 +1860,7 @@ void ExperimentParameters::ConfigureVaryingSampleName(const std::string &sn) {  
         VaryingSampleName = sn;
         // VaryingSampleName = "C12x4_simulation_G18_Q204_6GeV";
     } else {
-        cout << "\n\n\nExperimentParameters::ConfigureVaryingSampleName: sample can't be configured! Exiting...\n", exit(0);
+        cout << "\n\n\nExperimentParameters::ConfigureVaryingSampleName: sample can't be configured! Aborting...\n", exit(1);
     }
 }
 #pragma endregion

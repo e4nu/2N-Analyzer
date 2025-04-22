@@ -149,8 +149,8 @@ int GetBinFromAng(double Angle, double AngleBins, double AngleMin, double AngleM
 
 double CalcdPhi2(region_part_ptr proton1, region_part_ptr proton2) {
     if (proton1->getRegion() == proton2->getRegion()) {
-        std::cerr << "\n\nCalcdPhi2: protons are in the same region (" << proton1->getRegion() << " & " << proton2->getRegion() << ")! Exiting...\n";
-        exit(0);
+        std::cerr << "\n\nCalcdPhi2: protons are in the same region (" << proton1->getRegion() << " & " << proton2->getRegion() << ")! Aborting...\n";
+        exit(1);
     }
 
     double Phi_pFD_deg = 0.0, Phi_pCD_deg = 0.0;

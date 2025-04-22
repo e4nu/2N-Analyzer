@@ -216,7 +216,7 @@ int countHistograms(const char *filename, const std::string &ParticleNameShort1,
         }
         else
         {
-            cout << "plotHistograms: 'filename' does not point to a uniform sample! Exiting...", exit(0);
+            cout << "plotHistograms: 'filename' does not point to a uniform sample! Aborting...", exit(1);
         }
     }
 
@@ -264,7 +264,7 @@ int countHistograms(const char *filename, const std::string &ParticleNameShort1,
         if (!file || file->IsZombie())
         {
             std::cerr << "Error: Could not open file: " << filename << std::endl;
-            exit(0);
+            exit(1);
         }
 
         //    // Create a canvas to plot histograms in a 3x3 grid
@@ -589,7 +589,7 @@ int countHistograms(const char *filename, const std::string &ParticleNameShort1,
         if (!file || file->IsZombie())
         {
             std::cerr << "Error: Could not open file: " << filename << std::endl;
-            exit(0);
+            exit(1);
         }
 
         //    // Create a canvas to plot histograms in a 3x3 grid
@@ -919,14 +919,14 @@ int countHistograms(const char *filename, const std::string &ParticleNameShort1,
         TH2D *TL_Histogram2D = (TH2D *)TL_root_file->Get("TL Neutron Hit Map (AMaps)");
         if (!TL_root_file || TL_root_file->IsZombie())
         {
-            std::cerr << "Error: Could not open file: " << FileName << std::endl, exit(0);
+            std::cerr << "Error: Could not open file: " << FileName << std::endl, exit(1);
         }
         if (!TL_Histogram2D)
         {
             std::cerr << "Error: Could not open histogram: TL Neutron Hit Map (AMaps)" << std::endl;
             std::cerr << "File path:\n"
                       << FileName + TL_root_file_prefix << std::endl;
-            exit(0);
+            exit(1);
         }
 
         cout << "\n\nLoading 'Reco Neutron Hit Map (AMaps)' from:\n"
@@ -935,14 +935,14 @@ int countHistograms(const char *filename, const std::string &ParticleNameShort1,
         TH2D *Reco_Histogram2D = (TH2D *)Reco_root_file->Get("Reco Neutron Hit Map (AMaps)");
         if (!Reco_root_file || Reco_root_file->IsZombie())
         {
-            std::cerr << "Error: Could not open file: " << FileName << std::endl, exit(0);
+            std::cerr << "Error: Could not open file: " << FileName << std::endl, exit(1);
         }
         if (!Reco_Histogram2D)
         {
             std::cerr << "Error: Could not open histogram: Reco Neutron Hit Map (AMaps)" << std::endl;
             std::cerr << "File path:\n"
                       << FileName + Reco_root_file_prefix << std::endl;
-            exit(0);
+            exit(1);
         }
 
         cout << "\n\nLoading 'Neutron Reco/TL ratio (AMaps)' from:\n"
@@ -951,14 +951,14 @@ int countHistograms(const char *filename, const std::string &ParticleNameShort1,
         TH2D *Ratio_Histogram2D = Histofinder2D(Ratio_root_file, "Neutron Reco/TL ratio (");
         if (!Ratio_root_file || Ratio_root_file->IsZombie())
         {
-            std::cerr << "Error: Could not open file: " << FileName << std::endl, exit(0);
+            std::cerr << "Error: Could not open file: " << FileName << std::endl, exit(1);
         }
         if (!Ratio_Histogram2D)
         {
             std::cerr << "Error: Could not open histogram: Neutron Reco/TL ratio (AMaps)" << std::endl;
             std::cerr << "File path:\n"
                       << FileName + Ratio_root_file_prefix << std::endl;
-            exit(0);
+            exit(1);
         }
 
         cout << "\n\nLoading 'Neutron_AMap (AMaps)' from:\n"
@@ -967,14 +967,14 @@ int countHistograms(const char *filename, const std::string &ParticleNameShort1,
         TH2D *Finalized_AMaps_Histogram2D = (TH2D *)Finalized_AMaps_root_file->Get("Neutron_AMap (AMaps)");
         if (!Finalized_AMaps_root_file || Finalized_AMaps_root_file->IsZombie())
         {
-            std::cerr << "Error: Could not open file: " << FileName << std::endl, exit(0);
+            std::cerr << "Error: Could not open file: " << FileName << std::endl, exit(1);
         }
         if (!Finalized_AMaps_Histogram2D)
         {
             std::cerr << "Error: Could not open histogram: Neutron_AMap (AMaps)" << std::endl;
             std::cerr << "File path:\n"
                       << FileName + Finalized_AMaps_root_file_prefix << std::endl;
-            exit(0);
+            exit(1);
         }
 
         cout << "\nplotting into canvas...\n";
@@ -1475,7 +1475,7 @@ void plotHistograms(const char *filename, const std::string &ParticleNameShort1,
         }
         else
         {
-            cout << "plotHistograms: 'filename' does not point to a uniform sample! Exiting...", exit(0);
+            cout << "plotHistograms: 'filename' does not point to a uniform sample! Aborting...", exit(1);
         }
     }
 
@@ -2176,14 +2176,14 @@ void plotHistograms(const char *filename, const std::string &ParticleNameShort1,
         TH2D *TL_Histogram2D = (TH2D *)TL_root_file->Get("TL Neutron Hit Map (AMaps)");
         if (!TL_root_file || TL_root_file->IsZombie())
         {
-            std::cerr << "Error: Could not open file: " << FileName << std::endl, exit(0);
+            std::cerr << "Error: Could not open file: " << FileName << std::endl, exit(1);
         }
         if (!TL_Histogram2D)
         {
             std::cerr << "Error: Could not open histogram: TL Neutron Hit Map (AMaps)" << std::endl;
             std::cerr << "File path:\n"
                       << FileName + TL_root_file_prefix << std::endl;
-            exit(0);
+            exit(1);
         }
 
         cout << "\n\nLoading 'Reco Neutron Hit Map (AMaps)' from:\n"
@@ -2192,14 +2192,14 @@ void plotHistograms(const char *filename, const std::string &ParticleNameShort1,
         TH2D *Reco_Histogram2D = (TH2D *)Reco_root_file->Get("Reco Neutron Hit Map (AMaps)");
         if (!Reco_root_file || Reco_root_file->IsZombie())
         {
-            std::cerr << "Error: Could not open file: " << FileName << std::endl, exit(0);
+            std::cerr << "Error: Could not open file: " << FileName << std::endl, exit(1);
         }
         if (!Reco_Histogram2D)
         {
             std::cerr << "Error: Could not open histogram: Reco Neutron Hit Map (AMaps)" << std::endl;
             std::cerr << "File path:\n"
                       << FileName + Reco_root_file_prefix << std::endl;
-            exit(0);
+            exit(1);
         }
 
         cout << "\n\nLoading 'Neutron Reco/TL ratio (AMaps)' from:\n"
@@ -2208,14 +2208,14 @@ void plotHistograms(const char *filename, const std::string &ParticleNameShort1,
         TH2D *Ratio_Histogram2D = Histofinder2D(Ratio_root_file, "Neutron Reco/TL ratio (");
         if (!Ratio_root_file || Ratio_root_file->IsZombie())
         {
-            std::cerr << "Error: Could not open file: " << FileName << std::endl, exit(0);
+            std::cerr << "Error: Could not open file: " << FileName << std::endl, exit(1);
         }
         if (!Ratio_Histogram2D)
         {
             std::cerr << "Error: Could not open histogram: Neutron Reco/TL ratio (AMaps)" << std::endl;
             std::cerr << "File path:\n"
                       << FileName + Ratio_root_file_prefix << std::endl;
-            exit(0);
+            exit(1);
         }
 
         cout << "\n\nLoading 'Neutron_AMap (AMaps)' from:\n"
@@ -2224,14 +2224,14 @@ void plotHistograms(const char *filename, const std::string &ParticleNameShort1,
         TH2D *Finalized_AMaps_Histogram2D = (TH2D *)Finalized_AMaps_root_file->Get("Neutron_AMap (AMaps)");
         if (!Finalized_AMaps_root_file || Finalized_AMaps_root_file->IsZombie())
         {
-            std::cerr << "Error: Could not open file: " << FileName << std::endl, exit(0);
+            std::cerr << "Error: Could not open file: " << FileName << std::endl, exit(1);
         }
         if (!Finalized_AMaps_Histogram2D)
         {
             std::cerr << "Error: Could not open histogram: Neutron_AMap (AMaps)" << std::endl;
             std::cerr << "File path:\n"
                       << FileName + Finalized_AMaps_root_file_prefix << std::endl;
-            exit(0);
+            exit(1);
         }
 
         cout << "\nplotting into canvas...\n";

@@ -529,7 +529,7 @@ void HistPlotterStack(hData &particles, TCanvas *HistogramCanvas, TList *MScThes
 
 //            cout << "OpeningAngle = " << OpeningAngle << "\n";
 //            cout << "Title = " << Title << "\n";
-//            exit(0);
+//            exit(1);
 
             TitleAligner(particles, Sim_Histogram1D, Data_Histogram1D, Title, OpeningAngle);
 

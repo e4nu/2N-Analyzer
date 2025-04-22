@@ -58,7 +58,7 @@ struct AcceptanceMapsSettings {
         if (Generate_Electron_AMaps && Generate_Nucleon_AMaps) {
             std::cout << "\n\n\033[33mAcceptanceMapsSettings::RefreshSettings:\033[31m ERROR!\033[0m Generate_Electron_AMaps and Generate_Nucleon_AMaps can't be true at the same time! "
                          "Aborting...";
-            exit(0);
+            exit(1);
         }
     }
 

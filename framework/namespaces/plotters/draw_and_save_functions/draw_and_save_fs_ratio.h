@@ -758,7 +758,7 @@ void DrawAndSaveFSRatio(const std::string &SampleName, TH1D *pFDpCD_Plot, const 
     //        cout << "\n\nFSRatioFSDenominator = " << FSRatioFSDenominator << "\n\n";
     //        cout << "\n\nFSRatioDRegion = " << FSRatioDRegion << "\n\n";
     //        cout << "\n\nFSTopology = " << FSTopology << "\n\n";
-    //        cout << "\n\nExiting...\n\n", exit(0);
+    //        cout << "\n\nAborting...\n\n", exit(1);
     //    }
 
     #pragma region /* Plotting and saving nFDpCD_Plot_Clone_test */

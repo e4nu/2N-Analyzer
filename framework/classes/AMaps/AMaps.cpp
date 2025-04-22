@@ -82,7 +82,7 @@ AMaps::AMaps(const std::string &SampleName, const std::string &P_e_bin_profile, 
         AMapsMode_TitleAddition = "";
     }
 
-    if (!(Maps_Mode == "AMaps" || Maps_Mode == "WMaps")) { std::cout << "\n\nAMaps::SaveHitMaps: Maps_Mode = " << Maps_Mode << " is not defined! Exiting...\n", exit(0); }
+    if (!(Maps_Mode == "AMaps" || Maps_Mode == "WMaps")) { std::cout << "\n\nAMaps::SaveHitMaps: Maps_Mode = " << Maps_Mode << " is not defined! Aborting...\n", exit(1); }
 
 #pragma endregion
 
@@ -461,7 +461,7 @@ void AMaps::SetBins(const std::string &P_nuc_bin_profile, double beamE) {
             InvertedNucleonMomSliceLimits.push_back({InvertedBinLower, InvertedBinUpper});
         }
 
-        if (InvertedPrintOut && !RegPrintOut) { exit(0); }
+        if (InvertedPrintOut && !RegPrintOut) { exit(1); }
 
         for (int i = (NumberNucOfMomSlices - 1); i >= 0; i--) {
             double BinLower = 1 / InvertedNucleonMomSliceLimits.at(i).at(1);
@@ -476,7 +476,7 @@ void AMaps::SetBins(const std::string &P_nuc_bin_profile, double beamE) {
             NucleonMomSliceLimits.push_back({BinLower, BinUpper});
         }
 
-        if (RegPrintOut) { exit(0); }
+        if (RegPrintOut) { exit(1); }
     } else if (P_nuc_bin_profile == "varying_P_nuc_bins") {
         // TODO: separate by SampleName?
         bool RegPrintOut = false;
@@ -492,7 +492,7 @@ void AMaps::SetBins(const std::string &P_nuc_bin_profile, double beamE) {
                 std::cout << "i = " << i << "\n";
             }
 
-            exit(0);
+            exit(1);
         }
     } else if (P_nuc_bin_profile == "uniform_P_nuc_bins") {
         double PLowerLim = Nucleon_Momentum_Slice_Th;
@@ -518,11 +518,11 @@ void AMaps::SetBins(const std::string &P_nuc_bin_profile, double beamE) {
             }
         }
 
-        if (RegPrintOut) { exit(0); }
+        if (RegPrintOut) { exit(1); }
     } else {
         std::cout << "AMaps::SetBins: no valid P_nuc_bin_profile selected! Choose between:\n";
         std::cout << "equi_inverted_P_nuc , varying_P_nuc_bins , uniform_P_nuc_bins\n";
-        std::cout << "Exiting...", exit(0);
+        std::cout << "Aborting...", exit(1);
     }
 }
 #pragma endregion
@@ -585,7 +585,7 @@ void AMaps::SetElectronBins(const std::string &P_e_bin_profile, double beamE) {
 
         NumOfElectronMomBins = InvertedElectronMomSliceLimits.size();
 
-        if (InvertedPrintOut && !RegPrintOut) { exit(0); }
+        if (InvertedPrintOut && !RegPrintOut) { exit(1); }
 
         if (RegPrintOut) { std::cout << "\n\n---------------------------------------------------\n"; }
 
@@ -603,7 +603,7 @@ void AMaps::SetElectronBins(const std::string &P_e_bin_profile, double beamE) {
             ElectronMomSliceLimits.push_back({BinLower, BinUpper});
         }
 
-        if (RegPrintOut) { exit(0); }
+        if (RegPrintOut) { exit(1); }
     } else if (P_e_bin_profile == "varying_P_e_bins") {
         if (basic_tools::FindSubstring(SName, "C12_simulation_6GeV_T5")) {  // Old sample
             ElectronMomSliceLimits = CustomElectronMomSliceLimits_C12_simulation_6GeV_T5;
@@ -621,7 +621,7 @@ void AMaps::SetElectronBins(const std::string &P_e_bin_profile, double beamE) {
             }
         }
 
-        if (RegPrintOut) { exit(0); }
+        if (RegPrintOut) { exit(1); }
     } else if (P_e_bin_profile == "uniform_P_e_bins") {
         double PLowerLim = 0;
         double PUpper = beamE;
@@ -646,7 +646,7 @@ void AMaps::SetElectronBins(const std::string &P_e_bin_profile, double beamE) {
             }
         }
 
-        if (RegPrintOut) { exit(0); }
+        if (RegPrintOut) { exit(1); }
     } else if (P_e_bin_profile == "equi_inverted_P_e") {
         double InvertedPLowerLim = (1 / beamE);
         double InvertedPUpper = (1 / Electron_Momentum_Slice_Th);
@@ -667,7 +667,7 @@ void AMaps::SetElectronBins(const std::string &P_e_bin_profile, double beamE) {
             InvertedElectronMomSliceLimits.push_back({InvertedBinLower, InvertedBinUpper});
         }
 
-        if (InvertedPrintOut && !RegPrintOut) { exit(0); }
+        if (InvertedPrintOut && !RegPrintOut) { exit(1); }
 
         if (RegPrintOut) { std::cout << "\n\n---------------------------------------------\n\n"; }
 
@@ -692,11 +692,11 @@ void AMaps::SetElectronBins(const std::string &P_e_bin_profile, double beamE) {
             }
         }
 
-        if (RegPrintOut) { exit(0); }
+        if (RegPrintOut) { exit(1); }
     } else {
         std::cout << "AMaps::SetElectronBins: no valid P_e_bin_profile selected! Choose between:\n";
         std::cout << "reformat_e_bins , varying_P_e_bins , uniform_P_e_bins, equi_inverted_P_e\n";
-        std::cout << "Exiting...", exit(0);
+        std::cout << "Aborting...", exit(1);
     }
 }
 #pragma endregion
@@ -801,14 +801,14 @@ void AMaps::hFillMaps(const std::string &SampleType, const std::string &particle
     bool Reco_e_PrintOut = false, Reco_p_PrintOut = false, Reco_n_PrintOut = false;
 
 #pragma region /* Safety checks (AMaps::hFillMaps) */
-    if (is_e && is_p && is_n) { std::cout << "\n\nAMaps::hFillMaps: particle can't all particles! Exiting...\n", exit(0); }
-    if (!is_e && !is_p && !is_n) { std::cout << "\n\nAMaps::hFillMaps: particle must be an electron, proton or neutron! Exiting...\n", exit(0); }
-    if (is_e && is_p) { std::cout << "\n\nAMaps::hFillMaps: particle can't be both electrons and protons! Exiting...\n", exit(0); }
-    if (is_e && is_n) { std::cout << "\n\nAMaps::hFillMaps: particle can't be both electrons and neutrons! Exiting...\n", exit(0); }
-    if (is_p && is_n) { std::cout << "\n\nAMaps::hFillMaps: particle can't be both protons and neutrons! Exiting...\n", exit(0); }
+    if (is_e && is_p && is_n) { std::cout << "\n\nAMaps::hFillMaps: particle can't all particles! Aborting...\n", exit(1); }
+    if (!is_e && !is_p && !is_n) { std::cout << "\n\nAMaps::hFillMaps: particle must be an electron, proton or neutron! Aborting...\n", exit(1); }
+    if (is_e && is_p) { std::cout << "\n\nAMaps::hFillMaps: particle can't be both electrons and protons! Aborting...\n", exit(1); }
+    if (is_e && is_n) { std::cout << "\n\nAMaps::hFillMaps: particle can't be both electrons and neutrons! Aborting...\n", exit(1); }
+    if (is_p && is_n) { std::cout << "\n\nAMaps::hFillMaps: particle can't be both protons and neutrons! Aborting...\n", exit(1); }
 
-    if (is_TL && is_Reco) { std::cout << "\n\nAMaps::hFillMaps: particle can't be both TL and Reco! Exiting...\n", exit(0); }
-    if (!is_TL && !is_Reco) { std::cout << "\n\nAMaps::hFillMaps: particle must be either TL and Reco! Exiting...\n", exit(0); }
+    if (is_TL && is_Reco) { std::cout << "\n\nAMaps::hFillMaps: particle can't be both TL and Reco! Aborting...\n", exit(1); }
+    if (!is_TL && !is_Reco) { std::cout << "\n\nAMaps::hFillMaps: particle must be either TL and Reco! Aborting...\n", exit(1); }
 #pragma endregion
 
     if (is_TL) {
@@ -832,7 +832,7 @@ void AMaps::hFillMaps(const std::string &SampleType, const std::string &particle
 
 #pragma region /* Safety checks (AMaps::hFillMaps) */
                     if (ElectronMomSliceLimits.at(i).at(0) > ElectronMomSliceLimits.at(i).at(1)) {
-                        std::cout << "\n\nAMaps::hFillMaps: electron momentum slice limits were set incorrectly! Exiting...\n", exit(0);
+                        std::cout << "\n\nAMaps::hFillMaps: electron momentum slice limits were set incorrectly! Aborting...\n", exit(1);
                     }
 #pragma endregion
 
@@ -859,7 +859,7 @@ void AMaps::hFillMaps(const std::string &SampleType, const std::string &particle
 
 #pragma region /* Safety checks (AMaps::hFillMaps) */
                     if (NucleonMomSliceLimits.at(i).at(0) > NucleonMomSliceLimits.at(i).at(1)) {
-                        std::cout << "\n\nAMaps::hFillMaps: nucleon momentum slice limits were set incorrectly! Exiting...\n", exit(0);
+                        std::cout << "\n\nAMaps::hFillMaps: nucleon momentum slice limits were set incorrectly! Aborting...\n", exit(1);
                     }
 #pragma endregion
 
@@ -888,7 +888,7 @@ void AMaps::hFillMaps(const std::string &SampleType, const std::string &particle
 
 #pragma region /* Safety checks (AMaps::hFillMaps) */
                     if (NucleonMomSliceLimits.at(i).at(0) > NucleonMomSliceLimits.at(i).at(1)) {
-                        std::cout << "\n\nAMaps::hFillMaps: nucleon momentum slice limits were set incorrectly! Exiting...\n", exit(0);
+                        std::cout << "\n\nAMaps::hFillMaps: nucleon momentum slice limits were set incorrectly! Aborting...\n", exit(1);
                     }
 #pragma endregion
 
@@ -927,7 +927,7 @@ void AMaps::hFillMaps(const std::string &SampleType, const std::string &particle
 
 #pragma region /* Safety checks (AMaps::hFillMaps) */
                     if (ElectronMomSliceLimits.at(i).at(0) > ElectronMomSliceLimits.at(i).at(1)) {
-                        std::cout << "\n\nAMaps::hFillMaps: electron momentum slice limits were set incorrectly! Exiting...\n", exit(0);
+                        std::cout << "\n\nAMaps::hFillMaps: electron momentum slice limits were set incorrectly! Aborting...\n", exit(1);
                     }
 #pragma endregion
 
@@ -958,7 +958,7 @@ void AMaps::hFillMaps(const std::string &SampleType, const std::string &particle
 
 #pragma region /* Safety checks (AMaps::hFillMaps) */
                     if (NucleonMomSliceLimits.at(i).at(0) > NucleonMomSliceLimits.at(i).at(1)) {
-                        std::cout << "\n\nAMaps::hFillMaps: nucleon momentum slice limits were set incorrectly! Exiting...\n", exit(0);
+                        std::cout << "\n\nAMaps::hFillMaps: nucleon momentum slice limits were set incorrectly! Aborting...\n", exit(1);
                     }
 #pragma endregion
 
@@ -993,7 +993,7 @@ void AMaps::hFillMaps(const std::string &SampleType, const std::string &particle
 
 #pragma region /* Safety checks (AMaps::hFillMaps) */
                     if (NucleonMomSliceLimits.at(i).at(0) > NucleonMomSliceLimits.at(i).at(1)) {
-                        std::cout << "\n\nAMaps::hFillMaps: nucleon momentum slice limits were set incorrectly! Exiting...\n", exit(0);
+                        std::cout << "\n\nAMaps::hFillMaps: nucleon momentum slice limits were set incorrectly! Aborting...\n", exit(1);
                     }
 #pragma endregion
 
@@ -2553,7 +2553,7 @@ void AMaps::ReadHitMaps(const std::string &AcceptanceMapsDirectory, const std::s
 #pragma region /* Load AMapsBC */
     std::string AMapsBC_RootFile_FileName = AcceptanceMapsDirectory + "/" + SampleName + "/" + AMapsBC_prefix + SampleName + ".root";
     TFile *AMapsBC_RootFile = new TFile(AMapsBC_RootFile_FileName.c_str());
-    if (!AMapsBC_RootFile) { std::cout << "\n\nAMaps::ReadHitMaps: could not load AMapsBC root file! Exiting...\n", exit(0); }
+    if (!AMapsBC_RootFile) { std::cout << "\n\nAMaps::ReadHitMaps: could not load AMapsBC root file! Aborting...\n", exit(1); }
 
     for (TObject *keyAsObj : *AMapsBC_RootFile->GetListOfKeys()) {
         auto key = dynamic_cast<TKey *>(keyAsObj);
@@ -2577,7 +2577,7 @@ void AMaps::ReadHitMaps(const std::string &AcceptanceMapsDirectory, const std::s
 #pragma region /* Load Hit_Maps_TL */
     std::string Hit_Maps_TL_RootFile_FileName = AcceptanceMapsDirectory + "/" + SampleName + "/" + AMap_TL_prefix + SampleName + ".root";
     TFile *Hit_Maps_TL_RootFile = new TFile(Hit_Maps_TL_RootFile_FileName.c_str());
-    if (!Hit_Maps_TL_RootFile) { std::cout << "\n\nAMaps::ReadHitMaps: could not load Hit_Maps_TL root file! Exiting...\n", exit(0); }
+    if (!Hit_Maps_TL_RootFile) { std::cout << "\n\nAMaps::ReadHitMaps: could not load Hit_Maps_TL root file! Aborting...\n", exit(1); }
 
     int counter = 0;
 
@@ -2608,7 +2608,7 @@ void AMaps::ReadHitMaps(const std::string &AcceptanceMapsDirectory, const std::s
 #pragma region /* Load Hit_Maps_Reco */
     std::string Hit_Maps_Reco_RootFile_FileName = AcceptanceMapsDirectory + "/" + SampleName + "/" + AMap_Reco_prefix + SampleName + ".root";
     TFile *Hit_Maps_Reco_RootFile = new TFile(Hit_Maps_Reco_RootFile_FileName.c_str());
-    if (!Hit_Maps_Reco_RootFile) { std::cout << "\n\nAMaps::ReadHitMaps: could not load Hit_Maps_Reco root file! Exiting...\n", exit(0); }
+    if (!Hit_Maps_Reco_RootFile) { std::cout << "\n\nAMaps::ReadHitMaps: could not load Hit_Maps_Reco root file! Aborting...\n", exit(1); }
 
     for (TObject *keyAsObj : *Hit_Maps_Reco_RootFile->GetListOfKeys()) {
         auto key = dynamic_cast<TKey *>(keyAsObj);
@@ -2632,7 +2632,7 @@ void AMaps::ReadHitMaps(const std::string &AcceptanceMapsDirectory, const std::s
 #pragma region /* Load Hit_Maps_Ratio */
     std::string Hit_Maps_Ratio_RootFile_FileName = AcceptanceMapsDirectory + "/" + SampleName + "/" + AMap_Ratio_prefix + SampleName + ".root";
     TFile *Hit_Maps_Ratio_RootFile = new TFile(Hit_Maps_Ratio_RootFile_FileName.c_str());
-    if (!Hit_Maps_Ratio_RootFile) { std::cout << "\n\nAMaps::ReadHitMaps: could not load Hit_Maps_Ratio root file! Exiting...\n", exit(0); }
+    if (!Hit_Maps_Ratio_RootFile) { std::cout << "\n\nAMaps::ReadHitMaps: could not load Hit_Maps_Ratio root file! Aborting...\n", exit(1); }
 
     for (TObject *keyAsObj : *Hit_Maps_Ratio_RootFile->GetListOfKeys()) {
         auto key = dynamic_cast<TKey *>(keyAsObj);
@@ -2656,7 +2656,7 @@ void AMaps::ReadHitMaps(const std::string &AcceptanceMapsDirectory, const std::s
 #pragma region /* Load cPart_Sep_AMaps */
     std::string cPart_Sep_AMaps_RootFile_FileName = AcceptanceMapsDirectory + "/" + SampleName + "/" + cPart_Sep_AMaps_prefix + SampleName + ".root";
     TFile *cPart_Sep_AMaps_RootFile = new TFile(cPart_Sep_AMaps_RootFile_FileName.c_str());
-    if (!cPart_Sep_AMaps_RootFile) { std::cout << "\n\nAMaps::ReadHitMaps: could not load cPart_Sep_AMaps root file! Exiting...\n", exit(0); }
+    if (!cPart_Sep_AMaps_RootFile) { std::cout << "\n\nAMaps::ReadHitMaps: could not load cPart_Sep_AMaps root file! Aborting...\n", exit(1); }
 
     for (TObject *keyAsObj : *cPart_Sep_AMaps_RootFile->GetListOfKeys()) {
         auto key = dynamic_cast<TKey *>(keyAsObj);
@@ -2678,19 +2678,19 @@ void AMaps::ReadHitMaps(const std::string &AcceptanceMapsDirectory, const std::s
 #pragma region /* Load AMaps */
     std::string AMaps_RootFile_FileName = AcceptanceMapsDirectory + "/" + SampleName + "/" + AMaps_prefix + SampleName + ".root";
     TFile *AMaps_RootFile = new TFile(AMaps_RootFile_FileName.c_str());
-    if (!AMaps_RootFile) { std::cout << "\n\nAMaps::ReadHitMaps: could not load AMaps root file! Exiting...\n", exit(0); }
+    if (!AMaps_RootFile) { std::cout << "\n\nAMaps::ReadHitMaps: could not load AMaps root file! Aborting...\n", exit(1); }
 
     LoadedElectronAMaps0 = (TH2D *)AMaps_RootFile->Get("Electron_AMap");
-    if (!LoadedElectronAMaps0) { std::cout << "\n\nAMaps::ReadHitMaps: could not load Electron_AMap from root file! Exiting...\n", exit(0); }
+    if (!LoadedElectronAMaps0) { std::cout << "\n\nAMaps::ReadHitMaps: could not load Electron_AMap from root file! Aborting...\n", exit(1); }
 
     LoadedProtonAMap = (TH2D *)AMaps_RootFile->Get("Proton_AMap");
-    if (!LoadedProtonAMap) { std::cout << "\n\nAMaps::ReadHitMaps: could not load Proton_AMap from root file! Exiting...\n", exit(0); }
+    if (!LoadedProtonAMap) { std::cout << "\n\nAMaps::ReadHitMaps: could not load Proton_AMap from root file! Aborting...\n", exit(1); }
 
     LoadedNeutronAMap = (TH2D *)AMaps_RootFile->Get("Neutron_AMap");
-    if (!LoadedNeutronAMap) { std::cout << "\n\nAMaps::ReadHitMaps: could not load Neutron_AMap from root file! Exiting...\n", exit(0); }
+    if (!LoadedNeutronAMap) { std::cout << "\n\nAMaps::ReadHitMaps: could not load Neutron_AMap from root file! Aborting...\n", exit(1); }
 
     LoadedNucleonAMap = (TH2D *)AMaps_RootFile->Get("Nucleon_AMap");
-    if (!LoadedNucleonAMap) { std::cout << "\n\nAMaps::ReadHitMaps: could not load Nucleon_AMap from root file! Exiting...\n", exit(0); }
+    if (!LoadedNucleonAMap) { std::cout << "\n\nAMaps::ReadHitMaps: could not load Nucleon_AMap from root file! Aborting...\n", exit(1); }
 #pragma endregion
 
     std::cout << "\n\nAcceptance maps loaded!\n\n";
@@ -2727,7 +2727,7 @@ void AMaps::ReadAMapLimits(const char *filename, vector<vector<double>> &Loaded_
             }
         }
     } else {
-        std::cout << "\n\nAMaps::ReadAMap: file not found! Target file was set to:\n" << filename << "\nExiting...\n\n", exit(0);
+        std::cout << "\n\nAMaps::ReadAMap: file not found! Target file was set to:\n" << filename << "\nAborting...\n\n", exit(1);
     }
 }
 #pragma endregion
@@ -2828,7 +2828,7 @@ void AMaps::ReadAMap(const char *filename, vector<vector<int>> &Loaded_particle_
                         cerr << "AMaps::ReadAMap: Error! Empty entry at line " << lineNumber << " in file:\n"
                              << filename << ":\n"
                              << "   -> " << tp << "\nAborting...",
-                            exit(0);  // Abort if there are empty entries from "::"
+                            exit(1);  // Abort if there are empty entries from "::"
                     }
 
                     try {
@@ -2843,7 +2843,7 @@ void AMaps::ReadAMap(const char *filename, vector<vector<int>> &Loaded_particle_
         }
     }
     // else {
-    //     std::cout << "\n\nAMaps::ReadAMap: ERROR! file:\n" << filename << "\nwas not found! Exiting...\n\n", exit(0);
+    //     std::cout << "\n\nAMaps::ReadAMap: ERROR! file:\n" << filename << "\nwas not found! Aborting...\n\n", exit(1);
     // }
 
     std::cout << "\033[35m\n\nAMaps::ReadAMap:\033[36m Warning!\033[0m file:\n" << filename << "\nwas not found!\n\n";
@@ -2891,7 +2891,7 @@ void AMaps::ReadWMap(const char *filename, vector<vector<double>> &Loaded_partic
                         cerr << "AMaps::ReadWMap: Error! Empty entry at line " << lineNumber << " in file:\n"
                              << filename << ":\n"
                              << "   -> " << tp << "\nAborting...",
-                            exit(0);  // Abort if there are empty entries from "::"
+                            exit(1);  // Abort if there are empty entries from "::"
                     }
 
                     try {
@@ -2906,7 +2906,7 @@ void AMaps::ReadWMap(const char *filename, vector<vector<double>> &Loaded_partic
         }
     }
     // else {
-    //     std::cout << "\n\nWMaps::ReadWMap: file:\n" << filename << "\nwas not found! Exiting...\n\n", exit(0);
+    //     std::cout << "\n\nWMaps::ReadWMap: file:\n" << filename << "\nwas not found! Aborting...\n\n", exit(1);
     // }
 
     std::cout << "\033[35m\n\nAMaps::ReadWMap:\033[36m Warning!\033[0m file:\n" << filename << "\nwas not found!\n\n";

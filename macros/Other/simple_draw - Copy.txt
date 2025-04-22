@@ -46,7 +46,7 @@ std::string	Histogram1DTempName = "#theta_{nFD,pCD} (All Int., nFDpCD)";
     if (!HistogramFound) {
         cout << "\n\nHistofinder1D: could not find histogram!\n";
         cout << "Histogram1DNameSubstring = " << Histogram1DNameSubstring << "\n";
-        exit(0);
+        exit(1);
         return Histogram1D;
     } else {
         if (PrintOut) {

@@ -200,7 +200,7 @@ struct AnalysisCutSettings {
              && MomResSettings.Run_with_momResS2  // Don't run calculate momResS2 and small momentum slices at the same time
              ) ||
             (MomResSettings.Calculate_momResS2 && !MomResSettings.VaryingDelta)) {
-            std::cout << "\033[33m\n\nmomRes order error! Exiting...\n\n", exit(0);
+            std::cout << "\033[33m\n\nmomRes order error! Aborting...\n\n", exit(1);
         }
     }
 

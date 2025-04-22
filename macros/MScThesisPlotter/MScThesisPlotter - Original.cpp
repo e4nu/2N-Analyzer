@@ -1543,7 +1543,7 @@ void MScThesisPlotter() {
 
     #pragma endregion
 
-    cout << "\n\nExcecution finished!\n", exit(0);
+    cout << "\n\nExcecution finished!\n", exit(1);
 
     Canv->Clear();
 }

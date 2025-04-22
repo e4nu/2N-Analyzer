@@ -99,7 +99,7 @@ vector<int> ParticleID::ChargedParticleID(vector<region_part_ptr> &Particle, con
 
     for (int i = 0; i < Particle.size(); i++) {
         if (Particle[i]->par()->getCharge() == 0) {  // Check that the particle's charge is zero
-            cout << "\n\nChargedParticleID: Particle is neutral! Exiting...\n\n", exit(0);
+            cout << "\n\nChargedParticleID: Particle is neutral! Aborting...\n\n", exit(1);
         }
 
         double Momentum = Particle[i]->getP();
@@ -134,9 +134,9 @@ void ParticleID::FDNeutralParticleID(vector<region_part_ptr> allParticles, vecto
         auto Neutron_ECAL_detlayer = Neutron_with_ECIN_hit ? clas12::ECIN : clas12::ECOUT;        // find first layer of hit
 
 #pragma region /* Safety checks */
-        if (!((NeutralPDG == 22) || (NeutralPDG == 2112))) { cout << "\n\nFDNeutralParticleID (Neutrons): neutron PDG is not 2112 or 22 (" << NeutralPDG << "). Exiting...\n\n", exit(0); }
+        if (!((NeutralPDG == 22) || (NeutralPDG == 2112))) { cout << "\n\nFDNeutralParticleID (Neutrons): neutron PDG is not 2112 or 22 (" << NeutralPDG << "). Aborting...\n\n", exit(1); }
 
-        if (Neutron_with_PCAL_hit) { cout << "\n\nFDNeutralParticleID (Neutrons): redefined neutron is in the PCAL!! Exiting...\n\n", exit(0); }
+        if (Neutron_with_PCAL_hit) { cout << "\n\nFDNeutralParticleID (Neutrons): redefined neutron is in the PCAL!! Aborting...\n\n", exit(1); }
 #pragma endregion
 
         bool Neutron_pass_momentum_th = (Momentum >= Neutron_momentum_th.GetLowerCutConst() && Momentum <= Neutron_momentum_th.GetUpperCutConst());
@@ -159,7 +159,7 @@ void ParticleID::FDNeutralParticleID(vector<region_part_ptr> allParticles, vecto
         int NeutralPDG = allParticles[i]->par()->getPid();
 
 #pragma region /* Safety check */
-        if (NeutralPDG != 22) { cout << "\n\nFDNeutralParticleID (Photons): photon PDG is not 22 (" << NeutralPDG << "). Exiting...\n\n", exit(0); }
+        if (NeutralPDG != 22) { cout << "\n\nFDNeutralParticleID (Photons): photon PDG is not 22 (" << NeutralPDG << "). Aborting...\n\n", exit(1); }
 #pragma endregion
 
         double Momentum = allParticles[i]->getP();
@@ -183,7 +183,7 @@ void ParticleID::FDNeutralParticleID(vector<region_part_ptr> allParticles, vecto
         int NeutralPDG = allParticles[i]->par()->getPid();
 
 #pragma region /* Safety check */
-        if (!((NeutralPDG == 22) || (NeutralPDG == 2112))) { cout << "\n\nFDNeutralParticleID (Neutrons): neutron PDG is not 2112 or 22 (" << NeutralPDG << "). Exiting...\n\n", exit(0); }
+        if (!((NeutralPDG == 22) || (NeutralPDG == 2112))) { cout << "\n\nFDNeutralParticleID (Neutrons): neutron PDG is not 2112 or 22 (" << NeutralPDG << "). Aborting...\n\n", exit(1); }
 #pragma endregion
 
         double Momentum = GetFDNeutronP(allParticles[i], apply_nucleon_cuts);
@@ -198,7 +198,7 @@ void ParticleID::FDNeutralParticleID(vector<region_part_ptr> allParticles, vecto
         int NeutralPDG = allParticles[i]->par()->getPid();
 
 #pragma region /* Safety check */
-        if (NeutralPDG != 22) { cout << "\n\nFDNeutralParticleID (Photons): photon PDG is not 22 (" << NeutralPDG << "). Exiting...\n\n", exit(0); }
+        if (NeutralPDG != 22) { cout << "\n\nFDNeutralParticleID (Photons): photon PDG is not 22 (" << NeutralPDG << "). Aborting...\n\n", exit(1); }
 #pragma endregion
 
         double Momentum = allParticles[i]->getP();
@@ -224,7 +224,7 @@ int ParticleID::GetLnFDIndex(vector<region_part_ptr> allParticles, vector<int> &
 
 #pragma region /* Safety check */
         if (!((NeutralPDG_temp == 22) || (NeutralPDG_temp == 2112))) {
-            cout << "\n\nFDNeutralParticleID (Neutrons): neutron PDG is not 2112 or 22 (" << NeutralPDG_temp << "). Exiting...\n\n", exit(0);
+            cout << "\n\nFDNeutralParticleID (Neutrons): neutron PDG is not 2112 or 22 (" << NeutralPDG_temp << "). Aborting...\n\n", exit(1);
         }
 #pragma endregion
 
@@ -278,7 +278,7 @@ int ParticleID::GetCorrLnFDIndex(MomentumResolution &nRes, vector<region_part_pt
 
 #pragma region /* Safety check */
         if (!((NeutralPDG_temp == 22) || (NeutralPDG_temp == 2112))) {
-            cout << "\n\nFDNeutralParticleID (Neutrons): neutron PDG is not 2112 or 22 (" << NeutralPDG_temp << "). Exiting...\n\n", exit(0);
+            cout << "\n\nFDNeutralParticleID (Neutrons): neutron PDG is not 2112 or 22 (" << NeutralPDG_temp << "). Aborting...\n\n", exit(1);
         }
 #pragma endregion
 
@@ -289,7 +289,7 @@ int ParticleID::GetCorrLnFDIndex(MomentumResolution &nRes, vector<region_part_pt
 
 #pragma region /* Safety check */
     if (FD_Neutrons_within_th.size() != FD_Neutrons_within_th_ACorr.size()) {
-        cout << "\n\nParticleID::GetCorrLnFDIndex: FD_Neutrons_within_th_ACorr have been filled incorrectly! Exiting...\n", exit(0);
+        cout << "\n\nParticleID::GetCorrLnFDIndex: FD_Neutrons_within_th_ACorr have been filled incorrectly! Aborting...\n", exit(1);
     }
 #pragma endregion
 
@@ -561,10 +561,10 @@ vector<int> ParticleID::GetGoodProtons(const bool &apply_nucleon_cuts, vector<re
 
 #pragma region /* Safety checks */
     if (!apply_nucleon_cuts && (GoodProtons.size() != IDProtons_ind.size())) {
-        cout << "\n\nGetGoodProtons(): GoodProtons and IDProtons_ind are not the same withot neucleon cut! exiting...\n\n", exit(0);
+        cout << "\n\nGetGoodProtons(): GoodProtons and IDProtons_ind are not the same withot neucleon cut! Aborting...\n\n", exit(1);
     }
 
-    if (GoodProtons.size() > IDProtons_ind.size()) { cout << "\n\nGetGoodProtons(): GoodProtons.size() can't be greater than IDProtons_ind.size()! exiting...\n\n", exit(0); }
+    if (GoodProtons.size() > IDProtons_ind.size()) { cout << "\n\nGetGoodProtons(): GoodProtons.size() can't be greater than IDProtons_ind.size()! Aborting...\n\n", exit(1); }
 #pragma endregion
 
 #pragma region /* Monitoring printout */
@@ -573,7 +573,7 @@ vector<int> ParticleID::GetGoodProtons(const bool &apply_nucleon_cuts, vector<re
         cout << "IDProtons_ind.size() = " << IDProtons_ind.size() << "\n";
         cout << "GoodProtons.size() = " << GoodProtons.size() << "\n\n\n";
     }
-//    if (Cut_sCTOFhp && Cut_dCDaFDd) { cout << "\n\nGetGoodProtons(): We have a duble cut! exiting...\n\n", exit(0); }
+//    if (Cut_sCTOFhp && Cut_dCDaFDd) { cout << "\n\nGetGoodProtons(): We have a duble cut! Aborting...\n\n", exit(1); }
 #pragma endregion
 
     return GoodProtons;

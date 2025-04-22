@@ -89,7 +89,7 @@ void HistPlotter2D(TCanvas *HistogramCanvas, TList *MScThesisPlotsList, const ch
     HistogramCanvas->Clear(); // Clear previous plot
 
     TFile *file = new TFile(filename);
-    if (!file) { cout << "\n\nHistPlotter2D: could not load root file! Exiting...\n", exit(0); }
+    if (!file) { cout << "\n\nHistPlotter2D: could not load root file! Aborting...\n", exit(1); }
 
     TH2D *Histogram2D;
 

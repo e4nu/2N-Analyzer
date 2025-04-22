@@ -31,17 +31,17 @@ MomentumResolution::MomentumResolution(const std::string &Particle) {
             std::cout << "MomResParticle = " << MomResParticle << "\n";
         }
     } else {
-        std::cout << "MomentumResolution::MomentumResolution: entered particle is illegal! Exiting...\n\n", exit(0);
+        std::cout << "MomentumResolution::MomentumResolution: entered particle is illegal! Aborting...\n\n", exit(1);
     }
 
 #pragma region /* Safety checks */
-    if (isNeutron == isProton) { std::cout << "MomentumResolution::MomentumResolution: unclear nucleon selection! Exiting...\n\n", exit(0); }
+    if (isNeutron == isProton) { std::cout << "MomentumResolution::MomentumResolution: unclear nucleon selection! Aborting...\n\n", exit(1); }
 
     if (MomResParticle != "Neutron" && MomResParticle != "Proton") {
         std::cout << "\nMomentumResolution::MomentumResolution: nucleon have not been set!\n";
         std::cout << "Particle = " << Particle << "\n";
         std::cout << "MomResParticle = " << MomResParticle << "\n";
-        std::cout << "Exiting...\n\n", exit(0);
+        std::cout << "Aborting...\n\n", exit(1);
     }
 #pragma endregion
 }
@@ -107,14 +107,14 @@ void MomentumResolution::MomResInit(const bool &plot_and_fit_MomRes, const bool 
 #pragma region /* Safety checks for data files */
                 if (!FindSubstring(NeutronCorrectionDataFile, "Neutron") || FindSubstring(NeutronCorrectionDataFile, "Proton")) {
                     std::cout << "\n\nMomentumResolution::MomentumResolution: neutron correction variables are not being loaded from neutron data! "
-                                 "Exiting...\n\n",
-                        exit(0);
+                                 "Aborting...\n\n",
+                        exit(1);
                 }
 
                 if (!FindSubstring(ProtonSmearingDataFile, "Neutron") || FindSubstring(ProtonSmearingDataFile, "Proton")) {
                     std::cout << "\n\nMomentumResolution::MomentumResolution: proton smearing variables are not being loaded from neutron data! "
-                                 "Exiting...\n\n",
-                        exit(0);
+                                 "Aborting...\n\n",
+                        exit(1);
                 }
 #pragma endregion
             } else {  // if Calculate_momResS2 = false and Run_with_momResS2 = false => load both correction and smearing from momResS1
@@ -129,11 +129,11 @@ void MomentumResolution::MomResInit(const bool &plot_and_fit_MomRes, const bool 
 
 #pragma region /* Safety checks for data files */
                 if (!FindSubstring(NeutronCorrectionDataFile, "Neutron") || FindSubstring(NeutronCorrectionDataFile, "Proton")) {
-                    std::cout << "\n\nMomentumResolution::MomentumResolution: neutron correction variables are not being loaded from neutron data! Exiting...\n\n", exit(0);
+                    std::cout << "\n\nMomentumResolution::MomentumResolution: neutron correction variables are not being loaded from neutron data! Aborting...\n\n", exit(1);
                 }
 
                 if (!FindSubstring(ProtonSmearingDataFile, "Neutron") || FindSubstring(ProtonSmearingDataFile, "Proton")) {
-                    std::cout << "\n\nMomentumResolution::MomentumResolution: proton smearing variables are not being loaded from neutron data! Exiting...\n\n", exit(0);
+                    std::cout << "\n\nMomentumResolution::MomentumResolution: proton smearing variables are not being loaded from neutron data! Aborting...\n\n", exit(1);
                 }
 #pragma endregion
             }
@@ -166,7 +166,7 @@ void MomentumResolution::SetMomResCalculations(const std::string &SampleName, co
     Ebeam = beamE;
 
 #pragma region /* Safety check */
-    if (momResS2CalcMode && momResS2RunMode) { std::cout << "MomentumResolution::MomentumResolution: calculating and running on momResS2 is illegal! Exiting...\n\n", exit(0); }
+    if (momResS2CalcMode && momResS2RunMode) { std::cout << "MomentumResolution::MomentumResolution: calculating and running on momResS2 is illegal! Aborting...\n\n", exit(1); }
 #pragma endregion
 
     SetMomResSlicesByType(SampleName, NucleonCutsDirectory, beamE, ParticleMomTh, "truth", SavePath, VaryingDelta, momRes_test, ForceSmallpResLimits, FitDebugging);
@@ -244,7 +244,7 @@ void MomentumResolution::SetMomResSlices(const std::string &SampleName, const st
 
 #pragma region /* Safety check */
         if ((abs(SliceUpperLim) > beamE * 1.5) || (abs(SliceLowerLim) > beamE * 1.5)) {
-            std::cout << "\n\nMomentumResolution::SetMomResSlices: slice limits are not defined properly! Exiting...\n\n", exit(0);
+            std::cout << "\n\nMomentumResolution::SetMomResSlices: slice limits are not defined properly! Aborting...\n\n", exit(1);
         }
 #pragma endregion
 
@@ -353,7 +353,7 @@ void MomentumResolution::SetMomResSlices(const std::string &SampleName, const st
                                 Delta = SliceUpperMomLim - SliceLowerLim;
                             }
                         } else {
-                            std::cout << "MomentumResolution::SetMomResSlices: no set of varying delta is available for '" << SampleName << "'! Exiting...\n\n", exit(0);
+                            std::cout << "MomentumResolution::SetMomResSlices: no set of varying delta is available for '" << SampleName << "'! Aborting...\n\n", exit(1);
                         }
                     } else if (beamE == 2.07052) {
                         if ((SliceLowerLim >= 0.40) && (SliceLowerLim < 0.50)) {  // 0.4-0.55
@@ -366,7 +366,7 @@ void MomentumResolution::SetMomResSlices(const std::string &SampleName, const st
                             Delta = beamE - SliceLowerLim;
                         }
                     } else {
-                        std::cout << "MomentumResolution::SetMomResSlices: no set of varying delta is available for '" << SampleName << "'! Exiting...\n\n", exit(0);
+                        std::cout << "MomentumResolution::SetMomResSlices: no set of varying delta is available for '" << SampleName << "'! Aborting...\n\n", exit(1);
                     }
                 } else if (MomentumType == "reco") {
                     if (beamE == 5.98636) {
@@ -389,7 +389,7 @@ void MomentumResolution::SetMomResSlices(const std::string &SampleName, const st
                                 Delta = SliceUpperMomLim - SliceLowerLim;
                             }
                         } else {
-                            std::cout << "MomentumResolution::SetMomResSlices: no set of varying delta is available for '" << SampleName << "'! Exiting...\n\n", exit(0);
+                            std::cout << "MomentumResolution::SetMomResSlices: no set of varying delta is available for '" << SampleName << "'! Aborting...\n\n", exit(1);
                         }
                     }
                 }
@@ -403,9 +403,9 @@ void MomentumResolution::SetMomResSlices(const std::string &SampleName, const st
         }
     }
 
-    if (TLLimitsPrintOut && TLLimitsPrintOutAndExit && (MomentumType == "truth")) { exit(0); }
+    if (TLLimitsPrintOut && TLLimitsPrintOutAndExit && (MomentumType == "truth")) { exit(1); }
 
-    if (RecoLimitsPrintOut && RecoLimitsPrintOutAndExit && (MomentumType == "reco")) { exit(0); }
+    if (RecoLimitsPrintOut && RecoLimitsPrintOutAndExit && (MomentumType == "reco")) { exit(1); }
 
     NumberOfSlices0 = SliceNumber;
 }
@@ -442,11 +442,11 @@ void MomentumResolution::LoadFitParam(const std::string &SampleName, const std::
 
 #pragma region /* Safety checks for data files */
             if (!FindSubstring(NeutronCorrectionDataFile, "Neutron") || FindSubstring(NeutronCorrectionDataFile, "Proton")) {
-                std::cout << "\n\nMomentumResolution::MomentumResolution: neutron correction variables are not being loaded from neutron data! Exiting...\n\n", exit(0);
+                std::cout << "\n\nMomentumResolution::MomentumResolution: neutron correction variables are not being loaded from neutron data! Aborting...\n\n", exit(1);
             }
 
             if (!FindSubstring(ProtonSmearingDataFile, "Neutron") || FindSubstring(ProtonSmearingDataFile, "Proton")) {
-                std::cout << "\n\nMomentumResolution::MomentumResolution: proton smearing variables are not being loaded from neutron data! Exiting...\n\n", exit(0);
+                std::cout << "\n\nMomentumResolution::MomentumResolution: proton smearing variables are not being loaded from neutron data! Aborting...\n\n", exit(1);
             }
 #pragma endregion
 
@@ -466,11 +466,11 @@ void MomentumResolution::LoadFitParam(const std::string &SampleName, const std::
 
 #pragma region /* Safety checks for data files */
             if (!FindSubstring(NeutronCorrectionDataFile, "Neutron") || FindSubstring(NeutronCorrectionDataFile, "Proton")) {
-                std::cout << "\n\nMomentumResolution::MomentumResolution: neutron correction variables are not being loaded from neutron data! Exiting...\n\n", exit(0);
+                std::cout << "\n\nMomentumResolution::MomentumResolution: neutron correction variables are not being loaded from neutron data! Aborting...\n\n", exit(1);
             }
 
             if (!FindSubstring(ProtonSmearingDataFile, "Neutron") || FindSubstring(ProtonSmearingDataFile, "Proton")) {
-                std::cout << "\n\nMomentumResolution::MomentumResolution: proton smearing variables are not being loaded from neutron data! Exiting...\n\n", exit(0);
+                std::cout << "\n\nMomentumResolution::MomentumResolution: proton smearing variables are not being loaded from neutron data! Aborting...\n\n", exit(1);
             }
 #pragma endregion
 
@@ -821,7 +821,7 @@ void MomentumResolution::PolyFitter(const std::string &MomentumType, const int &
             PolynomialFitType = "cubic";
         }
     } else {
-        std::cout << "\n\nMomentumResolution::PolyFitter: MomentumFitRange is illegal! Exiting...\n\n", exit(0);
+        std::cout << "\n\nMomentumResolution::PolyFitter: MomentumFitRange is illegal! Aborting...\n\n", exit(1);
     }
 #pragma endregion
 
@@ -842,7 +842,7 @@ void MomentumResolution::PolyFitter(const std::string &MomentumType, const int &
         ResSlicesHistVar0 = ResRecoMomSlicesHistVar;
         NumberOfSlices0 = Reco_NumberOfSlices, FittedSlices0 = FittedRecoMomSlices;
     } else {
-        std::cout << "\n\nMomentumResolution::PolyFitter: MomentumType is illegal! Exiting...\n\n", exit(0);
+        std::cout << "\n\nMomentumResolution::PolyFitter: MomentumType is illegal! Aborting...\n\n", exit(1);
     }
 #pragma endregion
 
@@ -854,7 +854,7 @@ void MomentumResolution::PolyFitter(const std::string &MomentumType, const int &
     } else if (FitType == "Corr") {
         FittedVar = "#mu_{" + FitterParticle + "}";
     } else {
-        std::cout << "\n\nMomentumResolution::PolyFitter: FitType is illegal! Exiting...\n\n", exit(0);
+        std::cout << "\n\nMomentumResolution::PolyFitter: FitType is illegal! Aborting...\n\n", exit(1);
     }
 #pragma endregion
 
@@ -921,7 +921,7 @@ void MomentumResolution::PolyFitter(const std::string &MomentumType, const int &
     }
 
 #pragma region /* Safety check */
-    if (MeanPn.size() != Pn_FitVar.size()) { std::cout << "\n\nMomentumResolution::Fitter_Std_pol1: x and y data are of different lengths! Exiting...\n\n", exit(0); }
+    if (MeanPn.size() != Pn_FitVar.size()) { std::cout << "\n\nMomentumResolution::Fitter_Std_pol1: x and y data are of different lengths! Aborting...\n\n", exit(1); }
 #pragma endregion
 
 #pragma endregion
@@ -1659,7 +1659,7 @@ void MomentumResolution::ReadResDataParam(const char *filename, const bool &Calc
                     if (Loaded_Corr_coefficients_path == "") {
                         std::cout << "\n\nMomentumResolution::ReadResDataParam: Loaded_Corr_coefficients_path is empty!\n";
                         std::cout << "The file:\n" << filename << "\n";
-                        std::cout << "is not found! Exiting...\n\n", exit(0);
+                        std::cout << "is not found! Aborting...\n\n", exit(1);
                     }
 #pragma endregion
 
@@ -1737,7 +1737,7 @@ void MomentumResolution::ReadResDataParam(const char *filename, const bool &Calc
                     if (Load_smearing && Loaded_Std_coefficients_path == "") {
                         std::cout << "\n\nMomentumResolution::ReadResDataParam: Loaded_Std_coefficients_path is empty!\n";
                         std::cout << "The file:\n" << filename << "\n";
-                        std::cout << "is not found! Exiting...\n\n", exit(0);
+                        std::cout << "is not found! Aborting...\n\n", exit(1);
                     }
 #pragma endregion
 
@@ -1810,18 +1810,18 @@ void MomentumResolution::ReadResDataParam(const char *filename, const bool &Calc
 
 #pragma region /* Safety checks */
                 if (Loaded_Smear_coefficients_values.size() != Loaded_Smear_coefficients_names.size()) {
-                    std::cout << "\n\nMomentumResolution::ReadResDataParam: smearing coefficients load registered improperly! Exiting...\n\n", exit(0);
+                    std::cout << "\n\nMomentumResolution::ReadResDataParam: smearing coefficients load registered improperly! Aborting...\n\n", exit(1);
                 }
 
                 if (Loaded_Corr_coefficients_values.size() != Loaded_Corr_coefficients_names.size()) {
-                    std::cout << "\n\nMomentumResolution::ReadResDataParam: correction coefficients load registered improperly! Exiting...\n\n", exit(0);
+                    std::cout << "\n\nMomentumResolution::ReadResDataParam: correction coefficients load registered improperly! Aborting...\n\n", exit(1);
                 }
 #pragma endregion
             }
         }
     }
     // else {
-    //     std::cout << "\n\nMomentumResolution::ReadResDataParam: file not found! Exiting...\n\n", exit(0);
+    //     std::cout << "\n\nMomentumResolution::ReadResDataParam: file not found! Aborting...\n\n", exit(1);
     // }
 
     std::cout << "\033[35m\n\nMomentumResolution::ReadResDataParam:\033[36m Warning!\033[0m file:\n" << filename << "\nwas not found!\n\n";
@@ -1867,7 +1867,7 @@ void MomentumResolution::AutoReader(const std::string &MomentumType, const int &
                 std::cout << "expected size (= PolynomialDegree) = " << PolynomialDegree << "\n";
                 std::cout << "Loaded_FitVarResultsErrors elements:\n";
                 for (int i = 0; i < Loaded_FitVarResults.size(); i++) { std::cout << Loaded_FitVarResults.at(i) << "\n"; }
-                std::cout << "\nExiting...\n\n", exit(0);
+                std::cout << "\nAborting...\n\n", exit(1);
             }
         }
 
@@ -1878,7 +1878,7 @@ void MomentumResolution::AutoReader(const std::string &MomentumType, const int &
                 std::cout << "expected size (= PolynomialDegree) = " << PolynomialDegree << "\n";
                 std::cout << "Loaded_FitVarResultsErrors elements:\n";
                 for (int i = 0; i < Loaded_FitVarResultsErrors.size(); i++) { std::cout << Loaded_FitVarResultsErrors.at(i) << "\n"; }
-                std::cout << "\nExiting...\n\n", exit(0);
+                std::cout << "\nAborting...\n\n", exit(1);
             }
         }
 
@@ -1889,7 +1889,7 @@ void MomentumResolution::AutoReader(const std::string &MomentumType, const int &
                 std::cout << "expected size = " << 2 << "\n";
                 std::cout << "Loaded_FitVarResultsErrors elements:\n";
                 for (int i = 0; i < Loaded_FitVarResultsGoodness.size(); i++) { std::cout << Loaded_FitVarResultsGoodness.at(i) << "\n"; }
-                std::cout << "\nExiting...\n\n", exit(0);
+                std::cout << "\nAborting...\n\n", exit(1);
             }
         }
 #pragma endregion
@@ -1924,7 +1924,7 @@ void MomentumResolution::AutoReader(const std::string &MomentumType, const int &
             }
         }
 
-        if (PrintOutAndExit && (PolynomialDegree == PolynomialDeg2Print) && (MomentumType == MomentumType2Print)) { exit(0); }
+        if (PrintOutAndExit && (PolynomialDegree == PolynomialDeg2Print) && (MomentumType == MomentumType2Print)) { exit(1); }
 
         if (!FindSubstring(parameter, "error") && !FindSubstring(parameter, "FitGoodness")) {
             Loading_Dest.push_back(Loaded_FitVarResults);
@@ -1942,7 +1942,7 @@ void MomentumResolution::AutoReader(const std::string &MomentumType, const int &
                 std::cout << "expected size (= PolynomialDegree) = " << PolynomialDegree << "\n";
                 std::cout << "Loaded_FitVarResultsErrors elements:\n";
                 for (int i = 0; i < Loaded_FitVarResults.size(); i++) { std::cout << Loaded_FitVarResults.at(i) << "\n"; }
-                std::cout << "\nExiting...\n\n", exit(0);
+                std::cout << "\nAborting...\n\n", exit(1);
             }
         }
 
@@ -1953,7 +1953,7 @@ void MomentumResolution::AutoReader(const std::string &MomentumType, const int &
                 std::cout << "expected size (= PolynomialDegree) = " << PolynomialDegree << "\n";
                 std::cout << "Loaded_FitVarResultsErrors elements:\n";
                 for (int i = 0; i < Loaded_FitVarResultsErrors.size(); i++) { std::cout << Loaded_FitVarResultsErrors.at(i) << "\n"; }
-                std::cout << "\nExiting...\n\n", exit(0);
+                std::cout << "\nAborting...\n\n", exit(1);
             }
         }
 
@@ -1964,7 +1964,7 @@ void MomentumResolution::AutoReader(const std::string &MomentumType, const int &
                 std::cout << "expected size = " << 2 << "\n";
                 std::cout << "Loaded_FitVarResultsErrors elements:\n";
                 for (int i = 0; i < Loaded_FitVarResultsGoodness.size(); i++) { std::cout << Loaded_FitVarResultsGoodness.at(i) << "\n"; }
-                std::cout << "\nExiting...\n\n", exit(0);
+                std::cout << "\nAborting...\n\n", exit(1);
             }
         }
 #pragma endregion
@@ -2006,7 +2006,7 @@ double MomentumResolution::PSmear(const bool &apply_nucleon_SmearAndCorr, const 
                         } else if (RandomNumGenerator == "TRandom3") {
                             Smearing = Rand3->Gaus(1, Loaded_res_slice.GetUpperCut());
                         } else {
-                            std::cout << "\n\nMomentumResolution::PSmear: RandomNumGenerator illegal! Exiting...\n", exit(0);
+                            std::cout << "\n\nMomentumResolution::PSmear: RandomNumGenerator illegal! Aborting...\n", exit(1);
                         }
 
                         //                        double Smearing = Rand->Gaus(1, Loaded_res_slice.GetUpperCut());
@@ -2032,7 +2032,7 @@ double MomentumResolution::PSmear(const bool &apply_nucleon_SmearAndCorr, const 
                 } else if (RandomNumGenerator == "TRandom3") {
                     Smearing = Rand3->Gaus(1, Arg);
                 } else {
-                    std::cout << "\n\nMomentumResolution::PSmear: RandomNumGenerator illegal! Exiting...\n", exit(0);
+                    std::cout << "\n\nMomentumResolution::PSmear: RandomNumGenerator illegal! Aborting...\n", exit(1);
                 }
 
                 if (PrintOut) {
@@ -2056,9 +2056,9 @@ double MomentumResolution::PSmear(const bool &apply_nucleon_SmearAndCorr, const 
 
             if (SmearMode == "pol1") {
 #pragma region /* Safety checks */
-                if (Loaded_Reco_FitParam_Smear_pol1.size() == 0) { std::cout << "\n\nMomentumResolution::PSmear: Loaded_Reco_FitParam_Smear_pol1 wasn't loaded! Exiting...\n", exit(0); }
+                if (Loaded_Reco_FitParam_Smear_pol1.size() == 0) { std::cout << "\n\nMomentumResolution::PSmear: Loaded_Reco_FitParam_Smear_pol1 wasn't loaded! Aborting...\n", exit(1); }
                 if (Loaded_Reco_FitParam_Smear_pol1.at(0).size() == 0) {
-                    std::cout << "\n\nMomentumResolution::PSmear: Loaded_Reco_FitParam_Smear_pol1 smearing wasn't loaded! Exiting...\n", exit(0);
+                    std::cout << "\n\nMomentumResolution::PSmear: Loaded_Reco_FitParam_Smear_pol1 smearing wasn't loaded! Aborting...\n", exit(1);
                 }
 #pragma endregion
 
@@ -2083,10 +2083,10 @@ double MomentumResolution::PSmear(const bool &apply_nucleon_SmearAndCorr, const 
             } else if (SmearMode == "pol1_wKC") {
 #pragma region /* Safety checks */
                 if (Loaded_Reco_FitParam_Smear_pol1_wKC.size() == 0) {
-                    std::cout << "\n\nMomentumResolution::PSmear: Loaded_Reco_FitParam_Smear_pol1_wKC wasn't loaded! Exiting...\n", exit(0);
+                    std::cout << "\n\nMomentumResolution::PSmear: Loaded_Reco_FitParam_Smear_pol1_wKC wasn't loaded! Aborting...\n", exit(1);
                 }
                 if (Loaded_Reco_FitParam_Smear_pol1_wKC.at(0).size() == 0) {
-                    std::cout << "\n\nMomentumResolution::PSmear: Loaded_Reco_FitParam_Smear_pol1_wKC smearing wasn't loaded! Exiting...\n", exit(0);
+                    std::cout << "\n\nMomentumResolution::PSmear: Loaded_Reco_FitParam_Smear_pol1_wKC smearing wasn't loaded! Aborting...\n", exit(1);
                 }
 #pragma endregion
 
@@ -2110,9 +2110,9 @@ double MomentumResolution::PSmear(const bool &apply_nucleon_SmearAndCorr, const 
                 }
             } else if (SmearMode == "pol2") {
 #pragma region /* Safety checks */
-                if (Loaded_Reco_FitParam_Smear_pol2.size() == 0) { std::cout << "\n\nMomentumResolution::PSmear: Loaded_Reco_FitParam_Smear_pol2 wasn't loaded! Exiting...\n", exit(0); }
+                if (Loaded_Reco_FitParam_Smear_pol2.size() == 0) { std::cout << "\n\nMomentumResolution::PSmear: Loaded_Reco_FitParam_Smear_pol2 wasn't loaded! Aborting...\n", exit(1); }
                 if (Loaded_Reco_FitParam_Smear_pol2.at(0).size() == 0) {
-                    std::cout << "\n\nMomentumResolution::PSmear: Loaded_Reco_FitParam_Smear_pol2 smearing wasn't loaded! Exiting...\n", exit(0);
+                    std::cout << "\n\nMomentumResolution::PSmear: Loaded_Reco_FitParam_Smear_pol2 smearing wasn't loaded! Aborting...\n", exit(1);
                 }
 #pragma endregion
 
@@ -2140,10 +2140,10 @@ double MomentumResolution::PSmear(const bool &apply_nucleon_SmearAndCorr, const 
             } else if (SmearMode == "pol2_wKC") {
 #pragma region /* Safety checks */
                 if (Loaded_Reco_FitParam_Smear_pol2_wKC.size() == 0) {
-                    std::cout << "\n\nMomentumResolution::PSmear: Loaded_Reco_FitParam_Smear_pol2_wKC wasn't loaded! Exiting...\n", exit(0);
+                    std::cout << "\n\nMomentumResolution::PSmear: Loaded_Reco_FitParam_Smear_pol2_wKC wasn't loaded! Aborting...\n", exit(1);
                 }
                 if (Loaded_Reco_FitParam_Smear_pol2_wKC.at(0).size() == 0) {
-                    std::cout << "\n\nMomentumResolution::PSmear: Loaded_Reco_FitParam_Smear_pol2_wKC smearing wasn't loaded! Exiting...\n", exit(0);
+                    std::cout << "\n\nMomentumResolution::PSmear: Loaded_Reco_FitParam_Smear_pol2_wKC smearing wasn't loaded! Aborting...\n", exit(1);
                 }
 #pragma endregion
 
@@ -2171,9 +2171,9 @@ double MomentumResolution::PSmear(const bool &apply_nucleon_SmearAndCorr, const 
                 }
             } else if (SmearMode == "pol3") {
 #pragma region /* Safety checks */
-                if (Loaded_Reco_FitParam_Smear_pol3.size() == 0) { std::cout << "\n\nMomentumResolution::PSmear: Loaded_Reco_FitParam_Smear_pol3 wasn't loaded! Exiting...\n", exit(0); }
+                if (Loaded_Reco_FitParam_Smear_pol3.size() == 0) { std::cout << "\n\nMomentumResolution::PSmear: Loaded_Reco_FitParam_Smear_pol3 wasn't loaded! Aborting...\n", exit(1); }
                 if (Loaded_Reco_FitParam_Smear_pol3.at(0).size() == 0) {
-                    std::cout << "\n\nMomentumResolution::PSmear: Loaded_Reco_FitParam_Smear_pol3 smearing wasn't loaded! Exiting...\n", exit(0);
+                    std::cout << "\n\nMomentumResolution::PSmear: Loaded_Reco_FitParam_Smear_pol3 smearing wasn't loaded! Aborting...\n", exit(1);
                 }
 #pragma endregion
 
@@ -2205,10 +2205,10 @@ double MomentumResolution::PSmear(const bool &apply_nucleon_SmearAndCorr, const 
             } else if (SmearMode == "pol3_wKC") {
 #pragma region /* Safety checks */
                 if (Loaded_Reco_FitParam_Smear_pol3_wKC.size() == 0) {
-                    std::cout << "\n\nMomentumResolution::PSmear: Loaded_Reco_FitParam_Smear_pol3_wKC wasn't loaded! Exiting...\n", exit(0);
+                    std::cout << "\n\nMomentumResolution::PSmear: Loaded_Reco_FitParam_Smear_pol3_wKC wasn't loaded! Aborting...\n", exit(1);
                 }
                 if (Loaded_Reco_FitParam_Smear_pol3_wKC.at(0).size() == 0) {
-                    std::cout << "\n\nMomentumResolution::PSmear: Loaded_Reco_FitParam_Smear_pol3_wKC smearing wasn't loaded! Exiting...\n", exit(0);
+                    std::cout << "\n\nMomentumResolution::PSmear: Loaded_Reco_FitParam_Smear_pol3_wKC smearing wasn't loaded! Aborting...\n", exit(1);
                 }
 #pragma endregion
 
@@ -2238,7 +2238,7 @@ double MomentumResolution::PSmear(const bool &apply_nucleon_SmearAndCorr, const 
                     std::cout << "Loaded_D_Std_pol3_wKC = " << Loaded_Reco_FitParam_Smear_pol3_wKC.at(0).at(3) << "\n\n";
                 }
             } else {
-                std::cout << "\n\nMomentumResolution::PSmear: SmearMode is not a polynomial! Exiting...\n", exit(0);
+                std::cout << "\n\nMomentumResolution::PSmear: SmearMode is not a polynomial! Aborting...\n", exit(1);
             }
 
             if (RandomNumGenerator == "TRandom1") {
@@ -2248,7 +2248,7 @@ double MomentumResolution::PSmear(const bool &apply_nucleon_SmearAndCorr, const 
             } else if (RandomNumGenerator == "TRandom3") {
                 Smearing = Rand3->Gaus(1, Arg);  // TODO: recheck if this smearing can be negative!
             } else {
-                std::cout << "\n\nMomentumResolution::PSmear: RandomNumGenerator illegal! Exiting...\n", exit(0);
+                std::cout << "\n\nMomentumResolution::PSmear: RandomNumGenerator illegal! Aborting...\n", exit(1);
             }
 
             SmearedMomentum = Smearing * Momentum;
@@ -2263,9 +2263,9 @@ double MomentumResolution::PSmear(const bool &apply_nucleon_SmearAndCorr, const 
                 std::cout << "==========================================================================\n\n";
             }
 
-            if (PrintOut_And_Exit) { exit(0); }
+            if (PrintOut_And_Exit) { exit(1); }
         } else {
-            std::cout << "\n\nMomentumResolution::PSmear: SmearMode illegal! Exiting...\n", exit(0);
+            std::cout << "\n\nMomentumResolution::PSmear: SmearMode illegal! Aborting...\n", exit(1);
         }
 
         return SmearedMomentum;
@@ -2317,9 +2317,9 @@ double MomentumResolution::NCorr(const bool &apply_nucleon_SmearAndCorr, const d
 
             if (CorrMode == "pol1") {
 #pragma region /* Safety checks */
-                if (Loaded_Reco_FitParam_Corr_pol1.size() == 0) { std::cout << "\n\nMomentumResolution::NCorr: Loaded_Reco_FitParam_Corr_pol1 wasn't loaded! Exiting...\n", exit(0); }
+                if (Loaded_Reco_FitParam_Corr_pol1.size() == 0) { std::cout << "\n\nMomentumResolution::NCorr: Loaded_Reco_FitParam_Corr_pol1 wasn't loaded! Aborting...\n", exit(1); }
                 if (Loaded_Reco_FitParam_Corr_pol1.at(0).size() == 0) {
-                    std::cout << "\n\nMomentumResolution::NCorr: Loaded_Reco_FitParam_Corr_pol1 correction wasn't loaded! Exiting...\n", exit(0);
+                    std::cout << "\n\nMomentumResolution::NCorr: Loaded_Reco_FitParam_Corr_pol1 correction wasn't loaded! Aborting...\n", exit(1);
                 }
 #pragma endregion
 
@@ -2343,9 +2343,9 @@ double MomentumResolution::NCorr(const bool &apply_nucleon_SmearAndCorr, const d
                 }
             } else if (CorrMode == "pol1_wKC") {
 #pragma region /* Safety checks */
-                if (Loaded_Reco_FitParam_Corr_pol1_wKC.size() == 0) { std::cout << "\n\nMomentumResolution::NCorr: Loaded_Reco_FitParam_Corr_pol1_wKC wasn't loaded! Exiting...\n", exit(0); }
+                if (Loaded_Reco_FitParam_Corr_pol1_wKC.size() == 0) { std::cout << "\n\nMomentumResolution::NCorr: Loaded_Reco_FitParam_Corr_pol1_wKC wasn't loaded! Aborting...\n", exit(1); }
                 if (Loaded_Reco_FitParam_Corr_pol1_wKC.at(0).size() == 0) {
-                    std::cout << "\n\nMomentumResolution::NCorr: Loaded_Reco_FitParam_Corr_pol1_wKC correction wasn't loaded! Exiting...\n", exit(0);
+                    std::cout << "\n\nMomentumResolution::NCorr: Loaded_Reco_FitParam_Corr_pol1_wKC correction wasn't loaded! Aborting...\n", exit(1);
                 }
 #pragma endregion
 
@@ -2369,9 +2369,9 @@ double MomentumResolution::NCorr(const bool &apply_nucleon_SmearAndCorr, const d
                 }
             } else if (CorrMode == "pol2") {
 #pragma region /* Safety checks */
-                if (Loaded_Reco_FitParam_Corr_pol2.size() == 0) { std::cout << "\n\nMomentumResolution::NCorr: Loaded_Reco_FitParam_Corr_pol2 wasn't loaded! Exiting...\n", exit(0); }
+                if (Loaded_Reco_FitParam_Corr_pol2.size() == 0) { std::cout << "\n\nMomentumResolution::NCorr: Loaded_Reco_FitParam_Corr_pol2 wasn't loaded! Aborting...\n", exit(1); }
                 if (Loaded_Reco_FitParam_Corr_pol2.at(0).size() == 0) {
-                    std::cout << "\n\nMomentumResolution::NCorr: Loaded_Reco_FitParam_Corr_pol2 correction wasn't loaded! Exiting...\n", exit(0);
+                    std::cout << "\n\nMomentumResolution::NCorr: Loaded_Reco_FitParam_Corr_pol2 correction wasn't loaded! Aborting...\n", exit(1);
                 }
 #pragma endregion
 
@@ -2398,9 +2398,9 @@ double MomentumResolution::NCorr(const bool &apply_nucleon_SmearAndCorr, const d
                 }
             } else if (CorrMode == "pol2_wKC") {
 #pragma region /* Safety checks */
-                if (Loaded_Reco_FitParam_Corr_pol2_wKC.size() == 0) { std::cout << "\n\nMomentumResolution::NCorr: Loaded_Reco_FitParam_Corr_pol2_wKC wasn't loaded! Exiting...\n", exit(0); }
+                if (Loaded_Reco_FitParam_Corr_pol2_wKC.size() == 0) { std::cout << "\n\nMomentumResolution::NCorr: Loaded_Reco_FitParam_Corr_pol2_wKC wasn't loaded! Aborting...\n", exit(1); }
                 if (Loaded_Reco_FitParam_Corr_pol2_wKC.at(0).size() == 0) {
-                    std::cout << "\n\nMomentumResolution::NCorr: Loaded_Reco_FitParam_Corr_pol2_wKC correction wasn't loaded! Exiting...\n", exit(0);
+                    std::cout << "\n\nMomentumResolution::NCorr: Loaded_Reco_FitParam_Corr_pol2_wKC correction wasn't loaded! Aborting...\n", exit(1);
                 }
 #pragma endregion
 
@@ -2427,9 +2427,9 @@ double MomentumResolution::NCorr(const bool &apply_nucleon_SmearAndCorr, const d
                 }
             } else if (CorrMode == "pol3") {
 #pragma region /* Safety checks */
-                if (Loaded_Reco_FitParam_Corr_pol3.size() == 0) { std::cout << "\n\nMomentumResolution::NCorr: Loaded_Reco_FitParam_Corr_pol3 wasn't loaded! Exiting...\n", exit(0); }
+                if (Loaded_Reco_FitParam_Corr_pol3.size() == 0) { std::cout << "\n\nMomentumResolution::NCorr: Loaded_Reco_FitParam_Corr_pol3 wasn't loaded! Aborting...\n", exit(1); }
                 if (Loaded_Reco_FitParam_Corr_pol3.at(0).size() == 0) {
-                    std::cout << "\n\nMomentumResolution::NCorr: Loaded_Reco_FitParam_Corr_pol3 correction wasn't loaded! Exiting...\n", exit(0);
+                    std::cout << "\n\nMomentumResolution::NCorr: Loaded_Reco_FitParam_Corr_pol3 correction wasn't loaded! Aborting...\n", exit(1);
                 }
 #pragma endregion
 
@@ -2460,9 +2460,9 @@ double MomentumResolution::NCorr(const bool &apply_nucleon_SmearAndCorr, const d
                 }
             } else if (CorrMode == "pol3_wKC") {
 #pragma region /* Safety checks */
-                if (Loaded_Reco_FitParam_Corr_pol3_wKC.size() == 0) { std::cout << "\n\nMomentumResolution::NCorr: Loaded_Reco_FitParam_Corr_pol3_wKC wasn't loaded! Exiting...\n", exit(0); }
+                if (Loaded_Reco_FitParam_Corr_pol3_wKC.size() == 0) { std::cout << "\n\nMomentumResolution::NCorr: Loaded_Reco_FitParam_Corr_pol3_wKC wasn't loaded! Aborting...\n", exit(1); }
                 if (Loaded_Reco_FitParam_Corr_pol3_wKC.at(0).size() == 0) {
-                    std::cout << "\n\nMomentumResolution::NCorr: Loaded_Reco_FitParam_Corr_pol3_wKC correction wasn't loaded! Exiting...\n", exit(0);
+                    std::cout << "\n\nMomentumResolution::NCorr: Loaded_Reco_FitParam_Corr_pol3_wKC correction wasn't loaded! Aborting...\n", exit(1);
                 }
 #pragma endregion
 
@@ -2505,7 +2505,7 @@ double MomentumResolution::NCorr(const bool &apply_nucleon_SmearAndCorr, const d
                 std::cout << "==========================================================================\n\n";
             }
         } else {
-            std::cout << "\n\nMomentumResolution::NCorr: CorrMode illegal! Exiting...\n", exit(0);
+            std::cout << "\n\nMomentumResolution::NCorr: CorrMode illegal! Aborting...\n", exit(1);
         }
 
         return CorrectedMomentum;

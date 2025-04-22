@@ -114,7 +114,7 @@ void MCtoDATAcompareHistograms(int HistogramCounter, TCanvas *Canvas, TCanvas *C
 //        cout << "DATA_Histogram->GetMaximum() = " << DATA_Histogram->GetMaximum() << "\n";
 //        cout << "Ymax = " << Ymax << "\n\n\n";
 
-//    exit(0);
+//    exit(1);
 }
 #pragma endregion
 
@@ -219,7 +219,7 @@ void MCtoDATAcompareRatios(int RatioCounter, TCanvas *Canvas, TCanvas *CanvasMul
     }
 
 
-//    exit(0);
+//    exit(1);
 }
 #pragma endregion
 
@@ -237,10 +237,10 @@ void MCtoDATAcomp() {
     hData Properties;
 
     TFile *MC_file = new TFile("C12_simulation_G18_Q204_6GeV_plots.root");
-    if (!MC_file) { cout << "\n\nMCtoDATAcomp: MC file not found! Exiting...\n", exit(0); }
+    if (!MC_file) { cout << "\n\nMCtoDATAcomp: MC file not found! Aborting...\n", exit(1); }
 
     TFile *DATA_file = new TFile("C12x4_data_6GeV_run_015188_plots.root");
-    if (!DATA_file) { cout << "\n\nDATAtoDATAcomp: DATA file not found! Exiting...\n", exit(0); }
+    if (!DATA_file) { cout << "\n\nDATAtoDATAcomp: DATA file not found! Aborting...\n", exit(1); }
 
     #pragma region /* Canvas definitions */
     int canvas_x = 1000, canvas_y = 750;

@@ -119,7 +119,7 @@ class Debugger {
             std::cerr << "File: " << __FILE__ << ", Line: " << __LINE__ << std::endl;
         }
 
-        std::cerr << "Aborting.\033[0m" << std::endl, exit(0);
+        std::cerr << "Aborting.\033[0m" << std::endl, exit(1);
     }
 
     void PrintErrorMessage(const char *FILE, const int LINE, const std::string &ErrorMessage, const std::string &FunctionName = "") {
@@ -131,7 +131,7 @@ class Debugger {
             std::cerr << "File: " << FILE << ", Line: " << LINE << std::endl;
         }
 
-        std::cerr << "Aborting.\033[0m" << std::endl, exit(0);
+        std::cerr << "Aborting.\033[0m" << std::endl, exit(1);
     }
 };
 

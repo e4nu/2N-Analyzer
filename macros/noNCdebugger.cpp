@@ -32,10 +32,10 @@ void noNCdebugger() {
 
     const char *filename = "/mnt/e/C12x4_sim_G18_Q204_6GeV/01_Initial_runs/v2/C12x4_simulation_G18_Q204_6GeV_S02ACnoNC_v2/C12x4_simulation_G18_Q204_6GeV_plots.root";
 //    const char *filename = "/mnt/e/C12x4_data_6GeV/01_Initial_runs/C12x4_data_6GeV_S02ACnoNC_v2/C12x4_data_6GeV_plots.root";
-    if (!filename) {cout << "\n\nEmpty file! Exiting...\n\n", exit(0); }
+    if (!filename) {cout << "\n\nEmpty file! Aborting...\n\n", exit(1); }
 
     TH1D *dPhi_pFD_pCD_Histogram1D = Histofinder1D(filename, "#Delta#phi for small #Delta#theta_{pFD/pCD} - ZOOMIN (All Int., 2p)");
-    if (!dPhi_pFD_pCD_Histogram1D) {cout << "\n\nEmpty histogram! Exiting...\n\n", exit(0); }
+    if (!dPhi_pFD_pCD_Histogram1D) {cout << "\n\nEmpty histogram! Aborting...\n\n", exit(1); }
 
     TCanvas *dPhi_pFD_pCD_c = new TCanvas("dPhi_pFD_pCD_c1", "dPhi_pFD_pCD_c2", utilities.GetStandardCanvasWidth() * 1.25, utilities.GetStandardCanvasHeight() * 1.25); // normal res
     dPhi_pFD_pCD_c->cd()->SetGrid(), dPhi_pFD_pCD_c->cd()->SetBottomMargin(0.14), dPhi_pFD_pCD_c->cd()->SetLeftMargin(0.16), dPhi_pFD_pCD_c->cd()->SetRightMargin(0.16), dPhi_pFD_pCD_c->cd()->SetTopMargin(
@@ -53,7 +53,7 @@ void noNCdebugger() {
     cout << "\ndPhi_pFD_pCD_mean = " << dPhi_pFD_pCD_mean << "\n";
 
     TH1D *dPhi_p1_p2_Histogram1D = Histofinder1D(filename, "#Delta#phi for small #Delta#theta_{1/2} - ZOOMIN (All Int., 2p)");
-    if (!dPhi_p1_p2_Histogram1D) {cout << "\n\nEmpty histogram! Exiting...\n\n", exit(0); }
+    if (!dPhi_p1_p2_Histogram1D) {cout << "\n\nEmpty histogram! Aborting...\n\n", exit(1); }
 
     TCanvas *dPhi_p1_p2_c = new TCanvas("dPhi_p1_p2_c1", "dPhi_p1_p2_c2", utilities.GetStandardCanvasWidth() * 1.25, utilities.GetStandardCanvasHeight() * 1.25); // normal res
     dPhi_p1_p2_c->cd()->SetGrid(), dPhi_p1_p2_c->cd()->SetBottomMargin(0.14), dPhi_p1_p2_c->cd()->SetLeftMargin(0.16), dPhi_p1_p2_c->cd()->SetRightMargin(0.16), dPhi_p1_p2_c->cd()->SetTopMargin(

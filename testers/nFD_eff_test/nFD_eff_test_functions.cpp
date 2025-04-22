@@ -99,7 +99,7 @@ using namespace utilities;
 //         double Gamma_ph = 1 / sqrt(1 - (Beta_ph * Beta_ph));
 //         Momentum = m_n * Beta_ph * Gamma_ph;
 //     } else {
-//         cout << "\n\nError! Particle PDG is not 22 or 2112! Aborting...\n\n", exit(0);
+//         cout << "\n\nError! Particle PDG is not 22 or 2112! Aborting...\n\n", exit(1);
 //     }
 //     */
 

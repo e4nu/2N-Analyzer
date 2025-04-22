@@ -551,7 +551,7 @@ void BetaFitApprax(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Mome
         cout << "P(Beta_Min_Apprax) = " << P_Beta_Min_Apprax << "\n\n";
 
         ////        cout << "\n\n\n\n" << BetaPlot.GetHistogram1DSaveNamePath() << "Approximatied_beta/" << "\n\n\n\n";
-        //        exit(0);
+        //        exit(1);
 
         Momentum_cuts.SetUpperCut(P_Beta_Max_Apprax);
         #pragma endregion
