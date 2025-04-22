@@ -13473,7 +13473,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         hTheta_e_VS_Phi_e_1e_cut_FD->Fill(Phi_e, Theta_e, Weight);
         // hTheta_e_VS_Phi_e_BySliceOf_P_e_All_Int_1e_cut_FD.Fill(P_e_1e_cut, Phi_e, Theta_e, Weight);
         FillByInthsPlots(hTheta_e_VS_Phi_e_BySliceOf_P_e_All_Int_1e_cut_FD, hTheta_e_VS_Phi_e_BySliceOf_P_e_QEL_1e_cut_FD, hTheta_e_VS_Phi_e_BySliceOf_P_e_MEC_1e_cut_FD,
-                         hTheta_e_VS_Phi_e_BySliceOf_P_e_RES_1e_cut_FD, hTheta_e_VS_Phi_e_BySliceOf_P_e_DIS_1e_cut_FD, qel, mec, res, dis, P_e_1e_cut, Phi_e, Theta_e, Weight);
+                         hTheta_e_VS_Phi_e_BySliceOf_P_e_RES_1e_cut_FD, hTheta_e_VS_Phi_e_BySliceOf_P_e_DIS_1e_cut_FD, hsPlots::TH2D_TYPE, qel, mec, res, dis, P_e_1e_cut, Phi_e, Theta_e, Weight);
 
         FillByInt1D(hE_e_All_Int_1e_cut_FD, hE_e_QEL_1e_cut_FD, hE_e_MEC_1e_cut_FD, hE_e_RES_1e_cut_FD, hE_e_DIS_1e_cut_FD, qel, mec, res, dis, E_e_1e_cut, Weight);
         FillByInt2D(hE_e_VS_Theta_e_All_Int_1e_cut_FD, hE_e_VS_Theta_e_QEL_1e_cut_FD, hE_e_VS_Theta_e_MEC_1e_cut_FD, hE_e_VS_Theta_e_RES_1e_cut_FD, hE_e_VS_Theta_e_DIS_1e_cut_FD, qel, mec,
