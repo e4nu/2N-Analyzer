@@ -13471,7 +13471,6 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         hTheta_e_1e_cut_FD->Fill(Theta_e, Weight);
         hPhi_e_1e_cut_FD->Fill(Phi_e, Weight);
         hTheta_e_VS_Phi_e_1e_cut_FD->Fill(Phi_e, Theta_e, Weight);
-        // hTheta_e_VS_Phi_e_BySliceOf_P_e_All_Int_1e_cut_FD.Fill(P_e_1e_cut, Phi_e, Theta_e, Weight);
         
         debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, debugging::DebuggerMode, debugging::OnlyPrintNamedTesterSteps, "FillByInthsPlots - start");
 
