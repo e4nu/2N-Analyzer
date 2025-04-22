@@ -76,36 +76,36 @@ void FillByInt2D(TH2D *H1D_All_Int, TH2D *H1D_QEL, TH2D *H1D_MEC, TH2D *H1D_RES,
 
 // FillByInthsPlots function --------------------------------------------------------------------------------------------------------------------------------------------
 
-void FillByInthsPlots(hsPlots hsPlots_All_Int, hsPlots hsPlots_QEL, hsPlots hsPlots_MEC, hsPlots hsPlots_RES, hsPlots hsPlots_DIS, HistoType type, bool qel, bool mec, bool res, bool dis,
-                      double Slice_variable, double Variable_x, double Variable_y, double Weight = 1.0) {
-    if (type == TH1D_TYPE) {
+void FillByInthsPlots(hsPlots hsPlots_All_Int, hsPlots hsPlots_QEL, hsPlots hsPlots_MEC, hsPlots hsPlots_RES, hsPlots hsPlots_DIS, hsPlots::HistoType type, bool qel, bool mec, bool res,
+                      bool dis, double Slice_variable, double Variable_x, double Variable_y, double Weight = 1.0) {
+    if (type == hsPlots::TH1D_TYPE) {
         hsPlots_All_Int.Fill(Slice_variable, Variable_x, Weight);
-    } else if (type == TH2D_TYPE) {
+    } else if (type == hsPlots::TH2D_TYPE) {
         hsPlots_All_Int.Fill(Slice_variable, Variable_x, Variable_y, Weight);
     }
 
     if (qel) {
-        if (type == TH1D_TYPE) {
+        if (type == hsPlots::TH1D_TYPE) {
             hsPlots_QEL.Fill(Slice_variable, Variable_x, Weight);
-        } else if (type == TH2D_TYPE) {
+        } else if (type == hsPlots::TH2D_TYPE) {
             hsPlots_QEL.Fill(Slice_variable, Variable_x, Variable_y, Weight);
         }
     } else if (mec) {
-        if (type == TH1D_TYPE) {
+        if (type == hsPlots::TH1D_TYPE) {
             hsPlots_MEC.Fill(Slice_variable, Variable_x, Weight);
-        } else if (type == TH2D_TYPE) {
+        } else if (type == hsPlots::TH2D_TYPE) {
             hsPlots_MEC.Fill(Slice_variable, Variable_x, Variable_y, Weight);
         }
     } else if (res) {
-        if (type == TH1D_TYPE) {
+        if (type == hsPlots::TH1D_TYPE) {
             hsPlots_RES.Fill(Slice_variable, Variable_x, Weight);
-        } else if (type == TH2D_TYPE) {
+        } else if (type == hsPlots::TH2D_TYPE) {
             hsPlots_RES.Fill(Slice_variable, Variable_x, Variable_y, Weight);
         }
     } else if (dis) {
-        if (type == TH1D_TYPE) {
+        if (type == hsPlots::TH1D_TYPE) {
             hsPlots_DIS.Fill(Slice_variable, Variable_x, Weight);
-        } else if (type == TH2D_TYPE) {
+        } else if (type == hsPlots::TH2D_TYPE) {
             hsPlots_DIS.Fill(Slice_variable, Variable_x, Variable_y, Weight);
         }
     }
