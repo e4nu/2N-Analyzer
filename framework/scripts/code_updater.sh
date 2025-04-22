@@ -12,6 +12,19 @@ echo "${COLOR_START}= Running update script                                     
 echo "${COLOR_START}=======================================================================${COLOR_END}"
 echo ""
 
+echo "${COLOR_START}- Cleaning excessive file ---------------------------------------------${COLOR_END}"
+echo ""
+
+# Clean the working tree by recursively removing files that are not under version control, starting from
+# the current directory. The -f option is used to force the removal of files, and the -d option is used
+# to remove untracked directories. The -x option is used to remove files that are ignored by git.
+
+# This command is useful for cleaning up the working tree and removing any untracked files or directories
+# that may have been created during development, like generated cut files and acceptance and weight files.
+
+git clean -fxd # removes untracked files and directories
+echo ""
+
 echo "${COLOR_START}- Pulling repository --------------------------------------------------${COLOR_END}"
 echo ""
 
@@ -30,19 +43,6 @@ echo ""
 
 echo "${COLOR_START}HEAD:${COLOR_END}"
 git log -1 --oneline
-echo ""
-
-echo "${COLOR_START}- Cleaning excessive file ---------------------------------------------${COLOR_END}"
-echo ""
-
-# Clean the working tree by recursively removing files that are not under version control, starting from
-# the current directory. The -f option is used to force the removal of files, and the -d option is used
-# to remove untracked directories. The -x option is used to remove files that are ignored by git.
-
-# This command is useful for cleaning up the working tree and removing any untracked files or directories
-# that may have been created during development, like generated cut files and acceptance and weight files.
-
-git clean -fxd # removes untracked files and directories
 echo ""
 
 source ./framework/scripts/environment/set_environment.csh
