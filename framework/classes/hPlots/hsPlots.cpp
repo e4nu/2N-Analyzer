@@ -92,7 +92,13 @@ int hsPlots::FindSliceIndex(double value) {
 void hsPlots::Fill(double sliceVar, double x, double y, double weight) {
     int index = FindSliceIndex(sliceVar);
 
-    if (index < 0 || index >= static_cast<int>(SlicedHistoList.size())) { return; }  // Invalid slice index
+    // Check if slice index is valid:
+    if ((index < 0) || (index >= static_cast<int>(SlicedHistoList.size()))) {
+        std::cout << "\033[31m\n\nhsPlots::Fill: ERROR: Invalid slice index! Aborting...", exit(0);
+        std::cout << "index = " << index << "\n";
+        std::cout << "sliceVar = " << sliceVar << "\n";
+        std::cout << "Aborting...\033[0m", exit(0);
+    }
 
     if (histoType == TH1D_TYPE) {
         dynamic_cast<TH1D*>(SlicedHistoList[index])->Fill(x, weight);
