@@ -94,17 +94,44 @@ void hsPlots::Fill(double sliceVar, double x, double y, double weight) {
 
     // Check if slice index is valid:
     if ((index < 0) || (index >= static_cast<int>(SlicedHistoList.size()))) {
-        std::cout << "\033[31m\n\nhsPlots::Fill: ERROR: Invalid slice index! Aborting...", exit(0);
-        std::cout << "index = " << index << "\n";
-        std::cout << "sliceVar = " << sliceVar << "\n";
-        std::cout << "Aborting...\033[0m", exit(0);
+        std::cerr << "\033[31m\n\nhsPlots::Fill: ERROR: Invalid slice index!\n";
+        std::cerr << "index = " << index << "\n";
+        std::cerr << "sliceVar = " << sliceVar << "\n";
+        std::cerr << "Aborting...\033[0m\n";
+        exit(1);
     }
 
+    TObject* obj = SlicedHistoList[index];
+
     if (histoType == TH1D_TYPE) {
-        dynamic_cast<TH1D*>(SlicedHistoList[index])->Fill(x, weight);
+        TH1D* h1 = dynamic_cast<TH1D*>(obj);
+
+        if (h1) {
+            h1->Fill(x, weight);
+        } else {
+            std::cerr << "\033[31m\n\nhsPlots::Fill: ERROR: Histogram at index " << index << " is not TH1D as expected.\n";
+            std::cerr << "Actual class name: " << obj->ClassName() << "\n";
+            std::cerr << "Aborting...\033[0m\n";
+            exit(1);
+        }
     } else if (histoType == TH2D_TYPE) {
-        dynamic_cast<TH2D*>(SlicedHistoList[index])->Fill(x, y, weight);
+        TH2D* h2 = dynamic_cast<TH2D*>(obj);
+
+        if (h2) {
+            h2->Fill(x, y, weight);
+        } else {
+            std::cerr << "\033[31m\n\nhsPlots::Fill: ERROR: Histogram at index " << index << " is not TH2D as expected.\n";
+            std::cerr << "Actual class name: " << obj->ClassName() << "\n";
+            std::cerr << "Aborting...\033[0m\n";
+            exit(1);
+        }
     }
+
+    // if (histoType == TH1D_TYPE) {
+    //     dynamic_cast<TH1D*>(SlicedHistoList[index])->Fill(x, weight);
+    // } else if (histoType == TH2D_TYPE) {
+    //     dynamic_cast<TH2D*>(SlicedHistoList[index])->Fill(x, y, weight);
+    // }
 }
 
 // SaveHistograms function ---------------------------------------------------------------------------------------------------------------------------------------------
