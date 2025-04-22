@@ -44,7 +44,8 @@ namespace histogram_functions {
 
 // FillByInt1D function -------------------------------------------------------------------------------------------------------------------------------------------------
 
-void FillByInt1D(TH1D *H1D_All_Int, TH1D *H1D_QEL, TH1D *H1D_MEC, TH1D *H1D_RES, TH1D *H1D_DIS, bool qel, bool mec, bool res, bool dis, double Variable, double Weight) {
+void FillByInt1D(TH1D *H1D_All_Int, TH1D *H1D_QEL, TH1D *H1D_MEC, TH1D *H1D_RES, TH1D *H1D_DIS, const bool &qel, const bool &mec, const bool &res, const bool &dis, const double &Variable,
+                 const double &Weight) {
     H1D_All_Int->Fill(Variable, Weight);
 
     if (qel) {
@@ -60,7 +61,8 @@ void FillByInt1D(TH1D *H1D_All_Int, TH1D *H1D_QEL, TH1D *H1D_MEC, TH1D *H1D_RES,
 
 // FillByInt2D function -------------------------------------------------------------------------------------------------------------------------------------------------
 
-void FillByInt2D(TH2D *H1D_All_Int, TH2D *H1D_QEL, TH2D *H1D_MEC, TH2D *H1D_RES, TH2D *H1D_DIS, bool qel, bool mec, bool res, bool dis, double Variable_x, double Variable_y, double Weight) {
+void FillByInt2D(TH2D *H1D_All_Int, TH2D *H1D_QEL, TH2D *H1D_MEC, TH2D *H1D_RES, TH2D *H1D_DIS, const bool &qel, const bool &mec, const bool &res, const bool &dis, const double &Variable_x,
+                 const double &Variable_y, const double &Weight) {
     H1D_All_Int->Fill(Variable_x, Variable_y, Weight);
 
     if (qel) {
@@ -76,8 +78,8 @@ void FillByInt2D(TH2D *H1D_All_Int, TH2D *H1D_QEL, TH2D *H1D_MEC, TH2D *H1D_RES,
 
 // FillByInthsPlots function --------------------------------------------------------------------------------------------------------------------------------------------
 
-void FillByInthsPlots(hsPlots hsPlots_All_Int, hsPlots hsPlots_QEL, hsPlots hsPlots_MEC, hsPlots hsPlots_RES, hsPlots hsPlots_DIS, hsPlots::HistoType type, bool qel, bool mec, bool res,
-                      bool dis, double Slice_variable, double Variable_x, double Variable_y, double Weight = 1.0) {
+void FillByInthsPlots(hsPlots &hsPlots_All_Int, hsPlots &hsPlots_QEL, hsPlots &hsPlots_MEC, hsPlots &hsPlots_RES, hsPlots &hsPlots_DIS, hsPlots::HistoType type, const bool &qel,
+                      const bool &mec, const bool &res, const bool &dis, const double &Slice_variable, const double &Variable_x, const double &Variable_y, const double &Weight = 1.0) {
     std::cout << "\n\nFill all int start\n\n";
 
     if (type == hsPlots::TH1D_TYPE) {
