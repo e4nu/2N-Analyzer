@@ -117,7 +117,7 @@ struct AnalysisCutSettings {
           apply_P_miss_in_MECandSRC_range_cuts(false),
           apply_E_miss_in_MECandSRC_range_cuts(false),
           apply_xB_in_QE_range_cuts(true),
-          apply_theta_q_pCD_in_lower_FSI_range_cut(true),
+          apply_theta_q_pCD_in_lower_FSI_range_cut(false),
 
           custom_cuts_naming(true) {}
 
