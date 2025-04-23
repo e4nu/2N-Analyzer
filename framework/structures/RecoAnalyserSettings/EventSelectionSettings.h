@@ -53,7 +53,7 @@ struct EventSelectionSettings {
           Calc_inc_eff_with_varying_theta(false),
           Calc_1n_n_eff_with_smaller_theta(false),
           Calc_eff_overlapping_FC(true),
-          Rec_wTL_ES(true),
+          Rec_wTL_ES(false),
 
           limless_mom_eff_plots(false),
 
