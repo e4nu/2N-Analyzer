@@ -23,6 +23,7 @@ echo "\033[35mSearching for .zip files in subdirectories of\033[0m $BASE_DIR\033
 foreach zipfile (`find "$BASE_DIR" -mindepth 2 -type f -name "*.zip"`)
     echo "\033[35mAdding\033[0m $zipfile"
     zip -j "$OUTPUT_ZIP" "$zipfile"
+    echo
 end
 
 echo "\033[35mDone. Final zip:\033[0m $OUTPUT_ZIP"

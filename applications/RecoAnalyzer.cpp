@@ -215,9 +215,9 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     /* Final state ratio plots */
     bool FSR_1D_plots, FSR_2D_plots;  // FSR_2D_plots is disabled below if HipoChainLength is 2 or lower
 
-    bool TestRun = false;       // set as false for a full run
-    bool ApplyLimiter = false;  // set as false for a full run
-    int Limiter = 100000;
+    bool TestRun = true;       // set as false for a full run
+    bool ApplyLimiter = true;  // set as false for a full run
+    int Limiter = 1000000;
 
     // Set enabled plots
     if (!TestRun) {
@@ -13471,7 +13471,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         hTheta_e_1e_cut_FD->Fill(Theta_e, Weight);
         hPhi_e_1e_cut_FD->Fill(Phi_e, Weight);
         hTheta_e_VS_Phi_e_1e_cut_FD->Fill(Phi_e, Theta_e, Weight);
-        
+
         debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, debugging::DebuggerMode, debugging::OnlyPrintNamedTesterSteps, "FillByInthsPlots - start");
 
         FillByInthsPlots(hTheta_e_VS_Phi_e_BySliceOf_P_e_All_Int_1e_cut_FD, hTheta_e_VS_Phi_e_BySliceOf_P_e_QEL_1e_cut_FD, hTheta_e_VS_Phi_e_BySliceOf_P_e_MEC_1e_cut_FD,
@@ -16632,10 +16632,15 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             bool theta_q_pCD_in_lower_FSI_range_pFDpCD = (Theta_q_pCD_pFDpCD >= CutManager.Theta_q_pCD_cut.GetLowerCut() && Theta_q_pCD_pFDpCD <= CutManager.Theta_q_pCD_cut.GetUpperCut());
 
             bool Pass_ReacMon_cuts_pFDpCD =
-                ((!CutSettings.apply_P_miss_in_QE_range_cuts || P_miss_in_QE_range_pFDpCD) && (!CutSettings.apply_E_miss_in_QE_range_cuts || E_miss_in_QE_range_pFDpCD) &&
-                 (!CutSettings.apply_P_miss_in_MECandSRC_range_cuts || P_miss_in_MECandSRC_range_pFDpCD) &&
-                 (!CutSettings.apply_E_miss_in_MECandSRC_range_cuts || E_miss_in_MECandSRC_range_pFDpCD) && (!CutSettings.apply_xB_in_QE_range_cuts || xB_in_QE_range_pFDpCD) &&
+                ((!CutSettings.apply_P_miss_in_QE_range_cuts || P_miss_in_QE_range_pFDpCD) || (!CutSettings.apply_E_miss_in_QE_range_cuts || E_miss_in_QE_range_pFDpCD) ||
+                 (!CutSettings.apply_P_miss_in_MECandSRC_range_cuts || P_miss_in_MECandSRC_range_pFDpCD) ||
+                 (!CutSettings.apply_E_miss_in_MECandSRC_range_cuts || E_miss_in_MECandSRC_range_pFDpCD) || (!CutSettings.apply_xB_in_QE_range_cuts || xB_in_QE_range_pFDpCD) ||
                  (!CutSettings.apply_theta_q_pCD_in_lower_FSI_range_cut || theta_q_pCD_in_lower_FSI_range_pFDpCD));
+            // bool Pass_ReacMon_cuts_pFDpCD =
+            //     ((!CutSettings.apply_P_miss_in_QE_range_cuts || P_miss_in_QE_range_pFDpCD) && (!CutSettings.apply_E_miss_in_QE_range_cuts || E_miss_in_QE_range_pFDpCD) &&
+            //      (!CutSettings.apply_P_miss_in_MECandSRC_range_cuts || P_miss_in_MECandSRC_range_pFDpCD) &&
+            //      (!CutSettings.apply_E_miss_in_MECandSRC_range_cuts || E_miss_in_MECandSRC_range_pFDpCD) && (!CutSettings.apply_xB_in_QE_range_cuts || xB_in_QE_range_pFDpCD) &&
+            //      (!CutSettings.apply_theta_q_pCD_in_lower_FSI_range_cut || theta_q_pCD_in_lower_FSI_range_pFDpCD));
 
             //  Fillings pFDpCD histograms ------------------------------------------------------------------------------------------------------------------------------
 
@@ -16989,6 +16994,23 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                                        hNeut_Multi_By_Redef_BPID_AV_pFDpCD_FD, ReDef_FD_neutrons, hNeut_Multi_By_Redef_APID_BV_pFDpCD_FD, hNeut_Multi_By_Redef_APID_AV_pFDpCD_FD,
                                        NeutronsFD_ind);
 
+                Theta_P_pL_minus_q_pR_pFDpCD =
+                    acos((P_pL_minus_q_pFDpCD_v3.Px() * P_pR_pFDpCD_3v.Px() + P_pL_minus_q_pFDpCD_v3.Py() * P_pR_pFDpCD_3v.Py() + P_pL_minus_q_pFDpCD_v3.Pz() * P_pR_pFDpCD_3v.Pz()) /
+                         (P_pL_minus_q_pFDpCD_v3.Mag() * P_pR_pFDpCD_3v.Mag())) *
+                    180.0 / pi;  // Theta_P_pL_minus_q_pR_pFDpCD in deg
+                Theta_q_p_L_pFDpCD = acos((q_pFDpCD_3v.Px() * P_pL_pFDpCD_3v.Px() + q_pFDpCD_3v.Py() * P_pL_pFDpCD_3v.Py() + q_pFDpCD_3v.Pz() * P_pL_pFDpCD_3v.Pz()) /
+                                          (q_pFDpCD_3v.Mag() * P_pL_pFDpCD_3v.Mag())) *
+                                     180.0 / pi;  // Theta_q_p_L_pFDpCD = Theta_q_p_1_pFDpCD in deg
+                Theta_q_p_R_pFDpCD = acos((q_pFDpCD_3v.Px() * P_pR_pFDpCD_3v.Px() + q_pFDpCD_3v.Py() * P_pR_pFDpCD_3v.Py() + q_pFDpCD_3v.Pz() * P_pR_pFDpCD_3v.Pz()) /
+                                          (q_pFDpCD_3v.Mag() * P_pR_pFDpCD_3v.Mag())) *
+                                     180.0 / pi;  // Theta_q_p_R_pFDpCD = Theta_q_p_2_pFDpCD in deg
+                Theta_q_pFD_pFDpCD = acos((q_pFDpCD_3v.Px() * P_pFD_pFDpCD_3v.Px() + q_pFDpCD_3v.Py() * P_pFD_pFDpCD_3v.Py() + q_pFDpCD_3v.Pz() * P_pFD_pFDpCD_3v.Pz()) /
+                                          (q_pFDpCD_3v.Mag() * P_pFD_pFDpCD_3v.Mag())) *
+                                     180.0 / pi;  // Theta_q_p_L_pFDpCD = Theta_q_p_1_pFDpCD in deg
+                Theta_q_pCD_pFDpCD = acos((q_pFDpCD_3v.Px() * P_pCD_pFDpCD_3v.Px() + q_pFDpCD_3v.Py() * P_pCD_pFDpCD_3v.Py() + q_pFDpCD_3v.Pz() * P_pCD_pFDpCD_3v.Pz()) /
+                                          (q_pFDpCD_3v.Mag() * P_pCD_pFDpCD_3v.Mag())) *
+                                     180.0 / pi;  // Theta_q_p_R_pFDpCD = Theta_q_p_2_pFDpCD in deg
+
                 // Fill reaction monitoring (pFDpCD)
                 FillByInt1D(hP_miss_1N_All_Int_pFDpCD, hP_miss_1N_QEL_pFDpCD, hP_miss_1N_MEC_pFDpCD, hP_miss_1N_RES_pFDpCD, hP_miss_1N_DIS_pFDpCD, qel, mec, res, dis,
                             P_miss_1N_pFDpCD_3v.Mag(), Weight_pFDpCD);
@@ -17180,22 +17202,6 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                 hTheta_q_p_tot_vs_W_pFDpCD->Fill(W_pFDpCD, Theta_q_p_tot_pFDpCD, Weight_pFDpCD);
                 hTheta_q_p_max_pFDpCD->Fill((P_max_pFDpCD_3v.Angle(q_pFDpCD_3v) * 180.0 / pi), Weight_pFDpCD);
 
-                Theta_P_pL_minus_q_pR_pFDpCD =
-                    acos((P_pL_minus_q_pFDpCD_v3.Px() * P_pR_pFDpCD_3v.Px() + P_pL_minus_q_pFDpCD_v3.Py() * P_pR_pFDpCD_3v.Py() + P_pL_minus_q_pFDpCD_v3.Pz() * P_pR_pFDpCD_3v.Pz()) /
-                         (P_pL_minus_q_pFDpCD_v3.Mag() * P_pR_pFDpCD_3v.Mag())) *
-                    180.0 / pi;  // Theta_P_pL_minus_q_pR_pFDpCD in deg
-                Theta_q_p_L_pFDpCD = acos((q_pFDpCD_3v.Px() * P_pL_pFDpCD_3v.Px() + q_pFDpCD_3v.Py() * P_pL_pFDpCD_3v.Py() + q_pFDpCD_3v.Pz() * P_pL_pFDpCD_3v.Pz()) /
-                                          (q_pFDpCD_3v.Mag() * P_pL_pFDpCD_3v.Mag())) *
-                                     180.0 / pi;  // Theta_q_p_L_pFDpCD = Theta_q_p_1_pFDpCD in deg
-                Theta_q_p_R_pFDpCD = acos((q_pFDpCD_3v.Px() * P_pR_pFDpCD_3v.Px() + q_pFDpCD_3v.Py() * P_pR_pFDpCD_3v.Py() + q_pFDpCD_3v.Pz() * P_pR_pFDpCD_3v.Pz()) /
-                                          (q_pFDpCD_3v.Mag() * P_pR_pFDpCD_3v.Mag())) *
-                                     180.0 / pi;  // Theta_q_p_R_pFDpCD = Theta_q_p_2_pFDpCD in deg
-                Theta_q_pFD_pFDpCD = acos((q_pFDpCD_3v.Px() * P_pFD_pFDpCD_3v.Px() + q_pFDpCD_3v.Py() * P_pFD_pFDpCD_3v.Py() + q_pFDpCD_3v.Pz() * P_pFD_pFDpCD_3v.Pz()) /
-                                          (q_pFDpCD_3v.Mag() * P_pFD_pFDpCD_3v.Mag())) *
-                                     180.0 / pi;  // Theta_q_p_L_pFDpCD = Theta_q_p_1_pFDpCD in deg
-                Theta_q_pCD_pFDpCD = acos((q_pFDpCD_3v.Px() * P_pCD_pFDpCD_3v.Px() + q_pFDpCD_3v.Py() * P_pCD_pFDpCD_3v.Py() + q_pFDpCD_3v.Pz() * P_pCD_pFDpCD_3v.Pz()) /
-                                          (q_pFDpCD_3v.Mag() * P_pCD_pFDpCD_3v.Mag())) *
-                                     180.0 / pi;  // Theta_q_p_R_pFDpCD = Theta_q_p_2_pFDpCD in deg
                 hTheta_P_pL_minus_q_pR_pFDpCD->Fill(Theta_P_pL_minus_q_pR_pFDpCD, Weight_pFDpCD);
                 hTheta_P_pL_minus_q_pR_vs_W_pFDpCD->Fill(W_pFDpCD, Theta_P_pL_minus_q_pR_pFDpCD, Weight_pFDpCD);
                 hTheta_q_p_L_pFDpCD->Fill(Theta_q_p_L_pFDpCD, Weight_pFDpCD);
@@ -17586,10 +17592,15 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             bool theta_q_pCD_in_lower_FSI_range_nFDpCD = (Theta_q_pCD_nFDpCD >= CutManager.Theta_q_pCD_cut.GetLowerCut() && Theta_q_pCD_nFDpCD <= CutManager.Theta_q_pCD_cut.GetUpperCut());
 
             bool Pass_ReacMon_cuts_nFDpCD =
-                ((!CutSettings.apply_P_miss_in_QE_range_cuts || P_miss_in_QE_range_nFDpCD) && (!CutSettings.apply_E_miss_in_QE_range_cuts || E_miss_in_QE_range_nFDpCD) &&
-                 (!CutSettings.apply_P_miss_in_MECandSRC_range_cuts || P_miss_in_MECandSRC_range_nFDpCD) &&
-                 (!CutSettings.apply_E_miss_in_MECandSRC_range_cuts || E_miss_in_MECandSRC_range_nFDpCD) && (!CutSettings.apply_xB_in_QE_range_cuts || xB_in_QE_range_nFDpCD) &&
+                ((!CutSettings.apply_P_miss_in_QE_range_cuts || P_miss_in_QE_range_nFDpCD) || (!CutSettings.apply_E_miss_in_QE_range_cuts || E_miss_in_QE_range_nFDpCD) ||
+                 (!CutSettings.apply_P_miss_in_MECandSRC_range_cuts || P_miss_in_MECandSRC_range_nFDpCD) ||
+                 (!CutSettings.apply_E_miss_in_MECandSRC_range_cuts || E_miss_in_MECandSRC_range_nFDpCD) || (!CutSettings.apply_xB_in_QE_range_cuts || xB_in_QE_range_nFDpCD) ||
                  (!CutSettings.apply_theta_q_pCD_in_lower_FSI_range_cut || theta_q_pCD_in_lower_FSI_range_nFDpCD));
+            // bool Pass_ReacMon_cuts_nFDpCD =
+            //     ((!CutSettings.apply_P_miss_in_QE_range_cuts || P_miss_in_QE_range_nFDpCD) && (!CutSettings.apply_E_miss_in_QE_range_cuts || E_miss_in_QE_range_nFDpCD) &&
+            //      (!CutSettings.apply_P_miss_in_MECandSRC_range_cuts || P_miss_in_MECandSRC_range_nFDpCD) &&
+            //      (!CutSettings.apply_E_miss_in_MECandSRC_range_cuts || E_miss_in_MECandSRC_range_nFDpCD) && (!CutSettings.apply_xB_in_QE_range_cuts || xB_in_QE_range_nFDpCD) &&
+            //      (!CutSettings.apply_theta_q_pCD_in_lower_FSI_range_cut || theta_q_pCD_in_lower_FSI_range_nFDpCD));
 
             //  Fillings nFDpCD histograms ------------------------------------------------------------------------------------------------------------------------------
 
@@ -17987,6 +17998,23 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                                        hNeut_Multi_By_Redef_BPID_AV_nFDpCD_FD, ReDef_FD_neutrons, hNeut_Multi_By_Redef_APID_BV_nFDpCD_FD, hNeut_Multi_By_Redef_APID_AV_nFDpCD_FD,
                                        NeutronsFD_ind);
 
+                Theta_P_nL_minus_q_nR_nFDpCD =
+                    acos((P_nL_minus_q_nFDpCD_v3.Px() * P_nR_nFDpCD_3v.Px() + P_nL_minus_q_nFDpCD_v3.Py() * P_nR_nFDpCD_3v.Py() + P_nL_minus_q_nFDpCD_v3.Pz() * P_nR_nFDpCD_3v.Pz()) /
+                         (P_nL_minus_q_nFDpCD_v3.Mag() * P_nR_nFDpCD_3v.Mag())) *
+                    180.0 / pi;  // Theta_P_nL_minus_q_nR_nFDpCD in deg
+                Theta_q_p_L_nFDpCD = acos((q_nFDpCD_3v.Px() * P_nL_nFDpCD_3v.Px() + q_nFDpCD_3v.Py() * P_nL_nFDpCD_3v.Py() + q_nFDpCD_3v.Pz() * P_nL_nFDpCD_3v.Pz()) /
+                                          (q_nFDpCD_3v.Mag() * P_nL_nFDpCD_3v.Mag())) *
+                                     180.0 / pi;  // Theta_q_p_L_nFDpCD = Theta_q_p_1_nFDpCD in deg
+                Theta_q_p_R_nFDpCD = acos((q_nFDpCD_3v.Px() * P_nR_nFDpCD_3v.Px() + q_nFDpCD_3v.Py() * P_nR_nFDpCD_3v.Py() + q_nFDpCD_3v.Pz() * P_nR_nFDpCD_3v.Pz()) /
+                                          (q_nFDpCD_3v.Mag() * P_nR_nFDpCD_3v.Mag())) *
+                                     180.0 / pi;  // Theta_q_p_R_nFDpCD = Theta_q_p_2_nFDpCD in deg
+                Theta_q_nFD_nFDpCD = acos((q_nFDpCD_3v.Px() * P_nFD_nFDpCD_3v.Px() + q_nFDpCD_3v.Py() * P_nFD_nFDpCD_3v.Py() + q_nFDpCD_3v.Pz() * P_nFD_nFDpCD_3v.Pz()) /
+                                          (q_nFDpCD_3v.Mag() * P_nFD_nFDpCD_3v.Mag())) *
+                                     180.0 / pi;  // Theta_q_p_L_nFDpCD = Theta_q_p_1_nFDpCD in deg
+                Theta_q_pCD_nFDpCD = acos((q_nFDpCD_3v.Px() * P_pCD_nFDpCD_3v.Px() + q_nFDpCD_3v.Py() * P_pCD_nFDpCD_3v.Py() + q_nFDpCD_3v.Pz() * P_pCD_nFDpCD_3v.Pz()) /
+                                          (q_nFDpCD_3v.Mag() * P_pCD_nFDpCD_3v.Mag())) *
+                                     180.0 / pi;  // Theta_q_p_R_nFDpCD = Theta_q_p_2_nFDpCD in deg
+
                 // Fill reaction monitoring (nFDpCD)
                 FillByInt1D(hP_miss_1N_All_Int_nFDpCD, hP_miss_1N_QEL_nFDpCD, hP_miss_1N_MEC_nFDpCD, hP_miss_1N_RES_nFDpCD, hP_miss_1N_DIS_nFDpCD, qel, mec, res, dis,
                             P_miss_1N_nFDpCD_3v.Mag(), Weight_nFDpCD);
@@ -18190,22 +18218,6 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                 hTheta_q_p_tot_nFDpCD->Fill(Theta_q_p_tot_nFDpCD, Weight_nFDpCD);
                 hTheta_q_p_tot_vs_W_nFDpCD->Fill(W_nFDpCD, Theta_q_p_tot_nFDpCD, Weight_nFDpCD);
 
-                Theta_P_nL_minus_q_nR_nFDpCD =
-                    acos((P_nL_minus_q_nFDpCD_v3.Px() * P_nR_nFDpCD_3v.Px() + P_nL_minus_q_nFDpCD_v3.Py() * P_nR_nFDpCD_3v.Py() + P_nL_minus_q_nFDpCD_v3.Pz() * P_nR_nFDpCD_3v.Pz()) /
-                         (P_nL_minus_q_nFDpCD_v3.Mag() * P_nR_nFDpCD_3v.Mag())) *
-                    180.0 / pi;  // Theta_P_nL_minus_q_nR_nFDpCD in deg
-                Theta_q_p_L_nFDpCD = acos((q_nFDpCD_3v.Px() * P_nL_nFDpCD_3v.Px() + q_nFDpCD_3v.Py() * P_nL_nFDpCD_3v.Py() + q_nFDpCD_3v.Pz() * P_nL_nFDpCD_3v.Pz()) /
-                                          (q_nFDpCD_3v.Mag() * P_nL_nFDpCD_3v.Mag())) *
-                                     180.0 / pi;  // Theta_q_p_L_nFDpCD = Theta_q_p_1_nFDpCD in deg
-                Theta_q_p_R_nFDpCD = acos((q_nFDpCD_3v.Px() * P_nR_nFDpCD_3v.Px() + q_nFDpCD_3v.Py() * P_nR_nFDpCD_3v.Py() + q_nFDpCD_3v.Pz() * P_nR_nFDpCD_3v.Pz()) /
-                                          (q_nFDpCD_3v.Mag() * P_nR_nFDpCD_3v.Mag())) *
-                                     180.0 / pi;  // Theta_q_p_R_nFDpCD = Theta_q_p_2_nFDpCD in deg
-                Theta_q_nFD_nFDpCD = acos((q_nFDpCD_3v.Px() * P_nFD_nFDpCD_3v.Px() + q_nFDpCD_3v.Py() * P_nFD_nFDpCD_3v.Py() + q_nFDpCD_3v.Pz() * P_nFD_nFDpCD_3v.Pz()) /
-                                          (q_nFDpCD_3v.Mag() * P_nFD_nFDpCD_3v.Mag())) *
-                                     180.0 / pi;  // Theta_q_p_L_nFDpCD = Theta_q_p_1_nFDpCD in deg
-                Theta_q_pCD_nFDpCD = acos((q_nFDpCD_3v.Px() * P_pCD_nFDpCD_3v.Px() + q_nFDpCD_3v.Py() * P_pCD_nFDpCD_3v.Py() + q_nFDpCD_3v.Pz() * P_pCD_nFDpCD_3v.Pz()) /
-                                          (q_nFDpCD_3v.Mag() * P_pCD_nFDpCD_3v.Mag())) *
-                                     180.0 / pi;  // Theta_q_p_R_nFDpCD = Theta_q_p_2_nFDpCD in deg
                 hTheta_P_nL_minus_q_nR_nFDpCD->Fill(Theta_P_nL_minus_q_nR_nFDpCD, Weight_nFDpCD);
                 hTheta_P_nL_minus_q_nR_vs_W_nFDpCD->Fill(W_nFDpCD, Theta_P_nL_minus_q_nR_nFDpCD, Weight_nFDpCD);
                 hTheta_q_p_L_nFDpCD->Fill(Theta_q_p_L_nFDpCD, Weight_nFDpCD);
