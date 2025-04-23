@@ -27,7 +27,7 @@ class CustomPlotsDirectory {
 
     std::string Added_PreStatuses, Added_Statuses;
 
-    std::string Global_Run_Status = "V14_R1_P_E_miss_xB_in_MECandSRC";
+    std::string Global_Run_Status = "V14_R1_P_E_miss_in_MECandSRC_theta_q_pCD";
 
    public:
     // Default constructor ---------------------------------------------------------------------------------------------------------------------------------------------
