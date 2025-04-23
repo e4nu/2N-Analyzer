@@ -113,7 +113,7 @@ struct AnalysisCutSettings {
           // Reaction monitoring cuts:
           apply_reaction_monitoring_cuts(true),
           apply_P_miss_in_QE_range_cuts(false),
-          apply_E_miss_in_QE_range_cuts(false),
+          apply_E_miss_in_QE_range_cuts(true),
           apply_P_miss_in_MECandSRC_range_cuts(false),
           apply_E_miss_in_MECandSRC_range_cuts(true),
           apply_xB_in_QE_range_cuts(false),
