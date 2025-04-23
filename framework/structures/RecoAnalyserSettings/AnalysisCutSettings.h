@@ -100,10 +100,10 @@ struct AnalysisCutSettings {
           apply_chi2_cuts_1e_cut(true),
 
           // Nucleon cuts:
-          apply_nucleon_cuts(true),
+          apply_nucleon_cuts(false),
 
           // Physical cuts:
-          apply_nucleon_physical_cuts(true),
+          apply_nucleon_physical_cuts(false),
           apply_nBeta_fit_cuts(true),
           apply_fiducial_cuts(false),
           apply_kinematical_cuts(false),
