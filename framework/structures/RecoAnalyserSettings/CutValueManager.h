@@ -157,10 +157,12 @@ struct CutValueManager {
     DSCuts E_miss_1N_OtherReacAndFSI_range = DSCuts("E_miss_1N QE range", "", "", "Protons and neutrons", 0, 0.5, 9999);
 
     // xB cuts:
-    DSCuts xB_cut = DSCuts("xB range", "", "", "Protons and neutrons", 0, 1., 9999);  // To kill RES or DIS events
+    DSCuts xB_cut = DSCuts("xB range", "", "", "Protons and neutrons", 0, 0.25, 9999);  // To kill RES or DIS events
+    // DSCuts xB_cut = DSCuts("xB range", "", "", "Protons and neutrons", 0, 1., 9999);  // To kill RES or DIS events
 
     // Theta_q_pCD cuts:
-    DSCuts Theta_q_pCD_cut = DSCuts("xB QE range", "", "", "Protons and neutrons", 0, 0., 40.);  // Gives lower FSI
+    DSCuts Theta_q_pCD_cut = DSCuts("xB QE range", "", "", "Protons and neutrons", 0, 0., 90.);  // Gives lower FSI
+    // DSCuts Theta_q_pCD_cut = DSCuts("xB QE range", "", "", "Protons and neutrons", 0, 0., 40.);  // Gives lower FSI
 
     CutValueManager(ExperimentParameters &Experiment, const EventSelectionSettings &ESSettings) {
         Vz_cut = Experiment.GetVz_cuts();
