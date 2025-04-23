@@ -27,7 +27,7 @@ class CustomPlotsDirectory {
 
     std::string Added_PreStatuses, Added_Statuses;
 
-    std::string Global_Run_Status = "V14_all_reac_cuts";
+    std::string Global_Run_Status = "V14";
 
    public:
     // Default constructor ---------------------------------------------------------------------------------------------------------------------------------------------
