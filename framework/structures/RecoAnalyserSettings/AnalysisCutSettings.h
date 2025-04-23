@@ -97,7 +97,7 @@ struct AnalysisCutSettings {
           apply_Electron_beta_cut(true),
 
           // Chi2 cuts (= PID cuts):
-          apply_chi2_cuts_1e_cut(true),
+          apply_chi2_cuts_1e_cut(false),
 
           // Nucleon cuts:
           apply_nucleon_cuts(true),
