@@ -75,7 +75,7 @@ struct AnalysisCutSettings {
     // Constructor with default values
     AnalysisCutSettings()
         // Cuts setup:
-        : apply_cuts(true),
+        : apply_cuts(false),
           clas12ana_particles(true),
           only_preselection_cuts(false),
           only_electron_quality_cuts(false),
