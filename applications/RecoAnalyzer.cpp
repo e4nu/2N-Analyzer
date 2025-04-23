@@ -16632,10 +16632,9 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             bool theta_q_pCD_in_lower_FSI_range_pFDpCD = (Theta_q_pCD_pFDpCD >= CutManager.Theta_q_pCD_cut.GetLowerCut() && Theta_q_pCD_pFDpCD <= CutManager.Theta_q_pCD_cut.GetUpperCut());
 
             bool Pass_ReacMon_cuts_pFDpCD =
-                ((!CutSettings.apply_P_miss_in_QE_range_cuts || P_miss_in_QE_range_pFDpCD) || (!CutSettings.apply_E_miss_in_QE_range_cuts || E_miss_in_QE_range_pFDpCD) ||
-                 (!CutSettings.apply_P_miss_in_MECandSRC_range_cuts || P_miss_in_MECandSRC_range_pFDpCD) ||
-                 (!CutSettings.apply_E_miss_in_MECandSRC_range_cuts || E_miss_in_MECandSRC_range_pFDpCD) || (!CutSettings.apply_xB_in_QE_range_cuts || xB_in_QE_range_pFDpCD) ||
-                 (!CutSettings.apply_theta_q_pCD_in_lower_FSI_range_cut || theta_q_pCD_in_lower_FSI_range_pFDpCD));
+                (((!CutSettings.apply_P_miss_in_QE_range_cuts || P_miss_in_QE_range_pFDpCD) || (!CutSettings.apply_P_miss_in_MECandSRC_range_cuts || P_miss_in_MECandSRC_range_pFDpCD)) &&
+                 ((!CutSettings.apply_E_miss_in_QE_range_cuts || E_miss_in_QE_range_pFDpCD) || (!CutSettings.apply_E_miss_in_MECandSRC_range_cuts || E_miss_in_MECandSRC_range_pFDpCD)) &&
+                 (!CutSettings.apply_xB_in_QE_range_cuts || xB_in_QE_range_pFDpCD) && (!CutSettings.apply_theta_q_pCD_in_lower_FSI_range_cut || theta_q_pCD_in_lower_FSI_range_pFDpCD));
             // bool Pass_ReacMon_cuts_pFDpCD =
             //     ((!CutSettings.apply_P_miss_in_QE_range_cuts || P_miss_in_QE_range_pFDpCD) && (!CutSettings.apply_E_miss_in_QE_range_cuts || E_miss_in_QE_range_pFDpCD) &&
             //      (!CutSettings.apply_P_miss_in_MECandSRC_range_cuts || P_miss_in_MECandSRC_range_pFDpCD) &&
@@ -17592,10 +17591,9 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             bool theta_q_pCD_in_lower_FSI_range_nFDpCD = (Theta_q_pCD_nFDpCD >= CutManager.Theta_q_pCD_cut.GetLowerCut() && Theta_q_pCD_nFDpCD <= CutManager.Theta_q_pCD_cut.GetUpperCut());
 
             bool Pass_ReacMon_cuts_nFDpCD =
-                ((!CutSettings.apply_P_miss_in_QE_range_cuts || P_miss_in_QE_range_nFDpCD) || (!CutSettings.apply_E_miss_in_QE_range_cuts || E_miss_in_QE_range_nFDpCD) ||
-                 (!CutSettings.apply_P_miss_in_MECandSRC_range_cuts || P_miss_in_MECandSRC_range_nFDpCD) ||
-                 (!CutSettings.apply_E_miss_in_MECandSRC_range_cuts || E_miss_in_MECandSRC_range_nFDpCD) || (!CutSettings.apply_xB_in_QE_range_cuts || xB_in_QE_range_nFDpCD) ||
-                 (!CutSettings.apply_theta_q_pCD_in_lower_FSI_range_cut || theta_q_pCD_in_lower_FSI_range_nFDpCD));
+                (((!CutSettings.apply_P_miss_in_QE_range_cuts || P_miss_in_QE_range_nFDpCD) || (!CutSettings.apply_P_miss_in_MECandSRC_range_cuts || P_miss_in_MECandSRC_range_nFDpCD)) &&
+                 ((!CutSettings.apply_E_miss_in_QE_range_cuts || E_miss_in_QE_range_nFDpCD) || (!CutSettings.apply_E_miss_in_MECandSRC_range_cuts || E_miss_in_MECandSRC_range_nFDpCD)) &&
+                 (!CutSettings.apply_xB_in_QE_range_cuts || xB_in_QE_range_nFDpCD) && (!CutSettings.apply_theta_q_pCD_in_lower_FSI_range_cut || theta_q_pCD_in_lower_FSI_range_nFDpCD));
             // bool Pass_ReacMon_cuts_nFDpCD =
             //     ((!CutSettings.apply_P_miss_in_QE_range_cuts || P_miss_in_QE_range_nFDpCD) && (!CutSettings.apply_E_miss_in_QE_range_cuts || E_miss_in_QE_range_nFDpCD) &&
             //      (!CutSettings.apply_P_miss_in_MECandSRC_range_cuts || P_miss_in_MECandSRC_range_nFDpCD) &&
