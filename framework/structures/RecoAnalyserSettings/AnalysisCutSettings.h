@@ -75,7 +75,7 @@ struct AnalysisCutSettings {
     // Constructor with default values
     AnalysisCutSettings()
         // Cuts setup:
-        : apply_cuts(false),
+        : apply_cuts(true),
           clas12ana_particles(true),
           only_preselection_cuts(false),
           only_electron_quality_cuts(false),
@@ -112,12 +112,12 @@ struct AnalysisCutSettings {
 
           // Reaction monitoring cuts:
           apply_reaction_monitoring_cuts(true),
-          apply_P_miss_in_QE_range_cuts(true),
+          apply_P_miss_in_QE_range_cuts(false),
           apply_E_miss_in_QE_range_cuts(true),
           apply_P_miss_in_MECandSRC_range_cuts(true),
           apply_E_miss_in_MECandSRC_range_cuts(false),
-          apply_xB_in_QE_range_cuts(false),
-          apply_theta_q_pCD_in_lower_FSI_range_cut(false),
+          apply_xB_in_QE_range_cuts(true),
+          apply_theta_q_pCD_in_lower_FSI_range_cut(true),
 
           custom_cuts_naming(true) {}
 
