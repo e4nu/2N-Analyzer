@@ -27,9 +27,8 @@ class CustomPlotsDirectory {
 
     std::string Added_PreStatuses, Added_Statuses;
 
-    // std::string Global_Run_Status = "ChainRunV13_R1_E_miss_in_QEandMECandSRC_theta_q_pCD_test";
-    std::string Global_Run_Status = "ChainRunV13_R1_E_miss_in_MECandSRC_test";
-    // std::string Global_Run_Status = "ChainRunV13_R1_E_miss_in_MECandSRC_theta_q_pCD_test";
+    std::string Global_Run_Status = "ChainRunV13_R1";
+    // std::string Global_Run_Status = "ChainRunV13_R1_E_miss_in_MECandSRC_test";
     // std::string Global_Run_Status = "ChainRunV13_R1";
 
    public:
