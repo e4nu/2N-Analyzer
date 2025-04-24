@@ -55,7 +55,7 @@ if ($#argv >= 1) then
     foreach matchdir (`find "${BASE_DIR}" -mindepth 2 -type d`)
         if ("$matchdir" =~ *${NAME_FOR_MATCHING}*) then
             echo "\033[35mMatched directory:\033[0m $matchdir"
-set zipfiles = (`find "$matchdir" -maxdepth 1 -type f -name "*.zip"`)
+set zipfiles = (`find "$matchdir" -maxdepth 0 -type f -name "*.zip"`)
 
             if ($#zipfiles == 0) then
                 echo "\033[33m  No zip files found in:\033[0m $matchdir"
