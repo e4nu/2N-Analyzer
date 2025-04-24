@@ -150,7 +150,6 @@ void CustomPlotsDirectory::ConfigureStatuses(const bool &apply_cuts, const bool 
     Added_Statuses = Preselection_Cuts_Status + Electron_Quality_Cuts_Status + Nucleon_Cuts_Status + FD_photons_Status + Efficiency_Status + PSmearing_Status + FiducialCuts_Status +
                      KinCuts_Status + KinWei_Status + Additional_Status;
 }
-
 #pragma endregion
 
 // SetPaths function -----------------------------------------------------------------------------------------------------------------------------------------------

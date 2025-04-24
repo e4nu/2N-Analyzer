@@ -10,11 +10,13 @@
 #include "analysis_samples/analysis_samples.h"
 #include "debugging.h"
 #include "path_definitions.h"
+#include "zipping.h"
 
 namespace code_setup {
 using namespace path_definitions;
 using namespace debugging;
 using namespace analysis_samples;
+using namespace zipping;
 
 std::string SYSTEM_COLOR = "\033[33m";     // Yellow
 std::string ERROR_COLOR = "\033[31m";      // Red

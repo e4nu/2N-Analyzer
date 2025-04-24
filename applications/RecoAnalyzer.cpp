@@ -110,8 +110,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     Directories directories = Directories(Plots_Folder, Clear_Old_Directories);
 
-    bool Save_Plots_folder_to_zip_files = true;
-    bool zipping_print_out = (Save_Plots_folder_to_zip_files && false);
+    // bool Save_Plots_folder_to_zip_files = true;
+    // bool zipping_print_out = (Save_Plots_folder_to_zip_files && false);
 
     std::cout << "\033[33m done.\n\n\033[0m";
 
@@ -215,8 +215,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     /* Final state ratio plots */
     bool FSR_1D_plots, FSR_2D_plots;  // FSR_2D_plots is disabled below if HipoChainLength is 2 or lower
 
-    bool TestRun = false;       // set as false for a full run
-    bool ApplyLimiter = false;  // set as false for a full run
+    bool TestRun = true;       // set as false for a full run
+    bool ApplyLimiter = true;  // set as false for a full run
     int Limiter = 1000000;
 
     // Set enabled plots
@@ -26564,7 +26564,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         if (ApplyLimiter) { std::cout << "\033[31m\n\nNOTE: running code with a limiter on number of events!\n\n\033[0m"; }
     }
 
-    printers::SavePlotsToZipFile(Save_Plots_folder_to_zip_files, zipping_print_out, run_plots_path, settings.GetRun_dir_name());
+    zipping::SavePlotsToZipFile(Save_Plots_folder_to_zip_files, zipping_print_out, run_plots_path, settings.GetRun_dir_name());
+    // printers::SavePlotsToZipFile(Save_Plots_folder_to_zip_files, zipping_print_out, run_plots_path, settings.GetRun_dir_name());
 
 #pragma endregion
 }

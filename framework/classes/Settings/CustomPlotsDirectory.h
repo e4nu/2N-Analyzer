@@ -6,6 +6,11 @@
 // #define CUSTOMPLOTSDIRECTORY_H
 #ifdef CUSTOMPLOTSDIRECTORY_H
 
+#include <iostream>
+
+// Include libraries:
+#include "../../namespaces/setup/path_definitions.h"
+
 class CustomPlotsDirectory {
    private:
     std::string Plots_path;
@@ -27,7 +32,8 @@ class CustomPlotsDirectory {
 
     std::string Added_PreStatuses, Added_Statuses;
 
-    std::string Global_Run_Status = "V14";
+    std::string Global_Run_Status = path_definitions::custom_plots_path_prefix;
+    // std::string Global_Run_Status = "V14";
 
    public:
     // Default constructor ---------------------------------------------------------------------------------------------------------------------------------------------
