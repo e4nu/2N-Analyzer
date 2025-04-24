@@ -156,9 +156,9 @@ void histPlotter1D(TCanvas *HistogramCanvas,            // The canvas
         std::string Histogram1DSaveNameDir;
 
         if (finalState == "") {
-            Histogram1DSaveNameDir = Histogram1DSaveNamePath + Histogram1DSaveName + "_log_scale.png";
+            Histogram1DSaveNameDir = Histogram1DSaveNamePath + Histogram1DSaveName + "_log_scale.pdf";
         } else {
-            Histogram1DSaveNameDir = Histogram1DSaveNamePath + Histogram1DSaveName + "_log_scale_" + finalState + ".png";
+            Histogram1DSaveNameDir = Histogram1DSaveNamePath + Histogram1DSaveName + "_log_scale_" + finalState + ".pdf";
         }
 
         const char *SaveDir = Histogram1DSaveNameDir.c_str();
@@ -172,9 +172,9 @@ void histPlotter1D(TCanvas *HistogramCanvas,            // The canvas
         std::string Histogram1DSaveNameDir;
 
         if (finalState == "") {
-            Histogram1DSaveNameDir = Histogram1DSaveNamePath + Histogram1DSaveName + "_linear_scale.png";
+            Histogram1DSaveNameDir = Histogram1DSaveNamePath + Histogram1DSaveName + "_linear_scale.pdf";
         } else {
-            Histogram1DSaveNameDir = Histogram1DSaveNamePath + Histogram1DSaveName + "_linear_scale_" + finalState + ".png";
+            Histogram1DSaveNameDir = Histogram1DSaveNamePath + Histogram1DSaveName + "_linear_scale_" + finalState + ".pdf";
         }
 
         const char *SaveDir = Histogram1DSaveNameDir.c_str();
@@ -322,9 +322,9 @@ void histPlotter1D(TCanvas *HistogramCanvas,            // The canvas
         std::string Histogram1DSaveNameDir;
 
         if (finalState == "") {
-            Histogram1DSaveNameDir = Histogram1DSaveNamePath + Histogram1DSaveName + "_log_scale.png";
+            Histogram1DSaveNameDir = Histogram1DSaveNamePath + Histogram1DSaveName + "_log_scale.pdf";
         } else {
-            Histogram1DSaveNameDir = Histogram1DSaveNamePath + Histogram1DSaveName + "_log_scale_" + finalState + ".png";
+            Histogram1DSaveNameDir = Histogram1DSaveNamePath + Histogram1DSaveName + "_log_scale_" + finalState + ".pdf";
         }
 
         const char *SaveDir = Histogram1DSaveNameDir.c_str();
@@ -338,9 +338,9 @@ void histPlotter1D(TCanvas *HistogramCanvas,            // The canvas
         std::string Histogram1DSaveNameDir;
 
         if (finalState == "") {
-            Histogram1DSaveNameDir = Histogram1DSaveNamePath + Histogram1DSaveName + "_linear_scale.png";
+            Histogram1DSaveNameDir = Histogram1DSaveNamePath + Histogram1DSaveName + "_linear_scale.pdf";
         } else {
-            Histogram1DSaveNameDir = Histogram1DSaveNamePath + Histogram1DSaveName + "_linear_scale_" + finalState + ".png";
+            Histogram1DSaveNameDir = Histogram1DSaveNamePath + Histogram1DSaveName + "_linear_scale_" + finalState + ".pdf";
         }
 
         const char *SaveDir = Histogram1DSaveNameDir.c_str();
@@ -507,9 +507,9 @@ void histPlotter1D(TCanvas *HistogramCanvas,            // The canvas
         std::string Histogram1DSaveNameDir;
 
         if (finalState == "") {
-            Histogram1DSaveNameDir = Histogram1DSaveNamePath + Histogram1DSaveName + "_log_scale.png";
+            Histogram1DSaveNameDir = Histogram1DSaveNamePath + Histogram1DSaveName + "_log_scale.pdf";
         } else {
-            Histogram1DSaveNameDir = Histogram1DSaveNamePath + Histogram1DSaveName + "_log_scale_" + finalState + ".png";
+            Histogram1DSaveNameDir = Histogram1DSaveNamePath + Histogram1DSaveName + "_log_scale_" + finalState + ".pdf";
         }
 
         const char *SaveDir = Histogram1DSaveNameDir.c_str();
@@ -523,9 +523,9 @@ void histPlotter1D(TCanvas *HistogramCanvas,            // The canvas
         std::string Histogram1DSaveNameDir;
 
         if (finalState == "") {
-            Histogram1DSaveNameDir = Histogram1DSaveNamePath + Histogram1DSaveName + "_linear_scale.png";
+            Histogram1DSaveNameDir = Histogram1DSaveNamePath + Histogram1DSaveName + "_linear_scale.pdf";
         } else {
-            Histogram1DSaveNameDir = Histogram1DSaveNamePath + Histogram1DSaveName + "_linear_scale_" + finalState + ".png";
+            Histogram1DSaveNameDir = Histogram1DSaveNamePath + Histogram1DSaveName + "_linear_scale_" + finalState + ".pdf";
         }
 
         const char *SaveDir = Histogram1DSaveNameDir.c_str();
@@ -674,9 +674,9 @@ void histPlotter1D(TCanvas *HistogramCanvas,            // The canvas
         std::string Histogram1DSaveNameDir;
 
         if (finalState == "") {
-            Histogram1DSaveNameDir = Histogram1DSaveNamePath + Histogram1DSaveName + "_log_scale.png";
+            Histogram1DSaveNameDir = Histogram1DSaveNamePath + Histogram1DSaveName + "_log_scale.pdf";
         } else {
-            Histogram1DSaveNameDir = Histogram1DSaveNamePath + Histogram1DSaveName + "_log_scale_" + finalState + ".png";
+            Histogram1DSaveNameDir = Histogram1DSaveNamePath + Histogram1DSaveName + "_log_scale_" + finalState + ".pdf";
         }
 
         const char *SaveDir = Histogram1DSaveNameDir.c_str();
@@ -690,9 +690,9 @@ void histPlotter1D(TCanvas *HistogramCanvas,            // The canvas
         std::string Histogram1DSaveNameDir;
 
         if (finalState == "") {
-            Histogram1DSaveNameDir = Histogram1DSaveNamePath + Histogram1DSaveName + "_linear_scale.png";
+            Histogram1DSaveNameDir = Histogram1DSaveNamePath + Histogram1DSaveName + "_linear_scale.pdf";
         } else {
-            Histogram1DSaveNameDir = Histogram1DSaveNamePath + Histogram1DSaveName + "_linear_scale_" + finalState + ".png";
+            Histogram1DSaveNameDir = Histogram1DSaveNamePath + Histogram1DSaveName + "_linear_scale_" + finalState + ".pdf";
         }
 
         const char *SaveDir = Histogram1DSaveNameDir.c_str();
@@ -842,11 +842,11 @@ void histPlotter1D(TCanvas *HistogramCanvas,            // The canvas
     if (LogScalePlot) {
         HistogramCanvas->SetLogy(1);
         if (finalState == "") {
-            std::string Histogram1DSaveNameDir = Histogram1DSaveNamePath + Histogram1DSaveName + "_log_scale.png";
+            std::string Histogram1DSaveNameDir = Histogram1DSaveNamePath + Histogram1DSaveName + "_log_scale.pdf";
             const char *SaveDir = Histogram1DSaveNameDir.c_str();
             HistogramCanvas->SaveAs(SaveDir);
         } else {
-            std::string Histogram1DSaveNameDir = Histogram1DSaveNamePath + Histogram1DSaveName + "_log_scale_" + finalState + ".png";
+            std::string Histogram1DSaveNameDir = Histogram1DSaveNamePath + Histogram1DSaveName + "_log_scale_" + finalState + ".pdf";
             const char *SaveDir = Histogram1DSaveNameDir.c_str();
             HistogramCanvas->SaveAs(SaveDir);
         }
@@ -857,11 +857,11 @@ void histPlotter1D(TCanvas *HistogramCanvas,            // The canvas
     if (LinearScalePlot) {
         HistogramCanvas->SetLogy(0);
         if (finalState == "") {
-            std::string Histogram1DSaveNameDir = Histogram1DSaveNamePath + Histogram1DSaveName + "_linear_scale.png";
+            std::string Histogram1DSaveNameDir = Histogram1DSaveNamePath + Histogram1DSaveName + "_linear_scale.pdf";
             const char *SaveDir = Histogram1DSaveNameDir.c_str();
             HistogramCanvas->SaveAs(SaveDir);
         } else {
-            std::string Histogram1DSaveNameDir = Histogram1DSaveNamePath + Histogram1DSaveName + "_linear_scale_" + finalState + ".png";
+            std::string Histogram1DSaveNameDir = Histogram1DSaveNamePath + Histogram1DSaveName + "_linear_scale_" + finalState + ".pdf";
             const char *SaveDir = Histogram1DSaveNameDir.c_str();
             HistogramCanvas->SaveAs(SaveDir);
         }
@@ -994,11 +994,11 @@ void histPlotter1D(TCanvas *HistogramCanvas,            // The canvas
     if (LogScalePlot) {
         HistogramCanvas->SetLogy(1);
         if (finalState == "") {
-            std::string Histogram1DSaveNameDir = Histogram1DSaveNamePath + Histogram1DSaveName + "_log_scale.png";
+            std::string Histogram1DSaveNameDir = Histogram1DSaveNamePath + Histogram1DSaveName + "_log_scale.pdf";
             const char *SaveDir = Histogram1DSaveNameDir.c_str();
             HistogramCanvas->SaveAs(SaveDir);
         } else {
-            std::string Histogram1DSaveNameDir = Histogram1DSaveNamePath + Histogram1DSaveName + "_log_scale_" + finalState + ".png";
+            std::string Histogram1DSaveNameDir = Histogram1DSaveNamePath + Histogram1DSaveName + "_log_scale_" + finalState + ".pdf";
             const char *SaveDir = Histogram1DSaveNameDir.c_str();
             HistogramCanvas->SaveAs(SaveDir);
         }
@@ -1009,11 +1009,11 @@ void histPlotter1D(TCanvas *HistogramCanvas,            // The canvas
     if (LinearScalePlot) {
         HistogramCanvas->SetLogy(0);
         if (finalState == "") {
-            std::string Histogram1DSaveNameDir = Histogram1DSaveNamePath + Histogram1DSaveName + "_linear_scale.png";
+            std::string Histogram1DSaveNameDir = Histogram1DSaveNamePath + Histogram1DSaveName + "_linear_scale.pdf";
             const char *SaveDir = Histogram1DSaveNameDir.c_str();
             HistogramCanvas->SaveAs(SaveDir);
         } else {
-            std::string Histogram1DSaveNameDir = Histogram1DSaveNamePath + Histogram1DSaveName + "_linear_scale_" + finalState + ".png";
+            std::string Histogram1DSaveNameDir = Histogram1DSaveNamePath + Histogram1DSaveName + "_linear_scale_" + finalState + ".pdf";
             const char *SaveDir = Histogram1DSaveNameDir.c_str();
             HistogramCanvas->SaveAs(SaveDir);
         }
@@ -1157,7 +1157,7 @@ void histPlotter1D(TCanvas *HistogramCanvas1,           // canvas c1 of other hi
 
     if (LogScalePlot) {
         HistogramCanvas->SetLogy(1);
-        std::string Histogram1DSaveNameDir = Histogram1DSaveNamePath + Histogram1DSaveName + "_log_scale_" + Histogram1DTitle3 + ".png";
+        std::string Histogram1DSaveNameDir = Histogram1DSaveNamePath + Histogram1DSaveName + "_log_scale_" + Histogram1DTitle3 + ".pdf";
         const char *SaveDir = Histogram1DSaveNameDir.c_str();
         HistogramCanvas->SaveAs(SaveDir);
 
@@ -1166,7 +1166,7 @@ void histPlotter1D(TCanvas *HistogramCanvas1,           // canvas c1 of other hi
 
     if (LinearScalePlot) {
         HistogramCanvas->SetLogy(0);
-        std::string Histogram1DSaveNameDir = Histogram1DSaveNamePath + Histogram1DSaveName + "_linear_scale_" + Histogram1DTitle3 + ".png";
+        std::string Histogram1DSaveNameDir = Histogram1DSaveNamePath + Histogram1DSaveName + "_linear_scale_" + Histogram1DTitle3 + ".pdf";
         const char *SaveDir = Histogram1DSaveNameDir.c_str();
         HistogramCanvas->SaveAs(SaveDir);
 
@@ -1311,7 +1311,7 @@ void histPlotter1D(TCanvas *HistogramCanvas1,           // canvas c1 of other hi
 
     if (LogScalePlot) {
         HistogramCanvas->SetLogy(1);
-        std::string Histogram1DSaveNameDir = Histogram1DSaveNamePath + Histogram1DSaveName + "_log_scale_" + Histogram1DTitle3 + ".png";
+        std::string Histogram1DSaveNameDir = Histogram1DSaveNamePath + Histogram1DSaveName + "_log_scale_" + Histogram1DTitle3 + ".pdf";
         const char *SaveDir = Histogram1DSaveNameDir.c_str();
         HistogramCanvas->SaveAs(SaveDir);
 
@@ -1320,7 +1320,7 @@ void histPlotter1D(TCanvas *HistogramCanvas1,           // canvas c1 of other hi
 
     if (LinearScalePlot) {
         HistogramCanvas->SetLogy(0);
-        std::string Histogram1DSaveNameDir = Histogram1DSaveNamePath + Histogram1DSaveName + "_linear_scale_" + Histogram1DTitle3 + ".png";
+        std::string Histogram1DSaveNameDir = Histogram1DSaveNamePath + Histogram1DSaveName + "_linear_scale_" + Histogram1DTitle3 + ".pdf";
         const char *SaveDir = Histogram1DSaveNameDir.c_str();
         HistogramCanvas->SaveAs(SaveDir);
 
@@ -1483,7 +1483,7 @@ void histPlotter1D(TCanvas *HistogramCanvas1,           // canvas c1 of other hi
 
     if (LogScalePlot) {
         HistogramCanvas->SetLogy(1);
-        std::string Histogram1DSaveNameDir = Histogram1DSaveNamePath + Histogram1DSaveName + "_log_scale_" + Histogram1DTitle3 + ".png";
+        std::string Histogram1DSaveNameDir = Histogram1DSaveNamePath + Histogram1DSaveName + "_log_scale_" + Histogram1DTitle3 + ".pdf";
         const char *SaveDir = Histogram1DSaveNameDir.c_str();
         HistogramCanvas->SaveAs(SaveDir);
 
@@ -1492,7 +1492,7 @@ void histPlotter1D(TCanvas *HistogramCanvas1,           // canvas c1 of other hi
 
     if (LinearScalePlot) {
         HistogramCanvas->SetLogy(0);
-        std::string Histogram1DSaveNameDir = Histogram1DSaveNamePath + Histogram1DSaveName + "_linear_scale_" + Histogram1DTitle3 + ".png";
+        std::string Histogram1DSaveNameDir = Histogram1DSaveNamePath + Histogram1DSaveName + "_linear_scale_" + Histogram1DTitle3 + ".pdf";
         const char *SaveDir = Histogram1DSaveNameDir.c_str();
         HistogramCanvas->SaveAs(SaveDir);
 
@@ -1639,7 +1639,7 @@ void histPlotter1D(TCanvas *HistogramCanvas1,           // canvas c1 of other hi
 
     if (LogScalePlot) {
         HistogramCanvas->SetLogy(1);
-        std::string Histogram1DSaveNameDir = Histogram1DSaveNamePath + Histogram1DSaveName + "_log_scale_" + Histogram1DTitle3 + ".png";
+        std::string Histogram1DSaveNameDir = Histogram1DSaveNamePath + Histogram1DSaveName + "_log_scale_" + Histogram1DTitle3 + ".pdf";
         const char *SaveDir = Histogram1DSaveNameDir.c_str();
         HistogramCanvas->SaveAs(SaveDir);
 
@@ -1648,7 +1648,7 @@ void histPlotter1D(TCanvas *HistogramCanvas1,           // canvas c1 of other hi
 
     if (LinearScalePlot) {
         HistogramCanvas->SetLogy(0);
-        std::string Histogram1DSaveNameDir = Histogram1DSaveNamePath + Histogram1DSaveName + "_linear_scale_" + Histogram1DTitle3 + ".png";
+        std::string Histogram1DSaveNameDir = Histogram1DSaveNamePath + Histogram1DSaveName + "_linear_scale_" + Histogram1DTitle3 + ".pdf";
         const char *SaveDir = Histogram1DSaveNameDir.c_str();
         HistogramCanvas->SaveAs(SaveDir);
 
@@ -1849,7 +1849,7 @@ void histPlotter1DwFit(TCanvas *HistogramCanvas, TH1D *Histogram1D, bool normali
 
     if (LogScalePlot) {
         HistogramCanvas->SetLogy(1);
-        std::string Histogram1DSaveNameDir = Histogram1DSaveNamePath + Histogram1DSaveName + "_log_scale_" + finalState + ".png";
+        std::string Histogram1DSaveNameDir = Histogram1DSaveNamePath + Histogram1DSaveName + "_log_scale_" + finalState + ".pdf";
         const char *SaveDir = Histogram1DSaveNameDir.c_str();
         HistogramCanvas->SaveAs(SaveDir);
 
@@ -1858,7 +1858,7 @@ void histPlotter1DwFit(TCanvas *HistogramCanvas, TH1D *Histogram1D, bool normali
 
     if (LinearScalePlot) {
         HistogramCanvas->SetLogy(0);
-        std::string Histogram1DSaveNameDir = Histogram1DSaveNamePath + Histogram1DSaveName + "_linear_scale_" + finalState + ".png";
+        std::string Histogram1DSaveNameDir = Histogram1DSaveNamePath + Histogram1DSaveName + "_linear_scale_" + finalState + ".pdf";
         const char *SaveDir = Histogram1DSaveNameDir.c_str();
         HistogramCanvas->SaveAs(SaveDir);
 
@@ -1972,11 +1972,11 @@ void stackPlotter1D(TCanvas *HistogramCanvas, THStack *Histogram1DStack, bool no
     Histogram_list->Add(Histogram1DStack);
 
     if (finalState == "") {
-        HistogramCanvas->SaveAs((Histogram1DStackSaveNamePath + Histogram1DStackSaveName + "_" + Histogram1DTitleReactions + ".png").c_str());
+        HistogramCanvas->SaveAs((Histogram1DStackSaveNamePath + Histogram1DStackSaveName + "_" + Histogram1DTitleReactions + ".pdf").c_str());
 
         HistoList.push_back(Histogram1DStack);
     } else {
-        HistogramCanvas->SaveAs((Histogram1DStackSaveNamePath + Histogram1DStackSaveName + "_" + Histogram1DTitleReactions + "_" + finalState + ".png").c_str());
+        HistogramCanvas->SaveAs((Histogram1DStackSaveNamePath + Histogram1DStackSaveName + "_" + Histogram1DTitleReactions + "_" + finalState + ".pdf").c_str());
 
         HistoList.push_back(Histogram1DStack);
     }
@@ -2038,7 +2038,7 @@ void histPlotter2D(TCanvas *HistogramCanvas, TH2D *Histogram2D, double titleSize
 
     gStyle->SetStatX(0.98);  // gStyle->SetStatX(0.87);
     gStyle->SetStatY(0.875);
-    HistogramCanvas->SaveAs((Histogram1DSaveNameDir + Histogram1DSaveName + ".png").c_str());
+    HistogramCanvas->SaveAs((Histogram1DSaveNameDir + Histogram1DSaveName + ".pdf").c_str());
     gStyle->SetStatX(DefStatX);
     gStyle->SetStatY(DefStatY);
 

@@ -442,7 +442,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     // Deleting files by cases
     if (delete_png_files && !delete_root_files) {
         std::cout << "\033[33m\nClearing old plots...\033[0m";
-        system(("find " + run_plots_path + " -type f -iname '*.png' -delete").c_str());  // Delete existing .png files
+        system(("find " + run_plots_path + " -type f -iname '*.pdf' -delete").c_str());  // Delete existing .pdf files
         std::cout << "\033[33m done.\n\n\033[0m";
     } else if (!delete_png_files && delete_root_files) {
         std::cout << "\033[33m\nClearing old root files...\033[0m";
@@ -450,7 +450,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         std::cout << "\033[33m done.\n\n\033[0m";
     } else if (delete_png_files && delete_root_files) {
         std::cout << "\033[33m\nClearing old plots & root files...\033[0m";
-        system(("find " + run_plots_path + " -type f -iname '*.png' -delete").c_str());   // Delete existing .png files
+        system(("find " + run_plots_path + " -type f -iname '*.pdf' -delete").c_str());   // Delete existing .pdf files
         system(("find " + run_plots_path + " -type f -iname '*.root' -delete").c_str());  // Delete existing .root files
         std::cout << "\033[33m done.\n\n\033[0m";
     } else {

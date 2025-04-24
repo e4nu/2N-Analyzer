@@ -152,7 +152,7 @@ void PlotsEff2x3(string SampleName, const hPlot1D &REC_Plot_1p_hist, const hPlot
     Canvas2x6->Clear();
     #pragma endregion
 
-    std::string SaveDir = SavePath + sNameFlag + BetaPlot.GetHistogram1DSaveName() + "_fitted.png";
+    std::string SaveDir = SavePath + sNameFlag + BetaPlot.GetHistogram1DSaveName() + "_fitted.pdf";
     const char *hBeta_CloneSaveDir = SaveDir.c_str();
     Canvas->SaveAs(hBeta_CloneSaveDir);
 

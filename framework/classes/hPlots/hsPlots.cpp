@@ -256,7 +256,7 @@ void hsPlots::SaveHistograms(const std::string& outputDir, const std::string& ba
         canvas->Print(PDF_File.c_str());
 
         // Save PNG (single underscore version)
-        std::string PNG_File = PNG_Files_Base_Directory + "/" + std::to_string(i) + "_" + hist->GetName() + ".png";
+        std::string PNG_File = PNG_Files_Base_Directory + "/" + std::to_string(i) + "_" + hist->GetName() + ".pdf";
         canvas->SaveAs(PNG_File.c_str());
     }
 

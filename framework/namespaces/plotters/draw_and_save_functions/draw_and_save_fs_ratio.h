@@ -270,7 +270,7 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot1D &pFDpCD_Plo
     EquiLine->Draw("same");
 
     Canvas->SetLogy(1);
-    Canvas->SaveAs((FSRatio_plot_1D_SaveName.substr(0, FSRatio_plot_1D_SaveName.find_last_of(".png") - 3) + "_Log.png").c_str());
+    Canvas->SaveAs((FSRatio_plot_1D_SaveName.substr(0, FSRatio_plot_1D_SaveName.find_last_of(".pdf") - 3) + "_Log.pdf").c_str());
     Canvas->SetLogy(0);
 
     auto ListOfFunctions = FSRatio_plot_1D->GetListOfFunctions();
@@ -281,16 +281,16 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot1D &pFDpCD_Plo
     Canvas->SaveAs((FSRatio_plot_1D_SaveName).c_str());
 
     FSRatio_plot_1D->GetYaxis()->SetRangeUser(0, 5);
-    Canvas->SaveAs((FSRatio_plot_1D_SaveName.substr(0, FSRatio_plot_1D_SaveName.find_last_of(".png") - 3) + "_Range5.png").c_str());
+    Canvas->SaveAs((FSRatio_plot_1D_SaveName.substr(0, FSRatio_plot_1D_SaveName.find_last_of(".pdf") - 3) + "_Range5.pdf").c_str());
 
     FSRatio_plot_1D->GetYaxis()->SetRangeUser(0, 4);
-    Canvas->SaveAs((FSRatio_plot_1D_SaveName.substr(0, FSRatio_plot_1D_SaveName.find_last_of(".png") - 3) + "_Range4.png").c_str());
+    Canvas->SaveAs((FSRatio_plot_1D_SaveName.substr(0, FSRatio_plot_1D_SaveName.find_last_of(".pdf") - 3) + "_Range4.pdf").c_str());
 
     FSRatio_plot_1D->GetYaxis()->SetRangeUser(0, 3);
-    Canvas->SaveAs((FSRatio_plot_1D_SaveName.substr(0, FSRatio_plot_1D_SaveName.find_last_of(".png") - 3) + "_Range3.png").c_str());
+    Canvas->SaveAs((FSRatio_plot_1D_SaveName.substr(0, FSRatio_plot_1D_SaveName.find_last_of(".pdf") - 3) + "_Range3.pdf").c_str());
 
     FSRatio_plot_1D->GetYaxis()->SetRangeUser(0, 2);
-    Canvas->SaveAs((FSRatio_plot_1D_SaveName.substr(0, FSRatio_plot_1D_SaveName.find_last_of(".png") - 3) + "_Range2.png").c_str());
+    Canvas->SaveAs((FSRatio_plot_1D_SaveName.substr(0, FSRatio_plot_1D_SaveName.find_last_of(".pdf") - 3) + "_Range2.pdf").c_str());
 
     Canvas->Clear();
 
@@ -301,15 +301,15 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot1D &pFDpCD_Plo
     EquiLine->Draw("same");
     //    Histogram_list->Add(FSRatio_plot_1D);
     // TODO: RegularM is useless - move or delete!
-    CanvasMulti->SaveAs((FSRatio_plot_1D_SaveName.substr(0, FSRatio_plot_1D_SaveName.find_last_of(".png") - 3) + "_RegularM.png").c_str());
+    CanvasMulti->SaveAs((FSRatio_plot_1D_SaveName.substr(0, FSRatio_plot_1D_SaveName.find_last_of(".pdf") - 3) + "_RegularM.pdf").c_str());
     FSRatio_plot_1D->GetYaxis()->SetRangeUser(0, 5);
-    CanvasMulti->SaveAs((FSRatio_plot_1D_SaveName.substr(0, FSRatio_plot_1D_SaveName.find_last_of(".png") - 3) + "_Range5M.png").c_str());
+    CanvasMulti->SaveAs((FSRatio_plot_1D_SaveName.substr(0, FSRatio_plot_1D_SaveName.find_last_of(".pdf") - 3) + "_Range5M.pdf").c_str());
     FSRatio_plot_1D->GetYaxis()->SetRangeUser(0, 4);
-    CanvasMulti->SaveAs((FSRatio_plot_1D_SaveName.substr(0, FSRatio_plot_1D_SaveName.find_last_of(".png") - 3) + "_Range4M.png").c_str());
+    CanvasMulti->SaveAs((FSRatio_plot_1D_SaveName.substr(0, FSRatio_plot_1D_SaveName.find_last_of(".pdf") - 3) + "_Range4M.pdf").c_str());
     FSRatio_plot_1D->GetYaxis()->SetRangeUser(0, 3);
-    CanvasMulti->SaveAs((FSRatio_plot_1D_SaveName.substr(0, FSRatio_plot_1D_SaveName.find_last_of(".png") - 3) + "_Range3M.png").c_str());
+    CanvasMulti->SaveAs((FSRatio_plot_1D_SaveName.substr(0, FSRatio_plot_1D_SaveName.find_last_of(".pdf") - 3) + "_Range3M.pdf").c_str());
     FSRatio_plot_1D->GetYaxis()->SetRangeUser(0, 2);
-    CanvasMulti->SaveAs((FSRatio_plot_1D_SaveName.substr(0, FSRatio_plot_1D_SaveName.find_last_of(".png") - 3) + "_Range2M.png").c_str());
+    CanvasMulti->SaveAs((FSRatio_plot_1D_SaveName.substr(0, FSRatio_plot_1D_SaveName.find_last_of(".pdf") - 3) + "_Range2M.pdf").c_str());
 
     CanvasMulti->Clear();
 
@@ -586,7 +586,7 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot1D &pFDpCD_Plo
     EquiLine->Draw("same");
 
     Canvas->SetLogy(1);
-    Canvas->SaveAs((FSRatio_plot_1D_SaveName.substr(0, FSRatio_plot_1D_SaveName.find_last_of(".png") - 3) + "_Log.png").c_str());
+    Canvas->SaveAs((FSRatio_plot_1D_SaveName.substr(0, FSRatio_plot_1D_SaveName.find_last_of(".pdf") - 3) + "_Log.pdf").c_str());
     Canvas->SetLogy(0);
 
     auto ListOfFunctions = FSRatio_plot_1D->GetListOfFunctions();
@@ -597,16 +597,16 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot1D &pFDpCD_Plo
     Canvas->SaveAs((FSRatio_plot_1D_SaveName).c_str());
 
     FSRatio_plot_1D->GetYaxis()->SetRangeUser(0, 5);
-    Canvas->SaveAs((FSRatio_plot_1D_SaveName.substr(0, FSRatio_plot_1D_SaveName.find_last_of(".png") - 3) + "_Range5.png").c_str());
+    Canvas->SaveAs((FSRatio_plot_1D_SaveName.substr(0, FSRatio_plot_1D_SaveName.find_last_of(".pdf") - 3) + "_Range5.pdf").c_str());
 
     FSRatio_plot_1D->GetYaxis()->SetRangeUser(0, 4);
-    Canvas->SaveAs((FSRatio_plot_1D_SaveName.substr(0, FSRatio_plot_1D_SaveName.find_last_of(".png") - 3) + "_Range4.png").c_str());
+    Canvas->SaveAs((FSRatio_plot_1D_SaveName.substr(0, FSRatio_plot_1D_SaveName.find_last_of(".pdf") - 3) + "_Range4.pdf").c_str());
 
     FSRatio_plot_1D->GetYaxis()->SetRangeUser(0, 3);
-    Canvas->SaveAs((FSRatio_plot_1D_SaveName.substr(0, FSRatio_plot_1D_SaveName.find_last_of(".png") - 3) + "_Range3.png").c_str());
+    Canvas->SaveAs((FSRatio_plot_1D_SaveName.substr(0, FSRatio_plot_1D_SaveName.find_last_of(".pdf") - 3) + "_Range3.pdf").c_str());
 
     FSRatio_plot_1D->GetYaxis()->SetRangeUser(0, 2);
-    Canvas->SaveAs((FSRatio_plot_1D_SaveName.substr(0, FSRatio_plot_1D_SaveName.find_last_of(".png") - 3) + "_Range2.png").c_str());
+    Canvas->SaveAs((FSRatio_plot_1D_SaveName.substr(0, FSRatio_plot_1D_SaveName.find_last_of(".pdf") - 3) + "_Range2.pdf").c_str());
 
     Canvas->Clear();
 
@@ -617,15 +617,15 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot1D &pFDpCD_Plo
     EquiLine->Draw("same");
     //    Histogram_list->Add(FSRatio_plot_1D);
     // TODO: RegularM is useless - move or delete!
-    CanvasMulti->SaveAs((FSRatio_plot_1D_SaveName.substr(0, FSRatio_plot_1D_SaveName.find_last_of(".png") - 3) + "_RegularM.png").c_str());
+    CanvasMulti->SaveAs((FSRatio_plot_1D_SaveName.substr(0, FSRatio_plot_1D_SaveName.find_last_of(".pdf") - 3) + "_RegularM.pdf").c_str());
     FSRatio_plot_1D->GetYaxis()->SetRangeUser(0, 5);
-    CanvasMulti->SaveAs((FSRatio_plot_1D_SaveName.substr(0, FSRatio_plot_1D_SaveName.find_last_of(".png") - 3) + "_Range5M.png").c_str());
+    CanvasMulti->SaveAs((FSRatio_plot_1D_SaveName.substr(0, FSRatio_plot_1D_SaveName.find_last_of(".pdf") - 3) + "_Range5M.pdf").c_str());
     FSRatio_plot_1D->GetYaxis()->SetRangeUser(0, 4);
-    CanvasMulti->SaveAs((FSRatio_plot_1D_SaveName.substr(0, FSRatio_plot_1D_SaveName.find_last_of(".png") - 3) + "_Range4M.png").c_str());
+    CanvasMulti->SaveAs((FSRatio_plot_1D_SaveName.substr(0, FSRatio_plot_1D_SaveName.find_last_of(".pdf") - 3) + "_Range4M.pdf").c_str());
     FSRatio_plot_1D->GetYaxis()->SetRangeUser(0, 3);
-    CanvasMulti->SaveAs((FSRatio_plot_1D_SaveName.substr(0, FSRatio_plot_1D_SaveName.find_last_of(".png") - 3) + "_Range3M.png").c_str());
+    CanvasMulti->SaveAs((FSRatio_plot_1D_SaveName.substr(0, FSRatio_plot_1D_SaveName.find_last_of(".pdf") - 3) + "_Range3M.pdf").c_str());
     FSRatio_plot_1D->GetYaxis()->SetRangeUser(0, 2);
-    CanvasMulti->SaveAs((FSRatio_plot_1D_SaveName.substr(0, FSRatio_plot_1D_SaveName.find_last_of(".png") - 3) + "_Range2M.png").c_str());
+    CanvasMulti->SaveAs((FSRatio_plot_1D_SaveName.substr(0, FSRatio_plot_1D_SaveName.find_last_of(".pdf") - 3) + "_Range2M.pdf").c_str());
 
     CanvasMulti->Clear();
 
@@ -910,7 +910,7 @@ void DrawAndSaveFSRatio(const std::string &SampleName, TH1D *pFDpCD_Plot, const 
     EquiLine->Draw("same");
 
     Canvas->SetLogy(1);
-    Canvas->SaveAs((FSRatio_plot_1D_SaveName.substr(0, FSRatio_plot_1D_SaveName.find_last_of(".png") - 3) + "_Log.png").c_str());
+    Canvas->SaveAs((FSRatio_plot_1D_SaveName.substr(0, FSRatio_plot_1D_SaveName.find_last_of(".pdf") - 3) + "_Log.pdf").c_str());
     Canvas->SetLogy(0);
 
     auto ListOfFunctions = FSRatio_plot_1D->GetListOfFunctions();
@@ -921,16 +921,16 @@ void DrawAndSaveFSRatio(const std::string &SampleName, TH1D *pFDpCD_Plot, const 
     Canvas->SaveAs((FSRatio_plot_1D_SaveName).c_str());
 
     FSRatio_plot_1D->GetYaxis()->SetRangeUser(0, 5);
-    Canvas->SaveAs((FSRatio_plot_1D_SaveName.substr(0, FSRatio_plot_1D_SaveName.find_last_of(".png") - 3) + "_Range5.png").c_str());
+    Canvas->SaveAs((FSRatio_plot_1D_SaveName.substr(0, FSRatio_plot_1D_SaveName.find_last_of(".pdf") - 3) + "_Range5.pdf").c_str());
 
     FSRatio_plot_1D->GetYaxis()->SetRangeUser(0, 4);
-    Canvas->SaveAs((FSRatio_plot_1D_SaveName.substr(0, FSRatio_plot_1D_SaveName.find_last_of(".png") - 3) + "_Range4.png").c_str());
+    Canvas->SaveAs((FSRatio_plot_1D_SaveName.substr(0, FSRatio_plot_1D_SaveName.find_last_of(".pdf") - 3) + "_Range4.pdf").c_str());
 
     FSRatio_plot_1D->GetYaxis()->SetRangeUser(0, 3);
-    Canvas->SaveAs((FSRatio_plot_1D_SaveName.substr(0, FSRatio_plot_1D_SaveName.find_last_of(".png") - 3) + "_Range3.png").c_str());
+    Canvas->SaveAs((FSRatio_plot_1D_SaveName.substr(0, FSRatio_plot_1D_SaveName.find_last_of(".pdf") - 3) + "_Range3.pdf").c_str());
 
     FSRatio_plot_1D->GetYaxis()->SetRangeUser(0, 2);
-    Canvas->SaveAs((FSRatio_plot_1D_SaveName.substr(0, FSRatio_plot_1D_SaveName.find_last_of(".png") - 3) + "_Range2.png").c_str());
+    Canvas->SaveAs((FSRatio_plot_1D_SaveName.substr(0, FSRatio_plot_1D_SaveName.find_last_of(".pdf") - 3) + "_Range2.pdf").c_str());
 
     Canvas->Clear();
 
@@ -941,15 +941,15 @@ void DrawAndSaveFSRatio(const std::string &SampleName, TH1D *pFDpCD_Plot, const 
     EquiLine->Draw("same");
     //    Histogram_list->Add(FSRatio_plot_1D);
     // TODO: RegularM is useless - move or delete!
-    CanvasMulti->SaveAs((FSRatio_plot_1D_SaveName.substr(0, FSRatio_plot_1D_SaveName.find_last_of(".png") - 3) + "_RegularM.png").c_str());
+    CanvasMulti->SaveAs((FSRatio_plot_1D_SaveName.substr(0, FSRatio_plot_1D_SaveName.find_last_of(".pdf") - 3) + "_RegularM.pdf").c_str());
     FSRatio_plot_1D->GetYaxis()->SetRangeUser(0, 5);
-    CanvasMulti->SaveAs((FSRatio_plot_1D_SaveName.substr(0, FSRatio_plot_1D_SaveName.find_last_of(".png") - 3) + "_Range5M.png").c_str());
+    CanvasMulti->SaveAs((FSRatio_plot_1D_SaveName.substr(0, FSRatio_plot_1D_SaveName.find_last_of(".pdf") - 3) + "_Range5M.pdf").c_str());
     FSRatio_plot_1D->GetYaxis()->SetRangeUser(0, 4);
-    CanvasMulti->SaveAs((FSRatio_plot_1D_SaveName.substr(0, FSRatio_plot_1D_SaveName.find_last_of(".png") - 3) + "_Range4M.png").c_str());
+    CanvasMulti->SaveAs((FSRatio_plot_1D_SaveName.substr(0, FSRatio_plot_1D_SaveName.find_last_of(".pdf") - 3) + "_Range4M.pdf").c_str());
     FSRatio_plot_1D->GetYaxis()->SetRangeUser(0, 3);
-    CanvasMulti->SaveAs((FSRatio_plot_1D_SaveName.substr(0, FSRatio_plot_1D_SaveName.find_last_of(".png") - 3) + "_Range3M.png").c_str());
+    CanvasMulti->SaveAs((FSRatio_plot_1D_SaveName.substr(0, FSRatio_plot_1D_SaveName.find_last_of(".pdf") - 3) + "_Range3M.pdf").c_str());
     FSRatio_plot_1D->GetYaxis()->SetRangeUser(0, 2);
-    CanvasMulti->SaveAs((FSRatio_plot_1D_SaveName.substr(0, FSRatio_plot_1D_SaveName.find_last_of(".png") - 3) + "_Range2M.png").c_str());
+    CanvasMulti->SaveAs((FSRatio_plot_1D_SaveName.substr(0, FSRatio_plot_1D_SaveName.find_last_of(".pdf") - 3) + "_Range2M.pdf").c_str());
 
     CanvasMulti->Clear();
 
@@ -1276,7 +1276,7 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot2D &pFDpCD_Plo
     FSRatio_plot_2D->SetStats(0);
     FSRatio_plot_2D->SetMaximum(10);
     FSRatio_plot_2D->SetMinimum(0.1);
-    CanvasMulti->SaveAs((FSRatio_plot_2D_SaveName.substr(0, FSRatio_plot_2D_SaveName.find_last_of(".png") - 3) + "_RegularM.png").c_str());
+    CanvasMulti->SaveAs((FSRatio_plot_2D_SaveName.substr(0, FSRatio_plot_2D_SaveName.find_last_of(".pdf") - 3) + "_RegularM.pdf").c_str());
     CanvasMulti->Clear();
     #pragma endregion
 
@@ -1525,7 +1525,7 @@ void DrawAndSaveFSRatio(const std::string &SampleName, const hPlot2D &pFDpCD_Plo
     FSRatio_plot_2D->SetStats(0);
     FSRatio_plot_2D->SetMaximum(10);
     FSRatio_plot_2D->SetMinimum(0.1);
-    CanvasMulti->SaveAs((FSRatio_plot_2D_SaveName.substr(0, FSRatio_plot_2D_SaveName.find_last_of(".png") - 3) + "_RegularM.png").c_str());
+    CanvasMulti->SaveAs((FSRatio_plot_2D_SaveName.substr(0, FSRatio_plot_2D_SaveName.find_last_of(".pdf") - 3) + "_RegularM.pdf").c_str());
     CanvasMulti->Clear();
     #pragma endregion
 
@@ -1773,7 +1773,7 @@ void DrawAndSaveFSRatio(const std::string &SampleName, TH2D *pFDpCD_Plot, const 
     FSRatio_plot_2D->SetStats(0);
     FSRatio_plot_2D->SetMaximum(10);
     FSRatio_plot_2D->SetMinimum(0.1);
-    CanvasMulti->SaveAs((FSRatio_plot_2D_SaveName.substr(0, FSRatio_plot_2D_SaveName.find_last_of(".png") - 3) + "_RegularM.png").c_str());
+    CanvasMulti->SaveAs((FSRatio_plot_2D_SaveName.substr(0, FSRatio_plot_2D_SaveName.find_last_of(".pdf") - 3) + "_RegularM.pdf").c_str());
     CanvasMulti->Clear();
     #pragma endregion
 

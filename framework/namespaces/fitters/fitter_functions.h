@@ -159,7 +159,7 @@ void BetaFit(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Momentum_c
         ((TText *)FitParam->GetListOfLines()->Last())->SetTextColor(kRed);
         FitParam->Draw("same");
 
-        std::string hBeta_CloneSaveNameDir = BetaPlot.GetHistogram1DSaveNamePath() + sNameFlag + BetaPlot.GetHistogram1DSaveName() + "_fitted.png";
+        std::string hBeta_CloneSaveNameDir = BetaPlot.GetHistogram1DSaveNamePath() + sNameFlag + BetaPlot.GetHistogram1DSaveName() + "_fitted.pdf";
         const char *hBeta_CloneSaveDir = hBeta_CloneSaveNameDir.c_str();
         Canvas->SaveAs(hBeta_CloneSaveDir);
 
@@ -201,7 +201,7 @@ void BetaFit(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Momentum_c
         //    deltaPParam->AddText(("#delta#beta = " + basic_tools::ToStringWithPrecision(FitStd, 8)).c_str());
         deltaPParam->Draw("same");
 
-        std::string deltaPSaveNameDir = BetaPlot.GetHistogram1DSaveNamePath() + sNameFlag + "02a_P_" + BetaParticleShort + "_uncertainty" + BetaPlot.GetFinalState() + ".png";
+        std::string deltaPSaveNameDir = BetaPlot.GetHistogram1DSaveNamePath() + sNameFlag + "02a_P_" + BetaParticleShort + "_uncertainty" + BetaPlot.GetFinalState() + ".pdf";
         const char *deltaPSaveDir = deltaPSaveNameDir.c_str();
         Canvas->SaveAs(deltaPSaveDir);
 
@@ -294,7 +294,7 @@ void BetaFit(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Momentum_c
         TLegendEntry *Cut_legend_lower_lim = Cut_legend->AddEntry(lower_cut, "10% cut", "l");
         Cut_legend->Draw("same");
 
-        std::string Rel_deltaPSaveNameDir = BetaPlot.GetHistogram1DSaveNamePath() + sNameFlag + "02b_P_" + BetaParticleShort + "_rel_uncertainty" + BetaPlot.GetFinalState() + ".png";
+        std::string Rel_deltaPSaveNameDir = BetaPlot.GetHistogram1DSaveNamePath() + sNameFlag + "02b_P_" + BetaParticleShort + "_rel_uncertainty" + BetaPlot.GetFinalState() + ".pdf";
 
         const Int_t n = 2;
         auto gr = new TGraph(n);
@@ -362,7 +362,7 @@ void BetaFit(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Momentum_c
         TLegendEntry *W_legend_lower_lim = W_legend->AddEntry(Beta_Min_cut, ("#deltaP_{" + BetaParticleShort + "}/P_{" + BetaParticleShort + "} = 0.1").c_str(), "l");
         W_legend->Draw("same");
 
-        std::string WSaveNameDir = BetaPlot.GetHistogram1DSaveNamePath() + sNameFlag + "03_W_function.png";
+        std::string WSaveNameDir = BetaPlot.GetHistogram1DSaveNamePath() + sNameFlag + "03_W_function.pdf";
         const char *WSaveDir = WSaveNameDir.c_str();
         Canvas->SaveAs(WSaveDir);
         Canvas->Clear();
@@ -481,7 +481,7 @@ void BetaFitApprax(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Mome
         ((TText *)FitParam->GetListOfLines()->Last())->SetTextColor(kRed);
         FitParam->Draw("same");
 
-        std::string hBeta_CloneSaveNameDir = BetaPlot.GetHistogram1DSaveNamePath() + "Approximatied_beta/" + sNameFlag + BetaPlot.GetHistogram1DSaveName() + "_fitted.png";
+        std::string hBeta_CloneSaveNameDir = BetaPlot.GetHistogram1DSaveNamePath() + "Approximatied_beta/" + sNameFlag + BetaPlot.GetHistogram1DSaveName() + "_fitted.pdf";
         const char *hBeta_CloneSaveDir = hBeta_CloneSaveNameDir.c_str();
         Canvas->SaveAs(hBeta_CloneSaveDir);
 
@@ -524,7 +524,7 @@ void BetaFitApprax(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Mome
         deltaPParam->Draw("same");
 
         std::string deltaPSaveNameDir =
-            BetaPlot.GetHistogram1DSaveNamePath() + "Approximatied_beta/" + sNameFlag + "02a_P_" + BetaParticleShort + "_uncertainty_" + BetaPlot.GetFinalState() + ".png";
+            BetaPlot.GetHistogram1DSaveNamePath() + "Approximatied_beta/" + sNameFlag + "02a_P_" + BetaParticleShort + "_uncertainty_" + BetaPlot.GetFinalState() + ".pdf";
         const char *deltaPSaveDir = deltaPSaveNameDir.c_str();
         Canvas->SaveAs(deltaPSaveDir);
 
@@ -604,7 +604,7 @@ void BetaFitApprax(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Mome
         Cut_legend->Draw("same");
 
         std::string Rel_deltaPSaveNameDir =
-            BetaPlot.GetHistogram1DSaveNamePath() + "Approximatied_beta/" + sNameFlag + "02b_P_" + BetaParticleShort + "_apprax_rel_uncertainty_" + BetaPlot.GetFinalState() + ".png";
+            BetaPlot.GetHistogram1DSaveNamePath() + "Approximatied_beta/" + sNameFlag + "02b_P_" + BetaParticleShort + "_apprax_rel_uncertainty_" + BetaPlot.GetFinalState() + ".pdf";
 
         const Int_t n = 2;
         auto gr = new TGraph(n);

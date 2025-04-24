@@ -985,71 +985,71 @@ void SettingSaveNames(const std::string &SampleName, const std::string &Type, co
                 Type == "Opening_ang_P_nucFD_P_nucCD" || Type == "total_3momentum" || Type == "relative_3momentum" || Type == "total_4momentum" || Type == "relative_4momentum" ||
                 Type == "theta_tot" || Type == "phi_tot" || Type == "theta_rel" || Type == "phi_rel" || Type == "leading_nuc_momentum" || Type == "recoil_nuc_momentum" ||
                 Type == "P_tot_minus_q" || Type == "Opening_ang_P_nucL_minus_q_nucR") {
-                Numerator_Clone_SaveName = SaveDir + sNameFlag + "01_" + Type + FinalState1 + "Clone.png";
-                Numerator_Clone_test_SaveName = TestSaveDir + sNameFlag + "01a_" + Type + FinalState1 + "Clone_test.png";
-                Numerator_Clone_test_rebined_SaveName = TestSaveDir + sNameFlag + "01b_" + Type + FinalState1 + "Clone_test_rebined.png";
+                Numerator_Clone_SaveName = SaveDir + sNameFlag + "01_" + Type + FinalState1 + "Clone.pdf";
+                Numerator_Clone_test_SaveName = TestSaveDir + sNameFlag + "01a_" + Type + FinalState1 + "Clone_test.pdf";
+                Numerator_Clone_test_rebined_SaveName = TestSaveDir + sNameFlag + "01b_" + Type + FinalState1 + "Clone_test_rebined.pdf";
 
-                Denominator_Clone_SaveName = SaveDir + sNameFlag + "02_" + Type + FinalState2 + "Clone.png";
-                Denominator_Clone_test_SaveName = TestSaveDir + sNameFlag + "02a_" + Type + FinalState2 + "Clone_test.png";
-                Denominator_Clone_test_rebined_SaveName = TestSaveDir + sNameFlag + "02b_" + Type + FinalState2 + "Clone_test_rebined.png";
+                Denominator_Clone_SaveName = SaveDir + sNameFlag + "02_" + Type + FinalState2 + "Clone.pdf";
+                Denominator_Clone_test_SaveName = TestSaveDir + sNameFlag + "02a_" + Type + FinalState2 + "Clone_test.pdf";
+                Denominator_Clone_test_rebined_SaveName = TestSaveDir + sNameFlag + "02b_" + Type + FinalState2 + "Clone_test_rebined.pdf";
 
-                PlotSaveName = SaveDir + sNameFlag + "03_" + Type + "_ratio.png";
+                PlotSaveName = SaveDir + sNameFlag + "03_" + Type + "_ratio.pdf";
             } else {
                 if (Particle == "Electron") {
-                    Numerator_Clone_SaveName = SaveDir + sNameFlag + "01_" + Particle + "_" + Type + FinalState1 + "Clone.png";
-                    Numerator_Clone_test_SaveName = TestSaveDir + sNameFlag + "01a_" + Particle + "_" + Type + FinalState1 + "Clone_test.png";
-                    Numerator_Clone_test_rebined_SaveName = TestSaveDir + sNameFlag + "01b_" + Particle + "_" + Type + FinalState1 + "Clone_test_rebined.png";
+                    Numerator_Clone_SaveName = SaveDir + sNameFlag + "01_" + Particle + "_" + Type + FinalState1 + "Clone.pdf";
+                    Numerator_Clone_test_SaveName = TestSaveDir + sNameFlag + "01a_" + Particle + "_" + Type + FinalState1 + "Clone_test.pdf";
+                    Numerator_Clone_test_rebined_SaveName = TestSaveDir + sNameFlag + "01b_" + Particle + "_" + Type + FinalState1 + "Clone_test_rebined.pdf";
 
-                    Denominator_Clone_SaveName = SaveDir + sNameFlag + "02_" + Particle + "_" + Type + FinalState2 + "Clone.png";
-                    Denominator_Clone_test_SaveName = TestSaveDir + sNameFlag + "02a_" + Particle + "_" + Type + FinalState2 + "Clone_test.png";
-                    Denominator_Clone_test_rebined_SaveName = TestSaveDir + sNameFlag + "02b_" + Particle + "_" + Type + FinalState2 + "Clone_test_rebined.png";
+                    Denominator_Clone_SaveName = SaveDir + sNameFlag + "02_" + Particle + "_" + Type + FinalState2 + "Clone.pdf";
+                    Denominator_Clone_test_SaveName = TestSaveDir + sNameFlag + "02a_" + Particle + "_" + Type + FinalState2 + "Clone_test.pdf";
+                    Denominator_Clone_test_rebined_SaveName = TestSaveDir + sNameFlag + "02b_" + Particle + "_" + Type + FinalState2 + "Clone_test_rebined.pdf";
 
-                    PlotSaveName = SaveDir + sNameFlag + "03_" + Particle + "_" + Type + "_ratio.png";
+                    PlotSaveName = SaveDir + sNameFlag + "03_" + Particle + "_" + Type + "_ratio.pdf";
                 } else {
                     if (DRegion == "FD") {
-                        Numerator_Clone_SaveName = SaveDir + sNameFlag + "01_FD_Neutron_" + Type + FinalState1 + "Clone.png";
-                        Numerator_Clone_test_SaveName = TestSaveDir + sNameFlag + "01a_FD_Neutron_" + Type + FinalState1 + "Clone_test.png";
-                        Numerator_Clone_test_rebined_SaveName = TestSaveDir + sNameFlag + "01b_FD_Neutron_" + Type + FinalState1 + "Clone_test_rebined.png";
+                        Numerator_Clone_SaveName = SaveDir + sNameFlag + "01_FD_Neutron_" + Type + FinalState1 + "Clone.pdf";
+                        Numerator_Clone_test_SaveName = TestSaveDir + sNameFlag + "01a_FD_Neutron_" + Type + FinalState1 + "Clone_test.pdf";
+                        Numerator_Clone_test_rebined_SaveName = TestSaveDir + sNameFlag + "01b_FD_Neutron_" + Type + FinalState1 + "Clone_test_rebined.pdf";
 
-                        Denominator_Clone_SaveName = SaveDir + sNameFlag + "02_FD_Proton_" + Type + FinalState2 + "Clone.png";
-                        Denominator_Clone_test_SaveName = TestSaveDir + sNameFlag + "02a_FD_Proton_" + Type + FinalState2 + "Clone_test.png";
-                        Denominator_Clone_test_rebined_SaveName = TestSaveDir + sNameFlag + "02b_FD_Proton_" + Type + FinalState2 + "Clone_test_rebined.png";
+                        Denominator_Clone_SaveName = SaveDir + sNameFlag + "02_FD_Proton_" + Type + FinalState2 + "Clone.pdf";
+                        Denominator_Clone_test_SaveName = TestSaveDir + sNameFlag + "02a_FD_Proton_" + Type + FinalState2 + "Clone_test.pdf";
+                        Denominator_Clone_test_rebined_SaveName = TestSaveDir + sNameFlag + "02b_FD_Proton_" + Type + FinalState2 + "Clone_test_rebined.pdf";
 
-                        PlotSaveName = SaveDir + sNameFlag + "03_FD_Nucleon_" + Type + "_ratio.png";
+                        PlotSaveName = SaveDir + sNameFlag + "03_FD_Nucleon_" + Type + "_ratio.pdf";
                     } else if (DRegion == "CD") {
-                        Numerator_Clone_SaveName = SaveDir + sNameFlag + "01_CD_Proton_" + Type + FinalState1 + "Clone.png";
-                        Numerator_Clone_test_SaveName = TestSaveDir + sNameFlag + "01a_CD_Proton_" + Type + FinalState1 + "Clone_test.png";
-                        Numerator_Clone_test_rebined_SaveName = TestSaveDir + sNameFlag + "01b_CD_Proton_" + Type + FinalState1 + "Clone_test_rebined.png";
+                        Numerator_Clone_SaveName = SaveDir + sNameFlag + "01_CD_Proton_" + Type + FinalState1 + "Clone.pdf";
+                        Numerator_Clone_test_SaveName = TestSaveDir + sNameFlag + "01a_CD_Proton_" + Type + FinalState1 + "Clone_test.pdf";
+                        Numerator_Clone_test_rebined_SaveName = TestSaveDir + sNameFlag + "01b_CD_Proton_" + Type + FinalState1 + "Clone_test_rebined.pdf";
 
-                        Denominator_Clone_SaveName = SaveDir + sNameFlag + "02_CD_Proton_" + Type + FinalState2 + "Clone.png";
-                        Denominator_Clone_test_SaveName = TestSaveDir + sNameFlag + "02a_CD_Proton_" + Type + FinalState2 + "Clone_test.png";
-                        Denominator_Clone_test_rebined_SaveName = TestSaveDir + sNameFlag + "02b_CD_Proton_" + Type + FinalState2 + "Clone_test_rebined.png";
+                        Denominator_Clone_SaveName = SaveDir + sNameFlag + "02_CD_Proton_" + Type + FinalState2 + "Clone.pdf";
+                        Denominator_Clone_test_SaveName = TestSaveDir + sNameFlag + "02a_CD_Proton_" + Type + FinalState2 + "Clone_test.pdf";
+                        Denominator_Clone_test_rebined_SaveName = TestSaveDir + sNameFlag + "02b_CD_Proton_" + Type + FinalState2 + "Clone_test_rebined.pdf";
 
-                        PlotSaveName = SaveDir + sNameFlag + "03_CD_Nucleon_" + Type + "_ratio.png";
+                        PlotSaveName = SaveDir + sNameFlag + "03_CD_Nucleon_" + Type + "_ratio.pdf";
                     }
                 }
             }
         } else {
-            Numerator_Clone_SaveName = SaveDir + sNameFlag + "01_" + Type + FinalState1 + "Clone.png";
-            Numerator_Clone_test_SaveName = TestSaveDir + sNameFlag + "01a_" + Type + FinalState1 + "Clone_test.png";
-            Numerator_Clone_test_rebined_SaveName = TestSaveDir + sNameFlag + "01b_" + Type + FinalState1 + "Clone_test_rebined.png";
+            Numerator_Clone_SaveName = SaveDir + sNameFlag + "01_" + Type + FinalState1 + "Clone.pdf";
+            Numerator_Clone_test_SaveName = TestSaveDir + sNameFlag + "01a_" + Type + FinalState1 + "Clone_test.pdf";
+            Numerator_Clone_test_rebined_SaveName = TestSaveDir + sNameFlag + "01b_" + Type + FinalState1 + "Clone_test_rebined.pdf";
 
-            Denominator_Clone_SaveName = SaveDir + sNameFlag + "02_" + Type + FinalState2 + "Clone.png";
-            Denominator_Clone_test_SaveName = TestSaveDir + sNameFlag + "02a_" + Type + FinalState2 + "Clone_test.png";
-            Denominator_Clone_test_rebined_SaveName = TestSaveDir + sNameFlag + "02b_" + Type + FinalState2 + "Clone_test_rebined.png";
+            Denominator_Clone_SaveName = SaveDir + sNameFlag + "02_" + Type + FinalState2 + "Clone.pdf";
+            Denominator_Clone_test_SaveName = TestSaveDir + sNameFlag + "02a_" + Type + FinalState2 + "Clone_test.pdf";
+            Denominator_Clone_test_rebined_SaveName = TestSaveDir + sNameFlag + "02b_" + Type + FinalState2 + "Clone_test_rebined.pdf";
 
-            PlotSaveName = SaveDir + sNameFlag + "03_" + Type + "_ratio.png";
+            PlotSaveName = SaveDir + sNameFlag + "03_" + Type + "_ratio.pdf";
         }
     } else {  // for efficiency and acceptance correction plots
-        Numerator_Clone_SaveName = SaveDir + sNameFlag + "01_" + Particle + "_" + Type + "_Rec_Clone.png";
-        Numerator_Clone_test_SaveName = TestSaveDir + sNameFlag + "01a_" + Particle + "_" + Type + "_Rec_Clone_test.png";
-        Numerator_Clone_test_rebined_SaveName = TestSaveDir + sNameFlag + "01b_" + Particle + "_" + Type + "_Rec_Clone_test_rebined.png";
+        Numerator_Clone_SaveName = SaveDir + sNameFlag + "01_" + Particle + "_" + Type + "_Rec_Clone.pdf";
+        Numerator_Clone_test_SaveName = TestSaveDir + sNameFlag + "01a_" + Particle + "_" + Type + "_Rec_Clone_test.pdf";
+        Numerator_Clone_test_rebined_SaveName = TestSaveDir + sNameFlag + "01b_" + Particle + "_" + Type + "_Rec_Clone_test_rebined.pdf";
 
-        Denominator_Clone_SaveName = SaveDir + sNameFlag + "02_" + Particle + "_" + Type + "_Truth_Clone.png";
-        Denominator_Clone_test_SaveName = TestSaveDir + sNameFlag + "02a_" + Particle + "_" + Type + "_Truth_Clone_test.png";
-        Denominator_Clone_test_rebined_SaveName = TestSaveDir + sNameFlag + "02b_" + Particle + "_" + Type + "_Truth_Clone_test_rebined.png";
+        Denominator_Clone_SaveName = SaveDir + sNameFlag + "02_" + Particle + "_" + Type + "_Truth_Clone.pdf";
+        Denominator_Clone_test_SaveName = TestSaveDir + sNameFlag + "02a_" + Particle + "_" + Type + "_Truth_Clone_test.pdf";
+        Denominator_Clone_test_rebined_SaveName = TestSaveDir + sNameFlag + "02b_" + Particle + "_" + Type + "_Truth_Clone_test_rebined.pdf";
 
-        PlotSaveName = SaveDir + sNameFlag + "03_" + Particle + "_" + Type + "_" + PlotsT + ".png";
+        PlotSaveName = SaveDir + sNameFlag + "03_" + Particle + "_" + Type + "_" + PlotsT + ".pdf";
     }
 }
 

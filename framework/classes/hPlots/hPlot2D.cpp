@@ -177,9 +177,9 @@ void hPlot2D::histPlotter2D(const std::string &SampleName, TCanvas *HistogramCan
     if (ZLogScalePlot) {
         HistogramCanvas->SetLogz(1);
         system(("mkdir -p " + Histogram2DSaveNameDir + "/z_Log_Scale_plots").c_str());
-        HistogramCanvas->SaveAs((Histogram2DSaveNameDir + "/z_Log_Scale_plots/" + sNameFlag + Histogram2DSaveName + "_zLogScale.png").c_str());
+        HistogramCanvas->SaveAs((Histogram2DSaveNameDir + "/z_Log_Scale_plots/" + sNameFlag + Histogram2DSaveName + "_zLogScale.pdf").c_str());
         //        HistogramCanvas->SetLogz(1);
-        //        HistogramCanvas->SaveAs((Histogram2DSaveNameDir + sNameFlag + Histogram2DSaveName + "_zLogScale.png").c_str());
+        //        HistogramCanvas->SaveAs((Histogram2DSaveNameDir + sNameFlag + Histogram2DSaveName + "_zLogScale.pdf").c_str());
 
         HistoList.push_back(Histogram2D);
     }
@@ -187,9 +187,9 @@ void hPlot2D::histPlotter2D(const std::string &SampleName, TCanvas *HistogramCan
     if (ZLinearScalePlot) {
         HistogramCanvas->SetLogz(0);
         //        system(("mkdir -p " + Histogram2DSaveNameDir + "/z_Linear_Scale_plots").c_str());
-        //        HistogramCanvas->SaveAs((Histogram2DSaveNameDir + "/z_Linear_Scale_plots/" + sNameFlag + Histogram2DSaveName + "_zLinearScale.png").c_str());
+        //        HistogramCanvas->SaveAs((Histogram2DSaveNameDir + "/z_Linear_Scale_plots/" + sNameFlag + Histogram2DSaveName + "_zLinearScale.pdf").c_str());
         //        HistogramCanvas->SetLogz(0);
-        HistogramCanvas->SaveAs((Histogram2DSaveNameDir + sNameFlag + Histogram2DSaveName + "_zLinearScale.png").c_str());
+        HistogramCanvas->SaveAs((Histogram2DSaveNameDir + sNameFlag + Histogram2DSaveName + "_zLinearScale.pdf").c_str());
 
         HistoList.push_back(Histogram2D);
     }
@@ -205,7 +205,7 @@ void hPlot2D::histPlotter2D(const std::string &SampleName, TCanvas *HistogramCan
     //
     //    gStyle->SetStatX(0.87);
     //    gStyle->SetStatY(0.875);
-    //    HistogramCanvas->SaveAs((Histogram2DSaveNameDir + sNameFlag + Histogram2DSaveName + ".png").c_str());
+    //    HistogramCanvas->SaveAs((Histogram2DSaveNameDir + sNameFlag + Histogram2DSaveName + ".pdf").c_str());
     //    gStyle->SetStatX(DefStatX);
     //    gStyle->SetStatY(DefStatY);
     //    Histogram2D->Write(); HistogramCanvas->Clear();
@@ -280,7 +280,7 @@ void hPlot2D::histPlotter2D(const std::string &SampleName, TCanvas *HistogramCan
 
     if (ZLogScalePlot) {
         HistogramCanvas->SetLogz(1);
-        HistogramCanvas->SaveAs((Histogram2DSaveNameDir + sNameFlag + Histogram2DSaveName + "_zLogScale.png").c_str());
+        HistogramCanvas->SaveAs((Histogram2DSaveNameDir + sNameFlag + Histogram2DSaveName + "_zLogScale.pdf").c_str());
 
         HistoList.push_back(Histogram2D);
     }
@@ -288,7 +288,7 @@ void hPlot2D::histPlotter2D(const std::string &SampleName, TCanvas *HistogramCan
     if (ZLinearScalePlot) {
         HistogramCanvas->SetLogz(0);
         system(("mkdir -p " + Histogram2DSaveNameDir + "/z_Linear_Scale_plots").c_str());
-        HistogramCanvas->SaveAs((Histogram2DSaveNameDir + "/z_Linear_Scale_plots/" + sNameFlag + Histogram2DSaveName + "_zLinearScale.png").c_str());
+        HistogramCanvas->SaveAs((Histogram2DSaveNameDir + "/z_Linear_Scale_plots/" + sNameFlag + Histogram2DSaveName + "_zLinearScale.pdf").c_str());
 
         HistoList.push_back(Histogram2D);
     }
@@ -367,7 +367,7 @@ void hPlot2D::histPlotter2D(const std::string &SampleName, TCanvas *HistogramCan
 
     if (ZLogScalePlot) {
         HistogramCanvas->SetLogz(1);
-        HistogramCanvas->SaveAs((Histogram2DSaveNameDir + sNameFlag + Histogram2DSaveName + "_zLogScale.png").c_str());
+        HistogramCanvas->SaveAs((Histogram2DSaveNameDir + sNameFlag + Histogram2DSaveName + "_zLogScale.pdf").c_str());
 
         HistoList.push_back(Histogram2D);
     }
@@ -375,7 +375,7 @@ void hPlot2D::histPlotter2D(const std::string &SampleName, TCanvas *HistogramCan
     if (ZLinearScalePlot) {
         HistogramCanvas->SetLogz(0);
         system(("mkdir -p " + Histogram2DSaveNameDir + "/z_Linear_Scale_plots").c_str());
-        HistogramCanvas->SaveAs((Histogram2DSaveNameDir + "/z_Linear_Scale_plots/" + sNameFlag + Histogram2DSaveName + "_zLinearScale.png").c_str());
+        HistogramCanvas->SaveAs((Histogram2DSaveNameDir + "/z_Linear_Scale_plots/" + sNameFlag + Histogram2DSaveName + "_zLinearScale.pdf").c_str());
 
         HistoList.push_back(Histogram2D);
     }
@@ -460,7 +460,7 @@ void hPlot2D::histPlotter2D(const std::string &SampleName, TCanvas *HistogramCan
 
     if (ZLogScalePlot) {
         HistogramCanvas->SetLogz(1);
-        HistogramCanvas->SaveAs((Histogram2DSaveNameDir + sNameFlag + Histogram2DSaveName + "_zLogScale.png").c_str());
+        HistogramCanvas->SaveAs((Histogram2DSaveNameDir + sNameFlag + Histogram2DSaveName + "_zLogScale.pdf").c_str());
 
         HistoList.push_back(Histogram2D);
     }
@@ -468,7 +468,7 @@ void hPlot2D::histPlotter2D(const std::string &SampleName, TCanvas *HistogramCan
     if (ZLinearScalePlot) {
         HistogramCanvas->SetLogz(0);
         system(("mkdir -p " + Histogram2DSaveNameDir + "/z_Linear_Scale_plots").c_str());
-        HistogramCanvas->SaveAs((Histogram2DSaveNameDir + "/z_Linear_Scale_plots/" + sNameFlag + Histogram2DSaveName + "_zLinearScale.png").c_str());
+        HistogramCanvas->SaveAs((Histogram2DSaveNameDir + "/z_Linear_Scale_plots/" + sNameFlag + Histogram2DSaveName + "_zLinearScale.pdf").c_str());
 
         HistoList.push_back(Histogram2D);
     }

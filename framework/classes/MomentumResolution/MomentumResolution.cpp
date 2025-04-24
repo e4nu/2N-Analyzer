@@ -712,7 +712,7 @@ void MomentumResolution::SliceFitDrawAndSave(const std::string &SampleName, cons
             }
 
             std::string hSlice_CloneSaveDir = ResSlices0.at(i).GetHistogram1DSaveNamePath() + "00_Fitted_" + MomentumType + "_res_slices/";
-            std::string hSlice_CloneSaveName = hSlice_CloneSaveDir + sNameFlag + "_" + MomentumType + "_" + ResSlices0.at(i).GetHistogram1DSaveName() + "_fitted.png";
+            std::string hSlice_CloneSaveName = hSlice_CloneSaveDir + sNameFlag + "_" + MomentumType + "_" + ResSlices0.at(i).GetHistogram1DSaveName() + "_fitted.pdf";
             system(("mkdir -p " + hSlice_CloneSaveDir).c_str());
 
             auto ListOfFunctions = hSlice->GetListOfFunctions();
@@ -1221,7 +1221,7 @@ void MomentumResolution::PolyFitter(const std::string &MomentumType, const int &
 
     std::string FitsDir = SlicesSavePath + "/" + "Graph1D_" + MomentumType + "_fits";
     std::string FitsDirByType = FitsDir + "/" + MomentumType + "_" + FitType + "_fits";
-    std::string GraphSaveName = FitsDirByType + "/" + "0" + to_string(PolynomialDegree) + "_Fit_" + FitType + "_pol" + to_string(PolynomialDegree) + "_" + MomentumFitRange + ".png";
+    std::string GraphSaveName = FitsDirByType + "/" + "0" + to_string(PolynomialDegree) + "_Fit_" + FitType + "_pol" + to_string(PolynomialDegree) + "_" + MomentumFitRange + ".pdf";
 
     system(("mkdir -p " + FitsDir).c_str());
     system(("mkdir -p " + FitsDirByType).c_str());

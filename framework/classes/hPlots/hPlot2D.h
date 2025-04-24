@@ -167,7 +167,7 @@ class hPlot2D {
 
     void SimpleDraw() { Histogram2D->Draw(); }
 
-    void SimpleSave(TCanvas *HistogramCanvas) { HistogramCanvas->SaveAs((Histogram2DSaveNamePath + "/" + Histogram2DSaveName + ".png").c_str()); }
+    void SimpleSave(TCanvas *HistogramCanvas) { HistogramCanvas->SaveAs((Histogram2DSaveNamePath + "/" + Histogram2DSaveName + ".pdf").c_str()); }
 
     //  Set methods:
     void SetHistogram2D(TH2D *Histogram) { Histogram2D = Histogram; }

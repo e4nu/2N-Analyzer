@@ -446,7 +446,7 @@ void gst::Loop() {
         std::cout << "Clearing old plots...\n";
         std::cout << "\n";
 
-        system(("find " + path_definitions::PathDefinitions.WorkingDirectory + "plots -type f -iname '*.png' -delete").c_str());  // Delete existing .png files
+        system(("find " + path_definitions::PathDefinitions.WorkingDirectory + "plots -type f -iname '*.pdf' -delete").c_str());  // Delete existing .pdf files
     } else if (delete_png_files == false && delete_root_files == true) {
         std::cout << "\n";
         std::cout << "Clearing old root files...\n";
@@ -458,7 +458,7 @@ void gst::Loop() {
         std::cout << "Clearing old plots & root files...\n";
         std::cout << "\n";
 
-        system(("find " + path_definitions::PathDefinitions.WorkingDirectory + "plots -type f -iname '*.png' -delete").c_str());   // Delete existing .png files
+        system(("find " + path_definitions::PathDefinitions.WorkingDirectory + "plots -type f -iname '*.pdf' -delete").c_str());   // Delete existing .pdf files
         system(("find " + path_definitions::PathDefinitions.WorkingDirectory + "plots -type f -iname '*.root' -delete").c_str());  // Delete existing .root files
     } else {
         std::cout << "\n";
@@ -7204,9 +7204,9 @@ void gst::Loop() {
 
         plots->Add(ThetaStack);
         c1->SetLogy(1);
-        c1->SaveAs("plots/theta_histograms/Theta_of_lepton_stack_log_scale.png");
+        c1->SaveAs("plots/theta_histograms/Theta_of_lepton_stack_log_scale.pdf");
         c1->SetLogy(0);
-        c1->SaveAs("plots/theta_histograms/Theta_of_lepton_stack_linear_scale.png");
+        c1->SaveAs("plots/theta_histograms/Theta_of_lepton_stack_linear_scale.pdf");
         c1->Clear();
 #pragma endregion
 
@@ -7261,7 +7261,7 @@ void gst::Loop() {
         //        gStyle->SetStatX(0.88);
         //        gStyle->SetStatY(0.935); // gStyle->SetStatY(0.4);
         theta_lp_VS_phi_lp->SetStats(0);
-        c1->SaveAs((path_definitions::PathDefinitions.WorkingDirectory + "plots/Theta_l_VS_Phi_l_inclusive.png").c_str());
+        c1->SaveAs((path_definitions::PathDefinitions.WorkingDirectory + "plots/Theta_l_VS_Phi_l_inclusive.pdf").c_str());
         //        gStyle->SetStatX(DefStatX);
         //        gStyle->SetStatY(DefStatY);
         c1->Clear();
@@ -7307,7 +7307,7 @@ void gst::Loop() {
 
         plots->Add(PhiStack);
         c1->SetLogy(0);
-        c1->SaveAs("plots/phi_histograms/Phi_of_lepton_stack.png");
+        c1->SaveAs("plots/phi_histograms/Phi_of_lepton_stack.pdf");
         c1->Clear();
 #pragma endregion
 
@@ -7447,9 +7447,9 @@ void gst::Loop() {
 
         plots->Add(EnergyStack);
         c1->SetLogy(1);
-        c1->SaveAs("plots/Energy_histograms/El_histograms/Final_State_El_log_scale.png");
+        c1->SaveAs("plots/Energy_histograms/El_histograms/Final_State_El_log_scale.pdf");
         c1->SetLogy(0);
-        c1->SaveAs("plots/Energy_histograms/El_histograms/Final_State_El_linear_scale.png");
+        c1->SaveAs("plots/Energy_histograms/El_histograms/Final_State_El_linear_scale.pdf");
         c1->Clear();
 #pragma endregion
 
@@ -7486,9 +7486,9 @@ void gst::Loop() {
         plots->Add(fsEl_VS_theta_lp_all_int_2p);
         fsEl_VS_theta_lp_all_int_2p->SetStats(0);
         c1->SetLogz(1);
-        c1->SaveAs("plots/Energy_histograms/El_VS_theta_l/all_interactions/El_VS_theta_lp_histogram_all_int_log_scale_2p.png");
+        c1->SaveAs("plots/Energy_histograms/El_VS_theta_l/all_interactions/El_VS_theta_lp_histogram_all_int_log_scale_2p.pdf");
         c1->SetLogz(0);
-        c1->SaveAs("plots/Energy_histograms/El_VS_theta_l/all_interactions/El_VS_theta_lp_histogram_all_int_linear_scale_2p.png");
+        c1->SaveAs("plots/Energy_histograms/El_VS_theta_l/all_interactions/El_VS_theta_lp_histogram_all_int_linear_scale_2p.pdf");
         c1->Clear();
 #pragma endregion
 
@@ -7517,9 +7517,9 @@ void gst::Loop() {
         plots->Add(fsEl_VS_theta_lp_QEL_only_2p);
         fsEl_VS_theta_lp_QEL_only_2p->SetStats(0);
         c1->SetLogz(1);
-        c1->SaveAs("plots/Energy_histograms/El_VS_theta_l/QEL_only/El_VS_theta_lp_histogram_QEL_only_log_scale_2p.png");
+        c1->SaveAs("plots/Energy_histograms/El_VS_theta_l/QEL_only/El_VS_theta_lp_histogram_QEL_only_log_scale_2p.pdf");
         c1->SetLogz(0);
-        c1->SaveAs("plots/Energy_histograms/El_VS_theta_l/QEL_only/El_VS_theta_lp_histogram_QEL_only_linear_scale_2p.png");
+        c1->SaveAs("plots/Energy_histograms/El_VS_theta_l/QEL_only/El_VS_theta_lp_histogram_QEL_only_linear_scale_2p.pdf");
         c1->Clear();
 #pragma endregion
 
@@ -7548,9 +7548,9 @@ void gst::Loop() {
         plots->Add(fsEl_VS_theta_lp_MEC_only_2p);
         fsEl_VS_theta_lp_MEC_only_2p->SetStats(0);
         c1->SetLogz(1);
-        c1->SaveAs("plots/Energy_histograms/El_VS_theta_l/MEC_only/El_VS_theta_lp_histogram_MEC_only_log_scale_2p.png");
+        c1->SaveAs("plots/Energy_histograms/El_VS_theta_l/MEC_only/El_VS_theta_lp_histogram_MEC_only_log_scale_2p.pdf");
         c1->SetLogz(0);
-        c1->SaveAs("plots/Energy_histograms/El_VS_theta_l/MEC_only/El_VS_theta_lp_histogram_MEC_only_linear_scale_2p.png");
+        c1->SaveAs("plots/Energy_histograms/El_VS_theta_l/MEC_only/El_VS_theta_lp_histogram_MEC_only_linear_scale_2p.pdf");
         c1->Clear();
 #pragma endregion
 
@@ -7583,9 +7583,9 @@ void gst::Loop() {
         plots->Add(fsEl_VS_theta_lp_all_int_1n1p);
         fsEl_VS_theta_lp_all_int_1n1p->SetStats(0);
         c1->SetLogz(1);
-        c1->SaveAs("plots/Energy_histograms/El_VS_theta_l/all_interactions/El_VS_theta_lp_histogram_all_int_log_scale_1n1p.png");
+        c1->SaveAs("plots/Energy_histograms/El_VS_theta_l/all_interactions/El_VS_theta_lp_histogram_all_int_log_scale_1n1p.pdf");
         c1->SetLogz(0);
-        c1->SaveAs("plots/Energy_histograms/El_VS_theta_l/all_interactions/El_VS_theta_lp_histogram_all_int_linear_scale_1n1p.png");
+        c1->SaveAs("plots/Energy_histograms/El_VS_theta_l/all_interactions/El_VS_theta_lp_histogram_all_int_linear_scale_1n1p.pdf");
         c1->Clear();
 #pragma endregion
 
@@ -7614,9 +7614,9 @@ void gst::Loop() {
         plots->Add(fsEl_VS_theta_lp_QEL_only_1n1p);
         fsEl_VS_theta_lp_QEL_only_1n1p->SetStats(0);
         c1->SetLogz(1);
-        c1->SaveAs("plots/Energy_histograms/El_VS_theta_l/QEL_only/El_VS_theta_lp_histogram_QEL_only_log_scale_1n1p.png");
+        c1->SaveAs("plots/Energy_histograms/El_VS_theta_l/QEL_only/El_VS_theta_lp_histogram_QEL_only_log_scale_1n1p.pdf");
         c1->SetLogz(0);
-        c1->SaveAs("plots/Energy_histograms/El_VS_theta_l/QEL_only/El_VS_theta_lp_histogram_QEL_only_linear_scale_1n1p.png");
+        c1->SaveAs("plots/Energy_histograms/El_VS_theta_l/QEL_only/El_VS_theta_lp_histogram_QEL_only_linear_scale_1n1p.pdf");
         c1->Clear();
 #pragma endregion
 
@@ -7645,9 +7645,9 @@ void gst::Loop() {
         plots->Add(fsEl_VS_theta_lp_MEC_only_1n1p);
         fsEl_VS_theta_lp_MEC_only_1n1p->SetStats(0);
         c1->SetLogz(1);
-        c1->SaveAs("plots/Energy_histograms/El_VS_theta_l/MEC_only/El_VS_theta_lp_histogram_MEC_only_log_scale_1n1p.png");
+        c1->SaveAs("plots/Energy_histograms/El_VS_theta_l/MEC_only/El_VS_theta_lp_histogram_MEC_only_log_scale_1n1p.pdf");
         c1->SetLogz(0);
-        c1->SaveAs("plots/Energy_histograms/El_VS_theta_l/MEC_only/El_VS_theta_lp_histogram_MEC_only_linear_scale_1n1p.png");
+        c1->SaveAs("plots/Energy_histograms/El_VS_theta_l/MEC_only/El_VS_theta_lp_histogram_MEC_only_linear_scale_1n1p.pdf");
         c1->Clear();
 #pragma endregion
 
@@ -7779,9 +7779,9 @@ void gst::Loop() {
         plots->Add(E_Trans15_all_2p);
         E_Trans15_all_2p->SetLineWidth(2);
         c1->SetLogy(1);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_all_interactions/Energy_transfer_Ev-El_around_15_Deg_all_interactions_log_scale_2p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_all_interactions/Energy_transfer_Ev-El_around_15_Deg_all_interactions_log_scale_2p.pdf");
         c1->SetLogy(0);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_all_interactions/Energy_transfer_Ev-El_around_15_Deg_all_interactions_normal_scale_2p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_all_interactions/Energy_transfer_Ev-El_around_15_Deg_all_interactions_normal_scale_2p.pdf");
         E_Trans15_all_2p->SetStats(0);
         E_Trans15_all_2p->SetLineColor(kBlack);
         E_Trans15_all_2p->SetLineWidth(4);
@@ -7806,9 +7806,9 @@ void gst::Loop() {
         plots->Add(E_Trans15_all_1n1p);
         E_Trans15_all_1n1p->SetLineWidth(2);
         c1->SetLogy(1);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_all_interactions/Energy_transfer_Ev-El_around_15_Deg_all_interactions_log_scale_1n1p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_all_interactions/Energy_transfer_Ev-El_around_15_Deg_all_interactions_log_scale_1n1p.pdf");
         c1->SetLogy(0);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_all_interactions/Energy_transfer_Ev-El_around_15_Deg_all_interactions_normal_scale_1n1p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_all_interactions/Energy_transfer_Ev-El_around_15_Deg_all_interactions_normal_scale_1n1p.pdf");
         E_Trans15_all_1n1p->SetStats(0);
         E_Trans15_all_1n1p->SetLineColor(kBlack);
         E_Trans15_all_1n1p->SetLineWidth(4);
@@ -7824,9 +7824,9 @@ void gst::Loop() {
         plots->Add(E_Trans45_all_2p);
         E_Trans45_all_2p->SetLineWidth(2);
         c1->SetLogy(1);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_all_interactions/Energy_transfer_Ev-El_around_45_Deg_all_interactions_log_scale_2p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_all_interactions/Energy_transfer_Ev-El_around_45_Deg_all_interactions_log_scale_2p.pdf");
         c1->SetLogy(0);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_all_interactions/Energy_transfer_Ev-El_around_45_Deg_all_interactions_normal_scale_2p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_all_interactions/Energy_transfer_Ev-El_around_45_Deg_all_interactions_normal_scale_2p.pdf");
         E_Trans45_all_2p->SetLineColor(kRed);
         E_Trans45_all_2p->SetLineColor(kViolet - 3);
         E_Trans45_all_2p->SetStats(0);
@@ -7841,9 +7841,9 @@ void gst::Loop() {
         plots->Add(E_Trans45_all_1n1p);
         E_Trans45_all_1n1p->SetLineWidth(2);
         c1->SetLogy(1);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_all_interactions/Energy_transfer_Ev-El_around_45_Deg_all_interactions_log_scale_1n1p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_all_interactions/Energy_transfer_Ev-El_around_45_Deg_all_interactions_log_scale_1n1p.pdf");
         c1->SetLogy(0);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_all_interactions/Energy_transfer_Ev-El_around_45_Deg_all_interactions_normal_scale_1n1p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_all_interactions/Energy_transfer_Ev-El_around_45_Deg_all_interactions_normal_scale_1n1p.pdf");
         E_Trans45_all_1n1p->SetLineColor(kRed);
         E_Trans45_all_1n1p->SetStats(0);
         E_Trans45_all_1n1p->SetLineColor(kBlack);
@@ -7859,9 +7859,9 @@ void gst::Loop() {
         plots->Add(E_Trans90_all_2p);
         E_Trans90_all_2p->SetLineWidth(2);
         c1->SetLogy(1);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_all_interactions/Energy_transfer_Ev-El_around_90_Deg_all_interactions_log_scale_2p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_all_interactions/Energy_transfer_Ev-El_around_90_Deg_all_interactions_log_scale_2p.pdf");
         c1->SetLogy(0);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_all_interactions/Energy_transfer_Ev-El_around_90_Deg_all_interactions_normal_scale_2p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_all_interactions/Energy_transfer_Ev-El_around_90_Deg_all_interactions_normal_scale_2p.pdf");
         E_Trans90_all_2p->SetLineColor(kGreen);
         E_Trans90_all_2p->SetStats(0);
         E_Trans90_all_2p->SetLineColor(kBlack);
@@ -7875,9 +7875,9 @@ void gst::Loop() {
         plots->Add(E_Trans90_all_1n1p);
         E_Trans90_all_1n1p->SetLineWidth(2);
         c1->SetLogy(1);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_all_interactions/Energy_transfer_Ev-El_around_90_Deg_all_interactions_log_scale_1n1p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_all_interactions/Energy_transfer_Ev-El_around_90_Deg_all_interactions_log_scale_1n1p.pdf");
         c1->SetLogy(0);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_all_interactions/Energy_transfer_Ev-El_around_90_Deg_all_interactions_normal_scale_1n1p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_all_interactions/Energy_transfer_Ev-El_around_90_Deg_all_interactions_normal_scale_1n1p.pdf");
         E_Trans90_all_1n1p->SetLineColor(kGreen);
         E_Trans90_all_1n1p->SetStats(0);
         E_Trans90_all_1n1p->SetLineColor(kBlack);
@@ -7925,9 +7925,9 @@ void gst::Loop() {
         plots->Add(E_Trans15_QEL_2p);
         E_Trans15_QEL_2p->SetLineWidth(2);
         c1->SetLogy(1);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_QEL_only/Energy_transfer_Ev-El_around_15_Deg_QEL_only_log_scale_2p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_QEL_only/Energy_transfer_Ev-El_around_15_Deg_QEL_only_log_scale_2p.pdf");
         c1->SetLogy(0);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_QEL_only/Energy_transfer_Ev-El_around_15_Deg_QEL_only_normal_scale_2p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_QEL_only/Energy_transfer_Ev-El_around_15_Deg_QEL_only_normal_scale_2p.pdf");
         E_Trans15_QEL_2p->SetLineColor(kBlue);
         Energy_Transfer_QEL_Int_Stack_2p->Add(E_Trans15_QEL_2p);
         E_Trans15_QEL_2p->SetStats(0);
@@ -7951,9 +7951,9 @@ void gst::Loop() {
         plots->Add(E_Trans15_QEL_1n1p);
         E_Trans15_QEL_1n1p->SetLineWidth(2);
         c1->SetLogy(1);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_QEL_only/Energy_transfer_Ev-El_around_15_Deg_QEL_only_log_scale_1n1p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_QEL_only/Energy_transfer_Ev-El_around_15_Deg_QEL_only_log_scale_1n1p.pdf");
         c1->SetLogy(0);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_QEL_only/Energy_transfer_Ev-El_around_15_Deg_QEL_only_normal_scale_1n1p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_QEL_only/Energy_transfer_Ev-El_around_15_Deg_QEL_only_normal_scale_1n1p.pdf");
         E_Trans15_QEL_1n1p->SetLineColor(kBlue);
         Energy_Transfer_QEL_Int_Stack_1n1p->Add(E_Trans15_QEL_1n1p);
         E_Trans15_QEL_1n1p->SetStats(0);
@@ -7970,9 +7970,9 @@ void gst::Loop() {
         plots->Add(E_Trans45_QEL_2p);
         E_Trans45_QEL_2p->SetLineWidth(2);
         c1->SetLogy(1);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_QEL_only/Energy_transfer_Ev-El_around_45_Deg_QEL_only_log_scale_2p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_QEL_only/Energy_transfer_Ev-El_around_45_Deg_QEL_only_log_scale_2p.pdf");
         c1->SetLogy(0);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_QEL_only/Energy_transfer_Ev-El_around_45_Deg_QEL_only_normal_scale_2p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_QEL_only/Energy_transfer_Ev-El_around_45_Deg_QEL_only_normal_scale_2p.pdf");
         E_Trans45_QEL_2p->SetLineColor(kRed);
         Energy_Transfer_QEL_Int_Stack_2p->Add(E_Trans45_QEL_2p);
         E_Trans45_QEL_2p->SetStats(0);
@@ -7985,9 +7985,9 @@ void gst::Loop() {
         plots->Add(E_Trans45_QEL_1n1p);
         E_Trans45_QEL_1n1p->SetLineWidth(2);
         c1->SetLogy(1);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_QEL_only/Energy_transfer_Ev-El_around_45_Deg_QEL_only_log_scale_1n1p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_QEL_only/Energy_transfer_Ev-El_around_45_Deg_QEL_only_log_scale_1n1p.pdf");
         c1->SetLogy(0);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_QEL_only/Energy_transfer_Ev-El_around_45_Deg_QEL_only_normal_scale_1n1p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_QEL_only/Energy_transfer_Ev-El_around_45_Deg_QEL_only_normal_scale_1n1p.pdf");
         E_Trans45_QEL_1n1p->SetLineColor(kRed);
         Energy_Transfer_QEL_Int_Stack_1n1p->Add(E_Trans45_QEL_1n1p);
         E_Trans45_QEL_1n1p->SetStats(0);
@@ -8003,9 +8003,9 @@ void gst::Loop() {
         plots->Add(E_Trans90_QEL_2p);
         E_Trans90_QEL_2p->SetLineWidth(2);
         c1->SetLogy(1);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_QEL_only/Energy_transfer_Ev-El_around_90_Deg_QEL_only_log_scale_2p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_QEL_only/Energy_transfer_Ev-El_around_90_Deg_QEL_only_log_scale_2p.pdf");
         c1->SetLogy(0);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_QEL_only/Energy_transfer_Ev-El_around_90_Deg_QEL_only_normal_scale_2p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_QEL_only/Energy_transfer_Ev-El_around_90_Deg_QEL_only_normal_scale_2p.pdf");
         E_Trans90_QEL_2p->SetLineColor(kGreen);
         Energy_Transfer_QEL_Int_Stack_2p->Add(E_Trans90_QEL_2p);
         E_Trans90_QEL_2p->SetStats(0);
@@ -8018,9 +8018,9 @@ void gst::Loop() {
         plots->Add(E_Trans90_QEL_1n1p);
         E_Trans90_QEL_1n1p->SetLineWidth(2);
         c1->SetLogy(1);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_QEL_only/Energy_transfer_Ev-El_around_90_Deg_QEL_only_log_scale_1n1p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_QEL_only/Energy_transfer_Ev-El_around_90_Deg_QEL_only_log_scale_1n1p.pdf");
         c1->SetLogy(0);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_QEL_only/Energy_transfer_Ev-El_around_90_Deg_QEL_only_normal_scale_1n1p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_QEL_only/Energy_transfer_Ev-El_around_90_Deg_QEL_only_normal_scale_1n1p.pdf");
         E_Trans90_QEL_1n1p->SetLineColor(kGreen);
         Energy_Transfer_QEL_Int_Stack_1n1p->Add(E_Trans90_QEL_1n1p);
         E_Trans90_QEL_1n1p->SetStats(0);
@@ -8047,9 +8047,9 @@ void gst::Loop() {
 
         plots->Add(Energy_Transfer_QEL_Int_Stack_2p);
         c1->SetLogy(1);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_QEL_only/Energy_transfer_Ev-El_QEL_only_Stack_log_scale_2p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_QEL_only/Energy_transfer_Ev-El_QEL_only_Stack_log_scale_2p.pdf");
         c1->SetLogy(0);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_QEL_only/Energy_transfer_Ev-El_QEL_only_Stack_linear_scale_2p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_QEL_only/Energy_transfer_Ev-El_QEL_only_Stack_linear_scale_2p.pdf");
         c1->Clear();
 #pragma endregion
 
@@ -8069,9 +8069,9 @@ void gst::Loop() {
 
         plots->Add(Energy_Transfer_QEL_Int_Stack_1n1p);
         c1->SetLogy(1);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_QEL_only/Energy_transfer_Ev-El_QEL_only_Stack_log_scale_1n1p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_QEL_only/Energy_transfer_Ev-El_QEL_only_Stack_log_scale_1n1p.pdf");
         c1->SetLogy(0);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_QEL_only/Energy_transfer_Ev-El_QEL_only_Stack_linear_scale_1n1p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_QEL_only/Energy_transfer_Ev-El_QEL_only_Stack_linear_scale_1n1p.pdf");
         c1->Clear();
 #pragma endregion
     }
@@ -8102,9 +8102,9 @@ void gst::Loop() {
         plots->Add(E_Trans15_MEC_2p);
         E_Trans15_MEC_2p->SetLineWidth(2);
         c1->SetLogy(1);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_MEC_only/Energy_transfer_Ev-El_around_15_Deg_MEC_only_log_scale_2p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_MEC_only/Energy_transfer_Ev-El_around_15_Deg_MEC_only_log_scale_2p.pdf");
         c1->SetLogy(0);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_MEC_only/Energy_transfer_Ev-El_around_15_Deg_MEC_only_normal_scale_2p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_MEC_only/Energy_transfer_Ev-El_around_15_Deg_MEC_only_normal_scale_2p.pdf");
         E_Trans15_MEC_2p->SetLineColor(kBlue);
         Energy_Transfer_MEC_Int_Stack_2p->Add(E_Trans15_MEC_2p);
         E_Trans15_MEC_2p->SetStats(0);
@@ -8129,9 +8129,9 @@ void gst::Loop() {
         plots->Add(E_Trans15_MEC_1n1p);
         E_Trans15_MEC_1n1p->SetLineWidth(2);
         c1->SetLogy(1);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_MEC_only/Energy_transfer_Ev-El_around_15_Deg_MEC_only_log_scale_1n1p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_MEC_only/Energy_transfer_Ev-El_around_15_Deg_MEC_only_log_scale_1n1p.pdf");
         c1->SetLogy(0);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_MEC_only/Energy_transfer_Ev-El_around_15_Deg_MEC_only_normal_scale_1n1p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_MEC_only/Energy_transfer_Ev-El_around_15_Deg_MEC_only_normal_scale_1n1p.pdf");
         E_Trans15_MEC_1n1p->SetLineColor(kBlue);
         Energy_Transfer_MEC_Int_Stack_1n1p->Add(E_Trans15_MEC_1n1p);
         E_Trans15_MEC_1n1p->SetStats(0);
@@ -8148,9 +8148,9 @@ void gst::Loop() {
         plots->Add(E_Trans45_MEC_2p);
         E_Trans45_MEC_2p->SetLineWidth(2);
         c1->SetLogy(1);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_MEC_only/Energy_transfer_Ev-El_around_45_Deg_MEC_only_log_scale_2p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_MEC_only/Energy_transfer_Ev-El_around_45_Deg_MEC_only_log_scale_2p.pdf");
         c1->SetLogy(0);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_MEC_only/Energy_transfer_Ev-El_around_45_Deg_MEC_only_normal_scale_2p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_MEC_only/Energy_transfer_Ev-El_around_45_Deg_MEC_only_normal_scale_2p.pdf");
         E_Trans45_MEC_2p->SetLineColor(kRed);
         Energy_Transfer_MEC_Int_Stack_2p->Add(E_Trans45_MEC_2p);
         E_Trans45_MEC_2p->SetStats(0);
@@ -8163,9 +8163,9 @@ void gst::Loop() {
         plots->Add(E_Trans15_MEC_1n1p);
         E_Trans15_MEC_1n1p->SetLineWidth(2);
         c1->SetLogy(1);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_MEC_only/Energy_transfer_Ev-El_around_45_Deg_MEC_only_log_scale_1n1p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_MEC_only/Energy_transfer_Ev-El_around_45_Deg_MEC_only_log_scale_1n1p.pdf");
         c1->SetLogy(0);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_MEC_only/Energy_transfer_Ev-El_around_45_Deg_MEC_only_normal_scale_1n1p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_MEC_only/Energy_transfer_Ev-El_around_45_Deg_MEC_only_normal_scale_1n1p.pdf");
         E_Trans45_MEC_1n1p->SetLineColor(kRed);
         Energy_Transfer_MEC_Int_Stack_1n1p->Add(E_Trans45_MEC_1n1p);
         E_Trans45_MEC_1n1p->SetStats(0);
@@ -8181,9 +8181,9 @@ void gst::Loop() {
         plots->Add(E_Trans90_MEC_2p);
         E_Trans90_MEC_2p->SetLineWidth(2);
         c1->SetLogy(1);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_MEC_only/Energy_transfer_Ev-El_around_90_Deg_MEC_only_log_scale_2p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_MEC_only/Energy_transfer_Ev-El_around_90_Deg_MEC_only_log_scale_2p.pdf");
         c1->SetLogy(0);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_MEC_only/Energy_transfer_Ev-El_around_90_Deg_MEC_only_normal_scale_2p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_MEC_only/Energy_transfer_Ev-El_around_90_Deg_MEC_only_normal_scale_2p.pdf");
         E_Trans90_MEC_2p->SetLineColor(kGreen);
         Energy_Transfer_MEC_Int_Stack_2p->Add(E_Trans90_MEC_2p);
         E_Trans90_MEC_2p->SetStats(0);
@@ -8196,9 +8196,9 @@ void gst::Loop() {
         plots->Add(E_Trans90_MEC_1n1p);
         E_Trans90_MEC_1n1p->SetLineWidth(2);
         c1->SetLogy(1);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_MEC_only/Energy_transfer_Ev-El_around_90_Deg_MEC_only_log_scale_1n1p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_MEC_only/Energy_transfer_Ev-El_around_90_Deg_MEC_only_log_scale_1n1p.pdf");
         c1->SetLogy(0);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_MEC_only/Energy_transfer_Ev-El_around_90_Deg_MEC_only_normal_scale_1n1p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_MEC_only/Energy_transfer_Ev-El_around_90_Deg_MEC_only_normal_scale_1n1p.pdf");
         E_Trans90_MEC_1n1p->SetLineColor(kGreen);
         Energy_Transfer_MEC_Int_Stack_1n1p->Add(E_Trans90_MEC_1n1p);
         E_Trans90_MEC_1n1p->SetStats(0);
@@ -8226,9 +8226,9 @@ void gst::Loop() {
 
         plots->Add(Energy_Transfer_MEC_Int_Stack_2p);
         c1->SetLogy(1);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_MEC_only/Energy_transfer_Ev-El_MEC_only_Stack_log_scale_2p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_MEC_only/Energy_transfer_Ev-El_MEC_only_Stack_log_scale_2p.pdf");
         c1->SetLogy(0);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_MEC_only/Energy_transfer_Ev-El_MEC_only_Stack_linear_scale_2p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_MEC_only/Energy_transfer_Ev-El_MEC_only_Stack_linear_scale_2p.pdf");
         c1->Clear();
 #pragma endregion
 
@@ -8249,9 +8249,9 @@ void gst::Loop() {
 
         plots->Add(Energy_Transfer_MEC_Int_Stack_1n1p);
         c1->SetLogy(1);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_MEC_only/Energy_transfer_Ev-El_MEC_only_Stack_log_scale_1n1p_1111.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_MEC_only/Energy_transfer_Ev-El_MEC_only_Stack_log_scale_1n1p_1111.pdf");
         c1->SetLogy(0);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_MEC_only/Energy_transfer_Ev-El_MEC_only_Stack_linear_scale_1n1p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_MEC_only/Energy_transfer_Ev-El_MEC_only_Stack_linear_scale_1n1p.pdf");
         c1->Clear();
 #pragma endregion
     }
@@ -8282,9 +8282,9 @@ void gst::Loop() {
         plots->Add(E_Trans15_RES_2p);
         E_Trans15_RES_2p->SetLineWidth(2);
         c1->SetLogy(1);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_RES_only/Energy_transfer_Ev-El_around_15_Deg_RES_only_log_scale_2p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_RES_only/Energy_transfer_Ev-El_around_15_Deg_RES_only_log_scale_2p.pdf");
         c1->SetLogy(0);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_RES_only/Energy_transfer_Ev-El_around_15_Deg_RES_only_normal_scale_2p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_RES_only/Energy_transfer_Ev-El_around_15_Deg_RES_only_normal_scale_2p.pdf");
         E_Trans15_RES_2p->SetLineColor(kBlue);
         Energy_Transfer_RES_Int_Stack_2p->Add(E_Trans15_RES_2p);
         E_Trans15_RES_2p->SetStats(0);
@@ -8309,9 +8309,9 @@ void gst::Loop() {
         plots->Add(E_Trans15_RES_1n1p);
         E_Trans15_RES_1n1p->SetLineWidth(2);
         c1->SetLogy(1);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_RES_only/Energy_transfer_Ev-El_around_15_Deg_RES_only_log_scale_1n1p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_RES_only/Energy_transfer_Ev-El_around_15_Deg_RES_only_log_scale_1n1p.pdf");
         c1->SetLogy(0);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_RES_only/Energy_transfer_Ev-El_around_15_Deg_RES_only_normal_scale_1n1p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_RES_only/Energy_transfer_Ev-El_around_15_Deg_RES_only_normal_scale_1n1p.pdf");
         E_Trans15_RES_1n1p->SetLineColor(kBlue);
         Energy_Transfer_RES_Int_Stack_1n1p->Add(E_Trans15_RES_1n1p);
         E_Trans15_RES_1n1p->SetStats(0);
@@ -8328,9 +8328,9 @@ void gst::Loop() {
         plots->Add(E_Trans45_RES_2p);
         E_Trans45_RES_2p->SetLineWidth(2);
         c1->SetLogy(1);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_RES_only/Energy_transfer_Ev-El_around_45_Deg_RES_only_log_scale_2p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_RES_only/Energy_transfer_Ev-El_around_45_Deg_RES_only_log_scale_2p.pdf");
         c1->SetLogy(0);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_RES_only/Energy_transfer_Ev-El_around_45_Deg_RES_only_normal_scale_2p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_RES_only/Energy_transfer_Ev-El_around_45_Deg_RES_only_normal_scale_2p.pdf");
         E_Trans45_RES_2p->SetLineColor(kRed);
         Energy_Transfer_RES_Int_Stack_2p->Add(E_Trans45_RES_2p);
         E_Trans45_RES_2p->SetStats(0);
@@ -8343,9 +8343,9 @@ void gst::Loop() {
         plots->Add(E_Trans45_RES_1n1p);
         E_Trans45_RES_1n1p->SetLineWidth(2);
         c1->SetLogy(1);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_RES_only/Energy_transfer_Ev-El_around_45_Deg_RES_only_log_scale_1n1p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_RES_only/Energy_transfer_Ev-El_around_45_Deg_RES_only_log_scale_1n1p.pdf");
         c1->SetLogy(0);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_RES_only/Energy_transfer_Ev-El_around_45_Deg_RES_only_normal_scale_1n1p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_RES_only/Energy_transfer_Ev-El_around_45_Deg_RES_only_normal_scale_1n1p.pdf");
         E_Trans45_RES_1n1p->SetLineColor(kRed);
         Energy_Transfer_RES_Int_Stack_1n1p->Add(E_Trans45_RES_1n1p);
         E_Trans45_RES_1n1p->SetStats(0);
@@ -8361,9 +8361,9 @@ void gst::Loop() {
         plots->Add(E_Trans90_RES_2p);
         E_Trans90_RES_2p->SetLineWidth(2);
         c1->SetLogy(1);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_RES_only/Energy_transfer_Ev-El_around_90_Deg_RES_only_log_scale_2p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_RES_only/Energy_transfer_Ev-El_around_90_Deg_RES_only_log_scale_2p.pdf");
         c1->SetLogy(0);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_RES_only/Energy_transfer_Ev-El_around_90_Deg_RES_only_normal_scale_2p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_RES_only/Energy_transfer_Ev-El_around_90_Deg_RES_only_normal_scale_2p.pdf");
         E_Trans90_RES_2p->SetLineColor(kGreen);
         Energy_Transfer_RES_Int_Stack_2p->Add(E_Trans90_RES_2p);
         E_Trans90_RES_2p->SetStats(0);
@@ -8376,9 +8376,9 @@ void gst::Loop() {
         plots->Add(E_Trans90_RES_1n1p);
         E_Trans90_RES_1n1p->SetLineWidth(2);
         c1->SetLogy(1);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_RES_only/Energy_transfer_Ev-El_around_90_Deg_RES_only_log_scale_1n1p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_RES_only/Energy_transfer_Ev-El_around_90_Deg_RES_only_log_scale_1n1p.pdf");
         c1->SetLogy(0);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_RES_only/Energy_transfer_Ev-El_around_90_Deg_RES_only_normal_scale_1n1p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_RES_only/Energy_transfer_Ev-El_around_90_Deg_RES_only_normal_scale_1n1p.pdf");
         E_Trans90_RES_1n1p->SetLineColor(kGreen);
         Energy_Transfer_RES_Int_Stack_1n1p->Add(E_Trans90_RES_1n1p);
         E_Trans90_RES_1n1p->SetStats(0);
@@ -8406,9 +8406,9 @@ void gst::Loop() {
 
         plots->Add(Energy_Transfer_RES_Int_Stack_2p);
         c1->SetLogy(1);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_RES_only/Energy_transfer_Ev-El_RES_only_Stack_log_scale_2p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_RES_only/Energy_transfer_Ev-El_RES_only_Stack_log_scale_2p.pdf");
         c1->SetLogy(0);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_RES_only/Energy_transfer_Ev-El_RES_only_Stack_linear_scale_2p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_RES_only/Energy_transfer_Ev-El_RES_only_Stack_linear_scale_2p.pdf");
         c1->Clear();
 #pragma endregion
 
@@ -8429,9 +8429,9 @@ void gst::Loop() {
 
         plots->Add(Energy_Transfer_RES_Int_Stack_1n1p);
         c1->SetLogy(1);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_RES_only/Energy_transfer_Ev-El_RES_only_Stack_log_scale_1n1p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_RES_only/Energy_transfer_Ev-El_RES_only_Stack_log_scale_1n1p.pdf");
         c1->SetLogy(0);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_RES_only/Energy_transfer_Ev-El_RES_only_Stack_linear_scale_1n1p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_RES_only/Energy_transfer_Ev-El_RES_only_Stack_linear_scale_1n1p.pdf");
         c1->Clear();
 #pragma endregion
     }
@@ -8462,9 +8462,9 @@ void gst::Loop() {
         plots->Add(E_Trans15_DIS_2p);
         E_Trans15_DIS_2p->SetLineWidth(2);
         c1->SetLogy(1);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_DIS_only/Energy_transfer_Ev-El_around_15_Deg_DIS_only_log_scale_2p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_DIS_only/Energy_transfer_Ev-El_around_15_Deg_DIS_only_log_scale_2p.pdf");
         c1->SetLogy(0);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_DIS_only/Energy_transfer_Ev-El_around_15_Deg_DIS_only_normal_scale_2p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_DIS_only/Energy_transfer_Ev-El_around_15_Deg_DIS_only_normal_scale_2p.pdf");
         E_Trans15_DIS_2p->SetLineColor(kBlue);
         Energy_Transfer_DIS_Int_Stack_2p->Add(E_Trans15_DIS_2p);
         E_Trans15_DIS_2p->SetStats(0);
@@ -8489,9 +8489,9 @@ void gst::Loop() {
         plots->Add(E_Trans15_DIS_1n1p);
         E_Trans15_DIS_1n1p->SetLineWidth(2);
         c1->SetLogy(1);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_DIS_only/Energy_transfer_Ev-El_around_15_Deg_DIS_only_log_scale_1n1p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_DIS_only/Energy_transfer_Ev-El_around_15_Deg_DIS_only_log_scale_1n1p.pdf");
         c1->SetLogy(0);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_DIS_only/Energy_transfer_Ev-El_around_15_Deg_DIS_only_normal_scale_1n1p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_DIS_only/Energy_transfer_Ev-El_around_15_Deg_DIS_only_normal_scale_1n1p.pdf");
         E_Trans15_DIS_1n1p->SetLineColor(kBlue);
         Energy_Transfer_DIS_Int_Stack_1n1p->Add(E_Trans15_DIS_1n1p);
         E_Trans15_DIS_1n1p->SetStats(0);
@@ -8508,9 +8508,9 @@ void gst::Loop() {
         plots->Add(E_Trans45_DIS_2p);
         E_Trans45_DIS_2p->SetLineWidth(2);
         c1->SetLogy(1);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_DIS_only/Energy_transfer_Ev-El_around_45_Deg_DIS_only_log_scale_2p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_DIS_only/Energy_transfer_Ev-El_around_45_Deg_DIS_only_log_scale_2p.pdf");
         c1->SetLogy(0);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_DIS_only/Energy_transfer_Ev-El_around_45_Deg_DIS_only_normal_scale_2p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_DIS_only/Energy_transfer_Ev-El_around_45_Deg_DIS_only_normal_scale_2p.pdf");
         E_Trans45_DIS_2p->SetLineColor(kRed);
         Energy_Transfer_DIS_Int_Stack_2p->Add(E_Trans45_DIS_2p);
         E_Trans45_DIS_2p->SetStats(0);
@@ -8523,9 +8523,9 @@ void gst::Loop() {
         plots->Add(E_Trans45_DIS_1n1p);
         E_Trans45_DIS_1n1p->SetLineWidth(2);
         c1->SetLogy(1);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_DIS_only/Energy_transfer_Ev-El_around_45_Deg_DIS_only_log_scale_1n1p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_DIS_only/Energy_transfer_Ev-El_around_45_Deg_DIS_only_log_scale_1n1p.pdf");
         c1->SetLogy(0);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_DIS_only/Energy_transfer_Ev-El_around_45_Deg_DIS_only_normal_scale_1n1p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_DIS_only/Energy_transfer_Ev-El_around_45_Deg_DIS_only_normal_scale_1n1p.pdf");
         E_Trans45_DIS_1n1p->SetLineColor(kRed);
         Energy_Transfer_DIS_Int_Stack_1n1p->Add(E_Trans45_DIS_1n1p);
         E_Trans45_DIS_1n1p->SetStats(0);
@@ -8541,9 +8541,9 @@ void gst::Loop() {
         plots->Add(E_Trans90_DIS_2p);
         E_Trans90_DIS_2p->SetLineWidth(2);
         c1->SetLogy(1);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_DIS_only/Energy_transfer_Ev-El_around_90_Deg_DIS_only_log_scale_2p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_DIS_only/Energy_transfer_Ev-El_around_90_Deg_DIS_only_log_scale_2p.pdf");
         c1->SetLogy(0);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_DIS_only/Energy_transfer_Ev-El_around_90_Deg_DIS_only_normal_scale_2p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_DIS_only/Energy_transfer_Ev-El_around_90_Deg_DIS_only_normal_scale_2p.pdf");
         E_Trans90_DIS_2p->SetLineColor(kGreen);
         Energy_Transfer_DIS_Int_Stack_2p->Add(E_Trans90_DIS_2p);
         E_Trans90_DIS_2p->SetStats(0);
@@ -8556,9 +8556,9 @@ void gst::Loop() {
         plots->Add(E_Trans90_DIS_1n1p);
         E_Trans90_DIS_1n1p->SetLineWidth(2);
         c1->SetLogy(1);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_DIS_only/Energy_transfer_Ev-El_around_90_Deg_DIS_only_log_scale_1n1p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_DIS_only/Energy_transfer_Ev-El_around_90_Deg_DIS_only_log_scale_1n1p.pdf");
         c1->SetLogy(0);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_DIS_only/Energy_transfer_Ev-El_around_90_Deg_DIS_only_normal_scale_1n1p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_DIS_only/Energy_transfer_Ev-El_around_90_Deg_DIS_only_normal_scale_1n1p.pdf");
         E_Trans90_DIS_1n1p->SetLineColor(kGreen);
         Energy_Transfer_DIS_Int_Stack_1n1p->Add(E_Trans90_DIS_1n1p);
         E_Trans90_DIS_1n1p->SetStats(0);
@@ -8586,9 +8586,9 @@ void gst::Loop() {
 
         plots->Add(Energy_Transfer_DIS_Int_Stack_2p);
         c1->SetLogy(1);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_DIS_only/Energy_transfer_Ev-El_DIS_only_Stack_log_scale_2p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_DIS_only/Energy_transfer_Ev-El_DIS_only_Stack_log_scale_2p.pdf");
         c1->SetLogy(0);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_DIS_only/Energy_transfer_Ev-El_DIS_only_Stack_linear_scale_2p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_DIS_only/Energy_transfer_Ev-El_DIS_only_Stack_linear_scale_2p.pdf");
         c1->Clear();
 #pragma endregion
 
@@ -8609,9 +8609,9 @@ void gst::Loop() {
 
         plots->Add(Energy_Transfer_DIS_Int_Stack_1n1p);
         c1->SetLogy(1);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_DIS_only/Energy_transfer_Ev-El_DIS_only_Stack_log_scale_1n1p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_DIS_only/Energy_transfer_Ev-El_DIS_only_Stack_log_scale_1n1p.pdf");
         c1->SetLogy(0);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_DIS_only/Energy_transfer_Ev-El_DIS_only_Stack_linear_scale_1n1p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histograms_DIS_only/Energy_transfer_Ev-El_DIS_only_Stack_linear_scale_1n1p.pdf");
         c1->Clear();
 #pragma endregion
     }
@@ -8657,7 +8657,7 @@ void gst::Loop() {
         //        E_Trans_15_legend_2p->Draw();
         //
         //        plots->Add(Energy_Transfer_all_int_15_Stack_2p);
-        //        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histogram_15_Stack_linear_scale_2p.png");
+        //        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histogram_15_Stack_linear_scale_2p.pdf");
         //        c1->Clear();
 
         // TODO: IPS plots - these plots are for IPS poster. Rename them to fit the code.
@@ -8702,7 +8702,7 @@ void gst::Loop() {
         //        E_Trans_15_legend_1n1p->Draw();
         //
         //        plots->Add(Energy_Transfer_all_int_15_Stack_1n1p);
-        //        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histogram_15_Stack_linear_scale_1n1p.png");
+        //        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_histogram_15_Stack_linear_scale_1n1p.pdf");
         //        c1->Clear();
 
         // TODO: IPS plots - these plots are for IPS poster. Rename them to fit the code.
@@ -8760,7 +8760,7 @@ void gst::Loop() {
         E_cal_QEL_Stack_legend->Draw();
 
         plots->Add(E_cal_QEL_Stack);
-        c1->SaveAs("plots/E_cal_restorations/E_cal_restoration_stack_QEL_only.png");
+        c1->SaveAs("plots/E_cal_restorations/E_cal_restoration_stack_QEL_only.pdf");
         c1->Clear();
 #pragma endregion
 
@@ -8807,7 +8807,7 @@ void gst::Loop() {
         E_cal_MEC_Stack_1n1p_and_2p_legend->Draw();
 
         plots->Add(E_cal_MEC_Stack_1n1p_and_2p);
-        c1->SaveAs("plots/E_cal_restorations/E_cal_restoration_stack_MEC_only_1n1p_and_2p.png");
+        c1->SaveAs("plots/E_cal_restorations/E_cal_restoration_stack_MEC_only_1n1p_and_2p.pdf");
         c1->Clear();
 #pragma endregion
 
@@ -8837,7 +8837,7 @@ void gst::Loop() {
         E_cal_MEC_Stack_2p_and_2n_legend->Draw();
 
         plots->Add(E_cal_MEC_Stack_2p_and_2n);
-        c1->SaveAs("plots/E_cal_restorations/E_cal_restoration_stack_MEC_only_2p_and_2n.png");
+        c1->SaveAs("plots/E_cal_restorations/E_cal_restoration_stack_MEC_only_2p_and_2n.pdf");
         c1->Clear();
 #pragma endregion
 
@@ -8869,7 +8869,7 @@ void gst::Loop() {
         E_cal_RES_Stack_legend->Draw();
 
         plots->Add(E_cal_RES_Stack);
-        c1->SaveAs("plots/E_cal_restorations/E_cal_restoration_stack_RES_only.png");
+        c1->SaveAs("plots/E_cal_restorations/E_cal_restoration_stack_RES_only.pdf");
         c1->Clear();
 #pragma endregion
 
@@ -8901,7 +8901,7 @@ void gst::Loop() {
         E_cal_DIS_Stack_legend->Draw();
 
         plots->Add(E_cal_DIS_Stack);
-        c1->SaveAs("plots/E_cal_restorations/E_cal_restoration_stack_DIS_only.png");
+        c1->SaveAs("plots/E_cal_restorations/E_cal_restoration_stack_DIS_only.pdf");
         c1->Clear();
 #pragma endregion
 
@@ -8940,9 +8940,9 @@ void gst::Loop() {
         E_cal_VS_theta_lp_all_int_2p->GetXaxis()->CenterTitle(true);
         E_cal_VS_theta_lp_all_int_2p->GetYaxis()->CenterTitle(true);
         c1->SetLogz(1);
-        c1->SaveAs("plots/E_cal_restorations/Other/all_interactions/2p/E_cal_vs_theta_lp_QEL_only_log_scale_2p.png");
+        c1->SaveAs("plots/E_cal_restorations/Other/all_interactions/2p/E_cal_vs_theta_lp_QEL_only_log_scale_2p.pdf");
         c1->SetLogz(0);
-        c1->SaveAs("plots/E_cal_restorations/Other/all_interactions/2p/E_cal_vs_theta_lp_QEL_only_linear_scale_2p.png");
+        c1->SaveAs("plots/E_cal_restorations/Other/all_interactions/2p/E_cal_vs_theta_lp_QEL_only_linear_scale_2p.pdf");
         c1->Clear();
 
         E_cal_VS_Q2_all_int_2p->Draw("colz");
@@ -8951,9 +8951,9 @@ void gst::Loop() {
         E_cal_VS_Q2_all_int_2p->GetXaxis()->CenterTitle(true);
         E_cal_VS_Q2_all_int_2p->GetYaxis()->CenterTitle(true);
         c1->SetLogz(1);
-        c1->SaveAs("plots/E_cal_restorations/Other/all_interactions/2p/E_cal_vs_Q2_QEL_only_log_scale_2p.png");
+        c1->SaveAs("plots/E_cal_restorations/Other/all_interactions/2p/E_cal_vs_Q2_QEL_only_log_scale_2p.pdf");
         c1->SetLogz(0);
-        c1->SaveAs("plots/E_cal_restorations/Other/all_interactions/2p/E_cal_vs_Q2_QEL_only_linear_scale_2p.png");
+        c1->SaveAs("plots/E_cal_restorations/Other/all_interactions/2p/E_cal_vs_Q2_QEL_only_linear_scale_2p.pdf");
         c1->Clear();
         //
         E_cal_VS_W_QEL_only_2p->Draw("colz");
@@ -8962,9 +8962,9 @@ void gst::Loop() {
         E_cal_VS_W_QEL_only_2p->GetXaxis()->CenterTitle(true);
         E_cal_VS_W_QEL_only_2p->GetYaxis()->CenterTitle(true);
         c1->SetLogz(1);
-        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/2p/E_cal_vs_W_QEL_only_log_scale_2p.png");
+        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/2p/E_cal_vs_W_QEL_only_log_scale_2p.pdf");
         c1->SetLogz(0);
-        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/2p/E_cal_vs_W_QEL_only_linear_scale_2p.png");
+        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/2p/E_cal_vs_W_QEL_only_linear_scale_2p.pdf");
         c1->Clear();
 
         E_cal_VS_En_QEL_only_2p->Draw("colz");
@@ -8973,9 +8973,9 @@ void gst::Loop() {
         E_cal_VS_En_QEL_only_2p->GetXaxis()->CenterTitle(true);
         E_cal_VS_En_QEL_only_2p->GetYaxis()->CenterTitle(true);
         c1->SetLogz(1);
-        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/2p/E_cal_vs_En_QEL_only_log_scale_2p.png");
+        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/2p/E_cal_vs_En_QEL_only_log_scale_2p.pdf");
         c1->SetLogz(0);
-        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/2p/E_cal_vs_En_QEL_only_linear_scale_2p.png");
+        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/2p/E_cal_vs_En_QEL_only_linear_scale_2p.pdf");
         c1->Clear();
 
         E_cal_VS_Pn_QEL_only_2p->Draw("colz");
@@ -8984,9 +8984,9 @@ void gst::Loop() {
         E_cal_VS_Pn_QEL_only_2p->GetXaxis()->CenterTitle(true);
         E_cal_VS_Pn_QEL_only_2p->GetYaxis()->CenterTitle(true);
         c1->SetLogz(1);
-        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/2p/E_cal_vs_Pn_QEL_only_log_scale_2p.png");
+        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/2p/E_cal_vs_Pn_QEL_only_log_scale_2p.pdf");
         c1->SetLogz(0);
-        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/2p/E_cal_vs_Pn_QEL_only_linear_scale_2p.png");
+        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/2p/E_cal_vs_Pn_QEL_only_linear_scale_2p.pdf");
         c1->Clear();
 
         E_cal_VS_Pn1_QEL_only_2p->Draw("colz");
@@ -8995,9 +8995,9 @@ void gst::Loop() {
         E_cal_VS_Pn1_QEL_only_2p->GetXaxis()->CenterTitle(true);
         E_cal_VS_Pn1_QEL_only_2p->GetYaxis()->CenterTitle(true);
         c1->SetLogz(1);
-        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/2p/E_cal_vs_Pn1_QEL_only_log_scale_2p.png");
+        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/2p/E_cal_vs_Pn1_QEL_only_log_scale_2p.pdf");
         c1->SetLogz(0);
-        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/2p/E_cal_vs_Pn1_QEL_only_linear_scale_2p.png");
+        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/2p/E_cal_vs_Pn1_QEL_only_linear_scale_2p.pdf");
         c1->Clear();
 
         E_cal_VS_Pn2_QEL_only_2p->Draw("colz");
@@ -9005,9 +9005,9 @@ void gst::Loop() {
         E_cal_VS_Pn2_QEL_only_2p->GetYaxis()->CenterTitle(true);
         plots->Add(E_cal_VS_Pn2_QEL_only_2p);
         c1->SetLogz(1);
-        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/2p/E_cal_vs_Pn2_QEL_only_log_scale_2p.png");
+        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/2p/E_cal_vs_Pn2_QEL_only_log_scale_2p.pdf");
         c1->SetLogz(0);
-        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/2p/E_cal_vs_Pn2_QEL_only_linear_scale_2p.png");
+        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/2p/E_cal_vs_Pn2_QEL_only_linear_scale_2p.pdf");
         c1->Clear();
 
         E_cal_VS_dtheta_all_int_2p->Draw("colz");
@@ -9016,9 +9016,9 @@ void gst::Loop() {
         plots->Add(E_cal_VS_dtheta_all_int_2p);
         E_cal_VS_dtheta_all_int_2p->SetStats(0);
         c1->SetLogz(1);
-        c1->SaveAs("plots/E_cal_restorations/Other/all_interactions/2p/E_cal_vs_dtheta_QEL_only_log_scale_2p.png");
+        c1->SaveAs("plots/E_cal_restorations/Other/all_interactions/2p/E_cal_vs_dtheta_QEL_only_log_scale_2p.pdf");
         c1->SetLogz(0);
-        c1->SaveAs("plots/E_cal_restorations/Other/all_interactions/2p/E_cal_vs_dtheta_QEL_only_linear_scale_2p.png");
+        c1->SaveAs("plots/E_cal_restorations/Other/all_interactions/2p/E_cal_vs_dtheta_QEL_only_linear_scale_2p.pdf");
         c1->Clear();
 #pragma endregion
 
@@ -9029,9 +9029,9 @@ void gst::Loop() {
         E_cal_VS_theta_lp_QEL_only_2p->GetXaxis()->CenterTitle(true);
         E_cal_VS_theta_lp_QEL_only_2p->GetYaxis()->CenterTitle(true);
         c1->SetLogz(1);
-        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/2p/E_cal_vs_theta_lp_QEL_only_log_scale_2p.png");
+        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/2p/E_cal_vs_theta_lp_QEL_only_log_scale_2p.pdf");
         c1->SetLogz(0);
-        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/2p/E_cal_vs_theta_lp_QEL_only_linear_scale_2p.png");
+        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/2p/E_cal_vs_theta_lp_QEL_only_linear_scale_2p.pdf");
         c1->Clear();
 
         E_cal_VS_Q2_QEL_only_2p->Draw("colz");
@@ -9039,9 +9039,9 @@ void gst::Loop() {
         E_cal_VS_Q2_QEL_only_2p->GetXaxis()->CenterTitle(true);
         E_cal_VS_Q2_QEL_only_2p->GetYaxis()->CenterTitle(true);
         c1->SetLogz(1);
-        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/2p/E_cal_vs_Q2_QEL_only_log_scale_2p.png");
+        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/2p/E_cal_vs_Q2_QEL_only_log_scale_2p.pdf");
         c1->SetLogz(0);
-        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/2p/E_cal_vs_Q2_QEL_only_linear_scale_2p.png");
+        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/2p/E_cal_vs_Q2_QEL_only_linear_scale_2p.pdf");
         c1->Clear();
         //
         E_cal_VS_W_QEL_only_2p->Draw("colz");
@@ -9049,9 +9049,9 @@ void gst::Loop() {
         E_cal_VS_W_QEL_only_2p->GetXaxis()->CenterTitle(true);
         E_cal_VS_W_QEL_only_2p->GetYaxis()->CenterTitle(true);
         c1->SetLogz(1);
-        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/2p/E_cal_vs_W_QEL_only_log_scale_2p.png");
+        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/2p/E_cal_vs_W_QEL_only_log_scale_2p.pdf");
         c1->SetLogz(0);
-        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/2p/E_cal_vs_W_QEL_only_linear_scale_2p.png");
+        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/2p/E_cal_vs_W_QEL_only_linear_scale_2p.pdf");
         c1->Clear();
 
         E_cal_VS_En_QEL_only_2p->Draw("colz");
@@ -9060,9 +9060,9 @@ void gst::Loop() {
         E_cal_VS_En_QEL_only_2p->GetXaxis()->CenterTitle(true);
         E_cal_VS_En_QEL_only_2p->GetYaxis()->CenterTitle(true);
         c1->SetLogz(1);
-        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/2p/E_cal_vs_En_QEL_only_log_scale_2p.png");
+        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/2p/E_cal_vs_En_QEL_only_log_scale_2p.pdf");
         c1->SetLogz(0);
-        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/2p/E_cal_vs_En_QEL_only_linear_scale_2p.png");
+        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/2p/E_cal_vs_En_QEL_only_linear_scale_2p.pdf");
         c1->Clear();
 
         E_cal_VS_Pn_QEL_only_2p->Draw("colz");
@@ -9071,9 +9071,9 @@ void gst::Loop() {
         E_cal_VS_Pn_QEL_only_2p->GetXaxis()->CenterTitle(true);
         E_cal_VS_Pn_QEL_only_2p->GetYaxis()->CenterTitle(true);
         c1->SetLogz(1);
-        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/2p/E_cal_vs_Pn_QEL_only_log_scale_2p.png");
+        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/2p/E_cal_vs_Pn_QEL_only_log_scale_2p.pdf");
         c1->SetLogz(0);
-        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/2p/E_cal_vs_Pn_QEL_only_linear_scale_2p.png");
+        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/2p/E_cal_vs_Pn_QEL_only_linear_scale_2p.pdf");
         c1->Clear();
 
         E_cal_VS_Pn1_QEL_only_2p->Draw("colz");
@@ -9082,9 +9082,9 @@ void gst::Loop() {
         E_cal_VS_Pn1_QEL_only_2p->GetXaxis()->CenterTitle(true);
         E_cal_VS_Pn1_QEL_only_2p->GetYaxis()->CenterTitle(true);
         c1->SetLogz(1);
-        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/2p/E_cal_vs_Pn1_QEL_only_log_scale_2p.png");
+        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/2p/E_cal_vs_Pn1_QEL_only_log_scale_2p.pdf");
         c1->SetLogz(0);
-        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/2p/E_cal_vs_Pn1_QEL_only_linear_scale_2p.png");
+        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/2p/E_cal_vs_Pn1_QEL_only_linear_scale_2p.pdf");
         c1->Clear();
 
         E_cal_VS_Pn2_QEL_only_2p->Draw("colz");
@@ -9093,9 +9093,9 @@ void gst::Loop() {
         E_cal_VS_Pn2_QEL_only_2p->GetXaxis()->CenterTitle(true);
         E_cal_VS_Pn2_QEL_only_2p->GetYaxis()->CenterTitle(true);
         c1->SetLogz(1);
-        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/2p/E_cal_vs_Pn2_QEL_only_log_scale_2p.png");
+        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/2p/E_cal_vs_Pn2_QEL_only_log_scale_2p.pdf");
         c1->SetLogz(0);
-        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/2p/E_cal_vs_Pn2_QEL_only_linear_scale_2p.png");
+        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/2p/E_cal_vs_Pn2_QEL_only_linear_scale_2p.pdf");
         c1->Clear();
 
         //
@@ -9105,9 +9105,9 @@ void gst::Loop() {
         E_cal_VS_theta_p1_QEL_only_2p->GetXaxis()->CenterTitle(true);
         E_cal_VS_theta_p1_QEL_only_2p->GetYaxis()->CenterTitle(true);
         c1->SetLogz(1);
-        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/2p/E_cal_vs_theta_p1_QEL_only_log_scale_2p.png");
+        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/2p/E_cal_vs_theta_p1_QEL_only_log_scale_2p.pdf");
         c1->SetLogz(0);
-        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/2p/E_cal_vs_theta_p1_QEL_only_linear_scale_2p.png");
+        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/2p/E_cal_vs_theta_p1_QEL_only_linear_scale_2p.pdf");
         c1->Clear();
 
         E_cal_VS_theta_p2_QEL_only_2p->Draw("colz");
@@ -9116,9 +9116,9 @@ void gst::Loop() {
         E_cal_VS_theta_p2_QEL_only_2p->GetXaxis()->CenterTitle(true);
         E_cal_VS_theta_p2_QEL_only_2p->GetYaxis()->CenterTitle(true);
         c1->SetLogz(1);
-        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/2p/E_cal_vs_theta_p2_QEL_only_log_scale_2p.png");
+        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/2p/E_cal_vs_theta_p2_QEL_only_log_scale_2p.pdf");
         c1->SetLogz(0);
-        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/2p/E_cal_vs_theta_p2_QEL_only_linear_scale_2p.png");
+        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/2p/E_cal_vs_theta_p2_QEL_only_linear_scale_2p.pdf");
         c1->Clear();
 
         E_cal_VS_dtheta_QEL_only_2p->Draw("colz");
@@ -9127,9 +9127,9 @@ void gst::Loop() {
         E_cal_VS_dtheta_QEL_only_2p->GetXaxis()->CenterTitle(true);
         E_cal_VS_dtheta_QEL_only_2p->GetYaxis()->CenterTitle(true);
         c1->SetLogz(1);
-        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/2p/E_cal_vs_dtheta_QEL_only_log_scale_2p.png");
+        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/2p/E_cal_vs_dtheta_QEL_only_log_scale_2p.pdf");
         c1->SetLogz(0);
-        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/2p/E_cal_vs_dtheta_QEL_only_linear_scale_2p.png");
+        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/2p/E_cal_vs_dtheta_QEL_only_linear_scale_2p.pdf");
         c1->Clear();
 #pragma endregion
 
@@ -9140,9 +9140,9 @@ void gst::Loop() {
         E_cal_VS_theta_lp_QEL_1n1p->GetXaxis()->CenterTitle(true);
         E_cal_VS_theta_lp_QEL_1n1p->GetYaxis()->CenterTitle(true);
         c1->SetLogz(1);
-        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/1n1p/E_cal_1n1p_vs_theta_lp_QEL_only_log_scale_1n1p.png");
+        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/1n1p/E_cal_1n1p_vs_theta_lp_QEL_only_log_scale_1n1p.pdf");
         c1->SetLogz(0);
-        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/1n1p/E_cal_1n1p_vs_theta_lp_QEL_only_linear_scale_1n1p.png");
+        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/1n1p/E_cal_1n1p_vs_theta_lp_QEL_only_linear_scale_1n1p.pdf");
         c1->Clear();
 
         E_cal_VS_Q2_QEL_only_1n1p->Draw("colz");
@@ -9151,9 +9151,9 @@ void gst::Loop() {
         E_cal_VS_Q2_QEL_only_1n1p->GetXaxis()->CenterTitle(true);
         E_cal_VS_Q2_QEL_only_1n1p->GetYaxis()->CenterTitle(true);
         c1->SetLogz(1);
-        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/1n1p/E_cal_vs_Q2_QEL_only_log_scale_1n1p.png");
+        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/1n1p/E_cal_vs_Q2_QEL_only_log_scale_1n1p.pdf");
         c1->SetLogz(0);
-        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/1n1p/E_cal_vs_Q2_QEL_only_linear_scale_1n1p.png");
+        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/1n1p/E_cal_vs_Q2_QEL_only_linear_scale_1n1p.pdf");
         c1->Clear();
         //
         E_cal_VS_W_QEL_only_1n1p->Draw("colz");
@@ -9162,9 +9162,9 @@ void gst::Loop() {
         E_cal_VS_W_QEL_only_1n1p->GetXaxis()->CenterTitle(true);
         E_cal_VS_W_QEL_only_1n1p->GetYaxis()->CenterTitle(true);
         c1->SetLogz(1);
-        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/1n1p/E_cal_vs_W_QEL_only_log_scale_1n1p.png");
+        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/1n1p/E_cal_vs_W_QEL_only_log_scale_1n1p.pdf");
         c1->SetLogz(0);
-        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/1n1p/E_cal_vs_W_QEL_only_linear_scale_1n1p.png");
+        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/1n1p/E_cal_vs_W_QEL_only_linear_scale_1n1p.pdf");
         c1->Clear();
 
         E_cal_VS_En_QEL_only_1n1p->Draw("colz");
@@ -9173,9 +9173,9 @@ void gst::Loop() {
         E_cal_VS_En_QEL_only_1n1p->GetXaxis()->CenterTitle(true);
         E_cal_VS_En_QEL_only_1n1p->GetYaxis()->CenterTitle(true);
         c1->SetLogz(1);
-        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/1n1p/E_cal_vs_En_QEL_only_log_scale_1n1p.png");
+        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/1n1p/E_cal_vs_En_QEL_only_log_scale_1n1p.pdf");
         c1->SetLogz(0);
-        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/1n1p/E_cal_vs_En_QEL_only_linear_scale_1n1p.png");
+        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/1n1p/E_cal_vs_En_QEL_only_linear_scale_1n1p.pdf");
         c1->Clear();
 
         E_cal_VS_Pn_QEL_only_1n1p->Draw("colz");
@@ -9184,9 +9184,9 @@ void gst::Loop() {
         E_cal_VS_Pn_QEL_only_1n1p->GetXaxis()->CenterTitle(true);
         E_cal_VS_Pn_QEL_only_1n1p->GetYaxis()->CenterTitle(true);
         c1->SetLogz(1);
-        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/1n1p/E_cal_vs_Pn_QEL_only_log_scale_1n1p.png");
+        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/1n1p/E_cal_vs_Pn_QEL_only_log_scale_1n1p.pdf");
         c1->SetLogz(0);
-        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/1n1p/E_cal_vs_Pn_QEL_only_linear_scale_1n1p.png");
+        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/1n1p/E_cal_vs_Pn_QEL_only_linear_scale_1n1p.pdf");
         c1->Clear();
 
         E_cal_VS_P_p_QEL_only_1n1p->Draw("colz");
@@ -9195,9 +9195,9 @@ void gst::Loop() {
         E_cal_VS_P_p_QEL_only_1n1p->GetXaxis()->CenterTitle(true);
         E_cal_VS_P_p_QEL_only_1n1p->GetYaxis()->CenterTitle(true);
         c1->SetLogz(1);
-        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/1n1p/E_cal_vs_P_p_QEL_only_log_scale_1n1p.png");
+        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/1n1p/E_cal_vs_P_p_QEL_only_log_scale_1n1p.pdf");
         c1->SetLogz(0);
-        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/1n1p/E_cal_vs_P_p_QEL_only_linear_scale_1n1p.png");
+        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/1n1p/E_cal_vs_P_p_QEL_only_linear_scale_1n1p.pdf");
         c1->Clear();
 
         E_cal_VS_P_n_QEL_only_1n1p->Draw("colz");
@@ -9206,9 +9206,9 @@ void gst::Loop() {
         E_cal_VS_P_n_QEL_only_1n1p->GetXaxis()->CenterTitle(true);
         E_cal_VS_P_n_QEL_only_1n1p->GetYaxis()->CenterTitle(true);
         c1->SetLogz(1);
-        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/1n1p/E_cal_vs_P_n_QEL_only_log_scale_1n1p.png");
+        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/1n1p/E_cal_vs_P_n_QEL_only_log_scale_1n1p.pdf");
         c1->SetLogz(0);
-        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/1n1p/E_cal_vs_P_n_QEL_only_linear_scale_1n1p.png");
+        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/1n1p/E_cal_vs_P_n_QEL_only_linear_scale_1n1p.pdf");
         c1->Clear();
         //
         E_cal_VS_theta_p_QEL_only_1n1p->Draw("colz");
@@ -9217,9 +9217,9 @@ void gst::Loop() {
         E_cal_VS_theta_p_QEL_only_1n1p->GetXaxis()->CenterTitle(true);
         E_cal_VS_theta_p_QEL_only_1n1p->GetYaxis()->CenterTitle(true);
         c1->SetLogz(1);
-        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/1n1p/E_cal_vs_theta_p_QEL_only_log_scale_1n1p.png");
+        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/1n1p/E_cal_vs_theta_p_QEL_only_log_scale_1n1p.pdf");
         c1->SetLogz(0);
-        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/1n1p/E_cal_vs_theta_p_QEL_only_linear_scale_1n1p.png");
+        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/1n1p/E_cal_vs_theta_p_QEL_only_linear_scale_1n1p.pdf");
         c1->Clear();
 
         E_cal_VS_theta_n_QEL_only_1n1p->Draw("colz");
@@ -9228,9 +9228,9 @@ void gst::Loop() {
         E_cal_VS_theta_n_QEL_only_1n1p->GetXaxis()->CenterTitle(true);
         E_cal_VS_theta_n_QEL_only_1n1p->GetYaxis()->CenterTitle(true);
         c1->SetLogz(1);
-        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/1n1p/E_cal_vs_theta_n_QEL_only_log_scale_1n1p.png");
+        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/1n1p/E_cal_vs_theta_n_QEL_only_log_scale_1n1p.pdf");
         c1->SetLogz(0);
-        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/1n1p/E_cal_vs_theta_n_QEL_only_linear_scale_1n1p.png");
+        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/1n1p/E_cal_vs_theta_n_QEL_only_linear_scale_1n1p.pdf");
         c1->Clear();
 
         E_cal_VS_dtheta_QEL_only_1n1p->Draw("colz");
@@ -9238,9 +9238,9 @@ void gst::Loop() {
         E_cal_VS_dtheta_QEL_only_1n1p->GetXaxis()->CenterTitle(true);
         E_cal_VS_dtheta_QEL_only_1n1p->GetYaxis()->CenterTitle(true);
         c1->SetLogz(1);
-        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/1n1p/E_cal_vs_dtheta_QEL_only_log_scale_1n1p.png");
+        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/1n1p/E_cal_vs_dtheta_QEL_only_log_scale_1n1p.pdf");
         c1->SetLogz(0);
-        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/1n1p/E_cal_vs_dtheta_QEL_only_linear_scale_1n1p.png");
+        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/1n1p/E_cal_vs_dtheta_QEL_only_linear_scale_1n1p.pdf");
         c1->Clear();
 #pragma endregion
     }
@@ -9253,25 +9253,25 @@ void gst::Loop() {
         //  Q2 -all interactions (2p):
 
         fChain->Draw("El + Ef[0] + Ef[1] - 2*0.938272:Q2>>h1(100, 0.0, 3.6, 100, 2.12, 2.3)", "nf==2 && nfn==0 && nfp == 2", "colz");
-        c1->SaveAs("plots/E_cal_restorations/Other/all_interactions/E_cal_vs_Q2_all_int_2p.png");
+        c1->SaveAs("plots/E_cal_restorations/Other/all_interactions/E_cal_vs_Q2_all_int_2p.pdf");
         c1->Clear();
 
         //  Q2 - QEL only (2p):
 
         fChain->Draw("El + Ef[0] + Ef[1] - 2*0.938272:Q2>>h1(100, 0.0, 3.6, 100, 2.12, 2.23)", "nf==2 && nfn==0 && nfp == 2 && qel", "colz");
-        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/E_cal_vs_Q2_QEL_only_2p.png");
+        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/E_cal_vs_Q2_QEL_only_2p.pdf");
         c1->Clear();
 
         //  Q2 -all interactions (1n1p):
 
         fChain->Draw("El + Ef[0] + Ef[1] - 0.938272 - 0.939565:Q2>>h1(100, 0.0, 3.6, 100, 2.12, 2.3)", "nf==2 && nfn==1 && nfp == 1", "colz");
-        c1->SaveAs("plots/E_cal_restorations/Other/all_interactions/E_cal_vs_Q2_all_int_1n1p.png");
+        c1->SaveAs("plots/E_cal_restorations/Other/all_interactions/E_cal_vs_Q2_all_int_1n1p.pdf");
         c1->Clear();
 
         //  Q2 - QEL only (1n1p):
 
         fChain->Draw("El + Ef[0] + Ef[1] - 0.938272 - 0.939565:Q2>>h1(100, 0.0, 3.6, 100, 2.12, 2.23)", "nf==2 && nfn==1 && nfp == 1 && qel", "colz");
-        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/E_cal_vs_Q2_QEL_only_1n1p.png");
+        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/E_cal_vs_Q2_QEL_only_1n1p.pdf");
         c1->Clear();
 #pragma endregion
 
@@ -9281,28 +9281,28 @@ void gst::Loop() {
 
         fChain->Draw("El + Ef[0] + Ef[1] - 2*0.938272:acos(pzl / sqrt(pxl * pxl + pyl * pyl + pzl * pzl)) * 180.0 / 3.14159265359>>h2(100, 0.0, 120, 100, 2.12, 2.3)",
                      "nf==2 && nfn==0 && nfp == 2", "colz");
-        c1->SaveAs("plots/E_cal_restorations/Other/all_interactions/E_cal_vs_theta_lp_all_int_2p.png");
+        c1->SaveAs("plots/E_cal_restorations/Other/all_interactions/E_cal_vs_theta_lp_all_int_2p.pdf");
         c1->Clear();
 
         // Theta_l - QEL only (2p):
 
         fChain->Draw("El + Ef[0] + Ef[1] - 2*0.938272:acos(pzl / sqrt(pxl * pxl + pyl * pyl + pzl * pzl)) * 180.0 / 3.14159265359>>h2(100, 0.0, 120, 100, 2.12, 2.23)",
                      "nf==2 && nfn==0 && nfp == 2 && qel", "colz");
-        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/E_cal_vs_theta_lp_QEL_only_2p.png");
+        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/E_cal_vs_theta_lp_QEL_only_2p.pdf");
         c1->Clear();
 
         // Theta_l -all interactions (1n1p):
 
         fChain->Draw("El + Ef[0] + Ef[1] - 0.938272 - 0.939565:acos(pzl / sqrt(pxl * pxl + pyl * pyl + pzl * pzl)) * 180.0 / 3.14159265359>>h2(100, 0.0, 120, 100, 2.12, 2.3)",
                      "nf==2 && nfn==1 && nfp == 1", "colz");
-        c1->SaveAs("plots/E_cal_restorations/Other/all_interactions/E_cal_vs_theta_lp_all_int_1n1p.png");
+        c1->SaveAs("plots/E_cal_restorations/Other/all_interactions/E_cal_vs_theta_lp_all_int_1n1p.pdf");
         c1->Clear();
 
         // Theta_l - QEL only (1n1p):
 
         fChain->Draw("El + Ef[0] + Ef[1] - 0.938272 - 0.939565:acos(pzl / sqrt(pxl * pxl + pyl * pyl + pzl * pzl)) * 180.0 / 3.14159265359>>h2(100, 0.0, 120, 100, 2.12, 2.23)",
                      "nf==2 && nfn==1 && nfp == 1 && qel", "colz");
-        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/E_cal_vs_theta_lp_QEL_only_1n1p.png");
+        c1->SaveAs("plots/E_cal_restorations/Other/QEL_only/E_cal_vs_theta_lp_QEL_only_1n1p.pdf");
         c1->Clear();
 #pragma endregion
     }
@@ -9358,7 +9358,7 @@ void gst::Loop() {
         MomentumStack_2p_legend->Draw();
 
         plots->Add(MomentumStack_2p);
-        c1->SaveAs("plots/momentum_histograms/Momentum_stack_2p.png");
+        c1->SaveAs("plots/momentum_histograms/Momentum_stack_2p.pdf");
         c1->Clear();
 #pragma endregion
 
@@ -9379,7 +9379,7 @@ void gst::Loop() {
         MomentumStack_1n1p_legend->Draw();
 
         plots->Add(MomentumStack_1n1p);
-        c1->SaveAs("plots/momentum_histograms/Momentum_stack_1n1p.png");
+        c1->SaveAs("plots/momentum_histograms/Momentum_stack_1n1p.pdf");
         c1->Clear();
 #pragma endregion
     }
@@ -9401,9 +9401,9 @@ void gst::Loop() {
         P_L_hist->GetXaxis()->CenterTitle(true);
         P_L_hist->SetLineColor(kBlue);
         c1->SetLogy(1);
-        c1->SaveAs("plots/MicroBooNE_plots/momentum_distributions/P_L_histogram_log_scale.png");
+        c1->SaveAs("plots/MicroBooNE_plots/momentum_distributions/P_L_histogram_log_scale.pdf");
         c1->SetLogy(0);
-        c1->SaveAs("plots/MicroBooNE_plots/momentum_distributions/P_L_histogram_linear_scale.png");
+        c1->SaveAs("plots/MicroBooNE_plots/momentum_distributions/P_L_histogram_linear_scale.pdf");
         c1->Clear();
 
         P_R_hist->Draw();
@@ -9412,9 +9412,9 @@ void gst::Loop() {
         P_R_hist->GetXaxis()->CenterTitle(true);
         P_R_hist->SetLineColor(kBlue);
         c1->SetLogy(1);
-        c1->SaveAs("plots/MicroBooNE_plots/momentum_distributions/P_R_histogram_log_scale.png");
+        c1->SaveAs("plots/MicroBooNE_plots/momentum_distributions/P_R_histogram_log_scale.pdf");
         c1->SetLogy(0);
-        c1->SaveAs("plots/MicroBooNE_plots/momentum_distributions/P_R_histogram_linear_scale.png");
+        c1->SaveAs("plots/MicroBooNE_plots/momentum_distributions/P_R_histogram_linear_scale.pdf");
         c1->Clear();
 
         P_lp_hist->Draw();
@@ -9423,9 +9423,9 @@ void gst::Loop() {
         P_lp_hist->GetXaxis()->CenterTitle(true);
         P_lp_hist->SetLineColor(kBlue);
         c1->SetLogy(1);
-        c1->SaveAs("plots/MicroBooNE_plots/momentum_distributions/P_lp_histogram_log_scale.png");
+        c1->SaveAs("plots/MicroBooNE_plots/momentum_distributions/P_lp_histogram_log_scale.pdf");
         c1->SetLogy(0);
-        c1->SaveAs("plots/MicroBooNE_plots/momentum_distributions/P_lp_histogram_linear_scale.png");
+        c1->SaveAs("plots/MicroBooNE_plots/momentum_distributions/P_lp_histogram_linear_scale.pdf");
         c1->Clear();
 
         P_pion_hist->Draw();
@@ -9434,9 +9434,9 @@ void gst::Loop() {
         P_pion_hist->GetXaxis()->CenterTitle(true);
         P_pion_hist->SetLineColor(kBlue);
         c1->SetLogy(1);
-        c1->SaveAs("plots/MicroBooNE_plots/momentum_distributions/P_pion_histogram_log_scale.png");
+        c1->SaveAs("plots/MicroBooNE_plots/momentum_distributions/P_pion_histogram_log_scale.pdf");
         c1->SetLogy(0);
-        c1->SaveAs("plots/MicroBooNE_plots/momentum_distributions/P_pion_histogram_linear_scale.png");
+        c1->SaveAs("plots/MicroBooNE_plots/momentum_distributions/P_pion_histogram_linear_scale.pdf");
         c1->Clear();
 
         // Unweighted plots -----------------------------------------------------------------------------
@@ -9451,7 +9451,7 @@ void gst::Loop() {
         gamma_Lab_hist->SetLineWidth(2);
         gamma_Lab_hist->SetLineColor(kBlue);
         //        gamma_Lab_hist->SetStats(0);
-        c1->SaveAs("plots/MicroBooNE_plots/gamma_Lab.png");
+        c1->SaveAs("plots/MicroBooNE_plots/gamma_Lab.pdf");
         c1->Clear();
 
         gamma_mu_p_tot->Draw();
@@ -9463,7 +9463,7 @@ void gst::Loop() {
         gamma_mu_p_tot->SetLineWidth(2);
         gamma_mu_p_tot->SetLineColor(kBlue);
         //        gamma_mu_p_tot->SetStats(0);
-        c1->SaveAs("plots/MicroBooNE_plots/gamma_mu_p_tot.png");
+        c1->SaveAs("plots/MicroBooNE_plots/gamma_mu_p_tot.pdf");
         c1->Clear();
 
         dP_T_hist->Draw();
@@ -9475,7 +9475,7 @@ void gst::Loop() {
         dP_T_hist->SetLineWidth(2);
         dP_T_hist->SetLineColor(kBlue);
         //        dP_T_hist->SetStats(0);
-        c1->SaveAs("plots/MicroBooNE_plots/dP_T_histogram.png");
+        c1->SaveAs("plots/MicroBooNE_plots/dP_T_histogram.pdf");
         c1->Clear();
 
         gamma_Lab_all_hist->Draw();
@@ -9487,7 +9487,7 @@ void gst::Loop() {
         gamma_Lab_all_hist->SetLineWidth(2);
         gamma_Lab_all_hist->SetLineColor(kBlue);
         //        gamma_Lab_all_hist->SetStats(0);
-        c1->SaveAs("plots/MicroBooNE_plots/gamma_lab/all_interactions/gamma_Lab_all.png");
+        c1->SaveAs("plots/MicroBooNE_plots/gamma_lab/all_interactions/gamma_Lab_all.pdf");
         c1->Clear();
 
         gamma_Lab_QEL_hist->Draw();
@@ -9499,7 +9499,7 @@ void gst::Loop() {
         gamma_Lab_QEL_hist->SetLineWidth(2);
         gamma_Lab_QEL_hist->SetLineColor(kBlue);
         //        gamma_Lab_QEL_hist->SetStats(0);
-        c1->SaveAs("plots/MicroBooNE_plots/gamma_lab/QEL_only/gamma_Lab_QEL.png");
+        c1->SaveAs("plots/MicroBooNE_plots/gamma_lab/QEL_only/gamma_Lab_QEL.pdf");
         c1->Clear();
 
         gamma_Lab_MEC_hist->Draw();
@@ -9511,7 +9511,7 @@ void gst::Loop() {
         gamma_Lab_MEC_hist->SetLineWidth(2);
         gamma_Lab_MEC_hist->SetLineColor(kBlue);
         //        gamma_Lab_MEC_hist->SetStats(0);
-        c1->SaveAs("plots/MicroBooNE_plots/gamma_lab/MEC_only/gamma_Lab_MEC.png");
+        c1->SaveAs("plots/MicroBooNE_plots/gamma_lab/MEC_only/gamma_Lab_MEC.pdf");
         c1->Clear();
 
         gamma_Lab_RES_hist->Draw();
@@ -9523,7 +9523,7 @@ void gst::Loop() {
         gamma_Lab_RES_hist->SetLineWidth(2);
         gamma_Lab_RES_hist->SetLineColor(kBlue);
         //        gamma_Lab_RES_hist->SetStats(0);
-        c1->SaveAs("plots/MicroBooNE_plots/gamma_lab/RES_only/gamma_Lab_RES.png");
+        c1->SaveAs("plots/MicroBooNE_plots/gamma_lab/RES_only/gamma_Lab_RES.pdf");
         c1->Clear();
 
         gamma_Lab_DIS_hist->Draw();
@@ -9535,7 +9535,7 @@ void gst::Loop() {
         gamma_Lab_DIS_hist->SetLineWidth(2);
         gamma_Lab_DIS_hist->SetLineColor(kBlue);
         //        gamma_Lab_DIS_hist->SetStats(0);
-        c1->SaveAs("plots/MicroBooNE_plots/gamma_lab/DIS_only/gamma_Lab_DIS.png");
+        c1->SaveAs("plots/MicroBooNE_plots/gamma_lab/DIS_only/gamma_Lab_DIS.pdf");
         c1->Clear();
 
         // Weighted plots -------------------------------------------------------------------------------
@@ -9550,7 +9550,7 @@ void gst::Loop() {
         gamma_Lab_hist_weighted->SetLineWidth(2);
         gamma_Lab_hist_weighted->SetLineColor(kBlue);
         gamma_Lab_hist_weighted->SetStats(0);
-        c1->SaveAs("plots/MicroBooNE_plots/gamma_Lab_weighted.png");
+        c1->SaveAs("plots/MicroBooNE_plots/gamma_Lab_weighted.pdf");
         c1->Clear();
 
         gamma_mu_p_tot_weighted->Draw();
@@ -9563,7 +9563,7 @@ void gst::Loop() {
         gamma_mu_p_tot_weighted->SetLineWidth(2);
         gamma_mu_p_tot_weighted->SetLineColor(kBlue);
         gamma_mu_p_tot_weighted->SetStats(0);
-        c1->SaveAs("plots/MicroBooNE_plots/gamma_mu_p_tot_weighted.png");
+        c1->SaveAs("plots/MicroBooNE_plots/gamma_mu_p_tot_weighted.pdf");
         c1->Clear();
 
         dP_T_hist_weighted->Draw();
@@ -9576,7 +9576,7 @@ void gst::Loop() {
         dP_T_hist_weighted->SetLineWidth(2);
         dP_T_hist_weighted->SetLineColor(kBlue);
         dP_T_hist_weighted->SetStats(0);
-        c1->SaveAs("plots/MicroBooNE_plots/dP_T_histogram_weighted.png");
+        c1->SaveAs("plots/MicroBooNE_plots/dP_T_histogram_weighted.pdf");
         c1->Clear();
 
         gamma_Lab_all_hist_weighted->Draw();
@@ -9589,7 +9589,7 @@ void gst::Loop() {
         gamma_Lab_all_hist_weighted->SetLineWidth(2);
         gamma_Lab_all_hist_weighted->SetLineColor(kBlue);
         //        gamma_Lab_all_hist_weighted->SetStats(0);
-        c1->SaveAs("plots/MicroBooNE_plots/gamma_lab/all_interactions/gamma_Lab_all_weighted.png");
+        c1->SaveAs("plots/MicroBooNE_plots/gamma_lab/all_interactions/gamma_Lab_all_weighted.pdf");
         c1->Clear();
 
         gamma_Lab_QEL_hist_weighted->Draw();
@@ -9602,7 +9602,7 @@ void gst::Loop() {
         gamma_Lab_QEL_hist_weighted->SetLineWidth(2);
         gamma_Lab_QEL_hist_weighted->SetLineColor(kBlue);
         //        gamma_Lab_QEL_hist_weighted->SetStats(0);
-        c1->SaveAs("plots/MicroBooNE_plots/gamma_lab/QEL_only/gamma_Lab_QEL_weighted.png");
+        c1->SaveAs("plots/MicroBooNE_plots/gamma_lab/QEL_only/gamma_Lab_QEL_weighted.pdf");
         c1->Clear();
 
         gamma_Lab_MEC_hist_weighted->Draw();
@@ -9615,7 +9615,7 @@ void gst::Loop() {
         gamma_Lab_MEC_hist_weighted->SetLineWidth(2);
         gamma_Lab_MEC_hist_weighted->SetLineColor(kBlue);
         //        gamma_Lab_MEC_hist_weighted->SetStats(0);
-        c1->SaveAs("plots/MicroBooNE_plots/gamma_lab/MEC_only/gamma_Lab_MEC_weighted.png");
+        c1->SaveAs("plots/MicroBooNE_plots/gamma_lab/MEC_only/gamma_Lab_MEC_weighted.pdf");
         c1->Clear();
 
         gamma_Lab_RES_hist_weighted->Draw();
@@ -9628,7 +9628,7 @@ void gst::Loop() {
         gamma_Lab_RES_hist_weighted->SetLineWidth(2);
         gamma_Lab_RES_hist_weighted->SetLineColor(kBlue);
         //        gamma_Lab_RES_hist_weighted->SetStats(0);
-        c1->SaveAs("plots/MicroBooNE_plots/gamma_lab/RES_only/gamma_Lab_RES_weighted.png");
+        c1->SaveAs("plots/MicroBooNE_plots/gamma_lab/RES_only/gamma_Lab_RES_weighted.pdf");
         c1->Clear();
 
         gamma_Lab_DIS_hist_weighted->Draw();
@@ -9641,7 +9641,7 @@ void gst::Loop() {
         gamma_Lab_DIS_hist_weighted->SetLineWidth(2);
         gamma_Lab_DIS_hist_weighted->SetLineColor(kBlue);
         //        gamma_Lab_DIS_hist_weighted->SetStats(0);
-        c1->SaveAs("plots/MicroBooNE_plots/gamma_lab/DIS_only/gamma_Lab_DIS_weighted.png");
+        c1->SaveAs("plots/MicroBooNE_plots/gamma_lab/DIS_only/gamma_Lab_DIS_weighted.pdf");
         c1->Clear();
     }
 
@@ -9661,7 +9661,7 @@ void gst::Loop() {
         Q2_hist_inclusive->SetLineWidth(2);
         Q2_hist_inclusive->GetXaxis()->CenterTitle(true);
         Q2_hist_inclusive->SetLineColor(kBlue);
-        c1->SaveAs("plots/Energy_transfer_histograms/Inclusive_plots/Q2_inclusive.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Inclusive_plots/Q2_inclusive.pdf");
         Q2_hist_inclusive->SetLineWidth(4);
         Q2_hist_inclusive->SetLineStyle(2);
         //        Q2_hist_inclusive->SetLineStyle(5);
@@ -9684,7 +9684,7 @@ void gst::Loop() {
         E_Trans15_all_inclusive->SetLineWidth(2);
         E_Trans15_all_inclusive->GetXaxis()->CenterTitle(true);
         E_Trans15_all_inclusive->SetLineColor(kBlack);
-        c1->SaveAs("plots/Energy_transfer_histograms/Inclusive_plots/Energy_transfer_Ev-El_around_15_Deg_all_interactions_liner_scale_inclusive.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Inclusive_plots/Energy_transfer_Ev-El_around_15_Deg_all_interactions_liner_scale_inclusive.pdf");
         E_Trans15_all_inclusive->SetLineWidth(4);
         E_Trans15_all_inclusive->SetLineStyle(2);
         //        E_Trans15_all_inclusive->SetLineStyle(5);
@@ -9706,7 +9706,7 @@ void gst::Loop() {
         E_Trans15_QEL_inclusive->SetLineWidth(2);
         E_Trans15_QEL_inclusive->GetXaxis()->CenterTitle(true);
         E_Trans15_QEL_inclusive->SetLineColor(kBlue);
-        c1->SaveAs("plots/Energy_transfer_histograms/Inclusive_plots/Energy_transfer_Ev-El_around_15_Deg_QEL_only_liner_scale_inclusive.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Inclusive_plots/Energy_transfer_Ev-El_around_15_Deg_QEL_only_liner_scale_inclusive.pdf");
         E_Trans15_QEL_inclusive->SetStats(0);
         Energy_Transfer_all_int_15_inclusive_Stack->Add(E_Trans15_QEL_inclusive);
         c1->Clear();
@@ -9724,7 +9724,7 @@ void gst::Loop() {
         E_Trans15_MEC_inclusive->SetLineWidth(2);
         E_Trans15_MEC_inclusive->GetXaxis()->CenterTitle(true);
         E_Trans15_MEC_inclusive->SetLineColor(kRed);
-        c1->SaveAs("plots/Energy_transfer_histograms/Inclusive_plots/Energy_transfer_Ev-El_around_15_Deg_MEC_only_liner_scale_inclusive.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Inclusive_plots/Energy_transfer_Ev-El_around_15_Deg_MEC_only_liner_scale_inclusive.pdf");
         E_Trans15_MEC_inclusive->SetStats(0);
         Energy_Transfer_all_int_15_inclusive_Stack->Add(E_Trans15_MEC_inclusive);
         c1->Clear();
@@ -9742,7 +9742,7 @@ void gst::Loop() {
         E_Trans15_RES_inclusive->SetLineWidth(2);
         E_Trans15_RES_inclusive->GetXaxis()->CenterTitle(true);
         E_Trans15_RES_inclusive->SetLineColor(kGreen);
-        c1->SaveAs("plots/Energy_transfer_histograms/Inclusive_plots/Energy_transfer_Ev-El_around_15_Deg_RES_only_liner_scale_inclusive.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Inclusive_plots/Energy_transfer_Ev-El_around_15_Deg_RES_only_liner_scale_inclusive.pdf");
         E_Trans15_RES_inclusive->SetStats(0);
         Energy_Transfer_all_int_15_inclusive_Stack->Add(E_Trans15_RES_inclusive);
         c1->Clear();
@@ -9760,7 +9760,7 @@ void gst::Loop() {
         E_Trans15_DIS_inclusive->SetLineWidth(2);
         E_Trans15_DIS_inclusive->GetXaxis()->CenterTitle(true);
         E_Trans15_DIS_inclusive->SetLineColor(kCyan);
-        c1->SaveAs("plots/Energy_transfer_histograms/Inclusive_plots/Energy_transfer_Ev-El_around_15_Deg_DIS_only_liner_scale_inclusive.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Inclusive_plots/Energy_transfer_Ev-El_around_15_Deg_DIS_only_liner_scale_inclusive.pdf");
         E_Trans15_DIS_inclusive->SetStats(0);
         Energy_Transfer_all_int_15_inclusive_Stack->Add(E_Trans15_DIS_inclusive);
         c1->Clear();
@@ -9790,7 +9790,7 @@ void gst::Loop() {
         E_Trans_15_inclusive_legend->Draw();
 
         plots->Add(Energy_Transfer_all_int_15_inclusive_Stack);
-        c1->SaveAs("plots/Energy_transfer_histograms/Inclusive_plots/Energy_transfer_histogram_15_Stack_liner_scale_inclusive.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Inclusive_plots/Energy_transfer_histogram_15_Stack_liner_scale_inclusive.pdf");
         c1->Clear();
 
         ////      Normalization factor (equals to max(E_Trans_VS_q_all_inclusive)):
@@ -9818,9 +9818,9 @@ void gst::Loop() {
         plots->Add(E_Trans_VS_q_all_inclusive);
         E_Trans_VS_q_all_inclusive->SetStats(0);
         c1->SetLogz(1);
-        c1->SaveAs("plots/Energy_transfer_histograms/Inclusive_plots/Energy_transfer_Ev-El_VS_q_all_inclusive_log_scale.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Inclusive_plots/Energy_transfer_Ev-El_VS_q_all_inclusive_log_scale.pdf");
         c1->SetLogz(0);
-        c1->SaveAs("plots/Energy_transfer_histograms/Inclusive_plots/Energy_transfer_Ev-El_VS_q_all_inclusive_liner_scale.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Inclusive_plots/Energy_transfer_Ev-El_VS_q_all_inclusive_liner_scale.pdf");
         c1->Clear();
 
         //      Normalization factor (equals to max(fsEl_VS_theta_lp_all_int_2p)):
@@ -9846,9 +9846,9 @@ void gst::Loop() {
         plots->Add(E_Trans_VS_q_QEL_inclusive);
         E_Trans_VS_q_QEL_inclusive->SetStats(0);
         c1->SetLogz(1);
-        c1->SaveAs("plots/Energy_transfer_histograms/Inclusive_plots/Energy_transfer_Ev-El_VS_q_QEL_inclusive_log_scale.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Inclusive_plots/Energy_transfer_Ev-El_VS_q_QEL_inclusive_log_scale.pdf");
         c1->SetLogz(0);
-        c1->SaveAs("plots/Energy_transfer_histograms/Inclusive_plots/Energy_transfer_Ev-El_VS_q_QEL_inclusive_liner_scale.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Inclusive_plots/Energy_transfer_Ev-El_VS_q_QEL_inclusive_liner_scale.pdf");
         c1->Clear();
 
         //      Normalization factor (equals to max(E_Trans_VS_q_MEC_inclusive)):
@@ -9873,9 +9873,9 @@ void gst::Loop() {
         plots->Add(E_Trans_VS_q_MEC_inclusive);
         E_Trans_VS_q_MEC_inclusive->SetStats(0);
         c1->SetLogz(1);
-        c1->SaveAs("plots/Energy_transfer_histograms/Inclusive_plots/Energy_transfer_Ev-El_VS_q_MEC_inclusive_log_scale.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Inclusive_plots/Energy_transfer_Ev-El_VS_q_MEC_inclusive_log_scale.pdf");
         c1->SetLogz(0);
-        c1->SaveAs("plots/Energy_transfer_histograms/Inclusive_plots/Energy_transfer_Ev-El_VS_q_MEC_inclusive_liner_scale.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Inclusive_plots/Energy_transfer_Ev-El_VS_q_MEC_inclusive_liner_scale.pdf");
         c1->Clear();
 
         // 2p: MOVE TO ET
@@ -9886,9 +9886,9 @@ void gst::Loop() {
         E_Trans_VS_q3_all_2p->GetXaxis()->CenterTitle(true);
         E_Trans_VS_q3_all_2p->GetYaxis()->CenterTitle(true);
         c1->SetLogz(1);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_VS_q3/Energy_transfer_Ev-El_VS_q3_all_log_scale_2p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_VS_q3/Energy_transfer_Ev-El_VS_q3_all_log_scale_2p.pdf");
         c1->SetLogz(0);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_VS_q3/Energy_transfer_Ev-El_VS_q3_all_linear_scale_2p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_VS_q3/Energy_transfer_Ev-El_VS_q3_all_linear_scale_2p.pdf");
         c1->Clear();
 
         E_Trans_VS_q3_QEL_2p->Draw("colz");
@@ -9897,9 +9897,9 @@ void gst::Loop() {
         E_Trans_VS_q3_QEL_2p->GetXaxis()->CenterTitle(true);
         E_Trans_VS_q3_QEL_2p->GetYaxis()->CenterTitle(true);
         c1->SetLogz(1);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_VS_q3/Energy_transfer_Ev-El_VS_q3_QEL_log_scale_2p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_VS_q3/Energy_transfer_Ev-El_VS_q3_QEL_log_scale_2p.pdf");
         c1->SetLogz(0);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_VS_q3/Energy_transfer_Ev-El_VS_q3_QEL_linear_scale_2p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_VS_q3/Energy_transfer_Ev-El_VS_q3_QEL_linear_scale_2p.pdf");
         c1->Clear();
 
         E_Trans_VS_q3_MEC_2p->Draw("colz");
@@ -9908,9 +9908,9 @@ void gst::Loop() {
         E_Trans_VS_q3_MEC_2p->GetXaxis()->CenterTitle(true);
         E_Trans_VS_q3_MEC_2p->GetYaxis()->CenterTitle(true);
         c1->SetLogz(1);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_VS_q3/Energy_transfer_Ev-El_VS_q3_MEC_log_scale_2p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_VS_q3/Energy_transfer_Ev-El_VS_q3_MEC_log_scale_2p.pdf");
         c1->SetLogz(0);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_VS_q3/Energy_transfer_Ev-El_VS_q3_MEC_linear_scale_2p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_VS_q3/Energy_transfer_Ev-El_VS_q3_MEC_linear_scale_2p.pdf");
         c1->Clear();
 
         // 1n1p: MOVE TO ET
@@ -9921,9 +9921,9 @@ void gst::Loop() {
         E_Trans_VS_q3_all_1n1p->GetXaxis()->CenterTitle(true);
         E_Trans_VS_q3_all_1n1p->GetYaxis()->CenterTitle(true);
         c1->SetLogz(1);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_VS_q3/Energy_transfer_Ev-El_VS_q3_all_log_scale_1n1p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_VS_q3/Energy_transfer_Ev-El_VS_q3_all_log_scale_1n1p.pdf");
         c1->SetLogz(0);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_VS_q3/Energy_transfer_Ev-El_VS_q3_all_linear_scale_1n1p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_VS_q3/Energy_transfer_Ev-El_VS_q3_all_linear_scale_1n1p.pdf");
         c1->Clear();
 
         E_Trans_VS_q3_QEL_1n1p->Draw("colz");
@@ -9932,9 +9932,9 @@ void gst::Loop() {
         E_Trans_VS_q3_QEL_1n1p->GetXaxis()->CenterTitle(true);
         E_Trans_VS_q3_QEL_1n1p->GetYaxis()->CenterTitle(true);
         c1->SetLogz(1);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_VS_q3/Energy_transfer_Ev-El_VS_q3_QEL_log_scale_1n1p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_VS_q3/Energy_transfer_Ev-El_VS_q3_QEL_log_scale_1n1p.pdf");
         c1->SetLogz(0);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_VS_q3/Energy_transfer_Ev-El_VS_q3_QEL_linear_scale_1n1p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_VS_q3/Energy_transfer_Ev-El_VS_q3_QEL_linear_scale_1n1p.pdf");
         c1->Clear();
 
         E_Trans_VS_q3_MEC_1n1p->Draw("colz");
@@ -9943,9 +9943,9 @@ void gst::Loop() {
         E_Trans_VS_q3_MEC_1n1p->GetXaxis()->CenterTitle(true);
         E_Trans_VS_q3_MEC_1n1p->GetYaxis()->CenterTitle(true);
         c1->SetLogz(1);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_VS_q3/Energy_transfer_Ev-El_VS_q3_MEC_log_scale_1n1p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_VS_q3/Energy_transfer_Ev-El_VS_q3_MEC_log_scale_1n1p.pdf");
         c1->SetLogz(0);
-        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_VS_q3/Energy_transfer_Ev-El_VS_q3_MEC_linear_scale_1n1p.png");
+        c1->SaveAs("plots/Energy_transfer_histograms/Energy_transfer_VS_q3/Energy_transfer_Ev-El_VS_q3_MEC_linear_scale_1n1p.pdf");
         c1->Clear();
     }
 #pragma endregion.q

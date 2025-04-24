@@ -187,7 +187,7 @@ class hPlot1D {
 
     void SimpleDraw() { Histogram1D->Draw(); }
 
-    void SimpleSave(TCanvas *HistogramCanvas) { HistogramCanvas->SaveAs((Histogram1DSaveNamePath + "/" + Histogram1DSaveName + ".png").c_str()); }
+    void SimpleSave(TCanvas *HistogramCanvas) { HistogramCanvas->SaveAs((Histogram1DSaveNamePath + "/" + Histogram1DSaveName + ".pdf").c_str()); }
 
     void hDrawAndSave(const std::string &SampleName, TCanvas *h1DCanvas, TList *hList, vector<TObject *> &HistoList, bool normHistogram, bool cNormalization, double cNormalizationFactor,
                       double plot_lower_cut = -9999, double plot_upper_cut = 9999, double plot_Xmax = 0, bool plotMax = false);

@@ -227,11 +227,11 @@ void StackPlot3(string &SampleName, TList *Histogram_list, hPlot1D const &Hist1,
     Histogram_list->Add(HistogramStack);
 
     if (finalState.empty()) {
-        StackPlot4Canvas->SaveAs((HistogramStackSaveNamePath + HistogramStackSaveName + ".png").c_str());
-        //        StackPlot4Canvas->SaveAs((HistogramStackSaveNamePath + HistogramStackSaveName + "_" + Histogram1DTitleReactions + ".png").c_str());
+        StackPlot4Canvas->SaveAs((HistogramStackSaveNamePath + HistogramStackSaveName + ".pdf").c_str());
+        //        StackPlot4Canvas->SaveAs((HistogramStackSaveNamePath + HistogramStackSaveName + "_" + Histogram1DTitleReactions + ".pdf").c_str());
     } else {
-        StackPlot4Canvas->SaveAs((HistogramStackSaveNamePath + HistogramStackSaveName + ".png").c_str());
-        //        StackPlot4Canvas->SaveAs((HistogramStackSaveNamePath + HistogramStackSaveName + "_" + Histogram1DTitleReactions + "_" + finalState + ".png").c_str());
+        StackPlot4Canvas->SaveAs((HistogramStackSaveNamePath + HistogramStackSaveName + ".pdf").c_str());
+        //        StackPlot4Canvas->SaveAs((HistogramStackSaveNamePath + HistogramStackSaveName + "_" + Histogram1DTitleReactions + "_" + finalState + ".pdf").c_str());
     }
 
     StackPlot4Canvas->Clear();

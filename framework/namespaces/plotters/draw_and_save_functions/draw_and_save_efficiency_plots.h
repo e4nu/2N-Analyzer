@@ -194,16 +194,16 @@ void DrawAndSaveEfficiencyPlots(const std::string &SampleName, const hPlot1D &TL
         sNameFlag = "d";
     }
 
-    std::string RPlot_Clone_SaveName = EfficiencySaveDir + sNameFlag + "_" + EfficiencyParticle + "_" + EfficiencyType + "_" + EfficiencyFSDir + "_" + "Rec_Clone.png";
-    std::string RPlot_Clone_test_SaveName = EfficiencyTestSaveDir + sNameFlag + "01a_" + EfficiencyParticleDir + "_" + EfficiencyType + "_" + EfficiencyFSDir + "_" + "Rec_Clone_test.png";
+    std::string RPlot_Clone_SaveName = EfficiencySaveDir + sNameFlag + "_" + EfficiencyParticle + "_" + EfficiencyType + "_" + EfficiencyFSDir + "_" + "Rec_Clone.pdf";
+    std::string RPlot_Clone_test_SaveName = EfficiencyTestSaveDir + sNameFlag + "01a_" + EfficiencyParticleDir + "_" + EfficiencyType + "_" + EfficiencyFSDir + "_" + "Rec_Clone_test.pdf";
     std::string RPlot_Clone_test_rebined_SaveName =
-        EfficiencyTestSaveDir + sNameFlag + "01b_" + EfficiencyParticleDir + "_" + EfficiencyType + "_" + EfficiencyFSDir + "_" + "Rec_Clone_test_rebined.png";
-    std::string TLPlot_Clone_SaveName = EfficiencySaveDir + sNameFlag + "_" + EfficiencyParticleDir + "_" + EfficiencyType + "_" + EfficiencyFSDir + "_" + "Truth_Clone.png";
-    std::string TLPlot_Clone_test_SaveName = EfficiencyTestSaveDir + sNameFlag + "02a_" + EfficiencyParticleDir + "_" + EfficiencyType + "_" + EfficiencyFSDir + "_" + "Truth_Clone_test.png";
+        EfficiencyTestSaveDir + sNameFlag + "01b_" + EfficiencyParticleDir + "_" + EfficiencyType + "_" + EfficiencyFSDir + "_" + "Rec_Clone_test_rebined.pdf";
+    std::string TLPlot_Clone_SaveName = EfficiencySaveDir + sNameFlag + "_" + EfficiencyParticleDir + "_" + EfficiencyType + "_" + EfficiencyFSDir + "_" + "Truth_Clone.pdf";
+    std::string TLPlot_Clone_test_SaveName = EfficiencyTestSaveDir + sNameFlag + "02a_" + EfficiencyParticleDir + "_" + EfficiencyType + "_" + EfficiencyFSDir + "_" + "Truth_Clone_test.pdf";
     std::string TLPlot_Clone_test_rebined_SaveName =
-        EfficiencyTestSaveDir + sNameFlag + "02b_" + EfficiencyParticleDir + "_" + EfficiencyType + "_" + EfficiencyFSDir + "_" + "Truth_Clone_test_rebined.png";
+        EfficiencyTestSaveDir + sNameFlag + "02b_" + EfficiencyParticleDir + "_" + EfficiencyType + "_" + EfficiencyFSDir + "_" + "Truth_Clone_test_rebined.pdf";
     std::string Efficiency_plot_SaveName =
-        EfficiencySaveDir + sNameFlag + "_" + EfficiencyParticleRegionDir + +"_" + EfficiencyParticleDir + "_" + EfficiencyType + "_efficiency_" + EfficiencyFSDir + ".png";
+        EfficiencySaveDir + sNameFlag + "_" + EfficiencyParticleRegionDir + +"_" + EfficiencyParticleDir + "_" + EfficiencyType + "_efficiency_" + EfficiencyFSDir + ".pdf";
     #pragma endregion
 
     TH1D *Efficiency_plot = (TH1D *)Histogram1D_REC->Clone((EfficiencyParticleRegion + EfficiencyParticle + " " + EfficiencyType + " #epsilon_{eff}" + " (" + EfficiencyFS + ")").c_str());
@@ -377,16 +377,16 @@ void DrawAndSaveEfficiencyPlots(const std::string &SampleName, const hPlot1D &TL
     Canvas->SaveAs((Efficiency_plot_SaveName).c_str());
 
     Efficiency_plot->GetYaxis()->SetRangeUser(0., 0.6);
-    Canvas->SaveAs((Efficiency_plot_SaveName.substr(0, Efficiency_plot_SaveName.find_last_of(".png") - 3) + "_ZoomIn1.png").c_str());
+    Canvas->SaveAs((Efficiency_plot_SaveName.substr(0, Efficiency_plot_SaveName.find_last_of(".pdf") - 3) + "_ZoomIn1.pdf").c_str());
 
     Efficiency_plot->GetYaxis()->SetRangeUser(0., 0.3);
-    Canvas->SaveAs((Efficiency_plot_SaveName.substr(0, Efficiency_plot_SaveName.find_last_of(".png") - 3) + "_ZoomIn2.png").c_str());
+    Canvas->SaveAs((Efficiency_plot_SaveName.substr(0, Efficiency_plot_SaveName.find_last_of(".pdf") - 3) + "_ZoomIn2.pdf").c_str());
 
     Efficiency_plot->GetYaxis()->SetRangeUser(0., 0.1);
-    Canvas->SaveAs((Efficiency_plot_SaveName.substr(0, Efficiency_plot_SaveName.find_last_of(".png") - 3) + "_ZoomIn3.png").c_str());
+    Canvas->SaveAs((Efficiency_plot_SaveName.substr(0, Efficiency_plot_SaveName.find_last_of(".pdf") - 3) + "_ZoomIn3.pdf").c_str());
 
     Efficiency_plot->GetYaxis()->SetRangeUser(0., 0.05);
-    Canvas->SaveAs((Efficiency_plot_SaveName.substr(0, Efficiency_plot_SaveName.find_last_of(".png") - 3) + "_ZoomIn4.png").c_str());
+    Canvas->SaveAs((Efficiency_plot_SaveName.substr(0, Efficiency_plot_SaveName.find_last_of(".pdf") - 3) + "_ZoomIn4.pdf").c_str());
 
     Canvas->Clear();
     #pragma endregion
@@ -556,20 +556,20 @@ void DrawAndSaveEfficiencyPlots(const std::string &SampleName, const hPlot1D &TL
         sNameFlag = "d";
     }
 
-    std::string RPlot_Clone_SaveName = EfficiencySaveDir + sNameFlag + "_" + EfficiencyParticle + "_" + EfficiencyType + "_" + EfficiencyFS + "_" + "Rec_Clone.png";
-    std::string RPlot_Clone_test_SaveName = EfficiencyTestSaveDir + sNameFlag + "01a_" + EfficiencyParticle + "_" + EfficiencyType + "_" + EfficiencyFS + "_" + "Rec_Clone_test.png";
+    std::string RPlot_Clone_SaveName = EfficiencySaveDir + sNameFlag + "_" + EfficiencyParticle + "_" + EfficiencyType + "_" + EfficiencyFS + "_" + "Rec_Clone.pdf";
+    std::string RPlot_Clone_test_SaveName = EfficiencyTestSaveDir + sNameFlag + "01a_" + EfficiencyParticle + "_" + EfficiencyType + "_" + EfficiencyFS + "_" + "Rec_Clone_test.pdf";
     std::string RPlot_Clone_test_rebined_SaveName =
-        EfficiencyTestSaveDir + sNameFlag + "01b_" + EfficiencyParticle + "_" + EfficiencyType + "_" + EfficiencyFS + "_" + "Rec_Clone_test_rebined.png";
-    std::string TLPlot_Clone_SaveName = EfficiencySaveDir + sNameFlag + "_" + EfficiencyParticle + "_" + EfficiencyType + "_" + EfficiencyFS + "_" + "Truth_Clone.png";
-    std::string TLPlot_Clone_test_SaveName = EfficiencyTestSaveDir + sNameFlag + "02a_" + EfficiencyParticle + "_" + EfficiencyType + "_" + EfficiencyFS + "_" + "Truth_Clone_test.png";
+        EfficiencyTestSaveDir + sNameFlag + "01b_" + EfficiencyParticle + "_" + EfficiencyType + "_" + EfficiencyFS + "_" + "Rec_Clone_test_rebined.pdf";
+    std::string TLPlot_Clone_SaveName = EfficiencySaveDir + sNameFlag + "_" + EfficiencyParticle + "_" + EfficiencyType + "_" + EfficiencyFS + "_" + "Truth_Clone.pdf";
+    std::string TLPlot_Clone_test_SaveName = EfficiencyTestSaveDir + sNameFlag + "02a_" + EfficiencyParticle + "_" + EfficiencyType + "_" + EfficiencyFS + "_" + "Truth_Clone_test.pdf";
     std::string TLPlot_Clone_test_rebined_SaveName =
-        EfficiencyTestSaveDir + sNameFlag + "02b_" + EfficiencyParticle + "_" + EfficiencyType + "_" + EfficiencyFS + "_" + "Truth_Clone_test_rebined.png";
-    std::string Efficiency_plot_SaveName = EfficiencySaveDir + sNameFlag + "_" + EfficiencyParticle + "_" + EfficiencyType + "_efficiency_" + EfficiencyFS + ".png";
-    //    std::string RPlot_Clone_SaveName = EfficiencySaveDir + sNameFlag + "_" + EfficiencyParticle + "_" + EfficiencyType + "_" + EfficiencyFS + "_" + "Rec_Clone.png";
-    //    std::string RPlot_Clone_test_SaveName = EfficiencyTestSaveDir + sNameFlag + "_" + EfficiencyParticle + "_" + EfficiencyType + "_" + EfficiencyFS + "_" + "Rec_Clone_test.png";
-    //    std::string TLPlot_Clone_SaveName = EfficiencySaveDir + sNameFlag + "_" + EfficiencyParticle + "_" + EfficiencyType + "_" + EfficiencyFS + "_" + "Truth_Clone.png";
-    //    std::string TLPlot_Clone_test_SaveName = EfficiencyTestSaveDir + sNameFlag + "_" + EfficiencyParticle + "_" + EfficiencyType + "_" + EfficiencyFS + "_" + "Truth_Clone_test.png";
-    //    std::string Efficiency_plot_SaveName = EfficiencySaveDir + sNameFlag + "_" + EfficiencyParticle + "_" + EfficiencyType + "_efficiency_" + EfficiencyFS + ".png";
+        EfficiencyTestSaveDir + sNameFlag + "02b_" + EfficiencyParticle + "_" + EfficiencyType + "_" + EfficiencyFS + "_" + "Truth_Clone_test_rebined.pdf";
+    std::string Efficiency_plot_SaveName = EfficiencySaveDir + sNameFlag + "_" + EfficiencyParticle + "_" + EfficiencyType + "_efficiency_" + EfficiencyFS + ".pdf";
+    //    std::string RPlot_Clone_SaveName = EfficiencySaveDir + sNameFlag + "_" + EfficiencyParticle + "_" + EfficiencyType + "_" + EfficiencyFS + "_" + "Rec_Clone.pdf";
+    //    std::string RPlot_Clone_test_SaveName = EfficiencyTestSaveDir + sNameFlag + "_" + EfficiencyParticle + "_" + EfficiencyType + "_" + EfficiencyFS + "_" + "Rec_Clone_test.pdf";
+    //    std::string TLPlot_Clone_SaveName = EfficiencySaveDir + sNameFlag + "_" + EfficiencyParticle + "_" + EfficiencyType + "_" + EfficiencyFS + "_" + "Truth_Clone.pdf";
+    //    std::string TLPlot_Clone_test_SaveName = EfficiencyTestSaveDir + sNameFlag + "_" + EfficiencyParticle + "_" + EfficiencyType + "_" + EfficiencyFS + "_" + "Truth_Clone_test.pdf";
+    //    std::string Efficiency_plot_SaveName = EfficiencySaveDir + sNameFlag + "_" + EfficiencyParticle + "_" + EfficiencyType + "_efficiency_" + EfficiencyFS + ".pdf";
     #pragma endregion
 
     TH1D *Efficiency_plot = (TH1D *)RPlot_Clone->Clone((EfficiencyParticle + " " + EfficiencyType + " #epsilon_{eff}" + " (" + EfficiencyFS + ")").c_str());
@@ -713,16 +713,16 @@ void DrawAndSaveEfficiencyPlots(const std::string &SampleName, const hPlot1D &TL
     Canvas->SaveAs((Efficiency_plot_SaveName).c_str());
 
     Efficiency_plot->GetYaxis()->SetRangeUser(0., 0.6);
-    Canvas->SaveAs((Efficiency_plot_SaveName.substr(0, Efficiency_plot_SaveName.find_last_of(".png") - 3) + "_ZoomIn1.png").c_str());
+    Canvas->SaveAs((Efficiency_plot_SaveName.substr(0, Efficiency_plot_SaveName.find_last_of(".pdf") - 3) + "_ZoomIn1.pdf").c_str());
 
     Efficiency_plot->GetYaxis()->SetRangeUser(0., 0.3);
-    Canvas->SaveAs((Efficiency_plot_SaveName.substr(0, Efficiency_plot_SaveName.find_last_of(".png") - 3) + "_ZoomIn2.png").c_str());
+    Canvas->SaveAs((Efficiency_plot_SaveName.substr(0, Efficiency_plot_SaveName.find_last_of(".pdf") - 3) + "_ZoomIn2.pdf").c_str());
 
     Efficiency_plot->GetYaxis()->SetRangeUser(0., 0.1);
-    Canvas->SaveAs((Efficiency_plot_SaveName.substr(0, Efficiency_plot_SaveName.find_last_of(".png") - 3) + "_ZoomIn3.png").c_str());
+    Canvas->SaveAs((Efficiency_plot_SaveName.substr(0, Efficiency_plot_SaveName.find_last_of(".pdf") - 3) + "_ZoomIn3.pdf").c_str());
 
     Efficiency_plot->GetYaxis()->SetRangeUser(0., 0.05);
-    Canvas->SaveAs((Efficiency_plot_SaveName.substr(0, Efficiency_plot_SaveName.find_last_of(".png") - 3) + "_ZoomIn4.png").c_str());
+    Canvas->SaveAs((Efficiency_plot_SaveName.substr(0, Efficiency_plot_SaveName.find_last_of(".pdf") - 3) + "_ZoomIn4.pdf").c_str());
 
     Canvas->Clear();
     #pragma endregion
