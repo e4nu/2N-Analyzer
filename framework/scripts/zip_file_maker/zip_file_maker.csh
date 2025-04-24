@@ -1,7 +1,7 @@
 #!/bin/csh
 
 # To run:
-# source ./framework/scripts/zip_file_maker/zip_file_maker.csh
+# source ./framework/scripts/zip_file_maker/zip_file_maker.csh my_custom_archive.zip
 
 # Check and set COLOR_START and COLOR_END if not already defined
 if (! $?COLOR_START) then
@@ -29,6 +29,7 @@ set OUTPUT_ZIP = "${BASE_DIR}/all_collected_zips.zip"
 if ($#argv >= 1) then
     set CUSTOM_ZIP_NAME = "$1"
     set OUTPUT_ZIP = "${BASE_DIR}/${CUSTOM_ZIP_NAME}"
+    echo "\033[35mCustom output zip filename\033[0m ${CUSTOM_ZIP_NAME}"
 endif
 
 # Remove any previous version of the output zip
