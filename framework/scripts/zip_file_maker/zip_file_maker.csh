@@ -43,10 +43,12 @@ endif
 echo "\033[35mSearching for .zip files in subdirectories of\033[0m ${BASE_DIR}\033[35m...\033[0m"
 
 if ($#argv >= 1) then
-    foreach zipfile (`find "${BASE_DIR}" -mindepth 2 -type d -name "*${CUSTOM_ZIP_NAME}*" | xargs -I {} find {} -maxdepth 1 -type f -name "*.zip"`)
-        echo "\033[35mAdding\033[0m ${zipfile}"
-        zip -j "${OUTPUT_ZIP}" "${zipfile}"
-        echo
+    foreach matchdir (`find "${BASE_DIR}" -mindepth 2 -type d -name "*${CUSTOM_ZIP_NAME}*"`)
+        foreach zipfile (`find "${matchdir}" -maxdepth 1 -type f -name "*.zip"`)
+            echo "\033[35mAdding\033[0m ${zipfile}"
+            zip -j "${OUTPUT_ZIP}" "${zipfile}"
+            echo
+        end
     end
 else
     foreach zipfile (`find "${BASE_DIR}" -mindepth 2 -type f -name "*.zip"`)
