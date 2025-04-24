@@ -33,7 +33,6 @@ class CustomPlotsDirectory {
     std::string Added_PreStatuses, Added_Statuses;
 
     std::string Global_Run_Status = path_definitions::custom_plots_path_prefix;
-    // std::string Global_Run_Status = "V14";
 
    public:
     // Default constructor ---------------------------------------------------------------------------------------------------------------------------------------------

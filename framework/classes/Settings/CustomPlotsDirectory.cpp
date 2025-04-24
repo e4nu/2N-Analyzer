@@ -24,7 +24,7 @@ void CustomPlotsDirectory::ConfigureStatuses(const bool &apply_cuts, const bool 
         if (only_electron_quality_cuts) { Electron_Quality_Cuts_Status = "_eQC"; }
 
         if (apply_nucleon_cuts) {
-            Nucleon_Cuts_Status = "_NC";
+            Nucleon_Cuts_Status = "NC";
         } else {
             Nucleon_Cuts_Status = "noNC";
         }
