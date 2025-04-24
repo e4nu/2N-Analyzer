@@ -30,6 +30,7 @@ if ($#argv >= 1) then
     set CUSTOM_ZIP_NAME = "$1"
     set OUTPUT_ZIP = "${BASE_DIR}/${CUSTOM_ZIP_NAME}"
     echo "\033[35mCustom output zip filename\033[0m ${CUSTOM_ZIP_NAME}"
+    echo
 endif
 
 # Remove any previous version of the output zip
@@ -41,11 +42,19 @@ endif
 # Find all .zip files in subdirectories and add them to the output zip
 echo "\033[35mSearching for .zip files in subdirectories of\033[0m ${BASE_DIR}\033[35m...\033[0m"
 
-foreach zipfile (`find "${BASE_DIR}" -mindepth 2 -type f -name "*.zip"`)
-    echo "\033[35mAdding\033[0m ${zipfile}"
-    zip -j "${OUTPUT_ZIP}" "${zipfile}"
-    echo
-end
+if ($#argv >= 1) then
+    foreach zipfile (`find "${BASE_DIR}" -mindepth 2 -type d -name "*${CUSTOM_ZIP_NAME}*" | xargs -I {} find {} -maxdepth 1 -type f -name "*.zip"`)
+        echo "\033[35mAdding\033[0m ${zipfile}"
+        zip -j "${OUTPUT_ZIP}" "${zipfile}"
+        echo
+    end
+else
+    foreach zipfile (`find "${BASE_DIR}" -mindepth 2 -type f -name "*.zip"`)
+        echo "\033[35mAdding\033[0m ${zipfile}"
+        zip -j "${OUTPUT_ZIP}" "${zipfile}"
+        echo
+    end
+endif
 
 echo "\033[35mDone. Final zip:\033[0m ${OUTPUT_ZIP}"
 echo
