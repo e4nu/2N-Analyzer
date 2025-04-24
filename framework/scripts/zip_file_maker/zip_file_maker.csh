@@ -29,7 +29,7 @@ set OUTPUT_ZIP = "${BASE_DIR}/all_collected_zips.zip"
 if ($#argv >= 1) then
     set CUSTOM_ZIP_NAME = "$1"
     set OUTPUT_ZIP = "${BASE_DIR}/${CUSTOM_ZIP_NAME}"
-    echo "\033[35mCustom output zip filename\033[0m ${CUSTOM_ZIP_NAME}"
+    echo "\033[35mCustom output zip filename:\033[0m ${CUSTOM_ZIP_NAME}"
     echo
 endif
 
@@ -43,12 +43,15 @@ endif
 echo "\033[35mSearching for .zip files in subdirectories of\033[0m ${BASE_DIR}\033[35m...\033[0m"
 
 if ($#argv >= 1) then
-    foreach matchdir (`find "${BASE_DIR}" -mindepth 2 -type d -name "*${CUSTOM_ZIP_NAME}*"`)
-        foreach zipfile (`find "${matchdir}" -maxdepth 1 -type f -name "*.zip"`)
-            echo "\033[35mAdding\033[0m ${zipfile}"
-            zip -j "${OUTPUT_ZIP}" "${zipfile}"
-            echo
-        end
+    foreach matchdir (`find "${BASE_DIR}" -mindepth 2 -type d`)
+        echo "$matchdir" | grep -q "${CUSTOM_ZIP_NAME}"
+        if ($status == 0) then
+            foreach zipfile (`find "${matchdir}" -maxdepth 1 -type f -name "*.zip"`)
+                echo "\033[35mAdding\033[0m ${zipfile}"
+                zip -j "${OUTPUT_ZIP}" "${zipfile}"
+                echo
+            end
+        endif
     end
 else
     foreach zipfile (`find "${BASE_DIR}" -mindepth 2 -type f -name "*.zip"`)
