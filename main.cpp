@@ -49,7 +49,7 @@ int main() {
         if (AnalyzeFilePath_v.size() > 1) { gDirectory->Clear(); }
     }
 
-    if (AnalyzeFilePath_v.size() > 1) { CollectZipFiles(path_definitions::custom_plots_path_prefix); }
+    if (AnalyzeFilePath_v.size() > 1 && zipping::Collect_all_zip_files) { CollectZipFiles(path_definitions::custom_plots_path_prefix); }
 
     cout << "\033[33m#(Analyzed samples):\033[0m\t" << Num_of_Analyzed_samples << "\n";
 
