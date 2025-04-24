@@ -1,15 +1,13 @@
 #!/bin/csh
 
 # To run:
-# source ./framework/scripts/zip_file_maker/zip_file_maker.csh my_custom_archive
-# my_custom_archive.zip is the output
+# source ./framework/scripts/zip_file_maker/zip_file_maker.csh V14_custom_plots_path_prefix_test
 
-# Check and set COLOR_START and COLOR_END if not already defined
+# Set colors if not already set
 if (! $?COLOR_START) then
     unset COLOR_START
     setenv COLOR_START '\033[35m'
 endif
-
 if (! $?COLOR_END) then
     unset COLOR_END
     setenv COLOR_END '\033[0m'
@@ -18,62 +16,43 @@ endif
 echo "${COLOR_START}=======================================================================${COLOR_END}"
 echo "${COLOR_START}= Running zip maker script                                            =${COLOR_END}"
 echo "${COLOR_START}=======================================================================${COLOR_END}"
-echo 
+echo
 
-# Set the base directory to search
-set BASE_DIR = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output"
-
-# Set the output zip file path
-set OUTPUT_ZIP = "${BASE_DIR}/all_collected_zips.zip"
-
-# Check for optional custom output zip filename
-if ($#argv >= 1) then
-    set CUSTOM_ZIP_NAME = "$1"
-    set OUTPUT_ZIP = "${BASE_DIR}/${CUSTOM_ZIP_NAME}"
-
-    # Strip .zip extension for matching directories
-    if ("$CUSTOM_ZIP_NAME" =~ *.zip) then
-        set NAME_FOR_MATCHING = `echo "$CUSTOM_ZIP_NAME" | sed 's/\.zip$//'`
-    else
-        set NAME_FOR_MATCHING = "$CUSTOM_ZIP_NAME"
-    endif
-
-    echo "\033[35mCustom output zip filename:\033[0m ${CUSTOM_ZIP_NAME}"
-    echo
+# Check input argument
+if ($#argv < 1) then
+    echo "${COLOR_START}Error:${COLOR_END} Must provide base name to match directories."
+    exit 1
 endif
 
-# Remove any previous version of the output zip
+# Define input and output
+set NAME_FOR_MATCHING = "$1"
+set BASE_DIR = "/lustre24/expphy/volatile/clas12/asportes/Analysis_output"
+set OUTPUT_ZIP = "${BASE_DIR}/${NAME_FOR_MATCHING}.zip"
+
+echo "${COLOR_START}Looking for zip files in:${COLOR_END} ${BASE_DIR}/*${NAME_FOR_MATCHING}*/"
+echo "${COLOR_START}Saving to:${COLOR_END} ${OUTPUT_ZIP}"
+echo
+
+# Remove previous output zip if it exists
 if (-e "${OUTPUT_ZIP}") then
-    echo "\033[35mRemoving old\033[0m ${OUTPUT_ZIP}"
+    echo "${COLOR_START}Removing existing zip:${COLOR_END} ${OUTPUT_ZIP}"
     rm "${OUTPUT_ZIP}"
 endif
 
-# Find all .zip files in subdirectories and add them to the output zip
-echo "\033[35mSearching for .zip files in subdirectories of\033[0m ${BASE_DIR}\033[35m...\033[0m"
+# Loop over matching directories
+foreach dir (`find "${BASE_DIR}" -maxdepth 1 -mindepth 1 -type d -name "*${NAME_FOR_MATCHING}*"`)
+    echo "${COLOR_START}Matched directory:${COLOR_END} $dir"
+    set dir_name = `basename "$dir"`
+    set zip_path = "$dir/$dir_name.zip"
 
-if ($#argv >= 1) then
-    foreach matchdir (`find "${BASE_DIR}" -mindepth 2 -type d`)
-        if ("$matchdir" =~ *${NAME_FOR_MATCHING}*) then
-            echo "\033[35mMatched directory:\033[0m $matchdir"
-set zipfiles = (`find "$matchdir" -maxdepth 0 -type f -name "*.zip"`)
+    if (-e "$zip_path") then
+        echo "${COLOR_START}  Found zip file:${COLOR_END} $zip_path"
+        zip -j "$OUTPUT_ZIP" "$zip_path"
+    else
+        echo "${COLOR_END}  ⚠️  No zip found at:${COLOR_END} $zip_path"
+    endif
+end
 
-            if ($#zipfiles == 0) then
-                echo "\033[33m  No zip files found in:\033[0m $matchdir"
-            else
-                foreach zipfile ($zipfiles)
-                    echo "\033[35m  Found zip:\033[0m ${zipfile}"
-                    zip -j "${OUTPUT_ZIP}" "${zipfile}"
-                end
-            endif
-        endif
-    end
-else
-    foreach zipfile (`find "${BASE_DIR}" -mindepth 2 -type f -name "*.zip"`)
-        echo "\033[35mAdding\033[0m ${zipfile}"
-        zip -j "${OUTPUT_ZIP}" "${zipfile}"
-        echo
-    end
-endif
-
-echo "\033[35mDone. Final zip:\033[0m ${OUTPUT_ZIP}"
+echo
+echo "${COLOR_START}Done. Final zip:${COLOR_END} ${OUTPUT_ZIP}"
 echo
