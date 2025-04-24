@@ -1,7 +1,8 @@
 #!/bin/csh
 
 # To run:
-# source ./framework/scripts/zip_file_maker/zip_file_maker.csh my_custom_archive.zip
+# source ./framework/scripts/zip_file_maker/zip_file_maker.csh my_custom_archive
+# my_custom_archive.zip is the output
 
 # Check and set COLOR_START and COLOR_END if not already defined
 if (! $?COLOR_START) then
@@ -29,6 +30,14 @@ set OUTPUT_ZIP = "${BASE_DIR}/all_collected_zips.zip"
 if ($#argv >= 1) then
     set CUSTOM_ZIP_NAME = "$1"
     set OUTPUT_ZIP = "${BASE_DIR}/${CUSTOM_ZIP_NAME}"
+
+    # Strip .zip extension for matching directories
+    if ("$CUSTOM_ZIP_NAME" =~ *.zip) then
+        set NAME_FOR_MATCHING = `echo "$CUSTOM_ZIP_NAME" | sed 's/\.zip$//'`
+    else
+        set NAME_FOR_MATCHING = "$CUSTOM_ZIP_NAME"
+    endif
+
     echo "\033[35mCustom output zip filename:\033[0m ${CUSTOM_ZIP_NAME}"
     echo
 endif
@@ -44,7 +53,7 @@ echo "\033[35mSearching for .zip files in subdirectories of\033[0m ${BASE_DIR}\0
 
 if ($#argv >= 1) then
     foreach matchdir (`find "${BASE_DIR}" -mindepth 2 -type d`)
-        if ("$matchdir" =~ *${CUSTOM_ZIP_NAME}*) then
+        if ("$matchdir" =~ *${NAME_FOR_MATCHING}*) then
             echo "\033[35mMatched directory:\033[0m $matchdir"
             foreach zipfile (`find "${matchdir}" -maxdepth 1 -type f -name "*.zip"`)
                 if (-e "${zipfile}") then
