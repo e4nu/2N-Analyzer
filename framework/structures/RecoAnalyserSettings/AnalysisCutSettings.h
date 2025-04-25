@@ -106,12 +106,12 @@ struct AnalysisCutSettings {
           apply_nucleon_physical_cuts(true),
           apply_nBeta_fit_cuts(true),
           apply_fiducial_cuts(false),
-          apply_kinematical_cuts(true),
+          apply_kinematical_cuts(false),
           apply_kinematical_weights(false),
           apply_nucleon_SmearAndCorr(false),
 
           // Reaction monitoring cuts:
-          apply_reaction_monitoring_cuts(true),
+          apply_reaction_monitoring_cuts(false),
           apply_P_miss_in_QE_range_cuts(true),
           apply_E_miss_in_QE_range_cuts(true),
           apply_P_miss_in_MECandSRC_range_cuts(true),
