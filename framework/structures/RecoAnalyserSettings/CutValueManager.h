@@ -148,13 +148,14 @@ struct CutValueManager {
     // Cut disscussed in the e4nu collaboration meeting at JLab (March 2025)
     // P_miss_1N cuts:
     DSCuts P_miss_1N_QE_range = DSCuts("P_miss_1N QE range", "", "", "Protons and neutrons", 0, 0., 0.25);
-    DSCuts P_miss_1N_MECandSRC_range = DSCuts("P_miss_1N QE range", "", "", "Protons and neutrons", 0, 0.3, 0.6);
-    DSCuts P_miss_1N_OtherReacAndFSI_range = DSCuts("P_miss_1N QE range", "", "", "Protons and neutrons", 0, 1., 9999);
+    DSCuts P_miss_1N_MECandSRC_range = DSCuts("P_miss_1N MEC and SRC range", "", "", "Protons and neutrons", 0, 0.3, 0.6);
+    DSCuts P_miss_1N_OtherReacAndFSI_range = DSCuts("P_miss_1N Other Reac And FSI", "", "", "Protons and neutrons", 0, 1., 9999);
 
     // E_miss_1N cuts:
     DSCuts E_miss_1N_QE_range = DSCuts("E_miss_1N QE range", "", "", "Protons and neutrons", 0, 0., 0.05);
-    DSCuts E_miss_1N_MECandSRC_range = DSCuts("E_miss_1N QE range", "", "", "Protons and neutrons", 0, 0.06, 0.45);  // TODO: get range from Larry!
-    DSCuts E_miss_1N_OtherReacAndFSI_range = DSCuts("E_miss_1N QE range", "", "", "Protons and neutrons", 0, 0.5, 9999);
+    // DSCuts E_miss_1N_MECandSRC_range = DSCuts("E_miss_1N MEC and SRC range", "", "", "Protons and neutrons", 0, 0.06, 0.45);  // TODO: get range from Larry!
+    DSCuts E_miss_1N_MECandSRC_range = DSCuts("E_miss_1N MEC and SRC range", "", "", "Protons and neutrons", 0, 0.05, 0.2);  // TODO: get range from Larry!
+    DSCuts E_miss_1N_OtherReacAndFSI_range = DSCuts("E_miss_1N Other Reac And FSI", "", "", "Protons and neutrons", 0, 0.5, 9999);
 
     // xB cuts:
     // DSCuts xB_cut = DSCuts("xB range", "", "", "Protons and neutrons", 0, 0.25, 9999);  // To kill RES or DIS events

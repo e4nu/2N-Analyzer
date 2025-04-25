@@ -25889,7 +25889,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     myLogFile << "===========================================================================\n\n";
 
     myLogFile << "-- clas12ana cuts ---------------------------------------------------------\n";
-    myLogFile << "AnalysisCutSettings = " << basic_tools::BoolToString(CutSettings.apply_cuts) << "\n\n";
+    myLogFile << "apply_cuts = " << basic_tools::BoolToString(CutSettings.apply_cuts) << "\n\n";
 
     myLogFile << "clas12ana_particles = " << basic_tools::BoolToString(CutSettings.clas12ana_particles) << "\n\n";  // TODO: move form here!
 
@@ -25910,7 +25910,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     myLogFile << "apply_ECAL_fiducial_cuts = " << basic_tools::BoolToString(CutSettings.apply_ECAL_fiducial_cuts) << "\n\n";
     myLogFile << "apply_Electron_beta_cut = " << basic_tools::BoolToString(CutSettings.apply_Electron_beta_cut) << "\n\n";
 
-    myLogFile << "apply_chi2_cuts_1e_cut = " << basic_tools::BoolToString(CutSettings.apply_chi2_cuts_1e_cut) << "\n";
+    myLogFile << "apply_chi2_cuts_1e_cut = " << basic_tools::BoolToString(CutSettings.apply_chi2_cuts_1e_cut) << "\n\n";
 
     myLogFile << "-- My analysis cuts -------------------------------------------------------\n";
     myLogFile << "apply_nucleon_cuts = " << basic_tools::BoolToString(CutSettings.apply_nucleon_cuts) << "\n\n";
@@ -25922,13 +25922,13 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     myLogFile << "apply_kinematical_weights = " << basic_tools::BoolToString(CutSettings.apply_kinematical_weights) << "\n";
     myLogFile << "apply_nucleon_SmearAndCorr = " << basic_tools::BoolToString(CutSettings.apply_nucleon_SmearAndCorr) << "\n\n";
 
-    myLogFile << "apply_reaction_monitoring_cuts:\033[0m\t" << basic_tools::BoolToString(CutSettings.apply_reaction_monitoring_cuts) << "\n";
-    myLogFile << "apply_P_miss_in_QE_range_cuts:\033[0m\t" << basic_tools::BoolToString(CutSettings.apply_P_miss_in_QE_range_cuts) << "\n";
-    myLogFile << "apply_E_miss_in_QE_range_cuts:\033[0m\t" << basic_tools::BoolToString(CutSettings.apply_E_miss_in_QE_range_cuts) << "\n";
-    myLogFile << "apply_P_miss_in_MECandSRC_range_cuts:\033[0m\t" << basic_tools::BoolToString(CutSettings.apply_P_miss_in_MECandSRC_range_cuts) << "\n";
-    myLogFile << "apply_E_miss_in_MECandSRC_range_cuts:\033[0m\t" << basic_tools::BoolToString(CutSettings.apply_E_miss_in_MECandSRC_range_cuts) << "\n";
-    myLogFile << "apply_xB_in_QE_range_cuts:\033[0m\t" << basic_tools::BoolToString(CutSettings.apply_xB_in_QE_range_cuts) << "\n";
-    myLogFile << "apply_theta_q_pCD_in_lower_FSI_range_cut:\033[0m\t" << basic_tools::BoolToString(CutSettings.apply_theta_q_pCD_in_lower_FSI_range_cut) << "\n\n";
+    myLogFile << "apply_reaction_monitoring_cuts:\t" << basic_tools::BoolToString(CutSettings.apply_reaction_monitoring_cuts) << "\n";
+    myLogFile << "apply_P_miss_in_QE_range_cuts:\t" << basic_tools::BoolToString(CutSettings.apply_P_miss_in_QE_range_cuts) << "\n";
+    myLogFile << "apply_E_miss_in_QE_range_cuts:\t" << basic_tools::BoolToString(CutSettings.apply_E_miss_in_QE_range_cuts) << "\n";
+    myLogFile << "apply_P_miss_in_MECandSRC_range_cuts:\t" << basic_tools::BoolToString(CutSettings.apply_P_miss_in_MECandSRC_range_cuts) << "\n";
+    myLogFile << "apply_E_miss_in_MECandSRC_range_cuts:\t" << basic_tools::BoolToString(CutSettings.apply_E_miss_in_MECandSRC_range_cuts) << "\n";
+    myLogFile << "apply_xB_in_QE_range_cuts:\t" << basic_tools::BoolToString(CutSettings.apply_xB_in_QE_range_cuts) << "\n";
+    myLogFile << "apply_theta_q_pCD_in_lower_FSI_range_cut:\t" << basic_tools::BoolToString(CutSettings.apply_theta_q_pCD_in_lower_FSI_range_cut) << "\n\n";
 
     // cuts
 
