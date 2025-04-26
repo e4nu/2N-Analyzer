@@ -190,7 +190,7 @@ void DrawAndSaveHistogramsToPDF(TCanvas *MainCanvas, const std::vector<TObject *
             if (h2->GetEntries() != 0) {
                 gPad->Update();
                 TPaletteAxis *palette = (TPaletteAxis *)h2->GetListOfFunctions()->FindObject("palette");
-                if (palette) palette->SetY2NDC(0.60);
+                if (palette) palette->SetY2NDC(0.50);
                 gPad->Modified();
                 gPad->Update();
             }

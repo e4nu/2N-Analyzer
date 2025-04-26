@@ -2216,7 +2216,7 @@ void AMaps::DrawAndSaveMapsPDFs(vector<TObject *> HistoList, const std::string &
             gPad->Update();
             TPaletteAxis *palette = (TPaletteAxis *)hist->GetListOfFunctions()->FindObject("palette");
             // TPaletteAxis *palette = (TPaletteAxis *)HistoList[i]->GetListOfFunctions()->FindObject("palette");
-            if (palette) { palette->SetY2NDC(0.60), gPad->Modified(), gPad->Update(); }
+            if (palette) { palette->SetY2NDC(0.50), gPad->Modified(), gPad->Update(); }
         }
 
         myCanvas_temp->Print(fileName, "pdf");
