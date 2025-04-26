@@ -101,8 +101,8 @@ void ConfigSampleChain() {
     // Simulation samples -----------------------------------------------------------------------------------------------------------------------------------------------
 
     // // /* C12 G18 2GeV */
-    Config_C12_G18_2GeV_samples(AnalyzeFilePath_v, AnalyzeFileSample_v, AnalyzeFileDir_v, AnalyzeFile_v, AnalyzeFilePath, AnalyzeFileSample, AnalyzeFileDir, AnalyzeFile, false);  // no FC
-    // Config_C12_G18_2GeV_samples(AnalyzeFilePath_v, AnalyzeFileSample_v, AnalyzeFileDir_v, AnalyzeFile_v, AnalyzeFilePath, AnalyzeFileSample, AnalyzeFileDir, AnalyzeFile, true);   // with FC
+    // Config_C12_G18_2GeV_samples(AnalyzeFilePath_v, AnalyzeFileSample_v, AnalyzeFileDir_v, AnalyzeFile_v, AnalyzeFilePath, AnalyzeFileSample, AnalyzeFileDir, AnalyzeFile, false);  // no FC
+    Config_C12_G18_2GeV_samples(AnalyzeFilePath_v, AnalyzeFileSample_v, AnalyzeFileDir_v, AnalyzeFile_v, AnalyzeFilePath, AnalyzeFileSample, AnalyzeFileDir, AnalyzeFile, true);   // with FC
 
     // // /* C12 G18 4GeV */
     // Config_C12_G18_4GeV_samples(AnalyzeFilePath_v, AnalyzeFileSample_v, AnalyzeFileDir_v, AnalyzeFile_v, AnalyzeFilePath, AnalyzeFileSample, AnalyzeFileDir, AnalyzeFile, false);  // no FC
