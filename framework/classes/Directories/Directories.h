@@ -119,7 +119,52 @@ class Directories {
     #pragma region /* Reaction monitoring plots directories */
     bool create_ReacMon_Dir = true;
     std::string ReacMon_Parent_Directory = "02_Rec_Mon_plots";
-    vector<string> ReacMon_Daughter_Folders = {"", "02_1p", "03_1n", "04_2p", "05_pFDpCD", "06_nFDpCD"};
+    vector<string> ReacMon_Daughter_Folders = {"",  //
+                                               "02_1p",
+                                               "02_1p/01_P_miss_1N_plots_1p",
+                                               "02_1p/02_E_miss_1N_plots_1p",
+                                               "02_1p/03_Q2_plots_1p",
+                                               "02_1p/04_xB_plots_1p",
+                                               "02_1p/05_theta_q_plots_1p",
+                                               "02_1p/06_theta_q_pFD_plots_1p",
+
+                                               "03_1n",
+                                               "03_1n/01_P_miss_1N_plots_1n",
+                                               "03_1n/02_E_miss_1N_plots_1n",
+                                               "03_1n/03_Q2_plots_1n",
+                                               "03_1n/04_xB_plots_1n",
+                                               "03_1n/05_theta_q_plots_1n",
+                                               "03_1n/06_theta_q_nFD_plots_1n",
+
+                                               "04_2p",
+                                               "04_2p/01_P_miss_1N_plots_2p",
+                                               "04_2p/02_E_miss_1N_plots_2p",
+                                               "04_2p/03_Q2_plots_2p",
+                                               "04_2p/04_xB_plots_2p",
+                                               "04_2p/05_theta_q_plots_2p",
+                                               "04_2p/06_theta_q_pFD_plots_2p",
+
+                                               "05_pFDpCD",
+                                               "05_pFDpCD/01_P_miss_1N_plots_pFDpCD",
+                                               "05_pFDpCD/02_E_miss_1N_plots_pFDpCD",
+                                               "05_pFDpCD/03_P_miss_2N_plots_pFDpCD",
+                                               "05_pFDpCD/04_E_miss_2N_plots_pFDpCD",
+                                               "05_pFDpCD/05_Q2_plots_pFDpCD",
+                                               "05_pFDpCD/06_xB_plots_pFDpCD",
+                                               "05_pFDpCD/07_theta_q_plots_pFDpCD",
+                                               "05_pFDpCD/08_theta_q_pFD_plots_pFDpCD",
+                                               "05_pFDpCD/09_theta_q_pCD_plots_pFDpCD",
+
+                                               "06_nFDpCD",
+                                               "06_nFDpCD/01_P_miss_1N_plots_nFDpCD",
+                                               "06_nFDpCD/02_E_miss_1N_plots_nFDpCD",
+                                               "06_nFDpCD/03_P_miss_2N_plots_nFDpCD",
+                                               "06_nFDpCD/04_E_miss_2N_plots_nFDpCD",
+                                               "06_nFDpCD/05_Q2_plots_nFDpCD",
+                                               "06_nFDpCD/06_xB_plots_nFDpCD",
+                                               "06_nFDpCD/07_theta_q_plots_nFDpCD",
+                                               "06_nFDpCD/08_theta_q_nFD_plots_nFDpCD",
+                                               "06_nFDpCD/09_theta_q_pCD_plots_nFDpCD"};
     #pragma endregion
 
     #pragma region /* W plots directories */

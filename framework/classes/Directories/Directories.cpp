@@ -33,7 +33,7 @@ Directories::Directories(const std::string &plots_path, const bool Clear_Old_Dir
 
     Nphe_dir_map["Nphe_1n_Directory"] = Plots_Folder + "/" + Nphe_Parent_Directory + "/" + Find(Nphe_Daughter_Folders, "03_1n") + "/";  // 1n - i.e. plots after Nphe and all other cuts
 
-    Nphe_dir_map["Nphe_2p_Directory"] = Plots_Folder + "/" + Nphe_Parent_Directory + "/" + Find(Nphe_Daughter_Folders, "04_2p") + "/";  // 2p - i.e. plots after Nphe and all other cuts
+    Nphe_dir_map["Nphe_pFDpCD_Directory"] = Plots_Folder + "/" + Nphe_Parent_Directory + "/" + Find(Nphe_Daughter_Folders, "04_pFDpCD") + "/";  // pFDpCD - i.e. plots after Nphe and all other cuts
 
     Nphe_dir_map["Nphe_pFDpCD_Directory"] =
         Plots_Folder + "/" + Nphe_Parent_Directory + "/" + Find(Nphe_Daughter_Folders, "05_pFDpCD") + "/";  // pFDpCD - i.e. plots after Nphe and all other cuts
@@ -53,9 +53,9 @@ Directories::Directories(const std::string &plots_path, const bool Clear_Old_Dir
 
     Chi2_dir_map["Chi2_1n_Directory"] = Plots_Folder + "/" + Chi2_Parent_Directory + "/" + Find(Chi2_Daughter_Folders, "03_1n") + "/";
 
-    //    Chi2_dir_map["Chi2_1e2p_cut_tests_Directory"] = Plots_Folder + "/" + Chi2_Parent_Directory + "/" + Find(Chi2_Daughter_Folders, "04_1e2p_BC-AC_cut_tests") + "/";
+    //    Chi2_dir_map["Chi2_1epFDpCD_cut_tests_Directory"] = Plots_Folder + "/" + Chi2_Parent_Directory + "/" + Find(Chi2_Daughter_Folders, "04_1epFDpCD_BC-AC_cut_tests") + "/";
 
-    Chi2_dir_map["Chi2_2p_Directory"] = Plots_Folder + "/" + Chi2_Parent_Directory + "/" + Find(Chi2_Daughter_Folders, "04_2p") + "/";
+    Chi2_dir_map["Chi2_pFDpCD_Directory"] = Plots_Folder + "/" + Chi2_Parent_Directory + "/" + Find(Chi2_Daughter_Folders, "04_pFDpCD") + "/";
 
     Chi2_dir_map["Chi2_pFDpCD_Directory"] = Plots_Folder + "/" + Chi2_Parent_Directory + "/" + Find(Chi2_Daughter_Folders, "05_pFDpCD") + "/";
 
@@ -97,13 +97,13 @@ Directories::Directories(const std::string &plots_path, const bool Clear_Old_Dir
 
     Vertex_dir_map["Vertex_dV_1n_Directory"] = Plots_Folder + "/" + Vertex_Parent_Directory + "/" + Find(Vertex_Daughter_Folders, "03_1n/01_dV_plots") + "/";
 
-    //    Vertex_dir_map["Vertex_1e2p_dV_BC_Directory"] = Plots_Folder + "/" + Vertex_Parent_Directory + "/" +
-    //                                                          Find(Vertex_Daughter_Folders, "01_dV_plots/02_1e2p") + "/";
+    //    Vertex_dir_map["Vertex_1epFDpCD_dV_BC_Directory"] = Plots_Folder + "/" + Vertex_Parent_Directory + "/" +
+    //                                                          Find(Vertex_Daughter_Folders, "01_dV_plots/02_1epFDpCD") + "/";
 
-    //    Vertex_dir_map["Vertex_1e2p_dV_AC_Directory"] = Plots_Folder + "/" + Vertex_Parent_Directory + "/" +
-    //                                                          Find(Vertex_Daughter_Folders, "01_dV_plots/02_1e2p") + "/";
+    //    Vertex_dir_map["Vertex_1epFDpCD_dV_AC_Directory"] = Plots_Folder + "/" + Vertex_Parent_Directory + "/" +
+    //                                                          Find(Vertex_Daughter_Folders, "01_dV_plots/02_1epFDpCD") + "/";
 
-    Vertex_dir_map["Vertex_dV_2p_Directory"] = Plots_Folder + "/" + Vertex_Parent_Directory + "/" + Find(Vertex_Daughter_Folders, "04_2p/01_dV_plots") + "/";
+    Vertex_dir_map["Vertex_dV_pFDpCD_Directory"] = Plots_Folder + "/" + Vertex_Parent_Directory + "/" + Find(Vertex_Daughter_Folders, "04_pFDpCD/01_dV_plots") + "/";
 
     Vertex_dir_map["Vertex_dV_pFDpCD_Directory"] = Plots_Folder + "/" + Vertex_Parent_Directory + "/" + Find(Vertex_Daughter_Folders, "05_pFDpCD/01_dV_plots") + "/";
 
@@ -125,8 +125,8 @@ Directories::Directories(const std::string &plots_path, const bool Clear_Old_Dir
     SF_dir_map["SF_1n_Directory"] = Plots_Folder + "/" + SF_Parent_Directory + "/" + Find(SF_Daughter_Folders, "03_1n/01_SF_plots") + "/";
     SF_dir_map["SF_VS_P_e_1n_Directory"] = Plots_Folder + "/" + SF_Parent_Directory + "/" + Find(SF_Daughter_Folders, "03_1n/02_SF_VS_P_e_plots") + "/";
 
-    SF_dir_map["SF_2p_Directory"] = Plots_Folder + "/" + SF_Parent_Directory + "/" + Find(SF_Daughter_Folders, "04_2p/01_SF_plots") + "/";
-    SF_dir_map["SF_VS_P_e_2p_Directory"] = Plots_Folder + "/" + SF_Parent_Directory + "/" + Find(SF_Daughter_Folders, "04_2p/02_SF_VS_P_e_plots") + "/";
+    SF_dir_map["SF_pFDpCD_Directory"] = Plots_Folder + "/" + SF_Parent_Directory + "/" + Find(SF_Daughter_Folders, "04_pFDpCD/01_SF_plots") + "/";
+    SF_dir_map["SF_VS_P_e_pFDpCD_Directory"] = Plots_Folder + "/" + SF_Parent_Directory + "/" + Find(SF_Daughter_Folders, "04_pFDpCD/02_SF_VS_P_e_plots") + "/";
 
     SF_dir_map["SF_pFDpCD_Directory"] = Plots_Folder + "/" + SF_Parent_Directory + "/" + Find(SF_Daughter_Folders, "05_pFDpCD/01_SF_plots") + "/";
     SF_dir_map["SF_VS_P_e_pFDpCD_Directory"] = Plots_Folder + "/" + SF_Parent_Directory + "/" + Find(SF_Daughter_Folders, "05_pFDpCD/02_SF_VS_P_e_plots") + "/";
@@ -145,7 +145,7 @@ Directories::Directories(const std::string &plots_path, const bool Clear_Old_Dir
 
     Fiducial_dir_map["Edge_1n_PCAL_Directory"] = Plots_Folder + "/" + fiducial_Parent_Directory + "/" + Find(fiducial_Daughter_Folders, "03_1n/01_PCAL") + "/";
 
-    Fiducial_dir_map["Edge_2p_PCAL_Directory"] = Plots_Folder + "/" + fiducial_Parent_Directory + "/" + Find(fiducial_Daughter_Folders, "04_2p/01_PCAL") + "/";
+    Fiducial_dir_map["Edge_pFDpCD_PCAL_Directory"] = Plots_Folder + "/" + fiducial_Parent_Directory + "/" + Find(fiducial_Daughter_Folders, "04_pFDpCD/01_PCAL") + "/";
 
     Fiducial_dir_map["Edge_pFDpCD_PCAL_Directory"] = Plots_Folder + "/" + fiducial_Parent_Directory + "/" + Find(fiducial_Daughter_Folders, "05_pFDpCD/01_PCAL") + "/";
 
@@ -165,10 +165,10 @@ Directories::Directories(const std::string &plots_path, const bool Clear_Old_Dir
     Momentum_dir_map["Momentum_1n_Directory"] = Plots_Folder + "/" + Momentum_Parent_Directory + "/" + Find(Momentum_Daughter_Folders, "03_1n") + "/";
     Momentum_dir_map["Analysis_plots_momentum_1n_Directory"] = Plots_Folder + "/" + Momentum_Parent_Directory + "/" + Find(Momentum_Daughter_Folders, "03_1n/Analysis_plots_1n") + "/";
 
-    //    Momentum_dir_map["Momentum_1e2p_Directory"] = Plots_Folder + "/" + Momentum_Parent_Directory + "/" +
-    Find(Momentum_Daughter_Folders, "03_1e2p") + "/";
+    //    Momentum_dir_map["Momentum_1epFDpCD_Directory"] = Plots_Folder + "/" + Momentum_Parent_Directory + "/" +
+    Find(Momentum_Daughter_Folders, "03_1epFDpCD") + "/";
 
-    Momentum_dir_map["Momentum_2p_Directory"] = Plots_Folder + "/" + Momentum_Parent_Directory + "/" + Find(Momentum_Daughter_Folders, "04_2p") + "/";
+    Momentum_dir_map["Momentum_pFDpCD_Directory"] = Plots_Folder + "/" + Momentum_Parent_Directory + "/" + Find(Momentum_Daughter_Folders, "04_pFDpCD") + "/";
 
     Momentum_dir_map["Momentum_pFDpCD_Directory"] = Plots_Folder + "/" + Momentum_Parent_Directory + "/" + Find(Momentum_Daughter_Folders, "05_pFDpCD") + "/";
     Momentum_dir_map["Analysis_plots_momentum_pFDpCD_Directory"] =
@@ -185,11 +185,52 @@ Directories::Directories(const std::string &plots_path, const bool Clear_Old_Dir
     for (string folders_name : ReacMon_Daughter_Folders) { MakeDirectory(create_ReacMon_Dir, ReacMon_Parent_Directory, folders_name, false, Plots_Folder); }
 
     ReacMon_dir_map["ReacMon_1e_cut_Directory"] = Plots_Folder + "/" + ReacMon_Parent_Directory + "/" + Find(ReacMon_Daughter_Folders, "01_1e_cut") + "/";
+
     ReacMon_dir_map["ReacMon_1p_Directory"] = Plots_Folder + "/" + ReacMon_Parent_Directory + "/" + Find(ReacMon_Daughter_Folders, "02_1p") + "/";
+    ReacMon_dir_map["ReacMon_1p_P_miss_1N_Directory"] = Plots_Folder + "/" + ReacMon_Parent_Directory + "/" + Find(ReacMon_Daughter_Folders, "02_1p/01_P_miss_1N_plots_1p") + "/";
+    ReacMon_dir_map["ReacMon_1p_E_miss_1N_Directory"] = Plots_Folder + "/" + ReacMon_Parent_Directory + "/" + Find(ReacMon_Daughter_Folders, "02_1p/02_E_miss_1N_plots_1p") + "/";
+    ReacMon_dir_map["ReacMon_1p_Q2_Directory"] = Plots_Folder + "/" + ReacMon_Parent_Directory + "/" + Find(ReacMon_Daughter_Folders, "02_1p/03_Q2_plots_1p") + "/";
+    ReacMon_dir_map["ReacMon_1p_xB_Directory"] = Plots_Folder + "/" + ReacMon_Parent_Directory + "/" + Find(ReacMon_Daughter_Folders, "02_1p/04_xB_plots_1p") + "/";
+    ReacMon_dir_map["ReacMon_1p_theta_q_Directory"] = Plots_Folder + "/" + ReacMon_Parent_Directory + "/" + Find(ReacMon_Daughter_Folders, "02_1p/05_theta_q_plots_1p") + "/";
+    ReacMon_dir_map["ReacMon_1p_theta_q_pFD_Directory"] = Plots_Folder + "/" + ReacMon_Parent_Directory + "/" + Find(ReacMon_Daughter_Folders, "02_1p/06_theta_q_pFD_plots_1p") + "/";
+
     ReacMon_dir_map["ReacMon_1n_Directory"] = Plots_Folder + "/" + ReacMon_Parent_Directory + "/" + Find(ReacMon_Daughter_Folders, "03_1n") + "/";
+    ReacMon_dir_map["ReacMon_1n_P_miss_1N_Directory"] = Plots_Folder + "/" + ReacMon_Parent_Directory + "/" + Find(ReacMon_Daughter_Folders, "03_1n/01_P_miss_1N_plots_1n") + "/";
+    ReacMon_dir_map["ReacMon_1n_E_miss_1N_Directory"] = Plots_Folder + "/" + ReacMon_Parent_Directory + "/" + Find(ReacMon_Daughter_Folders, "03_1n/02_E_miss_1N_plots_1n") + "/";
+    ReacMon_dir_map["ReacMon_1n_Q2_Directory"] = Plots_Folder + "/" + ReacMon_Parent_Directory + "/" + Find(ReacMon_Daughter_Folders, "03_1n/03_Q2_plots_1n") + "/";
+    ReacMon_dir_map["ReacMon_1n_xB_Directory"] = Plots_Folder + "/" + ReacMon_Parent_Directory + "/" + Find(ReacMon_Daughter_Folders, "03_1n/04_xB_plots_1n") + "/";
+    ReacMon_dir_map["ReacMon_1n_theta_q_Directory"] = Plots_Folder + "/" + ReacMon_Parent_Directory + "/" + Find(ReacMon_Daughter_Folders, "03_1n/05_theta_q_plots_1n") + "/";
+    ReacMon_dir_map["ReacMon_1n_theta_q_pFD_Directory"] = Plots_Folder + "/" + ReacMon_Parent_Directory + "/" + Find(ReacMon_Daughter_Folders, "03_1n/06_theta_q_nFD_plots_1n") + "/";
+
     ReacMon_dir_map["ReacMon_2p_Directory"] = Plots_Folder + "/" + ReacMon_Parent_Directory + "/" + Find(ReacMon_Daughter_Folders, "04_2p") + "/";
+    ReacMon_dir_map["ReacMon_2p_P_miss_1N_Directory"] = Plots_Folder + "/" + ReacMon_Parent_Directory + "/" + Find(ReacMon_Daughter_Folders, "04_2p/01_P_miss_1N_plots_2p") + "/";
+    ReacMon_dir_map["ReacMon_2p_E_miss_1N_Directory"] = Plots_Folder + "/" + ReacMon_Parent_Directory + "/" + Find(ReacMon_Daughter_Folders, "04_2p/02_E_miss_1N_plots_2p") + "/";
+    ReacMon_dir_map["ReacMon_2p_Q2_Directory"] = Plots_Folder + "/" + ReacMon_Parent_Directory + "/" + Find(ReacMon_Daughter_Folders, "04_2p/03_Q2_plots_2p") + "/";
+    ReacMon_dir_map["ReacMon_2p_xB_Directory"] = Plots_Folder + "/" + ReacMon_Parent_Directory + "/" + Find(ReacMon_Daughter_Folders, "04_2p/04_xB_plots_2p") + "/";
+    ReacMon_dir_map["ReacMon_2p_theta_q_Directory"] = Plots_Folder + "/" + ReacMon_Parent_Directory + "/" + Find(ReacMon_Daughter_Folders, "04_2p/05_theta_q_plots_2p") + "/";
+    ReacMon_dir_map["ReacMon_2p_theta_q_pFD_Directory"] = Plots_Folder + "/" + ReacMon_Parent_Directory + "/" + Find(ReacMon_Daughter_Folders, "04_2p/06_theta_q_pFD_plots_2p") + "/";
+
     ReacMon_dir_map["ReacMon_pFDpCD_Directory"] = Plots_Folder + "/" + ReacMon_Parent_Directory + "/" + Find(ReacMon_Daughter_Folders, "05_pFDpCD") + "/";
+    ReacMon_dir_map["ReacMon_pFDpCD_P_miss_1N_Directory"] = Plots_Folder + "/" + ReacMon_Parent_Directory + "/" + Find(ReacMon_Daughter_Folders, "05_pFDpCD/01_P_miss_1N_plots_pFDpCD") + "/";
+    ReacMon_dir_map["ReacMon_pFDpCD_E_miss_1N_Directory"] = Plots_Folder + "/" + ReacMon_Parent_Directory + "/" + Find(ReacMon_Daughter_Folders, "05_pFDpCD/02_E_miss_1N_plots_pFDpCD") + "/";
+    ReacMon_dir_map["ReacMon_pFDpCD_P_miss_2N_Directory"] = Plots_Folder + "/" + ReacMon_Parent_Directory + "/" + Find(ReacMon_Daughter_Folders, "05_pFDpCD/03_P_miss_2N_plots_pFDpCD") + "/";
+    ReacMon_dir_map["ReacMon_pFDpCD_E_miss_2N_Directory"] = Plots_Folder + "/" + ReacMon_Parent_Directory + "/" + Find(ReacMon_Daughter_Folders, "05_pFDpCD/04_E_miss_2N_plots_pFDpCD") + "/";
+    ReacMon_dir_map["ReacMon_pFDpCD_Q2_Directory"] = Plots_Folder + "/" + ReacMon_Parent_Directory + "/" + Find(ReacMon_Daughter_Folders, "05_pFDpCD/05_Q2_plots_pFDpCD") + "/";
+    ReacMon_dir_map["ReacMon_pFDpCD_xB_Directory"] = Plots_Folder + "/" + ReacMon_Parent_Directory + "/" + Find(ReacMon_Daughter_Folders, "05_pFDpCD/06_xB_plots_pFDpCD") + "/";
+    ReacMon_dir_map["ReacMon_pFDpCD_theta_q_Directory"] = Plots_Folder + "/" + ReacMon_Parent_Directory + "/" + Find(ReacMon_Daughter_Folders, "05_pFDpCD/07_theta_q_plots_pFDpCD") + "/";
+    ReacMon_dir_map["ReacMon_pFDpCD_theta_q_pFD_Directory"] = Plots_Folder + "/" + ReacMon_Parent_Directory + "/" + Find(ReacMon_Daughter_Folders, "05_pFDpCD/08_theta_q_pFD_plots_pFDpCD") + "/";
+    ReacMon_dir_map["ReacMon_pFDpCD_theta_q_pCD_Directory"] = Plots_Folder + "/" + ReacMon_Parent_Directory + "/" + Find(ReacMon_Daughter_Folders, "05_pFDpCD/09_theta_q_pCD_plots_pFDpCD") + "/";
+
     ReacMon_dir_map["ReacMon_nFDpCD_Directory"] = Plots_Folder + "/" + ReacMon_Parent_Directory + "/" + Find(ReacMon_Daughter_Folders, "06_nFDpCD") + "/";
+    ReacMon_dir_map["ReacMon_nFDpCD_P_miss_1N_Directory"] = Plots_Folder + "/" + ReacMon_Parent_Directory + "/" + Find(ReacMon_Daughter_Folders, "06_nFDpCD/01_P_miss_1N_plots_nFDpCD") + "/";
+    ReacMon_dir_map["ReacMon_nFDpCD_E_miss_1N_Directory"] = Plots_Folder + "/" + ReacMon_Parent_Directory + "/" + Find(ReacMon_Daughter_Folders, "06_nFDpCD/02_E_miss_1N_plots_nFDpCD") + "/";
+    ReacMon_dir_map["ReacMon_nFDpCD_P_miss_2N_Directory"] = Plots_Folder + "/" + ReacMon_Parent_Directory + "/" + Find(ReacMon_Daughter_Folders, "06_nFDpCD/03_P_miss_2N_plots_nFDpCD") + "/";
+    ReacMon_dir_map["ReacMon_nFDpCD_E_miss_2N_Directory"] = Plots_Folder + "/" + ReacMon_Parent_Directory + "/" + Find(ReacMon_Daughter_Folders, "06_nFDpCD/04_E_miss_2N_plots_nFDpCD") + "/";
+    ReacMon_dir_map["ReacMon_nFDpCD_Q2_Directory"] = Plots_Folder + "/" + ReacMon_Parent_Directory + "/" + Find(ReacMon_Daughter_Folders, "06_nFDpCD/05_Q2_plots_nFDpCD") + "/";
+    ReacMon_dir_map["ReacMon_nFDpCD_xB_Directory"] = Plots_Folder + "/" + ReacMon_Parent_Directory + "/" + Find(ReacMon_Daughter_Folders, "06_nFDpCD/06_xB_plots_nFDpCD") + "/";
+    ReacMon_dir_map["ReacMon_nFDpCD_theta_q_Directory"] = Plots_Folder + "/" + ReacMon_Parent_Directory + "/" + Find(ReacMon_Daughter_Folders, "06_nFDpCD/07_theta_q_plots_nFDpCD") + "/";
+    ReacMon_dir_map["ReacMon_nFDpCD_theta_q_nFD_Directory"] = Plots_Folder + "/" + ReacMon_Parent_Directory + "/" + Find(ReacMon_Daughter_Folders, "06_nFDpCD/08_theta_q_nFD_plots_nFDpCD") + "/";
+    ReacMon_dir_map["ReacMon_nFDpCD_theta_q_pCD_Directory"] = Plots_Folder + "/" + ReacMon_Parent_Directory + "/" + Find(ReacMon_Daughter_Folders, "06_nFDpCD/09_theta_q_pCD_plots_nFDpCD") + "/";
 #pragma endregion
 
 #pragma region /* W plots directories */
@@ -198,7 +239,7 @@ Directories::Directories(const std::string &plots_path, const bool Clear_Old_Dir
     W_dir_map["W_1e_cut_Directory"] = Plots_Folder + "/" + W_Parent_Directory + "/" + Find(W_Daughter_Folders, "01_1e_cut") + "/";
     W_dir_map["W_1p_Directory"] = Plots_Folder + "/" + W_Parent_Directory + "/" + Find(W_Daughter_Folders, "02_1p") + "/";
     W_dir_map["W_1n_Directory"] = Plots_Folder + "/" + W_Parent_Directory + "/" + Find(W_Daughter_Folders, "03_1n") + "/";
-    W_dir_map["W_2p_Directory"] = Plots_Folder + "/" + W_Parent_Directory + "/" + Find(W_Daughter_Folders, "04_2p") + "/";
+    W_dir_map["W_pFDpCD_Directory"] = Plots_Folder + "/" + W_Parent_Directory + "/" + Find(W_Daughter_Folders, "04_pFDpCD") + "/";
     W_dir_map["W_pFDpCD_Directory"] = Plots_Folder + "/" + W_Parent_Directory + "/" + Find(W_Daughter_Folders, "05_pFDpCD") + "/";
     W_dir_map["W_nFDpCD_Directory"] = Plots_Folder + "/" + W_Parent_Directory + "/" + Find(W_Daughter_Folders, "06_nFDpCD") + "/";
 #pragma endregion
@@ -237,8 +278,8 @@ Directories::Directories(const std::string &plots_path, const bool Clear_Old_Dir
     Beta_dir_map["Beta_VS_P_1n_Directory"] = Plots_Folder + "/" + Beta_Parent_Directory + "/" + Find(Beta_Daughter_Folders, "02_Beta_VS_P_plots/03_1n") + "/";
     Beta_dir_map["Beta_VS_P_by_charge_1n_Directory"] = Plots_Folder + "/" + Beta_Parent_Directory + "/" + Find(Beta_Daughter_Folders, "02_Beta_VS_P_plots/03_1n/By_charge") + "/";
 
-    Beta_dir_map["Beta_VS_P_2p_Directory"] = Plots_Folder + "/" + Beta_Parent_Directory + "/" + Find(Beta_Daughter_Folders, "02_Beta_VS_P_plots/04_2p") + "/";
-    Beta_dir_map["Beta_VS_P_by_charge_2p_Directory"] = Plots_Folder + "/" + Beta_Parent_Directory + "/" + Find(Beta_Daughter_Folders, "02_Beta_VS_P_plots/04_2p/By_charge") + "/";
+    Beta_dir_map["Beta_VS_P_pFDpCD_Directory"] = Plots_Folder + "/" + Beta_Parent_Directory + "/" + Find(Beta_Daughter_Folders, "02_Beta_VS_P_plots/04_pFDpCD") + "/";
+    Beta_dir_map["Beta_VS_P_by_charge_pFDpCD_Directory"] = Plots_Folder + "/" + Beta_Parent_Directory + "/" + Find(Beta_Daughter_Folders, "02_Beta_VS_P_plots/04_pFDpCD/By_charge") + "/";
 
     Beta_dir_map["Beta_VS_P_pFDpCD_Directory"] = Plots_Folder + "/" + Beta_Parent_Directory + "/" + Find(Beta_Daughter_Folders, "02_Beta_VS_P_plots/05_pFDpCD") + "/";
     Beta_dir_map["Beta_VS_P_by_charge_pFDpCD_Directory"] = Plots_Folder + "/" + Beta_Parent_Directory + "/" + Find(Beta_Daughter_Folders, "02_Beta_VS_P_plots/05_pFDpCD/By_charge") + "/";
@@ -279,26 +320,26 @@ Directories::Directories(const std::string &plots_path, const bool Clear_Old_Dir
     Angle_dir_map["Opening_angle_1n_Directory"] = Plots_Folder + "/" + Angle_Parent_Directory + "/" + Find(Angle_Daughter_Folders, "03_1n/07_Opening_angles_1n_plots") + "/";
     Angle_dir_map["Neutron_veto_1n_Directory"] = Plots_Folder + "/" + Angle_Parent_Directory + "/" + Find(Angle_Daughter_Folders, "03_1n/08_Neutron_veto_1n_plots") + "/";
 
-    //    Angle_dir_map["Theta_e_1e2p_Directory"] = Plots_Folder + "/" + Angle_Parent_Directory + "/" +
-    //                                                    Find(Angle_Daughter_Folders, "05_1e2p/01_Theta_e_1e2p_plots") + "/";
-    //    Angle_dir_map["Phi_e_1e2p_Directory"] = Plots_Folder + "/" + Angle_Parent_Directory + "/" +
-    //                                                  Find(Angle_Daughter_Folders, "05_1e2p/02_Phi_e_1e2p_plots") + "/";
-    Angle_dir_map["Theta_e_2p_Directory"] = Plots_Folder + "/" + Angle_Parent_Directory + "/" + Find(Angle_Daughter_Folders, "04_2p/01_Theta_e_2p_plots") + "/";
-    Angle_dir_map["Phi_e_2p_Directory"] = Plots_Folder + "/" + Angle_Parent_Directory + "/" + Find(Angle_Daughter_Folders, "04_2p/02_Phi_e_2p_plots") + "/";
-    Angle_dir_map["Theta_e_VS_Phi_e_2p_Directory"] = Plots_Folder + "/" + Angle_Parent_Directory + "/" + Find(Angle_Daughter_Folders, "04_2p/03_Theta_e_VS_Phi_e_2p_plots") + "/";
-    Angle_dir_map["Opening_angle_2p_Directory"] = Plots_Folder + "/" + Angle_Parent_Directory + "/" + Find(Angle_Daughter_Folders, "04_2p/04_Opening_angles_2p_plots") + "/";
-    Angle_dir_map["Opening_angle_by_interaction_2p_Directory"] =
-        Plots_Folder + "/" + Angle_Parent_Directory + "/" + Find(Angle_Daughter_Folders, "04_2p/04_Opening_angles_2p_plots/00_Theta_p1_p2_by_interaction") + "/";
-    Angle_dir_map["Ghost_tracks_handling_2p_Directory"] = Plots_Folder + "/" + Angle_Parent_Directory + "/" + Find(Angle_Daughter_Folders, "04_2p/05_Ghost_tracks_handling_2p_plots") + "/";
-    Angle_dir_map["CToF_hits_2p_Directory"] =
-        Plots_Folder + "/" + Angle_Parent_Directory + "/" + Find(Angle_Daughter_Folders, "04_2p/05_Ghost_tracks_handling_2p_plots/01_CFoF_hits_2p_plots") + "/";
-    Angle_dir_map["CToF_hits_monitoring_2p_Directory"] = Plots_Folder + "/" + Angle_Parent_Directory + "/" +
-                                                         Find(Angle_Daughter_Folders, "04_2p/05_Ghost_tracks_handling_2p_plots/01_CFoF_hits_2p_plots/00_CFoF_hits_monitoring_2p_plots") + "/";
-    Angle_dir_map["Double_detection_2p_Directory"] =
-        Plots_Folder + "/" + Angle_Parent_Directory + "/" + Find(Angle_Daughter_Folders, "04_2p/05_Ghost_tracks_handling_2p_plots/02_Double_detection_2p_plots") + "/";
-    Angle_dir_map["Double_detection_monitoring_2p_Directory"] =
+    //    Angle_dir_map["Theta_e_1epFDpCD_Directory"] = Plots_Folder + "/" + Angle_Parent_Directory + "/" +
+    //                                                    Find(Angle_Daughter_Folders, "05_1epFDpCD/01_Theta_e_1epFDpCD_plots") + "/";
+    //    Angle_dir_map["Phi_e_1epFDpCD_Directory"] = Plots_Folder + "/" + Angle_Parent_Directory + "/" +
+    //                                                  Find(Angle_Daughter_Folders, "05_1epFDpCD/02_Phi_e_1epFDpCD_plots") + "/";
+    Angle_dir_map["Theta_e_pFDpCD_Directory"] = Plots_Folder + "/" + Angle_Parent_Directory + "/" + Find(Angle_Daughter_Folders, "04_pFDpCD/01_Theta_e_pFDpCD_plots") + "/";
+    Angle_dir_map["Phi_e_pFDpCD_Directory"] = Plots_Folder + "/" + Angle_Parent_Directory + "/" + Find(Angle_Daughter_Folders, "04_pFDpCD/02_Phi_e_pFDpCD_plots") + "/";
+    Angle_dir_map["Theta_e_VS_Phi_e_pFDpCD_Directory"] = Plots_Folder + "/" + Angle_Parent_Directory + "/" + Find(Angle_Daughter_Folders, "04_pFDpCD/03_Theta_e_VS_Phi_e_pFDpCD_plots") + "/";
+    Angle_dir_map["Opening_angle_pFDpCD_Directory"] = Plots_Folder + "/" + Angle_Parent_Directory + "/" + Find(Angle_Daughter_Folders, "04_pFDpCD/04_Opening_angles_pFDpCD_plots") + "/";
+    Angle_dir_map["Opening_angle_by_interaction_pFDpCD_Directory"] =
+        Plots_Folder + "/" + Angle_Parent_Directory + "/" + Find(Angle_Daughter_Folders, "04_pFDpCD/04_Opening_angles_pFDpCD_plots/00_Theta_p1_p2_by_interaction") + "/";
+    Angle_dir_map["Ghost_tracks_handling_pFDpCD_Directory"] = Plots_Folder + "/" + Angle_Parent_Directory + "/" + Find(Angle_Daughter_Folders, "04_pFDpCD/05_Ghost_tracks_handling_pFDpCD_plots") + "/";
+    Angle_dir_map["CToF_hits_pFDpCD_Directory"] =
+        Plots_Folder + "/" + Angle_Parent_Directory + "/" + Find(Angle_Daughter_Folders, "04_pFDpCD/05_Ghost_tracks_handling_pFDpCD_plots/01_CFoF_hits_pFDpCD_plots") + "/";
+    Angle_dir_map["CToF_hits_monitoring_pFDpCD_Directory"] = Plots_Folder + "/" + Angle_Parent_Directory + "/" +
+                                                         Find(Angle_Daughter_Folders, "04_pFDpCD/05_Ghost_tracks_handling_pFDpCD_plots/01_CFoF_hits_pFDpCD_plots/00_CFoF_hits_monitoring_pFDpCD_plots") + "/";
+    Angle_dir_map["Double_detection_pFDpCD_Directory"] =
+        Plots_Folder + "/" + Angle_Parent_Directory + "/" + Find(Angle_Daughter_Folders, "04_pFDpCD/05_Ghost_tracks_handling_pFDpCD_plots/02_Double_detection_pFDpCD_plots") + "/";
+    Angle_dir_map["Double_detection_monitoring_pFDpCD_Directory"] =
         Plots_Folder + "/" + Angle_Parent_Directory + "/" +
-        Find(Angle_Daughter_Folders, "04_2p/05_Ghost_tracks_handling_2p_plots/02_Double_detection_2p_plots/00_Double_detection_monitoring_2p_plots") + "/";
+        Find(Angle_Daughter_Folders, "04_pFDpCD/05_Ghost_tracks_handling_pFDpCD_plots/02_Double_detection_pFDpCD_plots/00_Double_detection_monitoring_pFDpCD_plots") + "/";
 
     Angle_dir_map["Theta_e_pFDpCD_Directory"] = Plots_Folder + "/" + Angle_Parent_Directory + "/" + Find(Angle_Daughter_Folders, "05_pFDpCD/01_Theta_e_pFDpCD_plots") + "/";
     Angle_dir_map["Phi_e_pFDpCD_Directory"] = Plots_Folder + "/" + Angle_Parent_Directory + "/" + Find(Angle_Daughter_Folders, "05_pFDpCD/02_Phi_e_pFDpCD_plots") + "/";
@@ -364,7 +405,7 @@ Directories::Directories(const std::string &plots_path, const bool Clear_Old_Dir
         Find(Angle_Daughter_Folders, "06_nFDpCD/17_Ghost_tracks_handling_nFDpCD_plots/02_Double_detection_nFDpCD_plots/00_Double_detection_monitoring_nFDpCD_plots") + "/";
     Angle_dir_map["Neutron_veto_nFDpCD_Directory"] = Plots_Folder + "/" + Angle_Parent_Directory + "/" + Find(Angle_Daughter_Folders, "06_nFDpCD/18_Neutron_veto_nFDpCD_plots") + "/";
 
-    Angle_dir_map["Phi_Proton_1e2pXy_Directory"] = Plots_Folder + "/" + Angle_Parent_Directory + "/" + Find(Angle_Daughter_Folders, "07_1e2pXy/04_Phi_Proton_1e2pXy_plots") + "/";
+    Angle_dir_map["Phi_Proton_1epFDpCDXy_Directory"] = Plots_Folder + "/" + Angle_Parent_Directory + "/" + Find(Angle_Daughter_Folders, "07_1epFDpCDXy/04_Phi_Proton_1epFDpCDXy_plots") + "/";
 #pragma endregion
 
 #pragma region /* Momentum transfer directories */
@@ -380,7 +421,7 @@ Directories::Directories(const std::string &plots_path, const bool Clear_Old_Dir
 
     Momentum_transfer_dir_map["Momentum_transfer_1n_Directory"] = Plots_Folder + "/" + Momentum_transfer_Parent_Directory + "/" + Find(Momentum_transfer_Daughter_Folders, "03_1n") + "/";
 
-    Momentum_transfer_dir_map["Momentum_transfer_2p_Directory"] = Plots_Folder + "/" + Momentum_transfer_Parent_Directory + "/" + Find(Momentum_transfer_Daughter_Folders, "04_2p") + "/";
+    Momentum_transfer_dir_map["Momentum_transfer_pFDpCD_Directory"] = Plots_Folder + "/" + Momentum_transfer_Parent_Directory + "/" + Find(Momentum_transfer_Daughter_Folders, "04_pFDpCD") + "/";
 
     Momentum_transfer_dir_map["Momentum_transfer_pFDpCD_Directory"] =
         Plots_Folder + "/" + Momentum_transfer_Parent_Directory + "/" + Find(Momentum_transfer_Daughter_Folders, "05_pFDpCD") + "/";
@@ -406,10 +447,10 @@ Directories::Directories(const std::string &plots_path, const bool Clear_Old_Dir
     E_e_dir_map["E_e_VS_Theta_e_All_Int_1n_Directory"] = Plots_Folder + "/" + E_e_Parent_Directory + "/" + Find(E_e_Daughter_Folders, "03_1n/E_e_VS_Theta_e_1n") + "/";
     E_e_dir_map["E_e_15_All_Int_1n_Directory"] = Plots_Folder + "/" + E_e_Parent_Directory + "/" + Find(E_e_Daughter_Folders, "03_1n/E_e_plots_1n/Around_15_deg_1n") + "/";
 
-    E_e_dir_map["E_e_All_Int_2p_stack_Directory"] = Plots_Folder + "/" + E_e_Parent_Directory + "/" + Find(E_e_Daughter_Folders, "04_2p") + "/";
-    E_e_dir_map["E_e_All_Int_2p_Directory"] = Plots_Folder + "/" + E_e_Parent_Directory + "/" + Find(E_e_Daughter_Folders, "04_2p/E_e_plots_2p") + "/";
-    E_e_dir_map["E_e_VS_Theta_e_All_Int_2p_Directory"] = Plots_Folder + "/" + E_e_Parent_Directory + "/" + Find(E_e_Daughter_Folders, "04_2p/E_e_VS_Theta_e_2p") + "/";
-    E_e_dir_map["E_e_15_All_Int_2p_Directory"] = Plots_Folder + "/" + E_e_Parent_Directory + "/" + Find(E_e_Daughter_Folders, "04_2p/E_e_plots_2p/Around_15_deg_2p") + "/";
+    E_e_dir_map["E_e_All_Int_pFDpCD_stack_Directory"] = Plots_Folder + "/" + E_e_Parent_Directory + "/" + Find(E_e_Daughter_Folders, "04_pFDpCD") + "/";
+    E_e_dir_map["E_e_All_Int_pFDpCD_Directory"] = Plots_Folder + "/" + E_e_Parent_Directory + "/" + Find(E_e_Daughter_Folders, "04_pFDpCD/E_e_plots_pFDpCD") + "/";
+    E_e_dir_map["E_e_VS_Theta_e_All_Int_pFDpCD_Directory"] = Plots_Folder + "/" + E_e_Parent_Directory + "/" + Find(E_e_Daughter_Folders, "04_pFDpCD/E_e_VS_Theta_e_pFDpCD") + "/";
+    E_e_dir_map["E_e_15_All_Int_pFDpCD_Directory"] = Plots_Folder + "/" + E_e_Parent_Directory + "/" + Find(E_e_Daughter_Folders, "04_pFDpCD/E_e_plots_pFDpCD/Around_15_deg_pFDpCD") + "/";
 
     E_e_dir_map["E_e_All_Int_pFDpCD_stack_Directory"] = Plots_Folder + "/" + E_e_Parent_Directory + "/" + Find(E_e_Daughter_Folders, "05_pFDpCD") + "/";
     E_e_dir_map["E_e_All_Int_pFDpCD_Directory"] = Plots_Folder + "/" + E_e_Parent_Directory + "/" + Find(E_e_Daughter_Folders, "05_pFDpCD/E_e_plots_pFDpCD") + "/";
@@ -455,20 +496,20 @@ Directories::Directories(const std::string &plots_path, const bool Clear_Old_Dir
     ETrans_dir_map["ETrans_RES_All_Ang_1n_Directory"] = Plots_Folder + "/" + ETrans_Parent_Directory + "/" + Find(ETrans_Daughter_Folders, "03_1n/01_Every_theta_e_1n/03_RES_only") + "/";
     ETrans_dir_map["ETrans_DIS_All_Ang_1n_Directory"] = Plots_Folder + "/" + ETrans_Parent_Directory + "/" + Find(ETrans_Daughter_Folders, "03_1n/01_Every_theta_e_1n/04_DIS_only") + "/";
 
-    ETrans_dir_map["ETrans_15_stack_2p_Directory"] = Plots_Folder + "/" + ETrans_Parent_Directory + "/" + Find(ETrans_Daughter_Folders, "04_2p/02_Around_15_Deg_2p") + "/";
-    ETrans_dir_map["ETrans_All_Int_15_2p_Directory"] =
-        Plots_Folder + "/" + ETrans_Parent_Directory + "/" + Find(ETrans_Daughter_Folders, "04_2p/02_Around_15_Deg_2p/00_All_interactions") + "/";
-    ETrans_dir_map["ETrans_QEL_15_2p_Directory"] = Plots_Folder + "/" + ETrans_Parent_Directory + "/" + Find(ETrans_Daughter_Folders, "04_2p/02_Around_15_Deg_2p/01_QEL_only") + "/";
-    ETrans_dir_map["ETrans_MEC_15_2p_Directory"] = Plots_Folder + "/" + ETrans_Parent_Directory + "/" + Find(ETrans_Daughter_Folders, "04_2p/02_Around_15_Deg_2p/02_MEC_only") + "/";
-    ETrans_dir_map["ETrans_RES_15_2p_Directory"] = Plots_Folder + "/" + ETrans_Parent_Directory + "/" + Find(ETrans_Daughter_Folders, "04_2p/02_Around_15_Deg_2p/03_RES_only") + "/";
-    ETrans_dir_map["ETrans_DIS_15_2p_Directory"] = Plots_Folder + "/" + ETrans_Parent_Directory + "/" + Find(ETrans_Daughter_Folders, "04_2p/02_Around_15_Deg_2p/04_DIS_only") + "/";
-    ETrans_dir_map["ETrans_All_Ang_stack_2p_Directory"] = Plots_Folder + "/" + ETrans_Parent_Directory + "/" + Find(ETrans_Daughter_Folders, "04_2p/01_Every_theta_e_2p") + "/";
-    ETrans_dir_map["ETrans_All_Int_All_Ang_2p_Directory"] =
-        Plots_Folder + "/" + ETrans_Parent_Directory + "/" + Find(ETrans_Daughter_Folders, "04_2p/01_Every_theta_e_2p/00_All_interactions") + "/";
-    ETrans_dir_map["ETrans_QEL_All_Ang_2p_Directory"] = Plots_Folder + "/" + ETrans_Parent_Directory + "/" + Find(ETrans_Daughter_Folders, "04_2p/01_Every_theta_e_2p/01_QEL_only") + "/";
-    ETrans_dir_map["ETrans_MEC_All_Ang_2p_Directory"] = Plots_Folder + "/" + ETrans_Parent_Directory + "/" + Find(ETrans_Daughter_Folders, "04_2p/01_Every_theta_e_2p/02_MEC_only") + "/";
-    ETrans_dir_map["ETrans_RES_All_Ang_2p_Directory"] = Plots_Folder + "/" + ETrans_Parent_Directory + "/" + Find(ETrans_Daughter_Folders, "04_2p/01_Every_theta_e_2p/03_RES_only") + "/";
-    ETrans_dir_map["ETrans_DIS_All_Ang_2p_Directory"] = Plots_Folder + "/" + ETrans_Parent_Directory + "/" + Find(ETrans_Daughter_Folders, "04_2p/01_Every_theta_e_2p/04_DIS_only") + "/";
+    ETrans_dir_map["ETrans_15_stack_pFDpCD_Directory"] = Plots_Folder + "/" + ETrans_Parent_Directory + "/" + Find(ETrans_Daughter_Folders, "04_pFDpCD/02_Around_15_Deg_pFDpCD") + "/";
+    ETrans_dir_map["ETrans_All_Int_15_pFDpCD_Directory"] =
+        Plots_Folder + "/" + ETrans_Parent_Directory + "/" + Find(ETrans_Daughter_Folders, "04_pFDpCD/02_Around_15_Deg_pFDpCD/00_All_interactions") + "/";
+    ETrans_dir_map["ETrans_QEL_15_pFDpCD_Directory"] = Plots_Folder + "/" + ETrans_Parent_Directory + "/" + Find(ETrans_Daughter_Folders, "04_pFDpCD/02_Around_15_Deg_pFDpCD/01_QEL_only") + "/";
+    ETrans_dir_map["ETrans_MEC_15_pFDpCD_Directory"] = Plots_Folder + "/" + ETrans_Parent_Directory + "/" + Find(ETrans_Daughter_Folders, "04_pFDpCD/02_Around_15_Deg_pFDpCD/02_MEC_only") + "/";
+    ETrans_dir_map["ETrans_RES_15_pFDpCD_Directory"] = Plots_Folder + "/" + ETrans_Parent_Directory + "/" + Find(ETrans_Daughter_Folders, "04_pFDpCD/02_Around_15_Deg_pFDpCD/03_RES_only") + "/";
+    ETrans_dir_map["ETrans_DIS_15_pFDpCD_Directory"] = Plots_Folder + "/" + ETrans_Parent_Directory + "/" + Find(ETrans_Daughter_Folders, "04_pFDpCD/02_Around_15_Deg_pFDpCD/04_DIS_only") + "/";
+    ETrans_dir_map["ETrans_All_Ang_stack_pFDpCD_Directory"] = Plots_Folder + "/" + ETrans_Parent_Directory + "/" + Find(ETrans_Daughter_Folders, "04_pFDpCD/01_Every_theta_e_pFDpCD") + "/";
+    ETrans_dir_map["ETrans_All_Int_All_Ang_pFDpCD_Directory"] =
+        Plots_Folder + "/" + ETrans_Parent_Directory + "/" + Find(ETrans_Daughter_Folders, "04_pFDpCD/01_Every_theta_e_pFDpCD/00_All_interactions") + "/";
+    ETrans_dir_map["ETrans_QEL_All_Ang_pFDpCD_Directory"] = Plots_Folder + "/" + ETrans_Parent_Directory + "/" + Find(ETrans_Daughter_Folders, "04_pFDpCD/01_Every_theta_e_pFDpCD/01_QEL_only") + "/";
+    ETrans_dir_map["ETrans_MEC_All_Ang_pFDpCD_Directory"] = Plots_Folder + "/" + ETrans_Parent_Directory + "/" + Find(ETrans_Daughter_Folders, "04_pFDpCD/01_Every_theta_e_pFDpCD/02_MEC_only") + "/";
+    ETrans_dir_map["ETrans_RES_All_Ang_pFDpCD_Directory"] = Plots_Folder + "/" + ETrans_Parent_Directory + "/" + Find(ETrans_Daughter_Folders, "04_pFDpCD/01_Every_theta_e_pFDpCD/03_RES_only") + "/";
+    ETrans_dir_map["ETrans_DIS_All_Ang_pFDpCD_Directory"] = Plots_Folder + "/" + ETrans_Parent_Directory + "/" + Find(ETrans_Daughter_Folders, "04_pFDpCD/01_Every_theta_e_pFDpCD/04_DIS_only") + "/";
 
     ETrans_dir_map["ETrans_15_stack_pFDpCD_Directory"] = Plots_Folder + "/" + ETrans_Parent_Directory + "/" + Find(ETrans_Daughter_Folders, "05_pFDpCD/02_Around_15_Deg_pFDpCD") + "/";
     ETrans_dir_map["ETrans_All_Int_15_pFDpCD_Directory"] =
@@ -542,14 +583,14 @@ Directories::Directories(const std::string &plots_path, const bool Clear_Old_Dir
     Ecal_dir_map["Ecal_rec_vs_TKI_1n_Directory"] = Plots_Folder + "/" + Ecal_Parent_Directory + "/" + Find(Ecal_Daughter_Folders, "03_1n/04_Ecal_rec_vs_TKI_1n") + "/";
     Ecal_dir_map["Chi2_Ecal_test_1n_Directory"] = Plots_Folder + "/" + Ecal_Parent_Directory + "/" + Find(Ecal_Daughter_Folders, "03_1n/05_Chi2_for_Ecal_above_Ebeam_1n") + "/";
 
-    Ecal_dir_map["Ecal_stack_2p_Directory"] = Plots_Folder + "/" + Ecal_Parent_Directory + "/" + Find(Ecal_Daughter_Folders, "04_2p") + "/";
-    Ecal_dir_map["Ecal_All_Int_2p_Directory"] = Plots_Folder + "/" + Ecal_Parent_Directory + "/" + Find(Ecal_Daughter_Folders, "04_2p/01_Ecal_rec_by_reaction_2p/00_All_interactions") + "/";
-    Ecal_dir_map["Ecal_QEL_2p_Directory"] = Plots_Folder + "/" + Ecal_Parent_Directory + "/" + Find(Ecal_Daughter_Folders, "04_2p/01_Ecal_rec_by_reaction_2p/01_QEL_only") + "/";
-    Ecal_dir_map["Ecal_MEC_2p_Directory"] = Plots_Folder + "/" + Ecal_Parent_Directory + "/" + Find(Ecal_Daughter_Folders, "04_2p/01_Ecal_rec_by_reaction_2p/02_MEC_only") + "/";
-    Ecal_dir_map["Ecal_RES_2p_Directory"] = Plots_Folder + "/" + Ecal_Parent_Directory + "/" + Find(Ecal_Daughter_Folders, "04_2p/01_Ecal_rec_by_reaction_2p/03_RES_only") + "/";
-    Ecal_dir_map["Ecal_DIS_2p_Directory"] = Plots_Folder + "/" + Ecal_Parent_Directory + "/" + Find(Ecal_Daughter_Folders, "04_2p/01_Ecal_rec_by_reaction_2p/04_DIS_only") + "/";
-    Ecal_dir_map["Ecal_rec_vs_TKI_2p_Directory"] = Plots_Folder + "/" + Ecal_Parent_Directory + "/" + Find(Ecal_Daughter_Folders, "04_2p/02_Ecal_rec_vs_TKI_2p") + "/";
-    Ecal_dir_map["Chi2_Ecal_test_2p_Directory"] = Plots_Folder + "/" + Ecal_Parent_Directory + "/" + Find(Ecal_Daughter_Folders, "04_2p/03_Chi2_for_Ecal_above_Ebeam_2p") + "/";
+    Ecal_dir_map["Ecal_stack_pFDpCD_Directory"] = Plots_Folder + "/" + Ecal_Parent_Directory + "/" + Find(Ecal_Daughter_Folders, "04_pFDpCD") + "/";
+    Ecal_dir_map["Ecal_All_Int_pFDpCD_Directory"] = Plots_Folder + "/" + Ecal_Parent_Directory + "/" + Find(Ecal_Daughter_Folders, "04_pFDpCD/01_Ecal_rec_by_reaction_pFDpCD/00_All_interactions") + "/";
+    Ecal_dir_map["Ecal_QEL_pFDpCD_Directory"] = Plots_Folder + "/" + Ecal_Parent_Directory + "/" + Find(Ecal_Daughter_Folders, "04_pFDpCD/01_Ecal_rec_by_reaction_pFDpCD/01_QEL_only") + "/";
+    Ecal_dir_map["Ecal_MEC_pFDpCD_Directory"] = Plots_Folder + "/" + Ecal_Parent_Directory + "/" + Find(Ecal_Daughter_Folders, "04_pFDpCD/01_Ecal_rec_by_reaction_pFDpCD/02_MEC_only") + "/";
+    Ecal_dir_map["Ecal_RES_pFDpCD_Directory"] = Plots_Folder + "/" + Ecal_Parent_Directory + "/" + Find(Ecal_Daughter_Folders, "04_pFDpCD/01_Ecal_rec_by_reaction_pFDpCD/03_RES_only") + "/";
+    Ecal_dir_map["Ecal_DIS_pFDpCD_Directory"] = Plots_Folder + "/" + Ecal_Parent_Directory + "/" + Find(Ecal_Daughter_Folders, "04_pFDpCD/01_Ecal_rec_by_reaction_pFDpCD/04_DIS_only") + "/";
+    Ecal_dir_map["Ecal_rec_vs_TKI_pFDpCD_Directory"] = Plots_Folder + "/" + Ecal_Parent_Directory + "/" + Find(Ecal_Daughter_Folders, "04_pFDpCD/02_Ecal_rec_vs_TKI_pFDpCD") + "/";
+    Ecal_dir_map["Chi2_Ecal_test_pFDpCD_Directory"] = Plots_Folder + "/" + Ecal_Parent_Directory + "/" + Find(Ecal_Daughter_Folders, "04_pFDpCD/03_Chi2_for_Ecal_above_Ebeam_pFDpCD") + "/";
 
     Ecal_dir_map["Ecal_stack_pFDpCD_Directory"] = Plots_Folder + "/" + Ecal_Parent_Directory + "/" + Find(Ecal_Daughter_Folders, "05_pFDpCD") + "/";
     Ecal_dir_map["Ecal_All_Int_pFDpCD_Directory"] =
@@ -589,10 +630,10 @@ Directories::Directories(const std::string &plots_path, const bool Clear_Old_Dir
     TKI_dir_map["dAlpha_T_1n_Directory"] = Plots_Folder + "/" + TKI_Parent_Directory + "/" + Find(TKI_Daughter_Folders, "03_1n/02_dAlpha_T_1n") + "/";
     TKI_dir_map["dPhi_T_1n_Directory"] = Plots_Folder + "/" + TKI_Parent_Directory + "/" + Find(TKI_Daughter_Folders, "03_1n/03_dPhi_T_1n") + "/";
 
-    TKI_dir_map["dP_T_vs_dAlpha_T_2p_Directory"] = Plots_Folder + "/" + TKI_Parent_Directory + "/" + Find(Ecal_Daughter_Folders, "04_2p") + "/";
-    TKI_dir_map["dP_T_2p_Directory"] = Plots_Folder + "/" + TKI_Parent_Directory + "/" + Find(TKI_Daughter_Folders, "04_2p/01_dP_T_2p") + "/";
-    TKI_dir_map["dAlpha_T_2p_Directory"] = Plots_Folder + "/" + TKI_Parent_Directory + "/" + Find(TKI_Daughter_Folders, "04_2p/02_dAlpha_T_2p") + "/";
-    TKI_dir_map["dPhi_T_2p_Directory"] = Plots_Folder + "/" + TKI_Parent_Directory + "/" + Find(TKI_Daughter_Folders, "04_2p/03_dPhi_T_2p") + "/";
+    TKI_dir_map["dP_T_vs_dAlpha_T_pFDpCD_Directory"] = Plots_Folder + "/" + TKI_Parent_Directory + "/" + Find(Ecal_Daughter_Folders, "04_pFDpCD") + "/";
+    TKI_dir_map["dP_T_pFDpCD_Directory"] = Plots_Folder + "/" + TKI_Parent_Directory + "/" + Find(TKI_Daughter_Folders, "04_pFDpCD/01_dP_T_pFDpCD") + "/";
+    TKI_dir_map["dAlpha_T_pFDpCD_Directory"] = Plots_Folder + "/" + TKI_Parent_Directory + "/" + Find(TKI_Daughter_Folders, "04_pFDpCD/02_dAlpha_T_pFDpCD") + "/";
+    TKI_dir_map["dPhi_T_pFDpCD_Directory"] = Plots_Folder + "/" + TKI_Parent_Directory + "/" + Find(TKI_Daughter_Folders, "04_pFDpCD/03_dPhi_T_pFDpCD") + "/";
 
     TKI_dir_map["dP_T_vs_dAlpha_T_pFDpCD_Directory"] = Plots_Folder + "/" + TKI_Parent_Directory + "/" + Find(Ecal_Daughter_Folders, "05_pFDpCD") + "/";
     TKI_dir_map["dP_T_pFDpCD_Directory"] = Plots_Folder + "/" + TKI_Parent_Directory + "/" + Find(TKI_Daughter_Folders, "05_pFDpCD/01_dP_T_pFDpCD") + "/";
@@ -651,13 +692,13 @@ Directories::Directories(const std::string &plots_path, const bool Clear_Old_Dir
     Eff_and_ACorr_dir_map["Neutron_FD_Hit_map_1n_Directory"] =
         Plots_Folder + "/" + Eff_and_ACorr_Parent_Directory + "/" + Find(Eff_and_ACorr_Daughter_Folders, "03_1n/04_Neutron_FD_Hit_map_1n") + "/";
 
-    Eff_and_ACorr_dir_map["Eff_and_ACorr_2p_Directory"] = Plots_Folder + "/" + Eff_and_ACorr_Parent_Directory + "/" + Find(Eff_and_ACorr_Daughter_Folders, "04_2p") + "/";
-    Eff_and_ACorr_dir_map["Mom_Eff_and_ACorr_2p_Directory"] =
-        Plots_Folder + "/" + Eff_and_ACorr_Parent_Directory + "/" + Find(Eff_and_ACorr_Daughter_Folders, "04_2p/01_Momentum_Eff_and_ACorr_plots_2p") + "/";
-    Eff_and_ACorr_dir_map["Theta_Eff_and_ACorr_2p_Directory"] =
-        Plots_Folder + "/" + Eff_and_ACorr_Parent_Directory + "/" + Find(Eff_and_ACorr_Daughter_Folders, "04_2p/02_Theta_Eff_and_ACorr_plots_2p") + "/";
-    Eff_and_ACorr_dir_map["Phi_Eff_and_ACorr_2p_Directory"] =
-        Plots_Folder + "/" + Eff_and_ACorr_Parent_Directory + "/" + Find(Eff_and_ACorr_Daughter_Folders, "04_2p/03_Phi_Eff_and_ACorr_plots_2p") + "/";
+    Eff_and_ACorr_dir_map["Eff_and_ACorr_pFDpCD_Directory"] = Plots_Folder + "/" + Eff_and_ACorr_Parent_Directory + "/" + Find(Eff_and_ACorr_Daughter_Folders, "04_pFDpCD") + "/";
+    Eff_and_ACorr_dir_map["Mom_Eff_and_ACorr_pFDpCD_Directory"] =
+        Plots_Folder + "/" + Eff_and_ACorr_Parent_Directory + "/" + Find(Eff_and_ACorr_Daughter_Folders, "04_pFDpCD/01_Momentum_Eff_and_ACorr_plots_pFDpCD") + "/";
+    Eff_and_ACorr_dir_map["Theta_Eff_and_ACorr_pFDpCD_Directory"] =
+        Plots_Folder + "/" + Eff_and_ACorr_Parent_Directory + "/" + Find(Eff_and_ACorr_Daughter_Folders, "04_pFDpCD/02_Theta_Eff_and_ACorr_plots_pFDpCD") + "/";
+    Eff_and_ACorr_dir_map["Phi_Eff_and_ACorr_pFDpCD_Directory"] =
+        Plots_Folder + "/" + Eff_and_ACorr_Parent_Directory + "/" + Find(Eff_and_ACorr_Daughter_Folders, "04_pFDpCD/03_Phi_Eff_and_ACorr_plots_pFDpCD") + "/";
 
     Eff_and_ACorr_dir_map["Eff_and_ACorr_pFDpCD_Directory"] = Plots_Folder + "/" + Eff_and_ACorr_Parent_Directory + "/" + Find(Eff_and_ACorr_Daughter_Folders, "05_pFDpCD") + "/";
     Eff_and_ACorr_dir_map["Mom_Eff_and_ACorr_pFDpCD_Directory"] =
