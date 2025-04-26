@@ -7728,15 +7728,19 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     // Ecal reconstruction histograms (1p)
 
     // Ecal plots (1p)
-    THStack *sEcal_1p = new THStack("E_{cal} Reconstruction (1p)", "E_{cal} Reconstruction (1p);E_{cal} = E_{e} + T_{p} [GeV]");
+    THStack *sEcal_1p = new THStack("E_{cal} Reconstruction (1p)", "E_{cal} Reconstruction (1p);E_{cal} = E_{e} + T_{pFD} [GeV]");
     std::string sEcal_1p_Dir = directories.Ecal_dir_map["Ecal_stack_1p_Directory"];
 
     TH1D *hEcal_All_Int_1p =
-        new TH1D("E_{cal} reco. (All Int., 1p)", "E_{cal} Reconstruction (All Int., 1p);E_{cal} = E_{e} + T_{p} [GeV]", numTH1Dbins_E_cal_Plots, 0, parameters.beamE * 1.35);
-    TH1D *hEcal_QEL_1p = new TH1D("E_{cal} reco. (QEL only, 1p)", "E_{cal} Reconstruction (QEL only, 1p);E_{cal} = E_{e} + T_{p} [GeV]", numTH1Dbins_E_cal_Plots, 0, parameters.beamE * 1.35);
-    TH1D *hEcal_MEC_1p = new TH1D("E_{cal} reco. (MEC only, 1p)", "E_{cal} Reconstruction (MEC only, 1p);E_{cal} = E_{e} + T_{p} [GeV]", numTH1Dbins_E_cal_Plots, 0, parameters.beamE * 1.35);
-    TH1D *hEcal_RES_1p = new TH1D("E_{cal} reco. (RES only, 1p)", "E_{cal} Reconstruction (RES only, 1p);E_{cal} = E_{e} + T_{p} [GeV]", numTH1Dbins_E_cal_Plots, 0, parameters.beamE * 1.35);
-    TH1D *hEcal_DIS_1p = new TH1D("E_{cal} reco. (DIS only, 1p)", "E_{cal} Reconstruction (DIS only, 1p);E_{cal} = E_{e} + T_{p} [GeV]", numTH1Dbins_E_cal_Plots, 0, parameters.beamE * 1.35);
+        new TH1D("E_{cal} reco. (All Int., 1p)", "E_{cal} Reconstruction (All Int., 1p);E_{cal} = E_{e} + T_{pFD} [GeV]", numTH1Dbins_E_cal_Plots, 0, parameters.beamE * 1.35);
+    TH1D *hEcal_QEL_1p =
+        new TH1D("E_{cal} reco. (QEL only, 1p)", "E_{cal} Reconstruction (QEL only, 1p);E_{cal} = E_{e} + T_{pFD} [GeV]", numTH1Dbins_E_cal_Plots, 0, parameters.beamE * 1.35);
+    TH1D *hEcal_MEC_1p =
+        new TH1D("E_{cal} reco. (MEC only, 1p)", "E_{cal} Reconstruction (MEC only, 1p);E_{cal} = E_{e} + T_{pFD} [GeV]", numTH1Dbins_E_cal_Plots, 0, parameters.beamE * 1.35);
+    TH1D *hEcal_RES_1p =
+        new TH1D("E_{cal} reco. (RES only, 1p)", "E_{cal} Reconstruction (RES only, 1p);E_{cal} = E_{e} + T_{pFD} [GeV]", numTH1Dbins_E_cal_Plots, 0, parameters.beamE * 1.35);
+    TH1D *hEcal_DIS_1p =
+        new TH1D("E_{cal} reco. (DIS only, 1p)", "E_{cal} Reconstruction (DIS only, 1p);E_{cal} = E_{e} + T_{pFD} [GeV]", numTH1Dbins_E_cal_Plots, 0, parameters.beamE * 1.35);
     std::string hEcal_All_Int_1p_Dir = directories.Ecal_dir_map["Ecal_All_Int_1p_Directory"];
     std::string hEcal_QEL_1p_Dir = directories.Ecal_dir_map["Ecal_QEL_1p_Directory"];
     std::string hEcal_MEC_1p_Dir = directories.Ecal_dir_map["Ecal_MEC_1p_Directory"];
@@ -7793,18 +7797,28 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                                       dP_T_boundary, numTH2Dbins_E_cal_Plots, 0, parameters.beamE * 1.35);
     std::string hEcal_vs_dP_T_1p_Dir = directories.Ecal_dir_map["Ecal_rec_vs_TKI_1p_Directory"];
 
+    // Ecal vs. W (1p)
+    TH2D *hEcal_vs_W_1p =
+        new TH2D("E_{cal} vs. W (All Int., 1p)", "E_{cal} vs. W (All Int., 1p);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];E_{cal} = E_{e} + T_{pFD} [GeV];",
+                 numTH2Dbins_E_cal_Plots, W_lboundary, W_uboundary, numTH2Dbins_E_cal_Plots, 0, parameters.beamE * 1.35);
+    std::string hEcal_vs_W_1p_Dir = directories.Ecal_dir_map["Ecal_stack_1p_Directory"];
+
     // Ecal reconstruction histograms (1n)
 
     // Ecal plots (1n)
-    THStack *sEcal_1n = new THStack("E_{cal} Reconstruction (1n)", "E_{cal} Reconstruction (1n);E_{cal} = E_{e} + T_{n} [GeV]");
+    THStack *sEcal_1n = new THStack("E_{cal} Reconstruction (1n)", "E_{cal} Reconstruction (1n);E_{cal} = E_{e} + T_{nFD} [GeV]");
     std::string sEcal_1n_Dir = directories.Ecal_dir_map["Ecal_stack_1n_Directory"];
 
     TH1D *hEcal_All_Int_1n =
-        new TH1D("E_{cal} reco. (All Int., 1n)", "E_{cal} Reconstruction (All Int., 1n);E_{cal} = E_{e} + T_{n} [GeV]", numTH1Dbins_E_cal_Plots, 0, parameters.beamE * 1.35);
-    TH1D *hEcal_QEL_1n = new TH1D("E_{cal} reco. (QEL only, 1n)", "E_{cal} Reconstruction (QEL only, 1n);E_{cal} = E_{e} + T_{n} [GeV]", numTH1Dbins_E_cal_Plots, 0, parameters.beamE * 1.35);
-    TH1D *hEcal_MEC_1n = new TH1D("E_{cal} reco. (MEC only, 1n)", "E_{cal} Reconstruction (MEC only, 1n);E_{cal} = E_{e} + T_{n} [GeV]", numTH1Dbins_E_cal_Plots, 0, parameters.beamE * 1.35);
-    TH1D *hEcal_RES_1n = new TH1D("E_{cal} reco. (RES only, 1n)", "E_{cal} Reconstruction (RES only, 1n);E_{cal} = E_{e} + T_{n} [GeV]", numTH1Dbins_E_cal_Plots, 0, parameters.beamE * 1.35);
-    TH1D *hEcal_DIS_1n = new TH1D("E_{cal} reco. (DIS only, 1n)", "E_{cal} Reconstruction (DIS only, 1n);E_{cal} = E_{e} + T_{n} [GeV]", numTH1Dbins_E_cal_Plots, 0, parameters.beamE * 1.35);
+        new TH1D("E_{cal} reco. (All Int., 1n)", "E_{cal} Reconstruction (All Int., 1n);E_{cal} = E_{e} + T_{nFD} [GeV]", numTH1Dbins_E_cal_Plots, 0, parameters.beamE * 1.35);
+    TH1D *hEcal_QEL_1n =
+        new TH1D("E_{cal} reco. (QEL only, 1n)", "E_{cal} Reconstruction (QEL only, 1n);E_{cal} = E_{e} + T_{nFD} [GeV]", numTH1Dbins_E_cal_Plots, 0, parameters.beamE * 1.35);
+    TH1D *hEcal_MEC_1n =
+        new TH1D("E_{cal} reco. (MEC only, 1n)", "E_{cal} Reconstruction (MEC only, 1n);E_{cal} = E_{e} + T_{nFD} [GeV]", numTH1Dbins_E_cal_Plots, 0, parameters.beamE * 1.35);
+    TH1D *hEcal_RES_1n =
+        new TH1D("E_{cal} reco. (RES only, 1n)", "E_{cal} Reconstruction (RES only, 1n);E_{cal} = E_{e} + T_{nFD} [GeV]", numTH1Dbins_E_cal_Plots, 0, parameters.beamE * 1.35);
+    TH1D *hEcal_DIS_1n =
+        new TH1D("E_{cal} reco. (DIS only, 1n)", "E_{cal} Reconstruction (DIS only, 1n);E_{cal} = E_{e} + T_{nFD} [GeV]", numTH1Dbins_E_cal_Plots, 0, parameters.beamE * 1.35);
     std::string hEcal_All_Int_1n_Dir = directories.Ecal_dir_map["Ecal_All_Int_1n_Directory"];
     std::string hEcal_QEL_1n_Dir = directories.Ecal_dir_map["Ecal_QEL_1n_Directory"];
     std::string hEcal_MEC_1n_Dir = directories.Ecal_dir_map["Ecal_MEC_1n_Directory"];
@@ -7860,6 +7874,12 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     TH2D *hEcal_vs_dP_T_1n = new TH2D("E_{cal} vs. #deltaP_{T} (All Int., 1n)", "E_{cal} vs. #deltaP_{T} (All Int., 1n);#deltaP_{T} [GeV/c];E_{cal} [GeV];", numTH2Dbins_E_cal_Plots, 0,
                                       dP_T_boundary, numTH2Dbins_E_cal_Plots, 0, parameters.beamE * 1.35);
     std::string hEcal_vs_dP_T_1n_Dir = directories.Ecal_dir_map["Ecal_rec_vs_TKI_1n_Directory"];
+
+    // Ecal vs. W (1n)
+    TH2D *hEcal_vs_W_1n =
+        new TH2D("E_{cal} vs. W (All Int., 1n)", "E_{cal} vs. W (All Int., 1n);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];E_{cal} = E_{e} + T_{nFD} [GeV];",
+                 numTH2Dbins_E_cal_Plots, W_lboundary, W_uboundary, numTH2Dbins_E_cal_Plots, 0, parameters.beamE * 1.35);
+    std::string hEcal_vs_W_1n_Dir = directories.Ecal_dir_map["Ecal_stack_1n_Directory"];
 
     // Ecal reconstruction histograms (2p)
 
@@ -14762,6 +14782,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                 hEcal_vs_Phi_p_1p->Fill(Phi_p_1p, Ecal_1p, Weight_1p);
                 hEcal_vs_dAlpha_T_1p->Fill(dAlpha_T_1p, Ecal_1p, Weight_1p);
                 hEcal_vs_dP_T_1p->Fill(dP_T_1p_3v.Mag(), Ecal_1p, Weight_1p);
+                hEcal_vs_W_1p->Fill(W_1p, Ecal_1p, Weight_1p);
 
                 hTheta_p_All_Int_1p->Fill(Theta_p_1p, Weight_1p);
                 hTheta_p_VS_P_p_1p_FD->Fill(P_p_1p_3v.Mag(), Theta_p_1p, Weight_1p);
@@ -15625,6 +15646,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                 hEcal_vs_Phi_n_1n->Fill(Phi_n_1n, Ecal_1n, Weight_1n);
                 hEcal_vs_dAlpha_T_1n->Fill(dAlpha_T_1n, Ecal_1n, Weight_1n);
                 hEcal_vs_dP_T_1n->Fill(dP_T_1n_3v.Mag(), Ecal_1n, Weight_1n);
+                hEcal_vs_W_1n->Fill(W_1n, Ecal_1n, Weight_1n);
 
                 hTheta_n_All_Int_1n->Fill(Theta_n_1n, Weight_1n);
                 hTheta_n_VS_P_n_1n_FD->Fill(P_n_1n_3v.Mag(), Theta_n_1n, Weight_1n);
@@ -24033,7 +24055,13 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         histPlotter2D(MainCanvas, hEcal_vs_dAlpha_T_tot_DIS_Only_nFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hEcal_vs_dAlpha_T_tot_nFDpCD_Dir,
                       "03d_Ecal_vs_dAlpha_T_tot_DIS_Only_nFDpCD", false);
 
-        //  Ecal vs. W (pFDpCD, CD & FD) ----------------------------------------------------------------------------------------------------------------------------------------
+        //  Ecal vs. W --------------------------------------------------------------------------------------------------------------------------------------------------
+
+        // Ecal vs. W (1p, CD & FD)
+        histPlotter2D(MainCanvas, hEcal_vs_W_1p, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hEcal_vs_W_1p_Dir, "02_Ecal_vs_W_1p");
+
+        // Ecal vs. W (1n, CD & FD)
+        histPlotter2D(MainCanvas, hEcal_vs_W_1n, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hEcal_vs_W_1n_Dir, "02_Ecal_vs_W_1n");
 
         // Ecal vs. W (pFDpCD, CD & FD)
         histPlotter2D(MainCanvas, hEcal_vs_W_pFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hEcal_vs_W_pFDpCD_Dir, "02_Ecal_vs_W_pFDpCD");
