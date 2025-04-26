@@ -106,7 +106,7 @@ struct AnalysisCutSettings {
           apply_nucleon_physical_cuts(true),
           apply_nBeta_fit_cuts(true),
           apply_fiducial_cuts(false),
-          apply_kinematical_cuts(false),
+          apply_kinematical_cuts(true),
           apply_kinematical_weights(false),
           apply_nucleon_SmearAndCorr(false),
 
