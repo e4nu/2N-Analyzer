@@ -111,24 +111,67 @@ struct AnalysisCutSettings {
           apply_nucleon_SmearAndCorr(false),
 
           // Reaction monitoring cuts:
-          apply_reaction_monitoring_cuts(true),
-        //   apply_P_miss_in_QE_range_cuts(false),
-        //   apply_E_miss_in_QE_range_cuts(false),
-          apply_P_miss_in_QE_range_cuts(true),
-          apply_E_miss_in_QE_range_cuts(true),
-        //   apply_P_miss_in_MECandSRC_range_cuts(false),
-        //   apply_E_miss_in_MECandSRC_range_cuts(false),
-        //   apply_P_miss_in_MECandSRC_range_cuts(true),
-        //   apply_E_miss_in_MECandSRC_range_cuts(true),
-          apply_xB_in_QE_range_cuts(false),
-          apply_theta_q_pCD_in_lower_FSI_range_cut(true),
-        //   apply_theta_q_pCD_in_lower_FSI_range_cut(true),
 
+        //   /* Regular */
         //   apply_reaction_monitoring_cuts(true),
         //   apply_P_miss_in_QE_range_cuts(false),
         //   apply_E_miss_in_QE_range_cuts(false),
         //   apply_P_miss_in_MECandSRC_range_cuts(false),
         //   apply_E_miss_in_MECandSRC_range_cuts(false),
+        //   apply_xB_in_QE_range_cuts(false),
+        //   apply_theta_q_pCD_in_lower_FSI_range_cut(false),
+
+          /* P_E_miss_in_QE */
+          apply_reaction_monitoring_cuts(true),
+          apply_P_miss_in_QE_range_cuts(true),
+          apply_E_miss_in_QE_range_cuts(true),
+          apply_P_miss_in_MECandSRC_range_cuts(false),
+          apply_E_miss_in_MECandSRC_range_cuts(false),
+          apply_xB_in_QE_range_cuts(false),
+          apply_theta_q_pCD_in_lower_FSI_range_cut(false),
+
+        //   /* P_E_miss_in_QE_theta_q_pCD */
+        //   apply_reaction_monitoring_cuts(true),
+        //   apply_P_miss_in_QE_range_cuts(true),
+        //   apply_E_miss_in_QE_range_cuts(true),
+        //   apply_P_miss_in_MECandSRC_range_cuts(false),
+        //   apply_E_miss_in_MECandSRC_range_cuts(false),
+        //   apply_xB_in_QE_range_cuts(false),
+        //   apply_theta_q_pCD_in_lower_FSI_range_cut(true),
+
+        //   /* P_E_miss_in_MECandSRC */
+        //   apply_reaction_monitoring_cuts(true),
+        //   apply_P_miss_in_QE_range_cuts(false),
+        //   apply_E_miss_in_QE_range_cuts(false),
+        //   apply_P_miss_in_MECandSRC_range_cuts(true),
+        //   apply_E_miss_in_MECandSRC_range_cuts(true),
+        //   apply_xB_in_QE_range_cuts(false),
+        //   apply_theta_q_pCD_in_lower_FSI_range_cut(false),
+
+        //   /* P_E_miss_in_MECandSRC_theta_q_pCD */
+        //   apply_reaction_monitoring_cuts(true),
+        //   apply_P_miss_in_QE_range_cuts(false),
+        //   apply_E_miss_in_QE_range_cuts(false),
+        //   apply_P_miss_in_MECandSRC_range_cuts(true),
+        //   apply_E_miss_in_MECandSRC_range_cuts(true),
+        //   apply_xB_in_QE_range_cuts(false),
+        //   apply_theta_q_pCD_in_lower_FSI_range_cut(true),
+
+        //   /* P_E_miss_in_QEandMECandSRC */
+        //   apply_reaction_monitoring_cuts(true),
+        //   apply_P_miss_in_QE_range_cuts(true),
+        //   apply_E_miss_in_QE_range_cuts(true),
+        //   apply_P_miss_in_MECandSRC_range_cuts(true),
+        //   apply_E_miss_in_MECandSRC_range_cuts(true),
+        //   apply_xB_in_QE_range_cuts(false),
+        //   apply_theta_q_pCD_in_lower_FSI_range_cut(false),
+
+        //   /* P_E_miss_in_QEandMECandSRC_theta_q_pCD */
+        //   apply_reaction_monitoring_cuts(true),
+        //   apply_P_miss_in_QE_range_cuts(true),
+        //   apply_E_miss_in_QE_range_cuts(true),
+        //   apply_P_miss_in_MECandSRC_range_cuts(true),
+        //   apply_E_miss_in_MECandSRC_range_cuts(true),
         //   apply_xB_in_QE_range_cuts(false),
         //   apply_theta_q_pCD_in_lower_FSI_range_cut(true),
 
