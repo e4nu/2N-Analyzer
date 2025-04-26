@@ -591,14 +591,15 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     }
 
     /* Reaction monitoring boundries */
-    double P_miss_lboundary = P_nucFD_lboundary, P_miss_uboundary = P_nucFD_uboundary;
-    double E_miss_lboundary = P_miss_lboundary, E_miss_uboundary = P_miss_uboundary;
+    double P_miss_lboundary = 0., P_miss_uboundary = parameters.beamE * 1.1;
+    // double P_miss_lboundary = P_nucFD_lboundary, P_miss_uboundary = P_nucFD_uboundary;
+    double E_miss_lboundary = 0., E_miss_uboundary = parameters.beamE * 0.9;
     const double xB_lboundary = 0., xB_uboundary = 1.5;
     double theta_q_lboundary = 0., theta_q_uboundary = 180.;
 
     /* W boundries */
     const double W_lboundary = 0.35;
-    const double W_uboundary = 1.1 * sqrt((parameters.beamE + m_p) * (parameters.beamE + m_p) - parameters.beamE * parameters.beamE);  // Default
+    const double W_uboundary = 1.1 * sqrt((parameters.beamE + constants::m_p) * (parameters.beamE + constants::m_p) - parameters.beamE * parameters.beamE);  // Default
 
     /* Beta boundries */
     const double dBeta_sigma_boundary = 0.1;
@@ -12997,7 +12998,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             Theta_e_tmp = electrons[i]->getTheta() * 180.0 / pi;  // Theta_e_tmp in deg
             Phi_e_tmp = electrons[i]->getPhi() * 180.0 / pi;      // Phi_e_tmp in deg
             P_e_tmp = electrons[i]->par()->getP();                // temp electron momentum
-            e_out.SetPxPyPzE(electrons[i]->par()->getPx(), electrons[i]->par()->getPy(), electrons[i]->par()->getPz(), sqrt(m_e * m_e + P_e_tmp * P_e_tmp));
+            e_out.SetPxPyPzE(electrons[i]->par()->getPx(), electrons[i]->par()->getPy(), electrons[i]->par()->getPz(), sqrt(constants::m_e * constants::m_e + P_e_tmp * P_e_tmp));
             Q = beam - e_out;  // definition of 4-momentum transfer
             Q2 = fabs(Q.Mag2());
 
@@ -13193,12 +13194,12 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         P_e_1e_cut_3v.SetMagThetaPhi(electrons[0]->getP(), electrons[0]->getTheta(), electrons[0]->getPhi());
         q_1e_cut_3v = TVector3(Pvx - P_e_1e_cut_3v.Px(), Pvy - P_e_1e_cut_3v.Py(), Pvz - P_e_1e_cut_3v.Pz());  // 3 momentum transfer
 
-        e_out_1e_cut.SetPxPyPzE(electrons[0]->par()->getPx(), electrons[0]->par()->getPy(), electrons[0]->par()->getPz(), sqrt(m_e * m_e + P_e_1e_cut_3v.Mag2()));
+        e_out_1e_cut.SetPxPyPzE(electrons[0]->par()->getPx(), electrons[0]->par()->getPy(), electrons[0]->par()->getPz(), sqrt(constants::m_e * constants::m_e + P_e_1e_cut_3v.Mag2()));
         Q_1e_cut = beam - e_out_1e_cut;  // definition of 4-momentum transfer
         double Q2_1e_cut = fabs(Q_1e_cut.Mag2());
 
-        double P_e_1e_cut = P_e_1e_cut_3v.Mag(), E_e_1e_cut = sqrt(m_e * m_e + P_e_1e_cut * P_e_1e_cut);
-        double omega_1e_cut = parameters.beamE - E_e_1e_cut, W_1e_cut = sqrt((omega_1e_cut + m_p) * (omega_1e_cut + m_p) - q_1e_cut_3v.Mag2());
+        double P_e_1e_cut = P_e_1e_cut_3v.Mag(), E_e_1e_cut = sqrt(constants::m_e * constants::m_e + P_e_1e_cut * P_e_1e_cut);
+        double omega_1e_cut = parameters.beamE - E_e_1e_cut, W_1e_cut = sqrt((omega_1e_cut + constants::m_p) * (omega_1e_cut + constants::m_p) - q_1e_cut_3v.Mag2());
         double Theta_e = P_e_1e_cut_3v.Theta() * 180.0 / pi, Phi_e = P_e_1e_cut_3v.Phi() * 180.0 / pi;  // Theta_e, Phi_e in deg
         double Vx_e = electrons[0]->par()->getVx(), Vy_e = electrons[0]->par()->getVy(), Vz_e = electrons[0]->par()->getVz();
         double Weight_1e_cut = Weight;
@@ -14418,25 +14419,25 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             P_T_e_1p_3v = TVector3(P_e_1p_3v.Px(), P_e_1p_3v.Py(), 0);                                                                         // electron transverse momentum
             P_T_p_1p_3v = TVector3(P_p_1p_3v.Px(), P_p_1p_3v.Py(), 0);                                                                         // proton transverse momentum
 
-            double E_e_1p = sqrt(m_e * m_e + P_e_1p_3v.Mag2()), Ecal_1p, dAlpha_T_1p, dPhi_T_1p;
-            double omega_1p = parameters.beamE - E_e_1p, W_1p = sqrt((omega_1p + m_p) * (omega_1p + m_p) - q_1p_3v.Mag2());
+            double E_e_1p = sqrt(constants::m_e * constants::m_e + P_e_1p_3v.Mag2()), Ecal_1p, dAlpha_T_1p, dPhi_T_1p;
+            double omega_1p = parameters.beamE - E_e_1p, W_1p = sqrt((omega_1p + constants::m_p) * (omega_1p + constants::m_p) - q_1p_3v.Mag2());
             double E_p_1p = sqrt(constants::m_p * constants::m_p + P_p_1p_3v.Mag2());
             double Theta_p_e_p_p_1p, Theta_q_p_p_1p;
             double EoP_e_1p = (e_1p->cal(clas12::PCAL)->getEnergy() + e_1p->cal(ECIN)->getEnergy() + e_1p->cal(ECOUT)->getEnergy()) / P_e_1p_3v.Mag();
             double Vx_e_1p = e_1p->par()->getVx(), Vy_e_1p = e_1p->par()->getVy(), Vz_e_1p = e_1p->par()->getVz();
 
             /* Setting Q2 (1p) */
-            TLorentzVector e_out_1p(P_e_1p_3v, E_e_1p);
-            double Q2_1p = analysis_physics::CalcQ2(beam, e_out_1p);
-            double xB_1p = analysis_physics::CalcxB(beam, e_out_1p, omega_1p, constants::m_p);
+            TLorentzVector e_out_1p_4v(P_e_1p_3v, E_e_1p);
+            double Q2_1p = analysis_physics::CalcQ2(beam, e_out_1p_4v);
+            double xB_1p = analysis_physics::CalcxB(beam, e_out_1p_4v, omega_1p, constants::m_p);
             TVector3 P_miss_1N_1p_3v = CalcPmiss1N3v(P_p_1p_3v, q_1p_3v);         // Missing momentum (1N)
             double E_miss_1N_1p = CalcEmiss1N(omega_1p, E_p_1p, constants::m_p);  // Missing energy (1N)
-            // TLorentzVector e_out_1p, Q_1p;
+            // TLorentzVector e_out_1p_4v, Q_1p;
             // double Q2_1p;
-            // e_out_1p.SetPxPyPzE(e_1p->par()->getPx(), e_1p->par()->getPy(), e_1p->par()->getPz(), E_e_1p);
-            // Q_1p = beam - e_out_1p;  // definition of 4-momentum transfer
+            // e_out_1p_4v.SetPxPyPzE(e_1p->par()->getPx(), e_1p->par()->getPy(), e_1p->par()->getPz(), E_e_1p);
+            // Q_1p = beam - e_out_1p_4v;  // definition of 4-momentum transfer
             // Q2_1p = fabs(Q_1p.Mag2());
-            // double xB_1p = Q2_1p / (2 * m_p * omega_1p);
+            // double xB_1p = Q2_1p / (2 * constants::m_p * omega_1p);
 
             /* Setting particle angles (1p) */
             double Theta_e_1p = e_1p->getTheta() * 180.0 / pi, Phi_e_1p = e_1p->getPhi() * 180.0 / pi;  // Theta_e_1p, Phi_e_1p in deg
@@ -14702,7 +14703,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                 }
 
                 // Filling Ecal plots (1p)
-                Ecal_1p = E_e_1p + (E_p_1p - m_p);
+                Ecal_1p = E_e_1p + (E_p_1p - constants::m_p);
 
                 hEcal_All_Int_1p->Fill(Ecal_1p, Weight_1p);  // Fill Ecal for all interactions
 
@@ -14989,24 +14990,24 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             P_T_e_1n_3v = TVector3(P_e_1n_3v.Px(), P_e_1n_3v.Py(), 0);  // electron t. momentum
             P_T_n_1n_3v = TVector3(P_n_1n_3v.Px(), P_n_1n_3v.Py(), 0);  // neutron t. momentum
 
-            double E_e_1n = sqrt(m_e * m_e + P_e_1n_3v.Mag2()), Ecal_1n, dAlpha_T_1n, dPhi_T_1n;
-            double omega_1n = parameters.beamE - E_e_1n, W_1n = sqrt((omega_1n + m_n) * (omega_1n + m_n) - q_1n_3v.Mag2());
+            double E_e_1n = sqrt(constants::m_e * constants::m_e + P_e_1n_3v.Mag2()), Ecal_1n, dAlpha_T_1n, dPhi_T_1n;
+            double omega_1n = parameters.beamE - E_e_1n, W_1n = sqrt((omega_1n + constants::m_n) * (omega_1n + constants::m_n) - q_1n_3v.Mag2());
             double E_n_1n = sqrt(constants::m_n * constants::m_n + P_n_1n_3v.Mag2());
             double Theta_p_e_p_n_1n, Theta_q_p_n_1n;
             double EoP_e_1n = (e_1n->cal(clas12::PCAL)->getEnergy() + e_1n->cal(ECIN)->getEnergy() + e_1n->cal(ECOUT)->getEnergy()) / P_e_1n_3v.Mag();
             double Vx_e_1n = e_1n->par()->getVx(), Vy_e_1n = e_1n->par()->getVy(), Vz_e_1n = e_1n->par()->getVz();
 
             /* Setting Q2 (1n) */
-            TLorentzVector e_out_1n(P_e_1n_3v, E_e_1n);
-            double Q2_1n = analysis_physics::CalcQ2(beam, e_out_1n);
-            double xB_1n = analysis_physics::CalcxB(beam, e_out_1n, omega_1n, constants::m_p);
+            TLorentzVector e_out_1n_4v(P_e_1n_3v, E_e_1n);
+            double Q2_1n = analysis_physics::CalcQ2(beam, e_out_1n_4v);
+            double xB_1n = analysis_physics::CalcxB(beam, e_out_1n_4v, omega_1n, constants::m_p);
             TVector3 P_miss_1N_1n_3v = CalcPmiss1N3v(P_n_1n_3v, q_1n_3v);         // Missing momentum (1N)
             double E_miss_1N_1n = CalcEmiss1N(omega_1n, E_n_1n, constants::m_p);  // Missing energy (1N)
             // double Q2_1n;
-            // e_out_1n.SetPxPyPzE(e_1n->par()->getPx(), e_1n->par()->getPy(), e_1n->par()->getPz(), E_e_1n);
-            // Q_1n = beam - e_out_1n;  // definition of 4-momentum transfer
+            // e_out_1n_4v.SetPxPyPzE(e_1n->par()->getPx(), e_1n->par()->getPy(), e_1n->par()->getPz(), E_e_1n);
+            // Q_1n = beam - e_out_1n_4v;  // definition of 4-momentum transfer
             // Q2_1n = fabs(Q_1n.Mag2());
-            // double xB_1n = Q2_1n / (2 * m_n * omega_1n);
+            // double xB_1n = Q2_1n / (2 * constants::m_n * omega_1n);
 
             /* Setting particle angles (1n) */
             double Theta_e_1n = e_1n->getTheta() * 180.0 / pi, Phi_e_1n = e_1n->getPhi() * 180.0 / pi;  // Theta_e_1n, Phi_e_1n in deg
@@ -15552,7 +15553,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                 }
 
                 // Filling Ecal plots (1n)
-                Ecal_1n = E_e_1n + (E_n_1n - m_n);
+                Ecal_1n = E_e_1n + (E_n_1n - constants::m_n);
 
                 hEcal_All_Int_1n->Fill(Ecal_1n, Weight_1n);  // Fill Ecal for all interactions
 
@@ -15756,7 +15757,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                                 double Reco_calc_t_nFD_ToF = n_1n->cal(Detlayer_1n)->getTime() - t_start;  // Reco neutron ToF 2
 
                                 /* Basic truth variables */
-                                double Truth_E_nFD = sqrt(m_n * m_n + TLNeutronP * TLNeutronP);
+                                double Truth_E_nFD = sqrt(constants::m_n * constants::m_n + TLNeutronP * TLNeutronP);
                                 double Truth_beta = TLNeutronP / Truth_E_nFD;
 
                                 /* Effective distance */
@@ -15972,7 +15973,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             /* NOTE: p_first corresponds to protons[Protons_ind.at(0)] & p_second corresponds to protons[Protons_ind.at(1)] */
             TVector3 P_e_2p_3v, q_2p_3v, P_p_first_2p_3v, P_p_second_2p_3v, P_tot_2p_3v, P_1_2p_3v, P_2_2p_3v;
             TVector3 P_T_e_2p_3v, P_T_L_2p_3v, P_T_tot_2p_3v, dP_T_L_2p_3v, dP_T_tot_2p_3v;
-            TLorentzVector e_out_2p, Q_2p;
+            TLorentzVector e_out_2p_4v, Q_2p;
 
             P_e_2p_3v.SetMagThetaPhi(e_2p->getP(), e_2p->getTheta(), e_2p->getPhi());                              // electron 3 momentum
             q_2p_3v = TVector3(Pvx - P_e_2p_3v.Px(), Pvy - P_e_2p_3v.Py(), Pvz - P_e_2p_3v.Pz());                  // 3 momentum transfer
@@ -15980,11 +15981,11 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             P_p_first_2p_3v.SetMagThetaPhi(p_first_2p->getP(), p_first_2p->getTheta(), p_first_2p->getPhi());      // first proton in protons vector
             P_p_second_2p_3v.SetMagThetaPhi(p_second_2p->getP(), p_second_2p->getTheta(), p_second_2p->getPhi());  // second proton in protons vector
 
-            e_out_2p.SetPxPyPzE(electrons[0]->par()->getPx(), electrons[0]->par()->getPy(), electrons[0]->par()->getPz(), sqrt(m_e * m_e + P_e_2p_3v.Mag2()));
-            Q_2p = beam - e_out_2p;  // definition of 4-momentum transfer
+            e_out_2p_4v.SetPxPyPzE(electrons[0]->par()->getPx(), electrons[0]->par()->getPy(), electrons[0]->par()->getPz(), sqrt(constants::m_e * constants::m_e + P_e_2p_3v.Mag2()));
+            Q_2p = beam - e_out_2p_4v;  // definition of 4-momentum transfer
             double Q2_2p = fabs(Q_2p.Mag2());
 
-            double E_e_2p = sqrt(m_e * m_e + P_e_2p_3v.Mag2()), omega_2p = parameters.beamE - E_e_2p, W_2p = sqrt((omega_2p + m_p) * (omega_2p + m_p) - q_2p_3v.Mag2());
+            double E_e_2p = sqrt(constants::m_e * constants::m_e + P_e_2p_3v.Mag2()), omega_2p = parameters.beamE - E_e_2p, W_2p = sqrt((omega_2p + constants::m_p) * (omega_2p + constants::m_p) - q_2p_3v.Mag2());
             double E_1_2p, E_2_2p, Theta_p_e_p_tot_2p, Theta_q_p_tot_2p, Theta_q_p_L_2p, Theta_q_p_R_2p;
             double dAlpha_T_L_2p, dAlpha_T_tot_2p, dPhi_T_L_2p, dPhi_T_tot_2p, Ecal_2p;
 
@@ -16410,9 +16411,9 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             hTheta_q_p_R_2p->Fill(Theta_q_p_R_2p, Weight);
             hTheta_q_p_L_vs_p_L_q_2p->Fill(P_1_2p_3v.Mag() / q_2p_3v.Mag(), Theta_q_p_L_2p, Weight);
 
-            E_1_2p = sqrt(m_p * m_p + P_1_2p_3v.Mag2());
-            E_2_2p = sqrt(m_p * m_p + P_2_2p_3v.Mag2());
-            Ecal_2p = E_e_2p + (E_1_2p - m_p) + (E_2_2p - m_p);
+            E_1_2p = sqrt(constants::m_p * constants::m_p + P_1_2p_3v.Mag2());
+            E_2_2p = sqrt(constants::m_p * constants::m_p + P_2_2p_3v.Mag2());
+            Ecal_2p = E_e_2p + (E_1_2p - constants::m_p) + (E_2_2p - constants::m_p);
 
             // Filling Ecal plots
             hEcal_All_Int_2p->Fill(Ecal_2p, Weight);  // Fill Ecal for all interactions
@@ -16553,8 +16554,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             P_pFD_pFDpCD_3v.SetMagThetaPhi(nRes.PSmear(CutSettings.apply_nucleon_SmearAndCorr, ProtonMomBKC_pFDpCD), pFD_pFDpCD->getTheta(), pFD_pFDpCD->getPhi());  // pFD 3 momentum
             P_pCD_pFDpCD_3v.SetMagThetaPhi(pCD_pFDpCD->getP(), pCD_pFDpCD->getTheta(), pCD_pFDpCD->getPhi());                                                        // pCD 3 momentum
 
-            double E_e_pFDpCD = sqrt(m_e * m_e + P_e_pFDpCD_3v.Mag2()), omega_pFDpCD = parameters.beamE - E_e_pFDpCD;
-            double W_pFDpCD = sqrt((omega_pFDpCD + m_p) * (omega_pFDpCD + m_p) - q_pFDpCD_3v.Mag2());
+            double E_e_pFDpCD = sqrt(constants::m_e * constants::m_e + P_e_pFDpCD_3v.Mag2()), omega_pFDpCD = parameters.beamE - E_e_pFDpCD;
+            double W_pFDpCD = sqrt((omega_pFDpCD + constants::m_p) * (omega_pFDpCD + constants::m_p) - q_pFDpCD_3v.Mag2());
             double E_pFD_pFDpCD = sqrt(constants::m_p * constants::m_p + P_pFD_pFDpCD_3v.Mag2()), E_pCD_pFDpCD = sqrt(constants::m_p * constants::m_p + P_pCD_pFDpCD_3v.Mag2());
             double E_pL_pFDpCD, E_pR_pFDpCD;
             double Theta_p_e_p_tot_pFDpCD, Theta_q_p_tot_pFDpCD, Theta_P_pL_minus_q_pR_pFDpCD, Theta_q_p_L_pFDpCD, Theta_q_p_R_pFDpCD, Theta_q_pFD_pFDpCD, Theta_q_pCD_pFDpCD;
@@ -16563,19 +16564,19 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             double Vx_e_pFDpCD = e_pFDpCD->par()->getVx(), Vy_e_pFDpCD = e_pFDpCD->par()->getVy(), Vz_e_pFDpCD = e_pFDpCD->par()->getVz();
 
             /* Setting Q2 */
-            TLorentzVector e_out_pFDpCD(P_e_pFDpCD_3v, E_e_pFDpCD);
-            double Q2_pFDpCD = analysis_physics::CalcQ2(beam, e_out_pFDpCD);
-            double xB_pFDpCD = analysis_physics::CalcxB(beam, e_out_pFDpCD, omega_pFDpCD, constants::m_p);
+            TLorentzVector e_out_pFDpCD_4v(P_e_pFDpCD_3v, E_e_pFDpCD);
+            double Q2_pFDpCD = analysis_physics::CalcQ2(beam, e_out_pFDpCD_4v);
+            double xB_pFDpCD = analysis_physics::CalcxB(beam, e_out_pFDpCD_4v, omega_pFDpCD, constants::m_p);
             TVector3 P_miss_1N_pFDpCD_3v = CalcPmiss1N3v(P_pFD_pFDpCD_3v, q_pFDpCD_3v);                       // Missing momentum (1N)
             double E_miss_1N_pFDpCD = CalcEmiss1N(omega_pFDpCD, E_pFD_pFDpCD, constants::m_p);                // Missing energy (1N)
             TVector3 P_miss_2N_pFDpCD_3v = CalcPmiss2N3v(P_pFD_pFDpCD_3v, P_pCD_pFDpCD_3v, q_pFDpCD_3v);      // Missing momentum (2N)
             double E_miss_2N_pFDpCD = CalcEmiss2N(omega_pFDpCD, E_pFD_pFDpCD, E_pCD_pFDpCD, constants::m_p);  // Missing energy (2N)
-            // TLorentzVector e_out_pFDpCD, Q_pFDpCD;
+            // TLorentzVector e_out_pFDpCD_4v, Q_pFDpCD;
             // double Q2_pFDpCD;
-            // e_out_pFDpCD.SetPxPyPzE(e_pFDpCD->par()->getPx(), e_pFDpCD->par()->getPy(), e_pFDpCD->par()->getPz(), E_e_pFDpCD);
-            // Q_pFDpCD = beam - e_out_pFDpCD;  // definition of 4-momentum transfer
+            // e_out_pFDpCD_4v.SetPxPyPzE(e_pFDpCD->par()->getPx(), e_pFDpCD->par()->getPy(), e_pFDpCD->par()->getPz(), E_e_pFDpCD);
+            // Q_pFDpCD = beam - e_out_pFDpCD_4v;  // definition of 4-momentum transfer
             // Q2_pFDpCD = fabs(Q_pFDpCD.Mag2());
-            // double xB_pFDpCD = Q2_pFDpCD / (2 * m_p * omega_pFDpCD);
+            // double xB_pFDpCD = Q2_pFDpCD / (2 * constants::m_p * omega_pFDpCD);
 
             // Determining leading, recoil protons and their angles (pFDpCD)
             /* Determining leading and recoil particles (leading = particle with greater momentum) */
@@ -17249,8 +17250,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                 hTheta_q_p_L_vs_Theta_q_p_R_pFDpCD->Fill(Theta_q_p_L_pFDpCD, Theta_q_p_R_pFDpCD, Weight_pFDpCD);
                 hTheta_q_pFD_vs_Theta_q_pCD_pFDpCD->Fill(Theta_q_pFD_pFDpCD, Theta_q_pCD_pFDpCD, Weight_pFDpCD);
 
-                E_pL_pFDpCD = sqrt(m_p * m_p + P_pL_pFDpCD_3v.Mag2());
-                E_pR_pFDpCD = sqrt(m_p * m_p + P_pR_pFDpCD_3v.Mag2());
+                E_pL_pFDpCD = sqrt(constants::m_p * constants::m_p + P_pL_pFDpCD_3v.Mag2());
+                E_pR_pFDpCD = sqrt(constants::m_p * constants::m_p + P_pR_pFDpCD_3v.Mag2());
 
                 P_tot_mu_pFDpCD_4v.SetPxPyPzE(P_pL_pFDpCD_3v.Px() + P_pR_pFDpCD_3v.Px(), P_pL_pFDpCD_3v.Py() + P_pR_pFDpCD_3v.Py(), P_pL_pFDpCD_3v.Pz() + P_pR_pFDpCD_3v.Pz(),
                                               E_pL_pFDpCD + E_pR_pFDpCD);
@@ -17261,7 +17262,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                 hP_tot_mu_vs_P_rel_mu_pFDpCD.hFill(P_tot_mu_pFDpCD_4v.Mag(), P_rel_mu_pFDpCD_4v.Mag(), Weight_pFDpCD);
 
                 // Filling Ecal plots
-                Ecal_pFDpCD = E_e_pFDpCD + (E_pL_pFDpCD - m_p) + (E_pR_pFDpCD - m_p);
+                Ecal_pFDpCD = E_e_pFDpCD + (E_pL_pFDpCD - constants::m_p) + (E_pR_pFDpCD - constants::m_p);
 
                 hEcal_All_Int_pFDpCD->Fill(Ecal_pFDpCD, Weight_pFDpCD);  // Fill Ecal for all interactions
 
@@ -17453,8 +17454,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                                            nFD_nFDpCD->getPhi());                                              // FD neutron 3 momentum
             P_pCD_nFDpCD_3v.SetMagThetaPhi(pCD_nFDpCD->getP(), pCD_nFDpCD->getTheta(), pCD_nFDpCD->getPhi());  // CD proton 3 momentum
 
-            double E_e_nFDpCD = sqrt(m_e * m_e + P_e_nFDpCD_3v.Mag2()), omega_nFDpCD = parameters.beamE - E_e_nFDpCD;
-            double W_nFDpCD = sqrt((omega_nFDpCD + m_p) * (omega_nFDpCD + m_p) - q_nFDpCD_3v.Mag2());
+            double E_e_nFDpCD = sqrt(constants::m_e * constants::m_e + P_e_nFDpCD_3v.Mag2()), omega_nFDpCD = parameters.beamE - E_e_nFDpCD;
+            double W_nFDpCD = sqrt((omega_nFDpCD + constants::m_p) * (omega_nFDpCD + constants::m_p) - q_nFDpCD_3v.Mag2());
             double E_nFD_nFDpCD = sqrt(constants::m_n * constants::m_n + P_nFD_nFDpCD_3v.Mag2()), E_pCD_nFDpCD = sqrt(constants::m_p * constants::m_p + P_pCD_nFDpCD_3v.Mag2());
             double E_nL_nFDpCD, E_nR_nFDpCD;
             double Theta_p_e_p_tot_nFDpCD, Theta_q_p_tot_nFDpCD, Theta_P_nL_minus_q_nR_nFDpCD, Theta_q_p_L_nFDpCD, Theta_q_p_R_nFDpCD, Theta_q_nFD_nFDpCD, Theta_q_pCD_nFDpCD;
@@ -17463,19 +17464,19 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             double Vx_e_nFDpCD = e_nFDpCD->par()->getVx(), Vy_e_nFDpCD = e_nFDpCD->par()->getVy(), Vz_e_nFDpCD = e_nFDpCD->par()->getVz();
 
             /* Setting Q2 */
-            TLorentzVector e_out_nFDpCD(P_e_nFDpCD_3v, E_e_nFDpCD);
-            double Q2_nFDpCD = analysis_physics::CalcQ2(beam, e_out_nFDpCD);
-            double xB_nFDpCD = analysis_physics::CalcxB(beam, e_out_nFDpCD, omega_nFDpCD, constants::m_p);
+            TLorentzVector e_out_nFDpCD_4v(P_e_nFDpCD_3v, E_e_nFDpCD);
+            double Q2_nFDpCD = analysis_physics::CalcQ2(beam, e_out_nFDpCD_4v);
+            double xB_nFDpCD = analysis_physics::CalcxB(beam, e_out_nFDpCD_4v, omega_nFDpCD, constants::m_p);
             TVector3 P_miss_1N_nFDpCD_3v = CalcPmiss1N3v(P_nFD_nFDpCD_3v, q_nFDpCD_3v);                       // Missing momentum (1N)
             double E_miss_1N_nFDpCD = CalcEmiss1N(omega_nFDpCD, E_nFD_nFDpCD, constants::m_p);                // Missing energy (1N)
             TVector3 P_miss_2N_nFDpCD_3v = CalcPmiss2N3v(P_nFD_nFDpCD_3v, P_pCD_nFDpCD_3v, q_nFDpCD_3v);      // Missing momentum (2N)
             double E_miss_2N_nFDpCD = CalcEmiss2N(omega_nFDpCD, E_nFD_nFDpCD, E_pCD_nFDpCD, constants::m_p);  // Missing energy (2N)
-            // TLorentzVector e_out_nFDpCD, Q_nFDpCD;
+            // TLorentzVector e_out_nFDpCD_4v, Q_nFDpCD;
             // double Q2_nFDpCD;
-            // e_out_nFDpCD.SetPxPyPzE(e_nFDpCD->par()->getPx(), e_nFDpCD->par()->getPy(), e_nFDpCD->par()->getPz(), E_e_nFDpCD);
-            // Q_nFDpCD = beam - e_out_nFDpCD;  // definition of 4-momentum transfer
+            // e_out_nFDpCD_4v.SetPxPyPzE(e_nFDpCD->par()->getPx(), e_nFDpCD->par()->getPy(), e_nFDpCD->par()->getPz(), E_e_nFDpCD);
+            // Q_nFDpCD = beam - e_out_nFDpCD_4v;  // definition of 4-momentum transfer
             // Q2_nFDpCD = fabs(Q_nFDpCD.Mag2());
-            // double xB_nFDpCD = Q2_nFDpCD / (2 * m_p * omega_nFDpCD);  // TODO: ask Adi which mass should I use here
+            // double xB_nFDpCD = Q2_nFDpCD / (2 * constants::m_p * omega_nFDpCD);  // TODO: ask Adi which mass should I use here
 
             // Determining leading, recoil protons and their angles (nFDpCD)
             double m_L, m_R;  // Leading and recoil nucleon masses
@@ -17484,13 +17485,13 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             if (P_nFD_nFDpCD_3v.Mag() >= P_pCD_nFDpCD_3v.Mag()) {
                 P_nL_nFDpCD_3v = P_nFD_nFDpCD_3v;  // FD neutron is leading
                 P_nR_nFDpCD_3v = P_pCD_nFDpCD_3v;
-                m_L = m_n;  // FD neutron is leading
-                m_R = m_p;
+                m_L = constants::m_n;  // FD neutron is leading
+                m_R = constants::m_p;
             } else {
                 P_nL_nFDpCD_3v = P_pCD_nFDpCD_3v;  // CD proton is leading
                 P_nR_nFDpCD_3v = P_nFD_nFDpCD_3v;
-                m_L = m_p;  // CD proton is leading
-                m_R = m_n;
+                m_L = constants::m_p;  // CD proton is leading
+                m_R = constants::m_n;
             }
 
             /* Setting particle angles */
@@ -18276,8 +18277,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                 hTheta_q_p_L_vs_Theta_q_p_R_nFDpCD->Fill(Theta_q_p_L_nFDpCD, Theta_q_p_R_nFDpCD, Weight_nFDpCD);
                 hTheta_q_nFD_vs_Theta_q_pCD_nFDpCD->Fill(Theta_q_nFD_nFDpCD, Theta_q_pCD_nFDpCD, Weight_nFDpCD);
 
-                E_nFD_nFDpCD = sqrt(m_n * m_n + P_nFD_nFDpCD_3v.Mag2());
-                E_pCD_nFDpCD = sqrt(m_p * m_p + P_pCD_nFDpCD_3v.Mag2());
+                E_nFD_nFDpCD = sqrt(constants::m_n * constants::m_n + P_nFD_nFDpCD_3v.Mag2());
+                E_pCD_nFDpCD = sqrt(constants::m_p * constants::m_p + P_pCD_nFDpCD_3v.Mag2());
                 E_nL_nFDpCD = sqrt(m_L * m_L + P_nL_nFDpCD_3v.Mag2());
                 E_nR_nFDpCD = sqrt(m_R * m_R + P_nR_nFDpCD_3v.Mag2());
 
@@ -18290,7 +18291,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                 hP_tot_mu_vs_P_rel_mu_nFDpCD.hFill(P_tot_mu_nFDpCD_4v.Mag(), P_rel_mu_nFDpCD_4v.Mag(), Weight_nFDpCD);
 
                 // Filling Ecal plots
-                Ecal_nFDpCD = E_e_nFDpCD + (E_nFD_nFDpCD - m_n) + (E_pCD_nFDpCD - m_p);
+                Ecal_nFDpCD = E_e_nFDpCD + (E_nFD_nFDpCD - constants::m_n) + (E_pCD_nFDpCD - constants::m_p);
 
                 hEcal_All_Int_nFDpCD->Fill(Ecal_nFDpCD, Weight_nFDpCD);  // Fill Ecal for all interactions
 
@@ -20907,15 +20908,15 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         //  Beta vs. P TF1 plots ------------------------------------------------------------------------------------------------------------------------------------------------
 
         // Beta vs. P TF1 plots
-        TF1 *beta_neutron = new TF1("beta_neutron", ("x/sqrt(x*x + " + to_string(m_n * m_n) + ")").c_str(), 0, parameters.beamE);
-        TF1 *beta_proton = new TF1("beta_proton", ("x/sqrt(x*x + " + to_string(m_p * m_p) + ")").c_str(), 0, parameters.beamE);
-        TF1 *beta_Kplus = new TF1("beta_Kplus", ("x/sqrt(x*x + " + to_string(m_Kplus * m_Kplus) + ")").c_str(), 0, parameters.beamE);
-        TF1 *beta_Kminus = new TF1("beta_Kminus", ("x/sqrt(x*x + " + to_string(m_Kminus * m_Kminus) + ")").c_str(), 0, parameters.beamE);
-        TF1 *beta_Kzero = new TF1("beta_Kplus", ("x/sqrt(x*x + " + to_string(m_Kzero * m_Kzero) + ")").c_str(), 0, parameters.beamE);
-        TF1 *beta_piplus = new TF1("beta_piplus", ("x/sqrt(x*x + " + to_string(m_piplus * m_piplus) + ")").c_str(), 0, parameters.beamE);
-        TF1 *beta_piminus = new TF1("beta_piminus", ("x/sqrt(x*x + " + to_string(m_piminus * m_piminus) + ")").c_str(), 0, parameters.beamE);
-        TF1 *beta_pizero = new TF1("beta_piplus", ("x/sqrt(x*x + " + to_string(m_pizero * m_pizero) + ")").c_str(), 0, parameters.beamE);
-        TF1 *beta_electron = new TF1("beta_electron", ("x/sqrt(x*x + " + to_string(m_e * m_e) + ")").c_str(), 0, parameters.beamE);
+        TF1 *beta_neutron = new TF1("beta_neutron", ("x/sqrt(x*x + " + to_string(constants::m_n * constants::m_n) + ")").c_str(), 0, parameters.beamE);
+        TF1 *beta_proton = new TF1("beta_proton", ("x/sqrt(x*x + " + to_string(constants::m_p * constants::m_p) + ")").c_str(), 0, parameters.beamE);
+        TF1 *beta_Kplus = new TF1("beta_Kplus", ("x/sqrt(x*x + " + to_string(constants::m_Kplus * constants::m_Kplus) + ")").c_str(), 0, parameters.beamE);
+        TF1 *beta_Kminus = new TF1("beta_Kminus", ("x/sqrt(x*x + " + to_string(constants::m_Kminus * constants::m_Kminus) + ")").c_str(), 0, parameters.beamE);
+        TF1 *beta_Kzero = new TF1("beta_Kplus", ("x/sqrt(x*x + " + to_string(constants::m_Kzero * constants::m_Kzero) + ")").c_str(), 0, parameters.beamE);
+        TF1 *beta_piplus = new TF1("beta_piplus", ("x/sqrt(x*x + " + to_string(constants::m_piplus * constants::m_piplus) + ")").c_str(), 0, parameters.beamE);
+        TF1 *beta_piminus = new TF1("beta_piminus", ("x/sqrt(x*x + " + to_string(constants::m_piminus * constants::m_piminus) + ")").c_str(), 0, parameters.beamE);
+        TF1 *beta_pizero = new TF1("beta_piplus", ("x/sqrt(x*x + " + to_string(constants::m_pizero * constants::m_pizero) + ")").c_str(), 0, parameters.beamE);
+        TF1 *beta_electron = new TF1("beta_electron", ("x/sqrt(x*x + " + to_string(constants::m_e * constants::m_e) + ")").c_str(), 0, parameters.beamE);
         TF1 *beta_photon = new TF1("beta_electron", ("x/sqrt(x*x + " + to_string(0) + ")").c_str(), 0, parameters.beamE);
 
         //  Beta vs. P plots ----------------------------------------------------------------------------------------------------------------------------------------------------
@@ -25506,71 +25507,6 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     histogram_functions::DrawAndSaveHistogramsToPDF(MainCanvas, HistoList, Histogram_OutPDF_fileName_str, Histogram_OutPDF_fileName_char, parameters.SampleName, parameters.VaryingSampleName,
                                                     parameters.beamE);
 
-    // // Create the output PDFs
-    // int pixelx = 1980;
-    // int pixely = 1530;
-    // TCanvas *TextCanvas = new TCanvas("TextCanvas", "TextCanvas", pixelx, pixely);
-    // TLatex titles;
-    // TLatex text;
-    // titles.SetTextSize(0.1);
-    // text.SetTextSize(0.05);
-
-    // sprintf(Histogram_OutPDF_fileName_char, "%s[", Histogram_OutPDF_fileName_str.c_str());
-    // TextCanvas->SaveAs(Histogram_OutPDF_fileName_char);
-    // sprintf(Histogram_OutPDF_fileName_char, "%s", Histogram_OutPDF_fileName_str.c_str());
-
-    // TextCanvas->cd();
-
-    // titles.DrawLatex(0.05, 0.90, "2N analyzer output");
-    // text.DrawLatex(0.05, 0.80, parameters.SampleName.c_str());
-    // text.DrawLatex(0.05, 0.75, parameters.VaryingSampleName.c_str());
-    // text.DrawLatex(0.2, 0.65, ("Beam energy: " + basic_tools::ToStringWithPrecision(parameters.beamE, 3) + " [GeV]").c_str());
-
-    // TextCanvas->Print(Histogram_OutPDF_fileName_char, "pdf");
-    // TextCanvas->Clear();
-
-    // MainCanvas->cd();
-    // MainCanvas->Clear();
-
-    // for (int i = 0; i < HistoList.size(); i++) {
-    //     MainCanvas->cd();
-
-    //     MainCanvas->cd()->SetGrid();
-    //     MainCanvas->cd()->SetBottomMargin(0.14);
-    //     MainCanvas->cd()->SetLeftMargin(0.16);
-    //     MainCanvas->cd()->SetRightMargin(0.12);
-
-    //     if (HistoList[i]->InheritsFrom("TH1")) {
-    //         TH1 *h1 = dynamic_cast<TH1 *>(HistoList[i]);
-    //         h1->GetYaxis()->SetTitleOffset(1.5);
-    //         h1->GetXaxis()->SetTitleOffset(1.1);
-    //         gPad->SetRightMargin(0.23);
-
-    //         if (HistoList[i]->InheritsFrom("TH1D") || HistoList[i]->InheritsFrom("THStack")) { h1->Draw(); }
-
-    //     } else if (HistoList[i]->InheritsFrom("TH2")) {
-    //         TH2 *h2 = dynamic_cast<TH2 *>(HistoList[i]);
-    //         h2->GetYaxis()->SetTitleOffset(1.5);
-    //         h2->GetXaxis()->SetTitleOffset(1.1);
-    //         gPad->SetRightMargin(0.23);
-    //         h2->Draw("colz");
-
-    //         if (h2->GetEntries() != 0) {
-    //             gPad->Update();
-    //             TPaletteAxis *palette = (TPaletteAxis *)h2->GetListOfFunctions()->FindObject("palette");
-    //             if (palette) palette->SetY2NDC(0.60);
-    //             gPad->Modified();
-    //             gPad->Update();
-    //         }
-    //     }
-
-    //     MainCanvas->Print(Histogram_OutPDF_fileName_char, "pdf");
-    //     MainCanvas->Clear();
-    // }
-
-    // sprintf(Histogram_OutPDF_fileName_char, "%s]", Histogram_OutPDF_fileName_str.c_str());
-    // MainCanvas->Print(Histogram_OutPDF_fileName_char, "pdf");
-
     // Saving histogram list and finishing execution ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #pragma region /* Saving histogram list and finishing execution */
@@ -25799,15 +25735,15 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     myLogFile << "Probe = " << Probe << " (PDG: " << Probe_pdg << ")" << "\n";
     myLogFile << "Target = " << Target_nucleus << " (PDG: " << Target_pdg << ")" << "\n\n";
 
-    myLogFile << "m_e = " << m_e << "\n";
-    myLogFile << "m_p = " << m_p << "\n";
-    myLogFile << "m_n = " << m_n << "\n";
-    myLogFile << "m_pizero = " << m_pizero << "\n";
-    myLogFile << "m_piplus = " << m_piplus << "\n";
-    myLogFile << "m_piminus = " << m_piminus << "\n";
-    myLogFile << "m_Kzero = " << m_Kzero << "\n";
-    myLogFile << "m_Kplus = " << m_Kplus << "\n";
-    myLogFile << "m_Kminus = " << m_Kminus << "\n\n";
+    myLogFile << "m_e = " << constants::m_e << "\n";
+    myLogFile << "m_p = " << constants::m_p << "\n";
+    myLogFile << "m_n = " << constants::m_n << "\n";
+    myLogFile << "m_pizero = " << constants::m_pizero << "\n";
+    myLogFile << "m_piplus = " << constants::m_piplus << "\n";
+    myLogFile << "m_piminus = " << constants::m_piminus << "\n";
+    myLogFile << "m_Kzero = " << constants::m_Kzero << "\n";
+    myLogFile << "m_Kplus = " << constants::m_Kplus << "\n";
+    myLogFile << "m_Kminus = " << constants::m_Kminus << "\n\n";
 
     myLogFile << "beamE = " << parameters.beamE << " [GeV]\n";
     myLogFile << "Pv = " << Pv << "\n";

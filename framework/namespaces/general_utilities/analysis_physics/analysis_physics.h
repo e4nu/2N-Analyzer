@@ -21,8 +21,10 @@ namespace analysis_physics {
 // CalcQ2 function ------------------------------------------------------------------------------------------------------------------------------------------------------
 
 double CalcQ2(const TLorentzVector &Beam_4v, const TLorentzVector &P_e_4v) {
-    TLorentzVector Q_4v = Beam_4v - P_e_4v;
-    double Q2 = fabs(Q_4v.Mag2());
+    // TLorentzVector Q_4v = Beam_4v - P_e_4v;
+    // double Q2 = fabs(Q_4v.Mag2());
+    TLorentzVector q_4v = Beam_4v - P_e_4v;
+    double Q2 = -q_4v.M2();
     return Q2;
 }
 

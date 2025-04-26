@@ -130,9 +130,11 @@ hPlot2D::hPlot2D(std::string hst, std::string ht, std::string xat, std::string y
 // histPlotter2D function (regular) -------------------------------------------------------------------------------------------------------------------------------------
 
 #pragma region /* histPlotter2D function (regular) */
-void hPlot2D::histPlotter2D(const std::string &SampleName, TCanvas *HistogramCanvas, TH2D *Histogram2D, TList *Histogram_list, vector<TObject *> &HistoList, std::string Histogram2DSaveNameDir,
-                            std::string Histogram2DSaveName, bool showStats = true) {
+void hPlot2D::histPlotter2D(const std::string &SampleName, TCanvas *HistogramCanvas, TH2D *Histogram2D, TList *Histogram_list, vector<TObject *> &HistoList,
+                            std::string Histogram2DSaveNameDir, std::string Histogram2DSaveName, bool showStats = true) {
     HistogramCanvas->cd();
+
+    gStyle->SetOptStat("ourmen");
 
     std::string sNameFlag;
 
@@ -198,6 +200,8 @@ void hPlot2D::histPlotter2D(const std::string &SampleName, TCanvas *HistogramCan
     gStyle->SetStatY(DefStatY);
 
     HistogramCanvas->cd();
+
+    gStyle->SetOptStat("ourmen");
     HistogramCanvas->Clear();
     //    if (ZLogScalePlot) { HistogramCanvas->SetLogz(1); }
     //
@@ -225,10 +229,12 @@ void hPlot2D::hDrawAndSave(const std::string &SampleName, TCanvas *h2DCanvas, TL
 // histPlotter2D function (Beta vs. P plots, all particles) -------------------------------------------------------------------------------------------------------------
 
 #pragma region /* histPlotter2D function (Beta vs. P plots, all particles) */
-void hPlot2D::histPlotter2D(const std::string &SampleName, TCanvas *HistogramCanvas, TH2D *Histogram2D, TList *Histogram_list, vector<TObject *> &HistoList, std::string Histogram2DSaveNameDir,
-                            std::string Histogram2DSaveName, TF1 *Beta_function1, TF1 *Beta_function2, TF1 *Beta_function3, TF1 *Beta_function4, TF1 *Beta_function5, TF1 *Beta_function6,
-                            TF1 *Beta_function7, TF1 *Beta_function8, TF1 *Beta_function9, bool showStats = true) {
+void hPlot2D::histPlotter2D(const std::string &SampleName, TCanvas *HistogramCanvas, TH2D *Histogram2D, TList *Histogram_list, vector<TObject *> &HistoList,
+                            std::string Histogram2DSaveNameDir, std::string Histogram2DSaveName, TF1 *Beta_function1, TF1 *Beta_function2, TF1 *Beta_function3, TF1 *Beta_function4,
+                            TF1 *Beta_function5, TF1 *Beta_function6, TF1 *Beta_function7, TF1 *Beta_function8, TF1 *Beta_function9, bool showStats = true) {
     HistogramCanvas->cd();
+
+    gStyle->SetOptStat("ourmen");
 
     std::string sNameFlag;
 
@@ -297,6 +303,8 @@ void hPlot2D::histPlotter2D(const std::string &SampleName, TCanvas *HistogramCan
     gStyle->SetStatY(DefStatY);
 
     HistogramCanvas->cd();
+
+    gStyle->SetOptStat("ourmen");
     HistogramCanvas->Clear();
 }
 #pragma endregion
@@ -312,9 +320,11 @@ void hPlot2D::hDrawAndSave(const std::string &SampleName, TCanvas *h2DCanvas, TL
 // histPlotter2D function (Beta vs. P plots, single particle) -----------------------------------------------------------------------------------------------------------
 
 #pragma region /* histPlotter2D function (Beta vs. P plots, single particle) */
-void hPlot2D::histPlotter2D(const std::string &SampleName, TCanvas *HistogramCanvas, TH2D *Histogram2D, TList *Histogram_list, vector<TObject *> &HistoList, std::string Histogram2DSaveNameDir,
-                            std::string Histogram2DSaveName, TF1 *Beta_function1, std::string particle1, bool showStats = true, bool plot_legend = true) {
+void hPlot2D::histPlotter2D(const std::string &SampleName, TCanvas *HistogramCanvas, TH2D *Histogram2D, TList *Histogram_list, vector<TObject *> &HistoList,
+                            std::string Histogram2DSaveNameDir, std::string Histogram2DSaveName, TF1 *Beta_function1, std::string particle1, bool showStats = true, bool plot_legend = true) {
     HistogramCanvas->cd();
+
+    gStyle->SetOptStat("ourmen");
 
     std::string sNameFlag;
 
@@ -384,6 +394,8 @@ void hPlot2D::histPlotter2D(const std::string &SampleName, TCanvas *HistogramCan
     gStyle->SetStatY(DefStatY);
 
     HistogramCanvas->cd();
+
+    gStyle->SetOptStat("ourmen");
     HistogramCanvas->Clear();
 }
 #pragma endregion
@@ -398,10 +410,12 @@ void hPlot2D::hDrawAndSave(const std::string &SampleName, TCanvas *h2DCanvas, TL
 // histPlotter2D function (Beta vs. P plots, 3 particles (by charge)) -----------------------------------------------------------------------------------------------------------
 
 #pragma region /* histPlotter2D function (Beta vs. P plots, 3 particles (by charge)) */
-void hPlot2D::histPlotter2D(const std::string &SampleName, TCanvas *HistogramCanvas, TH2D *Histogram2D, TList *Histogram_list, vector<TObject *> &HistoList, std::string Histogram2DSaveNameDir,
-                            std::string Histogram2DSaveName, TF1 *Beta_function1, std::string particle1, TF1 *Beta_function2, std::string particle2, TF1 *Beta_function3,
-                            std::string particle3, bool showStats, bool plot_legend) {
+void hPlot2D::histPlotter2D(const std::string &SampleName, TCanvas *HistogramCanvas, TH2D *Histogram2D, TList *Histogram_list, vector<TObject *> &HistoList,
+                            std::string Histogram2DSaveNameDir, std::string Histogram2DSaveName, TF1 *Beta_function1, std::string particle1, TF1 *Beta_function2, std::string particle2,
+                            TF1 *Beta_function3, std::string particle3, bool showStats, bool plot_legend) {
     HistogramCanvas->cd();
+
+    gStyle->SetOptStat("ourmen");
 
     std::string sNameFlag;
 
@@ -477,6 +491,8 @@ void hPlot2D::histPlotter2D(const std::string &SampleName, TCanvas *HistogramCan
     gStyle->SetStatY(DefStatY);
 
     HistogramCanvas->cd();
+
+    gStyle->SetOptStat("ourmen");
     HistogramCanvas->Clear();
 }
 #pragma endregion

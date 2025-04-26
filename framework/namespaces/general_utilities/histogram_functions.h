@@ -176,6 +176,8 @@ void DrawAndSaveHistogramsToPDF(TCanvas *MainCanvas, const std::vector<TObject *
         MainCanvas->cd()->SetLeftMargin(0.16);
         MainCanvas->cd()->SetRightMargin(0.12);
 
+        gStyle->SetOptStat("ourmen");
+
         if (HistoList[i]->InheritsFrom("TH2")) {
             TH2 *h2 = dynamic_cast<TH2 *>(HistoList[i]);
             if (!h2) continue;

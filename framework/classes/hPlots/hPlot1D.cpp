@@ -106,6 +106,8 @@ void hPlot1D::histPlotter1D(TCanvas *HistogramCanvas, TH1D *Histogram1D, bool no
                             vector<TObject *> &HistoList, int lineWidth, bool LogScalePlot, bool LinearScalePlot, THStack *Histogram1DStack, std::string Histogram1DSaveName,
                             std::string Histogram1DSaveNamePath, std::string finalState, int kColor = 1, bool centerTitle = true, bool AddToStack = false, bool showStats = true,
                             bool title2 = false, bool apply_plot_cuts = false, double plot_cuts = 0, double plot_Xmax = 0, bool plot_max = true) {
+    gStyle->SetOptStat("ourmen");
+
     //  Normalization factor:
     double Histogram1D_integral;  // To be calculated only if normalize_Histogram
     double x_1 = 0.175, y_1 = 0.3, x_2 = 0.875, y_2 = 0.7;
@@ -260,6 +262,8 @@ void hPlot1D::histPlotter1D(TCanvas *HistogramCanvas, TH1D *Histogram1D, bool no
     }
 
     HistogramCanvas->cd();
+
+    gStyle->SetOptStat("ourmen");
     HistogramCanvas->Clear();
 }
 #pragma endregion
@@ -398,7 +402,7 @@ void hPlot1D::histPlotter1D(TCanvas *HistogramCanvas, TH1D *Histogram1D, bool no
         HistogramCanvas->SaveAs(SaveDir);
 
         HistoList.push_back(Histogram1D);
-        }
+    }
 
     if (LinearScalePlot) {
         HistogramCanvas->SetLogy(0);
@@ -417,6 +421,8 @@ void hPlot1D::histPlotter1D(TCanvas *HistogramCanvas, TH1D *Histogram1D, bool no
     }
 
     HistogramCanvas->cd();
+
+    gStyle->SetOptStat("ourmen");
     HistogramCanvas->Clear();
 }
 #pragma endregion
@@ -429,6 +435,8 @@ void hPlot1D::histPlotter1D(TCanvas *HistogramCanvas, TH1D *Histogram1D, bool no
                             bool LinearScalePlot, THStack *Histogram1DStack, std::string Histogram1DSaveName, std::string Histogram1DSaveNamePath, std::string finalState, int kColor = 1,
                             bool AddToStack = false, bool showStats = true, bool title2 = false, bool apply_plot_cuts = false, double plot_upper_cut = 0, double plot_lower_cut = 0,
                             double plot_Xmax = 0, bool plot_max = true) {
+    gStyle->SetOptStat("ourmen");
+
     //  Normalization factor:
     double Histogram1D_integral;  // To be calculated only if normalize_Histogram
     double x_1 = 0.175, y_1 = 0.3, x_2 = 0.875, y_2 = 0.7;
@@ -579,6 +587,8 @@ void hPlot1D::histPlotter1D(TCanvas *HistogramCanvas, TH1D *Histogram1D, bool no
     }
 
     HistogramCanvas->cd();
+
+    gStyle->SetOptStat("ourmen");
     HistogramCanvas->Clear();
 }
 #pragma endregion
@@ -736,6 +746,8 @@ void hPlot1D::histPlotter1D(TCanvas *HistogramCanvas, TH1D *Histogram1D, bool no
     }
 
     HistogramCanvas->cd();
+
+    gStyle->SetOptStat("ourmen");
     HistogramCanvas->Clear();
 }
 #pragma endregion
@@ -748,6 +760,8 @@ void hPlot1D::histPlotter1D(TCanvas *HistogramCanvas, TH1D *Histogram1D, bool no
                             bool LinearScalePlot, THStack *Histogram1DStack, std::string Histogram1DSaveName, std::string Histogram1DSaveNamePath, std::string finalState, int kColor = 1,
                             bool AddToStack = false, bool showStats = true, bool title2 = false, bool apply_plot_cuts = false, double plot_cut = 0, double plot_Xmax = 0,
                             bool plot_max = true) {
+    gStyle->SetOptStat("ourmen");
+
     //  Normalization factor:
     double Histogram1D_integral;  // To be calculated only if normalize_Histogram
     double x_1 = 0.175, y_1 = 0.3, x_2 = 0.875, y_2 = 0.7;
@@ -868,6 +882,8 @@ void hPlot1D::histPlotter1D(TCanvas *HistogramCanvas, TH1D *Histogram1D, bool no
     }
 
     HistogramCanvas->cd();
+
+    gStyle->SetOptStat("ourmen");
     HistogramCanvas->Clear();
 }
 #pragma endregion
@@ -1020,6 +1036,8 @@ void hPlot1D::histPlotter1D(TCanvas *HistogramCanvas, TH1D *Histogram1D, bool no
     }
 
     HistogramCanvas->cd();
+
+    gStyle->SetOptStat("ourmen");
     HistogramCanvas->Clear();
 }
 #pragma endregion
@@ -1031,6 +1049,8 @@ void hPlot1D::histPlotter1D(const std::string &SampleName, TCanvas *HistogramCan
                             double custom_normalization_factor, TList *Histogram_list, vector<TObject *> &HistoList, THStack *Histogram1DStack, double plot_lower_cut = -9999,
                             double plot_upper_cut = 9999, double plot_Xmax = 0, bool plot_max = true) {
     HistogramCanvas->cd();
+
+    gStyle->SetOptStat("ourmen");
     std::string sNameFlag;
 
     if (basic_tools::FindSubstring(SampleName, "sim")) {
@@ -1038,6 +1058,8 @@ void hPlot1D::histPlotter1D(const std::string &SampleName, TCanvas *HistogramCan
     } else if (basic_tools::FindSubstring(SampleName, "data")) {
         sNameFlag = "d";
     }
+
+    gStyle->SetOptStat("ourmen");
 
     //  Normalization factor:
     double Histogram1D_integral;  // To be calculated only if normalize_Histogram
@@ -1196,6 +1218,8 @@ void hPlot1D::histPlotter1D(const std::string &SampleName, TCanvas *HistogramCan
     }
 
     HistogramCanvas->cd();
+
+    gStyle->SetOptStat("ourmen");
     HistogramCanvas->Clear();
 }
 #pragma endregion
@@ -1205,6 +1229,8 @@ void hPlot1D::histPlotter1D(const std::string &SampleName, TCanvas *HistogramCan
                             double custom_normalization_factor, TList *Histogram_list, vector<TObject *> &HistoList, double plot_lower_cut = -9999, double plot_upper_cut = 9999,
                             double plot_Xmax = 0, bool plot_max = true) {
     HistogramCanvas->cd();
+
+    gStyle->SetOptStat("ourmen");
     std::string sNameFlag;
 
     if (basic_tools::FindSubstring(SampleName, "sim")) {
@@ -1212,6 +1238,8 @@ void hPlot1D::histPlotter1D(const std::string &SampleName, TCanvas *HistogramCan
     } else if (basic_tools::FindSubstring(SampleName, "data")) {
         sNameFlag = "d";
     }
+
+    gStyle->SetOptStat("ourmen");
 
     //  Normalization factor:
     double Histogram1D_integral;  // To be calculated only if normalize_Histogram
@@ -1363,6 +1391,8 @@ void hPlot1D::histPlotter1D(const std::string &SampleName, TCanvas *HistogramCan
     }
 
     HistogramCanvas->cd();
+
+    gStyle->SetOptStat("ourmen");
     HistogramCanvas->Clear();
 }
 #pragma endregion
@@ -1601,6 +1631,8 @@ void hPlot1D::histPlotter1DwFit(std::string SampleName, TCanvas *HistogramCanvas
     Histogram_list->Add(Histogram1D);
 
     HistogramCanvas->cd();
+
+    gStyle->SetOptStat("ourmen");
     HistogramCanvas->Clear();
 }
 #pragma endregion
@@ -1615,8 +1647,8 @@ void hPlot1D::hDrawAndSave(const std::string &SampleName, TCanvas *h1DCanvas, TL
 
 void hPlot1D::hDrawAndSave(TCanvas *h1DCanvas, TList *hList, vector<TObject *> &HistoList, bool normHistogram, bool cNormalization, double cNormalizationFactor) {
     histPlotter1D(h1DCanvas, Histogram1D, normHistogram, cNormalization, cNormalizationFactor, Histogram1DTitles["HistogramTitle"], Histogram1DTitles["Histogram1DTitleReactions"],
-                  Histogram1DTitleSizes.at(0), Histogram1DTitleSizes.at(1), Histogram1DTitleSizes.at(2), hList, HistoList, LineWidth, LogScalePlot, LinearScalePlot,
-                  Histogram1DSaveName, Histogram1DSaveNamePath, Histogram1DTitles["FinalState"], CenterTitle, ShowStats, Title2, ShowPlotCuts, PlotCuts, PlotXmax, PlotHistogramMax);
+                  Histogram1DTitleSizes.at(0), Histogram1DTitleSizes.at(1), Histogram1DTitleSizes.at(2), hList, HistoList, LineWidth, LogScalePlot, LinearScalePlot, Histogram1DSaveName,
+                  Histogram1DSaveNamePath, Histogram1DTitles["FinalState"], CenterTitle, ShowStats, Title2, ShowPlotCuts, PlotCuts, PlotXmax, PlotHistogramMax);
 }
 #pragma endregion
 
