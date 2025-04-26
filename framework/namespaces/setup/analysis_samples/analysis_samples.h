@@ -52,7 +52,7 @@ void ConfigSampleChain() {
     // C12 --------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     // // /* C12 2.07052GeV - run 015664 (ifarm DATA files - C12 DATA files) */
-    Config_C12_2GeV_samples(AnalyzeFilePath_v, AnalyzeFileSample_v, AnalyzeFileDir_v, AnalyzeFile_v, AnalyzeFilePath, AnalyzeFileSample, AnalyzeFileDir, AnalyzeFile);
+    // Config_C12_2GeV_samples(AnalyzeFilePath_v, AnalyzeFileSample_v, AnalyzeFileDir_v, AnalyzeFile_v, AnalyzeFilePath, AnalyzeFileSample, AnalyzeFileDir, AnalyzeFile);
 
     // /* C12 4.02962GeV - run 015778 (ifarm DATA files - C12 DATA files) */
     // Config_C12_4GeV_samples(AnalyzeFilePath_v, AnalyzeFileSample_v, AnalyzeFileDir_v, AnalyzeFile_v, AnalyzeFilePath, AnalyzeFileSample, AnalyzeFileDir, AnalyzeFile);
@@ -102,7 +102,7 @@ void ConfigSampleChain() {
 
     // // /* C12 G18 2GeV */
     // Config_C12_G18_2GeV_samples(AnalyzeFilePath_v, AnalyzeFileSample_v, AnalyzeFileDir_v, AnalyzeFile_v, AnalyzeFilePath, AnalyzeFileSample, AnalyzeFileDir, AnalyzeFile, false);  // no FC
-    // Config_C12_G18_2GeV_samples(AnalyzeFilePath_v, AnalyzeFileSample_v, AnalyzeFileDir_v, AnalyzeFile_v, AnalyzeFilePath, AnalyzeFileSample, AnalyzeFileDir, AnalyzeFile, true);   // with FC
+    Config_C12_G18_2GeV_samples(AnalyzeFilePath_v, AnalyzeFileSample_v, AnalyzeFileDir_v, AnalyzeFile_v, AnalyzeFilePath, AnalyzeFileSample, AnalyzeFileDir, AnalyzeFile, true);   // with FC
 
     // // /* C12 G18 4GeV */
     // Config_C12_G18_4GeV_samples(AnalyzeFilePath_v, AnalyzeFileSample_v, AnalyzeFileDir_v, AnalyzeFile_v, AnalyzeFilePath, AnalyzeFileSample, AnalyzeFileDir, AnalyzeFile, false);  // no FC
