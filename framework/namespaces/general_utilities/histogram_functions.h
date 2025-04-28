@@ -302,30 +302,35 @@ void DrawTHStack(THStack *stack, bool useLogScale) {
         // H1D_All_Int->SetLineWidth(4);
         H1D_All_Int->SetLineColor(kBlack);
         H1D_All_Int->SetLineStyle(5);
+        H1D_All_Int->SetMarkerSize(0);
         H1D_All_Int->Sumw2(kTRUE);
     }
     if (H1D_QEL) {
         H1D_QEL->SetLineWidth(1);
         // H1D_QEL->SetLineWidth(2);
         H1D_QEL->SetLineColor(kBlue);
+        H1D_QEL->SetMarkerSize(0);
         H1D_QEL->Sumw2(kTRUE);
     }
     if (H1D_MEC) {
         H1D_MEC->SetLineWidth(1);
         // H1D_MEC->SetLineWidth(2);
         H1D_MEC->SetLineColor(kRed + 1);
+        H1D_MEC->SetMarkerSize(0);
         H1D_MEC->Sumw2(kTRUE);
     }
     if (H1D_RES) {
         H1D_RES->SetLineWidth(1);
         // H1D_RES->SetLineWidth(2);
         H1D_RES->SetLineColor(kGreen);
+        H1D_RES->SetMarkerSize(0);
         H1D_RES->Sumw2(kTRUE);
     }
     if (H1D_DIS) {
         H1D_DIS->SetLineWidth(1);
         // H1D_DIS->SetLineWidth(2);
         H1D_DIS->SetLineColor(kOrange + 6);
+        H1D_DIS->SetMarkerSize(0);
         H1D_DIS->Sumw2(kTRUE);
     }
 
