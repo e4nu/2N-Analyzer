@@ -390,58 +390,61 @@ void CompareHistograms(const std::vector<TObject *> &histograms, const std::stri
             if (palette) palette->SetY2NDC(0.50);
             gPad->Modified();
             gPad->Update();
-            else if (histograms[i]->InheritsFrom(THStack::Class())) { DrawTHStack((THStack *)histograms[i], /* useLogScale = */ false); }
-            else { std::cerr << "\n\nhistogram_functions::CompareHistograms: Warning: Object " << i << " is not a recognized histogram type!\n\n" << std::endl; }
+        } else if (histograms[i]->InheritsFrom(THStack::Class())) {
+            DrawTHStack((THStack *)histograms[i], /* useLogScale = */ false);
+        } else {
+            std::cerr << "\n\nhistogram_functions::CompareHistograms: Warning: Object " << i << " is not a recognized histogram type!\n\n" << std::endl;
         }
-
-        TempCanvas.Update();
-        TempCanvas.Draw();
-
-        std::string linearFile = (ComparisonName != "") ? savePath + ComparisonName + "_linear_scale.pdf" : savePath + "comparison_linear_scale.pdf";
-        TempCanvas.SaveAs(linearFile.c_str());
-
-        // ------------------
-        // Log Scale Canvas
-        // ------------------
-
-        std::string logDir = savePath + "log_scale_plots/";
-        if (gSystem->AccessPathName(logDir.c_str())) { gSystem->mkdir(logDir.c_str(), true); }
-
-        TCanvas TempCanvas_log("TempCanvas_log", "Histograms - Log Scale", 1000 * nCols, 750 * nRows);
-        TempCanvas_log.Divide(nCols, nRows);
-
-        for (size_t i = 0; i < nHistos; ++i) {
-            TempCanvas_log.cd(padMapping[i]);
-            gPad->SetGrid();
-            gPad->SetBottomMargin(0.14);
-            gPad->SetLeftMargin(0.16);
-            gPad->SetRightMargin(0.12);
-
-            if (IsHistogramEmpty(histograms[i])) {
-                DrawEmptyHistogramNotice(0.2, 0.4, 0.8, 0.6);
-            } else if (histograms[i]->InheritsFrom(TH1D::Class())) {
-                gPad->SetLogy(1);
-                ((TH1D *)histograms[i])->Draw("HISTE");
-            } else if (histograms[i]->InheritsFrom(TH2D::Class())) {
-                gPad->SetLogz(1);
-                TH2D *h2 = (TH2D *)histograms[i];
-                h2->Draw("COLZ");
-                gPad->Update();
-                TPaletteAxis *palette = (TPaletteAxis *)h2->GetListOfFunctions()->FindObject("palette");
-                if (palette) palette->SetY2NDC(0.50);
-                gPad->Modified();
-                gPad->Update();
-            } else if (histograms[i]->InheritsFrom(THStack::Class())) {
-                DrawTHStack((THStack *)histograms[i], /* useLogScale = */ true);
-            }
-        }
-
-        TempCanvas_log.Update();
-        TempCanvas_log.Draw();
-
-        std::string logFile = (ComparisonName != "") ? logDir + ComparisonName + "_log_scale.pdf" : logDir + "comparison_log_scale.pdf";
-        TempCanvas_log.SaveAs(logFile.c_str());
     }
+
+    TempCanvas.Update();
+    TempCanvas.Draw();
+
+    std::string linearFile = (ComparisonName != "") ? savePath + ComparisonName + "_linear_scale.pdf" : savePath + "comparison_linear_scale.pdf";
+    TempCanvas.SaveAs(linearFile.c_str());
+
+    // ------------------
+    // Log Scale Canvas
+    // ------------------
+
+    std::string logDir = savePath + "log_scale_plots/";
+    if (gSystem->AccessPathName(logDir.c_str())) { gSystem->mkdir(logDir.c_str(), true); }
+
+    TCanvas TempCanvas_log("TempCanvas_log", "Histograms - Log Scale", 1000 * nCols, 750 * nRows);
+    TempCanvas_log.Divide(nCols, nRows);
+
+    for (size_t i = 0; i < nHistos; ++i) {
+        TempCanvas_log.cd(padMapping[i]);
+        gPad->SetGrid();
+        gPad->SetBottomMargin(0.14);
+        gPad->SetLeftMargin(0.16);
+        gPad->SetRightMargin(0.12);
+
+        if (IsHistogramEmpty(histograms[i])) {
+            DrawEmptyHistogramNotice(0.2, 0.4, 0.8, 0.6);
+        } else if (histograms[i]->InheritsFrom(TH1D::Class())) {
+            gPad->SetLogy(1);
+            ((TH1D *)histograms[i])->Draw("HISTE");
+        } else if (histograms[i]->InheritsFrom(TH2D::Class())) {
+            gPad->SetLogz(1);
+            TH2D *h2 = (TH2D *)histograms[i];
+            h2->Draw("COLZ");
+            gPad->Update();
+            TPaletteAxis *palette = (TPaletteAxis *)h2->GetListOfFunctions()->FindObject("palette");
+            if (palette) palette->SetY2NDC(0.50);
+            gPad->Modified();
+            gPad->Update();
+        } else if (histograms[i]->InheritsFrom(THStack::Class())) {
+            DrawTHStack((THStack *)histograms[i], /* useLogScale = */ true);
+        }
+    }
+
+    TempCanvas_log.Update();
+    TempCanvas_log.Draw();
+
+    std::string logFile = (ComparisonName != "") ? logDir + ComparisonName + "_log_scale.pdf" : logDir + "comparison_log_scale.pdf";
+    TempCanvas_log.SaveAs(logFile.c_str());
+}
 
 };  // namespace histogram_functions
 
