@@ -278,6 +278,7 @@ void DrawTHStack(THStack *stack, bool useLogScale) {
     while (TObject *obj = next()) {
         if (obj->InheritsFrom(TH1::Class())) {
             ((TH1 *)obj)->Sumw2(kTRUE);
+            ((TH1 *)obj)->SetMarkerSize(0);
 
             TH1 *h = (TH1 *)obj;
             TString title = h->GetTitle();
