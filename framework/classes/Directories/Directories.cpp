@@ -263,7 +263,7 @@ Directories::Directories(const std::string &plots_path, const bool Clear_Old_Dir
 
     W_dir_map["W_1n_Directory"] = Plots_Folder + "/" + W_Parent_Directory + "/" + Find(W_Daughter_Folders, "03_1n") + "/";
 
-    W_dir_map["W_pFDpCD_Directory"] = Plots_Folder + "/" + W_Parent_Directory + "/" + Find(W_Daughter_Folders, "04_pFDpCD") + "/";
+    W_dir_map["W_2p_Directory"] = Plots_Folder + "/" + W_Parent_Directory + "/" + Find(W_Daughter_Folders, "04_2p") + "/";
 
     W_dir_map["W_pFDpCD_Directory"] = Plots_Folder + "/" + W_Parent_Directory + "/" + Find(W_Daughter_Folders, "05_pFDpCD") + "/";
 
