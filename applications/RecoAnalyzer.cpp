@@ -21046,13 +21046,12 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         histogram_functions::CompareHistograms({sE_miss_2N_pFDpCD, sE_miss_2N_nFDpCD}, directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons",
                                                "E_miss_2N_stack_ReacComp");
 
+        histogram_functions::CompareHistograms({hQ2_pFDpCD, hQ2_nFDpCD}, directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "Q2_All_Int_ReacComp");
+        histogram_functions::CompareHistograms({sQ2_pFDpCD, sQ2_nFDpCD}, directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "Q2_stack_ReacComp");
+
         histogram_functions::CompareHistograms({hxB_All_Int_pFDpCD, hxB_All_Int_nFDpCD}, directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons",
                                                "xB_All_Int_ReacComp");
         histogram_functions::CompareHistograms({sxB_pFDpCD, sxB_nFDpCD}, directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "xB_stack_ReacComp");
-
-        histogram_functions::CompareHistograms({hQ2_All_Int_pFDpCD, hQ2_All_Int_nFDpCD}, directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons",
-                                               "Q2_All_Int_ReacComp");
-        histogram_functions::CompareHistograms({sQ2_pFDpCD, sQ2_nFDpCD}, directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "Q2_stack_ReacComp");
 
     } else {
         std::cout << "\033[33m\n\nReaction monitoring plots are disabled by user.\n\n\033[0m";
