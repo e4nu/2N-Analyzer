@@ -261,7 +261,7 @@ bool IsHistogramEmpty(TObject *obj) {
 void DrawTHStack(THStack *stack, bool useLogScale) {
     if (!stack) { return; }
 
-    if (useLogScale) gPad->SetLogy(1);
+    if (useLogScale) { gPad->SetLogy(1); }
 
     TList *histList = stack->GetHists();
     if (!histList) { return; }
