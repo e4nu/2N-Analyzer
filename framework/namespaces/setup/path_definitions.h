@@ -19,7 +19,7 @@ const std::string log_file_name = "Run_log.txt";
 const std::string plots_log_save_Directory = PathDefinitions.plots_path + "/" + log_file_name;
 const std::string skipped_files_list_save_Directory = PathDefinitions.plots_path + "/skipped_files_list.txt";
 
-const std::string custom_plots_path_prefix = "V18";
+const std::string custom_plots_path_prefix = "V19";
 
 }  // namespace path_definitions
 
