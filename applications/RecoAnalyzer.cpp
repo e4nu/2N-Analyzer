@@ -26961,7 +26961,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     //     delete plots_fout;
     // #pragma endregion
 
-    std::cout << "\n\n\033[33mFinished run over:\033[0m" << parameters.SampleName << "\n\n";
+    std::cout << "\n\n\033[33mFinished run over:\033[0m " << parameters.SampleName << "\n\n";
 }
 
 #endif  // RECOANALYZER_H

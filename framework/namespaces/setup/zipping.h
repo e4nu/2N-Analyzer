@@ -38,7 +38,7 @@ void SavePlotsToZipFile(const bool& Save_Plots_folder_to_zip_files, const bool& 
             std::cout << "zip_command: " << zip_command << "\n";
         }
 
-        std::cout << "\n\n";
+        // std::cout << "\n\n";
     } else {
         std::cout << "\n\n\033[33mSaving plots folder to zip file is disabled...\n\033[0m";
         return;
