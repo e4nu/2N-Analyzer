@@ -21026,6 +21026,11 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         stackPlotter1D(MainCanvas, stheta_q_pCD_nFDpCD, norm_ReacMon_plots, "#theta_{#font[62]{q},#font[62]{P}_{pCD}} distribution", "nFDpCD", plots, HistoList, htheta_q_pCD_All_Int_nFDpCD,
                        htheta_q_pCD_QEL_nFDpCD, htheta_q_pCD_MEC_nFDpCD, htheta_q_pCD_RES_nFDpCD, htheta_q_pCD_DIS_nFDpCD, "09e_theta_q_pCD_Stack_nFDpCD", stheta_q_pCD_nFDpCD_Dir, "");
 
+        //  Final state comparisons (1e cut, 1n, 1p ,nFDpCD, nFDpCD)
+        //  ----------------------------------------------------------------------------------------------------------------------------------
+        histogram_functions::CompareHistograms({hxB_All_Int_pFDpCD, hxB_All_Int_nFDpCD}, directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "xB_All_Int_ReacComp");
+        histogram_functions::CompareHistograms({sxB_pFDpCD, sxB_nFDpCD}, directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "xB_stack_ReacComp");
+
     } else {
         std::cout << "\033[33m\n\nReaction monitoring plots are disabled by user.\n\n\033[0m";
     }  // end of Beta plot if
