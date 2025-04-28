@@ -319,7 +319,7 @@ void CompareHistograms(const std::vector<TObject *> &histograms, const std::stri
     // Log Scale Canvas
     // ------------------
 
-    std::string logDir = SavePath + "log_scale_plots/";
+    std::string logDir = savePath + "log_scale_plots/";
     system(("mkdir -p " + logDir).c_str());
     // std::string logDir = savePath + "log_scale_plots/";
     // if (gSystem->AccessPathName(logDir.c_str())) { gSystem->mkdir(logDir.c_str(), true); }
