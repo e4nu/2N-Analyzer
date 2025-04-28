@@ -256,22 +256,36 @@ bool IsHistogramEmpty(TObject *obj) {
 
 // CompareHistograms -------------------------------------------------------------------------------------------------------------------------------------------------------
 
+#include <TFile.h>    // Just in case (some ROOT versions need this)
+#include <TSystem.h>  // For gSystem->mkdir
+
 void CompareHistograms(const std::vector<TObject *> &histograms, const std::string &saveDirectory, const std::string &saveDirectoryName = "", const std::string &ComparisonName = "") {
     size_t nHistos = histograms.size();
 
-    if (nHistos != 4 && nHistos != 5) {
-        std::cerr << "\n\nhistogram_functions::CompareHistograms: ERROR! CompareHistograms only supports 4 or 5 histograms!\n\n" << std::endl;
+    if (nHistos != 2 && nHistos != 4 && nHistos != 5) {
+        std::cerr << "\n\nhistogram_functions::CompareHistograms: ERROR! CompareHistograms only supports 2, 4, or 5 histograms!\n\n" << std::endl;
         return;
     }
 
-    int nCols = (nHistos == 4) ? 2 : 3;
-    int nRows = 2;
+    int nCols = (nHistos == 2 || nHistos == 4) ? 2 : 3;
+    int nRows = (nHistos == 2) ? 1 : 2;
 
     std::vector<int> padMapping;
-    if (nHistos == 4) {
-        padMapping = {1, 2, 3, 4};  // 2x2
+    if (nHistos == 2) {
+        padMapping = {1, 2};
+    } else if (nHistos == 4) {
+        padMapping = {1, 2, 3, 4};
     } else if (nHistos == 5) {
-        padMapping = {1, 2, 3, 5, 6};  // 3x2
+        padMapping = {1, 2, 3, 5, 6};
+    }
+
+    // Build save paths
+    std::string savePath = (saveDirectoryName != "") ? saveDirectory + "/" + saveDirectoryName : saveDirectory;
+    if (!savePath.empty() && savePath.back() != '/' && savePath.back() != '\\') { savePath += "/"; }
+
+    // Create save directory if needed
+    if (gSystem->AccessPathName(savePath.c_str())) {
+        gSystem->mkdir(savePath.c_str(), true);  // true = recursive creation
     }
 
     // ------------------
@@ -302,17 +316,14 @@ void CompareHistograms(const std::vector<TObject *> &histograms, const std::stri
         } else if (histograms[i]->InheritsFrom(THStack::Class())) {
             ((THStack *)histograms[i])->Draw("NOSTACK HIST");
         } else {
-            std::cerr << "Warning: Object " << i << " is not a recognized histogram type!" << std::endl;
+            std::cerr << "\n\nhistogram_functions::CompareHistograms: Warning: Object " << i << " is not a recognized histogram type!\n\n" << std::endl;
         }
     }
 
     TempCanvas.Update();
     TempCanvas.Draw();
 
-    std::string savePath = (saveDirectoryName != "") ? saveDirectory + "/" + saveDirectoryName : saveDirectory;
-    if (!savePath.empty() && savePath.back() != '/' && savePath.back() != '\\') { savePath += "/"; }
     std::string linearFile = (ComparisonName != "") ? savePath + ComparisonName + "_linear_scale.pdf" : savePath + "comparison_linear_scale.pdf";
-
     TempCanvas.SaveAs(linearFile.c_str());
 
     // ------------------
@@ -320,11 +331,11 @@ void CompareHistograms(const std::vector<TObject *> &histograms, const std::stri
     // ------------------
 
     std::string logDir = savePath + "log_scale_plots/";
-    system(("mkdir -p " + logDir).c_str());
-    // std::string logDir = savePath + "log_scale_plots/";
-    // if (gSystem->AccessPathName(logDir.c_str())) { gSystem->mkdir(logDir.c_str(), true); }
+    if (gSystem->AccessPathName(logDir.c_str())) {
+        gSystem->mkdir(logDir.c_str(), true);  // true = recursive
+    }
 
-    TCanvas TempCanvas_log("TempCanvas_log", "Histograms - Log Scale", 1200, 800);
+    TCanvas TempCanvas_log("TempCanvas_log", "Histograms - Log Scale", 1000 * nCols, 750 * nRows);
     TempCanvas_log.Divide(nCols, nRows);
 
     for (size_t i = 0; i < nHistos; ++i) {
@@ -360,8 +371,6 @@ void CompareHistograms(const std::vector<TObject *> &histograms, const std::stri
     TempCanvas_log.Draw();
 
     std::string logFile = (ComparisonName != "") ? logDir + ComparisonName + "_log_scale.pdf" : logDir + "comparison_log_scale.pdf";
-    // std::string logFile = logDir + "comparison_log_scale.pdf";
-
     TempCanvas_log.SaveAs(logFile.c_str());
 }
 

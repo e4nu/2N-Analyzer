@@ -6,10 +6,10 @@
 // #define CUSTOMPLOTSDIRECTORY_H
 #ifdef CUSTOMPLOTSDIRECTORY_H
 
-#include <iostream>
+    #include <iostream>
 
-// Include libraries:
-#include "../../namespaces/setup/path_definitions.h"
+    // Include libraries:
+    #include "../../namespaces/setup/path_definitions.h"
 
 class CustomPlotsDirectory {
    private:

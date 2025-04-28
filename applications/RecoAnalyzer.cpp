@@ -21228,6 +21228,11 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         if (CutSettings.apply_nucleon_cuts) {
             if (FSR_1D_plots) { DrawAndSaveFSRatio(parameters.SampleName, hW_All_Int_pFDpCD, hW_All_Int_pFDpCD_Dir, hW_All_Int_nFDpCD, plots); }
         }
+
+        //  Final state comparisons (1e cut, 1n, 1p ,nFDpCD, nFDpCD)
+        //  ----------------------------------------------------------------------------------------------------------------------------------
+        histogram_functions::CompareHistograms({sW_1e_cut, sW_1p, sW_1n, sW_pFDpCD, sW_nFDpCD}, directories.W_dir_map["W_Parent_Directory"], "Histogram_Comparisons", "W_stack_ReacComp");
+
     } else {
         std::cout << "\033[33m\n\nW plots are disabled by user.\n\n\033[0m";
     }  // end of Beta plot if
@@ -26903,6 +26908,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     //     for (auto histo : HistoList) { delete histo; }
 
     //     delete MainCanvas;
+    //     delete plots_fout;
     // #pragma endregion
 }
 
