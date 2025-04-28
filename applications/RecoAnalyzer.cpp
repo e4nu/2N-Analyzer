@@ -215,10 +215,10 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     /* Final state ratio plots */
     bool FSR_1D_plots, FSR_2D_plots;  // FSR_2D_plots is disabled below if HipoChainLength is 2 or lower
 
-    bool TestRun = true;       // set as false for a full run
-    bool ApplyLimiter = true;  // set as false for a full run
-    int Limiter = 5000000;
-    // int Limiter = 1000000;
+    bool TestRun = false;       // set as false for a full run
+    bool ApplyLimiter = false;  // set as false for a full run
+    // int Limiter = 5000000;
+    int Limiter = 1000000;
 
     // Set enabled plots
     if (!TestRun) {

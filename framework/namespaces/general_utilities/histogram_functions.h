@@ -17,6 +17,7 @@
 #include <TH2D.h>
 #include <THStack.h>
 #include <TLatex.h>
+#include <TLegend.h>
 #include <TList.h>
 #include <TLorentzVector.h>
 #include <TObject.h>
@@ -26,6 +27,7 @@
 #include <TROOT.h>
 #include <TStyle.h>
 #include <TSystem.h>  // for gSystem->mkdir
+#include <TSystem.h>
 #include <TTree.h>
 #include <math.h>
 
@@ -254,16 +256,95 @@ bool IsHistogramEmpty(TObject *obj) {
     return true;
 }
 
-// CompareHistograms -------------------------------------------------------------------------------------------------------------------------------------------------------
+// DrawTHStack ----------------------------------------------------------------------------------------------------------------------------------------------------------
 
-#include <TFile.h>    // Just in case (some ROOT versions need this)
-#include <TSystem.h>  // For gSystem->mkdir
+void DrawTHStack(THStack *stack, bool useLogScale) {
+    if (!stack) return;
+
+    if (useLogScale) gPad->SetLogy(1);
+
+    TList *histList = stack->GetHists();
+    if (!histList) return;
+
+    // Prepare histogram pointers
+    TH1 *H1D_QEL = nullptr;
+    TH1 *H1D_MEC = nullptr;
+    TH1 *H1D_RES = nullptr;
+    TH1 *H1D_DIS = nullptr;
+    TH1 *H1D_All_Int = nullptr;
+
+    // Sort histograms by title
+    TIter next(histList);
+    while (TObject *obj = next()) {
+        if (obj->InheritsFrom(TH1::Class())) {
+            TH1 *h = (TH1 *)obj;
+            TString title = h->GetTitle();
+
+            if (title.Contains("All Int.")) {
+                H1D_All_Int = h;
+            } else if (title.Contains("QE")) {
+                H1D_QEL = h;
+            } else if (title.Contains("MEC")) {
+                H1D_MEC = h;
+            } else if (title.Contains("RES")) {
+                H1D_RES = h;
+            } else if (title.Contains("DIS")) {
+                H1D_DIS = h;
+            }
+        }
+    }
+
+    // Set styles and Sumw2
+    if (H1D_All_Int) {
+        H1D_All_Int->SetLineWidth(4);
+        H1D_All_Int->SetLineColor(kBlack);
+        H1D_All_Int->SetLineStyle(5);
+        H1D_All_Int->Sumw2();
+    }
+    if (H1D_QEL) {
+        H1D_QEL->SetLineWidth(2);
+        H1D_QEL->SetLineColor(kBlue);
+        H1D_QEL->Sumw2();
+    }
+    if (H1D_MEC) {
+        H1D_MEC->SetLineWidth(2);
+        H1D_MEC->SetLineColor(kRed + 1);
+        H1D_MEC->Sumw2();
+    }
+    if (H1D_RES) {
+        H1D_RES->SetLineWidth(2);
+        H1D_RES->SetLineColor(kGreen);
+        H1D_RES->Sumw2();
+    }
+    if (H1D_DIS) {
+        H1D_DIS->SetLineWidth(2);
+        H1D_DIS->SetLineColor(kOrange + 6);
+        H1D_DIS->Sumw2();
+    }
+
+    // Draw the stack
+    stack->Draw("NOSTACK HIST");
+
+    // Add legend if needed
+    if (H1D_All_Int && H1D_All_Int->Integral() != 0.) {
+        auto Histogram1DStackLegend = new TLegend(0.76, 0.624, 0.865, 0.89);
+        Histogram1DStackLegend->SetTextSize(0.03);
+        if (H1D_All_Int) Histogram1DStackLegend->AddEntry(H1D_All_Int, "All int.", "l");
+        if (H1D_QEL) Histogram1DStackLegend->AddEntry(H1D_QEL, "QE", "l");
+        if (H1D_MEC) Histogram1DStackLegend->AddEntry(H1D_MEC, "MEC", "l");
+        if (H1D_RES) Histogram1DStackLegend->AddEntry(H1D_RES, "RES", "l");
+        if (H1D_DIS) Histogram1DStackLegend->AddEntry(H1D_DIS, "DIS", "l");
+        Histogram1DStackLegend->Draw();
+    }
+}
+
+// CompareHistograms -------------------------------------------------------------------------------------------------------------------------------------------------------
 
 void CompareHistograms(const std::vector<TObject *> &histograms, const std::string &saveDirectory, const std::string &saveDirectoryName = "", const std::string &ComparisonName = "") {
     size_t nHistos = histograms.size();
 
     if (nHistos != 2 && nHistos != 4 && nHistos != 5) {
-        std::cerr << "\n\nhistogram_functions::CompareHistograms: ERROR! CompareHistograms only supports 2, 4, or 5 histograms!\n\n" << std::endl;
+        std::cerr << "\n\nhistogram_functions::CompareHistograms: ERROR! Only supports 2, 4, or 5 histograms!\n\n" << std::endl;
         return;
     }
 
@@ -279,14 +360,10 @@ void CompareHistograms(const std::vector<TObject *> &histograms, const std::stri
         padMapping = {1, 2, 3, 5, 6};
     }
 
-    // Build save paths
+    // Create output directory if needed
     std::string savePath = (saveDirectoryName != "") ? saveDirectory + "/" + saveDirectoryName : saveDirectory;
-    if (!savePath.empty() && savePath.back() != '/' && savePath.back() != '\\') { savePath += "/"; }
-
-    // Create save directory if needed
-    if (gSystem->AccessPathName(savePath.c_str())) {
-        gSystem->mkdir(savePath.c_str(), true);  // true = recursive creation
-    }
+    if (!savePath.empty() && savePath.back() != '/' && savePath.back() != '\\') savePath += "/";
+    if (gSystem->AccessPathName(savePath.c_str())) { gSystem->mkdir(savePath.c_str(), true); }
 
     // ------------------
     // Linear Scale Canvas
@@ -313,66 +390,58 @@ void CompareHistograms(const std::vector<TObject *> &histograms, const std::stri
             if (palette) palette->SetY2NDC(0.50);
             gPad->Modified();
             gPad->Update();
-        } else if (histograms[i]->InheritsFrom(THStack::Class())) {
-            ((THStack *)histograms[i])->Draw("NOSTACK HIST");
-        } else {
-            std::cerr << "\n\nhistogram_functions::CompareHistograms: Warning: Object " << i << " is not a recognized histogram type!\n\n" << std::endl;
+            else if (histograms[i]->InheritsFrom(THStack::Class())) { DrawTHStack((THStack *)histograms[i], /* useLogScale = */ false); }
+            else { std::cerr << "\n\nhistogram_functions::CompareHistograms: Warning: Object " << i << " is not a recognized histogram type!\n\n" << std::endl; }
         }
-    }
 
-    TempCanvas.Update();
-    TempCanvas.Draw();
+        TempCanvas.Update();
+        TempCanvas.Draw();
 
-    std::string linearFile = (ComparisonName != "") ? savePath + ComparisonName + "_linear_scale.pdf" : savePath + "comparison_linear_scale.pdf";
-    TempCanvas.SaveAs(linearFile.c_str());
+        std::string linearFile = (ComparisonName != "") ? savePath + ComparisonName + "_linear_scale.pdf" : savePath + "comparison_linear_scale.pdf";
+        TempCanvas.SaveAs(linearFile.c_str());
 
-    // ------------------
-    // Log Scale Canvas
-    // ------------------
+        // ------------------
+        // Log Scale Canvas
+        // ------------------
 
-    std::string logDir = savePath + "log_scale_plots/";
-    if (gSystem->AccessPathName(logDir.c_str())) {
-        gSystem->mkdir(logDir.c_str(), true);  // true = recursive
-    }
+        std::string logDir = savePath + "log_scale_plots/";
+        if (gSystem->AccessPathName(logDir.c_str())) { gSystem->mkdir(logDir.c_str(), true); }
 
-    TCanvas TempCanvas_log("TempCanvas_log", "Histograms - Log Scale", 1000 * nCols, 750 * nRows);
-    TempCanvas_log.Divide(nCols, nRows);
+        TCanvas TempCanvas_log("TempCanvas_log", "Histograms - Log Scale", 1000 * nCols, 750 * nRows);
+        TempCanvas_log.Divide(nCols, nRows);
 
-    for (size_t i = 0; i < nHistos; ++i) {
-        TempCanvas_log.cd(padMapping[i]);
-        gPad->SetGrid();
-        gPad->SetBottomMargin(0.14);
-        gPad->SetLeftMargin(0.16);
-        gPad->SetRightMargin(0.12);
+        for (size_t i = 0; i < nHistos; ++i) {
+            TempCanvas_log.cd(padMapping[i]);
+            gPad->SetGrid();
+            gPad->SetBottomMargin(0.14);
+            gPad->SetLeftMargin(0.16);
+            gPad->SetRightMargin(0.12);
 
-        if (IsHistogramEmpty(histograms[i])) {
-            DrawEmptyHistogramNotice(0.2, 0.4, 0.8, 0.6);
-        } else if (histograms[i]->InheritsFrom(TH1D::Class())) {
-            gPad->SetLogy(1);
-            ((TH1D *)histograms[i])->Draw("HISTE");
-        } else if (histograms[i]->InheritsFrom(TH2D::Class())) {
-            gPad->SetLogz(1);
-            TH2D *h2 = (TH2D *)histograms[i];
-            h2->Draw("COLZ");
-            gPad->Update();
-            TPaletteAxis *palette = (TPaletteAxis *)h2->GetListOfFunctions()->FindObject("palette");
-            if (palette) palette->SetY2NDC(0.50);
-            gPad->Modified();
-            gPad->Update();
-        } else if (histograms[i]->InheritsFrom(THStack::Class())) {
-            gPad->SetLogy(1);
-            ((THStack *)histograms[i])->Draw("NOSTACK HIST");
-        } else {
-            std::cerr << "\n\nhistogram_functions::CompareHistograms: Warning: Object " << i << " is not a recognized histogram type!\n\n" << std::endl;
+            if (IsHistogramEmpty(histograms[i])) {
+                DrawEmptyHistogramNotice(0.2, 0.4, 0.8, 0.6);
+            } else if (histograms[i]->InheritsFrom(TH1D::Class())) {
+                gPad->SetLogy(1);
+                ((TH1D *)histograms[i])->Draw("HISTE");
+            } else if (histograms[i]->InheritsFrom(TH2D::Class())) {
+                gPad->SetLogz(1);
+                TH2D *h2 = (TH2D *)histograms[i];
+                h2->Draw("COLZ");
+                gPad->Update();
+                TPaletteAxis *palette = (TPaletteAxis *)h2->GetListOfFunctions()->FindObject("palette");
+                if (palette) palette->SetY2NDC(0.50);
+                gPad->Modified();
+                gPad->Update();
+            } else if (histograms[i]->InheritsFrom(THStack::Class())) {
+                DrawTHStack((THStack *)histograms[i], /* useLogScale = */ true);
+            }
         }
+
+        TempCanvas_log.Update();
+        TempCanvas_log.Draw();
+
+        std::string logFile = (ComparisonName != "") ? logDir + ComparisonName + "_log_scale.pdf" : logDir + "comparison_log_scale.pdf";
+        TempCanvas_log.SaveAs(logFile.c_str());
     }
-
-    TempCanvas_log.Update();
-    TempCanvas_log.Draw();
-
-    std::string logFile = (ComparisonName != "") ? logDir + ComparisonName + "_log_scale.pdf" : logDir + "comparison_log_scale.pdf";
-    TempCanvas_log.SaveAs(logFile.c_str());
-}
 
 };  // namespace histogram_functions
 
