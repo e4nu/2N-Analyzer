@@ -2041,7 +2041,8 @@ void histPlotter2D(TCanvas *HistogramCanvas, TH2D *Histogram2D, double titleSize
     if (zLogScalePlot) {
         HistogramCanvas->SetLogz(1);
         system(("mkdir -p " + Histogram1DSaveNameDir + "/z_Log_Scale_plots").c_str());
-        HistogramCanvas->SaveAs((Histogram1DSaveNameDir + "/z_Log_Scale_plots/" + sNameFlag + Histogram1DSaveName + "_zLogScale.pdf").c_str());
+        HistogramCanvas->SaveAs((Histogram1DSaveNameDir + "/z_Log_Scale_plots/" + Histogram1DSaveName + "_zLogScale.pdf").c_str());
+        // HistogramCanvas->SaveAs((Histogram1DSaveNameDir + "/z_Log_Scale_plots/" + sNameFlag + Histogram1DSaveName + "_zLogScale.pdf").c_str());
         //        HistogramCanvas->SetLogz(1);
         //        HistogramCanvas->SaveAs((Histogram2DSaveNameDir + sNameFlag + Histogram2DSaveName + "_zLogScale.pdf").c_str());
 

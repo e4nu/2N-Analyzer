@@ -19238,7 +19238,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         histPlotter2D(MainCanvas, hP_e_vs_Theta_e_reco_DIS_1p, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, true, hP_e_vs_Theta_e_reco_1p_Dir, "02d_P_e_vs_Theta_e_reco_DIS_1p");
         histogram_functions::CompareHistograms(
             {hP_e_vs_Theta_e_reco_All_int_1p, hP_e_vs_Theta_e_reco_QEL_1p, hP_e_vs_Theta_e_reco_MEC_1p, hP_e_vs_Theta_e_reco_RES_1p, hP_e_vs_Theta_e_reco_DIS_1p},
-            directories.RMomentum_dir_map["Momentum_Parent_Directory"]);
+            directories.Momentum_dir_map["Momentum_Parent_Directory"]);
 
         hP_piplus_APID_1p_CD.hDrawAndSave(parameters.SampleName, MainCanvas, plots, HistoList, norm_Momentum_plots, true, 1., CutManager.pip_mom_th.GetLowerCut(),
                                           CutManager.pip_mom_th.GetUpperCut(), 0, false);
@@ -19340,7 +19340,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         histPlotter2D(MainCanvas, hP_e_vs_Theta_e_reco_DIS_1n, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, true, hP_e_vs_Theta_e_reco_1n_Dir, "09d_P_e_vs_Theta_e_reco_DIS_1n");
         histogram_functions::CompareHistograms(
             {hP_e_vs_Theta_e_reco_All_int_1n, hP_e_vs_Theta_e_reco_QEL_1n, hP_e_vs_Theta_e_reco_MEC_1n, hP_e_vs_Theta_e_reco_RES_1n, hP_e_vs_Theta_e_reco_DIS_1n},
-            directories.RMomentum_dir_map["Momentum_Parent_Directory"]);
+            directories.Momentum_dir_map["Momentum_Parent_Directory"]);
 
         hP_p_APID_1n_CD.hDrawAndSave(parameters.SampleName, MainCanvas, plots, HistoList, norm_Momentum_plots, true, 1., CutManager.p_mom_th.GetLowerCut(), CutManager.p_mom_th.GetUpperCut(),
                                      0, false);
@@ -19659,7 +19659,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                       "12d_P_e_vs_Theta_e_reco_DIS_pFDpCD");
         histogram_functions::CompareHistograms(
             {hP_e_vs_Theta_e_reco_All_int_pFDpCD, hP_e_vs_Theta_e_reco_QEL_pFDpCD, hP_e_vs_Theta_e_reco_MEC_pFDpCD, hP_e_vs_Theta_e_reco_RES_pFDpCD, hP_e_vs_Theta_e_reco_DIS_pFDpCD},
-            directories.RMomentum_dir_map["Momentum_Parent_Directory"]);
+            directories.Momentum_dir_map["Momentum_Parent_Directory"]);
 
         // P1 vs P2 plots (nFDpCD, CD & FD)
         hP_nL_vs_P_nR_nFDpCD.hDrawAndSave(parameters.SampleName, MainCanvas, plots, HistoList, true);
@@ -19690,7 +19690,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                       "12d_P_e_vs_Theta_e_reco_DIS_nFDpCD");
         histogram_functions::CompareHistograms(
             {hP_e_vs_Theta_e_reco_All_int_nFDpCD, hP_e_vs_Theta_e_reco_QEL_nFDpCD, hP_e_vs_Theta_e_reco_MEC_nFDpCD, hP_e_vs_Theta_e_reco_RES_nFDpCD, hP_e_vs_Theta_e_reco_DIS_nFDpCD},
-            directories.RMomentum_dir_map["Momentum_Parent_Directory"]);
+            directories.Momentum_dir_map["Momentum_Parent_Directory"]);
 
         // Final state ratios (nFDpCD/pFDpCD) -------------------------------------------------------------------------------------------------------------------------------
 
