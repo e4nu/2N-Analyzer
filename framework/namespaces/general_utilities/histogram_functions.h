@@ -254,13 +254,13 @@ bool IsHistogramEmpty(TObject *obj) {
     return true;
 }
 
-// PlotHistograms -------------------------------------------------------------------------------------------------------------------------------------------------------
+// CompareHistograms -------------------------------------------------------------------------------------------------------------------------------------------------------
 
-void PlotHistograms(const std::vector<TObject *> &histograms, const std::string &saveDirectory) {
+void CompareHistograms(const std::vector<TObject *> &histograms, const std::string &saveDirectory) {
     size_t nHistos = histograms.size();
 
     if (nHistos != 4 && nHistos != 5) {
-        std::cerr << "\n\nhistogram_functions::PlotHistograms: ERROR! PlotHistograms only supports 4 or 5 histograms!\n\n" << std::endl;
+        std::cerr << "\n\nhistogram_functions::CompareHistograms: ERROR! CompareHistograms only supports 4 or 5 histograms!\n\n" << std::endl;
         return;
     }
 
@@ -350,7 +350,7 @@ void PlotHistograms(const std::vector<TObject *> &histograms, const std::string 
             gPad->SetLogy(1);
             ((THStack *)histograms[i])->Draw("NOSTACK HIST");
         } else {
-            std::cerr << "\n\nhistogram_functions::PlotHistograms: Warning: Object " << i << " is not a recognized histogram type!\n\n" << std::endl;
+            std::cerr << "\n\nhistogram_functions::CompareHistograms: Warning: Object " << i << " is not a recognized histogram type!\n\n" << std::endl;
         }
     }
 
