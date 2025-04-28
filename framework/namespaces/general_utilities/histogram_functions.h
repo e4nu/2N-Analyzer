@@ -278,8 +278,10 @@ void DrawTHStack(THStack *stack, bool useLogScale) {
     while (TObject *obj = next()) {
         if (obj->InheritsFrom(TH1::Class())) {
             TH1 *h = (TH1 *)obj;
+            h->Sumw2(kTRUE); // Add error bars to the histograms
+    
             TString title = h->GetTitle();
-
+    
             if (title.Contains("All Int.")) {
                 H1D_All_Int = h;
             } else if (title.Contains("QE")) {
@@ -293,34 +295,79 @@ void DrawTHStack(THStack *stack, bool useLogScale) {
             }
         }
     }
+    // TIter next(histList);
+    // while (TObject *obj = next()) {
+    //     if (obj->InheritsFrom(TH1::Class())) {
+    //         TH1 *h = (TH1 *)obj;
+    //         TString title = h->GetTitle();
+
+    //         if (title.Contains("All Int.")) {
+    //             H1D_All_Int = h;
+    //         } else if (title.Contains("QE")) {
+    //             H1D_QEL = h;
+    //         } else if (title.Contains("MEC")) {
+    //             H1D_MEC = h;
+    //         } else if (title.Contains("RES")) {
+    //             H1D_RES = h;
+    //         } else if (title.Contains("DIS")) {
+    //             H1D_DIS = h;
+    //         }
+    //     }
+    // }
 
     // Set styles and Sumw2
     if (H1D_All_Int) {
         H1D_All_Int->SetLineWidth(4);
         H1D_All_Int->SetLineColor(kBlack);
         H1D_All_Int->SetLineStyle(5);
-        H1D_All_Int->Sumw2();
+        H1D_All_Int->Sumw2(kTRUE);
     }
     if (H1D_QEL) {
         H1D_QEL->SetLineWidth(2);
         H1D_QEL->SetLineColor(kBlue);
-        H1D_QEL->Sumw2();
+        H1D_QEL->Sumw2(kTRUE);
     }
     if (H1D_MEC) {
         H1D_MEC->SetLineWidth(2);
         H1D_MEC->SetLineColor(kRed + 1);
-        H1D_MEC->Sumw2();
+        H1D_MEC->Sumw2(kTRUE);
     }
     if (H1D_RES) {
         H1D_RES->SetLineWidth(2);
         H1D_RES->SetLineColor(kGreen);
-        H1D_RES->Sumw2();
+        H1D_RES->Sumw2(kTRUE);
     }
     if (H1D_DIS) {
         H1D_DIS->SetLineWidth(2);
         H1D_DIS->SetLineColor(kOrange + 6);
-        H1D_DIS->Sumw2();
+        H1D_DIS->Sumw2(kTRUE);
     }
+    // if (H1D_All_Int) {
+    //     H1D_All_Int->SetLineWidth(4);
+    //     H1D_All_Int->SetLineColor(kBlack);
+    //     H1D_All_Int->SetLineStyle(5);
+    //     H1D_All_Int->Sumw2();
+    // }
+    // if (H1D_QEL) {
+    //     H1D_QEL->SetLineWidth(2);
+    //     H1D_QEL->SetLineColor(kBlue);
+    //     H1D_QEL->Sumw2();
+    // }
+    // if (H1D_MEC) {
+    //     H1D_MEC->SetLineWidth(2);
+    //     H1D_MEC->SetLineColor(kRed + 1);
+    //     H1D_MEC->Sumw2();
+    // }
+    // if (H1D_RES) {
+    //     H1D_RES->SetLineWidth(2);
+    //     H1D_RES->SetLineColor(kGreen);
+    //     H1D_RES->Sumw2();
+    // }
+    // if (H1D_DIS) {
+    //     H1D_DIS->SetLineWidth(2);
+    //     H1D_DIS->SetLineColor(kOrange + 6);
+    //     H1D_DIS->Sumw2();
+    // }
 
     // Draw the stack
     stack->Draw("NOSTACK HIST");
