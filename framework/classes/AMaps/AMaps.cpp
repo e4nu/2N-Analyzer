@@ -2425,6 +2425,15 @@ void AMaps::DrawAndSaveMaps(const std::string &SampleName, TCanvas *h1DCanvas, c
     system(("cp " + AMapSavePath + "/" + AMaps_prefix + SampleName + ".root" + " " + AMapCopySavePath).c_str());
 #pragma endregion
 
+#pragma region /* Cleanup */
+    for (auto histo : AMapsBC_HistoList) { delete histo; }
+    for (auto histo : AMap_TL_HistoList) { delete histo; }
+    for (auto histo : AMap_Reco_HistoList) { delete histo; }
+    for (auto histo : AMap_Ratio_HistoList) { delete histo; }
+    for (auto histo : cPart_Sep_AMaps_HistoList) { delete histo; }
+    for (auto histo : AMaps_HistoList) { delete histo; }
+#pragma endregion
+
     std::cout << "done!\n\n\n";
 }
 #pragma endregion

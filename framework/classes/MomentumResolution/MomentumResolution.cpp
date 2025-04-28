@@ -1258,6 +1258,12 @@ void MomentumResolution::DrawAndSaveResSlices(const std::string &SampleName, TCa
     ResSlicePlots->Write();
     PlotsFolder_fout->Write();
     PlotsFolder_fout->Close();
+
+#pragma region /* Cleanup */
+    for (auto histo : MomResHistoList) { delete histo; }
+
+    delete h1DCanvas;
+#pragma endregion
 }
 #pragma endregion
 
@@ -2343,7 +2349,9 @@ double MomentumResolution::NCorr(const bool &apply_nucleon_SmearAndCorr, const d
                 }
             } else if (CorrMode == "pol1_wKC") {
 #pragma region /* Safety checks */
-                if (Loaded_Reco_FitParam_Corr_pol1_wKC.size() == 0) { std::cout << "\n\nMomentumResolution::NCorr: Loaded_Reco_FitParam_Corr_pol1_wKC wasn't loaded! Aborting...\n", exit(1); }
+                if (Loaded_Reco_FitParam_Corr_pol1_wKC.size() == 0) {
+                    std::cout << "\n\nMomentumResolution::NCorr: Loaded_Reco_FitParam_Corr_pol1_wKC wasn't loaded! Aborting...\n", exit(1);
+                }
                 if (Loaded_Reco_FitParam_Corr_pol1_wKC.at(0).size() == 0) {
                     std::cout << "\n\nMomentumResolution::NCorr: Loaded_Reco_FitParam_Corr_pol1_wKC correction wasn't loaded! Aborting...\n", exit(1);
                 }
@@ -2398,7 +2406,9 @@ double MomentumResolution::NCorr(const bool &apply_nucleon_SmearAndCorr, const d
                 }
             } else if (CorrMode == "pol2_wKC") {
 #pragma region /* Safety checks */
-                if (Loaded_Reco_FitParam_Corr_pol2_wKC.size() == 0) { std::cout << "\n\nMomentumResolution::NCorr: Loaded_Reco_FitParam_Corr_pol2_wKC wasn't loaded! Aborting...\n", exit(1); }
+                if (Loaded_Reco_FitParam_Corr_pol2_wKC.size() == 0) {
+                    std::cout << "\n\nMomentumResolution::NCorr: Loaded_Reco_FitParam_Corr_pol2_wKC wasn't loaded! Aborting...\n", exit(1);
+                }
                 if (Loaded_Reco_FitParam_Corr_pol2_wKC.at(0).size() == 0) {
                     std::cout << "\n\nMomentumResolution::NCorr: Loaded_Reco_FitParam_Corr_pol2_wKC correction wasn't loaded! Aborting...\n", exit(1);
                 }
@@ -2460,7 +2470,9 @@ double MomentumResolution::NCorr(const bool &apply_nucleon_SmearAndCorr, const d
                 }
             } else if (CorrMode == "pol3_wKC") {
 #pragma region /* Safety checks */
-                if (Loaded_Reco_FitParam_Corr_pol3_wKC.size() == 0) { std::cout << "\n\nMomentumResolution::NCorr: Loaded_Reco_FitParam_Corr_pol3_wKC wasn't loaded! Aborting...\n", exit(1); }
+                if (Loaded_Reco_FitParam_Corr_pol3_wKC.size() == 0) {
+                    std::cout << "\n\nMomentumResolution::NCorr: Loaded_Reco_FitParam_Corr_pol3_wKC wasn't loaded! Aborting...\n", exit(1);
+                }
                 if (Loaded_Reco_FitParam_Corr_pol3_wKC.at(0).size() == 0) {
                     std::cout << "\n\nMomentumResolution::NCorr: Loaded_Reco_FitParam_Corr_pol3_wKC correction wasn't loaded! Aborting...\n", exit(1);
                 }

@@ -176,7 +176,7 @@ void hPlot2D::histPlotter2D(const std::string &SampleName, TCanvas *HistogramCan
 
     if (!showStats) { Histogram2D->SetStats(0); }
 
-    if (ZLogScalePlot) {
+    if (zLogScalePlot) {
         HistogramCanvas->SetLogz(1);
         system(("mkdir -p " + Histogram2DSaveNameDir + "/z_Log_Scale_plots").c_str());
         HistogramCanvas->SaveAs((Histogram2DSaveNameDir + "/z_Log_Scale_plots/" + sNameFlag + Histogram2DSaveName + "_zLogScale.pdf").c_str());
@@ -196,23 +196,19 @@ void hPlot2D::histPlotter2D(const std::string &SampleName, TCanvas *HistogramCan
         HistoList.push_back(Histogram2D);
     }
 
-    gStyle->SetStatX(DefStatX);
-    gStyle->SetStatY(DefStatY);
+    // gStyle->SetStatX(DefStatX);
+    // gStyle->SetStatY(DefStatY);
 
-    HistogramCanvas->cd();
-
-    gStyle->SetOptStat("ourmen");
-    HistogramCanvas->Clear();
-    //    if (ZLogScalePlot) { HistogramCanvas->SetLogz(1); }
-    //
-    //    if (!ShowStats) { Histogram2D->SetStats(0); }
-    //
-    //    gStyle->SetStatX(0.87);
-    //    gStyle->SetStatY(0.875);
-    //    HistogramCanvas->SaveAs((Histogram2DSaveNameDir + sNameFlag + Histogram2DSaveName + ".pdf").c_str());
-    //    gStyle->SetStatX(DefStatX);
-    //    gStyle->SetStatY(DefStatY);
-    //    Histogram2D->Write(); HistogramCanvas->Clear();
+    HistogramCanvas->Clear();  //    if (zLogScalePlot) { HistogramCanvas->SetLogz(1); }
+                               //
+                               //    if (!ShowStats) { Histogram2D->SetStats(0); }
+                               //
+                               //    gStyle->SetStatX(0.87);
+                               //    gStyle->SetStatY(0.875);
+                               //    HistogramCanvas->SaveAs((Histogram2DSaveNameDir + sNameFlag + Histogram2DSaveName + ".pdf").c_str());
+                               //    // gStyle->SetStatX(DefStatX);
+                               //    // gStyle->SetStatY(DefStatY);
+                               //    Histogram2D->Write(); HistogramCanvas->Clear();
 }
 #pragma endregion
 
@@ -284,7 +280,7 @@ void hPlot2D::histPlotter2D(const std::string &SampleName, TCanvas *HistogramCan
 
     if (!ShowStats || Histogram2D->Integral() == 0.) { Histogram2D->SetStats(0); }
 
-    if (ZLogScalePlot) {
+    if (zLogScalePlot) {
         HistogramCanvas->SetLogz(1);
         HistogramCanvas->SaveAs((Histogram2DSaveNameDir + sNameFlag + Histogram2DSaveName + "_zLogScale.pdf").c_str());
 
@@ -299,12 +295,9 @@ void hPlot2D::histPlotter2D(const std::string &SampleName, TCanvas *HistogramCan
         HistoList.push_back(Histogram2D);
     }
 
-    gStyle->SetStatX(DefStatX);
-    gStyle->SetStatY(DefStatY);
+    // gStyle->SetStatX(DefStatX);
+    // gStyle->SetStatY(DefStatY);
 
-    HistogramCanvas->cd();
-
-    gStyle->SetOptStat("ourmen");
     HistogramCanvas->Clear();
 }
 #pragma endregion
@@ -375,7 +368,7 @@ void hPlot2D::histPlotter2D(const std::string &SampleName, TCanvas *HistogramCan
 
     if (!ShowStats || Histogram2D->Integral() == 0.) { Histogram2D->SetStats(0); }
 
-    if (ZLogScalePlot) {
+    if (zLogScalePlot) {
         HistogramCanvas->SetLogz(1);
         HistogramCanvas->SaveAs((Histogram2DSaveNameDir + sNameFlag + Histogram2DSaveName + "_zLogScale.pdf").c_str());
 
@@ -390,12 +383,9 @@ void hPlot2D::histPlotter2D(const std::string &SampleName, TCanvas *HistogramCan
         HistoList.push_back(Histogram2D);
     }
 
-    gStyle->SetStatX(DefStatX);
-    gStyle->SetStatY(DefStatY);
+    // gStyle->SetStatX(DefStatX);
+    // gStyle->SetStatY(DefStatY);
 
-    HistogramCanvas->cd();
-
-    gStyle->SetOptStat("ourmen");
     HistogramCanvas->Clear();
 }
 #pragma endregion
@@ -472,7 +462,7 @@ void hPlot2D::histPlotter2D(const std::string &SampleName, TCanvas *HistogramCan
 
     if (!ShowStats || Histogram2D->Integral() == 0.) { Histogram2D->SetStats(0); }
 
-    if (ZLogScalePlot) {
+    if (zLogScalePlot) {
         HistogramCanvas->SetLogz(1);
         HistogramCanvas->SaveAs((Histogram2DSaveNameDir + sNameFlag + Histogram2DSaveName + "_zLogScale.pdf").c_str());
 
@@ -487,12 +477,9 @@ void hPlot2D::histPlotter2D(const std::string &SampleName, TCanvas *HistogramCan
         HistoList.push_back(Histogram2D);
     }
 
-    gStyle->SetStatX(DefStatX);
-    gStyle->SetStatY(DefStatY);
+    // gStyle->SetStatX(DefStatX);
+    // gStyle->SetStatY(DefStatY);
 
-    HistogramCanvas->cd();
-
-    gStyle->SetOptStat("ourmen");
     HistogramCanvas->Clear();
 }
 #pragma endregion
@@ -514,7 +501,7 @@ void hPlot2D::hDivision(TH2D *hDenominator, bool SetLogZLimits, double MaxZLim) 
     Histogram2D->Divide(hDenominator);
 
     //    if (SetLogZLimits) {
-    //        ZLogScalePlot = true;
+    //        zLogScalePlot = true;
     //    }
 }
 #pragma endregion

@@ -12,15 +12,20 @@
 #include <TF1.h>
 #include <TFile.h>
 #include <TH1.h>
+#include <TH1D.h>
 #include <TH2.h>
+#include <TH2D.h>
+#include <THStack.h>
 #include <TLatex.h>
 #include <TList.h>
 #include <TLorentzVector.h>
 #include <TObject.h>
 #include <TPad.h>
 #include <TPaletteAxis.h>
+#include <TPaveText.h>
 #include <TROOT.h>
 #include <TStyle.h>
+#include <TSystem.h>  // for gSystem->mkdir
 #include <TTree.h>
 #include <math.h>
 
@@ -222,6 +227,139 @@ void DrawEmptyHistogramNotice(double x_1, double y_1, double x_2, double y_2, do
     displayText->AddText("Empty histogram");
     displayText->SetTextAlign(22);
     displayText->Draw();
+}
+
+// IsHistogramEmpty function --------------------------------------------------------------------------------------------------------------------------------------------
+
+bool IsHistogramEmpty(TObject *obj) {
+    if (obj->InheritsFrom(TH1::Class())) {
+        TH1 *h = (TH1 *)obj;
+        return (h->GetEntries() == 0 || h->Integral() == 0);
+    } else if (obj->InheritsFrom(THStack::Class())) {
+        THStack *hs = (THStack *)obj;
+        TList *hists = hs->GetHists();
+        if (!hists) return true;
+        TIter next(hists);
+        while (TObject *subobj = next()) {
+            if (subobj->InheritsFrom(TH1::Class())) {
+                TH1 *h = (TH1 *)subobj;
+                if (h->GetEntries() != 0 && h->Integral() != 0) return false;
+            }
+        }
+        return true;
+    } else if (obj->InheritsFrom(TH2::Class())) {
+        TH2 *h2 = (TH2 *)obj;
+        return (h2->GetEntries() == 0 || h2->Integral() == 0);
+    }
+    return true;
+}
+
+// PlotHistograms -------------------------------------------------------------------------------------------------------------------------------------------------------
+
+void PlotHistograms(const std::vector<TObject *> &histograms, const std::string &saveDirectory) {
+    size_t nHistos = histograms.size();
+
+    if (nHistos != 4 && nHistos != 5) {
+        std::cerr << "\n\nhistogram_functions::PlotHistograms: ERROR! PlotHistograms only supports 4 or 5 histograms!\n\n" << std::endl;
+        return;
+    }
+
+    int nCols = (nHistos == 4) ? 2 : 3;
+    int nRows = 2;
+
+    std::vector<int> padMapping;
+    if (nHistos == 4) {
+        padMapping = {1, 2, 3, 4};  // 2x2
+    } else if (nHistos == 5) {
+        padMapping = {1, 2, 3, 5, 6};  // 3x2
+    }
+
+    // ------------------
+    // Linear Scale Canvas
+    // ------------------
+    TCanvas TempCanvas("TempCanvas", "Histograms - Linear Scale", 1200, 800);
+    TempCanvas.Divide(nCols, nRows);
+
+    for (size_t i = 0; i < nHistos; ++i) {
+        TempCanvas.cd(padMapping[i]);
+        gPad->SetGrid();
+        gPad->SetBottomMargin(0.14);
+        gPad->SetLeftMargin(0.16);
+        gPad->SetRightMargin(0.12);
+
+        if (IsHistogramEmpty(histograms[i])) {
+            DrawEmptyHistogramNotice(0.2, 0.4, 0.8, 0.6);
+        } else if (histograms[i]->InheritsFrom(TH1D::Class())) {
+            ((TH1D *)histograms[i])->Draw("HISTE");
+        } else if (histograms[i]->InheritsFrom(TH2D::Class())) {
+            TH2D *h2 = (TH2D *)histograms[i];
+            h2->Draw("COLZ");
+            gPad->Update();
+            TPaletteAxis *palette = (TPaletteAxis *)h2->GetListOfFunctions()->FindObject("palette");
+            if (palette) palette->SetY2NDC(0.50);
+            gPad->Modified();
+            gPad->Update();
+        } else if (histograms[i]->InheritsFrom(THStack::Class())) {
+            ((THStack *)histograms[i])->Draw("NOSTACK HIST");
+        } else {
+            std::cerr << "Warning: Object " << i << " is not a recognized histogram type!" << std::endl;
+        }
+    }
+
+    TempCanvas.Update();
+    TempCanvas.Draw();
+
+    std::string savePath = saveDirectory;
+    if (!savePath.empty() && savePath.back() != '/' && savePath.back() != '\\') { savePath += "/"; }
+    std::string linearFile = savePath + "comparison_linear_scale.pdf";
+
+    TempCanvas.SaveAs(linearFile.c_str());
+
+    // ------------------
+    // Log Scale Canvas
+    // ------------------
+
+    std::string logDir = savePath + "log_scale_plots/";
+    if (gSystem->AccessPathName(logDir.c_str())) { gSystem->mkdir(logDir.c_str(), true); }
+
+    TCanvas TempCanvas_log("TempCanvas_log", "Histograms - Log Scale", 1200, 800);
+    TempCanvas_log.Divide(nCols, nRows);
+
+    for (size_t i = 0; i < nHistos; ++i) {
+        TempCanvas_log.cd(padMapping[i]);
+        gPad->SetGrid();
+        gPad->SetBottomMargin(0.14);
+        gPad->SetLeftMargin(0.16);
+        gPad->SetRightMargin(0.12);
+
+        if (IsHistogramEmpty(histograms[i])) {
+            DrawEmptyHistogramNotice(0.2, 0.4, 0.8, 0.6);
+        } else if (histograms[i]->InheritsFrom(TH1D::Class())) {
+            gPad->SetLogy(1);
+            ((TH1D *)histograms[i])->Draw("HISTE");
+        } else if (histograms[i]->InheritsFrom(TH2D::Class())) {
+            gPad->SetLogz(1);
+            TH2D *h2 = (TH2D *)histograms[i];
+            h2->Draw("COLZ");
+            gPad->Update();
+            TPaletteAxis *palette = (TPaletteAxis *)h2->GetListOfFunctions()->FindObject("palette");
+            if (palette) palette->SetY2NDC(0.50);
+            gPad->Modified();
+            gPad->Update();
+        } else if (histograms[i]->InheritsFrom(THStack::Class())) {
+            gPad->SetLogy(1);
+            ((THStack *)histograms[i])->Draw("NOSTACK HIST");
+        } else {
+            std::cerr << "\n\nhistogram_functions::PlotHistograms: Warning: Object " << i << " is not a recognized histogram type!\n\n" << std::endl;
+        }
+    }
+
+    TempCanvas_log.Update();
+    TempCanvas_log.Draw();
+
+    std::string logFile = logDir + "comparison_log_scale.pdf";
+
+    TempCanvas_log.SaveAs(logFile.c_str());
 }
 
 };  // namespace histogram_functions

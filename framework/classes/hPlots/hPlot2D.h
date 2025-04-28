@@ -81,7 +81,7 @@ class hPlot2D {
     bool PlotHistogramMax = true;
 
     /* Histogram scale setup */
-    bool ZLogScalePlot = true;
+    bool zLogScalePlot = true;
     bool ZLinearScalePlot = true;
 
     /* Histogram save name and path */
@@ -232,7 +232,7 @@ class hPlot2D {
 
     void SetLineWidth(int lWidth) { LineWidth = lWidth; }
 
-    void SetZLogScalePlot(bool ZlsPlot) { ZLogScalePlot = ZlsPlot; }
+    void SetzLogScalePlot(bool ZlsPlot) { zLogScalePlot = ZlsPlot; }
 
     void SetZLinearScalePlot(bool lsPlot) { ZLinearScalePlot = lsPlot; }
 
@@ -313,7 +313,7 @@ class hPlot2D {
 
     int GetLineWidth() { return LineWidth; }
 
-    bool GetZLogScalePlot() { return ZLogScalePlot; }
+    bool GetzLogScalePlot() { return zLogScalePlot; }
 
     bool GetZLinearScalePlot() { return ZLinearScalePlot; }
 

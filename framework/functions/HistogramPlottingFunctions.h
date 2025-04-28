@@ -191,9 +191,6 @@ void histPlotter1D(TCanvas *HistogramCanvas,            // The canvas
         Histogram1DStack->Add(Histogram1D);
     }
 
-    HistogramCanvas->cd();
-
-    gStyle->SetOptStat("ourmen");
     HistogramCanvas->Clear();
 }
 #pragma endregion
@@ -355,9 +352,6 @@ void histPlotter1D(TCanvas *HistogramCanvas,            // The canvas
         HistoList.push_back(Histogram1D);
     }
 
-    HistogramCanvas->cd();
-
-    gStyle->SetOptStat("ourmen");
     HistogramCanvas->Clear();
 }
 #pragma endregion
@@ -550,9 +544,6 @@ void histPlotter1D(TCanvas *HistogramCanvas,            // The canvas
         Histogram1DStack->Add(Histogram1D);
     }
 
-    HistogramCanvas->cd();
-
-    gStyle->SetOptStat("ourmen");
     HistogramCanvas->Clear();
 }
 #pragma endregion
@@ -715,9 +706,6 @@ void histPlotter1D(TCanvas *HistogramCanvas,            // The canvas
         HistoList.push_back(Histogram1D);
     }
 
-    HistogramCanvas->cd();
-
-    gStyle->SetOptStat("ourmen");
     HistogramCanvas->Clear();
 }
 #pragma endregion
@@ -893,9 +881,6 @@ void histPlotter1D(TCanvas *HistogramCanvas,            // The canvas
         Histogram1DStack->Add(Histogram1D);
     }
 
-    HistogramCanvas->cd();
-
-    gStyle->SetOptStat("ourmen");
     HistogramCanvas->Clear();
 }
 #pragma endregion
@@ -1043,9 +1028,6 @@ void histPlotter1D(TCanvas *HistogramCanvas,            // The canvas
         HistoList.push_back(Histogram1D);
     }
 
-    HistogramCanvas->cd();
-
-    gStyle->SetOptStat("ourmen");
     HistogramCanvas->Clear();
 }
 #pragma endregion
@@ -1205,9 +1187,6 @@ void histPlotter1D(TCanvas *HistogramCanvas1,           // canvas c1 of other hi
         Histogram1DStack->Add(Histogram1D);
     }
 
-    HistogramCanvas->cd();
-
-    gStyle->SetOptStat("ourmen");
     HistogramCanvas->Clear();
     gStyle->SetTitleFontSize(TitleFontSize);
     gROOT->ForceStyle();
@@ -1357,9 +1336,6 @@ void histPlotter1D(TCanvas *HistogramCanvas1,           // canvas c1 of other hi
         HistoList.push_back(Histogram1D);
     }
 
-    HistogramCanvas->cd();
-
-    gStyle->SetOptStat("ourmen");
     HistogramCanvas->Clear();
     gStyle->SetTitleFontSize(TitleFontSize);
     gROOT->ForceStyle();
@@ -1540,9 +1516,6 @@ void histPlotter1D(TCanvas *HistogramCanvas1,           // canvas c1 of other hi
         Histogram1DStack->Add(Histogram1D);
     }
 
-    HistogramCanvas->cd();
-
-    gStyle->SetOptStat("ourmen");
     HistogramCanvas->Clear();
     gStyle->SetTitleFontSize(TitleFontSize);
     gROOT->ForceStyle();
@@ -1694,9 +1667,6 @@ void histPlotter1D(TCanvas *HistogramCanvas1,           // canvas c1 of other hi
         HistoList.push_back(Histogram1D);
     }
 
-    HistogramCanvas->cd();
-
-    gStyle->SetOptStat("ourmen");
     HistogramCanvas->Clear();
     gStyle->SetTitleFontSize(TitleFontSize);
     gROOT->ForceStyle();
@@ -1907,9 +1877,6 @@ void histPlotter1DwFit(TCanvas *HistogramCanvas, TH1D *Histogram1D, bool normali
         HistoList.push_back(Histogram1D);
     }
 
-    HistogramCanvas->cd();
-
-    gStyle->SetOptStat("ourmen");
     HistogramCanvas->Clear();
 }
 #pragma endregion
@@ -2027,9 +1994,6 @@ void stackPlotter1D(TCanvas *HistogramCanvas, THStack *Histogram1DStack, bool no
         HistoList.push_back(Histogram1DStack);
     }
 
-    HistogramCanvas->cd();
-
-    gStyle->SetOptStat("ourmen");
     HistogramCanvas->Clear();
 }
 #pragma endregion
@@ -2076,25 +2040,34 @@ void histPlotter2D(TCanvas *HistogramCanvas, TH2D *Histogram2D, double titleSize
 
     if (zLogScalePlot) {
         HistogramCanvas->SetLogz(1);
-
-        HistoList.push_back(Histogram2D);
-    } else if (zLogScalePlot == false) {
-        HistogramCanvas->SetLogz(0);
+        system(("mkdir -p " + Histogram1DSaveNameDir + "/z_Log_Scale_plots").c_str());
+        HistogramCanvas->SaveAs((Histogram1DSaveNameDir + "/z_Log_Scale_plots/" + sNameFlag + Histogram1DSaveName + "_zLogScale.pdf").c_str());
+        //        HistogramCanvas->SetLogz(1);
+        //        HistogramCanvas->SaveAs((Histogram2DSaveNameDir + sNameFlag + Histogram2DSaveName + "_zLogScale.pdf").c_str());
 
         HistoList.push_back(Histogram2D);
     }
+    // if (zLogScalePlot) {
+    //     HistogramCanvas->SetLogz(1);
+
+    //     HistoList.push_back(Histogram2D);
+    // } else if (zLogScalePlot == false) {
+    //     HistogramCanvas->SetLogz(0);
+
+    //     HistoList.push_back(Histogram2D);
+    // }
 
     if (!ShowStats) { Histogram2D->SetStats(0); }
 
     gStyle->SetStatX(0.98);  // gStyle->SetStatX(0.87);
     gStyle->SetStatY(0.875);
+
+    HistogramCanvas->SetLogz(0);
     HistogramCanvas->SaveAs((Histogram1DSaveNameDir + Histogram1DSaveName + ".pdf").c_str());
-    gStyle->SetStatX(DefStatX);
-    gStyle->SetStatY(DefStatY);
 
-    HistogramCanvas->cd();
+    // gStyle->SetStatX(DefStatX);
+    // gStyle->SetStatY(DefStatY);
 
-    gStyle->SetOptStat("ourmen");
     HistogramCanvas->Clear();
 }
 #pragma endregion
@@ -2150,14 +2123,11 @@ void histPlotter2D(TCanvas *HistogramCanvas, TH2D *Histogram2D, double titleSize
     gStyle->SetStatX(0.98);   // gStyle->SetStatX(0.87);
     gStyle->SetStatY(0.935);  // gStyle->SetStatY(0.4);
     HistogramCanvas->SaveAs((Histogram1DSaveNameDir + Histogram1DSaveName).c_str());
-    gStyle->SetStatX(DefStatX);
-    gStyle->SetStatY(DefStatY);
+    // gStyle->SetStatX(DefStatX);
+    // gStyle->SetStatY(DefStatY);
 
     HistoList.push_back(Histogram2D);
 
-    HistogramCanvas->cd();
-
-    gStyle->SetOptStat("ourmen");
     HistogramCanvas->Clear();
 }
 #pragma endregion
@@ -2215,14 +2185,11 @@ void histPlotter2D(TCanvas *HistogramCanvas, TH2D *Histogram2D, double titleSize
     gStyle->SetStatX(0.98);   // gStyle->SetStatX(0.87);
     gStyle->SetStatY(0.935);  // gStyle->SetStatY(0.4);
     HistogramCanvas->SaveAs((Histogram1DSaveNameDir + Histogram1DSaveName).c_str());
-    gStyle->SetStatX(DefStatX);
-    gStyle->SetStatY(DefStatY);
+    // gStyle->SetStatX(DefStatX);
+    // gStyle->SetStatY(DefStatY);
 
     HistoList.push_back(Histogram2D);
 
-    HistogramCanvas->cd();
-
-    gStyle->SetOptStat("ourmen");
     HistogramCanvas->Clear();
 }
 #pragma endregion
@@ -2286,14 +2253,11 @@ void histPlotter2D(TCanvas *HistogramCanvas, TH2D *Histogram2D, double titleSize
     gStyle->SetStatX(0.98);   // gStyle->SetStatX(0.87);
     gStyle->SetStatY(0.935);  // gStyle->SetStatY(0.4);
     HistogramCanvas->SaveAs((Histogram1DSaveNameDir + Histogram1DSaveName).c_str());
-    gStyle->SetStatX(DefStatX);
-    gStyle->SetStatY(DefStatY);
+    // gStyle->SetStatX(DefStatX);
+    // gStyle->SetStatY(DefStatY);
 
     HistoList.push_back(Histogram2D);
 
-    HistogramCanvas->cd();
-
-    gStyle->SetOptStat("ourmen");
     HistogramCanvas->Clear();
 }
 #pragma endregion

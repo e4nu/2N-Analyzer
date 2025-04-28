@@ -1396,70 +1396,76 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     if (!CutSettings.apply_cuts) {
         hVcal_VS_EoP_1e_cut_BC_PCAL =
             hPlot2D("1e cut", "PCAL", "Vcal vs. SF BC", "ECAL V coordinate vs. SF - before cuts", "ECAL V coordinate [cm]", "Sampling Fraction (SF)",
-                    directories.Fiducial_dir_map["Edge_1e_BC_PCAL_Directory"], "01_Vcal_VS_EoP_PCAL_1e_cut_BC", 0, 50, SF_lboundary, SF_uboundary, numTH2Dbins, numTH2Dbins);
+                    directories.ECAL_fiducial_dir_map["Edge_1e_BC_PCAL_Directory"], "01_Vcal_VS_EoP_PCAL_1e_cut_BC", 0, 50, SF_lboundary, SF_uboundary, numTH2Dbins, numTH2Dbins);
         hVcal_VS_EoP_1e_cut_AC_PCAL =
             hPlot2D("1e cut", "PCAL", "Vcal vs. SF AC", "ECAL V coordinate vs. SF - after cuts", "ECAL V coordinate [cm]", "Sampling Fraction (SF)",
-                    directories.Fiducial_dir_map["Edge_1e_BC_PCAL_Directory"], "01_Vcal_VS_EoP_PCAL_1e_cut_AC", 0, 50, SF_lboundary, SF_uboundary, numTH2Dbins, numTH2Dbins);
+                    directories.ECAL_fiducial_dir_map["Edge_1e_BC_PCAL_Directory"], "01_Vcal_VS_EoP_PCAL_1e_cut_AC", 0, 50, SF_lboundary, SF_uboundary, numTH2Dbins, numTH2Dbins);
 
         hWcal_VS_EoP_1e_cut_BC_PCAL =
             hPlot2D("1e cut", "PCAL", "Wcal vs. SF BC", "ECAL W coordinate vs. SF - before cuts", "ECAL W coordinate [cm]", "Sampling Fraction (SF)",
-                    directories.Fiducial_dir_map["Edge_1e_BC_PCAL_Directory"], "02_Wcal_VS_EoP_PCAL_1e_cut_BC", 0, 50, SF_lboundary, SF_uboundary, numTH2Dbins, numTH2Dbins);
+                    directories.ECAL_fiducial_dir_map["Edge_1e_BC_PCAL_Directory"], "02_Wcal_VS_EoP_PCAL_1e_cut_BC", 0, 50, SF_lboundary, SF_uboundary, numTH2Dbins, numTH2Dbins);
         hWcal_VS_EoP_1e_cut_AC_PCAL =
             hPlot2D("1e cut", "PCAL", "Wcal vs. SF AC", "ECAL W coordinate vs. SF - after cuts", "ECAL W coordinate [cm]", "Sampling Fraction (SF)",
-                    directories.Fiducial_dir_map["Edge_1e_BC_PCAL_Directory"], "02_Wcal_VS_EoP_PCAL_1e_cut_AC", 0, 50, SF_lboundary, SF_uboundary, numTH2Dbins, numTH2Dbins);
+                    directories.ECAL_fiducial_dir_map["Edge_1e_BC_PCAL_Directory"], "02_Wcal_VS_EoP_PCAL_1e_cut_AC", 0, 50, SF_lboundary, SF_uboundary, numTH2Dbins, numTH2Dbins);
 
         hUcal_VS_EoP_1e_cut_BC_PCAL = hPlot2D("1e cut", "PCAL", "Ucal vs. SF BC", "ECAL U coordinate vs. SF - before cuts", "ECAL U coordinate [cm]", "Sampling Fraction (SF)",
-                                              directories.Fiducial_dir_map["Edge_1e_BC_PCAL_Directory"], "03_Ucal_VS_EoP_PCAL_1e_cut_BC", 0, 50, SF_lboundary, SF_uboundary, 100, 100);
+                                              directories.ECAL_fiducial_dir_map["Edge_1e_BC_PCAL_Directory"], "03_Ucal_VS_EoP_PCAL_1e_cut_BC", 0, 50, SF_lboundary, SF_uboundary, 100, 100);
         hUcal_VS_EoP_1e_cut_AC_PCAL = hPlot2D("1e cut", "PCAL", "Ucal vs. SF AC", "ECAL U coordinate vs. SF - after cuts", "ECAL U coordinate [cm]", "Sampling Fraction (SF)",
-                                              directories.Fiducial_dir_map["Edge_1e_BC_PCAL_Directory"], "03_Ucal_VS_EoP_PCAL_1e_cut_AC", 0, 50, SF_lboundary, SF_uboundary, 100, 100);
+                                              directories.ECAL_fiducial_dir_map["Edge_1e_BC_PCAL_Directory"], "03_Ucal_VS_EoP_PCAL_1e_cut_AC", 0, 50, SF_lboundary, SF_uboundary, 100, 100);
     } else {
         hVcal_VS_EoP_1e_cut_BC_PCAL =
             hPlot2D("1e cut", "PCAL", "Vcal vs. SF", "ECAL V coordinate vs. SF", "ECAL V coordinate [cm]", "Sampling Fraction (SF)",
-                    directories.Fiducial_dir_map["Edge_1e_BC_PCAL_Directory"], "01_Vcal_VS_EoP_PCAL_1e_cut", 0, 50, SF_lboundary, SF_uboundary, numTH2Dbins, numTH2Dbins);
+                    directories.ECAL_fiducial_dir_map["Edge_1e_BC_PCAL_Directory"], "01_Vcal_VS_EoP_PCAL_1e_cut", 0, 50, SF_lboundary, SF_uboundary, numTH2Dbins, numTH2Dbins);
         hWcal_VS_EoP_1e_cut_BC_PCAL =
             hPlot2D("1e cut", "PCAL", "Wcal vs. SF", "ECAL W coordinate vs. SF", "ECAL W coordinate [cm]", "Sampling Fraction (SF)",
-                    directories.Fiducial_dir_map["Edge_1e_BC_PCAL_Directory"], "02_Wcal_VS_EoP_PCAL_1e_cut", 0, 50, SF_lboundary, SF_uboundary, numTH2Dbins, numTH2Dbins);
+                    directories.ECAL_fiducial_dir_map["Edge_1e_BC_PCAL_Directory"], "02_Wcal_VS_EoP_PCAL_1e_cut", 0, 50, SF_lboundary, SF_uboundary, numTH2Dbins, numTH2Dbins);
         hUcal_VS_EoP_1e_cut_BC_PCAL = hPlot2D("1e cut", "PCAL", "Ucal vs. SF", "ECAL U coordinate vs. SF", "ECAL U coordinate [cm]", "Sampling Fraction (SF)",
-                                              directories.Fiducial_dir_map["Edge_1e_BC_PCAL_Directory"], "03_Ucal_VS_EoP_PCAL_1e_cut", 0, 50, SF_lboundary, SF_uboundary, 100, 100);
+                                              directories.ECAL_fiducial_dir_map["Edge_1e_BC_PCAL_Directory"], "03_Ucal_VS_EoP_PCAL_1e_cut", 0, 50, SF_lboundary, SF_uboundary, 100, 100);
     }
 
     hPlot2D hPCAL_acceptance_1e_cut =
-        hPlot2D("1e cut", "PCAL", "Electron PCAL acceptance", "Electron PCAL acceptance", "x [cm]", "y [cm]", directories.Fiducial_dir_map["Edge_1e_BC_PCAL_Directory"],
+        hPlot2D("1e cut", "PCAL", "Electron PCAL acceptance", "Electron PCAL acceptance", "x [cm]", "y [cm]", directories.ECAL_fiducial_dir_map["Edge_1e_BC_PCAL_Directory"],
                 "04_Electron_PCAL_acceptance_1e_cut", -400, 400, -400, 400, 100, 100);  // TODO: add this to all final states
 
     // ECAL coordinates vs. SF plots vs. SF plots (1p, FD)
-    hPlot2D hVcal_VS_EoP_1p_PCAL = hPlot2D("1p", "PCAL", "Vcal vs. SF", "ECAL V coordinate vs. SF", "ECAL V coordinate [cm]", "Sampling Fraction (SF)",
-                                           directories.Fiducial_dir_map["Edge_1p_PCAL_Directory"], "01_Vcal_VS_EoP_PCAL_1p", 0, 50, SF_lboundary, SF_uboundary, numTH2Dbins, numTH2Dbins);
-    hPlot2D hWcal_VS_EoP_1p_PCAL = hPlot2D("1p", "PCAL", "Wcal vs. SF", "ECAL W coordinate vs. SF", "ECAL W coordinate [cm]", "Sampling Fraction (SF)",
-                                           directories.Fiducial_dir_map["Edge_1p_PCAL_Directory"], "02_Wcal_VS_EoP_PCAL_1p", 0, 50, SF_lboundary, SF_uboundary, numTH2Dbins, numTH2Dbins);
+    hPlot2D hVcal_VS_EoP_1p_PCAL =
+        hPlot2D("1p", "PCAL", "Vcal vs. SF", "ECAL V coordinate vs. SF", "ECAL V coordinate [cm]", "Sampling Fraction (SF)", directories.ECAL_fiducial_dir_map["Edge_1p_PCAL_Directory"],
+                "01_Vcal_VS_EoP_PCAL_1p", 0, 50, SF_lboundary, SF_uboundary, numTH2Dbins, numTH2Dbins);
+    hPlot2D hWcal_VS_EoP_1p_PCAL =
+        hPlot2D("1p", "PCAL", "Wcal vs. SF", "ECAL W coordinate vs. SF", "ECAL W coordinate [cm]", "Sampling Fraction (SF)", directories.ECAL_fiducial_dir_map["Edge_1p_PCAL_Directory"],
+                "02_Wcal_VS_EoP_PCAL_1p", 0, 50, SF_lboundary, SF_uboundary, numTH2Dbins, numTH2Dbins);
 
     // ECAL coordinates vs. SF plots vs. SF plots (1n, FD)
-    hPlot2D hVcal_VS_EoP_1n_PCAL = hPlot2D("1n", "PCAL", "Vcal vs. SF", "ECAL V coordinate vs. SF", "ECAL V coordinate [cm]", "Sampling Fraction (SF)",
-                                           directories.Fiducial_dir_map["Edge_1n_PCAL_Directory"], "01_Vcal_VS_EoP_PCAL_1n", 0, 50, SF_lboundary, SF_uboundary, numTH2Dbins, numTH2Dbins);
-    hPlot2D hWcal_VS_EoP_1n_PCAL = hPlot2D("1n", "PCAL", "Wcal vs. SF", "ECAL W coordinate vs. SF", "ECAL W coordinate [cm]", "Sampling Fraction (SF)",
-                                           directories.Fiducial_dir_map["Edge_1n_PCAL_Directory"], "02_Wcal_VS_EoP_PCAL_1n", 0, 50, SF_lboundary, SF_uboundary, numTH2Dbins, numTH2Dbins);
+    hPlot2D hVcal_VS_EoP_1n_PCAL =
+        hPlot2D("1n", "PCAL", "Vcal vs. SF", "ECAL V coordinate vs. SF", "ECAL V coordinate [cm]", "Sampling Fraction (SF)", directories.ECAL_fiducial_dir_map["Edge_1n_PCAL_Directory"],
+                "01_Vcal_VS_EoP_PCAL_1n", 0, 50, SF_lboundary, SF_uboundary, numTH2Dbins, numTH2Dbins);
+    hPlot2D hWcal_VS_EoP_1n_PCAL =
+        hPlot2D("1n", "PCAL", "Wcal vs. SF", "ECAL W coordinate vs. SF", "ECAL W coordinate [cm]", "Sampling Fraction (SF)", directories.ECAL_fiducial_dir_map["Edge_1n_PCAL_Directory"],
+                "02_Wcal_VS_EoP_PCAL_1n", 0, 50, SF_lboundary, SF_uboundary, numTH2Dbins, numTH2Dbins);
 
     // ECAL coordinates vs. SF plots vs. SF plots (2p, FD)
-    hPlot2D hVcal_VS_EoP_2p_PCAL = hPlot2D("2p", "PCAL", "Vcal vs. SF", "ECAL V coordinate vs. SF", "ECAL V coordinate [cm]", "Sampling Fraction (SF)",
-                                           directories.Fiducial_dir_map["Edge_2p_PCAL_Directory"], "01_Vcal_VS_EoP_PCAL_2p", 0, 50, SF_lboundary, SF_uboundary, numTH2Dbins, numTH2Dbins);
-    hPlot2D hWcal_VS_EoP_2p_PCAL = hPlot2D("2p", "PCAL", "Wcal vs. SF", "ECAL W coordinate vs. SF", "ECAL W coordinate [cm]", "Sampling Fraction (SF)",
-                                           directories.Fiducial_dir_map["Edge_2p_PCAL_Directory"], "02_Wcal_VS_EoP_PCAL_2p", 0, 50, SF_lboundary, SF_uboundary, numTH2Dbins, numTH2Dbins);
+    hPlot2D hVcal_VS_EoP_2p_PCAL =
+        hPlot2D("2p", "PCAL", "Vcal vs. SF", "ECAL V coordinate vs. SF", "ECAL V coordinate [cm]", "Sampling Fraction (SF)", directories.ECAL_fiducial_dir_map["Edge_2p_PCAL_Directory"],
+                "01_Vcal_VS_EoP_PCAL_2p", 0, 50, SF_lboundary, SF_uboundary, numTH2Dbins, numTH2Dbins);
+    hPlot2D hWcal_VS_EoP_2p_PCAL =
+        hPlot2D("2p", "PCAL", "Wcal vs. SF", "ECAL W coordinate vs. SF", "ECAL W coordinate [cm]", "Sampling Fraction (SF)", directories.ECAL_fiducial_dir_map["Edge_2p_PCAL_Directory"],
+                "02_Wcal_VS_EoP_PCAL_2p", 0, 50, SF_lboundary, SF_uboundary, numTH2Dbins, numTH2Dbins);
 
     // ECAL coordinates vs. SF plots vs. SF plots (pFDpCD, FD)
     hPlot2D hVcal_VS_EoP_pFDpCD_PCAL =
-        hPlot2D("pFDpCD", "PCAL", "Vcal vs. SF", "ECAL V coordinate vs. SF", "ECAL V coordinate [cm]", "Sampling Fraction (SF)", directories.Fiducial_dir_map["Edge_pFDpCD_PCAL_Directory"],
-                "01_Vcal_VS_EoP_PCAL_pFDpCD", 0, 50, SF_lboundary, SF_uboundary, numTH2Dbins, numTH2Dbins);
+        hPlot2D("pFDpCD", "PCAL", "Vcal vs. SF", "ECAL V coordinate vs. SF", "ECAL V coordinate [cm]", "Sampling Fraction (SF)",
+                directories.ECAL_fiducial_dir_map["Edge_pFDpCD_PCAL_Directory"], "01_Vcal_VS_EoP_PCAL_pFDpCD", 0, 50, SF_lboundary, SF_uboundary, numTH2Dbins, numTH2Dbins);
     hPlot2D hWcal_VS_EoP_pFDpCD_PCAL =
-        hPlot2D("pFDpCD", "PCAL", "Wcal vs. SF", "ECAL W coordinate vs. SF", "ECAL W coordinate [cm]", "Sampling Fraction (SF)", directories.Fiducial_dir_map["Edge_pFDpCD_PCAL_Directory"],
-                "02_Wcal_VS_EoP_PCAL_pFDpCD", 0, 50, SF_lboundary, SF_uboundary, numTH2Dbins, numTH2Dbins);
+        hPlot2D("pFDpCD", "PCAL", "Wcal vs. SF", "ECAL W coordinate vs. SF", "ECAL W coordinate [cm]", "Sampling Fraction (SF)",
+                directories.ECAL_fiducial_dir_map["Edge_pFDpCD_PCAL_Directory"], "02_Wcal_VS_EoP_PCAL_pFDpCD", 0, 50, SF_lboundary, SF_uboundary, numTH2Dbins, numTH2Dbins);
 
     // ECAL coordinates vs. SF plots vs. SF plots (nFDpCD, FD)
     hPlot2D hVcal_VS_EoP_nFDpCD_PCAL =
-        hPlot2D("nFDpCD", "PCAL", "Vcal vs. SF", "ECAL V coordinate vs. SF", "ECAL V coordinate [cm]", "Sampling Fraction (SF)", directories.Fiducial_dir_map["Edge_nFDpCD_PCAL_Directory"],
-                "01_Vcal_VS_EoP_PCAL_nFDpCD", 0, 50, SF_lboundary, SF_uboundary, numTH2Dbins, numTH2Dbins);
+        hPlot2D("nFDpCD", "PCAL", "Vcal vs. SF", "ECAL V coordinate vs. SF", "ECAL V coordinate [cm]", "Sampling Fraction (SF)",
+                directories.ECAL_fiducial_dir_map["Edge_nFDpCD_PCAL_Directory"], "01_Vcal_VS_EoP_PCAL_nFDpCD", 0, 50, SF_lboundary, SF_uboundary, numTH2Dbins, numTH2Dbins);
     hPlot2D hWcal_VS_EoP_nFDpCD_PCAL =
-        hPlot2D("nFDpCD", "PCAL", "Wcal vs. SF", "ECAL W coordinate vs. SF", "ECAL W coordinate [cm]", "Sampling Fraction (SF)", directories.Fiducial_dir_map["Edge_nFDpCD_PCAL_Directory"],
-                "02_Wcal_VS_EoP_PCAL_nFDpCD", 0, 50, SF_lboundary, SF_uboundary, numTH2Dbins, numTH2Dbins);
+        hPlot2D("nFDpCD", "PCAL", "Wcal vs. SF", "ECAL W coordinate vs. SF", "ECAL W coordinate [cm]", "Sampling Fraction (SF)",
+                directories.ECAL_fiducial_dir_map["Edge_nFDpCD_PCAL_Directory"], "02_Wcal_VS_EoP_PCAL_nFDpCD", 0, 50, SF_lboundary, SF_uboundary, numTH2Dbins, numTH2Dbins);
 
 #pragma endregion
 
@@ -1470,7 +1476,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 #pragma region /* Momentum threshold histograms */
     /* Here are the definitions for the Momentum threshold plots. These are used to check that momentum cuts were applied in 1e_cut and 2p plots. */
 
-    // Momentum threshold plots (1e cut)
+#pragma region /* Momentum threshold plots (1e cut) */
 
     // Momentum threshold plots (1e cut)
     hPlot1D hP_e_1e_cut_FD = hPlot1D("1e cut", "", "Electron momentum", "Electron momentum P_{e}", "P_{e} [GeV/c]", directories.Momentum_dir_map["Momentum_1e_cut_Directory"],
@@ -1702,7 +1708,19 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                 directories.Momentum_dir_map["Momentum_th_reco_1e_cut_Directory"], "06e_P_ph_vs_Theta_ph_reco_BPID_1e_cut_FD", Momentum_lboundary, Momentum_uboundary, Theta_lboundary_FD,
                 Theta_uboundary_FD, numTH2Dbins * 2, numTH2Dbins * 2);
 
-    // Momentum threshold plots (1p)
+#pragma endregion
+
+#pragma region /* Momentum threshold plots (1p) */
+
+#pragma region /* Analysis plots 1p */
+    hPlot1D hP_pFD_APID_1p = hPlot1D("1p", "FD", "FD proton momentum APID", "FD proton momentum APID", "P_{p} [GeV/c]", directories.Momentum_dir_map["Analysis_plots_momentum_1p_Directory"],
+                                     "01a_P_pFD_APID_1p_FD", FDMomentum_lboundary, FDMomentum_uboundary, numTH1Dbins);
+    hPlot1D hP_pFD_APIDandPS_1p =
+        hPlot1D("1p", "FD", "FD proton momentum APID&PS", "FD proton momentum APID&PS", "P_{p} [GeV/c]", directories.Momentum_dir_map["Analysis_plots_momentum_1p_Directory"],
+                "01b_P_pFD_APIDandPS_1p_FD", FDMomentum_lboundary, FDMomentum_uboundary, numTH1Dbins);
+#pragma endregion
+
+#pragma region /* Other momentum threshold plots (1p) */
     hPlot1D hP_e_APID_1p_FD = hPlot1D("1p", "", "Electron momentum APID", "Electron momentum P_{e} APID", "P_{e} [GeV/c]", directories.Momentum_dir_map["Momentum_1p_Directory"],
                                       "01a_P_e_APID_1p_FD", Momentum_lboundary, Momentum_uboundary, numTH1Dbins);
     hPlot1D hP_e_BPID_1p_FD = hPlot1D("1p", "", "Electron momentum BPID", "Electron momentum P_{e} BPID", "P_{e} [GeV/c]", directories.Momentum_dir_map["Momentum_1p_Directory"],
@@ -1720,12 +1738,6 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                                            "02e_P_p_APIDandPS_1p_FD", Momentum_lboundary, Momentum_uboundary, numTH1Dbins);
     hPlot1D hP_p_BPID_1p_FD = hPlot1D("1p", "FD", "Proton momentum BPID", "Proton momentum P_{p} BPID", "P_{p} [GeV/c]", directories.Momentum_dir_map["Momentum_1p_Directory"],
                                       "02f_P_p_BPID_1p_FD", Momentum_lboundary, Momentum_uboundary, numTH1Dbins);
-
-    hPlot1D hP_pFD_APID_1p = hPlot1D("1p", "FD", "FD proton momentum APID", "FD proton momentum APID", "P_{p} [GeV/c]", directories.Momentum_dir_map["Analysis_plots_momentum_1p_Directory"],
-                                     "01a_P_pFD_APID_1p_FD", FDMomentum_lboundary, FDMomentum_uboundary, numTH1Dbins);
-    hPlot1D hP_pFD_APIDandPS_1p =
-        hPlot1D("1p", "FD", "FD proton momentum APID&PS", "FD proton momentum APID&PS", "P_{p} [GeV/c]", directories.Momentum_dir_map["Analysis_plots_momentum_1p_Directory"],
-                "01b_P_pFD_APIDandPS_1p_FD", FDMomentum_lboundary, FDMomentum_uboundary, numTH1Dbins);
 
     TH2D *hP_pFD_APIDandPS_VS_W_1p =
         new TH2D("FD proton momentum APID vs. W (All Int., 1p)", "FD proton momentum APID vs. W (All Int., 1p);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];P_{p} [GeV/c]",
@@ -1772,25 +1784,13 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     hPlot1D hP_n_BPID_1p_FD = hPlot1D("1p", "FD", "Neutron momentum BPID", "Neutron momentum P_{n} BPID", "P_{n} [GeV/c]", directories.Momentum_dir_map["Momentum_1p_Directory"],
                                       "06d_P_n_BPID_1p_FD", Momentum_lboundary, Momentum_uboundary, numTH1Dbins);
 
-    // Momentum threshold plots (1n)
-    hPlot1D hP_e_APID_1n_FD = hPlot1D("1n", "", "Electron momentum APID", "Electron momentum P_{e} APID", "P_{e} [GeV/c]", directories.Momentum_dir_map["Momentum_1n_Directory"],
-                                      "01a_P_e_APID_1n_FD", Momentum_lboundary, Momentum_uboundary, numTH1Dbins);
-    hPlot1D hP_e_BPID_1n_FD = hPlot1D("1n", "", "Electron momentum BPID", "Electron momentum P_{e} BPID", "P_{e} [GeV/c]", directories.Momentum_dir_map["Momentum_1n_Directory"],
-                                      "01b_P_e_BPID_1n_FD", Momentum_lboundary, Momentum_uboundary, numTH1Dbins);
+#pragma endregion
 
-    hPlot1D hP_n_APID_1n_FD = hPlot1D("1n", "FD", "Neutron momentum APID", "Neutron momentum P_{n} APID", "P_{n} [GeV/c]", directories.Momentum_dir_map["Momentum_1n_Directory"],
-                                      "02a_P_n_APID_1n_FD", Momentum_lboundary, Momentum_uboundary, numTH1Dbins);
-    hPlot1D hP_n_APID_1n_ZOOMOUT_FD = hPlot1D("1n", "FD", "Neutron momentum APID - ZOOMOUT", "Neutron momentum P_{n} APID - ZOOMOUT", "P_{n} [GeV/c]",
-                                              directories.Momentum_dir_map["Momentum_1n_Directory"], "02b_P_n_APID_1n_ZOOMOUT_FD", Momentum_lboundary, 15., numTH1Dbins);
-    hPlot1D hP_n_BPID_1n_FD = hPlot1D("1n", "FD", "Neutron momentum BPID", "Neutron momentum P_{n} BPID", "P_{n} [GeV/c]", directories.Momentum_dir_map["Momentum_1n_Directory"],
-                                      "02c_P_n_BPID_1n_FD", Momentum_lboundary, Momentum_uboundary, numTH1Dbins);
-    hPlot1D hP_n_BPID_1n_ZOOMOUT_FD = hPlot1D("1n", "FD", "Neutron momentum BPID - ZOOMOUT", "Neutron momentum P_{n} BPID - ZOOMOUT", "P_{n} [GeV/c]",
-                                              directories.Momentum_dir_map["Momentum_1n_Directory"], "02d_P_n_BPID_1n_ZOOMOUT_FD", Momentum_lboundary, 15., numTH1Dbins);
-    hPlot1D hP_n_APIDandNS_1n_FD = hPlot1D("1n", "FD", "Neutron momentum APID&NC", "Neutron momentum P_{n} APID&NC", "P_{n} [GeV/c]", directories.Momentum_dir_map["Momentum_1n_Directory"],
-                                           "02e_P_n_APIDandNS_1n_FD", Momentum_lboundary, Momentum_uboundary, numTH1Dbins);
-    hPlot1D hP_n_APIDandNS_1n_ZOOMOUT_FD = hPlot1D("1n", "FD", "Neutron momentum APID&NC - ZOOMOUT", "Neutron momentum P_{n} APID&NC - ZOOMOUT", "P_{n} [GeV/c]",
-                                                   directories.Momentum_dir_map["Momentum_1n_Directory"], "02f_P_n_APIDandNS_1n_ZOOMOUT_FD", Momentum_lboundary, 15., numTH1Dbins);
+#pragma endregion
 
+#pragma region /* Momentum threshold plots (1n) */
+
+#pragma region /* Analysis plots 1n */
     hPlot1D hP_nFD_APID_1n = hPlot1D("1n", "FD", "Leading FD neutron momentum APID", "Leading FD neutron momentum APID", "P_{n} [GeV/c]",
                                      directories.Momentum_dir_map["Analysis_plots_momentum_1n_Directory"], "01a_P_nFD_APID_1n_FD", FDMomentum_lboundary, FDMomentum_uboundary, numTH1Dbins);
     hPlot1D hP_nFD_APIDandNS_1n =
@@ -1856,6 +1856,28 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                                                   numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
     std::string hP_nFD_APIDandNS_VS_W_1n_Dir = directories.Momentum_transfer_dir_map["Analysis_plots_momentum_1n_Directory"];
 
+#pragma endregion
+
+#pragma region /* Other momentum threshold plots (1n) */
+
+    hPlot1D hP_e_APID_1n_FD = hPlot1D("1n", "", "Electron momentum APID", "Electron momentum P_{e} APID", "P_{e} [GeV/c]", directories.Momentum_dir_map["Momentum_1n_Directory"],
+                                      "01a_P_e_APID_1n_FD", Momentum_lboundary, Momentum_uboundary, numTH1Dbins);
+    hPlot1D hP_e_BPID_1n_FD = hPlot1D("1n", "", "Electron momentum BPID", "Electron momentum P_{e} BPID", "P_{e} [GeV/c]", directories.Momentum_dir_map["Momentum_1n_Directory"],
+                                      "01b_P_e_BPID_1n_FD", Momentum_lboundary, Momentum_uboundary, numTH1Dbins);
+
+    hPlot1D hP_n_APID_1n_FD = hPlot1D("1n", "FD", "Neutron momentum APID", "Neutron momentum P_{n} APID", "P_{n} [GeV/c]", directories.Momentum_dir_map["Momentum_1n_Directory"],
+                                      "02a_P_n_APID_1n_FD", Momentum_lboundary, Momentum_uboundary, numTH1Dbins);
+    hPlot1D hP_n_APID_1n_ZOOMOUT_FD = hPlot1D("1n", "FD", "Neutron momentum APID - ZOOMOUT", "Neutron momentum P_{n} APID - ZOOMOUT", "P_{n} [GeV/c]",
+                                              directories.Momentum_dir_map["Momentum_1n_Directory"], "02b_P_n_APID_1n_ZOOMOUT_FD", Momentum_lboundary, 15., numTH1Dbins);
+    hPlot1D hP_n_BPID_1n_FD = hPlot1D("1n", "FD", "Neutron momentum BPID", "Neutron momentum P_{n} BPID", "P_{n} [GeV/c]", directories.Momentum_dir_map["Momentum_1n_Directory"],
+                                      "02c_P_n_BPID_1n_FD", Momentum_lboundary, Momentum_uboundary, numTH1Dbins);
+    hPlot1D hP_n_BPID_1n_ZOOMOUT_FD = hPlot1D("1n", "FD", "Neutron momentum BPID - ZOOMOUT", "Neutron momentum P_{n} BPID - ZOOMOUT", "P_{n} [GeV/c]",
+                                              directories.Momentum_dir_map["Momentum_1n_Directory"], "02d_P_n_BPID_1n_ZOOMOUT_FD", Momentum_lboundary, 15., numTH1Dbins);
+    hPlot1D hP_n_APIDandNS_1n_FD = hPlot1D("1n", "FD", "Neutron momentum APID&NC", "Neutron momentum P_{n} APID&NC", "P_{n} [GeV/c]", directories.Momentum_dir_map["Momentum_1n_Directory"],
+                                           "02e_P_n_APIDandNS_1n_FD", Momentum_lboundary, Momentum_uboundary, numTH1Dbins);
+    hPlot1D hP_n_APIDandNS_1n_ZOOMOUT_FD = hPlot1D("1n", "FD", "Neutron momentum APID&NC - ZOOMOUT", "Neutron momentum P_{n} APID&NC - ZOOMOUT", "P_{n} [GeV/c]",
+                                                   directories.Momentum_dir_map["Momentum_1n_Directory"], "02f_P_n_APIDandNS_1n_ZOOMOUT_FD", Momentum_lboundary, 15., numTH1Dbins);
+
     hPlot1D hP_p_APID_1n_CD = hPlot1D("1n", "CD", "Proton momentum APID", "Proton momentum P_{p} APID", "P_{p} [GeV/c]", directories.Momentum_dir_map["Momentum_1n_Directory"],
                                       "03a_P_p_APID_1n_CD", Momentum_lboundary, Momentum_uboundary, numTH1Dbins);
     hPlot1D hP_p_BPID_1n_CD = hPlot1D("1n", "CD", "Proton momentum BPID", "Proton momentum P_{p} BPID", "P_{p} [GeV/c]", directories.Momentum_dir_map["Momentum_1n_Directory"],
@@ -1897,9 +1919,12 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     hPlot1D hP_ph_BPID_1n_FD = hPlot1D("1n", "FD", "Photon momentum BPID", "Photon momentum P_{#gamma} BPID", "P_{#gamma} [GeV/c]", directories.Momentum_dir_map["Momentum_1n_Directory"],
                                        "08b_P_ph_BPID_1n_FD", Momentum_lboundary, Momentum_uboundary, numTH1Dbins);
 
-    // Momentum threshold plots (2p)
+#pragma endregion
 
-    // Momentum threshold plots (2p)
+#pragma endregion
+
+#pragma region /* Momentum threshold plots (2p) */
+
     hPlot1D hP_e_APID_2p_FD = hPlot1D("2p", "", "Electron momentum APID", "Electron momentum P_{e} APID", "P_{e} [GeV/c]", directories.Momentum_dir_map["Momentum_2p_Directory"],
                                       "01a_P_e_APID_2p_FD", Momentum_lboundary, Momentum_uboundary, numTH1Dbins);
     hPlot1D hP_e_BPID_2p_FD = hPlot1D("2p", "", "Electron momentum BPID", "Electron momentum P_{e} BPID", "P_{e} [GeV/c]", directories.Momentum_dir_map["Momentum_2p_Directory"],
@@ -1952,7 +1977,95 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     hPlot2D hP_p_1_vs_P_p_2_2p = hPlot2D("2p", "", "P_{1} vs. P_{2}", "P_{1} vs. P_{2}", "P_{1} [GeV/c]", "P_{2} [GeV/c]", directories.Momentum_dir_map["Momentum_2p_Directory"],
                                          "08_P_p_1_vs_P_p_2", Momentum_lboundary, Momentum_uboundary, Momentum_lboundary, Momentum_uboundary, numTH2Dbins, numTH2Dbins);
 
-    // Momentum threshold plots (pFDpCD)
+#pragma endregion
+
+#pragma region /* Momentum threshold plots (pFDpCD) */
+
+#pragma region /* Analysis plots pFDpCD */
+    hPlot1D hP_pFD_pFDpCD = hPlot1D("pFDpCD", "", "FD proton momentum", "FD proton momentum P_{pFD}", "P_{pFD} [GeV/c]",
+                                    directories.Momentum_dir_map["Analysis_plots_momentum_pFDpCD_Directory"], "01a_P_pFD_pFDpCD", FDMomentum_lboundary, FDMomentum_uboundary, numTH1Dbins);
+    hPlot1D hP_pCD_pFDpCD = hPlot1D("pFDpCD", "", "CD proton momentum", "CD proton momentum P_{pCD}", "P_{pCD} [GeV/c]",
+                                    directories.Momentum_dir_map["Analysis_plots_momentum_pFDpCD_Directory"], "01b_P_pCD_pFDpCD", CDMomentum_lboundary, CDMomentum_uboundary, numTH1Dbins);
+    hPlot2D hP_pFD_vs_P_pCD_pFDpCD =
+        hPlot2D("pFDpCD", "", "P_{pFD} vs. P_{pCD}", "P_{pFD} vs. P_{pCD}", "P_{pFD} [GeV/c]", "P_{pCD} [GeV/c]", directories.Momentum_dir_map["Analysis_plots_momentum_pFDpCD_Directory"],
+                "05_P_pFD_vs_P_pCD", P_nucFD_lboundary, P_nucFD_uboundary, P_nucCD_lboundary, P_nucCD_uboundary, numTH2Dbins_Mom_Plots, numTH2Dbins_Mom_Plots);
+
+    TH2D *hP_pFD_VS_W_pFDpCD =
+        new TH2D("FD proton momentum vs. W (All Int., pFDpCD)", "FD proton momentum vs. W (All Int., pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];P_{pFD} [GeV/c]",
+                 numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, P_nucFD_lboundary, P_nucFD_uboundary);
+    TH2D *hP_pFD_VS_W_QEL_pFDpCD =
+        new TH2D("FD proton momentum vs. W (QE Only, pFDpCD)", "FD proton momentum vs. W (QE Only, pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];P_{pFD} [GeV/c]",
+                 numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, P_nucFD_lboundary, P_nucFD_uboundary);
+    TH2D *hP_pFD_VS_W_MEC_pFDpCD =
+        new TH2D("FD proton momentum vs. W (MEC Only, pFDpCD)", "FD proton momentum vs. W (MEC Only, pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];P_{pFD} [GeV/c]",
+                 numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, P_nucFD_lboundary, P_nucFD_uboundary);
+    TH2D *hP_pFD_VS_W_RES_pFDpCD =
+        new TH2D("FD proton momentum vs. W (RES Only, pFDpCD)", "FD proton momentum vs. W (RES Only, pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];P_{pFD} [GeV/c]",
+                 numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, P_nucFD_lboundary, P_nucFD_uboundary);
+    TH2D *hP_pFD_VS_W_DIS_pFDpCD =
+        new TH2D("FD proton momentum vs. W (DIS Only, pFDpCD)", "FD proton momentum vs. W (DIS Only, pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];P_{pFD} [GeV/c]",
+                 numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, P_nucFD_lboundary, P_nucFD_uboundary);
+    std::string hP_pFD_VS_W_pFDpCD_Dir = directories.Momentum_dir_map["Analysis_plots_momentum_pFDpCD_Directory"];
+
+    TH2D *hP_pCD_VS_W_pFDpCD =
+        new TH2D("CD proton momentum vs. W (All Int., pFDpCD)", "CD proton momentum vs. W (All Int., pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];P_{pCD} [GeV/c]",
+                 numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, P_nucCD_lboundary, P_nucCD_uboundary);
+    TH2D *hP_pCD_VS_W_QEL_pFDpCD =
+        new TH2D("CD proton momentum vs. W (QE Only, pFDpCD)", "CD proton momentum vs. W (QE Only, pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];P_{pCD} [GeV/c]",
+                 numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, P_nucCD_lboundary, P_nucCD_uboundary);
+    TH2D *hP_pCD_VS_W_MEC_pFDpCD =
+        new TH2D("CD proton momentum vs. W (MEC Only, pFDpCD)", "CD proton momentum vs. W (MEC Only, pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];P_{pCD} [GeV/c]",
+                 numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, P_nucCD_lboundary, P_nucCD_uboundary);
+    TH2D *hP_pCD_VS_W_RES_pFDpCD =
+        new TH2D("CD proton momentum vs. W (RES Only, pFDpCD)", "CD proton momentum vs. W (RES Only, pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];P_{pCD} [GeV/c]",
+                 numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, P_nucCD_lboundary, P_nucCD_uboundary);
+    TH2D *hP_pCD_VS_W_DIS_pFDpCD =
+        new TH2D("CD proton momentum vs. W (DIS Only, pFDpCD)", "CD proton momentum vs. W (DIS Only, pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];P_{pCD} [GeV/c]",
+                 numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, P_nucCD_lboundary, P_nucCD_uboundary);
+    std::string hP_pCD_VS_W_pFDpCD_Dir = directories.Momentum_dir_map["Analysis_plots_momentum_pFDpCD_Directory"];
+
+    // Total and relative nucleon momenta (pFDpCD)
+    hPlot1D hP_tot_pFDpCD = hPlot1D("pFDpCD", "", "Total nucleon momentum (3-vector)", "Total nucleon 3-momentum", "|#font[62]{P}_{tot}| = |#font[62]{P}_{pL} + #font[62]{P}_{pR}| [GeV/c]",
+                                    directories.Momentum_dir_map["Analysis_plots_momentum_pFDpCD_Directory"], "02a_P_tot_pFDpCD", Momentum_lboundary, Momentum_uboundary, numTH1Dbins);
+    hPlot1D hP_rel_pFDpCD =
+        hPlot1D("pFDpCD", "", "Relative nucleon momentum (3-vector)", "Relative nucleon 3-momentum", "|#font[62]{P}_{rel}| = |#font[62]{P}_{pL} - #font[62]{P}_{pR}|/2 [GeV/c]",
+                directories.Momentum_dir_map["Analysis_plots_momentum_pFDpCD_Directory"], "02b_P_rel_pFDpCD", CDMomentum_lboundary, CDMomentum_uboundary, numTH1Dbins);
+    hPlot2D hP_tot_vs_P_rel_pFDpCD =
+        hPlot2D("pFDpCD", "", "|#font[62]{P}_{tot}| vs. |#font[62]{P}_{rel}|", "|#font[62]{P}_{tot}| vs. |#font[62]{P}_{rel}|",
+                "|#font[62]{P}_{tot}| = |#font[62]{P}_{pL} + #font[62]{P}_{pR}| [GeV/c]", "|#font[62]{P}_{rel}| = |#font[62]{P}_{pL} - #font[62]{P}_{pR}|/2 [GeV/c]",
+                directories.Momentum_dir_map["Analysis_plots_momentum_pFDpCD_Directory"], "02c_P_tot_vs_P_rel", Momentum_lboundary, Momentum_uboundary, Momentum_lboundary,
+                Momentum_uboundary, numTH2Dbins, numTH2Dbins);
+
+    hPlot1D hP_tot_mu_pFDpCD = hPlot1D("pFDpCD", "", "Total nucleon momentum (4-vector)", "Total nucleon 4-momentum", "P_{tot}^{#mu} = (P_{pL}^{#mu} + P_{pR}^{#mu}) [GeV/c]",
+                                       directories.Momentum_dir_map["Analysis_plots_momentum_pFDpCD_Directory"], "02d_P_tot_pFDpCD", Momentum_lboundary, Momentum_uboundary, numTH1Dbins);
+    hPlot1D hP_rel_mu_pFDpCD =
+        hPlot1D("pFDpCD", "", "Relative nucleon momentum (4-vector)", "Relative nucleon 4-momentum", "P_{rel}^{#mu} = (P_{pL}^{#mu} - P_{pR}^{#mu})/2 [GeV/c]",
+                directories.Momentum_dir_map["Analysis_plots_momentum_pFDpCD_Directory"], "02e_P_rel_pFDpCD", -CDMomentum_uboundary, CDMomentum_lboundary, numTH1Dbins);
+    //                                       "02e_P_rel_pFDpCD", CDMomentum_lboundary, CDMomentum_uboundary, numTH1Dbins);
+    hPlot2D hP_tot_mu_vs_P_rel_mu_pFDpCD = hPlot2D("pFDpCD", "", "P_{tot}^{#mu} vs. P_{rel}^{#mu}", "P_{tot}^{#mu} vs. P_{rel}^{#mu}", "P_{tot}^{#mu} = P_{pL}^{#mu} + P_{pR}^{#mu} [GeV/c]",
+                                                   "P_{rel}^{#mu} = (P_{pL}^{#mu} - P_{pR}^{#mu})/2 [GeV/c]", directories.Momentum_dir_map["Analysis_plots_momentum_pFDpCD_Directory"],
+                                                   "02f_P_tot_vs_P_rel", Momentum_lboundary, Momentum_uboundary, -CDMomentum_uboundary, CDMomentum_lboundary, numTH2Dbins, numTH2Dbins);
+    //                                                   Momentum_lboundary, Momentum_uboundary, Momentum_lboundary, Momentum_uboundary, numTH2Dbins, numTH2Dbins);
+
+    hPlot1D hP_tot_minus_q_pFDpCD =
+        hPlot1D("pFDpCD", "", "#font[62]{P}_{tot}-#font[62]{q} distribution", "#font[62]{P}_{tot}-#font[62]{q} distribution",
+                "|#font[62]{P}_{tot} - #font[62]{q}| = |#font[62]{P}_{pL} + #font[62]{P}_{pR}- #font[62]{q}| [GeV/c]",
+                directories.Momentum_dir_map["Analysis_plots_momentum_pFDpCD_Directory"], "06_P_tot_minus_q_pFDpCD", Momentum_lboundary, Momentum_uboundary, numTH1Dbins);
+
+    hPlot2D hP_tot_minus_q_vs_P_tot_pFDpCD = hPlot2D("pFDpCD", "", "#font[62]{P}_{tot}-#font[62]{q} vs. #font[62]{P}_{tot}", "#font[62]{P}_{tot}-#font[62]{q} vs. #font[62]{P}_{tot}",
+                                                     "|#font[62]{P}_{tot}| = |#font[62]{P}_{nL} + #font[62]{P}_{nR}| [GeV/c]",
+                                                     "|#font[62]{P}_{tot} - #font[62]{q}| = |#font[62]{P}_{nL} + #font[62]{P}_{nR}- #font[62]{q}| [GeV/c]",
+                                                     directories.Momentum_dir_map["Analysis_plots_momentum_pFDpCD_Directory"], "07a_P_tot_minus_q_vs_P_tot_pFDpCD", Momentum_lboundary,
+                                                     Momentum_uboundary, Momentum_lboundary, Momentum_uboundary, numTH2Dbins, numTH2Dbins);
+    hPlot2D hP_tot_minus_q_vs_q_pFDpCD = hPlot2D("pFDpCD", "", "|#font[62]{P}_{tot} - #font[62]{q}| vs. |#font[62]{q}|", "|#font[62]{P}_{tot} - #font[62]{q}| vs. |#font[62]{q}|",
+                                                 "|#font[62]{q}| [GeV/c]", "|#font[62]{P}_{tot} - #font[62]{q}| = |#font[62]{P}_{nL} + #font[62]{P}_{nR}- #font[62]{q}| [GeV/c]",
+                                                 directories.Momentum_dir_map["Analysis_plots_momentum_pFDpCD_Directory"], "07b_P_tot_minus_q_vs_q_pFDpCD", Momentum_lboundary,
+                                                 Momentum_uboundary, Momentum_lboundary, Momentum_uboundary, numTH2Dbins, numTH2Dbins);
+
+#pragma endregion
+
+#pragma region /* Other momentum threshold plots (pFDpCD) */
+
     hPlot1D hP_e_APID_pFDpCD_FD = hPlot1D("pFDpCD", "", "Electron momentum APID", "Electron momentum P_{e} APID", "P_{e} [GeV/c]", directories.Momentum_dir_map["Momentum_pFDpCD_Directory"],
                                           "01a_P_e_APID_pFDpCD_FD", Momentum_lboundary, Momentum_uboundary, numTH1Dbins);
     hPlot1D hP_e_BPID_pFDpCD_FD = hPlot1D("pFDpCD", "", "Electron momentum BPID", "Electron momentum P_{e} BPID", "P_{e} [GeV/c]", directories.Momentum_dir_map["Momentum_pFDpCD_Directory"],
@@ -2002,108 +2115,13 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     hPlot1D hP_n_BPID_pFDpCD_FD = hPlot1D("pFDpCD", "FD", "Neutron momentum BPID", "Neutron momentum P_{n} BPID", "P_{n} [GeV/c]", directories.Momentum_dir_map["Momentum_pFDpCD_Directory"],
                                           "07d_P_n_BPID_pFDpCD_FD", Momentum_lboundary, Momentum_uboundary, numTH1Dbins);
 
-    // Momentum threshold plots (nFDpCD)
-    hPlot1D hP_e_APID_nFDpCD_FD = hPlot1D("nFDpCD", "", "Electron momentum APID", "Electron momentum P_{e} APID", "P_{e} [GeV/c]", directories.Momentum_dir_map["Momentum_nFDpCD_Directory"],
-                                          "01a_P_e_APID_nFDpCD_FD", Momentum_lboundary, Momentum_uboundary, numTH1Dbins);
-    hPlot1D hP_e_BPID_nFDpCD_FD = hPlot1D("nFDpCD", "", "Electron momentum BPID", "Electron momentum P_{e} BPID", "P_{e} [GeV/c]", directories.Momentum_dir_map["Momentum_nFDpCD_Directory"],
-                                          "01b_P_e_BPID_nFDpCD_FD", Momentum_lboundary, Momentum_uboundary, numTH1Dbins);
+#pragma endregion
 
-    hPlot1D hP_p_APID_nFDpCD_CD = hPlot1D("nFDpCD", "CD", "Proton momentum APID", "Proton momentum P_{p} APID", "P_{p} [GeV/c]", directories.Momentum_dir_map["Momentum_nFDpCD_Directory"],
-                                          "02a_P_p_APID_nFDpCD_CD", Momentum_lboundary, Momentum_uboundary, numTH1Dbins);
-    hPlot1D hP_p_BPID_nFDpCD_CD = hPlot1D("nFDpCD", "CD", "Proton momentum BPID", "Proton momentum P_{p} BPID", "P_{p} [GeV/c]", directories.Momentum_dir_map["Momentum_nFDpCD_Directory"],
-                                          "02b_P_p_BPID_nFDpCD_CD", Momentum_lboundary, Momentum_uboundary, numTH1Dbins);
-    hPlot1D hP_p_APID_nFDpCD_FD = hPlot1D("nFDpCD", "FD", "Proton momentum APID", "Proton momentum P_{p} APID", "P_{p} [GeV/c]", directories.Momentum_dir_map["Momentum_nFDpCD_Directory"],
-                                          "03c_P_p_APID_nFDpCD_FD", Momentum_lboundary, Momentum_uboundary, numTH1Dbins);
-    hPlot1D hP_p_BPID_nFDpCD_FD = hPlot1D("nFDpCD", "FD", "Proton momentum BPID", "Proton momentum P_{p} BPID", "P_{p} [GeV/c]", directories.Momentum_dir_map["Momentum_nFDpCD_Directory"],
-                                          "03d_P_p_BPID_nFDpCD_FD", Momentum_lboundary, Momentum_uboundary, numTH1Dbins);
+#pragma endregion
 
-    hPlot1D hP_piplus_APID_nFDpCD_CD = hPlot1D("nFDpCD", "CD", "#pi^{+} momentum APID", "#pi^{+} momentum P_{#pi^{+}} APID", "P_{#pi^{+}} [GeV/c]",
-                                               directories.Momentum_dir_map["Momentum_nFDpCD_Directory"], "04a_P_piplus_APID_nFDpCD_CD", Momentum_lboundary, Momentum_uboundary, numTH1Dbins);
-    hPlot1D hP_piplus_BPID_nFDpCD_CD = hPlot1D("nFDpCD", "CD", "#pi^{+} momentum BPID", "#pi^{+} momentum P_{#pi^{+}} BPID", "P_{#pi^{+}} [GeV/c]",
-                                               directories.Momentum_dir_map["Momentum_nFDpCD_Directory"], "04b_P_piplus_BPID_nFDpCD_CD", Momentum_lboundary, Momentum_uboundary, numTH1Dbins);
-    hPlot1D hP_piplus_APID_nFDpCD_FD = hPlot1D("nFDpCD", "FD", "#pi^{+} momentum APID", "#pi^{+} momentum P_{#pi^{+}} APID", "P_{#pi^{+}} [GeV/c]",
-                                               directories.Momentum_dir_map["Momentum_nFDpCD_Directory"], "04c_P_piplus_APID_nFDpCD_FD", Momentum_lboundary, Momentum_uboundary, numTH1Dbins);
-    hPlot1D hP_piplus_BPID_nFDpCD_FD = hPlot1D("nFDpCD", "FD", "#pi^{+} momentum BPID", "#pi^{+} momentum P_{#pi^{+}} BPID", "P_{#pi^{+}} [GeV/c]",
-                                               directories.Momentum_dir_map["Momentum_nFDpCD_Directory"], "04d_P_piplus_BPID_nFDpCD_FD", Momentum_lboundary, Momentum_uboundary, numTH1Dbins);
+#pragma region /* Momentum threshold plots (nFDpCD) */
 
-    hPlot1D hP_piminus_APID_nFDpCD_CD =
-        hPlot1D("nFDpCD", "CD", "#pi^{-} momentum APID", "#pi^{-} momentum P_{#pi^{-}} APID", "P_{#pi^{-}} [GeV/c]", directories.Momentum_dir_map["Momentum_nFDpCD_Directory"],
-                "05a_P_piminus_APID_nFDpCD_CD", Momentum_lboundary, Momentum_uboundary, numTH1Dbins);
-    hPlot1D hP_piminus_BPID_nFDpCD_CD =
-        hPlot1D("nFDpCD", "CD", "#pi^{-} momentum BPID", "#pi^{-} momentum P_{#pi^{-}} BPID", "P_{#pi^{-}} [GeV/c]", directories.Momentum_dir_map["Momentum_nFDpCD_Directory"],
-                "05b_P_piminus_BPID_nFDpCD_CD", Momentum_lboundary, Momentum_uboundary, numTH1Dbins);
-    hPlot1D hP_piminus_APID_nFDpCD_FD =
-        hPlot1D("nFDpCD", "FD", "#pi^{-} momentum APID", "#pi^{-} momentum P_{#pi^{-}} APID", "P_{#pi^{-}} [GeV/c]", directories.Momentum_dir_map["Momentum_nFDpCD_Directory"],
-                "05c_P_piminus_APID_nFDpCD_FD", Momentum_lboundary, Momentum_uboundary, numTH1Dbins);
-    hPlot1D hP_piminus_BPID_nFDpCD_FD =
-        hPlot1D("nFDpCD", "FD", "#pi^{-} momentum BPID", "#pi^{-} momentum P_{#pi^{-}} BPID", "P_{#pi^{-}} [GeV/c]", directories.Momentum_dir_map["Momentum_nFDpCD_Directory"],
-                "05d_P_piminus_BPID_nFDpCD_FD", Momentum_lboundary, Momentum_uboundary, numTH1Dbins);
-
-    hPlot1D hP_ph_APID_nFDpCD_FD = hPlot1D("nFDpCD", "FD", "Photon momentum APID", "Photon momentum P_{#gamma} APID", "P_{#gamma} [GeV/c]",
-                                           directories.Momentum_dir_map["Momentum_nFDpCD_Directory"], "06c_P_ph_APID_nFDpCD_FD", Momentum_lboundary, Momentum_uboundary, numTH1Dbins);
-    hPlot1D hP_ph_BPID_nFDpCD_FD = hPlot1D("nFDpCD", "FD", "Photon momentum BPID", "Photon momentum P_{#gamma} BPID", "P_{#gamma} [GeV/c]",
-                                           directories.Momentum_dir_map["Momentum_nFDpCD_Directory"], "06d_P_ph_BPID_nFDpCD_FD", Momentum_lboundary, Momentum_uboundary, numTH1Dbins);
-
-    hPlot1D hP_n_APID_nFDpCD_FD = hPlot1D("nFDpCD", "FD", "Neutron momentum APID", "Neutron momentum P_{n} APID", "P_{n} [GeV/c]", directories.Momentum_dir_map["Momentum_nFDpCD_Directory"],
-                                          "07a_P_n_APID_nFDpCD_FD", FDMomentum_lboundary, FDMomentum_uboundary, numTH1Dbins);
-    hPlot1D hP_n_APIDandNS_nFDpCD_FD =
-        hPlot1D("nFDpCD", "FD", "Neutron momentum APID&NC", "Neutron momentum P_{n} APID&NC", "P_{n} [GeV/c]", directories.Momentum_dir_map["Momentum_nFDpCD_Directory"],
-                "07b_P_n_APIDandNS_nFDpCD_FD", FDMomentum_lboundary, FDMomentum_uboundary, numTH1Dbins);
-    hPlot1D hP_n_BPID_nFDpCD_FD = hPlot1D("nFDpCD", "FD", "Neutron momentum BPID", "Neutron momentum P_{n} BPID", "P_{n} [GeV/c]", directories.Momentum_dir_map["Momentum_nFDpCD_Directory"],
-                                          "07c_P_n_BPID_nFDpCD_FD", Momentum_lboundary, Momentum_uboundary, numTH1Dbins);
-
-    hPlot1D hP_nL_APID_nFDpCD_FD = hPlot1D("nFDpCD", "FD", "Leading neutron momentum APID", "Leading neutron momentum P_{n} APID", "P_{n} [GeV/c]",
-                                           directories.Momentum_dir_map["Momentum_nFDpCD_Directory"], "07a_P_n_APID_nFDpCD_FD", Momentum_lboundary, Momentum_uboundary, numTH1Dbins);
-    hPlot1D hP_nL_APIDandNS_nFDpCD_FD =
-        hPlot1D("nFDpCD", "FD", "Leading neutron momentum APID&NC", "Leading neutron momentum P_{n} APID&NC", "P_{n} [GeV/c]", directories.Momentum_dir_map["Momentum_nFDpCD_Directory"],
-                "07b_P_n_APIDandNS_nFDpCD_FD", Momentum_lboundary, Momentum_uboundary, numTH1Dbins);
-
-    // Other momentum plots
-
-    // pFD and pCD momentum plots (pFDpCD)
-    hPlot1D hP_pFD_pFDpCD = hPlot1D("pFDpCD", "", "FD proton momentum", "FD proton momentum P_{pFD}", "P_{pFD} [GeV/c]",
-                                    directories.Momentum_dir_map["Analysis_plots_momentum_pFDpCD_Directory"], "01a_P_pFD_pFDpCD", FDMomentum_lboundary, FDMomentum_uboundary, numTH1Dbins);
-    hPlot1D hP_pCD_pFDpCD = hPlot1D("pFDpCD", "", "CD proton momentum", "CD proton momentum P_{pCD}", "P_{pCD} [GeV/c]",
-                                    directories.Momentum_dir_map["Analysis_plots_momentum_pFDpCD_Directory"], "01b_P_pCD_pFDpCD", CDMomentum_lboundary, CDMomentum_uboundary, numTH1Dbins);
-    hPlot2D hP_pFD_vs_P_pCD_pFDpCD =
-        hPlot2D("pFDpCD", "", "P_{pFD} vs. P_{pCD}", "P_{pFD} vs. P_{pCD}", "P_{pFD} [GeV/c]", "P_{pCD} [GeV/c]", directories.Momentum_dir_map["Analysis_plots_momentum_pFDpCD_Directory"],
-                "05_P_pFD_vs_P_pCD", P_nucFD_lboundary, P_nucFD_uboundary, P_nucCD_lboundary, P_nucCD_uboundary, numTH2Dbins_Mom_Plots, numTH2Dbins_Mom_Plots);
-
-    TH2D *hP_pFD_VS_W_pFDpCD =
-        new TH2D("FD proton momentum vs. W (All Int., pFDpCD)", "FD proton momentum vs. W (All Int., pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];P_{pFD} [GeV/c]",
-                 numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, P_nucFD_lboundary, P_nucFD_uboundary);
-    TH2D *hP_pFD_VS_W_QEL_pFDpCD =
-        new TH2D("FD proton momentum vs. W (QE Only, pFDpCD)", "FD proton momentum vs. W (QE Only, pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];P_{pFD} [GeV/c]",
-                 numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, P_nucFD_lboundary, P_nucFD_uboundary);
-    TH2D *hP_pFD_VS_W_MEC_pFDpCD =
-        new TH2D("FD proton momentum vs. W (MEC Only, pFDpCD)", "FD proton momentum vs. W (MEC Only, pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];P_{pFD} [GeV/c]",
-                 numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, P_nucFD_lboundary, P_nucFD_uboundary);
-    TH2D *hP_pFD_VS_W_RES_pFDpCD =
-        new TH2D("FD proton momentum vs. W (RES Only, pFDpCD)", "FD proton momentum vs. W (RES Only, pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];P_{pFD} [GeV/c]",
-                 numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, P_nucFD_lboundary, P_nucFD_uboundary);
-    TH2D *hP_pFD_VS_W_DIS_pFDpCD =
-        new TH2D("FD proton momentum vs. W (DIS Only, pFDpCD)", "FD proton momentum vs. W (DIS Only, pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];P_{pFD} [GeV/c]",
-                 numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, P_nucFD_lboundary, P_nucFD_uboundary);
-    std::string hP_pFD_VS_W_pFDpCD_Dir = directories.Momentum_dir_map["Analysis_plots_momentum_pFDpCD_Directory"];
-
-    TH2D *hP_pCD_VS_W_pFDpCD =
-        new TH2D("CD proton momentum vs. W (All Int., pFDpCD)", "CD proton momentum vs. W (All Int., pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];P_{pCD} [GeV/c]",
-                 numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, P_nucCD_lboundary, P_nucCD_uboundary);
-    TH2D *hP_pCD_VS_W_QEL_pFDpCD =
-        new TH2D("CD proton momentum vs. W (QE Only, pFDpCD)", "CD proton momentum vs. W (QE Only, pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];P_{pCD} [GeV/c]",
-                 numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, P_nucCD_lboundary, P_nucCD_uboundary);
-    TH2D *hP_pCD_VS_W_MEC_pFDpCD =
-        new TH2D("CD proton momentum vs. W (MEC Only, pFDpCD)", "CD proton momentum vs. W (MEC Only, pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];P_{pCD} [GeV/c]",
-                 numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, P_nucCD_lboundary, P_nucCD_uboundary);
-    TH2D *hP_pCD_VS_W_RES_pFDpCD =
-        new TH2D("CD proton momentum vs. W (RES Only, pFDpCD)", "CD proton momentum vs. W (RES Only, pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];P_{pCD} [GeV/c]",
-                 numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, P_nucCD_lboundary, P_nucCD_uboundary);
-    TH2D *hP_pCD_VS_W_DIS_pFDpCD =
-        new TH2D("CD proton momentum vs. W (DIS Only, pFDpCD)", "CD proton momentum vs. W (DIS Only, pFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];P_{pCD} [GeV/c]",
-                 numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, P_nucCD_lboundary, P_nucCD_uboundary);
-    std::string hP_pCD_VS_W_pFDpCD_Dir = directories.Momentum_dir_map["Analysis_plots_momentum_pFDpCD_Directory"];
-
-    // nFD and pCD momentum plots (nFDpCD)
+#pragma region /* Analysis plots nFDpCD */
     hPlot1D hP_nFD_nFDpCD = hPlot1D("nFDpCD", "", "FD neutron momentum", "FD neutron momentum P_{nFD}", "P_{nFD} [GeV/c]",
                                     directories.Momentum_dir_map["Analysis_plots_momentum_nFDpCD_Directory"], "01aa_P_nFD_nFDpCD", FDMomentum_lboundary, FDMomentum_uboundary, numTH1Dbins);
     hPlot1D hP_nFD_nFDpCD_ZoomOut =
@@ -2185,44 +2203,6 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                  numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, P_nucCD_lboundary, P_nucCD_uboundary);
     std::string hP_pCD_VS_W_nFDpCD_Dir = directories.Momentum_dir_map["Analysis_plots_momentum_nFDpCD_Directory"];
 
-    // Total and relative nucleon momenta (pFDpCD)
-    hPlot1D hP_tot_pFDpCD = hPlot1D("pFDpCD", "", "Total nucleon momentum (3-vector)", "Total nucleon 3-momentum", "|#font[62]{P}_{tot}| = |#font[62]{P}_{pL} + #font[62]{P}_{pR}| [GeV/c]",
-                                    directories.Momentum_dir_map["Analysis_plots_momentum_pFDpCD_Directory"], "02a_P_tot_pFDpCD", Momentum_lboundary, Momentum_uboundary, numTH1Dbins);
-    hPlot1D hP_rel_pFDpCD =
-        hPlot1D("pFDpCD", "", "Relative nucleon momentum (3-vector)", "Relative nucleon 3-momentum", "|#font[62]{P}_{rel}| = |#font[62]{P}_{pL} - #font[62]{P}_{pR}|/2 [GeV/c]",
-                directories.Momentum_dir_map["Analysis_plots_momentum_pFDpCD_Directory"], "02b_P_rel_pFDpCD", CDMomentum_lboundary, CDMomentum_uboundary, numTH1Dbins);
-    hPlot2D hP_tot_vs_P_rel_pFDpCD =
-        hPlot2D("pFDpCD", "", "|#font[62]{P}_{tot}| vs. |#font[62]{P}_{rel}|", "|#font[62]{P}_{tot}| vs. |#font[62]{P}_{rel}|",
-                "|#font[62]{P}_{tot}| = |#font[62]{P}_{pL} + #font[62]{P}_{pR}| [GeV/c]", "|#font[62]{P}_{rel}| = |#font[62]{P}_{pL} - #font[62]{P}_{pR}|/2 [GeV/c]",
-                directories.Momentum_dir_map["Analysis_plots_momentum_pFDpCD_Directory"], "02c_P_tot_vs_P_rel", Momentum_lboundary, Momentum_uboundary, Momentum_lboundary,
-                Momentum_uboundary, numTH2Dbins, numTH2Dbins);
-
-    hPlot1D hP_tot_mu_pFDpCD = hPlot1D("pFDpCD", "", "Total nucleon momentum (4-vector)", "Total nucleon 4-momentum", "P_{tot}^{#mu} = (P_{pL}^{#mu} + P_{pR}^{#mu}) [GeV/c]",
-                                       directories.Momentum_dir_map["Analysis_plots_momentum_pFDpCD_Directory"], "02d_P_tot_pFDpCD", Momentum_lboundary, Momentum_uboundary, numTH1Dbins);
-    hPlot1D hP_rel_mu_pFDpCD =
-        hPlot1D("pFDpCD", "", "Relative nucleon momentum (4-vector)", "Relative nucleon 4-momentum", "P_{rel}^{#mu} = (P_{pL}^{#mu} - P_{pR}^{#mu})/2 [GeV/c]",
-                directories.Momentum_dir_map["Analysis_plots_momentum_pFDpCD_Directory"], "02e_P_rel_pFDpCD", -CDMomentum_uboundary, CDMomentum_lboundary, numTH1Dbins);
-    //                                       "02e_P_rel_pFDpCD", CDMomentum_lboundary, CDMomentum_uboundary, numTH1Dbins);
-    hPlot2D hP_tot_mu_vs_P_rel_mu_pFDpCD = hPlot2D("pFDpCD", "", "P_{tot}^{#mu} vs. P_{rel}^{#mu}", "P_{tot}^{#mu} vs. P_{rel}^{#mu}", "P_{tot}^{#mu} = P_{pL}^{#mu} + P_{pR}^{#mu} [GeV/c]",
-                                                   "P_{rel}^{#mu} = (P_{pL}^{#mu} - P_{pR}^{#mu})/2 [GeV/c]", directories.Momentum_dir_map["Analysis_plots_momentum_pFDpCD_Directory"],
-                                                   "02f_P_tot_vs_P_rel", Momentum_lboundary, Momentum_uboundary, -CDMomentum_uboundary, CDMomentum_lboundary, numTH2Dbins, numTH2Dbins);
-    //                                                   Momentum_lboundary, Momentum_uboundary, Momentum_lboundary, Momentum_uboundary, numTH2Dbins, numTH2Dbins);
-
-    hPlot1D hP_tot_minus_q_pFDpCD =
-        hPlot1D("pFDpCD", "", "#font[62]{P}_{tot}-#font[62]{q} distribution", "#font[62]{P}_{tot}-#font[62]{q} distribution",
-                "|#font[62]{P}_{tot} - #font[62]{q}| = |#font[62]{P}_{pL} + #font[62]{P}_{pR}- #font[62]{q}| [GeV/c]",
-                directories.Momentum_dir_map["Analysis_plots_momentum_pFDpCD_Directory"], "06_P_tot_minus_q_pFDpCD", Momentum_lboundary, Momentum_uboundary, numTH1Dbins);
-
-    hPlot2D hP_tot_minus_q_vs_P_tot_pFDpCD = hPlot2D("pFDpCD", "", "#font[62]{P}_{tot}-#font[62]{q} vs. #font[62]{P}_{tot}", "#font[62]{P}_{tot}-#font[62]{q} vs. #font[62]{P}_{tot}",
-                                                     "|#font[62]{P}_{tot}| = |#font[62]{P}_{nL} + #font[62]{P}_{nR}| [GeV/c]",
-                                                     "|#font[62]{P}_{tot} - #font[62]{q}| = |#font[62]{P}_{nL} + #font[62]{P}_{nR}- #font[62]{q}| [GeV/c]",
-                                                     directories.Momentum_dir_map["Analysis_plots_momentum_pFDpCD_Directory"], "07a_P_tot_minus_q_vs_P_tot_pFDpCD", Momentum_lboundary,
-                                                     Momentum_uboundary, Momentum_lboundary, Momentum_uboundary, numTH2Dbins, numTH2Dbins);
-    hPlot2D hP_tot_minus_q_vs_q_pFDpCD = hPlot2D("pFDpCD", "", "|#font[62]{P}_{tot} - #font[62]{q}| vs. |#font[62]{q}|", "|#font[62]{P}_{tot} - #font[62]{q}| vs. |#font[62]{q}|",
-                                                 "|#font[62]{q}| [GeV/c]", "|#font[62]{P}_{tot} - #font[62]{q}| = |#font[62]{P}_{nL} + #font[62]{P}_{nR}- #font[62]{q}| [GeV/c]",
-                                                 directories.Momentum_dir_map["Analysis_plots_momentum_pFDpCD_Directory"], "07b_P_tot_minus_q_vs_q_pFDpCD", Momentum_lboundary,
-                                                 Momentum_uboundary, Momentum_lboundary, Momentum_uboundary, numTH2Dbins, numTH2Dbins);
-
     // Total and Relative nucleon momenta (nFDpCD)
     hPlot1D hP_tot_nFDpCD = hPlot1D("nFDpCD", "", "Total nucleon momentum (3-vector)", "Total nucleon 3-momentum", "|#font[62]{P}_{tot}| = |#font[62]{P}_{nL} + #font[62]{P}_{nR}| [GeV/c]",
                                     directories.Momentum_dir_map["Analysis_plots_momentum_nFDpCD_Directory"], "02a_P_tot_nFDpCD", Momentum_lboundary, Momentum_uboundary, numTH1Dbins);
@@ -2260,16 +2240,6 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                                                  directories.Momentum_dir_map["Analysis_plots_momentum_nFDpCD_Directory"], "07b_P_tot_minus_q_vs_q_nFDpCD", Momentum_lboundary,
                                                  Momentum_uboundary, Momentum_lboundary, Momentum_uboundary, numTH2Dbins, numTH2Dbins);
 
-    // Leading and recoil nucleon momentum plots (pFDpCD)
-    hPlot1D hP_pL_pFDpCD = hPlot1D("pFDpCD", "", "Leading proton momentum", "Leading proton momentum", "P_{pL} [GeV/c]",
-                                   directories.Momentum_dir_map["Analysis_plots_momentum_pFDpCD_Directory"], "03a_P_pL_pFDpCD", FDMomentum_lboundary, FDMomentum_uboundary, numTH1Dbins);
-    hPlot1D hP_pR_pFDpCD = hPlot1D("pFDpCD", "", "Recoil proton momentum", "Recoil proton momentum", "P_{pR} [GeV/c]",
-                                   directories.Momentum_dir_map["Analysis_plots_momentum_pFDpCD_Directory"], "03b_P_pR_pFDpCD", CDMomentum_lboundary, CDMomentum_uboundary, numTH1Dbins);
-    hPlot2D hP_pL_vs_P_pR_pFDpCD =
-        hPlot2D("pFDpCD", "", "P_{pL} vs. P_{pR}", "P_{pL} vs. P_{pR}", "P_{pL} [GeV/c]", "P_{pR} [GeV/c]", directories.Momentum_dir_map["Analysis_plots_momentum_pFDpCD_Directory"],
-                "04_P_pL_vs_P_pR", P_nucFD_lboundary, P_nucFD_uboundary, P_nucCD_lboundary, P_nucCD_uboundary, numTH2Dbins_Mom_Plots, numTH2Dbins_Mom_Plots);
-    //                                           Momentum_lboundary, Momentum_uboundary, Momentum_lboundary, Momentum_uboundary, numTH2Dbins, numTH2Dbins);
-
     // Leading and recoil nucleon momentum plots (nFDpCD)
     hPlot1D hP_nL_nFDpCD = hPlot1D("nFDpCD", "", "Leading nucleon momentum", "Leading nucleon momentum", "P_{nL} [GeV/c]",
                                    directories.Momentum_dir_map["Analysis_plots_momentum_nFDpCD_Directory"], "03a_P_nL_nFDpCD", FDMomentum_lboundary, FDMomentum_uboundary, numTH1Dbins);
@@ -2278,7 +2248,78 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     hPlot2D hP_nL_vs_P_nR_nFDpCD =
         hPlot2D("nFDpCD", "", "P_{nL} vs. P_{nR}", "P_{nL} vs. P_{nR}", "P_{nL} [GeV/c]", "P_{nR} [GeV/c]", directories.Momentum_dir_map["Analysis_plots_momentum_nFDpCD_Directory"],
                 "04_P_nL_vs_P_nR", P_nucFD_lboundary, P_nucFD_uboundary, P_nucCD_lboundary, P_nucCD_uboundary, numTH2Dbins_Mom_Plots, numTH2Dbins_Mom_Plots);
-    //                                           Momentum_lboundary, Momentum_uboundary, Momentum_lboundary, Momentum_uboundary, numTH2Dbins, numTH2Dbins);
+
+#pragma endregion
+
+#pragma region /* Other momentum threshold plots (nFDpCD) */
+
+    hPlot1D hP_e_APID_nFDpCD_FD = hPlot1D("nFDpCD", "", "Electron momentum APID", "Electron momentum P_{e} APID", "P_{e} [GeV/c]", directories.Momentum_dir_map["Momentum_nFDpCD_Directory"],
+                                          "01a_P_e_APID_nFDpCD_FD", Momentum_lboundary, Momentum_uboundary, numTH1Dbins);
+    hPlot1D hP_e_BPID_nFDpCD_FD = hPlot1D("nFDpCD", "", "Electron momentum BPID", "Electron momentum P_{e} BPID", "P_{e} [GeV/c]", directories.Momentum_dir_map["Momentum_nFDpCD_Directory"],
+                                          "01b_P_e_BPID_nFDpCD_FD", Momentum_lboundary, Momentum_uboundary, numTH1Dbins);
+
+    hPlot1D hP_p_APID_nFDpCD_CD = hPlot1D("nFDpCD", "CD", "Proton momentum APID", "Proton momentum P_{p} APID", "P_{p} [GeV/c]", directories.Momentum_dir_map["Momentum_nFDpCD_Directory"],
+                                          "02a_P_p_APID_nFDpCD_CD", Momentum_lboundary, Momentum_uboundary, numTH1Dbins);
+    hPlot1D hP_p_BPID_nFDpCD_CD = hPlot1D("nFDpCD", "CD", "Proton momentum BPID", "Proton momentum P_{p} BPID", "P_{p} [GeV/c]", directories.Momentum_dir_map["Momentum_nFDpCD_Directory"],
+                                          "02b_P_p_BPID_nFDpCD_CD", Momentum_lboundary, Momentum_uboundary, numTH1Dbins);
+    hPlot1D hP_p_APID_nFDpCD_FD = hPlot1D("nFDpCD", "FD", "Proton momentum APID", "Proton momentum P_{p} APID", "P_{p} [GeV/c]", directories.Momentum_dir_map["Momentum_nFDpCD_Directory"],
+                                          "03c_P_p_APID_nFDpCD_FD", Momentum_lboundary, Momentum_uboundary, numTH1Dbins);
+    hPlot1D hP_p_BPID_nFDpCD_FD = hPlot1D("nFDpCD", "FD", "Proton momentum BPID", "Proton momentum P_{p} BPID", "P_{p} [GeV/c]", directories.Momentum_dir_map["Momentum_nFDpCD_Directory"],
+                                          "03d_P_p_BPID_nFDpCD_FD", Momentum_lboundary, Momentum_uboundary, numTH1Dbins);
+
+    hPlot1D hP_piplus_APID_nFDpCD_CD = hPlot1D("nFDpCD", "CD", "#pi^{+} momentum APID", "#pi^{+} momentum P_{#pi^{+}} APID", "P_{#pi^{+}} [GeV/c]",
+                                               directories.Momentum_dir_map["Momentum_nFDpCD_Directory"], "04a_P_piplus_APID_nFDpCD_CD", Momentum_lboundary, Momentum_uboundary, numTH1Dbins);
+    hPlot1D hP_piplus_BPID_nFDpCD_CD = hPlot1D("nFDpCD", "CD", "#pi^{+} momentum BPID", "#pi^{+} momentum P_{#pi^{+}} BPID", "P_{#pi^{+}} [GeV/c]",
+                                               directories.Momentum_dir_map["Momentum_nFDpCD_Directory"], "04b_P_piplus_BPID_nFDpCD_CD", Momentum_lboundary, Momentum_uboundary, numTH1Dbins);
+    hPlot1D hP_piplus_APID_nFDpCD_FD = hPlot1D("nFDpCD", "FD", "#pi^{+} momentum APID", "#pi^{+} momentum P_{#pi^{+}} APID", "P_{#pi^{+}} [GeV/c]",
+                                               directories.Momentum_dir_map["Momentum_nFDpCD_Directory"], "04c_P_piplus_APID_nFDpCD_FD", Momentum_lboundary, Momentum_uboundary, numTH1Dbins);
+    hPlot1D hP_piplus_BPID_nFDpCD_FD = hPlot1D("nFDpCD", "FD", "#pi^{+} momentum BPID", "#pi^{+} momentum P_{#pi^{+}} BPID", "P_{#pi^{+}} [GeV/c]",
+                                               directories.Momentum_dir_map["Momentum_nFDpCD_Directory"], "04d_P_piplus_BPID_nFDpCD_FD", Momentum_lboundary, Momentum_uboundary, numTH1Dbins);
+
+    hPlot1D hP_piminus_APID_nFDpCD_CD =
+        hPlot1D("nFDpCD", "CD", "#pi^{-} momentum APID", "#pi^{-} momentum P_{#pi^{-}} APID", "P_{#pi^{-}} [GeV/c]", directories.Momentum_dir_map["Momentum_nFDpCD_Directory"],
+                "05a_P_piminus_APID_nFDpCD_CD", Momentum_lboundary, Momentum_uboundary, numTH1Dbins);
+    hPlot1D hP_piminus_BPID_nFDpCD_CD =
+        hPlot1D("nFDpCD", "CD", "#pi^{-} momentum BPID", "#pi^{-} momentum P_{#pi^{-}} BPID", "P_{#pi^{-}} [GeV/c]", directories.Momentum_dir_map["Momentum_nFDpCD_Directory"],
+                "05b_P_piminus_BPID_nFDpCD_CD", Momentum_lboundary, Momentum_uboundary, numTH1Dbins);
+    hPlot1D hP_piminus_APID_nFDpCD_FD =
+        hPlot1D("nFDpCD", "FD", "#pi^{-} momentum APID", "#pi^{-} momentum P_{#pi^{-}} APID", "P_{#pi^{-}} [GeV/c]", directories.Momentum_dir_map["Momentum_nFDpCD_Directory"],
+                "05c_P_piminus_APID_nFDpCD_FD", Momentum_lboundary, Momentum_uboundary, numTH1Dbins);
+    hPlot1D hP_piminus_BPID_nFDpCD_FD =
+        hPlot1D("nFDpCD", "FD", "#pi^{-} momentum BPID", "#pi^{-} momentum P_{#pi^{-}} BPID", "P_{#pi^{-}} [GeV/c]", directories.Momentum_dir_map["Momentum_nFDpCD_Directory"],
+                "05d_P_piminus_BPID_nFDpCD_FD", Momentum_lboundary, Momentum_uboundary, numTH1Dbins);
+
+    hPlot1D hP_ph_APID_nFDpCD_FD = hPlot1D("nFDpCD", "FD", "Photon momentum APID", "Photon momentum P_{#gamma} APID", "P_{#gamma} [GeV/c]",
+                                           directories.Momentum_dir_map["Momentum_nFDpCD_Directory"], "06c_P_ph_APID_nFDpCD_FD", Momentum_lboundary, Momentum_uboundary, numTH1Dbins);
+    hPlot1D hP_ph_BPID_nFDpCD_FD = hPlot1D("nFDpCD", "FD", "Photon momentum BPID", "Photon momentum P_{#gamma} BPID", "P_{#gamma} [GeV/c]",
+                                           directories.Momentum_dir_map["Momentum_nFDpCD_Directory"], "06d_P_ph_BPID_nFDpCD_FD", Momentum_lboundary, Momentum_uboundary, numTH1Dbins);
+
+    hPlot1D hP_n_APID_nFDpCD_FD = hPlot1D("nFDpCD", "FD", "Neutron momentum APID", "Neutron momentum P_{n} APID", "P_{n} [GeV/c]", directories.Momentum_dir_map["Momentum_nFDpCD_Directory"],
+                                          "07a_P_n_APID_nFDpCD_FD", FDMomentum_lboundary, FDMomentum_uboundary, numTH1Dbins);
+    hPlot1D hP_n_APIDandNS_nFDpCD_FD =
+        hPlot1D("nFDpCD", "FD", "Neutron momentum APID&NC", "Neutron momentum P_{n} APID&NC", "P_{n} [GeV/c]", directories.Momentum_dir_map["Momentum_nFDpCD_Directory"],
+                "07b_P_n_APIDandNS_nFDpCD_FD", FDMomentum_lboundary, FDMomentum_uboundary, numTH1Dbins);
+    hPlot1D hP_n_BPID_nFDpCD_FD = hPlot1D("nFDpCD", "FD", "Neutron momentum BPID", "Neutron momentum P_{n} BPID", "P_{n} [GeV/c]", directories.Momentum_dir_map["Momentum_nFDpCD_Directory"],
+                                          "07c_P_n_BPID_nFDpCD_FD", Momentum_lboundary, Momentum_uboundary, numTH1Dbins);
+
+    hPlot1D hP_nL_APID_nFDpCD_FD = hPlot1D("nFDpCD", "FD", "Leading neutron momentum APID", "Leading neutron momentum P_{n} APID", "P_{n} [GeV/c]",
+                                           directories.Momentum_dir_map["Momentum_nFDpCD_Directory"], "07a_P_n_APID_nFDpCD_FD", Momentum_lboundary, Momentum_uboundary, numTH1Dbins);
+    hPlot1D hP_nL_APIDandNS_nFDpCD_FD =
+        hPlot1D("nFDpCD", "FD", "Leading neutron momentum APID&NC", "Leading neutron momentum P_{n} APID&NC", "P_{n} [GeV/c]", directories.Momentum_dir_map["Momentum_nFDpCD_Directory"],
+                "07b_P_n_APIDandNS_nFDpCD_FD", Momentum_lboundary, Momentum_uboundary, numTH1Dbins);
+
+    // Leading and recoil nucleon momentum plots (pFDpCD)
+    hPlot1D hP_pL_pFDpCD = hPlot1D("pFDpCD", "", "Leading proton momentum", "Leading proton momentum", "P_{pL} [GeV/c]",
+                                   directories.Momentum_dir_map["Analysis_plots_momentum_pFDpCD_Directory"], "03a_P_pL_pFDpCD", FDMomentum_lboundary, FDMomentum_uboundary, numTH1Dbins);
+    hPlot1D hP_pR_pFDpCD = hPlot1D("pFDpCD", "", "Recoil proton momentum", "Recoil proton momentum", "P_{pR} [GeV/c]",
+                                   directories.Momentum_dir_map["Analysis_plots_momentum_pFDpCD_Directory"], "03b_P_pR_pFDpCD", CDMomentum_lboundary, CDMomentum_uboundary, numTH1Dbins);
+    hPlot2D hP_pL_vs_P_pR_pFDpCD =
+        hPlot2D("pFDpCD", "", "P_{pL} vs. P_{pR}", "P_{pL} vs. P_{pR}", "P_{pL} [GeV/c]", "P_{pR} [GeV/c]", directories.Momentum_dir_map["Analysis_plots_momentum_pFDpCD_Directory"],
+                "04_P_pL_vs_P_pR", P_nucFD_lboundary, P_nucFD_uboundary, P_nucCD_lboundary, P_nucCD_uboundary, numTH2Dbins_Mom_Plots, numTH2Dbins_Mom_Plots);
+
+#pragma endregion
+
+#pragma endregion
 
 #pragma endregion
 
@@ -7109,7 +7150,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     TH1D *hQ2_DIS_nFDpCD =
         new TH1D("Q^{2} (DIS Only, nFDpCD, FD)", "Q^{2} (DIS Only, nFDpCD, FD);Q^{2} [GeV^{2}/c^{2}];", numTH1Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
     std::string hQ2_nFDpCD_Dir = directories.Momentum_transfer_dir_map["Momentum_transfer_nFDpCD_Directory"];
-    std::string hQ2_nFDpCD_Dir_ReacMon = directories.ReacMon_dir_map["ReacMon_nFDpCD_Directory"];
+    std::string hQ2_nFDpCD_Dir_ReacMon = directories.ReacMon_dir_map["ReacMon_nFDpCD_Q2_Directory"];
 
     THStack *sq_3v_nFDpCD = new THStack("q = |#font[62]{q}| (nFDpCD, CD & FD)", "q = |#font[62]{q}| Histogram (nFDpCD, CD & FD);q [GeV/c];");
     TH1D *hq_3v_nFDpCD = new TH1D("q = |#font[62]{q}| (nFDpCD, FD)", "q = |#font[62]{q}| (nFDpCD, FD);q [GeV/c];", numTH1Dbins_Momentum_transfer_plots, Q2_lboundary_FD, Q2_uboundary_FD);
@@ -7501,7 +7542,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     // ET for every theta_e (1p)
     THStack *sET_All_Ang_All_Int_1p_FD = new THStack("#omega for all #theta_{e} (1p)", "Energy transfer #omega for all #theta_{e} (1p);#omega = E_{beam}-E_{e} [GeV]");
-    std::string sET_All_Ang_All_Int_1p_FD_Dir = directories.ETrans_dir_map["ETrans_All_Ang_stack_1p_Directory"];
+    std::string sET_All_Ang_All_Int_1p_FD_Dir = directories.Omega_dir_map["ETrans_All_Ang_stack_1p_Directory"];
 
     TH1D *hET_All_Ang_All_Int_1p_FD = new TH1D("#omega for all #theta_{e} (All Int., 1p)", "Energy transfer #omega for all #theta_{e} (All Int., 1p);#omega = E_{beam}-E_{e} [GeV]",
                                                numTH1Dbins_ET_Plots, 0, parameters.beamE * 1.1);
@@ -7513,15 +7554,15 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                                            numTH1Dbins_ET_Plots, 0, parameters.beamE * 1.1);
     TH1D *hET_All_Ang_DIS_1p_FD = new TH1D("#omega for all #theta_{e} (DIS Only, 1p, FD)", "Energy transfer #omega for all #theta_{e} (DIS Only, 1p);#omega = E_{beam}-E_{e} [GeV]",
                                            numTH1Dbins_ET_Plots, 0, parameters.beamE * 1.1);
-    std::string hET_All_Ang_All_Int_1p_FD_Dir = directories.ETrans_dir_map["ETrans_All_Int_All_Ang_1p_Directory"];
-    std::string hET_All_Ang_QEL_1p_FD_Dir = directories.ETrans_dir_map["ETrans_QEL_All_Ang_1p_Directory"];
-    std::string hET_All_Ang_MEC_1p_FD_Dir = directories.ETrans_dir_map["ETrans_MEC_All_Ang_1p_Directory"];
-    std::string hET_All_Ang_RES_1p_FD_Dir = directories.ETrans_dir_map["ETrans_RES_All_Ang_1p_Directory"];
-    std::string hET_All_Ang_DIS_1p_FD_Dir = directories.ETrans_dir_map["ETrans_DIS_All_Ang_1p_Directory"];
+    std::string hET_All_Ang_All_Int_1p_FD_Dir = directories.Omega_dir_map["ETrans_All_Int_All_Ang_1p_Directory"];
+    std::string hET_All_Ang_QEL_1p_FD_Dir = directories.Omega_dir_map["ETrans_QEL_All_Ang_1p_Directory"];
+    std::string hET_All_Ang_MEC_1p_FD_Dir = directories.Omega_dir_map["ETrans_MEC_All_Ang_1p_Directory"];
+    std::string hET_All_Ang_RES_1p_FD_Dir = directories.Omega_dir_map["ETrans_RES_All_Ang_1p_Directory"];
+    std::string hET_All_Ang_DIS_1p_FD_Dir = directories.Omega_dir_map["ETrans_DIS_All_Ang_1p_Directory"];
 
     // ET for every theta_e (1n)
     THStack *sET_All_Ang_All_Int_1n_FD = new THStack("#omega for all #theta_{e} (1n)", "Energy transfer #omega for all #theta_{e} (1n);#omega = E_{beam}-E_{e} [GeV]");
-    std::string sET_All_Ang_All_Int_1n_FD_Dir = directories.ETrans_dir_map["ETrans_All_Ang_stack_1n_Directory"];
+    std::string sET_All_Ang_All_Int_1n_FD_Dir = directories.Omega_dir_map["ETrans_All_Ang_stack_1n_Directory"];
 
     TH1D *hET_All_Ang_All_Int_1n_FD = new TH1D("#omega for all #theta_{e} (All Int., 1n)", "Energy transfer #omega for all #theta_{e} (All Int., 1n);#omega = E_{beam}-E_{e} [GeV]",
                                                numTH1Dbins_ET_Plots, 0, parameters.beamE * 1.1);
@@ -7533,15 +7574,15 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                                            numTH1Dbins_ET_Plots, 0, parameters.beamE * 1.1);
     TH1D *hET_All_Ang_DIS_1n_FD = new TH1D("#omega for all #theta_{e} (DIS Only, 1n, FD)", "Energy transfer #omega for all #theta_{e} (DIS Only, 1n);#omega = E_{beam}-E_{e} [GeV]",
                                            numTH1Dbins_ET_Plots, 0, parameters.beamE * 1.1);
-    std::string hET_All_Ang_All_Int_1n_FD_Dir = directories.ETrans_dir_map["ETrans_All_Int_All_Ang_1n_Directory"];
-    std::string hET_All_Ang_QEL_1n_FD_Dir = directories.ETrans_dir_map["ETrans_QEL_All_Ang_1n_Directory"];
-    std::string hET_All_Ang_MEC_1n_FD_Dir = directories.ETrans_dir_map["ETrans_MEC_All_Ang_1n_Directory"];
-    std::string hET_All_Ang_RES_1n_FD_Dir = directories.ETrans_dir_map["ETrans_RES_All_Ang_1n_Directory"];
-    std::string hET_All_Ang_DIS_1n_FD_Dir = directories.ETrans_dir_map["ETrans_DIS_All_Ang_1n_Directory"];
+    std::string hET_All_Ang_All_Int_1n_FD_Dir = directories.Omega_dir_map["ETrans_All_Int_All_Ang_1n_Directory"];
+    std::string hET_All_Ang_QEL_1n_FD_Dir = directories.Omega_dir_map["ETrans_QEL_All_Ang_1n_Directory"];
+    std::string hET_All_Ang_MEC_1n_FD_Dir = directories.Omega_dir_map["ETrans_MEC_All_Ang_1n_Directory"];
+    std::string hET_All_Ang_RES_1n_FD_Dir = directories.Omega_dir_map["ETrans_RES_All_Ang_1n_Directory"];
+    std::string hET_All_Ang_DIS_1n_FD_Dir = directories.Omega_dir_map["ETrans_DIS_All_Ang_1n_Directory"];
 
     // ET for every theta_e (2p)
     THStack *sET_All_Ang_All_Int_2p_FD = new THStack("#omega for all #theta_{e} (2p)", "Energy transfer #omega for all #theta_{e} (2p);#omega = E_{beam}-E_{e} [GeV]");
-    std::string sET_All_Ang_All_Int_2p_FD_Dir = directories.ETrans_dir_map["ETrans_All_Ang_stack_2p_Directory"];
+    std::string sET_All_Ang_All_Int_2p_FD_Dir = directories.Omega_dir_map["ETrans_All_Ang_stack_2p_Directory"];
 
     TH1D *hET_All_Ang_All_Int_2p_FD = new TH1D("#omega for all #theta_{e} (All Int., 2p)", "Energy transfer #omega for all #theta_{e} (All Int., 2p);#omega = E_{beam}-E_{e} [GeV]",
                                                numTH1Dbins_ET_Plots, 0, parameters.beamE * 1.1);
@@ -7553,15 +7594,15 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                                            numTH1Dbins_ET_Plots, 0, parameters.beamE * 1.1);
     TH1D *hET_All_Ang_DIS_2p_FD = new TH1D("#omega for all #theta_{e} (DIS Only, 2p, FD)", "Energy transfer #omega for all #theta_{e} (DIS Only, 2p);#omega = E_{beam}-E_{e} [GeV]",
                                            numTH1Dbins_ET_Plots, 0, parameters.beamE * 1.1);
-    std::string hET_All_Ang_All_Int_2p_FD_Dir = directories.ETrans_dir_map["ETrans_All_Int_All_Ang_2p_Directory"];
-    std::string hET_All_Ang_QEL_2p_FD_Dir = directories.ETrans_dir_map["ETrans_QEL_All_Ang_2p_Directory"];
-    std::string hET_All_Ang_MEC_2p_FD_Dir = directories.ETrans_dir_map["ETrans_MEC_All_Ang_2p_Directory"];
-    std::string hET_All_Ang_RES_2p_FD_Dir = directories.ETrans_dir_map["ETrans_RES_All_Ang_2p_Directory"];
-    std::string hET_All_Ang_DIS_2p_FD_Dir = directories.ETrans_dir_map["ETrans_DIS_All_Ang_2p_Directory"];
+    std::string hET_All_Ang_All_Int_2p_FD_Dir = directories.Omega_dir_map["ETrans_All_Int_All_Ang_2p_Directory"];
+    std::string hET_All_Ang_QEL_2p_FD_Dir = directories.Omega_dir_map["ETrans_QEL_All_Ang_2p_Directory"];
+    std::string hET_All_Ang_MEC_2p_FD_Dir = directories.Omega_dir_map["ETrans_MEC_All_Ang_2p_Directory"];
+    std::string hET_All_Ang_RES_2p_FD_Dir = directories.Omega_dir_map["ETrans_RES_All_Ang_2p_Directory"];
+    std::string hET_All_Ang_DIS_2p_FD_Dir = directories.Omega_dir_map["ETrans_DIS_All_Ang_2p_Directory"];
 
     // ET for every theta_e (pFDpCD)
     THStack *sET_All_Ang_All_Int_pFDpCD_FD = new THStack("#omega for all #theta_{e} (pFDpCD)", "Energy transfer #omega for all #theta_{e} (pFDpCD);#omega = E_{beam}-E_{e} [GeV]");
-    std::string sET_All_Ang_All_Int_pFDpCD_FD_Dir = directories.ETrans_dir_map["ETrans_All_Ang_stack_pFDpCD_Directory"];
+    std::string sET_All_Ang_All_Int_pFDpCD_FD_Dir = directories.Omega_dir_map["ETrans_All_Ang_stack_pFDpCD_Directory"];
 
     TH1D *hET_All_Ang_All_Int_pFDpCD_FD =
         new TH1D("#omega for all #theta_{e} (All Int., pFDpCD)", "Energy transfer #omega for all #theta_{e} (All Int., pFDpCD);#omega = E_{beam}-E_{e} [GeV]", numTH1Dbins_ET_Plots, 0,
@@ -7574,15 +7615,15 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                                                "Energy transfer #omega for all #theta_{e} (RES Only, pFDpCD);#omega = E_{beam}-E_{e} [GeV]", numTH1Dbins_ET_Plots, 0, parameters.beamE * 1.1);
     TH1D *hET_All_Ang_DIS_pFDpCD_FD = new TH1D("#omega for all #theta_{e} (DIS Only, pFDpCD, FD)",
                                                "Energy transfer #omega for all #theta_{e} (DIS Only, pFDpCD);#omega = E_{beam}-E_{e} [GeV]", numTH1Dbins_ET_Plots, 0, parameters.beamE * 1.1);
-    std::string hET_All_Ang_All_Int_pFDpCD_FD_Dir = directories.ETrans_dir_map["ETrans_All_Int_All_Ang_pFDpCD_Directory"];
-    std::string hET_All_Ang_QEL_pFDpCD_FD_Dir = directories.ETrans_dir_map["ETrans_QEL_All_Ang_pFDpCD_Directory"];
-    std::string hET_All_Ang_MEC_pFDpCD_FD_Dir = directories.ETrans_dir_map["ETrans_MEC_All_Ang_pFDpCD_Directory"];
-    std::string hET_All_Ang_RES_pFDpCD_FD_Dir = directories.ETrans_dir_map["ETrans_RES_All_Ang_pFDpCD_Directory"];
-    std::string hET_All_Ang_DIS_pFDpCD_FD_Dir = directories.ETrans_dir_map["ETrans_DIS_All_Ang_pFDpCD_Directory"];
+    std::string hET_All_Ang_All_Int_pFDpCD_FD_Dir = directories.Omega_dir_map["ETrans_All_Int_All_Ang_pFDpCD_Directory"];
+    std::string hET_All_Ang_QEL_pFDpCD_FD_Dir = directories.Omega_dir_map["ETrans_QEL_All_Ang_pFDpCD_Directory"];
+    std::string hET_All_Ang_MEC_pFDpCD_FD_Dir = directories.Omega_dir_map["ETrans_MEC_All_Ang_pFDpCD_Directory"];
+    std::string hET_All_Ang_RES_pFDpCD_FD_Dir = directories.Omega_dir_map["ETrans_RES_All_Ang_pFDpCD_Directory"];
+    std::string hET_All_Ang_DIS_pFDpCD_FD_Dir = directories.Omega_dir_map["ETrans_DIS_All_Ang_pFDpCD_Directory"];
 
     // ET for every theta_e (nFDpCD)
     THStack *sET_All_Ang_All_Int_nFDpCD_FD = new THStack("#omega for all #theta_{e} (nFDpCD)", "Energy transfer #omega for all #theta_{e} (nFDpCD);#omega = E_{beam}-E_{e} [GeV]");
-    std::string sET_All_Ang_All_Int_nFDpCD_FD_Dir = directories.ETrans_dir_map["ETrans_All_Ang_stack_nFDpCD_Directory"];
+    std::string sET_All_Ang_All_Int_nFDpCD_FD_Dir = directories.Omega_dir_map["ETrans_All_Ang_stack_nFDpCD_Directory"];
 
     TH1D *hET_All_Ang_All_Int_nFDpCD_FD =
         new TH1D("#omega for all #theta_{e} (All Int., nFDpCD)", "Energy transfer #omega for all #theta_{e} (All Int., nFDpCD);#omega = E_{beam}-E_{e} [GeV]", numTH1Dbins_ET_Plots, 0,
@@ -7595,16 +7636,16 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                                                "Energy transfer #omega for all #theta_{e} (RES Only, nFDpCD);#omega = E_{beam}-E_{e} [GeV]", numTH1Dbins_ET_Plots, 0, parameters.beamE * 1.1);
     TH1D *hET_All_Ang_DIS_nFDpCD_FD = new TH1D("#omega for all #theta_{e} (DIS Only, nFDpCD, FD)",
                                                "Energy transfer #omega for all #theta_{e} (DIS Only, nFDpCD);#omega = E_{beam}-E_{e} [GeV]", numTH1Dbins_ET_Plots, 0, parameters.beamE * 1.1);
-    std::string hET_All_Ang_All_Int_nFDpCD_FD_Dir = directories.ETrans_dir_map["ETrans_All_Int_All_Ang_nFDpCD_Directory"];
-    std::string hET_All_Ang_QEL_nFDpCD_FD_Dir = directories.ETrans_dir_map["ETrans_QEL_All_Ang_nFDpCD_Directory"];
-    std::string hET_All_Ang_MEC_nFDpCD_FD_Dir = directories.ETrans_dir_map["ETrans_MEC_All_Ang_nFDpCD_Directory"];
-    std::string hET_All_Ang_RES_nFDpCD_FD_Dir = directories.ETrans_dir_map["ETrans_RES_All_Ang_nFDpCD_Directory"];
-    std::string hET_All_Ang_DIS_nFDpCD_FD_Dir = directories.ETrans_dir_map["ETrans_DIS_All_Ang_nFDpCD_Directory"];
+    std::string hET_All_Ang_All_Int_nFDpCD_FD_Dir = directories.Omega_dir_map["ETrans_All_Int_All_Ang_nFDpCD_Directory"];
+    std::string hET_All_Ang_QEL_nFDpCD_FD_Dir = directories.Omega_dir_map["ETrans_QEL_All_Ang_nFDpCD_Directory"];
+    std::string hET_All_Ang_MEC_nFDpCD_FD_Dir = directories.Omega_dir_map["ETrans_MEC_All_Ang_nFDpCD_Directory"];
+    std::string hET_All_Ang_RES_nFDpCD_FD_Dir = directories.Omega_dir_map["ETrans_RES_All_Ang_nFDpCD_Directory"];
+    std::string hET_All_Ang_DIS_nFDpCD_FD_Dir = directories.Omega_dir_map["ETrans_DIS_All_Ang_nFDpCD_Directory"];
 
     // ET around 15 Deg (1p)
     /* ET around 15 Deg */
     THStack *sET15_All_Int_1p_FD = new THStack("ET around #theta_{e} = 15#circ (1p)", "Energy transfer #omega Around #theta_{e} = 15#circ (1p);#omega = E_{beam}-E_{e} [GeV]");
-    std::string sET15_All_Int_1p_FD_Dir = directories.ETrans_dir_map["ETrans_15_stack_1p_Directory"];
+    std::string sET15_All_Int_1p_FD_Dir = directories.Omega_dir_map["ETrans_15_stack_1p_Directory"];
 
     TH1D *hET15_All_Int_1p_FD = new TH1D("ET around #theta_{e} = 15#circ (All Int., 1p)", "Energy transfer #omega Around #theta_{e} = 15#circ (All Int., 1p);#omega = E_{beam}-E_{e} [GeV]",
                                          numTH1Dbins_ET_Plots, 0, parameters.beamE * 1.1);
@@ -7616,16 +7657,16 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                                      numTH1Dbins_ET_Plots, 0, parameters.beamE * 1.1);
     TH1D *hET15_DIS_1p_FD = new TH1D("ET around #theta_{e} = 15#circ (DIS Only, 1p, FD)", "Energy transfer #omega Around #theta_{e} = 15#circ (DIS Only, 1p);#omega = E_{beam}-E_{e} [GeV]",
                                      numTH1Dbins_ET_Plots, 0, parameters.beamE * 1.1);
-    std::string hET15_All_Int_1p_FD_Dir = directories.ETrans_dir_map["ETrans_All_Int_15_1p_Directory"];
-    std::string hET15_QEL_1p_FD_Dir = directories.ETrans_dir_map["ETrans_QEL_15_1p_Directory"];
-    std::string hET15_MEC_1p_FD_Dir = directories.ETrans_dir_map["ETrans_MEC_15_1p_Directory"];
-    std::string hET15_RES_1p_FD_Dir = directories.ETrans_dir_map["ETrans_RES_15_1p_Directory"];
-    std::string hET15_DIS_1p_FD_Dir = directories.ETrans_dir_map["ETrans_DIS_15_1p_Directory"];
+    std::string hET15_All_Int_1p_FD_Dir = directories.Omega_dir_map["ETrans_All_Int_15_1p_Directory"];
+    std::string hET15_QEL_1p_FD_Dir = directories.Omega_dir_map["ETrans_QEL_15_1p_Directory"];
+    std::string hET15_MEC_1p_FD_Dir = directories.Omega_dir_map["ETrans_MEC_15_1p_Directory"];
+    std::string hET15_RES_1p_FD_Dir = directories.Omega_dir_map["ETrans_RES_15_1p_Directory"];
+    std::string hET15_DIS_1p_FD_Dir = directories.Omega_dir_map["ETrans_DIS_15_1p_Directory"];
 
     // ET around 15 Deg (1n)
     /* ET around 15 Deg */
     THStack *sET15_All_Int_1n_FD = new THStack("ET around #theta_{e} = 15#circ (1n)", "Energy transfer #omega Around #theta_{e} = 15#circ (1n);#omega = E_{beam}-E_{e} [GeV]");
-    std::string sET15_All_Int_1n_FD_Dir = directories.ETrans_dir_map["ETrans_15_stack_1n_Directory"];
+    std::string sET15_All_Int_1n_FD_Dir = directories.Omega_dir_map["ETrans_15_stack_1n_Directory"];
 
     TH1D *hET15_All_Int_1n_FD = new TH1D("ET around #theta_{e} = 15#circ (All Int., 1n)", "Energy transfer #omega Around #theta_{e} = 15#circ (All Int., 1n);#omega = E_{beam}-E_{e} [GeV]",
                                          numTH1Dbins_ET_Plots, 0, parameters.beamE * 1.1);
@@ -7637,16 +7678,16 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                                      numTH1Dbins_ET_Plots, 0, parameters.beamE * 1.1);
     TH1D *hET15_DIS_1n_FD = new TH1D("ET around #theta_{e} = 15#circ (DIS Only, 1n, FD)", "Energy transfer #omega Around #theta_{e} = 15#circ (DIS Only, 1n);#omega = E_{beam}-E_{e} [GeV]",
                                      numTH1Dbins_ET_Plots, 0, parameters.beamE * 1.1);
-    std::string hET15_All_Int_1n_FD_Dir = directories.ETrans_dir_map["ETrans_All_Int_15_1n_Directory"];
-    std::string hET15_QEL_1n_FD_Dir = directories.ETrans_dir_map["ETrans_QEL_15_1n_Directory"];
-    std::string hET15_MEC_1n_FD_Dir = directories.ETrans_dir_map["ETrans_MEC_15_1n_Directory"];
-    std::string hET15_RES_1n_FD_Dir = directories.ETrans_dir_map["ETrans_RES_15_1n_Directory"];
-    std::string hET15_DIS_1n_FD_Dir = directories.ETrans_dir_map["ETrans_DIS_15_1n_Directory"];
+    std::string hET15_All_Int_1n_FD_Dir = directories.Omega_dir_map["ETrans_All_Int_15_1n_Directory"];
+    std::string hET15_QEL_1n_FD_Dir = directories.Omega_dir_map["ETrans_QEL_15_1n_Directory"];
+    std::string hET15_MEC_1n_FD_Dir = directories.Omega_dir_map["ETrans_MEC_15_1n_Directory"];
+    std::string hET15_RES_1n_FD_Dir = directories.Omega_dir_map["ETrans_RES_15_1n_Directory"];
+    std::string hET15_DIS_1n_FD_Dir = directories.Omega_dir_map["ETrans_DIS_15_1n_Directory"];
 
     // ET around 15 Deg (2p)
     /* ET around 15 Deg */
     THStack *sET15_All_Int_2p_FD = new THStack("#omega around #theta_{e} = 15#circ (2p)", "Energy transfer #omega Around #theta_{e} = 15#circ (2p);#omega = E_{beam}-E_{e} [GeV]");
-    std::string sET15_All_Int_2p_FD_Dir = directories.ETrans_dir_map["ETrans_15_stack_2p_Directory"];
+    std::string sET15_All_Int_2p_FD_Dir = directories.Omega_dir_map["ETrans_15_stack_2p_Directory"];
 
     TH1D *hET15_All_Int_2p_FD = new TH1D("#omega around #theta_{e} = 15#circ (All Int., 2p)",
                                          "Energy transfer #omega Around #theta_{e} = 15#circ (All Int., 2p);#omega = E_{beam}-E_{e} [GeV]", numTH1Dbins_ET_Plots, 0, parameters.beamE * 1.1);
@@ -7658,17 +7699,17 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                                      "Energy transfer #omega Around #theta_{e} = 15#circ (RES Only, 2p);#omega = E_{beam}-E_{e} [GeV]", numTH1Dbins_ET_Plots, 0, parameters.beamE * 1.1);
     TH1D *hET15_DIS_2p_FD = new TH1D("#omega around #theta_{e} = 15#circ (DIS Only, 2p, FD)",
                                      "Energy transfer #omega Around #theta_{e} = 15#circ (DIS Only, 2p);#omega = E_{beam}-E_{e} [GeV]", numTH1Dbins_ET_Plots, 0, parameters.beamE * 1.1);
-    std::string hET15_All_Int_2p_FD_Dir = directories.ETrans_dir_map["ETrans_All_Int_15_2p_Directory"];
-    std::string hET15_QEL_2p_FD_Dir = directories.ETrans_dir_map["ETrans_QEL_15_2p_Directory"];
-    std::string hET15_MEC_2p_FD_Dir = directories.ETrans_dir_map["ETrans_MEC_15_2p_Directory"];
-    std::string hET15_RES_2p_FD_Dir = directories.ETrans_dir_map["ETrans_RES_15_2p_Directory"];
-    std::string hET15_DIS_2p_FD_Dir = directories.ETrans_dir_map["ETrans_DIS_15_2p_Directory"];
+    std::string hET15_All_Int_2p_FD_Dir = directories.Omega_dir_map["ETrans_All_Int_15_2p_Directory"];
+    std::string hET15_QEL_2p_FD_Dir = directories.Omega_dir_map["ETrans_QEL_15_2p_Directory"];
+    std::string hET15_MEC_2p_FD_Dir = directories.Omega_dir_map["ETrans_MEC_15_2p_Directory"];
+    std::string hET15_RES_2p_FD_Dir = directories.Omega_dir_map["ETrans_RES_15_2p_Directory"];
+    std::string hET15_DIS_2p_FD_Dir = directories.Omega_dir_map["ETrans_DIS_15_2p_Directory"];
 
     // ET around 15 Deg (pFDpCD)
     /* ET around 15 Deg */
     THStack *sET15_All_Int_pFDpCD_FD =
         new THStack("#omega around #theta_{e} = 15#circ (pFDpCD)", "Energy transfer #omega Around #theta_{e} = 15#circ (pFDpCD);#omega = E_{beam}-E_{e} [GeV]");
-    std::string sET15_All_Int_pFDpCD_FD_Dir = directories.ETrans_dir_map["ETrans_15_stack_pFDpCD_Directory"];
+    std::string sET15_All_Int_pFDpCD_FD_Dir = directories.Omega_dir_map["ETrans_15_stack_pFDpCD_Directory"];
 
     TH1D *hET15_All_Int_pFDpCD_FD =
         new TH1D("#omega around #theta_{e} = 15#circ (All Int., pFDpCD)", "Energy transfer #omega Around #theta_{e} = 15#circ (All Int., pFDpCD);#omega = E_{beam}-E_{e} [GeV]",
@@ -7685,17 +7726,17 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     TH1D *hET15_DIS_pFDpCD_FD =
         new TH1D("#omega around #theta_{e} = 15#circ (DIS Only, pFDpCD, FD)", "Energy transfer #omega Around #theta_{e} = 15#circ (DIS Only, pFDpCD);#omega = E_{beam}-E_{e} [GeV]",
                  numTH1Dbins_ET_Plots, 0, parameters.beamE * 1.1);
-    std::string hET15_All_Int_pFDpCD_FD_Dir = directories.ETrans_dir_map["ETrans_All_Int_15_pFDpCD_Directory"];
-    std::string hET15_QEL_pFDpCD_FD_Dir = directories.ETrans_dir_map["ETrans_QEL_15_pFDpCD_Directory"];
-    std::string hET15_MEC_pFDpCD_FD_Dir = directories.ETrans_dir_map["ETrans_MEC_15_pFDpCD_Directory"];
-    std::string hET15_RES_pFDpCD_FD_Dir = directories.ETrans_dir_map["ETrans_RES_15_pFDpCD_Directory"];
-    std::string hET15_DIS_pFDpCD_FD_Dir = directories.ETrans_dir_map["ETrans_DIS_15_pFDpCD_Directory"];
+    std::string hET15_All_Int_pFDpCD_FD_Dir = directories.Omega_dir_map["ETrans_All_Int_15_pFDpCD_Directory"];
+    std::string hET15_QEL_pFDpCD_FD_Dir = directories.Omega_dir_map["ETrans_QEL_15_pFDpCD_Directory"];
+    std::string hET15_MEC_pFDpCD_FD_Dir = directories.Omega_dir_map["ETrans_MEC_15_pFDpCD_Directory"];
+    std::string hET15_RES_pFDpCD_FD_Dir = directories.Omega_dir_map["ETrans_RES_15_pFDpCD_Directory"];
+    std::string hET15_DIS_pFDpCD_FD_Dir = directories.Omega_dir_map["ETrans_DIS_15_pFDpCD_Directory"];
 
     // ET around 15 Deg (nFDpCD)
     /* ET around 15 Deg */
     THStack *sET15_All_Int_nFDpCD_FD =
         new THStack("#omega around #theta_{e} = 15#circ (nFDpCD)", "Energy transfer #omega Around #theta_{e} = 15#circ (nFDpCD);#omega = E_{beam}-E_{e} [GeV]");
-    std::string sET15_All_Int_nFDpCD_FD_Dir = directories.ETrans_dir_map["ETrans_15_stack_nFDpCD_Directory"];
+    std::string sET15_All_Int_nFDpCD_FD_Dir = directories.Omega_dir_map["ETrans_15_stack_nFDpCD_Directory"];
 
     TH1D *hET15_All_Int_nFDpCD_FD =
         new TH1D("#omega around #theta_{e} = 15#circ (All Int., nFDpCD)", "Energy transfer #omega Around #theta_{e} = 15#circ (All Int., nFDpCD);#omega = E_{beam}-E_{e} [GeV]",
@@ -7712,11 +7753,11 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     TH1D *hET15_DIS_nFDpCD_FD =
         new TH1D("#omega around #theta_{e} = 15#circ (DIS Only, nFDpCD, FD)", "Energy transfer #omega Around #theta_{e} = 15#circ (DIS Only, nFDpCD);#omega = E_{beam}-E_{e} [GeV]",
                  numTH1Dbins_ET_Plots, 0, parameters.beamE * 1.1);
-    std::string hET15_All_Int_nFDpCD_FD_Dir = directories.ETrans_dir_map["ETrans_All_Int_15_nFDpCD_Directory"];
-    std::string hET15_QEL_nFDpCD_FD_Dir = directories.ETrans_dir_map["ETrans_QEL_15_nFDpCD_Directory"];
-    std::string hET15_MEC_nFDpCD_FD_Dir = directories.ETrans_dir_map["ETrans_MEC_15_nFDpCD_Directory"];
-    std::string hET15_RES_nFDpCD_FD_Dir = directories.ETrans_dir_map["ETrans_RES_15_nFDpCD_Directory"];
-    std::string hET15_DIS_nFDpCD_FD_Dir = directories.ETrans_dir_map["ETrans_DIS_15_nFDpCD_Directory"];
+    std::string hET15_All_Int_nFDpCD_FD_Dir = directories.Omega_dir_map["ETrans_All_Int_15_nFDpCD_Directory"];
+    std::string hET15_QEL_nFDpCD_FD_Dir = directories.Omega_dir_map["ETrans_QEL_15_nFDpCD_Directory"];
+    std::string hET15_MEC_nFDpCD_FD_Dir = directories.Omega_dir_map["ETrans_MEC_15_nFDpCD_Directory"];
+    std::string hET15_RES_nFDpCD_FD_Dir = directories.Omega_dir_map["ETrans_RES_15_nFDpCD_Directory"];
+    std::string hET15_DIS_nFDpCD_FD_Dir = directories.Omega_dir_map["ETrans_DIS_15_nFDpCD_Directory"];
 
 #pragma endregion
 
@@ -18434,6 +18475,9 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     float DefStatX = gStyle->GetStatX(), DefStatY = gStyle->GetStatY();
 
+    gStyle->SetStatX(0.98);
+    gStyle->SetStatY(0.875);
+
     MainCanvas->cd();
 
     // ======================================================================================================================================================================
@@ -19918,11 +19962,13 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                        hQ2_DIS_pFDpCD, "05e_Q2_Stack_pFDpCD", sQ2_pFDpCD_Dir, "");
 
         // Q2 vs. xB plots (pFDpCD, FD)
-        histPlotter2D(MainCanvas, hQ2_VS_xB_All_Int_pFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hQ2_VS_xB_pFDpCD_Dir, "05fa_Q2_VS_xB_pFDpCD");
-        histPlotter2D(MainCanvas, hQ2_VS_xB_QEL_pFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hQ2_VS_xB_pFDpCD_Dir, "05faa_Q2_VS_xB_QEL_pFDpCD");
-        histPlotter2D(MainCanvas, hQ2_VS_xB_MEC_pFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hQ2_VS_xB_pFDpCD_Dir, "05fab_Q2_VS_xB_MEC_pFDpCD");
-        histPlotter2D(MainCanvas, hQ2_VS_xB_RES_pFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hQ2_VS_xB_pFDpCD_Dir, "05fac_Q2_VS_xB_RES_pFDpCD");
-        histPlotter2D(MainCanvas, hQ2_VS_xB_DIS_pFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hQ2_VS_xB_pFDpCD_Dir, "05fad_Q2_VS_xB_DIS_pFDpCD");
+        histPlotter2D(MainCanvas, hQ2_VS_xB_All_Int_pFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, true, hQ2_VS_xB_pFDpCD_Dir, "05fa_Q2_VS_xB_pFDpCD");
+        histPlotter2D(MainCanvas, hQ2_VS_xB_QEL_pFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, true, hQ2_VS_xB_pFDpCD_Dir, "05faa_Q2_VS_xB_QEL_pFDpCD");
+        histPlotter2D(MainCanvas, hQ2_VS_xB_MEC_pFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, true, hQ2_VS_xB_pFDpCD_Dir, "05fab_Q2_VS_xB_MEC_pFDpCD");
+        histPlotter2D(MainCanvas, hQ2_VS_xB_RES_pFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, true, hQ2_VS_xB_pFDpCD_Dir, "05fac_Q2_VS_xB_RES_pFDpCD");
+        histPlotter2D(MainCanvas, hQ2_VS_xB_DIS_pFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, true, hQ2_VS_xB_pFDpCD_Dir, "05fad_Q2_VS_xB_DIS_pFDpCD");
+        histogram_functions::PlotHistograms({hQ2_VS_xB_All_Int_pFDpCD, hQ2_VS_xB_QEL_pFDpCD, hQ2_VS_xB_MEC_pFDpCD, hQ2_VS_xB_RES_pFDpCD, hQ2_VS_xB_DIS_pFDpCD},
+                                            directories.ReacMon_dir_map["ReacMon_Parent_Directory"]);
 
         // Q2 vs. theta_q plots (pFDpCD, FD)
         histPlotter2D(MainCanvas, hQ2_VS_theta_q_All_Int_pFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hQ2_VS_theta_q_pFDpCD_Dir, "05fb_Q2_VS_theta_q_pFDpCD");
@@ -26514,6 +26560,12 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     zipping::SavePlotsToZipFile(Save_Plots_folder_to_zip_files, zipping_print_out, run_plots_path, settings.GetRun_dir_name());
     // printers::SavePlotsToZipFile(Save_Plots_folder_to_zip_files, zipping_print_out, run_plots_path, settings.GetRun_dir_name());
 
+#pragma endregion
+
+#pragma region /* Cleanup */
+    for (auto histo : HistoList) { delete histo; }
+
+    delete MainCanvas;
 #pragma endregion
 }
 

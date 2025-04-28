@@ -261,11 +261,7 @@ void hPlot1D::histPlotter1D(TCanvas *HistogramCanvas, TH1D *Histogram1D, bool no
         Histogram1DStack->Add(Histogram1D);
     }
 
-    HistogramCanvas->cd();
-
-    gStyle->SetOptStat("ourmen");
-    HistogramCanvas->Clear();
-}
+HistogramCanvas->Clear();}
 #pragma endregion
 
 #pragma region /* histPlotter1D function (old, stackless) */
@@ -420,11 +416,7 @@ void hPlot1D::histPlotter1D(TCanvas *HistogramCanvas, TH1D *Histogram1D, bool no
         HistoList.push_back(Histogram1D);
     }
 
-    HistogramCanvas->cd();
-
-    gStyle->SetOptStat("ourmen");
-    HistogramCanvas->Clear();
-}
+HistogramCanvas->Clear();}
 #pragma endregion
 
 // histPlotter1D function (unsymmetric cuts for SF plots) ---------------------------------------------------------------------------------------------------------------
@@ -586,11 +578,7 @@ void hPlot1D::histPlotter1D(TCanvas *HistogramCanvas, TH1D *Histogram1D, bool no
         Histogram1DStack->Add(Histogram1D);
     }
 
-    HistogramCanvas->cd();
-
-    gStyle->SetOptStat("ourmen");
-    HistogramCanvas->Clear();
-}
+HistogramCanvas->Clear();}
 #pragma endregion
 
 #pragma region /* histPlotter1D function (unsymmetric cuts for SF plots, stackless) */
@@ -745,11 +733,7 @@ void hPlot1D::histPlotter1D(TCanvas *HistogramCanvas, TH1D *Histogram1D, bool no
         HistoList.push_back(Histogram1D);
     }
 
-    HistogramCanvas->cd();
-
-    gStyle->SetOptStat("ourmen");
-    HistogramCanvas->Clear();
-}
+HistogramCanvas->Clear();}
 #pragma endregion
 
 // histPlotter1D function (one-sided cuts for Nphe plots) ---------------------------------------------------------------------------------------------------------------
@@ -881,11 +865,7 @@ void hPlot1D::histPlotter1D(TCanvas *HistogramCanvas, TH1D *Histogram1D, bool no
         Histogram1DStack->Add(Histogram1D);
     }
 
-    HistogramCanvas->cd();
-
-    gStyle->SetOptStat("ourmen");
-    HistogramCanvas->Clear();
-}
+HistogramCanvas->Clear();}
 #pragma endregion
 
 #pragma region /* histPlotter1D function (one-sided cuts for Nphe plots, stackless) */
@@ -1035,11 +1015,7 @@ void hPlot1D::histPlotter1D(TCanvas *HistogramCanvas, TH1D *Histogram1D, bool no
         }
     }
 
-    HistogramCanvas->cd();
-
-    gStyle->SetOptStat("ourmen");
-    HistogramCanvas->Clear();
-}
+HistogramCanvas->Clear();}
 #pragma endregion
 
 // histPlotter1D function (unified) -------------------------------------------------------------------------------------------------------------------------------------
@@ -1217,11 +1193,7 @@ void hPlot1D::histPlotter1D(const std::string &SampleName, TCanvas *HistogramCan
         Histogram1DStack->Add(Histogram1D);
     }
 
-    HistogramCanvas->cd();
-
-    gStyle->SetOptStat("ourmen");
-    HistogramCanvas->Clear();
-}
+HistogramCanvas->Clear();}
 #pragma endregion
 
 #pragma region /* histPlotter1D function (unified, stackless) */
@@ -1390,11 +1362,7 @@ void hPlot1D::histPlotter1D(const std::string &SampleName, TCanvas *HistogramCan
         HistoList.push_back(Histogram1D);
     }
 
-    HistogramCanvas->cd();
-
-    gStyle->SetOptStat("ourmen");
-    HistogramCanvas->Clear();
-}
+HistogramCanvas->Clear();}
 #pragma endregion
 
 // histPlotter1DwFit function (unified) -------------------------------------------------------------------------------------------------------------------------------------
@@ -1630,11 +1598,7 @@ void hPlot1D::histPlotter1DwFit(std::string SampleName, TCanvas *HistogramCanvas
 
     Histogram_list->Add(Histogram1D);
 
-    HistogramCanvas->cd();
-
-    gStyle->SetOptStat("ourmen");
-    HistogramCanvas->Clear();
-}
+HistogramCanvas->Clear();}
 #pragma endregion
 
 // hDrawAndSave function ------------------------------------------------------------------------------------------------------------------------------------------------
