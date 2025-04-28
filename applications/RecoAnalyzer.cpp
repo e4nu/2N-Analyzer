@@ -21037,6 +21037,17 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         histogram_functions::CompareHistograms({sE_miss_1N_pFDpCD, sE_miss_1N_nFDpCD}, directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons",
                                                "E_miss_1N_stack_ReacComp");
 
+        histogram_functions::CompareHistograms({hP_miss_1N_VS_E_miss_1N_All_Int_pFDpCD, hP_miss_1N_VS_E_miss_1N_All_Int_nFDpCD}, directories.ReacMon_dir_map["ReacMon_Parent_Directory"],
+                                               "Histogram_Comparisons", "P_miss_1N_VS_E_miss_1N_All_Int_ReacComp");
+        histogram_functions::CompareHistograms({hP_miss_1N_VS_E_miss_1N_QEL_pFDpCD, hP_miss_1N_VS_E_miss_1N_QEL_nFDpCD}, directories.ReacMon_dir_map["ReacMon_Parent_Directory"],
+                                               "Histogram_Comparisons", "P_miss_1N_VS_E_miss_1N_QEL_ReacComp");
+        histogram_functions::CompareHistograms({hP_miss_1N_VS_E_miss_1N_MEC_pFDpCD, hP_miss_1N_VS_E_miss_1N_MEC_nFDpCD}, directories.ReacMon_dir_map["ReacMon_Parent_Directory"],
+                                               "Histogram_Comparisons", "P_miss_1N_VS_E_miss_1N_MEC_ReacComp");
+        histogram_functions::CompareHistograms({hP_miss_1N_VS_E_miss_1N_RES_pFDpCD, hP_miss_1N_VS_E_miss_1N_RES_nFDpCD}, directories.ReacMon_dir_map["ReacMon_Parent_Directory"],
+                                               "Histogram_Comparisons", "P_miss_1N_VS_E_miss_1N_RES_ReacComp");
+        histogram_functions::CompareHistograms({hP_miss_1N_VS_E_miss_1N_DIS_pFDpCD, hP_miss_1N_VS_E_miss_1N_DIS_nFDpCD}, directories.ReacMon_dir_map["ReacMon_Parent_Directory"],
+                                               "Histogram_Comparisons", "P_miss_1N_VS_E_miss_1N_DIS_ReacComp");
+
         histogram_functions::CompareHistograms({hP_miss_2N_All_Int_pFDpCD, hP_miss_2N_All_Int_nFDpCD}, directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons",
                                                "P_miss_2N_All_Int_ReacComp");
         histogram_functions::CompareHistograms({sP_miss_2N_pFDpCD, sP_miss_2N_nFDpCD}, directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons",
@@ -21045,6 +21056,17 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                                                "E_miss_2N_All_Int_ReacComp");
         histogram_functions::CompareHistograms({sE_miss_2N_pFDpCD, sE_miss_2N_nFDpCD}, directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons",
                                                "E_miss_2N_stack_ReacComp");
+
+        histogram_functions::CompareHistograms({hP_miss_2N_VS_E_miss_2N_All_Int_pFDpCD, hP_miss_2N_VS_E_miss_2N_All_Int_nFDpCD}, directories.ReacMon_dir_map["ReacMon_Parent_Directory"],
+                                               "Histogram_Comparisons", "P_miss_2N_VS_E_miss_2N_All_Int_ReacComp");
+        histogram_functions::CompareHistograms({hP_miss_2N_VS_E_miss_2N_QEL_pFDpCD, hP_miss_2N_VS_E_miss_2N_QEL_nFDpCD}, directories.ReacMon_dir_map["ReacMon_Parent_Directory"],
+                                               "Histogram_Comparisons", "P_miss_2N_VS_E_miss_2N_QEL_ReacComp");
+        histogram_functions::CompareHistograms({hP_miss_2N_VS_E_miss_2N_MEC_pFDpCD, hP_miss_2N_VS_E_miss_2N_MEC_nFDpCD}, directories.ReacMon_dir_map["ReacMon_Parent_Directory"],
+                                               "Histogram_Comparisons", "P_miss_2N_VS_E_miss_2N_MEC_ReacComp");
+        histogram_functions::CompareHistograms({hP_miss_2N_VS_E_miss_2N_RES_pFDpCD, hP_miss_2N_VS_E_miss_2N_RES_nFDpCD}, directories.ReacMon_dir_map["ReacMon_Parent_Directory"],
+                                               "Histogram_Comparisons", "P_miss_2N_VS_E_miss_2N_RES_ReacComp");
+        histogram_functions::CompareHistograms({hP_miss_2N_VS_E_miss_2N_DIS_pFDpCD, hP_miss_2N_VS_E_miss_2N_DIS_nFDpCD}, directories.ReacMon_dir_map["ReacMon_Parent_Directory"],
+                                               "Histogram_Comparisons", "P_miss_2N_VS_E_miss_2N_DIS_ReacComp");
 
         histogram_functions::CompareHistograms({hQ2_pFDpCD, hQ2_nFDpCD}, directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "Q2_All_Int_ReacComp");
         histogram_functions::CompareHistograms({sQ2_pFDpCD, sQ2_nFDpCD}, directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "Q2_stack_ReacComp");
@@ -26927,8 +26949,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         if (ApplyLimiter) { std::cout << "\033[31m\n\nNOTE: running code with a limiter on number of events!\n\n\033[0m"; }
     }
 
+    std::cout << "\n\n\033[33mSaving plots folder to zip file...\n\033[0m";
     zipping::SavePlotsToZipFile(Save_Plots_folder_to_zip_files, zipping_print_out, run_plots_path, settings.GetRun_dir_name());
-    // printers::SavePlotsToZipFile(Save_Plots_folder_to_zip_files, zipping_print_out, run_plots_path, settings.GetRun_dir_name());
 
 #pragma endregion
 
@@ -26938,6 +26960,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     //     delete MainCanvas;
     //     delete plots_fout;
     // #pragma endregion
+
+    std::cout << "\n\n\033[33mFinished run over:\033[0m" << parameters.SampleName << "\n\n";
 }
 
 #endif  // RECOANALYZER_H
