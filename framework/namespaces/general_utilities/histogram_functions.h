@@ -266,22 +266,19 @@ void DrawTHStack(THStack *stack, bool useLogScale) {
     TList *histList = stack->GetHists();
     if (!histList) { return; }
 
-    TIter next(histList);
-    while (TObject *obj = next()) {
-        if (obj->InheritsFrom(TH1::Class())) { ((TH1 *)obj)->Sumw2(kTRUE); }
-    }
-
     // Prepare histogram pointers
+    TH1 *H1D_All_Int = nullptr;
     TH1 *H1D_QEL = nullptr;
     TH1 *H1D_MEC = nullptr;
     TH1 *H1D_RES = nullptr;
     TH1 *H1D_DIS = nullptr;
-    TH1 *H1D_All_Int = nullptr;
 
     // Sort histograms by title
     TIter next(histList);
     while (TObject *obj = next()) {
         if (obj->InheritsFrom(TH1::Class())) {
+            ((TH1 *)obj)->Sumw2(kTRUE);
+
             TH1 *h = (TH1 *)obj;
             TString title = h->GetTitle();
 
