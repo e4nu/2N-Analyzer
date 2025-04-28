@@ -256,7 +256,7 @@ bool IsHistogramEmpty(TObject *obj) {
 
 // CompareHistograms -------------------------------------------------------------------------------------------------------------------------------------------------------
 
-void CompareHistograms(const std::vector<TObject *> &histograms, const std::string &saveDirectory) {
+void CompareHistograms(const std::vector<TObject *> &histograms, const std::string &saveDirectory, const std::string &saveDirectoryName = "", const std::string &ComparisonName = "") {
     size_t nHistos = histograms.size();
 
     if (nHistos != 4 && nHistos != 5) {
@@ -277,7 +277,7 @@ void CompareHistograms(const std::vector<TObject *> &histograms, const std::stri
     // ------------------
     // Linear Scale Canvas
     // ------------------
-    TCanvas TempCanvas("TempCanvas", "Histograms - Linear Scale", 1200, 800);
+    TCanvas TempCanvas("TempCanvas", "Histograms - Linear Scale", 1000 * nCols, 750 * nRows);
     TempCanvas.Divide(nCols, nRows);
 
     for (size_t i = 0; i < nHistos; ++i) {
@@ -309,9 +309,9 @@ void CompareHistograms(const std::vector<TObject *> &histograms, const std::stri
     TempCanvas.Update();
     TempCanvas.Draw();
 
-    std::string savePath = saveDirectory;
+    std::string savePath = (saveDirectoryName != "") ? saveDirectory + "/" + saveDirectoryName : saveDirectory;
     if (!savePath.empty() && savePath.back() != '/' && savePath.back() != '\\') { savePath += "/"; }
-    std::string linearFile = savePath + "comparison_linear_scale.pdf";
+    std::string linearFile = (ComparisonName != "") ? savePath + ComparisonName + "_linear_scale.pdf" : savePath + "comparison_linear_scale.pdf";
 
     TempCanvas.SaveAs(linearFile.c_str());
 
@@ -319,8 +319,10 @@ void CompareHistograms(const std::vector<TObject *> &histograms, const std::stri
     // Log Scale Canvas
     // ------------------
 
-    std::string logDir = savePath + "log_scale_plots/";
-    if (gSystem->AccessPathName(logDir.c_str())) { gSystem->mkdir(logDir.c_str(), true); }
+    std::string logDir = SavePath + "log_scale_plots/";
+    system(("mkdir -p " + logDir).c_str());
+    // std::string logDir = savePath + "log_scale_plots/";
+    // if (gSystem->AccessPathName(logDir.c_str())) { gSystem->mkdir(logDir.c_str(), true); }
 
     TCanvas TempCanvas_log("TempCanvas_log", "Histograms - Log Scale", 1200, 800);
     TempCanvas_log.Divide(nCols, nRows);
@@ -357,7 +359,8 @@ void CompareHistograms(const std::vector<TObject *> &histograms, const std::stri
     TempCanvas_log.Update();
     TempCanvas_log.Draw();
 
-    std::string logFile = logDir + "comparison_log_scale.pdf";
+    std::string logFile = (ComparisonName != "") ? logDir + ComparisonName + "_log_scale.pdf" : logDir + "comparison_log_scale.pdf";
+    // std::string logFile = logDir + "comparison_log_scale.pdf";
 
     TempCanvas_log.SaveAs(logFile.c_str());
 }
