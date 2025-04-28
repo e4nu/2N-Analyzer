@@ -273,13 +273,13 @@ void DrawTHStack(THStack *stack, bool useLogScale) {
     TH1 *H1D_RES = nullptr;
     TH1 *H1D_DIS = nullptr;
 
-    // Sort histograms by title and apply Sumw2
+    // Sort histograms by title
     TIter next(histList);
     while (TObject *obj = next()) {
         if (obj->InheritsFrom(TH1::Class())) {
-            TH1 *h = (TH1 *)obj;
-            h->Sumw2(kTRUE);  // Force building errors
+            ((TH1 *)obj)->Sumw2(kTRUE);
 
+            TH1 *h = (TH1 *)obj;
             TString title = h->GetTitle();
 
             if (title.Contains("All Int.")) {
@@ -296,49 +296,37 @@ void DrawTHStack(THStack *stack, bool useLogScale) {
         }
     }
 
-    // Now, create a new local THStack to draw
-    THStack *SortedStack = new THStack(Form("%s_sorted", stack->GetName()), stack->GetTitle());
-
+    // Set styles and Sumw2
     if (H1D_All_Int) {
-        H1D_All_Int->SetLineWidth(3);
-        // H1D_All_Int->SetLineWidth(4);
+        H1D_All_Int->SetLineWidth(4);
         H1D_All_Int->SetLineColor(kBlack);
         H1D_All_Int->SetLineStyle(5);
         H1D_All_Int->Sumw2(kTRUE);
-        SortedStack->Add(H1D_All_Int);
     }
     if (H1D_QEL) {
-        H1D_QEL->SetLineWidth(1);
-        // H1D_QEL->SetLineWidth(2);
+        H1D_QEL->SetLineWidth(2);
         H1D_QEL->SetLineColor(kBlue);
         H1D_QEL->Sumw2(kTRUE);
-        SortedStack->Add(H1D_QEL);
     }
     if (H1D_MEC) {
-        H1D_MEC->SetLineWidth(1);
-        // H1D_MEC->SetLineWidth(2);
+        H1D_MEC->SetLineWidth(2);
         H1D_MEC->SetLineColor(kRed + 1);
         H1D_MEC->Sumw2(kTRUE);
-        SortedStack->Add(H1D_MEC);
     }
     if (H1D_RES) {
-        H1D_RES->SetLineWidth(1);
-        // H1D_RES->SetLineWidth(2);
+        H1D_RES->SetLineWidth(2);
         H1D_RES->SetLineColor(kGreen);
         H1D_RES->Sumw2(kTRUE);
-        SortedStack->Add(H1D_RES);
     }
     if (H1D_DIS) {
-        H1D_DIS->SetLineWidth(1);
-        // H1D_DIS->SetLineWidth(2);
+        H1D_DIS->SetLineWidth(2);
         H1D_DIS->SetLineColor(kOrange + 6);
         H1D_DIS->Sumw2(kTRUE);
-        SortedStack->Add(H1D_DIS);
     }
 
-    // Draw the new local stack
-    SortedStack->Draw("nostack");
-    // SortedStack->Draw("NOSTACK HIST");
+    // Draw the stack
+    stack->Draw("NOSTACK");
+    // stack->Draw("NOSTACK HIST");
 
     // Add legend if needed
     if (H1D_All_Int && H1D_All_Int->Integral() != 0.) {
@@ -351,9 +339,6 @@ void DrawTHStack(THStack *stack, bool useLogScale) {
         if (H1D_DIS) { Histogram1DStackLegend->AddEntry(H1D_DIS, "DIS", "l"); }
         Histogram1DStackLegend->Draw();
     }
-
-    // Important: delete the SortedStack pointer ONLY IF you don't want it kept inside the canvas
-    // Here it's safe to leave it: ROOT manages it when canvas is deleted
 }
 
 // CompareHistograms -------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -399,7 +384,8 @@ void CompareHistograms(const std::vector<TObject *> &histograms, const std::stri
         if (IsHistogramEmpty(histograms[i])) {
             DrawEmptyHistogramNotice(0.2, 0.4, 0.8, 0.6);
         } else if (histograms[i]->InheritsFrom(TH1D::Class())) {
-            ((TH1D *)histograms[i])->Draw("HISTE");
+            ((TH1D *)histograms[i])->Draw();
+            // ((TH1D *)histograms[i])->Draw("HISTE");
         } else if (histograms[i]->InheritsFrom(TH2D::Class())) {
             TH2D *h2 = (TH2D *)histograms[i];
             h2->Draw("COLZ");
@@ -442,7 +428,8 @@ void CompareHistograms(const std::vector<TObject *> &histograms, const std::stri
             DrawEmptyHistogramNotice(0.2, 0.4, 0.8, 0.6);
         } else if (histograms[i]->InheritsFrom(TH1D::Class())) {
             gPad->SetLogy(1);
-            ((TH1D *)histograms[i])->Draw("HISTE");
+            ((TH1D *)histograms[i])->Draw();
+            // ((TH1D *)histograms[i])->Draw("HISTE");
         } else if (histograms[i]->InheritsFrom(TH2D::Class())) {
             gPad->SetLogz(1);
             TH2D *h2 = (TH2D *)histograms[i];
