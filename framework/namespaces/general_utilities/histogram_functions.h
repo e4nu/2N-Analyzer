@@ -401,7 +401,7 @@ void CompareHistograms(const std::vector<TObject *> &histograms, const std::stri
             DrawEmptyHistogramNotice(0.2, 0.4, 0.8, 0.6);
         } else if (histograms[i]->InheritsFrom(TH1D::Class())) {
             ((TH1D *)histograms[i])->SetLineColor(kBlue);
-            ((TH1D *)histograms[i])->SetLineSize(1);
+            ((TH1D *)histograms[i])->SetLineWidth(1);
             ((TH1D *)histograms[i])->SetLineStyle(1);
             ((TH1D *)histograms[i])->Draw();
             // ((TH1D *)histograms[i])->Draw("HISTE");
