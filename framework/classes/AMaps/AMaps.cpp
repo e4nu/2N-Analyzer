@@ -2261,10 +2261,10 @@ void AMaps::DrawAndSaveMaps(const std::string &SampleName, TCanvas *h1DCanvas, c
 
         /* Electron maps */
         for (int i = 0; i < ElectronMomSliceLimits.size(); i++) {
-            truth_theta_e_VS_phi_e_BySlice.at(i).hDrawAndSave(SName, h1DCanvas, TLAMaps, AMap_TL_HistoList, true);
-            reco_theta_e_VS_phi_e_BySlice.at(i).hDrawAndSave(SName, h1DCanvas, RecoAMaps, AMap_Reco_HistoList, true);
-            acceptance_eff_e_BySlice.at(i).hDrawAndSave(SName, h1DCanvas, AMapsRatio, AMap_Ratio_HistoList, true);
-            filtered_reco_theta_e_VS_phi_e_BySlice.at(i).hDrawAndSave(SName, h1DCanvas, Charged_particle_Sep_AMaps, cPart_Sep_AMaps_HistoList, true);
+            truth_theta_e_VS_phi_e_BySlice.at(i).hDrawAndSave(SName, h1DCanvas, TLAMaps, AMap_TL_HistoList_skipCleaning, AMap_TL_HistoList, true);
+            reco_theta_e_VS_phi_e_BySlice.at(i).hDrawAndSave(SName, h1DCanvas, RecoAMaps, AMap_Reco_HistoList_skipCleaning, AMap_Reco_HistoList, true);
+            acceptance_eff_e_BySlice.at(i).hDrawAndSave(SName, h1DCanvas, AMapsRatio, AMap_Ratio_HistoList_skipCleaning, AMap_Ratio_HistoList, true);
+            filtered_reco_theta_e_VS_phi_e_BySlice.at(i).hDrawAndSave(SName, h1DCanvas, Charged_particle_Sep_AMaps_skipCleaning, cPart_Sep_AMaps_HistoList, cPart_Sep_AMaps_HistoList, true);
         }
 
         /* Finalized acceptance maps */
@@ -2279,18 +2279,18 @@ void AMaps::DrawAndSaveMaps(const std::string &SampleName, TCanvas *h1DCanvas, c
 
     if (basic_tools::FindSubstring(SName, "Uniform_ep_sample_")) {
         /* Acceptance maps BC */
-        reco_theta_p_VS_phi_p_BC.hDrawAndSave(SName, h1DCanvas, AcceptanceMapsBC, AMapsBC_HistoList, true);
+        reco_theta_p_VS_phi_p_BC.hDrawAndSave(SName, h1DCanvas, AcceptanceMapsBC, AMapsBC_HistoList_skipCleaning, AMapsBC_HistoList, true);
 
         /* Proton maps */
         for (int i = 0; i < NucleonMomSliceLimits.size(); i++) {
-            truth_theta_p_VS_phi_p_BySlice.at(i).hDrawAndSave(SName, h1DCanvas, TLAMaps, AMap_TL_HistoList, true);
-            reco_theta_p_VS_phi_p_BySlice.at(i).hDrawAndSave(SName, h1DCanvas, RecoAMaps, AMap_Reco_HistoList, true);
-            acceptance_eff_p_BySlice.at(i).hDrawAndSave(SName, h1DCanvas, AMapsRatio, AMap_Ratio_HistoList, true);
-            filtered_reco_theta_p_VS_phi_p_BySlice.at(i).hDrawAndSave(SName, h1DCanvas, Charged_particle_Sep_AMaps, cPart_Sep_AMaps_HistoList, true);
+            truth_theta_p_VS_phi_p_BySlice.at(i).hDrawAndSave(SName, h1DCanvas, TLAMaps, AMap_TL_HistoList_skipCleaning, AMap_TL_HistoList, true);
+            reco_theta_p_VS_phi_p_BySlice.at(i).hDrawAndSave(SName, h1DCanvas, RecoAMaps, AMap_Reco_HistoList_skipCleaning, AMap_Reco_HistoList, true);
+            acceptance_eff_p_BySlice.at(i).hDrawAndSave(SName, h1DCanvas, AMapsRatio, AMap_Ratio_HistoList_skipCleaning, AMap_Ratio_HistoList, true);
+            filtered_reco_theta_p_VS_phi_p_BySlice.at(i).hDrawAndSave(SName, h1DCanvas, Charged_particle_Sep_AMaps, cPart_Sep_AMaps_HistoList_skipCleaning, cPart_Sep_AMaps_HistoList, true);
         }
 
         /* Finalized acceptance maps */
-        filtered_reco_theta_p_VS_phi_p.hDrawAndSave(SName, h1DCanvas, AcceptanceMaps, AMaps_HistoList, true);
+        filtered_reco_theta_p_VS_phi_p.hDrawAndSave(SName, h1DCanvas, AcceptanceMaps, AMaps_HistoList_skipCleaning, AMaps_HistoList, true);
 
         /* Saving maps in PDFs */
         DrawAndSaveMapsPDFs(truth_p_BySlice, truth_theta_p_VS_phi_p_BySlice[0].GetHistogram2DSaveNamePath() + "truth_theta_p_VS_phi_p_BySlice.pdf");
@@ -2301,23 +2301,23 @@ void AMaps::DrawAndSaveMaps(const std::string &SampleName, TCanvas *h1DCanvas, c
 
     if (basic_tools::FindSubstring(SName, "Uniform_en_sample_")) {
         /* Acceptance maps BC */
-        reco_theta_n_VS_phi_n_BC.hDrawAndSave(SName, h1DCanvas, AcceptanceMapsBC, AMapsBC_HistoList, true);
+        reco_theta_n_VS_phi_n_BC.hDrawAndSave(SName, h1DCanvas, AcceptanceMapsBC, AMapsBC_HistoList_skipCleaning, AMapsBC_HistoList, true);
 
         /* Neutron maps (by momentum slice) */
         for (int i = 0; i < NucleonMomSliceLimits.size(); i++) {
-            truth_theta_n_VS_phi_n_BySlice.at(i).hDrawAndSave(SName, h1DCanvas, TLAMaps, AMap_TL_HistoList, true);
-            reco_theta_n_VS_phi_n_BySlice.at(i).hDrawAndSave(SName, h1DCanvas, RecoAMaps, AMap_Reco_HistoList, true);
-            acceptance_eff_n_BySlice.at(i).hDrawAndSave(SName, h1DCanvas, AMapsRatio, AMap_Ratio_HistoList, true);
-            filtered_reco_theta_n_VS_phi_n_BySlice.at(i).hDrawAndSave(SName, h1DCanvas, Charged_particle_Sep_AMaps, cPart_Sep_AMaps_HistoList, true);
+            truth_theta_n_VS_phi_n_BySlice.at(i).hDrawAndSave(SName, h1DCanvas, TLAMaps, AMap_TL_HistoLis_skipCleaning, AMap_TL_HistoList, true);
+            reco_theta_n_VS_phi_n_BySlice.at(i).hDrawAndSave(SName, h1DCanvas, RecoAMaps, AMap_Reco_HistoList_skipCleaning, AMap_Reco_HistoList, true);
+            acceptance_eff_n_BySlice.at(i).hDrawAndSave(SName, h1DCanvas, AMapsRatio, AMap_Ratio_HistoList_skipCleaning, AMap_Ratio_HistoList, true);
+            filtered_reco_theta_n_VS_phi_n_BySlice.at(i).hDrawAndSave(SName, h1DCanvas, Charged_particle_Sep_AMaps, cPart_Sep_AMaps_HistoList_skipCleaning, cPart_Sep_AMaps_HistoList, true);
         }
 
         /* Neutron maps */
-        truth_theta_n_VS_phi_n.hDrawAndSave(SName, h1DCanvas, TLAMaps, AMap_TL_HistoList, true);
-        reco_theta_n_VS_phi_n.hDrawAndSave(SName, h1DCanvas, RecoAMaps, AMap_Reco_HistoList, true);
-        acceptance_eff_n.hDrawAndSave(SName, h1DCanvas, AMapsRatio, AMap_Ratio_HistoList, true);
+        truth_theta_n_VS_phi_n.hDrawAndSave(SName, h1DCanvas, TLAMaps, AMap_TL_HistoList_skipCleaning, AMap_TL_HistoList, true);
+        reco_theta_n_VS_phi_n.hDrawAndSave(SName, h1DCanvas, RecoAMaps, AMap_Reco_HistoList_skipCleaning, AMap_Reco_HistoList, true);
+        acceptance_eff_n.hDrawAndSave(SName, h1DCanvas, AMapsRatio, AMap_Ratio_HistoList_skipCleaning, AMap_Ratio_HistoList, true);
 
         /* Finalized acceptance maps */
-        filtered_reco_theta_n_VS_phi_n.hDrawAndSave(SName, h1DCanvas, AcceptanceMaps, AMaps_HistoList, true);
+        filtered_reco_theta_n_VS_phi_n.hDrawAndSave(SName, h1DCanvas, AcceptanceMaps, AMaps_HistoList_skipCleaning, AMaps_HistoList, true);
 
         /* Saving maps in PDFs */
         DrawAndSaveMapsPDFs(truth_n_BySlice, truth_theta_n_VS_phi_n_BySlice[0].GetHistogram2DSaveNamePath() + "truth_theta_n_VS_phi_n_BySlice.pdf");
