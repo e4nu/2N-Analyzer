@@ -2264,7 +2264,7 @@ void AMaps::DrawAndSaveMaps(const std::string &SampleName, TCanvas *h1DCanvas, c
             truth_theta_e_VS_phi_e_BySlice.at(i).hDrawAndSave(SName, h1DCanvas, TLAMaps, AMap_TL_HistoList_skipCleaning, AMap_TL_HistoList, true);
             reco_theta_e_VS_phi_e_BySlice.at(i).hDrawAndSave(SName, h1DCanvas, RecoAMaps, AMap_Reco_HistoList_skipCleaning, AMap_Reco_HistoList, true);
             acceptance_eff_e_BySlice.at(i).hDrawAndSave(SName, h1DCanvas, AMapsRatio, AMap_Ratio_HistoList_skipCleaning, AMap_Ratio_HistoList, true);
-            filtered_reco_theta_e_VS_phi_e_BySlice.at(i).hDrawAndSave(SName, h1DCanvas, Charged_particle_Sep_AMaps_skipCleaning, cPart_Sep_AMaps_HistoList, cPart_Sep_AMaps_HistoList, true);
+            filtered_reco_theta_e_VS_phi_e_BySlice.at(i).hDrawAndSave(SName, h1DCanvas, Charged_particle_Sep_AMaps, cPart_Sep_AMaps_HistoList_skipCleaning, cPart_Sep_AMaps_HistoList, true);
         }
 
         /* Finalized acceptance maps */
