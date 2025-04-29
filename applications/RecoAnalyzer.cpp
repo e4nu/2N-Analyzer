@@ -211,7 +211,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     /* Resolution plots */
     bool Resolution_plots;
 
-    /* Multiplicity plots * c
+    /* Multiplicity plots */
     bool Multiplicity_plots;
 
     /* Final state ratio plots */
