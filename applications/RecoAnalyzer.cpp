@@ -219,8 +219,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     bool TestRun = true;       // set as false for a full run
     bool ApplyLimiter = true;  // set as false for a full run
-    int Limiter = 5000000;
-    // int Limiter = 1000000;
+    // int Limiter = 5000000;
+    int Limiter = 500000;
 
     // Set enabled plots
     if (!TestRun) {
