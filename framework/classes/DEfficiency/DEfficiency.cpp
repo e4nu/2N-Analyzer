@@ -157,12 +157,6 @@ void DEfficiency::DrawACorrHistograms(bool save_ACorr_data, const std::string &S
     DrawAndSaveHistogram1D(Canvas, Histogram_list, ACorrectionComponentPlots, TLPlot_Clone_test_rebined, 1, kBlue, true, false, false, TLPlot_Clone_test_rebined_SaveName);
     DrawAndSaveHistogram1D(Canvas, Histogram_list, ACorrectionComponentPlots, RPlot_Clone, 1, kBlue, true, true, true, RPlot_Clone_SaveName);
     DrawAndSaveHistogram1D(Canvas, Histogram_list, ACorrectionComponentPlots, TLPlot_Clone, 1, kBlue, true, true, true, TLPlot_Clone_SaveName);
-    //    DrawAndSaveHistogram1D(Canvas, Histogram_list, RPlot_Clone_test, 1, kBlue, true, false, false, RPlot_Clone_test_SaveName);
-    //    DrawAndSaveHistogram1D(Canvas, Histogram_list, TLPlot_Clone_test, 1, kBlue, true, false, false, TLPlot_Clone_test_SaveName);
-    //    DrawAndSaveHistogram1D(Canvas, Histogram_list, RPlot_Clone_test_rebined, 1, kBlue, true, false, false, RPlot_Clone_test_rebined_SaveName);
-    //    DrawAndSaveHistogram1D(Canvas, Histogram_list, TLPlot_Clone_test_rebined, 1, kBlue, true, false, false, TLPlot_Clone_test_rebined_SaveName);
-    //    DrawAndSaveHistogram1D(Canvas, Histogram_list, RPlot_Clone, 1, kBlue, true, true, true, RPlot_Clone_SaveName);
-    //    DrawAndSaveHistogram1D(Canvas, Histogram_list, TLPlot_Clone, 1, kBlue, true, true, true, TLPlot_Clone_SaveName);
 
 #pragma region /* Plotting and saving ACorrection_plot */
     ACorrection_plot->SetLineStyle(1);
@@ -191,6 +185,8 @@ void DEfficiency::DrawACorrHistograms(bool save_ACorr_data, const std::string &S
 #pragma endregion
 
 #pragma region /* Save acceptance correction data */
+    TH1D *ACorr_factor = nullptr;
+
     if (save_ACorr_data) {
         system(("rm -r " + ACorr_data_Dir).c_str());     // clear old ACorr_data_Dir
         system(("mkdir -p " + ACorr_data_Dir).c_str());  // recreate ACorr_data_Dir
@@ -224,6 +220,9 @@ void DEfficiency::DrawACorrHistograms(bool save_ACorr_data, const std::string &S
         Canvas->Clear();
     }
 #pragma endregion
+
+    delete ACorrection_plot;
+    delete ACorrectionComponentPlots;
 
     delete Canvas;
 }

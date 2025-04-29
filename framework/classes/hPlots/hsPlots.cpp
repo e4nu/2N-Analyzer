@@ -16,8 +16,8 @@
 // The histograms are created using the ROOT library's TH1D and TH2D classes.
 // The constructor also takes a vector of TObject pointers (HistoList) to store the created histograms.
 // The histograms are named using the base name and the slice index, and the titles are generated using the title template and the slice limits.
-hsPlots::hsPlots(const std::vector<std::vector<double>>& sliceLimits, HistoType type, std::vector<TObject*>& HistoList, const std::string& baseName, const std::string& titleTemplate,
-                 const int& nbinsX, const double& xlow, const double& xup, const int& nbinsY, const double& ylow, const double& yup, std::string slice_var)
+hsPlots::hsPlots(const std::vector<std::vector<double>>& sliceLimits, HistoType type, vector<bool>& HistoList_skipCleaning, vector<TObject*>& HistoList, const std::string& baseName,
+                 const std::string& titleTemplate, const int& nbinsX, const double& xlow, const double& xup, const int& nbinsY, const double& ylow, const double& yup, std::string slice_var)
     : SliceLimits(sliceLimits), histoType(type) {
     bool PrintOut = false;
 
@@ -66,16 +66,27 @@ hsPlots::hsPlots(const std::vector<std::vector<double>>& sliceLimits, HistoType 
     }
 
     // Add the sliced histograms to the provided HistoList
-    for (int i = 0; i < SlicedHistoList.size(); i++) { HistoList.push_back(SlicedHistoList[i]); }
+    for (int i = 0; i < SlicedHistoList.size(); i++) {
+        HistoList_skipCleaning.push_back(true);
+        HistoList.push_back(SlicedHistoList[i]);
+    }
 }
 
 // hsPlots Destructor ---------------------------------------------------------------------------------------------------------------------------------------------------
 
-// Destructor to clean up the dynamically allocated histograms
-// This destructor iterates through the SlicedHistoList and deletes each histogram
-// to free up the memory allocated for them. This is important to prevent memory leaks in the program.
+// Destructor to clean up the dynamically allocated histograms.
+// This destructor safely deletes each histogram in the 'histograms' vector,
+// sets each pointer to nullptr to avoid dangling references,
+// and clears the vector to fully reset the object.
+// This ensures proper memory management and prevents memory leaks.
 hsPlots::~hsPlots() {
-    for (auto* h : SlicedHistoList) { delete h; }
+    for (auto& hist : histograms) {
+        if (hist) {
+            delete hist;
+            hist = nullptr;
+        }
+    }
+    histograms.clear();
 }
 
 // FindSliceIndex function ---------------------------------------------------------------------------------------------------------------------------------------------

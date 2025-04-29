@@ -196,6 +196,121 @@ class AMaps {
     AMaps(const std::string &AcceptanceMapsDirectory, const std::string &SampleName, const double &beamE, const std::string &AMapsMode, const bool &Electron_single_slice_test,
           const bool &Nucleon_single_slice_test, const vector<int> &TestSlices);
 
+    // destructor -----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    ~AMaps() {
+/*         for (auto &hist : truth_e_BySlice) {
+            if (hist) {
+                delete hist;
+                hist = nullptr;
+            }
+        }
+        truth_e_BySlice.clear();
+
+        for (auto &hist : truth_p_BySlice) {
+            if (hist) {
+                delete hist;
+                hist = nullptr;
+            }
+        }
+        truth_p_BySlice.clear();
+
+        for (auto &hist : truth_n_BySlice) {
+            if (hist) {
+                delete hist;
+                hist = nullptr;
+            }
+        }
+        truth_n_BySlice.clear();
+
+        for (auto &hist : reco_e_BySlice) {
+            if (hist) {
+                delete hist;
+                hist = nullptr;
+            }
+        }
+        reco_e_BySlice.clear();
+
+        for (auto &hist : reco_p_BySlice) {
+            if (hist) {
+                delete hist;
+                hist = nullptr;
+            }
+        }
+        reco_p_BySlice.clear();
+
+        for (auto &hist : reco_n_BySlice) {
+            if (hist) {
+                delete hist;
+                hist = nullptr;
+            }
+        }
+        reco_n_BySlice.clear();
+
+        for (auto &hist : acc_eff_e_BySlice) {
+            if (hist) {
+                delete hist;
+                hist = nullptr;
+            }
+        }
+        acc_eff_e_BySlice.clear();
+
+        for (auto &hist : acc_eff_p_BySlice) {
+            if (hist) {
+                delete hist;
+                hist = nullptr;
+            }
+        }
+        acc_eff_p_BySlice.clear();
+
+        for (auto &hist : acc_eff_n_BySlice) {
+            if (hist) {
+                delete hist;
+                hist = nullptr;
+            }
+        }
+        acc_eff_n_BySlice.clear();
+
+        for (auto &hist : filtered_reco_e_BySlice) {
+            if (hist) {
+                delete hist;
+                hist = nullptr;
+            }
+        }
+        filtered_reco_e_BySlice.clear();
+
+        for (auto &hist : filtered_reco_p_BySlice) {
+            if (hist) {
+                delete hist;
+                hist = nullptr;
+            }
+        }
+        filtered_reco_p_BySlice.clear();
+
+        for (auto &hist : filtered_reco_n_BySlice) {
+            if (hist) {
+                delete hist;
+                hist = nullptr;
+            }
+        }
+        filtered_reco_n_BySlice.clear();
+ */
+
+        delete AcceptanceMapsBC;
+        delete TLAMaps;
+        delete RecoAMaps;
+        delete AMapsRatio;
+        delete Charged_particle_Sep_AMaps;
+        delete AcceptanceMaps;
+
+        delete LoadedElectronAMaps;
+        delete LoadedProtonAMaps;
+        delete LoadedElectronAMaps0;
+        delete LoadedProtonAMap;
+        delete LoadedNeutronAMap;
+        delete LoadedNucleonAMap;
+    }
+
     // SetBins functions ----------------------------------------------------------------------------------------------------------------------------------------------------
 
     void SetBins(const std::string &P_nuc_bin_profile, double beamE);

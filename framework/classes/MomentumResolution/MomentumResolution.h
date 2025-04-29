@@ -174,6 +174,47 @@ class MomentumResolution {
 
     MomentumResolution(const std::string &Particle);
 
+    // destructor -----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    ~MomentumResolution() {
+        if (ResSlicePlots) {
+            delete ResSlicePlots;
+            ResSlicePlots = nullptr;
+        }
+
+        auto delete_and_nullptr = [](auto *&ptr) {
+            if (ptr) {
+                delete ptr;
+                ptr = nullptr;
+            }
+        };
+
+        delete_and_nullptr(FittedTLNeutronResSlices);
+        delete_and_nullptr(FittedTLNeutronResSlicesMean);
+        delete_and_nullptr(FittedTLNeutronResSlicesWidth);
+        delete_and_nullptr(FittedTLProtonResSlices);
+        delete_and_nullptr(FittedTLProtonResSlicesMean);
+        delete_and_nullptr(FittedTLProtonResSlicesWidth);
+        delete_and_nullptr(FittedRecoNeutronResSlices);
+        delete_and_nullptr(FittedRecoNeutronResSlicesMean);
+        delete_and_nullptr(FittedRecoNeutronResSlicesWidth);
+        delete_and_nullptr(FittedRecoProtonResSlices);
+        delete_and_nullptr(FittedRecoProtonResSlicesMean);
+        delete_and_nullptr(FittedRecoProtonResSlicesWidth);
+
+        for (auto &histo : MomResHistoList) {
+            if (histo) {
+                delete histo;
+                histo = nullptr;
+            }
+        }
+        MomResHistoList.clear();
+
+        delete_and_nullptr(Rand1);
+        delete_and_nullptr(Rand2);
+        delete_and_nullptr(Rand3);
+    }
+
     // MomResInit function --------------------------------------------------------------------------------------------------------------------------------------------------
 
     void MomResInit(const bool &plot_and_fit_MomRes, const bool &Calculate_momResS2, const bool &Run_with_momResS2, const std::string &SampleName, const std::string &NucleonCutsDirectory,

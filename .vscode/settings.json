@@ -2,6 +2,7 @@
     "files.associations": {
         "*.gcard": "xml",
         "*.cpp": "cpp",
+        "*.gxml": "xml",
         "DetectorSimulationAnalyzer.C": "cpp",
         "new": "cpp",
         "string": "cpp",
@@ -180,9 +181,9 @@
         "thread": "c",
         "SplitGLView.C": "cpp",
         "cutvaluemanager.h": "c",
-        "dataAnalyzer.h": "c",
         "histogramplottingfunctions.h": "c",
-        "eventselectionsettings.h": "c"
+        "eventselectionsettings.h": "c",
+        "latex.C": "cpp"
     },
     "[jsonc]": {
         "editor.defaultFormatter": "vscode.json-language-features"
