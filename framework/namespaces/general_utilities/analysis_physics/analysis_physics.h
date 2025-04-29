@@ -21,8 +21,6 @@ namespace analysis_physics {
 // CalcQ2 function ------------------------------------------------------------------------------------------------------------------------------------------------------
 
 double CalcQ2(const TLorentzVector &Beam_4v, const TLorentzVector &P_e_4v) {
-    // TLorentzVector Q_4v = Beam_4v - P_e_4v;
-    // double Q2 = fabs(Q_4v.Mag2());
     TLorentzVector q_4v = Beam_4v - P_e_4v;
     double Q2 = -q_4v.M2();
     return Q2;
@@ -45,33 +43,31 @@ double CalcW(const double &omega, const TVector3 &q_3v, const double &Nuc_mass =
 
 // CalcPmiss1N3v function -----------------------------------------------------------------------------------------------------------------------------------------------
 
-TVector3 CalcPmiss1N3v(const TVector3 &P_L_3v, const TVector3 &q_3v) {
-    TVector3 P_miss_1N_3v = P_L_3v - q_3v;
+TVector3 CalcPmiss1N3v(const TVector3 &P_nucL_3v, const TVector3 &q_3v) {
+    TVector3 P_miss_1N_3v = P_nucL_3v - q_3v;
     return P_miss_1N_3v;
 }
 
 // CalcEmiss1N function -------------------------------------------------------------------------------------------------------------------------------------------------
 
-double CalcEmiss1N(const double &omega, const double &E_L, const double &mass_L = constants::m_p) {
-    double T_L = E_L - mass_L;  // Relativistic kinematic energy of the leading (FD) nucleon
+double CalcEmiss1N(const double &omega, const double &E_nucL, const double &mass_nucL = constants::m_p) {
+    double T_L = E_nucL - mass_nucL;  // Relativistic kinematic energy of the leading (FD) nucleon
     double E_miss_1N = omega - T_L;
-    // double E_miss_1N = omega - (E_L - mass_L);
     return E_miss_1N;
 }
 
 // CalcPmiss2N3v function -----------------------------------------------------------------------------------------------------------------------------------------------
 
-TVector3 CalcPmiss2N3v(const TVector3 &P_L_3v, const TVector3 &P_pCD_3v, const TVector3 &q_3v) {
-    TVector3 P_miss_2N_3v = P_L_3v + P_pCD_3v - q_3v;
+TVector3 CalcPmiss2N3v(const TVector3 &P_nucL_3v, const TVector3 &P_nucR_3v, const TVector3 &q_3v) {
+    TVector3 P_miss_2N_3v = P_nucL_3v + P_nucR_3v - q_3v;
     return P_miss_2N_3v;
 }
 
 // CalcEmiss2N function -------------------------------------------------------------------------------------------------------------------------------------------------
 
-double CalcEmiss2N(const double &omega, const double &E_L, const double &E_pCD, const double &mass_L = constants::m_p) {
-    double T_L = E_L - mass_L, T_pCD = E_pCD - mass_L;  // Relativistic kinematic energy of the leading (FD) and recoil (CD) nucleons
+double CalcEmiss2N(const double &omega, const double &E_nucL, const double &E_nucR, const double &mass_nucL = constants::m_p) {
+    double T_L = E_nucL - mass_nucL, T_pCD = E_nucR - mass_nucL;  // Relativistic kinematic energy of the leading (FD) and recoil (CD) nucleons
     double E_miss_2N = omega - T_L - T_pCD;
-    // double E_miss_2N = omega - (E_L - mass_L) - (E_pCD - constants::m_p);
     return E_miss_2N;
 }
 
