@@ -57,7 +57,7 @@ Directories::Directories(const std::string &plots_path, const bool Clear_Old_Dir
 
     Chi2_dir_map["Chi2_1n_Directory"] = Plots_Folder + "/" + Chi2_Parent_Directory + "/" + Find(Chi2_Daughter_Folders, "03_1n") + "/";
 
-    Chi2_Directory_map["Chi2_2p_Directory"] = Plots_Folder + "/" + Chi2_Parent_Directory + "/" + Find(Chi2_Daughter_Folders, "04_2p") + "/";
+    Chi2_dir_map["Chi2_2p_Directory"] = Plots_Folder + "/" + Chi2_Parent_Directory + "/" + Find(Chi2_Daughter_Folders, "04_2p") + "/";
 
     Chi2_dir_map["Chi2_pFDpCD_Directory"] = Plots_Folder + "/" + Chi2_Parent_Directory + "/" + Find(Chi2_Daughter_Folders, "05_pFDpCD") + "/";
 
