@@ -293,8 +293,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         // Nphe_plots = true, Chi2_plots = true, Vertex_plots = true, SF_plots = true, fiducial_plots = true;
         Nphe_plots = false, Chi2_plots = false, Vertex_plots = false, SF_plots = false, fiducial_plots = false;
 
-        // Momentum_plots = true;
-        Momentum_plots = false;
+        Momentum_plots = true;
+        // Momentum_plots = false;
 
         /* Reaction monitoring plots */
         ReacMon_plots = true;
@@ -342,10 +342,10 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         ToF_plots = false;
 
         /* Efficiency plots */
-        // Efficiency_plots = true;
-        Efficiency_plots = false;
-        // TL_after_Acceptance_Maps_plots = true;
-        TL_after_Acceptance_Maps_plots = false;
+        Efficiency_plots = true;
+        // Efficiency_plots = false;
+        TL_after_Acceptance_Maps_plots = true;
+        // TL_after_Acceptance_Maps_plots = false;
 
         /* Resolution plots */
         // AMaps_plots = true;
