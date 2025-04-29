@@ -2257,7 +2257,7 @@ void AMaps::DrawAndSaveMaps(const std::string &SampleName, TCanvas *h1DCanvas, c
 
     if (basic_tools::FindSubstring(SName, "Uniform_1e_sample_")) {
         /* Acceptance maps BC */
-        reco_theta_e_VS_phi_e_BC.hDrawAndSave(SName, h1DCanvas, AcceptanceMapsBC, AMapsBC_HistoList, true);
+        reco_theta_e_VS_phi_e_BC.hDrawAndSave(SName, h1DCanvas, AcceptanceMapsBC, AMapsBC_HistoList_skipCleaning, AMapsBC_HistoList, true);
 
         /* Electron maps */
         for (int i = 0; i < ElectronMomSliceLimits.size(); i++) {
@@ -2268,7 +2268,7 @@ void AMaps::DrawAndSaveMaps(const std::string &SampleName, TCanvas *h1DCanvas, c
         }
 
         /* Finalized acceptance maps */
-        filtered_reco_theta_e_VS_phi_e.hDrawAndSave(SName, h1DCanvas, AcceptanceMaps, AMaps_HistoList, true);
+        filtered_reco_theta_e_VS_phi_e.hDrawAndSave(SName, h1DCanvas, AcceptanceMaps, AMaps_HistoList_skipCleaning, AMaps_HistoList, true);
 
         /* Saving maps in PDFs */
         DrawAndSaveMapsPDFs(truth_e_BySlice, truth_theta_e_VS_phi_e_BySlice[0].GetHistogram2DSaveNamePath() + "truth_theta_e_VS_phi_e_BySlice.pdf");
@@ -2305,7 +2305,7 @@ void AMaps::DrawAndSaveMaps(const std::string &SampleName, TCanvas *h1DCanvas, c
 
         /* Neutron maps (by momentum slice) */
         for (int i = 0; i < NucleonMomSliceLimits.size(); i++) {
-            truth_theta_n_VS_phi_n_BySlice.at(i).hDrawAndSave(SName, h1DCanvas, TLAMaps, AMap_TL_HistoLis_skipCleaning, AMap_TL_HistoList, true);
+            truth_theta_n_VS_phi_n_BySlice.at(i).hDrawAndSave(SName, h1DCanvas, TLAMaps, AMap_TL_HistoList_skipCleaning, AMap_TL_HistoList, true);
             reco_theta_n_VS_phi_n_BySlice.at(i).hDrawAndSave(SName, h1DCanvas, RecoAMaps, AMap_Reco_HistoList_skipCleaning, AMap_Reco_HistoList, true);
             acceptance_eff_n_BySlice.at(i).hDrawAndSave(SName, h1DCanvas, AMapsRatio, AMap_Ratio_HistoList_skipCleaning, AMap_Ratio_HistoList, true);
             filtered_reco_theta_n_VS_phi_n_BySlice.at(i).hDrawAndSave(SName, h1DCanvas, Charged_particle_Sep_AMaps, cPart_Sep_AMaps_HistoList_skipCleaning, cPart_Sep_AMaps_HistoList, true);

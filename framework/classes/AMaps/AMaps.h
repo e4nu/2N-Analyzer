@@ -309,8 +309,24 @@ class AMaps {
         delete Charged_particle_Sep_AMaps;
         delete AcceptanceMaps;
 
-        delete LoadedElectronAMaps;
-        delete LoadedProtonAMaps;
+        for (auto &hist : LoadedElectronAMaps) {
+            if (hist) {
+                delete hist;
+                hist = nullptr;
+            }
+        }
+
+        LoadedElectronAMaps.clear();
+
+        for (auto &hist : LoadedProtonAMaps) {
+            if (hist) {
+                delete hist;
+                hist = nullptr;
+            }
+        }
+
+        LoadedProtonAMaps.clear();
+
         delete LoadedElectronAMaps0;
         delete LoadedProtonAMap;
         delete LoadedNeutronAMap;

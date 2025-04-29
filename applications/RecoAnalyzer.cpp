@@ -5239,31 +5239,31 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     std::string hTheta_e_VS_Phi_e_1e_cut_FD_Dir = directories.Angle_dir_map["Theta_e_VS_Phi_e_1e_cut_Directory"];
 
     hsPlots hTheta_e_VS_Phi_e_BySliceOf_P_e_All_Int_1e_cut_FD =
-        hsPlots(ElectronMomSliceLimits, hsPlots::TH2D_TYPE, HistoList, "Theta_e_VS_Phi_e_BySliceOf_P_e_All_Int_1e_cut_FD",
+        hsPlots(ElectronMomSliceLimits, hsPlots::TH2D_TYPE, HistoList_skipCleaning, HistoList, "Theta_e_VS_Phi_e_BySliceOf_P_e_All_Int_1e_cut_FD",
                 "#theta_{e} vs. #phi_{e} in slices of P_{e} (All Int., 1e cut, FD);#phi_{e} [#circ];#theta_{e} [#circ]", numTH2Dbins_Electron_Ang_Plots, Phi_lboundary, Phi_uboundary,
                 numTH2Dbins_Electron_Ang_Plots, Theta_lboundary_FD, Theta_uboundary_FD, "P_{e} [GeV/c]");
     std::string hTheta_e_VS_Phi_e_BySliceOf_P_e_All_Int_1e_cut_FD_Dir = directories.Angle_dir_map["Theta_e_VS_Phi_e_1e_cut_Directory"];
 
     hsPlots hTheta_e_VS_Phi_e_BySliceOf_P_e_QEL_1e_cut_FD =
-        hsPlots(ElectronMomSliceLimits, hsPlots::TH2D_TYPE, HistoList, "Theta_e_VS_Phi_e_BySliceOf_P_e_QEL_1e_cut_FD",
+        hsPlots(ElectronMomSliceLimits, hsPlots::TH2D_TYPE, HistoList_skipCleaning, HistoList, "Theta_e_VS_Phi_e_BySliceOf_P_e_QEL_1e_cut_FD",
                 "#theta_{e} vs. #phi_{e} in slices of P_{e} (QEL only, 1e cut, FD);#phi_{e} [#circ];#theta_{e} [#circ]", numTH2Dbins_Electron_Ang_Plots, Phi_lboundary, Phi_uboundary,
                 numTH2Dbins_Electron_Ang_Plots, Theta_lboundary_FD, Theta_uboundary_FD, "P_{e} [GeV/c]");
     std::string hTheta_e_VS_Phi_e_BySliceOf_P_e_QEL_1e_cut_FD_Dir = directories.Angle_dir_map["Theta_e_VS_Phi_e_1e_cut_Directory"];
 
     hsPlots hTheta_e_VS_Phi_e_BySliceOf_P_e_MEC_1e_cut_FD =
-        hsPlots(ElectronMomSliceLimits, hsPlots::TH2D_TYPE, HistoList, "Theta_e_VS_Phi_e_BySliceOf_P_e_MEC_1e_cut_FD",
+        hsPlots(ElectronMomSliceLimits, hsPlots::TH2D_TYPE, HistoList_skipCleaning, HistoList, "Theta_e_VS_Phi_e_BySliceOf_P_e_MEC_1e_cut_FD",
                 "#theta_{e} vs. #phi_{e} in slices of P_{e} (MEC only, 1e cut, FD);#phi_{e} [#circ];#theta_{e} [#circ]", numTH2Dbins_Electron_Ang_Plots, Phi_lboundary, Phi_uboundary,
                 numTH2Dbins_Electron_Ang_Plots, Theta_lboundary_FD, Theta_uboundary_FD, "P_{e} [GeV/c]");
     std::string hTheta_e_VS_Phi_e_BySliceOf_P_e_MEC_1e_cut_FD_Dir = directories.Angle_dir_map["Theta_e_VS_Phi_e_1e_cut_Directory"];
 
     hsPlots hTheta_e_VS_Phi_e_BySliceOf_P_e_RES_1e_cut_FD =
-        hsPlots(ElectronMomSliceLimits, hsPlots::TH2D_TYPE, HistoList, "Theta_e_VS_Phi_e_BySliceOf_P_e_RES_1e_cut_FD",
+        hsPlots(ElectronMomSliceLimits, hsPlots::TH2D_TYPE, HistoList_skipCleaning, HistoList, "Theta_e_VS_Phi_e_BySliceOf_P_e_RES_1e_cut_FD",
                 "#theta_{e} vs. #phi_{e} in slices of P_{e} (RES only, 1e cut, FD);#phi_{e} [#circ];#theta_{e} [#circ]", numTH2Dbins_Electron_Ang_Plots, Phi_lboundary, Phi_uboundary,
                 numTH2Dbins_Electron_Ang_Plots, Theta_lboundary_FD, Theta_uboundary_FD, "P_{e} [GeV/c]");
     std::string hTheta_e_VS_Phi_e_BySliceOf_P_e_RES_1e_cut_FD_Dir = directories.Angle_dir_map["Theta_e_VS_Phi_e_1e_cut_Directory"];
 
     hsPlots hTheta_e_VS_Phi_e_BySliceOf_P_e_DIS_1e_cut_FD =
-        hsPlots(ElectronMomSliceLimits, hsPlots::TH2D_TYPE, HistoList, "Theta_e_VS_Phi_e_BySliceOf_P_e_DIS_1e_cut_FD",
+        hsPlots(ElectronMomSliceLimits, hsPlots::TH2D_TYPE, HistoList_skipCleaning, HistoList, "Theta_e_VS_Phi_e_BySliceOf_P_e_DIS_1e_cut_FD",
                 "#theta_{e} vs. #phi_{e} in slices of P_{e} (DIS only, 1e cut, FD);#phi_{e} [#circ];#theta_{e} [#circ]", numTH2Dbins_Electron_Ang_Plots, Phi_lboundary, Phi_uboundary,
                 numTH2Dbins_Electron_Ang_Plots, Theta_lboundary_FD, Theta_uboundary_FD, "P_{e} [GeV/c]");
     std::string hTheta_e_VS_Phi_e_BySliceOf_P_e_DIS_1e_cut_FD_Dir = directories.Angle_dir_map["Theta_e_VS_Phi_e_1e_cut_Directory"];
@@ -20005,13 +20005,13 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         histPlotter1D(MainCanvas, hP_miss_1N_All_Int_pFDpCD, norm_ReacMon_plots, true, P_miss_1N_pFDpCD_integral, "P^{1N}_{miss} distribution", "All Int., pFDpCD", 0.06, 0.0425, 0.0425,
                       plots, HistoList_skipCleaning, HistoList, 2, false, true, sP_miss_1N_pFDpCD, "01_P_miss_1N_All_Int_pFDpCD", hP_miss_1N_pFDpCD_Dir, "", kBlue, true, true, true, false);
         histPlotter1D(MainCanvas, hP_miss_1N_QEL_pFDpCD, norm_ReacMon_plots, true, P_miss_1N_pFDpCD_integral, "P^{1N}_{miss} distribution", "QEL only, pFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sP_miss_1N_pFDpCD, "01a_P_miss_1N_QEL_only_pFDpCD", hP_miss_1N_pFDpCD_Dir, "", kBlue, true, true, true, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sP_miss_1N_pFDpCD, "01a_P_miss_1N_QEL_only_pFDpCD", hP_miss_1N_pFDpCD_Dir, "", kBlue, true, true, true, false);
         histPlotter1D(MainCanvas, hP_miss_1N_MEC_pFDpCD, norm_ReacMon_plots, true, P_miss_1N_pFDpCD_integral, "P^{1N}_{miss} distribution", "MEC only, pFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sP_miss_1N_pFDpCD, "01b_P_miss_1N_MEC_only_pFDpCD", hP_miss_1N_pFDpCD_Dir, "", kBlue, true, true, true, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sP_miss_1N_pFDpCD, "01b_P_miss_1N_MEC_only_pFDpCD", hP_miss_1N_pFDpCD_Dir, "", kBlue, true, true, true, false);
         histPlotter1D(MainCanvas, hP_miss_1N_RES_pFDpCD, norm_ReacMon_plots, true, P_miss_1N_pFDpCD_integral, "P^{1N}_{miss} distribution", "RES only, pFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sP_miss_1N_pFDpCD, "01c_P_miss_1N_RES_only_pFDpCD", hP_miss_1N_pFDpCD_Dir, "", kBlue, true, true, true, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sP_miss_1N_pFDpCD, "01c_P_miss_1N_RES_only_pFDpCD", hP_miss_1N_pFDpCD_Dir, "", kBlue, true, true, true, false);
         histPlotter1D(MainCanvas, hP_miss_1N_DIS_pFDpCD, norm_ReacMon_plots, true, P_miss_1N_pFDpCD_integral, "P^{1N}_{miss} distribution", "DIS only, pFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sP_miss_1N_pFDpCD, "01d_P_miss_1N_DIS_only_pFDpCD", hP_miss_1N_pFDpCD_Dir, "", kBlue, true, true, true, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sP_miss_1N_pFDpCD, "01d_P_miss_1N_DIS_only_pFDpCD", hP_miss_1N_pFDpCD_Dir, "", kBlue, true, true, true, false);
 
         stackPlotter1D(MainCanvas, sP_miss_1N_pFDpCD, norm_ReacMon_plots, "P^{1N}_{miss} distribution", "pFDpCD", plots, HistoList_skipCleaning, HistoList, hP_miss_1N_All_Int_pFDpCD,
                        hP_miss_1N_QEL_pFDpCD, hP_miss_1N_MEC_pFDpCD, hP_miss_1N_RES_pFDpCD, hP_miss_1N_DIS_pFDpCD, "01e_P_miss_1N_Stack_pFDpCD", sP_miss_1N_pFDpCD_Dir, "");
@@ -20142,13 +20142,13 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         histPlotter1D(MainCanvas, hE_miss_1N_All_Int_pFDpCD, norm_ReacMon_plots, true, E_miss_1N_pFDpCD_integral, "E^{1N}_{miss} distribution", "All Int., pFDpCD", 0.06, 0.0425, 0.0425,
                       plots, HistoList_skipCleaning, HistoList, 2, false, true, sE_miss_1N_pFDpCD, "02_E_miss_1N_All_Int_pFDpCD", hE_miss_1N_pFDpCD_Dir, "", kBlue, true, true, true, false);
         histPlotter1D(MainCanvas, hE_miss_1N_QEL_pFDpCD, norm_ReacMon_plots, true, E_miss_1N_pFDpCD_integral, "E^{1N}_{miss} distribution", "QEL only, pFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sE_miss_1N_pFDpCD, "02a_E_miss_1N_QEL_only_pFDpCD", hE_miss_1N_pFDpCD_Dir, "", kBlue, true, true, true, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sE_miss_1N_pFDpCD, "02a_E_miss_1N_QEL_only_pFDpCD", hE_miss_1N_pFDpCD_Dir, "", kBlue, true, true, true, false);
         histPlotter1D(MainCanvas, hE_miss_1N_MEC_pFDpCD, norm_ReacMon_plots, true, E_miss_1N_pFDpCD_integral, "E^{1N}_{miss} distribution", "MEC only, pFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sE_miss_1N_pFDpCD, "02b_E_miss_1N_MEC_only_pFDpCD", hE_miss_1N_pFDpCD_Dir, "", kBlue, true, true, true, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sE_miss_1N_pFDpCD, "02b_E_miss_1N_MEC_only_pFDpCD", hE_miss_1N_pFDpCD_Dir, "", kBlue, true, true, true, false);
         histPlotter1D(MainCanvas, hE_miss_1N_RES_pFDpCD, norm_ReacMon_plots, true, E_miss_1N_pFDpCD_integral, "E^{1N}_{miss} distribution", "RES only, pFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sE_miss_1N_pFDpCD, "02c_E_miss_1N_RES_only_pFDpCD", hE_miss_1N_pFDpCD_Dir, "", kBlue, true, true, true, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sE_miss_1N_pFDpCD, "02c_E_miss_1N_RES_only_pFDpCD", hE_miss_1N_pFDpCD_Dir, "", kBlue, true, true, true, false);
         histPlotter1D(MainCanvas, hE_miss_1N_DIS_pFDpCD, norm_ReacMon_plots, true, E_miss_1N_pFDpCD_integral, "E^{1N}_{miss} distribution", "DIS only, pFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sE_miss_1N_pFDpCD, "02d_E_miss_1N_DIS_only_pFDpCD", hE_miss_1N_pFDpCD_Dir, "", kBlue, true, true, true, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sE_miss_1N_pFDpCD, "02d_E_miss_1N_DIS_only_pFDpCD", hE_miss_1N_pFDpCD_Dir, "", kBlue, true, true, true, false);
 
         stackPlotter1D(MainCanvas, sE_miss_1N_pFDpCD, norm_ReacMon_plots, "E^{1N}_{miss} distribution", "pFDpCD", plots, HistoList_skipCleaning, HistoList, hE_miss_1N_All_Int_pFDpCD,
                        hE_miss_1N_QEL_pFDpCD, hE_miss_1N_MEC_pFDpCD, hE_miss_1N_RES_pFDpCD, hE_miss_1N_DIS_pFDpCD, "02e_E_miss_1N_Stack_pFDpCD", sE_miss_1N_pFDpCD_Dir, "");
@@ -20264,13 +20264,13 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         histPlotter1D(MainCanvas, hP_miss_2N_All_Int_pFDpCD, norm_ReacMon_plots, true, P_miss_2N_pFDpCD_integral, "P^{2N}_{miss} distribution", "All Int., pFDpCD", 0.06, 0.0425, 0.0425,
                       plots, HistoList_skipCleaning, HistoList, 2, false, true, sP_miss_2N_pFDpCD, "03_P_miss_2N_All_Int_pFDpCD", hP_miss_2N_pFDpCD_Dir, "", kBlue, true, true, true, false);
         histPlotter1D(MainCanvas, hP_miss_2N_QEL_pFDpCD, norm_ReacMon_plots, true, P_miss_2N_pFDpCD_integral, "P^{2N}_{miss} distribution", "QEL only, pFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sP_miss_2N_pFDpCD, "03a_P_miss_2N_QEL_only_pFDpCD", hP_miss_2N_pFDpCD_Dir, "", kBlue, true, true, true, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sP_miss_2N_pFDpCD, "03a_P_miss_2N_QEL_only_pFDpCD", hP_miss_2N_pFDpCD_Dir, "", kBlue, true, true, true, false);
         histPlotter1D(MainCanvas, hP_miss_2N_MEC_pFDpCD, norm_ReacMon_plots, true, P_miss_2N_pFDpCD_integral, "P^{2N}_{miss} distribution", "MEC only, pFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sP_miss_2N_pFDpCD, "03b_P_miss_2N_MEC_only_pFDpCD", hP_miss_2N_pFDpCD_Dir, "", kBlue, true, true, true, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sP_miss_2N_pFDpCD, "03b_P_miss_2N_MEC_only_pFDpCD", hP_miss_2N_pFDpCD_Dir, "", kBlue, true, true, true, false);
         histPlotter1D(MainCanvas, hP_miss_2N_RES_pFDpCD, norm_ReacMon_plots, true, P_miss_2N_pFDpCD_integral, "P^{2N}_{miss} distribution", "RES only, pFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sP_miss_2N_pFDpCD, "03c_P_miss_2N_RES_only_pFDpCD", hP_miss_2N_pFDpCD_Dir, "", kBlue, true, true, true, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sP_miss_2N_pFDpCD, "03c_P_miss_2N_RES_only_pFDpCD", hP_miss_2N_pFDpCD_Dir, "", kBlue, true, true, true, false);
         histPlotter1D(MainCanvas, hP_miss_2N_DIS_pFDpCD, norm_ReacMon_plots, true, P_miss_2N_pFDpCD_integral, "P^{2N}_{miss} distribution", "DIS only, pFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sP_miss_2N_pFDpCD, "03d_P_miss_2N_DIS_only_pFDpCD", hP_miss_2N_pFDpCD_Dir, "", kBlue, true, true, true, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sP_miss_2N_pFDpCD, "03d_P_miss_2N_DIS_only_pFDpCD", hP_miss_2N_pFDpCD_Dir, "", kBlue, true, true, true, false);
 
         stackPlotter1D(MainCanvas, sP_miss_2N_pFDpCD, norm_ReacMon_plots, "P^{2N}_{miss} distribution", "pFDpCD", plots, HistoList_skipCleaning, HistoList, hP_miss_2N_All_Int_pFDpCD,
                        hP_miss_2N_QEL_pFDpCD, hP_miss_2N_MEC_pFDpCD, hP_miss_2N_RES_pFDpCD, hP_miss_2N_DIS_pFDpCD, "03e_P_miss_2N_Stack_pFDpCD", sP_miss_2N_pFDpCD_Dir, "");
@@ -20371,13 +20371,13 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         histPlotter1D(MainCanvas, hE_miss_2N_All_Int_pFDpCD, norm_ReacMon_plots, true, E_miss_2N_pFDpCD_integral, "E^{2N}_{miss} distribution", "All Int., pFDpCD", 0.06, 0.0425, 0.0425,
                       plots, HistoList_skipCleaning, HistoList, 2, false, true, sE_miss_2N_pFDpCD, "04_E_miss_2N_All_Int_pFDpCD", hE_miss_2N_pFDpCD_Dir, "", kBlue, true, true, true, false);
         histPlotter1D(MainCanvas, hE_miss_2N_QEL_pFDpCD, norm_ReacMon_plots, true, E_miss_2N_pFDpCD_integral, "E^{2N}_{miss} distribution", "QEL only, pFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sE_miss_2N_pFDpCD, "04a_E_miss_2N_QEL_only_pFDpCD", hE_miss_2N_pFDpCD_Dir, "", kBlue, true, true, true, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sE_miss_2N_pFDpCD, "04a_E_miss_2N_QEL_only_pFDpCD", hE_miss_2N_pFDpCD_Dir, "", kBlue, true, true, true, false);
         histPlotter1D(MainCanvas, hE_miss_2N_MEC_pFDpCD, norm_ReacMon_plots, true, E_miss_2N_pFDpCD_integral, "E^{2N}_{miss} distribution", "MEC only, pFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sE_miss_2N_pFDpCD, "04b_E_miss_2N_MEC_only_pFDpCD", hE_miss_2N_pFDpCD_Dir, "", kBlue, true, true, true, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sE_miss_2N_pFDpCD, "04b_E_miss_2N_MEC_only_pFDpCD", hE_miss_2N_pFDpCD_Dir, "", kBlue, true, true, true, false);
         histPlotter1D(MainCanvas, hE_miss_2N_RES_pFDpCD, norm_ReacMon_plots, true, E_miss_2N_pFDpCD_integral, "E^{2N}_{miss} distribution", "RES only, pFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sE_miss_2N_pFDpCD, "04c_E_miss_2N_RES_only_pFDpCD", hE_miss_2N_pFDpCD_Dir, "", kBlue, true, true, true, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sE_miss_2N_pFDpCD, "04c_E_miss_2N_RES_only_pFDpCD", hE_miss_2N_pFDpCD_Dir, "", kBlue, true, true, true, false);
         histPlotter1D(MainCanvas, hE_miss_2N_DIS_pFDpCD, norm_ReacMon_plots, true, E_miss_2N_pFDpCD_integral, "E^{2N}_{miss} distribution", "DIS only, pFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sE_miss_2N_pFDpCD, "04d_E_miss_2N_DIS_only_pFDpCD", hE_miss_2N_pFDpCD_Dir, "", kBlue, true, true, true, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sE_miss_2N_pFDpCD, "04d_E_miss_2N_DIS_only_pFDpCD", hE_miss_2N_pFDpCD_Dir, "", kBlue, true, true, true, false);
 
         stackPlotter1D(MainCanvas, sE_miss_2N_pFDpCD, norm_ReacMon_plots, "E^{2N}_{miss} distribution", "pFDpCD", plots, HistoList_skipCleaning, HistoList, hE_miss_2N_All_Int_pFDpCD,
                        hE_miss_2N_QEL_pFDpCD, hE_miss_2N_MEC_pFDpCD, hE_miss_2N_RES_pFDpCD, hE_miss_2N_DIS_pFDpCD, "04e_E_miss_2N_Stack_pFDpCD", sE_miss_2N_pFDpCD_Dir, "");
@@ -20461,15 +20461,15 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         double Q2_pFDpCD_integral = hQ2_pFDpCD->Integral();
 
         histPlotter1D(MainCanvas, hQ2_pFDpCD, norm_ReacMon_plots, true, Q2_pFDpCD_integral, "Q^{2} distribution", "All Int., pFDpCD", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                      HistoList, 2, false, true, sQ2_pFDpCD, "05_Q2_All_Int_pFDpCD", hQ2_pFDpCD_Dir_ReacMon, "", kBlue, true, true, true, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sQ2_pFDpCD, "05_Q2_All_Int_pFDpCD", hQ2_pFDpCD_Dir_ReacMon, "", kBlue, true, true, true, false);
         histPlotter1D(MainCanvas, hQ2_QEL_pFDpCD, norm_ReacMon_plots, true, Q2_pFDpCD_integral, "Q^{2} distribution", "QEL only, pFDpCD", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                      HistoList, 2, false, true, sQ2_pFDpCD, "05a_Q2_QEL_only_pFDpCD", hQ2_pFDpCD_Dir_ReacMon, "", kBlue, true, true, true, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sQ2_pFDpCD, "05a_Q2_QEL_only_pFDpCD", hQ2_pFDpCD_Dir_ReacMon, "", kBlue, true, true, true, false);
         histPlotter1D(MainCanvas, hQ2_MEC_pFDpCD, norm_ReacMon_plots, true, Q2_pFDpCD_integral, "Q^{2} distribution", "MEC only, pFDpCD", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                      HistoList, 2, false, true, sQ2_pFDpCD, "05b_Q2_MEC_only_pFDpCD", hQ2_pFDpCD_Dir_ReacMon, "", kBlue, true, true, true, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sQ2_pFDpCD, "05b_Q2_MEC_only_pFDpCD", hQ2_pFDpCD_Dir_ReacMon, "", kBlue, true, true, true, false);
         histPlotter1D(MainCanvas, hQ2_RES_pFDpCD, norm_ReacMon_plots, true, Q2_pFDpCD_integral, "Q^{2} distribution", "RES only, pFDpCD", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                      HistoList, 2, false, true, sQ2_pFDpCD, "05c_Q2_RES_only_pFDpCD", hQ2_pFDpCD_Dir_ReacMon, "", kBlue, true, true, true, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sQ2_pFDpCD, "05c_Q2_RES_only_pFDpCD", hQ2_pFDpCD_Dir_ReacMon, "", kBlue, true, true, true, false);
         histPlotter1D(MainCanvas, hQ2_DIS_pFDpCD, norm_ReacMon_plots, true, Q2_pFDpCD_integral, "Q^{2} distribution", "DIS only, pFDpCD", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                      HistoList, 2, false, true, sQ2_pFDpCD, "05d_Q2_DIS_only_pFDpCD", hQ2_pFDpCD_Dir_ReacMon, "", kBlue, true, true, true, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sQ2_pFDpCD, "05d_Q2_DIS_only_pFDpCD", hQ2_pFDpCD_Dir_ReacMon, "", kBlue, true, true, true, false);
 
         stackPlotter1D(MainCanvas, sQ2_pFDpCD, norm_ReacMon_plots, "Q^{2} distribution", "pFDpCD", plots, HistoList_skipCleaning, HistoList, hQ2_pFDpCD, hQ2_QEL_pFDpCD, hQ2_MEC_pFDpCD,
                        hQ2_RES_pFDpCD, hQ2_DIS_pFDpCD, "05e_Q2_Stack_pFDpCD", sQ2_pFDpCD_Dir, "");
@@ -20535,15 +20535,15 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         double xB_pFDpCD_integral = hxB_All_Int_pFDpCD->Integral();
 
         histPlotter1D(MainCanvas, hxB_All_Int_pFDpCD, norm_ReacMon_plots, true, xB_pFDpCD_integral, "x_{B} distribution", "All Int., pFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList_skipCleaning, HistoList, 2, false, true, sxB_pFDpCD, "06_xB_All_Int_pFDpCD", hxB_pFDpCD_Dir, "", kBlue, true, true, true, false);
+                      HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sxB_pFDpCD, "06_xB_All_Int_pFDpCD", hxB_pFDpCD_Dir, "", kBlue, true, true, true, false);
         histPlotter1D(MainCanvas, hxB_QEL_pFDpCD, norm_ReacMon_plots, true, xB_pFDpCD_integral, "x_{B} distribution", "QEL only, pFDpCD", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                      HistoList, 2, false, true, sxB_pFDpCD, "06a_xB_QEL_only_pFDpCD", hxB_pFDpCD_Dir, "", kBlue, true, true, true, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sxB_pFDpCD, "06a_xB_QEL_only_pFDpCD", hxB_pFDpCD_Dir, "", kBlue, true, true, true, false);
         histPlotter1D(MainCanvas, hxB_MEC_pFDpCD, norm_ReacMon_plots, true, xB_pFDpCD_integral, "x_{B} distribution", "MEC only, pFDpCD", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                      HistoList, 2, false, true, sxB_pFDpCD, "06b_xB_MEC_only_pFDpCD", hxB_pFDpCD_Dir, "", kBlue, true, true, true, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sxB_pFDpCD, "06b_xB_MEC_only_pFDpCD", hxB_pFDpCD_Dir, "", kBlue, true, true, true, false);
         histPlotter1D(MainCanvas, hxB_RES_pFDpCD, norm_ReacMon_plots, true, xB_pFDpCD_integral, "x_{B} distribution", "RES only, pFDpCD", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                      HistoList, 2, false, true, sxB_pFDpCD, "06c_xB_RES_only_pFDpCD", hxB_pFDpCD_Dir, "", kBlue, true, true, true, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sxB_pFDpCD, "06c_xB_RES_only_pFDpCD", hxB_pFDpCD_Dir, "", kBlue, true, true, true, false);
         histPlotter1D(MainCanvas, hxB_DIS_pFDpCD, norm_ReacMon_plots, true, xB_pFDpCD_integral, "x_{B} distribution", "DIS only, pFDpCD", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                      HistoList, 2, false, true, sxB_pFDpCD, "06d_xB_DIS_only_pFDpCD", hxB_pFDpCD_Dir, "", kBlue, true, true, true, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sxB_pFDpCD, "06d_xB_DIS_only_pFDpCD", hxB_pFDpCD_Dir, "", kBlue, true, true, true, false);
 
         stackPlotter1D(MainCanvas, sxB_pFDpCD, norm_ReacMon_plots, "x_{B} distribution", "pFDpCD", plots, HistoList_skipCleaning, HistoList, hxB_All_Int_pFDpCD, hxB_QEL_pFDpCD,
                        hxB_MEC_pFDpCD, hxB_RES_pFDpCD, hxB_DIS_pFDpCD, "06e_xB_Stack_pFDpCD", sxB_pFDpCD_Dir, "");
@@ -20596,15 +20596,15 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         double theta_q_pFDpCD_integral = htheta_q_All_Int_pFDpCD->Integral();
 
         histPlotter1D(MainCanvas, htheta_q_All_Int_pFDpCD, norm_ReacMon_plots, true, theta_q_pFDpCD_integral, "#theta_{q} distribution", "All Int., pFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, stheta_q_pFDpCD, "07_theta_q_All_Int_pFDpCD", htheta_q_pFDpCD_Dir, "", kBlue, true, true, true, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, stheta_q_pFDpCD, "07_theta_q_All_Int_pFDpCD", htheta_q_pFDpCD_Dir, "", kBlue, true, true, true, false);
         histPlotter1D(MainCanvas, htheta_q_QEL_pFDpCD, norm_ReacMon_plots, true, theta_q_pFDpCD_integral, "#theta_{q} distribution", "QEL only, pFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, stheta_q_pFDpCD, "07a_theta_q_QEL_only_pFDpCD", htheta_q_pFDpCD_Dir, "", kBlue, true, true, true, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, stheta_q_pFDpCD, "07a_theta_q_QEL_only_pFDpCD", htheta_q_pFDpCD_Dir, "", kBlue, true, true, true, false);
         histPlotter1D(MainCanvas, htheta_q_MEC_pFDpCD, norm_ReacMon_plots, true, theta_q_pFDpCD_integral, "#theta_{q} distribution", "MEC only, pFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, stheta_q_pFDpCD, "07b_theta_q_MEC_only_pFDpCD", htheta_q_pFDpCD_Dir, "", kBlue, true, true, true, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, stheta_q_pFDpCD, "07b_theta_q_MEC_only_pFDpCD", htheta_q_pFDpCD_Dir, "", kBlue, true, true, true, false);
         histPlotter1D(MainCanvas, htheta_q_RES_pFDpCD, norm_ReacMon_plots, true, theta_q_pFDpCD_integral, "#theta_{q} distribution", "RES only, pFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, stheta_q_pFDpCD, "07c_theta_q_RES_only_pFDpCD", htheta_q_pFDpCD_Dir, "", kBlue, true, true, true, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, stheta_q_pFDpCD, "07c_theta_q_RES_only_pFDpCD", htheta_q_pFDpCD_Dir, "", kBlue, true, true, true, false);
         histPlotter1D(MainCanvas, htheta_q_DIS_pFDpCD, norm_ReacMon_plots, true, theta_q_pFDpCD_integral, "#theta_{q} distribution", "DIS only, pFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, stheta_q_pFDpCD, "07d_theta_q_DIS_only_pFDpCD", htheta_q_pFDpCD_Dir, "", kBlue, true, true, true, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, stheta_q_pFDpCD, "07d_theta_q_DIS_only_pFDpCD", htheta_q_pFDpCD_Dir, "", kBlue, true, true, true, false);
 
         stackPlotter1D(MainCanvas, stheta_q_pFDpCD, norm_ReacMon_plots, "#theta_{q} distribution", "pFDpCD", plots, HistoList_skipCleaning, HistoList, htheta_q_All_Int_pFDpCD,
                        htheta_q_QEL_pFDpCD, htheta_q_MEC_pFDpCD, htheta_q_RES_pFDpCD, htheta_q_DIS_pFDpCD, "07e_theta_q_Stack_pFDpCD", stheta_q_pFDpCD_Dir, "");
@@ -20708,13 +20708,13 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         histPlotter1D(MainCanvas, hP_miss_1N_All_Int_nFDpCD, norm_ReacMon_plots, true, P_miss_1N_nFDpCD_integral, "P^{1N}_{miss} distribution", "All Int., nFDpCD", 0.06, 0.0425, 0.0425,
                       plots, HistoList_skipCleaning, HistoList, 2, false, true, sP_miss_1N_nFDpCD, "01_P_miss_1N_All_Int_nFDpCD", hP_miss_1N_nFDpCD_Dir, "", kBlue, true, true, true, false);
         histPlotter1D(MainCanvas, hP_miss_1N_QEL_nFDpCD, norm_ReacMon_plots, true, P_miss_1N_nFDpCD_integral, "P^{1N}_{miss} distribution", "QEL only, nFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sP_miss_1N_nFDpCD, "01a_P_miss_1N_QEL_only_nFDpCD", hP_miss_1N_nFDpCD_Dir, "", kBlue, true, true, true, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sP_miss_1N_nFDpCD, "01a_P_miss_1N_QEL_only_nFDpCD", hP_miss_1N_nFDpCD_Dir, "", kBlue, true, true, true, false);
         histPlotter1D(MainCanvas, hP_miss_1N_MEC_nFDpCD, norm_ReacMon_plots, true, P_miss_1N_nFDpCD_integral, "P^{1N}_{miss} distribution", "MEC only, nFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sP_miss_1N_nFDpCD, "01b_P_miss_1N_MEC_only_nFDpCD", hP_miss_1N_nFDpCD_Dir, "", kBlue, true, true, true, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sP_miss_1N_nFDpCD, "01b_P_miss_1N_MEC_only_nFDpCD", hP_miss_1N_nFDpCD_Dir, "", kBlue, true, true, true, false);
         histPlotter1D(MainCanvas, hP_miss_1N_RES_nFDpCD, norm_ReacMon_plots, true, P_miss_1N_nFDpCD_integral, "P^{1N}_{miss} distribution", "RES only, nFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sP_miss_1N_nFDpCD, "01c_P_miss_1N_RES_only_nFDpCD", hP_miss_1N_nFDpCD_Dir, "", kBlue, true, true, true, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sP_miss_1N_nFDpCD, "01c_P_miss_1N_RES_only_nFDpCD", hP_miss_1N_nFDpCD_Dir, "", kBlue, true, true, true, false);
         histPlotter1D(MainCanvas, hP_miss_1N_DIS_nFDpCD, norm_ReacMon_plots, true, P_miss_1N_nFDpCD_integral, "P^{1N}_{miss} distribution", "DIS only, nFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sP_miss_1N_nFDpCD, "01d_P_miss_1N_DIS_only_nFDpCD", hP_miss_1N_nFDpCD_Dir, "", kBlue, true, true, true, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sP_miss_1N_nFDpCD, "01d_P_miss_1N_DIS_only_nFDpCD", hP_miss_1N_nFDpCD_Dir, "", kBlue, true, true, true, false);
 
         stackPlotter1D(MainCanvas, sP_miss_1N_nFDpCD, norm_ReacMon_plots, "P^{1N}_{miss} distribution", "nFDpCD", plots, HistoList_skipCleaning, HistoList, hP_miss_1N_All_Int_nFDpCD,
                        hP_miss_1N_QEL_nFDpCD, hP_miss_1N_MEC_nFDpCD, hP_miss_1N_RES_nFDpCD, hP_miss_1N_DIS_nFDpCD, "01e_P_miss_1N_Stack_nFDpCD", sP_miss_1N_nFDpCD_Dir, "");
@@ -20845,13 +20845,13 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         histPlotter1D(MainCanvas, hE_miss_1N_All_Int_nFDpCD, norm_ReacMon_plots, true, E_miss_1N_nFDpCD_integral, "E^{1N}_{miss} distribution", "All Int., nFDpCD", 0.06, 0.0425, 0.0425,
                       plots, HistoList_skipCleaning, HistoList, 2, false, true, sE_miss_1N_nFDpCD, "02_E_miss_1N_All_Int_nFDpCD", hE_miss_1N_nFDpCD_Dir, "", kBlue, true, true, true, false);
         histPlotter1D(MainCanvas, hE_miss_1N_QEL_nFDpCD, norm_ReacMon_plots, true, E_miss_1N_nFDpCD_integral, "E^{1N}_{miss} distribution", "QEL only, nFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sE_miss_1N_nFDpCD, "02a_E_miss_1N_QEL_only_nFDpCD", hE_miss_1N_nFDpCD_Dir, "", kBlue, true, true, true, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sE_miss_1N_nFDpCD, "02a_E_miss_1N_QEL_only_nFDpCD", hE_miss_1N_nFDpCD_Dir, "", kBlue, true, true, true, false);
         histPlotter1D(MainCanvas, hE_miss_1N_MEC_nFDpCD, norm_ReacMon_plots, true, E_miss_1N_nFDpCD_integral, "E^{1N}_{miss} distribution", "MEC only, nFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sE_miss_1N_nFDpCD, "02b_E_miss_1N_MEC_only_nFDpCD", hE_miss_1N_nFDpCD_Dir, "", kBlue, true, true, true, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sE_miss_1N_nFDpCD, "02b_E_miss_1N_MEC_only_nFDpCD", hE_miss_1N_nFDpCD_Dir, "", kBlue, true, true, true, false);
         histPlotter1D(MainCanvas, hE_miss_1N_RES_nFDpCD, norm_ReacMon_plots, true, E_miss_1N_nFDpCD_integral, "E^{1N}_{miss} distribution", "RES only, nFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sE_miss_1N_nFDpCD, "02c_E_miss_1N_RES_only_nFDpCD", hE_miss_1N_nFDpCD_Dir, "", kBlue, true, true, true, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sE_miss_1N_nFDpCD, "02c_E_miss_1N_RES_only_nFDpCD", hE_miss_1N_nFDpCD_Dir, "", kBlue, true, true, true, false);
         histPlotter1D(MainCanvas, hE_miss_1N_DIS_nFDpCD, norm_ReacMon_plots, true, E_miss_1N_nFDpCD_integral, "E^{1N}_{miss} distribution", "DIS only, nFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sE_miss_1N_nFDpCD, "02d_E_miss_1N_DIS_only_nFDpCD", hE_miss_1N_nFDpCD_Dir, "", kBlue, true, true, true, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sE_miss_1N_nFDpCD, "02d_E_miss_1N_DIS_only_nFDpCD", hE_miss_1N_nFDpCD_Dir, "", kBlue, true, true, true, false);
 
         stackPlotter1D(MainCanvas, sE_miss_1N_nFDpCD, norm_ReacMon_plots, "E^{1N}_{miss} distribution", "nFDpCD", plots, HistoList_skipCleaning, HistoList, hE_miss_1N_All_Int_nFDpCD,
                        hE_miss_1N_QEL_nFDpCD, hE_miss_1N_MEC_nFDpCD, hE_miss_1N_RES_nFDpCD, hE_miss_1N_DIS_nFDpCD, "02e_E_miss_1N_Stack_nFDpCD", sE_miss_1N_nFDpCD_Dir, "");
@@ -20967,13 +20967,13 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         histPlotter1D(MainCanvas, hP_miss_2N_All_Int_nFDpCD, norm_ReacMon_plots, true, P_miss_2N_nFDpCD_integral, "P^{2N}_{miss} distribution", "All Int., nFDpCD", 0.06, 0.0425, 0.0425,
                       plots, HistoList_skipCleaning, HistoList, 2, false, true, sP_miss_2N_nFDpCD, "03_P_miss_2N_All_Int_nFDpCD", hP_miss_2N_nFDpCD_Dir, "", kBlue, true, true, true, false);
         histPlotter1D(MainCanvas, hP_miss_2N_QEL_nFDpCD, norm_ReacMon_plots, true, P_miss_2N_nFDpCD_integral, "P^{2N}_{miss} distribution", "QEL only, nFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sP_miss_2N_nFDpCD, "03a_P_miss_2N_QEL_only_nFDpCD", hP_miss_2N_nFDpCD_Dir, "", kBlue, true, true, true, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sP_miss_2N_nFDpCD, "03a_P_miss_2N_QEL_only_nFDpCD", hP_miss_2N_nFDpCD_Dir, "", kBlue, true, true, true, false);
         histPlotter1D(MainCanvas, hP_miss_2N_MEC_nFDpCD, norm_ReacMon_plots, true, P_miss_2N_nFDpCD_integral, "P^{2N}_{miss} distribution", "MEC only, nFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sP_miss_2N_nFDpCD, "03b_P_miss_2N_MEC_only_nFDpCD", hP_miss_2N_nFDpCD_Dir, "", kBlue, true, true, true, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sP_miss_2N_nFDpCD, "03b_P_miss_2N_MEC_only_nFDpCD", hP_miss_2N_nFDpCD_Dir, "", kBlue, true, true, true, false);
         histPlotter1D(MainCanvas, hP_miss_2N_RES_nFDpCD, norm_ReacMon_plots, true, P_miss_2N_nFDpCD_integral, "P^{2N}_{miss} distribution", "RES only, nFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sP_miss_2N_nFDpCD, "03c_P_miss_2N_RES_only_nFDpCD", hP_miss_2N_nFDpCD_Dir, "", kBlue, true, true, true, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sP_miss_2N_nFDpCD, "03c_P_miss_2N_RES_only_nFDpCD", hP_miss_2N_nFDpCD_Dir, "", kBlue, true, true, true, false);
         histPlotter1D(MainCanvas, hP_miss_2N_DIS_nFDpCD, norm_ReacMon_plots, true, P_miss_2N_nFDpCD_integral, "P^{2N}_{miss} distribution", "DIS only, nFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sP_miss_2N_nFDpCD, "03d_P_miss_2N_DIS_only_nFDpCD", hP_miss_2N_nFDpCD_Dir, "", kBlue, true, true, true, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sP_miss_2N_nFDpCD, "03d_P_miss_2N_DIS_only_nFDpCD", hP_miss_2N_nFDpCD_Dir, "", kBlue, true, true, true, false);
 
         stackPlotter1D(MainCanvas, sP_miss_2N_nFDpCD, norm_ReacMon_plots, "P^{2N}_{miss} distribution", "nFDpCD", plots, HistoList_skipCleaning, HistoList, hP_miss_2N_All_Int_nFDpCD,
                        hP_miss_2N_QEL_nFDpCD, hP_miss_2N_MEC_nFDpCD, hP_miss_2N_RES_nFDpCD, hP_miss_2N_DIS_nFDpCD, "03e_P_miss_2N_Stack_nFDpCD", sP_miss_2N_nFDpCD_Dir, "");
@@ -21074,13 +21074,13 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         histPlotter1D(MainCanvas, hE_miss_2N_All_Int_nFDpCD, norm_ReacMon_plots, true, E_miss_2N_nFDpCD_integral, "E^{2N}_{miss} distribution", "All Int., nFDpCD", 0.06, 0.0425, 0.0425,
                       plots, HistoList_skipCleaning, HistoList, 2, false, true, sE_miss_2N_nFDpCD, "04_E_miss_2N_All_Int_nFDpCD", hE_miss_2N_nFDpCD_Dir, "", kBlue, true, true, true, false);
         histPlotter1D(MainCanvas, hE_miss_2N_QEL_nFDpCD, norm_ReacMon_plots, true, E_miss_2N_nFDpCD_integral, "E^{2N}_{miss} distribution", "QEL only, nFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sE_miss_2N_nFDpCD, "04a_E_miss_2N_QEL_only_nFDpCD", hE_miss_2N_nFDpCD_Dir, "", kBlue, true, true, true, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sE_miss_2N_nFDpCD, "04a_E_miss_2N_QEL_only_nFDpCD", hE_miss_2N_nFDpCD_Dir, "", kBlue, true, true, true, false);
         histPlotter1D(MainCanvas, hE_miss_2N_MEC_nFDpCD, norm_ReacMon_plots, true, E_miss_2N_nFDpCD_integral, "E^{2N}_{miss} distribution", "MEC only, nFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sE_miss_2N_nFDpCD, "04b_E_miss_2N_MEC_only_nFDpCD", hE_miss_2N_nFDpCD_Dir, "", kBlue, true, true, true, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sE_miss_2N_nFDpCD, "04b_E_miss_2N_MEC_only_nFDpCD", hE_miss_2N_nFDpCD_Dir, "", kBlue, true, true, true, false);
         histPlotter1D(MainCanvas, hE_miss_2N_RES_nFDpCD, norm_ReacMon_plots, true, E_miss_2N_nFDpCD_integral, "E^{2N}_{miss} distribution", "RES only, nFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sE_miss_2N_nFDpCD, "04c_E_miss_2N_RES_only_nFDpCD", hE_miss_2N_nFDpCD_Dir, "", kBlue, true, true, true, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sE_miss_2N_nFDpCD, "04c_E_miss_2N_RES_only_nFDpCD", hE_miss_2N_nFDpCD_Dir, "", kBlue, true, true, true, false);
         histPlotter1D(MainCanvas, hE_miss_2N_DIS_nFDpCD, norm_ReacMon_plots, true, E_miss_2N_nFDpCD_integral, "E^{2N}_{miss} distribution", "DIS only, nFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sE_miss_2N_nFDpCD, "04d_E_miss_2N_DIS_only_nFDpCD", hE_miss_2N_nFDpCD_Dir, "", kBlue, true, true, true, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sE_miss_2N_nFDpCD, "04d_E_miss_2N_DIS_only_nFDpCD", hE_miss_2N_nFDpCD_Dir, "", kBlue, true, true, true, false);
 
         stackPlotter1D(MainCanvas, sE_miss_2N_nFDpCD, norm_ReacMon_plots, "E^{2N}_{miss} distribution", "nFDpCD", plots, HistoList_skipCleaning, HistoList, hE_miss_2N_All_Int_nFDpCD,
                        hE_miss_2N_QEL_nFDpCD, hE_miss_2N_MEC_nFDpCD, hE_miss_2N_RES_nFDpCD, hE_miss_2N_DIS_nFDpCD, "04e_E_miss_2N_Stack_nFDpCD", sE_miss_2N_nFDpCD_Dir, "");
@@ -21164,15 +21164,15 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         double Q2_nFDpCD_integral = hQ2_nFDpCD->Integral();
 
         histPlotter1D(MainCanvas, hQ2_nFDpCD, norm_ReacMon_plots, true, Q2_nFDpCD_integral, "Q^{2} distribution", "All Int., nFDpCD", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                      HistoList, 2, false, true, sQ2_nFDpCD, "05_Q2_All_Int_nFDpCD", hQ2_nFDpCD_Dir_ReacMon, "", kBlue, true, true, true, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sQ2_nFDpCD, "05_Q2_All_Int_nFDpCD", hQ2_nFDpCD_Dir_ReacMon, "", kBlue, true, true, true, false);
         histPlotter1D(MainCanvas, hQ2_QEL_nFDpCD, norm_ReacMon_plots, true, Q2_nFDpCD_integral, "Q^{2} distribution", "QEL only, nFDpCD", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                      HistoList, 2, false, true, sQ2_nFDpCD, "05a_Q2_QEL_only_nFDpCD", hQ2_nFDpCD_Dir_ReacMon, "", kBlue, true, true, true, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sQ2_nFDpCD, "05a_Q2_QEL_only_nFDpCD", hQ2_nFDpCD_Dir_ReacMon, "", kBlue, true, true, true, false);
         histPlotter1D(MainCanvas, hQ2_MEC_nFDpCD, norm_ReacMon_plots, true, Q2_nFDpCD_integral, "Q^{2} distribution", "MEC only, nFDpCD", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                      HistoList, 2, false, true, sQ2_nFDpCD, "05b_Q2_MEC_only_nFDpCD", hQ2_nFDpCD_Dir_ReacMon, "", kBlue, true, true, true, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sQ2_nFDpCD, "05b_Q2_MEC_only_nFDpCD", hQ2_nFDpCD_Dir_ReacMon, "", kBlue, true, true, true, false);
         histPlotter1D(MainCanvas, hQ2_RES_nFDpCD, norm_ReacMon_plots, true, Q2_nFDpCD_integral, "Q^{2} distribution", "RES only, nFDpCD", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                      HistoList, 2, false, true, sQ2_nFDpCD, "05c_Q2_RES_only_nFDpCD", hQ2_nFDpCD_Dir_ReacMon, "", kBlue, true, true, true, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sQ2_nFDpCD, "05c_Q2_RES_only_nFDpCD", hQ2_nFDpCD_Dir_ReacMon, "", kBlue, true, true, true, false);
         histPlotter1D(MainCanvas, hQ2_DIS_nFDpCD, norm_ReacMon_plots, true, Q2_nFDpCD_integral, "Q^{2} distribution", "DIS only, nFDpCD", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                      HistoList, 2, false, true, sQ2_nFDpCD, "05d_Q2_DIS_only_nFDpCD", hQ2_nFDpCD_Dir_ReacMon, "", kBlue, true, true, true, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sQ2_nFDpCD, "05d_Q2_DIS_only_nFDpCD", hQ2_nFDpCD_Dir_ReacMon, "", kBlue, true, true, true, false);
 
         stackPlotter1D(MainCanvas, sQ2_nFDpCD, norm_ReacMon_plots, "Q^{2} distribution", "nFDpCD", plots, HistoList_skipCleaning, HistoList, hQ2_nFDpCD, hQ2_QEL_nFDpCD, hQ2_MEC_nFDpCD,
                        hQ2_RES_nFDpCD, hQ2_DIS_nFDpCD, "05e_Q2_Stack_nFDpCD", sQ2_nFDpCD_Dir, "");
@@ -21238,15 +21238,15 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         double xB_nFDpCD_integral = hxB_All_Int_nFDpCD->Integral();
 
         histPlotter1D(MainCanvas, hxB_All_Int_nFDpCD, norm_ReacMon_plots, true, xB_nFDpCD_integral, "x_{B} distribution", "All Int., nFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList_skipCleaning, HistoList, 2, false, true, sxB_nFDpCD, "06_xB_All_Int_nFDpCD", hxB_nFDpCD_Dir, "", kBlue, true, true, true, false);
+                      HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sxB_nFDpCD, "06_xB_All_Int_nFDpCD", hxB_nFDpCD_Dir, "", kBlue, true, true, true, false);
         histPlotter1D(MainCanvas, hxB_QEL_nFDpCD, norm_ReacMon_plots, true, xB_nFDpCD_integral, "x_{B} distribution", "QEL only, nFDpCD", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                      HistoList, 2, false, true, sxB_nFDpCD, "06a_xB_QEL_only_nFDpCD", hxB_nFDpCD_Dir, "", kBlue, true, true, true, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sxB_nFDpCD, "06a_xB_QEL_only_nFDpCD", hxB_nFDpCD_Dir, "", kBlue, true, true, true, false);
         histPlotter1D(MainCanvas, hxB_MEC_nFDpCD, norm_ReacMon_plots, true, xB_nFDpCD_integral, "x_{B} distribution", "MEC only, nFDpCD", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                      HistoList, 2, false, true, sxB_nFDpCD, "06b_xB_MEC_only_nFDpCD", hxB_nFDpCD_Dir, "", kBlue, true, true, true, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sxB_nFDpCD, "06b_xB_MEC_only_nFDpCD", hxB_nFDpCD_Dir, "", kBlue, true, true, true, false);
         histPlotter1D(MainCanvas, hxB_RES_nFDpCD, norm_ReacMon_plots, true, xB_nFDpCD_integral, "x_{B} distribution", "RES only, nFDpCD", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                      HistoList, 2, false, true, sxB_nFDpCD, "06c_xB_RES_only_nFDpCD", hxB_nFDpCD_Dir, "", kBlue, true, true, true, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sxB_nFDpCD, "06c_xB_RES_only_nFDpCD", hxB_nFDpCD_Dir, "", kBlue, true, true, true, false);
         histPlotter1D(MainCanvas, hxB_DIS_nFDpCD, norm_ReacMon_plots, true, xB_nFDpCD_integral, "x_{B} distribution", "DIS only, nFDpCD", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                      HistoList, 2, false, true, sxB_nFDpCD, "06d_xB_DIS_only_nFDpCD", hxB_nFDpCD_Dir, "", kBlue, true, true, true, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sxB_nFDpCD, "06d_xB_DIS_only_nFDpCD", hxB_nFDpCD_Dir, "", kBlue, true, true, true, false);
 
         stackPlotter1D(MainCanvas, sxB_nFDpCD, norm_ReacMon_plots, "x_{B} distribution", "nFDpCD", plots, HistoList_skipCleaning, HistoList, hxB_All_Int_nFDpCD, hxB_QEL_nFDpCD,
                        hxB_MEC_nFDpCD, hxB_RES_nFDpCD, hxB_DIS_nFDpCD, "06e_xB_Stack_nFDpCD", sxB_nFDpCD_Dir, "");
@@ -21299,15 +21299,15 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         double theta_q_nFDpCD_integral = htheta_q_All_Int_nFDpCD->Integral();
 
         histPlotter1D(MainCanvas, htheta_q_All_Int_nFDpCD, norm_ReacMon_plots, true, theta_q_nFDpCD_integral, "#theta_{q} distribution", "All Int., nFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, stheta_q_nFDpCD, "07_theta_q_All_Int_nFDpCD", htheta_q_nFDpCD_Dir, "", kBlue, true, true, true, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, stheta_q_nFDpCD, "07_theta_q_All_Int_nFDpCD", htheta_q_nFDpCD_Dir, "", kBlue, true, true, true, false);
         histPlotter1D(MainCanvas, htheta_q_QEL_nFDpCD, norm_ReacMon_plots, true, theta_q_nFDpCD_integral, "#theta_{q} distribution", "QEL only, nFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, stheta_q_nFDpCD, "07a_theta_q_QEL_only_nFDpCD", htheta_q_nFDpCD_Dir, "", kBlue, true, true, true, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, stheta_q_nFDpCD, "07a_theta_q_QEL_only_nFDpCD", htheta_q_nFDpCD_Dir, "", kBlue, true, true, true, false);
         histPlotter1D(MainCanvas, htheta_q_MEC_nFDpCD, norm_ReacMon_plots, true, theta_q_nFDpCD_integral, "#theta_{q} distribution", "MEC only, nFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, stheta_q_nFDpCD, "07b_theta_q_MEC_only_nFDpCD", htheta_q_nFDpCD_Dir, "", kBlue, true, true, true, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, stheta_q_nFDpCD, "07b_theta_q_MEC_only_nFDpCD", htheta_q_nFDpCD_Dir, "", kBlue, true, true, true, false);
         histPlotter1D(MainCanvas, htheta_q_RES_nFDpCD, norm_ReacMon_plots, true, theta_q_nFDpCD_integral, "#theta_{q} distribution", "RES only, nFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, stheta_q_nFDpCD, "07c_theta_q_RES_only_nFDpCD", htheta_q_nFDpCD_Dir, "", kBlue, true, true, true, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, stheta_q_nFDpCD, "07c_theta_q_RES_only_nFDpCD", htheta_q_nFDpCD_Dir, "", kBlue, true, true, true, false);
         histPlotter1D(MainCanvas, htheta_q_DIS_nFDpCD, norm_ReacMon_plots, true, theta_q_nFDpCD_integral, "#theta_{q} distribution", "DIS only, nFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, stheta_q_nFDpCD, "07d_theta_q_DIS_only_nFDpCD", htheta_q_nFDpCD_Dir, "", kBlue, true, true, true, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, stheta_q_nFDpCD, "07d_theta_q_DIS_only_nFDpCD", htheta_q_nFDpCD_Dir, "", kBlue, true, true, true, false);
 
         stackPlotter1D(MainCanvas, stheta_q_nFDpCD, norm_ReacMon_plots, "#theta_{q} distribution", "nFDpCD", plots, HistoList_skipCleaning, HistoList, htheta_q_All_Int_nFDpCD,
                        htheta_q_QEL_nFDpCD, htheta_q_MEC_nFDpCD, htheta_q_RES_nFDpCD, htheta_q_DIS_nFDpCD, "07e_theta_q_Stack_nFDpCD", stheta_q_nFDpCD_Dir, "");
@@ -21470,7 +21470,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         double W_1e_cut_integral = hW_All_Int_1e_cut->Integral();
 
         histPlotter1D(MainCanvas, hW_All_Int_1e_cut, norm_W_plots, true, W_1e_cut_integral, "W distribution", "All Int., 1e cut", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                      HistoList, 2, false, true, sW_1e_cut, "00_W_All_Int_1e_cut", hW_All_Int_1e_cut_Dir, "", kBlue, true, true, true, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sW_1e_cut, "00_W_All_Int_1e_cut", hW_All_Int_1e_cut_Dir, "", kBlue, true, true, true, false);
         histPlotter1D(MainCanvas, hW_QEL_1e_cut, norm_W_plots, true, W_1e_cut_integral, "W distribution", "QEL only, 1e cut", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning, HistoList,
                       2, false, true, sW_1e_cut, "01_W_QEL_only_1e_cut", hW_QEL_1e_cut_Dir, "", kBlue, true, true, true, false);
         histPlotter1D(MainCanvas, hW_MEC_1e_cut, norm_W_plots, true, W_1e_cut_integral, "W distribution", "MEC only, 1e cut", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning, HistoList,
@@ -21602,7 +21602,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         double W_pFDpCD_integral = hW_All_Int_pFDpCD->Integral();
 
         histPlotter1D(MainCanvas, hW_All_Int_pFDpCD, norm_W_plots, true, W_pFDpCD_integral, "W distribution", "All Int., pFDpCD", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                      HistoList, 2, false, true, sW_pFDpCD, "00_W_All_Int_pFDpCD", hW_All_Int_pFDpCD_Dir, "", kBlue, true, true, true, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sW_pFDpCD, "00_W_All_Int_pFDpCD", hW_All_Int_pFDpCD_Dir, "", kBlue, true, true, true, false);
         histPlotter1D(MainCanvas, hW_QEL_pFDpCD, norm_W_plots, true, W_pFDpCD_integral, "W distribution", "QEL only, pFDpCD", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning, HistoList,
                       2, false, true, sW_pFDpCD, "01_W_QEL_only_pFDpCD", hW_QEL_pFDpCD_Dir, "", kBlue, true, true, true, false);
         histPlotter1D(MainCanvas, hW_MEC_pFDpCD, norm_W_plots, true, W_pFDpCD_integral, "W distribution", "MEC only, pFDpCD", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning, HistoList,
@@ -21641,7 +21641,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         double W_nFDpCD_integral = hW_All_Int_nFDpCD->Integral();
 
         histPlotter1D(MainCanvas, hW_All_Int_nFDpCD, norm_W_plots, true, W_nFDpCD_integral, "W distribution", "All Int., nFDpCD", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                      HistoList, 2, false, true, sW_nFDpCD, "00_W_All_Int_nFDpCD", hW_All_Int_nFDpCD_Dir, "", kBlue, true, true, true, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sW_nFDpCD, "00_W_All_Int_nFDpCD", hW_All_Int_nFDpCD_Dir, "", kBlue, true, true, true, false);
         histPlotter1D(MainCanvas, hW_QEL_nFDpCD, norm_W_plots, true, W_nFDpCD_integral, "W distribution", "QEL only, nFDpCD", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning, HistoList,
                       2, false, true, sW_nFDpCD, "01_W_QEL_only_nFDpCD", hW_QEL_nFDpCD_Dir, "", kBlue, true, true, true, false);
         histPlotter1D(MainCanvas, hW_MEC_nFDpCD, norm_W_plots, true, W_nFDpCD_integral, "W distribution", "MEC only, nFDpCD", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning, HistoList,
@@ -21982,13 +21982,15 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         double Theta_e_integral = hTheta_e_All_e_FD->Integral();
 
         histPlotter1D(MainCanvas, hTheta_e_All_e_FD, norm_Angle_plots_master, true, Theta_e_integral, "#theta_{e} of Outgoing Electron", "All Int., No #(e) Cut", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sTheta_e, "Theta_e_All_Int_All_e", hTheta_e_All_e_FD_Dir, "FD", kBlue, true, true, true, false, true, 17.5, 22.5, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sTheta_e, "Theta_e_All_Int_All_e", hTheta_e_All_e_FD_Dir, "FD", kBlue, true, true, true, false, true, 17.5, 22.5,
+                      false);
 
         // Theta_e plots (1e cut, FD)
         double Theta_e_1e_integral = hTheta_e_1e_cut_FD->Integral();
 
         histPlotter1D(MainCanvas, hTheta_e_1e_cut_FD, norm_Angle_plots_master, true, Theta_e_1e_integral, "#theta_{e} of Outgoing Electron", "All Int., 1e cut", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sTheta_e, "Theta_e_All_Int_1e_cut", hTheta_e_1e_cut_FD_Dir, "FD", kBlue, true, true, true, false, true, 17.5, 22.5, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sTheta_e, "Theta_e_All_Int_1e_cut", hTheta_e_1e_cut_FD_Dir, "FD", kBlue, true, true, true, false, true, 17.5, 22.5,
+                      false);
 
         // Theta_e plots (1p, FD)
         double Theta_e_All_Int_1p_integral = hTheta_e_All_Int_1p_FD->Integral();
@@ -22001,13 +22003,17 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                       plots, HistoList_skipCleaning, HistoList, 2, false, true, sTheta_e_1p_FD, "00_Theta_e_All_Int_1p", hTheta_e_All_Int_1p_FD_Dir, "FD", kBlue, true, true, true, false,
                       true, 17.5, 22.5, false);
         histPlotter1D(MainCanvas, hTheta_e_QEL_1p_FD, norm_Angle_plots_master, true, Theta_e_QEL_1p_integral, "#theta_{e} of Outgoing Electron", "QEL Only, 1p", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sTheta_e_1p_FD, "01_Theta_e_QEL_Only_1p", hTheta_e_QEL_1p_FD_Dir, "FD", kBlue, true, true, true, false, true, 17.5, 22.5, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sTheta_e_1p_FD, "01_Theta_e_QEL_Only_1p", hTheta_e_QEL_1p_FD_Dir, "FD", kBlue, true, true, true, false, true, 17.5,
+                      22.5, false);
         histPlotter1D(MainCanvas, hTheta_e_MEC_1p_FD, norm_Angle_plots_master, true, Theta_e_MEC_1p_integral, "#theta_{e} of Outgoing Electron", "MEC only, 1p", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sTheta_e_1p_FD, "02_Theta_e_MEC_Only_1p", hTheta_e_MEC_1p_FD_Dir, "FD", kBlue, true, true, true, false, true, 17.5, 22.5, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sTheta_e_1p_FD, "02_Theta_e_MEC_Only_1p", hTheta_e_MEC_1p_FD_Dir, "FD", kBlue, true, true, true, false, true, 17.5,
+                      22.5, false);
         histPlotter1D(MainCanvas, hTheta_e_RES_1p_FD, norm_Angle_plots_master, true, Theta_e_RES_1p_integral, "#theta_{e} of Outgoing Electron", "RES only, 1p", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sTheta_e_1p_FD, "03_Theta_e_RES_Only_1p", hTheta_e_RES_1p_FD_Dir, "FD", kBlue, true, true, true, false, true, 17.5, 22.5, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sTheta_e_1p_FD, "03_Theta_e_RES_Only_1p", hTheta_e_RES_1p_FD_Dir, "FD", kBlue, true, true, true, false, true, 17.5,
+                      22.5, false);
         histPlotter1D(MainCanvas, hTheta_e_DIS_1p_FD, norm_Angle_plots_master, true, Theta_e_DIS_1p_integral, "#theta_{e} of Outgoing Electron", "DIS only, 1p", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sTheta_e_1p_FD, "04_Theta_e_DIS_Only_1p", hTheta_e_DIS_1p_FD_Dir, "FD", kBlue, true, true, true, false, true, 17.5, 22.5, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sTheta_e_1p_FD, "04_Theta_e_DIS_Only_1p", hTheta_e_DIS_1p_FD_Dir, "FD", kBlue, true, true, true, false, true, 17.5,
+                      22.5, false);
 
         stackPlotter1D(MainCanvas, sTheta_e_1p_FD, norm_Angle_plots_master, "#theta_{e} of Outgoing Electron", "1p", plots, HistoList_skipCleaning, HistoList, hTheta_e_All_Int_1p_FD,
                        hTheta_e_QEL_1p_FD, hTheta_e_MEC_1p_FD, hTheta_e_RES_1p_FD, hTheta_e_DIS_1p_FD, "05_Theta_e_Stack_1p", hTheta_e_All_Int_1p_FD_Dir, "FD");
@@ -22027,13 +22033,17 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                       plots, HistoList_skipCleaning, HistoList, 2, false, true, sTheta_e_1n_FD, "00_Theta_e_All_Int_1n", hTheta_e_All_Int_1n_FD_Dir, "FD", kBlue, true, true, true, false,
                       true, 17.5, 22.5, false);
         histPlotter1D(MainCanvas, hTheta_e_QEL_1n_FD, norm_Angle_plots_master, true, Theta_e_QEL_1n_integral, "#theta_{e} of Outgoing Electron", "QEL Only, 1n", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sTheta_e_1n_FD, "01_Theta_e_QEL_Only_1n", hTheta_e_QEL_1n_FD_Dir, "FD", kBlue, true, true, true, false, true, 17.5, 22.5, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sTheta_e_1n_FD, "01_Theta_e_QEL_Only_1n", hTheta_e_QEL_1n_FD_Dir, "FD", kBlue, true, true, true, false, true, 17.5,
+                      22.5, false);
         histPlotter1D(MainCanvas, hTheta_e_MEC_1n_FD, norm_Angle_plots_master, true, Theta_e_MEC_1n_integral, "#theta_{e} of Outgoing Electron", "MEC only, 1n", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sTheta_e_1n_FD, "02_Theta_e_MEC_Only_1n", hTheta_e_MEC_1n_FD_Dir, "FD", kBlue, true, true, true, false, true, 17.5, 22.5, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sTheta_e_1n_FD, "02_Theta_e_MEC_Only_1n", hTheta_e_MEC_1n_FD_Dir, "FD", kBlue, true, true, true, false, true, 17.5,
+                      22.5, false);
         histPlotter1D(MainCanvas, hTheta_e_RES_1n_FD, norm_Angle_plots_master, true, Theta_e_RES_1n_integral, "#theta_{e} of Outgoing Electron", "RES only, 1n", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sTheta_e_1n_FD, "03_Theta_e_RES_Only_1n", hTheta_e_RES_1n_FD_Dir, "FD", kBlue, true, true, true, false, true, 17.5, 22.5, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sTheta_e_1n_FD, "03_Theta_e_RES_Only_1n", hTheta_e_RES_1n_FD_Dir, "FD", kBlue, true, true, true, false, true, 17.5,
+                      22.5, false);
         histPlotter1D(MainCanvas, hTheta_e_DIS_1n_FD, norm_Angle_plots_master, true, Theta_e_DIS_1n_integral, "#theta_{e} of Outgoing Electron", "DIS only, 1n", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sTheta_e_1n_FD, "04_Theta_e_DIS_Only_1n", hTheta_e_DIS_1n_FD_Dir, "FD", kBlue, true, true, true, false, true, 17.5, 22.5, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sTheta_e_1n_FD, "04_Theta_e_DIS_Only_1n", hTheta_e_DIS_1n_FD_Dir, "FD", kBlue, true, true, true, false, true, 17.5,
+                      22.5, false);
 
         stackPlotter1D(MainCanvas, sTheta_e_1n_FD, norm_Angle_plots_master, "#theta_{e} of Outgoing Electron", "1n", plots, HistoList_skipCleaning, HistoList, hTheta_e_All_Int_1n_FD,
                        hTheta_e_QEL_1n_FD, hTheta_e_MEC_1n_FD, hTheta_e_RES_1n_FD, hTheta_e_DIS_1n_FD, "05_Theta_e_Stack_1n", hTheta_e_All_Int_1n_FD_Dir, "FD");
@@ -22053,13 +22063,17 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                       plots, HistoList_skipCleaning, HistoList, 2, false, true, sTheta_e_2p_FD, "00_Theta_e_All_Int_2p", hTheta_e_All_Int_2p_FD_Dir, "FD", kBlue, true, true, true, false,
                       true, 17.5, 22.5, false);
         histPlotter1D(MainCanvas, hTheta_e_QEL_2p_FD, norm_Angle_plots_master, true, Theta_e_QEL_2p_integral, "#theta_{e} of Outgoing Electron", "QEL Only, 2p", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sTheta_e_2p_FD, "01_Theta_e_QEL_Only_2p", hTheta_e_QEL_2p_FD_Dir, "FD", kBlue, true, true, true, false, true, 17.5, 22.5, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sTheta_e_2p_FD, "01_Theta_e_QEL_Only_2p", hTheta_e_QEL_2p_FD_Dir, "FD", kBlue, true, true, true, false, true, 17.5,
+                      22.5, false);
         histPlotter1D(MainCanvas, hTheta_e_MEC_2p_FD, norm_Angle_plots_master, true, Theta_e_MEC_2p_integral, "#theta_{e} of Outgoing Electron", "MEC only, 2p", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sTheta_e_2p_FD, "02_Theta_e_MEC_Only_2p", hTheta_e_MEC_2p_FD_Dir, "FD", kBlue, true, true, true, false, true, 17.5, 22.5, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sTheta_e_2p_FD, "02_Theta_e_MEC_Only_2p", hTheta_e_MEC_2p_FD_Dir, "FD", kBlue, true, true, true, false, true, 17.5,
+                      22.5, false);
         histPlotter1D(MainCanvas, hTheta_e_RES_2p_FD, norm_Angle_plots_master, true, Theta_e_RES_2p_integral, "#theta_{e} of Outgoing Electron", "RES only, 2p", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sTheta_e_2p_FD, "03_Theta_e_RES_Only_2p", hTheta_e_RES_2p_FD_Dir, "FD", kBlue, true, true, true, false, true, 17.5, 22.5, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sTheta_e_2p_FD, "03_Theta_e_RES_Only_2p", hTheta_e_RES_2p_FD_Dir, "FD", kBlue, true, true, true, false, true, 17.5,
+                      22.5, false);
         histPlotter1D(MainCanvas, hTheta_e_DIS_2p_FD, norm_Angle_plots_master, true, Theta_e_DIS_2p_integral, "#theta_{e} of Outgoing Electron", "DIS only, 2p", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sTheta_e_2p_FD, "04_Theta_e_DIS_Only_2p", hTheta_e_DIS_2p_FD_Dir, "FD", kBlue, true, true, true, false, true, 17.5, 22.5, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sTheta_e_2p_FD, "04_Theta_e_DIS_Only_2p", hTheta_e_DIS_2p_FD_Dir, "FD", kBlue, true, true, true, false, true, 17.5,
+                      22.5, false);
 
         stackPlotter1D(MainCanvas, sTheta_e_2p_FD, norm_Angle_plots_master, "#theta_{e} of Outgoing Electron", "2p", plots, HistoList_skipCleaning, HistoList, hTheta_e_All_Int_2p_FD,
                        hTheta_e_QEL_2p_FD, hTheta_e_MEC_2p_FD, hTheta_e_RES_2p_FD, hTheta_e_DIS_2p_FD, "05_Theta_e_Stack_2p", hTheta_e_All_Int_2p_FD_Dir, "FD");
@@ -22134,13 +22148,13 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         double Phi_e_integral = hPhi_e_All_e_FD->Integral();
 
         histPlotter1D(MainCanvas, hPhi_e_All_e_FD, norm_Angle_plots_master, true, Phi_e_integral, "#phi_{e} of Outgoing Electron", "no #(e) cut", 0.06, 0.0425, 0.0425, plots,
-                      HistoList_skipCleaning, HistoList, 2, false, true, sPhi_e, "Phi_e_All_Int_All_e", hPhi_e_All_e_FD_Dir, "FD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sPhi_e, "Phi_e_All_Int_All_e", hPhi_e_All_e_FD_Dir, "FD", kBlue, true, true, true);
 
         // Phi_e plots (1e cut, FD)
         double Phi_e_1e_integral = hPhi_e_1e_cut_FD->Integral();
 
         histPlotter1D(MainCanvas, hPhi_e_1e_cut_FD, norm_Angle_plots_master, true, Phi_e_1e_integral, "#phi_{e} of Outgoing Electron", "1e cut", 0.06, 0.0425, 0.0425, plots,
-                      HistoList_skipCleaning, HistoList, 2, false, true, sPhi_e, "Phi_e_All_Int_1e_cut", hPhi_e_1e_cut_FD_Dir, "FD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sPhi_e, "Phi_e_All_Int_1e_cut", hPhi_e_1e_cut_FD_Dir, "FD", kBlue, true, true, true);
 
         // Phi_e plots (1p, FD)
         double Phi_e_All_Int_1p_integral = hPhi_e_All_Int_1p_FD->Integral();
@@ -22152,13 +22166,13 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         histPlotter1D(MainCanvas, hPhi_e_All_Int_1p_FD, norm_Angle_plots_master, true, Phi_e_All_Int_1p_integral, "#phi_{e} of Outgoing Electron", "All Int., 1p", 0.06, 0.0425, 0.0425,
                       plots, HistoList_skipCleaning, HistoList, 2, false, true, sPhi_e, "00_phi_e_All_Int_1p", hPhi_e_All_Int_1p_FD_Dir, "FD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hPhi_e_QEL_1p_FD, norm_Angle_plots_master, true, Phi_e_QEL_1p_integral, "#phi_{e} of Outgoing Electron", "QEL Only, 1p", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sPhi_e, "01_Phi_e_QEL_Only_1p", hPhi_e_QEL_1p_FD_Dir, "FD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sPhi_e, "01_Phi_e_QEL_Only_1p", hPhi_e_QEL_1p_FD_Dir, "FD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hPhi_e_MEC_1p_FD, norm_Angle_plots_master, true, Phi_e_MEC_1p_integral, "#phi_{e} of Outgoing Electron", "MEC only, 1p", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sPhi_e, "02_Phi_e_MEC_Only_1p", hPhi_e_MEC_1p_FD_Dir, "FD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sPhi_e, "02_Phi_e_MEC_Only_1p", hPhi_e_MEC_1p_FD_Dir, "FD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hPhi_e_RES_1p_FD, norm_Angle_plots_master, true, Phi_e_RES_1p_integral, "#phi_{e} of Outgoing Electron", "RES only, 1p", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sPhi_e, "03_Phi_e_RES_Only_1p", hPhi_e_RES_1p_FD_Dir, "FD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sPhi_e, "03_Phi_e_RES_Only_1p", hPhi_e_RES_1p_FD_Dir, "FD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hPhi_e_DIS_1p_FD, norm_Angle_plots_master, true, Phi_e_DIS_1p_integral, "#phi_{e} of Outgoing Electron", "DIS only, 1p", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sPhi_e, "04_Phi_e_DIS_Only_1p", hPhi_e_DIS_1p_FD_Dir, "FD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sPhi_e, "04_Phi_e_DIS_Only_1p", hPhi_e_DIS_1p_FD_Dir, "FD", kBlue, true, true, true);
 
         histPlotter2D(MainCanvas, hPhi_e_VS_P_e_1p_FD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList_skipCleaning, HistoList, false, hPhi_e_VS_P_e_1p_FD_Dir, "Phi_e_VS_P_e_1p_FD");
         histPlotter2D(MainCanvas, hPhi_e_VS_W_1p_FD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList_skipCleaning, HistoList, false, hPhi_e_VS_W_1p_FD_Dir, "Phi_e_VS_W_1p_FD");
@@ -22173,13 +22187,13 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         histPlotter1D(MainCanvas, hPhi_e_All_Int_1n_FD, norm_Angle_plots_master, true, Phi_e_All_Int_1n_integral, "#phi_{e} of Outgoing Electron", "All Int., 1n", 0.06, 0.0425, 0.0425,
                       plots, HistoList_skipCleaning, HistoList, 2, false, true, sPhi_e, "00_phi_e_All_Int_1n", hPhi_e_All_Int_1n_FD_Dir, "FD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hPhi_e_QEL_1n_FD, norm_Angle_plots_master, true, Phi_e_QEL_1n_integral, "#phi_{e} of Outgoing Electron", "QEL Only, 1n", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sPhi_e, "01_Phi_e_QEL_Only_1n", hPhi_e_QEL_1n_FD_Dir, "FD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sPhi_e, "01_Phi_e_QEL_Only_1n", hPhi_e_QEL_1n_FD_Dir, "FD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hPhi_e_MEC_1n_FD, norm_Angle_plots_master, true, Phi_e_MEC_1n_integral, "#phi_{e} of Outgoing Electron", "MEC only, 1n", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sPhi_e, "02_Phi_e_MEC_Only_1n", hPhi_e_MEC_1n_FD_Dir, "FD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sPhi_e, "02_Phi_e_MEC_Only_1n", hPhi_e_MEC_1n_FD_Dir, "FD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hPhi_e_RES_1n_FD, norm_Angle_plots_master, true, Phi_e_RES_1n_integral, "#phi_{e} of Outgoing Electron", "RES only, 1n", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sPhi_e, "03_Phi_e_RES_Only_1n", hPhi_e_RES_1n_FD_Dir, "FD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sPhi_e, "03_Phi_e_RES_Only_1n", hPhi_e_RES_1n_FD_Dir, "FD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hPhi_e_DIS_1n_FD, norm_Angle_plots_master, true, Phi_e_DIS_1n_integral, "#phi_{e} of Outgoing Electron", "DIS only, 1n", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sPhi_e, "04_Phi_e_DIS_Only_1n", hPhi_e_DIS_1n_FD_Dir, "FD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sPhi_e, "04_Phi_e_DIS_Only_1n", hPhi_e_DIS_1n_FD_Dir, "FD", kBlue, true, true, true);
 
         histPlotter2D(MainCanvas, hPhi_e_VS_P_e_1n_FD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList_skipCleaning, HistoList, false, hPhi_e_VS_P_e_1n_FD_Dir, "Phi_e_VS_P_e_1n_FD");
         histPlotter2D(MainCanvas, hPhi_e_VS_W_1n_FD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList_skipCleaning, HistoList, false, hPhi_e_VS_W_1n_FD_Dir, "Phi_e_VS_W_1n_FD");
@@ -22194,13 +22208,13 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         histPlotter1D(MainCanvas, hPhi_e_All_Int_2p_FD, norm_Angle_plots_master, true, Phi_e_All_Int_2p_integral, "#phi_{e} of Outgoing Electron", "All Int., 2p", 0.06, 0.0425, 0.0425,
                       plots, HistoList_skipCleaning, HistoList, 2, false, true, sPhi_e, "00_phi_e_All_Int_2p", hPhi_e_All_Int_2p_FD_Dir, "FD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hPhi_e_QEL_2p_FD, norm_Angle_plots_master, true, Phi_e_QEL_2p_integral, "#phi_{e} of Outgoing Electron", "QEL Only, 2p", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sPhi_e, "01_Phi_e_QEL_Only_2p", hPhi_e_QEL_2p_FD_Dir, "FD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sPhi_e, "01_Phi_e_QEL_Only_2p", hPhi_e_QEL_2p_FD_Dir, "FD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hPhi_e_MEC_2p_FD, norm_Angle_plots_master, true, Phi_e_MEC_2p_integral, "#phi_{e} of Outgoing Electron", "MEC only, 2p", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sPhi_e, "02_Phi_e_MEC_Only_2p", hPhi_e_MEC_2p_FD_Dir, "FD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sPhi_e, "02_Phi_e_MEC_Only_2p", hPhi_e_MEC_2p_FD_Dir, "FD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hPhi_e_RES_2p_FD, norm_Angle_plots_master, true, Phi_e_RES_2p_integral, "#phi_{e} of Outgoing Electron", "RES only, 2p", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sPhi_e, "03_Phi_e_RES_Only_2p", hPhi_e_RES_2p_FD_Dir, "FD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sPhi_e, "03_Phi_e_RES_Only_2p", hPhi_e_RES_2p_FD_Dir, "FD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hPhi_e_DIS_2p_FD, norm_Angle_plots_master, true, Phi_e_DIS_2p_integral, "#phi_{e} of Outgoing Electron", "DIS only, 2p", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sPhi_e, "04_Phi_e_DIS_Only_2p", hPhi_e_DIS_2p_FD_Dir, "FD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sPhi_e, "04_Phi_e_DIS_Only_2p", hPhi_e_DIS_2p_FD_Dir, "FD", kBlue, true, true, true);
 
         // Phi_e plots (pFDpCD, FD)
         double Phi_e_All_Int_pFDpCD_integral = hPhi_e_All_Int_pFDpCD_FD->Integral();
@@ -22254,9 +22268,9 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         double Phi_p1_1e2pXy_CD_integral = hPhi_p1_1e2pXy_CD->Integral(), Phi_p2_1e2pXy_CD_integral = hPhi_p2_1e2pXy_CD->Integral();
 
         histPlotter1D(MainCanvas, hPhi_p1_1e2pXy_CD, norm_Angle_plots_master, true, Phi_p1_1e2pXy_CD_integral, "#phi_{p_{1}} of Leading Proton", "1e2pXy", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sPhi_Proton_1e2pXy, "01_Phi_p1_All_Int_1e2pXy", hPhi_p1_1e2pXy_CD_Dir, "CD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sPhi_Proton_1e2pXy, "01_Phi_p1_All_Int_1e2pXy", hPhi_p1_1e2pXy_CD_Dir, "CD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hPhi_p2_1e2pXy_CD, norm_Angle_plots_master, true, Phi_p2_1e2pXy_CD_integral, "#phi_{p_{2}} of Recoil Proton", "1e2pXy", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sPhi_Proton_1e2pXy, "01_Phi_p2_All_Int_1e2pXy", hPhi_p2_1e2pXy_CD_Dir, "CD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sPhi_Proton_1e2pXy, "01_Phi_p2_All_Int_1e2pXy", hPhi_p2_1e2pXy_CD_Dir, "CD", kBlue, true, true, true);
 
         //  Theta_e vs. Phi_e plots (FD only) -----------------------------------------------------------------------------------------------------------------------------------
 
@@ -22307,12 +22321,12 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
         if (!CutSettings.apply_kinematical_cuts) {
             histPlotter1D(MainCanvas, hTheta_p_All_Int_1p, norm_Angle_plots_master, true, Theta_p_1p_integral, "#theta_{p} of Outgoing FD Proton", "All Int., 1p", plots,
-                          HistoList_skipCleaning, HistoList, 2, false, true, sTheta_p_1p, "01_Theta_p_All_Int_1p", hTheta_p_All_Int_1p_Dir, "FD", kBlue, true, true, false, true, 9999, -1, 0,
-                          false);
+                          HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sTheta_p_1p, "01_Theta_p_All_Int_1p", hTheta_p_All_Int_1p_Dir, "FD", kBlue, true, true,
+                          false, true, 9999, -1, 0, false);
         } else {
             histPlotter1D(MainCanvas, hTheta_p_All_Int_1p, norm_Angle_plots_master, true, Theta_p_1p_integral, "#theta_{p} of Outgoing FD Proton", "All Int., 1p", plots,
-                          HistoList_skipCleaning, HistoList, 2, false, true, sTheta_p_1p, "01_Theta_p_All_Int_1p", hTheta_p_All_Int_1p_Dir, "FD", kBlue, true, true, false, true,
-                          CutManager.FD_nucleon_theta_cut.GetUpperCut(), -1, 0, false);
+                          HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sTheta_p_1p, "01_Theta_p_All_Int_1p", hTheta_p_All_Int_1p_Dir, "FD", kBlue, true, true,
+                          false, true, CutManager.FD_nucleon_theta_cut.GetUpperCut(), -1, 0, false);
         }
 
         histPlotter2D(MainCanvas, hTheta_p_VS_P_p_1p_FD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList_skipCleaning, HistoList, false, hTheta_p_VS_P_p_1p_FD_Dir,
@@ -22325,7 +22339,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         double Phi_p_1p_integral = hPhi_p_All_Int_1p->Integral();
 
         histPlotter1D(MainCanvas, hPhi_p_All_Int_1p, norm_Angle_plots_master, true, Phi_p_1p_integral, "#phi_{p} of Outgoing Proton", "All Int., 1p", 0.06, 0.0425, 0.0425, plots,
-                      HistoList_skipCleaning, HistoList, 2, false, true, sPhi_p_1p, "01_Phi_p_All_Int_1p", hPhi_p_All_Int_1p_Dir, "FD", kBlue, true, true, true, false);
+                      HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sPhi_p_1p, "01_Phi_p_All_Int_1p", hPhi_p_All_Int_1p_Dir, "FD", kBlue, true, true, true,
+                      false);
 
         //  Theta_p vs. Phi_p plots (1p, CD & FD) -------------------------------------------------------------------------------------------------------------------------------
 
@@ -22340,7 +22355,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
         histPlotter1D(MainCanvas, hTheta_p_e_p_p_1p, norm_Angle_plots_master, true, Theta_p_e_p_p_1p_integral,
                       "#theta_{#font[62]{P}_{e},#font[62]{P}_{p}} - Opening Angle Between #font[62]{P}_{e} and #font[62]{P}_{p}", "All Int., 1p", 0.06, 0.0425, 0.0425, plots,
-                      HistoList_skipCleaning, HistoList, 2, false, true, sTheta_p_e_p_p_1p, "01_Theta_p_e_p_p_All_Int_1p", hTheta_p_e_p_p_1p_Dir, "FD", kBlue, true, true, true, false);
+                      HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sTheta_p_e_p_p_1p, "01_Theta_p_e_p_p_All_Int_1p", hTheta_p_e_p_p_1p_Dir, "FD", kBlue, true,
+                      true, true, false);
 
         //  Theta_q_p_p (1p, FD only) ---------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -22349,7 +22365,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
         histPlotter1D(MainCanvas, hTheta_q_p_p_1p, norm_Angle_plots_master, true, Theta_q_p_p_1p_1p_integral,
                       "#theta_{#font[62]{q},#font[62]{P}_{p}} - Opening Angle Between #font[62]{q} and #font[62]{P}_{p}", "All Int., 1p", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                      HistoList, 2, false, true, sTheta_q_p_p_1p, "02_Theta_q_p_p_All_Int_1p", hTheta_q_p_p_1p_Dir, "FD", kBlue, true, true, true, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sTheta_q_p_p_1p, "02_Theta_q_p_p_All_Int_1p", hTheta_q_p_p_1p_Dir, "FD", kBlue, true, true, true, false);
 
         //  Theta_q_p_p vs. |P_p|/|q| (1p, FD only) -------------------------------------------------------------------------------------------------------------------------------
 
@@ -22372,12 +22388,12 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
         if (!CutSettings.apply_kinematical_cuts) {
             histPlotter1D(MainCanvas, hTheta_n_All_Int_1n, norm_Angle_plots_master, true, Theta_n_1n_integral, "#theta_{n} of Outgoing FD Neutron", "All Int., 1n", plots,
-                          HistoList_skipCleaning, HistoList, 2, false, true, sTheta_n_1n, "01_Theta_n_All_Int_1n", hTheta_n_All_Int_1n_Dir, "FD", kBlue, true, true, false, true, 9999, -1, 0,
-                          false);
+                          HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sTheta_n_1n, "01_Theta_n_All_Int_1n", hTheta_n_All_Int_1n_Dir, "FD", kBlue, true, true,
+                          false, true, 9999, -1, 0, false);
         } else {
             histPlotter1D(MainCanvas, hTheta_n_All_Int_1n, norm_Angle_plots_master, true, Theta_n_1n_integral, "#theta_{n} of Outgoing FD Neutron", "All Int., 1n", plots,
-                          HistoList_skipCleaning, HistoList, 2, false, true, sTheta_n_1n, "01_Theta_n_All_Int_1n", hTheta_n_All_Int_1n_Dir, "FD", kBlue, true, true, false, true,
-                          CutManager.FD_nucleon_theta_cut.GetUpperCut(), -1, 0, false);
+                          HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sTheta_n_1n, "01_Theta_n_All_Int_1n", hTheta_n_All_Int_1n_Dir, "FD", kBlue, true, true,
+                          false, true, CutManager.FD_nucleon_theta_cut.GetUpperCut(), -1, 0, false);
         }
 
         histPlotter2D(MainCanvas, hTheta_n_VS_P_n_1n_FD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList_skipCleaning, HistoList, false, hTheta_n_VS_P_n_1n_FD_Dir,
@@ -22390,7 +22406,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         double Phi_n_1n_integral = hPhi_n_All_Int_1n->Integral();
 
         histPlotter1D(MainCanvas, hPhi_n_All_Int_1n, norm_Angle_plots_master, true, Phi_n_1n_integral, "#phi_{n} of Outgoing Neutron", "All Int., 1n", 0.06, 0.0425, 0.0425, plots,
-                      HistoList_skipCleaning, HistoList, 2, false, true, sPhi_n_1n, "01_Phi_n_All_Int_1n", hPhi_n_All_Int_1n_Dir, "FD", kBlue, true, true, true, false);
+                      HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sPhi_n_1n, "01_Phi_n_All_Int_1n", hPhi_n_All_Int_1n_Dir, "FD", kBlue, true, true, true,
+                      false);
 
         //  Theta_n vs. Phi_n plots (1n, CD & FD) -------------------------------------------------------------------------------------------------------------------------------
 
@@ -22405,7 +22422,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
         histPlotter1D(MainCanvas, hTheta_p_e_p_n_1n, norm_Angle_plots_master, true, Theta_p_e_p_n_1n_integral,
                       "#theta_{#font[62]{P}_{e},#font[62]{P}_{n}} - Opening Angle Between #font[62]{P}_{e} and #font[62]{P}_{n}", "All Int., 1n", 0.06, 0.0425, 0.0425, plots,
-                      HistoList_skipCleaning, HistoList, 2, false, true, sTheta_p_e_p_n_1n, "01_Theta_p_e_p_n_All_Int_1n", hTheta_p_e_p_n_1n_Dir, "FD", kBlue, true, true, true, false);
+                      HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sTheta_p_e_p_n_1n, "01_Theta_p_e_p_n_All_Int_1n", hTheta_p_e_p_n_1n_Dir, "FD", kBlue, true,
+                      true, true, false);
 
         //  Theta_q_p_n (1n, FD only) -------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -22414,7 +22432,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
         histPlotter1D(MainCanvas, hTheta_q_p_n_1n, norm_Angle_plots_master, true, Theta_q_p_n_1n_1n_integral,
                       "#theta_{#font[62]{q},#font[62]{P}_{n}} - Opening Angle Between #font[62]{q} and #font[62]{P}_{n}", "All Int., 1n", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                      HistoList, 2, false, true, sTheta_q_p_n_1n, "02_Theta_q_p_n_All_Int_1n", hTheta_q_p_n_1n_Dir, "FD", kBlue, true, true, true, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sTheta_q_p_n_1n, "02_Theta_q_p_n_All_Int_1n", hTheta_q_p_n_1n_Dir, "FD", kBlue, true, true, true, false);
 
         //  Theta_q_p_n vs. |p_n|/|q| (1n, FD only) -----------------------------------------------------------------------------------------------------------------------------
 
@@ -22455,10 +22473,10 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
         histPlotter1D(MainCanvas, hTheta_q_p_L_2p, norm_Angle_plots_master, true, Theta_q_p_L_2p_integral,
                       "#theta_{#font[62]{q},#font[62]{P}_{1}} - Opening Angle Between #font[62]{q} and leading proton #font[62]{P}_{1}", "All Int., 2p", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sTheta_q_p_2p, "03_Theta_q_p_1_All_Int_2p", hTheta_q_p_L_2p_Dir, "", kBlue, true, true, true, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sTheta_q_p_2p, "03_Theta_q_p_1_All_Int_2p", hTheta_q_p_L_2p_Dir, "", kBlue, true, true, true, false);
         histPlotter1D(MainCanvas, hTheta_q_p_R_2p, norm_Angle_plots_master, true, Theta_q_p_R_2p_integral,
                       "#theta_{#font[62]{q},#font[62]{P}_{2}} - Opening Angle Between #font[62]{q} and recoil proton #font[62]{P}_{2}", "All Int., 2p", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sTheta_q_p_2p, "03_Theta_q_p_2_All_Int_2p", hTheta_q_p_R_2p_Dir, "", kBlue, true, true, true, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sTheta_q_p_2p, "03_Theta_q_p_2_All_Int_2p", hTheta_q_p_R_2p_Dir, "", kBlue, true, true, true, false);
 
         // Theta_q_p_L vs |P_L|/|q| (2p, CD & FD) -------------------------------------------------------------------------------------------------------------------------------
 
@@ -23014,20 +23032,20 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
         histPlotter1D(MainCanvas, hTheta_q_p_L_pFDpCD, norm_Angle_plots_master, true, Theta_q_p_L_pFDpCD_integral,
                       "#theta_{#font[62]{q},#font[62]{P}_{pL}} - Opening Angle Between #font[62]{q} and Leading Proton #font[62]{P}_{pFD}", "All Int., pFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sTheta_q_p_L_R_pFDpCD, "03a_Theta_q_pL_All_Int_pFDpCD", hTheta_q_p_L_pFDpCD_Dir, "", kBlue, true, true, true, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sTheta_q_p_L_R_pFDpCD, "03a_Theta_q_pL_All_Int_pFDpCD", hTheta_q_p_L_pFDpCD_Dir, "", kBlue, true, true, true, false);
         histPlotter1D(MainCanvas, hTheta_q_p_R_pFDpCD, norm_Angle_plots_master, true, Theta_q_p_R_pFDpCD_integral,
                       "#theta_{#font[62]{q},#font[62]{P}_{pR}} - Opening Angle Between #font[62]{q} and Recoil Proton #font[62]{P}_{pCD}", "All Int., pFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sTheta_q_p_L_R_pFDpCD, "03b_Theta_q_pR_All_Int_pFDpCD", hTheta_q_p_R_pFDpCD_Dir, "", kBlue, true, true, true, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sTheta_q_p_L_R_pFDpCD, "03b_Theta_q_pR_All_Int_pFDpCD", hTheta_q_p_R_pFDpCD_Dir, "", kBlue, true, true, true, false);
 
         // Theta_q_pFD and Theta_q_pCD (pFDpCD, CD & FD)
         double Theta_q_pFD_pFDpCD_integral = hTheta_q_pFD_pFDpCD->Integral(), Theta_q_pCD_pFDpCD_integral = hTheta_q_pCD_pFDpCD->Integral();
 
         histPlotter1D(MainCanvas, hTheta_q_pFD_pFDpCD, norm_Angle_plots_master, true, Theta_q_pFD_pFDpCD_integral,
                       "#theta_{#font[62]{q},#font[62]{P}_{pFD}} - Opening Angle Between #font[62]{q} and FD Proton #font[62]{P}_{pFD}", "All Int., pFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sTheta_q_p_pFDpCD, "03c_Theta_q_pFD_All_Int_pFDpCD", hTheta_q_pFD_pFDpCD_Dir, "", kBlue, true, true, true, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sTheta_q_p_pFDpCD, "03c_Theta_q_pFD_All_Int_pFDpCD", hTheta_q_pFD_pFDpCD_Dir, "", kBlue, true, true, true, false);
         histPlotter1D(MainCanvas, hTheta_q_pCD_pFDpCD, norm_Angle_plots_master, true, Theta_q_pCD_pFDpCD_integral,
                       "#theta_{#font[62]{q},#font[62]{P}_{pCD}} - Opening Angle Between #font[62]{q} and CD Proton #font[62]{P}_{pCD}", "All Int., pFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sTheta_q_p_pFDpCD, "03d_Theta_q_pCD_All_Int_pFDpCD", hTheta_q_pCD_pFDpCD_Dir, "", kBlue, true, true, true, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sTheta_q_p_pFDpCD, "03d_Theta_q_pCD_All_Int_pFDpCD", hTheta_q_pCD_pFDpCD_Dir, "", kBlue, true, true, true, false);
 
         // Theta_q_p vs |P_p|/|q| (pFDpCD, CD & FD) ---------------------------------------------------------------------------------------------------------------------------
 
@@ -23485,20 +23503,22 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
         histPlotter1D(MainCanvas, hTheta_q_p_L_nFDpCD, norm_Angle_plots_master, true, Theta_q_p_L_nFDpCD_integral,
                       "#theta_{#font[62]{q},#font[62]{P}_{nL}} - Opening Angle Between #font[62]{q} and Leading Nucleon #font[62]{P}_{nL}", "All Int., nFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sTheta_q_p_L_R_nFDpCD, "03a_Theta_q_nL_All_Int_nFDpCD", hTheta_q_p_L_nFDpCD_Dir, "", kBlue, true, true, true, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sTheta_q_p_L_R_nFDpCD, "03a_Theta_q_nL_All_Int_nFDpCD", hTheta_q_p_L_nFDpCD_Dir, "", kBlue, true, true, true, false);
         histPlotter1D(MainCanvas, hTheta_q_p_R_nFDpCD, norm_Angle_plots_master, true, Theta_q_p_R_nFDpCD_integral,
                       "#theta_{#font[62]{q},#font[62]{P}_{nR}} - Opening Angle Between #font[62]{q} and Recoil Nucleon #font[62]{P}_{nR}", "All Int., nFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sTheta_q_p_L_R_nFDpCD, "03b_Theta_q_nR_All_Int_nFDpCD", hTheta_q_p_R_nFDpCD_Dir, "", kBlue, true, true, true, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sTheta_q_p_L_R_nFDpCD, "03b_Theta_q_nR_All_Int_nFDpCD", hTheta_q_p_R_nFDpCD_Dir, "", kBlue, true, true, true, false);
 
         // Theta_q_nFD and Theta_q_pCD (nFDpCD, CD & FD)
         double Theta_q_nFD_nFDpCD_integral = hTheta_q_nFD_nFDpCD->Integral(), Theta_q_pCD_nFDpCD_integral = hTheta_q_pCD_nFDpCD->Integral();
 
         histPlotter1D(MainCanvas, hTheta_q_nFD_nFDpCD, norm_Angle_plots_master, true, Theta_q_nFD_nFDpCD_integral,
                       "#theta_{#font[62]{q},#font[62]{P}_{nFD}} - Opening Angle Between #font[62]{q} and FD Neutron #font[62]{P}_{nFD}", "All Int., nFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sTheta_q_p_L_R_nFDpCD, "03c_Theta_q_nFD_All_Int_nFDpCD", hTheta_q_nFD_nFDpCD_Dir, "", kBlue, true, true, true, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sTheta_q_p_L_R_nFDpCD, "03c_Theta_q_nFD_All_Int_nFDpCD", hTheta_q_nFD_nFDpCD_Dir, "", kBlue, true, true, true,
+                      false);
         histPlotter1D(MainCanvas, hTheta_q_pCD_nFDpCD, norm_Angle_plots_master, true, Theta_q_pCD_nFDpCD_integral,
                       "#theta_{#font[62]{q},#font[62]{P}_{pCD}} - Opening Angle Between #font[62]{q} and CD Proton #font[62]{P}_{pCD}", "All Int., nFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sTheta_q_p_L_R_nFDpCD, "03d_Theta_q_pCD_All_Int_nFDpCD", hTheta_q_pCD_nFDpCD_Dir, "", kBlue, true, true, true, false);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sTheta_q_p_L_R_nFDpCD, "03d_Theta_q_pCD_All_Int_nFDpCD", hTheta_q_pCD_nFDpCD_Dir, "", kBlue, true, true, true,
+                      false);
 
         //  Theta_q_p_L vs |P_L|/|q| (nFDpCD, CD & FD)
         //  -------------------------------------------------------------------------------------------------------------------------------
@@ -23719,15 +23739,15 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         double Q2_All_e_integral = hQ2_All_e->Integral();
 
         histPlotter1D(MainCanvas, hQ2_All_e, norm_Momentum_transfer_plots, true, Q2_All_e_integral, "Q^{2} Histogram", "no #(e) cut", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                      HistoList, 2, false, true, sQ2_All_e, "01_Q2_All_e", hQ2_All_e_Dir, "FD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sQ2_All_e, "01_Q2_All_e", hQ2_All_e_Dir, "FD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hQ2_QEL_All_e, norm_Momentum_transfer_plots, true, Q2_All_e_integral, "Q^{2} Histogram", "QE only, no #(e) cut", 0.06, 0.0425, 0.0425, plots,
-                      HistoList_skipCleaning, HistoList, 2, false, true, sQ2_All_e, "01a_Q2_QEL_All_e", hQ2_All_e_Dir, "FD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sQ2_All_e, "01a_Q2_QEL_All_e", hQ2_All_e_Dir, "FD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hQ2_MEC_All_e, norm_Momentum_transfer_plots, true, Q2_All_e_integral, "Q^{2} Histogram", "MEC only, no #(e) cut", 0.06, 0.0425, 0.0425, plots,
-                      HistoList_skipCleaning, HistoList, 2, false, true, sQ2_All_e, "01b_Q2_MEC_All_e", hQ2_All_e_Dir, "FD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sQ2_All_e, "01b_Q2_MEC_All_e", hQ2_All_e_Dir, "FD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hQ2_RES_All_e, norm_Momentum_transfer_plots, true, Q2_All_e_integral, "Q^{2} Histogram", "RES only, no #(e) cut", 0.06, 0.0425, 0.0425, plots,
-                      HistoList_skipCleaning, HistoList, 2, false, true, sQ2_All_e, "01c_Q2_RES_All_e", hQ2_All_e_Dir, "FD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sQ2_All_e, "01c_Q2_RES_All_e", hQ2_All_e_Dir, "FD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hQ2_DIS_All_e, norm_Momentum_transfer_plots, true, Q2_All_e_integral, "Q^{2} Histogram", "DIS only, no #(e) cut", 0.06, 0.0425, 0.0425, plots,
-                      HistoList_skipCleaning, HistoList, 2, false, true, sQ2_All_e, "01d_Q2_DIS_All_e", hQ2_All_e_Dir, "FD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sQ2_All_e, "01d_Q2_DIS_All_e", hQ2_All_e_Dir, "FD", kBlue, true, true, true);
 
         stackPlotter1D(MainCanvas, sQ2_All_e, norm_Momentum_transfer_plots, "Q^{2} Histogram", "no #(e) cut", plots, HistoList_skipCleaning, HistoList, hQ2_All_e, hQ2_QEL_All_e,
                        hQ2_MEC_All_e, hQ2_RES_All_e, hQ2_DIS_All_e, "01e_Q2_All_e_Stack", hQ2_All_e_Dir, "");
@@ -23736,15 +23756,15 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         double q_3v_All_e_integral = hq_3v_All_e->Integral();
 
         histPlotter1D(MainCanvas, hq_3v_All_e, norm_Momentum_transfer_plots, true, q_3v_All_e_integral, "q = |#font[62]{q}|", "no #(e) cut", 0.06, 0.0425, 0.0425, plots,
-                      HistoList_skipCleaning, HistoList, 2, false, true, sq_3v_All_e, "02_q_3v_All_e", hq_3v_All_e_Dir, "FD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sq_3v_All_e, "02_q_3v_All_e", hq_3v_All_e_Dir, "FD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hq_3v_QEL_All_e, norm_Momentum_transfer_plots, true, q_3v_All_e_integral, "q = |#font[62]{q}|", "QE only, no #(e) cut", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sq_3v_All_e, "02a_q_3v_QEL_All_e", hq_3v_All_e_Dir, "FD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sq_3v_All_e, "02a_q_3v_QEL_All_e", hq_3v_All_e_Dir, "FD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hq_3v_MEC_All_e, norm_Momentum_transfer_plots, true, q_3v_All_e_integral, "q = |#font[62]{q}|", "MEC only, no #(e) cut", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sq_3v_All_e, "02b_q_3v_MEC_All_e", hq_3v_All_e_Dir, "FD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sq_3v_All_e, "02b_q_3v_MEC_All_e", hq_3v_All_e_Dir, "FD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hq_3v_RES_All_e, norm_Momentum_transfer_plots, true, q_3v_All_e_integral, "q = |#font[62]{q}|", "RES only, no #(e) cut", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sq_3v_All_e, "02c_q_3v_RES_All_e", hq_3v_All_e_Dir, "FD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sq_3v_All_e, "02c_q_3v_RES_All_e", hq_3v_All_e_Dir, "FD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hq_3v_DIS_All_e, norm_Momentum_transfer_plots, true, q_3v_All_e_integral, "q = |#font[62]{q}|", "DIS only, no #(e) cut", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sq_3v_All_e, "02d_q_3v_DIS_All_e", hq_3v_All_e_Dir, "FD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sq_3v_All_e, "02d_q_3v_DIS_All_e", hq_3v_All_e_Dir, "FD", kBlue, true, true, true);
 
         stackPlotter1D(MainCanvas, sq_3v_All_e, norm_Momentum_transfer_plots, "q = |#font[62]{q}|", "no #(e) cut", plots, HistoList_skipCleaning, HistoList, hq_3v_All_e, hq_3v_QEL_All_e,
                        hq_3v_MEC_All_e, hq_3v_RES_All_e, hq_3v_DIS_All_e, "02e_q_3v_All_e_Stack", hq_3v_All_e_Dir, "");
@@ -23755,15 +23775,15 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         double Q2_1e_cut_integral = hQ2_1e_cut->Integral();
 
         histPlotter1D(MainCanvas, hQ2_1e_cut, norm_Momentum_transfer_plots, true, Q2_1e_cut_integral, "Q^{2} Histogram", "1e cut", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                      HistoList, 2, false, true, sQ2_1e_cut, "01_Q2_1e_cut", hQ2_1e_cut_Dir, "FD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sQ2_1e_cut, "01_Q2_1e_cut", hQ2_1e_cut_Dir, "FD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hQ2_QEL_1e_cut, norm_Momentum_transfer_plots, true, Q2_1e_cut_integral, "Q^{2} Histogram", "QE only, 1e cut", 0.06, 0.0425, 0.0425, plots,
-                      HistoList_skipCleaning, HistoList, 2, false, true, sQ2_1e_cut, "01a_Q2_QEL_1e_cut", hQ2_1e_cut_Dir, "FD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sQ2_1e_cut, "01a_Q2_QEL_1e_cut", hQ2_1e_cut_Dir, "FD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hQ2_MEC_1e_cut, norm_Momentum_transfer_plots, true, Q2_1e_cut_integral, "Q^{2} Histogram", "MEC only, 1e cut", 0.06, 0.0425, 0.0425, plots,
-                      HistoList_skipCleaning, HistoList, 2, false, true, sQ2_1e_cut, "01b_Q2_MEC_1e_cut", hQ2_1e_cut_Dir, "FD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sQ2_1e_cut, "01b_Q2_MEC_1e_cut", hQ2_1e_cut_Dir, "FD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hQ2_RES_1e_cut, norm_Momentum_transfer_plots, true, Q2_1e_cut_integral, "Q^{2} Histogram", "RES only, 1e cut", 0.06, 0.0425, 0.0425, plots,
-                      HistoList_skipCleaning, HistoList, 2, false, true, sQ2_1e_cut, "01c_Q2_RES_1e_cut", hQ2_1e_cut_Dir, "FD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sQ2_1e_cut, "01c_Q2_RES_1e_cut", hQ2_1e_cut_Dir, "FD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hQ2_DIS_1e_cut, norm_Momentum_transfer_plots, true, Q2_1e_cut_integral, "Q^{2} Histogram", "DIS only, 1e cut", 0.06, 0.0425, 0.0425, plots,
-                      HistoList_skipCleaning, HistoList, 2, false, true, sQ2_1e_cut, "01d_Q2_DIS_1e_cut", hQ2_1e_cut_Dir, "FD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sQ2_1e_cut, "01d_Q2_DIS_1e_cut", hQ2_1e_cut_Dir, "FD", kBlue, true, true, true);
 
         stackPlotter1D(MainCanvas, sQ2_1e_cut, norm_Momentum_transfer_plots, "Q^{2} Histogram", "1e cut", plots, HistoList_skipCleaning, HistoList, hQ2_1e_cut, hQ2_QEL_1e_cut,
                        hQ2_MEC_1e_cut, hQ2_RES_1e_cut, hQ2_DIS_1e_cut, "01e_Q2_1e_cut_Stack", hQ2_1e_cut_Dir, "");
@@ -23772,15 +23792,15 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         double q_3v_1e_cut_integral = hq_3v_1e_cut->Integral();
 
         histPlotter1D(MainCanvas, hq_3v_1e_cut, norm_Momentum_transfer_plots, true, q_3v_1e_cut_integral, "q = |#font[62]{q}|", "1e cut", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                      HistoList, 2, false, true, sq_3v_1e_cut, "02_q_3v_1e_cut", hq_3v_1e_cut_Dir, "FD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sq_3v_1e_cut, "02_q_3v_1e_cut", hq_3v_1e_cut_Dir, "FD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hq_3v_QEL_1e_cut, norm_Momentum_transfer_plots, true, q_3v_1e_cut_integral, "q = |#font[62]{q}|", "QE only, 1e cut", 0.06, 0.0425, 0.0425, plots,
-                      HistoList_skipCleaning, HistoList, 2, false, true, sq_3v_1e_cut, "02a_q_3v_QEL_1e_cut", hq_3v_1e_cut_Dir, "FD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sq_3v_1e_cut, "02a_q_3v_QEL_1e_cut", hq_3v_1e_cut_Dir, "FD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hq_3v_MEC_1e_cut, norm_Momentum_transfer_plots, true, q_3v_1e_cut_integral, "q = |#font[62]{q}|", "MEC only, 1e cut", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sq_3v_1e_cut, "02b_q_3v_MEC_1e_cut", hq_3v_1e_cut_Dir, "FD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sq_3v_1e_cut, "02b_q_3v_MEC_1e_cut", hq_3v_1e_cut_Dir, "FD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hq_3v_RES_1e_cut, norm_Momentum_transfer_plots, true, q_3v_1e_cut_integral, "q = |#font[62]{q}|", "RES only, 1e cut", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sq_3v_1e_cut, "02c_q_3v_RES_1e_cut", hq_3v_1e_cut_Dir, "FD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sq_3v_1e_cut, "02c_q_3v_RES_1e_cut", hq_3v_1e_cut_Dir, "FD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hq_3v_DIS_1e_cut, norm_Momentum_transfer_plots, true, q_3v_1e_cut_integral, "q = |#font[62]{q}|", "DIS only, 1e cut", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sq_3v_1e_cut, "02d_q_3v_DIS_1e_cut", hq_3v_1e_cut_Dir, "FD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sq_3v_1e_cut, "02d_q_3v_DIS_1e_cut", hq_3v_1e_cut_Dir, "FD", kBlue, true, true, true);
 
         stackPlotter1D(MainCanvas, sq_3v_1e_cut, norm_Momentum_transfer_plots, "q = |#font[62]{q}|", "1e cut", plots, HistoList_skipCleaning, HistoList, hq_3v_1e_cut, hq_3v_QEL_1e_cut,
                        hq_3v_MEC_1e_cut, hq_3v_RES_1e_cut, hq_3v_DIS_1e_cut, "02e_q_3v_1e_cut_Stack", hq_3v_1e_cut_Dir, "");
@@ -23834,13 +23854,13 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         histPlotter1D(MainCanvas, hQ2_1p, norm_Momentum_transfer_plots, true, Q2_1p_integral, "Q^{2} Histogram", "1p", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning, HistoList, 2,
                       false, true, sQ2_1p, "01_Q2_1p", hQ2_1p_Dir, "FD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hQ2_QEL_1p, norm_Momentum_transfer_plots, true, Q2_1p_integral, "Q^{2} Histogram", "QE only, 1p", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                      HistoList, 2, false, true, sQ2_1p, "01a_Q2_QEL_1p", hQ2_1p_Dir, "FD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sQ2_1p, "01a_Q2_QEL_1p", hQ2_1p_Dir, "FD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hQ2_MEC_1p, norm_Momentum_transfer_plots, true, Q2_1p_integral, "Q^{2} Histogram", "MEC only, 1p", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                      HistoList, 2, false, true, sQ2_1p, "01b_Q2_MEC_1p", hQ2_1p_Dir, "FD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sQ2_1p, "01b_Q2_MEC_1p", hQ2_1p_Dir, "FD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hQ2_RES_1p, norm_Momentum_transfer_plots, true, Q2_1p_integral, "Q^{2} Histogram", "RES only, 1p", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                      HistoList, 2, false, true, sQ2_1p, "01c_Q2_RES_1p", hQ2_1p_Dir, "FD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sQ2_1p, "01c_Q2_RES_1p", hQ2_1p_Dir, "FD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hQ2_DIS_1p, norm_Momentum_transfer_plots, true, Q2_1p_integral, "Q^{2} Histogram", "DIS only, 1p", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                      HistoList, 2, false, true, sQ2_1p, "01d_Q2_DIS_1p", hQ2_1p_Dir, "FD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sQ2_1p, "01d_Q2_DIS_1p", hQ2_1p_Dir, "FD", kBlue, true, true, true);
 
         stackPlotter1D(MainCanvas, sQ2_1p, norm_Momentum_transfer_plots, "Q^{2} Histogram", "1p", plots, HistoList_skipCleaning, HistoList, hQ2_1p, hQ2_QEL_1p, hQ2_MEC_1p, hQ2_RES_1p,
                        hQ2_DIS_1p, "01e_Q2_1p_Stack", hQ2_1p_Dir, "");
@@ -23851,13 +23871,13 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         histPlotter1D(MainCanvas, hq_3v_1p, norm_Momentum_transfer_plots, true, q_3v_1p_integral, "q = |#font[62]{q}|", "1p", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning, HistoList,
                       2, false, true, sq_3v_1p, "02_q_3v_1p", hq_3v_1p_Dir, "FD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hq_3v_QEL_1p, norm_Momentum_transfer_plots, true, q_3v_1p_integral, "q = |#font[62]{q}|", "QE only, 1p", 0.06, 0.0425, 0.0425, plots,
-                      HistoList_skipCleaning, HistoList, 2, false, true, sq_3v_1p, "02a_q_3v_QEL_1p", hq_3v_1p_Dir, "FD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sq_3v_1p, "02a_q_3v_QEL_1p", hq_3v_1p_Dir, "FD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hq_3v_MEC_1p, norm_Momentum_transfer_plots, true, q_3v_1p_integral, "q = |#font[62]{q}|", "MEC only, 1p", 0.06, 0.0425, 0.0425, plots,
-                      HistoList_skipCleaning, HistoList, 2, false, true, sq_3v_1p, "02b_q_3v_MEC_1p", hq_3v_1p_Dir, "FD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sq_3v_1p, "02b_q_3v_MEC_1p", hq_3v_1p_Dir, "FD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hq_3v_RES_1p, norm_Momentum_transfer_plots, true, q_3v_1p_integral, "q = |#font[62]{q}|", "RES only, 1p", 0.06, 0.0425, 0.0425, plots,
-                      HistoList_skipCleaning, HistoList, 2, false, true, sq_3v_1p, "02c_q_3v_RES_1p", hq_3v_1p_Dir, "FD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sq_3v_1p, "02c_q_3v_RES_1p", hq_3v_1p_Dir, "FD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hq_3v_DIS_1p, norm_Momentum_transfer_plots, true, q_3v_1p_integral, "q = |#font[62]{q}|", "DIS only, 1p", 0.06, 0.0425, 0.0425, plots,
-                      HistoList_skipCleaning, HistoList, 2, false, true, sq_3v_1p, "02d_q_3v_DIS_1p", hq_3v_1p_Dir, "FD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sq_3v_1p, "02d_q_3v_DIS_1p", hq_3v_1p_Dir, "FD", kBlue, true, true, true);
 
         stackPlotter1D(MainCanvas, sq_3v_1p, norm_Momentum_transfer_plots, "q = |#font[62]{q}|", "1p", plots, HistoList_skipCleaning, HistoList, hq_3v_1p, hq_3v_QEL_1p, hq_3v_MEC_1p,
                        hq_3v_RES_1p, hq_3v_DIS_1p, "02e_q_3v_1p_Stack", hq_3v_1p_Dir, "");
@@ -23902,13 +23922,13 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         histPlotter1D(MainCanvas, hQ2_1n, norm_Momentum_transfer_plots, true, Q2_1n_integral, "Q^{2} Histogram", "1n", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning, HistoList, 2,
                       false, true, sQ2_1n, "01_Q2_1n", hQ2_1n_Dir, "FD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hQ2_QEL_1n, norm_Momentum_transfer_plots, true, Q2_1n_integral, "Q^{2} Histogram", "QE only, 1n", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                      HistoList, 2, false, true, sQ2_1n, "01a_Q2_QEL_1n", hQ2_1n_Dir, "FD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sQ2_1n, "01a_Q2_QEL_1n", hQ2_1n_Dir, "FD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hQ2_MEC_1n, norm_Momentum_transfer_plots, true, Q2_1n_integral, "Q^{2} Histogram", "MEC only, 1n", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                      HistoList, 2, false, true, sQ2_1n, "01b_Q2_MEC_1n", hQ2_1n_Dir, "FD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sQ2_1n, "01b_Q2_MEC_1n", hQ2_1n_Dir, "FD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hQ2_RES_1n, norm_Momentum_transfer_plots, true, Q2_1n_integral, "Q^{2} Histogram", "RES only, 1n", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                      HistoList, 2, false, true, sQ2_1n, "01c_Q2_RES_1n", hQ2_1n_Dir, "FD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sQ2_1n, "01c_Q2_RES_1n", hQ2_1n_Dir, "FD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hQ2_DIS_1n, norm_Momentum_transfer_plots, true, Q2_1n_integral, "Q^{2} Histogram", "DIS only, 1n", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                      HistoList, 2, false, true, sQ2_1n, "01d_Q2_DIS_1n", hQ2_1n_Dir, "FD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sQ2_1n, "01d_Q2_DIS_1n", hQ2_1n_Dir, "FD", kBlue, true, true, true);
 
         stackPlotter1D(MainCanvas, sQ2_1n, norm_Momentum_transfer_plots, "Q^{2} Histogram", "1n", plots, HistoList_skipCleaning, HistoList, hQ2_1n, hQ2_QEL_1n, hQ2_MEC_1n, hQ2_RES_1n,
                        hQ2_DIS_1n, "01e_Q2_1n_Stack", hQ2_1n_Dir, "");
@@ -23919,13 +23939,13 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         histPlotter1D(MainCanvas, hq_3v_1n, norm_Momentum_transfer_plots, true, q_3v_1n_integral, "q = |#font[62]{q}|", "1n", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning, HistoList,
                       2, false, true, sq_3v_1n, "02_q_3v_1n", hq_3v_1n_Dir, "FD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hq_3v_QEL_1n, norm_Momentum_transfer_plots, true, q_3v_1n_integral, "q = |#font[62]{q}|", "QE only, 1n", 0.06, 0.0425, 0.0425, plots,
-                      HistoList_skipCleaning, HistoList, 2, false, true, sq_3v_1n, "02a_q_3v_QEL_1n", hq_3v_1n_Dir, "FD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sq_3v_1n, "02a_q_3v_QEL_1n", hq_3v_1n_Dir, "FD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hq_3v_MEC_1n, norm_Momentum_transfer_plots, true, q_3v_1n_integral, "q = |#font[62]{q}|", "MEC only, 1n", 0.06, 0.0425, 0.0425, plots,
-                      HistoList_skipCleaning, HistoList, 2, false, true, sq_3v_1n, "02b_q_3v_MEC_1n", hq_3v_1n_Dir, "FD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sq_3v_1n, "02b_q_3v_MEC_1n", hq_3v_1n_Dir, "FD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hq_3v_RES_1n, norm_Momentum_transfer_plots, true, q_3v_1n_integral, "q = |#font[62]{q}|", "RES only, 1n", 0.06, 0.0425, 0.0425, plots,
-                      HistoList_skipCleaning, HistoList, 2, false, true, sq_3v_1n, "02c_q_3v_RES_1n", hq_3v_1n_Dir, "FD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sq_3v_1n, "02c_q_3v_RES_1n", hq_3v_1n_Dir, "FD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hq_3v_DIS_1n, norm_Momentum_transfer_plots, true, q_3v_1n_integral, "q = |#font[62]{q}|", "DIS only, 1n", 0.06, 0.0425, 0.0425, plots,
-                      HistoList_skipCleaning, HistoList, 2, false, true, sq_3v_1n, "02d_q_3v_DIS_1n", hq_3v_1n_Dir, "FD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sq_3v_1n, "02d_q_3v_DIS_1n", hq_3v_1n_Dir, "FD", kBlue, true, true, true);
 
         stackPlotter1D(MainCanvas, sq_3v_1n, norm_Momentum_transfer_plots, "q = |#font[62]{q}|", "1n", plots, HistoList_skipCleaning, HistoList, hq_3v_1n, hq_3v_QEL_1n, hq_3v_MEC_1n,
                        hq_3v_RES_1n, hq_3v_DIS_1n, "02e_q_3v_1n_Stack", hq_3v_1n_Dir, "");
@@ -23970,13 +23990,13 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         histPlotter1D(MainCanvas, hQ2_2p, norm_Momentum_transfer_plots, true, Q2_2p_integral, "Q^{2} Histogram", "2p", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning, HistoList, 2,
                       false, true, sQ2_2p, "01_Q2_2p", hQ2_2p_Dir, "FD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hQ2_QEL_2p, norm_Momentum_transfer_plots, true, Q2_2p_integral, "Q^{2} Histogram", "QE only, 2p", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                      HistoList, 2, false, true, sQ2_2p, "01a_Q2_QEL_2p", hQ2_2p_Dir, "FD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sQ2_2p, "01a_Q2_QEL_2p", hQ2_2p_Dir, "FD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hQ2_MEC_2p, norm_Momentum_transfer_plots, true, Q2_2p_integral, "Q^{2} Histogram", "MEC only, 2p", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                      HistoList, 2, false, true, sQ2_2p, "01b_Q2_MEC_2p", hQ2_2p_Dir, "FD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sQ2_2p, "01b_Q2_MEC_2p", hQ2_2p_Dir, "FD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hQ2_RES_2p, norm_Momentum_transfer_plots, true, Q2_2p_integral, "Q^{2} Histogram", "RES only, 2p", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                      HistoList, 2, false, true, sQ2_2p, "01c_Q2_RES_2p", hQ2_2p_Dir, "FD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sQ2_2p, "01c_Q2_RES_2p", hQ2_2p_Dir, "FD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hQ2_DIS_2p, norm_Momentum_transfer_plots, true, Q2_2p_integral, "Q^{2} Histogram", "DIS only, 2p", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                      HistoList, 2, false, true, sQ2_2p, "01d_Q2_DIS_2p", hQ2_2p_Dir, "FD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sQ2_2p, "01d_Q2_DIS_2p", hQ2_2p_Dir, "FD", kBlue, true, true, true);
 
         stackPlotter1D(MainCanvas, sQ2_2p, norm_Momentum_transfer_plots, "Q^{2} Histogram", "2p", plots, HistoList_skipCleaning, HistoList, hQ2_2p, hQ2_QEL_2p, hQ2_MEC_2p, hQ2_RES_2p,
                        hQ2_DIS_2p, "01e_Q2_2p_Stack", hQ2_2p_Dir, "");
@@ -23987,13 +24007,13 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         histPlotter1D(MainCanvas, hq_3v_2p, norm_Momentum_transfer_plots, true, q_3v_2p_integral, "q = |#font[62]{q}|", "2p", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning, HistoList,
                       2, false, true, sq_3v_2p, "02_q_3v_2p", hq_3v_2p_Dir, "FD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hq_3v_QEL_2p, norm_Momentum_transfer_plots, true, q_3v_2p_integral, "q = |#font[62]{q}|", "QE only, 2p", 0.06, 0.0425, 0.0425, plots,
-                      HistoList_skipCleaning, HistoList, 2, false, true, sq_3v_2p, "02a_q_3v_QEL_2p", hq_3v_2p_Dir, "FD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sq_3v_2p, "02a_q_3v_QEL_2p", hq_3v_2p_Dir, "FD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hq_3v_MEC_2p, norm_Momentum_transfer_plots, true, q_3v_2p_integral, "q = |#font[62]{q}|", "MEC only, 2p", 0.06, 0.0425, 0.0425, plots,
-                      HistoList_skipCleaning, HistoList, 2, false, true, sq_3v_2p, "02b_q_3v_MEC_2p", hq_3v_2p_Dir, "FD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sq_3v_2p, "02b_q_3v_MEC_2p", hq_3v_2p_Dir, "FD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hq_3v_RES_2p, norm_Momentum_transfer_plots, true, q_3v_2p_integral, "q = |#font[62]{q}|", "RES only, 2p", 0.06, 0.0425, 0.0425, plots,
-                      HistoList_skipCleaning, HistoList, 2, false, true, sq_3v_2p, "02c_q_3v_RES_2p", hq_3v_2p_Dir, "FD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sq_3v_2p, "02c_q_3v_RES_2p", hq_3v_2p_Dir, "FD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hq_3v_DIS_2p, norm_Momentum_transfer_plots, true, q_3v_2p_integral, "q = |#font[62]{q}|", "DIS only, 2p", 0.06, 0.0425, 0.0425, plots,
-                      HistoList_skipCleaning, HistoList, 2, false, true, sq_3v_2p, "02d_q_3v_DIS_2p", hq_3v_2p_Dir, "FD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sq_3v_2p, "02d_q_3v_DIS_2p", hq_3v_2p_Dir, "FD", kBlue, true, true, true);
 
         stackPlotter1D(MainCanvas, sq_3v_2p, norm_Momentum_transfer_plots, "q = |#font[62]{q}|", "2p", plots, HistoList_skipCleaning, HistoList, hq_3v_2p, hq_3v_QEL_2p, hq_3v_MEC_2p,
                        hq_3v_RES_2p, hq_3v_DIS_2p, "02e_q_3v_2p_Stack", hq_3v_2p_Dir, "");
@@ -24036,15 +24056,15 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         double Q2_pFDpCD_integral = hQ2_pFDpCD->Integral();
 
         histPlotter1D(MainCanvas, hQ2_pFDpCD, norm_Momentum_transfer_plots, true, Q2_pFDpCD_integral, "Q^{2} Histogram", "pFDpCD", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                      HistoList, 2, false, true, sQ2_pFDpCD, "01_Q2_pFDpCD", hQ2_pFDpCD_Dir, "FD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sQ2_pFDpCD, "01_Q2_pFDpCD", hQ2_pFDpCD_Dir, "FD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hQ2_QEL_pFDpCD, norm_Momentum_transfer_plots, true, Q2_pFDpCD_integral, "Q^{2} Histogram", "QE only, pFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList_skipCleaning, HistoList, 2, false, true, sQ2_pFDpCD, "01a_Q2_QEL_pFDpCD", hQ2_pFDpCD_Dir, "FD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sQ2_pFDpCD, "01a_Q2_QEL_pFDpCD", hQ2_pFDpCD_Dir, "FD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hQ2_MEC_pFDpCD, norm_Momentum_transfer_plots, true, Q2_pFDpCD_integral, "Q^{2} Histogram", "MEC only, pFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList_skipCleaning, HistoList, 2, false, true, sQ2_pFDpCD, "01b_Q2_MEC_pFDpCD", hQ2_pFDpCD_Dir, "FD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sQ2_pFDpCD, "01b_Q2_MEC_pFDpCD", hQ2_pFDpCD_Dir, "FD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hQ2_RES_pFDpCD, norm_Momentum_transfer_plots, true, Q2_pFDpCD_integral, "Q^{2} Histogram", "RES only, pFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList_skipCleaning, HistoList, 2, false, true, sQ2_pFDpCD, "01c_Q2_RES_pFDpCD", hQ2_pFDpCD_Dir, "FD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sQ2_pFDpCD, "01c_Q2_RES_pFDpCD", hQ2_pFDpCD_Dir, "FD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hQ2_DIS_pFDpCD, norm_Momentum_transfer_plots, true, Q2_pFDpCD_integral, "Q^{2} Histogram", "DIS only, pFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList_skipCleaning, HistoList, 2, false, true, sQ2_pFDpCD, "01d_Q2_DIS_pFDpCD", hQ2_pFDpCD_Dir, "FD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sQ2_pFDpCD, "01d_Q2_DIS_pFDpCD", hQ2_pFDpCD_Dir, "FD", kBlue, true, true, true);
 
         stackPlotter1D(MainCanvas, sQ2_pFDpCD, norm_Momentum_transfer_plots, "Q^{2} Histogram", "pFDpCD", plots, HistoList_skipCleaning, HistoList, hQ2_pFDpCD, hQ2_QEL_pFDpCD,
                        hQ2_MEC_pFDpCD, hQ2_RES_pFDpCD, hQ2_DIS_pFDpCD, "01e_Q2_pFDpCD_Stack", hQ2_pFDpCD_Dir, "");
@@ -24053,15 +24073,15 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         double q_3v_pFDpCD_integral = hq_3v_pFDpCD->Integral();
 
         histPlotter1D(MainCanvas, hq_3v_pFDpCD, norm_Momentum_transfer_plots, true, q_3v_pFDpCD_integral, "q = |#font[62]{q}|", "pFDpCD", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                      HistoList, 2, false, true, sq_3v_pFDpCD, "02_q_3v_pFDpCD", hq_3v_pFDpCD_Dir, "FD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sq_3v_pFDpCD, "02_q_3v_pFDpCD", hq_3v_pFDpCD_Dir, "FD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hq_3v_QEL_pFDpCD, norm_Momentum_transfer_plots, true, q_3v_pFDpCD_integral, "q = |#font[62]{q}|", "QE only, pFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList_skipCleaning, HistoList, 2, false, true, sq_3v_pFDpCD, "02a_q_3v_QEL_pFDpCD", hq_3v_pFDpCD_Dir, "FD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sq_3v_pFDpCD, "02a_q_3v_QEL_pFDpCD", hq_3v_pFDpCD_Dir, "FD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hq_3v_MEC_pFDpCD, norm_Momentum_transfer_plots, true, q_3v_pFDpCD_integral, "q = |#font[62]{q}|", "MEC only, pFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sq_3v_pFDpCD, "02b_q_3v_MEC_pFDpCD", hq_3v_pFDpCD_Dir, "FD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sq_3v_pFDpCD, "02b_q_3v_MEC_pFDpCD", hq_3v_pFDpCD_Dir, "FD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hq_3v_RES_pFDpCD, norm_Momentum_transfer_plots, true, q_3v_pFDpCD_integral, "q = |#font[62]{q}|", "RES only, pFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sq_3v_pFDpCD, "02c_q_3v_RES_pFDpCD", hq_3v_pFDpCD_Dir, "FD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sq_3v_pFDpCD, "02c_q_3v_RES_pFDpCD", hq_3v_pFDpCD_Dir, "FD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hq_3v_DIS_pFDpCD, norm_Momentum_transfer_plots, true, q_3v_pFDpCD_integral, "q = |#font[62]{q}|", "DIS only, pFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sq_3v_pFDpCD, "02d_q_3v_DIS_pFDpCD", hq_3v_pFDpCD_Dir, "FD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sq_3v_pFDpCD, "02d_q_3v_DIS_pFDpCD", hq_3v_pFDpCD_Dir, "FD", kBlue, true, true, true);
 
         stackPlotter1D(MainCanvas, sq_3v_pFDpCD, norm_Momentum_transfer_plots, "q = |#font[62]{q}|", "pFDpCD", plots, HistoList_skipCleaning, HistoList, hq_3v_pFDpCD, hq_3v_QEL_pFDpCD,
                        hq_3v_MEC_pFDpCD, hq_3v_RES_pFDpCD, hq_3v_DIS_pFDpCD, "02e_q_3v_pFDpCD_Stack", hq_3v_pFDpCD_Dir, "");
@@ -24113,15 +24133,15 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         double Q2_nFDpCD_integral = hQ2_nFDpCD->Integral();
 
         histPlotter1D(MainCanvas, hQ2_nFDpCD, norm_Momentum_transfer_plots, true, Q2_nFDpCD_integral, "Q^{2} Histogram", "nFDpCD", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                      HistoList, 2, false, true, sQ2_nFDpCD, "01_Q2_nFDpCD", hQ2_nFDpCD_Dir, "FD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sQ2_nFDpCD, "01_Q2_nFDpCD", hQ2_nFDpCD_Dir, "FD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hQ2_QEL_nFDpCD, norm_Momentum_transfer_plots, true, Q2_nFDpCD_integral, "Q^{2} Histogram", "QE only, nFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList_skipCleaning, HistoList, 2, false, true, sQ2_nFDpCD, "01a_Q2_QEL_nFDpCD", hQ2_nFDpCD_Dir, "FD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sQ2_nFDpCD, "01a_Q2_QEL_nFDpCD", hQ2_nFDpCD_Dir, "FD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hQ2_MEC_nFDpCD, norm_Momentum_transfer_plots, true, Q2_nFDpCD_integral, "Q^{2} Histogram", "MEC only, nFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList_skipCleaning, HistoList, 2, false, true, sQ2_nFDpCD, "01b_Q2_MEC_nFDpCD", hQ2_nFDpCD_Dir, "FD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sQ2_nFDpCD, "01b_Q2_MEC_nFDpCD", hQ2_nFDpCD_Dir, "FD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hQ2_RES_nFDpCD, norm_Momentum_transfer_plots, true, Q2_nFDpCD_integral, "Q^{2} Histogram", "RES only, nFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList_skipCleaning, HistoList, 2, false, true, sQ2_nFDpCD, "01c_Q2_RES_nFDpCD", hQ2_nFDpCD_Dir, "FD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sQ2_nFDpCD, "01c_Q2_RES_nFDpCD", hQ2_nFDpCD_Dir, "FD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hQ2_DIS_nFDpCD, norm_Momentum_transfer_plots, true, Q2_nFDpCD_integral, "Q^{2} Histogram", "DIS only, nFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList_skipCleaning, HistoList, 2, false, true, sQ2_nFDpCD, "01d_Q2_DIS_nFDpCD", hQ2_nFDpCD_Dir, "FD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sQ2_nFDpCD, "01d_Q2_DIS_nFDpCD", hQ2_nFDpCD_Dir, "FD", kBlue, true, true, true);
 
         stackPlotter1D(MainCanvas, sQ2_nFDpCD, norm_Momentum_transfer_plots, "Q^{2} Histogram", "nFDpCD", plots, HistoList_skipCleaning, HistoList, hQ2_nFDpCD, hQ2_QEL_nFDpCD,
                        hQ2_MEC_nFDpCD, hQ2_RES_nFDpCD, hQ2_DIS_nFDpCD, "01e_Q2_nFDpCD_Stack", hQ2_nFDpCD_Dir, "");
@@ -24130,15 +24150,15 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         double q_3v_nFDpCD_integral = hq_3v_nFDpCD->Integral();
 
         histPlotter1D(MainCanvas, hq_3v_nFDpCD, norm_Momentum_transfer_plots, true, q_3v_nFDpCD_integral, "q = |#font[62]{q}|", "nFDpCD", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                      HistoList, 2, false, true, sq_3v_nFDpCD, "02_q_3v_nFDpCD", hq_3v_nFDpCD_Dir, "FD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sq_3v_nFDpCD, "02_q_3v_nFDpCD", hq_3v_nFDpCD_Dir, "FD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hq_3v_QEL_nFDpCD, norm_Momentum_transfer_plots, true, q_3v_nFDpCD_integral, "q = |#font[62]{q}|", "QE only, nFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList_skipCleaning, HistoList, 2, false, true, sq_3v_nFDpCD, "02a_q_3v_QEL_nFDpCD", hq_3v_nFDpCD_Dir, "FD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sq_3v_nFDpCD, "02a_q_3v_QEL_nFDpCD", hq_3v_nFDpCD_Dir, "FD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hq_3v_MEC_nFDpCD, norm_Momentum_transfer_plots, true, q_3v_nFDpCD_integral, "q = |#font[62]{q}|", "MEC only, nFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sq_3v_nFDpCD, "02b_q_3v_MEC_nFDpCD", hq_3v_nFDpCD_Dir, "FD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sq_3v_nFDpCD, "02b_q_3v_MEC_nFDpCD", hq_3v_nFDpCD_Dir, "FD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hq_3v_RES_nFDpCD, norm_Momentum_transfer_plots, true, q_3v_nFDpCD_integral, "q = |#font[62]{q}|", "RES only, nFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sq_3v_nFDpCD, "02c_q_3v_RES_nFDpCD", hq_3v_nFDpCD_Dir, "FD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sq_3v_nFDpCD, "02c_q_3v_RES_nFDpCD", hq_3v_nFDpCD_Dir, "FD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hq_3v_DIS_nFDpCD, norm_Momentum_transfer_plots, true, q_3v_nFDpCD_integral, "q = |#font[62]{q}|", "DIS only, nFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sq_3v_nFDpCD, "02d_q_3v_DIS_nFDpCD", hq_3v_nFDpCD_Dir, "FD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sq_3v_nFDpCD, "02d_q_3v_DIS_nFDpCD", hq_3v_nFDpCD_Dir, "FD", kBlue, true, true, true);
 
         stackPlotter1D(MainCanvas, sq_3v_nFDpCD, norm_Momentum_transfer_plots, "q = |#font[62]{q}|", "nFDpCD", plots, HistoList_skipCleaning, HistoList, hq_3v_nFDpCD, hq_3v_QEL_nFDpCD,
                        hq_3v_MEC_nFDpCD, hq_3v_RES_nFDpCD, hq_3v_DIS_nFDpCD, "02e_q_3v_nFDpCD_Stack", hq_3v_nFDpCD_Dir, "");
@@ -24212,15 +24232,15 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         double E_e_1e_cut_All_Int_integral = hE_e_All_Int_1e_cut_FD->Integral();
 
         histPlotter1D(MainCanvas, hE_e_All_Int_1e_cut_FD, norm_E_e_plots, true, E_e_1e_cut_All_Int_integral, "E_{e} Histogram", "1e cut", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                      HistoList, 2, false, true, sE_e_1e_cut, "01_E_e_1e_cut", hE_e_All_Int_1e_cut_FD_Dir, "", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sE_e_1e_cut, "01_E_e_1e_cut", hE_e_All_Int_1e_cut_FD_Dir, "", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hE_e_QEL_1e_cut_FD, norm_E_e_plots, true, E_e_1e_cut_All_Int_integral, "E_{e} Histogram", "QEL Only, 1e_cut", 0.06, 0.0425, 0.0425, plots,
-                      HistoList_skipCleaning, HistoList, 2, false, true, sE_e_1e_cut, "01_E_e_QEL_Only_1e_cut", hE_e_QEL_1e_cut_FD_Dir, "", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sE_e_1e_cut, "01_E_e_QEL_Only_1e_cut", hE_e_QEL_1e_cut_FD_Dir, "", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hE_e_MEC_1e_cut_FD, norm_E_e_plots, true, E_e_1e_cut_All_Int_integral, "E_{e} Histogram", "MEC only, 1e_cut", 0.06, 0.0425, 0.0425, plots,
-                      HistoList_skipCleaning, HistoList, 2, false, true, sE_e_1e_cut, "02_E_e_MEC_Only_1e_cut", hE_e_MEC_1e_cut_FD_Dir, "", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sE_e_1e_cut, "02_E_e_MEC_Only_1e_cut", hE_e_MEC_1e_cut_FD_Dir, "", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hE_e_RES_1e_cut_FD, norm_E_e_plots, true, E_e_1e_cut_All_Int_integral, "E_{e} Histogram", "RES only, 1e_cut", 0.06, 0.0425, 0.0425, plots,
-                      HistoList_skipCleaning, HistoList, 2, false, true, sE_e_1e_cut, "03_E_e_RES_Only_1e_cut", hE_e_RES_1e_cut_FD_Dir, "", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sE_e_1e_cut, "03_E_e_RES_Only_1e_cut", hE_e_RES_1e_cut_FD_Dir, "", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hE_e_DIS_1e_cut_FD, norm_E_e_plots, true, E_e_1e_cut_All_Int_integral, "E_{e} Histogram", "DIS only, 1e_cut", 0.06, 0.0425, 0.0425, plots,
-                      HistoList_skipCleaning, HistoList, 2, false, true, sE_e_1e_cut, "04_E_e_DIS_Only_1e_cut", hE_e_DIS_1e_cut_FD_Dir, "", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sE_e_1e_cut, "04_E_e_DIS_Only_1e_cut", hE_e_DIS_1e_cut_FD_Dir, "", kBlue, true, true, true);
 
         stackPlotter1D(MainCanvas, sE_e_1e_cut, norm_E_e_plots, "E_{e} Histogram", "1e_cut", plots, HistoList_skipCleaning, HistoList, hE_e_All_Int_1e_cut_FD, hE_e_QEL_1e_cut_FD,
                        hE_e_MEC_1e_cut_FD, hE_e_RES_1e_cut_FD, hE_e_DIS_1e_cut_FD, "02_E_e_Stack", sE_e_1e_cut_Dir, "");
@@ -24229,15 +24249,15 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         double E_e_1p_All_Int_integral = hE_e_All_Int_1p_FD->Integral();
 
         histPlotter1D(MainCanvas, hE_e_All_Int_1p_FD, norm_E_e_plots, true, E_e_1p_All_Int_integral, "E_{e} Histogram", "All Int., 1p", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                      HistoList, 2, false, true, sE_e_1p_FD, "00_E_e_All_Int_1p", hE_e_All_Int_1p_FD_Dir, "", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sE_e_1p_FD, "00_E_e_All_Int_1p", hE_e_All_Int_1p_FD_Dir, "", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hE_e_QEL_1p_FD, norm_E_e_plots, true, E_e_1p_All_Int_integral, "E_{e} Histogram", "QEL Only, 1p", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                      HistoList, 2, false, true, sE_e_1p_FD, "01_E_e_QEL_Only_1p", hE_e_QEL_1p_FD_Dir, "", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sE_e_1p_FD, "01_E_e_QEL_Only_1p", hE_e_QEL_1p_FD_Dir, "", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hE_e_MEC_1p_FD, norm_E_e_plots, true, E_e_1p_All_Int_integral, "E_{e} Histogram", "MEC only, 1p", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                      HistoList, 2, false, true, sE_e_1p_FD, "02_E_e_MEC_Only_1p", hE_e_MEC_1p_FD_Dir, "", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sE_e_1p_FD, "02_E_e_MEC_Only_1p", hE_e_MEC_1p_FD_Dir, "", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hE_e_RES_1p_FD, norm_E_e_plots, true, E_e_1p_All_Int_integral, "E_{e} Histogram", "RES only, 1p", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                      HistoList, 2, false, true, sE_e_1p_FD, "03_E_e_RES_Only_1p", hE_e_RES_1p_FD_Dir, "", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sE_e_1p_FD, "03_E_e_RES_Only_1p", hE_e_RES_1p_FD_Dir, "", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hE_e_DIS_1p_FD, norm_E_e_plots, true, E_e_1p_All_Int_integral, "E_{e} Histogram", "DIS only, 1p", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                      HistoList, 2, false, true, sE_e_1p_FD, "04_E_e_DIS_Only_1p", hE_e_DIS_1p_FD_Dir, "", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sE_e_1p_FD, "04_E_e_DIS_Only_1p", hE_e_DIS_1p_FD_Dir, "", kBlue, true, true, true);
 
         stackPlotter1D(MainCanvas, sE_e_1p_FD, norm_E_e_plots, "E_{e} Histogram", "1p", plots, HistoList_skipCleaning, HistoList, hE_e_All_Int_1p_FD, hE_e_QEL_1p_FD, hE_e_MEC_1p_FD,
                        hE_e_RES_1p_FD, hE_e_DIS_1p_FD, "02_E_e_Stack", sE_e_1p_FD_Dir, "");
@@ -24246,15 +24266,15 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         double E_e_15_1p_All_Int_integral = hE_e_15_All_Int_1p_FD->Integral();
 
         histPlotter1D(MainCanvas, hE_e_15_All_Int_1p_FD, norm_E_e_plots, true, E_e_15_1p_All_Int_integral, "E_{e} around #theta_{e} = 15#circ", "All Int., 1p", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sE_e_15_1p_FD, "00_E_e_15_All_Int_1p", hE_e_15_All_Int_1p_FD_Dir, "", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sE_e_15_1p_FD, "00_E_e_15_All_Int_1p", hE_e_15_All_Int_1p_FD_Dir, "", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hE_e_15_QEL_1p_FD, norm_E_e_plots, true, E_e_15_1p_All_Int_integral, "E_{e} around #theta_{e} = 15#circ", "QEL Only, 1p", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sE_e_15_1p_FD, "01_E_e_15_QEL_Only_1p", hE_e_15_QEL_1p_FD_Dir, "", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sE_e_15_1p_FD, "01_E_e_15_QEL_Only_1p", hE_e_15_QEL_1p_FD_Dir, "", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hE_e_15_MEC_1p_FD, norm_E_e_plots, true, E_e_15_1p_All_Int_integral, "E_{e} around #theta_{e} = 15#circ", "MEC only, 1p", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sE_e_15_1p_FD, "02_E_e_15_MEC_Only_1p", hE_e_15_MEC_1p_FD_Dir, "", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sE_e_15_1p_FD, "02_E_e_15_MEC_Only_1p", hE_e_15_MEC_1p_FD_Dir, "", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hE_e_15_RES_1p_FD, norm_E_e_plots, true, E_e_15_1p_All_Int_integral, "E_{e} around #theta_{e} = 15#circ", "RES only, 1p", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sE_e_15_1p_FD, "03_E_e_15_RES_Only_1p", hE_e_15_RES_1p_FD_Dir, "", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sE_e_15_1p_FD, "03_E_e_15_RES_Only_1p", hE_e_15_RES_1p_FD_Dir, "", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hE_e_15_DIS_1p_FD, norm_E_e_plots, true, E_e_15_1p_All_Int_integral, "E_{e} around #theta_{e} = 15#circ", "DIS only, 1p", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sE_e_15_1p_FD, "04_E_e_15_DIS_Only_1p", hE_e_15_DIS_1p_FD_Dir, "", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sE_e_15_1p_FD, "04_E_e_15_DIS_Only_1p", hE_e_15_DIS_1p_FD_Dir, "", kBlue, true, true, true);
 
         stackPlotter1D(MainCanvas, sE_e_15_1p_FD, norm_E_e_plots, "E_{e} around #theta_{e} = 15#circ", "1p", plots, HistoList_skipCleaning, HistoList, hE_e_15_All_Int_1p_FD,
                        hE_e_15_QEL_1p_FD, hE_e_15_MEC_1p_FD, hE_e_15_RES_1p_FD, hE_e_15_DIS_1p_FD, "02_E_e_15_Stack", sE_e_15_1p_FD_Dir, "");
@@ -24263,15 +24283,15 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         double E_e_1n_All_Int_integral = hE_e_All_Int_1n_FD->Integral();
 
         histPlotter1D(MainCanvas, hE_e_All_Int_1n_FD, norm_E_e_plots, true, E_e_1n_All_Int_integral, "E_{e} Histogram", "All Int., 1n", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                      HistoList, 2, false, true, sE_e_1n_FD, "00_E_e_All_Int_1n", hE_e_All_Int_1n_FD_Dir, "", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sE_e_1n_FD, "00_E_e_All_Int_1n", hE_e_All_Int_1n_FD_Dir, "", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hE_e_QEL_1n_FD, norm_E_e_plots, true, E_e_1n_All_Int_integral, "E_{e} Histogram", "QEL Only, 1n", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                      HistoList, 2, false, true, sE_e_1n_FD, "01_E_e_QEL_Only_1n", hE_e_QEL_1n_FD_Dir, "", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sE_e_1n_FD, "01_E_e_QEL_Only_1n", hE_e_QEL_1n_FD_Dir, "", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hE_e_MEC_1n_FD, norm_E_e_plots, true, E_e_1n_All_Int_integral, "E_{e} Histogram", "MEC only, 1n", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                      HistoList, 2, false, true, sE_e_1n_FD, "02_E_e_MEC_Only_1n", hE_e_MEC_1n_FD_Dir, "", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sE_e_1n_FD, "02_E_e_MEC_Only_1n", hE_e_MEC_1n_FD_Dir, "", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hE_e_RES_1n_FD, norm_E_e_plots, true, E_e_1n_All_Int_integral, "E_{e} Histogram", "RES only, 1n", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                      HistoList, 2, false, true, sE_e_1n_FD, "03_E_e_RES_Only_1n", hE_e_RES_1n_FD_Dir, "", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sE_e_1n_FD, "03_E_e_RES_Only_1n", hE_e_RES_1n_FD_Dir, "", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hE_e_DIS_1n_FD, norm_E_e_plots, true, E_e_1n_All_Int_integral, "E_{e} Histogram", "DIS only, 1n", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                      HistoList, 2, false, true, sE_e_1n_FD, "04_E_e_DIS_Only_1n", hE_e_DIS_1n_FD_Dir, "", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sE_e_1n_FD, "04_E_e_DIS_Only_1n", hE_e_DIS_1n_FD_Dir, "", kBlue, true, true, true);
 
         stackPlotter1D(MainCanvas, sE_e_1n_FD, norm_E_e_plots, "E_{e} Histogram", "1n", plots, HistoList_skipCleaning, HistoList, hE_e_All_Int_1n_FD, hE_e_QEL_1n_FD, hE_e_MEC_1n_FD,
                        hE_e_RES_1n_FD, hE_e_DIS_1n_FD, "02_E_e_Stack", sE_e_1n_FD_Dir, "");
@@ -24280,15 +24300,15 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         double E_e_15_1n_All_Int_integral = hE_e_15_All_Int_1n_FD->Integral();
 
         histPlotter1D(MainCanvas, hE_e_15_All_Int_1n_FD, norm_E_e_plots, true, E_e_15_1n_All_Int_integral, "E_{e} around #theta_{e} = 15#circ", "All Int., 1n", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sE_e_15_1n_FD, "00_E_e_15_All_Int_1n", hE_e_15_All_Int_1n_FD_Dir, "", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sE_e_15_1n_FD, "00_E_e_15_All_Int_1n", hE_e_15_All_Int_1n_FD_Dir, "", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hE_e_15_QEL_1n_FD, norm_E_e_plots, true, E_e_15_1n_All_Int_integral, "E_{e} around #theta_{e} = 15#circ", "QEL Only, 1n", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sE_e_15_1n_FD, "01_E_e_15_QEL_Only_1n", hE_e_15_QEL_1n_FD_Dir, "", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sE_e_15_1n_FD, "01_E_e_15_QEL_Only_1n", hE_e_15_QEL_1n_FD_Dir, "", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hE_e_15_MEC_1n_FD, norm_E_e_plots, true, E_e_15_1n_All_Int_integral, "E_{e} around #theta_{e} = 15#circ", "MEC only, 1n", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sE_e_15_1n_FD, "02_E_e_15_MEC_Only_1n", hE_e_15_MEC_1n_FD_Dir, "", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sE_e_15_1n_FD, "02_E_e_15_MEC_Only_1n", hE_e_15_MEC_1n_FD_Dir, "", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hE_e_15_RES_1n_FD, norm_E_e_plots, true, E_e_15_1n_All_Int_integral, "E_{e} around #theta_{e} = 15#circ", "RES only, 1n", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sE_e_15_1n_FD, "03_E_e_15_RES_Only_1n", hE_e_15_RES_1n_FD_Dir, "", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sE_e_15_1n_FD, "03_E_e_15_RES_Only_1n", hE_e_15_RES_1n_FD_Dir, "", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hE_e_15_DIS_1n_FD, norm_E_e_plots, true, E_e_15_1n_All_Int_integral, "E_{e} around #theta_{e} = 15#circ", "DIS only, 1n", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sE_e_15_1n_FD, "04_E_e_15_DIS_Only_1n", hE_e_15_DIS_1n_FD_Dir, "", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sE_e_15_1n_FD, "04_E_e_15_DIS_Only_1n", hE_e_15_DIS_1n_FD_Dir, "", kBlue, true, true, true);
 
         stackPlotter1D(MainCanvas, sE_e_15_1n_FD, norm_E_e_plots, "E_{e} around #theta_{e} = 15#circ", "1n", plots, HistoList_skipCleaning, HistoList, hE_e_15_All_Int_1n_FD,
                        hE_e_15_QEL_1n_FD, hE_e_15_MEC_1n_FD, hE_e_15_RES_1n_FD, hE_e_15_DIS_1n_FD, "02_E_e_15_Stack", sE_e_15_1n_FD_Dir, "");
@@ -24299,15 +24319,15 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         double E_e_RES_integral = hE_e_RES_2p_FD->Integral(), E_e_DIS_integral = hE_e_DIS_2p_FD->Integral();
 
         histPlotter1D(MainCanvas, hE_e_All_Int_2p_FD, norm_E_e_plots, true, E_e_2p_All_Int_integral, "E_{e} Histogram", "All Int., 2p", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                      HistoList, 2, false, true, sE_e_2p_FD, "00_E_e_All_Int_2p", hE_e_All_Int_2p_FD_Dir, "", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sE_e_2p_FD, "00_E_e_All_Int_2p", hE_e_All_Int_2p_FD_Dir, "", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hE_e_QEL_2p_FD, norm_E_e_plots, true, E_e_2p_All_Int_integral, "E_{e} Histogram", "QEL Only, 2p", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                      HistoList, 2, false, true, sE_e_2p_FD, "01_E_e_QEL_Only_2p", hE_e_QEL_2p_FD_Dir, "", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sE_e_2p_FD, "01_E_e_QEL_Only_2p", hE_e_QEL_2p_FD_Dir, "", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hE_e_MEC_2p_FD, norm_E_e_plots, true, E_e_2p_All_Int_integral, "E_{e} Histogram", "MEC only, 2p", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                      HistoList, 2, false, true, sE_e_2p_FD, "02_E_e_MEC_Only_2p", hE_e_MEC_2p_FD_Dir, "", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sE_e_2p_FD, "02_E_e_MEC_Only_2p", hE_e_MEC_2p_FD_Dir, "", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hE_e_RES_2p_FD, norm_E_e_plots, true, E_e_2p_All_Int_integral, "E_{e} Histogram", "RES only, 2p", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                      HistoList, 2, false, true, sE_e_2p_FD, "03_E_e_RES_Only_2p", hE_e_RES_2p_FD_Dir, "", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sE_e_2p_FD, "03_E_e_RES_Only_2p", hE_e_RES_2p_FD_Dir, "", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hE_e_DIS_2p_FD, norm_E_e_plots, true, E_e_2p_All_Int_integral, "E_{e} Histogram", "DIS only, 2p", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                      HistoList, 2, false, true, sE_e_2p_FD, "04_E_e_DIS_Only_2p", hE_e_DIS_2p_FD_Dir, "", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sE_e_2p_FD, "04_E_e_DIS_Only_2p", hE_e_DIS_2p_FD_Dir, "", kBlue, true, true, true);
 
         stackPlotter1D(MainCanvas, sE_e_2p_FD, norm_E_e_plots, "E_{e} Histogram", "2p", plots, HistoList_skipCleaning, HistoList, hE_e_All_Int_2p_FD, hE_e_QEL_2p_FD, hE_e_MEC_2p_FD,
                        hE_e_RES_2p_FD, hE_e_DIS_2p_FD, "02_E_e_Stack", sE_e_2p_FD_Dir, "");
@@ -24318,15 +24338,15 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         double E_e_15_2p_RES_integral = hE_e_15_RES_2p_FD->Integral(), E_e_15_2p_DIS_integral = hE_e_15_DIS_2p_FD->Integral();
 
         histPlotter1D(MainCanvas, hE_e_15_All_Int_2p_FD, norm_E_e_plots, true, E_e_15_2p_All_Int_integral, "E_{e} around #theta_{e} = 15#circ", "All Int., 2p", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sE_e_15_2p_FD, "00_E_e_15_All_Int_2p", hE_e_15_All_Int_2p_FD_Dir, "", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sE_e_15_2p_FD, "00_E_e_15_All_Int_2p", hE_e_15_All_Int_2p_FD_Dir, "", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hE_e_15_QEL_2p_FD, norm_E_e_plots, true, E_e_15_2p_All_Int_integral, "E_{e} around #theta_{e} = 15#circ", "QEL Only, 2p", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sE_e_15_2p_FD, "01_E_e_15_QEL_Only_2p", hE_e_15_QEL_2p_FD_Dir, "", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sE_e_15_2p_FD, "01_E_e_15_QEL_Only_2p", hE_e_15_QEL_2p_FD_Dir, "", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hE_e_15_MEC_2p_FD, norm_E_e_plots, true, E_e_15_2p_All_Int_integral, "E_{e} around #theta_{e} = 15#circ", "MEC only, 2p", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sE_e_15_2p_FD, "02_E_e_15_MEC_Only_2p", hE_e_15_MEC_2p_FD_Dir, "", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sE_e_15_2p_FD, "02_E_e_15_MEC_Only_2p", hE_e_15_MEC_2p_FD_Dir, "", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hE_e_15_RES_2p_FD, norm_E_e_plots, true, E_e_15_2p_All_Int_integral, "E_{e} around #theta_{e} = 15#circ", "RES only, 2p", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sE_e_15_2p_FD, "03_E_e_15_RES_Only_2p", hE_e_15_RES_2p_FD_Dir, "", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sE_e_15_2p_FD, "03_E_e_15_RES_Only_2p", hE_e_15_RES_2p_FD_Dir, "", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hE_e_15_DIS_2p_FD, norm_E_e_plots, true, E_e_15_2p_All_Int_integral, "E_{e} around #theta_{e} = 15#circ", "DIS only, 2p", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sE_e_15_2p_FD, "04_E_e_15_DIS_Only_2p", hE_e_15_DIS_2p_FD_Dir, "", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sE_e_15_2p_FD, "04_E_e_15_DIS_Only_2p", hE_e_15_DIS_2p_FD_Dir, "", kBlue, true, true, true);
 
         stackPlotter1D(MainCanvas, sE_e_15_2p_FD, norm_E_e_plots, "E_{e} around #theta_{e} = 15#circ", "2p", plots, HistoList_skipCleaning, HistoList, hE_e_15_All_Int_2p_FD,
                        hE_e_15_QEL_2p_FD, hE_e_15_MEC_2p_FD, hE_e_15_RES_2p_FD, hE_e_15_DIS_2p_FD, "02_E_e_15_Stack", sE_e_15_2p_FD_Dir, "");
@@ -24337,15 +24357,20 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         double E_e_RES_pFDpCD_integral = hE_e_RES_pFDpCD_FD->Integral(), E_e_DIS_pFDpCD_integral = hE_e_DIS_pFDpCD_FD->Integral();
 
         histPlotter1D(MainCanvas, hE_e_All_Int_pFDpCD_FD, norm_E_e_plots, true, E_e_pFDpCD_All_Int_integral, "E_{e} Histogram", "All Int., pFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList_skipCleaning, HistoList, 2, false, true, sE_e_pFDpCD_FD, "00_E_e_All_Int_pFDpCD", hE_e_All_Int_pFDpCD_FD_Dir, "", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sE_e_pFDpCD_FD, "00_E_e_All_Int_pFDpCD", hE_e_All_Int_pFDpCD_FD_Dir, "", kBlue, true, true,
+                      true);
         histPlotter1D(MainCanvas, hE_e_QEL_pFDpCD_FD, norm_E_e_plots, true, E_e_pFDpCD_All_Int_integral, "E_{e} Histogram", "QEL Only, pFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList_skipCleaning, HistoList, 2, false, true, sE_e_pFDpCD_FD, "01_E_e_QEL_Only_pFDpCD", hE_e_QEL_pFDpCD_FD_Dir, "", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sE_e_pFDpCD_FD, "01_E_e_QEL_Only_pFDpCD", hE_e_QEL_pFDpCD_FD_Dir, "", kBlue, true, true,
+                      true);
         histPlotter1D(MainCanvas, hE_e_MEC_pFDpCD_FD, norm_E_e_plots, true, E_e_pFDpCD_All_Int_integral, "E_{e} Histogram", "MEC only, pFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList_skipCleaning, HistoList, 2, false, true, sE_e_pFDpCD_FD, "02_E_e_MEC_Only_pFDpCD", hE_e_MEC_pFDpCD_FD_Dir, "", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sE_e_pFDpCD_FD, "02_E_e_MEC_Only_pFDpCD", hE_e_MEC_pFDpCD_FD_Dir, "", kBlue, true, true,
+                      true);
         histPlotter1D(MainCanvas, hE_e_RES_pFDpCD_FD, norm_E_e_plots, true, E_e_pFDpCD_All_Int_integral, "E_{e} Histogram", "RES only, pFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList_skipCleaning, HistoList, 2, false, true, sE_e_pFDpCD_FD, "03_E_e_RES_Only_pFDpCD", hE_e_RES_pFDpCD_FD_Dir, "", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sE_e_pFDpCD_FD, "03_E_e_RES_Only_pFDpCD", hE_e_RES_pFDpCD_FD_Dir, "", kBlue, true, true,
+                      true);
         histPlotter1D(MainCanvas, hE_e_DIS_pFDpCD_FD, norm_E_e_plots, true, E_e_pFDpCD_All_Int_integral, "E_{e} Histogram", "DIS only, pFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList_skipCleaning, HistoList, 2, false, true, sE_e_pFDpCD_FD, "04_E_e_DIS_Only_pFDpCD", hE_e_DIS_pFDpCD_FD_Dir, "", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sE_e_pFDpCD_FD, "04_E_e_DIS_Only_pFDpCD", hE_e_DIS_pFDpCD_FD_Dir, "", kBlue, true, true,
+                      true);
 
         stackPlotter1D(MainCanvas, sE_e_pFDpCD_FD, norm_E_e_plots, "E_{e} Histogram", "pFDpCD", plots, HistoList_skipCleaning, HistoList, hE_e_All_Int_pFDpCD_FD, hE_e_QEL_pFDpCD_FD,
                        hE_e_MEC_pFDpCD_FD, hE_e_RES_pFDpCD_FD, hE_e_DIS_pFDpCD_FD, "02_E_e_Stack", sE_e_pFDpCD_FD_Dir, "");
@@ -24376,15 +24401,20 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         double E_e_RES_nFDpCD_integral = hE_e_RES_nFDpCD_FD->Integral(), E_e_DIS_nFDpCD_integral = hE_e_DIS_nFDpCD_FD->Integral();
 
         histPlotter1D(MainCanvas, hE_e_All_Int_nFDpCD_FD, norm_E_e_plots, true, E_e_nFDpCD_All_Int_integral, "E_{e} Histogram", "All Int., nFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList_skipCleaning, HistoList, 2, false, true, sE_e_nFDpCD_FD, "00_E_e_All_Int_nFDpCD", hE_e_All_Int_nFDpCD_FD_Dir, "", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sE_e_nFDpCD_FD, "00_E_e_All_Int_nFDpCD", hE_e_All_Int_nFDpCD_FD_Dir, "", kBlue, true, true,
+                      true);
         histPlotter1D(MainCanvas, hE_e_QEL_nFDpCD_FD, norm_E_e_plots, true, E_e_nFDpCD_All_Int_integral, "E_{e} Histogram", "QEL Only, nFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList_skipCleaning, HistoList, 2, false, true, sE_e_nFDpCD_FD, "01_E_e_QEL_Only_nFDpCD", hE_e_QEL_nFDpCD_FD_Dir, "", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sE_e_nFDpCD_FD, "01_E_e_QEL_Only_nFDpCD", hE_e_QEL_nFDpCD_FD_Dir, "", kBlue, true, true,
+                      true);
         histPlotter1D(MainCanvas, hE_e_MEC_nFDpCD_FD, norm_E_e_plots, true, E_e_nFDpCD_All_Int_integral, "E_{e} Histogram", "MEC only, nFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList_skipCleaning, HistoList, 2, false, true, sE_e_nFDpCD_FD, "02_E_e_MEC_Only_nFDpCD", hE_e_MEC_nFDpCD_FD_Dir, "", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sE_e_nFDpCD_FD, "02_E_e_MEC_Only_nFDpCD", hE_e_MEC_nFDpCD_FD_Dir, "", kBlue, true, true,
+                      true);
         histPlotter1D(MainCanvas, hE_e_RES_nFDpCD_FD, norm_E_e_plots, true, E_e_nFDpCD_All_Int_integral, "E_{e} Histogram", "RES only, nFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList_skipCleaning, HistoList, 2, false, true, sE_e_nFDpCD_FD, "03_E_e_RES_Only_nFDpCD", hE_e_RES_nFDpCD_FD_Dir, "", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sE_e_nFDpCD_FD, "03_E_e_RES_Only_nFDpCD", hE_e_RES_nFDpCD_FD_Dir, "", kBlue, true, true,
+                      true);
         histPlotter1D(MainCanvas, hE_e_DIS_nFDpCD_FD, norm_E_e_plots, true, E_e_nFDpCD_All_Int_integral, "E_{e} Histogram", "DIS only, nFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList_skipCleaning, HistoList, 2, false, true, sE_e_nFDpCD_FD, "04_E_e_DIS_Only_nFDpCD", hE_e_DIS_nFDpCD_FD_Dir, "", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sE_e_nFDpCD_FD, "04_E_e_DIS_Only_nFDpCD", hE_e_DIS_nFDpCD_FD_Dir, "", kBlue, true, true,
+                      true);
 
         stackPlotter1D(MainCanvas, sE_e_nFDpCD_FD, norm_E_e_plots, "E_{e} Histogram", "nFDpCD", plots, HistoList_skipCleaning, HistoList, hE_e_All_Int_nFDpCD_FD, hE_e_QEL_nFDpCD_FD,
                        hE_e_MEC_nFDpCD_FD, hE_e_RES_nFDpCD_FD, hE_e_DIS_nFDpCD_FD, "02_E_e_Stack", sE_e_nFDpCD_FD_Dir, "");
@@ -24512,35 +24542,35 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             double ETrans_All_Ang_All_Int_integral_1p = hET_All_Ang_All_Int_1p_FD->Integral();
 
             histPlotter1D(MainCanvas, hET_All_Ang_All_Int_1p_FD, norm_ET_plots, true, ETrans_All_Ang_All_Int_integral_1p, tET_All_Ang, "All Int., 1p", 0.06, 0.0425, 0.0425, plots,
-                          HistoList_skipCleaning, HistoList, 2, false, true, sET_All_Ang_All_Int_1p_FD, "ET_All_Ang_All_Int_1p", hET_All_Ang_All_Int_1p_FD_Dir, "FD", kBlack, true, true,
-                          true);
+                          HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sET_All_Ang_All_Int_1p_FD, "ET_All_Ang_All_Int_1p", hET_All_Ang_All_Int_1p_FD_Dir, "FD",
+                          kBlack, true, true, true);
 
             double ETrans15_All_Int_integral_1p = hET15_All_Int_1p_FD->Integral();
 
             histPlotter1D(MainCanvas, hET15_All_Int_1p_FD, norm_ET_plots, true, ETrans15_All_Int_integral_1p, tET15, "All Int., 1p", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                          HistoList, 2, false, true, sET15_All_Int_1p_FD, "ETrans_15_All_Int_1p", hET15_All_Int_1p_FD_Dir, "", kBlack, true, true, true);
+                          HistoList_skipCleaning, HistoList, 2, false, true, sET15_All_Int_1p_FD, "ETrans_15_All_Int_1p", hET15_All_Int_1p_FD_Dir, "", kBlack, true, true, true);
 
             double ETrans_All_Ang_All_Int_integral_1n = hET_All_Ang_All_Int_1n_FD->Integral();
 
             histPlotter1D(MainCanvas, hET_All_Ang_All_Int_1n_FD, norm_ET_plots, true, ETrans_All_Ang_All_Int_integral_1n, tET_All_Ang, "All Int., 1n", 0.06, 0.0425, 0.0425, plots,
-                          HistoList_skipCleaning, HistoList, 2, false, true, sET_All_Ang_All_Int_1n_FD, "ET_All_Ang_All_Int_1n", hET_All_Ang_All_Int_1n_FD_Dir, "FD", kBlack, true, true,
-                          true);
+                          HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sET_All_Ang_All_Int_1n_FD, "ET_All_Ang_All_Int_1n", hET_All_Ang_All_Int_1n_FD_Dir, "FD",
+                          kBlack, true, true, true);
 
             double ETrans15_All_Int_integral_1n = hET15_All_Int_1n_FD->Integral();
 
             histPlotter1D(MainCanvas, hET15_All_Int_1n_FD, norm_ET_plots, true, ETrans15_All_Int_integral_1n, tET15, "All Int., 1n", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                          HistoList, 2, false, true, sET15_All_Int_1n_FD, "ETrans_15_All_Int_1n", hET15_All_Int_1n_FD_Dir, "", kBlack, true, true, true);
+                          HistoList_skipCleaning, HistoList, 2, false, true, sET15_All_Int_1n_FD, "ETrans_15_All_Int_1n", hET15_All_Int_1n_FD_Dir, "", kBlack, true, true, true);
 
             double ETrans_All_Ang_All_Int_integral_2p = hET_All_Ang_All_Int_2p_FD->Integral();
 
             histPlotter1D(MainCanvas, hET_All_Ang_All_Int_2p_FD, norm_ET_plots, true, ETrans_All_Ang_All_Int_integral_2p, tET_All_Ang, "All Int., 2p", 0.06, 0.0425, 0.0425, plots,
-                          HistoList_skipCleaning, HistoList, 2, false, true, sET_All_Ang_All_Int_2p_FD, "ET_All_Ang_All_Int_2p", hET_All_Ang_All_Int_2p_FD_Dir, "FD", kBlack, true, true,
-                          true);
+                          HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sET_All_Ang_All_Int_2p_FD, "ET_All_Ang_All_Int_2p", hET_All_Ang_All_Int_2p_FD_Dir, "FD",
+                          kBlack, true, true, true);
 
             double ETrans15_All_Int_integral_2p = hET15_All_Int_2p_FD->Integral();
 
             histPlotter1D(MainCanvas, hET15_All_Int_2p_FD, norm_ET_plots, true, ETrans15_All_Int_integral_2p, tET15, "All Int., 2p", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                          HistoList, 2, false, true, sET15_All_Int_2p_FD, "ETrans_15_All_Int_2p", hET15_All_Int_2p_FD_Dir, "", kBlack, true, true, true);
+                          HistoList_skipCleaning, HistoList, 2, false, true, sET15_All_Int_2p_FD, "ETrans_15_All_Int_2p", hET15_All_Int_2p_FD_Dir, "", kBlack, true, true, true);
 
             double ETrans_All_Ang_All_Int_integral_pFDpCD = hET_All_Ang_All_Int_pFDpCD_FD->Integral();
 
@@ -24551,7 +24581,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             double ETrans15_All_Int_integral_pFDpCD = hET15_All_Int_pFDpCD_FD->Integral();
 
             histPlotter1D(MainCanvas, hET15_All_Int_pFDpCD_FD, norm_ET_plots, true, ETrans15_All_Int_integral_pFDpCD, tET15, "All Int., pFDpCD", 0.06, 0.0425, 0.0425, plots,
-                          HistoList_skipCleaning, HistoList, 2, false, true, sET15_All_Int_pFDpCD_FD, "ETrans_15_All_Int_pFDpCD", hET15_All_Int_pFDpCD_FD_Dir, "", kBlack, true, true, true);
+                          HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sET15_All_Int_pFDpCD_FD, "ETrans_15_All_Int_pFDpCD", hET15_All_Int_pFDpCD_FD_Dir, "",
+                          kBlack, true, true, true);
 
             double ETrans_All_Ang_All_Int_integral_nFDpCD = hET_All_Ang_All_Int_nFDpCD_FD->Integral();
 
@@ -24562,14 +24593,16 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             double ETrans15_All_Int_integral_nFDpCD = hET15_All_Int_nFDpCD_FD->Integral();
 
             histPlotter1D(MainCanvas, hET15_All_Int_nFDpCD_FD, norm_ET_plots, true, ETrans15_All_Int_integral_nFDpCD, tET15, "All Int., nFDpCD", 0.06, 0.0425, 0.0425, plots,
-                          HistoList_skipCleaning, HistoList, 2, false, true, sET15_All_Int_nFDpCD_FD, "ETrans_15_All_Int_nFDpCD", hET15_All_Int_nFDpCD_FD_Dir, "", kBlack, true, true, true);
+                          HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sET15_All_Int_nFDpCD_FD, "ETrans_15_All_Int_nFDpCD", hET15_All_Int_nFDpCD_FD_Dir, "",
+                          kBlack, true, true, true);
         }
 
         if (ETrans_QEL_plots) {
             double ETrans_All_Ang_QEL_integral_1p = hET_All_Ang_QEL_1p_FD->Integral();
 
             histPlotter1D(MainCanvas, hET_All_Ang_QEL_1p_FD, norm_ET_plots, true, ETrans_All_Ang_QEL_integral_1p, tET_All_Ang, "QEL Only, 1p", 0.06, 0.0425, 0.0425, plots,
-                          HistoList_skipCleaning, HistoList, 2, false, true, sET_All_Ang_All_Int_1p_FD, "ET_All_Ang_QEL_1p", hET_All_Ang_QEL_1p_FD_Dir, "FD", kBlack, true, true, true);
+                          HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sET_All_Ang_All_Int_1p_FD, "ET_All_Ang_QEL_1p", hET_All_Ang_QEL_1p_FD_Dir, "FD", kBlack,
+                          true, true, true);
 
             double ETrans15_QEL_integral_1p = hET15_QEL_1p_FD->Integral();
 
@@ -24579,7 +24612,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             double ETrans_All_Ang_QEL_integral_1n = hET_All_Ang_QEL_1n_FD->Integral();
 
             histPlotter1D(MainCanvas, hET_All_Ang_QEL_1n_FD, norm_ET_plots, true, ETrans_All_Ang_QEL_integral_1n, tET_All_Ang, "QEL Only, 1n", 0.06, 0.0425, 0.0425, plots,
-                          HistoList_skipCleaning, HistoList, 2, false, true, sET_All_Ang_All_Int_1n_FD, "ET_All_Ang_QEL_1n", hET_All_Ang_QEL_1n_FD_Dir, "FD", kBlack, true, true, true);
+                          HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sET_All_Ang_All_Int_1n_FD, "ET_All_Ang_QEL_1n", hET_All_Ang_QEL_1n_FD_Dir, "FD", kBlack,
+                          true, true, true);
 
             double ETrans15_QEL_integral_1n = hET15_QEL_1n_FD->Integral();
 
@@ -24589,7 +24623,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             double ETrans_All_Ang_QEL_integral_2p = hET_All_Ang_QEL_2p_FD->Integral();
 
             histPlotter1D(MainCanvas, hET_All_Ang_QEL_2p_FD, norm_ET_plots, true, ETrans_All_Ang_QEL_integral_2p, tET_All_Ang, "QEL Only, 2p", 0.06, 0.0425, 0.0425, plots,
-                          HistoList_skipCleaning, HistoList, 2, false, true, sET_All_Ang_All_Int_2p_FD, "ET_All_Ang_QEL_2p", hET_All_Ang_QEL_2p_FD_Dir, "FD", kBlack, true, true, true);
+                          HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sET_All_Ang_All_Int_2p_FD, "ET_All_Ang_QEL_2p", hET_All_Ang_QEL_2p_FD_Dir, "FD", kBlack,
+                          true, true, true);
 
             double ETrans15_QEL_integral_2p = hET15_QEL_2p_FD->Integral();
 
@@ -24599,29 +24634,32 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             double ETrans_All_Ang_QEL_integral_pFDpCD = hET_All_Ang_QEL_pFDpCD_FD->Integral();
 
             histPlotter1D(MainCanvas, hET_All_Ang_QEL_pFDpCD_FD, norm_ET_plots, true, ETrans_All_Ang_QEL_integral_pFDpCD, tET_All_Ang, "QEL Only, pFDpCD", 0.06, 0.0425, 0.0425, plots,
-                          HistoList, 2, false, true, sET_All_Ang_All_Int_pFDpCD_FD, "ET_All_Ang_QEL_pFDpCD", hET_All_Ang_QEL_pFDpCD_FD_Dir, "FD", kBlack, true, true, true);
+                          HistoList_skipCleaning, HistoList, 2, false, true, sET_All_Ang_All_Int_pFDpCD_FD, "ET_All_Ang_QEL_pFDpCD", hET_All_Ang_QEL_pFDpCD_FD_Dir, "FD", kBlack, true, true,
+                          true);
 
             double ETrans15_QEL_integral_pFDpCD = hET15_QEL_pFDpCD_FD->Integral();
 
             histPlotter1D(MainCanvas, hET15_QEL_pFDpCD_FD, norm_ET_plots, true, ETrans15_QEL_integral_pFDpCD, tET15, "QEL Only, pFDpCD", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                          HistoList, 2, false, true, sET15_All_Int_pFDpCD_FD, "ETrans_15_QEL_Only_pFDpCD", hET15_QEL_pFDpCD_FD_Dir, "", kBlue, true, true, true);
+                          HistoList_skipCleaning, HistoList, 2, false, true, sET15_All_Int_pFDpCD_FD, "ETrans_15_QEL_Only_pFDpCD", hET15_QEL_pFDpCD_FD_Dir, "", kBlue, true, true, true);
 
             double ETrans_All_Ang_QEL_integral_nFDpCD = hET_All_Ang_QEL_nFDpCD_FD->Integral();
 
             histPlotter1D(MainCanvas, hET_All_Ang_QEL_nFDpCD_FD, norm_ET_plots, true, ETrans_All_Ang_QEL_integral_nFDpCD, tET_All_Ang, "QEL Only, nFDpCD", 0.06, 0.0425, 0.0425, plots,
-                          HistoList, 2, false, true, sET_All_Ang_All_Int_nFDpCD_FD, "ET_All_Ang_QEL_nFDpCD", hET_All_Ang_QEL_nFDpCD_FD_Dir, "FD", kBlack, true, true, true);
+                          HistoList_skipCleaning, HistoList, 2, false, true, sET_All_Ang_All_Int_nFDpCD_FD, "ET_All_Ang_QEL_nFDpCD", hET_All_Ang_QEL_nFDpCD_FD_Dir, "FD", kBlack, true, true,
+                          true);
 
             double ETrans15_QEL_integral_nFDpCD = hET15_QEL_nFDpCD_FD->Integral();
 
             histPlotter1D(MainCanvas, hET15_QEL_nFDpCD_FD, norm_ET_plots, true, ETrans15_QEL_integral_nFDpCD, tET15, "QEL Only, nFDpCD", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                          HistoList, 2, false, true, sET15_All_Int_nFDpCD_FD, "ETrans_15_QEL_Only_nFDpCD", hET15_QEL_nFDpCD_FD_Dir, "", kBlue, true, true, true);
+                          HistoList_skipCleaning, HistoList, 2, false, true, sET15_All_Int_nFDpCD_FD, "ETrans_15_QEL_Only_nFDpCD", hET15_QEL_nFDpCD_FD_Dir, "", kBlue, true, true, true);
         }
 
         if (ETrans_MEC_plots) {
             double ETrans_All_Ang_MEC_integral_1p = hET_All_Ang_MEC_1p_FD->Integral();
 
             histPlotter1D(MainCanvas, hET_All_Ang_MEC_1p_FD, norm_ET_plots, true, ETrans_All_Ang_MEC_integral_1p, tET_All_Ang, "MEC only, 1p", 0.06, 0.0425, 0.0425, plots,
-                          HistoList_skipCleaning, HistoList, 2, false, true, sET_All_Ang_All_Int_1p_FD, "ET_All_Ang_MEC_1p", hET_All_Ang_MEC_1p_FD_Dir, "FD", kBlack, true, true, true);
+                          HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sET_All_Ang_All_Int_1p_FD, "ET_All_Ang_MEC_1p", hET_All_Ang_MEC_1p_FD_Dir, "FD", kBlack,
+                          true, true, true);
 
             double ETrans15_MEC_integral_1p = hET15_MEC_1p_FD->Integral();
 
@@ -24631,7 +24669,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             double ETrans_All_Ang_MEC_integral_1n = hET_All_Ang_MEC_1n_FD->Integral();
 
             histPlotter1D(MainCanvas, hET_All_Ang_MEC_1n_FD, norm_ET_plots, true, ETrans_All_Ang_MEC_integral_1n, tET_All_Ang, "MEC only, 1n", 0.06, 0.0425, 0.0425, plots,
-                          HistoList_skipCleaning, HistoList, 2, false, true, sET_All_Ang_All_Int_1n_FD, "ET_All_Ang_MEC_1n", hET_All_Ang_MEC_1n_FD_Dir, "FD", kBlack, true, true, true);
+                          HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sET_All_Ang_All_Int_1n_FD, "ET_All_Ang_MEC_1n", hET_All_Ang_MEC_1n_FD_Dir, "FD", kBlack,
+                          true, true, true);
 
             double ETrans15_MEC_integral_1n = hET15_MEC_1n_FD->Integral();
 
@@ -24641,7 +24680,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             double ETrans_All_Ang_MEC_integral_2p = hET_All_Ang_MEC_2p_FD->Integral();
 
             histPlotter1D(MainCanvas, hET_All_Ang_MEC_2p_FD, norm_ET_plots, true, ETrans_All_Ang_MEC_integral_2p, tET_All_Ang, "MEC only, 2p", 0.06, 0.0425, 0.0425, plots,
-                          HistoList_skipCleaning, HistoList, 2, false, true, sET_All_Ang_All_Int_2p_FD, "ET_All_Ang_MEC_2p", hET_All_Ang_MEC_2p_FD_Dir, "FD", kBlack, true, true, true);
+                          HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sET_All_Ang_All_Int_2p_FD, "ET_All_Ang_MEC_2p", hET_All_Ang_MEC_2p_FD_Dir, "FD", kBlack,
+                          true, true, true);
 
             double ETrans15_MEC_integral_2p = hET15_MEC_2p_FD->Integral();
 
@@ -24651,29 +24691,32 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             double ETrans_All_Ang_MEC_integral_pFDpCD = hET_All_Ang_MEC_pFDpCD_FD->Integral();
 
             histPlotter1D(MainCanvas, hET_All_Ang_MEC_pFDpCD_FD, norm_ET_plots, true, ETrans_All_Ang_MEC_integral_pFDpCD, tET_All_Ang, "MEC only, pFDpCD", 0.06, 0.0425, 0.0425, plots,
-                          HistoList, 2, false, true, sET_All_Ang_All_Int_pFDpCD_FD, "ET_All_Ang_MEC_pFDpCD", hET_All_Ang_MEC_pFDpCD_FD_Dir, "FD", kBlack, true, true, true);
+                          HistoList_skipCleaning, HistoList, 2, false, true, sET_All_Ang_All_Int_pFDpCD_FD, "ET_All_Ang_MEC_pFDpCD", hET_All_Ang_MEC_pFDpCD_FD_Dir, "FD", kBlack, true, true,
+                          true);
 
             double ETrans15_MEC_integral_pFDpCD = hET15_MEC_pFDpCD_FD->Integral();
 
             histPlotter1D(MainCanvas, hET15_MEC_pFDpCD_FD, norm_ET_plots, true, ETrans15_MEC_integral_pFDpCD, tET15, "MEC only, pFDpCD", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                          HistoList, 2, false, true, sET15_All_Int_pFDpCD_FD, "ETrans_15_MEC_Only_pFDpCD", hET15_MEC_pFDpCD_FD_Dir, "", kRed, true, true, true);
+                          HistoList_skipCleaning, HistoList, 2, false, true, sET15_All_Int_pFDpCD_FD, "ETrans_15_MEC_Only_pFDpCD", hET15_MEC_pFDpCD_FD_Dir, "", kRed, true, true, true);
 
             double ETrans_All_Ang_MEC_integral_nFDpCD = hET_All_Ang_MEC_nFDpCD_FD->Integral();
 
             histPlotter1D(MainCanvas, hET_All_Ang_MEC_nFDpCD_FD, norm_ET_plots, true, ETrans_All_Ang_MEC_integral_nFDpCD, tET_All_Ang, "MEC only, nFDpCD", 0.06, 0.0425, 0.0425, plots,
-                          HistoList, 2, false, true, sET_All_Ang_All_Int_nFDpCD_FD, "ET_All_Ang_MEC_nFDpCD", hET_All_Ang_MEC_nFDpCD_FD_Dir, "FD", kBlack, true, true, true);
+                          HistoList_skipCleaning, HistoList, 2, false, true, sET_All_Ang_All_Int_nFDpCD_FD, "ET_All_Ang_MEC_nFDpCD", hET_All_Ang_MEC_nFDpCD_FD_Dir, "FD", kBlack, true, true,
+                          true);
 
             double ETrans15_MEC_integral_nFDpCD = hET15_MEC_nFDpCD_FD->Integral();
 
             histPlotter1D(MainCanvas, hET15_MEC_nFDpCD_FD, norm_ET_plots, true, ETrans15_MEC_integral_nFDpCD, tET15, "MEC only, nFDpCD", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                          HistoList, 2, false, true, sET15_All_Int_nFDpCD_FD, "ETrans_15_MEC_Only_nFDpCD", hET15_MEC_nFDpCD_FD_Dir, "", kRed, true, true, true);
+                          HistoList_skipCleaning, HistoList, 2, false, true, sET15_All_Int_nFDpCD_FD, "ETrans_15_MEC_Only_nFDpCD", hET15_MEC_nFDpCD_FD_Dir, "", kRed, true, true, true);
         }
 
         if (ETrans_RES_plots) {
             double ETrans_All_Ang_RES_integral_1p = hET_All_Ang_RES_1p_FD->Integral();
 
             histPlotter1D(MainCanvas, hET_All_Ang_RES_1p_FD, norm_ET_plots, true, ETrans_All_Ang_RES_integral_1p, tET_All_Ang, "RES only, 1p", 0.06, 0.0425, 0.0425, plots,
-                          HistoList_skipCleaning, HistoList, 2, false, true, sET_All_Ang_All_Int_1p_FD, "ET_All_Ang_RES_1p", hET_All_Ang_RES_1p_FD_Dir, "FD", kBlack, true, true, true);
+                          HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sET_All_Ang_All_Int_1p_FD, "ET_All_Ang_RES_1p", hET_All_Ang_RES_1p_FD_Dir, "FD", kBlack,
+                          true, true, true);
 
             double ETrans15_RES_integral_1p = hET15_RES_1p_FD->Integral();
 
@@ -24683,7 +24726,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             double ETrans_All_Ang_RES_integral_1n = hET_All_Ang_RES_1n_FD->Integral();
 
             histPlotter1D(MainCanvas, hET_All_Ang_RES_1n_FD, norm_ET_plots, true, ETrans_All_Ang_RES_integral_1n, tET_All_Ang, "RES only, 1n", 0.06, 0.0425, 0.0425, plots,
-                          HistoList_skipCleaning, HistoList, 2, false, true, sET_All_Ang_All_Int_1n_FD, "ET_All_Ang_RES_1n", hET_All_Ang_RES_1n_FD_Dir, "FD", kBlack, true, true, true);
+                          HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sET_All_Ang_All_Int_1n_FD, "ET_All_Ang_RES_1n", hET_All_Ang_RES_1n_FD_Dir, "FD", kBlack,
+                          true, true, true);
 
             double ETrans15_RES_integral_1n = hET15_RES_1n_FD->Integral();
 
@@ -24693,7 +24737,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             double ETrans_All_Ang_RES_integral_2p = hET_All_Ang_RES_2p_FD->Integral();
 
             histPlotter1D(MainCanvas, hET_All_Ang_RES_2p_FD, norm_ET_plots, true, ETrans_All_Ang_RES_integral_2p, tET_All_Ang, "RES only, 2p", 0.06, 0.0425, 0.0425, plots,
-                          HistoList_skipCleaning, HistoList, 2, false, true, sET_All_Ang_All_Int_2p_FD, "ET_All_Ang_RES_2p", hET_All_Ang_RES_2p_FD_Dir, "FD", kBlack, true, true, true);
+                          HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sET_All_Ang_All_Int_2p_FD, "ET_All_Ang_RES_2p", hET_All_Ang_RES_2p_FD_Dir, "FD", kBlack,
+                          true, true, true);
 
             double ETrans15_RES_integral_2p = hET15_RES_2p_FD->Integral();
 
@@ -24703,29 +24748,32 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             double ETrans_All_Ang_RES_integral_pFDpCD = hET_All_Ang_RES_pFDpCD_FD->Integral();
 
             histPlotter1D(MainCanvas, hET_All_Ang_RES_pFDpCD_FD, norm_ET_plots, true, ETrans_All_Ang_RES_integral_pFDpCD, tET_All_Ang, "RES only, pFDpCD", 0.06, 0.0425, 0.0425, plots,
-                          HistoList, 2, false, true, sET_All_Ang_All_Int_pFDpCD_FD, "ET_All_Ang_RES_pFDpCD", hET_All_Ang_RES_pFDpCD_FD_Dir, "FD", kBlack, true, true, true);
+                          HistoList_skipCleaning, HistoList, 2, false, true, sET_All_Ang_All_Int_pFDpCD_FD, "ET_All_Ang_RES_pFDpCD", hET_All_Ang_RES_pFDpCD_FD_Dir, "FD", kBlack, true, true,
+                          true);
 
             double ETrans15_RES_integral_pFDpCD = hET15_RES_pFDpCD_FD->Integral();
 
             histPlotter1D(MainCanvas, hET15_RES_pFDpCD_FD, norm_ET_plots, true, ETrans15_RES_integral_pFDpCD, tET15, "RES only, pFDpCD", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                          HistoList, 2, false, true, sET15_All_Int_pFDpCD_FD, "ETrans_15_RES_pFDpCD", hET15_RES_pFDpCD_FD_Dir, "", kGreen, true, true, true);
+                          HistoList_skipCleaning, HistoList, 2, false, true, sET15_All_Int_pFDpCD_FD, "ETrans_15_RES_pFDpCD", hET15_RES_pFDpCD_FD_Dir, "", kGreen, true, true, true);
 
             double ETrans_All_Ang_RES_integral_nFDpCD = hET_All_Ang_RES_nFDpCD_FD->Integral();
 
             histPlotter1D(MainCanvas, hET_All_Ang_RES_nFDpCD_FD, norm_ET_plots, true, ETrans_All_Ang_RES_integral_nFDpCD, tET_All_Ang, "RES only, nFDpCD", 0.06, 0.0425, 0.0425, plots,
-                          HistoList, 2, false, true, sET_All_Ang_All_Int_nFDpCD_FD, "ET_All_Ang_RES_nFDpCD", hET_All_Ang_RES_nFDpCD_FD_Dir, "FD", kBlack, true, true, true);
+                          HistoList_skipCleaning, HistoList, 2, false, true, sET_All_Ang_All_Int_nFDpCD_FD, "ET_All_Ang_RES_nFDpCD", hET_All_Ang_RES_nFDpCD_FD_Dir, "FD", kBlack, true, true,
+                          true);
 
             double ETrans15_RES_integral_nFDpCD = hET15_RES_nFDpCD_FD->Integral();
 
             histPlotter1D(MainCanvas, hET15_RES_nFDpCD_FD, norm_ET_plots, true, ETrans15_RES_integral_nFDpCD, tET15, "RES only, nFDpCD", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                          HistoList, 2, false, true, sET15_All_Int_nFDpCD_FD, "ETrans_15_RES_nFDpCD", hET15_RES_nFDpCD_FD_Dir, "", kGreen, true, true, true);
+                          HistoList_skipCleaning, HistoList, 2, false, true, sET15_All_Int_nFDpCD_FD, "ETrans_15_RES_nFDpCD", hET15_RES_nFDpCD_FD_Dir, "", kGreen, true, true, true);
         }
 
         if (ETrans_DIS_plots) {
             double ETrans_All_Ang_DIS_integral_1p = hET_All_Ang_DIS_1p_FD->Integral();
 
             histPlotter1D(MainCanvas, hET_All_Ang_DIS_1p_FD, norm_ET_plots, true, ETrans_All_Ang_DIS_integral_1p, tET_All_Ang, "DIS only, 1p", 0.06, 0.0425, 0.0425, plots,
-                          HistoList_skipCleaning, HistoList, 2, false, true, sET_All_Ang_All_Int_1p_FD, "ET_All_Ang_DIS_1p", hET_All_Ang_DIS_1p_FD_Dir, "FD", kBlack, true, true, true);
+                          HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sET_All_Ang_All_Int_1p_FD, "ET_All_Ang_DIS_1p", hET_All_Ang_DIS_1p_FD_Dir, "FD", kBlack,
+                          true, true, true);
 
             double ETrans15_DIS_integral_1p = hET15_DIS_1p_FD->Integral();
 
@@ -24735,7 +24783,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             double ETrans_All_Ang_DIS_integral_1n = hET_All_Ang_DIS_1n_FD->Integral();
 
             histPlotter1D(MainCanvas, hET_All_Ang_DIS_1n_FD, norm_ET_plots, true, ETrans_All_Ang_DIS_integral_1n, tET_All_Ang, "DIS only, 1n", 0.06, 0.0425, 0.0425, plots,
-                          HistoList_skipCleaning, HistoList, 2, false, true, sET_All_Ang_All_Int_1n_FD, "ET_All_Ang_DIS_1n", hET_All_Ang_DIS_1n_FD_Dir, "FD", kBlack, true, true, true);
+                          HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sET_All_Ang_All_Int_1n_FD, "ET_All_Ang_DIS_1n", hET_All_Ang_DIS_1n_FD_Dir, "FD", kBlack,
+                          true, true, true);
 
             double ETrans15_DIS_integral_1n = hET15_DIS_1n_FD->Integral();
 
@@ -24745,7 +24794,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             double ETrans_All_Ang_DIS_integral_2p = hET_All_Ang_DIS_2p_FD->Integral();
 
             histPlotter1D(MainCanvas, hET_All_Ang_DIS_2p_FD, norm_ET_plots, true, ETrans_All_Ang_DIS_integral_2p, tET_All_Ang, "DIS only, 2p", 0.06, 0.0425, 0.0425, plots,
-                          HistoList_skipCleaning, HistoList, 2, false, true, sET_All_Ang_All_Int_2p_FD, "ET_All_Ang_DIS_2p", hET_All_Ang_DIS_2p_FD_Dir, "FD", kBlack, true, true, true);
+                          HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sET_All_Ang_All_Int_2p_FD, "ET_All_Ang_DIS_2p", hET_All_Ang_DIS_2p_FD_Dir, "FD", kBlack,
+                          true, true, true);
 
             double ETrans15_DIS_integral_2p = hET15_DIS_2p_FD->Integral();
 
@@ -24755,22 +24805,24 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             double ETrans_All_Ang_DIS_integral_pFDpCD = hET_All_Ang_DIS_pFDpCD_FD->Integral();
 
             histPlotter1D(MainCanvas, hET_All_Ang_DIS_pFDpCD_FD, norm_ET_plots, true, ETrans_All_Ang_DIS_integral_pFDpCD, tET_All_Ang, "DIS only, pFDpCD", 0.06, 0.0425, 0.0425, plots,
-                          HistoList, 2, false, true, sET_All_Ang_All_Int_pFDpCD_FD, "ET_All_Ang_DIS_pFDpCD", hET_All_Ang_DIS_pFDpCD_FD_Dir, "FD", kBlack, true, true, true);
+                          HistoList_skipCleaning, HistoList, 2, false, true, sET_All_Ang_All_Int_pFDpCD_FD, "ET_All_Ang_DIS_pFDpCD", hET_All_Ang_DIS_pFDpCD_FD_Dir, "FD", kBlack, true, true,
+                          true);
 
             double ETrans15_DIS_integral_pFDpCD = hET15_DIS_pFDpCD_FD->Integral();
 
             histPlotter1D(MainCanvas, hET15_DIS_pFDpCD_FD, norm_ET_plots, true, ETrans15_DIS_integral_pFDpCD, tET15, "DIS only, pFDpCD", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                          HistoList, 2, false, true, sET15_All_Int_pFDpCD_FD, "ETrans_15_DIS_pFDpCD", hET15_DIS_pFDpCD_FD_Dir, "", kMagenta, true, true, true);
+                          HistoList_skipCleaning, HistoList, 2, false, true, sET15_All_Int_pFDpCD_FD, "ETrans_15_DIS_pFDpCD", hET15_DIS_pFDpCD_FD_Dir, "", kMagenta, true, true, true);
 
             double ETrans_All_Ang_DIS_integral_nFDpCD = hET_All_Ang_DIS_nFDpCD_FD->Integral();
 
             histPlotter1D(MainCanvas, hET_All_Ang_DIS_nFDpCD_FD, norm_ET_plots, true, ETrans_All_Ang_DIS_integral_nFDpCD, tET_All_Ang, "DIS only, nFDpCD", 0.06, 0.0425, 0.0425, plots,
-                          HistoList, 2, false, true, sET_All_Ang_All_Int_nFDpCD_FD, "ET_All_Ang_DIS_nFDpCD", hET_All_Ang_DIS_nFDpCD_FD_Dir, "FD", kBlack, true, true, true);
+                          HistoList_skipCleaning, HistoList, 2, false, true, sET_All_Ang_All_Int_nFDpCD_FD, "ET_All_Ang_DIS_nFDpCD", hET_All_Ang_DIS_nFDpCD_FD_Dir, "FD", kBlack, true, true,
+                          true);
 
             double ETrans15_DIS_integral_nFDpCD = hET15_DIS_nFDpCD_FD->Integral();
 
             histPlotter1D(MainCanvas, hET15_DIS_nFDpCD_FD, norm_ET_plots, true, ETrans15_DIS_integral_nFDpCD, tET15, "DIS only, nFDpCD", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                          HistoList, 2, false, true, sET15_All_Int_nFDpCD_FD, "ETrans_15_DIS_nFDpCD", hET15_DIS_nFDpCD_FD_Dir, "", kMagenta, true, true, true);
+                          HistoList_skipCleaning, HistoList, 2, false, true, sET15_All_Int_nFDpCD_FD, "ETrans_15_DIS_nFDpCD", hET15_DIS_nFDpCD_FD_Dir, "", kMagenta, true, true, true);
         }
 
         //  Energy transfer around 15 deg stack ---------------------------------------------------------------------------------------------------------------------------------
@@ -25188,13 +25240,13 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         histPlotter1D(MainCanvas, hdP_T_tot_pFDpCD, norm_TKI_plots, true, 1., "#deltaP_{T,tot} by Momentum Sum", "All Int.", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning, HistoList,
                       2, false, true, sdP_T_tot_pFDpCD, "03a_dP_T_tot_pFDpCD", hdP_T_tot_pFDpCD_Dir, "pFDpCD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hdP_T_tot_QEL_Only_pFDpCD, norm_TKI_plots, true, 1., "#deltaP_{T,tot} by Momentum Sum", "QE only", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                      HistoList, 2, false, true, sdP_T_tot_pFDpCD, "03b_dP_T_tot_QEL_Only_pFDpCD", hdP_T_tot_pFDpCD_Dir, "pFDpCD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sdP_T_tot_pFDpCD, "03b_dP_T_tot_QEL_Only_pFDpCD", hdP_T_tot_pFDpCD_Dir, "pFDpCD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hdP_T_tot_MEC_Only_pFDpCD, norm_TKI_plots, true, 1., "#deltaP_{T,tot} by Momentum Sum", "MEC only", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                      HistoList, 2, false, true, sdP_T_tot_pFDpCD, "03c_dP_T_tot_MEC_Only_pFDpCD", hdP_T_tot_pFDpCD_Dir, "pFDpCD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sdP_T_tot_pFDpCD, "03c_dP_T_tot_MEC_Only_pFDpCD", hdP_T_tot_pFDpCD_Dir, "pFDpCD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hdP_T_tot_RES_Only_pFDpCD, norm_TKI_plots, true, 1., "#deltaP_{T,tot} by Momentum Sum", "RES only", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                      HistoList, 2, false, true, sdP_T_tot_pFDpCD, "03d_dP_T_tot_RES_Only_pFDpCD", hdP_T_tot_pFDpCD_Dir, "pFDpCD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sdP_T_tot_pFDpCD, "03d_dP_T_tot_RES_Only_pFDpCD", hdP_T_tot_pFDpCD_Dir, "pFDpCD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hdP_T_tot_DIS_Only_pFDpCD, norm_TKI_plots, true, 1., "#deltaP_{T,tot} by Momentum Sum", "DIS only", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                      HistoList, 2, false, true, sdP_T_tot_pFDpCD, "03e_dP_T_tot_DIS_Only_pFDpCD", hdP_T_tot_pFDpCD_Dir, "pFDpCD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sdP_T_tot_pFDpCD, "03e_dP_T_tot_DIS_Only_pFDpCD", hdP_T_tot_pFDpCD_Dir, "pFDpCD", kBlue, true, true, true);
 
         stackPlotter1D(MainCanvas, sdP_T_tot_pFDpCD, norm_TKI_plots, "#deltaP_{T,tot} stack", "pFDpCD", plots, HistoList_skipCleaning, HistoList, hdP_T_tot_pFDpCD, hdP_T_tot_QEL_Only_pFDpCD,
                        hdP_T_tot_MEC_Only_pFDpCD, hdP_T_tot_RES_Only_pFDpCD, hdP_T_tot_DIS_Only_pFDpCD, "03f_dP_T_tot_stack_pFDpCD", hdP_T_tot_pFDpCD_Dir, "");
@@ -25205,13 +25257,13 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         histPlotter1D(MainCanvas, hdP_T_tot_nFDpCD, norm_TKI_plots, true, 1., "#deltaP_{T,tot} by Momentum Sum", "All Int.", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning, HistoList,
                       2, false, true, sdP_T_tot_nFDpCD, "03a_dP_T_tot_nFDpCD", hdP_T_tot_nFDpCD_Dir, "nFDpCD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hdP_T_tot_QEL_Only_nFDpCD, norm_TKI_plots, true, 1., "#deltaP_{T,tot} by Momentum Sum", "QE only", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                      HistoList, 2, false, true, sdP_T_tot_nFDpCD, "03b_dP_T_tot_QEL_Only_nFDpCD", hdP_T_tot_nFDpCD_Dir, "nFDpCD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sdP_T_tot_nFDpCD, "03b_dP_T_tot_QEL_Only_nFDpCD", hdP_T_tot_nFDpCD_Dir, "nFDpCD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hdP_T_tot_MEC_Only_nFDpCD, norm_TKI_plots, true, 1., "#deltaP_{T,tot} by Momentum Sum", "MEC only", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                      HistoList, 2, false, true, sdP_T_tot_nFDpCD, "03c_dP_T_tot_MEC_Only_nFDpCD", hdP_T_tot_nFDpCD_Dir, "nFDpCD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sdP_T_tot_nFDpCD, "03c_dP_T_tot_MEC_Only_nFDpCD", hdP_T_tot_nFDpCD_Dir, "nFDpCD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hdP_T_tot_RES_Only_nFDpCD, norm_TKI_plots, true, 1., "#deltaP_{T,tot} by Momentum Sum", "RES only", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                      HistoList, 2, false, true, sdP_T_tot_nFDpCD, "03d_dP_T_tot_RES_Only_nFDpCD", hdP_T_tot_nFDpCD_Dir, "nFDpCD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sdP_T_tot_nFDpCD, "03d_dP_T_tot_RES_Only_nFDpCD", hdP_T_tot_nFDpCD_Dir, "nFDpCD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hdP_T_tot_DIS_Only_nFDpCD, norm_TKI_plots, true, 1., "#deltaP_{T,tot} by Momentum Sum", "DIS only", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                      HistoList, 2, false, true, sdP_T_tot_nFDpCD, "03e_dP_T_tot_DIS_Only_nFDpCD", hdP_T_tot_nFDpCD_Dir, "nFDpCD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sdP_T_tot_nFDpCD, "03e_dP_T_tot_DIS_Only_nFDpCD", hdP_T_tot_nFDpCD_Dir, "nFDpCD", kBlue, true, true, true);
 
         stackPlotter1D(MainCanvas, sdP_T_tot_nFDpCD, norm_TKI_plots, "#deltaP_{T,tot} stack", "nFDpCD", plots, HistoList_skipCleaning, HistoList, hdP_T_tot_nFDpCD, hdP_T_tot_QEL_Only_nFDpCD,
                        hdP_T_tot_MEC_Only_nFDpCD, hdP_T_tot_RES_Only_nFDpCD, hdP_T_tot_DIS_Only_nFDpCD, "03f_dP_T_tot_stack_nFDpCD", hdP_T_tot_nFDpCD_Dir, "");
@@ -25228,27 +25280,27 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
         // dAlpha_T plots (2p)
         histPlotter1D(MainCanvas, hdAlpha_T_L_2p, norm_TKI_plots, true, 1., "#delta#alpha_{T,L} by Leading Proton", "All Int.", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                      HistoList, 2, false, true, sdAlpha_T_2p, "dAlpha_T_L_2p", hdAlpha_T_L_2p_Dir, "2p", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sdAlpha_T_2p, "dAlpha_T_L_2p", hdAlpha_T_L_2p_Dir, "2p", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hdAlpha_T_tot_2p, norm_TKI_plots, true, 1., "#delta#alpha_{T,tot} by Momentum Sum", "All Int.", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                      HistoList, 2, false, true, sdAlpha_T_2p, "dAlpha_T_tot_2p", hdAlpha_T_tot_2p_Dir, "2p", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sdAlpha_T_2p, "dAlpha_T_tot_2p", hdAlpha_T_tot_2p_Dir, "2p", kBlue, true, true, true);
 
         // dAlpha_T plots (pFDpCD)
         histPlotter1D(MainCanvas, hdAlpha_T_L_pFDpCD, norm_TKI_plots, true, 1., "#delta#alpha_{T,L} by Leading FD Proton", "All Int.", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                      HistoList, 2, false, true, sdAlpha_T_pFDpCD, "01a_dAlpha_T_L_pFDpCD", hdAlpha_T_L_pFDpCD_Dir, "pFDpCD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sdAlpha_T_pFDpCD, "01a_dAlpha_T_L_pFDpCD", hdAlpha_T_L_pFDpCD_Dir, "pFDpCD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hdAlpha_T_tot_pFDpCD, norm_TKI_plots, true, 1., "#delta#alpha_{T,tot} by Momentum Sum", "All Int.", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                      HistoList, 2, false, true, sdAlpha_T_tot_pFDpCD, "03a_dAlpha_T_tot_pFDpCD", hdAlpha_T_tot_pFDpCD_Dir, "pFDpCD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sdAlpha_T_tot_pFDpCD, "03a_dAlpha_T_tot_pFDpCD", hdAlpha_T_tot_pFDpCD_Dir, "pFDpCD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hdAlpha_T_tot_QEL_Only_pFDpCD, norm_TKI_plots, true, 1., "#delta#alpha_{T,tot} by Momentum Sum", "QE only", 0.06, 0.0425, 0.0425, plots,
-                      HistoList_skipCleaning, HistoList, 2, false, true, sdAlpha_T_tot_pFDpCD, "03b_dAlpha_T_tot_QEL_Only_pFDpCD", hdAlpha_T_tot_pFDpCD_Dir, "pFDpCD", kBlue, true, true,
-                      true);
+                      HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sdAlpha_T_tot_pFDpCD, "03b_dAlpha_T_tot_QEL_Only_pFDpCD", hdAlpha_T_tot_pFDpCD_Dir, "pFDpCD",
+                      kBlue, true, true, true);
         histPlotter1D(MainCanvas, hdAlpha_T_tot_MEC_Only_pFDpCD, norm_TKI_plots, true, 1., "#delta#alpha_{T,tot} by Momentum Sum", "MEC only", 0.06, 0.0425, 0.0425, plots,
-                      HistoList_skipCleaning, HistoList, 2, false, true, sdAlpha_T_tot_pFDpCD, "03c_dAlpha_T_tot_MEC_Only_pFDpCD", hdAlpha_T_tot_pFDpCD_Dir, "pFDpCD", kBlue, true, true,
-                      true);
+                      HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sdAlpha_T_tot_pFDpCD, "03c_dAlpha_T_tot_MEC_Only_pFDpCD", hdAlpha_T_tot_pFDpCD_Dir, "pFDpCD",
+                      kBlue, true, true, true);
         histPlotter1D(MainCanvas, hdAlpha_T_tot_RES_Only_pFDpCD, norm_TKI_plots, true, 1., "#delta#alpha_{T,tot} by Momentum Sum", "RES only", 0.06, 0.0425, 0.0425, plots,
-                      HistoList_skipCleaning, HistoList, 2, false, true, sdAlpha_T_tot_pFDpCD, "03d_dAlpha_T_tot_RES_Only_pFDpCD", hdAlpha_T_tot_pFDpCD_Dir, "pFDpCD", kBlue, true, true,
-                      true);
+                      HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sdAlpha_T_tot_pFDpCD, "03d_dAlpha_T_tot_RES_Only_pFDpCD", hdAlpha_T_tot_pFDpCD_Dir, "pFDpCD",
+                      kBlue, true, true, true);
         histPlotter1D(MainCanvas, hdAlpha_T_tot_DIS_Only_pFDpCD, norm_TKI_plots, true, 1., "#delta#alpha_{T,tot} by Momentum Sum", "DIS only", 0.06, 0.0425, 0.0425, plots,
-                      HistoList_skipCleaning, HistoList, 2, false, true, sdAlpha_T_tot_pFDpCD, "03e_dAlpha_T_tot_DIS_Only_pFDpCD", hdAlpha_T_tot_pFDpCD_Dir, "pFDpCD", kBlue, true, true,
-                      true);
+                      HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sdAlpha_T_tot_pFDpCD, "03e_dAlpha_T_tot_DIS_Only_pFDpCD", hdAlpha_T_tot_pFDpCD_Dir, "pFDpCD",
+                      kBlue, true, true, true);
 
         stackPlotter1D(MainCanvas, sdAlpha_T_tot_pFDpCD, norm_TKI_plots, "#delta#alpha_{T,tot} stack", "pFDpCD", plots, HistoList_skipCleaning, HistoList, hdAlpha_T_tot_pFDpCD,
                        hdAlpha_T_tot_QEL_Only_pFDpCD, hdAlpha_T_tot_MEC_Only_pFDpCD, hdAlpha_T_tot_RES_Only_pFDpCD, hdAlpha_T_tot_DIS_Only_pFDpCD, "03f_dAlpha_T_tot_stack_pFDpCD",
@@ -25256,21 +25308,21 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
         // dAlpha_T plots (nFDpCD)
         histPlotter1D(MainCanvas, hdAlpha_T_L_nFDpCD, norm_TKI_plots, true, 1., "#delta#alpha_{T,L} by Leading FD Neutron", "All Int.", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                      HistoList, 2, false, true, sdAlpha_T_nFDpCD, "01a_dAlpha_T_L_nFDpCD", hdAlpha_T_L_nFDpCD_Dir, "nFDpCD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sdAlpha_T_nFDpCD, "01a_dAlpha_T_L_nFDpCD", hdAlpha_T_L_nFDpCD_Dir, "nFDpCD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hdAlpha_T_tot_nFDpCD, norm_TKI_plots, true, 1., "#delta#alpha_{T,tot} by Momentum Sum", "All Int.", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                      HistoList, 2, false, true, sdAlpha_T_tot_nFDpCD, "03a_dAlpha_T_tot_nFDpCD", hdAlpha_T_tot_nFDpCD_Dir, "nFDpCD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sdAlpha_T_tot_nFDpCD, "03a_dAlpha_T_tot_nFDpCD", hdAlpha_T_tot_nFDpCD_Dir, "nFDpCD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hdAlpha_T_tot_QEL_Only_nFDpCD, norm_TKI_plots, true, 1., "#delta#alpha_{T,tot} by Momentum Sum", "QE only", 0.06, 0.0425, 0.0425, plots,
-                      HistoList_skipCleaning, HistoList, 2, false, true, sdAlpha_T_tot_nFDpCD, "03b_dAlpha_T_tot_QEL_Only_nFDpCD", hdAlpha_T_tot_nFDpCD_Dir, "nFDpCD", kBlue, true, true,
-                      true);
+                      HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sdAlpha_T_tot_nFDpCD, "03b_dAlpha_T_tot_QEL_Only_nFDpCD", hdAlpha_T_tot_nFDpCD_Dir, "nFDpCD",
+                      kBlue, true, true, true);
         histPlotter1D(MainCanvas, hdAlpha_T_tot_MEC_Only_nFDpCD, norm_TKI_plots, true, 1., "#delta#alpha_{T,tot} by Momentum Sum", "MEC only", 0.06, 0.0425, 0.0425, plots,
-                      HistoList_skipCleaning, HistoList, 2, false, true, sdAlpha_T_tot_nFDpCD, "03c_dAlpha_T_tot_MEC_Only_nFDpCD", hdAlpha_T_tot_nFDpCD_Dir, "nFDpCD", kBlue, true, true,
-                      true);
+                      HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sdAlpha_T_tot_nFDpCD, "03c_dAlpha_T_tot_MEC_Only_nFDpCD", hdAlpha_T_tot_nFDpCD_Dir, "nFDpCD",
+                      kBlue, true, true, true);
         histPlotter1D(MainCanvas, hdAlpha_T_tot_RES_Only_nFDpCD, norm_TKI_plots, true, 1., "#delta#alpha_{T,tot} by Momentum Sum", "RES only", 0.06, 0.0425, 0.0425, plots,
-                      HistoList_skipCleaning, HistoList, 2, false, true, sdAlpha_T_tot_nFDpCD, "03d_dAlpha_T_tot_RES_Only_nFDpCD", hdAlpha_T_tot_nFDpCD_Dir, "nFDpCD", kBlue, true, true,
-                      true);
+                      HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sdAlpha_T_tot_nFDpCD, "03d_dAlpha_T_tot_RES_Only_nFDpCD", hdAlpha_T_tot_nFDpCD_Dir, "nFDpCD",
+                      kBlue, true, true, true);
         histPlotter1D(MainCanvas, hdAlpha_T_tot_DIS_Only_nFDpCD, norm_TKI_plots, true, 1., "#delta#alpha_{T,tot} by Momentum Sum", "DIS only", 0.06, 0.0425, 0.0425, plots,
-                      HistoList_skipCleaning, HistoList, 2, false, true, sdAlpha_T_tot_nFDpCD, "03e_dAlpha_T_tot_DIS_Only_nFDpCD", hdAlpha_T_tot_nFDpCD_Dir, "nFDpCD", kBlue, true, true,
-                      true);
+                      HistoList_skipCleaning, HistoList_skipCleaning, HistoList, 2, false, true, sdAlpha_T_tot_nFDpCD, "03e_dAlpha_T_tot_DIS_Only_nFDpCD", hdAlpha_T_tot_nFDpCD_Dir, "nFDpCD",
+                      kBlue, true, true, true);
 
         stackPlotter1D(MainCanvas, sdAlpha_T_tot_nFDpCD, norm_TKI_plots, "#delta#alpha_{T,tot} stack", "nFDpCD", plots, HistoList_skipCleaning, HistoList, hdAlpha_T_tot_nFDpCD,
                        hdAlpha_T_tot_QEL_Only_nFDpCD, hdAlpha_T_tot_MEC_Only_nFDpCD, hdAlpha_T_tot_RES_Only_nFDpCD, hdAlpha_T_tot_DIS_Only_nFDpCD, "03f_dAlpha_T_tot_stack_nFDpCD",
@@ -25294,15 +25346,15 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
         // dPhi_T plots (pFDpCD)
         histPlotter1D(MainCanvas, hdPhi_T_L_pFDpCD, norm_TKI_plots, true, 1., "#delta#phi_{T,L} by Leading FD Proton", "All Int.", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                      HistoList, 2, false, true, sdPhi_T_pFDpCD, "dPhi_T_L_pFDpCD", hdPhi_T_L_pFDpCD_Dir, "pFDpCD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sdPhi_T_pFDpCD, "dPhi_T_L_pFDpCD", hdPhi_T_L_pFDpCD_Dir, "pFDpCD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hdPhi_T_tot_pFDpCD, norm_TKI_plots, true, 1., "#delta#phi_{T,tot} by Momentum Sum", "All Int.", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                      HistoList, 2, false, true, sdPhi_T_pFDpCD, "dPhi_T_tot_pFDpCD", hdPhi_T_tot_pFDpCD_Dir, "pFDpCD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sdPhi_T_pFDpCD, "dPhi_T_tot_pFDpCD", hdPhi_T_tot_pFDpCD_Dir, "pFDpCD", kBlue, true, true, true);
 
         // dPhi_T plots (nFDpCD)
         histPlotter1D(MainCanvas, hdPhi_T_L_nFDpCD, norm_TKI_plots, true, 1., "#delta#phi_{T,L} by Leading FD Neutron", "All Int.", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                      HistoList, 2, false, true, sdPhi_T_nFDpCD, "dPhi_T_L_nFDpCD", hdPhi_T_L_nFDpCD_Dir, "nFDpCD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sdPhi_T_nFDpCD, "dPhi_T_L_nFDpCD", hdPhi_T_L_nFDpCD_Dir, "nFDpCD", kBlue, true, true, true);
         histPlotter1D(MainCanvas, hdPhi_T_tot_nFDpCD, norm_TKI_plots, true, 1., "#delta#phi_{T,tot} by Momentum Sum", "All Int.", 0.06, 0.0425, 0.0425, plots, HistoList_skipCleaning,
-                      HistoList, 2, false, true, sdPhi_T_nFDpCD, "dPhi_T_tot_nFDpCD", hdPhi_T_tot_nFDpCD_Dir, "nFDpCD", kBlue, true, true, true);
+                      HistoList_skipCleaning, HistoList, 2, false, true, sdPhi_T_nFDpCD, "dPhi_T_tot_nFDpCD", hdPhi_T_tot_nFDpCD_Dir, "nFDpCD", kBlue, true, true, true);
 
         //  dP_T vs. dAlpha_T plots (CD & FD) -----------------------------------------------------------------------------------------------------------------------------------
 
@@ -27666,12 +27718,12 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     for (size_t i = 0; i < HistoList.size(); i++) {
         if (HistoList[i] && !HistoList_skipCleaning[i]) {
             delete HistoList[i];
-            HistoList[i] = nullptr;  // Clear the pointer after delete for safety
+            HistoList_skipCleaning, HistoList[i] = nullptr;  // Clear the pointer after delete for safety
         }
     }
 
-    HistoList.clear();
-    HistoList_skipCleaning.clear();
+    HistoList_skipCleaning, HistoList.clear();
+    HistoList_skipCleaning, HistoList_skipCleaning.clear();
 
     // Then clean the other pointers
     delete plots;
@@ -27690,7 +27742,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
 //     for (auto histo : HistoList) { delete histo; }
 
-//     HistoList.clear();
+//   HistoList_skipCleaning, HistoList.clear();
 
 //     if (MainCanvas) {
 //         delete MainCanvas;
