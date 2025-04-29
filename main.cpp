@@ -27,7 +27,6 @@ int main() {
         std::string AnalyzeFile0 = AnalyzeFile_v.at(i);
 
         std::string FileType = AnalyzeFile_v.at(i).substr(AnalyzeFile_v.at(i).find_last_of(".") + 1);
-        std::string AnalyzerMode = Analysis.ConfigureAnalyzerMode(FileType);
 
         std::cout << "\033[33m" << "\nAnalyzeFilePath:" << "\033[0m" << "\t" << AnalyzeFilePath0 << "\n";
         std::cout << "\033[33m" << "AnalyzeFileSample:" << "\033[0m" << "\t" << AnalyzeFileSample0 << "\n";
@@ -39,7 +38,7 @@ int main() {
         DataAnalyzer Analysis(FileType, AnalyzeFilePath0, AnalyzeFileSample0, AnalyzeFile0);
 
         std::cout << "\033[33m" << "\n---------------------------------------------------------------------------\n\n" << "\033[0m";
-        std::cout << "\033[33m" << "Analysis mode:" << "\033[0m" << "\t\t'" << AnalyzerMode << "'" << "\n";
+        std::cout << "\033[33m" << "Analysis mode:" << "\033[0m" << "\t\t'" << Analysis.ConfigureAnalyzerMode(FileType) << "'" << "\n";
         std::cout << "\033[33m" << "Code version:" << "\033[0m" << "\t\t" << Ver << "\n";
 
         ++Num_of_Analyzed_samples;
