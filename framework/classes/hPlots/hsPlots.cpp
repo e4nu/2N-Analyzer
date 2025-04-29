@@ -80,13 +80,13 @@ hsPlots::hsPlots(const std::vector<std::vector<double>>& sliceLimits, HistoType 
 // and clears the vector to fully reset the object.
 // This ensures proper memory management and prevents memory leaks.
 hsPlots::~hsPlots() {
-    for (auto& hist : histograms) {
+    for (auto& hist : SlicedHistoList) {
         if (hist) {
             delete hist;
             hist = nullptr;
         }
     }
-    histograms.clear();
+    SlicedHistoList.clear();
 }
 
 // FindSliceIndex function ---------------------------------------------------------------------------------------------------------------------------------------------

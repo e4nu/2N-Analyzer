@@ -1636,14 +1636,15 @@ void hPlot1D::histPlotter1DwFit(std::string SampleName, TCanvas *HistogramCanvas
 #pragma region /* hDrawAndSave function */
 void hPlot1D::hDrawAndSave(const std::string &SampleName, TCanvas *h1DCanvas, TList *hList, vector<bool> &HistoList_skipCleaning, vector<TObject *> &HistoList, bool normHistogram,
                            bool cNormalization, double cNormalizationFactor, double plot_lower_cut = -9999, double plot_upper_cut = 9999, double plot_Xmax = 0, bool plotMax = false) {
-    histPlotter1D(SampleName, h1DCanvas, Histogram1D, normHistogram, cNormalization, cNormalizationFactor, hList, HistoList, plot_lower_cut, plot_upper_cut, plot_Xmax, plotMax);
+    histPlotter1D(SampleName, h1DCanvas, Histogram1D, normHistogram, cNormalization, cNormalizationFactor, hList, HistoList_skipCleaning, HistoList, plot_lower_cut, plot_upper_cut,
+                  plot_Xmax, plotMax);
 }
 
 void hPlot1D::hDrawAndSave(TCanvas *h1DCanvas, TList *hList, vector<bool> &HistoList_skipCleaning, vector<TObject *> &HistoList, bool normHistogram, bool cNormalization,
                            double cNormalizationFactor) {
     histPlotter1D(h1DCanvas, Histogram1D, normHistogram, cNormalization, cNormalizationFactor, Histogram1DTitles["HistogramTitle"], Histogram1DTitles["Histogram1DTitleReactions"],
-                  Histogram1DTitleSizes.at(0), Histogram1DTitleSizes.at(1), Histogram1DTitleSizes.at(2), hList, HistoList, LineWidth, LogScalePlot, LinearScalePlot, Histogram1DSaveName,
-                  Histogram1DSaveNamePath, Histogram1DTitles["FinalState"], CenterTitle, ShowStats, Title2, ShowPlotCuts, PlotCuts, PlotXmax, PlotHistogramMax);
+                  Histogram1DTitleSizes.at(0), Histogram1DTitleSizes.at(1), Histogram1DTitleSizes.at(2), hList, HistoList_skipCleaning, HistoList, LineWidth, LogScalePlot, LinearScalePlot,
+                  Histogram1DSaveName, Histogram1DSaveNamePath, Histogram1DTitles["FinalState"], CenterTitle, ShowStats, Title2, ShowPlotCuts, PlotCuts, PlotXmax, PlotHistogramMax);
 }
 #pragma endregion
 
@@ -1653,7 +1654,7 @@ void hPlot1D::hDrawAndSave(TCanvas *h1DCanvas, TList *hList, vector<bool> &Histo
 void hPlot1D::hDrawAndSaveWFit(const std::string &SampleName, TCanvas *h1DCanvas, TList *hList, vector<bool> &HistoList_skipCleaning, vector<TObject *> &HistoList, bool normHistogram,
                                bool cNormalization, double cNormalizationFactor, double factor, double &plot_lower_cut, double &plot_upper_cut, double &plot_Xmax, bool plotMax = false) {
     histPlotter1DwFit(SampleName, h1DCanvas, Histogram1D, normHistogram, cNormalization, cNormalizationFactor, Histogram1DTitles["HistogramTitle"],
-                      Histogram1DTitles["Histogram1DTitleReactions"], hList, HistoList, Histogram1DSaveName, Histogram1DSaveNamePath, Histogram1DTitles["FinalState"], plot_Xmax,
+                      Histogram1DTitles["Histogram1DTitleReactions"], hList, HistoList_skipCleaning, HistoList, Histogram1DSaveName, Histogram1DSaveNamePath, Histogram1DTitles["FinalState"], plot_Xmax,
                       plot_lower_cut, plot_upper_cut, factor, plotMax);
 }
 #pragma endregion
