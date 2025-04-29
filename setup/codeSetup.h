@@ -16,14 +16,14 @@
 // Include libraries
 #include "../framework/namespaces/general_utilities/basic_tools.h"
 #include "../framework/namespaces/general_utilities/constants.h"
-#include "../framework/namespaces/plotters/PDF_canvas/PDF_canvas.h"
+// #include "../framework/namespaces/plotters/PDF_canvas/PDF_canvas.h"
 
 // Include classes:
 #include "../framework/classes/Directories/Directories.cpp"
 #include "../framework/classes/ExperimentParameters/ExperimentParameters.cpp"
 #include "../framework/functions/HistogramPlottingFunctions.h"
 
-using namespace PDF_canvas;
+// using namespace PDF_canvas;
 using namespace path_definitions;
 using namespace debugging;
 using namespace analysis_samples;

@@ -2035,7 +2035,7 @@ void histPlotter2D(TCanvas *HistogramCanvas, TH2D *Histogram2D, double titleSize
 
         gPad->Update();
         TPaletteAxis *palette = (TPaletteAxis *)Histogram2D->GetListOfFunctions()->FindObject("palette");
-        if (palette) { palette->SetY2NDC(0.50), gPad->Modified(), gPad->Update(); }
+        if (palette) { palette->SetY2NDC(0.475), gPad->Modified(), gPad->Update(); }
     }
 
     if (zLogScalePlot) {
@@ -2106,7 +2106,7 @@ void histPlotter2D(TCanvas *HistogramCanvas, TH2D *Histogram2D, double titleSize
 
         gPad->Update();
         TPaletteAxis *palette = (TPaletteAxis *)Histogram2D->GetListOfFunctions()->FindObject("palette");
-        if (palette) { palette->SetY2NDC(0.50), gPad->Modified(), gPad->Update(); }
+        if (palette) { palette->SetY2NDC(0.475), gPad->Modified(), gPad->Update(); }
 
         Beta_function1->Draw("same");
         Beta_function2->Draw("same");
@@ -2167,7 +2167,7 @@ void histPlotter2D(TCanvas *HistogramCanvas, TH2D *Histogram2D, double titleSize
 
         gPad->Update();
         TPaletteAxis *palette = (TPaletteAxis *)Histogram2D->GetListOfFunctions()->FindObject("palette");
-        if (palette) { palette->SetY2NDC(0.50), gPad->Modified(), gPad->Update(); }
+        if (palette) { palette->SetY2NDC(0.475), gPad->Modified(), gPad->Update(); }
 
         Beta_function1->SetLineColor(kRed);
         Beta_function1->Draw("same");
@@ -2229,7 +2229,7 @@ void histPlotter2D(TCanvas *HistogramCanvas, TH2D *Histogram2D, double titleSize
 
         gPad->Update();
         TPaletteAxis *palette = (TPaletteAxis *)Histogram2D->GetListOfFunctions()->FindObject("palette");
-        if (palette) { palette->SetY2NDC(0.50), gPad->Modified(), gPad->Update(); }
+        if (palette) { palette->SetY2NDC(0.475), gPad->Modified(), gPad->Update(); }
 
         Beta_function1->SetLineColor(kBlue);
         Beta_function1->Draw("same");

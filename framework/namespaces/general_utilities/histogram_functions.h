@@ -197,7 +197,7 @@ void DrawAndSaveHistogramsToPDF(TCanvas *MainCanvas, const std::vector<TObject *
             if (h2->GetEntries() != 0) {
                 gPad->Update();
                 TPaletteAxis *palette = (TPaletteAxis *)h2->GetListOfFunctions()->FindObject("palette");
-                if (palette) palette->SetY2NDC(0.50);
+                if (palette) palette->SetY2NDC(0.475);
                 gPad->Modified();
                 gPad->Update();
             }
@@ -410,7 +410,7 @@ void CompareHistograms(const std::vector<TObject *> &histograms, const std::stri
             h2->Draw("COLZ");
             gPad->Update();
             TPaletteAxis *palette = (TPaletteAxis *)h2->GetListOfFunctions()->FindObject("palette");
-            if (palette) palette->SetY2NDC(0.50);
+            if (palette) palette->SetY2NDC(0.475);
             gPad->Modified();
             gPad->Update();
         } else if (histograms[i]->InheritsFrom(THStack::Class())) {
@@ -455,7 +455,7 @@ void CompareHistograms(const std::vector<TObject *> &histograms, const std::stri
             h2->Draw("COLZ");
             gPad->Update();
             TPaletteAxis *palette = (TPaletteAxis *)h2->GetListOfFunctions()->FindObject("palette");
-            if (palette) palette->SetY2NDC(0.50);
+            if (palette) palette->SetY2NDC(0.475);
             gPad->Modified();
             gPad->Update();
         } else if (histograms[i]->InheritsFrom(THStack::Class())) {

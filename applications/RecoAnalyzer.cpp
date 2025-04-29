@@ -124,7 +124,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     /* General plots TList */
     TList *plots = new TList();
-    std::string listName = run_plots_path + "/" + parameters.SampleName + plots_TList_FileType;
+    std::string listName = run_plots_path + "/" + settings.GetRun_dir_name() + plots_TList_FileType;
+    // std::string listName = run_plots_path + "/" + parameters.SampleName + plots_TList_FileType;
     const char *TListName = listName.c_str();
 
     // TFile definition -----------------------------------------------------------------------------------------------------------------------------------------------------
@@ -132,10 +133,11 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, debugging::DebuggerMode, debugging::OnlyPrintNamedTesterSteps);
 
     // TFile definition
-    /* Definition of plots TFile used to save all plots to .pdf file. */
+    /* Definition of plots' TFile used to save all plots to .pdf file. */
 
     /* General plots PDF file */
-    std::string Histogram_OutPDF_fileName_str = run_plots_path + "/" + parameters.SampleName + plots_TFile_FileType;
+    std::string Histogram_OutPDF_fileName_str = run_plots_path + "/" + settings.GetRun_dir_name() + plots_TFile_FileType;
+    // std::string Histogram_OutPDF_fileName_str = run_plots_path + "/" + parameters.SampleName + plots_TFile_FileType;
     const char *Histogram_OutPDF = Histogram_OutPDF_fileName_str.c_str();
     char Histogram_OutPDF_fileName_char[Histogram_OutPDF_fileName_str.length()];
 
@@ -19764,7 +19766,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                       "01fad_P_miss_1N_VS_E_miss_1N_DIS_pFDpCD");
         histogram_functions::CompareHistograms({hP_miss_1N_VS_E_miss_1N_All_Int_pFDpCD, hP_miss_1N_VS_E_miss_1N_QEL_pFDpCD, hP_miss_1N_VS_E_miss_1N_MEC_pFDpCD,
                                                 hP_miss_1N_VS_E_miss_1N_RES_pFDpCD, hP_miss_1N_VS_E_miss_1N_DIS_pFDpCD},
-                                               directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "P_miss_1N_VS_E_miss_1N_ReacComp");
+                                               directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "P_miss_1N_VS_E_miss_1N_ReacComp_pFDpCD");
 
         // P_miss_1N vs. P_miss_2N plots (pFDpCD, FD)
         histPlotter2D(MainCanvas, hP_miss_1N_VS_P_miss_2N_All_Int_pFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hP_miss_1N_VS_P_miss_2N_pFDpCD_Dir,
@@ -19779,7 +19781,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                       "01fbd_P_miss_1N_VS_P_miss_2N_DIS_pFDpCD");
         histogram_functions::CompareHistograms({hP_miss_1N_VS_P_miss_2N_All_Int_pFDpCD, hP_miss_1N_VS_P_miss_2N_QEL_pFDpCD, hP_miss_1N_VS_P_miss_2N_MEC_pFDpCD,
                                                 hP_miss_1N_VS_P_miss_2N_RES_pFDpCD, hP_miss_1N_VS_P_miss_2N_DIS_pFDpCD},
-                                               directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "P_miss_1N_VS_P_miss_2N_ReacComp");
+                                               directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "P_miss_1N_VS_P_miss_2N_ReacComp_pFDpCD");
 
         // P_miss_1N vs. E_miss_2N plots (pFDpCD, FD)
         histPlotter2D(MainCanvas, hP_miss_1N_VS_E_miss_2N_All_Int_pFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hP_miss_1N_VS_E_miss_2N_pFDpCD_Dir,
@@ -19794,7 +19796,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                       "01fcd_P_miss_1N_VS_E_miss_2N_DIS_pFDpCD");
         histogram_functions::CompareHistograms({hP_miss_1N_VS_E_miss_2N_All_Int_pFDpCD, hP_miss_1N_VS_E_miss_2N_QEL_pFDpCD, hP_miss_1N_VS_E_miss_2N_MEC_pFDpCD,
                                                 hP_miss_1N_VS_E_miss_2N_RES_pFDpCD, hP_miss_1N_VS_E_miss_2N_DIS_pFDpCD},
-                                               directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "P_miss_1N_VS_E_miss_2N_ReacComp");
+                                               directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "P_miss_1N_VS_E_miss_2N_ReacComp_pFDpCD");
 
         // P_miss_1N vs. Q2 plots (pFDpCD, FD)
         histPlotter2D(MainCanvas, hP_miss_1N_VS_Q2_All_Int_pFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hP_miss_1N_VS_Q2_pFDpCD_Dir, "01fd_P_miss_1N_VS_Q2_pFDpCD");
@@ -19804,7 +19806,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         histPlotter2D(MainCanvas, hP_miss_1N_VS_Q2_DIS_pFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hP_miss_1N_VS_Q2_pFDpCD_Dir, "01fdd_P_miss_1N_VS_Q2_DIS_pFDpCD");
         histogram_functions::CompareHistograms(
             {hP_miss_1N_VS_Q2_All_Int_pFDpCD, hP_miss_1N_VS_Q2_QEL_pFDpCD, hP_miss_1N_VS_Q2_MEC_pFDpCD, hP_miss_1N_VS_Q2_RES_pFDpCD, hP_miss_1N_VS_Q2_DIS_pFDpCD},
-            directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "P_miss_1N_VS_Q2_ReacComp");
+            directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "P_miss_1N_VS_Q2_ReacComp_pFDpCD");
 
         // P_miss_1N vs. xB plots (pFDpCD, FD)
         histPlotter2D(MainCanvas, hP_miss_1N_VS_xB_All_Int_pFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hP_miss_1N_VS_xB_pFDpCD_Dir, "01fe_P_miss_1N_VS_xB_pFDpCD");
@@ -19814,7 +19816,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         histPlotter2D(MainCanvas, hP_miss_1N_VS_xB_DIS_pFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hP_miss_1N_VS_xB_pFDpCD_Dir, "01fed_P_miss_1N_VS_xB_DIS_pFDpCD");
         histogram_functions::CompareHistograms(
             {hP_miss_1N_VS_xB_All_Int_pFDpCD, hP_miss_1N_VS_xB_QEL_pFDpCD, hP_miss_1N_VS_xB_MEC_pFDpCD, hP_miss_1N_VS_xB_RES_pFDpCD, hP_miss_1N_VS_xB_DIS_pFDpCD},
-            directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "P_miss_1N_VS_xB_ReacComp");
+            directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "P_miss_1N_VS_xB_ReacComp_pFDpCD");
 
         // P_miss_1N vs. theta_q plots (pFDpCD, FD)
         histPlotter2D(MainCanvas, hP_miss_1N_VS_theta_q_All_Int_pFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hP_miss_1N_VS_theta_q_pFDpCD_Dir,
@@ -19829,7 +19831,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                       "01ffd_P_miss_1N_VS_theta_q_DIS_pFDpCD");
         histogram_functions::CompareHistograms(
             {hP_miss_1N_VS_theta_q_All_Int_pFDpCD, hP_miss_1N_VS_theta_q_QEL_pFDpCD, hP_miss_1N_VS_theta_q_MEC_pFDpCD, hP_miss_1N_VS_theta_q_RES_pFDpCD, hP_miss_1N_VS_theta_q_DIS_pFDpCD},
-            directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "P_miss_1N_VS_theta_q_ReacComp");
+            directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "P_miss_1N_VS_theta_q_ReacComp_pFDpCD");
 
         // P_miss_1N vs. theta_q_pFD plots (pFDpCD, FD)
         histPlotter2D(MainCanvas, hP_miss_1N_VS_theta_q_pFD_All_Int_pFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hP_miss_1N_VS_theta_q_pFD_pFDpCD_Dir,
@@ -19844,7 +19846,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                       "01fgd_P_miss_1N_VS_theta_q_pFD_DIS_pFDpCD");
         histogram_functions::CompareHistograms({hP_miss_1N_VS_theta_q_pFD_All_Int_pFDpCD, hP_miss_1N_VS_theta_q_pFD_QEL_pFDpCD, hP_miss_1N_VS_theta_q_pFD_MEC_pFDpCD,
                                                 hP_miss_1N_VS_theta_q_pFD_RES_pFDpCD, hP_miss_1N_VS_theta_q_pFD_DIS_pFDpCD},
-                                               directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "P_miss_1N_VS_theta_q_pFD_ReacComp");
+                                               directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "P_miss_1N_VS_theta_q_pFD_ReacComp_pFDpCD");
 
         // P_miss_1N vs. theta_q_pCD plots (pFDpCD, FD)
         histPlotter2D(MainCanvas, hP_miss_1N_VS_theta_q_pCD_All_Int_pFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hP_miss_1N_VS_theta_q_pCD_pFDpCD_Dir,
@@ -19859,7 +19861,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                       "01fhd_P_miss_1N_VS_theta_q_pCD_DIS_pFDpCD");
         histogram_functions::CompareHistograms({hP_miss_1N_VS_theta_q_pCD_All_Int_pFDpCD, hP_miss_1N_VS_theta_q_pCD_QEL_pFDpCD, hP_miss_1N_VS_theta_q_pCD_MEC_pFDpCD,
                                                 hP_miss_1N_VS_theta_q_pCD_RES_pFDpCD, hP_miss_1N_VS_theta_q_pCD_DIS_pFDpCD},
-                                               directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "P_miss_1N_VS_theta_q_pCD_ReacComp");
+                                               directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "P_miss_1N_VS_theta_q_pCD_ReacComp_pFDpCD");
 
         // E_miss_1N plots (pFDpCD, CD & FD)
         double E_miss_1N_pFDpCD_integral = hE_miss_1N_All_Int_pFDpCD->Integral();
@@ -19891,7 +19893,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                       "02fad_E_miss_1N_VS_P_miss_2N_DIS_pFDpCD");
         histogram_functions::CompareHistograms({hE_miss_1N_VS_P_miss_2N_All_Int_pFDpCD, hE_miss_1N_VS_P_miss_2N_QEL_pFDpCD, hE_miss_1N_VS_P_miss_2N_MEC_pFDpCD,
                                                 hE_miss_1N_VS_P_miss_2N_RES_pFDpCD, hE_miss_1N_VS_P_miss_2N_DIS_pFDpCD},
-                                               directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "E_miss_1N_VS_P_miss_2N_ReacComp");
+                                               directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "E_miss_1N_VS_P_miss_2N_ReacComp_pFDpCD");
 
         // E_miss_1N vs. E_miss_2N plots (pFDpCD, FD)
         histPlotter2D(MainCanvas, hE_miss_1N_VS_E_miss_2N_All_Int_pFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hE_miss_1N_VS_E_miss_2N_pFDpCD_Dir,
@@ -19906,7 +19908,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                       "02fbd_E_miss_1N_VS_E_miss_2N_DIS_pFDpCD");
         histogram_functions::CompareHistograms({hE_miss_1N_VS_E_miss_2N_All_Int_pFDpCD, hE_miss_1N_VS_E_miss_2N_QEL_pFDpCD, hE_miss_1N_VS_E_miss_2N_MEC_pFDpCD,
                                                 hE_miss_1N_VS_E_miss_2N_RES_pFDpCD, hE_miss_1N_VS_E_miss_2N_DIS_pFDpCD},
-                                               directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "E_miss_1N_VS_E_miss_2N_ReacComp");
+                                               directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "E_miss_1N_VS_E_miss_2N_ReacComp_pFDpCD");
 
         // E_miss_1N vs. Q2 plots (pFDpCD, FD)
         histPlotter2D(MainCanvas, hE_miss_1N_VS_Q2_All_Int_pFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hE_miss_1N_VS_Q2_pFDpCD_Dir, "02fc_E_miss_1N_VS_Q2_pFDpCD");
@@ -19916,7 +19918,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         histPlotter2D(MainCanvas, hE_miss_1N_VS_Q2_DIS_pFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hE_miss_1N_VS_Q2_pFDpCD_Dir, "02fcd_E_miss_1N_VS_Q2_DIS_pFDpCD");
         histogram_functions::CompareHistograms(
             {hE_miss_1N_VS_Q2_All_Int_pFDpCD, hE_miss_1N_VS_Q2_QEL_pFDpCD, hE_miss_1N_VS_Q2_MEC_pFDpCD, hE_miss_1N_VS_Q2_RES_pFDpCD, hE_miss_1N_VS_Q2_DIS_pFDpCD},
-            directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "E_miss_1N_VS_Q2_ReacComp");
+            directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "E_miss_1N_VS_Q2_ReacComp_pFDpCD");
 
         // E_miss_1N vs. xB plots (pFDpCD, FD)
         histPlotter2D(MainCanvas, hE_miss_1N_VS_xB_All_Int_pFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hE_miss_1N_VS_xB_pFDpCD_Dir, "02fd_E_miss_1N_VS_xB_pFDpCD");
@@ -19926,7 +19928,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         histPlotter2D(MainCanvas, hE_miss_1N_VS_xB_DIS_pFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hE_miss_1N_VS_xB_pFDpCD_Dir, "02fdd_E_miss_1N_VS_xB_DIS_pFDpCD");
         histogram_functions::CompareHistograms(
             {hE_miss_1N_VS_xB_All_Int_pFDpCD, hE_miss_1N_VS_xB_QEL_pFDpCD, hE_miss_1N_VS_xB_MEC_pFDpCD, hE_miss_1N_VS_xB_RES_pFDpCD, hE_miss_1N_VS_xB_DIS_pFDpCD},
-            directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "E_miss_1N_VS_xB_ReacComp");
+            directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "E_miss_1N_VS_xB_ReacComp_pFDpCD");
 
         // E_miss_1N vs. theta_q plots (pFDpCD, FD)
         histPlotter2D(MainCanvas, hE_miss_1N_VS_theta_q_All_Int_pFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hE_miss_1N_VS_theta_q_pFDpCD_Dir,
@@ -19941,7 +19943,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                       "02fed_E_miss_1N_VS_theta_q_DIS_pFDpCD");
         histogram_functions::CompareHistograms(
             {hE_miss_1N_VS_theta_q_All_Int_pFDpCD, hE_miss_1N_VS_theta_q_QEL_pFDpCD, hE_miss_1N_VS_theta_q_MEC_pFDpCD, hE_miss_1N_VS_theta_q_RES_pFDpCD, hE_miss_1N_VS_theta_q_DIS_pFDpCD},
-            directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "E_miss_1N_VS_theta_q_ReacComp");
+            directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "E_miss_1N_VS_theta_q_ReacComp_pFDpCD");
 
         // E_miss_1N vs. theta_q_pFD plots (pFDpCD, FD)
         histPlotter2D(MainCanvas, hE_miss_1N_VS_theta_q_pFD_All_Int_pFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hE_miss_1N_VS_theta_q_pFD_pFDpCD_Dir,
@@ -19956,7 +19958,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                       "02ffd_E_miss_1N_VS_theta_q_pFD_DIS_pFDpCD");
         histogram_functions::CompareHistograms({hE_miss_1N_VS_theta_q_pFD_All_Int_pFDpCD, hE_miss_1N_VS_theta_q_pFD_QEL_pFDpCD, hE_miss_1N_VS_theta_q_pFD_MEC_pFDpCD,
                                                 hE_miss_1N_VS_theta_q_pFD_RES_pFDpCD, hE_miss_1N_VS_theta_q_pFD_DIS_pFDpCD},
-                                               directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "E_miss_1N_VS_theta_q_pFD_ReacComp");
+                                               directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "E_miss_1N_VS_theta_q_pFD_ReacComp_pFDpCD");
 
         // E_miss_1N vs. theta_q_pCD plots (pFDpCD, FD)
         histPlotter2D(MainCanvas, hE_miss_1N_VS_theta_q_pCD_All_Int_pFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hE_miss_1N_VS_theta_q_pCD_pFDpCD_Dir,
@@ -19971,7 +19973,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                       "02fgd_E_miss_1N_VS_theta_q_pCD_DIS_pFDpCD");
         histogram_functions::CompareHistograms({hE_miss_1N_VS_theta_q_pCD_All_Int_pFDpCD, hE_miss_1N_VS_theta_q_pCD_QEL_pFDpCD, hE_miss_1N_VS_theta_q_pCD_MEC_pFDpCD,
                                                 hE_miss_1N_VS_theta_q_pCD_RES_pFDpCD, hE_miss_1N_VS_theta_q_pCD_DIS_pFDpCD},
-                                               directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "E_miss_1N_VS_theta_q_pCD_ReacComp");
+                                               directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "E_miss_1N_VS_theta_q_pCD_ReacComp_pFDpCD");
 
         // P_miss_2N plots (pFDpCD, CD & FD)
         double P_miss_2N_pFDpCD_integral = hP_miss_2N_All_Int_pFDpCD->Integral();
@@ -20003,7 +20005,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                       "03fad_P_miss_2N_VS_E_miss_2N_DIS_pFDpCD");
         histogram_functions::CompareHistograms({hP_miss_2N_VS_E_miss_2N_All_Int_pFDpCD, hP_miss_2N_VS_E_miss_2N_QEL_pFDpCD, hP_miss_2N_VS_E_miss_2N_MEC_pFDpCD,
                                                 hP_miss_2N_VS_E_miss_2N_RES_pFDpCD, hP_miss_2N_VS_E_miss_2N_DIS_pFDpCD},
-                                               directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "P_miss_2N_VS_E_miss_2N_ReacComp");
+                                               directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "P_miss_2N_VS_E_miss_2N_ReacComp_pFDpCD");
 
         // P_miss_2N vs. Q2 plots (pFDpCD, FD)
         histPlotter2D(MainCanvas, hP_miss_2N_VS_Q2_All_Int_pFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hP_miss_2N_VS_Q2_pFDpCD_Dir, "03fb_P_miss_2N_VS_Q2_pFDpCD");
@@ -20013,7 +20015,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         histPlotter2D(MainCanvas, hP_miss_2N_VS_Q2_DIS_pFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hP_miss_2N_VS_Q2_pFDpCD_Dir, "03fbd_P_miss_2N_VS_Q2_DIS_pFDpCD");
         histogram_functions::CompareHistograms(
             {hP_miss_2N_VS_Q2_All_Int_pFDpCD, hP_miss_2N_VS_Q2_QEL_pFDpCD, hP_miss_2N_VS_Q2_MEC_pFDpCD, hP_miss_2N_VS_Q2_RES_pFDpCD, hP_miss_2N_VS_Q2_DIS_pFDpCD},
-            directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "P_miss_2N_VS_Q2_ReacComp");
+            directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "P_miss_2N_VS_Q2_ReacComp_pFDpCD");
 
         // P_miss_2N vs. xB plots (pFDpCD, FD)
         histPlotter2D(MainCanvas, hP_miss_2N_VS_xB_All_Int_pFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hP_miss_2N_VS_xB_pFDpCD_Dir, "03fc_P_miss_2N_VS_xB_pFDpCD");
@@ -20023,7 +20025,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         histPlotter2D(MainCanvas, hP_miss_2N_VS_xB_DIS_pFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hP_miss_2N_VS_xB_pFDpCD_Dir, "03fcd_P_miss_2N_VS_xB_DIS_pFDpCD");
         histogram_functions::CompareHistograms(
             {hP_miss_2N_VS_xB_All_Int_pFDpCD, hP_miss_2N_VS_xB_QEL_pFDpCD, hP_miss_2N_VS_xB_MEC_pFDpCD, hP_miss_2N_VS_xB_RES_pFDpCD, hP_miss_2N_VS_xB_DIS_pFDpCD},
-            directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "P_miss_2N_VS_xB_ReacComp");
+            directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "P_miss_2N_VS_xB_ReacComp_pFDpCD");
 
         // P_miss_2N vs. theta_q plots (pFDpCD, FD)
         histPlotter2D(MainCanvas, hP_miss_2N_VS_theta_q_All_Int_pFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hP_miss_2N_VS_theta_q_pFDpCD_Dir,
@@ -20038,7 +20040,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                       "03fdd_P_miss_2N_VS_theta_q_DIS_pFDpCD");
         histogram_functions::CompareHistograms(
             {hP_miss_2N_VS_theta_q_All_Int_pFDpCD, hP_miss_2N_VS_theta_q_QEL_pFDpCD, hP_miss_2N_VS_theta_q_MEC_pFDpCD, hP_miss_2N_VS_theta_q_RES_pFDpCD, hP_miss_2N_VS_theta_q_DIS_pFDpCD},
-            directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "P_miss_2N_VS_theta_q_ReacComp");
+            directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "P_miss_2N_VS_theta_q_ReacComp_pFDpCD");
 
         // P_miss_2N vs. theta_q_pFD plots (pFDpCD, FD)
         histPlotter2D(MainCanvas, hP_miss_2N_VS_theta_q_pFD_All_Int_pFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hP_miss_2N_VS_theta_q_pFD_pFDpCD_Dir,
@@ -20053,7 +20055,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                       "03fed_P_miss_2N_VS_theta_q_pFD_DIS_pFDpCD");
         histogram_functions::CompareHistograms({hP_miss_2N_VS_theta_q_pFD_All_Int_pFDpCD, hP_miss_2N_VS_theta_q_pFD_QEL_pFDpCD, hP_miss_2N_VS_theta_q_pFD_MEC_pFDpCD,
                                                 hP_miss_2N_VS_theta_q_pFD_RES_pFDpCD, hP_miss_2N_VS_theta_q_pFD_DIS_pFDpCD},
-                                               directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "P_miss_2N_VS_theta_q_pFD_ReacComp");
+                                               directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "P_miss_2N_VS_theta_q_pFD_ReacComp_pFDpCD");
 
         // P_miss_2N vs. theta_q_pCD plots (pFDpCD, FD)
         histPlotter2D(MainCanvas, hP_miss_2N_VS_theta_q_pCD_All_Int_pFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hP_miss_2N_VS_theta_q_pCD_pFDpCD_Dir,
@@ -20068,7 +20070,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                       "03ffd_P_miss_2N_VS_theta_q_pCD_DIS_pFDpCD");
         histogram_functions::CompareHistograms({hP_miss_2N_VS_theta_q_pCD_All_Int_pFDpCD, hP_miss_2N_VS_theta_q_pCD_QEL_pFDpCD, hP_miss_2N_VS_theta_q_pCD_MEC_pFDpCD,
                                                 hP_miss_2N_VS_theta_q_pCD_RES_pFDpCD, hP_miss_2N_VS_theta_q_pCD_DIS_pFDpCD},
-                                               directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "P_miss_2N_VS_theta_q_pCD_ReacComp");
+                                               directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "P_miss_2N_VS_theta_q_pCD_ReacComp_pFDpCD");
 
         // E_miss_2N plots (pFDpCD, CD & FD)
         double E_miss_2N_pFDpCD_integral = hE_miss_2N_All_Int_pFDpCD->Integral();
@@ -20095,7 +20097,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         histPlotter2D(MainCanvas, hE_miss_2N_VS_Q2_DIS_pFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hE_miss_2N_VS_Q2_pFDpCD_Dir, "04fad_E_miss_2N_VS_Q2_DIS_pFDpCD");
         histogram_functions::CompareHistograms(
             {hE_miss_2N_VS_Q2_All_Int_pFDpCD, hE_miss_2N_VS_Q2_QEL_pFDpCD, hE_miss_2N_VS_Q2_MEC_pFDpCD, hE_miss_2N_VS_Q2_RES_pFDpCD, hE_miss_2N_VS_Q2_DIS_pFDpCD},
-            directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "E_miss_2N_VS_Q2_ReacComp");
+            directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "E_miss_2N_VS_Q2_ReacComp_pFDpCD");
 
         // E_miss_2N vs. xB plots (pFDpCD, FD)
         histPlotter2D(MainCanvas, hE_miss_2N_VS_xB_All_Int_pFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hE_miss_2N_VS_xB_pFDpCD_Dir, "04fb_E_miss_2N_VS_xB_pFDpCD");
@@ -20105,7 +20107,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         histPlotter2D(MainCanvas, hE_miss_2N_VS_xB_DIS_pFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hE_miss_2N_VS_xB_pFDpCD_Dir, "04fbd_E_miss_2N_VS_xB_DIS_pFDpCD");
         histogram_functions::CompareHistograms(
             {hE_miss_2N_VS_xB_All_Int_pFDpCD, hE_miss_2N_VS_xB_QEL_pFDpCD, hE_miss_2N_VS_xB_MEC_pFDpCD, hE_miss_2N_VS_xB_RES_pFDpCD, hE_miss_2N_VS_xB_DIS_pFDpCD},
-            directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "E_miss_2N_VS_xB_ReacComp");
+            directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "E_miss_2N_VS_xB_ReacComp_pFDpCD");
 
         // E_miss_2N vs. theta_q plots (pFDpCD, FD)
         histPlotter2D(MainCanvas, hE_miss_2N_VS_theta_q_All_Int_pFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hE_miss_2N_VS_theta_q_pFDpCD_Dir,
@@ -20120,7 +20122,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                       "04fcd_E_miss_2N_VS_theta_q_DIS_pFDpCD");
         histogram_functions::CompareHistograms(
             {hE_miss_2N_VS_theta_q_All_Int_pFDpCD, hE_miss_2N_VS_theta_q_QEL_pFDpCD, hE_miss_2N_VS_theta_q_MEC_pFDpCD, hE_miss_2N_VS_theta_q_RES_pFDpCD, hE_miss_2N_VS_theta_q_DIS_pFDpCD},
-            directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "E_miss_2N_VS_theta_q_ReacComp");
+            directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "E_miss_2N_VS_theta_q_ReacComp_pFDpCD");
 
         // E_miss_2N vs. theta_q_pFD plots (pFDpCD, FD)
         histPlotter2D(MainCanvas, hE_miss_2N_VS_theta_q_pFD_All_Int_pFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hE_miss_2N_VS_theta_q_pFD_pFDpCD_Dir,
@@ -20135,7 +20137,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                       "04fdd_E_miss_2N_VS_theta_q_pFD_DIS_pFDpCD");
         histogram_functions::CompareHistograms({hE_miss_2N_VS_theta_q_pFD_All_Int_pFDpCD, hE_miss_2N_VS_theta_q_pFD_QEL_pFDpCD, hE_miss_2N_VS_theta_q_pFD_MEC_pFDpCD,
                                                 hE_miss_2N_VS_theta_q_pFD_RES_pFDpCD, hE_miss_2N_VS_theta_q_pFD_DIS_pFDpCD},
-                                               directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "E_miss_2N_VS_theta_q_pFD_ReacComp");
+                                               directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "E_miss_2N_VS_theta_q_pFD_ReacComp_pFDpCD");
 
         // E_miss_2N vs. theta_q_pCD plots (pFDpCD, FD)
         histPlotter2D(MainCanvas, hE_miss_2N_VS_theta_q_pCD_All_Int_pFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hE_miss_2N_VS_theta_q_pCD_pFDpCD_Dir,
@@ -20150,7 +20152,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                       "04fed_E_miss_2N_VS_theta_q_pCD_DIS_pFDpCD");
         histogram_functions::CompareHistograms({hE_miss_2N_VS_theta_q_pCD_All_Int_pFDpCD, hE_miss_2N_VS_theta_q_pCD_QEL_pFDpCD, hE_miss_2N_VS_theta_q_pCD_MEC_pFDpCD,
                                                 hE_miss_2N_VS_theta_q_pCD_RES_pFDpCD, hE_miss_2N_VS_theta_q_pCD_DIS_pFDpCD},
-                                               directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "E_miss_2N_VS_theta_q_pCD_ReacComp");
+                                               directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "E_miss_2N_VS_theta_q_pCD_ReacComp_pFDpCD");
 
         // Q2 plots (pFDpCD, CD & FD)
         double Q2_pFDpCD_integral = hQ2_pFDpCD->Integral();
@@ -20176,7 +20178,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         histPlotter2D(MainCanvas, hQ2_VS_xB_RES_pFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, true, hQ2_VS_xB_pFDpCD_Dir, "05fac_Q2_VS_xB_RES_pFDpCD");
         histPlotter2D(MainCanvas, hQ2_VS_xB_DIS_pFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, true, hQ2_VS_xB_pFDpCD_Dir, "05fad_Q2_VS_xB_DIS_pFDpCD");
         histogram_functions::CompareHistograms({hQ2_VS_xB_All_Int_pFDpCD, hQ2_VS_xB_QEL_pFDpCD, hQ2_VS_xB_MEC_pFDpCD, hQ2_VS_xB_RES_pFDpCD, hQ2_VS_xB_DIS_pFDpCD},
-                                               directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "Q2_VS_xB_ReacComp");
+                                               directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "Q2_VS_xB_ReacComp_pFDpCD");
 
         // Q2 vs. theta_q plots (pFDpCD, FD)
         histPlotter2D(MainCanvas, hQ2_VS_theta_q_All_Int_pFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hQ2_VS_theta_q_pFDpCD_Dir, "05fb_Q2_VS_theta_q_pFDpCD");
@@ -20185,7 +20187,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         histPlotter2D(MainCanvas, hQ2_VS_theta_q_RES_pFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hQ2_VS_theta_q_pFDpCD_Dir, "05fbc_Q2_VS_theta_q_RES_pFDpCD");
         histPlotter2D(MainCanvas, hQ2_VS_theta_q_DIS_pFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hQ2_VS_theta_q_pFDpCD_Dir, "05fbd_Q2_VS_theta_q_DIS_pFDpCD");
         histogram_functions::CompareHistograms({hQ2_VS_theta_q_All_Int_pFDpCD, hQ2_VS_theta_q_QEL_pFDpCD, hQ2_VS_theta_q_MEC_pFDpCD, hQ2_VS_theta_q_RES_pFDpCD, hQ2_VS_theta_q_DIS_pFDpCD},
-                                               directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "Q2_VS_theta_q_ReacComp");
+                                               directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "Q2_VS_theta_q_ReacComp_pFDpCD");
 
         // Q2 vs. theta_q_pFD plots (pFDpCD, FD)
         histPlotter2D(MainCanvas, hQ2_VS_theta_q_pFD_All_Int_pFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hQ2_VS_theta_q_pFD_pFDpCD_Dir,
@@ -20200,7 +20202,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                       "05fcd_Q2_VS_theta_q_pFD_DIS_pFDpCD");
         histogram_functions::CompareHistograms(
             {hQ2_VS_theta_q_pFD_All_Int_pFDpCD, hQ2_VS_theta_q_pFD_QEL_pFDpCD, hQ2_VS_theta_q_pFD_MEC_pFDpCD, hQ2_VS_theta_q_pFD_RES_pFDpCD, hQ2_VS_theta_q_pFD_DIS_pFDpCD},
-            directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "Q2_VS_theta_q_pFD_ReacComp");
+            directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "Q2_VS_theta_q_pFD_ReacComp_pFDpCD");
 
         // Q2 vs. theta_q_pCD plots (pFDpCD, FD)
         histPlotter2D(MainCanvas, hQ2_VS_theta_q_pCD_All_Int_pFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hQ2_VS_theta_q_pCD_pFDpCD_Dir,
@@ -20215,7 +20217,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                       "05fdd_Q2_VS_theta_q_pCD_DIS_pFDpCD");
         histogram_functions::CompareHistograms(
             {hQ2_VS_theta_q_pCD_All_Int_pFDpCD, hQ2_VS_theta_q_pCD_QEL_pFDpCD, hQ2_VS_theta_q_pCD_MEC_pFDpCD, hQ2_VS_theta_q_pCD_RES_pFDpCD, hQ2_VS_theta_q_pCD_DIS_pFDpCD},
-            directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "Q2_VS_theta_q_pCD_ReacComp");
+            directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "Q2_VS_theta_q_pCD_ReacComp_pFDpCD");
 
         // xB plots (pFDpCD, CD & FD)
         double xB_pFDpCD_integral = hxB_All_Int_pFDpCD->Integral();
@@ -20241,7 +20243,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         histPlotter2D(MainCanvas, hxB_VS_theta_q_RES_pFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hxB_VS_theta_q_pFDpCD_Dir, "06fac_xB_VS_theta_q_RES_pFDpCD");
         histPlotter2D(MainCanvas, hxB_VS_theta_q_DIS_pFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hxB_VS_theta_q_pFDpCD_Dir, "06fad_xB_VS_theta_q_DIS_pFDpCD");
         histogram_functions::CompareHistograms({hxB_VS_theta_q_All_Int_pFDpCD, hxB_VS_theta_q_QEL_pFDpCD, hxB_VS_theta_q_MEC_pFDpCD, hxB_VS_theta_q_RES_pFDpCD, hxB_VS_theta_q_DIS_pFDpCD},
-                                               directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "xB_VS_theta_q_ReacComp");
+                                               directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "xB_VS_theta_q_ReacComp_pFDpCD");
 
         // xB vs. theta_q_pFD plots (pFDpCD, FD)
         histPlotter2D(MainCanvas, hxB_VS_theta_q_pFD_All_Int_pFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hxB_VS_theta_q_pFD_pFDpCD_Dir,
@@ -20256,7 +20258,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                       "06fbd_xB_VS_theta_q_pFD_DIS_pFDpCD");
         histogram_functions::CompareHistograms(
             {hxB_VS_theta_q_pFD_All_Int_pFDpCD, hxB_VS_theta_q_pFD_QEL_pFDpCD, hxB_VS_theta_q_pFD_MEC_pFDpCD, hxB_VS_theta_q_pFD_RES_pFDpCD, hxB_VS_theta_q_pFD_DIS_pFDpCD},
-            directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "xB_VS_theta_q_pFD_ReacComp");
+            directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "xB_VS_theta_q_pFD_ReacComp_pFDpCD");
 
         // xB vs. theta_q_pCD plots (pFDpCD, FD)
         histPlotter2D(MainCanvas, hxB_VS_theta_q_pCD_All_Int_pFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hxB_VS_theta_q_pCD_pFDpCD_Dir,
@@ -20271,7 +20273,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                       "06fcd_xB_VS_theta_q_pCD_DIS_pFDpCD");
         histogram_functions::CompareHistograms(
             {hxB_VS_theta_q_pCD_All_Int_pFDpCD, hxB_VS_theta_q_pCD_QEL_pFDpCD, hxB_VS_theta_q_pCD_MEC_pFDpCD, hxB_VS_theta_q_pCD_RES_pFDpCD, hxB_VS_theta_q_pCD_DIS_pFDpCD},
-            directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "xB_VS_theta_q_pCD_ReacComp");
+            directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "xB_VS_theta_q_pCD_ReacComp_pFDpCD");
 
         // theta_q plots (pFDpCD, CD & FD)
         double theta_q_pFDpCD_integral = htheta_q_All_Int_pFDpCD->Integral();
@@ -20303,7 +20305,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                       "07fad_theta_q_VS_theta_q_pFD_DIS_pFDpCD");
         histogram_functions::CompareHistograms({htheta_q_VS_theta_q_pFD_All_Int_pFDpCD, htheta_q_VS_theta_q_pFD_QEL_pFDpCD, htheta_q_VS_theta_q_pFD_MEC_pFDpCD,
                                                 htheta_q_VS_theta_q_pFD_RES_pFDpCD, htheta_q_VS_theta_q_pFD_DIS_pFDpCD},
-                                               directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "theta_q_VS_theta_q_pFD_ReacComp");
+                                               directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "theta_q_VS_theta_q_pFD_ReacComp_pFDpCD");
 
         // theta_q vs. theta_q_pCD plots (pFDpCD, FD)
         histPlotter2D(MainCanvas, htheta_q_VS_theta_q_pCD_All_Int_pFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, htheta_q_VS_theta_q_pCD_pFDpCD_Dir,
@@ -20318,7 +20320,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                       "07fbd_theta_q_VS_theta_q_pCD_DIS_pFDpCD");
         histogram_functions::CompareHistograms({htheta_q_VS_theta_q_pCD_All_Int_pFDpCD, htheta_q_VS_theta_q_pCD_QEL_pFDpCD, htheta_q_VS_theta_q_pCD_MEC_pFDpCD,
                                                 htheta_q_VS_theta_q_pCD_RES_pFDpCD, htheta_q_VS_theta_q_pCD_DIS_pFDpCD},
-                                               directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "theta_q_VS_theta_q_pCD_ReacComp");
+                                               directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "theta_q_VS_theta_q_pCD_ReacComp_pFDpCD");
 
         // theta_q_pFD plots (pFDpCD, CD & FD)
         double theta_q_pFD_pFDpCD_integral = htheta_q_pFD_All_Int_pFDpCD->Integral();
@@ -20355,7 +20357,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                       "08fad_theta_q_pFD_VS_theta_q_pCD_DIS_pFDpCD");
         histogram_functions::CompareHistograms({htheta_q_pFD_VS_theta_q_pCD_All_Int_pFDpCD, htheta_q_pFD_VS_theta_q_pCD_QEL_pFDpCD, htheta_q_pFD_VS_theta_q_pCD_MEC_pFDpCD,
                                                 htheta_q_pFD_VS_theta_q_pCD_RES_pFDpCD, htheta_q_pFD_VS_theta_q_pCD_DIS_pFDpCD},
-                                               directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "theta_q_pFD_VS_theta_q_pCD_ReacComp");
+                                               directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "theta_q_pFD_VS_theta_q_pCD_ReacComp_pFDpCD");
 
         // theta_q_pCD plots (pFDpCD, CD & FD)
         double theta_q_pCD_pFDpCD_integral = htheta_q_pCD_All_Int_pFDpCD->Integral();
@@ -20411,7 +20413,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                       "01fad_P_miss_1N_VS_E_miss_1N_DIS_nFDpCD");
         histogram_functions::CompareHistograms({hP_miss_1N_VS_E_miss_1N_All_Int_nFDpCD, hP_miss_1N_VS_E_miss_1N_QEL_nFDpCD, hP_miss_1N_VS_E_miss_1N_MEC_nFDpCD,
                                                 hP_miss_1N_VS_E_miss_1N_RES_nFDpCD, hP_miss_1N_VS_E_miss_1N_DIS_nFDpCD},
-                                               directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "P_miss_1N_VS_E_miss_1N_ReacComp");
+                                               directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "P_miss_1N_VS_E_miss_1N_ReacComp_nFDpCD");
 
         // P_miss_1N vs. P_miss_2N plots (nFDpCD, FD)
         histPlotter2D(MainCanvas, hP_miss_1N_VS_P_miss_2N_All_Int_nFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hP_miss_1N_VS_P_miss_2N_nFDpCD_Dir,
@@ -20426,7 +20428,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                       "01fbd_P_miss_1N_VS_P_miss_2N_DIS_nFDpCD");
         histogram_functions::CompareHistograms({hP_miss_1N_VS_P_miss_2N_All_Int_nFDpCD, hP_miss_1N_VS_P_miss_2N_QEL_nFDpCD, hP_miss_1N_VS_P_miss_2N_MEC_nFDpCD,
                                                 hP_miss_1N_VS_P_miss_2N_RES_nFDpCD, hP_miss_1N_VS_P_miss_2N_DIS_nFDpCD},
-                                               directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "P_miss_1N_VS_P_miss_2N_ReacComp");
+                                               directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "P_miss_1N_VS_P_miss_2N_ReacComp_nFDpCD");
 
         // P_miss_1N vs. E_miss_2N plots (nFDpCD, FD)
         histPlotter2D(MainCanvas, hP_miss_1N_VS_E_miss_2N_All_Int_nFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hP_miss_1N_VS_E_miss_2N_nFDpCD_Dir,
@@ -20441,7 +20443,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                       "01fcd_P_miss_1N_VS_E_miss_2N_DIS_nFDpCD");
         histogram_functions::CompareHistograms({hP_miss_1N_VS_E_miss_2N_All_Int_nFDpCD, hP_miss_1N_VS_E_miss_2N_QEL_nFDpCD, hP_miss_1N_VS_E_miss_2N_MEC_nFDpCD,
                                                 hP_miss_1N_VS_E_miss_2N_RES_nFDpCD, hP_miss_1N_VS_E_miss_2N_DIS_nFDpCD},
-                                               directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "P_miss_1N_VS_E_miss_2N_ReacComp");
+                                               directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "P_miss_1N_VS_E_miss_2N_ReacComp_nFDpCD");
 
         // P_miss_1N vs. Q2 plots (nFDpCD, FD)
         histPlotter2D(MainCanvas, hP_miss_1N_VS_Q2_All_Int_nFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hP_miss_1N_VS_Q2_nFDpCD_Dir, "01fd_P_miss_1N_VS_Q2_nFDpCD");
@@ -20451,7 +20453,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         histPlotter2D(MainCanvas, hP_miss_1N_VS_Q2_DIS_nFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hP_miss_1N_VS_Q2_nFDpCD_Dir, "01fdd_P_miss_1N_VS_Q2_DIS_nFDpCD");
         histogram_functions::CompareHistograms(
             {hP_miss_1N_VS_Q2_All_Int_nFDpCD, hP_miss_1N_VS_Q2_QEL_nFDpCD, hP_miss_1N_VS_Q2_MEC_nFDpCD, hP_miss_1N_VS_Q2_RES_nFDpCD, hP_miss_1N_VS_Q2_DIS_nFDpCD},
-            directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "P_miss_1N_VS_Q2_ReacComp");
+            directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "P_miss_1N_VS_Q2_ReacComp_nFDpCD");
 
         // P_miss_1N vs. xB plots (nFDpCD, FD)
         histPlotter2D(MainCanvas, hP_miss_1N_VS_xB_All_Int_nFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hP_miss_1N_VS_xB_nFDpCD_Dir, "01fe_P_miss_1N_VS_xB_nFDpCD");
@@ -20461,7 +20463,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         histPlotter2D(MainCanvas, hP_miss_1N_VS_xB_DIS_nFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hP_miss_1N_VS_xB_nFDpCD_Dir, "01fed_P_miss_1N_VS_xB_DIS_nFDpCD");
         histogram_functions::CompareHistograms(
             {hP_miss_1N_VS_xB_All_Int_nFDpCD, hP_miss_1N_VS_xB_QEL_nFDpCD, hP_miss_1N_VS_xB_MEC_nFDpCD, hP_miss_1N_VS_xB_RES_nFDpCD, hP_miss_1N_VS_xB_DIS_nFDpCD},
-            directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "P_miss_1N_VS_xB_ReacComp");
+            directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "P_miss_1N_VS_xB_ReacComp_nFDpCD");
 
         // P_miss_1N vs. theta_q plots (nFDpCD, FD)
         histPlotter2D(MainCanvas, hP_miss_1N_VS_theta_q_All_Int_nFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hP_miss_1N_VS_theta_q_nFDpCD_Dir,
@@ -20476,7 +20478,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                       "01ffd_P_miss_1N_VS_theta_q_DIS_nFDpCD");
         histogram_functions::CompareHistograms(
             {hP_miss_1N_VS_theta_q_All_Int_nFDpCD, hP_miss_1N_VS_theta_q_QEL_nFDpCD, hP_miss_1N_VS_theta_q_MEC_nFDpCD, hP_miss_1N_VS_theta_q_RES_nFDpCD, hP_miss_1N_VS_theta_q_DIS_nFDpCD},
-            directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "P_miss_1N_VS_theta_q_ReacComp");
+            directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "P_miss_1N_VS_theta_q_ReacComp_nFDpCD");
 
         // P_miss_1N vs. theta_q_nFD plots (nFDpCD, FD)
         histPlotter2D(MainCanvas, hP_miss_1N_VS_theta_q_nFD_All_Int_nFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hP_miss_1N_VS_theta_q_nFD_nFDpCD_Dir,
@@ -20491,7 +20493,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                       "01fgd_P_miss_1N_VS_theta_q_nFD_DIS_nFDpCD");
         histogram_functions::CompareHistograms({hP_miss_1N_VS_theta_q_nFD_All_Int_nFDpCD, hP_miss_1N_VS_theta_q_nFD_QEL_nFDpCD, hP_miss_1N_VS_theta_q_nFD_MEC_nFDpCD,
                                                 hP_miss_1N_VS_theta_q_nFD_RES_nFDpCD, hP_miss_1N_VS_theta_q_nFD_DIS_nFDpCD},
-                                               directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "P_miss_1N_VS_theta_q_nFD_ReacComp");
+                                               directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "P_miss_1N_VS_theta_q_nFD_ReacComp_nFDpCD");
 
         // P_miss_1N vs. theta_q_pCD plots (nFDpCD, FD)
         histPlotter2D(MainCanvas, hP_miss_1N_VS_theta_q_pCD_All_Int_nFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hP_miss_1N_VS_theta_q_pCD_nFDpCD_Dir,
@@ -20506,7 +20508,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                       "01fhd_P_miss_1N_VS_theta_q_pCD_DIS_nFDpCD");
         histogram_functions::CompareHistograms({hP_miss_1N_VS_theta_q_pCD_All_Int_nFDpCD, hP_miss_1N_VS_theta_q_pCD_QEL_nFDpCD, hP_miss_1N_VS_theta_q_pCD_MEC_nFDpCD,
                                                 hP_miss_1N_VS_theta_q_pCD_RES_nFDpCD, hP_miss_1N_VS_theta_q_pCD_DIS_nFDpCD},
-                                               directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "P_miss_1N_VS_theta_q_pCD_ReacComp");
+                                               directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "P_miss_1N_VS_theta_q_pCD_ReacComp_nFDpCD");
 
         // E_miss_1N plots (nFDpCD, CD & FD)
         double E_miss_1N_nFDpCD_integral = hE_miss_1N_All_Int_nFDpCD->Integral();
@@ -20538,7 +20540,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                       "02fad_E_miss_1N_VS_P_miss_2N_DIS_nFDpCD");
         histogram_functions::CompareHistograms({hE_miss_1N_VS_P_miss_2N_All_Int_nFDpCD, hE_miss_1N_VS_P_miss_2N_QEL_nFDpCD, hE_miss_1N_VS_P_miss_2N_MEC_nFDpCD,
                                                 hE_miss_1N_VS_P_miss_2N_RES_nFDpCD, hE_miss_1N_VS_P_miss_2N_DIS_nFDpCD},
-                                               directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "E_miss_1N_VS_P_miss_2N_ReacComp");
+                                               directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "E_miss_1N_VS_P_miss_2N_ReacComp_nFDpCD");
 
         // E_miss_1N vs. E_miss_2N plots (nFDpCD, FD)
         histPlotter2D(MainCanvas, hE_miss_1N_VS_E_miss_2N_All_Int_nFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hE_miss_1N_VS_E_miss_2N_nFDpCD_Dir,
@@ -20553,7 +20555,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                       "02fbd_E_miss_1N_VS_E_miss_2N_DIS_nFDpCD");
         histogram_functions::CompareHistograms({hE_miss_1N_VS_E_miss_2N_All_Int_nFDpCD, hE_miss_1N_VS_E_miss_2N_QEL_nFDpCD, hE_miss_1N_VS_E_miss_2N_MEC_nFDpCD,
                                                 hE_miss_1N_VS_E_miss_2N_RES_nFDpCD, hE_miss_1N_VS_E_miss_2N_DIS_nFDpCD},
-                                               directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "E_miss_1N_VS_E_miss_2N_ReacComp");
+                                               directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "E_miss_1N_VS_E_miss_2N_ReacComp_nFDpCD");
 
         // E_miss_1N vs. Q2 plots (nFDpCD, FD)
         histPlotter2D(MainCanvas, hE_miss_1N_VS_Q2_All_Int_nFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hE_miss_1N_VS_Q2_nFDpCD_Dir, "02fc_E_miss_1N_VS_Q2_nFDpCD");
@@ -20563,7 +20565,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         histPlotter2D(MainCanvas, hE_miss_1N_VS_Q2_DIS_nFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hE_miss_1N_VS_Q2_nFDpCD_Dir, "02fcd_E_miss_1N_VS_Q2_DIS_nFDpCD");
         histogram_functions::CompareHistograms(
             {hE_miss_1N_VS_Q2_All_Int_nFDpCD, hE_miss_1N_VS_Q2_QEL_nFDpCD, hE_miss_1N_VS_Q2_MEC_nFDpCD, hE_miss_1N_VS_Q2_RES_nFDpCD, hE_miss_1N_VS_Q2_DIS_nFDpCD},
-            directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "E_miss_1N_VS_Q2_ReacComp");
+            directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "E_miss_1N_VS_Q2_ReacComp_nFDpCD");
 
         // E_miss_1N vs. xB plots (nFDpCD, FD)
         histPlotter2D(MainCanvas, hE_miss_1N_VS_xB_All_Int_nFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hE_miss_1N_VS_xB_nFDpCD_Dir, "02fd_E_miss_1N_VS_xB_nFDpCD");
@@ -20573,7 +20575,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         histPlotter2D(MainCanvas, hE_miss_1N_VS_xB_DIS_nFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hE_miss_1N_VS_xB_nFDpCD_Dir, "02fdd_E_miss_1N_VS_xB_DIS_nFDpCD");
         histogram_functions::CompareHistograms(
             {hE_miss_1N_VS_xB_All_Int_nFDpCD, hE_miss_1N_VS_xB_QEL_nFDpCD, hE_miss_1N_VS_xB_MEC_nFDpCD, hE_miss_1N_VS_xB_RES_nFDpCD, hE_miss_1N_VS_xB_DIS_nFDpCD},
-            directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "E_miss_1N_VS_xB_ReacComp");
+            directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "E_miss_1N_VS_xB_ReacComp_nFDpCD");
 
         // E_miss_1N vs. theta_q plots (nFDpCD, FD)
         histPlotter2D(MainCanvas, hE_miss_1N_VS_theta_q_All_Int_nFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hE_miss_1N_VS_theta_q_nFDpCD_Dir,
@@ -20588,7 +20590,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                       "02fed_E_miss_1N_VS_theta_q_DIS_nFDpCD");
         histogram_functions::CompareHistograms(
             {hE_miss_1N_VS_theta_q_All_Int_nFDpCD, hE_miss_1N_VS_theta_q_QEL_nFDpCD, hE_miss_1N_VS_theta_q_MEC_nFDpCD, hE_miss_1N_VS_theta_q_RES_nFDpCD, hE_miss_1N_VS_theta_q_DIS_nFDpCD},
-            directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "E_miss_1N_VS_theta_q_ReacComp");
+            directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "E_miss_1N_VS_theta_q_ReacComp_nFDpCD");
 
         // E_miss_1N vs. theta_q_nFD plots (nFDpCD, FD)
         histPlotter2D(MainCanvas, hE_miss_1N_VS_theta_q_nFD_All_Int_nFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hE_miss_1N_VS_theta_q_nFD_nFDpCD_Dir,
@@ -20603,7 +20605,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                       "02ffd_E_miss_1N_VS_theta_q_nFD_DIS_nFDpCD");
         histogram_functions::CompareHistograms({hE_miss_1N_VS_theta_q_nFD_All_Int_nFDpCD, hE_miss_1N_VS_theta_q_nFD_QEL_nFDpCD, hE_miss_1N_VS_theta_q_nFD_MEC_nFDpCD,
                                                 hE_miss_1N_VS_theta_q_nFD_RES_nFDpCD, hE_miss_1N_VS_theta_q_nFD_DIS_nFDpCD},
-                                               directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "E_miss_1N_VS_theta_q_nFD_ReacComp");
+                                               directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "E_miss_1N_VS_theta_q_nFD_ReacComp_nFDpCD");
 
         // E_miss_1N vs. theta_q_pCD plots (nFDpCD, FD)
         histPlotter2D(MainCanvas, hE_miss_1N_VS_theta_q_pCD_All_Int_nFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hE_miss_1N_VS_theta_q_pCD_nFDpCD_Dir,
@@ -20618,7 +20620,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                       "02fgd_E_miss_1N_VS_theta_q_pCD_DIS_nFDpCD");
         histogram_functions::CompareHistograms({hE_miss_1N_VS_theta_q_pCD_All_Int_nFDpCD, hE_miss_1N_VS_theta_q_pCD_QEL_nFDpCD, hE_miss_1N_VS_theta_q_pCD_MEC_nFDpCD,
                                                 hE_miss_1N_VS_theta_q_pCD_RES_nFDpCD, hE_miss_1N_VS_theta_q_pCD_DIS_nFDpCD},
-                                               directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "E_miss_1N_VS_theta_q_pCD_ReacComp");
+                                               directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "E_miss_1N_VS_theta_q_pCD_ReacComp_nFDpCD");
 
         // P_miss_2N plots (nFDpCD, CD & FD)
         double P_miss_2N_nFDpCD_integral = hP_miss_2N_All_Int_nFDpCD->Integral();
@@ -20650,7 +20652,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                       "03fad_P_miss_2N_VS_E_miss_2N_DIS_nFDpCD");
         histogram_functions::CompareHistograms({hP_miss_2N_VS_E_miss_2N_All_Int_nFDpCD, hP_miss_2N_VS_E_miss_2N_QEL_nFDpCD, hP_miss_2N_VS_E_miss_2N_MEC_nFDpCD,
                                                 hP_miss_2N_VS_E_miss_2N_RES_nFDpCD, hP_miss_2N_VS_E_miss_2N_DIS_nFDpCD},
-                                               directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "P_miss_2N_VS_E_miss_2N_ReacComp");
+                                               directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "P_miss_2N_VS_E_miss_2N_ReacComp_nFDpCD");
 
         // P_miss_2N vs. Q2 plots (nFDpCD, FD)
         histPlotter2D(MainCanvas, hP_miss_2N_VS_Q2_All_Int_nFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hP_miss_2N_VS_Q2_nFDpCD_Dir, "03fb_P_miss_2N_VS_Q2_nFDpCD");
@@ -20660,7 +20662,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         histPlotter2D(MainCanvas, hP_miss_2N_VS_Q2_DIS_nFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hP_miss_2N_VS_Q2_nFDpCD_Dir, "03fbd_P_miss_2N_VS_Q2_DIS_nFDpCD");
         histogram_functions::CompareHistograms(
             {hP_miss_2N_VS_Q2_All_Int_nFDpCD, hP_miss_2N_VS_Q2_QEL_nFDpCD, hP_miss_2N_VS_Q2_MEC_nFDpCD, hP_miss_2N_VS_Q2_RES_nFDpCD, hP_miss_2N_VS_Q2_DIS_nFDpCD},
-            directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "P_miss_2N_VS_Q2_ReacComp");
+            directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "P_miss_2N_VS_Q2_ReacComp_nFDpCD");
 
         // P_miss_2N vs. xB plots (nFDpCD, FD)
         histPlotter2D(MainCanvas, hP_miss_2N_VS_xB_All_Int_nFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hP_miss_2N_VS_xB_nFDpCD_Dir, "03fc_P_miss_2N_VS_xB_nFDpCD");
@@ -20670,7 +20672,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         histPlotter2D(MainCanvas, hP_miss_2N_VS_xB_DIS_nFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hP_miss_2N_VS_xB_nFDpCD_Dir, "03fcd_P_miss_2N_VS_xB_DIS_nFDpCD");
         histogram_functions::CompareHistograms(
             {hP_miss_2N_VS_xB_All_Int_nFDpCD, hP_miss_2N_VS_xB_QEL_nFDpCD, hP_miss_2N_VS_xB_MEC_nFDpCD, hP_miss_2N_VS_xB_RES_nFDpCD, hP_miss_2N_VS_xB_DIS_nFDpCD},
-            directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "P_miss_2N_VS_xB_ReacComp");
+            directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "P_miss_2N_VS_xB_ReacComp_nFDpCD");
 
         // P_miss_2N vs. theta_q plots (nFDpCD, FD)
         histPlotter2D(MainCanvas, hP_miss_2N_VS_theta_q_All_Int_nFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hP_miss_2N_VS_theta_q_nFDpCD_Dir,
@@ -20685,7 +20687,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                       "03fdd_P_miss_2N_VS_theta_q_DIS_nFDpCD");
         histogram_functions::CompareHistograms(
             {hP_miss_2N_VS_theta_q_All_Int_nFDpCD, hP_miss_2N_VS_theta_q_QEL_nFDpCD, hP_miss_2N_VS_theta_q_MEC_nFDpCD, hP_miss_2N_VS_theta_q_RES_nFDpCD, hP_miss_2N_VS_theta_q_DIS_nFDpCD},
-            directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "P_miss_2N_VS_theta_q_ReacComp");
+            directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "P_miss_2N_VS_theta_q_ReacComp_nFDpCD");
 
         // P_miss_2N vs. theta_q_nFD plots (nFDpCD, FD)
         histPlotter2D(MainCanvas, hP_miss_2N_VS_theta_q_nFD_All_Int_nFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hP_miss_2N_VS_theta_q_nFD_nFDpCD_Dir,
@@ -20700,7 +20702,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                       "03fed_P_miss_2N_VS_theta_q_nFD_DIS_nFDpCD");
         histogram_functions::CompareHistograms({hP_miss_2N_VS_theta_q_nFD_All_Int_nFDpCD, hP_miss_2N_VS_theta_q_nFD_QEL_nFDpCD, hP_miss_2N_VS_theta_q_nFD_MEC_nFDpCD,
                                                 hP_miss_2N_VS_theta_q_nFD_RES_nFDpCD, hP_miss_2N_VS_theta_q_nFD_DIS_nFDpCD},
-                                               directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "P_miss_2N_VS_theta_q_nFD_ReacComp");
+                                               directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "P_miss_2N_VS_theta_q_nFD_ReacComp_nFDpCD");
 
         // P_miss_2N vs. theta_q_pCD plots (nFDpCD, FD)
         histPlotter2D(MainCanvas, hP_miss_2N_VS_theta_q_pCD_All_Int_nFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hP_miss_2N_VS_theta_q_pCD_nFDpCD_Dir,
@@ -20715,7 +20717,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                       "03ffd_P_miss_2N_VS_theta_q_pCD_DIS_nFDpCD");
         histogram_functions::CompareHistograms({hP_miss_2N_VS_theta_q_pCD_All_Int_nFDpCD, hP_miss_2N_VS_theta_q_pCD_QEL_nFDpCD, hP_miss_2N_VS_theta_q_pCD_MEC_nFDpCD,
                                                 hP_miss_2N_VS_theta_q_pCD_RES_nFDpCD, hP_miss_2N_VS_theta_q_pCD_DIS_nFDpCD},
-                                               directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "P_miss_2N_VS_theta_q_pCD_ReacComp");
+                                               directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "P_miss_2N_VS_theta_q_pCD_ReacComp_nFDpCD");
 
         // E_miss_2N plots (nFDpCD, CD & FD)
         double E_miss_2N_nFDpCD_integral = hE_miss_2N_All_Int_nFDpCD->Integral();
@@ -20742,7 +20744,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         histPlotter2D(MainCanvas, hE_miss_2N_VS_Q2_DIS_nFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hE_miss_2N_VS_Q2_nFDpCD_Dir, "04fad_E_miss_2N_VS_Q2_DIS_nFDpCD");
         histogram_functions::CompareHistograms(
             {hE_miss_2N_VS_Q2_All_Int_nFDpCD, hE_miss_2N_VS_Q2_QEL_nFDpCD, hE_miss_2N_VS_Q2_MEC_nFDpCD, hE_miss_2N_VS_Q2_RES_nFDpCD, hE_miss_2N_VS_Q2_DIS_nFDpCD},
-            directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "E_miss_2N_VS_Q2_ReacComp");
+            directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "E_miss_2N_VS_Q2_ReacComp_nFDpCD");
 
         // E_miss_2N vs. xB plots (nFDpCD, FD)
         histPlotter2D(MainCanvas, hE_miss_2N_VS_xB_All_Int_nFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hE_miss_2N_VS_xB_nFDpCD_Dir, "04fb_E_miss_2N_VS_xB_nFDpCD");
@@ -20752,7 +20754,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         histPlotter2D(MainCanvas, hE_miss_2N_VS_xB_DIS_nFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hE_miss_2N_VS_xB_nFDpCD_Dir, "04fbd_E_miss_2N_VS_xB_DIS_nFDpCD");
         histogram_functions::CompareHistograms(
             {hE_miss_2N_VS_xB_All_Int_nFDpCD, hE_miss_2N_VS_xB_QEL_nFDpCD, hE_miss_2N_VS_xB_MEC_nFDpCD, hE_miss_2N_VS_xB_RES_nFDpCD, hE_miss_2N_VS_xB_DIS_nFDpCD},
-            directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "E_miss_2N_VS_xB_ReacComp");
+            directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "E_miss_2N_VS_xB_ReacComp_nFDpCD");
 
         // E_miss_2N vs. theta_q plots (nFDpCD, FD)
         histPlotter2D(MainCanvas, hE_miss_2N_VS_theta_q_All_Int_nFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hE_miss_2N_VS_theta_q_nFDpCD_Dir,
@@ -20767,7 +20769,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                       "04fcd_E_miss_2N_VS_theta_q_DIS_nFDpCD");
         histogram_functions::CompareHistograms(
             {hE_miss_2N_VS_theta_q_All_Int_nFDpCD, hE_miss_2N_VS_theta_q_QEL_nFDpCD, hE_miss_2N_VS_theta_q_MEC_nFDpCD, hE_miss_2N_VS_theta_q_RES_nFDpCD, hE_miss_2N_VS_theta_q_DIS_nFDpCD},
-            directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "E_miss_2N_VS_theta_q_ReacComp");
+            directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "E_miss_2N_VS_theta_q_ReacComp_nFDpCD");
 
         // E_miss_2N vs. theta_q_nFD plots (nFDpCD, FD)
         histPlotter2D(MainCanvas, hE_miss_2N_VS_theta_q_nFD_All_Int_nFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hE_miss_2N_VS_theta_q_nFD_nFDpCD_Dir,
@@ -20782,7 +20784,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                       "04fdd_E_miss_2N_VS_theta_q_nFD_DIS_nFDpCD");
         histogram_functions::CompareHistograms({hE_miss_2N_VS_theta_q_nFD_All_Int_nFDpCD, hE_miss_2N_VS_theta_q_nFD_QEL_nFDpCD, hE_miss_2N_VS_theta_q_nFD_MEC_nFDpCD,
                                                 hE_miss_2N_VS_theta_q_nFD_RES_nFDpCD, hE_miss_2N_VS_theta_q_nFD_DIS_nFDpCD},
-                                               directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "E_miss_2N_VS_theta_q_nFD_ReacComp");
+                                               directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "E_miss_2N_VS_theta_q_nFD_ReacComp_nFDpCD");
 
         // E_miss_2N vs. theta_q_pCD plots (nFDpCD, FD)
         histPlotter2D(MainCanvas, hE_miss_2N_VS_theta_q_pCD_All_Int_nFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hE_miss_2N_VS_theta_q_pCD_nFDpCD_Dir,
@@ -20797,7 +20799,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                       "04fed_E_miss_2N_VS_theta_q_pCD_DIS_nFDpCD");
         histogram_functions::CompareHistograms({hE_miss_2N_VS_theta_q_pCD_All_Int_nFDpCD, hE_miss_2N_VS_theta_q_pCD_QEL_nFDpCD, hE_miss_2N_VS_theta_q_pCD_MEC_nFDpCD,
                                                 hE_miss_2N_VS_theta_q_pCD_RES_nFDpCD, hE_miss_2N_VS_theta_q_pCD_DIS_nFDpCD},
-                                               directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "E_miss_2N_VS_theta_q_pCD_ReacComp");
+                                               directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "E_miss_2N_VS_theta_q_pCD_ReacComp_nFDpCD");
 
         // Q2 plots (nFDpCD, CD & FD)
         double Q2_nFDpCD_integral = hQ2_nFDpCD->Integral();
@@ -20823,7 +20825,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         histPlotter2D(MainCanvas, hQ2_VS_xB_RES_nFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, true, hQ2_VS_xB_nFDpCD_Dir, "05fac_Q2_VS_xB_RES_nFDpCD");
         histPlotter2D(MainCanvas, hQ2_VS_xB_DIS_nFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, true, hQ2_VS_xB_nFDpCD_Dir, "05fad_Q2_VS_xB_DIS_nFDpCD");
         histogram_functions::CompareHistograms({hQ2_VS_xB_All_Int_nFDpCD, hQ2_VS_xB_QEL_nFDpCD, hQ2_VS_xB_MEC_nFDpCD, hQ2_VS_xB_RES_nFDpCD, hQ2_VS_xB_DIS_nFDpCD},
-                                               directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "Q2_VS_xB_ReacComp");
+                                               directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "Q2_VS_xB_ReacComp_nFDpCD");
 
         // Q2 vs. theta_q plots (nFDpCD, FD)
         histPlotter2D(MainCanvas, hQ2_VS_theta_q_All_Int_nFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hQ2_VS_theta_q_nFDpCD_Dir, "05fb_Q2_VS_theta_q_nFDpCD");
@@ -20832,7 +20834,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         histPlotter2D(MainCanvas, hQ2_VS_theta_q_RES_nFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hQ2_VS_theta_q_nFDpCD_Dir, "05fbc_Q2_VS_theta_q_RES_nFDpCD");
         histPlotter2D(MainCanvas, hQ2_VS_theta_q_DIS_nFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hQ2_VS_theta_q_nFDpCD_Dir, "05fbd_Q2_VS_theta_q_DIS_nFDpCD");
         histogram_functions::CompareHistograms({hQ2_VS_theta_q_All_Int_nFDpCD, hQ2_VS_theta_q_QEL_nFDpCD, hQ2_VS_theta_q_MEC_nFDpCD, hQ2_VS_theta_q_RES_nFDpCD, hQ2_VS_theta_q_DIS_nFDpCD},
-                                               directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "Q2_VS_theta_q_ReacComp");
+                                               directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "Q2_VS_theta_q_ReacComp_nFDpCD");
 
         // Q2 vs. theta_q_nFD plots (nFDpCD, FD)
         histPlotter2D(MainCanvas, hQ2_VS_theta_q_nFD_All_Int_nFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hQ2_VS_theta_q_nFD_nFDpCD_Dir,
@@ -20847,7 +20849,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                       "05fcd_Q2_VS_theta_q_nFD_DIS_nFDpCD");
         histogram_functions::CompareHistograms(
             {hQ2_VS_theta_q_nFD_All_Int_nFDpCD, hQ2_VS_theta_q_nFD_QEL_nFDpCD, hQ2_VS_theta_q_nFD_MEC_nFDpCD, hQ2_VS_theta_q_nFD_RES_nFDpCD, hQ2_VS_theta_q_nFD_DIS_nFDpCD},
-            directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "Q2_VS_theta_q_nFD_ReacComp");
+            directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "Q2_VS_theta_q_nFD_ReacComp_nFDpCD");
 
         // Q2 vs. theta_q_pCD plots (nFDpCD, FD)
         histPlotter2D(MainCanvas, hQ2_VS_theta_q_pCD_All_Int_nFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hQ2_VS_theta_q_pCD_nFDpCD_Dir,
@@ -20862,7 +20864,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                       "05fdd_Q2_VS_theta_q_pCD_DIS_nFDpCD");
         histogram_functions::CompareHistograms(
             {hQ2_VS_theta_q_pCD_All_Int_nFDpCD, hQ2_VS_theta_q_pCD_QEL_nFDpCD, hQ2_VS_theta_q_pCD_MEC_nFDpCD, hQ2_VS_theta_q_pCD_RES_nFDpCD, hQ2_VS_theta_q_pCD_DIS_nFDpCD},
-            directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "Q2_VS_theta_q_pCD_ReacComp");
+            directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "Q2_VS_theta_q_pCD_ReacComp_nFDpCD");
 
         // xB plots (nFDpCD, CD & FD)
         double xB_nFDpCD_integral = hxB_All_Int_nFDpCD->Integral();
@@ -20888,7 +20890,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         histPlotter2D(MainCanvas, hxB_VS_theta_q_RES_nFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hxB_VS_theta_q_nFDpCD_Dir, "06fac_xB_VS_theta_q_RES_nFDpCD");
         histPlotter2D(MainCanvas, hxB_VS_theta_q_DIS_nFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hxB_VS_theta_q_nFDpCD_Dir, "06fad_xB_VS_theta_q_DIS_nFDpCD");
         histogram_functions::CompareHistograms({hxB_VS_theta_q_All_Int_nFDpCD, hxB_VS_theta_q_QEL_nFDpCD, hxB_VS_theta_q_MEC_nFDpCD, hxB_VS_theta_q_RES_nFDpCD, hxB_VS_theta_q_DIS_nFDpCD},
-                                               directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "xB_VS_theta_q_ReacComp");
+                                               directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "xB_VS_theta_q_ReacComp_nFDpCD");
 
         // xB vs. theta_q_nFD plots (nFDpCD, FD)
         histPlotter2D(MainCanvas, hxB_VS_theta_q_nFD_All_Int_nFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hxB_VS_theta_q_nFD_nFDpCD_Dir,
@@ -20903,7 +20905,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                       "06fbd_xB_VS_theta_q_nFD_DIS_nFDpCD");
         histogram_functions::CompareHistograms(
             {hxB_VS_theta_q_nFD_All_Int_nFDpCD, hxB_VS_theta_q_nFD_QEL_nFDpCD, hxB_VS_theta_q_nFD_MEC_nFDpCD, hxB_VS_theta_q_nFD_RES_nFDpCD, hxB_VS_theta_q_nFD_DIS_nFDpCD},
-            directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "xB_VS_theta_q_nFD_ReacComp");
+            directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "xB_VS_theta_q_nFD_ReacComp_nFDpCD");
 
         // xB vs. theta_q_pCD plots (nFDpCD, FD)
         histPlotter2D(MainCanvas, hxB_VS_theta_q_pCD_All_Int_nFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hxB_VS_theta_q_pCD_nFDpCD_Dir,
@@ -20918,7 +20920,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                       "06fcd_xB_VS_theta_q_pCD_DIS_nFDpCD");
         histogram_functions::CompareHistograms(
             {hxB_VS_theta_q_pCD_All_Int_nFDpCD, hxB_VS_theta_q_pCD_QEL_nFDpCD, hxB_VS_theta_q_pCD_MEC_nFDpCD, hxB_VS_theta_q_pCD_RES_nFDpCD, hxB_VS_theta_q_pCD_DIS_nFDpCD},
-            directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "xB_VS_theta_q_pCD_ReacComp");
+            directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "xB_VS_theta_q_pCD_ReacComp_nFDpCD");
 
         // theta_q plots (nFDpCD, CD & FD)
         double theta_q_nFDpCD_integral = htheta_q_All_Int_nFDpCD->Integral();
@@ -20950,7 +20952,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                       "07fad_theta_q_VS_theta_q_nFD_DIS_nFDpCD");
         histogram_functions::CompareHistograms({htheta_q_VS_theta_q_nFD_All_Int_nFDpCD, htheta_q_VS_theta_q_nFD_QEL_nFDpCD, htheta_q_VS_theta_q_nFD_MEC_nFDpCD,
                                                 htheta_q_VS_theta_q_nFD_RES_nFDpCD, htheta_q_VS_theta_q_nFD_DIS_nFDpCD},
-                                               directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "theta_q_VS_theta_q_nFD_ReacComp");
+                                               directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "theta_q_VS_theta_q_nFD_ReacComp_nFDpCD");
 
         // theta_q vs. theta_q_pCD plots (nFDpCD, FD)
         histPlotter2D(MainCanvas, htheta_q_VS_theta_q_pCD_All_Int_nFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, htheta_q_VS_theta_q_pCD_nFDpCD_Dir,
@@ -20965,7 +20967,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                       "07fbd_theta_q_VS_theta_q_pCD_DIS_nFDpCD");
         histogram_functions::CompareHistograms({htheta_q_VS_theta_q_pCD_All_Int_nFDpCD, htheta_q_VS_theta_q_pCD_QEL_nFDpCD, htheta_q_VS_theta_q_pCD_MEC_nFDpCD,
                                                 htheta_q_VS_theta_q_pCD_RES_nFDpCD, htheta_q_VS_theta_q_pCD_DIS_nFDpCD},
-                                               directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "theta_q_VS_theta_q_pCD_ReacComp");
+                                               directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "theta_q_VS_theta_q_pCD_ReacComp_nFDpCD");
 
         // theta_q_nFD plots (nFDpCD, CD & FD)
         double theta_q_nFD_nFDpCD_integral = htheta_q_nFD_All_Int_nFDpCD->Integral();
@@ -21002,7 +21004,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                       "08fad_theta_q_nFD_VS_theta_q_pCD_DIS_nFDpCD");
         histogram_functions::CompareHistograms({htheta_q_nFD_VS_theta_q_pCD_All_Int_nFDpCD, htheta_q_nFD_VS_theta_q_pCD_QEL_nFDpCD, htheta_q_nFD_VS_theta_q_pCD_MEC_nFDpCD,
                                                 htheta_q_nFD_VS_theta_q_pCD_RES_nFDpCD, htheta_q_nFD_VS_theta_q_pCD_DIS_nFDpCD},
-                                               directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "theta_q_nFD_VS_theta_q_pCD_ReacComp");
+                                               directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "theta_q_nFD_VS_theta_q_pCD_ReacComp_nFDpCD");
 
         // theta_q_pCD plots (nFDpCD, CD & FD)
         double theta_q_pCD_nFDpCD_integral = htheta_q_pCD_All_Int_nFDpCD->Integral();
@@ -25936,7 +25938,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     // Saving proton pid cuts to .par file ----------------------------------------------------------------------------------------------------------------------------------
 
-    // Saving pid cuts to .par file
+#pragma region /* Saving pid cuts to .par file */
+
     if (CutSettings.apply_cuts &&  // log pid cuts only if all other cuts are enabled //TODO: review this. make code preform cuts only in this case
         (!CutSettings.only_preselection_cuts && !CutSettings.only_electron_quality_cuts) &&  // Do not log PID cuts if running in only preselection or only electron qulity cuts mode
         !CutSettings.apply_chi2_cuts_1e_cut) {
@@ -25965,7 +25968,10 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         system(("cp " + FittedPIDCutsFilePath + " " + run_plots_path).c_str());  // Copy fitted chi2 cuts file for easy download from ifarm
     }
 
-    // Saving nucleon cuts to .par file
+#pragma endregion
+
+#pragma region /* Saving nucleon cuts to .par file */
+
     if (!CutSettings.apply_nucleon_cuts && CutSettings.apply_chi2_cuts_1e_cut && (!CutSettings.only_preselection_cuts && !CutSettings.only_electron_quality_cuts)) {
         // log nucleon cuts
         ofstream Nucleon_Cuts;
@@ -26014,12 +26020,15 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         system(("cp " + Nucleon_CutsFilePath + " " + run_plots_path).c_str());  // Copy nucleon cuts file for easy download from the ifarm
     }
 
+#pragma endregion
+
     // Saving debug files ---------------------------------------------------------------------------------------------------------------------------------------------------
 
-    // Saving debug files
-    if (PrintEvents == true) { EventPrint.close(); }
+#pragma region /* Saving debug files */
 
-    if (debug_plots == true) {
+    if (PrintEvents) { EventPrint.close(); }
+
+    if (debug_plots) {
         std::cout << "\033[33m\n\nSaving debugging plots...\n\n\033[0m";
         TString hit_map_ref_filePath = run_plots_path + "/" + "hit_map_ref.root";
         clasAna.set_hit_map_ref_fileName(hit_map_ref_filePath);
@@ -26031,20 +26040,24 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         std::cout << "\033[33m\n\nDebugging plots are disabled...\n\n\033[0m";
     }
 
-    // Log skipped hipo files ------------------------------------------------------------------------------------------------------------------------------------------
+#pragma endregion
 
-    if (SkippedHipoChainFiles.size() > 0) {
-        std::cout << "\033[33m\n\nSaving skipped hipo files...\n\n\033[0m";
+    /*     // Log skipped hipo files ------------------------------------------------------------------------------------------------------------------------------------------
 
-        // Saving skipped hipo files list
-        basic_tools::LogSkippedHipoFiles(SkippedHipoChainFiles, HipoChainLength, run_skipped_files_list_save_Directory.c_str());
-    } else {
-        std::cout << "\033[33m\n\nNo skipped hipo files...\n\n\033[0m";
-    }
+        if (SkippedHipoChainFiles.size() > 0) {
+            std::cout << "\033[33m\n\nSaving skipped hipo files...\n\n\033[0m";
+
+            // Saving skipped hipo files list
+            basic_tools::LogSkippedHipoFiles(SkippedHipoChainFiles, HipoChainLength, run_skipped_files_list_save_Directory.c_str());
+        } else {
+            std::cout << "\033[33m\n\nNo skipped hipo files...\n\n\033[0m";
+        }
+     */
 
     // Saving setup to log file ------------------------------------------------------------------------------------------------------------------------------------------
 
-    // Saving setup to log file
+#pragma region /* Saving setup to log file */
+
     ofstream myLogFile;
     myLogFile.open(run_plots_log_save_Directory.c_str());
 
@@ -26784,9 +26797,11 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     myLogFile.close();
 
+#pragma endregion
+
     // Saving histogram list and finishing execution ------------------------------------------------------------------------------------------------------------------------
 
-    // Saving histogram list and finishing execution
+#pragma region /* Saving histogram list and finishing execution */
 
     // Saving histogram list
     std::cout << "\033[33m\n\nSaving histogram list...\033[0m";
@@ -26811,7 +26826,10 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     std::cout << "\033[33m done.\n\n\033[0m";
 
-    // finishing execution
+#pragma endregion
+
+#pragma region /* Finishing execution */
+
     std::cout << "\033[33m\n\n===========================================================================\n\033[0m";
     std::cout << "\033[33m\t\t\tExecution summary\n\033[0m";
     std::cout << "\033[33m===========================================================================\n\n\033[0m";
@@ -26943,13 +26961,15 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     std::cout << "\033[33mOperation finished (AnalyserVersion = " << AnalyserVersion << ")." << "\n\n\033[0m";
 
+#pragma endregion
+
     if (TestRun || ApplyLimiter) {
         if (TestRun) { std::cout << "\033[31m\n\nNOTE: running code in testing mode!\n\033[0m"; }
 
         if (ApplyLimiter) { std::cout << "\033[31m\n\nNOTE: running code with a limiter on number of events!\n\n\033[0m"; }
     }
 
-    std::cout << "\n\n\033[33mSaving plots folder to zip file...\n\033[0m";
+    std::cout << "\n\n\033[33mSaving plots folder to zip file...\n\n\033[0m";
     zipping::SavePlotsToZipFile(Save_Plots_folder_to_zip_files, zipping_print_out, run_plots_path, settings.GetRun_dir_name());
 
 #pragma endregion
