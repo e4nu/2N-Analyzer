@@ -69,8 +69,8 @@ struct CutValueManager {
 
     // Reco particles momentum thresholds (in GeV/c)
     /* Momentum thresholds (declarations) */
-    DSCuts e_mom_th = DSCuts("Momentum_th", "", "Electron", "", 0, -9999, 9999);
-    DSCuts ph_mom_th = DSCuts("Momentum_th", "", "Photons", "", 0, 0.3, 9999);
+    DSCuts e_mom_th = DSCuts("Momentum_th", "FD", "Electron", "", 0, -9999, 9999);
+    DSCuts ph_mom_th = DSCuts("Momentum_th", "FD", "Photons", "", 0, 0.3, 9999);
     DSCuts pip_mom_th = DSCuts("Momentum_th", "", "Piplus", "", 0, 0.2, 9999);
     DSCuts pipFD_mom_th = DSCuts("Momentum", "FD", "Piplus", "", 0, pip_mom_th.GetLowerCut(), pip_mom_th.GetUpperCut());
     DSCuts pipCD_mom_th = DSCuts("Momentum", "CD", "Piplus", "", 0, pip_mom_th.GetLowerCut(), pip_mom_th.GetUpperCut());
@@ -94,7 +94,7 @@ struct CutValueManager {
 
     /* Truth-level momentum cuts */
     // TODO: remove pion mom. th. separation by CD and FD. It's useless (according to Adi)
-    DSCuts TL_e_mom_cuts = DSCuts("Momentum", "", "Electron", "", 0, e_mom_th.GetLowerCut(), e_mom_th.GetUpperCut());
+    DSCuts TL_e_mom_cuts = DSCuts("Momentum", "FD", "Electron", "", 0, e_mom_th.GetLowerCut(), e_mom_th.GetUpperCut());
     DSCuts TL_ph_mom_cuts = DSCuts("Momentum", "", "Photons", "", 0, ph_mom_th.GetLowerCut(), ph_mom_th.GetUpperCut());
     DSCuts TL_pip_mom_cuts = DSCuts("Momentum", "", "Piplus", "", 0, pip_mom_th.GetLowerCut(), pip_mom_th.GetUpperCut());
     DSCuts TL_pipFD_mom_cuts = DSCuts("Momentum", "FD", "Piplus", "", 0, pip_mom_th.GetLowerCut(), pip_mom_th.GetUpperCut());
@@ -102,7 +102,7 @@ struct CutValueManager {
     DSCuts TL_pim_mom_cuts = DSCuts("Momentum", "", "Piminus", "", 0, pim_mom_th.GetLowerCut(), pim_mom_th.GetUpperCut());
     DSCuts TL_pimFD_mom_cuts = DSCuts("Momentum", "FD", "Piminus", "", 0, pim_mom_th.GetLowerCut(), pim_mom_th.GetUpperCut());
     DSCuts TL_pimCD_mom_cuts = DSCuts("Momentum", "CD", "Piminus", "", 0, pim_mom_th.GetLowerCut(), pim_mom_th.GetUpperCut());
-    DSCuts TL_pi0_mom_cuts = DSCuts("Momentum", "", "Pizero", "", 0, analysis_math::GetPi0MomTh(ph_mom_th.GetLowerCut()), 9999);
+    DSCuts TL_pi0_mom_cuts = DSCuts("Momentum", "FD", "Pizero", "", 0, analysis_math::GetPi0MomTh(ph_mom_th.GetLowerCut()), 9999);
 
     DSCuts TL_n_mom_cuts, TL_p_mom_cuts, TL_pFD_mom_cuts, TL_pCD_mom_cuts;
     // DSCuts TL_e_mom_cuts = DSCuts("Momentum", "", "Electron", "", 0, e_mom_th.GetLowerCut(), e_mom_th.GetUpperCut());
