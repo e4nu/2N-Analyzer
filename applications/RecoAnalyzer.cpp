@@ -27689,11 +27689,11 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     for (size_t i = 0; i < HistoList.size(); i++) {
         if (HistoList[i] && !HistoList_skipCleaning[i]) {
             delete HistoList[i];
-            HistoList_skipCleaning, HistoList[i] = nullptr;  // Clear the pointer after delete for safety
+            HistoList[i] = nullptr;  // Clear the pointer after delete for safety
         }
     }
 
-    HistoList_skipCleaning, HistoList.clear();
+    HistoList.clear();
     HistoList_skipCleaning.clear();
 
     // Then clean the other pointers
