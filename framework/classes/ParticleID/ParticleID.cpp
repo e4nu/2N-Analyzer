@@ -541,7 +541,11 @@ vector<int> ParticleID::GetGoodProtons(const bool &apply_nucleon_cuts, vector<re
     bool TwoCutsPrintout = false;                   // set as true to print a massage when both cuts are applied
     bool Cut_sCTOFhp = false, Cut_dCDaFDd = false;  // variables to indicate which cut is applied
 
+    vector<bool> AlreadyLogged(IDProtons_ind.size(), false);  // <<== Added: track if a proton was already logged
+
     for (int i = 0; i < IDProtons_ind.size(); i++) {
+        if (AlreadyLogged[i]) continue;  // <<== Skip if already handled
+
         bool GoodProt = true;  // when GoodProt == true at the end of the loop, the proton's index will be logged
 
         if (apply_nucleon_cuts) {
@@ -571,15 +575,30 @@ vector<int> ParticleID::GetGoodProtons(const bool &apply_nucleon_cuts, vector<re
                     bool small_dPhi = (fabs(dPhi - dphi_p1_p2_2p.GetMeanConst()) < dphi_p1_p2_2p.GetUpperCutConst());
 
                     if ((p_i_around_40 && p_j_around_40) && small_dPhi) {
-                        /* Same angles for protons i and j on the border of the CD-FD - don't log proton i (j will be logged later as a single proton) */
-                        GoodProt = false;    // don't log proton i
+                        /* Same angles for protons i and j on the border of the CD-FD */
+
+                        // <<== Modified part START
+                        int FD_index = (protons[IDProtons_ind.at(i)]->getRegion() == FD) ? i : j;
+                        int CD_index = (protons[IDProtons_ind.at(i)]->getRegion() == CD) ? i : j;
+
+                        if (!AlreadyLogged[FD_index]) {
+                            GoodProtons.push_back(IDProtons_ind.at(FD_index));
+                            AlreadyLogged[FD_index] = true;
+                        }
+                        AlreadyLogged[CD_index] = true;
+                        GoodProt = false;  // proton i won't be logged manually later
+                        // <<== Modified part END
+
                         Cut_dCDaFDd = true;  // monitor dCDaFDd
                     }
                 }
             }
         }
 
-        if (GoodProt) { GoodProtons.push_back(IDProtons_ind.at(i)); }
+        if (GoodProt && !AlreadyLogged[i]) {
+            GoodProtons.push_back(IDProtons_ind.at(i));
+            AlreadyLogged[i] = true;
+        }
     }
 
 #pragma region /* Safety checks */
@@ -603,8 +622,80 @@ vector<int> ParticleID::GetGoodProtons(const bool &apply_nucleon_cuts, vector<re
 }
 #pragma endregion
 
+#pragma region /* GetGoodProtons function (old) */
+// vector<int> ParticleID::GetGoodProtons(const bool &apply_nucleon_cuts, vector<region_part_ptr> &protons, const vector<int> &IDProtons_ind, const DSCuts &Theta_p1_cuts_2p,
+//                                        const DSCuts &Theta_p2_cuts_2p, const DSCuts &dphi_p1_p2_2p) {
+//     vector<int> GoodProtons;  // good protons vector after the cuts
+
+//     /* Monitoring variables */
+//     bool TwoCutsPrintout = false;                   // set as true to print a massage when both cuts are applied
+//     bool Cut_sCTOFhp = false, Cut_dCDaFDd = false;  // variables to indicate which cut is applied
+
+//     for (int i = 0; i < IDProtons_ind.size(); i++) {
+//         bool GoodProt = true;  // when GoodProt == true at the end of the loop, the proton's index will be logged
+
+//         if (apply_nucleon_cuts) {
+//             for (int j = i + 1; j < IDProtons_ind.size(); j++) {
+//                 if ((protons[IDProtons_ind.at(i)]->getRegion() == CD) && (protons[IDProtons_ind.at(j)]->getRegion() == CD)) {  // if proton pair is in the CD only
+//                     /* Set hit positions in the CTOF, and position difference: */
+//                     TVector3 p1_hit_pos, p2_hit_pos, pos_diff;
+//                     p1_hit_pos.SetXYZ(protons[IDProtons_ind.at(i)]->sci(clas12::CTOF)->getX(), protons[IDProtons_ind.at(i)]->sci(clas12::CTOF)->getY(),
+//                                       protons[IDProtons_ind.at(i)]->sci(clas12::CTOF)->getZ());
+//                     p2_hit_pos.SetXYZ(protons[IDProtons_ind.at(j)]->sci(clas12::CTOF)->getX(), protons[IDProtons_ind.at(j)]->sci(clas12::CTOF)->getY(),
+//                                       protons[IDProtons_ind.at(j)]->sci(clas12::CTOF)->getZ());
+//                     pos_diff.SetXYZ(p1_hit_pos.Px() - p2_hit_pos.Px(), p1_hit_pos.Py() - p2_hit_pos.Py(), p1_hit_pos.Pz() - p2_hit_pos.Pz());
+
+//                     if (pos_diff.Mag() == 0) {  // if protons have the same hit position
+//                         /* Same hit position for protons i and j - don't log proton i (j will be logged later as a single proton) */
+//                         GoodProt = false;    // don't log proton i
+//                         Cut_sCTOFhp = true;  // monitor sCTOFhp
+//                     }
+//                 } else if (((protons[IDProtons_ind.at(i)]->getRegion() == FD) && (protons[IDProtons_ind.at(j)]->getRegion() == CD)) ||
+//                            ((protons[IDProtons_ind.at(i)]->getRegion() == CD) && (protons[IDProtons_ind.at(j)]->getRegion() == FD))) {  // if proton pair CD and FD
+//                     double Theta_p_i = analysis_math::RadToDeg(protons[IDProtons_ind.at(i)]->getTheta());
+//                     double Theta_p_j = analysis_math::RadToDeg(protons[IDProtons_ind.at(j)]->getTheta());
+//                     double dPhi = CalcdPhi2(protons[IDProtons_ind.at(i)], protons[IDProtons_ind.at(j)]);
+
+//                     bool p_i_around_40 = (fabs(Theta_p_i - Theta_p1_cuts_2p.GetMeanConst()) < Theta_p1_cuts_2p.GetUpperCutConst());
+//                     bool p_j_around_40 = (fabs(Theta_p_j - Theta_p2_cuts_2p.GetMeanConst()) < Theta_p2_cuts_2p.GetUpperCutConst());
+//                     bool small_dPhi = (fabs(dPhi - dphi_p1_p2_2p.GetMeanConst()) < dphi_p1_p2_2p.GetUpperCutConst());
+
+//                     if ((p_i_around_40 && p_j_around_40) && small_dPhi) {
+//                         /* Same angles for protons i and j on the border of the CD-FD - don't log proton i (j will be logged later as a single proton) */
+//                         GoodProt = false;    // don't log proton i
+//                         Cut_dCDaFDd = true;  // monitor dCDaFDd
+//                     }
+//                 }
+//             }
+//         }
+
+//         if (GoodProt) { GoodProtons.push_back(IDProtons_ind.at(i)); }
+//     }
+
+// #pragma region /* Safety checks */
+//     if (!apply_nucleon_cuts && (GoodProtons.size() != IDProtons_ind.size())) {
+//         cout << "\n\nGetGoodProtons(): GoodProtons and IDProtons_ind are not the same withot neucleon cut! Aborting...\n\n", exit(1);
+//     }
+
+//     if (GoodProtons.size() > IDProtons_ind.size()) { cout << "\n\nGetGoodProtons(): GoodProtons.size() can't be greater than IDProtons_ind.size()! Aborting...\n\n", exit(1); }
+// #pragma endregion
+
+// #pragma region /* Monitoring printout */
+//     if (TwoCutsPrintout && Cut_sCTOFhp && Cut_dCDaFDd) {
+//         cout << "\n\nGetGoodProtons(): We have a duble cut!\n";
+//         cout << "IDProtons_ind.size() = " << IDProtons_ind.size() << "\n";
+//         cout << "GoodProtons.size() = " << GoodProtons.size() << "\n\n\n";
+//     }
+// //    if (Cut_sCTOFhp && Cut_dCDaFDd) { cout << "\n\nGetGoodProtons(): We have a duble cut! Aborting...\n\n", exit(1); }
+// #pragma endregion
+
+//     return GoodProtons;
+// }
+#pragma endregion
+
 #pragma region /* SetGPMonitoringPlots function */
-void ParticleID::SetGPMonitoringPlots(const bool &GoodProtonsMonitorPlots, std::string CToF_hits_monitoring_2p_Directory, std::string Double_detection_monitoring_2p_Directory) {
+    void
+    ParticleID::SetGPMonitoringPlots(const bool &GoodProtonsMonitorPlots, std::string CToF_hits_monitoring_2p_Directory, std::string Double_detection_monitoring_2p_Directory) {
     if (GoodProtonsMonitorPlots) {
         // Monitoring histograms definitions ------------------------------------------------------------------------------------------------------------------------------------
 

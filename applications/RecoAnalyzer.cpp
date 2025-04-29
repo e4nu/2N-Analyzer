@@ -211,7 +211,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     /* Resolution plots */
     bool Resolution_plots;
 
-    /* Multiplicity plots */
+    /* Multiplicity plots * c
     bool Multiplicity_plots;
 
     /* Final state ratio plots */
@@ -219,8 +219,9 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     bool TestRun = true;       // set as false for a full run
     bool ApplyLimiter = true;  // set as false for a full run
-    // int Limiter = 5000000;
-    int Limiter = 500000;
+    int Limiter = 5000000;
+    // int Limiter = 1000000;
+    // int Limiter = 500000;
 
     // Set enabled plots
     if (!TestRun) {
@@ -1739,17 +1740,16 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                  numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
     std::string hP_pFD_APIDandPS_VS_W_1p_Dir = directories.Momentum_dir_map["Analysis_plots_momentum_1p_Directory"];
 
-    TH2D *hP_e_vs_Theta_e_reco_All_int_1p =
-        new TH2D("P_e_vs_Theta_e_reco_All_int_1p", "P_{e} vs. #theta_{e} (All Int., 1p);P_{e} [GeV/c];#theta_{e} [#circ];", numTH2Dbins_Electron_Ang_Plots, Momentum_lboundary,
-                 Momentum_uboundary, numTH2Dbins_Electron_Ang_Plots, Theta_lboundary_FD, Theta_uboundary_FD);
-    TH2D *hP_e_vs_Theta_e_reco_QEL_1p = new TH2D("P_e_vs_Theta_e_reco_QEL_1p", "P_{e} vs. #theta_{e} (QEL only, 1p);P_{e} [GeV/c];#theta_{e} [#circ];", numTH2Dbins_Electron_Ang_Plots,
-                                                 Momentum_lboundary, Momentum_uboundary, numTH2Dbins_Electron_Ang_Plots, Theta_lboundary_FD, Theta_uboundary_FD);
-    TH2D *hP_e_vs_Theta_e_reco_MEC_1p = new TH2D("P_e_vs_Theta_e_reco_MEC_1p", "P_{e} vs. #theta_{e} (MEC only, 1p);P_{e} [GeV/c];#theta_{e} [#circ];", numTH2Dbins_Electron_Ang_Plots,
-                                                 Momentum_lboundary, Momentum_uboundary, numTH2Dbins_Electron_Ang_Plots, Theta_lboundary_FD, Theta_uboundary_FD);
-    TH2D *hP_e_vs_Theta_e_reco_RES_1p = new TH2D("P_e_vs_Theta_e_reco_RES_1p", "P_{e} vs. #theta_{e} (RES only, 1p);P_{e} [GeV/c];#theta_{e} [#circ];", numTH2Dbins_Electron_Ang_Plots,
-                                                 Momentum_lboundary, Momentum_uboundary, numTH2Dbins_Electron_Ang_Plots, Theta_lboundary_FD, Theta_uboundary_FD);
-    TH2D *hP_e_vs_Theta_e_reco_DIS_1p = new TH2D("P_e_vs_Theta_e_reco_DIS_1p", "P_{e} vs. #theta_{e} (DIS only, 1p);P_{e} [GeV/c];#theta_{e} [#circ];", numTH2Dbins_Electron_Ang_Plots,
-                                                 Momentum_lboundary, Momentum_uboundary, numTH2Dbins_Electron_Ang_Plots, Theta_lboundary_FD, Theta_uboundary_FD);
+    TH2D *hP_e_vs_Theta_e_reco_All_int_1p = new TH2D("P_e_vs_Theta_e_reco_All_int_1p", "P_{e} vs. #theta_{e} (All Int., 1p);P_{e} [GeV/c];#theta_{e} [#circ];", numTH2Dbins_ReacMon_plots,
+                                                     Momentum_lboundary, Momentum_uboundary, numTH2Dbins_ReacMon_plots, Theta_lboundary_FD, Theta_uboundary_FD);
+    TH2D *hP_e_vs_Theta_e_reco_QEL_1p = new TH2D("P_e_vs_Theta_e_reco_QEL_1p", "P_{e} vs. #theta_{e} (QEL only, 1p);P_{e} [GeV/c];#theta_{e} [#circ];", numTH2Dbins_ReacMon_plots,
+                                                 Momentum_lboundary, Momentum_uboundary, numTH2Dbins_ReacMon_plots, Theta_lboundary_FD, Theta_uboundary_FD);
+    TH2D *hP_e_vs_Theta_e_reco_MEC_1p = new TH2D("P_e_vs_Theta_e_reco_MEC_1p", "P_{e} vs. #theta_{e} (MEC only, 1p);P_{e} [GeV/c];#theta_{e} [#circ];", numTH2Dbins_ReacMon_plots,
+                                                 Momentum_lboundary, Momentum_uboundary, numTH2Dbins_ReacMon_plots, Theta_lboundary_FD, Theta_uboundary_FD);
+    TH2D *hP_e_vs_Theta_e_reco_RES_1p = new TH2D("P_e_vs_Theta_e_reco_RES_1p", "P_{e} vs. #theta_{e} (RES only, 1p);P_{e} [GeV/c];#theta_{e} [#circ];", numTH2Dbins_ReacMon_plots,
+                                                 Momentum_lboundary, Momentum_uboundary, numTH2Dbins_ReacMon_plots, Theta_lboundary_FD, Theta_uboundary_FD);
+    TH2D *hP_e_vs_Theta_e_reco_DIS_1p = new TH2D("P_e_vs_Theta_e_reco_DIS_1p", "P_{e} vs. #theta_{e} (DIS only, 1p);P_{e} [GeV/c];#theta_{e} [#circ];", numTH2Dbins_ReacMon_plots,
+                                                 Momentum_lboundary, Momentum_uboundary, numTH2Dbins_ReacMon_plots, Theta_lboundary_FD, Theta_uboundary_FD);
     std::string hP_e_vs_Theta_e_reco_1p_Dir = directories.Momentum_dir_map["Analysis_plots_momentum_1p_Directory"];
 
 #pragma endregion
@@ -1873,17 +1873,16 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                                                   numTH2Dbins_Momentum_transfer_plots, W_lboundary, W_uboundary, numTH2Dbins_Momentum_transfer_plots, 0, parameters.beamE * 1.1);
     std::string hP_nFD_APIDandNS_VS_W_1n_Dir = directories.Momentum_dir_map["Analysis_plots_momentum_1n_Directory"];
 
-    TH2D *hP_e_vs_Theta_e_reco_All_int_1n =
-        new TH2D("P_e_vs_Theta_e_reco_All_int_1n", "P_{e} vs. #theta_{e} (All Int., 1n);P_{e} [GeV/c];#theta_{e} [#circ];", numTH2Dbins_Electron_Ang_Plots, Momentum_lboundary,
-                 Momentum_uboundary, numTH2Dbins_Electron_Ang_Plots, Theta_lboundary_FD, Theta_uboundary_FD);
-    TH2D *hP_e_vs_Theta_e_reco_QEL_1n = new TH2D("P_e_vs_Theta_e_reco_QEL_1n", "P_{e} vs. #theta_{e} (QEL only, 1n);P_{e} [GeV/c];#theta_{e} [#circ];", numTH2Dbins_Electron_Ang_Plots,
-                                                 Momentum_lboundary, Momentum_uboundary, numTH2Dbins_Electron_Ang_Plots, Theta_lboundary_FD, Theta_uboundary_FD);
-    TH2D *hP_e_vs_Theta_e_reco_MEC_1n = new TH2D("P_e_vs_Theta_e_reco_MEC_1n", "P_{e} vs. #theta_{e} (MEC only, 1n);P_{e} [GeV/c];#theta_{e} [#circ];", numTH2Dbins_Electron_Ang_Plots,
-                                                 Momentum_lboundary, Momentum_uboundary, numTH2Dbins_Electron_Ang_Plots, Theta_lboundary_FD, Theta_uboundary_FD);
-    TH2D *hP_e_vs_Theta_e_reco_RES_1n = new TH2D("P_e_vs_Theta_e_reco_RES_1n", "P_{e} vs. #theta_{e} (RES only, 1n);P_{e} [GeV/c];#theta_{e} [#circ];", numTH2Dbins_Electron_Ang_Plots,
-                                                 Momentum_lboundary, Momentum_uboundary, numTH2Dbins_Electron_Ang_Plots, Theta_lboundary_FD, Theta_uboundary_FD);
-    TH2D *hP_e_vs_Theta_e_reco_DIS_1n = new TH2D("P_e_vs_Theta_e_reco_DIS_1n", "P_{e} vs. #theta_{e} (DIS only, 1n);P_{e} [GeV/c];#theta_{e} [#circ];", numTH2Dbins_Electron_Ang_Plots,
-                                                 Momentum_lboundary, Momentum_uboundary, numTH2Dbins_Electron_Ang_Plots, Theta_lboundary_FD, Theta_uboundary_FD);
+    TH2D *hP_e_vs_Theta_e_reco_All_int_1n = new TH2D("P_e_vs_Theta_e_reco_All_int_1n", "P_{e} vs. #theta_{e} (All Int., 1n);P_{e} [GeV/c];#theta_{e} [#circ];", numTH2Dbins_ReacMon_plots,
+                                                     Momentum_lboundary, Momentum_uboundary, numTH2Dbins_ReacMon_plots, Theta_lboundary_FD, Theta_uboundary_FD);
+    TH2D *hP_e_vs_Theta_e_reco_QEL_1n = new TH2D("P_e_vs_Theta_e_reco_QEL_1n", "P_{e} vs. #theta_{e} (QEL only, 1n);P_{e} [GeV/c];#theta_{e} [#circ];", numTH2Dbins_ReacMon_plots,
+                                                 Momentum_lboundary, Momentum_uboundary, numTH2Dbins_ReacMon_plots, Theta_lboundary_FD, Theta_uboundary_FD);
+    TH2D *hP_e_vs_Theta_e_reco_MEC_1n = new TH2D("P_e_vs_Theta_e_reco_MEC_1n", "P_{e} vs. #theta_{e} (MEC only, 1n);P_{e} [GeV/c];#theta_{e} [#circ];", numTH2Dbins_ReacMon_plots,
+                                                 Momentum_lboundary, Momentum_uboundary, numTH2Dbins_ReacMon_plots, Theta_lboundary_FD, Theta_uboundary_FD);
+    TH2D *hP_e_vs_Theta_e_reco_RES_1n = new TH2D("P_e_vs_Theta_e_reco_RES_1n", "P_{e} vs. #theta_{e} (RES only, 1n);P_{e} [GeV/c];#theta_{e} [#circ];", numTH2Dbins_ReacMon_plots,
+                                                 Momentum_lboundary, Momentum_uboundary, numTH2Dbins_ReacMon_plots, Theta_lboundary_FD, Theta_uboundary_FD);
+    TH2D *hP_e_vs_Theta_e_reco_DIS_1n = new TH2D("P_e_vs_Theta_e_reco_DIS_1n", "P_{e} vs. #theta_{e} (DIS only, 1n);P_{e} [GeV/c];#theta_{e} [#circ];", numTH2Dbins_ReacMon_plots,
+                                                 Momentum_lboundary, Momentum_uboundary, numTH2Dbins_ReacMon_plots, Theta_lboundary_FD, Theta_uboundary_FD);
     std::string hP_e_vs_Theta_e_reco_1n_Dir = directories.Momentum_dir_map["Analysis_plots_momentum_1n_Directory"];
 
 #pragma endregion
@@ -2102,20 +2101,16 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                 "04_P_pL_vs_P_pR", P_nucFD_lboundary, P_nucFD_uboundary, P_nucCD_lboundary, P_nucCD_uboundary, numTH2Dbins_Mom_Plots, numTH2Dbins_Mom_Plots);
 
     TH2D *hP_e_vs_Theta_e_reco_All_int_pFDpCD =
-        new TH2D("P_e_vs_Theta_e_reco_All_int_pFDpCD", "P_{e} vs. #theta_{e} (All Int., pFDpCD);P_{e} [GeV/c];#theta_{e} [#circ];", numTH2Dbins_Electron_Ang_Plots, Momentum_lboundary,
-                 Momentum_uboundary, numTH2Dbins_Electron_Ang_Plots, Theta_lboundary_FD, Theta_uboundary_FD);
-    TH2D *hP_e_vs_Theta_e_reco_QEL_pFDpCD =
-        new TH2D("P_e_vs_Theta_e_reco_QEL_pFDpCD", "P_{e} vs. #theta_{e} (QEL only, pFDpCD);P_{e} [GeV/c];#theta_{e} [#circ];", numTH2Dbins_Electron_Ang_Plots, Momentum_lboundary,
-                 Momentum_uboundary, numTH2Dbins_Electron_Ang_Plots, Theta_lboundary_FD, Theta_uboundary_FD);
-    TH2D *hP_e_vs_Theta_e_reco_MEC_pFDpCD =
-        new TH2D("P_e_vs_Theta_e_reco_MEC_pFDpCD", "P_{e} vs. #theta_{e} (MEC only, pFDpCD);P_{e} [GeV/c];#theta_{e} [#circ];", numTH2Dbins_Electron_Ang_Plots, Momentum_lboundary,
-                 Momentum_uboundary, numTH2Dbins_Electron_Ang_Plots, Theta_lboundary_FD, Theta_uboundary_FD);
-    TH2D *hP_e_vs_Theta_e_reco_RES_pFDpCD =
-        new TH2D("P_e_vs_Theta_e_reco_RES_pFDpCD", "P_{e} vs. #theta_{e} (RES only, pFDpCD);P_{e} [GeV/c];#theta_{e} [#circ];", numTH2Dbins_Electron_Ang_Plots, Momentum_lboundary,
-                 Momentum_uboundary, numTH2Dbins_Electron_Ang_Plots, Theta_lboundary_FD, Theta_uboundary_FD);
-    TH2D *hP_e_vs_Theta_e_reco_DIS_pFDpCD =
-        new TH2D("P_e_vs_Theta_e_reco_DIS_pFDpCD", "P_{e} vs. #theta_{e} (DIS only, pFDpCD);P_{e} [GeV/c];#theta_{e} [#circ];", numTH2Dbins_Electron_Ang_Plots, Momentum_lboundary,
-                 Momentum_uboundary, numTH2Dbins_Electron_Ang_Plots, Theta_lboundary_FD, Theta_uboundary_FD);
+        new TH2D("P_e_vs_Theta_e_reco_All_int_pFDpCD", "P_{e} vs. #theta_{e} (All Int., pFDpCD);P_{e} [GeV/c];#theta_{e} [#circ];", numTH2Dbins_ReacMon_plots, Momentum_lboundary,
+                 Momentum_uboundary, numTH2Dbins_ReacMon_plots, Theta_lboundary_FD, Theta_uboundary_FD);
+    TH2D *hP_e_vs_Theta_e_reco_QEL_pFDpCD = new TH2D("P_e_vs_Theta_e_reco_QEL_pFDpCD", "P_{e} vs. #theta_{e} (QEL only, pFDpCD);P_{e} [GeV/c];#theta_{e} [#circ];", numTH2Dbins_ReacMon_plots,
+                                                     Momentum_lboundary, Momentum_uboundary, numTH2Dbins_ReacMon_plots, Theta_lboundary_FD, Theta_uboundary_FD);
+    TH2D *hP_e_vs_Theta_e_reco_MEC_pFDpCD = new TH2D("P_e_vs_Theta_e_reco_MEC_pFDpCD", "P_{e} vs. #theta_{e} (MEC only, pFDpCD);P_{e} [GeV/c];#theta_{e} [#circ];", numTH2Dbins_ReacMon_plots,
+                                                     Momentum_lboundary, Momentum_uboundary, numTH2Dbins_ReacMon_plots, Theta_lboundary_FD, Theta_uboundary_FD);
+    TH2D *hP_e_vs_Theta_e_reco_RES_pFDpCD = new TH2D("P_e_vs_Theta_e_reco_RES_pFDpCD", "P_{e} vs. #theta_{e} (RES only, pFDpCD);P_{e} [GeV/c];#theta_{e} [#circ];", numTH2Dbins_ReacMon_plots,
+                                                     Momentum_lboundary, Momentum_uboundary, numTH2Dbins_ReacMon_plots, Theta_lboundary_FD, Theta_uboundary_FD);
+    TH2D *hP_e_vs_Theta_e_reco_DIS_pFDpCD = new TH2D("P_e_vs_Theta_e_reco_DIS_pFDpCD", "P_{e} vs. #theta_{e} (DIS only, pFDpCD);P_{e} [GeV/c];#theta_{e} [#circ];", numTH2Dbins_ReacMon_plots,
+                                                     Momentum_lboundary, Momentum_uboundary, numTH2Dbins_ReacMon_plots, Theta_lboundary_FD, Theta_uboundary_FD);
     std::string hP_e_vs_Theta_e_reco_pFDpCD_Dir = directories.Momentum_dir_map["Analysis_plots_momentum_pFDpCD_Directory"];
 
 #pragma endregion
@@ -2306,20 +2301,16 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                 "04_P_nL_vs_P_nR", P_nucFD_lboundary, P_nucFD_uboundary, P_nucCD_lboundary, P_nucCD_uboundary, numTH2Dbins_Mom_Plots, numTH2Dbins_Mom_Plots);
 
     TH2D *hP_e_vs_Theta_e_reco_All_int_nFDpCD =
-        new TH2D("P_e_vs_Theta_e_reco_All_int_nFDpCD", "P_{e} vs. #theta_{e} (All Int., nFDpCD);P_{e} [GeV/c];#theta_{e} [#circ];", numTH2Dbins_Electron_Ang_Plots, Momentum_lboundary,
-                 Momentum_uboundary, numTH2Dbins_Electron_Ang_Plots, Theta_lboundary_FD, Theta_uboundary_FD);
-    TH2D *hP_e_vs_Theta_e_reco_QEL_nFDpCD =
-        new TH2D("P_e_vs_Theta_e_reco_QEL_nFDpCD", "P_{e} vs. #theta_{e} (QEL only, nFDpCD);P_{e} [GeV/c];#theta_{e} [#circ];", numTH2Dbins_Electron_Ang_Plots, Momentum_lboundary,
-                 Momentum_uboundary, numTH2Dbins_Electron_Ang_Plots, Theta_lboundary_FD, Theta_uboundary_FD);
-    TH2D *hP_e_vs_Theta_e_reco_MEC_nFDpCD =
-        new TH2D("P_e_vs_Theta_e_reco_MEC_nFDpCD", "P_{e} vs. #theta_{e} (MEC only, nFDpCD);P_{e} [GeV/c];#theta_{e} [#circ];", numTH2Dbins_Electron_Ang_Plots, Momentum_lboundary,
-                 Momentum_uboundary, numTH2Dbins_Electron_Ang_Plots, Theta_lboundary_FD, Theta_uboundary_FD);
-    TH2D *hP_e_vs_Theta_e_reco_RES_nFDpCD =
-        new TH2D("P_e_vs_Theta_e_reco_RES_nFDpCD", "P_{e} vs. #theta_{e} (RES only, nFDpCD);P_{e} [GeV/c];#theta_{e} [#circ];", numTH2Dbins_Electron_Ang_Plots, Momentum_lboundary,
-                 Momentum_uboundary, numTH2Dbins_Electron_Ang_Plots, Theta_lboundary_FD, Theta_uboundary_FD);
-    TH2D *hP_e_vs_Theta_e_reco_DIS_nFDpCD =
-        new TH2D("P_e_vs_Theta_e_reco_DIS_nFDpCD", "P_{e} vs. #theta_{e} (DIS only, nFDpCD);P_{e} [GeV/c];#theta_{e} [#circ];", numTH2Dbins_Electron_Ang_Plots, Momentum_lboundary,
-                 Momentum_uboundary, numTH2Dbins_Electron_Ang_Plots, Theta_lboundary_FD, Theta_uboundary_FD);
+        new TH2D("P_e_vs_Theta_e_reco_All_int_nFDpCD", "P_{e} vs. #theta_{e} (All Int., nFDpCD);P_{e} [GeV/c];#theta_{e} [#circ];", numTH2Dbins_ReacMon_plots, Momentum_lboundary,
+                 Momentum_uboundary, numTH2Dbins_ReacMon_plots, Theta_lboundary_FD, Theta_uboundary_FD);
+    TH2D *hP_e_vs_Theta_e_reco_QEL_nFDpCD = new TH2D("P_e_vs_Theta_e_reco_QEL_nFDpCD", "P_{e} vs. #theta_{e} (QEL only, nFDpCD);P_{e} [GeV/c];#theta_{e} [#circ];", numTH2Dbins_ReacMon_plots,
+                                                     Momentum_lboundary, Momentum_uboundary, numTH2Dbins_ReacMon_plots, Theta_lboundary_FD, Theta_uboundary_FD);
+    TH2D *hP_e_vs_Theta_e_reco_MEC_nFDpCD = new TH2D("P_e_vs_Theta_e_reco_MEC_nFDpCD", "P_{e} vs. #theta_{e} (MEC only, nFDpCD);P_{e} [GeV/c];#theta_{e} [#circ];", numTH2Dbins_ReacMon_plots,
+                                                     Momentum_lboundary, Momentum_uboundary, numTH2Dbins_ReacMon_plots, Theta_lboundary_FD, Theta_uboundary_FD);
+    TH2D *hP_e_vs_Theta_e_reco_RES_nFDpCD = new TH2D("P_e_vs_Theta_e_reco_RES_nFDpCD", "P_{e} vs. #theta_{e} (RES only, nFDpCD);P_{e} [GeV/c];#theta_{e} [#circ];", numTH2Dbins_ReacMon_plots,
+                                                     Momentum_lboundary, Momentum_uboundary, numTH2Dbins_ReacMon_plots, Theta_lboundary_FD, Theta_uboundary_FD);
+    TH2D *hP_e_vs_Theta_e_reco_DIS_nFDpCD = new TH2D("P_e_vs_Theta_e_reco_DIS_nFDpCD", "P_{e} vs. #theta_{e} (DIS only, nFDpCD);P_{e} [GeV/c];#theta_{e} [#circ];", numTH2Dbins_ReacMon_plots,
+                                                     Momentum_lboundary, Momentum_uboundary, numTH2Dbins_ReacMon_plots, Theta_lboundary_FD, Theta_uboundary_FD);
     std::string hP_e_vs_Theta_e_reco_nFDpCD_Dir = directories.Momentum_dir_map["Analysis_plots_momentum_nFDpCD_Directory"];
 
 #pragma endregion
@@ -19461,7 +19452,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         histPlotter2D(MainCanvas, hP_e_vs_Theta_e_reco_DIS_1p, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, true, hP_e_vs_Theta_e_reco_1p_Dir, "02d_P_e_vs_Theta_e_reco_DIS_1p");
         histogram_functions::CompareHistograms(
             {hP_e_vs_Theta_e_reco_All_int_1p, hP_e_vs_Theta_e_reco_QEL_1p, hP_e_vs_Theta_e_reco_MEC_1p, hP_e_vs_Theta_e_reco_RES_1p, hP_e_vs_Theta_e_reco_DIS_1p},
-            directories.Momentum_dir_map["Momentum_Parent_Directory"], "Histogram_Comparisons", "P_e_vs_Theta_e_ReacComp");
+            directories.Momentum_dir_map["Momentum_Parent_Directory"], "Histogram_Comparisons", "P_e_vs_Theta_e_ReacComp_1p");
 
         hP_piplus_APID_1p_CD.hDrawAndSave(parameters.SampleName, MainCanvas, plots, HistoList, norm_Momentum_plots, true, 1., CutManager.pipCD_mom_th.GetLowerCut(),
                                           CutManager.pipCD_mom_th.GetUpperCut(), 0, false);
@@ -19563,7 +19554,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         histPlotter2D(MainCanvas, hP_e_vs_Theta_e_reco_DIS_1n, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, true, hP_e_vs_Theta_e_reco_1n_Dir, "09d_P_e_vs_Theta_e_reco_DIS_1n");
         histogram_functions::CompareHistograms(
             {hP_e_vs_Theta_e_reco_All_int_1n, hP_e_vs_Theta_e_reco_QEL_1n, hP_e_vs_Theta_e_reco_MEC_1n, hP_e_vs_Theta_e_reco_RES_1n, hP_e_vs_Theta_e_reco_DIS_1n},
-            directories.Momentum_dir_map["Momentum_Parent_Directory"], "Histogram_Comparisons", "P_e_vs_Theta_e_ReacComp");
+            directories.Momentum_dir_map["Momentum_Parent_Directory"], "Histogram_Comparisons", "P_e_vs_Theta_e_ReacComp_1n");
 
         hP_p_APID_1n_CD.hDrawAndSave(parameters.SampleName, MainCanvas, plots, HistoList, norm_Momentum_plots, true, 1., CutManager.pCD_mom_th.GetLowerCut(),
                                      CutManager.pCD_mom_th.GetUpperCut(), 0, false);
@@ -19882,7 +19873,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                       "12d_P_e_vs_Theta_e_reco_DIS_pFDpCD");
         histogram_functions::CompareHistograms(
             {hP_e_vs_Theta_e_reco_All_int_pFDpCD, hP_e_vs_Theta_e_reco_QEL_pFDpCD, hP_e_vs_Theta_e_reco_MEC_pFDpCD, hP_e_vs_Theta_e_reco_RES_pFDpCD, hP_e_vs_Theta_e_reco_DIS_pFDpCD},
-            directories.Momentum_dir_map["Momentum_Parent_Directory"], "Histogram_Comparisons", "P_e_vs_Theta_e_ReacComp");
+            directories.Momentum_dir_map["Momentum_Parent_Directory"], "Histogram_Comparisons", "P_e_vs_Theta_e_ReacComp_pFDpCD");
 
         // P1 vs P2 plots (nFDpCD, CD & FD)
         hP_nL_vs_P_nR_nFDpCD.hDrawAndSave(parameters.SampleName, MainCanvas, plots, HistoList, true);
@@ -19913,7 +19904,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                       "12d_P_e_vs_Theta_e_reco_DIS_nFDpCD");
         histogram_functions::CompareHistograms(
             {hP_e_vs_Theta_e_reco_All_int_nFDpCD, hP_e_vs_Theta_e_reco_QEL_nFDpCD, hP_e_vs_Theta_e_reco_MEC_nFDpCD, hP_e_vs_Theta_e_reco_RES_nFDpCD, hP_e_vs_Theta_e_reco_DIS_nFDpCD},
-            directories.Momentum_dir_map["Momentum_Parent_Directory"], "Histogram_Comparisons", "P_e_vs_Theta_e_ReacComp");
+            directories.Momentum_dir_map["Momentum_Parent_Directory"], "Histogram_Comparisons", "P_e_vs_Theta_e_ReacComp_nFDpCD");
 
         // Final state ratios (nFDpCD/pFDpCD) -------------------------------------------------------------------------------------------------------------------------------
 
