@@ -609,9 +609,6 @@ void MomentumResolution::SliceFitDrawAndSave(const std::string &SampleName, cons
         hSlice->GetYaxis()->SetTitleSize(0.06), hSlice->GetYaxis()->SetLabelSize(0.0425), hSlice->GetYaxis()->CenterTitle(true);
         hSlice->Sumw2();
 
-        TF1 *func = nullptr;
-        TPaveText *FitParam = nullptr;
-
         if (hSlice->Integral() != 0.) {  // Fit only the non-empty histograms
             std::cout << "\n\n";
 
@@ -632,7 +629,7 @@ void MomentumResolution::SliceFitDrawAndSave(const std::string &SampleName, cons
                 }
             }
 
-            func = new TF1("fit", CFitFunction, FitLlim, FitUlim, 3);  // create a function with 3 parameters in the range [-3,3]
+            TF1 *func = new TF1("fit", CFitFunction, FitLlim, FitUlim, 3);  // create a function with 3 parameters in the range [-3,3]
             func->SetLineColor(kRed);
 
             double SliceMax = hSlice->GetMaximum(), SliceMean = hSlice->GetMean(), SliceStd = hSlice->GetRMS();
@@ -699,7 +696,7 @@ void MomentumResolution::SliceFitDrawAndSave(const std::string &SampleName, cons
             }
 #pragma endregion
 
-            FitParam = new TPaveText(x_1_FitParam, y_1_FitParam, x_2_FitParam, y_2_FitParam - 0.025, "NDC");
+            TPaveText *FitParam = new TPaveText(x_1_FitParam, y_1_FitParam, x_2_FitParam, y_2_FitParam - 0.025, "NDC");
             FitParam->SetBorderSize(1), FitParam->SetFillColor(0);
             FitParam->SetTextAlign(12), FitParam->SetTextFont(42), FitParam->SetTextSize(0.03);
             FitParam->AddText(("Fit amp = " + ToStringWithPrecision(FitAmp, 4)).c_str());
@@ -743,16 +740,6 @@ void MomentumResolution::SliceFitDrawAndSave(const std::string &SampleName, cons
         } else {
             continue;
         }
-
-        if (func) {
-            delete func;
-            func = nullptr;
-        }
-
-        if (FitParam) {
-            delete FitParam;
-            FitParam = nullptr;
-        }
     }
 
     if (MomentumType == "truth") {
@@ -782,9 +769,6 @@ void MomentumResolution::SliceFitDrawAndSave(const std::string &SampleName, cons
         PolyFitter(MomentumType, 3, "Smear", "noKC", Reco_FitParam_Smear_pol3);
         PolyFitter(MomentumType, 3, "Smear", "wKC", Reco_FitParam_Smear_pol3_wKC);
     }
-
-    delete SliceFitCanvas;
-    SliceFitCanvas = nullptr;
 }
 #pragma endregion
 
@@ -953,18 +937,15 @@ void MomentumResolution::PolyFitter(const std::string &MomentumType, const int &
     TGraph *Graph1D = new TGraph();
     Graph1D->SetName(PolynomialFuncName.c_str());
 
-    std::vector<TLatex *> latex_objects;
-
     for (int i = 0; i < MeanPn.size(); i++) {
         double x = MeanPn.at(i), y = Pn_FitVar.at(i);
 
         Graph1D->AddPoint(x, y);
 
         if (PlotPoints) {
-            auto latex = new TLatex(x, y, ("(" + to_string(x) + " , " + to_string(y) + ")").c_str());
+            TLatex *latex = new TLatex(x, y, ("(" + to_string(x) + " , " + to_string(y) + ")").c_str());
             latex->SetTextSize(0.02);
             Graph1D->GetListOfFunctions()->Add(latex);
-            latex_objects.push_back(latex);
         }
     }
 
@@ -1245,29 +1226,9 @@ void MomentumResolution::PolyFitter(const std::string &MomentumType, const int &
     system(("mkdir -p " + FitsDir).c_str());
     system(("mkdir -p " + FitsDirByType).c_str());
 
-    std::cout << "\n";
-
-    Fit_Canvas->SaveAs(GraphSaveName.c_str());
+    std::cout << "\n", Fit_Canvas->SaveAs(GraphSaveName.c_str());
     Fit_Canvas->Clear();
-
     delete Fit_Canvas;
-    Fit_Canvas = nullptr;
-
-    delete Graph1D;
-    Graph1D = nullptr;
-
-    for (auto *l : latex_objects) { delete l; }
-    latex_objects.clear();
-
-    delete PolynomialFunc;
-    PolynomialFunc = nullptr;
-
-    delete Graph1D_Legend;
-    Graph1D_Legend = nullptr;
-
-    delete FitParam;
-    FitParam = nullptr;
-
 #pragma endregion
 }
 #pragma endregion
@@ -1287,13 +1248,9 @@ void MomentumResolution::DrawAndSaveResSlices(const std::string &SampleName, TCa
         ResSlicePlots->Add(FittedRecoProtonResSlices), ResSlicePlots->Add(FittedRecoProtonResSlicesWidth), ResSlicePlots->Add(FittedRecoProtonResSlicesMean);
     }
 
-    for (int i = 0; i < TL_NumberOfSlices; i++) {
-        ResTLMomSlices.at(i).hDrawAndSave(SampleNameTemp, h1DCanvas, ResSlicePlots, MomResHistoList_skipCleaning, MomResHistoList, false, true, 1., 9999, 9999, 0, false);
-    }
+    for (int i = 0; i < TL_NumberOfSlices; i++) { ResTLMomSlices.at(i).hDrawAndSave(SampleNameTemp, h1DCanvas, ResSlicePlots, MomResHistoList, false, true, 1., 9999, 9999, 0, false); }
 
-    for (int i = 0; i < Reco_NumberOfSlices; i++) {
-        ResRecoMomSlices.at(i).hDrawAndSave(SampleNameTemp, h1DCanvas, ResSlicePlots, MomResHistoList_skipCleaning, MomResHistoList, false, true, 1., 9999, 9999, 0, false);
-    }
+    for (int i = 0; i < Reco_NumberOfSlices; i++) { ResRecoMomSlices.at(i).hDrawAndSave(SampleNameTemp, h1DCanvas, ResSlicePlots, MomResHistoList, false, true, 1., 9999, 9999, 0, false); }
 
     /* Save res and fitted res plots to plots directory: */
     TFile *PlotsFolder_fout = new TFile((plots_path + "/" + MomResParticle + "_resolution_plots_-_" + SampleName + ".root").c_str(), "recreate");
@@ -1302,8 +1259,11 @@ void MomentumResolution::DrawAndSaveResSlices(const std::string &SampleName, TCa
     PlotsFolder_fout->Write();
     PlotsFolder_fout->Close();
 
-    delete PlotsFolder_fout;
-    PlotsFolder_fout = nullptr;
+#pragma region /* Cleanup */
+    for (auto histo : MomResHistoList) { delete histo; }
+
+    delete h1DCanvas;
+#pragma endregion
 }
 #pragma endregion
 

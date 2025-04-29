@@ -95,7 +95,6 @@ class MomentumResolution {
     TFolder *FittedRecoProtonResSlicesWidth = new TFolder("Fitted reco proton resolution slice width", "Fitted reco proton resolution slice width");
 
     vector<TObject *> MomResHistoList;
-    vector<bool> MomResHistoList_skipCleaning;
 
     std::string MomResHistoListPDFFileName;
     char MomResFileName[1000], temp_name[300], temp_title[300];
@@ -174,47 +173,6 @@ class MomentumResolution {
     // Other constructors ---------------------------------------------------------------------------------------------------------------------------------------------------
 
     MomentumResolution(const std::string &Particle);
-
-    // destructor -----------------------------------------------------------------------------------------------------------------------------------------------------------
-
-    ~MomentumResolution() {
-        if (ResSlicePlots) {
-            delete ResSlicePlots;
-            ResSlicePlots = nullptr;
-        }
-
-        auto delete_and_nullptr = [](auto *&ptr) {
-            if (ptr) {
-                delete ptr;
-                ptr = nullptr;
-            }
-        };
-
-        delete_and_nullptr(FittedTLNeutronResSlices);
-        delete_and_nullptr(FittedTLNeutronResSlicesMean);
-        delete_and_nullptr(FittedTLNeutronResSlicesWidth);
-        delete_and_nullptr(FittedTLProtonResSlices);
-        delete_and_nullptr(FittedTLProtonResSlicesMean);
-        delete_and_nullptr(FittedTLProtonResSlicesWidth);
-        delete_and_nullptr(FittedRecoNeutronResSlices);
-        delete_and_nullptr(FittedRecoNeutronResSlicesMean);
-        delete_and_nullptr(FittedRecoNeutronResSlicesWidth);
-        delete_and_nullptr(FittedRecoProtonResSlices);
-        delete_and_nullptr(FittedRecoProtonResSlicesMean);
-        delete_and_nullptr(FittedRecoProtonResSlicesWidth);
-
-        for (auto &histo : MomResHistoList) {
-            if (histo) {
-                delete histo;
-                histo = nullptr;
-            }
-        }
-        MomResHistoList.clear();
-
-        delete_and_nullptr(Rand1);
-        delete_and_nullptr(Rand2);
-        delete_and_nullptr(Rand3);
-    }
 
     // MomResInit function --------------------------------------------------------------------------------------------------------------------------------------------------
 

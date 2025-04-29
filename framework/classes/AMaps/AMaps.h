@@ -139,17 +139,11 @@ class AMaps {
     std::string AMaps_prefix = "05_AMaps_-_";
 
     vector<TObject *> AMapsBC_HistoList;
-    vector<bool> AMapsBC_HistoList_skipCleaning;
     vector<TObject *> AMap_TL_HistoList;
-    vector<bool> AMap_TL_HistoList_skipCleaning;
     vector<TObject *> AMap_Reco_HistoList;
-    vector<bool> AMap_Reco_HistoList_skipCleaning;
     vector<TObject *> AMap_Ratio_HistoList;
-    vector<bool> AMap_Ratio_HistoList_skipCleaning;
     vector<TObject *> cPart_Sep_AMaps_HistoList;
-    vector<bool> cPart_Sep_AMaps_HistoList_skipCleaning;
     vector<TObject *> AMaps_HistoList;
-    vector<bool> AMaps_HistoList_skipCleaning;
 
     vector<vector<double>> Loaded_ElectronMomSliceLimits;
     vector<vector<double>> Loaded_NucleonMomSliceLimits;
@@ -201,137 +195,6 @@ class AMaps {
     // AMaps loading constructor:
     AMaps(const std::string &AcceptanceMapsDirectory, const std::string &SampleName, const double &beamE, const std::string &AMapsMode, const bool &Electron_single_slice_test,
           const bool &Nucleon_single_slice_test, const vector<int> &TestSlices);
-
-    // destructor -----------------------------------------------------------------------------------------------------------------------------------------------------------
-
-    ~AMaps() {
-        /*         for (auto &hist : truth_e_BySlice) {
-                    if (hist) {
-                        delete hist;
-                        hist = nullptr;
-                    }
-                }
-                truth_e_BySlice.clear();
-
-                for (auto &hist : truth_p_BySlice) {
-                    if (hist) {
-                        delete hist;
-                        hist = nullptr;
-                    }
-                }
-                truth_p_BySlice.clear();
-
-                for (auto &hist : truth_n_BySlice) {
-                    if (hist) {
-                        delete hist;
-                        hist = nullptr;
-                    }
-                }
-                truth_n_BySlice.clear();
-
-                for (auto &hist : reco_e_BySlice) {
-                    if (hist) {
-                        delete hist;
-                        hist = nullptr;
-                    }
-                }
-                reco_e_BySlice.clear();
-
-                for (auto &hist : reco_p_BySlice) {
-                    if (hist) {
-                        delete hist;
-                        hist = nullptr;
-                    }
-                }
-                reco_p_BySlice.clear();
-
-                for (auto &hist : reco_n_BySlice) {
-                    if (hist) {
-                        delete hist;
-                        hist = nullptr;
-                    }
-                }
-                reco_n_BySlice.clear();
-
-                for (auto &hist : acc_eff_e_BySlice) {
-                    if (hist) {
-                        delete hist;
-                        hist = nullptr;
-                    }
-                }
-                acc_eff_e_BySlice.clear();
-
-                for (auto &hist : acc_eff_p_BySlice) {
-                    if (hist) {
-                        delete hist;
-                        hist = nullptr;
-                    }
-                }
-                acc_eff_p_BySlice.clear();
-
-                for (auto &hist : acc_eff_n_BySlice) {
-                    if (hist) {
-                        delete hist;
-                        hist = nullptr;
-                    }
-                }
-                acc_eff_n_BySlice.clear();
-
-                for (auto &hist : filtered_reco_e_BySlice) {
-                    if (hist) {
-                        delete hist;
-                        hist = nullptr;
-                    }
-                }
-                filtered_reco_e_BySlice.clear();
-
-                for (auto &hist : filtered_reco_p_BySlice) {
-                    if (hist) {
-                        delete hist;
-                        hist = nullptr;
-                    }
-                }
-                filtered_reco_p_BySlice.clear();
-
-                for (auto &hist : filtered_reco_n_BySlice) {
-                    if (hist) {
-                        delete hist;
-                        hist = nullptr;
-                    }
-                }
-                filtered_reco_n_BySlice.clear();
-         */
-
-        delete AcceptanceMapsBC;
-        delete TLAMaps;
-        delete RecoAMaps;
-        delete AMapsRatio;
-        delete Charged_particle_Sep_AMaps;
-        delete AcceptanceMaps;
-
-        for (auto &hist : LoadedElectronAMaps) {
-            if (hist) {
-                delete hist;
-                hist = nullptr;
-            }
-        }
-
-        LoadedElectronAMaps.clear();
-
-        for (auto &hist : LoadedProtonAMaps) {
-            if (hist) {
-                delete hist;
-                hist = nullptr;
-            }
-        }
-
-        LoadedProtonAMaps.clear();
-
-        delete LoadedElectronAMaps0;
-        delete LoadedProtonAMap;
-        delete LoadedNeutronAMap;
-        delete LoadedNucleonAMap;
-    }
 
     // SetBins functions ----------------------------------------------------------------------------------------------------------------------------------------------------
 

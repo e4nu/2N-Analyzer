@@ -2257,18 +2257,18 @@ void AMaps::DrawAndSaveMaps(const std::string &SampleName, TCanvas *h1DCanvas, c
 
     if (basic_tools::FindSubstring(SName, "Uniform_1e_sample_")) {
         /* Acceptance maps BC */
-        reco_theta_e_VS_phi_e_BC.hDrawAndSave(SName, h1DCanvas, AcceptanceMapsBC, AMapsBC_HistoList_skipCleaning, AMapsBC_HistoList, true);
+        reco_theta_e_VS_phi_e_BC.hDrawAndSave(SName, h1DCanvas, AcceptanceMapsBC, AMapsBC_HistoList, true);
 
         /* Electron maps */
         for (int i = 0; i < ElectronMomSliceLimits.size(); i++) {
-            truth_theta_e_VS_phi_e_BySlice.at(i).hDrawAndSave(SName, h1DCanvas, TLAMaps, AMap_TL_HistoList_skipCleaning, AMap_TL_HistoList, true);
-            reco_theta_e_VS_phi_e_BySlice.at(i).hDrawAndSave(SName, h1DCanvas, RecoAMaps, AMap_Reco_HistoList_skipCleaning, AMap_Reco_HistoList, true);
-            acceptance_eff_e_BySlice.at(i).hDrawAndSave(SName, h1DCanvas, AMapsRatio, AMap_Ratio_HistoList_skipCleaning, AMap_Ratio_HistoList, true);
-            filtered_reco_theta_e_VS_phi_e_BySlice.at(i).hDrawAndSave(SName, h1DCanvas, Charged_particle_Sep_AMaps, cPart_Sep_AMaps_HistoList_skipCleaning, cPart_Sep_AMaps_HistoList, true);
+            truth_theta_e_VS_phi_e_BySlice.at(i).hDrawAndSave(SName, h1DCanvas, TLAMaps, AMap_TL_HistoList, true);
+            reco_theta_e_VS_phi_e_BySlice.at(i).hDrawAndSave(SName, h1DCanvas, RecoAMaps, AMap_Reco_HistoList, true);
+            acceptance_eff_e_BySlice.at(i).hDrawAndSave(SName, h1DCanvas, AMapsRatio, AMap_Ratio_HistoList, true);
+            filtered_reco_theta_e_VS_phi_e_BySlice.at(i).hDrawAndSave(SName, h1DCanvas, Charged_particle_Sep_AMaps, cPart_Sep_AMaps_HistoList, true);
         }
 
         /* Finalized acceptance maps */
-        filtered_reco_theta_e_VS_phi_e.hDrawAndSave(SName, h1DCanvas, AcceptanceMaps, AMaps_HistoList_skipCleaning, AMaps_HistoList, true);
+        filtered_reco_theta_e_VS_phi_e.hDrawAndSave(SName, h1DCanvas, AcceptanceMaps, AMaps_HistoList, true);
 
         /* Saving maps in PDFs */
         DrawAndSaveMapsPDFs(truth_e_BySlice, truth_theta_e_VS_phi_e_BySlice[0].GetHistogram2DSaveNamePath() + "truth_theta_e_VS_phi_e_BySlice.pdf");
@@ -2279,18 +2279,18 @@ void AMaps::DrawAndSaveMaps(const std::string &SampleName, TCanvas *h1DCanvas, c
 
     if (basic_tools::FindSubstring(SName, "Uniform_ep_sample_")) {
         /* Acceptance maps BC */
-        reco_theta_p_VS_phi_p_BC.hDrawAndSave(SName, h1DCanvas, AcceptanceMapsBC, AMapsBC_HistoList_skipCleaning, AMapsBC_HistoList, true);
+        reco_theta_p_VS_phi_p_BC.hDrawAndSave(SName, h1DCanvas, AcceptanceMapsBC, AMapsBC_HistoList, true);
 
         /* Proton maps */
         for (int i = 0; i < NucleonMomSliceLimits.size(); i++) {
-            truth_theta_p_VS_phi_p_BySlice.at(i).hDrawAndSave(SName, h1DCanvas, TLAMaps, AMap_TL_HistoList_skipCleaning, AMap_TL_HistoList, true);
-            reco_theta_p_VS_phi_p_BySlice.at(i).hDrawAndSave(SName, h1DCanvas, RecoAMaps, AMap_Reco_HistoList_skipCleaning, AMap_Reco_HistoList, true);
-            acceptance_eff_p_BySlice.at(i).hDrawAndSave(SName, h1DCanvas, AMapsRatio, AMap_Ratio_HistoList_skipCleaning, AMap_Ratio_HistoList, true);
-            filtered_reco_theta_p_VS_phi_p_BySlice.at(i).hDrawAndSave(SName, h1DCanvas, Charged_particle_Sep_AMaps, cPart_Sep_AMaps_HistoList_skipCleaning, cPart_Sep_AMaps_HistoList, true);
+            truth_theta_p_VS_phi_p_BySlice.at(i).hDrawAndSave(SName, h1DCanvas, TLAMaps, AMap_TL_HistoList, true);
+            reco_theta_p_VS_phi_p_BySlice.at(i).hDrawAndSave(SName, h1DCanvas, RecoAMaps, AMap_Reco_HistoList, true);
+            acceptance_eff_p_BySlice.at(i).hDrawAndSave(SName, h1DCanvas, AMapsRatio, AMap_Ratio_HistoList, true);
+            filtered_reco_theta_p_VS_phi_p_BySlice.at(i).hDrawAndSave(SName, h1DCanvas, Charged_particle_Sep_AMaps, cPart_Sep_AMaps_HistoList, true);
         }
 
         /* Finalized acceptance maps */
-        filtered_reco_theta_p_VS_phi_p.hDrawAndSave(SName, h1DCanvas, AcceptanceMaps, AMaps_HistoList_skipCleaning, AMaps_HistoList, true);
+        filtered_reco_theta_p_VS_phi_p.hDrawAndSave(SName, h1DCanvas, AcceptanceMaps, AMaps_HistoList, true);
 
         /* Saving maps in PDFs */
         DrawAndSaveMapsPDFs(truth_p_BySlice, truth_theta_p_VS_phi_p_BySlice[0].GetHistogram2DSaveNamePath() + "truth_theta_p_VS_phi_p_BySlice.pdf");
@@ -2301,23 +2301,23 @@ void AMaps::DrawAndSaveMaps(const std::string &SampleName, TCanvas *h1DCanvas, c
 
     if (basic_tools::FindSubstring(SName, "Uniform_en_sample_")) {
         /* Acceptance maps BC */
-        reco_theta_n_VS_phi_n_BC.hDrawAndSave(SName, h1DCanvas, AcceptanceMapsBC, AMapsBC_HistoList_skipCleaning, AMapsBC_HistoList, true);
+        reco_theta_n_VS_phi_n_BC.hDrawAndSave(SName, h1DCanvas, AcceptanceMapsBC, AMapsBC_HistoList, true);
 
         /* Neutron maps (by momentum slice) */
         for (int i = 0; i < NucleonMomSliceLimits.size(); i++) {
-            truth_theta_n_VS_phi_n_BySlice.at(i).hDrawAndSave(SName, h1DCanvas, TLAMaps, AMap_TL_HistoList_skipCleaning, AMap_TL_HistoList, true);
-            reco_theta_n_VS_phi_n_BySlice.at(i).hDrawAndSave(SName, h1DCanvas, RecoAMaps, AMap_Reco_HistoList_skipCleaning, AMap_Reco_HistoList, true);
-            acceptance_eff_n_BySlice.at(i).hDrawAndSave(SName, h1DCanvas, AMapsRatio, AMap_Ratio_HistoList_skipCleaning, AMap_Ratio_HistoList, true);
-            filtered_reco_theta_n_VS_phi_n_BySlice.at(i).hDrawAndSave(SName, h1DCanvas, Charged_particle_Sep_AMaps, cPart_Sep_AMaps_HistoList_skipCleaning, cPart_Sep_AMaps_HistoList, true);
+            truth_theta_n_VS_phi_n_BySlice.at(i).hDrawAndSave(SName, h1DCanvas, TLAMaps, AMap_TL_HistoList, true);
+            reco_theta_n_VS_phi_n_BySlice.at(i).hDrawAndSave(SName, h1DCanvas, RecoAMaps, AMap_Reco_HistoList, true);
+            acceptance_eff_n_BySlice.at(i).hDrawAndSave(SName, h1DCanvas, AMapsRatio, AMap_Ratio_HistoList, true);
+            filtered_reco_theta_n_VS_phi_n_BySlice.at(i).hDrawAndSave(SName, h1DCanvas, Charged_particle_Sep_AMaps, cPart_Sep_AMaps_HistoList, true);
         }
 
         /* Neutron maps */
-        truth_theta_n_VS_phi_n.hDrawAndSave(SName, h1DCanvas, TLAMaps, AMap_TL_HistoList_skipCleaning, AMap_TL_HistoList, true);
-        reco_theta_n_VS_phi_n.hDrawAndSave(SName, h1DCanvas, RecoAMaps, AMap_Reco_HistoList_skipCleaning, AMap_Reco_HistoList, true);
-        acceptance_eff_n.hDrawAndSave(SName, h1DCanvas, AMapsRatio, AMap_Ratio_HistoList_skipCleaning, AMap_Ratio_HistoList, true);
+        truth_theta_n_VS_phi_n.hDrawAndSave(SName, h1DCanvas, TLAMaps, AMap_TL_HistoList, true);
+        reco_theta_n_VS_phi_n.hDrawAndSave(SName, h1DCanvas, RecoAMaps, AMap_Reco_HistoList, true);
+        acceptance_eff_n.hDrawAndSave(SName, h1DCanvas, AMapsRatio, AMap_Ratio_HistoList, true);
 
         /* Finalized acceptance maps */
-        filtered_reco_theta_n_VS_phi_n.hDrawAndSave(SName, h1DCanvas, AcceptanceMaps, AMaps_HistoList_skipCleaning, AMaps_HistoList, true);
+        filtered_reco_theta_n_VS_phi_n.hDrawAndSave(SName, h1DCanvas, AcceptanceMaps, AMaps_HistoList, true);
 
         /* Saving maps in PDFs */
         DrawAndSaveMapsPDFs(truth_n_BySlice, truth_theta_n_VS_phi_n_BySlice[0].GetHistogram2DSaveNamePath() + "truth_theta_n_VS_phi_n_BySlice.pdf");
@@ -2426,19 +2426,12 @@ void AMaps::DrawAndSaveMaps(const std::string &SampleName, TCanvas *h1DCanvas, c
 #pragma endregion
 
 #pragma region /* Cleanup */
-    delete AMapsBC_plots_path_fout;
-    delete TLAMaps_plots_path_fout;
-    delete RecoAMaps_plots_path_fout;
-    delete RatioHitMaps_plots_path_fout;
-    delete cPartAMaps_plots_path_fout;
-    delete AMaps_plots_path_fout;
-
-    delete AMapsBC_ref_AMaps_fout;
-    delete TLAMaps_ref_AMaps_fout;
-    delete RecoAMaps_ref_AMaps_fout;
-    delete RatioHitMaps_ref_AMaps_fout;
-    delete cPartAMaps_ref_AMaps_fout;
-    delete AMaps_ref_AMaps_fout;
+    for (auto histo : AMapsBC_HistoList) { delete histo; }
+    for (auto histo : AMap_TL_HistoList) { delete histo; }
+    for (auto histo : AMap_Reco_HistoList) { delete histo; }
+    for (auto histo : AMap_Ratio_HistoList) { delete histo; }
+    for (auto histo : cPart_Sep_AMaps_HistoList) { delete histo; }
+    for (auto histo : AMaps_HistoList) { delete histo; }
 #pragma endregion
 
     std::cout << "done!\n\n\n";
@@ -2468,15 +2461,10 @@ int AMaps::HistCounter(const char *fname) {
             if (PrintHistInfo) { std::cout << "Histo found: " << h->GetName() << " - " << h->GetTitle() << endl; }
 
             total++;
-
-            delete h;
         }
     }
 
     if (PrintHistInfo) { std::cout << "\n\nFound " << total << " Histograms\n" << endl; }
-
-    f->Close();
-    delete f;
 
     return total;
 }
@@ -2574,14 +2562,14 @@ void AMaps::ReadHitMaps(const std::string &AcceptanceMapsDirectory, const std::s
 #pragma region /* Load AMapsBC */
     std::string AMapsBC_RootFile_FileName = AcceptanceMapsDirectory + "/" + SampleName + "/" + AMapsBC_prefix + SampleName + ".root";
     TFile *AMapsBC_RootFile = new TFile(AMapsBC_RootFile_FileName.c_str());
-    if (!AMapsBC_RootFile || AMapsBC_RootFile->IsZombie()) { std::cout << "\n\nAMaps::ReadHitMaps: could not load AMapsBC root file! Aborting...\n", exit(1); }
+    if (!AMapsBC_RootFile) { std::cout << "\n\nAMaps::ReadHitMaps: could not load AMapsBC root file! Aborting...\n", exit(1); }
 
     for (TObject *keyAsObj : *AMapsBC_RootFile->GetListOfKeys()) {
         auto key = dynamic_cast<TKey *>(keyAsObj);
 
         if (PrintKeys) { std::cout << "Key name: " << key->GetName() << " Type: " << key->GetClassName() << endl; }
 
-        TH2D *TempHist = dynamic_cast<TH2D *>(key->ReadObj());
+        TH2D *TempHist = (TH2D *)keyAsObj;
 
         if (basic_tools::FindSubstring(TempHist->GetTitle(), "Electron") || basic_tools::FindSubstring(TempHist->GetTitle(), "electron")) {
             reco_theta_e_VS_phi_e_BC.SetHistogram2D(TempHist);
@@ -2592,15 +2580,13 @@ void AMaps::ReadHitMaps(const std::string &AcceptanceMapsDirectory, const std::s
         } else if (basic_tools::FindSubstring(TempHist->GetTitle(), "Nucleon") || basic_tools::FindSubstring(TempHist->GetTitle(), "nucleon")) {
             reco_theta_nuc_VS_phi_nuc_BC.SetHistogram2D(TempHist);
         }
-
-        delete TempHist;  // Delete histogram to avert memory leak
     }
 #pragma endregion
 
 #pragma region /* Load Hit_Maps_TL */
     std::string Hit_Maps_TL_RootFile_FileName = AcceptanceMapsDirectory + "/" + SampleName + "/" + AMap_TL_prefix + SampleName + ".root";
     TFile *Hit_Maps_TL_RootFile = new TFile(Hit_Maps_TL_RootFile_FileName.c_str());
-    if (!Hit_Maps_TL_RootFile || Hit_Maps_TL_RootFile->IsZombie()) { std::cout << "\n\nAMaps::ReadHitMaps: could not load Hit_Maps_TL root file! Aborting...\n", exit(1); }
+    if (!Hit_Maps_TL_RootFile) { std::cout << "\n\nAMaps::ReadHitMaps: could not load Hit_Maps_TL root file! Aborting...\n", exit(1); }
 
     int counter = 0;
 
@@ -2609,7 +2595,7 @@ void AMaps::ReadHitMaps(const std::string &AcceptanceMapsDirectory, const std::s
 
         if (PrintKeys) { std::cout << "Key name: " << key->GetName() << " Type: " << key->GetClassName() << endl; }
 
-        TH2D *TempHist = dynamic_cast<TH2D *>(key->ReadObj());
+        TH2D *TempHist = (TH2D *)keyAsObj;
         hPlot2D Temp2DHist;
         Temp2DHist.SetHistogram2D(TempHist);
 
@@ -2625,22 +2611,20 @@ void AMaps::ReadHitMaps(const std::string &AcceptanceMapsDirectory, const std::s
         }
 
         ++counter;
-
-        delete TempHist;  // Delete histogram to avert memory leak
     }
 #pragma endregion
 
 #pragma region /* Load Hit_Maps_Reco */
     std::string Hit_Maps_Reco_RootFile_FileName = AcceptanceMapsDirectory + "/" + SampleName + "/" + AMap_Reco_prefix + SampleName + ".root";
     TFile *Hit_Maps_Reco_RootFile = new TFile(Hit_Maps_Reco_RootFile_FileName.c_str());
-    if (!Hit_Maps_Reco_RootFile || Hit_Maps_Reco_RootFile->IsZombie()) { std::cout << "\n\nAMaps::ReadHitMaps: could not load Hit_Maps_Reco root file! Aborting...\n", exit(1); }
+    if (!Hit_Maps_Reco_RootFile) { std::cout << "\n\nAMaps::ReadHitMaps: could not load Hit_Maps_Reco root file! Aborting...\n", exit(1); }
 
     for (TObject *keyAsObj : *Hit_Maps_Reco_RootFile->GetListOfKeys()) {
         auto key = dynamic_cast<TKey *>(keyAsObj);
 
         if (PrintKeys) { std::cout << "Key name: " << key->GetName() << " Type: " << key->GetClassName() << endl; }
 
-        TH2D *TempHist = dynamic_cast<TH2D *>(key->ReadObj());
+        TH2D *TempHist = (TH2D *)keyAsObj;
         hPlot2D Temp2DHist;
         Temp2DHist.SetHistogram2D(TempHist);
 
@@ -2651,22 +2635,20 @@ void AMaps::ReadHitMaps(const std::string &AcceptanceMapsDirectory, const std::s
         } else if (basic_tools::FindSubstring(TempHist->GetTitle(), "{n}")) {
             reco_theta_n_VS_phi_n.SetHistogram2D(TempHist);
         }
-
-        delete TempHist;  // Delete histogram to avert memory leak
     }
 #pragma endregion
 
 #pragma region /* Load Hit_Maps_Ratio */
     std::string Hit_Maps_Ratio_RootFile_FileName = AcceptanceMapsDirectory + "/" + SampleName + "/" + AMap_Ratio_prefix + SampleName + ".root";
     TFile *Hit_Maps_Ratio_RootFile = new TFile(Hit_Maps_Ratio_RootFile_FileName.c_str());
-    if (!Hit_Maps_Ratio_RootFile || Hit_Maps_Ratio_RootFile->IsZombie()) { std::cout << "\n\nAMaps::ReadHitMaps: could not load Hit_Maps_Ratio root file! Aborting...\n", exit(1); }
+    if (!Hit_Maps_Ratio_RootFile) { std::cout << "\n\nAMaps::ReadHitMaps: could not load Hit_Maps_Ratio root file! Aborting...\n", exit(1); }
 
     for (TObject *keyAsObj : *Hit_Maps_Ratio_RootFile->GetListOfKeys()) {
         auto key = dynamic_cast<TKey *>(keyAsObj);
 
         if (PrintKeys) { std::cout << "Key name: " << key->GetName() << " Type: " << key->GetClassName() << endl; }
 
-        TH2D *TempHist = dynamic_cast<TH2D *>(key->ReadObj());
+        TH2D *TempHist = (TH2D *)keyAsObj;
         hPlot2D Temp2DHist;
         Temp2DHist.SetHistogram2D(TempHist);
 
@@ -2677,22 +2659,20 @@ void AMaps::ReadHitMaps(const std::string &AcceptanceMapsDirectory, const std::s
         } else if (basic_tools::FindSubstring(TempHist->GetTitle(), "{n}")) {
             acceptance_eff_n.SetHistogram2D(TempHist);
         }
-
-        delete TempHist;  // Delete histogram to avert memory leak
     }
 #pragma endregion
 
 #pragma region /* Load cPart_Sep_AMaps */
     std::string cPart_Sep_AMaps_RootFile_FileName = AcceptanceMapsDirectory + "/" + SampleName + "/" + cPart_Sep_AMaps_prefix + SampleName + ".root";
     TFile *cPart_Sep_AMaps_RootFile = new TFile(cPart_Sep_AMaps_RootFile_FileName.c_str());
-    if (!cPart_Sep_AMaps_RootFile || cPart_Sep_AMaps_RootFile->IsZombie()) { std::cout << "\n\nAMaps::ReadHitMaps: could not load cPart_Sep_AMaps root file! Aborting...\n", exit(1); }
+    if (!cPart_Sep_AMaps_RootFile) { std::cout << "\n\nAMaps::ReadHitMaps: could not load cPart_Sep_AMaps root file! Aborting...\n", exit(1); }
 
     for (TObject *keyAsObj : *cPart_Sep_AMaps_RootFile->GetListOfKeys()) {
         auto key = dynamic_cast<TKey *>(keyAsObj);
 
         if (PrintKeys) { std::cout << "Key name: " << key->GetName() << " Type: " << key->GetClassName() << endl; }
 
-        TH2D *TempHist = dynamic_cast<TH2D *>(key->ReadObj());
+        TH2D *TempHist = (TH2D *)keyAsObj;
         hPlot2D Temp2DHist;
         Temp2DHist.SetHistogram2D(TempHist);
 
@@ -2701,15 +2681,13 @@ void AMaps::ReadHitMaps(const std::string &AcceptanceMapsDirectory, const std::s
         } else if (basic_tools::FindSubstring(TempHist->GetTitle(), "Proton") || basic_tools::FindSubstring(TempHist->GetTitle(), "proton")) {
             filtered_reco_theta_p_VS_phi_p_BySlice.push_back(Temp2DHist);
         }
-
-        delete TempHist;  // Delete histogram to avert memory leak
     }
 #pragma endregion
 
 #pragma region /* Load AMaps */
     std::string AMaps_RootFile_FileName = AcceptanceMapsDirectory + "/" + SampleName + "/" + AMaps_prefix + SampleName + ".root";
     TFile *AMaps_RootFile = new TFile(AMaps_RootFile_FileName.c_str());
-    if (!AMaps_RootFile || AMaps_RootFile->IsZombie()) { std::cout << "\n\nAMaps::ReadHitMaps: could not load AMaps root file! Aborting...\n", exit(1); }
+    if (!AMaps_RootFile) { std::cout << "\n\nAMaps::ReadHitMaps: could not load AMaps root file! Aborting...\n", exit(1); }
 
     LoadedElectronAMaps0 = (TH2D *)AMaps_RootFile->Get("Electron_AMap");
     if (!LoadedElectronAMaps0) { std::cout << "\n\nAMaps::ReadHitMaps: could not load Electron_AMap from root file! Aborting...\n", exit(1); }
@@ -2722,25 +2700,6 @@ void AMaps::ReadHitMaps(const std::string &AcceptanceMapsDirectory, const std::s
 
     LoadedNucleonAMap = (TH2D *)AMaps_RootFile->Get("Nucleon_AMap");
     if (!LoadedNucleonAMap) { std::cout << "\n\nAMaps::ReadHitMaps: could not load Nucleon_AMap from root file! Aborting...\n", exit(1); }
-
-    AMapsBC_RootFile->Close();
-    delete AMapsBC_RootFile;
-
-    Hit_Maps_TL_RootFile->Close();
-    delete Hit_Maps_TL_RootFile;
-
-    Hit_Maps_Reco_RootFile->Close();
-    delete Hit_Maps_Reco_RootFile;
-
-    Hit_Maps_Ratio_RootFile->Close();
-    delete Hit_Maps_Ratio_RootFile;
-
-    cPart_Sep_AMaps_RootFile->Close();
-    delete cPart_Sep_AMaps_RootFile;
-
-    AMaps_RootFile->Close();
-    delete AMaps_RootFile;
-
 #pragma endregion
 
     std::cout << "\n\nAcceptance maps loaded!\n\n";

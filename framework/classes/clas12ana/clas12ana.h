@@ -39,310 +39,6 @@ class clas12ana : public clas12reader {
    public:
     clas12ana() { Init(); };
 
-    ~clas12ana() {
-        // Delete ecal_p_fcn and ecal_e_fcn (2×7 arrays)
-        for (int i = 0; i < 2; ++i) {
-            for (int j = 0; j < 7; ++j) {
-                if (ecal_p_fcn[i][j]) {
-                    delete ecal_p_fcn[i][j];
-                    ecal_p_fcn[i][j] = nullptr;
-                }
-                if (ecal_sf_fcn[i][j]) {
-                    delete ecal_sf_fcn[i][j];
-                    ecal_sf_fcn[i][j] = nullptr;
-                }
-            }
-        }
-
-        // Delete ecal_sf (7 elements)
-        for (int i = 0; i < 7; ++i) {
-            if (ecal_sf[i]) {
-                delete ecal_sf[i];
-                ecal_sf[i] = nullptr;
-            }
-        }
-
-        // Delete dc (4×7 elements)
-        for (int i = 0; i < 4; ++i) {
-            for (int j = 0; j < 7; ++j) {
-                if (dc[i][j]) {
-                    delete dc[i][j];
-                    dc[i][j] = nullptr;
-                }
-            }
-        }
-
-        // Delete sf_*_debug arrays (7 elements each)
-        for (int i = 0; i < 7; ++i) {
-            if (sf_e_debug_b[i]) {
-                delete sf_e_debug_b[i];
-                sf_e_debug_b[i] = nullptr;
-            }
-            if (sf_e_debug_a[i]) {
-                delete sf_e_debug_a[i];
-                sf_e_debug_a[i] = nullptr;
-            }
-            if (sf_p_debug_b[i]) {
-                delete sf_p_debug_b[i];
-                sf_p_debug_b[i] = nullptr;
-            }
-            if (sf_p_debug_a[i]) {
-                delete sf_p_debug_a[i];
-                sf_p_debug_a[i] = nullptr;
-            }
-        }
-
-        // Delete single TH2D histograms
-        if (pid_cd_debug) {
-            delete pid_cd_debug;
-            pid_cd_debug = nullptr;
-        }
-        if (pid_fd_debug) {
-            delete pid_fd_debug;
-            pid_fd_debug = nullptr;
-        }
-
-        if (sf_v_ecalIN_debug) {
-            delete sf_v_ecalIN_debug;
-            sf_v_ecalIN_debug = nullptr;
-        }
-        if (sf_w_ecalIN_debug) {
-            delete sf_w_ecalIN_debug;
-            sf_w_ecalIN_debug = nullptr;
-        }
-
-        if (sf_v_ecalOUT_debug) {
-            delete sf_v_ecalOUT_debug;
-            sf_v_ecalOUT_debug = nullptr;
-        }
-        if (sf_w_ecalOUT_debug) {
-            delete sf_w_ecalOUT_debug;
-            sf_w_ecalOUT_debug = nullptr;
-        }
-
-        if (sf_v_pcal_debug) {
-            delete sf_v_pcal_debug;
-            sf_v_pcal_debug = nullptr;
-        }
-        if (sf_w_pcal_debug) {
-            delete sf_w_pcal_debug;
-            sf_w_pcal_debug = nullptr;
-        }
-
-        if (sf_v_ecalIN_a_debug) {
-            delete sf_v_ecalIN_a_debug;
-            sf_v_ecalIN_a_debug = nullptr;
-        }
-        if (sf_w_ecalIN_a_debug) {
-            delete sf_w_ecalIN_a_debug;
-            sf_w_ecalIN_a_debug = nullptr;
-        }
-
-        if (sf_v_ecalOUT_a_debug) {
-            delete sf_v_ecalOUT_a_debug;
-            sf_v_ecalOUT_a_debug = nullptr;
-        }
-        if (sf_w_ecalOUT_a_debug) {
-            delete sf_w_ecalOUT_a_debug;
-            sf_w_ecalOUT_a_debug = nullptr;
-        }
-
-        if (sf_v_pcal_a_debug) {
-            delete sf_v_pcal_a_debug;
-            sf_v_pcal_a_debug = nullptr;
-        }
-        if (sf_w_pcal_a_debug) {
-            delete sf_w_pcal_a_debug;
-            sf_w_pcal_a_debug = nullptr;
-        }
-
-        // Delete particle PID debug histograms
-        if (pid_proton_fd_debug) {
-            delete pid_proton_fd_debug;
-            pid_proton_fd_debug = nullptr;
-        }
-        if (pid_proton_cd_debug) {
-            delete pid_proton_cd_debug;
-            pid_proton_cd_debug = nullptr;
-        }
-        if (pid_piplus_fd_debug) {
-            delete pid_piplus_fd_debug;
-            pid_piplus_fd_debug = nullptr;
-        }
-        if (pid_piplus_cd_debug) {
-            delete pid_piplus_cd_debug;
-            pid_piplus_cd_debug = nullptr;
-        }
-        if (pid_kplus_fd_debug) {
-            delete pid_kplus_fd_debug;
-            pid_kplus_fd_debug = nullptr;
-        }
-        if (pid_kplus_cd_debug) {
-            delete pid_kplus_cd_debug;
-            pid_kplus_cd_debug = nullptr;
-        }
-        if (pid_piminus_fd_debug) {
-            delete pid_piminus_fd_debug;
-            pid_piminus_fd_debug = nullptr;
-        }
-        if (pid_piminus_cd_debug) {
-            delete pid_piminus_cd_debug;
-            pid_piminus_cd_debug = nullptr;
-        }
-        if (pid_kminus_fd_debug) {
-            delete pid_kminus_fd_debug;
-            pid_kminus_fd_debug = nullptr;
-        }
-        if (pid_kminus_cd_debug) {
-            delete pid_kminus_cd_debug;
-            pid_kminus_cd_debug = nullptr;
-        }
-        if (pid_neutrals_fd_debug) {
-            delete pid_neutrals_fd_debug;
-            pid_neutrals_fd_debug = nullptr;
-        }
-        if (pid_neutrals_cd_debug) {
-            delete pid_neutrals_cd_debug;
-            pid_neutrals_cd_debug = nullptr;
-        }
-        if (pid_deuteron_fd_debug) {
-            delete pid_deuteron_fd_debug;
-            pid_deuteron_fd_debug = nullptr;
-        }
-        if (pid_deuteron_cd_debug) {
-            delete pid_deuteron_cd_debug;
-            pid_deuteron_cd_debug = nullptr;
-        }
-
-        // Delete el_vz debug histograms
-        if (el_vz_debug) {
-            delete el_vz_debug;
-            el_vz_debug = nullptr;
-        }
-        if (el_vz_p_debug) {
-            delete el_vz_p_debug;
-            el_vz_p_debug = nullptr;
-        }
-
-        // Delete dc hit maps (4 elements each)
-        for (int i = 0; i < 4; ++i) {
-            if (dc_hit_map_a[i]) {
-                delete dc_hit_map_a[i];
-                dc_hit_map_a[i] = nullptr;
-            }
-            if (dc_hit_map_b[i]) {
-                delete dc_hit_map_b[i];
-                dc_hit_map_b[i] = nullptr;
-            }
-            if (dc_hit_map_a_proton[i]) {
-                delete dc_hit_map_a_proton[i];
-                dc_hit_map_a_proton[i] = nullptr;
-            }
-            if (dc_hit_map_b_proton[i]) {
-                delete dc_hit_map_b_proton[i];
-                dc_hit_map_b_proton[i] = nullptr;
-            }
-            if (dc_hit_map_a_pion[i]) {
-                delete dc_hit_map_a_pion[i];
-                dc_hit_map_a_pion[i] = nullptr;
-            }
-            if (dc_hit_map_b_pion[i]) {
-                delete dc_hit_map_b_pion[i];
-                dc_hit_map_b_pion[i] = nullptr;
-            }
-        }
-
-        // --- Multiplicity plots before cuts (no e cuts)
-        if (multi_p_vs_cpi_BC_debug) {
-            delete multi_p_vs_cpi_BC_debug;
-            multi_p_vs_cpi_BC_debug = nullptr;
-        }
-        if (multi_p_BC_debug) {
-            delete multi_p_BC_debug;
-            multi_p_BC_debug = nullptr;
-        }
-        if (multi_cpi_BC_debug) {
-            delete multi_cpi_BC_debug;
-            multi_cpi_BC_debug = nullptr;
-        }
-
-        // --- Multiplicity plots after cuts (no e cuts)
-        if (multi_p_vs_cpi_AC_debug) {
-            delete multi_p_vs_cpi_AC_debug;
-            multi_p_vs_cpi_AC_debug = nullptr;
-        }
-        if (multi_p_AC_debug) {
-            delete multi_p_AC_debug;
-            multi_p_AC_debug = nullptr;
-        }
-        if (multi_cpi_AC_debug) {
-            delete multi_cpi_AC_debug;
-            multi_cpi_AC_debug = nullptr;
-        }
-
-        // --- Multiplicity plots before cuts (1e cut)
-        if (multi_p_vs_cpi_1e_cut_BC_debug) {
-            delete multi_p_vs_cpi_1e_cut_BC_debug;
-            multi_p_vs_cpi_1e_cut_BC_debug = nullptr;
-        }
-        if (multi_p_1e_cut_BC_debug) {
-            delete multi_p_1e_cut_BC_debug;
-            multi_p_1e_cut_BC_debug = nullptr;
-        }
-        if (multi_cpi_1e_cut_BC_debug) {
-            delete multi_cpi_1e_cut_BC_debug;
-            multi_cpi_1e_cut_BC_debug = nullptr;
-        }
-
-        // --- Multiplicity plots after cuts (1e cut)
-        if (multi_p_vs_cpi_1e_cut_AC_debug) {
-            delete multi_p_vs_cpi_1e_cut_AC_debug;
-            multi_p_vs_cpi_1e_cut_AC_debug = nullptr;
-        }
-        if (multi_p_1e_cut_AC_debug) {
-            delete multi_p_1e_cut_AC_debug;
-            multi_p_1e_cut_AC_debug = nullptr;
-        }
-        if (multi_cpi_1e_cut_AC_debug) {
-            delete multi_cpi_1e_cut_AC_debug;
-            multi_cpi_1e_cut_AC_debug = nullptr;
-        }
-
-        // --- Hit maps for efficiency plots
-        if (hTheta_e_vs_Phi_e_fiducial_cuts_map_ECAL) {
-            delete hTheta_e_vs_Phi_e_fiducial_cuts_map_ECAL;
-            hTheta_e_vs_Phi_e_fiducial_cuts_map_ECAL = nullptr;
-        }
-        if (hTheta_p_vs_Phi_p_AMap_DC_NO_CUTS) {
-            delete hTheta_p_vs_Phi_p_AMap_DC_NO_CUTS;
-            hTheta_p_vs_Phi_p_AMap_DC_NO_CUTS = nullptr;
-        }
-        if (hTheta_p_vs_Phi_p_AMap_DC_WITH_CUTS) {
-            delete hTheta_p_vs_Phi_p_AMap_DC_WITH_CUTS;
-            hTheta_p_vs_Phi_p_AMap_DC_WITH_CUTS = nullptr;
-        }
-        if (hTheta_vs_Phi_hit_map_ECAL_no_fiducial_cuts) {
-            delete hTheta_vs_Phi_hit_map_ECAL_no_fiducial_cuts;
-            hTheta_vs_Phi_hit_map_ECAL_no_fiducial_cuts = nullptr;
-        }
-        if (hTheta_vs_Phi_hit_map_ECAL_w_fiducial_cuts) {
-            delete hTheta_vs_Phi_hit_map_ECAL_w_fiducial_cuts;
-            hTheta_vs_Phi_hit_map_ECAL_w_fiducial_cuts = nullptr;
-        }
-        if (hAng_hit_map_electrons) {
-            delete hAng_hit_map_electrons;
-            hAng_hit_map_electrons = nullptr;
-        }
-        if (hAng_hit_map_protons) {
-            delete hAng_hit_map_protons;
-            hAng_hit_map_protons = nullptr;
-        }
-        if (hAng_hit_map_neutrons) {
-            delete hAng_hit_map_neutrons;
-            hAng_hit_map_neutrons = nullptr;
-        }
-    }
-
     void Init();
 
     void InitSFEcalCuts();
@@ -756,33 +452,69 @@ class clas12ana : public clas12reader {
 
 #pragma region /* my debugging - multiplicity plots before cuts (= BC) - no #e cuts */
     /* my debugging - multiplicity plots before cuts (= BC) - no #e cuts */
+    //    TH2D *multi_p_vs_cpi_fd_BC_debug = new TH2D("multi_p_vs_cpi_fd_BC_debug",
+    //                                                "#font[12]{#p} vs. #font[12]{##pi^{#pm}} BC (no #e cuts, FD);#font[12]{#p};#font[12]{##pi^{#pm}}", 10, 0, 10, 10, 0, 10);
+    //    TH2D *multi_p_vs_cpi_cd_BC_debug = new TH2D("multi_p_vs_cpi_cd_BC_debug",
+    //                                                "#font[12]{#p} vs. #font[12]{##pi^{#pm}} BC (no #e cuts, CD);#font[12]{#p};#font[12]{##pi^{#pm}}", 10, 0, 10, 10, 0, 10);
     TH2D *multi_p_vs_cpi_BC_debug =
         new TH2D("multi_p_vs_cpi_BC_debug", "#font[12]{#p} vs. #font[12]{##pi^{#pm}} BC (no #e cuts, CD & FD);#font[12]{#p};#font[12]{##pi^{#pm}}", 10, 0, 10, 10, 0, 10);
+    //    TH1D *multi_p_fd_BC_debug = new TH1D("multi_p_fd_BC_debug", "#font[12]{#p} BC (no #e cuts, FD);#font[12]{#p}", 10, 0, 10);
+    //    TH1D *multi_p_cd_BC_debug = new TH1D("multi_p_cd_BC_debug", "#font[12]{#p} BC (no #e cuts, CD);#font[12]{#p}", 10, 0, 10);
     TH1D *multi_p_BC_debug = new TH1D("multi_p_BC_debug", "#font[12]{#p} BC (no #e cuts, CD & FD);#font[12]{#p}", 10, 0, 10);
+    //    TH1D *multi_cpi_fd_BC_debug = new TH1D("multi_cpi_fd_BC_debug", "#font[12]{##pi^{#pm}} BC (no #e cuts, FD);#font[12]{##pi^{#pm}}", 10, 0, 10);
+    //    TH1D *multi_cpi_cd_BC_debug = new TH1D("multi_cpi_cd_BC_debug", "#font[12]{##pi^{#pm}} BC (no #e cuts, CD);#font[12]{##pi^{#pm}}", 10, 0, 10);
     TH1D *multi_cpi_BC_debug = new TH1D("multi_cpi_BC_debug", "#font[12]{##pi^{#pm}} BC (no #e cuts, CD & FD);#font[12]{##pi^{#pm}}", 10, 0, 10);
 #pragma endregion
 
 #pragma region /* my debugging - multiplicity plots after cuts (= AC) - no #e cuts */
     /* my debugging - multiplicity plots after cuts (= AC) - no #e cuts */
+    //    TH2D *multi_p_vs_cpi_fd_AC_debug = new TH2D("multi_p_vs_cpi_fd_AC_debug",
+    //                                                "#font[12]{#p} vs. #font[12]{##pi^{#pm}} AC (no #e cuts, FD);#font[12]{#p};#font[12]{##pi^{#pm}}", 10, 0, 10, 10, 0, 10);
+    //    TH2D *multi_p_vs_cpi_cd_AC_debug = new TH2D("multi_p_vs_cpi_cd_AC_debug",
+    //                                                "#font[12]{#p} vs. #font[12]{##pi^{#pm}} AC (no #e cuts, CD);#font[12]{#p};#font[12]{##pi^{#pm}}", 10, 0, 10, 10, 0, 10);
     TH2D *multi_p_vs_cpi_AC_debug =
         new TH2D("multi_p_vs_cpi_AC_debug", "#font[12]{#p} vs. #font[12]{##pi^{#pm}} AC (no #e cuts, CD & FD);#font[12]{#p};#font[12]{##pi^{#pm}}", 10, 0, 10, 10, 0, 10);
+    //    TH1D *multi_p_fd_AC_debug = new TH1D("multi_p_fd_AC_debug", "#font[12]{#p} AC (no #e cuts, FD);#font[12]{#p}", 10, 0, 10);
+    //    TH1D *multi_p_cd_AC_debug = new TH1D("multi_p_cd_AC_debug", "#font[12]{#p} AC (no #e cuts, CD);#font[12]{#p}", 10, 0, 10);
     TH1D *multi_p_AC_debug = new TH1D("multi_p_AC_debug", "#font[12]{#p} AC (no #e cuts, CD & FD);#font[12]{#p}", 10, 0, 10);
+    //    TH1D *multi_cpi_fd_AC_debug = new TH1D("multi_cpi_fd_AC_debug", "#font[12]{##pi^{#pm}} AC (no #e cuts, FD);#font[12]{##pi^{#pm}}", 10, 0, 10);
+    //    TH1D *multi_cpi_cd_AC_debug = new TH1D("multi_cpi_cd_AC_debug", "#font[12]{##pi^{#pm}} AC (no #e cuts, CD);#font[12]{##pi^{#pm}}", 10, 0, 10);
     TH1D *multi_cpi_AC_debug = new TH1D("multi_cpi_AC_debug", "#font[12]{##pi^{#pm}} AC (no #e cuts, CD & FD);#font[12]{##pi^{#pm}}", 10, 0, 10);
 #pragma endregion
 
 #pragma region /* my debugging - multiplicity plots before cuts (= BC) - 1e cut */
     /* my debugging - multiplicity plots before cuts (= BC) - 1e cut */
+    //    TH2D *multi_p_vs_cpi_1e_cut_fd_BC_debug = new TH2D("multi_p_vs_cpi_1e_cut_fd_BC_debug",
+    //                                                       "#font[12]{#p} vs. #font[12]{##pi^{#pm}} BC (1e cut, FD);#font[12]{#p};#font[12]{##pi^{#pm}}",
+    //                                                       10, 0, 10, 10, 0, 10);
+    //    TH2D *multi_p_vs_cpi_1e_cut_cd_BC_debug = new TH2D("multi_p_vs_cpi_1e_cut_cd_BC_debug",
+    //                                                       "#font[12]{#p} vs. #font[12]{##pi^{#pm}} BC (1e cut, CD);#font[12]{#p};#font[12]{##pi^{#pm}}",
+    //                                                       10, 0, 10, 10, 0, 10);
     TH2D *multi_p_vs_cpi_1e_cut_BC_debug =
         new TH2D("multi_p_vs_cpi_1e_cut_BC_debug", "#font[12]{#p} vs. #font[12]{##pi^{#pm}} BC (1e cut, CD & FD);#font[12]{#p};#font[12]{##pi^{#pm}}", 10, 0, 10, 10, 0, 10);
+    //    TH1D *multi_p_1e_cut_fd_BC_debug = new TH1D("multi_p_1e_cut_fd_BC_debug", "#font[12]{#p} BC (1e cut, FD);#font[12]{#p}", 10, 0, 10);
+    //    TH1D *multi_p_1e_cut_cd_BC_debug = new TH1D("multi_p_1e_cut_cd_BC_debug", "#font[12]{#p} BC (1e cut, CD);#font[12]{#p}", 10, 0, 10);
     TH1D *multi_p_1e_cut_BC_debug = new TH1D("multi_p_1e_cut_BC_debug", "#font[12]{#p} BC (1e cut, CD & FD);#font[12]{#p}", 10, 0, 10);
+    //    TH1D *multi_cpi_1e_cut_fd_BC_debug = new TH1D("multi_cpi_1e_cut_fd_BC_debug", "#font[12]{##pi^{#pm}} BC (1e cut, FD);#font[12]{##pi^{#pm}}", 10, 0, 10);
+    //    TH1D *multi_cpi_1e_cut_cd_BC_debug = new TH1D("multi_cpi_1e_cut_cd_BC_debug", "#font[12]{##pi^{#pm}} BC (1e cut, CD);#font[12]{##pi^{#pm}}", 10, 0, 10);
     TH1D *multi_cpi_1e_cut_BC_debug = new TH1D("multi_cpi_1e_cut_BC_debug", "#font[12]{##pi^{#pm}} BC (1e cut, CD & FD);#font[12]{##pi^{#pm}}", 10, 0, 10);
 #pragma endregion
 
 #pragma region /* my debugging - multiplicity plots after cuts (= AC) - 1e cut */
     /* my debugging - multiplicity plots after cuts (= AC) - 1e cut */
+    //    TH2D *multi_p_vs_cpi_1e_cut_fd_AC_debug = new TH2D("multi_p_vs_cpi_1e_cut_fd_AC_debug",
+    //                                                       "#font[12]{#p} vs. #font[12]{##pi^{#pm}} AC (1e cut, FD);#font[12]{#p};#font[12]{##pi^{#pm}}",
+    //                                                       10, 0, 10, 10, 0, 10);
+    //    TH2D *multi_p_vs_cpi_1e_cut_cd_AC_debug = new TH2D("multi_p_vs_cpi_1e_cut_cd_AC_debug",
+    //                                                       "#font[12]{#p} vs. #font[12]{##pi^{#pm}} AC (1e cut, CD);#font[12]{#p};#font[12]{##pi^{#pm}}",
+    //                                                       10, 0, 10, 10, 0, 10);
     TH2D *multi_p_vs_cpi_1e_cut_AC_debug =
         new TH2D("multi_p_vs_cpi_1e_cut_AC_debug", "#font[12]{#p} vs. #font[12]{##pi^{#pm}} AC (1e cut, CD & FD);#font[12]{#p};#font[12]{##pi^{#pm}}", 10, 0, 10, 10, 0, 10);
+    //    TH1D *multi_p_1e_cut_fd_AC_debug = new TH1D("multi_p_1e_cut_fd_AC_debug", "#font[12]{#p} AC (1e cut, FD);#font[12]{#p}", 10, 0, 10);
+    //    TH1D *multi_p_1e_cut_cd_AC_debug = new TH1D("multi_p_1e_cut_cd_AC_debug", "#font[12]{#p} AC (1e cut, CD);#font[12]{#p}", 10, 0, 10);
     TH1D *multi_p_1e_cut_AC_debug = new TH1D("multi_p_1e_cut_AC_debug", "#font[12]{#p} AC (1e cut, CD & FD);#font[12]{#p}", 10, 0, 10);
+    //    TH1D *multi_cpi_1e_cut_fd_AC_debug = new TH1D("multi_cpi_1e_cut_fd_AC_debug", "#font[12]{##pi^{#pm}} AC (1e cut, FD);#font[12]{##pi^{#pm}}", 10, 0, 10);
+    //    TH1D *multi_cpi_1e_cut_cd_AC_debug = new TH1D("multi_cpi_1e_cut_cd_AC_debug", "#font[12]{##pi^{#pm}} AC (1e cut, CD);#font[12]{##pi^{#pm}}", 10, 0, 10);
     TH1D *multi_cpi_1e_cut_AC_debug = new TH1D("multi_cpi_1e_cut_AC_debug", "#font[12]{##pi^{#pm}} AC (1e cut, CD & FD);#font[12]{##pi^{#pm}}", 10, 0, 10);
 #pragma endregion
 

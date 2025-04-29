@@ -60,20 +60,6 @@ class DEfficiency {
     // Default constructor:
     DEfficiency() = default;
 
-    // destructor -----------------------------------------------------------------------------------------------------------------------------------------------------------
-
-    ~DEfficiency() {
-        delete Histogram1D_REC;
-        delete RPlot_Clone;
-        delete RPlot_Clone_test;
-        delete RPlot_Clone_test_rebined;
-        
-        delete Histogram1D_Truth;
-        delete TLPlot_Clone;
-        delete TLPlot_Clone_test;
-        delete TLPlot_Clone_test_rebined;
-    }
-
     // ResetHistograms function ---------------------------------------------------------------------------------------------------------------------------------------------
 
     void ResetHistograms();

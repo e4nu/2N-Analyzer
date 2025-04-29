@@ -42,7 +42,7 @@ using namespace utilities;
 class hPlot1D {
    protected:
     /* 1D histogram declaration */
-    TH1D *Histogram1D = nullptr;
+    TH1D *Histogram1D;
 
     /* Histogram titles & labels.
      * contains HistogramStatTitle, HistogramTitle, XaxisTitle, YaxisTitle, Histogram1DTitleReactions, FinalState and DetectorRegion. */
@@ -87,94 +87,92 @@ class hPlot1D {
    public:
     // TODO: add function to integrate histogram
 
+    // Constructor declaration:
     hPlot1D() {}  // Default constructor
 
-    ~hPlot1D() {
-        if (Histogram1D) {
-            delete Histogram1D;
-            Histogram1D = nullptr;
-        }
-    };  // Default destructor
-
     hPlot1D(std::string h1DtReactions, std::string fState, std::string dRegion, std::string hst, std::string ht, std::string xat, double LowerXlim, double UpperXlim, int hnob = 50);
+    //    hPlot1D(std::string h1DtReactions, std::string fState, std::string dRegion, std::string hst, std::string ht, std::string xat,
+    //            double LowerXlim, double UpperXlim, int hnob = 100);
 
     hPlot1D(std::string fState, std::string dRegion, std::string hst, std::string ht, std::string xat, std::string sPath, std::string sName, double LowerXlim, double UpperXlim,
             int hnob = 50);
+    //    hPlot1D(std::string fState, std::string dRegion, std::string hst, std::string ht, std::string xat, std::string sPath, std::string sName, double LowerXlim,
+    //            double UpperXlim, int hnob = 100);
 
     hPlot1D(std::string fState, std::string dRegion, std::string hst, std::string ht, std::string xat, double LowerXlim, double UpperXlim, int hnob = 50);
+    //    hPlot1D(std::string fState, std::string dRegion, std::string hst, std::string ht, std::string xat, double LowerXlim, double UpperXlim, int hnob = 100);
 
     hPlot1D(std::string hst, std::string ht, std::string xat, double LowerXlim, double UpperXlim, int hnob = 50);
+    //    hPlot1D(std::string hst, std::string ht, std::string xat, double LowerXlim, double UpperXlim, int hnob = 100);
 
     // histPlotter1D function -------------------------------------------------------------------------------------------------------------------------------------------
 
     // histPlotter1D function (old):
     void histPlotter1D(TCanvas *HistogramCanvas, TH1D *Histogram1D, bool normalize_Histogram, bool custom_normalization, double custom_normalization_factor, std::string Histogram1DTitle,
-                       std::string Histogram1DTitleReactions, double titleSize, double labelSizex, double labelSizey, TList *Histogram_list, vector<bool> &HistoList_skipCleaning,
-                       vector<TObject *> &HistoList, int lineWidth, bool LogScalePlot, bool LinearScalePlot, THStack *Histogram1DStack, std::string Histogram1DSaveName,
-                       std::string Histogram1DSaveNamePath, std::string finalState, int kColor = 1, bool centerTitle = true, bool AddToStack = false, bool showStats = true,
-                       bool title2 = false, bool apply_plot_cuts = false, double plot_cuts = 0, double plot_Xmax = 0, bool plot_max = true);
+                       std::string Histogram1DTitleReactions, double titleSize, double labelSizex, double labelSizey, TList *Histogram_list, vector<TObject *> &HistoList, int lineWidth,
+                       bool LogScalePlot, bool LinearScalePlot, THStack *Histogram1DStack, std::string Histogram1DSaveName, std::string Histogram1DSaveNamePath, std::string finalState,
+                       int kColor = 1, bool centerTitle = true, bool AddToStack = false, bool showStats = true, bool title2 = false, bool apply_plot_cuts = false, double plot_cuts = 0,
+                       double plot_Xmax = 0, bool plot_max = true);
 
     // histPlotter1D function (old, stackless):
     void histPlotter1D(TCanvas *HistogramCanvas, TH1D *Histogram1D, bool normalize_Histogram, bool custom_normalization, double custom_normalization_factor, std::string Histogram1DTitle,
-                       std::string Histogram1DTitleReactions, double titleSize, double labelSizex, double labelSizey, TList *Histogram_list, vector<bool> &HistoList_skipCleaning,
-                       vector<TObject *> &HistoList, int lineWidth, bool LogScalePlot, bool LinearScalePlot, std::string Histogram1DSaveName, const std::string &Histogram1DSaveNamePath,
-                       std::string finalState, bool centerTitle = true, bool showStats = true, bool title2 = false, bool apply_plot_cuts = false, double plot_cuts = 0, double plot_Xmax = 0,
-                       bool plot_max = true);
+                       std::string Histogram1DTitleReactions, double titleSize, double labelSizex, double labelSizey, TList *Histogram_list, vector<TObject *> &HistoList, int lineWidth,
+                       bool LogScalePlot, bool LinearScalePlot, std::string Histogram1DSaveName, const std::string &Histogram1DSaveNamePath, std::string finalState, bool centerTitle = true,
+                       bool showStats = true, bool title2 = false, bool apply_plot_cuts = false, double plot_cuts = 0, double plot_Xmax = 0, bool plot_max = true);
 
     // histPlotter1D function (unsymmetric cuts for SF plots):
     void histPlotter1D(TCanvas *HistogramCanvas, TH1D *Histogram1D, bool normalize_Histogram, bool custom_normalization, double custom_normalization_factor, std::string Histogram1DTitle,
-                       std::string Histogram1DTitleReactions, TList *Histogram_list, vector<bool> &HistoList_skipCleaning, vector<TObject *> &HistoList, int lineWidth, bool LogScalePlot,
-                       bool LinearScalePlot, THStack *Histogram1DStack, std::string Histogram1DSaveName, std::string Histogram1DSaveNamePath, std::string finalState, int kColor = 1,
-                       bool AddToStack = false, bool showStats = true, bool title2 = false, bool apply_plot_cuts = false, double plot_upper_cut = 0, double plot_lower_cut = 0,
-                       double plot_Xmax = 0, bool plot_max = true);
+                       std::string Histogram1DTitleReactions, TList *Histogram_list, vector<TObject *> &HistoList, int lineWidth, bool LogScalePlot, bool LinearScalePlot,
+                       THStack *Histogram1DStack, std::string Histogram1DSaveName, std::string Histogram1DSaveNamePath, std::string finalState, int kColor = 1, bool AddToStack = false,
+                       bool showStats = true, bool title2 = false, bool apply_plot_cuts = false, double plot_upper_cut = 0, double plot_lower_cut = 0, double plot_Xmax = 0,
+                       bool plot_max = true);
 
     // histPlotter1D function (unsymmetric cuts for SF plots, stackless):
     void histPlotter1D(TCanvas *HistogramCanvas, TH1D *Histogram1D, bool normalize_Histogram, bool custom_normalization, double custom_normalization_factor, std::string Histogram1DTitle,
-                       std::string Histogram1DTitleReactions, TList *Histogram_list, vector<bool> &HistoList_skipCleaning, vector<TObject *> &HistoList, int lineWidth, bool LogScalePlot,
-                       bool LinearScalePlot, std::string Histogram1DSaveName, const std::string &Histogram1DSaveNamePath, std::string finalState, bool showStats = true, bool title2 = false,
+                       std::string Histogram1DTitleReactions, TList *Histogram_list, vector<TObject *> &HistoList, int lineWidth, bool LogScalePlot, bool LinearScalePlot,
+                       std::string Histogram1DSaveName, const std::string &Histogram1DSaveNamePath, std::string finalState, bool showStats = true, bool title2 = false,
                        bool apply_plot_cuts = false, double plot_upper_cut = 0, double plot_lower_cut = 0, double plot_Xmax = 0, bool plot_max = true);
 
     // histPlotter1D function (one-sided cuts for Nphe plots):
     void histPlotter1D(TCanvas *HistogramCanvas, TH1D *Histogram1D, bool normalize_Histogram, bool custom_normalization, double custom_normalization_factor, std::string Histogram1DTitle,
-                       std::string Histogram1DTitleReactions, TList *Histogram_list, vector<bool> &HistoList_skipCleaning, vector<TObject *> &HistoList, int lineWidth, bool LogScalePlot,
-                       bool LinearScalePlot, THStack *Histogram1DStack, std::string Histogram1DSaveName, std::string Histogram1DSaveNamePath, std::string finalState, int kColor = 1,
-                       bool AddToStack = false, bool showStats = true, bool title2 = false, bool apply_plot_cuts = false, double plot_cut = 0, double plot_Xmax = 0, bool plot_max = true);
+                       std::string Histogram1DTitleReactions, TList *Histogram_list, vector<TObject *> &HistoList, int lineWidth, bool LogScalePlot, bool LinearScalePlot,
+                       THStack *Histogram1DStack, std::string Histogram1DSaveName, std::string Histogram1DSaveNamePath, std::string finalState, int kColor = 1, bool AddToStack = false,
+                       bool showStats = true, bool title2 = false, bool apply_plot_cuts = false, double plot_cut = 0, double plot_Xmax = 0, bool plot_max = true);
 
     // histPlotter1D function (one-sided cuts for Nphe plots, stackless):
     void histPlotter1D(TCanvas *HistogramCanvas, TH1D *Histogram1D, bool normalize_Histogram, bool custom_normalization, double custom_normalization_factor, std::string Histogram1DTitle,
-                       std::string Histogram1DTitleReactions, TList *Histogram_list, vector<bool> &HistoList_skipCleaning, vector<TObject *> &HistoList, int lineWidth, bool LogScalePlot,
-                       bool LinearScalePlot, std::string Histogram1DSaveName, const std::string &Histogram1DSaveNamePath, std::string finalState, bool showStats = true, bool title2 = false,
+                       std::string Histogram1DTitleReactions, TList *Histogram_list, vector<TObject *> &HistoList, int lineWidth, bool LogScalePlot, bool LinearScalePlot,
+                       std::string Histogram1DSaveName, const std::string &Histogram1DSaveNamePath, std::string finalState, bool showStats = true, bool title2 = false,
                        bool apply_plot_cuts = false, double plot_cut = 0, double plot_Xmax = 0, bool plot_max = true);
 
     // histPlotter1D function (Chi2 for separate plots):
     void histPlotter1D(TCanvas *HistogramCanvas1, TCanvas *HistogramCanvas, TH1D *Histogram1D, bool normalize_Histogram, bool custom_normalization, double custom_normalization_factor,
                        std::string Histogram1DTitle1, std::string Histogram1DTitle2, std::string Histogram1DTitle3, std::string Particle, double titleSize, double labelSizex,
-                       double labelSizey, TList *Histogram_list, vector<bool> &HistoList_skipCleaning, vector<TObject *> &HistoList, int lineWidth, bool LogScalePlot, bool LinearScalePlot,
-                       THStack *Histogram1DStack, std::string Histogram1DSaveName, std::string Histogram1DSaveNamePath, int kColor = 1, bool centerTitle = true, bool AddToStack = false,
-                       bool showStats = true, bool title2 = false, bool apply_plot_cuts = false, double plot_cuts = 0, double plot_Xmax = 0, bool plot_max = true);
+                       double labelSizey, TList *Histogram_list, vector<TObject *> &HistoList, int lineWidth, bool LogScalePlot, bool LinearScalePlot, THStack *Histogram1DStack,
+                       std::string Histogram1DSaveName, std::string Histogram1DSaveNamePath, int kColor = 1, bool centerTitle = true, bool AddToStack = false, bool showStats = true,
+                       bool title2 = false, bool apply_plot_cuts = false, double plot_cuts = 0, double plot_Xmax = 0, bool plot_max = true);
 
     // histPlotter1D function (Chi2 for separate plots, stackless):
     void histPlotter1D(TCanvas *HistogramCanvas1, TCanvas *HistogramCanvas, TH1D *Histogram1D, bool normalize_Histogram, bool custom_normalization, double custom_normalization_factor,
                        std::string Histogram1DTitle1, std::string Histogram1DTitle2, std::string Histogram1DTitle3, std::string Particle, double titleSize, double labelSizex,
-                       double labelSizey, TList *Histogram_list, vector<bool> &HistoList_skipCleaning, vector<TObject *> &HistoList, int lineWidth, bool LogScalePlot, bool LinearScalePlot,
-                       std::string Histogram1DSaveName, const std::string &Histogram1DSaveNamePath, bool centerTitle = true, bool showStats = true, bool title2 = false,
-                       bool apply_plot_cuts = false, double plot_cuts = 0, double plot_Xmax = 0, bool plot_max = true);
+                       double labelSizey, TList *Histogram_list, vector<TObject *> &HistoList, int lineWidth, bool LogScalePlot, bool LinearScalePlot, std::string Histogram1DSaveName,
+                       const std::string &Histogram1DSaveNamePath, bool centerTitle = true, bool showStats = true, bool title2 = false, bool apply_plot_cuts = false, double plot_cuts = 0,
+                       double plot_Xmax = 0, bool plot_max = true);
 
     // histPlotter1D function (unified):
     void histPlotter1D(const std::string &SampleName, TCanvas *HistogramCanvas, TH1D *Histogram1D, bool normalize_Histogram, bool custom_normalization, double custom_normalization_factor,
-                       TList *Histogram_list, vector<bool> &HistoList_skipCleaning, vector<TObject *> &HistoList, THStack *Histogram1DStack, double plot_lower_cut = -9999,
-                       double plot_upper_cut = 9999, double plot_Xmax = 0, bool plot_max = true);
+                       TList *Histogram_list, vector<TObject *> &HistoList, THStack *Histogram1DStack, double plot_lower_cut = -9999, double plot_upper_cut = 9999, double plot_Xmax = 0,
+                       bool plot_max = true);
 
     // histPlotter1D function (unified, stackless):
     void histPlotter1D(const std::string &SampleName, TCanvas *HistogramCanvas, TH1D *Histogram1D, bool normalize_Histogram, bool custom_normalization, double custom_normalization_factor,
-                       TList *Histogram_list, vector<bool> &HistoList_skipCleaning, vector<TObject *> &HistoList, double plot_lower_cut = -9999, double plot_upper_cut = 9999,
-                       double plot_Xmax = 0, bool plot_max = true);
+                       TList *Histogram_list, vector<TObject *> &HistoList, double plot_lower_cut = -9999, double plot_upper_cut = 9999, double plot_Xmax = 0, bool plot_max = true);
 
     // histPlotter1DwFit function:
     void histPlotter1DwFit(const std::string SampleName, TCanvas *HistogramCanvas, TH1D *Histogram1D, bool normalize_Histogram, bool custom_normalization, double custom_normalization_factor,
-                           std::string Histogram1DTitle, std::string Histogram1DTitleReactions, TList *Histogram_list, vector<bool> &HistoList_skipCleaning, vector<TObject *> &HistoList,
-                           std::string Histogram1DSaveName, const std::string &Histogram1DSaveNamePath, std::string finalState, double &plot_Xmax, double &plot_lcut, double &plot_ucut,
-                           double factor, bool plot_max = true, std::string particle = "");
+                           std::string Histogram1DTitle, std::string Histogram1DTitleReactions, TList *Histogram_list, vector<TObject *> &HistoList, std::string Histogram1DSaveName,
+                           const std::string &Histogram1DSaveNamePath, std::string finalState, double &plot_Xmax, double &plot_lcut, double &plot_ucut, double factor, bool plot_max = true,
+                           std::string particle = "");
 
     // FitFunction function:
     Double_t FitFunction(Double_t *v, Double_t *par);
@@ -191,14 +189,15 @@ class hPlot1D {
 
     void SimpleSave(TCanvas *HistogramCanvas) { HistogramCanvas->SaveAs((Histogram1DSaveNamePath + "/" + Histogram1DSaveName + ".pdf").c_str()); }
 
-    void hDrawAndSave(const std::string &SampleName, TCanvas *h1DCanvas, TList *hList, vector<bool> &HistoList_skipCleaning, vector<TObject *> &HistoList, bool normHistogram,
-                      bool cNormalization, double cNormalizationFactor, double plot_lower_cut = -9999, double plot_upper_cut = 9999, double plot_Xmax = 0, bool plotMax = false);
+    void hDrawAndSave(const std::string &SampleName, TCanvas *h1DCanvas, TList *hList, vector<TObject *> &HistoList, bool normHistogram, bool cNormalization, double cNormalizationFactor,
+                      double plot_lower_cut = -9999, double plot_upper_cut = 9999, double plot_Xmax = 0, bool plotMax = false);
 
-    void hDrawAndSave(TCanvas *h1DCanvas, TList *hList, vector<bool> &HistoList_skipCleaning, vector<TObject *> &HistoList, bool normHistogram, bool cNormalization,
-                      double cNormalizationFactor);
+    void hDrawAndSave(TCanvas *h1DCanvas, TList *hList, vector<TObject *> &HistoList, bool normHistogram, bool cNormalization, double cNormalizationFactor);
 
-    void hDrawAndSaveWFit(const std::string &SampleName, TCanvas *h1DCanvas, TList *hList, vector<bool> &HistoList_skipCleaning, vector<TObject *> &HistoList, bool normHistogram,
-                          bool cNormalization, double cNormalizationFactor, double factor, double &plot_lower_cut, double &plot_upper_cut, double &plot_Xmax, bool plotMax = false);
+    void hDrawAndSaveWFit(const std::string &SampleName, TCanvas *h1DCanvas, TList *hList, vector<TObject *> &HistoList, bool normHistogram, bool cNormalization, double cNormalizationFactor,
+                          double factor, double &plot_lower_cut, double &plot_upper_cut, double &plot_Xmax, bool plotMax = false);
+
+    //    void hDrawAndSave(TCanvas *h1DCanvas, TList *hList, bool nHistogram, bool cNormalization, double cNormalizationFactor, std::string FinalState);
 
     void ClearListOfFunctions() {
         auto FuncList = Histogram1D->GetListOfFunctions();
@@ -245,10 +244,26 @@ class hPlot1D {
 
     void SetLowerXlim(double lXlim) { HistogramXAxisLimits.at(0) = lXlim; }
 
+    //    void SetUpperYlim(double uYlim) { UpperYlim = uYlim; }
+
+    //    void SetLowerYlim(double lYlim) { LowerYlim = lYlim; }
+
     void SetXAxisLimits(double uXlim, double lXlim) {
         HistogramXAxisLimits.at(1) = uXlim;
         HistogramXAxisLimits.at(0) = lXlim;
     }
+
+    //    void SetYAxisLimits(double uYlim, double lYlim) {
+    //        UpperYlim = uYlim;
+    //        LowerYlim = lYlim;
+    //    }
+
+    //    void SetAxisLimits(double uXlim, double lXlim, double uYlim, double lYlim) {
+    //        HistogramXAxisLimits.at(1) = uXlim;
+    //        HistogramXAxisLimits.at(0) = lXlim;
+    //        UpperYlim = uYlim;
+    //        LowerYlim = lYlim;
+    //    }
 
     void SetNormalizeHistogram(bool nHistogram) { NormalizeHistogram = nHistogram; }
 
@@ -262,11 +277,17 @@ class hPlot1D {
 
     void SetLabelSizex(double lSizex) { Histogram1DTitleSizes.at(1) = lSizex; }
 
+    //    void SetLabelSizey(double lSizey) { LabelSizey = lSizey; }
+
+    //    void SetHistogramList(TList *hList) { *HistogramList = hList; }
+
     void SetLineWidth(int lWidth) { LineWidth = lWidth; }
 
     void SetLogScalePlot(bool lsPlot) { LogScalePlot = lsPlot; }
 
     void SetLinearScalePlot(bool lsPlot) { LinearScalePlot = lsPlot; }
+
+    //    void SetHistogram1DStack(THStack *h1dStack) { *Histogram1DStack = h1dStack; }
 
     void SetHistogram1DSaveName(std::string h1dsName) { Histogram1DSaveName = h1dsName; }
 
@@ -340,8 +361,10 @@ class hPlot1D {
     std::string GetHistogram1DSaveName() const { return Histogram1DSaveName; }
 
     std::string GetHistogram1DSaveNamePath() const { return Histogram1DSaveNamePath; }
+    //    std::string GetHistogram1DSaveNamePath() { return Histogram1DSaveNamePath; }
 
     std::string GetFinalState() const { return FinalState; }
+    //    std::string GetFinalState() { return Histogram1DTitles["FinalState"]; }
 
     std::string GetDetectorRegion() const { return DetectorRegion; }
 

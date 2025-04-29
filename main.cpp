@@ -43,8 +43,8 @@ int main() {
 
         ++Num_of_Analyzed_samples;
 
-        // // Delete all ROOT objects whose class names start with TH (to prevent a memory leak):
-        // if (AnalyzeFilePath_v.size() > 1) { gDirectory->Clear(); }
+        // Delete all ROOT objects whose class names start with TH (to prevent a memory leak):
+        if (AnalyzeFilePath_v.size() > 1) { gDirectory->Clear(); }
     }
 
     if (AnalyzeFilePath_v.size() > 1 && zipping::Collect_all_zip_files) { CollectZipFiles(path_definitions::custom_plots_path_prefix); }

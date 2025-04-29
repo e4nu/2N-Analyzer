@@ -107,47 +107,13 @@ class ParticleID {
 
     ParticleID() = default;
 
-    // destructor ------------------------------------------------------------------------------------------------------------------------------------
-
-    ~ParticleID() {
-        delete hTheta_pi_vs_theta_pj_for_Theta_pi_pj_20_BC_2idp_2p;
-        hTheta_pi_vs_theta_pj_for_Theta_pi_pj_20_BC_2idp_2p = nullptr;
-        delete hTheta_pi_vs_theta_pj_for_Theta_pi_pj_20_RE_2idp_2p;
-        hTheta_pi_vs_theta_pj_for_Theta_pi_pj_20_RE_2idp_2p = nullptr;
-        delete hTheta_pi_vs_theta_pj_for_Theta_pi_pj_20_BC_3idp_2p;
-        hTheta_pi_vs_theta_pj_for_Theta_pi_pj_20_BC_3idp_2p = nullptr;
-        delete hTheta_pi_vs_theta_pj_for_Theta_pi_pj_20_AE_3idp_2p;
-        hTheta_pi_vs_theta_pj_for_Theta_pi_pj_20_AE_3idp_2p = nullptr;
-        delete hTheta_pi_vs_theta_pj_for_Theta_pi_pj_20_BC_4idp_2p;
-        hTheta_pi_vs_theta_pj_for_Theta_pi_pj_20_BC_4idp_2p = nullptr;
-        delete hTheta_pi_vs_theta_pj_for_Theta_pi_pj_20_AE_4idp_2p;
-        hTheta_pi_vs_theta_pj_for_Theta_pi_pj_20_AE_4idp_2p = nullptr;
-
-        delete hTheta_pi_vs_theta_pj_forall_Theta_pi_pj_BC_2idp_2p;
-        hTheta_pi_vs_theta_pj_forall_Theta_pi_pj_BC_2idp_2p = nullptr;
-        delete hTheta_pi_vs_theta_pj_forall_Theta_pi_pj_RE_2idp_2p;
-        hTheta_pi_vs_theta_pj_forall_Theta_pi_pj_RE_2idp_2p = nullptr;
-        delete hTheta_pi_vs_theta_pj_forall_Theta_pi_pj_BC_3idp_2p;
-        hTheta_pi_vs_theta_pj_forall_Theta_pi_pj_BC_3idp_2p = nullptr;
-        delete hTheta_pi_vs_theta_pj_forall_Theta_pi_pj_AE_3idp_2p;
-        hTheta_pi_vs_theta_pj_forall_Theta_pi_pj_AE_3idp_2p = nullptr;
-        delete hTheta_pi_vs_theta_pj_forall_Theta_pi_pj_BC_4idp_2p;
-        hTheta_pi_vs_theta_pj_forall_Theta_pi_pj_BC_4idp_2p = nullptr;
-        delete hTheta_pi_vs_theta_pj_forall_Theta_pi_pj_AE_4idp_2p;
-        hTheta_pi_vs_theta_pj_forall_Theta_pi_pj_AE_4idp_2p = nullptr;
-    }
-
     // NeutronECAL_Cut_Veto function -----------------------------------------------------------------------------------------------------------------
 
     bool NeutronECAL_Cut_Veto(vector<region_part_ptr> &allParticles, vector<region_part_ptr> &electrons, const double &beamE, const int &index, const double &veto_cut);
 
     // ChargedParticleID function --------------------------------------------------------------------------------------------------------------------
 
-    // The original function for charged particle PID. Does not distinguish between FD and CD particles when applies momentum threshold
     vector<int> ChargedParticleID(vector<region_part_ptr> &Particle, const DSCuts &Momentum_th);
-
-    // The updated function for charged particle PID. Does distinguish between FD and CD particles when applies momentum threshold
-    vector<int> ChargedParticleID(vector<region_part_ptr> &Particle, const DSCuts &FD_mom_th, const DSCuts &CD_mom_th);
 
     // FDNeutralParticle function --------------------------------------------------------------------------------------------------------------------
 
