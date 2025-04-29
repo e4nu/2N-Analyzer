@@ -91,7 +91,7 @@ class hPlot2D {
     // Constructor declaration ------------------------------------------------------------------------------------------------------------------------------------------
     hPlot2D() {}  // Default constructor
 
-    hPlot2D::~hPlot2D() {
+    ~hPlot2D() {
         if (Histogram2D) {
             delete Histogram2D;
             Histogram2D = nullptr;

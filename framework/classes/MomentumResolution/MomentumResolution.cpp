@@ -1287,9 +1287,13 @@ void MomentumResolution::DrawAndSaveResSlices(const std::string &SampleName, TCa
         ResSlicePlots->Add(FittedRecoProtonResSlices), ResSlicePlots->Add(FittedRecoProtonResSlicesWidth), ResSlicePlots->Add(FittedRecoProtonResSlicesMean);
     }
 
-    for (int i = 0; i < TL_NumberOfSlices; i++) { ResTLMomSlices.at(i).hDrawAndSave(SampleNameTemp, h1DCanvas, ResSlicePlots, MomResHistoList, false, true, 1., 9999, 9999, 0, false); }
+    for (int i = 0; i < TL_NumberOfSlices; i++) {
+        ResTLMomSlices.at(i).hDrawAndSave(SampleNameTemp, h1DCanvas, ResSlicePlots, MomResHistoList_skipCleaning, MomResHistoList, false, true, 1., 9999, 9999, 0, false);
+    }
 
-    for (int i = 0; i < Reco_NumberOfSlices; i++) { ResRecoMomSlices.at(i).hDrawAndSave(SampleNameTemp, h1DCanvas, ResSlicePlots, MomResHistoList, false, true, 1., 9999, 9999, 0, false); }
+    for (int i = 0; i < Reco_NumberOfSlices; i++) {
+        ResRecoMomSlices.at(i).hDrawAndSave(SampleNameTemp, h1DCanvas, ResSlicePlots, MomResHistoList_skipCleaning, MomResHistoList, false, true, 1., 9999, 9999, 0, false);
+    }
 
     /* Save res and fitted res plots to plots directory: */
     TFile *PlotsFolder_fout = new TFile((plots_path + "/" + MomResParticle + "_resolution_plots_-_" + SampleName + ".root").c_str(), "recreate");

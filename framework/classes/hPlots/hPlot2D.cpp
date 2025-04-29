@@ -130,8 +130,8 @@ hPlot2D::hPlot2D(std::string hst, std::string ht, std::string xat, std::string y
 // histPlotter2D function (regular) -------------------------------------------------------------------------------------------------------------------------------------
 
 #pragma region /* histPlotter2D function (regular) */
-void hPlot2D::histPlotter2D(const std::string &SampleName, TCanvas *HistogramCanvas, TH2D *Histogram2D, TList *Histogram_list, vector<bool> HistoList_skipCleaning,
-                            vector<TObject *> &HistoList, std::string Histogram2DSaveNameDir, std::string Histogram2DSaveName, bool showStats = true) {
+void hPlot2D::histPlotter2D(const std::string &SampleName, TCanvas *HistogramCanvas, TH2D *Histogram2D, TList *Histogram_list, vector<bool> &HistoList_skipCleaning,
+                            vector<TObject *> &HistoList, std::string Histogram2DSaveNameDir, std::string Histogram2DSaveName, bool showStats) {
     HistogramCanvas->cd();
 
     gStyle->SetOptStat("ourmen");
@@ -216,7 +216,7 @@ void hPlot2D::histPlotter2D(const std::string &SampleName, TCanvas *HistogramCan
 
 #pragma region /* hDrawAndSave function (regular) */
 void hPlot2D::hDrawAndSave(const std::string &SampleName, TCanvas *h2DCanvas, TList *hList, vector<bool> &HistoList_skipCleaning, vector<TObject *> &HistoList, bool showStats) {
-    histPlotter2D(SampleName, h2DCanvas, Histogram2D, hList, HistoList, Histogram2DSaveNamePath, Histogram2DSaveName, showStats);
+    histPlotter2D(SampleName, h2DCanvas, Histogram2D, hList, HistoList_skipCleaning, HistoList, Histogram2DSaveNamePath, Histogram2DSaveName, showStats);
 }
 #pragma endregion
 
@@ -227,7 +227,7 @@ void hPlot2D::hDrawAndSave(const std::string &SampleName, TCanvas *h2DCanvas, TL
 // histPlotter2D function (Beta vs. P plots, all particles) -------------------------------------------------------------------------------------------------------------
 
 #pragma region /* histPlotter2D function (Beta vs. P plots, all particles) */
-void hPlot2D::histPlotter2D(const std::string &SampleName, TCanvas *HistogramCanvas, TH2D *Histogram2D, TList *Histogram_list, vector<bool> HistoList_skipCleaning,
+void hPlot2D::histPlotter2D(const std::string &SampleName, TCanvas *HistogramCanvas, TH2D *Histogram2D, TList *Histogram_list, vector<bool> &HistoList_skipCleaning,
                             vector<TObject *> &HistoList, std::string Histogram2DSaveNameDir, std::string Histogram2DSaveName, TF1 *Beta_function1, TF1 *Beta_function2, TF1 *Beta_function3,
                             TF1 *Beta_function4, TF1 *Beta_function5, TF1 *Beta_function6, TF1 *Beta_function7, TF1 *Beta_function8, TF1 *Beta_function9, bool showStats = true) {
     HistogramCanvas->cd();
@@ -310,15 +310,15 @@ void hPlot2D::histPlotter2D(const std::string &SampleName, TCanvas *HistogramCan
 void hPlot2D::hDrawAndSave(const std::string &SampleName, TCanvas *h2DCanvas, TList *hList, vector<bool> &HistoList_skipCleaning, vector<TObject *> &HistoList, TF1 *Beta_function1,
                            TF1 *Beta_function2, TF1 *Beta_function3, TF1 *Beta_function4, TF1 *Beta_function5, TF1 *Beta_function6, TF1 *Beta_function7, TF1 *Beta_function8,
                            TF1 *Beta_function9, bool showStats) {
-    histPlotter2D(SampleName, h2DCanvas, Histogram2D, hList, HistoList, Histogram2DSaveNamePath, Histogram2DSaveName, Beta_function1, Beta_function2, Beta_function3, Beta_function4,
-                  Beta_function5, Beta_function6, Beta_function7, Beta_function8, Beta_function9, showStats);
+    histPlotter2D(SampleName, h2DCanvas, Histogram2D, hList, HistoList_skipCleaning, HistoList, Histogram2DSaveNamePath, Histogram2DSaveName, Beta_function1, Beta_function2, Beta_function3,
+                  Beta_function4, Beta_function5, Beta_function6, Beta_function7, Beta_function8, Beta_function9, showStats);
 }
 #pragma endregion
 
 // histPlotter2D function (Beta vs. P plots, single particle) -----------------------------------------------------------------------------------------------------------
 
 #pragma region /* histPlotter2D function (Beta vs. P plots, single particle) */
-void hPlot2D::histPlotter2D(const std::string &SampleName, TCanvas *HistogramCanvas, TH2D *Histogram2D, TList *Histogram_list, vector<bool> HistoList_skipCleaning,
+void hPlot2D::histPlotter2D(const std::string &SampleName, TCanvas *HistogramCanvas, TH2D *Histogram2D, TList *Histogram_list, vector<bool> &HistoList_skipCleaning,
                             vector<TObject *> &HistoList, std::string Histogram2DSaveNameDir, std::string Histogram2DSaveName, TF1 *Beta_function1, std::string particle1,
                             bool showStats = true, bool plot_legend = true) {
     HistogramCanvas->cd();
@@ -401,14 +401,15 @@ void hPlot2D::histPlotter2D(const std::string &SampleName, TCanvas *HistogramCan
 #pragma region /* hDrawAndSave function (Beta vs. P plots, single particle) */
 void hPlot2D::hDrawAndSave(const std::string &SampleName, TCanvas *h2DCanvas, TList *hList, vector<bool> &HistoList_skipCleaning, vector<TObject *> &HistoList, TF1 *Beta_function1,
                            std::string particle1, bool showStats, bool plot_legend) {
-    histPlotter2D(SampleName, h2DCanvas, Histogram2D, hList, HistoList, Histogram2DSaveNamePath, Histogram2DSaveName, Beta_function1, particle1, showStats, plot_legend);
+    histPlotter2D(SampleName, h2DCanvas, Histogram2D, hList, HistoList_skipCleaning, HistoList, Histogram2DSaveNamePath, Histogram2DSaveName, Beta_function1, particle1, showStats,
+                  plot_legend);
 }
 #pragma endregion
 
 // histPlotter2D function (Beta vs. P plots, 3 particles (by charge)) -----------------------------------------------------------------------------------------------------------
 
 #pragma region /* histPlotter2D function (Beta vs. P plots, 3 particles (by charge)) */
-void hPlot2D::histPlotter2D(const std::string &SampleName, TCanvas *HistogramCanvas, TH2D *Histogram2D, TList *Histogram_list, vector<bool> HistoList_skipCleaning,
+void hPlot2D::histPlotter2D(const std::string &SampleName, TCanvas *HistogramCanvas, TH2D *Histogram2D, TList *Histogram_list, vector<bool> &HistoList_skipCleaning,
                             vector<TObject *> &HistoList, std::string Histogram2DSaveNameDir, std::string Histogram2DSaveName, TF1 *Beta_function1, std::string particle1,
                             TF1 *Beta_function2, std::string particle2, TF1 *Beta_function3, std::string particle3, bool showStats, bool plot_legend) {
     HistogramCanvas->cd();
@@ -497,8 +498,8 @@ void hPlot2D::histPlotter2D(const std::string &SampleName, TCanvas *HistogramCan
 #pragma region /* hDrawAndSave function (Beta vs. P plots, 3 particles (by charge)) */
 void hPlot2D::hDrawAndSave(const std::string &SampleName, TCanvas *h2DCanvas, TList *hList, vector<bool> &HistoList_skipCleaning, vector<TObject *> &HistoList, TF1 *Beta_function1,
                            std::string particle1, TF1 *Beta_function2, std::string particle2, TF1 *Beta_function3, std::string particle3, bool showStats, bool plot_legend) {
-    histPlotter2D(SampleName, h2DCanvas, Histogram2D, hList, HistoList, Histogram2DSaveNamePath, Histogram2DSaveName, Beta_function1, particle1, Beta_function2, particle2, Beta_function3,
-                  particle3, showStats, plot_legend);
+    histPlotter2D(SampleName, h2DCanvas, Histogram2D, hList, HistoList_skipCleaning, HistoList, Histogram2DSaveNamePath, Histogram2DSaveName, Beta_function1, particle1, Beta_function2,
+                  particle2, Beta_function3, particle3, showStats, plot_legend);
 }
 #pragma endregion
 
