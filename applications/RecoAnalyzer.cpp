@@ -289,7 +289,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
         /* Cut variable plots */
         // Cut_plots_master = true;
-        Cut_plots_master = false;  // Master cut plots selector
+        Cut_plots_master = true;  // Master cut plots selector
         // Nphe_plots = true, Chi2_plots = true, Vertex_plots = true, SF_plots = true, fiducial_plots = true;
         Nphe_plots = false, Chi2_plots = false, Vertex_plots = false, SF_plots = false, fiducial_plots = false;
 
@@ -17700,20 +17700,20 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             }
 
             /* Setting variabels for reaction monitoring */
-            TLorentzVector e_out_nFDpCD_4v(P_e_nFDpCD_3v, E_e_nFDpCD);
-            double Q2_nFDpCD = analysis_physics::CalcQ2(beam_4v, e_out_nFDpCD_4v);
-            double xB_nFDpCD = analysis_physics::CalcxB(beam_4v, e_out_nFDpCD_4v, omega_nFDpCD, constants::m_p);
-            TVector3 P_miss_1N_nFDpCD_3v = analysis_physics::CalcPmiss1N3v(P_nL_nFDpCD_3v, q_nFDpCD_3v);                        // Missing momentum (1N)
-            double E_miss_1N_nFDpCD = analysis_physics::CalcEmiss1N(omega_nFDpCD, E_nFD_nFDpCD, constants::m_p);                // Missing energy (1N)
-            TVector3 P_miss_2N_nFDpCD_3v = analysis_physics::CalcPmiss2N3v(P_nL_nFDpCD_3v, P_nR_nFDpCD_3v, q_nFDpCD_3v);        // Missing momentum (2N)
-            double E_miss_2N_nFDpCD = analysis_physics::CalcEmiss2N(omega_nFDpCD, E_nFD_nFDpCD, E_pCD_nFDpCD, constants::m_p);  // Missing energy (2N)
             // TLorentzVector e_out_nFDpCD_4v(P_e_nFDpCD_3v, E_e_nFDpCD);
             // double Q2_nFDpCD = analysis_physics::CalcQ2(beam_4v, e_out_nFDpCD_4v);
             // double xB_nFDpCD = analysis_physics::CalcxB(beam_4v, e_out_nFDpCD_4v, omega_nFDpCD, constants::m_p);
-            // TVector3 P_miss_1N_nFDpCD_3v = analysis_physics::CalcPmiss1N3v(P_nFD_nFDpCD_3v, q_nFDpCD_3v);                       // Missing momentum (1N)
+            // TVector3 P_miss_1N_nFDpCD_3v = analysis_physics::CalcPmiss1N3v(P_nL_nFDpCD_3v, q_nFDpCD_3v);                        // Missing momentum (1N)
             // double E_miss_1N_nFDpCD = analysis_physics::CalcEmiss1N(omega_nFDpCD, E_nFD_nFDpCD, constants::m_p);                // Missing energy (1N)
-            // TVector3 P_miss_2N_nFDpCD_3v = analysis_physics::CalcPmiss2N3v(P_nFD_nFDpCD_3v, P_pCD_nFDpCD_3v, q_nFDpCD_3v);      // Missing momentum (2N)
+            // TVector3 P_miss_2N_nFDpCD_3v = analysis_physics::CalcPmiss2N3v(P_nL_nFDpCD_3v, P_nR_nFDpCD_3v, q_nFDpCD_3v);        // Missing momentum (2N)
             // double E_miss_2N_nFDpCD = analysis_physics::CalcEmiss2N(omega_nFDpCD, E_nFD_nFDpCD, E_pCD_nFDpCD, constants::m_p);  // Missing energy (2N)
+            TLorentzVector e_out_nFDpCD_4v(P_e_nFDpCD_3v, E_e_nFDpCD);
+            double Q2_nFDpCD = analysis_physics::CalcQ2(beam_4v, e_out_nFDpCD_4v);
+            double xB_nFDpCD = analysis_physics::CalcxB(beam_4v, e_out_nFDpCD_4v, omega_nFDpCD, constants::m_p);
+            TVector3 P_miss_1N_nFDpCD_3v = analysis_physics::CalcPmiss1N3v(P_nFD_nFDpCD_3v, q_nFDpCD_3v);                       // Missing momentum (1N)
+            double E_miss_1N_nFDpCD = analysis_physics::CalcEmiss1N(omega_nFDpCD, E_nFD_nFDpCD, constants::m_p);                // Missing energy (1N)
+            TVector3 P_miss_2N_nFDpCD_3v = analysis_physics::CalcPmiss2N3v(P_nFD_nFDpCD_3v, P_pCD_nFDpCD_3v, q_nFDpCD_3v);      // Missing momentum (2N)
+            double E_miss_2N_nFDpCD = analysis_physics::CalcEmiss2N(omega_nFDpCD, E_nFD_nFDpCD, E_pCD_nFDpCD, constants::m_p);  // Missing energy (2N)
 
             /* Setting particle angles */
             double Theta_L_nFDpCD = P_nL_nFDpCD_3v.Theta() * 180.0 / pi, Phi_L_nFDpCD = P_nL_nFDpCD_3v.Phi() * 180.0 / pi;
@@ -27231,10 +27231,10 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     // HistoList_skipCleaning.clear();
 
     // Then clean the other pointers
-    delete plots;
-    delete MainCanvas;
-    delete plots_fout;
-    delete ACorr_data_fout;
+    // delete plots;
+    // delete MainCanvas;
+    // delete plots_fout;
+    // delete ACorr_data_fout;
 #pragma endregion
 
     std::cout << "\n\n\033[33mFinished run over:\033[0m " << parameters.SampleName << "\n\n";
