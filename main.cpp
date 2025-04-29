@@ -18,7 +18,7 @@ int main() {
     auto start = std::chrono::system_clock::now();  // Start counting running time
 
     int Num_of_Analyzed_samples = 0;
-    § std::cout << "\033[33m" << "\nLooping over sample chain...\n" << "\033[0m";
+    std::cout << "\033[33m" << "\nLooping over sample chain...\n" << "\033[0m";
 
     for (int i = 0; i < AnalyzeFilePath_v.size(); i++) {
         std::string AnalyzeFilePath0 = AnalyzeFilePath_v.at(i);
