@@ -432,7 +432,7 @@ Directories::Directories(const std::string &plots_path, const bool Clear_Old_Dir
         Find(Angle_Daughter_Folders, "06_nFDpCD/17_Ghost_tracks_handling_nFDpCD_plots/02_Double_detection_nFDpCD_plots/00_Double_detection_monitoring_nFDpCD_plots") + "/";
     Angle_dir_map["Neutron_veto_nFDpCD_Directory"] = Plots_Folder + "/" + Angle_Parent_Directory + "/" + Find(Angle_Daughter_Folders, "06_nFDpCD/18_Neutron_veto_nFDpCD_plots") + "/";
 
-    Angle_dir_map["Phi_Proton_1epFDpCDXy_Directory"] = Plots_Folder + "/" + Angle_Parent_Directory + "/" + Find(Angle_Daughter_Folders, "07_1epFDpCDXy/04_Phi_Proton_1epFDpCDXy_plots") + "/";
+    Angle_dir_map["Phi_Proton_1e2pXy_Directory"] = Plots_Folder + "/" + Angle_Parent_Directory + "/" + Find(Angle_Daughter_Folders, "07_1e2pXy/04_Phi_Proton_1e2pXy_plots") + "/";
 #pragma endregion
 
 #pragma region /* Momentum transfer directories */
@@ -450,7 +450,7 @@ Directories::Directories(const std::string &plots_path, const bool Clear_Old_Dir
 
     Momentum_transfer_dir_map["Momentum_transfer_1n_Directory"] = Plots_Folder + "/" + Momentum_transfer_Parent_Directory + "/" + Find(Momentum_transfer_Daughter_Folders, "03_1n") + "/";
 
-    Momentum_transfer_dir_map["Momentum_transfer_pFDpCD_Directory"] = Plots_Folder + "/" + Momentum_transfer_Parent_Directory + "/" + Find(Momentum_transfer_Daughter_Folders, "04_2p") + "/";
+    Momentum_transfer_dir_map["Momentum_transfer_2p_Directory"] = Plots_Folder + "/" + Momentum_transfer_Parent_Directory + "/" + Find(Momentum_transfer_Daughter_Folders, "04_2p") + "/";
 
     Momentum_transfer_dir_map["Momentum_transfer_pFDpCD_Directory"] =
         Plots_Folder + "/" + Momentum_transfer_Parent_Directory + "/" + Find(Momentum_transfer_Daughter_Folders, "05_pFDpCD") + "/";
