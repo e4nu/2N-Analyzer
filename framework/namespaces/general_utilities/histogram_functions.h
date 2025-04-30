@@ -219,6 +219,83 @@ void DrawAndSaveHistogramsToPDF(TCanvas *MainCanvas, const std::vector<TObject *
     MainCanvas->Print(Histogram_OutPDF_fileName_char, "pdf");
 }
 
+// FindHistogram function -----------------------------------------------------------------------------------------------------------------------------------------------
+
+/**
+ * @brief Searches a ROOT file for the first histogram whose name contains a given substring and matches a specified class type (e.g., "TH1D", "TH2D", "THStack").
+ *
+ * The function loops through all keys in the ROOT file and checks each object:
+ * - It must inherit from the specified class (e.g., "TH1D")
+ * - Its name must contain the provided substring
+ *
+ * If a matching object is found, it is cloned to detach it from ROOT file ownership and returned to the caller.
+ * This ensures safe memory management and avoids potential use-after-free errors.
+ *
+ * @param file Pointer to the ROOT file to search.
+ * @param histNameSubstring Substring to match in the histogram's name.
+ * @param desiredClass The expected ROOT class name of the object (e.g., "TH1D", "TH2D", "THStack").
+ * @return TObject* Pointer to the cloned histogram object. The caller is responsible for deleting it.
+ *
+ * @example
+ * TFile *file = TFile::Open("histos.root");
+ * TH1D *hist = dynamic_cast<TH1D*>(FindHistogram(file, "myHist", "TH1D"));
+ * if (hist) hist->Draw();
+ */
+TObject *FindHistogram(TFile *file, const char *histNameSubstring, const std::string &desiredClass) {
+    bool PrintOut = false;
+    bool PrintOut1 = false;
+
+    TObject *foundHistogram = nullptr;
+    bool histogramFound = false;
+    std::string foundHistName;
+
+    // Step 1: Create an iterator over all keys in the ROOT file
+    TIter next(file->GetListOfKeys());
+    TKey *key;
+
+    // Step 2: Loop through each key in the ROOT file
+    while ((key = (TKey *)next())) {
+        // Step 2a: Read the object from the file
+        TObject *obj = key->ReadObj();
+        if (!obj) continue; // If object couldn't be read, skip
+
+        std::string objName = obj->GetName();
+        if (PrintOut1) std::cout << objName << "\n\n";
+
+        // Step 2b: Check if the object matches the name substring and inherits from the desired class
+        // - If either check fails, delete the object and continue to the next key
+        if (!basic_tools::FindSubstring(objName, histNameSubstring) ||
+            !obj->IsA()->InheritsFrom(desiredClass.c_str())) {
+            delete obj;  // Safe to delete since we won't keep this object
+            continue;
+        }
+
+        // Step 2c: If matches, clone the object to detach from file and safely return to caller
+        foundHistogram = obj->Clone();
+        // Step 2d: Unlink from any ROOT directory (avoids automatic file cleanup)
+        foundHistogram->SetDirectory(nullptr);
+        histogramFound = true;
+        foundHistName = obj->ClassName();
+
+        // Step 2e: Delete the original object (we only keep the clone)
+        delete obj;
+        break; // Only return the first matching histogram
+    }
+
+    // Step 3: Handle the case where no histogram was found
+    if (!histogramFound) {
+        std::cerr << "\n\nFindHistogram: could not find histogram!\n";
+        std::cerr << "Histogram name substring = " << histNameSubstring << "\n";
+        exit(1);
+    } else if (PrintOut) {
+        std::cout << "\n\nFindHistogram: histogram found!\n";
+        std::cout << "FoundHistName = " << foundHistName << "\n";
+    }
+
+    // Step 4: Return the cloned histogram (caller takes ownership and must delete)
+    return foundHistogram;
+}
+
 // DrawEmptyHistogramNotice function ------------------------------------------------------------------------------------------------------------------------------------
 
 // This function saves some reusable code. It is also defined in hsPlots, yet it is placed here to avoid include errors
@@ -342,7 +419,6 @@ void DrawTHStack(THStack *stack, bool useLogScale) {
 
     // Draw the stack
     stack->Draw("NOSTACK");
-    // stack->Draw("NOSTACK HIST");
 
     // Add legend if needed
     if (H1D_All_Int && H1D_All_Int->Integral() != 0.) {
@@ -388,6 +464,7 @@ void CompareHistograms(const std::vector<TObject *> &histograms, const std::stri
     // Linear Scale Canvas
     // ------------------
     TCanvas TempCanvas("TempCanvas", "Histograms - Linear Scale", 1000 * nCols, 750 * nRows);
+    // TCanvas TempCanvas("TempCanvas", "Histograms - Linear Scale", 1000 * nCols, 750 * nRows);
     TempCanvas.Divide(nCols, nRows);
 
     for (size_t i = 0; i < nHistos; ++i) {
