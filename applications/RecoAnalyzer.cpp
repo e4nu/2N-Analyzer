@@ -16690,20 +16690,20 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             }
 
             /* Setting variabels for reaction monitoring */
-            TLorentzVector e_out_pFDpCD_4v(P_e_pFDpCD_3v, E_e_pFDpCD);
-            double Q2_pFDpCD = analysis_physics::CalcQ2(beam_4v, e_out_pFDpCD_4v);
-            double xB_pFDpCD = analysis_physics::CalcxB(beam_4v, e_out_pFDpCD_4v, omega_pFDpCD, constants::m_p);
-            TVector3 P_miss_1N_pFDpCD_3v = analysis_physics::CalcPmiss1N3v(P_pL_pFDpCD_3v, q_pFDpCD_3v);                        // Missing momentum (1N)
-            double E_miss_1N_pFDpCD = analysis_physics::CalcEmiss1N(omega_pFDpCD, E_pFD_pFDpCD, constants::m_p);                // Missing energy (1N)
-            TVector3 P_miss_2N_pFDpCD_3v = analysis_physics::CalcPmiss2N3v(P_pL_pFDpCD_3v, P_pR_pFDpCD_3v, q_pFDpCD_3v);        // Missing momentum (2N)
-            double E_miss_2N_pFDpCD = analysis_physics::CalcEmiss2N(omega_pFDpCD, E_pFD_pFDpCD, E_pCD_pFDpCD, constants::m_p);  // Missing energy (2N)
             // TLorentzVector e_out_pFDpCD_4v(P_e_pFDpCD_3v, E_e_pFDpCD);
             // double Q2_pFDpCD = analysis_physics::CalcQ2(beam_4v, e_out_pFDpCD_4v);
             // double xB_pFDpCD = analysis_physics::CalcxB(beam_4v, e_out_pFDpCD_4v, omega_pFDpCD, constants::m_p);
-            // TVector3 P_miss_1N_pFDpCD_3v = analysis_physics::CalcPmiss1N3v(P_pFD_pFDpCD_3v, q_pFDpCD_3v);                       // Missing momentum (1N)
+            // TVector3 P_miss_1N_pFDpCD_3v = analysis_physics::CalcPmiss1N3v(P_pL_pFDpCD_3v, q_pFDpCD_3v);                        // Missing momentum (1N)
             // double E_miss_1N_pFDpCD = analysis_physics::CalcEmiss1N(omega_pFDpCD, E_pFD_pFDpCD, constants::m_p);                // Missing energy (1N)
-            // TVector3 P_miss_2N_pFDpCD_3v = analysis_physics::CalcPmiss2N3v(P_pFD_pFDpCD_3v, P_pCD_pFDpCD_3v, q_pFDpCD_3v);      // Missing momentum (2N)
+            // TVector3 P_miss_2N_pFDpCD_3v = analysis_physics::CalcPmiss2N3v(P_pL_pFDpCD_3v, P_pR_pFDpCD_3v, q_pFDpCD_3v);        // Missing momentum (2N)
             // double E_miss_2N_pFDpCD = analysis_physics::CalcEmiss2N(omega_pFDpCD, E_pFD_pFDpCD, E_pCD_pFDpCD, constants::m_p);  // Missing energy (2N)
+            TLorentzVector e_out_pFDpCD_4v(P_e_pFDpCD_3v, E_e_pFDpCD);
+            double Q2_pFDpCD = analysis_physics::CalcQ2(beam_4v, e_out_pFDpCD_4v);
+            double xB_pFDpCD = analysis_physics::CalcxB(beam_4v, e_out_pFDpCD_4v, omega_pFDpCD, constants::m_p);
+            TVector3 P_miss_1N_pFDpCD_3v = analysis_physics::CalcPmiss1N3v(P_pFD_pFDpCD_3v, q_pFDpCD_3v);                       // Missing momentum (1N)
+            double E_miss_1N_pFDpCD = analysis_physics::CalcEmiss1N(omega_pFDpCD, E_pFD_pFDpCD, constants::m_p);                // Missing energy (1N)
+            TVector3 P_miss_2N_pFDpCD_3v = analysis_physics::CalcPmiss2N3v(P_pFD_pFDpCD_3v, P_pCD_pFDpCD_3v, q_pFDpCD_3v);      // Missing momentum (2N)
+            double E_miss_2N_pFDpCD = analysis_physics::CalcEmiss2N(omega_pFDpCD, E_pFD_pFDpCD, E_pCD_pFDpCD, constants::m_p);  // Missing energy (2N)
 
             /* Setting particle angles */
             double Theta_L_pFDpCD = P_pL_pFDpCD_3v.Theta() * 180.0 / pi, Phi_L_pFDpCD = P_pL_pFDpCD_3v.Phi() * 180.0 / pi;  // Theta_L_pFDpCD, Phi_L_pFDpCD in deg
@@ -17161,102 +17161,6 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                                        NeutronsFD_ind);
 
                 // Fill reaction monitoring (pFDpCD)
-                FillByInt1D(hP_miss_1N_All_Int_pFDpCD, hP_miss_1N_QEL_pFDpCD, hP_miss_1N_MEC_pFDpCD, hP_miss_1N_RES_pFDpCD, hP_miss_1N_DIS_pFDpCD, qel, mec, res, dis,
-                            P_miss_1N_pFDpCD_3v.Mag(), Weight_pFDpCD);
-                FillByInt2D(hP_miss_1N_VS_E_miss_1N_All_Int_pFDpCD, hP_miss_1N_VS_E_miss_1N_QEL_pFDpCD, hP_miss_1N_VS_E_miss_1N_MEC_pFDpCD, hP_miss_1N_VS_E_miss_1N_RES_pFDpCD,
-                            hP_miss_1N_VS_E_miss_1N_DIS_pFDpCD, qel, mec, res, dis, P_miss_1N_pFDpCD_3v.Mag(), E_miss_1N_pFDpCD, Weight_pFDpCD);
-                FillByInt2D(hP_miss_1N_VS_P_miss_2N_All_Int_pFDpCD, hP_miss_1N_VS_P_miss_2N_QEL_pFDpCD, hP_miss_1N_VS_P_miss_2N_MEC_pFDpCD, hP_miss_1N_VS_P_miss_2N_RES_pFDpCD,
-                            hP_miss_1N_VS_P_miss_2N_DIS_pFDpCD, qel, mec, res, dis, P_miss_1N_pFDpCD_3v.Mag(), P_miss_2N_pFDpCD_3v.Mag(), Weight_pFDpCD);
-                FillByInt2D(hP_miss_1N_VS_E_miss_2N_All_Int_pFDpCD, hP_miss_1N_VS_E_miss_2N_QEL_pFDpCD, hP_miss_1N_VS_E_miss_2N_MEC_pFDpCD, hP_miss_1N_VS_E_miss_2N_RES_pFDpCD,
-                            hP_miss_1N_VS_E_miss_2N_DIS_pFDpCD, qel, mec, res, dis, P_miss_1N_pFDpCD_3v.Mag(), E_miss_2N_pFDpCD, Weight_pFDpCD);
-                FillByInt2D(hP_miss_1N_VS_Q2_All_Int_pFDpCD, hP_miss_1N_VS_Q2_QEL_pFDpCD, hP_miss_1N_VS_Q2_MEC_pFDpCD, hP_miss_1N_VS_Q2_RES_pFDpCD, hP_miss_1N_VS_Q2_DIS_pFDpCD, qel, mec,
-                            res, dis, P_miss_1N_pFDpCD_3v.Mag(), Q2_pFDpCD, Weight_pFDpCD);
-                FillByInt2D(hP_miss_1N_VS_xB_All_Int_pFDpCD, hP_miss_1N_VS_xB_QEL_pFDpCD, hP_miss_1N_VS_xB_MEC_pFDpCD, hP_miss_1N_VS_xB_RES_pFDpCD, hP_miss_1N_VS_xB_DIS_pFDpCD, qel, mec,
-                            res, dis, P_miss_1N_pFDpCD_3v.Mag(), xB_pFDpCD, Weight_pFDpCD);
-                FillByInt2D(hP_miss_1N_VS_theta_q_All_Int_pFDpCD, hP_miss_1N_VS_theta_q_QEL_pFDpCD, hP_miss_1N_VS_theta_q_MEC_pFDpCD, hP_miss_1N_VS_theta_q_RES_pFDpCD,
-                            hP_miss_1N_VS_theta_q_DIS_pFDpCD, qel, mec, res, dis, P_miss_1N_pFDpCD_3v.Mag(), analysis_math::RadToDeg(q_pFDpCD_3v.Theta()), Weight_pFDpCD);
-                FillByInt2D(hP_miss_1N_VS_theta_q_pFD_All_Int_pFDpCD, hP_miss_1N_VS_theta_q_pFD_QEL_pFDpCD, hP_miss_1N_VS_theta_q_pFD_MEC_pFDpCD, hP_miss_1N_VS_theta_q_pFD_RES_pFDpCD,
-                            hP_miss_1N_VS_theta_q_pFD_DIS_pFDpCD, qel, mec, res, dis, P_miss_1N_pFDpCD_3v.Mag(), Theta_q_p_L_pFDpCD, Weight_pFDpCD);
-                FillByInt2D(hP_miss_1N_VS_theta_q_pCD_All_Int_pFDpCD, hP_miss_1N_VS_theta_q_pCD_QEL_pFDpCD, hP_miss_1N_VS_theta_q_pCD_MEC_pFDpCD, hP_miss_1N_VS_theta_q_pCD_RES_pFDpCD,
-                            hP_miss_1N_VS_theta_q_pCD_DIS_pFDpCD, qel, mec, res, dis, P_miss_1N_pFDpCD_3v.Mag(), Theta_q_p_R_pFDpCD, Weight_pFDpCD);
-
-                FillByInt1D(hE_miss_1N_All_Int_pFDpCD, hE_miss_1N_QEL_pFDpCD, hE_miss_1N_MEC_pFDpCD, hE_miss_1N_RES_pFDpCD, hE_miss_1N_DIS_pFDpCD, qel, mec, res, dis, E_miss_1N_pFDpCD,
-                            Weight_pFDpCD);
-                FillByInt2D(hE_miss_1N_VS_P_miss_2N_All_Int_pFDpCD, hE_miss_1N_VS_P_miss_2N_QEL_pFDpCD, hE_miss_1N_VS_P_miss_2N_MEC_pFDpCD, hE_miss_1N_VS_P_miss_2N_RES_pFDpCD,
-                            hE_miss_1N_VS_P_miss_2N_DIS_pFDpCD, qel, mec, res, dis, E_miss_1N_pFDpCD, P_miss_2N_pFDpCD_3v.Mag(), Weight_pFDpCD);
-                FillByInt2D(hE_miss_1N_VS_E_miss_2N_All_Int_pFDpCD, hE_miss_1N_VS_E_miss_2N_QEL_pFDpCD, hE_miss_1N_VS_E_miss_2N_MEC_pFDpCD, hE_miss_1N_VS_E_miss_2N_RES_pFDpCD,
-                            hE_miss_1N_VS_E_miss_2N_DIS_pFDpCD, qel, mec, res, dis, E_miss_1N_pFDpCD, E_miss_2N_pFDpCD, Weight_pFDpCD);
-                FillByInt2D(hE_miss_1N_VS_Q2_All_Int_pFDpCD, hE_miss_1N_VS_Q2_QEL_pFDpCD, hE_miss_1N_VS_Q2_MEC_pFDpCD, hE_miss_1N_VS_Q2_RES_pFDpCD, hE_miss_1N_VS_Q2_DIS_pFDpCD, qel, mec,
-                            res, dis, E_miss_1N_pFDpCD, Q2_pFDpCD, Weight_pFDpCD);
-                FillByInt2D(hE_miss_1N_VS_xB_All_Int_pFDpCD, hE_miss_1N_VS_xB_QEL_pFDpCD, hE_miss_1N_VS_xB_MEC_pFDpCD, hE_miss_1N_VS_xB_RES_pFDpCD, hE_miss_1N_VS_xB_DIS_pFDpCD, qel, mec,
-                            res, dis, E_miss_1N_pFDpCD, xB_pFDpCD, Weight_pFDpCD);
-                FillByInt2D(hE_miss_1N_VS_theta_q_All_Int_pFDpCD, hE_miss_1N_VS_theta_q_QEL_pFDpCD, hE_miss_1N_VS_theta_q_MEC_pFDpCD, hE_miss_1N_VS_theta_q_RES_pFDpCD,
-                            hE_miss_1N_VS_theta_q_DIS_pFDpCD, qel, mec, res, dis, E_miss_1N_pFDpCD, analysis_math::RadToDeg(q_pFDpCD_3v.Theta()), Weight_pFDpCD);
-                FillByInt2D(hE_miss_1N_VS_theta_q_pFD_All_Int_pFDpCD, hE_miss_1N_VS_theta_q_pFD_QEL_pFDpCD, hE_miss_1N_VS_theta_q_pFD_MEC_pFDpCD, hE_miss_1N_VS_theta_q_pFD_RES_pFDpCD,
-                            hE_miss_1N_VS_theta_q_pFD_DIS_pFDpCD, qel, mec, res, dis, E_miss_1N_pFDpCD, Theta_q_p_L_pFDpCD, Weight_pFDpCD);
-                FillByInt2D(hE_miss_1N_VS_theta_q_pCD_All_Int_pFDpCD, hE_miss_1N_VS_theta_q_pCD_QEL_pFDpCD, hE_miss_1N_VS_theta_q_pCD_MEC_pFDpCD, hE_miss_1N_VS_theta_q_pCD_RES_pFDpCD,
-                            hE_miss_1N_VS_theta_q_pCD_DIS_pFDpCD, qel, mec, res, dis, E_miss_1N_pFDpCD, Theta_q_p_R_pFDpCD, Weight_pFDpCD);
-
-                FillByInt1D(hP_miss_2N_All_Int_pFDpCD, hP_miss_2N_QEL_pFDpCD, hP_miss_2N_MEC_pFDpCD, hP_miss_2N_RES_pFDpCD, hP_miss_2N_DIS_pFDpCD, qel, mec, res, dis,
-                            P_miss_2N_pFDpCD_3v.Mag(), Weight_pFDpCD);
-                FillByInt2D(hP_miss_2N_VS_E_miss_2N_All_Int_pFDpCD, hP_miss_2N_VS_E_miss_2N_QEL_pFDpCD, hP_miss_2N_VS_E_miss_2N_MEC_pFDpCD, hP_miss_2N_VS_E_miss_2N_RES_pFDpCD,
-                            hP_miss_2N_VS_E_miss_2N_DIS_pFDpCD, qel, mec, res, dis, P_miss_2N_pFDpCD_3v.Mag(), E_miss_2N_pFDpCD, Weight_pFDpCD);
-                FillByInt2D(hP_miss_2N_VS_Q2_All_Int_pFDpCD, hP_miss_2N_VS_Q2_QEL_pFDpCD, hP_miss_2N_VS_Q2_MEC_pFDpCD, hP_miss_2N_VS_Q2_RES_pFDpCD, hP_miss_2N_VS_Q2_DIS_pFDpCD, qel, mec,
-                            res, dis, P_miss_2N_pFDpCD_3v.Mag(), Q2_pFDpCD, Weight_pFDpCD);
-                FillByInt2D(hP_miss_2N_VS_xB_All_Int_pFDpCD, hP_miss_2N_VS_xB_QEL_pFDpCD, hP_miss_2N_VS_xB_MEC_pFDpCD, hP_miss_2N_VS_xB_RES_pFDpCD, hP_miss_2N_VS_xB_DIS_pFDpCD, qel, mec,
-                            res, dis, P_miss_2N_pFDpCD_3v.Mag(), xB_pFDpCD, Weight_pFDpCD);
-                FillByInt2D(hP_miss_2N_VS_theta_q_All_Int_pFDpCD, hP_miss_2N_VS_theta_q_QEL_pFDpCD, hP_miss_2N_VS_theta_q_MEC_pFDpCD, hP_miss_2N_VS_theta_q_RES_pFDpCD,
-                            hP_miss_2N_VS_theta_q_DIS_pFDpCD, qel, mec, res, dis, P_miss_2N_pFDpCD_3v.Mag(), analysis_math::RadToDeg(q_pFDpCD_3v.Theta()), Weight_pFDpCD);
-                FillByInt2D(hP_miss_2N_VS_theta_q_pFD_All_Int_pFDpCD, hP_miss_2N_VS_theta_q_pFD_QEL_pFDpCD, hP_miss_2N_VS_theta_q_pFD_MEC_pFDpCD, hP_miss_2N_VS_theta_q_pFD_RES_pFDpCD,
-                            hP_miss_2N_VS_theta_q_pFD_DIS_pFDpCD, qel, mec, res, dis, P_miss_2N_pFDpCD_3v.Mag(), Theta_q_p_L_pFDpCD, Weight_pFDpCD);
-                FillByInt2D(hP_miss_2N_VS_theta_q_pCD_All_Int_pFDpCD, hP_miss_2N_VS_theta_q_pCD_QEL_pFDpCD, hP_miss_2N_VS_theta_q_pCD_MEC_pFDpCD, hP_miss_2N_VS_theta_q_pCD_RES_pFDpCD,
-                            hP_miss_2N_VS_theta_q_pCD_DIS_pFDpCD, qel, mec, res, dis, P_miss_2N_pFDpCD_3v.Mag(), Theta_q_p_R_pFDpCD, Weight_pFDpCD);
-
-                FillByInt1D(hE_miss_2N_All_Int_pFDpCD, hE_miss_2N_QEL_pFDpCD, hE_miss_2N_MEC_pFDpCD, hE_miss_2N_RES_pFDpCD, hE_miss_2N_DIS_pFDpCD, qel, mec, res, dis, E_miss_2N_pFDpCD,
-                            Weight_pFDpCD);
-                FillByInt2D(hE_miss_2N_VS_Q2_All_Int_pFDpCD, hE_miss_2N_VS_Q2_QEL_pFDpCD, hE_miss_2N_VS_Q2_MEC_pFDpCD, hE_miss_2N_VS_Q2_RES_pFDpCD, hE_miss_2N_VS_Q2_DIS_pFDpCD, qel, mec,
-                            res, dis, E_miss_2N_pFDpCD, Q2_pFDpCD, Weight_pFDpCD);
-                FillByInt2D(hE_miss_2N_VS_xB_All_Int_pFDpCD, hE_miss_2N_VS_xB_QEL_pFDpCD, hE_miss_2N_VS_xB_MEC_pFDpCD, hE_miss_2N_VS_xB_RES_pFDpCD, hE_miss_2N_VS_xB_DIS_pFDpCD, qel, mec,
-                            res, dis, E_miss_2N_pFDpCD, xB_pFDpCD, Weight_pFDpCD);
-                FillByInt2D(hE_miss_2N_VS_theta_q_All_Int_pFDpCD, hE_miss_2N_VS_theta_q_QEL_pFDpCD, hE_miss_2N_VS_theta_q_MEC_pFDpCD, hE_miss_2N_VS_theta_q_RES_pFDpCD,
-                            hE_miss_2N_VS_theta_q_DIS_pFDpCD, qel, mec, res, dis, E_miss_2N_pFDpCD, analysis_math::RadToDeg(q_pFDpCD_3v.Theta()), Weight_pFDpCD);
-                FillByInt2D(hE_miss_2N_VS_theta_q_pFD_All_Int_pFDpCD, hE_miss_2N_VS_theta_q_pFD_QEL_pFDpCD, hE_miss_2N_VS_theta_q_pFD_MEC_pFDpCD, hE_miss_2N_VS_theta_q_pFD_RES_pFDpCD,
-                            hE_miss_2N_VS_theta_q_pFD_DIS_pFDpCD, qel, mec, res, dis, E_miss_2N_pFDpCD, Theta_q_p_L_pFDpCD, Weight_pFDpCD);
-                FillByInt2D(hE_miss_2N_VS_theta_q_pCD_All_Int_pFDpCD, hE_miss_2N_VS_theta_q_pCD_QEL_pFDpCD, hE_miss_2N_VS_theta_q_pCD_MEC_pFDpCD, hE_miss_2N_VS_theta_q_pCD_RES_pFDpCD,
-                            hE_miss_2N_VS_theta_q_pCD_DIS_pFDpCD, qel, mec, res, dis, E_miss_2N_pFDpCD, Theta_q_p_R_pFDpCD, Weight_pFDpCD);
-
-                FillByInt2D(hQ2_VS_xB_All_Int_pFDpCD, hQ2_VS_xB_QEL_pFDpCD, hQ2_VS_xB_MEC_pFDpCD, hQ2_VS_xB_RES_pFDpCD, hQ2_VS_xB_DIS_pFDpCD, qel, mec, res, dis, Q2_pFDpCD, xB_pFDpCD,
-                            Weight_pFDpCD);
-                FillByInt2D(hQ2_VS_theta_q_All_Int_pFDpCD, hQ2_VS_theta_q_QEL_pFDpCD, hQ2_VS_theta_q_MEC_pFDpCD, hQ2_VS_theta_q_RES_pFDpCD, hQ2_VS_theta_q_DIS_pFDpCD, qel, mec, res, dis,
-                            Q2_pFDpCD, analysis_math::RadToDeg(q_pFDpCD_3v.Theta()), Weight_pFDpCD);
-                FillByInt2D(hQ2_VS_theta_q_pFD_All_Int_pFDpCD, hQ2_VS_theta_q_pFD_QEL_pFDpCD, hQ2_VS_theta_q_pFD_MEC_pFDpCD, hQ2_VS_theta_q_pFD_RES_pFDpCD, hQ2_VS_theta_q_pFD_DIS_pFDpCD,
-                            qel, mec, res, dis, Q2_pFDpCD, Theta_q_p_L_pFDpCD, Weight_pFDpCD);
-                FillByInt2D(hQ2_VS_theta_q_pCD_All_Int_pFDpCD, hQ2_VS_theta_q_pCD_QEL_pFDpCD, hQ2_VS_theta_q_pCD_MEC_pFDpCD, hQ2_VS_theta_q_pCD_RES_pFDpCD, hQ2_VS_theta_q_pCD_DIS_pFDpCD,
-                            qel, mec, res, dis, Q2_pFDpCD, Theta_q_p_R_pFDpCD, Weight_pFDpCD);
-
-                FillByInt1D(hxB_All_Int_pFDpCD, hxB_QEL_pFDpCD, hxB_MEC_pFDpCD, hxB_RES_pFDpCD, hxB_DIS_pFDpCD, qel, mec, res, dis, xB_pFDpCD, Weight_pFDpCD);
-                FillByInt2D(hxB_VS_theta_q_All_Int_pFDpCD, hxB_VS_theta_q_QEL_pFDpCD, hxB_VS_theta_q_MEC_pFDpCD, hxB_VS_theta_q_RES_pFDpCD, hxB_VS_theta_q_DIS_pFDpCD, qel, mec, res, dis,
-                            xB_pFDpCD, analysis_math::RadToDeg(q_pFDpCD_3v.Theta()), Weight_pFDpCD);
-                FillByInt2D(hxB_VS_theta_q_pFD_All_Int_pFDpCD, hxB_VS_theta_q_pFD_QEL_pFDpCD, hxB_VS_theta_q_pFD_MEC_pFDpCD, hxB_VS_theta_q_pFD_RES_pFDpCD, hxB_VS_theta_q_pFD_DIS_pFDpCD,
-                            qel, mec, res, dis, xB_pFDpCD, Theta_q_p_L_pFDpCD, Weight_pFDpCD);
-                FillByInt2D(hxB_VS_theta_q_pCD_All_Int_pFDpCD, hxB_VS_theta_q_pCD_QEL_pFDpCD, hxB_VS_theta_q_pCD_MEC_pFDpCD, hxB_VS_theta_q_pCD_RES_pFDpCD, hxB_VS_theta_q_pCD_DIS_pFDpCD,
-                            qel, mec, res, dis, xB_pFDpCD, Theta_q_p_R_pFDpCD, Weight_pFDpCD);
-
-                FillByInt1D(htheta_q_All_Int_pFDpCD, htheta_q_QEL_pFDpCD, htheta_q_MEC_pFDpCD, htheta_q_RES_pFDpCD, htheta_q_DIS_pFDpCD, qel, mec, res, dis,
-                            analysis_math::RadToDeg(q_pFDpCD_3v.Theta()), Weight_pFDpCD);
-                FillByInt2D(htheta_q_VS_theta_q_pFD_All_Int_pFDpCD, htheta_q_VS_theta_q_pFD_QEL_pFDpCD, htheta_q_VS_theta_q_pFD_MEC_pFDpCD, htheta_q_VS_theta_q_pFD_RES_pFDpCD,
-                            htheta_q_VS_theta_q_pFD_DIS_pFDpCD, qel, mec, res, dis, analysis_math::RadToDeg(q_pFDpCD_3v.Theta()), Theta_q_p_L_pFDpCD, Weight_pFDpCD);
-                FillByInt2D(htheta_q_VS_theta_q_pCD_All_Int_pFDpCD, htheta_q_VS_theta_q_pCD_QEL_pFDpCD, htheta_q_VS_theta_q_pCD_MEC_pFDpCD, htheta_q_VS_theta_q_pCD_RES_pFDpCD,
-                            htheta_q_VS_theta_q_pCD_DIS_pFDpCD, qel, mec, res, dis, analysis_math::RadToDeg(q_pFDpCD_3v.Theta()), Theta_q_p_R_pFDpCD, Weight_pFDpCD);
-
-                FillByInt1D(htheta_q_pFD_All_Int_pFDpCD, htheta_q_pFD_QEL_pFDpCD, htheta_q_pFD_MEC_pFDpCD, htheta_q_pFD_RES_pFDpCD, htheta_q_pFD_DIS_pFDpCD, qel, mec, res, dis,
-                            Theta_q_p_L_pFDpCD, Weight_pFDpCD);
-                FillByInt2D(htheta_q_pFD_VS_theta_q_pCD_All_Int_pFDpCD, htheta_q_pFD_VS_theta_q_pCD_QEL_pFDpCD, htheta_q_pFD_VS_theta_q_pCD_MEC_pFDpCD,
-                            htheta_q_pFD_VS_theta_q_pCD_RES_pFDpCD, htheta_q_pFD_VS_theta_q_pCD_DIS_pFDpCD, qel, mec, res, dis, Theta_q_p_L_pFDpCD, Theta_q_p_R_pFDpCD, Weight_pFDpCD);
-
-                FillByInt1D(htheta_q_pCD_All_Int_pFDpCD, htheta_q_pCD_QEL_pFDpCD, htheta_q_pCD_MEC_pFDpCD, htheta_q_pCD_RES_pFDpCD, htheta_q_pCD_DIS_pFDpCD, qel, mec, res, dis,
-                            Theta_q_p_R_pFDpCD, Weight_pFDpCD);
-
                 // FillByInt1D(hP_miss_1N_All_Int_pFDpCD, hP_miss_1N_QEL_pFDpCD, hP_miss_1N_MEC_pFDpCD, hP_miss_1N_RES_pFDpCD, hP_miss_1N_DIS_pFDpCD, qel, mec, res, dis,
                 //             P_miss_1N_pFDpCD_3v.Mag(), Weight_pFDpCD);
                 // FillByInt2D(hP_miss_1N_VS_E_miss_1N_All_Int_pFDpCD, hP_miss_1N_VS_E_miss_1N_QEL_pFDpCD, hP_miss_1N_VS_E_miss_1N_MEC_pFDpCD, hP_miss_1N_VS_E_miss_1N_RES_pFDpCD,
@@ -17272,9 +17176,9 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                 // FillByInt2D(hP_miss_1N_VS_theta_q_All_Int_pFDpCD, hP_miss_1N_VS_theta_q_QEL_pFDpCD, hP_miss_1N_VS_theta_q_MEC_pFDpCD, hP_miss_1N_VS_theta_q_RES_pFDpCD,
                 //             hP_miss_1N_VS_theta_q_DIS_pFDpCD, qel, mec, res, dis, P_miss_1N_pFDpCD_3v.Mag(), analysis_math::RadToDeg(q_pFDpCD_3v.Theta()), Weight_pFDpCD);
                 // FillByInt2D(hP_miss_1N_VS_theta_q_pFD_All_Int_pFDpCD, hP_miss_1N_VS_theta_q_pFD_QEL_pFDpCD, hP_miss_1N_VS_theta_q_pFD_MEC_pFDpCD, hP_miss_1N_VS_theta_q_pFD_RES_pFDpCD,
-                //             hP_miss_1N_VS_theta_q_pFD_DIS_pFDpCD, qel, mec, res, dis, P_miss_1N_pFDpCD_3v.Mag(), Theta_q_pFD_pFDpCD, Weight_pFDpCD);
+                //             hP_miss_1N_VS_theta_q_pFD_DIS_pFDpCD, qel, mec, res, dis, P_miss_1N_pFDpCD_3v.Mag(), Theta_q_p_L_pFDpCD, Weight_pFDpCD);
                 // FillByInt2D(hP_miss_1N_VS_theta_q_pCD_All_Int_pFDpCD, hP_miss_1N_VS_theta_q_pCD_QEL_pFDpCD, hP_miss_1N_VS_theta_q_pCD_MEC_pFDpCD, hP_miss_1N_VS_theta_q_pCD_RES_pFDpCD,
-                //             hP_miss_1N_VS_theta_q_pCD_DIS_pFDpCD, qel, mec, res, dis, P_miss_1N_pFDpCD_3v.Mag(), Theta_q_pCD_pFDpCD, Weight_pFDpCD);
+                //             hP_miss_1N_VS_theta_q_pCD_DIS_pFDpCD, qel, mec, res, dis, P_miss_1N_pFDpCD_3v.Mag(), Theta_q_p_R_pFDpCD, Weight_pFDpCD);
 
                 // FillByInt1D(hE_miss_1N_All_Int_pFDpCD, hE_miss_1N_QEL_pFDpCD, hE_miss_1N_MEC_pFDpCD, hE_miss_1N_RES_pFDpCD, hE_miss_1N_DIS_pFDpCD, qel, mec, res, dis, E_miss_1N_pFDpCD,
                 //             Weight_pFDpCD);
@@ -17289,9 +17193,9 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                 // FillByInt2D(hE_miss_1N_VS_theta_q_All_Int_pFDpCD, hE_miss_1N_VS_theta_q_QEL_pFDpCD, hE_miss_1N_VS_theta_q_MEC_pFDpCD, hE_miss_1N_VS_theta_q_RES_pFDpCD,
                 //             hE_miss_1N_VS_theta_q_DIS_pFDpCD, qel, mec, res, dis, E_miss_1N_pFDpCD, analysis_math::RadToDeg(q_pFDpCD_3v.Theta()), Weight_pFDpCD);
                 // FillByInt2D(hE_miss_1N_VS_theta_q_pFD_All_Int_pFDpCD, hE_miss_1N_VS_theta_q_pFD_QEL_pFDpCD, hE_miss_1N_VS_theta_q_pFD_MEC_pFDpCD, hE_miss_1N_VS_theta_q_pFD_RES_pFDpCD,
-                //             hE_miss_1N_VS_theta_q_pFD_DIS_pFDpCD, qel, mec, res, dis, E_miss_1N_pFDpCD, Theta_q_pFD_pFDpCD, Weight_pFDpCD);
+                //             hE_miss_1N_VS_theta_q_pFD_DIS_pFDpCD, qel, mec, res, dis, E_miss_1N_pFDpCD, Theta_q_p_L_pFDpCD, Weight_pFDpCD);
                 // FillByInt2D(hE_miss_1N_VS_theta_q_pCD_All_Int_pFDpCD, hE_miss_1N_VS_theta_q_pCD_QEL_pFDpCD, hE_miss_1N_VS_theta_q_pCD_MEC_pFDpCD, hE_miss_1N_VS_theta_q_pCD_RES_pFDpCD,
-                //             hE_miss_1N_VS_theta_q_pCD_DIS_pFDpCD, qel, mec, res, dis, E_miss_1N_pFDpCD, Theta_q_pCD_pFDpCD, Weight_pFDpCD);
+                //             hE_miss_1N_VS_theta_q_pCD_DIS_pFDpCD, qel, mec, res, dis, E_miss_1N_pFDpCD, Theta_q_p_R_pFDpCD, Weight_pFDpCD);
 
                 // FillByInt1D(hP_miss_2N_All_Int_pFDpCD, hP_miss_2N_QEL_pFDpCD, hP_miss_2N_MEC_pFDpCD, hP_miss_2N_RES_pFDpCD, hP_miss_2N_DIS_pFDpCD, qel, mec, res, dis,
                 //             P_miss_2N_pFDpCD_3v.Mag(), Weight_pFDpCD);
@@ -17304,9 +17208,9 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                 // FillByInt2D(hP_miss_2N_VS_theta_q_All_Int_pFDpCD, hP_miss_2N_VS_theta_q_QEL_pFDpCD, hP_miss_2N_VS_theta_q_MEC_pFDpCD, hP_miss_2N_VS_theta_q_RES_pFDpCD,
                 //             hP_miss_2N_VS_theta_q_DIS_pFDpCD, qel, mec, res, dis, P_miss_2N_pFDpCD_3v.Mag(), analysis_math::RadToDeg(q_pFDpCD_3v.Theta()), Weight_pFDpCD);
                 // FillByInt2D(hP_miss_2N_VS_theta_q_pFD_All_Int_pFDpCD, hP_miss_2N_VS_theta_q_pFD_QEL_pFDpCD, hP_miss_2N_VS_theta_q_pFD_MEC_pFDpCD, hP_miss_2N_VS_theta_q_pFD_RES_pFDpCD,
-                //             hP_miss_2N_VS_theta_q_pFD_DIS_pFDpCD, qel, mec, res, dis, P_miss_2N_pFDpCD_3v.Mag(), Theta_q_pFD_pFDpCD, Weight_pFDpCD);
+                //             hP_miss_2N_VS_theta_q_pFD_DIS_pFDpCD, qel, mec, res, dis, P_miss_2N_pFDpCD_3v.Mag(), Theta_q_p_L_pFDpCD, Weight_pFDpCD);
                 // FillByInt2D(hP_miss_2N_VS_theta_q_pCD_All_Int_pFDpCD, hP_miss_2N_VS_theta_q_pCD_QEL_pFDpCD, hP_miss_2N_VS_theta_q_pCD_MEC_pFDpCD, hP_miss_2N_VS_theta_q_pCD_RES_pFDpCD,
-                //             hP_miss_2N_VS_theta_q_pCD_DIS_pFDpCD, qel, mec, res, dis, P_miss_2N_pFDpCD_3v.Mag(), Theta_q_pCD_pFDpCD, Weight_pFDpCD);
+                //             hP_miss_2N_VS_theta_q_pCD_DIS_pFDpCD, qel, mec, res, dis, P_miss_2N_pFDpCD_3v.Mag(), Theta_q_p_R_pFDpCD, Weight_pFDpCD);
 
                 // FillByInt1D(hE_miss_2N_All_Int_pFDpCD, hE_miss_2N_QEL_pFDpCD, hE_miss_2N_MEC_pFDpCD, hE_miss_2N_RES_pFDpCD, hE_miss_2N_DIS_pFDpCD, qel, mec, res, dis, E_miss_2N_pFDpCD,
                 //             Weight_pFDpCD);
@@ -17317,41 +17221,137 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                 // FillByInt2D(hE_miss_2N_VS_theta_q_All_Int_pFDpCD, hE_miss_2N_VS_theta_q_QEL_pFDpCD, hE_miss_2N_VS_theta_q_MEC_pFDpCD, hE_miss_2N_VS_theta_q_RES_pFDpCD,
                 //             hE_miss_2N_VS_theta_q_DIS_pFDpCD, qel, mec, res, dis, E_miss_2N_pFDpCD, analysis_math::RadToDeg(q_pFDpCD_3v.Theta()), Weight_pFDpCD);
                 // FillByInt2D(hE_miss_2N_VS_theta_q_pFD_All_Int_pFDpCD, hE_miss_2N_VS_theta_q_pFD_QEL_pFDpCD, hE_miss_2N_VS_theta_q_pFD_MEC_pFDpCD, hE_miss_2N_VS_theta_q_pFD_RES_pFDpCD,
-                //             hE_miss_2N_VS_theta_q_pFD_DIS_pFDpCD, qel, mec, res, dis, E_miss_2N_pFDpCD, Theta_q_pFD_pFDpCD, Weight_pFDpCD);
+                //             hE_miss_2N_VS_theta_q_pFD_DIS_pFDpCD, qel, mec, res, dis, E_miss_2N_pFDpCD, Theta_q_p_L_pFDpCD, Weight_pFDpCD);
                 // FillByInt2D(hE_miss_2N_VS_theta_q_pCD_All_Int_pFDpCD, hE_miss_2N_VS_theta_q_pCD_QEL_pFDpCD, hE_miss_2N_VS_theta_q_pCD_MEC_pFDpCD, hE_miss_2N_VS_theta_q_pCD_RES_pFDpCD,
-                //             hE_miss_2N_VS_theta_q_pCD_DIS_pFDpCD, qel, mec, res, dis, E_miss_2N_pFDpCD, Theta_q_pCD_pFDpCD, Weight_pFDpCD);
+                //             hE_miss_2N_VS_theta_q_pCD_DIS_pFDpCD, qel, mec, res, dis, E_miss_2N_pFDpCD, Theta_q_p_R_pFDpCD, Weight_pFDpCD);
 
                 // FillByInt2D(hQ2_VS_xB_All_Int_pFDpCD, hQ2_VS_xB_QEL_pFDpCD, hQ2_VS_xB_MEC_pFDpCD, hQ2_VS_xB_RES_pFDpCD, hQ2_VS_xB_DIS_pFDpCD, qel, mec, res, dis, Q2_pFDpCD, xB_pFDpCD,
                 //             Weight_pFDpCD);
                 // FillByInt2D(hQ2_VS_theta_q_All_Int_pFDpCD, hQ2_VS_theta_q_QEL_pFDpCD, hQ2_VS_theta_q_MEC_pFDpCD, hQ2_VS_theta_q_RES_pFDpCD, hQ2_VS_theta_q_DIS_pFDpCD, qel, mec, res, dis,
                 //             Q2_pFDpCD, analysis_math::RadToDeg(q_pFDpCD_3v.Theta()), Weight_pFDpCD);
                 // FillByInt2D(hQ2_VS_theta_q_pFD_All_Int_pFDpCD, hQ2_VS_theta_q_pFD_QEL_pFDpCD, hQ2_VS_theta_q_pFD_MEC_pFDpCD, hQ2_VS_theta_q_pFD_RES_pFDpCD, hQ2_VS_theta_q_pFD_DIS_pFDpCD,
-                //             qel, mec, res, dis, Q2_pFDpCD, Theta_q_pFD_pFDpCD, Weight_pFDpCD);
+                //             qel, mec, res, dis, Q2_pFDpCD, Theta_q_p_L_pFDpCD, Weight_pFDpCD);
                 // FillByInt2D(hQ2_VS_theta_q_pCD_All_Int_pFDpCD, hQ2_VS_theta_q_pCD_QEL_pFDpCD, hQ2_VS_theta_q_pCD_MEC_pFDpCD, hQ2_VS_theta_q_pCD_RES_pFDpCD, hQ2_VS_theta_q_pCD_DIS_pFDpCD,
-                //             qel, mec, res, dis, Q2_pFDpCD, Theta_q_pCD_pFDpCD, Weight_pFDpCD);
+                //             qel, mec, res, dis, Q2_pFDpCD, Theta_q_p_R_pFDpCD, Weight_pFDpCD);
 
                 // FillByInt1D(hxB_All_Int_pFDpCD, hxB_QEL_pFDpCD, hxB_MEC_pFDpCD, hxB_RES_pFDpCD, hxB_DIS_pFDpCD, qel, mec, res, dis, xB_pFDpCD, Weight_pFDpCD);
                 // FillByInt2D(hxB_VS_theta_q_All_Int_pFDpCD, hxB_VS_theta_q_QEL_pFDpCD, hxB_VS_theta_q_MEC_pFDpCD, hxB_VS_theta_q_RES_pFDpCD, hxB_VS_theta_q_DIS_pFDpCD, qel, mec, res, dis,
                 //             xB_pFDpCD, analysis_math::RadToDeg(q_pFDpCD_3v.Theta()), Weight_pFDpCD);
                 // FillByInt2D(hxB_VS_theta_q_pFD_All_Int_pFDpCD, hxB_VS_theta_q_pFD_QEL_pFDpCD, hxB_VS_theta_q_pFD_MEC_pFDpCD, hxB_VS_theta_q_pFD_RES_pFDpCD, hxB_VS_theta_q_pFD_DIS_pFDpCD,
-                //             qel, mec, res, dis, xB_pFDpCD, Theta_q_pFD_pFDpCD, Weight_pFDpCD);
+                //             qel, mec, res, dis, xB_pFDpCD, Theta_q_p_L_pFDpCD, Weight_pFDpCD);
                 // FillByInt2D(hxB_VS_theta_q_pCD_All_Int_pFDpCD, hxB_VS_theta_q_pCD_QEL_pFDpCD, hxB_VS_theta_q_pCD_MEC_pFDpCD, hxB_VS_theta_q_pCD_RES_pFDpCD, hxB_VS_theta_q_pCD_DIS_pFDpCD,
-                //             qel, mec, res, dis, xB_pFDpCD, Theta_q_pCD_pFDpCD, Weight_pFDpCD);
+                //             qel, mec, res, dis, xB_pFDpCD, Theta_q_p_R_pFDpCD, Weight_pFDpCD);
 
                 // FillByInt1D(htheta_q_All_Int_pFDpCD, htheta_q_QEL_pFDpCD, htheta_q_MEC_pFDpCD, htheta_q_RES_pFDpCD, htheta_q_DIS_pFDpCD, qel, mec, res, dis,
                 //             analysis_math::RadToDeg(q_pFDpCD_3v.Theta()), Weight_pFDpCD);
                 // FillByInt2D(htheta_q_VS_theta_q_pFD_All_Int_pFDpCD, htheta_q_VS_theta_q_pFD_QEL_pFDpCD, htheta_q_VS_theta_q_pFD_MEC_pFDpCD, htheta_q_VS_theta_q_pFD_RES_pFDpCD,
-                //             htheta_q_VS_theta_q_pFD_DIS_pFDpCD, qel, mec, res, dis, analysis_math::RadToDeg(q_pFDpCD_3v.Theta()), Theta_q_pFD_pFDpCD, Weight_pFDpCD);
+                //             htheta_q_VS_theta_q_pFD_DIS_pFDpCD, qel, mec, res, dis, analysis_math::RadToDeg(q_pFDpCD_3v.Theta()), Theta_q_p_L_pFDpCD, Weight_pFDpCD);
                 // FillByInt2D(htheta_q_VS_theta_q_pCD_All_Int_pFDpCD, htheta_q_VS_theta_q_pCD_QEL_pFDpCD, htheta_q_VS_theta_q_pCD_MEC_pFDpCD, htheta_q_VS_theta_q_pCD_RES_pFDpCD,
-                //             htheta_q_VS_theta_q_pCD_DIS_pFDpCD, qel, mec, res, dis, analysis_math::RadToDeg(q_pFDpCD_3v.Theta()), Theta_q_pCD_pFDpCD, Weight_pFDpCD);
+                //             htheta_q_VS_theta_q_pCD_DIS_pFDpCD, qel, mec, res, dis, analysis_math::RadToDeg(q_pFDpCD_3v.Theta()), Theta_q_p_R_pFDpCD, Weight_pFDpCD);
 
                 // FillByInt1D(htheta_q_pFD_All_Int_pFDpCD, htheta_q_pFD_QEL_pFDpCD, htheta_q_pFD_MEC_pFDpCD, htheta_q_pFD_RES_pFDpCD, htheta_q_pFD_DIS_pFDpCD, qel, mec, res, dis,
-                //             Theta_q_pFD_pFDpCD, Weight_pFDpCD);
+                //             Theta_q_p_L_pFDpCD, Weight_pFDpCD);
                 // FillByInt2D(htheta_q_pFD_VS_theta_q_pCD_All_Int_pFDpCD, htheta_q_pFD_VS_theta_q_pCD_QEL_pFDpCD, htheta_q_pFD_VS_theta_q_pCD_MEC_pFDpCD,
-                //             htheta_q_pFD_VS_theta_q_pCD_RES_pFDpCD, htheta_q_pFD_VS_theta_q_pCD_DIS_pFDpCD, qel, mec, res, dis, Theta_q_pFD_pFDpCD, Theta_q_pCD_pFDpCD, Weight_pFDpCD);
+                //             htheta_q_pFD_VS_theta_q_pCD_RES_pFDpCD, htheta_q_pFD_VS_theta_q_pCD_DIS_pFDpCD, qel, mec, res, dis, Theta_q_p_L_pFDpCD, Theta_q_p_R_pFDpCD, Weight_pFDpCD);
 
                 // FillByInt1D(htheta_q_pCD_All_Int_pFDpCD, htheta_q_pCD_QEL_pFDpCD, htheta_q_pCD_MEC_pFDpCD, htheta_q_pCD_RES_pFDpCD, htheta_q_pCD_DIS_pFDpCD, qel, mec, res, dis,
-                //             Theta_q_pCD_pFDpCD, Weight_pFDpCD);
+                //             Theta_q_p_R_pFDpCD, Weight_pFDpCD);
+
+                FillByInt1D(hP_miss_1N_All_Int_pFDpCD, hP_miss_1N_QEL_pFDpCD, hP_miss_1N_MEC_pFDpCD, hP_miss_1N_RES_pFDpCD, hP_miss_1N_DIS_pFDpCD, qel, mec, res, dis,
+                            P_miss_1N_pFDpCD_3v.Mag(), Weight_pFDpCD);
+                FillByInt2D(hP_miss_1N_VS_E_miss_1N_All_Int_pFDpCD, hP_miss_1N_VS_E_miss_1N_QEL_pFDpCD, hP_miss_1N_VS_E_miss_1N_MEC_pFDpCD, hP_miss_1N_VS_E_miss_1N_RES_pFDpCD,
+                            hP_miss_1N_VS_E_miss_1N_DIS_pFDpCD, qel, mec, res, dis, P_miss_1N_pFDpCD_3v.Mag(), E_miss_1N_pFDpCD, Weight_pFDpCD);
+                FillByInt2D(hP_miss_1N_VS_P_miss_2N_All_Int_pFDpCD, hP_miss_1N_VS_P_miss_2N_QEL_pFDpCD, hP_miss_1N_VS_P_miss_2N_MEC_pFDpCD, hP_miss_1N_VS_P_miss_2N_RES_pFDpCD,
+                            hP_miss_1N_VS_P_miss_2N_DIS_pFDpCD, qel, mec, res, dis, P_miss_1N_pFDpCD_3v.Mag(), P_miss_2N_pFDpCD_3v.Mag(), Weight_pFDpCD);
+                FillByInt2D(hP_miss_1N_VS_E_miss_2N_All_Int_pFDpCD, hP_miss_1N_VS_E_miss_2N_QEL_pFDpCD, hP_miss_1N_VS_E_miss_2N_MEC_pFDpCD, hP_miss_1N_VS_E_miss_2N_RES_pFDpCD,
+                            hP_miss_1N_VS_E_miss_2N_DIS_pFDpCD, qel, mec, res, dis, P_miss_1N_pFDpCD_3v.Mag(), E_miss_2N_pFDpCD, Weight_pFDpCD);
+                FillByInt2D(hP_miss_1N_VS_Q2_All_Int_pFDpCD, hP_miss_1N_VS_Q2_QEL_pFDpCD, hP_miss_1N_VS_Q2_MEC_pFDpCD, hP_miss_1N_VS_Q2_RES_pFDpCD, hP_miss_1N_VS_Q2_DIS_pFDpCD, qel, mec,
+                            res, dis, P_miss_1N_pFDpCD_3v.Mag(), Q2_pFDpCD, Weight_pFDpCD);
+                FillByInt2D(hP_miss_1N_VS_xB_All_Int_pFDpCD, hP_miss_1N_VS_xB_QEL_pFDpCD, hP_miss_1N_VS_xB_MEC_pFDpCD, hP_miss_1N_VS_xB_RES_pFDpCD, hP_miss_1N_VS_xB_DIS_pFDpCD, qel, mec,
+                            res, dis, P_miss_1N_pFDpCD_3v.Mag(), xB_pFDpCD, Weight_pFDpCD);
+                FillByInt2D(hP_miss_1N_VS_theta_q_All_Int_pFDpCD, hP_miss_1N_VS_theta_q_QEL_pFDpCD, hP_miss_1N_VS_theta_q_MEC_pFDpCD, hP_miss_1N_VS_theta_q_RES_pFDpCD,
+                            hP_miss_1N_VS_theta_q_DIS_pFDpCD, qel, mec, res, dis, P_miss_1N_pFDpCD_3v.Mag(), analysis_math::RadToDeg(q_pFDpCD_3v.Theta()), Weight_pFDpCD);
+                FillByInt2D(hP_miss_1N_VS_theta_q_pFD_All_Int_pFDpCD, hP_miss_1N_VS_theta_q_pFD_QEL_pFDpCD, hP_miss_1N_VS_theta_q_pFD_MEC_pFDpCD, hP_miss_1N_VS_theta_q_pFD_RES_pFDpCD,
+                            hP_miss_1N_VS_theta_q_pFD_DIS_pFDpCD, qel, mec, res, dis, P_miss_1N_pFDpCD_3v.Mag(), Theta_q_pFD_pFDpCD, Weight_pFDpCD);
+                FillByInt2D(hP_miss_1N_VS_theta_q_pCD_All_Int_pFDpCD, hP_miss_1N_VS_theta_q_pCD_QEL_pFDpCD, hP_miss_1N_VS_theta_q_pCD_MEC_pFDpCD, hP_miss_1N_VS_theta_q_pCD_RES_pFDpCD,
+                            hP_miss_1N_VS_theta_q_pCD_DIS_pFDpCD, qel, mec, res, dis, P_miss_1N_pFDpCD_3v.Mag(), Theta_q_pCD_pFDpCD, Weight_pFDpCD);
+
+                FillByInt1D(hE_miss_1N_All_Int_pFDpCD, hE_miss_1N_QEL_pFDpCD, hE_miss_1N_MEC_pFDpCD, hE_miss_1N_RES_pFDpCD, hE_miss_1N_DIS_pFDpCD, qel, mec, res, dis, E_miss_1N_pFDpCD,
+                            Weight_pFDpCD);
+                FillByInt2D(hE_miss_1N_VS_P_miss_2N_All_Int_pFDpCD, hE_miss_1N_VS_P_miss_2N_QEL_pFDpCD, hE_miss_1N_VS_P_miss_2N_MEC_pFDpCD, hE_miss_1N_VS_P_miss_2N_RES_pFDpCD,
+                            hE_miss_1N_VS_P_miss_2N_DIS_pFDpCD, qel, mec, res, dis, E_miss_1N_pFDpCD, P_miss_2N_pFDpCD_3v.Mag(), Weight_pFDpCD);
+                FillByInt2D(hE_miss_1N_VS_E_miss_2N_All_Int_pFDpCD, hE_miss_1N_VS_E_miss_2N_QEL_pFDpCD, hE_miss_1N_VS_E_miss_2N_MEC_pFDpCD, hE_miss_1N_VS_E_miss_2N_RES_pFDpCD,
+                            hE_miss_1N_VS_E_miss_2N_DIS_pFDpCD, qel, mec, res, dis, E_miss_1N_pFDpCD, E_miss_2N_pFDpCD, Weight_pFDpCD);
+                FillByInt2D(hE_miss_1N_VS_Q2_All_Int_pFDpCD, hE_miss_1N_VS_Q2_QEL_pFDpCD, hE_miss_1N_VS_Q2_MEC_pFDpCD, hE_miss_1N_VS_Q2_RES_pFDpCD, hE_miss_1N_VS_Q2_DIS_pFDpCD, qel, mec,
+                            res, dis, E_miss_1N_pFDpCD, Q2_pFDpCD, Weight_pFDpCD);
+                FillByInt2D(hE_miss_1N_VS_xB_All_Int_pFDpCD, hE_miss_1N_VS_xB_QEL_pFDpCD, hE_miss_1N_VS_xB_MEC_pFDpCD, hE_miss_1N_VS_xB_RES_pFDpCD, hE_miss_1N_VS_xB_DIS_pFDpCD, qel, mec,
+                            res, dis, E_miss_1N_pFDpCD, xB_pFDpCD, Weight_pFDpCD);
+                FillByInt2D(hE_miss_1N_VS_theta_q_All_Int_pFDpCD, hE_miss_1N_VS_theta_q_QEL_pFDpCD, hE_miss_1N_VS_theta_q_MEC_pFDpCD, hE_miss_1N_VS_theta_q_RES_pFDpCD,
+                            hE_miss_1N_VS_theta_q_DIS_pFDpCD, qel, mec, res, dis, E_miss_1N_pFDpCD, analysis_math::RadToDeg(q_pFDpCD_3v.Theta()), Weight_pFDpCD);
+                FillByInt2D(hE_miss_1N_VS_theta_q_pFD_All_Int_pFDpCD, hE_miss_1N_VS_theta_q_pFD_QEL_pFDpCD, hE_miss_1N_VS_theta_q_pFD_MEC_pFDpCD, hE_miss_1N_VS_theta_q_pFD_RES_pFDpCD,
+                            hE_miss_1N_VS_theta_q_pFD_DIS_pFDpCD, qel, mec, res, dis, E_miss_1N_pFDpCD, Theta_q_pFD_pFDpCD, Weight_pFDpCD);
+                FillByInt2D(hE_miss_1N_VS_theta_q_pCD_All_Int_pFDpCD, hE_miss_1N_VS_theta_q_pCD_QEL_pFDpCD, hE_miss_1N_VS_theta_q_pCD_MEC_pFDpCD, hE_miss_1N_VS_theta_q_pCD_RES_pFDpCD,
+                            hE_miss_1N_VS_theta_q_pCD_DIS_pFDpCD, qel, mec, res, dis, E_miss_1N_pFDpCD, Theta_q_pCD_pFDpCD, Weight_pFDpCD);
+
+                FillByInt1D(hP_miss_2N_All_Int_pFDpCD, hP_miss_2N_QEL_pFDpCD, hP_miss_2N_MEC_pFDpCD, hP_miss_2N_RES_pFDpCD, hP_miss_2N_DIS_pFDpCD, qel, mec, res, dis,
+                            P_miss_2N_pFDpCD_3v.Mag(), Weight_pFDpCD);
+                FillByInt2D(hP_miss_2N_VS_E_miss_2N_All_Int_pFDpCD, hP_miss_2N_VS_E_miss_2N_QEL_pFDpCD, hP_miss_2N_VS_E_miss_2N_MEC_pFDpCD, hP_miss_2N_VS_E_miss_2N_RES_pFDpCD,
+                            hP_miss_2N_VS_E_miss_2N_DIS_pFDpCD, qel, mec, res, dis, P_miss_2N_pFDpCD_3v.Mag(), E_miss_2N_pFDpCD, Weight_pFDpCD);
+                FillByInt2D(hP_miss_2N_VS_Q2_All_Int_pFDpCD, hP_miss_2N_VS_Q2_QEL_pFDpCD, hP_miss_2N_VS_Q2_MEC_pFDpCD, hP_miss_2N_VS_Q2_RES_pFDpCD, hP_miss_2N_VS_Q2_DIS_pFDpCD, qel, mec,
+                            res, dis, P_miss_2N_pFDpCD_3v.Mag(), Q2_pFDpCD, Weight_pFDpCD);
+                FillByInt2D(hP_miss_2N_VS_xB_All_Int_pFDpCD, hP_miss_2N_VS_xB_QEL_pFDpCD, hP_miss_2N_VS_xB_MEC_pFDpCD, hP_miss_2N_VS_xB_RES_pFDpCD, hP_miss_2N_VS_xB_DIS_pFDpCD, qel, mec,
+                            res, dis, P_miss_2N_pFDpCD_3v.Mag(), xB_pFDpCD, Weight_pFDpCD);
+                FillByInt2D(hP_miss_2N_VS_theta_q_All_Int_pFDpCD, hP_miss_2N_VS_theta_q_QEL_pFDpCD, hP_miss_2N_VS_theta_q_MEC_pFDpCD, hP_miss_2N_VS_theta_q_RES_pFDpCD,
+                            hP_miss_2N_VS_theta_q_DIS_pFDpCD, qel, mec, res, dis, P_miss_2N_pFDpCD_3v.Mag(), analysis_math::RadToDeg(q_pFDpCD_3v.Theta()), Weight_pFDpCD);
+                FillByInt2D(hP_miss_2N_VS_theta_q_pFD_All_Int_pFDpCD, hP_miss_2N_VS_theta_q_pFD_QEL_pFDpCD, hP_miss_2N_VS_theta_q_pFD_MEC_pFDpCD, hP_miss_2N_VS_theta_q_pFD_RES_pFDpCD,
+                            hP_miss_2N_VS_theta_q_pFD_DIS_pFDpCD, qel, mec, res, dis, P_miss_2N_pFDpCD_3v.Mag(), Theta_q_pFD_pFDpCD, Weight_pFDpCD);
+                FillByInt2D(hP_miss_2N_VS_theta_q_pCD_All_Int_pFDpCD, hP_miss_2N_VS_theta_q_pCD_QEL_pFDpCD, hP_miss_2N_VS_theta_q_pCD_MEC_pFDpCD, hP_miss_2N_VS_theta_q_pCD_RES_pFDpCD,
+                            hP_miss_2N_VS_theta_q_pCD_DIS_pFDpCD, qel, mec, res, dis, P_miss_2N_pFDpCD_3v.Mag(), Theta_q_pCD_pFDpCD, Weight_pFDpCD);
+
+                FillByInt1D(hE_miss_2N_All_Int_pFDpCD, hE_miss_2N_QEL_pFDpCD, hE_miss_2N_MEC_pFDpCD, hE_miss_2N_RES_pFDpCD, hE_miss_2N_DIS_pFDpCD, qel, mec, res, dis, E_miss_2N_pFDpCD,
+                            Weight_pFDpCD);
+                FillByInt2D(hE_miss_2N_VS_Q2_All_Int_pFDpCD, hE_miss_2N_VS_Q2_QEL_pFDpCD, hE_miss_2N_VS_Q2_MEC_pFDpCD, hE_miss_2N_VS_Q2_RES_pFDpCD, hE_miss_2N_VS_Q2_DIS_pFDpCD, qel, mec,
+                            res, dis, E_miss_2N_pFDpCD, Q2_pFDpCD, Weight_pFDpCD);
+                FillByInt2D(hE_miss_2N_VS_xB_All_Int_pFDpCD, hE_miss_2N_VS_xB_QEL_pFDpCD, hE_miss_2N_VS_xB_MEC_pFDpCD, hE_miss_2N_VS_xB_RES_pFDpCD, hE_miss_2N_VS_xB_DIS_pFDpCD, qel, mec,
+                            res, dis, E_miss_2N_pFDpCD, xB_pFDpCD, Weight_pFDpCD);
+                FillByInt2D(hE_miss_2N_VS_theta_q_All_Int_pFDpCD, hE_miss_2N_VS_theta_q_QEL_pFDpCD, hE_miss_2N_VS_theta_q_MEC_pFDpCD, hE_miss_2N_VS_theta_q_RES_pFDpCD,
+                            hE_miss_2N_VS_theta_q_DIS_pFDpCD, qel, mec, res, dis, E_miss_2N_pFDpCD, analysis_math::RadToDeg(q_pFDpCD_3v.Theta()), Weight_pFDpCD);
+                FillByInt2D(hE_miss_2N_VS_theta_q_pFD_All_Int_pFDpCD, hE_miss_2N_VS_theta_q_pFD_QEL_pFDpCD, hE_miss_2N_VS_theta_q_pFD_MEC_pFDpCD, hE_miss_2N_VS_theta_q_pFD_RES_pFDpCD,
+                            hE_miss_2N_VS_theta_q_pFD_DIS_pFDpCD, qel, mec, res, dis, E_miss_2N_pFDpCD, Theta_q_pFD_pFDpCD, Weight_pFDpCD);
+                FillByInt2D(hE_miss_2N_VS_theta_q_pCD_All_Int_pFDpCD, hE_miss_2N_VS_theta_q_pCD_QEL_pFDpCD, hE_miss_2N_VS_theta_q_pCD_MEC_pFDpCD, hE_miss_2N_VS_theta_q_pCD_RES_pFDpCD,
+                            hE_miss_2N_VS_theta_q_pCD_DIS_pFDpCD, qel, mec, res, dis, E_miss_2N_pFDpCD, Theta_q_pCD_pFDpCD, Weight_pFDpCD);
+
+                FillByInt2D(hQ2_VS_xB_All_Int_pFDpCD, hQ2_VS_xB_QEL_pFDpCD, hQ2_VS_xB_MEC_pFDpCD, hQ2_VS_xB_RES_pFDpCD, hQ2_VS_xB_DIS_pFDpCD, qel, mec, res, dis, Q2_pFDpCD, xB_pFDpCD,
+                            Weight_pFDpCD);
+                FillByInt2D(hQ2_VS_theta_q_All_Int_pFDpCD, hQ2_VS_theta_q_QEL_pFDpCD, hQ2_VS_theta_q_MEC_pFDpCD, hQ2_VS_theta_q_RES_pFDpCD, hQ2_VS_theta_q_DIS_pFDpCD, qel, mec, res, dis,
+                            Q2_pFDpCD, analysis_math::RadToDeg(q_pFDpCD_3v.Theta()), Weight_pFDpCD);
+                FillByInt2D(hQ2_VS_theta_q_pFD_All_Int_pFDpCD, hQ2_VS_theta_q_pFD_QEL_pFDpCD, hQ2_VS_theta_q_pFD_MEC_pFDpCD, hQ2_VS_theta_q_pFD_RES_pFDpCD, hQ2_VS_theta_q_pFD_DIS_pFDpCD,
+                            qel, mec, res, dis, Q2_pFDpCD, Theta_q_pFD_pFDpCD, Weight_pFDpCD);
+                FillByInt2D(hQ2_VS_theta_q_pCD_All_Int_pFDpCD, hQ2_VS_theta_q_pCD_QEL_pFDpCD, hQ2_VS_theta_q_pCD_MEC_pFDpCD, hQ2_VS_theta_q_pCD_RES_pFDpCD, hQ2_VS_theta_q_pCD_DIS_pFDpCD,
+                            qel, mec, res, dis, Q2_pFDpCD, Theta_q_pCD_pFDpCD, Weight_pFDpCD);
+
+                FillByInt1D(hxB_All_Int_pFDpCD, hxB_QEL_pFDpCD, hxB_MEC_pFDpCD, hxB_RES_pFDpCD, hxB_DIS_pFDpCD, qel, mec, res, dis, xB_pFDpCD, Weight_pFDpCD);
+                FillByInt2D(hxB_VS_theta_q_All_Int_pFDpCD, hxB_VS_theta_q_QEL_pFDpCD, hxB_VS_theta_q_MEC_pFDpCD, hxB_VS_theta_q_RES_pFDpCD, hxB_VS_theta_q_DIS_pFDpCD, qel, mec, res, dis,
+                            xB_pFDpCD, analysis_math::RadToDeg(q_pFDpCD_3v.Theta()), Weight_pFDpCD);
+                FillByInt2D(hxB_VS_theta_q_pFD_All_Int_pFDpCD, hxB_VS_theta_q_pFD_QEL_pFDpCD, hxB_VS_theta_q_pFD_MEC_pFDpCD, hxB_VS_theta_q_pFD_RES_pFDpCD, hxB_VS_theta_q_pFD_DIS_pFDpCD,
+                            qel, mec, res, dis, xB_pFDpCD, Theta_q_pFD_pFDpCD, Weight_pFDpCD);
+                FillByInt2D(hxB_VS_theta_q_pCD_All_Int_pFDpCD, hxB_VS_theta_q_pCD_QEL_pFDpCD, hxB_VS_theta_q_pCD_MEC_pFDpCD, hxB_VS_theta_q_pCD_RES_pFDpCD, hxB_VS_theta_q_pCD_DIS_pFDpCD,
+                            qel, mec, res, dis, xB_pFDpCD, Theta_q_pCD_pFDpCD, Weight_pFDpCD);
+
+                FillByInt1D(htheta_q_All_Int_pFDpCD, htheta_q_QEL_pFDpCD, htheta_q_MEC_pFDpCD, htheta_q_RES_pFDpCD, htheta_q_DIS_pFDpCD, qel, mec, res, dis,
+                            analysis_math::RadToDeg(q_pFDpCD_3v.Theta()), Weight_pFDpCD);
+                FillByInt2D(htheta_q_VS_theta_q_pFD_All_Int_pFDpCD, htheta_q_VS_theta_q_pFD_QEL_pFDpCD, htheta_q_VS_theta_q_pFD_MEC_pFDpCD, htheta_q_VS_theta_q_pFD_RES_pFDpCD,
+                            htheta_q_VS_theta_q_pFD_DIS_pFDpCD, qel, mec, res, dis, analysis_math::RadToDeg(q_pFDpCD_3v.Theta()), Theta_q_pFD_pFDpCD, Weight_pFDpCD);
+                FillByInt2D(htheta_q_VS_theta_q_pCD_All_Int_pFDpCD, htheta_q_VS_theta_q_pCD_QEL_pFDpCD, htheta_q_VS_theta_q_pCD_MEC_pFDpCD, htheta_q_VS_theta_q_pCD_RES_pFDpCD,
+                            htheta_q_VS_theta_q_pCD_DIS_pFDpCD, qel, mec, res, dis, analysis_math::RadToDeg(q_pFDpCD_3v.Theta()), Theta_q_pCD_pFDpCD, Weight_pFDpCD);
+
+                FillByInt1D(htheta_q_pFD_All_Int_pFDpCD, htheta_q_pFD_QEL_pFDpCD, htheta_q_pFD_MEC_pFDpCD, htheta_q_pFD_RES_pFDpCD, htheta_q_pFD_DIS_pFDpCD, qel, mec, res, dis,
+                            Theta_q_pFD_pFDpCD, Weight_pFDpCD);
+                FillByInt2D(htheta_q_pFD_VS_theta_q_pCD_All_Int_pFDpCD, htheta_q_pFD_VS_theta_q_pCD_QEL_pFDpCD, htheta_q_pFD_VS_theta_q_pCD_MEC_pFDpCD,
+                            htheta_q_pFD_VS_theta_q_pCD_RES_pFDpCD, htheta_q_pFD_VS_theta_q_pCD_DIS_pFDpCD, qel, mec, res, dis, Theta_q_pFD_pFDpCD, Theta_q_pCD_pFDpCD, Weight_pFDpCD);
+
+                FillByInt1D(htheta_q_pCD_All_Int_pFDpCD, htheta_q_pCD_QEL_pFDpCD, htheta_q_pCD_MEC_pFDpCD, htheta_q_pCD_RES_pFDpCD, htheta_q_pCD_DIS_pFDpCD, qel, mec, res, dis,
+                            Theta_q_pCD_pFDpCD, Weight_pFDpCD);
 
                 // Fill W (pFDpCD)
                 FillByInt1D(hW_All_Int_pFDpCD, hW_QEL_pFDpCD, hW_MEC_pFDpCD, hW_RES_pFDpCD, hW_DIS_pFDpCD, qel, mec, res, dis, W_pFDpCD, Weight_pFDpCD);
@@ -17694,20 +17694,20 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             }
 
             /* Setting variabels for reaction monitoring */
-            TLorentzVector e_out_nFDpCD_4v(P_e_nFDpCD_3v, E_e_nFDpCD);
-            double Q2_nFDpCD = analysis_physics::CalcQ2(beam_4v, e_out_nFDpCD_4v);
-            double xB_nFDpCD = analysis_physics::CalcxB(beam_4v, e_out_nFDpCD_4v, omega_nFDpCD, constants::m_p);
-            TVector3 P_miss_1N_nFDpCD_3v = analysis_physics::CalcPmiss1N3v(P_nL_nFDpCD_3v, q_nFDpCD_3v);                        // Missing momentum (1N)
-            double E_miss_1N_nFDpCD = analysis_physics::CalcEmiss1N(omega_nFDpCD, E_nFD_nFDpCD, constants::m_p);                // Missing energy (1N)
-            TVector3 P_miss_2N_nFDpCD_3v = analysis_physics::CalcPmiss2N3v(P_nL_nFDpCD_3v, P_nR_nFDpCD_3v, q_nFDpCD_3v);        // Missing momentum (2N)
-            double E_miss_2N_nFDpCD = analysis_physics::CalcEmiss2N(omega_nFDpCD, E_nFD_nFDpCD, E_pCD_nFDpCD, constants::m_p);  // Missing energy (2N)
             // TLorentzVector e_out_nFDpCD_4v(P_e_nFDpCD_3v, E_e_nFDpCD);
             // double Q2_nFDpCD = analysis_physics::CalcQ2(beam_4v, e_out_nFDpCD_4v);
             // double xB_nFDpCD = analysis_physics::CalcxB(beam_4v, e_out_nFDpCD_4v, omega_nFDpCD, constants::m_p);
-            // TVector3 P_miss_1N_nFDpCD_3v = analysis_physics::CalcPmiss1N3v(P_nFD_nFDpCD_3v, q_nFDpCD_3v);                       // Missing momentum (1N)
+            // TVector3 P_miss_1N_nFDpCD_3v = analysis_physics::CalcPmiss1N3v(P_nL_nFDpCD_3v, q_nFDpCD_3v);                        // Missing momentum (1N)
             // double E_miss_1N_nFDpCD = analysis_physics::CalcEmiss1N(omega_nFDpCD, E_nFD_nFDpCD, constants::m_p);                // Missing energy (1N)
-            // TVector3 P_miss_2N_nFDpCD_3v = analysis_physics::CalcPmiss2N3v(P_nFD_nFDpCD_3v, P_pCD_nFDpCD_3v, q_nFDpCD_3v);      // Missing momentum (2N)
+            // TVector3 P_miss_2N_nFDpCD_3v = analysis_physics::CalcPmiss2N3v(P_nL_nFDpCD_3v, P_nR_nFDpCD_3v, q_nFDpCD_3v);        // Missing momentum (2N)
             // double E_miss_2N_nFDpCD = analysis_physics::CalcEmiss2N(omega_nFDpCD, E_nFD_nFDpCD, E_pCD_nFDpCD, constants::m_p);  // Missing energy (2N)
+            TLorentzVector e_out_nFDpCD_4v(P_e_nFDpCD_3v, E_e_nFDpCD);
+            double Q2_nFDpCD = analysis_physics::CalcQ2(beam_4v, e_out_nFDpCD_4v);
+            double xB_nFDpCD = analysis_physics::CalcxB(beam_4v, e_out_nFDpCD_4v, omega_nFDpCD, constants::m_p);
+            TVector3 P_miss_1N_nFDpCD_3v = analysis_physics::CalcPmiss1N3v(P_nFD_nFDpCD_3v, q_nFDpCD_3v);                       // Missing momentum (1N)
+            double E_miss_1N_nFDpCD = analysis_physics::CalcEmiss1N(omega_nFDpCD, E_nFD_nFDpCD, constants::m_p);                // Missing energy (1N)
+            TVector3 P_miss_2N_nFDpCD_3v = analysis_physics::CalcPmiss2N3v(P_nFD_nFDpCD_3v, P_pCD_nFDpCD_3v, q_nFDpCD_3v);      // Missing momentum (2N)
+            double E_miss_2N_nFDpCD = analysis_physics::CalcEmiss2N(omega_nFDpCD, E_nFD_nFDpCD, E_pCD_nFDpCD, constants::m_p);  // Missing energy (2N)
 
             /* Setting particle angles */
             double Theta_L_nFDpCD = P_nL_nFDpCD_3v.Theta() * 180.0 / pi, Phi_L_nFDpCD = P_nL_nFDpCD_3v.Phi() * 180.0 / pi;  // Theta_L_nFDpCD, Phi_L_nFDpCD in deg
@@ -18278,102 +18278,6 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                                        NeutronsFD_ind);
 
                 // Fill reaction monitoring (nFDpCD)
-                FillByInt1D(hP_miss_1N_All_Int_nFDpCD, hP_miss_1N_QEL_nFDpCD, hP_miss_1N_MEC_nFDpCD, hP_miss_1N_RES_nFDpCD, hP_miss_1N_DIS_nFDpCD, qel, mec, res, dis,
-                            P_miss_1N_nFDpCD_3v.Mag(), Weight_nFDpCD);
-                FillByInt2D(hP_miss_1N_VS_E_miss_1N_All_Int_nFDpCD, hP_miss_1N_VS_E_miss_1N_QEL_nFDpCD, hP_miss_1N_VS_E_miss_1N_MEC_nFDpCD, hP_miss_1N_VS_E_miss_1N_RES_nFDpCD,
-                            hP_miss_1N_VS_E_miss_1N_DIS_nFDpCD, qel, mec, res, dis, P_miss_1N_nFDpCD_3v.Mag(), E_miss_1N_nFDpCD, Weight_nFDpCD);
-                FillByInt2D(hP_miss_1N_VS_P_miss_2N_All_Int_nFDpCD, hP_miss_1N_VS_P_miss_2N_QEL_nFDpCD, hP_miss_1N_VS_P_miss_2N_MEC_nFDpCD, hP_miss_1N_VS_P_miss_2N_RES_nFDpCD,
-                            hP_miss_1N_VS_P_miss_2N_DIS_nFDpCD, qel, mec, res, dis, P_miss_1N_nFDpCD_3v.Mag(), P_miss_2N_nFDpCD_3v.Mag(), Weight_nFDpCD);
-                FillByInt2D(hP_miss_1N_VS_E_miss_2N_All_Int_nFDpCD, hP_miss_1N_VS_E_miss_2N_QEL_nFDpCD, hP_miss_1N_VS_E_miss_2N_MEC_nFDpCD, hP_miss_1N_VS_E_miss_2N_RES_nFDpCD,
-                            hP_miss_1N_VS_E_miss_2N_DIS_nFDpCD, qel, mec, res, dis, P_miss_1N_nFDpCD_3v.Mag(), E_miss_2N_nFDpCD, Weight_nFDpCD);
-                FillByInt2D(hP_miss_1N_VS_Q2_All_Int_nFDpCD, hP_miss_1N_VS_Q2_QEL_nFDpCD, hP_miss_1N_VS_Q2_MEC_nFDpCD, hP_miss_1N_VS_Q2_RES_nFDpCD, hP_miss_1N_VS_Q2_DIS_nFDpCD, qel, mec,
-                            res, dis, P_miss_1N_nFDpCD_3v.Mag(), Q2_nFDpCD, Weight_nFDpCD);
-                FillByInt2D(hP_miss_1N_VS_xB_All_Int_nFDpCD, hP_miss_1N_VS_xB_QEL_nFDpCD, hP_miss_1N_VS_xB_MEC_nFDpCD, hP_miss_1N_VS_xB_RES_nFDpCD, hP_miss_1N_VS_xB_DIS_nFDpCD, qel, mec,
-                            res, dis, P_miss_1N_nFDpCD_3v.Mag(), xB_nFDpCD, Weight_nFDpCD);
-                FillByInt2D(hP_miss_1N_VS_theta_q_All_Int_nFDpCD, hP_miss_1N_VS_theta_q_QEL_nFDpCD, hP_miss_1N_VS_theta_q_MEC_nFDpCD, hP_miss_1N_VS_theta_q_RES_nFDpCD,
-                            hP_miss_1N_VS_theta_q_DIS_nFDpCD, qel, mec, res, dis, P_miss_1N_nFDpCD_3v.Mag(), analysis_math::RadToDeg(q_nFDpCD_3v.Theta()), Weight_nFDpCD);
-                FillByInt2D(hP_miss_1N_VS_theta_q_nFD_All_Int_nFDpCD, hP_miss_1N_VS_theta_q_nFD_QEL_nFDpCD, hP_miss_1N_VS_theta_q_nFD_MEC_nFDpCD, hP_miss_1N_VS_theta_q_nFD_RES_nFDpCD,
-                            hP_miss_1N_VS_theta_q_nFD_DIS_nFDpCD, qel, mec, res, dis, P_miss_1N_nFDpCD_3v.Mag(), Theta_q_p_L_nFDpCD, Weight_nFDpCD);
-                FillByInt2D(hP_miss_1N_VS_theta_q_pCD_All_Int_nFDpCD, hP_miss_1N_VS_theta_q_pCD_QEL_nFDpCD, hP_miss_1N_VS_theta_q_pCD_MEC_nFDpCD, hP_miss_1N_VS_theta_q_pCD_RES_nFDpCD,
-                            hP_miss_1N_VS_theta_q_pCD_DIS_nFDpCD, qel, mec, res, dis, P_miss_1N_nFDpCD_3v.Mag(), Theta_q_p_R_nFDpCD, Weight_nFDpCD);
-
-                FillByInt1D(hE_miss_1N_All_Int_nFDpCD, hE_miss_1N_QEL_nFDpCD, hE_miss_1N_MEC_nFDpCD, hE_miss_1N_RES_nFDpCD, hE_miss_1N_DIS_nFDpCD, qel, mec, res, dis, E_miss_1N_nFDpCD,
-                            Weight_nFDpCD);
-                FillByInt2D(hE_miss_1N_VS_P_miss_2N_All_Int_nFDpCD, hE_miss_1N_VS_P_miss_2N_QEL_nFDpCD, hE_miss_1N_VS_P_miss_2N_MEC_nFDpCD, hE_miss_1N_VS_P_miss_2N_RES_nFDpCD,
-                            hE_miss_1N_VS_P_miss_2N_DIS_nFDpCD, qel, mec, res, dis, E_miss_1N_nFDpCD, P_miss_2N_nFDpCD_3v.Mag(), Weight_nFDpCD);
-                FillByInt2D(hE_miss_1N_VS_E_miss_2N_All_Int_nFDpCD, hE_miss_1N_VS_E_miss_2N_QEL_nFDpCD, hE_miss_1N_VS_E_miss_2N_MEC_nFDpCD, hE_miss_1N_VS_E_miss_2N_RES_nFDpCD,
-                            hE_miss_1N_VS_E_miss_2N_DIS_nFDpCD, qel, mec, res, dis, E_miss_1N_nFDpCD, E_miss_2N_nFDpCD, Weight_nFDpCD);
-                FillByInt2D(hE_miss_1N_VS_Q2_All_Int_nFDpCD, hE_miss_1N_VS_Q2_QEL_nFDpCD, hE_miss_1N_VS_Q2_MEC_nFDpCD, hE_miss_1N_VS_Q2_RES_nFDpCD, hE_miss_1N_VS_Q2_DIS_nFDpCD, qel, mec,
-                            res, dis, E_miss_1N_nFDpCD, Q2_nFDpCD, Weight_nFDpCD);
-                FillByInt2D(hE_miss_1N_VS_xB_All_Int_nFDpCD, hE_miss_1N_VS_xB_QEL_nFDpCD, hE_miss_1N_VS_xB_MEC_nFDpCD, hE_miss_1N_VS_xB_RES_nFDpCD, hE_miss_1N_VS_xB_DIS_nFDpCD, qel, mec,
-                            res, dis, E_miss_1N_nFDpCD, xB_nFDpCD, Weight_nFDpCD);
-                FillByInt2D(hE_miss_1N_VS_theta_q_All_Int_nFDpCD, hE_miss_1N_VS_theta_q_QEL_nFDpCD, hE_miss_1N_VS_theta_q_MEC_nFDpCD, hE_miss_1N_VS_theta_q_RES_nFDpCD,
-                            hE_miss_1N_VS_theta_q_DIS_nFDpCD, qel, mec, res, dis, E_miss_1N_nFDpCD, analysis_math::RadToDeg(q_nFDpCD_3v.Theta()), Weight_nFDpCD);
-                FillByInt2D(hE_miss_1N_VS_theta_q_nFD_All_Int_nFDpCD, hE_miss_1N_VS_theta_q_nFD_QEL_nFDpCD, hE_miss_1N_VS_theta_q_nFD_MEC_nFDpCD, hE_miss_1N_VS_theta_q_nFD_RES_nFDpCD,
-                            hE_miss_1N_VS_theta_q_nFD_DIS_nFDpCD, qel, mec, res, dis, E_miss_1N_nFDpCD, Theta_q_p_L_nFDpCD, Weight_nFDpCD);
-                FillByInt2D(hE_miss_1N_VS_theta_q_pCD_All_Int_nFDpCD, hE_miss_1N_VS_theta_q_pCD_QEL_nFDpCD, hE_miss_1N_VS_theta_q_pCD_MEC_nFDpCD, hE_miss_1N_VS_theta_q_pCD_RES_nFDpCD,
-                            hE_miss_1N_VS_theta_q_pCD_DIS_nFDpCD, qel, mec, res, dis, E_miss_1N_nFDpCD, Theta_q_p_R_nFDpCD, Weight_nFDpCD);
-
-                FillByInt1D(hP_miss_2N_All_Int_nFDpCD, hP_miss_2N_QEL_nFDpCD, hP_miss_2N_MEC_nFDpCD, hP_miss_2N_RES_nFDpCD, hP_miss_2N_DIS_nFDpCD, qel, mec, res, dis,
-                            P_miss_2N_nFDpCD_3v.Mag(), Weight_nFDpCD);
-                FillByInt2D(hP_miss_2N_VS_E_miss_2N_All_Int_nFDpCD, hP_miss_2N_VS_E_miss_2N_QEL_nFDpCD, hP_miss_2N_VS_E_miss_2N_MEC_nFDpCD, hP_miss_2N_VS_E_miss_2N_RES_nFDpCD,
-                            hP_miss_2N_VS_E_miss_2N_DIS_nFDpCD, qel, mec, res, dis, P_miss_2N_nFDpCD_3v.Mag(), E_miss_2N_nFDpCD, Weight_nFDpCD);
-                FillByInt2D(hP_miss_2N_VS_Q2_All_Int_nFDpCD, hP_miss_2N_VS_Q2_QEL_nFDpCD, hP_miss_2N_VS_Q2_MEC_nFDpCD, hP_miss_2N_VS_Q2_RES_nFDpCD, hP_miss_2N_VS_Q2_DIS_nFDpCD, qel, mec,
-                            res, dis, P_miss_2N_nFDpCD_3v.Mag(), Q2_nFDpCD, Weight_nFDpCD);
-                FillByInt2D(hP_miss_2N_VS_xB_All_Int_nFDpCD, hP_miss_2N_VS_xB_QEL_nFDpCD, hP_miss_2N_VS_xB_MEC_nFDpCD, hP_miss_2N_VS_xB_RES_nFDpCD, hP_miss_2N_VS_xB_DIS_nFDpCD, qel, mec,
-                            res, dis, P_miss_2N_nFDpCD_3v.Mag(), xB_nFDpCD, Weight_nFDpCD);
-                FillByInt2D(hP_miss_2N_VS_theta_q_All_Int_nFDpCD, hP_miss_2N_VS_theta_q_QEL_nFDpCD, hP_miss_2N_VS_theta_q_MEC_nFDpCD, hP_miss_2N_VS_theta_q_RES_nFDpCD,
-                            hP_miss_2N_VS_theta_q_DIS_nFDpCD, qel, mec, res, dis, P_miss_2N_nFDpCD_3v.Mag(), analysis_math::RadToDeg(q_nFDpCD_3v.Theta()), Weight_nFDpCD);
-                FillByInt2D(hP_miss_2N_VS_theta_q_nFD_All_Int_nFDpCD, hP_miss_2N_VS_theta_q_nFD_QEL_nFDpCD, hP_miss_2N_VS_theta_q_nFD_MEC_nFDpCD, hP_miss_2N_VS_theta_q_nFD_RES_nFDpCD,
-                            hP_miss_2N_VS_theta_q_nFD_DIS_nFDpCD, qel, mec, res, dis, P_miss_2N_nFDpCD_3v.Mag(), Theta_q_p_L_nFDpCD, Weight_nFDpCD);
-                FillByInt2D(hP_miss_2N_VS_theta_q_pCD_All_Int_nFDpCD, hP_miss_2N_VS_theta_q_pCD_QEL_nFDpCD, hP_miss_2N_VS_theta_q_pCD_MEC_nFDpCD, hP_miss_2N_VS_theta_q_pCD_RES_nFDpCD,
-                            hP_miss_2N_VS_theta_q_pCD_DIS_nFDpCD, qel, mec, res, dis, P_miss_2N_nFDpCD_3v.Mag(), Theta_q_p_R_nFDpCD, Weight_nFDpCD);
-
-                FillByInt1D(hE_miss_2N_All_Int_nFDpCD, hE_miss_2N_QEL_nFDpCD, hE_miss_2N_MEC_nFDpCD, hE_miss_2N_RES_nFDpCD, hE_miss_2N_DIS_nFDpCD, qel, mec, res, dis, E_miss_2N_nFDpCD,
-                            Weight_nFDpCD);
-                FillByInt2D(hE_miss_2N_VS_Q2_All_Int_nFDpCD, hE_miss_2N_VS_Q2_QEL_nFDpCD, hE_miss_2N_VS_Q2_MEC_nFDpCD, hE_miss_2N_VS_Q2_RES_nFDpCD, hE_miss_2N_VS_Q2_DIS_nFDpCD, qel, mec,
-                            res, dis, E_miss_2N_nFDpCD, Q2_nFDpCD, Weight_nFDpCD);
-                FillByInt2D(hE_miss_2N_VS_xB_All_Int_nFDpCD, hE_miss_2N_VS_xB_QEL_nFDpCD, hE_miss_2N_VS_xB_MEC_nFDpCD, hE_miss_2N_VS_xB_RES_nFDpCD, hE_miss_2N_VS_xB_DIS_nFDpCD, qel, mec,
-                            res, dis, E_miss_2N_nFDpCD, xB_nFDpCD, Weight_nFDpCD);
-                FillByInt2D(hE_miss_2N_VS_theta_q_All_Int_nFDpCD, hE_miss_2N_VS_theta_q_QEL_nFDpCD, hE_miss_2N_VS_theta_q_MEC_nFDpCD, hE_miss_2N_VS_theta_q_RES_nFDpCD,
-                            hE_miss_2N_VS_theta_q_DIS_nFDpCD, qel, mec, res, dis, E_miss_2N_nFDpCD, analysis_math::RadToDeg(q_nFDpCD_3v.Theta()), Weight_nFDpCD);
-                FillByInt2D(hE_miss_2N_VS_theta_q_nFD_All_Int_nFDpCD, hE_miss_2N_VS_theta_q_nFD_QEL_nFDpCD, hE_miss_2N_VS_theta_q_nFD_MEC_nFDpCD, hE_miss_2N_VS_theta_q_nFD_RES_nFDpCD,
-                            hE_miss_2N_VS_theta_q_nFD_DIS_nFDpCD, qel, mec, res, dis, E_miss_2N_nFDpCD, Theta_q_p_L_nFDpCD, Weight_nFDpCD);
-                FillByInt2D(hE_miss_2N_VS_theta_q_pCD_All_Int_nFDpCD, hE_miss_2N_VS_theta_q_pCD_QEL_nFDpCD, hE_miss_2N_VS_theta_q_pCD_MEC_nFDpCD, hE_miss_2N_VS_theta_q_pCD_RES_nFDpCD,
-                            hE_miss_2N_VS_theta_q_pCD_DIS_nFDpCD, qel, mec, res, dis, E_miss_2N_nFDpCD, Theta_q_p_R_nFDpCD, Weight_nFDpCD);
-
-                FillByInt2D(hQ2_VS_xB_All_Int_nFDpCD, hQ2_VS_xB_QEL_nFDpCD, hQ2_VS_xB_MEC_nFDpCD, hQ2_VS_xB_RES_nFDpCD, hQ2_VS_xB_DIS_nFDpCD, qel, mec, res, dis, Q2_nFDpCD, xB_nFDpCD,
-                            Weight_nFDpCD);
-                FillByInt2D(hQ2_VS_theta_q_All_Int_nFDpCD, hQ2_VS_theta_q_QEL_nFDpCD, hQ2_VS_theta_q_MEC_nFDpCD, hQ2_VS_theta_q_RES_nFDpCD, hQ2_VS_theta_q_DIS_nFDpCD, qel, mec, res, dis,
-                            Q2_nFDpCD, analysis_math::RadToDeg(q_nFDpCD_3v.Theta()), Weight_nFDpCD);
-                FillByInt2D(hQ2_VS_theta_q_nFD_All_Int_nFDpCD, hQ2_VS_theta_q_nFD_QEL_nFDpCD, hQ2_VS_theta_q_nFD_MEC_nFDpCD, hQ2_VS_theta_q_nFD_RES_nFDpCD, hQ2_VS_theta_q_nFD_DIS_nFDpCD,
-                            qel, mec, res, dis, Q2_nFDpCD, Theta_q_p_L_nFDpCD, Weight_nFDpCD);
-                FillByInt2D(hQ2_VS_theta_q_pCD_All_Int_nFDpCD, hQ2_VS_theta_q_pCD_QEL_nFDpCD, hQ2_VS_theta_q_pCD_MEC_nFDpCD, hQ2_VS_theta_q_pCD_RES_nFDpCD, hQ2_VS_theta_q_pCD_DIS_nFDpCD,
-                            qel, mec, res, dis, Q2_nFDpCD, Theta_q_p_R_nFDpCD, Weight_nFDpCD);
-
-                FillByInt1D(hxB_All_Int_nFDpCD, hxB_QEL_nFDpCD, hxB_MEC_nFDpCD, hxB_RES_nFDpCD, hxB_DIS_nFDpCD, qel, mec, res, dis, xB_nFDpCD, Weight_nFDpCD);
-                FillByInt2D(hxB_VS_theta_q_All_Int_nFDpCD, hxB_VS_theta_q_QEL_nFDpCD, hxB_VS_theta_q_MEC_nFDpCD, hxB_VS_theta_q_RES_nFDpCD, hxB_VS_theta_q_DIS_nFDpCD, qel, mec, res, dis,
-                            xB_nFDpCD, analysis_math::RadToDeg(q_nFDpCD_3v.Theta()), Weight_nFDpCD);
-                FillByInt2D(hxB_VS_theta_q_nFD_All_Int_nFDpCD, hxB_VS_theta_q_nFD_QEL_nFDpCD, hxB_VS_theta_q_nFD_MEC_nFDpCD, hxB_VS_theta_q_nFD_RES_nFDpCD, hxB_VS_theta_q_nFD_DIS_nFDpCD,
-                            qel, mec, res, dis, xB_nFDpCD, Theta_q_p_L_nFDpCD, Weight_nFDpCD);
-                FillByInt2D(hxB_VS_theta_q_pCD_All_Int_nFDpCD, hxB_VS_theta_q_pCD_QEL_nFDpCD, hxB_VS_theta_q_pCD_MEC_nFDpCD, hxB_VS_theta_q_pCD_RES_nFDpCD, hxB_VS_theta_q_pCD_DIS_nFDpCD,
-                            qel, mec, res, dis, xB_nFDpCD, Theta_q_p_R_nFDpCD, Weight_nFDpCD);
-
-                FillByInt1D(htheta_q_All_Int_nFDpCD, htheta_q_QEL_nFDpCD, htheta_q_MEC_nFDpCD, htheta_q_RES_nFDpCD, htheta_q_DIS_nFDpCD, qel, mec, res, dis,
-                            analysis_math::RadToDeg(q_nFDpCD_3v.Theta()), Weight_nFDpCD);
-                FillByInt2D(htheta_q_VS_theta_q_nFD_All_Int_nFDpCD, htheta_q_VS_theta_q_nFD_QEL_nFDpCD, htheta_q_VS_theta_q_nFD_MEC_nFDpCD, htheta_q_VS_theta_q_nFD_RES_nFDpCD,
-                            htheta_q_VS_theta_q_nFD_DIS_nFDpCD, qel, mec, res, dis, analysis_math::RadToDeg(q_nFDpCD_3v.Theta()), Theta_q_p_L_nFDpCD, Weight_nFDpCD);
-                FillByInt2D(htheta_q_VS_theta_q_pCD_All_Int_nFDpCD, htheta_q_VS_theta_q_pCD_QEL_nFDpCD, htheta_q_VS_theta_q_pCD_MEC_nFDpCD, htheta_q_VS_theta_q_pCD_RES_nFDpCD,
-                            htheta_q_VS_theta_q_pCD_DIS_nFDpCD, qel, mec, res, dis, analysis_math::RadToDeg(q_nFDpCD_3v.Theta()), Theta_q_p_R_nFDpCD, Weight_nFDpCD);
-
-                FillByInt1D(htheta_q_nFD_All_Int_nFDpCD, htheta_q_nFD_QEL_nFDpCD, htheta_q_nFD_MEC_nFDpCD, htheta_q_nFD_RES_nFDpCD, htheta_q_nFD_DIS_nFDpCD, qel, mec, res, dis,
-                            Theta_q_p_L_nFDpCD, Weight_nFDpCD);
-                FillByInt2D(htheta_q_nFD_VS_theta_q_pCD_All_Int_nFDpCD, htheta_q_nFD_VS_theta_q_pCD_QEL_nFDpCD, htheta_q_nFD_VS_theta_q_pCD_MEC_nFDpCD,
-                            htheta_q_nFD_VS_theta_q_pCD_RES_nFDpCD, htheta_q_nFD_VS_theta_q_pCD_DIS_nFDpCD, qel, mec, res, dis, Theta_q_p_L_nFDpCD, Theta_q_p_R_nFDpCD, Weight_nFDpCD);
-
-                FillByInt1D(htheta_q_pCD_All_Int_nFDpCD, htheta_q_pCD_QEL_nFDpCD, htheta_q_pCD_MEC_nFDpCD, htheta_q_pCD_RES_nFDpCD, htheta_q_pCD_DIS_nFDpCD, qel, mec, res, dis,
-                            Theta_q_p_R_nFDpCD, Weight_nFDpCD);
-
                 // FillByInt1D(hP_miss_1N_All_Int_nFDpCD, hP_miss_1N_QEL_nFDpCD, hP_miss_1N_MEC_nFDpCD, hP_miss_1N_RES_nFDpCD, hP_miss_1N_DIS_nFDpCD, qel, mec, res, dis,
                 //             P_miss_1N_nFDpCD_3v.Mag(), Weight_nFDpCD);
                 // FillByInt2D(hP_miss_1N_VS_E_miss_1N_All_Int_nFDpCD, hP_miss_1N_VS_E_miss_1N_QEL_nFDpCD, hP_miss_1N_VS_E_miss_1N_MEC_nFDpCD, hP_miss_1N_VS_E_miss_1N_RES_nFDpCD,
@@ -18389,9 +18293,9 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                 // FillByInt2D(hP_miss_1N_VS_theta_q_All_Int_nFDpCD, hP_miss_1N_VS_theta_q_QEL_nFDpCD, hP_miss_1N_VS_theta_q_MEC_nFDpCD, hP_miss_1N_VS_theta_q_RES_nFDpCD,
                 //             hP_miss_1N_VS_theta_q_DIS_nFDpCD, qel, mec, res, dis, P_miss_1N_nFDpCD_3v.Mag(), analysis_math::RadToDeg(q_nFDpCD_3v.Theta()), Weight_nFDpCD);
                 // FillByInt2D(hP_miss_1N_VS_theta_q_nFD_All_Int_nFDpCD, hP_miss_1N_VS_theta_q_nFD_QEL_nFDpCD, hP_miss_1N_VS_theta_q_nFD_MEC_nFDpCD, hP_miss_1N_VS_theta_q_nFD_RES_nFDpCD,
-                //             hP_miss_1N_VS_theta_q_nFD_DIS_nFDpCD, qel, mec, res, dis, P_miss_1N_nFDpCD_3v.Mag(), Theta_q_nFD_nFDpCD, Weight_nFDpCD);
+                //             hP_miss_1N_VS_theta_q_nFD_DIS_nFDpCD, qel, mec, res, dis, P_miss_1N_nFDpCD_3v.Mag(), Theta_q_p_L_nFDpCD, Weight_nFDpCD);
                 // FillByInt2D(hP_miss_1N_VS_theta_q_pCD_All_Int_nFDpCD, hP_miss_1N_VS_theta_q_pCD_QEL_nFDpCD, hP_miss_1N_VS_theta_q_pCD_MEC_nFDpCD, hP_miss_1N_VS_theta_q_pCD_RES_nFDpCD,
-                //             hP_miss_1N_VS_theta_q_pCD_DIS_nFDpCD, qel, mec, res, dis, P_miss_1N_nFDpCD_3v.Mag(), Theta_q_pCD_nFDpCD, Weight_nFDpCD);
+                //             hP_miss_1N_VS_theta_q_pCD_DIS_nFDpCD, qel, mec, res, dis, P_miss_1N_nFDpCD_3v.Mag(), Theta_q_p_R_nFDpCD, Weight_nFDpCD);
 
                 // FillByInt1D(hE_miss_1N_All_Int_nFDpCD, hE_miss_1N_QEL_nFDpCD, hE_miss_1N_MEC_nFDpCD, hE_miss_1N_RES_nFDpCD, hE_miss_1N_DIS_nFDpCD, qel, mec, res, dis, E_miss_1N_nFDpCD,
                 //             Weight_nFDpCD);
@@ -18406,9 +18310,9 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                 // FillByInt2D(hE_miss_1N_VS_theta_q_All_Int_nFDpCD, hE_miss_1N_VS_theta_q_QEL_nFDpCD, hE_miss_1N_VS_theta_q_MEC_nFDpCD, hE_miss_1N_VS_theta_q_RES_nFDpCD,
                 //             hE_miss_1N_VS_theta_q_DIS_nFDpCD, qel, mec, res, dis, E_miss_1N_nFDpCD, analysis_math::RadToDeg(q_nFDpCD_3v.Theta()), Weight_nFDpCD);
                 // FillByInt2D(hE_miss_1N_VS_theta_q_nFD_All_Int_nFDpCD, hE_miss_1N_VS_theta_q_nFD_QEL_nFDpCD, hE_miss_1N_VS_theta_q_nFD_MEC_nFDpCD, hE_miss_1N_VS_theta_q_nFD_RES_nFDpCD,
-                //             hE_miss_1N_VS_theta_q_nFD_DIS_nFDpCD, qel, mec, res, dis, E_miss_1N_nFDpCD, Theta_q_nFD_nFDpCD, Weight_nFDpCD);
+                //             hE_miss_1N_VS_theta_q_nFD_DIS_nFDpCD, qel, mec, res, dis, E_miss_1N_nFDpCD, Theta_q_p_L_nFDpCD, Weight_nFDpCD);
                 // FillByInt2D(hE_miss_1N_VS_theta_q_pCD_All_Int_nFDpCD, hE_miss_1N_VS_theta_q_pCD_QEL_nFDpCD, hE_miss_1N_VS_theta_q_pCD_MEC_nFDpCD, hE_miss_1N_VS_theta_q_pCD_RES_nFDpCD,
-                //             hE_miss_1N_VS_theta_q_pCD_DIS_nFDpCD, qel, mec, res, dis, E_miss_1N_nFDpCD, Theta_q_pCD_nFDpCD, Weight_nFDpCD);
+                //             hE_miss_1N_VS_theta_q_pCD_DIS_nFDpCD, qel, mec, res, dis, E_miss_1N_nFDpCD, Theta_q_p_R_nFDpCD, Weight_nFDpCD);
 
                 // FillByInt1D(hP_miss_2N_All_Int_nFDpCD, hP_miss_2N_QEL_nFDpCD, hP_miss_2N_MEC_nFDpCD, hP_miss_2N_RES_nFDpCD, hP_miss_2N_DIS_nFDpCD, qel, mec, res, dis,
                 //             P_miss_2N_nFDpCD_3v.Mag(), Weight_nFDpCD);
@@ -18421,9 +18325,9 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                 // FillByInt2D(hP_miss_2N_VS_theta_q_All_Int_nFDpCD, hP_miss_2N_VS_theta_q_QEL_nFDpCD, hP_miss_2N_VS_theta_q_MEC_nFDpCD, hP_miss_2N_VS_theta_q_RES_nFDpCD,
                 //             hP_miss_2N_VS_theta_q_DIS_nFDpCD, qel, mec, res, dis, P_miss_2N_nFDpCD_3v.Mag(), analysis_math::RadToDeg(q_nFDpCD_3v.Theta()), Weight_nFDpCD);
                 // FillByInt2D(hP_miss_2N_VS_theta_q_nFD_All_Int_nFDpCD, hP_miss_2N_VS_theta_q_nFD_QEL_nFDpCD, hP_miss_2N_VS_theta_q_nFD_MEC_nFDpCD, hP_miss_2N_VS_theta_q_nFD_RES_nFDpCD,
-                //             hP_miss_2N_VS_theta_q_nFD_DIS_nFDpCD, qel, mec, res, dis, P_miss_2N_nFDpCD_3v.Mag(), Theta_q_nFD_nFDpCD, Weight_nFDpCD);
+                //             hP_miss_2N_VS_theta_q_nFD_DIS_nFDpCD, qel, mec, res, dis, P_miss_2N_nFDpCD_3v.Mag(), Theta_q_p_L_nFDpCD, Weight_nFDpCD);
                 // FillByInt2D(hP_miss_2N_VS_theta_q_pCD_All_Int_nFDpCD, hP_miss_2N_VS_theta_q_pCD_QEL_nFDpCD, hP_miss_2N_VS_theta_q_pCD_MEC_nFDpCD, hP_miss_2N_VS_theta_q_pCD_RES_nFDpCD,
-                //             hP_miss_2N_VS_theta_q_pCD_DIS_nFDpCD, qel, mec, res, dis, P_miss_2N_nFDpCD_3v.Mag(), Theta_q_pCD_nFDpCD, Weight_nFDpCD);
+                //             hP_miss_2N_VS_theta_q_pCD_DIS_nFDpCD, qel, mec, res, dis, P_miss_2N_nFDpCD_3v.Mag(), Theta_q_p_R_nFDpCD, Weight_nFDpCD);
 
                 // FillByInt1D(hE_miss_2N_All_Int_nFDpCD, hE_miss_2N_QEL_nFDpCD, hE_miss_2N_MEC_nFDpCD, hE_miss_2N_RES_nFDpCD, hE_miss_2N_DIS_nFDpCD, qel, mec, res, dis, E_miss_2N_nFDpCD,
                 //             Weight_nFDpCD);
@@ -18434,41 +18338,137 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                 // FillByInt2D(hE_miss_2N_VS_theta_q_All_Int_nFDpCD, hE_miss_2N_VS_theta_q_QEL_nFDpCD, hE_miss_2N_VS_theta_q_MEC_nFDpCD, hE_miss_2N_VS_theta_q_RES_nFDpCD,
                 //             hE_miss_2N_VS_theta_q_DIS_nFDpCD, qel, mec, res, dis, E_miss_2N_nFDpCD, analysis_math::RadToDeg(q_nFDpCD_3v.Theta()), Weight_nFDpCD);
                 // FillByInt2D(hE_miss_2N_VS_theta_q_nFD_All_Int_nFDpCD, hE_miss_2N_VS_theta_q_nFD_QEL_nFDpCD, hE_miss_2N_VS_theta_q_nFD_MEC_nFDpCD, hE_miss_2N_VS_theta_q_nFD_RES_nFDpCD,
-                //             hE_miss_2N_VS_theta_q_nFD_DIS_nFDpCD, qel, mec, res, dis, E_miss_2N_nFDpCD, Theta_q_nFD_nFDpCD, Weight_nFDpCD);
+                //             hE_miss_2N_VS_theta_q_nFD_DIS_nFDpCD, qel, mec, res, dis, E_miss_2N_nFDpCD, Theta_q_p_L_nFDpCD, Weight_nFDpCD);
                 // FillByInt2D(hE_miss_2N_VS_theta_q_pCD_All_Int_nFDpCD, hE_miss_2N_VS_theta_q_pCD_QEL_nFDpCD, hE_miss_2N_VS_theta_q_pCD_MEC_nFDpCD, hE_miss_2N_VS_theta_q_pCD_RES_nFDpCD,
-                //             hE_miss_2N_VS_theta_q_pCD_DIS_nFDpCD, qel, mec, res, dis, E_miss_2N_nFDpCD, Theta_q_pCD_nFDpCD, Weight_nFDpCD);
+                //             hE_miss_2N_VS_theta_q_pCD_DIS_nFDpCD, qel, mec, res, dis, E_miss_2N_nFDpCD, Theta_q_p_R_nFDpCD, Weight_nFDpCD);
 
                 // FillByInt2D(hQ2_VS_xB_All_Int_nFDpCD, hQ2_VS_xB_QEL_nFDpCD, hQ2_VS_xB_MEC_nFDpCD, hQ2_VS_xB_RES_nFDpCD, hQ2_VS_xB_DIS_nFDpCD, qel, mec, res, dis, Q2_nFDpCD, xB_nFDpCD,
                 //             Weight_nFDpCD);
                 // FillByInt2D(hQ2_VS_theta_q_All_Int_nFDpCD, hQ2_VS_theta_q_QEL_nFDpCD, hQ2_VS_theta_q_MEC_nFDpCD, hQ2_VS_theta_q_RES_nFDpCD, hQ2_VS_theta_q_DIS_nFDpCD, qel, mec, res, dis,
                 //             Q2_nFDpCD, analysis_math::RadToDeg(q_nFDpCD_3v.Theta()), Weight_nFDpCD);
                 // FillByInt2D(hQ2_VS_theta_q_nFD_All_Int_nFDpCD, hQ2_VS_theta_q_nFD_QEL_nFDpCD, hQ2_VS_theta_q_nFD_MEC_nFDpCD, hQ2_VS_theta_q_nFD_RES_nFDpCD, hQ2_VS_theta_q_nFD_DIS_nFDpCD,
-                //             qel, mec, res, dis, Q2_nFDpCD, Theta_q_nFD_nFDpCD, Weight_nFDpCD);
+                //             qel, mec, res, dis, Q2_nFDpCD, Theta_q_p_L_nFDpCD, Weight_nFDpCD);
                 // FillByInt2D(hQ2_VS_theta_q_pCD_All_Int_nFDpCD, hQ2_VS_theta_q_pCD_QEL_nFDpCD, hQ2_VS_theta_q_pCD_MEC_nFDpCD, hQ2_VS_theta_q_pCD_RES_nFDpCD, hQ2_VS_theta_q_pCD_DIS_nFDpCD,
-                //             qel, mec, res, dis, Q2_nFDpCD, Theta_q_pCD_nFDpCD, Weight_nFDpCD);
+                //             qel, mec, res, dis, Q2_nFDpCD, Theta_q_p_R_nFDpCD, Weight_nFDpCD);
 
                 // FillByInt1D(hxB_All_Int_nFDpCD, hxB_QEL_nFDpCD, hxB_MEC_nFDpCD, hxB_RES_nFDpCD, hxB_DIS_nFDpCD, qel, mec, res, dis, xB_nFDpCD, Weight_nFDpCD);
                 // FillByInt2D(hxB_VS_theta_q_All_Int_nFDpCD, hxB_VS_theta_q_QEL_nFDpCD, hxB_VS_theta_q_MEC_nFDpCD, hxB_VS_theta_q_RES_nFDpCD, hxB_VS_theta_q_DIS_nFDpCD, qel, mec, res, dis,
                 //             xB_nFDpCD, analysis_math::RadToDeg(q_nFDpCD_3v.Theta()), Weight_nFDpCD);
                 // FillByInt2D(hxB_VS_theta_q_nFD_All_Int_nFDpCD, hxB_VS_theta_q_nFD_QEL_nFDpCD, hxB_VS_theta_q_nFD_MEC_nFDpCD, hxB_VS_theta_q_nFD_RES_nFDpCD, hxB_VS_theta_q_nFD_DIS_nFDpCD,
-                //             qel, mec, res, dis, xB_nFDpCD, Theta_q_nFD_nFDpCD, Weight_nFDpCD);
+                //             qel, mec, res, dis, xB_nFDpCD, Theta_q_p_L_nFDpCD, Weight_nFDpCD);
                 // FillByInt2D(hxB_VS_theta_q_pCD_All_Int_nFDpCD, hxB_VS_theta_q_pCD_QEL_nFDpCD, hxB_VS_theta_q_pCD_MEC_nFDpCD, hxB_VS_theta_q_pCD_RES_nFDpCD, hxB_VS_theta_q_pCD_DIS_nFDpCD,
-                //             qel, mec, res, dis, xB_nFDpCD, Theta_q_pCD_nFDpCD, Weight_nFDpCD);
+                //             qel, mec, res, dis, xB_nFDpCD, Theta_q_p_R_nFDpCD, Weight_nFDpCD);
 
                 // FillByInt1D(htheta_q_All_Int_nFDpCD, htheta_q_QEL_nFDpCD, htheta_q_MEC_nFDpCD, htheta_q_RES_nFDpCD, htheta_q_DIS_nFDpCD, qel, mec, res, dis,
                 //             analysis_math::RadToDeg(q_nFDpCD_3v.Theta()), Weight_nFDpCD);
                 // FillByInt2D(htheta_q_VS_theta_q_nFD_All_Int_nFDpCD, htheta_q_VS_theta_q_nFD_QEL_nFDpCD, htheta_q_VS_theta_q_nFD_MEC_nFDpCD, htheta_q_VS_theta_q_nFD_RES_nFDpCD,
-                //             htheta_q_VS_theta_q_nFD_DIS_nFDpCD, qel, mec, res, dis, analysis_math::RadToDeg(q_nFDpCD_3v.Theta()), Theta_q_nFD_nFDpCD, Weight_nFDpCD);
+                //             htheta_q_VS_theta_q_nFD_DIS_nFDpCD, qel, mec, res, dis, analysis_math::RadToDeg(q_nFDpCD_3v.Theta()), Theta_q_p_L_nFDpCD, Weight_nFDpCD);
                 // FillByInt2D(htheta_q_VS_theta_q_pCD_All_Int_nFDpCD, htheta_q_VS_theta_q_pCD_QEL_nFDpCD, htheta_q_VS_theta_q_pCD_MEC_nFDpCD, htheta_q_VS_theta_q_pCD_RES_nFDpCD,
-                //             htheta_q_VS_theta_q_pCD_DIS_nFDpCD, qel, mec, res, dis, analysis_math::RadToDeg(q_nFDpCD_3v.Theta()), Theta_q_pCD_nFDpCD, Weight_nFDpCD);
+                //             htheta_q_VS_theta_q_pCD_DIS_nFDpCD, qel, mec, res, dis, analysis_math::RadToDeg(q_nFDpCD_3v.Theta()), Theta_q_p_R_nFDpCD, Weight_nFDpCD);
 
                 // FillByInt1D(htheta_q_nFD_All_Int_nFDpCD, htheta_q_nFD_QEL_nFDpCD, htheta_q_nFD_MEC_nFDpCD, htheta_q_nFD_RES_nFDpCD, htheta_q_nFD_DIS_nFDpCD, qel, mec, res, dis,
-                //             Theta_q_nFD_nFDpCD, Weight_nFDpCD);
+                //             Theta_q_p_L_nFDpCD, Weight_nFDpCD);
                 // FillByInt2D(htheta_q_nFD_VS_theta_q_pCD_All_Int_nFDpCD, htheta_q_nFD_VS_theta_q_pCD_QEL_nFDpCD, htheta_q_nFD_VS_theta_q_pCD_MEC_nFDpCD,
-                //             htheta_q_nFD_VS_theta_q_pCD_RES_nFDpCD, htheta_q_nFD_VS_theta_q_pCD_DIS_nFDpCD, qel, mec, res, dis, Theta_q_nFD_nFDpCD, Theta_q_pCD_nFDpCD, Weight_nFDpCD);
+                //             htheta_q_nFD_VS_theta_q_pCD_RES_nFDpCD, htheta_q_nFD_VS_theta_q_pCD_DIS_nFDpCD, qel, mec, res, dis, Theta_q_p_L_nFDpCD, Theta_q_p_R_nFDpCD, Weight_nFDpCD);
 
                 // FillByInt1D(htheta_q_pCD_All_Int_nFDpCD, htheta_q_pCD_QEL_nFDpCD, htheta_q_pCD_MEC_nFDpCD, htheta_q_pCD_RES_nFDpCD, htheta_q_pCD_DIS_nFDpCD, qel, mec, res, dis,
-                //             Theta_q_pCD_nFDpCD, Weight_nFDpCD);
+                //             Theta_q_p_R_nFDpCD, Weight_nFDpCD);
+
+                FillByInt1D(hP_miss_1N_All_Int_nFDpCD, hP_miss_1N_QEL_nFDpCD, hP_miss_1N_MEC_nFDpCD, hP_miss_1N_RES_nFDpCD, hP_miss_1N_DIS_nFDpCD, qel, mec, res, dis,
+                            P_miss_1N_nFDpCD_3v.Mag(), Weight_nFDpCD);
+                FillByInt2D(hP_miss_1N_VS_E_miss_1N_All_Int_nFDpCD, hP_miss_1N_VS_E_miss_1N_QEL_nFDpCD, hP_miss_1N_VS_E_miss_1N_MEC_nFDpCD, hP_miss_1N_VS_E_miss_1N_RES_nFDpCD,
+                            hP_miss_1N_VS_E_miss_1N_DIS_nFDpCD, qel, mec, res, dis, P_miss_1N_nFDpCD_3v.Mag(), E_miss_1N_nFDpCD, Weight_nFDpCD);
+                FillByInt2D(hP_miss_1N_VS_P_miss_2N_All_Int_nFDpCD, hP_miss_1N_VS_P_miss_2N_QEL_nFDpCD, hP_miss_1N_VS_P_miss_2N_MEC_nFDpCD, hP_miss_1N_VS_P_miss_2N_RES_nFDpCD,
+                            hP_miss_1N_VS_P_miss_2N_DIS_nFDpCD, qel, mec, res, dis, P_miss_1N_nFDpCD_3v.Mag(), P_miss_2N_nFDpCD_3v.Mag(), Weight_nFDpCD);
+                FillByInt2D(hP_miss_1N_VS_E_miss_2N_All_Int_nFDpCD, hP_miss_1N_VS_E_miss_2N_QEL_nFDpCD, hP_miss_1N_VS_E_miss_2N_MEC_nFDpCD, hP_miss_1N_VS_E_miss_2N_RES_nFDpCD,
+                            hP_miss_1N_VS_E_miss_2N_DIS_nFDpCD, qel, mec, res, dis, P_miss_1N_nFDpCD_3v.Mag(), E_miss_2N_nFDpCD, Weight_nFDpCD);
+                FillByInt2D(hP_miss_1N_VS_Q2_All_Int_nFDpCD, hP_miss_1N_VS_Q2_QEL_nFDpCD, hP_miss_1N_VS_Q2_MEC_nFDpCD, hP_miss_1N_VS_Q2_RES_nFDpCD, hP_miss_1N_VS_Q2_DIS_nFDpCD, qel, mec,
+                            res, dis, P_miss_1N_nFDpCD_3v.Mag(), Q2_nFDpCD, Weight_nFDpCD);
+                FillByInt2D(hP_miss_1N_VS_xB_All_Int_nFDpCD, hP_miss_1N_VS_xB_QEL_nFDpCD, hP_miss_1N_VS_xB_MEC_nFDpCD, hP_miss_1N_VS_xB_RES_nFDpCD, hP_miss_1N_VS_xB_DIS_nFDpCD, qel, mec,
+                            res, dis, P_miss_1N_nFDpCD_3v.Mag(), xB_nFDpCD, Weight_nFDpCD);
+                FillByInt2D(hP_miss_1N_VS_theta_q_All_Int_nFDpCD, hP_miss_1N_VS_theta_q_QEL_nFDpCD, hP_miss_1N_VS_theta_q_MEC_nFDpCD, hP_miss_1N_VS_theta_q_RES_nFDpCD,
+                            hP_miss_1N_VS_theta_q_DIS_nFDpCD, qel, mec, res, dis, P_miss_1N_nFDpCD_3v.Mag(), analysis_math::RadToDeg(q_nFDpCD_3v.Theta()), Weight_nFDpCD);
+                FillByInt2D(hP_miss_1N_VS_theta_q_nFD_All_Int_nFDpCD, hP_miss_1N_VS_theta_q_nFD_QEL_nFDpCD, hP_miss_1N_VS_theta_q_nFD_MEC_nFDpCD, hP_miss_1N_VS_theta_q_nFD_RES_nFDpCD,
+                            hP_miss_1N_VS_theta_q_nFD_DIS_nFDpCD, qel, mec, res, dis, P_miss_1N_nFDpCD_3v.Mag(), Theta_q_nFD_nFDpCD, Weight_nFDpCD);
+                FillByInt2D(hP_miss_1N_VS_theta_q_pCD_All_Int_nFDpCD, hP_miss_1N_VS_theta_q_pCD_QEL_nFDpCD, hP_miss_1N_VS_theta_q_pCD_MEC_nFDpCD, hP_miss_1N_VS_theta_q_pCD_RES_nFDpCD,
+                            hP_miss_1N_VS_theta_q_pCD_DIS_nFDpCD, qel, mec, res, dis, P_miss_1N_nFDpCD_3v.Mag(), Theta_q_pCD_nFDpCD, Weight_nFDpCD);
+
+                FillByInt1D(hE_miss_1N_All_Int_nFDpCD, hE_miss_1N_QEL_nFDpCD, hE_miss_1N_MEC_nFDpCD, hE_miss_1N_RES_nFDpCD, hE_miss_1N_DIS_nFDpCD, qel, mec, res, dis, E_miss_1N_nFDpCD,
+                            Weight_nFDpCD);
+                FillByInt2D(hE_miss_1N_VS_P_miss_2N_All_Int_nFDpCD, hE_miss_1N_VS_P_miss_2N_QEL_nFDpCD, hE_miss_1N_VS_P_miss_2N_MEC_nFDpCD, hE_miss_1N_VS_P_miss_2N_RES_nFDpCD,
+                            hE_miss_1N_VS_P_miss_2N_DIS_nFDpCD, qel, mec, res, dis, E_miss_1N_nFDpCD, P_miss_2N_nFDpCD_3v.Mag(), Weight_nFDpCD);
+                FillByInt2D(hE_miss_1N_VS_E_miss_2N_All_Int_nFDpCD, hE_miss_1N_VS_E_miss_2N_QEL_nFDpCD, hE_miss_1N_VS_E_miss_2N_MEC_nFDpCD, hE_miss_1N_VS_E_miss_2N_RES_nFDpCD,
+                            hE_miss_1N_VS_E_miss_2N_DIS_nFDpCD, qel, mec, res, dis, E_miss_1N_nFDpCD, E_miss_2N_nFDpCD, Weight_nFDpCD);
+                FillByInt2D(hE_miss_1N_VS_Q2_All_Int_nFDpCD, hE_miss_1N_VS_Q2_QEL_nFDpCD, hE_miss_1N_VS_Q2_MEC_nFDpCD, hE_miss_1N_VS_Q2_RES_nFDpCD, hE_miss_1N_VS_Q2_DIS_nFDpCD, qel, mec,
+                            res, dis, E_miss_1N_nFDpCD, Q2_nFDpCD, Weight_nFDpCD);
+                FillByInt2D(hE_miss_1N_VS_xB_All_Int_nFDpCD, hE_miss_1N_VS_xB_QEL_nFDpCD, hE_miss_1N_VS_xB_MEC_nFDpCD, hE_miss_1N_VS_xB_RES_nFDpCD, hE_miss_1N_VS_xB_DIS_nFDpCD, qel, mec,
+                            res, dis, E_miss_1N_nFDpCD, xB_nFDpCD, Weight_nFDpCD);
+                FillByInt2D(hE_miss_1N_VS_theta_q_All_Int_nFDpCD, hE_miss_1N_VS_theta_q_QEL_nFDpCD, hE_miss_1N_VS_theta_q_MEC_nFDpCD, hE_miss_1N_VS_theta_q_RES_nFDpCD,
+                            hE_miss_1N_VS_theta_q_DIS_nFDpCD, qel, mec, res, dis, E_miss_1N_nFDpCD, analysis_math::RadToDeg(q_nFDpCD_3v.Theta()), Weight_nFDpCD);
+                FillByInt2D(hE_miss_1N_VS_theta_q_nFD_All_Int_nFDpCD, hE_miss_1N_VS_theta_q_nFD_QEL_nFDpCD, hE_miss_1N_VS_theta_q_nFD_MEC_nFDpCD, hE_miss_1N_VS_theta_q_nFD_RES_nFDpCD,
+                            hE_miss_1N_VS_theta_q_nFD_DIS_nFDpCD, qel, mec, res, dis, E_miss_1N_nFDpCD, Theta_q_nFD_nFDpCD, Weight_nFDpCD);
+                FillByInt2D(hE_miss_1N_VS_theta_q_pCD_All_Int_nFDpCD, hE_miss_1N_VS_theta_q_pCD_QEL_nFDpCD, hE_miss_1N_VS_theta_q_pCD_MEC_nFDpCD, hE_miss_1N_VS_theta_q_pCD_RES_nFDpCD,
+                            hE_miss_1N_VS_theta_q_pCD_DIS_nFDpCD, qel, mec, res, dis, E_miss_1N_nFDpCD, Theta_q_pCD_nFDpCD, Weight_nFDpCD);
+
+                FillByInt1D(hP_miss_2N_All_Int_nFDpCD, hP_miss_2N_QEL_nFDpCD, hP_miss_2N_MEC_nFDpCD, hP_miss_2N_RES_nFDpCD, hP_miss_2N_DIS_nFDpCD, qel, mec, res, dis,
+                            P_miss_2N_nFDpCD_3v.Mag(), Weight_nFDpCD);
+                FillByInt2D(hP_miss_2N_VS_E_miss_2N_All_Int_nFDpCD, hP_miss_2N_VS_E_miss_2N_QEL_nFDpCD, hP_miss_2N_VS_E_miss_2N_MEC_nFDpCD, hP_miss_2N_VS_E_miss_2N_RES_nFDpCD,
+                            hP_miss_2N_VS_E_miss_2N_DIS_nFDpCD, qel, mec, res, dis, P_miss_2N_nFDpCD_3v.Mag(), E_miss_2N_nFDpCD, Weight_nFDpCD);
+                FillByInt2D(hP_miss_2N_VS_Q2_All_Int_nFDpCD, hP_miss_2N_VS_Q2_QEL_nFDpCD, hP_miss_2N_VS_Q2_MEC_nFDpCD, hP_miss_2N_VS_Q2_RES_nFDpCD, hP_miss_2N_VS_Q2_DIS_nFDpCD, qel, mec,
+                            res, dis, P_miss_2N_nFDpCD_3v.Mag(), Q2_nFDpCD, Weight_nFDpCD);
+                FillByInt2D(hP_miss_2N_VS_xB_All_Int_nFDpCD, hP_miss_2N_VS_xB_QEL_nFDpCD, hP_miss_2N_VS_xB_MEC_nFDpCD, hP_miss_2N_VS_xB_RES_nFDpCD, hP_miss_2N_VS_xB_DIS_nFDpCD, qel, mec,
+                            res, dis, P_miss_2N_nFDpCD_3v.Mag(), xB_nFDpCD, Weight_nFDpCD);
+                FillByInt2D(hP_miss_2N_VS_theta_q_All_Int_nFDpCD, hP_miss_2N_VS_theta_q_QEL_nFDpCD, hP_miss_2N_VS_theta_q_MEC_nFDpCD, hP_miss_2N_VS_theta_q_RES_nFDpCD,
+                            hP_miss_2N_VS_theta_q_DIS_nFDpCD, qel, mec, res, dis, P_miss_2N_nFDpCD_3v.Mag(), analysis_math::RadToDeg(q_nFDpCD_3v.Theta()), Weight_nFDpCD);
+                FillByInt2D(hP_miss_2N_VS_theta_q_nFD_All_Int_nFDpCD, hP_miss_2N_VS_theta_q_nFD_QEL_nFDpCD, hP_miss_2N_VS_theta_q_nFD_MEC_nFDpCD, hP_miss_2N_VS_theta_q_nFD_RES_nFDpCD,
+                            hP_miss_2N_VS_theta_q_nFD_DIS_nFDpCD, qel, mec, res, dis, P_miss_2N_nFDpCD_3v.Mag(), Theta_q_nFD_nFDpCD, Weight_nFDpCD);
+                FillByInt2D(hP_miss_2N_VS_theta_q_pCD_All_Int_nFDpCD, hP_miss_2N_VS_theta_q_pCD_QEL_nFDpCD, hP_miss_2N_VS_theta_q_pCD_MEC_nFDpCD, hP_miss_2N_VS_theta_q_pCD_RES_nFDpCD,
+                            hP_miss_2N_VS_theta_q_pCD_DIS_nFDpCD, qel, mec, res, dis, P_miss_2N_nFDpCD_3v.Mag(), Theta_q_pCD_nFDpCD, Weight_nFDpCD);
+
+                FillByInt1D(hE_miss_2N_All_Int_nFDpCD, hE_miss_2N_QEL_nFDpCD, hE_miss_2N_MEC_nFDpCD, hE_miss_2N_RES_nFDpCD, hE_miss_2N_DIS_nFDpCD, qel, mec, res, dis, E_miss_2N_nFDpCD,
+                            Weight_nFDpCD);
+                FillByInt2D(hE_miss_2N_VS_Q2_All_Int_nFDpCD, hE_miss_2N_VS_Q2_QEL_nFDpCD, hE_miss_2N_VS_Q2_MEC_nFDpCD, hE_miss_2N_VS_Q2_RES_nFDpCD, hE_miss_2N_VS_Q2_DIS_nFDpCD, qel, mec,
+                            res, dis, E_miss_2N_nFDpCD, Q2_nFDpCD, Weight_nFDpCD);
+                FillByInt2D(hE_miss_2N_VS_xB_All_Int_nFDpCD, hE_miss_2N_VS_xB_QEL_nFDpCD, hE_miss_2N_VS_xB_MEC_nFDpCD, hE_miss_2N_VS_xB_RES_nFDpCD, hE_miss_2N_VS_xB_DIS_nFDpCD, qel, mec,
+                            res, dis, E_miss_2N_nFDpCD, xB_nFDpCD, Weight_nFDpCD);
+                FillByInt2D(hE_miss_2N_VS_theta_q_All_Int_nFDpCD, hE_miss_2N_VS_theta_q_QEL_nFDpCD, hE_miss_2N_VS_theta_q_MEC_nFDpCD, hE_miss_2N_VS_theta_q_RES_nFDpCD,
+                            hE_miss_2N_VS_theta_q_DIS_nFDpCD, qel, mec, res, dis, E_miss_2N_nFDpCD, analysis_math::RadToDeg(q_nFDpCD_3v.Theta()), Weight_nFDpCD);
+                FillByInt2D(hE_miss_2N_VS_theta_q_nFD_All_Int_nFDpCD, hE_miss_2N_VS_theta_q_nFD_QEL_nFDpCD, hE_miss_2N_VS_theta_q_nFD_MEC_nFDpCD, hE_miss_2N_VS_theta_q_nFD_RES_nFDpCD,
+                            hE_miss_2N_VS_theta_q_nFD_DIS_nFDpCD, qel, mec, res, dis, E_miss_2N_nFDpCD, Theta_q_nFD_nFDpCD, Weight_nFDpCD);
+                FillByInt2D(hE_miss_2N_VS_theta_q_pCD_All_Int_nFDpCD, hE_miss_2N_VS_theta_q_pCD_QEL_nFDpCD, hE_miss_2N_VS_theta_q_pCD_MEC_nFDpCD, hE_miss_2N_VS_theta_q_pCD_RES_nFDpCD,
+                            hE_miss_2N_VS_theta_q_pCD_DIS_nFDpCD, qel, mec, res, dis, E_miss_2N_nFDpCD, Theta_q_pCD_nFDpCD, Weight_nFDpCD);
+
+                FillByInt2D(hQ2_VS_xB_All_Int_nFDpCD, hQ2_VS_xB_QEL_nFDpCD, hQ2_VS_xB_MEC_nFDpCD, hQ2_VS_xB_RES_nFDpCD, hQ2_VS_xB_DIS_nFDpCD, qel, mec, res, dis, Q2_nFDpCD, xB_nFDpCD,
+                            Weight_nFDpCD);
+                FillByInt2D(hQ2_VS_theta_q_All_Int_nFDpCD, hQ2_VS_theta_q_QEL_nFDpCD, hQ2_VS_theta_q_MEC_nFDpCD, hQ2_VS_theta_q_RES_nFDpCD, hQ2_VS_theta_q_DIS_nFDpCD, qel, mec, res, dis,
+                            Q2_nFDpCD, analysis_math::RadToDeg(q_nFDpCD_3v.Theta()), Weight_nFDpCD);
+                FillByInt2D(hQ2_VS_theta_q_nFD_All_Int_nFDpCD, hQ2_VS_theta_q_nFD_QEL_nFDpCD, hQ2_VS_theta_q_nFD_MEC_nFDpCD, hQ2_VS_theta_q_nFD_RES_nFDpCD, hQ2_VS_theta_q_nFD_DIS_nFDpCD,
+                            qel, mec, res, dis, Q2_nFDpCD, Theta_q_nFD_nFDpCD, Weight_nFDpCD);
+                FillByInt2D(hQ2_VS_theta_q_pCD_All_Int_nFDpCD, hQ2_VS_theta_q_pCD_QEL_nFDpCD, hQ2_VS_theta_q_pCD_MEC_nFDpCD, hQ2_VS_theta_q_pCD_RES_nFDpCD, hQ2_VS_theta_q_pCD_DIS_nFDpCD,
+                            qel, mec, res, dis, Q2_nFDpCD, Theta_q_pCD_nFDpCD, Weight_nFDpCD);
+
+                FillByInt1D(hxB_All_Int_nFDpCD, hxB_QEL_nFDpCD, hxB_MEC_nFDpCD, hxB_RES_nFDpCD, hxB_DIS_nFDpCD, qel, mec, res, dis, xB_nFDpCD, Weight_nFDpCD);
+                FillByInt2D(hxB_VS_theta_q_All_Int_nFDpCD, hxB_VS_theta_q_QEL_nFDpCD, hxB_VS_theta_q_MEC_nFDpCD, hxB_VS_theta_q_RES_nFDpCD, hxB_VS_theta_q_DIS_nFDpCD, qel, mec, res, dis,
+                            xB_nFDpCD, analysis_math::RadToDeg(q_nFDpCD_3v.Theta()), Weight_nFDpCD);
+                FillByInt2D(hxB_VS_theta_q_nFD_All_Int_nFDpCD, hxB_VS_theta_q_nFD_QEL_nFDpCD, hxB_VS_theta_q_nFD_MEC_nFDpCD, hxB_VS_theta_q_nFD_RES_nFDpCD, hxB_VS_theta_q_nFD_DIS_nFDpCD,
+                            qel, mec, res, dis, xB_nFDpCD, Theta_q_nFD_nFDpCD, Weight_nFDpCD);
+                FillByInt2D(hxB_VS_theta_q_pCD_All_Int_nFDpCD, hxB_VS_theta_q_pCD_QEL_nFDpCD, hxB_VS_theta_q_pCD_MEC_nFDpCD, hxB_VS_theta_q_pCD_RES_nFDpCD, hxB_VS_theta_q_pCD_DIS_nFDpCD,
+                            qel, mec, res, dis, xB_nFDpCD, Theta_q_pCD_nFDpCD, Weight_nFDpCD);
+
+                FillByInt1D(htheta_q_All_Int_nFDpCD, htheta_q_QEL_nFDpCD, htheta_q_MEC_nFDpCD, htheta_q_RES_nFDpCD, htheta_q_DIS_nFDpCD, qel, mec, res, dis,
+                            analysis_math::RadToDeg(q_nFDpCD_3v.Theta()), Weight_nFDpCD);
+                FillByInt2D(htheta_q_VS_theta_q_nFD_All_Int_nFDpCD, htheta_q_VS_theta_q_nFD_QEL_nFDpCD, htheta_q_VS_theta_q_nFD_MEC_nFDpCD, htheta_q_VS_theta_q_nFD_RES_nFDpCD,
+                            htheta_q_VS_theta_q_nFD_DIS_nFDpCD, qel, mec, res, dis, analysis_math::RadToDeg(q_nFDpCD_3v.Theta()), Theta_q_nFD_nFDpCD, Weight_nFDpCD);
+                FillByInt2D(htheta_q_VS_theta_q_pCD_All_Int_nFDpCD, htheta_q_VS_theta_q_pCD_QEL_nFDpCD, htheta_q_VS_theta_q_pCD_MEC_nFDpCD, htheta_q_VS_theta_q_pCD_RES_nFDpCD,
+                            htheta_q_VS_theta_q_pCD_DIS_nFDpCD, qel, mec, res, dis, analysis_math::RadToDeg(q_nFDpCD_3v.Theta()), Theta_q_pCD_nFDpCD, Weight_nFDpCD);
+
+                FillByInt1D(htheta_q_nFD_All_Int_nFDpCD, htheta_q_nFD_QEL_nFDpCD, htheta_q_nFD_MEC_nFDpCD, htheta_q_nFD_RES_nFDpCD, htheta_q_nFD_DIS_nFDpCD, qel, mec, res, dis,
+                            Theta_q_nFD_nFDpCD, Weight_nFDpCD);
+                FillByInt2D(htheta_q_nFD_VS_theta_q_pCD_All_Int_nFDpCD, htheta_q_nFD_VS_theta_q_pCD_QEL_nFDpCD, htheta_q_nFD_VS_theta_q_pCD_MEC_nFDpCD,
+                            htheta_q_nFD_VS_theta_q_pCD_RES_nFDpCD, htheta_q_nFD_VS_theta_q_pCD_DIS_nFDpCD, qel, mec, res, dis, Theta_q_nFD_nFDpCD, Theta_q_pCD_nFDpCD, Weight_nFDpCD);
+
+                FillByInt1D(htheta_q_pCD_All_Int_nFDpCD, htheta_q_pCD_QEL_nFDpCD, htheta_q_pCD_MEC_nFDpCD, htheta_q_pCD_RES_nFDpCD, htheta_q_pCD_DIS_nFDpCD, qel, mec, res, dis,
+                            Theta_q_pCD_nFDpCD, Weight_nFDpCD);
 
                 // Fill W (nFDpCD)
                 FillByInt1D(hW_All_Int_nFDpCD, hW_QEL_nFDpCD, hW_MEC_nFDpCD, hW_RES_nFDpCD, hW_DIS_nFDpCD, qel, mec, res, dis, W_nFDpCD, Weight_nFDpCD);
