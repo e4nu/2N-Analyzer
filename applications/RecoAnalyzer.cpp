@@ -11714,6 +11714,9 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         // Safety checks for FD protons:
         debugging::CodeDebugger.SafetyCheck_FD_protons(__FILE__, __LINE__, Protons_ind, protons, CutManager.pFD_mom_th);
 
+        // Safety checks for CD protons:
+        debugging::CodeDebugger.SafetyCheck_CD_protons(__FILE__, __LINE__, Protons_ind, protons, CutManager.pCD_mom_th);
+
         // Safety checks for FD neutrons - checks for leading FD neutron
         debugging::CodeDebugger.SafetyCheck_Reco_leading_FD_neutron(__FILE__, __LINE__, CutSettings.apply_nucleon_cuts, ESSettings.ES_by_leading_FDneutron, NeutronsFD_ind_mom_max,
                                                                     allParticles, NeutronsFD_ind, pid);

@@ -11,17 +11,37 @@ void Debugger::SafetyCheck_clas12ana_particles(const char *FILE, const int LINE,
 
 // SafetyCheck_FD_protons function ------------------------------------------------------------------------------------------------------------------------------------------------
 
-void Debugger::SafetyCheck_FD_protons(const char *FILE, const int LINE, const vector<int> &Protons_ind, std::vector<region_part_ptr> &protons, const DSCuts &p_mom_th) {
+void Debugger::SafetyCheck_FD_protons(const char *FILE, const int LINE, const vector<int> &Protons_ind, std::vector<region_part_ptr> &protons, const DSCuts &pFD_mom_th) {
     for (int i = 0; i < Protons_ind.size(); i++) {
-        if (protons[i]->getRegion() == FD) {
-            double Reco_Proton_Momentum = protons[i]->getP();
+        if (protons[Protons_ind.at(i)]->getRegion() == FD) {
+            double Reco_Proton_Momentum = protons[Protons_ind.at(i)]->getP();
 
-            if (!((Reco_Proton_Momentum <= p_mom_th.GetUpperCutConst()) && (Reco_Proton_Momentum >= p_mom_th.GetLowerCutConst()))) {
-                PrintErrorMessage(FILE, LINE, "FD proton check: there are FD protons outside momentum th. range!", "");
+            if (!((Reco_Proton_Momentum <= pFD_mom_th.GetUpperCutConst()) && (Reco_Proton_Momentum >= pFD_mom_th.GetLowerCutConst()))) {
+                PrintErrorMessage(FILE, LINE, "FD proton check: an FD proton is outside momentum th. (" + basic_tools::ToStringWithPrecision(pFD_mom_th.GetUpperCutConst(), 2) + ") range!",
+                                  "");
             }
 
             for (int j = i + 1; j < Protons_ind.size(); j++) {
                 if (Protons_ind.at(i) == Protons_ind.at(j)) { PrintErrorMessage(FILE, LINE, "FD proton check: duplicated FD protons!", ""); }
+            }
+        }
+    }
+}
+
+// SafetyCheck_CD_protons function ------------------------------------------------------------------------------------------------------------------------------------------------
+
+void Debugger::SafetyCheck_CD_protons(const char *FILE, const int LINE, const vector<int> &Protons_ind, std::vector<region_part_ptr> &protons, const DSCuts &pCD_mom_th) {
+    for (int i = 0; i < Protons_ind.size(); i++) {
+        if (protons[Protons_ind.at(i)]->getRegion() == CD) {
+            double Reco_Proton_Momentum = protons[Protons_ind.at(i)]->getP();
+
+            if (!((Reco_Proton_Momentum <= pCD_mom_th.GetUpperCutConst()) && (Reco_Proton_Momentum >= pCD_mom_th.GetLowerCutConst()))) {
+                PrintErrorMessage(FILE, LINE, "CD proton check: a CD proton is outside momentum th. (" + basic_tools::ToStringWithPrecision(pCD_mom_th.GetUpperCutConst(), 2) + ") range!",
+                                  "");
+            }
+
+            for (int j = i + 1; j < Protons_ind.size(); j++) {
+                if (Protons_ind.at(i) == Protons_ind.at(j)) { PrintErrorMessage(FILE, LINE, "CD proton check: duplicated CD protons!", ""); }
             }
         }
     }

@@ -96,42 +96,42 @@ bool ParticleID::NeutronECAL_Cut_Veto(vector<region_part_ptr> &allParticles, vec
 #pragma region /* ChargedParticleID function */
 // The updated function for charged particle PID. Does distinguish between FD and CD particles when applies momentum threshold
 // TODO: this assumes that FD and CD are the only options. What should we do for FT?
-vector<int> ParticleID::ChargedParticleID(vector<region_part_ptr> &Particle, const DSCuts &FD_mom_th, const DSCuts &CD_mom_th) {
-    vector<int> ChargedParticle;
+vector<int> ParticleID::ChargedParticleID(vector<region_part_ptr> &ChargedParticles, const DSCuts &FD_mom_th, const DSCuts &CD_mom_th) {
+    vector<int> ChargedParticles_ind;
 
-    for (int i = 0; i < Particle.size(); i++) {
-        if (Particle[i]->par()->getCharge() == 0) {  // Check that the particle's charge is zero
+    for (int i = 0; i < ChargedParticles.size(); i++) {
+        if (ChargedParticles[i]->par()->getCharge() == 0) {  // Check that the ChargedParticles's charge is zero
             cout << "\n\nChargedParticleID: Particle is neutral! Aborting...\n\n", exit(1);
         }
 
-        double Momentum = Particle[i]->getP();
+        double Momentum = ChargedParticles[i]->getP();
 
-        if (Particle[i]->getRegion() == FD) {
-            if (Momentum >= FD_mom_th.GetLowerCutConst()) { ChargedParticle.push_back(i); }
-        } else if (Particle[i]->getRegion() == CD) {
-            if (Momentum >= CD_mom_th.GetLowerCutConst()) { ChargedParticle.push_back(i); }
+        if (ChargedParticles[i]->getRegion() == FD) {
+            if (Momentum >= FD_mom_th.GetLowerCutConst()) { ChargedParticles_ind.push_back(i); }
+        } else if (ChargedParticles[i]->getRegion() == CD) {
+            if (Momentum >= CD_mom_th.GetLowerCutConst()) { ChargedParticles_ind.push_back(i); }
         }
     }
 
-    return ChargedParticle;
+    return ChargedParticles_ind;
 }
 
 // The original function for charged particle PID. Does not distinguish between FD and CD particles when applies momentum threshold
-vector<int> ParticleID::ChargedParticleID(vector<region_part_ptr> &Particle, const DSCuts &Momentum_th) {
-    vector<int> ChargedParticle;
+vector<int> ParticleID::ChargedParticleID(vector<region_part_ptr> &ChargedParticles, const DSCuts &Momentum_th) {
+    vector<int> ChargedParticles_ind;
 
-    for (int i = 0; i < Particle.size(); i++) {
-        if (Particle[i]->par()->getCharge() == 0) {  // Check that the particle's charge is zero
+    for (int i = 0; i < ChargedParticles.size(); i++) {
+        if (ChargedParticles[i]->par()->getCharge() == 0) {  // Check that the particle's charge is zero
             cout << "\n\nChargedParticleID: Particle is neutral! Aborting...\n\n", exit(1);
         }
 
-        double Momentum = Particle[i]->getP();
+        double Momentum = ChargedParticles[i]->getP();
 
-        if (Momentum >= Momentum_th.GetLowerCutConst()) { ChargedParticle.push_back(i); }
-        //        if ((Momentum >= Momentum_th.GetLowerCutConst()) && (Momentum <= Momentum_th.GetUpperCutConst())) { ChargedParticle.push_back(i); }
+        if (Momentum >= Momentum_th.GetLowerCutConst()) { ChargedParticles_ind.push_back(i); }
+        //        if ((Momentum >= Momentum_th.GetLowerCutConst()) && (Momentum <= Momentum_th.GetUpperCutConst())) { ChargedParticles_ind.push_back(i); }
     }
 
-    return ChargedParticle;
+    return ChargedParticles_ind;
 }
 #pragma endregion
 

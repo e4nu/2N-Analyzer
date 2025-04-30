@@ -114,10 +114,10 @@ class ParticleID {
     // ChargedParticleID function --------------------------------------------------------------------------------------------------------------------
 
     // The updated function for charged particle PID. Does distinguish between FD and CD particles when applies momentum threshold
-    vector<int> ChargedParticleID(vector<region_part_ptr> &Particle, const DSCuts &FD_mom_th, const DSCuts &CD_mom_th);
+    vector<int> ChargedParticleID(vector<region_part_ptr> &ChargedParticles, const DSCuts &FD_mom_th, const DSCuts &CD_mom_th);
 
     // The original function for charged particle PID. Does not distinguish between FD and CD particles when applies momentum threshold
-    vector<int> ChargedParticleID(vector<region_part_ptr> &Particle, const DSCuts &Momentum_th);
+    vector<int> ChargedParticleID(vector<region_part_ptr> &ChargedParticles, const DSCuts &Momentum_th);
 
     // FDNeutralParticle function --------------------------------------------------------------------------------------------------------------------
 
