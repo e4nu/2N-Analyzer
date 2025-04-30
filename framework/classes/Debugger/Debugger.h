@@ -29,7 +29,7 @@ class Debugger {
 
     // SafetyCheck_FD_protons function ------------------------------------------------------------------------------------------------------------------------------------------------
 
-    void SafetyCheck_FD_protons(const char *FILE, const int LINE, const vector<int> &Protons_ind, std::vector<region_part_ptr> &protons, const DSCuts &p_mom_th);
+    void SafetyCheck_FD_protons(const char *FILE, const int LINE, const vector<int> &Protons_ind, std::vector<region_part_ptr> &protons, const DSCuts &pFD_mom_th);
 
     // SafetyCheck_CD_protons function ------------------------------------------------------------------------------------------------------------------------------------------------
 
