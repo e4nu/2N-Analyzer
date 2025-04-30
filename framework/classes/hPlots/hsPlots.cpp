@@ -21,7 +21,7 @@ hsPlots::hsPlots(const std::vector<std::vector<double>>& sliceLimits, HistoType 
     : SliceLimits(sliceLimits), histoType(type) {
     bool PrintOut = false;
 
-    // Add an additional slice to account for momentum (of any other slice variable) resolution effects that cause it to be greater than the upper threshold (BeamE for momentum):
+    // Expand the slice limits by adding an additional slice to cover values greater than the last upper limit (e.g., to handle resolution effects)
     if (!SliceLimits.empty() && SliceLimits.back().size() == 2) {
         SliceLimits.push_back({SliceLimits.back()[1], 9999});
     } else {
@@ -42,7 +42,11 @@ hsPlots::hsPlots(const std::vector<std::vector<double>>& sliceLimits, HistoType 
         std::cout << "hsPlots constructor: slice_var_pair.second = " << slice_var_pair.second << std::endl;
     }
 
-    // Create histograms based on the provided slice limits
+    // Parse the titleTemplate string to separate main title, x-axis label, and y-axis label if available
+    size_t firstSep, secondSep;
+    std::string mainTitle, xLabel, yLabel;
+
+    // Create histograms for each slice range based on slice limits and histogram type
     for (const auto& range : SliceLimits) {
         if (range.size() != 2) {
             std::cerr << "Invalid slice range at index " << count << std::endl;
@@ -50,22 +54,53 @@ hsPlots::hsPlots(const std::vector<std::vector<double>>& sliceLimits, HistoType 
         }
 
         std::ostringstream name, title;
-        name << baseName << "_slice_from_" << basic_tools::ToStringWithPrecision(range.at(0), 2) << "_to_" << basic_tools::ToStringWithPrecision(range.at(1), 2);
-        // name << baseName << "_slice_" << count;
-        title << "#splitline{ " << titleTemplate << " }{ " << basic_tools::ToStringWithPrecision(range.at(0), 2) << "#leq" << slice_var_pair.first << "#leq"
-              << basic_tools::ToStringWithPrecision(range.at(1), 2) << " " + slice_var_pair.second + " }";
-        // title << "#splitline{ " << titleTemplate << " }{ (" << range[0] << " to " << range[1] << ") }";
 
+        // Construct the histogram name based on the base name and slice range
+        name << baseName << "_slice_from_" << basic_tools::ToStringWithPrecision(range.at(0), 2) << "_to_" << basic_tools::ToStringWithPrecision(range.at(1), 2);
+
+        // Split the titleTemplate into parts if it contains two semicolons (in the form of Title;XLabel;YLabel)
+        firstSep = titleTemplate.find(';');
+        secondSep = titleTemplate.find(';', firstSep + 1);
+
+        bool hasSplit = (firstSep != std::string::npos && secondSep != std::string::npos);
+
+        if (hasSplit) {
+            mainTitle = titleTemplate.substr(0, firstSep);
+            xLabel = titleTemplate.substr(firstSep + 1, secondSep - firstSep - 1);
+            yLabel = titleTemplate.substr(secondSep + 1);
+        } else {
+            mainTitle = titleTemplate;
+        }
+
+        // Construct the histogram title with slice range information
+        title << "#splitline{ " << mainTitle << " }{ " << basic_tools::ToStringWithPrecision(range.at(0), 2) << "#leq" << slice_var_pair.first << "#leq"
+              << basic_tools::ToStringWithPrecision(range.at(1), 2) << " " + slice_var_pair.second + " }";
+
+        // Create the histogram object depending on the specified histogram type (TH1D or TH2D)
         if (histoType == TH1D_TYPE) {
-            SlicedHistoList.push_back(new TH1D(name.str().c_str(), title.str().c_str(), nbinsX, xlow, xup));
+            TH1D* hist = new TH1D(name.str().c_str(), title.str().c_str(), nbinsX, xlow, xup);
+
+            if (hasSplit) {
+                hist->GetXaxis()->SetTitle(xLabel.c_str());
+                hist->GetYaxis()->SetTitle(yLabel.c_str());
+            }
+
+            SlicedHistoList.push_back(hist);
         } else if (histoType == TH2D_TYPE) {
-            SlicedHistoList.push_back(new TH2D(name.str().c_str(), title.str().c_str(), nbinsX, xlow, xup, nbinsY, ylow, yup));
+            TH2D* hist = new TH2D(name.str().c_str(), title.str().c_str(), nbinsX, xlow, xup, nbinsY, ylow, yup);
+
+            if (hasSplit) {
+                hist->GetXaxis()->SetTitle(xLabel.c_str());
+                hist->GetYaxis()->SetTitle(yLabel.c_str());
+            }
+
+            SlicedHistoList.push_back(hist);
         }
 
         ++count;
     }
 
-    // Add the sliced histograms to the provided HistoList
+    // Append the created sliced histograms to the external HistoList vector provided by the caller
     for (int i = 0; i < SlicedHistoList.size(); i++) { HistoList.push_back(SlicedHistoList[i]); }
 }
 

@@ -698,6 +698,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     //                          AMapsSettings.Nucleon_single_slice_test, AMapsSettings.TestSlices);
     // }
 
+    std::cout << "\033[31m\n\nNOTE: weight maps are commented out!\n\n\033[0m";
+
     std::cout << "\033[33m done.\n\n\033[0m";
 
     if (AMapsSettings.Generate_Electron_AMaps) { std::cout << "\033[33m\n\nGenerating electron AMaps\n\n\033[0m"; }
@@ -11226,7 +11228,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, debugging::DebuggerMode, debugging::OnlyPrintNamedTesterSteps, "Code execution - start");
 
     // Code execution
-    std::cout << "\033[33m\nReading target parameter files...\n\n\033[0m";
+    std::cout << "\033[33m\nReading target parameter files...\n\n\033[0m" << std::flush;
 
     // Setting and loading cuts (via clas12ana)
     clas12ana clasAna;
@@ -11271,7 +11273,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         if (!CutSettings.apply_chi2_cuts_1e_cut) {
             clasAna.readInputParam((path_definitions::PathDefinitions.PIDCutsDirectory + "ana.par").c_str());
         } else if (CutSettings.apply_chi2_cuts_1e_cut) {
-            std::cout << "\033[33m\nLoading fitted pid cuts...\n\n\033[0m";
+            std::cout << "\033[33m\nLoading fitted pid cuts...\n\n\033[0m" << std::flush;
             clasAna.readInputParam((path_definitions::PathDefinitions.PIDCutsDirectory + "Fitted_PID_Cuts_-_" + parameters.SampleName + ".par")
                                        .c_str());  // load sample-appropreate cuts file from CutsDirectory
 
@@ -11332,7 +11334,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             CutManager.Beta_max_cut_ABF_FD_n_from_ph = DSCuts("Beta_cut_ECAL", "FD-ECAL", "", "nFDpCD", 1, -9999, 9999);
             CutManager.Beta_max_cut_ABF_FD_n_from_ph_apprax = DSCuts("Beta_cut_ECAL_apprax", "FD-ECAL_apprax", "", "1n", 1, -9999, 9999);
         } else {
-            std::cout << "\033[33m\n\nLoading fitted Beta cuts...\n\n\033[0m";
+            std::cout << "\033[33m\n\nLoading fitted Beta cuts...\n\n\033[0m" << std::flush;
             clasAna.readInputParam((path_definitions::PathDefinitions.NucleonCutsDirectory + "Nucleon_Cuts_-_" + parameters.SampleName + ".par")
                                        .c_str());  // load sample-appropreate cuts file from CutsDirectory
 
@@ -11435,7 +11437,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, debugging::DebuggerMode, debugging::OnlyPrintNamedTesterSteps, "Setting and loading cuts (via clas12ana) - end");
 
     // Setting HipoChain
-    std::cout << "\033[33m\n\nSetting HipoChain...\n\n\033[0m";
+    std::cout << "\033[33m\n\nSetting HipoChain...\n\n\033[0m" << std::flush;
 
     clas12root::HipoChain chain;
     Experiment.AddToHipoChainFromList(chain, parameters.SampleName, AnalyzeFilePath, AnalyzeFileSample, AnalyzeFile);
@@ -11507,7 +11509,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     //  Looping over each HipoChain files
     //  ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-    std::cout << "\033[33m\n\nLooping over chain files...\n\n\033[0m";
+    std::cout << "\033[33m\n\nLooping over chain files...\n\n\033[0m" << std::flush;
 
     debugging::CodeDebugger.PrintStepTester(__FILE__, __LINE__, debugging::DebuggerMode, debugging::OnlyPrintNamedTesterSteps);
 
@@ -16704,10 +16706,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             double E_miss_2N_pFDpCD = analysis_physics::CalcEmiss2N(omega_pFDpCD, E_pFD_pFDpCD, E_pCD_pFDpCD, constants::m_p);  // Missing energy (2N)
 
             /* Setting particle angles */
-            double Theta_L_pFDpCD = P_pL_pFDpCD_3v.Theta() * 180.0 / pi, Phi_L_pFDpCD = P_pL_pFDpCD_3v.Phi() * 180.0 / pi;
-            // Theta_L_pFDpCD, Phi_L_pFDpCD in deg
-            double Theta_R_pFDpCD = P_pR_pFDpCD_3v.Theta() * 180.0 / pi, Phi_R_pFDpCD = P_pR_pFDpCD_3v.Phi() * 180.0 / pi;
-            // Theta_R_pFDpCD, Phi_R_pFDpCD in deg
+            double Theta_L_pFDpCD = P_pL_pFDpCD_3v.Theta() * 180.0 / pi, Phi_L_pFDpCD = P_pL_pFDpCD_3v.Phi() * 180.0 / pi;  // Theta_L_pFDpCD, Phi_L_pFDpCD in deg
+            double Theta_R_pFDpCD = P_pR_pFDpCD_3v.Theta() * 180.0 / pi, Phi_R_pFDpCD = P_pR_pFDpCD_3v.Phi() * 180.0 / pi;  // Theta_R_pFDpCD, Phi_R_pFDpCD in deg
             double dPhi_hit_pFDpCD = CalcdPhi1(Phi_L_pFDpCD - Phi_R_pFDpCD);
             double Theta_pFD_pCD_pFDpCD = acos((P_pL_pFDpCD_3v.Px() * P_pR_pFDpCD_3v.Px() + P_pL_pFDpCD_3v.Py() * P_pR_pFDpCD_3v.Py() + P_pL_pFDpCD_3v.Pz() * P_pR_pFDpCD_3v.Pz()) /
                                                (P_pL_pFDpCD_3v.Mag() * P_pR_pFDpCD_3v.Mag())) *
@@ -17710,10 +17710,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             double E_miss_2N_nFDpCD = analysis_physics::CalcEmiss2N(omega_nFDpCD, E_nFD_nFDpCD, E_pCD_nFDpCD, constants::m_p);  // Missing energy (2N)
 
             /* Setting particle angles */
-            double Theta_L_nFDpCD = P_nL_nFDpCD_3v.Theta() * 180.0 / pi, Phi_L_nFDpCD = P_nL_nFDpCD_3v.Phi() * 180.0 / pi;
-            // Theta_L_nFDpCD, Phi_L_nFDpCD in deg
-            double Theta_R_nFDpCD = P_nR_nFDpCD_3v.Theta() * 180.0 / pi, Phi_R_nFDpCD = P_nR_nFDpCD_3v.Phi() * 180.0 / pi;
-            // Theta_R_nFDpCD, Phi_R_nFDpCD in deg
+            double Theta_L_nFDpCD = P_nL_nFDpCD_3v.Theta() * 180.0 / pi, Phi_L_nFDpCD = P_nL_nFDpCD_3v.Phi() * 180.0 / pi;  // Theta_L_nFDpCD, Phi_L_nFDpCD in deg
+            double Theta_R_nFDpCD = P_nR_nFDpCD_3v.Theta() * 180.0 / pi, Phi_R_nFDpCD = P_nR_nFDpCD_3v.Phi() * 180.0 / pi;  // Theta_R_nFDpCD, Phi_R_nFDpCD in deg
             double dPhi_hit_nFDpCD = Phi_L_nFDpCD - Phi_R_nFDpCD;
             double Theta_nFD_pCD_nFDpCD = acos((P_nFD_nFDpCD_3v.Px() * P_pCD_nFDpCD_3v.Px() + P_nFD_nFDpCD_3v.Py() * P_pCD_nFDpCD_3v.Py() + P_nFD_nFDpCD_3v.Pz() * P_pCD_nFDpCD_3v.Pz()) /
                                                (P_nFD_nFDpCD_3v.Mag() * P_pCD_nFDpCD_3v.Mag())) *
@@ -18786,7 +18784,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     // Number of Photo-electrons (Nphe) histograms
     if (Nphe_plots) {
-        std::cout << "\033[33m\n\nPlotting number of photo-electrons (Nphe) histograms...\n\n\033[0m";
+        std::cout << "\033[33m\n\nPlotting number of photo-electrons (Nphe) histograms...\n\n\033[0m" << std::flush;
 
         //  Nphe plots ----------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -18822,7 +18820,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     // Chi2 plots
     if (Chi2_plots) {
-        std::cout << "\033[33m\n\nPlotting Chi2 plots...\n\n\033[0m";
+        std::cout << "\033[33m\n\nPlotting Chi2 plots...\n\n\033[0m" << std::flush;
 
         // Finding Xmax
         // CutManager.FindChi2Xmax();
@@ -19005,7 +19003,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     // Vertex plots
     if (Vertex_plots) {
-        std::cout << "\033[33m\n\nPlotting Vertex plots...\n\n\033[0m";
+        std::cout << "\033[33m\n\nPlotting Vertex plots...\n\n\033[0m" << std::flush;
 
         //  Vertex plots --------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -19197,7 +19195,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     // Sampling Fraction (SF) histograms
     if (SF_plots) {
-        std::cout << "\033[33m\n\nPlotting Sampling Fraction histograms...\n\n\033[0m";
+        std::cout << "\033[33m\n\nPlotting Sampling Fraction histograms...\n\n\033[0m" << std::flush;
 
         //  SF plots ------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -19258,7 +19256,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     // ECAL edge histograms (electrons only, FD only)
     if (fiducial_plots) {
-        std::cout << "\033[33m\n\nPlotting fiducial histograms...\n\n\033[0m";
+        std::cout << "\033[33m\n\nPlotting fiducial histograms...\n\n\033[0m" << std::flush;
 
         //  ECAL coordinates vs. SF plots ---------------------------------------------------------------------------------------------------------------------------------------
 
@@ -19307,7 +19305,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     // Momentum histograms
     if (Momentum_plots) {
-        std::cout << "\033[33m\n\nPlotting Momentum histograms...\n\n\033[0m";
+        std::cout << "\033[33m\n\nPlotting Momentum histograms...\n\n\033[0m" << std::flush;
 
         //  Momentum plots ------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -19946,7 +19944,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     // Reaction monitoring histograms
     if (ReacMon_plots) {
-        std::cout << "\033[33m\n\nPlotting reaction monitoring histograms...\n\n\033[0m";
+        std::cout << "\033[33m\n\nPlotting reaction monitoring histograms...\n\n\033[0m" << std::flush;
 
         // Reaction monitoring histograms (pFDpCD) ----------------------------------------------------------------------------------------------------------------------
 
@@ -21301,7 +21299,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     // W histograms
     if (W_plots) {
-        std::cout << "\033[33m\n\nPlotting W histograms...\n\n\033[0m";
+        std::cout << "\033[33m\n\nPlotting W histograms...\n\n\033[0m" << std::flush;
 
         //  W plots (CD & FD) ---------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -21511,7 +21509,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     // Beta plots
     if (Beta_plots) {
-        std::cout << "\033[33m\n\nPlotting Beta histograms...\n\n\033[0m";
+        std::cout << "\033[33m\n\nPlotting Beta histograms...\n\n\033[0m" << std::flush;
 
         //  Beta plots ----------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -21540,7 +21538,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     // Beta vs. P plots
     if (Beta_vs_P_plots) {
-        std::cout << "\033[33m\n\nPlotting Beta vs. P histograms...\n\n\033[0m";
+        std::cout << "\033[33m\n\nPlotting Beta vs. P histograms...\n\n\033[0m" << std::flush;
 
         //  Beta vs. P TF1 plots ------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -21786,7 +21784,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     // Angle histograms
     if (Angle_plots_master) {
-        std::cout << "\033[33m\n\nPlotting Angle histograms...\n\n\033[0m";
+        std::cout << "\033[33m\n\nPlotting Angle histograms...\n\n\033[0m" << std::flush;
 
         //  Theta_e plots (FD only) ---------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -23411,7 +23409,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     // Momentum transfer histograms
     if (Momentum_transfer_plots) {
-        std::cout << "\033[33m\n\nPlotting Momentum transfer histograms...\n\n\033[0m";
+        std::cout << "\033[33m\n\nPlotting Momentum transfer histograms...\n\n\033[0m" << std::flush;
 
         //  Momentum transfer plots (FD only)
         //  --------------------------------------------------------------------------------------------------------------------------------------------------
@@ -23856,7 +23854,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     // Energy (E_e) histograms
     if (E_e_plots) {
-        std::cout << "\033[33m\n\nPlotting Energy (E_e) histograms...\n\n\033[0m";
+        std::cout << "\033[33m\n\nPlotting Energy (E_e) histograms...\n\n\033[0m" << std::flush;
 
         //  E_e plots (FD only) -------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -24144,7 +24142,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     // Energy transfer histograms
     if (ETrans_all_plots) {
-        std::cout << "\033[33m\n\nPlotting Energy Transfer (ET) histograms...\n\n\033[0m";
+        std::cout << "\033[33m\n\nPlotting Energy Transfer (ET) histograms...\n\n\033[0m" << std::flush;
 
         if (ETrans_All_Int_plots) {
             double ETrans_All_Ang_All_Int_integral_1p = hET_All_Ang_All_Int_1p_FD->Integral();
@@ -24456,7 +24454,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     // Ecal reconstruction histograms
     if (Ecal_plots) {
-        std::cout << "\033[33m\n\nPlotting Ecal reconstruction histograms...\n\n\033[0m";
+        std::cout << "\033[33m\n\nPlotting Ecal reconstruction histograms...\n\n\033[0m" << std::flush;
 
         //  Ecal plots (CD & FD) ------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -24743,7 +24741,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     // TKI histograms
     if (TKI_plots) {
-        std::cout << "\033[33m\n\nTKI histograms...\n\n\033[0m";
+        std::cout << "\033[33m\n\nTKI histograms...\n\n\033[0m" << std::flush;
 
         //  dP_T plots (CD & FD) ------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -24951,7 +24949,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     // ToF histograms
     if (ToF_plots) {
-        std::cout << "\033[33m\n\nToF histograms...\n\n\033[0m";
+        std::cout << "\033[33m\n\nToF histograms...\n\n\033[0m" << std::flush;
     } else {
         std::cout << "\033[33m\n\nToF plots are disabled by user.\n\n\033[0m";
     }
@@ -24964,7 +24962,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     // Efficiency plots
     if (Efficiency_plots) {
-        std::cout << "\033[33m\n\nPlotting efficiency histograms...\n\n\033[0m";
+        std::cout << "\033[33m\n\nPlotting efficiency histograms...\n\n\033[0m" << std::flush;
 
         //  Efficiency plots ----------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -25766,7 +25764,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     // TL plots after Acceptance maps
     if (TL_after_Acceptance_Maps_plots) {
-        std::cout << "\033[33m\n\nPlotting TL plots after Acceptance maps...\n\n\033[0m";
+        std::cout << "\033[33m\n\nPlotting TL plots after Acceptance maps...\n\n\033[0m" << std::flush;
 
         //  TL after Acceptance maps plots
         //  ---------------------------------------------------------------------------------------------------------------------------------------------
@@ -25801,7 +25799,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     // Acceptance maps histograms
     if (AMaps_plots) {
-        std::cout << "\033[33m\n\nPlotting Acceptance maps histograms...\n\n\033[0m";
+        std::cout << "\033[33m\n\nPlotting Acceptance maps histograms...\n\n\033[0m" << std::flush;
 
         //  Acceptance maps plots -----------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -25854,7 +25852,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     }
 
     if (WMaps_plots) {
-        std::cout << "\033[33m\n\nPlotting Efficiency maps histograms...\n\n\033[0m";
+        std::cout << "\033[33m\n\nPlotting Efficiency maps histograms...\n\n\033[0m" << std::flush;
 
         //  Efficiency maps plots -----------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -25908,7 +25906,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     // Resolution histograms
     if (Resolution_plots) {
-        std::cout << "\033[33m\n\nPlotting Resolution histograms...\n\n\033[0m";
+        std::cout << "\033[33m\n\nPlotting Resolution histograms...\n\n\033[0m" << std::flush;
 
         //  Resolution plots -----------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -26107,7 +26105,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     // Multiplicity histograms
     if (Multiplicity_plots) {
-        std::cout << "\033[33m\n\nPlotting Multiplicity histograms...\n\n\033[0m";
+        std::cout << "\033[33m\n\nPlotting Multiplicity histograms...\n\n\033[0m" << std::flush;
 
         //  Multiplicity plots -----------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -26255,7 +26253,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     if (PrintEvents) { EventPrint.close(); }
 
     if (debug_plots) {
-        std::cout << "\033[33m\n\nSaving debugging plots...\n\n\033[0m";
+        std::cout << "\033[33m\n\nSaving debugging plots...\n\n\033[0m" << std::flush;
         TString hit_map_ref_filePath = run_plots_path + "/" + "hit_map_ref.root";
         clasAna.set_hit_map_ref_fileName(hit_map_ref_filePath);
 
@@ -26263,7 +26261,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         clasAna.setdebug_fileName(debug_filePath);
         clasAna.WriteDebugPlots();
     } else {
-        std::cout << "\033[33m\n\nDebugging plots are disabled...\n\n\033[0m";
+        std::cout << "\033[33m\n\nDebugging plots are disabled...\n\n\033[0m" << std::flush;
     }
 
 #pragma endregion
@@ -26271,12 +26269,12 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     /*     // Log skipped hipo files ------------------------------------------------------------------------------------------------------------------------------------------
 
         if (SkippedHipoChainFiles.size() > 0) {
-            std::cout << "\033[33m\n\nSaving skipped hipo files...\n\n\033[0m";
+            std::cout << "\033[33m\n\nSaving skipped hipo files...\n\n\033[0m" << std::flush;
 
             // Saving skipped hipo files list
             basic_tools::LogSkippedHipoFiles(SkippedHipoChainFiles, HipoChainLength, run_skipped_files_list_save_Directory.c_str());
         } else {
-            std::cout << "\033[33m\n\nNo skipped hipo files...\n\n\033[0m";
+            std::cout << "\033[33m\n\nNo skipped hipo files...\n\n\033[0m" << std::flush;
         }
      */
 
@@ -27201,13 +27199,15 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         if (ApplyLimiter) { std::cout << "\033[31m\n\nNOTE: running code with a limiter on number of events!\n\n\033[0m"; }
     }
 
-    std::cout << "\n\n\033[33mSaving plots folder to zip file...\n\n\033[0m";
+    std::cout << "\033[31m\n\nNOTE: weight maps are commented out!\n\n\033[0m";
+
+    std::cout << "\n\n\033[33mSaving plots folder to zip file...\n\n\033[0m" << std::flush;
     zipping::SavePlotsToZipFile(Save_Plots_folder_to_zip_files, zipping_print_out, run_plots_path, settings.GetRun_dir_name());
 
 #pragma endregion
 
 #pragma region /* Cleanup */
-    std::cout << "\n\n\033[33mCleaning up...\n\n\033[0m";
+    std::cout << "\n\n\033[33mCleaning up...\n\n\033[0m" << std::flush;
 
     // if (HistoList.size() != HistoList_skipCleaning.size()) {
     //     std::cout << "\n\nRecoAnalyzer::RecoAnalyzer: ERROR! HistoList and HistoList_skipCleaning have different sizes! Aborting...\n\n";
@@ -27237,7 +27237,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 // RecoAnalyzer destructor ----------------------------------------------------------------------------------------------------------------------------------------------
 
 // RecoAnalyzer::~RecoAnalyzer() {
-//     std::cout << "\n\n\033[33mCleaning up...\n\n\033[0m";
+//     std::cout << "\n\n\033[33mCleaning up...\n\n\033[0m" << std::flush;
 
 //     for (auto histo : HistoList) { delete histo; }
 

@@ -191,17 +191,19 @@ struct CutValueManager {
         dVz_cuts_CD = Experiment.GetdVz_cuts_CD();
 
         if (ESSettings.limless_mom_eff_plots) {
-            /* If we enforce TL cuts, don't use momentum thresholds on nucleons. */
+            /* If we enforce TL cuts, don't use momentum thresholds on nucleons.
+               Here we keep the same thresholds for FD neutrons and protons.  */
             p_mom_th = DSCuts("Momentum_th", "", "Protons", "", 0, -9999, 9999);
             pFD_mom_th = DSCuts("Momentum_th", "FD", "Protons", "", 0, p_mom_th.GetLowerCut(), p_mom_th.GetUpperCut());
             pCD_mom_th = DSCuts("Momentum_th", "CD", "Protons", "", 0, -9999, 9999);
-            n_mom_th = DSCuts("Momentum_th", "FD", "Neutrons", "", 0, -9999, 9999);
+            n_mom_th = DSCuts("Momentum_th", "FD", "Neutrons", "", 0, p_mom_th.GetLowerCut(), p_mom_th.GetUpperCut());
         } else {
-            /* If we don't enforce TL cuts, use momentum thresholds on nucleons. */
+            /* If we don't enforce TL cuts, use momentum thresholds on nucleons.
+               Here we keep the same thresholds for FD neutrons and protons.  */
             p_mom_th = DSCuts("Momentum_th", "", "Protons", "", 0, 0.4, 9999);
             pFD_mom_th = DSCuts("Momentum_th", "FD", "Protons", "", 0, p_mom_th.GetLowerCut(), p_mom_th.GetUpperCut());
             pCD_mom_th = DSCuts("Momentum_th", "CD", "Protons", "", 0, 0.3, 9999);
-            n_mom_th = DSCuts("Momentum_th", "FD", "Neutrons", "", 0, 0.4, 9999);
+            n_mom_th = DSCuts("Momentum_th", "FD", "Neutrons", "", 0, p_mom_th.GetLowerCut(), p_mom_th.GetUpperCut());
         }
 
         TL_p_mom_cuts = DSCuts("Momentum", "", "Proton", "", 0, p_mom_th.GetLowerCut(), p_mom_th.GetUpperCut());
