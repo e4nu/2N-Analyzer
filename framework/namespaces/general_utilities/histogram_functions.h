@@ -257,15 +257,14 @@ TObject *FindHistogram(TFile *file, const char *histNameSubstring, const std::st
     while ((key = (TKey *)next())) {
         // Step 2a: Read the object from the file
         TObject *obj = key->ReadObj();
-        if (!obj) continue; // If object couldn't be read, skip
+        if (!obj) continue;  // If object couldn't be read, skip
 
         std::string objName = obj->GetName();
         if (PrintOut1) std::cout << objName << "\n\n";
 
         // Step 2b: Check if the object matches the name substring and inherits from the desired class
         // - If either check fails, delete the object and continue to the next key
-        if (!basic_tools::FindSubstring(objName, histNameSubstring) ||
-            !obj->IsA()->InheritsFrom(desiredClass.c_str())) {
+        if (!basic_tools::FindSubstring(objName, histNameSubstring) || !obj->IsA()->InheritsFrom(desiredClass.c_str())) {
             delete obj;  // Safe to delete since we won't keep this object
             continue;
         }
@@ -273,13 +272,13 @@ TObject *FindHistogram(TFile *file, const char *histNameSubstring, const std::st
         // Step 2c: If matches, clone the object to detach from file and safely return to caller
         foundHistogram = obj->Clone();
         // Step 2d: Unlink from any ROOT directory (avoids automatic file cleanup)
-        foundHistogram->SetDirectory(nullptr);
+        if (foundHistogram->InheritsFrom(TH1::Class())) { ((TH1 *)foundHistogram)->SetDirectory(nullptr); }
         histogramFound = true;
         foundHistName = obj->ClassName();
 
         // Step 2e: Delete the original object (we only keep the clone)
         delete obj;
-        break; // Only return the first matching histogram
+        break;  // Only return the first matching histogram
     }
 
     // Step 3: Handle the case where no histogram was found
