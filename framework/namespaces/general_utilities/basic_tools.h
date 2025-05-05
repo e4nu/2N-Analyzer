@@ -134,6 +134,20 @@ std::string ToStringWithPrecision(const A a_value, const int n = 2) {
 
 inline bool FindSubstring(const std::string &string1, const std::string &string2) { return string1.find(string2) != std::string::npos; }
 
+// ReplaceSubstring function --------------------------------------------------------------------------------------------------------------------------------------------
+
+// Function to replace one substring with another
+string ReplaceSubstring(const std::string &input, const std::string &toReplace, const std::string &replaceWith) {
+    size_t pos = input.find(toReplace);
+
+    if (pos == string::npos) {
+        // If 'toReplace' is not found, return the original string
+        return input;
+    }
+
+    return input.substr(0, pos) + replaceWith + input.substr(pos + toReplace.length());
+}
+
 // trim function --------------------------------------------------------------------------------------------------------------------------------------------------------
 
 // A function that trims leading and trailing spaces from a string

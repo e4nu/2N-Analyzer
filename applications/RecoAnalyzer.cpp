@@ -6614,9 +6614,9 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                                          "#theta_{#font[62]{q},#font[62]{P}_{pCD}} [#circ]",
                                          numTH1Dbins_Ang_Plots, 0, 180);
     std::string hTheta_q_nFD_nFDpCD_Dir = directories.Angle_dir_map["Opening_angles_nFDpCD_Directory"];
-    std::string hTheta_q_nFD_nFDpCD_Dir_ReacMon = directories.ReacMon_dir_map["ReacMon_nFDpCD_Q2_Directory"];
+    std::string hTheta_q_nFD_nFDpCD_Dir_ReacMon = directories.ReacMon_dir_map["ReacMon_nFDpCD_theta_q_nFD_Directory"];
     std::string hTheta_q_pCD_nFDpCD_Dir = directories.Angle_dir_map["Opening_angles_nFDpCD_Directory"];
-    std::string hTheta_q_pCD_nFDpCD_Dir_ReacMon = directories.ReacMon_dir_map["ReacMon_nFDpCD_Q2_Directory"];
+    std::string hTheta_q_pCD_nFDpCD_Dir_ReacMon = directories.ReacMon_dir_map["ReacMon_nFDpCD_theta_q_pCD_Directory"];
 
     // Theta_q_p_tot vs. W (nFDpCD, CD & FD) --------------------------------------------------------------------------------------------------------------------------------
 
@@ -19934,6 +19934,11 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                 DrawAndSaveFSRatio(parameters.SampleName, hP_tot_mu_vs_P_rel_mu_pFDpCD, hP_tot_mu_vs_P_rel_mu_nFDpCD, plots);
             }
         }
+
+        //  Final state comparisons (1e cut, 1n, 1p ,nFDpCD, nFDpCD)
+        //  ----------------------------------------------------------------------------------------------------------------------------------
+        histogram_functions::CompareHistograms({hP_e_vs_Theta_e_reco_All_int_pFDpCD, hP_e_vs_Theta_e_reco_All_int_nFDpCD}, directories.Momentum_dir_map["Momentum_Parent_Directory"],
+                                               "Histogram_Comparisons", "P_e_vs_Theta_e_ReacCompo_All_int");
     } else {
         std::cout << "\033[33m\n\nMomentum plots are disabled by user.\n\n\033[0m";
     }
@@ -21288,6 +21293,9 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         histogram_functions::CompareHistograms({hxB_All_Int_pFDpCD, hxB_All_Int_nFDpCD}, directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons",
                                                "xB_All_Int_ReacComp");
         histogram_functions::CompareHistograms({sxB_pFDpCD, sxB_nFDpCD}, directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "xB_stack_ReacComp");
+
+        histogram_functions::CompareHistograms({hQ2_VS_xB_All_Int_pFDpCD, hQ2_VS_xB_All_Int_nFDpCD}, directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons",
+                                               "Q2_VS_xB_ReacComp_All_Int");
 
     } else {
         std::cout << "\033[33m\n\nReaction monitoring plots are disabled by user.\n\n\033[0m";

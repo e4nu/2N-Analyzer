@@ -145,6 +145,151 @@ void FillByInthsPlots(hsPlots &hsPlots_All_Int, hsPlots &hsPlots_QEL, hsPlots &h
     }
 }
 
+// TitleAligner functions -----------------------------------------------------------------------------------------------------------------------------------------------
+
+/**
+ * @brief Replaces a substring in the title and x-axis label of a histogram object.
+ *
+ * This templated function updates both the title and x-axis label of the given object
+ * (typically a TH1 or TH2) if the specified substring is found in either.
+ *
+ * @tparam T ROOT histogram type (e.g., TH1D, TH2D).
+ * @param obj Pointer to the histogram object.
+ * @param title Title string to update (in-place).
+ * @param xLabel X-axis title string to update (in-place).
+ * @param originToReplace Substring to search for and replace.
+ * @param replacement Replacement string.
+ */
+template <typename T>
+void TitleAligner(T *obj, std::string &title, std::string &xLabel, const std::string &originToReplace, const std::string &replacement) {
+    auto updateTitle = [&](std::string &str, auto setTitleFunc) {
+        if (basic_tools::FindSubstring(str, originToReplace)) {
+            str = basic_tools::ReplaceSubstring(str, originToReplace, replacement);
+            setTitleFunc(str.c_str());
+        }
+    };
+
+    updateTitle(title, [&](const char *newTitle) { obj->SetTitle(newTitle); });
+    updateTitle(xLabel, [&](const char *newTitle) { obj->GetXaxis()->SetTitle(newTitle); });
+}
+
+/**
+ * @brief Replaces a substring in the title, x-axis, and y-axis labels of a histogram object.
+ *
+ * This templated function updates the main title and both axis labels of a histogram object
+ * if the given substring is found in any of them.
+ *
+ * @tparam T ROOT histogram type (e.g., TH1D, TH2D).
+ * @param obj Pointer to the histogram object.
+ * @param title Title string to update (in-place).
+ * @param xLabel X-axis title string to update (in-place).
+ * @param yLabel Y-axis title string to update (in-place).
+ * @param originToReplace Substring to search for and replace.
+ * @param replacement Replacement string.
+ */
+template <typename T>
+void TitleAligner(T *obj, std::string &title, std::string &xLabel, std::string &yLabel, const std::string &originToReplace, const std::string &replacement) {
+    auto updateTitle = [&](std::string &str, auto setTitleFunc) {
+        if (basic_tools::FindSubstring(str, originToReplace)) {
+            str = basic_tools::ReplaceSubstring(str, originToReplace, replacement);
+            setTitleFunc(str.c_str());
+        }
+    };
+
+    updateTitle(title, [&](const char *newTitle) { obj->SetTitle(newTitle); });
+    updateTitle(xLabel, [&](const char *newTitle) { obj->GetXaxis()->SetTitle(newTitle); });
+    updateTitle(yLabel, [&](const char *newTitle) { obj->GetYaxis()->SetTitle(newTitle); });
+}
+
+/**
+ * @brief Replaces a substring in the title and axis labels of a ROOT histogram object.
+ *
+ * This function modifies the title and axis labels (X and Y) of ROOT histogram objects derived from TObject.
+ * It supports TH1 (including TH1D, TH2D), and THStack. The function performs a string replacement for all occurrences
+ * of the specified substring in the title and axis labels.
+ *
+ * For TH1-derived objects (TH1, TH2, etc.), it updates:
+ * - The main title (via SetTitle)
+ * - The X-axis title (via GetXaxis()->SetTitle)
+ * - The Y-axis title (via GetYaxis()->SetTitle)
+ *
+ * For THStack, it only updates:
+ * - The main title (via SetTitle)
+ * - The X-axis and Y-axis titles (via GetXaxis()->SetTitle, GetYaxis()->SetTitle), which are shared across the stack
+ *
+ * @param obj Pointer to a TObject. Must be a TH1-derived histogram or a THStack.
+ * @param originToReplace Substring to search for in the title and axis labels.
+ * @param replacement Replacement string to substitute for the found substring.
+ */
+void TitleAligner(TObject *obj, const std::string &originToReplace, const std::string &replacement) {
+    if (!obj) return;
+
+    std::string title = obj->GetTitle();
+    auto updateTitle = [&](std::string &str, auto setTitleFunc) {
+        if (basic_tools::FindSubstring(str, originToReplace)) {
+            str = basic_tools::ReplaceSubstring(str, originToReplace, replacement);
+            setTitleFunc(str.c_str());
+        }
+    };
+
+    // Safely set the main title only if obj inherits from TNamed
+    if (auto namedObj = dynamic_cast<TNamed *>(obj)) {
+        updateTitle(title, [&](const char *newTitle) { namedObj->SetTitle(newTitle); });
+    }
+
+    if (obj->InheritsFrom(TH1::Class())) {
+        TH1 *h = static_cast<TH1 *>(obj);
+        std::string xLabel = h->GetXaxis()->GetTitle();
+        std::string yLabel = h->GetYaxis()->GetTitle();
+        updateTitle(xLabel, [&](const char *newTitle) { h->GetXaxis()->SetTitle(newTitle); });
+        updateTitle(yLabel, [&](const char *newTitle) { h->GetYaxis()->SetTitle(newTitle); });
+    } else if (obj->InheritsFrom(THStack::Class())) {
+        THStack *stack = static_cast<THStack *>(obj);
+        TH1 *frameHist = stack->GetHistogram();
+        if (!frameHist) return;
+        std::string xLabel = frameHist->GetXaxis()->GetTitle();
+        std::string yLabel = frameHist->GetYaxis()->GetTitle();
+        updateTitle(xLabel, [&](const char *newTitle) { frameHist->GetXaxis()->SetTitle(newTitle); });
+        updateTitle(yLabel, [&](const char *newTitle) { frameHist->GetYaxis()->SetTitle(newTitle); });
+    }
+}
+
+/**
+ * @brief Updates the titles and axis labels of two TH1D histograms simultaneously.
+ *
+ * This version of TitleAligner applies the replacement logic to both simulation and data histograms.
+ *
+ * @param simHistogram Pointer to the simulation histogram (TH1D).
+ * @param dataHistogram Pointer to the data histogram (TH1D).
+ * @param originToReplace Substring to search for and replace in titles and labels.
+ * @param replacement Replacement string.
+ */
+void TitleAligner(TH1D *simHistogram, TH1D *dataHistogram, const std::string &originToReplace, const std::string &replacement) {
+    auto updateTitle = [&](TH1D *hist) {
+        std::string title = hist->GetTitle();
+        std::string xLabel = hist->GetXaxis()->GetTitle();
+        std::string yLabel = hist->GetYaxis()->GetTitle();
+
+        if (basic_tools::FindSubstring(title, originToReplace)) {
+            title = basic_tools::ReplaceSubstring(title, originToReplace, replacement);
+            hist->SetTitle(title.c_str());
+        }
+
+        if (basic_tools::FindSubstring(xLabel, originToReplace)) {
+            xLabel = basic_tools::ReplaceSubstring(xLabel, originToReplace, replacement);
+            hist->GetXaxis()->SetTitle(xLabel.c_str());
+        }
+
+        if (basic_tools::FindSubstring(yLabel, originToReplace)) {
+            yLabel = basic_tools::ReplaceSubstring(yLabel, originToReplace, replacement);
+            hist->GetYaxis()->SetTitle(yLabel.c_str());
+        }
+    };
+
+    updateTitle(simHistogram);
+    updateTitle(dataHistogram);
+}
+
 // DrawAndSaveHistogramsToPDF function ----------------------------------------------------------------------------------------------------------------------------------
 
 // Function to render and save histograms from a list to a PDF
@@ -285,6 +430,7 @@ TObject *FindHistogram(TFile *file, const char *histNameSubstring, const std::st
     if (!histogramFound) {
         std::cerr << "\n\nFindHistogram: could not find histogram!\n";
         std::cerr << "Histogram name substring = " << histNameSubstring << "\n";
+        std::cerr << "Desired class = " << desiredClass << "\n";
         exit(1);
     } else if (PrintOut) {
         std::cout << "\n\nFindHistogram: histogram found!\n";
@@ -353,7 +499,8 @@ void DrawTHStack(THStack *stack, bool useLogScale) {
     TIter next(histList);
     while (TObject *obj = next()) {
         if (obj->InheritsFrom(TH1::Class())) {
-            ((TH1 *)obj)->Sumw2(kTRUE);
+            if (!((TH1 *)obj)->GetSumw2N()) { ((TH1 *)obj)->Sumw2(); }
+            // ((TH1 *)obj)->Sumw2(kTRUE);
             ((TH1 *)obj)->SetMarkerSize(0);
 
             TH1 *h = (TH1 *)obj;
@@ -381,39 +528,52 @@ void DrawTHStack(THStack *stack, bool useLogScale) {
         H1D_All_Int->SetLineStyle(5);
         H1D_All_Int->SetMarkerSize(0);
         H1D_All_Int->SetMarkerColor(kBlack);
-        H1D_All_Int->Sumw2(kTRUE);
+        if (!H1D_All_Int->GetSumw2N()) { H1D_All_Int->Sumw2(); }
+        // H1D_All_Int->Sumw2(kTRUE);
     }
     if (H1D_QEL) {
         H1D_QEL->SetLineWidth(1);
         // H1D_QEL->SetLineWidth(2);
-        H1D_QEL->SetLineColor(kBlue);
+        H1D_QEL->SetLineColor(kAzure + 10);
+        // H1D_QEL->SetLineColor(kBlue);
         H1D_QEL->SetMarkerSize(0);
-        H1D_QEL->SetMarkerColor(kBlue);
-        H1D_QEL->Sumw2(kTRUE);
+        H1D_QEL->SetMarkerColor(kAzure + 10);
+        // H1D_QEL->SetMarkerColor(kBlue);
+        if (!H1D_QEL->GetSumw2N()) { H1D_QEL->Sumw2(); }
+        // H1D_QEL->Sumw2(kTRUE);
     }
     if (H1D_MEC) {
         H1D_MEC->SetLineWidth(1);
         // H1D_MEC->SetLineWidth(2);
-        H1D_MEC->SetLineColor(kRed + 1);
+        H1D_MEC->SetLineColor(kViolet);
+        // H1D_MEC->SetLineColor(kRed + 1);
         H1D_MEC->SetMarkerSize(0);
-        H1D_MEC->SetMarkerColor(kRed + 1);
-        H1D_MEC->Sumw2(kTRUE);
+        H1D_MEC->SetMarkerColor(kViolet);
+        // H1D_MEC->SetMarkerColor(kRed + 1);
+        if (!H1D_MEC->GetSumw2N()) { H1D_MEC->Sumw2(); }
+        // H1D_MEC->Sumw2(kTRUE);
     }
     if (H1D_RES) {
         H1D_RES->SetLineWidth(1);
         // H1D_RES->SetLineWidth(2);
         H1D_RES->SetLineColor(kGreen);
+        // H1D_RES->SetLineColor(kGreen + 1);
         H1D_RES->SetMarkerSize(0);
         H1D_RES->SetMarkerColor(kGreen);
-        H1D_RES->Sumw2(kTRUE);
+        // H1D_RES->SetMarkerColor(kGreen + 1);
+        if (!H1D_RES->GetSumw2N()) { H1D_RES->Sumw2(); }
+        // H1D_RES->Sumw2(kTRUE);
     }
     if (H1D_DIS) {
         H1D_DIS->SetLineWidth(1);
         // H1D_DIS->SetLineWidth(2);
-        H1D_DIS->SetLineColor(kOrange + 6);
+        H1D_DIS->SetLineColor(kOrange + 7);
+        // H1D_DIS->SetLineColor(kOrange + 6);
         H1D_DIS->SetMarkerSize(0);
-        H1D_DIS->SetMarkerColor(kOrange + 6);
-        H1D_DIS->Sumw2(kTRUE);
+        H1D_DIS->SetMarkerColor(kOrange + 7);
+        // H1D_DIS->SetMarkerColor(kOrange + 6);
+        if (!H1D_DIS->GetSumw2N()) { H1D_DIS->Sumw2(); }
+        // H1D_DIS->Sumw2(kTRUE);
     }
 
     // Draw the stack
@@ -445,13 +605,18 @@ void CompareHistograms(const std::vector<TObject *> &histograms, const std::stri
     int nCols = (nHistos == 2 || nHistos == 4) ? 2 : 3;
     int nRows = (nHistos == 2) ? 1 : 2;
 
+    int canvasWidth = 1000 * nCols;
+    int canvasHeight = 750 * nRows;
+
     std::vector<int> padMapping;
     if (nHistos == 2) {
         padMapping = {1, 2};
     } else if (nHistos == 4) {
         padMapping = {1, 2, 3, 4};
+        // canvasHeight = 440 * nRows;
     } else if (nHistos == 5) {
         padMapping = {1, 2, 3, 5, 6};
+        // canvasHeight = 440 * nRows;
     }
 
     // Create output directory if needed
@@ -462,13 +627,14 @@ void CompareHistograms(const std::vector<TObject *> &histograms, const std::stri
     // ------------------
     // Linear Scale Canvas
     // ------------------
-    TCanvas TempCanvas("TempCanvas", "Histograms - Linear Scale", 1000 * nCols, 750 * nRows);
+    TCanvas TempCanvas("TempCanvas", "Histograms - Linear Scale", canvasWidth, canvasHeight);
+    // TCanvas TempCanvas("TempCanvas", "Histograms - Linear Scale", 1000 * nCols, 450 * nRows);
     // TCanvas TempCanvas("TempCanvas", "Histograms - Linear Scale", 1000 * nCols, 750 * nRows);
     TempCanvas.Divide(nCols, nRows);
 
     for (size_t i = 0; i < nHistos; ++i) {
         TempCanvas.cd(padMapping[i]);
-        gPad->SetGrid();
+        // gPad->SetGrid();
         gPad->SetBottomMargin(0.14);
         gPad->SetLeftMargin(0.16);
         gPad->SetRightMargin(0.12);
@@ -476,20 +642,58 @@ void CompareHistograms(const std::vector<TObject *> &histograms, const std::stri
         if (IsHistogramEmpty(histograms[i])) {
             DrawEmptyHistogramNotice(0.2, 0.4, 0.8, 0.6);
         } else if (histograms[i]->InheritsFrom(TH1D::Class())) {
+            if (nHistos != 5) { gPad->SetGrid(); }
+
+            ((TH1D *)histograms[i])->SetStats(1);
+            gStyle->SetOptStat("ourmen");
+
+            ((TH1D *)histograms[i])->GetYaxis()->SetTitleOffset(1.3);
+            // ((TH1D *)histograms[i])->GetYaxis()->SetTitleOffset(1.0);
+            ((TH1D *)histograms[i])->GetXaxis()->SetTitleOffset(1.0);
             ((TH1D *)histograms[i])->SetLineColor(kBlue);
             ((TH1D *)histograms[i])->SetLineWidth(1);
             ((TH1D *)histograms[i])->SetLineStyle(1);
             ((TH1D *)histograms[i])->Draw();
-            // ((TH1D *)histograms[i])->Draw("HISTE");
+            gPad->Update();  // So that statbox will be found
+
+            TPaveStats *stats = (TPaveStats *)((TH1 *)histograms[i])->FindObject("stats");
+            if (stats) {
+                double dx = stats->GetX2NDC() - stats->GetX1NDC();
+                double dy = stats->GetY2NDC() - stats->GetY1NDC();
+                stats->SetX2NDC(0.98);
+                stats->SetX1NDC(0.98 - dx);
+                stats->SetY2NDC(0.875);
+                stats->SetY1NDC(0.875 - dy);
+            }
         } else if (histograms[i]->InheritsFrom(TH2D::Class())) {
+            gPad->SetGrid();
+
             TH2D *h2 = (TH2D *)histograms[i];
+
+            h2->SetStats(1);
+            gStyle->SetOptStat("ourmen");
+
+            h2->GetYaxis()->SetTitleOffset(1.0);
+
             h2->Draw("COLZ");
             gPad->Update();
             TPaletteAxis *palette = (TPaletteAxis *)h2->GetListOfFunctions()->FindObject("palette");
             if (palette) palette->SetY2NDC(0.475);
             gPad->Modified();
             gPad->Update();
+
+            TPaveStats *stats = (TPaveStats *)((TH1 *)histograms[i])->FindObject("stats");
+            if (stats) {
+                double dx = stats->GetX2NDC() - stats->GetX1NDC();
+                double dy = stats->GetY2NDC() - stats->GetY1NDC();
+                stats->SetX2NDC(0.98);
+                stats->SetX1NDC(0.98 - dx);
+                stats->SetY2NDC(0.875);
+                stats->SetY1NDC(0.875 - dy);
+            }
         } else if (histograms[i]->InheritsFrom(THStack::Class())) {
+            if (nHistos != 5) { gPad->SetGrid(); }
+
             DrawTHStack((THStack *)histograms[i], /* useLogScale = */ false);
         } else {
             std::cerr << "\n\nhistogram_functions::CompareHistograms: Warning: Object " << i << " is not a recognized histogram type!\n\n" << std::endl;
@@ -523,8 +727,21 @@ void CompareHistograms(const std::vector<TObject *> &histograms, const std::stri
             DrawEmptyHistogramNotice(0.2, 0.4, 0.8, 0.6);
         } else if (histograms[i]->InheritsFrom(TH1D::Class())) {
             gPad->SetLogy(1);
+            ((TH1D *)histograms[i])->SetLineColor(kBlue);
+            ((TH1D *)histograms[i])->SetLineWidth(1);
+            ((TH1D *)histograms[i])->SetLineStyle(1);
             ((TH1D *)histograms[i])->Draw();
-            // ((TH1D *)histograms[i])->Draw("HISTE");
+            gPad->Update();  // So that statbox will be found
+
+            TPaveStats *stats = (TPaveStats *)((TH1 *)histograms[i])->FindObject("stats");
+            if (stats) {
+                double dx = stats->GetX2NDC() - stats->GetX1NDC();
+                double dy = stats->GetY2NDC() - stats->GetY1NDC();
+                stats->SetX2NDC(0.98);
+                stats->SetX1NDC(0.98 - dx);
+                stats->SetY2NDC(0.875);
+                stats->SetY1NDC(0.875 - dy);
+            }
         } else if (histograms[i]->InheritsFrom(TH2D::Class())) {
             gPad->SetLogz(1);
             TH2D *h2 = (TH2D *)histograms[i];
@@ -534,6 +751,16 @@ void CompareHistograms(const std::vector<TObject *> &histograms, const std::stri
             if (palette) palette->SetY2NDC(0.475);
             gPad->Modified();
             gPad->Update();
+
+            TPaveStats *stats = (TPaveStats *)((TH1 *)histograms[i])->FindObject("stats");
+            if (stats) {
+                double dx = stats->GetX2NDC() - stats->GetX1NDC();
+                double dy = stats->GetY2NDC() - stats->GetY1NDC();
+                stats->SetX2NDC(0.98);
+                stats->SetX1NDC(0.98 - dx);
+                stats->SetY2NDC(0.875);
+                stats->SetY1NDC(0.875 - dy);
+            }
         } else if (histograms[i]->InheritsFrom(THStack::Class())) {
             DrawTHStack((THStack *)histograms[i], /* useLogScale = */ true);
         }
