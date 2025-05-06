@@ -217,8 +217,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     /* Final state ratio plots */
     bool FSR_1D_plots, FSR_2D_plots;  // FSR_2D_plots is disabled below if HipoChainLength is 2 or lower
 
-    bool TestRun = true;       // set as false for a full run
-    bool ApplyLimiter = true;  // set as false for a full run
+    bool TestRun = false;       // set as false for a full run
+    bool ApplyLimiter = false;  // set as false for a full run
     // int Limiter = 5000000;
     int Limiter = 1000000;
     // int Limiter = 500000;
@@ -18521,7 +18521,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     gStyle->SetStatX(0.98);
     gStyle->SetStatY(0.875);
-    
+
     gStyle->SetOptStat("ourmen");
 
     MainCanvas->cd();
@@ -26761,134 +26761,134 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
 #pragma region /* Finishing execution */
 
-    std::cout << "\033[33m\n\n===========================================================================\n\033[0m";
-    std::cout << "\033[33m\t\t\tExecution summary\n\033[0m";
-    std::cout << "\033[33m===========================================================================\n\n\033[0m";
+    std::cout << "\033[33m\n\n===========================================================================\033[0m\n";
+    std::cout << "\033[33m\t\t\tExecution summary\033[0m\n";
+    std::cout << "\033[33m===========================================================================\033[0m\n\n";
 
-    std::cout << "\033[33m---------------------------------------------------------------------------\n\033[0m";
-    std::cout << "\033[33m\t\t\tEvent counts\n\033[0m";
-    std::cout << "\033[33m---------------------------------------------------------------------------\n\n\033[0m";
+    std::cout << "\033[33m---------------------------------------------------------------------------\033[0m\n";
+    std::cout << "\033[33m\t\t\tEvent counts\n";
+    std::cout << "\033[33m---------------------------------------------------------------------------\033[0m\n\n";
 
-    std::cout << "\033[33m-- Inclusive TL counts ----------------------------------------------------\n\033[0m";
-    std::cout << "\033[33mTotal #(QEL events):\t\t\t" << num_of_QEL_events << "\n\033[0m";
-    std::cout << "\033[33mTotal #(MEC events):\t\t\t" << num_of_MEC_events << "\n\033[0m";
-    std::cout << "\033[33mTotal #(RES events):\t\t\t" << num_of_RES_events << "\n\033[0m";
-    std::cout << "\033[33mTotal #(DIS events):\t\t\t" << num_of_DIS_events << "\n\033[0m";
-    std::cout << "\033[33mQEL + MEC + RES + DIS:\t\t\t" << num_of_QEL_events + num_of_MEC_events + num_of_RES_events + num_of_DIS_events << "\n\n\033[0m";
+    std::cout << "\033[33m-- Inclusive TL counts ----------------------------------------------------\033[0m\n";
+    std::cout << "\033[33mTotal #(QEL events):\033[0m\t\t\t" << num_of_QEL_events << "\n";
+    std::cout << "\033[33mTotal #(MEC events):\033[0m\t\t\t" << num_of_MEC_events << "\n";
+    std::cout << "\033[33mTotal #(RES events):\033[0m\t\t\t" << num_of_RES_events << "\n";
+    std::cout << "\033[33mTotal #(DIS events):\033[0m\t\t\t" << num_of_DIS_events << "\n";
+    std::cout << "\033[33mQEL + MEC + RES + DIS:\033[0m\t\t\t" << num_of_QEL_events + num_of_MEC_events + num_of_RES_events + num_of_DIS_events << "\n\n";
 
-    std::cout << "\033[33m-- Total counts -----------------------------------------------------------\n\033[0m";
-    std::cout << "\033[33mTotal #(events):\t\t\t" << num_of_events << "\n\033[0m";
-    std::cout << "\033[33mTotal #(events) w/o any e:\t\t" << num_of_events_without_any_e << "\n\033[0m";
-    std::cout << "\033[33mTotal #(events) w/ any e:\t\t" << num_of_events_with_any_e << "\n\n\033[0m";
+    std::cout << "\033[33m-- Total counts -----------------------------------------------------------\033[0m\n";
+    std::cout << "\033[33mTotal #(events):\033[0m\t\t\t" << num_of_events << "\n";
+    std::cout << "\033[33mTotal #(events) w/o any e:\033[0m\t\t" << num_of_events_without_any_e << "\n";
+    std::cout << "\033[33mTotal #(events) w/ any e:\033[0m\t\t" << num_of_events_with_any_e << "\n\n";
 
-    std::cout << "\033[33m-- Events with electrons counts -------------------------------------------\n\033[0m";
-    std::cout << "\033[33m#(events) w/ at least 1e:\t\t" << num_of_events_with_at_least_1e << "\n\033[0m";
-    std::cout << "\033[33m#(events) w/ more then 1e:\t\t" << num_of_events_more_then_1e << "\n\033[0m";
-    std::cout << "\033[33m#(events) w/ exactly 1e:\t\t" << num_of_events_with_exactly_1e << "\n\n\033[0m";
-    std::cout << "\033[33m#(events) w/ exactly 1e (from file):\t\t" << num_of_events_with_exactly_1e_from_file << "\n\n\033[0m";
+    std::cout << "\033[33m-- Events with electrons counts -------------------------------------------\033[0m\n";
+    std::cout << "\033[33m#(events) w/ at least 1e:\033[0m\t\t" << num_of_events_with_at_least_1e << "\n";
+    std::cout << "\033[33m#(events) w/ more then 1e:\033[0m\t\t" << num_of_events_more_then_1e << "\n";
+    std::cout << "\033[33m#(events) w/ exactly 1e:\033[0m\t\t" << num_of_events_with_exactly_1e << "\n\n";
+    std::cout << "\033[33m#(events) w/ exactly 1e (from file):\033[0m\t\t" << num_of_events_with_exactly_1e_from_file << "\n\n";
 
     if (ESSettings.Count_FD_neurton_and_photon_hits) {
-        std::cout << "\033[33m-- FD neutron hit counts in ECAL ------------------------------------------\n\033[0m";
-        std::cout << "\033[33mnum_of_events_with_nFD_CLA12:\t\t" << num_of_events_with_nFD_CLA12 << "\n\033[0m";
-        std::cout << "\033[33mnum_of_events_with_nFD_CLA12_PCAL:\t" << num_of_events_with_nFD_CLA12_PCAL << "\n\033[0m";
-        std::cout << "\033[33mnum_of_events_with_nFD_CLA12_ECIN:\t" << num_of_events_with_nFD_CLA12_ECIN << "\n\033[0m";
-        std::cout << "\033[33mnum_of_events_with_nFD_CLA12_ECOUT:\t" << num_of_events_with_nFD_CLA12_ECOUT << "\n\033[0m";
-        std::cout << "\033[33mnum_of_events_with_nFD_CLA12_EC:\t" << num_of_events_with_nFD_CLA12_EC << "\n\n\033[0m";
+        std::cout << "\033[33m-- FD neutron hit counts in ECAL ------------------------------------------\033[0m\n";
+        std::cout << "\033[33mnum_of_events_with_nFD_CLA12:\033[0m\t\t" << num_of_events_with_nFD_CLA12 << "\n";
+        std::cout << "\033[33mnum_of_events_with_nFD_CLA12_PCAL:\033[0m\t" << num_of_events_with_nFD_CLA12_PCAL << "\n";
+        std::cout << "\033[33mnum_of_events_with_nFD_CLA12_ECIN:\033[0m\t" << num_of_events_with_nFD_CLA12_ECIN << "\n";
+        std::cout << "\033[33mnum_of_events_with_nFD_CLA12_ECOUT:\033[0m\t" << num_of_events_with_nFD_CLA12_ECOUT << "\n";
+        std::cout << "\033[33mnum_of_events_with_nFD_CLA12_EC:\033[0m\t" << num_of_events_with_nFD_CLA12_EC << "\n\n";
 
-        std::cout << "\033[33m-- FD photon hit counts in ECAL -------------------------------------------\n\033[0m";
-        std::cout << "\033[33mnum_of_events_with_phFD_CLA12:\t\t" << num_of_events_with_phFD_CLA12 << "\n\033[0m";
-        std::cout << "\033[33mnum_of_events_with_phFD_CLA12_PCAL:\t" << num_of_events_with_phFD_CLA12_PCAL << "\n\033[0m";
-        std::cout << "\033[33mnum_of_events_with_phFD_CLA12_ECIN:\t" << num_of_events_with_phFD_CLA12_ECIN << "\n\033[0m";
-        std::cout << "\033[33mnum_of_events_with_phFD_CLA12_ECOUT:\t" << num_of_events_with_phFD_CLA12_ECOUT << "\n\033[0m";
-        std::cout << "\033[33mnum_of_events_with_phFD_CLA12_EC:\t" << num_of_events_with_phFD_CLA12_EC << "\n\n\033[0m";
+        std::cout << "\033[33m-- FD photon hit counts in ECAL -------------------------------------------\033[0m\n";
+        std::cout << "\033[33mnum_of_events_with_phFD_CLA12:\033[0m\t\t" << num_of_events_with_phFD_CLA12 << "\n";
+        std::cout << "\033[33mnum_of_events_with_phFD_CLA12_PCAL:\033[0m\t" << num_of_events_with_phFD_CLA12_PCAL << "\n";
+        std::cout << "\033[33mnum_of_events_with_phFD_CLA12_ECIN:\033[0m\t" << num_of_events_with_phFD_CLA12_ECIN << "\n";
+        std::cout << "\033[33mnum_of_events_with_phFD_CLA12_ECOUT:\033[0m\t" << num_of_events_with_phFD_CLA12_ECOUT << "\n";
+        std::cout << "\033[33mnum_of_events_with_phFD_CLA12_EC:\033[0m\t" << num_of_events_with_phFD_CLA12_EC << "\n\n";
     }
 
-    std::cout << "\033[33m-- Inclusive Reco counts --------------------------------------------------\n\033[0m";
-    std::cout << "\033[33mTotal #(QEL events) 1e cut:\t\t" << num_of_QEL_events_1e_cut << "\n\033[0m";
-    std::cout << "\033[33mTotal #(MEC events) 1e cut:\t\t" << num_of_MEC_events_1e_cut << "\n\033[0m";
-    std::cout << "\033[33mTotal #(RES events) 1e cut:\t\t" << num_of_RES_events_1e_cut << "\n\033[0m";
-    std::cout << "\033[33mTotal #(DIS events) 1e cut:\t\t" << num_of_DIS_events_1e_cut << "\n\033[0m";
-    std::cout << "\033[33mQEL + MEC + RES + DIS:\t\t\t" << num_of_QEL_events_1e_cut + num_of_MEC_events_1e_cut + num_of_RES_events_1e_cut + num_of_DIS_events_1e_cut << "\n\n\033[0m";
+    std::cout << "\033[33m-- Inclusive Reco counts --------------------------------------------------\033[0m\n";
+    std::cout << "\033[33mTotal #(QEL events) 1e cut:\033[0m\t\t" << num_of_QEL_events_1e_cut << "\n";
+    std::cout << "\033[33mTotal #(MEC events) 1e cut:\033[0m\t\t" << num_of_MEC_events_1e_cut << "\n";
+    std::cout << "\033[33mTotal #(RES events) 1e cut:\033[0m\t\t" << num_of_RES_events_1e_cut << "\n";
+    std::cout << "\033[33mTotal #(DIS events) 1e cut:\033[0m\t\t" << num_of_DIS_events_1e_cut << "\n";
+    std::cout << "\033[33mQEL + MEC + RES + DIS:\033[0m\t\t\t" << num_of_QEL_events_1e_cut + num_of_MEC_events_1e_cut + num_of_RES_events_1e_cut + num_of_DIS_events_1e_cut << "\n\n";
 
-    std::cout << "\033[33m-- 1e1p event counts ------------------------------------------------------\n\033[0m";
-    std::cout << "\033[33m#(events) w/ 1e1p:\t\t\t" << num_of_events_with_1e1p << "\n\n\033[0m";
+    std::cout << "\033[33m-- 1e1p event counts ------------------------------------------------------\033[0m\n";
+    std::cout << "\033[33m#(events) w/ 1e1p:\033[0m\t\t\t" << num_of_events_with_1e1p << "\n\n";
 
-    std::cout << "\033[33m-- 1e2p event counts ------------------------------------------------------\n\033[0m";
-    std::cout << "\033[33m#(events) w/ 1e2p:\t\t\t" << num_of_events_with_1e2p << "\n\n\033[0m";
+    std::cout << "\033[33m-- 1e2p event counts ------------------------------------------------------\033[0m\n";
+    std::cout << "\033[33m#(events) w/ 1e2p:\033[0m\t\t\t" << num_of_events_with_1e2p << "\n\n";
 
-    std::cout << "\033[33m-- 1epFDpCD event counts --------------------------------------------------\n\033[0m";
-    std::cout << "\033[33m#(events) w/ 1epFDpCD:\t\t\t" << num_of_events_with_1epFDpCD << "\n\n\033[0m";
+    std::cout << "\033[33m-- 1epFDpCD event counts --------------------------------------------------\033[0m\n";
+    std::cout << "\033[33m#(events) w/ 1epFDpCD:\033[0m\t\t\t" << num_of_events_with_1epFDpCD << "\n\n";
 
-    std::cout << "\033[33m-- 2p event counts --------------------------------------------------------\n\033[0m";
-    std::cout << "\033[33mnum_of_events_2p_wFakeProtons:\t\t" << num_of_events_2p_wFakeProtons << "\n\n\033[0m";
+    std::cout << "\033[33m-- 2p event counts --------------------------------------------------------\033[0m\n";
+    std::cout << "\033[33mnum_of_events_2p_wFakeProtons:\033[0m\t\t" << num_of_events_2p_wFakeProtons << "\n\n";
 
     if (CutSettings.apply_nucleon_cuts) {
-        std::cout << "\033[33mnum_of_RM_2p_events_sCTOFhp:\t\t" << pid.num_of_RM_2p_events_sCTOFhp << "\n\033[0m";
-        std::cout << "\033[33mnum_of_AD_2p_events_from_3p_sCTOFhp:\t" << pid.num_of_AD_2p_events_from_3p_sCTOFhp << "\n\033[0m";
-        std::cout << "\033[33mnum_of_AD_2p_events_from_4p_sCTOFhp:\t" << pid.num_of_AD_2p_events_from_4p_sCTOFhp << "\n\033[0m";
-        std::cout << "\033[33mnum_of_AD_2p_events_from_Xp_sCTOFhp:\t" << pid.num_of_AD_2p_events_from_Xp_sCTOFhp << "\n\033[0m";
-        std::cout << "\033[33mnum_of_RM_2p_events_dCDaFDd:\t\t" << pid.num_of_RM_2p_events_dCDaFDd << "\n\033[0m";
-        std::cout << "\033[33mnum_of_AD_2p_events_from_3p_dCDaFDd:\t" << pid.num_of_AD_2p_events_from_3p_dCDaFDd << "\n\033[0m";
-        std::cout << "\033[33mnum_of_AD_2p_events_from_4p_dCDaFDd:\t" << pid.num_of_AD_2p_events_from_4p_dCDaFDd << "\n\033[0m";
-        std::cout << "\033[33mnum_of_AD_2p_events_from_Xp_dCDaFDd:\t" << pid.num_of_AD_2p_events_from_Xp_dCDaFDd << "\n\n\033[0m";
+        std::cout << "\033[33mnum_of_RM_2p_events_sCTOFhp:\033[0m\t\t" << pid.num_of_RM_2p_events_sCTOFhp << "\n";
+        std::cout << "\033[33mnum_of_AD_2p_events_from_3p_sCTOFhp:\033[0m\t" << pid.num_of_AD_2p_events_from_3p_sCTOFhp << "\n";
+        std::cout << "\033[33mnum_of_AD_2p_events_from_4p_sCTOFhp:\033[0m\t" << pid.num_of_AD_2p_events_from_4p_sCTOFhp << "\n";
+        std::cout << "\033[33mnum_of_AD_2p_events_from_Xp_sCTOFhp:\033[0m\t" << pid.num_of_AD_2p_events_from_Xp_sCTOFhp << "\n";
+        std::cout << "\033[33mnum_of_RM_2p_events_dCDaFDd:\033[0m\t\t" << pid.num_of_RM_2p_events_dCDaFDd << "\n";
+        std::cout << "\033[33mnum_of_AD_2p_events_from_3p_dCDaFDd:\033[0m\t" << pid.num_of_AD_2p_events_from_3p_dCDaFDd << "\n";
+        std::cout << "\033[33mnum_of_AD_2p_events_from_4p_dCDaFDd:\033[0m\t" << pid.num_of_AD_2p_events_from_4p_dCDaFDd << "\n";
+        std::cout << "\033[33mnum_of_AD_2p_events_from_Xp_dCDaFDd:\033[0m\t" << pid.num_of_AD_2p_events_from_Xp_dCDaFDd << "\n\n";
 
-        std::cout << "\033[33mnum_of_AD_2p_events_from_mixed_sCTOFhp_dCDaFDd:\t" << pid.num_of_AD_2p_events_from_mixed_sCTOFhp_dCDaFDd << "\n\n\033[0m";
+        std::cout << "\033[33mnum_of_AD_2p_events_from_mixed_sCTOFhp_dCDaFDd:\033[0m\t" << pid.num_of_AD_2p_events_from_mixed_sCTOFhp_dCDaFDd << "\n\n";
 
-        std::cout << "\033[33mnum_of_events_2p (from monitoring):\t"
+        std::cout << "\033[33mnum_of_events_2p (from monitoring):\033[0m\t"
                   << num_of_events_2p_wFakeProtons - pid.num_of_RM_2p_events_sCTOFhp - pid.num_of_RM_2p_events_dCDaFDd + pid.num_of_AD_2p_events_from_3p_sCTOFhp +
                          pid.num_of_AD_2p_events_from_4p_sCTOFhp + pid.num_of_AD_2p_events_from_3p_dCDaFDd + pid.num_of_AD_2p_events_from_4p_dCDaFDd
-                  << "\n\n\033[0m";
+                  << "\n\n";
 
-        std::cout << "\033[33mnum_of_events_2p (from monitoring; no mixed):\t"
+        std::cout << "\033[33mnum_of_events_2p (from monitoring; no mixed):\033[0m\t"
                   << num_of_events_2p_wFakeProtons - pid.num_of_RM_2p_events_sCTOFhp - pid.num_of_RM_2p_events_dCDaFDd + pid.num_of_AD_2p_events_from_3p_sCTOFhp +
                          pid.num_of_AD_2p_events_from_4p_sCTOFhp + pid.num_of_AD_2p_events_from_3p_dCDaFDd + pid.num_of_AD_2p_events_from_4p_dCDaFDd -
                          pid.num_of_AD_2p_events_from_mixed_sCTOFhp_dCDaFDd
-                  << "\n\n\033[0m";
+                  << "\n\n";
     }
 
-    std::cout << "\033[33m#(events) 2p:\t\t\t\t" << num_of_events_2p << "\n\n\033[0m";
+    std::cout << "\033[33m#(events) 2p:\033[0m\t\t\t\t" << num_of_events_2p << "\n\n";
 
-    std::cout << "\033[33m-- pFDpCD event counts ----------------------------------------------------\n\033[0m";
-    std::cout << "\033[33m#(events) pFDpCD:\t\t\t" << num_of_events_pFDpCD << "\n\n\033[0m";
+    std::cout << "\033[33m-- pFDpCD event counts ----------------------------------------------------\033[0m\n";
+    std::cout << "\033[33m#(events) pFDpCD:\033[0m\t\t\t" << num_of_events_pFDpCD << "\n\n";
 
-    std::cout << "\033[33m-- Event counts -----------------------------------------------------------\n\033[0m";
-    std::cout << "\033[33mnum_of_events_1p_inFD:\t\t\t" << num_of_events_1p_inFD << "\n\n\033[0m";
+    std::cout << "\033[33m-- Event counts -----------------------------------------------------------\033[0m\n";
+    std::cout << "\033[33mnum_of_events_1p_inFD:\033[0m\t\t\t" << num_of_events_1p_inFD << "\n\n";
 
-    std::cout << "\033[33mnum_of_events_1n_inFD:\t\t\t" << num_of_events_1n_inFD << "\n\033[0m";
-    std::cout << "\033[33mnum_of_events_1n_inFD_AV:\t\t" << num_of_events_1n_inFD_AV << "\n\033[0m";
-    std::cout << "\033[33mnum_of_events_1n_inFD_AV_wmt1gTLn:\t" << num_of_events_1n_inFD_AV_wmt1gTLn << "\n\n\033[0m";
+    std::cout << "\033[33mnum_of_events_1n_inFD:\033[0m\t\t\t" << num_of_events_1n_inFD << "\n";
+    std::cout << "\033[33mnum_of_events_1n_inFD_AV:\033[0m\t\t" << num_of_events_1n_inFD_AV << "\n";
+    std::cout << "\033[33mnum_of_events_1n_inFD_AV_wmt1gTLn:\033[0m\t" << num_of_events_1n_inFD_AV_wmt1gTLn << "\n\n";
 
-    std::cout << "\033[33mnum_of_events_2p_wFakeProtons:\t\t" << num_of_events_2p_wFakeProtons << "\n\033[0m";
-    std::cout << "\033[33mnum_of_events_2p:\t\t\t" << num_of_events_2p << "\n\n\033[0m";
+    std::cout << "\033[33mnum_of_events_2p_wFakeProtons:\033[0m\t\t" << num_of_events_2p_wFakeProtons << "\n";
+    std::cout << "\033[33mnum_of_events_2p:\033[0m\t\t\t" << num_of_events_2p << "\n\n";
 
-    std::cout << "\033[33mnum_of_events_1epFDpCD:\t\t\t" << num_of_events_with_1epFDpCD << "\n\033[0m";
-    std::cout << "\033[33mnum_of_events_1epFDpFD:\t\t\t" << num_of_events_with_1epFDpFD << "\n\033[0m";
-    std::cout << "\033[33mnum_of_events_1epCDpCD:\t\t\t" << num_of_events_with_1epCDpCD << "\n\n\033[0m";
+    std::cout << "\033[33mnum_of_events_1epFDpCD:\033[0m\t\t\t" << num_of_events_with_1epFDpCD << "\n";
+    std::cout << "\033[33mnum_of_events_1epFDpFD:\033[0m\t\t\t" << num_of_events_with_1epFDpFD << "\n";
+    std::cout << "\033[33mnum_of_events_1epCDpCD:\033[0m\t\t\t" << num_of_events_with_1epCDpCD << "\n\n";
 
-    std::cout << "\033[33mnum_of_events_pFDpCD:\t\t\t" << num_of_events_pFDpCD << "\n\n\033[0m";
+    std::cout << "\033[33mnum_of_events_pFDpCD:\033[0m\t\t\t" << num_of_events_pFDpCD << "\n\n";
 
-    std::cout << "\033[33mnum_of_events_nFDpCD:\t\t\t" << num_of_events_nFDpCD << "\n\033[0m";
-    std::cout << "\033[33mnum_of_events_nFDpCD_AV:\t\t" << num_of_events_nFDpCD_AV << "\n\n\033[0m";
+    std::cout << "\033[33mnum_of_events_nFDpCD:\033[0m\t\t\t" << num_of_events_nFDpCD << "\n";
+    std::cout << "\033[33mnum_of_events_nFDpCD_AV:\033[0m\t\t" << num_of_events_nFDpCD_AV << "\n\n";
 
-    std::cout << "\033[33m---------------------------------------------------------------------------\n\033[0m";
-    std::cout << "\033[33m\t\t\tExecution variables\n\033[0m";
-    std::cout << "\033[33m---------------------------------------------------------------------------\n\n\033[0m";
+    std::cout << "\033[33m---------------------------------------------------------------------------\033[0m\n";
+    std::cout << "\033[33m\t\t\tExecution variables\033[0m\n";
+    std::cout << "\033[33m---------------------------------------------------------------------------\033[0m\n\n";
 
-    std::cout << "\033[33mWorkingDirectory:\t" << path_definitions::PathDefinitions.WorkingDirectory << "\n\033[0m";
-    std::cout << "\033[33mrun_plots_path:\t\t" << run_plots_path << "\n\n\033[0m";
+    std::cout << "\033[33mWorkingDirectory:\033[0m\t" << path_definitions::PathDefinitions.WorkingDirectory << "\n";
+    std::cout << "\033[33mrun_plots_path:\033[0m\t\t" << run_plots_path << "\n\n";
 
-    std::cout << "\033[33mAnalyzeFilePath:\t" << "/" << AnalyzeFilePath << "/" << "\n\033[0m";
-    std::cout << "\033[33mAnalyzeFileSample:\t" << "/" << AnalyzeFileSample << "/" << "\n\033[0m";
-    std::cout << "\033[33mAnalyzeFile:\t\t" << AnalyzeFile << "\n\n\033[0m";
+    std::cout << "\033[33mAnalyzeFilePath:\033[0m\t" << "/" << AnalyzeFilePath << "/" << "\n";
+    std::cout << "\033[33mAnalyzeFileSample:\033[0m\t" << "/" << AnalyzeFileSample << "/" << "\n";
+    std::cout << "\033[33mAnalyzeFile:\033[0m\t\t" << AnalyzeFile << "\n\n";
 
-    std::cout << "\033[33mSampleName:\t\t" << parameters.SampleName << "\n\033[0m";
-    std::cout << "\033[33mVaryingSampleName:\t" << parameters.VaryingSampleName << "\n\n\033[0m";
+    std::cout << "\033[33mSampleName:\033[0m\t\t" << parameters.SampleName << "\n";
+    std::cout << "\033[33mVaryingSampleName:\033[0m\t" << parameters.VaryingSampleName << "\n\n";
 
-    std::cout << "\033[33mapply_cuts:\t\t'" << basic_tools::BoolToString(CutSettings.apply_cuts) << "'\n\033[0m";
-    std::cout << "\033[33mSettings mode:\t\t'" << file_name << "'\n\n\033[0m";
+    std::cout << "\033[33mapply_cuts:\033[0m\t\t'" << basic_tools::BoolToString(CutSettings.apply_cuts) << "'\n";
+    std::cout << "\033[33mSettings mode:\033[0m\t\t'" << file_name << "'\n\n";
 
-    std::cout << "\033[33mBeam Energy:\t\t" << parameters.beamE << " [GeV]\n\033[0m";
-    std::cout << "\033[33mTarget:\t\t\t" << parameters.Target << " (PDG: " << parameters.TargetPDG << ")\n\n\033[0m";
+    std::cout << "\033[33mBeam Energy:\033[0m\t\t" << parameters.beamE << " [GeV]\n";
+    std::cout << "\033[33mTarget:\033[0m\t\t\t" << parameters.Target << " (PDG: " << parameters.TargetPDG << ")\n\n";
 
     std::cout << "\033[33mOperation finished (AnalyserVersion = " << AnalyserVersion << ")." << "\n\n\033[0m";
 
