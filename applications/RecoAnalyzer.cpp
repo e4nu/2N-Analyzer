@@ -20273,9 +20273,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
         // theta_q_pFD plots (pFDpCD, CD & FD)
         double Theta_q_N_pFDpCD_integral = htheta_q_N_All_Int_pFDpCD->Integral();
-        § histPlotter1D(MainCanvas, htheta_q_N_All_Int_pFDpCD, norm_ReacMon_plots, true, Theta_q_N_pFDpCD_integral, "#theta_{#font[62]{q},#font[62]{P}_{pFD}} distribution",
-                        "All Int., pFDpCD", 0.06, 0.0425, 0.0425, plots, HistoList, 2, false, true, stheta_q_N_pFDpCD, "08_Theta_q_N_All_Int_pFDpCD", htheta_q_N_pFDpCD_Dir, "", kBlue, true,
-                        true, true, false);
+        histPlotter1D(MainCanvas, htheta_q_N_All_Int_pFDpCD, norm_ReacMon_plots, true, Theta_q_N_pFDpCD_integral, "#theta_{#font[62]{q},#font[62]{P}_{pFD}} distribution", "All Int., pFDpCD",
+                      0.06, 0.0425, 0.0425, plots, HistoList, 2, false, true, stheta_q_N_pFDpCD, "08_Theta_q_N_All_Int_pFDpCD", htheta_q_N_pFDpCD_Dir, "", kBlue, true, true, true, false);
         histPlotter1D(MainCanvas, htheta_q_N_QEL_pFDpCD, norm_ReacMon_plots, true, Theta_q_N_pFDpCD_integral, "#theta_{#font[62]{q},#font[62]{P}_{pFD}} distribution", "QEL only, pFDpCD",
                       0.06, 0.0425, 0.0425, plots, HistoList, 2, false, true, stheta_q_N_pFDpCD, "08a_Theta_q_N_QEL_only_pFDpCD", htheta_q_N_pFDpCD_Dir, "", kBlue, true, true, true, false);
         histPlotter1D(MainCanvas, htheta_q_N_MEC_pFDpCD, norm_ReacMon_plots, true, Theta_q_N_pFDpCD_integral, "#theta_{#font[62]{q},#font[62]{P}_{pFD}} distribution", "MEC only, pFDpCD",
