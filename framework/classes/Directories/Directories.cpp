@@ -230,10 +230,10 @@ Directories::Directories(const std::string &plots_path, const bool Clear_Old_Dir
     ReacMon_dir_map["ReacMon_pFDpCD_Q2_Directory"] = Plots_Folder + "/" + ReacMon_Parent_Directory + "/" + Find(ReacMon_Daughter_Folders, "05_pFDpCD/05_Q2_plots_pFDpCD") + "/";
     ReacMon_dir_map["ReacMon_pFDpCD_xB_Directory"] = Plots_Folder + "/" + ReacMon_Parent_Directory + "/" + Find(ReacMon_Daughter_Folders, "05_pFDpCD/06_xB_plots_pFDpCD") + "/";
     ReacMon_dir_map["ReacMon_pFDpCD_theta_q_Directory"] = Plots_Folder + "/" + ReacMon_Parent_Directory + "/" + Find(ReacMon_Daughter_Folders, "05_pFDpCD/07_theta_q_plots_pFDpCD") + "/";
-    ReacMon_dir_map["ReacMon_pFDpCD_theta_q_pFD_Directory"] =
-        Plots_Folder + "/" + ReacMon_Parent_Directory + "/" + Find(ReacMon_Daughter_Folders, "05_pFDpCD/08_theta_q_pFD_plots_pFDpCD") + "/";
-    ReacMon_dir_map["ReacMon_pFDpCD_theta_q_pCD_Directory"] =
-        Plots_Folder + "/" + ReacMon_Parent_Directory + "/" + Find(ReacMon_Daughter_Folders, "05_pFDpCD/09_theta_q_pCD_plots_pFDpCD") + "/";
+    ReacMon_dir_map["ReacMon_pFDpCD_theta_q_N_Directory"] =
+        Plots_Folder + "/" + ReacMon_Parent_Directory + "/" + Find(ReacMon_Daughter_Folders, "05_pFDpCD/08_theta_q_N_plots_pFDpCD") + "/";
+    ReacMon_dir_map["ReacMon_pFDpCD_theta_q_r_Directory"] =
+        Plots_Folder + "/" + ReacMon_Parent_Directory + "/" + Find(ReacMon_Daughter_Folders, "05_pFDpCD/09_theta_q_r_plots_pFDpCD") + "/";
 
     ReacMon_dir_map["ReacMon_nFDpCD_Directory"] = Plots_Folder + "/" + ReacMon_Parent_Directory + "/" + Find(ReacMon_Daughter_Folders, "06_nFDpCD") + "/";
     ReacMon_dir_map["ReacMon_nFDpCD_P_miss_1N_Directory"] = Plots_Folder + "/" + ReacMon_Parent_Directory + "/" + Find(ReacMon_Daughter_Folders, "06_nFDpCD/01_P_miss_1N_plots_nFDpCD") + "/";
@@ -243,10 +243,10 @@ Directories::Directories(const std::string &plots_path, const bool Clear_Old_Dir
     ReacMon_dir_map["ReacMon_nFDpCD_Q2_Directory"] = Plots_Folder + "/" + ReacMon_Parent_Directory + "/" + Find(ReacMon_Daughter_Folders, "06_nFDpCD/05_Q2_plots_nFDpCD") + "/";
     ReacMon_dir_map["ReacMon_nFDpCD_xB_Directory"] = Plots_Folder + "/" + ReacMon_Parent_Directory + "/" + Find(ReacMon_Daughter_Folders, "06_nFDpCD/06_xB_plots_nFDpCD") + "/";
     ReacMon_dir_map["ReacMon_nFDpCD_theta_q_Directory"] = Plots_Folder + "/" + ReacMon_Parent_Directory + "/" + Find(ReacMon_Daughter_Folders, "06_nFDpCD/07_theta_q_plots_nFDpCD") + "/";
-    ReacMon_dir_map["ReacMon_nFDpCD_theta_q_nFD_Directory"] =
-        Plots_Folder + "/" + ReacMon_Parent_Directory + "/" + Find(ReacMon_Daughter_Folders, "06_nFDpCD/08_theta_q_nFD_plots_nFDpCD") + "/";
-    ReacMon_dir_map["ReacMon_nFDpCD_theta_q_pCD_Directory"] =
-        Plots_Folder + "/" + ReacMon_Parent_Directory + "/" + Find(ReacMon_Daughter_Folders, "06_nFDpCD/09_theta_q_pCD_plots_nFDpCD") + "/";
+    ReacMon_dir_map["ReacMon_nFDpCD_theta_q_N_Directory"] =
+        Plots_Folder + "/" + ReacMon_Parent_Directory + "/" + Find(ReacMon_Daughter_Folders, "06_nFDpCD/08_theta_q_N_plots_nFDpCD") + "/";
+    ReacMon_dir_map["ReacMon_nFDpCD_theta_q_r_Directory"] =
+        Plots_Folder + "/" + ReacMon_Parent_Directory + "/" + Find(ReacMon_Daughter_Folders, "06_nFDpCD/09_theta_q_r_plots_nFDpCD") + "/";
 #pragma endregion
 
 #pragma region /* W plots directories */

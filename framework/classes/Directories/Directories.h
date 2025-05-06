@@ -152,8 +152,8 @@ class Directories {
                                                     "05_pFDpCD/05_Q2_plots_pFDpCD",
                                                     "05_pFDpCD/06_xB_plots_pFDpCD",
                                                     "05_pFDpCD/07_theta_q_plots_pFDpCD",
-                                                    "05_pFDpCD/08_theta_q_pFD_plots_pFDpCD",
-                                                    "05_pFDpCD/09_theta_q_pCD_plots_pFDpCD",
+                                                    "05_pFDpCD/08_theta_q_N_plots_pFDpCD",
+                                                    "05_pFDpCD/09_theta_q_r_plots_pFDpCD",
 
                                                     "06_nFDpCD",
                                                     "06_nFDpCD/01_P_miss_1N_plots_nFDpCD",
@@ -163,8 +163,8 @@ class Directories {
                                                     "06_nFDpCD/05_Q2_plots_nFDpCD",
                                                     "06_nFDpCD/06_xB_plots_nFDpCD",
                                                     "06_nFDpCD/07_theta_q_plots_nFDpCD",
-                                                    "06_nFDpCD/08_theta_q_nFD_plots_nFDpCD",
-                                                    "06_nFDpCD/09_theta_q_pCD_plots_nFDpCD"};
+                                                    "06_nFDpCD/08_theta_q_N_plots_nFDpCD",
+                                                    "06_nFDpCD/09_theta_q_r_plots_nFDpCD"};
     #pragma endregion
 
     #pragma region /* W plots directories */
