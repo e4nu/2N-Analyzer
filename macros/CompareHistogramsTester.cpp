@@ -261,7 +261,7 @@ void CompareHistogramsTester() {
 
             histogram_functions::CompareHistograms({hQ2_All_Int_pFDpCD, hQ2_All_Int_nFDpCD}, SaveDirFolder, SaveDirFoldersName, "Q2_All_Int_ReacComp");
 
-            auto sQ2_pFDpCD = (THStack *)load("Q^{2} (nFDpCD, CD & FD)", "THStack");
+            auto sQ2_pFDpCD = (THStack *)load("Q^{2} (pFDpCD, CD & FD)", "THStack");
             auto sQ2_nFDpCD = (THStack *)load("Q^{2} (nFDpCD, CD & FD)", "THStack");
             histogram_functions::CompareHistograms({sQ2_pFDpCD, sQ2_nFDpCD}, SaveDirFolder, SaveDirFoldersName, "Q2_stack_ReacComp");
 
