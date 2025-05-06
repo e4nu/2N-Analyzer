@@ -26,7 +26,7 @@
 
 using namespace std;
 
-const string ConfigRegion1D_(const string &Histogram2DNameCopy) {
+const std::string ConfigRegion1D_(const std::string &Histogram2DNameCopy) {
     if (findSubstring(Histogram2DNameCopy, "CD")) {
         return "CD";
     } else {
@@ -34,7 +34,7 @@ const string ConfigRegion1D_(const string &Histogram2DNameCopy) {
     }
 }
 
-const string ConfigSName1D_(const string &SampleName) {
+const std::string ConfigSName1D_(const std::string &SampleName) {
     if (findSubstring(SampleName, "sim")) {
         return "s";
     } else if (findSubstring(SampleName, "data")) {
@@ -68,8 +68,8 @@ double SetyOffset1D_(const bool &ShowStats) {
     return yOffset;
 }
 
-void GraphPlotter1D(TList *MScThesisPlotsList, const char *filename, const char *filenameDir, const char *Graph1DName, const string &SampleName, const string &SavePath,
-                    const string &SaveName) {
+void GraphPlotter1D(TList *MScThesisPlotsList, const char *filename, const char *filenameDir, const char *Graph1DName, const std::string &SampleName, const std::string &SavePath,
+                    const std::string &SaveName) {
     bool PresMode = false, ExamPresMode = false;
 
 #if PresentationMode
@@ -83,20 +83,20 @@ void GraphPlotter1D(TList *MScThesisPlotsList, const char *filename, const char 
     cout << "\n\n";
     hData utilities;
 
-    const string Graph1DNameCopy = Graph1DName;
+    const std::string Graph1DNameCopy = Graph1DName;
 
     TCanvas *c1 = new TCanvas("can1", "can2", utilities.GetStandardCanvasWidth() * 2 * 0.6, utilities.GetStandardCanvasHeight() * 2 * 0.6); // normal res
 //    TCanvas *c1 = new TCanvas("can1", "can2", utilities.GetStandardCanvasWidth() * 2, utilities.GetStandardCanvasHeight() * 2); // normal res
     c1->cd()->SetGrid(), c1->cd()->SetBottomMargin(0.14), c1->cd()->SetLeftMargin(0.18), c1->cd()->SetRightMargin(0.12), c1->cd()->SetTopMargin(0.12), c1->cd();
 
     TFile *file = new TFile(filename);
-    if (!file) { cout << "\nInvalid file! Exiting...\n", exit(0); }
+    if (!file) { cout << "\nInvalid file! Aborting...\n", exit(1); }
 
     TFolder *momResDir = (TFolder *) file->Get(filenameDir);
-    if (!momResDir) { cout << "\nInvalid folder! Exiting...\n", exit(0); }
+    if (!momResDir) { cout << "\nInvalid folder! Aborting...\n", exit(1); }
 
     TGraph *Graph1D = (TGraph *) momResDir->FindObject(Graph1DNameCopy.c_str());
-    if (!Graph1D) { cout << "\nInvalid graph! Exiting...\n", exit(0); }
+    if (!Graph1D) { cout << "\nInvalid graph! Aborting...\n", exit(1); }
 
     double Legend_x1_BaseLine = gStyle->GetStatX(), Legend_y1_BaseLine = gStyle->GetStatY(); // Top right
     double Legend_x2_BaseLine = gStyle->GetStatX(), Legend_y2_BaseLine = gStyle->GetStatY(); // Bottom left
@@ -155,8 +155,8 @@ void GraphPlotter1D(TList *MScThesisPlotsList, const char *filename, const char 
     c1->cd();
 
     const double beamE = 5.98636;
-    const string Region = ConfigRegion1D_(Graph1DNameCopy);
-    string sNameFlag = ConfigRegion1D_(SampleName);
+    const std::string Region = ConfigRegion1D_(Graph1DNameCopy);
+    std::string sNameFlag = ConfigRegion1D_(SampleName);
 
     double Graph1D_integral; // To be calculated only if normalize_Histogram
     double x_1 = 0.18, y_1 = 0.3, x_2 = 0.86, y_2 = 0.7;
@@ -165,8 +165,8 @@ void GraphPlotter1D(TList *MScThesisPlotsList, const char *filename, const char 
     Graph1D->SetMarkerSize(1.5);
 //    Graph1D->SetMarkerSize(2);
 
-    string Graph1D_Title = Graph1D->GetTitle(), Graph1D_Title1 = Graph1D_Title;
-    string Graph1D_xLabel = Graph1D->GetXaxis()->GetTitle(), Graph1D_yLabel = Graph1D->GetYaxis()->GetTitle();
+    std::string Graph1D_Title = Graph1D->GetTitle(), Graph1D_Title1 = Graph1D_Title;
+    std::string Graph1D_xLabel = Graph1D->GetXaxis()->GetTitle(), Graph1D_yLabel = Graph1D->GetYaxis()->GetTitle();
 
     TitleAligner(utilities, Graph1D, Graph1D_Title, Graph1D_xLabel, "#bar{P}^{reco}_{nFD}", "#LTP^{reco}_{nFD}#GT");
     TitleAligner(utilities, Graph1D, Graph1D_Title, Graph1D_xLabel, "#bar{P}^{truth}_{nFD}", "#LTP^{truth}_{nFD}#GT");
@@ -208,7 +208,7 @@ void GraphPlotter1D(TList *MScThesisPlotsList, const char *filename, const char 
     } else if ((Graph1DNameCopy == "reco_f_Corr_pol1_wKC") &&
                findSubstring(filename, "momResS1T_v3")) {
 
-        string part;
+        std::string part;
 
         if (findSubstring(Graph1D->GetTitle(), "Neutron") || findSubstring(Graph1D->GetTitle(), "neutron")) {
             part = "nFD";
@@ -216,16 +216,16 @@ void GraphPlotter1D(TList *MScThesisPlotsList, const char *filename, const char 
             part = "pFD";
         }
 
-        string title0 = Graph1D->GetTitle();
-        string title1 = " for 1 #leq#LTP^{reco}_{" + part + "}#GT#leq 2.2 [GeV]";
-        string title = title0 + title1 + " (stage 1)";
+        std::string title0 = Graph1D->GetTitle();
+        std::string title1 = " for 1 #leq#LTP^{reco}_{" + part + "}#GT#leq 2.2 [GeV]";
+        std::string title = title0 + title1 + " (stage 1)";
         Graph1D->SetTitle(title.c_str());
 
         Graph1D->Draw("ap"), gPad->Update();
     } else if ((Graph1DNameCopy == "reco_f_Smear_pol1_wKC") &&
                findSubstring(filename, "momResS2T_v3")) {
 
-        string part;
+        std::string part;
 
         if (findSubstring(Graph1D->GetTitle(), "Neutron") || findSubstring(Graph1D->GetTitle(), "neutron")) {
             part = "nFD";
@@ -233,9 +233,9 @@ void GraphPlotter1D(TList *MScThesisPlotsList, const char *filename, const char 
             part = "pFD";
         }
 
-        string title0 = Graph1D->GetTitle();
-        string title1 = " for 1 #leq#LTP^{reco}_{" + part + "}#GT#leq 2.2 [GeV]";
-        string title = title0 + title1 + " (stage 2)";
+        std::string title0 = Graph1D->GetTitle();
+        std::string title1 = " for 1 #leq#LTP^{reco}_{" + part + "}#GT#leq 2.2 [GeV]";
+        std::string title = title0 + title1 + " (stage 2)";
         Graph1D->SetTitle(title.c_str());
 
         Graph1D->Draw("ap"), gPad->Update();
@@ -247,8 +247,8 @@ void GraphPlotter1D(TList *MScThesisPlotsList, const char *filename, const char 
         FuncList->Clear();
         Graph1D->GetYaxis()->SetRangeUser(0., 0.02);
 
-        string title0 = Graph1D->GetTitle();
-        string title = title0 + " - before smearing";
+        std::string title0 = Graph1D->GetTitle();
+        std::string title = title0 + " - before smearing";
         Graph1D->SetTitle(title.c_str());
 
         Graph1D->Draw("ap"), gPad->Update();
@@ -256,8 +256,8 @@ void GraphPlotter1D(TList *MScThesisPlotsList, const char *filename, const char 
                findSubstring(Graph1D_Title1, "Proton") &&
                findSubstring(filename, "momResS2RT_v3")) {
 
-        string title0 = Graph1D->GetTitle();
-        string title = title0 + " - after smearing";
+        std::string title0 = Graph1D->GetTitle();
+        std::string title = title0 + " - after smearing";
         Graph1D->SetTitle(title.c_str());
 
         Graph1D->Draw("ap"), gPad->Update();
@@ -265,7 +265,7 @@ void GraphPlotter1D(TList *MScThesisPlotsList, const char *filename, const char 
         Graph1D->Draw("ap"), gPad->Update();
     }
 
-    string SaveNameDir = SavePath + "/" + SaveName + ".png";
+    std::string SaveNameDir = SavePath + "/" + SaveName + ".png";
     const char *SaveDir = SaveNameDir.c_str();
     c1->SaveAs(SaveDir);
     delete c1;

@@ -360,10 +360,10 @@ int main(int argc, char ** argv)
       //Display completed  
       counter++;
       if((counter%1000000) == 0){
-	cerr << "\n" <<counter/1000000 <<" million completed";
+	std::cerr << "\n" <<counter/1000000 <<" million completed";
       }    
       if((counter%100000) == 0){
-	cerr << ".";
+	std::cerr << ".";
       }    
 
       // get particles by type

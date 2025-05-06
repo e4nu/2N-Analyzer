@@ -1,0 +1,6 @@
+# Mac OS X files:
+.DS_Store
+
+# CMake build directories:
+cmake-build-debug/
+build/

@@ -31,7 +31,7 @@ vector<TH1D *> SliceLoader(const char *filename, vector<int> &SliceNumbers) {
     bool PrintOut = false;
 
     TFile *file = new TFile(filename);
-    if (!file) { cout << "\n\nMomResDebug::SliceLoader: could not load Hit_Maps_TL root file! Exiting...\n", exit(0); }
+    if (!file) { cout << "\n\nMomResDebug::SliceLoader: could not load Hit_Maps_TL root file! Aborting...\n", exit(1); }
 
     vector < TH1D * > MomResSlices;
     vector<int> SliceNumbers0;
@@ -50,10 +50,10 @@ vector<TH1D *> SliceLoader(const char *filename, vector<int> &SliceNumbers) {
             ++Counter;
 
             TH1D *Histogram1DTempFromKey = (TH1D *) Key->ReadObj();
-            string CloneName = Histogram1DTempFromKey->GetName();
+            std::string CloneName = Histogram1DTempFromKey->GetName();
             TH1D *Histogram1DTemp = (TH1D *) Histogram1DTempFromKey->Clone((CloneName + " - CLONED").c_str());
 
-            string Histogram1DTempName = Histogram1DTemp->GetName();
+            std::string Histogram1DTempName = Histogram1DTemp->GetName();
 
             auto FuncList = Histogram1DTemp->GetListOfFunctions();
             FuncList->Clear();
@@ -67,7 +67,7 @@ vector<TH1D *> SliceLoader(const char *filename, vector<int> &SliceNumbers) {
     return MomResSlices;
 }
 
-void DrawAndSave(TCanvas *Canvas, const string &MomResDebugSaveDir, vector<TH1D *> &MomResSlices, vector<int> &SliceNumbers) {
+void DrawAndSave(TCanvas *Canvas, const std::string &MomResDebugSaveDir, vector<TH1D *> &MomResSlices, vector<int> &SliceNumbers) {
     Canvas->cd();
 
     for (int i = 0; i < MomResSlices.size(); i++) {
@@ -77,7 +77,7 @@ void DrawAndSave(TCanvas *Canvas, const string &MomResDebugSaveDir, vector<TH1D 
     }
 }
 
-bool IsNeutron(const string &source) {
+bool IsNeutron(const std::string &source) {
     if (findSubstring(source, "Neutron") || findSubstring(source, "neutron")) {
         return true;
     } else {
@@ -85,7 +85,7 @@ bool IsNeutron(const string &source) {
     }
 }
 
-bool IsProton(const string &source) {
+bool IsProton(const std::string &source) {
     if (findSubstring(source, "Proton") || findSubstring(source, "proton")) {
         return true;
     } else {
@@ -95,13 +95,13 @@ bool IsProton(const string &source) {
 
 void MomResDebug() {
 
-    //<editor-fold desc="Initial stuff">
+    #pragma region /* Initial stuff */
     TCanvas *c = new TCanvas("c1", "c2", 1000 * 1.25, 750 * 1.25); // normal res
     c->cd()->SetGrid();
     c->cd()->SetBottomMargin(0.14), c->cd()->SetLeftMargin(0.16), c->cd()->SetRightMargin(0.16), c->cd()->SetTopMargin(0.12);
     c->cd();
 
-    const string MomResDebugSaveDir = "MomRes_Fitted_Reco_Slices";
+    const std::string MomResDebugSaveDir = "MomRes_Fitted_Reco_Slices";
     system(("rm -r " + MomResDebugSaveDir).c_str());
     system(("mkdir -p " + MomResDebugSaveDir).c_str());
 
@@ -110,7 +110,7 @@ void MomResDebug() {
 //    const char *filename = "C12x4_simulation_G18_Q204_6GeV_S03ACNC_momResS1_Eff1"
 //                           "/Neutron_resolution_plots_-_C12x4_simulation_G18_Q204_6GeV.root";
     vector < TH1D * > MomResSlices = SliceLoader(filename, SliceNumbers);
-    //</editor-fold>
+    #pragma endregion
 
     DSCuts FD_nucleon_momentum_cut = DSCuts("FD nucleon momentum cut", "FD", "", "pFDpCD & nFDpCD", 0, 1., 2.5); // new upper cut, following Larry meeting (10/08/23)
     DSCuts FD_nucleon_momentum_cut_nRes = DSCuts("FD nucleon momentum cut", "FD", "", "pFDpCD & nFDpCD", 0, 1., 2.2); // new upper cut, following Larry meeting (10/08/23)
@@ -120,7 +120,7 @@ void MomResDebug() {
     nRes.MomResInit(true, false, false, "C12x4_simulation_G18_Q204_6GeV", MomResDebugSaveDir, beamE, FD_nucleon_momentum_cut_nRes,
                     0.4, MomResDebugSaveDir, MomResDebugSaveDir, 0.05, true, "pol1_wKC", "pol3_wKC", false, false, true);
 
-    string MomentumType = "reco";
+    std::string MomentumType = "reco";
     vector <vector<double>> ResRecoMomSlicesLimits = nRes.GetResRecoMomSlicesLimits();
     vector <DSCuts> ResRecoMomSlicesFitVar = nRes.GetResRecoMomSlicesFitVar();
     vector <DSCuts> ResRecoMomSlicesHistVar = nRes.GetResRecoMomSlicesHistVar();
@@ -148,9 +148,9 @@ void MomResDebug() {
                 FitUlim = 0.75, FitLlim = -0.75;
 //                FitUlim = 1., FitLlim = -1.;
 
-//                //<editor-fold desc="Original">
+//                #pragma region /* Original */
 //                FitUlim = 1., FitLlim = -1.;
-//                //</editor-fold>
+//                #pragma endregion
             } else if (isProton) {
                 FitUlim = 0.5, FitLlim = -0.5;
             }
@@ -189,10 +189,10 @@ void MomResDebug() {
                 func->SetParLimits(2, 0.00001, 0.2); // Sigma limits
 //                func->SetParLimits(2, 0.00001, 0.35); // Sigma limits
 
-                //                //<editor-fold desc="Original">
+                //                #pragma region /* Original */
 //                func->SetParLimits(1, -1.5, 1.5); // Mean limits
 //                func->SetParLimits(2, 0.001, 0.35); // Sigma limits
-//                //</editor-fold>
+//                #pragma endregion
 
             } else if (isProton) {
                 func->SetParLimits(1, -1.5, 1.5); // Mean limits
@@ -253,8 +253,8 @@ void MomResDebug() {
             int SliceUpperLimPrecision;
             if (ResRecoMomSlicesLimits.at(i).at(1) == beamE) { SliceUpperLimPrecision = 3; } else { SliceUpperLimPrecision = 2; }
 
-            string hSlice_CloneSaveDir = MomResDebugSaveDir;
-            string hSlice_CloneSaveName = MomResDebugSaveDir + "/" + "Slice_" + to_string(SliceNumbers.at(i)) + "_fitted.png";
+            std::string hSlice_CloneSaveDir = MomResDebugSaveDir;
+            std::string hSlice_CloneSaveName = MomResDebugSaveDir + "/" + "Slice_" + to_string(SliceNumbers.at(i)) + "_fitted.png";
             system(("mkdir -p " + hSlice_CloneSaveDir).c_str());
 
             auto ListOfFunctions = hSlice->GetListOfFunctions();
@@ -299,8 +299,8 @@ void MomResDebug() {
     nRes.PolyFitter(MomentumType, 3, "Corr", "noKC", Reco_FitParam_Corr_pol3);
     nRes.PolyFitter(MomentumType, 3, "Corr", "wKC", Reco_FitParam_Corr_pol3_wKC);
 
-    //    //<editor-fold desc="Final stuff">
+    //    #pragma region /* Final stuff */
 //    DrawAndSave(c, MomResDebugSaveDir, MomResSlices, SliceNumbers);
-//    //</editor-fold>
+//    #pragma endregion
 
 }

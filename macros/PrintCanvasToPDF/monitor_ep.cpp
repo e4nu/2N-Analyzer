@@ -33,7 +33,7 @@ void monitor_ep()
 {
     char *args[] = {"somefile.pdf"};
     char **my_argv = args;
-//    string file = "somefile.pdf";
+//    std::string file = "somefile.pdf";
     char * pdfFile = my_argv[0];
 
     TCanvas * myText = new TCanvas("myText","myText",1000,1000);

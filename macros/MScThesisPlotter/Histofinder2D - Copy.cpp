@@ -27,7 +27,7 @@ TH2D *Histofinder2D(const char *filename, const char *Histogram2DNameSubstring) 
     bool PrintOutResult = false;
 
     TFile *file = new TFile(filename);
-    if (!file) { cout << "\n\nHistofinder2D: could not load Hit_Maps_TL root file! Exiting...\n", exit(0); }
+    if (!file) { cout << "\n\nHistofinder2D: could not load Hit_Maps_TL root file! Aborting...\n", exit(1); }
 
     TH2D *Histogram2D;
 
@@ -41,7 +41,7 @@ TH2D *Histofinder2D(const char *filename, const char *Histogram2DNameSubstring) 
     while (Key = (TKey *) Next()) {
         TH2D *Histogram2DTemp = (TH2D *) Key->ReadObj();
 
-        string Histogram2DTempName = Histogram2DTemp->GetName();
+        std::string Histogram2DTempName = Histogram2DTemp->GetName();
 
         if (PrintOut) { cout << Histogram2DTempName << "\n\n"; }
 

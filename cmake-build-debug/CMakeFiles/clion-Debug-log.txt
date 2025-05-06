@@ -1,4 +1,53 @@
-/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/Applications/CLion.app/Contents/bin/ninja/mac/aarch64/ninja -G Ninja -S /Users/alon/Projects/2N-Analyser -B /Users/alon/Projects/2N-Analyser/cmake-build-debug
--- Configuring done (0.1s)
--- Generating done (0.0s)
--- Build files have been written to: /Users/alon/Projects/2N-Analyser/cmake-build-debug
+/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "Unix Makefiles" -S /Users/alon/Projects/2N-Analyzer_e4nu -B /Users/alon/Projects/2N-Analyzer_e4nu/cmake-build-debug
+-- CLAS12ROOT: 
+-- HIPO: /Users/alon/Software/hipo
+CMake Error at /opt/homebrew/Cellar/root/6.34.06/share/root/cmake/modules/FindVdt.cmake:48 (file):
+  file STRINGS file
+  "/opt/homebrew/Cellar/root/6.34.04/include/root/vdt/vdtMath.h" cannot be
+  read.
+Call Stack (most recent call first):
+  /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.30/Modules/CMakeFindDependencyMacro.cmake:76 (find_package)
+  /opt/homebrew/share/root/cmake/ROOTConfig.cmake:164 (find_dependency)
+  /opt/homebrew/share/root/cmake/ROOTConfig.cmake:166 (find_builtin_vdt)
+  CMakeLists.txt:12 (find_package)
+
+
+-- Added subdirectory: /Users/alon/Projects/2N-Analyzer_e4nu/framework/structures
+-- Added subdirectory: /Users/alon/Projects/2N-Analyzer_e4nu/framework/namespaces
+-- Added subdirectory: /Users/alon/Projects/2N-Analyzer_e4nu/framework/classes
+-- CLAS12ROOT: 
+-- HIPO: /Users/alon/Software/hipo
+CMake Warning at framework/applications/CMakeLists.txt:112 (message):
+  Directory
+  /Users/alon/Projects/2N-Analyzer_e4nu/framework/applications/framework/structures
+  does not exist.
+
+
+CMake Warning at framework/applications/CMakeLists.txt:112 (message):
+  Directory
+  /Users/alon/Projects/2N-Analyzer_e4nu/framework/applications/framework/namespaces
+  does not exist.
+
+
+CMake Warning at framework/applications/CMakeLists.txt:112 (message):
+  Directory
+  /Users/alon/Projects/2N-Analyzer_e4nu/framework/applications/framework/classes
+  does not exist.
+
+
+CMake Warning at framework/applications/CMakeLists.txt:112 (message):
+  Directory
+  /Users/alon/Projects/2N-Analyzer_e4nu/framework/applications/framework/applications
+  does not exist.
+
+
+-- Added subdirectory: /Users/alon/Projects/2N-Analyzer_e4nu/framework/applications
+CMake Error at CMakeLists.txt:116 (add_executable):
+  add_executable cannot create target "2N_Analyzer_e4nu" because another
+  target with the same name already exists.  The existing target is an
+  executable created in source directory
+  "/Users/alon/Projects/2N-Analyzer_e4nu/framework/applications".  See
+  documentation for policy CMP0002 for more details.
+
+
+-- Configuring incomplete, errors occurred!

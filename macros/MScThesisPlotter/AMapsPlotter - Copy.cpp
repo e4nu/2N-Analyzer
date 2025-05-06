@@ -14,20 +14,20 @@ using namespace std;
 
 /* Command to run code: clas12root /PATH2CODE/PlotAMaps.cpp -b -q */
 
-void plotHistograms(const char *filename, const string &ParticleNameShort1, const int &numHistograms, const bool &Sep_plots = false, const string &OutputPath = "") {
+void plotHistograms(const char *filename, const std::string &ParticleNameShort1, const int &numHistograms, const bool &Sep_plots = false, const std::string &OutputPath = "") {
     bool PrintOutHistName = false;
     bool PrintOut = false;
     bool ShowStats = false;
 
-    const string Sep_TL_e_OutputPath = OutputPath + "Sep_e_maps/Sep_TL_e_maps";
-    const string Sep_Reco_e_OutputPath = OutputPath + "Sep_e_maps/Sep_Reco_e_maps";
-    const string Sep_Ratio_e_OutputPath = OutputPath + "Sep_e_maps/Sep_Ratio_e_maps";
-    const string Sep_AMaps_e_OutputPath = OutputPath + "Sep_e_maps/Sep_AMaps_e_maps";
-    const string Sep_TL_p_OutputPath = OutputPath + "Sep_p_maps/Sep_TL_p_maps";
-    const string Sep_Reco_p_OutputPath = OutputPath + "Sep_p_maps/Sep_Reco_p_maps";
-    const string Sep_Ratio_p_OutputPath = OutputPath + "Sep_p_maps/Sep_Ratio_p_maps";
-    const string Sep_AMaps_p_OutputPath = OutputPath + "Sep_p_maps/Sep_AMaps_p_maps";
-    const string Sep_n_OutputPath = OutputPath + "Sep_n_maps";
+    const std::string Sep_TL_e_OutputPath = OutputPath + "Sep_e_maps/Sep_TL_e_maps";
+    const std::string Sep_Reco_e_OutputPath = OutputPath + "Sep_e_maps/Sep_Reco_e_maps";
+    const std::string Sep_Ratio_e_OutputPath = OutputPath + "Sep_e_maps/Sep_Ratio_e_maps";
+    const std::string Sep_AMaps_e_OutputPath = OutputPath + "Sep_e_maps/Sep_AMaps_e_maps";
+    const std::string Sep_TL_p_OutputPath = OutputPath + "Sep_p_maps/Sep_TL_p_maps";
+    const std::string Sep_Reco_p_OutputPath = OutputPath + "Sep_p_maps/Sep_Reco_p_maps";
+    const std::string Sep_Ratio_p_OutputPath = OutputPath + "Sep_p_maps/Sep_Ratio_p_maps";
+    const std::string Sep_AMaps_p_OutputPath = OutputPath + "Sep_p_maps/Sep_AMaps_p_maps";
+    const std::string Sep_n_OutputPath = OutputPath + "Sep_n_maps";
 
     if (Sep_plots) {
         system(("mkdir -p " + Sep_TL_e_OutputPath).c_str());
@@ -44,9 +44,9 @@ void plotHistograms(const char *filename, const string &ParticleNameShort1, cons
     double x_1 = 0.2, y_1 = 0.3, x_2 = 0.86, y_2 = 0.7;
     double diplayTextSize = 0.1;
 
-    string ParticleNameShort2 = "{" + ParticleNameShort1 + "}";
-    string ParticleNameLong;
-    string ParticleNameLong1;
+    std::string ParticleNameShort2 = "{" + ParticleNameShort1 + "}";
+    std::string ParticleNameLong;
+    std::string ParticleNameLong1;
 
     if (ParticleNameShort1 == "e") {
         ParticleNameLong = "electron";
@@ -59,13 +59,13 @@ void plotHistograms(const char *filename, const string &ParticleNameShort1, cons
         ParticleNameLong1 = "Neutron";
     }
 
-    string SaveName;
+    std::string SaveName;
 
-    string TL_root_file_prefix = "01_AMap_TL_-_C12x4_simulation_G18_Q204_6GeV.root";
-    string Reco_root_file_prefix = "02_AMap_Reco_-_C12x4_simulation_G18_Q204_6GeV.root";
-    string Ratio_root_file_prefix = "03_AMap_Ratio_-_C12x4_simulation_G18_Q204_6GeV.root";
-    string cPart_Sep_AMaps_root_file_prefix = "04_cPart_Sep_AMaps_-_C12x4_simulation_G18_Q204_6GeV.root";
-    string Finalized_AMaps_root_file_prefix = "05_AMaps_-_C12x4_simulation_G18_Q204_6GeV.root";
+    std::string TL_root_file_prefix = "01_AMap_TL_-_C12x4_simulation_G18_Q204_6GeV.root";
+    std::string Reco_root_file_prefix = "02_AMap_Reco_-_C12x4_simulation_G18_Q204_6GeV.root";
+    std::string Ratio_root_file_prefix = "03_AMap_Ratio_-_C12x4_simulation_G18_Q204_6GeV.root";
+    std::string cPart_Sep_AMaps_root_file_prefix = "04_cPart_Sep_AMaps_-_C12x4_simulation_G18_Q204_6GeV.root";
+    std::string Finalized_AMaps_root_file_prefix = "05_AMaps_-_C12x4_simulation_G18_Q204_6GeV.root";
 
     TCanvas *Sep_canv = new TCanvas("Sep_canv", "Sep_canv", 1000 * 1.5, 750 * 1.5);
     Sep_canv->cd()->SetGrid();
@@ -114,7 +114,7 @@ void plotHistograms(const char *filename, const string &ParticleNameShort1, cons
         while ((Key = (TKey *) Next())) {
             Histogram2DTemp = (TH2D *) Key->ReadObj();
 
-            string Histogram2DTempName = Histogram2DTemp->GetName(), Histogram2DTempTitle = Histogram2DTemp->GetTitle();
+            std::string Histogram2DTempName = Histogram2DTemp->GetName(), Histogram2DTempTitle = Histogram2DTemp->GetTitle();
 
             if (PrintOutHistName) { cout << Histogram2DTempName << "\n\n"; }
 
@@ -124,9 +124,9 @@ void plotHistograms(const char *filename, const string &ParticleNameShort1, cons
                 if (PrintOut) { cout << "\nKey name: " << Histogram2DTemp->GetName() << "; Type: " << Key->GetClassName() << "\n"; }
 
                 if (Sep_plots) {
-                    string Histogram2DTemp_Title = Histogram2DTemp->GetTitle();
-                    string Histogram2DTemp_xLabel = Histogram2DTemp->GetXaxis()->GetTitle();
-                    string Histogram2DTemp_yLabel = Histogram2DTemp->GetYaxis()->GetTitle();
+                    std::string Histogram2DTemp_Title = Histogram2DTemp->GetTitle();
+                    std::string Histogram2DTemp_xLabel = Histogram2DTemp->GetXaxis()->GetTitle();
+                    std::string Histogram2DTemp_yLabel = Histogram2DTemp->GetYaxis()->GetTitle();
 
                     TitleAligner(Histogram2DTemp, Histogram2DTemp_Title, Histogram2DTemp_xLabel, Histogram2DTemp_yLabel, "[Deg]", "[#circ]");
                     TitleAligner(Histogram2DTemp, Histogram2DTemp_Title, Histogram2DTemp_xLabel, Histogram2DTemp_yLabel, " (100x100) (AMaps)", "");
@@ -136,7 +136,7 @@ void plotHistograms(const char *filename, const string &ParticleNameShort1, cons
                     TitleAligner(Histogram2DTemp, Histogram2DTemp_Title, Histogram2DTemp_xLabel, Histogram2DTemp_yLabel, "[GeV/c]", "[GeV]");
                     TitleAligner(Histogram2DTemp, Histogram2DTemp_Title, Histogram2DTemp_xLabel, Histogram2DTemp_yLabel, "#leq6.00 [GeV]", "#leq5.986 [GeV]");
 
-                    string SliceVariant1, SliceVariant2, TitleInitial2Replace, TitleInitial2Replacment;
+                    std::string SliceVariant1, SliceVariant2, TitleInitial2Replace, TitleInitial2Replacment;
 
                     if (findSubstring(Histogram2DTempName, "TL ") && !findSubstring(Histogram2DTempName, "/TL")) {
                         SliceVariant1 = "TL";
@@ -211,9 +211,9 @@ void plotHistograms(const char *filename, const string &ParticleNameShort1, cons
                     displayText->SetTextSize(diplayTextSize), displayText->SetFillColor(0), displayText->AddText("Empty histogram"), displayText->SetTextAlign(22);
                     Histogram2DTemp->Draw(), displayText->Draw();
                 } else {
-                    string Histogram2DTemp_Title = Histogram2DTemp->GetTitle();
-                    string Histogram2DTemp_xLabel = Histogram2DTemp->GetXaxis()->GetTitle();
-                    string Histogram2DTemp_yLabel = Histogram2DTemp->GetYaxis()->GetTitle();
+                    std::string Histogram2DTemp_Title = Histogram2DTemp->GetTitle();
+                    std::string Histogram2DTemp_xLabel = Histogram2DTemp->GetXaxis()->GetTitle();
+                    std::string Histogram2DTemp_yLabel = Histogram2DTemp->GetYaxis()->GetTitle();
 
                     TitleAligner(Histogram2DTemp, Histogram2DTemp_Title, Histogram2DTemp_xLabel, Histogram2DTemp_yLabel, "[Deg]", "[#circ]");
                     TitleAligner(Histogram2DTemp, Histogram2DTemp_Title, Histogram2DTemp_xLabel, Histogram2DTemp_yLabel, " (100x100) (AMaps)", "");
@@ -223,7 +223,7 @@ void plotHistograms(const char *filename, const string &ParticleNameShort1, cons
                     TitleAligner(Histogram2DTemp, Histogram2DTemp_Title, Histogram2DTemp_xLabel, Histogram2DTemp_yLabel, "[GeV/c]", "[GeV]");
                     TitleAligner(Histogram2DTemp, Histogram2DTemp_Title, Histogram2DTemp_xLabel, Histogram2DTemp_yLabel, "#leq6.00 [GeV]", "#leq5.986 [GeV]");
 
-                    string SliceVariant1, SliceVariant2, TitleInitial2Replace, TitleInitial2Replacment;
+                    std::string SliceVariant1, SliceVariant2, TitleInitial2Replace, TitleInitial2Replacment;
 
                     if (findSubstring(Histogram2DTempName, "TL ") && !findSubstring(Histogram2DTempName, "/TL")) {
                         SliceVariant1 = "TL";
@@ -343,7 +343,7 @@ void plotHistograms(const char *filename, const string &ParticleNameShort1, cons
         while ((Key = (TKey *) Next())) {
             Histogram2DTemp = (TH2D *) Key->ReadObj();
 
-            string Histogram2DTempName = Histogram2DTemp->GetName(), Histogram2DTempTitle = Histogram2DTemp->GetTitle();
+            std::string Histogram2DTempName = Histogram2DTemp->GetName(), Histogram2DTempTitle = Histogram2DTemp->GetTitle();
 
             if (PrintOutHistName) { cout << Histogram2DTempName << "\n\n"; }
 
@@ -353,9 +353,9 @@ void plotHistograms(const char *filename, const string &ParticleNameShort1, cons
                 if (PrintOut) { cout << "\nKey name: " << Histogram2DTemp->GetName() << "; Type: " << Key->GetClassName() << "\n"; }
 
                 if (Sep_plots) {
-                    string Histogram2DTemp_Title = Histogram2DTemp->GetTitle();
-                    string Histogram2DTemp_xLabel = Histogram2DTemp->GetXaxis()->GetTitle();
-                    string Histogram2DTemp_yLabel = Histogram2DTemp->GetYaxis()->GetTitle();
+                    std::string Histogram2DTemp_Title = Histogram2DTemp->GetTitle();
+                    std::string Histogram2DTemp_xLabel = Histogram2DTemp->GetXaxis()->GetTitle();
+                    std::string Histogram2DTemp_yLabel = Histogram2DTemp->GetYaxis()->GetTitle();
 
                     TitleAligner(Histogram2DTemp, Histogram2DTemp_Title, Histogram2DTemp_xLabel, Histogram2DTemp_yLabel, "[Deg]", "[#circ]");
                     TitleAligner(Histogram2DTemp, Histogram2DTemp_Title, Histogram2DTemp_xLabel, Histogram2DTemp_yLabel, " (100x100) (AMaps)", "");
@@ -364,7 +364,7 @@ void plotHistograms(const char *filename, const string &ParticleNameShort1, cons
 
                     TitleAligner(Histogram2DTemp, Histogram2DTemp_Title, Histogram2DTemp_xLabel, Histogram2DTemp_yLabel, "[GeV/c]", "[GeV]");
                     TitleAligner(Histogram2DTemp, Histogram2DTemp_Title, Histogram2DTemp_xLabel, Histogram2DTemp_yLabel, "#leq6.00 [GeV]", "#leq5.986 [GeV]");
-                    string SliceVariant1, SliceVariant2, TitleInitial2Replace, TitleInitial2Replacment;
+                    std::string SliceVariant1, SliceVariant2, TitleInitial2Replace, TitleInitial2Replacment;
 
                     if (findSubstring(Histogram2DTempName, "TL ") && !findSubstring(Histogram2DTempName, "/TL")) {
                         SliceVariant1 = "TL";
@@ -437,9 +437,9 @@ void plotHistograms(const char *filename, const string &ParticleNameShort1, cons
                     displayText->SetTextSize(diplayTextSize), displayText->SetFillColor(0), displayText->AddText("Empty histogram"), displayText->SetTextAlign(22);
                     Histogram2DTemp->Draw(), displayText->Draw();
                 } else {
-                    string Histogram2DTemp_Title = Histogram2DTemp->GetTitle();
-                    string Histogram2DTemp_xLabel = Histogram2DTemp->GetXaxis()->GetTitle();
-                    string Histogram2DTemp_yLabel = Histogram2DTemp->GetYaxis()->GetTitle();
+                    std::string Histogram2DTemp_Title = Histogram2DTemp->GetTitle();
+                    std::string Histogram2DTemp_xLabel = Histogram2DTemp->GetXaxis()->GetTitle();
+                    std::string Histogram2DTemp_yLabel = Histogram2DTemp->GetYaxis()->GetTitle();
 
                     TitleAligner(Histogram2DTemp, Histogram2DTemp_Title, Histogram2DTemp_xLabel, Histogram2DTemp_yLabel, "[Deg]", "[#circ]");
                     TitleAligner(Histogram2DTemp, Histogram2DTemp_Title, Histogram2DTemp_xLabel, Histogram2DTemp_yLabel, " (100x100) (AMaps)", "");
@@ -449,7 +449,7 @@ void plotHistograms(const char *filename, const string &ParticleNameShort1, cons
                     TitleAligner(Histogram2DTemp, Histogram2DTemp_Title, Histogram2DTemp_xLabel, Histogram2DTemp_yLabel, "[GeV/c]", "[GeV]");
                     TitleAligner(Histogram2DTemp, Histogram2DTemp_Title, Histogram2DTemp_xLabel, Histogram2DTemp_yLabel, "#leq6.00 [GeV]", "#leq5.986 [GeV]");
 
-                    string SliceVariant1, SliceVariant2, TitleInitial2Replace, TitleInitial2Replacment;
+                    std::string SliceVariant1, SliceVariant2, TitleInitial2Replace, TitleInitial2Replacment;
 
                     if (findSubstring(Histogram2DTempName, "TL ") && !findSubstring(Histogram2DTempName, "/TL")) {
                         SliceVariant1 = "TL";
@@ -529,49 +529,49 @@ void plotHistograms(const char *filename, const string &ParticleNameShort1, cons
     } else if (ParticleNameShort1 == "n") {
         SaveName = "nFD_maps.png";
 
-        string FileName0 = filename;
-        string FileName = FileName0.substr(0, FileName0.find_last_of('/') + 1);
+        std::string FileName0 = filename;
+        std::string FileName = FileName0.substr(0, FileName0.find_last_of('/') + 1);
 
         cout << "\n";
 
         cout << "\n\nLoading 'TL Neutron Hit Map (AMaps)' from:\n" << FileName + TL_root_file_prefix << "\n";
         TFile *TL_root_file = new TFile((FileName + TL_root_file_prefix).c_str());
         TH2D *TL_Histogram2D = (TH2D *) TL_root_file->Get("TL Neutron Hit Map (AMaps)");
-        if (!TL_root_file || TL_root_file->IsZombie()) { std::cerr << "Error: Could not open file: " << FileName << std::endl, exit(0); }
+        if (!TL_root_file || TL_root_file->IsZombie()) { std::cerr << "Error: Could not open file: " << FileName << std::endl, exit(1); }
         if (!TL_Histogram2D) {
             std::cerr << "Error: Could not open histogram: TL Neutron Hit Map (AMaps)" << std::endl;
             std::cerr << "File path:\n" << FileName + TL_root_file_prefix << std::endl;
-            exit(0);
+            exit(1);
         }
 
         cout << "\n\nLoading 'Reco Neutron Hit Map (AMaps)' from:\n" << FileName + TL_root_file_prefix << "\n";
         TFile *Reco_root_file = new TFile((FileName + Reco_root_file_prefix).c_str());
         TH2D *Reco_Histogram2D = (TH2D *) Reco_root_file->Get("Reco Neutron Hit Map (AMaps)");
-        if (!Reco_root_file || Reco_root_file->IsZombie()) { std::cerr << "Error: Could not open file: " << FileName << std::endl, exit(0); }
+        if (!Reco_root_file || Reco_root_file->IsZombie()) { std::cerr << "Error: Could not open file: " << FileName << std::endl, exit(1); }
         if (!Reco_Histogram2D) {
             std::cerr << "Error: Could not open histogram: Reco Neutron Hit Map (AMaps)" << std::endl;
             std::cerr << "File path:\n" << FileName + Reco_root_file_prefix << std::endl;
-            exit(0);
+            exit(1);
         }
 
         cout << "\n\nLoading 'Neutron Reco/TL ratio (AMaps)' from:\n" << FileName + TL_root_file_prefix << "\n";
         TFile *Ratio_root_file = new TFile((FileName + Ratio_root_file_prefix).c_str());
         TH2D *Ratio_Histogram2D = Histofinder2D(Ratio_root_file, "Neutron Reco/TL ratio (");
-        if (!Ratio_root_file || Ratio_root_file->IsZombie()) { std::cerr << "Error: Could not open file: " << FileName << std::endl, exit(0); }
+        if (!Ratio_root_file || Ratio_root_file->IsZombie()) { std::cerr << "Error: Could not open file: " << FileName << std::endl, exit(1); }
         if (!Ratio_Histogram2D) {
             std::cerr << "Error: Could not open histogram: Neutron Reco/TL ratio (AMaps)" << std::endl;
             std::cerr << "File path:\n" << FileName + Ratio_root_file_prefix << std::endl;
-            exit(0);
+            exit(1);
         }
 
         cout << "\n\nLoading 'Neutron_AMap (AMaps)' from:\n" << FileName + TL_root_file_prefix << "\n";
         TFile *Finalized_AMaps_root_file = new TFile((FileName + Finalized_AMaps_root_file_prefix).c_str());
         TH2D *Finalized_AMaps_Histogram2D = (TH2D *) Finalized_AMaps_root_file->Get("Neutron_AMap (AMaps)");
-        if (!Finalized_AMaps_root_file || Finalized_AMaps_root_file->IsZombie()) { std::cerr << "Error: Could not open file: " << FileName << std::endl, exit(0); }
+        if (!Finalized_AMaps_root_file || Finalized_AMaps_root_file->IsZombie()) { std::cerr << "Error: Could not open file: " << FileName << std::endl, exit(1); }
         if (!Finalized_AMaps_Histogram2D) {
             std::cerr << "Error: Could not open histogram: Neutron_AMap (AMaps)" << std::endl;
             std::cerr << "File path:\n" << FileName + Finalized_AMaps_root_file_prefix << std::endl;
-            exit(0);
+            exit(1);
         }
 
         cout << "\nplotting into canvas...\n";
@@ -581,17 +581,17 @@ void plotHistograms(const char *filename, const string &ParticleNameShort1, cons
         canvas->cd(1), canvas->cd(1)->SetGrid();
         canvas->cd(1)->SetBottomMargin(0.14), canvas->cd(1)->SetLeftMargin(0.18), canvas->cd(1)->SetRightMargin(0.12);
 
-        string TitlenFDReplacment = "#theta_{" + ParticleNameShort1 + "} vs. #phi_{" + ParticleNameShort1 + "}";
-        string TitlenFDReplacment1 = "#epsilon_{eff}(#theta_{" + ParticleNameShort1 + "},#phi_{" + ParticleNameShort1 + "})";
+        std::string TitlenFDReplacment = "#theta_{" + ParticleNameShort1 + "} vs. #phi_{" + ParticleNameShort1 + "}";
+        std::string TitlenFDReplacment1 = "#epsilon_{eff}(#theta_{" + ParticleNameShort1 + "},#phi_{" + ParticleNameShort1 + "})";
 
         if (TL_Histogram2D->Integral() == 0.) {
             TPaveText *displayText = new TPaveText(x_1, y_1, x_2, y_2, "NDC");
             displayText->SetTextSize(diplayTextSize), displayText->SetFillColor(0), displayText->AddText("Empty histogram"), displayText->SetTextAlign(22);
             TL_Histogram2D->Draw(), displayText->Draw();
         } else {
-            string TL_Histogram2DName = TL_Histogram2D->GetName(), TL_Histogram2D_Title = TL_Histogram2D->GetTitle();
-            string TL_Histogram2D_xLabel = TL_Histogram2D->GetXaxis()->GetTitle();
-            string TL_Histogram2D_yLabel = TL_Histogram2D->GetYaxis()->GetTitle();
+            std::string TL_Histogram2DName = TL_Histogram2D->GetName(), TL_Histogram2D_Title = TL_Histogram2D->GetTitle();
+            std::string TL_Histogram2D_xLabel = TL_Histogram2D->GetXaxis()->GetTitle();
+            std::string TL_Histogram2D_yLabel = TL_Histogram2D->GetYaxis()->GetTitle();
 
             TitleAligner(TL_Histogram2D, TL_Histogram2D_Title, TL_Histogram2D_xLabel, TL_Histogram2D_yLabel, "[Deg]", "[#circ]");
             TitleAligner(TL_Histogram2D, TL_Histogram2D_Title, TL_Histogram2D_xLabel, TL_Histogram2D_yLabel, " (100x100) (AMaps)", "");
@@ -603,7 +603,7 @@ void plotHistograms(const char *filename, const string &ParticleNameShort1, cons
             TitleAligner(TL_Histogram2D, TL_Histogram2D_Title, TL_Histogram2D_xLabel, TL_Histogram2D_yLabel, "[GeV/c]", "[GeV]");
             TitleAligner(TL_Histogram2D, TL_Histogram2D_Title, TL_Histogram2D_xLabel, TL_Histogram2D_yLabel, "#leq6.00 [GeV]", "#leq5.986 [GeV]");
 
-            string SliceVariant1, SliceVariant2, TitleInitial2Replace, TitleInitial2Replacment;
+            std::string SliceVariant1, SliceVariant2, TitleInitial2Replace, TitleInitial2Replacment;
 
             if (findSubstring(TL_Histogram2DName, "TL ") && !findSubstring(TL_Histogram2DName, "/TL")) {
                 SliceVariant1 = "TL";
@@ -666,9 +666,9 @@ void plotHistograms(const char *filename, const string &ParticleNameShort1, cons
             displayText->SetTextSize(diplayTextSize), displayText->SetFillColor(0), displayText->AddText("Empty histogram"), displayText->SetTextAlign(22);
             Reco_Histogram2D->Draw(), displayText->Draw();
         } else {
-            string Reco_Histogram2DName = Reco_Histogram2D->GetName(), Reco_Histogram2D_Title = Reco_Histogram2D->GetTitle();
-            string Reco_Histogram2D_xLabel = Reco_Histogram2D->GetXaxis()->GetTitle();
-            string Reco_Histogram2D_yLabel = Reco_Histogram2D->GetYaxis()->GetTitle();
+            std::string Reco_Histogram2DName = Reco_Histogram2D->GetName(), Reco_Histogram2D_Title = Reco_Histogram2D->GetTitle();
+            std::string Reco_Histogram2D_xLabel = Reco_Histogram2D->GetXaxis()->GetTitle();
+            std::string Reco_Histogram2D_yLabel = Reco_Histogram2D->GetYaxis()->GetTitle();
 
             TitleAligner(Reco_Histogram2D, Reco_Histogram2D_Title, Reco_Histogram2D_xLabel, Reco_Histogram2D_yLabel, "[Deg]", "[#circ]");
             TitleAligner(Reco_Histogram2D, Reco_Histogram2D_Title, Reco_Histogram2D_xLabel, Reco_Histogram2D_yLabel, " (100x100) (AMaps)", "");
@@ -680,7 +680,7 @@ void plotHistograms(const char *filename, const string &ParticleNameShort1, cons
             TitleAligner(Reco_Histogram2D, Reco_Histogram2D_Title, Reco_Histogram2D_xLabel, Reco_Histogram2D_yLabel, "[GeV/c]", "[GeV]");
             TitleAligner(Reco_Histogram2D, Reco_Histogram2D_Title, Reco_Histogram2D_xLabel, Reco_Histogram2D_yLabel, "#leq6.00 [GeV]", "#leq5.986 [GeV]");
 
-            string SliceVariant1, SliceVariant2, TitleInitial2Replace, TitleInitial2Replacment;
+            std::string SliceVariant1, SliceVariant2, TitleInitial2Replace, TitleInitial2Replacment;
 
             if (findSubstring(Reco_Histogram2DName, "TL ") && !findSubstring(Reco_Histogram2DName, "/TL")) {
                 SliceVariant1 = "TL";
@@ -743,9 +743,9 @@ void plotHistograms(const char *filename, const string &ParticleNameShort1, cons
             displayText->SetTextSize(diplayTextSize), displayText->SetFillColor(0), displayText->AddText("Empty histogram"), displayText->SetTextAlign(22);
             Ratio_Histogram2D->Draw(), displayText->Draw();
         } else {
-            string Ratio_Histogram2DName = Ratio_Histogram2D->GetName(), Ratio_Histogram2D_Title = Ratio_Histogram2D->GetTitle();
-            string Ratio_Histogram2D_xLabel = Ratio_Histogram2D->GetXaxis()->GetTitle();
-            string Ratio_Histogram2D_yLabel = Ratio_Histogram2D->GetYaxis()->GetTitle();
+            std::string Ratio_Histogram2DName = Ratio_Histogram2D->GetName(), Ratio_Histogram2D_Title = Ratio_Histogram2D->GetTitle();
+            std::string Ratio_Histogram2D_xLabel = Ratio_Histogram2D->GetXaxis()->GetTitle();
+            std::string Ratio_Histogram2D_yLabel = Ratio_Histogram2D->GetYaxis()->GetTitle();
 
             TitleAligner(Ratio_Histogram2D, Ratio_Histogram2D_Title, Ratio_Histogram2D_xLabel, Ratio_Histogram2D_yLabel, "[Deg]", "[#circ]");
             TitleAligner(Ratio_Histogram2D, Ratio_Histogram2D_Title, Ratio_Histogram2D_xLabel, Ratio_Histogram2D_yLabel, " (100x100) (AMaps)", "");
@@ -755,7 +755,7 @@ void plotHistograms(const char *filename, const string &ParticleNameShort1, cons
             TitleAligner(Ratio_Histogram2D, Ratio_Histogram2D_Title, Ratio_Histogram2D_xLabel, Ratio_Histogram2D_yLabel, "[GeV/c]", "[GeV]");
             TitleAligner(Ratio_Histogram2D, Ratio_Histogram2D_Title, Ratio_Histogram2D_xLabel, Ratio_Histogram2D_yLabel, "#leq6.00 [GeV]", "#leq5.986 [GeV]");
 
-            string SliceVariant1, SliceVariant2, TitleInitial2Replace, TitleInitial2Replacment;
+            std::string SliceVariant1, SliceVariant2, TitleInitial2Replace, TitleInitial2Replacment;
 
             if (findSubstring(Ratio_Histogram2DName, "TL ") && !findSubstring(Ratio_Histogram2DName, "/TL")) {
                 SliceVariant1 = "TL";
@@ -818,9 +818,9 @@ void plotHistograms(const char *filename, const string &ParticleNameShort1, cons
             displayText->SetTextSize(diplayTextSize), displayText->SetFillColor(0), displayText->AddText("Empty histogram"), displayText->SetTextAlign(22);
             Finalized_AMaps_Histogram2D->Draw(), displayText->Draw();
         } else {
-            string Finalized_AMaps_Histogram2DName = Finalized_AMaps_Histogram2D->GetName(), Finalized_AMaps_Histogram2D_Title = Finalized_AMaps_Histogram2D->GetTitle();
-            string Finalized_AMaps_Histogram2D_xLabel = Finalized_AMaps_Histogram2D->GetXaxis()->GetTitle();
-            string Finalized_AMaps_Histogram2D_yLabel = Finalized_AMaps_Histogram2D->GetYaxis()->GetTitle();
+            std::string Finalized_AMaps_Histogram2DName = Finalized_AMaps_Histogram2D->GetName(), Finalized_AMaps_Histogram2D_Title = Finalized_AMaps_Histogram2D->GetTitle();
+            std::string Finalized_AMaps_Histogram2D_xLabel = Finalized_AMaps_Histogram2D->GetXaxis()->GetTitle();
+            std::string Finalized_AMaps_Histogram2D_yLabel = Finalized_AMaps_Histogram2D->GetYaxis()->GetTitle();
 
             TitleAligner(Finalized_AMaps_Histogram2D, Finalized_AMaps_Histogram2D_Title, Finalized_AMaps_Histogram2D_xLabel, Finalized_AMaps_Histogram2D_yLabel,
                          "[Deg]", "[#circ]");
@@ -836,7 +836,7 @@ void plotHistograms(const char *filename, const string &ParticleNameShort1, cons
             TitleAligner(Finalized_AMaps_Histogram2D, Finalized_AMaps_Histogram2D_Title, Finalized_AMaps_Histogram2D_xLabel, Finalized_AMaps_Histogram2D_yLabel,
                          "[GeV/c]", "[GeV]");
 
-            string SliceVariant1, SliceVariant2, TitleInitial2Replace, TitleInitial2Replacment;
+            std::string SliceVariant1, SliceVariant2, TitleInitial2Replace, TitleInitial2Replacment;
 
             if (findSubstring(Finalized_AMaps_Histogram2DName, "TL ") && !findSubstring(Finalized_AMaps_Histogram2DName, "/TL")) {
                 SliceVariant1 = "TL";
@@ -908,9 +908,9 @@ void plotHistograms(const char *filename, const string &ParticleNameShort1, cons
     delete Sep_canv;
 }
 
-void AMapsPlotter(const string &InputPath = "", const bool &Sep_plots = false, const string &OutputPath = "") {
-    string PlotsPath_prefix = "12_Acceptance_maps_plots/01_AMaps_1e_cut/05_Generated_maps/";
-    string PlotsPath;
+void AMapsPlotter(const std::string &InputPath = "", const bool &Sep_plots = false, const std::string &OutputPath = "") {
+    std::string PlotsPath_prefix = "12_Acceptance_maps_plots/01_AMaps_1e_cut/05_Generated_maps/";
+    std::string PlotsPath;
 
     if (InputPath != "") {
         PlotsPath = InputPath + PlotsPath_prefix;
@@ -918,10 +918,10 @@ void AMapsPlotter(const string &InputPath = "", const bool &Sep_plots = false, c
         PlotsPath = PlotsPath_prefix;
     }
 
-    string TL_root_file_prefix = "01_AMap_TL_-_C12x4_simulation_G18_Q204_6GeV.root";
-    string Reco_root_file_prefix = "02_AMap_Reco_-_C12x4_simulation_G18_Q204_6GeV.root";
-    string Ratio_root_file_prefix = "03_AMap_Ratio_-_C12x4_simulation_G18_Q204_6GeV.root";
-    string cPart_Sep_AMaps_root_file_prefix = "04_cPart_Sep_AMaps_-_C12x4_simulation_G18_Q204_6GeV.root";
+    std::string TL_root_file_prefix = "01_AMap_TL_-_C12x4_simulation_G18_Q204_6GeV.root";
+    std::string Reco_root_file_prefix = "02_AMap_Reco_-_C12x4_simulation_G18_Q204_6GeV.root";
+    std::string Ratio_root_file_prefix = "03_AMap_Ratio_-_C12x4_simulation_G18_Q204_6GeV.root";
+    std::string cPart_Sep_AMaps_root_file_prefix = "04_cPart_Sep_AMaps_-_C12x4_simulation_G18_Q204_6GeV.root";
 
     plotHistograms((PlotsPath + TL_root_file_prefix).c_str(), "e", 61, Sep_plots, OutputPath);
     plotHistograms((PlotsPath + Reco_root_file_prefix).c_str(), "e", 61, Sep_plots, OutputPath);

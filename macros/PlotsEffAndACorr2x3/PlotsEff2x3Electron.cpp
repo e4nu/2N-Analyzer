@@ -1,32 +1,32 @@
 //
-// Created by alons on 10/05/2023.
+// Created by Alon Sportes on 10/05/2023.
 //
 
-#include <iostream>
-#include <fstream>
-#include <string>
-
+#include <TApplication.h>
+#include <TCanvas.h>
+#include <TChain.h>
+#include <TDatabasePDG.h>
 #include <TFile.h>
-#include <TTree.h>
-#include <TLorentzVector.h>
 #include <TH1.h>
 #include <TH2.h>
 #include <TLatex.h>
-#include <TChain.h>
-#include <TCanvas.h>
-#include <TStyle.h>
-#include <TDatabasePDG.h>
-#include <TApplication.h>
+#include <TLorentzVector.h>
 #include <TROOT.h>
+#include <TStyle.h>
+#include <TTree.h>
 
-#include "../../source/functions/findSubstring.h"
+#include <fstream>
+#include <iostream>
+#include <string>
+
+#include "../../framework/functions/findSubstring.h"
 
 using namespace std;
 
 void PlotsEff2x3Electron(string SampleName) {
     cout << "\nSaving efficiency plots for Electrons...\n\n";
 
-    //<editor-fold desc="Setting file">
+    #pragma region /* Setting file */
     TFile *f;
 
     if (findSubstring(SampleName, "C12_simulation_6GeV_T5_first_10")) {
@@ -124,17 +124,17 @@ void PlotsEff2x3Electron(string SampleName) {
             f = new TFile("plots_C12_simulation_G18_2GeV_-03_ALL_CUTS_wNC_wFDph_Eff2/reconhipo_plots.root");
         }
     }
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Setting CanvasEff2x3Electron">
+    #pragma region /* Setting CanvasEff2x3Electron */
     TCanvas *CanvasEff2x3Electron = new TCanvas("CanvasEff2x3Electron", "CanvasEff2x3Electron", 1000 * 3, 750 * 2); // normal res
 
 //    CanvasEff2x3Electron->cd();
 //    CanvasEff2x3Electron->Divide(3, 2);
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Momentum efficiency plots">
-    string MomEffMomEffSaveName = "./01_Electron_Mom_Eff_" + SampleName + ".png";
+    #pragma region /* Momentum efficiency plots */
+    std::string MomEffMomEffSaveName = "./01_Electron_Mom_Eff_" + SampleName + ".png";
 
     CanvasEff2x3Electron->Divide(3, 2);
 
@@ -229,10 +229,10 @@ void PlotsEff2x3Electron(string SampleName) {
 
     CanvasEff2x3Electron->SaveAs(MomEffMomEffSaveName.c_str());
     CanvasEff2x3Electron->Clear();
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Theta efficiency plots">
-    string ThetaEffSaveName = "./02_Electron_Theta_Eff_" + SampleName + ".png";
+    #pragma region /* Theta efficiency plots */
+    std::string ThetaEffSaveName = "./02_Electron_Theta_Eff_" + SampleName + ".png";
 
     CanvasEff2x3Electron->Divide(3, 2);
 
@@ -327,10 +327,10 @@ void PlotsEff2x3Electron(string SampleName) {
 
     CanvasEff2x3Electron->SaveAs(ThetaEffSaveName.c_str());
     CanvasEff2x3Electron->Clear();
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Phi efficiency plots">
-    string PhiEffSaveName = "./03_Electron_Phi_Eff_" + SampleName + ".png";
+    #pragma region /* Phi efficiency plots */
+    std::string PhiEffSaveName = "./03_Electron_Phi_Eff_" + SampleName + ".png";
 
     CanvasEff2x3Electron->Divide(3, 2);
 
@@ -427,7 +427,7 @@ void PlotsEff2x3Electron(string SampleName) {
 
     CanvasEff2x3Electron->SaveAs(PhiEffSaveName.c_str());
     CanvasEff2x3Electron->Clear();
-    //</editor-fold>
+    #pragma endregion
 
     cout << "\n";
 

@@ -32,13 +32,13 @@ TH1D *Histofinder1D(TFile *file, const char *Histogram1DNameSubstring, const boo
     TString classnameTH2D("TH2D");
     TString classnameTFolder("TFolder");
     TString classnameTHStack("THStack");
-    string FoundHistName;
+    std::string FoundHistName;
 
     TKey *Key;
     TIter Next((TList *) file->GetListOfKeys());
 
     while ((Key = (TKey *) Next())) {
-        string Histogram1DTempName = ((TH1D *) Key->ReadObj())->GetName();
+        std::string Histogram1DTempName = ((TH1D *) Key->ReadObj())->GetName();
 
         if (PrintOut1) { cout << Histogram1DTempName << "\n\n"; }
 
@@ -49,8 +49,8 @@ TH1D *Histofinder1D(TFile *file, const char *Histogram1DNameSubstring, const boo
 
             if (PrintOut) { cout << "\n\nKey name: " << ((TH1D *) Key->ReadObj())->GetName() << "; Type: " << Key->GetClassName() << "\n\n"; }
 
-            string Histogram1DxLable = ((TH1D *) Key->ReadObj())->GetXaxis()->GetTitle();
-            string Histogram1DTitle = ((TH1D *) Key->ReadObj())->GetTitle();
+            std::string Histogram1DxLable = ((TH1D *) Key->ReadObj())->GetXaxis()->GetTitle();
+            std::string Histogram1DTitle = ((TH1D *) Key->ReadObj())->GetTitle();
 
             if (PrintOut) {
                 cout << "\nHistogram1DxLable = " << Histogram1DxLable << "\n";
@@ -72,7 +72,7 @@ TH1D *Histofinder1D(TFile *file, const char *Histogram1DNameSubstring, const boo
         cout << "\n\nHistofinder1D: could not find histogram!\n";
         cout << "TLmom = " << TLmom << "\n";
         cout << "Histogram1DNameSubstring = " << Histogram1DNameSubstring << "\n";
-        exit(0);
+        exit(1);
 
         return Histogram1D;
     } else {

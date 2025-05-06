@@ -16,15 +16,15 @@ using namespace std;
 /* Command to run code: clas12root /PATH2CODE/MomResSlicePlotter.cpp -b -q */
 
 /*
-void MomResSliceFitParam(const char *filename, const string &NucleonCutsDirectory, const string &MomentumType,
+void MomResSliceFitParam(const char *filename, const std::string &NucleonCutsDirectory, const std::string &MomentumType,
                          vector<double> &Amp, vector<double> &mean, vector<double> &Std) {
     ifstream infile;
-    string FileInput = "../../Source/data/NeutronResolution/Res_data_-_C12x4_simulation_G18_Q204_6GeV/" + filename;
+    std::string FileInput = "../../Source/data/NeutronResolution/Res_data_-_C12x4_simulation_G18_Q204_6GeV/" + filename;
 
     infile.open(FileInput.c_str());
 
     if (infile.is_open()) {
-        string tp;
+        std::string tp;
 
         //remove 3 lines of header
         for (int i = 0; i < 3; i++)
@@ -32,7 +32,7 @@ void MomResSliceFitParam(const char *filename, const string &NucleonCutsDirector
 
         while (getline(infile, tp)) {
             stringstream ss(tp);
-            string parameter, parameter2;
+            std::string parameter, parameter2;
             double value;
             ss >> parameter;
 
@@ -40,8 +40,8 @@ void MomResSliceFitParam(const char *filename, const string &NucleonCutsDirector
                 //get cut values
                 ss >> parameter2;
                 stringstream ss2(parameter2);
-                string TempInput;
-                string detector;
+                std::string TempInput;
+                std::string detector;
                 int count = 0; //parameter number
                 int pid = -99;
                 vector<double> par;
@@ -71,8 +71,8 @@ Double_t CFitFunction(Double_t *v, Double_t *par) {
     return fitval;
 }
 
-void MomResSlicePlotter(const char *filename, const string &ParticleNameShortInput, const int &InitialSlice, const int &FinalSlice, const string &MomentumTyp,
-                        const string &OutputPathInput = "") {
+void MomResSlicePlotter(const char *filename, const std::string &ParticleNameShortInput, const int &InitialSlice, const int &FinalSlice, const std::string &MomentumTyp,
+                        const std::string &OutputPathInput = "") {
     bool PresMode = false, ExamPresMode = false;
 
 #if PresentationMode
@@ -86,7 +86,7 @@ void MomResSlicePlotter(const char *filename, const string &ParticleNameShortInp
     bool PrintOutHistName = false;
     bool PrintOut = false;
     bool ShowStats = false;
-    string OutputPath = OutputPathInput + "/" + ParticleNameShortInput + "_" + MomentumTyp + "_MomResSlices";
+    std::string OutputPath = OutputPathInput + "/" + ParticleNameShortInput + "_" + MomentumTyp + "_MomResSlices";
     system(("mkdir -p " + OutputPath).c_str());
 
     hData particles;
@@ -96,7 +96,7 @@ void MomResSlicePlotter(const char *filename, const string &ParticleNameShortInp
     int LineWidth = 3;
 //    int LineWidth = 4;
 
-    string SaveName, SaveNamePrefix, Filename = filename;
+    std::string SaveName, SaveNamePrefix, Filename = filename;
 
     if (findSubstring(Filename, "momResS1T") || findSubstring(Filename, "momResS1")) {
         SaveNamePrefix = "momResS1";
@@ -137,7 +137,7 @@ void MomResSlicePlotter(const char *filename, const string &ParticleNameShortInp
     while ((Key = (TKey *) Next())) {
         Histogram1DTemp = (TH1D *) Key->ReadObj();
 
-        string Histogram1DTempName = Histogram1DTemp->GetName(), Histogram1DTempTitle = Histogram1DTemp->GetTitle();
+        std::string Histogram1DTempName = Histogram1DTemp->GetName(), Histogram1DTempTitle = Histogram1DTemp->GetTitle();
 
         if (PrintOutHistName) { cout << Histogram1DTempName << "\n\n"; }
 
@@ -156,11 +156,11 @@ void MomResSlicePlotter(const char *filename, const string &ParticleNameShortInp
                     displayText->SetTextSize(diplayTextSize), displayText->SetFillColor(0), displayText->AddText("Empty histogram"), displayText->SetTextAlign(22);
                     Histogram1DTemp->Draw(), displayText->Draw();
                 } else {
-                    string Histogram1DTemp_Title = Histogram1DTemp->GetTitle();
-                    string Histogram1DTemp_xLabel = Histogram1DTemp->GetXaxis()->GetTitle();
-                    string xLabel_2Replace = "R_{" + ParticleNameShortInput + "FD} = " + "(P^{truth}_{" + ParticleNameShortInput + "FD} - P^{reco}_{" +
+                    std::string Histogram1DTemp_Title = Histogram1DTemp->GetTitle();
+                    std::string Histogram1DTemp_xLabel = Histogram1DTemp->GetXaxis()->GetTitle();
+                    std::string xLabel_2Replace = "R_{" + ParticleNameShortInput + "FD} = " + "(P^{truth}_{" + ParticleNameShortInput + "FD} - P^{reco}_{" +
                                              ParticleNameShortInput + "FD})/P^{truth}_{" + ParticleNameShortInput + "FD}";
-                    string xLabel_Replacement = "R_{" + ParticleNameShortInput + "FD}";
+                    std::string xLabel_Replacement = "R_{" + ParticleNameShortInput + "FD}";
 
                     Histogram1DTemp->SetLineWidth(LineWidth);
 
@@ -187,13 +187,13 @@ void MomResSlicePlotter(const char *filename, const string &ParticleNameShortInp
                     func->SetLineColor(kRed);
 
                     auto amp0 = FitParam->GetLine(0);
-                    string Amp1 = amp0->GetTitle(), Amp = Amp1.substr(Amp1.find_last_of("=") + 1);
+                    std::string Amp1 = amp0->GetTitle(), Amp = Amp1.substr(Amp1.find_last_of("=") + 1);
 
                     auto mean0 = FitParam->GetLine(1);
-                    string Mean1 = mean0->GetTitle(), Mean = Mean1.substr(Mean1.find_last_of("=") + 1);
+                    std::string Mean1 = mean0->GetTitle(), Mean = Mean1.substr(Mean1.find_last_of("=") + 1);
 
                     auto std0 = FitParam->GetLine(2);
-                    string Std1 = std0->GetTitle(), Std = Std1.substr(Std1.find_last_of("=") + 1);
+                    std::string Std1 = std0->GetTitle(), Std = Std1.substr(Std1.find_last_of("=") + 1);
 
                     func->SetParameters(stod(Amp), stod(Mean), stod(Std)); // start fit with histogram's max and mean
                     func->SetLineWidth(LineWidth);

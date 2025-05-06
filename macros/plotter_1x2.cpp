@@ -29,20 +29,20 @@ void plotter_1x2() {
     TCanvas *c = new TCanvas("c", "c", 1600, 1200*2);
     c->Divide(1, 2);
 
-    string filename = "recon_c12_6gev_plots.root";
+    std::string filename = "recon_c12_6gev_plots.root";
 
-//    string graphTitle1 = "#font[12]{#theta_{l}} (All Interactions, 1n1p)";
-//    string graphTitle2 = "#font[12]{#theta_{l}} (All Interactions, 2p)";
-//    string graphTitle3 = "#font[12]{#phi_{l}} (All Interactions, 1n1p)";
-//    string graphTitle4 = "#font[12]{#phi_{l}} (All Interactions, 2p)";
-    string graphTitle1 = "Final State E_{l} (All Interactions, 1n1p)";
-    string graphTitle2 = "Final State E_{l} (All Interactions, 2p)";
-//    string graphTitle3 = "#phi_{l} (All Interactions, 1n1p)";
-//    string graphTitle4 = "#phi_{l} (All Interactions, 2p)";
-//    string graphTitle1 = "#font[12]{#theta_{l}} of Outgoing Lepton (All Interactions, 1n1p)";
-//    string graphTitle2 = "#font[12]{#theta_{l}} of Outgoing Lepton (All Interactions, 2p)";
-//    string graphTitle3 = "#font[12]{#phi_{l}} of Outgoing Lepton (All Interactions, 1n1p)";
-//    string graphTitle4 = "#font[12]{#phi_{l}} of Outgoing Lepton (All Interactions, 2p)";
+//    std::string graphTitle1 = "#font[12]{#theta_{l}} (All Interactions, 1n1p)";
+//    std::string graphTitle2 = "#font[12]{#theta_{l}} (All Interactions, 2p)";
+//    std::string graphTitle3 = "#font[12]{#phi_{l}} (All Interactions, 1n1p)";
+//    std::string graphTitle4 = "#font[12]{#phi_{l}} (All Interactions, 2p)";
+    std::string graphTitle1 = "Final State E_{l} (All Interactions, 1n1p)";
+    std::string graphTitle2 = "Final State E_{l} (All Interactions, 2p)";
+//    std::string graphTitle3 = "#phi_{l} (All Interactions, 1n1p)";
+//    std::string graphTitle4 = "#phi_{l} (All Interactions, 2p)";
+//    std::string graphTitle1 = "#font[12]{#theta_{l}} of Outgoing Lepton (All Interactions, 1n1p)";
+//    std::string graphTitle2 = "#font[12]{#theta_{l}} of Outgoing Lepton (All Interactions, 2p)";
+//    std::string graphTitle3 = "#font[12]{#phi_{l}} of Outgoing Lepton (All Interactions, 1n1p)";
+//    std::string graphTitle4 = "#font[12]{#phi_{l}} of Outgoing Lepton (All Interactions, 2p)";
 
     TFile *fileinput = TFile::Open(filename.c_str());
 

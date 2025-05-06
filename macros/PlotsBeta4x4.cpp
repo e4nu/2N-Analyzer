@@ -19,13 +19,13 @@ root -b -q PlotsBeta4x4.cpp
 #include <TApplication.h>
 #include <TROOT.h>
 
-////#include "source/functions/GeneralFunctions.h"
-//#include "source/functions/to_string_with_precision.h"
-//#include "source/functions/findSubstring.h"
-//#include "source/classes/DSCuts/DSCuts.h"
-//#include "source/classes/hPlots/hPlot1D.h"
-//#include "source/constants.h"
-////#include "source/functions/Math_func/poly34.cpp"
+////#include "framework/functions/GeneralFunctions.h"
+//#include "framework/functions/to_string_with_precision.h"
+//#include "framework/functions/findSubstring.h"
+//#include "framework/classes/DSCuts/DSCuts.h"
+//#include "framework/classes/hPlots/hPlot1D.cpp"
+//#include "framework/constants.h"
+////#include "framework/functions/Math_func/poly34.cpp"
 
 using namespace std;
 
@@ -33,17 +33,17 @@ void PlotsBeta4x4() {
 //void PlotsBeta4x4(hPlot1D Beta1, hPlot1D Beta2, hPlot1D Beta3, hPlot1D Beta4) {
 
 //    TFile *f = new TFile("plots_C12_simulation_6GeV_T5_first_10_-02_ALL_CUTS_NoBetaCut/recon_qe_GENIE_C_598636MeV_Q2_0_5_test_5_first_10_plots.root");
-//    string SampleName = "C12_simulation_6GeV_T5_first_10";
+//    std::string SampleName = "C12_simulation_6GeV_T5_first_10";
 
 //    TFile *f = new TFile("plots_C12_simulation_6GeV_T5_first_100_-02_ALL_CUTS_NoBetaCut/recon_qe_GENIE_C_598636MeV_Q2_0_5_test_5_first_100_plots.root");
-//    string SampleName = "C12_simulation_6GeV_T5_first_100";
+//    std::string SampleName = "C12_simulation_6GeV_T5_first_100";
 //    TFile *f = new TFile("plots_C12_simulation_6GeV_T5_first_100_-03_ALL_CUTS_WithBetaCut/recon_qe_GENIE_C_598636MeV_Q2_0_5_test_5_first_100_plots.root");
-//    string SampleName = "C12_simulation_6GeV_T5_first_100";
+//    std::string SampleName = "C12_simulation_6GeV_T5_first_100";
 
     TFile *f = new TFile("plots_C12_simulation_6GeV_T5_-02_ALL_CUTS_NoBetaCut/recon_qe_GENIE_C_598636MeV_Q2_0_5_test_5_plots.root");
-    string SampleName = "C12_simulation_6GeV_T5";
+    std::string SampleName = "C12_simulation_6GeV_T5";
 
-    string saveName;
+    std::string saveName;
 
     if (SampleName == "C12_simulation_6GeV_T5_first_10") {
         saveName = "./All_neutrals_10_NOPDG0.png";
@@ -53,7 +53,7 @@ void PlotsBeta4x4() {
         saveName = "./All_neutrals_ALL_NOPDG0.png";
     }
 
-    //<editor-fold desc="Canvas definitions">
+    #pragma region /* Canvas definitions */
     TCanvas *Canvas4x4 = new TCanvas("Canvas4x4", "Canvas4x4", 1000 * 4, 750 * 4); // normal res
 //    TCanvas *Canvas = new TCanvas("Canvas4x4", "Canvas4x4", 2000*4, 1500*4); // high res
 //    TCanvas *Canvas = new TCanvas("Canvas4x4", "Canvas4x4", 1650*4, 1150*4);
@@ -121,9 +121,9 @@ void PlotsBeta4x4() {
     Canvas4x4->Clear();
     /*    TFile *f1 = new TFile("./plots_C12_simulation_6GeV_T5_first_10_-02_ALL_CUTS_NoBetaCut/recon_qe_GENIE_C_598636MeV_Q2_0_5_test_5_first_10_plots.root");
     TFile *f = new TFile("./plots_C12_simulation_6GeV_T5_first_10_-02_ALL_CUTS_NoBetaCut/recon_qe_GENIE_C_598636MeV_Q2_0_5_test_5_first_10_plots.root");
-    string SampleName = "C12_simulation_6GeV_T5";
+    std::string SampleName = "C12_simulation_6GeV_T5";
 
-    //<editor-fold desc="Canvas definitions">
+    #pragma region /* Canvas definitions */
     TCanvas *Canvas4x4 = new TCanvas("Canvas4x4", "Canvas4x4", 1000*4, 750*4); // normal res
 //    TCanvas *Canvas = new TCanvas("Canvas4x4", "Canvas4x4", 2000*4, 1500*4); // high res
 //    TCanvas *Canvas = new TCanvas("Canvas4x4", "Canvas4x4", 1650*4, 1150*4);
@@ -175,7 +175,7 @@ void PlotsBeta4x4() {
 
     Canvas4x4->SaveAs("./All_neutrals_NOPDG0.png");
     Canvas4x4->Clear();*/
-    //</editor-fold>
+    #pragma endregion
 
 }
 

@@ -54,22 +54,22 @@ void AMapsDiveTest() {
     nFD_AMap_Div->SetTitle("divided");
     nFD_AMap_Div->Draw("colz");
 
-    //    //<editor-fold desc="Old">
+    //    #pragma region /* Old */
 //    cout << "\n\n";
 //
 //    //    TFile *f = new TFile("plots_C12_simulation_6GeV_T5_first_10_-_ALL_CUTS/recon_qe_GENIE_C_598636MeV_Q2_0_5_test_5_first_10_plots.root");
-////    string SampleName = "C12_simulation_6GeV_T5_first_10";
+////    std::string SampleName = "C12_simulation_6GeV_T5_first_10";
 //
 ////    TFile *f = new TFile("plots_C12_simulation_6GeV_T5_first_100_-02_ALL_CUTS_NoBetaCut/recon_qe_GENIE_C_598636MeV_Q2_0_5_test_5_first_100_plots.root");
-////    string SampleName = "C12_simulation_6GeV_T5_first_100";
+////    std::string SampleName = "C12_simulation_6GeV_T5_first_100";
 //
 ////    TFile *f = new TFile("plots_C12_simulation_6GeV_T5_first_250_-02_ALL_CUTS_NoBetaCut/recon_qe_GENIE_C_598636MeV_Q2_0_5_test_5_first_250_plots.root");
-////    string SampleName = "C12_simulation_6GeV_T5_first_250";
+////    std::string SampleName = "C12_simulation_6GeV_T5_first_250";
 //
 ////    TFile *f = new TFile("plots_C12_simulation_6GeV_T5_-02_ALL_CUTS_NoBetaCut_wPhotonsFD/recon_qe_GENIE_C_598636MeV_Q2_0_5_test_5_plots.root");
 ////    TFile *f = new TFile("plots_C12_simulation_6GeV_T5_-03_ALL_CUTS_WithBetaCut_fixedTLcuts/recon_qe_GENIE_C_598636MeV_Q2_0_5_test_5_plots.root");
 //    TFile *f = new TFile("00_plots_C12_simulation_6GeV_T5_-02_ALL_CUTS_noNC_/recon_qe_GENIE_C_598636MeV_Q2_0_5_test_5_plots.root");
-//    string SampleName = "C12_simulation_6GeV_T5";
+//    std::string SampleName = "C12_simulation_6GeV_T5";
 //
 //    cout << "\nSampleName:\t" << SampleName << "\n\n";
 //
@@ -79,7 +79,7 @@ void AMapsDiveTest() {
 //    double W_yLLim = -0.1, W_yULim = 0.1, W_xLLim = 0.9, W_xULim = 1.;
 //    double deltaPRel_UncertaintyU = 0.2, deltaPRel_UncertaintyL = 0.1;
 //
-//    //<editor-fold desc="Canvas definitions">
+//    #pragma region /* Canvas definitions */
 //    TCanvas *Canvas = new TCanvas("Canvas", "Canvas", 1000, 750); // normal res
 //    Canvas->SetGrid();
 //    Canvas->SetBottomMargin(0.14);
@@ -90,22 +90,22 @@ void AMapsDiveTest() {
 //    float DefStatX = gStyle->GetStatX(), DefStatY = gStyle->GetStatY();
 //
 //    Canvas->cd();
-//    //</editor-fold>
+//    #pragma endregion
 //
-//    //<editor-fold desc="Setting sNameFlag">
-//    string sNameFlag;
+//    #pragma region /* Setting sNameFlag */
+//    std::string sNameFlag;
 //
 //    if (findSubstring(SampleName, "sim")) {
 //        sNameFlag = "s";
 //    } else if (findSubstring(SampleName, "data")) {
 //        sNameFlag = "d";
 //    }
-//    //</editor-fold>
+//    #pragma endregion
 //
-//    //<editor-fold desc="Setting particle">
-//    string BetaTitle = "Neutron #beta from 'photons'";
+//    #pragma region /* Setting particle */
+//    std::string BetaTitle = "Neutron #beta from 'photons'";
 //
-//    string BetaParticle, BetaParticleShort;
+//    std::string BetaParticle, BetaParticleShort;
 //
 //    if (findSubstring(BetaTitle, "Electron") || findSubstring(BetaTitle, "electron")) {
 //        BetaParticle = "Electron";
@@ -133,13 +133,13 @@ void AMapsDiveTest() {
 //        BetaParticle = "Photon";
 //        BetaParticleShort = "#gamma";
 //    }
-//    //</editor-fold>
+//    #pragma endregion
 //
-//    //<editor-fold desc="Setting final State">
-//    string BetaFinalState = "1n";
-//    //</editor-fold>
+//    #pragma region /* Setting final State */
+//    std::string BetaFinalState = "1n";
+//    #pragma endregion
 //
-//    //<editor-fold desc="Setting histogram and preforming a fit">
+//    #pragma region /* Setting histogram and preforming a fit */
 //    TH1D *hpx = (TH1D *) f->Get("#beta of n from '#gamma' (1n, FD)");
 //    TH1D *hBeta_Clone = (TH1D *) hpx->Clone("#beta of n from '#gamma' - fitted");
 //    Int_t Color = hBeta_Clone->GetLineColor();
@@ -211,9 +211,9 @@ void AMapsDiveTest() {
 //    double FitStd = fit->GetParameter(2); // get p2
 //
 //    Beta_cut.SetUpperCut(fit->GetParameter(2));
-//    //</editor-fold>
+//    #pragma endregion
 //
-//    //<editor-fold desc="Drawing fit parameters and saving">
+//    #pragma region /* Drawing fit parameters and saving */
 //    double x_1_Cut_legend = gStyle->GetStatX(), y_1_Cut_legend = gStyle->GetStatY() - 0.2;
 //    double x_2_Cut_legend = gStyle->GetStatX() - 0.2, y_2_Cut_legend = gStyle->GetStatY() - 0.3;
 //
@@ -231,17 +231,17 @@ void AMapsDiveTest() {
 //    ((TText *) FitParam->GetListOfLines()->Last())->SetTextColor(kRed);
 //    FitParam->Draw("same");
 //
-//    string hBeta_CloneSaveNameDir = "./" + sNameFlag + "01_Beta_Neutron_from_photons_1n" + "_fitted.png";
+//    std::string hBeta_CloneSaveNameDir = "./" + sNameFlag + "01_Beta_Neutron_from_photons_1n" + "_fitted.png";
 //    const char *hBeta_CloneSaveDir = hBeta_CloneSaveNameDir.c_str();
 //    Canvas->SaveAs(hBeta_CloneSaveDir);
 //
 //    Canvas->Clear();
-//    //</editor-fold>
+//    #pragma endregion
 //
-//    //<editor-fold desc="Plot deltaP as function of beta">
-//    string deltaPStatsTitle = "#deltaP_{" + BetaParticleShort + "} (" + BetaFinalState + ")";
-//    string deltaPTitle = BetaParticle + " momentum uncertainty #deltaP_{" + BetaParticleShort + "} (" + BetaFinalState + ")";
-//    string deltaPfunc = to_string(m_n * FitStd) + "/ ( (1 - x*x) * sqrt(1 - x*x) )";
+//    #pragma region /* Plot deltaP as function of beta */
+//    std::string deltaPStatsTitle = "#deltaP_{" + BetaParticleShort + "} (" + BetaFinalState + ")";
+//    std::string deltaPTitle = BetaParticle + " momentum uncertainty #deltaP_{" + BetaParticleShort + "} (" + BetaFinalState + ")";
+//    std::string deltaPfunc = to_string(m_n * FitStd) + "/ ( (1 - x*x) * sqrt(1 - x*x) )";
 //
 //    auto *deltaP = new TF1(deltaPStatsTitle.c_str(), deltaPfunc.c_str(), 0.9, 1);
 //    deltaP->SetTitle(deltaPTitle.c_str());
@@ -270,14 +270,14 @@ void AMapsDiveTest() {
 ////    deltaPParam->AddText(("#delta#beta = " + to_string_with_precision(FitStd, 8)).c_str());
 //    deltaPParam->Draw("same");
 //
-//    string deltaPSaveNameDir = "./" + sNameFlag + "02a_P_" + BetaParticleShort + "_uncertainty" + BetaFinalState + ".png";
+//    std::string deltaPSaveNameDir = "./" + sNameFlag + "02a_P_" + BetaParticleShort + "_uncertainty" + BetaFinalState + ".png";
 //    const char *deltaPSaveDir = deltaPSaveNameDir.c_str();
 //    Canvas->SaveAs(deltaPSaveDir);
 //
 //    Canvas->Clear();
-//    //</editor-fold>
+//    #pragma endregion
 //
-//    //<editor-fold desc="Solve deltaP/P for beta in range 0.9<=beta<1">
+//    #pragma region /* Solve deltaP/P for beta in range 0.9<=beta<1 */
 //    double Beta_Max, P_Beta_Max, Beta_Min, P_Beta_Min;
 //    double Beta_Max_sol[3], Beta_Min_sol[3];
 //
@@ -315,12 +315,12 @@ void AMapsDiveTest() {
 //    cout << "P(Beta_Min) = " << P_Beta_Min << "\n\n";
 //
 //    n_momentum_cuts.SetUpperCut(P_Beta_Max);
-//    //</editor-fold>
+//    #pragma endregion
 //
-//    //<editor-fold desc="Plot deltaP/P as function of beta">
-//    string Rel_deltaPStatsTitle = "#deltaP_{" + BetaParticleShort + "} (" + BetaFinalState + ")";
-//    string Rel_deltaPTitle = BetaParticle + " relative uncertainty #deltaP_{" + BetaParticleShort + "}/P_{" + BetaParticleShort + "} (" + BetaFinalState + ")";
-//    string Rel_deltaPfunc = to_string(FitStd) + "/ ( (1 - x*x) * x )";
+//    #pragma region /* Plot deltaP/P as function of beta */
+//    std::string Rel_deltaPStatsTitle = "#deltaP_{" + BetaParticleShort + "} (" + BetaFinalState + ")";
+//    std::string Rel_deltaPTitle = BetaParticle + " relative uncertainty #deltaP_{" + BetaParticleShort + "}/P_{" + BetaParticleShort + "} (" + BetaFinalState + ")";
+//    std::string Rel_deltaPfunc = to_string(FitStd) + "/ ( (1 - x*x) * x )";
 //
 //    auto *Rel_deltaP = new TF1(Rel_deltaPStatsTitle.c_str(), Rel_deltaPfunc.c_str(), 0.9, 1);
 //    Rel_deltaP->SetTitle(Rel_deltaPTitle.c_str());
@@ -363,7 +363,7 @@ void AMapsDiveTest() {
 //    TLegendEntry *Cut_legend_lower_lim = Cut_legend->AddEntry(lower_cut, "10% cut", "l");
 //    Cut_legend->Draw("same");
 //
-//    string Rel_deltaPSaveNameDir = "./" + sNameFlag + "02b_P_" + BetaParticleShort + "_rel_uncertainty" + BetaFinalState + ".png";
+//    std::string Rel_deltaPSaveNameDir = "./" + sNameFlag + "02b_P_" + BetaParticleShort + "_rel_uncertainty" + BetaFinalState + ".png";
 //
 //    const Int_t n = 2;
 //    auto gr = new TGraph(n);
@@ -396,13 +396,13 @@ void AMapsDiveTest() {
 //    const char *Rel_deltaPSaveDir = Rel_deltaPSaveNameDir.c_str();
 //    Canvas->SaveAs(Rel_deltaPSaveDir);
 //    Canvas->Clear();
-//    //</editor-fold>
+//    #pragma endregion
 //
-//    //<editor-fold desc="Plot w as function of beta">
-//    string WStatsTitle = "W(#beta) (" + BetaFinalState + ")";
-//    string WTitle = "The W(#beta) function (" + BetaFinalState + ")";
-//    string W_Maxfunc = "x*x*x - x + " + to_string(FitStd / deltaPRel_UncertaintyU);
-//    string W_Minfunc = "x*x*x - x + " + to_string(FitStd / deltaPRel_UncertaintyL);
+//    #pragma region /* Plot w as function of beta */
+//    std::string WStatsTitle = "W(#beta) (" + BetaFinalState + ")";
+//    std::string WTitle = "The W(#beta) function (" + BetaFinalState + ")";
+//    std::string W_Maxfunc = "x*x*x - x + " + to_string(FitStd / deltaPRel_UncertaintyU);
+//    std::string W_Minfunc = "x*x*x - x + " + to_string(FitStd / deltaPRel_UncertaintyL);
 //
 //    auto *W_Max = new TF1(WStatsTitle.c_str(), W_Maxfunc.c_str(), 0.9, 1);
 //    W_Max->SetLineWidth(2);
@@ -447,11 +447,11 @@ void AMapsDiveTest() {
 //    TLegendEntry *W_legend_lower_lim = W_legend->AddEntry(Beta_Min_cut, ("#deltaP_{" + BetaParticleShort + "}/P_{" + BetaParticleShort + "} = 0.1").c_str(), "l");
 //    W_legend->Draw("same");
 //
-//    string WSaveNameDir = "./" + sNameFlag + "03_W_function.png";
+//    std::string WSaveNameDir = "./" + sNameFlag + "03_W_function.png";
 //    const char *WSaveDir = WSaveNameDir.c_str();
 //    Canvas->SaveAs(WSaveDir);
 //    Canvas->Clear();
-//    //</editor-fold>
-//    //</editor-fold>
+//    #pragma endregion
+//    #pragma endregion
 
 }

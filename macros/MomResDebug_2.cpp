@@ -27,11 +27,11 @@ using namespace std;
 
 /* clas12root macros/MomResDebug_2.cpp -q */
 
-vector<TH1D *> SliceLoader(const char *filename, vector<int> &SliceNumbers, const string &Variant = "reco") {
+vector<TH1D *> SliceLoader(const char *filename, vector<int> &SliceNumbers, const std::string &Variant = "reco") {
     bool PrintOut = false;
 
     TFile *file = new TFile(filename);
-    if (!file) { cout << "\n\nMomResDebug_2::SliceLoader: could not load Hit_Maps_TL root file! Exiting...\n", exit(0); }
+    if (!file) { cout << "\n\nMomResDebug_2::SliceLoader: could not load Hit_Maps_TL root file! Aborting...\n", exit(1); }
 
     vector < TH1D * > MomResSlices;
     vector<int> SliceNumbers0;
@@ -49,10 +49,10 @@ vector<TH1D *> SliceLoader(const char *filename, vector<int> &SliceNumbers, cons
             ++Counter;
 
             TH1D *Histogram1DTempFromKey = (TH1D *) Key->ReadObj();
-            string CloneName = Histogram1DTempFromKey->GetName();
+            std::string CloneName = Histogram1DTempFromKey->GetName();
             TH1D *Histogram1DTemp = (TH1D *) Histogram1DTempFromKey->Clone((CloneName + " - CLONED").c_str());
 
-            string Histogram1DTempName = Histogram1DTemp->GetName();
+            std::string Histogram1DTempName = Histogram1DTemp->GetName();
 
             auto FuncList = Histogram1DTemp->GetListOfFunctions();
             FuncList->Clear();
@@ -66,7 +66,7 @@ vector<TH1D *> SliceLoader(const char *filename, vector<int> &SliceNumbers, cons
     return MomResSlices;
 }
 
-void DrawAndSave(TCanvas *Canvas, const string &MomResDebugSaveDir, vector<TH1D *> &MomResSlices, vector<int> &SliceNumbers) {
+void DrawAndSave(TCanvas *Canvas, const std::string &MomResDebugSaveDir, vector<TH1D *> &MomResSlices, vector<int> &SliceNumbers) {
     Canvas->cd();
 
     for (int i = 0; i < MomResSlices.size(); i++) {
@@ -76,7 +76,7 @@ void DrawAndSave(TCanvas *Canvas, const string &MomResDebugSaveDir, vector<TH1D 
     }
 }
 
-bool IsNeutron(const string &source) {
+bool IsNeutron(const std::string &source) {
     if (findSubstring(source, "Neutron") || findSubstring(source, "neutron")) {
         return true;
     } else {
@@ -84,7 +84,7 @@ bool IsNeutron(const string &source) {
     }
 }
 
-bool IsProton(const string &source) {
+bool IsProton(const std::string &source) {
     if (findSubstring(source, "Proton") || findSubstring(source, "proton")) {
         return true;
     } else {
@@ -94,13 +94,13 @@ bool IsProton(const string &source) {
 
 void MomResDebug_2() {
 
-    //<editor-fold desc="Initial stuff">
+    #pragma region /* Initial stuff */
     TCanvas *c = new TCanvas("c1", "c2", 1000 * 1.25, 750 * 1.25); // normal res
     c->cd()->SetGrid();
     c->cd()->SetBottomMargin(0.14), c->cd()->SetLeftMargin(0.16), c->cd()->SetRightMargin(0.16), c->cd()->SetTopMargin(0.12);
     c->cd();
 
-    const string MomResDebugSaveDir = "MomRes_Fitted_TL_Slices";
+    const std::string MomResDebugSaveDir = "MomRes_Fitted_TL_Slices";
     system(("rm -r " + MomResDebugSaveDir).c_str());
     system(("mkdir -p " + MomResDebugSaveDir).c_str());
 
@@ -109,7 +109,7 @@ void MomResDebug_2() {
                            "/Proton_resolution_plots_-_C12x4_simulation_G18_Q204_6GeV.root";
     vector < TH1D * > MomResSlices = SliceLoader(filename, SliceNumbers, "truth");
 //    vector < TH1D * > MomResSlices = SliceLoader(filename, SliceNumbers);
-    //</editor-fold>
+    #pragma endregion
 
     DSCuts FD_nucleon_momentum_cut = DSCuts("FD nucleon momentum cut", "FD", "", "pFDpCD & nFDpCD", 0, 1., 2.5); // new upper cut, following Larry meeting (10/08/23)
     DSCuts FD_nucleon_momentum_cut_nRes = DSCuts("FD nucleon momentum cut", "FD", "", "pFDpCD & nFDpCD", 0, 1., 2.2); // new upper cut, following Larry meeting (10/08/23)
@@ -124,7 +124,7 @@ void MomResDebug_2() {
     nRes.MomResInit(true, false, false, "C12x4_simulation_G18_Q204_6GeV", MomResDebugSaveDir, beamE, MomRes_mu_cuts, MomRes_sigma_cuts,
                     0.4, MomResDebugSaveDir, MomResDebugSaveDir, 0.05, true, "pol1_wKC", "pol3_wKC", false, false, true);
 
-    string MomentumType = "truth";
+    std::string MomentumType = "truth";
     vector <vector<double>> ResTLMomSlicesLimits = nRes.GetResTLMomSlicesLimits();
     vector <DSCuts> ResTLMomSlicesFitVar = nRes.GetResTLMomSlicesFitVar();
     vector <DSCuts> ResTLMomSlicesHistVar = nRes.GetResTLMomSlicesHistVar();
@@ -154,9 +154,9 @@ void MomResDebug_2() {
                     FitUlim = 0.75, FitLlim = -0.75;
 //                FitUlim = 1., FitLlim = -1.;
 
-//                //<editor-fold desc="Original">
+//                #pragma region /* Original */
 //                FitUlim = 1., FitLlim = -1.;
-//                //</editor-fold>
+//                #pragma endregion
                 } else if (isProton) {
                     FitUlim = 0.15, FitLlim = -0.15;
                 }
@@ -195,10 +195,10 @@ void MomResDebug_2() {
                     func->SetParLimits(2, 0.00001, 0.2); // Sigma limits
 //                func->SetParLimits(2, 0.00001, 0.35); // Sigma limits
 
-                    //                //<editor-fold desc="Original">
+                    //                #pragma region /* Original */
 //                func->SetParLimits(1, -1.5, 1.5); // Mean limits
 //                func->SetParLimits(2, 0.001, 0.35); // Sigma limits
-//                //</editor-fold>
+//                #pragma endregion
 
                 } else if (isProton) {
                     func->SetParLimits(0, 0.95 * SliceMax, 1.05 * SliceMax); // Amp limits
@@ -265,8 +265,8 @@ void MomResDebug_2() {
                 int SliceUpperLimPrecision;
                 if (ResTLMomSlicesLimits.at(i).at(1) == beamE) { SliceUpperLimPrecision = 3; } else { SliceUpperLimPrecision = 2; }
 
-                string hSlice_CloneSaveDir = MomResDebugSaveDir;
-                string hSlice_CloneSaveName = MomResDebugSaveDir + "/" + "Slice_" + to_string(SliceNumbers.at(i)) + "_fitted.png";
+                std::string hSlice_CloneSaveDir = MomResDebugSaveDir;
+                std::string hSlice_CloneSaveName = MomResDebugSaveDir + "/" + "Slice_" + to_string(SliceNumbers.at(i)) + "_fitted.png";
                 system(("mkdir -p " + hSlice_CloneSaveDir).c_str());
 
                 auto ListOfFunctions = hSlice->GetListOfFunctions();
@@ -313,8 +313,8 @@ void MomResDebug_2() {
     nRes.PolyFitter(MomentumType, 3, "Smear", "wKC", TL_FitParam_Smear_pol3_wKC);
 
     nRes.DrawAndSaveResSlices("C12x4_simulation_G18_Q204_6GeV", c, MomResDebugSaveDir, "");
-    //    //<editor-fold desc="Final stuff">
+    //    #pragma region /* Final stuff */
 //    DrawAndSave(c, MomResDebugSaveDir, MomResSlices, SliceNumbers);
-//    //</editor-fold>
+//    #pragma endregion
 
 }

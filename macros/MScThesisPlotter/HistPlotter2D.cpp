@@ -27,7 +27,7 @@
 
 using namespace std;
 
-const string ConfigRegion2D(const string &Histogram2DNameCopy) {
+const std::string ConfigRegion2D(const std::string &Histogram2DNameCopy) {
     if (findSubstring(Histogram2DNameCopy, "CD")) {
         return "CD";
     } else {
@@ -35,7 +35,7 @@ const string ConfigRegion2D(const string &Histogram2DNameCopy) {
     }
 }
 
-const string ConfigSName2D(const string &SampleName) {
+const std::string ConfigSName2D(const std::string &SampleName) {
     if (findSubstring(SampleName, "sim")) {
         return "s";
     } else if (findSubstring(SampleName, "data")) {
@@ -70,8 +70,8 @@ double SetyOffset2D(const bool &ShowStats) {
 }
 
 void HistPlotter2D(TCanvas *HistogramCanvas, TList *MScThesisPlotsList, const char *filename, const char *Histogram2DName,
-                   const string &SampleName, const string &SavePath, const string &SaveName, const bool &Results_plots = false,
-                   const string &HistName_Denominator = "", const string &HistName_Numerator = "") {
+                   const std::string &SampleName, const std::string &SavePath, const std::string &SaveName, const bool &Results_plots = false,
+                   const std::string &HistName_Denominator = "", const std::string &HistName_Numerator = "") {
     bool PresMode = false, ExamPresMode = false;
 
 #if PresentationMode
@@ -89,7 +89,7 @@ void HistPlotter2D(TCanvas *HistogramCanvas, TList *MScThesisPlotsList, const ch
     HistogramCanvas->Clear(); // Clear previous plot
 
     TFile *file = new TFile(filename);
-    if (!file) { cout << "\n\nHistPlotter2D: could not load root file! Exiting...\n", exit(0); }
+    if (!file) { cout << "\n\nHistPlotter2D: could not load root file! Aborting...\n", exit(1); }
 
     TH2D *Histogram2D;
 
@@ -112,7 +112,7 @@ void HistPlotter2D(TCanvas *HistogramCanvas, TList *MScThesisPlotsList, const ch
     double Legend_x1_ThreeLines = Legend_x1_BaseLine, Legend_y1_ThreeLines = Legend_y1_BaseLine - 0.2; // Top right
     double Legend_x2_ThreeLines = Legend_x2_BaseLine - 0.2, Legend_y2_ThreeLines = Legend_y2_BaseLine - 0.35; // Bottom left
 
-    const string Histogram2DNameCopy = Histogram2DName;
+    const std::string Histogram2DNameCopy = Histogram2DName;
     int LineColor = 1;
     int LineWidth = 2;
     vector<double> Histogram2DTitleSizes = {0.06, 0.0425, 0.0425, 0.0425}; // {TitleSize, LabelSizex, LabelSizey, LabelSizez}
@@ -126,8 +126,8 @@ void HistPlotter2D(TCanvas *HistogramCanvas, TList *MScThesisPlotsList, const ch
     HistogramCanvas->cd();
 
     const double beamE = 5.98636;
-    const string Region = ConfigRegion2D(Histogram2DNameCopy);
-    string sNameFlag = ConfigSName2D(SampleName);
+    const std::string Region = ConfigRegion2D(Histogram2DNameCopy);
+    std::string sNameFlag = ConfigSName2D(SampleName);
 
     float DefStatX = gStyle->GetStatX(), DefStatY = gStyle->GetStatY();
     double x_1 = 0.18, y_1 = 0.3, x_2 = 0.86, y_2 = 0.7;
@@ -150,9 +150,9 @@ void HistPlotter2D(TCanvas *HistogramCanvas, TList *MScThesisPlotsList, const ch
         Histogram2D->Draw();
         displayText->Draw();
     } else if (Histogram2D->Integral() != 0.) {
-        string Histogram2D_Title = Histogram2D->GetTitle();
-        string Histogram2D_xLabel = Histogram2D->GetXaxis()->GetTitle();
-        string Histogram2D_yLabel = Histogram2D->GetYaxis()->GetTitle();
+        std::string Histogram2D_Title = Histogram2D->GetTitle();
+        std::string Histogram2D_xLabel = Histogram2D->GetXaxis()->GetTitle();
+        std::string Histogram2D_yLabel = Histogram2D->GetYaxis()->GetTitle();
 
         TitleAligner(Histogram2D, Histogram2D_Title, Histogram2D_xLabel, Histogram2D_yLabel, " (1nFD, FD)", " in 1nFD0pCD");
         TitleAligner(Histogram2D, Histogram2D_Title, Histogram2D_xLabel, Histogram2D_yLabel, "1p", "1pFD0pCD");
@@ -442,13 +442,13 @@ void HistPlotter2D(TCanvas *HistogramCanvas, TList *MScThesisPlotsList, const ch
                    findSubstring(Histogram2DNameCopy, "#Delta#theta_{nFD,pFD} vs. #Delta#phi_{nFD,pFD}")) {
             ShowStats = false;
 
-            string TitleTemp = Histogram2D->GetTitle(), xLabelTemp = Histogram2D->GetXaxis()->GetTitle(), yLabelTemp = Histogram2D->GetYaxis()->GetTitle();
-            string dTheta2Replace = yLabelTemp.substr(0, yLabelTemp.find_last_of("}") + 1);
-            string dPhi2Replace = xLabelTemp.substr(0, xLabelTemp.find_last_of("}") + 1);
-            string dTheta = yLabelTemp.substr(0, yLabelTemp.find("}") + 1);
-            string dPhi = xLabelTemp.substr(0, xLabelTemp.find("}") + 1);
+            std::string TitleTemp = Histogram2D->GetTitle(), xLabelTemp = Histogram2D->GetXaxis()->GetTitle(), yLabelTemp = Histogram2D->GetYaxis()->GetTitle();
+            std::string dTheta2Replace = yLabelTemp.substr(0, yLabelTemp.find_last_of("}") + 1);
+            std::string dPhi2Replace = xLabelTemp.substr(0, xLabelTemp.find_last_of("}") + 1);
+            std::string dTheta = yLabelTemp.substr(0, yLabelTemp.find("}") + 1);
+            std::string dPhi = xLabelTemp.substr(0, xLabelTemp.find("}") + 1);
 
-            string Title2Replace = TitleTemp.substr(0, TitleTemp.find("Veto") + 4), Title2Replacement = dTheta + " vs. " + dPhi;
+            std::string Title2Replace = TitleTemp.substr(0, TitleTemp.find("Veto") + 4), Title2Replacement = dTheta + " vs. " + dPhi;
             TitleAligner(Histogram2D, Histogram2D_Title, Histogram2D_xLabel, Histogram2D_yLabel, Title2Replace, Title2Replacement);
 
             TitleAligner(Histogram2D, Histogram2D_Title, Histogram2D_xLabel, Histogram2D_yLabel, dTheta2Replace, dTheta);
@@ -462,16 +462,16 @@ void HistPlotter2D(TCanvas *HistogramCanvas, TList *MScThesisPlotsList, const ch
             }
 
             if (findSubstring(Histogram2DNameCopy, "BV")) {
-                string Title2Replacement = dTheta + " vs. " + dPhi;
+                std::string Title2Replacement = dTheta + " vs. " + dPhi;
                 TitleAligner(Histogram2D, Histogram2D_Title, Histogram2D_xLabel, Histogram2D_yLabel, Title2Replace, Title2Replacement);
 
-                string TitleTemp1 = Histogram2D->GetTitle(), TitleTemp2 = TitleTemp1 + " before ECAL veto";
+                std::string TitleTemp1 = Histogram2D->GetTitle(), TitleTemp2 = TitleTemp1 + " before ECAL veto";
                 Histogram2D->SetTitle(TitleTemp2.c_str()), gPad->Update();
             } else if (findSubstring(Histogram2DNameCopy, "AV")) {
-                string Title2Replacement = dTheta + " vs. " + dPhi;
+                std::string Title2Replacement = dTheta + " vs. " + dPhi;
                 TitleAligner(Histogram2D, Histogram2D_Title, Histogram2D_xLabel, Histogram2D_yLabel, Title2Replace, Title2Replacement);
 
-                string TitleTemp1 = Histogram2D->GetTitle(), TitleTemp2 = TitleTemp1 + " after ECAL veto";
+                std::string TitleTemp1 = Histogram2D->GetTitle(), TitleTemp2 = TitleTemp1 + " after ECAL veto";
                 Histogram2D->SetTitle(TitleTemp2.c_str()), gPad->Update();
             }
 
@@ -479,7 +479,7 @@ void HistPlotter2D(TCanvas *HistogramCanvas, TList *MScThesisPlotsList, const ch
         } else {
             Histogram2D->SetStats(0);
 
-            //<editor-fold desc="Align Z axis of denominators and numerator">
+            #pragma region /* Align Z axis of denominators and numerator */
             if (!findSubstring(Histogram2D_Title, "Veto")) {
                 bool Equi_z_2D = false;
 
@@ -491,8 +491,8 @@ void HistPlotter2D(TCanvas *HistogramCanvas, TList *MScThesisPlotsList, const ch
 
                     if (Equi_z_2D) { Histogram2D->SetMaximum(Zmax); }
                 } else {
-                    string StringTemp0 = Histogram2D->GetTitle();
-                    string StringTemp = StringTemp0.substr(StringTemp0.find_last_of("ratio") + 1);
+                    std::string StringTemp0 = Histogram2D->GetTitle();
+                    std::string StringTemp = StringTemp0.substr(StringTemp0.find_last_of("ratio") + 1);
                     TitleAligner(Histogram2D, Histogram2D_Title, Histogram2D_xLabel, Histogram2D_yLabel, StringTemp, "");
 
                     Histogram2D->SetMaximum(5.);
@@ -502,7 +502,7 @@ void HistPlotter2D(TCanvas *HistogramCanvas, TList *MScThesisPlotsList, const ch
                     FuncList->Clear();
                 }
             }
-            //</editor-fold>
+            #pragma endregion
 
             TitleAligner(Histogram2D, Histogram2D_Title, Histogram2D_xLabel, Histogram2D_yLabel,
                          "|#vec{P}_{tot}| = |#vec{P}_{nL} + #vec{P}_{nR}|", "P_{tot}");
@@ -561,8 +561,8 @@ void HistPlotter2D(TCanvas *HistogramCanvas, TList *MScThesisPlotsList, const ch
                          "ratio", "- 1nFD1pCD/1pFD1pCD");
 
             if (Results_plots) {
-                string Filename = filename, Histogram2D_title_2 = Histogram2D->GetTitle();
-                string Histogram2D_title_2_replacement;
+                std::string Filename = filename, Histogram2D_title_2 = Histogram2D->GetTitle();
+                std::string Histogram2D_title_2_replacement;
 
                 if (findSubstring(Filename, "simulation")) {
                     Histogram2D_title_2_replacement = Histogram2D_title_2 + " (simulation)";
@@ -582,7 +582,7 @@ void HistPlotter2D(TCanvas *HistogramCanvas, TList *MScThesisPlotsList, const ch
 
             Histogram2D->Draw("colz"), gPad->Update();
 
-            //<editor-fold desc="EquiLine2D for momentum 2D plots">
+            #pragma region /* EquiLine2D for momentum 2D plots */
             if (findSubstring(Histogram2D_Title, "P_{pFD} vs. P_{pCD}") || findSubstring(Histogram2D_Title, "P_{nFD} vs. P_{pCD}") ||
                 findSubstring(Histogram2D_Title, "P_{pL} vs. P_{pR}") || findSubstring(Histogram2D_Title, "P_{nL} vs. P_{nR}") ||
                 findSubstring(Histogram2D_Title, "P_{nucFD} vs. P_{nucCD}") || findSubstring(Histogram2D_Title, "P_{nucL} vs. P_{nucR}")) {
@@ -599,13 +599,13 @@ void HistPlotter2D(TCanvas *HistogramCanvas, TList *MScThesisPlotsList, const ch
                 TLegendEntry *EquiLine2D_entry = Legend->AddEntry(EquiLine2D, "y(x) = x", "l");
                 Legend->SetTextSize(0.03), Legend->SetTextAlign(12), Legend->Draw("same");
             }
-            //</editor-fold>
+            #pragma endregion
 
         }
     }
 
-    gStyle->SetStatX(0.87);
-    gStyle->SetStatY(0.4);
+    gStyle->SetStatX(0.98); // gStyle->SetStatX(0.87);
+    gStyle->SetStatY(0.935); // gStyle->SetStatY(0.4);
 
     if (!ShowStats || Histogram2D->Integral() == 0.) { Histogram2D->SetStats(0); }
 

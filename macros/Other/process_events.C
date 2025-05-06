@@ -23,12 +23,12 @@ void process_events()
   ///////////////////////////////////////////////////////////////////////////
   TFile * output_file = new TFile("NuEnergy_xsec.root","RECREATE");
   
-  string fileE1 = "gntp.1.gst.root"; // 1GeV
-  string fileE2 = "gntp.3.gst.root"; // 2GeV
-  string fileE5 = "gntp.2.gst.root"; // 5GeV
+  std::string fileE1 = "gntp.1.gst.root"; // 1GeV
+  std::string fileE2 = "gntp.3.gst.root"; // 2GeV
+  std::string fileE5 = "gntp.2.gst.root"; // 5GeV
 
-  string fileXSecP = "xsec_nup.root"; 
-  string fileXSecN = "xsec_nup.root"; 
+  std::string fileXSecP = "xsec_nup.root"; 
+  std::string fileXSecN = "xsec_nup.root"; 
 
   TFile * file1 = new TFile(fileE1.c_str(),"fileE1");
   TTree * gst1 = (TTree*)file1->Get("gst");

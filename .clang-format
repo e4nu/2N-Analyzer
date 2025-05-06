@@ -7,3 +7,5 @@ ColumnLimit: 190
 AllowShortIfStatementsOnASingleLine: true
 AllowShortLoopsOnASingleLine: true
 AllowShortBlocksOnASingleLine: true
+IndentPPDirectives: BeforeHash
+# BreakBeforeParameter: No

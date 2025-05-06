@@ -1,27 +1,27 @@
 /* root BetaFitAndSave.cpp -q -b */
 
-#include <iostream>
-#include <fstream>
-#include <string>
-
+#include <TApplication.h>
+#include <TCanvas.h>
+#include <TChain.h>
+#include <TDatabasePDG.h>
 #include <TFile.h>
-#include <TTree.h>
-#include <TLorentzVector.h>
 #include <TH1.h>
 #include <TH2.h>
 #include <TLatex.h>
-#include <TChain.h>
-#include <TCanvas.h>
-#include <TStyle.h>
-#include <TDatabasePDG.h>
-#include <TApplication.h>
+#include <TLorentzVector.h>
 #include <TROOT.h>
+#include <TStyle.h>
+#include <TTree.h>
 
-#include "../source/classes/DSCuts/DSCuts.h"
-#include "../source/functions/Math_func/poly34.cpp"
-#include "../source/functions/findSubstring.h"
-#include "../source/functions/to_string_with_precision.h"
-#include "../source/constants.h"
+#include <fstream>
+#include <iostream>
+#include <string>
+
+#include "../framework/classes/DSCuts/DSCuts.h"
+#include "../framework/constants.h"
+#include "../framework/functions/Math_func/poly34.cpp"
+#include "../framework/functions/findSubstring.h"
+#include "../framework/functions/to_string_with_precision.h"
 
 using namespace std;
 
@@ -59,17 +59,17 @@ void BetaFitAndSaveApprax() {
     cout << "\n\n";
 
     //    TFile *f = new TFile("plots_C12_simulation_6GeV_T5_first_10_-_ALL_CUTS/recon_qe_GENIE_C_598636MeV_Q2_0_5_test_5_first_10_plots.root");
-//    string SampleName = "C12_simulation_6GeV_T5_first_10";
+//    std::string SampleName = "C12_simulation_6GeV_T5_first_10";
 
 //    TFile *f = new TFile("plots_C12_simulation_6GeV_T5_first_100_-02_ALL_CUTS_NoBetaCut/recon_qe_GENIE_C_598636MeV_Q2_0_5_test_5_first_100_plots.root");
-//    string SampleName = "C12_simulation_6GeV_T5_first_100";
+//    std::string SampleName = "C12_simulation_6GeV_T5_first_100";
 
     TFile *f = new TFile("plots_C12_simulation_6GeV_T5_first_250_-02_ALL_CUTS_NoBetaCut/recon_qe_GENIE_C_598636MeV_Q2_0_5_test_5_first_250_plots.root");
-    string SampleName = "C12_simulation_6GeV_T5_first_250";
+    std::string SampleName = "C12_simulation_6GeV_T5_first_250";
 
 //    TFile *f = new TFile("plots_C12_simulation_6GeV_T5_-02_ALL_CUTS_NoBetaCut_wPhotonsFD/recon_qe_GENIE_C_598636MeV_Q2_0_5_test_5_plots.root");
 //    TFile *f = new TFile("plots_C12_simulation_6GeV_T5_-02_ALL_CUTS_NoBetaCut/recon_qe_GENIE_C_598636MeV_Q2_0_5_test_5_plots.root");
-//    string SampleName = "C12_simulation_6GeV_T5";
+//    std::string SampleName = "C12_simulation_6GeV_T5";
 
     cout << "\nSampleName:\t" << SampleName << "\n\n";
 
@@ -79,7 +79,7 @@ void BetaFitAndSaveApprax() {
     double W_yLLim = -0.1, W_yULim = 0.1, W_xLLim = 0.9, W_xULim = 1.;
     double deltaPRel_UncertaintyU = 0.2, deltaPRel_UncertaintyL = 0.1;
 
-    //<editor-fold desc="Canvas definitions">
+    #pragma region /* Canvas definitions */
     TCanvas *Canvas = new TCanvas("Canvas", "Canvas", 1000*2, 750*2); // normal res
     Canvas->SetGrid();
     Canvas->SetBottomMargin(0.14);
@@ -90,22 +90,22 @@ void BetaFitAndSaveApprax() {
     float DefStatX = gStyle->GetStatX(), DefStatY = gStyle->GetStatY();
 
     Canvas->cd();
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Setting sNameFlag">
-    string sNameFlag;
+    #pragma region /* Setting sNameFlag */
+    std::string sNameFlag;
 
     if (findSubstring(SampleName, "sim")) {
         sNameFlag = "s";
     } else if (findSubstring(SampleName, "data")) {
         sNameFlag = "d";
     }
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Setting particle">
-    string BetaTitle = "Neutron #beta from 'photons'";
+    #pragma region /* Setting particle */
+    std::string BetaTitle = "Neutron #beta from 'photons'";
 
-    string BetaParticle, BetaParticleShort;
+    std::string BetaParticle, BetaParticleShort;
 
     if (findSubstring(BetaTitle, "Electron") || findSubstring(BetaTitle, "electron")) {
         BetaParticle = "Electron";
@@ -133,13 +133,13 @@ void BetaFitAndSaveApprax() {
         BetaParticle = "Photon";
         BetaParticleShort = "#gamma";
     }
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Setting final State">
-    string BetaFinalState = "1n";
-    //</editor-fold>
+    #pragma region /* Setting final State */
+    std::string BetaFinalState = "1n";
+    #pragma endregion
 
-    //<editor-fold desc="Setting histogram and preforming a fit">
+    #pragma region /* Setting histogram and preforming a fit */
     TH1D *hpx = (TH1D *) f->Get("#beta of n from '#gamma' (1n, FD)");
     TH1D *hBeta_Clone = (TH1D *) hpx->Clone("#beta of n from '#gamma' - fitted");
     Int_t Color = hBeta_Clone->GetLineColor();
@@ -210,9 +210,9 @@ void BetaFitAndSaveApprax() {
     double FitStd = fit->GetParameter(2); // get p2
 
     Beta_cut.SetUpperCut(fit->GetParameter(2));
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Drawing fit parameters and saving">
+    #pragma region /* Drawing fit parameters and saving */
     double x_1_Cut_legend = gStyle->GetStatX(), y_1_Cut_legend = gStyle->GetStatY() - 0.2;
     double x_2_Cut_legend = gStyle->GetStatX() - 0.2, y_2_Cut_legend = gStyle->GetStatY() - 0.3;
 
@@ -230,17 +230,17 @@ void BetaFitAndSaveApprax() {
     ((TText *) FitParam->GetListOfLines()->Last())->SetTextColor(kRed);
     FitParam->Draw("same");
 
-    string hBeta_CloneSaveNameDir = "./" + sNameFlag + "01_Beta_Neutron_from_photons_1n" + "_fitted.png";
+    std::string hBeta_CloneSaveNameDir = "./" + sNameFlag + "01_Beta_Neutron_from_photons_1n" + "_fitted.png";
     const char *hBeta_CloneSaveDir = hBeta_CloneSaveNameDir.c_str();
     Canvas->SaveAs(hBeta_CloneSaveDir);
 
     Canvas->Clear();
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Plot deltaP as function of beta">
-    string deltaPStatsTitle = "#deltaP_{" + BetaParticleShort + "} (" + BetaFinalState + ")";
-    string deltaPTitle = BetaParticle + " momentum uncertainty #deltaP_{" + BetaParticleShort + "} (" + BetaFinalState + ")";
-    string deltaPfunc = to_string(m_n * FitStd) + "/ ( (1 - x*x) * sqrt(1 - x*x) )";
+    #pragma region /* Plot deltaP as function of beta */
+    std::string deltaPStatsTitle = "#deltaP_{" + BetaParticleShort + "} (" + BetaFinalState + ")";
+    std::string deltaPTitle = BetaParticle + " momentum uncertainty #deltaP_{" + BetaParticleShort + "} (" + BetaFinalState + ")";
+    std::string deltaPfunc = to_string(m_n * FitStd) + "/ ( (1 - x*x) * sqrt(1 - x*x) )";
 
     auto *deltaP = new TF1(deltaPStatsTitle.c_str(), deltaPfunc.c_str(), 0.9, 1);
     deltaP->SetTitle(deltaPTitle.c_str());
@@ -269,14 +269,14 @@ void BetaFitAndSaveApprax() {
 //    deltaPParam->AddText(("#delta#beta = " + to_string_with_precision(FitStd, 8)).c_str());
     deltaPParam->Draw("same");
 
-    string deltaPSaveNameDir = "./" + sNameFlag + "02a_P_" + BetaParticleShort + "_uncertainty_" + BetaFinalState + ".png";
+    std::string deltaPSaveNameDir = "./" + sNameFlag + "02a_P_" + BetaParticleShort + "_uncertainty_" + BetaFinalState + ".png";
     const char *deltaPSaveDir = deltaPSaveNameDir.c_str();
     Canvas->SaveAs(deltaPSaveDir);
 
     Canvas->Clear();
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Solve deltaP/P for beta in range 0.9<=beta<1">
+    #pragma region /* Solve deltaP/P for beta in range 0.9<=beta<1 */
     double Beta_Max_Apprax, P_Beta_Max_Apprax, Beta_Min_Apprax, P_Beta_Min_Apprax;
 
     cout << "\nSolutions for deltaP/P = 20%:\n";
@@ -296,15 +296,15 @@ void BetaFitAndSaveApprax() {
     cout << "P(Beta_Min_Apprax) = " << P_Beta_Min_Apprax << "\n\n";
 
 ////        cout << "\n\n\n\n" << BetaPlot.GetHistogram1DSaveNamePath() << "Approximatied_beta/" << "\n\n\n\n";
-//        exit(0);
+//        exit(1);
 
     n_momentum_cuts.SetUpperCut(P_Beta_Max_Apprax);
-    //</editor-fold>
+    #pragma endregion
 
-    //<editor-fold desc="Plot deltaP/P as function of beta">
-    string Rel_deltaPStatsTitle = "#deltaP_{" + BetaParticleShort + "} (" + BetaFinalState + ")";
-    string Rel_deltaPTitle = BetaParticle + " relative uncertainty #deltaP_{" + BetaParticleShort + "}/P_{" + BetaParticleShort + "} (" + BetaFinalState + ")";
-    string Rel_deltaPfunc = to_string(FitStd) +  + "/ (1 - x*x)";
+    #pragma region /* Plot deltaP/P as function of beta */
+    std::string Rel_deltaPStatsTitle = "#deltaP_{" + BetaParticleShort + "} (" + BetaFinalState + ")";
+    std::string Rel_deltaPTitle = BetaParticle + " relative uncertainty #deltaP_{" + BetaParticleShort + "}/P_{" + BetaParticleShort + "} (" + BetaFinalState + ")";
+    std::string Rel_deltaPfunc = to_string(FitStd) +  + "/ (1 - x*x)";
 
     auto *Rel_deltaP = new TF1(Rel_deltaPStatsTitle.c_str(), Rel_deltaPfunc.c_str(), 0.9, 1);
     Rel_deltaP->SetTitle(Rel_deltaPTitle.c_str());
@@ -347,7 +347,7 @@ void BetaFitAndSaveApprax() {
     TLegendEntry *Cut_legend_lower_lim = Cut_legend->AddEntry(lower_cut, "10% cut", "l");
     Cut_legend->Draw("same");
 
-    string Rel_deltaPSaveNameDir = "./" + sNameFlag + "02b_P_" + BetaParticleShort + "_apprax_rel_uncertainty_" + BetaFinalState + ".png";
+    std::string Rel_deltaPSaveNameDir = "./" + sNameFlag + "02b_P_" + BetaParticleShort + "_apprax_rel_uncertainty_" + BetaFinalState + ".png";
 
     const Int_t n = 2;
     auto gr = new TGraph(n);
@@ -362,6 +362,6 @@ void BetaFitAndSaveApprax() {
     const char *Rel_deltaPSaveDir = Rel_deltaPSaveNameDir.c_str();
     Canvas->SaveAs(Rel_deltaPSaveDir);
     Canvas->Clear();
-    //</editor-fold>
+    #pragma endregion
 
 }

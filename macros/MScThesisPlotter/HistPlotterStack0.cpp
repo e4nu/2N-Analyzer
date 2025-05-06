@@ -1,5 +1,5 @@
 //
-// Created by alons on 10/05/2023.
+// Created by Alon Sportes on 10/05/2023.
 //
 
 #include <iostream>
@@ -26,8 +26,8 @@ using namespace std;
 
 // MCtoDATAcompareHistograms function ---------------------------------------------------------------------------------------------------------------------------------------------
 
-//<editor-fold desc="MCtoDATAcompareHistograms function">
-void MCtoDATAcompareHistograms(int HistogramCounter, TCanvas *Canvas, TCanvas *CanvasMulti, TH1D *MC_Histogram, TH1D *DATA_Histogram, string SaveDirHistograms) {
+#pragma region /* MCtoDATAcompareHistograms function */
+void MCtoDATAcompareHistograms(int HistogramCounter, TCanvas *Canvas, TCanvas *CanvasMulti, TH1D *MC_Histogram, TH1D *DATA_Histogram, std::string SaveDirHistograms) {
     Canvas->cd();
 
     hData Properties;
@@ -36,12 +36,12 @@ void MCtoDATAcompareHistograms(int HistogramCounter, TCanvas *Canvas, TCanvas *C
     bool DATA_Save = false;
     bool Comparison_Save = true;
 
-    string Histogram_Type = Properties.GetType(MC_Histogram->GetTitle());
-    string Histogram_Particle = Properties.GetParticleNameShort(MC_Histogram->GetTitle());
-    string FinalState = Properties.GetFS(MC_Histogram->GetTitle());
+    std::string Histogram_Type = Properties.GetType(MC_Histogram->GetTitle());
+    std::string Histogram_Particle = Properties.GetParticleNameShort(MC_Histogram->GetTitle());
+    std::string FinalState = Properties.GetFS(MC_Histogram->GetTitle());
 
     if (FinalState == "1n" || FinalState == "1p" || FinalState == "pFDpCD" || FinalState == "nFDpCD") {
-        string SavePathHistograms = SaveDirHistograms + "/" + FinalState + "/" + Histogram_Type + "/";
+        std::string SavePathHistograms = SaveDirHistograms + "/" + FinalState + "/" + Histogram_Type + "/";
 
         system(("mkdir -p " + SavePathHistograms).c_str());
 
@@ -50,7 +50,7 @@ void MCtoDATAcompareHistograms(int HistogramCounter, TCanvas *Canvas, TCanvas *C
         MC_Histogram->SetStats(0);
         DATA_Histogram->SetStats(0);
 
-        //<editor-fold desc="Saving MC_Histogram">
+        #pragma region /* Saving MC_Histogram */
         MC_Histogram->SetLineColor(kBlue);
         MC_Histogram->SetLineStyle(0);
         MC_Histogram->SetLineWidth(3);
@@ -66,9 +66,9 @@ void MCtoDATAcompareHistograms(int HistogramCounter, TCanvas *Canvas, TCanvas *C
                                                       FinalState + ".png")).c_str());
             }
         }
-        //</editor-fold>
+        #pragma endregion
 
-        //<editor-fold desc="Saving MC-DATA comparison">
+        #pragma region /* Saving MC-DATA comparison */
         DATA_Histogram->SetLineColor(kRed);
         DATA_Histogram->SetLineStyle(0);
         DATA_Histogram->SetLineWidth(2);
@@ -92,9 +92,9 @@ void MCtoDATAcompareHistograms(int HistogramCounter, TCanvas *Canvas, TCanvas *C
         }
 
         Canvas->Clear();
-        //</editor-fold>
+        #pragma endregion
 
-        //<editor-fold desc="Saving DATA_Histogram">
+        #pragma region /* Saving DATA_Histogram */
         DATA_Histogram->SetLineColor(kRed);
         DATA_Histogram->SetLineStyle(0);
         DATA_Histogram->SetLineWidth(2);
@@ -113,21 +113,21 @@ void MCtoDATAcompareHistograms(int HistogramCounter, TCanvas *Canvas, TCanvas *C
 
             Canvas->Clear();
         }
-        //</editor-fold>
+        #pragma endregion
 
 //        cout << "\n\nMC_Histogram->GetMaximum() = " << MC_Histogram->GetMaximum() << "\n";
 //        cout << "DATA_Histogram->GetMaximum() = " << DATA_Histogram->GetMaximum() << "\n";
 //        cout << "Ymax = " << Ymax << "\n\n\n";
 
-//    exit(0);
+//    exit(1);
 
     }}
-//</editor-fold>
+#pragma endregion
 
 // MCtoDATAcompareRatios function ---------------------------------------------------------------------------------------------------------------------------------------------
 
-//<editor-fold desc="MCtoDATAcompareRatios function">
-void MCtoDATAcompareRatios(int RatioCounter, TCanvas *Canvas, TCanvas *CanvasMulti, TH1D *MC_Histogram, TH1D *DATA_Histogram, string SaveDirRatios) {
+#pragma region /* MCtoDATAcompareRatios function */
+void MCtoDATAcompareRatios(int RatioCounter, TCanvas *Canvas, TCanvas *CanvasMulti, TH1D *MC_Histogram, TH1D *DATA_Histogram, std::string SaveDirRatios) {
     Canvas->cd();
 
     hData Properties;
@@ -136,9 +136,9 @@ void MCtoDATAcompareRatios(int RatioCounter, TCanvas *Canvas, TCanvas *CanvasMul
     bool DATA_Save = false;
     bool Comparison_Save = true;
 
-    string Histogram_Type = Properties.GetType(MC_Histogram->GetTitle());
-    string Histogram_Particle = Properties.GetParticleNameShort(MC_Histogram->GetTitle());
-    string FinalState = Properties.GetFS(MC_Histogram->GetTitle());
+    std::string Histogram_Type = Properties.GetType(MC_Histogram->GetTitle());
+    std::string Histogram_Particle = Properties.GetParticleNameShort(MC_Histogram->GetTitle());
+    std::string FinalState = Properties.GetFS(MC_Histogram->GetTitle());
 
     TLine *EquiLine = new TLine(MC_Histogram->GetXaxis()->GetXmin(), 1, MC_Histogram->GetXaxis()->GetXmax(), 1);
     EquiLine->SetLineWidth(2);
@@ -146,12 +146,12 @@ void MCtoDATAcompareRatios(int RatioCounter, TCanvas *Canvas, TCanvas *CanvasMul
 
     for (int i = 2; i < 6; i++) {
 
-        //<editor-fold desc="Setting y range">
+        #pragma region /* Setting y range */
         MC_Histogram->GetYaxis()->SetRangeUser(0, i);
         DATA_Histogram->GetYaxis()->SetRangeUser(0, i);
-        //</editor-fold>
+        #pragma endregion
 
-        //<editor-fold desc="Saving MC_Histogram">
+        #pragma region /* Saving MC_Histogram */
         MC_Histogram->SetLineColor(kBlue);
         MC_Histogram->SetLineStyle(0);
         MC_Histogram->SetLineWidth(3);
@@ -168,9 +168,9 @@ void MCtoDATAcompareRatios(int RatioCounter, TCanvas *Canvas, TCanvas *CanvasMul
                                                        FinalState + ".png")).c_str());
             }
         }
-        //</editor-fold>
+        #pragma endregion
 
-        //<editor-fold desc="Saving MC-DATA comparison">
+        #pragma region /* Saving MC-DATA comparison */
         DATA_Histogram->SetLineColor(kRed);
         DATA_Histogram->SetLineStyle(0);
         DATA_Histogram->SetLineWidth(2);
@@ -195,9 +195,9 @@ void MCtoDATAcompareRatios(int RatioCounter, TCanvas *Canvas, TCanvas *CanvasMul
         }
 
         Canvas->Clear();
-        //</editor-fold>
+        #pragma endregion
 
-        //<editor-fold desc="Saving DATA_Histogram">
+        #pragma region /* Saving DATA_Histogram */
         DATA_Histogram->SetLineColor(kRed);
         DATA_Histogram->SetLineStyle(0);
         DATA_Histogram->SetLineWidth(2);
@@ -217,7 +217,7 @@ void MCtoDATAcompareRatios(int RatioCounter, TCanvas *Canvas, TCanvas *CanvasMul
 
             Canvas->Clear();
         }
-        //</editor-fold>
+        #pragma endregion
 
 //        cout << "\n\nMC_Histogram->GetMaximum() = " << MC_Histogram->GetMaximum() << "\n";
 //        cout << "DATA_Histogram->GetMaximum() = " << DATA_Histogram->GetMaximum() << "\n";
@@ -225,16 +225,16 @@ void MCtoDATAcompareRatios(int RatioCounter, TCanvas *Canvas, TCanvas *CanvasMul
     }
 
 
-//    exit(0);
+//    exit(1);
 }
-//</editor-fold>
+#pragma endregion
 
 // MCtoDATAcomp function ------------------------------------------------------------------------------------------------------------------------------------------------
 
-//<editor-fold desc="MCtoDATAcomp function">
+#pragma region /* MCtoDATAcomp function */
 void MCtoDATAcomp() {
-    string SaveDirRatios = "MC_to_DATA_comperison";
-    string SaveDirHistograms = "MC_to_DATA_comperison/Histograms";
+    std::string SaveDirRatios = "MC_to_DATA_comperison";
+    std::string SaveDirHistograms = "MC_to_DATA_comperison/Histograms";
 
     system(("rm -r " + SaveDirRatios).c_str());
     system(("mkdir -p " + SaveDirRatios).c_str());
@@ -243,12 +243,12 @@ void MCtoDATAcomp() {
     hData Properties;
 
     TFile *MC_file = new TFile("C12_simulation_G18_Q204_6GeV_plots.root");
-    if (!MC_file) { cout << "\n\nMCtoDATAcomp: MC file not found! Exiting...\n", exit(0); }
+    if (!MC_file) { cout << "\n\nMCtoDATAcomp: MC file not found! Aborting...\n", exit(1); }
 
     TFile *DATA_file = new TFile("C12x4_data_6GeV_run_015188_plots.root");
-    if (!DATA_file) { cout << "\n\nDATAtoDATAcomp: DATA file not found! Exiting...\n", exit(0); }
+    if (!DATA_file) { cout << "\n\nDATAtoDATAcomp: DATA file not found! Aborting...\n", exit(1); }
 
-    //<editor-fold desc="Canvas definitions">
+    #pragma region /* Canvas definitions */
     int canvas_x = 1000, canvas_y = 750;
 
     TCanvas *Canvas = new TCanvas("Canvas", "Canvas", canvas_x, canvas_y); // normal res
@@ -267,7 +267,7 @@ void MCtoDATAcomp() {
     CanvasMulti->cd(3)->SetBottomMargin(0.14), CanvasMulti->cd(3)->SetLeftMargin(0.16), CanvasMulti->cd(3)->SetRightMargin(0.12);
 
     Canvas->cd();
-    //</editor-fold>
+    #pragma endregion
 
     int RatioCounter = 0, HistogramCounter = 0;
     static TString classname("TH1D");
@@ -277,21 +277,21 @@ void MCtoDATAcomp() {
 
     while (MC_key = (TKey *) MC_next()) {
         TH1D *MC_Histogram = (TH1D *) MC_key->ReadObj();
-        string MC_Histogram_title = MC_Histogram->GetTitle();
+        std::string MC_Histogram_title = MC_Histogram->GetTitle();
 
         if (MC_key->GetClassName() != classname("TH1D")) { continue; }
         if (!(!findSubstring(MC_Histogram_title, "vs") && !findSubstring(MC_Histogram_title, "vs.") &&
               !findSubstring(MC_Histogram_title, "VS") && !findSubstring(MC_Histogram_title, "VS."))) { continue; }
 
         if (!findSubstring(MC_Histogram_title, "nFDpCD/pFDpCD")) {
-            string MC_Histogram_type = Properties.GetType(MC_Histogram_title);
+            std::string MC_Histogram_type = Properties.GetType(MC_Histogram_title);
 
             if (MC_Histogram_type != "" || findSubstring(MC_Histogram_title,"Leading")) {
 //            if (MC_Histogram_type != "") {
 
                 /*
                 TH1D *DATA_Histogram = (TH1D *) DATA_file->Get(MC_Histogram->GetName());
-                string DATA_Histogram_title = DATA_Histogram->GetTitle();
+                std::string DATA_Histogram_title = DATA_Histogram->GetTitle();
 
                 cout << "\n\n\nMC_Histogram_title = " << MC_Histogram_title << "\n";
                 cout << "DATA_Histogram_title = " << DATA_Histogram_title << "\n";
@@ -305,14 +305,14 @@ void MCtoDATAcomp() {
 
                 while (DATA_key = (TKey *) DATA_next()) {
                     TH1D *DATA_Histogram = (TH1D *) DATA_key->ReadObj();
-                    string DATA_Histogram_title = DATA_Histogram->GetTitle();
+                    std::string DATA_Histogram_title = DATA_Histogram->GetTitle();
 
                     if (DATA_key->GetClassName() != classname("TH1D")) { continue; }
                     if (!(!findSubstring(DATA_Histogram_title, "vs") && !findSubstring(DATA_Histogram_title, "vs.") &&
                           !findSubstring(DATA_Histogram_title, "VS") && !findSubstring(DATA_Histogram_title, "VS."))) { continue; }
                     if (findSubstring(DATA_Histogram_title, "nFDpCD/pFDpCD")) { continue; }
 
-                    string DATA_Histogram_type = Properties.GetType(DATA_Histogram_title);
+                    std::string DATA_Histogram_type = Properties.GetType(DATA_Histogram_title);
 
                     if ((DATA_Histogram_type != "" || findSubstring(DATA_Histogram_title,"Leading")) &&
                     (MC_Histogram_title == DATA_Histogram_title)) {
@@ -333,7 +333,7 @@ void MCtoDATAcomp() {
 
             while (DATA_key = (TKey *) DATA_next()) {
                 TH1D *DATA_Histogram = (TH1D *) DATA_key->ReadObj();
-                string DATA_Histogram_title = DATA_Histogram->GetTitle();
+                std::string DATA_Histogram_title = DATA_Histogram->GetTitle();
                 if (!findSubstring(DATA_Histogram_title, "nFDpCD/pFDpCD") ||
                     !(!findSubstring(DATA_Histogram_title, "vs") && !findSubstring(DATA_Histogram_title, "vs.") &&
                       !findSubstring(DATA_Histogram_title, "VS") && !findSubstring(DATA_Histogram_title, "VS."))) { continue; }
@@ -353,4 +353,4 @@ void MCtoDATAcomp() {
     cout << "\n";
 
 }
-//</editor-fold>
+#pragma endregion

@@ -7,7 +7,7 @@ std::string	Histogram1DTempName = "#theta_{nFD,pCD} (All Int., nFDpCD)";
     static TString classname("TH1D");
     static TString classnameTFolder("TFolder");
     static TString classnameTHStack("THStack");
-    string FoundHistName;
+    std::string FoundHistName;
 
     TKey *Key;
     TIter Next((TList *) file->GetListOfKeys());
@@ -15,7 +15,7 @@ std::string	Histogram1DTempName = "#theta_{nFD,pCD} (All Int., nFDpCD)";
     while (Key = (TKey *) Next()) {
         TH1D *Histogram1DTemp = (TH1D *) Key->ReadObj();
 
-        string Histogram1DTempName = Histogram1DTemp->GetName();
+        std::string Histogram1DTempName = Histogram1DTemp->GetName();
 
         if (PrintOut1) { cout << Histogram1DTempName << "\n\n"; }
 
@@ -24,8 +24,8 @@ std::string	Histogram1DTempName = "#theta_{nFD,pCD} (All Int., nFDpCD)";
 
             if (PrintOut) { cout << "\n\nKey name: " << Histogram1DTemp->GetName() << "; Type: " << Key->GetClassName() << "\n\n"; }
 
-            string Histogram1DxLable = Histogram1DTemp->GetXaxis()->GetTitle();
-            string Histogram1DTitle = Histogram1DTemp->GetTitle();
+            std::string Histogram1DxLable = Histogram1DTemp->GetXaxis()->GetTitle();
+            std::string Histogram1DTitle = Histogram1DTemp->GetTitle();
 
             if (PrintOut) {
                 cout << "\nHistogram1DxLable = " << Histogram1DxLable << "\n";
@@ -46,7 +46,7 @@ std::string	Histogram1DTempName = "#theta_{nFD,pCD} (All Int., nFDpCD)";
     if (!HistogramFound) {
         cout << "\n\nHistofinder1D: could not find histogram!\n";
         cout << "Histogram1DNameSubstring = " << Histogram1DNameSubstring << "\n";
-        exit(0);
+        exit(1);
         return Histogram1D;
     } else {
         if (PrintOut) {
