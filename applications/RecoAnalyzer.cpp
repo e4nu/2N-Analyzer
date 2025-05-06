@@ -3178,7 +3178,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                                          theta_q_lboundary, theta_q_uboundary);
     TH1D *htheta_q_MEC_pFDpCD = new TH1D("#theta_{q} distribution (MEC only, pFDpCD)", "#theta_{q} distribution (MEC only, pFDpCD);#theta_{q} [#circ];", numTH1Dbins_ReacMon_plots,
                                          theta_q_lboundary, theta_q_uboundary);
-    TH1D *htheta_q_RES_pFDpCD = new TH1D("#theta_{q} distribution (RES only, pFDpCD)", "#theta_{q} distribution (RES only, pFDpCD);#theta_{q} [#circ];", numTH1Dbins_ReacMon_plots,
+    TH1D *htheta_q_rES_pFDpCD = new TH1D("#theta_{q} distribution (RES only, pFDpCD)", "#theta_{q} distribution (RES only, pFDpCD);#theta_{q} [#circ];", numTH1Dbins_ReacMon_plots,
                                          theta_q_lboundary, theta_q_uboundary);
     TH1D *htheta_q_DIS_pFDpCD = new TH1D("#theta_{q} distribution (DIS only, pFDpCD)", "#theta_{q} distribution (DIS only, pFDpCD);#theta_{q} [#circ];", numTH1Dbins_ReacMon_plots,
                                          theta_q_lboundary, theta_q_uboundary);
@@ -4101,12 +4101,12 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                                          theta_q_lboundary, theta_q_uboundary);
     TH1D *htheta_q_MEC_nFDpCD = new TH1D("#theta_{q} distribution (MEC only, nFDpCD)", "#theta_{q} distribution (MEC only, nFDpCD);#theta_{q} [#circ];", numTH1Dbins_ReacMon_plots,
                                          theta_q_lboundary, theta_q_uboundary);
-    TH1D *htheta_q_RES_nFDpCD = new TH1D("#theta_{q} distribution (RES only, nFDpCD)", "#theta_{q} distribution (RES only, nFDpCD);#theta_{q} [#circ];", numTH1Dbins_ReacMon_plots,
+    TH1D *htheta_q_rES_nFDpCD = new TH1D("#theta_{q} distribution (RES only, nFDpCD)", "#theta_{q} distribution (RES only, nFDpCD);#theta_{q} [#circ];", numTH1Dbins_ReacMon_plots,
                                          theta_q_lboundary, theta_q_uboundary);
     TH1D *htheta_q_DIS_nFDpCD = new TH1D("#theta_{q} distribution (DIS only, nFDpCD)", "#theta_{q} distribution (DIS only, nFDpCD);#theta_{q} [#circ];", numTH1Dbins_ReacMon_plots,
                                          theta_q_lboundary, theta_q_uboundary);
     std::string stheta_q_nFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_nFDpCD_theta_q_Directory"];
-    std::string htheta_q_nFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_nFDpCD_theta_q_Directory"];
+    std::string htheta_q_NFDpCD_Dir = directories.ReacMon_dir_map["ReacMon_nFDpCD_theta_q_Directory"];
 #pragma endregion
 
 #pragma region /* 2D theta_q distribution (nFDpCD) */
@@ -6623,7 +6623,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     THStack *sTheta_q_p_nFDpCD =
         new THStack("#theta_{#font[62]{q},#font[62]{P}} (All Int., nFDpCD)",
                     "#theta_{#font[62]{q},#font[62]{P}} - Opening Angle Between #font[62]{q} and #font[62]{P} (All Int., nFDpCD);#theta_{#font[62]{q},#font[62]{P}} [#circ];");
-    TH1D *hTheta_q_nFD_nFDpCD = new TH1D("#theta_{#font[62]{q},#font[62]{P}_{nFD}} (All Int., nFDpCD)",
+    TH1D *htheta_q_NFD_nFDpCD = new TH1D("#theta_{#font[62]{q},#font[62]{P}_{nFD}} (All Int., nFDpCD)",
                                          "#theta_{#font[62]{q},#font[62]{P}_{nFD}} - Opening Angle Between #font[62]{q} and FD Neutron #font[62]{P}_{nFD} (All Int., nFDpCD);"
                                          "#theta_{#font[62]{q},#font[62]{P}_{nFD}} [#circ]",
                                          numTH1Dbins_Ang_Plots, Opening_Ang_narrow_lboundary, Opening_Ang_narrow_uboundary);
@@ -6631,8 +6631,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                                          "#theta_{#font[62]{q},#font[62]{P}_{pCD}} - Opening Angle Between #font[62]{q} and CD Proton #font[62]{P}_{pCD} (All Int., nFDpCD);"
                                          "#theta_{#font[62]{q},#font[62]{P}_{pCD}} [#circ]",
                                          numTH1Dbins_Ang_Plots, 0, 180);
-    std::string hTheta_q_nFD_nFDpCD_Dir = directories.Angle_dir_map["Opening_angles_nFDpCD_Directory"];
-    std::string hTheta_q_nFD_nFDpCD_Dir_ReacMon = directories.ReacMon_dir_map["ReacMon_nFDpCD_theta_q_N_Directory"];
+    std::string htheta_q_NFD_nFDpCD_Dir = directories.Angle_dir_map["Opening_angles_nFDpCD_Directory"];
+    std::string htheta_q_NFD_nFDpCD_Dir_ReacMon = directories.ReacMon_dir_map["ReacMon_nFDpCD_theta_q_N_Directory"];
     std::string hTheta_q_pCD_nFDpCD_Dir = directories.Angle_dir_map["Opening_angles_nFDpCD_Directory"];
     std::string hTheta_q_pCD_nFDpCD_Dir_ReacMon = directories.ReacMon_dir_map["ReacMon_nFDpCD_theta_q_r_Directory"];
 
@@ -6668,11 +6668,11 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     std::string hTheta_q_p_R_vs_W_nFDpCD_Dir = directories.Angle_dir_map["Opening_angles_nFDpCD_Directory"];
 
     // Theta_q_nFD vs. W (CD & FD)
-    TH2D *hTheta_q_nFD_vs_W_nFDpCD = new TH2D("#theta_{#font[62]{q},#font[62]{P}_{nFD}} vs. W (All Int., nFDpCD)",
+    TH2D *htheta_q_NFD_vs_W_nFDpCD = new TH2D("#theta_{#font[62]{q},#font[62]{P}_{nFD}} vs. W (All Int., nFDpCD)",
                                               "#theta_{#font[62]{q},#font[62]{P}_{nFD}} vs. W (All Int., nFDpCD);W = #sqrt{(#omega + m_{p})^{2} - #font[62]{q}^{2}}  [GeV/c^{2}];"
                                               "#theta_{#font[62]{q},#font[62]{P}_{nFD}} [#circ];",
                                               numTH2Dbins_Ang_Plots, W_lboundary, W_uboundary, numTH2Dbins_Ang_Plots, Opening_Ang_narrow_lboundary, Opening_Ang_narrow_uboundary);
-    std::string hTheta_q_nFD_vs_W_nFDpCD_Dir = directories.Angle_dir_map["Opening_angles_nFDpCD_Directory"];
+    std::string htheta_q_NFD_vs_W_nFDpCD_Dir = directories.Angle_dir_map["Opening_angles_nFDpCD_Directory"];
 
     // Theta_q_pCD vs. W (CD & FD)
     TH2D *hTheta_q_pCD_vs_W_nFDpCD = new TH2D("#theta_{#font[62]{q},#font[62]{P}_{pCD}} vs. W (All Int., nFDpCD)",
@@ -6700,11 +6700,11 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
     std::string hTheta_q_p_L_vs_Theta_q_p_R_nFDpCD_Dir = directories.Angle_dir_map["Opening_angles_nFDpCD_Directory"];
 
     // Theta_q_nFD vs Theta_q_pCD
-    TH2D *hTheta_q_nFD_vs_Theta_q_pCD_nFDpCD = new TH2D("#theta_{#font[62]{q},#font[62]{P}_{nFD}} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (All Int., nFDpCD)",
+    TH2D *htheta_q_NFD_vs_Theta_q_pCD_nFDpCD = new TH2D("#theta_{#font[62]{q},#font[62]{P}_{nFD}} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (All Int., nFDpCD)",
                                                         "#theta_{#font[62]{q},#font[62]{P}_{nFD}} vs. #theta_{#font[62]{q},#font[62]{P}_{pCD}} (All Int., nFDpCD);"
                                                         "#theta_{#font[62]{q},#font[62]{P}_{nFD}} [#circ];#theta_{#font[62]{q},#font[62]{P}_{pCD}} [#circ]",
                                                         numTH2Dbins_Ang_Plots, Opening_Ang_narrow_lboundary, Opening_Ang_narrow_uboundary, numTH2Dbins_Ang_Plots, 0, 180);
-    std::string hTheta_q_nFD_vs_Theta_q_pCD_nFDpCD_Dir = directories.Angle_dir_map["Opening_angles_nFDpCD_Directory"];
+    std::string htheta_q_NFD_vs_Theta_q_pCD_nFDpCD_Dir = directories.Angle_dir_map["Opening_angles_nFDpCD_Directory"];
 
     // Theta_nFD_pCD (nFDpCD, CD & FD) --------------------------------------------------------------------------------------------------------------------------------------
 
@@ -17227,7 +17227,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                 FillByInt2D(hxB_VS_theta_q_r_All_Int_pFDpCD, hxB_VS_theta_q_r_QEL_pFDpCD, hxB_VS_theta_q_r_MEC_pFDpCD, hxB_VS_theta_q_r_RES_pFDpCD, hxB_VS_theta_q_r_DIS_pFDpCD, qel, mec,
                             res, dis, xB_pFDpCD, Theta_q_r_pFDpCD, Weight_pFDpCD);
 
-                FillByInt1D(htheta_q_All_Int_pFDpCD, htheta_q_QEL_pFDpCD, htheta_q_MEC_pFDpCD, htheta_q_RES_pFDpCD, htheta_q_DIS_pFDpCD, qel, mec, res, dis,
+                FillByInt1D(htheta_q_All_Int_pFDpCD, htheta_q_QEL_pFDpCD, htheta_q_MEC_pFDpCD, htheta_q_rES_pFDpCD, htheta_q_DIS_pFDpCD, qel, mec, res, dis,
                             analysis_math::RadToDeg(q_pFDpCD_3v.Theta()), Weight_pFDpCD);
                 FillByInt2D(htheta_q_VS_theta_q_N_All_Int_pFDpCD, htheta_q_VS_theta_q_N_QEL_pFDpCD, htheta_q_VS_theta_q_N_MEC_pFDpCD, htheta_q_VS_theta_q_N_RES_pFDpCD,
                             htheta_q_VS_theta_q_N_DIS_pFDpCD, qel, mec, res, dis, analysis_math::RadToDeg(q_pFDpCD_3v.Theta()), Theta_q_N_pFDpCD, Weight_pFDpCD);
@@ -18212,7 +18212,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                 FillByInt2D(hxB_VS_theta_q_r_All_Int_nFDpCD, hxB_VS_theta_q_r_QEL_nFDpCD, hxB_VS_theta_q_r_MEC_nFDpCD, hxB_VS_theta_q_r_RES_nFDpCD, hxB_VS_theta_q_r_DIS_nFDpCD, qel, mec,
                             res, dis, xB_nFDpCD, Theta_q_r_nFDpCD, Weight_nFDpCD);
 
-                FillByInt1D(htheta_q_All_Int_nFDpCD, htheta_q_QEL_nFDpCD, htheta_q_MEC_nFDpCD, htheta_q_RES_nFDpCD, htheta_q_DIS_nFDpCD, qel, mec, res, dis,
+                FillByInt1D(htheta_q_All_Int_nFDpCD, htheta_q_QEL_nFDpCD, htheta_q_MEC_nFDpCD, htheta_q_rES_nFDpCD, htheta_q_DIS_nFDpCD, qel, mec, res, dis,
                             analysis_math::RadToDeg(q_nFDpCD_3v.Theta()), Weight_nFDpCD);
                 FillByInt2D(htheta_q_VS_theta_q_N_All_Int_nFDpCD, htheta_q_VS_theta_q_N_QEL_nFDpCD, htheta_q_VS_theta_q_N_MEC_nFDpCD, htheta_q_VS_theta_q_N_RES_nFDpCD,
                             htheta_q_VS_theta_q_N_DIS_nFDpCD, qel, mec, res, dis, analysis_math::RadToDeg(q_nFDpCD_3v.Theta()), Theta_q_N_nFDpCD, Weight_nFDpCD);
@@ -18340,15 +18340,15 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                 hTheta_P_nL_minus_q_nR_vs_W_nFDpCD->Fill(W_nFDpCD, Theta_P_nL_minus_q_nR_nFDpCD, Weight_nFDpCD);
                 hTheta_q_p_L_nFDpCD->Fill(Theta_q_p_L_nFDpCD, Weight_nFDpCD);
                 hTheta_q_p_R_nFDpCD->Fill(Theta_q_p_R_nFDpCD, Weight_nFDpCD);
-                hTheta_q_nFD_nFDpCD->Fill(Theta_q_nFD_nFDpCD, Weight_nFDpCD);
+                htheta_q_NFD_nFDpCD->Fill(Theta_q_nFD_nFDpCD, Weight_nFDpCD);
                 hTheta_q_pCD_nFDpCD->Fill(Theta_q_pCD_nFDpCD, Weight_nFDpCD);
                 hTheta_q_p_L_vs_W_nFDpCD->Fill(W_nFDpCD, Theta_q_p_L_nFDpCD, Weight_nFDpCD);
                 hTheta_q_p_R_vs_W_nFDpCD->Fill(W_nFDpCD, Theta_q_p_R_nFDpCD, Weight_nFDpCD);
-                hTheta_q_nFD_vs_W_nFDpCD->Fill(W_nFDpCD, Theta_q_nFD_nFDpCD, Weight_nFDpCD);
+                htheta_q_NFD_vs_W_nFDpCD->Fill(W_nFDpCD, Theta_q_nFD_nFDpCD, Weight_nFDpCD);
                 hTheta_q_pCD_vs_W_nFDpCD->Fill(W_nFDpCD, Theta_q_pCD_nFDpCD, Weight_nFDpCD);
                 hTheta_q_p_L_vs_p_L_q_nFDpCD->Fill(P_nL_nFDpCD_3v.Mag() / q_nFDpCD_3v.Mag(), Theta_q_p_L_nFDpCD, Weight_nFDpCD);
                 hTheta_q_p_L_vs_Theta_q_p_R_nFDpCD->Fill(Theta_q_p_L_nFDpCD, Theta_q_p_R_nFDpCD, Weight_nFDpCD);
-                hTheta_q_nFD_vs_Theta_q_pCD_nFDpCD->Fill(Theta_q_nFD_nFDpCD, Theta_q_pCD_nFDpCD, Weight_nFDpCD);
+                htheta_q_NFD_vs_Theta_q_pCD_nFDpCD->Fill(Theta_q_nFD_nFDpCD, Theta_q_pCD_nFDpCD, Weight_nFDpCD);
 
                 P_tot_mu_nFDpCD_4v.SetPxPyPzE(P_nL_nFDpCD_3v.Px() + P_nR_nFDpCD_3v.Px(), P_nL_nFDpCD_3v.Py() + P_nR_nFDpCD_3v.Py(), P_nL_nFDpCD_3v.Pz() + P_nR_nFDpCD_3v.Pz(),
                                               E_nL_nFDpCD + E_nR_nFDpCD);
@@ -20233,13 +20233,13 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                       HistoList, 2, false, true, stheta_q_pFDpCD, "07a_theta_q_QEL_only_pFDpCD", htheta_q_pFDpCD_Dir, "", kBlue, true, true, true, false);
         histPlotter1D(MainCanvas, htheta_q_MEC_pFDpCD, norm_ReacMon_plots, true, theta_q_pFDpCD_integral, "#theta_{q} distribution", "MEC only, pFDpCD", 0.06, 0.0425, 0.0425, plots,
                       HistoList, 2, false, true, stheta_q_pFDpCD, "07b_theta_q_MEC_only_pFDpCD", htheta_q_pFDpCD_Dir, "", kBlue, true, true, true, false);
-        histPlotter1D(MainCanvas, htheta_q_RES_pFDpCD, norm_ReacMon_plots, true, theta_q_pFDpCD_integral, "#theta_{q} distribution", "RES only, pFDpCD", 0.06, 0.0425, 0.0425, plots,
+        histPlotter1D(MainCanvas, htheta_q_rES_pFDpCD, norm_ReacMon_plots, true, theta_q_pFDpCD_integral, "#theta_{q} distribution", "RES only, pFDpCD", 0.06, 0.0425, 0.0425, plots,
                       HistoList, 2, false, true, stheta_q_pFDpCD, "07c_theta_q_RES_only_pFDpCD", htheta_q_pFDpCD_Dir, "", kBlue, true, true, true, false);
         histPlotter1D(MainCanvas, htheta_q_DIS_pFDpCD, norm_ReacMon_plots, true, theta_q_pFDpCD_integral, "#theta_{q} distribution", "DIS only, pFDpCD", 0.06, 0.0425, 0.0425, plots,
                       HistoList, 2, false, true, stheta_q_pFDpCD, "07d_theta_q_DIS_only_pFDpCD", htheta_q_pFDpCD_Dir, "", kBlue, true, true, true, false);
 
         stackPlotter1D(MainCanvas, stheta_q_pFDpCD, norm_ReacMon_plots, "#theta_{q} distribution", "pFDpCD", plots, HistoList, htheta_q_All_Int_pFDpCD, htheta_q_QEL_pFDpCD,
-                       htheta_q_MEC_pFDpCD, htheta_q_RES_pFDpCD, htheta_q_DIS_pFDpCD, "07e_theta_q_Stack_pFDpCD", stheta_q_pFDpCD_Dir, "");
+                       htheta_q_MEC_pFDpCD, htheta_q_rES_pFDpCD, htheta_q_DIS_pFDpCD, "07e_theta_q_Stack_pFDpCD", stheta_q_pFDpCD_Dir, "");
 
         // theta_q vs. theta_q_pFD plots (pFDpCD, FD)
         histPlotter2D(MainCanvas, htheta_q_VS_theta_q_N_All_Int_pFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, htheta_q_VS_theta_q_N_pFDpCD_Dir,
@@ -20272,53 +20272,53 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "theta_q_VS_theta_q_r_ReacComp_pFDpCD");
 
         // theta_q_pFD plots (pFDpCD, CD & FD)
-        double Theta_q_N_pFDpCD_integral = hTheta_q_N_All_Int_pFDpCD->Integral();
+        double Theta_q_N_pFDpCD_integral = htheta_q_N_All_Int_pFDpCD->Integral();
+        § histPlotter1D(MainCanvas, htheta_q_N_All_Int_pFDpCD, norm_ReacMon_plots, true, Theta_q_N_pFDpCD_integral, "#theta_{#font[62]{q},#font[62]{P}_{pFD}} distribution",
+                        "All Int., pFDpCD", 0.06, 0.0425, 0.0425, plots, HistoList, 2, false, true, stheta_q_N_pFDpCD, "08_Theta_q_N_All_Int_pFDpCD", htheta_q_N_pFDpCD_Dir, "", kBlue, true,
+                        true, true, false);
+        histPlotter1D(MainCanvas, htheta_q_N_QEL_pFDpCD, norm_ReacMon_plots, true, Theta_q_N_pFDpCD_integral, "#theta_{#font[62]{q},#font[62]{P}_{pFD}} distribution", "QEL only, pFDpCD",
+                      0.06, 0.0425, 0.0425, plots, HistoList, 2, false, true, stheta_q_N_pFDpCD, "08a_Theta_q_N_QEL_only_pFDpCD", htheta_q_N_pFDpCD_Dir, "", kBlue, true, true, true, false);
+        histPlotter1D(MainCanvas, htheta_q_N_MEC_pFDpCD, norm_ReacMon_plots, true, Theta_q_N_pFDpCD_integral, "#theta_{#font[62]{q},#font[62]{P}_{pFD}} distribution", "MEC only, pFDpCD",
+                      0.06, 0.0425, 0.0425, plots, HistoList, 2, false, true, stheta_q_N_pFDpCD, "08b_Theta_q_N_MEC_only_pFDpCD", htheta_q_N_pFDpCD_Dir, "", kBlue, true, true, true, false);
+        histPlotter1D(MainCanvas, htheta_q_N_RES_pFDpCD, norm_ReacMon_plots, true, Theta_q_N_pFDpCD_integral, "#theta_{#font[62]{q},#font[62]{P}_{pFD}} distribution", "RES only, pFDpCD",
+                      0.06, 0.0425, 0.0425, plots, HistoList, 2, false, true, stheta_q_N_pFDpCD, "08c_Theta_q_N_RES_only_pFDpCD", htheta_q_N_pFDpCD_Dir, "", kBlue, true, true, true, false);
+        histPlotter1D(MainCanvas, htheta_q_N_DIS_pFDpCD, norm_ReacMon_plots, true, Theta_q_N_pFDpCD_integral, "#theta_{#font[62]{q},#font[62]{P}_{pFD}} distribution", "DIS only, pFDpCD",
+                      0.06, 0.0425, 0.0425, plots, HistoList, 2, false, true, stheta_q_N_pFDpCD, "08d_Theta_q_N_DIS_only_pFDpCD", htheta_q_N_pFDpCD_Dir, "", kBlue, true, true, true, false);
 
-        histPlotter1D(MainCanvas, hTheta_q_N_pFDpCD, norm_ReacMon_plots, true, Theta_q_N_pFDpCD_integral, "#theta_{#font[62]{q},#font[62]{P}_{pFD}} distribution", "All Int., pFDpCD", 0.06,
-                      0.0425, 0.0425, plots, HistoList, 2, false, true, sTheta_q_N_pFDpCD, "08_Theta_q_N_All_Int_pFDpCD", hTheta_q_N_pFDpCD_Dir, "", kBlue, true, true, true, false);
-        histPlotter1D(MainCanvas, hTheta_q_N_QEL_pFDpCD, norm_ReacMon_plots, true, Theta_q_N_pFDpCD_integral, "#theta_{#font[62]{q},#font[62]{P}_{pFD}} distribution", "QEL only, pFDpCD",
-                      0.06, 0.0425, 0.0425, plots, HistoList, 2, false, true, sTheta_q_N_pFDpCD, "08a_Theta_q_N_QEL_only_pFDpCD", hTheta_q_N_pFDpCD_Dir, "", kBlue, true, true, true, false);
-        histPlotter1D(MainCanvas, hTheta_q_N_MEC_pFDpCD, norm_ReacMon_plots, true, Theta_q_N_pFDpCD_integral, "#theta_{#font[62]{q},#font[62]{P}_{pFD}} distribution", "MEC only, pFDpCD",
-                      0.06, 0.0425, 0.0425, plots, HistoList, 2, false, true, sTheta_q_N_pFDpCD, "08b_Theta_q_N_MEC_only_pFDpCD", hTheta_q_N_pFDpCD_Dir, "", kBlue, true, true, true, false);
-        histPlotter1D(MainCanvas, hTheta_q_N_RES_pFDpCD, norm_ReacMon_plots, true, Theta_q_N_pFDpCD_integral, "#theta_{#font[62]{q},#font[62]{P}_{pFD}} distribution", "RES only, pFDpCD",
-                      0.06, 0.0425, 0.0425, plots, HistoList, 2, false, true, sTheta_q_N_pFDpCD, "08c_Theta_q_N_RES_only_pFDpCD", hTheta_q_N_pFDpCD_Dir, "", kBlue, true, true, true, false);
-        histPlotter1D(MainCanvas, hTheta_q_N_DIS_pFDpCD, norm_ReacMon_plots, true, Theta_q_N_pFDpCD_integral, "#theta_{#font[62]{q},#font[62]{P}_{pFD}} distribution", "DIS only, pFDpCD",
-                      0.06, 0.0425, 0.0425, plots, HistoList, 2, false, true, sTheta_q_N_pFDpCD, "08d_Theta_q_N_DIS_only_pFDpCD", hTheta_q_N_pFDpCD_Dir, "", kBlue, true, true, true, false);
-
-        stackPlotter1D(MainCanvas, sTheta_q_N_pFDpCD, norm_ReacMon_plots, "#theta_{#font[62]{q},#font[62]{P}_{pFD}} distribution", "pFDpCD", plots, HistoList, hTheta_q_N_All_Int_pFDpCD,
-                       hTheta_q_N_QEL_pFDpCD, hTheta_q_N_MEC_pFDpCD, hTheta_q_N_RES_pFDpCD, hTheta_q_N_DIS_pFDpCD, "08e_Theta_q_N_Stack_pFDpCD", sTheta_q_N_pFDpCD_Dir, "");
+        stackPlotter1D(MainCanvas, stheta_q_N_pFDpCD, norm_ReacMon_plots, "#theta_{#font[62]{q},#font[62]{P}_{pFD}} distribution", "pFDpCD", plots, HistoList, htheta_q_N_All_Int_pFDpCD,
+                       htheta_q_N_QEL_pFDpCD, htheta_q_N_MEC_pFDpCD, htheta_q_N_RES_pFDpCD, htheta_q_N_DIS_pFDpCD, "08e_Theta_q_N_Stack_pFDpCD", stheta_q_N_pFDpCD_Dir, "");
 
         // theta_q_pFD vs. theta_q_pCD plots (pFDpCD, FD)
-        histPlotter2D(MainCanvas, hTheta_q_N_VS_theta_q_r_All_Int_pFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hTheta_q_N_VS_theta_q_r_pFDpCD_Dir,
+        histPlotter2D(MainCanvas, htheta_q_N_VS_theta_q_r_All_Int_pFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, htheta_q_N_VS_theta_q_r_pFDpCD_Dir,
                       "08fa_Theta_q_N_VS_theta_q_r_pFDpCD");
-        histPlotter2D(MainCanvas, hTheta_q_N_VS_theta_q_r_QEL_pFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hTheta_q_N_VS_theta_q_r_pFDpCD_Dir,
+        histPlotter2D(MainCanvas, htheta_q_N_VS_theta_q_r_QEL_pFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, htheta_q_N_VS_theta_q_r_pFDpCD_Dir,
                       "08faa_Theta_q_N_VS_theta_q_r_QEL_pFDpCD");
-        histPlotter2D(MainCanvas, hTheta_q_N_VS_theta_q_r_MEC_pFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hTheta_q_N_VS_theta_q_r_pFDpCD_Dir,
+        histPlotter2D(MainCanvas, htheta_q_N_VS_theta_q_r_MEC_pFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, htheta_q_N_VS_theta_q_r_pFDpCD_Dir,
                       "08fab_Theta_q_N_VS_theta_q_r_MEC_pFDpCD");
-        histPlotter2D(MainCanvas, hTheta_q_N_VS_theta_q_r_RES_pFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hTheta_q_N_VS_theta_q_r_pFDpCD_Dir,
+        histPlotter2D(MainCanvas, htheta_q_N_VS_theta_q_r_RES_pFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, htheta_q_N_VS_theta_q_r_pFDpCD_Dir,
                       "08fac_Theta_q_N_VS_theta_q_r_RES_pFDpCD");
-        histPlotter2D(MainCanvas, hTheta_q_N_VS_theta_q_r_DIS_pFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hTheta_q_N_VS_theta_q_r_pFDpCD_Dir,
+        histPlotter2D(MainCanvas, htheta_q_N_VS_theta_q_r_DIS_pFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, htheta_q_N_VS_theta_q_r_pFDpCD_Dir,
                       "08fad_Theta_q_N_VS_theta_q_r_DIS_pFDpCD");
-        histogram_functions::CompareHistograms({hTheta_q_N_VS_theta_q_r_All_Int_pFDpCD, hTheta_q_N_VS_theta_q_r_QEL_pFDpCD, hTheta_q_N_VS_theta_q_r_MEC_pFDpCD,
-                                                hTheta_q_N_VS_theta_q_r_RES_pFDpCD, hTheta_q_N_VS_theta_q_r_DIS_pFDpCD},
+        histogram_functions::CompareHistograms({htheta_q_N_VS_theta_q_r_All_Int_pFDpCD, htheta_q_N_VS_theta_q_r_QEL_pFDpCD, htheta_q_N_VS_theta_q_r_MEC_pFDpCD,
+                                                htheta_q_N_VS_theta_q_r_RES_pFDpCD, htheta_q_N_VS_theta_q_r_DIS_pFDpCD},
                                                directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "Theta_q_N_VS_theta_q_r_ReacComp_pFDpCD");
 
         // theta_q_pCD plots (pFDpCD, CD & FD)
-        double Theta_q_r_pFDpCD_integral = hTheta_q_r_All_Int_pFDpCD->Integral();
+        double Theta_q_r_pFDpCD_integral = htheta_q_r_All_Int_pFDpCD->Integral();
 
-        histPlotter1D(MainCanvas, hTheta_q_r_pFDpCD, norm_ReacMon_plots, true, Theta_q_r_pFDpCD_integral, "#theta_{#font[62]{q},#font[62]{P}_{pCD}} distribution", "All Int., pFDpCD", 0.06,
-                      0.0425, 0.0425, plots, HistoList, 2, false, true, sTheta_q_r_pFDpCD, "09_Theta_q_r_All_Int_pFDpCD", hTheta_q_r_pFDpCD_Dir, "", kBlue, true, true, true, false);
-        histPlotter1D(MainCanvas, hTheta_q_r_QEL_pFDpCD, norm_ReacMon_plots, true, Theta_q_r_pFDpCD_integral, "#theta_{#font[62]{q},#font[62]{P}_{pCD}} distribution", "QEL only, pFDpCD",
-                      0.06, 0.0425, 0.0425, plots, HistoList, 2, false, true, sTheta_q_r_pFDpCD, "09a_Theta_q_r_QEL_only_pFDpCD", hTheta_q_r_pFDpCD_Dir, "", kBlue, true, true, true, false);
-        histPlotter1D(MainCanvas, hTheta_q_r_MEC_pFDpCD, norm_ReacMon_plots, true, Theta_q_r_pFDpCD_integral, "#theta_{#font[62]{q},#font[62]{P}_{pCD}} distribution", "MEC only, pFDpCD",
-                      0.06, 0.0425, 0.0425, plots, HistoList, 2, false, true, sTheta_q_r_pFDpCD, "09b_Theta_q_r_MEC_only_pFDpCD", hTheta_q_r_pFDpCD_Dir, "", kBlue, true, true, true, false);
-        histPlotter1D(MainCanvas, hTheta_q_r_RES_pFDpCD, norm_ReacMon_plots, true, Theta_q_r_pFDpCD_integral, "#theta_{#font[62]{q},#font[62]{P}_{pCD}} distribution", "RES only, pFDpCD",
-                      0.06, 0.0425, 0.0425, plots, HistoList, 2, false, true, sTheta_q_r_pFDpCD, "09c_Theta_q_r_RES_only_pFDpCD", hTheta_q_r_pFDpCD_Dir, "", kBlue, true, true, true, false);
-        histPlotter1D(MainCanvas, hTheta_q_r_DIS_pFDpCD, norm_ReacMon_plots, true, Theta_q_r_pFDpCD_integral, "#theta_{#font[62]{q},#font[62]{P}_{pCD}} distribution", "DIS only, pFDpCD",
-                      0.06, 0.0425, 0.0425, plots, HistoList, 2, false, true, sTheta_q_r_pFDpCD, "09d_Theta_q_r_DIS_only_pFDpCD", hTheta_q_r_pFDpCD_Dir, "", kBlue, true, true, true, false);
+        histPlotter1D(MainCanvas, htheta_q_r_All_Int_pFDpCD, norm_ReacMon_plots, true, Theta_q_r_pFDpCD_integral, "#theta_{#font[62]{q},#font[62]{P}_{pCD}} distribution", "All Int., pFDpCD",
+                      0.06, 0.0425, 0.0425, plots, HistoList, 2, false, true, stheta_q_r_pFDpCD, "09_Theta_q_r_All_Int_pFDpCD", htheta_q_r_pFDpCD_Dir, "", kBlue, true, true, true, false);
+        histPlotter1D(MainCanvas, htheta_q_r_QEL_pFDpCD, norm_ReacMon_plots, true, Theta_q_r_pFDpCD_integral, "#theta_{#font[62]{q},#font[62]{P}_{pCD}} distribution", "QEL only, pFDpCD",
+                      0.06, 0.0425, 0.0425, plots, HistoList, 2, false, true, stheta_q_r_pFDpCD, "09a_Theta_q_r_QEL_only_pFDpCD", htheta_q_r_pFDpCD_Dir, "", kBlue, true, true, true, false);
+        histPlotter1D(MainCanvas, htheta_q_r_MEC_pFDpCD, norm_ReacMon_plots, true, Theta_q_r_pFDpCD_integral, "#theta_{#font[62]{q},#font[62]{P}_{pCD}} distribution", "MEC only, pFDpCD",
+                      0.06, 0.0425, 0.0425, plots, HistoList, 2, false, true, stheta_q_r_pFDpCD, "09b_Theta_q_r_MEC_only_pFDpCD", htheta_q_r_pFDpCD_Dir, "", kBlue, true, true, true, false);
+        histPlotter1D(MainCanvas, htheta_q_r_RES_pFDpCD, norm_ReacMon_plots, true, Theta_q_r_pFDpCD_integral, "#theta_{#font[62]{q},#font[62]{P}_{pCD}} distribution", "RES only, pFDpCD",
+                      0.06, 0.0425, 0.0425, plots, HistoList, 2, false, true, stheta_q_r_pFDpCD, "09c_Theta_q_r_RES_only_pFDpCD", htheta_q_r_pFDpCD_Dir, "", kBlue, true, true, true, false);
+        histPlotter1D(MainCanvas, htheta_q_r_DIS_pFDpCD, norm_ReacMon_plots, true, Theta_q_r_pFDpCD_integral, "#theta_{#font[62]{q},#font[62]{P}_{pCD}} distribution", "DIS only, pFDpCD",
+                      0.06, 0.0425, 0.0425, plots, HistoList, 2, false, true, stheta_q_r_pFDpCD, "09d_Theta_q_r_DIS_only_pFDpCD", htheta_q_r_pFDpCD_Dir, "", kBlue, true, true, true, false);
 
-        stackPlotter1D(MainCanvas, sTheta_q_r_pFDpCD, norm_ReacMon_plots, "#theta_{#font[62]{q},#font[62]{P}_{pCD}} distribution", "pFDpCD", plots, HistoList, hTheta_q_r_All_Int_pFDpCD,
-                       hTheta_q_r_QEL_pFDpCD, hTheta_q_r_MEC_pFDpCD, hTheta_q_r_RES_pFDpCD, hTheta_q_r_DIS_pFDpCD, "09e_Theta_q_r_Stack_pFDpCD", sTheta_q_r_pFDpCD_Dir, "");
+        stackPlotter1D(MainCanvas, stheta_q_r_pFDpCD, norm_ReacMon_plots, "#theta_{#font[62]{q},#font[62]{P}_{pCD}} distribution", "pFDpCD", plots, HistoList, htheta_q_r_All_Int_pFDpCD,
+                       htheta_q_r_QEL_pFDpCD, htheta_q_r_MEC_pFDpCD, htheta_q_r_RES_pFDpCD, htheta_q_r_DIS_pFDpCD, "09e_Theta_q_r_Stack_pFDpCD", stheta_q_r_pFDpCD_Dir, "");
 
         // Reaction monitoring histograms (nFDpCD) ----------------------------------------------------------------------------------------------------------------------
 
@@ -20845,18 +20845,18 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         double theta_q_nFDpCD_integral = htheta_q_All_Int_nFDpCD->Integral();
 
         histPlotter1D(MainCanvas, htheta_q_All_Int_nFDpCD, norm_ReacMon_plots, true, theta_q_nFDpCD_integral, "#theta_{q} distribution", "All Int., nFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, stheta_q_nFDpCD, "07_theta_q_All_Int_nFDpCD", htheta_q_nFDpCD_Dir, "", kBlue, true, true, true, false);
+                      HistoList, 2, false, true, stheta_q_nFDpCD, "07_theta_q_All_Int_nFDpCD", htheta_q_NFDpCD_Dir, "", kBlue, true, true, true, false);
         histPlotter1D(MainCanvas, htheta_q_QEL_nFDpCD, norm_ReacMon_plots, true, theta_q_nFDpCD_integral, "#theta_{q} distribution", "QEL only, nFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, stheta_q_nFDpCD, "07a_theta_q_QEL_only_nFDpCD", htheta_q_nFDpCD_Dir, "", kBlue, true, true, true, false);
+                      HistoList, 2, false, true, stheta_q_nFDpCD, "07a_theta_q_QEL_only_nFDpCD", htheta_q_NFDpCD_Dir, "", kBlue, true, true, true, false);
         histPlotter1D(MainCanvas, htheta_q_MEC_nFDpCD, norm_ReacMon_plots, true, theta_q_nFDpCD_integral, "#theta_{q} distribution", "MEC only, nFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, stheta_q_nFDpCD, "07b_theta_q_MEC_only_nFDpCD", htheta_q_nFDpCD_Dir, "", kBlue, true, true, true, false);
-        histPlotter1D(MainCanvas, htheta_q_RES_nFDpCD, norm_ReacMon_plots, true, theta_q_nFDpCD_integral, "#theta_{q} distribution", "RES only, nFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, stheta_q_nFDpCD, "07c_theta_q_RES_only_nFDpCD", htheta_q_nFDpCD_Dir, "", kBlue, true, true, true, false);
+                      HistoList, 2, false, true, stheta_q_nFDpCD, "07b_theta_q_MEC_only_nFDpCD", htheta_q_NFDpCD_Dir, "", kBlue, true, true, true, false);
+        histPlotter1D(MainCanvas, htheta_q_rES_nFDpCD, norm_ReacMon_plots, true, theta_q_nFDpCD_integral, "#theta_{q} distribution", "RES only, nFDpCD", 0.06, 0.0425, 0.0425, plots,
+                      HistoList, 2, false, true, stheta_q_nFDpCD, "07c_theta_q_RES_only_nFDpCD", htheta_q_NFDpCD_Dir, "", kBlue, true, true, true, false);
         histPlotter1D(MainCanvas, htheta_q_DIS_nFDpCD, norm_ReacMon_plots, true, theta_q_nFDpCD_integral, "#theta_{q} distribution", "DIS only, nFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, stheta_q_nFDpCD, "07d_theta_q_DIS_only_nFDpCD", htheta_q_nFDpCD_Dir, "", kBlue, true, true, true, false);
+                      HistoList, 2, false, true, stheta_q_nFDpCD, "07d_theta_q_DIS_only_nFDpCD", htheta_q_NFDpCD_Dir, "", kBlue, true, true, true, false);
 
         stackPlotter1D(MainCanvas, stheta_q_nFDpCD, norm_ReacMon_plots, "#theta_{q} distribution", "nFDpCD", plots, HistoList, htheta_q_All_Int_nFDpCD, htheta_q_QEL_nFDpCD,
-                       htheta_q_MEC_nFDpCD, htheta_q_RES_nFDpCD, htheta_q_DIS_nFDpCD, "07e_theta_q_Stack_nFDpCD", stheta_q_nFDpCD_Dir, "");
+                       htheta_q_MEC_nFDpCD, htheta_q_rES_nFDpCD, htheta_q_DIS_nFDpCD, "07e_theta_q_Stack_nFDpCD", stheta_q_nFDpCD_Dir, "");
 
         // theta_q vs. theta_q_nFD plots (nFDpCD, FD)
         histPlotter2D(MainCanvas, htheta_q_VS_theta_q_N_All_Int_nFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, htheta_q_VS_theta_q_N_nFDpCD_Dir,
@@ -20889,53 +20889,53 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
             directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "theta_q_VS_theta_q_r_ReacComp_nFDpCD");
 
         // theta_q_nFD plots (nFDpCD, CD & FD)
-        double Theta_q_N_nFDpCD_integral = hTheta_q_N_All_Int_nFDpCD->Integral();
+        double Theta_q_N_nFDpCD_integral = htheta_q_N_All_Int_nFDpCD->Integral();
 
-        histPlotter1D(MainCanvas, hTheta_q_N_nFDpCD, norm_ReacMon_plots, true, Theta_q_N_nFDpCD_integral, "#theta_{#font[62]{q},#font[62]{P}_{nFD}} distribution", "All Int., nFDpCD", 0.06,
-                      0.0425, 0.0425, plots, HistoList, 2, false, true, sTheta_q_N_nFDpCD, "08_Theta_q_N_All_Int_nFDpCD", hTheta_q_N_nFDpCD_Dir, "", kBlue, true, true, true, false);
-        histPlotter1D(MainCanvas, hTheta_q_N_QEL_nFDpCD, norm_ReacMon_plots, true, Theta_q_N_nFDpCD_integral, "#theta_{#font[62]{q},#font[62]{P}_{nFD}} distribution", "QEL only, nFDpCD",
-                      0.06, 0.0425, 0.0425, plots, HistoList, 2, false, true, sTheta_q_N_nFDpCD, "08a_Theta_q_N_QEL_only_nFDpCD", hTheta_q_N_nFDpCD_Dir, "", kBlue, true, true, true, false);
-        histPlotter1D(MainCanvas, hTheta_q_N_MEC_nFDpCD, norm_ReacMon_plots, true, Theta_q_N_nFDpCD_integral, "#theta_{#font[62]{q},#font[62]{P}_{nFD}} distribution", "MEC only, nFDpCD",
-                      0.06, 0.0425, 0.0425, plots, HistoList, 2, false, true, sTheta_q_N_nFDpCD, "08b_Theta_q_N_MEC_only_nFDpCD", hTheta_q_N_nFDpCD_Dir, "", kBlue, true, true, true, false);
-        histPlotter1D(MainCanvas, hTheta_q_N_RES_nFDpCD, norm_ReacMon_plots, true, Theta_q_N_nFDpCD_integral, "#theta_{#font[62]{q},#font[62]{P}_{nFD}} distribution", "RES only, nFDpCD",
-                      0.06, 0.0425, 0.0425, plots, HistoList, 2, false, true, sTheta_q_N_nFDpCD, "08c_Theta_q_N_RES_only_nFDpCD", hTheta_q_N_nFDpCD_Dir, "", kBlue, true, true, true, false);
-        histPlotter1D(MainCanvas, hTheta_q_N_DIS_nFDpCD, norm_ReacMon_plots, true, Theta_q_N_nFDpCD_integral, "#theta_{#font[62]{q},#font[62]{P}_{nFD}} distribution", "DIS only, nFDpCD",
-                      0.06, 0.0425, 0.0425, plots, HistoList, 2, false, true, sTheta_q_N_nFDpCD, "08d_Theta_q_N_DIS_only_nFDpCD", hTheta_q_N_nFDpCD_Dir, "", kBlue, true, true, true, false);
+        histPlotter1D(MainCanvas, htheta_q_N_All_Int_nFDpCD, norm_ReacMon_plots, true, Theta_q_N_nFDpCD_integral, "#theta_{#font[62]{q},#font[62]{P}_{nFD}} distribution", "All Int., nFDpCD",
+                      0.06, 0.0425, 0.0425, plots, HistoList, 2, false, true, stheta_q_N_nFDpCD, "08_Theta_q_N_All_Int_nFDpCD", htheta_q_N_nFDpCD_Dir, "", kBlue, true, true, true, false);
+        histPlotter1D(MainCanvas, htheta_q_N_QEL_nFDpCD, norm_ReacMon_plots, true, Theta_q_N_nFDpCD_integral, "#theta_{#font[62]{q},#font[62]{P}_{nFD}} distribution", "QEL only, nFDpCD",
+                      0.06, 0.0425, 0.0425, plots, HistoList, 2, false, true, stheta_q_N_nFDpCD, "08a_Theta_q_N_QEL_only_nFDpCD", htheta_q_N_nFDpCD_Dir, "", kBlue, true, true, true, false);
+        histPlotter1D(MainCanvas, htheta_q_N_MEC_nFDpCD, norm_ReacMon_plots, true, Theta_q_N_nFDpCD_integral, "#theta_{#font[62]{q},#font[62]{P}_{nFD}} distribution", "MEC only, nFDpCD",
+                      0.06, 0.0425, 0.0425, plots, HistoList, 2, false, true, stheta_q_N_nFDpCD, "08b_Theta_q_N_MEC_only_nFDpCD", htheta_q_N_nFDpCD_Dir, "", kBlue, true, true, true, false);
+        histPlotter1D(MainCanvas, htheta_q_N_RES_nFDpCD, norm_ReacMon_plots, true, Theta_q_N_nFDpCD_integral, "#theta_{#font[62]{q},#font[62]{P}_{nFD}} distribution", "RES only, nFDpCD",
+                      0.06, 0.0425, 0.0425, plots, HistoList, 2, false, true, stheta_q_N_nFDpCD, "08c_Theta_q_N_RES_only_nFDpCD", htheta_q_N_nFDpCD_Dir, "", kBlue, true, true, true, false);
+        histPlotter1D(MainCanvas, htheta_q_N_DIS_nFDpCD, norm_ReacMon_plots, true, Theta_q_N_nFDpCD_integral, "#theta_{#font[62]{q},#font[62]{P}_{nFD}} distribution", "DIS only, nFDpCD",
+                      0.06, 0.0425, 0.0425, plots, HistoList, 2, false, true, stheta_q_N_nFDpCD, "08d_Theta_q_N_DIS_only_nFDpCD", htheta_q_N_nFDpCD_Dir, "", kBlue, true, true, true, false);
 
-        stackPlotter1D(MainCanvas, sTheta_q_N_nFDpCD, norm_ReacMon_plots, "#theta_{#font[62]{q},#font[62]{P}_{nFD}} distribution", "nFDpCD", plots, HistoList, hTheta_q_N_All_Int_nFDpCD,
-                       hTheta_q_N_QEL_nFDpCD, hTheta_q_N_MEC_nFDpCD, hTheta_q_N_RES_nFDpCD, hTheta_q_N_DIS_nFDpCD, "08e_Theta_q_N_Stack_nFDpCD", sTheta_q_N_nFDpCD_Dir, "");
+        stackPlotter1D(MainCanvas, stheta_q_N_nFDpCD, norm_ReacMon_plots, "#theta_{#font[62]{q},#font[62]{P}_{nFD}} distribution", "nFDpCD", plots, HistoList, htheta_q_N_All_Int_nFDpCD,
+                       htheta_q_N_QEL_nFDpCD, htheta_q_N_MEC_nFDpCD, htheta_q_N_RES_nFDpCD, htheta_q_N_DIS_nFDpCD, "08e_Theta_q_N_Stack_nFDpCD", stheta_q_N_nFDpCD_Dir, "");
 
         // theta_q_nFD vs. theta_q_pCD plots (nFDpCD, FD)
-        histPlotter2D(MainCanvas, hTheta_q_N_VS_theta_q_r_All_Int_nFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hTheta_q_N_VS_theta_q_r_nFDpCD_Dir,
+        histPlotter2D(MainCanvas, htheta_q_N_VS_theta_q_r_All_Int_nFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, htheta_q_N_VS_theta_q_r_nFDpCD_Dir,
                       "08fa_Theta_q_N_VS_theta_q_r_nFDpCD");
-        histPlotter2D(MainCanvas, hTheta_q_N_VS_theta_q_r_QEL_nFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hTheta_q_N_VS_theta_q_r_nFDpCD_Dir,
+        histPlotter2D(MainCanvas, htheta_q_N_VS_theta_q_r_QEL_nFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, htheta_q_N_VS_theta_q_r_nFDpCD_Dir,
                       "08faa_Theta_q_N_VS_theta_q_r_QEL_nFDpCD");
-        histPlotter2D(MainCanvas, hTheta_q_N_VS_theta_q_r_MEC_nFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hTheta_q_N_VS_theta_q_r_nFDpCD_Dir,
+        histPlotter2D(MainCanvas, htheta_q_N_VS_theta_q_r_MEC_nFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, htheta_q_N_VS_theta_q_r_nFDpCD_Dir,
                       "08fab_Theta_q_N_VS_theta_q_r_MEC_nFDpCD");
-        histPlotter2D(MainCanvas, hTheta_q_N_VS_theta_q_r_RES_nFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hTheta_q_N_VS_theta_q_r_nFDpCD_Dir,
+        histPlotter2D(MainCanvas, htheta_q_N_VS_theta_q_r_RES_nFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, htheta_q_N_VS_theta_q_r_nFDpCD_Dir,
                       "08fac_Theta_q_N_VS_theta_q_r_RES_nFDpCD");
-        histPlotter2D(MainCanvas, hTheta_q_N_VS_theta_q_r_DIS_nFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hTheta_q_N_VS_theta_q_r_nFDpCD_Dir,
+        histPlotter2D(MainCanvas, htheta_q_N_VS_theta_q_r_DIS_nFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, htheta_q_N_VS_theta_q_r_nFDpCD_Dir,
                       "08fad_Theta_q_N_VS_theta_q_r_DIS_nFDpCD");
-        histogram_functions::CompareHistograms({hTheta_q_N_VS_theta_q_r_All_Int_nFDpCD, hTheta_q_N_VS_theta_q_r_QEL_nFDpCD, hTheta_q_N_VS_theta_q_r_MEC_nFDpCD,
-                                                hTheta_q_N_VS_theta_q_r_RES_nFDpCD, hTheta_q_N_VS_theta_q_r_DIS_nFDpCD},
+        histogram_functions::CompareHistograms({htheta_q_N_VS_theta_q_r_All_Int_nFDpCD, htheta_q_N_VS_theta_q_r_QEL_nFDpCD, htheta_q_N_VS_theta_q_r_MEC_nFDpCD,
+                                                htheta_q_N_VS_theta_q_r_RES_nFDpCD, htheta_q_N_VS_theta_q_r_DIS_nFDpCD},
                                                directories.ReacMon_dir_map["ReacMon_Parent_Directory"], "Histogram_Comparisons", "Theta_q_N_VS_theta_q_r_ReacComp_nFDpCD");
 
         // theta_q_pCD plots (nFDpCD, CD & FD)
-        double Theta_q_r_nFDpCD_integral = hTheta_q_r_All_Int_nFDpCD->Integral();
+        double Theta_q_r_nFDpCD_integral = htheta_q_r_All_Int_nFDpCD->Integral();
 
-        histPlotter1D(MainCanvas, hTheta_q_r_nFDpCD, norm_ReacMon_plots, true, Theta_q_r_nFDpCD_integral, "#theta_{#font[62]{q},#font[62]{P}_{pCD}} distribution", "All Int., nFDpCD", 0.06,
-                      0.0425, 0.0425, plots, HistoList, 2, false, true, sTheta_q_r_nFDpCD, "09_Theta_q_r_All_Int_nFDpCD", hTheta_q_r_nFDpCD_Dir, "", kBlue, true, true, true, false);
-        histPlotter1D(MainCanvas, hTheta_q_r_QEL_nFDpCD, norm_ReacMon_plots, true, Theta_q_r_nFDpCD_integral, "#theta_{#font[62]{q},#font[62]{P}_{pCD}} distribution", "QEL only, nFDpCD",
-                      0.06, 0.0425, 0.0425, plots, HistoList, 2, false, true, sTheta_q_r_nFDpCD, "09a_Theta_q_r_QEL_only_nFDpCD", hTheta_q_r_nFDpCD_Dir, "", kBlue, true, true, true, false);
-        histPlotter1D(MainCanvas, hTheta_q_r_MEC_nFDpCD, norm_ReacMon_plots, true, Theta_q_r_nFDpCD_integral, "#theta_{#font[62]{q},#font[62]{P}_{pCD}} distribution", "MEC only, nFDpCD",
-                      0.06, 0.0425, 0.0425, plots, HistoList, 2, false, true, sTheta_q_r_nFDpCD, "09b_Theta_q_r_MEC_only_nFDpCD", hTheta_q_r_nFDpCD_Dir, "", kBlue, true, true, true, false);
-        histPlotter1D(MainCanvas, hTheta_q_r_RES_nFDpCD, norm_ReacMon_plots, true, Theta_q_r_nFDpCD_integral, "#theta_{#font[62]{q},#font[62]{P}_{pCD}} distribution", "RES only, nFDpCD",
-                      0.06, 0.0425, 0.0425, plots, HistoList, 2, false, true, sTheta_q_r_nFDpCD, "09c_Theta_q_r_RES_only_nFDpCD", hTheta_q_r_nFDpCD_Dir, "", kBlue, true, true, true, false);
-        histPlotter1D(MainCanvas, hTheta_q_r_DIS_nFDpCD, norm_ReacMon_plots, true, Theta_q_r_nFDpCD_integral, "#theta_{#font[62]{q},#font[62]{P}_{pCD}} distribution", "DIS only, nFDpCD",
-                      0.06, 0.0425, 0.0425, plots, HistoList, 2, false, true, sTheta_q_r_nFDpCD, "09d_Theta_q_r_DIS_only_nFDpCD", hTheta_q_r_nFDpCD_Dir, "", kBlue, true, true, true, false);
+        histPlotter1D(MainCanvas, htheta_q_r_All_Int_nFDpCD, norm_ReacMon_plots, true, Theta_q_r_nFDpCD_integral, "#theta_{#font[62]{q},#font[62]{P}_{pCD}} distribution", "All Int., nFDpCD",
+                      0.06, 0.0425, 0.0425, plots, HistoList, 2, false, true, stheta_q_r_nFDpCD, "09_Theta_q_r_All_Int_nFDpCD", htheta_q_r_nFDpCD_Dir, "", kBlue, true, true, true, false);
+        histPlotter1D(MainCanvas, htheta_q_r_QEL_nFDpCD, norm_ReacMon_plots, true, Theta_q_r_nFDpCD_integral, "#theta_{#font[62]{q},#font[62]{P}_{pCD}} distribution", "QEL only, nFDpCD",
+                      0.06, 0.0425, 0.0425, plots, HistoList, 2, false, true, stheta_q_r_nFDpCD, "09a_Theta_q_r_QEL_only_nFDpCD", htheta_q_r_nFDpCD_Dir, "", kBlue, true, true, true, false);
+        histPlotter1D(MainCanvas, htheta_q_r_MEC_nFDpCD, norm_ReacMon_plots, true, Theta_q_r_nFDpCD_integral, "#theta_{#font[62]{q},#font[62]{P}_{pCD}} distribution", "MEC only, nFDpCD",
+                      0.06, 0.0425, 0.0425, plots, HistoList, 2, false, true, stheta_q_r_nFDpCD, "09b_Theta_q_r_MEC_only_nFDpCD", htheta_q_r_nFDpCD_Dir, "", kBlue, true, true, true, false);
+        histPlotter1D(MainCanvas, htheta_q_r_RES_nFDpCD, norm_ReacMon_plots, true, Theta_q_r_nFDpCD_integral, "#theta_{#font[62]{q},#font[62]{P}_{pCD}} distribution", "RES only, nFDpCD",
+                      0.06, 0.0425, 0.0425, plots, HistoList, 2, false, true, stheta_q_r_nFDpCD, "09c_Theta_q_r_RES_only_nFDpCD", htheta_q_r_nFDpCD_Dir, "", kBlue, true, true, true, false);
+        histPlotter1D(MainCanvas, htheta_q_r_DIS_nFDpCD, norm_ReacMon_plots, true, Theta_q_r_nFDpCD_integral, "#theta_{#font[62]{q},#font[62]{P}_{pCD}} distribution", "DIS only, nFDpCD",
+                      0.06, 0.0425, 0.0425, plots, HistoList, 2, false, true, stheta_q_r_nFDpCD, "09d_Theta_q_r_DIS_only_nFDpCD", htheta_q_r_nFDpCD_Dir, "", kBlue, true, true, true, false);
 
-        stackPlotter1D(MainCanvas, sTheta_q_r_nFDpCD, norm_ReacMon_plots, "#theta_{#font[62]{q},#font[62]{P}_{pCD}} distribution", "nFDpCD", plots, HistoList, hTheta_q_r_All_Int_nFDpCD,
-                       hTheta_q_r_QEL_nFDpCD, hTheta_q_r_MEC_nFDpCD, hTheta_q_r_RES_nFDpCD, hTheta_q_r_DIS_nFDpCD, "09e_Theta_q_r_Stack_nFDpCD", sTheta_q_r_nFDpCD_Dir, "");
+        stackPlotter1D(MainCanvas, stheta_q_r_nFDpCD, norm_ReacMon_plots, "#theta_{#font[62]{q},#font[62]{P}_{pCD}} distribution", "nFDpCD", plots, HistoList, htheta_q_r_All_Int_nFDpCD,
+                       htheta_q_r_QEL_nFDpCD, htheta_q_r_MEC_nFDpCD, htheta_q_r_RES_nFDpCD, htheta_q_r_DIS_nFDpCD, "09e_Theta_q_r_Stack_nFDpCD", stheta_q_r_nFDpCD_Dir, "");
 
         //  Final state comparisons (1e cut, 1n, 1p ,nFDpCD, nFDpCD)
         //  ----------------------------------------------------------------------------------------------------------------------------------
@@ -22869,8 +22869,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         // hTheta_q_p_R_vs_W_nFDpCD (nFDpCD, CD & FD)
         histPlotter2D(MainCanvas, hTheta_q_p_R_vs_W_nFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hTheta_q_p_R_vs_W_nFDpCD_Dir, "02d_Theta_q_p_R_vs_W_nFDpCD");
 
-        // hTheta_q_nFD_vs_W_nFDpCD (nFDpCD, CD & FD)
-        histPlotter2D(MainCanvas, hTheta_q_nFD_vs_W_nFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hTheta_q_nFD_vs_W_nFDpCD_Dir, "02e_Theta_q_nFD_vs_W_nFDpCD");
+        // htheta_q_NFD_vs_W_nFDpCD (nFDpCD, CD & FD)
+        histPlotter2D(MainCanvas, htheta_q_NFD_vs_W_nFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, htheta_q_NFD_vs_W_nFDpCD_Dir, "02e_Theta_q_nFD_vs_W_nFDpCD");
 
         // hTheta_q_pCD_vs_W_nFDpCD (nFDpCD, CD & FD)
         histPlotter2D(MainCanvas, hTheta_q_pCD_vs_W_nFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hTheta_q_pCD_vs_W_nFDpCD_Dir, "02f_Theta_q_pCD_vs_W_nFDpCD");
@@ -22896,11 +22896,11 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                       HistoList, 2, false, true, sTheta_q_p_L_R_nFDpCD, "03b_Theta_q_nR_All_Int_nFDpCD", hTheta_q_p_R_nFDpCD_Dir, "", kBlue, true, true, true, false);
 
         // Theta_q_nFD and Theta_q_pCD (nFDpCD, CD & FD)
-        double Theta_q_nFD_nFDpCD_integral = hTheta_q_nFD_nFDpCD->Integral(), Theta_q_pCD_nFDpCD_integral = hTheta_q_pCD_nFDpCD->Integral();
+        double Theta_q_nFD_nFDpCD_integral = htheta_q_NFD_nFDpCD->Integral(), Theta_q_pCD_nFDpCD_integral = hTheta_q_pCD_nFDpCD->Integral();
 
-        histPlotter1D(MainCanvas, hTheta_q_nFD_nFDpCD, norm_Angle_plots_master, true, Theta_q_nFD_nFDpCD_integral,
+        histPlotter1D(MainCanvas, htheta_q_NFD_nFDpCD, norm_Angle_plots_master, true, Theta_q_nFD_nFDpCD_integral,
                       "#theta_{#font[62]{q},#font[62]{P}_{nFD}} - Opening Angle Between #font[62]{q} and FD Neutron #font[62]{P}_{nFD}", "All Int., nFDpCD", 0.06, 0.0425, 0.0425, plots,
-                      HistoList, 2, false, true, sTheta_q_p_L_R_nFDpCD, "03c_Theta_q_nFD_All_Int_nFDpCD", hTheta_q_nFD_nFDpCD_Dir, "", kBlue, true, true, true, false);
+                      HistoList, 2, false, true, sTheta_q_p_L_R_nFDpCD, "03c_Theta_q_nFD_All_Int_nFDpCD", htheta_q_NFD_nFDpCD_Dir, "", kBlue, true, true, true, false);
         histPlotter1D(MainCanvas, hTheta_q_pCD_nFDpCD, norm_Angle_plots_master, true, Theta_q_pCD_nFDpCD_integral,
                       "#theta_{#font[62]{q},#font[62]{P}_{pCD}} - Opening Angle Between #font[62]{q} and CD Proton #font[62]{P}_{pCD}", "All Int., nFDpCD", 0.06, 0.0425, 0.0425, plots,
                       HistoList, 2, false, true, sTheta_q_p_L_R_nFDpCD, "03d_Theta_q_pCD_All_Int_nFDpCD", hTheta_q_pCD_nFDpCD_Dir, "", kBlue, true, true, true, false);
@@ -22918,7 +22918,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
         histPlotter2D(MainCanvas, hTheta_q_p_L_vs_Theta_q_p_R_nFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hTheta_q_p_L_vs_Theta_q_p_R_nFDpCD_Dir,
                       "04b_Theta_q_p_L_vs_Theta_q_p_R_nFDpCD");
 
-        histPlotter2D(MainCanvas, hTheta_q_nFD_vs_Theta_q_pCD_nFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, hTheta_q_nFD_vs_Theta_q_pCD_nFDpCD_Dir,
+        histPlotter2D(MainCanvas, htheta_q_NFD_vs_Theta_q_pCD_nFDpCD, 0.06, true, 0.0425, 0.0425, 0.0425, plots, HistoList, false, htheta_q_NFD_vs_Theta_q_pCD_nFDpCD_Dir,
                       "04c_Theta_q_nFD_vs_Theta_q_pCD_nFDpCD");
 
         //  Theta_nFD_pCD (nFDpCD, CD & FD)
@@ -23063,7 +23063,7 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
                 DrawAndSaveFSRatio(parameters.SampleName, hTheta_q_p_L_pFDpCD, hTheta_q_p_L_pFDpCD_Dir, hTheta_q_p_L_nFDpCD, plots);
                 DrawAndSaveFSRatio(parameters.SampleName, hTheta_q_p_R_pFDpCD, hTheta_q_p_R_pFDpCD_Dir, hTheta_q_p_R_nFDpCD, plots);
-                DrawAndSaveFSRatio(parameters.SampleName, hTheta_q_pFD_pFDpCD, hTheta_q_pFD_pFDpCD_Dir, hTheta_q_nFD_nFDpCD, plots);
+                DrawAndSaveFSRatio(parameters.SampleName, hTheta_q_pFD_pFDpCD, hTheta_q_pFD_pFDpCD_Dir, htheta_q_NFD_nFDpCD, plots);
                 DrawAndSaveFSRatio(parameters.SampleName, hTheta_q_pCD_pFDpCD, hTheta_q_pCD_pFDpCD_Dir, hTheta_q_pCD_nFDpCD, plots);
                 DrawAndSaveFSRatio(parameters.SampleName, hTheta_pFD_pCD_All_Int_pFDpCD, hTheta_pFD_pCD_All_Int_pFDpCD_Dir, hTheta_nFD_pCD_All_Int_nFDpCD, plots);
             }
@@ -23088,13 +23088,13 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
                 DrawAndSaveFSRatio(parameters.SampleName, hTheta_q_p_tot_vs_W_pFDpCD, hTheta_q_p_tot_vs_W_pFDpCD_Dir, hTheta_q_p_tot_vs_W_nFDpCD, plots);
                 DrawAndSaveFSRatio(parameters.SampleName, hTheta_q_p_L_vs_W_pFDpCD, hTheta_q_p_L_vs_W_pFDpCD_Dir, hTheta_q_p_L_vs_W_nFDpCD, plots);
                 DrawAndSaveFSRatio(parameters.SampleName, hTheta_q_p_R_vs_W_pFDpCD, hTheta_q_p_R_vs_W_pFDpCD_Dir, hTheta_q_p_R_vs_W_nFDpCD, plots);
-                DrawAndSaveFSRatio(parameters.SampleName, hTheta_q_pFD_vs_W_pFDpCD, hTheta_q_pFD_vs_W_pFDpCD_Dir, hTheta_q_nFD_vs_W_nFDpCD, plots);
+                DrawAndSaveFSRatio(parameters.SampleName, hTheta_q_pFD_vs_W_pFDpCD, hTheta_q_pFD_vs_W_pFDpCD_Dir, htheta_q_NFD_vs_W_nFDpCD, plots);
                 DrawAndSaveFSRatio(parameters.SampleName, hTheta_q_pCD_vs_W_pFDpCD, hTheta_q_pCD_vs_W_pFDpCD_Dir, hTheta_q_pCD_vs_W_nFDpCD, plots);
                 DrawAndSaveFSRatio(parameters.SampleName, hTheta_q_p_L_vs_p_L_q_pFDpCD, hTheta_q_p_L_vs_p_L_q_pFDpCD_Dir, hTheta_q_p_L_vs_p_L_q_nFDpCD, plots);
 
                 // TODO: fix these two (no axis & title!):
                 DrawAndSaveFSRatio(parameters.SampleName, hTheta_q_p_L_vs_Theta_q_p_R_pFDpCD, hTheta_q_p_L_vs_Theta_q_p_R_pFDpCD_Dir, hTheta_q_p_L_vs_Theta_q_p_R_nFDpCD, plots);
-                DrawAndSaveFSRatio(parameters.SampleName, hTheta_q_pFD_vs_Theta_q_pCD_pFDpCD, hTheta_q_pFD_vs_Theta_q_pCD_pFDpCD_Dir, hTheta_q_nFD_vs_Theta_q_pCD_nFDpCD, plots);
+                DrawAndSaveFSRatio(parameters.SampleName, hTheta_q_pFD_vs_Theta_q_pCD_pFDpCD, hTheta_q_pFD_vs_Theta_q_pCD_pFDpCD_Dir, htheta_q_NFD_vs_Theta_q_pCD_nFDpCD, plots);
 
                 DrawAndSaveFSRatio(parameters.SampleName, hTheta_pFD_pCD_vs_W_pFDpCD, hTheta_pFD_pCD_vs_W_pFDpCD_Dir, hTheta_nFD_pCD_vs_W_nFDpCD, plots);
             }
