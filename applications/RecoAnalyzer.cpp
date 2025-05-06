@@ -18521,6 +18521,8 @@ RecoAnalyzer::RecoAnalyzer(const std::string &AnalyzeFilePath, const std::string
 
     gStyle->SetStatX(0.98);
     gStyle->SetStatY(0.875);
+    
+    gStyle->SetOptStat("ourmen");
 
     MainCanvas->cd();
 

@@ -29,7 +29,7 @@ void histPlotter1D(TCanvas *HistogramCanvas,            // The canvas
                    vector<TObject *> &HistoList, int lineWidth, bool LogScalePlot, bool LinearScalePlot, THStack *Histogram1DStack, std::string Histogram1DSaveName,
                    const std::string &Histogram1DSaveNamePath, std::string finalState, int kColor = 1, bool centerTitle = true, bool AddToStack = false, bool ShowStats = true,
                    bool title2 = false, bool apply_plot_cuts = false, double plot_cuts = 0, double plot_Xmax = 0, bool plot_max = true) {
-    gStyle->SetOptStat("ourmen");
+    // gStyle->SetOptStat("ourmen");
 
     //  Normalization factor:
     double Histogram1D_integral;  // To be calculated only if normalize_Histogram
@@ -205,7 +205,7 @@ void histPlotter1D(TCanvas *HistogramCanvas,            // The canvas
                    vector<TObject *> &HistoList, int lineWidth, bool LogScalePlot, bool LinearScalePlot, std::string Histogram1DSaveName, const std::string &Histogram1DSaveNamePath,
                    std::string finalState, bool centerTitle = true, bool ShowStats = true, bool title2 = false, bool apply_plot_cuts = false, double plot_cuts = 0, double plot_Xmax = 0,
                    bool plot_max = true) {
-    gStyle->SetOptStat("ourmen");
+    // gStyle->SetOptStat("ourmen");
 
     double Histogram1D_integral;  // To be calculated only if normalize_Histogram
     double x_1 = 0.18, y_1 = 0.3, x_2 = 0.86, y_2 = 0.7;
@@ -368,7 +368,7 @@ void histPlotter1D(TCanvas *HistogramCanvas,            // The canvas
                    bool LinearScalePlot, THStack *Histogram1DStack, std::string Histogram1DSaveName, const std::string &Histogram1DSaveNamePath, std::string finalState, int kColor = 1,
                    bool AddToStack = false, bool ShowStats = true, bool title2 = false, bool apply_plot_cuts = false, double plot_upper_cut = 0, double plot_lower_cut = 0,
                    double plot_Xmax = 0, bool plot_max = true) {
-    gStyle->SetOptStat("ourmen");
+    // gStyle->SetOptStat("ourmen");
 
     //  Normalization factor:
     double Histogram1D_integral;  // To be calculated only if normalize_Histogram
@@ -557,7 +557,7 @@ void histPlotter1D(TCanvas *HistogramCanvas,            // The canvas
                    std::string Histogram1DTitle, std::string Histogram1DTitleReactions, TList *Histogram_list, vector<TObject *> &HistoList, int lineWidth, bool LogScalePlot,
                    bool LinearScalePlot, std::string Histogram1DSaveName, const std::string &Histogram1DSaveNamePath, std::string finalState, bool ShowStats = true, bool title2 = false,
                    bool apply_plot_cuts = false, double plot_upper_cut = 0, double plot_lower_cut = 0, double plot_Xmax = 0, bool plot_max = true) {
-    gStyle->SetOptStat("ourmen");
+    // gStyle->SetOptStat("ourmen");
 
     double Histogram1D_integral;  // To be calculated only if normalize_Histogram
     double x_1 = 0.18, y_1 = 0.3, x_2 = 0.86, y_2 = 0.7;
@@ -721,7 +721,7 @@ void histPlotter1D(TCanvas *HistogramCanvas,            // The canvas
                    std::string Histogram1DTitle, std::string Histogram1DTitleReactions, TList *Histogram_list, vector<TObject *> &HistoList, int lineWidth, bool LogScalePlot,
                    bool LinearScalePlot, THStack *Histogram1DStack, std::string Histogram1DSaveName, const std::string &Histogram1DSaveNamePath, std::string finalState, int kColor = 1,
                    bool AddToStack = false, bool ShowStats = true, bool title2 = false, bool apply_plot_cuts = false, double plot_cut = 0, double plot_Xmax = 0, bool plot_max = true) {
-    gStyle->SetOptStat("ourmen");
+    // gStyle->SetOptStat("ourmen");
 
     //  Normalization factor:
     double Histogram1D_integral;  // To be calculated only if normalize_Histogram
@@ -894,7 +894,7 @@ void histPlotter1D(TCanvas *HistogramCanvas,            // The canvas
                    std::string Histogram1DTitle, std::string Histogram1DTitleReactions, TList *Histogram_list, vector<TObject *> &HistoList, int lineWidth, bool LogScalePlot,
                    bool LinearScalePlot, std::string Histogram1DSaveName, const std::string &Histogram1DSaveNamePath, std::string finalState, bool ShowStats = true, bool title2 = false,
                    bool apply_plot_cuts = false, double plot_cut = 0, double plot_Xmax = 0, bool plot_max = true) {
-    gStyle->SetOptStat("ourmen");
+    // gStyle->SetOptStat("ourmen");
 
     double Histogram1D_integral;  // To be calculated only if normalize_Histogram
     double x_1 = 0.18, y_1 = 0.3, x_2 = 0.86, y_2 = 0.7;
@@ -1048,7 +1048,7 @@ void histPlotter1D(TCanvas *HistogramCanvas1,           // canvas c1 of other hi
     double TitleFontSize = gStyle->GetTitleFontSize();
     HistogramCanvas->cd();
 
-    gStyle->SetOptStat("ourmen");
+    // gStyle->SetOptStat("ourmen");
 
     double Histogram1D_integral;  // To be calculated only if normalize_Histogram
     double x_1 = 0.18, y_1 = 0.3, x_2 = 0.86, y_2 = 0.7;
@@ -1209,7 +1209,7 @@ void histPlotter1D(TCanvas *HistogramCanvas1,           // canvas c1 of other hi
     double TitleFontSize = gStyle->GetTitleFontSize();
     HistogramCanvas->cd();
 
-    gStyle->SetOptStat("ourmen");
+    // gStyle->SetOptStat("ourmen");
 
     double Histogram1D_integral;  // To be calculated only if normalize_Histogram
     double x_1 = 0.18, y_1 = 0.3, x_2 = 0.86, y_2 = 0.7;
@@ -1361,7 +1361,7 @@ void histPlotter1D(TCanvas *HistogramCanvas1,           // canvas c1 of other hi
     double TitleFontSize = gStyle->GetTitleFontSize();
     HistogramCanvas->cd();
 
-    gStyle->SetOptStat("ourmen");
+    // gStyle->SetOptStat("ourmen");
 
     double Histogram1D_integral;  // To be calculated only if normalize_Histogram
     double x_1 = 0.18, y_1 = 0.3, x_2 = 0.86, y_2 = 0.7;
@@ -1538,7 +1538,7 @@ void histPlotter1D(TCanvas *HistogramCanvas1,           // canvas c1 of other hi
     double TitleFontSize = gStyle->GetTitleFontSize();
     HistogramCanvas->cd();
 
-    gStyle->SetOptStat("ourmen");
+    // gStyle->SetOptStat("ourmen");
 
     double Histogram1D_integral;  // To be calculated only if normalize_Histogram
     double x_1 = 0.18, y_1 = 0.3, x_2 = 0.86, y_2 = 0.7;
@@ -1891,7 +1891,7 @@ void histPlotter1DwFit(TCanvas *HistogramCanvas, TH1D *Histogram1D, bool normali
 void stackPlotter1D(TCanvas *HistogramCanvas, THStack *Histogram1DStack, bool normalize_Histogram, std::string Histogram1DTitle, std::string Histogram1DTitleReactions, TList *Histogram_list,
                     vector<TObject *> &HistoList, TH1D *H1D_All_Int, TH1D *H1D_QEL, TH1D *H1D_MEC, TH1D *H1D_RES, TH1D *H1D_DIS, std::string Histogram1DStackSaveName,
                     std::string Histogram1DStackSaveNamePath, std::string finalState) {
-    gStyle->SetOptStat("ourmen");
+    // gStyle->SetOptStat("ourmen");
 
     //  Normalization factor:
     double Histogram1D_integral;  // To be calculated only if normalize_Histogram
@@ -2007,7 +2007,7 @@ void stackPlotter1D(TCanvas *HistogramCanvas, THStack *Histogram1DStack, bool no
 #pragma region /* histPlotter2D function (regular) */
 void histPlotter2D(TCanvas *HistogramCanvas, TH2D *Histogram2D, double titleSize, bool centerTitle, double labelSizex, double labelSizey, double labelSizez, TList *Histogram_list,
                    vector<TObject *> &HistoList, bool zLogScalePlot, std::string Histogram1DSaveNameDir, std::string Histogram1DSaveName, bool ShowStats = true) {
-    gStyle->SetOptStat("ourmen");
+    // gStyle->SetOptStat("ourmen");
 
     float DefStatX = gStyle->GetStatX(), DefStatY = gStyle->GetStatY();
     double x_1 = 0.18, y_1 = 0.3, x_2 = 0.86, y_2 = 0.7;
@@ -2079,7 +2079,7 @@ void histPlotter2D(TCanvas *HistogramCanvas, TH2D *Histogram2D, double titleSize
 void histPlotter2D(TCanvas *HistogramCanvas, TH2D *Histogram2D, double titleSize, bool centerTitle, double labelSizex, double labelSizey, double labelSizez, TList *Histogram_list,
                    vector<TObject *> &HistoList, bool zLogScalePlot, std::string Histogram1DSaveNameDir, std::string Histogram1DSaveName, TF1 *Beta_function1, TF1 *Beta_function2,
                    TF1 *Beta_function3, TF1 *Beta_function4, TF1 *Beta_function5, TF1 *Beta_function6, TF1 *Beta_function7, TF1 *Beta_function8, TF1 *Beta_function9) {
-    gStyle->SetOptStat("ourmen");
+    // gStyle->SetOptStat("ourmen");
 
     float DefStatX = gStyle->GetStatX(), DefStatY = gStyle->GetStatY();
     double x_1 = 0.18, y_1 = 0.3, x_2 = 0.86, y_2 = 0.7;
@@ -2139,7 +2139,7 @@ void histPlotter2D(TCanvas *HistogramCanvas, TH2D *Histogram2D, double titleSize
 void histPlotter2D(TCanvas *HistogramCanvas, TH2D *Histogram2D, double titleSize, bool centerTitle, double labelSizex, double labelSizey, double labelSizez, TList *Histogram_list,
                    vector<TObject *> &HistoList, bool zLogScalePlot, std::string Histogram1DSaveNameDir, std::string Histogram1DSaveName, TF1 *Beta_function1, std::string particle1,
                    bool plot_legend) {
-    gStyle->SetOptStat("ourmen");
+    // gStyle->SetOptStat("ourmen");
 
     float DefStatX = gStyle->GetStatX(), DefStatY = gStyle->GetStatY();
     double x_1 = 0.165, y_1 = 0.3, x_2 = 0.865, y_2 = 0.7;
@@ -2201,7 +2201,7 @@ void histPlotter2D(TCanvas *HistogramCanvas, TH2D *Histogram2D, double titleSize
 void histPlotter2D(TCanvas *HistogramCanvas, TH2D *Histogram2D, double titleSize, bool centerTitle, double labelSizex, double labelSizey, double labelSizez, TList *Histogram_list,
                    vector<TObject *> &HistoList, bool zLogScalePlot, std::string Histogram1DSaveNameDir, std::string Histogram1DSaveName, TF1 *Beta_function1, std::string particle1,
                    TF1 *Beta_function2, std::string particle2, TF1 *Beta_function3, std::string particle3, bool plot_legend) {
-    gStyle->SetOptStat("ourmen");
+    // gStyle->SetOptStat("ourmen");
 
     float DefStatX = gStyle->GetStatX(), DefStatY = gStyle->GetStatY();
     double x_1 = 0.165, y_1 = 0.3, x_2 = 0.865, y_2 = 0.7;
