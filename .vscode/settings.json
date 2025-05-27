@@ -186,7 +186,17 @@
         "latex.C": "cpp",
         "simulation_samples.h": "c",
         "flat_map": "cpp",
-        "stacktrace": "cpp"
+        "stacktrace": "cpp",
+        "barrier": "cpp",
+        "cfenv": "cpp",
+        "codecvt": "cpp",
+        "csetjmp": "cpp",
+        "csignal": "cpp",
+        "cuchar": "cpp",
+        "latch": "cpp",
+        "scoped_allocator": "cpp",
+        "strstream": "cpp",
+        "syncstream": "cpp"
     },
     "[jsonc]": {
         "editor.defaultFormatter": "vscode.json-language-features"
