@@ -1,53 +1,50 @@
-/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "Unix Makefiles" -S /Users/alon/Projects/2N-Analyzer_e4nu -B /Users/alon/Projects/2N-Analyzer_e4nu/cmake-build-debug
--- CLAS12ROOT: 
--- HIPO: /Users/alon/Software/hipo
-CMake Error at /opt/homebrew/Cellar/root/6.34.06/share/root/cmake/modules/FindVdt.cmake:48 (file):
-  file STRINGS file
-  "/opt/homebrew/Cellar/root/6.34.04/include/root/vdt/vdtMath.h" cannot be
-  read.
-Call Stack (most recent call first):
-  /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.30/Modules/CMakeFindDependencyMacro.cmake:76 (find_package)
-  /opt/homebrew/share/root/cmake/ROOTConfig.cmake:164 (find_dependency)
-  /opt/homebrew/share/root/cmake/ROOTConfig.cmake:166 (find_builtin_vdt)
-  CMakeLists.txt:12 (find_package)
+/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "Unix Makefiles" -S /Users/alon/Projects/2N-Analyser_e4nu -B /Users/alon/Projects/2N-Analyser_e4nu/cmake-build-debug
+-- The C compiler identification is AppleClang 17.0.0.17000013
+-- The CXX compiler identification is AppleClang 17.0.0.17000013
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /Applications/Xcode.app/Contents/Developer/usr/bin/gcc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /Applications/Xcode.app/Contents/Developer/usr/bin/g++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- CLAS12ROOT: /Users/alon/Software/clas12root
+-- HIPO: /Users/alon/Software/hipo/install
+-- Found Vdt: /opt/homebrew/Cellar/root/6.34.08_1/include/root (found version "0.4")
+-- Added subdirectory: /Users/alon/Projects/2N-Analyser_e4nu/framework/structures
+-- Added subdirectory: /Users/alon/Projects/2N-Analyser_e4nu/framework/namespaces
+-- Added subdirectory: /Users/alon/Projects/2N-Analyser_e4nu/framework/classes
+CMake Warning at CMakeLists.txt:126 (message):
+  Directory /Users/alon/Projects/2N-Analyser_e4nu/framework/applications does
+  not exist.
 
 
--- Added subdirectory: /Users/alon/Projects/2N-Analyzer_e4nu/framework/structures
--- Added subdirectory: /Users/alon/Projects/2N-Analyzer_e4nu/framework/namespaces
--- Added subdirectory: /Users/alon/Projects/2N-Analyzer_e4nu/framework/classes
--- CLAS12ROOT: 
--- HIPO: /Users/alon/Software/hipo
-CMake Warning at framework/applications/CMakeLists.txt:112 (message):
-  Directory
-  /Users/alon/Projects/2N-Analyzer_e4nu/framework/applications/framework/structures
-  does not exist.
+-- Configuring done (3.7s)
+CMake Error at framework/namespaces/CMakeLists.txt:32 (add_library):
+  Cannot find source file:
+
+    general_utilities/analysis_math/analysis_math.cpp
 
 
-CMake Warning at framework/applications/CMakeLists.txt:112 (message):
-  Directory
-  /Users/alon/Projects/2N-Analyzer_e4nu/framework/applications/framework/namespaces
-  does not exist.
+CMake Error at framework/classes/CMakeLists.txt:23 (add_library):
+  Cannot find source file:
+
+    AMaps/CustomSliceLimits.cpp
 
 
-CMake Warning at framework/applications/CMakeLists.txt:112 (message):
-  Directory
-  /Users/alon/Projects/2N-Analyzer_e4nu/framework/applications/framework/classes
-  does not exist.
+CMake Error at framework/structures/CMakeLists.txt:9 (add_library):
+  No SOURCES given to target: AnalysisDataStructures
 
 
-CMake Warning at framework/applications/CMakeLists.txt:112 (message):
-  Directory
-  /Users/alon/Projects/2N-Analyzer_e4nu/framework/applications/framework/applications
-  does not exist.
+CMake Error at framework/namespaces/CMakeLists.txt:32 (add_library):
+  No SOURCES given to target: AnalysisLibraries
 
 
--- Added subdirectory: /Users/alon/Projects/2N-Analyzer_e4nu/framework/applications
-CMake Error at CMakeLists.txt:116 (add_executable):
-  add_executable cannot create target "2N_Analyzer_e4nu" because another
-  target with the same name already exists.  The existing target is an
-  executable created in source directory
-  "/Users/alon/Projects/2N-Analyzer_e4nu/framework/applications".  See
-  documentation for policy CMP0002 for more details.
+CMake Error at framework/classes/CMakeLists.txt:23 (add_library):
+  No SOURCES given to target: AnalysisTools
 
 
--- Configuring incomplete, errors occurred!
+CMake Generate step failed.  Build files cannot be regenerated correctly.

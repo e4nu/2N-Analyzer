@@ -34,6 +34,8 @@ double global_z = -3;  // center of hallB in GEMC in cm
 
 std::map<std::string, std::vector<double> > targets{{"4-foil", {-1.875 + global_z, -0.625 + global_z, 0.625 + global_z, 1.875 + global_z}},
                                                     {"1-foil", {global_z + 2.5}},
+                                                    {"1-foil-small", {global_z + 2.5}},
+                                                    {"1-foil-large", {global_z + 2.5}},
                                                     {"Ar", {global_z - 2.5}},
                                                     {"Ca", {global_z}},
                                                     {"liquid", {global_z - 2.5, global_z + 2.5}}};
@@ -48,11 +50,19 @@ TVector3 randomVertex(string target) {
             z = ran.Uniform(targets[target].at(0), targets[target].at(1));
             return (TVector3(x, y, z));
         } else {
-            // foil targets
-            x = ran.Gaus(beamspot_x, beamspread_x);
-            y = ran.Gaus(beamspot_y, beamspread_y);
-            z = targets[target].at(ran.Integer(targets[target].size()));
-            return (TVector3(x, y, z));
+            if (target == "1-foil-large") {
+                // large foil targets
+                x = ran.Gaus(0.06, 0.06);
+                y = ran.Gaus(0.06, 0.06);
+                z = targets[target].at(ran.Integer(targets[target].size()));
+                return (TVector3(x, y, z));
+            } else {
+                // any other foil targets
+                x = ran.Gaus(beamspot_x, beamspread_x);
+                y = ran.Gaus(beamspot_y, beamspread_y);
+                z = targets[target].at(ran.Integer(targets[target].size()));
+                return (TVector3(x, y, z));
+            }
         }
     }
 

@@ -183,7 +183,10 @@
         "cutvaluemanager.h": "c",
         "histogramplottingfunctions.h": "c",
         "eventselectionsettings.h": "c",
-        "latex.C": "cpp"
+        "latex.C": "cpp",
+        "simulation_samples.h": "c",
+        "flat_map": "cpp",
+        "stacktrace": "cpp"
     },
     "[jsonc]": {
         "editor.defaultFormatter": "vscode.json-language-features"
