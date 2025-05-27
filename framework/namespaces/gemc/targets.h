@@ -63,8 +63,6 @@ TVector3 randomVertex(string target) {
                 x = ran.Gaus(beamspot_x, beamspread_x);
                 y = ran.Gaus(beamspot_y, beamspread_y);
                 z = targets[target].at(ran.Integer(targets[target].size()));
-                std::cout << "\n\n1-foil-small target is implemented. Exiting.\n\n" << std::endl;
-                exit(1);
                 return (TVector3(x, y, z));
             }
         }
