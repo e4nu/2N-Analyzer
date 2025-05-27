@@ -55,8 +55,6 @@ TVector3 randomVertex(string target) {
                 x = ran.Gaus(0.06, 0.06);
                 y = ran.Gaus(0.06, 0.06);
                 z = targets[target].at(ran.Integer(targets[target].size()));
-                std::cout << "\n\n1-foil-large target is implemented. Exiting.\n\n" << std::endl;
-                exit(1);
                 return (TVector3(x, y, z));
             } else {
                 // any other foil targets
