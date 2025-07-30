@@ -2582,6 +2582,22 @@ void GammaNeutronFD_separation_test() {
                                     titles.SetTextAlign(22);  // Center text both horizontally and vertically
 
                                     if (*first_flags[particle_key]) {
+                                        std::string bookmark_title;
+
+                                        if (bt::FindSubstring(label, "splitline")) {
+                                            std::regex splitline_pattern(R"(#splitline\{(.*?)\}\{(.*?)\})");
+                                            std::smatch matches;
+
+                                            if (std::regex_search(label, matches, splitline_pattern)) {
+                                                // matches[1] is the first part, matches[2] is the second part
+                                                bookmark_title = matches[1].str() + " " + matches[2].str();
+                                            } else {
+                                                bookmark_title = label;
+                                            }
+                                        } else {
+                                            bookmark_title = label;  // moved inside the else branch
+                                        }
+
                                         std::string bookmark_title = label;
                                         // std::string bookmark_title = label + " plots";
                                         std::string sanitized_bookmark_title = hf::SanitizeForBookmark(bookmark_title);
@@ -2706,7 +2722,8 @@ void GammaNeutronFD_separation_test() {
                             //     draw_title_block("", {"TempInputFiles: #font[42]{" + InputFiles + "}", "TempOutFolderName:", "#font[42]{" + TempOutFolderName + "}"}, 0.65, 0.05, true);
                             // } else {
                             //     draw_title_block("",
-                            //                      {"TempBaseDir: #font[42]{" + TempBaseDir + "}", "TempInputFiles: #font[42]{TempBaseDir + " + InputFiles.substr(TempBaseDir.length()) + "}",
+                            //                      {"TempBaseDir: #font[42]{" + TempBaseDir + "}", "TempInputFiles: #font[42]{TempBaseDir + " + InputFiles.substr(TempBaseDir.length()) +
+   "}",
                             //                       "TempOutFolderName:", "#font[42]{" + TempOutFolderName + "}"},
                             //                      0.60, 0.05, true);
                             // }
