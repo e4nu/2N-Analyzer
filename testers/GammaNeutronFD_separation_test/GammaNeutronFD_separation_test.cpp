@@ -2565,9 +2565,9 @@ void GammaNeutronFD_separation_test() {
                         }
 
                         std::map<std::string, std::string> particle_labels = {{"clas12reco", "CLAS12 reco n_{FD}"},
-                                                                              {"redef", "reco n_{FD} from neutron redefinition"},
-                                                                              {"ECALveto", "Redef. reco n_{FD} after ECAL veto"},
-                                                                              {"matched", "Redef. reco n_{FD} after ECAL veto + matching to TL neutrons"}};
+                                                                              {"redef", "#splitline{reco n_{FD} from}{neutron redefinition}"},
+                                                                              {"ECALveto", "#splitline{Redef. reco n_{FD} after}{ECAL veto}"},
+                                                                              {"matched", "#splitline{Redef. reco n_{FD} after}{ECAL veto + matching to TL neutrons}"}};
 
                         for (int i = 0; i < HistoList.size(); i++) {
                             std::string title = HistoList[i]->GetTitle();
