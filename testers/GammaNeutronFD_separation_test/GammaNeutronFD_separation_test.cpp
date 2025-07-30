@@ -2601,7 +2601,8 @@ void GammaNeutronFD_separation_test() {
                                         }
 
                                         std::string sanitized_bookmark_title = hf::SanitizeForBookmark(bookmark_title);
-                                        titles.DrawLatex(0.5, 0.5, bookmark_title.c_str());
+                                        titles.DrawLatex(0.5, 0.5, label.c_str());
+                                        // titles.DrawLatex(0.5, 0.5, bookmark_title.c_str());
                                         myText->Print(fileName, ("pdf Title:" + sanitized_bookmark_title).c_str());
                                         myText->Clear();
                                         *first_flags[particle_key] = false;
