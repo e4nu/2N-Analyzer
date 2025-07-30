@@ -11,7 +11,7 @@ namespace bt = basic_tools;
 // namespace raf = reco_analysis_functions;
 namespace hf = histogram_functions;
 
-void nFD_eff_test() {
+void GammaNeutronFD_separation_test() {
     cout << "\n\nInitiating GammaNeutronFD_separation_test.cpp\n";
 
     bool use_ConstPn_samples = false;
