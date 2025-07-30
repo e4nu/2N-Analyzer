@@ -21,26 +21,26 @@ void GammaNeutronFD_separation_test() {
 
     // vector<double> Ebeam_v = {2.07052};
     // vector<vector<bool>> Ebeam_bool_v = {{true, false, false}};
-    vector<double> Ebeam_v = {4.02962};
-    vector<vector<bool>> Ebeam_bool_v = {{false, true, false}};
+    // vector<double> Ebeam_v = {4.02962};
+    // vector<vector<bool>> Ebeam_bool_v = {{false, true, false}};
     // vector<double> Ebeam_v = {5.98636};
     // vector<vector<bool>> Ebeam_bool_v = {{false, false, true}};
-    // vector<double> Ebeam_v = {2.07052, 4.02962, 5.98636};
-    // vector<vector<bool>> Ebeam_bool_v = {{true, false, false}, {false, true, false}, {false, false, true}};
+    vector<double> Ebeam_v = {2.07052, 4.02962, 5.98636};
+    vector<vector<bool>> Ebeam_bool_v = {{true, false, false}, {false, true, false}, {false, false, true}};
 
-    // int Limiter = 25000000;  // 2500 files
+    int Limiter = 25000000;  // 2500 files
     // int Limiter = 10000000;  // 1000 files
     // int Limiter = 1000000;  // 100 files
     // int Limiter = 100000;  // 10 files
-    int Limiter = 10000;  // 1 file
+    // int Limiter = 10000;  // 1 file
 
     bool apply_neutFD_redef = true;
     bool apply_ECAL_veto = true;
 
     bool apply_PCAL_neutral_veto = false;
 
-    vector<vector<bool>> CutSelector = {{false, false, true}};  // {ConstrainedE, OnlyGood_nFD, OnlyBad_nFD}
-    // vector<vector<bool>> CutSelector = {{true, false, false}, {true, true, false}, {true, false, true}};  // {ConstrainedE, OnlyGood_nFD, OnlyBad_nFD}
+    // vector<vector<bool>> CutSelector = {{false, false, true}};  // {ConstrainedE, OnlyGood_nFD, OnlyBad_nFD}
+    vector<vector<bool>> CutSelector = {{true, false, false}, {true, true, false}, {true, false, true}};  // {ConstrainedE, OnlyGood_nFD, OnlyBad_nFD}
 
     bool ConstrainTLmom = false;
 
@@ -691,6 +691,13 @@ void GammaNeutronFD_separation_test() {
                                  "[#circ];P^{reco}_{LnFD} [GeV/c]",
                                  100, -180., 180., 100, 0., Ebeam * 3.);
                     HistoList.push_back(h_reco_P_LnFD_VS_reco_phi_LnFD_minus_reco_phi_e_ECALveto_1e_cut);
+
+                    TH2D* h_LnFD_status_VS_reco_theta_LnFD_minus_reco_theta_e_ECALveto_1e_cut =
+                        new TH2D("LnFD_status_VS_reco_theta_LnFD_minus_reco_theta_e_ECALveto_1e_cut",
+                                 "LnFD status vs. #Delta#theta^{reco}_{LnFD,e} in 1e cut (ECALveto);#Delta#theta^{reco}_{LnFD,e} = #theta^{reco}_{LnFD} - #theta^{reco}_{e} "
+                                 "[#circ];LnFD status",
+                                 100, -25., 10., 100, 0., 10000.);
+                    HistoList.push_back(h_LnFD_status_VS_reco_theta_LnFD_minus_reco_theta_e_ECALveto_1e_cut);
 
                     TH1D* h_v_dist_nFD_ECALveto_1e_cut = new TH1D("v_dist_nFD_ECALveto_1e_cut", "v_dist in 1e cut (ECALveto);v_dist [cm];Counts", 50, 0., 1000.);
                     HistoList.push_back(h_v_dist_nFD_ECALveto_1e_cut);
@@ -1562,6 +1569,8 @@ void GammaNeutronFD_separation_test() {
                                                                                                           weight);
                                 h_reco_P_LnFD_VS_reco_phi_LnFD_minus_reco_phi_e_ECALveto_1e_cut->Fill(CalcdPhi1(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI),
                                                                                                       reco_P_nFD.Mag(), weight);
+                                h_LnFD_status_VS_reco_theta_LnFD_minus_reco_theta_e_ECALveto_1e_cut->Fill(
+                                    reco_P_nFD.Theta() * 180 / M_PI - reco_P_e.Theta() * 180 / M_PI, neutrons_FD_ECALveto[i]->par()->getStatus();, weight);
                             }
 
                             TVector3 v_nhit(neutrons_FD_ECALveto[i]->cal(detlayer)->getX(), neutrons_FD_ECALveto[i]->cal(detlayer)->getY(), neutrons_FD_ECALveto[i]->cal(detlayer)->getZ());
