@@ -4,3 +4,4 @@
 # CMake build directories:
 cmake-build-debug/
 build/
+.DS_Store
