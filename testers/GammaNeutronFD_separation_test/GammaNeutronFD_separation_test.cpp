@@ -19,13 +19,13 @@ void GammaNeutronFD_separation_test() {
     vector<double> cPart_veto_radii = {100};
     vector<double> nPart_veto_radii = {100, 125, 150, 175, 200, 250};
 
-    // vector<double> Ebeam_v = {2.07052};
-    // vector<vector<bool>> Ebeam_bool_v = {{true, false, false}};
+    vector<double> Ebeam_v = {2.07052};
+    vector<vector<bool>> Ebeam_bool_v = {{true, false, false}};
     // vector<double> Ebeam_v = {4.02962};
     // vector<vector<bool>> Ebeam_bool_v = {{false, true, false}};
     // vector<double> Ebeam_v = {5.98636};
     // vector<vector<bool>> Ebeam_bool_v = {{false, false, true}};
-    vector<double> Ebeam_v = {2.07052, 4.02962, 5.98636};
+    // vector<double> Ebeam_v = {2.07052, 4.02962, 5.98636};
     vector<vector<bool>> Ebeam_bool_v = {{true, false, false}, {false, true, false}, {false, false, true}};
 
     int Limiter = 25000000;  // 2500 files
@@ -35,12 +35,12 @@ void GammaNeutronFD_separation_test() {
     // int Limiter = 10000;  // 1 file
 
     bool apply_neutFD_redef = true;
-    bool apply_ECAL_veto = false;
+    bool apply_ECAL_veto = true;
 
     bool apply_PCAL_neutral_veto = false;
 
-    // vector<vector<bool>> CutSelector = {{false, false, true}};  // {ConstrainedE, OnlyGood_nFD, OnlyBad_nFD}
-    vector<vector<bool>> CutSelector = {{false, false, false}, {false, true, false}, {false, false, true}};  // {ConstrainedE, OnlyGood_nFD, OnlyBad_nFD}
+    vector<vector<bool>> CutSelector = {{false, false, true}};  // {ConstrainedE, OnlyGood_nFD, OnlyBad_nFD}
+    // vector<vector<bool>> CutSelector = {{false, false, false}, {false, true, false}, {false, false, true}};  // {ConstrainedE, OnlyGood_nFD, OnlyBad_nFD}
     // vector<vector<bool>> CutSelector = {{true, false, false}, {true, true, false}, {true, false, true}};  // {ConstrainedE, OnlyGood_nFD, OnlyBad_nFD}
 
     bool ConstrainTLmom = false;
