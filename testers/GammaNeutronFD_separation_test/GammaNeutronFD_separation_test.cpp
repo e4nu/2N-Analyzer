@@ -2654,7 +2654,7 @@ void GammaNeutronFD_separation_test() {
                         // hf::FixPDFOrientation(nFD_eff_test_PDF_fileName);                                                                 // Fix orientation
                         // hf::ReassignPDFBookmarks(bt::GetCurrentDirectory() + "/", nFD_eff_test_PDF_fileName, nFD_eff_test_PDF_fileName);  // Reassign clean bookmarks
 
-                        auto GeneratePDFOutput = [&ConstrainedE, &apply_ECAL_veto, &cPart_veto_radius, &apply_PCAL_neutral_veto, &nPart_veto_radius](
+                        auto GeneratePDFOutput = [&ConstrainedE, &apply_ECAL_veto, &cPart_veto_radius, &apply_PCAL_neutral_veto, &nPart_veto_radius, &InputFiles](
                                                      std::string TempOutputDir, std::string TempOutFolderName, std::string TempBaseDir, std::vector<std::string> TempInputFiles,
                                                      std::vector<TObject*> TempHistoList) {
                             int pixelx = 1980;
