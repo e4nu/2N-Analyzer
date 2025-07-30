@@ -1570,7 +1570,7 @@ void GammaNeutronFD_separation_test() {
                                 h_reco_P_LnFD_VS_reco_phi_LnFD_minus_reco_phi_e_ECALveto_1e_cut->Fill(CalcdPhi1(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI),
                                                                                                       reco_P_nFD.Mag(), weight);
                                 h_LnFD_status_VS_reco_theta_LnFD_minus_reco_theta_e_ECALveto_1e_cut->Fill(
-                                    reco_P_nFD.Theta() * 180 / M_PI - reco_P_e.Theta() * 180 / M_PI, neutrons_FD_ECALveto[i]->par()->getStatus();, weight);
+                                    reco_P_nFD.Theta() * 180 / M_PI - reco_P_e.Theta() * 180 / M_PI, neutrons_FD_ECALveto[i]->par()->getStatus(), weight);
                             }
 
                             TVector3 v_nhit(neutrons_FD_ECALveto[i]->cal(detlayer)->getX(), neutrons_FD_ECALveto[i]->cal(detlayer)->getY(), neutrons_FD_ECALveto[i]->cal(detlayer)->getZ());
