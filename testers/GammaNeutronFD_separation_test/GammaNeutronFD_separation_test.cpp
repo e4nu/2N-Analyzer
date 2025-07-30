@@ -35,13 +35,13 @@ void GammaNeutronFD_separation_test() {
     // int Limiter = 10000;  // 1 file
 
     bool apply_neutFD_redef = true;
-    bool apply_ECAL_veto = true;
+    bool apply_ECAL_veto = false;
 
     bool apply_PCAL_neutral_veto = false;
 
     // vector<vector<bool>> CutSelector = {{false, false, true}};  // {ConstrainedE, OnlyGood_nFD, OnlyBad_nFD}
-    vector<vector<bool>> CutSelector = {{false, false, false}, {false, true, false}, {false, false, true}};  // {ConstrainedE, OnlyGood_nFD, OnlyBad_nFD}
-    // vector<vector<bool>> CutSelector = {{true, false, false}, {true, true, false}, {true, false, true}};  // {ConstrainedE, OnlyGood_nFD, OnlyBad_nFD}
+    // vector<vector<bool>> CutSelector = {{false, false, false}, {false, true, false}, {false, false, true}};  // {ConstrainedE, OnlyGood_nFD, OnlyBad_nFD}
+    vector<vector<bool>> CutSelector = {{true, false, false}, {true, true, false}, {true, false, true}};  // {ConstrainedE, OnlyGood_nFD, OnlyBad_nFD}
 
     bool ConstrainTLmom = false;
 
