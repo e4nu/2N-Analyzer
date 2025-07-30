@@ -2568,7 +2568,7 @@ void GammaNeutronFD_separation_test() {
                                                                               {"PID", "e^{-} PID plots"},
                                                                               {"clas12reco", "CLAS12 reco. n_{FD}"},
                                                                               {"redef", "#splitline{reco. n_{FD} from}{neutron redefinition}"},
-                                                                              {"ECALveto", "#splitline{Redef. reco. n_{FD} after}{ECAL veto}"},
+                                                                              {"ECALveto", "#splitline{Redef. reco. n_{FD} after}{ECALveto and P_{nFD} th.}"},
                                                                               {"matched", "#splitline{Redef. reco. n_{FD} after}{ECAL veto + matching to TL neutrons}"},
                                                                               {"eff", "#splitline{reco. n_{FD}}{efficiency plots}"}};
 
@@ -2582,7 +2582,8 @@ void GammaNeutronFD_separation_test() {
                                     titles.SetTextAlign(22);  // Center text both horizontally and vertically
 
                                     if (*first_flags[particle_key]) {
-                                        std::string bookmark_title = label + " plots";
+                                        std::string bookmark_title = label;
+                                        // std::string bookmark_title = label + " plots";
                                         std::string sanitized_bookmark_title = hf::SanitizeForBookmark(bookmark_title);
                                         titles.DrawLatex(0.5, 0.5, bookmark_title.c_str());
                                         myText->Print(fileName, ("pdf Title:" + sanitized_bookmark_title).c_str());
@@ -2595,18 +2596,18 @@ void GammaNeutronFD_separation_test() {
                                 }
                             }
 
-                            for (int j = 0; j < HistSubjects.size(); j++) {
-                                if (FirstPrint.at(j) && FindSubstring(HistoList[i]->GetTitle(), HistSubjects.at(j))) {
-                                    myText->cd();
-                                    titles.DrawLatex(0.3, 0.5, HistSubjects2.at(j).c_str());
-                                    myText->Print(fileName, "pdf");
-                                    myText->Clear();
+                            // for (int j = 0; j < HistSubjects.size(); j++) {
+                            //     if (FirstPrint.at(j) && FindSubstring(HistoList[i]->GetTitle(), HistSubjects.at(j))) {
+                            //         myText->cd();
+                            //         titles.DrawLatex(0.3, 0.5, HistSubjects2.at(j).c_str());
+                            //         myText->Print(fileName, "pdf");
+                            //         myText->Clear();
 
-                                    myCanvas->cd(1);
-                                    FirstPrint.at(j) = false;
-                                    break;
-                                }
-                            }
+                            //         myCanvas->cd(1);
+                            //         FirstPrint.at(j) = false;
+                            //         break;
+                            //     }
+                            // }
 
                             myCanvas->cd();
 
