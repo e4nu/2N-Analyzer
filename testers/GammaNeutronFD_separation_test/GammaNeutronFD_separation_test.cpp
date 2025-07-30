@@ -44,7 +44,7 @@ void GammaNeutronFD_separation_test() {
 
     bool ConstrainTLmom = false;
 
-    bool plot_tester_histograms = false;
+    bool plot_tester_histograms = true;
 
     bool plot_AMaps = false;
     // bool plot_AMaps = true;
@@ -63,6 +63,7 @@ void GammaNeutronFD_separation_test() {
         for (int rc_ind = 0; rc_ind < cPart_veto_radii.size(); rc_ind++) {
             for (int rn_ind = 0; rn_ind < nPart_veto_radii.size(); rn_ind++) {
                 for (int Ebeam_ind = 0; Ebeam_ind < Ebeam_v.size(); Ebeam_ind++) {
+#pragma region /* Setup */
                     double Ebeam = Ebeam_v.at(Ebeam_ind);
                     bool Is2GeV = Ebeam_bool_v.at(Ebeam_ind).at(0), Is4GeV = Ebeam_bool_v.at(Ebeam_ind).at(1), Is6GeV = Ebeam_bool_v.at(Ebeam_ind).at(2);
 
@@ -122,6 +123,7 @@ void GammaNeutronFD_separation_test() {
                     chain.db()->turnOffQADB();
                     auto config_c12 = chain.GetC12Reader();
                     const std::unique_ptr<clas12::clas12reader>& c12 = chain.C12ref();
+#pragma endregion
 
 #pragma region /* Prepare histograms */
                     /////////////////////////////////////
