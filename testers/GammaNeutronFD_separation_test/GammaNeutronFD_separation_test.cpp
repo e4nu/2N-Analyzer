@@ -2568,21 +2568,22 @@ void nFD_eff_test() {
                                                                               {"matched", "Redef. reco n_{FD} after ECAL veto + matching to TL neutrons"}};
 
                         for (int i = 0; i < HistoList.size(); i++) {
+                            std::string title = HistoList[i]->GetTitle();
+                            std::string name = HistoList[i]->GetName();
+
                             for (const auto& [particle_key, label] : particle_labels) {
                                 if (bt::FindSubstring(title, particle_key)) {
                                     myText->cd();
                                     titles.SetTextAlign(22);  // Center text both horizontally and vertically
 
                                     if (*first_flags[particle_key]) {
-                                        std::string bookmark_title = Is_hsPlot ? hf::SanitizeForBookmark(label + " plots") + ">" + slice_id : label + " plots";
-                                        // std::string bookmark_title = Is_hsPlot ? label + " plots" + ">" + Is_hsPlot_result : label + " plots";
-                                        // std::string bookmark_title = label + " plots"; // Original line without Is_hsPlot
+                                        std::string bookmark_title = label + " plots";
                                         std::string sanitized_bookmark_title = hf::SanitizeForBookmark(bookmark_title);
                                         titles.DrawLatex(0.5, 0.5, bookmark_title.c_str());
                                         myText->Print(fileName, ("pdf Title:" + sanitized_bookmark_title).c_str());
                                         myText->Clear();
                                         *first_flags[particle_key] = false;
-                                        ++plot_counter;
+                                        // ++plot_counter;
                                     }
 
                                     break;  // Stop checking other particles after match
