@@ -2695,16 +2695,20 @@ void GammaNeutronFD_separation_test() {
                             myText->cd();
                             titles.DrawLatex(0.05, 0.9, "#gamma-n_{FD} Tester Output");
                             // text.DrawLatex(0.05, 0.80, "This output is for the Ar40 implementation in GEMC");
-                            text.DrawLatex(0.05, 0.70, ("Plots from (e,e'n) events in: #font[42]{" + TempCodeRun_status + "}").c_str());
+                            // text.DrawLatex(0.05, 0.70, ("Plots from (e,e'n) events in: #font[42]{" + TempCodeRun_status + "}").c_str());
 
-                            if (TempIsData) {
-                                draw_title_block("", {"TempInputFiles: #font[42]{" + InputFiles + "}", "TempOutFolderName:", "#font[42]{" + TempOutFolderName + "}"}, 0.65, 0.05, true);
-                            } else {
-                                draw_title_block("",
-                                                 {"TempBaseDir: #font[42]{" + TempBaseDir + "}", "TempInputFiles: #font[42]{TempBaseDir + " + InputFiles.substr(TempBaseDir.length()) + "}",
-                                                  "TempOutFolderName:", "#font[42]{" + TempOutFolderName + "}"},
-                                                 0.60, 0.05, true);
-                            }
+                            draw_title_block("",
+                                             {"TempBaseDir: #font[42]{" + TempBaseDir + "}", "TempInputFiles: #font[42]{TempBaseDir + " + InputFiles.substr(TempBaseDir.length()) + "}",
+                                              "TempOutFolderName:", "#font[42]{" + TempOutFolderName + "}"},
+                                             0.60, 0.05, true);
+                            // if (TempIsData) {
+                            //     draw_title_block("", {"TempInputFiles: #font[42]{" + InputFiles + "}", "TempOutFolderName:", "#font[42]{" + TempOutFolderName + "}"}, 0.65, 0.05, true);
+                            // } else {
+                            //     draw_title_block("",
+                            //                      {"TempBaseDir: #font[42]{" + TempBaseDir + "}", "TempInputFiles: #font[42]{TempBaseDir + " + InputFiles.substr(TempBaseDir.length()) + "}",
+                            //                       "TempOutFolderName:", "#font[42]{" + TempOutFolderName + "}"},
+                            //                      0.60, 0.05, true);
+                            // }
 
                             // text.DrawLatex(
                             //     0.05, 0.40,
