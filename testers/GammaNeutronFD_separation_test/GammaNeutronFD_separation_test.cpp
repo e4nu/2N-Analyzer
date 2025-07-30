@@ -2569,7 +2569,7 @@ void GammaNeutronFD_separation_test() {
                                                                               {"clas12reco", "CLAS12 reco. n_{FD}"},
                                                                               {"redef", "#splitline{reco. n_{FD} from}{neutron redefinition}"},
                                                                               {"ECALveto", "#splitline{Redef. reco. n_{FD} after}{ECALveto and P_{nFD} th.}"},
-                                                                              {"matched", "#splitline{Redef. reco. n_{FD} after}{ECAL veto + matching to TL neutrons}"},
+                                                                              {"matched", "#splitline{Redef. reco. n_{FD} after}{#splitline{ECAL veto +}{matching to TL neutrons}}"},
                                                                               {"eff", "#splitline{reco. n_{FD}}{efficiency plots}"}};
 
                         for (int i = 0; i < HistoList.size(); i++) {
