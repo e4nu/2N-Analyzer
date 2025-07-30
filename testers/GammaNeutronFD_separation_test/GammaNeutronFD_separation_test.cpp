@@ -2583,6 +2583,8 @@ void GammaNeutronFD_separation_test() {
 
                                     if (*first_flags[particle_key]) {
                                         std::string bookmark_title;
+                                        // std::string bookmark_title = label;
+                                        // std::string bookmark_title = label + " plots";
 
                                         if (bt::FindSubstring(label, "splitline")) {
                                             std::regex splitline_pattern(R"(#splitline\{(.*?)\}\{(.*?)\})");
@@ -2598,8 +2600,6 @@ void GammaNeutronFD_separation_test() {
                                             bookmark_title = label;  // moved inside the else branch
                                         }
 
-                                        std::string bookmark_title = label;
-                                        // std::string bookmark_title = label + " plots";
                                         std::string sanitized_bookmark_title = hf::SanitizeForBookmark(bookmark_title);
                                         titles.DrawLatex(0.5, 0.5, bookmark_title.c_str());
                                         myText->Print(fileName, ("pdf Title:" + sanitized_bookmark_title).c_str());
