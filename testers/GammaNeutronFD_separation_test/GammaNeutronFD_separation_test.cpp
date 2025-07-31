@@ -51,12 +51,15 @@ void GammaNeutronFD_separation_test() {
     bool plot_AMaps = false;
     // bool plot_AMaps = true;
 
-    std::string OutFolderName_prefix = "18_2N_analyzer_";
-    std::string OutFolderName_ver_status = "_v18";
+    int version = 19;
+
+    std::string OutFolderName_prefix = bt::ToStringWithPrecision(version, 0) + "_2N_analyzer_";
+    std::string OutFolderName_ver_status = "_v" + bt::ToStringWithPrecision(version, 0);
     std::string samples_status = use_ConstPn_samples ? "_CPn" : "";
     std::string neutFD_redef_status = apply_neutFD_redef ? "_RDed" : "_c12n";
     std::string ECAL_veto_status = apply_ECAL_veto ? "_wEV" : "_woEV";
-    std::string PCAL_neutral_veto_status = apply_PCAL_neutral_veto ? "_wPnV" : "_woPnV";
+    std::string PCAL_neutral_veto_status = "";
+    // std::string PCAL_neutral_veto_status = apply_PCAL_neutral_veto ? "_wPnV" : "_woPnV";
     std::string General_status = "";
 
     nPart_veto_radii = (!apply_PCAL_neutral_veto) ? vector<double>{0} : nPart_veto_radii;
@@ -2887,7 +2890,7 @@ void GammaNeutronFD_separation_test() {
 
                         myCanvas_eff_plots->cd();
                         gPad->Update();
-\
+
                         text.DrawLatex(0.05, 0.90, "Uniform sample of (e,e'n) events (truth-level)");
 
                         text.DrawLatex(0.05, 0.80, ("Beam energy: " + Ebeam_status0).c_str());
