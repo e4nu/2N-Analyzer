@@ -36,7 +36,7 @@ void GammaNeutronFD_separation_test() {
     // int Limiter = 100000;  // 10 files
     // int Limiter = 10000;  // 1 file
 
-    bool apply_nFD_multi_cut = true;
+    bool apply_nFD_multi_cut = false;
 
     bool apply_neutFD_redef = true;
     bool apply_ECAL_veto = true;
