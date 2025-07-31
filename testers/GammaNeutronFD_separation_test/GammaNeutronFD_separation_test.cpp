@@ -14,7 +14,7 @@ namespace hf = histogram_functions;
 void GammaNeutronFD_separation_test() {
     cout << "\n\nInitiating GammaNeutronFD_separation_test.cpp\n";
 
-    int version = 21;
+    int version = 22;
 
     bool use_ConstPn_samples = false;
 
@@ -714,7 +714,8 @@ void GammaNeutronFD_separation_test() {
                         new TH2D("LnFD_status_VS_reco_theta_LnFD_minus_reco_theta_e_zoomin_ECALveto_1e_cut",
                                  "LnFD status vs. #Delta#theta^{reco}_{LnFD,e} - zoomin - in 1e cut (ECALveto);#Delta#theta^{reco}_{LnFD,e} = #theta^{reco}_{LnFD} - #theta^{reco}_{e} "
                                  "[#circ];LnFD status",
-                                 100, -25., 10., 100, 1990, 2250.);
+                                 100, -5., 5., 100, 1990, 2250.);
+                                //  100, -25., 10., 100, 1990, 2250.);
                     HistoList.push_back(h_LnFD_status_VS_reco_theta_LnFD_minus_reco_theta_e_zoomin_ECALveto_1e_cut);
 
                     TH1D* h_v_dist_nFD_ECALveto_1e_cut = new TH1D("v_dist_nFD_ECALveto_1e_cut", "v_dist in 1e cut (ECALveto);v_dist [cm];Counts", 50, 0., 1000.);
