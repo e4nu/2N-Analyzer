@@ -1760,9 +1760,9 @@ void GammaNeutronFD_separation_test() {
                                         h_reco_P_LnFD_VS_reco_phi_LnFD_minus_reco_phi_e_ECIN_only_ECALveto_1e_cut->Fill(
                                             CalcdPhi1(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI), reco_P_nFD.Mag(), weight);
                                         h_LnFD_status_VS_reco_theta_LnFD_minus_reco_theta_e_ECIN_only_ECALveto_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI - reco_P_e.Theta() * 180 / M_PI,
-                                                                                                                            neutrons_FD_ECIN_only_ECALveto[i]->par()->getStatus(), weight);
+                                                                                                                            neutrons_FD_ECALveto[i]->par()->getStatus(), weight);
                                         h_LnFD_status_VS_reco_theta_LnFD_minus_reco_theta_e_zoomin_ECIN_only_ECALveto_1e_cut->Fill(
-                                            reco_P_nFD.Theta() * 180 / M_PI - reco_P_e.Theta() * 180 / M_PI, neutrons_FD_ECIN_only_ECALveto[i]->par()->getStatus(), weight);
+                                            reco_P_nFD.Theta() * 180 / M_PI - reco_P_e.Theta() * 180 / M_PI, neutrons_FD_ECALveto[i]->par()->getStatus(), weight);
                                     } else if (ParticleInECOUT) {
                                         h_reco_theta_LnFD_minus_reco_theta_e_ECOUT_only_ECALveto_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI - reco_P_e.Theta() * 180 / M_PI, weight);
                                         h_reco_phi_LnFD_minus_reco_phi_e_ECOUT_only_ECALveto_1e_cut->Fill(CalcdPhi1(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI), weight);
@@ -1773,9 +1773,9 @@ void GammaNeutronFD_separation_test() {
                                         h_reco_P_LnFD_VS_reco_phi_LnFD_minus_reco_phi_e_ECOUT_only_ECALveto_1e_cut->Fill(
                                             CalcdPhi1(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI), reco_P_nFD.Mag(), weight);
                                         h_LnFD_status_VS_reco_theta_LnFD_minus_reco_theta_e_ECOUT_only_ECALveto_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI - reco_P_e.Theta() * 180 / M_PI,
-                                                                                                                             neutrons_FD_ECOUT_only_ECALveto[i]->par()->getStatus(), weight);
+                                                                                                                             neutrons_FD_ECALveto[i]->par()->getStatus(), weight);
                                         h_LnFD_status_VS_reco_theta_LnFD_minus_reco_theta_e_zoomin_ECOUT_only_ECALveto_1e_cut->Fill(
-                                            reco_P_nFD.Theta() * 180 / M_PI - reco_P_e.Theta() * 180 / M_PI, neutrons_FD_ECOUT_only_ECALveto[i]->par()->getStatus(), weight);
+                                            reco_P_nFD.Theta() * 180 / M_PI - reco_P_e.Theta() * 180 / M_PI, neutrons_FD_ECALveto[i]->par()->getStatus(), weight);
                                     }
                                 }
 
