@@ -14,6 +14,8 @@ namespace hf = histogram_functions;
 void GammaNeutronFD_separation_test() {
     cout << "\n\nInitiating GammaNeutronFD_separation_test.cpp\n";
 
+    int version = 20;
+
     bool use_ConstPn_samples = false;
 
     vector<double> cPart_veto_radii = {100};
@@ -52,8 +54,6 @@ void GammaNeutronFD_separation_test() {
 
     bool plot_AMaps = false;
     // bool plot_AMaps = true;
-
-    int version = 19;
 
     std::string OutFolderName_prefix = bt::ToStringWithPrecision(version, 0) + "_2N_analyzer_";
     std::string OutFolderName_ver_status = "_v" + bt::ToStringWithPrecision(version, 0);
@@ -704,7 +704,7 @@ void GammaNeutronFD_separation_test() {
                         new TH2D("LnFD_status_VS_reco_theta_LnFD_minus_reco_theta_e_ECALveto_1e_cut",
                                  "LnFD status vs. #Delta#theta^{reco}_{LnFD,e} in 1e cut (ECALveto);#Delta#theta^{reco}_{LnFD,e} = #theta^{reco}_{LnFD} - #theta^{reco}_{e} "
                                  "[#circ];LnFD status",
-                                 100, -25., 10., 100, 0., 10000.);
+                                 100, -25., 100, 1990, 3000.);
                     HistoList.push_back(h_LnFD_status_VS_reco_theta_LnFD_minus_reco_theta_e_ECALveto_1e_cut);
 
                     TH1D* h_v_dist_nFD_ECALveto_1e_cut = new TH1D("v_dist_nFD_ECALveto_1e_cut", "v_dist in 1e cut (ECALveto);v_dist [cm];Counts", 50, 0., 1000.);
@@ -2130,7 +2130,7 @@ void GammaNeutronFD_separation_test() {
                     TLatex titles;
                     TLatex text;
                     titles.SetTextSize(0.1);
-                    text.SetTextSize(0.05);
+                    text.SetTextSize(0.03);
 
                     gStyle->SetOptStat("ourmen");
 
@@ -2167,15 +2167,17 @@ void GammaNeutronFD_separation_test() {
 
                         text.DrawLatex(0.05, 0.90, "Uniform sample of (e,e'n) events (truth-level)");
 
-                        text.DrawLatex(0.05, 0.80, ("Beam energy: " + Ebeam_status0).c_str());
-                        text.DrawLatex(0.05, 0.75, ("OutFolderName: " + OutFolderName).c_str());
-                        text.DrawLatex(0.05, 0.7, ("ConstrainedE: " + bt::BoolToString(ConstrainedE)).c_str());
+                        text.DrawLatex(0.05, 0.80, "OutFolderName:");
+                        text.DrawLatex(0.10, 0.75, (OutFolderName).c_str());
 
-                        text.DrawLatex(0.05, 0.6, ("apply_ECAL_veto = " + BoolToString(apply_ECAL_veto)).c_str());
+                        text.DrawLatex(0.05, 0.70, ("Beam energy: " + Ebeam_status0).c_str());
+                        text.DrawLatex(0.05, 0.75, ("ConstrainedE: " + bt::BoolToString(ConstrainedE)).c_str());
+
+                        text.DrawLatex(0.05, 0.60, ("apply_ECAL_veto = " + BoolToString(apply_ECAL_veto)).c_str());
                         text.DrawLatex(0.05, 0.55, ("cPart_veto_radius = " + ToStringWithPrecision(cPart_veto_radius, 0)).c_str());
 
-                        text.DrawLatex(0.05, 0.45, ("apply_PCAL_neutral_veto = " + BoolToString(apply_PCAL_neutral_veto)).c_str());
-                        text.DrawLatex(0.05, 0.4, ("nPart_veto_radius = " + ToStringWithPrecision(nPart_veto_radius, 0)).c_str());
+                        // text.DrawLatex(0.05, 0.45, ("apply_PCAL_neutral_veto = " + BoolToString(apply_PCAL_neutral_veto)).c_str());
+                        // text.DrawLatex(0.05, 0.4, ("nPart_veto_radius = " + ToStringWithPrecision(nPart_veto_radius, 0)).c_str());
 
                         myText->Print(fileName_electron_cuts, "pdf");
                         myText->Clear();
@@ -2252,15 +2254,17 @@ void GammaNeutronFD_separation_test() {
 
                         text.DrawLatex(0.05, 0.90, "Uniform sample of (e,e'n) events (truth-level)");
 
-                        text.DrawLatex(0.05, 0.80, ("Beam energy: " + Ebeam_status0).c_str());
-                        text.DrawLatex(0.05, 0.75, ("OutFolderName: " + OutFolderName).c_str());
-                        text.DrawLatex(0.05, 0.7, ("ConstrainedE: " + bt::BoolToString(ConstrainedE)).c_str());
+                        text.DrawLatex(0.05, 0.80, "OutFolderName:");
+                        text.DrawLatex(0.10, 0.75, (OutFolderName).c_str());
 
-                        text.DrawLatex(0.05, 0.6, ("apply_ECAL_veto = " + BoolToString(apply_ECAL_veto)).c_str());
+                        text.DrawLatex(0.05, 0.70, ("Beam energy: " + Ebeam_status0).c_str());
+                        text.DrawLatex(0.05, 0.75, ("ConstrainedE: " + bt::BoolToString(ConstrainedE)).c_str());
+
+                        text.DrawLatex(0.05, 0.60, ("apply_ECAL_veto = " + BoolToString(apply_ECAL_veto)).c_str());
                         text.DrawLatex(0.05, 0.55, ("cPart_veto_radius = " + ToStringWithPrecision(cPart_veto_radius, 0)).c_str());
 
-                        text.DrawLatex(0.05, 0.45, ("apply_PCAL_neutral_veto = " + BoolToString(apply_PCAL_neutral_veto)).c_str());
-                        text.DrawLatex(0.05, 0.4, ("nPart_veto_radius = " + ToStringWithPrecision(nPart_veto_radius, 0)).c_str());
+                        // text.DrawLatex(0.05, 0.45, ("apply_PCAL_neutral_veto = " + BoolToString(apply_PCAL_neutral_veto)).c_str());
+                        // text.DrawLatex(0.05, 0.4, ("nPart_veto_radius = " + ToStringWithPrecision(nPart_veto_radius, 0)).c_str());
 
                         myText->Print(fileName_raw, "pdf");
                         myText->Clear();
@@ -2337,15 +2341,17 @@ void GammaNeutronFD_separation_test() {
 
                         text.DrawLatex(0.05, 0.90, "Uniform sample of (e,e'n) events (truth-level)");
 
-                        text.DrawLatex(0.05, 0.80, ("Beam energy: " + Ebeam_status0).c_str());
-                        text.DrawLatex(0.05, 0.75, ("OutFolderName: " + OutFolderName).c_str());
-                        text.DrawLatex(0.05, 0.7, ("ConstrainedE: " + bt::BoolToString(ConstrainedE)).c_str());
+                        text.DrawLatex(0.05, 0.80, "OutFolderName:");
+                        text.DrawLatex(0.10, 0.75, (OutFolderName).c_str());
 
-                        text.DrawLatex(0.05, 0.6, ("apply_ECAL_veto = " + BoolToString(apply_ECAL_veto)).c_str());
+                        text.DrawLatex(0.05, 0.70, ("Beam energy: " + Ebeam_status0).c_str());
+                        text.DrawLatex(0.05, 0.75, ("ConstrainedE: " + bt::BoolToString(ConstrainedE)).c_str());
+
+                        text.DrawLatex(0.05, 0.60, ("apply_ECAL_veto = " + BoolToString(apply_ECAL_veto)).c_str());
                         text.DrawLatex(0.05, 0.55, ("cPart_veto_radius = " + ToStringWithPrecision(cPart_veto_radius, 0)).c_str());
 
-                        text.DrawLatex(0.05, 0.45, ("apply_PCAL_neutral_veto = " + BoolToString(apply_PCAL_neutral_veto)).c_str());
-                        text.DrawLatex(0.05, 0.4, ("nPart_veto_radius = " + ToStringWithPrecision(nPart_veto_radius, 0)).c_str());
+                        // text.DrawLatex(0.05, 0.45, ("apply_PCAL_neutral_veto = " + BoolToString(apply_PCAL_neutral_veto)).c_str());
+                        // text.DrawLatex(0.05, 0.4, ("nPart_veto_radius = " + ToStringWithPrecision(nPart_veto_radius, 0)).c_str());
 
                         myText->Print(fileName_clas12reco, "pdf");
                         myText->Clear();
@@ -2422,15 +2428,17 @@ void GammaNeutronFD_separation_test() {
 
                         text.DrawLatex(0.05, 0.90, "Uniform sample of (e,e'n) events (truth-level)");
 
-                        text.DrawLatex(0.05, 0.80, ("Beam energy: " + Ebeam_status0).c_str());
-                        text.DrawLatex(0.05, 0.75, ("OutFolderName: " + OutFolderName).c_str());
-                        text.DrawLatex(0.05, 0.7, ("ConstrainedE: " + bt::BoolToString(ConstrainedE)).c_str());
+                        text.DrawLatex(0.05, 0.80, "OutFolderName:");
+                        text.DrawLatex(0.10, 0.75, (OutFolderName).c_str());
 
-                        text.DrawLatex(0.05, 0.6, ("apply_ECAL_veto = " + BoolToString(apply_ECAL_veto)).c_str());
+                        text.DrawLatex(0.05, 0.70, ("Beam energy: " + Ebeam_status0).c_str());
+                        text.DrawLatex(0.05, 0.75, ("ConstrainedE: " + bt::BoolToString(ConstrainedE)).c_str());
+
+                        text.DrawLatex(0.05, 0.60, ("apply_ECAL_veto = " + BoolToString(apply_ECAL_veto)).c_str());
                         text.DrawLatex(0.05, 0.55, ("cPart_veto_radius = " + ToStringWithPrecision(cPart_veto_radius, 0)).c_str());
 
-                        text.DrawLatex(0.05, 0.45, ("apply_PCAL_neutral_veto = " + BoolToString(apply_PCAL_neutral_veto)).c_str());
-                        text.DrawLatex(0.05, 0.4, ("nPart_veto_radius = " + ToStringWithPrecision(nPart_veto_radius, 0)).c_str());
+                        // text.DrawLatex(0.05, 0.45, ("apply_PCAL_neutral_veto = " + BoolToString(apply_PCAL_neutral_veto)).c_str());
+                        // text.DrawLatex(0.05, 0.4, ("nPart_veto_radius = " + ToStringWithPrecision(nPart_veto_radius, 0)).c_str());
 
                         myText->Print(fileName_redef, "pdf");
                         myText->Clear();
@@ -2506,15 +2514,17 @@ void GammaNeutronFD_separation_test() {
 
                         text.DrawLatex(0.05, 0.90, "Uniform sample of (e,e'n) events (truth-level)");
 
-                        text.DrawLatex(0.05, 0.80, ("Beam energy: " + Ebeam_status0).c_str());
-                        text.DrawLatex(0.05, 0.75, ("OutFolderName: " + OutFolderName).c_str());
-                        text.DrawLatex(0.05, 0.7, ("ConstrainedE: " + bt::BoolToString(ConstrainedE)).c_str());
+                        text.DrawLatex(0.05, 0.80, "OutFolderName:");
+                        text.DrawLatex(0.10, 0.75, (OutFolderName).c_str());
 
-                        text.DrawLatex(0.05, 0.6, ("apply_ECAL_veto = " + BoolToString(apply_ECAL_veto)).c_str());
+                        text.DrawLatex(0.05, 0.70, ("Beam energy: " + Ebeam_status0).c_str());
+                        text.DrawLatex(0.05, 0.75, ("ConstrainedE: " + bt::BoolToString(ConstrainedE)).c_str());
+
+                        text.DrawLatex(0.05, 0.60, ("apply_ECAL_veto = " + BoolToString(apply_ECAL_veto)).c_str());
                         text.DrawLatex(0.05, 0.55, ("cPart_veto_radius = " + ToStringWithPrecision(cPart_veto_radius, 0)).c_str());
 
-                        text.DrawLatex(0.05, 0.45, ("apply_PCAL_neutral_veto = " + BoolToString(apply_PCAL_neutral_veto)).c_str());
-                        text.DrawLatex(0.05, 0.4, ("nPart_veto_radius = " + ToStringWithPrecision(nPart_veto_radius, 0)).c_str());
+                        // text.DrawLatex(0.05, 0.45, ("apply_PCAL_neutral_veto = " + BoolToString(apply_PCAL_neutral_veto)).c_str());
+                        // text.DrawLatex(0.05, 0.4, ("nPart_veto_radius = " + ToStringWithPrecision(nPart_veto_radius, 0)).c_str());
 
                         myText->Print(fileName, "pdf");
                         myText->Clear();
@@ -2895,15 +2905,17 @@ void GammaNeutronFD_separation_test() {
 
                         text.DrawLatex(0.05, 0.90, "Uniform sample of (e,e'n) events (truth-level)");
 
-                        text.DrawLatex(0.05, 0.80, ("Beam energy: " + Ebeam_status0).c_str());
-                        text.DrawLatex(0.05, 0.75, ("OutFolderName: " + OutFolderName).c_str());
-                        text.DrawLatex(0.05, 0.7, ("ConstrainedE: " + bt::BoolToString(ConstrainedE)).c_str());
+                        text.DrawLatex(0.05, 0.80, "OutFolderName:");
+                        text.DrawLatex(0.10, 0.75, (OutFolderName).c_str());
 
-                        text.DrawLatex(0.05, 0.6, ("apply_ECAL_veto = " + BoolToString(apply_ECAL_veto)).c_str());
+                        text.DrawLatex(0.05, 0.70, ("Beam energy: " + Ebeam_status0).c_str());
+                        text.DrawLatex(0.05, 0.75, ("ConstrainedE: " + bt::BoolToString(ConstrainedE)).c_str());
+
+                        text.DrawLatex(0.05, 0.60, ("apply_ECAL_veto = " + BoolToString(apply_ECAL_veto)).c_str());
                         text.DrawLatex(0.05, 0.55, ("cPart_veto_radius = " + ToStringWithPrecision(cPart_veto_radius, 0)).c_str());
 
-                        text.DrawLatex(0.05, 0.45, ("apply_PCAL_neutral_veto = " + BoolToString(apply_PCAL_neutral_veto)).c_str());
-                        text.DrawLatex(0.05, 0.4, ("nPart_veto_radius = " + ToStringWithPrecision(nPart_veto_radius, 0)).c_str());
+                        // text.DrawLatex(0.05, 0.45, ("apply_PCAL_neutral_veto = " + BoolToString(apply_PCAL_neutral_veto)).c_str());
+                        // text.DrawLatex(0.05, 0.4, ("nPart_veto_radius = " + ToStringWithPrecision(nPart_veto_radius, 0)).c_str());
 
                         myCanvas_eff_plots->Print(fileName_eff_plots, "pdf");
                         myCanvas_eff_plots->Clear();
