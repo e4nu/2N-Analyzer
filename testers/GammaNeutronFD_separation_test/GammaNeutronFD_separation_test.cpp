@@ -26,12 +26,12 @@ void GammaNeutronFD_separation_test() {
     // vector<double> Ebeam_v = {5.98636};
     // vector<vector<bool>> Ebeam_bool_v = {{false, false, true}};
     // vector<double> Ebeam_v = {2.07052, 4.02962, 5.98636};
-    vector<vector<bool>> Ebeam_bool_v = {{true, false, false}, {false, true, false}, {false, false, true}};
+    // vector<vector<bool>> Ebeam_bool_v = {{true, false, false}, {false, true, false}, {false, false, true}};
 
-    int Limiter = 25000000;  // 2500 files
+    // int Limiter = 25000000;  // 2500 files
     // int Limiter = 10000000;  // 1000 files
     // int Limiter = 1000000;  // 100 files
-    // int Limiter = 100000;  // 10 files
+    int Limiter = 100000;  // 10 files
     // int Limiter = 10000;  // 1 file
 
     bool apply_neutFD_redef = true;
@@ -39,7 +39,8 @@ void GammaNeutronFD_separation_test() {
 
     bool apply_PCAL_neutral_veto = false;
 
-    vector<vector<bool>> CutSelector = {{false, false, true}};  // {ConstrainedE, OnlyGood_nFD, OnlyBad_nFD}
+    // vector<vector<bool>> CutSelector = {{false, false, true}};  // {ConstrainedE, OnlyGood_nFD, OnlyBad_nFD}
+    vector<vector<bool>> CutSelector = {{false, false, true}, {true, false, true}};  // {ConstrainedE, OnlyGood_nFD, OnlyBad_nFD}
     // vector<vector<bool>> CutSelector = {{false, false, false}, {false, true, false}, {false, false, true}};  // {ConstrainedE, OnlyGood_nFD, OnlyBad_nFD}
     // vector<vector<bool>> CutSelector = {{true, false, false}, {true, true, false}, {true, false, true}};  // {ConstrainedE, OnlyGood_nFD, OnlyBad_nFD}
 
@@ -75,6 +76,7 @@ void GammaNeutronFD_separation_test() {
                     bool OnlyBad_nFD = CutSelector.at(Selector_ind).at(2);
 
                     std::string Ebeam_status = Is2GeV ? "_2GeV" : Is4GeV ? "_4GeV" : Is6GeV ? "_6GeV" : "_Unknown";
+                    std::string Ebeam_status0 = Is2GeV ? "2GeV" : Is4GeV ? "4GeV" : Is6GeV ? "6GeV" : "Unknown";
                     std::string rc_factor_status = apply_ECAL_veto ? "_rc" + ToStringWithPrecision(cPart_veto_radius, 0) : "";
                     std::string nPart_veto_radius_status = apply_PCAL_neutral_veto ? "_rn" + ToStringWithPrecision(nPart_veto_radius, 0) : "";
                     std::string Good_nFD_status = (OnlyGood_nFD && !OnlyBad_nFD) ? "_OnlyGood_nFD" : "";
@@ -1376,7 +1378,8 @@ void GammaNeutronFD_separation_test() {
                                                 bool PassMomTh = (Momentum >= 0.4);
                                                 bool PassECALeadgeCuts =
                                                     (allParticles[i]->cal(Neutron_ECAL_detlayer)->getLv() > 14. && allParticles[i]->cal(Neutron_ECAL_detlayer)->getLw() > 14.);
-                                                bool PassVeto = NeutronECAL_Cut_Veto(allParticles, electrons, Ebeam, i, apply_PCAL_neutral_veto, cPart_veto_radius, nPart_veto_radius);
+                                                bool PassVeto = NeutronECAL_Cut_Veto_original(allParticles, electrons, Ebeam, i, cPart_veto_radius);
+                                                // bool PassVeto = NeutronECAL_Cut_Veto(allParticles, electrons, Ebeam, i, apply_PCAL_neutral_veto, cPart_veto_radius, nPart_veto_radius);
 
                                                 bool PassPhi_nFDCuts = true;
                                                 int nFD_nSector = allParticles[i]->cal(Neutron_ECAL_detlayer)->getSector();
@@ -1439,8 +1442,9 @@ void GammaNeutronFD_separation_test() {
                             bool PassMomTh = (Mom_neut_1e_cut >= 0.4);
                             bool PassECALeadgeCuts = (allParticles[NeutronsFD_ind_mom_max]->cal(Neutron_ECAL_detlayer)->getLv() > 14. &&
                                                       allParticles[NeutronsFD_ind_mom_max]->cal(Neutron_ECAL_detlayer)->getLw() > 14.);
-                            bool NeutronPassVeto_1e_cut =
-                                NeutronECAL_Cut_Veto(allParticles, electrons, Ebeam, NeutronsFD_ind_mom_max, apply_PCAL_neutral_veto, cPart_veto_radius, nPart_veto_radius);
+                            bool PassVeto = NeutronECAL_Cut_Veto_original(allParticles, electrons, Ebeam, i, cPart_veto_radius);
+                            // bool NeutronPassVeto_1e_cut =
+                            //     NeutronECAL_Cut_Veto(allParticles, electrons, Ebeam, NeutronsFD_ind_mom_max, apply_PCAL_neutral_veto, cPart_veto_radius, nPart_veto_radius);
 
                             bool PassPhi_nFDCuts = true;
                             int nFD_nSector = allParticles[NeutronsFD_ind_mom_max]->cal(Neutron_ECAL_detlayer)->getSector();
@@ -1570,8 +1574,8 @@ void GammaNeutronFD_separation_test() {
                                                                                                           weight);
                                 h_reco_P_LnFD_VS_reco_phi_LnFD_minus_reco_phi_e_ECALveto_1e_cut->Fill(CalcdPhi1(reco_P_nFD.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI),
                                                                                                       reco_P_nFD.Mag(), weight);
-                                h_LnFD_status_VS_reco_theta_LnFD_minus_reco_theta_e_ECALveto_1e_cut->Fill(
-                                    reco_P_nFD.Theta() * 180 / M_PI - reco_P_e.Theta() * 180 / M_PI, neutrons_FD_ECALveto[i]->par()->getStatus(), weight);
+                                h_LnFD_status_VS_reco_theta_LnFD_minus_reco_theta_e_ECALveto_1e_cut->Fill(reco_P_nFD.Theta() * 180 / M_PI - reco_P_e.Theta() * 180 / M_PI,
+                                                                                                          neutrons_FD_ECALveto[i]->par()->getStatus(), weight);
                             }
 
                             TVector3 v_nhit(neutrons_FD_ECALveto[i]->cal(detlayer)->getX(), neutrons_FD_ECALveto[i]->cal(detlayer)->getY(), neutrons_FD_ECALveto[i]->cal(detlayer)->getZ());
@@ -1813,7 +1817,8 @@ void GammaNeutronFD_separation_test() {
                                 // bool PassECALeadgeCuts = true;
                                 bool PassECALeadgeCuts = (allParticles[i]->cal(Neutron_ECAL_detlayer)->getLv() > 14. && allParticles[i]->cal(Neutron_ECAL_detlayer)->getLw() > 14.);
                                 // bool PassVeto = true;
-                                bool PassVeto = NeutronECAL_Cut_Veto(allParticles, electrons, Ebeam, i, 100,apply_PCAL_neutral_veto, rc_factor ,nPart_veto_radius);
+                                bool PassVeto = NeutronECAL_Cut_Veto_original(allParticles, electrons, Ebeam, i, cPart_veto_radius);
+                                // bool PassVeto = NeutronECAL_Cut_Veto(allParticles, electrons, Ebeam, i, 100,apply_PCAL_neutral_veto, rc_factor ,nPart_veto_radius);
 
                                 if (PassMomTh && PassECALeadgeCuts && PassVeto) {
                                     for (int j = 0; j < truth_NeutronsFD.size(); j++) {
@@ -1861,7 +1866,8 @@ void GammaNeutronFD_separation_test() {
                                                 bool PassMomTh = (Momentum >= 0.4);
                                                 bool PassECALeadgeCuts =
                                                     (allParticles[i]->cal(Neutron_ECAL_detlayer)->getLv() > 14. && allParticles[i]->cal(Neutron_ECAL_detlayer)->getLw() > 14.);
-                                                bool PassVeto = NeutronECAL_Cut_Veto(allParticles, electrons, Ebeam, i, apply_PCAL_neutral_veto, cPart_veto_radius, nPart_veto_radius);
+                                                bool PassVeto = NeutronECAL_Cut_Veto_original(allParticles, electrons, Ebeam, i, cPart_veto_radius);
+                                                // bool PassVeto = NeutronECAL_Cut_Veto(allParticles, electrons, Ebeam, i, apply_PCAL_neutral_veto, cPart_veto_radius, nPart_veto_radius);
 
                                                 bool PassPhi_nFDCuts = true;
                                                 int nFD_nSector = allParticles[i]->cal(Neutron_ECAL_detlayer)->getSector();
@@ -2154,21 +2160,11 @@ void GammaNeutronFD_separation_test() {
                         /////////////////////////////////////
                         myText->cd();
 
-                        text.DrawLatex(0.05, 0.9, "Uniform sample of (e,e'n) events (truth-level)");
+                        text.DrawLatex(0.05, 0.90, "Uniform sample of (e,e'n) events (truth-level)");
 
-                        if (FindSubstring(InputFiles, "2070MeV")) {
-                            text.DrawLatex(0.2, 0.8, "Beam energy: 2070MeV");
-                        } else if (FindSubstring(InputFiles, "4029MeV")) {
-                            text.DrawLatex(0.2, 0.8, "Beam energy: 4029MeV");
-                        } else if (FindSubstring(InputFiles, "5986MeV")) {
-                            text.DrawLatex(0.2, 0.8, "Beam energy: 5986MeV");
-                        }
-
-                        if (ConstrainedE) {
-                            text.DrawLatex(0.05, 0.7, "ConstrainedE = yes");
-                        } else {
-                            text.DrawLatex(0.05, 0.7, "ConstrainedE = no");
-                        }
+                        text.DrawLatex(0.05, 0.80, ("Beam energy: " + Ebeam_status0).c_str());
+                        text.DrawLatex(0.05, 0.75, ("OutFolderName: " + OutFolderName).c_str());
+                        text.DrawLatex(0.05, 0.7, ("ConstrainedE: " + bt::BoolToString(ConstrainedE)).c_str());
 
                         text.DrawLatex(0.05, 0.6, ("apply_ECAL_veto = " + BoolToString(apply_ECAL_veto)).c_str());
                         text.DrawLatex(0.05, 0.55, ("cPart_veto_radius = " + ToStringWithPrecision(cPart_veto_radius, 0)).c_str());
@@ -2249,21 +2245,11 @@ void GammaNeutronFD_separation_test() {
                         /////////////////////////////////////
                         myText->cd();
 
-                        text.DrawLatex(0.05, 0.9, "Uniform sample of (e,e'n) events (truth-level)");
+                        text.DrawLatex(0.05, 0.90, "Uniform sample of (e,e'n) events (truth-level)");
 
-                        if (FindSubstring(InputFiles, "2070MeV")) {
-                            text.DrawLatex(0.2, 0.8, "Beam energy: 2070MeV");
-                        } else if (FindSubstring(InputFiles, "4029MeV")) {
-                            text.DrawLatex(0.2, 0.8, "Beam energy: 4029MeV");
-                        } else if (FindSubstring(InputFiles, "5986MeV")) {
-                            text.DrawLatex(0.2, 0.8, "Beam energy: 5986MeV");
-                        }
-
-                        if (ConstrainedE) {
-                            text.DrawLatex(0.05, 0.7, "ConstrainedE = yes");
-                        } else {
-                            text.DrawLatex(0.05, 0.7, "ConstrainedE = no");
-                        }
+                        text.DrawLatex(0.05, 0.80, ("Beam energy: " + Ebeam_status0).c_str());
+                        text.DrawLatex(0.05, 0.75, ("OutFolderName: " + OutFolderName).c_str());
+                        text.DrawLatex(0.05, 0.7, ("ConstrainedE: " + bt::BoolToString(ConstrainedE)).c_str());
 
                         text.DrawLatex(0.05, 0.6, ("apply_ECAL_veto = " + BoolToString(apply_ECAL_veto)).c_str());
                         text.DrawLatex(0.05, 0.55, ("cPart_veto_radius = " + ToStringWithPrecision(cPart_veto_radius, 0)).c_str());
@@ -2344,21 +2330,11 @@ void GammaNeutronFD_separation_test() {
                         /////////////////////////////////////
                         myText->cd();
 
-                        text.DrawLatex(0.05, 0.9, "Uniform sample of (e,e'n) events (truth-level)");
+                        text.DrawLatex(0.05, 0.90, "Uniform sample of (e,e'n) events (truth-level)");
 
-                        if (FindSubstring(InputFiles, "2070MeV")) {
-                            text.DrawLatex(0.2, 0.8, "Beam energy: 2070MeV");
-                        } else if (FindSubstring(InputFiles, "4029MeV")) {
-                            text.DrawLatex(0.2, 0.8, "Beam energy: 4029MeV");
-                        } else if (FindSubstring(InputFiles, "5986MeV")) {
-                            text.DrawLatex(0.2, 0.8, "Beam energy: 5986MeV");
-                        }
-
-                        if (ConstrainedE) {
-                            text.DrawLatex(0.05, 0.7, "ConstrainedE = yes");
-                        } else {
-                            text.DrawLatex(0.05, 0.7, "ConstrainedE = no");
-                        }
+                        text.DrawLatex(0.05, 0.80, ("Beam energy: " + Ebeam_status0).c_str());
+                        text.DrawLatex(0.05, 0.75, ("OutFolderName: " + OutFolderName).c_str());
+                        text.DrawLatex(0.05, 0.7, ("ConstrainedE: " + bt::BoolToString(ConstrainedE)).c_str());
 
                         text.DrawLatex(0.05, 0.6, ("apply_ECAL_veto = " + BoolToString(apply_ECAL_veto)).c_str());
                         text.DrawLatex(0.05, 0.55, ("cPart_veto_radius = " + ToStringWithPrecision(cPart_veto_radius, 0)).c_str());
@@ -2439,21 +2415,11 @@ void GammaNeutronFD_separation_test() {
                         /////////////////////////////////////
                         myText->cd();
 
-                        text.DrawLatex(0.05, 0.9, "Uniform sample of (e,e'n) events (truth-level)");
+                        text.DrawLatex(0.05, 0.90, "Uniform sample of (e,e'n) events (truth-level)");
 
-                        if (FindSubstring(InputFiles, "2070MeV")) {
-                            text.DrawLatex(0.2, 0.8, "Beam energy: 2070MeV");
-                        } else if (FindSubstring(InputFiles, "4029MeV")) {
-                            text.DrawLatex(0.2, 0.8, "Beam energy: 4029MeV");
-                        } else if (FindSubstring(InputFiles, "5986MeV")) {
-                            text.DrawLatex(0.2, 0.8, "Beam energy: 5986MeV");
-                        }
-
-                        if (ConstrainedE) {
-                            text.DrawLatex(0.05, 0.7, "ConstrainedE = yes");
-                        } else {
-                            text.DrawLatex(0.05, 0.7, "ConstrainedE = no");
-                        }
+                        text.DrawLatex(0.05, 0.80, ("Beam energy: " + Ebeam_status0).c_str());
+                        text.DrawLatex(0.05, 0.75, ("OutFolderName: " + OutFolderName).c_str());
+                        text.DrawLatex(0.05, 0.7, ("ConstrainedE: " + bt::BoolToString(ConstrainedE)).c_str());
 
                         text.DrawLatex(0.05, 0.6, ("apply_ECAL_veto = " + BoolToString(apply_ECAL_veto)).c_str());
                         text.DrawLatex(0.05, 0.55, ("cPart_veto_radius = " + ToStringWithPrecision(cPart_veto_radius, 0)).c_str());
@@ -2533,21 +2499,11 @@ void GammaNeutronFD_separation_test() {
                         /////////////////////////////////////
                         myText->cd();
 
-                        text.DrawLatex(0.05, 0.9, "Uniform sample of (e,e'n) events (truth-level)");
+                        text.DrawLatex(0.05, 0.90, "Uniform sample of (e,e'n) events (truth-level)");
 
-                        if (FindSubstring(InputFiles, "2070MeV")) {
-                            text.DrawLatex(0.2, 0.8, "Beam energy: 2070MeV");
-                        } else if (FindSubstring(InputFiles, "4029MeV")) {
-                            text.DrawLatex(0.2, 0.8, "Beam energy: 4029MeV");
-                        } else if (FindSubstring(InputFiles, "5986MeV")) {
-                            text.DrawLatex(0.2, 0.8, "Beam energy: 5986MeV");
-                        }
-
-                        if (ConstrainedE) {
-                            text.DrawLatex(0.05, 0.7, "ConstrainedE = yes");
-                        } else {
-                            text.DrawLatex(0.05, 0.7, "ConstrainedE = no");
-                        }
+                        text.DrawLatex(0.05, 0.80, ("Beam energy: " + Ebeam_status0).c_str());
+                        text.DrawLatex(0.05, 0.75, ("OutFolderName: " + OutFolderName).c_str());
+                        text.DrawLatex(0.05, 0.7, ("ConstrainedE: " + bt::BoolToString(ConstrainedE)).c_str());
 
                         text.DrawLatex(0.05, 0.6, ("apply_ECAL_veto = " + BoolToString(apply_ECAL_veto)).c_str());
                         text.DrawLatex(0.05, 0.55, ("cPart_veto_radius = " + ToStringWithPrecision(cPart_veto_radius, 0)).c_str());
@@ -2655,11 +2611,13 @@ void GammaNeutronFD_separation_test() {
                             if (HistoList[i]->InheritsFrom("TH1D")) {
                                 HistoList[i]->Draw();
                             } else if (HistoList[i]->InheritsFrom("TH2D")) {
+                                myCanvas->SetLogz(0);
                                 // if (FindSubstring(HistoList[i]->GetTitle(), "#Delta#theta_{nFD,e} vs. #Delta#phi_{nFD,e} in 1e cut")) {
                                 //     gPad->SetRightMargin(0.225);
                                 // } else {
                                 //     gPad->SetRightMargin(0.05);
                                 // }
+                                if (bt::FindSubstring(name, "multi")) { myCanvas->SetLogz(1); }
 
                                 HistoList[i]->Draw("colz");
 
@@ -2929,15 +2887,19 @@ void GammaNeutronFD_separation_test() {
 
                         myCanvas_eff_plots->cd();
                         gPad->Update();
-                        // myText->cd();
-                        text.DrawLatex(0.2, 0.9, "Uniform sample of (e,e'n) events (truth-level)");
-                        if (FindSubstring(InputFiles, "2070MeV")) {
-                            text.DrawLatex(0.2, 0.7, "Beam energy: 2070MeV");
-                        } else if (FindSubstring(InputFiles, "4029MeV")) {
-                            text.DrawLatex(0.2, 0.7, "Beam energy: 4029MeV");
-                        } else if (FindSubstring(InputFiles, "5986MeV")) {
-                            text.DrawLatex(0.2, 0.7, "Beam energy: 5986MeV");
-                        }
+\
+                        text.DrawLatex(0.05, 0.90, "Uniform sample of (e,e'n) events (truth-level)");
+
+                        text.DrawLatex(0.05, 0.80, ("Beam energy: " + Ebeam_status0).c_str());
+                        text.DrawLatex(0.05, 0.75, ("OutFolderName: " + OutFolderName).c_str());
+                        text.DrawLatex(0.05, 0.7, ("ConstrainedE: " + bt::BoolToString(ConstrainedE)).c_str());
+
+                        text.DrawLatex(0.05, 0.6, ("apply_ECAL_veto = " + BoolToString(apply_ECAL_veto)).c_str());
+                        text.DrawLatex(0.05, 0.55, ("cPart_veto_radius = " + ToStringWithPrecision(cPart_veto_radius, 0)).c_str());
+
+                        text.DrawLatex(0.05, 0.45, ("apply_PCAL_neutral_veto = " + BoolToString(apply_PCAL_neutral_veto)).c_str());
+                        text.DrawLatex(0.05, 0.4, ("nPart_veto_radius = " + ToStringWithPrecision(nPart_veto_radius, 0)).c_str());
+
                         myCanvas_eff_plots->Print(fileName_eff_plots, "pdf");
                         myCanvas_eff_plots->Clear();
                         // myText->Print(fileName_eff_plots, "pdf");
