@@ -1270,7 +1270,7 @@ void GammaNeutronFD_separation_test() {
                             if (pid_temp == 22) { photons.push_back(allParticles[i]); }
                         }
 
-                        bool Pass_nFD_Multi_cut_raw = (!apply_nFD_multi_cut || neutrons.size() != 1);
+                        bool Pass_nFD_Multi_cut_raw = (!apply_nFD_multi_cut || neutrons.size() == 1);
 
                         if (Pass_nFD_Multi_cut_raw) {
                             for (int i = 0; i < neutrons.size(); i++) {
@@ -1299,7 +1299,7 @@ void GammaNeutronFD_separation_test() {
                             if (pid_temp == 22 && allParticles[i]->getRegion() == FD) { photons_FD_clas12.push_back(allParticles[i]); }
                         }
 
-                        bool Pass_nFD_Multi_cut_clas12 = (!apply_nFD_multi_cut || neutrons_FD_clas12.size() != 1);
+                        bool Pass_nFD_Multi_cut_clas12 = (!apply_nFD_multi_cut || neutrons_FD_clas12.size() == 1);
 
                         if (Pass_nFD_Multi_cut_clas12) {
                             for (int i = 0; i < neutrons_FD_clas12.size(); i++) {
@@ -1345,7 +1345,7 @@ void GammaNeutronFD_separation_test() {
                             }  // end of neutral and in the FD if
                         }
 
-                        bool Pass_nFD_Multi_cut_redef = (!apply_nFD_multi_cut || neutrons_FD_redef.size() != 1);
+                        bool Pass_nFD_Multi_cut_redef = (!apply_nFD_multi_cut || neutrons_FD_redef.size() == 1);
 
                         if (Pass_nFD_Multi_cut_redef) {
                             for (int i = 0; i < neutrons_FD_redef.size(); i++) {
@@ -1452,7 +1452,7 @@ void GammaNeutronFD_separation_test() {
                             }  // end of neutral and in the FD if
                         }
 
-                        bool Pass_nFD_Multi_cut_ECALveto = (!apply_nFD_multi_cut || neutrons_FD_ECALveto.size() != 1);
+                        bool Pass_nFD_Multi_cut_ECALveto = (!apply_nFD_multi_cut || neutrons_FD_ECALveto.size() == 1);
 
                         if (Pass_nFD_Multi_cut_ECALveto) {
                             if (neutrons_FD_ECALveto.size() != neutrons_FD_ECALveto_ind.size()) {
@@ -1985,7 +1985,7 @@ void GammaNeutronFD_separation_test() {
                             }  // end of neutral and in the FD if
                         }
 
-                        bool Pass_nFD_Multi_cut_matched = (!apply_nFD_multi_cut || neutrons_FD_matched.size() != 1);
+                        bool Pass_nFD_Multi_cut_matched = (!apply_nFD_multi_cut || neutrons_FD_matched.size() == 1);
 
                         if (Pass_nFD_Multi_cut_matched) {
                             for (int i = 0; i < neutrons_FD_matched.size(); i++) {
