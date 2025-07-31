@@ -434,7 +434,7 @@ using namespace utilities;
  * const std::unique_ptr<clas12::clas12reader> &c12 - the event
  * beamE
  * index - of the particle in question (the neutral) */
-bool ParticleID::NeutronECAL_Cut_Veto_original(vector<region_part_ptr> &allParticles, vector<region_part_ptr> &electrons, const double &beamE, const int &index, const double &veto_cut) {
+bool NeutronECAL_Cut_Veto_original(vector<region_part_ptr> &allParticles, vector<region_part_ptr> &electrons, const double &beamE, const int &index, const double &veto_cut) {
     TVector3 p_b(0, 0, beamE); /* beam energy */
 
     TVector3 p_e; /* our electron */
