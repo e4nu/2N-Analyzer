@@ -30,8 +30,8 @@ void GammaNeutronFD_separation_test() {
 
     // int Limiter = 25000000;  // 2500 files
     // int Limiter = 10000000;  // 1000 files
-    // int Limiter = 1000000;  // 100 files
-    int Limiter = 100000;  // 10 files
+    int Limiter = 1000000;  // 100 files
+    // int Limiter = 100000;  // 10 files
     // int Limiter = 10000;  // 1 file
 
     bool apply_neutFD_redef = true;
@@ -40,9 +40,11 @@ void GammaNeutronFD_separation_test() {
     bool apply_PCAL_neutral_veto = false;
 
     // vector<vector<bool>> CutSelector = {{false, false, true}};  // {ConstrainedE, OnlyGood_nFD, OnlyBad_nFD}
-    vector<vector<bool>> CutSelector = {{false, false, true}, {true, false, true}};  // {ConstrainedE, OnlyGood_nFD, OnlyBad_nFD}
+    // vector<vector<bool>> CutSelector = {{false, false, true}, {true, false, true}};  // {ConstrainedE, OnlyGood_nFD, OnlyBad_nFD}
     // vector<vector<bool>> CutSelector = {{false, false, false}, {false, true, false}, {false, false, true}};  // {ConstrainedE, OnlyGood_nFD, OnlyBad_nFD}
     // vector<vector<bool>> CutSelector = {{true, false, false}, {true, true, false}, {true, false, true}};  // {ConstrainedE, OnlyGood_nFD, OnlyBad_nFD}
+    vector<vector<bool>> CutSelector = {{true, false, false},  {true, true, false},  {true, false, true},
+                                        {false, false, false}, {false, true, false}, {false, false, true}};  // {ConstrainedE, OnlyGood_nFD, OnlyBad_nFD}
 
     bool ConstrainTLmom = false;
 

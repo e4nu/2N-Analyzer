@@ -17,7 +17,7 @@ echo "${COLOR_START}HEAD:${COLOR_END}"
 git log -1 --oneline
 echo ""
 
-echo "\033[35m- Launching data-analysis code -------------------------------------\033[0m"
+echo "${COLOR_START}- Launching data-analysis code ----------------------------------------${COLOR_END}"
 echo ""
 
 # Launch the data-analysis code using the clas12root command. The -b option is used to run the code in batch
@@ -28,5 +28,5 @@ echo ""
 clas12root -b -q ./main.cpp
 echo ""
 
-echo "\033[35m- Operation finished --------------------------------------------------\033[0m"
+echo "${COLOR_START}- Operation finished --------------------------------------------------${COLOR_END}"
 echo ""
