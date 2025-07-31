@@ -1445,7 +1445,7 @@ void GammaNeutronFD_separation_test() {
                             bool PassMomTh = (Mom_neut_1e_cut >= 0.4);
                             bool PassECALeadgeCuts = (allParticles[NeutronsFD_ind_mom_max]->cal(Neutron_ECAL_detlayer)->getLv() > 14. &&
                                                       allParticles[NeutronsFD_ind_mom_max]->cal(Neutron_ECAL_detlayer)->getLw() > 14.);
-                            bool PassVeto = NeutronECAL_Cut_Veto_original(allParticles, electrons, Ebeam, i, cPart_veto_radius);
+                            bool NeutronPassVeto_1e_cut = NeutronECAL_Cut_Veto_original(allParticles, electrons, Ebeam, NeutronsFD_ind_mom_max, cPart_veto_radius);
                             // bool NeutronPassVeto_1e_cut =
                             //     NeutronECAL_Cut_Veto(allParticles, electrons, Ebeam, NeutronsFD_ind_mom_max, apply_PCAL_neutral_veto, cPart_veto_radius, nPart_veto_radius);
 
