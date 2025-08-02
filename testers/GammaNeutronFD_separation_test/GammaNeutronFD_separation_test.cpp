@@ -38,7 +38,7 @@ void GammaNeutronFD_separation_test() {
 
     bool apply_nFD_multi_cut = false;
 
-    bool apply_ECAL_veto = true;
+    bool apply_ECAL_veto = false;
 
     bool apply_dTheta_cuts = true;
     bool apply_dPhi_cuts = true;
