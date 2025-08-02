@@ -21,14 +21,14 @@ void GammaNeutronFD_separation_test() {
     vector<double> cPart_veto_radii = {100};
     vector<double> nPart_veto_radii = {100, 125, 150, 175, 200, 250};
 
-    // vector<double> Ebeam_v = {2.07052};
-    // vector<vector<bool>> Ebeam_bool_v = {{true, false, false}};
+    vector<double> Ebeam_v = {2.07052};
+    vector<vector<bool>> Ebeam_bool_v = {{true, false, false}};
     // vector<double> Ebeam_v = {4.02962};
     // vector<vector<bool>> Ebeam_bool_v = {{false, true, false}};
     // vector<double> Ebeam_v = {5.98636};
     // vector<vector<bool>> Ebeam_bool_v = {{false, false, true}};
-    vector<double> Ebeam_v = {2.07052, 4.02962, 5.98636};
-    vector<vector<bool>> Ebeam_bool_v = {{true, false, false}, {false, true, false}, {false, false, true}};
+    // vector<double> Ebeam_v = {2.07052, 4.02962, 5.98636};
+    // vector<vector<bool>> Ebeam_bool_v = {{true, false, false}, {false, true, false}, {false, false, true}};
 
     int Limiter = 25000000;  // 2500 files
     // int Limiter = 10000000;  // 1000 files
@@ -36,9 +36,9 @@ void GammaNeutronFD_separation_test() {
     // int Limiter = 100000;  // 10 files
     // int Limiter = 10000;  // 1 file
 
-    bool apply_nFD_multi_cut = false;
-    
-    bool apply_ECAL_veto = false;
+    bool apply_nFD_multi_cut = true;
+
+    bool apply_ECAL_veto = true;
 
     bool apply_dTheta_cuts = true;
     bool apply_dPhi_cuts = true;
@@ -47,12 +47,13 @@ void GammaNeutronFD_separation_test() {
 
     bool apply_PCAL_neutral_veto = false;
 
-    // vector<vector<bool>> CutSelector = {{false, false, true}};  // {ConstrainedE, OnlyGood_nFD, OnlyBad_nFD}
-    // vector<vector<bool>> CutSelector = {{false, false, true}, {true, false, true}};  // {ConstrainedE, OnlyGood_nFD, OnlyBad_nFD}
-    // vector<vector<bool>> CutSelector = {{false, false, false}, {false, true, false}, {false, false, true}};  // {ConstrainedE, OnlyGood_nFD, OnlyBad_nFD}
-    // vector<vector<bool>> CutSelector = {{true, false, false}, {true, true, false}, {true, false, true}};  // {ConstrainedE, OnlyGood_nFD, OnlyBad_nFD}
+    // CutSelector = {ConstrainedE, OnlyGood_nFD, OnlyBad_nFD}
+    // vector<vector<bool>> CutSelector = {{false, false, true}};  // OnlyBad and no ConstrainedE
+    // vector<vector<bool>> CutSelector = {{false, false, true}, {true, false, true}};  // OnlyBad and with and without ConstrainedE
+    // vector<vector<bool>> CutSelector = {{false, false, false}, {false, true, false}, {false, false, true}};  // OnlyGood and OnlyBad without ConstrainedE
+    // vector<vector<bool>> CutSelector = {{true, false, false}, {true, true, false}, {true, false, true}};   // OnlyGood and OnlyBad with ConstrainedE
     vector<vector<bool>> CutSelector = {{true, false, false},  {true, true, false},  {true, false, true},
-                                        {false, false, false}, {false, true, false}, {false, false, true}};  // {ConstrainedE, OnlyGood_nFD, OnlyBad_nFD}
+                                        {false, false, false}, {false, true, false}, {false, false, true}};  // Run all combinations
 
     bool ConstrainTLmom = false;
 
