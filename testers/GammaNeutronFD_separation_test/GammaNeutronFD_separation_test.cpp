@@ -30,13 +30,13 @@ void GammaNeutronFD_separation_test() {
     // vector<double> Ebeam_v = {2.07052, 4.02962, 5.98636};
     // vector<vector<bool>> Ebeam_bool_v = {{true, false, false}, {false, true, false}, {false, false, true}};
 
-    int Limiter = 25000000;  // 2500 files
+    // int Limiter = 25000000;  // 2500 files
     // int Limiter = 10000000;  // 1000 files
-    // int Limiter = 1000000;  // 100 files
+    int Limiter = 1000000;  // 100 files
     // int Limiter = 100000;  // 10 files
     // int Limiter = 10000;  // 1 file
 
-    bool apply_nFD_multi_cut = true;
+    bool apply_nFD_multi_cut = false;
 
     bool apply_ECAL_veto = true;
 
@@ -62,7 +62,7 @@ void GammaNeutronFD_separation_test() {
     bool plot_AMaps = false;
     // bool plot_AMaps = true;
 
-    std::string OutFolderName_prefix = bt::ToStringWithPrecision(version, 0) + "_2N_analyzer_";
+    std::string OutFolderName_prefix = "a" + bt::ToStringWithPrecision(version, 0) + "_2N_analyzer_";
     std::string OutFolderName_ver_status = "_v" + bt::ToStringWithPrecision(version, 0);
     std::string samples_status = use_ConstPn_samples ? "_CPn" : "";
     std::string nFD_multi_status = apply_nFD_multi_cut ? "_wNMC" : "_woNMC";
@@ -73,7 +73,7 @@ void GammaNeutronFD_separation_test() {
     std::string ECAL_veto_status = apply_ECAL_veto ? "_wEV" : "_woEV";
     std::string PCAL_neutral_veto_status = "";
     // std::string PCAL_neutral_veto_status = apply_PCAL_neutral_veto ? "_wPnV" : "_woPnV";
-    std::string General_status = "";
+    std::string General_status = "small_EV_test";
 
     nPart_veto_radii = (!apply_PCAL_neutral_veto) ? vector<double>{0} : nPart_veto_radii;
 
