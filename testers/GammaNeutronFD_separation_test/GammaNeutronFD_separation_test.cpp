@@ -42,7 +42,7 @@ void GammaNeutronFD_separation_test() {
     bool apply_dPhi_cuts = true;
 
     bool apply_neutFD_redef = true;
-    bool apply_ECAL_veto = true;
+    bool apply_ECAL_veto = false;
 
     bool apply_PCAL_neutral_veto = false;
 
