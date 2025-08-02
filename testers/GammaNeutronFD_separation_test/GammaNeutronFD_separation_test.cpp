@@ -14,21 +14,21 @@ namespace hf = histogram_functions;
 void GammaNeutronFD_separation_test() {
     cout << "\n\nInitiating GammaNeutronFD_separation_test.cpp\n";
 
-    int version = 24;
+    int version = 25;
 
     bool use_ConstPn_samples = false;
 
     vector<double> cPart_veto_radii = {100};
     vector<double> nPart_veto_radii = {100, 125, 150, 175, 200, 250};
 
-    vector<double> Ebeam_v = {2.07052};
-    vector<vector<bool>> Ebeam_bool_v = {{true, false, false}};
+    // vector<double> Ebeam_v = {2.07052};
+    // vector<vector<bool>> Ebeam_bool_v = {{true, false, false}};
     // vector<double> Ebeam_v = {4.02962};
     // vector<vector<bool>> Ebeam_bool_v = {{false, true, false}};
     // vector<double> Ebeam_v = {5.98636};
     // vector<vector<bool>> Ebeam_bool_v = {{false, false, true}};
-    // vector<double> Ebeam_v = {2.07052, 4.02962, 5.98636};
-    // vector<vector<bool>> Ebeam_bool_v = {{true, false, false}, {false, true, false}, {false, false, true}};
+    vector<double> Ebeam_v = {2.07052, 4.02962, 5.98636};
+    vector<vector<bool>> Ebeam_bool_v = {{true, false, false}, {false, true, false}, {false, false, true}};
 
     int Limiter = 25000000;  // 2500 files
     // int Limiter = 10000000;  // 1000 files
@@ -37,6 +37,9 @@ void GammaNeutronFD_separation_test() {
     // int Limiter = 10000;  // 1 file
 
     bool apply_nFD_multi_cut = true;
+
+    bool apply_dTheta_cuts = true;
+    bool apply_dPhi_cuts = true;
 
     bool apply_neutFD_redef = true;
     bool apply_ECAL_veto = true;
@@ -61,6 +64,9 @@ void GammaNeutronFD_separation_test() {
     std::string OutFolderName_ver_status = "_v" + bt::ToStringWithPrecision(version, 0);
     std::string samples_status = use_ConstPn_samples ? "_CPn" : "";
     std::string nFD_multi_status = apply_nFD_multi_cut ? "_wNMC" : "_woNMC";
+    std::string dTheta_status = "";
+    // std::string dTheta_status = apply_dTheta_cuts ? "_wdThetaC" : "_wodThetaC";
+    std::string dPhi_status = apply_dPhi_cuts ? "_wdPhiC" : "_wodPhiC";
     std::string neutFD_redef_status = apply_neutFD_redef ? "_RDed" : "_c12n";
     std::string ECAL_veto_status = apply_ECAL_veto ? "_wEV" : "_woEV";
     std::string PCAL_neutral_veto_status = "";
@@ -91,9 +97,9 @@ void GammaNeutronFD_separation_test() {
                     std::string Bad_nFD_status = (!OnlyGood_nFD && OnlyBad_nFD) ? "_OnlyBad_nFD" : "";
                     std::string ConstrainedE_status = ConstrainedE ? "_CE" : "";
 
-                    std::string OutFolderName = OutFolderName_prefix + OutFolderName_ver_status + Ebeam_status + samples_status + nFD_multi_status + neutFD_redef_status + ECAL_veto_status +
-                                                PCAL_neutral_veto_status + rc_factor_status + nPart_veto_radius_status + Good_nFD_status + Bad_nFD_status + ConstrainedE_status +
-                                                General_status;
+                    std::string OutFolderName = OutFolderName_prefix + OutFolderName_ver_status + Ebeam_status + samples_status + nFD_multi_status + dTheta_status + dPhi_status +
+                                                neutFD_redef_status + ECAL_veto_status + PCAL_neutral_veto_status + rc_factor_status + nPart_veto_radius_status + Good_nFD_status +
+                                                Bad_nFD_status + ConstrainedE_status + General_status;
 
                     std::string OutFileName = OutFolderName;
 
@@ -723,14 +729,14 @@ void GammaNeutronFD_separation_test() {
                         new TH2D("e_status_VS_reco_theta_LnFD_minus_reco_theta_e_ECALveto_1e_cut",
                                  "e status vs. #Delta#theta^{reco}_{LnFD,e} in 1e cut (ECALveto);#Delta#theta^{reco}_{LnFD,e} = #theta^{reco}_{LnFD} - #theta^{reco}_{e} "
                                  "[#circ];e status",
-                                 100, -25., 10., 100, 1990, 3000.);
+                                 100, -25., 10., 100, 990, 3000.);
                     HistoList.push_back(h_e_status_VS_reco_theta_LnFD_minus_reco_theta_e_ECALveto_1e_cut);
 
                     TH2D* h_e_status_VS_reco_theta_LnFD_minus_reco_theta_e_zoomin_ECALveto_1e_cut =
                         new TH2D("e_status_VS_reco_theta_LnFD_minus_reco_theta_e_zoomin_ECALveto_1e_cut",
                                  "e status vs. #Delta#theta^{reco}_{LnFD,e} - zoomin - in 1e cut (ECALveto);#Delta#theta^{reco}_{LnFD,e} = #theta^{reco}_{LnFD} - #theta^{reco}_{e} "
                                  "[#circ];e status",
-                                 100, -5., 5., 100, 1990, 2250.);
+                                 100, -5., 5., 100, 990, 2250.);
                     //  100, -25., 10., 100, 1990, 2250.);
                     HistoList.push_back(h_e_status_VS_reco_theta_LnFD_minus_reco_theta_e_zoomin_ECALveto_1e_cut);
 
@@ -1461,11 +1467,13 @@ void GammaNeutronFD_separation_test() {
                         }
 
                         bool Pass_nFD_Multi_cut_raw = (!apply_nFD_multi_cut || neutrons.size() == 1);
-
                         if (Pass_nFD_Multi_cut_raw) {
                             for (int i = 0; i < neutrons.size(); i++) {
                                 TVector3 reco_P_n;
                                 reco_P_n.SetMagThetaPhi(neutrons[i]->getP(), neutrons[i]->getTheta(), neutrons[i]->getPhi());
+
+                                bool Pass_dTheta_status_raw = (!apply_dTheta_cuts || (fabs(reco_P_n.Theta() * 180 / M_PI - reco_P_e.Theta() * 180 / M_PI) <= 5.));
+                                bool Pass_dPhi_status_raw = (!apply_dPhi_cuts || (fabs((reco_P_n.Phi() * 180 / M_PI - reco_P_e.Phi() * 180 / M_PI) - 15.) <= 15.));
 
                                 h_reco_P_n_1e_cut->Fill(reco_P_n.Mag(), weight);
                                 h_reco_theta_n_1e_cut->Fill(reco_P_n.Theta() * 180 / M_PI, weight);
