@@ -1,0 +1,13 @@
+######################################################################
+# CLAS12 analysis cuts and parameters file
+######################################################################
+
+pid_cuts	2212:0:9999:FD	# proton chi2pid Forward detector cut
+pid_cuts	 211:0:9999:FD	# pi+ chi2pid Forward detector cut
+pid_cuts	-211:0:9999:FD	# pi- chi2pid Forward detector cut
+pid_cuts	2212:0:9999:CD	# proton chi2pid Central detector cut
+pid_cuts	 211:0:9999:CD	# pi+ chi2pid Central detector cut
+pid_cuts	-211:0:9999:CD	# pi- chi2pid Central detector cut
+vertex_cut	z:-9999:9999	# vertex z cut min:max
+vertex_cut	x:-9999:9999	
+vertex_cut	y:-9999:9999	

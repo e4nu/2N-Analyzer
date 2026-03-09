@@ -1,5 +1,24 @@
-# Mac OS X files:
+# VSCode settings:
+.vscode/*
+
+# CLion settings:
+.idea/*
+
+# MacOS system files:
 .DS_Store
+./framework/.DS_Store
+./framework/classes/.DS_Store
+./framework/classes/clas12ana/.DS_Store
+./framework/functions/.DS_Store
+./framework/namespaces/.DS_Store
+./framework/namespaces/general_utilities/.DS_Store
+./framework/namespaces/plotters/.DS_Store
+./framework/namespaces/settings/.DS_Store
+./framework/namespaces/setup/.DS_Store
+./framework/structures/.DS_Store
+./macros/.DS_Store
+./macros/PrintCanvasToPDF/.DS_Store
+./setup/.DS_Store
 
 # CMake build directories:
 cmake-build-debug/

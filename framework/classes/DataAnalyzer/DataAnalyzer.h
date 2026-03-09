@@ -14,15 +14,15 @@ class DataAnalyzer {
    public:
     // default constructor --------------------------------------------------------------------------------------------------------------------------------------------------
 
-    DataAnalyzer(const std::string &FileType, const std::string &AnalyzeFilePath, const std::string &AnalyzeFileSample, const std::string &AnalyzeFile);
+    DataAnalyzer(const std::string& FileType, const std::string& RecoSamplePath, const std::string& ReconHipoDir, const std::string& InputHipoFiles);
 
     // ConfigureAnalyzerMode function -----------------------------------------------------------------------------------------------------------------------------
 
-    std::string ConfigureAnalyzerMode(const std::string &FileType);
+    std::string ConfigureAnalyzerMode(const std::string& FileType);
 
     // RunEventAnalyzer functions ---------------------------------------------------------------------------------------------------------------------------------
 
-    void RunEventAnalyzer(const std::string &AnalyzerMode, const std::string &AnalyzeFilePath, const std::string &AnalyzeFileSample, const std::string &AnalyzeFile);
+    void RunEventAnalyzer(const std::string& AnalyzerMode, const std::string& RecoSamplePath, const std::string& ReconHipoDir, const std::string& InputHipoFiles);
 };
 
 #endif  // DATAANALYZER_H

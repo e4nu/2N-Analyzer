@@ -1,6 +1,5 @@
 set(CLASS_SOURCES 
     AMaps/AMaps.cpp
-    AMaps/CustomSliceLimits.cpp
     clas12ana/clas12ana.cpp
     DataAnalyzer/DataAnalyzer.cpp
     Debugger/Debugger.cpp

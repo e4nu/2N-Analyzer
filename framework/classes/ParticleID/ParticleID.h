@@ -11,6 +11,8 @@
 
     #include <iostream>
     #include <map>
+    #include <memory>
+    #include <tuple>
     #include <vector>
 
     // Include libraries:
@@ -21,7 +23,8 @@
     // Include classes:
     #include "../DSCuts/DSCuts.h"
     #include "../MomentumResolution/MomentumResolution.cpp"
-    #include "../clas12ana/clas12ana.h"
+    #include "../clas12ana/clas12ana.cpp"
+    // #include "../clas12ana/clas12ana.h"
     #include "../hPlots/hPlot1D.cpp"
     #include "../hPlots/hPlot2D.cpp"
 
@@ -30,11 +33,43 @@
 
 using namespace constants;
 
+namespace bt = basic_tools;
+namespace am = analysis_math;
+namespace raf = reco_analysis_functions;
+
+/**
+ * @class ParticleID
+ *
+ * Central particle-identification and object-selection utility for the analysis.
+ *
+ * Purpose:
+ *   Provide a single, analysis-level interface for identifying and selecting:
+ *     - charged particles (FD/CD aware momentum thresholds)
+ *     - forward-detector neutrons and photons (multiple redefinitions supported)
+ *     - leading and corrected-leading FD neutrons
+ *     - good protons under two-proton topology constraints
+ *
+ *   The class also manages optional monitoring histograms related to
+ *   double-detection and CTOF-based proton overlap studies.
+ *
+ * Design:
+ *   - Several ECAL veto and neutral-selection algorithms are implemented in
+ *     the `reco_analysis_functions` namespace.
+ *   - This class exposes thin wrapper methods (e.g. NeutronECAL_Cut_Veto,
+ *     ChargedECALveto, NeutralECALveto) to preserve a stable class-based API
+ *     while allowing namespace-level debugging from ROOT macros.
+ *
+ * Notes:
+ *   The wrapper methods must not alter semantics relative to their
+ *   `reco_analysis_functions` counterparts.
+ *   All PID logic is intended to be deterministic and side-effect free,
+ *   except for explicitly enabled monitoring histograms.
+ */
 class ParticleID {
    public:
     // TODO: move from here!
     #pragma region /* Good protons monitoring histograms */
-    //  Theta_p1_p2 vs. TOF1-TOF2 plots (2p, CD only) ------------------------------------------------------------------------------------------------------------------------
+    //  Theta_p1_p2 vs. TOF1-TOF2 plots (2p, CD only) -------------------------------------------------------------------------------------------------------------------
 
     #pragma region /* Theta_p1_p2 vs. TOF1-TOF2 plots (2p, CD only) */
     hPlot2D hdTheta_pi_pj_VS_ToFi_ToFj_BC_2idp_2p, hdTheta_pi_pj_VS_ToFi_ToFj_RE_2idp_2p;
@@ -42,7 +77,7 @@ class ParticleID {
     hPlot2D hdTheta_pi_pj_VS_ToFi_ToFj_BC_4idp_2p, hdTheta_pi_pj_VS_ToFi_ToFj_AE_4idp_2p;
     #pragma endregion
 
-    // Theta_p1_p2 vs. position1-position2 plots (2p, CD only) --------------------------------------------------------------------------------------------------------------
+    // Theta_p1_p2 vs. position1-position2 plots (2p, CD only) ----------------------------------------------------------------------------------------------------------
 
     #pragma region /* Theta_p1_p2 vs. position1-position2 plots (2p, CD only) */
     hPlot2D hTheta_pi_pj_VS_Posi_Posj_BC_2idp_2p, hTheta_pi_pj_VS_Posi_Posj_RE_2idp_2p;
@@ -50,47 +85,47 @@ class ParticleID {
     hPlot2D hTheta_pi_pj_VS_Posi_Posj_BC_4idp_2p, hTheta_pi_pj_VS_Posi_Posj_AE_4idp_2p;
     #pragma endregion
 
-    // Theta_p1_vs_Theta_p2 for Theta_p1_p2 < 20 (2p, CD & FD) --------------------------------------------------------------------------------------------------------------
+    // Theta_p1_vs_Theta_p2 for Theta_p1_p2 < 20 (2p, CD & FD) ----------------------------------------------------------------------------------------------------------
 
     #pragma region /* Theta_p1_vs_Theta_p2 for Theta_p1_p2 < 20 (2p, CD & FD) */
-    TH2D *hTheta_pi_vs_theta_pj_for_Theta_pi_pj_20_BC_2idp_2p;
+    TH2D* hTheta_pi_vs_theta_pj_for_Theta_pi_pj_20_BC_2idp_2p;
     std::string hTheta_pi_vs_theta_pj_for_Theta_pi_pj_20_BC_2idp_2p_Dir;
 
-    TH2D *hTheta_pi_vs_theta_pj_for_Theta_pi_pj_20_RE_2idp_2p;
+    TH2D* hTheta_pi_vs_theta_pj_for_Theta_pi_pj_20_RE_2idp_2p;
     std::string hTheta_pi_vs_theta_pj_for_Theta_pi_pj_20_RE_2idp_2p_Dir;
 
-    TH2D *hTheta_pi_vs_theta_pj_for_Theta_pi_pj_20_BC_3idp_2p;
+    TH2D* hTheta_pi_vs_theta_pj_for_Theta_pi_pj_20_BC_3idp_2p;
     std::string hTheta_pi_vs_theta_pj_for_Theta_pi_pj_20_BC_3idp_2p_Dir;
 
-    TH2D *hTheta_pi_vs_theta_pj_for_Theta_pi_pj_20_AE_3idp_2p;
+    TH2D* hTheta_pi_vs_theta_pj_for_Theta_pi_pj_20_AE_3idp_2p;
     std::string hTheta_pi_vs_theta_pj_for_Theta_pi_pj_20_AE_3idp_2p_Dir;
 
-    TH2D *hTheta_pi_vs_theta_pj_for_Theta_pi_pj_20_BC_4idp_2p;
+    TH2D* hTheta_pi_vs_theta_pj_for_Theta_pi_pj_20_BC_4idp_2p;
     std::string hTheta_pi_vs_theta_pj_for_Theta_pi_pj_20_BC_4idp_2p_Dir;
 
-    TH2D *hTheta_pi_vs_theta_pj_for_Theta_pi_pj_20_AE_4idp_2p;
+    TH2D* hTheta_pi_vs_theta_pj_for_Theta_pi_pj_20_AE_4idp_2p;
     std::string hTheta_pi_vs_theta_pj_for_Theta_pi_pj_20_AE_4idp_2p_Dir;
     #pragma endregion
 
-    // Theta_p1_vs_Theta_p2 for every Theta_p1_p2 (2p, CD & FD) -------------------------------------------------------------------------------------------------------------
+    // Theta_p1_vs_Theta_p2 for every Theta_p1_p2 (2p, CD & FD) ---------------------------------------------------------------------------------------------------------
 
     #pragma region /* Theta_p1_vs_Theta_p2 for every Theta_p1_p2 (2p, CD & FD) */
-    TH2D *hTheta_pi_vs_theta_pj_forall_Theta_pi_pj_BC_2idp_2p;
+    TH2D* hTheta_pi_vs_theta_pj_forall_Theta_pi_pj_BC_2idp_2p;
     std::string hTheta_pi_vs_theta_pj_forall_Theta_pi_pj_BC_2idp_2p_Dir;
 
-    TH2D *hTheta_pi_vs_theta_pj_forall_Theta_pi_pj_RE_2idp_2p;
+    TH2D* hTheta_pi_vs_theta_pj_forall_Theta_pi_pj_RE_2idp_2p;
     std::string hTheta_pi_vs_theta_pj_forall_Theta_pi_pj_RE_2idp_2p_Dir;
 
-    TH2D *hTheta_pi_vs_theta_pj_forall_Theta_pi_pj_BC_3idp_2p;
+    TH2D* hTheta_pi_vs_theta_pj_forall_Theta_pi_pj_BC_3idp_2p;
     std::string hTheta_pi_vs_theta_pj_forall_Theta_pi_pj_BC_3idp_2p_Dir;
 
-    TH2D *hTheta_pi_vs_theta_pj_forall_Theta_pi_pj_AE_3idp_2p;
+    TH2D* hTheta_pi_vs_theta_pj_forall_Theta_pi_pj_AE_3idp_2p;
     std::string hTheta_pi_vs_theta_pj_forall_Theta_pi_pj_AE_3idp_2p_Dir;
 
-    TH2D *hTheta_pi_vs_theta_pj_forall_Theta_pi_pj_BC_4idp_2p;
+    TH2D* hTheta_pi_vs_theta_pj_forall_Theta_pi_pj_BC_4idp_2p;
     std::string hTheta_pi_vs_theta_pj_forall_Theta_pi_pj_BC_4idp_2p_Dir;
 
-    TH2D *hTheta_pi_vs_theta_pj_forall_Theta_pi_pj_AE_4idp_2p;
+    TH2D* hTheta_pi_vs_theta_pj_forall_Theta_pi_pj_AE_4idp_2p;
     std::string hTheta_pi_vs_theta_pj_forall_Theta_pi_pj_AE_4idp_2p_Dir;
     #pragma endregion
 
@@ -103,99 +138,142 @@ class ParticleID {
     int num_of_AD_2p_events_from_mixed_sCTOFhp_dCDaFDd = 0;  // events with mixed sCTOFhp dCDaFDd
     #pragma endregion
 
-    // Default constructor ---------------------------------------------------------------------------------------------------------------------------
+    // Default constructor ----------------------------------------------------------------------------------------------------------------------------------------------
 
     ParticleID() = default;
 
-    // NeutronECAL_Cut_Veto function -----------------------------------------------------------------------------------------------------------------
+    // NeutronECAL_Cut_Veto function ------------------------------------------------------------------------------------------------------------------------------------
 
-    bool NeutronECAL_Cut_Veto(vector<region_part_ptr> &allParticles, vector<region_part_ptr> &electrons, const double &beamE, const int &index, const double &veto_cut);
+    // NeutronECAL_Cut_Veto (wrapper): forwards directly to `raf::NeutronECAL_Cut_Veto`.
+    // Kept here to preserve the historical `ParticleID` API, while the implementation lives in
+    // `reco_analysis_functions` for macro-level debugging.
+    bool NeutronECAL_Cut_Veto(std::vector<clas12::region_part_ptr>& allParticles, std::vector<clas12::region_part_ptr>& electrons, const double& beamE, const int& index,
+                              const double& veto_cut);
 
-    // ChargedParticleID function --------------------------------------------------------------------------------------------------------------------
+    // ChargedECALveto function -----------------------------------------------------------------------------------------------------------------------------------------
+
+    // ChargedECALveto (wrapper): forwards directly to `raf::ChargedECALveto`.
+    // Used for charged-particle PID support in neutral selections (implementation lives in the namespace).
+    bool ChargedECALveto(std::vector<clas12::region_part_ptr>& allParticles, clas12::region_part_ptr& electron, clas12::region_part_ptr NeutronFD, const double& veto_cut,
+                         const double& starttime, const bool& Recalc_P_nFD, const bool& apply_PCAL_veto);
+
+    // NeutralECALveto function -----------------------------------------------------------------------------------------------------------------------------------------
+
+    // NeutralECALveto (wrapper): forwards directly to `raf::NeutralECALveto`.
+    // Used for neutral-particle PID support in neutral selections (implementation lives in the namespace).
+    bool NeutralECALveto(std::vector<clas12::region_part_ptr>& allParticles, clas12::region_part_ptr& electron, clas12::region_part_ptr neut, const double& veto_cut,
+                         const double& starttime = 9999, const bool& Recalc_P_nFD = false, const bool& apply_PCAL_veto = false, const double B = constants::B, const double L = constants::L);
+
+    // ChargedParticleID function ---------------------------------------------------------------------------------------------------------------------------------------
 
     // The updated function for charged particle PID. Does distinguish between FD and CD particles when applies momentum threshold
-    vector<int> ChargedParticleID(vector<region_part_ptr> &ChargedParticles, const DSCuts &FD_mom_th, const DSCuts &CD_mom_th);
+    std::vector<int> ChargedParticleID(std::vector<clas12::region_part_ptr>& ChargedParticles, const DSCuts& FD_mom_th, const DSCuts& CD_mom_th);
 
     // The original function for charged particle PID. Does not distinguish between FD and CD particles when applies momentum threshold
-    vector<int> ChargedParticleID(vector<region_part_ptr> &ChargedParticles, const DSCuts &Momentum_th);
+    std::vector<int> ChargedParticleID(std::vector<clas12::region_part_ptr>& ChargedParticles, const DSCuts& Momentum_th);
 
-    // FDNeutralParticle function --------------------------------------------------------------------------------------------------------------------
+    // FDNeutralParticle function ---------------------------------------------------------------------------------------------------------------------------------------
 
-    void ReDefFDNeutrals(vector<region_part_ptr> allParticles, vector<int> &ID_Neutrons_FD, vector<int> &ID_Photons_FD);
+    void ReDefFDNeutrals(std::vector<clas12::region_part_ptr> allParticles, std::vector<int>& ID_Neutrons_FD, std::vector<int>& ID_Photons_FD);
 
-    // FDNeutralParticleID function ------------------------------------------------------------------------------------------------------------------
+    // FDNeutralParticleID function -------------------------------------------------------------------------------------------------------------------------------------
 
-    void FDNeutralParticleID(vector<region_part_ptr> allParticles, vector<region_part_ptr> electrons, vector<int> &FD_Neutrons_within_PID_cuts, vector<int> &ID_Neutrons_FD,
-                             DSCuts &Neutron_momentum_th, vector<int> &FD_Photons_within_th, vector<int> &ID_Photons_FD, DSCuts &Photon_momentum_th, DSCuts &Neutron_veto_cut,
-                             const double &beamE, const double &ECAL_V_edge_cut, const double &ECAL_W_edge_cut, const bool &apply_nucleon_cuts);
+    // Get neutrals by new definition (with neutron charged and neutral ECAL veto and ECAL edge cuts):
+    void FDNeutralParticleID(std::vector<clas12::region_part_ptr> allParticles, std::vector<clas12::region_part_ptr> electrons, std::vector<int>& FD_Neutrons_within_PID_cuts,
+                             std::vector<int>& ID_Neutrons_FD, DSCuts& Neutron_momentum_th, std::vector<int>& FD_Photons_within_th, std::vector<int>& ID_Photons_FD,
+                             DSCuts& Photon_momentum_th, const bool& apply_charged_ECAL_veto, DSCuts& ChargedECALveto_veto_cut, const bool& apply_neutral_ECAL_veto,
+                             DSCuts& NeutralECALveto_veto_cut, const double& starttime, const double& beamE, const double& ECAL_V_edge_cut, const double& ECAL_W_edge_cut,
+                             const bool& apply_nucleon_cuts);
 
-    void FDNeutralParticleID(vector<region_part_ptr> allParticles, vector<int> &FD_Neutrons_within_th, vector<int> &ID_Neutrons_FD, DSCuts &Neutron_momentum_th,
-                             vector<int> &FD_Photons_within_th, vector<int> &ID_Photons_FD, DSCuts &Photon_momentum_th, const bool &apply_nucleon_cuts);
+    // Get neutrals by new definition (with neutron ECAL veto and ECAL edge cuts):
+    void FDNeutralParticleID(std::vector<clas12::region_part_ptr> allParticles, std::vector<clas12::region_part_ptr> electrons, std::vector<int>& FD_Neutrons_within_PID_cuts,
+                             std::vector<int>& ID_Neutrons_FD, DSCuts& Neutron_momentum_th, std::vector<int>& FD_Photons_within_th, std::vector<int>& ID_Photons_FD,
+                             DSCuts& Photon_momentum_th, DSCuts& Neutron_veto_cut, const double& starttime, const double& beamE, const double& ECAL_V_edge_cut, const double& ECAL_W_edge_cut,
+                             const bool& apply_nucleon_cuts);
 
-    // GetLnFDIndex function ------------------------------------------------------------------------------------------------------------------------
+    // Get neutrals by new definition (ORIGINAL!):
+    void FDNeutralParticleID(std::vector<clas12::region_part_ptr> allParticles, std::vector<int>& FD_Neutrons_within_th, std::vector<int>& ID_Neutrons_FD, DSCuts& Neutron_momentum_th,
+                             std::vector<int>& FD_Photons_within_th, std::vector<int>& ID_Photons_FD, DSCuts& Photon_momentum_th, std::vector<clas12::region_part_ptr> electrons,
+                             const double& starttime, const bool& apply_nucleon_cuts);
 
-    int GetLnFDIndex(vector<region_part_ptr> allParticles, vector<int> &FD_Neutrons_within_th, const bool &apply_nucleon_cuts);
+    // GetLnFDIndex function --------------------------------------------------------------------------------------------------------------------------------------------
 
-    int GetCorrLnFDIndex(MomentumResolution &nRes, vector<region_part_ptr> allParticles, vector<int> &FD_Neutrons_within_th, const bool &apply_nucleon_cuts,
-                         const bool &apply_nucleon_SmearAndCorr);
+    int GetLnFDIndex(std::vector<clas12::region_part_ptr> allParticles, std::vector<int>& FD_Neutrons_within_th, std::vector<clas12::region_part_ptr> electrons, const double& starttime,
+                     const bool& apply_nucleon_cuts);
 
-    // GetFDNeutronP function ------------------------------------------------------------------------------------------------------------------------
+    int GetCorrLnFDIndex(MomentumResolution& nRes, std::vector<clas12::region_part_ptr> allParticles, std::vector<int>& FD_Neutrons_within_th, clas12::region_part_ptr electron,
+                         const double& starttime, const bool& apply_nucleon_cuts, const bool& apply_nucleon_SmearAndCorr);
 
-    double GetFDNeutronP(region_part_ptr &Neutron, const bool &apply_nucleon_cuts);
+    // GetFDNeutronP function -------------------------------------------------------------------------------------------------------------------------------------------
 
-    // GetFDNeutrons function ------------------------------------------------------------------------------------------------------------------------
+    // Wrapper overload with explicit event context.
+    double GetFDNeutronP(clas12::region_part_ptr& Neutron, clas12::region_part_ptr electron, const double& starttime, const bool& apply_nucleon_cuts);
 
-    vector<int> GetFDNeutrons(vector<region_part_ptr> &allParticles, const DSCuts &Momentum_cuts, const bool &apply_nucleon_cuts);
+    // GetFDNeutrons function -------------------------------------------------------------------------------------------------------------------------------------------
 
-    // GetFDPhotons function -------------------------------------------------------------------------------------------------------------------------
+    std::vector<int> GetFDNeutrons(std::vector<clas12::region_part_ptr>& allParticles, clas12::region_part_ptr electron, const double& starttime, const DSCuts& Momentum_cuts,
+                                   const bool& apply_nucleon_cuts);
 
-    vector<int> GetFDPhotons(vector<region_part_ptr> &allParticles, const DSCuts &Momentum_cuts);
+    // GetFDPhotons function --------------------------------------------------------------------------------------------------------------------------------------------
 
-    // GetGoodParticles function ---------------------------------------------------------------------------------------------------------------------
+    std::vector<int> GetFDPhotons(std::vector<clas12::region_part_ptr>& allParticles, const DSCuts& Momentum_cuts);
 
-    vector<int> GetGoodParticles(vector<region_part_ptr> &Particle, const DSCuts &Momentum_cuts);
+    // GetGoodParticles function ----------------------------------------------------------------------------------------------------------------------------------------
 
-    // GetGoodProtons function -----------------------------------------------------------------------------------------------------------------------
+    std::vector<int> GetGoodParticles(std::vector<clas12::region_part_ptr>& Particle, const DSCuts& Momentum_cuts);
 
-    vector<int> GetGoodProtons(const bool &apply_nucleon_cuts, vector<region_part_ptr> &protons, const vector<int> &IDProtons_ind, const DSCuts &Theta_p1_cuts_2p,
-                               const DSCuts &Theta_p2_cuts_2p, const DSCuts &dphi_pFD_pCD_2p);
+    // GetGoodProtons function ------------------------------------------------------------------------------------------------------------------------------------------
 
-    void SetGPMonitoringPlots(const bool &GoodProtonsMonitorPlots, std::string CToF_hits_monitoring_2p_Directory, std::string Double_detection_monitoring_2p_Directory);
+    std::vector<int> GetGoodProtons(const bool& apply_nucleon_cuts, std::vector<clas12::region_part_ptr>& protons, const std::vector<int>& IDProtons_ind, const DSCuts& Theta_p1_cuts_2p,
+                                    const DSCuts& Theta_p2_cuts_2p, const DSCuts& dphi_pFD_pCD_2p);
 
-    void GPMonitoring(const bool &GoodProtonsMonitorPlots, vector<region_part_ptr> &protons, const vector<int> &IDProtons_ind, const vector<int> &Protons_ind, const DSCuts &Theta_p1_cuts_2p,
-                      const DSCuts &Theta_p2_cuts_2p, const DSCuts &dphi_p1_p2_2p, const double &Weight);
+    void SetGPMonitoringPlots(const bool& GoodProtonsMonitorPlots, std::string CToF_hits_monitoring_2p_Directory, std::string Double_detection_monitoring_2p_Directory);
 
-    // nParticleID function --------------------------------------------------------------------------------------------------------------------------
+    void GPMonitoring(const bool& GoodProtonsMonitorPlots, std::vector<clas12::region_part_ptr>& protons, const std::vector<int>& IDProtons_ind, const std::vector<int>& Protons_ind,
+                      const DSCuts& Theta_p1_cuts_2p, const DSCuts& Theta_p2_cuts_2p, const DSCuts& dphi_p1_p2_2p, const double& Weight);
 
-    void nParticleID(vector<region_part_ptr> &allParticles, vector<int> &ID_Neutrons_FD, const DSCuts &Neutron_momentum_th, vector<int> &ID_Photons_FD, const DSCuts &Photon_momentum_th,
-                     const bool &apply_nucleon_cuts);
+    // nParticleID function ---------------------------------------------------------------------------------------------------------------------------------------------
 
-    // SetEventParticles function --------------------------------------------------------------------------------------------------------------------
+    void nParticleID(std::vector<clas12::region_part_ptr>& allParticles, std::vector<int>& ID_Neutrons_FD, const DSCuts& Neutron_momentum_th, std::vector<int>& ID_Photons_FD,
+                     const DSCuts& Photon_momentum_th, clas12::region_part_ptr electron, const double& starttime, const bool& apply_nucleon_cuts);
 
-    void SetEventParticles(const bool &clas12ana_particles, clas12ana &clasAna, const std::unique_ptr<clas12::clas12reader> &c12, vector<clas12::region_part_ptr> &neutrons,
-                           vector<clas12::region_part_ptr> &protons, vector<clas12::region_part_ptr> &Kplus, vector<clas12::region_part_ptr> &Kminus, vector<clas12::region_part_ptr> &piplus,
-                           vector<clas12::region_part_ptr> &piminus, vector<clas12::region_part_ptr> &electrons, vector<clas12::region_part_ptr> &deuterons,
-                           vector<clas12::region_part_ptr> &neutrals, vector<clas12::region_part_ptr> &otherpart);
+    // SetEventParticles function ---------------------------------------------------------------------------------------------------------------------------------------
 
-    // Fill neutron multiplicity plots functions -----------------------------------------------------------------------------------------------------
+    using ParticleVectorsTuple = std::tuple<std::vector<clas12::region_part_ptr>,  // allParticles
+                                            std::vector<clas12::region_part_ptr>,  // neutrons
+                                            std::vector<clas12::region_part_ptr>,  // protons
+                                            std::vector<clas12::region_part_ptr>,  // Kplus
+                                            std::vector<clas12::region_part_ptr>,  // Kminus
+                                            std::vector<clas12::region_part_ptr>,  // piplus
+                                            std::vector<clas12::region_part_ptr>,  // piminus
+                                            std::vector<clas12::region_part_ptr>,  // electrons
+                                            std::vector<clas12::region_part_ptr>,  // deuterons
+                                            std::vector<clas12::region_part_ptr>,  // neutrals
+                                            std::vector<clas12::region_part_ptr>   // otherpart
+                                            >;
+
+    // Preferred API: returns all particle collections as a single tuple (same ordering as the typedef above).
+    ParticleVectorsTuple SetEventParticles(const bool& clas12ana_particles, clas12ana& clasAna, const std::unique_ptr<clas12::clas12reader>& c12);
+
+    // Fill neutron multiplicity plots functions ------------------------------------------------------------------------------------------------------------------------
 
     // TODO: move out of this class
 
     // Neutrons by CLAS12 PID
-    void FillNeutMultiPlots(vector<region_part_ptr> &allParticles, vector<region_part_ptr> &electrons, const double &Weight, const double &beamE, const double &ECAL_veto_cut,
-                            hPlot1D &hNeutronMulti_BPID_BV, hPlot1D &hNeutronMulti_BPID_AV, vector<region_part_ptr> &Neutrons_BPID, hPlot1D &hNeutronMulti_APID_BV,
-                            hPlot1D &hNeutronMulti_APID_AV, vector<region_part_ptr> &Neutrons_APID);
+    void FillNeutMultiPlots(std::vector<clas12::region_part_ptr>& allParticles, std::vector<clas12::region_part_ptr>& electrons, const double& Weight, const double& beamE,
+                            const double& ECAL_veto_cut, hPlot1D& hNeutronMulti_BPID_BV, hPlot1D& hNeutronMulti_BPID_AV, std::vector<clas12::region_part_ptr>& Neutrons_BPID,
+                            hPlot1D& hNeutronMulti_APID_BV, hPlot1D& hNeutronMulti_APID_AV, std::vector<clas12::region_part_ptr>& Neutrons_APID);
 
-    void FillMultiPlots(vector<region_part_ptr> &allParticles, vector<region_part_ptr> &electrons, const double &Weight, const double &beamE, const double &ECAL_veto_cut,
-                        hPlot1D &hNeutronMulti_BV, hPlot1D &hNeutronMulti_AV, vector<region_part_ptr> &Neutrons);
+    void FillMultiPlots(std::vector<clas12::region_part_ptr>& allParticles, std::vector<clas12::region_part_ptr>& electrons, const double& Weight, const double& beamE,
+                        const double& ECAL_veto_cut, hPlot1D& hNeutronMulti_BV, hPlot1D& hNeutronMulti_AV, std::vector<clas12::region_part_ptr>& Neutrons);
 
     // Neutrons by redefinition
-    void FillNeutMultiPlots(vector<region_part_ptr> &allParticles, vector<region_part_ptr> &electrons, const double &Weight, const double &beamE, const double &ECAL_veto_cut,
-                            hPlot1D &hNeutronMulti_BPID_BV, hPlot1D &hNeutronMulti_BPID_AV, vector<int> &Neutrons_BPID, hPlot1D &hNeutronMulti_APID_BV, hPlot1D &hNeutronMulti_APID_AV,
-                            vector<int> &Neutrons_APID);
+    void FillNeutMultiPlots(std::vector<clas12::region_part_ptr>& allParticles, std::vector<clas12::region_part_ptr>& electrons, const double& Weight, const double& beamE,
+                            const double& ECAL_veto_cut, hPlot1D& hNeutronMulti_BPID_BV, hPlot1D& hNeutronMulti_BPID_AV, std::vector<int>& Neutrons_BPID, hPlot1D& hNeutronMulti_APID_BV,
+                            hPlot1D& hNeutronMulti_APID_AV, std::vector<int>& Neutrons_APID);
 
-    void FillMultiPlots(vector<region_part_ptr> &allParticles, vector<region_part_ptr> &electrons, const double &Weight, const double &beamE, const double &ECAL_veto_cut,
-                        hPlot1D &hNeutronMulti_BV, hPlot1D &hNeutronMulti_AV, vector<int> &Neutrons_indices);
+    void FillMultiPlots(std::vector<clas12::region_part_ptr>& allParticles, std::vector<clas12::region_part_ptr>& electrons, const double& Weight, const double& beamE,
+                        const double& ECAL_veto_cut, hPlot1D& hNeutronMulti_BV, hPlot1D& hNeutronMulti_AV, std::vector<int>& Neutrons_indices);
 };
 
 #endif  // PARTICLEID_H

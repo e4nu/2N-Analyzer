@@ -39,10 +39,22 @@
 
 using namespace utilities;
 
+/**
+ * @class hPlot2D
+ * @brief A class for creating and managing 2D histograms, including setting titles, labels, axis limits, normalization, appearance, and saving options.
+ * @details The hPlot2D class is designed to facilitate the creation and management of 2D histograms in ROOT. It includes member variables for storing the histogram itself (TH2D), as well as
+ * various settings related to the histogram's titles, labels, axis limits, normalization, appearance, and saving options. The class includes a constructor for initializing these settings,
+ * as well as a function called histPlotter2D for plotting the histogram on a canvas with the specified settings. The histPlotter2D function takes various parameters to control the
+ * appearance and behavior of the histogram plot, including options for normalization, log scale, axis limits, and saving the plot. The hPlot2D class is designed to be flexible and
+ * customizable, allowing users to create 2D histograms that meet their specific needs for analysis and presentation.
+ * @note The hPlot2D class is part of a larger framework for analyzing and plotting data from the 2N-Analyzer-e4nu project. It is important to use this class in conjunction with the other
+ * classes and functions in the framework to ensure consistency and compatibility across different parts of the analysis. Additionally, users should be familiar with ROOT and its
+ * histogramming capabilities to effectively utilize the hPlot2D class for their analysis and plotting needs.
+ */
 class hPlot2D {
    protected:
     /* 2D histogram declaration */
-    TH2D *Histogram2D;
+    TH2D* Histogram2D;
 
     /* Histogram titles & labels.
      * contains HistogramStatTitle, HistogramTitle, XaxisTitle, YaxisTitle, Histogram2DTitleReactions, FinalState and DetectorRegion. */
@@ -52,10 +64,10 @@ class hPlot2D {
     bool Title2 = false;
 
     /* Histogram xAxis limits and #bins */
-    int HistogramNumberOfXBins;           // default #bins for 2D histogram is 250 (see constructor)
-    int HistogramNumberOfYBins;           // default #bins for 2D histogram is 250 (see constructor)
-    vector<double> HistogramXAxisLimits;  // {LowerXlim, UpperXlim}
-    vector<double> HistogramYAxisLimits;  // {LowerYlim, UpperYlim}
+    int HistogramNumberOfXBins;                // default #bins for 2D histogram is 250 (see constructor)
+    int HistogramNumberOfYBins;                // default #bins for 2D histogram is 250 (see constructor)
+    std::vector<double> HistogramXAxisLimits;  // {LowerXlim, UpperXlim}
+    std::vector<double> HistogramYAxisLimits;  // {LowerYlim, UpperYlim}
 
     //    /* Histogram normalization setup */
     //    bool NormalizeHistogram;
@@ -65,7 +77,7 @@ class hPlot2D {
     /* Histogram appearance setup */
     int LineColor = 1;
     int LineWidth = 2;
-    vector<double> Histogram2DTitleSizes = {0.06, 0.0425, 0.0425, 0.0425};  // {TitleSize, LabelSizex, LabelSizey, LabelSizez}
+    std::vector<double> Histogram2DTitleSizes = {0.06, 0.0425, 0.0425, 0.0425};  // {TitleSize, LabelSizex, LabelSizey, LabelSizez}
     bool CenterTitle = true;
     bool ShowStats = true;
 
@@ -75,7 +87,7 @@ class hPlot2D {
 
     /* Histogram cuts setup */
     bool ShowPlotCuts = false;
-    // vector<double> - for cuts
+    // std::vector<double> - for cuts
     double PlotCuts = 0;
     double PlotXmax = 0;
     bool PlotHistogramMax = true;
@@ -109,50 +121,50 @@ class hPlot2D {
 
     #pragma region /* histPlotter2D function (regular) */
     /* histPlotter2D function (regular) */
-    void histPlotter2D(const std::string &SampleName, TCanvas *HistogramCanvas, TH2D *Histogram2D, TList *Histogram_list, vector<TObject *> &HistoList, std::string Histogram2DSaveNameDir,
-                       std::string Histogram2DSaveName, bool showStats = true);
+    void histPlotter2D(const std::string& SampleName, TCanvas* HistogramCanvas, TH2D* Histogram2D, TList* Histogram_list, std::vector<TObject*>& HistoList,
+                       std::string Histogram2DSaveNameDir, std::string Histogram2DSaveName, bool showStats = true);
 
     /* Corresponding hDrawAndSave function (regular) */
-    void hDrawAndSave(const std::string &SampleName, TCanvas *h2DCanvas, TList *hList, vector<TObject *> &HistoList, bool showStats = false);
+    void hDrawAndSave(const std::string& SampleName, TCanvas* h2DCanvas, TList* hList, std::vector<TObject*>& HistoList, bool showStats = false);
     #pragma endregion
 
     #pragma region /* histPlotter2D function (Beta vs. P plots, all particles) */
     /* histPlotter2D function (Beta vs. P plots, all particles) */
-    void histPlotter2D(const std::string &SampleName, TCanvas *HistogramCanvas, TH2D *Histogram2D, TList *Histogram_list, vector<TObject *> &HistoList, std::string Histogram2DSaveNameDir,
-                       std::string Histogram2DSaveName, TF1 *Beta_function1, TF1 *Beta_function2, TF1 *Beta_function3, TF1 *Beta_function4, TF1 *Beta_function5, TF1 *Beta_function6,
-                       TF1 *Beta_function7, TF1 *Beta_function8, TF1 *Beta_function9, bool showStats = true);
+    void histPlotter2D(const std::string& SampleName, TCanvas* HistogramCanvas, TH2D* Histogram2D, TList* Histogram_list, std::vector<TObject*>& HistoList,
+                       std::string Histogram2DSaveNameDir, std::string Histogram2DSaveName, TF1* Beta_function1, TF1* Beta_function2, TF1* Beta_function3, TF1* Beta_function4,
+                       TF1* Beta_function5, TF1* Beta_function6, TF1* Beta_function7, TF1* Beta_function8, TF1* Beta_function9, bool showStats = true);
 
     /* Corresponding hDrawAndSave function (Beta vs. P plots, all particles) */
-    void hDrawAndSave(const std::string &SampleName, TCanvas *h2DCanvas, TList *hList, vector<TObject *> &HistoList, TF1 *Beta_function1, TF1 *Beta_function2, TF1 *Beta_function3,
-                      TF1 *Beta_function4, TF1 *Beta_function5, TF1 *Beta_function6, TF1 *Beta_function7, TF1 *Beta_function8, TF1 *Beta_function, bool showStats = true);
+    void hDrawAndSave(const std::string& SampleName, TCanvas* h2DCanvas, TList* hList, std::vector<TObject*>& HistoList, TF1* Beta_function1, TF1* Beta_function2, TF1* Beta_function3,
+                      TF1* Beta_function4, TF1* Beta_function5, TF1* Beta_function6, TF1* Beta_function7, TF1* Beta_function8, TF1* Beta_function, bool showStats = true);
     #pragma endregion
 
     #pragma region /* histPlotter2D function (Beta vs. P plots, single particle) */
     /* histPlotter2D function (Beta vs. P plots, single particle) */
-    void histPlotter2D(const std::string &SampleName, TCanvas *HistogramCanvas, TH2D *Histogram2D, TList *Histogram_list, vector<TObject *> &HistoList, std::string Histogram2DSaveNameDir,
-                       std::string Histogram2DSaveName, TF1 *Beta_function1, std::string particle1, bool showStats = true, bool plot_legend = true);
+    void histPlotter2D(const std::string& SampleName, TCanvas* HistogramCanvas, TH2D* Histogram2D, TList* Histogram_list, std::vector<TObject*>& HistoList,
+                       std::string Histogram2DSaveNameDir, std::string Histogram2DSaveName, TF1* Beta_function1, std::string particle1, bool showStats = true, bool plot_legend = true);
 
     /* Corresponding hDrawAndSave function (Beta vs. P plots, single particle) */
-    void hDrawAndSave(const std::string &SampleName, TCanvas *h2DCanvas, TList *hList, vector<TObject *> &HistoList, TF1 *Beta_function1, std::string particle1, bool showStats,
+    void hDrawAndSave(const std::string& SampleName, TCanvas* h2DCanvas, TList* hList, std::vector<TObject*>& HistoList, TF1* Beta_function1, std::string particle1, bool showStats,
                       bool plot_legend = true);
     #pragma endregion
 
     #pragma region /* histPlotter2D function (Beta vs. P plots, 3 particles (by charge)) */
     /* histPlotter2D function (Beta vs. P plots, 3 particles (by charge)) */
-    void histPlotter2D(const std::string &SampleName, TCanvas *HistogramCanvas, TH2D *Histogram2D, TList *Histogram_list, vector<TObject *> &HistoList, std::string Histogram2DSaveNameDir,
-                       std::string Histogram2DSaveName, TF1 *Beta_function1, std::string particle1, TF1 *Beta_function2, std::string particle2, TF1 *Beta_function3, std::string particle3,
-                       bool showStats = true, bool plot_legend = true);
+    void histPlotter2D(const std::string& SampleName, TCanvas* HistogramCanvas, TH2D* Histogram2D, TList* Histogram_list, std::vector<TObject*>& HistoList,
+                       std::string Histogram2DSaveNameDir, std::string Histogram2DSaveName, TF1* Beta_function1, std::string particle1, TF1* Beta_function2, std::string particle2,
+                       TF1* Beta_function3, std::string particle3, bool showStats = true, bool plot_legend = true);
 
     /* Corresponding hDrawAndSave function (Beta vs. P plots, 3 particles (by charge)) */
-    void hDrawAndSave(const std::string &SampleName, TCanvas *h2DCanvas, TList *hList, vector<TObject *> &HistoList, TF1 *Beta_function1, std::string particle1, TF1 *Beta_function2,
-                      std::string particle2, TF1 *Beta_function3, std::string particle3, bool showStats = true, bool plot_legend = true);
+    void hDrawAndSave(const std::string& SampleName, TCanvas* h2DCanvas, TList* hList, std::vector<TObject*>& HistoList, TF1* Beta_function1, std::string particle1, TF1* Beta_function2,
+                      std::string particle2, TF1* Beta_function3, std::string particle3, bool showStats = true, bool plot_legend = true);
     #pragma endregion
 
     // hDivision function -----------------------------------------------------------------------------------------------------------------------------------------------
 
-    void hAdd(TH2D *h) { Histogram2D->Add(h); }
+    void hAdd(TH2D* h) { Histogram2D->Add(h); }
 
-    void hDivision(TH2D *hDenominator, bool SetLogZLimits = true, double MaxZLim = 1.25);
+    void hDivision(TH2D* hDenominator, bool SetLogZLimits = true, double MaxZLim = 1.25);
 
     // Other histogram methods:
     void ApplyZMaxLim(double ZMaxLim) { Histogram2D->SetMaximum(ZMaxLim); }
@@ -167,10 +179,10 @@ class hPlot2D {
 
     void SimpleDraw() { Histogram2D->Draw(); }
 
-    void SimpleSave(TCanvas *HistogramCanvas) { HistogramCanvas->SaveAs((Histogram2DSaveNamePath + "/" + Histogram2DSaveName + ".pdf").c_str()); }
+    void SimpleSave(TCanvas* HistogramCanvas) { HistogramCanvas->SaveAs((Histogram2DSaveNamePath + "/" + Histogram2DSaveName + ".pdf").c_str()); }
 
     //  Set methods:
-    void SetHistogram2D(TH2D *Histogram) { Histogram2D = Histogram; }
+    void SetHistogram2D(TH2D* Histogram) { Histogram2D = Histogram; }
 
     void SetHistogramTitle(std::string hTitle) { Histogram2DTitles["HistogramTitle"] = hTitle; }
 
@@ -263,11 +275,11 @@ class hPlot2D {
     void SetPlotHistogramMax(bool phMax = true) { PlotHistogramMax = phMax; }
 
     //  Get methods:
-    TH2D *GetHistogram2D() { return Histogram2D; }  // used in AMaps class
+    TH2D* GetHistogram2D() { return Histogram2D; }  // used in AMaps class
 
-    TH2D *GetHistogram() const { return Histogram2D; }  // used in final state ratio (FSR) plots
+    TH2D* GetHistogram() const { return Histogram2D; }  // used in final state ratio (FSR) plots
 
-    TH2D *GetHistogram2DConst() const { return Histogram2D; }
+    TH2D* GetHistogram2DConst() const { return Histogram2D; }
 
     std::string GetHistogramTitle() { return Histogram2DTitles["HistogramTitle"]; }
 

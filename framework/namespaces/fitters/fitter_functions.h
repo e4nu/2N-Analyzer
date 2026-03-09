@@ -28,6 +28,20 @@
 #include "../general_utilities/constants.h"
 #include "../general_utilities/utilities.h"
 
+/**
+ * @namespace fitter_functions
+ * @brief A namespace for functions related to fitting, including a fit function and a function for performing a beta fit.
+ * @details This namespace contains functions related to fitting, including a FitFunction that is designed to be used with ROOT's TF1 for fitting histograms, and a BetaFit function that
+ * performs a fit to a beta distribution for a given sample, cut values, and histogram. The FitFunction is defined with a specific signature to be compatible with TF1, and it uses the number
+ * of parameters defined in the NumOfParameters variable to determine how to calculate the fit function. The BetaFit function takes various parameters related to the sample, cut values,
+ * histogram, and beam energy, and it performs a fit to the beta distribution using the FitFunction, with specific limits and parameters for the fit. The BetaFit function also includes
+ * options for setting limits on the fit parameters and for printing out information about the fit results.
+ * @note The FitFunction is designed to be used with ROOT's TF1 for fitting histograms, and it is important to ensure that the number of parameters is set appropriately before using the
+ * FitFunction with TF1. The BetaFit function is specific to fitting a beta distribution, and it is important to ensure that the input parameters are appropriate for the fit being performed.
+ * Additionally, the BetaFit function includes options for setting limits on the fit parameters, which can be important for ensuring that the fit results are physically meaningful and
+ * consistent with the expected behavior of the beta distribution for the given sample and beam energy. It is also important to ensure that the BetaFit function is used in conjunction with
+ * the appropriate histograms and cut values for the sample being analyzed, as this can affect the quality and reliability of the fit results.
+ */
 namespace fitter_functions {
 using namespace analysis_math;
 
@@ -39,7 +53,7 @@ using namespace analysis_math;
 // And since NumOfParameters is meant to be a constant for each fit function, we define it externally and set it before calling TF1 when deeded.
 static int NumOfParameters = 3;  // Define it externally
 
-Double_t FitFunction(Double_t *v, Double_t *par) {
+Double_t FitFunction(Double_t* v, Double_t* par) {
     if (NumOfParameters != 2 && NumOfParameters != 3) {
         std::cerr << "fitter_functions::FitFunction: invalid number of parameters! Choose 2 or 3. Aborting..." << std::endl;
         exit(1);
@@ -52,12 +66,12 @@ Double_t FitFunction(Double_t *v, Double_t *par) {
 
 // BetaFit function -----------------------------------------------------------------------------------------------------------------------------------------------------
 
-void BetaFit(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Momentum_cuts, const hPlot1D &BetaPlot, TList *Histogram_list, const double beamE) {
+void BetaFit(const std::string& SampleName, DSCuts& Beta_cut, DSCuts& Momentum_cuts, const hPlot1D& BetaPlot, TList* Histogram_list, const double beamE) {
     double W_yLLim = -0.1, W_yULim = 0.1, W_xLLim = 0.9, W_xULim = 1.;
     double deltaPRel_UncertaintyU = 0.2, deltaPRel_UncertaintyL = 0.1;
 
-    #pragma region /* Canvas definitions */
-    TCanvas *Canvas = new TCanvas("Canvas", "Canvas", 1000 * 2, 750 * 2);  // normal res
+#pragma region                                                             /* Canvas definitions */
+    TCanvas* Canvas = new TCanvas("Canvas", "Canvas", 1000 * 2, 750 * 2);  // normal res
     Canvas->SetGrid();
     Canvas->SetBottomMargin(0.14);
 
@@ -67,9 +81,9 @@ void BetaFit(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Momentum_c
     float DefStatX = gStyle->GetStatX(), DefStatY = gStyle->GetStatY();
 
     Canvas->cd();
-    #pragma endregion
+#pragma endregion
 
-    #pragma region /* Setting sNameFlag */
+#pragma region /* Setting sNameFlag */
     std::string sNameFlag;
 
     if (basic_tools::FindSubstring(SampleName, "sim")) {
@@ -77,21 +91,21 @@ void BetaFit(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Momentum_c
     } else if (basic_tools::FindSubstring(SampleName, "data")) {
         sNameFlag = "d";
     }
-    #pragma endregion
+#pragma endregion
 
-    #pragma region /* Setting particle */
+#pragma region /* Setting particle */
     std::string BetaParticle = data_processor::GetParticleName(BetaPlot.GetHistogramTitle());
     std::string BetaParticleShort = data_processor::GetParticleNameShort(BetaPlot.GetHistogramTitle());
 
-    #pragma region /* Setting histogram */
-    TH1D *hBeta = BetaPlot.GetHistogram();
-    TH1D *hBeta_Clone = (TH1D *)hBeta->Clone((BetaPlot.GetHistogramStatTitle() + " - fitted").c_str());
+#pragma region /* Setting histogram */
+    TH1D* hBeta = BetaPlot.GetHistogram();
+    TH1D* hBeta_Clone = (TH1D*)hBeta->Clone((BetaPlot.GetHistogramStatTitle() + " - fitted").c_str());
     Int_t Color = hBeta_Clone->GetLineColor();
-    #pragma endregion
+#pragma endregion
 
     if (hBeta_Clone->Integral() != 0.) {
-        #pragma region /* Preforming a fit */
-        TF1 *func = new TF1("fit", FitFunction, 0, 2, 3);  // create a function with 3 parameters in the range [-3,3]
+#pragma region                                             /* Preforming a fit */
+        TF1* func = new TF1("fit", FitFunction, 0, 2, 3);  // create a function with 3 parameters in the range [-3,3]
         func->SetLineColor(kRed);
 
         double BetaMax = hBeta_Clone->GetMaximum();
@@ -130,16 +144,16 @@ void BetaFit(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Momentum_c
         hBeta_Clone->Draw();
         cout << "\n";
 
-        TF1 *fit = hBeta_Clone->GetFunction("fit");
+        TF1* fit = hBeta_Clone->GetFunction("fit");
         double FitAmp = fit->GetParameter(0);   // get p0
         double FitMean = fit->GetParameter(1);  // get p1
         double FitStd = fit->GetParameter(2);   // get p2
 
         Beta_cut.SetUpperCut(fit->GetParameter(2));
         Beta_cut.SetMean(fit->GetParameter(1));
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Drawing fit parameters and saving */
+#pragma region /* Drawing fit parameters and saving */
         double x_1_Cut_legend = gStyle->GetStatX(), y_1_Cut_legend = gStyle->GetStatY() - 0.2;
         double x_2_Cut_legend = gStyle->GetStatX() - 0.2, y_2_Cut_legend = gStyle->GetStatY() - 0.3;
 
@@ -148,7 +162,7 @@ void BetaFit(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Momentum_c
         //    double x_1_FitParam = gStyle->GetStatX(), y_1_FitParam = y_1_Cut_legend - 0.14;
         //    double x_2_FitParam = gStyle->GetStatX() - 0.2, y_2_FitParam = y_1_Cut_legend - 0.245;
 
-        TPaveText *FitParam = new TPaveText(x_1_FitParam, y_1_FitParam, x_2_FitParam, y_2_FitParam, "NDC");
+        TPaveText* FitParam = new TPaveText(x_1_FitParam, y_1_FitParam, x_2_FitParam, y_2_FitParam, "NDC");
         FitParam->SetBorderSize(1);
         FitParam->SetTextFont(0);
         FitParam->SetFillColor(0);
@@ -156,22 +170,22 @@ void BetaFit(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Momentum_c
         FitParam->AddText(("Fit amp = " + basic_tools::ToStringWithPrecision(FitAmp, 8)).c_str());
         FitParam->AddText(("Fit mean = " + basic_tools::ToStringWithPrecision(FitMean, 8)).c_str());
         FitParam->AddText(("Fit std = " + basic_tools::ToStringWithPrecision(FitStd, 8)).c_str());
-        ((TText *)FitParam->GetListOfLines()->Last())->SetTextColor(kRed);
+        ((TText*)FitParam->GetListOfLines()->Last())->SetTextColor(kRed);
         FitParam->Draw("same");
 
         std::string hBeta_CloneSaveNameDir = BetaPlot.GetHistogram1DSaveNamePath() + sNameFlag + BetaPlot.GetHistogram1DSaveName() + "_fitted.pdf";
-        const char *hBeta_CloneSaveDir = hBeta_CloneSaveNameDir.c_str();
+        const char* hBeta_CloneSaveDir = hBeta_CloneSaveNameDir.c_str();
         Canvas->SaveAs(hBeta_CloneSaveDir);
 
         Canvas->Clear();
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Plot deltaP as function of beta */
+#pragma region /* Plot deltaP as function of beta */
         std::string deltaPStatsTitle = "#deltaP_{" + BetaParticleShort + "} (" + BetaPlot.GetFinalState() + ")";
         std::string deltaPTitle = BetaParticle + " momentum uncertainty #deltaP_{" + BetaParticleShort + "} (" + BetaPlot.GetFinalState() + ")";
         std::string deltaPfunc = to_string(m_n * FitStd) + "/ ( (1 - x*x) * sqrt(1 - x*x) )";
 
-        auto *deltaP = new TF1(deltaPStatsTitle.c_str(), deltaPfunc.c_str(), 0.9, 1);
+        auto* deltaP = new TF1(deltaPStatsTitle.c_str(), deltaPfunc.c_str(), 0.9, 1);
         deltaP->SetTitle(deltaPTitle.c_str());
         deltaP->GetXaxis()->SetTitleSize(0.06);
         deltaP->GetXaxis()->SetLabelSize(0.0425);
@@ -189,7 +203,7 @@ void BetaFit(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Momentum_c
         deltaP->Draw();
         Histogram_list->Add(deltaP);
 
-        TPaveText *deltaPParam = new TPaveText(x_1_FitParam, y_1_FitParam - 0.05 + 0.15, x_2_FitParam, y_2_FitParam + 0.15, "NDC");
+        TPaveText* deltaPParam = new TPaveText(x_1_FitParam, y_1_FitParam - 0.05 + 0.15, x_2_FitParam, y_2_FitParam + 0.15, "NDC");
         //    TPaveText *deltaPParam = new TPaveText(x_1_FitParam, y_1_FitParam - 0.1, x_2_FitParam, y_2_FitParam, "NDC");
         //    TPaveText *deltaPParam = new TPaveText(x_1_FitParam, y_1_FitParam, x_2_FitParam, y_2_FitParam, "NDC");
         deltaPParam->SetBorderSize(1);
@@ -202,13 +216,13 @@ void BetaFit(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Momentum_c
         deltaPParam->Draw("same");
 
         std::string deltaPSaveNameDir = BetaPlot.GetHistogram1DSaveNamePath() + sNameFlag + "02a_P_" + BetaParticleShort + "_uncertainty" + BetaPlot.GetFinalState() + ".pdf";
-        const char *deltaPSaveDir = deltaPSaveNameDir.c_str();
+        const char* deltaPSaveDir = deltaPSaveNameDir.c_str();
         Canvas->SaveAs(deltaPSaveDir);
 
         Canvas->Clear();
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Solve deltaP/P for beta in range 0.9<=beta<1 */
+#pragma region /* Solve deltaP/P for beta in range 0.9<=beta<1 */
         double Beta_Max, P_Beta_Max, Beta_Min, P_Beta_Min;
         double Beta_Max_sol[3], Beta_Min_sol[3];
 
@@ -246,14 +260,14 @@ void BetaFit(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Momentum_c
         cout << "P(Beta_Min) = " << P_Beta_Min << "\n\n";
 
         Momentum_cuts.SetUpperCut(P_Beta_Max);
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Plot deltaP/P as function of beta */
+#pragma region /* Plot deltaP/P as function of beta */
         std::string Rel_deltaPStatsTitle = "#deltaP_{" + BetaParticleShort + "} (" + BetaPlot.GetFinalState() + ")";
         std::string Rel_deltaPTitle = BetaParticle + " relative uncertainty #deltaP_{" + BetaParticleShort + "}/P_{" + BetaParticleShort + "}" + " (" + BetaPlot.GetFinalState() + ")";
         std::string Rel_deltaPfunc = to_string(FitStd) + "/ ( (1 - x*x) * x )";
 
-        auto *Rel_deltaP = new TF1(Rel_deltaPStatsTitle.c_str(), Rel_deltaPfunc.c_str(), 0.9, 1);
+        auto* Rel_deltaP = new TF1(Rel_deltaPStatsTitle.c_str(), Rel_deltaPfunc.c_str(), 0.9, 1);
         Rel_deltaP->SetTitle(Rel_deltaPTitle.c_str());
         Rel_deltaP->GetXaxis()->SetTitleSize(0.06);
         Rel_deltaP->GetXaxis()->SetLabelSize(0.0425);
@@ -269,7 +283,7 @@ void BetaFit(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Momentum_c
         Rel_deltaP->Draw();
         Histogram_list->Add(Rel_deltaP);
 
-        TPaveText *deltaPRel_deltaP = new TPaveText(x_1_FitParam, y_1_FitParam - 0.05, x_2_FitParam, y_2_FitParam, "NDC");
+        TPaveText* deltaPRel_deltaP = new TPaveText(x_1_FitParam, y_1_FitParam - 0.05, x_2_FitParam, y_2_FitParam, "NDC");
         deltaPRel_deltaP->SetBorderSize(1);
         deltaPRel_deltaP->SetTextFont(0);
         deltaPRel_deltaP->SetTextSize(0.03);
@@ -278,20 +292,20 @@ void BetaFit(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Momentum_c
         deltaPRel_deltaP->AddText(("d#beta = " + to_string(FitStd)).c_str());
         deltaPRel_deltaP->Draw("same");
 
-        TLine *upper_cut = new TLine(gPad->GetFrame()->GetX2() - 0.1, deltaPRel_UncertaintyU, gPad->GetFrame()->GetX2(), deltaPRel_UncertaintyU);
+        TLine* upper_cut = new TLine(gPad->GetFrame()->GetX2() - 0.1, deltaPRel_UncertaintyU, gPad->GetFrame()->GetX2(), deltaPRel_UncertaintyU);
         upper_cut->SetLineWidth(2);
         upper_cut->SetLineColor(kBlue);
         upper_cut->Draw("same");
 
-        TLine *lower_cut = new TLine(gPad->GetFrame()->GetX2() - 0.1, deltaPRel_UncertaintyL, gPad->GetFrame()->GetX2(), deltaPRel_UncertaintyL);
+        TLine* lower_cut = new TLine(gPad->GetFrame()->GetX2() - 0.1, deltaPRel_UncertaintyL, gPad->GetFrame()->GetX2(), deltaPRel_UncertaintyL);
         lower_cut->SetLineWidth(2);
         lower_cut->SetLineColor(kRed);
         lower_cut->Draw("same");
 
         auto Cut_legend = new TLegend(gStyle->GetStatX(), gStyle->GetStatY() - 0.2 + 0.125, gStyle->GetStatX() - 0.2, gStyle->GetStatY() - 0.3 + 0.1);
-        TLegendEntry *Cut_legend_deltaPRel_deltaP = Cut_legend->AddEntry(deltaPRel_deltaP, ("#deltaP_{" + BetaParticleShort + "}/P_{" + BetaParticleShort + "}").c_str(), "l");
-        TLegendEntry *Cut_legend_upper_lim = Cut_legend->AddEntry(upper_cut, "20% cut", "l");
-        TLegendEntry *Cut_legend_lower_lim = Cut_legend->AddEntry(lower_cut, "10% cut", "l");
+        TLegendEntry* Cut_legend_deltaPRel_deltaP = Cut_legend->AddEntry(deltaPRel_deltaP, ("#deltaP_{" + BetaParticleShort + "}/P_{" + BetaParticleShort + "}").c_str(), "l");
+        TLegendEntry* Cut_legend_upper_lim = Cut_legend->AddEntry(upper_cut, "20% cut", "l");
+        TLegendEntry* Cut_legend_lower_lim = Cut_legend->AddEntry(lower_cut, "10% cut", "l");
         Cut_legend->Draw("same");
 
         std::string Rel_deltaPSaveNameDir = BetaPlot.GetHistogram1DSaveNamePath() + sNameFlag + "02b_P_" + BetaParticleShort + "_rel_uncertainty" + BetaPlot.GetFinalState() + ".pdf";
@@ -306,18 +320,18 @@ void BetaFit(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Momentum_c
         gr->SetPoint(1, Beta_Min, deltaPRel_UncertaintyL);
         gr->Draw("same");
 
-        const char *Rel_deltaPSaveDir = Rel_deltaPSaveNameDir.c_str();
+        const char* Rel_deltaPSaveDir = Rel_deltaPSaveNameDir.c_str();
         Canvas->SaveAs(Rel_deltaPSaveDir);
         Canvas->Clear();
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Plot w as function of beta */
+#pragma region /* Plot w as function of beta */
         std::string WStatsTitle = "W(#beta) (" + BetaPlot.GetFinalState() + ")";
         std::string WTitle = "The W(#beta) function (" + BetaPlot.GetFinalState() + ")";
         std::string W_Maxfunc = "x*x*x - x + " + to_string(FitStd / deltaPRel_UncertaintyU);
         std::string W_Minfunc = "x*x*x - x + " + to_string(FitStd / deltaPRel_UncertaintyL);
 
-        auto *W_Max = new TF1(WStatsTitle.c_str(), W_Maxfunc.c_str(), 0.9, 1);
+        auto* W_Max = new TF1(WStatsTitle.c_str(), W_Maxfunc.c_str(), 0.9, 1);
         W_Max->SetLineWidth(2);
         W_Max->SetLineStyle(2);
         W_Max->SetTitle(WTitle.c_str());
@@ -335,7 +349,7 @@ void BetaFit(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Momentum_c
         W_Max->Draw();
         Histogram_list->Add(W_Max);
 
-        auto *W_Min = new TF1(WStatsTitle.c_str(), W_Minfunc.c_str(), 0.9, 1);
+        auto* W_Min = new TF1(WStatsTitle.c_str(), W_Minfunc.c_str(), 0.9, 1);
         W_Min->SetLineWidth(2);
         W_Min->SetLineStyle(10);
         W_Min->SetLineColor(kBlack);
@@ -343,30 +357,30 @@ void BetaFit(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Momentum_c
         W_Min->Draw("same");
         Histogram_list->Add(W_Min);
 
-        TLine *Beta_Max_cut = new TLine(Beta_Max, W_yULim, Beta_Max, W_yLLim);
+        TLine* Beta_Max_cut = new TLine(Beta_Max, W_yULim, Beta_Max, W_yLLim);
         Beta_Max_cut->SetLineWidth(2);
         Beta_Max_cut->SetLineColor(kBlue);
         Beta_Max_cut->Draw("same");
 
-        TLine *Beta_Min_cut = new TLine(Beta_Min, W_yULim, Beta_Min, W_yLLim);
+        TLine* Beta_Min_cut = new TLine(Beta_Min, W_yULim, Beta_Min, W_yLLim);
         Beta_Min_cut->SetLineWidth(2);
         Beta_Min_cut->SetLineColor(kRed);
         Beta_Min_cut->Draw("same");
 
-        TLine *XAxis = new TLine(W_xLLim, 0., W_xULim, 0.);
+        TLine* XAxis = new TLine(W_xLLim, 0., W_xULim, 0.);
         XAxis->SetLineColor(kBlack);
         XAxis->Draw("same");
 
         auto W_legend = new TLegend(gStyle->GetStatX(), gStyle->GetStatY() - 0.2 + 0.1, gStyle->GetStatX() - 0.2, gStyle->GetStatY() - 0.3 + 0.1);
-        TLegendEntry *W_legend_upper_lim = W_legend->AddEntry(Beta_Max_cut, ("#deltaP_{" + BetaParticleShort + "}/P_{" + BetaParticleShort + "} = 0.2").c_str(), "l");
-        TLegendEntry *W_legend_lower_lim = W_legend->AddEntry(Beta_Min_cut, ("#deltaP_{" + BetaParticleShort + "}/P_{" + BetaParticleShort + "} = 0.1").c_str(), "l");
+        TLegendEntry* W_legend_upper_lim = W_legend->AddEntry(Beta_Max_cut, ("#deltaP_{" + BetaParticleShort + "}/P_{" + BetaParticleShort + "} = 0.2").c_str(), "l");
+        TLegendEntry* W_legend_lower_lim = W_legend->AddEntry(Beta_Min_cut, ("#deltaP_{" + BetaParticleShort + "}/P_{" + BetaParticleShort + "} = 0.1").c_str(), "l");
         W_legend->Draw("same");
 
         std::string WSaveNameDir = BetaPlot.GetHistogram1DSaveNamePath() + sNameFlag + "03_W_function.pdf";
-        const char *WSaveDir = WSaveNameDir.c_str();
+        const char* WSaveDir = WSaveNameDir.c_str();
         Canvas->SaveAs(WSaveDir);
         Canvas->Clear();
-        #pragma endregion
+#pragma endregion
 
     } else {
         Momentum_cuts.SetUpperCut(beamE);
@@ -375,14 +389,14 @@ void BetaFit(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Momentum_c
 
 // BetaFitApprax function -----------------------------------------------------------------------------------------------------------------------------------------------------
 
-void BetaFitApprax(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Momentum_cuts, const hPlot1D &BetaPlot, TList *Histogram_list, const double beamE) {
+void BetaFitApprax(const std::string& SampleName, DSCuts& Beta_cut, DSCuts& Momentum_cuts, const hPlot1D& BetaPlot, TList* Histogram_list, const double beamE) {
     double W_yLLim = -0.1, W_yULim = 0.1, W_xLLim = 0.9, W_xULim = 1.;
     double deltaPRel_UncertaintyU = 0.2, deltaPRel_UncertaintyL = 0.1;
 
     system(("mkdir -p " + BetaPlot.GetHistogram1DSaveNamePath() + "Approximated_beta/").c_str());
 
-    #pragma region /* Canvas definitions */
-    TCanvas *Canvas = new TCanvas("Canvas", "Canvas", 1000 * 2, 750 * 2);  // normal res
+#pragma region                                                             /* Canvas definitions */
+    TCanvas* Canvas = new TCanvas("Canvas", "Canvas", 1000 * 2, 750 * 2);  // normal res
     Canvas->SetGrid();
     Canvas->SetBottomMargin(0.14);
 
@@ -393,7 +407,7 @@ void BetaFitApprax(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Mome
 
     Canvas->cd();
 
-    #pragma region /* Setting sNameFlag */
+#pragma region /* Setting sNameFlag */
     std::string sNameFlag;
 
     if (basic_tools::FindSubstring(SampleName, "sim")) {
@@ -401,21 +415,21 @@ void BetaFitApprax(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Mome
     } else if (basic_tools::FindSubstring(SampleName, "data")) {
         sNameFlag = "d";
     }
-    #pragma endregion
+#pragma endregion
 
-    #pragma region /* Setting particle */
+#pragma region /* Setting particle */
     std::string BetaParticle = data_processor::GetParticleName(BetaPlot.GetHistogramTitle());
     std::string BetaParticleShort = data_processor::GetParticleNameShort(BetaPlot.GetHistogramTitle());
 
-    #pragma region /* Setting histogram */
-    TH1D *hBeta = BetaPlot.GetHistogram();
-    TH1D *hBeta_Clone = (TH1D *)hBeta->Clone((BetaPlot.GetHistogramStatTitle() + " - fitted").c_str());
+#pragma region /* Setting histogram */
+    TH1D* hBeta = BetaPlot.GetHistogram();
+    TH1D* hBeta_Clone = (TH1D*)hBeta->Clone((BetaPlot.GetHistogramStatTitle() + " - fitted").c_str());
     Int_t Color = hBeta_Clone->GetLineColor();
-    #pragma endregion
+#pragma endregion
 
     if (hBeta_Clone->Integral() != 0.) {
-        #pragma region /* Preforming a fit */
-        TF1 *func = new TF1("fit", FitFunction, 0, 2, 3);  // create a function with 3 parameters in the range [-3,3]
+#pragma region                                             /* Preforming a fit */
+        TF1* func = new TF1("fit", FitFunction, 0, 2, 3);  // create a function with 3 parameters in the range [-3,3]
         func->SetLineColor(kRed);
 
         double BetaMax = hBeta_Clone->GetMaximum();
@@ -453,15 +467,15 @@ void BetaFitApprax(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Mome
         hBeta_Clone->Draw();
         cout << "\n";
 
-        TF1 *fit = hBeta_Clone->GetFunction("fit");
+        TF1* fit = hBeta_Clone->GetFunction("fit");
         double FitAmp = fit->GetParameter(0);   // get p0
         double FitMean = fit->GetParameter(1);  // get p1
         double FitStd = fit->GetParameter(2);   // get p2
 
         Beta_cut.SetUpperCut(fit->GetParameter(2));
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Drawing fit parameters and saving */
+#pragma region /* Drawing fit parameters and saving */
         double x_1_Cut_legend = gStyle->GetStatX(), y_1_Cut_legend = gStyle->GetStatY() - 0.2;
         double x_2_Cut_legend = gStyle->GetStatX() - 0.2, y_2_Cut_legend = gStyle->GetStatY() - 0.3;
 
@@ -470,7 +484,7 @@ void BetaFitApprax(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Mome
         //    double x_1_FitParam = gStyle->GetStatX(), y_1_FitParam = y_1_Cut_legend - 0.14;
         //    double x_2_FitParam = gStyle->GetStatX() - 0.2, y_2_FitParam = y_1_Cut_legend - 0.245;
 
-        TPaveText *FitParam = new TPaveText(x_1_FitParam, y_1_FitParam, x_2_FitParam, y_2_FitParam, "NDC");
+        TPaveText* FitParam = new TPaveText(x_1_FitParam, y_1_FitParam, x_2_FitParam, y_2_FitParam, "NDC");
         FitParam->SetBorderSize(1);
         FitParam->SetTextFont(0);
         FitParam->SetFillColor(0);
@@ -478,22 +492,22 @@ void BetaFitApprax(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Mome
         FitParam->AddText(("Fit amp = " + basic_tools::ToStringWithPrecision(FitAmp, 8)).c_str());
         FitParam->AddText(("Fit mean = " + basic_tools::ToStringWithPrecision(FitMean, 8)).c_str());
         FitParam->AddText(("Fit std = " + basic_tools::ToStringWithPrecision(FitStd, 8)).c_str());
-        ((TText *)FitParam->GetListOfLines()->Last())->SetTextColor(kRed);
+        ((TText*)FitParam->GetListOfLines()->Last())->SetTextColor(kRed);
         FitParam->Draw("same");
 
         std::string hBeta_CloneSaveNameDir = BetaPlot.GetHistogram1DSaveNamePath() + "Approximatied_beta/" + sNameFlag + BetaPlot.GetHistogram1DSaveName() + "_fitted.pdf";
-        const char *hBeta_CloneSaveDir = hBeta_CloneSaveNameDir.c_str();
+        const char* hBeta_CloneSaveDir = hBeta_CloneSaveNameDir.c_str();
         Canvas->SaveAs(hBeta_CloneSaveDir);
 
         Canvas->Clear();
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Plot deltaP as function of beta */
+#pragma region /* Plot deltaP as function of beta */
         std::string deltaPStatsTitle = "#deltaP_{" + BetaParticleShort + "} (" + BetaPlot.GetFinalState() + ")";
         std::string deltaPTitle = BetaParticle + " momentum uncertainty #deltaP_{" + BetaParticleShort + "} (" + BetaPlot.GetFinalState() + ")";
         std::string deltaPfunc = to_string(m_n * FitStd) + "/ ( (1 - x*x) * sqrt(1 - x*x) )";
 
-        auto *deltaP = new TF1(deltaPStatsTitle.c_str(), deltaPfunc.c_str(), 0.9, 1);
+        auto* deltaP = new TF1(deltaPStatsTitle.c_str(), deltaPfunc.c_str(), 0.9, 1);
         deltaP->SetTitle(deltaPTitle.c_str());
         deltaP->GetXaxis()->SetTitleSize(0.06);
         deltaP->GetXaxis()->SetLabelSize(0.0425);
@@ -511,7 +525,7 @@ void BetaFitApprax(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Mome
         deltaP->Draw();
         Histogram_list->Add(deltaP);
 
-        TPaveText *deltaPParam = new TPaveText(x_1_FitParam, y_1_FitParam - 0.05 + 0.15, x_2_FitParam, y_2_FitParam + 0.15, "NDC");
+        TPaveText* deltaPParam = new TPaveText(x_1_FitParam, y_1_FitParam - 0.05 + 0.15, x_2_FitParam, y_2_FitParam + 0.15, "NDC");
         //    TPaveText *deltaPParam = new TPaveText(x_1_FitParam, y_1_FitParam - 0.1, x_2_FitParam, y_2_FitParam, "NDC");
         //    TPaveText *deltaPParam = new TPaveText(x_1_FitParam, y_1_FitParam, x_2_FitParam, y_2_FitParam, "NDC");
         deltaPParam->SetBorderSize(1);
@@ -525,13 +539,13 @@ void BetaFitApprax(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Mome
 
         std::string deltaPSaveNameDir =
             BetaPlot.GetHistogram1DSaveNamePath() + "Approximatied_beta/" + sNameFlag + "02a_P_" + BetaParticleShort + "_uncertainty_" + BetaPlot.GetFinalState() + ".pdf";
-        const char *deltaPSaveDir = deltaPSaveNameDir.c_str();
+        const char* deltaPSaveDir = deltaPSaveNameDir.c_str();
         Canvas->SaveAs(deltaPSaveDir);
 
         Canvas->Clear();
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Solve deltaP/P for beta in range 0.9<=beta<1 */
+#pragma region /* Solve deltaP/P for beta in range 0.9<=beta<1 */
         double Beta_Max_Apprax, P_Beta_Max_Apprax, Beta_Min_Apprax, P_Beta_Min_Apprax;
 
         cout << "\nSolutions for deltaP/P = 20%:\n";
@@ -554,15 +568,15 @@ void BetaFitApprax(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Mome
         //        exit(1);
 
         Momentum_cuts.SetUpperCut(P_Beta_Max_Apprax);
-        #pragma endregion
+#pragma endregion
 
-        #pragma region /* Plot deltaP/P as function of beta */
+#pragma region /* Plot deltaP/P as function of beta */
         std::string Rel_deltaPStatsTitle = "#deltaP_{" + BetaParticleShort + "} (" + BetaPlot.GetFinalState() + ")";
         std::string Rel_deltaPTitle =
             BetaParticle + " relative uncertainty #deltaP_{" + BetaParticleShort + "}/P_{" + BetaParticleShort + "}" + " (apprax. ," + BetaPlot.GetFinalState() + ")";
         std::string Rel_deltaPfunc = to_string(FitStd) + "/ (1 - x*x)";
 
-        auto *Rel_deltaP = new TF1(Rel_deltaPStatsTitle.c_str(), Rel_deltaPfunc.c_str(), 0.9, 1);
+        auto* Rel_deltaP = new TF1(Rel_deltaPStatsTitle.c_str(), Rel_deltaPfunc.c_str(), 0.9, 1);
         Rel_deltaP->SetTitle(Rel_deltaPTitle.c_str());
         Rel_deltaP->GetXaxis()->SetTitleSize(0.06);
         Rel_deltaP->GetXaxis()->SetLabelSize(0.0425);
@@ -578,7 +592,7 @@ void BetaFitApprax(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Mome
         Rel_deltaP->Draw();
         Histogram_list->Add(Rel_deltaP);
 
-        TPaveText *deltaPRel_deltaP = new TPaveText(x_1_FitParam, y_1_FitParam - 0.05, x_2_FitParam, y_2_FitParam, "NDC");
+        TPaveText* deltaPRel_deltaP = new TPaveText(x_1_FitParam, y_1_FitParam - 0.05, x_2_FitParam, y_2_FitParam, "NDC");
         deltaPRel_deltaP->SetBorderSize(1);
         deltaPRel_deltaP->SetTextFont(0);
         deltaPRel_deltaP->SetTextSize(0.03);
@@ -587,20 +601,20 @@ void BetaFitApprax(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Mome
         deltaPRel_deltaP->AddText(("d#beta = " + to_string(FitStd)).c_str());
         deltaPRel_deltaP->Draw("same");
 
-        TLine *upper_cut = new TLine(gPad->GetFrame()->GetX2() - 0.1, deltaPRel_UncertaintyU, gPad->GetFrame()->GetX2(), deltaPRel_UncertaintyU);
+        TLine* upper_cut = new TLine(gPad->GetFrame()->GetX2() - 0.1, deltaPRel_UncertaintyU, gPad->GetFrame()->GetX2(), deltaPRel_UncertaintyU);
         upper_cut->SetLineWidth(2);
         upper_cut->SetLineColor(kBlue);
         upper_cut->Draw("same");
 
-        TLine *lower_cut = new TLine(gPad->GetFrame()->GetX2() - 0.1, deltaPRel_UncertaintyL, gPad->GetFrame()->GetX2(), deltaPRel_UncertaintyL);
+        TLine* lower_cut = new TLine(gPad->GetFrame()->GetX2() - 0.1, deltaPRel_UncertaintyL, gPad->GetFrame()->GetX2(), deltaPRel_UncertaintyL);
         lower_cut->SetLineWidth(2);
         lower_cut->SetLineColor(kRed);
         lower_cut->Draw("same");
 
         auto Cut_legend = new TLegend(gStyle->GetStatX(), gStyle->GetStatY() - 0.2 + 0.125, gStyle->GetStatX() - 0.2, gStyle->GetStatY() - 0.3 + 0.1);
-        TLegendEntry *Cut_legend_deltaPRel_deltaP = Cut_legend->AddEntry(deltaPRel_deltaP, ("#deltaP_{" + BetaParticleShort + "}/P_{" + BetaParticleShort + "}").c_str(), "l");
-        TLegendEntry *Cut_legend_upper_lim = Cut_legend->AddEntry(upper_cut, "20% cut", "l");
-        TLegendEntry *Cut_legend_lower_lim = Cut_legend->AddEntry(lower_cut, "10% cut", "l");
+        TLegendEntry* Cut_legend_deltaPRel_deltaP = Cut_legend->AddEntry(deltaPRel_deltaP, ("#deltaP_{" + BetaParticleShort + "}/P_{" + BetaParticleShort + "}").c_str(), "l");
+        TLegendEntry* Cut_legend_upper_lim = Cut_legend->AddEntry(upper_cut, "20% cut", "l");
+        TLegendEntry* Cut_legend_lower_lim = Cut_legend->AddEntry(lower_cut, "10% cut", "l");
         Cut_legend->Draw("same");
 
         std::string Rel_deltaPSaveNameDir =
@@ -616,10 +630,10 @@ void BetaFitApprax(const std::string &SampleName, DSCuts &Beta_cut, DSCuts &Mome
         gr->SetPoint(1, Beta_Min_Apprax, deltaPRel_UncertaintyL);
         gr->Draw("same");
 
-        const char *Rel_deltaPSaveDir = Rel_deltaPSaveNameDir.c_str();
+        const char* Rel_deltaPSaveDir = Rel_deltaPSaveNameDir.c_str();
         Canvas->SaveAs(Rel_deltaPSaveDir);
         Canvas->Clear();
-        #pragma endregion
+#pragma endregion
 
     } else {
         Momentum_cuts.SetUpperCut(beamE);

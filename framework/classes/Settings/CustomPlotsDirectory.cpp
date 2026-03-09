@@ -10,11 +10,11 @@
 // ConfigureStatuses function ------------------------------------------------------------------------------------------------------------------------------------
 
 #pragma region /* ConfigureStatuses */
-void CustomPlotsDirectory::ConfigureStatuses(const bool &apply_cuts, const bool &clas12ana_particles, const bool &only_preselection_cuts, const bool &apply_chi2_cuts_1e_cut,
-                                             const bool &only_electron_quality_cuts, const bool &apply_nucleon_cuts, const bool &Enable_FD_photons, const bool &apply_nucleon_SmearAndCorr,
-                                             const bool &apply_kinematical_cuts, const bool &apply_kinematical_weights, const bool &apply_fiducial_cuts, const bool &Generate_AMaps,
-                                             const bool &plot_and_fit_MomRes, const bool &VaryingDelta, const bool &Calculate_momResS2, const bool &Run_in_momResS2, const bool &nRes_test,
-                                             const bool &Rec_wTL_ES, const bool &ZoomIn_On_mom_th_plots) {
+void CustomPlotsDirectory::ConfigureStatuses(const bool& apply_cuts, const bool& clas12ana_particles, const bool& only_preselection_cuts, const bool& apply_chi2_cuts_1e_cut,
+                                             const bool& only_electron_quality_cuts, const bool& apply_nucleon_cuts, const bool& Enable_FD_photons, const bool& apply_nucleon_SmearAndCorr,
+                                             const bool& apply_kinematical_cuts, const bool& apply_kinematical_weights, const bool& apply_fiducial_cuts, const bool& Generate_AMaps,
+                                             const bool& plot_and_fit_MomRes, const bool& VaryingDelta, const bool& Calculate_momResS2, const bool& Run_in_momResS2, const bool& nRes_test,
+                                             const bool& Rec_wTL_ES, const bool& ZoomIn_On_mom_th_plots) {
     if (Custom_cuts_naming) {
 #pragma region /* Status additions */
         if (!clas12ana_particles) { Clas12ana_particles_status = "_no_clas12ana"; }
@@ -155,8 +155,8 @@ void CustomPlotsDirectory::ConfigureStatuses(const bool &apply_cuts, const bool 
 // SetPaths function -----------------------------------------------------------------------------------------------------------------------------------------------
 
 #pragma region /* SetPaths function */
-void CustomPlotsDirectory::SetPaths(const std::string &WorkingDirectory, const std::string &SampleName, const std::string &plots_path, const bool &apply_cuts,
-                                    const bool &apply_chi2_cuts_1e_cut, const bool &apply_nucleon_cuts) {
+void CustomPlotsDirectory::SetPaths(const std::string& WorkingDirectory, const std::string& SampleName, const std::string& plots_path, const bool& apply_cuts,
+                                    const bool& apply_chi2_cuts_1e_cut, const bool& apply_nucleon_cuts) {
     std::string run, Global_Run_Status_Local;
 
     if (Global_Run_Status == "") {

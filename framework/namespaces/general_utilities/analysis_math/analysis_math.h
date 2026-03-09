@@ -5,17 +5,40 @@
 #ifndef ANALYSIS_MATH_H
 #define ANALYSIS_MATH_H
 
+#include <TVector3.h>
+
 #include <cmath>
 #include <iostream>
 #include <string>
 #include <vector>
 
+// Include libraries:
 #include "../basic_tools.h"
 #include "../constants.h"
+#include "../variable_correctors/variable_correctors.h"
+
+// Include CLAS12 libraries:
+#include "../../../includes/clas12_include.h"
+
+// Other includes:
 #include "poly_solver.cpp"
 
+/**
+ * @namespace analysis_math
+ * @brief A namespace for mathematical functions and constants used in the analysis, including functions for calculating angles, binning, and other mathematical operations.
+ * @details This namespace contains various mathematical functions and constants that are used throughout the analysis code. The functions include calculations for angles (theta and phi),
+ * binning functions for determining the appropriate bin for a given angle, and other mathematical operations such as calculating the radius from momentum components and calculating the pi0
+ * momentum threshold. The namespace also includes constants such as pi. The functions in this namespace are designed to be used in the main code for performing various mathematical
+ * calculations needed for the analysis, such as calculating angles from momentum components, determining bin numbers for histograms, and applying corrections to variables.
+ * @note The functions in this namespace are designed to be used in the main code for performing various mathematical calculations needed for the analysis. It is important to ensure that the
+ * functions are used correctly and that the input parameters are appropriate for the calculations being performed. For example, the angle calculations assume that the input momentum
+ * components are in the correct units and that the angles are calculated in the correct coordinate system. Additionally, the binning functions assume that the angle bins are defined
+ * correctly and that the input angles are within the expected range for the bins being used. The constants defined in this namespace should also be used consistently throughout the code to
+ * ensure that calculations are performed correctly and that the results are consistent across different parts of the analysis.
+ */
 namespace analysis_math {
 using namespace poly_solver;
+using namespace variable_correctors;
 
 // Mathematical constants -----------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -23,27 +46,27 @@ const double pi = M_PI;
 
 // RadToDeg function ----------------------------------------------------------------------------------------------------------------------------------------------------
 
-double RadToDeg(const double &rad) { return rad * 180. / pi; }
+double RadToDeg(const double& rad) { return rad * 180. / pi; }
 
 // DegToRad function ----------------------------------------------------------------------------------------------------------------------------------------------------
 
-double DegToRad(const double &deg) { return deg * pi / 180.; }
+double DegToRad(const double& deg) { return deg * pi / 180.; }
 
 // CalcTheta_rad function -----------------------------------------------------------------------------------------------------------------------------------------------
 
-double CalcTheta_rad(const double &x, const double &y, const double &z) { return acos(z / sqrt(x * x + y * y + z * z)); }
+double CalcTheta_rad(const double& x, const double& y, const double& z) { return acos(z / sqrt(x * x + y * y + z * z)); }
 
 // CalcTheta_deg function -----------------------------------------------------------------------------------------------------------------------------------------------
 
-double CalcTheta_deg(const double &x, const double &y, const double &z) { return RadToDeg(CalcTheta_rad(x, y, z)); }
+double CalcTheta_deg(const double& x, const double& y, const double& z) { return RadToDeg(CalcTheta_rad(x, y, z)); }
 
 // CalcPhi_rad function -------------------------------------------------------------------------------------------------------------------------------------------------
 
-double CalcPhi_rad(const double &x, const double &y) { return atan2(y, x); }
+double CalcPhi_rad(const double& x, const double& y) { return atan2(y, x); }
 
 // CalcPhi_deg function -------------------------------------------------------------------------------------------------------------------------------------------------
 
-double CalcPhi_deg(const double &x, const double &y, const double &z) { return RadToDeg(CalcPhi_rad(x, y)); }
+double CalcPhi_deg(const double& x, const double& y, const double& z) { return RadToDeg(CalcPhi_rad(x, y)); }
 
 // RadCalc function ------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -51,7 +74,7 @@ inline double RadCalc(double x, double y, double z) { return sqrt(x * x + y * y 
 
 // GetPi0MomTh function -------------------------------------------------------------------------------------------------------------------------------------------------
 
-double GetPi0MomTh(const double &ph_mom_th) {
+double GetPi0MomTh(const double& ph_mom_th) {
     if (std::abs(ph_mom_th) == 9999) { return -9999; }
     double pi0_mom_th = std::sqrt(4 * ph_mom_th * ph_mom_th - constants::m_pizero * constants::m_pizero);
     return pi0_mom_th;
@@ -115,7 +138,7 @@ double GetPhi_e(TString OutPutFolder, double phi_N) {
 
 // GetBinFromAng function -----------------------------------------------------------------------------------------------------------------------------------------------
 
-int GetBinFromAng(double Angle, double AngleBins, double AngleMin, double AngleMax, bool printOut = false, const std::string &AngleType = "") {
+int GetBinFromAng(double Angle, double AngleBins, double AngleMin, double AngleMax, bool printOut = false, const std::string& AngleType = "") {
     int Bin = 0;
     //    int Bin = -1;
 
@@ -147,7 +170,7 @@ int GetBinFromAng(double Angle, double AngleBins, double AngleMin, double AngleM
 
 // CalcdPhi function (CLAS12 extention) ---------------------------------------------------------------------------------------------------------------------------------
 
-double CalcdPhi2(region_part_ptr proton1, region_part_ptr proton2) {
+double CalcdPhi2(clas12::region_part_ptr proton1, clas12::region_part_ptr proton2) {
     if (proton1->getRegion() == proton2->getRegion()) {
         std::cerr << "\n\nCalcdPhi2: protons are in the same region (" << proton1->getRegion() << " & " << proton2->getRegion() << ")! Aborting...\n";
         exit(1);
@@ -155,10 +178,10 @@ double CalcdPhi2(region_part_ptr proton1, region_part_ptr proton2) {
 
     double Phi_pFD_deg = 0.0, Phi_pCD_deg = 0.0;
 
-    if (proton1->getRegion() == FD && proton2->getRegion() == CD) {
+    if (proton1->getRegion() == FD && proton2->getRegion() == clas12::CD) {
         Phi_pFD_deg = RadToDeg(proton1->getPhi());
         Phi_pCD_deg = RadToDeg(proton2->getPhi());
-    } else if (proton1->getRegion() == CD && proton2->getRegion() == FD) {
+    } else if (proton1->getRegion() == CD && proton2->getRegion() == clas12::FD) {
         Phi_pFD_deg = RadToDeg(proton2->getPhi());
         Phi_pCD_deg = RadToDeg(proton1->getPhi());
     }
@@ -169,8 +192,8 @@ double CalcdPhi2(region_part_ptr proton1, region_part_ptr proton2) {
 // TLKinCutsCheck function (CLAS12 extention) ---------------------------------------------------------------------------------------------------------------------------
 
 /* TLKinCutsCheck for a general vector of particles */
-bool TLKinCutsCheck(const std::unique_ptr<clas12::clas12reader> &c12, bool apply_kinematical_cuts, const vector<int> &FD_nucleon, const DSCuts &FD_nucleon_theta_cut,
-                    const DSCuts &FD_nucleon_momentum_cut) {
+bool TLKinCutsCheck(const std::unique_ptr<clas12::clas12reader>& c12, bool apply_kinematical_cuts, const std::vector<int>& FD_nucleon, const DSCuts& FD_nucleon_theta_cut,
+                    const DSCuts& FD_nucleon_momentum_cut) {
     auto mcpbank = c12->mcparts();
 
     if (!apply_kinematical_cuts) {
@@ -199,8 +222,8 @@ bool TLKinCutsCheck(const std::unique_ptr<clas12::clas12reader> &c12, bool apply
 // TLKinCutsCheck function (CLAS12 extention) ---------------------------------------------------------------------------------------------------------------------------
 
 /* TLKinCutsCheck for leading FD neutrons */
-bool TLKinCutsCheck(const std::unique_ptr<clas12::clas12reader> &c12, bool apply_kinematical_cuts, const int TL_IDed_neutrons_FD_mom_max, const DSCuts &FD_nucleon_theta_cut,
-                    const DSCuts &FD_nucleon_momentum_cut) {
+bool TLKinCutsCheck(const std::unique_ptr<clas12::clas12reader>& c12, bool apply_kinematical_cuts, const int TL_IDed_neutrons_FD_mom_max, const DSCuts& FD_nucleon_theta_cut,
+                    const DSCuts& FD_nucleon_momentum_cut) {
     auto mcpbank = c12->mcparts();
 
     if (!apply_kinematical_cuts) {

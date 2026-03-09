@@ -196,7 +196,11 @@
         "latch": "cpp",
         "scoped_allocator": "cpp",
         "strstream": "cpp",
-        "syncstream": "cpp"
+        "syncstream": "cpp",
+        "flat_set": "cpp",
+        " SaveAllTH2D.C": "cpp",
+        "generator": "cpp",
+        "tree_maker_mc_isotropic_neutrons_after_veto.C": "cpp"
     },
     "[jsonc]": {
         "editor.defaultFormatter": "vscode.json-language-features"
@@ -208,7 +212,33 @@
     "workbench.tree.indent": 20,
     "C_Cpp.errorSquiggles": "disabled",
     "cmake.configureOnEdit": false,
-    "cmake.configureOnOpen": false
+    "cmake.configureOnOpen": false,
     // "betterFolding.showFoldedBodyLinesCount": false,
     // "betterFolding.showFoldedBrackets": true
+    "todohighlight.keywords": [
+        {
+            "text": "// TODO:",
+            "color": "#FFFFFF",
+            "backgroundColor": "#FFA500",
+            "border": "0.5px solid #FFFFFF"
+        },
+        {
+            "text": "db::CodeDebugger",
+            "color": "#FFFFFF",
+            "backgroundColor": "#00B0F0"
+            "border": "0.5px solid #FFFFFF"
+        },
+        {
+            "text": "#pragma region",
+            "color": "#FFFFFF",
+            "backgroundColor": "#008000"
+            "border": "0.5px solid #FFFFFF"
+        },
+        {
+            "text": "#pragma endregion",
+            "color": "#FFFFFF",
+            "backgroundColor": "#EE6B6E"
+            "border": "0.5px solid #FFFFFF"
+        }
+    ]
 }

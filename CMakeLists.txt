@@ -3,6 +3,7 @@ project(2N_Analysis_e4nu)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+option(USE_MPI "Enable MPI support" OFF)
 
 set(CLAS12ROOT $ENV{CLAS12ROOT})
 message(STATUS "CLAS12ROOT: " ${CLAS12ROOT})
@@ -10,6 +11,10 @@ set(HIPO $ENV{HIPO})
 message(STATUS "HIPO: " ${HIPO})
 
 find_package(ROOT REQUIRED)
+if(USE_MPI)
+    find_package(MPI REQUIRED)
+    add_compile_definitions(USE_MPI)
+endif()
 list(APPEND CMAKE_PREFIX_PATH $ENV{ROOTSYS})  # Ensure ROOTSYS is set before finding ROOT
 include(${ROOT_USE_FILE})
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${ROOT_CXX_FLAGS} -O0 -ggdb")
@@ -111,7 +116,7 @@ endforeach()
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/setup)
 # message(STATUS "Included directory: ${CMAKE_CURRENT_SOURCE_DIR}/setup")
 
-set(APPS_DIR ${FRAMEWORK_DIR}/applications)
+set(APPS_DIR ${CMAKE_CURRENT_SOURCE_DIR}/applications)
 include_directories(${APPS_DIR})
 # message(STATUS "Included directory: ${APPS_DIR}")
 
@@ -139,6 +144,22 @@ target_link_libraries(${Analyzer} PRIVATE
 
 target_link_libraries(${Analyzer} PRIVATE 
     AnalysisDataStructures    
+    AnalysisLibraries
+    AnalysisTools
+    AnalysisApps
+)
+
+add_executable(LoadWMapsFromRatioROOTFilesApp applications/LoadWMapsFromRatioROOTFilesApp.cpp)
+
+target_link_libraries(LoadWMapsFromRatioROOTFilesApp PRIVATE
+    ${ROOT_LIBRARIES} -lEG
+    -lHipo4
+    -lClas12Banks -lClas12Root
+    -L${CLAS12ROOT}/lib
+)
+
+target_link_libraries(LoadWMapsFromRatioROOTFilesApp PRIVATE
+    AnalysisDataStructures
     AnalysisLibraries
     AnalysisTools
     AnalysisApps

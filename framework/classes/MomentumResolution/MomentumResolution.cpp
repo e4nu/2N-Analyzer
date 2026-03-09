@@ -6,12 +6,13 @@
 #define MOMENTUMRESOLUTION_H
 
 #include "MomentumResolution.h"
+#include <unordered_set>
 
 // MomentumResolution constructor -----------------------------------------------------------------------------------------------------------------------------------------
 
 #pragma region /* MomentumResolution constructor */
 /* A constructor that sets the particle (neutron or proton) */
-MomentumResolution::MomentumResolution(const std::string &Particle) {
+MomentumResolution::MomentumResolution(const std::string& Particle) {
     bool PrintOut = false;
 
     if (Particle == "Neutron") {
@@ -50,68 +51,68 @@ MomentumResolution::MomentumResolution(const std::string &Particle) {
 // MomResInit function ---------------------------------------------------------------------------------------------------------------------------------------------------
 
 #pragma region /* MomResInit function */
-void MomentumResolution::MomResInit(const bool &plot_and_fit_MomRes, const bool &Calculate_momResS2, const bool &Run_with_momResS2, const std::string &SampleName,
-                                    const std::string &NucleonCutsDirectory, const double &beamE, const DSCuts &MomRes_mu_cuts, const DSCuts &MomRes_sigma_cuts, const double &ParticleMomTh,
-                                    const std::string &MomentumResolutionDirectory, const std::string &SavePath, const double &DeltaSlices, const bool &VaryingDelta,
-                                    const std::string &SmearM, const std::string &CorrM, const bool &momRes_test, const bool &ForceSmallpResLimits, const bool &FitDebugging) {
+void MomentumResolution::MomResInit(const bool& plot_and_fit_MomRes, const bool& Calculate_momResS2, const bool& Run_with_momResS2, const std::string& SampleName,
+                                    const std::string& NucleonCutsDirectory, const double& beamE, const DSCuts& MomRes_mu_cuts, const DSCuts& MomRes_sigma_cuts, const double& ParticleMomTh,
+                                    const std::string& MomentumResolutionDirectory, const std::string& SavePath, const double& DeltaSlices, const bool& VaryingDelta,
+                                    const std::string& SmearM, const std::string& CorrM, const bool& momRes_test, const bool& ForceSmallpResLimits, const bool& FitDebugging) {
     if (isNeutron) {
         if (plot_and_fit_MomRes) {
             MomResHistoListPDFFileName = SavePath + "/" + "Neutron_ResSlicePlots.pdf";
 
-            SetMomResCalculations(SampleName, NucleonCutsDirectory, beamE, MomRes_mu_cuts, MomRes_sigma_cuts, ParticleMomTh, Calculate_momResS2, Run_with_momResS2,
-                                  MomentumResolutionDirectory, SavePath, DeltaSlices, VaryingDelta, SmearM, CorrM, momRes_test, false, FitDebugging);
+            this->SetMomResCalculations(SampleName, NucleonCutsDirectory, beamE, MomRes_mu_cuts, MomRes_sigma_cuts, ParticleMomTh, Calculate_momResS2, Run_with_momResS2,
+                                        MomentumResolutionDirectory, SavePath, DeltaSlices, VaryingDelta, SmearM, CorrM, momRes_test, false, FitDebugging);
 
             if (momRes_test) {
                 if (Calculate_momResS2) {  // if Calculate_momResS2=true => load everything from momResS1 files
                     /* Load neutron correction fit parameters (correction factor from momResS1 reco fits!) */
-                    ReadResDataParam((MomentumResolutionDirectory + "Res_data_-_" + SampleName + "/Neutron_momResS1_fit_param_-_" + SampleName + ".par").c_str(), Calculate_momResS2,
-                                     SampleName, NucleonCutsDirectory, "reco", true, false);
+                    this->ReadResDataParam((MomentumResolutionDirectory + "Res_data_-_" + SampleName + "/Neutron_momResS1_fit_param_-_" + SampleName + ".par").c_str(), Calculate_momResS2,
+                                           SampleName, NucleonCutsDirectory, "reco", true, false);
 
                     /* Load proton smearing fit parameters (smearing from momResS1 reco fits!) */
                     // TODO: figure out if I really need to load these at this stage
-                    ReadResDataParam((MomentumResolutionDirectory + "Res_data_-_" + SampleName + "/Neutron_momResS1_fit_param_-_" + SampleName + ".par").c_str(), Calculate_momResS2,
-                                     SampleName, NucleonCutsDirectory, "reco", false, true);
+                    this->ReadResDataParam((MomentumResolutionDirectory + "Res_data_-_" + SampleName + "/Neutron_momResS1_fit_param_-_" + SampleName + ".par").c_str(), Calculate_momResS2,
+                                           SampleName, NucleonCutsDirectory, "reco", false, true);
                 } else {                      // if Calculate_momResS2=false => load everything from either momResS1 or momResS2
                     if (Run_with_momResS2) {  // if Calculate_momResS2=false && Run_with_momResS2=true => load correction from momResS1 and smearing from momResS2
                         /* Load neutron correction fit parameters (correction factor from momResS1 reco fits!) */
-                        ReadResDataParam((MomentumResolutionDirectory + "Res_data_-_" + SampleName + "/Neutron_momResS1_fit_param_-_" + SampleName + ".par").c_str(), Calculate_momResS2,
-                                         SampleName, NucleonCutsDirectory, "reco", true, false);
+                        this->ReadResDataParam((MomentumResolutionDirectory + "Res_data_-_" + SampleName + "/Neutron_momResS1_fit_param_-_" + SampleName + ".par").c_str(),
+                                               Calculate_momResS2, SampleName, NucleonCutsDirectory, "reco", true, false);
 
                         /* Load proton smearing fit parameters (smearing from momResS2 reco fits!) */
-                        ReadResDataParam((MomentumResolutionDirectory + "Res_data_-_" + SampleName + "/Neutron_momResS2_fit_param_-_" + SampleName + ".par").c_str(), Calculate_momResS2,
-                                         SampleName, NucleonCutsDirectory, "reco", false, true);
+                        this->ReadResDataParam((MomentumResolutionDirectory + "Res_data_-_" + SampleName + "/Neutron_momResS2_fit_param_-_" + SampleName + ".par").c_str(),
+                                               Calculate_momResS2, SampleName, NucleonCutsDirectory, "reco", false, true);
                     } else {  // if Calculate_momResS2=false and Run_with_momResS2=false => load both correction and smearing from momResS1
                         /* Load neutron correction fit parameters (correction factor from momResS1 reco fits!) */
-                        ReadResDataParam((MomentumResolutionDirectory + "Res_data_-_" + SampleName + "/Neutron_momResS1_fit_param_-_" + SampleName + ".par").c_str(), Calculate_momResS2,
-                                         SampleName, NucleonCutsDirectory, "reco", true, false);
+                        this->ReadResDataParam((MomentumResolutionDirectory + "Res_data_-_" + SampleName + "/Neutron_momResS1_fit_param_-_" + SampleName + ".par").c_str(),
+                                               Calculate_momResS2, SampleName, NucleonCutsDirectory, "reco", true, false);
 
                         /* Load proton smearing fit parameters (smearing from momResS1 reco fits!) */
-                        ReadResDataParam((MomentumResolutionDirectory + "Res_data_-_" + SampleName + "/Neutron_momResS1_fit_param_-_" + SampleName + ".par").c_str(), Calculate_momResS2,
-                                         SampleName, NucleonCutsDirectory, "reco", false, true);
+                        this->ReadResDataParam((MomentumResolutionDirectory + "Res_data_-_" + SampleName + "/Neutron_momResS1_fit_param_-_" + SampleName + ".par").c_str(),
+                                               Calculate_momResS2, SampleName, NucleonCutsDirectory, "reco", false, true);
                     }
                 }
             }
         } else {  // if plot_and_fit_MomRes=false => Calculate_momResS2=false !!!
-            SetSmearAndCorrModes(SmearM, CorrM);
+            this->SetSmearAndCorrModes(SmearM, CorrM);
 
             if (Run_with_momResS2) {  // if Run_with_momResS2=true => load correction from momResS1 and smearing from momResS2
                 std::string NeutronCorrectionDataFile = MomentumResolutionDirectory + "Res_data_-_" + SampleName + "/Neutron_momResS1_fit_param_-_" + SampleName + ".par";
                 std::string ProtonSmearingDataFile = MomentumResolutionDirectory + "Res_data_-_" + SampleName + "/Neutron_momResS2_fit_param_-_" + SampleName + ".par";
 
                 /* Load neutron correction fit parameters (correction factor from momResS1 reco fits!) */
-                ReadResDataParam(NeutronCorrectionDataFile.c_str(), Calculate_momResS2, SampleName, NucleonCutsDirectory, "reco", true, false);
+                this->ReadResDataParam(NeutronCorrectionDataFile.c_str(), Calculate_momResS2, SampleName, NucleonCutsDirectory, "reco", true, false);
 
                 /* Load proton smearing fit parameters (smearing from momResS2 reco fits!) */
-                ReadResDataParam(ProtonSmearingDataFile.c_str(), Calculate_momResS2, SampleName, NucleonCutsDirectory, "reco", false, true);
+                this->ReadResDataParam(ProtonSmearingDataFile.c_str(), Calculate_momResS2, SampleName, NucleonCutsDirectory, "reco", false, true);
 
 #pragma region /* Safety checks for data files */
-                if (!FindSubstring(NeutronCorrectionDataFile, "Neutron") || FindSubstring(NeutronCorrectionDataFile, "Proton")) {
+                if (!bt::FindSubstring(NeutronCorrectionDataFile, "Neutron") || bt::FindSubstring(NeutronCorrectionDataFile, "Proton")) {
                     std::cout << "\n\nMomentumResolution::MomentumResolution: neutron correction variables are not being loaded from neutron data! "
                                  "Aborting...\n\n",
                         exit(1);
                 }
 
-                if (!FindSubstring(ProtonSmearingDataFile, "Neutron") || FindSubstring(ProtonSmearingDataFile, "Proton")) {
+                if (!bt::FindSubstring(ProtonSmearingDataFile, "Neutron") || bt::FindSubstring(ProtonSmearingDataFile, "Proton")) {
                     std::cout << "\n\nMomentumResolution::MomentumResolution: proton smearing variables are not being loaded from neutron data! "
                                  "Aborting...\n\n",
                         exit(1);
@@ -122,17 +123,17 @@ void MomentumResolution::MomResInit(const bool &plot_and_fit_MomRes, const bool 
                 std::string ProtonSmearingDataFile = MomentumResolutionDirectory + "Res_data_-_" + SampleName + "/Neutron_momResS1_fit_param_-_" + SampleName + ".par";
 
                 /* Load neutron correction fit parameters (correction factor from momResS1 reco fits!) */
-                ReadResDataParam(NeutronCorrectionDataFile.c_str(), Calculate_momResS2, SampleName, NucleonCutsDirectory, "reco", true, false);
+                this->ReadResDataParam(NeutronCorrectionDataFile.c_str(), Calculate_momResS2, SampleName, NucleonCutsDirectory, "reco", true, false);
 
                 /* Load proton smearing fit parameters (smearing from momResS2 reco fits!) */
-                ReadResDataParam(ProtonSmearingDataFile.c_str(), Calculate_momResS2, SampleName, NucleonCutsDirectory, "reco", false, true);
+                this->ReadResDataParam(ProtonSmearingDataFile.c_str(), Calculate_momResS2, SampleName, NucleonCutsDirectory, "reco", false, true);
 
 #pragma region /* Safety checks for data files */
-                if (!FindSubstring(NeutronCorrectionDataFile, "Neutron") || FindSubstring(NeutronCorrectionDataFile, "Proton")) {
+                if (!bt::FindSubstring(NeutronCorrectionDataFile, "Neutron") || bt::FindSubstring(NeutronCorrectionDataFile, "Proton")) {
                     std::cout << "\n\nMomentumResolution::MomentumResolution: neutron correction variables are not being loaded from neutron data! Aborting...\n\n", exit(1);
                 }
 
-                if (!FindSubstring(ProtonSmearingDataFile, "Neutron") || FindSubstring(ProtonSmearingDataFile, "Proton")) {
+                if (!bt::FindSubstring(ProtonSmearingDataFile, "Neutron") || bt::FindSubstring(ProtonSmearingDataFile, "Proton")) {
                     std::cout << "\n\nMomentumResolution::MomentumResolution: proton smearing variables are not being loaded from neutron data! Aborting...\n\n", exit(1);
                 }
 #pragma endregion
@@ -142,18 +143,18 @@ void MomentumResolution::MomResInit(const bool &plot_and_fit_MomRes, const bool 
         if (plot_and_fit_MomRes) {
             MomResHistoListPDFFileName = SavePath + "/" + "Proton_ResSlicePlots.pdf";
 
-            SetMomResCalculations(SampleName, NucleonCutsDirectory, beamE, MomRes_mu_cuts, MomRes_sigma_cuts, ParticleMomTh, Calculate_momResS2, Run_with_momResS2,
-                                  MomentumResolutionDirectory, SavePath, DeltaSlices, VaryingDelta, SmearM, CorrM, momRes_test, ForceSmallpResLimits, FitDebugging);
+            this->SetMomResCalculations(SampleName, NucleonCutsDirectory, beamE, MomRes_mu_cuts, MomRes_sigma_cuts, ParticleMomTh, Calculate_momResS2, Run_with_momResS2,
+                                        MomentumResolutionDirectory, SavePath, DeltaSlices, VaryingDelta, SmearM, CorrM, momRes_test, ForceSmallpResLimits, FitDebugging);
         }
     }
 }
 #pragma endregion
 
 #pragma region /* SetMomResCalculations function */
-void MomentumResolution::SetMomResCalculations(const std::string &SampleName, const std::string &NucleonCutsDirectory, const double &beamE, const DSCuts &MomRes_mu_cuts,
-                                               const DSCuts &MomRes_sigma_cuts, const double &ParticleMomTh, bool const &Calculate_momResS2, bool const &Run_in_momResS2,
-                                               const std::string &MomentumResolutionDirectory, const std::string &SavePath, const double &DeltaSlices, const bool &VaryingDelta,
-                                               const std::string &SmearM, const std::string &CorrM, const bool momRes_test, const bool ForceSmallpResLimits, const bool &FitDebugging) {
+void MomentumResolution::SetMomResCalculations(const std::string& SampleName, const std::string& NucleonCutsDirectory, const double& beamE, const DSCuts& MomRes_mu_cuts,
+                                               const DSCuts& MomRes_sigma_cuts, const double& ParticleMomTh, bool const& Calculate_momResS2, bool const& Run_in_momResS2,
+                                               const std::string& MomentumResolutionDirectory, const std::string& SavePath, const double& DeltaSlices, const bool& VaryingDelta,
+                                               const std::string& SmearM, const std::string& CorrM, const bool momRes_test, const bool ForceSmallpResLimits, const bool& FitDebugging) {
     SliceUpperMomLimKC_mu = MomRes_mu_cuts.GetUpperCutConst(), SliceLowerMomLimKC_mu = MomRes_mu_cuts.GetLowerCutConst();
     SliceUpperMomLimKC_sigma = MomRes_sigma_cuts.GetUpperCutConst(), SliceLowerMomLimKC_sigma = MomRes_sigma_cuts.GetLowerCutConst();
     momResS2CalcMode = Calculate_momResS2, momResS2RunMode = Run_in_momResS2;
@@ -169,34 +170,34 @@ void MomentumResolution::SetMomResCalculations(const std::string &SampleName, co
     if (momResS2CalcMode && momResS2RunMode) { std::cout << "MomentumResolution::MomentumResolution: calculating and running on momResS2 is illegal! Aborting...\n\n", exit(1); }
 #pragma endregion
 
-    SetMomResSlicesByType(SampleName, NucleonCutsDirectory, beamE, ParticleMomTh, "truth", SavePath, VaryingDelta, momRes_test, ForceSmallpResLimits, FitDebugging);
-    SetMomResSlicesByType(SampleName, NucleonCutsDirectory, beamE, ParticleMomTh, "reco", SavePath, VaryingDelta, momRes_test, ForceSmallpResLimits, FitDebugging);
+    this->SetMomResSlicesByType(SampleName, NucleonCutsDirectory, beamE, ParticleMomTh, "truth", SavePath, VaryingDelta, momRes_test, ForceSmallpResLimits, FitDebugging);
+    this->SetMomResSlicesByType(SampleName, NucleonCutsDirectory, beamE, ParticleMomTh, "reco", SavePath, VaryingDelta, momRes_test, ForceSmallpResLimits, FitDebugging);
 
-    if (!FitDebugging) { LoadFitParam(SampleName, NucleonCutsDirectory, Calculate_momResS2, MomentumResolutionDirectory); }
+    if (!FitDebugging) { this->LoadFitParam(SampleName, NucleonCutsDirectory, Calculate_momResS2, MomentumResolutionDirectory); }
 }
 #pragma endregion
 
 #pragma region /* SetMomResSlicesByType function */
-void MomentumResolution::SetMomResSlicesByType(const std::string &SampleName, const std::string &NucleonCutsDirectory, const double &beamE, const double &ParticleMomTh,
-                                               const std::string &MomentumType, const std::string &SavePath, const bool &VaryingDelta, const bool &momRes_test,
-                                               const bool &ForceSmallpResLimits, const bool &FitDebugging) {
+void MomentumResolution::SetMomResSlicesByType(const std::string& SampleName, const std::string& NucleonCutsDirectory, const double& beamE, const double& ParticleMomTh,
+                                               const std::string& MomentumType, const std::string& SavePath, const bool& VaryingDelta, const bool& momRes_test,
+                                               const bool& ForceSmallpResLimits, const bool& FitDebugging) {
     if (MomentumType == "truth") {
-        SetMomResSlices(SampleName, NucleonCutsDirectory, beamE, ParticleMomTh, MomentumType, SavePath, VaryingDelta, momRes_test, ForceSmallpResLimits, ResTLMomSlices, ResTLMomSlicesLimits,
-                        ResTLMomSlicesFitVar, ResTLMomSlicesHistVar, TL_NumberOfSlices, FitDebugging);
+        this->SetMomResSlices(SampleName, NucleonCutsDirectory, beamE, ParticleMomTh, MomentumType, SavePath, VaryingDelta, momRes_test, ForceSmallpResLimits, ResTLMomSlices,
+                              ResTLMomSlicesLimits, ResTLMomSlicesFitVar, ResTLMomSlicesHistVar, TL_NumberOfSlices, FitDebugging);
     } else if (MomentumType == "reco") {
-        SetMomResSlices(SampleName, NucleonCutsDirectory, beamE, ParticleMomTh, MomentumType, SavePath, VaryingDelta, momRes_test, ForceSmallpResLimits, ResRecoMomSlices,
-                        ResRecoMomSlicesLimits, ResRecoMomSlicesFitVar, ResRecoMomSlicesHistVar, Reco_NumberOfSlices, FitDebugging);
+        this->SetMomResSlices(SampleName, NucleonCutsDirectory, beamE, ParticleMomTh, MomentumType, SavePath, VaryingDelta, momRes_test, ForceSmallpResLimits, ResRecoMomSlices,
+                              ResRecoMomSlicesLimits, ResRecoMomSlicesFitVar, ResRecoMomSlicesHistVar, Reco_NumberOfSlices, FitDebugging);
     }
 }
 #pragma endregion
 
 #pragma region /* SetMomResSlices function */
-void MomentumResolution::SetMomResSlices(const std::string &SampleName, const std::string &NucleonCutsDirectory, const double &beamE, const double &ParticleMomTh,
-                                         const std::string &MomentumType, const std::string &SavePath, const bool &VaryingDelta, const bool &momRes_test, const bool &ForceSmallpResLimits,
-                                         vector<hPlot1D> &ResSlices0, vector<vector<double>> &ResSlicesLimits0, vector<DSCuts> &ResSlicesFitVar0, vector<DSCuts> &ResSlicesHistVar0,
-                                         int &NumberOfSlices0, const bool &FitDebugging) {
+void MomentumResolution::SetMomResSlices(const std::string& SampleName, const std::string& NucleonCutsDirectory, const double& beamE, const double& ParticleMomTh,
+                                         const std::string& MomentumType, const std::string& SavePath, const bool& VaryingDelta, const bool& momRes_test, const bool& ForceSmallpResLimits,
+                                         std::vector<hPlot1D>& ResSlices0, std::vector<std::vector<double>>& ResSlicesLimits0, std::vector<DSCuts>& ResSlicesFitVar0,
+                                         std::vector<DSCuts>& ResSlicesHistVar0, int& NumberOfSlices0, const bool& FitDebugging) {
     double Delta = delta, SliceLowerLim = ParticleMomTh, SliceUpperLim;
-    SetUpperMomCut(SampleName, NucleonCutsDirectory, FitDebugging);
+    this->SetUpperMomCut(SampleName, NucleonCutsDirectory, FitDebugging);
 
     if (!VaryingDelta) {
         SliceUpperLim = SliceLowerLim + delta;
@@ -412,10 +413,10 @@ void MomentumResolution::SetMomResSlices(const std::string &SampleName, const st
 #pragma endregion
 
 #pragma region /* SetUpperMomCut function */
-void MomentumResolution::SetUpperMomCut(const std::string &SampleName, const std::string &NucleonCutsDirectory, const bool &FitDebugging) {
+void MomentumResolution::SetUpperMomCut(const std::string& SampleName, const std::string& NucleonCutsDirectory, const bool& FitDebugging) {
     if (!FitDebugging) {
         // load sample-appropriate cuts file from NucleonCutsDirectory:
-        ReadInputParam((NucleonCutsDirectory + "Nucleon_Cuts_-_" + SampleName + ".par").c_str());
+        this->ReadInputParam((NucleonCutsDirectory + "Nucleon_Cuts_-_" + SampleName + ".par").c_str());
 
         SliceUpperMomLim = Neutron_Momentum_cut;
     } else {
@@ -425,8 +426,8 @@ void MomentumResolution::SetUpperMomCut(const std::string &SampleName, const std
 #pragma endregion
 
 #pragma region /* LoadFitParam function */
-void MomentumResolution::LoadFitParam(const std::string &SampleName, const std::string &NucleonCutsDirectory, bool const &Calculate_momResS2,
-                                      const std::string &MomentumResolutionDirectory) {
+void MomentumResolution::LoadFitParam(const std::string& SampleName, const std::string& NucleonCutsDirectory, bool const& Calculate_momResS2,
+                                      const std::string& MomentumResolutionDirectory) {
     if (isNeutron) {
         if (momResS2CalcMode && !momResS2RunMode) {
             std::cout << "\n\nMomentumResolution::MomentumResolution: running in momResS2 calculation mode. Loading momResS1 variables...\n";
@@ -435,17 +436,17 @@ void MomentumResolution::LoadFitParam(const std::string &SampleName, const std::
             std::string ProtonSmearingDataFile = MomentumResolutionDirectory + "Res_data_-_" + SampleName + "/Neutron_momResS1_fit_param_-_" + SampleName + ".par";
 
             /* Load neutron correction variables (from momResS1), but not smearing variables */
-            ReadResDataParam(NeutronCorrectionDataFile.c_str(), Calculate_momResS2, SampleName, NucleonCutsDirectory, "reco", true, false);
+            this->ReadResDataParam(NeutronCorrectionDataFile.c_str(), Calculate_momResS2, SampleName, NucleonCutsDirectory, "reco", true, false);
 
             /* Load proton smearing variables (from momResS1) */
-            ReadResDataParam(ProtonSmearingDataFile.c_str(), Calculate_momResS2, SampleName, NucleonCutsDirectory, "reco", false, true);
+            this->ReadResDataParam(ProtonSmearingDataFile.c_str(), Calculate_momResS2, SampleName, NucleonCutsDirectory, "reco", false, true);
 
 #pragma region /* Safety checks for data files */
-            if (!FindSubstring(NeutronCorrectionDataFile, "Neutron") || FindSubstring(NeutronCorrectionDataFile, "Proton")) {
+            if (!bt::FindSubstring(NeutronCorrectionDataFile, "Neutron") || bt::FindSubstring(NeutronCorrectionDataFile, "Proton")) {
                 std::cout << "\n\nMomentumResolution::MomentumResolution: neutron correction variables are not being loaded from neutron data! Aborting...\n\n", exit(1);
             }
 
-            if (!FindSubstring(ProtonSmearingDataFile, "Neutron") || FindSubstring(ProtonSmearingDataFile, "Proton")) {
+            if (!bt::FindSubstring(ProtonSmearingDataFile, "Neutron") || bt::FindSubstring(ProtonSmearingDataFile, "Proton")) {
                 std::cout << "\n\nMomentumResolution::MomentumResolution: proton smearing variables are not being loaded from neutron data! Aborting...\n\n", exit(1);
             }
 #pragma endregion
@@ -459,17 +460,17 @@ void MomentumResolution::LoadFitParam(const std::string &SampleName, const std::
             std::string ProtonSmearingDataFile = MomentumResolutionDirectory + "Res_data_-_" + SampleName + "/Neutron_momResS2_fit_param_-_" + SampleName + ".par";
 
             /* Load neutron correction variables (from momResS1) */
-            ReadResDataParam(NeutronCorrectionDataFile.c_str(), Calculate_momResS2, SampleName, NucleonCutsDirectory, "reco", true, false);
+            this->ReadResDataParam(NeutronCorrectionDataFile.c_str(), Calculate_momResS2, SampleName, NucleonCutsDirectory, "reco", true, false);
 
             /* Load proton smearing variables (from momResS2) */
-            ReadResDataParam(ProtonSmearingDataFile.c_str(), Calculate_momResS2, SampleName, NucleonCutsDirectory, "reco", false, true);
+            this->ReadResDataParam(ProtonSmearingDataFile.c_str(), Calculate_momResS2, SampleName, NucleonCutsDirectory, "reco", false, true);
 
 #pragma region /* Safety checks for data files */
-            if (!FindSubstring(NeutronCorrectionDataFile, "Neutron") || FindSubstring(NeutronCorrectionDataFile, "Proton")) {
+            if (!bt::FindSubstring(NeutronCorrectionDataFile, "Neutron") || bt::FindSubstring(NeutronCorrectionDataFile, "Proton")) {
                 std::cout << "\n\nMomentumResolution::MomentumResolution: neutron correction variables are not being loaded from neutron data! Aborting...\n\n", exit(1);
             }
 
-            if (!FindSubstring(ProtonSmearingDataFile, "Neutron") || FindSubstring(ProtonSmearingDataFile, "Proton")) {
+            if (!bt::FindSubstring(ProtonSmearingDataFile, "Neutron") || bt::FindSubstring(ProtonSmearingDataFile, "Proton")) {
                 std::cout << "\n\nMomentumResolution::MomentumResolution: proton smearing variables are not being loaded from neutron data! Aborting...\n\n", exit(1);
             }
 #pragma endregion
@@ -485,7 +486,7 @@ void MomentumResolution::LoadFitParam(const std::string &SampleName, const std::
 #pragma region /* ReadInputParam function */
 /* This function reads nucleon cuts (especially neutron upper th.). It was imported from the clas12ana class */
 
-void MomentumResolution::ReadInputParam(const char *filename) {
+void MomentumResolution::ReadInputParam(const char* filename) {
     ifstream infile;
     infile.open(filename);
 
@@ -509,7 +510,7 @@ void MomentumResolution::ReadInputParam(const char *filename) {
                 std::string pid_v;
                 int count = 0;
                 std::string pid = "";
-                vector<double> par;
+                std::vector<double> par;
 
                 while (getline(ss2, pid_v, ':')) {
                     if (count == 0) {
@@ -524,27 +525,25 @@ void MomentumResolution::ReadInputParam(const char *filename) {
                 if (pid != "") { Neutron_Momentum_cut = par.at(1); }
             }
         }
+    } else {
+        bt::PrintWarning(__func__, __FILE__, __LINE__, std::string("File not found! Target file was set to:\n") + filename);
+        // bt::ExitWithError(__func__, __FILE__, __LINE__, std::string("File not found! Target file was set to:\n") + filename);
     }
-    // else {
-    //     std::cout << "MomentumResolution::ReadInputParam: Parameter file didn't read in:\n" << filename << endl;
-    // }
-
-    std::cout << "\033[35m\n\nMomentumResolution::ReadInputParam:\033[36m Warning!\033[0m file:\n" << filename << "\nwas not found!\n\n";
 }
 #pragma endregion
 
 // hFillResPlotsByType function -----------------------------------------------------------------------------------------------------------------------------------------------
 
 #pragma region /* hFillResPlotsByType function */
-void MomentumResolution::hFillResPlotsByType(const double &TL_momentum, const double &Reco_momentum, const double &Resolution, const double &Weight) {
-    hFillResPlots(TL_momentum, Resolution, Weight, ResTLMomSlices, ResTLMomSlicesLimits, TL_NumberOfSlices);
-    hFillResPlots(Reco_momentum, Resolution, Weight, ResRecoMomSlices, ResRecoMomSlicesLimits, Reco_NumberOfSlices);
+void MomentumResolution::hFillResPlotsByType(const double& TL_momentum, const double& Reco_momentum, const double& Resolution, const double& Weight) {
+    this->hFillResPlots(TL_momentum, Resolution, Weight, ResTLMomSlices, ResTLMomSlicesLimits, TL_NumberOfSlices);
+    this->hFillResPlots(Reco_momentum, Resolution, Weight, ResRecoMomSlices, ResRecoMomSlicesLimits, Reco_NumberOfSlices);
 }
 #pragma endregion
 
 #pragma region /* hFillResPlots function */
-void MomentumResolution::hFillResPlots(const double &Momentum, const double &Resolution, const double &Weight, vector<hPlot1D> &ResSlices0, vector<vector<double>> &ResSlicesLimits0,
-                                       int &NumberOfSlices0) {
+void MomentumResolution::hFillResPlots(const double& Momentum, const double& Resolution, const double& Weight, std::vector<hPlot1D>& ResSlices0,
+                                       std::vector<std::vector<double>>& ResSlicesLimits0, int& NumberOfSlices0) {
     bool Printout = false;
 
     for (int i = 0; i < NumberOfSlices0; i++) {
@@ -567,7 +566,7 @@ void MomentumResolution::hFillResPlots(const double &Momentum, const double &Res
 
 #pragma region /* CFitFunction */
 /* CFitFunction function for costume fit */
-Double_t CFitFunction(Double_t *v, Double_t *par) {
+Double_t CFitFunction(Double_t* v, Double_t* par) {
     Double_t arg = 0;
     if (par[2] != 0) { arg = (v[0] - par[1]) / par[2]; }  // 3 parameters
 
@@ -577,17 +576,17 @@ Double_t CFitFunction(Double_t *v, Double_t *par) {
 #pragma endregion
 
 #pragma region /* SliceFitDrawAndSaveByType function */
-void MomentumResolution::SliceFitDrawAndSaveByType(const std::string &SampleName, const double &beamE) {
-    SliceFitDrawAndSave(SampleName, beamE, "truth", ResTLMomSlices, ResTLMomSlicesLimits, ResTLMomSlicesFitVar, ResTLMomSlicesHistVar, FittedTLMomSlices, TL_NumberOfSlices);
-    SliceFitDrawAndSave(SampleName, beamE, "reco", ResRecoMomSlices, ResRecoMomSlicesLimits, ResRecoMomSlicesFitVar, ResRecoMomSlicesHistVar, FittedRecoMomSlices, Reco_NumberOfSlices);
+void MomentumResolution::SliceFitDrawAndSaveByType(const std::string& SampleName, const double& beamE) {
+    this->SliceFitDrawAndSave(SampleName, beamE, "truth", ResTLMomSlices, ResTLMomSlicesLimits, ResTLMomSlicesFitVar, ResTLMomSlicesHistVar, FittedTLMomSlices, TL_NumberOfSlices);
+    this->SliceFitDrawAndSave(SampleName, beamE, "reco", ResRecoMomSlices, ResRecoMomSlicesLimits, ResRecoMomSlicesFitVar, ResRecoMomSlicesHistVar, FittedRecoMomSlices, Reco_NumberOfSlices);
 }
 #pragma endregion
 
 #pragma region /* SliceFitDrawAndSave function */
-void MomentumResolution::SliceFitDrawAndSave(const std::string &SampleName, const double &beamE, const std::string &MomentumType, vector<hPlot1D> &ResSlices0,
-                                             vector<vector<double>> &ResSlicesLimits0, vector<DSCuts> &ResSlicesFitVar0, vector<DSCuts> &ResSlicesHistVar0, vector<int> &FittedSlices0,
-                                             int &NumberOfSlices0) {
-    TCanvas *SliceFitCanvas = new TCanvas("SliceFitCanvas", "SliceFitCanvas", 1000, 750);  // normal res
+void MomentumResolution::SliceFitDrawAndSave(const std::string& SampleName, const double& beamE, const std::string& MomentumType, std::vector<hPlot1D>& ResSlices0,
+                                             std::vector<std::vector<double>>& ResSlicesLimits0, std::vector<DSCuts>& ResSlicesFitVar0, std::vector<DSCuts>& ResSlicesHistVar0,
+                                             std::vector<int>& FittedSlices0, int& NumberOfSlices0) {
+    TCanvas* SliceFitCanvas = new TCanvas("SliceFitCanvas", "SliceFitCanvas", 1000, 750);  // normal res
     SliceFitCanvas->SetGrid();
     SliceFitCanvas->SetBottomMargin(0.14), SliceFitCanvas->SetLeftMargin(0.18), SliceFitCanvas->SetRightMargin(0.12);
     SliceFitCanvas->cd();
@@ -596,14 +595,14 @@ void MomentumResolution::SliceFitDrawAndSave(const std::string &SampleName, cons
 #pragma region /* Setting sNameFlag */
         std::string sNameFlag;
 
-        if (FindSubstring(SampleName, "sim")) {
+        if (bt::FindSubstring(SampleName, "sim")) {
             sNameFlag = "s";
-        } else if (FindSubstring(SampleName, "data")) {
+        } else if (bt::FindSubstring(SampleName, "data")) {
             sNameFlag = "d";
         }
 #pragma endregion
 
-        TH1D *hSlice = (TH1D *)ResSlices0.at(i).GetHistogram();
+        TH1D* hSlice = (TH1D*)ResSlices0.at(i).GetHistogram();
         hSlice->GetXaxis()->SetTitleSize(0.06), hSlice->GetXaxis()->SetLabelSize(0.0425), hSlice->GetXaxis()->CenterTitle(true);
         hSlice->GetYaxis()->SetTitle("Number of events");
         hSlice->GetYaxis()->SetTitleSize(0.06), hSlice->GetYaxis()->SetLabelSize(0.0425), hSlice->GetYaxis()->CenterTitle(true);
@@ -629,7 +628,7 @@ void MomentumResolution::SliceFitDrawAndSave(const std::string &SampleName, cons
                 }
             }
 
-            TF1 *func = new TF1("fit", CFitFunction, FitLlim, FitUlim, 3);  // create a function with 3 parameters in the range [-3,3]
+            TF1* func = new TF1("fit", CFitFunction, FitLlim, FitUlim, 3);  // create a function with 3 parameters in the range [-3,3]
             func->SetLineColor(kRed);
 
             double SliceMax = hSlice->GetMaximum(), SliceMean = hSlice->GetMean(), SliceStd = hSlice->GetRMS();
@@ -696,7 +695,7 @@ void MomentumResolution::SliceFitDrawAndSave(const std::string &SampleName, cons
             }
 #pragma endregion
 
-            TPaveText *FitParam = new TPaveText(x_1_FitParam, y_1_FitParam, x_2_FitParam, y_2_FitParam - 0.025, "NDC");
+            TPaveText* FitParam = new TPaveText(x_1_FitParam, y_1_FitParam, x_2_FitParam, y_2_FitParam - 0.025, "NDC");
             FitParam->SetBorderSize(1), FitParam->SetFillColor(0);
             FitParam->SetTextAlign(12), FitParam->SetTextFont(42), FitParam->SetTextSize(0.03);
             FitParam->AddText(("Fit amp = " + ToStringWithPrecision(FitAmp, 4)).c_str());
@@ -716,7 +715,7 @@ void MomentumResolution::SliceFitDrawAndSave(const std::string &SampleName, cons
             system(("mkdir -p " + hSlice_CloneSaveDir).c_str());
 
             auto ListOfFunctions = hSlice->GetListOfFunctions();
-            ListOfFunctions->Add((TObject *)FitParam);
+            ListOfFunctions->Add((TObject*)FitParam);
 
             std::cout << "\n", SliceFitCanvas->SaveAs(hSlice_CloneSaveName.c_str());
 
@@ -743,38 +742,38 @@ void MomentumResolution::SliceFitDrawAndSave(const std::string &SampleName, cons
     }
 
     if (MomentumType == "truth") {
-        PolyFitter(MomentumType, 1, "Corr", "noKC", TL_FitParam_Corr_pol1);
-        PolyFitter(MomentumType, 1, "Corr", "wKC", TL_FitParam_Corr_pol1_wKC);
-        PolyFitter(MomentumType, 2, "Corr", "noKC", TL_FitParam_Corr_pol2);
-        PolyFitter(MomentumType, 2, "Corr", "wKC", TL_FitParam_Corr_pol2_wKC);
-        PolyFitter(MomentumType, 3, "Corr", "noKC", TL_FitParam_Corr_pol3);
-        PolyFitter(MomentumType, 3, "Corr", "wKC", TL_FitParam_Corr_pol3_wKC);
-        PolyFitter(MomentumType, 1, "Smear", "noKC", TL_FitParam_Smear_pol1);
-        PolyFitter(MomentumType, 1, "Smear", "wKC", TL_FitParam_Smear_pol1_wKC);
-        PolyFitter(MomentumType, 2, "Smear", "noKC", TL_FitParam_Smear_pol2);
-        PolyFitter(MomentumType, 2, "Smear", "wKC", TL_FitParam_Smear_pol2_wKC);
-        PolyFitter(MomentumType, 3, "Smear", "noKC", TL_FitParam_Smear_pol3);
-        PolyFitter(MomentumType, 3, "Smear", "wKC", TL_FitParam_Smear_pol3_wKC);
+        this->PolyFitter(MomentumType, 1, "Corr", "noKC", TL_FitParam_Corr_pol1);
+        this->PolyFitter(MomentumType, 1, "Corr", "wKC", TL_FitParam_Corr_pol1_wKC);
+        this->PolyFitter(MomentumType, 2, "Corr", "noKC", TL_FitParam_Corr_pol2);
+        this->PolyFitter(MomentumType, 2, "Corr", "wKC", TL_FitParam_Corr_pol2_wKC);
+        this->PolyFitter(MomentumType, 3, "Corr", "noKC", TL_FitParam_Corr_pol3);
+        this->PolyFitter(MomentumType, 3, "Corr", "wKC", TL_FitParam_Corr_pol3_wKC);
+        this->PolyFitter(MomentumType, 1, "Smear", "noKC", TL_FitParam_Smear_pol1);
+        this->PolyFitter(MomentumType, 1, "Smear", "wKC", TL_FitParam_Smear_pol1_wKC);
+        this->PolyFitter(MomentumType, 2, "Smear", "noKC", TL_FitParam_Smear_pol2);
+        this->PolyFitter(MomentumType, 2, "Smear", "wKC", TL_FitParam_Smear_pol2_wKC);
+        this->PolyFitter(MomentumType, 3, "Smear", "noKC", TL_FitParam_Smear_pol3);
+        this->PolyFitter(MomentumType, 3, "Smear", "wKC", TL_FitParam_Smear_pol3_wKC);
     } else if (MomentumType == "reco") {
-        PolyFitter(MomentumType, 1, "Corr", "noKC", Reco_FitParam_Corr_pol1);
-        PolyFitter(MomentumType, 1, "Corr", "wKC", Reco_FitParam_Corr_pol1_wKC);
-        PolyFitter(MomentumType, 2, "Corr", "noKC", Reco_FitParam_Corr_pol2);
-        PolyFitter(MomentumType, 2, "Corr", "wKC", Reco_FitParam_Corr_pol2_wKC);
-        PolyFitter(MomentumType, 3, "Corr", "noKC", Reco_FitParam_Corr_pol3);
-        PolyFitter(MomentumType, 3, "Corr", "wKC", Reco_FitParam_Corr_pol3_wKC);
-        PolyFitter(MomentumType, 1, "Smear", "noKC", Reco_FitParam_Smear_pol1);
-        PolyFitter(MomentumType, 1, "Smear", "wKC", Reco_FitParam_Smear_pol1_wKC);
-        PolyFitter(MomentumType, 2, "Smear", "noKC", Reco_FitParam_Smear_pol2);
-        PolyFitter(MomentumType, 2, "Smear", "wKC", Reco_FitParam_Smear_pol2_wKC);
-        PolyFitter(MomentumType, 3, "Smear", "noKC", Reco_FitParam_Smear_pol3);
-        PolyFitter(MomentumType, 3, "Smear", "wKC", Reco_FitParam_Smear_pol3_wKC);
+        this->PolyFitter(MomentumType, 1, "Corr", "noKC", Reco_FitParam_Corr_pol1);
+        this->PolyFitter(MomentumType, 1, "Corr", "wKC", Reco_FitParam_Corr_pol1_wKC);
+        this->PolyFitter(MomentumType, 2, "Corr", "noKC", Reco_FitParam_Corr_pol2);
+        this->PolyFitter(MomentumType, 2, "Corr", "wKC", Reco_FitParam_Corr_pol2_wKC);
+        this->PolyFitter(MomentumType, 3, "Corr", "noKC", Reco_FitParam_Corr_pol3);
+        this->PolyFitter(MomentumType, 3, "Corr", "wKC", Reco_FitParam_Corr_pol3_wKC);
+        this->PolyFitter(MomentumType, 1, "Smear", "noKC", Reco_FitParam_Smear_pol1);
+        this->PolyFitter(MomentumType, 1, "Smear", "wKC", Reco_FitParam_Smear_pol1_wKC);
+        this->PolyFitter(MomentumType, 2, "Smear", "noKC", Reco_FitParam_Smear_pol2);
+        this->PolyFitter(MomentumType, 2, "Smear", "wKC", Reco_FitParam_Smear_pol2_wKC);
+        this->PolyFitter(MomentumType, 3, "Smear", "noKC", Reco_FitParam_Smear_pol3);
+        this->PolyFitter(MomentumType, 3, "Smear", "wKC", Reco_FitParam_Smear_pol3_wKC);
     }
 }
 #pragma endregion
 
 #pragma region /* PolyFitter function */
-void MomentumResolution::PolyFitter(const std::string &MomentumType, const int &PolynomialDegree, const std::string &FitType, const std::string &MomentumFitRange,
-                                    vector<vector<double>> &FitParamResults) {
+void MomentumResolution::PolyFitter(const std::string& MomentumType, const int& PolynomialDegree, const std::string& FitType, const std::string& MomentumFitRange,
+                                    std::vector<std::vector<double>>& FitParamResults) {
     std::cout << "\n\nPolyFitter variables:\n";
     bool PrintOut = false;
     bool PlotPoints = false;
@@ -826,11 +825,11 @@ void MomentumResolution::PolyFitter(const std::string &MomentumType, const int &
 #pragma endregion
 
 #pragma region /* Setting fitted slices */
-    vector<hPlot1D> ResSlices0;
-    vector<vector<double>> ResSlicesLimits0;
-    vector<DSCuts> ResSlicesFitVar0, ResSlicesHistVar0;
+    std::vector<hPlot1D> ResSlices0;
+    std::vector<std::vector<double>> ResSlicesLimits0;
+    std::vector<DSCuts> ResSlicesFitVar0, ResSlicesHistVar0;
     int NumberOfSlices0;
-    vector<int> FittedSlices0;
+    std::vector<int> FittedSlices0;
 
     if (MomentumType == "truth") {
         ResSlices0 = ResTLMomSlices;
@@ -859,7 +858,7 @@ void MomentumResolution::PolyFitter(const std::string &MomentumType, const int &
 #pragma endregion
 
 #pragma region /* Setting plot x and y data */
-    vector<double> MeanPn, Pn_FitVar;
+    std::vector<double> MeanPn, Pn_FitVar;
 
     for (int i = 0; i < NumberOfSlices0; i++) {
         double Mean = (ResSlicesLimits0.at(i).at(1) + ResSlicesLimits0.at(i).at(0)) / 2;
@@ -927,14 +926,14 @@ void MomentumResolution::PolyFitter(const std::string &MomentumType, const int &
 #pragma endregion
 
 #pragma region /* Setting fit canvas */
-    TCanvas *Fit_Canvas = new TCanvas("Fit_Canvas", "Fit_Canvas", 1000, 750);
+    TCanvas* Fit_Canvas = new TCanvas("Fit_Canvas", "Fit_Canvas", 1000, 750);
     Fit_Canvas->cd();
     Fit_Canvas->SetGrid();
     Fit_Canvas->SetBottomMargin(0.14), Fit_Canvas->SetLeftMargin(0.16), Fit_Canvas->SetRightMargin(0.12);
 #pragma endregion
 
 #pragma region /* Setting graph & preforming the fit */
-    TGraph *Graph1D = new TGraph();
+    TGraph* Graph1D = new TGraph();
     Graph1D->SetName(PolynomialFuncName.c_str());
 
     for (int i = 0; i < MeanPn.size(); i++) {
@@ -943,7 +942,7 @@ void MomentumResolution::PolyFitter(const std::string &MomentumType, const int &
         Graph1D->AddPoint(x, y);
 
         if (PlotPoints) {
-            TLatex *latex = new TLatex(x, y, ("(" + to_string(x) + " , " + to_string(y) + ")").c_str());
+            TLatex* latex = new TLatex(x, y, ("(" + to_string(x) + " , " + to_string(y) + ")").c_str());
             latex->SetTextSize(0.02);
             Graph1D->GetListOfFunctions()->Add(latex);
         }
@@ -971,7 +970,7 @@ void MomentumResolution::PolyFitter(const std::string &MomentumType, const int &
         Graph1D->GetYaxis()->SetTitle(("R_{" + FitterParticle + "} mean").c_str());
     }
 
-    TF1 *PolynomialFunc = new TF1(PolynomialFuncName.c_str(), PolynomialFuncStruct.c_str());
+    TF1* PolynomialFunc = new TF1(PolynomialFuncName.c_str(), PolynomialFuncStruct.c_str());
 
     Graph1D->Fit(PolynomialFunc);
     Graph1D->Draw("ap");
@@ -979,7 +978,7 @@ void MomentumResolution::PolyFitter(const std::string &MomentumType, const int &
 #pragma endregion
 
 #pragma region /* Log fit results to variables */
-    vector<double> FitVarResults, FitVarResultsErrors, FitVarResultsGoodness;
+    std::vector<double> FitVarResults, FitVarResultsErrors, FitVarResultsGoodness;
 
     if (PolynomialDegree == 1) {
         FitVarResults.push_back(PolynomialFunc->GetParameter(0));  // get [0]
@@ -1138,7 +1137,7 @@ void MomentumResolution::PolyFitter(const std::string &MomentumType, const int &
 #pragma region /* Setting legend */
     auto Graph1D_Legend = new TLegend(x_1_legend + x_1_Offset_Legend, y_1_legend, x_2_legend, y_2_legend);
 
-    TLegendEntry *Graph1D_Legend_fit;
+    TLegendEntry* Graph1D_Legend_fit;
 
     std::string LegendPolyStruct;
 
@@ -1157,7 +1156,7 @@ void MomentumResolution::PolyFitter(const std::string &MomentumType, const int &
 #pragma endregion
 
 #pragma region /* Setting fit variable chart */
-    TPaveText *FitParam = new TPaveText(x_1_FitParam + x_1_Offset_FitParam, y_1_FitParam, x_2_FitParam, y_2_FitParam, "NDC");
+    TPaveText* FitParam = new TPaveText(x_1_FitParam + x_1_Offset_FitParam, y_1_FitParam, x_2_FitParam, y_2_FitParam, "NDC");
     FitParam->SetBorderSize(1), FitParam->SetFillColor(0), FitParam->SetTextAlign(12), FitParam->SetTextFont(42), FitParam->SetTextSize(0.03);
 
     if (PolynomialDegree == 1) {
@@ -1184,8 +1183,8 @@ void MomentumResolution::PolyFitter(const std::string &MomentumType, const int &
     std::cout << "\n\n";
 
     auto ListOfFunctions = Graph1D->GetListOfFunctions();
-    ListOfFunctions->Add((TLegend *)Graph1D_Legend);
-    ListOfFunctions->Add((TPaveText *)FitParam);
+    ListOfFunctions->Add((TLegend*)Graph1D_Legend);
+    ListOfFunctions->Add((TPaveText*)FitParam);
 
 #pragma region /* TFolder sorting */
     if (MomentumType == "truth") {
@@ -1236,9 +1235,9 @@ void MomentumResolution::PolyFitter(const std::string &MomentumType, const int &
 // DrawAndSaveResSlices function ----------------------------------------------------------------------------------------------------------------------------------------
 
 #pragma region /* DrawAndSaveResSlices function */
-void MomentumResolution::DrawAndSaveResSlices(const std::string &SampleName, TCanvas *h1DCanvas, const std::string &plots_path, const std::string &MomentumResolutionDirectory) {
+void MomentumResolution::DrawAndSaveResSlices(const std::string& SampleName, TCanvas* h1DCanvas, const std::string& plots_path, const std::string& MomentumResolutionDirectory) {
     std::string SampleNameTemp = SampleName;
-    const char *ResSlicePlots_OutFile = MomResHistoListPDFFileName.c_str();
+    const char* ResSlicePlots_OutFile = MomResHistoListPDFFileName.c_str();
 
     if (isNeutron) {
         ResSlicePlots->Add(FittedTLNeutronResSlices), ResSlicePlots->Add(FittedTLNeutronResSlicesWidth), ResSlicePlots->Add(FittedTLNeutronResSlicesMean);
@@ -1253,16 +1252,21 @@ void MomentumResolution::DrawAndSaveResSlices(const std::string &SampleName, TCa
     for (int i = 0; i < Reco_NumberOfSlices; i++) { ResRecoMomSlices.at(i).hDrawAndSave(SampleNameTemp, h1DCanvas, ResSlicePlots, MomResHistoList, false, true, 1., 9999, 9999, 0, false); }
 
     /* Save res and fitted res plots to plots directory: */
-    TFile *PlotsFolder_fout = new TFile((plots_path + "/" + MomResParticle + "_resolution_plots_-_" + SampleName + ".root").c_str(), "recreate");
+    TFile* PlotsFolder_fout = new TFile((plots_path + "/" + MomResParticle + "_resolution_plots_-_" + SampleName + ".root").c_str(), "recreate");
     PlotsFolder_fout->cd();
     ResSlicePlots->Write();
     PlotsFolder_fout->Write();
     PlotsFolder_fout->Close();
 
 #pragma region /* Cleanup */
-    for (auto histo : MomResHistoList) { delete histo; }
-
-    delete h1DCanvas;
+    std::unordered_set<TObject*> deleted_histograms;
+    for (auto* histo : MomResHistoList) {
+        if (!histo) { continue; }
+        if (!deleted_histograms.insert(histo).second) { continue; }
+        delete histo;
+    }
+    MomResHistoList.clear();
+    // h1DCanvas is owned by the caller (RecoAnalyzer/MainCanvas) and must not be deleted here.
 #pragma endregion
 }
 #pragma endregion
@@ -1270,18 +1274,18 @@ void MomentumResolution::DrawAndSaveResSlices(const std::string &SampleName, TCa
 // LogResDataToFile function --------------------------------------------------------------------------------------------------------------------------------------------
 
 #pragma region /* LogResDataToFile function */
-void MomentumResolution::LogResDataToFile(const std::string &SampleName, const std::string &plots_path, const std::string &MomentumResolutionDirectory) {
+void MomentumResolution::LogResDataToFile(const std::string& SampleName, const std::string& plots_path, const std::string& MomentumResolutionDirectory) {
     // TODO: reorder file save in test mode properly
     std::string SaveDateDir = MomentumResolutionDirectory + "Res_data_-_" + SampleName + "/";
 
     if (!momResTestMode) {
         system(("mkdir -p " + SaveDateDir).c_str());
 
-        LogFitDataToFile(SampleName, plots_path, SaveDateDir);
-        LogHistDataToFile(SampleName, plots_path, SaveDateDir);
+        this->LogFitDataToFile(SampleName, plots_path, SaveDateDir);
+        this->LogHistDataToFile(SampleName, plots_path, SaveDateDir);
     } else {
-        LogFitDataToFile(SampleName, plots_path, SaveDateDir);
-        LogHistDataToFile(SampleName, plots_path, SaveDateDir);
+        this->LogFitDataToFile(SampleName, plots_path, SaveDateDir);
+        this->LogHistDataToFile(SampleName, plots_path, SaveDateDir);
     }
 }
 #pragma endregion
@@ -1289,7 +1293,7 @@ void MomentumResolution::LogResDataToFile(const std::string &SampleName, const s
 // LogFitDataToFile function --------------------------------------------------------------------------------------------------------------------------------------------
 
 #pragma region /* LogFitDataToFile function */
-void MomentumResolution::LogFitDataToFile(const std::string &SampleName, const std::string &plots_path, const std::string &MomentumResolutionDirectory) {
+void MomentumResolution::LogFitDataToFile(const std::string& SampleName, const std::string& plots_path, const std::string& MomentumResolutionDirectory) {
     ofstream Neutron_res_fit_param;
     std::string Neutron_res_fit_paramFilePath;
 
@@ -1362,55 +1366,55 @@ void MomentumResolution::LogFitDataToFile(const std::string &SampleName, const s
         Neutron_res_fit_param << "\n#smearing KC limits:\t" << SliceLowerMomLimKC_sigma << " to " << SliceUpperMomLimKC_sigma;
 
         Neutron_res_fit_param << "\n\n#pol1 fit variables (no KC):\n";
-        AutoLogger(SampleName, plots_path, MomentumResolutionDirectory, "truth_Smear_pol1", TL_FitParam_Smear_pol1, Neutron_res_fit_param);
-        AutoLogger(SampleName, plots_path, MomentumResolutionDirectory, "reco_Smear_pol1", Reco_FitParam_Smear_pol1, Neutron_res_fit_param);
+        this->AutoLogger(SampleName, plots_path, MomentumResolutionDirectory, "truth_Smear_pol1", TL_FitParam_Smear_pol1, Neutron_res_fit_param);
+        this->AutoLogger(SampleName, plots_path, MomentumResolutionDirectory, "reco_Smear_pol1", Reco_FitParam_Smear_pol1, Neutron_res_fit_param);
 
         Neutron_res_fit_param << "\n\n#pol1 fit variables (with KC):\n";
-        AutoLogger(SampleName, plots_path, MomentumResolutionDirectory, "truth_Smear_pol1_wKC", TL_FitParam_Smear_pol1_wKC, Neutron_res_fit_param);
-        AutoLogger(SampleName, plots_path, MomentumResolutionDirectory, "reco_Smear_pol1_wKC", Reco_FitParam_Smear_pol1_wKC, Neutron_res_fit_param);
+        this->AutoLogger(SampleName, plots_path, MomentumResolutionDirectory, "truth_Smear_pol1_wKC", TL_FitParam_Smear_pol1_wKC, Neutron_res_fit_param);
+        this->AutoLogger(SampleName, plots_path, MomentumResolutionDirectory, "reco_Smear_pol1_wKC", Reco_FitParam_Smear_pol1_wKC, Neutron_res_fit_param);
 
         Neutron_res_fit_param << "\n\n#pol2 fit variables (no KC):\n";
-        AutoLogger(SampleName, plots_path, MomentumResolutionDirectory, "truth_Smear_pol2", TL_FitParam_Smear_pol2, Neutron_res_fit_param);
-        AutoLogger(SampleName, plots_path, MomentumResolutionDirectory, "reco_Smear_pol2", Reco_FitParam_Smear_pol2, Neutron_res_fit_param);
+        this->AutoLogger(SampleName, plots_path, MomentumResolutionDirectory, "truth_Smear_pol2", TL_FitParam_Smear_pol2, Neutron_res_fit_param);
+        this->AutoLogger(SampleName, plots_path, MomentumResolutionDirectory, "reco_Smear_pol2", Reco_FitParam_Smear_pol2, Neutron_res_fit_param);
 
         Neutron_res_fit_param << "\n\n#pol2 fit variables (with KC):\n";
-        AutoLogger(SampleName, plots_path, MomentumResolutionDirectory, "truth_Smear_pol2_wKC", TL_FitParam_Smear_pol2_wKC, Neutron_res_fit_param);
-        AutoLogger(SampleName, plots_path, MomentumResolutionDirectory, "reco_Smear_pol2_wKC", Reco_FitParam_Smear_pol2_wKC, Neutron_res_fit_param);
+        this->AutoLogger(SampleName, plots_path, MomentumResolutionDirectory, "truth_Smear_pol2_wKC", TL_FitParam_Smear_pol2_wKC, Neutron_res_fit_param);
+        this->AutoLogger(SampleName, plots_path, MomentumResolutionDirectory, "reco_Smear_pol2_wKC", Reco_FitParam_Smear_pol2_wKC, Neutron_res_fit_param);
 
         Neutron_res_fit_param << "\n\n#pol3 fit variables (no KC):\n";
-        AutoLogger(SampleName, plots_path, MomentumResolutionDirectory, "truth_Smear_pol3", TL_FitParam_Smear_pol3, Neutron_res_fit_param);
-        AutoLogger(SampleName, plots_path, MomentumResolutionDirectory, "reco_Smear_pol3", Reco_FitParam_Smear_pol3, Neutron_res_fit_param);
+        this->AutoLogger(SampleName, plots_path, MomentumResolutionDirectory, "truth_Smear_pol3", TL_FitParam_Smear_pol3, Neutron_res_fit_param);
+        this->AutoLogger(SampleName, plots_path, MomentumResolutionDirectory, "reco_Smear_pol3", Reco_FitParam_Smear_pol3, Neutron_res_fit_param);
 
         Neutron_res_fit_param << "\n\n#pol3 fit variables (with KC):\n";
-        AutoLogger(SampleName, plots_path, MomentumResolutionDirectory, "truth_Smear_pol3_wKC", TL_FitParam_Smear_pol3_wKC, Neutron_res_fit_param);
-        AutoLogger(SampleName, plots_path, MomentumResolutionDirectory, "reco_Smear_pol3_wKC", Reco_FitParam_Smear_pol3_wKC, Neutron_res_fit_param);
+        this->AutoLogger(SampleName, plots_path, MomentumResolutionDirectory, "truth_Smear_pol3_wKC", TL_FitParam_Smear_pol3_wKC, Neutron_res_fit_param);
+        this->AutoLogger(SampleName, plots_path, MomentumResolutionDirectory, "reco_Smear_pol3_wKC", Reco_FitParam_Smear_pol3_wKC, Neutron_res_fit_param);
 
         Neutron_res_fit_param << "\n\n#correction fit variables:";
         Neutron_res_fit_param << "\n#correction KC limits:\t" << SliceLowerMomLimKC_mu << " to " << SliceUpperMomLimKC_mu;
 
         Neutron_res_fit_param << "\n\n#pol1 fit variables (no KC):\n";
-        AutoLogger(SampleName, plots_path, MomentumResolutionDirectory, "truth_Corr_pol1", TL_FitParam_Corr_pol1, Neutron_res_fit_param);
-        AutoLogger(SampleName, plots_path, MomentumResolutionDirectory, "reco_Corr_pol1", Reco_FitParam_Corr_pol1, Neutron_res_fit_param);
+        this->AutoLogger(SampleName, plots_path, MomentumResolutionDirectory, "truth_Corr_pol1", TL_FitParam_Corr_pol1, Neutron_res_fit_param);
+        this->AutoLogger(SampleName, plots_path, MomentumResolutionDirectory, "reco_Corr_pol1", Reco_FitParam_Corr_pol1, Neutron_res_fit_param);
 
         Neutron_res_fit_param << "\n\n#pol1 fit variables (with KC):\n";
-        AutoLogger(SampleName, plots_path, MomentumResolutionDirectory, "truth_Corr_pol1_wKC", TL_FitParam_Corr_pol1_wKC, Neutron_res_fit_param);
-        AutoLogger(SampleName, plots_path, MomentumResolutionDirectory, "reco_Corr_pol1_wKC", Reco_FitParam_Corr_pol1_wKC, Neutron_res_fit_param);
+        this->AutoLogger(SampleName, plots_path, MomentumResolutionDirectory, "truth_Corr_pol1_wKC", TL_FitParam_Corr_pol1_wKC, Neutron_res_fit_param);
+        this->AutoLogger(SampleName, plots_path, MomentumResolutionDirectory, "reco_Corr_pol1_wKC", Reco_FitParam_Corr_pol1_wKC, Neutron_res_fit_param);
 
         Neutron_res_fit_param << "\n\n#pol2 fit variables (no KC):\n";
-        AutoLogger(SampleName, plots_path, MomentumResolutionDirectory, "truth_Corr_pol2", TL_FitParam_Corr_pol2, Neutron_res_fit_param);
-        AutoLogger(SampleName, plots_path, MomentumResolutionDirectory, "reco_Corr_pol2", Reco_FitParam_Corr_pol2, Neutron_res_fit_param);
+        this->AutoLogger(SampleName, plots_path, MomentumResolutionDirectory, "truth_Corr_pol2", TL_FitParam_Corr_pol2, Neutron_res_fit_param);
+        this->AutoLogger(SampleName, plots_path, MomentumResolutionDirectory, "reco_Corr_pol2", Reco_FitParam_Corr_pol2, Neutron_res_fit_param);
 
         Neutron_res_fit_param << "\n\n#pol2 fit variables (with KC):\n";
-        AutoLogger(SampleName, plots_path, MomentumResolutionDirectory, "truth_Corr_pol2_wKC", TL_FitParam_Corr_pol2_wKC, Neutron_res_fit_param);
-        AutoLogger(SampleName, plots_path, MomentumResolutionDirectory, "reco_Corr_pol2_wKC", Reco_FitParam_Corr_pol2_wKC, Neutron_res_fit_param);
+        this->AutoLogger(SampleName, plots_path, MomentumResolutionDirectory, "truth_Corr_pol2_wKC", TL_FitParam_Corr_pol2_wKC, Neutron_res_fit_param);
+        this->AutoLogger(SampleName, plots_path, MomentumResolutionDirectory, "reco_Corr_pol2_wKC", Reco_FitParam_Corr_pol2_wKC, Neutron_res_fit_param);
 
         Neutron_res_fit_param << "\n\n#pol3 fit variables (no KC):\n";
-        AutoLogger(SampleName, plots_path, MomentumResolutionDirectory, "truth_Corr_pol3", TL_FitParam_Corr_pol3, Neutron_res_fit_param);
-        AutoLogger(SampleName, plots_path, MomentumResolutionDirectory, "reco_Corr_pol3", Reco_FitParam_Corr_pol3, Neutron_res_fit_param);
+        this->AutoLogger(SampleName, plots_path, MomentumResolutionDirectory, "truth_Corr_pol3", TL_FitParam_Corr_pol3, Neutron_res_fit_param);
+        this->AutoLogger(SampleName, plots_path, MomentumResolutionDirectory, "reco_Corr_pol3", Reco_FitParam_Corr_pol3, Neutron_res_fit_param);
 
         Neutron_res_fit_param << "\n\n#pol3 fit variables (with KC):\n";
-        AutoLogger(SampleName, plots_path, MomentumResolutionDirectory, "truth_Corr_pol3_wKC", TL_FitParam_Corr_pol3_wKC, Neutron_res_fit_param);
-        AutoLogger(SampleName, plots_path, MomentumResolutionDirectory, "reco_Corr_pol3_wKC", Reco_FitParam_Corr_pol3_wKC, Neutron_res_fit_param);
+        this->AutoLogger(SampleName, plots_path, MomentumResolutionDirectory, "truth_Corr_pol3_wKC", TL_FitParam_Corr_pol3_wKC, Neutron_res_fit_param);
+        this->AutoLogger(SampleName, plots_path, MomentumResolutionDirectory, "reco_Corr_pol3_wKC", Reco_FitParam_Corr_pol3_wKC, Neutron_res_fit_param);
     }
 #pragma endregion
 
@@ -1424,10 +1428,10 @@ void MomentumResolution::LogFitDataToFile(const std::string &SampleName, const s
 #pragma endregion
 
 #pragma region /* AutoLogger function */
-void MomentumResolution::AutoLogger(const std::string &SampleName, const std::string &plots_path, const std::string &MomentumResolutionDirectory, const std::string &LogHeader,
-                                    const vector<vector<double>> &Vector2Log, ofstream &Neutron_res_fit_param) {
+void MomentumResolution::AutoLogger(const std::string& SampleName, const std::string& plots_path, const std::string& MomentumResolutionDirectory, const std::string& LogHeader,
+                                    const std::vector<std::vector<double>>& Vector2Log, ofstream& Neutron_res_fit_param) {
     if (Vector2Log.size() != 0) {
-        vector<string> FitVarName = {"A", "B", "C", "D"}, FitVarErrName = {"A_Err", "B_Err", "C_Err", "D_Err"};
+        std::vector<string> FitVarName = {"A", "B", "C", "D"}, FitVarErrName = {"A_Err", "B_Err", "C_Err", "D_Err"};
         std::string FitVarNameEnding = "# ", FitVarErrNameEnding = "# ";
 
         for (int i = 0; i < Vector2Log.at(0).size(); i++) {
@@ -1486,7 +1490,7 @@ void MomentumResolution::AutoLogger(const std::string &SampleName, const std::st
 // LogHistDataToFile function --------------------------------------------------------------------------------------------------------------------------------------------
 
 #pragma region /* LogHistDataToFile function */
-void MomentumResolution::LogHistDataToFile(const std::string &SampleName, const std::string &plots_path, const std::string &MomentumResolutionDirectory) {
+void MomentumResolution::LogHistDataToFile(const std::string& SampleName, const std::string& plots_path, const std::string& MomentumResolutionDirectory) {
     ofstream Neutron_res_Hist_param;
     std::string Neutron_res_Hist_paramFilePath;
 
@@ -1560,8 +1564,8 @@ void MomentumResolution::LogHistDataToFile(const std::string &SampleName, const 
 // ReadResDataParam function --------------------------------------------------------------------------------------------------------------------------------------------
 
 #pragma region /* ReadResDataParam function */
-void MomentumResolution::ReadResDataParam(const char *filename, const bool &Calculate_momResS2, const std::string &SampleName, const std::string &NucleonCutsDirectory,
-                                          const std::string &MomentumType, const bool &Load_correction = false, const bool &Load_smearing = false) {
+void MomentumResolution::ReadResDataParam(const char* filename, const bool& Calculate_momResS2, const std::string& SampleName, const std::string& NucleonCutsDirectory,
+                                          const std::string& MomentumType, const bool& Load_correction = false, const bool& Load_smearing = false) {
     ifstream infile;
     infile.open(filename);
 
@@ -1569,9 +1573,9 @@ void MomentumResolution::ReadResDataParam(const char *filename, const bool &Calc
     SName = SampleName;
     SetUpperMomCut(SampleName, NucleonCutsDirectory);
 
-    if (Load_correction) { std::cout << "\033[33m\n\nLoading neutron correction from:\033[0m\n " << filename << "\n "; }
+    if (Load_correction) { std::cout << env::SYSTEM_COLOR << "\n\nLoading neutron correction from:\n" << env::RESET_COLOR << filename << "\n"; }
 
-    if (Load_smearing) { std::cout << "\033[33m\nLoading proton smearing from:\033[0m\n " << filename << "\n "; }
+    if (Load_smearing) { std::cout << env::SYSTEM_COLOR << "\nLoading proton smearing from:\n" << env::RESET_COLOR << filename << "\n"; }
 
     if (infile.is_open()) {
         std::string tp;
@@ -1586,7 +1590,7 @@ void MomentumResolution::ReadResDataParam(const char *filename, const bool &Calc
             ss >> parameter;  // get cut identifier
 
             if (!Load_correction && !Load_smearing) {
-                if (FindSubstring(parameter, "fit_" + MomentumType + "_" + "Slice_#")) {
+                if (bt::FindSubstring(parameter, "fit_" + MomentumType + "_" + "Slice_#")) {
                     // get cut values
                     ss >> parameter2;
                     stringstream ss2(parameter2);
@@ -1619,7 +1623,7 @@ void MomentumResolution::ReadResDataParam(const char *filename, const bool &Calc
                     TempFitCut.SetSliceNumber(SliceNumberTemp);
 
                     Loaded_Res_Slices_FitVar.push_back(TempFitCut);
-                } else if (FindSubstring(parameter, "hist_" + MomentumType + "_" + "Slice_#")) {
+                } else if (bt::FindSubstring(parameter, "hist_" + MomentumType + "_" + "Slice_#")) {
                     // get cut values
                     ss >> parameter2;
                     stringstream ss2(parameter2);
@@ -1658,7 +1662,7 @@ void MomentumResolution::ReadResDataParam(const char *filename, const bool &Calc
                 stringstream ss2(parameter2);
 
                 // TODO: reorganize these into vectors!
-                if (Load_correction && FindSubstring(parameter, MomentumType) && FindSubstring(parameter, "Corr")) {
+                if (Load_correction && bt::FindSubstring(parameter, MomentumType) && bt::FindSubstring(parameter, "Corr")) {
                     Loaded_Corr_coefficients_path = filename;
 
 #pragma region /* Safety checks for loading correction variables */
@@ -1669,74 +1673,74 @@ void MomentumResolution::ReadResDataParam(const char *filename, const bool &Calc
                     }
 #pragma endregion
 
-                    if (FindSubstring(parameter, "pol1") && FindSubstring(CorrMode, "pol1")) {
-                        if (FindSubstring(parameter, "pol1_wKC") && FindSubstring(CorrMode, "pol1_wKC")) {
+                    if (bt::FindSubstring(parameter, "pol1") && bt::FindSubstring(CorrMode, "pol1")) {
+                        if (bt::FindSubstring(parameter, "pol1_wKC") && bt::FindSubstring(CorrMode, "pol1_wKC")) {
                             if (MomentumType == "truth") {
-                                AutoReader(MomentumType, 1, parameter, ss2, Loaded_TL_FitParam_Corr_pol1_wKC);
-                                //                                AutoReader(MomentumType, 1, parameter, ss2, Loaded_TL_FitParam_Corr_pol1_wKC, Loaded_Corr_coefficients_values,
+                                this->AutoReader(MomentumType, 1, parameter, ss2, Loaded_TL_FitParam_Corr_pol1_wKC);
+                                //                                this->AutoReader(MomentumType, 1, parameter, ss2, Loaded_TL_FitParam_Corr_pol1_wKC, Loaded_Corr_coefficients_values,
                                 //                                           Loaded_Corr_coefficients_names);
                             } else if (MomentumType == "reco") {
-                                AutoReader(MomentumType, 1, parameter, ss2, Loaded_Reco_FitParam_Corr_pol1_wKC);
-                                //                                AutoReader(MomentumType, 1, parameter, ss2, Loaded_Reco_FitParam_Corr_pol1_wKC, Loaded_Corr_coefficients_values,
+                                this->AutoReader(MomentumType, 1, parameter, ss2, Loaded_Reco_FitParam_Corr_pol1_wKC);
+                                //                                this->AutoReader(MomentumType, 1, parameter, ss2, Loaded_Reco_FitParam_Corr_pol1_wKC, Loaded_Corr_coefficients_values,
                                 //                                           Loaded_Corr_coefficients_names);
                             }
-                        } else if (FindSubstring(parameter, "pol1") && !FindSubstring(CorrMode, "pol1_wKC")) {
+                        } else if (bt::FindSubstring(parameter, "pol1") && !bt::FindSubstring(CorrMode, "pol1_wKC")) {
                             if (MomentumType == "truth") {
-                                AutoReader(MomentumType, 1, parameter, ss2, Loaded_TL_FitParam_Corr_pol1);
-                                //                                AutoReader(MomentumType, 1, parameter, ss2, Loaded_TL_FitParam_Corr_pol1, Loaded_Corr_coefficients_values,
+                                this->AutoReader(MomentumType, 1, parameter, ss2, Loaded_TL_FitParam_Corr_pol1);
+                                //                                this->AutoReader(MomentumType, 1, parameter, ss2, Loaded_TL_FitParam_Corr_pol1, Loaded_Corr_coefficients_values,
                                 //                                           Loaded_Corr_coefficients_names);
                             } else if (MomentumType == "reco") {
-                                AutoReader(MomentumType, 1, parameter, ss2, Loaded_Reco_FitParam_Corr_pol1);
-                                //                                AutoReader(MomentumType, 1, parameter, ss2, Loaded_Reco_FitParam_Corr_pol1, Loaded_Corr_coefficients_values,
-                                //                                           Loaded_Corr_coefficients_names);
-                            }
-                        }
-                    } else if (FindSubstring(parameter, "pol2") && FindSubstring(CorrMode, "pol2")) {
-                        if (FindSubstring(parameter, "pol2_wKC") && FindSubstring(CorrMode, "pol2_wKC")) {
-                            if (MomentumType == "truth") {
-                                AutoReader(MomentumType, 2, parameter, ss2, Loaded_TL_FitParam_Corr_pol2_wKC);
-                                //                                AutoReader(MomentumType, 2, parameter, ss2, Loaded_TL_FitParam_Corr_pol2_wKC, Loaded_Corr_coefficients_values,
-                                //                                           Loaded_Corr_coefficients_names);
-                            } else if (MomentumType == "reco") {
-                                AutoReader(MomentumType, 2, parameter, ss2, Loaded_Reco_FitParam_Corr_pol2_wKC);
-                                //                                AutoReader(MomentumType, 2, parameter, ss2, Loaded_Reco_FitParam_Corr_pol2_wKC, Loaded_Corr_coefficients_values,
-                                //                                           Loaded_Corr_coefficients_names);
-                            }
-                        } else if (FindSubstring(parameter, "pol2") && !FindSubstring(CorrMode, "pol2_wKC")) {
-                            if (MomentumType == "truth") {
-                                AutoReader(MomentumType, 2, parameter, ss2, Loaded_TL_FitParam_Corr_pol2);
-                                //                                AutoReader(MomentumType, 2, parameter, ss2, Loaded_TL_FitParam_Corr_pol2, Loaded_Corr_coefficients_values,
-                                //                                           Loaded_Corr_coefficients_names);
-                            } else if (MomentumType == "reco") {
-                                AutoReader(MomentumType, 2, parameter, ss2, Loaded_Reco_FitParam_Corr_pol2);
-                                //                                AutoReader(MomentumType, 2, parameter, ss2, Loaded_Reco_FitParam_Corr_pol2, Loaded_Corr_coefficients_values,
+                                this->AutoReader(MomentumType, 1, parameter, ss2, Loaded_Reco_FitParam_Corr_pol1);
+                                //                                this->AutoReader(MomentumType, 1, parameter, ss2, Loaded_Reco_FitParam_Corr_pol1, Loaded_Corr_coefficients_values,
                                 //                                           Loaded_Corr_coefficients_names);
                             }
                         }
-                    } else if (FindSubstring(parameter, "pol3") && FindSubstring(CorrMode, "pol3")) {
-                        if (FindSubstring(parameter, "pol3_wKC") && FindSubstring(CorrMode, "pol3_wKC")) {
+                    } else if (bt::FindSubstring(parameter, "pol2") && bt::FindSubstring(CorrMode, "pol2")) {
+                        if (bt::FindSubstring(parameter, "pol2_wKC") && bt::FindSubstring(CorrMode, "pol2_wKC")) {
                             if (MomentumType == "truth") {
-                                AutoReader(MomentumType, 3, parameter, ss2, Loaded_TL_FitParam_Corr_pol3_wKC);
-                                //                                AutoReader(MomentumType, 3, parameter, ss2, Loaded_TL_FitParam_Corr_pol3_wKC, Loaded_Corr_coefficients_values,
+                                this->AutoReader(MomentumType, 2, parameter, ss2, Loaded_TL_FitParam_Corr_pol2_wKC);
+                                //                                this->AutoReader(MomentumType, 2, parameter, ss2, Loaded_TL_FitParam_Corr_pol2_wKC, Loaded_Corr_coefficients_values,
                                 //                                           Loaded_Corr_coefficients_names);
                             } else if (MomentumType == "reco") {
-                                AutoReader(MomentumType, 3, parameter, ss2, Loaded_Reco_FitParam_Corr_pol3_wKC);
-                                //                                AutoReader(MomentumType, 3, parameter, ss2, Loaded_Reco_FitParam_Corr_pol3_wKC, Loaded_Corr_coefficients_values,
+                                this->AutoReader(MomentumType, 2, parameter, ss2, Loaded_Reco_FitParam_Corr_pol2_wKC);
+                                //                                this->AutoReader(MomentumType, 2, parameter, ss2, Loaded_Reco_FitParam_Corr_pol2_wKC, Loaded_Corr_coefficients_values,
                                 //                                           Loaded_Corr_coefficients_names);
                             }
-                        } else if (FindSubstring(parameter, "pol3") && !FindSubstring(CorrMode, "pol3_wKC")) {
+                        } else if (bt::FindSubstring(parameter, "pol2") && !bt::FindSubstring(CorrMode, "pol2_wKC")) {
                             if (MomentumType == "truth") {
-                                AutoReader(MomentumType, 3, parameter, ss2, Loaded_TL_FitParam_Corr_pol3);
-                                //                                AutoReader(MomentumType, 3, parameter, ss2, Loaded_TL_FitParam_Corr_pol3, Loaded_Corr_coefficients_values,
+                                this->AutoReader(MomentumType, 2, parameter, ss2, Loaded_TL_FitParam_Corr_pol2);
+                                //                                this->AutoReader(MomentumType, 2, parameter, ss2, Loaded_TL_FitParam_Corr_pol2, Loaded_Corr_coefficients_values,
                                 //                                           Loaded_Corr_coefficients_names);
                             } else if (MomentumType == "reco") {
-                                AutoReader(MomentumType, 3, parameter, ss2, Loaded_Reco_FitParam_Corr_pol3);
-                                //                                AutoReader(MomentumType, 3, parameter, ss2, Loaded_Reco_FitParam_Corr_pol3, Loaded_Corr_coefficients_values,
+                                this->AutoReader(MomentumType, 2, parameter, ss2, Loaded_Reco_FitParam_Corr_pol2);
+                                //                                this->AutoReader(MomentumType, 2, parameter, ss2, Loaded_Reco_FitParam_Corr_pol2, Loaded_Corr_coefficients_values,
+                                //                                           Loaded_Corr_coefficients_names);
+                            }
+                        }
+                    } else if (bt::FindSubstring(parameter, "pol3") && bt::FindSubstring(CorrMode, "pol3")) {
+                        if (bt::FindSubstring(parameter, "pol3_wKC") && bt::FindSubstring(CorrMode, "pol3_wKC")) {
+                            if (MomentumType == "truth") {
+                                this->AutoReader(MomentumType, 3, parameter, ss2, Loaded_TL_FitParam_Corr_pol3_wKC);
+                                //                                this->AutoReader(MomentumType, 3, parameter, ss2, Loaded_TL_FitParam_Corr_pol3_wKC, Loaded_Corr_coefficients_values,
+                                //                                           Loaded_Corr_coefficients_names);
+                            } else if (MomentumType == "reco") {
+                                this->AutoReader(MomentumType, 3, parameter, ss2, Loaded_Reco_FitParam_Corr_pol3_wKC);
+                                //                                this->AutoReader(MomentumType, 3, parameter, ss2, Loaded_Reco_FitParam_Corr_pol3_wKC, Loaded_Corr_coefficients_values,
+                                //                                           Loaded_Corr_coefficients_names);
+                            }
+                        } else if (bt::FindSubstring(parameter, "pol3") && !bt::FindSubstring(CorrMode, "pol3_wKC")) {
+                            if (MomentumType == "truth") {
+                                this->AutoReader(MomentumType, 3, parameter, ss2, Loaded_TL_FitParam_Corr_pol3);
+                                //                                this->AutoReader(MomentumType, 3, parameter, ss2, Loaded_TL_FitParam_Corr_pol3, Loaded_Corr_coefficients_values,
+                                //                                           Loaded_Corr_coefficients_names);
+                            } else if (MomentumType == "reco") {
+                                this->AutoReader(MomentumType, 3, parameter, ss2, Loaded_Reco_FitParam_Corr_pol3);
+                                //                                this->AutoReader(MomentumType, 3, parameter, ss2, Loaded_Reco_FitParam_Corr_pol3, Loaded_Corr_coefficients_values,
                                 //                                           Loaded_Corr_coefficients_names);
                             }
                         }
                     }
-                } else if (Load_smearing && FindSubstring(parameter, MomentumType) && FindSubstring(parameter, "Smear")) {
+                } else if (Load_smearing && bt::FindSubstring(parameter, MomentumType) && bt::FindSubstring(parameter, "Smear")) {
                     Loaded_Std_coefficients_path = filename;
 
 #pragma region /* Safety checks for loading smearing variables */
@@ -1747,67 +1751,67 @@ void MomentumResolution::ReadResDataParam(const char *filename, const bool &Calc
                     }
 #pragma endregion
 
-                    if (FindSubstring(parameter, "pol1") && FindSubstring(SmearMode, "pol1")) {
-                        if (FindSubstring(parameter, "pol1_wKC") && FindSubstring(SmearMode, "pol1_wKC")) {
+                    if (bt::FindSubstring(parameter, "pol1") && bt::FindSubstring(SmearMode, "pol1")) {
+                        if (bt::FindSubstring(parameter, "pol1_wKC") && bt::FindSubstring(SmearMode, "pol1_wKC")) {
                             if (MomentumType == "truth") {
-                                AutoReader(MomentumType, 1, parameter, ss2, Loaded_TL_FitParam_Smear_pol1_wKC);
-                                //                                AutoReader(MomentumType, 1, parameter, ss2, Loaded_TL_FitParam_Smear_pol1_wKC, Loaded_Smear_coefficients_values,
+                                this->AutoReader(MomentumType, 1, parameter, ss2, Loaded_TL_FitParam_Smear_pol1_wKC);
+                                //                                this->AutoReader(MomentumType, 1, parameter, ss2, Loaded_TL_FitParam_Smear_pol1_wKC, Loaded_Smear_coefficients_values,
                                 //                                           Loaded_Smear_coefficients_names);
                             } else if (MomentumType == "reco") {
-                                AutoReader(MomentumType, 1, parameter, ss2, Loaded_Reco_FitParam_Smear_pol1_wKC);
+                                this->AutoReader(MomentumType, 1, parameter, ss2, Loaded_Reco_FitParam_Smear_pol1_wKC);
                             }
-                        } else if (FindSubstring(parameter, "pol1") && !FindSubstring(SmearMode, "pol1_wKC")) {
+                        } else if (bt::FindSubstring(parameter, "pol1") && !bt::FindSubstring(SmearMode, "pol1_wKC")) {
                             if (MomentumType == "truth") {
-                                AutoReader(MomentumType, 1, parameter, ss2, Loaded_TL_FitParam_Smear_pol1);
-                                //                                AutoReader(MomentumType, 1, parameter, ss2, Loaded_TL_FitParam_Smear_pol1, Loaded_Smear_coefficients_values,
+                                this->AutoReader(MomentumType, 1, parameter, ss2, Loaded_TL_FitParam_Smear_pol1);
+                                //                                this->AutoReader(MomentumType, 1, parameter, ss2, Loaded_TL_FitParam_Smear_pol1, Loaded_Smear_coefficients_values,
                                 //                                           Loaded_Smear_coefficients_names);
                             } else if (MomentumType == "reco") {
-                                AutoReader(MomentumType, 1, parameter, ss2, Loaded_Reco_FitParam_Smear_pol1);
-                                //                                AutoReader(MomentumType, 1, parameter, ss2, Loaded_Reco_FitParam_Smear_pol1, Loaded_Smear_coefficients_values,
-                                //                                           Loaded_Smear_coefficients_names);
-                            }
-                        }
-                    } else if (FindSubstring(parameter, "pol2") && FindSubstring(SmearMode, "pol2")) {
-                        if (FindSubstring(parameter, "pol2_wKC") && FindSubstring(SmearMode, "pol2_wKC")) {
-                            if (MomentumType == "truth") {
-                                AutoReader(MomentumType, 2, parameter, ss2, Loaded_TL_FitParam_Smear_pol2_wKC);
-                                //                                AutoReader(MomentumType, 2, parameter, ss2, Loaded_TL_FitParam_Smear_pol2_wKC, Loaded_Smear_coefficients_values,
-                                //                                           Loaded_Smear_coefficients_names);
-                            } else if (MomentumType == "reco") {
-                                AutoReader(MomentumType, 2, parameter, ss2, Loaded_Reco_FitParam_Smear_pol2_wKC);
-                                //                                AutoReader(MomentumType, 2, parameter, ss2, Loaded_Reco_FitParam_Smear_pol2_wKC, Loaded_Smear_coefficients_values,
-                                //                                           Loaded_Smear_coefficients_names);
-                            }
-                        } else if (FindSubstring(parameter, "pol2") && !FindSubstring(SmearMode, "pol2_wKC")) {
-                            if (MomentumType == "truth") {
-                                AutoReader(MomentumType, 2, parameter, ss2, Loaded_TL_FitParam_Smear_pol2);
-                                //                                AutoReader(MomentumType, 2, parameter, ss2, Loaded_TL_FitParam_Smear_pol2, Loaded_Smear_coefficients_values,
-                                //                                           Loaded_Smear_coefficients_names);
-                            } else if (MomentumType == "reco") {
-                                AutoReader(MomentumType, 2, parameter, ss2, Loaded_Reco_FitParam_Smear_pol2);
-                                //                                AutoReader(MomentumType, 2, parameter, ss2, Loaded_Reco_FitParam_Smear_pol2, Loaded_Smear_coefficients_values,
+                                this->AutoReader(MomentumType, 1, parameter, ss2, Loaded_Reco_FitParam_Smear_pol1);
+                                //                                this->AutoReader(MomentumType, 1, parameter, ss2, Loaded_Reco_FitParam_Smear_pol1, Loaded_Smear_coefficients_values,
                                 //                                           Loaded_Smear_coefficients_names);
                             }
                         }
-                    } else if (FindSubstring(parameter, "pol3") && FindSubstring(SmearMode, "pol3")) {
-                        if (FindSubstring(parameter, "pol3_wKC") && FindSubstring(SmearMode, "pol3_wKC")) {
+                    } else if (bt::FindSubstring(parameter, "pol2") && bt::FindSubstring(SmearMode, "pol2")) {
+                        if (bt::FindSubstring(parameter, "pol2_wKC") && bt::FindSubstring(SmearMode, "pol2_wKC")) {
                             if (MomentumType == "truth") {
-                                AutoReader(MomentumType, 3, parameter, ss2, Loaded_TL_FitParam_Smear_pol3_wKC);
-                                //                                AutoReader(MomentumType, 3, parameter, ss2, Loaded_TL_FitParam_Smear_pol3_wKC, Loaded_Smear_coefficients_values,
+                                this->AutoReader(MomentumType, 2, parameter, ss2, Loaded_TL_FitParam_Smear_pol2_wKC);
+                                //                                this->AutoReader(MomentumType, 2, parameter, ss2, Loaded_TL_FitParam_Smear_pol2_wKC, Loaded_Smear_coefficients_values,
                                 //                                           Loaded_Smear_coefficients_names);
                             } else if (MomentumType == "reco") {
-                                AutoReader(MomentumType, 3, parameter, ss2, Loaded_Reco_FitParam_Smear_pol3_wKC);
-                                //                                AutoReader(MomentumType, 3, parameter, ss2, Loaded_Reco_FitParam_Smear_pol3_wKC, Loaded_Smear_coefficients_values,
+                                this->AutoReader(MomentumType, 2, parameter, ss2, Loaded_Reco_FitParam_Smear_pol2_wKC);
+                                //                                this->AutoReader(MomentumType, 2, parameter, ss2, Loaded_Reco_FitParam_Smear_pol2_wKC, Loaded_Smear_coefficients_values,
                                 //                                           Loaded_Smear_coefficients_names);
                             }
-                        } else if (FindSubstring(parameter, "pol3") && !FindSubstring(SmearMode, "pol3_wKC")) {
+                        } else if (bt::FindSubstring(parameter, "pol2") && !bt::FindSubstring(SmearMode, "pol2_wKC")) {
                             if (MomentumType == "truth") {
-                                AutoReader(MomentumType, 3, parameter, ss2, Loaded_TL_FitParam_Smear_pol3);
-                                //                                AutoReader(MomentumType, 3, parameter, ss2, Loaded_TL_FitParam_Smear_pol3, Loaded_Smear_coefficients_values,
+                                this->AutoReader(MomentumType, 2, parameter, ss2, Loaded_TL_FitParam_Smear_pol2);
+                                //                                this->AutoReader(MomentumType, 2, parameter, ss2, Loaded_TL_FitParam_Smear_pol2, Loaded_Smear_coefficients_values,
                                 //                                           Loaded_Smear_coefficients_names);
                             } else if (MomentumType == "reco") {
-                                AutoReader(MomentumType, 3, parameter, ss2, Loaded_Reco_FitParam_Smear_pol3);
-                                //                                AutoReader(MomentumType, 3, parameter, ss2, Loaded_Reco_FitParam_Smear_pol3, Loaded_Smear_coefficients_values,
+                                this->AutoReader(MomentumType, 2, parameter, ss2, Loaded_Reco_FitParam_Smear_pol2);
+                                //                                this->AutoReader(MomentumType, 2, parameter, ss2, Loaded_Reco_FitParam_Smear_pol2, Loaded_Smear_coefficients_values,
+                                //                                           Loaded_Smear_coefficients_names);
+                            }
+                        }
+                    } else if (bt::FindSubstring(parameter, "pol3") && bt::FindSubstring(SmearMode, "pol3")) {
+                        if (bt::FindSubstring(parameter, "pol3_wKC") && bt::FindSubstring(SmearMode, "pol3_wKC")) {
+                            if (MomentumType == "truth") {
+                                this->AutoReader(MomentumType, 3, parameter, ss2, Loaded_TL_FitParam_Smear_pol3_wKC);
+                                //                                this->AutoReader(MomentumType, 3, parameter, ss2, Loaded_TL_FitParam_Smear_pol3_wKC, Loaded_Smear_coefficients_values,
+                                //                                           Loaded_Smear_coefficients_names);
+                            } else if (MomentumType == "reco") {
+                                this->AutoReader(MomentumType, 3, parameter, ss2, Loaded_Reco_FitParam_Smear_pol3_wKC);
+                                //                                this->AutoReader(MomentumType, 3, parameter, ss2, Loaded_Reco_FitParam_Smear_pol3_wKC, Loaded_Smear_coefficients_values,
+                                //                                           Loaded_Smear_coefficients_names);
+                            }
+                        } else if (bt::FindSubstring(parameter, "pol3") && !bt::FindSubstring(SmearMode, "pol3_wKC")) {
+                            if (MomentumType == "truth") {
+                                this->AutoReader(MomentumType, 3, parameter, ss2, Loaded_TL_FitParam_Smear_pol3);
+                                //                                this->AutoReader(MomentumType, 3, parameter, ss2, Loaded_TL_FitParam_Smear_pol3, Loaded_Smear_coefficients_values,
+                                //                                           Loaded_Smear_coefficients_names);
+                            } else if (MomentumType == "reco") {
+                                this->AutoReader(MomentumType, 3, parameter, ss2, Loaded_Reco_FitParam_Smear_pol3);
+                                //                                this->AutoReader(MomentumType, 3, parameter, ss2, Loaded_Reco_FitParam_Smear_pol3, Loaded_Smear_coefficients_values,
                                 //                                           Loaded_Smear_coefficients_names);
                             }
                         }
@@ -1835,38 +1839,38 @@ void MomentumResolution::ReadResDataParam(const char *filename, const bool &Calc
 #pragma endregion
 
 #pragma region /* AutoReader function */
-void MomentumResolution::AutoReader(const std::string &MomentumType, const int &PolynomialDegree, const std::string &parameter, basic_istream<char> &ss2,
-                                    vector<vector<double>> &Loading_Dest, vector<double> &Loaded_coefficients_values, vector<string> &Loaded_coefficients_names) {
-    if (FindSubstring(parameter, MomentumType)) {
-        vector<string> VarNames = {"A", "B", "C", "D"};
-        vector<double> Loaded_FitVarResults, Loaded_FitVarResultsErrors, Loaded_FitVarResultsGoodness;
+void MomentumResolution::AutoReader(const std::string& MomentumType, const int& PolynomialDegree, const std::string& parameter, basic_istream<char>& ss2,
+                                    std::vector<std::vector<double>>& Loading_Dest, std::vector<double>& Loaded_coefficients_values, std::vector<string>& Loaded_coefficients_names) {
+    if (bt::FindSubstring(parameter, MomentumType)) {
+        std::vector<string> VarNames = {"A", "B", "C", "D"};
+        std::vector<double> Loaded_FitVarResults, Loaded_FitVarResultsErrors, Loaded_FitVarResultsGoodness;
         std::string Loaded_FitVar;
 
         int counter = 0;
 
         while (getline(ss2, Loaded_FitVar, ':')) {
-            if (!FindSubstring(parameter, "error") && !FindSubstring(parameter, "FitGoodness")) {
+            if (!bt::FindSubstring(parameter, "error") && !bt::FindSubstring(parameter, "FitGoodness")) {
                 Loaded_FitVarResults.push_back(stod(Loaded_FitVar));
                 Loaded_coefficients_values.push_back(stod(Loaded_FitVar));
                 Loaded_coefficients_names.push_back((VarNames.at(counter) + " (" + MomentumType + ")"));
                 ++counter;
-            } else if (FindSubstring(parameter, "error") && !FindSubstring(parameter, "FitGoodness")) {
+            } else if (bt::FindSubstring(parameter, "error") && !bt::FindSubstring(parameter, "FitGoodness")) {
                 Loaded_FitVarResultsErrors.push_back(stod(Loaded_FitVar));
-            } else if (!FindSubstring(parameter, "error") && FindSubstring(parameter, "FitGoodness")) {
+            } else if (!bt::FindSubstring(parameter, "error") && bt::FindSubstring(parameter, "FitGoodness")) {
                 Loaded_FitVarResultsGoodness.push_back(stod(Loaded_FitVar));
             }
         }
 
-        if (!FindSubstring(parameter, "error") && !FindSubstring(parameter, "FitGoodness")) {
+        if (!bt::FindSubstring(parameter, "error") && !bt::FindSubstring(parameter, "FitGoodness")) {
             Loading_Dest.push_back(Loaded_FitVarResults);
-        } else if (FindSubstring(parameter, "error") && !FindSubstring(parameter, "FitGoodness")) {
+        } else if (bt::FindSubstring(parameter, "error") && !bt::FindSubstring(parameter, "FitGoodness")) {
             Loading_Dest.push_back(Loaded_FitVarResultsErrors);
-        } else if (!FindSubstring(parameter, "error") && FindSubstring(parameter, "FitGoodness")) {
+        } else if (!bt::FindSubstring(parameter, "error") && bt::FindSubstring(parameter, "FitGoodness")) {
             Loading_Dest.push_back(Loaded_FitVarResultsGoodness);
         }
 
 #pragma region /* Safety checks */
-        if (!FindSubstring(parameter, "error") && !FindSubstring(parameter, "FitGoodness")) {
+        if (!bt::FindSubstring(parameter, "error") && !bt::FindSubstring(parameter, "FitGoodness")) {
             if (Loaded_FitVarResults.size() != (PolynomialDegree + 1)) {
                 std::cout << "\n\nMomentumResolution::AutoReader: the parameter " << parameter << " loaded improperly!\n";
                 std::cout << "Loaded_FitVarResults.size() = " << Loaded_FitVarResults.size() << "\n";
@@ -1877,7 +1881,7 @@ void MomentumResolution::AutoReader(const std::string &MomentumType, const int &
             }
         }
 
-        if (FindSubstring(parameter, "error") && !FindSubstring(parameter, "FitGoodness")) {
+        if (bt::FindSubstring(parameter, "error") && !bt::FindSubstring(parameter, "FitGoodness")) {
             if (Loaded_FitVarResultsErrors.size() != (PolynomialDegree + 1)) {
                 std::cout << "\n\nMomentumResolution::AutoReader: the parameter " << parameter << " loaded improperly!\n";
                 std::cout << "Loaded_FitVarResultsErrors.size() = " << Loaded_FitVarResultsErrors.size() << "\n";
@@ -1888,12 +1892,13 @@ void MomentumResolution::AutoReader(const std::string &MomentumType, const int &
             }
         }
 
-        if (!FindSubstring(parameter, "error") && FindSubstring(parameter, "FitGoodness")) {
+        if (!bt::FindSubstring(parameter, "error") && bt::FindSubstring(parameter, "FitGoodness")) {
             if (Loaded_FitVarResultsGoodness.size() != 2) {
                 std::cout << "\n\nMomentumResolution::AutoReader: the parameter " << parameter << " loaded improperly!\n";
                 std::cout << "Loaded_FitVarResultsErrors.size() = " << Loaded_FitVarResultsGoodness.size() << "\n";
                 std::cout << "expected size = " << 2 << "\n";
                 std::cout << "Loaded_FitVarResultsErrors elements:\n";
+
                 for (int i = 0; i < Loaded_FitVarResultsGoodness.size(); i++) { std::cout << Loaded_FitVarResultsGoodness.at(i) << "\n"; }
                 std::cout << "\nAborting...\n\n", exit(1);
             }
@@ -1904,44 +1909,44 @@ void MomentumResolution::AutoReader(const std::string &MomentumType, const int &
 #pragma endregion
 
 #pragma region /* AutoReader function */
-void MomentumResolution::AutoReader(const std::string &MomentumType, const int &PolynomialDegree, const std::string &parameter, basic_istream<char> &ss2,
-                                    vector<vector<double>> &Loading_Dest) {
+void MomentumResolution::AutoReader(const std::string& MomentumType, const int& PolynomialDegree, const std::string& parameter, basic_istream<char>& ss2,
+                                    std::vector<std::vector<double>>& Loading_Dest) {
     bool PrintOut = false;
     bool PrintOutAndExit = false;
     int PolynomialDeg2Print = 3;
     std::string MomentumType2Print = "reco";
 
-    if (FindSubstring(parameter, MomentumType)) {
-        vector<string> VarNames = {"A", "B", "C", "D"};
-        vector<double> Loaded_FitVarResults, Loaded_FitVarResultsErrors, Loaded_FitVarResultsGoodness;
+    if (bt::FindSubstring(parameter, MomentumType)) {
+        std::vector<string> VarNames = {"A", "B", "C", "D"};
+        std::vector<double> Loaded_FitVarResults, Loaded_FitVarResultsErrors, Loaded_FitVarResultsGoodness;
         std::string Loaded_FitVar;
 
         if (PrintOut && (PolynomialDegree == PolynomialDeg2Print) && (MomentumType == MomentumType2Print)) { std::cout << "parameter = " << parameter << "\n"; }
 
         while (getline(ss2, Loaded_FitVar, ':')) {
-            if (!FindSubstring(parameter, "error") && !FindSubstring(parameter, "FitGoodness")) {
+            if (!bt::FindSubstring(parameter, "error") && !bt::FindSubstring(parameter, "FitGoodness")) {
                 Loaded_FitVarResults.push_back(stod(Loaded_FitVar));
 
                 if (PrintOut && (PolynomialDegree == PolynomialDeg2Print) && (MomentumType == MomentumType2Print)) { std::cout << "Loaded_FitVar = " << Loaded_FitVar << "\n"; }
-            } else if (FindSubstring(parameter, "error") && !FindSubstring(parameter, "FitGoodness")) {
+            } else if (bt::FindSubstring(parameter, "error") && !bt::FindSubstring(parameter, "FitGoodness")) {
                 Loaded_FitVarResultsErrors.push_back(stod(Loaded_FitVar));
-            } else if (!FindSubstring(parameter, "error") && FindSubstring(parameter, "FitGoodness")) {
+            } else if (!bt::FindSubstring(parameter, "error") && bt::FindSubstring(parameter, "FitGoodness")) {
                 Loaded_FitVarResultsGoodness.push_back(stod(Loaded_FitVar));
             }
         }
 
         if (PrintOutAndExit && (PolynomialDegree == PolynomialDeg2Print) && (MomentumType == MomentumType2Print)) { exit(1); }
 
-        if (!FindSubstring(parameter, "error") && !FindSubstring(parameter, "FitGoodness")) {
+        if (!bt::FindSubstring(parameter, "error") && !bt::FindSubstring(parameter, "FitGoodness")) {
             Loading_Dest.push_back(Loaded_FitVarResults);
-        } else if (FindSubstring(parameter, "error") && !FindSubstring(parameter, "FitGoodness")) {
+        } else if (bt::FindSubstring(parameter, "error") && !bt::FindSubstring(parameter, "FitGoodness")) {
             Loading_Dest.push_back(Loaded_FitVarResultsErrors);
-        } else if (!FindSubstring(parameter, "error") && FindSubstring(parameter, "FitGoodness")) {
+        } else if (!bt::FindSubstring(parameter, "error") && bt::FindSubstring(parameter, "FitGoodness")) {
             Loading_Dest.push_back(Loaded_FitVarResultsGoodness);
         }
 
 #pragma region /* Safety checks */
-        if (!FindSubstring(parameter, "error") && !FindSubstring(parameter, "FitGoodness")) {
+        if (!bt::FindSubstring(parameter, "error") && !bt::FindSubstring(parameter, "FitGoodness")) {
             if (Loaded_FitVarResults.size() != (PolynomialDegree + 1)) {
                 std::cout << "\n\nMomentumResolution::AutoReader: the parameter " << parameter << " loaded improperly!\n";
                 std::cout << "Loaded_FitVarResults.size() = " << Loaded_FitVarResults.size() << "\n";
@@ -1952,7 +1957,7 @@ void MomentumResolution::AutoReader(const std::string &MomentumType, const int &
             }
         }
 
-        if (FindSubstring(parameter, "error") && !FindSubstring(parameter, "FitGoodness")) {
+        if (bt::FindSubstring(parameter, "error") && !bt::FindSubstring(parameter, "FitGoodness")) {
             if (Loaded_FitVarResultsErrors.size() != (PolynomialDegree + 1)) {
                 std::cout << "\n\nMomentumResolution::AutoReader: the parameter " << parameter << " loaded improperly!\n";
                 std::cout << "Loaded_FitVarResultsErrors.size() = " << Loaded_FitVarResultsErrors.size() << "\n";
@@ -1963,7 +1968,7 @@ void MomentumResolution::AutoReader(const std::string &MomentumType, const int &
             }
         }
 
-        if (!FindSubstring(parameter, "error") && FindSubstring(parameter, "FitGoodness")) {
+        if (!bt::FindSubstring(parameter, "error") && bt::FindSubstring(parameter, "FitGoodness")) {
             if (Loaded_FitVarResultsGoodness.size() != 2) {
                 std::cout << "\n\nMomentumResolution::AutoReader: the parameter " << parameter << " loaded improperly!\n";
                 std::cout << "Loaded_FitVarResultsErrors.size() = " << Loaded_FitVarResultsGoodness.size() << "\n";
@@ -1983,7 +1988,7 @@ void MomentumResolution::AutoReader(const std::string &MomentumType, const int &
 #pragma region /* PSmear function */
 /* A function to smear protons by fitted neutron resolution */
 
-double MomentumResolution::PSmear(const bool &apply_nucleon_SmearAndCorr, const double &Momentum) {
+double MomentumResolution::PSmear(const bool& apply_nucleon_SmearAndCorr, const double& Momentum) {
     bool PrintOut = false;
     bool PrintOut_Smear_Variables = false;
     bool PrintOut_And_Exit = false;
@@ -2058,7 +2063,7 @@ double MomentumResolution::PSmear(const bool &apply_nucleon_SmearAndCorr, const 
         } else if ((SmearMode == "pol1") || (SmearMode == "pol2") || (SmearMode == "pol3") || (SmearMode == "pol1_wKC") || (SmearMode == "pol2_wKC") || (SmearMode == "pol3_wKC")) {
             /* Smear using pol fit results */
             double Smearing, Arg;
-            vector<string> VarNames = {"A", "B", "C", "D"};
+            std::vector<string> VarNames = {"A", "B", "C", "D"};
 
             if (SmearMode == "pol1") {
 #pragma region /* Safety checks */
@@ -2284,7 +2289,7 @@ double MomentumResolution::PSmear(const bool &apply_nucleon_SmearAndCorr, const 
 #pragma region /* NCorr function */
 /* A function to correction (calibrate) neutron momentum by fitted neutron correction */
 
-double MomentumResolution::NCorr(const bool &apply_nucleon_SmearAndCorr, const double &Momentum) {
+double MomentumResolution::NCorr(const bool& apply_nucleon_SmearAndCorr, const double& Momentum) {
     bool PrintOut = false;
     bool PrintOut_Corr_Variables = false;
 
@@ -2317,7 +2322,7 @@ double MomentumResolution::NCorr(const bool &apply_nucleon_SmearAndCorr, const d
         } else if ((CorrMode == "pol1") || (CorrMode == "pol2") || (CorrMode == "pol3") || (CorrMode == "pol1_wKC") || (CorrMode == "pol2_wKC") || (CorrMode == "pol3_wKC")) {
             /* Correction using pol fit results */
             double Mu, CorrectionFactor;
-            vector<string> VarNames = {"A", "B", "C", "D"};
+            std::vector<string> VarNames = {"A", "B", "C", "D"};
 
             // TODO: add choice mechanism between truth and reco correction factors
 

@@ -12,12 +12,15 @@ if (! $?COLOR_END) then
 endif
 
 echo ""
-echo "${COLOR_START}=======================================================================${COLOR_END}"
-echo "${COLOR_START}= Running update script                                               =${COLOR_END}"
-echo "${COLOR_START}=======================================================================${COLOR_END}"
+echo "${COLOR_START}===========================================================================================${COLOR_END}"
+echo "${COLOR_START}= Running update script                                                                   =${COLOR_END}"
+echo "${COLOR_START}===========================================================================================${COLOR_END}"
 echo ""
 
-echo "${COLOR_START}- Cleaning excessive file ---------------------------------------------${COLOR_END}"
+
+
+
+echo "${COLOR_START}- Cleaning excessive files ----------------------------------------------------------------${COLOR_END}"
 echo ""
 
 # Clean the working tree by recursively removing files that are not under version control, starting from
@@ -30,7 +33,7 @@ echo ""
 git clean -fxd # removes untracked files and directories
 echo ""
 
-echo "${COLOR_START}- Pulling repository --------------------------------------------------${COLOR_END}"
+echo "${COLOR_START}- Pulling repository ----------------------------------------------------------------------${COLOR_END}"
 echo ""
 
 # This command is used to reset the current branch to the latest commit in the remote repository. The
@@ -48,6 +51,12 @@ echo ""
 
 echo "${COLOR_START}HEAD:${COLOR_END}"
 git log -1 --oneline
+echo ""
+
+# Display the name of the current branch. The --show-current option is used to show only the name of the
+# current branch. This command is useful for quickly checking which branch you are currently on.
+echo "${COLOR_START}Branch:${COLOR_END}"
+git branch --show-current
 echo ""
 
 source ./framework/scripts/environment/set_environment.csh

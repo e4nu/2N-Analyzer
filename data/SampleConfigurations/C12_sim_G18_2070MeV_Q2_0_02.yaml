@@ -1,0 +1,14 @@
+SampleFilesTopDir: "/lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/GENIE_Reco_Samples/C12/G18_10a_00_000/2070MeV_Q2_0_02_devGEMC_rgm_fall2021_C_S"
+SampleFilesRecHipoDir: "my_sample.hipo"
+SampleFileDir: "/lustre24/expphy/volatile/clas12/asportes/samples/runA"
+SampleFile: "/lustre24/expphy/volatile/clas12/asportes/samples/runA/my_sample.hipo"
+SampleName: "RunA_4GeV_Data"
+
+IsSimulationSample: true
+IsDataSample: false
+
+BeamAt2GeV: true
+BeamAt4GeV: false
+BeamAt6GeV: false
+
+SampleRuns: [""]

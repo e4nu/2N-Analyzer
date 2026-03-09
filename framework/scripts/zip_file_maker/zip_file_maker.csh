@@ -13,9 +13,9 @@ if (! $?COLOR_END) then
     setenv COLOR_END '\033[0m'
 endif
 
-echo "${COLOR_START}=======================================================================${COLOR_END}"
-echo "${COLOR_START}= Running zip maker script                                            =${COLOR_END}"
-echo "${COLOR_START}=======================================================================${COLOR_END}"
+echo "${COLOR_START}===========================================================================================${COLOR_END}"
+echo "${COLOR_START}= Running zip maker script                                                                =${COLOR_END}"
+echo "${COLOR_START}===========================================================================================${COLOR_END}"
 echo
 
 # Check input argument

@@ -18,17 +18,49 @@
 
 #include "basic_tools.h"
 
+/**
+ * @namespace data_processor
+ * @brief A namespace for functions that process data, such as extracting the final state and particle names from a source string.
+ * @details This namespace contains functions that are used to process data in the analysis, such as extracting the final state (FS) and particle names from a source string. The GetFS
+ * function takes a source string as input and returns the final state (FS) based on predefined patterns. The GetParticleName function takes a source string and a boolean for plural
+ * particles as input and returns the particle name based on predefined patterns. The GetParticleName1 function is similar to GetParticleName but has a different set of patterns. The
+ * GetParticleNameFromSubscript function extracts the particle name from a subscript in the source string. The GetParticleNameLC function extracts the particle name based on lowercase
+ * patterns in the source string. These functions are designed to be used in the main code for processing data and extracting relevant information from source strings, which can then be used
+ * for labeling histograms, applying cuts, or other aspects of the analysis.
+ * @note The functions in this namespace rely on predefined patterns to extract the final state and particle names from the source string. It is important to ensure that the patterns are
+ * comprehensive and correctly defined to cover the various formats of source strings that may be encountered in the analysis. Additionally, the functions should be used consistently
+ * throughout the code to ensure that the extracted information is accurate and can be effectively used for labeling, applying cuts, or other aspects of the analysis. For example, the GetFS
+ * function should be used to extract the final state from source strings that contain information about the final state, while the GetParticleName function should be used to extract
+ * particle names from source strings that contain information about particles. By using these functions consistently, you can ensure that the data is processed accurately and that the
+ * relevant information is extracted effectively for use in the analysis.
+ */
 namespace data_processor {
 // using namespace basic_tools;
 
+inline bool FindAnySubstring(const std::string& source, const std::string& patternList) {
+    size_t start = 0;
+
+    while (start <= patternList.size()) {
+        const size_t end = patternList.find('|', start);
+        const std::string token = patternList.substr(start, end == std::string::npos ? std::string::npos : end - start);
+
+        if (!token.empty() && basic_tools::FindSubstring(source, token)) { return true; }
+
+        if (end == std::string::npos) { break; }
+        start = end + 1;
+    }
+
+    return false;
+}
+
 // GetFS function -------------------------------------------------------------------------------------------------------------------------------------------------------
 
-std::string GetFS(const std::string &Source) {
-    static const vector<pair<std::string, std::string>> patterns = {{"1e_cut", "1e cut"}, {"1e cut", "1e cut"}, {"1e Cut", "1e cut"}, {"(e,e')", "1e cut"}, {"1pFD", "1pFD"},
-                                                                    {"1p", "1p"},         {"1nFD", "1n"},       {"1LnFD", "1LnFD"},   {"1n", "1n"},         {"1n1p", "1n1p"},
-                                                                    {"1e2p", "1e2p"},     {"2p", "2p"},         {"pFDpCD", "pFDpCD"}, {"nFDpCD", "nFDpCD"}};
+std::string GetFS(const std::string& Source) {
+    static const std::vector<pair<std::string, std::string>> patterns = {{"1e_cut", "1e cut"}, {"1e cut", "1e cut"}, {"1e Cut", "1e cut"}, {"(e,e')", "1e cut"}, {"1pFD", "1pFD"},
+                                                                         {"1p", "1p"},         {"1nFD", "1n"},       {"1LnFD", "1LnFD"},   {"1n", "1n"},         {"1n1p", "1n1p"},
+                                                                         {"1e2p", "1e2p"},     {"2p", "2p"},         {"pFDpCD", "pFDpCD"}, {"nFDpCD", "nFDpCD"}};
 
-    for (const auto &pattern : patterns) {
+    for (const auto& pattern : patterns) {
         if (basic_tools::FindSubstring(Source, pattern.first)) { return pattern.second; }
     }
 
@@ -37,25 +69,25 @@ std::string GetFS(const std::string &Source) {
 
 // GetParticleName function -------------------------------------------------------------------------------------------------------------------------------------------
 
-std::string GetParticleName(const std::string &Source, const bool &PluralParticles = false) {
+std::string GetParticleName(const std::string& Source, const bool& PluralParticles = false) {
     std::string ParticleName, FS = GetFS(Source);
 
-    auto setParticleName = [&](const std::string &singular, const std::string &plural) { ParticleName = PluralParticles ? plural : singular; };
+    auto setParticleName = [&](const std::string& singular, const std::string& plural) { ParticleName = PluralParticles ? plural : singular; };
 
-    static const vector<tuple<std::string, std::string, std::string>> patterns = {{"neutrals|Neutrals|neut.|Neut.", "Neut", "Neut"},
-                                                                                  {"Electron|electron", "Electron", "Electrons"},
-                                                                                  {"Proton|proton", "Proton", "Protons"},
-                                                                                  {"Neutron|neutron", "Neutron", "Neutrons"},
-                                                                                  {"#pi^{+}", "Piplus", "Piplus"},
-                                                                                  {"#pi^{-}", "Piminus", "Piminus"},
-                                                                                  {"K^{+}", "Kplus", "Kplus"},
-                                                                                  {"K^{-}", "Kminus", "Kminus"},
-                                                                                  {"D", "Deuteron", "Deuterons"},
-                                                                                  {"#gamma|photon|Photon", "Photon", "Photons"},
-                                                                                  {"nFDpCD|pFDpCD", "Nucleon", "Nucleon"}};
+    static const std::vector<tuple<std::string, std::string, std::string>> patterns = {{"neutrals|Neutrals|neut.|Neut.", "Neut", "Neut"},
+                                                                                       {"Electron|electron", "Electron", "Electrons"},
+                                                                                       {"Proton|proton", "Proton", "Protons"},
+                                                                                       {"Neutron|neutron", "Neutron", "Neutrons"},
+                                                                                       {"#pi^{+}", "Piplus", "Piplus"},
+                                                                                       {"#pi^{-}", "Piminus", "Piminus"},
+                                                                                       {"K^{+}", "Kplus", "Kplus"},
+                                                                                       {"K^{-}", "Kminus", "Kminus"},
+                                                                                       {"D", "Deuteron", "Deuterons"},
+                                                                                       {"#gamma|photon|Photon", "Photon", "Photons"},
+                                                                                       {"nFDpCD|pFDpCD", "Nucleon", "Nucleon"}};
 
-    for (const auto &pattern : patterns) {
-        if (basic_tools::FindSubstring(Source, get<0>(pattern))) {
+    for (const auto& pattern : patterns) {
+        if (FindAnySubstring(Source, get<0>(pattern))) {
             setParticleName(get<1>(pattern), get<2>(pattern));
             return ParticleName;
         }
@@ -67,19 +99,19 @@ std::string GetParticleName(const std::string &Source, const bool &PluralParticl
 
 // GetParticleName1 function ------------------------------------------------------------------------------------------------------------------------------------------
 
-std::string GetParticleName1(const std::string &Source, const bool &PluralParticles) {
-    static const vector<tuple<std::string, std::string, std::string>> patterns = {{"neutrals|Neutrals|neut.|Neut.", "Neut", "Neut"},
-                                                                                  {"Electron|electron", "Electron", "Electrons"},
-                                                                                  {"Proton|proton", "Proton", "Protons"},
-                                                                                  {"Neutron|neutron", "Neutron", "Neutrons"},
-                                                                                  {"#pi^{+}", "Piplus", "Piplus"},
-                                                                                  {"#pi^{-}", "Piminus", "Piminus"},
-                                                                                  {"K^{+}", "Kplus", "Kplus"},
-                                                                                  {"K^{-}", "Kminus", "Kminus"},
-                                                                                  {"D", "Deuteron", "Deuterons"}};
+std::string GetParticleName1(const std::string& Source, const bool& PluralParticles) {
+    static const std::vector<tuple<std::string, std::string, std::string>> patterns = {{"neutrals|Neutrals|neut.|Neut.", "Neut", "Neut"},
+                                                                                       {"Electron|electron", "Electron", "Electrons"},
+                                                                                       {"Proton|proton", "Proton", "Protons"},
+                                                                                       {"Neutron|neutron", "Neutron", "Neutrons"},
+                                                                                       {"#pi^{+}", "Piplus", "Piplus"},
+                                                                                       {"#pi^{-}", "Piminus", "Piminus"},
+                                                                                       {"K^{+}", "Kplus", "Kplus"},
+                                                                                       {"K^{-}", "Kminus", "Kminus"},
+                                                                                       {"D", "Deuteron", "Deuterons"}};
 
-    for (const auto &pattern : patterns) {
-        if (basic_tools::FindSubstring(Source, get<0>(pattern))) { return PluralParticles ? get<2>(pattern) : get<1>(pattern); }
+    for (const auto& pattern : patterns) {
+        if (FindAnySubstring(Source, get<0>(pattern))) { return PluralParticles ? get<2>(pattern) : get<1>(pattern); }
     }
 
     return "Deuteron";
@@ -87,14 +119,14 @@ std::string GetParticleName1(const std::string &Source, const bool &PluralPartic
 
 // GetParticleNameFromSubscript function --------------------------------------------------------------------------------------------------------------------------------
 
-std::string GetParticleNameFromSubscript(const std::string &Source, const bool &PluralParticles) {
-    static const vector<tuple<std::string, std::string, std::string>> patterns = {
+std::string GetParticleNameFromSubscript(const std::string& Source, const bool& PluralParticles) {
+    static const std::vector<tuple<std::string, std::string, std::string>> patterns = {
         {"{e}", "Electron", "Electrons"},           {"{p}|{pFD}|{pCD}", "Proton", "Protons"},   {"{n}|{nFD}", "Neutron", "Neutrons"},
         {"{#pi^{+}}", "#pi^{+}", "Positive pions"}, {"{#pi^{-}}", "#pi^{-}", "Negative pions"}, {"{K^{+}}", "K^{+}", "Positive kaons"},
         {"{K^{-}}", "K^{-}", "Negative kaons"},     {"{D}", "Deuteron", "Deuterons"},           {"{#gamma}", "Photon", "Photons"}};
 
-    for (const auto &pattern : patterns) {
-        if (basic_tools::FindSubstring(Source, get<0>(pattern))) { return PluralParticles ? get<2>(pattern) : get<1>(pattern); }
+    for (const auto& pattern : patterns) {
+        if (FindAnySubstring(Source, get<0>(pattern))) { return PluralParticles ? get<2>(pattern) : get<1>(pattern); }
     }
 
     return "Unknown";
@@ -102,20 +134,20 @@ std::string GetParticleNameFromSubscript(const std::string &Source, const bool &
 
 // GetParticleNameLC function -------------------------------------------------------------------------------------------------------------------------------------------
 
-std::string GetParticleNameLC(const std::string &Source, const bool &PluralParticles = false) {
-    static const vector<tuple<std::string, std::string, std::string>> patterns = {{"neutrals|Neutrals|neut.|Neut.", "neut", "neut"},
-                                                                                  {"Electron|electron", "electron", "electrons"},
-                                                                                  {"Proton|proton", "proton", "protons"},
-                                                                                  {"Neutron|neutron", "neutron", "neutrons"},
-                                                                                  {"#pi^{+}", "piplus", "piplus"},
-                                                                                  {"#pi^{-}", "piminus", "piminus"},
-                                                                                  {"K^{+}", "Kplus", "Kplus"},
-                                                                                  {"K^{-}", "Kminus", "Kminus"},
-                                                                                  {"deuteron", "deuteron", "deuterons"},
-                                                                                  {"#gamma|photon|Photon", "photon", "photons"}};
+std::string GetParticleNameLC(const std::string& Source, const bool& PluralParticles = false) {
+    static const std::vector<tuple<std::string, std::string, std::string>> patterns = {{"neutrals|Neutrals|neut.|Neut.", "neut", "neut"},
+                                                                                       {"Electron|electron", "electron", "electrons"},
+                                                                                       {"Proton|proton", "proton", "protons"},
+                                                                                       {"Neutron|neutron", "neutron", "neutrons"},
+                                                                                       {"#pi^{+}", "piplus", "piplus"},
+                                                                                       {"#pi^{-}", "piminus", "piminus"},
+                                                                                       {"K^{+}", "Kplus", "Kplus"},
+                                                                                       {"K^{-}", "Kminus", "Kminus"},
+                                                                                       {"deuteron", "deuteron", "deuterons"},
+                                                                                       {"#gamma|photon|Photon", "photon", "photons"}};
 
-    for (const auto &pattern : patterns) {
-        if (basic_tools::FindSubstring(Source, get<0>(pattern))) { return PluralParticles ? get<2>(pattern) : get<1>(pattern); }
+    for (const auto& pattern : patterns) {
+        if (FindAnySubstring(Source, get<0>(pattern))) { return PluralParticles ? get<2>(pattern) : get<1>(pattern); }
     }
 
     return "unknown";
@@ -123,14 +155,14 @@ std::string GetParticleNameLC(const std::string &Source, const bool &PluralParti
 
 // GetParticleNameLCFromSubscript function --------------------------------------------------------------------------------------------------------------------------------
 
-std::string GetParticleNameLCFromSubscript(const std::string &Source, const bool &PluralParticles) {
-    static const vector<tuple<std::string, std::string, std::string>> patterns = {
+std::string GetParticleNameLCFromSubscript(const std::string& Source, const bool& PluralParticles) {
+    static const std::vector<tuple<std::string, std::string, std::string>> patterns = {
         {"{e}", "electron", "electrons"},           {"{p}|{pFD}|{pCD}", "proton", "protons"},   {"{n}|{nFD}", "neutron", "neutrons"},
         {"{#pi^{+}}", "#pi^{+}", "positive pions"}, {"{#pi^{-}}", "#pi^{-}", "negative pions"}, {"{K^{+}}", "K^{+}", "positive kaons"},
         {"{K^{-}}", "K^{-}", "negative kaons"},     {"{D}", "deuteron", "deuterons"},           {"{#gamma}", "Photon", "Photons"}};
 
-    for (const auto &pattern : patterns) {
-        if (basic_tools::FindSubstring(Source, get<0>(pattern))) { return PluralParticles ? get<2>(pattern) : get<1>(pattern); }
+    for (const auto& pattern : patterns) {
+        if (FindAnySubstring(Source, get<0>(pattern))) { return PluralParticles ? get<2>(pattern) : get<1>(pattern); }
     }
 
     return "Unknown";
@@ -138,20 +170,20 @@ std::string GetParticleNameLCFromSubscript(const std::string &Source, const bool
 
 // GetParticleNameShort function ----------------------------------------------------------------------------------------------------------------------------------------
 
-std::string GetParticleNameShort(const std::string &Source) {
-    static const vector<pair<std::string, std::string>> patterns = {{"neutrals|Neutrals|neut.|Neut.", "neut"},
-                                                                    {"Electron|electron", "e"},
-                                                                    {"Proton|proton", "p"},
-                                                                    {"Neutron|neutron", "n"},
-                                                                    {"#pi^{+}", "#pi^{+}"},
-                                                                    {"#pi^{-}", "#pi^{-}"},
-                                                                    {"K^{+}", "K^{+}"},
-                                                                    {"K^{-}", "K^{-}"},
-                                                                    {"D", "D"},
-                                                                    {"#gamma|photon|Photon", "Photon"}};
+std::string GetParticleNameShort(const std::string& Source) {
+    static const std::vector<pair<std::string, std::string>> patterns = {{"neutrals|Neutrals|neut.|Neut.", "neut"},
+                                                                         {"Electron|electron", "e"},
+                                                                         {"Proton|proton", "p"},
+                                                                         {"Neutron|neutron", "n"},
+                                                                         {"#pi^{+}", "#pi^{+}"},
+                                                                         {"#pi^{-}", "#pi^{-}"},
+                                                                         {"K^{+}", "K^{+}"},
+                                                                         {"K^{-}", "K^{-}"},
+                                                                         {"D", "D"},
+                                                                         {"#gamma|photon|Photon", "Photon"}};
 
-    for (const auto &pattern : patterns) {
-        if (basic_tools::FindSubstring(Source, pattern.first)) { return pattern.second; }
+    for (const auto& pattern : patterns) {
+        if (FindAnySubstring(Source, pattern.first)) { return pattern.second; }
     }
 
     return "";
@@ -159,11 +191,11 @@ std::string GetParticleNameShort(const std::string &Source) {
 
 // GetParticleNameShortFromSubscript function ---------------------------------------------------------------------------------------------------------------------------
 
-std::string GetParticleNameShortFromSubscript(const std::string &Source) {
-    static const vector<pair<std::string, std::string>> patterns = {{"{e}", "e"},         {"{p}", "p"},         {"{n}", "n"}, {"{#pi^{+}}", "#pi^{+}"}, {"{#pi^{-}}", "#pi^{-}"},
-                                                                    {"{K^{+}}", "K^{+}"}, {"{K^{-}}", "K^{-}"}, {"{D}", "D"}, {"{#gamma}", "#gamma"}};
+std::string GetParticleNameShortFromSubscript(const std::string& Source) {
+    static const std::vector<pair<std::string, std::string>> patterns = {{"{e}", "e"},         {"{p}", "p"},         {"{n}", "n"}, {"{#pi^{+}}", "#pi^{+}"}, {"{#pi^{-}}", "#pi^{-}"},
+                                                                         {"{K^{+}}", "K^{+}"}, {"{K^{-}}", "K^{-}"}, {"{D}", "D"}, {"{#gamma}", "#gamma"}};
 
-    for (const auto &pattern : patterns) {
+    for (const auto& pattern : patterns) {
         if (basic_tools::FindSubstring(Source, pattern.first)) { return pattern.second; }
     }
 
@@ -172,11 +204,11 @@ std::string GetParticleNameShortFromSubscript(const std::string &Source) {
 
 // GetTopology function -------------------------------------------------------------------------------------------------------------------------------------------------
 
-std::string GetTopology(const std::string &Source) {
-    static const vector<pair<std::string, std::string>> patterns = {{"1n", "1N"},   {"1p", "1N"}, {"1nFD", "1N"},   {"1pFD", "1N"},
-                                                                    {"1n1p", "2N"}, {"2p", "2N"}, {"nFDpCD", "2N"}, {"pFDpCD", "2N"}};
+std::string GetTopology(const std::string& Source) {
+    static const std::vector<pair<std::string, std::string>> patterns = {{"1n", "1N"},   {"1p", "1N"}, {"1nFD", "1N"},   {"1pFD", "1N"},
+                                                                         {"1n1p", "2N"}, {"2p", "2N"}, {"nFDpCD", "2N"}, {"pFDpCD", "2N"}};
 
-    for (const auto &pattern : patterns) {
+    for (const auto& pattern : patterns) {
         if (basic_tools::FindSubstring(Source, pattern.first)) { return pattern.second; }
     }
 
@@ -185,86 +217,86 @@ std::string GetTopology(const std::string &Source) {
 
 // GetType function -----------------------------------------------------------------------------------------------------------------------------------------------------
 
-std::string GetType(const std::string &Source) {
-    static const vector<pair<std::string, std::string>> patterns = {{"momentum", "momentum"},
-                                                                    {"Leading momentum", "leading_nuc_momentum"},
-                                                                    {"Recoil momentum", "recoil_nuc_momentum"},
-                                                                    {"Total 3-momentum", "total_3momentum"},
-                                                                    {"Relative 3-momentum", "relative_3momentum"},
-                                                                    {"Total 4-momentum", "total_4momentum"},
-                                                                    {"Relative 4-momentum", "relative_4momentum"},
-                                                                    {"#vec{P}_{tot}-#vec{q}", "P_tot_minus_q"},
-                                                                    {"W ", "W"},
-                                                                    {"Q^{2}", "Q2"},
-                                                                    {"E_{e}", "E_e"},
-                                                                    {"#omega", "omega"},
-                                                                    {"E_{cal}", "Ecal"},
-                                                                    {"#deltaP_{T,tot}", "deltaP_T_tot"},
-                                                                    {"#deltaP_{T,L}", "deltaP_T_L"},
-                                                                    {"#delta#alpha_{T,tot}", "deltaAlpha_T_tot"},
-                                                                    {"#delta#alpha_{T,L}", "deltaAlpha_T_L"},
-                                                                    {"#delta#phi_{T,tot}", "deltaPhi_T_tot"},
-                                                                    {"#delta#phi_{T,L}", "deltaPhi_T_L"},
-                                                                    {"#theta", "theta"},
-                                                                    {"#phi", "phi"},
-                                                                    {"#theta_{tot}", "theta_tot"},
-                                                                    {"#phi_{tot}", "phi_tot"},
-                                                                    {"#theta_{rel}", "theta_rel"},
-                                                                    {"#phi_{rel}", "phi_rel"},
-                                                                    {"#theta_{#vec{P}_{e},#vec{P}_{tot}}", "Opening_ang_P_e_P_tot"},
-                                                                    {"#theta_{#vec{q},#vec{P}_{tot}}", "Opening_ang_q_P_tot"},
-                                                                    {"#theta_{#vec{q},#vec{P}_{pFD}}", "Opening_ang_q_P_nucFD"},
-                                                                    {"#theta_{#vec{q},#vec{P}_{pCD}}", "Opening_ang_q_P_nucCD"},
-                                                                    {"#theta_{#vec{P}_{pL}-#vec{q},#vec{P}_{pR}}", "Opening_ang_P_nucL_minus_q_nucR"},
-                                                                    {"#theta_{#vec{q},#vec{P}_{pL}}", "Opening_ang_q_P_nucL"},
-                                                                    {"#theta_{#vec{q},#vec{P}_{pR}}", "Opening_ang_q_P_nucR"},
-                                                                    {"#theta_{pFD,pCD}", "Opening_ang_P_nucFD_P_nucCD"},
-                                                                    {"Total nucleon 3-momentum", "Total_nucleon_3momentum"},
-                                                                    {"Total nucleon 4-momentum", "Total_nucleon_4momentum"},
-                                                                    {"P_{pL} vs. P_{pR}", "P_nucL_vs_P_nucR"},
-                                                                    {"P_{pFD} vs. P_{pCD}", "P_nucFD_vs_P_nucCD"},
-                                                                    {"|#vec{P}_{tot}| vs. |#vec{P}_{rel}|", "P_tot_vs_P_rel_3v"},
-                                                                    {"P_{tot}^{#mu} vs. P_{rel}^{#mu}", "P_tot_vs_P_rel_4v"},
-                                                                    {"#theta_{e} vs. P_{e}", "theta_e_vs_P_e"},
-                                                                    {"#theta_{e} vs. W", "theta_e_vs_W"},
-                                                                    {"#phi_{e} vs. P_{e}", "phi_e_vs_P_e"},
-                                                                    {"#phi_{e} vs. W", "phi_e_vs_W"},
-                                                                    {"#theta_{pFD} vs. P_{pFD}", "theta_nucFD_vs_P_nucFD"},
-                                                                    {"#theta_{pFD} vs. W", "theta_nucFD_vs_W"},
-                                                                    {"#theta_{pCD} vs. P_{pCD}", "theta_nucCD_vs_P_nucCD"},
-                                                                    {"#theta_{pCD} vs. W", "theta_nucCD_vs_W"},
-                                                                    {"#phi_{pFD} vs. P_{pFD}", "phi_nucFD_vs_P_nucFD"},
-                                                                    {"#phi_{pFD} vs. W", "phi_nucFD_vs_W"},
-                                                                    {"#phi_{pCD} vs. P_{pCD}", "phi_nucCD_vs_P_nucCD"},
-                                                                    {"#phi_{pCD} vs. W", "phi_nucCD_vs_W"},
-                                                                    {"#theta_{e} vs. #phi_{e}", "theta_e_vs_phi_e"},
-                                                                    {"#theta_{pFD} vs. #phi_{pFD}", "theta_nucFD_vs_theta_nucFD"},
-                                                                    {"#theta_{pCD} vs. #phi_{pCD}", "theta_nucCD_vs_theta_nucCD"},
-                                                                    {"#theta_{#vec{P}_{e},#vec{P}_{tot}} vs. W", "theta_P_e_P_tot_vs_W"},
-                                                                    {"#theta_{#vec{q},#vec{P}_{tot}} vs. W", "theta_q_P_tot_vs_W"},
-                                                                    {"#theta_{#vec{q},#vec{P}_{pL}} vs. W", "theta_q_P_nucL_vs_W"},
-                                                                    {"#theta_{#vec{q},#vec{P}_{pR}} vs. W", "theta_q_P_nucR_vs_W"},
-                                                                    {"#theta_{#vec{q},#vec{P}_{pFD}} vs. W", "theta_q_P_nucFD_vs_W"},
-                                                                    {"#theta_{#vec{q},#vec{P}_{pCD}} vs. W", "theta_q_P_nucCD_vs_W"},
-                                                                    {"#theta_{#vec{q},#vec{P}_{pL}} vs. r_{pL}=|#vec{P}_{pL}|/|#vec{q}|", "theta_q_P_nucCD_vs_r_nucL"},
-                                                                    {"#theta_{#vec{q},#vec{P}_{pL}} vs. #theta_{#vec{q},#vec{P}_{pR}}", "theta_q_P_nucL_vs_theta_q_P_nucR"},
-                                                                    {"#theta_{#vec{q},#vec{P}_{pFD}} vs. #theta_{#vec{q},#vec{P}_{pCD}}", "theta_q_P_nucFD_vs_theta_q_P_nucCD"},
-                                                                    {"#theta_{pFD,pCD} vs. W", "theta_nucFD_nucCD_vs_W"},
-                                                                    {"Q^{2} vs. W", "Q2_vs_W"},
-                                                                    {"E_{e} vs. #theta_{e}", "E_e_vs_theta_e"},
-                                                                    {"E_{cal} vs. #delta#alpha_{T,L}", "E_cal_vs_dalpha_T_L"},
-                                                                    {"E_{cal} vs. #delta#alpha_{T,tot}", "E_cal_vs_dalpha_T_tot"},
-                                                                    {"E_{cal} vs. #deltaP_{T,L}", "E_cal_vs_dP_T_L"},
-                                                                    {"E_{cal} vs. #deltaP_{T,tot}", "E_cal_vs_dP_T_tot"},
-                                                                    {"E_{cal} vs. W", "E_cal_vs_W"},
-                                                                    {"#deltaP_{T,L} vs. #delta#alpha_{T,L}", "dP_T_L_vs_dalpha_T_L"},
-                                                                    {"#deltaP_{T,tot} vs. #delta#alpha_{T,tot}", "dP_T_tot_vs_dalpha_T_tot"},
-                                                                    {"#deltaP_{T,L} vs. W", "dP_T_L_vs_W"},
-                                                                    {"#deltaP_{T,tot} vs. W", "dP_T_tot_vs_W"},
-                                                                    {"#delta#alpha_{T,L} vs. W", "dalpha_T_L_vs_W"},
-                                                                    {"#delta#alpha_{T,tot} vs. W", "dalpha_T_tot_vs_W"}};
+std::string GetType(const std::string& Source) {
+    static const std::vector<pair<std::string, std::string>> patterns = {{"momentum", "momentum"},
+                                                                         {"Leading momentum", "leading_nuc_momentum"},
+                                                                         {"Recoil momentum", "recoil_nuc_momentum"},
+                                                                         {"Total 3-momentum", "total_3momentum"},
+                                                                         {"Relative 3-momentum", "relative_3momentum"},
+                                                                         {"Total 4-momentum", "total_4momentum"},
+                                                                         {"Relative 4-momentum", "relative_4momentum"},
+                                                                         {"#vec{P}_{tot}-#vec{q}", "P_tot_minus_q"},
+                                                                         {"W ", "W"},
+                                                                         {"Q^{2}", "Q2"},
+                                                                         {"E_{e}", "E_e"},
+                                                                         {"#omega", "omega"},
+                                                                         {"E_{cal}", "Ecal"},
+                                                                         {"#deltaP_{T,tot}", "deltaP_T_tot"},
+                                                                         {"#deltaP_{T,L}", "deltaP_T_L"},
+                                                                         {"#delta#alpha_{T,tot}", "deltaAlpha_T_tot"},
+                                                                         {"#delta#alpha_{T,L}", "deltaAlpha_T_L"},
+                                                                         {"#delta#phi_{T,tot}", "deltaPhi_T_tot"},
+                                                                         {"#delta#phi_{T,L}", "deltaPhi_T_L"},
+                                                                         {"#theta", "theta"},
+                                                                         {"#phi", "phi"},
+                                                                         {"#theta_{tot}", "theta_tot"},
+                                                                         {"#phi_{tot}", "phi_tot"},
+                                                                         {"#theta_{rel}", "theta_rel"},
+                                                                         {"#phi_{rel}", "phi_rel"},
+                                                                         {"#theta_{#vec{P}_{e},#vec{P}_{tot}}", "Opening_ang_P_e_P_tot"},
+                                                                         {"#theta_{#vec{q},#vec{P}_{tot}}", "Opening_ang_q_P_tot"},
+                                                                         {"#theta_{#vec{q},#vec{P}_{pFD}}", "Opening_ang_q_P_nucFD"},
+                                                                         {"#theta_{#vec{q},#vec{P}_{pCD}}", "Opening_ang_q_P_nucCD"},
+                                                                         {"#theta_{#vec{P}_{pL}-#vec{q},#vec{P}_{pR}}", "Opening_ang_P_nucL_minus_q_nucR"},
+                                                                         {"#theta_{#vec{q},#vec{P}_{pL}}", "Opening_ang_q_P_nucL"},
+                                                                         {"#theta_{#vec{q},#vec{P}_{pR}}", "Opening_ang_q_P_nucR"},
+                                                                         {"#theta_{pFD,pCD}", "Opening_ang_P_nucFD_P_nucCD"},
+                                                                         {"Total nucleon 3-momentum", "Total_nucleon_3momentum"},
+                                                                         {"Total nucleon 4-momentum", "Total_nucleon_4momentum"},
+                                                                         {"P_{pL} vs. P_{pR}", "P_nucL_vs_P_nucR"},
+                                                                         {"P_{pFD} vs. P_{pCD}", "P_nucFD_vs_P_nucCD"},
+                                                                         {"|#vec{P}_{tot}| vs. |#vec{P}_{rel}|", "P_tot_vs_P_rel_3v"},
+                                                                         {"P_{tot}^{#mu} vs. P_{rel}^{#mu}", "P_tot_vs_P_rel_4v"},
+                                                                         {"#theta_{e} vs. P_{e}", "theta_e_vs_P_e"},
+                                                                         {"#theta_{e} vs. W", "theta_e_vs_W"},
+                                                                         {"#phi_{e} vs. P_{e}", "phi_e_vs_P_e"},
+                                                                         {"#phi_{e} vs. W", "phi_e_vs_W"},
+                                                                         {"#theta_{pFD} vs. P_{pFD}", "theta_nucFD_vs_P_nucFD"},
+                                                                         {"#theta_{pFD} vs. W", "theta_nucFD_vs_W"},
+                                                                         {"#theta_{pCD} vs. P_{pCD}", "theta_nucCD_vs_P_nucCD"},
+                                                                         {"#theta_{pCD} vs. W", "theta_nucCD_vs_W"},
+                                                                         {"#phi_{pFD} vs. P_{pFD}", "phi_nucFD_vs_P_nucFD"},
+                                                                         {"#phi_{pFD} vs. W", "phi_nucFD_vs_W"},
+                                                                         {"#phi_{pCD} vs. P_{pCD}", "phi_nucCD_vs_P_nucCD"},
+                                                                         {"#phi_{pCD} vs. W", "phi_nucCD_vs_W"},
+                                                                         {"#theta_{e} vs. #phi_{e}", "theta_e_vs_phi_e"},
+                                                                         {"#theta_{pFD} vs. #phi_{pFD}", "theta_nucFD_vs_theta_nucFD"},
+                                                                         {"#theta_{pCD} vs. #phi_{pCD}", "theta_nucCD_vs_theta_nucCD"},
+                                                                         {"#theta_{#vec{P}_{e},#vec{P}_{tot}} vs. W", "theta_P_e_P_tot_vs_W"},
+                                                                         {"#theta_{#vec{q},#vec{P}_{tot}} vs. W", "theta_q_P_tot_vs_W"},
+                                                                         {"#theta_{#vec{q},#vec{P}_{pL}} vs. W", "theta_q_P_nucL_vs_W"},
+                                                                         {"#theta_{#vec{q},#vec{P}_{pR}} vs. W", "theta_q_P_nucR_vs_W"},
+                                                                         {"#theta_{#vec{q},#vec{P}_{pFD}} vs. W", "theta_q_P_nucFD_vs_W"},
+                                                                         {"#theta_{#vec{q},#vec{P}_{pCD}} vs. W", "theta_q_P_nucCD_vs_W"},
+                                                                         {"#theta_{#vec{q},#vec{P}_{pL}} vs. r_{pL}=|#vec{P}_{pL}|/|#vec{q}|", "theta_q_P_nucCD_vs_r_nucL"},
+                                                                         {"#theta_{#vec{q},#vec{P}_{pL}} vs. #theta_{#vec{q},#vec{P}_{pR}}", "theta_q_P_nucL_vs_theta_q_P_nucR"},
+                                                                         {"#theta_{#vec{q},#vec{P}_{pFD}} vs. #theta_{#vec{q},#vec{P}_{pCD}}", "theta_q_P_nucFD_vs_theta_q_P_nucCD"},
+                                                                         {"#theta_{pFD,pCD} vs. W", "theta_nucFD_nucCD_vs_W"},
+                                                                         {"Q^{2} vs. W", "Q2_vs_W"},
+                                                                         {"E_{e} vs. #theta_{e}", "E_e_vs_theta_e"},
+                                                                         {"E_{cal} vs. #delta#alpha_{T,L}", "E_cal_vs_dalpha_T_L"},
+                                                                         {"E_{cal} vs. #delta#alpha_{T,tot}", "E_cal_vs_dalpha_T_tot"},
+                                                                         {"E_{cal} vs. #deltaP_{T,L}", "E_cal_vs_dP_T_L"},
+                                                                         {"E_{cal} vs. #deltaP_{T,tot}", "E_cal_vs_dP_T_tot"},
+                                                                         {"E_{cal} vs. W", "E_cal_vs_W"},
+                                                                         {"#deltaP_{T,L} vs. #delta#alpha_{T,L}", "dP_T_L_vs_dalpha_T_L"},
+                                                                         {"#deltaP_{T,tot} vs. #delta#alpha_{T,tot}", "dP_T_tot_vs_dalpha_T_tot"},
+                                                                         {"#deltaP_{T,L} vs. W", "dP_T_L_vs_W"},
+                                                                         {"#deltaP_{T,tot} vs. W", "dP_T_tot_vs_W"},
+                                                                         {"#delta#alpha_{T,L} vs. W", "dalpha_T_L_vs_W"},
+                                                                         {"#delta#alpha_{T,tot} vs. W", "dalpha_T_tot_vs_W"}};
 
-    for (const auto &pattern : patterns) {
+    for (const auto& pattern : patterns) {
         if (basic_tools::FindSubstring(Source, pattern.first)) { return pattern.second; }
     }
 
@@ -273,10 +305,10 @@ std::string GetType(const std::string &Source) {
 
 // GetDRegion function --------------------------------------------------------------------------------------------------------------------------------------------------
 
-std::string GetDRegion(const std::string &Source, const bool &ReturnGoingRegion = false) {
-    static const vector<pair<std::string, std::string>> patterns = {{", FD)", "FD"}, {"FD ", "FD"}, {"FD", "FD"}, {", CD)", "CD"}, {"CD ", "CD"}, {"CD", "CD"}};
+std::string GetDRegion(const std::string& Source, const bool& ReturnGoingRegion = false) {
+    static const std::vector<pair<std::string, std::string>> patterns = {{", FD)", "FD"}, {"FD ", "FD"}, {"FD", "FD"}, {", CD)", "CD"}, {"CD ", "CD"}, {"CD", "CD"}};
 
-    for (const auto &pattern : patterns) {
+    for (const auto& pattern : patterns) {
         if (basic_tools::FindSubstring(Source, pattern.first)) { return ReturnGoingRegion ? (pattern.second == "FD" ? "forward-going" : "central-going") : pattern.second; }
     }
 
@@ -285,10 +317,10 @@ std::string GetDRegion(const std::string &Source, const bool &ReturnGoingRegion 
 
 // GetDRegionExplicit function ------------------------------------------------------------------------------------------------------------------------------------------
 
-std::string GetDRegionExplicit(const std::string &Source, const bool &ReturnGoingRegion) {
-    static const vector<pair<std::string, std::string>> patterns = {{"FD", "FD"}, {"CD", "CD"}};
+std::string GetDRegionExplicit(const std::string& Source, const bool& ReturnGoingRegion) {
+    static const std::vector<pair<std::string, std::string>> patterns = {{"FD", "FD"}, {"CD", "CD"}};
 
-    for (const auto &pattern : patterns) {
+    for (const auto& pattern : patterns) {
         if (basic_tools::FindSubstring(Source, pattern.first)) { return ReturnGoingRegion ? (pattern.second == "FD" ? "forward-going" : "central-going") : pattern.second; }
     }
 
@@ -297,7 +329,7 @@ std::string GetDRegionExplicit(const std::string &Source, const bool &ReturnGoin
 
 // GetFSRTitle function -------------------------------------------------------------------------------------------------------------------------------------------------
 
-std::string GetFSRTitle(const std::string &Source, const std::string &PlotsT) {
+std::string GetFSRTitle(const std::string& Source, const std::string& PlotsT) {
     std::string FSRTitle;
     std::string Particle = GetParticleName(Source), ParticleShort = GetParticleNameShort(Source), Type = GetType(Source), DRegion = GetDRegion(Source);
 
@@ -400,7 +432,7 @@ std::string GetFSRTitle(const std::string &Source, const std::string &PlotsT) {
 
 // GetTitle function -----------------------------------------------------------------------------------------------------------------------------------------------------
 
-std::string GetTitle(const std::string &Source) {
+std::string GetTitle(const std::string& Source) {
     std::string Title, Type = GetType(Source), ParticleShort = GetParticleNameShort(Source), Particle = GetParticleName(Source);
 
     if (Type == "momentum") {
@@ -414,14 +446,14 @@ std::string GetTitle(const std::string &Source) {
 
 // GetStatsTitle function -----------------------------------------------------------------------------------------------------------------------------------------------
 
-std::string GetStatsTitle(const std::string &Source) {
+std::string GetStatsTitle(const std::string& Source) {
     std::string StatsTitle, StatsType;
 
-    static const vector<pair<std::string, std::string>> patterns = {{"#theta", "#theta_{"}, {"#phi", "#phi_{"}};
+    static const std::vector<pair<std::string, std::string>> patterns = {{"#theta", "#theta_{"}, {"#phi", "#phi_{"}};
 
     std::string FS = GetFS(Source), ParticleShort = GetParticleNameShort(Source);
 
-    for (const auto &pattern : patterns) {
+    for (const auto& pattern : patterns) {
         if (basic_tools::FindSubstring(Source, pattern.first)) {
             StatsType = pattern.second + ParticleShort + "}";
             break;
@@ -435,12 +467,12 @@ std::string GetStatsTitle(const std::string &Source) {
 
 // SetXLabel function ---------------------------------------------------------------------------------------------------------------------------------------------------
 
-std::string SetXLabel(const std::string &Source) {
-    static const vector<pair<std::string, std::string>> patterns = {{"momentum", "P_{"}, {"#theta", "#theta_{"}, {"#phi", "#phi_{"}};
+std::string SetXLabel(const std::string& Source) {
+    static const std::vector<pair<std::string, std::string>> patterns = {{"momentum", "P_{"}, {"#theta", "#theta_{"}, {"#phi", "#phi_{"}};
 
     std::string ParticleShort = GetParticleNameShort(Source);
 
-    for (const auto &pattern : patterns) {
+    for (const auto& pattern : patterns) {
         if (basic_tools::FindSubstring(Source, pattern.first)) { return pattern.second + ParticleShort + "} [" + (pattern.first == "momentum" ? "GeV/c" : "Deg") + "]"; }
     }
 
@@ -449,17 +481,18 @@ std::string SetXLabel(const std::string &Source) {
 
 // SetSaveDir function --------------------------------------------------------------------------------------------------------------------------------------------------
 
-std::string SetSaveDir(const std::string &Source, const std::string &BaseSaveDir, const std::string &Mod = "") {
+std::string SetSaveDir(const std::string& Source, const std::string& BaseSaveDir, const std::string& Mod = "") {
     std::string SaveDir, TestSaveDir;
 
     std::string Particle = GetParticleName(Source), ParticleLC = GetParticleNameLC(Source), FS = GetFS(Source), Type = GetType(Source);
 
-    static const vector<pair<std::string, std::string>> patterns = {{"Electron|electron", "/00_" + Particle + "_" + Type + "_ACorrection_plots_" + FS + "/"},
-                                                                    {", FD)|FD " + Particle + "|FD " + ParticleLC, "/01_FD_" + Particle + "_" + Type + "_ACorrection_plots_" + FS + "/"},
-                                                                    {", CD)|CD " + Particle + "|CD " + ParticleLC, "/02_CD_" + Particle + "_" + Type + "_ACorrection_plots_" + FS + "/"}};
+    static const std::vector<pair<std::string, std::string>> patterns = {
+        {"Electron|electron", "/00_" + Particle + "_" + Type + "_ACorrection_plots_" + FS + "/"},
+        {", FD)|FD " + Particle + "|FD " + ParticleLC, "/01_FD_" + Particle + "_" + Type + "_ACorrection_plots_" + FS + "/"},
+        {", CD)|CD " + Particle + "|CD " + ParticleLC, "/02_CD_" + Particle + "_" + Type + "_ACorrection_plots_" + FS + "/"}};
 
-    for (const auto &pattern : patterns) {
-        if (basic_tools::FindSubstring(Source, pattern.first)) {
+    for (const auto& pattern : patterns) {
+        if (FindAnySubstring(Source, pattern.first)) {
             SaveDir = BaseSaveDir + pattern.second;
             TestSaveDir = SaveDir + "Cloned_hist_test/";
             break;
@@ -480,8 +513,8 @@ std::string SetSaveDir(const std::string &Source, const std::string &BaseSaveDir
     }
 }
 
-void SetSaveDir(std::string &SaveDir, std::string &TestSaveDir, const std::string &RecTitle, const std::string &Histogram1DSaveNamePath, const std::string &PlotsT,
-                const std::string &DRegion, const std::string &Particle, const std::string &ParticleLC, const std::string &ParticleShort, const std::string &Type) {
+void SetSaveDir(std::string& SaveDir, std::string& TestSaveDir, const std::string& RecTitle, const std::string& Histogram1DSaveNamePath, const std::string& PlotsT,
+                const std::string& DRegion, const std::string& Particle, const std::string& ParticleLC, const std::string& ParticleShort, const std::string& Type) {
     if (PlotsT == "FSRatio") {
         if (!basic_tools::FindSubstring(Type, "vs") && !basic_tools::FindSubstring(Type, "vs.") && !basic_tools::FindSubstring(Type, "VS") && !basic_tools::FindSubstring(Type, "VS.")) {
             if (Type == "W" || Type == "Q2" || Type == "E_e" || Type == "omega" || Type == "Ecal" || Type == "deltaP_T_tot" || Type == "deltaP_T_L" || Type == "deltaAlpha_T_tot" ||
@@ -535,9 +568,9 @@ void SetSaveDir(std::string &SaveDir, std::string &TestSaveDir, const std::strin
 
 // SetFSRatioSaveDir function -------------------------------------------------------------------------------------------------------------------------------------------
 
-void SetFSRatioSaveDir(std::string &SaveDir, std::string &TestSaveDir, const std::string &RecTitle, const std::string &FinalState, const std::string &Histogram1DSaveNamePathOriginal,
-                       const std::string &PlotsT, const std::string &DRegion, const std::string &Particle, const std::string &ParticleLC, const std::string &ParticleShort,
-                       const std::string &Type) {
+void SetFSRatioSaveDir(std::string& SaveDir, std::string& TestSaveDir, const std::string& RecTitle, const std::string& FinalState, const std::string& Histogram1DSaveNamePathOriginal,
+                       const std::string& PlotsT, const std::string& DRegion, const std::string& Particle, const std::string& ParticleLC, const std::string& ParticleShort,
+                       const std::string& Type) {
     std::string Histogram1DSaveNamePath, FStoFind, FSTopology;  // TODO: reconfirm what is a topology
 
     if (FinalState == "1p" || FinalState == "1n") {
@@ -573,24 +606,24 @@ void SetFSRatioSaveDir(std::string &SaveDir, std::string &TestSaveDir, const std
             Histogram1DSaveNamePathOriginal.substr(0, Histogram1DSaveNamePathOriginal.find(FStoFind) - 1) + "/FS_2D_hist_ratios/FS_" + Type + "_ratio_plots" + FSTopology;
     }
 
-    #pragma region /* original */
-    //    std::string Histogram1DSaveNamePath = Histogram1DSaveNamePathOriginal.substr(0, Histogram1DSaveNamePathOriginal.find("05_pFDpCD") - 1) + "/FS_" + Type + "_ratio_plots";
+#pragma region /* original */
+//    std::string Histogram1DSaveNamePath = Histogram1DSaveNamePathOriginal.substr(0, Histogram1DSaveNamePathOriginal.find("05_pFDpCD") - 1) + "/FS_" + Type + "_ratio_plots";
 
-    /*
-    if (Type == "W" || Type == "Q2") {
-    Histogram1DSaveNamePath = Histogram1DSaveNamePathOriginal.substr(0, Histogram1DSaveNamePathOriginal.find("05_pFDpCD") - 1) + "/FS_" + Type + "_ratio_plots";
-    } else {
-    Histogram1DSaveNamePath = Histogram1DSaveNamePathOriginal.substr(0, Histogram1DSaveNamePathOriginal.find("05_pFDpCD") - 1) + "/06a_FS_" + Type + "_ratio_plots";
-    }
-    */
-    #pragma endregion
+/*
+if (Type == "W" || Type == "Q2") {
+Histogram1DSaveNamePath = Histogram1DSaveNamePathOriginal.substr(0, Histogram1DSaveNamePathOriginal.find("05_pFDpCD") - 1) + "/FS_" + Type + "_ratio_plots";
+} else {
+Histogram1DSaveNamePath = Histogram1DSaveNamePathOriginal.substr(0, Histogram1DSaveNamePathOriginal.find("05_pFDpCD") - 1) + "/06a_FS_" + Type + "_ratio_plots";
+}
+*/
+#pragma endregion
 
     SetSaveDir(SaveDir, TestSaveDir, RecTitle, Histogram1DSaveNamePath, PlotsT, DRegion, Particle, ParticleLC, ParticleShort, Type);
 }
 
 // SetType function -----------------------------------------------------------------------------------------------------------------------------------------------------
 
-std::string SetType(const std::string &Title) {
+std::string SetType(const std::string& Title) {
     std::string Type;
 
     if (basic_tools::FindSubstring(Title, "momentum")) {
@@ -606,7 +639,7 @@ std::string SetType(const std::string &Title) {
 
 // SetStatsTitle function -----------------------------------------------------------------------------------------------------------------------------------------------
 
-std::string SetStatsTitle(const std::string &RecTitle) {
+std::string SetStatsTitle(const std::string& RecTitle) {
     std::string StatsTitle;
 
     std::string ParticleShort = GetParticleNameShort(RecTitle);
@@ -624,7 +657,7 @@ std::string SetStatsTitle(const std::string &RecTitle) {
 
 // SetTitle function ----------------------------------------------------------------------------------------------------------------------------------------------------
 
-std::string SetTitle(const std::string &RecTitle, const std::string &PlotsT, const std::string &DRegion) {
+std::string SetTitle(const std::string& RecTitle, const std::string& PlotsT, const std::string& DRegion) {
     std::string Title;
 
     std::string Particle = GetParticleName(RecTitle);
@@ -666,7 +699,7 @@ std::string SetTitle(const std::string &RecTitle, const std::string &PlotsT, con
 
 // SetXAxisTitle function -----------------------------------------------------------------------------------------------------------------------------------------------------
 
-std::string SetXAxisTitle(const std::string &RecTitle) {
+std::string SetXAxisTitle(const std::string& RecTitle) {
     std::string XAxisTitle;
 
     std::string Particle = GetParticleName(RecTitle);
@@ -845,7 +878,7 @@ std::string SetXAxisTitle(const std::string &RecTitle) {
 
 // SetYAxisTitle function -----------------------------------------------------------------------------------------------------------------------------------------------------
 
-std::string SetYAxisTitle(const std::string &PlotT, const std::string &FinalState, const std::string &Numerator, const std::string &Denominator, const std::string &Title = "") {
+std::string SetYAxisTitle(const std::string& PlotT, const std::string& FinalState, const std::string& Numerator, const std::string& Denominator, const std::string& Title = "") {
     std::string YAxisTitle;
 
     std::string xLabelNum = Numerator.substr(0, Numerator.find_last_of('[') - 1);
@@ -959,10 +992,10 @@ std::string SetYAxisTitle(const std::string &PlotT, const std::string &FinalStat
 
 // SettingSaveNames function -----------------------------------------------------------------------------------------------------------------------------------------------------
 
-void SettingSaveNames(const std::string &SampleName, const std::string &Type, const std::string &Particle, const std::string &SaveDir, const std::string &TestSaveDir,
-                      const std::string &PlotsT, std::string &Numerator_Clone_SaveName, std::string &Numerator_Clone_test_SaveName, std::string &Numerator_Clone_test_rebined_SaveName,
-                      std::string &Denominator_Clone_SaveName, std::string &Denominator_Clone_test_SaveName, std::string &Denominator_Clone_test_rebined_SaveName, std::string &sNameFlag,
-                      std::string &PlotSaveName, const std::string &DRegion = "", const std::string &FinalState = "") {
+void SettingSaveNames(const std::string& SampleName, const std::string& Type, const std::string& Particle, const std::string& SaveDir, const std::string& TestSaveDir,
+                      const std::string& PlotsT, std::string& Numerator_Clone_SaveName, std::string& Numerator_Clone_test_SaveName, std::string& Numerator_Clone_test_rebined_SaveName,
+                      std::string& Denominator_Clone_SaveName, std::string& Denominator_Clone_test_SaveName, std::string& Denominator_Clone_test_rebined_SaveName, std::string& sNameFlag,
+                      std::string& PlotSaveName, const std::string& DRegion = "", const std::string& FinalState = "") {
     std::string FinalState1, FinalState2;
 
     if (basic_tools::FindSubstring(SampleName, "sim")) {

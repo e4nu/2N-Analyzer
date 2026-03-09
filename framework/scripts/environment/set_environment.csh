@@ -1,8 +1,11 @@
 #!/bin/tcsh
 
-echo "${COLOR_START}=======================================================================${COLOR_END}"
-echo "${COLOR_START}= Updating environment                                                =${COLOR_END}"
-echo "${COLOR_START}=======================================================================${COLOR_END}"
+# This script sets up the environment variables for the 2N-Analyzer code. It updates the environment by setting the DIR_2N_ANALYSIS_CODE variable to the current working directory, and it also sets the ANALYSIS_HOSTNAME variable to the hostname of the machine. Additionally, it checks if the hostname contains a specific substring (defined in JLAB_TESTER) and sets the IFARM_RUN variable accordingly. The script also uses color codes to make the output more visually appealing.
+# Note: The color codes are defined using ANSI escape sequences, and they are used to highlight the output in the terminal. The DIR_2N_ANALYSIS_CODE variable is set to the current working directory, which allows the code to reference files and directories relative to the location of the script. The ANALYSIS_HOSTNAME variable is set to the hostname of the machine, which can be useful for determining whether certain commands should be run based on the environment. The IFARM_RUN variable is set based on whether the hostname contains a specific substring, which allows for conditional execution of commands based on the environment.
+
+echo "${COLOR_START}===========================================================================================${COLOR_END}"
+echo "${COLOR_START}= Updating environment                                                                    =${COLOR_END}"
+echo "${COLOR_START}===========================================================================================${COLOR_END}"
 echo ""
 
 unset COLOR_START
@@ -11,7 +14,7 @@ setenv COLOR_START '\033[35m'
 unset COLOR_END
 setenv COLOR_END '\033[0m'
 
-echo "${COLOR_START}- Updating environment ------------------------------------------------${COLOR_END}"
+echo "${COLOR_START}- Updating environment --------------------------------------------------------------------${COLOR_END}"
 echo ""
 
 unset DIR_2N_ANALYSIS_CODE

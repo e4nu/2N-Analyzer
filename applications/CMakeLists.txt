@@ -12,6 +12,10 @@ target_link_libraries(AnalysisApps PUBLIC ${ROOT_LIBRARIES})
 # Link Clas12 libraries correctly (no -l)
 target_link_libraries(AnalysisApps PUBLIC Clas12Banks Hipo4 Clas12Root)
 
+if(USE_MPI)
+    target_link_libraries(AnalysisApps PUBLIC MPI::MPI_CXX)
+endif()
+
 # set(APPS_SOURCES
 #     DetectorSimulationAnalyzer.cpp
 # )

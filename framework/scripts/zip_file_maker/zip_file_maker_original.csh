@@ -3,9 +3,9 @@
 # To run:
 # source ./framework/scripts/zip_file_maker/zip_file_maker.csh
 
-echo "${COLOR_START}=======================================================================${COLOR_END}"
-echo "${COLOR_START}= Running zip maker script                                            =${COLOR_END}"
-echo "${COLOR_START}=======================================================================${COLOR_END}"
+echo "${COLOR_START}===========================================================================================${COLOR_END}"
+echo "${COLOR_START}= Running zip maker script                                                                =${COLOR_END}"
+echo "${COLOR_START}===========================================================================================${COLOR_END}"
 echo 
 
 # Set the base directory to search
