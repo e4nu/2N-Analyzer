@@ -1,0 +1,64 @@
+# =======================================================================================================================================================================
+# Uniform simulation samples
+# =======================================================================================================================================================================
+
+samples:
+  # - label: "Uniform_tester_e_2GeV"
+  #   reco_sample_path: "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/Uniform_e-p-n_samples/2070MeV/OutPut_Tester_e_Tester_e"
+  #   recon_hipo_dir: "reconhipo"
+  #   input_pattern: "*.hipo"
+
+  # - label: "Uniform_tester_e_4GeV"
+  #   reco_sample_path: "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/Uniform_e-p-n_samples/4029MeV/OutPut_Tester_e_Tester_e"
+  #   recon_hipo_dir: "reconhipo"
+  #   input_pattern: "*.hipo"
+
+  # - label: "Uniform_tester_e_6GeV"
+  #   reco_sample_path: "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/Uniform_e-p-n_samples/5986MeV/OutPut_Tester_e_Tester_e"
+  #   recon_hipo_dir: "reconhipo"
+  #   input_pattern: "*.hipo"
+
+  - label: "Uniform_1e_2GeV"
+    reco_sample_path: "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/Uniform_e-p-n_samples/2070MeV/OutPut_1e"
+    recon_hipo_dir: "reconhipo"
+    input_pattern: "*.hipo"
+
+  - label: "Uniform_en_2GeV"
+    reco_sample_path: "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/Uniform_e-p-n_samples/2070MeV/OutPut_en"
+    recon_hipo_dir: "reconhipo"
+    input_pattern: "*.hipo"
+
+  - label: "Uniform_ep_2GeV"
+    reco_sample_path: "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/Uniform_e-p-n_samples/2070MeV/OutPut_ep"
+    recon_hipo_dir: "reconhipo"
+    input_pattern: "*.hipo"
+
+  - label: "Uniform_1e_4GeV"
+    reco_sample_path: "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/Uniform_e-p-n_samples/4029MeV_2/OutPut_1e"
+    recon_hipo_dir: "reconhipo"
+    input_pattern: "*.hipo"
+
+  - label: "Uniform_en_4GeV"
+    reco_sample_path: "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/Uniform_e-p-n_samples/4029MeV/OutPut_en"
+    recon_hipo_dir: "reconhipo"
+    input_pattern: "*.hipo"
+
+  - label: "Uniform_ep_4GeV"
+    reco_sample_path: "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/Uniform_e-p-n_samples/4029MeV/OutPut_ep"
+    recon_hipo_dir: "reconhipo"
+    input_pattern: "*.hipo"
+
+  - label: "Uniform_1e_6GeV"
+    reco_sample_path: "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/Uniform_e-p-n_samples/5986MeV/OutPut_1e"
+    recon_hipo_dir: "reconhipo"
+    input_pattern: "*.hipo"
+
+  - label: "Uniform_en_6GeV"
+    reco_sample_path: "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/Uniform_e-p-n_samples/5986MeV/OutPut_en"
+    recon_hipo_dir: "reconhipo"
+    input_pattern: "*.hipo"
+
+  - label: "Uniform_ep_6GeV"
+    reco_sample_path: "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/Uniform_e-p-n_samples/5986MeV/OutPut_ep"
+    recon_hipo_dir: "reconhipo"
+    input_pattern: "*.hipo"

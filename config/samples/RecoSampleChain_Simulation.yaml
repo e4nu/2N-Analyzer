@@ -1,0 +1,88 @@
+# =======================================================================================================================================================================
+# GENIE simulation samples
+# =======================================================================================================================================================================
+
+samples:
+  - label: "C12_G18_2GeV_Corr1Foil"
+    reco_sample_path: "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/GENIE_Reco_Samples/C12/G18_10a_00_000/2070MeV_Q2_0_02_devGEMC_rgm_fall2021_C_S"
+    recon_hipo_dir: "reconhipo"
+    input_pattern: "*.hipo"
+    truth_level_e_wFC: false
+
+  - label: "C12_G18_4GeV_Corr1Foil"
+    reco_sample_path: "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/GENIE_Reco_Samples/C12/G18_10a_00_000/4029MeV_Q2_0_25_devGEMC_rgm_fall2021_C_L"
+    recon_hipo_dir: "reconhipo"
+    input_pattern: "*.hipo"
+    truth_level_e_wFC: false
+
+  - label: "C12_SuSa_2GeV_Corr1Foil"
+    reco_sample_path: "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/GENIE_Reco_Samples/C12/GEM21_11a_00_000/2070MeV_Q2_0_02_devGEMC_rgm_fall2021_C_S"
+    recon_hipo_dir: "reconhipo"
+    input_pattern: "*.hipo"
+    truth_level_e_wFC: false
+
+  - label: "C12_SuSa_4GeV_Corr1Foil"
+    reco_sample_path: "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/GENIE_Reco_Samples/C12/GEM21_11a_00_000/4029MeV_Q2_0_25_devGEMC_rgm_fall2021_C_L"
+    recon_hipo_dir: "reconhipo"
+    input_pattern: "*.hipo"
+    truth_level_e_wFC: false
+
+  # - label: "C12_G18_4GeV"
+  #   reco_sample_path: "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/GENIE_Reco_Samples/C12/G18_10a_00_000/4029MeV_Q2_0_25"
+  #   recon_hipo_dir: "reconhipo"
+  #   input_pattern: "*.hipo"
+  #   truth_level_e_wFC: false
+
+  # - label: "C12_G18_4GeV_wFC"
+  #   reco_sample_path: "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/GENIE_Reco_Samples/C12/G18_10a_00_000/4029MeV_Q2_0_25_wFC"
+  #   recon_hipo_dir: "reconhipo"
+  #   input_pattern: "*.hipo"
+  #   truth_level_e_wFC: false
+
+  # - label: "C12_SuSa_2GeV"
+  #   reco_sample_path: "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/GENIE_Reco_Samples/C12/GEM21_11a_00_000/2070MeV_Q2_0_02"
+  #   recon_hipo_dir: "reconhipo"
+  #   input_pattern: "*.hipo"
+  #   truth_level_e_wFC: false
+
+  # - label: "C12_SuSa_2GeV_wFC"
+  #   reco_sample_path: "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/GENIE_Reco_Samples/C12/GEM21_11a_00_000/2070MeV_Q2_0_02_wFC"
+  #   recon_hipo_dir: "reconhipo"
+  #   input_pattern: "*.hipo"
+  #   truth_level_e_wFC: false
+
+  # - label: "C12_SuSa_4GeV"
+  #   reco_sample_path: "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/GENIE_Reco_Samples/C12/GEM21_11a_00_000/4029MeV_Q2_0_25"
+  #   recon_hipo_dir: "reconhipo"
+  #   input_pattern: "*.hipo"
+  #   truth_level_e_wFC: false
+
+  # - label: "C12_SuSa_4GeV_wFC"
+  #   reco_sample_path: "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/GENIE_Reco_Samples/C12/GEM21_11a_00_000/4029MeV_Q2_0_25_wFC"
+  #   recon_hipo_dir: "reconhipo"
+  #   input_pattern: "*.hipo"
+  #   truth_level_e_wFC: false
+
+  - label: "Ar40_G18_2GeV_Corr1Foil"
+    reco_sample_path: "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/GENIE_Reco_Samples/Ar40/G18_10a_00_000/2070MeV_Q2_0_02_devGEMC_rgm_fall2021_Ar"
+    recon_hipo_dir: "reconhipo"
+    input_pattern: "*.hipo"
+    truth_level_e_wFC: false
+
+  - label: "Ar40_G18_4GeV_Corr1Foil"
+    reco_sample_path: "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/GENIE_Reco_Samples/Ar40/G18_10a_00_000/4029MeV_Q2_0_25_devGEMC_rgm_fall2021_Ar"
+    recon_hipo_dir: "reconhipo"
+    input_pattern: "*.hipo"
+    truth_level_e_wFC: false
+
+  - label: "Ar40_SuSa_2GeV_Corr1Foil"
+    reco_sample_path: "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/GENIE_Reco_Samples/Ar40/GEM21_11a_00_000/2070MeV_Q2_0_02_devGEMC_rgm_fall2021_Ar"
+    recon_hipo_dir: "reconhipo"
+    input_pattern: "*.hipo"
+    truth_level_e_wFC: false
+
+  - label: "Ar40_SuSa_4GeV_Corr1Foil"
+    reco_sample_path: "lustre24/expphy/volatile/clas12/asportes/2N_Analysis_Reco_Samples/GENIE_Reco_Samples/Ar40/GEM21_11a_00_000/4029MeV_Q2_0_25_devGEMC_rgm_fall2021_Ar"
+    recon_hipo_dir: "reconhipo"
+    input_pattern: "*.hipo"
+    truth_level_e_wFC: false

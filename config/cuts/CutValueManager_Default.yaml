@@ -1,0 +1,795 @@
+Nphe_cuts_FD:
+  CutVariable: "Nphe"
+  Region: "FD"
+  Particle: "Electron"
+  AppliedCuts: ""
+  Mean: 0.0
+  LowerCut: 2.0
+  UpperCut: 9999.0
+
+Chi2_Electron_cuts_CD:
+  CutVariable: "Chi2"
+  Region: "CD"
+  Particle: "Electron"
+  AppliedCuts: "1e cut"
+  Mean: 0.0
+  LowerCut: -9999.0
+  UpperCut: 9999.0
+
+Chi2_Electron_cuts_FD:
+  CutVariable: "Chi2"
+  Region: "FD"
+  Particle: "Electron"
+  AppliedCuts: "1e cut"
+  Mean: 0.0
+  LowerCut: -9999.0
+  UpperCut: 9999.0
+
+Chi2_Proton_cuts_CD:
+  CutVariable: "Chi2"
+  Region: "CD"
+  Particle: "Proton"
+  AppliedCuts: "1e cut"
+  Mean: 0.0
+  LowerCut: -9999.0
+  UpperCut: 9999.0
+
+Chi2_Proton_cuts_FD:
+  CutVariable: "Chi2"
+  Region: "FD"
+  Particle: "Proton"
+  AppliedCuts: "1e cut"
+  Mean: 0.0
+  LowerCut: -9999.0
+  UpperCut: 9999.0
+
+Chi2_piplus_cuts_CD:
+  CutVariable: "Chi2"
+  Region: "CD"
+  Particle: "piplus"
+  AppliedCuts: "1e cut"
+  Mean: 0.0
+  LowerCut: -9999.0
+  UpperCut: 9999.0
+
+Chi2_piplus_cuts_FD:
+  CutVariable: "Chi2"
+  Region: "FD"
+  Particle: "piplus"
+  AppliedCuts: "1e cut"
+  Mean: 0.0
+  LowerCut: -9999.0
+  UpperCut: 9999.0
+
+Chi2_piminus_cuts_CD:
+  CutVariable: "Chi2"
+  Region: "CD"
+  Particle: "piminus"
+  AppliedCuts: "1e cut"
+  Mean: 0.0
+  LowerCut: -9999.0
+  UpperCut: 9999.0
+
+Chi2_piminus_cuts_FD:
+  CutVariable: "Chi2"
+  Region: "FD"
+  Particle: "piminus"
+  AppliedCuts: "1e cut"
+  Mean: 0.0
+  LowerCut: -9999.0
+  UpperCut: 9999.0
+
+Chi2_Kplus_cuts_CD:
+  CutVariable: "Chi2"
+  Region: "CD"
+  Particle: "Kplus"
+  AppliedCuts: "1e cut"
+  Mean: 0.0
+  LowerCut: -9999.0
+  UpperCut: 9999.0
+
+Chi2_Kplus_cuts_FD:
+  CutVariable: "Chi2"
+  Region: "FD"
+  Particle: "Kplus"
+  AppliedCuts: "1e cut"
+  Mean: 0.0
+  LowerCut: -9999.0
+  UpperCut: 9999.0
+
+Chi2_Kminus_cuts_CD:
+  CutVariable: "Chi2"
+  Region: "CD"
+  Particle: "Kminus"
+  AppliedCuts: "1e cut"
+  Mean: 0.0
+  LowerCut: -9999.0
+  UpperCut: 9999.0
+
+Chi2_Kminus_cuts_FD:
+  CutVariable: "Chi2"
+  Region: "FD"
+  Particle: "Kminus"
+  AppliedCuts: "1e cut"
+  Mean: 0.0
+  LowerCut: -9999.0
+  UpperCut: 9999.0
+
+Chi2_deuteron_cuts_CD:
+  CutVariable: "Chi2"
+  Region: "CD"
+  Particle: "deuteron"
+  AppliedCuts: "1e cut"
+  Mean: 0.0
+  LowerCut: -9999.0
+  UpperCut: 9999.0
+
+Chi2_deuteron_cuts_FD:
+  CutVariable: "Chi2"
+  Region: "FD"
+  Particle: "deuteron"
+  AppliedCuts: "1e cut"
+  Mean: 0.0
+  LowerCut: -9999.0
+  UpperCut: 9999.0
+
+# Vz_cut:
+#   # Initialized from Experiment.GetVz_cuts()
+#   CutVariable: "Vz"
+#   Region: ""
+#   Particle: ""
+#   AppliedCuts: ""
+#   Mean: 0.0
+#   LowerCut: -9999.0
+#   UpperCut: 9999.0
+
+# Vz_cut_FD:
+#   # Initialized from Experiment.GetVz_cuts_FD()
+#   CutVariable: "Vz"
+#   Region: "FD"
+#   Particle: ""
+#   AppliedCuts: ""
+#   Mean: 0.0
+#   LowerCut: -9999.0
+#   UpperCut: 9999.0
+
+# Vz_cut_CD:
+#   # Initialized from Experiment.GetVz_cuts_CD()
+#   CutVariable: "Vz"
+#   Region: "CD"
+#   Particle: ""
+#   AppliedCuts: ""
+#   Mean: 0.0
+#   LowerCut: -9999.0
+#   UpperCut: 9999.0
+
+# dVz_cuts:
+#   # Initialized from Experiment.GetdVz_cuts()
+#   CutVariable: "dVz"
+#   Region: ""
+#   Particle: ""
+#   AppliedCuts: ""
+#   Mean: 0.0
+#   LowerCut: -9999.0
+#   UpperCut: 9999.0
+
+# dVz_cuts_FD:
+#   # Initialized from Experiment.GetdVz_cuts_FD()
+#   CutVariable: "dVz"
+#   Region: "FD"
+#   Particle: ""
+#   AppliedCuts: ""
+#   Mean: 0.0
+#   LowerCut: -9999.0
+#   UpperCut: 9999.0
+
+# dVz_cuts_CD:
+#   # Initialized from Experiment.GetdVz_cuts_CD()
+#   CutVariable: "dVz"
+#   Region: "CD"
+#   Particle: ""
+#   AppliedCuts: ""
+#   Mean: 0.0
+#   LowerCut: -9999.0
+#   UpperCut: 9999.0
+
+SF_cuts:
+  CutVariable: "SF"
+  Region: "FD"
+  Particle: "Electron"
+  AppliedCuts: ""
+  Mean: 0.0
+  LowerCut: -9999.0
+  UpperCut: 9999.0
+
+P_cuts:
+  CutVariable: "P"
+  Region: "FD"
+  Particle: "Electron"
+  AppliedCuts: ""
+  Mean: 0.0
+  LowerCut: -9999.0
+  UpperCut: 9999.0
+
+PCAL_edge_cuts:
+  CutVariable: "PCAL edge"
+  Region: "FD"
+  Particle: "Electron"
+  AppliedCuts: ""
+  Mean: 0.0
+  LowerCut: -9999.0
+  UpperCut: 9999.0
+
+DC_e_edge_cuts:
+  CutVariable: "DC edge"
+  Region: "FD"
+  Particle: "Electron"
+  AppliedCuts: ""
+  Mean: 0.0
+  LowerCut: -9999.0
+  UpperCut: 9999.0
+
+DC_edge_cuts:
+  CutVariable: "DC edge"
+  Region: ""
+  Particle: ""
+  AppliedCuts: ""
+  Mean: 0.0
+  LowerCut: -9999.0
+  UpperCut: 9999.0
+
+e_mom_th:
+  CutVariable: "Momentum_th"
+  Region: "FD"
+  Particle: "Electron"
+  AppliedCuts: ""
+  Mean: 0.0
+  LowerCut: 0.8
+  UpperCut: 9999.0
+
+ph_mom_th:
+  CutVariable: "Momentum_th"
+  Region: "FD"
+  Particle: "Photons"
+  AppliedCuts: ""
+  Mean: 0.0
+  LowerCut: 0.3
+  UpperCut: 9999.0
+
+pip_mom_th:
+  CutVariable: "Momentum_th"
+  Region: ""
+  Particle: "Piplus"
+  AppliedCuts: ""
+  Mean: 0.0
+  LowerCut: 0.2
+  UpperCut: 9999.0
+
+pipFD_mom_th:
+  CutVariable: "Momentum"
+  Region: "FD"
+  Particle: "Piplus"
+  AppliedCuts: ""
+  Mean: 0.0
+  LowerCut: 0.2
+  UpperCut: 9999.0
+
+pipCD_mom_th:
+  CutVariable: "Momentum"
+  Region: "CD"
+  Particle: "Piplus"
+  AppliedCuts: ""
+  Mean: 0.0
+  LowerCut: 0.2
+  UpperCut: 9999.0
+
+pim_mom_th:
+  CutVariable: "Momentum_th"
+  Region: ""
+  Particle: "Piplus"
+  AppliedCuts: ""
+  Mean: 0.0
+  LowerCut: 0.2
+  UpperCut: 9999.0
+
+pimFD_mom_th:
+  CutVariable: "Momentum"
+  Region: "FD"
+  Particle: "Piminus"
+  AppliedCuts: ""
+  Mean: 0.0
+  LowerCut: 0.2
+  UpperCut: 9999.0
+
+pimCD_mom_th:
+  CutVariable: "Momentum"
+  Region: "CD"
+  Particle: "Piminus"
+  AppliedCuts: ""
+  Mean: 0.0
+  LowerCut: 0.2
+  UpperCut: 9999.0
+
+# p_mom_th:
+#   CutVariable: "Momentum_th"
+#   Region: ""
+#   Particle: "Protons"
+#   AppliedCuts: ""
+#   Mean: 0.0
+#   # Constructor-dependent:
+#   # limless_mom_eff_plots = true  -> LowerCut = -9999
+#   # limless_mom_eff_plots = false -> LowerCut = 0.4
+#   LowerCut: 0.4
+#   UpperCut: 9999.0
+
+# pFD_mom_th:
+#   CutVariable: "Momentum_th"
+#   Region: "FD"
+#   Particle: "Protons"
+#   AppliedCuts: ""
+#   Mean: 0.0
+#   LowerCut: 0.4
+#   UpperCut: 9999.0
+
+# pCD_mom_th:
+#   CutVariable: "Momentum_th"
+#   Region: "CD"
+#   Particle: "Protons"
+#   AppliedCuts: ""
+#   Mean: 0.0
+#   # Constructor-dependent:
+#   # limless_mom_eff_plots = true  -> LowerCut = -9999
+#   # limless_mom_eff_plots = false -> LowerCut = 0.3
+#   LowerCut: 0.3
+#   UpperCut: 9999.0
+
+# n_mom_th:
+#   CutVariable: "Momentum_th"
+#   Region: "FD"
+#   Particle: "Neutrons"
+#   AppliedCuts: ""
+#   Mean: 0.0
+#   LowerCut: 0.4
+#   UpperCut: 9999.0
+
+no_p_mom_th:
+  CutVariable: "Momentum_th"
+  Region: ""
+  Particle: "Proton"
+  AppliedCuts: ""
+  Mean: 0.0
+  LowerCut: -9999.0
+  UpperCut: 9999.0
+
+Beta_max_cut_ABF_FD_n_from_ph:
+  CutVariable: "Beta_max_cut_ABF_FD_n_from_ph"
+  Region: "FD"
+  Particle: ""
+  AppliedCuts: ""
+  Mean: 0.0
+  LowerCut: -9999.0
+  UpperCut: 9999.0
+
+Beta_max_cut_ABF_FD_n_from_ph_apprax:
+  CutVariable: "Beta_max_cut_ABF_FD_n_from_ph_apprax"
+  Region: "FD"
+  Particle: ""
+  AppliedCuts: ""
+  Mean: 0.0
+  LowerCut: -9999.0
+  UpperCut: 9999.0
+
+n_momentum_cuts_ABF_FD_n_from_ph:
+  CutVariable: "n_momentum_cuts_ABF_FD_n_from_ph"
+  Region: "FD"
+  Particle: ""
+  AppliedCuts: ""
+  Mean: 0.0
+  LowerCut: -9999.0
+  UpperCut: 9999.0
+
+n_momentum_cuts_ABF_FD_n_from_ph_apprax:
+  CutVariable: "n_momentum_cuts_ABF_FD_n_from_ph_apprax"
+  Region: "FD"
+  Particle: ""
+  AppliedCuts: ""
+  Mean: 0.0
+  LowerCut: -9999.0
+  UpperCut: 9999.0
+
+TL_e_mom_cuts:
+  CutVariable: "Momentum"
+  Region: "FD"
+  Particle: "Electron"
+  AppliedCuts: ""
+  Mean: 0.0
+  LowerCut: 0.8
+  UpperCut: 9999.0
+
+TL_ph_mom_cuts:
+  CutVariable: "Momentum"
+  Region: ""
+  Particle: "Photons"
+  AppliedCuts: ""
+  Mean: 0.0
+  LowerCut: 0.3
+  UpperCut: 9999.0
+
+TL_pip_mom_cuts:
+  CutVariable: "Momentum"
+  Region: ""
+  Particle: "Piplus"
+  AppliedCuts: ""
+  Mean: 0.0
+  LowerCut: 0.2
+  UpperCut: 9999.0
+
+TL_pipFD_mom_cuts:
+  CutVariable: "Momentum"
+  Region: "FD"
+  Particle: "Piplus"
+  AppliedCuts: ""
+  Mean: 0.0
+  LowerCut: 0.2
+  UpperCut: 9999.0
+
+TL_pipCD_mom_cuts:
+  CutVariable: "Momentum"
+  Region: "CD"
+  Particle: "Piplus"
+  AppliedCuts: ""
+  Mean: 0.0
+  LowerCut: 0.2
+  UpperCut: 9999.0
+
+TL_pim_mom_cuts:
+  CutVariable: "Momentum"
+  Region: ""
+  Particle: "Piminus"
+  AppliedCuts: ""
+  Mean: 0.0
+  LowerCut: 0.2
+  UpperCut: 9999.0
+
+TL_pimFD_mom_cuts:
+  CutVariable: "Momentum"
+  Region: "FD"
+  Particle: "Piminus"
+  AppliedCuts: ""
+  Mean: 0.0
+  LowerCut: 0.2
+  UpperCut: 9999.0
+
+TL_pimCD_mom_cuts:
+  CutVariable: "Momentum"
+  Region: "CD"
+  Particle: "Piminus"
+  AppliedCuts: ""
+  Mean: 0.0
+  LowerCut: 0.2
+  UpperCut: 9999.0
+
+TL_pi0_mom_cuts:
+  CutVariable: "Momentum"
+  Region: "FD"
+  Particle: "Pizero"
+  AppliedCuts: ""
+  Mean: 0.0
+  # Computed from analysis_math::GetPi0MomTh(ph_mom_th.GetLowerCut())
+  LowerCut: 0.3
+  UpperCut: 9999.0
+
+# TL_n_mom_cuts:
+#   CutVariable: "Momentum"
+#   Region: "FD"
+#   Particle: "Neutrons"
+#   AppliedCuts: ""
+#   Mean: 0.0
+#   LowerCut: 0.4
+#   UpperCut: 9999.0
+
+# TL_p_mom_cuts:
+#   CutVariable: "Momentum"
+#   Region: ""
+#   Particle: "Proton"
+#   AppliedCuts: ""
+#   Mean: 0.0
+#   LowerCut: 0.4
+#   UpperCut: 9999.0
+
+# TL_pFD_mom_cuts:
+#   CutVariable: "Momentum"
+#   Region: "FD"
+#   Particle: "Proton"
+#   AppliedCuts: ""
+#   Mean: 0.0
+#   LowerCut: 0.4
+#   UpperCut: 9999.0
+
+# TL_pCD_mom_cuts:
+#   CutVariable: "Momentum"
+#   Region: "CD"
+#   Particle: "Proton"
+#   AppliedCuts: ""
+#   Mean: 0.0
+#   LowerCut: 0.3
+#   UpperCut: 9999.0
+
+# ThetaFD:
+#   CutVariable: "Theta FD"
+#   Region: "FD"
+#   Particle: ""
+#   AppliedCuts: ""
+#   Mean: 1.0
+#   LowerCut: 5.0
+#   UpperCut: 40.0
+
+# ThetaCD:
+#   CutVariable: "Theta CD"
+#   Region: "CD"
+#   Particle: ""
+#   AppliedCuts: ""
+#   Mean: 1.0
+#   LowerCut: 40.0
+#   UpperCut: 135.0
+
+ThetaFD_AMaps:
+  CutVariable: "Theta FD"
+  Region: "FD"
+  Particle: ""
+  AppliedCuts: ""
+  Mean: 1.0
+  LowerCut: 5.0
+  UpperCut: 40.0
+
+Beta_cut:
+  CutVariable: "Beta_nuc"
+  Region: "FD"
+  Particle: ""
+  AppliedCuts: "1n"
+  Mean: 1.0
+  LowerCut: 0.0
+  UpperCut: 9999.0
+
+Neutron_veto_cut:
+  CutVariable: "Neutron veto"
+  Region: "FD"
+  Particle: ""
+  AppliedCuts: "1n"
+  Mean: 0.0
+  LowerCut: 100.0
+  UpperCut: 9999.0
+
+ChargedECALveto_veto_cut:
+  CutVariable: "Charged ECAL veto"
+  Region: "FD"
+  Particle: ""
+  AppliedCuts: "1n"
+  Mean: 0.0
+  LowerCut: 0.0
+  UpperCut: 100.0
+
+NeutralECALveto_veto_cut:
+  CutVariable: "Neutral ECAL veto"
+  Region: "FD"
+  Particle: ""
+  AppliedCuts: "1n"
+  Mean: 0.0
+  LowerCut: 0.0
+  UpperCut: 125.0
+
+Theta_p1_cuts_2p:
+  CutVariable: "Theta_p1"
+  Region: ""
+  Particle: "Proton"
+  AppliedCuts: "2p"
+  Mean: 40.0
+  LowerCut: -9999.0
+  UpperCut: 5.0
+
+Theta_p2_cuts_2p:
+  CutVariable: "Theta_p2"
+  Region: ""
+  Particle: "Proton"
+  AppliedCuts: "2p"
+  Mean: 40.0
+  LowerCut: -9999.0
+  UpperCut: 5.0
+
+dphi_p1_p2_2p:
+  CutVariable: "dPhi_p1_p2"
+  Region: ""
+  Particle: "Proton"
+  AppliedCuts: "2p"
+  Mean: 0.0
+  LowerCut: -9999.0
+  UpperCut: 15.0
+
+Theta_pFD_cuts_2p:
+  CutVariable: "Theta_p1 leading"
+  Region: ""
+  Particle: "Proton"
+  AppliedCuts: "2p"
+  Mean: 40.0
+  LowerCut: -9999.0
+  UpperCut: 5.0
+
+Theta_pCD_cuts_2p:
+  CutVariable: "Theta_p2 recoil"
+  Region: ""
+  Particle: "Proton"
+  AppliedCuts: "2p"
+  Mean: 40.0
+  LowerCut: -9999.0
+  UpperCut: 5.0
+
+dphi_pFD_pCD_2p:
+  CutVariable: "dPhi_pFD_pCD"
+  Region: ""
+  Particle: "Proton"
+  AppliedCuts: "2p"
+  Mean: 0.0
+  LowerCut: -9999.0
+  UpperCut: 15.0
+
+Theta_pFD_cuts_pFDpCD:
+  CutVariable: "Theta_pFD"
+  Region: ""
+  Particle: "Proton"
+  AppliedCuts: "pFDpCD"
+  Mean: 40.0
+  LowerCut: -9999.0
+  UpperCut: 5.0
+
+Theta_pCD_cuts_pFDpCD:
+  CutVariable: "Theta_pCD"
+  Region: ""
+  Particle: "Proton"
+  AppliedCuts: "pFDpCD"
+  Mean: 40.0
+  LowerCut: -9999.0
+  UpperCut: 5.0
+
+dphi_pFD_pCD_pFDpCD:
+  CutVariable: "dPhi_pFD_pCD"
+  Region: ""
+  Particle: "Proton"
+  AppliedCuts: "pFDpCD"
+  Mean: 0.0
+  LowerCut: -9999.0
+  UpperCut: 15.0
+
+Theta_L_cuts_nFDpCD:
+  CutVariable: "Theta_L"
+  Region: ""
+  Particle: ""
+  AppliedCuts: "nFDpCD"
+  Mean: 40.0
+  LowerCut: -9999.0
+  UpperCut: 5.0
+
+Theta_R_cuts_nFDpCD:
+  CutVariable: "Theta_R"
+  Region: ""
+  Particle: ""
+  AppliedCuts: "nFDpCD"
+  Mean: 40.0
+  LowerCut: -9999.0
+  UpperCut: 5.0
+
+dphi_L_R_nFDpCD:
+  CutVariable: "dphi_L_R"
+  Region: ""
+  Particle: ""
+  AppliedCuts: "nFDpCD"
+  Mean: 0.0
+  LowerCut: -9999.0
+  UpperCut: 15.0
+
+FD_nucleon_theta_cut:
+  CutVariable: "FD Nucleon theta cut"
+  Region: "FD"
+  Particle: ""
+  AppliedCuts: ""
+  Mean: 0.0
+  LowerCut: 0.0
+  UpperCut: 32.0
+
+FD_nucleon_momentum_cut:
+  CutVariable: "FD nucleon momentum cut"
+  Region: "FD"
+  Particle: ""
+  AppliedCuts: "Protons and neutrons"
+  Mean: 0.0
+  LowerCut: 1.0
+  UpperCut: 2.5
+
+MomRes_mu_cuts:
+  CutVariable: "MomRes_mu_cuts"
+  Region: "FD"
+  Particle: ""
+  AppliedCuts: "Protons and neutrons"
+  Mean: 0.0
+  LowerCut: 1.0
+  UpperCut: 2.2
+
+MomRes_sigma_cuts:
+  CutVariable: "MomRes_sigma_cuts"
+  Region: "FD"
+  Particle: ""
+  AppliedCuts: "Protons and neutrons"
+  Mean: 0.0
+  LowerCut: 1.0
+  UpperCut: 2.2
+
+P_miss_1N_QE_range:
+  CutVariable: "P_miss_1N QE range"
+  Region: ""
+  Particle: ""
+  AppliedCuts: "Protons and neutrons"
+  Mean: 0.0
+  LowerCut: 0.0
+  UpperCut: 0.25
+
+P_miss_1N_MECandSRC_range:
+  CutVariable: "P_miss_1N MEC and SRC range"
+  Region: ""
+  Particle: ""
+  AppliedCuts: "Protons and neutrons"
+  Mean: 0.0
+  LowerCut: 0.3
+  UpperCut: 0.6
+
+P_miss_1N_OtherReacAndFSI_range:
+  CutVariable: "P_miss_1N Other Reac And FSI"
+  Region: ""
+  Particle: ""
+  AppliedCuts: "Protons and neutrons"
+  Mean: 0.0
+  LowerCut: 1.0
+  UpperCut: 9999.0
+
+E_miss_1N_QE_range:
+  CutVariable: "E_miss_1N QE range"
+  Region: ""
+  Particle: ""
+  AppliedCuts: "Protons and neutrons"
+  Mean: 0.0
+  LowerCut: 0.0
+  UpperCut: 0.05
+
+E_miss_1N_MECandSRC_range:
+  CutVariable: "E_miss_1N MEC and SRC range"
+  Region: ""
+  Particle: ""
+  AppliedCuts: "Protons and neutrons"
+  Mean: 0.0
+  LowerCut: 0.05
+  UpperCut: 0.2
+
+E_miss_1N_OtherReacAndFSI_range:
+  CutVariable: "E_miss_1N Other Reac And FSI"
+  Region: ""
+  Particle: ""
+  AppliedCuts: "Protons and neutrons"
+  Mean: 0.0
+  LowerCut: 0.5
+  UpperCut: 9999.0
+
+xB_cut:
+  CutVariable: "xB range"
+  Region: ""
+  Particle: ""
+  AppliedCuts: "Protons and neutrons"
+  Mean: 0.0
+  LowerCut: 1.0
+  UpperCut: 9999.0
+
+Theta_q_pCD_cut:
+  CutVariable: "xB QE range"
+  Region: ""
+  Particle: ""
+  AppliedCuts: "Protons and neutrons"
+  Mean: 0.0
+  LowerCut: 0.0
+  UpperCut: 40.0

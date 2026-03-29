@@ -1,166 +1,142 @@
-cmake_minimum_required(VERSION 3.29)
-project(2N_Analysis_e4nu)
+#
+# Created by Alon Sportes on 09/03/2026.
+#
 
+# Top-level CMakeLists.txt
+# -----------------------------------------------------------------------------
+# This is the entry point for the full CMake build.
+# It sets the global build rules, discovers external dependencies, defines
+# project-wide compiler settings, and then adds the build subdirectories.
+# -----------------------------------------------------------------------------
+
+# Require at least CMake 3.29 before configuration starts.
+cmake_minimum_required(VERSION 3.29)
+
+# Define the project name and declare that it uses C++.
+project(TwoNAnalyzerE4nu LANGUAGES CXX)
+
+# Require the C++17 standard for all targets in this project.
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
+# Define an option that allows the user to enable or disable MPI support.
+# This can be toggled at configure time with -DUSE_MPI=ON or OFF.
 option(USE_MPI "Enable MPI support" OFF)
 
+# Read important external package locations from the shell environment.
+# These variables must usually be exported before running CMake.
 set(CLAS12ROOT $ENV{CLAS12ROOT})
-message(STATUS "CLAS12ROOT: " ${CLAS12ROOT})
 set(HIPO $ENV{HIPO})
-message(STATUS "HIPO: " ${HIPO})
+set(ROOTSYS_ENV $ENV{ROOTSYS})
 
+# Print the detected external paths to make configuration easier to debug.
+message(STATUS "CLAS12ROOT = ${CLAS12ROOT}")
+message(STATUS "HIPO       = ${HIPO}")
+message(STATUS "ROOTSYS    = ${ROOTSYS_ENV}")
+
+# If ROOTSYS is set, append it to CMAKE_PREFIX_PATH so find_package(ROOT)
+# can locate the ROOT installation more easily.
+if(ROOTSYS_ENV)
+    list(PREPEND CMAKE_PREFIX_PATH "${ROOTSYS_ENV}")
+endif()
+
+# When the local ROOT installation changes, stale CMake cache entries can keep
+# pointing at libraries and VDT headers from an older Homebrew Cellar path.
+# Reset those cached discovery results so find_package(ROOT) resolves the
+# current ROOTSYS installation consistently.
+if(ROOTSYS_ENV)
+    set(ROOT_CMAKE_DIR "${ROOTSYS_ENV}/share/root/cmake")
+
+    get_cmake_property(_cache_variables CACHE_VARIABLES)
+    foreach(_cache_var IN LISTS _cache_variables)
+        if(_cache_var MATCHES "^(ROOT_|VDT_|Vdt_|FIND_PACKAGE_MESSAGE_DETAILS_Vdt$)")
+            unset(${_cache_var} CACHE)
+        endif()
+    endforeach()
+
+    if(EXISTS "${ROOT_CMAKE_DIR}/ROOTConfig.cmake")
+        set(ROOT_DIR "${ROOT_CMAKE_DIR}" CACHE PATH "Path to the ROOT CMake package" FORCE)
+    endif()
+endif()
+
+# Use the vendored yaml-cpp source tree instead of downloading it during the
+# configure step. This makes SSH builds more stable and avoids repeated
+# network-dependent setup work.
+set(YAML_CPP_BUILD_TESTS OFF CACHE BOOL "" FORCE)
+set(YAML_CPP_BUILD_TOOLS OFF CACHE BOOL "" FORCE)
+set(YAML_BUILD_SHARED_LIBS OFF CACHE BOOL "" FORCE)
+set(YAML_CPP_INSTALL OFF CACHE BOOL "" FORCE)
+
+add_subdirectory(
+    ${CMAKE_SOURCE_DIR}/vendor/yaml-cpp/yaml-cpp-src
+    ${CMAKE_BINARY_DIR}/vendor/yaml-cpp-build
+    EXCLUDE_FROM_ALL
+)
+
+# Locate the ROOT installation and load ROOT's CMake helper settings.
 find_package(ROOT REQUIRED)
+include(${ROOT_USE_FILE})
+
+# When MPI support is requested, locate MPI and define USE_MPI for the code.
 if(USE_MPI)
     find_package(MPI REQUIRED)
     add_compile_definitions(USE_MPI)
 endif()
-list(APPEND CMAKE_PREFIX_PATH $ENV{ROOTSYS})  # Ensure ROOTSYS is set before finding ROOT
-include(${ROOT_USE_FILE})
+
+# Global compiler flags.
+# ROOT_CXX_FLAGS comes from the ROOT package configuration.
+# -O0 keeps optimization disabled for easier debugging.
+# -ggdb adds debug information suitable for gdb and related debuggers.
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${ROOT_CXX_FLAGS} -O0 -ggdb")
 
-# Include directories
+# Fail early if the CLAS12ROOT environment variable was not provided.
+if(NOT CLAS12ROOT)
+    message(FATAL_ERROR "CLAS12ROOT environment variable is not set.")
+endif()
+
+# Fail early if the HIPO environment variable was not provided.
+if(NOT HIPO)
+    message(FATAL_ERROR "HIPO environment variable is not set.")
+endif()
+
+# Add global include directories needed throughout the project.
+# include_directories() applies broadly, so these paths are available to the
+# targets defined in the subdirectories added later.
 include_directories(
+    # ROOT headers.
     ${ROOT_INCLUDE_DIRS}
-    $ENV{HIPO}/include
-    $ENV{HIPO}/lib
-    $ENV{CLAS12ROOT}/Clas12Root
-    $ENV{CLAS12ROOT}/Clas12Banks
+
+    # HIPO headers.
+    ${HIPO}/include
+    ${HIPO}/include/hipo4
+
+    # CLAS12ROOT headers.
+    ${CLAS12ROOT}/Clas12Root
+    ${CLAS12ROOT}/Clas12Banks
+
+    # Project headers.
+    ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
 
-# Link directories
+# Add global linker search directories for external libraries.
+# This helps the linker resolve library names such as Clas12Root and Hipo4.
 link_directories(
-    $ENV{HIPO}/lib
-    $ENV{CLAS12ROOT}/lib
+    ${HIPO}/lib
+    ${HIPO}/lib64
+    ${CLAS12ROOT}/lib
+    ${CLAS12ROOT}/lib64
 )
 
-set(Analyzer 2N_Analyzer_e4nu)
+# Define a project-wide preprocessor macro containing the source directory path.
+# The code can use CLAS12ANA_DIR at compile time to refer back to the project
+# source tree.
+add_definitions(-D_CLAS12ANA_DIR="${CMAKE_SOURCE_DIR}")
+add_definitions(-D_CONFIG_DIR="${CMAKE_SOURCE_DIR}/config")
 
-# message(STATUS "Including analysis directories...")
-set(FRAMEWORK_DIR ${CMAKE_CURRENT_SOURCE_DIR}/framework)
-include_directories(${FRAMEWORK_DIR})
-# message(STATUS "Included directory: ${FRAMEWORK_DIR}")
-
-set(STRUCTURES_DIR ${FRAMEWORK_DIR}/structures)
-include_directories(${STRUCTURES_DIR}/CodeDirectories)
-# message(STATUS "Included directory: ${STRUCTURES_DIR}/CodeDirectories")
-include_directories(${STRUCTURES_DIR}/AcceptanceMapsSettings)
-# message(STATUS "Included directory: ${STRUCTURES_DIR}/AcceptanceMapsSettings")
-include_directories(${STRUCTURES_DIR}/AnalysisCutSettings)
-# message(STATUS "Included directory: ${STRUCTURES_DIR}/AnalysisCutSettings")
-include_directories(${STRUCTURES_DIR}/CodeDirectories)
-# message(STATUS "Included directory: ${STRUCTURES_DIR}/CodeDirectories")
-include_directories(${STRUCTURES_DIR}/CutValueManager)
-# message(STATUS "Included directory: ${STRUCTURES_DIR}/CutValueManager")
-include_directories(${STRUCTURES_DIR}/DataSample)
-# message(STATUS "Included directory: ${STRUCTURES_DIR}/DataSample")
-include_directories(${STRUCTURES_DIR}/EventSelectionSettings)
-# message(STATUS "Included directory: ${STRUCTURES_DIR}/EventSelectionSettings")
-include_directories(${STRUCTURES_DIR}/MomentumResolutionSettings)
-# message(STATUS "Included directory: ${STRUCTURES_DIR}/DataSaMomentumResolutionSettingsmple")
-include_directories(${STRUCTURES_DIR}/RunParameters)
-# message(STATUS "Included directory: ${STRUCTURES_DIR}/RunParameters")
-
-set(NAMESPACES_DIR ${FRAMEWORK_DIR}/namespaces)
-
-set(NAMESPACES_SUBDIRS 
-    fitters/fitter_functions
-    general_utilities/analysis_math
-    general_utilities/basic_tools
-    general_utilities/constants
-    general_utilities/data_processor
-    general_utilities/histogram_functions
-    general_utilities/lists
-    general_utilities/reco_analysis_functions
-    general_utilities
-    plotters/draw_and_save_functions
-    plotters/PDF_canvas
-    settings/debugging_settings
-    settings/PDF_canvas_settings
-    setup/analysis_samples
-    setup/code_setup
-    setup/path_definitions
-)
-
-foreach(subdir ${NAMESPACES_SUBDIRS})
-    include_directories(${NAMESPACES_DIR}/${subdir})
-    # message(STATUS "Included directory: ${NAMESPACES_DIR}/${subdir}")
-endforeach()
-
-set(CLASSES_DIR ${FRAMEWORK_DIR}/classes)
-set(CLASSES_SUBDIRS 
-    AMaps 
-    clas12ana 
-    DataAnalyzer 
-    Debugger 
-    DEfficiency 
-    Directories 
-    DSCuts 
-    ExperimentParameters 
-    gst 
-    hPlots 
-    MomentumResolution 
-    ParticleID 
-    Settings 
-    TargetParameters 
-    TLCuts
-)
-
-foreach(subdir ${CLASSES_SUBDIRS})
-    include_directories(${CLASSES_DIR}/${subdir})
-    # message(STATUS "Included directory: ${CLASSES_DIR}/${subdir}")
-endforeach()
-
-# set(FUNCTIONS_DIR ${FRAMEWORK_DIR}/functions)
-
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/setup)
-# message(STATUS "Included directory: ${CMAKE_CURRENT_SOURCE_DIR}/setup")
-
-set(APPS_DIR ${CMAKE_CURRENT_SOURCE_DIR}/applications)
-include_directories(${APPS_DIR})
-# message(STATUS "Included directory: ${APPS_DIR}")
-
-# Add subdirectories
-# Ensure subdirectories exist and contain a CMakeLists.txt
-# message(STATUS "Adding analysis subdirectories...")
-foreach(dir ${STRUCTURES_DIR} ${NAMESPACES_DIR} ${CLASSES_DIR} ${APPS_DIR})
-    if(EXISTS ${dir})
-        add_subdirectory(${dir})
-        message(STATUS "Added subdirectory: ${dir}")
-    else()
-        message(WARNING "Directory ${dir} does not exist.")
-    endif()
-endforeach()
-
-add_executable(${Analyzer} main.cpp)
-
-# link libraries (external libraries first, then project libraries)
-target_link_libraries(${Analyzer} PRIVATE 
-    ${ROOT_LIBRARIES} -lEG 
-    -lHipo4
-    -lClas12Banks -lClas12Root
-    -L${CLAS12ROOT}/lib
-)
-
-target_link_libraries(${Analyzer} PRIVATE 
-    AnalysisDataStructures    
-    AnalysisLibraries
-    AnalysisTools
-    AnalysisApps
-)
-
-add_executable(LoadWMapsFromRatioROOTFilesApp applications/LoadWMapsFromRatioROOTFilesApp.cpp)
-
-target_link_libraries(LoadWMapsFromRatioROOTFilesApp PRIVATE
-    ${ROOT_LIBRARIES} -lEG
-    -lHipo4
-    -lClas12Banks -lClas12Root
-    -L${CLAS12ROOT}/lib
-)
-
-target_link_libraries(LoadWMapsFromRatioROOTFilesApp PRIVATE
-    AnalysisDataStructures
-    AnalysisLibraries
-    AnalysisTools
-    AnalysisApps
-)
+# Add the build subdirectories that define the project's actual targets.
+# source/ builds the reusable library code and links against the vendored
+# yaml-cpp source tree added above.
+# apps/ builds the executable programs.
+add_subdirectory(source)
+add_subdirectory(apps)

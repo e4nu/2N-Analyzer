@@ -200,10 +200,15 @@
         "flat_set": "cpp",
         " SaveAllTH2D.C": "cpp",
         "generator": "cpp",
-        "tree_maker_mc_isotropic_neutrons_after_veto.C": "cpp"
+        "tree_maker_mc_isotropic_neutrons_after_veto.C": "cpp",
+        "*.csh": "shellscript",
+        "*.tcsh": "shellscript"
     },
     "[jsonc]": {
         "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "[shellscript]": {
+        "editor.formatOnSave": false,
     },
     "editor.wordWrapColumn": 200,
     "editor.wordWrap": "on",
@@ -213,6 +218,9 @@
     "C_Cpp.errorSquiggles": "disabled",
     "cmake.configureOnEdit": false,
     "cmake.configureOnOpen": false,
+    // "editor.defaultFormatter": "foxundermoon.shell-format",
+    // "shellformat.path": "/opt/homebrew/bin/shfmt",
+    // "shellformat.flag": "-i 4",
     // "betterFolding.showFoldedBodyLinesCount": false,
     // "betterFolding.showFoldedBrackets": true
     "todohighlight.keywords": [
@@ -225,20 +233,17 @@
         {
             "text": "db::CodeDebugger",
             "color": "#FFFFFF",
-            "backgroundColor": "#00B0F0"
-            "border": "0.5px solid #FFFFFF"
+            "backgroundColor": "#00B0F0""border": "0.5px solid #FFFFFF"
         },
         {
             "text": "#pragma region",
             "color": "#FFFFFF",
-            "backgroundColor": "#008000"
-            "border": "0.5px solid #FFFFFF"
+            "backgroundColor": "#008000""border": "0.5px solid #FFFFFF"
         },
         {
             "text": "#pragma endregion",
             "color": "#FFFFFF",
-            "backgroundColor": "#EE6B6E"
-            "border": "0.5px solid #FFFFFF"
+            "backgroundColor": "#EE6B6E""border": "0.5px solid #FFFFFF"
         }
     ]
 }

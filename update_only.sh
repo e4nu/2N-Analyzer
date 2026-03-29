@@ -1,3 +1,3 @@
-#!/bin/bash
+#!/bin/tcsh
 
-source ./framework/scripts/code_updater.sh
+source ./scripts/code_updater.sh

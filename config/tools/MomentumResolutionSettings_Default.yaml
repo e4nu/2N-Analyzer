@@ -1,0 +1,11 @@
+plot_and_fit_MomRes: false
+VaryingDelta: false
+Calculate_momResS2: false
+Run_with_momResS2: false
+DeltaSlices: 0.05
+ForceSmallpResLimits: true
+FitAggregatedHistograms: false
+AggregationEventTh: 1000
+SmearMode: pol1_wKC
+CorrMode: pol1_wKC
+momRes_test: false

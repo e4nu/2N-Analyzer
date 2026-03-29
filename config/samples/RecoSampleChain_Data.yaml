@@ -1,0 +1,54 @@
+# =======================================================================================================================================================================
+# RG-M data
+# =======================================================================================================================================================================
+
+samples:
+  - label: "H1_2GeV"
+    reco_sample_path: "cache/clas12/rg-m/production/pass1/2gev/H/dst/recon"
+    recon_hipo_dir: "015634"
+    input_pattern: "*.hipo"
+
+  - label: "H1_6GeV"
+    reco_sample_path: "cache/clas12/rg-m/production/pass1/6gev/H/dst/recon"
+    recon_hipo_dir: "015028"
+    input_pattern: "*.hipo"
+
+  - label: "D2_2GeV"
+    reco_sample_path: "cache/clas12/rg-m/production/pass1/2gev/D/dst/recon"
+    recon_hipo_dir: ""
+    input_pattern: "*.hipo"
+
+  - label: "D2_6GeV"
+    reco_sample_path: "cache/clas12/rg-m/production/pass1/6gev/D/dst/recon"
+    recon_hipo_dir: "015443"
+    input_pattern: "*.hipo"
+
+  - label: "C12_2GeV"
+    reco_sample_path: "cache/clas12/rg-m/production/pass1/2gev/C/dst/recon"
+    recon_hipo_dir: "015664"
+    input_pattern: "*.hipo"
+
+  - label: "C12_4GeV"
+    reco_sample_path: "cache/clas12/rg-m/production/pass1/4gev/C/dst/recon"
+    recon_hipo_dir: "015778"
+    input_pattern: "*.hipo"
+
+  - label: "C12_6GeV"
+    reco_sample_path: "cache/clas12/rg-m/production/pass1/6gev/Cx4/dst/recon"
+    recon_hipo_dir: "015188"
+    input_pattern: "*.hipo"
+
+  - label: "Ar40_2GeV"
+    reco_sample_path: "cache/clas12/rg-m/production/pass1/2gev/Ar/dst/recon"
+    recon_hipo_dir: "015672"
+    input_pattern: "*.hipo"
+
+  - label: "Ar40_4GeV"
+    reco_sample_path: "cache/clas12/rg-m/production/pass1/4gev/Ar/dst/recon"
+    recon_hipo_dir: "015743"
+    input_pattern: "*.hipo"
+
+  - label: "Ar40_6GeV"
+    reco_sample_path: "cache/clas12/rg-m/production/pass1/6gev/Ar/dst/recon"
+    recon_hipo_dir: "015792"
+    input_pattern: "*.hipo"

@@ -1,0 +1,21 @@
+WorkingDirectory: /w/hallb-scshelf2102/clas12/asportes/2N-Analyzer-e4nu/
+
+plots_path: /lustre24/expphy/volatile/clas12/asportes/Analysis_output
+
+SetupDirectory: /w/hallb-scshelf2102/clas12/asportes/2N-Analyzer-e4nu/setup/
+FrameworkDirectory: /w/hallb-scshelf2102/clas12/asportes/2N-Analyzer-e4nu/framework/
+
+DataDirectory: /w/hallb-scshelf2102/clas12/asportes/2N-Analyzer-e4nu/data/
+ACorrDirectory: /w/hallb-scshelf2102/clas12/asportes/2N-Analyzer-e4nu/data/AcceptanceCorrections/
+AcceptanceMapsDirectory: /w/hallb-scshelf2102/clas12/asportes/2N-Analyzer-e4nu/data/AcceptanceMaps/
+AcceptanceWeightsDirectory: /w/hallb-scshelf2102/clas12/asportes/2N-Analyzer-e4nu/data/AcceptanceWeights/
+MomentumResolutionDirectory: /w/hallb-scshelf2102/clas12/asportes/2N-Analyzer-e4nu/data/NeutronResolution/
+NucleonCutsDirectory: /w/hallb-scshelf2102/clas12/asportes/2N-Analyzer-e4nu/data/NucleonCuts/
+PIDCutsDirectory: /w/hallb-scshelf2102/clas12/asportes/2N-Analyzer-e4nu/data/PIDCuts/
+ParameterCutFilesDirectory: /w/hallb-scshelf2102/clas12/asportes/2N-Analyzer-e4nu/data/ParameterCutFiles/
+
+IncludeDirectory: /w/hallb-scshelf2102/clas12/asportes/2N-Analyzer-e4nu/include/
+SourceDirectory: /w/hallb-scshelf2102/clas12/asportes/2N-Analyzer-e4nu/source/
+
+custom_plots_path_prefix: 
+# custom_plots_path_prefix: c12a-db-5

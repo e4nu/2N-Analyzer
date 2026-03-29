@@ -78,7 +78,7 @@ To run over samples, select them in the sample loader:
 
 ## Settings to check before each run
 
-- `TestRun` and `Limiter` in [`RecoAnalyzer.h`](applications/RecoAnalyzer.h).
+- `TestRun` and `Limiter` in [`RecoAnalyzer.h`](apps/RecoAnalyzer.h).
 - [`path_definitions.h`](framework/namespaces/setup/path_definitions.h).
 - [`analysis_samples.h`](framework/namespaces/setup/analysis_samples/analysis_samples.h).
 - [`AnalysisCutSettings.h`](framework/structures/RecoAnalyzerSettings/AnalysisCutSettings.h).
