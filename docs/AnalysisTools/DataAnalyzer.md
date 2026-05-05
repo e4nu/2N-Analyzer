@@ -6,16 +6,15 @@
 
 ## Overview
 
-`DataAnalyzer` is a lightweight front-end that selects an analysis mode based on an input file type and then dispatches to the appropriate analyzer.
+`DataAnalyzer` is a lightweight front-end that selects an analysis mode based on an input file type and dispatches to the appropriate analyzer.
 
-At the moment, only the reconstructed (HIPO) workflow is active: it instantiates `RecoAnalyzer` and immediately runs its constructor logic.
+In the current code path, the reconstructed HIPO workflow is the active path: it constructs `RecoAnalyzer` with the selected sample and CLI options.
 
 ## Files
 
-- `DataAnalyzer.h`
+- [`include/AnalysisTools/DataAnalyzer.h`](../../include/AnalysisTools/DataAnalyzer.h)
   - Declares the `DataAnalyzer` class.
-  - Includes the implementation file `applications/RecoAnalyzer.cpp` directly.
-- `DataAnalyzer.cpp`
+- [`source/AnalysisTools/DataAnalyzer.cpp`](../../source/AnalysisTools/DataAnalyzer.cpp)
   - Defines the `DataAnalyzer` methods.
 
 ## What the class does
@@ -23,13 +22,17 @@ At the moment, only the reconstructed (HIPO) workflow is active: it instantiates
 ### Constructor
 
 ```cpp
-DataAnalyzer(const std::string& FileType, const std::string& RecoSamplePath, const std::string& ReconHipoDir, const std::string& InputHipoFiles);
+DataAnalyzer(const std::string& FileType,
+             const std::string& RecoSamplePath,
+             const std::string& ReconHipoDir,
+             const std::string& InputHipoFiles,
+             const reco_cli::RecoCliOptions& cli);
 ```
 
 Flow:
 
 1. Calls `ConfigureAnalyzerMode(FileType)`.
-2. Calls `RunEventAnalyzer(AnalyzerMode, RecoSamplePath, ReconHipoDir, InputHipoFiles)`.
+2. Calls `RunEventAnalyzer(AnalyzerMode, RecoSamplePath, ReconHipoDir, InputHipoFiles, cli)`.
 
 ### ConfigureAnalyzerMode
 
@@ -47,16 +50,20 @@ If `FileType` is anything else, the code prints an error and terminates the proc
 ### RunEventAnalyzer
 
 ```cpp
-void RunEventAnalyzer(const std::string& AnalyzerMode, const std::string& RecoSamplePath, const std::string& ReconHipoDir, const std::string& InputHipoFiles);
+void RunEventAnalyzer(const std::string& AnalyzerMode,
+                      const std::string& RecoSamplePath,
+                      const std::string& ReconHipoDir,
+                      const std::string& InputHipoFiles,
+                      const reco_cli::RecoCliOptions& cli);
 ```
 
 Current behavior:
 
 - If `AnalyzerMode == "Detector Simulation"`, constructs a local `RecoAnalyzer` object:
   ```cpp
-  RecoAnalyzer RecoEventAnalyzer(RecoSamplePath, ReconHipoDir, InputHipoFiles);
+  RecoAnalyzer recoEventAnalyzer(RecoSamplePath, ReconHipoDir, InputHipoFiles, cli);
   ```
-  Any work is expected to happen inside the `RecoAnalyzer` constructor (or methods it calls).
+  The work then proceeds inside the `RecoAnalyzer` constructor and its downstream setup/event-loop code.
 
 The `TruthAnalyzer` path is present as commented code and is not currently executed.
 
@@ -64,19 +71,7 @@ The `TruthAnalyzer` path is present as commented code and is not currently execu
 
 Typical usage from a driver (example):
 
-```cpp
-#include "framework/classes/DataAnalyzer/DataAnalyzer.h"
-
-int main() {
-    const std::string fileType      = "hipo";
-    const std::string recoSample    = "/path/to/reco/sample";
-    const std::string reconHipoDir  = "/path/to/reconhipo";
-    const std::string inputHipoList = "/path/to/input_files.txt";
-
-    DataAnalyzer analyzer(fileType, recoSample, reconHipoDir, inputHipoList);
-    return 0;
-}
-```
+The active application path creates `DataAnalyzer` from [`source/TwoNAnalyzer/RecoAnalyzer/RecoApp.cpp`](../../source/TwoNAnalyzer/RecoAnalyzer/RecoApp.cpp) after parsing `reco_cli::RecoCliOptions`.
 
 Notes:
 
@@ -85,10 +80,8 @@ Notes:
 
 ## Design and build notes
 
-- `RunEventAnalyzer` creates a local `RecoAnalyzer` instance; it does not store it as a member. This is intentional given the current implementation pattern: the constructor call is used as the entry point.
-
-- The header currently includes a `.cpp` file (`RecoAnalyzer.cpp`). This can work in some build setups but is unconventional and can easily lead to multiple-definition issues if the same translation unit is built elsewhere. If you later refactor:
-  - Prefer including a `RecoAnalyzer.h` header and linking against the compiled `RecoAnalyzer` object/library.
+- `RunEventAnalyzer` creates a local `RecoAnalyzer` instance; it does not store it as a member.
+- The modern header layout uses `RecoAnalyzer.h`; the older "include a .cpp file from the header" pattern is no longer the active design here.
 
 - The error handling in `ConfigureAnalyzerMode` terminates the process. If you later need the caller to handle errors, replace `exit(1)` with an exception or an error return.
 

@@ -15,7 +15,7 @@ The runtime setup is now driven mainly by YAML files under [`config/`](config), 
 
 - Paths and output directories:
   - Global directory definitions live in [`config/io/CodeDirectories_Default.yaml`](config/io/CodeDirectories_Default.yaml).
-  - [`include/Settings/setup/path_definitions.h`](include/Settings/setup/path_definitions.h) loads [`config/io/CodeDirectories.yaml`](config/io/CodeDirectories.yaml) when it exists, and otherwise falls back to the default file.
+  - [`include/Settings/setup/path_definitions.h`](include/Settings/setup/path_definitions.h) loads `config/io/CodeDirectories.yaml` when that local override exists, and otherwise falls back to the default file.
   - `custom_plots_path_prefix` is taken from that YAML and is used when naming output folders.
   - The CLI option `--directories <path>` exists, but the current analyzer path-loading code does not consume it yet.
 
